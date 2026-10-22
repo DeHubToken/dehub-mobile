@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Voo kokkuvõte",
+    "justEnded": "Sinu voo kokkuvõte",
+    "lastStream": "Sinu viimane voog",
+    "none": "Ühtegi lõpetatud voogu pole veel. Kokkuvõte kuvatakse siin pärast esimest.",
+    "share": "Jaga",
+    "shareText": "Voogesitasin just \"{{title}}\" DeHubis: {{duration}} Live, {{peak}} tipphetkel vaatamine ja {{followers}} uut jälgijat.",
+    "untitled": "Pealkirjata voog",
+    "loadFailed": "Kokkuvõtet ei laaditud. Proovi mõne hetke pärast uuesti.",
+    "duration": "Otseülekande aeg",
+    "peakViewers": "Enamik vaatab korraga",
+    "gifts_one": "Alates {{count}} kingitusest",
+    "gifts_other": "Alates {{count}} kingitusest",
+    "newFollowers": "Uued jälgijad",
+    "chatMessages": "Vestlussõnumid:",
+    "chatters": "Inimesed vestlevad",
+    "reactions": "Vastusteade",
+    "shares": "Inimeste jagamine",
+    "topSupporters": "Parimad toetajad",
+    "polls": "Küsitlused",
+    "pollWinner": "{{option}} võitis",
+    "stillCounting": "Ikka veel loeb: kingituste kinnitamine võib võtta minuti."
+  },
   "articles": {
     "articleImage": "Artikli pilt",
     "socialImage": "Sotsiaalmeedia jagamise pilt",
@@ -4771,7 +4794,7 @@
     "usernameReserved": "See kasutajanimi on reserveeritud",
     "profileSet": "Profiil edukalt seadistatud!",
     "profileFailed": "Profiili seadistamine ebaõnnestus",
-    "displayNameHint": "Sinu avalik nimi, mis kuvatakse profiilil."
+    "displayNameHint": "Sinu avalik nimi profiilil. Valikuline — jäta tühjaks, et kasutada oma kasutajanime."
   },
   "events": {
     "mine": "Minu omad",
@@ -5012,6 +5035,7 @@
     "accountHasA": "Sellel kontol on",
     "ifYouUsedDehub": "Kui oled dehub.io varem kasutanud, ava see arvutis, logi sisse samal viisil ja sama kontoga ning",
     "biometricExplainer": "Ava sõrmejälje või näoga — midagi pole vaja kirjutada ega meelde jätta. Võti jääb sellesse telefoni, seega näitame sulle 12-sõnalist taastefraasi, mille üles kirjutad; see on ainus tee tagasi teisest telefonist, veebisaidilt või pärast uuesti installimist. Vali selle asemel Parool ja seda tööd teeb parool ise.",
+    "biometricExplainerSecuring": "Ava sõrmejälje või näoga — midagi pole vaja kirjutada ega meelde jätta. Võti jääb sellesse telefoni. Et pääseda tagasi teisest telefonist, veebisaidilt või pärast uuesti installimist, salvesta hiljem jaotises Seaded 12-sõnaline varukoopia. Vali selle asemel Parool ja seda tööd teeb parool ise.",
     "biometricPrompt": "See rahakott on kaitstud selle seadme biomeetriaga. Jätkamiseks kinnita sõrmejälje või näoga.",
     "enterRecoveryPhrase": "Sisesta 12-sõnaline taastefraas, mille salvestasid selle rahakoti loomisel (või selle privaatvõti, kui eksportisid). See viib tagasi samale kontole ja parool, mille allpool määrad, muutub varuvariandiks, mis toimib nüüdsest igal pool.",
     "copyPhrase": "Kopeeri fraas",
@@ -5084,6 +5108,7 @@
     "unlockWithPasswordExplainer": "Sellel kontol on juba parooliga kaitstud rahakott. Sisestage see, et oma rahakott sellel seadmel taastada.",
     "deviceTab": "See seade",
     "deviceExplainer": "Pole midagi sisestada ega meeles pidada — võti jääb sellesse seadmesse. Pakume sulle üleskirjutamiseks 12-sõnalist varukoopiat; see on ainus tagasitee teisest seadmest, veebisaidilt või pärast uuesti installimist. Vali selle asemel parool ja parool ise teeb seda tööd.",
+    "deviceExplainerSecuring": "Midagi pole vaja kirjutada ega meelde jätta — võti jääb sellesse seadmesse. Et pääseda tagasi teisest seadmest, veebisaidilt või pärast uuesti installimist, salvesta hiljem jaotises Seaded 12-sõnaline varukoopia. Vali selle asemel Parool ja seda tööd teeb parool ise.",
     "secureOnDevice": "Hoidke võtit selles seadmes"
   },
   "transcript": {
@@ -8982,15 +9007,15 @@
   "accountDeletion": {
     "title": "Kustuta konto",
     "description": "Kustuta jäädavalt oma konto ja isikuandmed",
-    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik kasulikud asjad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
-    "cancel": "Saab sisse lülitada",
+    "warning": "See kustutab jäädavalt sinu DeHubi profiili, postitused, kommentaarid, sõnumid ja salvestatud rahakoti varukoopia. Salvesta oma rahakoti taastamise üksikasjad ja teisalda esmalt kõik varad. Avalikke plokiahela tehinguid ja seadusega nõutud maksekirjeid ei saa kustutada. Sinu profiil peidetakse kohe; kustutamine lõpeb 30 päeva jooksul. Seda ei saa tagasi võtta.",
+    "cancel": "Tühista",
     "confirm": "Kustuta minu konto jäädavalt",
     "busy": "Kustutamistaotluse esitamine…",
     "accepted": "Konto kustutamine on taotletud",
     "receipt": "Sinu kustutamistaotlus on salvestatud. Sinu profiil on peidetud ja sinu konto kustutatakse jäädavalt 30 päeva jooksul. Sisselogimine ei saa seda taotlust tühistada.",
     "error": "Kustutamistaotlust ei saanud esitada. Sinu konto ei ole kustutamiseks kinnitatud. Proovi uuesti.",
     "back": "Mine tagasi seadistuste juurde",
-    "signIn": "Logi oma kontole sisse",
+    "signIn": "Logi sisse, et oma konto kustutada",
     "acknowledge": "Salvestasin oma rahakoti taastamise üksikasjad ja mõistan, et kustutamine on lõplik.",
     "done": "Valmis"
   },
@@ -9128,6 +9153,7 @@
     "notNow": "Mitte praegu"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} pööras: {{result}}",
     "someone": "Keegi",
     "newFollower": "Uus jälgija: {{name}}",
     "newSubscriber": "Uus abonent: {{name}}",
@@ -9139,9 +9165,29 @@
     "topSupporters": "Parimad toetajad",
     "tipped": "{{name}} saatis kingituse",
     "chatPreview": "Vestlussõnumid kuvatakse siin",
-    "wheelLanded": "{{name}} pööras: {{result}}"
+    "poll": {
+      "closed": "Hääletamine on lõppenud",
+      "voteFor": "Hääletage {{option}} poolt",
+      "signIn": "Hääletamiseks logi sisse",
+      "failed": "Sinu häält ei arvestatud. Proovi uuesti.",
+      "voted_one": "Hääletasid · {{count}} vote",
+      "voted_other": "Hääletasid · {{count}} häält",
+      "votes_one": "{{count}} hääletus",
+      "votes_other": "{{count}} häält"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kiirkontrollid",
+      "intro": "Keskpaigaks. Iga lüliti hoiab kõigile, kes seda vaatavad, rakenduses ja OBS-is, kuni seda tagasi keerad.",
+      "alertsPaused": "Peata teavitused",
+      "alertsPausedHint": "Ekraanil ei kuvata kingitusi, jälgita ega juhita teavitusi. Loendurid, eesmärgid ja vestlusboks jätkuvad.",
+      "soundsMuted": "Vaigista hoiatussignaalid",
+      "soundsMutedHint": "Sinu reeglid lõpetavad helide mängimise.",
+      "readAloudMuted": "Peata valjusti lugemine",
+      "readAloudMutedHint": "Kinkekaarte ja reegliridu enam ette ei loeta.",
+      "failed": "Lüliti ei muutunud. Proovi uuesti."
+    },
     "title": "Live Studio",
     "subtitle": "Teavitusid ja vikerkaarte oma streamidele",
     "intro": "Kõik, mida siia lisad, näidatakse oma streamidel kõigile vaatajatele DeHubi rakenduses — kas sa lähed elus kaudu mobiilist, veebileheküljest, kaadripettist või kooderist.",
@@ -9180,6 +9226,7 @@
       "join": "Liitu mine"
     },
     "kinds": {
+      "spin_wheel": "Tsentrifuugiratas",
       "tip_alert": "Tipp-juhtum",
       "follow_alert": "Järgmise juhtum",
       "subscribe_alert": "Aitäh-juhtum",
@@ -9196,9 +9243,10 @@
       "chat_box": "Vestluskast",
       "ticker": "Tiksuja",
       "rule_alert": "Reeglite märguanded",
-      "spin_wheel": "Tsentrifuugiratas"
+      "poll": "Küsitlus"
     },
     "hints": {
+      "spin_wheel": "Kus sinu reeglite rattad pöörlevad",
       "tip_alert": "Täidab iga tippu tema taseme järgi",
       "follow_alert": "Näitab iga uut järgijat",
       "subscribe_alert": "Näitab iga uut abonentit",
@@ -9215,7 +9263,7 @@
       "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
       "ticker": "Sinu enda teksti rida, mis kerib üle ekraani",
       "rule_alert": "Kus kuvatakse sinu reeglite märguanded",
-      "spin_wheel": "Kus sinu reeglite rattad pöörlevad"
+      "poll": "Sinu reaalajas küsitlus, hääletusnupp iga valiku jaoks"
     },
     "fields": {
       "style": "Stiil",
@@ -9274,6 +9322,8 @@
       "rotateFailed": "Uut linki ei saanud luua. Proovi mõne hetke pärast uuesti."
     },
     "rules": {
+      "wheelSegments": "Ratta segmendid, üks rea kohta",
+      "wheelHint": "2 ja 12 vahel. DeHub valib, kus ratas peatub, nii et kõik vaatajad näevad sama tulemust. Kasuta märguandes, valjuhäälses lugemises või vestlustoimingus märguannet {result}.",
       "title": "Reeglid",
       "intro": "Kui teie voos juhtub midagi, teeb DeHub seda, mida soovite: kuvab märguande, esitab heli, loeb midagi valjusti, postitab teie vestlusesse või räägib teie ebakõlast.",
       "add": "Lisa reegel",
@@ -9318,7 +9368,8 @@
         "share": "Keegi jagab voogu",
         "command": "Kasutatakse vestluse käsku",
         "keyword": "Vestlussõnum sisaldab sõna",
-        "chat": "Mis tahes vestlussõnum"
+        "chat": "Mis tahes vestlussõnum",
+        "live": "Alustad edastamist"
       },
       "audiences": {
         "everyone": "Kõik",
@@ -9326,12 +9377,12 @@
         "subscribers": "Tellijad"
       },
       "actionTypes": {
+        "wheel": "Keeruta ratast",
         "alert": "Kuva teade",
         "sound": "Esita heli",
         "say": "Loe valjusti",
         "chat": "Postita vestlusesse",
-        "webhook": "Saada veebihaakile",
-        "wheel": "Keeruta ratast"
+        "webhook": "Saada veebihaakile"
       },
       "summary": {
         "tip": "Jootraha vähemalt {{amount}} DHB"
@@ -9370,19 +9421,97 @@
         "magic-spell": "Maagiline loits",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Ratta segmendid, üks rea kohta",
-      "wheelHint": "2 ja 12 vahel. DeHub valib, kus ratas peatub, nii et kõik vaatajad näevad sama tulemust. Kasuta märguandes, valjuhäälses lugemises või vestlustoimingus märguannet {result}."
+      "placeholdersLive": "Kasuta tekstis {name}, {title} ja {link}: oma nime, saate pealkirja ja linki selle vaatamiseks."
     },
-    "controls": {
-      "title": "Kiirkontrollid",
-      "intro": "Keskpaigaks. Iga lüliti hoiab kõigile, kes seda vaatavad, rakenduses ja OBS-is, kuni seda tagasi keerad.",
-      "alertsPaused": "Peata teavitused",
-      "alertsPausedHint": "Ekraanil ei kuvata kingitusi, jälgita ega juhita teavitusi. Loendurid, eesmärgid ja vestlusboks jätkuvad.",
-      "soundsMuted": "Vaigista hoiatussignaalid",
-      "soundsMutedHint": "Sinu reeglid lõpetavad helide mängimise.",
-      "readAloudMuted": "Peata valjusti lugemine",
-      "readAloudMutedHint": "Kinkekaarte ja reegliridu enam ette ei loeta.",
-      "failed": "Lüliti ei muutunud. Proovi uuesti."
+    "polls": {
+      "title": "Küsitlused",
+      "intro": "Küsige oma saadet vaatavatelt inimestelt küsimus. Nad vastavad DeHubi rakenduses oleva nupuga või sisestavad vestluses {{command}} ja valiku numbri.",
+      "question": "Küsimus",
+      "questionPlaceholder": "Mida peaksin järgmisena mängima?",
+      "option": "Valik {{n}}",
+      "addOption": "Lisa valik",
+      "removeOption": "Eemalda valik {{n}}",
+      "duration": "Kui kaua hääletamine on avatud?",
+      "seconds_one": "{{count}} sekundit",
+      "seconds_other": "{{count}} sekundit",
+      "minutes_one": "{{count}} minutit",
+      "minutes_other": "{{count}} minutit",
+      "start": "Alusta küsitlust",
+      "end": "Lõpeta hääletamine kohe",
+      "started": "Sinu küsitlus on avatud. Vaatajad saavad nüüd hääletada.",
+      "notLive": "Mine kõigepealt otseülekandesse. Praegu voogedastatavas saates toimub küsitlus.",
+      "startFailed": "Küsitlus ei alanud. Proovige uuesti.",
+      "closeFailed": "Hääletamine ei lõppenud. Proovi uuesti.",
+      "live": "Hääletamine avatud · {{time}} jäänud",
+      "ended": "Hääletamine on lõppenud",
+      "votes_one": "{{count}} hääletus",
+      "votes_other": "{{count}} häält",
+      "replaceHint": "Uue küsitluse alustamine sulgeb avatud küsitluse.",
+      "widgetHint": "Näitab teie reaalajas küsitlust. Puuduta DeHubi rakenduse vaatajates hääletamise võimalust; OBS-is ütleb see inimestele, et nad sisestaksid vestluses {{command}} ja numbri.",
+      "sample": {
+        "a": "Midagi uut",
+        "b": "Vana lemmik",
+        "c": "Sa valikud."
+      }
+    },
+    "moderation": {
+      "title": "Saadikejuhtimine",
+      "intro": "Regelid saadike kirjutamiseks kõigi oma voogude all. Nad ei jõua DeHub'i peamisse kirjutusse: keegi, keda sa siin eemaldad, võib veel kõikjal rääkida.",
+      "loadFailed": "Saadikejuhtimisseadmed ei suutnud laaduda. Uuenda lehekülge prooviks uuesti.",
+      "save": "Salvesta saadike regleid",
+      "saved": "Saadike regleid salvestatud.",
+      "saveFailed": "See muudatus ei suutnud salvestada.",
+      "slowMode": "Häirelaad",
+      "slowModeHint": "Kuivas kuivatuse pikkus vaataja vahel saadiste vahel. Sa ja saadikejuhid ei pea ootama.",
+      "off": "Lõpetatud",
+      "seconds_one": "{{count}} sekund",
+      "seconds_other": "{{count}} sekundit",
+      "followersOnly": "Ajakohalised ainult",
+      "subscribersOnly": "Aitajaid ainult",
+      "subscribersOnlyHint": "Ületab ajakohaliste ainult.",
+      "bannedWords": "Keelatud sõnad",
+      "bannedWordsHint": "Eraldi komadega. Sõna tähe-tähe välja kirjutamine ei läbi.",
+      "wordAction": "Kui keegi kasutab ühte",
+      "wordBlock": "Peatake saadist.",
+      "wordTimeout": "Peata ja aega ära 1 minutiks",
+      "moderators": "Moderaatorid",
+      "moderatorsHint": "Nad võivad vaatajaid oma streamides välja ajaks ja bannida. Nad ei saa tegeleda teiega ega teinest teisega.",
+      "addModerator": "Lisa",
+      "usernamePlaceholder": "Kasutajanimi",
+      "moderatorAdded": "Moderaator lisatud.",
+      "moderatorNotFound": "Sellise kasutajanimega kontot ei ole.",
+      "removeModerator": "Moderaatori eemaldamine",
+      "noModerators": "Varem pole moderaatoreid.",
+      "banned": "Sinu streamidest bannitud.",
+      "unban": "Unban",
+      "noBans": "Keegi pole bannitud.",
+      "log": "Viimased teod",
+      "noLog": "Siin pole veel midagi.",
+      "actions": {
+        "timeout_one": "{{actor}} ajas välja {{target}} {{count}} sekundiks",
+        "timeout_other": "{{actor}} ajas välja {{target}} {{count}} sekundiks",
+        "ban": "{{actor}} bannis {{target}}",
+        "unban": "{{actor}} bannis {{target}} välja",
+        "moderator-added": "{{target}} sai moderaatoriks",
+        "moderator-removed": "{{target}} on enam moderaatoriks ei ole",
+        "word-blocked": "Peatas sõnumi {{target}}lt: \"{{word}}\"",
+        "word-timeout_one": "Ajas välja {{target}} {{count}} sekundiks: \"{{word}}\"",
+        "word-timeout_other": "Ajas välja {{target}} {{count}} sekundiks: \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Aeg katkestati 1 minutiks",
+    "timeout10m": "Aeg katkestati 10 minutiks",
+    "timeout1h": "Aeg katkestati 1 tundi",
+    "ban": "Eemaldatud sellest voogust",
+    "makeModerator": "Saadikejuht",
+    "timedOut": "Aeg katkestatud.",
+    "banned": "Eemaldatud sellest voogust.",
+    "madeModerator": "Nad on nüüd saadikejuht.",
+    "failed": "See ei töötanud. Proovige uuesti.",
+    "youAreBanned": "Saad saadikejuhtide voogudes kirjutada.",
+    "youAreTimedOut": "Sa oled hetkel aeg katkestatud.",
+    "title": "Modereerida"
   }
 }

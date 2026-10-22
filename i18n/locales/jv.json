@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Rekap streaming",
+    "shareText": "Saya baru saja streaming \"{{title}}\" di DeHub: {{duration}} live, {{peak}} menonton di puncak dan {{followers}} pengikut baru.",
+    "newFollowers": "Pengikut baru",
+    "reactions": "Tanggapan",
+    "justEnded": "Ringkesan aliran mu",
+    "lastStream": "Kulon streammu kanggo ngahapal.",
+    "none": "Gak ada stream yang udah selesai. Recapmu bakal kelar di sini setelah stream pertama mu.",
+    "share": "Bareng",
+    "untitled": "Kuliyaran streaming ngarso",
+    "loadFailed": "Gak bisa nge-load recapnya. Coba lagi nggih nganti-anti.",
+    "duration": "Waktu nyata",
+    "peakViewers": "Kanggo ngaweni ngisorake pike pisan.",
+    "gifts_one": "Kanggo {{count}} nganti",
+    "gifts_other": "Kanggo {{count}} hadiah",
+    "chatMessages": "Chat messages",
+    "chatters": "Nggih orawe pikeun ngobrol-ngobrol",
+    "shares": "Nggih orawe pikeun ngarani",
+    "topSupporters": "Pendukung paling dhuwur",
+    "polls": "Pilihan-pilihan",
+    "pollWinner": "{{option}} ngoko won",
+    "stillCounting": "Kudu dhuwur: hadiah bisa nganggo waktu sebentar guna dikonfirmasi."
+  },
   "articles": {
     "articleImage": "Gambar artikel",
     "socialImage": "Gambar berbagi sosial",
@@ -4762,7 +4785,7 @@
     "usernameReserved": "Jeneng pangguna iki dicadhangake",
     "profileSet": "Profil kasil disetel!",
     "profileFailed": "Gagal nyetel profil",
-    "displayNameHint": "Jeneng umum sing katon ing profilmu."
+    "displayNameHint": "Jeneng umummu ing profil. Ora wajib — kosongna wae yen arep nganggo jeneng panggunamu."
   },
   "events": {
     "mine": "Duwekku",
@@ -5003,6 +5026,7 @@
     "accountHasA": "Akun iki duwe",
     "ifYouUsedDehub": "Yen sampeyan wis tau nganggo dehub.io, bukak ing komputermu, mlebu kanthi cara lan akun sing padha, banjur",
     "biometricExplainer": "Bukak nganggo sidik jari utawa rai — ora ana sing kudu diketik utawa diapalake. Kuncine tetep ing HP iki, mula awake dhewe bakal nuduhake frasa pemulihan 12 tembung kanggo ditulis; iku siji-sijine dalan bali saka HP liya, saka situs web, utawa sawise instal maneh. Pilih Sandhi minangka gantine, lan sandhine dhewe sing nindakake tugas kuwi.",
+    "biometricExplainerSecuring": "Bukak nganggo sidik jari utawa rai — ora ana sing kudu diketik utawa diapalake. Kuncine tetep ing HP iki. Supaya bisa mlebu maneh saka HP liya, saka situs web, utawa sawise instal maneh, simpen cadangan 12 tembung mengko ing Setelan. Pilih Sandhi minangka gantine, lan sandhine dhewe sing nindakake tugas kuwi.",
     "biometricPrompt": "Dompet iki dilindhungi biometrik piranti iki. Konfirmasi nganggo sidik jari utawa rai kanggo nerusake.",
     "enterRecoveryPhrase": "Lebokna frasa pemulihan 12 tembung sing sampeyan simpen nalika nggawe dompet iki (utawa kunci pribadine, yen sampeyan wis ngekspor). Iki bali menyang akun sing padha, lan sandhi sing sampeyan setel ing ngisor dadi cadangan sing wiwit saiki bisa nang endi wae.",
     "copyPhrase": "Salin frasa",
@@ -5075,6 +5099,7 @@
     "unlockWithPasswordExplainer": "Akun iki wis duwe dompet, dilindhungi nganggo sandhi. Lebokake kanggo mulihake dompetmu ing piranti iki.",
     "deviceTab": "Piranti iki",
     "deviceExplainer": "Ora ana sing kudu diketik utawa dielingi — kunci tetep ana ing piranti iki. Kita bakal menehi sampeyan cadangan 12 tembung kanggo ditulis; iku siji-sijine cara kanggo mlebu maneh saka piranti liya, saka situs web, utawa sawise nginstal maneh. Pilih Password lan tembung sandhi kasebut dhewe sing nindakake tugas kasebut.",
+    "deviceExplainerSecuring": "Ora ana sing kudu diketik utawa diapalake — kuncine tetep ing piranti iki. Supaya bisa mlebu maneh saka piranti liya, saka situs web, utawa sawise instal maneh, simpen cadangan 12 tembung mengko ing Setelan. Pilih Sandhi minangka gantine, lan sandhine dhewe sing nindakake tugas kuwi.",
     "secureOnDevice": "Tansah simpen kunci ing piranti iki"
   },
   "transcript": {
@@ -9106,6 +9131,7 @@
     "notNow": "Gwé nggoje."
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} ngeluk-ngeluk: {{result}}",
     "someone": "Sapa wae",
     "newFollower": "Pengikut anyar: {{name}}",
     "newSubscriber": "Langganan anyar: {{name}}",
@@ -9116,9 +9142,29 @@
     "followersUnit": "pengikut",
     "topSupporters": "Pangrojong paling dhuwur",
     "tipped": "{{name}} ngarani nganti",
-    "wheelLanded": "{{name}} ngeluk-ngeluk: {{result}}"
+    "poll": {
+      "closed": "Pilihan tutup",
+      "voteFor": "Pilihan {{option}}",
+      "signIn": "Manggawe akun dhuwur pilih",
+      "failed": "Pilihanmu gawe gawe. Coba lanang",
+      "voted_one": "Kamu pilih · {{count}} pilih",
+      "voted_other": "Kamu pilih · {{count}} pilih-an",
+      "votes_one": "{{count}} pilih",
+      "votes_other": "{{count}} pilih-an"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "alertsPaused": "Jeda pemberitahuan",
+      "soundsMuted": "Bunyi peringatan bisu",
+      "title": "Kontrol cepet",
+      "intro": "Kanggo ngisor-midstream. Tiwa tiwa ngandhok pike pisan kanggo semuanya ngandhok ngliwat di app lan di OBS, sampe kanggo ngelungguh kanggo ngembok.",
+      "alertsPausedHint": "Gak ada pemberian hadiah, notifikasi follow, atau peringatan aturan di layar. Angka-angka counter, tujuan, dan kotak obrolan tetap berjalan.",
+      "soundsMutedHint": "Aturan mu mandheg main swara.",
+      "readAloudMuted": "Gak usah baca ngelantur.",
+      "readAloudMutedHint": "Pesen hadiah lan baris aturan ora maneh diwaca.",
+      "failed": "Gwé switch ini gak nganti. Coba lanang."
+    },
     "title": "Live Studio",
     "subtitle": "Alerts lan widgets kanggo streams mu",
     "intro": "Kabeh apa sing ditambahake ing kene katon ing streams mu kanggo saben pemirsa ing aplikasi DeHub — apa apa kowe live saka ponsel, browser, capture card utawa encoder.",
@@ -9158,6 +9204,7 @@
     },
     "kinds": {
       "spin_wheel": "Roda putar",
+      "rule_alert": "Peringatan aturan",
       "tip_alert": "Tip alert",
       "follow_alert": "Ngikul alert",
       "subscribe_alert": "Subscriber alert",
@@ -9169,9 +9216,11 @@
       "text": "Teks",
       "frame": "Frame",
       "chat_box": "Kotak obrolan",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "poll": "Pemilihan"
     },
     "hints": {
+      "spin_wheel": "Ngendi roda-roda ing aturan-aturanmu muter",
       "tip_alert": "Ngaweni tiap tip, saking ukuran tiernya",
       "follow_alert": "Ndakékan tiap pengikut baru",
       "subscribe_alert": "Ndakékan tiap subscriber baru",
@@ -9186,7 +9235,7 @@
       "reaction_counter": "Kanggo ngitung reaksi-ngenine ngoko broadcast mo.",
       "event_feed": "Kanggo ngisor-ngisorin ingkang terbaru, pengikut, pengikut berlangganan, lan wong-wong ing ngasaringan broadcast mo.",
       "rule_alert": "Endi aturan-aturan penting mu katon",
-      "spin_wheel": "Ngendi roda-roda ing aturan-aturanmu muter"
+      "poll": "Pemilihan live kamu, dengan tombol suara untuk tiap opsi"
     },
     "fields": {
       "style": "Style",
@@ -9244,6 +9293,7 @@
     },
     "rules": {
       "wheelSegments": "Segmen roda, satu per baris",
+      "wheelHint": "Antara 2 lan 12. DeHub milih ngendi roda mandheg, supaya kabeh sing nonton weruh asil sing padha. Gunakake {result} ing alert, read-aloud utawa chat action kanggo jenenge.",
       "title": "Rules",
       "intro": "Nalika ana sing kedadeyan ing streammu, DeHub nindakake apa sing kowe pilih: nampilake alert, muter swara, maca bab-bab kanthi swara, ngirim ing chatmu utawa ngandhani Discord-mu.",
       "add": "Tambah aturan",
@@ -9270,27 +9320,38 @@
         "tip": "Sampiran sing ngarani.",
         "share": "Kang ngarani stream dhuwur.",
         "command": "Kanggo ngerti perintah chat, nganti dipake.",
-        "chat": "Sembarang pesen obrolan"
+        "chat": "Sembarang pesen obrolan",
+        "follow": "Sapa nang nderek",
+        "subscribe": "Sapa nang subscribe",
+        "keyword": "Pesan chat ngemot tembung",
+        "live": "Kamu ngawakali ngarani"
       },
       "audiences": {
         "everyone": "Kabeh",
-        "followers": "pengikut"
+        "followers": "pengikut",
+        "subscribers": "Subscribers"
       },
       "actionTypes": {
         "wheel": "Putar roda",
         "say": "Waca kanthi swara",
-        "chat": "Post in chat"
+        "chat": "Post in chat",
+        "alert": "Tuduhake alert",
+        "sound": "Mainake swara",
+        "webhook": "Kirim menyang webhook"
       },
       "presets": {
         "blank": "Blank rule",
         "readChat": "Waca obrolan kanthi swara",
-        "command": "Kode pesan nganti-nganti (chat command)"
+        "command": "Kode pesan nganti-nganti (chat command)",
+        "bigTip": "Air horn kanggo tips gedhe",
+        "thankFollowers": "Matur nuwun followers anyar"
       },
       "presetHints": {
         "readChat": "Manggojek pesen pengikutmu ngajog, siji per pengliwat tiworo 30 detik",
         "bigTip": "Ngepang air horn lan ngelukis peringatan buat tip 100.000 DHB lan ati",
         "thankFollowers": "Ngepost pesan ngrejek di chatmu kalau pengikut",
-        "command": "Ngebalikan perintah `!command` di chatmu"
+        "command": "Ngebalikan perintah `!command` di chatmu",
+        "blank": "Mulai saka kosong"
       },
       "presetText": {
         "readChat": "{name} ngomong: {message}",
@@ -9312,18 +9373,115 @@
         "magic-spell": "Sajen",
         "shhh": "Shhh"
       },
-      "wheelHint": "Antara 2 lan 12. DeHub milih ngendi roda mandheg, supaya kabeh sing nonton weruh asil sing padha. Gunakake {result} ing alert, read-aloud utawa chat action kanggo jenenge."
+      "empty": "Ora ana aturan liyane. Tambah siji kanggo tumugon tips, follows utawa chat commands.",
+      "saveToTest": "Simpen aturan mu kanggo test",
+      "test": "Test",
+      "enabled": "Aturan aktif",
+      "save": "Simpen aturan",
+      "needsAlertWidget": "Sawetara aturan nuduhake alert. Tambah widget Rule alerts supaya ana panggonan kanggo katon.",
+      "command": "Perintah",
+      "removeAction": "Busak aksi",
+      "alertText": "Teks alert",
+      "sound": "Swara",
+      "sayText": "Teks kanggo dibacakake",
+      "chatText": "Pesan kanggo diposting",
+      "chatHint": "Diposting saka akun mu menyang chat stream. Ora bisa mbaleni pesan sing dideleng.",
+      "webhookUrl": "Alamat Webhook",
+      "webhookHint": "Discord utawa Slack webhook, utawa alamat https apa wae sing nampa POST.",
+      "summary": {
+        "tip": "Tip saka {{amount}} DHB utawa luwih"
+      },
+      "placeholdersLive": "Gunain {name}, {title}, dan {link} di teks kamu: namamu, judul siaran, dan link nglihatnya."
     },
-    "controls": {
-      "alertsPaused": "Jeda pemberitahuan",
-      "soundsMuted": "Bunyi peringatan bisu",
-      "title": "Kontrol cepet",
-      "intro": "Kanggo ngisor-midstream. Tiwa tiwa ngandhok pike pisan kanggo semuanya ngandhok ngliwat di app lan di OBS, sampe kanggo ngelungguh kanggo ngembok.",
-      "alertsPausedHint": "Gak ada pemberian hadiah, notifikasi follow, atau peringatan aturan di layar. Angka-angka counter, tujuan, dan kotak obrolan tetap berjalan.",
-      "soundsMutedHint": "Aturan mu mandheg main swara.",
-      "readAloudMuted": "Gak usah baca ngelantur.",
-      "readAloudMutedHint": "Pesen hadiah lan baris aturan ora maneh diwaca.",
-      "failed": "Gwé switch ini gak nganti. Coba lanang."
+    "polls": {
+      "title": "Pilihan",
+      "intro": "Tanya orang yang nglihat siaran kamu. Jawabnya dulu dulu di DeHub app, atau ngetik {{command}} lan nomor opsi di chat.",
+      "question": "Pertanyaan",
+      "questionPlaceholder": "Apa yang harus aku mainin selanjutnya?",
+      "option": "Opsi {{n}}",
+      "addOption": "Tambah opsi",
+      "removeOption": "Hapus opsi {{n}}",
+      "duration": "Berapa lama pemilihan tetap terbuka",
+      "seconds_one": "{{count}} detik",
+      "seconds_other": "{{count}} detik",
+      "minutes_one": "{{count}} menit",
+      "minutes_other": "{{count}} menit",
+      "start": "Mulai pemilihan",
+      "end": "Selesaiin pemilihan sekarang",
+      "started": "Pemilihan kamu terbuka. Penonton bisa ngevoting sekarang.",
+      "notLive": "Jangan lupa live dulu. Pemilihan berjalan di siaran yang kamu streaming sekarang.",
+      "startFailed": "Pemilihan ga bisa dimulai. Coba lagi.",
+      "closeFailed": "Pemilihan ga bisa berakhir. Coba lagi.",
+      "live": "Pemilihan terbuka · {{time}} sisa",
+      "ended": "Pemilihan ditutup",
+      "votes_one": "{{count}} suara",
+      "votes_other": "{{count}} suara",
+      "replaceHint": "Mulai pemilihan baru bakal tutup yang sedang terbuka.",
+      "widgetHint": "Nampilin pemilihan live kamu. Di DeHub app penonton klik opsi untuk ngevoting; di OBS bilangin orang ngetik {{command}} lan angka di chat.",
+      "sample": {
+        "a": "Yang baru",
+        "b": "Favorit lama",
+        "c": "Kamu pilih"
+      }
+    },
+    "moderation": {
+      "title": "Moderasi chat",
+      "intro": "Aturan chat di bawah semua streammu. Gak pernah sampai ke main chat DeHub: orang yang kamu ban di sini masih bisa ngobrol dimana-mana lagi.",
+      "loadFailed": "Pengaturan moderasimu gak bisa dimuat. Segarkan halaman untuk coba lagi.",
+      "save": "Simpan aturan chat",
+      "saved": "Aturan chat udah disimpan.",
+      "saveFailed": "Perubahan ini gak bisa disimpan.",
+      "slowMode": "Mode lambat",
+      "slowModeHint": "Berapa lama penonton tunggu sebelum nulis pesan. Kamu dan moderator gak usah tunggu.",
+      "off": "Mati",
+      "seconds_one": "{{count}} detik",
+      "seconds_other": "{{count}} detik",
+      "followersOnly": "Hanya pengikut",
+      "subscribersOnly": "Hanya subscriber",
+      "subscribersOnlyHint": "Mengganti \"hanya pengikut\".",
+      "bannedWords": "Kata-kata yang dilarang",
+      "bannedWordsHint": "Pisahin dengan koma. Menulis kata satu per satu huruf gak bisa ngeluarin.",
+      "wordAction": "Kalo seseorang pakai kata yang dilarang itu",
+      "wordBlock": "Hentikan pesan",
+      "wordTimeout": "Kudu dhuwur, ngantiwake pike pisan ngantiwake.",
+      "moderators": "Moderator",
+      "moderatorsHint": "Kang bisa ngatur waktu out dan ban penonton di stream mo. Kang ga bisa ngarani mo atawa ngarani kanggo rekan-rekan mo.",
+      "addModerator": "Tambah",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Moderator ditambah.",
+      "moderatorNotFound": "Gak ada akun dhuwur username kanggo.",
+      "removeModerator": "Hapus moderator",
+      "noModerators": "Gak ada moderator dina sini.",
+      "banned": "Dilarang dina stream kanggo diri",
+      "unban": "Unban",
+      "noBans": "Gak ada penonton dilarang.",
+      "log": "Aksi-aksi dina sini",
+      "noLog": "Gak ada aksi dina sini.",
+      "actions": {
+        "timeout_one": "{{actor}} ngantiwake {{target}} dhuwur {{count}} detik",
+        "timeout_other": "{{actor}} ngantiwake {{target}} dhuwur {{count}} detik",
+        "ban": "{{actor}} dilarang {{target}}",
+        "unban": "{{actor}} dilarang dilarang {{target}}",
+        "moderator-added": "{{target}} jadi moderator",
+        "moderator-removed": "{{target}} gak jadi moderator dina sini",
+        "word-blocked": "Ngantiwake pesan {{target}} dhuwur \"{{word}}\"",
+        "word-timeout_one": "Ngantiwake {{target}} dhuwur {{count}} detik dhuwur \"{{word}}\"",
+        "word-timeout_other": "Ngantiwake {{target}} dhuwur {{count}} detik dhuwur \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Waktu habis untuk 1 menit",
+    "timeout10m": "Waktu habis untuk 10 menit",
+    "timeout1h": "Waktu habis untuk 1 jam",
+    "ban": "Dilarang ngelanggar stream-streamin ini",
+    "makeModerator": "Dijadikan moderator",
+    "timedOut": "Waktu habis.",
+    "banned": "Dilarang ngelanggar stream-streamin ini.",
+    "madeModerator": "Kedua orang ini jadi moderator.",
+    "failed": "Gak ngerti. Coba lagi.",
+    "youAreBanned": "Gak bisa ngechat di stream kreator ini",
+    "youAreTimedOut": "Waktu habis sebentar",
+    "title": "Moderate"
   }
 }

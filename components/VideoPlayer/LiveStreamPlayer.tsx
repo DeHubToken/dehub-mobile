@@ -44,7 +44,9 @@ import {
   StreamActivityType,
   StreamStatus,
 } from "../../services/enums/livestream.enum";
-import { toastError } from "../../libs";
+import { toastError, toastSuccess } from "../../libs";
+import { SettingsOptionModal } from "../Settings/SettingsPrimitives";
+import { addStreamModerator, banFromStreams, timeOutInStream } from "../../services/livechat.service";
 import { useStreamDetails } from "../../hooks/useStreamDetails";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -1573,6 +1575,46 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     liveChat.sendMessage({ content: url, messageType: "gif", media: [{ url, type: "gif" }] });
   }, [chatRoomId, isSignedIn, liveChat]);
 
+  // The creator and the moderators they appointed act on other people's lines
+  // with a long press: time out, ban from these streams, make moderator.
+  const isStreamOwner = ownerStatus === "owner" || (streamEntity as any)?.isOwner === true;
+  const canModerate = !!postTokenId && (isStreamOwner || liveChat.isModerator);
+  const [moderating, setModerating] = useState<{ address: string; name: string } | null>(null);
+  const openModeration = useCallback((activity: any) => {
+    const address = String(activity?.user?.address || activity?.address || "").toLowerCase();
+    const me = String(user?.walletAddress || user?.address || "").toLowerCase();
+    if (!address || address === me) return;
+    setModerating({ address, name: activity?.user?.displayName || activity?.user?.username || activity?.meta?.username || "" });
+  }, [user?.walletAddress, user?.address]);
+  const moderate = useCallback(async (choice: string) => {
+    const target = moderating;
+    setModerating(null);
+    if (!target || postTokenId == null) return;
+    try {
+      if (choice === "ban") {
+        await banFromStreams(postTokenId, target.address);
+        toastSuccess(t("liveChatModeration.banned"));
+      } else if (choice === "moderator") {
+        await addStreamModerator(target.address);
+        toastSuccess(t("liveChatModeration.madeModerator"));
+      } else {
+        await timeOutInStream(postTokenId, target.address, Number(choice));
+        toastSuccess(t("liveChatModeration.timedOut"));
+      }
+    } catch {
+      toastError(t("liveChatModeration.failed"));
+    }
+  }, [moderating, postTokenId, t]);
+  // A stream timeout quiets this viewer until it runs out, then lets go.
+  const [muted, setMuted] = useState(false);
+  useEffect(() => {
+    const left = liveChat.mutedUntil ? liveChat.mutedUntil - Date.now() : 0;
+    setMuted(left > 0);
+    if (left <= 0) return;
+    const id = setTimeout(() => setMuted(false), left);
+    return () => clearTimeout(id);
+  }, [liveChat.mutedUntil]);
+
 
   // Determine status overlay type
   const overlayStatus = useMemo(() => {
@@ -1755,13 +1797,27 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
   
                 {/* The room. Read-only now — saying something is the bar's job. */}
-                <LiveViewerChat activities={chatActivities} />
+                <LiveViewerChat activities={chatActivities} onModerate={canModerate ? openModeration : undefined} />
+                <SettingsOptionModal
+                  visible={!!moderating}
+                  onClose={() => setModerating(null)}
+                  title={moderating?.name || t("liveChatModeration.title")}
+                  value=""
+                  options={[
+                    { value: "60", label: t("liveChatModeration.timeout1m") },
+                    { value: "600", label: t("liveChatModeration.timeout10m") },
+                    { value: "3600", label: t("liveChatModeration.timeout1h") },
+                    { value: "ban", label: t("liveChatModeration.ban") },
+                    ...(isStreamOwner ? [{ value: "moderator", label: t("liveChatModeration.makeModerator") }] : []),
+                  ]}
+                  onSelect={(choice) => void moderate(choice)}
+                />
 
                 {/* Say something, or do something: one row of it. */}
                 <LiveViewerActionBar
                   draftScope={chatRoomId ? `stream:${chatRoomId}:composer` : null}
                   viewportHeight={viewportHeight}
-                  canSend={!!canChat && liveChat.connected && !liveChat.isBanned}
+                  canSend={!!canChat && liveChat.connected && !liveChat.isBanned && !muted}
                   chatEnabled={liveChatEnabled}
                   isLive={isLiveEffective}
                   isEnded={isEndedEffective}

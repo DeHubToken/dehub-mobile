@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "justEnded": "Récapitulatif de votre flux",
+    "untitled": "Flux sans titre",
+    "title": "O kɔ, a ye n' ka soow lɔ.",
+    "lastStream": "Ani k'a kɛ i yɛrɛ ta ye, i ka mɔgɔ",
+    "none": "A ma ban fɔlɔ. I ka sɛbɛ be sɔrɔ yan i ka sɛbɛ fɔlɔ kɔfɛ.",
+    "share": "Ka dɔ fara a kan",
+    "shareText": "N' tun be \"{{title}}\" lo fɔra DeHub kan: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
+    "loadFailed": "Aw ye to ka miiri, ko sariya sɛbɛbaga ma labɛn. I be se k'a ɲini tugu miniti damanin kɔnɔ.",
+    "duration": "Ɲɛnamaya",
+    "peakViewers": "Mɔgɔ caaman be filɛli kɛ sisan yɛrɛ",
+    "gifts_one": "Ka bɔ {{count}} gift",
+    "gifts_other": "Ka bɔ {{count}} gifts",
+    "newFollowers": "New uwuwuwuwuwu",
+    "chatMessages": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+    "chatters": "Mɔgɔ minw be baro kɛra",
+    "reactions": "O kama, a ka ɲi ka kɛ ni",
+    "shares": "Mɔgɔ minw be jɛnsɛn",
+    "topSupporters": "Mɔgɔ minw be dɛmɛ don",
+    "polls": "Fɛɛn minw be se ka kɛ",
+    "pollWinner": "{{option}} win",
+    "stillCounting": "O kɔ, a be se ka kɛ ko a ye fɛɛn dɔ di a ma min be se k'a bali ka baara kɛ."
+  },
   "articles": {
     "articleImage": "Sɛbɛn ja",
     "socialImage": "Tilali ja",
@@ -4743,7 +4766,7 @@
     "usernameReserved": "Nin tɔgɔ marala",
     "profileSet": "Profili labɛnna ka ɲɛ!",
     "profileFailed": "Profili ma se ka labɛn",
-    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan."
+    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan. A tɛ wajibi ye — n'i y'a to lankolon, i ka baarakɛla tɔgɔ de bɛna ta."
   },
   "events": {
     "mine": "N ta",
@@ -4980,6 +5003,7 @@
     "accountHasA": "Nin jate bɛ ni",
     "ifYouUsedDehub": "N'i delila ka baara kɛ ni dehub.io ye, a da wuli i ka ɔridinatɛri kan, don o cogo kelen na ni jate kelen na, ani",
     "biometricExplainer": "A da wuli ni i bolonɔ walima i ɲɛda ye — foyi tɛ sɛbɛn walima ka hakili la. Konnɛgɛ bɛ to nin telefɔni kan, o la an bɛna laseginni kuma daɲɛ 12 jira i la walasa i k'u sɛbɛn; o de ye sira kelen ye ka segin ka bɔ telefɔni wɛrɛ la, siti la, walima installation kura kɔfɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
+    "biometricExplainerSecuring": "A da wuli ni i bolonɔ walima i ɲɛda ye — foyi tɛ sɛbɛn walima ka hakili la. Konnɛgɛ bɛ to nin telefɔni kan. Walasa ka segin ka don ka bɔ telefɔni wɛrɛ la, siti la, walima installation kura kɔfɛ, laseginni kuma daɲɛ 12 mara Labɛnw kɔnɔ waati wɛrɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
     "biometricPrompt": "Nin wari maralan lakananen don ni nin minɛn bolonɔ ye. I bolonɔ walima i ɲɛda sɛmɛntiya walasa ka taa ɲɛ.",
     "enterRecoveryPhrase": "Laseginni kuma daɲɛ 12 sɛbɛn, i ye min mara tuma min na i ye nin wari maralan dilan (walima a konnɛgɛ gundo, n'i y'a labɔ). A bɛ segin jate kelen kan, ani tɛmɛsira min b'i sigi duguma, o bɛ kɛ nɔɲɔgɔnna ye min bɛ baara kɛ yɔrɔ bɛɛ kabini sisan.",
     "copyPhrase": "Kuma kopi",
@@ -5052,6 +5076,7 @@
     "addPasswordOnWeb": "N'i ye dehub.io kɛ ka kɔrɔ, a da wuli i ka ɔridinatɛri kan, i don cogo kelen na ni jate kelen ye, ka <em>wari maralan tɛmɛsira dɔ fara a kan</em> — o bɛ maracogo dogolen dɔ mara nuwaji la. O kɔ, segin yan ka a lajɛ kokura.",
     "deviceTab": "O ye fɛɛrɛ ye",
     "deviceExplainer": "O tɛ se ka sɛbɛri kɛ wala k'a hakili to a la. An b'a fɛ ka kuma 12 sɛbɛ ka bɔ a kɔnɔ. O le ye sira kelen ye ka segi ka bɔ a yɔrɔ wɛrɛ la, ka bɔ a yɔrɔ la, walima ka segi ka bɔ a yɔrɔ la. I ka tɛmɛsira sugandi ani i ka tɛmɛsira yɛrɛ lo b'o baara kɛ.",
+    "deviceExplainerSecuring": "Foyi tɛ sɛbɛn walima ka hakili la — konnɛgɛ bɛ to nin minɛn kan. Walasa ka segin ka don ka bɔ minɛn wɛrɛ la, siti la, walima installation kura kɔfɛ, laseginni kuma daɲɛ 12 mara Labɛnw kɔnɔ waati wɛrɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
     "secureOnDevice": "I ka mansinw mara o masini kan"
   },
   "transcript": {
@@ -8910,19 +8935,19 @@
     "topUpEmptyHint": "Token fara a kan walasa ka baara kɛ ni AI ye"
   },
   "accountDeletion": {
-    "title": "Ka kunnafoniw bɔ",
-    "description": "I ka kunnafoniw ani i ka kunnafoniw bɛɛ bɔ kɛnɛ kan",
-    "warning": "O be i ka DeHub kunnafoniw, i ka lɛtɛrɛw, i ka kumadenw, i ka lɛtɛrɛw ani i ka warifaniw bɛɛ ban pewu. I ka wari sɔrɔli kunnafoniw mara ani i ka wari bɛɛ ta fɔlɔ. O kama, a ka ɲi ka to ka kuma ni mɔgɔ wɛrɛw ye. I ka kunnafoniw be dogo joona joona. I ka kunnafoniw be tunu tile 30 kɔnɔ. O tɛ se ka ban.",
-    "cancel": "Kanali",
-    "confirm": "Ka n ka wari di n ma tuma bɛɛ",
-    "busy": "O kama, n' tun b'a fɛ ka min fɔ, n' tun b'o le fɔra.",
-    "accepted": "N'i ye mɔgɔ dɔ weele ka na i ka banki la",
-    "receipt": "I ka deliliw kisira. I ka kunnafoniw dogonin lo ani i ka kunnafoniw bena tunu pewu tile 30 kɔnɔ. Aw kana siginidenw bali ka sɛbɛ nin ci.",
-    "done": "Mun lo kɛra?",
-    "error": "Aw kana siginidenw bali ka sɛbɛ nin ci. I ka ladɛrɛsi ma kɛ ka ban. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
-    "back": "An ka segi an ka ladɛrɛsiw kan",
-    "signIn": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan",
-    "acknowledge": "Ne ye n ka wari sɔrɔli kunnafoniw mara ani n' y'a faamu ko n' ka wari bɔli ye kudayi ye."
+    "title": "Kɔnti jɔsi",
+    "description": "I ka kɔnti ni i yɛrɛ ka kunnafoniw jɔsi pewu",
+    "warning": "Nin bɛ i ka DeHub profil, i ka sɛbɛnw, i ka hakilinaw, i ka cikanw ani i ka wariminɛn kopi maralen jɔsi pewu. I ka wariminɛn segincogo kunnafoniw mara, ka i ka nafolow bɛɛ bɔ a la fɔlɔ. Blockchain kan jago minnu bɛ bɛɛ ɲɛ na ani sariya ye sara sɛbɛn minnu wajibiya, olu tɛ se ka jɔsi. I ka profil bɛ dogo o yɔrɔnin bɛɛ; jɔsili bɛ ban tile 30 kɔnɔ. O tɛ se ka segin kɔ.",
+    "cancel": "Dabila",
+    "confirm": "N ka kɔnti jɔsi pewu",
+    "busy": "Jɔsili ɲinini bɛ ka ci…",
+    "accepted": "Kɔnti jɔsili ɲinini cira",
+    "receipt": "I ka jɔsili ɲinini marala. I ka profil dogolen don, i ka kɔnti bɛna jɔsi pewu tile 30 kɔnɔ. Ni i donna, o tɛ nin ɲinini dabila.",
+    "done": "A banna",
+    "error": "An ma se ka i ka jɔsili ɲinini ci. I ka kɔnti jɔsili ma sɛmɛntiya. Segi k'a lajɛ tugun.",
+    "back": "Segi Labɛnw ma",
+    "signIn": "Don walasa ka i ka kɔnti jɔsi",
+    "acknowledge": "N ye n ka wariminɛn segincogo kunnafoniw mara, ani n y'a faamu ko jɔsili tɛ se ka segin kɔ."
   },
   "miniApps": {
     "badge": {
@@ -9027,7 +9052,7 @@
     "update": "Kuraya sisan"
   },
   "walletBackup": {
-    "title": "Ka segi ka taga ni wari ye",
+    "title": "Wariminɛn kopi mara",
     "rowDesc": "A filɛ i ka kumaden 12 wala i ka jɔnjɔn",
     "backedUpOn": "Baa kɛ {{date}}",
     "offerTitle": "Yala i b'a fɛ ka segi ka na n'i ye wa?",
@@ -9057,6 +9082,17 @@
     "notNow": "O ma kɛ halibi."
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
+    "poll": {
+      "voted_one": "Vous avez voté · {{count}} vote",
+      "voted_other": "Vous avez voté · {{count}} votes",
+      "closed": "Ɲɛnamaya banna",
+      "voteFor": "Add {{option}}",
+      "signIn": "N'i be se ka ladɛrɛsi kɛ",
+      "failed": "I ka kan ka min fɔ, o tɛ foyi ye.",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}}vousêtes ici: Barakɛ"
+    },
     "someone": "Mɔgɔ dɔ",
     "newFollower": "Mɔgɔ min be tugu a kɔ: {{name}}",
     "newSubscriber": "Mɔgɔ min be sɛbɛri kɛ: {{name}}",
@@ -9065,10 +9101,51 @@
     "followersUnit": "uwuwuwuwuwuuw",
     "topSupporters": "Mɔgɔ minw be dɛmɛ don",
     "tipped": "{{name}}Add a gift",
-    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan",
-    "wheelLanded": "{{name}} spun: {{result}}"
+    "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan"
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kɔrɔbɔli minw be se ka kɛ joona joona",
+      "intro": "O cogo kelen na, mɔgɔ o mɔgɔ be se k'a filɛ, a be se k'a filɛ, a be se k'a filɛ ani a be se k'a filɛ OBS kɔnɔ, fɔɔ i k'a yɛlɛma.",
+      "alertsPaused": "K'a to a ka baara la",
+      "alertsPausedHint": "Mɔgɔ tɛ sɔn ka sɔn, a tɛ sɔn ka koo dɔ kɛ min be mɔgɔ bali ka sɔn. An ka ladiliw, an ka laɲinitaw ani an ka baro kɛyɔrɔ be to ka taga.",
+      "soundsMuted": "O ye mankanba ye.",
+      "soundsMutedHint": "A tun tɛ se ka to ka mankan kɛ.",
+      "readAloudMuted": "Aw ka to ka kalan kɛ",
+      "readAloudMutedHint": "O kama, a tun man nɔgɔ ka mɔgɔ weele ka na a ka soo.",
+      "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten."
+    },
+    "polls": {
+      "seconds_one": "{{count}} seconde",
+      "notLive": "Passez d'abord en direct. Un sondage s'exécute sur l'émission que vous diffusez en ce moment.",
+      "title": "Fɛɛn minw be se ka kɛ",
+      "intro": "Mɔgɔ minw be i ka kalan lamɛnna, i ka ɲiningali dɔ kɛ u ye. U be se k'o jaabi ni tuguni ye DeHub ka porogramu kɔnɔ, walima ka {{command}} sɛbɛn ani ka kumaɲɔgɔnya kɛ n'o ye.",
+      "question": "Ɲiningali dɔ",
+      "questionPlaceholder": "Ne bena mun lo kɛ o kɔ?",
+      "option": "O jaabi ye {{n}}",
+      "addOption": "Ka fɛɛrɛ dɔ sugandi",
+      "removeOption": "Add {{n}}",
+      "duration": "O tuma na, u tun be se ka la a la ko u bena u",
+      "seconds_other": "{{count}} segɔn",
+      "minutes_one": "{{count}}mintamaaf ye kak",
+      "minutes_other": "{{count}} min",
+      "start": "Ka vote daminɛ",
+      "end": "O kama, u tun be se ka la a la",
+      "started": "O la, u ye lajɛnba dɔ kɛ. Mɔgɔ minw be se ka vote, olu be se ka vote sisan.",
+      "startFailed": "O la, a tun man nɔgɔ ka mɔgɔ faga.",
+      "closeFailed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+      "live": "Vote open · {{time}} left",
+      "ended": "Ɲɛnamaya banna",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}}vousêtes ici: Barakɛ",
+      "replaceHint": "Jula poll koonu tun jɛ, jula poll fɔ buɲɛ.",
+      "widgetHint": "I ka ɲɛnamaya kɛcogo yira. DeHub ka app kɔnɔ, mɔgɔ minw be filɛli kɛ, olu be se ka vote kɛ. OBS kɔnɔ, u b'a fɔ mɔgɔw ye k'u ka {{command}} sɛbɛn ani k'u ka nimɔrɔ dɔ sɛbɛ.",
+      "sample": {
+        "a": "Fɛɛn kura dɔ",
+        "b": "2. ka kɛ mɔgɔ ɲɛnagwɛlenw ye",
+        "c": "I ka koo latigɛ"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Aw ka lasɔmini kumaw ni aw ka fɔrɔmasɔnw",
     "intro": "I be fɛɛn o fɛɛn fara o kan, o be ye i ka barokunw kan, mɔgɔ o mɔgɔ be filɛli kɛ DeHub ka porogramu kɔnɔ — i ka telefɔni, i ka barokun lajɛbaga, i ka kariti wala i ka coder kan.",
@@ -9105,6 +9182,8 @@
       "join": "I ka kan ka na"
     },
     "kinds": {
+      "spin_wheel": "O ye nɛgɛso ye",
+      "poll": "Fanga be mɔgɔ minw na,",
       "tip_alert": "Aw ye aw janto",
       "follow_alert": "Aw ye aw janto",
       "subscribe_alert": "Mɔgɔ min y'a ka sɛbɛ ci",
@@ -9120,10 +9199,11 @@
       "event_feed": "Sanni dɔɔni, u ye baara kɛ",
       "chat_box": "Kala Lagaw Ya",
       "ticker": "Fɛɛn minw be sɔrɔ o la",
-      "rule_alert": "Kɔrɔbɔli sariya",
-      "spin_wheel": "O ye nɛgɛso ye"
+      "rule_alert": "Kɔrɔbɔli sariya"
     },
     "hints": {
+      "spin_wheel": "I ka sariya kɔnɔ, i ka kan ka min fɔ, o ye tiɲɛ ye.",
+      "poll": "I ka ɲɛnamaya kɛcogo ka di i ye, i ka vote tuguni kelen kelen bɛɛ la",
       "follow_alert": "Ka tugu mɔgɔ kuraw kɔ",
       "subscribe_alert": "A ka kan ka kɛ i ka mɔgɔ kuraw bɛɛ ka kan ka kɛ i ka mɔgɔ kuraw ye",
       "share_alert": "N'i ye mɔgɔ dɔ ye min be to ka kuma i fɛ",
@@ -9137,8 +9217,7 @@
       "event_feed": "I ka kalan labanw, i ka kalandenw, i ka sɛbɛw ani i ka kalanw jɛnsɛnbagaw",
       "chat_box": "- I ka videokalanw yira i ka filɛli la",
       "ticker": "O kɔ, a ye fɛɛn dɔ yira a la min be se k'a bali ka fɛɛn dɔ ye.",
-      "rule_alert": "I ka sariyaw be yɔrɔ min na",
-      "spin_wheel": "I ka sariya kɔnɔ, i ka kan ka min fɔ, o ye tiɲɛ ye."
+      "rule_alert": "I ka sariyaw be yɔrɔ min na"
     },
     "fields": {
       "style": "O ye ɲɛyirali ɲuman ye",
@@ -9195,6 +9274,10 @@
       "rotateFailed": "\"Ne ma se ka bataki filanan dayɛlɛ fɔɔ ka taga se a laban ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
     },
     "rules": {
+      "wheelSegments": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ kelen ye.",
+      "wheelHint": "(c) Ni a ye 10 ye, i n'a fɔ 19 ani 29 DeHub be nɛgɛso lɔyɔrɔ sugandi walisa mɔgɔ bɛɛ ka se ka o ɲɔgɔn ye. I ka kan ka {result} kɛ kunnafoni dɔ kɔnɔ, ka kalan kɛ walima ka baro kɛ n'o ye.",
+      "placeholdersLive": "I ka barokun kɔnɔ, i ka {name}, {title} ani {link}: i tɔgɔ, i ka kunnafoni tɔgɔ ani i ka link dɔ kɛ k'a filɛ.",
+      "cooldown": "Attendre entre les utilisations (secondes)",
       "title": "Sariya",
       "intro": "Ni koo dɔ kɛra i ka site web kan, DeHub b'a fɛ ka min kɛ, a b'o kɛ: a be lasɔmini dɔ yira, a be mankan dɔ bɔ, a be fɛɛn dɔ kalan ni kaanba ye, a be kuma i ka site web kɔnɔ wala a be kuma i ka Discord koo la.",
       "add": "A ka sariya sigi",
@@ -9230,6 +9313,7 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "live": "Ka baara daminɛ",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
@@ -9244,12 +9328,12 @@
         "subscribers": "Subscribers"
       },
       "actionTypes": {
+        "wheel": "A be wotoro nin yɛlɛma",
         "alert": "Show an alert",
         "sound": "Play a sound",
         "say": "Read aloud",
         "chat": "Post in chat",
-        "webhook": "Send to a webhook",
-        "wheel": "A be wotoro nin yɛlɛma"
+        "webhook": "Send to a webhook"
       },
       "summary": {
         "tip": "{{amount}}DHB wala ka tɛmɛ o kan"
@@ -9269,10 +9353,13 @@
         "command": "I ka kan ka min fɔ, o ye tiɲɛ ye."
       },
       "presetText": {
+        "thankFollowers": "Merci de nous avoir suivis, {name} !",
+        "command": "Bonjour {name}, bienvenue sur la chaîne !",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
       "sounds": {
+        "spooky": "Effrayant",
         "airhorn": "Fanga min be fɔɲɔ kan",
         "applause": "Ne b'i fo kosɔbɛ",
         "cricket": "Kɛlɛkɛyɔrɔ",
@@ -9285,19 +9372,67 @@
         "magic-spell": "O ye kabako ye.",
         "shhh": "O ye n ka miiriya ye."
       },
-      "wheelSegments": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ kelen ye.",
-      "wheelHint": "(c) Ni a ye 10 ye, i n'a fɔ 19 ani 29 DeHub be nɛgɛso lɔyɔrɔ sugandi walisa mɔgɔ bɛɛ ka se ka o ɲɔgɔn ye. I ka kan ka {result} kɛ kunnafoni dɔ kɔnɔ, ka kalan kɛ walima ka baro kɛ n'o ye."
+      "audience": "Jɔn tun be se k'a miiri ko a bena bɔ?",
+      "webhookHint": "Webhook min be weele ko Discord wala Slack, walima https ka ladɛrɛsi min be sɔn ka baara dɔ kɛ."
     },
-    "controls": {
-      "title": "Kɔrɔbɔli minw be se ka kɛ joona joona",
-      "intro": "O cogo kelen na, mɔgɔ o mɔgɔ be se k'a filɛ, a be se k'a filɛ, a be se k'a filɛ ani a be se k'a filɛ OBS kɔnɔ, fɔɔ i k'a yɛlɛma.",
-      "alertsPaused": "K'a to a ka baara la",
-      "alertsPausedHint": "Mɔgɔ tɛ sɔn ka sɔn, a tɛ sɔn ka koo dɔ kɛ min be mɔgɔ bali ka sɔn. An ka ladiliw, an ka laɲinitaw ani an ka baro kɛyɔrɔ be to ka taga.",
-      "soundsMuted": "O ye mankanba ye.",
-      "soundsMutedHint": "A tun tɛ se ka to ka mankan kɛ.",
-      "readAloudMuted": "Aw ka to ka kalan kɛ",
-      "readAloudMutedHint": "O kama, a tun man nɔgɔ ka mɔgɔ weele ka na a ka soo.",
-      "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten."
+    "moderation": {
+      "title": "Modération de chat",
+      "intro": "Règles pour le chat sous tous vos streams. Ils n'atteignent jamais le chat principal de DeHub : quelqu'un que vous bannissez ici peut toujours parler ailleurs.",
+      "seconds_one": "{{count}} seconde",
+      "subscribersOnly": "Abonnés uniquement",
+      "loadFailed": "I nin ka sɛbɛn tɛ se ka dɔn. Fɔ̀li jɔ̀ kɔ̀nɔ̀ ka ɲɛ̀nɛ̀.",
+      "save": "Ka kumaɲɔgɔnya kɛ ni mɔgɔ dɔ ye",
+      "saved": "O kama, an ka kan ka baro kɛ ni ɲɔgɔn ye.",
+      "saveFailed": "O yɛlɛmani tun tɛ se ka kisi.",
+      "slowMode": "Modɛli min be yɛlɛma dɔɔni dɔɔni",
+      "slowModeHint": "Mɔgɔ minw be to ka kuma, olu be kɔnɔni kɛ fɔɔ tuma juman? Aw ni aw ka lasigidenw tɛna kɔnɔni kɛ abada.",
+      "off": "O kɔ, a bɔra",
+      "seconds_other": "{{count}} segɔn",
+      "followersOnly": "Mɔgɔ minw be tugu u kɔ",
+      "subscribersOnlyHint": "Mɔgɔ minw be tugu a kɔ, olu dɔrɔn lo ka kan ka tugu a kɔ.",
+      "bannedWords": "Kuma minw man kan ka fɔ",
+      "bannedWordsHint": "Ka kuma dɔ sɛbɛ ka bɔ bataki dɔ kɔnɔ, o tɛ se ka yɛlɛma.",
+      "wordAction": "Ni mɔgɔ dɔ ye dɔ ta",
+      "wordBlock": "A ka kuma to yen",
+      "wordTimeout": "Aw ye aw yɛrɛ kɔrɔsi, aw ye aw yɛrɛ kɔrɔsi.",
+      "moderators": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
+      "moderatorsHint": "U be se ka wagati ta ka ban i ka filɛli la. U tɛ se ka baara kɛ aw ni ɲɔgɔn cɛ.",
+      "addModerator": "O kɔ,",
+      "usernamePlaceholder": "Mɔgɔ tɔgɔ",
+      "moderatorAdded": "A ye yɛlɛmanibaw kɛ.",
+      "moderatorNotFound": "A ma foyi fɔ o tɔgɔ koo la.",
+      "removeModerator": "Modèle: Modèle",
+      "noModerators": "O tɛ se ka kɛ halibi.",
+      "banned": "I ka fɔɲɔ ɲimi, i ka fɔɲɔ ɲimi,",
+      "unban": "O ye kooba ye.",
+      "noBans": "Mɔgɔ si man kan ka ban.",
+      "log": "Sanni dɔɔni, u ye koo dɔw kɛ.",
+      "noLog": "O tɛ foyi ye tugun.",
+      "actions": {
+        "timeout_one": "{{actor}} a expiré {{target}} pendant {{count}} seconde",
+        "word-blocked": "Arrêt d'un message de {{target}} pour \"{{word}}\"",
+        "word-timeout_one": "Temporisé {{target}} pour {{count}} seconde pour \"{{word}}\"",
+        "word-timeout_other": "Temporisé {{target}} pour {{count}} secondes pour \"{{word}}\"",
+        "timeout_other": "{{actor}} timed out{{target}} for {{count}} segindi",
+        "ban": "{{actor}} banned {{target}}",
+        "unban": "{{actor}} unbanned {{target}}",
+        "moderator-added": "{{target}}Becoming a Moderator ka ɲɛsin mɔgɔ wɛrɛw ma",
+        "moderator-removed": "{{target}} No longer a moderator"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Dɔɔni fɔlɔ",
+    "timeout10m": "Dakun 10 tɛmɛna.",
+    "timeout1h": "A ka kan ka lɛri kelen kɛ",
+    "ban": "O kɔ, a ye sira di a ma ko a ka taga.",
+    "makeModerator": "Moderna ka baara",
+    "timedOut": "O ye wagati ɲuman ye.",
+    "banned": "O kɔ, u y'a fɔ a ye ko a ka taga n'a ye.",
+    "madeModerator": "Sisan, a ye mɔgɔ dɔ ye min be koow ɲɛnabɔ.",
+    "failed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+    "youAreBanned": "I ka tɛ sɛbɛn cɛ ni creator ye stream la",
+    "youAreTimedOut": "I be bɔ waati dɔ la",
+    "title": "Ka kɛ mɔgɔ majiginin ye"
   }
 }

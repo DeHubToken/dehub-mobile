@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Rekapitulácia streamu",
+    "justEnded": "Rekapitulácia vášho streamu",
+    "lastStream": "Váš posledný stream",
+    "none": "Zatiaľ žiadne dokončené streamy. Vaše zhrnutie sa zobrazí tu po prvom zhrnutí.",
+    "share": "Zdieľať",
+    "shareText": "Práve som vysielal „{{title}}“ na DeHub: {{duration}} live, {{peak}} sledovanie na vrchole a {{followers}} nových sledovateľov.",
+    "untitled": "Stream bez názvu",
+    "loadFailed": "Rekapitulácia sa nenačítala. Skúste to znova o chvíľu.",
+    "duration": "Čas naživo",
+    "peakViewers": "Najviac sledovaných naraz",
+    "gifts_one": "Od {{count}} darčeka",
+    "gifts_other": "Od darčekov {{count}}",
+    "newFollowers": "Noví sledovatelia",
+    "chatMessages": "Správy chatu",
+    "chatters": "Ľudia sa rozprávajú",
+    "reactions": "Reakcie",
+    "shares": "Zdieľanie ľudí",
+    "topSupporters": "Najlepší priaznivci",
+    "polls": "Ankety",
+    "pollWinner": "{{option}} vyhral",
+    "stillCounting": "Stále sa počíta: potvrdenie darčekov môže chvíľu trvať."
+  },
   "articles": {
     "articleImage": "Obrázok článku",
     "socialImage": "Obrázok pre sociálne siete",
@@ -4879,7 +4902,7 @@
     "usernameReserved": "Toto používateľské meno je vyhradené",
     "profileSet": "Profil bol úspešne nastavený!",
     "profileFailed": "Profil sa nepodarilo nastaviť",
-    "displayNameHint": "Vaše verejné meno zobrazené v profile."
+    "displayNameHint": "Vaše verejné meno v profile. Nepovinné — ak ho necháte prázdne, použije sa vaše používateľské meno."
   },
   "events": {
     "mine": "Moje",
@@ -5120,6 +5143,7 @@
     "accountHasA": "Tento účet má",
     "ifYouUsedDehub": "Ak ste dehub.io už používali, otvorte ho v počítači, prihláste sa rovnakým spôsobom a rovnakým účtom a",
     "biometricExplainer": "Odomykajte odtlačkom prsta alebo tvárou — nič netreba písať ani si pamätať. Kľúč zostáva v tomto telefóne, preto vám ukážeme 12-slovnú obnovovaciu frázu, ktorú si zapíšete; je to jediná cesta späť z iného telefónu, z webu alebo po preinštalovaní. Zvoľte namiesto toho Heslo a túto úlohu plní samo heslo.",
+    "biometricExplainerSecuring": "Odomykajte odtlačkom prsta alebo tvárou — nič netreba písať ani si pamätať. Kľúč zostáva v tomto telefóne. Ak sa chcete dostať späť z iného telefónu, z webu alebo po preinštalovaní, uložte si neskôr v Nastaveniach 12-slovnú zálohu. Zvoľte namiesto toho Heslo a túto úlohu plní samo heslo.",
     "biometricPrompt": "Táto peňaženka je chránená biometriou tohto zariadenia. Pokračujte potvrdením odtlačkom prsta alebo tvárou.",
     "enterRecoveryPhrase": "Zadajte 12-slovnú obnovovaciu frázu, ktorú ste si uložili pri vytvorení tejto peňaženky (alebo jej súkromný kľúč, ak ste ho exportovali). Vráti vás k rovnakému účtu a heslo, ktoré nastavíte nižšie, sa odteraz stane záložnou cestou fungujúcou všade.",
     "copyPhrase": "Kopírovať frázu",
@@ -5192,6 +5216,7 @@
     "unlockWithPasswordExplainer": "Tento účet už má peňaženku chránenú heslom. Zadajte ho na obnovenie vašej peňaženky na tomto zariadení.",
     "deviceTab": "Toto zariadenie",
     "deviceExplainer": "Nič na napísanie alebo zapamätanie — kľúč zostáva na tomto zariadení. Ponúkneme vám 12‑slovný záložný kód na zapísanie; je to jediný spôsob, ako sa dostať späť z iného zariadenia, z webovej stránky alebo po preinštalovaní. Vyberte namiesto toho Heslo a samotné heslo vykoná túto úlohu.",
+    "deviceExplainerSecuring": "Nič netreba písať ani si pamätať — kľúč zostáva v tomto zariadení. Ak sa chcete dostať späť z iného zariadenia, z webu alebo po preinštalovaní, uložte si neskôr v Nastaveniach 12-slovnú zálohu. Zvoľte namiesto toho Heslo a túto úlohu plní samo heslo.",
     "secureOnDevice": "Ponechať kľúč na tomto zariadení"
   },
   "transcript": {
@@ -9157,7 +9182,7 @@
     "done": "Dokončené",
     "error": "Vašu žiadosť o odstránenie sa nepodarilo odoslať. Váš účet nebol potvrdený na odstránenie. Skúste to znova.",
     "back": "Späť na nastavenia",
-    "signIn": "Prihlásiť sa do svojho účtu",
+    "signIn": "Prihláste sa, aby ste mohli odstrániť svoj účet",
     "acknowledge": "Uložil som si podrobnosti o obnovení peňaženky a chápem, že odstránenie je trvalé."
   },
   "miniApps": {
@@ -9294,6 +9319,7 @@
     "notNow": "Teraz nie"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spôsobil: {{result}}",
     "someone": "Niekto",
     "newFollower": "Nový sledovateľ: {{name}}",
     "newSubscriber": "Nový odberateľ: {{name}}",
@@ -9305,9 +9331,29 @@
     "topSupporters": "Najlepší priaznivci",
     "tipped": "{{name}} odoslal/a darček",
     "chatPreview": "Správy z chatu sa zobrazujú tu",
-    "wheelLanded": "{{name}} spôsobil: {{result}}"
+    "poll": {
+      "closed": "Hlasovanie bolo ukončené",
+      "voteFor": "Hlasujte za {{option}}",
+      "signIn": "Ak chcete hlasovať, prihláste sa",
+      "failed": "Váš hlas sa nezapočítal. Skúste to znova.",
+      "voted_one": "Hlasovali ste · {{count}} hlas",
+      "voted_other": "Hlasovali ste · {{count}} hlasov",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasov"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Rýchle ovládacie prvky",
+      "intro": "Pre stredný prúd. Každý prepínač drží pre každého, kto sa pozerá, v aplikácii a v OBS, kým ho nevrátite späť.",
+      "alertsPaused": "Pozastaviť upozornenia",
+      "alertsPausedHint": "Na obrazovke nie sú žiadne upozornenia na darčeky, sledovanie alebo pravidlá. Počítadlá, ciele a chatovacie pole pokračujú.",
+      "soundsMuted": "Stlmiť zvuky upozornení",
+      "soundsMutedHint": "Vaše pravidlá prestanú hrať zvuky.",
+      "readAloudMuted": "Zastaviť čítanie nahlas",
+      "readAloudMutedHint": "Darčekové správy a riadky pravidiel sa už nečítajú.",
+      "failed": "Tento prepínač sa nezmenil. Skúste to znova."
+    },
     "title": "Live Studio",
     "subtitle": "Upozornenia a miniaplikácie pre vaše streamy",
     "intro": "Všetko, čo sem pridáte, sa zobrazí vo vašich streamoch pre každého diváka v aplikácii DeHub — či už idete naživo zo svojho telefónu, prehliadača, karty na snímanie alebo kodéra.",
@@ -9346,6 +9392,7 @@
       "join": "Pripojiť sa"
     },
     "kinds": {
+      "spin_wheel": "Rotačné koleso",
       "tip_alert": "Upozornenie NA prepitné",
       "follow_alert": "Sledovať upozornenie",
       "subscribe_alert": "Upozornenie účastníka",
@@ -9362,9 +9409,10 @@
       "chat_box": "Chat box",
       "ticker": "Ticker",
       "rule_alert": "Upozornenia na pravidlá",
-      "spin_wheel": "Rotačné koleso"
+      "poll": "Pôl"
     },
     "hints": {
+      "spin_wheel": "Kde sa točia kolesá vo vašich pravidlách",
       "tip_alert": "Oslavuje každé prepitné vo veľkosti podľa jeho úrovne",
       "follow_alert": "Zobrazí každého nového sledovateľa",
       "subscribe_alert": "Zobrazí každého nového odberateľa",
@@ -9381,7 +9429,7 @@
       "chat_box": "Zobrazuje chatové správy vášho vysielania na obrazovke",
       "ticker": "Riadok vlastného textu, ktorý sa posúva po obrazovke",
       "rule_alert": "Kde sa zobrazujú upozornenia na vaše pravidlá",
-      "spin_wheel": "Kde sa točia kolesá vo vašich pravidlách"
+      "poll": "Váš živý pôl, s tlačidlom na hlasovanie pre každý variant"
     },
     "fields": {
       "style": "Štýl",
@@ -9440,6 +9488,8 @@
       "rotateFailed": "Nepodarilo sa vytvoriť nový odkaz. Skúste to znova o chvíľu."
     },
     "rules": {
+      "wheelSegments": "Segmenty kolies, jeden na riadok",
+      "wheelHint": "Medzi 2 a 12. DeHub vyberá, kde sa koleso zastaví, takže všetci sledujúci vidia rovnaký výsledok. Použite {result} v upozornení, nahlas na čítanie alebo akciu chatu, aby ste ho pomenovali.",
       "title": "Pravidlá",
       "intro": "Keď sa na vašom streame niečo stane, DeHub urobí to, čo si vyberiete: zobrazí upozornenie, prehrá zvuk, prečíta niečo nahlas, uverejní príspevok vo vašom chate alebo povie vášmu Discordu.",
       "add": "Pridať pravidlo",
@@ -9484,7 +9534,8 @@
         "share": "Niekto zdieľa stream",
         "command": "Používa sa príkaz na rozhovor",
         "keyword": "Chatová správa obsahuje slovo",
-        "chat": "Akákoľvek správa z chatu"
+        "chat": "Akákoľvek správa z chatu",
+        "live": "Začnete vysielať"
       },
       "audiences": {
         "everyone": "Všetci",
@@ -9492,12 +9543,12 @@
         "subscribers": "Odberatelia"
       },
       "actionTypes": {
+        "wheel": "Roztočte koleso",
         "alert": "Zobraziť upozornenie",
         "sound": "Prehrať zvuk",
         "say": "Čítať nahlas",
         "chat": "Uverejniť v chate",
-        "webhook": "Odoslať na webhook",
-        "wheel": "Roztočte koleso"
+        "webhook": "Odoslať na webhook"
       },
       "summary": {
         "tip": "Prepitné vo výške {{amount}} DHB alebo viac"
@@ -9536,19 +9587,97 @@
         "magic-spell": "Kúzlo",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Segmenty kolies, jeden na riadok",
-      "wheelHint": "Medzi 2 a 12. DeHub vyberá, kde sa koleso zastaví, takže všetci sledujúci vidia rovnaký výsledok. Použite {result} v upozornení, nahlas na čítanie alebo akciu chatu, aby ste ho pomenovali."
+      "placeholdersLive": "Použite {name}, {title} a {link} vo vašom texte: váše meno, názov vysielania a odkaz na pozorovanie."
     },
-    "controls": {
-      "title": "Rýchle ovládacie prvky",
-      "intro": "Pre stredný prúd. Každý prepínač drží pre každého, kto sa pozerá, v aplikácii a v OBS, kým ho nevrátite späť.",
-      "alertsPaused": "Pozastaviť upozornenia",
-      "alertsPausedHint": "Na obrazovke nie sú žiadne upozornenia na darčeky, sledovanie alebo pravidlá. Počítadlá, ciele a chatovacie pole pokračujú.",
-      "soundsMuted": "Stlmiť zvuky upozornení",
-      "soundsMutedHint": "Vaše pravidlá prestanú hrať zvuky.",
-      "readAloudMuted": "Zastaviť čítanie nahlas",
-      "readAloudMutedHint": "Darčekové správy a riadky pravidiel sa už nečítajú.",
-      "failed": "Tento prepínač sa nezmenil. Skúste to znova."
+    "polls": {
+      "title": "Pôly",
+      "intro": "Ptaj sa na ľudí, ktorí sledujú váš vysielanie. Odpovedajú tlačidlom v DeHub aplikácii, alebo napísaním {{command}} a čísla variantu v správe.",
+      "question": "Otázka",
+      "questionPlaceholder": "Čo by som mal/a hrať ďalšie?",
+      "option": "Variant {{n}}",
+      "addOption": "Pridať variant",
+      "removeOption": "Odstrániť variant {{n}}",
+      "duration": "Aký čas trvá hlasovanie",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} sekundy",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minúty",
+      "start": "Spustiť pôl",
+      "end": "Ukončiť hlasovanie teraz",
+      "started": "Váš pôl je otvorený. Diváci môžu hlasovať.",
+      "notLive": "Najprv sa prejdite na živo. Pôl sa spustí na vysielaní, ktoré teraz streamujete.",
+      "startFailed": "Pôl sa nezahájil. Skúste to znova.",
+      "closeFailed": "Hlasovanie nekončilo. Skúste to znova.",
+      "live": "Hlasovanie otvorené · {{time}} zostáva",
+      "ended": "Hlasovanie ukončené",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasy",
+      "replaceHint": "Zahájenie nového pôlu ukončí ten, ktorý je otvorený.",
+      "widgetHint": "Zobrazuje váš živý pôl. V DeHub aplikácii diváci kliknú na variant, aby hlasovali; v OBS vám to napíše, aby ľudia napísali {{command}} a číslo v správe.",
+      "sample": {
+        "a": "Niečo nové",
+        "b": "Starý obľúbenec",
+        "c": "Vy si vyberiete"
+      }
+    },
+    "moderation": {
+      "title": "Chatová moderácia",
+      "intro": "Pravidlá pre chat pod všetkými vašimi streamami. Nikdy sa nedosiahnu DeHubov hlavný chat: kto ste tu zakázaný, stále môže hovoriť všade inde.",
+      "loadFailed": "Nebolo možné načítajúť vaše moderátorské nastavenia. Obnovte stránku a skús to znova.",
+      "save": "Uložiť pravidlá chatu",
+      "saved": "Pravidlá chatu uložené.",
+      "saveFailed": "Toto zmenenie sa nepodarilo uložiť.",
+      "slowMode": "Pomalý režim",
+      "slowModeHint": "Koľko sekúnd čaká každá osoba, kým môže napísať ďalší príspevok. Vy a vášim moderátorom nikdy nečakáte.",
+      "off": "Vypnúť",
+      "seconds_one": "{{count}} sekundy",
+      "seconds_other": "{{count}} sekúnd",
+      "followersOnly": "Len pre nasledovníkov",
+      "subscribersOnly": "Len pre podpredkov",
+      "subscribersOnlyHint": "Prepínanie len pre nasledovníkov.",
+      "bannedWords": "Zakázané slová",
+      "bannedWordsHint": "Oddelte slová čárkou. Nesprávne písať slovo písmenami po písmenách sa nepodarí obeť.",
+      "wordAction": "Keď kto použije jedno",
+      "wordBlock": "Zastaviť správu",
+      "wordTimeout": "Prestaňte s tým a na chvíľu ich vypnite",
+      "moderators": "Moderátori",
+      "moderatorsHint": "Môžu vypršať čas a zakázať divákom vo vašich streamoch. Nemôžu konať na vás ani jeden na druhého.",
+      "addModerator": "Pridať",
+      "usernamePlaceholder": "Používateľské meno",
+      "moderatorAdded": "Moderátor bol pridaný.",
+      "moderatorNotFound": "Žiadny účet s týmto používateľským menom.",
+      "removeModerator": "Odstrániť moderátora",
+      "noModerators": "Zatiaľ žiadni moderátori.",
+      "banned": "Zakázané z vašich streamov",
+      "unban": "Zrušiť udelený zákaz",
+      "noBans": "Nikto nie je zakázaný.",
+      "log": "Nedávne akcie",
+      "noLog": "Zatiaľ tu nič nie je.",
+      "actions": {
+        "timeout_one": "Časový limit {{actor}} vypršal {{target}} na {{count}} sekundu",
+        "timeout_other": "Časový limit {{actor}} vypršal {{target}} na {{count}} sekundy",
+        "ban": "{{actor}} zablokované {{target}}",
+        "unban": "{{actor}} odobraté {{target}}",
+        "moderator-added": "{{target}} sa stal/a moderátorom",
+        "moderator-removed": "{{target}} už nie je moderátorom",
+        "word-blocked": "Zastavila sa správa od používateľa{{target}} pre „{{word}}“",
+        "word-timeout_one": "Časový limit vypršal {{target}} na {{count}} sekundu pre „{{word}}“",
+        "word-timeout_other": "Časový limit vypršal {{target}} na {{count}} sekúnd pre „{{word}}“"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Časový limit na 1 minútu",
+    "timeout10m": "Časový limit na 10 minút",
+    "timeout1h": "Časový limit na 1 hodinu",
+    "ban": "Zakázaný z týchto streamov",
+    "makeModerator": "Urobte moderátora",
+    "timedOut": "Timed out.",
+    "banned": "Zakázaný z týchto streamov.",
+    "madeModerator": "Sú teraz moderátori.",
+    "failed": "To nefungovalo. Skús to znova.",
+    "youAreBanned": "Nemôžete sa v tomto tvorcu chatovať",
+    "youAreTimedOut": "Súčasne ste časovo vylučovaní",
+    "title": "Moderuj"
   }
 }

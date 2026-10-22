@@ -1,6 +1,8 @@
 import React, { memo, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNames } from '../../navigation/ScreenNames';
 import { truncate } from '../../libs/strings.util';
 import { LIVEPEER_RTMP_SERVER } from '../../config/constants';
 import { encoderCredentials } from '../../libs/live-ingest';
@@ -37,6 +39,7 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
   provider,
 }) => {
   const { t } = useTranslation();
+  const navigation = useNavigation<any>();
 
   /**
    * The creator's PERMANENT credentials.
@@ -150,6 +153,21 @@ const ExternalStreamingOverlay: React.FC<ExternalStreamingOverlayProps> = ({
           )}
         </Text>
       ) : null}
+
+      {/* Alerts and widgets live beside the key: the OBS overlay link is set up there. */}
+      <TouchableOpacity
+        onPress={() => navigation.navigate(ScreenNames.LiveStudio)}
+        className="mt-4 w-full max-w-xs flex-row items-center justify-between gap-3 rounded-xl bg-white/5 px-3 py-2"
+        activeOpacity={0.85}
+      >
+        <View className="flex-1">
+          <Text className="text-white text-xs font-medium">{t('liveStudio.settingsLinkTitle')}</Text>
+          <Text className="text-white/50 text-[11px]" numberOfLines={2}>
+            {t('liveStudio.settingsLinkBody')}
+          </Text>
+        </View>
+        <Text className="text-white text-xs font-semibold">{t('liveStudio.open')}</Text>
+      </TouchableOpacity>
 
       {!isLive && (
         <TouchableOpacity

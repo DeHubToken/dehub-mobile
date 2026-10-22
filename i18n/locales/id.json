@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Rekap streaming",
+    "justEnded": "Rekap streaming Anda",
+    "lastStream": "Streaming terakhir Anda",
+    "none": "Belum ada streaming yang selesai. Ringkasan Anda muncul di sini setelah yang pertama.",
+    "share": "Bagikan",
+    "shareText": "Saya baru saja streaming \"{{title}}\" di DeHub: {{duration}} live, {{peak}} menonton di puncak dan {{followers}} pengikut baru.",
+    "untitled": "Streaming tanpa judul",
+    "loadFailed": "Rekap tidak dimuat. Coba lagi sebentar lagi.",
+    "duration": "Waktu langsung",
+    "peakViewers": "Paling banyak menonton sekaligus",
+    "gifts_one": "Dari {{count}} hadiah",
+    "gifts_other": "Dari {{count}} hadiah",
+    "newFollowers": "Pengikut baru",
+    "chatMessages": "Pesan obrolan",
+    "chatters": "Orang mengobrol",
+    "reactions": "Tanggapan",
+    "shares": "Orang yang berbagi",
+    "topSupporters": "Pendukung teratas",
+    "polls": "Polling",
+    "pollWinner": "{{option}} sudah",
+    "stillCounting": "Masih terus bertambah: hadiah bisa membutuhkan waktu satu menit untuk mengonfirmasi."
+  },
   "articles": {
     "articleImage": "Gambar artikel",
     "socialImage": "Gambar berbagi sosial",
@@ -947,6 +970,8 @@
     "payFailed": "Tidak dapat mengonversi {{symbol}} ke token DeHub",
     "stageDelivering": "DeHub Pay sedang mengirim token Anda…",
     "payViaDpay": "Dibayar ke DeHub Pay, token tiba dalam waktu sekitar 30 detik",
+    "payDirect": "Dikirim langsung ke {{name}} dalam {{symbol}} di {{chain}}. Tanpa swap.",
+    "payDirectNoName": "Dikirim langsung ke kreator dalam {{symbol}} di {{chain}}. Tanpa swap.",
     "payViaBridgeDpay": "Dipindahkan ke Base dan dibayar ke DeHub Pay, token tiba dalam waktu sekitar satu menit",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4820,7 +4845,7 @@
     "usernameReserved": "Nama pengguna ini dicadangkan",
     "profileSet": "Profil berhasil diatur!",
     "profileFailed": "Gagal mengatur profil",
-    "displayNameHint": "Nama publik yang tampil di profilmu."
+    "displayNameHint": "Nama publik di profilmu. Opsional — kosongkan saja untuk memakai nama penggunamu."
   },
   "events": {
     "mine": "Milik saya",
@@ -5026,7 +5051,9 @@
     "lowTopUp": "Kehabisan {{symbol}}? Kami akan mengisinya sebelum membuka kunci.",
     "unlockedSuccess": "Berhasil dibuka",
     "otherChain": "Postingan ini diselesaikan di rantai lain, jadi memerlukan token DeHub di dompet Anda di sana.",
-    "payHint": "Bayar dengan apa pun di dompet Anda. Itu menjadi token DeHub dan langsung terbuka."
+    "payHint": "Bayar dengan apa pun di dompet Anda. Itu menjadi token DeHub dan langsung terbuka.",
+    "switchTo": "Postingan ini dibayar di {{chain}}. Beralih ke {{chain}} di Pengaturan, lalu coba lagi.",
+    "notEnoughToken": "Kamu butuh {{amount}} {{symbol}} untuk membuka ini. Kamu punya {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gunakan ini jika Anda menyiapkan dompet ini di ponsel ini dan kuncinya seharusnya sudah ada di sini",
@@ -5061,6 +5088,7 @@
     "accountHasA": "Akun ini memiliki",
     "ifYouUsedDehub": "Jika kamu pernah memakai dehub.io, buka di komputermu, masuk dengan cara dan akun yang sama, lalu",
     "biometricExplainer": "Buka dengan sidik jari atau wajah — tidak ada yang perlu diketik atau diingat. Kuncinya tetap di ponsel ini, jadi kami akan menunjukkan frasa pemulihan 12 kata untuk kamu catat; itulah satu-satunya jalan kembali dari ponsel lain, dari situs web, atau setelah memasang ulang. Pilih Kata Sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
+    "biometricExplainerSecuring": "Buka dengan sidik jari atau wajah — tidak ada yang perlu diketik atau diingat. Kuncinya tetap di ponsel ini. Untuk kembali masuk dari ponsel lain, dari situs web, atau setelah memasang ulang, simpan cadangan 12 kata nanti di Pengaturan. Pilih Kata sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
     "biometricPrompt": "Dompet ini dilindungi biometrik perangkat ini. Konfirmasi dengan sidik jari atau wajah untuk melanjutkan.",
     "enterRecoveryPhrase": "Masukkan frasa pemulihan 12 kata yang kamu simpan saat membuat dompet ini (atau kunci privatnya, jika kamu mengekspornya). Ini kembali ke akun yang sama, dan kata sandi yang kamu atur di bawah menjadi cadangan yang mulai sekarang berfungsi di mana saja.",
     "copyPhrase": "Salin frasa",
@@ -5133,6 +5161,7 @@
     "unlockWithPasswordExplainer": "Akun ini sudah memiliki dompet, yang dilindungi oleh kata sandi. Masukkan untuk memulihkan dompet Anda di perangkat ini.",
     "deviceTab": "Perangkat ini",
     "deviceExplainer": "Tidak ada yang perlu diketik atau diingat — kuncinya tetap ada di perangkat ini. Kami akan menawarkan Anda cadangan 12 kata untuk dituliskan; ini adalah satu - satunya cara kembali dari perangkat lain, dari situs web, atau setelah menginstal ulang. Pilih Kata Sandi sebagai gantinya dan kata sandi itu sendiri melakukan pekerjaan itu.",
+    "deviceExplainerSecuring": "Tidak ada yang perlu diketik atau diingat — kuncinya tetap di perangkat ini. Untuk kembali masuk dari perangkat lain, dari situs web, atau setelah memasang ulang, simpan cadangan 12 kata nanti di Pengaturan. Pilih Kata sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
     "secureOnDevice": "Simpan kunci di perangkat ini"
   },
   "walletBackup": {
@@ -5434,6 +5463,7 @@
     "contractPlaceholder": "Alamat kontrak (0x…)",
     "symbolPlaceholder": "Simbol (mis. PEPE)",
     "paymentsBase": "Pembayaran dalam token DeHub di rantai Base",
+    "paymentsStable": "Pembeli membayar dengan {{symbol}}, langsung dikirim ke kamu",
     "tokensUnit": "token",
     "minimumRequired": "Minimum {{currency}} diperlukan"
   },
@@ -9020,7 +9050,7 @@
     "done": "Selesai",
     "error": "Tidak dapat mengirimkan permohonan penghapusan Anda. Akun Anda belum dikonfirmasi untuk dihapus. Silakan coba lagi.",
     "back": "Kembali ke Pengaturan",
-    "signIn": "Masuk Akun Anda",
+    "signIn": "Masuk untuk menghapus akun Anda",
     "acknowledge": "Saya telah menyimpan detail pemulihan dompet saya dan memahami bahwa penghapusan bersifat permanen."
   },
   "miniApps": {
@@ -9126,6 +9156,7 @@
     "update": "Perbarui sekarang"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} berputar: {{result}}",
     "someone": "Seseorang",
     "newFollower": "Pengikut baru: {{name}}",
     "newSubscriber": "Pelanggan baru: {{name}}",
@@ -9137,9 +9168,29 @@
     "topSupporters": "Pendukung teratas",
     "tipped": "{{name}} mengirim hadiah",
     "chatPreview": "Pesan obrolan muncul di sini",
-    "wheelLanded": "{{name}} berputar: {{result}}"
+    "poll": {
+      "closed": "Pemungutan suara ditutup",
+      "voteFor": "Pilih {{option}}",
+      "signIn": "Masuk untuk memilih",
+      "failed": "Suara Anda tidak dihitung. Coba lagi.",
+      "voted_one": "Anda memilih · {{count}} memilih",
+      "voted_other": "Anda memberikan suara · {{count}} suara",
+      "votes_one": "{{count}} suara",
+      "votes_other": "{{count}} suara"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kontrol cepat",
+      "intro": "Untuk mid - stream. Setiap sakelar berlaku untuk semua orang yang menonton, di aplikasi dan di OBS, sampai Anda membalikkannya kembali.",
+      "alertsPaused": "Jeda pemberitahuan",
+      "alertsPausedHint": "Tidak ada pemberitahuan hadiah, ikuti, atau aturan di layar. Penghitung, sasaran, dan kotak obrolan terus berjalan.",
+      "soundsMuted": "Bunyi peringatan bisu",
+      "soundsMutedHint": "Aturan Anda berhenti memainkan suara.",
+      "readAloudMuted": "Hentikan pembacaan dengan suara keras",
+      "readAloudMutedHint": "Pesan hadiah dan baris aturan tidak lagi dibaca.",
+      "failed": "Tombol itu tidak berubah. Coba lagi."
+    },
     "title": "Studio Langsung",
     "subtitle": "Peringatan dan widget untuk streaming Anda",
     "intro": "Semua yang Anda tambahkan di sini muncul di streaming Anda untuk setiap pemirsa di aplikasi DeHub — baik Anda tayang langsung dari ponsel, browser, kartu capture, atau enkoder.",
@@ -9178,6 +9229,7 @@
       "join": "Bergabung"
     },
     "kinds": {
+      "spin_wheel": "Roda putar",
       "tip_alert": "Pemberitahuan tip",
       "follow_alert": "Pemberitahuan ikutan",
       "subscribe_alert": "Pemberitahuan berlangganan",
@@ -9194,9 +9246,10 @@
       "chat_box": "Kotak obrolan",
       "ticker": "Ticker",
       "rule_alert": "Peringatan aturan",
-      "spin_wheel": "Roda putar"
+      "poll": "Jajak Pendapat"
     },
     "hints": {
+      "spin_wheel": "Di mana roda dalam aturan Anda berputar",
       "tip_alert": "Merayakan setiap tip sesuai tingkatan",
       "follow_alert": "Menampilkan setiap pengikut baru",
       "subscribe_alert": "Menampilkan setiap berlangganan baru",
@@ -9213,7 +9266,7 @@
       "chat_box": "Menampilkan pesan obrolan siaran Anda di layar",
       "ticker": "Baris teks Anda sendiri yang bergulir di layar",
       "rule_alert": "Di mana pemberitahuan peraturan Anda muncul",
-      "spin_wheel": "Di mana roda dalam aturan Anda berputar"
+      "poll": "Jajak pendapat langsung Anda, dengan tombol suara untuk setiap opsi"
     },
     "fields": {
       "style": "Gaya",
@@ -9272,6 +9325,8 @@
       "rotateFailed": "Tidak dapat membuat tautan baru. Coba lagi sebentar lagi."
     },
     "rules": {
+      "wheelSegments": "Segmen roda, satu per baris",
+      "wheelHint": "Antara 2 dan 12. DeHub memilih di mana roda berhenti, sehingga semua orang yang menonton melihat hasil yang sama. Gunakan {result} dalam peringatan, baca dengan keras, atau tindakan obrolan untuk menamainya.",
       "title": "Peraturan",
       "intro": "Ketika sesuatu terjadi di streaming Anda, DeHub melakukan apa yang Anda pilih: menunjukkan peringatan, memutar suara, membaca sesuatu dengan keras, memposting di obrolan Anda, atau memberi tahu Discord Anda.",
       "add": "Tambahkan aturan",
@@ -9316,7 +9371,8 @@
         "share": "Seseorang membagikan streaming",
         "command": "Perintah obrolan digunakan",
         "keyword": "Pesan obrolan berisi kata",
-        "chat": "Pesan obrolan apa saja"
+        "chat": "Pesan obrolan apa saja",
+        "live": "Anda mulai menyiarkan"
       },
       "audiences": {
         "everyone": "Semua orang",
@@ -9324,12 +9380,12 @@
         "subscribers": "Pelanggan"
       },
       "actionTypes": {
+        "wheel": "Putar roda",
         "alert": "Tampilkan pemberitahuan",
         "sound": "Putar suara",
         "say": "Baca dengan suara keras",
         "chat": "Posting di obrolan",
-        "webhook": "Kirim ke webhook",
-        "wheel": "Putar roda"
+        "webhook": "Kirim ke webhook"
       },
       "summary": {
         "tip": "Tips dari {{amount}} DHB atau lebih"
@@ -9368,19 +9424,97 @@
         "magic-spell": "Mantra sihir",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Segmen roda, satu per baris",
-      "wheelHint": "Antara 2 dan 12. DeHub memilih di mana roda berhenti, sehingga semua orang yang menonton melihat hasil yang sama. Gunakan {result} dalam peringatan, baca dengan keras, atau tindakan obrolan untuk menamainya."
+      "placeholdersLive": "Gunakan {name},{title}, dan {link} dalam teks Anda: nama Anda, judul siaran, dan tautan untuk menontonnya."
     },
-    "controls": {
-      "title": "Kontrol cepat",
-      "intro": "Untuk mid - stream. Setiap sakelar berlaku untuk semua orang yang menonton, di aplikasi dan di OBS, sampai Anda membalikkannya kembali.",
-      "alertsPaused": "Jeda pemberitahuan",
-      "alertsPausedHint": "Tidak ada pemberitahuan hadiah, ikuti, atau aturan di layar. Penghitung, sasaran, dan kotak obrolan terus berjalan.",
-      "soundsMuted": "Bunyi peringatan bisu",
-      "soundsMutedHint": "Aturan Anda berhenti memainkan suara.",
-      "readAloudMuted": "Hentikan pembacaan dengan suara keras",
-      "readAloudMutedHint": "Pesan hadiah dan baris aturan tidak lagi dibaca.",
-      "failed": "Tombol itu tidak berubah. Coba lagi."
+    "polls": {
+      "title": "Jajak Pendapat",
+      "intro": "Ajukan pertanyaan kepada orang - orang yang menonton siaran Anda. Mereka menjawab dengan tombol di aplikasi DeHub, atau dengan mengetikkan {{command}} dan nomor opsi di obrolan.",
+      "question": "Pertanyaan",
+      "questionPlaceholder": "Apa yang harus saya mainkan selanjutnya?",
+      "option": "Opsi {{n}}",
+      "addOption": "Tambahkan opsi",
+      "removeOption": "Hapus opsi {{n}}",
+      "duration": "Berapa lama pemungutan suara tetap terbuka",
+      "seconds_one": "{{count}} detik",
+      "seconds_other": "{{count}} detik",
+      "minutes_one": "{{count}} menit",
+      "minutes_other": "{{count}} menit",
+      "start": "Mulai jajak pendapat",
+      "end": "Akhiri pemungutan suara sekarang",
+      "started": "Jajak pendapat Anda terbuka. Pemirsa dapat memilih sekarang.",
+      "notLive": "Lakukan siaran langsung terlebih dahulu. Jajak pendapat sedang berlangsung di siaran yang sedang Anda streaming saat ini.",
+      "startFailed": "Jajak pendapat tidak dimulai. Coba lagi.",
+      "closeFailed": "Pemungutan suara tidak berakhir. Coba lagi.",
+      "live": "Pemungutan suara terbuka · {{time}} tersisa",
+      "ended": "Pemungutan suara ditutup",
+      "votes_one": "{{count}} suara",
+      "votes_other": "{{count}} suara",
+      "replaceHint": "Memulai jajak pendapat baru menutup jajak pendapat yang terbuka.",
+      "widgetHint": "Menampilkan polling langsung Anda. Di aplikasi DeHub, pemirsa mengetuk opsi untuk memilih; di OBS, pengguna diminta untuk mengetik {{command}} dan nomor dalam obrolan.",
+      "sample": {
+        "a": "Sesuatu yang baru",
+        "b": "Favorit lama",
+        "c": "Anda memilih"
+      }
+    },
+    "moderation": {
+      "title": "Moderasi obrolan",
+      "intro": "Aturan untuk obrolan di bawah semua stream Anda. Mereka tidak pernah mencapai obrolan utama DeHub: seseorang yang Anda larang di sini masih bisa berbicara di tempat lain.",
+      "loadFailed": "Pengaturan moderasi Anda tidak dapat dimuat. Segarkan halaman untuk mencoba lagi.",
+      "save": "Simpan aturan obrolan",
+      "saved": "Aturan obrolan telah disimpan.",
+      "saveFailed": "Perubahan ini tidak dapat disimpan.",
+      "slowMode": "Mode lambat",
+      "slowModeHint": "Berapa lama setiap penonton menunggu sebelum mengirim pesan. Anda dan moderator Anda tidak perlu menunggu.",
+      "off": "Mati",
+      "seconds_one": "{{count}} detik",
+      "seconds_other": "{{count}} detik",
+      "followersOnly": "Hanya pengikut",
+      "subscribersOnly": "Hanya berlangganan",
+      "subscribersOnlyHint": "Menggantikan \"hanya pengikut\"",
+      "bannedWords": "Kata-kata terlarang",
+      "bannedWordsHint": "Pisahkan dengan koma. Menulis kata secara harfiah tidak akan mengelakkan hal ini.",
+      "wordAction": "Ketika seseorang menggunakan salah satu",
+      "wordBlock": "Blokir pesan",
+      "wordTimeout": "Hentikan dan timeout mereka selama satu menit",
+      "moderators": "Moderator",
+      "moderatorsHint": "Mereka dapat timeout dan melarang penonton di stream Anda. Mereka tidak dapat bertindak terhadap Anda atau terhadap satu sama lain.",
+      "addModerator": "Tambahkan",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Moderator ditambahkan.",
+      "moderatorNotFound": "Tidak ada akun dengan username tersebut.",
+      "removeModerator": "Hapus moderator",
+      "noModerators": "Belum ada moderator.",
+      "banned": "Dilarang dari stream Anda",
+      "unban": "Unban",
+      "noBans": "Tidak ada yang dilarang.",
+      "log": "Aksi terkini",
+      "noLog": "Belum ada yang terjadi.",
+      "actions": {
+        "timeout_one": "{{actor}} batas waktu {{target}} untuk {{count}} detik",
+        "timeout_other": "{{actor}} batas waktu {{target}} selama {{count}} detik",
+        "ban": "{{actor}} melarang {{target}}",
+        "unban": "{{actor}} membebaskan {{target}}",
+        "moderator-added": "{{target}} menjadi moderator",
+        "moderator-removed": "{{target}} tidak lagi moderator",
+        "word-blocked": "Memblokir pesan dari {{target}} untuk \"{{word}}\"",
+        "word-timeout_one": "Timeout {{target}} selama {{count}} detik untuk \"{{word}}\"",
+        "word-timeout_other": "Timeout {{target}} selama {{count}} detik untuk \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Waktu habis untuk 1 menit",
+    "timeout10m": "Waktu habis untuk 10 menit",
+    "timeout1h": "Waktu habis untuk 1 jam",
+    "ban": "Dilarang dari stream ini",
+    "makeModerator": "Jadikan sebagai moderator",
+    "timedOut": "Waktu habis.",
+    "banned": "Dilarang dari stream ini.",
+    "madeModerator": "Sekarang mereka adalah moderator.",
+    "failed": "Tidak berhasil. Coba lagi.",
+    "youAreBanned": "Anda tidak bisa berobrol di stream kreator ini",
+    "youAreTimedOut": "Anda sedang waktu habis sejenak",
+    "title": "Moderasi"
   }
 }

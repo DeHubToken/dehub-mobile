@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "pollWinner": "{{option}} menang",
+    "title": "Ringkasan strim",
+    "justEnded": "Ringkasan strim anda",
+    "lastStream": "Strim terakhir anda",
+    "none": "Belum ada strim yang selesai. Ringkasan anda muncul di sini selepas yang pertama.",
+    "share": "Kongsi",
+    "shareText": "Saya baru strim \"{{title}}\" di DeHub: {{duration}} secara langsung, {{peak}} menonton di puncak dan {{followers}} pengikut baharu.",
+    "untitled": "Strim tanpa tajuk",
+    "loadFailed": "Rekap tidak dimuatkan. Cuba lagi sebentar lagi.",
+    "duration": "Masa siaran langsung",
+    "peakViewers": "Paling banyak menonton sekaligus",
+    "gifts_one": "Daripada {{count}} hadiah",
+    "gifts_other": "Daripada {{count}} hadiah",
+    "newFollowers": "Pengikut baharu",
+    "chatMessages": "Mesej sembang",
+    "chatters": "Orang berbual",
+    "reactions": "Tindak balas",
+    "shares": "Perkongsian orang",
+    "topSupporters": "Penyokong utama",
+    "polls": "pemilihan",
+    "stillCounting": "Masih dikira: hadiah boleh mengambil masa seminit untuk disahkan."
+  },
   "articles": {
     "articleImage": "Imej artikel",
     "socialImage": "Imej kongsi sosial",
@@ -5030,7 +5053,7 @@
     "usernameReserved": "Nama pengguna ini dikhaskan",
     "profileSet": "Profil berjaya ditetapkan!",
     "profileFailed": "Gagal menetapkan profil",
-    "displayNameHint": "Nama awam anda yang dipaparkan pada profil."
+    "displayNameHint": "Nama awam anda yang dipaparkan pada profil. Pilihan — biarkan kosong untuk menggunakan nama pengguna anda."
   },
   "events": {
     "mine": "Milik saya",
@@ -5271,6 +5294,7 @@
     "accountHasA": "Akaun ini mempunyai",
     "ifYouUsedDehub": "Jika anda pernah menggunakan dehub.io sebelum ini, bukanya pada komputer anda, log masuk dengan cara dan akaun yang sama, dan",
     "biometricExplainer": "Buka dengan cap jari atau wajah anda — tiada apa yang perlu ditaip atau diingat. Kunci kekal pada telefon ini, jadi kami akan menunjukkan frasa pemulihan 12 perkataan untuk anda catat; itulah satu-satunya jalan kembali dari telefon lain, dari laman web, atau selepas memasang semula. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
+    "biometricExplainerSecuring": "Buka dengan cap jari atau wajah anda — tiada apa yang perlu ditaip atau diingat. Kunci kekal pada telefon ini. Untuk masuk semula dari telefon lain, dari laman web, atau selepas memasang semula, simpan sandaran 12 perkataan kemudian dalam Tetapan. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
     "biometricPrompt": "Dompet ini dilindungi oleh biometrik peranti ini. Sahkan dengan cap jari atau wajah untuk meneruskan.",
     "enterRecoveryPhrase": "Masukkan frasa pemulihan 12 perkataan yang anda simpan semasa mencipta dompet ini (atau kunci peribadinya, jika anda pernah mengeksportnya). Ia kembali ke akaun yang sama, dan kata laluan yang anda tetapkan di bawah menjadi sandaran yang mulai sekarang berfungsi di mana-mana.",
     "copyPhrase": "Salin frasa",
@@ -5343,6 +5367,7 @@
     "unlockWithPasswordExplainer": "Akaun ini sudah mempunyai dompet, dilindungi oleh kata laluan. Masukkannya untuk memulihkan dompet anda pada peranti ini.",
     "deviceTab": "Peranti ini",
     "deviceExplainer": "Tiada apa yang perlu ditaip atau diingati — kekunci kekal pada peranti ini. Kami akan menawarkan sandaran 12 perkataan kepada anda untuk ditulis; ia adalah satu-satunya cara untuk masuk semula dari peranti lain, dari laman web, atau selepas pemasangan semula. Pilih Kata Laluan dan kata laluan itu sendiri berfungsi dengan baik.",
+    "deviceExplainerSecuring": "Tiada apa yang perlu ditaip atau diingat — kunci kekal pada peranti ini. Untuk masuk semula dari peranti lain, dari laman web, atau selepas memasang semula, simpan sandaran 12 perkataan kemudian dalam Tetapan. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
     "secureOnDevice": "Simpan kunci pada peranti ini"
   },
   "transcript": {
@@ -9384,6 +9409,17 @@
     "notNow": "Bukan sekarang"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
+    "poll": {
+      "closed": "Pengundian ditutup",
+      "voteFor": "Undi {{option}}",
+      "signIn": "Log masuk untuk mengundi",
+      "failed": "Undian anda tidak dikira. Cuba lagi.",
+      "voted_one": "Anda mengundi · {{count}} undi",
+      "voted_other": "Anda mengundi · {{count}} undi",
+      "votes_one": "{{count}} undi",
+      "votes_other": "{{count}} undian"
+    },
     "someone": "Seseorang",
     "newFollower": "Pengikut baharu: {{name}}",
     "newSubscriber": "Pelanggan baharu: {{name}}",
@@ -9394,10 +9430,51 @@
     "followersUnit": "pengikut",
     "topSupporters": "Penyokong utama",
     "tipped": "{{name}} menghantar hadiah",
-    "chatPreview": "Mesej sembang muncul di sini",
-    "wheelLanded": "{{name}} spun: {{result}}"
+    "chatPreview": "Mesej sembang muncul di sini"
   },
   "liveStudio": {
+    "controls": {
+      "title": "Kawalan pantas",
+      "intro": "Untuk aliran pertengahan. Setiap suis tahan untuk semua orang menonton, dalam aplikasi dan dalam OBS, sehingga anda membaliknya kembali.",
+      "alertsPaused": "Jeda makluman",
+      "alertsPausedHint": "Tiada peringatan hadiah, ikut atau peraturan pada skrin. Kaunter, matlamat dan kotak sembang terus berjalan.",
+      "soundsMuted": "Bunyi amaran bisu",
+      "soundsMutedHint": "Peraturan anda berhenti memainkan bunyi.",
+      "readAloudMuted": "Berhenti membaca dengan kuat",
+      "readAloudMutedHint": "Mesej hadiah dan garis peraturan tidak lagi dibaca.",
+      "failed": "Suis itu tidak berubah. Cuba lagi."
+    },
+    "polls": {
+      "title": "Pemungutan Suara",
+      "intro": "Tanya orang yang menonton siaran langsung anda. Mereka menjawab dengan menekan tombol dalam aplikasi DeHub, atau dengan mengetik {{command}} dan nombor pilihan dalam chat.",
+      "question": "Pertanyaan",
+      "questionPlaceholder": "Apa yang harus saya mainkan berikutnya?",
+      "option": "Opsi {{n}}",
+      "addOption": "Tambah opsi",
+      "removeOption": "Hapus opsi {{n}}",
+      "duration": "Berapa lama pemungutan suara tetap terbuka",
+      "seconds_one": "{{count}} saat",
+      "seconds_other": "{{count}} saat",
+      "minutes_one": "{{count}} minit",
+      "minutes_other": "{{count}} minit",
+      "start": "Mulakan pemungutan suara",
+      "end": "Hentikan pemungutan suara sekarang",
+      "started": "Pemungutan suara anda terbuka. Penonton boleh mengundi sekarang.",
+      "notLive": "Bermula siaran langsung dahulu. Pemungutan suara berjalan pada siaran langsung yang anda siarkan sekarang.",
+      "startFailed": "Pemungutan suara tidak bermula. Cuba semula.",
+      "closeFailed": "Pemungutan suara belum tamat. Cuba semula.",
+      "live": "Pemungutan suara terbuka · {{time}} tersisa",
+      "ended": "Pemungutan suara ditutup",
+      "votes_one": "{{count}} undi",
+      "votes_other": "{{count}} undi",
+      "replaceHint": "Memulakan pemungutan suara baru akan menutup yang sedang terbuka.",
+      "widgetHint": "Menunjukkan pemungutan suara langsung anda. Dalam aplikasi DeHub, penonton menekan opsi untuk mengundi; dalam OBS, ia memberitahu orang untuk mengetik {{command}} dan nombor dalam chat.",
+      "sample": {
+        "a": "Sesuatu yang baru",
+        "b": "Favorit lama",
+        "c": "Anda pilih"
+      }
+    },
     "title": "Studio Langsung",
     "subtitle": "Makluman dan widget untuk strim anda",
     "intro": "Semua yang anda tambah di sini dipaparkan melalui strim anda untuk setiap penonton dalam aplikasi DeHub — sama ada anda menyiarkan secara langsung dari telefon anda, penyemak imbas, kad tangkapan atau pengekod.",
@@ -9436,6 +9513,8 @@
       "join": "Sertai"
     },
     "kinds": {
+      "spin_wheel": "Roda berputar",
+      "poll": "Pemungutan Suara",
       "tip_alert": "Makluman tip",
       "follow_alert": "Ikuti makluman",
       "subscribe_alert": "Makluman pelanggan",
@@ -9451,10 +9530,11 @@
       "event_feed": "Aktiviti terkini",
       "chat_box": "Kotak sembang",
       "ticker": "Ticker",
-      "rule_alert": "Makluman peraturan",
-      "spin_wheel": "Roda berputar"
+      "rule_alert": "Makluman peraturan"
     },
     "hints": {
+      "spin_wheel": "Tempat roda dalam peraturan anda berputar",
+      "poll": "Pemungutan suara langsung anda, dengan tombol undi untuk setiap opsi",
       "tip_alert": "Meraikan setiap tip, bersaiz mengikut peringkatnya",
       "follow_alert": "Menunjukkan setiap pengikut baharu",
       "subscribe_alert": "Menunjukkan setiap pelanggan baharu",
@@ -9470,8 +9550,7 @@
       "event_feed": "Hadiah terkini, pengikut, pelanggan dan orang yang berkongsi siaran anda",
       "chat_box": "Menunjukkan mesej sembang siaran anda pada skrin",
       "ticker": "Baris teks anda sendiri yang menatal merentasi skrin",
-      "rule_alert": "Di mana makluman peraturan anda dipaparkan",
-      "spin_wheel": "Tempat roda dalam peraturan anda berputar"
+      "rule_alert": "Di mana makluman peraturan anda dipaparkan"
     },
     "fields": {
       "style": "Gaya",
@@ -9530,6 +9609,9 @@
       "rotateFailed": "Tidak dapat membuat pautan baharu. Cuba lagi sebentar lagi."
     },
     "rules": {
+      "wheelSegments": "Segmen roda, satu setiap baris",
+      "wheelHint": "Antara 2 dan 12. DeHub memilih di mana roda berhenti, jadi semua orang yang menonton melihat hasil yang sama. Gunakan {result} dalam makluman, baca dengan kuat atau tindakan sembang untuk menamakannya.",
+      "placeholdersLive": "Gunakan {name}, {title} dan {link} dalam teks anda: nama anda, tajuk siaran langsung dan pautan untuk menontonnya.",
       "title": "Peraturan",
       "intro": "Apabila sesuatu berlaku pada strim anda, DeHub melakukan apa yang anda pilih: menunjukkan amaran, memainkan bunyi, membaca sesuatu dengan kuat, menyiarkan dalam sembang anda atau memberitahu Discord anda.",
       "add": "Tambah peraturan",
@@ -9567,6 +9649,7 @@
       "webhookHint": "Webhook Discord atau Slack, atau mana-mana alamat https yang menerima HANTARAN.",
       "webhookText": "Mesej untuk dihantar",
       "triggers": {
+        "live": "Anda mula menyiarkan",
         "tip": "Tip akan tiba",
         "follow": "Seseorang mengikuti",
         "subscribe": "Seseorang melanggan",
@@ -9581,12 +9664,12 @@
         "subscribers": "Pelanggan"
       },
       "actionTypes": {
+        "wheel": "Putar roda",
         "alert": "Tunjukkan makluman",
         "sound": "Mainkan bunyi",
         "say": "Baca dengan suara keras.",
         "chat": "Siarkan dalam sembang",
-        "webhook": "Hantar ke webhook",
-        "wheel": "Putar roda"
+        "webhook": "Hantar ke webhook"
       },
       "summary": {
         "tip": "Tip {{amount}} DHB atau lebih"
@@ -9625,19 +9708,66 @@
         "magic-spell": "Sihir",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Segmen roda, satu setiap baris",
-      "wheelHint": "Antara 2 dan 12. DeHub memilih di mana roda berhenti, jadi semua orang yang menonton melihat hasil yang sama. Gunakan {result} dalam makluman, baca dengan kuat atau tindakan sembang untuk menamakannya."
+      "minAmount": "Smallest tip (DHB)"
     },
-    "controls": {
-      "title": "Kawalan pantas",
-      "intro": "Untuk aliran pertengahan. Setiap suis tahan untuk semua orang menonton, dalam aplikasi dan dalam OBS, sehingga anda membaliknya kembali.",
-      "alertsPaused": "Jeda makluman",
-      "alertsPausedHint": "Tiada peringatan hadiah, ikut atau peraturan pada skrin. Kaunter, matlamat dan kotak sembang terus berjalan.",
-      "soundsMuted": "Bunyi amaran bisu",
-      "soundsMutedHint": "Peraturan anda berhenti memainkan bunyi.",
-      "readAloudMuted": "Berhenti membaca dengan kuat",
-      "readAloudMutedHint": "Mesej hadiah dan garis peraturan tidak lagi dibaca.",
-      "failed": "Suis itu tidak berubah. Cuba lagi."
+    "moderation": {
+      "title": "Pemoderatan chat",
+      "intro": "Peraturan untuk chat di bawah semua aliran anda. Mereka tidak pernah sampai ke chat utama DeHub: seseorang yang anda larang di sini masih boleh berbicara di mana-mana lain.",
+      "loadFailed": "Penyetelan pemoderatan anda tidak dapat dimuat semula. Segarkan halaman untuk cuba lagi.",
+      "save": "Simpan peraturan chat",
+      "saved": "Peraturan chat telah disimpan.",
+      "saveFailed": "Perubahan ini tidak dapat disimpan.",
+      "slowMode": "Laju perlahan",
+      "slowModeHint": "Berapa lama setiap penonton menunggu antara pesanan. Anda dan pemoderator anda tidak perlu menunggu.",
+      "off": "Mati",
+      "seconds_one": "{{count}} saat",
+      "seconds_other": "{{count}} saat",
+      "followersOnly": "Hanya pengikut",
+      "subscribersOnly": "Hanya pelanggan",
+      "subscribersOnlyHint": "Mengatasi hanya pengikut.",
+      "bannedWords": "Kata-kata yang dilarang",
+      "bannedWordsHint": "Pisahkan dengan koma. Menulis kata secara harfiah tidak dapat mengelakkan.",
+      "wordAction": "Apabila seseorang menggunakan satu",
+      "wordBlock": "Hentikan pesanan",
+      "wordTimeout": "Hentikan dan timeout mereka selama satu minit",
+      "moderators": "Moderator",
+      "moderatorsHint": "Mereka boleh timeout dan melarang peminat dalam siaran anda. Mereka tidak boleh bertindak terhadap anda atau antara satu sama lain.",
+      "addModerator": "Tambah",
+      "usernamePlaceholder": "Nama Pengguna",
+      "moderatorAdded": "Moderator telah ditambahkan.",
+      "moderatorNotFound": "Tiada akaun dengan nama pengguna tersebut.",
+      "removeModerator": "Hapus moderator",
+      "noModerators": "Belum ada moderator.",
+      "banned": "Dilarang dalam siaran anda",
+      "unban": "Keluarkan larangan",
+      "noBans": "Tiada yang dilarang.",
+      "log": "Aksi terkini",
+      "noLog": "Belum ada apa-apa.",
+      "actions": {
+        "timeout_one": "{{actor}} telah ditimeout {{target}} selama {{count}} saat",
+        "timeout_other": "{{actor}} telah ditimeout {{target}} selama {{count}} saat",
+        "ban": "{{actor}} telah melarang {{target}}",
+        "unban": "{{actor}} telah membebaskan {{target}}",
+        "moderator-added": "{{target}} menjadi seorang moderator",
+        "moderator-removed": "{{target}} tidak lagi seorang moderator",
+        "word-blocked": "Membatalkan pesanan dari {{target}} untuk \"{{word}}\"",
+        "word-timeout_one": "Timeout {{target}} selama {{count}} saat untuk \"{{word}}\"",
+        "word-timeout_other": "Timeout {{target}} selama {{count}} saat untuk \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Waktu habis untuk 1 minit",
+    "timeout10m": "Waktu habis untuk 10 minit",
+    "timeout1h": "Waktu habis untuk 1 jam",
+    "ban": "Dilarang daripada aliran-aliran ini",
+    "makeModerator": "Jadikan pemoderator",
+    "timedOut": "Waktu habis.",
+    "banned": "Dilarang daripada aliran-aliran ini.",
+    "madeModerator": "Sekarang mereka adalah seorang pemoderator.",
+    "failed": "Tidak berfungsi. Cuba lagi.",
+    "youAreBanned": "Anda tidak boleh bertukar dalam aliran-aliran pengarah ini",
+    "youAreTimedOut": "Anda sedang waktu habis untuk seketika",
+    "title": "Moderat"
   }
 }

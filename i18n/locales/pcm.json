@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "justEnded": "Your stream recap",
+    "lastStream": "Your last stream",
+    "none": "No finished streams yet. Your recap appears here after your first one.",
+    "shareText": "I just streamed \"{{title}}\" on DeHub: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
+    "peakViewers": "Most watching at once",
+    "gifts_one": "From {{count}} gift",
+    "gifts_other": "From {{count}} gifts",
+    "stillCounting": "Still counting: gifts can take a minute to confirm.",
+    "title": "Stream recap",
+    "share": "Share",
+    "untitled": "Untitled stream",
+    "loadFailed": "Na dem load no recap dey fail. Try again after a while.",
+    "duration": "Time live",
+    "newFollowers": "New followers",
+    "chatMessages": "Chat messages",
+    "chatters": "People chatting",
+    "reactions": "Reactions",
+    "shares": "People sharing",
+    "topSupporters": "Top supporters",
+    "polls": "Polls",
+    "pollWinner": "{{option}} won"
+  },
   "articles": {
     "articleImage": "Article foto",
     "socialImage": "Foto for share",
@@ -4679,7 +4702,7 @@
     "usernameReserved": "Dem reserve dis username",
     "profileSet": "Profile don set well well!",
     "profileFailed": "We no fit set di profile",
-    "displayNameHint": "Your public name wey dey show for your profile."
+    "displayNameHint": "Your public name wey dey show for your profile. E no by force — leave am empty and we go use your username."
   },
   "events": {
     "mine": "My own",
@@ -4912,6 +4935,7 @@
     "accountHasA": "Dis account get",
     "ifYouUsedDehub": "If you don use dehub.io before, open am for your computer, sign in di same way and with di same account, and",
     "biometricExplainer": "Unlock with your fingerprint or face — nothing to type or remember. Di key dey stay for dis phone, so we go show you 12-word recovery phrase make you write am down; na di only way to enter back from anoda phone, from di website, or after you reinstall. Choose Password instead and di password go do dat work.",
+    "biometricExplainerSecuring": "Unlock with your fingerprint or face — nothing to type or remember. Di key dey stay for dis phone. To enter back from anoda phone, from di website, or after you reinstall, save 12-word backup later for Settings. Choose Password instead and di password go do dat work.",
     "biometricPrompt": "Dis wallet dey protected by dis device biometrics. Confirm with fingerprint or face make you continue.",
     "enterRecoveryPhrase": "Enter di 12-word recovery phrase wey you save wen you create dis wallet (or im private key, if you export one). E go carry you back go di same account, and di password wey you set for below go turn backup wey go work everywhere from now.",
     "copyPhrase": "Copy phrase",
@@ -4984,6 +5008,7 @@
     "unlockWithPasswordExplainer": "Dis account don already get wallet wey password dey protect. Enter di password to recover your wallet for dis device.",
     "deviceTab": "Dis device",
     "deviceExplainer": "You no need type or remember anything — di key go stay for dis device. We go give you 12-word backup make you write down; na im be di only way to enter back from another device, from di website, or after you reinstall di app. If you pick Password instead, di password go do dat work.",
+    "deviceExplainerSecuring": "You no need type or remember anything — di key dey stay for dis device. To enter back from anoda device, from di website, or after you reinstall, save 12-word backup later for Settings. Choose Password instead and di password go do dat work.",
     "secureOnDevice": "Keep di key for dis device"
   },
   "transcript": {
@@ -8676,12 +8701,15 @@
   },
   "accountDeletion": {
     "title": "Delete account",
+    "description": "Delete your account and your personal data forever",
+    "warning": "Dis one go delete your DeHub profile, posts, comments, messages and di wallet backup wey we keep, forever. Save your wallet recovery details and move all your assets comot first. Public blockchain transactions and payment records wey law say make we keep no fit delete. We go hide your profile sharp sharp; di deletion go finish inside 30 days. You no fit undo am.",
     "cancel": "Cancel",
-    "confirm": "Permanently delete my account",
-    "busy": "Submitting deletion request…",
-    "accepted": "Account deletion requested",
+    "confirm": "Delete my account forever",
+    "busy": "We dey send your delete request…",
+    "accepted": "We don collect your delete request",
     "done": "Done",
-    "back": "Back to Settings",
+    "back": "Go back to Settings",
+    "signIn": "Sign in make you fit delete your account",
     "receipt": "Yousey deletion request go save. Yousey profile go hide, and yousey account go delete permanently after 30 days. Sign in no go cancel dis request.",
     "error": "Wahala! You no dey submit your delete request. Your account no confirm for delete yet. Try again, o!",
     "acknowledge": "I save my wallet recovery details for me, and I know dat deletion go be permanent."
@@ -8813,9 +8841,30 @@
     "joined": "{{name}} joined",
     "goalReached": "Goal reach!",
     "topSupporters": "Top supporters",
-    "chatPreview": "Chat messages appear here"
+    "chatPreview": "Chat messages appear here",
+    "poll": {
+      "voteFor": "Vote for {{option}}",
+      "failed": "Your vote did not count. Try again.",
+      "voted_one": "You voted · {{count}} vote",
+      "voted_other": "You voted · {{count}} votes",
+      "closed": "Voting closed",
+      "signIn": "Sign in to vote",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Quick controls",
+      "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
+      "alertsPaused": "Pause alerts",
+      "soundsMuted": "Mute alert sounds",
+      "readAloudMuted": "Stop read-aloud",
+      "readAloudMutedHint": "Gift messages and rule lines are no longer read out.",
+      "alertsPausedHint": "No gift, no follow, no rule alert o go show on screen. Counter, goal, and chat box still dey move.",
+      "soundsMutedHint": "Yours rules dey stop play sound wey.",
+      "failed": "Na di switch no dey change. Try again."
+    },
     "title": "Live Studio",
     "open": "Open Live Studio",
     "preview": "Preview",
@@ -8861,10 +8910,13 @@
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Rule alerts"
+      "rule_alert": "Rule alerts",
+      "poll": "Poll"
     },
     "hints": {
       "spin_wheel": "Where the wheels in your rules spin",
+      "poll": "Your live poll, with a vote button for every option",
+      "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate every tip, e size according to e tier",
       "join_alert": "Welcomes each viewer as they arrive"
     },
@@ -8910,6 +8962,30 @@
       "rotateFailed": "No go make new link. Try again after a while."
     },
     "rules": {
+      "wheelSegments": "Wheel segments, one per line",
+      "wheelHint": "Between 2 and 12. DeHub go choose where de wheel stop, so everybody dey watch see same result. Use {result} inside alert, read-out loud or chat action for name it.",
+      "intro": "When something happens on your stream, DeHub does what you choose: shows an alert, plays a sound, reads something aloud, posts in your chat or tells your Discord.",
+      "limit": "You have reached the limit of {{count}} rules.",
+      "loadFailed": "Your rules could not be loaded. Refresh the page to try again.",
+      "empty": "No rules yet. Add one to react to tips, follows or chat commands.",
+      "saved": "Rules saved. They run on your next tip, follow or message.",
+      "saveToTest": "Save your rules to test them",
+      "needsAlertWidget": "Some rules show an alert. Add the Rule alerts widget so it has somewhere to appear.",
+      "audience": "Who can set it off",
+      "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
+      "sayText": "Text to read aloud",
+      "chatHint": "Posted from your account into your stream's chat. It cannot repeat the viewer's message.",
+      "webhookHint": "A Discord or Slack webhook, or any https address that accepts a POST.",
+      "summary": {
+        "tip": "Tip of {{amount}} DHB or more"
+      },
+      "presetHints": {
+        "blank": "Start from nothing",
+        "readChat": "Reads your followers' messages aloud, one per viewer every 30 seconds",
+        "bigTip": "Plays an air horn and shows an alert for tips of 100,000 DHB or more",
+        "thankFollowers": "Posts a thank-you in your chat when someone follows",
+        "command": "Answers a !command in your chat"
+      },
       "title": "Rules",
       "add": "Add a rule",
       "saveFailed": "Na rules wey you dey try save, no go save for now.",
@@ -8936,6 +9012,10 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "live": "You start broadcasting",
+        "share": "Someone shares the stream",
+        "command": "A chat command is used",
+        "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
@@ -8955,11 +9035,15 @@
         "webhook": "Send to a webhook"
       },
       "presets": {
+        "bigTip": "Air horn for big tips",
+        "thankFollowers": "Thank new followers",
         "blank": "Blank rule",
         "readChat": "Read chat aloud",
         "command": "Chat command"
       },
       "presetText": {
+        "thankFollowers": "Thanks for the follow, {name}!",
+        "command": "Hello {name}, welcome to the stream!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
@@ -8977,19 +9061,97 @@
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Wheel segments, one per line",
-      "wheelHint": "Between 2 and 12. DeHub go choose where de wheel stop, so everybody dey watch see same result. Use {result} inside alert, read-out loud or chat action for name it."
+      "placeholdersLive": "Wetin you dey look for? {name} don land for this one. {title}: \"How to Translate Any Text to Nigerian Pidgin\". Watch {link}: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
-    "controls": {
-      "title": "Quick controls",
-      "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
-      "alertsPaused": "Pause alerts",
-      "soundsMuted": "Mute alert sounds",
-      "readAloudMuted": "Stop read-aloud",
-      "readAloudMutedHint": "Gift messages and rule lines are no longer read out.",
-      "alertsPausedHint": "No gift, no follow, no rule alert o go show on screen. Counter, goal, and chat box still dey move.",
-      "soundsMutedHint": "Yours rules dey stop play sound wey.",
-      "failed": "Na di switch no dey change. Try again."
+    "polls": {
+      "intro": "Ask the people watching your broadcast a question. They answer with a button in the DeHub app, or by typing {{command}} and the option's number in chat.",
+      "questionPlaceholder": "What should I play next?",
+      "duration": "How long voting stays open",
+      "start": "Start the poll",
+      "end": "End voting now",
+      "started": "Your poll is open. Viewers can vote now.",
+      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
+      "title": "Polls",
+      "question": "Question",
+      "option": "Option {{n}}",
+      "addOption": "Add an option",
+      "removeOption": "Remove option {{n}}",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "minutes_one": "{{count}} minute",
+      "minutes_other": "{{count}} minutes",
+      "startFailed": "Poll no dey start yet. Try again.",
+      "closeFailed": "Vote no finish yet. Try again.",
+      "live": "Voting open · {{time}} left",
+      "ended": "Voting closed",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "replaceHint": "Start new poll wey go close de one dat be open now.",
+      "widgetHint": "Show live poll. For DeHub app, viewers tap option to vote. For OBS, type {{command}} and number for chat.",
+      "sample": {
+        "a": "Something new",
+        "b": "An old favourite",
+        "c": "You choose"
+      }
+    },
+    "moderation": {
+      "loadFailed": "Your moderation settings could not be loaded. Refresh the page to try again.",
+      "bannedWordsHint": "Separate with commas. Spelling a word out letter by letter does not get round it.",
+      "wordAction": "When someone uses one",
+      "wordBlock": "Stop the message",
+      "wordTimeout": "Stop it and time them out for a minute",
+      "moderatorNotFound": "No account with that username.",
+      "banned": "Banned from your streams",
+      "title": "Chat moderation",
+      "intro": "Wahala na dem rule for chat under all my stream. Na dem never go reach DeHub main chat: any person you ban here still go talk anywhere else.",
+      "save": "Save chat rules",
+      "saved": "Chat rules saved.",
+      "saveFailed": "Na dem change no go save for you.",
+      "slowMode": "Slow mode",
+      "slowModeHint": "How long each person dey wait for message. You and your moderators no dey wait at all.",
+      "off": "Off",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "followersOnly": "Followers only",
+      "subscribersOnly": "Subscribers only",
+      "subscribersOnlyHint": "Overrides followers only.",
+      "bannedWords": "Banned words",
+      "moderators": "Moderators",
+      "moderatorsHint": "Dem can time out and ban people watchin' your stream. Dem can't do anything to you or to each other.",
+      "addModerator": "Add",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Moderator added.",
+      "removeModerator": "Remove moderator",
+      "noModerators": "No moderators yet.",
+      "unban": "Unban",
+      "noBans": "Nobody is banned.",
+      "log": "Recent actions",
+      "noLog": "Nothing yet.",
+      "actions": {
+        "timeout_one": "{{actor}} timed out {{target}} for {{count}} second",
+        "timeout_other": "{{actor}} timed out {{target}} for {{count}} seconds",
+        "moderator-added": "{{target}} became a moderator",
+        "moderator-removed": "{{target}} is no longer a moderator",
+        "word-blocked": "Stopped a message from {{target}} for \"{{word}}\"",
+        "word-timeout_one": "Timed out {{target}} for {{count}} second for \"{{word}}\"",
+        "word-timeout_other": "Timed out {{target}} for {{count}} seconds for \"{{word}}\"",
+        "ban": "{{actor}} banned {{target}}",
+        "unban": "{{actor}} unbanned {{target}}"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Time out for 1 minute",
+    "timeout10m": "Time out for 10 minutes",
+    "timeout1h": "Time out for 1 hour",
+    "ban": "Ban from these streams",
+    "banned": "Banned from these streams.",
+    "madeModerator": "They are now a moderator.",
+    "youAreTimedOut": "You are timed out for a moment",
+    "makeModerator": "Make moderator",
+    "timedOut": "Timed out.",
+    "failed": "Na dey go wrong. Try again.",
+    "youAreBanned": "Wahala! You no go chat inside dis creator's stream.",
+    "title": "Moderate"
   }
 }

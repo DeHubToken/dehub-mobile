@@ -64,6 +64,9 @@ export function PollEditor({ poll, onPoll }: Props) {
   });
 
   const secondsLeft = poll ? Math.max(0, Math.ceil((new Date(poll.endsAt).getTime() - now) / 1000)) : 0;
+  // The list never leaves these bounds, so "not at the bound" is the test.
+  const canRemove = options.length !== POLL_MIN_OPTIONS;
+  const canAdd = options.length !== POLL_MAX_OPTIONS;
   const shares = poll ? pollShares(poll) : [];
 
   return (
@@ -132,7 +135,7 @@ export function PollEditor({ poll, onPoll }: Props) {
               maxLength={POLL_OPTION_MAX}
               className={`${FIELD} flex-1`}
             />
-            {options.length > POLL_MIN_OPTIONS ? (
+            {canRemove ? (
               <TouchableOpacity
                 onPress={() => setOptions((list) => list.filter((_, j) => j !== i))}
                 accessibilityLabel={t("liveStudio.polls.removeOption", { n: i + 1 })}
@@ -144,7 +147,7 @@ export function PollEditor({ poll, onPoll }: Props) {
           </View>
         </View>
       ))}
-      {options.length < POLL_MAX_OPTIONS ? (
+      {canAdd ? (
         <TouchableOpacity onPress={() => setOptions((list) => [...list, ""])} className="flex-row items-center gap-1 self-start py-1">
           <Icon name="Plus" size={16} color="#ffffff" />
           <Text className="text-white text-sm font-medium">{t("liveStudio.polls.addOption")}</Text>

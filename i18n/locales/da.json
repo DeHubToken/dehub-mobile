@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Stream opsummering",
+    "justEnded": "Opsummering af din stream",
+    "lastStream": "Din sidste stream",
+    "none": "Ingen færdige streams endnu. Din oversigt vises her efter din første.",
+    "share": "Del",
+    "shareText": "Jeg har lige streamet \"{{title}}\" på DeHub: {{duration}}live, {{peak}} på toppen og {{followers}} nye følgere.",
+    "untitled": "Stream uden titel",
+    "loadFailed": "Opsummeringen blev ikke indlæst. Prøv igen om et øjeblik.",
+    "duration": "Live tid",
+    "peakViewers": "De fleste ser på én gang",
+    "gifts_one": "Fra {{count}} gave",
+    "gifts_other": "Fra {{count}} gaver",
+    "newFollowers": "Nye følgere",
+    "chatMessages": "Chatbeskeder",
+    "chatters": "Folk chatter",
+    "reactions": "Reaktioner",
+    "shares": "Deling af personer",
+    "topSupporters": "Toptilhængere",
+    "polls": "Polls",
+    "pollWinner": "{{option}} vandt",
+    "stillCounting": "Tæller stadig: Gaver kan tage et minut at bekræfte."
+  },
   "articles": {
     "articleImage": "Artikelbillede",
     "socialImage": "Social delingsbillede",
@@ -4775,7 +4798,7 @@
     "usernameReserved": "Dette brugernavn er reserveret",
     "profileSet": "Profilen blev oprettet!",
     "profileFailed": "Kunne ikke oprette profil",
-    "displayNameHint": "Dit offentlige navn, der vises på din profil."
+    "displayNameHint": "Dit offentlige navn på din profil. Valgfrit — lad feltet stå tomt for at bruge dit brugernavn."
   },
   "events": {
     "mine": "Mine",
@@ -5016,6 +5039,7 @@
     "accountHasA": "Denne konto har en",
     "ifYouUsedDehub": "Hvis du har brugt dehub.io før, så åbn det på din computer, log ind på samme måde og med samme konto, og",
     "biometricExplainer": "Lås op med fingeraftryk eller ansigt — intet at taste eller huske. Nøglen bliver på denne telefon, så vi viser dig en gendannelsesfrase på 12 ord, du skal skrive ned; det er den eneste vej tilbage fra en anden telefon, fra hjemmesiden eller efter geninstallation. Vælg Adgangskode i stedet, så gør adgangskoden selv det arbejde.",
+    "biometricExplainerSecuring": "Lås op med fingeraftryk eller ansigt — intet at taste eller huske. Nøglen bliver på denne telefon. For at komme ind igen fra en anden telefon, fra hjemmesiden eller efter geninstallation skal du senere gemme en sikkerhedskopi på 12 ord under Indstillinger. Vælg Adgangskode i stedet, så gør adgangskoden selv det arbejde.",
     "biometricPrompt": "Denne tegnebog er beskyttet af enhedens biometri. Bekræft med fingeraftryk eller ansigt for at fortsætte.",
     "enterRecoveryPhrase": "Indtast den 12-ords gendannelsesfrase, du gemte, da du oprettede denne tegnebog (eller dens private nøgle, hvis du eksporterede en). Den fører tilbage til samme konto, og adgangskoden, du sætter nedenfor, bliver en sikkerhedskopi, der fra nu af virker overalt.",
     "copyPhrase": "Kopiér frase",
@@ -5088,6 +5112,7 @@
     "unlockWithPasswordExplainer": "Denne konto har allerede en wallet, beskyttet af en adgangskode. Indtast den for at gendanne din wallet på denne enhed.",
     "deviceTab": "Denne enhed",
     "deviceExplainer": "Intet at skrive eller huske — nøglen forbliver på denne enhed. Vi tilbyder dig en sikkerhedskopi på 12 ord, som du kan skrive ned. Det er den eneste vej tilbage fra en anden enhed, fra hjemmesiden eller efter geninstallation. Vælg Adgangskode i stedet, og adgangskoden selv gør det job.",
+    "deviceExplainerSecuring": "Intet at taste eller huske — nøglen bliver på denne enhed. For at komme ind igen fra en anden enhed, fra hjemmesiden eller efter geninstallation skal du senere gemme en sikkerhedskopi på 12 ord under Indstillinger. Vælg Adgangskode i stedet, så gør adgangskoden selv det arbejde.",
     "secureOnDevice": "Behold nøglen på denne enhed"
   },
   "transcript": {
@@ -8993,7 +9018,7 @@
     "done": "Færdig",
     "error": "Kunne ikke indsende din anmodning om sletning. Din konto er ikke blevet bekræftet til sletning. Prøv igen.",
     "back": "Tilbage til indstillinger",
-    "signIn": "Log ind på din konto",
+    "signIn": "Log ind for at slette din konto",
     "acknowledge": "Jeg har gemt oplysninger om gendannelse af min tegnebog og forstår, at sletning er permanent."
   },
   "miniApps": {
@@ -9130,6 +9155,7 @@
     "notNow": "Ikke nu"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spundet:{{result}}",
     "someone": "Nogen",
     "newFollower": "Ny følger:{{name}}",
     "newSubscriber": "Ny abonnent:{{name}}",
@@ -9141,9 +9167,29 @@
     "topSupporters": "Toptilhængere",
     "tipped": "{{name}} har sendt en gave",
     "chatPreview": "Chatbeskeder vises her",
-    "wheelLanded": "{{name}} spundet:{{result}}"
+    "poll": {
+      "closed": "Afstemningen lukket",
+      "voteFor": "Stem på{{option}}",
+      "signIn": "Log ind for at stemme",
+      "failed": "Din stemme tæller ikke. Prøv igen.",
+      "voted_one": "Du stemte · {{count}} stemme",
+      "voted_other": "Du stemte ·{{count}} stemmer",
+      "votes_one": "{{count}}stemme",
+      "votes_other": "{{count}} stemmer"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Hurtige kontroller",
+      "intro": "Til midtstrøm. Hver knap holder for alle, der ser på, i appen og i OBS, indtil du vender den tilbage.",
+      "alertsPaused": "Sæt alarmer på pause",
+      "alertsPausedHint": "Ingen påmindelser om gaver, følg eller regler på skærmen. Tællere, mål og chatboksen fortsætter.",
+      "soundsMuted": "Slå advarselslyde fra",
+      "soundsMutedHint": "Dine regler holder op med at afspille lyde.",
+      "readAloudMuted": "Stop højtlæsning",
+      "readAloudMutedHint": "Gavebeskeder og regellinjer læses ikke længere op.",
+      "failed": "Denne kontakt blev ikke ændret. Prøv igen."
+    },
     "title": "Live-studie",
     "subtitle": "Advarsler og widgets til dine streams",
     "intro": "Alt, hvad du tilføjer her, vises over dine streams for alle seere i DeHub-appen — uanset om du går live fra din telefon, browseren, et capture-kort eller en encoder.",
@@ -9182,6 +9228,8 @@
       "join": "Slut dig til"
     },
     "kinds": {
+      "spin_wheel": "Spinhjul",
+      "poll": "Afstemning",
       "tip_alert": "Tip-alert",
       "follow_alert": "Følg-alert",
       "subscribe_alert": "Abonnent-alert",
@@ -9197,10 +9245,10 @@
       "event_feed": "Seneste aktivitet",
       "chat_box": "Chatboks",
       "ticker": "Ticker",
-      "rule_alert": "Regeladvarsler",
-      "spin_wheel": "Spinhjul"
+      "rule_alert": "Regeladvarsler"
     },
     "hints": {
+      "spin_wheel": "Hvor hjulene i dine regler drejer",
       "tip_alert": "Fejrer hvert tip, tilpasset dets niveau",
       "follow_alert": "Viser hver nye følger",
       "subscribe_alert": "Viser hver nye abonnent",
@@ -9217,7 +9265,7 @@
       "chat_box": "Viser din udsendelses chatbeskeder på skærmen",
       "ticker": "En linje med din egen tekst, der ruller hen over skærmen",
       "rule_alert": "Hvor dine reglers påmindelser vises",
-      "spin_wheel": "Hvor hjulene i dine regler drejer"
+      "poll": "Din live-afstemning med en stemmeknap for hver mulighed"
     },
     "fields": {
       "style": "Stil",
@@ -9275,6 +9323,8 @@
       "rotateFailed": "Kunne ikke oprette et nyt link. Prøv igen om et øjeblik."
     },
     "rules": {
+      "wheelSegments": "Hjulsegmenter, en pr. linje",
+      "wheelHint": "Mellem 2 og 12. DeHub vælger, hvor hjulet stopper, så alle, der ser på, ser det samme resultat. Brug {result} i en advarsel, højtlæsning eller chathandling for at navngive den.",
       "title": "Regler",
       "intro": "Når der sker noget på din stream, gør DeHub det, du vælger: viser en advarsel, afspiller en lyd, læser noget højt, slår noget op i din chat eller fortæller din Discord.",
       "add": "Tilføj en regel",
@@ -9319,7 +9369,8 @@
         "share": "Nogen deler strømmen",
         "command": "Der bruges en chatkommando",
         "keyword": "En chatbesked indeholder et ord",
-        "chat": "Enhver chatbesked"
+        "chat": "Enhver chatbesked",
+        "live": "Du begynder at sende"
       },
       "audiences": {
         "everyone": "Alle",
@@ -9327,12 +9378,12 @@
         "subscribers": "Abonnenter"
       },
       "actionTypes": {
+        "wheel": "Drej et hjul",
         "alert": "Vis en advarsel",
         "sound": "Afspil en lyd",
         "say": "Læs højt",
         "chat": "Slå op i chatten",
-        "webhook": "Send til en webhook",
-        "wheel": "Drej et hjul"
+        "webhook": "Send til en webhook"
       },
       "summary": {
         "tip": "Tip på{{amount}} DHB eller mere"
@@ -9371,19 +9422,97 @@
         "magic-spell": "Magisk besværgelse",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Hjulsegmenter, en pr. linje",
-      "wheelHint": "Mellem 2 og 12. DeHub vælger, hvor hjulet stopper, så alle, der ser på, ser det samme resultat. Brug {result} i en advarsel, højtlæsning eller chathandling for at navngive den."
+      "placeholdersLive": "Brug {name}, {title} og {link} i din tekst: dit navn, udsendelsens titel og et link til at se den."
     },
-    "controls": {
-      "title": "Hurtige kontroller",
-      "intro": "Til midtstrøm. Hver knap holder for alle, der ser på, i appen og i OBS, indtil du vender den tilbage.",
-      "alertsPaused": "Sæt alarmer på pause",
-      "alertsPausedHint": "Ingen påmindelser om gaver, følg eller regler på skærmen. Tællere, mål og chatboksen fortsætter.",
-      "soundsMuted": "Slå advarselslyde fra",
-      "soundsMutedHint": "Dine regler holder op med at afspille lyde.",
-      "readAloudMuted": "Stop højtlæsning",
-      "readAloudMutedHint": "Gavebeskeder og regellinjer læses ikke længere op.",
-      "failed": "Denne kontakt blev ikke ændret. Prøv igen."
+    "polls": {
+      "title": "Polls",
+      "intro": "Stil et spørgsmål til de personer, der ser din udsendelse. De svarer med en knap i DeHub-appen eller ved at skrive {{command}} og valgmulighedens nummer i chatten.",
+      "question": "Spørgsmål",
+      "questionPlaceholder": "Hvad skal jeg spille nu?",
+      "option": "Mulighed {{n}}",
+      "addOption": "Tilføj en mulighed",
+      "removeOption": "Fjern valgmulighed {{n}}",
+      "duration": "Hvor længe afstemningen er åben",
+      "seconds_one": "{{count}}sekund",
+      "seconds_other": "{{count}} sekunder",
+      "minutes_one": "{{count}}minut",
+      "minutes_other": "{{count}} minutter",
+      "start": "Start afstemningen",
+      "end": "Afslut afstemning nu",
+      "started": "Din afstemning er åben. Seerne kan stemme nu.",
+      "notLive": "Gå live først. En afstemning kører på den udsendelse, du streamer lige nu.",
+      "startFailed": "Afstemningen startede ikke. Prøv igen.",
+      "closeFailed": "Afstemningen sluttede ikke. Prøv igen.",
+      "live": "Afstemningen er åben ·{{time}} tilbage",
+      "ended": "Afstemningen lukket",
+      "votes_one": "{{count}}stemme",
+      "votes_other": "{{count}} stemmer",
+      "replaceHint": "Når du starter en ny afstemning, lukkes den, der er åben.",
+      "widgetHint": "Viser din live-afstemning. I DeHub-appens seere trykker du på en mulighed for at stemme; i OBS fortæller den folk at skrive {{command}} og et nummer i chatten.",
+      "sample": {
+        "a": "Noget nyt",
+        "b": "En gammel favorit",
+        "c": "Du vælger"
+      }
+    },
+    "moderation": {
+      "title": "Chatmoderation",
+      "intro": "Regler for chatten under alle dine streams. De når aldrig DeHubs hovedchat: En person, du forbyder her, kan stadig tale alle andre steder.",
+      "loadFailed": "Din modereringsindstillinger kunne ikke lastes. Prøv at genindlæse siden.",
+      "save": "Gem chatregler",
+      "saved": "Chatregler gemt.",
+      "saveFailed": "Denne ændring kunne ikke gemmes.",
+      "slowMode": "Langsom tilstand",
+      "slowModeHint": "Hvor længe hver seer venter mellem meddelelser. Du og dine moderatorer venter aldrig.",
+      "off": "Fra",
+      "seconds_one": "{{count}}sekund",
+      "seconds_other": "{{count}} sekunder",
+      "followersOnly": "Kun følgere",
+      "subscribersOnly": "Kun abonnenter",
+      "subscribersOnlyHint": "Tilsidesætter kun følgere.",
+      "bannedWords": "Forbudte ord",
+      "bannedWordsHint": "Separate med kommaer. At stave et ord bogstav for bogstav ikke omgår det.",
+      "wordAction": "Når nogen bruger en",
+      "wordBlock": "Stop beskeden",
+      "wordTimeout": "Stop det, og time dem ud i et minut",
+      "moderators": "Moderatorer",
+      "moderatorsHint": "De kan timeout og udelukke seere i dine streams. De kan ikke handle på dig eller på hinanden.",
+      "addModerator": "Tilføj",
+      "usernamePlaceholder": "Brugernavn",
+      "moderatorAdded": "Moderator tilføjet.",
+      "moderatorNotFound": "Ingen konto med det brugernavn.",
+      "removeModerator": "Fjern moderator",
+      "noModerators": "Ingen moderatorer endnu.",
+      "banned": "Udelukket fra dine streams",
+      "unban": "Ophæv udelukkelse",
+      "noBans": "Ingen er forbudt.",
+      "log": "Nogle nylige initiativer",
+      "noLog": "Intet endnu.",
+      "actions": {
+        "timeout_one": "{{actor}} fik timeout {{target}} for {{count}}sekund",
+        "timeout_other": "{{actor}} fik timeout {{target}} i {{count}} sekunder",
+        "ban": "{{actor}}forbudt{{target}}",
+        "unban": "{{actor}}unbanned{{target}}",
+        "moderator-added": "{{target}} blev moderator",
+        "moderator-removed": "{{target}} er ikke længere moderator",
+        "word-blocked": "Stoppede en besked fra {{target}} for \"{{word}}\"",
+        "word-timeout_one": "Tidsudløb {{target}} for {{count}}sekund for \"{{word}}\"",
+        "word-timeout_other": "Tidsudløb {{target}} for {{count}} sekunder for \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Timeout i 1 minut",
+    "timeout10m": "Timeout i 10 minutter",
+    "timeout1h": "Timeout i 1 time",
+    "ban": "Forbud mod disse vandløb",
+    "makeModerator": "Gør til moderator",
+    "timedOut": "Tidsgrænsen er udløbet.",
+    "banned": "Bannet fra disse streams.",
+    "madeModerator": "De er nu moderator.",
+    "failed": "Det virkede ikke. Prøv igen.",
+    "youAreBanned": "Du kan ikke chatte i denne kreatørs streams",
+    "youAreTimedOut": "Du er udløbet et øjeblik",
+    "title": "Moderat"
   }
 }

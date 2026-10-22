@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "pollWinner": "Nanalo ang {{option}}",
+    "title": "I - recap ang stream",
+    "justEnded": "I - recap ang iyong stream",
+    "lastStream": "Huling stream mo",
+    "none": "Wala pang natapos na mga stream. Ang iyong recap ay lilitaw dito pagkatapos ng iyong unang isa.",
+    "share": "I-share",
+    "shareText": "Nag - stream ako ng \"{{title}}\" sa DeHub: {{duration}} live, {{peak}} nanonood sa rurok at {{followers}} mga bagong tagasunod.",
+    "untitled": "Walang pamagat na stream",
+    "loadFailed": "Hindi nag - load ang recap. Subukan muli sa ilang sandali.",
+    "duration": "Live ang oras",
+    "peakViewers": "Karamihan sa mga nanonood nang sabay - sabay",
+    "gifts_one": "Mula {{count}}regalo",
+    "gifts_other": "Mula {{count}} mga regalo",
+    "newFollowers": "Mga bagong tagasunod",
+    "chatMessages": "Mga mensahe sa chat",
+    "chatters": "Mga taong nakikipag - chat",
+    "reactions": "mga reaksyon",
+    "shares": "Mga taong nagbabahagi",
+    "topSupporters": "Mga nangungunang tagasuporta",
+    "polls": "Mga poll",
+    "stillCounting": "Nagbibilang pa rin: ang mga regalo ay maaaring tumagal ng isang minuto upang kumpirmahin."
+  },
   "articles": {
     "articleImage": "Larawan ng artikulo",
     "socialImage": "Larawan para sa social media",
@@ -4818,7 +4841,7 @@
     "usernameReserved": "Nakalaan ang username na ito",
     "profileSet": "Matagumpay na na-set ang profile!",
     "profileFailed": "Hindi ma-set ang profile",
-    "displayNameHint": "Ang pampublikong pangalan mong makikita sa profile."
+    "displayNameHint": "Ang pampublikong pangalan mo sa profile. Opsyonal — iwanang blangko para gamitin ang username mo."
   },
   "events": {
     "mine": "Akin",
@@ -5059,6 +5082,7 @@
     "accountHasA": "May",
     "ifYouUsedDehub": "Kung nagamit mo na ang dehub.io dati, buksan ito sa computer mo, mag-sign in sa parehong paraan at gamit ang parehong account, at",
     "biometricExplainer": "Mag-unlock gamit ang fingerprint o mukha mo — walang itatype o kabisaduhin. Nananatili ang susi sa teleponong ito, kaya ipapakita namin ang 12-salitang recovery phrase para isulat mo; iyon lang ang tanging daan pabalik mula sa ibang telepono, mula sa website, o pagkatapos mag-reinstall. Piliin ang Password sa halip at ang password mismo ang gagawa ng trabahong iyon.",
+    "biometricExplainerSecuring": "Mag-unlock gamit ang fingerprint o mukha mo — walang itatype o kabisaduhin. Nananatili ang susi sa teleponong ito. Para makabalik mula sa ibang telepono, mula sa website, o pagkatapos mag-reinstall, mag-save ng 12-salitang backup mamaya sa Mga Setting. Piliin ang Password sa halip at ang password mismo ang gagawa ng trabahong iyon.",
     "biometricPrompt": "Protektado ang wallet na ito ng biometrics ng device na ito. Kumpirmahin gamit ang fingerprint o mukha para magpatuloy.",
     "enterRecoveryPhrase": "Ilagay ang 12-salitang recovery phrase na iniligtas mo noong ginawa mo ang wallet na ito (o ang private key nito, kung nag-export ka). Babalik ito sa parehong account, at ang password na itatakda mo sa ibaba ay magiging backup na gagana kahit saan mula ngayon.",
     "copyPhrase": "Kopyahin ang phrase",
@@ -5131,6 +5155,7 @@
     "unlockWithPasswordExplainer": "Ang account na ito ay mayroon nang wallet, na protektado ng password. Ilagay ito upang ma-recover ang iyong wallet sa device na ito.",
     "deviceTab": "Ang device na ito",
     "deviceExplainer": "Walang dapat i - type o tandaan — ang susi ay nananatili sa device na ito. Mag - aalok kami sa iyo ng 12 - word backup upang isulat; ito ay ang tanging paraan pabalik sa mula sa isa pang aparato, mula sa website, o pagkatapos ng muling pag - install. Pumili ng Password sa halip at ang password mismo ang gumagawa ng trabahong iyon.",
+    "deviceExplainerSecuring": "Walang itatype o kabisaduhin — nananatili ang susi sa device na ito. Para makabalik mula sa ibang device, mula sa website, o pagkatapos mag-reinstall, mag-save ng 12-salitang backup mamaya sa Mga Setting. Piliin ang Password sa halip at ang password mismo ang gagawa ng trabahong iyon.",
     "secureOnDevice": "Panatilihin ang susi sa device na ito"
   },
   "transcript": {
@@ -9163,17 +9188,17 @@
   "accountDeletion": {
     "title": "Burahin ang account",
     "description": "Permanenteng tanggalin ang iyong account at personal na data",
-    "warning": "Permanenteng tinatanggal nito ang iyong DeHub profile, mga post, mga komento, mga mensahe at naka - imbak na backup ng wallet. I - save muna ang mga detalye ng pagbawi ng iyong wallet at ilipat muna ang anumang asset. Hindi matatanggal ang mga pampublikong transaksyon sa blockchain at mga legal na kinakailangang rekord ng pagbabayad. Nakatago kaagad ang iyong profile; nakumpleto ang pagtanggal sa loob ng 30 araw. Hindi ito mababawi.",
+    "warning": "Permanenteng tinatanggal nito ang iyong DeHub profile, mga post, mga komento, mga mensahe at naka-imbak na backup ng wallet. I-save muna ang mga detalye ng pagbawi ng iyong wallet at ilipat muna ang anumang asset. Hindi matatanggal ang mga pampublikong transaksyon sa blockchain at mga legal na kinakailangang rekord ng pagbabayad. Nakatago kaagad ang iyong profile; nakumpleto ang pagtanggal sa loob ng 30 araw. Hindi ito mababawi.",
     "cancel": "Kanselahin",
     "confirm": "Permanenteng tanggalin ang aking account",
     "busy": "Pagsusumite ng kahilingan sa pagtatanggal...",
     "accepted": "Hiniling ang pagtanggal ng account",
-    "receipt": "Na - save na ang iyong kahilingan sa pagtanggal. Nakatago ang iyong profile at permanenteng tatanggalin ang iyong account sa loob ng 30 araw. Hindi puwedeng kanselahin ng pag - sign in ang kahilingang ito.",
+    "receipt": "Na-save na ang iyong kahilingan sa pagtanggal. Nakatago ang iyong profile at permanenteng tatanggalin ang iyong account sa loob ng 30 araw. Hindi puwedeng kanselahin ng pag-sign in ang kahilingang ito.",
     "done": "Tapos na",
     "error": "Hindi maisumite ang iyong kahilingan sa pagtanggal. Ang iyong account ay hindi nakumpirma para sa pagtanggal. Pakisubukan muli.",
     "back": "Bumalik sa Mga Setting",
-    "signIn": "Mag - sign in para tanggalin ang iyong account",
-    "acknowledge": "Na - save ko ang aking mga detalye sa pagbawi ng wallet at nauunawaan ko na ang pagtanggal ay permanente."
+    "signIn": "Mag-sign in para tanggalin ang iyong account",
+    "acknowledge": "Na-save ko ang aking mga detalye sa pagbawi ng wallet at nauunawaan ko na ang pagtanggal ay permanente."
   },
   "miniApps": {
     "badge": {
@@ -9309,6 +9334,7 @@
     "notNow": "Hindi ngayon"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}}spun:{{result}}",
     "someone": "Isang tao",
     "newFollower": "Bagong tagasunod:{{name}}",
     "newSubscriber": "Bagong subscriber:{{name}}",
@@ -9320,9 +9346,29 @@
     "topSupporters": "Mga nangungunang tagasuporta",
     "tipped": "Nagpadala ng regalo si {{name}}",
     "chatPreview": "Lilitaw ang mga mensahe ng chat dito",
-    "wheelLanded": "{{name}}spun:{{result}}"
+    "poll": {
+      "closed": "Sarado na ang pagboto",
+      "voteFor": "Bote para sa {{option}}",
+      "signIn": "Mag - sign in para bumoto",
+      "failed": "Hindi nabilang ang iyong boto. Subukan muli.",
+      "voted_one": "Bumoto ka ·{{count}} bumoto",
+      "voted_other": "Bumoto ka · {{count}}(na) boto",
+      "votes_one": "{{count}} bumoto",
+      "votes_other": "{{count}} mga boto"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Mga mabilisang kontrol",
+      "intro": "Para sa mid - stream. Ang bawat switch ay humahawak para sa lahat ng nanonood, sa app at sa OBS, hanggang sa i - flip mo ito pabalik.",
+      "alertsPaused": "I - pause ang mga alerto",
+      "alertsPausedHint": "Walang regalo, sundin o panuntunan ang mga alerto sa screen. Ang mga counter, mga layunin at ang chat box ay patuloy na nagpapatuloy.",
+      "soundsMuted": "I - mute ang mga tunog ng alerto",
+      "soundsMutedHint": "Tumigil sa pagtugtog ng mga tunog ang iyong mga alituntunin.",
+      "readAloudMuted": "Itigil ang read - loud",
+      "readAloudMutedHint": "Hindi na nababasa ang mga mensahe ng regalo at mga linya ng panuntunan.",
+      "failed": "Hindi nagbago ang switch na iyon. Subukan muli."
+    },
     "title": "Instagram",
     "subtitle": "Mga alerto at widget para sa iyong mga stream",
     "intro": "Lumilitaw ang lahat ng iyong idaragdag dito sa iyong mga stream para sa bawat viewer sa DeHub app — live ka man mula sa iyong telepono, browser, capture card o encoder.",
@@ -9361,6 +9407,8 @@
       "join": "Pagkakalaban"
     },
     "kinds": {
+      "spin_wheel": "Paikutin ang gulong",
+      "poll": "Botohan",
       "tip_alert": "Alerta sa tip",
       "follow_alert": "Alerta sa pagsumunod",
       "subscribe_alert": "Alerta sa suskriber",
@@ -9376,10 +9424,10 @@
       "event_feed": "Kamakailang aktibidad",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Mga alerto sa panuntunan",
-      "spin_wheel": "Paikutin ang gulong"
+      "rule_alert": "Mga alerto sa panuntunan"
     },
     "hints": {
+      "spin_wheel": "Kung saan ang mga gulong sa iyong mga panuntunan ay umiikot",
       "tip_alert": "Pagpupugay sa bawat tip ayon sa kanilang antas",
       "follow_alert": "Naririto ang bawat bagong tagasunod",
       "subscribe_alert": "Naririto ang bawat bagong tagasubskriba",
@@ -9396,7 +9444,7 @@
       "chat_box": "Ipinapakita ang mga mensahe sa chat ng iyong broadcast sa screen",
       "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen",
       "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan",
-      "spin_wheel": "Kung saan ang mga gulong sa iyong mga panuntunan ay umiikot"
+      "poll": "Ang iyong live poll, na may isang pindutan ng boto para sa bawat pagpipilian"
     },
     "fields": {
       "style": "Estilo",
@@ -9455,6 +9503,10 @@
       "rotateFailed": "Hindi makagawa ng bagong link. Subukan muli sa ilang sandali."
     },
     "rules": {
+      "wheelSegments": "Mga segment ng gulong, isa bawat linya",
+      "wheelHint": "Sa pagitan ng 2 at 12. Pinipili ng DeHub kung saan humihinto ang gulong, kaya nakikita ng lahat ng nanonood ang parehong resulta. Gamitin ang {result} sa isang alerto, read - loud o chat action para pangalanan ito.",
+      "removeAction": "Alisin ang aksyon",
+      "test": "Subukan",
       "title": "Mga Panuntunan",
       "intro": "Kapag may nangyari sa iyong stream, ginagawa ng DeHub ang iyong pinili: nagpapakita ng alerto, nagpe - play ng tunog, nagbabasa ng isang bagay nang malakas, mga post sa iyong chat o nagsasabi sa iyong Discord.",
       "add": "Magdagdag ng alituntunin",
@@ -9497,7 +9549,8 @@
         "share": "May nagbabahagi ng stream",
         "command": "Ginagamit ang isang chat command",
         "keyword": "Ang isang mensahe sa chat ay naglalaman ng isang salita",
-        "chat": "Anumang mensahe sa chat"
+        "chat": "Anumang mensahe sa chat",
+        "live": "Nagsisimula kang mag - broadcast"
       },
       "audiences": {
         "everyone": "Lahat",
@@ -9505,12 +9558,12 @@
         "subscribers": "Mga Subscriber"
       },
       "actionTypes": {
+        "wheel": "Paikutin ang isang wheel",
         "alert": "Magpakita ng alerto",
         "sound": "Magpatugtog ng tunog",
         "say": "Magbasa nang malakas",
         "chat": "Mag - post sa chat",
-        "webhook": "Ipadala sa isang webhook",
-        "wheel": "Paikutin ang isang wheel"
+        "webhook": "Ipadala sa isang webhook"
       },
       "summary": {
         "tip": "Tip na {{amount}} DHB o higit pa"
@@ -9549,19 +9602,97 @@
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Mga segment ng gulong, isa bawat linya",
-      "wheelHint": "Sa pagitan ng 2 at 12. Pinipili ng DeHub kung saan humihinto ang gulong, kaya nakikita ng lahat ng nanonood ang parehong resulta. Gamitin ang {result} sa isang alerto, read - loud o chat action para pangalanan ito."
+      "placeholdersLive": "Gamitin ang {name}, {title} at {link} sa iyong text: ang iyong pangalan, pamagat ng broadcast at link para mapanood ito."
     },
-    "controls": {
-      "title": "Mga mabilisang kontrol",
-      "intro": "Para sa mid - stream. Ang bawat switch ay humahawak para sa lahat ng nanonood, sa app at sa OBS, hanggang sa i - flip mo ito pabalik.",
-      "alertsPaused": "I - pause ang mga alerto",
-      "alertsPausedHint": "Walang regalo, sundin o panuntunan ang mga alerto sa screen. Ang mga counter, mga layunin at ang chat box ay patuloy na nagpapatuloy.",
-      "soundsMuted": "I - mute ang mga tunog ng alerto",
-      "soundsMutedHint": "Tumigil sa pagtugtog ng mga tunog ang iyong mga alituntunin.",
-      "readAloudMuted": "Itigil ang read - loud",
-      "readAloudMutedHint": "Hindi na nababasa ang mga mensahe ng regalo at mga linya ng panuntunan.",
-      "failed": "Hindi nagbago ang switch na iyon. Subukan muli."
+    "polls": {
+      "title": "Mga botohan",
+      "intro": "Tanungin ang mga tao na nanonood ng iyong broadcast ng isang katanungan. Sumasagot sila gamit ang button sa DeHub app, o sa pamamagitan ng pag - type ng {{command}} at numero ng opsyon sa chat.",
+      "question": "Tanong",
+      "questionPlaceholder": "Ano ang susunod na dapat kong paglaruan?",
+      "option": "Opsyon {{n}}",
+      "addOption": "Magdagdag ng opsyon",
+      "removeOption": "Alisin ang opsyong {{n}}",
+      "duration": "Gaano katagal mananatiling bukas ang pagboto",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundo",
+      "minutes_one": "{{count}}minuto",
+      "minutes_other": "{{count}} minuto",
+      "start": "Simulan ang poll",
+      "end": "Tapusin ang pagboto ngayon",
+      "started": "Bukas ang iyong poll. Puwede nang bumoto ang mga manonood.",
+      "notLive": "Live muna. Ang isang poll ay tumatakbo sa broadcast na ikaw ay streaming ngayon.",
+      "startFailed": "Hindi nagsimula ang poll. Subukan muli.",
+      "closeFailed": "Hindi natapos ang pagboto. Subukan muli.",
+      "live": "Bukas ang pagboto ·{{time}} kaliwa",
+      "ended": "Sarado na ang pagboto",
+      "votes_one": "{{count}} bumoto",
+      "votes_other": "{{count}} mga boto",
+      "replaceHint": "Ang pagsisimula ng isang bagong poll ay nagsasara sa isa na bukas.",
+      "widgetHint": "Ipakita ang iyong live poll. Sa DeHub app, mag - tap ang mga manonood ng opsyon para bumoto; sa OBS, sinasabi nito sa mga tao na mag - type ng {{command}} at numero sa chat.",
+      "sample": {
+        "a": "May bago",
+        "b": "Isang lumang paborito",
+        "c": "Ikaw ang pipili"
+      }
+    },
+    "moderation": {
+      "save": "I-save ang mga patakaran ng chat",
+      "title": "Pagmo - moderate ng chat",
+      "intro": "Mga panuntunan para sa chat sa ilalim ng lahat ng iyong mga stream. Hindi nila kailanman maabot ang pangunahing chat ng DeHub: ang isang taong pinagbawalan mo dito ay maaari pa ring makipag - usap sa lahat ng dako.",
+      "loadFailed": "Hindi ma - load ang iyong mga setting ng pag - moderate. I - refresh ang page para subukang muli.",
+      "saved": "Na - save ang mga panuntunan sa chat.",
+      "saveFailed": "Hindi mase - save ang pagbabagong iyon.",
+      "slowMode": "Mabagal na mode",
+      "slowModeHint": "Gaano katagal naghihintay ang bawat viewer sa pagitan ng mga mensahe. Ikaw at ang iyong mga moderator ay hindi kailanman naghihintay.",
+      "off": "Naka - off",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundo",
+      "followersOnly": "Mga tagasunod lamang",
+      "subscribersOnly": "Mga subscriber lang",
+      "subscribersOnlyHint": "Overrides mga tagasunod lamang.",
+      "bannedWords": "Mga ipinagbabawal na salita",
+      "bannedWordsHint": "Paghiwalayin sa mga kuwit. Ang pagbaybay ng isang salita sa pamamagitan ng sulat ay hindi nakakakuha ng bilog na ito.",
+      "wordAction": "Kapag ang isang tao ay gumagamit ng isang",
+      "wordBlock": "Itigil ang mensahe",
+      "wordTimeout": "Itigil ito at oras ang mga ito para sa isang minuto",
+      "moderators": "Moderator",
+      "moderatorsHint": "Maaari silang mag - time out at pagbawalan ang mga manonood sa iyong mga stream. Hindi nila kayang kumilos sa iyo o sa isa 't isa.",
+      "addModerator": "Magdagdag",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Idinagdag ang moderator.",
+      "moderatorNotFound": "Walang account sa username na iyon.",
+      "removeModerator": "Alisin ang moderator",
+      "noModerators": "Wala pang moderator.",
+      "banned": "Ipinagbabawal sa iyong mga stream",
+      "unban": "Unban",
+      "noBans": "Walang bawal.",
+      "log": "Mga kamakailang aksyon",
+      "noLog": "Wala pa sa ngayon.",
+      "actions": {
+        "timeout_one": "{{actor}} nag - time out {{target}} para sa {{count}} segundo",
+        "timeout_other": "{{actor}} nag - time out {{target}} sa loob ng {{count}} segundo",
+        "ban": "{{actor}} pinagbawalan{{target}}",
+        "unban": "{{actor}} hindi naka - ban {{target}}",
+        "moderator-added": "Naging moderator si {{target}}",
+        "moderator-removed": "Hindi na moderator ang {{target}}",
+        "word-blocked": "Nagpadala ng mensahe mula sa {{target}} para sa \"{{word}}\"",
+        "word-timeout_one": "Nag - time out sa {{target}} para sa {{count}} segundo para sa \"{{word}}\"",
+        "word-timeout_other": "Nag - time out sa {{target}} para sa {{count}} segundo para sa \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Time out para sa 1 minuto",
+    "timeout10m": "Time out para sa 10 minuto",
+    "timeout1h": "Time out para sa 1 oras",
+    "ban": "Ipagbawal mula sa mga stream na ito",
+    "makeModerator": "Gumawa ng moderator",
+    "timedOut": "Nag - time out.",
+    "banned": "Ipagbawal mula sa mga stream na ito.",
+    "madeModerator": "Sila ngayon ay isang moderator.",
+    "failed": "Hindi iyon gumana. Subukan muli.",
+    "youAreBanned": "Hindi ka maaaring makipag - chat sa mga stream ng tagalikha na ito",
+    "youAreTimedOut": "Naka - time out ka nang ilang sandali",
+    "title": "Katamtaman"
   }
 }

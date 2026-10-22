@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "串流總結",
+    "justEnded": "你嘅串流總結",
+    "lastStream": "你最後一個串流",
+    "none": "仲未有完成嘅串流。你嘅總結會喺你第一個之後出現喺呢度。",
+    "share": "分享",
+    "shareText": "我啱啱喺 DeHub 串流「 {{title}} 」： {{duration}} 直播， {{peak}} 睇緊高峰期同 {{followers}} 新 follower",
+    "untitled": "冇標題嘅串流",
+    "loadFailed": "個總結冇載入。一陣再試下。",
+    "duration": "時間直播",
+    "peakViewers": "大部分一次過睇緊",
+    "gifts_one": "來自 {{count}} 禮物",
+    "gifts_other": "來自 {{count}} 禮物",
+    "newFollowers": "新追蹤者",
+    "chatMessages": "即時通訊訊息",
+    "chatters": "人哋傾緊計",
+    "reactions": "反應",
+    "shares": "人哋分享緊",
+    "topSupporters": "頂尖支持者",
+    "polls": "民調",
+    "pollWinner": "{{option}} 贏咗",
+    "stillCounting": "仲計緊：禮物可能需要一分鐘先可以確認。"
+  },
   "articles": {
     "articleImage": "文章圖片",
     "socialImage": "社交分享圖片",
@@ -4764,7 +4787,7 @@
     "usernameReserved": "呢個用戶名已被保留",
     "profileSet": "個人檔案設定成功！",
     "profileFailed": "無法設定個人檔案",
-    "displayNameHint": "喺你個人檔案顯示嘅公開名稱。"
+    "displayNameHint": "喺你個人檔案顯示嘅公開名稱。可以唔填——留空就會用你嘅用戶名。"
   },
   "events": {
     "mine": "我嘅",
@@ -5005,6 +5028,7 @@
     "accountHasA": "呢個帳戶擁有",
     "ifYouUsedDehub": "如果你以前用過 dehub.io，請喺電腦上打開佢，用相同方式同相同帳戶登入，然後",
     "biometricExplainer": "用指紋或者人臉解鎖——唔使輸入或者記住任何嘢。密鑰留喺呢部電話，所以我哋會顯示一組 12 個字嘅復原助記詞畀你抄低；呢個係由第部電話、由網站，或者重裝之後返返入去嘅唯一方法。如果改揀密碼，密碼本身就擔當呢個角色。",
+    "biometricExplainerSecuring": "用指紋或者人臉解鎖——唔使輸入或者記住任何嘢。密鑰留喺呢部電話。如果要由第部電話、由網站，或者重裝之後返返入去，可以遲啲喺設定度儲存一份 12 個詞嘅備份。如果改揀密碼，密碼本身就擔當呢個角色。",
     "biometricPrompt": "呢個錢包受本裝置嘅生物辨識保護。請用指紋或者人臉確認以繼續。",
     "enterRecoveryPhrase": "請輸入你建立呢個錢包嗰陣儲存嘅 12 個字復原助記詞（如果你匯出過私鑰，都可以用私鑰）。佢會返到同一個帳戶，而你喺下面設定嘅密碼由而家開始會成為喺任何地方都用得嘅後備方式。",
     "copyPhrase": "複製助記詞",
@@ -5076,7 +5100,8 @@
     "unlockPasskeyOnly": "此銀包已透過網頁的通行金鑰進行保護，目前尚未在雲端進行密碼備份。如果您在 dehub.io 上設定了銀包密碼，請在此輸入 — 否則請使用下方的「匯入外部銀包」。",
     "unlockWithPasswordExplainer": "此帳戶已有一個受密碼保護的銀包。請輸入密碼以在此裝置上復原您的銀包。",
     "deviceTab": "呢部裝置",
-    "deviceExplainer": "冇嘢可以打字或者記住 — 密鑰會喺呢部裝置上面。我哋會提供一個12個字嘅備份畀你寫低；呢個係喺另一部裝置、網站或者重新安裝之後唯一嘅方法。改為揀密碼，密碼本身就會完成呢個工作。",
+    "deviceExplainer": "唔使輸入或者記住任何嘢——密鑰留喺呢部裝置。我哋會提供一組 12 個詞嘅備份畀你抄低；呢個係由第部裝置、由網站，或者重裝之後返返入去嘅唯一方法。如果改揀密碼，密碼本身就擔當呢個角色。",
+    "deviceExplainerSecuring": "唔使輸入或者記住任何嘢——密鑰留喺呢部裝置。如果要由第部裝置、由網站，或者重裝之後返返入去，可以遲啲喺設定度儲存一份 12 個詞嘅備份。如果改揀密碼，密碼本身就擔當呢個角色。",
     "secureOnDevice": "將密鑰放喺呢部裝置上面"
   },
   "transcript": {
@@ -9114,6 +9139,7 @@
     "notNow": "而家唔得"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} 旋轉： {{result}}",
     "someone": "有人",
     "newFollower": "新追隨者： {{name}}",
     "newSubscriber": "新訂閱者： {{name}}",
@@ -9125,9 +9151,29 @@
     "topSupporters": "頂級支持者",
     "tipped": "{{name}} 送咗份禮物",
     "chatPreview": "即時通訊訊息會喺呢度出現",
-    "wheelLanded": "{{name}} 旋轉： {{result}}"
+    "poll": {
+      "closed": "投票已經結束",
+      "voteFor": "投 {{option}}",
+      "signIn": "登入投票",
+      "failed": "你嘅票唔計再試多次。",
+      "voted_one": "你投票咗 · {{count}} 投票",
+      "voted_other": "你投票咗 · {{count}} 投票",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票數"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "快速控制",
+      "intro": "用嚟中流。每個開關都可以喺應用程式同 OBS 入面，適合所有睇緊嘅人，直至你將佢翻返轉頭。",
+      "alertsPaused": "暫停警示",
+      "alertsPausedHint": "無禮物、無追隨者或規則通知顯示。計數器、進度和聊天框繼續更新。",
+      "soundsMuted": "靜音警報聲",
+      "soundsMutedHint": "你嘅規則停止播放聲音。",
+      "readAloudMuted": "唔好再大聲讀",
+      "readAloudMutedHint": "禮物訊息同規則行唔會再讀出嚟。",
+      "failed": "嗰個開關冇變。再試多次。"
+    },
     "title": "現場工作室",
     "subtitle": "你嘅串流嘅警示同小工具",
     "intro": "你喺呢度加入嘅所有內容都會顯示喺 DeHub 應用程式入面每個觀眾嘅串流入面 — 無論你係透過手機、瀏覽器、捕捉卡定係編碼器直播。",
@@ -9166,6 +9212,7 @@
       "join": "加入"
     },
     "kinds": {
+      "spin_wheel": "旋轉輪",
       "tip_alert": "提示提醒",
       "follow_alert": "追蹤提醒",
       "subscribe_alert": "訂閱提醒",
@@ -9182,9 +9229,11 @@
       "chat_box": "聊天框",
       "ticker": "股票",
       "rule_alert": "規則警示",
-      "spin_wheel": "旋轉輪"
+      "poll": "民調"
     },
     "hints": {
+      "spin_wheel": "你規則入面嘅輪子喺邊度旋轉",
+      "rule_alert": "你啲規則嘅提示喺邊度出現",
       "tip_alert": "慶祝每一個提示，按等級大小",
       "follow_alert": "顯示每一個新追蹤者",
       "subscribe_alert": "顯示每一個新訂閱者",
@@ -9200,7 +9249,7 @@
       "event_feed": "最新嘅禮物、追蹤者、訂閱者同埋分享你廣播嘅人",
       "chat_box": "喺螢幕上面顯示你嘅廣播嘅即時通訊訊息",
       "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動",
-      "spin_wheel": "你規則入面嘅輪子喺邊度旋轉"
+      "poll": "你嘅即時民調，每個選項都有投票掣"
     },
     "fields": {
       "style": "風格",
@@ -9259,6 +9308,9 @@
       "rotateFailed": "建立唔到新連結。一陣再試下。"
     },
     "rules": {
+      "wheelSegments": "輪段，每行一個",
+      "wheelHint": "至 12 之間。 DeHub 會揀車輪停喺邊，所以所有睇緊嘅人都會見到相同嘅結果。喺警示、朗讀或者即時通訊動作入面用 {result} 嚟命名佢。",
+      "intro": "當你嘅直播有嘢發生，DeHub 會照你揀嘅去做：顯示提示、播聲音、讀出內容、喺你嘅聊天室發訊息，或者通知你嘅 Discord。",
       "title": "規矩",
       "add": "加個規則",
       "limit": "你已經達到 {{count}} 規則嘅極限。",
@@ -9302,7 +9354,8 @@
         "share": "有人分享咗個串流",
         "command": "用咗個即時通訊指令",
         "keyword": "即時通訊訊息包含一個字",
-        "chat": "任何即時通訊訊息"
+        "chat": "任何即時通訊訊息",
+        "live": "你開始廣播"
       },
       "audiences": {
         "everyone": "所有人",
@@ -9310,12 +9363,12 @@
         "subscribers": "訂閱者"
       },
       "actionTypes": {
+        "wheel": "旋轉一個輪子",
         "alert": "顯示警示",
         "sound": "播一個聲音",
         "say": "大聲讀",
         "chat": "喺即時通訊度發帖",
-        "webhook": "傳送去網絡鉤",
-        "wheel": "旋轉一個輪子"
+        "webhook": "傳送去網絡鉤"
       },
       "summary": {
         "tip": "{{amount}} DHB 或以上嘅提示"
@@ -9354,19 +9407,97 @@
         "magic-spell": "魔法咒語",
         "shhh": "噓"
       },
-      "wheelSegments": "輪段，每行一個",
-      "wheelHint": "至 12 之間。 DeHub 會揀車輪停喺邊，所以所有睇緊嘅人都會見到相同嘅結果。喺警示、朗讀或者即時通訊動作入面用 {result} 嚟命名佢。"
+      "placeholdersLive": "喺你嘅文字入面用 {name} 、 {title} 同 {link} ：你個名、個廣播嘅標題同埋一個睇廣播嘅連結。"
     },
-    "controls": {
-      "title": "快速控制",
-      "intro": "用嚟中流。每個開關都可以喺應用程式同 OBS 入面，適合所有睇緊嘅人，直至你將佢翻返轉頭。",
-      "alertsPaused": "暫停警示",
-      "alertsPausedHint": "無禮物、無追隨者或規則通知顯示。計數器、進度和聊天框繼續更新。",
-      "soundsMuted": "靜音警報聲",
-      "soundsMutedHint": "你嘅規則停止播放聲音。",
-      "readAloudMuted": "唔好再大聲讀",
-      "readAloudMutedHint": "禮物訊息同規則行唔會再讀出嚟。",
-      "failed": "嗰個開關冇變。再試多次。"
+    "polls": {
+      "title": "民調",
+      "intro": "問啲睇緊你廣播嘅人一個問題。佢哋會用 DeHub 應用程式入面嘅掣嚟答，或者喺即時通訊入面輸入 {{command}} 同埋個選項嘅號碼。",
+      "question": "問題",
+      "questionPlaceholder": "我下次應該玩啲咩？",
+      "option": "選項 {{n}}",
+      "addOption": "加個選項",
+      "removeOption": "移除選項 {{n}}",
+      "duration": "投票會開放幾耐",
+      "seconds_one": "{{count}} 秒",
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分鐘",
+      "minutes_other": "{{count}} 分鐘",
+      "start": "開始民調",
+      "end": "而家結束投票",
+      "started": "你嘅民調開放咗。觀眾而家可以投票。",
+      "notLive": "去直播先。民調會喺你而家串流緊嘅廣播上面進行。",
+      "startFailed": "個民調未開始。再試多次。",
+      "closeFailed": "投票未完。再試多次。",
+      "live": "投票開放 · {{time}} 左",
+      "ended": "投票已經結束",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票數",
+      "replaceHint": "開始新嘅民調會關閉開放嘅民調。",
+      "widgetHint": "顯示你嘅即時民調。喺 DeHub 應用程式入面，觀眾撳一個選項嚟投票；喺 OBS 入面，佢會話畀人知喺即時通訊入面輸入 {{command}} 同埋個號碼。",
+      "sample": {
+        "a": "有啲新嘢",
+        "b": "一個舊嘅最愛",
+        "c": "你揀"
+      }
+    },
+    "moderation": {
+      "title": "聊天管理",
+      "intro": "所有直播間聊天室的規則。他們永遠不能進入DeHub的主聊天室：你在此處禁言的人仍然可以在其他地方講話。",
+      "loadFailed": "無法載入你的管理設定。請重新載入頁面嘗試。",
+      "save": "儲存聊天規則",
+      "saved": "聊天規則已儲存",
+      "saveFailed": "無法儲存該變更",
+      "slowMode": "慢模式",
+      "slowModeHint": "每位觀眾在發送訊息前需要等待的時間。你和你的管理員不需要等待。",
+      "off": "關閉",
+      "seconds_one": "{{count}} 秒",
+      "seconds_other": "{{count}} 秒",
+      "followersOnly": "只有粉絲",
+      "subscribersOnly": "只有訂閱者",
+      "subscribersOnlyHint": "覆蓋粉絲限制",
+      "bannedWords": "禁言詞彙",
+      "bannedWordsHint": "以逗號分隔。逐字拼寫一個字不會被視為禁言。",
+      "wordAction": "當有人使用這些詞彙時",
+      "wordBlock": "停止訊息",
+      "wordTimeout": "停低佢，等佢哋一分鐘",
+      "moderators": "主持人",
+      "moderatorsHint": "佢哋可以超時同埋禁止你串流入面嘅觀眾。佢哋唔可以對你或者對方採取行動。",
+      "addModerator": "加",
+      "usernamePlaceholder": "用戶名",
+      "moderatorAdded": "主持人補充咗。",
+      "moderatorNotFound": "冇嗰個用戶名嘅帳戶。",
+      "removeModerator": "移除管理員",
+      "noModerators": "仲未有版主。",
+      "banned": "禁止喺你嘅串流入面",
+      "unban": "解除禁令",
+      "noBans": "冇人被禁止。",
+      "log": "最近嘅行動",
+      "noLog": "仲未有嘢。",
+      "actions": {
+        "word-timeout_other": "{{target}} 因為「{{word}}」被禁言 {{count}} 秒",
+        "timeout_one": "{{actor}} 超時咗 {{target}} 係 {{count}} 秒",
+        "timeout_other": "{{actor}} 超時咗 {{target}} ，用咗 {{count}} 秒",
+        "ban": "{{actor}} 被禁止 {{target}}",
+        "unban": "{{actor}} 已解除封禁 {{target}}",
+        "moderator-added": "{{target}} 成為版主",
+        "moderator-removed": "{{target}} 已經唔係版主",
+        "word-blocked": "停止咗 {{target}} 發出嘅「 {{word}} 」訊息",
+        "word-timeout_one": "超時 {{target}} 為 {{count}} 秒為「 {{word}} 」"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "時間停止一分鐘",
+    "timeout10m": "時間停止十分鐘",
+    "timeout1h": "時間停止一小時",
+    "ban": "禁言所有直播",
+    "makeModerator": "指定為管理員",
+    "timedOut": "已時間停止",
+    "banned": "禁言所有直播",
+    "madeModerator": "他/她現時為管理員",
+    "failed": "未能成功。請再試一次。",
+    "youAreBanned": "你不能在這位創作者的直播間聊天",
+    "youAreTimedOut": "你暫時被時間停止",
+    "title": "管理"
   }
 }

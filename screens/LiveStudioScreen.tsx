@@ -30,6 +30,7 @@ import { RecapSection } from "../components/LiveStudio/RecapSection";
 import { QuickControls } from "../components/LiveStudio/QuickControls";
 import { PollContext } from "../components/LiveOverlay/poll";
 import { samplePoll, type LivePoll } from "../libs/live-overlay/polls";
+import { ModerationEditor } from "../components/LiveStudio/ModerationEditor";
 import { useOverlayControlRoom } from "../hooks/useOverlayControlRoom";
 import { copyToClipboard, toastError, toastSuccess } from "../libs";
 import { OVERLAY_LINK_BASE } from "../config/links";
@@ -334,6 +335,10 @@ export default function LiveStudioScreen() {
 
         <Section title={t("liveStudio.rules.title")}>
           <RulesEditor hasAlertWidget={widgets.some((w) => w.kind === "rule_alert" && w.enabled)} />
+        </Section>
+
+        <Section title={t("liveStudio.moderation.title")}>
+          <ModerationEditor />
         </Section>
 
         <Section

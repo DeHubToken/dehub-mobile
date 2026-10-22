@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Akış özeti",
+    "justEnded": "Akış özetiniz",
+    "lastStream": "Son akışınız",
+    "none": "Henüz bitmiş akış yok. Özetiniz, ilk özetinizden sonra burada görünür.",
+    "share": "Paylaş",
+    "shareText": "Az önce DeHub'da \"{{title}}\" izledim: {{duration}} canlı, {{peak}} zirvede izliyor ve {{followers}} yeni takipçiler.",
+    "untitled": "Başlıksız akış",
+    "loadFailed": "Özet yüklenmedi. Birazdan tekrar deneyin.",
+    "duration": "Canlı yayın süresi",
+    "peakViewers": "Çoğu aynı anda izliyor",
+    "gifts_one": "{{count}} hediyesinden",
+    "gifts_other": "{{count}} hediyeden",
+    "newFollowers": "Yeni takipçiler",
+    "chatMessages": "Sohbet mesajları",
+    "chatters": "Sohbet eden insanlar",
+    "reactions": "Tepkiler",
+    "shares": "Paylaşan insanlar",
+    "topSupporters": "En iyi destekçiler",
+    "polls": "Anketler",
+    "pollWinner": "{{option}} kazandı",
+    "stillCounting": "Hâlâ artıyor: Hediyelerin onaylanması bir dakika sürebilir."
+  },
   "accountConnect": {
     "title": "DeHub hesabınızı bağlayın",
     "body": "Sohbetten profilinizi yönetmek, paylaşım yapmak ve içerik üretmek için hesabınızı bağlayın. Bağlantılar 24 saat içinde sona erer. İstediğiniz zaman bağlantıyı kesebilirsiniz.",
@@ -1061,6 +1084,8 @@
     "payFailed": "{{symbol}} DeHub tokenlarına dönüştürülemedi",
     "stageDelivering": "DeHub Pay tokenlarınızı gönderiyor…",
     "payViaDpay": "DeHub Pay'e ödendi, tokenlar yaklaşık 30 saniyede gelir",
+    "payDirect": "{{chain}} üzerinde {{symbol}} olarak doğrudan {{name}} kişisine gönderilir. Takas yok.",
+    "payDirectNoName": "{{chain}} üzerinde {{symbol}} olarak doğrudan içerik üreticisine gönderilir. Takas yok.",
     "payViaBridgeDpay": "Base'e taşındı ve DeHub Pay'e ödendi, tokenlar yaklaşık bir dakikada gelir",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -5094,7 +5119,7 @@
     "usernameReserved": "Bu kullanıcı adı ayrılmış",
     "profileSet": "Profil başarıyla oluşturuldu!",
     "profileFailed": "Profil oluşturulamadı",
-    "displayNameHint": "Profilinde görünen herkese açık adın."
+    "displayNameHint": "Profilindeki herkese açık adın. İsteğe bağlı — boş bırakırsan kullanıcı adın kullanılır."
   },
   "events": {
     "mine": "Benimkiler",
@@ -5360,7 +5385,9 @@
     "lowTopUp": "{{symbol}}'nız mı azaldı? Kilidi açmadan önce tamamlayacağız.",
     "unlockedSuccess": "Başarıyla kilidi açıldı",
     "otherChain": "Bu gönderi başka bir zincirde yer alıyor, bu nedenle orada cüzdanınızda DeHub jetonlarına ihtiyacınız var.",
-    "payHint": "Cüzdanınızdaki herhangi bir şeyle ödeme yapın. DeHub jetonlarına dönüşür ve hemen açılır."
+    "payHint": "Cüzdanınızdaki herhangi bir şeyle ödeme yapın. DeHub jetonlarına dönüşür ve hemen açılır.",
+    "switchTo": "Bu gönderi {{chain}} üzerinde ödenir. Ayarlar'dan {{chain}} ağına geçip tekrar deneyin.",
+    "notEnoughToken": "Bunu açmak için {{amount}} {{symbol}} gerekiyor. Sende {{held}} var."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bu cüzdanı bu telefonda kurduysan ve anahtar zaten burada olmalıysa bunu kullan",
@@ -5395,6 +5422,7 @@
     "accountHasA": "Bu hesapta bir",
     "ifYouUsedDehub": "Daha önce dehub.io kullandıysan, bilgisayarında aç, aynı şekilde ve aynı hesapla oturum aç ve",
     "biometricExplainer": "Parmak izin veya yüzünle kilidi aç — yazacak ya da hatırlayacak bir şey yok. Anahtar bu telefonda kalır, bu yüzden yazman için 12 kelimelik bir kurtarma ifadesi göstereceğiz; başka bir telefondan, siteden veya yeniden kurulumdan sonra geri dönmenin tek yolu budur. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "biometricExplainerSecuring": "Parmak izin veya yüzünle kilidi aç — yazacak ya da hatırlayacak bir şey yok. Anahtar bu telefonda kalır. Başka bir telefondan, siteden veya yeniden kurulumdan sonra geri girebilmek için daha sonra Ayarlar'dan 12 kelimelik bir yedek kaydet. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
     "biometricPrompt": "Bu cüzdan bu cihazın biyometrisiyle korunuyor. Devam etmek için parmak izi veya yüzle onayla.",
     "enterRecoveryPhrase": "Bu cüzdanı oluştururken kaydettiğin 12 kelimelik kurtarma ifadesini gir (ya da dışa aktardıysan özel anahtarını). Aynı hesaba geri götürür ve aşağıda belirlediğin parola bundan sonra her yerde çalışan bir yedek hâline gelir.",
     "copyPhrase": "İfadeyi kopyala",
@@ -5466,8 +5494,9 @@
     "unlockPasskeyOnly": "Bu cüzdan web'de bir geçiş anahtarıyla güvence altına alındı ve henüz bulutta bir şifre yedeği bulunmuyor. dehub.io'da bir cüzdan şifresi ayarladıysanız, onu buraya girin — aksi takdirde aşağıdaki Anahtarları içe aktar seçeneğini kullanın.",
     "unlockWithPasswordExplainer": "Bu hesaba ait bir cüzdan zaten var ve bir şifre ile korunuyor. Cüzdanınızı bu cihazda kurtarmak için şifreyi girin.",
     "deviceTab": "Bu cihaz",
-    "deviceExplainer": "Yazılacak veya hatırlanacak bir şey yok — tuş bu cihazda kalıyor. Yazmanız için size 12 kelimelik bir yedekleme sunacağız; başka bir cihazdan, web sitesinden veya yeniden yükledikten sonra geri dönmenin tek yolu budur. Bunun yerine Parola seçin ve parolanın kendisi bu işi yapar.",
-    "secureOnDevice": "Anahtarı bu cihazda tutun"
+    "deviceExplainer": "Yazacak ya da hatırlayacak bir şey yok — anahtar bu cihazda kalır. Yazman için sana 12 kelimelik bir yedek sunacağız; başka bir cihazdan, siteden veya yeniden kurulumdan sonra geri dönmenin tek yolu budur. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "deviceExplainerSecuring": "Yazacak ya da hatırlayacak bir şey yok — anahtar bu cihazda kalır. Başka bir cihazdan, siteden veya yeniden kurulumdan sonra geri girebilmek için daha sonra Ayarlar'dan 12 kelimelik bir yedek kaydet. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "secureOnDevice": "Anahtarı bu cihazda tut"
   },
   "walletBackup": {
     "title": "Cüzdanı yedekle",
@@ -5776,6 +5805,7 @@
     "contractPlaceholder": "Sözleşme adresi (0x…)",
     "symbolPlaceholder": "Sembol (örn. PEPE)",
     "paymentsBase": "Ödemeler Base zincirinde DeHub jetonlarıyla yapılıyor",
+    "paymentsStable": "Alıcılar {{symbol}} ile öder, doğrudan size gönderilir",
     "tokensUnit": "jetonlar",
     "minimumRequired": "Minimum {{currency}} gerekli"
   },
@@ -9786,7 +9816,7 @@
     "done": "Bitti",
     "error": "Silme isteğiniz gönderilemedi. Hesabınızın silinmesi onaylanmadı. Lütfen tekrar deneyin.",
     "back": "Ayarlara Dön",
-    "signIn": "Hesabınızda oturum açın",
+    "signIn": "Hesabınızı silmek için oturum açın",
     "acknowledge": "Cüzdan kurtarma bilgilerimi kaydettim ve silmenin kalıcı olduğunu anladım."
   },
   "miniApps": {
@@ -10714,6 +10744,7 @@
     "watch": "Bu yaratıcıyı desteklemek için bir reklam izleyin"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun :{{result}}",
     "someone": "Birisi",
     "newFollower": "Yeni takipçi: {{name}}",
     "newSubscriber": "Yeni abone: {{name}}",
@@ -10725,9 +10756,29 @@
     "topSupporters": "En iyi destekçiler",
     "tipped": "{{name}} bir hediye gönderdi",
     "chatPreview": "Sohbet mesajları burada görünür",
-    "wheelLanded": "{{name}} spun :{{result}}"
+    "poll": {
+      "closed": "Oylama kapandı",
+      "voteFor": "{{option}} için oy verin",
+      "signIn": "Oy vermek için oturum açın",
+      "failed": "Oyunuz sayılmadı. Tekrar deneyin.",
+      "voted_one": "Oy verdiniz ·{{count}} oy",
+      "voted_other": "·{{count}} oy kullandınız",
+      "votes_one": "{{count}} oy",
+      "votes_other": "{{count}} oy"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Hızlı kontroller",
+      "intro": "Akış ortasında. Her anahtar, siz geri çevirene kadar uygulamada ve OBS'de izleyen herkes için geçerlidir.",
+      "alertsPaused": "Uyarıları duraklat",
+      "alertsPausedHint": "Ekranda hediye, takip veya kural uyarısı yok. Sayaçlar, hedefler ve sohbet kutusu devam eder.",
+      "soundsMuted": "Uyarı seslerini sessize al",
+      "soundsMutedHint": "Kurallarınız sesleri çalmayı bırakır.",
+      "readAloudMuted": "Sesli okumayı durdur",
+      "readAloudMutedHint": "Hediye mesajları ve kural satırları artık okunmuyor.",
+      "failed": "Bu anahtar değişmedi. Tekrar deneyin."
+    },
     "title": "Canlı Stüdyo",
     "subtitle": "Akışlarınız için uyarılar ve widget'lar",
     "intro": "Buraya eklediğiniz her şey, telefonunuzdan, tarayıcınızdan, bir yakalama kartından veya bir kodlayıcıdan canlı yayına geçtiğinizde, DeHub uygulamasındaki her izleyici için akışlarınızda görünür.",
@@ -10766,6 +10817,7 @@
       "join": "Katıl"
     },
     "kinds": {
+      "spin_wheel": "Döner çark",
       "tip_alert": "Bahşiş uyarısı",
       "follow_alert": "Takip uyarısı",
       "subscribe_alert": "Abone uyarısı",
@@ -10782,9 +10834,10 @@
       "chat_box": "Sohbet kutusu",
       "ticker": "Kayan yazı",
       "rule_alert": "Kural uyarıları",
-      "spin_wheel": "Döner çark"
+      "poll": "Anket"
     },
     "hints": {
+      "spin_wheel": "Kurallarınızdaki çarkların döndüğü yer",
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
       "follow_alert": "Her yeni takipçiyi gösterir",
       "subscribe_alert": "Her yeni aboneyi gösterir",
@@ -10801,7 +10854,7 @@
       "chat_box": "Yayınınızın sohbet mesajlarını ekranda gösterir",
       "ticker": "Ekranda kayan kendi metninizin bir satırı",
       "rule_alert": "Kurallarınızın uyarılarının göründüğü yer",
-      "spin_wheel": "Kurallarınızdaki çarkların döndüğü yer"
+      "poll": "Her seçenek için bir oy düğmesiyle canlı anketiniz"
     },
     "fields": {
       "banner": "Afiş",
@@ -10860,6 +10913,8 @@
       "rotateFailed": "Yeni bir bağlantı oluşturulamadı. Birazdan tekrar deneyin."
     },
     "rules": {
+      "wheelSegments": "Tekerlek segmentleri, hat başına bir adet",
+      "wheelHint": "2 ile 12 arasında. DeHub tekerleğin durduğu yeri seçer, böylece izleyen herkes aynı sonucu görür. Bir uyarı, sesli okuma veya sohbet eyleminde {result} kullanın.",
       "enabled": "Kural açık",
       "test": "Dene",
       "title": "Kurallar",
@@ -10904,7 +10959,8 @@
         "share": "Biri akışı paylaşıyor",
         "command": "Bir sohbet komutu kullanılır.",
         "keyword": "Bir sohbet mesajı bir kelime içeriyor",
-        "chat": "Herhangi bir sohbet mesajı"
+        "chat": "Herhangi bir sohbet mesajı",
+        "live": "Yayına başlarsınız"
       },
       "audiences": {
         "everyone": "Herkes",
@@ -10912,12 +10968,12 @@
         "subscribers": "Aboneler"
       },
       "actionTypes": {
+        "wheel": "Tekerleği döndür",
         "alert": "Uyarı göster",
         "sound": "Ses çal",
         "say": "Yüksek sesle oku",
         "chat": "Sohbete gönder",
-        "webhook": "Bir web kancasına gönder",
-        "wheel": "Tekerleği döndür"
+        "webhook": "Bir web kancasına gönder"
       },
       "summary": {
         "tip": "{{amount}} DHB veya daha fazlasının bahşişi"
@@ -10956,19 +11012,97 @@
         "magic-spell": "Büyü",
         "shhh": "Şşşt"
       },
-      "wheelSegments": "Tekerlek segmentleri, hat başına bir adet",
-      "wheelHint": "2 ile 12 arasında. DeHub tekerleğin durduğu yeri seçer, böylece izleyen herkes aynı sonucu görür. Bir uyarı, sesli okuma veya sohbet eyleminde {result} kullanın."
+      "placeholdersLive": "Metninizde {name}, {title} ve {link} kullanın: adınız, yayının başlığı ve izlemek için bir bağlantı."
     },
-    "controls": {
-      "title": "Hızlı kontroller",
-      "intro": "Akış ortasında. Her anahtar, siz geri çevirene kadar uygulamada ve OBS'de izleyen herkes için geçerlidir.",
-      "alertsPaused": "Uyarıları duraklat",
-      "alertsPausedHint": "Ekranda hediye, takip veya kural uyarısı yok. Sayaçlar, hedefler ve sohbet kutusu devam eder.",
-      "soundsMuted": "Uyarı seslerini sessize al",
-      "soundsMutedHint": "Kurallarınız sesleri çalmayı bırakır.",
-      "readAloudMuted": "Sesli okumayı durdur",
-      "readAloudMutedHint": "Hediye mesajları ve kural satırları artık okunmuyor.",
-      "failed": "Bu anahtar değişmedi. Tekrar deneyin."
+    "polls": {
+      "title": "Anketler",
+      "intro": "Yayınınızı izleyen insanlara bir soru sorun. DeHub uygulamasındaki bir düğmeyle veya sohbetteki {{command}} ve seçeneğin numarasını yazarak yanıt verirler.",
+      "question": "Soru",
+      "questionPlaceholder": "Daha sonra ne oynamalıyım?",
+      "option": "Seçenek {{n}}",
+      "addOption": "Bir seçenek ekleyin",
+      "removeOption": "{{n}} seçeneğini kaldır",
+      "duration": "Oylama ne kadar süre açık kalır?",
+      "seconds_one": "{{count}} saniye",
+      "seconds_other": "{{count}} saniye",
+      "minutes_one": "{{count}} dakika",
+      "minutes_other": "{{count}} dakika",
+      "start": "Anketi başlatın",
+      "end": "Oylamayı şimdi sonlandır",
+      "started": "Anketiniz açık. İzleyiciler artık oy verebilir.",
+      "notLive": "Önce canlı yayın yapın. Şu anda yayınladığınız yayında bir anket yayınlanıyor.",
+      "startFailed": "Anket başlamadı. Tekrar deneyin.",
+      "closeFailed": "Oy verme süreci henüz tamamlanmadı. Tekrar deneyin.",
+      "live": "Oylama açık ·{{time}} kaldı",
+      "ended": "Oylama kapandı",
+      "votes_one": "{{count}} oy",
+      "votes_other": "{{count}} oy",
+      "replaceHint": "Yeni bir anket başlatmak, açık olanı kapatır.",
+      "widgetHint": "Canlı anketinizi gösterir. DeHub uygulamasında izleyiciler oy vermek için bir seçeneğe dokunur; OBS'de insanlara {{command}} ve sohbette bir sayı yazmalarını söyler.",
+      "sample": {
+        "a": "Yeni bir şey",
+        "b": "Eski bir favori",
+        "c": "Sen seç"
+      }
+    },
+    "moderation": {
+      "title": "Sohbet yönetimi",
+      "intro": "Tüm canlı yayınların altında sohbet kuralları. Bunlar DeHub'un ana sohbetine ulaşmaz: buradan yasakladığınız biri hala her yerde konuşabilir.",
+      "loadFailed": "Yönetim ayarlarınız yüklenemedi. Sayfayı yenilemek için tekrar deneyin.",
+      "save": "Sohbet kurallarını kaydet",
+      "saved": "Sohbet kuralları kaydedildi.",
+      "saveFailed": "Bu değişiklik kaydedilemedi.",
+      "slowMode": "Yavaş mod",
+      "slowModeHint": "Her izleyici mesajlar arasında ne kadar bekleyeceği. Sen ve yöneticiler beklemezsiniz.",
+      "off": "Kapalı",
+      "seconds_one": "{{count}} saniye",
+      "seconds_other": "{{count}} saniye",
+      "followersOnly": "Takipçiler sadece",
+      "subscribersOnly": "Abone sadece",
+      "subscribersOnlyHint": "Takipçileri geçersiz kılar.",
+      "bannedWords": "Yasaklı kelimeler",
+      "bannedWordsHint": "Virgülle ayırın. Bir kelimeyi harf harf yazmak onu geçmez.",
+      "wordAction": "Kimsenin birini kullanırsa",
+      "wordBlock": "Mesajı durdur",
+      "wordTimeout": "Kes şunu ve bir dakikalığına onları zaman aşımına uğrat",
+      "moderators": "Moderatörler",
+      "moderatorsHint": "Zaman aşımına uğrayabilir ve akışlarınızdaki izleyicileri yasaklayabilirler. Sana ya da birbirlerine karşı hareket edemezler.",
+      "addModerator": "Ekle",
+      "usernamePlaceholder": "Kullanıcı adı",
+      "moderatorAdded": "Moderatör eklendi.",
+      "moderatorNotFound": "Bu kullanıcı adına sahip hesap yok.",
+      "removeModerator": "Moderatör sil",
+      "noModerators": "Henüz moderatör yok.",
+      "banned": "Akışlarınızdan yasaklandı",
+      "unban": "Yasağı Kaldır",
+      "noBans": "Kimse yasaklı değil.",
+      "log": "Son işlemler",
+      "noLog": "Henüz bir şey yok",
+      "actions": {
+        "timeout_one": "{{count}} saniye için {{actor}} zaman aşımına uğradı {{target}}",
+        "timeout_other": "{{actor}},{{count}} saniye boyunca {{target}} zaman aşımına uğradı",
+        "ban": "{{actor}} banlandı {{target}}",
+        "unban": "{{actor}} yasaklı değil {{target}}",
+        "moderator-added": "{{target}} moderatör oldu",
+        "moderator-removed": "{{target}} artık moderatör değil",
+        "word-blocked": "{{target}} tarafından \"{{word}}\" için gönderilen bir mesaj durduruldu",
+        "word-timeout_one": "\"{{word}}\" için {{count}} saniye {{target}} zaman aşımına uğradı",
+        "word-timeout_other": "\"{{word}}\" için {{count}} saniye boyunca {{target}} zaman aşımına uğradı"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Zaman aşımı 1 dakika",
+    "timeout10m": "Zaman aşımı 10 dakika",
+    "timeout1h": "Zaman aşımı 1 saat",
+    "ban": "Bu canlı yayınlardan yasakla",
+    "makeModerator": "Yönetici yap",
+    "timedOut": "Zaman aşımı yapıldı.",
+    "banned": "Bu canlı yayınlardan yasaklandı.",
+    "madeModerator": "Artık bir yönetici.",
+    "failed": "Böyle çalışmadı. Tekrar dene.",
+    "youAreBanned": "Bu yaratıcının canlı yayınlarında sohbete katılamazsın.",
+    "youAreTimedOut": "Anlık olarak zaman aşımına uğradın.",
+    "title": "Yönet"
   }
 }

@@ -110,7 +110,7 @@ export function RecapSection({ address, streamId }: Props) {
               <Text className="text-white text-sm flex-1" numberOfLines={1}>
                 {p.displayName || p.username || `${p.address.slice(0, 6)}…`}
               </Text>
-              <Text className="text-theme-neutrals-300 text-sm">{whole(p.total)} DHB</Text>
+              <Text className="text-theme-neutrals-300 text-sm">{`${whole(p.total)} DHB`}</Text>
             </View>
           ))}
         </View>

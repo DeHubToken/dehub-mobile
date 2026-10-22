@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Rekapitulace streamu",
+    "justEnded": "Rekapitulace vašeho streamu",
+    "lastStream": "Váš poslední stream",
+    "none": "Zatím žádné dokončené streamy. Vaše rekapitulace se zde objeví po první rekapitulaci.",
+    "share": "Sdílejte",
+    "shareText": "Právě jsem vysílal „{{title}}“ na DeHubu: {{duration}} live, {{peak}} sledování na vrcholu a {{followers}} nových sledujících.",
+    "untitled": "Stream bez názvu",
+    "loadFailed": "Rekapitulace se nenačetla. Zkuste to znovu za chvíli.",
+    "duration": "Čas živě",
+    "peakViewers": "Nejsledovanější najednou",
+    "gifts_one": "Od {{count}} dárek",
+    "gifts_other": "Od {{count}} dárků",
+    "newFollowers": "Noví sledující",
+    "chatMessages": "Zprávy z chatu",
+    "chatters": "Chatování s lidmi",
+    "reactions": "Reakce",
+    "shares": "Sdílení lidí",
+    "topSupporters": "Nejlepší podporovatelé",
+    "polls": "Ankety",
+    "pollWinner": "{{option}} vyhrál",
+    "stillCounting": "Stále se počítá: potvrzení dárků může chvíli trvat."
+  },
   "articles": {
     "articleImage": "Obrázek článku",
     "socialImage": "Obrázek pro sdílení na sociálních sítích",
@@ -4774,7 +4797,7 @@
     "usernameReserved": "Toto uživatelské jméno je vyhrazené",
     "profileSet": "Profil byl úspěšně nastaven!",
     "profileFailed": "Profil se nepodařilo nastavit",
-    "displayNameHint": "Vaše veřejné jméno zobrazené v profilu."
+    "displayNameHint": "Vaše veřejné jméno v profilu. Nepovinné — když ho necháte prázdné, použije se vaše uživatelské jméno."
   },
   "events": {
     "mine": "Moje",
@@ -5015,6 +5038,7 @@
     "accountHasA": "Tento účet má",
     "ifYouUsedDehub": "Pokud jste dehub.io už používali, otevřete jej v počítači, přihlaste se stejným způsobem a stejným účtem a",
     "biometricExplainer": "Odemykejte otiskem prstu nebo obličejem — nic se nepíše ani nepamatuje. Klíč zůstává v tomto telefonu, proto vám ukážeme 12slovnou obnovovací frázi, kterou si zapíšete; je to jediná cesta zpět z jiného přístroje, z webu nebo po přeinstalaci. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
+    "biometricExplainerSecuring": "Odemykejte otiskem prstu nebo obličejem — nic se nepíše ani nepamatuje. Klíč zůstává v tomto telefonu. Pro návrat z jiného telefonu, z webu nebo po přeinstalaci si později v Nastavení uložte 12slovnou zálohu. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
     "biometricPrompt": "Tato peněženka je chráněna biometrikou tohoto zařízení. Pokračujte potvrzením otiskem prstu nebo obličejem.",
     "enterRecoveryPhrase": "Zadejte 12slovnou obnovovací frázi, kterou jste si uložili při vytvoření této peněženky (nebo její soukromý klíč, pokud jste jej exportovali). Vrátí vás ke stejnému účtu a heslo, které nastavíte níže, se stane záložní cestou fungující odteď všude.",
     "copyPhrase": "Kopírovat frázi",
@@ -5087,6 +5111,7 @@
     "unlockWithPasswordExplainer": "Tento účet již má peněženku chráněnou heslem. Zadejte jej pro obnovení své peněženky na tomto zařízení.",
     "deviceTab": "Toto zařízení",
     "deviceExplainer": "Nic k zadání ani zapamatování — klíč zůstane na tomto zařízení. Nabízíme vám zálohu 12 slov, kterou si můžete zapsat. Je to jediná cesta zpět z jiného zařízení, z webu nebo po přeinstalaci. Místo toho vyberte heslo a heslo samo o sobě tuto práci provede.",
+    "deviceExplainerSecuring": "Nic se nepíše ani nepamatuje — klíč zůstává v tomto zařízení. Pro návrat z jiného zařízení, z webu nebo po přeinstalaci si později v Nastavení uložte 12slovnou zálohu. Zvolte místo toho Heslo a tuto roli plní samo heslo.",
     "secureOnDevice": "Ponechat klíč na tomto zařízení"
   },
   "transcript": {
@@ -8992,7 +9017,7 @@
     "done": "Hotovo",
     "error": "Žádost o odstranění se nepodařilo odeslat. Smazání vašeho účtu nebylo potvrzeno. Zkuste to prosím znovu.",
     "back": "Zpět na nastavení",
-    "signIn": "Přihlašte se do svého účtu",
+    "signIn": "Přihlaste se, abyste mohli smazat svůj účet",
     "acknowledge": "Uložil (a) jsem si podrobnosti o obnovení peněženky a chápu, že smazání je trvalé."
   },
   "miniApps": {
@@ -9129,6 +9154,7 @@
     "notNow": "Teď ne"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} přetáčel: {{result}}",
     "someone": "Někdo",
     "newFollower": "Nový sledující: {{name}}",
     "newSubscriber": "Nový odběratel: {{name}}",
@@ -9140,9 +9166,29 @@
     "topSupporters": "Nejlepší podporovatelé",
     "tipped": "{{name}} poslal/a dárek",
     "chatPreview": "Zde se zobrazují zprávy z chatu",
-    "wheelLanded": "{{name}} přetáčel: {{result}}"
+    "poll": {
+      "closed": "Hlasování bylo ukončeno",
+      "voteFor": "Hlasujte pro {{option}}",
+      "signIn": "Pro hlasování se přihlaste",
+      "failed": "Váš hlas se nepočítá. Zkuste to znovu.",
+      "voted_one": "Hlasovali jste · {{count}}",
+      "voted_other": "Hlasovali jste · {{count}} hlasů",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasů"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Rychlé ovládání",
+      "intro": "Pro střední proud. Každý přepínač drží pro každého, kdo sleduje, v aplikaci a v OBS, dokud jej nepřepnete zpět.",
+      "alertsPaused": "Pozastavit upozornění",
+      "alertsPausedHint": "Na obrazovce nejsou žádná upozornění na dárky, sledování nebo pravidla. Počítadla, cíle a chatovací pole pokračují.",
+      "soundsMuted": "Ztlumit zvuky upozornění",
+      "soundsMutedHint": "Vaše pravidla přestanou hrát zvuky.",
+      "readAloudMuted": "Zastavit čtení nahlas",
+      "readAloudMutedHint": "Dárkové zprávy a řádky pravidel se již nečtou.",
+      "failed": "Tento přepínač se nezměnil. Zkuste to znovu."
+    },
     "title": "Live Studio",
     "subtitle": "Upozornění a widgety pro vaše přenosy",
     "intro": "Všechno, co sem přidáte, se zobrazí nad vašimi přenosy pro každého diváka v aplikaci DeHub — ať už přenášíte z telefonu, prohlížeče, capture karty nebo enkodéru.",
@@ -9180,6 +9226,7 @@
       "join": "Přidat se"
     },
     "kinds": {
+      "spin_wheel": "Rotační kolo",
       "tip_alert": "Upozornění NA spropitné",
       "follow_alert": "Sledovat upozornění",
       "subscribe_alert": "Upozornění účastníka",
@@ -9196,9 +9243,10 @@
       "chat_box": "Chat box",
       "ticker": "Ticker",
       "rule_alert": "Přidávám upozornění na pravidla.",
-      "spin_wheel": "Rotační kolo"
+      "poll": "Průzkum"
     },
     "hints": {
+      "spin_wheel": "Kde se točí kola ve vašich pravidlech",
       "tip_alert": "Oslavuje každé spropitné, dimenzované podle úrovně",
       "follow_alert": "Zobrazí každého nového sledujícího",
       "subscribe_alert": "Zobrazí každého nového odběratele",
@@ -9215,7 +9263,7 @@
       "chat_box": "Zobrazí chatové zprávy vašeho vysílání na obrazovce",
       "ticker": "Řádek vlastního textu, který se posouvá po obrazovce",
       "rule_alert": "Kde se zobrazují upozornění na tvá pravidla",
-      "spin_wheel": "Kde se točí kola ve vašich pravidlech"
+      "poll": "Váš živý průzkum, s tlačítkem pro hlasování pro každou variantu"
     },
     "fields": {
       "style": "Styl",
@@ -9274,6 +9322,9 @@
       "rotateFailed": "Nelze vytvořit nový odkaz. Zkuste to znovu za chvíli."
     },
     "rules": {
+      "wheelSegments": "Segmenty kol, jeden na řádek",
+      "wheelHint": "Mezi 2 a 12. DeHub vybírá, kde se kolo zastaví, takže každý, kdo se dívá, vidí stejný výsledek. K pojmenování použijte {result} v upozornění, nahlas při čtení nebo v chatu.",
+      "title": "Pravidla",
       "intro": "Když se na vašem streamu něco stane, společnost DeHub udělá to, co si vyberete: zobrazí upozornění, přehraje zvuk, přečte něco nahlas, zveřejní příspěvky ve vašem chatu nebo sdělí váš Discord.",
       "add": "Přidat pravidlo",
       "limit": "Dosáhli jste limitu {{count}} pravidel.",
@@ -9317,7 +9368,8 @@
         "share": "Někdo sdílí stream",
         "command": "Používá se příkaz chatu",
         "keyword": "Chatová zpráva obsahuje slovo",
-        "chat": "Jakýkoli zprávový chatový příspěvek"
+        "chat": "Jakýkoli zprávový chatový příspěvek",
+        "live": "Začínáte vysílat"
       },
       "audiences": {
         "everyone": "Všichni",
@@ -9325,12 +9377,12 @@
         "subscribers": "Odběratelé"
       },
       "actionTypes": {
+        "wheel": "Roztočte kolo",
         "alert": "Zobrazit upozornění",
         "sound": "Přehrát zvuk",
         "say": "Číst nahlas",
         "chat": "Zveřejnit v chatu",
-        "webhook": "Odeslat na webhook",
-        "wheel": "Roztočte kolo"
+        "webhook": "Odeslat na webhook"
       },
       "summary": {
         "tip": "Tip na {{amount}} DHB nebo víc"
@@ -9369,19 +9421,97 @@
         "magic-spell": "Kouzlo",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Segmenty kol, jeden na řádek",
-      "wheelHint": "Mezi 2 a 12. DeHub vybírá, kde se kolo zastaví, takže každý, kdo se dívá, vidí stejný výsledek. K pojmenování použijte {result} v upozornění, nahlas při čtení nebo v chatu."
+      "placeholdersLive": "Použijte {name}, {title} a {link} ve svém textu: vaše jméno, název přenosu a odkaz na sledování."
     },
-    "controls": {
-      "title": "Rychlé ovládání",
-      "intro": "Pro střední proud. Každý přepínač drží pro každého, kdo sleduje, v aplikaci a v OBS, dokud jej nepřepnete zpět.",
-      "alertsPaused": "Pozastavit upozornění",
-      "alertsPausedHint": "Na obrazovce nejsou žádná upozornění na dárky, sledování nebo pravidla. Počítadla, cíle a chatovací pole pokračují.",
-      "soundsMuted": "Ztlumit zvuky upozornění",
-      "soundsMutedHint": "Vaše pravidla přestanou hrát zvuky.",
-      "readAloudMuted": "Zastavit čtení nahlas",
-      "readAloudMutedHint": "Dárkové zprávy a řádky pravidel se již nečtou.",
-      "failed": "Tento přepínač se nezměnil. Zkuste to znovu."
+    "polls": {
+      "title": "Přehlasování",
+      "intro": "Zeptá se lidí sledujících váš přenos na otázku. Odpovídají tlačítkem v aplikaci DeHub nebo psaním {{command}} a čísla varianty v čatu.",
+      "question": "Otázka",
+      "questionPlaceholder": "Co bych měl hrát další?",
+      "option": "Varianta {{n}}",
+      "addOption": "Přidat variantu",
+      "removeOption": "Odstranit variantu {{n}}",
+      "duration": "Jak dlouho bude hlasování otevřené",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} sekundy",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minuty",
+      "start": "Spustit průzkum",
+      "end": "Ukončit hlasování teď",
+      "started": "Vaše hlasování je otevřené. Diváci mohou hlasovat nyní.",
+      "notLive": "Přejděte nejprve naživo. Průzkum se provádí během přenosu, který právě streamujete.",
+      "startFailed": "Průzkum se nezačal. Zkuste to znovu.",
+      "closeFailed": "Hlasování ještě neskončilo. Zkuste to znovu.",
+      "live": "Hlasování otevřeno · {{time}} zbývá",
+      "ended": "Hlasování uzavřeno",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasy",
+      "replaceHint": "Začátek nového průzkumu ukončí ten, který je otevřený.",
+      "widgetHint": "Zobrazuje váš živý průzkum. V aplikaci DeHub diváci klepnou na variantu pro hlasování; v OBS se lidem říká, aby napsali {{command}} a číslo v čatu.",
+      "sample": {
+        "a": "Něco nového",
+        "b": "Starý oblíbenec",
+        "c": "Vy si vyberete"
+      }
+    },
+    "moderation": {
+      "title": "Moderace chatu",
+      "intro": "Pravidla pro chat pod všemi vašimi přenosy. Nikdy se nedostanou do hlavní chatové místnosti DeHubu: někoho, koho zde zakážete, může stále mluvit všude jinde.",
+      "loadFailed": "Vaše nastavení moderace se nepodařilo načíst. Obnovte stránku a zkuste to znovu.",
+      "save": "Uložit pravidla chatu",
+      "saved": "Pravidla chatu uložena.",
+      "saveFailed": "Tato změna se nepodařilo uložit.",
+      "slowMode": "Pomalý mód",
+      "slowModeHint": "Jak dlouho každý divák čeká mezi zprávami. Vy a vaši moderátoři nikdy nečekáte.",
+      "off": "Vypnuto",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} sekund",
+      "followersOnly": "Pouze přátelé",
+      "subscribersOnly": "Pouze předplatitelé",
+      "subscribersOnlyHint": "Překonává omezení pouze pro přátele.",
+      "bannedWords": "Zakázané slovo",
+      "bannedWordsHint": "Oddělte čárkami. Psaní slova písmeno po písmenu ho neobchází.",
+      "wordAction": "Když někdo použije jedno",
+      "wordBlock": "Zastavte zprávu",
+      "wordTimeout": "Zastav to a vymaž ho na minutu",
+      "moderators": "Moderátoři",
+      "moderatorsHint": "Mohou vymazat a zakázat diváky ve vašich přenosů. Nemohou jednat vůči vám nebo vůči sobě navzájem.",
+      "addModerator": "Přidat",
+      "usernamePlaceholder": "Uživatelské jméno",
+      "moderatorAdded": "Moderátor přidán.",
+      "moderatorNotFound": "Žádný účet s tímto uživatelským jménem.",
+      "removeModerator": "Odebrat moderátora",
+      "noModerators": "Zatím žádní moderátoři.",
+      "banned": "Zakázáno ve vašich přenosů",
+      "unban": "Odblokovat",
+      "noBans": "Nikdo není zakázán.",
+      "log": "Nedávné akce",
+      "noLog": "Zatím nic.",
+      "actions": {
+        "timeout_one": "{{actor}} byl vyhoštěn {{target}} pro {{count}} sekundu",
+        "timeout_other": "{{actor}} byl vyhoštěn {{target}} pro {{count}} sekundy",
+        "ban": "{{actor}} zakázal {{target}}",
+        "unban": "{{actor}} odblokoval {{target}}",
+        "moderator-added": "{{target}} se stal moderátorem",
+        "moderator-removed": "{{target}} již není moderátorem",
+        "word-blocked": "Zastavil zprávu od {{target}} pro \"{{word}}\"",
+        "word-timeout_one": "Vymažel {{target}} pro {{count}} sekundu pro \"{{word}}\"",
+        "word-timeout_other": "Vymažel {{target}} pro {{count}} sekundy pro \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Časový limit pro 1 minutu",
+    "timeout10m": "Časový limit pro 10 minut",
+    "timeout1h": "Časový limit pro 1 hodinu",
+    "ban": "Zakázat přístup k těmto přenosům",
+    "makeModerator": "Udělat moderátorem",
+    "timedOut": "Časově omezeno.",
+    "banned": "Zakázáno přístup k těmto přenosům.",
+    "madeModerator": "Nyní jsou moderátorem.",
+    "failed": "To nefungovalo. Zkuste to znovu.",
+    "youAreBanned": "Nemůžete chatovat v přenosu tohoto tvůrce",
+    "youAreTimedOut": "Zrovna jste časově omezeni",
+    "title": "Moderovat"
   }
 }

@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "流程回顾",
+    "justEnded": "你的直播回顾",
+    "lastStream": "你的上一次直播",
+    "none": "尚未完成任何直播。你的回顾将在你的第一次直播后出现。",
+    "loadFailed": "回顾未加载。稍后再试。",
+    "peakViewers": "同时观看最多人数",
+    "gifts_other": "来自{{count}}的礼物",
+    "newFollowers": "新粉丝",
+    "chatMessages": "聊天信息",
+    "chatters": "正在聊天的人",
+    "reactions": "反应",
+    "shares": "分享的人",
+    "polls": "投票",
+    "pollWinner": "{{option}}获胜",
+    "stillCounting": "仍在计算：礼物可能需要一分钟才能确认。",
+    "share": "分享",
+    "shareText": "我剛剛在DeHub直播{{title}}：{{duration}}線上，{{peak}}人同時觀看，{{followers}}新粉絲。",
+    "untitled": "未命名的流",
+    "duration": "時間直播",
+    "gifts_one": "{{count}} 送啥？",
+    "topSupporters": "顶级支持者"
+  },
   "articles": {
     "articleImage": "文章图片",
     "socialImage": "社交分享图片",
@@ -4756,7 +4779,7 @@
     "usernameReserved": "该用户名为保留名",
     "profileSet": "资料设置成功！",
     "profileFailed": "无法设置资料",
-    "displayNameHint": "显示在你个人资料上的公开名称。"
+    "displayNameHint": "显示在你个人资料上的公开名称。选填——留空则使用你的用户名。"
   },
   "events": {
     "mine": "我的",
@@ -4997,6 +5020,7 @@
     "accountHasA": "该账户拥有",
     "ifYouUsedDehub": "如果你以前用过 dehub.io，请在电脑上打开它，用相同方式和相同账户登录，然后",
     "biometricExplainer": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上，因此我们会显示一组 12 个词的恢复助记词供你抄下；这是从另一部手机、从网站或重装后重新进入的唯一途径。若改选密码，密码本身就承担这一作用。",
+    "biometricExplainerSecuring": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上。若要从另一部手机、从网站或重装后重新进入，请稍后在“设置”中保存 12 个词的备份。若改选“密码”，密码本身就承担这一作用。",
     "biometricPrompt": "此钱包受本设备的生物识别保护。请用指纹或人脸确认以继续。",
     "enterRecoveryPhrase": "请输入你创建这个钱包时保存的 12 个词恢复助记词（若导出过私钥，也可用私钥）。它会回到同一个账户，而你在下面设置的密码将成为从此处处可用的备用方式。",
     "copyPhrase": "复制助记词",
@@ -5069,6 +5093,7 @@
     "unlockWithPasswordExplainer": "此帳戶已有錢包，受密碼保護。請輸入密碼以在此裝置上復原您的錢包。",
     "deviceTab": "这个设备",
     "deviceExplainer": "没有需要输入或记住的内容——密钥保存在此设备上。我们会提供一个12个单词的备份供您手写；这是唯一可以从其他设备、网站或重新安装后恢复的方法。选择“密码”而不是密钥，密码本身即可完成此功能。",
+    "deviceExplainerSecuring": "无需输入或记忆任何东西——密钥保存在此设备上。若要从另一台设备、从网站或重装后重新进入，请稍后在“设置”中保存 12 个词的备份。若改选“密码”，密码本身就承担这一作用。",
     "secureOnDevice": "请把钥匙保留在此设备上"
   },
   "transcript": {
@@ -9108,6 +9133,17 @@
     "notNow": "暫時不備份"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} 吾𠀀{{result}}",
+    "poll": {
+      "closed": "投票已關閉",
+      "voteFor": "投票給 {{option}}",
+      "signIn": "登入投票",
+      "failed": "你的投票沒算數，再試一次",
+      "voted_one": "你投票了 · {{count}} 票",
+      "voted_other": "你投票了 · {{count}} 票",
+      "votes_one": "{{count}} 票",
+      "votes_other": "{{count}} 票"
+    },
     "someone": "𠮷人",
     "newFollower": "新粉絲：{{name}}",
     "newSubscriber": "新訂閱：{{name}}",
@@ -9117,8 +9153,7 @@
     "goalReached": "目標達成！",
     "followersUnit": "粉絲數",
     "topSupporters": "贊助排行",
-    "tipped": "{{name}} 送咱一份禮物",
-    "wheelLanded": "{{name}} 吾𠀀{{result}}"
+    "tipped": "{{name}} 送咱一份禮物"
   },
   "liveStudio": {
     "controls": {
@@ -9131,6 +9166,37 @@
       "readAloudMuted": "停止朗读",
       "readAloudMutedHint": "礼品消息和规则行不再被读出。",
       "failed": "该开关未更改。请重试。"
+    },
+    "polls": {
+      "title": "投票",
+      "intro": "向观看您直播的人询问一个问题。他们可以在DeHub应用程序中使用按钮回答问题，也可以在聊天中输入{{command}}和选项的编号。",
+      "question": "问题",
+      "questionPlaceholder": "接下来我应该玩什么？",
+      "option": "选项{{n}}",
+      "addOption": "添加选项",
+      "removeOption": "删除选项{{n}}",
+      "duration": "投票时间持续多久？",
+      "seconds_one": "{{count}}秒",
+      "start": "开始投票",
+      "end": "立即停止投票",
+      "started": "您的投票已开放。观众现在可以投票了。",
+      "notLive": "先上线。民意调查将在您目前正在流式传输的广播上运行。",
+      "startFailed": "投票未开始。请重试。",
+      "ended": "投票已关闭",
+      "replaceHint": "开始新的投票将关闭打开的投票。",
+      "widgetHint": "显示您的实时投票。在DeHub应用程序中，查看者点击一个投票选项；在OBS中，它告诉人们在聊天中输入{{command}}和一个数字。",
+      "sample": {
+        "a": "新事物",
+        "b": "古老的最爱",
+        "c": "您选择"
+      },
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分錶",
+      "minutes_other": "{{count}} 分錘",
+      "closeFailed": "投票还未完喔，再試一次喔。",
+      "live": "投票開啟 · {{time}} 分鐘左邊",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 票"
     },
     "title": "Live 工作室",
     "settingsLinkBody": "提示警报、目标等，全部在 Live Studio 中设置，覆盖你的直播。",
@@ -9156,6 +9222,8 @@
     },
     "kinds": {
       "spin_wheel": "旋转转盘",
+      "poll": "投票",
+      "rule_alert": "规则警报",
       "tip_alert": "提示警报",
       "share_alert": "分享提醒",
       "join_alert": "加入警报",
@@ -9165,6 +9233,8 @@
     },
     "hints": {
       "spin_wheel": "规则中的车轮在哪里旋转",
+      "poll": "您的实时投票，每个选项都有投票按钮",
+      "rule_alert": "规则提醒的显示位置",
       "follow_alert": "显示每个新关注者",
       "subscribe_alert": "显示每个新订阅者",
       "join_alert": "欢迎每位观众的到来",
@@ -9210,28 +9280,164 @@
     },
     "rules": {
       "wheelHint": "2至12人。DeHub选择车轮停止的位置，因此每个观看者都会看到相同的结果。在提醒、朗读或聊天操作中使用{result}来命名它。",
+      "wheelSegments": "轮子段，一行一个",
+      "placeholdersLive": "我个名号叫 {name}，欢迎收看《{title}》，请点击这里观看：{link}",
+      "sound": "声音",
+      "title": "规则",
+      "intro": "当你的直播中发生某事时，DeHub 会根据你的选择进行操作：显示警报、播放声音、朗读内容、在聊天室发帖或通知你的 Discord。",
+      "add": "添加规则",
+      "limit": "您已达到{{count}}规则的限制。",
+      "loadFailed": "无法加载您的规则。请刷新页面以重试。",
+      "empty": "还没有规则。添加一个以响应提示、关注或聊天命令。",
+      "saved": "规则已保存。它们会在您的下一次小费、关注或消息中运行。",
+      "saveFailed": "无法保存您的规则。",
+      "saveToTest": "保存您的规则以测试它们。",
+      "test": "测试",
+      "enabled": "规则开启",
+      "remove": "删除规则",
+      "save": "保存规则",
+      "needsAlertWidget": "有些规则会显示警报。添加规则提醒小部件，以便它在某处显示。",
+      "name": "名称",
+      "when": "时间",
+      "then": "然后",
+      "command": "命令",
+      "keyword": "单词或短语",
+      "audience": "谁可以引爆它",
+      "blockedWords": "已屏蔽的字词",
+      "blockedWordsHint": "用逗号分隔。包含它们的消息将被忽略，并且永远不会大声朗读。",
+      "addAction": "添加操作",
+      "removeAction": "删除操作",
+      "placeholders": "在文本中使用{name}、{amount}和{message}。消息中的链接将被删除。",
+      "alertText": "警报文本",
+      "sayText": "朗读文本",
+      "chatText": "要发布的消息",
+      "chatHint": "从您的帐户发布到您的信息流聊天中。它不能重复查看者的消息。",
+      "webhookUrl": "Webhook地址",
+      "webhookHint": "Discord或Slack网络钩子，或接受帖子的任何https地址。",
+      "webhookText": "要发送的消息",
+      "triggers": {
+        "live": "你啥時候開始直播？",
+        "tip": "小费已到账",
+        "follow": "有人关注",
+        "subscribe": "有人订阅",
+        "share": "有人分享了信息流",
+        "command": "使用聊天命令",
+        "keyword": "聊天消息包含一个单词",
+        "chat": "任何聊天消息"
+      },
       "actionTypes": {
-        "wheel": "旋转转盘"
+        "wheel": "旋转转盘",
+        "alert": "显示提醒",
+        "sound": "播放声音",
+        "say": "朗读",
+        "chat": "在聊天中发布",
+        "webhook": "发送到Webhook"
+      },
+      "summary": {
+        "tip": "小费{{amount}} DHB或以上"
+      },
+      "presets": {
+        "blank": "空白规则",
+        "readChat": "大声朗读聊天记录",
+        "bigTip": "大尖头气喇叭",
+        "thankFollowers": "感谢新粉丝",
+        "command": "聊天命令"
       },
       "testFailed": "𠮷𠮷，那個測試沒過。過一陣子再試一次。",
       "minAmount": "小小提醒 (DHB)",
       "cooldown": "等一下用 (秒)",
       "userCooldown": "等一下 (每位觀眾幾秒鐘)",
       "audiences": {
+        "everyone": "所有人",
+        "followers": "关注者",
         "subscribers": "訂閱者"
       },
       "presetHints": {
+        "readChat": "大声朗读您的关注者的消息，每30秒一个查看者",
+        "bigTip": "播放气喇叭并显示100,000 DHB或以上小费的警报",
+        "thankFollowers": "当有人关注时，在聊天中发感谢信",
+        "command": "在聊天中回答a!命令",
         "blank": "啥都無，從零開始。"
       },
       "presetText": {
+        "thankFollowers": "{name} ，感谢您的关注！",
         "readChat": "{name}講{message}喔",
-        "bigTip": "{name} 送 {amount} DHB!"
+        "bigTip": "{name} 送 {amount} DHB!",
+        "command": "喔{name}，歡迎來到直播間！"
       },
       "sounds": {
+        "airhorn": "气喇叭",
+        "applause": "掌声",
+        "cricket": "蟋蟀",
+        "drumroll": "滚筒",
+        "lol": "笑声",
+        "ooh-ahh": "哦哦啊啊",
+        "ba-dum-tish": "嘭！",
+        "spooky": "诡异",
+        "magic-spell": "魔法咒语",
+        "shhh": "嘘",
         "ooh-man": "Ooh (阿𠊎)",
         "ohh-girl": "Ohh (女仔)"
-      },
-      "wheelSegments": "轮子段，一行一个"
+      }
+    },
+    "moderation": {
+      "title": "聊天管理",
+      "intro": "适用于您所有直播间的聊天规则。这些规则不会应用到 DeHub 主聊天室：在这里禁言某人，他们仍然可以在其他地方聊天。",
+      "loadFailed": "无法加载您的管理设置。请刷新页面重试。",
+      "save": "保存聊天规则",
+      "saved": "聊天规则已保存。",
+      "slowMode": "慢速模式",
+      "slowModeHint": "每位观众在发送消息之间等待的时间。您和您的管理员不需要等待。",
+      "off": "关闭",
+      "seconds_one": "{{count}} 秒",
+      "followersOnly": "仅粉丝",
+      "subscribersOnly": "仅订阅者",
+      "bannedWords": "禁言词汇",
+      "bannedWordsHint": "用逗号分隔。逐字母拼写一个词不会绕过禁言。",
+      "wordAction": "当有人使用这些词时",
+      "wordBlock": "阻止消息",
+      "moderators": "版主",
+      "moderatorsHint": "他们可以超时并禁止观众观看您的视频流。他们不能对你或对彼此采取行动。",
+      "addModerator": "视需要增加填充棉。",
+      "usernamePlaceholder": "用户名",
+      "removeModerator": "删除负责人",
+      "banned": "已从您的直播中禁用",
+      "unban": "不再屏蔽",
+      "noBans": "没有人被禁止。",
+      "log": "最近的操作",
+      "saveFailed": "𠮷𠮷，你的改動無法儲存喔。",
+      "seconds_other": "{{count}} 秒",
+      "subscribersOnlyHint": "過濾追蹤者喔。",
+      "wordTimeout": "停下來，先罰他們一分鐘。",
+      "moderatorAdded": "監察員被添加。",
+      "moderatorNotFound": "没有这个用户名的账户。",
+      "noModerators": "還無版主",
+      "noLog": "啥都沒有喔。",
+      "actions": {
+        "ban": "{{actor}}已禁用{{target}}",
+        "moderator-removed": "{{target}}不再是版主",
+        "word-blocked": "已为“{{word}}”停止一条来自{{target}}的消息",
+        "word-timeout_one": "\"{{word}}\"在{{count}}秒内超时{{target}}",
+        "timeout_one": "{{actor}} 過時{{target}} 了{{count}} 秒",
+        "timeout_other": "{{actor}} 過時{{target}} 了{{count}} 秒",
+        "unban": "{{actor}} 禁言前 {{target}}",
+        "moderator-added": "{{target}} 成了个管理员。",
+        "word-timeout_other": "Timed out {{target}} 經過 {{count}} 秒鐘，{{word}}"
+      }
     }
+  },
+  "liveChatModeration": {
+    "makeModerator": "设为管理员",
+    "timedOut": "已超时。",
+    "banned": "被禁言这些直播。",
+    "madeModerator": "他们现在是管理员。",
+    "youAreBanned": "您无法在该创作者的直播间聊天。",
+    "title": "管理",
+    "timeout1m": "超时1分钟",
+    "timeout10m": "10分錶停下來。",
+    "timeout1h": "1個鐘頭超時囉",
+    "ban": "禁止这些流媒体",
+    "failed": "那个没有工作。再试一次。",
+    "youAreTimedOut": "你剛剛超時一陣子"
   }
 }

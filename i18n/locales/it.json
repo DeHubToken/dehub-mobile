@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Riepilogo della diretta",
+    "justEnded": "Riepilogo del tuo stream",
+    "lastStream": "Il tuo ultimo streaming",
+    "none": "Ancora nessun flusso finito. Il riepilogo appare qui dopo il primo.",
+    "share": "Condividi",
+    "shareText": "Ho appena trasmesso in streaming \"{{title}}\" su DeHub: {{duration}} live, {{peak}} watching at the peak e {{followers}} nuovi follower.",
+    "untitled": "Streaming senza titolo",
+    "loadFailed": "Il recap non è stato caricato. Riprova tra un momento.",
+    "duration": "Tempo reale",
+    "peakViewers": "La maggior parte guarda contemporaneamente",
+    "gifts_one": "Da {{count}} regalo",
+    "gifts_other": "Da {{count}} regali",
+    "newFollowers": "Nuovi follower",
+    "chatMessages": "Messaggi di chat",
+    "chatters": "Persone che chattano",
+    "reactions": "Reazioni",
+    "shares": "Persone che condividono",
+    "topSupporters": "I migliori sostenitori",
+    "polls": "Sondaggi",
+    "pollWinner": "{{option}} vinto",
+    "stillCounting": "Sto ancora contando: la conferma dei regali può richiedere un minuto."
+  },
   "articles": {
     "articleImage": "Immagine articolo",
     "socialImage": "Immagine di condivisione social",
@@ -947,6 +970,8 @@
     "payFailed": "Impossibile convertire {{symbol}} in token DeHub",
     "stageDelivering": "DeHub Pay sta inviando i tuoi token…",
     "payViaDpay": "Pagato a DeHub Pay, i token arrivano in circa 30s",
+    "payDirect": "Inviato direttamente a {{name}} in {{symbol}} su {{chain}}. Nessuno swap.",
+    "payDirectNoName": "Inviato direttamente al creator in {{symbol}} su {{chain}}. Nessuno swap.",
     "payViaBridgeDpay": "Spostato su Base e pagato a DeHub Pay, i token arrivano in circa un minuto",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4820,7 +4845,7 @@
     "usernameReserved": "Questo nome utente è riservato",
     "profileSet": "Profilo impostato con successo!",
     "profileFailed": "Impossibile impostare il profilo",
-    "displayNameHint": "Il tuo nome pubblico mostrato nel profilo."
+    "displayNameHint": "Il tuo nome pubblico sul profilo. Facoltativo: lascialo vuoto per usare il tuo nome utente."
   },
   "events": {
     "mine": "I miei",
@@ -5026,7 +5051,9 @@
     "lowTopUp": "A corto di {{symbol}}? Ti ricaricheremo prima di sbloccare.",
     "unlockedSuccess": "Sbloccato con successo",
     "otherChain": "Questo post viene pubblicato su un'altra catena, quindi necessita di token DeHub nel tuo wallet lì.",
-    "payHint": "Paga con qualsiasi cosa nel tuo wallet. Diventa token DeHub e si sblocca subito."
+    "payHint": "Paga con qualsiasi cosa nel tuo wallet. Diventa token DeHub e si sblocca subito.",
+    "switchTo": "Questo post si paga su {{chain}}. Passa a {{chain}} nelle Impostazioni e riprova.",
+    "notEnoughToken": "Ti servono {{amount}} {{symbol}} per sbloccarlo. Hai {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Usa questa opzione se hai configurato questo wallet su questo telefono e dovrebbe già avere la chiave",
@@ -5061,6 +5088,7 @@
     "accountHasA": "Questo account ha un",
     "ifYouUsedDehub": "Se hai già usato dehub.io, aprilo sul tuo computer, accedi nello stesso modo e con lo stesso account, e",
     "biometricExplainer": "Sblocca con impronta o volto: niente da digitare o ricordare. La chiave resta su questo telefono, quindi ti mostreremo una frase di recupero di 12 parole da annotare; è l'unico modo per rientrare da un altro dispositivo, dal sito o dopo una reinstallazione. Scegli Password e sarà la password stessa a svolgere quel compito.",
+    "biometricExplainerSecuring": "Sblocca con impronta o volto: niente da digitare o ricordare. La chiave resta su questo telefono. Per rientrare da un altro telefono, dal sito o dopo una reinstallazione, salva più tardi un backup di 12 parole in Impostazioni. Scegli Password e sarà la password stessa a svolgere quel compito.",
     "biometricPrompt": "Questo wallet è protetto dalla biometria di questo dispositivo. Conferma con impronta o volto per continuare.",
     "enterRecoveryPhrase": "Inserisci la frase di recupero di 12 parole che hai salvato quando hai creato questo wallet (o la sua chiave privata, se ne hai esportata una). Riporta allo stesso account, e la password che imposti sotto diventa da ora un backup che funziona ovunque.",
     "copyPhrase": "Copia frase",
@@ -5133,6 +5161,7 @@
     "unlockWithPasswordExplainer": "Questo account ha già un portafoglio, protetto da una password. Inseriscila per recuperare il tuo portafoglio su questo dispositivo.",
     "deviceTab": "Questo dispositivo",
     "deviceExplainer": "Niente da digitare o ricordare: la chiave rimane su questo dispositivo. Ti offriremo un backup di 12 parole da scrivere; è l'unico modo per tornare da un altro dispositivo, dal sito web o dopo la reinstallazione. Scegli invece la password e la password stessa fa quel lavoro.",
+    "deviceExplainerSecuring": "Niente da digitare o ricordare: la chiave resta su questo dispositivo. Per rientrare da un altro dispositivo, dal sito o dopo una reinstallazione, salva più tardi un backup di 12 parole in Impostazioni. Scegli Password e sarà la password stessa a svolgere quel compito.",
     "secureOnDevice": "Tieni la chiave su questo dispositivo"
   },
   "walletBackup": {
@@ -5442,6 +5471,7 @@
     "contractPlaceholder": "Indirizzo del contratto (0x…)",
     "symbolPlaceholder": "Simbolo (es. PEPE)",
     "paymentsBase": "I pagamenti sono in token DeHub sulla catena Base",
+    "paymentsStable": "Gli acquirenti pagano in {{symbol}}, inviato direttamente a te",
     "tokensUnit": "token",
     "minimumRequired": "Minimo {{currency}} richiesto"
   },
@@ -9059,7 +9089,7 @@
     "done": "Fine",
     "error": "Impossibile inviare la richiesta di eliminazione. Il tuo account non è stato confermato per l'eliminazione. Riprova.",
     "back": "Torna alle Impostazioni",
-    "signIn": "Accedi al tuo account",
+    "signIn": "Accedi per eliminare il tuo account",
     "acknowledge": "Ho salvato i dettagli di recupero del mio portafoglio e capisco che l'eliminazione è permanente."
   },
   "miniApps": {
@@ -9165,6 +9195,7 @@
     "update": "Aggiorna ora"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} filato: {{result}}",
     "someone": "Qualcuno",
     "newFollower": "Nuovo follower: {{name}}",
     "newSubscriber": "Nuovo abbonato: {{name}}",
@@ -9176,9 +9207,29 @@
     "topSupporters": "I migliori sostenitori",
     "tipped": "{{name}} ha inviato un regalo",
     "chatPreview": "I messaggi della chat vengono visualizzati qui",
-    "wheelLanded": "{{name}} filato: {{result}}"
+    "poll": {
+      "closed": "Votazioni chiuse",
+      "voteFor": "Vota per {{option}}",
+      "signIn": "Accedi per votare",
+      "failed": "Il tuo voto non è stato conteggiato. Riprova.",
+      "voted_one": "Hai votato · {{count}} vote",
+      "voted_other": "Hai votato · {{count}} voti",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} voti"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Controlli rapidi",
+      "intro": "Per il mid-stream. Ogni interruttore è valido per tutti gli utenti che guardano, nell'app e in OBS, fino a quando non lo capovolgi.",
+      "alertsPaused": "Sospendi avvisi",
+      "alertsPausedHint": "Nessun avviso di regalo, follow o regola sullo schermo. I contatori, gli obiettivi e la chat box continuano.",
+      "soundsMuted": "Disattiva i suoni di avviso",
+      "soundsMutedHint": "Le tue regole smettono di suonare.",
+      "readAloudMuted": "Interrompi lettura ad alta voce",
+      "readAloudMutedHint": "I messaggi regalo e le righe regola non vengono più letti.",
+      "failed": "L'interruttore non è cambiato. Riprova."
+    },
     "subtitle": "Avvisi e widget per i tuoi stream",
     "intro": "Tutto ciò che aggiungi qui appare sui tuoi stream per ogni spettatore nell'app DeHub, sia che tu vada in diretta dal tuo telefono, dal browser, da una scheda di acquisizione o da un encoder.",
     "open": "Apri Live Studio",
@@ -9216,6 +9267,8 @@
       "join": "Partecipa"
     },
     "kinds": {
+      "spin_wheel": "Ruota girevole",
+      "poll": "Sondaggio",
       "tip_alert": "Avviso mancia",
       "follow_alert": "Segui avviso",
       "subscribe_alert": "Avviso abbonato",
@@ -9231,10 +9284,10 @@
       "event_feed": "Attività recente",
       "chat_box": "Chat box",
       "ticker": "Testo scorrevole",
-      "rule_alert": "Avvisi delle regole",
-      "spin_wheel": "Ruota girevole"
+      "rule_alert": "Avvisi delle regole"
     },
     "hints": {
+      "spin_wheel": "Dove girano le ruote nelle tue regole",
       "tip_alert": "Celebra ogni suggerimento, in base al suo livello",
       "follow_alert": "Mostra ogni nuovo follower",
       "subscribe_alert": "Mostra ogni nuovo abbonato",
@@ -9251,7 +9304,7 @@
       "chat_box": "Mostra i messaggi di chat della trasmissione sullo schermo",
       "ticker": "Una riga del tuo testo che scorre sullo schermo",
       "rule_alert": "Dove vengono visualizzati gli avvisi delle tue regole",
-      "spin_wheel": "Dove girano le ruote nelle tue regole"
+      "poll": "Il tuo sondaggio dal vivo, con un pulsante di voto per ogni opzione"
     },
     "fields": {
       "style": "Stile",
@@ -9309,6 +9362,9 @@
       "rotateFailed": "Impossibile creare un nuovo link. Riprova tra un momento."
     },
     "rules": {
+      "wheelSegments": "Segmenti ruota, uno per riga",
+      "wheelHint": "Tra 2 e 12. DeHub sceglie dove si ferma la ruota, in modo che tutti gli spettatori vedano lo stesso risultato. Usa {result} in un'azione di avviso, lettura ad alta voce o chat per assegnargli un nome.",
+      "test": "Prova",
       "title": "Regole",
       "intro": "Quando succede qualcosa sul tuo stream, DeHub fa ciò che scegli: mostra un avviso, riproduce un suono, legge qualcosa ad alta voce, pubblica nella tua chat o informa il tuo Discord.",
       "add": "Aggiungi una regola",
@@ -9352,7 +9408,8 @@
         "share": "Qualcuno condivide lo stream",
         "command": "Viene utilizzato un comando chat",
         "keyword": "Un messaggio di chat contiene una parola",
-        "chat": "Qualsiasi messaggio di chat"
+        "chat": "Qualsiasi messaggio di chat",
+        "live": "Inizi a trasmettere"
       },
       "audiences": {
         "everyone": "Chiunque",
@@ -9360,12 +9417,12 @@
         "subscribers": "Iscritti"
       },
       "actionTypes": {
+        "wheel": "Gira una ruota",
         "alert": "Mostra un avviso",
         "sound": "Riproduci un suono",
         "say": "Leggi ad alta voce",
         "chat": "Post in chat",
-        "webhook": "Invia a un webhook",
-        "wheel": "Gira una ruota"
+        "webhook": "Invia a un webhook"
       },
       "summary": {
         "tip": "Mancia di {{amount}} DHB o superiore"
@@ -9404,19 +9461,97 @@
         "magic-spell": "Incantesimo magico",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Segmenti ruota, uno per riga",
-      "wheelHint": "Tra 2 e 12. DeHub sceglie dove si ferma la ruota, in modo che tutti gli spettatori vedano lo stesso risultato. Usa {result} in un'azione di avviso, lettura ad alta voce o chat per assegnargli un nome."
+      "placeholdersLive": "Usa {name}, {title} e {link} nel tuo testo: il tuo nome, il titolo della trasmissione e un link per guardarlo."
     },
-    "controls": {
-      "title": "Controlli rapidi",
-      "intro": "Per il mid-stream. Ogni interruttore è valido per tutti gli utenti che guardano, nell'app e in OBS, fino a quando non lo capovolgi.",
-      "alertsPaused": "Sospendi avvisi",
-      "alertsPausedHint": "Nessun avviso di regalo, follow o regola sullo schermo. I contatori, gli obiettivi e la chat box continuano.",
-      "soundsMuted": "Disattiva i suoni di avviso",
-      "soundsMutedHint": "Le tue regole smettono di suonare.",
-      "readAloudMuted": "Interrompi lettura ad alta voce",
-      "readAloudMutedHint": "I messaggi regalo e le righe regola non vengono più letti.",
-      "failed": "L'interruttore non è cambiato. Riprova."
+    "polls": {
+      "title": "Sondaggi",
+      "intro": "Fai una domanda alle persone che guardano la tua trasmissione. Rispondono con un pulsante nell'app DeHub o digitando {{command}} e il numero dell'opzione in chat.",
+      "question": "Domanda",
+      "questionPlaceholder": "A cosa dovrei giocare dopo?",
+      "option": "Opzione {{n}}",
+      "addOption": "Aggiungi un'opzione",
+      "removeOption": "Rimuovi opzione {{n}}",
+      "duration": "Per quanto tempo rimane aperta la votazione",
+      "seconds_one": "{{count}} secondo",
+      "seconds_other": "{{count}} secondi",
+      "minutes_one": "{{count}} minuto",
+      "minutes_other": "{{count}} minuti",
+      "start": "Avvia il sondaggio",
+      "end": "Termina la votazione ora",
+      "started": "Il tuo sondaggio è aperto. Gli spettatori possono votare ora.",
+      "notLive": "Vai prima in diretta. Un sondaggio viene eseguito sulla trasmissione che stai trasmettendo in streaming in questo momento.",
+      "startFailed": "Il sondaggio non è iniziato. Riprova.",
+      "closeFailed": "La votazione non è terminata. Riprova.",
+      "live": "Votazione aperta · {{time}} sinistra",
+      "ended": "Votazioni chiuse",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} voti",
+      "replaceHint": "L'avvio di un nuovo sondaggio chiude quello aperto.",
+      "widgetHint": "Mostra il tuo sondaggio in tempo reale. Nell'app DeHub, tocca un'opzione per votare; in OBS dice alle persone di digitare {{command}} e un numero in chat.",
+      "sample": {
+        "a": "Qualcosa di nuovo",
+        "b": "Un vecchio favorito",
+        "c": "Scegli tu"
+      }
+    },
+    "moderation": {
+      "title": "Moderazione chat",
+      "intro": "Regole per la chat sotto tutti i tuoi stream. Non arrivano mai nella chat principale di DeHub: qualcuno che banni qui può comunque parlare altrove.",
+      "loadFailed": "Le tue impostazioni di moderazione non sono state caricate. Ricarica la pagina per riprovare.",
+      "save": "Salva regole chat",
+      "saved": "Regole chat salvate.",
+      "saveFailed": "Questa modifica non è stata salvata.",
+      "slowMode": "Modalità lenta",
+      "slowModeHint": "Quanto tempo ogni spettatore deve aspettare tra i messaggi. Tu e i tuoi moderatori non dovete aspettare.",
+      "off": "Spedito",
+      "seconds_one": "{{count}} secondo",
+      "seconds_other": "{{count}} secondi",
+      "followersOnly": "Solo follower",
+      "subscribersOnly": "Solo abbonati",
+      "subscribersOnlyHint": "Sovrascrive \"solo follower\".",
+      "bannedWords": "Parole bannate",
+      "bannedWordsHint": "Separate con virgole. Scrivere una parola lettera per lettera non la aggira.",
+      "wordAction": "Quando qualcuno usa una",
+      "wordBlock": "Blocca il messaggio",
+      "wordTimeout": "Fermati e metti in timeout per un minuto",
+      "moderators": "Moderatori",
+      "moderatorsHint": "Possono mettere in timeout e bannare gli spettatori durante i tuoi stream. Non possono agire su di te o su di loro.",
+      "addModerator": "Aggiungi",
+      "usernamePlaceholder": "Nome utente",
+      "moderatorAdded": "Moderatore aggiunto.",
+      "moderatorNotFound": "Nessun account con quel nome utente.",
+      "removeModerator": "Rimuovi moderatore",
+      "noModerators": "Nessun moderatore al momento.",
+      "banned": "Bannato dai tuoi stream",
+      "unban": "Sblocca",
+      "noBans": "Nessuno è bannato.",
+      "log": "Azioni recenti",
+      "noLog": "Niente ancora.",
+      "actions": {
+        "timeout_one": "{{actor}} messo in timeout {{target}} per {{count}} secondo",
+        "timeout_other": "{{actor}} messo in timeout {{target}} per {{count}} secondi",
+        "ban": "{{actor}} ha bannato {{target}}",
+        "unban": "{{actor}} ha sbloccato {{target}}",
+        "moderator-added": "{{target}} è diventato un moderatore",
+        "moderator-removed": "{{target}} non è più un moderatore",
+        "word-blocked": "Ha bloccato un messaggio di {{target}} per \"{{word}}\"",
+        "word-timeout_one": "Messo in timeout {{target}} per {{count}} secondo per \"{{word}}\"",
+        "word-timeout_other": "Messo in timeout {{target}} per {{count}} secondi per \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Tempo di attesa di 1 minuto",
+    "timeout10m": "Tempo di attesa di 10 minuti",
+    "timeout1h": "Tempo di attesa di 1 ora",
+    "ban": "Bannato da questi stream",
+    "makeModerator": "Diventa moderatore",
+    "timedOut": "Tempo di attesa attivato.",
+    "banned": "Bannato da questi stream.",
+    "madeModerator": "Ora sono un moderatore.",
+    "failed": "Non è andato a buon fine. Riprova.",
+    "youAreBanned": "Non puoi chattare negli stream di questo creatore",
+    "youAreTimedOut": "Sei temporaneamente bloccato",
+    "title": "Modera"
   }
 }

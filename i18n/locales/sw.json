@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Muhtasari wa mkondo",
+    "justEnded": "Muhtasari wa mkondo wako",
+    "lastStream": "Mtiririko wako wa mwisho",
+    "none": "Bado hakuna mito iliyomalizika. Muhtasari wako unaonekana hapa baada ya ule wa kwanza.",
+    "share": "Shiriki",
+    "shareText": "Nimetiririsha \"{{title}}\" kwenye DeHub: {{duration}} live, {{peak}} kuangalia kwenye kilele na {{followers}} wafuasi wapya.",
+    "untitled": "Mkondo usio na kichwa",
+    "loadFailed": "Muhtasari haukupakia. Jaribu tena baada ya muda mfupi.",
+    "duration": "Muda wa moja kwa moja",
+    "peakViewers": "Mara nyingi hutazama mara moja",
+    "gifts_one": "Kutoka {{count}} gift",
+    "gifts_other": "Kutoka kwa {{count}} gifts",
+    "newFollowers": "Wafuasi wapya",
+    "chatMessages": "Sehemu ya Ujumbe",
+    "chatters": "Watu wanaopiga gumzo",
+    "reactions": "Miitikio",
+    "shares": "Watu wanaoshiriki",
+    "topSupporters": "Wafuasi wakuu",
+    "polls": "Kura ya maoni",
+    "pollWinner": "{{option}} alishinda",
+    "stillCounting": "Bado inahesabika: zawadi zinaweza kuchukua dakika moja kuthibitisha."
+  },
   "articles": {
     "articleImage": "Picha ya makala",
     "socialImage": "Picha ya kushiriki kijamii",
@@ -4772,7 +4795,7 @@
     "usernameReserved": "Jina hili la mtumiaji limehifadhiwa",
     "profileSet": "Wasifu umewekwa kwa mafanikio!",
     "profileFailed": "Imeshindwa kuweka wasifu",
-    "displayNameHint": "Jina lako la umma linaloonyeshwa kwenye wasifu."
+    "displayNameHint": "Jina lako la umma kwenye wasifu wako. Si lazima — ukiliacha wazi, tutatumia jina lako la mtumiaji."
   },
   "events": {
     "mine": "Zangu",
@@ -5013,6 +5036,7 @@
     "accountHasA": "Akaunti hii ina",
     "ifYouUsedDehub": "Ikiwa umewahi kutumia dehub.io, ifungue kwenye kompyuta yako, ingia kwa njia ile ile na kwa akaunti ile ile, kisha",
     "biometricExplainer": "Fungua kwa alama ya kidole au uso wako — hakuna cha kuandika wala kukumbuka. Ufunguo unabaki kwenye simu hii, kwa hivyo tutakuonyesha kifungu cha kurejesha chenye maneno 12 uandike; hiyo ndiyo njia pekee ya kurudi kutoka simu nyingine, kutoka tovuti, au baada ya kusakinisha upya. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
+    "biometricExplainerSecuring": "Fungua kwa alama ya kidole au uso wako — hakuna cha kuandika wala kukumbuka. Ufunguo unabaki kwenye simu hii. Ili kurudi ndani kutoka simu nyingine, kutoka tovuti, au baada ya kusakinisha upya, hifadhi baadaye nakala rudufu ya maneno 12 kwenye Mipangilio. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
     "biometricPrompt": "Pochi hii inalindwa na biometriki ya kifaa hiki. Thibitisha kwa alama ya kidole au uso ili kuendelea.",
     "enterRecoveryPhrase": "Weka kifungu cha kurejesha chenye maneno 12 ulichohifadhi ulipounda pochi hii (au ufunguo wake wa faragha, ikiwa ulisafirisha mmoja). Kinarudisha kwenye akaunti ile ile, na nenosiri utakaloweka hapa chini linakuwa nakala rudufu inayofanya kazi kila mahali kuanzia sasa.",
     "copyPhrase": "Nakili kifungu",
@@ -5075,7 +5099,7 @@
     "passwordBreached": "Nenosiri hili limeonekana katika uvunjaji wa data — chagua lingine",
     "phraseInvalidHint": "Hiyo haikubaliani kama kifungu cha urejeshaji — maneno 12, kwa mpangilio walioonyeshwa, yote kwa herufi ndogo.",
     "privateKeyHint": "Ufunguo wa kibinafsi ni herufi 64 za hex baada ya 0x.",
-    "biometricTab": "Biolojia",
+    "biometricTab": "Bayometriki",
     "noUsableBackup": "Akaunti hii ina anwani ya mkoba kwenye faili, lakini hakuna chelezo ambacho simu hii inaweza kutumia — ama ililindwa na <em>biometria au kitufe cha kupitisha kwenye wavuti</em> (ambacho hufungua hubaki kwenye kivinjari na haisawazishi hapa), au usajili wa awali kwenye simu hii ulisitishwa kabla ya kumalizika.",
     "addPasswordOnWeb": "Ikiwa umewahi kutumia dehub.io hapo awali, ifungue kwenye kompyuta yako, ingia kwa njia sawa na kwa akaunti sawa, na <em>ongeza nenosiri la mkoba</em> — hiyo huhifadhi chelezo kilichosimbwa kwa njia fiche kwenye wingu. Kisha urudi hapa na ujaribu tena.",
     "walletAddress": "Mkoba: {{address}}",
@@ -5084,7 +5108,8 @@
     "unlockPasskeyOnly": "Mkoba huu ulilindwa kwa nenosiri la kuingia kwenye wavuti na bado hauna nakala rudufu ya nenosiri kwenye wingu. Ukiweka nenosiri la mkoba kwenye dehub.io, liingize hapa — vinginevyo tumia Ingiza mkoba wa nje hapa chini.",
     "unlockWithPasswordExplainer": "Akaunti hii tayari ina mkoba, uliolindwa na nenosiri. Ingiza ili urejeshe mkoba wako kwenye kifaa hiki.",
     "deviceTab": "Kifaa hiki",
-    "deviceExplainer": "Hakuna cha kuandika au kukumbuka — sehemu muhimu za kukaa kwenye kifaa hiki. Tutakupa nakala rudufu ya maneno 12 ili uandike; ndiyo njia pekee ya kuingia kutoka kwenye kifaa kingine, kutoka kwenye tovuti, au baada ya kusakinisha tena. Chagua Nywila badala yake na nywila yenyewe inafanya kazi hiyo.",
+    "deviceExplainer": "Hakuna cha kuandika wala kukumbuka — ufunguo unabaki kwenye kifaa hiki. Tutakupa nakala rudufu ya maneno 12 uiandike; hiyo ndiyo njia pekee ya kurudi ndani kutoka kifaa kingine, kutoka tovuti, au baada ya kusakinisha upya. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
+    "deviceExplainerSecuring": "Hakuna cha kuandika wala kukumbuka — ufunguo unabaki kwenye kifaa hiki. Ili kurudi ndani kutoka kifaa kingine, kutoka tovuti, au baada ya kusakinisha upya, hifadhi baadaye nakala rudufu ya maneno 12 kwenye Mipangilio. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
     "secureOnDevice": "Weka ufunguo kwenye kifaa hiki"
   },
   "transcript": {
@@ -8986,7 +9011,7 @@
     "description": "Futa kabisa akaunti yako na data binafsi",
     "warning": "Hii hufuta kabisa wasifu wako wa DeHub, machapisho, maoni, ujumbe na chelezo ya pochi iliyohifadhiwa. Hifadhi maelezo yako ya kurejesha mkoba na uhamishe mali yoyote kwanza. Miamala ya blockchain ya umma na rekodi za malipo zinazohitajika kisheria haziwezi kufutwa. Wasifu wako umefichwa mara moja; kufutwa kunakamilika ndani ya siku 30. Hii haiwezi kutenduliwa.",
     "cancel": "Sitisha",
-    "confirm": "Kwa Ujumla ifute Akaunti",
+    "confirm": "Futa akaunti yangu kabisa",
     "busy": "Inawasilisha ombi la kufuta...",
     "accepted": "Ufutaji wa akaunti umeombwa",
     "receipt": "Ombi lako la kufuta limehifadhiwa. Wasifu wako umefichwa na akaunti yako itafutwa kabisa ndani ya siku 30. Kuingia katika akaunti hakuwezi kughairi ombi hili.",
@@ -9099,7 +9124,7 @@
     "update": "Sasisha sasa"
   },
   "walletBackup": {
-    "title": "Rejesha pochi",
+    "title": "Hifadhi nakala ya pochi",
     "rowDesc": "Angalia maneno yako 12 au ufunguo wa faragha",
     "backedUpOn": "Imehifadhiwa {{date}}",
     "offerTitle": "Ungependa kurejesha pochi yako?",
@@ -9130,6 +9155,7 @@
     "notNow": "Si sasa"
   },
   "liveOverlay": {
+    "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "Mtu",
     "newFollower": "Mfuasi mpya: {{name}}",
     "newSubscriber": "Mteja mpya: {{name}}",
@@ -9141,9 +9167,29 @@
     "topSupporters": "Wafuasi wakuu",
     "tipped": "{{name}} alituma zawadi",
     "chatPreview": "Ujumbe wa gumzo unaonekana hapa",
-    "wheelLanded": "{{name}} spun: {{result}}"
+    "poll": {
+      "closed": "Upigaji kura umefungwa",
+      "voteFor": "Mpigie kura {{option}}",
+      "signIn": "Ingia ili upige kura",
+      "failed": "Kura yako haikuhesabiwa. Jaribu tena.",
+      "voted_one": "Umepiga kura · {{count}} kura",
+      "voted_other": "Umepiga kura · {{count}} kura",
+      "votes_one": "{{count}} kura",
+      "votes_other": "{{count}} kura"
+    }
   },
   "liveStudio": {
+    "controls": {
+      "title": "Vidhibiti vya haraka",
+      "intro": "Kwa mkondo wa katikati. Kila swichi hushikilia kila mtu anayetazama, kwenye programu na katika OBS, hadi uirudishe nyuma.",
+      "alertsPaused": "Arifa za kusitisha",
+      "alertsPausedHint": "Hakuna zawadi, fuata au tahadhari za sheria kwenye skrini. Kaunta, malengo na sanduku la gumzo linaendelea.",
+      "soundsMuted": "Nyamazisha sauti za arifa",
+      "soundsMutedHint": "Sheria zako huacha kucheza sauti.",
+      "readAloudMuted": "Simamisha usome kwa sauti",
+      "readAloudMutedHint": "Ujumbe wa zawadi na mistari ya sheria haisomeki tena.",
+      "failed": "Kubadilisha huko hakukubadilika. Jaribu tena."
+    },
     "title": "Studio ya Moja kwa Moja",
     "subtitle": "Arifa na vilivyoandikwa vya mitiririko yako",
     "intro": "Kila kitu unachoongeza hapa kinaonekana kwenye vijito vyako kwa kila mtazamaji kwenye programu ya DeHub — iwe unaenda moja kwa moja kutoka kwa simu yako, kivinjari, kadi ya kunasa au kisimbiko.",
@@ -9182,6 +9228,7 @@
       "join": "Jiunge"
     },
     "kinds": {
+      "spin_wheel": "Gurudumu la mzunguko",
       "tip_alert": "Arifa ya kidokezi",
       "follow_alert": "Fuata arifa",
       "subscribe_alert": "Arifa ya msajili",
@@ -9198,9 +9245,10 @@
       "chat_box": "Sanduku la gumzo",
       "ticker": "Kileta tiketi",
       "rule_alert": "Arifa za sheria",
-      "spin_wheel": "Gurudumu la mzunguko"
+      "poll": "Kura"
     },
     "hints": {
+      "spin_wheel": "Ambapo magurudumu katika sheria zako huzunguka",
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
       "follow_alert": "Inaonyesha kila mfuasi mpya",
       "subscribe_alert": "Inaonyesha kila msajili mpya",
@@ -9216,7 +9264,7 @@
       "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
       "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale",
       "rule_alert": "Hapa ni jina la matatizo ya kawaida yako",
-      "spin_wheel": "Ambapo magurudumu katika sheria zako huzunguka"
+      "poll": "Kura yako ya moja kwa moja, ikiwa na kitufe cha kupiga kura kwa kila chaguo"
     },
     "fields": {
       "style": "Mtindo",
@@ -9275,6 +9323,8 @@
       "rotateFailed": "Imeshindwa kuunda kiunganishi kipya. Jaribu tena baada ya muda mfupi."
     },
     "rules": {
+      "wheelSegments": "Sehemu za magurudumu, moja kwa kila mstari",
+      "wheelHint": "Kati ya 2 na 12. DeHub huchagua mahali ambapo gurudumu linasimama, kwa hivyo kila mtu anayetazama anaona matokeo sawa. Tumia {result} katika arifa, soma kwa sauti au gumzo ili uitaje.",
       "title": "Kawaida",
       "intro": "Kwa kuwa kitu kinachofanyika katika stream yako, DeHub inafanya kitu kinachojitokeza: inashona matatizo, inatoa sauti, inafanya kitu kama kurejea, inapostia katika chat yako au inafundisha katika Discord yako.",
       "add": "Pata kawaida mpya",
@@ -9319,7 +9369,8 @@
         "share": "Mtu anashiriki mkondo huo",
         "command": "Amri ya gumzo inatumika",
         "keyword": "Ujumbe wa gumzo una neno",
-        "chat": "Ujumbe wowote wa gumzo"
+        "chat": "Ujumbe wowote wa gumzo",
+        "live": "Unaanza kutangaza"
       },
       "audiences": {
         "everyone": "Kila mtu",
@@ -9327,12 +9378,12 @@
         "subscribers": "Wasajili"
       },
       "actionTypes": {
+        "wheel": "Zungusha gurudumu",
         "alert": "Onyesha arifa",
         "sound": "Piga sauti",
         "say": "Soma kwa sauti",
         "chat": "Chapisha kwenye gumzo",
-        "webhook": "Tuma kwenye tovuti",
-        "wheel": "Zungusha gurudumu"
+        "webhook": "Tuma kwenye tovuti"
       },
       "summary": {
         "tip": "Kidokezi cha {{amount}} DHB au zaidi"
@@ -9371,19 +9422,97 @@
         "magic-spell": "Uchawi wa kichawi",
         "shhh": "Shhh"
       },
-      "wheelSegments": "Sehemu za magurudumu, moja kwa kila mstari",
-      "wheelHint": "Kati ya 2 na 12. DeHub huchagua mahali ambapo gurudumu linasimama, kwa hivyo kila mtu anayetazama anaona matokeo sawa. Tumia {result} katika arifa, soma kwa sauti au gumzo ili uitaje."
+      "placeholdersLive": "Tumia {name}, {title} na {link} katika maandishi yako: jina lako, kichwa cha matangazo na kiunganishi cha kuitazama."
     },
-    "controls": {
-      "title": "Vidhibiti vya haraka",
-      "intro": "Kwa mkondo wa katikati. Kila swichi hushikilia kila mtu anayetazama, kwenye programu na katika OBS, hadi uirudishe nyuma.",
-      "alertsPaused": "Arifa za kusitisha",
-      "alertsPausedHint": "Hakuna zawadi, fuata au tahadhari za sheria kwenye skrini. Kaunta, malengo na sanduku la gumzo linaendelea.",
-      "soundsMuted": "Nyamazisha sauti za arifa",
-      "soundsMutedHint": "Sheria zako huacha kucheza sauti.",
-      "readAloudMuted": "Simamisha usome kwa sauti",
-      "readAloudMutedHint": "Ujumbe wa zawadi na mistari ya sheria haisomeki tena.",
-      "failed": "Kubadilisha huko hakukubadilika. Jaribu tena."
+    "polls": {
+      "title": "Kura",
+      "intro": "Waulize watu wanaotazama matangazo yako swali. Wanajibu kwa kutumia kitufe kwenye programu ya DeHub au kwa kuandika {{command}} na nambari ya chaguo kwenye gumzo.",
+      "question": "Swali",
+      "questionPlaceholder": "Nicheze nini baadaye?",
+      "option": "Chaguo {{n}}",
+      "addOption": "Weka chaguo",
+      "removeOption": "Ondoa chaguo {{n}}",
+      "duration": "Ukaaji wa kupiga kura umefunguliwa kwa muda",
+      "seconds_one": "{{count}} sekunde",
+      "seconds_other": "{{count}} sekunde",
+      "minutes_one": "{{count}} dakika",
+      "minutes_other": "Dakika {{count}}",
+      "start": "Anza kupiga kura",
+      "end": "Maliza kupiga kura sasa",
+      "started": "Kura yako iko wazi. Watazamaji wanaweza kupiga kura sasa.",
+      "notLive": "Nenda moja kwa moja kwanza. Kura itaendeshwa kwenye matangazo unayotiririsha sasa hivi.",
+      "startFailed": "Kura haikuanza. Jaribu tena.",
+      "closeFailed": "Upigaji kura haukukamilika. Jaribu tena.",
+      "live": "Upigaji kura umefunguliwa · {{time}} kushoto",
+      "ended": "Upigaji kura umefungwa",
+      "votes_one": "{{count}} kura",
+      "votes_other": "{{count}} kura",
+      "replaceHint": "Kuanzisha uchaguzi mpya kunafunga ule ulio wazi.",
+      "widgetHint": "Inaonyesha kura yako ya moja kwa moja. Katika watazamaji wa programu ya DeHub bofya chaguo la kupiga kura; katika OBS inawaambia watu kuandika {{command}} na nambari kwenye gumzo.",
+      "sample": {
+        "a": "Kitu kipya",
+        "b": "Kipendwa cha zamani",
+        "c": "Unachagua"
+      }
+    },
+    "moderation": {
+      "title": "Uwiano wa gumzo",
+      "intro": "Sheria za gumzo chini ya mikondo yako yote. Hawafiki kamwe kwenye gumzo kuu la DeHub: mtu unayemzuia hapa bado anaweza kuzungumza mahali pengine popote.",
+      "loadFailed": "Mipangilio yako ya kiasi haikuweza kupakiwa. Fungua upya ukurasa ili ujaribu tena.",
+      "save": "Hifadhi sheria za gumzo",
+      "saved": "Sheria za gumzo zimehifadhiwa.",
+      "saveFailed": "Mabadiliko hayo hayakuweza kuhifadhiwa.",
+      "slowMode": "Hali ya polepole",
+      "slowModeHint": "Muda ambao kila mtazamaji anasubiri kati ya ujumbe. Wewe na wasimamizi wako msisubiri kamwe.",
+      "off": "Imezimwa",
+      "seconds_one": "{{count}} sekunde",
+      "seconds_other": "{{count}} sekunde",
+      "followersOnly": "Wafuasi pekee",
+      "subscribersOnly": "Wasajili pekee",
+      "subscribersOnlyHint": "Inabatilisha wafuasi pekee.",
+      "bannedWords": "Maneno yaliyopigwa marufuku",
+      "bannedWordsHint": "Tofautisha na koma. Kuandika neno kwa herufi hakuzunguki.",
+      "wordAction": "Mtu anapotumia moja",
+      "wordBlock": "Simamisha ujumbe",
+      "wordTimeout": "Simamisha na uwape muda wa kutoka kwa dakika moja",
+      "moderators": "Wasimamizi:",
+      "moderatorsHint": "Wanaweza kukaa nje na kupiga marufuku watazamaji kwenye mikondo yako. Hawawezi kutenda juu yako au juu ya kila mmoja.",
+      "addModerator": "Ongeza",
+      "usernamePlaceholder": "Jina la Mtumiaji",
+      "moderatorAdded": "Msimamizi ameongezwa.",
+      "moderatorNotFound": "Hakuna akaunti na jina hilo la mtumiaji.",
+      "removeModerator": "Ondoa mpatanishi",
+      "noModerators": "Bado hakuna wasimamizi.",
+      "banned": "Imepigwa marufuku kutoka kwenye vijito vyako",
+      "unban": "Ondoa marufuku",
+      "noBans": "Hakuna mtu aliyepigwa marufuku.",
+      "log": "Hatua za hivi karibuni",
+      "noLog": "Hakuna kitu bado.",
+      "actions": {
+        "timeout_one": "{{actor}} muda wake umekwisha {{target}} kwa {{count}} sekunde",
+        "timeout_other": "{{actor}} muda wake umekwisha {{target}} kwa {{count}} sekunde",
+        "ban": "{{actor}} marufuku {{target}}",
+        "unban": "{{actor}} bila marufuku {{target}}",
+        "moderator-added": "{{target}} akawa mpatanishi",
+        "moderator-removed": "{{target}} si mpatanishi tena",
+        "word-blocked": "Imesimamisha ujumbe kutoka {{target}} kwa \"{{word}}\"",
+        "word-timeout_one": "Muda umeisha {{target}} kwa {{count}} sekunde kwa \"{{word}}\"",
+        "word-timeout_other": "Muda umeisha {{target}} kwa {{count}} sekunde kwa \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Pumzika kwa dakika 1",
+    "timeout10m": "Pumzika kwa dakika 10",
+    "timeout1h": "Muda wa kuondoka kwa saa 1",
+    "ban": "Zuia kutoka kwenye vijito hivi",
+    "makeModerator": "Fanya mpatanishi",
+    "timedOut": "Muda wake umekwisha.",
+    "banned": "Imepigwa marufuku kutoka kwenye vijito hivi.",
+    "madeModerator": "Sasa ni mpatanishi.",
+    "failed": "Hiyo haikufanya kazi. Jaribu tena.",
+    "youAreBanned": "Huwezi kupiga gumzo kwenye mikondo ya mtengenezaji huyu",
+    "youAreTimedOut": "Umepitwa na wakati kwa muda",
+    "title": "Kadiri"
   }
 }
