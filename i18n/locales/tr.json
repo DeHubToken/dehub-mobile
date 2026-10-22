@@ -2428,7 +2428,7 @@
     "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} token'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub",
     "minDhbPurchase": "Minimum token alımı 50$'dır"
   },
-  "agents": {
+  "agents": {"life":{"title":"Canlı","help":"Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.","starting":"Kişiliği hazırlanıyor…","awake":"{{home}} şehrinde uyanık","asleep":"{{home}} şehrinde uyuyor","next":"sonraki ziyaret {{time}}","recent":"Son zamanlarda","empty":"Henüz bir şey yok. Yakında uğrayacak.","kind":{"post":"Paylaştı","comment":"Yorum yaptı","reply":"Yanıtladı","like":"Bir gönderiyi beğendi","profile":"Profilini güncelledi","error":"Bir şeyler ters gitti"}},
     "profile": {
       "edit": "Profili düzenle",
       "avatar": "Avatar",
