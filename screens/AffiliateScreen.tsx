@@ -41,6 +41,7 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { getAccountSummaries, type AccountSummary } from "../services/user.service";
 import { getAvatarUrl, shareProfile } from "../libs/misc";
 import { copyToClipboard } from "../libs/clipboard.utils";
+import { track } from "../libs/analytics";
 import { toastError, toastSuccess } from "../libs/toast";
 import env from "../config/env";
 import { appLocale } from "../libs/date.util";
@@ -244,12 +245,13 @@ export default function AffiliateScreen() {
   const onCopy = useCallback(() => {
     if (!inviteLink) return;
     copyToClipboard(inviteLink);
+    track("invite_link_copied", { source: "affiliate_screen" });
     toastSuccess(t("affiliate.linkCopied", "Invite link copied"));
   }, [inviteLink, t]);
 
   const onShare = useCallback(() => {
     if (!stats?.code || !inviteLink) return;
-    void shareProfile(inviteLink, buildInviteMessage(stats.code, inviteLink));
+    void shareProfile(inviteLink, buildInviteMessage(stats.code, inviteLink), "invite");
   }, [stats?.code, inviteLink]);
 
   const landingCtas = landing.ctas ?? [];

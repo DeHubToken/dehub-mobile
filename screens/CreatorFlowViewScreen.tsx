@@ -7,7 +7,8 @@
  * web's share page does — so it shows up on your canvas to run.
  */
 import React, { useCallback, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, Share, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -52,7 +53,7 @@ export default function CreatorFlowViewScreen() {
 
   const share = useCallback(() => {
     const url = ShareLinks.creatorFlow(id);
-    void Share.share({ message: flow ? `${flow.name}\n${url}` : url, url }).catch(() => {});
+    void shareWithRef({ message: flow ? `${flow.name}\n${url}` : url, url }).catch(() => {});
   }, [id, flow]);
 
   const openCopy = useCallback(async () => {

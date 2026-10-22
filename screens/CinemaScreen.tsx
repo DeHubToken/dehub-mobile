@@ -23,13 +23,13 @@ import {
   Modal,
   Pressable,
   ScrollView,
-  Share,
   StyleSheet,
   Text,
   TextInput,
   View,
   useWindowDimensions,
 } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -196,7 +196,7 @@ export default function CinemaScreen() {
     if (!filmId) return;
     const url = ShareLinks.film(openObjectType, filmId);
     const message = openTitle ? `${t("cinema.shareMessage", { title: openTitle.title })}\n${url}` : url;
-    void Share.share({ message, url }).catch(() => {});
+    void shareWithRef({ message, url }).catch(() => {});
   }, [filmId, openObjectType, openTitle, t]);
 
   const columnWidth = (width - 16 * 2 - 12) / 2;

@@ -19,12 +19,12 @@ import React, { useCallback } from "react";
 import {
   ActivityIndicator,
   Alert,
-  Share,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { useTranslation } from "react-i18next";
 
 import Avatar from "../common/Avatar";
@@ -91,9 +91,9 @@ function formatScheduledFor(dateStr?: string | null): string {
 
 const shareStage = (space: AudioSpace, when?: string) => {
   const whenPart = when ? ` ${when}` : "";
-  Share.share({
+  shareWithRef({
     message: `🎙️ ${space.title} — live on Stages${whenPart}\n\n${ShareLinks.stage(space)}`,
-  }).catch(() => {});
+  }, undefined, "stage").catch(() => {});
 };
 
 const hostHandle = (space: AudioSpace, fallback: string) =>

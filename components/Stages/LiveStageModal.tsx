@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   ScrollView,
   Animated,
-  Share,
   useWindowDimensions,
   StatusBar,
   TextInput,
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -286,7 +286,7 @@ const LiveStageModal: React.FC = () => {
   const spaceTitle = currentSpace?.title ?? "";
   const { t } = useTranslation();
   const handleShare = useCallback(() => {
-    Share.share({ message: t("stages.joinMe", { title: spaceTitle }), title: spaceTitle });
+    shareWithRef({ message: t("stages.joinMe", { title: spaceTitle }), title: spaceTitle }, undefined, "stage").catch(() => {});
   }, [spaceTitle, t]);
 
   // Front Row is the Blue Whale rung. `status.powers` decides whether this

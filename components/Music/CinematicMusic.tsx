@@ -17,13 +17,13 @@ import {
   ActivityIndicator,
   FlatList,
   Pressable,
-  Share,
   StyleSheet,
   Text,
   View,
   useWindowDimensions,
   type ListRenderItemInfo,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import Animated from "react-native-reanimated";
 import { GestureDetector } from "react-native-gesture-handler";
 import { Image } from "expo-image";
@@ -161,7 +161,7 @@ const RadioHero: React.FC<{ station: RadioStation; height: number }> = ({ statio
     const url = `${SHARE_ORIGIN}/app`;
     const text = t("music.listeningTo", { name: station.name });
     // iOS reads `url` on its own; Android only reads `message`.
-    Share.share({ title: station.name, message: `${text} ${url}`, url }).catch(() => {
+    shareWithRef({ title: station.name, message: `${text} ${url}`, url }).catch(() => {
       // Share sheet dismissed.
     });
   }, [station.name, t]);

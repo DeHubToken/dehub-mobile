@@ -116,6 +116,7 @@
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/stores/"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/events/"/>
         <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/@"/>
+        <data android:scheme="https" android:host="dehub.io" android:pathPrefix="/r/"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <category android:name="android.intent.category.DEFAULT"/>
       </intent-filter>

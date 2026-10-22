@@ -1,7 +1,8 @@
 import { COMMENT_ICON_SIZE } from '../Home/feed-icon-size';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, Pressable, Share, ActivityIndicator, type AccessibilityActionEvent } from "react-native";
+import { View, Text, Pressable, ActivityIndicator, type AccessibilityActionEvent } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import SmartImage from "../common/SmartImage";
 import Animated, {
   useSharedValue,
@@ -479,7 +480,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       const shareUrl = tokenId
         ? `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`
         : WEBSITE_LINK;
-      await Share.share({ message: t("comments.shareMessage", { url: shareUrl }), url: shareUrl });
+      await shareWithRef({ message: t("comments.shareMessage", { url: shareUrl }), url: shareUrl }, undefined, "comment");
     } catch (e) {
       console.error("Share error:", e);
     }

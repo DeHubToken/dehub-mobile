@@ -19,7 +19,8 @@ import { shareProfile, getBadgeHoverOpticalStyle } from "../../libs/misc";
 import BadgeArtwork from "../common/BadgeArtwork";
 import StreamerBadge from "../Live/StreamerBadge";
 import { useMutualFollowers } from "../../hooks/useMutualFollowers";
-import { WEBSITE_LINK } from "../../config/links";
+import { ShareLinks } from "../../navigation/linking.config";
+import { withShareRef } from "../../libs/shareRef";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
@@ -202,14 +203,17 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   }, [closeMenuThen]);
 
   const handleMenuShare = useCallback(() => {
-    const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
+    const slug = profileData?.username || profileData?.address;
+    if (!slug) return;
+    const url = ShareLinks.profile(slug);
     const message = `Check out ${profileData?.displayName || "this user"} on DeHub ${url}`;
     closeMenuThen(() => { shareProfile(url, message); });
   }, [closeMenuThen, profileData]);
 
   const handleMenuCopyUrl = useCallback(() => {
-    const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
-    copyToClipboard(url);
+    const slug = profileData?.username || profileData?.address;
+    if (!slug) return;
+    copyToClipboard(withShareRef(ShareLinks.profile(slug)));
     setShowProfileMenu(false);
   }, [profileData]);
 
