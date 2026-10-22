@@ -9156,6 +9156,7 @@
       "join": "Ndhuwur"
     },
     "kinds": {
+      "rule_alert": "Peringatan aturan",
       "tip_alert": "Tip alert",
       "follow_alert": "Ngikul alert",
       "subscribe_alert": "Subscriber alert",

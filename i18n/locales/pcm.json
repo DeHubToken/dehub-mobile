@@ -8862,6 +8862,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate every tip, e size according to e tier",
       "join_alert": "Welcomes each viewer as they arrive"
     },
@@ -8907,6 +8908,28 @@
       "rotateFailed": "No go make new link. Try again after a while."
     },
     "rules": {
+      "intro": "When something happens on your stream, DeHub does what you choose: shows an alert, plays a sound, reads something aloud, posts in your chat or tells your Discord.",
+      "limit": "You have reached the limit of {{count}} rules.",
+      "loadFailed": "Your rules could not be loaded. Refresh the page to try again.",
+      "empty": "No rules yet. Add one to react to tips, follows or chat commands.",
+      "saved": "Rules saved. They run on your next tip, follow or message.",
+      "saveToTest": "Save your rules to test them",
+      "needsAlertWidget": "Some rules show an alert. Add the Rule alerts widget so it has somewhere to appear.",
+      "audience": "Who can set it off",
+      "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
+      "sayText": "Text to read aloud",
+      "chatHint": "Posted from your account into your stream's chat. It cannot repeat the viewer's message.",
+      "webhookHint": "A Discord or Slack webhook, or any https address that accepts a POST.",
+      "summary": {
+        "tip": "Tip of {{amount}} DHB or more"
+      },
+      "presetHints": {
+        "blank": "Start from nothing",
+        "readChat": "Reads your followers' messages aloud, one per viewer every 30 seconds",
+        "bigTip": "Plays an air horn and shows an alert for tips of 100,000 DHB or more",
+        "thankFollowers": "Posts a thank-you in your chat when someone follows",
+        "command": "Answers a !command in your chat"
+      },
       "title": "Rules",
       "add": "Add a rule",
       "saveFailed": "Na rules wey you dey try save, no go save for now.",
@@ -8933,6 +8956,9 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "share": "Someone shares the stream",
+        "command": "A chat command is used",
+        "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
@@ -8951,11 +8977,15 @@
         "webhook": "Send to a webhook"
       },
       "presets": {
+        "bigTip": "Air horn for big tips",
+        "thankFollowers": "Thank new followers",
         "blank": "Blank rule",
         "readChat": "Read chat aloud",
         "command": "Chat command"
       },
       "presetText": {
+        "thankFollowers": "Thanks for the follow, {name}!",
+        "command": "Hello {name}, welcome to the stream!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },

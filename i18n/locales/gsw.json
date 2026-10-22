@@ -9283,6 +9283,15 @@
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
     },
     "rules": {
+      "placeholders": "Verwenden Sie {name}, {amount} und {message} in Ihrem Text. Links in Nachrichten werden entfernt.",
+      "alertText": "Benachrichtigungstext",
+      "sound": "Ton",
+      "sayText": "Vorzulesender Text",
+      "chatText": "Nachricht an Post",
+      "webhookText": "Zu sendende Nachricht",
+      "summary": {
+        "tip": "Tipp von {{amount}} DHB oder mehr"
+      },
       "title": "Regeln",
       "intro": "Wenn etwas auf deinem Stream passiert, macht DeHub, was du möchtest: zeigt eine Warnung, spielt ein Geräusch, liest etwas vor, postet in deinem Chat oder sagt etwas in deinem Discord.",
       "add": "Regel hinzufügen",
@@ -9324,17 +9333,26 @@
         "chat": "Any Chatnachricht"
       },
       "audiences": {
+        "everyone": "Alle",
+        "subscribers": "Abonnenten",
         "followers": "Follower"
       },
       "actionTypes": {
+        "sound": "Einen Ton abspielen",
+        "say": "Vorlesen",
+        "chat": "Im Chat posten",
         "alert": "Zeig a Alert.",
         "webhook": "Send zu einem Webhook."
       },
       "presets": {
+        "readChat": "Chat vorlesen",
+        "thankFollowers": "Vielen Dank an neue Follower",
+        "command": "Chat-Befehl",
         "blank": "Blank rule",
         "bigTip": "Lufthorn für grosse Trinkgeldbeträge"
       },
       "presetHints": {
+        "bigTip": "Spielt eine Lufthupe und zeigt eine Warnung für Trinkgelder von 100.000 DHB oder mehr an",
         "blank": "Start mit nix.",
         "readChat": "Liest die Nachrichten deiner Follower laut vor, je eine pro Zuschauer alle 30 Sekunden.",
         "thankFollowers": "Gschiib a Dankeschön in de Chat, wenn mer wer folgt.",
@@ -9347,6 +9365,9 @@
         "command": "Grüezi {name}, willkommen beim Stream!"
       },
       "sounds": {
+        "cricket": "Grillen",
+        "drumroll": "Trommelrolle",
+        "spooky": "Gruselig",
         "airhorn": "Airhorn",
         "applause": "Applaus",
         "lol": "Lachen",

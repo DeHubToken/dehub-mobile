@@ -9372,6 +9372,7 @@
         "command": "مرحبًا {name}، مرحبًا بك في البث!"
       },
       "sounds": {
+        "ba-dum-tish": "بام دوم تيش",
         "airhorn": "بوق هوائي",
         "applause": "تصفيق",
         "cricket": "الصراصير",

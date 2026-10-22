@@ -9192,6 +9192,7 @@
       "rotateFailed": "\"Ne ma se ka bataki filanan dayɛlɛ fɔɔ ka taga se a laban ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
     },
     "rules": {
+      "cooldown": "Attendre entre les utilisations (secondes)",
       "title": "Sariya",
       "intro": "Ni koo dɔ kɛra i ka site web kan, DeHub b'a fɛ ka min kɛ, a b'o kɛ: a be lasɔmini dɔ yira, a be mankan dɔ bɔ, a be fɛɛn dɔ kalan ni kaanba ye, a be kuma i ka site web kɔnɔ wala a be kuma i ka Discord koo la.",
       "add": "A ka sariya sigi",
@@ -9265,10 +9266,13 @@
         "command": "I ka kan ka min fɔ, o ye tiɲɛ ye."
       },
       "presetText": {
+        "thankFollowers": "Merci de nous avoir suivis, {name} !",
+        "command": "Bonjour {name}, bienvenue sur la chaîne !",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
       "sounds": {
+        "spooky": "Effrayant",
         "airhorn": "Fanga min be fɔɲɔ kan",
         "applause": "Ne b'i fo kosɔbɛ",
         "cricket": "Kɛlɛkɛyɔrɔ",

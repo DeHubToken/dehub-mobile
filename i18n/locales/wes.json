@@ -9039,6 +9039,7 @@
       "rule_alert": "Rule alerts"
     },
     "hints": {
+      "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
       "share_alert": "Shɔ wen sɔmbɔdi shɛr yɔ strim",
@@ -9089,6 +9090,16 @@
       "rotateFailed": "No fit make new link. Try again in small time."
     },
     "rules": {
+      "limit": "You have reached the limit of {{count}} rules.",
+      "saveToTest": "Save your rules to test them",
+      "blockedWordsHint": "Separate with commas. Messages containing them are ignored and never read aloud.",
+      "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
+      "sayText": "Text to read aloud",
+      "chatHint": "Posted from your account into your stream's chat. It cannot repeat the viewer's message.",
+      "webhookHint": "A Discord or Slack webhook, or any https address that accepts a POST.",
+      "summary": {
+        "tip": "Tip of {{amount}} DHB or more"
+      },
       "title": "Rules",
       "intro": "Wen something happen on your stream, DeHub go do what you say: show alert, play sound, read something out loud, post in your chat, or tell your Discord.",
       "add": "Add a rule",
@@ -9120,6 +9131,8 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "share": "Someone shares the stream",
+        "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
@@ -9139,14 +9152,22 @@
         "webhook": "Send to a webhook"
       },
       "presets": {
+        "bigTip": "Air horn for big tips",
+        "thankFollowers": "Thank new followers",
         "blank": "Blank rule",
         "readChat": "Read chat aloud",
         "command": "Chat command"
       },
       "presetHints": {
+        "blank": "Start from nothing",
+        "bigTip": "Plays an air horn and shows an alert for tips of 100,000 DHB or more",
+        "thankFollowers": "Posts a thank-you in your chat when someone follows",
+        "command": "Answers a !command in your chat",
         "readChat": "Reads yu followers messages out loud, one for each person, every 30 seconds."
       },
       "presetText": {
+        "thankFollowers": "Thanks for the follow, {name}!",
+        "command": "Hello {name}, welcome to the stream!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
