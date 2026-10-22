@@ -9127,5 +9127,16 @@
     "reminderBody": "Zálohujte si peněženku — 12 slov, která vám ji vrátí, pokud ztratíte telefon.",
     "backUp": "Zálohovat",
     "notNow": "Teď ne"
+  },
+  "liveOverlay": {
+    "someone": "Někdo",
+    "newFollower": "Nový sledující: {{name}}",
+    "newSubscriber": "Nový odběratel: {{name}}",
+    "subscribedTo": "{{name}} přihlášeni k odběru {{plan}}",
+    "shared": "{{name}} sdílel (a) stream",
+    "joined": "Připojil se uživatel {{name}}",
+    "goalReached": "Cíl dosažen!",
+    "followersUnit": "následovníci",
+    "topSupporters": "Nejlepší podporovatelé"
   }
 }

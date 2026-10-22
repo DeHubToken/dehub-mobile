@@ -6684,6 +6684,17 @@
     "didNotRecoverThis": "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it.",
     "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."
   },
+  "liveOverlay": {
+    "someone": "Someone",
+    "newFollower": "New follower: {{name}}",
+    "newSubscriber": "New subscriber: {{name}}",
+    "subscribedTo": "{{name}} subscribed to {{plan}}",
+    "shared": "{{name}} shared the stream",
+    "joined": "{{name}} joined",
+    "goalReached": "Goal reached!",
+    "followersUnit": "followers",
+    "topSupporters": "Top supporters"
+  },
   "liveGift": {
     "buyTokens": "Buy tokens",
     "buyHint": "Buy tokens and return to your gift. Your amount and message stay ready.",

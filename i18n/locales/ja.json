@@ -9215,5 +9215,16 @@
     "recommendedBody": "重要なセキュリティ修正を含む新しいバージョンの DeHub があります。アカウントを守るために更新してください。",
     "requiredBody": "このバージョンの DeHub はサポートが終了しました。アカウントを使い続けるには更新してください。",
     "update": "今すぐ更新"
+  },
+  "liveOverlay": {
+    "someone": "誰か",
+    "newFollower": "新規フォロワー：{{name}}",
+    "newSubscriber": "新規購読者: {{name}}",
+    "subscribedTo": "{{name}}さんが{{plan}}に登録しました",
+    "shared": "{{name}}さんがストリームを共有しました",
+    "joined": "{{name}}が参加しました",
+    "goalReached": "目標に到達しました！",
+    "followersUnit": "フォロワー",
+    "topSupporters": "トップサポーター"
   }
 }

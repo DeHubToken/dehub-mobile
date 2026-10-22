@@ -9181,5 +9181,16 @@
     "reminderBody": "Hamyoningizni zaxiralang — telefoningizni yo‘qotganingizda uni qaytaradigan 12 so‘z.",
     "backUp": "Zaxiralash",
     "notNow": "Hozir emas"
+  },
+  "liveOverlay": {
+    "someone": "Kimdir",
+    "newFollower": "Yangi obunachi: {{name}}",
+    "newSubscriber": "Yangi obunachi: {{name}}",
+    "subscribedTo": "{{name}} {{plan}} ga obuna bo'ldi",
+    "shared": "{{name}} oqimni ulashdi",
+    "joined": "{{name}} qo'shildi",
+    "goalReached": "Maqsadga erishildi!",
+    "followersUnit": "izdoshlar",
+    "topSupporters": "Eng yaxshi tarafdorlar"
   }
 }
