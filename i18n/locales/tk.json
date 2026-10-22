@@ -9109,7 +9109,8 @@
     "joined": "{{name}} goşuldy",
     "goalReached": "Goý, maksat amala aşsyn!",
     "followersUnit": "şägirtler",
-    "topSupporters": "Ýolbaşçylyk maslahaty"
+    "topSupporters": "Ýolbaşçylyk maslahaty",
+    "chatPreview": "Çat habarlary bu ýerde görünýär"
   },
   "liveStudio": {
     "title": "Öýlü Studio",
@@ -9155,7 +9156,12 @@
       "top_supporters": "Ýolbaşçylyk maslahaty",
       "viewer_count": "Sanjy gözle",
       "text": "Metin",
-      "frame": "Çaryş"
+      "frame": "Çaryş",
+      "stream_timer": "Garawul diňi",
+      "reaction_counter": "Reaksiýa kalkulatory",
+      "event_feed": "Soňky wakalar",
+      "chat_box": "Çat sandygy",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Ol her bir çüýreçini, her bir çüýreçini,",
@@ -9167,7 +9173,12 @@
       "top_supporters": "Seniň iň beýik çopanlaryň bu çopan",
       "viewer_count": "Bu ýerde näçe adam görýär",
       "text": "Çykyş haty ýa-da aşakdaky üçünji hat",
-      "frame": "Seniň akymyň daş-töwereginde"
+      "frame": "Seniň akymyň daş-töwereginde",
+      "stream_timer": "Biz ýene-de näçe wagt ýaşap bileris?",
+      "reaction_counter": "Öwrenýän her bir reaksiýany hasapla",
+      "event_feed": "Soňky sowgatlar, şägirtler, abonentler we siziň habaryňyzy paýlaýan adamlar",
+      "chat_box": "Çat habarlaryny ekranda görkeziň",
+      "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar"
     },
     "fields": {
       "style": "Şablony",
@@ -9193,7 +9204,14 @@
       "accent": "Reng",
       "size": "Ölçek",
       "smaller": "Küçük",
-      "larger": "Böýük"
+      "larger": "Böýük",
+      "label": "Etiket",
+      "lines": "Gösterilen hatlar",
+      "showAvatars": "Profil suratlaryny görkez",
+      "speed": "Tizlik",
+      "slow": "Ýuwaş",
+      "normal": "Normal",
+      "fast": "Tiz"
     },
     "obs": {
       "title": "OBS ile kullanýlýr",

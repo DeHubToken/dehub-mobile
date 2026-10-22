@@ -9139,7 +9139,9 @@
     "joined": "{{name}} csatlakozott",
     "goalReached": "Cél elérve!",
     "followersUnit": "követők",
-    "topSupporters": "Kiemelt támogatók"
+    "topSupporters": "Kiemelt támogatók",
+    "tipped": "{{name}} ajándékot küldött",
+    "chatPreview": "Itt jelennek meg a csevegési üzenetek"
   },
   "liveStudio": {
     "title": "Élő Stúdió",
@@ -9189,7 +9191,12 @@
       "top_supporters": "Legfőbb támogatók",
       "viewer_count": "Nézőszám",
       "text": "Szöveg",
-      "frame": "Keret"
+      "frame": "Keret",
+      "stream_timer": "Adásidőzítő",
+      "reaction_counter": "Reakciószámláló",
+      "event_feed": "Legutóbbi tevékenység",
+      "chat_box": "Csevegőmező",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Mindent megünnepel a tip, méretétől függően",
@@ -9201,7 +9208,12 @@
       "top_supporters": "Legnagyszerűbb tipereid ez a streamben",
       "viewer_count": "Hány ember nézi",
       "text": "Egy sor szöveg vagy alsó harmad",
-      "frame": "Egy keret a streamed körül"
+      "frame": "Egy keret a streamed körül",
+      "stream_timer": "Megmutatja, hogy mióta sugározol",
+      "reaction_counter": "Minden reakciót megszámol, amit az adásod kap",
+      "event_feed": "A legújabb ajándékok, követők, előfizetők és az adásodat megosztó emberek",
+      "chat_box": "Megjeleníti az adás csevegési üzeneteit a képernyőn",
+      "ticker": "A saját szöveged egy sora, amely végiggörgeti a képernyőt"
     },
     "fields": {
       "style": "Stílus",
@@ -9228,7 +9240,14 @@
       "accent": "Szín",
       "size": "Méret",
       "smaller": "Kisebb",
-      "larger": "Nagyobb"
+      "larger": "Nagyobb",
+      "label": "Címke",
+      "lines": "Megjelenített sorok",
+      "showAvatars": "Profilképek megjelenítése",
+      "speed": "Sebesség",
+      "slow": "Lassú",
+      "normal": "Normál",
+      "fast": "Gyors"
     },
     "obs": {
       "title": "OBS használatával",

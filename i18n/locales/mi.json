@@ -9116,7 +9116,9 @@
     "joined": "{{name}} hono",
     "goalReached": "Kua tae mai te whāinga!",
     "followersUnit": "ngā kaiwhaiwhai",
-    "topSupporters": "Ko nga kaitautoko nui"
+    "topSupporters": "Ko nga kaitautoko nui",
+    "tipped": "{{name}} i tukuna he koha",
+    "chatPreview": "Ka puta mai ngā karere kōrerorero i konei"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9165,7 +9167,12 @@
       "top_supporters": "Ko nga kaitautoko nui",
       "viewer_count": "Te tatau o te kaitirotiro",
       "text": "Tuhinga",
-      "frame": "rahua"
+      "frame": "rahua",
+      "stream_timer": "Timer Whakawhitiwhiti",
+      "reaction_counter": "Te whakahe i te urupare",
+      "event_feed": "Ngā mahi hou",
+      "chat_box": "Pouaka kōrerorero",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "E whakanui ana i nga tohu katoa, e whakanuia ana ki tona taumata",
@@ -9177,7 +9184,12 @@
       "top_supporters": "Ko o koutou tippers nui rawa atu tenei awa",
       "viewer_count": "E hia nga tangata e matakitaki ana",
       "text": "He rārangi o te kuputuhi, he iti iho rānei te toru",
-      "frame": "He rohe e karapoti ana i to awa"
+      "frame": "He rohe e karapoti ana i to awa",
+      "stream_timer": "Whakaatuhia te roa o to tuku",
+      "reaction_counter": "Ka whakaarohia e koe nga urupare katoa e puta mai ana i to whakaaturanga",
+      "event_feed": "Ko nga taonga hou, nga kaiwhaiwhai, nga kaiohauru me nga tangata e tohatoha ana i to whakaaturanga",
+      "chat_box": "Whakaatuhia nga karere korerorero o to whakaaturanga i runga i te mata",
+      "ticker": "He raina o to tuhinga ake e rere ana puta noa i te mata"
     },
     "fields": {
       "style": "Kāhua",
@@ -9202,7 +9214,14 @@
       "accent": "Tae",
       "size": "Rahi",
       "smaller": "He iti ake",
-      "larger": "Nui ake"
+      "larger": "Nui ake",
+      "label": "Label",
+      "lines": "Nga raina e whakaatuhia ana",
+      "showAvatars": "Whakaatu whakaahua kōtaha",
+      "speed": "Tere",
+      "slow": "He puhoi",
+      "normal": "He mea noa",
+      "fast": "Tere"
     },
     "obs": {
       "title": "Whakamahia ki te OBS",

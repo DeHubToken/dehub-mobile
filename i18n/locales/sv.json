@@ -9140,7 +9140,9 @@
     "joined": "{{name}} gick med",
     "goalReached": "Målet har uppnåtts!",
     "followersUnit": "följare",
-    "topSupporters": "Toppanhängare"
+    "topSupporters": "Toppanhängare",
+    "tipped": "{{name}} skickade en gåva",
+    "chatPreview": "Chattmeddelanden visas här"
   },
   "liveStudio": {
     "title": "Live-studio",
@@ -9190,7 +9192,12 @@
       "top_supporters": "Största stödjarna",
       "viewer_count": "Tittarantal",
       "text": "Text",
-      "frame": "Ram"
+      "frame": "Ram",
+      "stream_timer": "Sändningstimer",
+      "reaction_counter": "Reaktionsräknare",
+      "event_feed": "Senaste aktivitet",
+      "chat_box": "Chattruta",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Firar varje tips, anpassat efter dess nivå",
@@ -9202,7 +9209,12 @@
       "top_supporters": "Dina största tippare under denna stream",
       "viewer_count": "Hur många som tittar",
       "text": "En textrad eller en nedre tredjedel",
-      "frame": "En ram runt din stream"
+      "frame": "En ram runt din stream",
+      "stream_timer": "Visar hur länge du har sänt",
+      "reaction_counter": "Räknar varje reaktion din sändning får",
+      "event_feed": "De senaste gåvorna, följarna, prenumeranterna och personerna som delar din sändning",
+      "chat_box": "Visar din sändnings chattmeddelanden på skärmen",
+      "ticker": "En rad med din egen text som rullar över skärmen"
     },
     "fields": {
       "style": "Stil",
@@ -9229,7 +9241,14 @@
       "accent": "Färg",
       "size": "Storlek",
       "smaller": "Småre",
-      "larger": "Större"
+      "larger": "Större",
+      "label": "Etikett",
+      "lines": "Linjer som visas",
+      "showAvatars": "Visa profilbilder",
+      "speed": "Hastighet",
+      "slow": "Långsam",
+      "normal": "Normal",
+      "fast": "Snabb"
     },
     "obs": {
       "title": "Använd med OBS",

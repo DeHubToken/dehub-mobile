@@ -9317,7 +9317,9 @@
     "joined": "{{name}} sumali",
     "goalReached": "Naabot na ang layunin!",
     "followersUnit": "mga tagasunod",
-    "topSupporters": "Mga nangungunang tagasuporta"
+    "topSupporters": "Mga nangungunang tagasuporta",
+    "tipped": "Nagpadala ng regalo si {{name}}",
+    "chatPreview": "Lilitaw ang mga mensahe ng chat dito"
   },
   "liveStudio": {
     "title": "Instagram",
@@ -9367,7 +9369,12 @@
       "top_supporters": "Mga pinakamalaking tagasuporta",
       "viewer_count": "Bilang ng mga manonood",
       "text": "Teksto",
-      "frame": "Frame"
+      "frame": "Frame",
+      "stream_timer": "Broadcast timer",
+      "reaction_counter": "Reaksyon counter",
+      "event_feed": "Kamakailang aktibidad",
+      "chat_box": "Chat box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Pagpupugay sa bawat tip ayon sa kanilang antas",
@@ -9379,7 +9386,12 @@
       "top_supporters": "Ang mga pinakamalaking tagasuporta sa stream na ito",
       "viewer_count": "Magkano ang mga taong nagmomonitor",
       "text": "Isang linya ng teksto o isang lower third",
-      "frame": "Isang hangganan sa iyong stream"
+      "frame": "Isang hangganan sa iyong stream",
+      "stream_timer": "Ipinapakita kung gaano katagal ka nang nagsasahimpapawid",
+      "reaction_counter": "Binibilang ang bawat reaksyon na nakukuha ng iyong broadcast",
+      "event_feed": "Ang pinakabagong mga regalo, mga tagasunod, mga tagasuskribi at mga taong nagbabahagi ng iyong broadcast",
+      "chat_box": "Ipinapakita ang mga mensahe sa chat ng iyong broadcast sa screen",
+      "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen"
     },
     "fields": {
       "style": "Estilo",
@@ -9406,7 +9418,14 @@
       "accent": "Colour",
       "size": "Size",
       "smaller": "Mas maliit",
-      "larger": "Mas malaki"
+      "larger": "Mas malaki",
+      "label": "Label",
+      "lines": "Ipinapakita ang mga linya",
+      "showAvatars": "Ipakita ang mga larawan sa profile",
+      "speed": "Bilis",
+      "slow": "Mabagal",
+      "normal": "Normal",
+      "fast": "Mabilis"
     },
     "obs": {
       "title": "Gamitin sa OBS",

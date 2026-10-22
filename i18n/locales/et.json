@@ -9136,7 +9136,9 @@
     "joined": "{{name}} liitus",
     "goalReached": "Eesmärk on saavutatud!",
     "followersUnit": "jälgijad",
-    "topSupporters": "Parimad toetajad"
+    "topSupporters": "Parimad toetajad",
+    "tipped": "{{name}} saatis kingituse",
+    "chatPreview": "Vestlussõnumid kuvatakse siin"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9186,7 +9188,12 @@
       "top_supporters": "Suuremad toetajad",
       "viewer_count": "Vaatajaid",
       "text": "Tekst",
-      "frame": "Rahm"
+      "frame": "Rahm",
+      "stream_timer": "Levitaimer",
+      "reaction_counter": "Reaktsiooniloendur",
+      "event_feed": "Hiljutine tegevus",
+      "chat_box": "Vestluskast",
+      "ticker": "Tiksuja"
     },
     "hints": {
       "tip_alert": "Täidab iga tippu tema taseme järgi",
@@ -9198,7 +9205,12 @@
       "top_supporters": "Teie suurimad tipperid selle suunda jaoks",
       "viewer_count": "Kui palju inimesi vaatab",
       "text": "Teksti rida või alatekste",
-      "frame": "Piir teie suunda ümber"
+      "frame": "Piir teie suunda ümber",
+      "stream_timer": "Näitab, kui kaua oled edastanud",
+      "reaction_counter": "Loendab iga reaktsiooni, mille saade saab",
+      "event_feed": "Viimased kingitused, jälgijad, tellijad ja inimesed, kes jagavad sinu saadet",
+      "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
+      "ticker": "Sinu enda teksti rida, mis kerib üle ekraani"
     },
     "fields": {
       "style": "Stiil",
@@ -9225,7 +9237,14 @@
       "accent": "Värv",
       "size": "Suurus",
       "smaller": "Väiksem",
-      "larger": "Suurem"
+      "larger": "Suurem",
+      "label": "Silt",
+      "lines": "Näidatud read",
+      "showAvatars": "Näita profiilipilte",
+      "speed": "Kiirus",
+      "slow": "Aeglane",
+      "normal": "Normaalne",
+      "fast": "Kiire"
     },
     "obs": {
       "title": "Kasuta OBS-i",

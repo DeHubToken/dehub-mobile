@@ -9302,7 +9302,9 @@
     "joined": "Pripojil sa používateľ {{name}}",
     "goalReached": "Cieľ bol dosiahnutý!",
     "followersUnit": "sledovatelia",
-    "topSupporters": "Najlepší priaznivci"
+    "topSupporters": "Najlepší priaznivci",
+    "tipped": "{{name}} odoslal/a darček",
+    "chatPreview": "Správy z chatu sa zobrazujú tu"
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9352,7 +9354,12 @@
       "top_supporters": "Najlepší priaznivci",
       "viewer_count": "Počet divákov",
       "text": "Text",
-      "frame": "Rám"
+      "frame": "Rám",
+      "stream_timer": "Časovač vysielania",
+      "reaction_counter": "Počítadlo reakcií",
+      "event_feed": "Nedávna aktivita",
+      "chat_box": "Chat box",
+      "ticker": "Ticker"
     },
     "hints": {
       "tip_alert": "Oslavuje každé prepitné vo veľkosti podľa jeho úrovne",
@@ -9364,7 +9371,12 @@
       "top_supporters": "Vaši najväčší sklápači tohto streamu",
       "viewer_count": "Koľko ľudí sa pozerá",
       "text": "Riadok textu alebo dolná tretina",
-      "frame": "Hranica okolo vášho prúdu"
+      "frame": "Hranica okolo vášho prúdu",
+      "stream_timer": "Zobrazuje, ako dlho vysielate",
+      "reaction_counter": "Počíta každú reakciu, ktorú vaše vysielanie dostane",
+      "event_feed": "Najnovšie dary, sledovatelia, odberatelia a ľudia zdieľajúci vaše vysielanie",
+      "chat_box": "Zobrazuje chatové správy vášho vysielania na obrazovke",
+      "ticker": "Riadok vlastného textu, ktorý sa posúva po obrazovke"
     },
     "fields": {
       "style": "Štýl",
@@ -9391,7 +9403,14 @@
       "accent": "Farba",
       "size": "Velkosť",
       "smaller": "Menší",
-      "larger": "Väčší"
+      "larger": "Väčší",
+      "label": "Štítok",
+      "lines": "Zobrazené čiary",
+      "showAvatars": "Zobraziť profilové obrázky",
+      "speed": "Rýchlosť",
+      "slow": "Pomaly",
+      "normal": "Normálne",
+      "fast": "Rýchlo"
     },
     "obs": {
       "title": "Použiť s OBS",

@@ -9076,7 +9076,8 @@
     "joined": "{{name}} 加入了",
     "goalReached": "目标达成！",
     "followersUnit": "粉丝",
-    "topSupporters": "最高支持者"
+    "topSupporters": "最高支持者",
+    "tipped": "{{name}} 送咱个礼物"
   },
   "liveStudio": {
     "landscape": "风景",
@@ -9091,10 +9092,14 @@
     "kinds": {
       "tip_alert": "提示警报",
       "subscribe_alert": "訂閱提醒",
-      "goal_bar": "目標條"
+      "goal_bar": "目標條",
+      "stream_timer": "广播计时器",
+      "event_feed": "最近活动"
     },
     "hints": {
-      "join_alert": "歡迎各位觀賞者到場！"
+      "join_alert": "歡迎各位觀賞者到場！",
+      "event_feed": "最新的礼物、粉丝、订阅者以及分享你直播的人",
+      "chat_box": "显示你直播的聊天消息在屏幕上"
     },
     "fields": {
       "confirmedOnlyHint": "等幾秒鐘鏈式，所以從不付款的小費永遠不會出現。",
@@ -9115,7 +9120,8 @@
       "accent": "顏色",
       "size": "大小",
       "smaller": "較小",
-      "larger": "較大"
+      "larger": "較大",
+      "fast": "快快"
     },
     "obs": {
       "title": "與OBS一起使用",

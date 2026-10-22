@@ -9103,7 +9103,8 @@
   },
   "liveOverlay": {
     "someone": "مَن",
-    "joined": "المنضم {{name}}"
+    "joined": "المنضم {{name}}",
+    "chatPreview": "الرسائل بتظهر هنا"
   },
   "liveStudio": {
     "title": "ستوديو لايف",
@@ -9185,7 +9186,11 @@
       "glow": "توهّج",
       "thickness": "سُمك",
       "accent": "لَوْن",
-      "size": "حجم"
+      "size": "حجم",
+      "lines": "الخطوط المعروضة",
+      "speed": "سويع",
+      "normal": "عادي",
+      "fast": "سريع"
     },
     "obs": {
       "connected": "OBS متصل",

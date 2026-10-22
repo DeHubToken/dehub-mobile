@@ -9130,7 +9130,9 @@
     "joined": "{{name}} ተቀላቀለ",
     "goalReached": "ግብ ደርሷል!",
     "followersUnit": "ተከታዮች",
-    "topSupporters": "ከፍተኛ ደጋፊዎች"
+    "topSupporters": "ከፍተኛ ደጋፊዎች",
+    "tipped": "{{name}} አንድ ስጦታ ላከ",
+    "chatPreview": "የውይይት መልዕክቶች እዚህ ይታያሉ"
   },
   "liveStudio": {
     "title": "የቀጥታ ስቱዲዮ",
@@ -9179,7 +9181,12 @@
       "top_supporters": "ከፍተኛ ደጋፊዎች",
       "viewer_count": "ተመልካች ቆጠራ",
       "text": "ጽሑፍ",
-      "frame": "ክፈፍ"
+      "frame": "ክፈፍ",
+      "stream_timer": "የብሮድካስት ሰዓት ቆጣሪ",
+      "reaction_counter": "ምላሽ ቆጣሪ",
+      "event_feed": "የቅርብ ጊዜ እንቅስቃሴ",
+      "chat_box": "የውይይት ሳጥን",
+      "ticker": "ቲከር"
     },
     "hints": {
       "tip_alert": "እያንዳንዱን ጠቃሚ ምክር ያከብራል ፣ ወደ ደረጃው ይደርሳል",
@@ -9191,7 +9198,12 @@
       "top_supporters": "የእርስዎ ትልልቅ tippers ይህን ዥረት",
       "viewer_count": "ምን ያህል ሰዎች እየተመለከቱ ነው",
       "text": "የጽሑፍ መስመር ወይም ዝቅተኛ ሶስተኛ",
-      "frame": "በዥረትዎ ዙሪያ ድንበር"
+      "frame": "በዥረትዎ ዙሪያ ድንበር",
+      "stream_timer": "ምን ያህል ጊዜ ብሮድካስቲንግ እንዳደረጉ ያሳያል",
+      "reaction_counter": "የእርስዎ ስርጭት ያገኛል እያንዳንዱ ምላሽ ይቆጥራል",
+      "event_feed": "የቅርብ ጊዜ ስጦታዎች ፣ ተከታዮች ፣ ተመዝጋቢዎች እና ስርጭትዎን የሚያጋሩ ሰዎች",
+      "chat_box": "በማያ ገጹ ላይ የብሮድካስትዎን የውይይት መልዕክቶች ያሳያል",
+      "ticker": "በማያ ገጹ ላይ የሚንሸራተት የራስዎ ጽሑፍ መስመር"
     },
     "fields": {
       "style": "ቅጥ",
@@ -9216,7 +9228,14 @@
       "accent": "ቀለም",
       "size": "መጠን",
       "smaller": "አነስተኛ",
-      "larger": "ትልቅ"
+      "larger": "ትልቅ",
+      "label": "መለያ",
+      "lines": "መስመሮች ይታያሉ",
+      "showAvatars": "የመገለጫ ምስሎችን አሳይ",
+      "speed": "ፍጥነት",
+      "slow": "ቀርፋፋ",
+      "normal": "መደበኛ",
+      "fast": "ፈጣን"
     },
     "obs": {
       "title": "ከ OBS ጋር ይጠቀሙ",
