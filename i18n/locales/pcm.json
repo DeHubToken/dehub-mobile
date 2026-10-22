@@ -8921,6 +8921,8 @@
       "points_board": "Loyal viewers"
     },
     "hints": {
+      "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
+      "points_board": "Your top viewers by points from watching and gifting",
       "spin_wheel": "Where the wheels in your rules spin",
       "poll": "Your live poll, with a vote button for every option",
       "rule_alert": "Where your rules' alerts appear",
@@ -9147,6 +9149,12 @@
       }
     },
     "subathon": {
+      "intro": "A countdown on your stream. Every paid gift, follow and subscription adds time, so the room keeps you live.",
+      "capHours": "Longest it can run (hours)",
+      "startMinutes": "Start with (minutes)",
+      "start": "Start the countdown",
+      "removeFive": "Take off 5 minutes",
+      "widgetHint": "Shows your subathon countdown. Start it from the Subathon panel in Live Studio.",
       "title": "Subathon",
       "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
       "secondsPerFollow": "Seconds added per follow",
@@ -9158,6 +9166,7 @@
       "failed": "Na dey go wrong. Try again."
     },
     "points": {
+      "widgetHint": "Add the Loyal viewers widget to show this list on stream.",
       "title": "Loyal viewers",
       "intro": "Viewers get one point for every minute dey watch you, and one point for every 100 DHB dey gift you. Chat and reactions no give point, so you can't just farm points.",
       "empty": "No point yet. Dem dey increase when people watch and give gift."

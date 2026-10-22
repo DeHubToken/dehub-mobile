@@ -9157,6 +9157,7 @@
     "notNow": "Inte nu"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spinnade: {{result}}",
     "someone": "Någon",
     "newFollower": "Ny följare: {{name}}",
@@ -9512,6 +9513,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "En nedräkning på din ström. Varje betald gåva, följare och prenumeration lägger till tid, så rummet håller dig levande.",
       "secondsPerThousand": "Sekunder tillagda per 1 000 DHB begåvad",
       "secondsPerFollow": "Sekunder tillagda per följare",

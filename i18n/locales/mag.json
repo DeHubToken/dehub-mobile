@@ -9129,6 +9129,8 @@
     "notNow": "आज तलक होलइ नञ"
   },
   "liveOverlay": {
+    "points_one": "{{formatted}} पॉइंट",
+    "points_other": "{{formatted}} पॉइंट",
     "wheelLanded": "{{name}} स्पून: {{result}}",
     "someone": "कोउ ना कोई के संग में",
     "goalReached": "पहुँच गेलो हम अपन दालान!",

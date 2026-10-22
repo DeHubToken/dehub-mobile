@@ -9282,6 +9282,7 @@
     "update": "Atualizar agora"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} rodado: {{result}}",
     "someone": "Alguém",
     "newFollower": "Novo seguidor: {{name}}",
@@ -9637,6 +9638,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Uma contagem regressiva na sua transmissão. Cada presente pago, seguimento e subscrição adiciona tempo, para que o quarto o mantenha vivo.",
       "secondsPerThousand": "Segundos adicionados por 1.000 DHB superdotados",
       "secondsPerFollow": "Segundos adicionados por seguimento",

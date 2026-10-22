@@ -9234,6 +9234,7 @@
     "notNow": "Tsy hita"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} Spun: {{result}}",
     "poll": {
       "closed": "Mikatona ny fandrotsaham-bato",
@@ -9588,6 +9589,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Fanisana eo amin'ny toeranao. Ny fanomezana aloa rehetra, manaraka ary famandrihana dia manampy fotoana, noho izany dia mitazona anao ny efitrano.",
       "secondsPerThousand": "Segondra fanampiny isaky ny 1,000 DHB nomena",
       "secondsPerFollow": "Segondra fanampiny isaky ny manaraka",

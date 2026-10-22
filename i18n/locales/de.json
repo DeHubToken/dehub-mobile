@@ -9349,6 +9349,7 @@
     "watch": "Eine Anzeige ansehen, um diesen Creator zu unterstützen"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} gesponnen: {{result}}",
     "someone": "Jemand",
     "newFollower": "Neuer Follower: {{name}}",
@@ -9703,6 +9704,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Ein Countdown für Ihren Stream. Jedes bezahlte Geschenk, Follow und Abonnement verlängert die Zeit, sodass der Raum dich am Leben hält.",
       "secondsPerThousand": "Hinzugefügte Sekunden pro 1.000 DHB-Geschenke",
       "secondsPerFollow": "Sekunden pro Folge hinzugefügt",

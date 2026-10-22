@@ -9153,6 +9153,7 @@
     "notNow": "Ei nyt"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} pyöritti: {{result}}",
     "someone": "Joku",
     "newFollower": "Uusi seuraaja: {{name}}",
@@ -9508,6 +9509,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Lähtölaskenta suoratoistossasi. Jokainen maksettu lahja, seuraa ja tilaa lisää aikaa, joten huone pitää sinut hengissä.",
       "secondsPerThousand": "Sekuntia lisätty 1 000 DHB: n lahjaa kohden",
       "secondsPerFollow": "Sekuntia lisätty per seuraaminen",

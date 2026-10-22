@@ -10998,6 +10998,7 @@
     "receipt": "${{amount}} toegevoegd aan de advertentie-inkomsten van de maker. tokenafrekening is in behandeling."
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} gesponnen: {{result}}",
     "someone": "Iemand",
     "newFollower": "Nieuwe volger: {{name}}",
@@ -11075,6 +11076,7 @@
       "join": "Aanmelden"
     },
     "kinds": {
+      "subathon_timer": "Subathon-timer",
       "spin_wheel": "Draaischijf",
       "poll": "Peiling",
       "tip_alert": "Tip-alert",
@@ -11352,6 +11354,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Aftellen op je stream. Elk betaald geschenk, volg- en abonnement voegt tijd toe, zodat de kamer je in leven houdt.",
       "secondsPerThousand": "Seconden toegevoegd per 1.000 DHB begaafd",
       "secondsPerFollow": "Seconden toegevoegd per follow",

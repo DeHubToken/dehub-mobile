@@ -9154,6 +9154,7 @@
     "notNow": "Ne sada"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spin: {{result}}",
     "someone": "Netko",
     "newFollower": "Novi pratitelj: {{name}}",
@@ -9509,6 +9510,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Odbrojavanje na vašem streamu. Svaki plaćeni dar, praćenje i pretplata dodaju vrijeme, tako da soba održava vaš život.",
       "secondsPerThousand": "Dodane sekunde na 1000 darovanih DHB-a",
       "secondsPerFollow": "Dodane sekunde po pratnji",

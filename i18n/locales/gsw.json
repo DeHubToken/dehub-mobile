@@ -9173,6 +9173,7 @@
     "notNow": "Nöchtli no."
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} hüt: {{result}}",
     "poll": {
       "closed": "Abstimmig schtössi",
@@ -9277,6 +9278,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "subathon_timer": "Subathon-Timer",
       "spin_wheel": "Schleuderrad",
       "poll": "Umfrage",
       "tip_alert": "Tipp-Benachrichtigung",
@@ -9296,6 +9298,7 @@
       "points_board": "Loyale Zuschauer"
     },
     "hints": {
+      "points_board": "Ihre Top-Zuschauer nach Punkten aus Zuschauen und Verschenken",
       "spin_wheel": "Wo die Räder in deinen Regeln dreh’n",
       "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option",
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
@@ -9519,6 +9522,9 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
+      "start": "Countdown starten",
+      "stop": "Stopp",
       "intro": "Eini Countdown auf deim Stream. Jeder bezahlte Gift, Follow und Abo gäbt Zeit, so bleibt’s Room live.",
       "secondsPerThousand": "Sekunden, die pro 1'000 DHB geschenkt werden, hinzugefügt",
       "secondsPerFollow": "Sekunden pro Follow gfügt",
@@ -9533,6 +9539,7 @@
       "widgetHint": "Zeigst deini Subathon-Zählrückwärtslauf an. Startschtihle es im Subathon-Panel in Live Studio."
     },
     "points": {
+      "widgetHint": "Fügen Sie das Widget Loyale Zuschauer hinzu, um diese Liste im Stream anzuzeigen.",
       "title": "Loyale Zuschauer",
       "intro": "Zuschauende verdiene a Pukt für jede Minute, wo se di schaue, und a Pukt für je 100 DHB, wo se dir schenke. Chat und Reaktione bringe nix ein – Pukt kenne mer folglich net «farmen».",
       "empty": "Kei Punkte no. Die bauen sich auf, wenn Leute zuschauen und schenken."

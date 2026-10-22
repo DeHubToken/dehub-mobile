@@ -9247,6 +9247,7 @@
     "update": "今すぐ更新"
   },
   "liveOverlay": {
+    "subathon": "サバソン",
     "wheelLanded": "{{name}}回転：{{result}}",
     "someone": "誰か",
     "newFollower": "新規フォロワー：{{name}}",
@@ -9602,6 +9603,7 @@
       }
     },
     "subathon": {
+      "title": "サバソン",
       "intro": "ストリームのカウントダウン。すべての有料ギフト、フォロー、サブスクリプションは時間を増やすので、部屋はあなたの生活を維持します。",
       "secondsPerThousand": "贈られた1,000 DHBごとに追加された秒数",
       "secondsPerFollow": "フォローごとに追加された秒数",

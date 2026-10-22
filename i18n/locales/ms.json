@@ -9409,6 +9409,7 @@
     "notNow": "Bukan sekarang"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "closed": "Pengundian ditutup",
@@ -9764,6 +9765,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Kiraan detik pada strim anda. Setiap hadiah, ikutan dan langganan berbayar menambah masa, jadi bilik ini membolehkan anda kekal aktif.",
       "secondsPerThousand": "Saat ditambah bagi setiap 1,000 DHB berbakat",
       "secondsPerFollow": "Saat ditambah bagi setiap pengikut",

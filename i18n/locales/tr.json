@@ -10744,6 +10744,7 @@
     "watch": "Bu yaratıcıyı desteklemek için bir reklam izleyin"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spun :{{result}}",
     "someone": "Birisi",
     "newFollower": "Yeni takipçi: {{name}}",
@@ -10821,6 +10822,7 @@
       "join": "Katıl"
     },
     "kinds": {
+      "subathon_timer": "Subathon sayacı",
       "spin_wheel": "Döner çark",
       "tip_alert": "Bahşiş uyarısı",
       "follow_alert": "Takip uyarısı",
@@ -11098,6 +11100,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Akışınızda bir geri sayım. Ödenen her hediye, takip ve abonelik size zaman kazandırır, böylece oda sizi canlı tutar.",
       "secondsPerThousand": "Hediye edilen 1.000 DHB başına saniye eklendi",
       "secondsPerFollow": "Takip başına saniye eklendi",

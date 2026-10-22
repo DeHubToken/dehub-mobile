@@ -9174,6 +9174,7 @@
     "notNow": "现在不"
   },
   "liveOverlay": {
+    "subathon": "苏巴吞",
     "wheelLanded": "{{name}} 转动了：{{result}}",
     "poll": {
       "closed": "投票已关闭",
@@ -9280,6 +9281,7 @@
       "join": "加入"
     },
     "kinds": {
+      "subathon_timer": "Subathon计时器",
       "spin_wheel": "旋转转盘",
       "poll": "民调",
       "tip_alert": "提示警报",
@@ -9521,6 +9523,10 @@
       }
     },
     "subathon": {
+      "title": "苏巴吞",
+      "secondsPerThousand": "每1,000 DHB赠送增加秒数",
+      "start": "开始倒计时",
+      "widgetHint": "显示您的子马拉松倒计时。从Live Studio的Subathon面板开始。",
       "intro": "直播间倒计时！每个付费礼物、关注和订阅都会增加时间，让房间为你保持直播。",
       "secondsPerFollow": "秒数每追随一次增加的数量",
       "secondsPerSubscribe": "订阅每次增加的秒数",

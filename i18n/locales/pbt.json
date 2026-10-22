@@ -9115,6 +9115,8 @@
     "notNow": "اوس نه"
   },
   "liveOverlay": {
+    "points_one": "{{formatted}} نمره",
+    "points_other": "{{formatted}} نمرې",
     "wheelLanded": "{{name}} وګرځاوه: {{result}}",
     "someone": "څوک په",
     "goalReached": "موخې ته د رسېدو لار!",

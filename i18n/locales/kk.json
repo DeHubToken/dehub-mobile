@@ -9193,6 +9193,7 @@
     "notNow": "Не сейчас"
   },
   "liveOverlay": {
+    "points_one": "{{formatted}} ұпай",
     "wheelLanded": "{{name}} айналдырды: {{result}}",
     "someone": "Біреу",
     "newFollower": "Жаңа ізбасар: {{name}}",

@@ -9334,6 +9334,7 @@
     "notNow": "Hindi ngayon"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}}spun:{{result}}",
     "someone": "Isang tao",
     "newFollower": "Bagong tagasunod:{{name}}",
@@ -9411,6 +9412,7 @@
       "join": "Pagkakalaban"
     },
     "kinds": {
+      "subathon_timer": "Timer ng subathon",
       "spin_wheel": "Paikutin ang gulong",
       "poll": "Botohan",
       "tip_alert": "Alerta sa tip",
@@ -9688,6 +9690,8 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
+      "addFive": "Magdagdag ng 5 minuto",
       "intro": "Isang countdown sa iyong stream. Ang bawat bayad na regalo, follow at subscription ay nagdaragdag ng oras, kaya pinapanatili ka ng kuwarto.",
       "secondsPerThousand": "Mga segundo na idinagdag sa bawat 1,000 DHB gifted",
       "secondsPerFollow": "Mga segundo na idinagdag kada follow",

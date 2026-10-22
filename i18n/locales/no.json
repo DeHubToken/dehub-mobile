@@ -9150,6 +9150,7 @@
     "notNow": "Ikke nå"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spunnet: {{result}}",
     "someone": "Noen",
     "newFollower": "Ny følger: {{name}}",
@@ -9503,6 +9504,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "En nedtelling på strømmen din. Hver betalt gave, følger og abonnement legger til tid, slik at rommet holder deg i live.",
       "secondsPerThousand": "Sekunder lagt til per 1000 DHB gitt",
       "secondsPerFollow": "Sekunder lagt til per følger",

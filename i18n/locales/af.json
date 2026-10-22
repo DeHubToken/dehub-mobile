@@ -9279,6 +9279,7 @@
     "notNow": "Nie nou nie"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spun: {{result}}",
     "someone": "Iemand",
     "newFollower": "Nuwe volgeling: {{name}}",
@@ -9634,6 +9635,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "'N Telling op jou stroom. Elke betaalde geskenk, volg en intekening voeg tyd toe, sodat die kamer jou lewendig hou.",
       "secondsPerThousand": "Sekondes bygevoeg per 1,000 DHB begaafde",
       "secondsPerFollow": "Sekondes bygevoeg per volg",

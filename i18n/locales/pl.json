@@ -9227,6 +9227,7 @@
     "update": "Zaktualizuj teraz"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} wirował: {{result}}",
     "someone": "Ktoś",
     "newFollower": "Nowy obserwujący: {{name}}",
@@ -9582,6 +9583,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Odliczanie w strumieniu. Każdy płatny prezent, obserwowanie i subskrypcja dodają czasu, dzięki czemu pokój utrzymuje Cię na żywo.",
       "secondsPerThousand": "Dodane sekundy na 1000 DHB podarowanych",
       "secondsPerFollow": "Dodane sekundy na obserwację",

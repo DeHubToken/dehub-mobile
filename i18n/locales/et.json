@@ -9153,6 +9153,7 @@
     "notNow": "Mitte praegu"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} pööras: {{result}}",
     "someone": "Keegi",
     "newFollower": "Uus jälgija: {{name}}",
@@ -9508,6 +9509,7 @@
       }
     },
     "subathon": {
+      "title": "Subathon",
       "intro": "Stardiloendus sinu voos. Iga tasuline kingitus, järgimine ja tellimine lisab aega, nii et tuba hoiab sind elus.",
       "secondsPerThousand": "Sekundit lisatud 1000 DHB kingituse kohta",
       "secondsPerFollow": "Sekundit lisatud järgimise kohta",

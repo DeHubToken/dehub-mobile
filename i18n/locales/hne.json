@@ -9174,6 +9174,8 @@
     "notNow": "अभी नइ"
   },
   "liveOverlay": {
+    "points_one": "{{formatted}} पॉइंट",
+    "points_other": "{{formatted}} पॉइंट",
     "wheelLanded": "{{name}} स्पून: {{result}}",
     "poll": {
       "voteFor": "{{option}} के लिए वोट करें",

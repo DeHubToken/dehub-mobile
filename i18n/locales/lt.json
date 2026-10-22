@@ -9509,6 +9509,7 @@
       }
     },
     "subathon": {
+      "widgetHint": "Rodo tavo Subathon skaitiklį. Pradėk iš Subathon panelės Live Studio.",
       "title": "Subatonas",
       "intro": "Laiko skaičiavimas jūsų sraute. Kiekviena mokama dovana, sekimas ir prenumerata prideda laiko, kad kambarys jus išlaikytų.",
       "secondsPerThousand": "Pridėta sekundžių už kiekvieną dovanotą 1000 DHB",
