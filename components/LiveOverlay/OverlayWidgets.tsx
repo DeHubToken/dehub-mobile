@@ -197,7 +197,7 @@ function PersonAlert({ settings, kind, box }: WidgetProps & { kind: OverlayKind 
   const wanted = PERSON_EVENT[kind];
 
   useOverlayEvent((event: LiveRoomEvent) => {
-    if (event.type !== wanted || !("user" in event)) return;
+    if (event.type !== wanted || !("user" in event) || !event.user) return;
     if (event.type === "join") {
       const key = event.user.address;
       if (!key || seen.current.has(key)) return;
