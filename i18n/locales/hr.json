@@ -9154,6 +9154,7 @@
     "notNow": "Ne sada"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spin: {{result}}",
     "someone": "Netko",
     "newFollower": "Novi pratitelj: {{name}}",
@@ -9175,7 +9176,11 @@
       "voted_other": "Glasali ste · {{count}}",
       "votes_one": "{{count}} glas",
       "votes_other": "{{count}} glasova"
-    }
+    },
+    "subathonOver": "Vrijeme je isteklo",
+    "pointsTitle": "Najvjerniji gledatelji",
+    "points_one": "{{formatted}} bod",
+    "points_other": "{{formatted}} bodova"
   },
   "liveStudio": {
     "controls": {
@@ -9244,7 +9249,9 @@
       "chat_box": "Okvir za razgovor",
       "ticker": "Ticker",
       "rule_alert": "Obavijesti o pravilima",
-      "poll": "Anketa"
+      "poll": "Anketa",
+      "subathon_timer": "Podatkovni mjerač vremena",
+      "points_board": "Vjerni gledatelji"
     },
     "hints": {
       "spin_wheel": "Gdje se okreću kotači u vašim pravilima",
@@ -9264,7 +9271,9 @@
       "chat_box": "Prikazuje poruke chata vašeg emitiranja na zaslonu",
       "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu",
       "rule_alert": "Gdje se prikazuju obavijesti o pravilima",
-      "poll": "Vaša anketa uživo, s gumbom za glasanje za svaku opciju"
+      "poll": "Vaša anketa uživo, s gumbom za glasanje za svaku opciju",
+      "subathon_timer": "Odbrojavanje koje odbacuje darove, pratnju i pretplate",
+      "points_board": "Vaši najbolji gledatelji po bodovima od gledanja i darivanja"
     },
     "fields": {
       "style": "Stil",
@@ -9499,6 +9508,29 @@
         "word-timeout_one": "Isključio je {{target}} za {{count}} sekundu zbog: \"{{word}}\"",
         "word-timeout_other": "Isključio je {{target}} za {{count}} sekunde zbog: \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Odbrojavanje na vašem streamu. Svaki plaćeni dar, praćenje i pretplata dodaju vrijeme, tako da soba održava vaš život.",
+      "secondsPerThousand": "Dodane sekunde na 1000 darovanih DHB-a",
+      "secondsPerFollow": "Dodane sekunde po pratnji",
+      "secondsPerSubscribe": "Dodane sekunde po pretplati",
+      "capHours": "Najduže što može raditi (sati)",
+      "save": "Spremi iznose",
+      "saved": "Uštedjeli ste na subatonu.",
+      "startMinutes": "Počni s (minute)",
+      "start": "Pokreni odbrojavanje",
+      "stop": "Stop",
+      "addFive": "Dodajte 5 minuta",
+      "removeFive": "Poletite za 5 minuta",
+      "failed": "To nije uspjelo. Pokušajte ponovno.",
+      "widgetHint": "Prikazuje odbrojavanje vašeg subatona. Pokrenite ga na ploči Subathon u studiju uživo."
+    },
+    "points": {
+      "title": "Vjerni gledatelji",
+      "intro": "Gledatelji dobivaju poen za svaku minutu gledanja te poen za svaka 100 DHB koja im se daruje. Čat i reakcije ne donose ništa, pa poeni ne mogu se farmati.",
+      "empty": "Još nema bodova. Oni se gomilaju dok ljudi gledaju i poklanjaju.",
+      "widgetHint": "Dodajte widget Loyal viewers za prikaz ovog popisa u streamu."
     }
   },
   "liveChatModeration": {

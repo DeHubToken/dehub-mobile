@@ -9175,7 +9175,12 @@
       "voted_other": "Has votat · {{count}} vots",
       "votes_one": "{{count}} vota",
       "votes_other": "{{count}} vots"
-    }
+    },
+    "subathon": "Subató",
+    "subathonOver": "S'ha acabat el temps",
+    "pointsTitle": "Els espectadors més lleials",
+    "points_one": "{{formatted}} punt",
+    "points_other": "{{formatted}} punts"
   },
   "liveStudio": {
     "controls": {
@@ -9244,7 +9249,9 @@
       "chat_box": "Quadre de xat",
       "ticker": "Ticker",
       "rule_alert": "Alertes de regles",
-      "poll": "Enquesta"
+      "poll": "Enquesta",
+      "subathon_timer": "Temporitzador Subathon",
+      "points_board": "Espectadors lleials"
     },
     "hints": {
       "spin_wheel": "On giren les rodes de les teves regles",
@@ -9264,7 +9271,9 @@
       "chat_box": "Mostra els missatges de xat de la teva emissió a la pantalla",
       "ticker": "Una línia del teu propi text que es desplaça per la pantalla",
       "rule_alert": "On apareixen les alertes de les teves normes",
-      "poll": "La teva enquesta en directe, amb un botó de vot per a cada opció"
+      "poll": "La teva enquesta en directe, amb un botó de vot per a cada opció",
+      "subathon_timer": "Un compte enrere que regala, segueix i les subscripcions fan retrocedir",
+      "points_board": "Els teus millors espectadors per punts de visualització i regals"
     },
     "fields": {
       "style": "Estil",
@@ -9499,6 +9508,29 @@
         "word-timeout_one": "Ha posat en *timeout* {{target}} per {{count}} segon per a \"{{word}}\"",
         "word-timeout_other": "Ha posat en *timeout* {{target}} per {{count}} segons per a \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subató",
+      "intro": "Un compte enrere al teu flux. Cada regal de pagament, seguiment i subscripció afegeix temps, de manera que l'habitació et manté viu.",
+      "secondsPerThousand": "Segons afegits per cada 1000 DHB obsequiats",
+      "secondsPerFollow": "Segons afegits per seguit",
+      "secondsPerSubscribe": "Segons afegits per subscripció",
+      "capHours": "Més llarg que pot funcionar (hores)",
+      "save": "Desa els imports",
+      "saved": "S'han estalviat quantitats de la subat",
+      "startMinutes": "Comença amb (minuts)",
+      "start": "Comença el compte enrere",
+      "stop": "Atura",
+      "addFive": "Afegeix 5 minuts",
+      "removeFive": "Aconsegueix 5 minuts de descans",
+      "failed": "No ha funcionat. Torna-ho a provar.",
+      "widgetHint": "Mostra el compte enrere de la subató. Comença des del panell Subathon a Live Studio."
+    },
+    "points": {
+      "title": "Espectadors lleials",
+      "intro": "Els espectadors guanyen un punt per cada minut que et miren i un per cada 100 DHB que regalen. El xat i les reaccions no guanyen res, de manera que no es poden acumular punts.",
+      "empty": "Encara no hi ha punts. S'acumulen a mesura que la gent observa i regala.",
+      "widgetHint": "Afegeix el giny Visualitzadors lleials per mostrar aquesta llista a la transmissió."
     }
   },
   "liveChatModeration": {

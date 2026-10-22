@@ -9174,7 +9174,12 @@
       "voted_other": "Balsavote · {{count}} balsų",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} balsai"
-    }
+    },
+    "subathon": "Subatonas",
+    "subathonOver": "Laikas baigėsi",
+    "pointsTitle": "Lojaliausi žiūrovai",
+    "points_one": "{{formatted}} taškas",
+    "points_other": "{{formatted}} taškai"
   },
   "liveStudio": {
     "controls": {
@@ -9243,7 +9248,9 @@
       "chat_box": "Pokalbio laukelis",
       "ticker": "Žymeklis",
       "rule_alert": "Pranešimai apie taisyklę",
-      "poll": "Apklausa"
+      "poll": "Apklausa",
+      "subathon_timer": "Subatono laikmatis",
+      "points_board": "Ištikimi žiūrovai"
     },
     "hints": {
       "spin_wheel": "Kur sukasi jūsų taisyklių ratai",
@@ -9263,7 +9270,9 @@
       "chat_box": "Rodo transliacijos pokalbių žinutes ekrane",
       "ticker": "Jūsų teksto eilutė, slenkanti per ekraną",
       "rule_alert": "Kur rodomi jūsų taisyklių pranešimai",
-      "poll": "Jūsų tiesioginė apklausa su balsavimo mygtuku kiekvienai parinkčiai"
+      "poll": "Jūsų tiesioginė apklausa su balsavimo mygtuku kiekvienai parinkčiai",
+      "subathon_timer": "Dovanų, sekimo ir prenumeratų atgalinis skaičiavimas",
+      "points_board": "Jūsų geriausi žiūrovai pagal žiūrėjimo ir dovanojimo taškus"
     },
     "fields": {
       "style": "Stilius",
@@ -9498,6 +9507,29 @@
         "word-timeout_one": "{{target}} skirtas laikas baigėsi {{count}} sekundei „{{word}}“",
         "word-timeout_other": "{{target}} skirtas laikas baigėsi {{count}} sekundėms „{{word}}“"
       }
+    },
+    "subathon": {
+      "widgetHint": "Rodo tavo Subathon skaitiklį. Pradėk iš Subathon panelės Live Studio.",
+      "title": "Subatonas",
+      "intro": "Laiko skaičiavimas jūsų sraute. Kiekviena mokama dovana, sekimas ir prenumerata prideda laiko, kad kambarys jus išlaikytų.",
+      "secondsPerThousand": "Pridėta sekundžių už kiekvieną dovanotą 1000 DHB",
+      "secondsPerFollow": "Sekundės pridėtos už sekimą",
+      "secondsPerSubscribe": "Sekundės pridedamos per prenumeratą",
+      "capHours": "Ilgiausiai jis gali veikti (val.)",
+      "save": "Sutaupykite sumas",
+      "saved": "Subathon sumos išsaugotos.",
+      "startMinutes": "Pradėkite nuo (min.)",
+      "start": "Pradėti atgalinį skaičiavimą",
+      "stop": "Stabdyti",
+      "addFive": "Pridėti 5 minutes",
+      "removeFive": "Pakilkite 5 minutes",
+      "failed": "Nepavyko. Bandykite dar kartą."
+    },
+    "points": {
+      "title": "Ištikimi žiūrovai",
+      "intro": "Žiūrovai gauna po tašką už kiekvieną minutę, kurią žiūri, ir po vieną tašką už kiekvieną 100 DHB dovaną. Pokalbiai ir reakcijos nieko neuždirba, todėl taškai negali būti kaupiami.",
+      "empty": "Taškų dar nėra. Jie kaupiasi žmonėms stebint ir dovanojant.",
+      "widgetHint": "Pridėkite Lojalių žiūrovų valdiklį, kad šis sąrašas būtų rodomas sraute."
     }
   },
   "liveChatModeration": {

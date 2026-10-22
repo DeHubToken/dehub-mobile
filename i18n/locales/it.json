@@ -9216,7 +9216,12 @@
       "voted_other": "Hai votato · {{count}} voti",
       "votes_one": "{{count}} voto",
       "votes_other": "{{count}} voti"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Tempo scaduto",
+    "pointsTitle": "I più fedeli spettatori",
+    "points_one": "{{formatted}} punto",
+    "points_other": "{{formatted}} punti"
   },
   "liveStudio": {
     "controls": {
@@ -9284,7 +9289,9 @@
       "event_feed": "Attività recente",
       "chat_box": "Chat box",
       "ticker": "Testo scorrevole",
-      "rule_alert": "Avvisi delle regole"
+      "rule_alert": "Avvisi delle regole",
+      "subathon_timer": "Timer Subathon",
+      "points_board": "Spectatori fedeli"
     },
     "hints": {
       "spin_wheel": "Dove girano le ruote nelle tue regole",
@@ -9304,7 +9311,9 @@
       "chat_box": "Mostra i messaggi di chat della trasmissione sullo schermo",
       "ticker": "Una riga del tuo testo che scorre sullo schermo",
       "rule_alert": "Dove vengono visualizzati gli avvisi delle tue regole",
-      "poll": "Il tuo sondaggio dal vivo, con un pulsante di voto per ogni opzione"
+      "poll": "Il tuo sondaggio dal vivo, con un pulsante di voto per ogni opzione",
+      "subathon_timer": "Un countdown che i doni, i follow e gli abbonamenti fanno avanzare",
+      "points_board": "I tuoi spettatori più fedeli per punti da visualizzazioni e donazioni"
     },
     "fields": {
       "style": "Stile",
@@ -9538,6 +9547,29 @@
         "word-timeout_one": "Messo in timeout {{target}} per {{count}} secondo per \"{{word}}\"",
         "word-timeout_other": "Messo in timeout {{target}} per {{count}} secondi per \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Un countdown sul tuo stream. Ogni dono pagato, follow e abbonamento aggiunge tempo, quindi la stanza ti tiene in diretta.",
+      "secondsPerThousand": "Secondi aggiunti per ogni 1.000 DHB donati",
+      "secondsPerFollow": "Secondi aggiunti per ogni follow",
+      "secondsPerSubscribe": "Secondi aggiunti per ogni abbonamento",
+      "capHours": "Durata massima (ore)",
+      "save": "Salva importi",
+      "saved": "Importi salvati per Subathon.",
+      "startMinutes": "Inizia con (minuti)",
+      "start": "Avvia il countdown",
+      "stop": "Ferma",
+      "addFive": "Aggiungi 5 minuti",
+      "removeFive": "Togli 5 minuti",
+      "failed": "Non ha funzionato. Riprova.",
+      "widgetHint": "Mostra il countdown del Subathon. Avvialo dal pannello Subathon in Live Studio."
+    },
+    "points": {
+      "title": "Spectatori fedeli",
+      "intro": "Gli spettatori guadagnano un punto per ogni minuto che guardano te e uno per ogni 100 DHB che donano. Chat e reazioni non danno punti, quindi i punti non possono essere accumulati in modo artificiale.",
+      "empty": "Ancora nessun punto. Si accumulano mentre le persone guardano e donano.",
+      "widgetHint": "Aggiungi il widget \"Spectatori fedeli\" per mostrare questa lista in stream."
     }
   },
   "liveChatModeration": {

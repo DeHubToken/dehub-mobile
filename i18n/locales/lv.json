@@ -9174,7 +9174,12 @@
       "voted_other": "Jūs balsojāt · {{count}} balsis",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} balsis"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Laiks beidzās",
+    "pointsTitle": "Augstākais uzticīgais skatītājs",
+    "points_one": "{{formatted}} punkts",
+    "points_other": "{{formatted}} punkti"
   },
   "liveStudio": {
     "controls": {
@@ -9242,7 +9247,9 @@
       "chat_box": "Tērzēšanas lodziņš",
       "ticker": "Atzīme",
       "rule_alert": "Noteikumu brīdinājumi",
-      "poll": "Aptauja"
+      "poll": "Aptauja",
+      "subathon_timer": "Subathon laiks",
+      "points_board": "Uzticīgie skatītāji"
     },
     "hints": {
       "spin_wheel": "Kur griežas jūsu noteikumu riteņi",
@@ -9262,7 +9269,9 @@
       "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
       "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu",
       "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi",
-      "poll": "Jūsu tiešsaistes aptauja ar balsošanas pogu katrai opcijai"
+      "poll": "Jūsu tiešsaistes aptauja ar balsošanas pogu katrai opcijai",
+      "subathon_timer": "Skaitītājs, kuru dāvanas, sekotāji un abonementi atgrūž atpakaļ",
+      "points_board": "Jūsu augstākā skatītāji pēc punktiem no skatīšanas un dāvināšanas"
     },
     "fields": {
       "style": "Stils",
@@ -9497,6 +9506,29 @@
         "word-timeout_one": "Izslēgts {{target}} par {{count}} sekundi par: \"{{word}}\"",
         "word-timeout_other": "Izslēgts {{target}} par {{count}} sekundēm par: \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Taisnīgas skaita uz jūsu straumē. Katrs maksāts dāvanu, sekotājs un abonements pievieno laiku, lai telpa turpinātu jūs uz ekrāna.",
+      "secondsPerThousand": "Sekundes, kas pievienojas katrām 1 000 DHB dāvanai",
+      "secondsPerFollow": "Sekundes, kas pievienojas katram sekotājam",
+      "secondsPerSubscribe": "Sekundes, kas pievienojas katram abonentam",
+      "capHours": "Ilgākais iespējams laiks (stundās)",
+      "save": "Glabāšanas summas",
+      "saved": "Glabāti Subathon summas.",
+      "startMinutes": "Sākot ar (minūtēm)",
+      "start": "Sākt skaitīšanu",
+      "stop": "Apturēt",
+      "addFive": "Pievienot 5 minūtes",
+      "removeFive": "Noņemt 5 minūtes",
+      "failed": "Šis nav strādājis. Mēģiniet vēlreiz.",
+      "widgetHint": "Rādīt jūsu Subathon skaitīšanas laiku. Sākt to no Subathon paneles Live Studio."
+    },
+    "points": {
+      "title": "Uzticīgie skatītāji",
+      "intro": "Skatītāji iegūst punktu katru minūti, ko skatās jūs, un vienu punktu katrām 100 DHB dāvanai. Chat un reakcijas nav vērtīgi, tāpēc punktus nevar \"izaugt\".",
+      "empty": "Joprojām nav punktu. Tie uzkrājās, kad cilvēki skatās un dāvinā.",
+      "widgetHint": "Pievienojiet \"Uzticīgie skatītāji\" gadīti, lai šis saraksts redzēts straumē."
     }
   },
   "liveChatModeration": {

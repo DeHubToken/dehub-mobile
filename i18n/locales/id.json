@@ -9177,7 +9177,12 @@
       "voted_other": "Anda memberikan suara · {{count}} suara",
       "votes_one": "{{count}} suara",
       "votes_other": "{{count}} suara"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Waktu habis",
+    "pointsTitle": "Penonton paling setia",
+    "points_one": "{{formatted}} poin",
+    "points_other": "{{formatted}} poin"
   },
   "liveStudio": {
     "controls": {
@@ -9246,7 +9251,9 @@
       "chat_box": "Kotak obrolan",
       "ticker": "Ticker",
       "rule_alert": "Peringatan aturan",
-      "poll": "Jajak Pendapat"
+      "poll": "Jajak Pendapat",
+      "subathon_timer": "Timer Subathon",
+      "points_board": "Penonton Setia"
     },
     "hints": {
       "spin_wheel": "Di mana roda dalam aturan Anda berputar",
@@ -9266,7 +9273,9 @@
       "chat_box": "Menampilkan pesan obrolan siaran Anda di layar",
       "ticker": "Baris teks Anda sendiri yang bergulir di layar",
       "rule_alert": "Di mana pemberitahuan peraturan Anda muncul",
-      "poll": "Jajak pendapat langsung Anda, dengan tombol suara untuk setiap opsi"
+      "poll": "Jajak pendapat langsung Anda, dengan tombol suara untuk setiap opsi",
+      "subathon_timer": "Hitung mundur yang didorong oleh hadiah, follow, dan langganan",
+      "points_board": "Penonton teratas Anda berdasarkan poin dari menonton dan memberikan hadiah"
     },
     "fields": {
       "style": "Gaya",
@@ -9501,6 +9510,29 @@
         "word-timeout_one": "Timeout {{target}} selama {{count}} detik untuk \"{{word}}\"",
         "word-timeout_other": "Timeout {{target}} selama {{count}} detik untuk \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Tayangan hitung mundur di stream Anda. Setiap hadiah berbayar, follow, dan langganan menambahkan waktu, sehingga ruangan akan mempertahankan Anda tetap online.",
+      "secondsPerThousand": "Detik yang ditambahkan per 1.000 DHB yang dihadiahkan",
+      "secondsPerFollow": "Detik yang ditambahkan per follow",
+      "secondsPerSubscribe": "Detik yang ditambahkan per langganan",
+      "capHours": "Waktu terpanjang yang dapat berlangsung (jam)",
+      "save": "Simpan jumlah",
+      "saved": "Jumlah Subathon yang tersimpan.",
+      "startMinutes": "Mulai dengan (menit)",
+      "start": "Mulai hitung mundur",
+      "stop": "Hentikan",
+      "addFive": "Tambahkan 5 menit",
+      "removeFive": "Kurangi 5 menit",
+      "failed": "Tidak berhasil. Coba lagi.",
+      "widgetHint": "Menampilkan hitung mundur Subathon Anda. Mulailah dari panel Subathon di Live Studio."
+    },
+    "points": {
+      "title": "Penonton setia",
+      "intro": "Penonton mendapatkan satu poin untuk setiap menit mereka menonton Anda dan satu poin lagi untuk setiap 100 DHB yang mereka hadiahkan. Chat dan reaksi tidak memberikan poin, jadi poin tidak dapat \"dibudidayakan.\"",
+      "empty": "Belum ada poin. Poin akan bertambah seiring penonton menonton dan memberikan hadiah.",
+      "widgetHint": "Tambahkan widget Penonton Setia untuk menampilkan daftar ini di stream."
     }
   },
   "liveChatModeration": {

@@ -10769,7 +10769,12 @@
       "voted_other": "Vous avez voté · {{count}} votes",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} votes"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Temps écoulé",
+    "pointsTitle": "Les voyous les plus fidèles",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -10838,7 +10843,9 @@
       "event_feed": "Activité récente",
       "chat_box": "Boîte de discussion",
       "ticker": "Bandeau défilant",
-      "rule_alert": "Alertes de règle"
+      "rule_alert": "Alertes de règle",
+      "subathon_timer": "Minuteur Subathon",
+      "points_board": "Voyous fidèles"
     },
     "hints": {
       "spin_wheel": "Où tournent les roues de vos règles",
@@ -10858,7 +10865,9 @@
       "chat_box": "Affiche les messages de chat de votre diffusion à l'écran",
       "ticker": "Une ligne de votre propre texte qui défile sur l'écran",
       "rule_alert": "Où les alertes de vos règles apparaissent",
-      "poll": "Votre sondage en direct, avec un bouton de vote pour chaque option"
+      "poll": "Votre sondage en direct, avec un bouton de vote pour chaque option",
+      "subathon_timer": "Un compte à rebours que les dons, abonnements et abonnements repoussent",
+      "points_board": "Vos meilleurs spectateurs en points grâce à la visionnage et aux dons"
     },
     "fields": {
       "style": "Style",
@@ -11093,6 +11102,29 @@
         "word-timeout_one": "Temporisé {{target}} pour {{count}} seconde pour \"{{word}}\"",
         "word-timeout_other": "Temporisé {{target}} pour {{count}} secondes pour \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Un compte à rebours sur votre stream. Chaque don payant, abonnement et abonnement ajoute du temps, afin que la salle vous maintienne en direct.",
+      "secondsPerThousand": "Secondes ajoutées par 1 000 DHB offerts",
+      "secondsPerFollow": "Secondes ajoutées par un abonnement",
+      "secondsPerSubscribe": "Secondes ajoutées par un abonnement",
+      "capHours": "Durée maximale (heures)",
+      "save": "Montants enregistrés",
+      "saved": "Montants économisés pour le Subathon.",
+      "startMinutes": "Commencer avec (minutes)",
+      "start": "Lancer le compte à rebours",
+      "stop": "Arrêter",
+      "addFive": "Ajouter 5 minutes",
+      "removeFive": "Retirer 5 minutes",
+      "failed": "Ça n’a pas marché. Essayez à nouveau.",
+      "widgetHint": "Affiche le compte à rebours de votre Subathon. Lancez-le depuis le panneau Subathon dans Live Studio."
+    },
+    "points": {
+      "title": "Voyous fidèles",
+      "intro": "Les spectateurs gagnent un point pour chaque minute qu’ils passent à vous regarder et un point pour chaque 100 DHB qu’ils offrent. Les réactions en chat ne rapportent rien, donc les points ne peuvent pas être \"farmés\".",
+      "empty": "Aucun point pour l’instant. Ils s’accumulent au fur et à mesure que les gens regardent et offrent.",
+      "widgetHint": "Ajoutez le widget \"Voyous fidèles\" pour afficher cette liste en direct."
     }
   },
   "liveChatModeration": {

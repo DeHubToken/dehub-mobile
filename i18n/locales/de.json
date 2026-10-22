@@ -9349,6 +9349,7 @@
     "watch": "Eine Anzeige ansehen, um diesen Creator zu unterstützen"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} gesponnen: {{result}}",
     "someone": "Jemand",
     "newFollower": "Neuer Follower: {{name}}",
@@ -9370,7 +9371,11 @@
       "voted_other": "Sie haben abgestimmt · {{count}} Stimmen",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} Stimmen"
-    }
+    },
+    "subathonOver": "Die Zeit ist abgelaufen",
+    "pointsTitle": "Die treuesten Zuschauer",
+    "points_one": "{{formatted}} Punkt",
+    "points_other": "{{formatted}} Punkte"
   },
   "liveStudio": {
     "controls": {
@@ -9438,7 +9443,9 @@
       "event_feed": "Letzte Aktivität",
       "chat_box": "Chat-Box",
       "ticker": "Laufschrift",
-      "rule_alert": "Regelwarnungen"
+      "rule_alert": "Regelwarnungen",
+      "subathon_timer": "Subathon-Timer",
+      "points_board": "Loyale Zuschauer"
     },
     "hints": {
       "spin_wheel": "Wo sich die Räder in deinen Regeln drehen",
@@ -9458,7 +9465,9 @@
       "chat_box": "Zeigt die Chat-Nachrichten Ihrer Sendung auf dem Bildschirm an",
       "ticker": "Eine Zeile Ihres eigenen Textes, der über den Bildschirm scrollt",
       "rule_alert": "Wo die Warnungen deiner Regeln angezeigt werden",
-      "poll": "Ihre Live-Umfrage mit einer Abstimmungsschaltfläche für jede Option"
+      "poll": "Ihre Live-Umfrage mit einer Abstimmungsschaltfläche für jede Option",
+      "subathon_timer": "Ein Countdown, der Geschenke, Follows und Abonnements zurückdrängt",
+      "points_board": "Ihre Top-Zuschauer nach Punkten aus Zuschauen und Verschenken"
     },
     "fields": {
       "style": "Stil",
@@ -9693,6 +9702,29 @@
         "word-timeout_one": "Zeitüberschreitung {{target}} für {{count}} Sekunde für \"{{word}}\"",
         "word-timeout_other": "Zeitüberschreitung {{target}} für {{count}} Sekunden für \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Ein Countdown für Ihren Stream. Jedes bezahlte Geschenk, Follow und Abonnement verlängert die Zeit, sodass der Raum dich am Leben hält.",
+      "secondsPerThousand": "Hinzugefügte Sekunden pro 1.000 DHB-Geschenke",
+      "secondsPerFollow": "Sekunden pro Folge hinzugefügt",
+      "secondsPerSubscribe": "Sekunden pro Abonnement hinzugefügt",
+      "capHours": "Am längsten kann es laufen (Stunden)",
+      "save": "Beträge sparen",
+      "saved": "Subathon-Beträge gespeichert.",
+      "startMinutes": "Beginnen Sie mit (Minuten)",
+      "start": "Countdown starten",
+      "stop": "Stopp",
+      "addFive": "5 Minuten hinzufügen",
+      "removeFive": "5 Minuten abheben",
+      "failed": "Das hat nicht funktioniert. Versuchen Sie es erneut.",
+      "widgetHint": "Zeigt Ihren Subathon-Countdown an. Starten Sie es über das Subathon-Panel in Live Studio."
+    },
+    "points": {
+      "title": "Loyale Zuschauer",
+      "intro": "Die Zuschauer erhalten einen Punkt für jede Minute, die sie dir zuschauen, und einen für jede 100 DHB, die sie verschenken. Chat und Reaktionen verdienen nichts, daher können keine Punkte gesammelt werden.",
+      "empty": "Noch keine Punkte. Sie bauen sich auf, während die Leute zusehen und schenken.",
+      "widgetHint": "Fügen Sie das Widget Loyale Zuschauer hinzu, um diese Liste im Stream anzuzeigen."
     }
   },
   "liveChatModeration": {

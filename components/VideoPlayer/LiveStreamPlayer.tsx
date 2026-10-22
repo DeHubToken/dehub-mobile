@@ -1867,6 +1867,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             videoSize={videoSize}
             initialViewers={liveViewers ?? 0}
             chatMessages={liveChat.messages}
+            creator={creator?.walletAddress || creator?.address}
           />
         ) : null}
         {streamOverlay && streamOverlay.version > 0 && streamOverlay.renderIn === "app" && streamId && isPlayingReplay ? (

@@ -9334,6 +9334,7 @@
     "notNow": "Hindi ngayon"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}}spun:{{result}}",
     "someone": "Isang tao",
     "newFollower": "Bagong tagasunod:{{name}}",
@@ -9355,7 +9356,11 @@
       "voted_other": "Bumoto ka · {{count}}(na) boto",
       "votes_one": "{{count}} bumoto",
       "votes_other": "{{count}} mga boto"
-    }
+    },
+    "subathonOver": "Tapos na ang oras",
+    "pointsTitle": "Karamihan sa mga tapat na manonood",
+    "points_one": "{{formatted}}point",
+    "points_other": "{{formatted}} puntos"
   },
   "liveStudio": {
     "controls": {
@@ -9407,6 +9412,7 @@
       "join": "Pagkakalaban"
     },
     "kinds": {
+      "subathon_timer": "Timer ng subathon",
       "spin_wheel": "Paikutin ang gulong",
       "poll": "Botohan",
       "tip_alert": "Alerta sa tip",
@@ -9424,7 +9430,8 @@
       "event_feed": "Kamakailang aktibidad",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Mga alerto sa panuntunan"
+      "rule_alert": "Mga alerto sa panuntunan",
+      "points_board": "Mga tapat na manonood"
     },
     "hints": {
       "spin_wheel": "Kung saan ang mga gulong sa iyong mga panuntunan ay umiikot",
@@ -9444,7 +9451,9 @@
       "chat_box": "Ipinapakita ang mga mensahe sa chat ng iyong broadcast sa screen",
       "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen",
       "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan",
-      "poll": "Ang iyong live poll, na may isang pindutan ng boto para sa bawat pagpipilian"
+      "poll": "Ang iyong live poll, na may isang pindutan ng boto para sa bawat pagpipilian",
+      "subathon_timer": "Ang isang countdown na mga regalo, mga sumusunod at mga subscription itulak pabalik",
+      "points_board": "Ang iyong mga nangungunang manonood ayon sa mga puntos mula sa panonood at pagbibigay ng regalo"
     },
     "fields": {
       "style": "Estilo",
@@ -9679,6 +9688,29 @@
         "word-timeout_one": "Nag - time out sa {{target}} para sa {{count}} segundo para sa \"{{word}}\"",
         "word-timeout_other": "Nag - time out sa {{target}} para sa {{count}} segundo para sa \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "addFive": "Magdagdag ng 5 minuto",
+      "intro": "Isang countdown sa iyong stream. Ang bawat bayad na regalo, follow at subscription ay nagdaragdag ng oras, kaya pinapanatili ka ng kuwarto.",
+      "secondsPerThousand": "Mga segundo na idinagdag sa bawat 1,000 DHB gifted",
+      "secondsPerFollow": "Mga segundo na idinagdag kada follow",
+      "secondsPerSubscribe": "Mga segundo na idinagdag kada subscription",
+      "capHours": "Pinakatagal na maaari itong tumakbo (oras)",
+      "save": "I - save ang mga halaga",
+      "saved": "Na - save ang mga halaga ng subathon.",
+      "startMinutes": "Magsimula sa (mga minuto)",
+      "start": "Simulan ang countdown",
+      "stop": "Ihinto",
+      "removeFive": "Mag - alis ng 5 minuto",
+      "failed": "Hindi iyon gumana. Subukan muli.",
+      "widgetHint": "Ipinapakita ang iyong countdown ng subathon. Simulan ito mula sa Subathon panel sa Live Studio."
+    },
+    "points": {
+      "title": "Mga tapat na manonood",
+      "intro": "Ang mga manonood ay kumikita ng isang puntos para sa bawat minuto na pinapanood ka nila at isa para sa bawat 100 DHB na kanilang regalo. Ang chat at mga reaksyon ay walang kinikita, kaya hindi maaaring magsaka ang mga puntos.",
+      "empty": "Wala pang puntos. Nagtatayo sila habang nanonood at nagbibigay ng regalo ang mga tao.",
+      "widgetHint": "Idagdag ang widget na Mga matapat na manonood para maipakita ang listahang ito sa stream."
     }
   },
   "liveChatModeration": {

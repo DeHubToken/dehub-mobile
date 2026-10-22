@@ -6729,6 +6729,29 @@
     "title": "Moderate"
   },
   "liveStudio": {
+    "subathon": {
+      "title": "Subathon",
+      "intro": "A countdown on your stream. Every paid gift, follow and subscription adds time, so the room keeps you live.",
+      "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
+      "secondsPerFollow": "Seconds added per follow",
+      "secondsPerSubscribe": "Seconds added per subscription",
+      "capHours": "Longest it can run (hours)",
+      "save": "Save amounts",
+      "saved": "Subathon amounts saved.",
+      "startMinutes": "Start with (minutes)",
+      "start": "Start the countdown",
+      "stop": "Stop",
+      "addFive": "Add 5 minutes",
+      "removeFive": "Take off 5 minutes",
+      "failed": "That did not work. Try again.",
+      "widgetHint": "Shows your subathon countdown. Start it from the Subathon panel in Live Studio."
+    },
+    "points": {
+      "title": "Loyal viewers",
+      "intro": "Viewers earn a point for every minute they watch you and one for every 100 DHB they gift. Chat and reactions earn nothing, so points cannot be farmed.",
+      "empty": "No points yet. They build up as people watch and gift.",
+      "widgetHint": "Add the Loyal viewers widget to show this list on stream."
+    },
     "controls": {
       "title": "Quick controls",
       "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
@@ -6826,7 +6849,9 @@
       "ticker": "Ticker",
       "rule_alert": "Rule alerts",
       "poll": "Poll",
-      "spin_wheel": "Spin wheel"
+      "spin_wheel": "Spin wheel",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Loyal viewers"
     },
     "hints": {
       "tip_alert": "Celebrates every tip, sized to its tier",
@@ -6846,7 +6871,9 @@
       "ticker": "A line of your own text that scrolls across the screen",
       "rule_alert": "Where your rules' alerts appear",
       "poll": "Your live poll, with a vote button for every option",
-      "spin_wheel": "Where the wheels in your rules spin"
+      "spin_wheel": "Where the wheels in your rules spin",
+      "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
+      "points_board": "Your top viewers by points from watching and gifting"
     },
     "fields": {
       "style": "Style",
@@ -7065,6 +7092,11 @@
     "tipped": "{{name}} sent a gift",
     "chatPreview": "Chat messages appear here",
     "wheelLanded": "{{name}} spun: {{result}}",
+    "subathon": "Subathon",
+    "subathonOver": "Time's up",
+    "pointsTitle": "Most loyal viewers",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points",
     "poll": {
       "closed": "Voting closed",
       "voteFor": "Vote for {{option}}",

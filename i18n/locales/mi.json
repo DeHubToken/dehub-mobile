@@ -9154,7 +9154,12 @@
       "voted_other": "Kua pōti koe · {{count}} pōti",
       "votes_one": "{{count}} pōti",
       "votes_other": "{{count}} nga pooti"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Kua mutu te wā",
+    "pointsTitle": "Ngā kaitirotiro whakapono",
+    "points_one": "{{formatted}} tohu",
+    "points_other": "{{formatted}} tohu"
   },
   "liveStudio": {
     "controls": {
@@ -9222,7 +9227,9 @@
       "chat_box": "Pouaka kōrerorero",
       "ticker": "Ticker",
       "rule_alert": "Onagrams Ture",
-      "poll": "Pōtitanga"
+      "poll": "Pōtitanga",
+      "subathon_timer": "Taima Subathon",
+      "points_board": "Kaitirotiro whakapono"
     },
     "hints": {
       "spin_wheel": "Kei hea nga wira i roto i o ture e huri ana",
@@ -9242,7 +9249,9 @@
       "chat_box": "Whakaatuhia nga karere korerorero o to whakaaturanga i runga i te mata",
       "ticker": "He raina o to tuhinga ake e rere ana puta noa i te mata",
       "rule_alert": "Kei hea te putanga o ō ture onagrams",
-      "poll": "Tō pōtitanga aho, me te pōtini pōtitanga mō ia whiringa"
+      "poll": "Tō pōtitanga aho, me te pōtini pōtitanga mō ia whiringa",
+      "subathon_timer": "He whakahuatanga e tukuna, whai me ngā tāpui e tukituki whakamuri",
+      "points_board": "Ō matapihi tonutanga i runga i ngā tohu mai i te titiro me te tukuna"
     },
     "fields": {
       "style": "Kāhua",
@@ -9475,6 +9484,29 @@
         "moderator-added": "{{target}} ka riro hei kaitautoko",
         "moderator-removed": "{{target}} Kaore ano he kaitautoko"
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "He whakahuatanga whakamutunga i runga i tō kaupapa. Ko ia taonga utua, whai, me te tāpui e tāpiri ana i te wā, koia nei te rūma e pupuri ana i a koe kia ora.",
+      "secondsPerThousand": "Hēkona tāpirihia ia 1,000 DHB taonga tukuna",
+      "secondsPerFollow": "Hēkona tāpirihia ia whai",
+      "secondsPerSubscribe": "Hēkona tāpirihia ia tāpui",
+      "capHours": "Te roa roa e taea ai te rere (haora)",
+      "save": "Tiaki i ngā utu",
+      "saved": "Ngā utu Subathon i tiakina.",
+      "startMinutes": "Tīmata me (meneti)",
+      "start": "Tīmata te whakahuatanga",
+      "stop": "Tū",
+      "addFive": "Tāpiri 5 meneti",
+      "removeFive": "Tango 5 meneti",
+      "failed": "Kaore i mahi. Ngana anō.",
+      "widgetHint": "E whakaatu ana i tō whakahuatanga Subathon. Tīmata mai i te paenui Subathon i Live Studio."
+    },
+    "points": {
+      "title": "Kaitirotiro whakapono",
+      "intro": "Ka whiwhi te kaitirotiro i te tohu mō ia meneti e titiro ana ki a koe me te kotahi mō ia 100 DHB e tukuna ana. Ko te korero me ngā whakautu kaore e whiwhi, koia nei kaore e taea te whāngai i ngā tohu.",
+      "empty": "Kaore he tohu tonu. Ka hangaia aua mea i te mea e titiro ana me te tukuna.",
+      "widgetHint": "Tāpiri te Kaitirotiro whakapono widget kia whakaaturia tēnei rārangi i runga i te kaupapa."
     }
   },
   "liveChatModeration": {

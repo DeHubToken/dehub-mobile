@@ -9144,7 +9144,12 @@
       "voted_other": "Ị tụrụ vootu · {{count}} votes",
       "votes_one": "{{count}} votu",
       "votes_other": "{{count}} votu"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Oge rụchara",
+    "pointsTitle": "Ndị na-akwadebe kacha elu",
+    "points_one": "{{formatted}} isi ihe",
+    "points_other": "{{formatted}} isi ihe"
   },
   "liveStudio": {
     "controls": {
@@ -9213,7 +9218,9 @@
       "chat_box": "Igbe nkata",
       "ticker": "Ticker",
       "rule_alert": "Ọkwa iwu",
-      "poll": "Pọtụfoliyo"
+      "poll": "Pọtụfoliyo",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Ndị na-akwadebe"
     },
     "hints": {
       "spin_wheel": "Ebe wiil gị iwu atụ ogho",
@@ -9233,7 +9240,9 @@
       "chat_box": "Egosi gị agbasa ozi n 'ikuku chat ozi na ihuenyo",
       "ticker": "Ahịrị nke ederede nke gị nke na-agagharị na ihuenyo",
       "rule_alert": "Ebe ọkwa iwu gị na-apụta",
-      "poll": "Gị ndụ ntuli aka, na a votu button maka ọ bụla nhọrọ"
+      "poll": "Gị ndụ ntuli aka, na a votu button maka ọ bụla nhọrọ",
+      "subathon_timer": "Ịdị mma na ọkara oge na onyinye, iso na njem na-apụ azụ",
+      "points_board": "Ndị na-ekiri gị kacha elu site na isi ihe site na ịkiri na enye"
     },
     "fields": {
       "style": "Ụdị",
@@ -9463,6 +9472,29 @@
         "word-timeout_one": "Oge si {{target}} maka {{count}} nke abụọ maka \"{{word}}\"",
         "word-timeout_other": "Tụrụ {{target}} {{count}} nkeji maka \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Ịdị mma na ọkara oge na ọkara oge. Ọ bụla a na-akwụ ụgwọ onyinye, iso na njem na-agbakwunyere oge, ya mere ọnụ ụlọ na-ejigide gị na-adị ndụ.",
+      "secondsPerThousand": "Sekọnd agbakwunyere kwa 1,000 DHB a nyere",
+      "secondsPerFollow": "Sekọnd agbakwunyere kwa iso",
+      "secondsPerSubscribe": "Sekọnd agbakwunyere kwa njem",
+      "capHours": "Ogologo kacha elu o nwere ike ịgba (awa)",
+      "save": "Echekwa ego",
+      "saved": "Subathon ego echekwara.",
+      "startMinutes": "Malite na (nkeji)",
+      "start": "Malite ịdị mma na ọkara oge",
+      "stop": "Kwụsị",
+      "addFive": "Tinye nkeji 5",
+      "removeFive": "Wepụ nkeji 5",
+      "failed": "Nke ahụ adịghị arụ ọrụ. Gbalịa ọzọ.",
+      "widgetHint": "Egosipụtara ịdị mma na ọkara oge gị. Malite ya site na Subathon panel na Live Studio."
+    },
+    "points": {
+      "title": "Ndị na-akwadebe",
+      "intro": "Ndị na-ekiri na-enweta isi ihe maka ọ bụla nkeji ha na-ekiri gị na otu maka ọ bụla 100 DHB ha na-enye. Okwu na mmeghachi ụka adịghị enweta ihe ọ bụla, ya mere isi ihe enweghị ike ịkụ.",
+      "empty": "Enweghị isi ihe ka ugbu a. Ha na-akupụta ka ndị na-ekiri na-enye.",
+      "widgetHint": "Tinye Ndị na-akwadebe widget iji gosipụta ndepụta a na ọkwa."
     }
   },
   "liveChatModeration": {

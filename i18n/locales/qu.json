@@ -9185,7 +9185,12 @@
       "voted_other": "Votarqanki · {{count}} votokuna",
       "votes_one": "{{count}} voto",
       "votes_other": "{{count}} votokuna"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Pacha tukuy",
+    "pointsTitle": "Ama aswan fieles espectadores",
+    "points_one": "{{formatted}} punto",
+    "points_other": "{{formatted}} puntukuna"
   },
   "liveStudio": {
     "controls": {
@@ -9253,7 +9258,9 @@
       "chat_box": "Chat nisqa cuadro",
       "ticker": "Ticker",
       "rule_alert": "Alerta kaynin",
-      "poll": "Encuesta"
+      "poll": "Encuesta",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Loyal viewers"
     },
     "hints": {
       "spin_wheel": "Maypichus kamachiyniykipi ruedakuna muyurinku",
@@ -9273,7 +9280,9 @@
       "chat_box": "Pantallapi difusión nisqaykipa rimanakuy willakuykunata qawachin",
       "ticker": "Kikin qillqasqaykimanta chiru, pantallapi puriq",
       "rule_alert": "Maypin alerta kaykunayki rikurinman",
-      "poll": "Kawsaq encuestayki, sapa akllanapaq voto botón nisqawan"
+      "poll": "Kawsaq encuestayki, sapa akllanapaq voto botón nisqawan",
+      "subathon_timer": "Countdown regalukunata, seguirkunata, suscripcionkunata kutichikun",
+      "points_board": "Ama aswan rikuchikunayki puntumanta rikuspankuqa, regaluspankuqa"
     },
     "fields": {
       "style": "Rikchay",
@@ -9508,6 +9517,29 @@
         "word-timeout_one": "{{count}} segundo ama allinchu kaychu allichiy {{target}} \"{{word}}\" rikuq",
         "word-timeout_other": "{{count}} segundu ama allinchu kaychu allichiy {{target}} \"{{word}}\" rikuq"
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Ama hina kaypa countdown. Bawqe regalukunata, seguirkunata, suscripcionkunatapas, pacha yapakun, chaymantaqa cuartuta rikuchikunki.",
+      "secondsPerThousand": "Segundukunata yapakun 1,000 DHB regalukunamanta",
+      "secondsPerFollow": "Segundukunata yapakun seguirkunamanta",
+      "secondsPerSubscribe": "Segundukunata yapakun suscripcionkunamanta",
+      "capHours": "Ama aswan kaypi (horaspi)",
+      "save": "Guardariy cantidadkunata",
+      "saved": "Subathon cantidadkunata guardariy.",
+      "startMinutes": "Allinchaypi (minutuspi) qallariy",
+      "start": "Countdown qallariy",
+      "stop": "Saqiy",
+      "addFive": "5 minutusta yapakuy",
+      "removeFive": "5 minutusta qichuy",
+      "failed": "Mana allinchu kayqa. Ama hina kaypi yuyarispa.",
+      "widgetHint": "Subathon countdown rikuchikun. Subathon panelmanta Live Studiopi qallariy."
+    },
+    "points": {
+      "title": "Fieles espectadores",
+      "intro": "Espectadores puntuta apakun bawqe minutu rikuspankuqa, huk puntuta 100 DHB regaluspankuqa. Rimaykunata, reaccioneskunatapas mana puntuta apakunkuchu, chaymantaqa puntukuna mana chakiyachikuchu.",
+      "empty": "Mana puntukuna kaychu. Rikuspankuqa, regaluspankuqa yapakun.",
+      "widgetHint": "Loyal viewers widgetta yapakuy rikuchikunapaq streampi."
     }
   },
   "liveChatModeration": {
