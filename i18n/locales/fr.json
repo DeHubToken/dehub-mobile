@@ -1061,6 +1061,8 @@
     "payFailed": "Impossible de convertir {{symbol}} en jetons DeHub",
     "stageDelivering": "DeHub Pay envoie vos jetons…",
     "payViaDpay": "Payé à DeHub Pay, les jetons arrivent dans environ 30s",
+    "payDirect": "Envoyé directement à {{name}} en {{symbol}} sur {{chain}}. Sans swap.",
+    "payDirectNoName": "Envoyé directement au créateur en {{symbol}} sur {{chain}}. Sans swap.",
     "payViaBridgeDpay": "Déplacé vers Base et payé à DeHub Pay, les jetons arrivent dans environ une minute",
     "tokensUnit": "jetons",
     "tokenAmount": "{{amount}} jetons"
@@ -5098,7 +5100,7 @@
     "usernameReserved": "Ce nom d'utilisateur est réservé",
     "profileSet": "Profil configuré avec succès !",
     "profileFailed": "Impossible de configurer le profil",
-    "displayNameHint": "Votre nom public affiché sur votre profil."
+    "displayNameHint": "Votre nom public sur votre profil. Facultatif — laissez-le vide pour utiliser votre nom d'utilisateur."
   },
   "events": {
     "mine": "Les miens",
@@ -5399,6 +5401,7 @@
     "accountHasA": "Ce compte possède un",
     "ifYouUsedDehub": "Si vous avez déjà utilisé dehub.io, ouvrez-le sur votre ordinateur, connectez-vous de la même manière et avec le même compte, puis",
     "biometricExplainer": "Déverrouillez avec votre empreinte ou votre visage — rien à taper ni à retenir. La clé reste sur ce téléphone, nous vous montrerons donc une phrase de récupération de 12 mots à noter ; c'est le seul moyen de revenir depuis un autre appareil, depuis le site ou après une réinstallation. Choisissez plutôt Mot de passe et c'est le mot de passe qui remplit ce rôle.",
+    "biometricExplainerSecuring": "Déverrouillez avec votre empreinte ou votre visage — rien à taper ni à retenir. La clé reste sur ce téléphone. Pour revenir depuis un autre téléphone, depuis le site ou après une réinstallation, enregistrez plus tard une sauvegarde de 12 mots dans Paramètres. Choisissez plutôt Mot de passe et c'est le mot de passe qui remplit ce rôle.",
     "biometricPrompt": "Ce portefeuille est protégé par la biométrie de cet appareil. Confirmez avec l'empreinte ou le visage pour continuer.",
     "enterRecoveryPhrase": "Saisissez la phrase de récupération de 12 mots que vous avez enregistrée lors de la création de ce portefeuille (ou sa clé privée, si vous l'avez exportée). Elle ramène au même compte, et le mot de passe que vous définissez ci-dessous devient une sauvegarde qui fonctionne partout désormais.",
     "copyPhrase": "Copier la phrase",
@@ -5471,6 +5474,7 @@
     "unlockWithPasswordExplainer": "Ce compte possède déjà un portefeuille, protégé par un mot de passe. Entrez-le pour récupérer votre portefeuille sur cet appareil.",
     "deviceTab": "Cet appareil",
     "deviceExplainer": "Rien à taper ou à retenir — la clé reste sur cet appareil. Nous vous proposerons une sauvegarde de 12 mots à écrire ; c'est le seul moyen de revenir d'un autre appareil, du site Web ou après la réinstallation. Choisissez le mot de passe à la place et le mot de passe lui-même fait ce travail.",
+    "deviceExplainerSecuring": "Rien à taper ni à retenir — la clé reste sur cet appareil. Pour revenir depuis un autre appareil, depuis le site ou après une réinstallation, enregistrez plus tard une sauvegarde de 12 mots dans Paramètres. Choisissez plutôt Mot de passe et c'est le mot de passe qui remplit ce rôle.",
     "secureOnDevice": "Gardez la clé sur cet appareil"
   },
   "walletBackup": {
@@ -9789,7 +9793,7 @@
     "receipt": "Votre demande de suppression a été enregistrée. Votre profil est masqué et votre compte sera définitivement supprimé dans les 30 jours. La connexion ne peut pas annuler cette demande.",
     "done": "Effectué",
     "error": "Impossible d'envoyer votre demande de suppression. La suppression de votre compte n'a pas été confirmée. Veuillez réessayer.",
-    "back": "Revenir aux paramètres par défaut",
+    "back": "Retour aux paramètres",
     "signIn": "Connectez-vous pour supprimer votre compte",
     "acknowledge": "J'ai enregistré les détails de récupération de mon portefeuille et je comprends que la suppression est permanente."
   },

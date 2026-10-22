@@ -947,6 +947,8 @@
     "payFailed": "Não foi possível converter {{symbol}} em tokens DeHub",
     "stageDelivering": "DeHub Pay está enviando seus tokens…",
     "payViaDpay": "Pago para DeHub Pay, tokens chegam em cerca de 30s",
+    "payDirect": "Enviado diretamente para {{name}} em {{symbol}} na {{chain}}. Sem swap.",
+    "payDirectNoName": "Enviado diretamente ao criador em {{symbol}} na {{chain}}. Sem swap.",
     "payViaBridgeDpay": "Movido para Base e pago para DeHub Pay, tokens chegam em cerca de um minuto",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
@@ -4824,7 +4826,7 @@
     "usernameReserved": "Este nome de usuário é reservado",
     "profileSet": "Perfil configurado com sucesso!",
     "profileFailed": "Não foi possível configurar o perfil",
-    "displayNameHint": "Seu nome público exibido no perfil."
+    "displayNameHint": "Seu nome público exibido no perfil. Opcional — deixe em branco para usar seu nome de usuário."
   },
   "events": {
     "mine": "Meus",
@@ -5065,6 +5067,7 @@
     "accountHasA": "Esta conta tem uma",
     "ifYouUsedDehub": "Se você já usou o dehub.io antes, abra-o no seu computador, entre da mesma forma e com a mesma conta, e",
     "biometricExplainer": "Desbloqueie com sua digital ou rosto — nada para digitar ou memorizar. A chave fica neste telefone, por isso mostraremos uma frase de recuperação de 12 palavras para você anotar; é o único caminho de volta a partir de outro aparelho, do site ou após reinstalar. Escolha Senha e a própria senha cumpre esse papel.",
+    "biometricExplainerSecuring": "Desbloqueie com sua digital ou rosto — nada para digitar ou memorizar. A chave fica neste telefone. Para voltar a entrar a partir de outro aparelho, do site ou após reinstalar, salve depois um backup de 12 palavras em Configurações. Escolha Senha e a própria senha cumpre esse papel.",
     "biometricPrompt": "Esta carteira é protegida pela biometria deste aparelho. Confirme com digital ou rosto para continuar.",
     "enterRecoveryPhrase": "Digite a frase de recuperação de 12 palavras que você guardou ao criar esta carteira (ou a chave privada, se exportou uma). Ela leva de volta à mesma conta, e a senha definida abaixo passa a ser um backup que funciona em todo lugar de agora em diante.",
     "copyPhrase": "Copiar frase",
@@ -5137,6 +5140,7 @@
     "unlockWithPasswordExplainer": "Esta conta já possui uma carteira, protegida por senha. Insira-a para recuperar sua carteira neste dispositivo.",
     "deviceTab": "Este dispositivo",
     "deviceExplainer": "Nada para digitar ou lembrar — a chave permanece neste dispositivo. Ofereceremos um backup de 12 palavras para anotar; é a única maneira de voltar a partir de outro dispositivo, do site ou após a reinstalação. Em vez disso, escolha a palavra-passe e a própria palavra-passe faz esse trabalho.",
+    "deviceExplainerSecuring": "Nada para digitar ou memorizar — a chave fica neste dispositivo. Para voltar a entrar a partir de outro dispositivo, do site ou após reinstalar, salve depois um backup de 12 palavras em Configurações. Escolha Senha e a própria senha cumpre esse papel.",
     "secureOnDevice": "Mantenha a chave neste dispositivo"
   },
   "walletBackup": {
@@ -9146,7 +9150,7 @@
     "done": "Pronto",
     "error": "Não foi possível enviar o seu pedido de eliminação. A sua conta não foi confirmada para eliminação. Tente novamente.",
     "back": "Voltar para as Configurações",
-    "signIn": "Inicie sessão na sua conta",
+    "signIn": "Inicie sessão para apagar a sua conta",
     "acknowledge": "Salvei os detalhes de recuperação da minha carteira e entendi que a exclusão é permanente."
   },
   "miniApps": {

@@ -4775,7 +4775,7 @@
     "usernameReserved": "Det här användarnamnet är reserverat",
     "profileSet": "Profilen har ställts in!",
     "profileFailed": "Det gick inte att ställa in profilen",
-    "displayNameHint": "Ditt offentliga namn som visas på profilen."
+    "displayNameHint": "Ditt offentliga namn på profilen. Valfritt — lämna tomt för att använda ditt användarnamn."
   },
   "events": {
     "mine": "Mina",
@@ -5016,6 +5016,7 @@
     "accountHasA": "Det här kontot har en",
     "ifYouUsedDehub": "Om du har använt dehub.io tidigare, öppna det på din dator, logga in på samma sätt och med samma konto, och",
     "biometricExplainer": "Lås upp med fingeravtryck eller ansikte — inget att skriva eller komma ihåg. Nyckeln stannar på den här telefonen, så vi visar dig en återställningsfras på 12 ord att skriva ner; det är enda vägen tillbaka från en annan telefon, från webbplatsen eller efter en ominstallation. Välj Lösenord i stället, så gör lösenordet självt det jobbet.",
+    "biometricExplainerSecuring": "Lås upp med fingeravtryck eller ansikte — inget att skriva eller komma ihåg. Nyckeln stannar på den här telefonen. För att komma tillbaka in från en annan telefon, från webbplatsen eller efter en ominstallation sparar du senare en säkerhetskopia på 12 ord i Inställningar. Välj Lösenord i stället, så gör lösenordet självt det jobbet.",
     "biometricPrompt": "Den här plånboken skyddas av enhetens biometri. Bekräfta med fingeravtryck eller ansikte för att fortsätta.",
     "enterRecoveryPhrase": "Ange återställningsfrasen på 12 ord som du sparade när du skapade den här plånboken (eller dess privata nyckel, om du exporterade en). Den leder tillbaka till samma konto, och lösenordet du anger nedan blir en reserv som från och med nu fungerar överallt.",
     "copyPhrase": "Kopiera fras",
@@ -5088,6 +5089,7 @@
     "unlockWithPasswordExplainer": "Det här kontot har redan en plånbok, skyddad av ett lösenord. Ange det för att återställa din plånbok på den här enheten.",
     "deviceTab": "Denna enhet",
     "deviceExplainer": "Inget att skriva eller komma ihåg — nyckeln stannar på den här enheten. Vi erbjuder dig en säkerhetskopia på 12 ord att skriva ner; det är den enda vägen tillbaka från en annan enhet, från webbplatsen eller efter ominstallation. Välj Lösenord istället och själva lösenordet gör det jobbet.",
+    "deviceExplainerSecuring": "Inget att skriva eller komma ihåg — nyckeln stannar på den här enheten. För att komma tillbaka in från en annan enhet, från webbplatsen eller efter en ominstallation sparar du senare en säkerhetskopia på 12 ord i Inställningar. Välj Lösenord i stället, så gör lösenordet självt det jobbet.",
     "secureOnDevice": "Behåll nyckeln på den här enheten"
   },
   "transcript": {
@@ -8995,7 +8997,7 @@
     "done": "Färdig",
     "error": "Det gick inte att skicka din begäran om radering. Ditt konto har inte bekräftats för radering. Vänligen försök igen.",
     "back": "Tillbaka till inställningar",
-    "signIn": "Logga in på ditt konto",
+    "signIn": "Logga in för att radera ditt konto",
     "acknowledge": "Jag har sparat mina återställningsuppgifter för plånboken och förstår att raderingen är permanent."
   },
   "miniApps": {

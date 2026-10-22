@@ -1061,6 +1061,8 @@
     "payFailed": "{{symbol}} DeHub tokenlarına dönüştürülemedi",
     "stageDelivering": "DeHub Pay tokenlarınızı gönderiyor…",
     "payViaDpay": "DeHub Pay'e ödendi, tokenlar yaklaşık 30 saniyede gelir",
+    "payDirect": "{{chain}} üzerinde {{symbol}} olarak doğrudan {{name}} kişisine gönderilir. Takas yok.",
+    "payDirectNoName": "{{chain}} üzerinde {{symbol}} olarak doğrudan içerik üreticisine gönderilir. Takas yok.",
     "payViaBridgeDpay": "Base'e taşındı ve DeHub Pay'e ödendi, tokenlar yaklaşık bir dakikada gelir",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -5094,7 +5096,7 @@
     "usernameReserved": "Bu kullanıcı adı ayrılmış",
     "profileSet": "Profil başarıyla oluşturuldu!",
     "profileFailed": "Profil oluşturulamadı",
-    "displayNameHint": "Profilinde görünen herkese açık adın."
+    "displayNameHint": "Profilindeki herkese açık adın. İsteğe bağlı — boş bırakırsan kullanıcı adın kullanılır."
   },
   "events": {
     "mine": "Benimkiler",
@@ -5395,6 +5397,7 @@
     "accountHasA": "Bu hesapta bir",
     "ifYouUsedDehub": "Daha önce dehub.io kullandıysan, bilgisayarında aç, aynı şekilde ve aynı hesapla oturum aç ve",
     "biometricExplainer": "Parmak izin veya yüzünle kilidi aç — yazacak ya da hatırlayacak bir şey yok. Anahtar bu telefonda kalır, bu yüzden yazman için 12 kelimelik bir kurtarma ifadesi göstereceğiz; başka bir telefondan, siteden veya yeniden kurulumdan sonra geri dönmenin tek yolu budur. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "biometricExplainerSecuring": "Parmak izin veya yüzünle kilidi aç — yazacak ya da hatırlayacak bir şey yok. Anahtar bu telefonda kalır. Başka bir telefondan, siteden veya yeniden kurulumdan sonra geri girebilmek için daha sonra Ayarlar'dan 12 kelimelik bir yedek kaydet. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
     "biometricPrompt": "Bu cüzdan bu cihazın biyometrisiyle korunuyor. Devam etmek için parmak izi veya yüzle onayla.",
     "enterRecoveryPhrase": "Bu cüzdanı oluştururken kaydettiğin 12 kelimelik kurtarma ifadesini gir (ya da dışa aktardıysan özel anahtarını). Aynı hesaba geri götürür ve aşağıda belirlediğin parola bundan sonra her yerde çalışan bir yedek hâline gelir.",
     "copyPhrase": "İfadeyi kopyala",
@@ -5466,8 +5469,9 @@
     "unlockPasskeyOnly": "Bu cüzdan web'de bir geçiş anahtarıyla güvence altına alındı ve henüz bulutta bir şifre yedeği bulunmuyor. dehub.io'da bir cüzdan şifresi ayarladıysanız, onu buraya girin — aksi takdirde aşağıdaki Anahtarları içe aktar seçeneğini kullanın.",
     "unlockWithPasswordExplainer": "Bu hesaba ait bir cüzdan zaten var ve bir şifre ile korunuyor. Cüzdanınızı bu cihazda kurtarmak için şifreyi girin.",
     "deviceTab": "Bu cihaz",
-    "deviceExplainer": "Yazılacak veya hatırlanacak bir şey yok — tuş bu cihazda kalıyor. Yazmanız için size 12 kelimelik bir yedekleme sunacağız; başka bir cihazdan, web sitesinden veya yeniden yükledikten sonra geri dönmenin tek yolu budur. Bunun yerine Parola seçin ve parolanın kendisi bu işi yapar.",
-    "secureOnDevice": "Anahtarı bu cihazda tutun"
+    "deviceExplainer": "Yazacak ya da hatırlayacak bir şey yok — anahtar bu cihazda kalır. Yazman için sana 12 kelimelik bir yedek sunacağız; başka bir cihazdan, siteden veya yeniden kurulumdan sonra geri dönmenin tek yolu budur. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "deviceExplainerSecuring": "Yazacak ya da hatırlayacak bir şey yok — anahtar bu cihazda kalır. Başka bir cihazdan, siteden veya yeniden kurulumdan sonra geri girebilmek için daha sonra Ayarlar'dan 12 kelimelik bir yedek kaydet. Bunun yerine Parola'yı seç; o işi parolanın kendisi yapar.",
+    "secureOnDevice": "Anahtarı bu cihazda tut"
   },
   "walletBackup": {
     "title": "Cüzdanı yedekle",
@@ -9786,7 +9790,7 @@
     "done": "Bitti",
     "error": "Silme isteğiniz gönderilemedi. Hesabınızın silinmesi onaylanmadı. Lütfen tekrar deneyin.",
     "back": "Ayarlara Dön",
-    "signIn": "Hesabınızda oturum açın",
+    "signIn": "Hesabınızı silmek için oturum açın",
     "acknowledge": "Cüzdan kurtarma bilgilerimi kaydettim ve silmenin kalıcı olduğunu anladım."
   },
   "miniApps": {

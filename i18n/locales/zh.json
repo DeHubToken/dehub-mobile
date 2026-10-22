@@ -946,6 +946,8 @@
     "payFailed": "无法将 {{symbol}} 兑换为 DeHub 代币",
     "stageDelivering": "DeHub Pay 正在发送您的代币…",
     "payViaDpay": "已支付给 DeHub Pay，代币约 30 秒后到账",
+    "payDirect": "以 {{chain}} 上的 {{symbol}} 直接发送给 {{name}}，无需兑换。",
+    "payDirectNoName": "以 {{chain}} 上的 {{symbol}} 直接发送给创作者，无需兑换。",
     "payViaBridgeDpay": "已移至 Base 并支付给 DeHub Pay，代币约一分钟后到账",
     "tokensUnit": "代币",
     "tokenAmount": "{{amount}} 代币"
@@ -4812,7 +4814,7 @@
     "usernameReserved": "该用户名为保留名",
     "profileSet": "资料设置成功！",
     "profileFailed": "无法设置资料",
-    "displayNameHint": "显示在你个人资料上的公开名称。"
+    "displayNameHint": "显示在你个人资料上的公开名称。选填——留空则使用你的用户名。"
   },
   "events": {
     "mine": "我的",
@@ -5053,6 +5055,7 @@
     "accountHasA": "该账户拥有",
     "ifYouUsedDehub": "如果你以前用过 dehub.io，请在电脑上打开它，用相同方式和相同账户登录，然后",
     "biometricExplainer": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上，因此我们会显示一组 12 个词的恢复助记词供你抄下；这是从另一部手机、从网站或重装后重新进入的唯一途径。若改选密码，密码本身就承担这一作用。",
+    "biometricExplainerSecuring": "用指纹或人脸解锁——无需输入或记忆任何东西。密钥保存在这台手机上。若要从另一部手机、从网站或重装后重新进入，请稍后在设置中保存一份 12 个词的备份。若改选密码，密码本身就承担这一作用。",
     "biometricPrompt": "此钱包受本设备的生物识别保护。请用指纹或人脸确认以继续。",
     "enterRecoveryPhrase": "请输入你创建这个钱包时保存的 12 个词恢复助记词（若导出过私钥，也可用私钥）。它会回到同一个账户，而你在下面设置的密码将成为从此处处可用的备用方式。",
     "copyPhrase": "复制助记词",
@@ -5124,7 +5127,8 @@
     "unlockPasskeyOnly": "此钱包已在网上通过通行密钥保护，目前云端没有密码备份。如果您在 dehub.io 上设置了钱包密码，请在此处输入——否则请使用下方的“导入密钥”。",
     "unlockWithPasswordExplainer": "此账户已有一个钱包，受密码保护。输入密码即可在此设备上恢复您的钱包。",
     "deviceTab": "此设备",
-    "deviceExplainer": "无需输入或记住—钥匙留在此设备上。我们将为您提供一个12字的备份来写下来；这是从另一台设备、网站或重新安装后返回的唯一途径。取而代之的是选择密码，密码本身就可以完成这项工作。",
+    "deviceExplainer": "无需输入或记忆任何东西——密钥保存在这台设备上。我们会提供一组 12 个词的备份供你抄下；这是从另一台设备、从网站或重装后重新进入的唯一途径。若改选密码，密码本身就承担这一作用。",
+    "deviceExplainerSecuring": "无需输入或记忆任何东西——密钥保存在这台设备上。若要从另一台设备、从网站或重装后重新进入，请稍后在设置中保存一份 12 个词的备份。若改选密码，密码本身就承担这一作用。",
     "secureOnDevice": "将密钥保留在此设备上"
   },
   "walletBackup": {
@@ -9114,7 +9118,7 @@
     "done": "完成",
     "error": "无法提交您的删除请求。您的账号尚未确认删除。请重试。",
     "back": "返回设置",
-    "signIn": "登录",
+    "signIn": "登录以删除您的账户",
     "acknowledge": "我已保存钱包恢复详细信息，并了解删除是永久性的。"
   },
   "miniApps": {

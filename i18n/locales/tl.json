@@ -4818,7 +4818,7 @@
     "usernameReserved": "Nakalaan ang username na ito",
     "profileSet": "Matagumpay na na-set ang profile!",
     "profileFailed": "Hindi ma-set ang profile",
-    "displayNameHint": "Ang pampublikong pangalan mong makikita sa profile."
+    "displayNameHint": "Ang pampublikong pangalan mo sa profile. Opsyonal — iwanang blangko para gamitin ang username mo."
   },
   "events": {
     "mine": "Akin",
@@ -5059,6 +5059,7 @@
     "accountHasA": "May",
     "ifYouUsedDehub": "Kung nagamit mo na ang dehub.io dati, buksan ito sa computer mo, mag-sign in sa parehong paraan at gamit ang parehong account, at",
     "biometricExplainer": "Mag-unlock gamit ang fingerprint o mukha mo — walang itatype o kabisaduhin. Nananatili ang susi sa teleponong ito, kaya ipapakita namin ang 12-salitang recovery phrase para isulat mo; iyon lang ang tanging daan pabalik mula sa ibang telepono, mula sa website, o pagkatapos mag-reinstall. Piliin ang Password sa halip at ang password mismo ang gagawa ng trabahong iyon.",
+    "biometricExplainerSecuring": "Mag-unlock gamit ang fingerprint o mukha mo — walang itatype o kabisaduhin. Nananatili ang susi sa teleponong ito. Para makabalik mula sa ibang telepono, mula sa website, o pagkatapos mag-reinstall, mag-save ng 12-salitang backup mamaya sa Mga Setting. Piliin ang Password sa halip at ang password mismo ang gagawa ng trabahong iyon.",
     "biometricPrompt": "Protektado ang wallet na ito ng biometrics ng device na ito. Kumpirmahin gamit ang fingerprint o mukha para magpatuloy.",
     "enterRecoveryPhrase": "Ilagay ang 12-salitang recovery phrase na iniligtas mo noong ginawa mo ang wallet na ito (o ang private key nito, kung nag-export ka). Babalik ito sa parehong account, at ang password na itatakda mo sa ibaba ay magiging backup na gagana kahit saan mula ngayon.",
     "copyPhrase": "Kopyahin ang phrase",
@@ -5131,6 +5132,7 @@
     "unlockWithPasswordExplainer": "Ang account na ito ay mayroon nang wallet, na protektado ng password. Ilagay ito upang ma-recover ang iyong wallet sa device na ito.",
     "deviceTab": "Ang device na ito",
     "deviceExplainer": "Walang dapat i - type o tandaan — ang susi ay nananatili sa device na ito. Mag - aalok kami sa iyo ng 12 - word backup upang isulat; ito ay ang tanging paraan pabalik sa mula sa isa pang aparato, mula sa website, o pagkatapos ng muling pag - install. Pumili ng Password sa halip at ang password mismo ang gumagawa ng trabahong iyon.",
+    "deviceExplainerSecuring": "Walang itatype o kabisaduhin — nananatili ang susi sa device na ito. Para makabalik mula sa ibang device, mula sa website, o pagkatapos mag-reinstall, mag-save ng 12-salitang backup mamaya sa Mga Setting. Piliin ang Password sa halip at ang password mismo ang gagawa ng trabahong iyon.",
     "secureOnDevice": "Panatilihin ang susi sa device na ito"
   },
   "transcript": {
@@ -9163,17 +9165,17 @@
   "accountDeletion": {
     "title": "Burahin ang account",
     "description": "Permanenteng tanggalin ang iyong account at personal na data",
-    "warning": "Permanenteng tinatanggal nito ang iyong DeHub profile, mga post, mga komento, mga mensahe at naka - imbak na backup ng wallet. I - save muna ang mga detalye ng pagbawi ng iyong wallet at ilipat muna ang anumang asset. Hindi matatanggal ang mga pampublikong transaksyon sa blockchain at mga legal na kinakailangang rekord ng pagbabayad. Nakatago kaagad ang iyong profile; nakumpleto ang pagtanggal sa loob ng 30 araw. Hindi ito mababawi.",
+    "warning": "Permanenteng tinatanggal nito ang iyong DeHub profile, mga post, mga komento, mga mensahe at naka-imbak na backup ng wallet. I-save muna ang mga detalye ng pagbawi ng iyong wallet at ilipat muna ang anumang asset. Hindi matatanggal ang mga pampublikong transaksyon sa blockchain at mga legal na kinakailangang rekord ng pagbabayad. Nakatago kaagad ang iyong profile; nakumpleto ang pagtanggal sa loob ng 30 araw. Hindi ito mababawi.",
     "cancel": "Kanselahin",
     "confirm": "Permanenteng tanggalin ang aking account",
     "busy": "Pagsusumite ng kahilingan sa pagtatanggal...",
     "accepted": "Hiniling ang pagtanggal ng account",
-    "receipt": "Na - save na ang iyong kahilingan sa pagtanggal. Nakatago ang iyong profile at permanenteng tatanggalin ang iyong account sa loob ng 30 araw. Hindi puwedeng kanselahin ng pag - sign in ang kahilingang ito.",
+    "receipt": "Na-save na ang iyong kahilingan sa pagtanggal. Nakatago ang iyong profile at permanenteng tatanggalin ang iyong account sa loob ng 30 araw. Hindi puwedeng kanselahin ng pag-sign in ang kahilingang ito.",
     "done": "Tapos na",
     "error": "Hindi maisumite ang iyong kahilingan sa pagtanggal. Ang iyong account ay hindi nakumpirma para sa pagtanggal. Pakisubukan muli.",
     "back": "Bumalik sa Mga Setting",
-    "signIn": "Mag - sign in para tanggalin ang iyong account",
-    "acknowledge": "Na - save ko ang aking mga detalye sa pagbawi ng wallet at nauunawaan ko na ang pagtanggal ay permanente."
+    "signIn": "Mag-sign in para tanggalin ang iyong account",
+    "acknowledge": "Na-save ko ang aking mga detalye sa pagbawi ng wallet at nauunawaan ko na ang pagtanggal ay permanente."
   },
   "miniApps": {
     "badge": {

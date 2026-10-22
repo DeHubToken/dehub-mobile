@@ -4761,7 +4761,7 @@
     "usernameReserved": "An ajiye wannan sunan",
     "profileSet": "An saita bayanan martaba cikin nasara!",
     "profileFailed": "An kasa saita bayanan martaba",
-    "displayNameHint": "Sunanka na jama'a da ake nunawa a bayananka."
+    "displayNameHint": "Sunanka na jama'a a bayananka. Ba dole ba ne — ka bar shi a wofi don a yi amfani da sunan mai amfani naka."
   },
   "events": {
     "mine": "Nawa",
@@ -5002,6 +5002,7 @@
     "accountHasA": "Wannan asusun yana da",
     "ifYouUsedDehub": "Idan ka taɓa amfani da dehub.io a baya, buɗe shi a kwamfutarka, ka shiga ta hanya ɗaya kuma da asusu ɗaya, sannan",
     "biometricExplainer": "Buɗe da yatsan hannunka ko fuskarka — babu abin da za a buga ko a tuna. Maɓallin yana zama a wannan wayar, don haka za mu nuna maka jimlar dawo da asusu ta kalmomi 12 don ka rubuta; ita ce kaɗai hanyar dawowa daga wata waya, daga shafin yanar gizo, ko bayan sake girkawa. Zaɓi Kalmar sirri maimakon haka, sai kalmar sirrin ta yi wannan aikin.",
+    "biometricExplainerSecuring": "Buɗe da yatsan hannunka ko fuskarka — babu abin da za a buga ko a tuna. Maɓallin yana zama a wannan wayar. Don dawowa daga wata waya, daga shafin yanar gizo, ko bayan sake girkawa, ka adana madadin kalmomi 12 daga baya a Saituna. Zaɓi Kalmar sirri maimakon haka, sai kalmar sirrin ta yi wannan aikin.",
     "biometricPrompt": "Wannan walat ɗin yana da kariya ta biometrics na wannan na'urar. Tabbatar da yatsa ko fuska don ci gaba.",
     "enterRecoveryPhrase": "Shigar da jimlar dawo da asusu ta kalmomi 12 da ka ajiye lokacin da ka ƙirƙiri wannan walat (ko maɓallinsa na sirri, idan ka fitar da shi). Yana komawa zuwa asusu ɗaya, kuma kalmar sirrin da za ka saita a ƙasa ta zama madadin da ke aiki ko'ina daga yanzu.",
     "copyPhrase": "Kwafi jimla",
@@ -5074,6 +5075,7 @@
     "unlockWithPasswordExplainer": "Wannan asusun yana da wallet a yanzu, wanda kalmar sirri ke karewa. Shigar da ita don dawo da wallet ɗinka a wannan na'urar.",
     "deviceTab": "Wannan na'urar",
     "deviceExplainer": "Babu wani abu da za a rubuta ko tuna — maɓallin ya kasance a kan wannan na'urar. Za mu ba ku madadin kalmomi 12 don rubutawa; ita ce kawai hanyar dawowa daga wani na'ura, daga gidan yanar gizon, ko bayan sake shigarwa. Zaɓi Kalmar wucewa maimakon kuma kalmar sirri kanta tana yin wannan aikin.",
+    "deviceExplainerSecuring": "Babu abin da za a buga ko a tuna — maɓallin yana zama a wannan na'urar. Don dawowa daga wata na'ura, daga shafin yanar gizo, ko bayan sake girkawa, ka adana madadin kalmomi 12 daga baya a Saituna. Zaɓi Kalmar sirri maimakon haka, sai kalmar sirrin ta yi wannan aikin.",
     "secureOnDevice": "Ci gaba da maɓallin a kan wannan na'urar"
   },
   "transcript": {
@@ -8957,13 +8959,13 @@
   "accountDeletion": {
     "title": "Share wannan Asusun",
     "description": "Kullum share asusunka da bayanan sirri",
-    "warning": "Wannan har abada share your DeHub profile, posts, comments, saƙonni da kuma adana walat madadin. Ajiye ka walat dawo da cikakken bayani da kuma matsar da dukiya farko. Jama'a blockchain ma'amaloli da kuma doka da ake bukata biya records ba za a iya share. Bayaninka an ɓoye nan da nan; shafewa ya kammala cikin kwanaki 30. Ba za a iya cire wannan ba.",
-    "cancel": "QSql",
+    "warning": "Wannan zai share bayanan martabarka na DeHub, rubuce-rubuce, sharhi, saƙonni da ajiyayyen walat ɗinka har abada. Ka adana bayanan dawo da walat ɗinka kuma ka fara matsar da duk wata kadara. Ba za a iya share mu'amalolin blockchain na jama'a da bayanan biyan kuɗi da doka ta buƙata ba. Ana ɓoye bayananka nan take; sharewa tana kammala cikin kwanaki 30. Ba za a iya mayar da wannan ba.",
+    "cancel": "Soke",
     "confirm": "Kullum share asusun na",
     "busy": "Gabatar da buƙatun sharewa…",
     "accepted": "Asusun shafewa da aka nema",
     "receipt": "An adana buƙatarku na sharewa. Bayaninka yana ɓoye kuma za a share asusunka har abada a cikin kwanaki 30. Shiga ciki ba zai iya soke wannan buƙatar ba.",
-    "done": "QSoftKeyManager",
+    "done": "An gama",
     "error": "Ba zai iya gabatar da buƙatarku na sharewa ba. Ba a tabbatar da asusunka don sharewa ba. Don Allah a sake gwadawa.",
     "back": "Komawa zuwa Saituna",
     "signIn": "Shiga don share asusunka",

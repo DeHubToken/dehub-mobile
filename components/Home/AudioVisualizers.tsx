@@ -301,7 +301,7 @@ export const WaveformBars: React.FC<WaveformBarsProps> = memo(
           key={i}
           style={{
             width: bw,
-            height: Math.max(2, h * wHeight * 0.85 * (glass ? .16 + .84 * Math.pow(Math.sin(Math.PI * i / Math.max(1, count - 1)), .8) : 1)),
+            height: Math.max(glass ? 1 : 2, h * wHeight * 0.85 * (glass ? .025 + .975 * Math.pow(Math.sin(Math.PI * i / Math.max(1, count - 1)), 1.5) : 1)),
             borderRadius: bw / 2,
             marginRight: i < count - 1 ? bg : 0,
             backgroundColor: color,
@@ -330,9 +330,10 @@ const GLINT_FRACTION = 0.09;
 
 export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
   ({ seed, position, compact, hue, height, isPlaying = false, onLayout, glass }) => {
+    const { width, handleLayout } = useBandWidth(onLayout);
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
-    const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
-    const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
+    const bw = glass && width > 0 ? width / (count + (count - 1) * .6) : compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
+    const bg = glass && width > 0 ? bw * .6 : compact ? COMPACT_BAR_GAP : BAR_GAP;
     const wHeight = height ?? (compact ? COMPACT_WAVEFORM_HEIGHT : WAVEFORM_HEIGHT);
     const bars = useMemo(() => generateBars(seed, count), [seed, count]);
 
@@ -380,7 +381,7 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
     }));
 
     return (
-      <View onLayout={onLayout} style={{ height: wHeight }}>
+      <View onLayout={glass ? handleLayout : onLayout} style={{ height: wHeight }}>
         {/* Unplayed layer — static, never re-renders during seek */}
         <WaveformBars glass={glass} bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={unplayedColor} />
         {/* Played layer — only clip width changes, bars never re-render */}

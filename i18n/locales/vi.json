@@ -959,6 +959,8 @@
     "payFailed": "Không thể chuyển đổi {{symbol}} sang token DeHub",
     "stageDelivering": "DeHub Pay đang gửi token của bạn…",
     "payViaDpay": "Đã thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng 30 giây",
+    "payDirect": "Gửi thẳng cho {{name}} bằng {{symbol}} trên {{chain}}. Không swap.",
+    "payDirectNoName": "Gửi thẳng cho nhà sáng tạo bằng {{symbol}} trên {{chain}}. Không swap.",
     "payViaBridgeDpay": "Đã chuyển sang Base và thanh toán cho DeHub Pay, token sẽ nhận được trong khoảng một phút",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"
@@ -4783,7 +4785,7 @@
     "usernameReserved": "Tên người dùng này được dành riêng",
     "profileSet": "Đã thiết lập hồ sơ thành công!",
     "profileFailed": "Không thiết lập được hồ sơ",
-    "displayNameHint": "Tên công khai hiển thị trên hồ sơ của bạn."
+    "displayNameHint": "Tên công khai trên hồ sơ của bạn. Không bắt buộc — để trống để dùng tên người dùng của bạn."
   },
   "events": {
     "mine": "Của tôi",
@@ -5024,6 +5026,7 @@
     "accountHasA": "Tài khoản này có",
     "ifYouUsedDehub": "Nếu bạn từng dùng dehub.io, hãy mở nó trên máy tính, đăng nhập theo cùng cách và cùng tài khoản, rồi",
     "biometricExplainer": "Mở khóa bằng vân tay hoặc khuôn mặt — không phải gõ hay ghi nhớ gì. Khóa vẫn nằm trên điện thoại này, nên chúng tôi sẽ hiển thị một cụm từ khôi phục gồm 12 từ để bạn chép lại; đó là cách duy nhất để quay lại từ một máy khác, từ trang web, hoặc sau khi cài đặt lại. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "biometricExplainerSecuring": "Mở khóa bằng vân tay hoặc khuôn mặt — không phải gõ hay ghi nhớ gì. Khóa riêng tư vẫn nằm trên điện thoại này. Để vào lại từ một máy khác, từ trang web hoặc sau khi cài đặt lại, sau này hãy lưu một bản sao lưu 12 từ trong Cài đặt. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
     "biometricPrompt": "Ví này được bảo vệ bằng sinh trắc học của thiết bị này. Xác nhận bằng vân tay hoặc khuôn mặt để tiếp tục.",
     "enterRecoveryPhrase": "Nhập cụm từ khôi phục gồm 12 từ mà bạn đã lưu khi tạo ví này (hoặc khóa riêng tư của nó, nếu bạn từng xuất ra). Nó đưa bạn về đúng tài khoản cũ, và mật khẩu bạn đặt bên dưới sẽ trở thành phương án dự phòng hoạt động ở mọi nơi kể từ giờ.",
     "copyPhrase": "Sao chép cụm từ",
@@ -5095,8 +5098,9 @@
     "unlockPasskeyOnly": "Ví này được bảo mật bằng khóa truy cập trên web và chưa có bản sao lưu mật khẩu trên đám mây. Nếu bạn đặt mật khẩu ví trên dehub.io, hãy nhập nó vào đây — nếu không, hãy sử dụng Nhập khóa bên dưới.",
     "unlockWithPasswordExplainer": "Tài khoản này đã có ví, được bảo vệ bằng mật khẩu. Nhập mật khẩu để khôi phục ví của bạn trên thiết bị này.",
     "deviceTab": "Thiết bị này",
-    "deviceExplainer": "Không có gì để nhập hoặc ghi nhớ — các chỗ ở quan trọng trên thiết bị này. Chúng tôi sẽ cung cấp cho bạn bản sao lưu 12 từ để ghi lại; đó là cách duy nhất để quay lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Thay vào đó, hãy chọn Mật khẩu và chính mật khẩu sẽ thực hiện công việc đó.",
-    "secureOnDevice": "Giữ chìa khóa trên thiết bị này"
+    "deviceExplainer": "Không phải gõ hay ghi nhớ gì — khóa riêng tư vẫn nằm trên thiết bị này. Chúng tôi sẽ đưa cho bạn một bản sao lưu 12 từ để chép lại; đó là cách duy nhất để vào lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "deviceExplainerSecuring": "Không phải gõ hay ghi nhớ gì — khóa riêng tư vẫn nằm trên thiết bị này. Để vào lại từ một thiết bị khác, từ trang web hoặc sau khi cài đặt lại, sau này hãy lưu một bản sao lưu 12 từ trong Cài đặt. Chọn Mật khẩu thay thế thì chính mật khẩu sẽ đảm nhiệm vai trò đó.",
+    "secureOnDevice": "Giữ khóa riêng tư trên thiết bị này"
   },
   "walletBackup": {
     "title": "Sao lưu ví",
@@ -9109,7 +9113,7 @@
     "done": "Hoàn thành",
     "error": "Không thể gửi yêu cầu xóa của bạn. Tài khoản của bạn chưa được xác nhận xóa. Vui lòng thử lại.",
     "back": "Quay lại Cài đặt",
-    "signIn": "ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN",
+    "signIn": "Đăng nhập để xóa tài khoản của bạn",
     "acknowledge": "Tôi đã lưu chi tiết khôi phục ví của mình và hiểu rằng việc xóa là vĩnh viễn."
   },
   "miniApps": {

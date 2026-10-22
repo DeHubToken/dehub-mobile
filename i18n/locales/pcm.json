@@ -4679,7 +4679,7 @@
     "usernameReserved": "Dem reserve dis username",
     "profileSet": "Profile don set well well!",
     "profileFailed": "We no fit set di profile",
-    "displayNameHint": "Your public name wey dey show for your profile."
+    "displayNameHint": "Your public name wey dey show for your profile. E no by force — leave am empty and we go use your username."
   },
   "events": {
     "mine": "My own",
@@ -4912,6 +4912,7 @@
     "accountHasA": "Dis account get",
     "ifYouUsedDehub": "If you don use dehub.io before, open am for your computer, sign in di same way and with di same account, and",
     "biometricExplainer": "Unlock with your fingerprint or face — nothing to type or remember. Di key dey stay for dis phone, so we go show you 12-word recovery phrase make you write am down; na di only way to enter back from anoda phone, from di website, or after you reinstall. Choose Password instead and di password go do dat work.",
+    "biometricExplainerSecuring": "Unlock with your fingerprint or face — nothing to type or remember. Di key dey stay for dis phone. To enter back from anoda phone, from di website, or after you reinstall, save 12-word backup later for Settings. Choose Password instead and di password go do dat work.",
     "biometricPrompt": "Dis wallet dey protected by dis device biometrics. Confirm with fingerprint or face make you continue.",
     "enterRecoveryPhrase": "Enter di 12-word recovery phrase wey you save wen you create dis wallet (or im private key, if you export one). E go carry you back go di same account, and di password wey you set for below go turn backup wey go work everywhere from now.",
     "copyPhrase": "Copy phrase",
@@ -4984,6 +4985,7 @@
     "unlockWithPasswordExplainer": "Dis account don already get wallet wey password dey protect. Enter di password to recover your wallet for dis device.",
     "deviceTab": "Dis device",
     "deviceExplainer": "You no need type or remember anything — di key go stay for dis device. We go give you 12-word backup make you write down; na im be di only way to enter back from another device, from di website, or after you reinstall di app. If you pick Password instead, di password go do dat work.",
+    "deviceExplainerSecuring": "You no need type or remember anything — di key dey stay for dis device. To enter back from anoda device, from di website, or after you reinstall, save 12-word backup later for Settings. Choose Password instead and di password go do dat work.",
     "secureOnDevice": "Keep di key for dis device"
   },
   "transcript": {
@@ -8676,12 +8678,15 @@
   },
   "accountDeletion": {
     "title": "Delete account",
+    "description": "Delete your account and your personal data forever",
+    "warning": "Dis one go delete your DeHub profile, posts, comments, messages and di wallet backup wey we keep, forever. Save your wallet recovery details and move all your assets comot first. Public blockchain transactions and payment records wey law say make we keep no fit delete. We go hide your profile sharp sharp; di deletion go finish inside 30 days. You no fit undo am.",
     "cancel": "Cancel",
-    "confirm": "Permanently delete my account",
-    "busy": "Submitting deletion request…",
-    "accepted": "Account deletion requested",
+    "confirm": "Delete my account forever",
+    "busy": "We dey send your delete request…",
+    "accepted": "We don collect your delete request",
     "done": "Done",
-    "back": "Back to Settings",
+    "back": "Go back to Settings",
+    "signIn": "Sign in make you fit delete your account",
     "receipt": "Yousey deletion request go save. Yousey profile go hide, and yousey account go delete permanently after 30 days. Sign in no go cancel dis request.",
     "error": "Wahala! You no dey submit your delete request. Your account no confirm for delete yet. Try again, o!",
     "acknowledge": "I save my wallet recovery details for me, and I know dat deletion go be permanent."

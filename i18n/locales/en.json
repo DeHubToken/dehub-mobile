@@ -1024,6 +1024,8 @@
     "stagePay": "Paying DeHub Pay with {{symbol}}…",
     "stageDelivering": "DeHub Pay is sending your tokens…",
     "payViaDpay": "Paid to DeHub Pay, tokens arrive in about 30s",
+    "payDirect": "Sent straight to {{name}} in {{symbol}} on {{chain}}. No swap.",
+    "payDirectNoName": "Sent straight to the creator in {{symbol}} on {{chain}}. No swap.",
     "payViaBridgeDpay": "Moved to Base and paid to DeHub Pay, tokens arrive in about a minute",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"
@@ -5057,7 +5059,7 @@
     "usernameReserved": "This username is reserved",
     "profileSet": "Profile set successfully!",
     "profileFailed": "Failed to set profile",
-    "displayNameHint": "Your public name shown on your profile."
+    "displayNameHint": "Your public name on your profile. Optional — leave it blank to use your username."
   },
   "events": {
     "mine": "Mine",
@@ -5358,6 +5360,7 @@
     "accountHasA": "This account has a",
     "ifYouUsedDehub": "If you have used dehub.io before, open it on your computer, sign in the same way and with the same account, and",
     "biometricExplainer": "Unlock with your fingerprint or face — nothing to type or remember. The key stays on this phone, so we'll offer you a 12-word backup to write down; it is the only way back in from another handset, from the website, or after reinstalling. Pick Password instead and the password itself does that job.",
+    "biometricExplainerSecuring": "Unlock with your fingerprint or face — nothing to type or remember. The key stays on this phone. To get back in from another handset, from the website, or after reinstalling, save a 12-word backup later in Settings. Pick Password instead and the password itself does that job.",
     "biometricPrompt": "This wallet is protected by this device's biometrics. Confirm with fingerprint or face to continue.",
     "enterRecoveryPhrase": "Enter the 12-word recovery phrase you saved when you created this wallet (or its private key, if you exported one). It goes back to the same account, and the password you set below becomes a backup that works everywhere from now on.",
     "copyPhrase": "Copy phrase",
@@ -5423,6 +5426,7 @@
     "biometricTab": "Biometric",
     "deviceTab": "This device",
     "deviceExplainer": "Nothing to type or remember — the key stays on this device. We'll offer you a 12-word backup to write down; it is the only way back in from another device, from the website, or after reinstalling. Pick Password instead and the password itself does that job.",
+    "deviceExplainerSecuring": "Nothing to type or remember — the key stays on this device. To get back in from another device, from the website, or after reinstalling, save a 12-word backup later in Settings. Pick Password instead and the password itself does that job.",
     "secureOnDevice": "Keep the key on this device",
     "noUsableBackup": "This account has a wallet address on file, but no backup this phone can use — either it was protected with <em>biometrics or a passkey on the web</em> (that unlock stays in the browser and does not sync here), or an earlier sign-up on this phone was interrupted before it finished.",
     "addPasswordOnWeb": "If you have used dehub.io before, open it on your computer, sign in the same way and with the same account, and <em>add a wallet password</em> — that saves an encrypted backup to the cloud. Then come back here and try again.",
