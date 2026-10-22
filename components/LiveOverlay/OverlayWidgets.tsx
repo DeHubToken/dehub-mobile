@@ -195,11 +195,11 @@ function PersonAlert({ settings, kind, box }: WidgetProps & { kind: OverlayKind 
   if (!current || current.leaving) return null;
   const line =
     kind === "follow_alert"
-      ? t("liveOverlay.followed", { name })
+      ? t("liveOverlay.newFollower", { name })
       : kind === "subscribe_alert"
         ? current.item.planName
           ? t("liveOverlay.subscribedTo", { name, plan: current.item.planName })
-          : t("liveOverlay.subscribed", { name })
+          : t("liveOverlay.newSubscriber", { name })
         : kind === "share_alert"
           ? t("liveOverlay.shared", { name })
           : t("liveOverlay.joined", { name });
