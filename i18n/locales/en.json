@@ -1024,6 +1024,8 @@
     "stagePay": "Paying DeHub Pay with {{symbol}}…",
     "stageDelivering": "DeHub Pay is sending your tokens…",
     "payViaDpay": "Paid to DeHub Pay, tokens arrive in about 30s",
+    "payDirect": "Sent straight to {{name}} in {{symbol}} on {{chain}}. No swap.",
+    "payDirectNoName": "Sent straight to the creator in {{symbol}} on {{chain}}. No swap.",
     "payViaBridgeDpay": "Moved to Base and paid to DeHub Pay, tokens arrive in about a minute",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"

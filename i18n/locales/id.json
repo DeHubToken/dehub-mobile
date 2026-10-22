@@ -947,6 +947,8 @@
     "payFailed": "Tidak dapat mengonversi {{symbol}} ke token DeHub",
     "stageDelivering": "DeHub Pay sedang mengirim token Anda…",
     "payViaDpay": "Dibayar ke DeHub Pay, token tiba dalam waktu sekitar 30 detik",
+    "payDirect": "Dikirim langsung ke {{name}} dalam {{symbol}} di {{chain}}. Tanpa swap.",
+    "payDirectNoName": "Dikirim langsung ke kreator dalam {{symbol}} di {{chain}}. Tanpa swap.",
     "payViaBridgeDpay": "Dipindahkan ke Base dan dibayar ke DeHub Pay, token tiba dalam waktu sekitar satu menit",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"

@@ -1061,6 +1061,8 @@
     "payFailed": "Impossible de convertir {{symbol}} en jetons DeHub",
     "stageDelivering": "DeHub Pay envoie vos jetons…",
     "payViaDpay": "Payé à DeHub Pay, les jetons arrivent dans environ 30s",
+    "payDirect": "Envoyé directement à {{name}} en {{symbol}} sur {{chain}}. Sans swap.",
+    "payDirectNoName": "Envoyé directement au créateur en {{symbol}} sur {{chain}}. Sans swap.",
     "payViaBridgeDpay": "Déplacé vers Base et payé à DeHub Pay, les jetons arrivent dans environ une minute",
     "tokensUnit": "jetons",
     "tokenAmount": "{{amount}} jetons"
