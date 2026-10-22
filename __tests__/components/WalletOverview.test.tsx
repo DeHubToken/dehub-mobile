@@ -29,7 +29,9 @@ jest.mock('../../components/common/AddressInputTools', () => 'AddressInputTools'
 jest.mock('../../config/web3.constants', () => ({ NETWORK_URLS: {} }));
 jest.mock('../../config/solana.constants', () => ({ SOLANA_MAINNET_CHAIN_ID: 101, SOLANA_SPL_TOKENS: [], getSolanaRpcUrl: () => '' }));
 const mockStorefront = { DIGITAL_PURCHASES_ENABLED: true };
-jest.mock('../../config/storefront', () => mockStorefront);
+// A getter: the factory runs when WalletOverview is imported, before this
+// file's own variables exist.
+jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { return mockStorefront.DIGITAL_PURCHASES_ENABLED; } }));
 const mockRefresh = jest.fn();
 const mockWallet = { address: '0x1111111111111111111111111111111111111111', solanaAddress: null, prices: {}, tokens: [], loading: false, refreshing: false, failedChains: [] as Array<{ id: number; name: string }>, refresh: mockRefresh };
 jest.mock('../../hooks/useWalletTokens', () => ({ useWalletTokens: () => mockWallet }));
