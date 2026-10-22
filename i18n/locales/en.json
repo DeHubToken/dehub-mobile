@@ -6684,6 +6684,29 @@
     "didNotRecoverThis": "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it.",
     "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."
   },
+  "liveRecap": {
+    "title": "Stream recap",
+    "justEnded": "Your stream recap",
+    "lastStream": "Your last stream",
+    "none": "No finished streams yet. Your recap appears here after your first one.",
+    "share": "Share",
+    "shareText": "I just streamed \"{{title}}\" on DeHub: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
+    "untitled": "Untitled stream",
+    "loadFailed": "The recap did not load. Try again in a moment.",
+    "duration": "Time live",
+    "peakViewers": "Most watching at once",
+    "gifts_one": "From {{count}} gift",
+    "gifts_other": "From {{count}} gifts",
+    "newFollowers": "New followers",
+    "chatMessages": "Chat messages",
+    "chatters": "People chatting",
+    "reactions": "Reactions",
+    "shares": "People sharing",
+    "topSupporters": "Top supporters",
+    "polls": "Polls",
+    "pollWinner": "{{option}} won",
+    "stillCounting": "Still counting: gifts can take a minute to confirm."
+  },
   "liveStudio": {
     "polls": {
       "title": "Polls",
