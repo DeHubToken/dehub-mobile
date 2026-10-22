@@ -9160,7 +9160,12 @@
       "voted_other": "你投票咗 · {{count}} 投票",
       "votes_one": "{{count}} 投票",
       "votes_other": "{{count}} 票數"
-    }
+    },
+    "subathon": "副馬拉松",
+    "subathonOver": "時間到喇",
+    "pointsTitle": "最忠實嘅觀眾",
+    "points_one": "{{formatted}} 點",
+    "points_other": "{{formatted}} 點"
   },
   "liveStudio": {
     "controls": {
@@ -9229,7 +9234,9 @@
       "chat_box": "聊天框",
       "ticker": "股票",
       "rule_alert": "規則警示",
-      "poll": "民調"
+      "poll": "民調",
+      "subathon_timer": "亞大賽計時器",
+      "points_board": "忠實嘅觀眾"
     },
     "hints": {
       "spin_wheel": "你規則入面嘅輪子喺邊度旋轉",
@@ -9249,7 +9256,9 @@
       "event_feed": "最新嘅禮物、追蹤者、訂閱者同埋分享你廣播嘅人",
       "chat_box": "喺螢幕上面顯示你嘅廣播嘅即時通訊訊息",
       "ticker": "你自己嘅一行文字，可以喺螢幕上面捲動",
-      "poll": "你嘅即時民調，每個選項都有投票掣"
+      "poll": "你嘅即時民調，每個選項都有投票掣",
+      "subathon_timer": "倒數，禮物、追蹤同訂閱都推返轉頭",
+      "points_board": "按觀看同送禮嘅積分，你嘅頂級觀眾"
     },
     "fields": {
       "style": "風格",
@@ -9484,6 +9493,28 @@
         "word-blocked": "停止咗 {{target}} 發出嘅「 {{word}} 」訊息",
         "word-timeout_one": "超時 {{target}} 為 {{count}} 秒為「 {{word}} 」"
       }
+    },
+    "subathon": {
+      "title": "副馬拉松",
+      "intro": "你嘅串流倒數緊。每次付費禮物、追蹤同訂閱都會增加時間，所以房間可以令你繼續生活。",
+      "secondsPerThousand": "每 1,000 個 DHB 天賦者增加秒數",
+      "secondsPerFollow": "每次追蹤加入秒數",
+      "secondsPerSubscribe": "每次訂閱增加秒數",
+      "capHours": "最長可以跑（小時）",
+      "save": "慳啲錢",
+      "saved": "儲存咗嘅子馬拉松金額。",
+      "startMinutes": "由（分鐘）開始",
+      "start": "開始倒數",
+      "stop": "停止",
+      "removeFive": "起飛5分鐘",
+      "failed": "噉樣做唔到。再試多次。",
+      "widgetHint": "顯示你嘅子馬拉松倒數。喺 Live Studio 嘅 Subathon 面板開始。"
+    },
+    "points": {
+      "title": "忠實嘅觀眾",
+      "intro": "觀眾每睇你一分鐘就賺到一分，每送100 DHB 就賺到一分。聊天同反應係冇乜賺，所以積分係唔可以耕種嘅。",
+      "empty": "仲未有分。當人哋睇住同送禮物嗰陣，佢哋就會積累起嚟。",
+      "widgetHint": "加入忠實觀眾小工具，就可以喺串流上面顯示呢個清單。"
     }
   },
   "liveChatModeration": {

@@ -9203,7 +9203,12 @@
       "voted_other": "Sagalee kennite · {{count}} sagalee",
       "votes_one": "{{count}} sagalee kennuu",
       "votes_other": "{{count}} sagalee kenna"
-    }
+    },
+    "subathon": "Subathon jedhamuun beekama",
+    "subathonOver": "Yeroon darbeera",
+    "pointsTitle": "Daawwattoota amanamoo ta'an irra caalaan",
+    "points_one": "{{formatted}} qabxii",
+    "points_other": "{{formatted}} qabxii"
   },
   "liveStudio": {
     "controls": {
@@ -9272,7 +9277,9 @@
       "chat_box": "Sanduuqa marii",
       "ticker": "Ticker",
       "rule_alert": "Ogeeyyii Seera",
-      "poll": "Gaaffii"
+      "poll": "Gaaffii",
+      "subathon_timer": "Sa'aatii subathon",
+      "points_board": "Daawwattoota amanamoo"
     },
     "hints": {
       "spin_wheel": "Bakka girgiddaan seera kee keessa jiru itti naanna'u",
@@ -9292,7 +9299,9 @@
       "chat_box": "Ergaawwan marii tamsaasa keessanii iskiriinii irratti agarsiisa",
       "ticker": "Sarara barruu mataa keetii kan iskiriinii irratti qaxxaamuru",
       "rule_alert": "Bakka ogeeyyii seera keessan mul'atu",
-      "poll": "Gaaffii live kee, buutina jiddaa filannoo tokkoon tokkoon irratti"
+      "poll": "Gaaffii live kee, buutina jiddaa filannoo tokkoon tokkoon irratti",
+      "subathon_timer": "Lakkoofsa duubatti deebi'uu kan kennaa, hordofuu fi maallaqa galchuun duubatti dhiibu",
+      "points_board": "Daawwattoota kee olaanoo qabxii ilaaluu fi kennaa kennuu irraa"
     },
     "fields": {
       "style": "Akkaataa",
@@ -9526,6 +9535,29 @@
         "word-timeout_one": "{{target}} yeroo {{count}} sekondiif \"{{word}}\" keessatti timeout godhe",
         "word-timeout_other": "{{target}} yeroo {{count}} sekondiif \"{{word}}\" keessatti timeout godhe"
       }
+    },
+    "subathon": {
+      "title": "Subathon jedhamuun beekama",
+      "intro": "Lakkoofsa duubatti deebi'uu stream keessan irratti. Kennaan kaffaltii qabu, hordoffii fi maallaqa galchuu hunduu yeroo dabalata, kanaaf kutaan sun akka jiraattu si taasisa.",
+      "secondsPerThousand": "DHB 1,000 kennaa kennameef sekondii dabalame",
+      "secondsPerFollow": "Sekondii hordoffii tokkotti dabalame",
+      "secondsPerSubscribe": "Sekondii maallaqa galchuu tokkoof dabalame",
+      "capHours": "Yeroo dheeraa fiiguu danda'u (sa'aatii) .",
+      "save": "Maallaqa qusachuu",
+      "saved": "Hanga subathon qusatame.",
+      "startMinutes": "(Daqiiqaa) irraa jalqabi.",
+      "start": "Lakkoofsa duubatti deebi'uu jalqabi",
+      "stop": "Dhaabuu",
+      "addFive": "Daqiiqaa 5 itti dabali",
+      "removeFive": "Daqiiqaa 5 irraa kaasaa",
+      "failed": "Sun hin milkoofne. Ammas yaalaa.",
+      "widgetHint": "Lakkoofsa subathon kee gara duubaatti agarsiisa. Live Studio keessatti paanaalii Subathon irraa jalqabi."
+    },
+    "points": {
+      "title": "Daawwattoota amanamoo",
+      "intro": "Daawwattoonni daqiiqaa si ilaalan hundaaf qabxii tokko DHB 100 kennaa kennaniif tokko argatu. Chaat fi reactions homaa waan hin arganneef qabxiin qotamuu hin danda'u.",
+      "empty": "Qabxiin hanga ammaatti hin jiru. Namoonni akkuma ilaalanii fi kennanitti ijaaramu.",
+      "widgetHint": "Tarree kana yaa'a irratti agarsiisuuf wiijetii daawwattoota amanamoo dabali."
     }
   },
   "liveChatModeration": {

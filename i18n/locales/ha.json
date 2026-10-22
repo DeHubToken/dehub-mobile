@@ -9148,7 +9148,12 @@
       "voted_other": "Kun zabe · {{count}} kuri'u",
       "votes_one": "{{count}} kuri'a",
       "votes_other": "{{count}} kuri'u"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Lokaci ya ƙare",
+    "pointsTitle": "Masu aminci mafi girma",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9212,7 +9217,9 @@
       "chat_box": "Akwatin tattaunawa",
       "ticker": "Ticker",
       "rule_alert": "Gargajiya na Dokoki",
-      "poll": "Kuri'a"
+      "poll": "Kuri'a",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Masu aminci na jama'a"
     },
     "hints": {
       "spin_wheel": "Inda ƙafafun da ke cikin dokokinku ke juyawa",
@@ -9231,7 +9238,9 @@
       "chat_box": "Nuna saƙonnin tattaunawar watsa shirye-shiryenku akan allon",
       "ticker": "Layin rubutunku wanda ke gungurawa a duk faɗin allon",
       "rule_alert": "Inda gargajiyar dokoki ta bayyana",
-      "poll": "Zaben ku na rayuwa, tare da maɓallin jefa kuri'a ga kowane zaɓi"
+      "poll": "Zaben ku na rayuwa, tare da maɓallin jefa kuri'a ga kowane zaɓi",
+      "subathon_timer": "Countdown da kyauta, bin jiya da subscriptions suna tura baya",
+      "points_board": "Masu kallo mafi girma ta points daga kallo da ba da kyauta"
     },
     "fields": {
       "style": "Salo",
@@ -9460,6 +9469,29 @@
         "word-timeout_one": "Lokaci ya fita {{target}} don {{count}} na biyu don \"{{word}}\"",
         "word-timeout_other": "Lokaci ya fita {{target}} don {{count}} seconds don \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Countdown akan jirinka. Kowane kyauta da aka biya, bin jiya da subscription suna ƙara lokaci, don haka dakin zai ci gida ka.",
+      "secondsPerThousand": "Sekonda da aka ƙara per 1,000 DHB da aka ba da kyauta",
+      "secondsPerFollow": "Sekonda da aka ƙara per bin jiya",
+      "secondsPerSubscribe": "Sekonda da aka ƙara per subscription",
+      "capHours": "Mafi girma iya gudana (hours)",
+      "save": "Ajiye adadi",
+      "saved": "Adadin Subathon da aka ajiye.",
+      "startMinutes": "Fara da (minutes)",
+      "start": "Fara countdown",
+      "stop": "Tsaya",
+      "addFive": "Ƙara minudu 5",
+      "removeFive": "Cire minudu 5",
+      "failed": "Hakan bai aiki ba. Gwada sake.",
+      "widgetHint": "Nuna countdown na subathon. Fara shi daga Subathon panel a Live Studio."
+    },
+    "points": {
+      "title": "Masu aminci na jama'a",
+      "intro": "Masu kallo suna samun point guda daya ga kowane minudu da suke kallo ka da guda daya ga kowane 100 DHB da suke ba da kyauta. Chat da reactions ba sa samun komai, don haka ba za a iya noma points.",
+      "empty": "Babu points har yanzu. Suna gina yayin da jama'a ke kallo da ba da kyauta.",
+      "widgetHint": "Ƙara Loyal viewers widget don nuna wannan jerin akan jirinka."
     }
   },
   "liveChatModeration": {

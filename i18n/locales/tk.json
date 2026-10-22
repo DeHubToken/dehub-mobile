@@ -9146,7 +9146,12 @@
     "goalReached": "Goý, maksat amala aşsyn!",
     "followersUnit": "şägirtler",
     "topSupporters": "Ýolbaşçylyk maslahaty",
-    "chatPreview": "Çat habarlary bu ýerde görünýär"
+    "chatPreview": "Çat habarlary bu ýerde görünýär",
+    "subathon": "Subaton",
+    "subathonOver": "Wagtyň geçmegi bilen",
+    "pointsTitle": "Wepaly diňleýjiler",
+    "points_one": "{{formatted}} nöqtesi",
+    "points_other": "{{formatted}} noqtalar"
   },
   "liveStudio": {
     "controls": {
@@ -9242,7 +9247,9 @@
       "event_feed": "Soňky wakalar",
       "chat_box": "Çat sandygy",
       "ticker": "Ticker",
-      "rule_alert": "Kanun Alarmlary"
+      "rule_alert": "Kanun Alarmlary",
+      "subathon_timer": "Subathon wagtlaýynlaýjy",
+      "points_board": "Wepaly diňleýjiler"
     },
     "hints": {
       "spin_wheel": "Kanunlaryňyzyň tigirleri nirede döwülýär",
@@ -9262,7 +9269,9 @@
       "event_feed": "Soňky sowgatlar, şägirtler, abonentler we siziň habaryňyzy paýlaýan adamlar",
       "chat_box": "Çat habarlaryny ekranda görkeziň",
       "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar",
-      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär"
+      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär",
+      "subathon_timer": "Hediýeler, yzyna eýermek we ýazylanlary yzyna çekmek",
+      "points_board": "Seniň iň gowy diňleýjileriň seredýän we sowgat berýän ýerleri bilen"
     },
     "fields": {
       "style": "Şablony",
@@ -9465,6 +9474,29 @@
         "moderator-removed": "{{target}} indi moderator däl",
         "word-blocked": "\"{{word}}\" üçin {{target}} -den habar goýuldy"
       }
+    },
+    "subathon": {
+      "title": "Subaton",
+      "intro": "Siziň akyşyňyzda bir hasabat. Her bir sowgat, yzygiderli we ýazylan sowgat wagtyňy artdyrýar, şonuň üçin otagyň ýaşaýşyny sakla.",
+      "secondsPerThousand": "Her 1000 DHB üçin bir saniyelik goşmaça",
+      "secondsPerFollow": "Galyberse-de, ikinji gezek",
+      "secondsPerSubscribe": "Sekundlar her bir imza üçin goşuldy",
+      "capHours": "Ol ýöräp biler (Saat)",
+      "save": "Mülkleri Gaýd Et",
+      "saved": "Subaton pullary halas boldy.",
+      "startMinutes": "Başlangyş (minutlar)",
+      "start": "Saýlanmagy başla",
+      "stop": "Dur",
+      "addFive": "5 minutyň dowamynda",
+      "removeFive": "Bäş minutdan soň",
+      "failed": "Ol ýene-de şeýle dolanyp gelýär.",
+      "widgetHint": "Siz öz subatonlaryňyzyň sanyny görkeziň. Muny Live Studio-da Subathon panelinden başlaň."
+    },
+    "points": {
+      "title": "Wepaly diňleýjiler",
+      "intro": "Görýänler sizi görýän her bir minut üçin bir we beren her 100 DHB üçin bir dereje gazanýarlar. Çat we reaksiýalar hiç zat etmeýär, şol sebäpli pikirleri ösdürmek mümkin däl.",
+      "empty": "Hany, hiç hili pikir ýok. Olar adamlar seredip, sowgat hökmünde gurulýar.",
+      "widgetHint": "Bu listany akyşda görkezmek üçin wepaly diňleýjiler widgetini goşyň."
     }
   },
   "liveChatModeration": {

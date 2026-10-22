@@ -9153,7 +9153,9 @@
     "goalReached": "目標達成！",
     "followersUnit": "粉絲數",
     "topSupporters": "贊助排行",
-    "tipped": "{{name}} 送咱一份禮物"
+    "tipped": "{{name}} 送咱一份禮物",
+    "subathonOver": "時間到咧！",
+    "points_other": "{{formatted}} 分"
   },
   "liveStudio": {
     "controls": {
@@ -9239,7 +9241,8 @@
       "subscribe_alert": "显示每个新订阅者",
       "join_alert": "欢迎每位观众的到来",
       "goal_bar": "追踪小费或关注者到目标",
-      "viewer_count": "有多少人在观看"
+      "viewer_count": "有多少人在观看",
+      "points_board": "你的顶级观众按观看和赠送积分排列"
     },
     "fields": {
       "style": "风格",
@@ -9424,6 +9427,11 @@
         "moderator-added": "{{target}} 成了个管理员。",
         "word-timeout_other": "Timed out {{target}} 經過 {{count}} 秒鐘，{{word}}"
       }
+    },
+    "subathon": {
+      "secondsPerSubscribe": "秒鐘加入每個訂閱",
+      "startMinutes": "(分钟)",
+      "failed": "那个没有工作。再试一次。"
     }
   },
   "liveChatModeration": {

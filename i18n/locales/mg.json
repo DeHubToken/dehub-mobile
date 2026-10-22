@@ -9255,7 +9255,11 @@
     "followersUnit": "mpanara-dia",
     "topSupporters": "TOP mpanohana",
     "tipped": "{{name}} nandefa fanomezana",
-    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto."
+    "chatPreview": "Ny hafatra amin'ny Chat dia hita eto.",
+    "subathonOver": "Mampisandratra ny ora",
+    "pointsTitle": "Mpijery tsy miangatra indrindra",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9355,7 +9359,9 @@
       "event_feed": "Hetsika vao haingana",
       "chat_box": "Efitrano firesahana",
       "ticker": "Ticker",
-      "rule_alert": "Fampilazan'ny fitsipika"
+      "rule_alert": "Fampilazan'ny fitsipika",
+      "subathon_timer": "Subathon fameram-potoana",
+      "points_board": "Mpijery tsy mivadika"
     },
     "hints": {
       "spin_wheel": "Aiza ny kodiarana ao amin'ny fitsipika mihodina",
@@ -9374,7 +9380,9 @@
       "event_feed": "Ny fanomezam-pahasoavana farany, ny mpanaraka, ny mpanjifany ary ny olona mizara ny fampielezam-peo",
       "chat_box": "Mampiseho ny hafatra amin'ny chat alefanao amin'ny efijery",
       "ticker": "Tsipika avy amin'ny andinin-teninao manokana izay manavatsava ny fàfana",
-      "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana"
+      "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana",
+      "subathon_timer": "A countdown fa ny fanomezam-pahasoavana, manaraka sy ny famandrihana manosika indray",
+      "points_board": "Ny mpijery ambony amin'ny fijerinao sy ny fanomezam-boninahitra"
     },
     "fields": {
       "style": "Endrika",
@@ -9578,6 +9586,28 @@
         "word-blocked": "Naato ny hafatra avy amin'ny {{target}} for \"{{word}}\"",
         "word-timeout_other": "Tapitra teo {{target}} {{count}} segondra ho an'ny \"{{word}}\""
       }
+    },
+    "subathon": {
+      "intro": "Fanisana eo amin'ny toeranao. Ny fanomezana aloa rehetra, manaraka ary famandrihana dia manampy fotoana, noho izany dia mitazona anao ny efitrano.",
+      "secondsPerThousand": "Segondra fanampiny isaky ny 1,000 DHB nomena",
+      "secondsPerFollow": "Segondra fanampiny isaky ny manaraka",
+      "secondsPerSubscribe": "Segondra nanampy isaky ny famandrihana",
+      "capHours": "Naharitra no sady sarotra ny dia (Asa.",
+      "save": "Tahirizina ny vola",
+      "saved": "Avotra ny tahiry Subathon.",
+      "startMinutes": "Manomboka amin'ny (minitra)",
+      "start": "Atomboy ny fanisana",
+      "stop": "Fijanonana",
+      "addFive": "Ampio ny 5 minitra",
+      "removeFive": "Tazony lavitra ny lahatsarinao: 5 minitra eo",
+      "failed": "Tsy nandeha izany. Andramo indray.",
+      "widgetHint": "Mampiseho ny subathon fanisana. Manomboka izany avy amin'ny tontolon'ny Subathon ao amin'ny Live Studio."
+    },
+    "points": {
+      "title": "Mpijery tsy mivadika",
+      "intro": "Ny mpijery dia mahazo teboka iray isaky ny minitra mijery anao sy iray isaky ny 100 DHB izy ireo fanomezana. Tsy mahazo na inona na inona ny karajia sy ny fanehoan-kevitra, noho izany tsy azo fambolen-kazo ny hevitra.",
+      "empty": "Tsy mbola misy hevitra. Mivoatra izy ireo rehefa mijery sy manome ny olona.",
+      "widgetHint": "Add ny tsy fivadihana Widget mpijery mba hampisehoana izany lisitra amin'ny on Stream."
     }
   },
   "liveChatModeration": {

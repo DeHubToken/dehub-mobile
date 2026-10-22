@@ -9175,7 +9175,12 @@
       "voted_other": "Hlasovali jste · {{count}} hlasů",
       "votes_one": "{{count}} hlas",
       "votes_other": "{{count}} hlasů"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Čas je vypršený",
+    "pointsTitle": "Nejvěrnější diváci",
+    "points_one": "{{formatted}} bod",
+    "points_other": "{{formatted}} body"
   },
   "liveStudio": {
     "controls": {
@@ -9243,7 +9248,9 @@
       "chat_box": "Chat box",
       "ticker": "Ticker",
       "rule_alert": "Přidávám upozornění na pravidla.",
-      "poll": "Průzkum"
+      "poll": "Průzkum",
+      "subathon_timer": "Počítadlo Subathonu",
+      "points_board": "Věrní diváci"
     },
     "hints": {
       "spin_wheel": "Kde se točí kola ve vašich pravidlech",
@@ -9263,7 +9270,9 @@
       "chat_box": "Zobrazí chatové zprávy vašeho vysílání na obrazovce",
       "ticker": "Řádek vlastního textu, který se posouvá po obrazovce",
       "rule_alert": "Kde se zobrazují upozornění na tvá pravidla",
-      "poll": "Váš živý průzkum, s tlačítkem pro hlasování pro každou variantu"
+      "poll": "Váš živý průzkum, s tlačítkem pro hlasování pro každou variantu",
+      "subathon_timer": "Počítadlo dolů, které odkládá dary, follows a předplatné",
+      "points_board": "Vaši nejlepší diváci podle bodů za sledování a darování"
     },
     "fields": {
       "style": "Styl",
@@ -9498,6 +9507,29 @@
         "word-timeout_one": "Vymažel {{target}} pro {{count}} sekundu pro \"{{word}}\"",
         "word-timeout_other": "Vymažel {{target}} pro {{count}} sekundy pro \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Počítadlo dolů na vašem streamu. Každý placený dar, follow a předplatné přidává čas, takže místnost vás udržuje online.",
+      "secondsPerThousand": "Vteřiny přidané za 1 000 DHB darovaných",
+      "secondsPerFollow": "Vteřiny přidané za follow",
+      "secondsPerSubscribe": "Vteřiny přidané za předplatné",
+      "capHours": "Nejdelší možné trvání (hodiny)",
+      "save": "Uložit částky",
+      "saved": "Uložené částky Subathonu.",
+      "startMinutes": "Začít s (minuty)",
+      "start": "Spustit počítadlo dolů",
+      "stop": "Zastavit",
+      "addFive": "Přidat 5 minut",
+      "removeFive": "Odebrat 5 minut",
+      "failed": "To nefungovalo. Zkuste to znovu.",
+      "widgetHint": "Zobrazuje počítadlo dolů Subathonu. Spusťte jej z panelu Subathon v Live Studio."
+    },
+    "points": {
+      "title": "Věrní diváci",
+      "intro": "Diváci získávají bod za každou minutu, kterou vás sledují, a jeden bod za každých 100 DHB, které darují. Čat a reakce nic nezaslouží, takže body nelze farmovat.",
+      "empty": "Zatím žádné body. Body se hromadí, jak lidé sledují a darují.",
+      "widgetHint": "Přidejte widget Věrní diváci, abyste tuto seznam zobrazili na streamu."
     }
   },
   "liveChatModeration": {

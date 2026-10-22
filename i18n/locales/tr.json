@@ -10765,7 +10765,11 @@
       "voted_other": "·{{count}} oy kullandınız",
       "votes_one": "{{count}} oy",
       "votes_other": "{{count}} oy"
-    }
+    },
+    "subathonOver": "Süre doldu",
+    "pointsTitle": "En sadık izleyiciler",
+    "points_one": "{{formatted}} puan",
+    "points_other": "{{formatted}} puan"
   },
   "liveStudio": {
     "controls": {
@@ -10834,7 +10838,8 @@
       "chat_box": "Sohbet kutusu",
       "ticker": "Kayan yazı",
       "rule_alert": "Kural uyarıları",
-      "poll": "Anket"
+      "poll": "Anket",
+      "points_board": "Sadık izleyiciler"
     },
     "hints": {
       "spin_wheel": "Kurallarınızdaki çarkların döndüğü yer",
@@ -10854,7 +10859,9 @@
       "chat_box": "Yayınınızın sohbet mesajlarını ekranda gösterir",
       "ticker": "Ekranda kayan kendi metninizin bir satırı",
       "rule_alert": "Kurallarınızın uyarılarının göründüğü yer",
-      "poll": "Her seçenek için bir oy düğmesiyle canlı anketiniz"
+      "poll": "Her seçenek için bir oy düğmesiyle canlı anketiniz",
+      "subathon_timer": "Hediye, takip ve aboneliklerin geri çekildiği bir geri sayım",
+      "points_board": "İzleme ve hediye verme puanlarına göre en iyi izleyicileriniz"
     },
     "fields": {
       "banner": "Afiş",
@@ -11089,6 +11096,28 @@
         "word-timeout_one": "\"{{word}}\" için {{count}} saniye {{target}} zaman aşımına uğradı",
         "word-timeout_other": "\"{{word}}\" için {{count}} saniye boyunca {{target}} zaman aşımına uğradı"
       }
+    },
+    "subathon": {
+      "intro": "Akışınızda bir geri sayım. Ödenen her hediye, takip ve abonelik size zaman kazandırır, böylece oda sizi canlı tutar.",
+      "secondsPerThousand": "Hediye edilen 1.000 DHB başına saniye eklendi",
+      "secondsPerFollow": "Takip başına saniye eklendi",
+      "secondsPerSubscribe": "Abonelik başına saniye eklendi",
+      "capHours": "Çalışabileceği en uzun süre (saat)",
+      "save": "Tutarları kaydedin",
+      "saved": "Subathon miktarları kaydedildi.",
+      "startMinutes": "(dakika) ile başlayın",
+      "start": "Geri sayımı başlat",
+      "stop": "Durdur",
+      "addFive": "5 dakika ekleyin",
+      "removeFive": "Kalkış 5 dakika",
+      "failed": "Bu işe yaramadı. Tekrar deneyin.",
+      "widgetHint": "Subathon geri sayımınızı gösterir. Live Studio'daki Subathon panelinden başlatın."
+    },
+    "points": {
+      "title": "Sadık izleyiciler",
+      "intro": "İzleyiciler sizi izledikleri her dakika için bir puan ve hediye ettikleri her 100 DHB için bir puan kazanırlar. Sohbet ve tepkiler hiçbir şey kazandırmaz, bu nedenle puan kazanılamaz.",
+      "empty": "Henüz puan yok. İnsanlar izledikçe ve hediye ettikçe birikirler.",
+      "widgetHint": "Bu listeyi akışta göstermek için Sadık görüntüleyenler widget'ını ekleyin."
     }
   },
   "liveChatModeration": {

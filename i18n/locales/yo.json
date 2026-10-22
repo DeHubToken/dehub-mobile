@@ -9152,7 +9152,12 @@
       "voted_other": "O dìbò · {{count}} dìbò",
       "votes_one": "{{count}} dìbò",
       "votes_other": "{{count}} àwọn àbò"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Àkókò tán",
+    "pointsTitle": "Àwọn olùmúran tó ní ìbámu jù lọ",
+    "points_one": "{{formatted}} ìdá",
+    "points_other": "{{formatted}} àwọn ìdá"
   },
   "liveStudio": {
     "controls": {
@@ -9221,7 +9226,9 @@
       "chat_box": "Apoti Iwiregbe",
       "ticker": "Ticker",
       "rule_alert": "Ìkìlọ̀ Ofin",
-      "poll": "Ìbò"
+      "poll": "Ìbò",
+      "subathon_timer": "Ìdìtì Subathon",
+      "points_board": "Àwọn olùmúran tí ó ní ìbámu"
     },
     "hints": {
       "spin_wheel": "Níbo ni àwọn kẹ̀kẹ́ tí ó wà nínú òfin rẹ ti ń yípo",
@@ -9241,7 +9248,9 @@
       "chat_box": "Ṣe afihan awọn ifiranṣẹ iwiregbe igbohunsafefe rẹ loju iboju",
       "ticker": "Òpó ọ̀rọ̀ tìrẹ tí ó ń lọ káàkiri mànàárà.",
       "rule_alert": "Níbi tí ìkìlọ̀ ofin rẹ̀ máa ń hàn",
-      "poll": "Ìbò ìgbé ayé rẹ, pẹ̀lú bọ́tìnì ìbò fún gbogbo àṣàyàn"
+      "poll": "Ìbò ìgbé ayé rẹ, pẹ̀lú bọ́tìnì ìbò fún gbogbo àṣàyàn",
+      "subathon_timer": "Ìdìtì sílẹ̀ tí àwọn ìbámu, tẹ̀lé àti ìbámu ìṣúbúkú ń lé padà",
+      "points_board": "Àwọn olùmúran tó ga jù lọ nípa àwọn ìdá láti ìwòran àti ìbámu"
     },
     "fields": {
       "style": "Style",
@@ -9474,6 +9483,29 @@
         "word-timeout_one": "Àsìkò {{target}} fún {{count}} ìkejì fún \"{{word}}\"",
         "word-timeout_other": "A ṣe àsìkò {{target}} fún {{count}} ìkejì fún \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Ìdìtì sílẹ̀ lórí ìṣẹ̀lú rẹ. Ọ̀ọ̀ọ̀ ìbámu, tẹ̀lé àti ìbámu ìṣúbúkú kọ̀ọ̀kan ṣe àfikún àkókò, nítorí náà ilé náà jẹ́ kí o máa ń ṣiṣẹ́.",
+      "secondsPerThousand": "Àwọn ìṣẹ̀jú tí a ṣe àfikún fún 1,000 DHB tí a ṣe ìbámu",
+      "secondsPerFollow": "Àwọn ìṣẹ̀jú tí a ṣe àfikún fún tẹ̀lé",
+      "secondsPerSubscribe": "Àwọn ìṣẹ̀jú tí a ṣe àfikún fún ìbámu ìṣúbúkú",
+      "capHours": "Gígùn jù lọ tí ó lè ṣiṣẹ́ (àwọn wákàtí)",
+      "save": "Ìfipamọ́ àwọn iye",
+      "saved": "Àwọn iye Subathon tí a ṣe ìfipamọ́.",
+      "startMinutes": "Bẹ̀rẹ̀ pẹ̀lú (àwọn ìṣẹ̀jú)",
+      "start": "Bẹ̀rẹ̀ ìdìtì sílẹ̀",
+      "stop": "Dáwọ́",
+      "addFive": "Ṣe àfikún ìṣẹ̀jú 5",
+      "removeFive": "Gbe ìṣẹ̀jú 5 kúrò",
+      "failed": "Ìyẹn kò ṣiṣẹ́. Gbìyànjú lẹ́ẹ̀kan ní.",
+      "widgetHint": "Ìfihàn ìdìtì Subathon rẹ. Bẹ̀rẹ̀ rẹ̀ láti inu ìpanẹ́ Subathon nínú Live Studio."
+    },
+    "points": {
+      "title": "Àwọn olùmúran tí ó ní ìbámu",
+      "intro": "Àwọn olùmúran ní àwọn ìdá kan fún ìṣẹ̀jú kọ̀ọ̀kan tí wọ́n ń wò ọ àti ọ̀kan fún 100 DHB kọ̀ọ̀kan tí wọ́n ṣe ìbámu. Ìfòrọ̀ àti àwọn ìdáhùn kò ní àwọn ìdá, nítorí náà a kò lè ṣe ìdá.",
+      "empty": "Àwọn ìdá kò sí nípa ìsinú. Wọ́n máa ń kó ara wọn nígbà tí àwọn ènìyàn ń wò àti ṣe ìbámu.",
+      "widgetHint": "Ṣe àfikún ìtọ́kọ̀ Loyal viewers láti ṣe àfihàn àtòjọ yìí lórí ìṣẹ̀lú."
     }
   },
   "liveChatModeration": {

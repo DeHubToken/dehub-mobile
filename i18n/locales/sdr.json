@@ -9230,7 +9230,9 @@
     "joined": "{{name}} जुड़ गया",
     "goalReached": "लक्ष्य प्राप्त हुआ!",
     "followersUnit": "अनुयायी",
-    "topSupporters": "शीर्ष समर्थक"
+    "topSupporters": "शीर्ष समर्थक",
+    "points_one": "{{formatted}} نکتہ",
+    "points_other": "{{formatted}} نکتہ"
   },
   "liveStudio": {
     "controls": {
@@ -9498,6 +9500,18 @@
         "unban": "{{actor}} مَغْفُورَ لَهُ {{target}}",
         "moderator-removed": "{{target}} اکنون مدیر نیست"
       }
+    },
+    "subathon": {
+      "secondsPerThousand": "دقیقه‌های اضافه شده برای هر ۱۰۰۰ دی‌اچ‌بی هدیه داده شده",
+      "secondsPerFollow": "دقیقه‌های اضافه شده پس از دنبال کردن",
+      "secondsPerSubscribe": "دقیقه‌های اضافه‌شده برای هر اشتراک",
+      "saved": "Subathon amounts saved.",
+      "startMinutes": "(دقیقه‌ها)",
+      "addFive": "۵ دقیقه اضافه کن",
+      "failed": "assistant error"
+    },
+    "points": {
+      "empty": "نقطه‌ای ندارم. این‌ها با دیدن و دادن هدیه توسط مردم افزایش می‌یابند."
     }
   },
   "liveChatModeration": {

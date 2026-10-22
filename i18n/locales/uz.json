@@ -9229,7 +9229,12 @@
       "voted_other": "Siz ovoz berdingiz · {{count}} ovozlar",
       "votes_one": "{{count}} ovoz berish",
       "votes_other": "{{count}} ovozlar"
-    }
+    },
+    "subathon": "Subaton",
+    "subathonOver": "Vaqt tugadi",
+    "pointsTitle": "Eng sodiq tomoshabinlar",
+    "points_one": "{{formatted}} nuqta",
+    "points_other": "{{formatted}} ball"
   },
   "liveStudio": {
     "controls": {
@@ -9298,7 +9303,9 @@
       "chat_box": "Chat oynasi",
       "ticker": "Ticker",
       "rule_alert": "Qoida ogohlantirishlari",
-      "poll": "So'rovnoma"
+      "poll": "So'rovnoma",
+      "subathon_timer": "Subaton taymeri",
+      "points_board": "Sodiq tomoshabinlar"
     },
     "hints": {
       "spin_wheel": "Qoidalaringizdagi g'ildiraklar qayerda aylanadi",
@@ -9318,7 +9325,9 @@
       "chat_box": "Ekranda eshittirishingizning chat xabarlarini ko'rsatadi",
       "ticker": "Ekran bo'ylab aylantiriladigan o'zingizning matningiz qatori",
       "rule_alert": "Sizning qoidangizning xabarlarini koʻrish joyi",
-      "poll": "Jonli so'rovnomangiz, har bir variant uchun ovoz berish tugmasi bilan"
+      "poll": "Jonli so'rovnomangiz, har bir variant uchun ovoz berish tugmasi bilan",
+      "subathon_timer": "Sovg'alar, obunalar va obunalar orqaga suriladigan ortga qaytish davri",
+      "points_board": "Tomosha qilish va sovg'a qilish orqali ball olish bo'yicha eng ko'p tomoshabinlaringiz"
     },
     "fields": {
       "style": "Uslub",
@@ -9552,6 +9561,29 @@
         "word-blocked": "{{target}} dan \"{{word}}\" uchun xabarni to'xtatdi",
         "word-timeout_one": "\"{{word}}\" uchun {{count}} soniya uchun {{target}} vaqt tugadi"
       }
+    },
+    "subathon": {
+      "title": "Subaton",
+      "intro": "Strimingizdagi ortga hisoblash. Har bir pullik sovg'a, obuna va obuna vaqtni oshiradi, shuning uchun xona sizni jonli efirda ushlab turadi.",
+      "secondsPerThousand": "Har 1000 DHB sovg'a qilingan har bir kishi uchun qo'shilgan soniyalar",
+      "secondsPerFollow": "Har bir kuzatuv uchun qo'shilgan soniyalar",
+      "secondsPerSubscribe": "Har bir obuna uchun qo'shilgan soniyalar",
+      "capHours": "Eng uzoq vaqt (soat) ishlashi mumkin",
+      "save": "Miqdorlarni tejang",
+      "saved": "Subatonda tejalgan mablag'lar.",
+      "startMinutes": "(Daqiqa) bilan boshlang",
+      "start": "Ortga hisoblashni boshlang",
+      "stop": "Toʻxtatish",
+      "addFive": "5 daqiqa qo'shing",
+      "removeFive": "5 daqiqada uchib ketish",
+      "failed": "Bu ish bermadi. Qaytadan urinib ko'ring.",
+      "widgetHint": "Subatoningizning ortga hisoblash vaqtini ko'rsatadi. Uni Live Studio'dagi Subaton panelidan boshlang."
+    },
+    "points": {
+      "title": "Sodiq tomoshabinlar",
+      "intro": "Tomoshabinlar sizni tomosha qilgan har bir daqiqasi uchun ball va sovg'a qilgan har 100 DHB uchun bitta ball olishadi. Chat va reaksiyalar hech narsa bermaydi, shuning uchun ballarni qayta ishlash mumkin emas.",
+      "empty": "Hali ochko yo'q. Odamlar tomosha qilib, sovg'a qilishgan sari ular ko'payib boradi.",
+      "widgetHint": "Ushbu ro'yxatni jonli efirda ko'rsatish uchun sodiq tomoshabinlar vidjetini qo'shing."
     }
   },
   "liveChatModeration": {

@@ -9178,7 +9178,11 @@
       "voted_other": "Du röstade · {{count}} röster",
       "votes_one": "{{count}} röst",
       "votes_other": "{{count}} röster"
-    }
+    },
+    "subathonOver": "Tiden är ute",
+    "pointsTitle": "Mest lojala tittare",
+    "points_one": "{{formatted}} poäng",
+    "points_other": "{{formatted}} poäng"
   },
   "liveStudio": {
     "controls": {
@@ -9247,7 +9251,9 @@
       "chat_box": "Chattruta",
       "ticker": "Ticker",
       "rule_alert": "Regelvarningar",
-      "poll": "Omröstning"
+      "poll": "Omröstning",
+      "subathon_timer": "Subathon-timer",
+      "points_board": "Lojala tittare"
     },
     "hints": {
       "spin_wheel": "Där hjulen i dina regler snurrar",
@@ -9267,7 +9273,9 @@
       "chat_box": "Visar din sändnings chattmeddelanden på skärmen",
       "ticker": "En rad med din egen text som rullar över skärmen",
       "rule_alert": "Där dina regler visas",
-      "poll": "Din live-omröstning, med en röstknapp för varje alternativ"
+      "poll": "Din live-omröstning, med en röstknapp för varje alternativ",
+      "subathon_timer": "En nedräkning som presenter, följare och prenumerationer trycker tillbaka",
+      "points_board": "Dina bästa tittare efter poäng från att titta och ge gåvor"
     },
     "fields": {
       "style": "Stil",
@@ -9502,6 +9510,28 @@
         "word-timeout_one": "Timeout {{target}} för {{count}} sekund för \"{{word}}\"",
         "word-timeout_other": "Timed out {{target}} för {{count}} sekunder för \"{{word}}\""
       }
+    },
+    "subathon": {
+      "intro": "En nedräkning på din ström. Varje betald gåva, följare och prenumeration lägger till tid, så rummet håller dig levande.",
+      "secondsPerThousand": "Sekunder tillagda per 1 000 DHB begåvad",
+      "secondsPerFollow": "Sekunder tillagda per följare",
+      "secondsPerSubscribe": "Sekunder tillagda per prenumeration",
+      "capHours": "Längsta den kan köras (timmar)",
+      "save": "Spara belopp",
+      "saved": "Subathon-belopp sparade.",
+      "startMinutes": "Börja med (minuter)",
+      "start": "Starta nedräkningen",
+      "stop": "Stopp",
+      "addFive": "Lägg till 5 minuter",
+      "removeFive": "Ta av 5 minuter",
+      "failed": "Det fungerade inte. Försök igen.",
+      "widgetHint": "Visar din nedräkning för subathon. Starta det från Subathon-panelen i Live Studio."
+    },
+    "points": {
+      "title": "Lojala tittare",
+      "intro": "Tittare tjänar en poäng för varje minut de tittar på dig och en för varje 100 DHB de ger bort. Chatt och reaktioner tjänar ingenting, så poäng kan inte odlas.",
+      "empty": "Inga poäng ännu. De byggs upp när folk tittar på och presenterar.",
+      "widgetHint": "Lägg till widgeten Lojala tittare för att visa den här listan i ström."
     }
   },
   "liveChatModeration": {

@@ -9100,7 +9100,10 @@
     "joined": "الانضمام إلى {{name}}",
     "followersUnit": "تابعين",
     "tipped": "{{name}} أرسل هدية",
-    "chatPreview": "رسائل الدردشة بتظهر هنا"
+    "chatPreview": "رسائل الدردشة بتظهر هنا",
+    "subathonOver": "زمنك خت",
+    "points_one": "{{formatted}} نقطة",
+    "points_other": "{{formatted}} نقاط"
   },
   "liveStudio": {
     "controls": {
@@ -9192,7 +9195,8 @@
       "reaction_counter": "عداد التفاعلات",
       "event_feed": "الأنشطة الأخيرة",
       "chat_box": "صندوق الدردشة",
-      "ticker": "العداد"
+      "ticker": "العداد",
+      "subathon_timer": "تايمر سوباثون"
     },
     "hints": {
       "spin_wheel": "أين تدور العجلات في قواعدك",
@@ -9212,7 +9216,8 @@
       "reaction_counter": "بيعد كل تفاعل البث بتاعك",
       "event_feed": "أحدث الهدايا، المتابعين، المشتركين والناس اللي شاركوا البث بتاعك",
       "chat_box": "بيوريك رسائل الدردشة بتاعت البث على الشاشة",
-      "ticker": "خط نصك الخاص اللي بيتم تمريره عبر الشاشة"
+      "ticker": "خط نصك الخاص اللي بيتم تمريره عبر الشاشة",
+      "subathon_timer": "عداد تنازلي الهدايا والمتابعات والاشتراكات تتأخر"
     },
     "fields": {
       "celebration": "احتفال",
@@ -9402,6 +9407,17 @@
         "word-timeout_one": "توقفت {{target}} ل{{count}} ثانية عن \"{{word}}\"",
         "word-timeout_other": "توقفت {{target}} ل{{count}} ثانية عن \"{{word}}\""
       }
+    },
+    "subathon": {
+      "secondsPerThousand": "دقايق مضافة لكل 1,000 دينار هبيب مهدى",
+      "secondsPerFollow": "ثواني تضاف لكل متابع",
+      "secondsPerSubscribe": "ثواني مضافة لكل اشتراك",
+      "startMinutes": "(دقايق)",
+      "stop": "توقف",
+      "failed": "لما عملش. حاول تاني."
+    },
+    "points": {
+      "empty": "لسه لسه نقاط. بتتجمع مع ما يشوف الناس و بيتعطيوا هدايا."
     }
   },
   "liveChatModeration": {

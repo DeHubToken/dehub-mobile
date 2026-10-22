@@ -9113,7 +9113,10 @@
     "goalReached": "目标达成！",
     "followersUnit": "粉丝",
     "topSupporters": "最高支持者",
-    "tipped": "{{name}} 送咱个礼物"
+    "tipped": "{{name}} 送咱个礼物",
+    "subathonOver": "时间到啦",
+    "pointsTitle": "最忠心嘅观众",
+    "points_other": "{{formatted}} 积分"
   },
   "liveStudio": {
     "controls": {
@@ -9183,7 +9186,8 @@
       "rule_alert": "规则提醒的显示位置",
       "join_alert": "歡迎各位觀賞者到場！",
       "event_feed": "最新的礼物、粉丝、订阅者以及分享你直播的人",
-      "chat_box": "显示你直播的聊天消息在屏幕上"
+      "chat_box": "显示你直播的聊天消息在屏幕上",
+      "subathon_timer": "一个倒计时，礼物、关注同订阅会被推回去"
     },
     "fields": {
       "confirmedOnlyHint": "等幾秒鐘鏈式，所以從不付款的小費永遠不會出現。",
@@ -9372,6 +9376,9 @@
         "unban": "{{actor}} 咱家未封 {{target}}",
         "moderator-added": "{{target}} 成了个管理员"
       }
+    },
+    "subathon": {
+      "addFive": "加五分鐘"
     }
   },
   "liveChatModeration": {

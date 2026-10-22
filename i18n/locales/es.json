@@ -10765,7 +10765,12 @@
       "voted_other": "Has votado · {{count}} votos",
       "votes_one": "{{count}} voto",
       "votes_other": "{{count}} votos"
-    }
+    },
+    "subathon": "Subatón",
+    "subathonOver": "Se acabó el tiempo",
+    "pointsTitle": "Los espectadores más leales",
+    "points_one": "{{formatted}} punto",
+    "points_other": "{{formatted}} puntos"
   },
   "liveStudio": {
     "controls": {
@@ -10834,7 +10839,9 @@
       "chat_box": "Cuadro de chat",
       "ticker": "Marquesina",
       "rule_alert": "Alertas de reglas",
-      "poll": "Poll"
+      "poll": "Poll",
+      "subathon_timer": "Temporizador Subathon",
+      "points_board": "Visores fieles"
     },
     "hints": {
       "spin_wheel": "Donde las ruedas de tus reglas giran",
@@ -10854,7 +10861,9 @@
       "chat_box": "Muestra los mensajes de chat de tu transmisión en la pantalla",
       "ticker": "Una línea de tu propio texto que se desplaza por la pantalla",
       "rule_alert": "¿Dónde aparecen las alertas de tus reglas?",
-      "poll": "Tu encuesta en vivo, con un botón de voto para cada opción"
+      "poll": "Tu encuesta en vivo, con un botón de voto para cada opción",
+      "subathon_timer": "Una cuenta regresiva que regala, sigue y las suscripciones rechazan",
+      "points_board": "Tus mejores espectadores por puntos de ver y regalar"
     },
     "fields": {
       "style": "Estilo",
@@ -11089,6 +11098,29 @@
         "word-timeout_one": "Se agotó el tiempo de espera de {{target}} para {{count}} segundo para \"{{word}}\"",
         "word-timeout_other": "Se agotó el tiempo de espera de {{target}} para {{count}} segundos para \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subatón",
+      "intro": "Una cuenta regresiva en tu transmisión. Cada regalo de pago, seguimiento y suscripción añade tiempo, por lo que la habitación te mantiene en vivo.",
+      "secondsPerThousand": "Segundos añadidos por cada 1000 DHB donados",
+      "secondsPerFollow": "Segundos añadidos por seguimiento",
+      "secondsPerSubscribe": "Segundos añadidos por suscripción",
+      "capHours": "El más largo que puede funcionar (horas)",
+      "save": "Guardar importes",
+      "saved": "Cantidades de subatón ahorradas.",
+      "startMinutes": "Empieza con (minutos)",
+      "start": "Iniciar la cuenta regresiva",
+      "stop": "Detener",
+      "addFive": "Añadir 5 minutos",
+      "removeFive": "Despega 5 minutos",
+      "failed": "Eso no funcionó. Inténtalo de nuevo.",
+      "widgetHint": "Muestra la cuenta regresiva de tu subatón. Inicie desde el panel Subathon en Live Studio."
+    },
+    "points": {
+      "title": "Visores fieles",
+      "intro": "Los espectadores ganan un punto por cada minuto que te ven y uno por cada 100 DHB que regalan. El chat y las reacciones no ganan nada, por lo que los puntos no se pueden acumular.",
+      "empty": "Todavía no hay puntos. Se acumulan a medida que la gente observa y regala.",
+      "widgetHint": "Añade el widget Loyal Viewers para mostrar esta lista en streaming."
     }
   },
   "liveChatModeration": {

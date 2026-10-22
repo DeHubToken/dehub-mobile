@@ -8851,7 +8851,12 @@
       "signIn": "Sign in to vote",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} votes"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Time's up",
+    "pointsTitle": "Most loyal viewers",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -8911,7 +8916,9 @@
       "chat_box": "Chat box",
       "ticker": "Ticker",
       "rule_alert": "Rule alerts",
-      "poll": "Poll"
+      "poll": "Poll",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Loyal viewers"
     },
     "hints": {
       "spin_wheel": "Where the wheels in your rules spin",
@@ -9138,6 +9145,22 @@
         "ban": "{{actor}} banned {{target}}",
         "unban": "{{actor}} unbanned {{target}}"
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
+      "secondsPerFollow": "Seconds added per follow",
+      "secondsPerSubscribe": "Seconds added per subscription",
+      "save": "Save amounts",
+      "saved": "Subathon amounts saved.",
+      "stop": "Stop",
+      "addFive": "Add 5 minutes",
+      "failed": "Na dey go wrong. Try again."
+    },
+    "points": {
+      "title": "Loyal viewers",
+      "intro": "Viewers get one point for every minute dey watch you, and one point for every 100 DHB dey gift you. Chat and reactions no give point, so you can't just farm points.",
+      "empty": "No point yet. Dem dey increase when people watch and give gift."
     }
   },
   "liveChatModeration": {

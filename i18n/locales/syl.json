@@ -9644,6 +9644,10 @@
         "moderator-removed": "{{target}} এখন আর মডারেটর নেই।",
         "word-timeout_one": "সময় শেষ হয়ে গেছে {{target}} এর জন্য {{count}} সেকেন্ড \"{{word}}\" এর জন্য"
       }
+    },
+    "subathon": {
+      "save": "সঞ্চয় পরিমাণ",
+      "removeFive": "৫ মিনিট বাদ দাও"
     }
   },
   "liveChatModeration": {

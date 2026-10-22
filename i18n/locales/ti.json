@@ -9118,7 +9118,12 @@
     "followersUnit": "ተኸታተልቲ",
     "topSupporters": "ላዕለዎት ደገፍቲ",
     "tipped": "{{name}} ህያብ ልኢኹ",
-    "chatPreview": "ናይ ቻት መልእኽትታት ኣብዚ ይረኣዩ"
+    "chatPreview": "ናይ ቻት መልእኽትታት ኣብዚ ይረኣዩ",
+    "subathon": "ሱባቶን",
+    "subathonOver": "ግዜ ተወጀ",
+    "pointsTitle": "ዝዓመተ ታሪኽ ዘለዎ ተዓዋቲ",
+    "points_one": "{{formatted}} ነጥቢ",
+    "points_other": "{{formatted}} ነጥቢ"
   },
   "liveStudio": {
     "controls": {
@@ -9218,7 +9223,9 @@
       "event_feed": "ናይ ቀረባ ንጥፈታት",
       "chat_box": "ናይ ቻት ሳጹን",
       "ticker": "ቲከር",
-      "rule_alert": "ደንብ ማንቂያዎች"
+      "rule_alert": "ደንብ ማንቂያዎች",
+      "subathon_timer": "ሱባቶን ታይመር",
+      "points_board": "ታሪኽ ዘለዎ ተዓዋቲ"
     },
     "hints": {
       "spin_wheel": "እቲ ኣብ ሕግታትካ ዘሎ መንኰራኵር",
@@ -9238,7 +9245,9 @@
       "event_feed": "ናይ መወዳእታ ህያባት ፡ ተኸታተልቲ ፡ ተመዝጋቢታትን ሰባት ነቲ ስርሒትካ ይካፈሉ",
       "chat_box": "ኣብ ገጽካ ናይ ዝርርብ መልእኽትታት ኣርኢ",
       "ticker": "ሓደ መስመር ናይ ገዛእ ርእስኻ ጽሑፍ ኣብ ልዕሊ እቲ ስክሪን ዝዞር",
-      "rule_alert": "ደንብ ማንቂያዎችህ የሚመጡበት ቦታ"
+      "rule_alert": "ደንብ ማንቂያዎችህ የሚመጡበት ቦታ",
+      "subathon_timer": "ስጦታ፣ ምተወ ምስ ምዝገባ ኣሪ ዝገብር ቆጽሪ",
+      "points_board": "ብ ነጥቢ ምስ ምዓዋት ምስ ወሃብ ዝዓመተ ተዓዋቲ"
     },
     "fields": {
       "style": "ቅጥዒ",
@@ -9441,6 +9450,29 @@
         "moderator-added": "{{target}} መማህረሪ ኮይኑ",
         "moderator-removed": "{{target}} ሕጂ ኣማሓዳሪ ኣይኮነን"
       }
+    },
+    "subathon": {
+      "title": "ሱባቶን",
+      "intro": "ኣብ ስትሪም ዘለዎ ቆጽሪ። ኩሉ ዝከፈለ ስጦታ፣ ምተወ ምስ ምዝገባ ግዜ ይውስኩ፣ ስለዚ ክፍሊት ኩሉ ግዜ ኣብ ላይ ይሓዝካ።",
+      "secondsPerThousand": "ሰከንድ ብ 1,000 DHB ዝተወሃበ ስጦታ",
+      "secondsPerFollow": "ሰከንድ ብ ምተወ",
+      "secondsPerSubscribe": "ሰከንድ ብ ምዝገባ",
+      "capHours": "ዝዓመተ ግዜ (ሰዓታት)",
+      "save": "ሞያታት ምቅያር",
+      "saved": "ሱባቶን ሞያታት ዝተቖየሩ።",
+      "startMinutes": "ብ (ደቒቕ) ጀምር",
+      "start": "ቆጽሪ ጀምር",
+      "stop": "ሰብ",
+      "addFive": "5 ደቒቕ ወስኽ",
+      "removeFive": "5 ደቒቕ ወስድ",
+      "failed": "ዚ ኣይሰራሕን። ድሕሪ ሕጂ ሞክር።",
+      "widgetHint": "ሱባቶን ቆጽሪ ኣሳይ። ኣብ ሱባቶን ፓነል ኣብ Live Studio ጀምር።"
+    },
+    "points": {
+      "title": "ታሪኽ ዘለዎ ተዓዋቲ",
+      "intro": "ተዓዋቲ ብ ኩሉ ደቒቕ ዝተዓዋቱ ነጥቢ ሓደ ምስ ሓደ ብ 100 DHB ዝወሃቡ ስጦታ ምስ ሓደ ይረክቡ። ዝርዝር ምስ ምላሽ ነገ ኣይረክቡን፣ ስለዚ ነጥቢ ኣይተሰርሕን።",
+      "empty": "ነጥቢ ገና ኣይነበረን። ሰባት ክዓዋቱ ምስ ወሃቡ ይሓዝ።",
+      "widgetHint": "Loyal viewers ዊጅት ወስኽ ዚ ዝርዝር ኣብ ስትሪም ኣሳይ።"
     }
   },
   "liveChatModeration": {

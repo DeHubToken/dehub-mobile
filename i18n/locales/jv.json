@@ -9151,7 +9151,12 @@
       "voted_other": "Kamu pilih · {{count}} pilih-an",
       "votes_one": "{{count}} pilih",
       "votes_other": "{{count}} pilih-an"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Wektune wis entek",
+    "pointsTitle": "Penonton paling setya",
+    "points_one": "{{formatted}} poin",
+    "points_other": "{{formatted}} poin"
   },
   "liveStudio": {
     "controls": {
@@ -9217,7 +9222,9 @@
       "frame": "Frame",
       "chat_box": "Kotak obrolan",
       "ticker": "Ticker",
-      "poll": "Pemilihan"
+      "poll": "Pemilihan",
+      "subathon_timer": "Timer subathon",
+      "points_board": "Penonton setya"
     },
     "hints": {
       "spin_wheel": "Ngendi roda-roda ing aturan-aturanmu muter",
@@ -9235,7 +9242,9 @@
       "reaction_counter": "Kanggo ngitung reaksi-ngenine ngoko broadcast mo.",
       "event_feed": "Kanggo ngisor-ngisorin ingkang terbaru, pengikut, pengikut berlangganan, lan wong-wong ing ngasaringan broadcast mo.",
       "rule_alert": "Endi aturan-aturan penting mu katon",
-      "poll": "Pemilihan live kamu, dengan tombol suara untuk tiap opsi"
+      "poll": "Pemilihan live kamu, dengan tombol suara untuk tiap opsi",
+      "subathon_timer": "Hitung mundur sing hadiah, follow lan subscription mundur maneh",
+      "points_board": "Penonton paling dhuwur mu miturut poin saka nonton lan hadiah"
     },
     "fields": {
       "style": "Style",
@@ -9468,6 +9477,29 @@
         "word-timeout_one": "Ngantiwake {{target}} dhuwur {{count}} detik dhuwur \"{{word}}\"",
         "word-timeout_other": "Ngantiwake {{target}} dhuwur {{count}} detik dhuwur \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Hitung mundur ing streammu. Saben hadiah bayar, follow lan subscription nambah wektu, dadi kamar tetep kowe live.",
+      "secondsPerThousand": "Detik ditambah per 1.000 DHB hadiah",
+      "secondsPerFollow": "Detik ditambah per follow",
+      "secondsPerSubscribe": "Detik ditambah per subscription",
+      "capHours": "Paling dawa bisa mlaku (jam)",
+      "save": "Simpen jumlah",
+      "saved": "Jumlah subathon sing disimpen.",
+      "startMinutes": "Mulai karo (menit)",
+      "start": "Mulai hitung mundur",
+      "stop": "Mandheg",
+      "addFive": "Tambah 5 menit",
+      "removeFive": "Kurangi 5 menit",
+      "failed": "Iku ora bisa. Coba maneh.",
+      "widgetHint": "Nunjukake hitung mundur subathonmu. Mulai saka panel Subathon ing Live Studio."
+    },
+    "points": {
+      "title": "Penonton setya",
+      "intro": "Penonton entuk poin saben menit nonton kowe lan siji saben 100 DHB sing hadiah. Chat lan reaksi ora entuk apa-apa, dadi poin ora bisa ditani.",
+      "empty": "Durung ana poin. Padha kumpul nalika wong nonton lan hadiah.",
+      "widgetHint": "Tambah widget Loyal viewers kanggo nunjukake daftar iki ing stream."
     }
   },
   "liveChatModeration": {

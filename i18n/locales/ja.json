@@ -9268,7 +9268,11 @@
       "voted_other": "あなたが投票しました·{{count}}票",
       "votes_one": "{{count}}票",
       "votes_other": "{{count}}票"
-    }
+    },
+    "subathonOver": "時間切れです",
+    "pointsTitle": "最も忠実な視聴者",
+    "points_one": "{{formatted}}ポイント",
+    "points_other": "{{formatted}}ポイント"
   },
   "liveStudio": {
     "controls": {
@@ -9337,7 +9341,9 @@
       "chat_box": "チャットボックス",
       "ticker": "ティッカー",
       "rule_alert": "ルールアラート",
-      "poll": "投票"
+      "poll": "投票",
+      "subathon_timer": "サブマソンタイマー",
+      "points_board": "忠実な視聴者"
     },
     "hints": {
       "spin_wheel": "ルール内のホイールが回転する場所",
@@ -9357,7 +9363,9 @@
       "chat_box": "ブロードキャストのチャットメッセージを画面に表示します",
       "ticker": "画面をスクロールする独自のテキストの行",
       "rule_alert": "ルールのアラートが表示される場所",
-      "poll": "すべてのオプションに投票ボタンが付いたライブ投票"
+      "poll": "すべてのオプションに投票ボタンが付いたライブ投票",
+      "subathon_timer": "ギフト、フォロー、サブスクリプションをプッシュバックするカウントダウン",
+      "points_board": "視聴と贈答からのポイント別の上位視聴者"
     },
     "fields": {
       "style": "スタイル",
@@ -9592,6 +9600,28 @@
         "word-timeout_one": "「{{word}}」で{{count}}秒間{{target}}がタイムアウトしました",
         "word-timeout_other": "\"{{word}}\"の{{count}}秒間{{target}}がタイムアウトしました"
       }
+    },
+    "subathon": {
+      "intro": "ストリームのカウントダウン。すべての有料ギフト、フォロー、サブスクリプションは時間を増やすので、部屋はあなたの生活を維持します。",
+      "secondsPerThousand": "贈られた1,000 DHBごとに追加された秒数",
+      "secondsPerFollow": "フォローごとに追加された秒数",
+      "secondsPerSubscribe": "サブスクリプションごとに追加された秒数",
+      "capHours": "実行可能な最長時間（時間）",
+      "save": "金額を節約",
+      "saved": "サブマソンの金額が節約されました。",
+      "startMinutes": "(分)で開始",
+      "start": "カウントダウンを開始",
+      "stop": "停止",
+      "addFive": "5分間追加する",
+      "removeFive": "5分間休憩します",
+      "failed": "うまくいきませんでした。もう一度やり直してください。",
+      "widgetHint": "サブマラソンのカウントダウンを表示します。Live StudioのSubathonパネルから開始します。"
+    },
+    "points": {
+      "title": "忠実な視聴者",
+      "intro": "視聴者は、あなたを見るたびにポイントを獲得し、プレゼントするDHB 100枚ごとにポイントを獲得します。チャットやリアクションでは何も得られないため、ポイントを貯めることはできません。",
+      "empty": "ポイントはまだありません。人々が見て贈り物をするにつれて蓄積されます。",
+      "widgetHint": "このリストをストリームに表示するには、ロイヤルビューアウィジェットを追加します。"
     }
   },
   "liveChatModeration": {

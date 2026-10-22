@@ -9185,7 +9185,12 @@
       "voted_other": "Uvote · {{count}} votes",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} votes"
-    }
+    },
+    "subathon": "I-subathon",
+    "subathonOver": "Isikhathi siphelile",
+    "pointsTitle": "Ababukeli abaningi abathembekile",
+    "points_one": "{{formatted}} ngokothi",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9254,7 +9259,9 @@
       "chat_box": "Ibhokisi lengxoxo",
       "ticker": "Umthumeli wamathikithi",
       "rule_alert": "Izikhalo Zemithetho",
-      "poll": "Inhlolovo"
+      "poll": "Inhlolovo",
+      "subathon_timer": "I-subathon timer",
+      "points_board": "Ababukeli abathembekile"
     },
     "hints": {
       "spin_wheel": "Lapho amasondo emithethweni yakho ephotha khona",
@@ -9274,7 +9281,9 @@
       "chat_box": "Ibonisa imiyalezo yengxoxo yokusakaza kwakho esikrinini",
       "ticker": "Umugqa wombhalo wakho siqu oskrola esikrinini",
       "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona",
-      "poll": "Ukuvota kwakho bukhoma, okunenkinobho yokuvota kukho konke ongakhetha kukho"
+      "poll": "Ukuvota kwakho bukhoma, okunenkinobho yokuvota kukho konke ongakhetha kukho",
+      "subathon_timer": "Ukubala okubuyiselwa emuva, okulandelwayo nokubhaliselwe",
+      "points_board": "Ababukeli bakho abahamba phambili ngamaphuzu okubuka nokuphana"
     },
     "fields": {
       "style": "Isitayela",
@@ -9509,6 +9518,29 @@
         "word-timeout_one": "Kuphelile ngo- {{target}} ngo- {{count}} umzuzwana ngo- \"{{word}}\"",
         "word-timeout_other": "Kuphelile ngo- {{target}} ngo- {{count}} imizuzwana ngo- \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "I-subathon",
+      "intro": "Ukubalwa kokusakazwa kwakho. Isipho ngasinye esikhokhelwayo, landela futhi ubhalisele sinezela isikhathi, ukuze igumbi likugcine uphila.",
+      "secondsPerThousand": "Imizuzwana efakiwe ngesiphiwo se-DHB esingu-1,000",
+      "secondsPerFollow": "Imizuzwana efakiwe ngokulandela ngakunye",
+      "secondsPerSubscribe": "Imizuzwana efakiwe ekubhaliseni ngakunye",
+      "capHours": "Isikhathi eside kunazo zonke singasebenza (amahora)",
+      "save": "Londoloza amanani",
+      "saved": "Amanani e-subathon alondoloziwe.",
+      "startMinutes": "Qala (ngemizuzu)",
+      "start": "Qala ukubala",
+      "stop": "Misa",
+      "addFive": "Faka imizuzu engu-5",
+      "removeFive": "Khipha iminithi engu-5",
+      "failed": "Lokho akuzange kusebenze. Phinda uzame.",
+      "widgetHint": "Ibonisa i-subathon countdown yakho. Qala kuphaneli ye-Subathon ku-Live Studio."
+    },
+    "points": {
+      "title": "Ababukeli abathembekile",
+      "intro": "Ababukeli bathola iphuzu ngomzuzu ngamunye abakubukayo kanye nelilodwa ngomzuzu ngamunye we-DHB engu-100 abawunikezayo. Ingxoxo nokusabela akuzuzisi lutho, ngakho amaphuzu awakwazi ukulinywa.",
+      "empty": "Awekho amaphuzu okwamanje. Akhula njengoba abantu bebuka futhi bezipho.",
+      "widgetHint": "Faka iwijethi yababukeli abathembekile ukuze ubonise lolu hlu ekusakazeni."
     }
   },
   "liveChatModeration": {

@@ -9188,7 +9188,12 @@
       "failed": "Votul dvs. nu a fost luat în considerare. Încercați din nou.",
       "votes_one": "{{count}} vot",
       "votes_other": "{{count}} voturi"
-    }
+    },
+    "subathon": "Subatonul",
+    "subathonOver": "Timpul a expirat",
+    "pointsTitle": "Cei mai fideli spectatori",
+    "points_one": "{{formatted}} punct",
+    "points_other": "{{formatted}} puncte"
   },
   "liveStudio": {
     "controls": {
@@ -9257,7 +9262,9 @@
       "chat_box": "Casetă de chat",
       "ticker": "Indicativ",
       "rule_alert": "Alerte privind regulile",
-      "poll": "Sondaj"
+      "poll": "Sondaj",
+      "subathon_timer": "Temporizator subaton",
+      "points_board": "Spectatori fideli"
     },
     "hints": {
       "spin_wheel": "Unde se învârt roțile din regulile tale",
@@ -9277,7 +9284,9 @@
       "chat_box": "Afișează mesajele de chat ale difuzării pe ecran",
       "ticker": "Un rând din propriul text care se derulează pe ecran",
       "rule_alert": "Unde apar alertele regulilor tale",
-      "poll": "Sondajul dvs. live, cu un buton de vot pentru fiecare opțiune"
+      "poll": "Sondajul dvs. live, cu un buton de vot pentru fiecare opțiune",
+      "subathon_timer": "O numărătoare inversă pe care cadourile, abonamentele și abonamentele o resping",
+      "points_board": "Spectatorii dvs. de top după puncte de la vizionarea și oferirea de cadouri"
     },
     "fields": {
       "style": "Stil",
@@ -9512,6 +9521,29 @@
         "word-timeout_one": "Timp expirat {{target}} pentru {{count}} secundă pentru „{{word}}”",
         "word-timeout_other": "Timp expirat {{target}} pentru {{count}} secunde pentru \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subatonul",
+      "intro": "O numărătoare inversă pentru fluxul dvs. Fiecare cadou plătit, urmărire și abonament adaugă timp, astfel încât camera să te țină în viață.",
+      "secondsPerThousand": "Secunde adăugate la 1.000 DHB înzestrați",
+      "secondsPerFollow": "Secunde adăugate per urmărire",
+      "secondsPerSubscribe": "Secunde adăugate per abonament",
+      "capHours": "Cea mai lungă perioadă de funcționare (ore)",
+      "save": "Salvează cantități",
+      "saved": "Sumele subatonului au fost economisite.",
+      "startMinutes": "Începe cu (minute)",
+      "start": "Începe numărătoarea inversă",
+      "stop": "Oprește",
+      "addFive": "Adaugă 5 minute",
+      "removeFive": "Decolați 5 minute",
+      "failed": "Asta nu a funcționat. Încearcă din nou.",
+      "widgetHint": "Afișează numărătoarea inversă pentru subaton. Porniți-l din panoul Subathon din Live Studio."
+    },
+    "points": {
+      "title": "Spectatori fideli",
+      "intro": "Spectatorii câștigă un punct pentru fiecare minut în care te urmăresc și unul pentru fiecare 100 DHB pe care îl oferă cadou. Chat-ul și reacțiile nu câștigă nimic, astfel încât punctele nu pot fi câștigate.",
+      "empty": "Încă nu există puncte. Ele se acumulează pe măsură ce oamenii privesc și dăruiesc.",
+      "widgetHint": "Adăugați widgetul Vizitatori fideli pentru a afișa această listă în flux."
     }
   },
   "liveChatModeration": {

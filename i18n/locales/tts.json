@@ -9167,7 +9167,11 @@
     "followersUnit": "ผู้ติดตาม",
     "topSupporters": "ผู้สนับสนุนอันดับต้น",
     "tipped": "{{name}} ส่งขวัญขวัญ",
-    "chatPreview": "ข้อความสนทนาแสดงที่นี่"
+    "chatPreview": "ข้อความสนทนาแสดงที่นี่",
+    "subathon": "สบาทอน",
+    "subathonOver": "เวลาผ่านไปแล้ว",
+    "points_one": "{{formatted}} จุด",
+    "points_other": "{{formatted}} คะแนน"
   },
   "liveStudio": {
     "controls": {
@@ -9451,6 +9455,16 @@
         "word-timeout_one": "{{target}} หยุดทำงานในเวลา {{count}} วินาทีสำหรับ \"{{word}}\"",
         "word-timeout_other": "เวลาผ่านไป {{target}} ครั้ง สำหรับ {{count}} วินาที สำหรับ \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "สบาทอน",
+      "secondsPerThousand": "นาทีที่เพิ่มขึ้นต่อ 1,000 DHB ที่ถูกให้",
+      "secondsPerFollow": "นาทีที่เพิ่มขึ้นต่อการติดตาม",
+      "secondsPerSubscribe": "วินาทีที่เพิ่มขึ้นต่อการสมัครสมาชิก",
+      "startMinutes": "(นาที)",
+      "stop": "หยุด",
+      "addFive": "เพิ่มเวลา 5 นาที",
+      "removeFive": "นั่งพัก 5 นาที"
     }
   },
   "liveChatModeration": {
