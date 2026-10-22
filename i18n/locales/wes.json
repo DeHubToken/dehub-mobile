@@ -8981,5 +8981,10 @@
     "showWords": "Show word dem",
     "reminderBody": "Backup yuh wallet — 12 words wey go bring am back if yuh lose yuh phone.",
     "notNow": "No now"
+  },
+  "liveOverlay": {
+    "someone": "Wetin dem say?",
+    "subscribedTo": "{{name}} subscribe to {{plan}}",
+    "followersUnit": "fɔlɔwɔs"
   }
 }

@@ -9126,5 +9126,16 @@
     "reminderBody": "Dublējiet savu maciņu — 12 vārdi, kas atgriež to, ja pazaudējat telefonu.",
     "backUp": "Dublēt",
     "notNow": "Ne tagad"
+  },
+  "liveOverlay": {
+    "someone": "Kāds",
+    "newFollower": "Jauns sekotājs: {{name}}",
+    "newSubscriber": "Jauns abonents: {{name}}",
+    "subscribedTo": "{{name}} abonēja {{plan}}",
+    "shared": "{{name}} kopīgoja straumi",
+    "joined": "{{name}} pievienojās",
+    "goalReached": "Mērķis sasniegts!",
+    "followersUnit": "sekotāji",
+    "topSupporters": "Populārākie atbalstītāji"
   }
 }

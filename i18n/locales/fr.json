@@ -1,6 +1,44 @@
 {
-  "accountConnect": {"title":"Connecter votre compte DeHub","body":"Connectez votre compte pour gérer votre profil, publier et créer du contenu depuis le chat. Les connexions expirent sous 24 heures. Vous pouvez les révoquer à tout moment.","read":"Consulter votre compte, vos publications, notifications et créations","profile":"Modifier votre profil, vos images et vos paramètres de confidentialité","social":"Publier, commenter, suivre des personnes et enregistrer des favoris","generate":"Créer des médias avec vos crédits, paiements confirmés ou images gratuites admissibles","signIn":"Se connecter à DeHub","allow":"Autoriser la connexion","deny":"Annuler","manage":"Gérer les connexions du compte","empty":"Aucune connexion active.","disconnect":"Déconnecter","failed":"Connexion impossible. Essayez de vous reconnecter.","intro":"Parcourez DeHub dans ChatGPT ou connectez votre compte pour modifier votre profil, publier et utiliser Creator Studio. Ajoutez https://dehub.io/mcp comme connecteur OAuth pour gérer votre compte.","what":"Consultez les publications et profils publics. Une connexion OAuth permet de gérer le profil et sa confidentialité, publier, commenter, suivre des personnes, consulter les notifications, enregistrer des favoris et créer des images, vidéos, sons et objets 3D. Les règles de paiement DeHub s\u0027appliquent.","account":"La consultation publique ne nécessite aucun compte. Connectez votre compte DeHub pour gérer votre profil, créer et publier du contenu.","step":"Pour gérer votre compte, ajoutez https://dehub.io/mcp comme connecteur OAuth, connectez-vous à DeHub et examinez les autorisations avant d\u0027accepter.","profilePrompt":"Remplace ma biographie DeHub par : Créateur indépendant de films et de musique.","generatePrompt":"Montre les modèles d\u0027image DeHub et le prix d\u0027un portrait avant de le créer.","libraryPrompt":"Montre les dernières créations de ma bibliothèque DeHub."},
-  "twitchMirror": {"title":"Rediffusion Twitch","intro":"Diffusez sur Twitch comme d’habitude. Votre direct peut apparaître automatiquement sur DeHub, sans outil supplémentaire.","unavailable":"La rediffusion Twitch n’est pas encore disponible.","connect":"Connecter Twitch","auto":"Rediffuser automatiquement mes directs Twitch","waiting":"Prêt pour votre prochain direct Twitch","starting":"Connexion de la vidéo en direct","live":"En direct sur DeHub","error":"La rediffusion nécessite votre attention","refresh":"Actualiser le statut","disconnect":"Déconnecter Twitch","open":"Regarder sur DeHub","retry":"Réessayer la rediffusion","consent":"Connectez uniquement un canal qui vous appartient. L’activation autorise DeHub à retransmettre vos directs et à conserver les rediffusions dans votre quota d’enregistrement actuel.","disabled":"La rediffusion automatique est désactivée","failed":"Impossible de mettre à jour la rediffusion Twitch. Réessayez."},
+  "accountConnect": {
+    "title": "Connecter votre compte DeHub",
+    "body": "Connectez votre compte pour gérer votre profil, publier et créer du contenu depuis le chat. Les connexions expirent sous 24 heures. Vous pouvez les révoquer à tout moment.",
+    "read": "Consulter votre compte, vos publications, notifications et créations",
+    "profile": "Modifier votre profil, vos images et vos paramètres de confidentialité",
+    "social": "Publier, commenter, suivre des personnes et enregistrer des favoris",
+    "generate": "Créer des médias avec vos crédits, paiements confirmés ou images gratuites admissibles",
+    "signIn": "Se connecter à DeHub",
+    "allow": "Autoriser la connexion",
+    "deny": "Annuler",
+    "manage": "Gérer les connexions du compte",
+    "empty": "Aucune connexion active.",
+    "disconnect": "Déconnecter",
+    "failed": "Connexion impossible. Essayez de vous reconnecter.",
+    "intro": "Parcourez DeHub dans ChatGPT ou connectez votre compte pour modifier votre profil, publier et utiliser Creator Studio. Ajoutez https://dehub.io/mcp comme connecteur OAuth pour gérer votre compte.",
+    "what": "Consultez les publications et profils publics. Une connexion OAuth permet de gérer le profil et sa confidentialité, publier, commenter, suivre des personnes, consulter les notifications, enregistrer des favoris et créer des images, vidéos, sons et objets 3D. Les règles de paiement DeHub s'appliquent.",
+    "account": "La consultation publique ne nécessite aucun compte. Connectez votre compte DeHub pour gérer votre profil, créer et publier du contenu.",
+    "step": "Pour gérer votre compte, ajoutez https://dehub.io/mcp comme connecteur OAuth, connectez-vous à DeHub et examinez les autorisations avant d'accepter.",
+    "profilePrompt": "Remplace ma biographie DeHub par : Créateur indépendant de films et de musique.",
+    "generatePrompt": "Montre les modèles d'image DeHub et le prix d'un portrait avant de le créer.",
+    "libraryPrompt": "Montre les dernières créations de ma bibliothèque DeHub."
+  },
+  "twitchMirror": {
+    "title": "Rediffusion Twitch",
+    "intro": "Diffusez sur Twitch comme d’habitude. Votre direct peut apparaître automatiquement sur DeHub, sans outil supplémentaire.",
+    "unavailable": "La rediffusion Twitch n’est pas encore disponible.",
+    "connect": "Connecter Twitch",
+    "auto": "Rediffuser automatiquement mes directs Twitch",
+    "waiting": "Prêt pour votre prochain direct Twitch",
+    "starting": "Connexion de la vidéo en direct",
+    "live": "En direct sur DeHub",
+    "error": "La rediffusion nécessite votre attention",
+    "refresh": "Actualiser le statut",
+    "disconnect": "Déconnecter Twitch",
+    "open": "Regarder sur DeHub",
+    "retry": "Réessayer la rediffusion",
+    "consent": "Connectez uniquement un canal qui vous appartient. L’activation autorise DeHub à retransmettre vos directs et à conserver les rediffusions dans votre quota d’enregistrement actuel.",
+    "disabled": "La rediffusion automatique est désactivée",
+    "failed": "Impossible de mettre à jour la rediffusion Twitch. Réessayez."
+  },
   "maintenance": {
     "brand": "DeHub",
     "mode": "Mode maintenance",
@@ -10678,5 +10716,16 @@
     "9cc9f71c23f2": "Explorez un globe d'intelligence spatiale en direct et, si vous le souhaitez, placez une version délibérément approximative de vous-même parmi la communauté DeHub.",
     "a61d44ba33d5": "La mère de toutes les arènes. Tradez comme un voyageur temporel avec des dizaines d'écrans. Profitez des flux en direct de Binance, Dexscreener ou de tout ce que vous voulez, des vidéos aux onglets du navigateur et tout le reste.",
     "1a00975a0ac1": "@channel"
+  },
+  "liveOverlay": {
+    "someone": "Quelqu'un",
+    "newFollower": "Nouvel abonné : {{name}}",
+    "newSubscriber": "Nouvel abonné : {{name}}",
+    "subscribedTo": "{{name}} abonné à {{plan}}",
+    "shared": "{{name}} a partagé le flux",
+    "joined": "{{name}} a rejoint",
+    "goalReached": "Objectif atteint !",
+    "followersUnit": "abonnés",
+    "topSupporters": "Meilleurs supporters"
   }
 }

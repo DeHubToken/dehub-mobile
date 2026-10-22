@@ -9317,5 +9317,16 @@
     "loading": "Sponsor wird gesucht…",
     "campaignDescription": "Zuschauer können Creator unterstützen, indem sie 30 Sekunden ansehen. Erforderlich ist ein freigegebenes Video von mindestens 30 Sekunden, das im Web-Werbeportal hochgeladen wurde.",
     "watch": "Eine Anzeige ansehen, um diesen Creator zu unterstützen"
+  },
+  "liveOverlay": {
+    "someone": "Jemand",
+    "newFollower": "Neuer Follower: {{name}}",
+    "newSubscriber": "Neuer Abonnent: {{name}}",
+    "subscribedTo": "{{name}} hat {{plan}} abonniert",
+    "shared": "{{name}} hat den Stream geteilt",
+    "joined": "{{name}} beigetreten",
+    "goalReached": "Ziel erreicht!",
+    "followersUnit": "follower",
+    "topSupporters": "Top-Unterstützer"
   }
 }

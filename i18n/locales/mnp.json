@@ -9106,5 +9106,16 @@
     "reminderBody": "備份你的錢包 — 12個字詞，如果手機遺失，可以用它們恢復。",
     "backUp": "備份",
     "notNow": "暫時不備份"
+  },
+  "liveOverlay": {
+    "someone": "𠮷人",
+    "newFollower": "新粉絲：{{name}}",
+    "newSubscriber": "新訂閱：{{name}}",
+    "subscribedTo": "{{name}} 訂閱了 {{plan}}",
+    "shared": "{{name}} 分享了直播",
+    "joined": "{{name}} 加入了",
+    "goalReached": "目標達成！",
+    "followersUnit": "粉絲數",
+    "topSupporters": "贊助排行"
   }
 }

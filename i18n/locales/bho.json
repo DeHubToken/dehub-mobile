@@ -9105,5 +9105,12 @@
     "reminderBody": "Previous Post: अपना मोबाइल नंबर खोने पर वापस ले रहे 12 लोग",
     "backUp": "पीठ पेछे बाट करे,",
     "notNow": "अब ना हवे मुझसे इंतजार -- (2"
+  },
+  "liveOverlay": {
+    "someone": "कोही त आऊ",
+    "subscribedTo": "{{name}} ने {{plan}} के सब्सक्राइब कइल",
+    "goalReached": "मंजिल आ गई..!",
+    "followersUnit": "अनुयायी भी रहे मौजूद",
+    "topSupporters": "वरिष्ठ नागरिक रहे मौजूद"
   }
 }

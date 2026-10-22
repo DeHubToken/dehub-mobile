@@ -9102,5 +9102,16 @@
     "reminderBody": "Dib u soo celi boorsadaada — 12 eray oo dib u soo celiya haddii aad lumiso taleefankaaga.",
     "backUp": "Dib u soo celi",
     "notNow": "Hadda ma ahan"
+  },
+  "liveOverlay": {
+    "someone": "Qof",
+    "newFollower": "Raacaha Cusub: {{name}}",
+    "newSubscriber": "Isticmaale cusub: {{name}}",
+    "subscribedTo": "{{name}} subscribe to {{plan}}",
+    "shared": "{{name}} wadaagay qulqulka",
+    "joined": "{{name}} ku biiray",
+    "goalReached": "Hadafka la gaaray!",
+    "followersUnit": "kuwa raacsan",
+    "topSupporters": "Taageerayaasha ugu sareeya"
   }
 }

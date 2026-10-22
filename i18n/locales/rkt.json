@@ -9260,5 +9260,15 @@
     "showWords": "শো শব্দ",
     "reminderBody": "আপনার ওয়ালেটকে সুরক্ষিত রাখুন — ১২টি শব্দ যা আপনার ফোন হারালে তা পুনরুদ্ধার করতে সাহায্য করবে।",
     "backUp": "পিছনে থাকো"
+  },
+  "liveOverlay": {
+    "someone": "কেউ",
+    "newFollower": "নিউ ফলোয়ার: {{name}}",
+    "newSubscriber": "নতুন সাবস্ক্রাইবার: {{name}}",
+    "subscribedTo": "{{name}} সাবস্ক্রাইব করল {{plan}}",
+    "shared": "{{name}} স্ট্রিম শেয়ার করল",
+    "goalReached": "লক্ষ্য পৌঁছাই গ্যাছে!",
+    "followersUnit": "অনুসারী",
+    "topSupporters": "শীর্ষ সমর্থক"
   }
 }

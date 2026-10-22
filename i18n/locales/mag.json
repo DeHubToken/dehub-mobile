@@ -9102,5 +9102,11 @@
     "reminderBody": "Home/Whatsapp/अपना फोन खोए तो क्या करे — 12 Words",
     "backUp": "चल गिर के उठ जा",
     "notNow": "आज तलक होलइ नञ"
+  },
+  "liveOverlay": {
+    "someone": "कोउ ना कोई के संग में",
+    "goalReached": "पहुँच गेलो हम अपन दालान!",
+    "followersUnit": "अउर संबंधित समूह",
+    "topSupporters": "बड़े पैमाने पर, बड़े पैमान"
   }
 }

@@ -9104,5 +9104,16 @@
     "reminderBody": "Kembalikan dompetmu — 12 kata yang bisa ngembalikan dompetmu kalau lupa ponsel.",
     "backUp": "Balik",
     "notNow": "Gwé nggoje."
+  },
+  "liveOverlay": {
+    "someone": "Sapa wae",
+    "newFollower": "Pengikut anyar: {{name}}",
+    "newSubscriber": "Langganan anyar: {{name}}",
+    "subscribedTo": "{{name}} wis langganan menyang {{plan}}",
+    "shared": "{{name}} nuduhake streaming",
+    "joined": "{{name}} melu",
+    "goalReached": "Tujuan wis kasil!",
+    "followersUnit": "pengikut",
+    "topSupporters": "Pangrojong paling dhuwur"
   }
 }

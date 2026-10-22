@@ -9147,5 +9147,15 @@
     "reminderBody": "备份您的钱包——12 个词，如果您丢失手机可以恢复。",
     "backUp": "备份",
     "notNow": "现在不"
+  },
+  "liveOverlay": {
+    "someone": "有人",
+    "newFollower": "新粉丝：{{name}}",
+    "newSubscriber": "新订阅用户：{{name}}",
+    "subscribedTo": "{{name}} 订阅了 {{plan}}",
+    "joined": "{{name}} 加入了",
+    "goalReached": "目标达成！",
+    "followersUnit": "粉丝",
+    "topSupporters": "顶级支持者"
   }
 }

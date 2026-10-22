@@ -9307,5 +9307,16 @@
     "reminderBody": "I - back up ang iyong wallet — 12 mga salita na dalhin ito pabalik kung mawala mo ang iyong telepono.",
     "backUp": "I - back up",
     "notNow": "Hindi ngayon"
+  },
+  "liveOverlay": {
+    "someone": "Isang tao",
+    "newFollower": "Bagong tagasunod:{{name}}",
+    "newSubscriber": "Bagong subscriber:{{name}}",
+    "subscribedTo": "Nag -subscribe si {{name}} sa {{plan}}",
+    "shared": "Ibinahagi ni {{name}} ang stream",
+    "joined": "{{name}} sumali",
+    "goalReached": "Naabot na ang layunin!",
+    "followersUnit": "mga tagasunod",
+    "topSupporters": "Mga nangungunang tagasuporta"
   }
 }

@@ -9041,5 +9041,13 @@
     "reminderBody": "तव वॉलेट् पुनःस्थापयन्तु — १२ शब्दाः यः तव फ़ोन् हान्यते तदा पुनः प्राप्तुं सहायकाः।",
     "backUp": "पुनःस्थापयन्तु",
     "notNow": "नैव"
+  },
+  "liveOverlay": {
+    "someone": "कश्चित्",
+    "newSubscriber": "शुभ मुहूर्त: {{name}} 0",
+    "subscribedTo": "{{name}} सदस्यत्वं कृतवान् {{plan}}",
+    "goalReached": "ध्येयः प्राप्तः!",
+    "followersUnit": "अनुयायी",
+    "topSupporters": "उत्तमानि समर्थकानि"
   }
 }
