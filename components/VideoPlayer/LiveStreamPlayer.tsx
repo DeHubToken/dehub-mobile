@@ -27,6 +27,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import ReactionOverlay from "../LiveProducer/ReactionOverlay";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
 import LiveOverlayLayer from "../LiveOverlay/LiveOverlayLayer";
+import ReplayOverlayLayer from "../LiveOverlay/ReplayOverlayLayer";
 import { useStreamOverlay } from "../../hooks/useStreamOverlay";
 import { REPLACES_BUILT_IN_CELEBRATION } from "../../libs/live-overlay/registry";
 import GiftModal from "../Tip/GiftModal";
@@ -505,7 +506,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
    * instead of the built-in celebration — whether this screen draws it or their
    * OBS has already burned it into the picture — never both.
    */
-  const { data: streamOverlay } = useStreamOverlay(streamId, isLiveEffective);
+  // A replay draws the overlay too, from the stream's own log (ReplayOverlayLayer).
+  const { data: streamOverlay } = useStreamOverlay(streamId, isLiveEffective || !!extractReplayUrl(streamEntity));
   // Paused alerts silence the built-in celebration too.
   const overlayOwnsCelebration = !!streamOverlay?.controls?.alertsPaused || !!streamOverlay?.widgets.some(
     (w) => w.enabled && (REPLACES_BUILT_IN_CELEBRATION as readonly string[]).includes(w.kind),
@@ -1358,7 +1360,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const scrubbingRef = useRef(false);
   const seekRef = useRef<((ratio: number) => void) | null>(null);
   const [seekable, setSeekable] = useState(false);
+  // Where a replay is, for the overlay that plays its log back (ReplayOverlayLayer).
+  const replayPositionRef = useRef(0);
   const handleProgress = useCallback((positionMs: number, durationMs: number) => {
+    replayPositionRef.current = positionMs;
     durationRef.current = durationMs;
     setSeekable(durationMs > 0);
     // A drag owns the bar until the finger lifts; the clock would otherwise
@@ -1863,6 +1868,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             initialViewers={liveViewers ?? 0}
             chatMessages={liveChat.messages}
           />
+        ) : null}
+        {streamOverlay && streamOverlay.version > 0 && streamOverlay.renderIn === "app" && streamId && isPlayingReplay ? (
+          <ReplayOverlayLayer streamId={streamId} overlay={streamOverlay} videoSize={videoSize} positionRef={replayPositionRef} />
         ) : null}
 
         {/* Tip Animations Overlay — the built-in one, unless the creator's
