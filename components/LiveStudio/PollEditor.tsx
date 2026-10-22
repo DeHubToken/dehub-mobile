@@ -64,8 +64,9 @@ export function PollEditor({ poll, onPoll }: Props) {
   });
 
   const secondsLeft = poll ? Math.max(0, Math.ceil((new Date(poll.endsAt).getTime() - now) / 1000)) : 0;
-  const canRemove = options.length > POLL_MIN_OPTIONS;
-  const canAdd = options.length < POLL_MAX_OPTIONS;
+  // The list never leaves these bounds, so "not at the bound" is the test.
+  const canRemove = options.length !== POLL_MIN_OPTIONS;
+  const canAdd = options.length !== POLL_MAX_OPTIONS;
   const shares = poll ? pollShares(poll) : [];
 
   return (
