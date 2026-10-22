@@ -15,3 +15,12 @@ describe('directTipToken', () => {
     expect(directTipToken(null)).toBeNull();
   });
 });
+
+describe('giftCostInDollars', () => {
+  const { giftCostInDollars } = require('../../libs/direct-tip-tokens');
+  it('prices a gift at the DHB peg', () => {
+    expect(giftCostInDollars(1000)).toBe(1);
+    expect(giftCostInDollars(25000)).toBe(25);
+    expect(giftCostInDollars(1)).toBe(0.001);
+  });
+});
