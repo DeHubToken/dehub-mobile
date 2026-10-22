@@ -1800,6 +1800,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             overlay={streamOverlay}
             videoSize={videoSize}
             initialViewers={liveViewers ?? 0}
+            chatMessages={liveChat.messages}
           />
         ) : null}
 

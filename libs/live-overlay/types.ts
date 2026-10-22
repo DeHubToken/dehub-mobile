@@ -35,6 +35,10 @@ export type OverlayRenderIn = "app" | "video";
 export interface OverlayStats {
   totalTips: number;
   followers: number;
+  /** When the stream went live (ISO), so a timer survives a refresh. */
+  startedAt?: string | null;
+  /** Reactions the stream has had so far. */
+  reactions?: number;
 }
 
 export interface PublicOverlay {

@@ -21,6 +21,11 @@ export const OVERLAY_KINDS = [
   "viewer_count",
   "text",
   "frame",
+  "stream_timer",
+  "reaction_counter",
+  "event_feed",
+  "chat_box",
+  "ticker",
 ] as const;
 
 export type OverlayKind = (typeof OVERLAY_KINDS)[number];
@@ -87,6 +92,31 @@ export const WIDGET_TEMPLATES: Record<OverlayKind, WidgetTemplate> = {
     landscape: { x: 0, y: 0, w: 1, h: 1 },
     portrait: { x: 0, y: 0, w: 1, h: 1 },
     settings: { style: "solid", thickness: 6, radius: 0, accent: "#ffffff" },
+  },
+  stream_timer: {
+    landscape: { x: 0.13, y: 0.48, w: 0.1, h: 0.06 },
+    portrait: { x: 0.3, y: 0.42, w: 0.22, h: 0.04 },
+    settings: { label: "", accent: "#ffffff" },
+  },
+  reaction_counter: {
+    landscape: { x: 0.24, y: 0.48, w: 0.1, h: 0.06 },
+    portrait: { x: 0.55, y: 0.42, w: 0.22, h: 0.04 },
+    settings: { accent: "#ffffff" },
+  },
+  event_feed: {
+    landscape: { x: 0.76, y: 0.12, w: 0.22, h: 0.26 },
+    portrait: { x: 0.5, y: 0.22, w: 0.45, h: 0.16 },
+    settings: { count: 4, title: "" },
+  },
+  chat_box: {
+    landscape: { x: 0.02, y: 0.56, w: 0.3, h: 0.3 },
+    portrait: { x: 0.05, y: 0.5, w: 0.7, h: 0.2 },
+    settings: { count: 6, showAvatars: true },
+  },
+  ticker: {
+    landscape: { x: 0.36, y: 0.03, w: 0.38, h: 0.06 },
+    portrait: { x: 0.05, y: 0.74, w: 0.9, h: 0.04 },
+    settings: { text: "", speed: "normal", accent: "#ffffff" },
   },
 };
 
