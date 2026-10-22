@@ -8961,13 +8961,13 @@
   },
   "accountDeletion": {
     "title": "Pa àkọọ́lé rẹ́",
-    "description": "Pa àkántì rẹ àti àkántì ara ẹni tì láéláé.",
-    "warning": "Èyí máa ń pa àkọsílẹ̀ DeHub rẹ, àwọn àtẹ̀jíṣẹ́, àwọn àlàyé, àwọn àtẹ̀jíṣẹ́ àti ìpamọ́ àpamọ́ àpamọ́. Fipamọ awọn alaye imularada apamọwọ rẹ ki o si gbe eyikeyi dukia ni akọkọ. Àwọn ìṣòwò blockchain tí gbogbo ènìyàn ń ṣe àti àwọn àkọsílẹ̀ ìsanwó tí òfin béèrè kò lè di píparẹ́. Àkọsílẹ̀ rẹ pamọ́ lẹ́sẹ̀kẹsẹ̀; píparẹ́ yóò parí láàárín ọgbọ̀n ọjọ́. Èyí kò lè di àtúnṣe.",
+    "description": "Pa àkáǹtì rẹ àti dátà ara ẹni rẹ rẹ́ títí láé",
+    "warning": "Èyí yóò pa àkọsílẹ̀ DeHub rẹ, àwọn àtẹ̀jáde rẹ, àwọn àlàyé, àwọn ìfiránṣẹ́ àti ẹ̀dà ìpamọ́ àpamọ́wọ́ tí o fi pamọ́ rẹ́ títí láé. Kọ́kọ́ fi àwọn kúlẹ̀kúlẹ̀ ìmúpadàbọ̀sípò àpamọ́wọ́ rẹ pamọ́, kí o sì gbé àwọn dúkìá rẹ lọ sí ibòmíràn. Àwọn ìṣòwò blockchain gbogbogbò àti àwọn àkọsílẹ̀ ìsanwó tí òfin béèrè kò ṣeé pa rẹ́. Àkọsílẹ̀ rẹ yóò fara pamọ́ lẹ́sẹ̀kẹsẹ̀; píparẹ́ yóò parí láàárín ọgbọ̀n ọjọ́. A kò lè yí èyí padà.",
     "cancel": "Fagilé",
     "confirm": "Pa àkántì mi rẹ́ títí láé",
     "busy": "Fífi ẹ̀bẹ̀ píparẹ́ ránṣẹ́...",
     "accepted": "Pípa àkántì tí a béèrè",
-    "receipt": "A ti fi ìbẹ̀wò píparẹ́ rẹ pamọ́. Àkọsílẹ̀ rẹ ti pamọ́, àkáǹtì rẹ yóò sì di píparẹ́ títí láé láàárín ọgbọ̀n ọjọ́. Fíforúkọsílẹ̀ kò lè fagilé ìbẹ̀wò yìí.",
+    "receipt": "A ti fi ìbéèrè píparẹ́ rẹ pamọ́. Àkọsílẹ̀ rẹ ti fara pamọ́, àkáǹtì rẹ yóò sì di píparẹ́ títí láé láàárín ọgbọ̀n ọjọ́. Wíwọlé kò lè fagilé ìbéèrè yìí.",
     "done": "Ṣetán",
     "error": "Kò lè fi ẹ̀bẹ̀ píparẹ́ rẹ sílẹ̀. A kò tíì fìdí àkáǹtì rẹ múlẹ̀ fún píparẹ́. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.",
     "back": "Pada si Eto",
@@ -9077,7 +9077,7 @@
     "update": "Ṣe àtúnṣe báyìí"
   },
   "walletBackup": {
-    "title": "Ṣe àtúnṣe àpamọ́",
+    "title": "Ṣe ẹ̀dà ìpamọ́ àpamọ́wọ́",
     "rowDesc": "Wo 12 ọrọ rẹ tàbí bọtini ikọkọ",
     "backedUpOn": "Tún àtúnṣe {{date}}",
     "offerTitle": "Ṣe àtúnṣe àpamọ́ rẹ?",

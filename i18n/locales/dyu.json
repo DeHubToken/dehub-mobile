@@ -8912,19 +8912,19 @@
     "topUpEmptyHint": "Token fara a kan walasa ka baara kɛ ni AI ye"
   },
   "accountDeletion": {
-    "title": "Ka kunnafoniw bɔ",
-    "description": "I ka kunnafoniw ani i ka kunnafoniw bɛɛ bɔ kɛnɛ kan",
-    "warning": "O be i ka DeHub kunnafoniw, i ka lɛtɛrɛw, i ka kumadenw, i ka lɛtɛrɛw ani i ka warifaniw bɛɛ ban pewu. I ka wari sɔrɔli kunnafoniw mara ani i ka wari bɛɛ ta fɔlɔ. O kama, a ka ɲi ka to ka kuma ni mɔgɔ wɛrɛw ye. I ka kunnafoniw be dogo joona joona. I ka kunnafoniw be tunu tile 30 kɔnɔ. O tɛ se ka ban.",
-    "cancel": "Kanali",
-    "confirm": "Ka n ka wari di n ma tuma bɛɛ",
-    "busy": "O kama, n' tun b'a fɛ ka min fɔ, n' tun b'o le fɔra.",
-    "accepted": "N'i ye mɔgɔ dɔ weele ka na i ka banki la",
-    "receipt": "I ka deliliw kisira. I ka kunnafoniw dogonin lo ani i ka kunnafoniw bena tunu pewu tile 30 kɔnɔ. Aw kana siginidenw bali ka sɛbɛ nin ci.",
-    "done": "Mun lo kɛra?",
-    "error": "Aw kana siginidenw bali ka sɛbɛ nin ci. I ka ladɛrɛsi ma kɛ ka ban. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
-    "back": "An ka segi an ka ladɛrɛsiw kan",
-    "signIn": "N'i ye mɔgɔ dɔ weele ka na i ka site web kan",
-    "acknowledge": "Ne ye n ka wari sɔrɔli kunnafoniw mara ani n' y'a faamu ko n' ka wari bɔli ye kudayi ye."
+    "title": "Kɔnti jɔsi",
+    "description": "I ka kɔnti ni i yɛrɛ ka kunnafoniw jɔsi pewu",
+    "warning": "Nin bɛ i ka DeHub profil, i ka sɛbɛnw, i ka hakilinaw, i ka cikanw ani i ka wariminɛn kopi maralen jɔsi pewu. I ka wariminɛn segincogo kunnafoniw mara, ka i ka nafolow bɛɛ bɔ a la fɔlɔ. Blockchain kan jago minnu bɛ bɛɛ ɲɛ na ani sariya ye sara sɛbɛn minnu wajibiya, olu tɛ se ka jɔsi. I ka profil bɛ dogo o yɔrɔnin bɛɛ; jɔsili bɛ ban tile 30 kɔnɔ. O tɛ se ka segin kɔ.",
+    "cancel": "Dabila",
+    "confirm": "N ka kɔnti jɔsi pewu",
+    "busy": "Jɔsili ɲinini bɛ ka ci…",
+    "accepted": "Kɔnti jɔsili ɲinini cira",
+    "receipt": "I ka jɔsili ɲinini marala. I ka profil dogolen don, i ka kɔnti bɛna jɔsi pewu tile 30 kɔnɔ. Ni i donna, o tɛ nin ɲinini dabila.",
+    "done": "A banna",
+    "error": "An ma se ka i ka jɔsili ɲinini ci. I ka kɔnti jɔsili ma sɛmɛntiya. Segi k'a lajɛ tugun.",
+    "back": "Segi Labɛnw ma",
+    "signIn": "Don walasa ka i ka kɔnti jɔsi",
+    "acknowledge": "N ye n ka wariminɛn segincogo kunnafoniw mara, ani n y'a faamu ko jɔsili tɛ se ka segin kɔ."
   },
   "miniApps": {
     "badge": {
@@ -9029,7 +9029,7 @@
     "update": "Kuraya sisan"
   },
   "walletBackup": {
-    "title": "Ka segi ka taga ni wari ye",
+    "title": "Wariminɛn kopi mara",
     "rowDesc": "A filɛ i ka kumaden 12 wala i ka jɔnjɔn",
     "backedUpOn": "Baa kɛ {{date}}",
     "offerTitle": "Yala i b'a fɛ ka segi ka na n'i ye wa?",

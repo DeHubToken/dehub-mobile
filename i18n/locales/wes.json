@@ -8859,7 +8859,7 @@
     "error": "We no fit send your delete request. Your account never confirm for delete. Abeg try again.",
     "back": "Go back for Setin dem",
     "signIn": "Sign in for delete your account",
-    "warning": "\"Dis wey fo' long long, dis a go delete yu DeHub profile, yu posts, comments, messages, na yu wallet backup wey yu save. Save yu wallet recovery details na move any asset wey yu have first. Transaction wey go on blockchain na record wey law say must keep, dem cannot delete. Yu profile go hide straight away; deletion go finish inside 30 days. Dis cannot reverse.",
+    "warning": "Dis one go delete yu DeHub profile, yu posts, comments, messages an di wallet backup weh yu don save, fo ever. Save yu wallet recovery details an move any asset weh yu get first. Public blockchain transaction dem an payment record weh law say make we keep, dem no fit delete. Yu profile go hide one time; di deletion go finish inside 30 days. Yu no fit undo dis one.",
     "receipt": "Yas, your delete request wey you make, we save for you. Your profile now hide, and your account go delete for good after 30 days. Na no way you go sign in again, no cancel dis request.",
     "acknowledge": "Mi save my wallet recovery details, and mi know dat delete go be permanent."
   },

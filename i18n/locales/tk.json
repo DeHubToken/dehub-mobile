@@ -5073,7 +5073,7 @@
     "unlockPasskeyOnly": "Bu portmone webde passkey bilen goraldy we heniz bulutda şifr ätiýaçlygy ýok. Eger dehub.io-da portmone şifrňizi goýan bolsaňyz, ony şu ýere giriziň — ýogsam aşakdaky \"Daşarky portmone import et\" düwmesini ulanyň.",
     "unlockWithPasswordExplainer": "Bu hasapda eýýäm şifr bilen goralýan portmone bar. Bu enjamda portmoneňizi dikeltmek üçin ony giriziň.",
     "deviceTab": "Bu gural",
-    "deviceExplainer": "Ýadyňyzdamy ýa-da ýadyňyzdamy — açar bu esbapda galýar. Biz size ýazmak üçin 12 sözüň gaýtargy nusgasyny hödürleýäris; bu başga esbapdan, web-saytdan ýa-da gaýtargylanandan soň gaýtargylanmagyň ýeke-täk ýoly. Gaýtam, paroluny saýlaň we parolyň özi bu işi edýär.",
+    "deviceExplainer": "Ýazmaly ýa-da ýatda saklamaly zat ýok — açar şu guralda galýar. Size ýazyp almak üçin 12 sözlük ätiýaçlyk nusgasyny hödürläris; başga guraldan, saýtdan ýa-da gaýtadan gurnandan soň yzyna dolanmagyň ýeke-täk ýoly şudur. Onuň ýerine Paroly saýlaň, şonda bu işi paroluň özi ýerine ýetirer.",
     "deviceExplainerSecuring": "Ýazmaly ýa-da ýatda saklamaly zat ýok — açar şu guralda galýar. Başga guraldan, saýtdan ýa-da gaýtadan gurnandan soň yzyna girmek üçin soňrak Sazlamalarda 12 sözlük ätiýaçlyk nusgasyny saklaň. Onuň ýerine Paroly saýlaň, şonda bu işi paroluň özi ýerine ýetirer.",
     "secureOnDevice": "Bu esbapda açary saklaň"
   },
@@ -8957,19 +8957,19 @@
     "topUpEmptyHint": "AI bilen ýaradylmak üçin tokenler goş"
   },
   "accountDeletion": {
-    "title": "Saýlan Saýlan",
-    "description": "Şoňa görä-de, siz öz hasabatyňyzy we maglumatlaryňyzy hemişelik silmeli.",
-    "warning": "Bu DeHub profilyňyzy, postlaryňyzy, pikirleriňizi, habarlaryňyzy we saklanýan pul pulyňyzy hemişelik silýär. Pul puluny gaýtargylamak üçin jikme-jikleri saklaň we öňürti bir zady aýryp taşlaň. Halkara blockchain işlemeleri we kanun boýunça talap edilen töleg rekordlary ýitirip bolmaýar. Siziň profilyňyz dessine gizlenýär; silgi 30 günüň içinde tamamlanýar. Bu şeýle ret edilmeli däl.",
+    "title": "Hasaby poz",
+    "description": "Hasabyňyzy we şahsy maglumatlaryňyzy hemişelik pozuň",
+    "warning": "Bu siziň DeHub profiliňizi, ýazgylaryňyzy, teswirleriňizi, hatlaryňyzy we saklanan gapjyk ätiýaçlyk nusgasyny hemişelik pozýar. Gapjygyňyzy dikeltmek maglumatlaryny saklaň we ilki bilen ähli aktiwleriňizi geçiriň. Jemgyýetçilik blokçeýn geleşiklerini we kanun boýunça talap edilýän töleg ýazgylaryny pozup bolmaýar. Profiliňiz derrew gizlenýär; pozmak 30 günüň içinde tamamlanýar. Muny yzyna gaýtaryp bolmaýar.",
     "cancel": "Bes et...",
-    "confirm": "Meniň hasabatymy hemişelik silmek",
-    "busy": "Ýitirme haýyşyny ber...",
-    "accepted": "Saýlan hasabyň silmegi",
-    "receipt": "Siziň silgi haýyşyňyz halas boldy. Siziň profilyňyz gizlin we 30 günüň içinde hasabatyňyz hemişelik silinýär. Petitsiýany gaýd etmekden gorkmaň.",
-    "done": "GameTextFile",
-    "error": "Siz öz ret etmegiňiziň haýyşyny berip bilmediňiz. Siziň hasabatyňyz silinmek üçin tassyklanmady. Gaýtalaň",
+    "confirm": "Hasabymy hemişelik poz",
+    "busy": "Pozmak haýyşy iberilýär…",
+    "accepted": "Hasaby pozmak haýyş edildi",
+    "receipt": "Pozmak haýyşyňyz saklandy. Profiliňiz gizlenen we hasabyňyz 30 günüň içinde hemişelik pozular. Ulgama girmek bu haýyşy ýatyryp bilmeýär.",
+    "done": "Taýýar",
+    "error": "Pozmak haýyşyňyzy iberip bolmady. Hasabyňyz pozmak üçin tassyklanmady. Täzeden synanyşyň.",
     "back": "Parametrlere dolanmak",
-    "signIn": "Şkaýyňy silmek üçin gir",
-    "acknowledge": "Men pulumy gaýtargylamagyň jikme-jiklerini sakladym we ýitirilmegiň hemişelikdigini bilýärin."
+    "signIn": "Hasabyňyzy pozmak üçin giriň",
+    "acknowledge": "Men gapjygymy dikeltmek maglumatlaryny sakladym we pozmagyň hemişelikdigine düşünýärin."
   },
   "miniApps": {
     "badge": {
@@ -9074,7 +9074,7 @@
     "update": "Häzir täzele"
   },
   "walletBackup": {
-    "title": "Men pulumy gaýtaryp berdim",
+    "title": "Gapjygyň ätiýaçlyk nusgasyny al",
     "rowDesc": "12 sözüňi ýa-da öz açaryňy gör",
     "backedUpOn": "{{date}}",
     "offerTitle": "Çuwallaryňyzy gaýtaryp beriň.",

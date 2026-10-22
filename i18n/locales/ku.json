@@ -8895,19 +8895,19 @@
     "topUpEmptyHint": "تۆکن زیاد بکە بۆ دروستکردن بە AI"
   },
   "accountDeletion": {
-    "title": "حیسابی بەکارهێنەر بسڕەوە",
+    "title": "Hesabê jê bibe",
     "warning": "Ev profîla we ya DeHub, post, şîrove, peyam û kopiya hilanînê ya berîka we bi awayekî mayînde jê dibe. Agahiyên vegerandina berîka xwe hilînin û pêşî her mal û milkê xwe veguhezînin. Muameleyên zincîra blokê yên giştî û tomarên dravdanê yên ku ji hêla qanûnî ve hewce ne nayên jêbirin. Profîla we tavilê tê veşartin; jêbirin di nav 30 rojan de qediya. Ev nayê vegerandin.",
     "cancel": "Betal bike",
     "done": "Biqedîne",
-    "description": "هەموو هەژمار و زانیاری کەسییەکانت بە شێوەیەکی هەمیشەیی سڕینەوە",
-    "confirm": "هەژمارم بە شێوەیەکی هەمیشەیی سڕینەوە",
-    "busy": "پێشکەشکردنی داواکاری سڕینەوە…",
-    "accepted": "داواکاری سڕینەوەی هەژمار داواکرا",
-    "receipt": "داواکاری سڕینەوەی تۆ هەڵگیرا. پرۆفایلی تۆ شاراوە و هەژمارەکەت لە ماوەی 30 ڕۆژدا بە شێوەیەکی هەمیشەیی سڕدرێت. چوونەژوورەوە ناتوانێت ئەم داواکارییە هەڵبژاردن.",
-    "error": "ناتوانرا داواکاری سڕینەوەی تۆ پێشکەش بکرێت. هەژمارەکەت بۆ سڕینەوە پشتڕاست نەکراوە. تکایە دووبارە هەوڵبدە.",
-    "back": "گەڕانەوە بۆ ڕێکخستنەکان",
-    "signIn": "چوونەژوورەوە بۆ سڕینەوەی هەژمارەکەت",
-    "acknowledge": "من زانیارییەکانی گەڕاندنەوەی جیابەجێی خۆم هەڵگرتووە و تێگەیشتم کە سڕینەوە هەمیشەییە."
+    "description": "Hesab û daneyên xwe yên kesane bi awayekî mayînde jê bibe",
+    "confirm": "Hesabê min bi awayekî mayînde jê bibe",
+    "busy": "Daxwaza jêbirinê tê şandin…",
+    "accepted": "Jêbirina hesabê hate xwestin",
+    "receipt": "Daxwaza te ya jêbirinê hate tomarkirin. Profîla te veşartî ye û hesabê te dê di nav 30 rojan de bi awayekî mayînde were jêbirin. Têketin nikare vê daxwazê betal bike.",
+    "error": "Daxwaza te ya jêbirinê nehat şandin. Hesabê te ji bo jêbirinê nehatiye pejirandin. Ji kerema xwe dîsa biceribîne.",
+    "back": "Vegere Mîhengan",
+    "signIn": "Ji bo jêbirina hesabê xwe têkeve",
+    "acknowledge": "Min agahiyên vegerandina berîka xwe tomar kirin û ez fêm dikim ku jêbirin mayînde ye."
   },
   "miniApps": {
     "host": {
@@ -9012,7 +9012,7 @@
     "update": "Niha nû bike"
   },
   "walletBackup": {
-    "title": "پشتیوانی بکە لە جێبەجێ",
+    "title": "Kopiya hilanînê ya berîkê çêke",
     "rowDesc": "١٢ وشە یان کلیلی تایبەتی خۆت ببینە",
     "backedUpOn": "پشتیوانی کرا {{date}}",
     "offerTitle": "پشتیوانی بکە لە جێبەجێ؟",

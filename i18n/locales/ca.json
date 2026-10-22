@@ -8989,7 +8989,7 @@
     "cancel": "Cancel·la",
     "confirm": "Suprimeix el meu compte de forma permanent",
     "busy": "Enviant sol·licitud d'eliminació...",
-    "accepted": "S'ha sol·licitat l'eliminació del comp",
+    "accepted": "S'ha sol·licitat l'eliminació del compte",
     "receipt": "S'ha desat la sol·licitud d'eliminació. El teu perfil s'ha amagat i el teu compte s'eliminarà definitivament en un termini de 30 dies. L'inici de sessió no pot cancel·lar aquesta sol·licitud.",
     "done": "Fet",
     "error": "No s'ha pogut enviar la sol·licitud d'eliminació. No s'ha confirmat l'eliminació del teu compte. Torna-ho a provar.",

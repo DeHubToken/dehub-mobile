@@ -8970,11 +8970,11 @@
     "confirm": "Mukua tonu taku kaute",
     "busy": "Te tuku i te tono whakakorenga...",
     "accepted": "Te whakakore i te kaute i tonoa",
-    "receipt": "Kua ora tō tono whakakore. Kei te huna tō pūkete, ā, ka mukua tō pūkete i roto i te 30 ra. Kaore e taea e te hainatanga te whakakore i tenei tono.",
+    "receipt": "Kua ora tō tono whakakore. Kei te huna tō pūkete, ā, ka mukua tō pūkete i roto i te 30 ra. Kaore e taea e te takiuru te whakakore i tenei tono.",
     "done": "Kua oti",
     "error": "Kaore e taea e au te tuku i to tono whakakore. Kaore i whakapumautia to kaute mo te whakakore. Tena koa tamata ano.",
     "back": "Hoki ki ngā tautuhinga",
-    "signIn": "Hokona ki roto ki te muku i to koutou pūkete",
+    "signIn": "Takiuru kia mukua tō kaute",
     "acknowledge": "Kua penapena e au aku taipitopito whakaora putea me te mohio he pumau te whakakore."
   },
   "miniApps": {
@@ -9079,7 +9079,7 @@
     "update": "Whakahōu ināianei"
   },
   "walletBackup": {
-    "title": "Whakahokia te putea",
+    "title": "Tāruatia te putea",
     "rowDesc": "Tirohia tō 12 kupu, te kī tūmataiti rānei",
     "backedUpOn": "Tautoko {{date}}",
     "offerTitle": "Ka taea e koe te whakahoki mai i to putea?",
