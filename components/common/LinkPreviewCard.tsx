@@ -66,7 +66,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const [failedImage, setFailedImage] = useState<string | null>(null);
   const [loadedFavicon, setLoadedFavicon] = useState<string | null>(null);
   const [failedFavicon, setFailedFavicon] = useState<string | null>(null);
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   // A link to a registered mini app's own site opens the app, the way a
   // shared link does on Farcaster, instead of leaving for the browser.
   const [app, setApp] = useState<MiniAppListing | null>(null);
@@ -120,7 +120,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
     <TouchableOpacity
       activeOpacity={0.85}
       accessibilityRole={app ? 'button' : 'link'}
-      style={[styles.card, isMinimal && minimalFlat, style]}
+      style={[styles.card, isMinimal && minimalFlat, skin?.material === 'glass' && skin.card, skin?.material === 'glass' && showImage && { flexDirection: 'row', alignItems: 'center' }, style]}
       onPress={() =>
         app
           ? navigation.navigate(ScreenNames.MiniApp, { slug: app.slug, from: 'feed', url: preview.url })
@@ -128,9 +128,9 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
       }
     >
       {showImage && (
-        <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage]} contentFit="cover" onError={() => setFailedImage(preview.image)} />
+        <Image source={{ uri: preview.image! }} recyclingKey={preview.image} style={[styles.image, isMinimal && styles.minimalImage, skin?.material === 'glass' && { width: 112, height: 112, aspectRatio: 1 }]} contentFit="cover" onError={() => setFailedImage(preview.image)} />
       )}
-      <View style={[styles.body, isMinimal && styles.minimalBody]}>
+      <View style={[styles.body, isMinimal && styles.minimalBody, skin?.material === 'glass' && showImage && { flex: 1, minWidth: 0 }]}>
         <View style={styles.sourceRow}>
           {!showImage && favicon && failedFavicon !== favicon && (
             <View style={sourceTile ? styles.sourceTile : styles.faviconProbe} pointerEvents="none" accessible={false}>

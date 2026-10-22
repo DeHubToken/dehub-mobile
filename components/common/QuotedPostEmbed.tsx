@@ -32,7 +32,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
     const { t } = useTranslation();
     const navigation = useNavigation<any>();
     const { hideUserProfile } = useUserProfileSheet();
-    const { isMinimal } = useAppTheme();
+    const { isMinimal, skin } = useAppTheme();
 
     // `quotedTokenId` was documented as "fallback when quotedPost is null" but
     // was only ever used for navigation — it was never actually fetched, so
@@ -88,7 +88,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       return (
         <View
           className={isMinimal ? `${MINIMAL_QUOTE_CLASS} py-1` : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3"}
-          style={isMinimal ? MINIMAL_QUOTE_STYLE : undefined}
+          style={isMinimal ? MINIMAL_QUOTE_STYLE : skin?.material === 'glass' ? skin.card : undefined}
         >
           <View className="flex-row items-center gap-2">
             <ActivityIndicator size="small" color="#666" />
@@ -102,7 +102,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       return (
         <View
           className={isMinimal ? `${MINIMAL_QUOTE_CLASS} py-1` : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3"}
-          style={isMinimal ? MINIMAL_QUOTE_STYLE : undefined}
+          style={isMinimal ? MINIMAL_QUOTE_STYLE : skin?.material === 'glass' ? skin.card : undefined}
         >
           <View className="flex-row items-center gap-2">
             <Ionicons name="alert-circle-outline" size={16} color="#6F7174" />
@@ -163,7 +163,7 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
         onPress={handlePress}
         activeOpacity={0.7}
         className={isMinimal ? MINIMAL_QUOTE_CLASS : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/20 overflow-hidden"}
-        style={isMinimal ? MINIMAL_QUOTE_STYLE : undefined}
+        style={isMinimal ? MINIMAL_QUOTE_STYLE : skin?.material === 'glass' ? skin.card : undefined}
       >
         {/* Audio player for audio posts */}
         {isAudioPost && (
