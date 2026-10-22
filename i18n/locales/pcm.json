@@ -8858,7 +8858,8 @@
       "reaction_counter": "Reaction counter",
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Rule alerts"
     },
     "hints": {
       "tip_alert": "Celebrate every tip, e size according to e tier",
@@ -8904,6 +8905,74 @@
       "link": "Browser source link",
       "copied": "Link copied",
       "rotateFailed": "No go make new link. Try again after a while."
+    },
+    "rules": {
+      "title": "Rules",
+      "add": "Add a rule",
+      "saveFailed": "Na rules wey you dey try save, no go save for now.",
+      "testFailed": "Na dem test no go pass. Try again after a while.",
+      "test": "Test",
+      "enabled": "Rule on",
+      "remove": "Delete rule",
+      "save": "Save rules",
+      "name": "Name",
+      "when": "When",
+      "then": "Then",
+      "minAmount": "Smallest tip (DHB)",
+      "command": "Command",
+      "keyword": "Word or phrase",
+      "blockedWords": "Blocked words",
+      "blockedWordsHint": "/,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /,/, /",
+      "cooldown": "Wait between uses (seconds)",
+      "userCooldown": "Wait per viewer (seconds)",
+      "addAction": "Add an action",
+      "removeAction": "Remove action",
+      "alertText": "Alert text",
+      "sound": "Sound",
+      "chatText": "Message to post",
+      "webhookUrl": "Webhook address",
+      "webhookText": "Message to send",
+      "triggers": {
+        "tip": "A tip arrives",
+        "follow": "Someone follows",
+        "subscribe": "Someone subscribes",
+        "chat": "Any chat message"
+      },
+      "audiences": {
+        "everyone": "Everyone",
+        "followers": "Followers",
+        "subscribers": "Subscribers"
+      },
+      "actionTypes": {
+        "alert": "Show an alert",
+        "sound": "Play a sound",
+        "say": "Read aloud",
+        "chat": "Post in chat",
+        "webhook": "Send to a webhook"
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "readChat": "Read chat aloud",
+        "command": "Chat command"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} sent {amount} DHB!"
+      },
+      "sounds": {
+        "airhorn": "Air horn",
+        "applause": "Applause",
+        "cricket": "Crickets",
+        "drumroll": "Drum roll",
+        "lol": "Laughter",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (woman)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Magic spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

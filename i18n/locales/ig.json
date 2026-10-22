@@ -9163,7 +9163,8 @@
       "reaction_counter": "Mmeghachi omume counter",
       "event_feed": "Omume ọfụụ",
       "chat_box": "Igbe nkata",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Ọkwa iwu"
     },
     "hints": {
       "tip_alert": "Na-eme ememe ọ bụla n 'ọnụ, size ya tier",
@@ -9180,7 +9181,8 @@
       "reaction_counter": "Na-agụta mmeghachi omume ọ bụla mgbasa ozi gị na-enweta",
       "event_feed": "Onyinye kachasị ọhụrụ, ndị na-eso ụzọ, ndị debanyere aha na ndị mmadụ na-ekerịta mgbasa ozi gị",
       "chat_box": "Egosi gị agbasa ozi n 'ikuku chat ozi na ihuenyo",
-      "ticker": "Ahịrị nke ederede nke gị nke na-agagharị na ihuenyo"
+      "ticker": "Ahịrị nke ederede nke gị nke na-agagharị na ihuenyo",
+      "rule_alert": "Ebe ọkwa iwu gị na-apụta"
     },
     "fields": {
       "style": "Ụdị",
@@ -9232,6 +9234,101 @@
       "rotateConfirm": "Mepụta njikọ ọhụrụ? Nke ochie ahụ na-akwụsị ịrụ ọrụ ozugbo, ya mere ị ga-achọ itinye nke ọhụrụ ahụ n 'ime OBS.",
       "rotated": "New njikọ njikere. Tapawa ya n 'ime OBS.",
       "rotateFailed": "Agaghị emenwu ụzọ njikọ ọhụrụ. Gbalịa ọzọ n 'otu ntabi anya."
+    },
+    "rules": {
+      "title": "Iwu",
+      "intro": "Mgbe ihe mere na mgbasa ozi gị, DeHub na-eme ihe ị họọrọ: ọ na-egosi ọkwa, na-akpọ ụda, na-agụ ihe n'olu dara ụda, na-ebipụta na nkata gị ma ọ bụ na-agwa Discord gị.",
+      "add": "Tinye iwu",
+      "limit": "I ruola oke ọnụ ọgụgụ {{count}} iwu.",
+      "loadFailed": "Enweghị ike ibunye iwu gị. Megharịa ibe ahụ ka ị nwaa ọzọ.",
+      "empty": "Enweghị iwu ọ bụla ugbu a. Tinye otu iji meghachi omume na ndụmọdụ, nsoro ma ọ bụ iwu nkata.",
+      "saved": "Echekwara iwu. Ha ga-arụ ọrụ na ndụmọdụ, nsoro ma ọ bụ ozi gị na-esote.",
+      "saveFailed": "Enweghị ike ịchekwa iwu gị.",
+      "testFailed": "Nnwale ahụ agaghị. Nwaa ọzọ n'oge na-adịghị anya.",
+      "saveToTest": "Chekwaa iwu gị iji nwalee ha",
+      "test": "Nnwale",
+      "enabled": "Iwu dị na",
+      "remove": "Hichapụ iwu",
+      "save": "Chekwaa iwu",
+      "needsAlertWidget": "Ụfọdụ iwu na-egosi ọkwa. Tinye wijetị ọkwa Iwu ka o nwee ebe ọ ga-apụta.",
+      "name": "Aha",
+      "when": "Mgbe",
+      "then": "Mgbe ahụ",
+      "minAmount": "Ndụmọdụ kacha nta (DHB)",
+      "command": "Iwu",
+      "keyword": "Okwu ma ọ bụ ahịrịokwu",
+      "audience": "Onye nwere ike ime ka ọ malite",
+      "blockedWords": "Okwu ndị e gbochiri",
+      "blockedWordsHint": "Jiri koma kewaa ha. A na-eleghara ozi ndị nwere ha anya ma agụghị ha n'olu dara ụda.",
+      "cooldown": "Chere n'etiti ojiji (sekọnd)",
+      "userCooldown": "Chere kwa onye na-ekiri (sekọnd)",
+      "addAction": "Tinye omume",
+      "removeAction": "Wepụ omume",
+      "placeholders": "Jiri {name}, {amount} na {message} na ederede gị. A na-ewepụ ụzọ njikọ dị na ozi.",
+      "alertText": "Alert text",
+      "sound": "Sound",
+      "sayText": "Ngwe ka a gụọ n 'olu dara ụda",
+      "chatText": "Message to post",
+      "chatHint": "Zitere site na akaụntụ gị n 'ime nkata iyi gị. O nweghị ike ikwugharị ozi onye na-ekiri ya.",
+      "webhookUrl": "Webhook address",
+      "webhookHint": "A Discord ma ọ bụ Slack webhook, ma ọ bụ ihe ọ bụla https adreesị na-anabata a POST.",
+      "webhookText": "Message to send",
+      "triggers": {
+        "tip": "A tip arrives",
+        "follow": "Someone follows",
+        "subscribe": "Someone subscribes",
+        "share": "Mmadụ na-ekerịta iyi ahụ",
+        "command": "Ejiri iwu nkata",
+        "keyword": "A chat ozi nwere a okwu",
+        "chat": "Any chat message"
+      },
+      "audiences": {
+        "everyone": "Everyone",
+        "followers": "Followers",
+        "subscribers": "Subscribers"
+      },
+      "actionTypes": {
+        "alert": "Show an alert",
+        "sound": "Play a sound",
+        "say": "Read aloud",
+        "chat": "Post in chat",
+        "webhook": "Send to a webhook"
+      },
+      "summary": {
+        "tip": "NDỤMỌDỤ nke {{amount}} DHB ma ọ bụ karịa"
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "readChat": "Read chat aloud",
+        "bigTip": "Air mpi maka nnukwu Atụmatụ",
+        "thankFollowers": "Daalụ ọhụrụ na-eso ụzọ",
+        "command": "Chat command"
+      },
+      "presetHints": {
+        "blank": "Malite site na ihe ọ bụla",
+        "readChat": "Na-agụ ozi ndị na-eso ụzọ gị n 'olu dara ụda, otu onye na-ekiri ihe ọ bụla 30 sekọnd",
+        "bigTip": "Na-egwu ihe ikuku mpi na-egosi ihe anya maka Atụmatụ nke 100,000 DHB ma ọ bụ karịa",
+        "thankFollowers": "Posts a ekele na gị chat mgbe mmadụ na-eso",
+        "command": "Azịza a !iwu gị chat"
+      },
+      "presetText": {
+        "thankFollowers": "Daalụ maka na-eso, {name}!",
+        "command": "Ndewo {name}, nabata na iyi!"
+      },
+      "sounds": {
+        "airhorn": "Air mpi",
+        "applause": "Ekele",
+        "cricket": "Crickets",
+        "drumroll": "Drum mpịakọta",
+        "lol": "Ọchị",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (nwoke)",
+        "ohh-girl": "Anya (woman)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Ime Anwansi spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

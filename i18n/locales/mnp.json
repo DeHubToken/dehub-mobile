@@ -9193,6 +9193,26 @@
       "warnDoubles": "你的OBS重疊已連線，但小部件也設定顯示在DeHub應用程式裡，所以觀眾會看到每個通知兩次。",
       "switchToVideo": "改成在我的影片裡顯示",
       "rotated": "新連結準備好囉，貼到OBS裡面就好囉。"
+    },
+    "rules": {
+      "testFailed": "𠮷𠮷，那個測試沒過。過一陣子再試一次。",
+      "minAmount": "小小提醒 (DHB)",
+      "cooldown": "等一下用 (秒)",
+      "userCooldown": "等一下 (每位觀眾幾秒鐘)",
+      "audiences": {
+        "subscribers": "訂閱者"
+      },
+      "presetHints": {
+        "blank": "啥都無，從零開始。"
+      },
+      "presetText": {
+        "readChat": "{name}講{message}喔",
+        "bigTip": "{name} 送 {amount} DHB!"
+      },
+      "sounds": {
+        "ooh-man": "Ooh (阿𠊎)",
+        "ohh-girl": "Ohh (女仔)"
+      }
     }
   }
 }

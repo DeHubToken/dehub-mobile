@@ -9193,7 +9193,8 @@
       "reaction_counter": "Reaktsiooniloendur",
       "event_feed": "Hiljutine tegevus",
       "chat_box": "Vestluskast",
-      "ticker": "Tiksuja"
+      "ticker": "Tiksuja",
+      "rule_alert": "Reeglite märguanded"
     },
     "hints": {
       "tip_alert": "Täidab iga tippu tema taseme järgi",
@@ -9210,7 +9211,8 @@
       "reaction_counter": "Loendab iga reaktsiooni, mille saade saab",
       "event_feed": "Viimased kingitused, jälgijad, tellijad ja inimesed, kes jagavad sinu saadet",
       "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
-      "ticker": "Sinu enda teksti rida, mis kerib üle ekraani"
+      "ticker": "Sinu enda teksti rida, mis kerib üle ekraani",
+      "rule_alert": "Kus kuvatakse sinu reeglite märguanded"
     },
     "fields": {
       "style": "Stiil",
@@ -9267,6 +9269,103 @@
       "rotateConfirm": "Kas luua uus link? Vana lõpetab kohe töötamise, seega pead uue OBS-i kleepima.",
       "rotated": "Uus link on valmis. Kleebi see OBS-I.",
       "rotateFailed": "Uut linki ei saanud luua. Proovi mõne hetke pärast uuesti."
+    },
+    "rules": {
+      "title": "Reeglid",
+      "intro": "Kui teie voos juhtub midagi, teeb DeHub seda, mida soovite: kuvab märguande, esitab heli, loeb midagi valjusti, postitab teie vestlusesse või räägib teie ebakõlast.",
+      "add": "Lisa reegel",
+      "limit": "Oled saavutanud {{count}} reegli limiidi.",
+      "loadFailed": "Sinu reegleid ei saanud laadida. Uuesti proovimiseks värskenda lehte.",
+      "empty": "Reegleid veel pole. Lisa reegel, et reageerida nõuannetele, järgmisele või vestluse käskudele.",
+      "saved": "Reeglid on salvestatud. Need töötavad Sinu järgmise jootraha, jälgimise või sõnumiga.",
+      "saveFailed": "Sinu reegleid ei saanud salvestada.",
+      "testFailed": "See test ei läinud läbi. Proovi mõne hetke pärast uuesti.",
+      "saveToTest": "Salvesta reeglid nende testimiseks",
+      "test": "Test",
+      "enabled": "Reegel on",
+      "remove": "Kustuta reegel",
+      "save": "Salvesta reeglid",
+      "needsAlertWidget": "Mõned reeglid näitavad hoiatust. Lisa reegliteavituste vidin, et see kuhugi ilmuks.",
+      "name": "Nimi",
+      "when": "Millal",
+      "then": "Siis",
+      "minAmount": "Väikseim otsak (DHB)",
+      "command": "Käsk",
+      "keyword": "Sõna või fraas",
+      "audience": "Kes saab selle välja lülitada",
+      "blockedWords": "Blokeeritud sõnad",
+      "blockedWordsHint": "Eralda komadega. Neid sisaldavaid sõnumeid eiratakse ja neid ei loeta kunagi valjusti.",
+      "cooldown": "Oodake kasutuskordade vahel (sekundites)",
+      "userCooldown": "Oodake vaataja kohta (sekundites)",
+      "addAction": "Lisa toiming",
+      "removeAction": "Eemalda toiming",
+      "placeholders": "Kasuta tekstis {name}, {amount} ja {message}. Sõnumites olevad lingid eemaldatakse.",
+      "alertText": "Teatise tekst",
+      "sound": "Heli",
+      "sayText": "Tekst valjusti lugemiseks",
+      "chatText": "Postitatav sõnum",
+      "chatHint": "Postitatud sinu kontolt sinu voo vestlusesse. See ei saa vaataja sõnumit korrata.",
+      "webhookUrl": "Veebihaagi aadress",
+      "webhookHint": "Ebakõla või Slacki veebihaak või mis tahes https-aadress, mis POSTITUST aktsepteerib.",
+      "webhookText": "Saada sõnum",
+      "triggers": {
+        "tip": "Saabub jootraha",
+        "follow": "Keegi jälgib",
+        "subscribe": "Keegi tellib",
+        "share": "Keegi jagab voogu",
+        "command": "Kasutatakse vestluse käsku",
+        "keyword": "Vestlussõnum sisaldab sõna",
+        "chat": "Mis tahes vestlussõnum"
+      },
+      "audiences": {
+        "everyone": "Kõik",
+        "followers": "Jälgijad",
+        "subscribers": "Tellijad"
+      },
+      "actionTypes": {
+        "alert": "Kuva teade",
+        "sound": "Esita heli",
+        "say": "Loe valjusti",
+        "chat": "Postita vestlusesse",
+        "webhook": "Saada veebihaakile"
+      },
+      "summary": {
+        "tip": "Jootraha vähemalt {{amount}} DHB"
+      },
+      "presets": {
+        "blank": "Tühi reegel",
+        "readChat": "Loe vestlust valjusti",
+        "bigTip": "Õhusignaal suurte näpunäidete jaoks",
+        "thankFollowers": "Täname uusi jälgijaid",
+        "command": "Vestluse käsk"
+      },
+      "presetHints": {
+        "blank": "Alusta mitte millestki",
+        "readChat": "Loeb teie jälgijate sõnumeid valjusti, üks iga vaataja kohta iga 30 sekundi järel",
+        "bigTip": "Esitab helisignaali ja kuvab hoiatuse 100 000 DHB või suurema jootraha kohta",
+        "thankFollowers": "Postitab sinu vestlusesse tänusõnumi, kui keegi sind jälgib",
+        "command": "Vastab sinu vestluses käsule a !"
+      },
+      "presetText": {
+        "readChat": "{name} ütleb {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Aitäh järgneva eest, {name}!",
+        "command": "Tere, {name}! Tere tulemast voogu!"
+      },
+      "sounds": {
+        "airhorn": "Õhusignaal",
+        "applause": "Aplaus",
+        "cricket": "Kriketid",
+        "drumroll": "Trummelrull",
+        "lol": "Naer",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (mees)",
+        "ohh-girl": "Ohh (naine)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Õudne",
+        "magic-spell": "Maagiline loits",
+        "shhh": "Shhh"
+      }
     }
   }
 }

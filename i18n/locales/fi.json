@@ -9193,7 +9193,8 @@
       "reaction_counter": "Reaktiolaskuri",
       "event_feed": "Viimeaikainen toiminta",
       "chat_box": "Keskusteluruutu",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Sääntöhälytykset"
     },
     "hints": {
       "tip_alert": "Juhlii jokaista tippiä sen tason mukaan",
@@ -9210,7 +9211,8 @@
       "reaction_counter": "Laskee jokaisen lähetyksesi saaman reaktion",
       "event_feed": "Uusimmat lahjat, seuraajat, tilaajat ja ihmiset, jotka jakavat lähetyksesi",
       "chat_box": "Näyttää lähetyksesi chat-viestit näytöllä",
-      "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki"
+      "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki",
+      "rule_alert": "Missä sääntöjesi hälytykset näkyvät"
     },
     "fields": {
       "style": "Tyyli",
@@ -9267,6 +9269,102 @@
       "rotateConfirm": "Tehdäänkö uusi linkki? Vanha lakkaa toimimasta heti, joten sinun on liitettävä uusi OBS: ään.",
       "rotated": "Uusi linkki on valmis. Liitä se OBS: ään.",
       "rotateFailed": "Uutta linkkiä ei voitu luoda. Yritä hetken kuluttua uudelleen."
+    },
+    "rules": {
+      "title": "Säännöt",
+      "intro": "Kun suoratoistossasi tapahtuu jotain, DeHub tekee mitä haluat: näyttää hälytyksen, soittaa äänen, lukee jotain ääneen, julkaisee viestejä chatissa tai kertoo Discordistasi.",
+      "add": "Lisää sääntö",
+      "limit": "Olet saavuttanut {{count}} säännön rajan.",
+      "loadFailed": "Sääntöjäsi ei voitu ladata. Päivitä sivu ja yritä uudelleen.",
+      "empty": "Ei vielä sääntöjä. Lisää yksi reagoidaksesi vihjeisiin, seuraamiseen tai chat-komentoihin.",
+      "saved": "Säännöt tallennettu. Ne toimivat seuraavan tipin, seurannan tai viestin yhteydessä.",
+      "saveFailed": "Sääntöjäsi ei voitu tallentaa.",
+      "testFailed": "Testi ei mennyt läpi. Yritä hetken kuluttua uudelleen.",
+      "saveToTest": "Tallenna sääntösi testataksesi niitä",
+      "test": "Testi",
+      "enabled": "Sääntö päällä",
+      "remove": "Poista sääntö",
+      "save": "Tallenna säännöt",
+      "needsAlertWidget": "Joissakin säännöissä näkyy hälytys. Lisää Sääntöhälytykset-widgetti, jotta se näkyy jossakin.",
+      "name": "Nimi",
+      "when": "Milloin",
+      "then": "Sitten",
+      "minAmount": "Pienin kärki (DHB)",
+      "command": "Komento",
+      "keyword": "Sana tai lause",
+      "audience": "Kuka voi laukaista sen",
+      "blockedWords": "Estetyt sanat",
+      "blockedWordsHint": "Erota pilkuilla. Niitä sisältävät viestit ohitetaan, eikä niitä koskaan lueta ääneen.",
+      "cooldown": "Odota käyttöjen välillä (sekuntia)",
+      "userCooldown": "Odota katsojaa kohti (sekuntia)",
+      "addAction": "Lisää toiminto",
+      "removeAction": "Poista toiminto",
+      "placeholders": "Käytä tekstissäsi {name}, {amount} ja {message}. Viesteissä olevat linkit poistetaan.",
+      "alertText": "Hälytyksen teksti",
+      "sound": "Ääni",
+      "sayText": "Äänellä luettava teksti",
+      "chatText": "Viesti julkaistavaksi",
+      "chatHint": "Julkaistu tililtäsi streamisi chattiin. Se ei voi toistaa katsojan viestiä.",
+      "webhookUrl": "Webhook-osoite",
+      "webhookHint": "Discord- tai Slack-verkkokoukku tai mikä tahansa https-osoite, joka hyväksyy JULKAISUN.",
+      "webhookText": "Lähetettävä viesti",
+      "triggers": {
+        "tip": "Tippi saapuu",
+        "follow": "Joku seuraa",
+        "subscribe": "Joku tilaa",
+        "share": "Joku jakaa streamin",
+        "command": "Chat-komentoa käytetään",
+        "keyword": "Chat-viesti sisältää sanan",
+        "chat": "Mikä tahansa chat-viesti"
+      },
+      "audiences": {
+        "everyone": "Kaikki",
+        "followers": "Seuraajat",
+        "subscribers": "Tilaajat"
+      },
+      "actionTypes": {
+        "alert": "Näytä hälytys",
+        "sound": "Toista ääni",
+        "say": "Lue ääneen",
+        "chat": "Julkaise chatissa",
+        "webhook": "Lähetä webhookiin"
+      },
+      "summary": {
+        "tip": "Vihje: {{amount}} DHB tai enemmän"
+      },
+      "presets": {
+        "blank": "Tyhjä sääntö",
+        "readChat": "Lue chat ääneen",
+        "bigTip": "Äänitorvi isoja vinkkejä varten",
+        "thankFollowers": "Kiitä uusia seuraajia",
+        "command": "Chat-komento"
+      },
+      "presetHints": {
+        "blank": "Aloita tyhjästä",
+        "readChat": "Lukee seuraajiesi viestit ääneen, yksi per katsoja 30 sekunnin välein",
+        "bigTip": "Soittaa äänitorvea ja näyttää hälytyksen vähintään 100 000 DHB: n tipeistä",
+        "command": "Vastaa a !-komentoon chatissa"
+      },
+      "presetText": {
+        "readChat": "{name} sanoo {message}",
+        "bigTip": "{name} lähetetty {amount} DHB!",
+        "thankFollowers": "Kiitos seurannasta, {name}!",
+        "command": "Hei {name}, tervetuloa streamiin!"
+      },
+      "sounds": {
+        "airhorn": "Ilmatorvi",
+        "applause": "Suosionosoitukset",
+        "cricket": "Sirkat",
+        "drumroll": "Tynnyrirulla",
+        "lol": "Nauru",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (mies)",
+        "ohh-girl": "Ohh (nainen)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Pelottava",
+        "magic-spell": "Taikaloitsu",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -9223,7 +9223,8 @@
       "reaction_counter": "반응 카운터",
       "event_feed": "최근 활동",
       "chat_box": "채팅창",
-      "ticker": "티커"
+      "ticker": "티커",
+      "rule_alert": "규칙 경고"
     },
     "hints": {
       "tip_alert": "등급에 맞게 조정된 모든 팁을 축하하세요",
@@ -9240,7 +9241,8 @@
       "reaction_counter": "방송이 받는 모든 반응을 계산합니다.",
       "event_feed": "최신 선물, 팔로워, 구독자 및 방송 공유자",
       "chat_box": "브로드캐스트의 채팅 메시지를 화면에 표시합니다.",
-      "ticker": "화면을 가로질러 스크롤하는 나만의 텍스트 한 줄"
+      "ticker": "화면을 가로질러 스크롤하는 나만의 텍스트 한 줄",
+      "rule_alert": "규칙 알림이 표시되는 위치"
     },
     "fields": {
       "style": "스타일",
@@ -9297,6 +9299,101 @@
       "rotateConfirm": "새 링크를 만드시겠어요? 이전 것은 즉시 작동하지 않으므로 새 것을 obs에 붙여넣어야 합니다.",
       "rotated": "새 링크가 준비되었습니다. OBS에 붙여넣으세요.",
       "rotateFailed": "새 링크를 만들 수 없습니다. 잠시 후 다시 시도하세요."
+    },
+    "rules": {
+      "title": "규칙",
+      "intro": "스트리밍에서 어떤 일이 발생하면 DeHub는 알림을 표시하거나, 소리를 재생하거나, 무언가를 소리 내어 읽거나, 채팅에 게시하거나, Discord에 알리는 등 사용자가 선택한 작업을 수행합니다.",
+      "add": "규칙 추가",
+      "limit": "{{count}} 규칙의 한도에 도달했습니다.",
+      "loadFailed": "규칙을 로드할 수 없습니다. 다시 시도하려면 페이지를 새로 고침하세요.",
+      "empty": "아직 규칙이 없습니다. 팁, 팔로우 또는 채팅 명령에 반응하려면 규칙을 추가하세요.",
+      "saved": "규칙이 저장되었습니다. 규칙은 다음 팁, 팔로우 또는 메시지에서 실행됩니다.",
+      "saveFailed": "규칙을 저장할 수 없습니다.",
+      "testFailed": "그 테스트는 실패했습니다. 잠시 후 다시 시도해 주세요.",
+      "saveToTest": "규칙을 저장하여 테스트하세요",
+      "test": "테스트",
+      "remove": "규칙 삭제",
+      "save": "규칙 저장",
+      "needsAlertWidget": "일부 규칙에는 알림이 표시됩니다. 규칙 알림 위젯이 표시될 수 있도록 추가합니다.",
+      "name": "이름",
+      "when": "시기",
+      "then": "그런 다음",
+      "minAmount": "최소 팁 (DHB)",
+      "command": "명령",
+      "keyword": "단어 또는 구문",
+      "audience": "설정할 수 있는 사람",
+      "blockedWords": "차단된 단어",
+      "blockedWordsHint": "쉼표로 구분합니다. 쉼표가 포함된 메시지는 무시되며 소리내어 읽지 않습니다.",
+      "cooldown": "사용 사이에 대기 (초)",
+      "userCooldown": "시청자당 대기 시간 (초)",
+      "addAction": "동작 추가",
+      "removeAction": "동작 제거",
+      "placeholders": "텍스트에 {name}, {amount}, {message} 를 사용하세요. 메시지의 링크가 제거됩니다.",
+      "alertText": "알림 텍스트",
+      "sound": "소리",
+      "sayText": "큰 소리로 읽을 텍스트",
+      "chatText": "게시할 메시지",
+      "chatHint": "계정에서 스트림의 채팅에 게시되었습니다. 시청자의 메시지를 반복할 수 없습니다.",
+      "webhookUrl": "웹훅 주소",
+      "webhookHint": "Discord 또는 Slack 웹훅 또는 포스트를 허용하는 모든 https 주소.",
+      "webhookText": "보낼 메시지",
+      "triggers": {
+        "tip": "팁이 도착했습니다",
+        "follow": "누군가가 팔로우합니다",
+        "subscribe": "누군가가 구독합니다",
+        "share": "누군가가 스트림을 공유합니다",
+        "command": "채팅 명령이 사용됩니다",
+        "keyword": "채팅 메시지에는 단어가 포함되어 있습니다.",
+        "chat": "모든 채팅 메시지"
+      },
+      "audiences": {
+        "everyone": "모든 사람",
+        "followers": "팔로워",
+        "subscribers": "구독자"
+      },
+      "actionTypes": {
+        "alert": "경고 표시",
+        "sound": "소리 재생",
+        "say": "소리내어 읽기",
+        "chat": "채팅에 글 올리기",
+        "webhook": "웹훅으로 보내기"
+      },
+      "summary": {
+        "tip": "{{amount}} DHB 이상의 팁"
+      },
+      "presets": {
+        "blank": "빈 규칙",
+        "readChat": "채팅 소리 내어 읽기",
+        "bigTip": "큰 팁을 위한 에어 혼",
+        "thankFollowers": "새로운 팔로워에게 감사를 표하세요",
+        "command": "채팅 명령"
+      },
+      "presetHints": {
+        "blank": "무에서 시작",
+        "readChat": "팔로워의 메시지를 30초마다 한 명씩 소리 내어 읽습니다.",
+        "bigTip": "에어혼을 재생하고 10만 DHB 이상의 팁에 대한 경고를 표시합니다.",
+        "thankFollowers": "팔로우하는 사람이 있으면 채팅창에 감사 인사를 남기세요.",
+        "command": "채팅에서 a! 명령에 응답합니다"
+      },
+      "presetText": {
+        "bigTip": "{name} 님이 {amount} DHB를 보냈습니다!",
+        "thankFollowers": "{name} 님, 팔로우해 주셔서 감사합니다!",
+        "command": "{name} 님, 안녕하세요. 스트림에 오신 것을 환영합니다!"
+      },
+      "sounds": {
+        "airhorn": "공기 경적",
+        "applause": "박수",
+        "cricket": "크리켓",
+        "drumroll": "드럼롤",
+        "lol": "웃음",
+        "ooh-ahh": "오오 아아",
+        "ooh-man": "우 (남자)",
+        "ohh-girl": "오 (여자)",
+        "ba-dum-tish": "바 덤 티시",
+        "spooky": "으스스한",
+        "magic-spell": "마법 주문",
+        "shhh": "쉿"
+      }
     }
   }
 }
