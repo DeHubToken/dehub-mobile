@@ -9101,5 +9101,14 @@
     "reminderBody": "Eger siz telefonuny ýitirseňiz, ony yzyna getirýän 12 sözüňizi gaýtaryp beriň.",
     "backUp": "Ýokarda",
     "notNow": "Häzir däl"
+  },
+  "liveOverlay": {
+    "someone": "Biriniň",
+    "newFollower": "Täze şägirdi: {{name}}",
+    "newSubscriber": "Täze abonent: {{name}}",
+    "joined": "{{name}} goşuldy",
+    "goalReached": "Goý, maksat amala aşsyn!",
+    "followersUnit": "şägirtler",
+    "topSupporters": "Ýolbaşçylyk maslahaty"
   }
 }

@@ -9066,5 +9066,16 @@
     "reminderBody": "備份您的錢包 — 如果您遺失手機，這 12 個詞語可以恢復它。",
     "backUp": "備份",
     "notNow": "現在不備份"
+  },
+  "liveOverlay": {
+    "someone": "有人",
+    "newFollower": "新关注者：{{name}}",
+    "newSubscriber": "新订阅者：{{name}}",
+    "subscribedTo": "{{name}} 订阅了 {{plan}}",
+    "shared": "{{name}} 分享了直播",
+    "joined": "{{name}} 加入了",
+    "goalReached": "目标达成！",
+    "followersUnit": "粉丝",
+    "topSupporters": "最高支持者"
   }
 }

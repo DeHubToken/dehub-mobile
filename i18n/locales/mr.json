@@ -9115,5 +9115,15 @@
     "reminderBody": "आपला फोन हरवला तर परत आणणार्या 12 शब्दांचा बॅकअप घ्या.",
     "backUp": "बॅक अप",
     "notNow": "आता नाही"
+  },
+  "liveOverlay": {
+    "someone": "कोणीतरी",
+    "newFollower": "नवीन अनुयायी: {{name}}",
+    "newSubscriber": "नवीन सदस्य: {{name}}",
+    "shared": "{{name}} यांनी प्रवाह सामायिक केला",
+    "joined": "{{name}} सामील झाले",
+    "goalReached": "ध्येय गाठले!",
+    "followersUnit": "फॉलोअर्स",
+    "topSupporters": "शीर्ष समर्थक"
   }
 }

@@ -9080,5 +9080,16 @@
     "reminderBody": "Backup ກະເປົາເງິນຂອງທ່ານ — 12 ຄໍາ ທີ່ເຮັດໃຫ້ມັນກັບມາເມື່ອທ່ານສູນເສຍໂທລະສັບຂອງທ່ານ.",
     "backUp": "ສະໜັບສະໜູນ",
     "notNow": "ບໍ່ແມ່ນຕອນນີ້"
+  },
+  "liveOverlay": {
+    "someone": "ຜູ້ໃດຜູ້ໜຶ່ງ",
+    "newFollower": "ຜູ້ຕິດຕາມ ໃຫມ່: {{name}}",
+    "newSubscriber": "ຜູ້ຈອງ ໃຫມ່: {{name}}",
+    "subscribedTo": "{{name}} ເຂົ້າສູ່ລະບົບ {{plan}}",
+    "shared": "{{name}} ແບ່ງປັນກະແສ",
+    "joined": "{{name}} ເຂົ້າຮ່ວມ",
+    "goalReached": "ບັນລຸເປົ້າໝາຍແລ້ວ!",
+    "followersUnit": "ຜູ້ຕິດຕາມ",
+    "topSupporters": "ຜູ້ສະ ຫນັບ ສະ ຫນູນ ສູງສຸດ"
   }
 }

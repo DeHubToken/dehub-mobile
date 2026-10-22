@@ -9124,5 +9124,16 @@
     "recommendedBody": "Versi DeHub yang lebih baru tersedia dengan perbaikan keamanan penting. Perbarui agar akun Anda tetap terlindungi.",
     "requiredBody": "Versi DeHub ini tidak lagi didukung. Perbarui untuk terus menggunakan akun Anda.",
     "update": "Perbarui sekarang"
+  },
+  "liveOverlay": {
+    "someone": "Seseorang",
+    "newFollower": "Pengikut baru: {{name}}",
+    "newSubscriber": "Pelanggan baru: {{name}}",
+    "subscribedTo": "{{name}} berlangganan {{plan}}",
+    "shared": "{{name}} membagikan streaming",
+    "joined": "{{name}} bergabung",
+    "goalReached": "Gol tercapai!",
+    "followersUnit": "pengikut",
+    "topSupporters": "Pendukung teratas"
   }
 }

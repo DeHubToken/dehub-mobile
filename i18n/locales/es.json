@@ -1,6 +1,44 @@
 {
-  "accountConnect": {"title":"Conecta tu cuenta de DeHub","body":"Conecta tu cuenta para gestionar tu perfil, publicar y crear contenido desde el chat. Las conexiones caducan en 24 horas. Puedes desconectarlas cuando quieras.","read":"Leer tu cuenta, publicaciones, notificaciones y biblioteca de Creator","profile":"Editar tu perfil, imágenes y ajustes de privacidad","social":"Publicar y comentar, seguir personas y guardar favoritos","generate":"Generar archivos con tus créditos, pagos confirmados o imágenes gratuitas disponibles","signIn":"Iniciar sesión en DeHub","allow":"Permitir conexión","deny":"Cancelar","manage":"Gestionar conexiones de la cuenta","empty":"No hay conexiones activas.","disconnect":"Desconectar","failed":"No se pudo conectar. Prueba a iniciar sesión de nuevo.","intro":"Explora DeHub en ChatGPT o conecta tu cuenta para editar tu perfil, publicar y usar Creator Studio. Añade https://dehub.io/mcp como conector OAuth para controlar tu cuenta.","what":"Explora perfiles y publicaciones públicas. Una conexión OAuth permite gestionar tu perfil y privacidad, publicar y comentar, seguir personas, leer notificaciones, guardar favoritos y generar imágenes, vídeos, audio y objetos 3D. Se aplican las reglas de pago de DeHub.","account":"No necesitas cuenta para explorar contenido público. Conecta tu cuenta DeHub para gestionar tu perfil, crear y publicar contenido.","step":"Para controlar tu cuenta, añade https://dehub.io/mcp como conector OAuth, inicia sesión en DeHub y revisa los permisos antes de autorizar.","profilePrompt":"Cambia mi biografía de DeHub a: Creador independiente de cine y música.","generatePrompt":"Muéstrame los modelos de imagen de DeHub y el precio de un retrato antes de generarlo.","libraryPrompt":"Muéstrame los últimos archivos de mi biblioteca Creator de DeHub."},
-  "twitchMirror": {"title":"Retransmisión de Twitch","intro":"Transmite en Twitch como siempre. Tu directo puede aparecer automáticamente en DeHub, sin herramientas adicionales.","unavailable":"La retransmisión de Twitch aún no está disponible.","connect":"Conectar Twitch","auto":"Retransmitir automáticamente mis directos de Twitch","waiting":"Listo para tu próximo directo de Twitch","starting":"Conectando el vídeo en directo","live":"En directo en DeHub","error":"La retransmisión necesita atención","refresh":"Actualizar estado","disconnect":"Desconectar Twitch","open":"Ver en DeHub","retry":"Reintentar retransmisión","consent":"Conecta solo un canal propio. Al activar la retransmisión autorizas a DeHub a retransmitir tus directos y guardar repeticiones dentro de tu límite de grabación actual.","disabled":"La retransmisión automática está desactivada","failed":"No se pudo actualizar la retransmisión de Twitch. Inténtalo de nuevo."},
+  "accountConnect": {
+    "title": "Conecta tu cuenta de DeHub",
+    "body": "Conecta tu cuenta para gestionar tu perfil, publicar y crear contenido desde el chat. Las conexiones caducan en 24 horas. Puedes desconectarlas cuando quieras.",
+    "read": "Leer tu cuenta, publicaciones, notificaciones y biblioteca de Creator",
+    "profile": "Editar tu perfil, imágenes y ajustes de privacidad",
+    "social": "Publicar y comentar, seguir personas y guardar favoritos",
+    "generate": "Generar archivos con tus créditos, pagos confirmados o imágenes gratuitas disponibles",
+    "signIn": "Iniciar sesión en DeHub",
+    "allow": "Permitir conexión",
+    "deny": "Cancelar",
+    "manage": "Gestionar conexiones de la cuenta",
+    "empty": "No hay conexiones activas.",
+    "disconnect": "Desconectar",
+    "failed": "No se pudo conectar. Prueba a iniciar sesión de nuevo.",
+    "intro": "Explora DeHub en ChatGPT o conecta tu cuenta para editar tu perfil, publicar y usar Creator Studio. Añade https://dehub.io/mcp como conector OAuth para controlar tu cuenta.",
+    "what": "Explora perfiles y publicaciones públicas. Una conexión OAuth permite gestionar tu perfil y privacidad, publicar y comentar, seguir personas, leer notificaciones, guardar favoritos y generar imágenes, vídeos, audio y objetos 3D. Se aplican las reglas de pago de DeHub.",
+    "account": "No necesitas cuenta para explorar contenido público. Conecta tu cuenta DeHub para gestionar tu perfil, crear y publicar contenido.",
+    "step": "Para controlar tu cuenta, añade https://dehub.io/mcp como conector OAuth, inicia sesión en DeHub y revisa los permisos antes de autorizar.",
+    "profilePrompt": "Cambia mi biografía de DeHub a: Creador independiente de cine y música.",
+    "generatePrompt": "Muéstrame los modelos de imagen de DeHub y el precio de un retrato antes de generarlo.",
+    "libraryPrompt": "Muéstrame los últimos archivos de mi biblioteca Creator de DeHub."
+  },
+  "twitchMirror": {
+    "title": "Retransmisión de Twitch",
+    "intro": "Transmite en Twitch como siempre. Tu directo puede aparecer automáticamente en DeHub, sin herramientas adicionales.",
+    "unavailable": "La retransmisión de Twitch aún no está disponible.",
+    "connect": "Conectar Twitch",
+    "auto": "Retransmitir automáticamente mis directos de Twitch",
+    "waiting": "Listo para tu próximo directo de Twitch",
+    "starting": "Conectando el vídeo en directo",
+    "live": "En directo en DeHub",
+    "error": "La retransmisión necesita atención",
+    "refresh": "Actualizar estado",
+    "disconnect": "Desconectar Twitch",
+    "open": "Ver en DeHub",
+    "retry": "Reintentar retransmisión",
+    "consent": "Conecta solo un canal propio. Al activar la retransmisión autorizas a DeHub a retransmitir tus directos y guardar repeticiones dentro de tu límite de grabación actual.",
+    "disabled": "La retransmisión automática está desactivada",
+    "failed": "No se pudo actualizar la retransmisión de Twitch. Inténtalo de nuevo."
+  },
   "maintenance": {
     "brand": "DeHub",
     "mode": "Modo de mantenimiento",
@@ -10674,5 +10712,16 @@
     "9cc9f71c23f2": "Explore un mundo de inteligencia espacial en vivo y, si lo desea, coloque una versión deliberadamente aproximada de usted mismo entre la comunidad de DeHub.",
     "a61d44ba33d5": "La madre de todas las arenas. Opera como un viajero en el tiempo con docenas de pantallas. Disfruta de transmisiones en vivo desde Binance, Dexscreener o cualquier cosa que desees, desde videos hasta pestañas del navegador y todo lo demás.",
     "1a00975a0ac1": "@channel"
+  },
+  "liveOverlay": {
+    "someone": "Alguien",
+    "newFollower": "Nuevo seguidor: {{name}}",
+    "newSubscriber": "Nuevo suscriptor: {{name}}",
+    "subscribedTo": "{{name}} suscrito a {{plan}}",
+    "shared": "{{name}} compartió la transmisión",
+    "joined": "{{name}} se unió",
+    "goalReached": "¡Objetivo alcanzado!",
+    "followersUnit": "seguidores",
+    "topSupporters": "Principales simpatizantes"
   }
 }

@@ -9123,5 +9123,16 @@
     "reminderBody": "Sikkerhetskopier lommeboken — 12 ord som bringer den tilbake hvis du mister telefonen.",
     "backUp": "Sikkerhetskopier",
     "notNow": "Ikke nå"
+  },
+  "liveOverlay": {
+    "someone": "Noen",
+    "newFollower": "Ny følger: {{name}}",
+    "newSubscriber": "Ny abonnent: {{name}}",
+    "subscribedTo": "{{name}} abonnerte på {{plan}}",
+    "shared": "{{name}} delte strømmen",
+    "joined": "{{name}} ble med",
+    "goalReached": "Målet er nådd!",
+    "followersUnit": "følgere",
+    "topSupporters": "Toppstøttespillere"
   }
 }

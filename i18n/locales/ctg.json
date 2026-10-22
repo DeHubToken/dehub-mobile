@@ -9226,5 +9226,16 @@
     "passwordToShowWords": "আপনার ওয়ালেট পাসওয়ার্ড দিন আপনার ১২টি শব্দ দেখানোর জন্য।",
     "reminderBody": "আপনের ওয়ালেট ব্যাক আপ করুন — ১২ টা শব্দ যেগুলা হারাইলে ফোন হারাইলেও ফিরাইয়া দেয়।",
     "backUp": "ব্যাক আপ"
+  },
+  "liveOverlay": {
+    "someone": "কেউ",
+    "newFollower": "নতুন অনুসারী: {{name}}",
+    "newSubscriber": "নতুন সাবস্ক্রাইবার: {{name}}",
+    "subscribedTo": "{{name}} সাবস্ক্রাইব করেছে {{plan}}",
+    "shared": "{{name}} স্ট্রিম শেয়ার করেছে",
+    "joined": "{{name}} যোগ দিয়েছে",
+    "goalReached": "লক্ষ্য অর্জিত!",
+    "followersUnit": "অনুসারী",
+    "topSupporters": "শীর্ষ সমর্থক"
   }
 }

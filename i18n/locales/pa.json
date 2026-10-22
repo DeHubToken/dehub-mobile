@@ -9122,5 +9122,16 @@
     "reminderBody": "ਆਪਣੇ ਬਟੂਏ ਦਾ ਬੈਕਅਪ ਲਓ — 12 ਸ਼ਬਦ ਜੋ ਇਸ ਨੂੰ ਵਾਪਸ ਲਿਆਉਂਦੇ ਹਨ ਜੇ ਤੁਸੀਂ ਆਪਣਾ ਫੋਨ ਗੁਆ ਦਿੰਦੇ ਹੋ.",
     "backUp": "ਬੈਕਅੱਪ",
     "notNow": "ਹੁਣ ਨਹੀਂ"
+  },
+  "liveOverlay": {
+    "someone": "ਕੋਈ",
+    "newFollower": "ਨਵਾਂ ਅਨੁਯਾਈਃ {{name}}",
+    "newSubscriber": "ਨਵਾਂ ਗਾਹਕਃ {{name}}",
+    "subscribedTo": "{{name}} ਨੂੰ ਸਬਸਕ੍ਰਾਈਬ ਕੀਤਾ {{plan}}",
+    "shared": "{{name}} ਨੇ ਸਟ੍ਰੀਮ ਨੂੰ ਸਾਂਝਾ ਕੀਤਾ",
+    "joined": "{{name}} ਸ਼ਾਮਲ ਹੋਏ",
+    "goalReached": "ਟੀਚਾ ਪੂਰਾ ਹੋ ਗਿਆ!",
+    "followersUnit": "ਫਾਲੋਅਰਜ਼",
+    "topSupporters": "ਪ੍ਰਮੁੱਖ ਸਮਰਥਕ"
   }
 }

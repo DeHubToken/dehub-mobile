@@ -9125,5 +9125,15 @@
     "reminderBody": "Cüzdanınızı ehtiyat nüsxə edin — telefonunuzu itirəndə onu geri gətirən 12 söz.",
     "backUp": "Ehtiyat nüsxə al",
     "notNow": "İndi yox"
+  },
+  "liveOverlay": {
+    "someone": "Kimsə",
+    "newFollower": "Yeni izləyici: {{name}}",
+    "newSubscriber": "Yeni abunəçi: {{name}}",
+    "shared": "{{name}} axını paylaşdı",
+    "joined": "{{name}} qoşuldu",
+    "goalReached": "Hədəfə çatdınız!",
+    "followersUnit": "izləyicilər",
+    "topSupporters": "Ən yaxşı dəstəkçilər"
   }
 }

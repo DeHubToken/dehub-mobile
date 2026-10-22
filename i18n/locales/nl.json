@@ -1,6 +1,44 @@
 {
-  "accountConnect": {"title":"Koppel je DeHub-account","body":"Koppel je account om je profiel te beheren, berichten te plaatsen en inhoud te maken vanuit de chat. Verbindingen verlopen binnen 24 uur. Je kunt ze altijd verbreken.","read":"Je account, berichten, meldingen en Creator-bibliotheek lezen","profile":"Je profiel, afbeeldingen en privacyinstellingen wijzigen","social":"Berichten en reacties plaatsen, mensen volgen en bladwijzers opslaan","generate":"Media maken met je credits, bevestigde betalingen of beschikbare gratis afbeeldingen","signIn":"Aanmelden bij DeHub","allow":"Verbinding toestaan","deny":"Annuleren","manage":"Accountverbindingen beheren","empty":"Geen actieve accountverbindingen.","disconnect":"Verbinding verbreken","failed":"Verbinding mislukt. Meld je opnieuw aan.","intro":"Bekijk DeHub in ChatGPT of koppel je account om je profiel te wijzigen, berichten te plaatsen en Creator Studio te gebruiken. Voeg https://dehub.io/mcp toe als OAuth-connector voor accountbeheer.","what":"Bekijk openbare berichten en profielen. Met een OAuth-accountverbinding kun je je profiel en privacy beheren, berichten en reacties plaatsen, mensen volgen, meldingen lezen, bladwijzers opslaan en afbeeldingen, video, audio en 3D-objecten maken. De betaalregels van DeHub blijven gelden.","account":"Openbare inhoud bekijken kan zonder account. Koppel je DeHub-account om je profiel te beheren en inhoud te maken of publiceren.","step":"Voeg https://dehub.io/mcp toe als OAuth-connector, meld je aan bij DeHub en controleer de rechten voordat je toegang toestaat.","profilePrompt":"Wijzig mijn DeHub-bio in: Onafhankelijke maker van films en muziek.","generatePrompt":"Toon de afbeeldingsmodellen van DeHub en de prijs van een portret voordat je het maakt.","libraryPrompt":"Toon de nieuwste bestanden in mijn DeHub Creator-bibliotheek."},
-  "twitchMirror": {"title":"Twitch doorsturen","intro":"Stream op Twitch zoals je gewend bent. Je uitzending kan automatisch op DeHub verschijnen, zonder extra streamingtools.","unavailable":"Twitch doorsturen is nog niet beschikbaar.","connect":"Twitch verbinden","auto":"Mijn Twitch-streams automatisch doorsturen","waiting":"Klaar voor je volgende Twitch-uitzending","starting":"Livevideo verbinden","live":"Live op DeHub","error":"Het doorsturen heeft aandacht nodig","refresh":"Status vernieuwen","disconnect":"Twitch ontkoppelen","open":"Bekijken op DeHub","retry":"Doorsturen opnieuw proberen","consent":"Verbind alleen een kanaal dat van jou is. Door doorsturen in te schakelen geef je DeHub toestemming je uitzendingen door te sturen en herhalingen binnen je huidige opnamelimiet op te slaan.","disabled":"Automatisch doorsturen staat uit","failed":"Twitch doorsturen kon niet worden bijgewerkt. Probeer het opnieuw."},
+  "accountConnect": {
+    "title": "Koppel je DeHub-account",
+    "body": "Koppel je account om je profiel te beheren, berichten te plaatsen en inhoud te maken vanuit de chat. Verbindingen verlopen binnen 24 uur. Je kunt ze altijd verbreken.",
+    "read": "Je account, berichten, meldingen en Creator-bibliotheek lezen",
+    "profile": "Je profiel, afbeeldingen en privacyinstellingen wijzigen",
+    "social": "Berichten en reacties plaatsen, mensen volgen en bladwijzers opslaan",
+    "generate": "Media maken met je credits, bevestigde betalingen of beschikbare gratis afbeeldingen",
+    "signIn": "Aanmelden bij DeHub",
+    "allow": "Verbinding toestaan",
+    "deny": "Annuleren",
+    "manage": "Accountverbindingen beheren",
+    "empty": "Geen actieve accountverbindingen.",
+    "disconnect": "Verbinding verbreken",
+    "failed": "Verbinding mislukt. Meld je opnieuw aan.",
+    "intro": "Bekijk DeHub in ChatGPT of koppel je account om je profiel te wijzigen, berichten te plaatsen en Creator Studio te gebruiken. Voeg https://dehub.io/mcp toe als OAuth-connector voor accountbeheer.",
+    "what": "Bekijk openbare berichten en profielen. Met een OAuth-accountverbinding kun je je profiel en privacy beheren, berichten en reacties plaatsen, mensen volgen, meldingen lezen, bladwijzers opslaan en afbeeldingen, video, audio en 3D-objecten maken. De betaalregels van DeHub blijven gelden.",
+    "account": "Openbare inhoud bekijken kan zonder account. Koppel je DeHub-account om je profiel te beheren en inhoud te maken of publiceren.",
+    "step": "Voeg https://dehub.io/mcp toe als OAuth-connector, meld je aan bij DeHub en controleer de rechten voordat je toegang toestaat.",
+    "profilePrompt": "Wijzig mijn DeHub-bio in: Onafhankelijke maker van films en muziek.",
+    "generatePrompt": "Toon de afbeeldingsmodellen van DeHub en de prijs van een portret voordat je het maakt.",
+    "libraryPrompt": "Toon de nieuwste bestanden in mijn DeHub Creator-bibliotheek."
+  },
+  "twitchMirror": {
+    "title": "Twitch doorsturen",
+    "intro": "Stream op Twitch zoals je gewend bent. Je uitzending kan automatisch op DeHub verschijnen, zonder extra streamingtools.",
+    "unavailable": "Twitch doorsturen is nog niet beschikbaar.",
+    "connect": "Twitch verbinden",
+    "auto": "Mijn Twitch-streams automatisch doorsturen",
+    "waiting": "Klaar voor je volgende Twitch-uitzending",
+    "starting": "Livevideo verbinden",
+    "live": "Live op DeHub",
+    "error": "Het doorsturen heeft aandacht nodig",
+    "refresh": "Status vernieuwen",
+    "disconnect": "Twitch ontkoppelen",
+    "open": "Bekijken op DeHub",
+    "retry": "Doorsturen opnieuw proberen",
+    "consent": "Verbind alleen een kanaal dat van jou is. Door doorsturen in te schakelen geef je DeHub toestemming je uitzendingen door te sturen en herhalingen binnen je huidige opnamelimiet op te slaan.",
+    "disabled": "Automatisch doorsturen staat uit",
+    "failed": "Twitch doorsturen kon niet worden bijgewerkt. Probeer het opnieuw."
+  },
   "maintenance": {
     "brand": "DeHub",
     "mode": "Onderhoudsmodus",
@@ -10928,5 +10966,16 @@
     "campaignDescription": "Laat bezoekers creators steunen door 30 seconden te bekijken. Vereist een goedgekeurde video van minimaal 30 seconden, geüpload via het webadverteringsportaal.",
     "watch": "Kijk een advertentie om deze creator te ondersteunen",
     "receipt": "${{amount}} toegevoegd aan de advertentie-inkomsten van de maker. tokenafrekening is in behandeling."
+  },
+  "liveOverlay": {
+    "someone": "Iemand",
+    "newFollower": "Nieuwe volger: {{name}}",
+    "newSubscriber": "Nieuwe abonnee: {{name}}",
+    "subscribedTo": "{{name}} geabonneerd op {{plan}}",
+    "shared": "{{name}} deelde de stream",
+    "joined": "{{name}} is lid geworden",
+    "goalReached": "Doel bereikt!",
+    "followersUnit": "volgers",
+    "topSupporters": "Topsupporters"
   }
 }

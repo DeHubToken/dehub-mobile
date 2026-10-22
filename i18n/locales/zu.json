@@ -9137,5 +9137,16 @@
     "reminderBody": "Buyela emuva esikhwameni sakho semali — amagama angu-12 ayibuyisayo uma ulahlekelwa ifoni yakho.",
     "backUp": "Buyela emuva",
     "notNow": "Hhayi manje"
+  },
+  "liveOverlay": {
+    "someone": "Othile",
+    "newFollower": "Umlandeli omusha: {{name}}",
+    "newSubscriber": "Umbhalisi omusha: {{name}}",
+    "subscribedTo": "{{name}} ubhalisele i- {{plan}}",
+    "shared": "{{name}} wabelane ngokusakaza",
+    "joined": "{{name}} ujoyine",
+    "goalReached": "Umgomo ufinyelelwe!",
+    "followersUnit": "abalandeli",
+    "topSupporters": "Abasekeli abahamba phambili"
   }
 }

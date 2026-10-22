@@ -9252,5 +9252,16 @@
     "reminderBody": "Maak ’n kopie van jou portemonnee – 12 woorde wat dit kan herstel as jy jou telefoon verloor.",
     "backUp": "Rugsteun",
     "notNow": "Nie nou nie"
+  },
+  "liveOverlay": {
+    "someone": "Iemand",
+    "newFollower": "Nuwe volgeling: {{name}}",
+    "newSubscriber": "Nuwe intekenaar: {{name}}",
+    "subscribedTo": "{{name}} ingeteken op {{plan}}",
+    "shared": "{{name}} deel die stroom",
+    "joined": "{{name}} aangesluit",
+    "goalReached": "Doel bereik!",
+    "followersUnit": "volgers",
+    "topSupporters": "Top ondersteuners"
   }
 }

@@ -9145,5 +9145,16 @@
     "showWords": "Schau Wörter.",
     "reminderBody": "Sichere din Wallet – 12 Wörter, wo dä zruggbringe, wänn du dis Handy verlürsch.",
     "notNow": "Nöchtli no."
+  },
+  "liveOverlay": {
+    "someone": "Öpper",
+    "newFollower": "Neuer Follower: {{name}}",
+    "newSubscriber": "Neuer Abonnent: {{name}}",
+    "subscribedTo": "{{name}} abonniert {{plan}}",
+    "shared": "{{name}} het de Stream gteilt",
+    "joined": "{{name}} joined",
+    "goalReached": "Ziel erreicht!",
+    "followersUnit": "Follower",
+    "topSupporters": "Top-Unterstützer"
   }
 }

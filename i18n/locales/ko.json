@@ -9156,5 +9156,16 @@
     "recommendedBody": "중요한 보안 수정이 포함된 새 버전의 DeHub가 있습니다. 계정을 안전하게 지키려면 업데이트하세요.",
     "requiredBody": "이 버전의 DeHub는 더 이상 지원되지 않습니다. 계정을 계속 사용하려면 업데이트하세요.",
     "update": "지금 업데이트"
+  },
+  "liveOverlay": {
+    "someone": "누군가",
+    "newFollower": "새 팔로워: {{name}}",
+    "newSubscriber": "신규 구독자: {{name}}",
+    "subscribedTo": "{{name}} 님이 {{plan}} 에 구독했습니다",
+    "shared": "{{name}} 님이 스트림을 공유했습니다",
+    "joined": "{{name}} 님이 합류했습니다",
+    "goalReached": "목표에 도달했습니다!",
+    "followersUnit": "팔로워",
+    "topSupporters": "최고의 서포터"
   }
 }

@@ -9145,5 +9145,16 @@
     "reminderBody": "قم بعمل نسخة احتياطية من محفظتك — 12 كلمة تعيدها إذا فقدت هاتفك.",
     "backUp": "النسخ الاحتياطي",
     "notNow": "ليس الآن"
+  },
+  "liveOverlay": {
+    "someone": "شخص ما",
+    "newFollower": "متابع جديد: {{name}}",
+    "newSubscriber": "مشترك جديد: {{name}}",
+    "subscribedTo": "{{name}} مشترك في {{plan}}",
+    "shared": "شارك {{name}} البث",
+    "joined": "{{name}} انضم",
+    "goalReached": "تم الوصول إلى الهدف!",
+    "followersUnit": "المتابعون",
+    "topSupporters": "أفضل المؤيدين"
   }
 }
