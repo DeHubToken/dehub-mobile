@@ -143,7 +143,7 @@ export function useStageCaptionFeed(
           foldCaption(prev, {
             id: String(payload.id),
             wallet,
-            name: payload.name || "Speaker",
+            name: payload.name || "",
             text: payload.text.slice(0, 500),
             final: !!payload.final,
             // Sender clocks disagree; stamping on arrival keeps expiry honest.
