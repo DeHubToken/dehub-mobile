@@ -9368,6 +9368,65 @@
       "summary": {
         "tip": "تیپ {{amount}} DHB یا بیشتر"
       }
+    },
+    "moderation": {
+      "title": "चैट मोडरेशन",
+      "intro": "सभी अपनी स्ट्रीम्स के तहत चैट के नियम। वे कभी भी DeHub के मुख्य चैट तक नहीं पहुंचते: यहाँ से आप बान कर सकते हैं, फिर भी वे हर जगह बात कर सकते हैं।",
+      "loadFailed": "आपके मोडरेशन सेटिंग्स लोड नहीं हो सके। पेज को रिफ्रेश करने के लिए फिर से प्रयास करें।",
+      "save": "चैट नियमों को सेव करें",
+      "saveFailed": "यह परिवर्तन सेव नहीं हो सका।",
+      "slowMode": "स्लो मोड",
+      "slowModeHint": "देखने वालों द्वारा संदेशों के बीच की अवधि। आप और आपके मोडरेटर कभी भी इंतजार नहीं करते।",
+      "seconds_one": "{{count}} सेकंड",
+      "followersOnly": "फॉलोअर्स ऑनली",
+      "subscribersOnly": "सब्सक्राइबर्स ऑनली",
+      "subscribersOnlyHint": "फॉलोअर्स ऑनली को ओवरराइड करता है।",
+      "bannedWords": "बान शब्द",
+      "wordAction": "जब कोई व्यक्ति एक शब्द का उपयोग करता है",
+      "wordBlock": "संदेश रोकें",
+      "wordTimeout": "इसे रोकें और उन्हें एक मिनट के लिए बाहर निकालें",
+      "moderatorsHint": "वे समय निकाल सकते हैं और आपकी स्ट्रीम में दर्शकों को प्रतिबंधित कर सकते हैं। वे आप पर या एक - दूसरे पर कार्रवाई नहीं कर सकते।",
+      "usernamePlaceholder": "यूज़रनेम",
+      "removeModerator": "मॉडरेटर हटाएँ",
+      "noModerators": "अभी तक कोई मॉडरेटर नहीं है।",
+      "banned": "आपकी स्ट्रीम पर प्रतिबंध लगा दिया गया है",
+      "log": "हाल की कार्रवाइयाँ",
+      "saved": "قواعد چت ذخیره شد.",
+      "off": "Off",
+      "seconds_other": "{{count}} ثانیه",
+      "bannedWordsHint": "अलग अलग करो कोमा से। एक शब्द को अक्षर दर अक्षर स्पेल करना इसे दरकिनार नहीं करता।",
+      "moderators": "مؤذنون",
+      "addModerator": "Add",
+      "moderatorAdded": "مُعتَمل مُضاف.",
+      "moderatorNotFound": "نام کاربری یافت نشد.",
+      "unban": "Unban",
+      "noBans": "نفری ممنوعه نیست.",
+      "noLog": "نفرمایم.",
+      "actions": {
+        "ban": "{{actor}} प्रतिबंधित {{target}}",
+        "moderator-added": "{{target}} मॉडरेटर बन गए",
+        "word-blocked": "\"{{word}}\" के लिए {{target}} का मैसेज रोका गया",
+        "word-timeout_one": "\"{{word}}\" के लिए {{count}} सेकंड के लिए {{target}} समय समाप्त हो गया",
+        "word-timeout_other": "\"{{word}}\" के लिए {{count}} सेकंड के लिए {{target}} समय समाप्त हो गया",
+        "timeout_one": "{{actor}} خاتمه شد {{target}} برای {{count}} ثانیه",
+        "timeout_other": "{{actor}} خاتمه شد {{target}} پس از {{count}} ثانیه",
+        "unban": "{{actor}} مَغْفُورَ لَهُ {{target}}",
+        "moderator-removed": "{{target}} اکنون مدیر نیست"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "समय के लिए 1 मिनट का टाइम आउट",
+    "timeout10m": "समय के लिए 10 मिनट का टाइम आउट",
+    "timeout1h": "समय के लिए 1 घंटा का टाइम आउट",
+    "ban": "इन स्ट्रीम्स से बान",
+    "makeModerator": "मोडरेटर बनाएं",
+    "banned": "इन स्ट्रीम्स से बान हो गया।",
+    "madeModerator": "अब वे एक मोडरेटर हैं।",
+    "youAreBanned": "आप इस क्रिएटर की स्ट्रीम्स में चैट नहीं कर सकते।",
+    "youAreTimedOut": "आप थोड़ी देर के लिए टाइम आउट हैं।",
+    "title": "मोडरेट करें",
+    "timedOut": "Timed out.",
+    "failed": "assistant error"
   }
 }
