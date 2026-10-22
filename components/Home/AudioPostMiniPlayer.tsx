@@ -1,3 +1,4 @@
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
 /**
  * AudioPostMiniPlayer — the corner player for a popped-out audio post
  * ===================================================================
@@ -108,7 +109,7 @@ const AudioPostMiniPlayer: React.FC = () => {
 
         <TouchableOpacity
           onPress={toggleAudioPost}
-          style={styles.playBtn}
+          style={[styles.playBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           hitSlop={6}
           accessibilityRole="button"
           accessibilityLabel={isPlaying ? t("audioPost.pause") : t("audioPost.play")}
@@ -122,7 +123,7 @@ const AudioPostMiniPlayer: React.FC = () => {
 
         <TouchableOpacity
           onPress={stopAudioPost}
-          style={styles.closeBtn}
+          style={[styles.closeBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           hitSlop={8}
           accessibilityRole="button"
           accessibilityLabel={t("audioPost.stopAndClose")}
