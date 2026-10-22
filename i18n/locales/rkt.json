@@ -9311,7 +9311,9 @@
     "topSupporters": "শীর্ষ সমর্থক",
     "tipped": "{{name}} কে একটা উপহার পাঠিয়ে দিলো।",
     "points_one": "{{formatted}} পয়েন্ট",
-    "points_other": "{{formatted}} পৱ্তি"
+    "points_other": "{{formatted}} পৱ্তি",
+    "streak_one": "{{count}}-সপ্তাহের স্ট্রিক",
+    "streak_other": "{{count}}-সপ্তাহের স্ট্রিক"
   },
   "liveStudio": {
     "controls": {

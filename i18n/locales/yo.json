@@ -9157,7 +9157,11 @@
     "subathonOver": "Àkókò tán",
     "pointsTitle": "Àwọn olùmúran tó ní ìbámu jù lọ",
     "points_one": "{{formatted}} ìdá",
-    "points_other": "{{formatted}} àwọn ìdá"
+    "points_other": "{{formatted}} àwọn ìdá",
+    "level": "Ipele {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Ìkòkò ẹ̀bùn"
   },
   "liveStudio": {
     "controls": {
@@ -9228,7 +9232,9 @@
       "rule_alert": "Ìkìlọ̀ Ofin",
       "poll": "Ìbò",
       "subathon_timer": "Ìdìtì Subathon",
-      "points_board": "Àwọn olùmúran tí ó ní ìbámu"
+      "points_board": "Àwọn olùmúran tí ó ní ìbámu",
+      "streamer_level": "Ipele Streamer",
+      "tip_jar": "Ìkòkò ẹ̀bùn"
     },
     "hints": {
       "spin_wheel": "Níbo ni àwọn kẹ̀kẹ́ tí ó wà nínú òfin rẹ ti ń yípo",
@@ -9250,7 +9256,9 @@
       "rule_alert": "Níbi tí ìkìlọ̀ ofin rẹ̀ máa ń hàn",
       "poll": "Ìbò ìgbé ayé rẹ, pẹ̀lú bọ́tìnì ìbò fún gbogbo àṣàyàn",
       "subathon_timer": "Ìdìtì sílẹ̀ tí àwọn ìbámu, tẹ̀lé àti ìbámu ìṣúbúkú ń lé padà",
-      "points_board": "Àwọn olùmúran tó ga jù lọ nípa àwọn ìdá láti ìwòran àti ìbámu"
+      "points_board": "Àwọn olùmúran tó ga jù lọ nípa àwọn ìdá láti ìwòran àti ìbámu",
+      "streamer_level": "Ipele ṣiṣan rẹ àti ìlà ọ̀sọ̀ọ̀sẹ̀ rẹ, láti inú àkójọpọ̀ rẹ",
+      "tip_jar": "Igo ti o kun bi awọn ẹbun ti o sanwo ti n wọle"
     },
     "fields": {
       "style": "Style",
@@ -9282,7 +9290,8 @@
       "speed": "Iyara",
       "slow": "Díẹ̀díẹ̀",
       "normal": "Ó ṣe déédéé",
-      "fast": "Yara"
+      "fast": "Yara",
+      "showStreak": "Fi ìlà ọ̀sọ̀ọ̀sẹ̀ hàn"
     },
     "obs": {
       "title": "Lo pẹlu OBS",

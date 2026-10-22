@@ -9345,7 +9345,11 @@
     "subathonOver": "Čas je vypršaný",
     "pointsTitle": "Najlojalnejší diváci",
     "points_one": "{{formatted}} bod",
-    "points_other": "{{formatted}} body"
+    "points_other": "{{formatted}} body",
+    "level": "Úroveň {{level}}",
+    "streak_one": "{{count}}-týždňová séria",
+    "streak_other": "{{count}}-týždňová séria",
+    "tipJar": "Darčeková nádoba"
   },
   "liveStudio": {
     "controls": {
@@ -9416,7 +9420,9 @@
       "rule_alert": "Upozornenia na pravidlá",
       "poll": "Pôl",
       "subathon_timer": "Subathon časovač",
-      "points_board": "Verejnosť s lojalitou"
+      "points_board": "Verejnosť s lojalitou",
+      "streamer_level": "Úroveň streamera",
+      "tip_jar": "Darčeková nádoba"
     },
     "hints": {
       "spin_wheel": "Kde sa točia kolesá vo vašich pravidlách",
@@ -9438,7 +9444,9 @@
       "rule_alert": "Kde sa zobrazujú upozornenia na vaše pravidlá",
       "poll": "Váš živý pôl, s tlačidlom na hlasovanie pre každý variant",
       "subathon_timer": "Počítavač, ktorý sa posúva späť darčekmi, sledovaniami a predplatňami",
-      "points_board": "Tvojí najlepší diváci podľa bodov z sledovania a darčenia"
+      "points_board": "Tvojí najlepší diváci podľa bodov z sledovania a darčenia",
+      "streamer_level": "Vaša úroveň streamera a týždenná séria vo vašom profile",
+      "tip_jar": "Pohár, ktorý sa naplní pri príchode zaplatených darčekov"
     },
     "fields": {
       "style": "Štýl",
@@ -9472,7 +9480,8 @@
       "speed": "Rýchlosť",
       "slow": "Pomaly",
       "normal": "Normálne",
-      "fast": "Rýchlo"
+      "fast": "Rýchlo",
+      "showStreak": "Zobraziť týždennú sériu"
     },
     "obs": {
       "title": "Použiť s OBS",

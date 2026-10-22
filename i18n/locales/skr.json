@@ -9153,7 +9153,10 @@
     "followersUnit": "فالوورز",
     "topSupporters": "ٹاپ سپورٹرز",
     "points_one": "{{formatted}} پونٹ",
-    "points_other": "{{formatted}} پوائنٹس"
+    "points_other": "{{formatted}} پوائنٹس",
+    "level": "لۏول {{level}}",
+    "streak_one": "{{count}}-ہفتہ کا چیلنج",
+    "streak_other": "{{count}}-ہفتہ کا چیلنج"
   },
   "liveStudio": {
     "controls": {
@@ -9229,7 +9232,8 @@
       "top_supporters": "اُپَرِ پُجِیَارَان",
       "stream_timer": "براڈکاسٹ ٹائمر",
       "chat_box": "چٹ بکس",
-      "points_board": "لویال دکھنے والوں!"
+      "points_board": "لویال دکھنے والوں!",
+      "streamer_level": "ستریمر لویل"
     },
     "hints": {
       "points_board": "دیکھنے اور تحفے دینے کے پوائنٹس کے لحاظ سے آپ کے اعلی ناظرین",
@@ -9253,7 +9257,8 @@
       "smaller": "چوٹا",
       "lines": "لائناں دکھائی گئیں",
       "showAvatars": "پروفائل کی تصاویر دکھاوے",
-      "speed": "سرعت"
+      "speed": "سرعت",
+      "showStreak": "ہفتہ وار سٹریک دکھاؤ"
     },
     "obs": {
       "title": "OBS نال استعمال کرو",

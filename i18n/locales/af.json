@@ -9305,7 +9305,11 @@
     "subathonOver": "Tyd is op",
     "pointsTitle": "Die meeste lojale kykers",
     "points_one": "{{formatted}} punt",
-    "points_other": "{{formatted}} Punte"
+    "points_other": "{{formatted}} Punte",
+    "level": "Vlak {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Geskenkpot"
   },
   "liveStudio": {
     "controls": {
@@ -9376,7 +9380,9 @@
       "rule_alert": "Reël waarskuwings",
       "poll": "Peiling",
       "subathon_timer": "Subathon-tydhouer",
-      "points_board": "Lojale kykers"
+      "points_board": "Lojale kykers",
+      "streamer_level": "Stroomvlak",
+      "tip_jar": "Geskenkpot"
     },
     "hints": {
       "spin_wheel": "Waar die wiele in jou reëls draai",
@@ -9398,7 +9404,9 @@
       "rule_alert": "Waar jou reëls se waarskuwings verskyn",
       "poll": "Jou regstreekse peiling, met 'n stemknoppie vir elke opsie",
       "subathon_timer": "'N aftelling wat geskenke, volg en intekeninge terugstoot",
-      "points_board": "Jou top kykers deur punte van kyk en geskenke"
+      "points_board": "Jou top kykers deur punte van kyk en geskenke",
+      "streamer_level": "Jou streamer vlak en weeklikse streep, van jou profiel",
+      "tip_jar": "'N pot wat vul as betaalde geskenke kom in"
     },
     "fields": {
       "style": "Styl",
@@ -9432,7 +9440,8 @@
       "speed": "Spoed",
       "slow": "Stadig",
       "normal": "Normaal",
-      "fast": "Vinnig"
+      "fast": "Vinnig",
+      "showStreak": "Wys die weeklikse streep"
     },
     "obs": {
       "title": "Gebruik met OBS",

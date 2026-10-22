@@ -9273,7 +9273,11 @@
     "subathonOver": "時間切れです",
     "pointsTitle": "最も忠実な視聴者",
     "points_one": "{{formatted}}ポイント",
-    "points_other": "{{formatted}}ポイント"
+    "points_other": "{{formatted}}ポイント",
+    "level": "レベル{{level}}",
+    "streak_one": "{{count}}週連続",
+    "streak_other": "{{count}}週連続",
+    "tipJar": "ギフトジャー"
   },
   "liveStudio": {
     "controls": {
@@ -9344,7 +9348,9 @@
       "rule_alert": "ルールアラート",
       "poll": "投票",
       "subathon_timer": "サブマソンタイマー",
-      "points_board": "忠実な視聴者"
+      "points_board": "忠実な視聴者",
+      "streamer_level": "ストリーマーレベル",
+      "tip_jar": "ギフトジャー"
     },
     "hints": {
       "spin_wheel": "ルール内のホイールが回転する場所",
@@ -9366,7 +9372,9 @@
       "rule_alert": "ルールのアラートが表示される場所",
       "poll": "すべてのオプションに投票ボタンが付いたライブ投票",
       "subathon_timer": "ギフト、フォロー、サブスクリプションをプッシュバックするカウントダウン",
-      "points_board": "視聴と贈答からのポイント別の上位視聴者"
+      "points_board": "視聴と贈答からのポイント別の上位視聴者",
+      "streamer_level": "プロフィールからのストリーマーのレベルと週連続記録",
+      "tip_jar": "有料ギフトが入るといっぱいになる瓶"
     },
     "fields": {
       "style": "スタイル",
@@ -9400,7 +9408,8 @@
       "speed": "速度",
       "slow": "遅い",
       "normal": "ノーマル",
-      "fast": "高速"
+      "fast": "高速",
+      "showStreak": "週単位の連続記録を表示"
     },
     "obs": {
       "title": "OBSとの併用",

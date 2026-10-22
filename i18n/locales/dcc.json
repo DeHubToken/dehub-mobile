@@ -9134,7 +9134,8 @@
     "tipped": "{{name}} نے ایک دھنہ دے دیا",
     "subathon": "سُباتھن",
     "points_one": "{{formatted}} پوائنٹ",
-    "points_other": "{{formatted}} پوائنٹس"
+    "points_other": "{{formatted}} پوائنٹس",
+    "level": "لەول {{level}}"
   },
   "liveStudio": {
     "controls": {
@@ -9244,7 +9245,8 @@
       "top_supporters": "اس سٹریم میں آپ کے سب سے بڑے ٹِپرز",
       "viewer_count": "کتنے لوگ دیکھ رہے ہیں",
       "text": "ایک لائن ٹیکسٹ یا لوئر تھرڈ",
-      "frame": "آپ کی سٹریم کے اردگرد ایک بارڈر"
+      "frame": "آپ کی سٹریم کے اردگرد ایک بارڈر",
+      "tip_jar": "جھڑیا جو دھن دے کر دیے گئے دھنوں سے بھر جاتی ہے"
     },
     "fields": {
       "style": "اسٹائل",

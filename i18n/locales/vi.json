@@ -9271,7 +9271,11 @@
     "subathonOver": "Thời gian đã hết",
     "pointsTitle": "Người xem trung thành nhất",
     "points_one": "{{formatted}} điểm",
-    "points_other": "{{formatted}} điểm"
+    "points_other": "{{formatted}} điểm",
+    "level": "Cấp {{level}}",
+    "streak_one": "Chuỗi {{count}}tuần",
+    "streak_other": "Chuỗi {{count}}tuần",
+    "tipJar": "Lọ quà tặng"
   },
   "liveStudio": {
     "controls": {
@@ -9342,7 +9346,9 @@
       "rule_alert": "Cảnh báo quy tắc",
       "poll": "Thăm dò ý kiến",
       "subathon_timer": "Bộ hẹn giờ Subathon",
-      "points_board": "Người xem trung thành"
+      "points_board": "Người xem trung thành",
+      "streamer_level": "Cấp độ streamer",
+      "tip_jar": "Lọ quà tặng"
     },
     "hints": {
       "spin_wheel": "Khi các bánh xe trong quy tắc của bạn quay",
@@ -9364,7 +9370,9 @@
       "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn",
       "poll": "Cuộc thăm dò trực tiếp của bạn, với nút bỏ phiếu cho mọi lựa chọn",
       "subathon_timer": "Một đếm ngược mà món quà, người theo dõi và đăng ký đẩy lại",
-      "points_board": "Người xem hàng đầu của bạn theo điểm từ việc xem và tặng quà"
+      "points_board": "Người xem hàng đầu của bạn theo điểm từ việc xem và tặng quà",
+      "streamer_level": "Cấp độ streamer và streak hàng tuần của bạn, từ hồ sơ của bạn",
+      "tip_jar": "Một cái lọ được đổ đầy khi quà tặng trả tiền được gửi đến"
     },
     "fields": {
       "style": "Phong cách",
@@ -9398,7 +9406,8 @@
       "speed": "Tốc độ",
       "slow": "Chậm",
       "normal": "Bình thường",
-      "fast": "Nhanh"
+      "fast": "Nhanh",
+      "showStreak": "Hiển thị chuỗi hàng tuần"
     },
     "obs": {
       "title": "Sử dụng với OBS",
