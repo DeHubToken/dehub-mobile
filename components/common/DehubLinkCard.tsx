@@ -351,6 +351,7 @@ const StageCardEmbed: React.FC<{
   onOpen: () => void;
   fallback: React.ReactElement;
 }> = ({ stageId, stageShortId, onOpen, fallback }) => {
+  const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dehub-link', 'stage', stageId ?? `short:${stageShortId}`],
@@ -421,7 +422,8 @@ const StageCardEmbed: React.FC<{
           />
         ) : undefined
       }
-      onPress={onOpen}
+      // An ended stage has a page of its own now; the hub was a dead end.
+      onPress={isEnded ? () => navigation.navigate(ScreenNames.StageRecording, { spaceId: data.id, space: data }) : onOpen}
     />
   );
 };

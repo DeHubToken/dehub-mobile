@@ -201,6 +201,10 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/StagesScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.StageRecording}
+          getComponent={() => require("../screens/StageRecordingScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Careers}
           getComponent={() => require("../screens/CareersScreen").default}
         />
