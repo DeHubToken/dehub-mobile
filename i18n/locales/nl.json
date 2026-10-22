@@ -11024,7 +11024,11 @@
     "subathonOver": "De tijd is om",
     "pointsTitle": "Meest loyale kijkers",
     "points_one": "{{formatted}} punt",
-    "points_other": "{{formatted}} punten"
+    "points_other": "{{formatted}} punten",
+    "level": "Niveau {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Geschenkpot"
   },
   "liveStudio": {
     "controls": {
@@ -11095,7 +11099,9 @@
       "chat_box": "Chatbox",
       "ticker": "Lichtkrant",
       "rule_alert": "Regelwaarschuwingen",
-      "points_board": "Trouwe kijkers"
+      "points_board": "Trouwe kijkers",
+      "streamer_level": "Streamer-niveau",
+      "tip_jar": "Geschenkpot"
     },
     "hints": {
       "spin_wheel": "Waar de wielen in je regels draaien",
@@ -11117,7 +11123,9 @@
       "rule_alert": "Waar de waarschuwingen van je regels verschijnen",
       "poll": "Uw live poll, met een stemknop voor elke optie",
       "subathon_timer": "Een aftelling die geschenken, volgers en abonnementen terugduwen",
-      "points_board": "Je beste kijkers op punten van kijken en schenken"
+      "points_board": "Je beste kijkers op punten van kijken en schenken",
+      "streamer_level": "Je streamer-niveau en wekelijkse reeks, vanuit je profiel",
+      "tip_jar": "Een pot die volloopt als betaalde geschenken binnenkomen"
     },
     "fields": {
       "style": "Stijl",
@@ -11151,7 +11159,8 @@
       "speed": "Snelheid",
       "slow": "Langzaam",
       "normal": "Normaal",
-      "fast": "Snel"
+      "fast": "Snel",
+      "showStreak": "Toon de wekelijkse reeks"
     },
     "obs": {
       "title": "Gebruik met OBS",

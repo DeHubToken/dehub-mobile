@@ -9277,7 +9277,10 @@
       "failed": "আপনার ভোট গন্টো হৈ গেল। আবার চেষ্টা করুন।",
       "votes_one": "{{count}} ভোট দিন"
     },
-    "points_one": "{{formatted}} পয়েন্ট"
+    "points_one": "{{formatted}} পয়েন্ট",
+    "level": "লেভেল {{level}}",
+    "streak_one": "{{count}}-ওয়েক স্ট্রিক",
+    "streak_other": "{{count}}-ওয়েক স্ট্রিক"
   },
   "liveStudio": {
     "controls": {

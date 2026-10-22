@@ -9180,7 +9180,11 @@
     "subathonOver": "Vrijeme je isteklo",
     "pointsTitle": "Najvjerniji gledatelji",
     "points_one": "{{formatted}} bod",
-    "points_other": "{{formatted}} bodova"
+    "points_other": "{{formatted}} bodova",
+    "level": "Razina {{level}}",
+    "streak_one": "{{count}}-tjedni period",
+    "streak_other": "{{count}}-tjedni period",
+    "tipJar": "Posuda za darove"
   },
   "liveStudio": {
     "controls": {
@@ -9251,7 +9255,9 @@
       "rule_alert": "Obavijesti o pravilima",
       "poll": "Anketa",
       "subathon_timer": "Podatkovni mjerač vremena",
-      "points_board": "Vjerni gledatelji"
+      "points_board": "Vjerni gledatelji",
+      "streamer_level": "Razina streamera",
+      "tip_jar": "Posuda za darove"
     },
     "hints": {
       "spin_wheel": "Gdje se okreću kotači u vašim pravilima",
@@ -9273,7 +9279,9 @@
       "rule_alert": "Gdje se prikazuju obavijesti o pravilima",
       "poll": "Vaša anketa uživo, s gumbom za glasanje za svaku opciju",
       "subathon_timer": "Odbrojavanje koje odbacuje darove, pratnju i pretplate",
-      "points_board": "Vaši najbolji gledatelji po bodovima od gledanja i darivanja"
+      "points_board": "Vaši najbolji gledatelji po bodovima od gledanja i darivanja",
+      "streamer_level": "Razina streamera i tjedni raspon, s tvog profila",
+      "tip_jar": "Staklenka koja se puni kad stignu plaćeni darovi"
     },
     "fields": {
       "style": "Stil",
@@ -9307,7 +9315,8 @@
       "speed": "Brzina",
       "slow": "Sporo",
       "normal": "Normalno",
-      "fast": "Brzo"
+      "fast": "Brzo",
+      "showStreak": "Prikaži tjedni raspon"
     },
     "obs": {
       "title": "Koristi s OBS",

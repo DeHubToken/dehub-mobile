@@ -9118,7 +9118,11 @@
     "tipped": "{{name}} 送咱个礼物",
     "subathonOver": "时间到啦",
     "pointsTitle": "最忠心嘅观众",
-    "points_other": "{{formatted}} 积分"
+    "points_other": "{{formatted}} 积分",
+    "level": "等級 {{level}}",
+    "streak_one": "{{count}}-週連線",
+    "streak_other": "{{count}}-週連線",
+    "tipJar": "禮物罐"
   },
   "liveStudio": {
     "points": {
@@ -9198,7 +9202,9 @@
       "join_alert": "歡迎各位觀賞者到場！",
       "event_feed": "最新的礼物、粉丝、订阅者以及分享你直播的人",
       "chat_box": "显示你直播的聊天消息在屏幕上",
-      "subathon_timer": "一个倒计时，礼物、关注同订阅会被推回去"
+      "subathon_timer": "一个倒计时，礼物、关注同订阅会被推回去",
+      "streamer_level": "來自你個人資料的直播等級及週連線",
+      "tip_jar": "隨著付費禮物進來而逐漸充滿的罐子"
     },
     "fields": {
       "confirmedOnlyHint": "等幾秒鐘鏈式，所以從不付款的小費永遠不會出現。",
@@ -9220,7 +9226,8 @@
       "size": "大小",
       "smaller": "較小",
       "larger": "較大",
-      "fast": "快快"
+      "fast": "快快",
+      "showStreak": "顯示週連線"
     },
     "obs": {
       "title": "與OBS一起使用",

@@ -9199,7 +9199,11 @@
     "subathonOver": "Zeit abgelaufen",
     "pointsTitle": "Meiste treue Zuschauer:innen",
     "points_one": "{{formatted}} Punkt",
-    "points_other": "{{formatted}} Punkte"
+    "points_other": "{{formatted}} Punkte",
+    "level": "Level {{level}}",
+    "streak_one": "{{count}}-Woche Streak",
+    "streak_other": "{{count}}-Woche Streak",
+    "tipJar": "Gift Jar"
   },
   "liveStudio": {
     "controls": {
@@ -9295,7 +9299,9 @@
       "event_feed": "Aktuelle Aktivität",
       "ticker": "Ticker",
       "rule_alert": "Regel-Warnungen",
-      "points_board": "Loyale Zuschauer"
+      "points_board": "Loyale Zuschauer",
+      "streamer_level": "Streamer Level",
+      "tip_jar": "Gift Jar"
     },
     "hints": {
       "points_board": "Ihre Top-Zuschauer nach Punkten aus Zuschauen und Verschenken",
@@ -9317,7 +9323,9 @@
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
       "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
       "rule_alert": "Wo deine Regel-Warnungen erscheinen",
-      "subathon_timer": "Ene Zählrückwärts, wo Geschenke, Follower und Abonnements zurückgedrängt werden."
+      "subathon_timer": "Ene Zählrückwärts, wo Geschenke, Follower und Abonnements zurückgedrängt werden.",
+      "streamer_level": "Dini Streamer Level und wöchni Streak, vo dinem Profil",
+      "tip_jar": "E Jar, wo sich füllt, wenn bezahlti Gifte cho"
     },
     "fields": {
       "style": "Stil",
@@ -9350,7 +9358,8 @@
       "showAvatars": "Zeig Profilbilder",
       "speed": "Gschwindigkeet",
       "slow": "Langsam",
-      "fast": "Fascht"
+      "fast": "Fascht",
+      "showStreak": "Zeig d wöchni Streak"
     },
     "obs": {
       "title": "Mit OBS verwenden",

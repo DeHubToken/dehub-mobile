@@ -9392,7 +9392,8 @@
     "subscribedTo": "{{name}} সাবস্ক্রাইব করলো {{plan}}",
     "shared": "{{name}} স্ট্রিম শেয়ার করলো",
     "followersUnit": "ফলোয়ার্স",
-    "topSupporters": "সবচেয়ে বড় সমর্থক"
+    "topSupporters": "সবচেয়ে বড় সমর্থক",
+    "tipJar": "গিফ্ট জার"
   },
   "liveStudio": {
     "points": {
@@ -9472,7 +9473,8 @@
       "top_supporters": "সবচেয়ে বড় সমর্থক",
       "viewer_count": "ভিউয়ার কাউন্ট",
       "frame": "ফ্রেম",
-      "event_feed": "সম্প্রতির কার্যকলাপ"
+      "event_feed": "সম্প্রতির কার্যকলাপ",
+      "tip_jar": "গিফ্ট জার"
     },
     "hints": {
       "subathon_timer": "একটি কাউন্টডাউন যা উপহার, অনুসরণ এবং সাবস্ক্রিপশনগুলি পিছনে ঠেলে দেয়",

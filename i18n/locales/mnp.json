@@ -9158,7 +9158,11 @@
     "topSupporters": "贊助排行",
     "tipped": "{{name}} 送咱一份禮物",
     "subathonOver": "時間到咧！",
-    "points_other": "{{formatted}} 分"
+    "points_other": "{{formatted}} 分",
+    "level": "級別 {{level}}",
+    "streak_one": "{{count}}-週連續直播",
+    "streak_other": "{{count}}-週連續直播",
+    "tipJar": "禮物罐子"
   },
   "liveStudio": {
     "points": {
@@ -9254,7 +9258,8 @@
       "join_alert": "欢迎每位观众的到来",
       "goal_bar": "追踪小费或关注者到目标",
       "viewer_count": "有多少人在观看",
-      "points_board": "你的顶级观众按观看和赠送积分排列"
+      "points_board": "你的顶级观众按观看和赠送积分排列",
+      "tip_jar": "一個罐子，隨著付費禮物進來而漸漸裝滿"
     },
     "fields": {
       "style": "风格",

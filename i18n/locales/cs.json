@@ -9180,7 +9180,11 @@
     "subathonOver": "Čas je vypršený",
     "pointsTitle": "Nejvěrnější diváci",
     "points_one": "{{formatted}} bod",
-    "points_other": "{{formatted}} body"
+    "points_other": "{{formatted}} body",
+    "level": "Úroveň {{level}}",
+    "streak_one": "{{count}}-týdenní série",
+    "streak_other": "{{count}}-týdenní série",
+    "tipJar": "Dárková nádoba"
   },
   "liveStudio": {
     "controls": {
@@ -9250,7 +9254,9 @@
       "rule_alert": "Přidávám upozornění na pravidla.",
       "poll": "Průzkum",
       "subathon_timer": "Počítadlo Subathonu",
-      "points_board": "Věrní diváci"
+      "points_board": "Věrní diváci",
+      "streamer_level": "Úroveň streameru",
+      "tip_jar": "Dárková nádoba"
     },
     "hints": {
       "spin_wheel": "Kde se točí kola ve vašich pravidlech",
@@ -9272,7 +9278,9 @@
       "rule_alert": "Kde se zobrazují upozornění na tvá pravidla",
       "poll": "Váš živý průzkum, s tlačítkem pro hlasování pro každou variantu",
       "subathon_timer": "Počítadlo dolů, které odkládá dary, follows a předplatné",
-      "points_board": "Vaši nejlepší diváci podle bodů za sledování a darování"
+      "points_board": "Vaši nejlepší diváci podle bodů za sledování a darování",
+      "streamer_level": "Vaše úroveň streameru a týdenní pruh, z vašeho profilu",
+      "tip_jar": "Sklenice, která se naplní při příchodu zaplacených dárků"
     },
     "fields": {
       "style": "Styl",
@@ -9306,7 +9314,8 @@
       "speed": "Rychlost",
       "slow": "Pomalý",
       "normal": "Normální",
-      "fast": "Rychle"
+      "fast": "Rychle",
+      "showStreak": "Zobrazit týdenní pruh"
     },
     "obs": {
       "title": "Použití s OBS",

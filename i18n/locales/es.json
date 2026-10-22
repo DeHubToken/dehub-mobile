@@ -10770,7 +10770,11 @@
     "subathonOver": "Se acabó el tiempo",
     "pointsTitle": "Los espectadores más leales",
     "points_one": "{{formatted}} punto",
-    "points_other": "{{formatted}} puntos"
+    "points_other": "{{formatted}} puntos",
+    "level": "Nivel {{level}}",
+    "streak_one": "Racha de {{count}}semanas",
+    "streak_other": "Racha de {{count}}semanas",
+    "tipJar": "Tarro de regalo"
   },
   "liveStudio": {
     "controls": {
@@ -10841,7 +10845,9 @@
       "rule_alert": "Alertas de reglas",
       "poll": "Poll",
       "subathon_timer": "Temporizador Subathon",
-      "points_board": "Visores fieles"
+      "points_board": "Visores fieles",
+      "streamer_level": "Nivel de streamer",
+      "tip_jar": "Tarro de regalo"
     },
     "hints": {
       "spin_wheel": "Donde las ruedas de tus reglas giran",
@@ -10863,7 +10869,9 @@
       "rule_alert": "¿Dónde aparecen las alertas de tus reglas?",
       "poll": "Tu encuesta en vivo, con un botón de voto para cada opción",
       "subathon_timer": "Una cuenta regresiva que regala, sigue y las suscripciones rechazan",
-      "points_board": "Tus mejores espectadores por puntos de ver y regalar"
+      "points_board": "Tus mejores espectadores por puntos de ver y regalar",
+      "streamer_level": "Tu nivel de streamer y racha semanal, desde tu perfil",
+      "tip_jar": "Un frasco que se llena a medida que llegan los regalos pagados"
     },
     "fields": {
       "style": "Estilo",
@@ -10897,7 +10905,8 @@
       "speed": "Rapidez",
       "slow": "Lento",
       "normal": "Normal",
-      "fast": "Rápido"
+      "fast": "Rápido",
+      "showStreak": "Mostrar la racha semanal"
     },
     "obs": {
       "title": "Usar con OBS",

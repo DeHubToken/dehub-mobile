@@ -9179,7 +9179,11 @@
     "subathonOver": "Aeg on läbi",
     "pointsTitle": "Kõige lojaalsemad vaatajad",
     "points_one": "{{formatted}} punkti",
-    "points_other": "{{formatted}} punkti"
+    "points_other": "{{formatted}} punkti",
+    "level": "Tase {{level}}",
+    "streak_one": "{{count}}nädala triip",
+    "streak_other": "{{count}}nädala triip",
+    "tipJar": "Kinkepurk"
   },
   "liveStudio": {
     "controls": {
@@ -9250,7 +9254,9 @@
       "rule_alert": "Reeglite märguanded",
       "poll": "Küsitlus",
       "subathon_timer": "Subathoni taimer",
-      "points_board": "Lojaalsed vaatajad"
+      "points_board": "Lojaalsed vaatajad",
+      "streamer_level": "Voogedastaja tase",
+      "tip_jar": "Kinkepurk"
     },
     "hints": {
       "spin_wheel": "Kus sinu reeglite rattad pöörlevad",
@@ -9272,7 +9278,9 @@
       "rule_alert": "Kus kuvatakse sinu reeglite märguanded",
       "poll": "Sinu reaalajas küsitlus, hääletusnupp iga valiku jaoks",
       "subathon_timer": "Allaloendus, mis kingib, järgib ja tellimusi tagasi lükkab",
-      "points_board": "Sinu parimad vaatajad vaatamise ja kingituste punktide järgi"
+      "points_board": "Sinu parimad vaatajad vaatamise ja kingituste punktide järgi",
+      "streamer_level": "Sinu voogedastaja tase ja iganädalane triip sinu profiililt",
+      "tip_jar": "Purk, mis täidetakse, kui saabuvad tasulised kingitused"
     },
     "fields": {
       "style": "Stiil",
@@ -9306,7 +9314,8 @@
       "speed": "Kiirus",
       "slow": "Aeglane",
       "normal": "Normaalne",
-      "fast": "Kiire"
+      "fast": "Kiire",
+      "showStreak": "Kuva iganädalane triip"
     },
     "obs": {
       "title": "Kasuta OBS-i",

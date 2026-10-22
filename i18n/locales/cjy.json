@@ -9199,7 +9199,11 @@
     "subathonOver": "时间到",
     "pointsTitle": "最忠实的观众",
     "points_one": "{{formatted}}点",
-    "points_other": "{{formatted}} 分"
+    "points_other": "{{formatted}} 分",
+    "level": "等级 {{level}}",
+    "streak_one": "{{count}} 周连续直播",
+    "streak_other": "{{count}} 周连续直播",
+    "tipJar": "礼物罐"
   },
   "liveStudio": {
     "controls": {
@@ -9297,7 +9301,9 @@
       "stream_timer": "直播倒计时",
       "reaction_counter": "反应计数器",
       "rule_alert": "规则提醒",
-      "points_board": "忠诚的观众"
+      "points_board": "忠诚的观众",
+      "streamer_level": "流畅主播等级",
+      "tip_jar": "礼物罐"
     },
     "hints": {
       "spin_wheel": "在你的规则中，哪里有轮子转动？",
@@ -9318,7 +9324,9 @@
       "chat_box": "实时在屏幕上显示直播聊天消息",
       "rule_alert": "您的规则提醒出现位置",
       "subathon_timer": "一个倒计时，礼物、关注和订阅都被推迟了。",
-      "points_board": "您的观看和打赏积分排行榜前列观众"
+      "points_board": "您的观看和打赏积分排行榜前列观众",
+      "streamer_level": "来自你的个人资料的流畅主播等级和每周连续直播天数",
+      "tip_jar": "一个随着付费礼物到来而逐渐填满的罐子"
     },
     "fields": {
       "style": "样式",
@@ -9352,7 +9360,8 @@
       "speed": "速度",
       "slow": "慢一点",
       "normal": "正常",
-      "fast": "快速"
+      "fast": "快速",
+      "showStreak": "展示每周连续直播天数"
     },
     "obs": {
       "title": "与OBS使用",

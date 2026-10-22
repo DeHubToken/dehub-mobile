@@ -9106,7 +9106,11 @@
     "subathonOver": "Wagati ka baara",
     "pointsTitle": "I ka mɔgɔ kantigiw",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "O ye {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "A ye min fɔ, o ye tiɲɛ ye."
   },
   "liveStudio": {
     "controls": {
@@ -9206,7 +9210,9 @@
       "ticker": "Fɛɛn minw be sɔrɔ o la",
       "rule_alert": "Kɔrɔbɔli sariya",
       "subathon_timer": "O ye wagati ta ye",
-      "points_board": "Mɔgɔ minw be kantigiya kɛ"
+      "points_board": "Mɔgɔ minw be kantigiya kɛ",
+      "streamer_level": "Fɛɛn minw be se ka kɛ",
+      "tip_jar": "A ye min fɔ, o ye tiɲɛ ye"
     },
     "hints": {
       "spin_wheel": "I ka sariya kɔnɔ, i ka kan ka min fɔ, o ye tiɲɛ ye.",
@@ -9226,7 +9232,9 @@
       "ticker": "O kɔ, a ye fɛɛn dɔ yira a la min be se k'a bali ka fɛɛn dɔ ye.",
       "rule_alert": "I ka sariyaw be yɔrɔ min na",
       "subathon_timer": "O la, mɔgɔ minw be sɔn ka fɛɛn dɔ di, olu be sɔn ka fɛɛn dɔ di.",
-      "points_board": "I ka mɔgɔ minw ye mɔgɔbabaw ye, i ka olu filɛ ani k'u ka nilifɛnw di u ma"
+      "points_board": "I ka mɔgɔ minw ye mɔgɔbabaw ye, i ka olu filɛ ani k'u ka nilifɛnw di u ma",
+      "streamer_level": "I ka kunnafoniw hakɛ ani i ka dɔgɔkun o dɔgɔkun kunnafoniw, i ka kunnafoniw kɔnɔ",
+      "tip_jar": "O kɔ, a ye fɛɛn dɔ di a ma min tun ka kan ka kɛ a yɛrɛ ta ye."
     },
     "fields": {
       "style": "O ye ɲɛyirali ɲuman ye",
@@ -9258,7 +9266,8 @@
       "speed": "Ka to ka taga",
       "slow": "A be taga dɔɔni dɔɔni",
       "normal": "O ye koo ɲuman ye.",
-      "fast": "Fanga be min na"
+      "fast": "Fanga be min na",
+      "showStreak": "Dɔgɔkun hakilila-nyuma"
     },
     "obs": {
       "title": "Ka baara kɛ ni OBS ye",

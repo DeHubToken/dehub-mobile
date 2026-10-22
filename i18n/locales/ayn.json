@@ -9157,7 +9157,11 @@
     "subathon": "سوباثون",
     "subathonOver": "زمنك خت",
     "points_one": "{{formatted}} نقطة",
-    "points_other": "{{formatted}} نقاط"
+    "points_other": "{{formatted}} نقاط",
+    "level": "لول {{level}}",
+    "streak_one": "{{count}}-شركة أسبوعية",
+    "streak_other": "{{count}}-شركة أسبوعية",
+    "tipJar": "دُبّار هدايا"
   },
   "liveStudio": {
     "controls": {
@@ -9232,7 +9236,9 @@
       "top_supporters": "أقوى الداعمين",
       "text": "نص",
       "frame": "فريم",
-      "stream_timer": "برودكاست تايمر"
+      "stream_timer": "برودكاست تايمر",
+      "streamer_level": "ستريمر لول",
+      "tip_jar": "دُبّار هدايا"
     },
     "hints": {
       "subathon_timer": "العد التنازلي الذي تدفعه الهدايا والمتابعات والاشتراكات إلى الوراء",
@@ -9243,7 +9249,9 @@
       "share_alert": "يظهر لما حد يشاركك البث",
       "viewer_count": "كَمِ الناسِ مُشْتَرِكِين؟",
       "text": "سطر نص أو \"lower third\" (الخط السفلي)",
-      "reaction_counter": "تعد كل ردود الفعل على بثك"
+      "reaction_counter": "تعد كل ردود الفعل على بثك",
+      "streamer_level": "لول ستريمرك و شركتك الأسبوعية من صفحتك",
+      "tip_jar": "دُبّار يملأ مع كل هدايا مدفوعة تيجي"
     },
     "fields": {
       "confirmedOnly": "بعد ما يثبّت الدفع",
@@ -9262,7 +9270,8 @@
       "lines": "لينيات مظهورة",
       "speed": "سُرْعَة",
       "normal": "عادي",
-      "fast": "سريع"
+      "fast": "سريع",
+      "showStreak": "يعرض شركتك الأسبوعية"
     },
     "obs": {
       "connected": "OBS متصل",

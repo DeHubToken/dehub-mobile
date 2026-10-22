@@ -9260,7 +9260,10 @@
     "subathonOver": "Mampisandratra ny ora",
     "pointsTitle": "Mpijery tsy miangatra indrindra",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "streak_one": "{{count}}-week voasakana",
+    "streak_other": "{{count}}-week voasakana",
+    "tipJar": "Fanomezana siny"
   },
   "liveStudio": {
     "controls": {
@@ -9362,7 +9365,9 @@
       "ticker": "Ticker",
       "rule_alert": "Fampilazan'ny fitsipika",
       "subathon_timer": "Subathon fameram-potoana",
-      "points_board": "Mpijery tsy mivadika"
+      "points_board": "Mpijery tsy mivadika",
+      "streamer_level": "Dingana mirohotra",
+      "tip_jar": "Fanomezana siny"
     },
     "hints": {
       "spin_wheel": "Aiza ny kodiarana ao amin'ny fitsipika mihodina",
@@ -9383,7 +9388,9 @@
       "ticker": "Tsipika avy amin'ny andinin-teninao manokana izay manavatsava ny fàfana",
       "rule_alert": "Ny toerana misy ny fitsipikao dia misy ny fampandrenesana",
       "subathon_timer": "A countdown fa ny fanomezam-pahasoavana, manaraka sy ny famandrihana manosika indray",
-      "points_board": "Ny mpijery ambony amin'ny fijerinao sy ny fanomezam-boninahitra"
+      "points_board": "Ny mpijery ambony amin'ny fijerinao sy ny fanomezam-boninahitra",
+      "streamer_level": "Ny haavon'ny renirano sy ny isan-kerinandro streak, avy amin'ny mombamomba azy",
+      "tip_jar": "Ny siny izay mameno ny toy ny fanomezana karama tonga ao"
     },
     "fields": {
       "style": "Endrika",
@@ -9417,7 +9424,8 @@
       "speed": "Hafaingana",
       "slow": "Meda",
       "normal": "Tokony ho izy",
-      "fast": "Faingana"
+      "fast": "Faingana",
+      "showStreak": "Asehoy ny faran'ny herinandro streak"
     },
     "obs": {
       "title": "Ampiasao miaraka amin'ny OBS",

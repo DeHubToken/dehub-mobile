@@ -9234,7 +9234,11 @@
     "subathonOver": "Vaqt tugadi",
     "pointsTitle": "Eng sodiq tomoshabinlar",
     "points_one": "{{formatted}} nuqta",
-    "points_other": "{{formatted}} ball"
+    "points_other": "{{formatted}} ball",
+    "level": "Daraja {{level}}",
+    "streak_one": "{{count}}-haftalik seriya",
+    "streak_other": "{{count}}-haftalik seriya",
+    "tipJar": "Sovg'a idishi"
   },
   "liveStudio": {
     "controls": {
@@ -9305,7 +9309,9 @@
       "rule_alert": "Qoida ogohlantirishlari",
       "poll": "So'rovnoma",
       "subathon_timer": "Subaton taymeri",
-      "points_board": "Sodiq tomoshabinlar"
+      "points_board": "Sodiq tomoshabinlar",
+      "streamer_level": "Striming darajasi",
+      "tip_jar": "Sovg'a idishi"
     },
     "hints": {
       "spin_wheel": "Qoidalaringizdagi g'ildiraklar qayerda aylanadi",
@@ -9327,7 +9333,9 @@
       "rule_alert": "Sizning qoidangizning xabarlarini koʻrish joyi",
       "poll": "Jonli so'rovnomangiz, har bir variant uchun ovoz berish tugmasi bilan",
       "subathon_timer": "Sovg'alar, obunalar va obunalar orqaga suriladigan ortga qaytish davri",
-      "points_board": "Tomosha qilish va sovg'a qilish orqali ball olish bo'yicha eng ko'p tomoshabinlaringiz"
+      "points_board": "Tomosha qilish va sovg'a qilish orqali ball olish bo'yicha eng ko'p tomoshabinlaringiz",
+      "streamer_level": "Profilingizdan olingan strimer darajangiz va haftalik seriyangiz",
+      "tip_jar": "Pullik sovg'alar kelishi bilan to'ladigan banka"
     },
     "fields": {
       "style": "Uslub",
@@ -9360,7 +9368,8 @@
       "speed": "Tezlik",
       "slow": "Sekin",
       "normal": "Oddiy",
-      "fast": "Tez"
+      "fast": "Tez",
+      "showStreak": "Haftalik seriyani ko'rsatish"
     },
     "obs": {
       "title": "OBS bilan foydalaning",
