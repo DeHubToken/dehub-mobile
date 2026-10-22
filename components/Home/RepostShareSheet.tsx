@@ -1,6 +1,8 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Linking, Pressable, Share, StyleSheet, Text, View } from "react-native";
+import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { getShareRefCode, shareWithRef, withShareRef } from "../../libs/shareRef";
+import { track } from "../../libs/analytics";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
@@ -90,12 +92,13 @@ function RepostShareSheetComponent({
 
   const openTarget = useCallback((target: "x" | "telegram" | "whatsapp") => {
     onClose();
-    Linking.openURL(shareTargetUrl(target, shareUrl, shareText)).catch(() => {});
+    Linking.openURL(shareTargetUrl(target, withShareRef(shareUrl), shareText)).catch(() => {});
+    track("share", { kind: "post", channel: target, has_ref: !!getShareRefCode() });
   }, [onClose, shareUrl, shareText]);
 
   const nativeShare = useCallback(() => {
     later(() => {
-      Share.share({ message: shareText ? `${shareText}\n${shareUrl}` : shareUrl, url: shareUrl }).catch(() => {});
+      shareWithRef({ message: shareText ? `${shareText}\n${shareUrl}` : shareUrl, url: shareUrl }, undefined, "post").catch(() => {});
     });
   }, [later, shareUrl, shareText]);
 

@@ -54,6 +54,8 @@ import { setViewAccount } from "../services/view.service";
 import { tokenRefreshManager } from "../libs/token-refresh";
 import { clearPersistedNavigationState } from "../hooks/useNavigationPersistence";
 import { markOnboardingOfferPending } from "../hooks/useOnboardingChecklist";
+import { identifyWallet, resetAnalytics, track } from "../libs/analytics";
+import { setShareRefCode } from "../libs/shareRef";
 import {
   currentProfileId,
   beginAddProfileAttempt,
@@ -325,6 +327,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }).catch(() => undefined);
     return () => { cancelled = true; stop?.(); };
   }, [referralWallet]);
+  const analyticsWalletRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (analyticsWalletRef.current && analyticsWalletRef.current !== referralWallet) resetAnalytics();
+    analyticsWalletRef.current = referralWallet;
+    setShareRefCode(null);
+    if (!referralWallet) return;
+    identifyWallet(referralWallet);
+    let cancelled = false;
+    void import('../libs/affiliate')
+      .then(({ findAffiliateCode }) => findAffiliateCode(referralWallet))
+      .then((code) => { if (!cancelled) setShareRefCode(code); })
+      .catch(() => undefined);
+    return () => { cancelled = true; };
+  }, [referralWallet]);
   const [balancesLoading, setBalancesLoading] = useState(false);
   const [provisionalUser, setProvisionalUser] = useState<any | null>(null);
   const [provisionalToken, setProvisionalToken] = useState<string | null>(null); // kept for backward compatibility
@@ -340,7 +356,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // step sits between them — so the guided-tour offer is written to durable
   // storage here and read back on Home rather than kept in memory.
   useEffect(() => {
-    if (needsUsername) markOnboardingOfferPending();
+    if (!needsUsername) return;
+    markOnboardingOfferPending();
+    track('signup');
   }, [needsUsername]);
 
   const [authMethod, setAuthMethodState] = useState<'local' | null>(null);

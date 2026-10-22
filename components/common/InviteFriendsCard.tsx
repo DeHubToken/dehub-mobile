@@ -11,6 +11,7 @@ import {
 import Icon from "../ui/Icon";
 import { PageSection } from "../page/PageKit";
 import { copyToClipboard } from "../../libs";
+import { track } from "../../libs/analytics";
 import { toastError } from "../../libs/toast";
 import {
   AFFILIATE_COMMISSION_PCT,
@@ -69,13 +70,19 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
       }
       if (!code) setCode(c);
       const l = buildInviteLink(c);
-      await shareProfile(l, buildInviteMessage(c, l));
+      await shareProfile(l, buildInviteMessage(c, l), "invite");
     } catch (e) {
       toastError(e, t("affiliate.shareFailed"));
     } finally {
       setSharing(false);
     }
   }, [addr, code, shareName, t]);
+
+  const onCopy = useCallback(() => {
+    if (!link) return;
+    copyToClipboard(link);
+    track("invite_link_copied", { source: "invite_card" });
+  }, [link]);
 
   if (!addr) return null;
 
@@ -98,7 +105,7 @@ const InviteFriendsCard: React.FC<Props> = ({ address, shareName, style }) => {
           style={styles.codePill}
           activeOpacity={0.7}
           disabled={!link}
-          onPress={() => link && copyToClipboard(link)}
+          onPress={onCopy}
           accessibilityLabel={t("affiliate.copyInviteLink")}
         >
           {loading ? (

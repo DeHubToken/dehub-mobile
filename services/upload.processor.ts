@@ -26,6 +26,7 @@ import { createPoll } from "../services/polls.service";
 import { prepareWalletForQueuedMint } from "../libs/wallet-signing-preflight";
 import { getDraftVideo, releaseDraftVideo, waitForDraftVideo } from "./draftVideo";
 import { watchPostVideo } from "./post-video-watch";
+import { notePostPublished } from "../libs/review-prompt";
 
 // Abort tracking per-job
 const abortFlags: Record<string, { current: boolean }> = {};
@@ -555,6 +556,7 @@ async function processJob(job: UploadJob): Promise<void> {
 
   uploadActions.updateProgress(job.id, 1);
   uploadActions.updateStage(job.id, "done");
+  void notePostPublished();
   const receipt = Object.fromEntries(Object.entries(job.draftReceipt ?? {}).filter(([key]) => pollPublished || !/:poll/.test(key)));
   const consumed = completeDraftReceipt(receipt);
   if (consumed && pollPublished && job.sourceDraftId) await consumePublishedDraft(job.sourceDraftId, job.walletAddress);

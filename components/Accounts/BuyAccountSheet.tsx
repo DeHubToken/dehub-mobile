@@ -20,7 +20,8 @@ import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView, TextInput, ActivityIndicator, Share } from "react-native";
+import { View, Text, StyleSheet, Pressable, ScrollView, TextInput, ActivityIndicator } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -148,7 +149,7 @@ const BuyAccountSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed,
 
   const handleShare = () => {
     const url = ShareLinks.accountListing(listing.username);
-    void Share.share({
+    void shareWithRef({
       message: `${t("accounts.shareMessage", { handle: listing.username })}\n${url}`,
       url,
     });

@@ -255,7 +255,8 @@ describe('ShareLinks', () => {
   it('offers the ENS URL alongside the username one, never instead of it', () => {
     // Two URLs for one profile. The username is what the account is called; a
     // .eth name is a claim on something that can be sold or expire.
-    expect(ShareLinks.profile('mal')).toBe('https://dehub.io/mal');
+    expect(ShareLinks.profile('mal')).toBe('https://dehub.io/@mal');
+    expect(ShareLinks.profile('@mal')).toBe('https://dehub.io/@mal');
     expect(ShareLinks.ensProfile('mal.eth')).toBe('https://dehub.io/mal.eth');
   });
 });

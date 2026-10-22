@@ -8,11 +8,11 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  Share,
   ActivityIndicator,
   StyleSheet,
   Image,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { supabase } from "../../services/supabase";
 import { useAuth } from "../../context/AuthContext";
 import { toastSuccess, toastError, toastInfo } from "../../libs/toast";
@@ -432,10 +432,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
   const handleShare = () => {
     const url = `https://dehub.io/stages/${stageId}`;
-    Share.share({
+    shareWithRef({
       message: `${t("stages.transcriptShare", { title: space?.title || t("stages.audioStage") })}\n\n${t("stages.transcriptLink", { url })}`,
       title: space?.title || t("stages.audioStageTranscript"),
-    });
+    }, undefined, "stage").catch(() => {});
   };
 
   const handleQuote = (segmentText: string, speakerLabel: string) => {

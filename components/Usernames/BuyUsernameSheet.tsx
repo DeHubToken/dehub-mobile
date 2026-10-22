@@ -16,7 +16,8 @@
 import { appLocale } from "../../libs/date.util";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator, Share } from "react-native";
+import { View, Text, StyleSheet, Pressable, ScrollView, ActivityIndicator } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -105,7 +106,7 @@ const BuyUsernameSheet: React.FC<Props> = ({ listing, visible, onClose, isAuthed
 
   const handleShare = () => {
     const url = ShareLinks.usernameListing(listing.username);
-    void Share.share({
+    void shareWithRef({
       message: `${t("usernames.shareMessage", { handle: listing.username })}\n${url}`,
       url,
     });

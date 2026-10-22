@@ -10,7 +10,8 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  */
 
 import React, { useState } from "react";
-import { ActivityIndicator, Alert, KeyboardAvoidingView, Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, Alert, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import * as Clipboard from "expo-clipboard";
 import * as ImagePicker from "expo-image-picker";
 import { useRoute, type RouteProp } from "@react-navigation/native";
@@ -153,7 +154,7 @@ export default function PackScreen() {
   };
 
   const shareLink = () => {
-    void Share.share({ message: shareUrl, url: shareUrl }).catch(() => {});
+    void shareWithRef({ message: shareUrl, url: shareUrl }).catch(() => {});
   };
 
   const confirmDelete = () => {

@@ -13,9 +13,9 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  Share,
   Platform,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import AssistantNavIcon from "../ui/AssistantNavIcon";
@@ -483,10 +483,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     if (tokenId == null) return;
     const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
     try {
-      await Share.share({
+      await shareWithRef({
         message: `Check out this post ${url}`,
         url,
-      });
+      }, undefined, "post");
     } catch {}
     onClose();
   }, [tokenId, onClose]);

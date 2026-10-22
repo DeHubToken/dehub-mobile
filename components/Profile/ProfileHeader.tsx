@@ -45,7 +45,7 @@ import {
 import { runWithPermissions } from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { WEBSITE_LINK } from "../../config";
+import { ShareLinks } from "../../navigation/linking.config";
 import { translateText, getUserLanguage } from "../../services/translation.service";
 import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
@@ -172,7 +172,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
 
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
-    const url = `${WEBSITE_LINK}/${profileSlug}`;
+    if (!profileSlug) return;
+    const url = ShareLinks.profile(profileSlug);
     const message = `Check out my dehub profile ${url}`;
     await shareProfile(url, message);
   }, [username, address]);
