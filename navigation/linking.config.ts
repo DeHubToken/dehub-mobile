@@ -691,7 +691,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     if (segments[0] === 'stages') {
       // Only the numeric shape is one stage; a bare /stages is the hub itself,
       // which the handler opens with no id to join.
-      const shortId = segments[1] && /^\d+$/.test(segments[1]) ? Number(segments[1]) : undefined;
+      const rawShortId = segments[1] && /^\d+$/.test(segments[1]) ? Number(segments[1]) : undefined;
+      // Stage 15 was replaced by stage 18; old links open the new one.
+      const shortId = rawShortId === 15 ? 18 : rawShortId;
       logger.info('Stage deep link', { shortId });
       emitStageDeepLink(shortId != null ? { shortId } : {});
       return homeState();
