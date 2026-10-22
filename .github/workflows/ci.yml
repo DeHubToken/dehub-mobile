@@ -434,12 +434,12 @@ jobs:
           chmod +x gradlew
           ./gradlew :app:processReleaseMainManifest --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
 
-  ios-scene-launch:
-    name: iOS 27 launch under the scene life cycle
+  ios-release-launch:
+    name: iOS release launches (Xcode 26.2, as EAS builds it)
     needs: verify
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/ios-scene-lifecycle-1022'
-    runs-on: xcode-27
-    timeout-minutes: 90
+    runs-on: macos-15
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
@@ -448,30 +448,30 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - run: sudo xcode-select -s /Applications/Xcode_27.app/Contents/Developer
+      - run: sudo xcode-select -s /Applications/Xcode_26.2.app/Contents/Developer
       - run: npm ci --legacy-peer-deps
       - run: npx patch-package --error-on-fail
       - name: Resolve native pods
         working-directory: ios
         run: pod install
-      - name: Build a simulator release with the iOS 27 SDK
+      - name: Build a simulator release
         run: |
           set -o pipefail
           xcodebuild -version
           xcodebuild -workspace ios/DeHub.xcworkspace -scheme DeHub \
             -configuration Release -sdk iphonesimulator \
             -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath "$RUNNER_TEMP/scene-ios" \
-            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee scene-ios-build.log | xcbeautify
-      - name: Launch on iOS 27 and stay up (iPhone, iPad, iPhone Duo when present)
+            -derivedDataPath "$RUNNER_TEMP/release-ios" \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee release-ios-build.log | xcbeautify
+      - name: Launch and stay up (iPhone, iPad)
         run: |
           set -euo pipefail
-          app="$RUNNER_TEMP/scene-ios/Build/Products/Release-iphonesimulator/DeHub.app"
+          app="$RUNNER_TEMP/release-ios/Build/Products/Release-iphonesimulator/DeHub.app"
           test -d "$app"
-          mkdir -p scene-launch
-          xcrun simctl list runtimes > scene-launch/runtimes.txt
-          xcrun simctl list devices available > scene-launch/devices.txt
-          # The runner's own devices for the newest iOS runtime: always compatible.
+          mkdir -p release-launch
+          xcrun simctl list runtimes > release-launch/runtimes.txt
+          xcrun simctl list devices available > release-launch/devices.txt
+          # The runner's own devices for its newest iOS runtime.
           picks=$(xcrun simctl list devices available -j | python3 -c '
           import json, sys
           data = json.load(sys.stdin)["devices"]
@@ -495,18 +495,18 @@ jobs:
             pid=$(xcrun simctl launch "$udid" io.dehub.mobile | awk '{print $NF}')
             sleep 40
             if kill -0 "$pid" 2>/dev/null; then echo "PASS $name stayed up (pid $pid)"; else echo "FAIL $name exited"; failed=1; fi
-            xcrun simctl io "$udid" screenshot "scene-launch/$slug.png" || true
+            xcrun simctl io "$udid" screenshot "release-launch/$slug.png" || true
             xcrun simctl shutdown "$udid" || true
           done <<< "$picks"
-          find ~/Library/Logs/DiagnosticReports -name 'DeHub*' -newer "$app" -exec cp {} scene-launch/ \; 2>/dev/null || true
+          find ~/Library/Logs/DiagnosticReports -name 'DeHub*' -newer "$app" -exec cp {} release-launch/ \; 2>/dev/null || true
           exit $failed
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ios-scene-launch
+          name: ios-release-launch
           path: |
-            scene-ios-build.log
-            scene-launch/
+            release-ios-build.log
+            release-launch/
           if-no-files-found: ignore
           retention-days: 14
 
