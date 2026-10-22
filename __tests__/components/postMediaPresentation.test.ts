@@ -39,7 +39,7 @@ describe('post media presentation', () => {
   it('separates post content from its metadata row', () => {
     const feedCard = readSource('components', 'Home', 'FeedCard.tsx');
 
-    expect(feedCard).toContain('<View className="flex-row items-center gap-2 pt-3">');
+    expect(feedCard).toContain('<View className="flex-row flex-wrap items-center gap-3 pt-3">');
     expect(feedCard).not.toContain('<View className="flex-row items-center gap-2 pt-1.5">');
   });
 
