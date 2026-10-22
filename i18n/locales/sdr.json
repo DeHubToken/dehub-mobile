@@ -9368,6 +9368,29 @@
       "summary": {
         "tip": "تیپ {{amount}} DHB یا بیشتر"
       }
+    },
+    "moderation": {
+      "saved": "قواعد چت ذخیره شد.",
+      "off": "Off",
+      "seconds_other": "{{count}} ثانیه",
+      "bannedWordsHint": "अलग अलग करो कोमा से। एक शब्द को अक्षर दर अक्षर स्पेल करना इसे दरकिनार नहीं करता।",
+      "moderators": "مؤذنون",
+      "addModerator": "Add",
+      "moderatorAdded": "مُعتَمل مُضاف.",
+      "moderatorNotFound": "نام کاربری یافت نشد.",
+      "unban": "Unban",
+      "noBans": "نفری ممنوعه نیست.",
+      "noLog": "نفرمایم.",
+      "actions": {
+        "timeout_one": "{{actor}} خاتمه شد {{target}} برای {{count}} ثانیه",
+        "timeout_other": "{{actor}} خاتمه شد {{target}} پس از {{count}} ثانیه",
+        "unban": "{{actor}} مَغْفُورَ لَهُ {{target}}",
+        "moderator-removed": "{{target}} اکنون مدیر نیست"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timedOut": "Timed out.",
+    "failed": "assistant error"
   }
 }

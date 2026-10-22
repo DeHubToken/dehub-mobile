@@ -9337,6 +9337,60 @@
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
       }
+    },
+    "moderation": {
+      "title": "Ilaalinta hadalkaan",
+      "intro": "Xeerarka hadalkaan hoose hadalkaan buuxa. Waxay mar walba gaadhin DeHub's hadalkaan guud: qof aad xad ka dhigtid halkan weli kara hadal meel kasta.",
+      "loadFailed": "Xeerarka ilaalinta hadalkaan lama soo qaadi karin. Dib u celceliso bogga si aad isku day mar kale.",
+      "save": "Kaydi xeerarka hadalkaan",
+      "saved": "Xeerarka hadalkaan waa la kaydiyey.",
+      "saveFailed": "Isbeddel taasi lama kaydin karin.",
+      "slowMode": "Habka joojiinta",
+      "slowModeHint": "Mudada ay ilaaliyaha kasta u sugto inta u dhexeeya hadalkaan. Adiga iyo moderators-kaaga waxay mar walba sugaan.",
+      "off": "Dhameystir",
+      "seconds_one": "{{count}} ilbiriqsi",
+      "seconds_other": "{{count}} ilbiriqsi",
+      "followersOnly": "Ardayda kaliya",
+      "subscribersOnly": "Subscribers kaliya",
+      "subscribersOnlyHint": "Waxay ka dhaafisaa ardayda kaliya.",
+      "bannedWords": "Ereyada xad lagu dhigay",
+      "bannedWordsHint": "Kala sooc komma. Ereyga qofka u silsilaysa xarf xarf lama gudbiso.",
+      "wordAction": "Markay qof mid isticmaalo",
+      "wordBlock": "Jooji fariinta",
+      "wordTimeout": "Jooji oo daqiiqad ku sii daa.",
+      "moderators": "Moderator",
+      "moderatorsHint": "Waxay waqti ka bixi karaan oo ka mamnuuci karaan daawadayaasha durdurradaada. Ma awoodaan inay ku dhaqmaan adiga ama midba midka kale.",
+      "addModerator": "Ku dar",
+      "usernamePlaceholder": "Magaca isticmaalaha",
+      "moderatorAdded": "Moderator ayaa intaa ku daray.",
+      "moderatorNotFound": "Xisaab la ma leh magacaas isticmaale.",
+      "removeModerator": "Ka saar moderator",
+      "banned": "Laga mamnuuco durdurradaada",
+      "unban": "Jinsi la 'aan",
+      "noBans": "Qofna waa la mamnuucay.",
+      "log": "Tallaabooyinkii ugu dambeeyay",
+      "noLog": "Waxba weli.",
+      "actions": {
+        "ban": "{{actor}} mamnuuca {{target}}",
+        "moderator-added": "{{target}} wuxuu noqday moderator",
+        "moderator-removed": "{{target}} mar dambe ma aha moderator",
+        "word-timeout_one": "Waqtiga ka baxay {{target}} for {{count}} labaad for \"{{word}}\"",
+        "word-timeout_other": "Waqtiga ka baxay {{target}} for {{count}} seconds for \"{{word}}\""
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Joojin 1 daqiiqad",
+    "timeout10m": "Joojin 10 daqiiqad",
+    "timeout1h": "Joojin 1 saac",
+    "ban": "Xad ka dhig ka hadalkaan",
+    "makeModerator": "Dhig moderator",
+    "timedOut": "Waxaa joojiyey.",
+    "banned": "Waxaa xad ka dhigey ka hadalkaan.",
+    "madeModerator": "Waxay hadda yihiin moderator.",
+    "failed": "Taasi ma shaqeyn. Isku day mar kale.",
+    "youAreBanned": "Kuma karto hadal ku hadal hadalkaan abuuraha",
+    "youAreTimedOut": "Waxaa joojiyey daqiiqad yar",
+    "title": "Dhig"
   }
 }

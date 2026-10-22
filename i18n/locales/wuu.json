@@ -9242,6 +9242,22 @@
       "summary": {
         "tip": "{{amount}} 打賞 DHB 或以上"
       }
+    },
+    "moderation": {
+      "seconds_one": "{{count}} 秒",
+      "seconds_other": "{{count}} 秒",
+      "subscribersOnlyHint": "過濾追蹤者喔。",
+      "actions": {
+        "timeout_one": "{{actor}} 過時{{target}} 好幾{{count}} 秒",
+        "timeout_other": "{{actor}} 過時{{target}} 好幾{{count}} 秒",
+        "unban": "{{actor}} 咱家未封 {{target}}",
+        "moderator-added": "{{target}} 成了个管理员"
+      }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "1分錯過",
+    "timeout10m": "10分錯過",
+    "madeModerator": "伊拉现在是一个主持人。"
   }
 }
