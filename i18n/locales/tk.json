@@ -9112,7 +9112,17 @@
     "goalReached": "Goý, maksat amala aşsyn!",
     "followersUnit": "şägirtler",
     "topSupporters": "Ýolbaşçylyk maslahaty",
-    "chatPreview": "Çat habarlary bu ýerde görünýär"
+    "chatPreview": "Çat habarlary bu ýerde görünýär",
+    "poll": {
+      "closed": "Saýlama ýapyldy",
+      "voteFor": "{{option}} üçin seslen",
+      "signIn": "Saýlan",
+      "failed": "Siziň seslenmegiňiz hiç hili ähmiýet bermedi, ýene synanyň.",
+      "voted_one": "Sen seslendin {{count}} seslendin",
+      "voted_other": "Sen seslendin {{count}} votes",
+      "votes_one": "{{count}} ses",
+      "votes_other": "{{count}} Votes"
+    }
   },
   "liveStudio": {
     "title": "Öýlü Studio",
@@ -9182,7 +9192,8 @@
       "event_feed": "Soňky sowgatlar, şägirtler, abonentler we siziň habaryňyzy paýlaýan adamlar",
       "chat_box": "Çat habarlaryny ekranda görkeziň",
       "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar",
-      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär"
+      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär",
+      "poll": "Her bir saýlama üçin bir seslenme tugmasy bilen"
     },
     "fields": {
       "style": "Şablony",
@@ -9284,7 +9295,8 @@
         "share": "Kimdir biri akymy paýlaşýar",
         "command": "Çat tabşyrygy ulanylýar",
         "keyword": "Çat habarynda bir söz bar",
-        "chat": "Çat habary"
+        "chat": "Çat habary",
+        "live": "Telewizýa başlaýar"
       },
       "audiences": {
         "everyone": "Hemmeler",
@@ -9334,6 +9346,36 @@
         "spooky": "Spooky",
         "magic-spell": "Jadygöýlik jadygöý",
         "shhh": "ŞHH"
+      }
+    },
+    "polls": {
+      "title": "Saýlamalar",
+      "intro": "Siziň telegepleşikleriňizi görýän adamlara bir sorag beriň. Olar DeHub-da bir düýş bilen jogap berýärler ýa-da {{command}} we çatda saýlama sanyny ýazýarlar.",
+      "question": "Soru",
+      "questionPlaceholder": "Men ýene-de näme oýnap bilerin?",
+      "option": "Option {{n}}",
+      "addOption": "Bir mümkinçiligiň bardygy",
+      "removeOption": "{{n}} saýynyaýyr",
+      "duration": "Bu näçe wagt dowam eder?",
+      "seconds_one": "{{count}} ikinji",
+      "seconds_other": "{{count}} sekunda",
+      "minutes_one": "{{count}} minut",
+      "minutes_other": "{{count}} minutlar",
+      "start": "Saýlamalary başla",
+      "end": "Ahyrsoňy seslenmek",
+      "started": "Siziň seslenmeňiz açyk. Häzir diňleýjiler seslenip bilerler.",
+      "notLive": "Öňürti ýaşap görüň. Häzirki serişdesinde bir soraw geçirilýär.",
+      "startFailed": "Saýlama başlamady. Gaýtalaň.",
+      "closeFailed": "Saýlama tamamlanmady. Gaýtalaň.",
+      "live": "Açyk seslenmek {{time}} çep",
+      "ended": "Saýlama ýapyldy",
+      "votes_one": "{{count}} ses",
+      "replaceHint": "Täze seslenme başlanda, açylýan seslenme ýapylýar.",
+      "widgetHint": "Öňki saýlamalaryňyzy görkeziň. DeHub-da seredýänler seslenmek üçin bir saýlama tapýarlar; OBS-de adamlara {{command}} we gürrüňdeşlik sanyny ýazmagy haýyş edýärler.",
+      "sample": {
+        "a": "Täze bir zat",
+        "b": "Gel ýene, gel meniň favoritim",
+        "c": "Sen saýlaýarsyň"
       }
     }
   }

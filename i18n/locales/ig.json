@@ -9110,7 +9110,17 @@
     "followersUnit": "na-eso ụzọ",
     "topSupporters": "Top akwado",
     "tipped": "{{name}} zitere onyinye",
-    "chatPreview": "Chat ozi egosi ebe a"
+    "chatPreview": "Chat ozi egosi ebe a",
+    "poll": {
+      "closed": "Votu mechiri emechi",
+      "voteFor": "Vote maka {{option}}",
+      "signIn": "Banye na votu",
+      "failed": "Ntuli aka gị agụghị. Gbalịa ọzọ.",
+      "voted_one": "Ị tụrụ vootu · {{count}} votu",
+      "voted_other": "Ị tụrụ vootu · {{count}} votes",
+      "votes_one": "{{count}} votu",
+      "votes_other": "{{count}} votu"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9166,7 +9176,8 @@
       "event_feed": "Omume ọfụụ",
       "chat_box": "Igbe nkata",
       "ticker": "Ticker",
-      "rule_alert": "Ọkwa iwu"
+      "rule_alert": "Ọkwa iwu",
+      "poll": "Pọtụfoliyo"
     },
     "hints": {
       "tip_alert": "Na-eme ememe ọ bụla n 'ọnụ, size ya tier",
@@ -9184,7 +9195,8 @@
       "event_feed": "Onyinye kachasị ọhụrụ, ndị na-eso ụzọ, ndị debanyere aha na ndị mmadụ na-ekerịta mgbasa ozi gị",
       "chat_box": "Egosi gị agbasa ozi n 'ikuku chat ozi na ihuenyo",
       "ticker": "Ahịrị nke ederede nke gị nke na-agagharị na ihuenyo",
-      "rule_alert": "Ebe ọkwa iwu gị na-apụta"
+      "rule_alert": "Ebe ọkwa iwu gị na-apụta",
+      "poll": "Gị ndụ ntuli aka, na a votu button maka ọ bụla nhọrọ"
     },
     "fields": {
       "style": "Ụdị",
@@ -9282,7 +9294,8 @@
         "share": "Mmadụ na-ekerịta iyi ahụ",
         "command": "Ejiri iwu nkata",
         "keyword": "A chat ozi nwere a okwu",
-        "chat": "Any chat message"
+        "chat": "Any chat message",
+        "live": "I bido ịgbasa ozi"
       },
       "audiences": {
         "everyone": "Everyone",
@@ -9332,6 +9345,38 @@
         "spooky": "Spooky",
         "magic-spell": "Ime Anwansi spell",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Jiri {name}, {title} na {link} na ederede gị: aha gị, aha mgbasa ozi na njikọ iji lelee ya."
+    },
+    "polls": {
+      "title": "Ntuli aka",
+      "intro": "Jụọ ndị mmadụ na-ekiri mgbasa ozi gị ajụjụ. Ha na-aza site na bọtịnụ na ngwa DeHub, ma ọ bụ site na ịpị {{command}} na nọmba nhọrọ na nkata.",
+      "question": "Ajụjụ",
+      "questionPlaceholder": "Kedu ihe m ga-egwu ọzọ?",
+      "option": "Nhọrọ {{n}}",
+      "addOption": "Tinye nhọrọ",
+      "removeOption": "Wepụ nhọrọ {{n}}",
+      "duration": "Ogologo oge ole ka ntuli aka na-emeghe",
+      "seconds_one": "{{count}} nke abụọ",
+      "seconds_other": "{{count}} sekọnd",
+      "minutes_one": "{{count}} nkeji",
+      "minutes_other": "{{count}} nkeji",
+      "start": "Bido ntuliaka ahụ",
+      "end": "Kwụsị ịtụ vootu ugbu a",
+      "started": "Ntuliaka gị mepere emepe. Ndị na-ekiri ya nwere ike ịtụ vootu ugbua.",
+      "notLive": "Gaa na-ebi ndụ mbụ. Ntuli aka na-agba ọsọ na mgbasa ozi ị na-agbanye ugbu a.",
+      "startFailed": "Ntuliaka ahụ ebidoghi. Gbalịa ọzọ.",
+      "closeFailed": "Ntuli aka akwụsịghị. Gbalịa ọzọ.",
+      "live": "Ntuli aka meghere · {{time}} left",
+      "ended": "Votu mechiri emechi",
+      "votes_one": "{{count}} votu",
+      "votes_other": "{{count}} votu",
+      "replaceHint": "Ịmalite ntuliaka ọhụrụ na-emechi nke mepere emepe.",
+      "widgetHint": "Gosi ntuliaka ndụ gị. Na DeHub ngwa ekiri enweta otu nhọrọ ịtụ vootu; na OBS ọ na-agwa ndị mmadụ pịnye {{command}} na a ọnụ ọgụgụ na chat.",
+      "sample": {
+        "a": "Ihe ọhụrụ",
+        "b": "Ọkacha mmasị ochie",
+        "c": "Ị họọrọ"
       }
     }
   }

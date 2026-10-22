@@ -9321,7 +9321,17 @@
     "followersUnit": "mga tagasunod",
     "topSupporters": "Mga nangungunang tagasuporta",
     "tipped": "Nagpadala ng regalo si {{name}}",
-    "chatPreview": "Lilitaw ang mga mensahe ng chat dito"
+    "chatPreview": "Lilitaw ang mga mensahe ng chat dito",
+    "poll": {
+      "closed": "Sarado na ang pagboto",
+      "voteFor": "Bote para sa {{option}}",
+      "signIn": "Mag - sign in para bumoto",
+      "failed": "Hindi nabilang ang iyong boto. Subukan muli.",
+      "voted_one": "Bumoto ka ·{{count}} bumoto",
+      "voted_other": "Bumoto ka · {{count}}(na) boto",
+      "votes_one": "{{count}} bumoto",
+      "votes_other": "{{count}} mga boto"
+    }
   },
   "liveStudio": {
     "title": "Instagram",
@@ -9395,7 +9405,8 @@
       "event_feed": "Ang pinakabagong mga regalo, mga tagasunod, mga tagasuskribi at mga taong nagbabahagi ng iyong broadcast",
       "chat_box": "Ipinapakita ang mga mensahe sa chat ng iyong broadcast sa screen",
       "ticker": "Isang linya ng iyong sariling teksto na nag - scroll sa buong screen",
-      "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan"
+      "rule_alert": "Kung saan lumilitaw ang mga alerto ng iyong mga panuntunan",
+      "poll": "Ang iyong live poll, na may isang pindutan ng boto para sa bawat pagpipilian"
     },
     "fields": {
       "style": "Estilo",
@@ -9498,7 +9509,8 @@
         "share": "May nagbabahagi ng stream",
         "command": "Ginagamit ang isang chat command",
         "keyword": "Ang isang mensahe sa chat ay naglalaman ng isang salita",
-        "chat": "Anumang mensahe sa chat"
+        "chat": "Anumang mensahe sa chat",
+        "live": "Nagsisimula kang mag - broadcast"
       },
       "audiences": {
         "everyone": "Lahat",
@@ -9548,6 +9560,38 @@
         "spooky": "Nakakatakot",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Gamitin ang {name}, {title} at {link} sa iyong text: ang iyong pangalan, pamagat ng broadcast at link para mapanood ito."
+    },
+    "polls": {
+      "title": "Mga botohan",
+      "intro": "Tanungin ang mga tao na nanonood ng iyong broadcast ng isang katanungan. Sumasagot sila gamit ang button sa DeHub app, o sa pamamagitan ng pag - type ng {{command}} at numero ng opsyon sa chat.",
+      "question": "Tanong",
+      "questionPlaceholder": "Ano ang susunod na dapat kong paglaruan?",
+      "option": "Opsyon {{n}}",
+      "addOption": "Magdagdag ng opsyon",
+      "removeOption": "Alisin ang opsyong {{n}}",
+      "duration": "Gaano katagal mananatiling bukas ang pagboto",
+      "seconds_one": "{{count}} segundo",
+      "seconds_other": "{{count}} segundo",
+      "minutes_one": "{{count}}minuto",
+      "minutes_other": "{{count}} minuto",
+      "start": "Simulan ang poll",
+      "end": "Tapusin ang pagboto ngayon",
+      "started": "Bukas ang iyong poll. Puwede nang bumoto ang mga manonood.",
+      "notLive": "Live muna. Ang isang poll ay tumatakbo sa broadcast na ikaw ay streaming ngayon.",
+      "startFailed": "Hindi nagsimula ang poll. Subukan muli.",
+      "closeFailed": "Hindi natapos ang pagboto. Subukan muli.",
+      "live": "Bukas ang pagboto ·{{time}} kaliwa",
+      "ended": "Sarado na ang pagboto",
+      "votes_one": "{{count}} bumoto",
+      "votes_other": "{{count}} mga boto",
+      "replaceHint": "Ang pagsisimula ng isang bagong poll ay nagsasara sa isa na bukas.",
+      "widgetHint": "Ipakita ang iyong live poll. Sa DeHub app, mag - tap ang mga manonood ng opsyon para bumoto; sa OBS, sinasabi nito sa mga tao na mag - type ng {{command}} at numero sa chat.",
+      "sample": {
+        "a": "May bago",
+        "b": "Isang lumang paborito",
+        "c": "Ikaw ang pipili"
       }
     }
   }

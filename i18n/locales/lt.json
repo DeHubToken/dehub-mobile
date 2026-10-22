@@ -9140,7 +9140,17 @@
     "followersUnit": "sekėjai",
     "topSupporters": "Geriausi rėmėjai",
     "tipped": "{{name}} išsiuntė dovaną",
-    "chatPreview": "Pokalbio žinutės rodomos čia"
+    "chatPreview": "Pokalbio žinutės rodomos čia",
+    "poll": {
+      "closed": "Balsavimas baigtas",
+      "voteFor": "Balsuokite už {{option}}",
+      "signIn": "Prisijunkite, kad balsuotumėte",
+      "failed": "Jūsų balsas neįskaičiuotas. Bandykite dar kartą.",
+      "voted_one": "Balsavote · {{count}} vote",
+      "voted_other": "Balsavote · {{count}} balsų",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} balsai"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9196,7 +9206,8 @@
       "event_feed": "Naujausia veikla",
       "chat_box": "Pokalbio laukelis",
       "ticker": "Žymeklis",
-      "rule_alert": "Pranešimai apie taisyklę"
+      "rule_alert": "Pranešimai apie taisyklę",
+      "poll": "Apklausa"
     },
     "hints": {
       "tip_alert": "Pagerbia kiekvieną patarimą, prilygstantį jo lygiui",
@@ -9214,7 +9225,8 @@
       "event_feed": "Naujausios dovanos, sekėjai, prenumeratoriai ir žmonės, kurie dalijasi jūsų transliacija",
       "chat_box": "Rodo transliacijos pokalbių žinutes ekrane",
       "ticker": "Jūsų teksto eilutė, slenkanti per ekraną",
-      "rule_alert": "Kur rodomi jūsų taisyklių pranešimai"
+      "rule_alert": "Kur rodomi jūsų taisyklių pranešimai",
+      "poll": "Jūsų tiesioginė apklausa su balsavimo mygtuku kiekvienai parinkčiai"
     },
     "fields": {
       "style": "Stilius",
@@ -9317,7 +9329,8 @@
         "share": "Kažkas dalijasi srautu",
         "command": "Naudojama pokalbio komanda",
         "keyword": "Pokalbio žinutėje yra žodis",
-        "chat": "Bet kokia pokalbio žinutė"
+        "chat": "Bet kokia pokalbio žinutė",
+        "live": "Pradedate transliuoti"
       },
       "audiences": {
         "everyone": "Visi",
@@ -9367,6 +9380,38 @@
         "spooky": "Baisu",
         "magic-spell": "Magijos burtai",
         "shhh": "Ššš"
+      },
+      "placeholdersLive": "Tekste naudokite {name}, {title} ir {link}: savo vardą, transliacijos pavadinimą ir nuorodą, kad jį peržiūrėtumėte."
+    },
+    "polls": {
+      "title": "Apklausos",
+      "intro": "Užduokite klausimą žmonėms, žiūrintiems jūsų transliaciją. Jie atsako mygtuku DeHub programėlėje arba įrašydami {{command}} ir parinkties numerį pokalbyje.",
+      "question": "Klausimas",
+      "questionPlaceholder": "Ką turėčiau žaisti toliau?",
+      "option": "Parinktis {{n}}",
+      "addOption": "Pridėti parinktį",
+      "removeOption": "Pašalinti parinktį {{n}}",
+      "duration": "Kiek laiko galima balsuoti",
+      "seconds_one": "{{count}} sekundė",
+      "seconds_other": "{{count}} sekundės",
+      "minutes_one": "{{count}} minutė",
+      "minutes_other": "{{count}} min.",
+      "start": "Pradėti apklausą",
+      "end": "Baigti balsuoti dabar",
+      "started": "Jūsų apklausa atidaryta. Dabar žiūrovai gali balsuoti.",
+      "notLive": "Pirmiausia pradėkite tiesioginę transliaciją. Apklausa vyksta transliacijoje, kurią šiuo metu transliuojate.",
+      "startFailed": "Apklausa neprasidėjo. Bandykite dar kartą.",
+      "closeFailed": "Balsavimas nesibaigė. Bandykite dar kartą.",
+      "live": "Balsavimas atidarytas · {{time}} kairėje",
+      "ended": "Balsavimas baigtas",
+      "votes_one": "{{count}} balsuokite",
+      "votes_other": "{{count}} balsai",
+      "replaceHint": "Pradėjus naują apklausą uždaroma atidaryta apklausa.",
+      "widgetHint": "Parodo jūsų tiesioginę apklausą. „DeHub“ programėlės peržiūrėtojai palieskite parinktį balsuoti; OBS ji nurodo žmonėms įvesti {{command}} ir numerį pokalbyje.",
+      "sample": {
+        "a": "Kažkas naujo",
+        "b": "Senas mėgstamiausias",
+        "c": "Jūs pasirenkate"
       }
     }
   }

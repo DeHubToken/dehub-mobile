@@ -8817,7 +8817,13 @@
     "joined": "{{name}} joined",
     "goalReached": "Goal reach!",
     "topSupporters": "Top supporters",
-    "chatPreview": "Chat messages appear here"
+    "chatPreview": "Chat messages appear here",
+    "poll": {
+      "closed": "Voting closed",
+      "signIn": "Sign in to vote",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -8864,7 +8870,8 @@
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Rule alerts"
+      "rule_alert": "Rule alerts",
+      "poll": "Poll"
     },
     "hints": {
       "rule_alert": "Where your rules' alerts appear",
@@ -9007,6 +9014,31 @@
         "spooky": "Spooky",
         "magic-spell": "Magic spell",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Wetin you dey look for? {name} don land for this one. {title}: \"How to Translate Any Text to Nigerian Pidgin\". Watch {link}: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    "polls": {
+      "title": "Polls",
+      "question": "Question",
+      "option": "Option {{n}}",
+      "addOption": "Add an option",
+      "removeOption": "Remove option {{n}}",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "minutes_one": "{{count}} minute",
+      "minutes_other": "{{count}} minutes",
+      "startFailed": "Poll no dey start yet. Try again.",
+      "closeFailed": "Vote no finish yet. Try again.",
+      "live": "Voting open · {{time}} left",
+      "ended": "Voting closed",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "replaceHint": "Start new poll wey go close de one dat be open now.",
+      "widgetHint": "Show live poll. For DeHub app, viewers tap option to vote. For OBS, type {{command}} and number for chat.",
+      "sample": {
+        "a": "Something new",
+        "b": "An old favourite",
+        "c": "You choose"
       }
     }
   }

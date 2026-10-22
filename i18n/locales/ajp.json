@@ -9088,7 +9088,17 @@
     "followersUnit": "متابعين",
     "topSupporters": "أعلى الداعمين",
     "tipped": "{{name}} بعت هدية",
-    "chatPreview": "الرسائل بتظهر هنا"
+    "chatPreview": "الرسائل بتظهر هنا",
+    "poll": {
+      "closed": "الْتِفْتِحَاتْ مَغْلُوقَةْ",
+      "voteFor": "فْتْفْتِحْ ل{{option}}",
+      "signIn": "دُخِلْ لْتْفْتِحْ",
+      "failed": "لْتْفْتِحَاتْكْ مَشْتْفْتِحْشْ، حاوِلْ عِتْداً",
+      "voted_one": "فْتْفْتِحْتْ · {{count}} فْتْفْتِحَةْ",
+      "voted_other": "فْتْفْتِحْتْ · {{count}} فْتْفْتِحَاتْ",
+      "votes_one": "{{count}} فْتْفْتِحَةْ",
+      "votes_other": "{{count}} فْتْفْتِحَاتْ"
+    }
   },
   "liveStudio": {
     "title": "ستوديو مباشر",
@@ -9129,7 +9139,8 @@
       "top_supporters": "أقوى الداعمين",
       "viewer_count": "عدد المشاهدين",
       "frame": "فريم",
-      "stream_timer": "برودكاست تايمر"
+      "stream_timer": "برودكاست تايمر",
+      "poll": "بِول"
     },
     "hints": {
       "rule_alert": "أين تظهر تنبيهات قواعدك",
@@ -9208,7 +9219,8 @@
         "share": "فرد ما شارك الاستريم",
         "command": "كمانده في التات",
         "keyword": "رساله في التات بتحتوي كلمه",
-        "chat": "كل رساله في التات"
+        "chat": "كل رساله في التات",
+        "live": "بِتْعْتَمِدْ"
       },
       "audiences": {
         "everyone": "الجميع",
@@ -9265,7 +9277,29 @@
       "sayText": "نص ليقراه",
       "chatText": "رساله ليكتبها",
       "webhookUrl": "عنوان ويب هوك",
-      "webhookText": "رساله ليارسلها"
+      "webhookText": "رساله ليارسلها",
+      "placeholdersLive": "أنا {name}، عم بقدملكم حلقة جديدة من {title}، فيكم تتابعوها من هون: {link}"
+    },
+    "polls": {
+      "title": "المصوت",
+      "intro": "سألت الناس المتابعين لبرودكاستي سؤالًا. يردون عليه عن طريق زر في تطبيق DeHub أو عن طريق كتابة {{command}} وعددهم في الشات.",
+      "question": "سؤال",
+      "questionPlaceholder": "ما أنا عايز أعمل؟",
+      "duration": "بكم وقت بقى التصويت مفتوح؟",
+      "seconds_one": "{{count}} ثانى",
+      "seconds_other": "{{count}} ثواني",
+      "minutes_one": "{{count}} دقيقة",
+      "minutes_other": "{{count}} دقائق",
+      "start": "بلّش الاستطلاع",
+      "startFailed": "الاستفتاء ما بدأش. حاول تاني.",
+      "closeFailed": "التصويت ما خلصش، حاول تاني.",
+      "live": "تصويت مفتوح · {{time}} متبقي",
+      "ended": "التصويت مغلق",
+      "votes_one": "{{count}} تصويت",
+      "votes_other": "{{count}} تصويت",
+      "sample": {
+        "a": "شي جديد"
+      }
     }
   }
 }

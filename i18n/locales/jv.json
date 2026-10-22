@@ -9117,7 +9117,17 @@
     "goalReached": "Tujuan wis kasil!",
     "followersUnit": "pengikut",
     "topSupporters": "Pangrojong paling dhuwur",
-    "tipped": "{{name}} ngarani nganti"
+    "tipped": "{{name}} ngarani nganti",
+    "poll": {
+      "closed": "Pilihan tutup",
+      "voteFor": "Pilihan {{option}}",
+      "signIn": "Manggawe akun dhuwur pilih",
+      "failed": "Pilihanmu gawe gawe. Coba lanang",
+      "voted_one": "Kamu pilih · {{count}} pilih",
+      "voted_other": "Kamu pilih · {{count}} pilih-an",
+      "votes_one": "{{count}} pilih",
+      "votes_other": "{{count}} pilih-an"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9170,7 +9180,8 @@
       "text": "Teks",
       "frame": "Frame",
       "chat_box": "Kotak obrolan",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "poll": "Pemilihan"
     },
     "hints": {
       "tip_alert": "Ngaweni tiap tip, saking ukuran tiernya",
@@ -9186,7 +9197,8 @@
       "stream_timer": "Kanggo ngerti ngampi ngenteni wong ngajeng streaming.",
       "reaction_counter": "Kanggo ngitung reaksi-ngenine ngoko broadcast mo.",
       "event_feed": "Kanggo ngisor-ngisorin ingkang terbaru, pengikut, pengikut berlangganan, lan wong-wong ing ngasaringan broadcast mo.",
-      "rule_alert": "Endi aturan-aturan penting mu katon"
+      "rule_alert": "Endi aturan-aturan penting mu katon",
+      "poll": "Pemilihan live kamu, dengan tombol suara untuk tiap opsi"
     },
     "fields": {
       "style": "Style",
@@ -9272,7 +9284,8 @@
         "chat": "Sembarang pesen obrolan",
         "follow": "Sapa nang nderek",
         "subscribe": "Sapa nang subscribe",
-        "keyword": "Pesan chat ngemot tembung"
+        "keyword": "Pesan chat ngemot tembung",
+        "live": "Kamu ngawakali ngarani"
       },
       "audiences": {
         "everyone": "Kabeh",
@@ -9337,6 +9350,38 @@
       "webhookHint": "Discord utawa Slack webhook, utawa alamat https apa wae sing nampa POST.",
       "summary": {
         "tip": "Tip saka {{amount}} DHB utawa luwih"
+      },
+      "placeholdersLive": "Gunain {name}, {title}, dan {link} di teks kamu: namamu, judul siaran, dan link nglihatnya."
+    },
+    "polls": {
+      "title": "Pilihan",
+      "intro": "Tanya orang yang nglihat siaran kamu. Jawabnya dulu dulu di DeHub app, atau ngetik {{command}} lan nomor opsi di chat.",
+      "question": "Pertanyaan",
+      "questionPlaceholder": "Apa yang harus aku mainin selanjutnya?",
+      "option": "Opsi {{n}}",
+      "addOption": "Tambah opsi",
+      "removeOption": "Hapus opsi {{n}}",
+      "duration": "Berapa lama pemilihan tetap terbuka",
+      "seconds_one": "{{count}} detik",
+      "seconds_other": "{{count}} detik",
+      "minutes_one": "{{count}} menit",
+      "minutes_other": "{{count}} menit",
+      "start": "Mulai pemilihan",
+      "end": "Selesaiin pemilihan sekarang",
+      "started": "Pemilihan kamu terbuka. Penonton bisa ngevoting sekarang.",
+      "notLive": "Jangan lupa live dulu. Pemilihan berjalan di siaran yang kamu streaming sekarang.",
+      "startFailed": "Pemilihan ga bisa dimulai. Coba lagi.",
+      "closeFailed": "Pemilihan ga bisa berakhir. Coba lagi.",
+      "live": "Pemilihan terbuka · {{time}} sisa",
+      "ended": "Pemilihan ditutup",
+      "votes_one": "{{count}} suara",
+      "votes_other": "{{count}} suara",
+      "replaceHint": "Mulai pemilihan baru bakal tutup yang sedang terbuka.",
+      "widgetHint": "Nampilin pemilihan live kamu. Di DeHub app penonton klik opsi untuk ngevoting; di OBS bilangin orang ngetik {{command}} lan angka di chat.",
+      "sample": {
+        "a": "Yang baru",
+        "b": "Favorit lama",
+        "c": "Kamu pilih"
       }
     }
   }

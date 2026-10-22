@@ -9396,7 +9396,17 @@
     "followersUnit": "pengikut",
     "topSupporters": "Penyokong utama",
     "tipped": "{{name}} menghantar hadiah",
-    "chatPreview": "Mesej sembang muncul di sini"
+    "chatPreview": "Mesej sembang muncul di sini",
+    "poll": {
+      "closed": "Pengundian ditutup",
+      "voteFor": "Undi {{option}}",
+      "signIn": "Log masuk untuk mengundi",
+      "failed": "Undian anda tidak dikira. Cuba lagi.",
+      "voted_one": "Anda mengundi · {{count}} undi",
+      "voted_other": "Anda mengundi · {{count}} undi",
+      "votes_one": "{{count}} undi",
+      "votes_other": "{{count}} undian"
+    }
   },
   "liveStudio": {
     "title": "Studio Langsung",
@@ -9452,7 +9462,8 @@
       "event_feed": "Aktiviti terkini",
       "chat_box": "Kotak sembang",
       "ticker": "Ticker",
-      "rule_alert": "Makluman peraturan"
+      "rule_alert": "Makluman peraturan",
+      "poll": "Pemungutan Suara"
     },
     "hints": {
       "tip_alert": "Meraikan setiap tip, bersaiz mengikut peringkatnya",
@@ -9470,7 +9481,8 @@
       "event_feed": "Hadiah terkini, pengikut, pelanggan dan orang yang berkongsi siaran anda",
       "chat_box": "Menunjukkan mesej sembang siaran anda pada skrin",
       "ticker": "Baris teks anda sendiri yang menatal merentasi skrin",
-      "rule_alert": "Di mana makluman peraturan anda dipaparkan"
+      "rule_alert": "Di mana makluman peraturan anda dipaparkan",
+      "poll": "Pemungutan suara langsung anda, dengan tombol undi untuk setiap opsi"
     },
     "fields": {
       "style": "Gaya",
@@ -9572,7 +9584,8 @@
         "share": "Seseorang berkongsi strim",
         "command": "Perintah sembang digunakan",
         "keyword": "Mesej sembang mengandungi perkataan",
-        "chat": "Sebarang mesej sembang"
+        "chat": "Sebarang mesej sembang",
+        "live": "Anda mula menyiarkan"
       },
       "audiences": {
         "everyone": "Semua orang",
@@ -9623,7 +9636,39 @@
         "magic-spell": "Sihir",
         "shhh": "Shhh"
       },
-      "minAmount": "Smallest tip (DHB)"
+      "minAmount": "Smallest tip (DHB)",
+      "placeholdersLive": "Gunakan {name}, {title} dan {link} dalam teks anda: nama anda, tajuk siaran langsung dan pautan untuk menontonnya."
+    },
+    "polls": {
+      "title": "Pemungutan Suara",
+      "intro": "Tanya orang yang menonton siaran langsung anda. Mereka menjawab dengan menekan tombol dalam aplikasi DeHub, atau dengan mengetik {{command}} dan nombor pilihan dalam chat.",
+      "question": "Pertanyaan",
+      "questionPlaceholder": "Apa yang harus saya mainkan berikutnya?",
+      "option": "Opsi {{n}}",
+      "addOption": "Tambah opsi",
+      "removeOption": "Hapus opsi {{n}}",
+      "duration": "Berapa lama pemungutan suara tetap terbuka",
+      "seconds_one": "{{count}} saat",
+      "seconds_other": "{{count}} saat",
+      "minutes_one": "{{count}} minit",
+      "minutes_other": "{{count}} minit",
+      "start": "Mulakan pemungutan suara",
+      "end": "Hentikan pemungutan suara sekarang",
+      "started": "Pemungutan suara anda terbuka. Penonton boleh mengundi sekarang.",
+      "notLive": "Bermula siaran langsung dahulu. Pemungutan suara berjalan pada siaran langsung yang anda siarkan sekarang.",
+      "startFailed": "Pemungutan suara tidak bermula. Cuba semula.",
+      "closeFailed": "Pemungutan suara belum tamat. Cuba semula.",
+      "live": "Pemungutan suara terbuka · {{time}} tersisa",
+      "ended": "Pemungutan suara ditutup",
+      "votes_one": "{{count}} undi",
+      "votes_other": "{{count}} undi",
+      "replaceHint": "Memulakan pemungutan suara baru akan menutup yang sedang terbuka.",
+      "widgetHint": "Menunjukkan pemungutan suara langsung anda. Dalam aplikasi DeHub, penonton menekan opsi untuk mengundi; dalam OBS, ia memberitahu orang untuk mengetik {{command}} dan nombor dalam chat.",
+      "sample": {
+        "a": "Sesuatu yang baru",
+        "b": "Favorit lama",
+        "c": "Anda pilih"
+      }
     }
   }
 }

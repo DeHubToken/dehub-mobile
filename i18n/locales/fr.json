@@ -10735,7 +10735,17 @@
     "followersUnit": "abonnés",
     "topSupporters": "Meilleurs supporters",
     "tipped": "{{name}} a envoyé un cadeau",
-    "chatPreview": "Les messages de chat apparaissent ici"
+    "chatPreview": "Les messages de chat apparaissent ici",
+    "poll": {
+      "closed": "Vote clos",
+      "voteFor": "Votez pour {{option}}",
+      "signIn": "Connectez-vous pour voter",
+      "failed": "Votre vote n'a pas compté. Réessayez.",
+      "voted_one": "Vous avez voté · {{count}} vote",
+      "voted_other": "Vous avez voté · {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes"
+    }
   },
   "liveStudio": {
     "title": "Studio en direct",
@@ -10809,7 +10819,8 @@
       "event_feed": "Les derniers cadeaux, followers, abonnés et personnes partageant votre émission",
       "chat_box": "Affiche les messages de chat de votre diffusion à l'écran",
       "ticker": "Une ligne de votre propre texte qui défile sur l'écran",
-      "rule_alert": "Où les alertes de vos règles apparaissent"
+      "rule_alert": "Où les alertes de vos règles apparaissent",
+      "poll": "Votre sondage en direct, avec un bouton de vote pour chaque option"
     },
     "fields": {
       "style": "Style",
@@ -10912,7 +10923,8 @@
         "share": "Quelqu'un partage le flux",
         "command": "Une commande de chat est utilisée",
         "keyword": "Un message de chat contient un mot",
-        "chat": "Tout message de chat"
+        "chat": "Tout message de chat",
+        "live": "Vous commencez à diffuser"
       },
       "audiences": {
         "everyone": "Tout le monde",
@@ -10962,6 +10974,37 @@
         "spooky": "Effrayant",
         "magic-spell": "Sort magique",
         "shhh": "Chut"
+      },
+      "placeholdersLive": "Utilisez {name}, {title} et {link} dans votre texte : votre nom, le titre de l'émission et un lien pour la regarder."
+    },
+    "polls": {
+      "title": "Sondages",
+      "intro": "Posez une question aux personnes qui regardent votre émission. Ils répondent avec un bouton dans l'application DeHub, ou en tapant {{command}} et le numéro de l'option dans le chat.",
+      "questionPlaceholder": "À quoi dois-je jouer ensuite ?",
+      "option": "Option {{n}}",
+      "addOption": "Ajouter une option",
+      "removeOption": "Supprimer l'option {{n}}",
+      "duration": "Combien de temps le vote reste ouvert",
+      "seconds_one": "{{count}} seconde",
+      "seconds_other": "{{count}} secondes",
+      "minutes_one": "{{count}} minute",
+      "minutes_other": "{{count}} minutes",
+      "start": "Lancer le sondage",
+      "end": "Terminez le vote maintenant",
+      "started": "Votre sondage est ouvert. Les téléspectateurs peuvent voter maintenant.",
+      "notLive": "Passez d'abord en direct. Un sondage s'exécute sur l'émission que vous diffusez en ce moment.",
+      "startFailed": "Le sondage n'a pas démarré. Réessayez.",
+      "closeFailed": "Le vote n'a pas pris fin. Réessayez.",
+      "live": "Vote ouvert · {{time}} gauche",
+      "ended": "Vote clos",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "replaceHint": "Lancer un nouveau sondage ferme celui qui est ouvert.",
+      "widgetHint": "Affiche votre sondage en direct. Dans l'application DeHub, les téléspectateurs tapent sur une option pour voter ; dans OBS, il indique aux gens de taper {{command}} et un numéro dans le chat.",
+      "sample": {
+        "a": "Quelque chose de nouveau",
+        "b": "Un ancien favori",
+        "c": "Vous choisissez"
       }
     }
   }

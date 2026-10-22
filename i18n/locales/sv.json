@@ -9144,7 +9144,17 @@
     "followersUnit": "följare",
     "topSupporters": "Toppanhängare",
     "tipped": "{{name}} skickade en gåva",
-    "chatPreview": "Chattmeddelanden visas här"
+    "chatPreview": "Chattmeddelanden visas här",
+    "poll": {
+      "closed": "Omröstning avslutad",
+      "voteFor": "Rösta på {{option}}",
+      "signIn": "Logga in för att rösta",
+      "failed": "Din röst räknas inte. Försök igen.",
+      "voted_one": "Du röstade · {{count}} röst",
+      "voted_other": "Du röstade · {{count}} röster",
+      "votes_one": "{{count}} röst",
+      "votes_other": "{{count}} röster"
+    }
   },
   "liveStudio": {
     "title": "Live-studio",
@@ -9200,7 +9210,8 @@
       "event_feed": "Senaste aktivitet",
       "chat_box": "Chattruta",
       "ticker": "Ticker",
-      "rule_alert": "Regelvarningar"
+      "rule_alert": "Regelvarningar",
+      "poll": "Omröstning"
     },
     "hints": {
       "tip_alert": "Firar varje tips, anpassat efter dess nivå",
@@ -9218,7 +9229,8 @@
       "event_feed": "De senaste gåvorna, följarna, prenumeranterna och personerna som delar din sändning",
       "chat_box": "Visar din sändnings chattmeddelanden på skärmen",
       "ticker": "En rad med din egen text som rullar över skärmen",
-      "rule_alert": "Där dina regler visas"
+      "rule_alert": "Där dina regler visas",
+      "poll": "Din live-omröstning, med en röstknapp för varje alternativ"
     },
     "fields": {
       "style": "Stil",
@@ -9321,7 +9333,8 @@
         "share": "Någon delar flödet",
         "command": "Ett chattkommando används",
         "keyword": "Ett chattmeddelande innehåller ett ord",
-        "chat": "Alla chattmeddelanden"
+        "chat": "Alla chattmeddelanden",
+        "live": "Du börjar sända"
       },
       "audiences": {
         "everyone": "Alla",
@@ -9371,6 +9384,38 @@
         "spooky": "Spöklikt",
         "magic-spell": "Magisk trollformel",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Använd {name}, {title} och {link} i din text: ditt namn, sändningens titel och en länk för att titta på den."
+    },
+    "polls": {
+      "title": "Omröstningar",
+      "intro": "Ställ en fråga till de personer som tittar på din sändning. De svarar med en knapp i DeHub-appen eller genom att skriva {{command}} och alternativets nummer i chatten.",
+      "question": "Fråga",
+      "questionPlaceholder": "Vad ska jag spela härnäst?",
+      "option": "Alternativ {{n}}",
+      "addOption": "Lägg till ett alternativ",
+      "removeOption": "Ta bort alternativ {{n}}",
+      "duration": "Hur länge röstningen är öppen",
+      "seconds_one": "{{count}} sekund",
+      "seconds_other": "{{count}} sekunder",
+      "minutes_one": "{{count}} minut",
+      "minutes_other": "{{count}} minuter",
+      "start": "Starta omröstningen",
+      "end": "Avsluta omröstningen nu",
+      "started": "Din omröstning är öppen. Tittare kan rösta nu.",
+      "notLive": "Gå live först. En omröstning körs på sändningen du streamar just nu.",
+      "startFailed": "Omröstningen startade inte. Försök igen.",
+      "closeFailed": "Röstningen avslutades inte. Försök igen.",
+      "live": "Röstningen är öppen · {{time}} kvar",
+      "ended": "Omröstning avslutad",
+      "votes_one": "{{count}} röst",
+      "votes_other": "{{count}} röster",
+      "replaceHint": "Att starta en ny omröstning stänger den som är öppen.",
+      "widgetHint": "Visar din live-omröstning. I DeHub-appvisarna trycker du på ett alternativ för att rösta; i OBS talar det om för folk att skriva {{command}} och ett nummer i chatten.",
+      "sample": {
+        "a": "Något nytt",
+        "b": "En gammal favorit",
+        "c": "Du väljer"
       }
     }
   }

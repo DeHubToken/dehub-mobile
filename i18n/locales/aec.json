@@ -9134,7 +9134,13 @@
     "followersUnit": "المتابعين",
     "topSupporters": "أعلى الداعمين",
     "tipped": "{{name}} أرسل هدية",
-    "chatPreview": "رسائل الدردشة تظهر هنا"
+    "chatPreview": "رسائل الدردشة تظهر هنا",
+    "poll": {
+      "voteFor": "فوت ل{{option}}",
+      "failed": "تغيبت صوتك دى. حاول تاني.",
+      "votes_one": "{{count}} تصويت",
+      "votes_other": "{{count}} تصويت"
+    }
   },
   "liveStudio": {
     "title": "ستوديو لايف",
@@ -9182,7 +9188,8 @@
       "event_feed": "النشاط الأخير",
       "chat_box": "صندوق الدردشة",
       "ticker": "شريط الأخبار",
-      "rule_alert": "تنبيهات القواعد"
+      "rule_alert": "تنبيهات القواعد",
+      "poll": "بِول"
     },
     "hints": {
       "rule_alert": "أين تظهر تنبيهات قواعدك",
@@ -9341,6 +9348,20 @@
       "webhookUrl": "عنوان ويب هوك",
       "webhookHint": "ويب هوك من ديسكورد أو سلاك، أو أي عنوان https بيمتقبل POST.",
       "webhookText": "نص يرسل"
+    },
+    "polls": {
+      "title": "استطلاعات",
+      "question": "سؤال",
+      "questionPlaceholder": "ماذا ألعبت بعد كده؟",
+      "option": "الخيارات {{n}}",
+      "seconds_one": "{{count}} تانيه",
+      "seconds_other": "{{count}} ثواني",
+      "minutes_one": "{{count}} دقيقة",
+      "minutes_other": "{{count}} دقايق",
+      "startFailed": "الاستفتاء ما بدأش. حاول تاني.",
+      "closeFailed": "التصويت ما خلصش، حاول تاني.",
+      "votes_one": "{{count}} تصويت",
+      "votes_other": "{{count}} تصويت"
     }
   }
 }

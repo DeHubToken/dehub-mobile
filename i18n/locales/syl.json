@@ -9353,7 +9353,11 @@
     "subscribedTo": "{{name}} সাবস্ক্রাইব করলো {{plan}}",
     "shared": "{{name}} স্ট্রিম শেয়ার করলো",
     "followersUnit": "ফলোয়ার্স",
-    "topSupporters": "সবচেয়ে বড় সমর্থক"
+    "topSupporters": "সবচেয়ে বড় সমর্থক",
+    "poll": {
+      "voteFor": "ভোট দিন {{option}}-কে",
+      "voted_other": "তুমি ভোট দিয়েছো · {{count}} ভোট"
+    }
   },
   "liveStudio": {
     "title": "লাইভ স্টুডিও",
@@ -9514,6 +9518,13 @@
         "magic-spell": "মাজিক স্পেল",
         "shhh": "শhh"
       }
+    },
+    "polls": {
+      "option": "ওপশন {{n}}",
+      "duration": "ভোটিং কতদিন খোলা থাকে",
+      "start": "পোলটা শুরু কর",
+      "closeFailed": "ভোটিং শেষ হয়নি। আবার চেষ্টা করুন।",
+      "live": "ভোট খোলা · {{time}} বাকি"
     }
   }
 }

@@ -9079,7 +9079,15 @@
     "goalReached": "目标达成！",
     "followersUnit": "粉丝",
     "topSupporters": "最高支持者",
-    "tipped": "{{name}} 送咱个礼物"
+    "tipped": "{{name}} 送咱个礼物",
+    "poll": {
+      "signIn": "登入投票",
+      "failed": "你的票沒算數，再試一次",
+      "voted_one": "你投票了 · {{count}}票",
+      "voted_other": "你投票了 · {{count}}張票",
+      "votes_one": "{{count}}票",
+      "votes_other": "{{count}}張票"
+    }
   },
   "liveStudio": {
     "landscape": "风景",
@@ -9242,6 +9250,13 @@
       "summary": {
         "tip": "{{amount}} 打賞 DHB 或以上"
       }
+    },
+    "polls": {
+      "seconds_other": "{{count}} 秒鐘",
+      "minutes_one": "{{count}} 分錶",
+      "minutes_other": "{{count}} 分錶",
+      "live": "投票开啓 · {{time}} 个剩下",
+      "votes_other": "{{count}} 票"
     }
   }
 }

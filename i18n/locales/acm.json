@@ -9053,7 +9053,11 @@
     "shared": "{{name}} شارك البث",
     "joined": "{{name}} انضم",
     "goalReached": "وصلنا الهدف!",
-    "followersUnit": "المتابعين"
+    "followersUnit": "المتابعين",
+    "poll": {
+      "voteFor": "صوت ل{{option}}",
+      "votes_other": "{{count}} تصويتات"
+    }
   },
   "liveStudio": {
     "title": "ستوديو مباشر",
@@ -9095,7 +9099,8 @@
       "subscribe_alert": "تنبيه المشترك",
       "viewer_count": "عدد المشاهدين",
       "text": "نص",
-      "frame": "إطار"
+      "frame": "إطار",
+      "poll": "استفتاء"
     },
     "hints": {
       "rule_alert": "أين تظهر تنبيهات قواعدك",
@@ -9232,6 +9237,22 @@
         "ohh-girl": "ايه يا (الفتاة)",
         "magic-spell": "تعويذة سحرية",
         "shhh": "شوشّ"
+      }
+    },
+    "polls": {
+      "intro": "سأل الناس الذين يشاهدون بثك سؤالاً. يردون عليه عن طريق زر في تطبيق DeHub، أو عن طريق كتابة {{command}} وعدد الخيار في الشات.",
+      "question": "سؤال",
+      "questionPlaceholder": "ماذا يجب أن ألعب التالي؟",
+      "seconds_other": "{{count}} ثوانى",
+      "minutes_one": "{{count}} دقيقة",
+      "minutes_other": "{{count}} دقائق",
+      "started": "لما بفتحت استفتاءك. المشاهدين بيمشون ياخدوا صوتهم دلوقتي.",
+      "startFailed": "الاستفتاء ما بدأش. حاول مرة تانية.",
+      "closeFailed": "لما ختمت الانتخابات. حاول مرة تانية.",
+      "live": "صوت مفتوح · {{time}} متبقي",
+      "votes_other": "{{count}} تصويتات",
+      "sample": {
+        "c": "انت اختار"
       }
     }
   }

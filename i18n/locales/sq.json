@@ -9140,7 +9140,17 @@
     "followersUnit": "ndjekësit",
     "topSupporters": "Mbështetësit më të mirë",
     "tipped": "{{name}} dërgoi një dhuratë",
-    "chatPreview": "Mesazhet e bisedës shfaqen këtu"
+    "chatPreview": "Mesazhet e bisedës shfaqen këtu",
+    "poll": {
+      "closed": "Votimi u mbyll",
+      "voteFor": "Voto për {{option}}",
+      "signIn": "Hyr për të votuar",
+      "failed": "Vota jote nuk u numërua. Provo përsëri.",
+      "voted_one": "Ti votove · {{count}} vote",
+      "voted_other": "Ju votuat · {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} vota"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9196,7 +9206,8 @@
       "event_feed": "Aktiviteti i fundit",
       "chat_box": "Kutia e bisedës",
       "ticker": "Ticker",
-      "rule_alert": "Lajmërime për rregullat"
+      "rule_alert": "Lajmërime për rregullat",
+      "poll": "Sondazh"
     },
     "hints": {
       "tip_alert": "Feston çdo bakshish, të madhësisë sipas nivelit të tij",
@@ -9214,7 +9225,8 @@
       "event_feed": "Dhuratat më të fundit, ndjekësit, abonentët dhe njerëzit që ndajnë transmetimin tënd",
       "chat_box": "Shfaq mesazhet e bisedës së transmetimit tënd në ekran",
       "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran",
-      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja"
+      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja",
+      "poll": "Sondazhi yt i drejtpërdrejtë, me një buton votimi për çdo opsion"
     },
     "fields": {
       "style": "Stili",
@@ -9316,7 +9328,8 @@
         "share": "Dikush ndan rrjedhën",
         "command": "Përdoret një komandë bisede",
         "keyword": "Mesazhi i bisedës përmban një fjalë",
-        "chat": "Çdo mesazh bisede"
+        "chat": "Çdo mesazh bisede",
+        "live": "Fillon të transmetosh"
       },
       "audiences": {
         "everyone": "Të gjithë",
@@ -9367,7 +9380,39 @@
         "magic-spell": "Magji magjike",
         "shhh": "Shhhh"
       },
-      "alertText": "Teksti i paralajmërimit"
+      "alertText": "Teksti i paralajmërimit",
+      "placeholdersLive": "Përdor {name}, {title} dhe {link} në tekstin tënd: emrin tënd, titullin e transmetimit dhe një link për ta parë atë."
+    },
+    "polls": {
+      "title": "Sondazhet",
+      "intro": "Pyesni njerëzit që shikojnë transmetimin tuaj për një pyetje. Ata përgjigjen me një buton në aplikacionin DeHub, ose duke shtypur {{command}} dhe numrin e opsionit në chat.",
+      "question": "Pyetje",
+      "questionPlaceholder": "Çfarë duhet të luaj më pas?",
+      "option": "Opsioni {{n}}",
+      "addOption": "Shto një alternativë",
+      "removeOption": "Hiq opsionin {{n}}",
+      "duration": "Sa kohë mbetet e hapur votimi",
+      "seconds_one": "{{count}} dytë",
+      "seconds_other": "{{count}} sekonda",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minuta",
+      "start": "Fillo sondazhin",
+      "end": "Përfundo votimin tani",
+      "started": "Sondazhi yt është i hapur. Shikuesit mund të votojnë tani.",
+      "notLive": "Shko më parë drejtpërsëdrejti. Një sondazh zhvillohet në transmetimin që po transmeton tani.",
+      "startFailed": "Sondazhi nuk filloi. Provo përsëri.",
+      "closeFailed": "Votimi nuk ka mbaruar. Pësoj përsëri.",
+      "live": "Votimi është i hapur · {{time}} left",
+      "ended": "Votimi u mbyll",
+      "votes_one": "{{count}} votë",
+      "votes_other": "{{count}} vota",
+      "replaceHint": "Fillimi i një sondazhi të ri mbyll atë që është i hapur.",
+      "widgetHint": "Shfaq sondazhin tënd të drejtpërdrejtë. Në aplikacionin DeHub, shikuesit shtypin një opsion për të votuar; në OBS u thotë njerëzve të shkruajnë {{command}} dhe një numër në bisedë.",
+      "sample": {
+        "a": "Diçka e re",
+        "b": "Një i preferuar i vjetër",
+        "c": "Ti zgjedh"
+      }
     }
   }
 }
