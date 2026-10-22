@@ -9077,5 +9077,64 @@
     "goalReached": "目标达成！",
     "followersUnit": "粉丝",
     "topSupporters": "最高支持者"
+  },
+  "liveStudio": {
+    "landscape": "风景",
+    "portrait": "肖像",
+    "widgets": "小部件",
+    "selectHint": "選一個小部件來改變它。",
+    "test": "测试警报",
+    "testHint": "测试警报只在此处播放，别处不播放。观众永远看不到它们。",
+    "testMessage": "这是你直播上一条打赏消息的样子",
+    "testFailed": "阿拉个测试提醒发勿出。等一会儿再试。",
+    "saved": "保存啦。侬个流马上显示新布局。",
+    "kinds": {
+      "tip_alert": "提示警报",
+      "subscribe_alert": "訂閱提醒",
+      "goal_bar": "目標條"
+    },
+    "hints": {
+      "join_alert": "歡迎各位觀賞者到場！"
+    },
+    "fields": {
+      "confirmedOnlyHint": "等幾秒鐘鏈式，所以從不付款的小費永遠不會出現。",
+      "duration": "螢幕上的秒數",
+      "metric": "計數",
+      "metricTips": "這個直播的小費",
+      "metricFollowers": "追隨者",
+      "target": "目標",
+      "title": "標題",
+      "count": "顯示的人數",
+      "text": "文字",
+      "subtext": "第二行",
+      "plain": "純文字",
+      "lowerThird": "底部第三",
+      "solid": "實心",
+      "glow": "發光",
+      "thickness": "厚度",
+      "accent": "顏色",
+      "size": "大小",
+      "smaller": "較小",
+      "larger": "較大"
+    },
+    "obs": {
+      "title": "與OBS一起使用",
+      "connected": "OBS連線",
+      "notConnected": "OBS未連線",
+      "showIn": "顯示你的小部件",
+      "inApp": "在DeHub應用程式中",
+      "inAppHint": "每個觀眾的應用程式會在你的直播上繪製它們，從你的手機、瀏覽器、捕捉卡或OBS開始，且不收費。",
+      "inVideo": "在我的影片（OBS）",
+      "inVideoHint": "OBS將它們燒入你的圖片，所以它們在你的重播和任何觀看你直播的地方都會出現。",
+      "warnDoubles": "你的OBS覆蓋層已連線，但你的小部件也設定顯示在DeHub應用程式中，所以觀眾看到每個警示兩次。",
+      "switchToVideo": "改用在我的影片中顯示它們",
+      "warnNoObs": "现在还没有 OBS 叠加层连接。等侬加上浏览器源，观众才会看到侬的部件。",
+      "step1": "阿拉在 OBS 里，加个 Browser 源，粘贴这个链接。",
+      "step2": "把宽度设为1920，高度设为1080，竖屏直播则设为1080×1920。",
+      "step3": "更新后，右键点击源，选择刷新当前页面的缓存。",
+      "rotate": "做个新链接",
+      "rotateConfirm": "弄个新链接？老的马上就失效了，侬要把新链接粘贴到 OBS 里。",
+      "rotated": "新链接准备好。粘贴到 OBS。"
+    }
   }
 }

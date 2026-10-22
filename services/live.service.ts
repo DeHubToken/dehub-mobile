@@ -223,6 +223,49 @@ export async function getStreamOverlay(streamId: string): Promise<PublicOverlay>
   };
 }
 
+/** The creator's own overlay, as Live Studio edits it. */
+export interface CreatorOverlay {
+  token: string;
+  renderIn: "app" | "video";
+  widgets: PublicOverlay["widgets"];
+  version: number;
+  /** An OBS page with this overlay's link checked in within the last ninety seconds. */
+  obsConnected: boolean;
+}
+
+function creatorOverlay(raw: any): CreatorOverlay {
+  const body = raw?.result ?? raw?.data ?? raw;
+  return {
+    token: String(body?.token || ""),
+    renderIn: body?.renderIn === "video" ? "video" : "app",
+    widgets: Array.isArray(body?.widgets) ? body.widgets : [],
+    version: Number(body?.version) || 0,
+    obsConnected: !!body?.obsConnected,
+  };
+}
+
+export async function getMyOverlay(): Promise<CreatorOverlay> {
+  return creatorOverlay(await apiClient.get<any>("/live-overlay/mine", { isAuthRequired: true }));
+}
+
+export async function saveMyOverlay(overlay: Pick<CreatorOverlay, "renderIn" | "widgets">): Promise<CreatorOverlay> {
+  return creatorOverlay(
+    await apiClient.put<any>("/live-overlay/mine", { renderIn: overlay.renderIn, widgets: overlay.widgets }, { isAuthRequired: true }),
+  );
+}
+
+/** Retire the OBS link and issue a new one. Anything still open on the old link goes blank. */
+export async function rotateOverlayToken(): Promise<CreatorOverlay> {
+  return creatorOverlay(await apiClient.post<any>("/live-overlay/mine/rotate", {}, { isAuthRequired: true }));
+}
+
+export type OverlayTestKind = "tip" | "follow" | "subscribe" | "share" | "join";
+
+/** A pretend alert for the creator's own screens. Never reaches viewers. */
+export async function sendOverlayTest(kind: OverlayTestKind, extra: { amount?: number; message?: string } = {}): Promise<void> {
+  await apiClient.post<any>("/live-overlay/mine/test", { kind, ...extra }, { isAuthRequired: true });
+}
+
 /** GET /live/:streamId/audience — host, who is watching, top tippers, most active chatters. */
 export interface LiveAudience {
   host: (LiveAudienceAccount & { startedAt?: string | null }) | null;
