@@ -4772,7 +4772,7 @@
     "usernameReserved": "Jina hili la mtumiaji limehifadhiwa",
     "profileSet": "Wasifu umewekwa kwa mafanikio!",
     "profileFailed": "Imeshindwa kuweka wasifu",
-    "displayNameHint": "Jina lako la umma linaloonyeshwa kwenye wasifu."
+    "displayNameHint": "Jina lako la umma kwenye wasifu wako. Si lazima — ukiliacha wazi, tutatumia jina lako la mtumiaji."
   },
   "events": {
     "mine": "Zangu",
@@ -5013,6 +5013,7 @@
     "accountHasA": "Akaunti hii ina",
     "ifYouUsedDehub": "Ikiwa umewahi kutumia dehub.io, ifungue kwenye kompyuta yako, ingia kwa njia ile ile na kwa akaunti ile ile, kisha",
     "biometricExplainer": "Fungua kwa alama ya kidole au uso wako — hakuna cha kuandika wala kukumbuka. Ufunguo unabaki kwenye simu hii, kwa hivyo tutakuonyesha kifungu cha kurejesha chenye maneno 12 uandike; hiyo ndiyo njia pekee ya kurudi kutoka simu nyingine, kutoka tovuti, au baada ya kusakinisha upya. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
+    "biometricExplainerSecuring": "Fungua kwa alama ya kidole au uso wako — hakuna cha kuandika wala kukumbuka. Ufunguo unabaki kwenye simu hii. Ili kurudi ndani kutoka simu nyingine, kutoka tovuti, au baada ya kusakinisha upya, hifadhi baadaye nakala rudufu ya maneno 12 kwenye Mipangilio. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
     "biometricPrompt": "Pochi hii inalindwa na biometriki ya kifaa hiki. Thibitisha kwa alama ya kidole au uso ili kuendelea.",
     "enterRecoveryPhrase": "Weka kifungu cha kurejesha chenye maneno 12 ulichohifadhi ulipounda pochi hii (au ufunguo wake wa faragha, ikiwa ulisafirisha mmoja). Kinarudisha kwenye akaunti ile ile, na nenosiri utakaloweka hapa chini linakuwa nakala rudufu inayofanya kazi kila mahali kuanzia sasa.",
     "copyPhrase": "Nakili kifungu",
@@ -5075,7 +5076,7 @@
     "passwordBreached": "Nenosiri hili limeonekana katika uvunjaji wa data — chagua lingine",
     "phraseInvalidHint": "Hiyo haikubaliani kama kifungu cha urejeshaji — maneno 12, kwa mpangilio walioonyeshwa, yote kwa herufi ndogo.",
     "privateKeyHint": "Ufunguo wa kibinafsi ni herufi 64 za hex baada ya 0x.",
-    "biometricTab": "Biolojia",
+    "biometricTab": "Bayometriki",
     "noUsableBackup": "Akaunti hii ina anwani ya mkoba kwenye faili, lakini hakuna chelezo ambacho simu hii inaweza kutumia — ama ililindwa na <em>biometria au kitufe cha kupitisha kwenye wavuti</em> (ambacho hufungua hubaki kwenye kivinjari na haisawazishi hapa), au usajili wa awali kwenye simu hii ulisitishwa kabla ya kumalizika.",
     "addPasswordOnWeb": "Ikiwa umewahi kutumia dehub.io hapo awali, ifungue kwenye kompyuta yako, ingia kwa njia sawa na kwa akaunti sawa, na <em>ongeza nenosiri la mkoba</em> — hiyo huhifadhi chelezo kilichosimbwa kwa njia fiche kwenye wingu. Kisha urudi hapa na ujaribu tena.",
     "walletAddress": "Mkoba: {{address}}",
@@ -5084,7 +5085,8 @@
     "unlockPasskeyOnly": "Mkoba huu ulilindwa kwa nenosiri la kuingia kwenye wavuti na bado hauna nakala rudufu ya nenosiri kwenye wingu. Ukiweka nenosiri la mkoba kwenye dehub.io, liingize hapa — vinginevyo tumia Ingiza mkoba wa nje hapa chini.",
     "unlockWithPasswordExplainer": "Akaunti hii tayari ina mkoba, uliolindwa na nenosiri. Ingiza ili urejeshe mkoba wako kwenye kifaa hiki.",
     "deviceTab": "Kifaa hiki",
-    "deviceExplainer": "Hakuna cha kuandika au kukumbuka — sehemu muhimu za kukaa kwenye kifaa hiki. Tutakupa nakala rudufu ya maneno 12 ili uandike; ndiyo njia pekee ya kuingia kutoka kwenye kifaa kingine, kutoka kwenye tovuti, au baada ya kusakinisha tena. Chagua Nywila badala yake na nywila yenyewe inafanya kazi hiyo.",
+    "deviceExplainer": "Hakuna cha kuandika wala kukumbuka — ufunguo unabaki kwenye kifaa hiki. Tutakupa nakala rudufu ya maneno 12 uiandike; hiyo ndiyo njia pekee ya kurudi ndani kutoka kifaa kingine, kutoka tovuti, au baada ya kusakinisha upya. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
+    "deviceExplainerSecuring": "Hakuna cha kuandika wala kukumbuka — ufunguo unabaki kwenye kifaa hiki. Ili kurudi ndani kutoka kifaa kingine, kutoka tovuti, au baada ya kusakinisha upya, hifadhi baadaye nakala rudufu ya maneno 12 kwenye Mipangilio. Chagua Nenosiri badala yake, na nenosiri lenyewe hufanya kazi hiyo.",
     "secureOnDevice": "Weka ufunguo kwenye kifaa hiki"
   },
   "transcript": {

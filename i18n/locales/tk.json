@@ -4760,7 +4760,7 @@
     "usernameReserved": "Bu ulanyjy ady bellenen",
     "profileSet": "Profil üstünlikli düzüldi!",
     "profileFailed": "Profil düzülip bilmedi",
-    "displayNameHint": "Profiliňizde görkezilýän köpçülik adyňyz."
+    "displayNameHint": "Profiliňizdäki köpçülik adyňyz. Hökmany däl — boş goýsaňyz, ulanyjy adyňyz ulanylar."
   },
   "events": {
     "mine": "Meniňkiler",
@@ -5001,6 +5001,7 @@
     "accountHasA": "Bu hasapda bar",
     "ifYouUsedDehub": "Eger öň dehub.io ulanan bolsaňyz, ony kompýuteriňizde açyň, şol bir usul we şol bir hasap bilen giriň we",
     "biometricExplainer": "Barmak yzyňyz ýa-da ýüzüňiz bilen açyň — ýazmaly ýa-da ýatda saklamaly zat ýok. Açar şu telefonda galýar, şonuň üçin size ýazyp almak üçin 12 sözlük dikeldiş söz düzümini görkezeris; başga telefondan, saýtdan ýa-da gaýtadan gurnandan soň yzyna dolanmagyň ýeke-täk ýoly şudur. Onuň ýerine Paroly saýlaň, şonda bu işi paroluň özi ýerine ýetirer.",
+    "biometricExplainerSecuring": "Barmak yzyňyz ýa-da ýüzüňiz bilen açyň — ýazmaly ýa-da ýatda saklamaly zat ýok. Açar şu telefonda galýar. Başga telefondan, saýtdan ýa-da gaýtadan gurnandan soň yzyna girmek üçin soňrak Sazlamalarda 12 sözlük ätiýaçlyk nusgasyny saklaň. Onuň ýerine Paroly saýlaň, şonda bu işi paroluň özi ýerine ýetirer.",
     "biometricPrompt": "Bu gapjyk şu enjamyň biometrikasy bilen goralýar. Dowam etmek üçin barmak yzy ýa-da ýüz bilen tassyklaň.",
     "enterRecoveryPhrase": "Bu gapjygy döredeniňizde ýatda sakla söz düzümi 12 sözlük dikeldiş söz düzümini giriziň (ýa-da eksport eden bolsaňyz, onuň şahsy açaryny). Ol şol bir hasaba gaýtarýar, aşakda belleýän parolyňyz bolsa mundan beýläk hemme ýerde işleýän ätiýaçlyk bolýar.",
     "copyPhrase": "Söz düzümini göçür",
@@ -5073,6 +5074,7 @@
     "unlockWithPasswordExplainer": "Bu hasapda eýýäm şifr bilen goralýan portmone bar. Bu enjamda portmoneňizi dikeltmek üçin ony giriziň.",
     "deviceTab": "Bu gural",
     "deviceExplainer": "Ýadyňyzdamy ýa-da ýadyňyzdamy — açar bu esbapda galýar. Biz size ýazmak üçin 12 sözüň gaýtargy nusgasyny hödürleýäris; bu başga esbapdan, web-saytdan ýa-da gaýtargylanandan soň gaýtargylanmagyň ýeke-täk ýoly. Gaýtam, paroluny saýlaň we parolyň özi bu işi edýär.",
+    "deviceExplainerSecuring": "Ýazmaly ýa-da ýatda saklamaly zat ýok — açar şu guralda galýar. Başga guraldan, saýtdan ýa-da gaýtadan gurnandan soň yzyna girmek üçin soňrak Sazlamalarda 12 sözlük ätiýaçlyk nusgasyny saklaň. Onuň ýerine Paroly saýlaň, şonda bu işi paroluň özi ýerine ýetirer.",
     "secureOnDevice": "Bu esbapda açary saklaň"
   },
   "transcript": {

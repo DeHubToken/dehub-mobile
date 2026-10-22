@@ -4761,7 +4761,7 @@
     "usernameReserved": "An ajiye wannan sunan",
     "profileSet": "An saita bayanan martaba cikin nasara!",
     "profileFailed": "An kasa saita bayanan martaba",
-    "displayNameHint": "Sunanka na jama'a da ake nunawa a bayananka."
+    "displayNameHint": "Sunanka na jama'a a bayananka. Ba dole ba ne — ka bar shi a wofi don a yi amfani da sunan mai amfani naka."
   },
   "events": {
     "mine": "Nawa",
@@ -5002,6 +5002,7 @@
     "accountHasA": "Wannan asusun yana da",
     "ifYouUsedDehub": "Idan ka taɓa amfani da dehub.io a baya, buɗe shi a kwamfutarka, ka shiga ta hanya ɗaya kuma da asusu ɗaya, sannan",
     "biometricExplainer": "Buɗe da yatsan hannunka ko fuskarka — babu abin da za a buga ko a tuna. Maɓallin yana zama a wannan wayar, don haka za mu nuna maka jimlar dawo da asusu ta kalmomi 12 don ka rubuta; ita ce kaɗai hanyar dawowa daga wata waya, daga shafin yanar gizo, ko bayan sake girkawa. Zaɓi Kalmar sirri maimakon haka, sai kalmar sirrin ta yi wannan aikin.",
+    "biometricExplainerSecuring": "Buɗe da yatsan hannunka ko fuskarka — babu abin da za a buga ko a tuna. Maɓallin yana zama a wannan wayar. Don dawowa daga wata waya, daga shafin yanar gizo, ko bayan sake girkawa, ka adana madadin kalmomi 12 daga baya a Saituna. Zaɓi Kalmar sirri maimakon haka, sai kalmar sirrin ta yi wannan aikin.",
     "biometricPrompt": "Wannan walat ɗin yana da kariya ta biometrics na wannan na'urar. Tabbatar da yatsa ko fuska don ci gaba.",
     "enterRecoveryPhrase": "Shigar da jimlar dawo da asusu ta kalmomi 12 da ka ajiye lokacin da ka ƙirƙiri wannan walat (ko maɓallinsa na sirri, idan ka fitar da shi). Yana komawa zuwa asusu ɗaya, kuma kalmar sirrin da za ka saita a ƙasa ta zama madadin da ke aiki ko'ina daga yanzu.",
     "copyPhrase": "Kwafi jimla",
@@ -5074,6 +5075,7 @@
     "unlockWithPasswordExplainer": "Wannan asusun yana da wallet a yanzu, wanda kalmar sirri ke karewa. Shigar da ita don dawo da wallet ɗinka a wannan na'urar.",
     "deviceTab": "Wannan na'urar",
     "deviceExplainer": "Babu wani abu da za a rubuta ko tuna — maɓallin ya kasance a kan wannan na'urar. Za mu ba ku madadin kalmomi 12 don rubutawa; ita ce kawai hanyar dawowa daga wani na'ura, daga gidan yanar gizon, ko bayan sake shigarwa. Zaɓi Kalmar wucewa maimakon kuma kalmar sirri kanta tana yin wannan aikin.",
+    "deviceExplainerSecuring": "Babu abin da za a buga ko a tuna — maɓallin yana zama a wannan na'urar. Don dawowa daga wata na'ura, daga shafin yanar gizo, ko bayan sake girkawa, ka adana madadin kalmomi 12 daga baya a Saituna. Zaɓi Kalmar sirri maimakon haka, sai kalmar sirrin ta yi wannan aikin.",
     "secureOnDevice": "Ci gaba da maɓallin a kan wannan na'urar"
   },
   "transcript": {

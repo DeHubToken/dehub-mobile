@@ -4743,7 +4743,7 @@
     "usernameReserved": "Nin tɔgɔ marala",
     "profileSet": "Profili labɛnna ka ɲɛ!",
     "profileFailed": "Profili ma se ka labɛn",
-    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan."
+    "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan. A tɛ wajibi ye — n'i y'a to lankolon, i ka baarakɛla tɔgɔ de bɛna ta."
   },
   "events": {
     "mine": "N ta",
@@ -4980,6 +4980,7 @@
     "accountHasA": "Nin jate bɛ ni",
     "ifYouUsedDehub": "N'i delila ka baara kɛ ni dehub.io ye, a da wuli i ka ɔridinatɛri kan, don o cogo kelen na ni jate kelen na, ani",
     "biometricExplainer": "A da wuli ni i bolonɔ walima i ɲɛda ye — foyi tɛ sɛbɛn walima ka hakili la. Konnɛgɛ bɛ to nin telefɔni kan, o la an bɛna laseginni kuma daɲɛ 12 jira i la walasa i k'u sɛbɛn; o de ye sira kelen ye ka segin ka bɔ telefɔni wɛrɛ la, siti la, walima installation kura kɔfɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
+    "biometricExplainerSecuring": "A da wuli ni i bolonɔ walima i ɲɛda ye — foyi tɛ sɛbɛn walima ka hakili la. Konnɛgɛ bɛ to nin telefɔni kan. Walasa ka segin ka don ka bɔ telefɔni wɛrɛ la, siti la, walima installation kura kɔfɛ, laseginni kuma daɲɛ 12 mara Labɛnw kɔnɔ waati wɛrɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
     "biometricPrompt": "Nin wari maralan lakananen don ni nin minɛn bolonɔ ye. I bolonɔ walima i ɲɛda sɛmɛntiya walasa ka taa ɲɛ.",
     "enterRecoveryPhrase": "Laseginni kuma daɲɛ 12 sɛbɛn, i ye min mara tuma min na i ye nin wari maralan dilan (walima a konnɛgɛ gundo, n'i y'a labɔ). A bɛ segin jate kelen kan, ani tɛmɛsira min b'i sigi duguma, o bɛ kɛ nɔɲɔgɔnna ye min bɛ baara kɛ yɔrɔ bɛɛ kabini sisan.",
     "copyPhrase": "Kuma kopi",
@@ -5052,6 +5053,7 @@
     "addPasswordOnWeb": "N'i ye dehub.io kɛ ka kɔrɔ, a da wuli i ka ɔridinatɛri kan, i don cogo kelen na ni jate kelen ye, ka <em>wari maralan tɛmɛsira dɔ fara a kan</em> — o bɛ maracogo dogolen dɔ mara nuwaji la. O kɔ, segin yan ka a lajɛ kokura.",
     "deviceTab": "O ye fɛɛrɛ ye",
     "deviceExplainer": "O tɛ se ka sɛbɛri kɛ wala k'a hakili to a la. An b'a fɛ ka kuma 12 sɛbɛ ka bɔ a kɔnɔ. O le ye sira kelen ye ka segi ka bɔ a yɔrɔ wɛrɛ la, ka bɔ a yɔrɔ la, walima ka segi ka bɔ a yɔrɔ la. I ka tɛmɛsira sugandi ani i ka tɛmɛsira yɛrɛ lo b'o baara kɛ.",
+    "deviceExplainerSecuring": "Foyi tɛ sɛbɛn walima ka hakili la — konnɛgɛ bɛ to nin minɛn kan. Walasa ka segin ka don ka bɔ minɛn wɛrɛ la, siti la, walima installation kura kɔfɛ, laseginni kuma daɲɛ 12 mara Labɛnw kɔnɔ waati wɛrɛ. Tɛmɛsira sugandi o nɔ na, o tuma tɛmɛsira yɛrɛ de bɛ o baara kɛ.",
     "secureOnDevice": "I ka mansinw mara o masini kan"
   },
   "transcript": {

@@ -4762,7 +4762,7 @@
     "usernameReserved": "A ti pa orúkọ olùmúlò yìí mọ́",
     "profileSet": "A ti ṣètò profáìlì ní àṣeyọrí!",
     "profileFailed": "Kò lè ṣètò profáìlì",
-    "displayNameHint": "Orúkọ gbogbogbò rẹ tí ó hàn lórí profáìlì rẹ."
+    "displayNameHint": "Orúkọ gbogbogbò rẹ lórí profáìlì rẹ. Kò pọn dandan — tí o bá fi sílẹ̀ ní òfo, a máa lo orúkọ oníṣàmúlò rẹ."
   },
   "events": {
     "mine": "Tèmi",
@@ -5003,6 +5003,7 @@
     "accountHasA": "Àkàǹtì yìí ní",
     "ifYouUsedDehub": "Bí o bá ti lo dehub.io tẹ́lẹ̀, ṣí i lórí kọ̀mpútà rẹ, wọlé ní ọ̀nà kan náà àti pẹ̀lú àkàǹtì kan náà, kí o sì",
     "biometricExplainer": "Ṣí i pẹ̀lú àmì ìka tàbí ojú rẹ — kò sí ohun tí o máa tẹ̀ tàbí rántí. Kọ́kọ́rọ́ náà máa wà lórí fóònù yìí, nítorí náà a máa fi gbólóhùn ìgbàpadà ọ̀rọ̀ 12 hàn ọ́ láti kọ sílẹ̀; òun nìkan ni ọ̀nà padà láti fóònù mìíràn, láti ojú-òpó, tàbí lẹ́yìn tí o bá fi sípò padà. Yan Ọ̀rọ̀ ìpamọ́ dípò, ọ̀rọ̀ ìpamọ́ náà yóò sì ṣe iṣẹ́ yẹn.",
+    "biometricExplainerSecuring": "Ṣí i pẹ̀lú àmì ìka tàbí ojú rẹ — kò sí ohun tí o máa tẹ̀ tàbí rántí. Kọ́kọ́rọ́ náà máa wà lórí fóònù yìí. Láti padà wọlé láti fóònù mìíràn, láti ojú-òpó, tàbí lẹ́yìn tí o bá fi sípò padà, fi àtìlẹ́yìn ọ̀rọ̀ 12 pamọ́ nínú Ètò lẹ́yìn náà. Yan Ọ̀rọ̀ ìpamọ́ dípò, ọ̀rọ̀ ìpamọ́ náà yóò sì ṣe iṣẹ́ yẹn.",
     "biometricPrompt": "Àpò owó yìí ni biometrics ẹ̀rọ yìí ń dáàbò bò. Jẹ́rìí pẹ̀lú àmì ìka tàbí ojú láti tẹ̀síwájú.",
     "enterRecoveryPhrase": "Tẹ gbólóhùn ìgbàpadà ọ̀rọ̀ 12 tí o fi pamọ́ nígbà tí o dá àpò owó yìí (tàbí kọ́kọ́rọ́ àdáni rẹ̀, bí o bá ti gbé e jáde). Ó máa padà sí àkàǹtì kan náà, ọ̀rọ̀ ìpamọ́ tí o bá ṣètò nísàlẹ̀ yóò sì di ààbò tí yóò ṣiṣẹ́ níbi gbogbo láti ìsinsìnyí.",
     "copyPhrase": "Ṣe àdàkọ gbólóhùn",
@@ -5075,6 +5076,7 @@
     "keepMessagesBody": "Ìjíròrò, ìkéde, àmì-ìwé, àwọn àtẹ̀jíṣẹ́ tí a fi pamọ́ àti wíwo ìtàn wá pẹ̀lú rẹ. Kò sí ohun tí a pa run àti pé kò sí ẹlòmíràn tí ó lè ka èyíkéyìí nínú rẹ̀.",
     "deviceTab": "Ẹrọ yìí",
     "deviceExplainer": "Kò sí nǹkankan láti kọ tàbí láti rántí — kókó náà dúró lórí ẹ̀rọ yìí. A máa fún ọ ní àtìlẹyìn ọ̀rọ̀ 12 láti kọ sílẹ̀; ọ̀nà kan ṣoṣo ni láti padà láti orí ẹ̀rọ mìíràn, láti orí ẹ̀rọ ayélujára, tàbí lẹ́yìn tí a bá tún un ṣe. Yan ọ̀rọ̀ ìgbaniwọlé dípò ọ̀rọ̀ ìgbaniwọlé náà fúnra rẹ̀ sì ṣe iṣẹ́ yẹn.",
+    "deviceExplainerSecuring": "Kò sí ohun tí o máa tẹ̀ tàbí rántí — kọ́kọ́rọ́ náà máa wà lórí ẹ̀rọ yìí. Láti padà wọlé láti ẹ̀rọ mìíràn, láti ojú-òpó, tàbí lẹ́yìn tí o bá fi sípò padà, fi àtìlẹ́yìn ọ̀rọ̀ 12 pamọ́ nínú Ètò lẹ́yìn náà. Yan Ọ̀rọ̀ ìpamọ́ dípò, ọ̀rọ̀ ìpamọ́ náà yóò sì ṣe iṣẹ́ yẹn.",
     "secureOnDevice": "Fi kọ́kọ́rọ́ pamọ́ sórí ẹ̀rọ yìí."
   },
   "transcript": {
