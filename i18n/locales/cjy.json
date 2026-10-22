@@ -9151,16 +9151,6 @@
     "notNow": "现在不"
   },
   "liveOverlay": {
-    "someone": "有人",
-    "newFollower": "新粉丝：{{name}}",
-    "newSubscriber": "新订阅用户：{{name}}",
-    "subscribedTo": "{{name}} 订阅了 {{plan}}",
-    "joined": "{{name}} 加入了",
-    "goalReached": "目标达成！",
-    "followersUnit": "粉丝",
-    "topSupporters": "顶级支持者",
-    "tipped": "{{name}} 送了一份礼物",
-    "chatPreview": "聊天消息会出现在这里",
     "poll": {
       "closed": "投票已关闭",
       "voteFor": "为 {{option}} 投票",
@@ -9170,9 +9160,50 @@
       "voted_other": "您投票了 · {{count}} 票",
       "votes_one": "{{count}} 投票",
       "votes_other": "{{count}} 票"
-    }
+    },
+    "someone": "有人",
+    "newFollower": "新粉丝：{{name}}",
+    "newSubscriber": "新订阅用户：{{name}}",
+    "subscribedTo": "{{name}} 订阅了 {{plan}}",
+    "joined": "{{name}} 加入了",
+    "goalReached": "目标达成！",
+    "followersUnit": "粉丝",
+    "topSupporters": "顶级支持者",
+    "tipped": "{{name}} 送了一份礼物",
+    "chatPreview": "聊天消息会出现在这里"
   },
   "liveStudio": {
+    "polls": {
+      "intro": "向观看您直播的人询问一个问题。他们可以在DeHub应用程序中使用按钮回答问题，也可以在聊天中输入{{command}}和选项的编号。",
+      "removeOption": "删除选项{{n}}",
+      "seconds_one": "{{count}}秒",
+      "start": "开始投票",
+      "live": "投票开放·剩余{{time}}次",
+      "title": "民意调查",
+      "question": "问题",
+      "questionPlaceholder": "你下一部电影或游戏应该是什么呢？",
+      "option": "选项{{n}}",
+      "addOption": "添加一个选项",
+      "duration": "投票时间持续多久？",
+      "seconds_other": "{{count}} 秒",
+      "minutes_one": "{{count}} 分钟",
+      "minutes_other": "{{count}} 分钟",
+      "end": "结束投票现在",
+      "started": "您的投票已经开放。观众可以现在投票。",
+      "notLive": "直播前先上线。在你现在正在直播的直播间里有一个投票活动。",
+      "startFailed": "投票尚未开始。请稍后再试。",
+      "closeFailed": "投票还没有结束。再试一次。",
+      "ended": "投票已关闭",
+      "votes_one": "{{count}} 投票",
+      "votes_other": "{{count}} 张票数",
+      "replaceHint": "开始新的投票将关闭当前的投票。",
+      "widgetHint": "展示您的实时投票结果。在 DeHub 应用中，观众点击选项投票；在 OBS 中，会提示观众在聊天栏输入 `{{command}}` 并加上一个数字。",
+      "sample": {
+        "a": "什么新鲜事？",
+        "b": "一个老朋友",
+        "c": "你选择。"
+      }
+    },
     "subtitle": "直播提醒与小部件",
     "intro": "您在此添加的所有内容都会在 DeHub 应用中显示给每位观众——无论您是用手机、浏览器、捕获卡还是编码器直播。",
     "open": "打开 Live Studio",
@@ -9210,6 +9241,7 @@
       "join": "加入"
     },
     "kinds": {
+      "poll": "民调",
       "tip_alert": "提示警报",
       "follow_alert": "关注警报",
       "subscribe_alert": "订阅者警报",
@@ -9222,8 +9254,7 @@
       "frame": "画面",
       "stream_timer": "直播倒计时",
       "reaction_counter": "反应计数器",
-      "rule_alert": "规则提醒",
-      "poll": "民调"
+      "rule_alert": "规则提醒"
     },
     "hints": {
       "poll": "您的实时投票，每个选项都有投票按钮",
@@ -9345,14 +9376,14 @@
       "webhookUrl": "网址钩子地址",
       "webhookHint": "一个 Discord 或 Slack 的 Webhook 地址，或者任何接受 POST 请求的 HTTPS 地址。",
       "triggers": {
+        "live": "你开始直播",
         "tip": "小费已到账",
         "share": "有人分享了信息流",
         "command": "使用聊天命令",
         "follow": "有人跟你了",
         "subscribe": "有人订阅了",
         "keyword": "你想要翻译的消息内容是什么？请提供完整的文本。",
-        "chat": "任何聊天信息",
-        "live": "你开始直播"
+        "chat": "任何聊天信息"
       },
       "audiences": {
         "everyone": "每个人",
@@ -9397,36 +9428,64 @@
         "shhh": "嘘"
       }
     },
-    "polls": {
-      "intro": "向观看您直播的人询问一个问题。他们可以在DeHub应用程序中使用按钮回答问题，也可以在聊天中输入{{command}}和选项的编号。",
-      "removeOption": "删除选项{{n}}",
-      "seconds_one": "{{count}}秒",
-      "start": "开始投票",
-      "live": "投票开放·剩余{{time}}次",
-      "title": "民意调查",
-      "question": "问题",
-      "questionPlaceholder": "你下一部电影或游戏应该是什么呢？",
-      "option": "选项{{n}}",
-      "addOption": "添加一个选项",
-      "duration": "投票时间持续多久？",
+    "moderation": {
+      "title": "聊天管理",
+      "intro": "适用于您所有直播间的聊天规则。这些规则不会应用到 DeHub 主聊天：在这里封禁的人仍然可以在其他地方聊天。",
+      "loadFailed": "无法加载您的管理设置。请刷新页面重试。",
+      "save": "保存聊天规则",
+      "saved": "聊天规则已保存。",
+      "saveFailed": "无法保存该更改。",
+      "slowMode": "慢速模式",
+      "slowModeHint": "每位观众在发送消息之间等待的时间。您和您的管理员不需要等待。",
+      "off": "关闭",
+      "seconds_one": "{{count}} 秒",
       "seconds_other": "{{count}} 秒",
-      "minutes_one": "{{count}} 分钟",
-      "minutes_other": "{{count}} 分钟",
-      "end": "结束投票现在",
-      "started": "您的投票已经开放。观众可以现在投票。",
-      "notLive": "直播前先上线。在你现在正在直播的直播间里有一个投票活动。",
-      "startFailed": "投票尚未开始。请稍后再试。",
-      "closeFailed": "投票还没有结束。再试一次。",
-      "ended": "投票已关闭",
-      "votes_one": "{{count}} 投票",
-      "votes_other": "{{count}} 张票数",
-      "replaceHint": "开始新的投票将关闭当前的投票。",
-      "widgetHint": "展示您的实时投票结果。在 DeHub 应用中，观众点击选项投票；在 OBS 中，会提示观众在聊天栏输入 `{{command}}` 并加上一个数字。",
-      "sample": {
-        "a": "什么新鲜事？",
-        "b": "一个老朋友",
-        "c": "你选择。"
+      "followersOnly": "仅粉丝",
+      "subscribersOnly": "仅订阅者",
+      "subscribersOnlyHint": "覆盖仅粉丝。",
+      "bannedWords": "禁用词汇",
+      "bannedWordsHint": "用逗号分隔。逐字拼写一个词不会绕过限制。",
+      "wordAction": "当有人使用这些词时",
+      "wordBlock": "阻止消息",
+      "wordTimeout": "停止并将他们暂停一分钟",
+      "moderators": "管理员",
+      "moderatorsHint": "他们可以在你的直播中暂停和禁言观众。他们不能对你或彼此采取行动。",
+      "addModerator": "添加",
+      "usernamePlaceholder": "用户名",
+      "moderatorAdded": "添加管理员成功。",
+      "moderatorNotFound": "没有这个用户名的账户。",
+      "removeModerator": "移除管理员",
+      "noModerators": "目前没有管理员。",
+      "banned": "被禁言你的直播",
+      "unban": "解禁",
+      "noBans": "没有人被禁言。",
+      "log": "最近的操作",
+      "noLog": "目前没有记录。",
+      "actions": {
+        "timeout_one": "{{actor}} 被暂停 {{target}} 为 {{count}} 秒",
+        "timeout_other": "{{actor}} 被暂停 {{target}} 为 {{count}} 秒",
+        "ban": "{{actor}} 被禁言 {{target}}",
+        "unban": "{{actor}} 被解禁 {{target}}",
+        "moderator-added": "{{target}} 成为管理员",
+        "moderator-removed": "{{target}} 不再是管理员",
+        "word-blocked": "阻止了{{target}}发送的消息 \"{{word}}\"",
+        "word-timeout_one": "暂停{{target}} {{count}} 秒 因为 \"{{word}}\"",
+        "word-timeout_other": "暂停{{target}} {{count}} 秒 因为 \"{{word}}\""
       }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "超时 1 分钟",
+    "timeout10m": "超时 10 分钟",
+    "timeout1h": "超时 1 小时",
+    "ban": "禁止进入这些直播",
+    "makeModerator": "设为管理员",
+    "timedOut": "已超时。",
+    "banned": "被禁止进入这些直播。",
+    "madeModerator": "他们现在是管理员。",
+    "failed": "操作失败。请重试。",
+    "youAreBanned": "您无法在该创作者的直播间聊天",
+    "youAreTimedOut": "您暂时被超时了",
+    "title": "管理"
   }
 }

@@ -9130,6 +9130,16 @@
     "notNow": "Jo tani"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Votimi u mbyll",
+      "voteFor": "Voto për {{option}}",
+      "signIn": "Hyr për të votuar",
+      "failed": "Vota jote nuk u numërua. Provo përsëri.",
+      "voted_one": "Ti votove · {{count}} vote",
+      "voted_other": "Ju votuat · {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} vota"
+    },
     "someone": "Dikush",
     "newFollower": "Ndjekës i ri: {{name}}",
     "newSubscriber": "Abonent i ri: {{name}}",
@@ -9140,19 +9150,40 @@
     "followersUnit": "ndjekësit",
     "topSupporters": "Mbështetësit më të mirë",
     "tipped": "{{name}} dërgoi një dhuratë",
-    "chatPreview": "Mesazhet e bisedës shfaqen këtu",
-    "poll": {
-      "closed": "Votimi u mbyll",
-      "voteFor": "Voto për {{option}}",
-      "signIn": "Hyr për të votuar",
-      "failed": "Vota jote nuk u numërua. Provo përsëri.",
-      "voted_one": "Ti votove · {{count}} vote",
-      "voted_other": "Ju votuat · {{count}} votes",
-      "votes_one": "{{count}} vote",
-      "votes_other": "{{count}} vota"
-    }
+    "chatPreview": "Mesazhet e bisedës shfaqen këtu"
   },
   "liveStudio": {
+    "polls": {
+      "title": "Sondazhet",
+      "intro": "Pyesni njerëzit që shikojnë transmetimin tuaj për një pyetje. Ata përgjigjen me një buton në aplikacionin DeHub, ose duke shtypur {{command}} dhe numrin e opsionit në chat.",
+      "question": "Pyetje",
+      "questionPlaceholder": "Çfarë duhet të luaj më pas?",
+      "option": "Opsioni {{n}}",
+      "addOption": "Shto një alternativë",
+      "removeOption": "Hiq opsionin {{n}}",
+      "duration": "Sa kohë mbetet e hapur votimi",
+      "seconds_one": "{{count}} dytë",
+      "seconds_other": "{{count}} sekonda",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minuta",
+      "start": "Fillo sondazhin",
+      "end": "Përfundo votimin tani",
+      "started": "Sondazhi yt është i hapur. Shikuesit mund të votojnë tani.",
+      "notLive": "Shko më parë drejtpërsëdrejti. Një sondazh zhvillohet në transmetimin që po transmeton tani.",
+      "startFailed": "Sondazhi nuk filloi. Provo përsëri.",
+      "closeFailed": "Votimi nuk ka mbaruar. Pësoj përsëri.",
+      "live": "Votimi është i hapur · {{time}} left",
+      "ended": "Votimi u mbyll",
+      "votes_one": "{{count}} votë",
+      "votes_other": "{{count}} vota",
+      "replaceHint": "Fillimi i një sondazhi të ri mbyll atë që është i hapur.",
+      "widgetHint": "Shfaq sondazhin tënd të drejtpërdrejtë. Në aplikacionin DeHub, shikuesit shtypin një opsion për të votuar; në OBS u thotë njerëzve të shkruajnë {{command}} dhe një numër në bisedë.",
+      "sample": {
+        "a": "Diçka e re",
+        "b": "Një i preferuar i vjetër",
+        "c": "Ti zgjedh"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Alerte dhe gadxhet për streamet tuaja",
     "intro": "Çdo gjë që shtoni këtu shfaqet mbi streamet tuaja për të gjithë shikuesit në aplikacionin DeHub — aq sa të jetë live nga telefoni, browseri, një kartë e kapur ose një kodues.",
@@ -9191,6 +9222,7 @@
       "join": "Bashkohu"
     },
     "kinds": {
+      "poll": "Sondazh",
       "tip_alert": "Lajmërim sugjerimi",
       "follow_alert": "Ndiq alarmin",
       "subscribe_alert": "Lajmërim i pajtimtarit",
@@ -9206,10 +9238,10 @@
       "event_feed": "Aktiviteti i fundit",
       "chat_box": "Kutia e bisedës",
       "ticker": "Ticker",
-      "rule_alert": "Lajmërime për rregullat",
-      "poll": "Sondazh"
+      "rule_alert": "Lajmërime për rregullat"
     },
     "hints": {
+      "poll": "Sondazhi yt i drejtpërdrejtë, me një buton votimi për çdo opsion",
       "tip_alert": "Feston çdo bakshish, të madhësisë sipas nivelit të tij",
       "follow_alert": "Shfaq çdo ndjekës të ri",
       "subscribe_alert": "Shfaq çdo pajtimtar të ri",
@@ -9225,8 +9257,7 @@
       "event_feed": "Dhuratat më të fundit, ndjekësit, abonentët dhe njerëzit që ndajnë transmetimin tënd",
       "chat_box": "Shfaq mesazhet e bisedës së transmetimit tënd në ekran",
       "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran",
-      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja",
-      "poll": "Sondazhi yt i drejtpërdrejtë, me një buton votimi për çdo opsion"
+      "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja"
     },
     "fields": {
       "style": "Stili",
@@ -9285,6 +9316,7 @@
       "rotateFailed": "Nuk munda të krijoj një link të ri. Provo përsëri pas një çasti."
     },
     "rules": {
+      "placeholdersLive": "Përdor {name}, {title} dhe {link} në tekstin tënd: emrin tënd, titullin e transmetimit dhe një link për ta parë atë.",
       "title": "Rregullat",
       "intro": "Kur ndodh një gjë në stream-in tuaj, DeHub bëhet çfarë e keni zgjedhur: shfaqet një alert, luhet një zëri, lexohet një gjë në shpremë, postohet në chat-in tuaj ose i thotë Discord-it.",
       "add": "Shto një rregull",
@@ -9322,14 +9354,14 @@
       "webhookHint": "Një webhook Discord ose Slack, ose ndonjë adresë https që pranon një POSTIM.",
       "webhookText": "Mesazh për t 'u dërguar",
       "triggers": {
+        "live": "Fillon të transmetosh",
         "tip": "Mbërrin një sugjerim",
         "follow": "Dikush të ndjek",
         "subscribe": "Dikush abonohet",
         "share": "Dikush ndan rrjedhën",
         "command": "Përdoret një komandë bisede",
         "keyword": "Mesazhi i bisedës përmban një fjalë",
-        "chat": "Çdo mesazh bisede",
-        "live": "Fillon të transmetosh"
+        "chat": "Çdo mesazh bisede"
       },
       "audiences": {
         "everyone": "Të gjithë",
@@ -9380,39 +9412,66 @@
         "magic-spell": "Magji magjike",
         "shhh": "Shhhh"
       },
-      "alertText": "Teksti i paralajmërimit",
-      "placeholdersLive": "Përdor {name}, {title} dhe {link} në tekstin tënd: emrin tënd, titullin e transmetimit dhe një link për ta parë atë."
+      "alertText": "Teksti i paralajmërimit"
     },
-    "polls": {
-      "title": "Sondazhet",
-      "intro": "Pyesni njerëzit që shikojnë transmetimin tuaj për një pyetje. Ata përgjigjen me një buton në aplikacionin DeHub, ose duke shtypur {{command}} dhe numrin e opsionit në chat.",
-      "question": "Pyetje",
-      "questionPlaceholder": "Çfarë duhet të luaj më pas?",
-      "option": "Opsioni {{n}}",
-      "addOption": "Shto një alternativë",
-      "removeOption": "Hiq opsionin {{n}}",
-      "duration": "Sa kohë mbetet e hapur votimi",
-      "seconds_one": "{{count}} dytë",
+    "moderation": {
+      "title": "Moderimi i chatit",
+      "intro": "Rregullat për chatin në të gjitha strema të tuaja. Ata nuk arrinë në chatin kryesor të DeHub: dikush që ke blerë këtu ende mund të flasë në çdo vend tjetër.",
+      "loadFailed": "Nuk mund të ngarkohen rregullat e moderimit. Përpiqet përsëri.",
+      "save": "Ruaj rregullat e chatit",
+      "saved": "Rregullat e chatit ruajtën.",
+      "saveFailed": "Kjo ndryshim nuk mund të ruhet.",
+      "slowMode": "Modi i ngadalshëm",
+      "slowModeHint": "Sa i gjatë çdo shikuesi duhet të mësonë mesazhet. Ti dhe moderatorët e tu nuk mësonë.",
+      "off": "Of",
+      "seconds_one": "{{count}} sekondë",
       "seconds_other": "{{count}} sekonda",
-      "minutes_one": "{{count}} minuta",
-      "minutes_other": "{{count}} minuta",
-      "start": "Fillo sondazhin",
-      "end": "Përfundo votimin tani",
-      "started": "Sondazhi yt është i hapur. Shikuesit mund të votojnë tani.",
-      "notLive": "Shko më parë drejtpërsëdrejti. Një sondazh zhvillohet në transmetimin që po transmeton tani.",
-      "startFailed": "Sondazhi nuk filloi. Provo përsëri.",
-      "closeFailed": "Votimi nuk ka mbaruar. Pësoj përsëri.",
-      "live": "Votimi është i hapur · {{time}} left",
-      "ended": "Votimi u mbyll",
-      "votes_one": "{{count}} votë",
-      "votes_other": "{{count}} vota",
-      "replaceHint": "Fillimi i një sondazhi të ri mbyll atë që është i hapur.",
-      "widgetHint": "Shfaq sondazhin tënd të drejtpërdrejtë. Në aplikacionin DeHub, shikuesit shtypin një opsion për të votuar; në OBS u thotë njerëzve të shkruajnë {{command}} dhe një numër në bisedë.",
-      "sample": {
-        "a": "Diçka e re",
-        "b": "Një i preferuar i vjetër",
-        "c": "Ti zgjedh"
+      "followersOnly": "Folësit vetëm",
+      "subscribersOnly": "Anëtarët e përfundimtarët vetëm",
+      "subscribersOnlyHint": "Zbërzhjet anëtarëve të përfundimtareve.",
+      "bannedWords": "Fjalët e blerë",
+      "bannedWordsHint": "Separo me komë. Shkruajja një fjalë me shkronja nuk e rresulton.",
+      "wordAction": "Kur dikush përdor një",
+      "wordBlock": "Mbyllja e mesazhit",
+      "wordTimeout": "Përfundoni dhe bani ata për një minutë",
+      "moderators": "Moderatorët",
+      "moderatorsHint": "Atyre i jepet fuqi për të bënë timeout dhe të banojnë shikuesit në transmetimet tuaja. Ata nuk mund të veprojnë ndaj tërhequrit ose ndaj njëri-tjetrit.",
+      "addModerator": "Shfrytëzimi",
+      "usernamePlaceholder": "Emri i përdoruesit",
+      "moderatorAdded": "Moderatori u shtua.",
+      "moderatorNotFound": "Asnjë llogari me këtë emër të përdoruesit.",
+      "removeModerator": "Hapësira moderatorit",
+      "noModerators": "Asnjë moderator ende.",
+      "banned": "Banuar nga transmetimet tuaja",
+      "unban": "Unban",
+      "noBans": "Asnjë person nuk është banuar.",
+      "log": "Veprimet e fundit",
+      "noLog": "Asnjë gjë ende.",
+      "actions": {
+        "timeout_one": "{{actor}} u shkonte për {{target}} për {{count}} sekonda",
+        "timeout_other": "{{actor}} u shkuajti {{target}} për {{count}} sekonda",
+        "ban": "{{actor}} banoi {{target}}",
+        "unban": "{{actor}} zbati banimin e {{target}}",
+        "moderator-added": "{{target}} u bë moderator",
+        "moderator-removed": "{{target}} nuk është më moderator",
+        "word-blocked": "Përfundoi një mesazh nga {{target}} për \"{{word}}\"",
+        "word-timeout_one": "Bani timeout {{target}} për {{count}} sekondë për \"{{word}}\"",
+        "word-timeout_other": "Bani timeout {{target}} për {{count}} sekonda për \"{{word}}\""
       }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Pushtimi i 1 minutës",
+    "timeout10m": "Pushtimi i 10 minutave",
+    "timeout1h": "Pushtimi i 1 orës",
+    "ban": "Blerja nga këto strema",
+    "makeModerator": "Bëhu moderator",
+    "timedOut": "I është kthyer.",
+    "banned": "Blerja nga këto strema.",
+    "madeModerator": "Tani janë moderatorë.",
+    "failed": "Kjo nuk funksionoi. Provo përsëri.",
+    "youAreBanned": "Ti nuk mund të flas në strema e këtij krijuesi",
+    "youAreTimedOut": "Ti je i pushtuar për një moment",
+    "title": "Moderator"
   }
 }

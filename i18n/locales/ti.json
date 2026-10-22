@@ -9076,15 +9076,6 @@
     "notNow": "ሕጂ ኣይኰንኩን"
   },
   "liveOverlay": {
-    "someone": "ሓደ ሰብ",
-    "newFollower": "ሓድሽ ተኸታሊ ፦ {{name}}",
-    "newSubscriber": "ሓድሽ ኣባል ፦ {{name}}",
-    "joined": "{{name}} ተጸምቢሩ",
-    "goalReached": "ሸቶታት በጺሑ!",
-    "followersUnit": "ተኸታተልቲ",
-    "topSupporters": "ላዕለዎት ደገፍቲ",
-    "tipped": "{{name}} ህያብ ልኢኹ",
-    "chatPreview": "ናይ ቻት መልእኽትታት ኣብዚ ይረኣዩ",
     "poll": {
       "voteFor": "ንዓ {{option}} ድምጺ ሃብ",
       "closed": "ድምጺ ተዓጽዩ",
@@ -9094,9 +9085,49 @@
       "voted_other": "You vote · {{count}} ድምጺ",
       "votes_one": "{{count}} ድምጺ",
       "votes_other": "{{count}} ድምጺ"
-    }
+    },
+    "someone": "ሓደ ሰብ",
+    "newFollower": "ሓድሽ ተኸታሊ ፦ {{name}}",
+    "newSubscriber": "ሓድሽ ኣባል ፦ {{name}}",
+    "joined": "{{name}} ተጸምቢሩ",
+    "goalReached": "ሸቶታት በጺሑ!",
+    "followersUnit": "ተኸታተልቲ",
+    "topSupporters": "ላዕለዎት ደገፍቲ",
+    "tipped": "{{name}} ህያብ ልኢኹ",
+    "chatPreview": "ናይ ቻት መልእኽትታት ኣብዚ ይረኣዩ"
   },
   "liveStudio": {
+    "polls": {
+      "duration": "ምስ ምርጫ ክፍሊት ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ",
+      "minutes_one": "{{count}} ደቒቕ",
+      "title": "ድምጺ",
+      "intro": "ነቶም ኣብ ስርሒትካ ዚርእዩ ሰባት ሕቶ ሕተቶም ። ኣብ DeHub App ዘሎ ጠውቑር ወይ ድማ {{command}} ብምጽሓፍ ከምኡ'ውን ኣብ ቻት ዘሎ ቁጽሪ እቲ ኣማራጺ ይምልሱ ።",
+      "question": "ሕቶ",
+      "questionPlaceholder": "ቀጺለ እንታይ ክጻወት ኣለኒ?",
+      "option": "ምርጫ {{n}}",
+      "addOption": "ኣማራጺ ኣክሎ",
+      "removeOption": "ኣማራጺ {{n}} ኣወግድ",
+      "seconds_one": "{{count}} ካልኣይቲ",
+      "seconds_other": "{{count}} ሰከንድ",
+      "minutes_other": "{{count}} ደቓይቕ",
+      "start": "ነቲ ምርጫ ምጅማር",
+      "end": "ሕጂ ድምጺ ምሃብ ኣቋሪጽካ",
+      "started": "እቲ ምርጫኻ ክፍትሕ እዩ ። እቶም ተዓዘብቲ ሕጂ ክመርጹ ይኽእሉ እዮም ።",
+      "notLive": "ፈለማ ብቀጥታ ግበር ። ኣብዚ እዋን እዚ ኣብ እትዝርጋሕዎ ስርሒት ድምጺ ይካየድ ።",
+      "startFailed": "እቲ ምርጫ ኣይተጀመረን ። ደጊምካ ፈትኖ ።",
+      "closeFailed": "እቲ ድምጺ ኣይተዛዘመን ። እንደገና ፈትኖ ።",
+      "live": "ክፍትሕ ድምጺ ምሃብ · {{time}} left",
+      "ended": "ድምጺ ተዓጽዩ",
+      "votes_one": "{{count}} ድምጺ",
+      "votes_other": "{{count}} ድምጺ",
+      "replaceHint": "ሓድሽ ምርጫ ምጅማር ነቲ ተኸፊቱ ዘሎ ይዓጽዎ ።",
+      "widgetHint": "ንቀጥታ ምርጫኻ ኣርኢ ። ኣብ DeHub App ተመልካቾች ናይ ድምጺ ኣማራጺ ይጥቀሙ ፣ ኣብ OBS ሰባት {{command}} ን ኣብ ቻት ቁጽሪ ክጽሕፉ ይነግሮም ።",
+      "sample": {
+        "a": "ሓድሽ ነገር",
+        "b": "ናይ ቀደም ፍቑር",
+        "c": "ንስኻ ኢኻ እትመርጽ"
+      }
+    },
     "title": "ህያው ስቱዲዮ",
     "subtitle": "ናይ ስትሪምስ ምንቅስቓስ ምልክታት ከምኡ'ውን ዊጀትስ",
     "intro": "ሓንቲ ሓንቲ ነገር ዘውሪድካዮ ኣብዚ ናይ ስትሪምስ ላዕላይ ይርአይ ንኩሎም ተዓዋቲ ኣብ DeHub app — ምስ ስትሪም ካብ ስልካ ወይ ብራውዘር ወይ capture card ወይ encoder ምስ ምውጻእ።",
@@ -9135,6 +9166,7 @@
       "join": "ተጸምቢሩ"
     },
     "kinds": {
+      "poll": "ድምጺ",
       "tip_alert": "መጠንቀቕታ",
       "follow_alert": "ንቕሓት ስዓቦ",
       "subscribe_alert": "ናይ ኣባል መጠንቀቕታ",
@@ -9150,10 +9182,10 @@
       "event_feed": "ናይ ቀረባ ንጥፈታት",
       "chat_box": "ናይ ቻት ሳጹን",
       "ticker": "ቲከር",
-      "rule_alert": "ደንብ ማንቂያዎች",
-      "poll": "ድምጺ"
+      "rule_alert": "ደንብ ማንቂያዎች"
     },
     "hints": {
+      "poll": "ብቀጥታ ምርጫኻ ፡ ንነፍሲ ወከፍ ኣማራጺ ናይ ድምጺ ጠውቑ",
       "tip_alert": "ኣብ ነፍሲ ወከፍ ጫፍ ፡ ኣብ ደረጃኡ እተመዝገበ",
       "follow_alert": "ንነፍሲ ወከፍ ሓድሽ ተኸታሊ ኣርኢ",
       "subscribe_alert": "ንነፍሲ ወከፍ ሓድሽ ኣባል ኣርኢ",
@@ -9169,8 +9201,7 @@
       "event_feed": "ናይ መወዳእታ ህያባት ፡ ተኸታተልቲ ፡ ተመዝጋቢታትን ሰባት ነቲ ስርሒትካ ይካፈሉ",
       "chat_box": "ኣብ ገጽካ ናይ ዝርርብ መልእኽትታት ኣርኢ",
       "ticker": "ሓደ መስመር ናይ ገዛእ ርእስኻ ጽሑፍ ኣብ ልዕሊ እቲ ስክሪን ዝዞር",
-      "rule_alert": "ደንብ ማንቂያዎችህ የሚመጡበት ቦታ",
-      "poll": "ብቀጥታ ምርጫኻ ፡ ንነፍሲ ወከፍ ኣማራጺ ናይ ድምጺ ጠውቑ"
+      "rule_alert": "ደንብ ማንቂያዎችህ የሚመጡበት ቦታ"
     },
     "fields": {
       "style": "ቅጥዒ",
@@ -9267,14 +9298,14 @@
       "webhookHint": "ናይ ዲኮርድ ወይ ናይ Slack ዌብ ቡክ ወይ ዝኾነ ናይ https ኣድራሻ ፖስት ዝቕበል ።",
       "webhookText": "መልእኽቲ ንምልኣኽ",
       "triggers": {
+        "live": "ስርሒት ትጅምር",
         "tip": "ሓደ ነጥቢ ይመጽእ",
         "follow": "ሓደ ሰብ ይስዕቦ",
         "subscribe": "ሓደ ሰብ ይመዝገብ",
         "share": "ሓደ ሰብ ነቲ ዥረት ይካፈል",
         "command": "ናይ ቻት ትእዛዝ ይጥቀም",
         "keyword": "ናይ ቻት መልእኽቲ ሓደ ቃል ዝሓዘ",
-        "chat": "ዝኾነ ናይ ቻት መልእኽቲ",
-        "live": "ስርሒት ትጅምር"
+        "chat": "ዝኾነ ናይ ቻት መልእኽቲ"
       },
       "audiences": {
         "everyone": "ኩሉ ሰብ",
@@ -9326,36 +9357,64 @@
         "shhh": "ኣብራህ"
       }
     },
-    "polls": {
-      "duration": "ምስ ምርጫ ክፍሊት ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ",
-      "minutes_one": "{{count}} ደቒቕ",
-      "title": "ድምጺ",
-      "intro": "ነቶም ኣብ ስርሒትካ ዚርእዩ ሰባት ሕቶ ሕተቶም ። ኣብ DeHub App ዘሎ ጠውቑር ወይ ድማ {{command}} ብምጽሓፍ ከምኡ'ውን ኣብ ቻት ዘሎ ቁጽሪ እቲ ኣማራጺ ይምልሱ ።",
-      "question": "ሕቶ",
-      "questionPlaceholder": "ቀጺለ እንታይ ክጻወት ኣለኒ?",
-      "option": "ምርጫ {{n}}",
-      "addOption": "ኣማራጺ ኣክሎ",
-      "removeOption": "ኣማራጺ {{n}} ኣወግድ",
+    "moderation": {
+      "title": "ናይ ቻት ሚዛናዊነት",
+      "intro": "ኣብ ትሕቲ ኩሉ ጅረታትካ ናይ ቻት ሕግታት ። ናብ ቀንዲ ቻት DeHub ኣይበጽሑን እዮም ፦ ኣብዚ እትእግድ ሰብ ፡ ኣብ ካልእ ቦታታት ኪዛረብ ይኽእል እዩ ።",
+      "loadFailed": "እቲ ናይ ምትዕርራይ ኣቀማምጣኻ ክስረዝ ኣይከኣለን ። ነቲ ገጽ ደጊምካ ፈትኖ ።",
+      "save": "ናይ ቻት ሕግታት ኣድሕን",
+      "saved": "ናይ ቻት ሕግታት ተድሕን ።",
+      "saveFailed": "ኣብዚ ጉዳይ'ዚ ፡ መፍትሒታት ክዝርዝሩ ኣይከኣሉን ።",
+      "slowMode": "ቀስ ብቐስ ኣገባብ",
+      "slowModeHint": "ነፍሲ ወከፍ ተመልካች ኣብ መንጎ መልእኽትታት ክሳዕ ክንደይ እዩ ዚጽበ ፧ ንስኻን መምህራንካን ፈጺምኩም ኣይትጸበዩ ።",
+      "off": "ወጺእካ",
       "seconds_one": "{{count}} ካልኣይቲ",
       "seconds_other": "{{count}} ሰከንድ",
-      "minutes_other": "{{count}} ደቓይቕ",
-      "start": "ነቲ ምርጫ ምጅማር",
-      "end": "ሕጂ ድምጺ ምሃብ ኣቋሪጽካ",
-      "started": "እቲ ምርጫኻ ክፍትሕ እዩ ። እቶም ተዓዘብቲ ሕጂ ክመርጹ ይኽእሉ እዮም ።",
-      "notLive": "ፈለማ ብቀጥታ ግበር ። ኣብዚ እዋን እዚ ኣብ እትዝርጋሕዎ ስርሒት ድምጺ ይካየድ ።",
-      "startFailed": "እቲ ምርጫ ኣይተጀመረን ። ደጊምካ ፈትኖ ።",
-      "closeFailed": "እቲ ድምጺ ኣይተዛዘመን ። እንደገና ፈትኖ ።",
-      "live": "ክፍትሕ ድምጺ ምሃብ · {{time}} left",
-      "ended": "ድምጺ ተዓጽዩ",
-      "votes_one": "{{count}} ድምጺ",
-      "votes_other": "{{count}} ድምጺ",
-      "replaceHint": "ሓድሽ ምርጫ ምጅማር ነቲ ተኸፊቱ ዘሎ ይዓጽዎ ።",
-      "widgetHint": "ንቀጥታ ምርጫኻ ኣርኢ ። ኣብ DeHub App ተመልካቾች ናይ ድምጺ ኣማራጺ ይጥቀሙ ፣ ኣብ OBS ሰባት {{command}} ን ኣብ ቻት ቁጽሪ ክጽሕፉ ይነግሮም ።",
-      "sample": {
-        "a": "ሓድሽ ነገር",
-        "b": "ናይ ቀደም ፍቑር",
-        "c": "ንስኻ ኢኻ እትመርጽ"
+      "followersOnly": "ተኸታተልቲ ጥራይ",
+      "subscribersOnly": "ተመዝጋቢታት ጥራይ",
+      "subscribersOnlyHint": "ሰዓብቲ ጥራይ እዮም ዚሓልፉ ።",
+      "bannedWords": "እተኸልከለ ቓላት",
+      "bannedWordsHint": "ምስ ኮምፓስ ተፈልዩ ፡ ደብዳበ ብጽሑፍ ምጽሓፍ ፡ ኣብ ዙርያኡ ኣይርከብን እዩ ።",
+      "wordAction": "ሓደ ሰብ ምስ ዚጥቀመሉ",
+      "wordBlock": "መልእኽቲ ደው በል",
+      "wordTimeout": "ንነዊሕ እዋን ተጸበዩ",
+      "moderators": "ሞዴራተራት",
+      "moderatorsHint": "ኣብ ገማግም ባሕሪኻ ንተዓዘብቲ ግዜ ክገድፉ ይኽእሉ እዮም ። ኣብ ልዕሊኻ ወይ ኣብ ልዕሊኻ ኺንቀሳቐሱ ኣይክእሉን እዮም ።",
+      "addModerator": "ኣክሊል",
+      "usernamePlaceholder": "ስም ተጠቃሚ",
+      "moderatorAdded": "እቲ ኣሰናዳኢ ወሲኹ ።",
+      "moderatorNotFound": "ብዛዕባ እቲ ናይ ተጠቃሚ ስም ዝኾነ ሕሳብ የለን ።",
+      "removeModerator": "መለለዪ ኣወግድ",
+      "noModerators": "እቲ ዝተዋሃበ ቁጽሪ ገና ኣይተገለጸን ።",
+      "banned": "ካብ ፈሳሲኻ ተፈልዩ",
+      "unban": "ዘይተፈልጠ",
+      "noBans": "ሓደ እኳ ኣይእገድን እዩ ።",
+      "log": "ናይ ቀረባ ስጉምቲታት",
+      "noLog": "ገና ገለ ነገር የለን ።",
+      "actions": {
+        "timeout_one": "{{actor}} ንዓ {{target}} ን{{count}} ካልኢት ኣህደኦ",
+        "timeout_other": "{{actor}} ንዓ {{target}} ን{{count}} ካልኢታት ኣህደኦ",
+        "unban": "{{actor}} እገዳ {{target}} ኣልዒሉ",
+        "word-blocked": "ብሰንኪ \"{{word}}\" መልእኽቲ {{target}} ተዓጊቱ",
+        "word-timeout_one": "ብሰንኪ \"{{word}}\" {{target}} ን{{count}} ካልኢት ተሃዲኡ",
+        "word-timeout_other": "ብሰንኪ \"{{word}}\" {{target}} ን{{count}} ካልኢታት ተሃዲኡ",
+        "ban": "{{actor}} ክልኩል {{target}}",
+        "moderator-added": "{{target}} መማህረሪ ኮይኑ",
+        "moderator-removed": "{{target}} ሕጂ ኣማሓዳሪ ኣይኮነን"
       }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "ቅድሚ ምኻድኩም ክልተ ደቒቕ ተቐመጥዎ ።",
+    "timeout10m": "10 ደቓይቕ ሓሊፉ",
+    "timeout1h": "ኣብ ውሽጢ ሓደ ሰዓት ጥራይ እዩ እቲ ጽርግያ ተኸፊቱ ።",
+    "ban": "ካብ'ዚ ዥረት'ዚ ተኣጊዱ",
+    "makeModerator": "ኣስተማቕራ ግበር",
+    "timedOut": "ግዜ ኣኺሉ እዩ ።",
+    "banned": "ካብዞም ሩባታት እዚኣቶም ተፈልዮም እዮም ።",
+    "madeModerator": "ሕጂ ድማ ኣማሓዳሪ እዩ ።",
+    "failed": "በጃኻ ኣይትጨነቕ ፡ ከም'ዚ... እንደገና ይዞር ኣሎ ።",
+    "youAreBanned": "ኣብዚ ፈጣሪ ዥረት ክትዘራረብ ኣይትኽእልን ኢኻ",
+    "youAreTimedOut": "ንነዊሕ እዋን ተጸሚድካ",
+    "title": "ሚዛናዊ"
   }
 }

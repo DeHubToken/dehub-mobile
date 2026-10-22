@@ -8988,11 +8988,6 @@
     "notNow": "No now"
   },
   "liveOverlay": {
-    "someone": "Wetin dem say?",
-    "subscribedTo": "{{name}} subscribe to {{plan}}",
-    "followersUnit": "fɔlɔwɔs",
-    "tipped": "{{name}} send goody",
-    "chatPreview": "Chat messages appear here",
     "poll": {
       "closed": "Vote close",
       "voteFor": "Vote foe {{option}}",
@@ -9002,9 +8997,45 @@
       "voted_other": "Yuh vote · {{count}} votes",
       "votes_one": "{{count}} vote",
       "votes_other": "{{count}} votes"
-    }
+    },
+    "someone": "Wetin dem say?",
+    "subscribedTo": "{{name}} subscribe to {{plan}}",
+    "followersUnit": "fɔlɔwɔs",
+    "tipped": "{{name}} send goody",
+    "chatPreview": "Chat messages appear here"
   },
   "liveStudio": {
+    "polls": {
+      "questionPlaceholder": "What should I play next?",
+      "duration": "How long voting stays open",
+      "start": "Start the poll",
+      "end": "End voting now",
+      "started": "Your poll is open. Viewers can vote now.",
+      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
+      "title": "Polls",
+      "intro": "Ask dem people watchin’ yu broadcast one question. Dem answer wit’ button in DeHub app, or by type \"{{command}}\" and number of option in chat.",
+      "question": "Question",
+      "option": "Option {{n}}",
+      "addOption": "Add an option",
+      "removeOption": "Remove option {{n}}",
+      "seconds_one": "{{count}} second",
+      "seconds_other": "{{count}} seconds",
+      "minutes_one": "{{count}} minute",
+      "minutes_other": "{{count}} minutes",
+      "startFailed": "Poll no dey start yet. Try again.",
+      "closeFailed": "Vote no finish yet. Try again.",
+      "live": "Voting open · {{time}} left",
+      "ended": "Voting closed",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "replaceHint": "Fo start new poll go close di one wey don open.",
+      "widgetHint": "Yuz show live poll. In DeHub app, pipo dey tap option to vote; in OBS, e tell pipo type {{command}} and number for chat.",
+      "sample": {
+        "a": "Something new",
+        "b": "An old favourite",
+        "c": "You choose"
+      }
+    },
     "title": "Live Studio",
     "open": "Open Live Studio",
     "settingsLinkBody": "Tip alerts, goals, an' more fit go come on yu stream, set up in Live Studio.",
@@ -9036,6 +9067,7 @@
       "join": "Join"
     },
     "kinds": {
+      "poll": "Poll",
       "tip_alert": "Tip alert",
       "follow_alert": "Follow alert",
       "subscribe_alert": "Subscriber alert",
@@ -9051,17 +9083,16 @@
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Rule alerts",
-      "poll": "Poll"
+      "rule_alert": "Rule alerts"
     },
     "hints": {
+      "poll": "Youse live poll, wey go come wit button fo vote fo every option.",
       "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
       "share_alert": "Shɔ wen sɔmbɔdi shɛr yɔ strim",
       "join_alert": "Welcomes each viewer as they arrive",
-      "reaction_counter": "Count all di reaction di get fo di broadcast yu do",
-      "poll": "Youse live poll, wey go come wit button fo vote fo every option."
+      "reaction_counter": "Count all di reaction di get fo di broadcast yu do"
     },
     "fields": {
       "style": "Style",
@@ -9149,14 +9180,14 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "live": "You start broadcastin",
         "share": "Someone shares the stream",
         "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
         "chat": "Any chat message",
-        "command": "E chat command na use wey a go dey use fo chat",
-        "live": "You start broadcastin"
+        "command": "E chat command na use wey a go dey use fo chat"
       },
       "audiences": {
         "everyone": "Everyone",
@@ -9205,36 +9236,64 @@
         "shhh": "Shhh"
       }
     },
-    "polls": {
-      "questionPlaceholder": "What should I play next?",
-      "duration": "How long voting stays open",
-      "start": "Start the poll",
-      "end": "End voting now",
-      "started": "Your poll is open. Viewers can vote now.",
-      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
-      "title": "Polls",
-      "intro": "Ask dem people watchin’ yu broadcast one question. Dem answer wit’ button in DeHub app, or by type \"{{command}}\" and number of option in chat.",
-      "question": "Question",
-      "option": "Option {{n}}",
-      "addOption": "Add an option",
-      "removeOption": "Remove option {{n}}",
+    "moderation": {
+      "bannedWordsHint": "Separate with commas. Spelling a word out letter by letter does not get round it.",
+      "wordAction": "When someone uses one",
+      "wordBlock": "Stop the message",
+      "title": "Chat moderation",
+      "intro": "Rulz fo chat unda all of my streamz: dem no go reach DeHub main chat: if you ban here, you still go fit talk everywia.",
+      "loadFailed": "Na my moderation settings no go load wey. Come back page wey, try again.",
+      "save": "Save chat rules",
+      "saved": "Chat rules saved.",
+      "saveFailed": "Wetin you try save no go save wey.",
+      "slowMode": "Slow mode",
+      "slowModeHint": "Wetin time each viewer go wait for message come. You and your moderators no go wait at all.",
+      "off": "Off",
       "seconds_one": "{{count}} second",
       "seconds_other": "{{count}} seconds",
-      "minutes_one": "{{count}} minute",
-      "minutes_other": "{{count}} minutes",
-      "startFailed": "Poll no dey start yet. Try again.",
-      "closeFailed": "Vote no finish yet. Try again.",
-      "live": "Voting open · {{time}} left",
-      "ended": "Voting closed",
-      "votes_one": "{{count}} vote",
-      "votes_other": "{{count}} votes",
-      "replaceHint": "Fo start new poll go close di one wey don open.",
-      "widgetHint": "Yuz show live poll. In DeHub app, pipo dey tap option to vote; in OBS, e tell pipo type {{command}} and number for chat.",
-      "sample": {
-        "a": "Something new",
-        "b": "An old favourite",
-        "c": "You choose"
+      "followersOnly": "Followers only",
+      "subscribersOnly": "Subscribers only",
+      "subscribersOnlyHint": "Overrides followers only.",
+      "bannedWords": "Banned words",
+      "wordTimeout": "Stop dem now and time dem out fo’ one minute",
+      "moderators": "Moderator",
+      "moderatorsHint": "Dem can time out and ban viewer fo’ your stream. Dem no go act on you or on each other.",
+      "addModerator": "Add",
+      "usernamePlaceholder": "Username",
+      "moderatorAdded": "Moderator add.",
+      "moderatorNotFound": "No account wit’ dat username.",
+      "removeModerator": "Remove moderator",
+      "noModerators": "No moderator yet.",
+      "banned": "Ban fo’ your stream",
+      "unban": "Unban",
+      "noBans": "Nobody ban yet.",
+      "log": "Recent action",
+      "noLog": "Nothing yet.",
+      "actions": {
+        "timeout_one": "{{actor}} time out {{target}} fo’ {{count}} second",
+        "timeout_other": "{{actor}} time out {{target}} fo’ {{count}} seconds",
+        "ban": "{{actor}} ban {{target}}",
+        "unban": "{{actor}} unban {{target}}",
+        "moderator-added": "{{target}} become a moderator",
+        "moderator-removed": "{{target}} no longer a moderator",
+        "word-blocked": "Stop message fo’ {{target}} fo’ \"{{word}}\"",
+        "word-timeout_one": "Time out {{target}} fo’ {{count}} second fo’ \"{{word}}\"",
+        "word-timeout_other": "Time out {{target}} fo’ {{count}} seconds fo’ \"{{word}}\""
       }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Time out for 1 minute",
+    "timeout10m": "Time out for 10 minutes",
+    "ban": "Ban from these streams",
+    "banned": "Banned from these streams.",
+    "timeout1h": "Tym out fo 1 hour.",
+    "makeModerator": "Make moderator",
+    "timedOut": "Timed out.",
+    "madeModerator": "E go be moderator now.",
+    "failed": "Na go no dey work. Try again.",
+    "youAreBanned": "Wah you no go chat wey dis creator dey stream, eh?",
+    "youAreTimedOut": "Mun ya na time out for a moment.",
+    "title": "Moderate"
   }
 }

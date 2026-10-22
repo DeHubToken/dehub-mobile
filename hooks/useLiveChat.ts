@@ -61,6 +61,8 @@ export interface UseLiveChatReturn {
   myUser: LiveChatUser | null;
   isBanned: boolean;
   isModerator: boolean;
+  /** Until when a stream creator's timeout keeps this viewer quiet in this room. */
+  mutedUntil: number | null;
   canSend: boolean;
   typingUsers: LiveChatUser[];
   onlineCount: number;
@@ -112,6 +114,8 @@ export const useLiveChat = (
   const [isBanned, setIsBanned] = useState(false);
   const [isModerator, setIsModerator] = useState(false);
   const [canSend, setCanSend] = useState(false);
+  /** Until when a stream timeout keeps this viewer quiet here, if one does. */
+  const [mutedUntil, setMutedUntil] = useState<number | null>(null);
   const [typingUsers, setTypingUsers] = useState<LiveChatUser[]>([]);
   const [onlineCount, setOnlineCount] = useState(0);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -278,6 +282,26 @@ export const useLiveChat = (
       socket.on(EVENTS.USER_LEFT, ({ user: u }: { user: LiveChatUser }) => {
         setOnlineCount((prev) => Math.max(0, prev - 1));
         setTypingUsers((prev) => prev.filter((t) => t.address !== u.address));
+      });
+
+      // A stream creator's own moderation, for this room only. About this
+      // viewer: they are timed out or banned here. About someone else: a
+      // banned viewer's lines leave the room.
+      socket.on("livechat:userModerated", (data: any) => {
+        const address = String(data?.address || "").toLowerCase();
+        if (!address || (data?.roomId && data.roomId !== roomIdRef.current)) return;
+        if (address === myAddressRef.current) {
+          if (data?.action === "ban") {
+            setIsBanned(true);
+            setCanSend(false);
+          } else {
+            setMutedUntil(Date.now() + (Number(data?.seconds) || 60) * 1000);
+          }
+          return;
+        }
+        if (data?.action === "ban") {
+          setMessages((prev) => prev.filter((m) => (m.senderAddress || m.sender?.address || "").toLowerCase() !== address));
+        }
       });
 
       socket.on(EVENTS.ROOM_UPDATED, (updatedRoom: LiveChatRoom) => {
@@ -513,6 +537,7 @@ export const useLiveChat = (
     myUser,
     isBanned,
     isModerator,
+    mutedUntil,
     canSend,
     typingUsers,
     onlineCount,

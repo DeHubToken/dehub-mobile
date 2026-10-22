@@ -9150,6 +9150,16 @@
     "notNow": "Nöchtli no."
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Abstimmig schtössi",
+      "voteFor": "Stimm für {{option}}",
+      "signIn": "Logg dich ein, um abzustimmä",
+      "failed": "Deine Stimm zähl nüt. Versuchs no ämols.",
+      "voted_one": "Du häst abgestimmt · {{count}} Stimm",
+      "voted_other": "Du häst abgestimmt · {{count}} Stimmä",
+      "votes_one": "{{count}} Stimm",
+      "votes_other": "{{count}} Stimmä"
+    },
     "someone": "Öpper",
     "newFollower": "Neuer Follower: {{name}}",
     "newSubscriber": "Neuer Abonnent: {{name}}",
@@ -9160,19 +9170,40 @@
     "followersUnit": "Follower",
     "topSupporters": "Top-Unterstützer",
     "tipped": "{{name}} hat ein Geschenk geschickt",
-    "chatPreview": "Chat-Nachrichten erscheinen hier",
-    "poll": {
-      "closed": "Abstimmig schtössi",
-      "voteFor": "Stimm für {{option}}",
-      "signIn": "Logg dich ein, um abzustimmä",
-      "failed": "Deine Stimm zähl nüt. Versuchs no ämols.",
-      "voted_one": "Du häst abgestimmt · {{count}} Stimm",
-      "voted_other": "Du häst abgestimmt · {{count}} Stimmä",
-      "votes_one": "{{count}} Stimm",
-      "votes_other": "{{count}} Stimmä"
-    }
+    "chatPreview": "Chat-Nachrichten erscheinen hier"
   },
   "liveStudio": {
+    "polls": {
+      "title": "Umfragen",
+      "question": "Frage",
+      "addOption": "Option hinzufügen",
+      "removeOption": "Option {{n}}entfernen",
+      "intro": "Frag die Leute, die deine Übertragung schauen, eine Frage. Sie antworten mit einem Knopf in der DeHub-App oder indem sie in den Chat {{command}} und die Nummer der Option tippen.",
+      "questionPlaceholder": "Was soll ich als Nächstes spielen?",
+      "option": "Option {{n}}",
+      "duration": "Wos lang d’Stimmabgabe offen blit?",
+      "seconds_one": "{{count}} zwoite",
+      "seconds_other": "{{count}} Sekundä",
+      "minutes_one": "{{count}} Minute",
+      "minutes_other": "{{count}} Minuten",
+      "start": "Start de Umfrage",
+      "end": "Endet jetzt mit dem Abstimmungsprozess!",
+      "started": "De Umfrage is offen. Schauä schtämmig ab, wä de Lesä abstimmä kännt.",
+      "notLive": "Geh live als Erstes. Es läuft eine Umfrage im Stream, den du gerade machst.",
+      "startFailed": "De Umfrage isch net gestartet. Versuchs noa.",
+      "closeFailed": "Stimmabgabe isch nocht fertig. Versuche’s noochmäl.",
+      "live": "Stimmabgabe offen · {{time}} noch übrig",
+      "ended": "Stimmabgabe geschlossen",
+      "votes_one": "{{count}} stimme ab",
+      "votes_other": "{{count}} Stimmä",
+      "replaceHint": "Ei neu Poll startet, schliesst den offene zu.",
+      "widgetHint": "Schau dir die Live-Umfrage an. In der DeHub-App tippen die Zuschauer eine Option, um abzustimmen; in OBS sagt man den Leuten, sie sollen in den Chat {{command}} und eine Nummer eintippen.",
+      "sample": {
+        "c": "Sie wählen",
+        "a": "Etwas Neues",
+        "b": "Ei e chlii Altbekanntes"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Alarm und Widgets für dini Streams",
     "intro": "Alles, was du hier hinzufügst, erscheint über deinen Streams für alle Zuschauer in der DeHub-App – egal ob du live von deinem Handy, dem Browser, einer Capture-Karte oder einem Encoder streamst.",
@@ -9224,6 +9255,7 @@
       "rule_alert": "Regel-Warnungen"
     },
     "hints": {
+      "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option",
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
       "follow_alert": "Zeigt jeden neuen Follower",
       "subscribe_alert": "Zeigt jeden neuen Abonnenten",
@@ -9239,8 +9271,7 @@
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
       "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
-      "rule_alert": "Wo deine Regel-Warnungen erscheinen",
-      "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option"
+      "rule_alert": "Wo deine Regel-Warnungen erscheinen"
     },
     "fields": {
       "style": "Stil",
@@ -9340,14 +9371,14 @@
       "webhookUrl": "Webhook-Adresse",
       "webhookHint": "Einer Discord- oder Slack-Webhook, oder ei Webadress (HTTPS) wo ei POST-Aufruf funktioniert.",
       "triggers": {
+        "live": "Du startscht mit dem Sendä",
         "tip": "Eini Tipp kommt an.",
         "follow": "Jemänd follows dir.",
         "subscribe": "Jemand abonniert.",
         "share": "Jemand teilt den Stream.",
         "command": "E chattbefehl wird gnutzt.",
         "keyword": "A Chatnachricht enthält ein Wort.",
-        "chat": "Any Chatnachricht",
-        "live": "Du startscht mit dem Sendä"
+        "chat": "Any Chatnachricht"
       },
       "audiences": {
         "everyone": "Alle",
@@ -9396,36 +9427,64 @@
         "shhh": "Shhh"
       }
     },
-    "polls": {
-      "title": "Umfragen",
-      "question": "Frage",
-      "addOption": "Option hinzufügen",
-      "removeOption": "Option {{n}}entfernen",
-      "intro": "Frag die Leute, die deine Übertragung schauen, eine Frage. Sie antworten mit einem Knopf in der DeHub-App oder indem sie in den Chat {{command}} und die Nummer der Option tippen.",
-      "questionPlaceholder": "Was soll ich als Nächstes spielen?",
-      "option": "Option {{n}}",
-      "duration": "Wos lang d’Stimmabgabe offen blit?",
+    "moderation": {
+      "title": "Chat-Moderation",
+      "save": "Regeln für den Chat speichern",
+      "off": "Aus",
+      "followersOnly": "Nur Follower",
+      "wordAction": "Wenn jemand eines verwendet",
+      "addModerator": "Hinzufügen",
+      "removeModerator": "Moderator entfernen",
+      "noModerators": "Noch keine Moderatoren.",
+      "log": "Letze Änderungen",
+      "intro": "Regeln fürs Chat unter allen meinen Streams. Die kommen nie in den DeHub-Hauptchat: Wenn i dich hier banne, kannst du trotzdem überall anders reden.",
+      "loadFailed": "De Moderations-Einstellungen konntä niicht geläät. Läät d’Seite neu lädä, um’s no’chmäl zu versuche.",
+      "saved": "Chatregeln gespeichert.",
+      "saveFailed": "Däse Ändära gfällt net z’ speichern.",
+      "slowMode": "Langsam-Modus",
+      "slowModeHint": "Wie lang jeder Zuschauer zwischen den Nachrichten wartet. Du und deine Moderatoren wartet nie.",
       "seconds_one": "{{count}} zwoite",
       "seconds_other": "{{count}} Sekundä",
-      "minutes_one": "{{count}} Minute",
-      "minutes_other": "{{count}} Minuten",
-      "start": "Start de Umfrage",
-      "end": "Endet jetzt mit dem Abstimmungsprozess!",
-      "started": "De Umfrage is offen. Schauä schtämmig ab, wä de Lesä abstimmä kännt.",
-      "notLive": "Geh live als Erstes. Es läuft eine Umfrage im Stream, den du gerade machst.",
-      "startFailed": "De Umfrage isch net gestartet. Versuchs noa.",
-      "closeFailed": "Stimmabgabe isch nocht fertig. Versuche’s noochmäl.",
-      "live": "Stimmabgabe offen · {{time}} noch übrig",
-      "ended": "Stimmabgabe geschlossen",
-      "votes_one": "{{count}} stimme ab",
-      "votes_other": "{{count}} Stimmä",
-      "replaceHint": "Ei neu Poll startet, schliesst den offene zu.",
-      "widgetHint": "Schau dir die Live-Umfrage an. In der DeHub-App tippen die Zuschauer eine Option, um abzustimmen; in OBS sagt man den Leuten, sie sollen in den Chat {{command}} und eine Nummer eintippen.",
-      "sample": {
-        "c": "Sie wählen",
-        "a": "Etwas Neues",
-        "b": "Ei e chlii Altbekanntes"
+      "subscribersOnly": "Abonnenten nur",
+      "subscribersOnlyHint": "Übernimmt nur Follower.",
+      "bannedWords": "Bannierte Wörter",
+      "bannedWordsHint": "Separate mit Kommas. Buchstaben für Buchstaben aussprechen bringt nichts.",
+      "wordBlock": "Stoppe die Nachricht.",
+      "wordTimeout": "Hör auf und schick sie für eine Minute raus.",
+      "moderators": "Moderatoren",
+      "moderatorsHint": "Sie können Zuschauer in deinen Streams zeitlich begrenzen und sperren. Sie können aber niht auf dich oder aufeinander reagieren.",
+      "usernamePlaceholder": "Benutzername",
+      "moderatorAdded": "Beauftragter für die Moderation hinzugefügt.",
+      "moderatorNotFound": "Keini Account mit dem Namen.",
+      "banned": "Verboten von deinen Streams",
+      "unban": "Unban",
+      "noBans": "Niemand is gesperrt.",
+      "noLog": "Noch nix.",
+      "actions": {
+        "word-blocked": "Eine Nachricht von {{target}} für \"{{word}}\" wurde gestoppt",
+        "word-timeout_other": "Zeitüberschreitung {{target}} für {{count}} Sekunden für \"{{word}}\"",
+        "timeout_one": "{{actor}} isch abgelaufen {{target}} für {{count}} Sekundä",
+        "timeout_other": "{{actor}} isch abgelaufen {{target}} für {{count}} Sekundä.",
+        "ban": "{{actor}} gschmäht {{target}}",
+        "unban": "{{actor}} unbanned {{target}}",
+        "moderator-added": "{{target}} isch nocht zu Moderator gsi.",
+        "moderator-removed": "{{target}} isch mer no mehr Moderator.",
+        "word-timeout_one": "Timed out nach {{target}} Sekunde für {{count}} Sekunde für \"{{word}}\""
       }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Zeit aus für 1 Minute",
+    "timeout10m": "Zeit aus für 10 Minuti.",
+    "timeout1h": "Pause für 1 Stund",
+    "ban": "Verbann von diesen Streams.",
+    "makeModerator": "Mach Moderator",
+    "timedOut": "Zeit abgelaufen.",
+    "banned": "Verboten für diese Streams.",
+    "madeModerator": "Sie sünd no a Moderator.",
+    "failed": "Das hat net funktioniert. Versuchs no wieder.",
+    "youAreBanned": "Du kannst net in deim Creator-Streams chattaa.",
+    "youAreTimedOut": "Du bisch für e Moment zu langsam.",
+    "title": "Mässige"
   }
 }

@@ -9105,14 +9105,6 @@
     "notNow": "Häzir däl"
   },
   "liveOverlay": {
-    "someone": "Biriniň",
-    "newFollower": "Täze şägirdi: {{name}}",
-    "newSubscriber": "Täze abonent: {{name}}",
-    "joined": "{{name}} goşuldy",
-    "goalReached": "Goý, maksat amala aşsyn!",
-    "followersUnit": "şägirtler",
-    "topSupporters": "Ýolbaşçylyk maslahaty",
-    "chatPreview": "Çat habarlary bu ýerde görünýär",
     "poll": {
       "closed": "Saýlama ýapyldy",
       "voteFor": "{{option}} üçin seslen",
@@ -9122,9 +9114,48 @@
       "voted_other": "Sen seslendin {{count}} votes",
       "votes_one": "{{count}} ses",
       "votes_other": "{{count}} Votes"
-    }
+    },
+    "someone": "Biriniň",
+    "newFollower": "Täze şägirdi: {{name}}",
+    "newSubscriber": "Täze abonent: {{name}}",
+    "joined": "{{name}} goşuldy",
+    "goalReached": "Goý, maksat amala aşsyn!",
+    "followersUnit": "şägirtler",
+    "topSupporters": "Ýolbaşçylyk maslahaty",
+    "chatPreview": "Çat habarlary bu ýerde görünýär"
   },
   "liveStudio": {
+    "polls": {
+      "votes_other": "{{count}} ses",
+      "title": "Saýlamalar",
+      "intro": "Siziň telegepleşikleriňizi görýän adamlara bir sorag beriň. Olar DeHub-da bir düýş bilen jogap berýärler ýa-da {{command}} we çatda saýlama sanyny ýazýarlar.",
+      "question": "Soru",
+      "questionPlaceholder": "Men ýene-de näme oýnap bilerin?",
+      "option": "Option {{n}}",
+      "addOption": "Bir mümkinçiligiň bardygy",
+      "removeOption": "{{n}} saýynyaýyr",
+      "duration": "Bu näçe wagt dowam eder?",
+      "seconds_one": "{{count}} ikinji",
+      "seconds_other": "{{count}} sekunda",
+      "minutes_one": "{{count}} minut",
+      "minutes_other": "{{count}} minutlar",
+      "start": "Saýlamalary başla",
+      "end": "Ahyrsoňy seslenmek",
+      "started": "Siziň seslenmeňiz açyk. Häzir diňleýjiler seslenip bilerler.",
+      "notLive": "Öňürti ýaşap görüň. Häzirki serişdesinde bir soraw geçirilýär.",
+      "startFailed": "Saýlama başlamady. Gaýtalaň.",
+      "closeFailed": "Saýlama tamamlanmady. Gaýtalaň.",
+      "live": "Açyk seslenmek {{time}} çep",
+      "ended": "Saýlama ýapyldy",
+      "votes_one": "{{count}} ses",
+      "replaceHint": "Täze seslenme başlanda, açylýan seslenme ýapylýar.",
+      "widgetHint": "Öňki saýlamalaryňyzy görkeziň. DeHub-da seredýänler seslenmek üçin bir saýlama tapýarlar; OBS-de adamlara {{command}} we gürrüňdeşlik sanyny ýazmagy haýyş edýärler.",
+      "sample": {
+        "a": "Täze bir zat",
+        "b": "Gel ýene, gel meniň favoritim",
+        "c": "Sen saýlaýarsyň"
+      }
+    },
     "title": "Öýlü Studio",
     "subtitle": "Siziň akmalaryňyz üçin duýduryşlar we widgetler",
     "intro": "Bu ýerde goşýan ähli zatlar DeHub-da her bir seredýän üçin akmalaryňyzda görünýär - siz telefonyňyzdan, brauzerinizden, tutýan kartyňyzdan ýa-da kodlaýjydan direlseňiz-de.",
@@ -9178,6 +9209,7 @@
       "rule_alert": "Kanun Alarmlary"
     },
     "hints": {
+      "poll": "Her bir saýlama üçin bir seslenme tugmasy bilen",
       "tip_alert": "Ol her bir çüýreçini, her bir çüýreçini,",
       "follow_alert": "Her täze şägirdi görkez",
       "subscribe_alert": "Ähli täze abonentleri görkez",
@@ -9193,8 +9225,7 @@
       "event_feed": "Soňky sowgatlar, şägirtler, abonentler we siziň habaryňyzy paýlaýan adamlar",
       "chat_box": "Çat habarlaryny ekranda görkeziň",
       "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar",
-      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär",
-      "poll": "Her bir saýlama üçin bir seslenme tugmasy bilen"
+      "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär"
     },
     "fields": {
       "style": "Şablony",
@@ -9291,14 +9322,14 @@
       "webhookHint": "Discord ýa-da Slack webhook, ýa-da bir hat kabul edýän her bir https adres.",
       "webhookText": "Ýolbaşçylyk maslahatynyň habar bermegi",
       "triggers": {
+        "live": "Telewizýa başlaýar",
         "tip": "Devanagari: Bir adam geldi.",
         "follow": "Kimdir biri onuň yzyna düşýär",
         "subscribe": "Kimdir biri gol çekýär",
         "share": "Kimdir biri akymy paýlaşýar",
         "command": "Çat tabşyrygy ulanylýar",
         "keyword": "Çat habarynda bir söz bar",
-        "chat": "Çat habary",
-        "live": "Telewizýa başlaýar"
+        "chat": "Çat habary"
       },
       "audiences": {
         "everyone": "Hemmeler",
@@ -9350,36 +9381,64 @@
         "shhh": "ŞHH"
       }
     },
-    "polls": {
-      "votes_other": "{{count}} ses",
-      "title": "Saýlamalar",
-      "intro": "Siziň telegepleşikleriňizi görýän adamlara bir sorag beriň. Olar DeHub-da bir düýş bilen jogap berýärler ýa-da {{command}} we çatda saýlama sanyny ýazýarlar.",
-      "question": "Soru",
-      "questionPlaceholder": "Men ýene-de näme oýnap bilerin?",
-      "option": "Option {{n}}",
-      "addOption": "Bir mümkinçiligiň bardygy",
-      "removeOption": "{{n}} saýynyaýyr",
-      "duration": "Bu näçe wagt dowam eder?",
+    "moderation": {
+      "unban": "Gadagançylygy aýyr",
+      "title": "Çat moderasiýasy",
+      "intro": "Ähli akmalaryň astynda gürrüňdeşlik üçin düzgünler. Olar hiç haçan DeHub-yň esasy gürrüňine ýetmeýärler: siz bu ýerde gadagan edýän adam başga ýerlerde gürleşip biler.",
+      "loadFailed": "Siziň moderasiýa guramalaryňyz ýüklenip bilmedi. Sahypa täzeden täzeden synalýar.",
+      "save": "Çat kadalaryny Gaýd Et",
+      "saved": "Çat kadalary halas boldy.",
+      "saveFailed": "Bu ýagdaýda, çäreler listelenip bolmaýar.",
+      "slowMode": "Ýuwaş mod",
+      "slowModeHint": "Her bir seredýän adam habarlaryň arasyndaky wagtyny näçe wagt garaşýar? Siz we moderatorlar hiç haçan garaşmaň.",
+      "off": "Çyk",
       "seconds_one": "{{count}} ikinji",
       "seconds_other": "{{count}} sekunda",
-      "minutes_one": "{{count}} minut",
-      "minutes_other": "{{count}} minutlar",
-      "start": "Saýlamalary başla",
-      "end": "Ahyrsoňy seslenmek",
-      "started": "Siziň seslenmeňiz açyk. Häzir diňleýjiler seslenip bilerler.",
-      "notLive": "Öňürti ýaşap görüň. Häzirki serişdesinde bir soraw geçirilýär.",
-      "startFailed": "Saýlama başlamady. Gaýtalaň.",
-      "closeFailed": "Saýlama tamamlanmady. Gaýtalaň.",
-      "live": "Açyk seslenmek {{time}} çep",
-      "ended": "Saýlama ýapyldy",
-      "votes_one": "{{count}} ses",
-      "replaceHint": "Täze seslenme başlanda, açylýan seslenme ýapylýar.",
-      "widgetHint": "Öňki saýlamalaryňyzy görkeziň. DeHub-da seredýänler seslenmek üçin bir saýlama tapýarlar; OBS-de adamlara {{command}} we gürrüňdeşlik sanyny ýazmagy haýyş edýärler.",
-      "sample": {
-        "a": "Täze bir zat",
-        "b": "Gel ýene, gel meniň favoritim",
-        "c": "Sen saýlaýarsyň"
+      "followersOnly": "Diňe diňleýjiler",
+      "subscribersOnly": "Diňe ýazylanlar",
+      "subscribersOnlyHint": "Diňe yzyna eýerenler.",
+      "bannedWords": "Gadagan edilen sözler",
+      "bannedWordsHint": "Commas bilen aýrylyş. Bir sözüň hatyny harp bilen ýazmak onuň töwereginde tapylmaýar.",
+      "wordAction": "Kimdir biri ony ulananda",
+      "wordBlock": "Saýlan habaryny sakla",
+      "wordTimeout": "Ony goýup, bir minutlap çykaryň",
+      "moderators": "Moderator",
+      "moderatorsHint": "Olar siziň akmalaryňyzda wagt sarp edip, seredýänleri gadagan edip bilerler. Olar saňa ýa-da biri-birlerine garşy hereket edip bilmeýärler.",
+      "addModerator": "Ekle",
+      "usernamePlaceholder": "Ulyjynyň ady",
+      "moderatorAdded": "Moderator goşuldy.",
+      "moderatorNotFound": "Bu ulanýan ady bilen hiç hili hasabat ýok.",
+      "removeModerator": "Moderatory ewez et",
+      "noModerators": "Häzir moderator ýok.",
+      "banned": "Seniň akmalaryňdan aýrylyşmak",
+      "noBans": "Hiç kim gadagan edilmedi.",
+      "log": "Soňky hereketler",
+      "noLog": "Häzir däl.",
+      "actions": {
+        "timeout_one": "{{actor}} {{target}} ulanyjyny {{count}} sekunt sesini kesdi",
+        "timeout_other": "{{actor}} {{target}} ulanyjyny {{count}} sekunt sesini kesdi",
+        "ban": "{{actor}} {{target}} ulanyjyny gadagan etdi",
+        "moderator-added": "{{target}} moderator boldy",
+        "word-timeout_one": "\"{{word}}\" üçin {{target}} {{count}} sekunt sesi kesildi",
+        "word-timeout_other": "\"{{word}}\" üçin {{target}} {{count}} sekunt sesi kesildi",
+        "unban": "{{actor}}unbained {{target}}",
+        "moderator-removed": "{{target}} indi moderator däl",
+        "word-blocked": "\"{{word}}\" üçin {{target}} -den habar goýuldy"
       }
     }
+  },
+  "liveChatModeration": {
+    "timeout1m": "Bir minutdan soň",
+    "timeout10m": "Gotdibz 10",
+    "timeout1h": "Bir sagatdan soň,",
+    "ban": "Bu çakylyklardan gaça duruň",
+    "makeModerator": "Moderator ýarat",
+    "timedOut": "Wagtyň geçmegi bilen.",
+    "banned": "Bu akmalaryň gadagan edilmegi.",
+    "madeModerator": "Häzir olar moderator.",
+    "failed": "Ol ýene-de şeýle dolanyp gelýär.",
+    "youAreBanned": "Siz bu ýaradanyň akmalary bilen gürrüňdeş bolup bilmersiňiz",
+    "youAreTimedOut": "Men bir wagtlap ýykylaryn",
+    "title": "Moderat"
   }
 }
