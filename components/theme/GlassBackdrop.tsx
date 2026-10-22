@@ -7,12 +7,12 @@ import { visualActivity } from '../../libs/visualActivity';
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from '../../libs/themeBackdrop';
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from '../../libs/scrollActivity';
 
-const ribbons = Array.from({ length: 14 }, (_, index) => {
-  const vertical = index >= 7;
-  const lane = index % 7;
+const ribbons = Array.from({ length: 18 }, (_, index) => {
+  const vertical = index >= 9;
+  const lane = index % 9;
   const points = Array.from({ length: 10 }, (_, step) => {
     const along = step * 200 - 300;
-    const across = lane * 240 - 120 + Math.sin(step * 1.37 + lane * 1.8) * 115 + Math.cos(step * .71 - lane) * 65;
+    const across = lane * 170 - 120 + Math.sin(step * 1.37 + lane * 1.8) * 100 + Math.cos(step * .71 - lane) * 60;
     return vertical ? [across, along] : [along, across];
   });
   let d = `M${points[0].join(' ')}`;
@@ -25,10 +25,10 @@ const ribbons = Array.from({ length: 14 }, (_, index) => {
 function LightRibbons({ color }: { color: string }) {
   return <Svg width="100%" height="100%" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice" fill="none">
     {ribbons.map((d, i) => <G key={i}>
-      <Path d={d} stroke={color} strokeWidth={52} opacity={.035} />
-      <Path d={d} stroke={color} strokeWidth={24} opacity={.065} />
-      <Path d={d} stroke={color} strokeWidth={9} opacity={.14} />
-      <Path d={d} stroke={color} strokeWidth={3} opacity={.36} />
+      <Path d={d} stroke={color} strokeWidth={80} opacity={.045} />
+      <Path d={d} stroke={color} strokeWidth={38} opacity={.09} />
+      <Path d={d} stroke={color} strokeWidth={16} opacity={.2} />
+      <Path d={d} stroke={color} strokeWidth={5} opacity={.5} />
     </G>)}
   </Svg>;
 }
@@ -64,7 +64,7 @@ function GlassBackdrop() {
   }, [progress, reduced]);
   const tint = (alpha: number) => `rgba(${accent.join(',')},${alpha})`;
   return <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { backgroundColor: skin?.page ?? '#082a30', overflow: 'hidden' }]}>
-    <LinearGradient colors={[tint(.24), 'transparent', tint(.08)]} style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[tint(.36), 'transparent', tint(.16)]} style={StyleSheet.absoluteFill} />
     <Animated.View style={[styles.light, { transform: [
       { translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [-24, 32] }) },
       { translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [-16, 36] }) },
@@ -78,5 +78,5 @@ function GlassBackdrop() {
     </Animated.View>
   </View>;
 }
-const styles = StyleSheet.create({ light: { position: 'absolute', top: '-20%', bottom: '-20%', left: '-20%', right: '-20%' } });
+const styles = StyleSheet.create({ light: { position: 'absolute', top: '-12%', bottom: '-12%', left: '-12%', right: '-12%' } });
 export default memo(GlassBackdrop);
