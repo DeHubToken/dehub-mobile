@@ -9361,6 +9361,10 @@
       "log": "Сүүлийн үйлдлүүд",
       "noLog": "Одоохондоо юу ч алга.",
       "actions": {
+        "timeout_one": "{{actor}} {{target}}-г {{count}} секунд чимээгүй болголоо",
+        "timeout_other": "{{actor}} {{target}}-г {{count}} секунд чимээгүй болголоо",
+        "ban": "{{actor}} {{target}}-г хориглолоо",
+        "unban": "{{actor}} {{target}}-н хоригийг цуцаллаа",
         "moderator-added": "{{target}} нь модулятор болсон",
         "moderator-removed": "{{target}} нь зохицуулагч байхаа больсон",
         "word-blocked": "{{target}} for \"{{word}}\" гэсэн мессежийг зогсоов",

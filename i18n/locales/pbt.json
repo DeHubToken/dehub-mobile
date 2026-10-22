@@ -9324,6 +9324,19 @@
       }
     },
     "moderation": {
+      "seconds_one": "{{count}} ثانیه",
+      "seconds_other": "{{count}} ثانیې",
+      "actions": {
+        "timeout_one": "{{actor}} {{target}} د {{count}} ثانیې لپاره چوپ کړ",
+        "timeout_other": "{{actor}} {{target}} د {{count}} ثانیو لپاره چوپ کړ",
+        "ban": "{{actor}} {{target}} بند کړ",
+        "unban": "{{actor}} د {{target}} بندیز لرې کړ",
+        "moderator-added": "{{target}} موډریټر شو",
+        "moderator-removed": "{{target}} نور موډریټر نه دی",
+        "word-blocked": "د \"{{word}}\" له امله د {{target}} پیغام ودرول شو",
+        "word-timeout_one": "د \"{{word}}\" له امله {{target}} د {{count}} ثانیې لپاره چوپ شو",
+        "word-timeout_other": "د \"{{word}}\" له امله {{target}} د {{count}} ثانیو لپاره چوپ شو"
+      },
       "title": "په اعتدال سره خبرې کول",
       "intro": "ستاسو د ټولو جریانونو لاندې د چیټ لپاره مقررات. دوی هیڅکله د DeHub اصلي چیٹ ته نه رسیږي: یو څوک چې تاسو یې دلته منع کولی شئ لاهم په بل ځای کې خبرې کولی شي.",
       "loadFailed": "ستاسو د تودوخې تنظیمات نشي بار کیدی. د بیا هڅه کولو لپاره دا پا pageه تازه کړئ.",

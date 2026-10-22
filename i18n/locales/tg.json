@@ -9271,6 +9271,11 @@
       }
     },
     "moderation": {
+      "slowModeHint": "Ҳар тамошобин байни паёмҳо чӣ қадар интизор мешавад. Шумо ва модераторонатон ҳеҷ гоҳ интизор намешавед.",
+      "seconds_one": "{{count}} сония",
+      "seconds_other": "{{count}} сония",
+      "subscribersOnly": "Mga Subscribe lamang",
+      "moderatorAdded": "Модератор илова шуд.",
       "loadFailed": "Hindi mai-load ang iyong mga setting ng moderasyon. I-refresh ang pahina upang subukan muli.",
       "wordAction": "Kapag gumagamit ng isang ta",
       "wordTimeout": "Ito at oras ang mga ito para sa isang minuto",
@@ -9299,6 +9304,11 @@
       "log": "Амалҳои охирин",
       "noLog": "Чизе ҳанӯз нест.",
       "actions": {
+        "timeout_other": "{{actor}} {{target}}-ро барои {{count}} сония хомӯш кард",
+        "ban": "{{actor}} {{target}}-ро манъ кард",
+        "moderator-added": "{{target}} модератор шуд",
+        "word-timeout_one": "{{target}} барои \"{{word}}\" ба {{count}} сония хомӯш карда шуд",
+        "word-timeout_other": "{{target}} барои \"{{word}}\" ба {{count}} сония хомӯш карда шуд",
         "timeout_one": "{{actor}} timed out {{target}} {{count}} second",
         "unban": "{{actor}} unbanned{{target}}",
         "moderator-removed": "{{target}}info: whatsthis",

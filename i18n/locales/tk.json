@@ -9337,6 +9337,7 @@
       }
     },
     "moderation": {
+      "unban": "Gadagançylygy aýyr",
       "title": "Çat moderasiýasy",
       "intro": "Ähli akmalaryň astynda gürrüňdeşlik üçin düzgünler. Olar hiç haçan DeHub-yň esasy gürrüňine ýetmeýärler: siz bu ýerde gadagan edýän adam başga ýerlerde gürleşip biler.",
       "loadFailed": "Siziň moderasiýa guramalaryňyz ýüklenip bilmedi. Sahypa täzeden täzeden synalýar.",
@@ -9369,6 +9370,12 @@
       "log": "Soňky hereketler",
       "noLog": "Häzir däl.",
       "actions": {
+        "timeout_one": "{{actor}} {{target}} ulanyjyny {{count}} sekunt sesini kesdi",
+        "timeout_other": "{{actor}} {{target}} ulanyjyny {{count}} sekunt sesini kesdi",
+        "ban": "{{actor}} {{target}} ulanyjyny gadagan etdi",
+        "moderator-added": "{{target}} moderator boldy",
+        "word-timeout_one": "\"{{word}}\" üçin {{target}} {{count}} sekunt sesi kesildi",
+        "word-timeout_other": "\"{{word}}\" üçin {{target}} {{count}} sekunt sesi kesildi",
         "unban": "{{actor}}unbained {{target}}",
         "moderator-removed": "{{target}} indi moderator däl",
         "word-blocked": "\"{{word}}\" üçin {{target}} -den habar goýuldy"

@@ -9423,6 +9423,8 @@
       "log": "Апошнія дзеянні",
       "noLog": "Пакуль што нічога.",
       "actions": {
+        "timeout_one": "{{actor}} абмежаваў {{target}} на {{count}} секунду",
+        "unban": "{{actor}} зняў бан з {{target}}",
         "timeout_other": "{{actor}} timed out {{target}} для {{count}} секунд",
         "ban": "{{actor}} забаронена {{target}}",
         "moderator-added": "{{target}} стаў мадэратарам",

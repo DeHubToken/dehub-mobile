@@ -9500,6 +9500,7 @@
       "log": "最近的操作",
       "noLog": "还没有。",
       "actions": {
+        "unban": "{{actor}} 解除了对 {{target}} 的封禁",
         "timeout_one": "{{actor}}在{{count}}秒内超时{{target}}",
         "timeout_other": "{{actor}}超时{{target}}持续{{count}}秒",
         "ban": "{{actor}}已禁用{{target}}",

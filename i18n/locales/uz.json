@@ -9457,6 +9457,7 @@
       "log": "So'nggi harakatlar",
       "noLog": "Hali hech narsa yo'q.",
       "actions": {
+        "word-timeout_other": "\"{{word}}\" uchun {{target}} {{count}} soniyaga ovozsiz qilindi",
         "timeout_one": "{{actor}} {{count}} soniya uchun {{target}} vaqti tugadi",
         "timeout_other": "{{actor}} {{count}} soniya davomida {{target}} vaqti tugadi",
         "ban": "{{actor}} taqiqlangan {{target}}",

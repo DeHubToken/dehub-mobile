@@ -9339,6 +9339,7 @@
       }
     },
     "moderation": {
+      "noModerators": "Weli ma jiraan maamulayaal.",
       "title": "Ilaalinta hadalkaan",
       "intro": "Xeerarka hadalkaan hoose hadalkaan buuxa. Waxay mar walba gaadhin DeHub's hadalkaan guud: qof aad xad ka dhigtid halkan weli kara hadal meel kasta.",
       "loadFailed": "Xeerarka ilaalinta hadalkaan lama soo qaadi karin. Dib u celceliso bogga si aad isku day mar kale.",
@@ -9371,6 +9372,9 @@
       "log": "Tallaabooyinkii ugu dambeeyay",
       "noLog": "Waxba weli.",
       "actions": {
+        "unban": "{{actor}} wuxuu ka qaaday mamnuucida {{target}}",
+        "timeout_other": "{{actor}} wuxuu {{target}} aamusiyay {{count}} ilbiriqsi",
+        "word-blocked": "Jooji fariin ka timid {{target}} for \"{{word}}\"",
         "timeout_one": "{{actor}} timed out {{target}} for {{count}} labaad",
         "ban": "{{actor}} mamnuuca {{target}}",
         "moderator-added": "{{target}} wuxuu noqday moderator",

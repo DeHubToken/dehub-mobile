@@ -9391,6 +9391,11 @@
       "log": "अलीकडील क्रिया",
       "noLog": "अजून काही नाही.",
       "actions": {
+        "timeout_one": "{{actor}} यांनी {{target}} यांना {{count}} सेकंदासाठी थांबवले",
+        "timeout_other": "{{actor}} यांनी {{target}} यांना {{count}} सेकंदांसाठी थांबवले",
+        "ban": "{{actor}} यांनी {{target}} यांना बंदी घातली",
+        "unban": "{{actor}} यांनी {{target}} यांची बंदी उठवली",
+        "word-timeout_one": "\"{{word}}\" साठी {{target}} यांना {{count}} सेकंदासाठी थांबवले",
         "moderator-added": "{{target}} मॉडरेटर बनले",
         "moderator-removed": "{{target}} यापुढे मॉडरेटर नाही",
         "word-blocked": "\"{{word}}\" साठी {{target}}चा संदेश थांबविला",

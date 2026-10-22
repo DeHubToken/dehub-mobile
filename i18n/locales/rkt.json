@@ -9493,6 +9493,7 @@
       "moderatorNotFound": "ইতনা ইউজারনেমে কোনো অ্যাকাউন্ট নেই।",
       "noBans": "কেউই ব্যান নাই।",
       "actions": {
+        "word-timeout_other": "\"{{word}}\" এর জন্য {{target}}-কে {{count}} সেকেন্ডের জন্য চুপ করানো হয়েছে",
         "moderator-added": "{{target}} একজন মডারেটর হয়ে উঠেছেন",
         "word-blocked": "{{target}} থেকে \"{{word}}\" -এর জন্য একটি বার্তা বন্ধ করা হয়েছে",
         "timeout_one": "{{actor}} তিমা হয়ে গেল {{target}}{{count}} সেকেন্ডে",

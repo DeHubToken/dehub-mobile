@@ -9438,6 +9438,7 @@
       "log": "최근 작업",
       "noLog": "아직 아무것도 없습니다.",
       "actions": {
+        "ban": "{{actor}}님이 {{target}}님을 차단했습니다",
         "timeout_one": "{{count}} 초 동안 {{target}} 시간 초과 {{actor}}",
         "timeout_other": "{{count}} 초 동안 {{target}} 시간 초과 {{actor}}",
         "unban": "{{actor}} 차단 해제 {{target}}",

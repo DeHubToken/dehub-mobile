@@ -9346,6 +9346,12 @@
       "log": "ናይ ቀረባ ስጉምቲታት",
       "noLog": "ገና ገለ ነገር የለን ።",
       "actions": {
+        "timeout_one": "{{actor}} ንዓ {{target}} ን{{count}} ካልኢት ኣህደኦ",
+        "timeout_other": "{{actor}} ንዓ {{target}} ን{{count}} ካልኢታት ኣህደኦ",
+        "unban": "{{actor}} እገዳ {{target}} ኣልዒሉ",
+        "word-blocked": "ብሰንኪ \"{{word}}\" መልእኽቲ {{target}} ተዓጊቱ",
+        "word-timeout_one": "ብሰንኪ \"{{word}}\" {{target}} ን{{count}} ካልኢት ተሃዲኡ",
+        "word-timeout_other": "ብሰንኪ \"{{word}}\" {{target}} ን{{count}} ካልኢታት ተሃዲኡ",
         "ban": "{{actor}} ክልኩል {{target}}",
         "moderator-added": "{{target}} መማህረሪ ኮይኑ",
         "moderator-removed": "{{target}} ሕጂ ኣማሓዳሪ ኣይኮነን"

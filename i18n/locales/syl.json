@@ -9549,6 +9549,7 @@
       "moderators": "মডারেটরস",
       "moderatorAdded": "মডারেটর যোগ করা হয়েছে।",
       "actions": {
+        "word-timeout_other": "\"{{word}}\" এর জন্য {{target}}-কে {{count}} সেকেন্ডের জন্য চুপ করানো হয়েছে",
         "ban": "{{actor}} নিষিদ্ধ {{target}}",
         "word-blocked": "{{target}} থেকে \"{{word}}\" -এর জন্য একটি বার্তা বন্ধ করা হয়েছে",
         "timeout_one": "{{actor}} তিমিং আউট হয়ে গেল {{target}}-এ {{count}} সেকেন্ডে",

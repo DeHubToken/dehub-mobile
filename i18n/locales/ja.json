@@ -9497,6 +9497,7 @@
       "log": "最近の行動",
       "noLog": "- まだ泳いでいます",
       "actions": {
+        "ban": "{{actor}} が {{target}} をBANしました",
         "timeout_one": "{{actor}}は{{target}}を{{count}}秒間タイムアウトしました",
         "timeout_other": "{{actor}}は{{target}}を{{count}}秒間タイムアウトしました",
         "unban": "{{actor}}禁止解除{{target}}",

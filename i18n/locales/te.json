@@ -9396,6 +9396,10 @@
       "log": "ఇటీవలి చర్యలు",
       "noLog": "ఇంకేమీ లేదు.",
       "actions": {
+        "timeout_other": "{{actor}} {{target}} ని {{count}} సెకన్ల పాటు నిశ్శబ్దం చేశారు",
+        "word-blocked": "\"{{word}}\" కారణంగా {{target}} సందేశాన్ని ఆపారు",
+        "word-timeout_one": "\"{{word}}\" కారణంగా {{target}} ని {{count}} సెకను నిశ్శబ్దం చేశారు",
+        "word-timeout_other": "\"{{word}}\" కారణంగా {{target}} ని {{count}} సెకన్లు నిశ్శబ్దం చేశారు",
         "timeout_one": "{{actor}} సమయం ముగిసింది {{target}} {{count}} సెకనుకు",
         "ban": "{{actor}} నిషేధించబడింది {{target}}",
         "unban": "{{actor}} నిషేధించబడని {{target}}",

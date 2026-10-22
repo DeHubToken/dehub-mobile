@@ -9442,6 +9442,9 @@
       "log": "ბოლოდროინდელი ქმედებები",
       "noLog": "ჯერ არაფერია.",
       "actions": {
+        "timeout_one": "{{actor}}-მა {{target}} {{count}} წამით დააყუჩა",
+        "word-timeout_one": "{{target}} \"{{word}}\"-ის გამო {{count}} წამით დააყუჩეს",
+        "word-timeout_other": "{{target}} \"{{word}}\"-ის გამო {{count}} წამით დააყუჩეს",
         "timeout_other": "{{actor}} დროის შეწყვეტა {{target}}-ზე {{count}} წუთისთვის",
         "ban": "{{actor}} აკრძალულია {{target}}",
         "unban": "{{actor}} დაუბანელი {{target}}",

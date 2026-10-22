@@ -9551,6 +9551,7 @@
       }
     },
     "moderation": {
+      "save": "I-save ang mga patakaran ng chat",
       "title": "Pagmo - moderate ng chat",
       "intro": "Mga panuntunan para sa chat sa ilalim ng lahat ng iyong mga stream. Hindi nila kailanman maabot ang pangunahing chat ng DeHub: ang isang taong pinagbawalan mo dito ay maaari pa ring makipag - usap sa lahat ng dako.",
       "loadFailed": "Hindi ma - load ang iyong mga setting ng pag - moderate. I - refresh ang page para subukang muli.",

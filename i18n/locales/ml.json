@@ -9388,6 +9388,9 @@
       "log": "സമീപകാല പ്രവർത്തനങ്ങൾ",
       "noLog": "ഇതുവരെ ഒന്നുമില്ല.",
       "actions": {
+        "timeout_one": "{{actor}} {{target}}-നെ {{count}} സെക്കൻഡ് നിശബ്ദമാക്കി",
+        "timeout_other": "{{actor}} {{target}}-നെ {{count}} സെക്കൻഡ് നിശബ്ദമാക്കി",
+        "ban": "{{actor}} {{target}}-നെ വിലക്കി",
         "unban": "{{actor}} നിരോധിച്ചിട്ടില്ല {{target}}",
         "moderator-added": "{{target}} ഒരു മോഡറേറ്ററായി",
         "moderator-removed": "{{target}} ഇനിമുതൽ ഒരു മോഡറേറ്ററല്ല",

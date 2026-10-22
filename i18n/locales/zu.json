@@ -9381,6 +9381,7 @@
       }
     },
     "moderation": {
+      "moderatorsHint": "Bangabathulisa futhi bavimbe ababukeli ezinhlelweni zakho. Abakwazi ukwenza lokho kuwe noma komunye nomunye.",
       "title": "Ukulinganisela ingxoxo",
       "intro": "Imithetho yengxoxo ngaphansi kwakho konke ukusakaza kwakho. Abalokothi bafinyelele engxoxweni eyinhloko ye-DeHub: othile omvimbelayo lapha usengakhuluma kwenye indawo.",
       "loadFailed": "Amasethingi akho okulinganisela awakwazanga ukulayishwa. Vuselela ikhasi ukuze uzame futhi.",

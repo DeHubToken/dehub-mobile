@@ -9396,6 +9396,9 @@
       "log": "সাম্প্রতিক পদক্ষেপসমূহ",
       "noLog": "এখনও কিছু নেই ।",
       "actions": {
+        "unban": "{{actor}} {{target}}-এর নিষেধাজ্ঞা তুলে নিয়েছেন",
+        "word-timeout_one": "\"{{word}}\" এর জন্য {{target}}-কে {{count}} সেকেন্ডের জন্য চুপ করানো হয়েছে",
+        "word-timeout_other": "\"{{word}}\" এর জন্য {{target}}-কে {{count}} সেকেন্ডের জন্য চুপ করানো হয়েছে",
         "timeout_one": "{{actor}} সময় শেষ হয়েছে {{target}} জন্য {{count}} দ্বিতীয়",
         "timeout_other": "{{actor}} সময় শেষ হয়েছে {{target}} জন্য {{count}} সেকেন্ড",
         "ban": "{{actor}} নিষিদ্ধ {{target}}",

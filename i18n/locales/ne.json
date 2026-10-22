@@ -9434,6 +9434,7 @@
       "log": "हालैका कार्यहरू",
       "noLog": "अझै केहि पनि छैन ।",
       "actions": {
+        "unban": "{{actor}} ले {{target}} को प्रतिबन्ध हटाउनुभयो",
         "timeout_one": "{{actor}} टाइम आउट {{count}} सेकेन्डको लागि {{target}}",
         "timeout_other": "{{actor}} टाइम आउट {{count}} सेकेन्डको लागि {{target}}",
         "ban": "{{actor}} प्रतिबन्धित {{target}}",

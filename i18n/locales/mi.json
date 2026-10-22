@@ -9393,6 +9393,7 @@
     }
   },
   "liveChatModeration": {
+    "title": "Whakahaere",
     "timeout1m": "Te wa mo te 1 meneti",
     "timeout10m": "Te wa mo te 10 meneti",
     "timeout1h": "Te wa mo te 1 haora",
