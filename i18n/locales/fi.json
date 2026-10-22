@@ -9140,7 +9140,17 @@
     "followersUnit": "seuraajat",
     "topSupporters": "Parhaat kannattajat",
     "tipped": "{{name}} lähetti lahjan",
-    "chatPreview": "Chat-viestit näkyvät tässä"
+    "chatPreview": "Chat-viestit näkyvät tässä",
+    "poll": {
+      "closed": "Äänestys suljettu",
+      "voteFor": "Äänestä {{option}}",
+      "signIn": "Kirjaudu sisään äänestääksesi",
+      "failed": "Ääntäsi ei laskettu. Yritä uudelleen.",
+      "voted_one": "Äänestit · {{count}} äänestystä",
+      "voted_other": "Äänestit · {{count}} ääntä",
+      "votes_one": "{{count}} äänestys",
+      "votes_other": "{{count}} ääntä"
+    }
   },
   "liveStudio": {
     "title": "Live-studio",
@@ -9196,7 +9206,8 @@
       "event_feed": "Viimeaikainen toiminta",
       "chat_box": "Keskusteluruutu",
       "ticker": "Ticker",
-      "rule_alert": "Sääntöhälytykset"
+      "rule_alert": "Sääntöhälytykset",
+      "poll": "Kysely"
     },
     "hints": {
       "tip_alert": "Juhlii jokaista tippiä sen tason mukaan",
@@ -9214,7 +9225,8 @@
       "event_feed": "Uusimmat lahjat, seuraajat, tilaajat ja ihmiset, jotka jakavat lähetyksesi",
       "chat_box": "Näyttää lähetyksesi chat-viestit näytöllä",
       "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki",
-      "rule_alert": "Missä sääntöjesi hälytykset näkyvät"
+      "rule_alert": "Missä sääntöjesi hälytykset näkyvät",
+      "poll": "Livekyselysi, jossa on äänestyspainike jokaiselle vaihtoehdolle"
     },
     "fields": {
       "style": "Tyyli",
@@ -9317,7 +9329,8 @@
         "share": "Joku jakaa streamin",
         "command": "Chat-komentoa käytetään",
         "keyword": "Chat-viesti sisältää sanan",
-        "chat": "Mikä tahansa chat-viesti"
+        "chat": "Mikä tahansa chat-viesti",
+        "live": "Aloitat lähetyksen"
       },
       "audiences": {
         "everyone": "Kaikki",
@@ -9367,6 +9380,38 @@
         "spooky": "Pelottava",
         "magic-spell": "Taikaloitsu",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Käytä {name}, {title} ja {link} tekstissäsi: nimesi, lähetyksen otsikko ja linkki sen katseluun."
+    },
+    "polls": {
+      "title": "Kyselyt",
+      "intro": "Kysy lähetystäsi katsovilta ihmisiltä kysymys. Hän vastaa painikkeella DeHub-sovelluksessa tai kirjoittamalla {{command}} ja vaihtoehdon numeron chatissa.",
+      "question": "Kysymys",
+      "questionPlaceholder": "Mitä minun pitäisi pelata seuraavaksi?",
+      "option": "Vaihtoehto {{n}}",
+      "addOption": "Lisää vaihtoehto",
+      "removeOption": "Poista vaihtoehto {{n}}",
+      "duration": "Kuinka kauan äänestys on auki",
+      "seconds_one": "{{count}} sekunti",
+      "seconds_other": "{{count}} sekuntia",
+      "minutes_one": "{{count}} minuuttia",
+      "minutes_other": "{{count}} minuuttia",
+      "start": "Aloita kysely",
+      "end": "Lopeta äänestys nyt",
+      "started": "Kyselysi on avoinna. Katsojat voivat äänestää nyt.",
+      "notLive": "Elä suoraan ensiksi. Kysely on juuri tällä hetkellä lähetetyssäsi lähetyksessä.",
+      "startFailed": "Kysely ei alkanut. Yritä uudelleen.",
+      "closeFailed": "Äänestys ei päättynyt. Yritä uudelleen.",
+      "live": "Äänestys auki · {{time}} jäljellä",
+      "ended": "Äänestys suljettu",
+      "votes_one": "{{count}} äänestys",
+      "votes_other": "{{count}} ääntä",
+      "replaceHint": "Uuden kyselyn aloittaminen sulkee avoimen kyselyn.",
+      "widgetHint": "Näyttää livekyselysi. DeHub-sovelluksen katsojat napauttavat äänestysvaihtoehtoa; OBS: ssä se kehottaa ihmisiä kirjoittamaan {{command}} ja numeron chatissa.",
+      "sample": {
+        "a": "Jotain uutta",
+        "b": "Vanha suosikki",
+        "c": "Sinä valitset"
       }
     },
     "moderation": {

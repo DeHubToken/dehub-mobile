@@ -9232,7 +9232,17 @@
     "followersUnit": "người theo dõi",
     "topSupporters": "Những người ủng hộ hàng đầu",
     "tipped": "{{name}} đã gửi một món quà",
-    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây"
+    "chatPreview": "Tin nhắn trò chuyện xuất hiện ở đây",
+    "poll": {
+      "closed": "Đã đóng bỏ phiếu",
+      "voteFor": "Bình chọn cho {{option}}",
+      "signIn": "Đăng nhập để bỏ phiếu",
+      "failed": "Phiếu bầu của bạn không được tính. Hãy thử lại.",
+      "voted_one": "Bạn đã bình chọn · {{count}} bình chọn",
+      "voted_other": "Bạn đã bình chọn · {{count}} phiếu bầu",
+      "votes_one": "{{count}} bình chọn",
+      "votes_other": "{{count}} phiếu"
+    }
   },
   "liveStudio": {
     "title": "Phòng thu trực tiếp",
@@ -9288,7 +9298,8 @@
       "event_feed": "Hoạt động gần đây",
       "chat_box": "Hộp trò chuyện",
       "ticker": "Ticker",
-      "rule_alert": "Cảnh báo quy tắc"
+      "rule_alert": "Cảnh báo quy tắc",
+      "poll": "Thăm dò ý kiến"
     },
     "hints": {
       "tip_alert": "Tôn vinh mỗi tips, kích thước theo cấp bậc",
@@ -9306,7 +9317,8 @@
       "event_feed": "Quà tặng, người theo dõi, người đăng ký và những người mới nhất chia sẻ nội dung phát sóng của bạn",
       "chat_box": "Hiển thị tin nhắn trò chuyện của chương trình phát sóng của bạn trên màn hình",
       "ticker": "Một dòng văn bản của riêng bạn cuộn trên màn hình",
-      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn"
+      "rule_alert": "Đây là nơi hiển thị cảnh báo của quy tắc của bạn",
+      "poll": "Cuộc thăm dò trực tiếp của bạn, với nút bỏ phiếu cho mọi lựa chọn"
     },
     "fields": {
       "style": "Phong cách",
@@ -9409,7 +9421,8 @@
         "share": "Ai đó chia sẻ luồng",
         "command": "Một lệnh trò chuyện được sử dụng",
         "keyword": "Một tin nhắn trò chuyện có chứa một từ",
-        "chat": "Bất kỳ tin nhắn trò chuyện nào"
+        "chat": "Bất kỳ tin nhắn trò chuyện nào",
+        "live": "Bạn bắt đầu phát sóng"
       },
       "audiences": {
         "everyone": "Mọi người",
@@ -9459,6 +9472,38 @@
         "spooky": "Ma quái",
         "magic-spell": "Bùa chú",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Sử dụng {name}, {title} và {link} trong tin nhắn: tên của bạn, tiêu đề chương trình phát sóng và liên kết để xem."
+    },
+    "polls": {
+      "title": "Thăm dò ý kiến",
+      "intro": "Hỏi những người đang xem chương trình phát sóng của bạn một câu hỏi. Họ trả lời bằng một nút trong ứng dụng DeHub hoặc bằng cách nhập {{command}} và số điện thoại của tùy chọn trong trò chuyện.",
+      "question": "Câu hỏi",
+      "questionPlaceholder": "Tôi nên chơi gì tiếp theo?",
+      "option": "Tùy chọn {{n}}",
+      "addOption": "Thêm tùy chọn",
+      "removeOption": "Xóa tùy chọn {{n}}",
+      "duration": "Thời gian bỏ phiếu mở cửa là bao lâu",
+      "seconds_one": "{{count}} lần thứ hai",
+      "seconds_other": "{{count}} giây",
+      "minutes_one": "{{count}} phút",
+      "minutes_other": "{{count}} phút",
+      "start": "Bắt đầu cuộc thăm dò ý kiến",
+      "end": "Kết thúc bình chọn ngay",
+      "started": "Cuộc thăm dò ý kiến của bạn đang mở. Người xem có thể bỏ phiếu ngay bây giờ.",
+      "notLive": "Đang phát trực tiếp. Một cuộc thăm dò ý kiến đang chạy trên phát sóng bạn đang trực tiếp hiện tại.",
+      "startFailed": "Cuộc thăm dò ý kiến chưa bắt đầu. Hãy thử lại.",
+      "closeFailed": "Bình chọn chưa kết thúc. Hãy thử lại.",
+      "live": "Bỏ phiếu mở · {{time}} còn lại",
+      "ended": "Đã đóng bỏ phiếu",
+      "votes_one": "{{count}} bình chọn",
+      "votes_other": "{{count}} phiếu",
+      "replaceHint": "Bắt đầu một cuộc thăm dò mới sẽ đóng cuộc thăm dò đang mở.",
+      "widgetHint": "Hiển thị cuộc thăm dò ý kiến trực tiếp của bạn. Trong ứng dụng DeHub, người xem nhấn vào một tùy chọn để bỏ phiếu; trong OBS, nó thông báo cho mọi người gõ {{command}} và một số trong chat.",
+      "sample": {
+        "a": "Thông tin mới",
+        "b": "Một yêu thích cũ",
+        "c": "Bạn chọn"
       }
     },
     "moderation": {

@@ -9140,7 +9140,17 @@
     "followersUnit": "jälgijad",
     "topSupporters": "Parimad toetajad",
     "tipped": "{{name}} saatis kingituse",
-    "chatPreview": "Vestlussõnumid kuvatakse siin"
+    "chatPreview": "Vestlussõnumid kuvatakse siin",
+    "poll": {
+      "closed": "Hääletamine on lõppenud",
+      "voteFor": "Hääletage {{option}} poolt",
+      "signIn": "Hääletamiseks logi sisse",
+      "failed": "Sinu häält ei arvestatud. Proovi uuesti.",
+      "voted_one": "Hääletasid · {{count}} vote",
+      "voted_other": "Hääletasid · {{count}} häält",
+      "votes_one": "{{count}} hääletus",
+      "votes_other": "{{count}} häält"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9196,7 +9206,8 @@
       "event_feed": "Hiljutine tegevus",
       "chat_box": "Vestluskast",
       "ticker": "Tiksuja",
-      "rule_alert": "Reeglite märguanded"
+      "rule_alert": "Reeglite märguanded",
+      "poll": "Küsitlus"
     },
     "hints": {
       "tip_alert": "Täidab iga tippu tema taseme järgi",
@@ -9214,7 +9225,8 @@
       "event_feed": "Viimased kingitused, jälgijad, tellijad ja inimesed, kes jagavad sinu saadet",
       "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
       "ticker": "Sinu enda teksti rida, mis kerib üle ekraani",
-      "rule_alert": "Kus kuvatakse sinu reeglite märguanded"
+      "rule_alert": "Kus kuvatakse sinu reeglite märguanded",
+      "poll": "Sinu reaalajas küsitlus, hääletusnupp iga valiku jaoks"
     },
     "fields": {
       "style": "Stiil",
@@ -9317,7 +9329,8 @@
         "share": "Keegi jagab voogu",
         "command": "Kasutatakse vestluse käsku",
         "keyword": "Vestlussõnum sisaldab sõna",
-        "chat": "Mis tahes vestlussõnum"
+        "chat": "Mis tahes vestlussõnum",
+        "live": "Alustad edastamist"
       },
       "audiences": {
         "everyone": "Kõik",
@@ -9367,6 +9380,38 @@
         "spooky": "Õudne",
         "magic-spell": "Maagiline loits",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Kasuta tekstis {name}, {title} ja {link}: oma nime, saate pealkirja ja linki selle vaatamiseks."
+    },
+    "polls": {
+      "title": "Küsitlused",
+      "intro": "Küsige oma saadet vaatavatelt inimestelt küsimus. Nad vastavad DeHubi rakenduses oleva nupuga või sisestavad vestluses {{command}} ja valiku numbri.",
+      "question": "Küsimus",
+      "questionPlaceholder": "Mida peaksin järgmisena mängima?",
+      "option": "Valik {{n}}",
+      "addOption": "Lisa valik",
+      "removeOption": "Eemalda valik {{n}}",
+      "duration": "Kui kaua hääletamine on avatud?",
+      "seconds_one": "{{count}} sekundit",
+      "seconds_other": "{{count}} sekundit",
+      "minutes_one": "{{count}} minutit",
+      "minutes_other": "{{count}} minutit",
+      "start": "Alusta küsitlust",
+      "end": "Lõpeta hääletamine kohe",
+      "started": "Sinu küsitlus on avatud. Vaatajad saavad nüüd hääletada.",
+      "notLive": "Mine kõigepealt otseülekandesse. Praegu voogedastatavas saates toimub küsitlus.",
+      "startFailed": "Küsitlus ei alanud. Proovige uuesti.",
+      "closeFailed": "Hääletamine ei lõppenud. Proovi uuesti.",
+      "live": "Hääletamine avatud · {{time}} jäänud",
+      "ended": "Hääletamine on lõppenud",
+      "votes_one": "{{count}} hääletus",
+      "votes_other": "{{count}} häält",
+      "replaceHint": "Uue küsitluse alustamine sulgeb avatud küsitluse.",
+      "widgetHint": "Näitab teie reaalajas küsitlust. Puuduta DeHubi rakenduse vaatajates hääletamise võimalust; OBS-is ütleb see inimestele, et nad sisestaksid vestluses {{command}} ja numbri.",
+      "sample": {
+        "a": "Midagi uut",
+        "b": "Vana lemmik",
+        "c": "Sa valikud."
       }
     },
     "moderation": {

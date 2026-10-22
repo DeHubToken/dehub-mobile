@@ -9151,7 +9151,17 @@
     "followersUnit": "abalandeli",
     "topSupporters": "Abasekeli abahamba phambili",
     "tipped": "{{name}} uthumele isipho",
-    "chatPreview": "Imiyalezo yokuxoxa iyavela lapha"
+    "chatPreview": "Imiyalezo yokuxoxa iyavela lapha",
+    "poll": {
+      "closed": "Ukuvota kuvaliwe",
+      "voteFor": "Votela i- {{option}}",
+      "signIn": "Ngena ngemvume ukuze uvote",
+      "failed": "Ivoti lakho alibalanga. Zama futhi.",
+      "voted_one": "Uvote · {{count}} vote",
+      "voted_other": "Uvote · {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes"
+    }
   },
   "liveStudio": {
     "title": "I-Live Studio",
@@ -9207,7 +9217,8 @@
       "event_feed": "Okwenziwayo kwakamuva",
       "chat_box": "Ibhokisi lengxoxo",
       "ticker": "Umthumeli wamathikithi",
-      "rule_alert": "Izikhalo Zemithetho"
+      "rule_alert": "Izikhalo Zemithetho",
+      "poll": "Inhlolovo"
     },
     "hints": {
       "tip_alert": "Kusebenzisa umthetho we-tier, kuthokozele umthetho ngamunye",
@@ -9225,7 +9236,8 @@
       "event_feed": "Izipho zakamuva, abalandeli, ababhalisile nabantu ababelana ngokusakaza kwakho",
       "chat_box": "Ibonisa imiyalezo yengxoxo yokusakaza kwakho esikrinini",
       "ticker": "Umugqa wombhalo wakho siqu oskrola esikrinini",
-      "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona"
+      "rule_alert": "Lapho izikhalo zemithetho zakho zivela khona",
+      "poll": "Ukuvota kwakho bukhoma, okunenkinobho yokuvota kukho konke ongakhetha kukho"
     },
     "fields": {
       "style": "Isitayela",
@@ -9328,7 +9340,8 @@
         "share": "Othile wabelana ngokusakaza",
         "command": "Umyalo wengxoxo uyasetshenziswa",
         "keyword": "Umlayezo wengxoxo uqukethe igama",
-        "chat": "Noma yimuphi umyalezo wengxoxo"
+        "chat": "Noma yimuphi umyalezo wengxoxo",
+        "live": "Uqala ukusakaza"
       },
       "audiences": {
         "everyone": "Wonke umuntu",
@@ -9378,6 +9391,38 @@
         "spooky": "I-Spooky",
         "magic-spell": "I-magic spell",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Sebenzisa i-{name}, {title} no- {link} embhalweni wakho: igama lakho, isihloko sokusakaza nelinki yokuyibuka."
+    },
+    "polls": {
+      "closeFailed": "Ukuvota akuphelanga. Zama futhi.",
+      "title": "Amavoti",
+      "intro": "Buza abantu ababukela ukusakaza kwakho umbuzo. Baphendula ngenkinobho ku-app ye-DeHub, noma ngokuthayipha okuthi {{command}} nenombolo yenketho engxoxweni.",
+      "question": "Umbuzo",
+      "questionPlaceholder": "Yini okufanele ngiyidlale ngokulandelayo?",
+      "option": "Inketho {{n}}",
+      "addOption": "Faka okukhethwa kukho",
+      "removeOption": "Susa inketho {{n}}",
+      "duration": "Ukuhlala kwesikhathi esingakanani kokuvota kuvuliwe",
+      "seconds_one": "{{count}} umzuzwana",
+      "seconds_other": "{{count}} imizuzwana",
+      "minutes_one": "{{count}} umzuzu",
+      "minutes_other": "{{count}} minithi",
+      "start": "Qala ukuvota",
+      "end": "Qeda ukuvota manje",
+      "started": "Ukuvota kwakho kuvuliwe. Ababukeli bangavota manje.",
+      "notLive": "Iya bukhoma kuqala. Ukuvota kuyaqhubeka ekusakazeni okusakazayo njengamanje.",
+      "startFailed": "Ukuvota akuqalanga. Zama futhi.",
+      "live": "Ukuvota kuvuliwe · {{time}} kwesobunxele",
+      "ended": "Ukuvota kuvaliwe",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "replaceHint": "Ukuqala ukuvota okusha kuvala okuvuliwe.",
+      "widgetHint": "Ibonisa inhlolovo yakho ebukhoma. Kubabukeli be-app ye-DeHub thepha inketho yokuvota; ku-OBS itshela abantu ukuthi bathayiphe i-{{command}} nenombolo engxoxweni.",
+      "sample": {
+        "a": "Okuthile okusha",
+        "b": "Intandokazi yakudala",
+        "c": "Ukhetha"
       }
     },
     "moderation": {

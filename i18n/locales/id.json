@@ -9143,7 +9143,17 @@
     "followersUnit": "pengikut",
     "topSupporters": "Pendukung teratas",
     "tipped": "{{name}} mengirim hadiah",
-    "chatPreview": "Pesan obrolan muncul di sini"
+    "chatPreview": "Pesan obrolan muncul di sini",
+    "poll": {
+      "closed": "Pemungutan suara ditutup",
+      "voteFor": "Pilih {{option}}",
+      "signIn": "Masuk untuk memilih",
+      "failed": "Suara Anda tidak dihitung. Coba lagi.",
+      "voted_one": "Anda memilih · {{count}} memilih",
+      "voted_other": "Anda memberikan suara · {{count}} suara",
+      "votes_one": "{{count}} suara",
+      "votes_other": "{{count}} suara"
+    }
   },
   "liveStudio": {
     "title": "Studio Langsung",
@@ -9199,7 +9209,8 @@
       "event_feed": "Aktivitas terbaru",
       "chat_box": "Kotak obrolan",
       "ticker": "Ticker",
-      "rule_alert": "Peringatan aturan"
+      "rule_alert": "Peringatan aturan",
+      "poll": "Jajak Pendapat"
     },
     "hints": {
       "tip_alert": "Merayakan setiap tip sesuai tingkatan",
@@ -9217,7 +9228,8 @@
       "event_feed": "Hadiah, pengikut, pelanggan, dan orang terbaru yang membagikan siaran Anda",
       "chat_box": "Menampilkan pesan obrolan siaran Anda di layar",
       "ticker": "Baris teks Anda sendiri yang bergulir di layar",
-      "rule_alert": "Di mana pemberitahuan peraturan Anda muncul"
+      "rule_alert": "Di mana pemberitahuan peraturan Anda muncul",
+      "poll": "Jajak pendapat langsung Anda, dengan tombol suara untuk setiap opsi"
     },
     "fields": {
       "style": "Gaya",
@@ -9320,7 +9332,8 @@
         "share": "Seseorang membagikan streaming",
         "command": "Perintah obrolan digunakan",
         "keyword": "Pesan obrolan berisi kata",
-        "chat": "Pesan obrolan apa saja"
+        "chat": "Pesan obrolan apa saja",
+        "live": "Anda mulai menyiarkan"
       },
       "audiences": {
         "everyone": "Semua orang",
@@ -9370,6 +9383,38 @@
         "spooky": "Seram",
         "magic-spell": "Mantra sihir",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Gunakan {name},{title}, dan {link} dalam teks Anda: nama Anda, judul siaran, dan tautan untuk menontonnya."
+    },
+    "polls": {
+      "title": "Jajak Pendapat",
+      "intro": "Ajukan pertanyaan kepada orang - orang yang menonton siaran Anda. Mereka menjawab dengan tombol di aplikasi DeHub, atau dengan mengetikkan {{command}} dan nomor opsi di obrolan.",
+      "question": "Pertanyaan",
+      "questionPlaceholder": "Apa yang harus saya mainkan selanjutnya?",
+      "option": "Opsi {{n}}",
+      "addOption": "Tambahkan opsi",
+      "removeOption": "Hapus opsi {{n}}",
+      "duration": "Berapa lama pemungutan suara tetap terbuka",
+      "seconds_one": "{{count}} detik",
+      "seconds_other": "{{count}} detik",
+      "minutes_one": "{{count}} menit",
+      "minutes_other": "{{count}} menit",
+      "start": "Mulai jajak pendapat",
+      "end": "Akhiri pemungutan suara sekarang",
+      "started": "Jajak pendapat Anda terbuka. Pemirsa dapat memilih sekarang.",
+      "notLive": "Lakukan siaran langsung terlebih dahulu. Jajak pendapat sedang berlangsung di siaran yang sedang Anda streaming saat ini.",
+      "startFailed": "Jajak pendapat tidak dimulai. Coba lagi.",
+      "closeFailed": "Pemungutan suara tidak berakhir. Coba lagi.",
+      "live": "Pemungutan suara terbuka · {{time}} tersisa",
+      "ended": "Pemungutan suara ditutup",
+      "votes_one": "{{count}} suara",
+      "votes_other": "{{count}} suara",
+      "replaceHint": "Memulai jajak pendapat baru menutup jajak pendapat yang terbuka.",
+      "widgetHint": "Menampilkan polling langsung Anda. Di aplikasi DeHub, pemirsa mengetuk opsi untuk memilih; di OBS, pengguna diminta untuk mengetik {{command}} dan nomor dalam obrolan.",
+      "sample": {
+        "a": "Sesuatu yang baru",
+        "b": "Favorit lama",
+        "c": "Anda memilih"
       }
     },
     "moderation": {

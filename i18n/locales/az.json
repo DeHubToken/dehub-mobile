@@ -9138,7 +9138,17 @@
     "followersUnit": "izləyicilər",
     "topSupporters": "Ən yaxşı dəstəkçilər",
     "tipped": "{{name}} hədiyyə göndərdi",
-    "chatPreview": "Söhbət mesajları burada görünür"
+    "chatPreview": "Söhbət mesajları burada görünür",
+    "poll": {
+      "closed": "Voting başa çatdı",
+      "voteFor": "{{option}} üçün səs ver",
+      "signIn": "Səs vermək üçün giriş edin",
+      "failed": "Sizin səsiniz sayılmadı. Yenidən cəhd edin.",
+      "voted_one": "Sizin səsiniz · {{count}} səs",
+      "voted_other": "Sizin səsiniz · {{count}} səs",
+      "votes_one": "{{count}} səs",
+      "votes_other": "{{count}} səs"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9194,7 +9204,8 @@
       "event_feed": "Son fəaliyyət",
       "chat_box": "Söhbət qutusu",
       "ticker": "Etiketçi",
-      "rule_alert": "Qayda xəbərdarlıqları"
+      "rule_alert": "Qayda xəbərdarlıqları",
+      "poll": "Sorğu"
     },
     "hints": {
       "tip_alert": "Hər bir təklifə təşəkkür edir, boyu təyinatına görə dəyişir.",
@@ -9212,7 +9223,8 @@
       "event_feed": "Yayımınızı paylaşan ən son hədiyyələr, izləyicilər, abunəçilər və insanlar",
       "chat_box": "Yayımınızın söhbət mesajlarını ekranda göstərir",
       "ticker": "Ekranda sürüşdürülən öz mətninizin sətri",
-      "rule_alert": "Sizin quranızın xəbərləri yerə düşür"
+      "rule_alert": "Sizin quranızın xəbərləri yerə düşür",
+      "poll": "Canlı sorğunuz, hər bir seçim üçün səs düyməsi ilə"
     },
     "fields": {
       "style": "Üslub",
@@ -9314,7 +9326,8 @@
         "share": "Kimsə axını paylaşır",
         "command": "Söhbət əmri istifadə olunur",
         "keyword": "Söhbət mesajında bir kəlmə var",
-        "chat": "Hər hansı söhbət mesajı"
+        "chat": "Hər hansı söhbət mesajı",
+        "live": "Siz yayımda başlayırsınız"
       },
       "audiences": {
         "everyone": "Hər kəs",
@@ -9364,6 +9377,38 @@
         "spooky": "Cılız",
         "magic-spell": "Sehrli sehr",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Mətninizdə {name}, {title} və {link} istifadə edin: adınız, yayımın başlığı və onu izləmək üçün link."
+    },
+    "polls": {
+      "removeOption": "Seçənək {{n}}-ni sil",
+      "title": "Sorğular",
+      "intro": "Yayımınızın sualını izləyən insanlardan soruşun. Onlar DeHub tətbiqində bir düymə ilə və ya {{command}} və söhbət zamanı seçimin nömrəsini yazmaqla cavab verir.",
+      "question": "Sual",
+      "questionPlaceholder": "Növbəti mərhələdə nə oynamalıyam?",
+      "option": "Seçim {{n}}",
+      "addOption": "Seçim əlavə edin",
+      "duration": "Səsvermənin müddəti nə qədər açıqdır",
+      "seconds_one": "{{count}} ikinci",
+      "seconds_other": "{{count}} saniyə",
+      "minutes_one": "{{count}} dəqiqə",
+      "minutes_other": "{{count}} dəqiqə",
+      "start": "Sorğuya başla",
+      "end": "Səsverməni indi bitirin",
+      "started": "Sorğunuz açıqdır. İzləyicilər indi səs verə bilər.",
+      "notLive": "Əvvəlcə canlı yayımlayın. Hazırda yayımladığınız yayımda sorğu keçirilir.",
+      "startFailed": "Sorğu başlamadı. Yenidən cəhd edin.",
+      "closeFailed": "Səsvermə bitmədi. Yenidən cəhd edin.",
+      "live": "Səsvermə açıqdır · {{time}} sol",
+      "ended": "Səsvermə bağlandı",
+      "votes_one": "{{count}} səs",
+      "votes_other": "{{count}} səs",
+      "replaceHint": "Yeni sorğuya başlamaq açıq olanı bağlayır.",
+      "widgetHint": "Canlı sorğunuzu göstərir. DeHub tətbiqində izləyicilər səs vermək seçiminə basır; OBS-də insanlara {{command}} və söhbət zamanı bir sıra yazın deyir.",
+      "sample": {
+        "a": "Yeni bir şey",
+        "b": "Köhnə favorit",
+        "c": "Seçdiyiniz"
       }
     },
     "moderation": {

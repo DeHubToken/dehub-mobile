@@ -9169,7 +9169,17 @@
     "followersUnit": "hordoftoota",
     "topSupporters": "Deeggartoota olaanoo",
     "tipped": "{{name}} kennaa erge",
-    "chatPreview": "Ergaawwan chaatii asitti mul'atu"
+    "chatPreview": "Ergaawwan chaatii asitti mul'atu",
+    "poll": {
+      "closed": "Sagalee kennuu cufameera",
+      "voteFor": "Sagalee kennaa {{option}}",
+      "signIn": "Filachuuf galmaa'aa",
+      "failed": "Sagaleen keessan hin lakkaa'amne. Ammas yaalaa.",
+      "voted_one": "Sagalee kennite · {{count}} sagalee kenni",
+      "voted_other": "Sagalee kennite · {{count}} sagalee",
+      "votes_one": "{{count}} sagalee kennuu",
+      "votes_other": "{{count}} sagalee kenna"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9225,7 +9235,8 @@
       "event_feed": "Sochii dhiheenya kanaa",
       "chat_box": "Sanduuqa marii",
       "ticker": "Ticker",
-      "rule_alert": "Ogeeyyii Seera"
+      "rule_alert": "Ogeeyyii Seera",
+      "poll": "Gaaffii"
     },
     "hints": {
       "tip_alert": "Gorsa hunda kabaja, hamma sadarkaa isaatti",
@@ -9243,7 +9254,8 @@
       "event_feed": "Kennaawwan haaraa, hordoftoota, subscribers fi namoota tamsaasa keessan qooddatan",
       "chat_box": "Ergaawwan marii tamsaasa keessanii iskiriinii irratti agarsiisa",
       "ticker": "Sarara barruu mataa keetii kan iskiriinii irratti qaxxaamuru",
-      "rule_alert": "Bakka ogeeyyii seera keessan mul'atu"
+      "rule_alert": "Bakka ogeeyyii seera keessan mul'atu",
+      "poll": "Gaaffii live kee, buutina jiddaa filannoo tokkoon tokkoon irratti"
     },
     "fields": {
       "style": "Akkaataa",
@@ -9345,7 +9357,8 @@
         "share": "Namni tokko sulula sana qooddata",
         "command": "Ajajni chaatii fayyadama",
         "keyword": "Ergaan chat jecha tokko of keessaa qaba",
-        "chat": "Ergaa chat kamiyyuu"
+        "chat": "Ergaa chat kamiyyuu",
+        "live": "Tamsaasa ni jalqabda"
       },
       "audiences": {
         "everyone": "Nama hundumaa",
@@ -9395,6 +9408,38 @@
         "spooky": "Spooky jechuun ni danda'ama",
         "magic-spell": "Sihrii falfalaa",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "{name}, {title} fi {link} barreessaa kee keessatti fayyadamuu: maqaa kee, maqaa broadcast, fi tuqaa ilaaluuf."
+    },
+    "polls": {
+      "title": "Gaaffii",
+      "intro": "Namoonni broadcast kee ilaalaa jiran gaaffii tokko gaafadhu. Isaan buutina DeHub app keessatti, ykn {{command}} fi lakkoobsa filannoo keessatti barreessuu jalqabuu irraa deebii kennuu danda'u.",
+      "question": "Gaaffii",
+      "questionPlaceholder": "Maal itti fufa?",
+      "option": "Filannoo {{n}}",
+      "addOption": "Filannoo dabaluu",
+      "removeOption": "Filannoo {{n}} haquu",
+      "duration": "Yeroo jiddaa jiran",
+      "seconds_one": "{{count}} sekondi",
+      "seconds_other": "{{count}} sekondi",
+      "minutes_one": "{{count}} daqiiqaa",
+      "minutes_other": "{{count}} daqiiqaa",
+      "start": "Gaaffii jalqabuu",
+      "end": "Jiddaa xumuu",
+      "started": "Gaaffiin kee banaa jira. Ilaaltoota gaaffii kana irratti jiddaa deebi'uu danda'u.",
+      "notLive": "Jalqaba live ta'aa. Gaaffiin broadcast ati amma live ta'uu jirtu irratti ni hojjata.",
+      "startFailed": "Gaaffiin hin jalqabne. Irra deebi'ii yaali.",
+      "closeFailed": "Jiddaa hin xumne. Irra deebi'ii yaali.",
+      "live": "Jiddaa banaa · {{time}} hafee",
+      "ended": "Jiddaa cuufame",
+      "votes_one": "{{count}} jiddaa",
+      "votes_other": "{{count}} jiddaa",
+      "replaceHint": "Gaaffii haaraa jalqabuu gaaffii banaa ta'e cuusa.",
+      "widgetHint": "Gaaffii live kee agarsiisa. DeHub app keessatti ilaaltooti filannoo tokko cuqaasu; OBS keessatti namoonni {{command}} fi lakkoobsa barreessuu akka gaafatan ibsa.",
+      "sample": {
+        "a": "Wanti haaraa",
+        "b": "Filannoo durii",
+        "c": "Ati filattuu"
       }
     },
     "moderation": {

@@ -9130,6 +9130,16 @@
     "notNow": "Jo tani"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Votimi u mbyll",
+      "voteFor": "Voto për {{option}}",
+      "signIn": "Hyr për të votuar",
+      "failed": "Vota jote nuk u numërua. Provo përsëri.",
+      "voted_one": "Ti votove · {{count}} vote",
+      "voted_other": "Ju votuat · {{count}} votes",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} vota"
+    },
     "someone": "Dikush",
     "newFollower": "Ndjekës i ri: {{name}}",
     "newSubscriber": "Abonent i ri: {{name}}",
@@ -9143,6 +9153,37 @@
     "chatPreview": "Mesazhet e bisedës shfaqen këtu"
   },
   "liveStudio": {
+    "polls": {
+      "title": "Sondazhet",
+      "intro": "Pyesni njerëzit që shikojnë transmetimin tuaj për një pyetje. Ata përgjigjen me një buton në aplikacionin DeHub, ose duke shtypur {{command}} dhe numrin e opsionit në chat.",
+      "question": "Pyetje",
+      "questionPlaceholder": "Çfarë duhet të luaj më pas?",
+      "option": "Opsioni {{n}}",
+      "addOption": "Shto një alternativë",
+      "removeOption": "Hiq opsionin {{n}}",
+      "duration": "Sa kohë mbetet e hapur votimi",
+      "seconds_one": "{{count}} dytë",
+      "seconds_other": "{{count}} sekonda",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minuta",
+      "start": "Fillo sondazhin",
+      "end": "Përfundo votimin tani",
+      "started": "Sondazhi yt është i hapur. Shikuesit mund të votojnë tani.",
+      "notLive": "Shko më parë drejtpërsëdrejti. Një sondazh zhvillohet në transmetimin që po transmeton tani.",
+      "startFailed": "Sondazhi nuk filloi. Provo përsëri.",
+      "closeFailed": "Votimi nuk ka mbaruar. Pësoj përsëri.",
+      "live": "Votimi është i hapur · {{time}} left",
+      "ended": "Votimi u mbyll",
+      "votes_one": "{{count}} votë",
+      "votes_other": "{{count}} vota",
+      "replaceHint": "Fillimi i një sondazhi të ri mbyll atë që është i hapur.",
+      "widgetHint": "Shfaq sondazhin tënd të drejtpërdrejtë. Në aplikacionin DeHub, shikuesit shtypin një opsion për të votuar; në OBS u thotë njerëzve të shkruajnë {{command}} dhe një numër në bisedë.",
+      "sample": {
+        "a": "Diçka e re",
+        "b": "Një i preferuar i vjetër",
+        "c": "Ti zgjedh"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Alerte dhe gadxhet për streamet tuaja",
     "intro": "Çdo gjë që shtoni këtu shfaqet mbi streamet tuaja për të gjithë shikuesit në aplikacionin DeHub — aq sa të jetë live nga telefoni, browseri, një kartë e kapur ose një kodues.",
@@ -9181,6 +9222,7 @@
       "join": "Bashkohu"
     },
     "kinds": {
+      "poll": "Sondazh",
       "tip_alert": "Lajmërim sugjerimi",
       "follow_alert": "Ndiq alarmin",
       "subscribe_alert": "Lajmërim i pajtimtarit",
@@ -9199,6 +9241,7 @@
       "rule_alert": "Lajmërime për rregullat"
     },
     "hints": {
+      "poll": "Sondazhi yt i drejtpërdrejtë, me një buton votimi për çdo opsion",
       "tip_alert": "Feston çdo bakshish, të madhësisë sipas nivelit të tij",
       "follow_alert": "Shfaq çdo ndjekës të ri",
       "subscribe_alert": "Shfaq çdo pajtimtar të ri",
@@ -9273,6 +9316,7 @@
       "rotateFailed": "Nuk munda të krijoj një link të ri. Provo përsëri pas një çasti."
     },
     "rules": {
+      "placeholdersLive": "Përdor {name}, {title} dhe {link} në tekstin tënd: emrin tënd, titullin e transmetimit dhe një link për ta parë atë.",
       "title": "Rregullat",
       "intro": "Kur ndodh një gjë në stream-in tuaj, DeHub bëhet çfarë e keni zgjedhur: shfaqet një alert, luhet një zëri, lexohet një gjë në shpremë, postohet në chat-in tuaj ose i thotë Discord-it.",
       "add": "Shto një rregull",
@@ -9310,6 +9354,7 @@
       "webhookHint": "Një webhook Discord ose Slack, ose ndonjë adresë https që pranon një POSTIM.",
       "webhookText": "Mesazh për t 'u dërguar",
       "triggers": {
+        "live": "Fillon të transmetosh",
         "tip": "Mbërrin një sugjerim",
         "follow": "Dikush të ndjek",
         "subscribe": "Dikush abonohet",

@@ -9141,7 +9141,17 @@
     "followersUnit": "seguidors",
     "topSupporters": "Els millors seguidors",
     "tipped": "{{name}}ha enviat un regal",
-    "chatPreview": "Els missatges de xat apareixen aquí"
+    "chatPreview": "Els missatges de xat apareixen aquí",
+    "poll": {
+      "closed": "Votació tancada",
+      "voteFor": "Vota per {{option}}",
+      "signIn": "Inicia sessió per votar",
+      "failed": "El teu vot no ha comptat. Torna-ho a provar.",
+      "voted_one": "Has votat · {{count}} vota",
+      "voted_other": "Has votat · {{count}} vots",
+      "votes_one": "{{count}} vota",
+      "votes_other": "{{count}} vots"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9197,7 +9207,8 @@
       "event_feed": "Activitat recent",
       "chat_box": "Quadre de xat",
       "ticker": "Ticker",
-      "rule_alert": "Alertes de regles"
+      "rule_alert": "Alertes de regles",
+      "poll": "Enquesta"
     },
     "hints": {
       "tip_alert": "Celebra cada propina, ajustada al seu nivell",
@@ -9215,7 +9226,8 @@
       "event_feed": "Els últims regals, seguidors, subscriptors i persones que comparteixen la teva retransmissió",
       "chat_box": "Mostra els missatges de xat de la teva emissió a la pantalla",
       "ticker": "Una línia del teu propi text que es desplaça per la pantalla",
-      "rule_alert": "On apareixen les alertes de les teves normes"
+      "rule_alert": "On apareixen les alertes de les teves normes",
+      "poll": "La teva enquesta en directe, amb un botó de vot per a cada opció"
     },
     "fields": {
       "style": "Estil",
@@ -9318,7 +9330,8 @@
         "share": "Algú comparteix el flux",
         "command": "S'utilitza una ordre de xat",
         "keyword": "Un missatge de xat conté una paraula",
-        "chat": "Qualsevol missatge de xat"
+        "chat": "Qualsevol missatge de xat",
+        "live": "Comences a emetre"
       },
       "audiences": {
         "everyone": "Tothom",
@@ -9368,6 +9381,38 @@
         "spooky": "Espeluznant",
         "magic-spell": "Encantament màgic",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Utilitza {name}, {title} i {link} al text: el teu nom, el títol de l'emissió i un enllaç per veure-la."
+    },
+    "polls": {
+      "title": "Enquestes",
+      "intro": "Fes una pregunta a les persones que miren la teva emissió. Responen amb un botó a l'aplicació DeHub o escrivint {{command}} i el número de l'opció al xat.",
+      "question": "Pregunta",
+      "questionPlaceholder": "Què he de jugar a continuació?",
+      "option": "Opció {{n}}",
+      "addOption": "Afegeix una opció",
+      "removeOption": "Elimina l'opció {{n}}",
+      "duration": "Durant quant de temps es manté oberta la votació",
+      "seconds_one": "{{count}} segon",
+      "seconds_other": "{{count}} segons",
+      "minutes_one": "{{count}} minut",
+      "minutes_other": "{{count}} minuts",
+      "start": "Comença l'enquesta",
+      "end": "Finalitza la votació ara",
+      "started": "La teva enquesta està oberta. Els espectadors ja poden votar.",
+      "notLive": "Vés en directe primer. S'executa una enquesta a l'emissió que estàs transmetent ara mateix.",
+      "startFailed": "L'enquesta no ha començat. Torna-ho a provar.",
+      "closeFailed": "La votació no ha acabat. Torna-ho a provar.",
+      "live": "Votació oberta · {{time}} a l'esquerra",
+      "ended": "Votació tancada",
+      "votes_one": "{{count}} vota",
+      "votes_other": "{{count}} vots",
+      "replaceHint": "Iniciar un nou sondeig tanca el que està obert.",
+      "widgetHint": "Mostra la teva enquesta en directe. En els visualitzadors de l'aplicació DeHub, toca una opció per votar; en OBS, diu a les persones que escriguin {{command}} i un número al xat.",
+      "sample": {
+        "a": "Alguna cosa nova",
+        "b": "Un vell favorit",
+        "c": "Tu decideixes"
       }
     },
     "moderation": {

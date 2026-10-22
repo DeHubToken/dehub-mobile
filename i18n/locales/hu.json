@@ -9143,7 +9143,17 @@
     "followersUnit": "követők",
     "topSupporters": "Kiemelt támogatók",
     "tipped": "{{name}} ajándékot küldött",
-    "chatPreview": "Itt jelennek meg a csevegési üzenetek"
+    "chatPreview": "Itt jelennek meg a csevegési üzenetek",
+    "poll": {
+      "closed": "A szavazás lezárult",
+      "voteFor": "Szavazz erre: {{option}}",
+      "signIn": "Jelentkezzen be a szavazáshoz",
+      "failed": "A szavazatod nem számít. Próbálkozz újra.",
+      "voted_one": "Ön · {{count}} szavazott",
+      "voted_other": "Ön · {{count}} szavazattal szavazott",
+      "votes_one": "{{count}} szavazat",
+      "votes_other": "{{count}} szavazat"
+    }
   },
   "liveStudio": {
     "title": "Élő Stúdió",
@@ -9199,7 +9209,8 @@
       "event_feed": "Legutóbbi tevékenység",
       "chat_box": "Csevegőmező",
       "ticker": "Ticker",
-      "rule_alert": "Szabályriasztások"
+      "rule_alert": "Szabályriasztások",
+      "poll": "Szavazás"
     },
     "hints": {
       "tip_alert": "Mindent megünnepel a tip, méretétől függően",
@@ -9217,7 +9228,8 @@
       "event_feed": "A legújabb ajándékok, követők, előfizetők és az adásodat megosztó emberek",
       "chat_box": "Megjeleníti az adás csevegési üzeneteit a képernyőn",
       "ticker": "A saját szöveged egy sora, amely végiggörgeti a képernyőt",
-      "rule_alert": "Itt jelennek meg a szabályaidra vonatkozó értesítések"
+      "rule_alert": "Itt jelennek meg a szabályaidra vonatkozó értesítések",
+      "poll": "Élő szavazásod, szavazógombbal minden opcióhoz"
     },
     "fields": {
       "style": "Stílus",
@@ -9320,7 +9332,8 @@
         "share": "Valaki megosztja a streamet",
         "command": "Csevegési parancs van használatban",
         "keyword": "A csevegőüzenet egy szót tartalmaz",
-        "chat": "Bármilyen csevegési üzenet"
+        "chat": "Bármilyen csevegési üzenet",
+        "live": "Elkezdesz sugározni"
       },
       "audiences": {
         "everyone": "Mindenki",
@@ -9370,6 +9383,38 @@
         "spooky": "Kísérteties",
         "magic-spell": "Varázslat varázslat",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Használd {name}, {title} és {link} karaktereket a szövegedben: a nevedet, a közvetítés címét és egy linket a megtekintéséhez."
+    },
+    "polls": {
+      "title": "Szavazások",
+      "intro": "Tegyél fel egy kérdést azoknak, akik nézik az adást. Egy gombbal válaszolnak a DeHub alkalmazásban, vagy beírják {{command}} és az opció számát a csevegésbe.",
+      "question": "Kérdés",
+      "questionPlaceholder": "Mit játsszak legközelebb?",
+      "option": "{{n}}. lehetőség",
+      "addOption": "Opció hozzáadása",
+      "removeOption": "{{n}} opció eltávolítása",
+      "duration": "Mennyi ideig tart nyitva a szavazás?",
+      "seconds_one": "{{count}} másodperc",
+      "seconds_other": "{{count}} másodperc",
+      "minutes_one": "{{count}} perc",
+      "minutes_other": "{{count}} perc",
+      "start": "Szavazás indítása",
+      "end": "Szavazás befejezése most",
+      "started": "Szavazásod nyitott. A nézők most szavazhatnak.",
+      "notLive": "Először lépj be az élő közvetítésbe. A most közvetített közvetítésen egy közvélemény-kutatás fut le.",
+      "startFailed": "A szavazás nem indult el. Próbálja újra.",
+      "closeFailed": "A szavazás nem fejeződött be. Próbálkozz újra.",
+      "live": "Szavazás nyitva · {{time}} maradt",
+      "ended": "A szavazás lezárult",
+      "votes_one": "{{count}} szavazat",
+      "votes_other": "{{count}} szavazat",
+      "replaceHint": "Egy új szavazás indítása bezárja a nyitottat.",
+      "widgetHint": "Megjeleníti az élő szavazást. A DeHub alkalmazásban a nézők koppintanak egy választási lehetőségre a szavazáshoz; az OBS-ben azt mondja az embereknek, hogy írjanak be {{command}} -t és egy számot a csevegésbe.",
+      "sample": {
+        "a": "Valami új",
+        "b": "Egy régi kedvenc",
+        "c": "Te magad választasz."
       }
     },
     "moderation": {

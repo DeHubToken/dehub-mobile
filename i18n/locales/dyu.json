@@ -9059,6 +9059,16 @@
     "notNow": "O ma kɛ halibi."
   },
   "liveOverlay": {
+    "poll": {
+      "voted_one": "Vous avez voté · {{count}} vote",
+      "voted_other": "Vous avez voté · {{count}} votes",
+      "closed": "Ɲɛnamaya banna",
+      "voteFor": "Add {{option}}",
+      "signIn": "N'i be se ka ladɛrɛsi kɛ",
+      "failed": "I ka kan ka min fɔ, o tɛ foyi ye.",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}}vousêtes ici: Barakɛ"
+    },
     "someone": "Mɔgɔ dɔ",
     "newFollower": "Mɔgɔ min be tugu a kɔ: {{name}}",
     "newSubscriber": "Mɔgɔ min be sɛbɛri kɛ: {{name}}",
@@ -9070,6 +9080,37 @@
     "chatPreview": "I be se ka kuma minw fɔ, u be sɔrɔ yan"
   },
   "liveStudio": {
+    "polls": {
+      "seconds_one": "{{count}} seconde",
+      "notLive": "Passez d'abord en direct. Un sondage s'exécute sur l'émission que vous diffusez en ce moment.",
+      "title": "Fɛɛn minw be se ka kɛ",
+      "intro": "Mɔgɔ minw be i ka kalan lamɛnna, i ka ɲiningali dɔ kɛ u ye. U be se k'o jaabi ni tuguni ye DeHub ka porogramu kɔnɔ, walima ka {{command}} sɛbɛn ani ka kumaɲɔgɔnya kɛ n'o ye.",
+      "question": "Ɲiningali dɔ",
+      "questionPlaceholder": "Ne bena mun lo kɛ o kɔ?",
+      "option": "O jaabi ye {{n}}",
+      "addOption": "Ka fɛɛrɛ dɔ sugandi",
+      "removeOption": "Add {{n}}",
+      "duration": "O tuma na, u tun be se ka la a la ko u bena u",
+      "seconds_other": "{{count}} segɔn",
+      "minutes_one": "{{count}}mintamaaf ye kak",
+      "minutes_other": "{{count}} min",
+      "start": "Ka vote daminɛ",
+      "end": "O kama, u tun be se ka la a la",
+      "started": "O la, u ye lajɛnba dɔ kɛ. Mɔgɔ minw be se ka vote, olu be se ka vote sisan.",
+      "startFailed": "O la, a tun man nɔgɔ ka mɔgɔ faga.",
+      "closeFailed": "N'i ma siran, o be yɛlɛma ka kɛ ten.",
+      "live": "Vote open · {{time}} left",
+      "ended": "Ɲɛnamaya banna",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}}vousêtes ici: Barakɛ",
+      "replaceHint": "Jula poll koonu tun jɛ, jula poll fɔ buɲɛ.",
+      "widgetHint": "I ka ɲɛnamaya kɛcogo yira. DeHub ka app kɔnɔ, mɔgɔ minw be filɛli kɛ, olu be se ka vote kɛ. OBS kɔnɔ, u b'a fɔ mɔgɔw ye k'u ka {{command}} sɛbɛn ani k'u ka nimɔrɔ dɔ sɛbɛ.",
+      "sample": {
+        "a": "Fɛɛn kura dɔ",
+        "b": "2. ka kɛ mɔgɔ ɲɛnagwɛlenw ye",
+        "c": "I ka koo latigɛ"
+      }
+    },
     "title": "Live Studio",
     "subtitle": "Aw ka lasɔmini kumaw ni aw ka fɔrɔmasɔnw",
     "intro": "I be fɛɛn o fɛɛn fara o kan, o be ye i ka barokunw kan, mɔgɔ o mɔgɔ be filɛli kɛ DeHub ka porogramu kɔnɔ — i ka telefɔni, i ka barokun lajɛbaga, i ka kariti wala i ka coder kan.",
@@ -9106,6 +9147,7 @@
       "join": "I ka kan ka na"
     },
     "kinds": {
+      "poll": "Fanga be mɔgɔ minw na,",
       "tip_alert": "Aw ye aw janto",
       "follow_alert": "Aw ye aw janto",
       "subscribe_alert": "Mɔgɔ min y'a ka sɛbɛ ci",
@@ -9124,6 +9166,7 @@
       "rule_alert": "Kɔrɔbɔli sariya"
     },
     "hints": {
+      "poll": "I ka ɲɛnamaya kɛcogo ka di i ye, i ka vote tuguni kelen kelen bɛɛ la",
       "follow_alert": "Ka tugu mɔgɔ kuraw kɔ",
       "subscribe_alert": "A ka kan ka kɛ i ka mɔgɔ kuraw bɛɛ ka kan ka kɛ i ka mɔgɔ kuraw ye",
       "share_alert": "N'i ye mɔgɔ dɔ ye min be to ka kuma i fɛ",
@@ -9194,6 +9237,7 @@
       "rotateFailed": "\"Ne ma se ka bataki filanan dayɛlɛ fɔɔ ka taga se a laban ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
     },
     "rules": {
+      "placeholdersLive": "I ka barokun kɔnɔ, i ka {name}, {title} ani {link}: i tɔgɔ, i ka kunnafoni tɔgɔ ani i ka link dɔ kɛ k'a filɛ.",
       "cooldown": "Attendre entre les utilisations (secondes)",
       "title": "Sariya",
       "intro": "Ni koo dɔ kɛra i ka site web kan, DeHub b'a fɛ ka min kɛ, a b'o kɛ: a be lasɔmini dɔ yira, a be mankan dɔ bɔ, a be fɛɛn dɔ kalan ni kaanba ye, a be kuma i ka site web kɔnɔ wala a be kuma i ka Discord koo la.",
@@ -9230,6 +9274,7 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
+        "live": "Ka baara daminɛ",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",

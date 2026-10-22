@@ -9140,7 +9140,17 @@
     "followersUnit": "sekotāji",
     "topSupporters": "Populārākie atbalstītāji",
     "tipped": "{{name}} nosūtīja dāvanu",
-    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit"
+    "chatPreview": "Tērzēšanas ziņojumi tiek parādīti šeit",
+    "poll": {
+      "closed": "Balsošana slēgta",
+      "voteFor": "Balsojiet par {{option}}",
+      "signIn": "Pierakstieties, lai balsotu",
+      "failed": "Jūsu balss netika ieskaitīta. Mēģiniet vēlreiz.",
+      "voted_one": "Jūs balsojāt · {{count}} vote",
+      "voted_other": "Jūs balsojāt · {{count}} balsis",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} balsis"
+    }
   },
   "liveStudio": {
     "title": "Tiešraides studija",
@@ -9195,7 +9205,8 @@
       "event_feed": "Jaunākās aktivitātes",
       "chat_box": "Tērzēšanas lodziņš",
       "ticker": "Atzīme",
-      "rule_alert": "Noteikumu brīdinājumi"
+      "rule_alert": "Noteikumu brīdinājumi",
+      "poll": "Aptauja"
     },
     "hints": {
       "tip_alert": "Svētē katru pārdevumu, tam atbilstoši tā līmenim",
@@ -9213,7 +9224,8 @@
       "event_feed": "Jaunākās dāvanas, sekotāji, abonenti un cilvēki, kas dalās ar jūsu pārraidi",
       "chat_box": "Rāda apraides tērzēšanas ziņojumus ekrānā",
       "ticker": "Jūsu teksta rindiņa, kas ritinās pa ekrānu",
-      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi"
+      "rule_alert": "Kur tiek parādīti jūsu noteikumu paziņojumi",
+      "poll": "Jūsu tiešsaistes aptauja ar balsošanas pogu katrai opcijai"
     },
     "fields": {
       "style": "Stils",
@@ -9316,7 +9328,8 @@
         "share": "Kāds dalās ar straumi",
         "command": "Tiek izmantota tērzēšanas komanda",
         "keyword": "Tērzēšanas ziņojumā ir vārds",
-        "chat": "Jebkurš tērzēšanas ziņojums"
+        "chat": "Jebkurš tērzēšanas ziņojums",
+        "live": "Jūs sākat apraidi"
       },
       "audiences": {
         "everyone": "Visi",
@@ -9366,6 +9379,38 @@
         "spooky": "Spocīgs",
         "magic-spell": "Burvestību burvestība",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Izmantojiet {name}, {title} un {link} savā tekstā: savu vārdu, raidījuma nosaukumu un saiti, lai to skatītos."
+    },
+    "polls": {
+      "title": "Aptaujas",
+      "intro": "Uzdodiet jautājumu cilvēkiem, kuri skatās jūsu raidījumu. Viņi atbild ar pogu DeHub lietotnē vai ierakstot {{command}} un opcijas numuru tērzēšanā.",
+      "question": "Jautājums",
+      "questionPlaceholder": "Ko man spēlēt tālāk?",
+      "option": "Opcija {{n}}",
+      "addOption": "Pievienot opciju",
+      "removeOption": "Noņemt opciju {{n}}",
+      "duration": "Cik ilgi ir atvērta balsošana",
+      "seconds_one": "{{count}} sekunde",
+      "seconds_other": "{{count}} sekundes",
+      "minutes_one": "{{count}} minūte",
+      "minutes_other": "{{count}} minūtes",
+      "start": "Sākt aptauju",
+      "end": "Beigt balsošanu tūlīt",
+      "started": "Jūsu aptauja ir atvērta. Skatītāji var balsot tagad.",
+      "notLive": "Vispirms ieslēdziet tiešraidi. Tiek veikta aptauja par apraidi, kuru pašlaik straumējat.",
+      "startFailed": "Aptauja nesākās. Mēģiniet vēlreiz.",
+      "closeFailed": "Balsošana nebeidzās. Mēģiniet vēlreiz.",
+      "live": "Balsošana atvērta · {{time}} pa kreisi",
+      "ended": "Balsošana slēgta",
+      "votes_one": "{{count}} balsoti",
+      "votes_other": "{{count}} balsis",
+      "replaceHint": "Jaunas aptaujas sākšana aizver atvērto aptauju.",
+      "widgetHint": "Parāda jūsu tiešraides aptauju. DeHub lietotnes skatītājos pieskarieties opcijai balsot; OBS tas liek cilvēkiem ierakstīt {{command}} un numuru tērzēšanā.",
+      "sample": {
+        "a": "Kaut kas jauns",
+        "b": "Vecs favorīts",
+        "c": "Jūs izvēlaties"
       }
     },
     "moderation": {

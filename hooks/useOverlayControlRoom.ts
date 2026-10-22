@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useWebSocket } from "../context/WebSocketContext";
 import { roomUser, type LiveRoomEvent } from "../components/LiveOverlay/overlayEvents";
 import { parseRuleFired, type RuleFired } from "../libs/live-overlay/rules";
+import { parsePoll, type LivePoll } from "../libs/live-overlay/polls";
 
 /**
  * A creator's overlay control room, `overlay:<token>`. The twin of dehubweb's
@@ -19,12 +20,16 @@ export function useOverlayControlRoom(
   onTest: (events: LiveRoomEvent[]) => void,
   /** A stream rule tested from Live Studio: what it shows, plays and reads. */
   onRule?: (fired: RuleFired) => void,
+  /** A live poll moved. The socket is shared, so the caller checks it is theirs. */
+  onPoll?: (poll: LivePoll) => void,
 ) {
   const { emit, on } = useWebSocket();
   const handler = useRef(onTest);
   handler.current = onTest;
   const ruleHandler = useRef(onRule);
   ruleHandler.current = onRule;
+  const pollHandler = useRef(onPoll);
+  pollHandler.current = onPoll;
 
   useEffect(() => {
     if (!token) return;
@@ -60,12 +65,17 @@ export function useOverlayControlRoom(
       const fired = parseRuleFired(data);
       if (fired) ruleHandler.current?.(fired);
     });
+    const offPoll = on("stream.poll", (data: any) => {
+      const poll = parsePoll(data);
+      if (poll) pollHandler.current?.(poll);
+    });
     const offConnected = on("connected", join);
     join();
 
     return () => {
       offTest();
       offRule();
+      offPoll();
       offConnected();
       emit("overlay.leave", { token });
     };

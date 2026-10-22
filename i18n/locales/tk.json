@@ -9105,6 +9105,16 @@
     "notNow": "Häzir däl"
   },
   "liveOverlay": {
+    "poll": {
+      "closed": "Saýlama ýapyldy",
+      "voteFor": "{{option}} üçin seslen",
+      "signIn": "Saýlan",
+      "failed": "Siziň seslenmegiňiz hiç hili ähmiýet bermedi, ýene synanyň.",
+      "voted_one": "Sen seslendin {{count}} seslendin",
+      "voted_other": "Sen seslendin {{count}} votes",
+      "votes_one": "{{count}} ses",
+      "votes_other": "{{count}} Votes"
+    },
     "someone": "Biriniň",
     "newFollower": "Täze şägirdi: {{name}}",
     "newSubscriber": "Täze abonent: {{name}}",
@@ -9115,6 +9125,37 @@
     "chatPreview": "Çat habarlary bu ýerde görünýär"
   },
   "liveStudio": {
+    "polls": {
+      "votes_other": "{{count}} ses",
+      "title": "Saýlamalar",
+      "intro": "Siziň telegepleşikleriňizi görýän adamlara bir sorag beriň. Olar DeHub-da bir düýş bilen jogap berýärler ýa-da {{command}} we çatda saýlama sanyny ýazýarlar.",
+      "question": "Soru",
+      "questionPlaceholder": "Men ýene-de näme oýnap bilerin?",
+      "option": "Option {{n}}",
+      "addOption": "Bir mümkinçiligiň bardygy",
+      "removeOption": "{{n}} saýynyaýyr",
+      "duration": "Bu näçe wagt dowam eder?",
+      "seconds_one": "{{count}} ikinji",
+      "seconds_other": "{{count}} sekunda",
+      "minutes_one": "{{count}} minut",
+      "minutes_other": "{{count}} minutlar",
+      "start": "Saýlamalary başla",
+      "end": "Ahyrsoňy seslenmek",
+      "started": "Siziň seslenmeňiz açyk. Häzir diňleýjiler seslenip bilerler.",
+      "notLive": "Öňürti ýaşap görüň. Häzirki serişdesinde bir soraw geçirilýär.",
+      "startFailed": "Saýlama başlamady. Gaýtalaň.",
+      "closeFailed": "Saýlama tamamlanmady. Gaýtalaň.",
+      "live": "Açyk seslenmek {{time}} çep",
+      "ended": "Saýlama ýapyldy",
+      "votes_one": "{{count}} ses",
+      "replaceHint": "Täze seslenme başlanda, açylýan seslenme ýapylýar.",
+      "widgetHint": "Öňki saýlamalaryňyzy görkeziň. DeHub-da seredýänler seslenmek üçin bir saýlama tapýarlar; OBS-de adamlara {{command}} we gürrüňdeşlik sanyny ýazmagy haýyş edýärler.",
+      "sample": {
+        "a": "Täze bir zat",
+        "b": "Gel ýene, gel meniň favoritim",
+        "c": "Sen saýlaýarsyň"
+      }
+    },
     "title": "Öýlü Studio",
     "subtitle": "Siziň akmalaryňyz üçin duýduryşlar we widgetler",
     "intro": "Bu ýerde goşýan ähli zatlar DeHub-da her bir seredýän üçin akmalaryňyzda görünýär - siz telefonyňyzdan, brauzerinizden, tutýan kartyňyzdan ýa-da kodlaýjydan direlseňiz-de.",
@@ -9150,6 +9191,7 @@
       "join": "Gir"
     },
     "kinds": {
+      "poll": "Ses berişlik",
       "tip_alert": "Tip Alarm",
       "follow_alert": "Ägä boluň",
       "subscribe_alert": "Abonent duýduryşy",
@@ -9167,6 +9209,7 @@
       "rule_alert": "Kanun Alarmlary"
     },
     "hints": {
+      "poll": "Her bir saýlama üçin bir seslenme tugmasy bilen",
       "tip_alert": "Ol her bir çüýreçini, her bir çüýreçini,",
       "follow_alert": "Her täze şägirdi görkez",
       "subscribe_alert": "Ähli täze abonentleri görkez",
@@ -9240,6 +9283,7 @@
       "rotateFailed": "Men täze baglanyşygy döredip bilmedim. Gaýtalaň"
     },
     "rules": {
+      "placeholdersLive": "Tekstiňizde {name}, {title} we {link} ulanyň: adyňyz, ýaýlymyň ady we tomaşa etmek üçin baglanyşyk.",
       "test": "Synag",
       "title": "Kanunlar",
       "intro": "Eger siz akmaňyzda bir zat bolanda, DeHub saýlan zadyňyzy edýär: duýduryş görkezip, ses çalýar, sesli bir zat okaýar, gürrüňdeşligiňizi goýýar ýa-da Discord-a habar berýär.",
@@ -9278,6 +9322,7 @@
       "webhookHint": "Discord ýa-da Slack webhook, ýa-da bir hat kabul edýän her bir https adres.",
       "webhookText": "Ýolbaşçylyk maslahatynyň habar bermegi",
       "triggers": {
+        "live": "Telewizýa başlaýar",
         "tip": "Devanagari: Bir adam geldi.",
         "follow": "Kimdir biri onuň yzyna düşýär",
         "subscribe": "Kimdir biri gol çekýär",

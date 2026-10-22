@@ -9306,7 +9306,17 @@
     "followersUnit": "sledovatelia",
     "topSupporters": "Najlepší priaznivci",
     "tipped": "{{name}} odoslal/a darček",
-    "chatPreview": "Správy z chatu sa zobrazujú tu"
+    "chatPreview": "Správy z chatu sa zobrazujú tu",
+    "poll": {
+      "closed": "Hlasovanie bolo ukončené",
+      "voteFor": "Hlasujte za {{option}}",
+      "signIn": "Ak chcete hlasovať, prihláste sa",
+      "failed": "Váš hlas sa nezapočítal. Skúste to znova.",
+      "voted_one": "Hlasovali ste · {{count}} hlas",
+      "voted_other": "Hlasovali ste · {{count}} hlasov",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasov"
+    }
   },
   "liveStudio": {
     "title": "Live Studio",
@@ -9362,7 +9372,8 @@
       "event_feed": "Nedávna aktivita",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Upozornenia na pravidlá"
+      "rule_alert": "Upozornenia na pravidlá",
+      "poll": "Pôl"
     },
     "hints": {
       "tip_alert": "Oslavuje každé prepitné vo veľkosti podľa jeho úrovne",
@@ -9380,7 +9391,8 @@
       "event_feed": "Najnovšie dary, sledovatelia, odberatelia a ľudia zdieľajúci vaše vysielanie",
       "chat_box": "Zobrazuje chatové správy vášho vysielania na obrazovke",
       "ticker": "Riadok vlastného textu, ktorý sa posúva po obrazovke",
-      "rule_alert": "Kde sa zobrazujú upozornenia na vaše pravidlá"
+      "rule_alert": "Kde sa zobrazujú upozornenia na vaše pravidlá",
+      "poll": "Váš živý pôl, s tlačidlom na hlasovanie pre každý variant"
     },
     "fields": {
       "style": "Štýl",
@@ -9483,7 +9495,8 @@
         "share": "Niekto zdieľa stream",
         "command": "Používa sa príkaz na rozhovor",
         "keyword": "Chatová správa obsahuje slovo",
-        "chat": "Akákoľvek správa z chatu"
+        "chat": "Akákoľvek správa z chatu",
+        "live": "Začnete vysielať"
       },
       "audiences": {
         "everyone": "Všetci",
@@ -9533,6 +9546,38 @@
         "spooky": "Strašidelné",
         "magic-spell": "Kúzlo",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Použite {name}, {title} a {link} vo vašom texte: váše meno, názov vysielania a odkaz na pozorovanie."
+    },
+    "polls": {
+      "title": "Pôly",
+      "intro": "Ptaj sa na ľudí, ktorí sledujú váš vysielanie. Odpovedajú tlačidlom v DeHub aplikácii, alebo napísaním {{command}} a čísla variantu v správe.",
+      "question": "Otázka",
+      "questionPlaceholder": "Čo by som mal/a hrať ďalšie?",
+      "option": "Variant {{n}}",
+      "addOption": "Pridať variant",
+      "removeOption": "Odstrániť variant {{n}}",
+      "duration": "Aký čas trvá hlasovanie",
+      "seconds_one": "{{count}} sekunda",
+      "seconds_other": "{{count}} sekundy",
+      "minutes_one": "{{count}} minuta",
+      "minutes_other": "{{count}} minúty",
+      "start": "Spustiť pôl",
+      "end": "Ukončiť hlasovanie teraz",
+      "started": "Váš pôl je otvorený. Diváci môžu hlasovať.",
+      "notLive": "Najprv sa prejdite na živo. Pôl sa spustí na vysielaní, ktoré teraz streamujete.",
+      "startFailed": "Pôl sa nezahájil. Skúste to znova.",
+      "closeFailed": "Hlasovanie nekončilo. Skúste to znova.",
+      "live": "Hlasovanie otvorené · {{time}} zostáva",
+      "ended": "Hlasovanie ukončené",
+      "votes_one": "{{count}} hlas",
+      "votes_other": "{{count}} hlasy",
+      "replaceHint": "Zahájenie nového pôlu ukončí ten, ktorý je otvorený.",
+      "widgetHint": "Zobrazuje váš živý pôl. V DeHub aplikácii diváci kliknú na variant, aby hlasovali; v OBS vám to napíše, aby ľudia napísali {{command}} a číslo v správe.",
+      "sample": {
+        "a": "Niečo nové",
+        "b": "Starý obľúbenec",
+        "c": "Vy si vyberiete"
       }
     },
     "moderation": {

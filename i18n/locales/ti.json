@@ -9076,6 +9076,16 @@
     "notNow": "ሕጂ ኣይኰንኩን"
   },
   "liveOverlay": {
+    "poll": {
+      "voteFor": "ንዓ {{option}} ድምጺ ሃብ",
+      "closed": "ድምጺ ተዓጽዩ",
+      "signIn": "ንድምጺ ንምውሳድ ተጸምቢሩ",
+      "failed": "ድምጺኻ ኣይቆጸረን ። ደጊምካ ፈትኖ ።",
+      "voted_one": "You vote · {{count}} ድምጺ",
+      "voted_other": "You vote · {{count}} ድምጺ",
+      "votes_one": "{{count}} ድምጺ",
+      "votes_other": "{{count}} ድምጺ"
+    },
     "someone": "ሓደ ሰብ",
     "newFollower": "ሓድሽ ተኸታሊ ፦ {{name}}",
     "newSubscriber": "ሓድሽ ኣባል ፦ {{name}}",
@@ -9087,6 +9097,37 @@
     "chatPreview": "ናይ ቻት መልእኽትታት ኣብዚ ይረኣዩ"
   },
   "liveStudio": {
+    "polls": {
+      "duration": "ምስ ምርጫ ክፍሊት ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ ምስ ምርጫ ክፍሊት ክሳብ መዓልቱ",
+      "minutes_one": "{{count}} ደቒቕ",
+      "title": "ድምጺ",
+      "intro": "ነቶም ኣብ ስርሒትካ ዚርእዩ ሰባት ሕቶ ሕተቶም ። ኣብ DeHub App ዘሎ ጠውቑር ወይ ድማ {{command}} ብምጽሓፍ ከምኡ'ውን ኣብ ቻት ዘሎ ቁጽሪ እቲ ኣማራጺ ይምልሱ ።",
+      "question": "ሕቶ",
+      "questionPlaceholder": "ቀጺለ እንታይ ክጻወት ኣለኒ?",
+      "option": "ምርጫ {{n}}",
+      "addOption": "ኣማራጺ ኣክሎ",
+      "removeOption": "ኣማራጺ {{n}} ኣወግድ",
+      "seconds_one": "{{count}} ካልኣይቲ",
+      "seconds_other": "{{count}} ሰከንድ",
+      "minutes_other": "{{count}} ደቓይቕ",
+      "start": "ነቲ ምርጫ ምጅማር",
+      "end": "ሕጂ ድምጺ ምሃብ ኣቋሪጽካ",
+      "started": "እቲ ምርጫኻ ክፍትሕ እዩ ። እቶም ተዓዘብቲ ሕጂ ክመርጹ ይኽእሉ እዮም ።",
+      "notLive": "ፈለማ ብቀጥታ ግበር ። ኣብዚ እዋን እዚ ኣብ እትዝርጋሕዎ ስርሒት ድምጺ ይካየድ ።",
+      "startFailed": "እቲ ምርጫ ኣይተጀመረን ። ደጊምካ ፈትኖ ።",
+      "closeFailed": "እቲ ድምጺ ኣይተዛዘመን ። እንደገና ፈትኖ ።",
+      "live": "ክፍትሕ ድምጺ ምሃብ · {{time}} left",
+      "ended": "ድምጺ ተዓጽዩ",
+      "votes_one": "{{count}} ድምጺ",
+      "votes_other": "{{count}} ድምጺ",
+      "replaceHint": "ሓድሽ ምርጫ ምጅማር ነቲ ተኸፊቱ ዘሎ ይዓጽዎ ።",
+      "widgetHint": "ንቀጥታ ምርጫኻ ኣርኢ ። ኣብ DeHub App ተመልካቾች ናይ ድምጺ ኣማራጺ ይጥቀሙ ፣ ኣብ OBS ሰባት {{command}} ን ኣብ ቻት ቁጽሪ ክጽሕፉ ይነግሮም ።",
+      "sample": {
+        "a": "ሓድሽ ነገር",
+        "b": "ናይ ቀደም ፍቑር",
+        "c": "ንስኻ ኢኻ እትመርጽ"
+      }
+    },
     "title": "ህያው ስቱዲዮ",
     "subtitle": "ናይ ስትሪምስ ምንቅስቓስ ምልክታት ከምኡ'ውን ዊጀትስ",
     "intro": "ሓንቲ ሓንቲ ነገር ዘውሪድካዮ ኣብዚ ናይ ስትሪምስ ላዕላይ ይርአይ ንኩሎም ተዓዋቲ ኣብ DeHub app — ምስ ስትሪም ካብ ስልካ ወይ ብራውዘር ወይ capture card ወይ encoder ምስ ምውጻእ።",
@@ -9125,6 +9166,7 @@
       "join": "ተጸምቢሩ"
     },
     "kinds": {
+      "poll": "ድምጺ",
       "tip_alert": "መጠንቀቕታ",
       "follow_alert": "ንቕሓት ስዓቦ",
       "subscribe_alert": "ናይ ኣባል መጠንቀቕታ",
@@ -9143,6 +9185,7 @@
       "rule_alert": "ደንብ ማንቂያዎች"
     },
     "hints": {
+      "poll": "ብቀጥታ ምርጫኻ ፡ ንነፍሲ ወከፍ ኣማራጺ ናይ ድምጺ ጠውቑ",
       "tip_alert": "ኣብ ነፍሲ ወከፍ ጫፍ ፡ ኣብ ደረጃኡ እተመዝገበ",
       "follow_alert": "ንነፍሲ ወከፍ ሓድሽ ተኸታሊ ኣርኢ",
       "subscribe_alert": "ንነፍሲ ወከፍ ሓድሽ ኣባል ኣርኢ",
@@ -9216,6 +9259,7 @@
       "rotateFailed": "ሓድሽ ርክብ ክፈጥር ኣይከኣልኩን ። ኣብ ሓደ እዋን እንደገና ፈትኖ ።"
     },
     "rules": {
+      "placeholdersLive": "ኣብ ጽሑፍካ {name}፣ {title}ን {link}ን ተጠቐም፡ ስምካ፣ ኣርእስቲ ፈነወን ንምርኣይ ሊንክን።",
       "placeholders": "ኣብ ጽሑፍካ {name}፣ {amount}ን {message}ን ተጠቐም። ኣብ መልእኽቲ ዘለዉ ሊንክታት ይእለዩ።",
       "title": "ደንቦች",
       "intro": "በእንደርታህ ላይ ምንም ነገር ሲከሰት፣ DeHub ምን እንደምትመርጥ ያደርግ: ማንቂያ ያሳያል፣ ድምጽ ይጫወታል፣ ምንዳ ይነግርሃል፣ በቻትህ ውስጥ ይልጠፋል ወይም ዲስኮርድህን ይነግርሃል።",
@@ -9254,6 +9298,7 @@
       "webhookHint": "ናይ ዲኮርድ ወይ ናይ Slack ዌብ ቡክ ወይ ዝኾነ ናይ https ኣድራሻ ፖስት ዝቕበል ።",
       "webhookText": "መልእኽቲ ንምልኣኽ",
       "triggers": {
+        "live": "ስርሒት ትጅምር",
         "tip": "ሓደ ነጥቢ ይመጽእ",
         "follow": "ሓደ ሰብ ይስዕቦ",
         "subscribe": "ሓደ ሰብ ይመዝገብ",

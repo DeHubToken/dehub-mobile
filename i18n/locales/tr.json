@@ -10731,7 +10731,17 @@
     "followersUnit": "takipçiler",
     "topSupporters": "En iyi destekçiler",
     "tipped": "{{name}} bir hediye gönderdi",
-    "chatPreview": "Sohbet mesajları burada görünür"
+    "chatPreview": "Sohbet mesajları burada görünür",
+    "poll": {
+      "closed": "Oylama kapandı",
+      "voteFor": "{{option}} için oy verin",
+      "signIn": "Oy vermek için oturum açın",
+      "failed": "Oyunuz sayılmadı. Tekrar deneyin.",
+      "voted_one": "Oy verdiniz ·{{count}} oy",
+      "voted_other": "·{{count}} oy kullandınız",
+      "votes_one": "{{count}} oy",
+      "votes_other": "{{count}} oy"
+    }
   },
   "liveStudio": {
     "title": "Canlı Stüdyo",
@@ -10787,7 +10797,8 @@
       "event_feed": "Son etkinlikler",
       "chat_box": "Sohbet kutusu",
       "ticker": "Kayan yazı",
-      "rule_alert": "Kural uyarıları"
+      "rule_alert": "Kural uyarıları",
+      "poll": "Anket"
     },
     "hints": {
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
@@ -10805,7 +10816,8 @@
       "event_feed": "En son hediyeler, takipçiler, aboneler ve yayınınızı paylaşan kişiler",
       "chat_box": "Yayınınızın sohbet mesajlarını ekranda gösterir",
       "ticker": "Ekranda kayan kendi metninizin bir satırı",
-      "rule_alert": "Kurallarınızın uyarılarının göründüğü yer"
+      "rule_alert": "Kurallarınızın uyarılarının göründüğü yer",
+      "poll": "Her seçenek için bir oy düğmesiyle canlı anketiniz"
     },
     "fields": {
       "banner": "Afiş",
@@ -10908,7 +10920,8 @@
         "share": "Biri akışı paylaşıyor",
         "command": "Bir sohbet komutu kullanılır.",
         "keyword": "Bir sohbet mesajı bir kelime içeriyor",
-        "chat": "Herhangi bir sohbet mesajı"
+        "chat": "Herhangi bir sohbet mesajı",
+        "live": "Yayına başlarsınız"
       },
       "audiences": {
         "everyone": "Herkes",
@@ -10958,6 +10971,38 @@
         "spooky": "Ürkütücü",
         "magic-spell": "Büyü",
         "shhh": "Şşşt"
+      },
+      "placeholdersLive": "Metninizde {name}, {title} ve {link} kullanın: adınız, yayının başlığı ve izlemek için bir bağlantı."
+    },
+    "polls": {
+      "title": "Anketler",
+      "intro": "Yayınınızı izleyen insanlara bir soru sorun. DeHub uygulamasındaki bir düğmeyle veya sohbetteki {{command}} ve seçeneğin numarasını yazarak yanıt verirler.",
+      "question": "Soru",
+      "questionPlaceholder": "Daha sonra ne oynamalıyım?",
+      "option": "Seçenek {{n}}",
+      "addOption": "Bir seçenek ekleyin",
+      "removeOption": "{{n}} seçeneğini kaldır",
+      "duration": "Oylama ne kadar süre açık kalır?",
+      "seconds_one": "{{count}} saniye",
+      "seconds_other": "{{count}} saniye",
+      "minutes_one": "{{count}} dakika",
+      "minutes_other": "{{count}} dakika",
+      "start": "Anketi başlatın",
+      "end": "Oylamayı şimdi sonlandır",
+      "started": "Anketiniz açık. İzleyiciler artık oy verebilir.",
+      "notLive": "Önce canlı yayın yapın. Şu anda yayınladığınız yayında bir anket yayınlanıyor.",
+      "startFailed": "Anket başlamadı. Tekrar deneyin.",
+      "closeFailed": "Oy verme süreci henüz tamamlanmadı. Tekrar deneyin.",
+      "live": "Oylama açık ·{{time}} kaldı",
+      "ended": "Oylama kapandı",
+      "votes_one": "{{count}} oy",
+      "votes_other": "{{count}} oy",
+      "replaceHint": "Yeni bir anket başlatmak, açık olanı kapatır.",
+      "widgetHint": "Canlı anketinizi gösterir. DeHub uygulamasında izleyiciler oy vermek için bir seçeneğe dokunur; OBS'de insanlara {{command}} ve sohbette bir sayı yazmalarını söyler.",
+      "sample": {
+        "a": "Yeni bir şey",
+        "b": "Eski bir favori",
+        "c": "Sen seç"
       }
     },
     "moderation": {

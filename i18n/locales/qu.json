@@ -9151,7 +9151,17 @@
     "followersUnit": "qatiqninkuna",
     "topSupporters": "Hatun yanapaqkuna",
     "tipped": "{{name}} huk regalota apachirqan",
-    "chatPreview": "Kaypim rikurin rimanakuy willakuykuna"
+    "chatPreview": "Kaypim rikurin rimanakuy willakuykuna",
+    "poll": {
+      "closed": "Votacionqa wichqasqa",
+      "voteFor": "{{option}} nisqapaq votacionta ruway.",
+      "signIn": "Votanaykipaq yaykuy",
+      "failed": "Votoykiqa manam yupasqachu karqa. Hukmanta kallpachakuy.",
+      "voted_one": "Votarqanki · {{count}} voto",
+      "voted_other": "Votarqanki · {{count}} votokuna",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votokuna"
+    }
   },
   "liveStudio": {
     "title": "Kawsaq Estudio",
@@ -9206,7 +9216,8 @@
       "event_feed": "Kunan pacha ruray",
       "chat_box": "Chat nisqa cuadro",
       "ticker": "Ticker",
-      "rule_alert": "Alerta kaynin"
+      "rule_alert": "Alerta kaynin",
+      "poll": "Encuesta"
     },
     "hints": {
       "tip_alert": "Sapa puntata raymichan, pataman hina sayayniyuq",
@@ -9224,7 +9235,8 @@
       "event_feed": "Qhipa quykuna, qatiqninkuna, suscriptores chaymanta runakuna transmisiónniykimanta rakiqkuna",
       "chat_box": "Pantallapi difusión nisqaykipa rimanakuy willakuykunata qawachin",
       "ticker": "Kikin qillqasqaykimanta chiru, pantallapi puriq",
-      "rule_alert": "Maypin alerta kaykunayki rikurinman"
+      "rule_alert": "Maypin alerta kaykunayki rikurinman",
+      "poll": "Kawsaq encuestayki, sapa akllanapaq voto botón nisqawan"
     },
     "fields": {
       "style": "Rikchay",
@@ -9327,7 +9339,8 @@
         "share": "Pipas chay mayutam rakinakunku",
         "command": "Huk rimanakuy kamachiymi llamk'achisqa",
         "keyword": "Huk rimanakuy willakuypiqa huk simim kachkan",
-        "chat": "Ima rimanakuy willakuypas"
+        "chat": "Ima rimanakuy willakuypas",
+        "live": "Qamqa difusión nisqatam qallarinki"
       },
       "audiences": {
         "everyone": "Llapan",
@@ -9377,6 +9390,38 @@
         "spooky": "Manchakuypaq",
         "magic-spell": "Magia hechizo",
         "shhh": "Shhh"
+      },
+      "placeholdersLive": "Qillqasqaykipi {name}, {title} hinaspa {link} nisqawan yanapachikuy: sutiyki, willakuypa titulon hinaspa huk link nisqa qawanaykipaq."
+    },
+    "polls": {
+      "question": "Tapuy",
+      "title": "Encuestas nisqamanta",
+      "intro": "Difusión nisqayki qhawaq runakunata tapuy. DeHub app kaqpi huk botón kaqwan kutichinku, utaq {{command}} chaymanta akllana yupayta rimanakuypi qillqaspa.",
+      "questionPlaceholder": "¿Imatataq qatiqninpi pukllanay?",
+      "option": "Akllana {{n}} .",
+      "addOption": "Huk akllanata yapay",
+      "removeOption": "{{n}} akllanata hurquy.",
+      "duration": "Hayka unaytaq votacion kichasqa kachkan",
+      "seconds_one": "{{count}} iskay kaq",
+      "seconds_other": "{{count}} segundos nisqapi",
+      "minutes_one": "{{count}} minuto nisqapi",
+      "minutes_other": "{{count}} minutokuna",
+      "start": "Encuesta nisqa qallariy",
+      "end": "Kunanmantapacha votacionta tukuchiy",
+      "started": "Encuestaykiqa kichasqam kachkan. Qhawaqkuna kunan votayta atinku.",
+      "notLive": "Ñawpaqtaqa kawsaq riy. Huk encuesta purin chay transmisión kunan streaming nisqapi.",
+      "startFailed": "Chay encuestaqa manan qallarirqanchu. Hukmanta kallpachakuy.",
+      "closeFailed": "Votacionqa manam tukukurqachu. Hukmanta kallpachakuy.",
+      "live": "Votacion kichasqa · {{time}} lluq'i",
+      "ended": "Votacionqa wichqasqa",
+      "votes_one": "{{count}} voto",
+      "votes_other": "{{count}} votokuna",
+      "replaceHint": "Musuq encuesta qallariyqa kichasqa kaqta wichqan.",
+      "widgetHint": "Kawsaq encuestaykita qawachin. DeHub app kaqpi qhawaqkuna huk akllanata ñit'inku votanankupaq; OBS nisqapiqa runakunamanmi nin {{command}} nisqa qillqanankupaq hinaspa huk yupayta rimanakuypi.",
+      "sample": {
+        "a": "Imapas musuq",
+        "b": "Ñawpa munasqa",
+        "c": "Qamqa akllakunki"
       }
     },
     "moderation": {
