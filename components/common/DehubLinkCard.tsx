@@ -88,7 +88,7 @@ const RowCard: React.FC<RowCardProps> = ({
   onPress,
   onLongPress,
 }) => {
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   // The banner spans the card, which is at most the window's width.
   const { width: windowWidth } = useWindowDimensions();
   // Minimal: no box around the card. The banner spans the text column and the
@@ -99,7 +99,7 @@ const RowCard: React.FC<RowCardProps> = ({
       onPress={onPress}
       onLongPress={onLongPress}
       delayLongPress={350}
-      style={[styles.card, isMinimal && minimalFlat, dimmed && styles.cardDimmed]}
+      style={[styles.card, isMinimal && minimalFlat, skin?.material === 'glass' && skin.card, dimmed && styles.cardDimmed]}
     >
       {/* The cover, whole and uncropped — the same 16:9 contain-on-black
           treatment the stage page itself uses. It used to be a dimmed
