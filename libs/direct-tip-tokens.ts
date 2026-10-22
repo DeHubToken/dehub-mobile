@@ -42,3 +42,11 @@ export function directTipToken(source: { chainId: number; address: string } | nu
     tk => tk.chainId === Number(source.chainId) && tk.address.toLowerCase() === source.address.toLowerCase(),
   ) ?? null;
 }
+
+/** DHB's sale price in dollars while trading is paused (backend dehub-pay/peg.ts). */
+export const DHB_PEG_USD = 0.001;
+
+/** What a live gift of `dhb` costs in USDC/USDT: its DHB at the sale peg. */
+export function giftCostInDollars(dhb: number): number {
+  return Math.round(dhb * DHB_PEG_USD * 1e6) / 1e6;
+}
