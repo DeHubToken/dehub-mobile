@@ -10774,7 +10774,11 @@
     "subathonOver": "Temps écoulé",
     "pointsTitle": "Les voyous les plus fidèles",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "Niveau {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Pot cadeau"
   },
   "liveStudio": {
     "controls": {
@@ -10845,7 +10849,9 @@
       "ticker": "Bandeau défilant",
       "rule_alert": "Alertes de règle",
       "subathon_timer": "Minuteur Subathon",
-      "points_board": "Voyous fidèles"
+      "points_board": "Voyous fidèles",
+      "streamer_level": "Niveau du streamer",
+      "tip_jar": "Pot cadeau"
     },
     "hints": {
       "spin_wheel": "Où tournent les roues de vos règles",
@@ -10867,7 +10873,9 @@
       "rule_alert": "Où les alertes de vos règles apparaissent",
       "poll": "Votre sondage en direct, avec un bouton de vote pour chaque option",
       "subathon_timer": "Un compte à rebours que les dons, abonnements et abonnements repoussent",
-      "points_board": "Vos meilleurs spectateurs en points grâce à la visionnage et aux dons"
+      "points_board": "Vos meilleurs spectateurs en points grâce à la visionnage et aux dons",
+      "streamer_level": "Votre niveau de streamer et votre séquence hebdomadaire, à partir de votre profil",
+      "tip_jar": "Un pot qui se remplit au fur et à mesure que les cadeaux payants arrivent"
     },
     "fields": {
       "style": "Style",
@@ -10901,7 +10909,8 @@
       "speed": "Vitesse",
       "slow": "Lent",
       "normal": "Normal",
-      "fast": "Rapide"
+      "fast": "Rapide",
+      "showStreak": "Afficher la série hebdomadaire"
     },
     "obs": {
       "title": "Utiliser avec OBS",

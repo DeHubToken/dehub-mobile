@@ -9176,7 +9176,11 @@
     "subathonOver": "Tiden er ute",
     "pointsTitle": "De mest lojale seerne",
     "points_one": "{{formatted}} poeng",
-    "points_other": "{{formatted}} poeng"
+    "points_other": "{{formatted}} poeng",
+    "level": "Nivå {{level}}",
+    "streak_one": "{{count}}-ukers rekke",
+    "streak_other": "{{count}}-ukers rekke",
+    "tipJar": "Gavekrukke"
   },
   "liveStudio": {
     "controls": {
@@ -9245,7 +9249,9 @@
       "rule_alert": "Regelvarsler",
       "poll": "Avstemning",
       "subathon_timer": "Subathon-timer",
-      "points_board": "Lojale seere"
+      "points_board": "Lojale seere",
+      "streamer_level": "Streamer-nivå",
+      "tip_jar": "Gavekrukke"
     },
     "hints": {
       "spin_wheel": "Der hjulene i reglene dine snurrer",
@@ -9267,7 +9273,9 @@
       "rule_alert": "Hvor varslene fra reglene dine vises",
       "poll": "Din direkteavstemning, med en stemmeknapp for hvert alternativ",
       "subathon_timer": "En nedtelling som gir gaver, følgere og abonnementer utfordrer",
-      "points_board": "Dine toppseere etter poeng fra seing og gaver"
+      "points_board": "Dine toppseere etter poeng fra seing og gaver",
+      "streamer_level": "Ditt streamernivå og din ukentlige strømmerekke, fra profilen din",
+      "tip_jar": "En krukke som fylles opp etter hvert som betalte gaver kommer inn"
     },
     "fields": {
       "style": "Stil",
@@ -9301,7 +9309,8 @@
       "speed": "Fart",
       "slow": "Langsom",
       "normal": "Normal",
-      "fast": "Rask"
+      "fast": "Rask",
+      "showStreak": "Vis den ukentlige rekken"
     },
     "obs": {
       "title": "Bruk med OBS",

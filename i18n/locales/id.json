@@ -9182,7 +9182,11 @@
     "subathonOver": "Waktu habis",
     "pointsTitle": "Penonton paling setia",
     "points_one": "{{formatted}} poin",
-    "points_other": "{{formatted}} poin"
+    "points_other": "{{formatted}} poin",
+    "level": "Level {{level}}",
+    "streak_one": "{{count}}-minggu beruntun",
+    "streak_other": "{{count}}-minggu beruntun",
+    "tipJar": "Guci hadiah"
   },
   "liveStudio": {
     "controls": {
@@ -9253,7 +9257,9 @@
       "rule_alert": "Peringatan aturan",
       "poll": "Jajak Pendapat",
       "subathon_timer": "Timer Subathon",
-      "points_board": "Penonton Setia"
+      "points_board": "Penonton Setia",
+      "streamer_level": "Level streamer",
+      "tip_jar": "Guci hadiah"
     },
     "hints": {
       "spin_wheel": "Di mana roda dalam aturan Anda berputar",
@@ -9275,7 +9281,9 @@
       "rule_alert": "Di mana pemberitahuan peraturan Anda muncul",
       "poll": "Jajak pendapat langsung Anda, dengan tombol suara untuk setiap opsi",
       "subathon_timer": "Hitung mundur yang didorong oleh hadiah, follow, dan langganan",
-      "points_board": "Penonton teratas Anda berdasarkan poin dari menonton dan memberikan hadiah"
+      "points_board": "Penonton teratas Anda berdasarkan poin dari menonton dan memberikan hadiah",
+      "streamer_level": "Level streamer dan beruntun mingguan Anda, dari profil Anda",
+      "tip_jar": "Sebuah toples yang terisi saat hadiah berbayar masuk"
     },
     "fields": {
       "style": "Gaya",
@@ -9309,7 +9317,8 @@
       "speed": "Kecepatan",
       "slow": "Lambat",
       "normal": "Normal",
-      "fast": "Cepat"
+      "fast": "Cepat",
+      "showStreak": "Tampilkan rentetan mingguan"
     },
     "obs": {
       "title": "Gunakan dengan OBS",

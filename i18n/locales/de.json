@@ -9375,7 +9375,11 @@
     "subathonOver": "Die Zeit ist abgelaufen",
     "pointsTitle": "Die treuesten Zuschauer",
     "points_one": "{{formatted}} Punkt",
-    "points_other": "{{formatted}} Punkte"
+    "points_other": "{{formatted}} Punkte",
+    "level": "Level {{level}}",
+    "streak_one": "{{count}} -Wochensträhne",
+    "streak_other": "{{count}} -Wochensträhne",
+    "tipJar": "GESCHENKGEF"
   },
   "liveStudio": {
     "controls": {
@@ -9445,7 +9449,9 @@
       "ticker": "Laufschrift",
       "rule_alert": "Regelwarnungen",
       "subathon_timer": "Subathon-Timer",
-      "points_board": "Loyale Zuschauer"
+      "points_board": "Loyale Zuschauer",
+      "streamer_level": "Streamer-Level",
+      "tip_jar": "GESCHENKGEF"
     },
     "hints": {
       "spin_wheel": "Wo sich die Räder in deinen Regeln drehen",
@@ -9467,7 +9473,9 @@
       "rule_alert": "Wo die Warnungen deiner Regeln angezeigt werden",
       "poll": "Ihre Live-Umfrage mit einer Abstimmungsschaltfläche für jede Option",
       "subathon_timer": "Ein Countdown, der Geschenke, Follows und Abonnements zurückdrängt",
-      "points_board": "Ihre Top-Zuschauer nach Punkten aus Zuschauen und Verschenken"
+      "points_board": "Ihre Top-Zuschauer nach Punkten aus Zuschauen und Verschenken",
+      "streamer_level": "Dein Streamer-Level und deine wöchentliche Serie aus deinem Profil",
+      "tip_jar": "Ein Glas, das sich füllt, wenn bezahlte Geschenke hereinkommen"
     },
     "fields": {
       "style": "Stil",
@@ -9501,7 +9509,8 @@
       "speed": "Geschwindigkeit",
       "slow": "Langsam",
       "normal": "Normal",
-      "fast": "Schnell"
+      "fast": "Schnell",
+      "showStreak": "Die wöchentliche Serie anzeigen"
     },
     "obs": {
       "title": "Verwendung mit OBS",

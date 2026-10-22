@@ -9179,7 +9179,11 @@
     "subathonOver": "Laikas baigėsi",
     "pointsTitle": "Lojaliausi žiūrovai",
     "points_one": "{{formatted}} taškas",
-    "points_other": "{{formatted}} taškai"
+    "points_other": "{{formatted}} taškai",
+    "level": "Lygis {{level}}",
+    "streak_one": "{{count}}-savaitės serija",
+    "streak_other": "{{count}}-savaitės serija",
+    "tipJar": "Dovanų stiklainis"
   },
   "liveStudio": {
     "controls": {
@@ -9250,7 +9254,9 @@
       "rule_alert": "Pranešimai apie taisyklę",
       "poll": "Apklausa",
       "subathon_timer": "Subatono laikmatis",
-      "points_board": "Ištikimi žiūrovai"
+      "points_board": "Ištikimi žiūrovai",
+      "streamer_level": "Transliuotojo lygis",
+      "tip_jar": "Dovanų stiklainis"
     },
     "hints": {
       "spin_wheel": "Kur sukasi jūsų taisyklių ratai",
@@ -9272,7 +9278,9 @@
       "rule_alert": "Kur rodomi jūsų taisyklių pranešimai",
       "poll": "Jūsų tiesioginė apklausa su balsavimo mygtuku kiekvienai parinkčiai",
       "subathon_timer": "Dovanų, sekimo ir prenumeratų atgalinis skaičiavimas",
-      "points_board": "Jūsų geriausi žiūrovai pagal žiūrėjimo ir dovanojimo taškus"
+      "points_board": "Jūsų geriausi žiūrovai pagal žiūrėjimo ir dovanojimo taškus",
+      "streamer_level": "Srauto lygis ir savaitinė seka iš jūsų profilio",
+      "tip_jar": "Stiklainis, kuris prisipildo, kai ateina apmokamos dovanos"
     },
     "fields": {
       "style": "Stilius",
@@ -9306,7 +9314,8 @@
       "speed": "Greitis",
       "slow": "Lėtai",
       "normal": "Įprastas",
-      "fast": "Greitas"
+      "fast": "Greitas",
+      "showStreak": "Rodyti savaitės eilutę"
     },
     "obs": {
       "title": "Naudoti su OBS",

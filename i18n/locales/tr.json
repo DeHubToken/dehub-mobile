@@ -10770,7 +10770,11 @@
     "subathonOver": "Süre doldu",
     "pointsTitle": "En sadık izleyiciler",
     "points_one": "{{formatted}} puan",
-    "points_other": "{{formatted}} puan"
+    "points_other": "{{formatted}} puan",
+    "level": "Seviye {{level}}",
+    "streak_one": "{{count}}haftalık seri",
+    "streak_other": "{{count}}haftalık seri",
+    "tipJar": "Hediye kavanozu"
   },
   "liveStudio": {
     "controls": {
@@ -10841,7 +10845,9 @@
       "ticker": "Kayan yazı",
       "rule_alert": "Kural uyarıları",
       "poll": "Anket",
-      "points_board": "Sadık izleyiciler"
+      "points_board": "Sadık izleyiciler",
+      "streamer_level": "Yayıncı seviyesi",
+      "tip_jar": "Hediye kavanozu"
     },
     "hints": {
       "spin_wheel": "Kurallarınızdaki çarkların döndüğü yer",
@@ -10863,7 +10869,9 @@
       "rule_alert": "Kurallarınızın uyarılarının göründüğü yer",
       "poll": "Her seçenek için bir oy düğmesiyle canlı anketiniz",
       "subathon_timer": "Hediye, takip ve aboneliklerin geri çekildiği bir geri sayım",
-      "points_board": "İzleme ve hediye verme puanlarına göre en iyi izleyicileriniz"
+      "points_board": "İzleme ve hediye verme puanlarına göre en iyi izleyicileriniz",
+      "streamer_level": "Profilinizden yayıncı seviyeniz ve haftalık seriniz",
+      "tip_jar": "Ücretli hediyeler geldikçe dolan bir kavanoz"
     },
     "fields": {
       "banner": "Afiş",
@@ -10897,7 +10905,8 @@
       "speed": "Hız",
       "slow": "Yavaş",
       "normal": "Normal",
-      "fast": "Hızlı"
+      "fast": "Hızlı",
+      "showStreak": "Haftalık seriyi göster"
     },
     "obs": {
       "title": "OBS ile kullanım",

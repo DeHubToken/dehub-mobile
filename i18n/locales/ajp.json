@@ -9127,7 +9127,11 @@
     "chatPreview": "الرسائل بتظهر هنا",
     "subathon": "شوباثون",
     "points_one": "{{formatted}} نقطة",
-    "points_other": "{{formatted}} نقاط"
+    "points_other": "{{formatted}} نقاط",
+    "level": "المستوى {{level}}",
+    "streak_one": "{{count}}-ستريت أسبوعي",
+    "streak_other": "{{count}}-ستريت أسبوعي",
+    "tipJar": "جرة الهدايا"
   },
   "liveStudio": {
     "controls": {
@@ -9214,7 +9218,9 @@
       "viewer_count": "عدد المشاهدين",
       "frame": "فريم",
       "stream_timer": "برودكاست تايمر",
-      "subathon_timer": "تايمر سوباثون"
+      "subathon_timer": "تايمر سوباثون",
+      "streamer_level": "مستوى البث",
+      "tip_jar": "جرة الهدايا"
     },
     "hints": {
       "spin_wheel": "أين تدور العجلات في قواعدك",
@@ -9228,7 +9234,9 @@
       "viewer_count": "كم الناس بتشوف؟",
       "frame": "حدود حوالين الستريم تبعك",
       "subathon_timer": "عداد تنازلات هديات، تليكات، واشتراكات بتدفعه للوراء",
-      "points_board": "أفضل مشاهدينك من خلال النقاط من المشاهدة والهديات"
+      "points_board": "أفضل مشاهدينك من خلال النقاط من المشاهدة والهديات",
+      "streamer_level": "مستوى البث الخاص فيك والستريت الأسبوعي، من ملفك الشخصي",
+      "tip_jar": "جرة بتملأ لما ييجي هدايا مدفوعة"
     },
     "fields": {
       "showMessage": "ورّي رسالة النصيحة",
@@ -9245,7 +9253,8 @@
       "thickness": "سُمك",
       "accent": "لون",
       "showAvatars": "أظهر صور الملف الشخصي",
-      "speed": "سُرْعَة"
+      "speed": "سُرْعَة",
+      "showStreak": "أظهر الستريت الأسبوعي"
     },
     "obs": {
       "connected": "OBS متصل",

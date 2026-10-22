@@ -9155,7 +9155,11 @@
     "subathonOver": "ۋاقىت ئاخىرلاشتى",
     "pointsTitle": "ئەڭ سادىق كۆرگۈچ",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} نوقتىلار"
+    "points_other": "{{formatted}} نوقتىلار",
+    "level": "دەرىجە {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "سوۋغا بانكىسى"
   },
   "liveStudio": {
     "controls": {
@@ -9222,7 +9226,9 @@
       "rule_alert": "قائىدە ئاگاھلاندۇرۇشلار",
       "poll": "Poll",
       "subathon_timer": "Subathon ۋاقىت ھېسابلىغۇچ",
-      "points_board": "سادىق كۆرگۈچ"
+      "points_board": "سادىق كۆرگۈچ",
+      "streamer_level": "Streamer سەۋىيەسى",
+      "tip_jar": "سوۋغا بانكىسى"
     },
     "hints": {
       "spin_wheel": "قائىدىلىرىڭىزدىكى چولپانلار ئايلىنىدىغان جاي",
@@ -9244,7 +9250,9 @@
       "rule_alert": "قائىدىلىرىڭىزنىڭ ئاگاھلاندۇرۇشلىرى قەيەردە كۆرۈنىدۇ",
       "poll": "ھاياتلىق ئاۋازىڭىز، ھەر بىر تاللاش ئۈچۈن ئاۋاز بېتى بار",
       "subathon_timer": "سوۋغا قىلىدىغان، ئەگىشىدىغان ۋە ئىمزا قويىدىغان سانلىق مەلۇمات",
-      "points_board": "كۆزىتىش ۋە سوۋغا قىلىش نۇقتىلىرى بويىچە ئەڭ يۇقىرى كۆزەتكۈچىلەر"
+      "points_board": "كۆزىتىش ۋە سوۋغا قىلىش نۇقتىلىرى بويىچە ئەڭ يۇقىرى كۆزەتكۈچىلەر",
+      "streamer_level": "سۈزگۈچ سەۋىيەڭىز ۋە ھەپتىلىك سەپلىمىڭىز، پروفىللىڭىزدىن",
+      "tip_jar": "سوۋغات سۈپىتىدە تولدۇرۇلغان قازانغا كىرىدۇ"
     },
     "fields": {
       "celebration": "ھېيت",
@@ -9275,7 +9283,8 @@
       "speed": "سۈرئەت",
       "slow": "Slow",
       "normal": "نورمال",
-      "fast": "Fast"
+      "fast": "Fast",
+      "showStreak": "ھەپتىلىك سەپلىمىنى كۆرسىتىش پروگراممىسى"
     },
     "obs": {
       "connected": "OBS باغلانغان",

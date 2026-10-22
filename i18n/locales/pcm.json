@@ -8856,7 +8856,11 @@
     "subathonOver": "Time's up",
     "pointsTitle": "Most loyal viewers",
     "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points"
+    "points_other": "{{formatted}} points",
+    "level": "Level {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Gift jar"
   },
   "liveStudio": {
     "controls": {
@@ -8918,9 +8922,13 @@
       "rule_alert": "Rule alerts",
       "poll": "Poll",
       "subathon_timer": "Subathon timer",
-      "points_board": "Loyal viewers"
+      "points_board": "Loyal viewers",
+      "streamer_level": "Streamer level",
+      "tip_jar": "Gift jar"
     },
     "hints": {
+      "streamer_level": "Your streamer level and weekly streak, from your profile",
+      "tip_jar": "A jar that fills up as paid gifts come in",
       "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
       "points_board": "Your top viewers by points from watching and gifting",
       "spin_wheel": "Where the wheels in your rules spin",
@@ -8930,6 +8938,7 @@
       "join_alert": "Welcomes each viewer as they arrive"
     },
     "fields": {
+      "showStreak": "Show the weekly streak",
       "style": "Style",
       "celebration": "Celebration",
       "banner": "Banner",

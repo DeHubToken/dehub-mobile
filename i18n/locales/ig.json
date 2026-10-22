@@ -9149,7 +9149,11 @@
     "subathonOver": "Oge rụchara",
     "pointsTitle": "Ndị na-akwadebe kacha elu",
     "points_one": "{{formatted}} isi ihe",
-    "points_other": "{{formatted}} isi ihe"
+    "points_other": "{{formatted}} isi ihe",
+    "level": "Ọkwa {{level}}",
+    "streak_one": "{{count}}-Week streak",
+    "streak_other": "{{count}}-Week streak",
+    "tipJar": "Onyinye ite"
   },
   "liveStudio": {
     "controls": {
@@ -9220,7 +9224,9 @@
       "rule_alert": "Ọkwa iwu",
       "poll": "Pọtụfoliyo",
       "subathon_timer": "Subathon timer",
-      "points_board": "Ndị na-akwadebe"
+      "points_board": "Ndị na-akwadebe",
+      "streamer_level": "Streamer larịị",
+      "tip_jar": "Onyinye ite"
     },
     "hints": {
       "spin_wheel": "Ebe wiil gị iwu atụ ogho",
@@ -9242,7 +9248,9 @@
       "rule_alert": "Ebe ọkwa iwu gị na-apụta",
       "poll": "Gị ndụ ntuli aka, na a votu button maka ọ bụla nhọrọ",
       "subathon_timer": "Ịdị mma na ọkara oge na onyinye, iso na njem na-apụ azụ",
-      "points_board": "Ndị na-ekiri gị kacha elu site na isi ihe site na ịkiri na enye"
+      "points_board": "Ndị na-ekiri gị kacha elu site na isi ihe site na ịkiri na enye",
+      "streamer_level": "Gị streamer larịị na kwa izu streak, si gị profaịlụ",
+      "tip_jar": "A ite na-ejuputa dị ka ugwo onyinye na-abata"
     },
     "fields": {
       "style": "Ụdị",
@@ -9271,7 +9279,8 @@
       "speed": "Ọsọ",
       "slow": "Nwayọọ",
       "normal": "Nkịtị",
-      "fast": "Ọsọ"
+      "fast": "Ọsọ",
+      "showStreak": "Gosi usoro nke izuụka"
     },
     "obs": {
       "title": "Jiri na OBS",

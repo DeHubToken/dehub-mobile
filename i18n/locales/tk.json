@@ -9151,7 +9151,11 @@
     "subathonOver": "Wagtyň geçmegi bilen",
     "pointsTitle": "Wepaly diňleýjiler",
     "points_one": "{{formatted}} nöqtesi",
-    "points_other": "{{formatted}} noqtalar"
+    "points_other": "{{formatted}} noqtalar",
+    "level": "{{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Hediýe küýzesi"
   },
   "liveStudio": {
     "controls": {
@@ -9249,7 +9253,9 @@
       "ticker": "Ticker",
       "rule_alert": "Kanun Alarmlary",
       "subathon_timer": "Subathon wagtlaýynlaýjy",
-      "points_board": "Wepaly diňleýjiler"
+      "points_board": "Wepaly diňleýjiler",
+      "streamer_level": "Streamer derejesi",
+      "tip_jar": "Hediýe küýzesi"
     },
     "hints": {
       "spin_wheel": "Kanunlaryňyzyň tigirleri nirede döwülýär",
@@ -9271,7 +9277,9 @@
       "ticker": "Öz metiniňizden bir hat ekranda ýaýradylýar",
       "rule_alert": "Kanunlaryňyzyň duýduryşlary nirede görünýär",
       "subathon_timer": "Hediýeler, yzyna eýermek we ýazylanlary yzyna çekmek",
-      "points_board": "Seniň iň gowy diňleýjileriň seredýän we sowgat berýän ýerleri bilen"
+      "points_board": "Seniň iň gowy diňleýjileriň seredýän we sowgat berýän ýerleri bilen",
+      "streamer_level": "Siziň akmaç derejäňiz we hepdede bir gezek, profilyňyzdan",
+      "tip_jar": "Bir çuwal pully sowgatlar ýaly dolup-daşýar"
     },
     "fields": {
       "style": "Şablony",
@@ -9304,7 +9312,8 @@
       "speed": "Tizlik",
       "slow": "Ýuwaş",
       "normal": "Normal",
-      "fast": "Tiz"
+      "fast": "Tiz",
+      "showStreak": "Ýekşenbe güni görkeziň"
     },
     "obs": {
       "title": "OBS ile kullanýlýr",

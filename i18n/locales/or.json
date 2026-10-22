@@ -9143,7 +9143,11 @@
     "subathonOver": "ସମୟ ସରିଯାଇଛି ।",
     "pointsTitle": "ଅଧିକାଂଶ ବିଶ୍ୱସ୍ତ ଦର୍ଶକ",
     "points_one": "{{formatted}} ବିନ୍ଦୁ",
-    "points_other": "{{formatted}} ପଏଣ୍ଟଗୁଡିକ"
+    "points_other": "{{formatted}} ପଏଣ୍ଟଗୁଡିକ",
+    "level": "ସ୍ତର {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "ଗିଫ୍ଟ ଜାର"
   },
   "liveStudio": {
     "controls": {
@@ -9244,7 +9248,9 @@
       "ticker": "Smruti",
       "rule_alert": "ନିୟମ ସତର୍କତା",
       "subathon_timer": "Subathon ଟାଇମର",
-      "points_board": "ବିଶ୍ୱସ୍ତ ଦର୍ଶକ"
+      "points_board": "ବିଶ୍ୱସ୍ତ ଦର୍ଶକ",
+      "streamer_level": "ସ୍ରୋତ ସ୍ତର",
+      "tip_jar": "ଗିଫ୍ଟ ଜାର"
     },
     "hints": {
       "spin_wheel": "ଯେଉଁଠି ତୁମ ନିୟମର ଚକଗୁଡ଼ିକ ଘୂରିବୁଲୁଛି",
@@ -9266,7 +9272,9 @@
       "ticker": "ପରଦା ଉପରେ ସ୍କ୍ରୋଲ କରୁଥିବା ଆପଣଙ୍କ ନିଜ ପାଠ୍ୟର ଗୋଟିଏ ଧାଡ଼ି",
       "rule_alert": "ଆପଣଙ୍କ ନିୟମ ସତର୍କତା କେଉଁଠାରେ ଦେଖାଯାଏ",
       "subathon_timer": "ଗୋଟିଏ ଗଣନା ଯାହା ଉପହାର, ଅନୁସରଣ ଏବଂ ସବସ୍କ୍ରିପସନଗୁଡ଼ିକୁ ପଛକୁ ଠେଲିଦିଏ",
-      "points_board": "ଦେଖିବା ଏବଂ ଉପହାର ଦେବା ଠାରୁ ପଏଣ୍ଟ ଦ୍ୱାରା ଆପଣଙ୍କର ଶୀର୍ଷ ଦର୍ଶକ"
+      "points_board": "ଦେଖିବା ଏବଂ ଉପହାର ଦେବା ଠାରୁ ପଏଣ୍ଟ ଦ୍ୱାରା ଆପଣଙ୍କର ଶୀର୍ଷ ଦର୍ଶକ",
+      "streamer_level": "ଆପଣଙ୍କର ଷ୍ଟ୍ରିମର ସ୍ତର ଏବଂ ସାପ୍ତାହିକ ଧାରା, ଆପଣଙ୍କର ପ୍ରୋଫାଇଲରୁ",
+      "tip_jar": "ଏକ ପାତ୍ର ଯାହା ପରିଶୋଧିତ ଉପହାର ଭାବରେ ଭରିଥାଏ"
     },
     "fields": {
       "style": "ଶୈଳୀ",
@@ -9300,7 +9308,8 @@
       "speed": "ବେଗ",
       "slow": "ଧୀର",
       "normal": "ସାଧାରଣ",
-      "fast": "ଶୀଘ୍ର"
+      "fast": "ଶୀଘ୍ର",
+      "showStreak": "ସାପ୍ତାହିକ ଧାରାକୁ ଦର୍ଶାନ୍ତୁ"
     },
     "obs": {
       "title": "OBS ସହିତ ବ୍ୟବହାର କରନ୍ତୁ",

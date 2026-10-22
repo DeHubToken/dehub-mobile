@@ -9214,7 +9214,11 @@
     "subathonOver": "시간 종료",
     "pointsTitle": "가장 충성도 높은 시청자",
     "points_one": "{{formatted}} 포인트",
-    "points_other": "{{formatted}} 포인트"
+    "points_other": "{{formatted}} 포인트",
+    "level": "레벨 {{level}}",
+    "streak_one": "{{count}} -주 연속",
+    "streak_other": "{{count}} -주 연속",
+    "tipJar": "선물 항아리"
   },
   "liveStudio": {
     "controls": {
@@ -9316,7 +9320,9 @@
       "chat_box": "채팅창",
       "ticker": "티커",
       "rule_alert": "규칙 경고",
-      "subathon_timer": "서브아톤 타이머"
+      "subathon_timer": "서브아톤 타이머",
+      "streamer_level": "스트리머 레벨",
+      "tip_jar": "선물 항아리"
     },
     "hints": {
       "spin_wheel": "규칙의 바퀴가 회전하는 곳",
@@ -9338,7 +9344,9 @@
       "ticker": "화면을 가로질러 스크롤하는 나만의 텍스트 한 줄",
       "rule_alert": "규칙 알림이 표시되는 위치",
       "subathon_timer": "선물, 팔로우 및 구독이 뒤로 밀리는 카운트다운",
-      "points_board": "시청 및 선물의 포인트로 최고 시청자"
+      "points_board": "시청 및 선물의 포인트로 최고 시청자",
+      "streamer_level": "프로필에서 스트리머 레벨 및 주간 연속 기록 확인",
+      "tip_jar": "유료 선물이 들어올 때 채워지는 항아리"
     },
     "fields": {
       "style": "스타일",
@@ -9372,7 +9380,8 @@
       "speed": "속도",
       "slow": "느림",
       "normal": "보통",
-      "fast": "빠름"
+      "fast": "빠름",
+      "showStreak": "주간 연속 운행 표시"
     },
     "obs": {
       "title": "OBS와 함께 사용",

@@ -9179,7 +9179,11 @@
     "subathonOver": "Koha mbaroi",
     "pointsTitle": "Shikuesit më besnikë",
     "points_one": "{{formatted}} pikë",
-    "points_other": "{{formatted}} pikë"
+    "points_other": "{{formatted}} pikë",
+    "level": "Niveli {{level}}",
+    "streak_one": "{{count}}-week streak",
+    "streak_other": "{{count}}-week streak",
+    "tipJar": "Kavanoz dhuratë"
   },
   "liveStudio": {
     "controls": {
@@ -9281,7 +9285,9 @@
       "ticker": "Ticker",
       "rule_alert": "Lajmërime për rregullat",
       "subathon_timer": "Kohëmatësi i subatonit",
-      "points_board": "Shikues besnikë"
+      "points_board": "Shikues besnikë",
+      "streamer_level": "Niveli i transmetuesit",
+      "tip_jar": "Kavanoz dhuratë"
     },
     "hints": {
       "spin_wheel": "Ku rrotullohen rrotat në rregullat e tua",
@@ -9303,7 +9309,9 @@
       "ticker": "Një rresht i tekstit tënd që lëviz nëpër ekran",
       "rule_alert": "Këtu ku shfaqen alerte të regujave tuaja",
       "subathon_timer": "Një numërim mbrapsht që dhuratat, ndjekjet dhe abonimet shtyjnë prapa",
-      "points_board": "Shikuesit e tu më të mirë sipas pikëve nga shikimi dhe dhurimi"
+      "points_board": "Shikuesit e tu më të mirë sipas pikëve nga shikimi dhe dhurimi",
+      "streamer_level": "Niveli i streamer-it dhe intervali javor, nga profili yt",
+      "tip_jar": "Vjen një kavanoz që mbushet me dhurata të paguara"
     },
     "fields": {
       "style": "Stili",
@@ -9337,7 +9345,8 @@
       "speed": "Shpejtësia",
       "slow": "I ngadaltë",
       "normal": "Normale",
-      "fast": "Shpejt"
+      "fast": "Shpejt",
+      "showStreak": "Shfaq intervalin javor"
     },
     "obs": {
       "title": "Përdoreni me OBS",

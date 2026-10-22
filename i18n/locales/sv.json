@@ -9183,7 +9183,11 @@
     "subathonOver": "Tiden är ute",
     "pointsTitle": "Mest lojala tittare",
     "points_one": "{{formatted}} poäng",
-    "points_other": "{{formatted}} poäng"
+    "points_other": "{{formatted}} poäng",
+    "level": "Nivå {{level}}",
+    "streak_one": "{{count}}-veckor",
+    "streak_other": "{{count}}-veckor",
+    "tipJar": "Presentburk"
   },
   "liveStudio": {
     "controls": {
@@ -9254,7 +9258,9 @@
       "rule_alert": "Regelvarningar",
       "poll": "Omröstning",
       "subathon_timer": "Subathon-timer",
-      "points_board": "Lojala tittare"
+      "points_board": "Lojala tittare",
+      "streamer_level": "Streamernivå",
+      "tip_jar": "Presentburk"
     },
     "hints": {
       "spin_wheel": "Där hjulen i dina regler snurrar",
@@ -9276,7 +9282,9 @@
       "rule_alert": "Där dina regler visas",
       "poll": "Din live-omröstning, med en röstknapp för varje alternativ",
       "subathon_timer": "En nedräkning som presenter, följare och prenumerationer trycker tillbaka",
-      "points_board": "Dina bästa tittare efter poäng från att titta och ge gåvor"
+      "points_board": "Dina bästa tittare efter poäng från att titta och ge gåvor",
+      "streamer_level": "Din streamernivå och veckosträcka, från din profil",
+      "tip_jar": "En burk som fylls när betalda gåvor kommer in"
     },
     "fields": {
       "style": "Stil",
@@ -9310,7 +9318,8 @@
       "speed": "Hastighet",
       "slow": "Långsam",
       "normal": "Normal",
-      "fast": "Snabb"
+      "fast": "Snabb",
+      "showStreak": "Visa veckosträckan"
     },
     "obs": {
       "title": "Använd med OBS",

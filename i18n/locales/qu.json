@@ -9190,7 +9190,11 @@
     "subathonOver": "Pacha tukuy",
     "pointsTitle": "Ama aswan fieles espectadores",
     "points_one": "{{formatted}} punto",
-    "points_other": "{{formatted}} puntukuna"
+    "points_other": "{{formatted}} puntukuna",
+    "level": "Nivel {{level}} nisqapi.",
+    "streak_one": "{{count}}-semana qatiqninpi",
+    "streak_other": "{{count}}-semana qatiqninpi",
+    "tipJar": "Regalo jarra"
   },
   "liveStudio": {
     "controls": {
@@ -9260,7 +9264,9 @@
       "rule_alert": "Alerta kaynin",
       "poll": "Encuesta",
       "subathon_timer": "Subathon timer",
-      "points_board": "Loyal viewers"
+      "points_board": "Loyal viewers",
+      "streamer_level": "Nivel de corriente nisqa",
+      "tip_jar": "Regalo jarra"
     },
     "hints": {
       "spin_wheel": "Maypichus kamachiyniykipi ruedakuna muyurinku",
@@ -9282,7 +9288,9 @@
       "rule_alert": "Maypin alerta kaykunayki rikurinman",
       "poll": "Kawsaq encuestayki, sapa akllanapaq voto botón nisqawan",
       "subathon_timer": "Countdown regalukunata, seguirkunata, suscripcionkunata kutichikun",
-      "points_board": "Ama aswan rikuchikunayki puntumanta rikuspankuqa, regaluspankuqa"
+      "points_board": "Ama aswan rikuchikunayki puntumanta rikuspankuqa, regaluspankuqa",
+      "streamer_level": "Nivel de streamer nisqayki hinaspa sapa semana racha, perfilniykimanta",
+      "tip_jar": "Pagasqa regalokuna haykumusqanman hina hunt’akuq jarra"
     },
     "fields": {
       "style": "Rikchay",
@@ -9316,7 +9324,8 @@
       "speed": "Paway",
       "slow": "Allillamanta",
       "normal": "Kaqlla",
-      "fast": "Utqay"
+      "fast": "Utqay",
+      "showStreak": "Sapa semana rachata qawachiy"
     },
     "obs": {
       "title": "OBS nisqawan llamk’achiy",

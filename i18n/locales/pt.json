@@ -9308,7 +9308,11 @@
     "subathonOver": "O tempo acabou",
     "pointsTitle": "Espectadores mais fiéis",
     "points_one": "{{formatted}} ponto",
-    "points_other": "{{formatted}} pontos"
+    "points_other": "{{formatted}} pontos",
+    "level": "Nível {{level}}",
+    "streak_one": "Sequência de {{count}}semanas",
+    "streak_other": "Sequência de {{count}}semanas",
+    "tipJar": "Jarra para presentes"
   },
   "liveStudio": {
     "controls": {
@@ -9379,7 +9383,9 @@
       "rule_alert": "Alertas de regra",
       "poll": "Votação",
       "subathon_timer": "Temporizador de subaton",
-      "points_board": "Leais espectadores"
+      "points_board": "Leais espectadores",
+      "streamer_level": "Nível do streamer",
+      "tip_jar": "Jarra para presentes"
     },
     "hints": {
       "spin_wheel": "Onde as rodas das suas regras giram",
@@ -9401,7 +9407,9 @@
       "rule_alert": "Onde aparecem os alertas das suas regras",
       "poll": "Sua votação ao vivo, com um botão de voto para cada opção",
       "subathon_timer": "Uma contagem regressiva que os presentes, os seguidores e as assinaturas retrocedem",
-      "points_board": "Seus principais espectadores por pontos de assistir e presentear"
+      "points_board": "Seus principais espectadores por pontos de assistir e presentear",
+      "streamer_level": "O seu nível de streamer e sequência semanal, a partir do seu perfil",
+      "tip_jar": "Um pote que se enche quando chegam presentes pagos"
     },
     "fields": {
       "style": "Estilo",
@@ -9435,7 +9443,8 @@
       "speed": "Velocidade",
       "slow": "Lento",
       "normal": "Normal",
-      "fast": "Rápido"
+      "fast": "Rápido",
+      "showStreak": "Mostrar a sequência semanal"
     },
     "obs": {
       "title": "Uso com Obs",

@@ -9177,7 +9177,11 @@
     "subathonOver": "Vaxt bitdi",
     "pointsTitle": "Ən sadiq izləyicilər",
     "points_one": "{{formatted}} xal",
-    "points_other": "{{formatted}} xal"
+    "points_other": "{{formatted}} xal",
+    "level": "Səviyyə {{level}}",
+    "streak_one": "{{count}}-həftə zolağı",
+    "streak_other": "{{count}}-həftə zolağı",
+    "tipJar": "Hədiyyə bankası"
   },
   "liveStudio": {
     "controls": {
@@ -9248,7 +9252,9 @@
       "rule_alert": "Qayda xəbərdarlıqları",
       "poll": "Sorğu",
       "subathon_timer": "Yarmarka taymeri",
-      "points_board": "Sadiq izləyicilər"
+      "points_board": "Sadiq izləyicilər",
+      "streamer_level": "Axınçı səviyyəsi",
+      "tip_jar": "Hədiyyə bankası"
     },
     "hints": {
       "spin_wheel": "Qaydalarınızdakı təkərlərin fırlandığı yer",
@@ -9270,7 +9276,9 @@
       "rule_alert": "Sizin quranızın xəbərləri yerə düşür",
       "poll": "Canlı sorğunuz, hər bir seçim üçün səs düyməsi ilə",
       "subathon_timer": "Hədiyyə, izləyici və abunələrin geri itələdiyi geri sayım",
-      "points_board": "İzləmə və hədiyyə etmə nöqtələrinə görə ən yaxşı izləyiciləriniz"
+      "points_board": "İzləmə və hədiyyə etmə nöqtələrinə görə ən yaxşı izləyiciləriniz",
+      "streamer_level": "Profilinizdən axın səviyyəsi və həftəlik zolağınız",
+      "tip_jar": "Ödənişli hədiyyələrin daxil olduğu banka"
     },
     "fields": {
       "style": "Üslub",
@@ -9303,7 +9311,8 @@
       "speed": "Sürət",
       "slow": "Yavaş",
       "normal": "Normal",
-      "fast": "Sürətli"
+      "fast": "Sürətli",
+      "showStreak": "Həftəlik zolağı göstər"
     },
     "obs": {
       "title": "OBS ilə istifadə edin",

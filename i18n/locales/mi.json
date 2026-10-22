@@ -9159,7 +9159,11 @@
     "subathonOver": "Kua mutu te wā",
     "pointsTitle": "Ngā kaitirotiro whakapono",
     "points_one": "{{formatted}} tohu",
-    "points_other": "{{formatted}} tohu"
+    "points_other": "{{formatted}} tohu",
+    "level": "Taumata {{level}}",
+    "streak_one": "{{count}} - wiki streak",
+    "streak_other": "{{count}} - wiki streak",
+    "tipJar": "Kohikohinga"
   },
   "liveStudio": {
     "controls": {
@@ -9229,7 +9233,9 @@
       "rule_alert": "Onagrams Ture",
       "poll": "Pōtitanga",
       "subathon_timer": "Taima Subathon",
-      "points_board": "Kaitirotiro whakapono"
+      "points_board": "Kaitirotiro whakapono",
+      "streamer_level": "Taumata Streamer",
+      "tip_jar": "Kohikohinga"
     },
     "hints": {
       "spin_wheel": "Kei hea nga wira i roto i o ture e huri ana",
@@ -9251,7 +9257,9 @@
       "rule_alert": "Kei hea te putanga o ō ture onagrams",
       "poll": "Tō pōtitanga aho, me te pōtini pōtitanga mō ia whiringa",
       "subathon_timer": "He whakahuatanga e tukuna, whai me ngā tāpui e tukituki whakamuri",
-      "points_board": "Ō matapihi tonutanga i runga i ngā tohu mai i te titiro me te tukuna"
+      "points_board": "Ō matapihi tonutanga i runga i ngā tohu mai i te titiro me te tukuna",
+      "streamer_level": "Ko to taumata rere me te streak wiki, mai i to tohu",
+      "tip_jar": "He potae e whakakii ana i nga taonga utu ka tae mai ki roto"
     },
     "fields": {
       "style": "Kāhua",
@@ -9283,7 +9291,8 @@
       "speed": "Tere",
       "slow": "He puhoi",
       "normal": "He mea noa",
-      "fast": "Tere"
+      "fast": "Tere",
+      "showStreak": "Whakaatu i te whārangi wiki"
     },
     "obs": {
       "title": "Whakamahia ki te OBS",

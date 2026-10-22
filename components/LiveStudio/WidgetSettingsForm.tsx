@@ -289,6 +289,29 @@ export function WidgetSettingsForm({ widget, portrait, onSettings, onRect }: Pro
         </>
       );
       break;
+    case "streamer_level":
+      body = (
+        <>
+          <Toggle label={t("liveStudio.fields.showStreak")} value={setting(s, "showStreak", true)} onChange={(v) => set("showStreak", v)} />
+          {accentRow}
+        </>
+      );
+      break;
+    case "tip_jar":
+      body = (
+        <>
+          <View>
+            <Label>{t("liveStudio.fields.target")}</Label>
+            {number("target", 100000, 1, 1000000000000)}
+          </View>
+          <View>
+            <Label>{t("liveStudio.fields.title")}</Label>
+            {text("title", 40, t("liveOverlay.tipJar"))}
+          </View>
+          {accentRow}
+        </>
+      );
+      break;
     case "points_board":
       body = (
         <>
