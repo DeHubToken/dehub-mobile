@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "串流總結",
+    "justEnded": "你嘅串流總結",
+    "lastStream": "你最後一個串流",
+    "none": "仲未有完成嘅串流。你嘅總結會喺你第一個之後出現喺呢度。",
+    "share": "分享",
+    "shareText": "我啱啱喺 DeHub 串流「 {{title}} 」： {{duration}} 直播， {{peak}} 睇緊高峰期同 {{followers}} 新 follower",
+    "untitled": "冇標題嘅串流",
+    "loadFailed": "個總結冇載入。一陣再試下。",
+    "duration": "時間直播",
+    "peakViewers": "大部分一次過睇緊",
+    "gifts_one": "來自 {{count}} 禮物",
+    "gifts_other": "來自 {{count}} 禮物",
+    "newFollowers": "新追蹤者",
+    "chatMessages": "即時通訊訊息",
+    "chatters": "人哋傾緊計",
+    "reactions": "反應",
+    "shares": "人哋分享緊",
+    "topSupporters": "頂尖支持者",
+    "polls": "民調",
+    "pollWinner": "{{option}} 贏咗",
+    "stillCounting": "仲計緊：禮物可能需要一分鐘先可以確認。"
+  },
   "articles": {
     "articleImage": "文章圖片",
     "socialImage": "社交分享圖片",

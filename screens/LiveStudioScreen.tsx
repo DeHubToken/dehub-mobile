@@ -10,6 +10,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Alert, ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRoute, type RouteProp } from "@react-navigation/native";
+import type { AppStackParamList } from "../navigation/types";
+import type { ScreenNames } from "../navigation/ScreenNames";
+import { useUser } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ScreenHeader from "../components/ScreenHeader";
@@ -22,6 +26,7 @@ import { OverlayEventContext, createOverlayEventBus } from "../components/LiveOv
 import { createRuleBus, RuleAudio, RuleBusContext } from "../components/LiveOverlay/ruleBus";
 import { RulesEditor } from "../components/LiveStudio/RulesEditor";
 import { PollEditor } from "../components/LiveStudio/PollEditor";
+import { RecapSection } from "../components/LiveStudio/RecapSection";
 import { PollContext } from "../components/LiveOverlay/poll";
 import { samplePoll, type LivePoll } from "../libs/live-overlay/polls";
 import { ModerationEditor } from "../components/LiveStudio/ModerationEditor";
@@ -59,6 +64,11 @@ function Section({ title, right, children }: { title: string; right?: React.Reac
 export default function LiveStudioScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // The broadcaster sends a creator here with `recap` when they end a stream.
+  const route = useRoute<RouteProp<AppStackParamList, ScreenNames.LiveStudio>>();
+  const justEnded = route.params?.recap ?? null;
+  const user = useUser();
+  const myAddress = (user as any)?.address || (user as any)?.walletAddress || null;
   const queryClient = useQueryClient();
   const { data, isLoading, isError } = useQuery<CreatorOverlay>({
     queryKey: MY_OVERLAY_KEY,
@@ -207,6 +217,12 @@ export default function LiveStudioScreen() {
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16, paddingBottom: insets.bottom + 96 }} keyboardShouldPersistTaps="handled">
         <Text className="text-theme-neutrals-400 text-sm">{t("liveStudio.intro")}</Text>
 
+        {justEnded ? (
+          <Section title={t("liveRecap.justEnded")}>
+            <RecapSection address={myAddress} streamId={justEnded} />
+          </Section>
+        ) : null}
+
         <Section
           title={t("liveStudio.preview")}
           right={
@@ -301,6 +317,12 @@ export default function LiveStudioScreen() {
             <Text className="text-theme-neutrals-500 text-sm">{t("liveStudio.selectHint")}</Text>
           )}
         </Section>
+
+        {!justEnded ? (
+          <Section title={t("liveRecap.lastStream")}>
+            <RecapSection address={myAddress} />
+          </Section>
+        ) : null}
 
         <Section title={t("liveStudio.polls.title")}>
           <PollEditor poll={poll} onPoll={setPoll} />

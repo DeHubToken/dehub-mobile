@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "share": "Ibahagi",
+    "gifts_other": "{{count}} gift",
+    "chatters": "Mga tao na chat",
+    "shares": "Mga ibahagi ng",
+    "pollWinner": "{{option}} WIND",
+    "stillCounting": "Huling bilang: ang mga gift ay maaaring magtatagal ng isang minuto upang",
+    "title": "Барқарор кардани ҷараён",
+    "justEnded": "Аз нав бор кардани ҷараён",
+    "lastStream": "Ҷараёни охирин",
+    "none": "Ҷараёнҳо ба итмом нарасидааст. Ipinapakita ang iyong recap dito pagkatapos sa iyong un",
+    "shareText": "Ман фақат \"{{title}}\" дар DeHub ҷараён гирифтам: {{duration}} LIVE, {{peak}} тамошо дар қулла ва {{followers}} пайравони нав.",
+    "untitled": "Ҷараёни бе сарлавҳа",
+    "loadFailed": "Бозборкунӣ ба итмом нарасид. Subukan muli sa isang minuto.",
+    "duration": "Время онлайн",
+    "peakViewers": "Бештари тамошобинон дар як вақт",
+    "gifts_one": "Аз {{count}} gift",
+    "newFollowers": "Пайравони нав",
+    "chatMessages": "Паёмҳои чат",
+    "reactions": "Вокунишҳо",
+    "topSupporters": "Пуштибони боло",
+    "polls": "Интихоботҳо"
+  },
   "articles": {
     "articleImage": "Тасвири мақола",
     "socialImage": "Тасвири муборакӣ дар шабакаҳои иҷтимоӣ",

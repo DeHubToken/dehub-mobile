@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "pollWinner": "Wygrywa: {{option}}",
+    "title": "Streszczenie strumienia",
+    "justEnded": "Podsumowanie Twojego strumienia",
+    "lastStream": "Twój ostatni strumień",
+    "none": "Nie ma jeszcze zakończonych strumieni. Twoje podsumowanie pojawi się tutaj po pierwszym.",
+    "share": "Udostępnianie",
+    "shareText": "Właśnie streamowałem „{{title}}” na DeHub: {{duration}} na żywo, {{peak}} oglądanie na szczycie i {{followers}} nowych obserwujących.",
+    "untitled": "Strumień bez nazwy",
+    "loadFailed": "Podsumowanie nie zostało załadowane. Spróbuj ponownie za chwilę.",
+    "duration": "Czas na żywo",
+    "peakViewers": "Większość ogląda jednocześnie",
+    "gifts_one": "Od {{count}} prezent",
+    "gifts_other": "Od {{count}} prezentów",
+    "newFollowers": "Nowi obserwujący",
+    "chatMessages": "Wiadomości na czacie",
+    "chatters": "Czatowanie osób",
+    "reactions": "Reakcje alergiczne",
+    "shares": "Dla 4 osób",
+    "topSupporters": "Najlepsi kibice",
+    "polls": "Ankiety",
+    "stillCounting": "Nadal się liczy: potwierdzanie prezentów może chwilę potrwać."
+  },
   "articles": {
     "articleImage": "Obraz artykułu",
     "socialImage": "Udostępnij obraz społecznościowy",

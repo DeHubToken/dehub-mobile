@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Rekap streaming",
+    "justEnded": "Rekap streaming Anda",
+    "lastStream": "Streaming terakhir Anda",
+    "none": "Belum ada streaming yang selesai. Ringkasan Anda muncul di sini setelah yang pertama.",
+    "share": "Bagikan",
+    "shareText": "Saya baru saja streaming \"{{title}}\" di DeHub: {{duration}} live, {{peak}} menonton di puncak dan {{followers}} pengikut baru.",
+    "untitled": "Streaming tanpa judul",
+    "loadFailed": "Rekap tidak dimuat. Coba lagi sebentar lagi.",
+    "duration": "Waktu langsung",
+    "peakViewers": "Paling banyak menonton sekaligus",
+    "gifts_one": "Dari {{count}} hadiah",
+    "gifts_other": "Dari {{count}} hadiah",
+    "newFollowers": "Pengikut baru",
+    "chatMessages": "Pesan obrolan",
+    "chatters": "Orang mengobrol",
+    "reactions": "Tanggapan",
+    "shares": "Orang yang berbagi",
+    "topSupporters": "Pendukung teratas",
+    "polls": "Polling",
+    "pollWinner": "{{option}} sudah",
+    "stillCounting": "Masih terus bertambah: hadiah bisa membutuhkan waktu satu menit untuk mengonfirmasi."
+  },
   "articles": {
     "articleImage": "Gambar artikel",
     "socialImage": "Gambar berbagi sosial",

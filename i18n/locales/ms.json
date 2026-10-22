@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "pollWinner": "{{option}} menang",
+    "title": "Ringkasan strim",
+    "justEnded": "Ringkasan strim anda",
+    "lastStream": "Strim terakhir anda",
+    "none": "Belum ada strim yang selesai. Ringkasan anda muncul di sini selepas yang pertama.",
+    "share": "Kongsi",
+    "shareText": "Saya baru strim \"{{title}}\" di DeHub: {{duration}} secara langsung, {{peak}} menonton di puncak dan {{followers}} pengikut baharu.",
+    "untitled": "Strim tanpa tajuk",
+    "loadFailed": "Rekap tidak dimuatkan. Cuba lagi sebentar lagi.",
+    "duration": "Masa siaran langsung",
+    "peakViewers": "Paling banyak menonton sekaligus",
+    "gifts_one": "Daripada {{count}} hadiah",
+    "gifts_other": "Daripada {{count}} hadiah",
+    "newFollowers": "Pengikut baharu",
+    "chatMessages": "Mesej sembang",
+    "chatters": "Orang berbual",
+    "reactions": "Tindak balas",
+    "shares": "Perkongsian orang",
+    "topSupporters": "Penyokong utama",
+    "polls": "pemilihan",
+    "stillCounting": "Masih dikira: hadiah boleh mengambil masa seminit untuk disahkan."
+  },
   "articles": {
     "articleImage": "Imej artikel",
     "socialImage": "Imej kongsi sosial",

@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "share": "Anteil",
+    "shareText": "Ich habe gerade \"{{title}}\" auf DeHub gestreamt: {{duration}} live, {{peak}} auf dem Gipfel und {{followers}} neue Follower.",
+    "newFollowers": "Jemand folgt mir",
+    "chatMessages": "Chat-Nachrichten",
+    "reactions": "Reaktionen",
+    "shares": "Personen teilen",
+    "polls": "Umfragen",
+    "pollWinner": "{{option}} gewonnen",
+    "title": "Stream-Rückblick",
+    "justEnded": "De Stream-Zusammenfassung.",
+    "lastStream": "Dei letze Stream",
+    "none": "Kei abgschlossene Streams no. Deine Zusammenfassung erscheint hier nach deinem ersten.",
+    "untitled": "Untitled Stream",
+    "loadFailed": "Der Recap hat sich nicht geladen. Versuchs nochmal in einer Weile.",
+    "duration": "Zeit live",
+    "peakViewers": "Meist gsiht amol zamm.",
+    "gifts_one": "Von {{count}} Geschenk",
+    "gifts_other": "Von {{count}} Geschenke",
+    "chatters": "Menschli chätta",
+    "topSupporters": "Top-Unterstützer",
+    "stillCounting": "Zäme noch am Zählä: Geschenke brauchä et Wile, bis se bestäät sünd."
+  },
   "articles": {
     "articleImage": "Artikelsbild",
     "socialImage": "Social-Share-Bild",

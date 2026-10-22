@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "pollWinner": "Nanalo ang {{option}}",
+    "title": "I - recap ang stream",
+    "justEnded": "I - recap ang iyong stream",
+    "lastStream": "Huling stream mo",
+    "none": "Wala pang natapos na mga stream. Ang iyong recap ay lilitaw dito pagkatapos ng iyong unang isa.",
+    "share": "I-share",
+    "shareText": "Nag - stream ako ng \"{{title}}\" sa DeHub: {{duration}} live, {{peak}} nanonood sa rurok at {{followers}} mga bagong tagasunod.",
+    "untitled": "Walang pamagat na stream",
+    "loadFailed": "Hindi nag - load ang recap. Subukan muli sa ilang sandali.",
+    "duration": "Live ang oras",
+    "peakViewers": "Karamihan sa mga nanonood nang sabay - sabay",
+    "gifts_one": "Mula {{count}}regalo",
+    "gifts_other": "Mula {{count}} mga regalo",
+    "newFollowers": "Mga bagong tagasunod",
+    "chatMessages": "Mga mensahe sa chat",
+    "chatters": "Mga taong nakikipag - chat",
+    "reactions": "mga reaksyon",
+    "shares": "Mga taong nagbabahagi",
+    "topSupporters": "Mga nangungunang tagasuporta",
+    "polls": "Mga poll",
+    "stillCounting": "Nagbibilang pa rin: ang mga regalo ay maaaring tumagal ng isang minuto upang kumpirmahin."
+  },
   "articles": {
     "articleImage": "Larawan ng artikulo",
     "socialImage": "Larawan para sa social media",

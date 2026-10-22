@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "ملخص الدفق",
+    "justEnded": "ملخص البث الخاص بك",
+    "lastStream": "آخر بث لك",
+    "none": "لا توجد تدفقات منتهية حتى الآن. يظهر الملخص الخاص بك هنا بعد الملخص الأول.",
+    "share": "مشاركة",
+    "shareText": "لقد بثت للتو \"{{title}}\" على DeHub: {{duration}} مباشر، {{peak}} يشاهد في الذروة و {{followers}} متابعين جدد.",
+    "untitled": "دفق بدون عنوان",
+    "loadFailed": "لم يتم تحميل الملخص. حاول مرة أخرى بعد لحظات.",
+    "duration": "وقت البث المباشر",
+    "peakViewers": "الأكثر مشاهدة في وقت واحد",
+    "gifts_one": "من هدية {{count}}",
+    "gifts_other": "من {{count}} هدايا",
+    "newFollowers": "المتابعون الجدد",
+    "chatMessages": "رسائل الدردشة",
+    "chatters": "شكراً يا حضرة القاضي",
+    "reactions": "ردود الأفعال",
+    "shares": "مشاركة الأشخاص",
+    "topSupporters": "أفضل المؤيدين",
+    "polls": "استطلاعات الرأي",
+    "pollWinner": "{{option}} فاز",
+    "stillCounting": "لا يزال العد مستمراً: قد تستغرق الهدايا دقيقة للتأكيد."
+  },
   "articles": {
     "articleImage": "صورة المقال",
     "socialImage": "صورة المشاركة الاجتماعية",

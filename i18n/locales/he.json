@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "סיכום זרם",
+    "justEnded": "סיכום הזרם שלכם",
+    "lastStream": "הזרם האחרון שלכם",
+    "none": "עדיין אין שידורים מוגמרים. הסיכום שלך מופיע כאן אחרי הסיכום הראשון שלך.",
+    "share": "שיתוף",
+    "shareText": "הרגע שידרתי \"{{title}}\" ב - DeHub: {{duration}} בשידור חי, {{peak}} בצפייה בשיא ו -{{followers}} עוקבים חדשים.",
+    "untitled": "הזרמה ללא שם",
+    "loadFailed": "הסיכום לא נטען. כדאי לנסות שוב בעוד כמה דקות.",
+    "duration": "זמן שידור חי",
+    "peakViewers": "רוב הצפיות בבת אחת",
+    "gifts_one": "ממתנה של {{count}}",
+    "gifts_other": "החל מ -{{count}} מתנות",
+    "newFollowers": "עוקבים חדשים",
+    "chatMessages": "הודעות צ'אט",
+    "chatters": "אנשים משוחחים",
+    "reactions": "התגובות.",
+    "shares": "אנשים משתפים",
+    "topSupporters": "תומכים מובילים",
+    "polls": "סקרים",
+    "pollWinner": "{{option}} וון",
+    "stillCounting": "עדיין סופרים: המתנה יכולה לקחת דקה לאישור."
+  },
   "articles": {
     "articleImage": "תמונת מאמר",
     "socialImage": "תמונת שיתוף חברתי",

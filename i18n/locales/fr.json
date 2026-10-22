@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Récapitulatif du flux",
+    "justEnded": "Récapitulatif de votre flux",
+    "lastStream": "Dernier visionnage",
+    "none": "Pas encore de flux finis. Votre récapitulatif apparaît ici après votre premier récapitulatif.",
+    "share": "Partager",
+    "shareText": "Je viens de diffuser « {{title}} » sur DeHub : {{duration}} en direct, {{peak}} au sommet et {{followers}} nouveaux abonnés.",
+    "untitled": "Flux sans titre",
+    "loadFailed": "Le récapitulatif ne s'est pas chargé. Réessayez dans un instant.",
+    "duration": "Temps en direct",
+    "peakViewers": "La plupart regardent à la fois",
+    "gifts_one": "Du cadeau {{count}}",
+    "gifts_other": "De {{count}} cadeaux",
+    "newFollowers": "Nouveaux abonnés",
+    "chatMessages": "Messages de discussion",
+    "chatters": "Des gens qui tchattent",
+    "reactions": "Réactions",
+    "shares": "Partage de personnes",
+    "topSupporters": "Meilleurs supporteurs",
+    "polls": "Sondages",
+    "pollWinner": "{{option}} gagné",
+    "stillCounting": "Toujours à compter : les cadeaux peuvent prendre une minute pour être confirmés."
+  },
   "accountConnect": {
     "title": "Connecter votre compte DeHub",
     "body": "Connectez votre compte pour gérer votre profil, publier et créer du contenu depuis le chat. Les connexions expirent sous 24 heures. Vous pouvez les révoquer à tout moment.",

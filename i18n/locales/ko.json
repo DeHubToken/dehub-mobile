@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "duration": "방송 시간",
+    "title": "스트림 요약",
+    "justEnded": "스트림 요약",
+    "lastStream": "마지막 스트림",
+    "none": "아직 완료된 스트림이 없습니다. 요약은 첫 번째 요약 후 여기에 표시됩니다.",
+    "share": "공유",
+    "shareText": "방금 DeHub에서 \"{{title}}\" 을 스트리밍했습니다: {{duration}} 라이브, {{peak}} 피크에서 시청 중, {{followers}} 명의 새로운 팔로워.",
+    "untitled": "제목 없는 스트림",
+    "loadFailed": "요약이 로드되지 않았습니다. 잠시 후 다시 시도하세요.",
+    "peakViewers": "한 번에 가장 많이 시청",
+    "gifts_one": "{{count}} 선물부터",
+    "gifts_other": "{{count}} 개의 선물에서",
+    "newFollowers": "새 팔로워",
+    "chatMessages": "채팅 메시지",
+    "chatters": "채팅하는 사람들",
+    "reactions": "리액션",
+    "shares": "공유하는 사람들",
+    "topSupporters": "최고의 서포터",
+    "polls": "투표 생성",
+    "pollWinner": "{{option}} 원",
+    "stillCounting": "아직 유효합니다. 선물은 확인하는 데 1분 정도 걸릴 수 있습니다."
+  },
   "articles": {
     "articleImage": "기사 이미지",
     "socialImage": "소셜 공유 이미지",

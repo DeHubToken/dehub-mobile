@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "pollWinner": "{{option}} thắng",
+    "title": "Tóm tắt luồng",
+    "justEnded": "Bản tóm tắt luồng của bạn",
+    "lastStream": "Phát trực tuyến cuối cùng của bạn",
+    "none": "Chưa có luồng nào đã hoàn tất. Bản tóm tắt của bạn xuất hiện ở đây sau bản tóm tắt đầu tiên.",
+    "share": "Chia sẻ màn hình",
+    "shareText": "Tôi vừa phát trực tuyến \"{{title}}\" trên DeHub: {{duration}} trực tiếp, {{peak}} đang xem ở mức cao nhất và {{followers}} người theo dõi mới.",
+    "untitled": "Luồng chưa có tiêu đề",
+    "loadFailed": "Bản tóm tắt không được tải. Hãy thử lại sau ít phút.",
+    "duration": "Thời gian sống",
+    "peakViewers": "Xem nhiều nhất cùng một lúc",
+    "gifts_one": "Từ quà tặng của {{count}}",
+    "gifts_other": "Từ {{count}} quà tặng",
+    "newFollowers": "người theo dõi mới",
+    "chatMessages": "Tin nhắn trò chuyện",
+    "chatters": "Trò chuyện với mọi người",
+    "reactions": "Cảm xúc",
+    "shares": "Chia sẻ với mọi người",
+    "topSupporters": "Người ủng hộ chính",
+    "polls": "Thăm dò ý kiến",
+    "stillCounting": "Vẫn đang đếm: quà tặng có thể mất một phút để xác nhận."
+  },
   "articles": {
     "articleImage": "Ảnh bài viết",
     "socialImage": "Ảnh chia sẻ mạng xã hội",

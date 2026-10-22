@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "Stream recap nisqa",
+    "justEnded": "Qampa mayu recap",
+    "lastStream": "Qhipa mayuyki",
+    "none": "Manaraqmi tukusqa mayukunachu. Recapitulaykiqa kaypi rikurin ñawpaq kaqniykimanta qipata.",
+    "share": "Qunakuy",
+    "shareText": "Chayraqmi \"{{title}}\" nisqa DeHub nisqapi purichirqani: {{duration}} kawsaq, {{peak}} pico nisqapi qawaspa hinaspa {{followers}} musuq qatiqninkuna.",
+    "untitled": "Mana tituluyuq mayu",
+    "loadFailed": "Chay recap nisqa mana cargakurqachu. Huk ratullapi hukmanta kallpachakuy.",
+    "duration": "Tiempo kawsan",
+    "peakViewers": "Yaqa llapanku huk kutillapi qhawaspa",
+    "gifts_one": "{{count}} regalomanta",
+    "gifts_other": "{{count}} regalokunamanta",
+    "newFollowers": "Musuq qatiqninkuna",
+    "chatMessages": "Chat nisqa willakuykunata",
+    "chatters": "Runakuna rimaspa",
+    "reactions": "Reacciones nisqakuna",
+    "shares": "Runakuna rakinakuy",
+    "topSupporters": "Hatun yanapaqkuna",
+    "polls": "Encuestas nisqamanta",
+    "pollWinner": "{{option}} atiparqan",
+    "stillCounting": "Yupachkanraqmi: regalokunaqa huk minutollapim takyachinman."
+  },
   "articles": {
     "articleImage": "Artículo nisqapa rikchaynin",
     "socialImage": "Social rakinakuy rikcha",

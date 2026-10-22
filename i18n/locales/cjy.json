@@ -1,4 +1,27 @@
 {
+  "liveRecap": {
+    "title": "流媒体回顾",
+    "justEnded": "你的流媒体回顾",
+    "lastStream": "你的上一次流媒体",
+    "none": "还没有完成的流媒体。你的回顾将在你第一次完成后显示在此处。",
+    "share": "分享",
+    "shareText": "我刚刚在 DeHub 上直播 \"{{title}}\"：{{duration}} 直播，{{peak}} 在高峰时观看，{{followers}} 新关注者。",
+    "untitled": "无标题流媒体",
+    "loadFailed": "回顾未加载。稍后再试。",
+    "duration": "直播时间",
+    "peakViewers": "最多同时观看",
+    "gifts_one": "来自 {{count}} 的礼物",
+    "gifts_other": "来自 {{count}} 的礼物",
+    "newFollowers": "新关注者",
+    "chatMessages": "聊天消息",
+    "chatters": "聊天的人",
+    "reactions": "反应",
+    "shares": "分享的人",
+    "topSupporters": "顶级支持者",
+    "polls": "投票",
+    "pollWinner": "{{option}} 获胜",
+    "stillCounting": "仍在计数：礼物确认可能需要一分钟。"
+  },
   "articles": {
     "articleImage": "文章图片",
     "socialImage": "社交分享图片",
