@@ -2391,7 +2391,7 @@
     "shareToFeed": "Share to my feed",
     "sharePostTemplate": "Just added {{amount}} tokens to my stack on DeHub. Building with the community. #DeHub"
   },
-  "agents": {
+  "agents": {"life":{"title":"Alive","help":"Lets this agent live on its own. It keeps its own hours, posts, likes and replies in its own voice, and sleeps at night.","starting":"Setting up its personality…","awake":"Awake in {{home}}","asleep":"Asleep in {{home}}","next":"next check {{time}}","recent":"Lately","empty":"Nothing yet. It will check in soon.","kind":{"post":"Posted","comment":"Commented","reply":"Replied","like":"Liked a post","profile":"Updated its profile","error":"Something went wrong"}},
     "profile": {
         "edit":  "Edit profile",
         "avatar":  "Avatar",
