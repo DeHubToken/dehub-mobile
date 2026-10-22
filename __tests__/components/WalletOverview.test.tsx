@@ -28,6 +28,8 @@ jest.mock('../../components/Wallet/ArcSendSheet', () => 'ArcSendSheet');
 jest.mock('../../components/common/AddressInputTools', () => 'AddressInputTools');
 jest.mock('../../config/web3.constants', () => ({ NETWORK_URLS: {} }));
 jest.mock('../../config/solana.constants', () => ({ SOLANA_MAINNET_CHAIN_ID: 101, SOLANA_SPL_TOKENS: [], getSolanaRpcUrl: () => '' }));
+const mockStorefront = { DIGITAL_PURCHASES_ENABLED: true };
+jest.mock('../../config/storefront', () => mockStorefront);
 const mockRefresh = jest.fn();
 const mockWallet = { address: '0x1111111111111111111111111111111111111111', solanaAddress: null, prices: {}, tokens: [], loading: false, refreshing: false, failedChains: [] as Array<{ id: number; name: string }>, refresh: mockRefresh };
 jest.mock('../../hooks/useWalletTokens', () => ({ useWalletTokens: () => mockWallet }));
@@ -35,7 +37,16 @@ import WalletOverview from '../../components/Wallet/WalletOverview';
 import { ScreenNames } from '../../navigation/ScreenNames';
 
 const press = (tree: ReactTestRenderer, label: string) => act(() => tree.root.findAll(node => node.type === 'Pressable' && node.props.accessibilityLabel === label)[0].props.onPress());
-afterEach(() => { jest.clearAllMocks(); mockWallet.failedChains = []; });
+afterEach(() => { jest.clearAllMocks(); mockWallet.failedChains = []; mockStorefront.DIGITAL_PURCHASES_ENABLED = true; });
+
+it('offers no buying, staking, bridging or trading in the App Store build', () => {
+  mockStorefront.DIGITAL_PURCHASES_ENABLED = false; let tree!: ReactTestRenderer;
+  act(() => { tree = create(<WalletOverview onBuy={jest.fn()} onStake={jest.fn()} />); });
+  const labels = tree.root.findAll(node => node.type === 'Pressable').map(node => node.props.accessibilityLabel);
+  for (const hidden of ['wallet.buy', 'wallet.stake', 'nav.bridge', 'wallet.trade']) expect(labels).not.toContain(hidden);
+  expect(labels).toEqual(expect.arrayContaining(['wallet.send', 'wallet.receive']));
+  act(() => tree.unmount());
+});
 
 it('opens the wallet actions immediately even when balances have not loaded', () => {
   const buy = jest.fn(); const stake = jest.fn(); let tree!: ReactTestRenderer;

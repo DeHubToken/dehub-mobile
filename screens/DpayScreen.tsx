@@ -5,6 +5,7 @@ import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusedInterval } from "../hooks/useFocusedInterval";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import {
   View,
   ScrollView,
@@ -32,6 +33,16 @@ import type { AppStackParamList } from "../navigation/types";
 
 type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
 
+/**
+ * The App Store build offers no buying, staking or bridging (config/storefront,
+ * guideline 3.1.1). Its menus hide the wallet, but Settings → Assets,
+ * notifications and Command Centre still open it, so whatever tab they ask
+ * for, it opens on the overview there.
+ */
+function storefrontTab(tab: WalletTab | undefined): WalletTab {
+  return DIGITAL_PURCHASES_ENABLED ? (tab ?? "wallet") : "wallet";
+}
+
 const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }[] = [
   { key: "wallet", get label() { return _translateCopy("copy.d1c9a01d57e9", { defaultValue: "Wallet" }); }, labelKey: "wallet.title", icon: "Wallet" },
   { key: "buy", get label() { return _translateCopy("copy.989bd871eac5", { defaultValue: "Buy Tokens" }); }, labelKey: "upload.buyTokens", icon: "CreditCard" },
@@ -52,7 +63,7 @@ const DpayScreen: React.FC = () => {
   // Wallet opens its overview; purchase and staking shortcuts remain explicit.
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Dpay>>();
   const [activeTab, setActiveTab] = useState<WalletTab>(
-    route.params?.initialTab ?? "wallet",
+    storefrontTab(route.params?.initialTab),
   );
 
   // Re-select the tab when the drawer navigates to Dpay while it is already
@@ -63,7 +74,7 @@ const DpayScreen: React.FC = () => {
   // drawer entry again.
   const routeParams = route.params;
   useEffect(() => {
-    setActiveTab(routeParams?.initialTab ?? "wallet");
+    setActiveTab(storefrontTab(routeParams?.initialTab));
   }, [routeParams]);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);
