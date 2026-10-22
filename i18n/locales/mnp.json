@@ -9106,5 +9106,79 @@
     "reminderBody": "備份你的錢包 — 12個字詞，如果手機遺失，可以用它們恢復。",
     "backUp": "備份",
     "notNow": "暫時不備份"
+  },
+  "liveStudio": {
+    "title": "Live 工作室",
+    "settingsLinkBody": "提示警报、目标等，全部在 Live Studio 中设置，覆盖你的直播。",
+    "landscape": "风景",
+    "layoutHintPhone": "拖拽小部件移動，在設定中調整大小。橫屏和直屏流各自保留各自的佈局。",
+    "widgets": "小部件",
+    "addWidget": "添加小部件",
+    "empty": "暂无小工具。添加提示警报或目标以开始。",
+    "remove": "移除小部件",
+    "selectHint": "选择一个小部件来更改它。",
+    "noSettings": "这个小部件没有需要设置的东西。",
+    "test": "测试警报",
+    "testHint": "测试警报只在这里播放，别的地方听不到。观众永远看不到它们。",
+    "testMessage": "这是你直播上的一条打赏消息看起来的样子",
+    "saved": "已保存。你的流立即显示新布局。",
+    "saveFailed": "无法保存。请检查您的连接并重试。",
+    "unsaved": "未保存的更改",
+    "tests": {
+      "tip": "提示",
+      "follow": "关注",
+      "subscribe": "订阅",
+      "share": "分享"
+    },
+    "kinds": {
+      "tip_alert": "提示警报",
+      "share_alert": "分享提醒",
+      "join_alert": "加入警报",
+      "goal_bar": "目标栏",
+      "top_supporters": "顶级支持者",
+      "frame": "框架"
+    },
+    "hints": {
+      "follow_alert": "显示每个新关注者",
+      "subscribe_alert": "显示每个新订阅者",
+      "join_alert": "欢迎每位观众的到来",
+      "goal_bar": "追踪小费或关注者到目标",
+      "viewer_count": "有多少人在观看"
+    },
+    "fields": {
+      "style": "风格",
+      "confirmedOnlyHint": "等幾秒鐘鏈式確認，所以永遠不會付的小費就不會顯示。",
+      "duration": "螢幕上的秒數",
+      "metric": "計數",
+      "metricTips": "這個直播的小費",
+      "metricFollowers": "追蹤者",
+      "target": "目標",
+      "title": "標題",
+      "count": "顯示的人數",
+      "text": "文字",
+      "subtext": "第二行",
+      "plain": "純文字",
+      "lowerThird": "下方第三",
+      "solid": "實心",
+      "glow": "發光",
+      "thickness": "粗細",
+      "accent": "顏色",
+      "size": "大小",
+      "smaller": "較小",
+      "larger": "較大"
+    },
+    "obs": {
+      "title": "與OBS一起使用",
+      "connected": "OBS連線中",
+      "notConnected": "OBS未連線",
+      "showIn": "顯示你的小部件",
+      "inApp": "在DeHub應用程式裡",
+      "inAppHint": "每個觀眾的應用程式會在你的直播上畫上它們，從手機、瀏覽器、捕捉卡或OBS都可以，而且不收費。",
+      "inVideo": "在我的影片裡（OBS）",
+      "inVideoHint": "OBS會把它們燒進你的畫面，所以它們會出現在你的重播和任何觀看直播的地方。",
+      "warnDoubles": "你的OBS重疊已連線，但小部件也設定顯示在DeHub應用程式裡，所以觀眾會看到每個通知兩次。",
+      "switchToVideo": "改成在我的影片裡顯示",
+      "rotated": "新連結準備好囉，貼到OBS裡面就好囉。"
+    }
   }
 }
