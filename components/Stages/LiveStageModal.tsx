@@ -17,7 +17,8 @@ import {
 } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import TVChatPanel from "../TV/TVChatPanel";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -292,6 +293,10 @@ const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite }) =>
 const LiveStageModal: React.FC = () => {
   const { t: _copy } = _useCopy();
   const { height: windowHeight } = useWindowDimensions();
+  // Insets from the app's root provider. A SafeAreaView inside this
+  // statusBarTranslucent full-screen Modal measured 0 on both iPhone and
+  // Android, so the title ran under the clock and the status icons.
+  const insets = useSafeAreaInsets();
   const {
     isModalOpen,
     initialModalView,
@@ -408,7 +413,10 @@ const LiveStageModal: React.FC = () => {
       {/* The room is a live surface and always dark. Without dark-surface,
           System Light turned every white label in it to ink on this black
           backdrop, and the whole room went unreadable. */}
-      <SafeAreaView className="dark-surface" style={{ flex: 1, backgroundColor: "#000" }}>
+      <View
+        className="dark-surface"
+        style={{ flex: 1, backgroundColor: "#000", paddingTop: insets.top, paddingBottom: insets.bottom }}
+      >
         {/* Host's cover graphic, behind the room.
             Deliberately faint and heavily scrimmed: this is a listening surface
             with avatars, controls and a TTS input stacked over it, and a
@@ -687,6 +695,31 @@ const LiveStageModal: React.FC = () => {
             </>
           )}
         </ScrollView>
+
+        {/* The audience's own channel, as on web: a listener can say something
+            without asking for the mic. Same table as web's StageChat, so
+            messages cross both ways. A fixed share of the screen so the
+            speakers above keep their place as the conversation runs on; the
+            keyboard squeezes the speaker list, not the chat. */}
+        <View
+          style={{
+            height: Math.max(200, Math.round(windowHeight * 0.32)),
+            borderTopWidth: 1,
+            borderTopColor: "rgba(255,255,255,0.06)",
+          }}
+        >
+          <TVChatPanel
+            channelId={currentSpace.id}
+            room={{
+              table: "stage_chat_messages",
+              column: "space_id",
+              id: currentSpace.id,
+              hostWallet: currentSpace.host_wallet_address,
+            }}
+            onClosePlayer={closeModal}
+            transparent
+          />
+        </View>
 
         {/* Reactions slider — fade masks on both edges hint that it scrolls,
             since a flat row of circles otherwise reads as a fixed toolbar
@@ -992,7 +1025,7 @@ const LiveStageModal: React.FC = () => {
           </TouchableOpacity>
         </View>
         </KeyboardAvoidingView>
-      </SafeAreaView>
+      </View>
     </Modal>
   );
 };
