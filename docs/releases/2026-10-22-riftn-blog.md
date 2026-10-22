@@ -4,7 +4,7 @@ Publication target: 22 October 2026, 18:00 UTC.
 
 Canonical article: https://dehub.io/guides/dehub-next-chapter-riftn-bnb-recovery-relaunch
 
-The corrected DeHub-to-Riftn transition graphic is used for both the main article banner and the in-article separator. Mobile reads both placements from the shared canonical page.
+The corrected DeHub-to-Riftn transition graphic remains the main article banner. The selected Riftn horizon graphic is the in-article separator. The website instruction reads “Everything will happen on dehub.io/riftn.com.” Mobile reads these updates from the shared canonical page.
 
 23 October editorial update: the canonical page now uses the approved standalone article format, with section headings and the DeHub-to-Riftn transition graphic. The recovery context, Walter and BNB tweet history, proposed name, chain strategy, balances, fallback plan and dates are preserved. The shared web article supplies this update to mobile without a native release.
 
