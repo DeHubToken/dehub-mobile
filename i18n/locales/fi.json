@@ -9153,6 +9153,7 @@
     "notNow": "Ei nyt"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} pyöritti: {{result}}",
     "someone": "Joku",
     "newFollower": "Uusi seuraaja: {{name}}",
@@ -9174,7 +9175,11 @@
       "voted_other": "Äänestit · {{count}} ääntä",
       "votes_one": "{{count}} äänestys",
       "votes_other": "{{count}} ääntä"
-    }
+    },
+    "subathonOver": "Aika loppui",
+    "pointsTitle": "Uskollisimmat katsojat",
+    "points_one": "{{formatted}} piste",
+    "points_other": "{{formatted}} pistettä"
   },
   "liveStudio": {
     "controls": {
@@ -9243,7 +9248,9 @@
       "chat_box": "Keskusteluruutu",
       "ticker": "Ticker",
       "rule_alert": "Sääntöhälytykset",
-      "poll": "Kysely"
+      "poll": "Kysely",
+      "subathon_timer": "Subathon-ajastin",
+      "points_board": "Uskolliset katsojat"
     },
     "hints": {
       "spin_wheel": "Sääntöjesi pyörät pyörivät",
@@ -9263,7 +9270,9 @@
       "chat_box": "Näyttää lähetyksesi chat-viestit näytöllä",
       "ticker": "Rivi omaa tekstiäsi, joka vierittää näytön poikki",
       "rule_alert": "Missä sääntöjesi hälytykset näkyvät",
-      "poll": "Livekyselysi, jossa on äänestyspainike jokaiselle vaihtoehdolle"
+      "poll": "Livekyselysi, jossa on äänestyspainike jokaiselle vaihtoehdolle",
+      "subathon_timer": "Lähtölaskenta, joka antaa lahjoja, seuraa ja tilaukset työntävät takaisin",
+      "points_board": "Suosituimmat katsojasi katsomalla ja lahjoittamalla saatujen pisteiden mukaan"
     },
     "fields": {
       "style": "Tyyli",
@@ -9498,6 +9507,29 @@
         "word-timeout_one": "Aikakarsinoitiin {{target}} {{count}} sekunniksi: \"{{word}}\"",
         "word-timeout_other": "Aikakarsinoitiin {{target}} {{count}} sekuntia: \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Lähtölaskenta suoratoistossasi. Jokainen maksettu lahja, seuraa ja tilaa lisää aikaa, joten huone pitää sinut hengissä.",
+      "secondsPerThousand": "Sekuntia lisätty 1 000 DHB: n lahjaa kohden",
+      "secondsPerFollow": "Sekuntia lisätty per seuraaminen",
+      "secondsPerSubscribe": "Sekuntia lisätty tilausta kohden",
+      "capHours": "Pisin aika, jonka se voi kestää (tuntia)",
+      "save": "Tallenna summat",
+      "saved": "Subathon-summat tallennettu.",
+      "startMinutes": "Aloita (minuutteina)",
+      "start": "Aloita lähtölaskenta",
+      "stop": "Pysäytä",
+      "addFive": "Lisää 5 minuuttia",
+      "removeFive": "Lähtö 5 minuuttia",
+      "failed": "Se ei toiminut. Yritä uudelleen.",
+      "widgetHint": "Näyttää subathon-lähtölaskentasi. Aloita se Live Studion Subathon-paneelista."
+    },
+    "points": {
+      "title": "Uskolliset katsojat",
+      "intro": "Katsojat ansaitsevat pisteen jokaisesta katselemastaan minuutista ja yhden jokaisesta lahjoittamastaan 100 DHB: stä. Chat ja reaktiot eivät tuota mitään, joten pisteitä ei voi kerätä.",
+      "empty": "Ei vielä pisteitä. Niitä kertyy, kun ihmiset katsovat ja antavat lahjoja.",
+      "widgetHint": "Lisää Uskolliset katsojat -widgetti näyttääksesi tämän luettelon streamissa."
     }
   },
   "liveChatModeration": {

@@ -9173,6 +9173,7 @@
     "notNow": "Nöchtli no."
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} hüt: {{result}}",
     "poll": {
       "closed": "Abstimmig schtössi",
@@ -9194,7 +9195,11 @@
     "followersUnit": "Follower",
     "topSupporters": "Top-Unterstützer",
     "tipped": "{{name}} hat ein Geschenk geschickt",
-    "chatPreview": "Chat-Nachrichten erscheinen hier"
+    "chatPreview": "Chat-Nachrichten erscheinen hier",
+    "subathonOver": "Zeit abgelaufen",
+    "pointsTitle": "Meiste treue Zuschauer:innen",
+    "points_one": "{{formatted}} Punkt",
+    "points_other": "{{formatted}} Punkte"
   },
   "liveStudio": {
     "controls": {
@@ -9273,6 +9278,7 @@
       "join": "Mitmachen"
     },
     "kinds": {
+      "subathon_timer": "Subathon-Timer",
       "spin_wheel": "Schleuderrad",
       "poll": "Umfrage",
       "tip_alert": "Tipp-Benachrichtigung",
@@ -9288,9 +9294,11 @@
       "reaction_counter": "Reaktionszähler",
       "event_feed": "Aktuelle Aktivität",
       "ticker": "Ticker",
-      "rule_alert": "Regel-Warnungen"
+      "rule_alert": "Regel-Warnungen",
+      "points_board": "Loyale Zuschauer"
     },
     "hints": {
+      "points_board": "Ihre Top-Zuschauer nach Punkten aus Zuschauen und Verschenken",
       "spin_wheel": "Wo die Räder in deinen Regeln dreh’n",
       "poll": "Deine Live-Umfrage mit einem Abstimmknopf für jede Option",
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
@@ -9308,7 +9316,8 @@
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
       "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
-      "rule_alert": "Wo deine Regel-Warnungen erscheinen"
+      "rule_alert": "Wo deine Regel-Warnungen erscheinen",
+      "subathon_timer": "Ene Zählrückwärts, wo Geschenke, Follower und Abonnements zurückgedrängt werden."
     },
     "fields": {
       "style": "Stil",
@@ -9511,6 +9520,29 @@
         "moderator-removed": "{{target}} isch mer no mehr Moderator.",
         "word-timeout_one": "Timed out nach {{target}} Sekunde für {{count}} Sekunde für \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "start": "Countdown starten",
+      "stop": "Stopp",
+      "intro": "Eini Countdown auf deim Stream. Jeder bezahlte Gift, Follow und Abo gäbt Zeit, so bleibt’s Room live.",
+      "secondsPerThousand": "Sekunden, die pro 1'000 DHB geschenkt werden, hinzugefügt",
+      "secondsPerFollow": "Sekunden pro Follow gfügt",
+      "secondsPerSubscribe": "Sekunden pro Abonnement hinzugefügt",
+      "capHours": "Längsde es am längscht läuft (Stundä)",
+      "save": "Sparbeträge speichern",
+      "saved": "Subathon-Beträge gespart.",
+      "startMinutes": "Start mit (Minuten)",
+      "addFive": "Add 5 Minütli",
+      "removeFive": "Zäme 5 Minütli abschtäi.",
+      "failed": "Das hat net funktioniert. Versuchs no wieder.",
+      "widgetHint": "Zeigst deini Subathon-Zählrückwärtslauf an. Startschtihle es im Subathon-Panel in Live Studio."
+    },
+    "points": {
+      "widgetHint": "Fügen Sie das Widget Loyale Zuschauer hinzu, um diese Liste im Stream anzuzeigen.",
+      "title": "Loyale Zuschauer",
+      "intro": "Zuschauende verdiene a Pukt für jede Minute, wo se di schaue, und a Pukt für je 100 DHB, wo se dir schenke. Chat und Reaktione bringe nix ein – Pukt kenne mer folglich net «farmen».",
+      "empty": "Kei Punkte no. Die bauen sich auf, wenn Leute zuschauen und schenken."
     }
   },
   "liveChatModeration": {

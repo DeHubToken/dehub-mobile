@@ -9150,7 +9150,12 @@
       "voted_other": "Waxaad codaysay · {{count}} codadka",
       "votes_one": "{{count}} codka",
       "votes_other": "{{count}} codadka"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Waqtiga dhammaatay",
+    "pointsTitle": "Daawayaashaada ugu sadiqada leh",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9214,7 +9219,9 @@
       "chat_box": "Sanduuqa sheekaysiga",
       "ticker": "Ticker",
       "rule_alert": "Digniinta xeerka",
-      "poll": "Codad"
+      "poll": "Codad",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Loyal viewers"
     },
     "hints": {
       "spin_wheel": "Halka giraangiraha ku jira xeerarkaaga ay wareegaan",
@@ -9234,7 +9241,9 @@
       "chat_box": "Muuji farriimaha sheekaysiga ee baahintaada shaashadda",
       "ticker": "Khadka qoraalkaaga oo ku xardhan shaashadda oo dhan",
       "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato",
-      "poll": "Codadkaaga siidaadka ah, oo leh buton codad oo kasta filah"
+      "poll": "Codadkaaga siidaadka ah, oo leh buton codad oo kasta filah",
+      "subathon_timer": "Countdown oo gift, follow iyo subscription-ka dib u celiya",
+      "points_board": "Daawayaashaada ugu sarreeya points-ka oo ka yimid daawista iyo bixinta"
     },
     "fields": {
       "style": "Qaabka",
@@ -9467,6 +9476,29 @@
         "word-timeout_one": "Waqtiga ka baxay {{target}} for {{count}} labaad for \"{{word}}\"",
         "word-timeout_other": "Waqtiga ka baxay {{target}} for {{count}} seconds for \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Countdown oo ku jira stream-kaaga. Hadii la bixiyo gift, follow iyo subscription walbaa waqti ku daree, sidaas darteed roommada kugu jira live.",
+      "secondsPerThousand": "Ilbiriqsi oo lagu daree per 1,000 DHB oo la bixiyay",
+      "secondsPerFollow": "Ilbiriqsi oo lagu daree per follow",
+      "secondsPerSubscribe": "Ilbiriqsi oo lagu daree per subscription",
+      "capHours": "Ugu dheer waxaa iska qaadi kara (saacadood)",
+      "save": "Kaydinta qadaaraha",
+      "saved": "Qadaaraha subathon ee kaydsan.",
+      "startMinutes": "Billow leh (daqiiqo)",
+      "start": "Billow countdown-ka",
+      "stop": "Jooji",
+      "addFive": "Ku dar 5 daqiiqo",
+      "removeFive": "Ka tuur 5 daqiiqo",
+      "failed": "Taas ma shaqeyn. Isku day mar kale.",
+      "widgetHint": "Waxaa muujinaya countdown-ka subathon-kaaga. Billow iska billow Subathon panel-ka Live Studio-ga."
+    },
+    "points": {
+      "title": "Daawayaasha sadiqada leh",
+      "intro": "Daawayaashu waxay kasab u yeeshaan point mid kasta oo daqiiqad ay kugu daawaan iyo mid kasta oo 100 DHB ay bixiyaan. Chat iyo reactions waxay waxba kasbaan maayo, sidaas darteed points-ka lama karbaari karo.",
+      "empty": "Waxba oo points ah oo aan jirin. Waxay ku koraan sida ay dadku daawaan iyo bixiyaan.",
+      "widgetHint": "Ku dar Loyal viewers widget-ka si aad muujiso listaanka-ga stream-kaaga."
     }
   },
   "liveChatModeration": {

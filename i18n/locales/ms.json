@@ -9409,6 +9409,7 @@
     "notNow": "Bukan sekarang"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} spun: {{result}}",
     "poll": {
       "closed": "Pengundian ditutup",
@@ -9430,7 +9431,11 @@
     "followersUnit": "pengikut",
     "topSupporters": "Penyokong utama",
     "tipped": "{{name}} menghantar hadiah",
-    "chatPreview": "Mesej sembang muncul di sini"
+    "chatPreview": "Mesej sembang muncul di sini",
+    "subathonOver": "Masa tamat",
+    "pointsTitle": "Penonton paling setia",
+    "points_one": "{{formatted}} mata",
+    "points_other": "{{formatted}} mata"
   },
   "liveStudio": {
     "controls": {
@@ -9530,7 +9535,9 @@
       "event_feed": "Aktiviti terkini",
       "chat_box": "Kotak sembang",
       "ticker": "Ticker",
-      "rule_alert": "Makluman peraturan"
+      "rule_alert": "Makluman peraturan",
+      "subathon_timer": "Pemasa subathon",
+      "points_board": "Penonton setia"
     },
     "hints": {
       "spin_wheel": "Tempat roda dalam peraturan anda berputar",
@@ -9550,7 +9557,9 @@
       "event_feed": "Hadiah terkini, pengikut, pelanggan dan orang yang berkongsi siaran anda",
       "chat_box": "Menunjukkan mesej sembang siaran anda pada skrin",
       "ticker": "Baris teks anda sendiri yang menatal merentasi skrin",
-      "rule_alert": "Di mana makluman peraturan anda dipaparkan"
+      "rule_alert": "Di mana makluman peraturan anda dipaparkan",
+      "subathon_timer": "Kiraan detik yang memberi hadiah, mengikuti dan langganan ditolak",
+      "points_board": "Penonton teratas anda berdasarkan mata daripada menonton dan memberi hadiah"
     },
     "fields": {
       "style": "Gaya",
@@ -9754,6 +9763,29 @@
         "word-timeout_one": "Timeout {{target}} selama {{count}} saat untuk \"{{word}}\"",
         "word-timeout_other": "Timeout {{target}} selama {{count}} saat untuk \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Kiraan detik pada strim anda. Setiap hadiah, ikutan dan langganan berbayar menambah masa, jadi bilik ini membolehkan anda kekal aktif.",
+      "secondsPerThousand": "Saat ditambah bagi setiap 1,000 DHB berbakat",
+      "secondsPerFollow": "Saat ditambah bagi setiap pengikut",
+      "secondsPerSubscribe": "Saat ditambah bagi setiap langganan",
+      "capHours": "Paling lama ia boleh berjalan (jam)",
+      "save": "Simpan amaun",
+      "saved": "Amaun subathon disimpan.",
+      "startMinutes": "Mulakan dengan (minit)",
+      "start": "Mulakan kiraan detik",
+      "stop": "Berhenti",
+      "addFive": "Tambah 5 minit",
+      "removeFive": "Berlepas 5 minit",
+      "failed": "Itu tidak berjaya. Cuba lagi.",
+      "widgetHint": "Menunjukkan undur subaton anda. Mulakannya dari panel Subathon di Live Studio."
+    },
+    "points": {
+      "title": "Penonton setia",
+      "intro": "Penonton mendapat mata untuk setiap minit mereka menonton anda dan satu untuk setiap 100 DHB yang mereka hadiahkan. Sembang dan reaksi tidak mendapat apa-apa, jadi mata tidak boleh diternak.",
+      "empty": "Belum ada mata lagi. Ia bertambah apabila orang ramai menonton dan menghadiahkannya.",
+      "widgetHint": "Tambah widget Penonton setia untuk menunjukkan senarai ini pada strim."
     }
   },
   "liveChatModeration": {

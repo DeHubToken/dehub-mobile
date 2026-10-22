@@ -44,6 +44,7 @@ import { useRuleFired } from "./ruleBus";
 import Svg, { G, Path, Text as SvgText } from "react-native-svg";
 import { WHEEL_SPIN_MS } from "../../libs/live-overlay/rules";
 import { PollWidget } from "./poll";
+import { PointsBoard, SubathonTimer } from "./subathon";
 
 export interface WidgetProps {
   settings: Record<string, unknown>;
@@ -876,6 +877,10 @@ export const OverlayWidgetView = memo(function OverlayWidgetView({ kind, ...prop
       return <PollWidget settings={props.settings} box={props.box} />;
     case "spin_wheel":
       return <SpinWheel {...props} />;
+    case "subathon_timer":
+      return <SubathonTimer settings={props.settings} box={props.box} />;
+    case "points_board":
+      return <PointsBoard settings={props.settings} box={props.box} />;
     default:
       return null;
   }

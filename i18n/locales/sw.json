@@ -9176,7 +9176,12 @@
       "voted_other": "Umepiga kura · {{count}} kura",
       "votes_one": "{{count}} kura",
       "votes_other": "{{count}} kura"
-    }
+    },
+    "subathon": "Mashindano ya mbio ndogo",
+    "subathonOver": "Muda umekwisha",
+    "pointsTitle": "Watazamaji waaminifu zaidi",
+    "points_one": "{{formatted}} pointi",
+    "points_other": "{{formatted}} pointi"
   },
   "liveStudio": {
     "controls": {
@@ -9245,7 +9250,9 @@
       "chat_box": "Sanduku la gumzo",
       "ticker": "Kileta tiketi",
       "rule_alert": "Arifa za sheria",
-      "poll": "Kura"
+      "poll": "Kura",
+      "subathon_timer": "Kipima muda cha mbio ndogo",
+      "points_board": "Watazamaji waaminifu"
     },
     "hints": {
       "spin_wheel": "Ambapo magurudumu katika sheria zako huzunguka",
@@ -9264,7 +9271,9 @@
       "chat_box": "Inashirikisha kuona habari za chati katika kurekodi yako",
       "ticker": "Mfano wa sentensi yako ya kawaida inayozunguka kwenye mshale",
       "rule_alert": "Hapa ni jina la matatizo ya kawaida yako",
-      "poll": "Kura yako ya moja kwa moja, ikiwa na kitufe cha kupiga kura kwa kila chaguo"
+      "poll": "Kura yako ya moja kwa moja, ikiwa na kitufe cha kupiga kura kwa kila chaguo",
+      "subathon_timer": "Hesabu ambayo inatoa, kufuata na usajili inarudi nyuma",
+      "points_board": "Watazamaji wako maarufu kulingana na pointi za kutazama na kutoa vipawa"
     },
     "fields": {
       "style": "Mtindo",
@@ -9499,6 +9508,29 @@
         "word-timeout_one": "Muda umeisha {{target}} kwa {{count}} sekunde kwa \"{{word}}\"",
         "word-timeout_other": "Muda umeisha {{target}} kwa {{count}} sekunde kwa \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Mashindano ya mbio ndogo",
+      "intro": "Hesabu kwenye mkondo wako. Kila zawadi inayolipwa, fuatilia na usajili unaongeza muda, kwa hivyo chumba kinakuweka moja kwa moja.",
+      "secondsPerThousand": "Sekunde zimeongezwa kwa kila zawadi ya DHB 1,000",
+      "secondsPerFollow": "Sekunde zilizoongezwa kwa kila mfuasi",
+      "secondsPerSubscribe": "Sekunde zimeongezwa kwa kila usajili",
+      "capHours": "Muda mrefu zaidi unaweza kukimbia (saa)",
+      "save": "Okoa kiasi",
+      "saved": "Kiasi cha mbio ndogo kimehifadhiwa.",
+      "startMinutes": "Anza na (dakika)",
+      "start": "Anza kuhesabu muda",
+      "stop": "Simamisha",
+      "addFive": "Ongeza dakika 5",
+      "removeFive": "Ondoka kwa dakika 5",
+      "failed": "Hiyo haikufanya kazi. Jaribu tena.",
+      "widgetHint": "Inaonyesha hesabu yako ya mbio ndogo. Anza kutoka kwenye jopo la mbio ndogo katika Studio ya Moja kwa Moja."
+    },
+    "points": {
+      "title": "Watazamaji waaminifu",
+      "intro": "Watazamaji hupata pointi kwa kila dakika wanayokutazama na moja kwa kila DHB 100 wanayotoa. Gumzo na miitikio haipati chochote, kwa hivyo pointi haziwezi kulimwa.",
+      "empty": "Bado hakuna pointi. Wanajijenga kama watu wanavyotazama na kutoa zawadi.",
+      "widgetHint": "Weka wijeti ya watazamaji waaminifu ili kuonyesha orodha hii kwenye mkondo."
     }
   },
   "liveChatModeration": {

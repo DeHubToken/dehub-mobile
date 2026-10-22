@@ -1,5 +1,5 @@
 import { apiClient } from "../libs";
-import { parseControls, type OverlayControls, type PublicOverlay } from "../libs/live-overlay/types";
+import { parseControls, parseSubathon, type OverlayControls, type PublicOverlay } from "../libs/live-overlay/types";
 import type { LiveRule } from "../libs/live-overlay/rules";
 import { parsePoll, type LivePoll } from "../libs/live-overlay/polls";
 
@@ -225,6 +225,7 @@ export async function getStreamOverlay(streamId: string): Promise<PublicOverlay>
       reactions: Number(body?.stats?.reactions) || 0,
     },
     controls: parseControls(body?.controls),
+    subathon: parseSubathon(body?.subathon),
   };
 }
 
@@ -440,4 +441,78 @@ export function formatStreamDuration(seconds: number): string {
 /** Quick controls: only the switches sent change. Every surface drawing the overlay obeys at once. */
 export async function setMyControls(change: Partial<OverlayControls>): Promise<CreatorOverlay> {
   return creatorOverlay(await apiClient.put<any>("/live-overlay/mine/controls", { ...change }, { isAuthRequired: true }));
+}
+
+/** A creator's subathon: a countdown that paid gifts, follows and subscriptions push back. */
+export interface SubathonSettings {
+  secondsPerThousand: number;
+  secondsPerFollow: number;
+  secondsPerSubscribe: number;
+  capHours: number;
+}
+
+export interface MySubathon extends SubathonSettings {
+  running: boolean;
+  endsAt: string | null;
+}
+
+function mySubathon(res: any): MySubathon {
+  const r = res?.result ?? res?.data ?? res ?? {};
+  const n = (v: unknown, d: number) => (Number.isFinite(Number(v)) ? Number(v) : d);
+  return {
+    secondsPerThousand: n(r.secondsPerThousand, 30),
+    secondsPerFollow: n(r.secondsPerFollow, 10),
+    secondsPerSubscribe: n(r.secondsPerSubscribe, 300),
+    capHours: n(r.capHours, 24),
+    running: !!r.running && typeof r.endsAt === "string",
+    endsAt: typeof r.endsAt === "string" ? r.endsAt : null,
+  };
+}
+
+export async function getMySubathon(): Promise<MySubathon> {
+  return mySubathon(await apiClient.get<any>("/live-overlay/mine/subathon", { isAuthRequired: true }));
+}
+
+export async function saveMySubathon(settings: SubathonSettings): Promise<MySubathon> {
+  return mySubathon(await apiClient.put<any>("/live-overlay/mine/subathon", { ...settings }, { isAuthRequired: true }));
+}
+
+export async function startSubathon(minutes: number, settings: SubathonSettings): Promise<MySubathon> {
+  return mySubathon(await apiClient.post<any>("/live-overlay/mine/subathon/start", { ...settings, minutes }, { isAuthRequired: true }));
+}
+
+export async function stopSubathon(): Promise<MySubathon> {
+  return mySubathon(await apiClient.post<any>("/live-overlay/mine/subathon/stop", {}, { isAuthRequired: true }));
+}
+
+/** Time added or taken off by hand, up to an hour either way. */
+export async function addSubathonTime(seconds: number): Promise<MySubathon> {
+  return mySubathon(await apiClient.post<any>("/live-overlay/mine/subathon/add", { seconds }, { isAuthRequired: true }));
+}
+
+export interface PointsRow {
+  address: string;
+  username?: string;
+  displayName?: string;
+  avatarImageUrl?: string;
+  points: number;
+}
+
+/** A creator's most loyal viewers: a point a minute watched and one per 100 DHB paid. */
+export async function getPointsBoard(creator: string, limit = 10): Promise<PointsRow[]> {
+  if (!creator) return [];
+  const res: any = await apiClient.get<any>(
+    `/live-overlay/creator/${encodeURIComponent(creator)}/points?limit=${Math.min(50, Math.max(1, limit))}`,
+    { isAuthRequired: false },
+  );
+  const body = res?.result ?? res?.data ?? res;
+  return Array.isArray(body?.top)
+    ? body.top.map((r: any) => ({
+        address: String(r?.address || ""),
+        username: r?.username || undefined,
+        displayName: r?.displayName || undefined,
+        avatarImageUrl: r?.avatarImageUrl || undefined,
+        points: Number(r?.points) || 0,
+      }))
+    : [];
 }

@@ -277,6 +277,32 @@ export function WidgetSettingsForm({ widget, portrait, onSettings, onRect }: Pro
     case "reaction_counter":
       body = accentRow;
       break;
+    case "subathon_timer":
+      body = (
+        <>
+          <Text className="text-theme-neutrals-500 text-xs">{t("liveStudio.subathon.widgetHint")}</Text>
+          <View>
+            <Label>{t("liveStudio.fields.label")}</Label>
+            {text("label", 30, t("liveOverlay.subathon"))}
+          </View>
+          {accentRow}
+        </>
+      );
+      break;
+    case "points_board":
+      body = (
+        <>
+          <View>
+            <Label>{t("liveStudio.fields.count")}</Label>
+            {number("count", 5, 1, 10)}
+          </View>
+          <View>
+            <Label>{t("liveStudio.fields.title")}</Label>
+            {text("title", 40, t("liveOverlay.pointsTitle"))}
+          </View>
+        </>
+      );
+      break;
     case "event_feed":
       body = (
         <>

@@ -9153,6 +9153,7 @@
     "notNow": "Mitte praegu"
   },
   "liveOverlay": {
+    "subathon": "Subathon",
     "wheelLanded": "{{name}} pööras: {{result}}",
     "someone": "Keegi",
     "newFollower": "Uus jälgija: {{name}}",
@@ -9174,7 +9175,11 @@
       "voted_other": "Hääletasid · {{count}} häält",
       "votes_one": "{{count}} hääletus",
       "votes_other": "{{count}} häält"
-    }
+    },
+    "subathonOver": "Aeg on läbi",
+    "pointsTitle": "Kõige lojaalsemad vaatajad",
+    "points_one": "{{formatted}} punkti",
+    "points_other": "{{formatted}} punkti"
   },
   "liveStudio": {
     "controls": {
@@ -9243,7 +9248,9 @@
       "chat_box": "Vestluskast",
       "ticker": "Tiksuja",
       "rule_alert": "Reeglite märguanded",
-      "poll": "Küsitlus"
+      "poll": "Küsitlus",
+      "subathon_timer": "Subathoni taimer",
+      "points_board": "Lojaalsed vaatajad"
     },
     "hints": {
       "spin_wheel": "Kus sinu reeglite rattad pöörlevad",
@@ -9263,7 +9270,9 @@
       "chat_box": "Kuvab sinu ringhäälingu vestlussõnumid ekraanil",
       "ticker": "Sinu enda teksti rida, mis kerib üle ekraani",
       "rule_alert": "Kus kuvatakse sinu reeglite märguanded",
-      "poll": "Sinu reaalajas küsitlus, hääletusnupp iga valiku jaoks"
+      "poll": "Sinu reaalajas küsitlus, hääletusnupp iga valiku jaoks",
+      "subathon_timer": "Allaloendus, mis kingib, järgib ja tellimusi tagasi lükkab",
+      "points_board": "Sinu parimad vaatajad vaatamise ja kingituste punktide järgi"
     },
     "fields": {
       "style": "Stiil",
@@ -9498,6 +9507,29 @@
         "word-timeout_one": "Ajas välja {{target}} {{count}} sekundiks: \"{{word}}\"",
         "word-timeout_other": "Ajas välja {{target}} {{count}} sekundiks: \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Stardiloendus sinu voos. Iga tasuline kingitus, järgimine ja tellimine lisab aega, nii et tuba hoiab sind elus.",
+      "secondsPerThousand": "Sekundit lisatud 1000 DHB kingituse kohta",
+      "secondsPerFollow": "Sekundit lisatud järgimise kohta",
+      "secondsPerSubscribe": "Sekundit lisatud tellimuse kohta",
+      "capHours": "Maksimaalne kestus (tundides)",
+      "save": "Salvesta summad",
+      "saved": "Säästetud subathoni summad.",
+      "startMinutes": "Alusta (minutitega)",
+      "start": "Alusta stardiloendust",
+      "stop": "Peata",
+      "addFive": "Lisa 5 minutit",
+      "removeFive": "Väljasõit 5 minutit",
+      "failed": "See ei õnnestunud. Proovi uuesti.",
+      "widgetHint": "Näitab sinu subathoni stardiloendust. Käivita see Live Studio Subathoni paneelilt."
+    },
+    "points": {
+      "title": "Lojaalsed vaatajad",
+      "intro": "Vaatajad teenivad ühe punkti iga minuti eest, mil nad sind vaatavad, ja ühe punkti iga 100 DHB eest, mille nad kingivad. Vestlused ja reaktsioonid ei teeni midagi, seega ei saa punkte koguda.",
+      "empty": "Punkte veel pole. Need kogunevad, kui inimesed vaatavad ja kingivad.",
+      "widgetHint": "Selle loendi kuvamiseks voos lisa lojaalsete vaatajate vidin."
     }
   },
   "liveChatModeration": {

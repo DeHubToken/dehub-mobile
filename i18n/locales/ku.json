@@ -9088,7 +9088,12 @@
       "voted_other": "Te deng da · {{count}} deng",
       "votes_one": "Dengê {{count}}",
       "votes_other": "Dengên {{count}}"
-    }
+    },
+    "subathon": "Subathon",
+    "subathonOver": "Demê hatibû.",
+    "pointsTitle": "Temaşevanên herî dilsoz",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9157,7 +9162,9 @@
       "chat_box": "Qutiya sohbetê",
       "ticker": "Tîker",
       "rule_alert": "Hişyariyên qaîdeyan",
-      "poll": "Gelpisî"
+      "poll": "Gelpisî",
+      "subathon_timer": "Demjimêrê Subathonê",
+      "points_board": "Temaşevanên dilsoz"
     },
     "hints": {
       "spin_wheel": "Li ku derê teker di qaîdeyên te de dizivirin",
@@ -9177,7 +9184,9 @@
       "chat_box": "Peyamên sohbeta weşana we li ser ekranê nîşan dide",
       "ticker": "Rêzek ji nivîsa we ku li ser ekranê digere",
       "rule_alert": "Jêrê ku pêşengên rêziman de hene",
-      "poll": "Anketa we ya zindî, bi bişkojkek dengdanê ji bo her vebijarkê"
+      "poll": "Anketa we ya zindî, bi bişkojkek dengdanê ji bo her vebijarkê",
+      "subathon_timer": "Yek countdown ku wekiftin, follow û aboneman (subscription) li ser xwe didin.",
+      "points_board": "Kesên herî herîm li ser pointan ji bo dîtin û wekiftin."
     },
     "fields": {
       "style": "Awayî",
@@ -9412,6 +9421,29 @@
         "word-timeout_one": "Demjimêra {{target}} ji bo {{count}} saniye ji bo \"{{word}}\" bi dawî bû.",
         "word-timeout_other": "Demjimêra {{target}} ji bo {{count}} saniyeyan ji bo \"{{word}}\" bi dawî bû."
       }
+    },
+    "subathon": {
+      "title": "Subathon",
+      "intro": "Yek countdown li ser stream te xwe ye. Her paid gift, follow û aboneman (subscription) diyar dikin, bo ku xwe li ser live bibe.",
+      "secondsPerThousand": "Deqeyên wekheftî li ser her 1,000 DHB yê ku wekiftin",
+      "secondsPerFollow": "Deqeyên wekheftî li ser her follow",
+      "secondsPerSubscribe": "Deqeyên wekheftî li ser her aboneman (subscription)",
+      "capHours": "Herî dirêj ku dikare were (saet)",
+      "save": "Hesabên wekheftî",
+      "saved": "Hesabên Subathon yên wekheftî.",
+      "startMinutes": "Di destpêka (minet) de dest biye",
+      "start": "Dest bi countdownê biki",
+      "stop": "Stop",
+      "addFive": "Bikî 5 minet",
+      "removeFive": "Bikî 5 minet ji dest biki",
+      "failed": "Ev ne kiriye. Bi karê din biyarî.",
+      "widgetHint": "Dişîne countdownê Subathonê. Dest bi Subathonê ji panelê Subathon li Live Studio biki."
+    },
+    "points": {
+      "title": "Temaşevanên dilsoz",
+      "intro": "Dîkan li ser her minetê ku dîtin û her 100 DHB yê ku wekiftin yek point werin. Chat û tepên (reactions) point ne didin, bo ku point ne bikin ji bo fermandinê (farming).",
+      "empty": "Point heye? Nîne. Her çend ku kesan dîtin û wekiftin, pointan jî diyar dibin.",
+      "widgetHint": "Biki widgetê Loyal viewers bo ku li ser streamê li ser vê lîstêyê were diyar."
     }
   },
   "liveChatModeration": {

@@ -9026,7 +9026,12 @@
     "subscribedTo": "{{name}} subscribe to {{plan}}",
     "followersUnit": "fɔlɔwɔs",
     "tipped": "{{name}} send goody",
-    "chatPreview": "Chat messages appear here"
+    "chatPreview": "Chat messages appear here",
+    "subathon": "Subathon",
+    "subathonOver": "Time's up",
+    "pointsTitle": "Most loyal viewers",
+    "points_one": "{{formatted}} point",
+    "points_other": "{{formatted}} points"
   },
   "liveStudio": {
     "controls": {
@@ -9119,9 +9124,13 @@
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
       "ticker": "Ticker",
-      "rule_alert": "Rule alerts"
+      "rule_alert": "Rule alerts",
+      "subathon_timer": "Subathon timer",
+      "points_board": "Loyal viewers"
     },
     "hints": {
+      "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
+      "points_board": "Your top viewers by points from watching and gifting",
       "spin_wheel": "Where the wheels in your rules spin",
       "poll": "Youse live poll, wey go come wit button fo vote fo every option.",
       "rule_alert": "Where your rules' alerts appear",
@@ -9320,6 +9329,29 @@
         "word-timeout_one": "Time out {{target}} fo’ {{count}} second fo’ \"{{word}}\"",
         "word-timeout_other": "Time out {{target}} fo’ {{count}} seconds fo’ \"{{word}}\""
       }
+    },
+    "subathon": {
+      "intro": "A countdown on your stream. Every paid gift, follow and subscription adds time, so the room keeps you live.",
+      "capHours": "Longest it can run (hours)",
+      "startMinutes": "Start with (minutes)",
+      "start": "Start the countdown",
+      "removeFive": "Take off 5 minutes",
+      "widgetHint": "Shows your subathon countdown. Start it from the Subathon panel in Live Studio.",
+      "title": "Subathon",
+      "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
+      "secondsPerFollow": "Seconds added per follow",
+      "secondsPerSubscribe": "Seconds added per subscription",
+      "save": "Save amounts",
+      "saved": "Subathon amounts saved.",
+      "stop": "Stop",
+      "addFive": "Add 5 minutes",
+      "failed": "Na go no dey work. Try again."
+    },
+    "points": {
+      "widgetHint": "Add the Loyal viewers widget to show this list on stream.",
+      "title": "Loyal viewers",
+      "intro": "Wot watcha see, dem get one point fo every minute dem watch you, an one point fo every 100 DHB dem give you as gift. Chat an reaction no get point, so point no be fo farming.",
+      "empty": "Na dey no point yet. Dem go add up when people watch and give gift."
     }
   },
   "liveChatModeration": {

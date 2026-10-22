@@ -9172,7 +9172,12 @@
       "voted_other": "Sizin səsiniz · {{count}} səs",
       "votes_one": "{{count}} səs",
       "votes_other": "{{count}} səs"
-    }
+    },
+    "subathon": "Subafon",
+    "subathonOver": "Vaxt bitdi",
+    "pointsTitle": "Ən sadiq izləyicilər",
+    "points_one": "{{formatted}} xal",
+    "points_other": "{{formatted}} xal"
   },
   "liveStudio": {
     "controls": {
@@ -9241,7 +9246,9 @@
       "chat_box": "Söhbət qutusu",
       "ticker": "Etiketçi",
       "rule_alert": "Qayda xəbərdarlıqları",
-      "poll": "Sorğu"
+      "poll": "Sorğu",
+      "subathon_timer": "Yarmarka taymeri",
+      "points_board": "Sadiq izləyicilər"
     },
     "hints": {
       "spin_wheel": "Qaydalarınızdakı təkərlərin fırlandığı yer",
@@ -9261,7 +9268,9 @@
       "chat_box": "Yayımınızın söhbət mesajlarını ekranda göstərir",
       "ticker": "Ekranda sürüşdürülən öz mətninizin sətri",
       "rule_alert": "Sizin quranızın xəbərləri yerə düşür",
-      "poll": "Canlı sorğunuz, hər bir seçim üçün səs düyməsi ilə"
+      "poll": "Canlı sorğunuz, hər bir seçim üçün səs düyməsi ilə",
+      "subathon_timer": "Hədiyyə, izləyici və abunələrin geri itələdiyi geri sayım",
+      "points_board": "İzləmə və hədiyyə etmə nöqtələrinə görə ən yaxşı izləyiciləriniz"
     },
     "fields": {
       "style": "Üslub",
@@ -9495,6 +9504,29 @@
         "word-timeout_one": "{{target}} 1 dəqiqəlik azovqatdan çıxarıldı {{count}} üçün \"{{word}}\"",
         "word-timeout_other": "{{target}} 1 dəqiqəlik azovqatdan çıxarıldı {{count}} dəqiqələr üçün \"{{word}}\""
       }
+    },
+    "subathon": {
+      "title": "Subafon",
+      "intro": "Axınınızda geri sayım. Hər ödənilmiş hədiyyəyə əməl edin və abunəlik vaxt əlavə edir, odur ki, otaq sizi canlı saxlayır.",
+      "secondsPerThousand": "Hər 1000 DHB üçün saniyələr əlavə edildi",
+      "secondsPerFollow": "Hər bir izləyiciyə saniyələr əlavə edildi",
+      "secondsPerSubscribe": "Saniyələr hər abunə üçün əlavə edildi",
+      "capHours": "İşləyə biləcəyi ən uzun müddət (saatlar)",
+      "save": "Məbləğləri yaddaşda",
+      "saved": "Subathon məbləğləri yaddaşda saxlanıldı.",
+      "startMinutes": "(dəqiqə) ilə başlayın",
+      "start": "Geri sayımı başlat",
+      "stop": "Dayan",
+      "addFive": "5 dəqiqə əlavə et",
+      "removeFive": "5 dəqiqə ayırın",
+      "failed": "Bu alınmadı. Yenidən cəhd edin.",
+      "widgetHint": "Subathon üzrə geri ödənişinizi göstərir. Onu Live Studio-da Subathon panelindən başlayın."
+    },
+    "points": {
+      "title": "Sadiq izləyicilər",
+      "intro": "İzləyicilər sizi izlədikləri hər dəqiqə və hədiyyə etdikləri hər 100 DHB üçün bir xal qazanır. Söhbət və reaksiyalar heç bir şey qazanmır, buna görə də xallar fermada saxlanıla bilməz.",
+      "empty": "Hələ xal yoxdur. Onlar insanların izlədiyi və hədiyyə etdiyi kimi yaranır.",
+      "widgetHint": "Bu siyahını yayımda göstərmək üçün Sadiq izləyicilər vidcetini əlavə edin."
     }
   },
   "liveChatModeration": {

@@ -29,6 +29,8 @@ export const OVERLAY_KINDS = [
   "rule_alert",
   "poll",
   "spin_wheel",
+  "subathon_timer",
+  "points_board",
 ] as const;
 
 export type OverlayKind = (typeof OVERLAY_KINDS)[number];
@@ -142,6 +144,16 @@ export const WIDGET_TEMPLATES: Record<OverlayKind, WidgetTemplate> = {
     landscape: { x: 0.7, y: 0.3, w: 0.28, h: 0.45 },
     portrait: { x: 0.2, y: 0.24, w: 0.6, h: 0.3 },
     settings: {},
+  },
+  subathon_timer: {
+    landscape: { x: 0.76, y: 0.03, w: 0.22, h: 0.08 },
+    portrait: { x: 0.55, y: 0.04, w: 0.4, h: 0.05 },
+    settings: { label: "", accent: "#ffffff" },
+  },
+  points_board: {
+    landscape: { x: 0.76, y: 0.4, w: 0.22, h: 0.3 },
+    portrait: { x: 0.05, y: 0.22, w: 0.45, h: 0.18 },
+    settings: { count: 5, title: "" },
   },
 };
 
