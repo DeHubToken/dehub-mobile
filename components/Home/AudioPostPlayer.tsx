@@ -1179,7 +1179,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="#d7ffff" maximumTrackTintColor="rgba(225,255,255,.2)" thumbTintColor="#efffff" style={{ height: 12 }} /></PagerSafe></View>
           <View style={styles.glassTransport}>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel="−10 s" onPress={() => handleSeek(shownDuration ? (shownTime - 10) / shownDuration : 0)} style={styles.glassControl}><Text style={styles.glassSkip}>−10</Text></TouchableOpacity>
-            <TouchableOpacity accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause} style={[styles.glassControl, styles.glassPlay, { backgroundColor: `rgba(${accent.join(',')},.3)` }]}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause} style={[styles.glassControl, styles.glassPlay, { backgroundColor: `rgba(${accent.join(',')},.12)` }]}>
               <LinearGradient pointerEvents="none" colors={['rgba(230,255,255,.35)', 'transparent']} style={StyleSheet.absoluteFill} />
               <MediaControlIcon name={shownLoading ? 'Loader' : shownPlaying ? 'Pause' : 'Play'} />
             </TouchableOpacity>
@@ -1248,7 +1248,7 @@ const styles = StyleSheet.create({
   glassTitle: { color: '#efffff', fontSize: 12, fontWeight: '500', textAlign: 'center', marginHorizontal: 32 },
   glassArtist: { color: '#c3e8e9', fontSize: 9, letterSpacing: 1, textAlign: 'center', marginTop: 3 },
   glassOptions: { position: 'absolute', top: 12, right: 12, padding: 6, zIndex: 2 },
-  glassDeck: { borderRadius: 48, borderWidth: 1, borderColor: 'rgba(225,255,255,.35)', borderTopColor: 'rgba(255,255,255,.55)', paddingHorizontal: 16, paddingTop: 14, paddingBottom: 10, overflow: 'visible' },
+  glassDeck: { borderRadius: 48, borderWidth: 1, borderColor: 'rgba(225,255,255,.35)', borderTopColor: 'rgba(255,255,255,.55)', paddingHorizontal: 16, paddingTop: 22, paddingBottom: 10, overflow: 'visible' },
   glassTime: { color: '#efffff', opacity: .65, fontSize: 8, fontVariant: ['tabular-nums'] },
   glassTransport: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 16 },
   glassControl: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, borderColor: 'rgba(225,255,255,.3)', borderTopColor: 'rgba(255,255,255,.5)', backgroundColor: 'rgba(200,255,255,.05)', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
