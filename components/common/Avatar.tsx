@@ -11,6 +11,11 @@ import LiveRipple from "./LiveRipple";
 
 interface AvatarProps {
   uri?: string | null;
+  /**
+   * Tried when `uri` fails, before falling back to the initial: the wallet's
+   * own picture, for rows that stored a path that has since gone stale.
+   */
+  fallbackUri?: string | null;
   size?: number;
   onPress?: () => void;
   style?: ViewStyle;
@@ -41,6 +46,7 @@ function getInitial(name?: string): string {
 // not avatars.
 const Avatar: React.FC<AvatarProps> = ({
   uri,
+  fallbackUri,
   size = 40,
   onPress,
   style,
@@ -56,19 +62,27 @@ const Avatar: React.FC<AvatarProps> = ({
   // decide whether to show the initial behind it. That was a guaranteed extra
   // render for every avatar in the feed as it scrolled into view. The initial
   // now simply sits underneath the (opaque) image, so there is nothing to
-  // toggle and only the error flag survives.
+  // toggle and only the failure count survives: `step` walks the sources in
+  // order, the stored picture, then the fallback, then the initial alone.
   //
-  // It is still keyed on `uri` and reset during render rather than in an
+  // It is keyed on the sources and reset during render rather than in an
   // effect: in a recycling list the same Avatar instance is handed a different
-  // user's uri, and carrying the previous `errored` over left a row that had
+  // user's uri, and carrying the previous failures over left a row that had
   // once failed stuck on the initial letter for every user after it.
-  const [load, setLoad] = useState({ uri, errored: false });
-  if (load.uri !== uri) setLoad({ uri, errored: false });
-  const { errored } = load;
+  const sources = useMemo(() => {
+    const out: string[] = [];
+    for (const u of [uri, fallbackUri]) {
+      if (u && u !== "default-avatar" && !out.includes(u)) out.push(u);
+    }
+    return out;
+  }, [uri, fallbackUri]);
+  const key = sources.join("|");
+  const [load, setLoad] = useState({ key, step: 0 });
+  if (load.key !== key) setLoad({ key, step: 0 });
+  const current = load.key === key ? sources[load.step] : sources[0];
 
   const radius = Math.round(size * 0.16);
-  const isRemote = !!uri && uri !== "default-avatar";
-  const showImage = isRemote && !errored;
+  const showImage = !!current;
 
   const initial = useMemo(() => getInitial(name), [name]);
   const fontSize = Math.max(10, Math.round(size * 0.42));
@@ -106,7 +120,7 @@ const Avatar: React.FC<AvatarProps> = ({
           the bytes arrive. */}
       {showImage && (
         <SmartImage
-          source={{ uri: uri! }}
+          source={{ uri: current }}
           style={{
             width: "100%",
             height: "100%",
@@ -117,9 +131,9 @@ const Avatar: React.FC<AvatarProps> = ({
           // Same avatar across many rows is the common case, so the memory half
           // of the cache does most of the work here; the recycling key keeps a
           // reused row from flashing the previous user's face.
-          recyclingKey={uri}
+          recyclingKey={current}
           transition={0}
-          onError={() => setLoad((s) => (s.uri === uri ? { ...s, errored: true } : s))}
+          onError={() => setLoad((s) => (s.key === key ? { ...s, step: s.step + 1 } : s))}
         />
       )}
     </View>
