@@ -904,10 +904,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         });
         return;
       }
-      // Gifts from other users: add once. Read the sender line out over the
-      // stream off the broadcast, so every viewer hears the same words on
-      // the same beat; the sender heard their own at submit time.
-      speakTipMessage(payload?.gift?.meta?.message);
+      // Gifts from other users: add once. The message is read out when the
+      // tip is paid (TipConfirmed below), not here: this broadcast goes out
+      // before anything is paid, with whatever the sender posted.
       addActivity({
         status: StreamActivityType.TIP,
         address: sender,
@@ -923,6 +922,20 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         username,
         selectedTier: payload?.gift?.meta?.selectedTier,
       } as any);
+    });
+    // Read the sender's line out over the stream once the chain has paid the
+    // tip. Reading it off the unpaid broadcast let anyone with a well-formed
+    // transaction hash speak to every viewer for free. Every device in the
+    // room speaks off this one event, so the room still hears it together;
+    // the sender heard their own at submit time.
+    bind(LivestreamEvents.TipConfirmed, (payload: any) => {
+      if (payload?.streamId && String(payload.streamId) !== String(streamId)) return;
+      if (!(Number(payload?.paidAmount) > 0)) return;
+      const txHash = String(payload?.transactionHash || "").toLowerCase();
+      const sender = String(payload?.address || "").toLowerCase();
+      const me = String((user?.walletAddress || user?.address || "")).toLowerCase();
+      if ((txHash && ownGiftHashesRef.current.has(txHash)) || (!!me && sender === me)) return;
+      speakTipMessage(typeof payload?.message === "string" ? payload.message : undefined);
     });
     // Reaction events from other viewers. The viewer's own thumb is played on
     // tap (handleLiveLike) the same beat a tipper gets their celebration, so
