@@ -5503,7 +5503,9 @@
     "lowTopUp": "Weinig {{symbol}}? We vullen het aan voordat we ontgrendelen.",
     "unlockedSuccess": "Succesvol ontgrendeld",
     "otherChain": "Dit bericht wordt op een andere keten geplaatst, dus je hebt DeHub tokens nodig in je wallet daar.",
-    "payHint": "Betaal met alles in je wallet. Het wordt DeHub tokens en ontgrendelt direct."
+    "payHint": "Betaal met alles in je wallet. Het wordt DeHub tokens en ontgrendelt direct.",
+    "switchTo": "Deze post wordt betaald op {{chain}}. Schakel in Instellingen over naar {{chain}} en probeer het opnieuw.",
+    "notEnoughToken": "Je hebt {{amount}} {{symbol}} nodig om dit te ontgrendelen. Je hebt {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Gebruik dit als je deze wallet op deze telefoon hebt ingesteld en de sleutel er al zou moeten zijn",
@@ -5921,6 +5923,7 @@
     "contractPlaceholder": "Contractadres (0x…)",
     "symbolPlaceholder": "Symbool (bijv. PEPE)",
     "paymentsBase": "Betalingen zijn in DeHub tokens op de Base keten",
+    "paymentsStable": "Kopers betalen in {{symbol}}, direct naar jou",
     "tokensUnit": "tokens",
     "minimumRequired": "Minimaal {{currency}} vereist"
   },

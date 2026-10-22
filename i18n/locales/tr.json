@@ -5362,7 +5362,9 @@
     "lowTopUp": "{{symbol}}'nız mı azaldı? Kilidi açmadan önce tamamlayacağız.",
     "unlockedSuccess": "Başarıyla kilidi açıldı",
     "otherChain": "Bu gönderi başka bir zincirde yer alıyor, bu nedenle orada cüzdanınızda DeHub jetonlarına ihtiyacınız var.",
-    "payHint": "Cüzdanınızdaki herhangi bir şeyle ödeme yapın. DeHub jetonlarına dönüşür ve hemen açılır."
+    "payHint": "Cüzdanınızdaki herhangi bir şeyle ödeme yapın. DeHub jetonlarına dönüşür ve hemen açılır.",
+    "switchTo": "Bu gönderi {{chain}} üzerinde ödenir. Ayarlar'dan {{chain}} ağına geçip tekrar deneyin.",
+    "notEnoughToken": "Bunu açmak için {{amount}} {{symbol}} gerekiyor. Sende {{held}} var."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bu cüzdanı bu telefonda kurduysan ve anahtar zaten burada olmalıysa bunu kullan",
@@ -5780,6 +5782,7 @@
     "contractPlaceholder": "Sözleşme adresi (0x…)",
     "symbolPlaceholder": "Sembol (örn. PEPE)",
     "paymentsBase": "Ödemeler Base zincirinde DeHub jetonlarıyla yapılıyor",
+    "paymentsStable": "Alıcılar {{symbol}} ile öder, doğrudan size gönderilir",
     "tokensUnit": "jetonlar",
     "minimumRequired": "Minimum {{currency}} gerekli"
   },

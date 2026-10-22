@@ -5020,7 +5020,9 @@
     "lowTopUp": "{{symbol}} 不足？解锁前我们会为您补足。",
     "unlockedSuccess": "已成功解锁",
     "otherChain": "此帖子已在另一个链上结算，因此您需要在该链的钱包中拥有 DeHub 代币。",
-    "payHint": "使用钱包中的任何内容付款。它将转换为 DeHub 代币并立即解锁。"
+    "payHint": "使用钱包中的任何内容付款。它将转换为 DeHub 代币并立即解锁。",
+    "switchTo": "此帖子在 {{chain}} 上支付。请在设置中切换到 {{chain}} 后重试。",
+    "notEnoughToken": "解锁需要 {{amount}} {{symbol}}，你有 {{held}}。"
   },
   "walletSetup": {
     "tryBiometricsHint": "如果你是在这部手机上设置的这个钱包，密钥应该已经在这里，请使用此项",
@@ -5431,6 +5433,7 @@
     "contractPlaceholder": "合约地址（0x…）",
     "symbolPlaceholder": "代号（例如 PEPE）",
     "paymentsBase": "在 Base 链上使用 DeHub 代币付款",
+    "paymentsStable": "买家以 {{symbol}} 支付，直接发送给你",
     "tokensUnit": "代币",
     "minimumRequired": "最少需要 {{currency}} 个"
   },

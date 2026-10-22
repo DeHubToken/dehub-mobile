@@ -20,6 +20,7 @@ import Icon from "../ui/Icon";
 import GlassIndicator from "../ui/GlassIndicator";
 import CustomSwitch from "../ui/CustomSwitch";
 import { isSolanaChain, SOLANA_SPL_TOKENS } from "../../config/solana.constants";
+import { DIRECT_TIP_TOKENS } from "../../libs/direct-tip-tokens";
 import { supportedTokens, ChainId } from "../../config/constants";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import { useUser } from "../../context/AuthContext";
@@ -165,7 +166,12 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
     [evmGateChainId],
   );
   const evmChainLabel = EVM_CHAIN_LABELS[evmGateChainId] || "Base";
-  const ppvCurrency = isSolana ? (state.ppvData.tokenSymbol || "SOL") : t("monetization.tokensUnit");
+  // EVM posts can be priced in DHB or, where the chain's controller takes
+  // them, USDC/USDT (paid straight to the creator, no swap).
+  const evmPpvSymbols = React.useMemo(
+    () => ["DHB", ...DIRECT_TIP_TOKENS.filter((tk) => tk.chainId === evmGateChainId).map((tk) => tk.symbol)],
+    [evmGateChainId],
+  );
   const gateCurrency = isSolana
     ? (state.tokenGateData.tokenSymbol || "SOL")
     : (state.tokenGateData.tokenSymbol || "DHB");
@@ -177,6 +183,12 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
 
   // Draft state for forms (not committed until confirm)
   const [ppvDraft, setPpvDraft] = useSurfaceDraft<PpvData>("components/Upload/MonetizationPanel.tsx:ppvDraft", state.ppvData, draftScope);
+  const ppvStable = !isSolana && (ppvDraft.tokenSymbol === "USDC" || ppvDraft.tokenSymbol === "USDT")
+    ? ppvDraft.tokenSymbol
+    : null;
+  const ppvCurrency = isSolana
+    ? (ppvDraft.tokenSymbol || "SOL")
+    : ppvStable || t("monetization.tokensUnit");
   const [bountyDraft, setBountyDraft] = useSurfaceDraft<BountyData>("components/Upload/MonetizationPanel.tsx:bountyDraft", state.bountyData, draftScope);
   const [tokenGateDraft, setTokenGateDraft] = useSurfaceDraft<TokenGateData>("components/Upload/MonetizationPanel.tsx:tokenGateDraft",
     state.tokenGateData, draftScope);
@@ -382,7 +394,7 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
       </View>
       <ExpandableSection
         expanded={expandedSection === "ppv"}
-        maxHeight={SECTION_HEIGHT_PPV + (isSolana ? 48 : 0)}
+        maxHeight={SECTION_HEIGHT_PPV + (isSolana ? 48 : evmPpvSymbols.length > 1 ? 44 : 0)}
       >
         <View className="pb-3">
           <Text className="text-white font-semibold text-sm mb-3">
@@ -393,6 +405,26 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
               value={ppvDraft.tokenSymbol}
               onSelect={(symbol) => setPpvDraft((d) => ({ ...d, tokenSymbol: symbol }))}
             />
+          )}
+          {!isSolana && evmPpvSymbols.length > 1 && (
+            <View className="flex-row gap-2 mb-3">
+              {evmPpvSymbols.map((sym) => {
+                const active = (ppvDraft.tokenSymbol || "DHB") === sym;
+                return (
+                  <TouchableOpacity
+                    key={sym}
+                    onPress={() => setPpvDraft((d) => ({ ...d, tokenSymbol: sym === "DHB" ? undefined : sym }))}
+                    className={`px-3 py-1.5 rounded-lg border ${
+                      active ? "bg-white/15 border-white/30" : "bg-theme-neutrals-900 border-theme-neutrals-700"
+                    }`}
+                  >
+                    <Text className={active ? "text-white text-xs font-semibold" : "text-theme-neutrals-400 text-xs"}>
+                      {sym}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
           )}
           <Text className="text-theme-neutrals-400 text-xs mb-1.5">
             {t("monetization.price", { currency: ppvCurrency })}
@@ -408,7 +440,9 @@ const MonetizationPanel: React.FC<MonetizationPanelProps> = ({
           <Text className="text-theme-neutrals-500 text-xs mt-1.5">
             {isSolana
               ? t("monetization.paymentsSolana", { currency: ppvCurrency })
-              : t("monetization.paymentsBase")}
+              : ppvStable
+                ? t("monetization.paymentsStable", { symbol: ppvStable })
+                : t("monetization.paymentsBase")}
           </Text>
           <View className="flex-row justify-end mt-3 gap-3">
             <TouchableOpacity onPress={cancelPpv} className="px-4 py-2">

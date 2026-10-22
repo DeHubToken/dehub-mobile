@@ -5032,7 +5032,9 @@
     "lowTopUp": "Com {{symbol}} baixo? Vamos reabastecer antes de desbloquear.",
     "unlockedSuccess": "Desbloqueado com sucesso",
     "otherChain": "Esta postagem é resolvida em outra rede, então ela precisa de tokens DeHub em sua carteira lá.",
-    "payHint": "Pague com qualquer coisa em sua carteira. Ela se torna tokens DeHub e é desbloqueada imediatamente."
+    "payHint": "Pague com qualquer coisa em sua carteira. Ela se torna tokens DeHub e é desbloqueada imediatamente.",
+    "switchTo": "Este post é pago na {{chain}}. Mude para {{chain}} nas Configurações e tente de novo.",
+    "notEnoughToken": "Você precisa de {{amount}} {{symbol}} para desbloquear. Você tem {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Use isto se configurou esta carteira neste telemóvel e ele já deveria ter a chave",
@@ -5450,6 +5452,7 @@
     "contractPlaceholder": "Endereço do contrato (0x…)",
     "symbolPlaceholder": "Símbolo (ex.: PEPE)",
     "paymentsBase": "Pagamentos são em tokens DeHub na rede Base",
+    "paymentsStable": "Os compradores pagam em {{symbol}}, direto para você",
     "tokensUnit": "tokens",
     "minimumRequired": "Mínimo de {{currency}} exigido"
   },

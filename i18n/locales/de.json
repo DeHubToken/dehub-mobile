@@ -5075,7 +5075,9 @@
     "lowTopUp": "Wenig {{symbol}}? Wir füllen auf, bevor wir entsperren.",
     "unlockedSuccess": "Erfolgreich entsperrt",
     "otherChain": "Dieser Beitrag wird auf einer anderen Kette abgewickelt, daher werden DeHub-Token in Ihrer Wallet dort benötigt.",
-    "payHint": "Bezahlen Sie mit allem in Ihrer Wallet. Es wird zu DeHub-Token und wird sofort freigeschaltet."
+    "payHint": "Bezahlen Sie mit allem in Ihrer Wallet. Es wird zu DeHub-Token und wird sofort freigeschaltet.",
+    "switchTo": "Dieser Beitrag wird auf {{chain}} bezahlt. Wechsle in den Einstellungen zu {{chain}} und versuche es erneut.",
+    "notEnoughToken": "Du brauchst {{amount}} {{symbol}} zum Freischalten. Du hast {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Nutze dies, wenn du diese Wallet auf diesem Telefon eingerichtet hast und der Schlüssel bereits hier sein sollte",
@@ -5493,6 +5495,7 @@
     "contractPlaceholder": "Vertragsadresse (0x…)",
     "symbolPlaceholder": "Symbol (z. B. PEPE)",
     "paymentsBase": "Zahlungen erfolgen in DeHub-Token auf der Base-Kette",
+    "paymentsStable": "Käufer zahlen in {{symbol}}, direkt an dich",
     "tokensUnit": "Token",
     "minimumRequired": "Mindestens {{currency}} erforderlich"
   },

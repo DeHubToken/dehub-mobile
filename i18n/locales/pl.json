@@ -4979,7 +4979,9 @@
     "lowTopUp": "Brakuje Ci {{symbol}}? Uzupełnimy je przed odblokowaniem.",
     "unlockedSuccess": "Pomyślnie odblokowano",
     "otherChain": "Ten post jest rozliczany na innym łańcuchu, więc potrzebujesz tokenów DeHub w swoim portfelu tam.",
-    "payHint": "Płać czymkolwiek ze swojego portfela. Stanie się to tokenami DeHub i odblokuje się natychmiast."
+    "payHint": "Płać czymkolwiek ze swojego portfela. Stanie się to tokenami DeHub i odblokuje się natychmiast.",
+    "switchTo": "Ten post jest opłacany w {{chain}}. Przełącz się na {{chain}} w Ustawieniach i spróbuj ponownie.",
+    "notEnoughToken": "Potrzebujesz {{amount}} {{symbol}}, aby to odblokować. Masz {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Użyj tego, jeśli skonfigurowano ten portfel na tym telefonie i klucz powinien już tu być",
@@ -5390,6 +5392,7 @@
     "contractPlaceholder": "Adres kontraktu (0x…)",
     "symbolPlaceholder": "Symbol (np. PEPE)",
     "paymentsBase": "Płatności w tokenach DeHub na łańcuchu Base",
+    "paymentsStable": "Kupujący płacą w {{symbol}}, prosto do ciebie",
     "tokensUnit": "tokenów",
     "minimumRequired": "Wymagane minimum {{currency}}"
   },
