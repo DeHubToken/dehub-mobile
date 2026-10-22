@@ -429,3 +429,13 @@ export async function getSupabaseAuthMeta(): Promise<Record<string, any> | undef
     return undefined;
   }
 }
+
+/**
+ * The name the sign-in provider already gave us, cut to what a display name
+ * may hold. For Sign in with Apple it is the name Apple sends only on the first
+ * authorization, kept by signInWithApple; App Review rejects asking for it again.
+ */
+export async function getSignInDisplayName(): Promise<string> {
+  const name = (await getSupabaseAuthMeta())?.name;
+  return typeof name === "string" ? name.trim().slice(0, 50).trim() : "";
+}

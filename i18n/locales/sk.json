@@ -4879,7 +4879,7 @@
     "usernameReserved": "Toto používateľské meno je vyhradené",
     "profileSet": "Profil bol úspešne nastavený!",
     "profileFailed": "Profil sa nepodarilo nastaviť",
-    "displayNameHint": "Vaše verejné meno zobrazené v profile."
+    "displayNameHint": "Vaše verejné meno v profile. Nepovinné — ak ho necháte prázdne, použije sa vaše používateľské meno."
   },
   "events": {
     "mine": "Moje",
@@ -5120,6 +5120,7 @@
     "accountHasA": "Tento účet má",
     "ifYouUsedDehub": "Ak ste dehub.io už používali, otvorte ho v počítači, prihláste sa rovnakým spôsobom a rovnakým účtom a",
     "biometricExplainer": "Odomykajte odtlačkom prsta alebo tvárou — nič netreba písať ani si pamätať. Kľúč zostáva v tomto telefóne, preto vám ukážeme 12-slovnú obnovovaciu frázu, ktorú si zapíšete; je to jediná cesta späť z iného telefónu, z webu alebo po preinštalovaní. Zvoľte namiesto toho Heslo a túto úlohu plní samo heslo.",
+    "biometricExplainerSecuring": "Odomykajte odtlačkom prsta alebo tvárou — nič netreba písať ani si pamätať. Kľúč zostáva v tomto telefóne. Ak sa chcete dostať späť z iného telefónu, z webu alebo po preinštalovaní, uložte si neskôr v Nastaveniach 12-slovnú zálohu. Zvoľte namiesto toho Heslo a túto úlohu plní samo heslo.",
     "biometricPrompt": "Táto peňaženka je chránená biometriou tohto zariadenia. Pokračujte potvrdením odtlačkom prsta alebo tvárou.",
     "enterRecoveryPhrase": "Zadajte 12-slovnú obnovovaciu frázu, ktorú ste si uložili pri vytvorení tejto peňaženky (alebo jej súkromný kľúč, ak ste ho exportovali). Vráti vás k rovnakému účtu a heslo, ktoré nastavíte nižšie, sa odteraz stane záložnou cestou fungujúcou všade.",
     "copyPhrase": "Kopírovať frázu",
@@ -5192,6 +5193,7 @@
     "unlockWithPasswordExplainer": "Tento účet už má peňaženku chránenú heslom. Zadajte ho na obnovenie vašej peňaženky na tomto zariadení.",
     "deviceTab": "Toto zariadenie",
     "deviceExplainer": "Nič na napísanie alebo zapamätanie — kľúč zostáva na tomto zariadení. Ponúkneme vám 12‑slovný záložný kód na zapísanie; je to jediný spôsob, ako sa dostať späť z iného zariadenia, z webovej stránky alebo po preinštalovaní. Vyberte namiesto toho Heslo a samotné heslo vykoná túto úlohu.",
+    "deviceExplainerSecuring": "Nič netreba písať ani si pamätať — kľúč zostáva v tomto zariadení. Ak sa chcete dostať späť z iného zariadenia, z webu alebo po preinštalovaní, uložte si neskôr v Nastaveniach 12-slovnú zálohu. Zvoľte namiesto toho Heslo a túto úlohu plní samo heslo.",
     "secureOnDevice": "Ponechať kľúč na tomto zariadení"
   },
   "transcript": {
@@ -9157,7 +9159,7 @@
     "done": "Dokončené",
     "error": "Vašu žiadosť o odstránenie sa nepodarilo odoslať. Váš účet nebol potvrdený na odstránenie. Skúste to znova.",
     "back": "Späť na nastavenia",
-    "signIn": "Prihlásiť sa do svojho účtu",
+    "signIn": "Prihláste sa, aby ste mohli odstrániť svoj účet",
     "acknowledge": "Uložil som si podrobnosti o obnovení peňaženky a chápem, že odstránenie je trvalé."
   },
   "miniApps": {

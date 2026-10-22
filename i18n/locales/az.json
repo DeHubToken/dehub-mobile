@@ -4771,7 +4771,7 @@
     "usernameReserved": "Bu istifadəçi adı ehtiyatda saxlanılıb",
     "profileSet": "Profil uğurla quruldu!",
     "profileFailed": "Profil qurula bilmədi",
-    "displayNameHint": "Profilində görünən ictimai adın."
+    "displayNameHint": "Profilində görünən ictimai adın. İstəyə bağlıdır — istifadəçi adını işlətmək üçün boş burax."
   },
   "events": {
     "mine": "Mənimkilər",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Bu hesabda var:",
     "ifYouUsedDehub": "Əvvəllər dehub.io istifadə etmisinizsə, onu kompüterinizdə açın, eyni üsulla və eyni hesabla daxil olun və",
     "biometricExplainer": "Barmaq izi və ya üzünüzlə açın — yazmağa və ya yadda saxlamağa heç nə yoxdur. Açar bu telefonda qalır, ona görə sizə yazmaq üçün 12 sözlük bərpa ifadəsi göstərəcəyik; başqa telefondan, saytdan və ya yenidən quraşdırdıqdan sonra geri qayıtmağın yeganə yolu budur. Əvəzində Parol seçin və bu işi parolun özü görəcək.",
+    "biometricExplainerSecuring": "Barmaq izi və ya üzünüzlə açın — yazmağa və ya yadda saxlamağa heç nə yoxdur. Açar bu telefonda qalır. Başqa telefondan, saytdan və ya yenidən quraşdırdıqdan sonra geri daxil olmaq üçün 12 sözlük ehtiyat nüsxəni sonradan Parametrlər bölməsində saxlayın. Əvəzində Parol seçin və bu işi parolun özü görəcək.",
     "biometricPrompt": "Bu cüzdan bu cihazın biometrikası ilə qorunur. Davam etmək üçün barmaq izi və ya üzlə təsdiqləyin.",
     "enterRecoveryPhrase": "Bu cüzdanı yaradanda saxladığınız 12 sözlük bərpa ifadəsini daxil edin (və ya ixrac etmisinizsə, onun özəl açarını). Eyni hesaba qayıdır və aşağıda təyin etdiyiniz parol bundan sonra hər yerdə işləyən ehtiyat nüsxəyə çevrilir.",
     "copyPhrase": "İfadəni kopyala",
@@ -5074,7 +5075,7 @@
     "passwordBreached": "Bu şifrə məlumat sızmasında görünüb — başqa birini seçin",
     "phraseInvalidHint": "Bu, bərpa frazası kimi yoxlanılmır — 12 söz, göstərildiyi ardıcıllıqla, hamısı kiçik hərflərlə.",
     "privateKeyHint": "Şəxsi açar 0x-dən sonra 64 hex simvoldur.",
-    "biometricTab": "Bioloji",
+    "biometricTab": "Biometrik",
     "noUsableBackup": "Bu hesabda qeydiyyatdan keçmiş pul kisəsi ünvanı var, lakin bu telefonun istifadə edə biləcəyi heç bir ehtiyat nüsxəsi yoxdur — ya <em>biometrik məlumatlar</em> və ya vebdəki keçid açarı ilə qorunub (bu kilid brauzerdə qalır və burada sinxronlaşmır), ya da bu telefonda əvvəlki qeydiyyat başa çatmamışdan əvvəl kəsilib.",
     "addPasswordOnWeb": "Əgər əvvəllər dehub.io-dan istifadə etmisinizsə, onu kompüterinizdə açın, eyni şəkildə və eyni hesab ilə daxil olun və <em>pul kisəsi şifrəsi əlavə edin</em> — bu, buluda şifrələnmiş ehtiyat nüsxəsini saxlayır. Sonra bura qayıdın və yenidən cəhd edin.",
     "walletAddress": "Cüzdan: {{address}}",
@@ -5083,7 +5084,8 @@
     "unlockPasskeyOnly": "Bu cüzdan veb-də parolsuz açarla təmin edilib və hələlik buludda parol ehtiyat nüsxəsi yoxdur. Əgər dehub.io saytında cüzdan şifrəsi təyin etmisinizsə, onu burada daxil edin — əks halda aşağıdakı \"Xarici cüzdanı idxal et\" düyməsindən istifadə edin.",
     "unlockWithPasswordExplainer": "Bu hesabda artıq şifrə ilə qorunan bir cüzdan var. Bu cihazda cüzdanınızı bərpa etmək üçün onu daxil edin.",
     "deviceTab": "Bu cihaz",
-    "deviceExplainer": "Bu cihazda əsas qonaqlamalar — yazmaq və ya yadda saxlamaq üçün heç nə yoxdur. Yazmaq üçün sizə 12 sözdən ibarət ehtiyat nüsxə təklif edəcəyik; bu, başqa bir cihazdan, veb-saytdan və ya yenidən quraşdırıldıqdan sonra yeganə çıxış yoludur. Əvəzinə Parol seçin və parol özü bu işi görür.",
+    "deviceExplainer": "Yazmağa və ya yadda saxlamağa heç nə yoxdur — açar bu cihazda qalır. Sizə yazıb saxlamaq üçün 12 sözlük ehtiyat nüsxə təklif edəcəyik; başqa cihazdan, saytdan və ya yenidən quraşdırdıqdan sonra geri qayıtmağın yeganə yolu budur. Əvəzində Parol seçin və bu işi parolun özü görəcək.",
+    "deviceExplainerSecuring": "Yazmağa və ya yadda saxlamağa heç nə yoxdur — açar bu cihazda qalır. Başqa cihazdan, saytdan və ya yenidən quraşdırdıqdan sonra geri daxil olmaq üçün 12 sözlük ehtiyat nüsxəni sonradan Parametrlər bölməsində saxlayın. Əvəzində Parol seçin və bu işi parolun özü görəcək.",
     "secureOnDevice": "Açarı bu cihazda saxlayın"
   },
   "transcript": {
@@ -8987,7 +8989,7 @@
     "busy": "Silinmə sorğusu təqdim edilir...",
     "accepted": "Hesabın silinməsi üçün sorğu göndərilib",
     "receipt": "Silinmə sorğunuz yaddaşda saxlanıldı. Profiliniz gizlədilib və hesabınız 30 gün ərzində həmişəlik silinəcək. Daxil olmaq bu sorğunu ləğv edə bilməz.",
-    "done": "Hazırdl",
+    "done": "Hazır",
     "error": "Silinmə sorğunuzu təqdim etmək mümkün olmadı. Hesabınız silinməsi üçün təsdiqlənməyib. Yenidən cəhd edin.",
     "back": "Parametrlərə qayıt",
     "signIn": "Hesabınızı silmək üçün daxil olun",

@@ -4867,7 +4867,7 @@
     "usernameReserved": "Dieser Nutzername ist reserviert",
     "profileSet": "Profil erfolgreich eingerichtet!",
     "profileFailed": "Profil konnte nicht eingerichtet werden",
-    "displayNameHint": "Dein öffentlicher Name, der in deinem Profil erscheint."
+    "displayNameHint": "Dein öffentlicher Name in deinem Profil. Optional — lass das Feld leer, um deinen Benutzernamen zu verwenden."
   },
   "events": {
     "mine": "Meine",
@@ -5108,6 +5108,7 @@
     "accountHasA": "Dieses Konto hat eine",
     "ifYouUsedDehub": "Wenn du dehub.io schon einmal genutzt hast, öffne es auf deinem Computer, melde dich auf dieselbe Weise und mit demselben Konto an, und",
     "biometricExplainer": "Entsperre mit Fingerabdruck oder Gesicht — nichts zu tippen oder zu merken. Der Schlüssel bleibt auf diesem Telefon, deshalb zeigen wir dir eine 12-Wörter-Wiederherstellungsphrase zum Aufschreiben; sie ist der einzige Weg zurück von einem anderen Gerät, von der Website oder nach einer Neuinstallation. Wähle stattdessen Passwort, dann übernimmt das Passwort diese Aufgabe.",
+    "biometricExplainerSecuring": "Entsperre mit Fingerabdruck oder Gesicht — nichts zu tippen oder zu merken. Der Schlüssel bleibt auf diesem Telefon. Um von einem anderen Handy, über die Website oder nach einer Neuinstallation wieder Zugriff zu bekommen, speichere später in den Einstellungen ein Backup aus 12 Wörtern. Wähle stattdessen Passwort, dann übernimmt das Passwort diese Aufgabe.",
     "biometricPrompt": "Diese Wallet ist durch die Biometrie dieses Geräts geschützt. Bestätige mit Fingerabdruck oder Gesicht, um fortzufahren.",
     "enterRecoveryPhrase": "Gib die 12-Wörter-Wiederherstellungsphrase ein, die du beim Erstellen dieser Wallet gespeichert hast (oder ihren privaten Schlüssel, falls du einen exportiert hast). Sie führt zum selben Konto zurück, und das Passwort, das du unten festlegst, wird von jetzt an zu einem überall funktionierenden Ersatzweg.",
     "copyPhrase": "Phrase kopieren",
@@ -5180,6 +5181,7 @@
     "unlockWithPasswordExplainer": "Dieses Konto hat bereits ein Wallet, das durch ein Passwort geschützt ist. Geben Sie es ein, um Ihr Wallet auf diesem Gerät wiederherzustellen.",
     "deviceTab": "Dieses Gerät",
     "deviceExplainer": "Nichts zu tippen oder zu merken — der Schlüssel bleibt auf diesem Gerät. Wir bieten Ihnen ein 12-Wort-Backup zum Aufschreiben; es ist der einzige Weg zurück von einem anderen Gerät, von der Website oder nach der Neuinstallation. Wählen Sie stattdessen Passwort und das Passwort selbst erledigt diese Aufgabe.",
+    "deviceExplainerSecuring": "Nichts zu tippen oder zu merken — der Schlüssel bleibt auf diesem Gerät. Um von einem anderen Gerät, über die Website oder nach einer Neuinstallation wieder Zugriff zu bekommen, speichere später in den Einstellungen ein Backup aus 12 Wörtern. Wähle stattdessen Passwort, dann übernimmt das Passwort diese Aufgabe.",
     "secureOnDevice": "Bewahren Sie den Schlüssel auf diesem Gerät auf"
   },
   "walletBackup": {
@@ -9191,14 +9193,14 @@
     "description": "Löschen Sie Ihr Konto und Ihre persönlichen Daten dauerhaft",
     "warning": "Dadurch werden dein DeHub-Profil, Posts, Kommentare, Nachrichten und das gespeicherte Wallet-Backup dauerhaft gelöscht. Speichern Sie Ihre Wallet-Wiederherstellungsdetails und verschieben Sie zuerst alle Assets. Öffentliche Blockchain-Transaktionen und gesetzlich vorgeschriebene Zahlungsaufzeichnungen können nicht gelöscht werden. Ihr Profil wird sofort ausgeblendet; die Löschung ist innerhalb von 30 Tagen abgeschlossen. Dies kann nicht rückgängig gemacht werden.",
     "cancel": "Abbrechen",
-    "confirm": "Konto löschen",
+    "confirm": "Mein Konto dauerhaft löschen",
     "busy": "Löschanfrage wird gesendet...",
     "accepted": "Kontolöschung angefordert",
     "receipt": "Ihre Löschanfrage wurde gespeichert. Dein Profil ist ausgeblendet und dein Konto wird innerhalb von 30 Tagen endgültig gelöscht. Die Anmeldung kann diese Anfrage nicht stornieren.",
     "done": "Erledigt",
     "error": "Ihre Löschanfrage konnte nicht gesendet werden. Ihr Konto wurde nicht zum Löschen bestätigt. Bitte versuchen Sie es erneut.",
     "back": "Zurück zu den Einstellungen",
-    "signIn": "Melden Sie sich bei Ihrem Konto an",
+    "signIn": "Melden Sie sich an, um Ihr Konto zu löschen",
     "acknowledge": "Ich habe meine Daten zur Wiederherstellung der Brieftasche gespeichert und verstehe, dass die Löschung dauerhaft ist."
   },
   "miniApps": {

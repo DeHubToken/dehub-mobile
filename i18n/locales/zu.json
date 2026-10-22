@@ -4793,7 +4793,7 @@
     "usernameReserved": "Leli gama lomsebenzisi ligodliwe",
     "profileSet": "Iphrofayela isethwe ngempumelelo!",
     "profileFailed": "Ayikwazanga ukusetha iphrofayela",
-    "displayNameHint": "Igama lakho lomphakathi elibonakala kuphrofayela yakho."
+    "displayNameHint": "Igama lakho lomphakathi kuphrofayela yakho. Akuphoqelekile — lishiye lingenalutho ukuze kusetshenziswe igama lakho lomsebenzisi."
   },
   "events": {
     "mine": "Okwami",
@@ -5034,6 +5034,7 @@
     "accountHasA": "Le akhawunti inayo",
     "ifYouUsedDehub": "Uma usuke wasebenzisa i-dehub.io ngaphambili, yivule kukhompyutha yakho, ungene ngendlela efanayo nangakhawunti efanayo, bese",
     "biometricExplainer": "Vula ngezigxivizo zeminwe noma ubuso bakho — akukho lutho okufanele ulubhale noma ulukhumbule. Ukhiye uhlala kule foni, ngakho sizokukhombisa inkulumo yokubuyisa yamagama angu-12 ozoyibhala phansi; yiyona kuphela indlela yokubuyela ngefoni ehlukile, ngewebhusayithi, noma ngemva kokufaka kabusha. Khetha Iphasiwedi esikhundleni salokho, bese iphasiwedi uqobo yenza lowo msebenzi.",
+    "biometricExplainerSecuring": "Vula ngezigxivizo zeminwe noma ubuso bakho — akukho lutho okufanele ulubhale noma ulukhumbule. Ukhiye uhlala kule foni. Ukuze ubuyele ngefoni ehlukile, ngewebhusayithi, noma ngemva kokufaka kabusha, gcina isipele samagama angu-12 kamuva ku-Zilungiselelo. Khetha Iphasiwedi esikhundleni salokho, bese iphasiwedi uqobo yenza lowo msebenzi.",
     "biometricPrompt": "Lesi sikhwama sivikelwa yi-biometrics yale divayisi. Qinisekisa ngesigxivizo somunwe noma ubuso ukuze uqhubeke.",
     "enterRecoveryPhrase": "Faka inkulumo yokubuyisa yamagama angu-12 owayigcina lapho udala lesi sikhwama (noma ukhiye waso oyimfihlo, uma wake wawukhipha). Ibuyela ku-akhawunti efanayo, futhi iphasiwedi oyisetha ngezansi iba yisipele esisebenza yonke indawo kusukela manje.",
     "copyPhrase": "Kopisha inkulumo",
@@ -5106,6 +5107,7 @@
     "unlockWithPasswordExplainer": "Le akhawunti isivele inayo i-wallet, evikelwe ngephasiwedi. Yifake ukuze ubuyise i-wallet yakho kule divayisi.",
     "deviceTab": "Le divayisi",
     "deviceExplainer": "Akukho ongakuthayipha noma ukukukhumbula — ukuhlala kokhiye kule divayisi. Sizokunikeza isipele esinamagama angu-12 ukuze usibhale phansi; ukuphela kwendlela yokungena kusuka kwenye idivayisi, kusuka kuwebhusayithi, noma ngemva kokufaka kabusha. Khetha Iphasiwedi kunalokho bese iphasiwedi ngokwayo yenza lowo msebenzi.",
+    "deviceExplainerSecuring": "Akukho lutho okufanele ulubhale noma ulukhumbule — ukhiye uhlala kule divayisi. Ukuze ubuyele ngenye idivayisi, ngewebhusayithi, noma ngemva kokufaka kabusha, gcina isipele samagama angu-12 kamuva ku-Zilungiselelo. Khetha Iphasiwedi esikhundleni salokho, bese iphasiwedi uqobo yenza lowo msebenzi.",
     "secureOnDevice": "Gcina ukhiye kule divayisi"
   },
   "transcript": {
@@ -9108,7 +9110,7 @@
     "update": "Buyekeza manje"
   },
   "walletBackup": {
-    "title": "Buyela emuva esikhwameni semali",
+    "title": "Yenza isipele sesikhwama semali",
     "rowDesc": "Bona amagama akho angu-12 noma ukhiye wangasese",
     "backedUpOn": "Isipele {{date}}",
     "offerTitle": "Buyela emuva esikhwameni sakho semali?",

@@ -988,7 +988,13 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                       color={authColors.label}
                     />
                     <Text style={[authText.caption, { flex: 1 }]}>
-                      {biometricAvailable
+                      {/* Securing an existing wallet shows no recovery phrase:
+                          the backup is offered later, from Settings. */}
+                      {request?.mode === "create" && request.securing
+                        ? biometricAvailable
+                          ? t("walletSetup.biometricExplainerSecuring")
+                          : t("walletSetup.deviceExplainerSecuring")
+                        : biometricAvailable
                         ? t("walletSetup.biometricExplainer")
                         : t("walletSetup.deviceExplainer")}
                     </Text>

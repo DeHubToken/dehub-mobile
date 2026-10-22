@@ -4820,7 +4820,7 @@
     "usernameReserved": "Nama pengguna ini dicadangkan",
     "profileSet": "Profil berhasil diatur!",
     "profileFailed": "Gagal mengatur profil",
-    "displayNameHint": "Nama publik yang tampil di profilmu."
+    "displayNameHint": "Nama publik di profilmu. Opsional — kosongkan saja untuk memakai nama penggunamu."
   },
   "events": {
     "mine": "Milik saya",
@@ -5061,6 +5061,7 @@
     "accountHasA": "Akun ini memiliki",
     "ifYouUsedDehub": "Jika kamu pernah memakai dehub.io, buka di komputermu, masuk dengan cara dan akun yang sama, lalu",
     "biometricExplainer": "Buka dengan sidik jari atau wajah — tidak ada yang perlu diketik atau diingat. Kuncinya tetap di ponsel ini, jadi kami akan menunjukkan frasa pemulihan 12 kata untuk kamu catat; itulah satu-satunya jalan kembali dari ponsel lain, dari situs web, atau setelah memasang ulang. Pilih Kata Sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
+    "biometricExplainerSecuring": "Buka dengan sidik jari atau wajah — tidak ada yang perlu diketik atau diingat. Kuncinya tetap di ponsel ini. Untuk kembali masuk dari ponsel lain, dari situs web, atau setelah memasang ulang, simpan cadangan 12 kata nanti di Pengaturan. Pilih Kata sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
     "biometricPrompt": "Dompet ini dilindungi biometrik perangkat ini. Konfirmasi dengan sidik jari atau wajah untuk melanjutkan.",
     "enterRecoveryPhrase": "Masukkan frasa pemulihan 12 kata yang kamu simpan saat membuat dompet ini (atau kunci privatnya, jika kamu mengekspornya). Ini kembali ke akun yang sama, dan kata sandi yang kamu atur di bawah menjadi cadangan yang mulai sekarang berfungsi di mana saja.",
     "copyPhrase": "Salin frasa",
@@ -5133,6 +5134,7 @@
     "unlockWithPasswordExplainer": "Akun ini sudah memiliki dompet, yang dilindungi oleh kata sandi. Masukkan untuk memulihkan dompet Anda di perangkat ini.",
     "deviceTab": "Perangkat ini",
     "deviceExplainer": "Tidak ada yang perlu diketik atau diingat — kuncinya tetap ada di perangkat ini. Kami akan menawarkan Anda cadangan 12 kata untuk dituliskan; ini adalah satu - satunya cara kembali dari perangkat lain, dari situs web, atau setelah menginstal ulang. Pilih Kata Sandi sebagai gantinya dan kata sandi itu sendiri melakukan pekerjaan itu.",
+    "deviceExplainerSecuring": "Tidak ada yang perlu diketik atau diingat — kuncinya tetap di perangkat ini. Untuk kembali masuk dari perangkat lain, dari situs web, atau setelah memasang ulang, simpan cadangan 12 kata nanti di Pengaturan. Pilih Kata sandi sebagai gantinya, maka kata sandi itulah yang menjalankan peran tersebut.",
     "secureOnDevice": "Simpan kunci di perangkat ini"
   },
   "walletBackup": {
@@ -9020,7 +9022,7 @@
     "done": "Selesai",
     "error": "Tidak dapat mengirimkan permohonan penghapusan Anda. Akun Anda belum dikonfirmasi untuk dihapus. Silakan coba lagi.",
     "back": "Kembali ke Pengaturan",
-    "signIn": "Masuk Akun Anda",
+    "signIn": "Masuk untuk menghapus akun Anda",
     "acknowledge": "Saya telah menyimpan detail pemulihan dompet saya dan memahami bahwa penghapusan bersifat permanen."
   },
   "miniApps": {
