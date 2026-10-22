@@ -10717,7 +10717,7 @@
     "someone": "Birisi",
     "newFollower": "Yeni takipçi: {{name}}",
     "newSubscriber": "Yeni abone: {{name}}",
-    "subscribedTo": "{{name}},{{plan}} abonesi oldu",
+    "subscribedTo": "{{name}}, {{plan}} abonesi oldu",
     "shared": "{{name}} akışı paylaştı",
     "joined": "{{name}} katıldı",
     "goalReached": "Hedefe ulaşıldı!",

@@ -10719,7 +10719,7 @@
   },
   "liveOverlay": {
     "someone": "Quelqu'un",
-    "newFollower": "Nouvel abonné : {{name}}",
+    "newFollower": "Nouveau follower : {{name}}",
     "newSubscriber": "Nouvel abonné : {{name}}",
     "subscribedTo": "{{name}} abonné à {{plan}}",
     "shared": "{{name}} a partagé le flux",
