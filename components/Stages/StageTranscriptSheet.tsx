@@ -26,6 +26,7 @@ import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, Sp
 import { ButtonLoader, DeHubLoader } from "../DeHubLoader";
 import { usePendingAction } from "../../hooks/usePendingAction";
 import { FIELD_TEXT } from "../../theme/inputs";
+import { useThemeRootStyle } from "../../context/ThemeContext";
 
 interface Props {
   space: AudioSpace | null;
@@ -107,6 +108,9 @@ const HighlightText: React.FC<{ text: string; query: string }> = ({ text, query 
 export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose }) => {
   const { t } = useTranslation();
   const { user } = useAuth();
+  // A Modal draws outside the root view, so the theme's colour variables are
+  // put back here or System Light paints white text on its light sheet.
+  const themeVars = useThemeRootStyle();
   const privacyOptions = useMemo(
     () => [
       { label: `👁️ ${t("settings.public")}`, value: "public" },
@@ -502,8 +506,11 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   if (!visible) return null;
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="90%">
-      <View className="flex-1 w-full rounded-t-3xl p-4 relative">
+    // A fixed height, not just a ceiling: everything inside is flex-1, and a
+    // flex-1 column in a panel with no height of its own measures 0, so the
+    // sheet opened as a thin strip stuck to the bottom of the screen.
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom" maxHeight="90%" panelHeight="90%">
+      <View className="flex-1 w-full rounded-t-3xl p-4 relative" style={themeVars}>
         {/* Header */}
         <View className="flex-row items-center justify-between border-b border-white/10 pb-3 mb-3">
           <View className="flex-row items-center gap-2">

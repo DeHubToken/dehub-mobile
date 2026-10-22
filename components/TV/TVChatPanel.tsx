@@ -12,6 +12,9 @@ import BadgeArtwork from "../common/BadgeArtwork";
  * the same here as it does in the main live chat.
  *
  * Sizing is the caller's job: this fills whatever box it is given (flex: 1).
+ *
+ * Also the live chat inside a Stage room (pass `room`): same row, same
+ * composer, on the stage_chat_messages table web's StageChat uses.
  */
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -30,7 +33,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl, getBadgeHoverOpticalStyle as getBadgeOpticalStyle, getBadgeUrl, resolveBadgeBalance } from "../../libs/misc";
 import { useUser, useAuthActions } from "../../context/AuthContext";
-import { useTvChat, type TvChatMessage } from "../../hooks/useTvChat";
+import { useRoomChat, type ChatRoom, type TvChatMessage } from "../../hooks/useTvChat";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import EmojiSheet from "../Upload/EmojiSheet";
 import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
@@ -51,10 +54,12 @@ const ChatRow: React.FC<{
   myAddress: string;
   onReply: (m: TvChatMessage) => void;
   onDelete: (id: string) => void;
+  /** Stage host: may delete anyone's message in their room. */
+  canModerate?: boolean;
   onToggleReaction: (id: string, emoji: string) => void;
   onMoreReactions: (m: TvChatMessage) => void;
   onOpenProfile: (identifier: string) => void;
-}> = ({ message, myAddress, onReply, onDelete, onToggleReaction, onMoreReactions, onOpenProfile }) => {
+}> = ({ message, myAddress, onReply, onDelete, canModerate, onToggleReaction, onMoreReactions, onOpenProfile }) => {
   const { t } = useTranslation();
   const [showPicker, setShowPicker] = useState(false);
 
@@ -172,7 +177,7 @@ const ChatRow: React.FC<{
             >
               <Icon name="Reply" size={14} color="#A1A1AA" />
             </Pressable>
-            {isMe && (
+            {(isMe || canModerate) && (
               <Pressable
                 onPress={() => {
                   onDelete(message.id);
@@ -206,6 +211,10 @@ interface TVChatPanelProps {
    * sheet once the dismissal has finished.
    */
   onClosePlayer?: () => void;
+  /** Another room than a TV channel (a stage). Defaults to channelId's TV room. */
+  room?: ChatRoom;
+  /** Clear root so the room behind (stage cover art) shows through. */
+  transparent?: boolean;
 }
 
 const TVChatPanel: React.FC<TVChatPanelProps> = ({
@@ -213,6 +222,8 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   enabled = true,
   bottomInset = 0,
   onClosePlayer,
+  room,
+  transparent = false,
 }) => {
   const { t } = useTranslation();
   const user = useUser();
@@ -230,8 +241,8 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   const myAddress = (user?.walletAddress || user?.address || "").toLowerCase();
   const isSignedIn = !!myAddress;
 
-  const { messages, isLoading, sendMessage, deleteMessage, addReaction, removeReaction } =
-    useTvChat(channelId, enabled);
+  const { messages, isLoading, isHost, sendMessage, deleteMessage, addReaction, removeReaction } =
+    useRoomChat(room ?? { table: "tv_chat_messages", column: "channel_id", id: channelId }, enabled);
 
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => listRef.current?.scrollToEnd({ animated: true }));
@@ -287,16 +298,17 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         myAddress={myAddress}
         onReply={setReplyTo}
         onDelete={(id) => void deleteMessage(id)}
+        canModerate={isHost}
         onToggleReaction={handleToggleReaction}
         onMoreReactions={setMoreFor}
         onOpenProfile={handleOpenProfile}
       />
     ),
-    [myAddress, deleteMessage, handleToggleReaction, handleOpenProfile, setReplyTo]
+    [myAddress, deleteMessage, isHost, handleToggleReaction, handleOpenProfile, setReplyTo]
   );
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, transparent && { backgroundColor: "transparent" }]}>
       <View style={styles.header}>
         <Icon name="MessageSquare" size={13} color="#A1A1AA" />
         <Text style={styles.headerText}>{t("tv.liveChat")}</Text>
