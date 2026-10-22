@@ -9191,7 +9191,8 @@
       "reaction_counter": "Reaksiya sayğacı",
       "event_feed": "Son fəaliyyət",
       "chat_box": "Söhbət qutusu",
-      "ticker": "Etiketçi"
+      "ticker": "Etiketçi",
+      "rule_alert": "Qayda xəbərdarlıqları"
     },
     "hints": {
       "tip_alert": "Hər bir təklifə təşəkkür edir, boyu təyinatına görə dəyişir.",
@@ -9208,7 +9209,8 @@
       "reaction_counter": "Yayımınızın göstərdiyi hər reaksiyanı sayır",
       "event_feed": "Yayımınızı paylaşan ən son hədiyyələr, izləyicilər, abunəçilər və insanlar",
       "chat_box": "Yayımınızın söhbət mesajlarını ekranda göstərir",
-      "ticker": "Ekranda sürüşdürülən öz mətninizin sətri"
+      "ticker": "Ekranda sürüşdürülən öz mətninizin sətri",
+      "rule_alert": "Sizin quranızın xəbərləri yerə düşür"
     },
     "fields": {
       "style": "Üslub",
@@ -9264,6 +9266,103 @@
       "rotateConfirm": "Yeni link yaradın? Köhnəsi düz işləməyi dayandırır, ona görə də yenisini obs-a YAPIŞDIRMALISINIZ.",
       "rotated": "Yeni link hazırdır. Onu obalara YAPIŞDIRIN.",
       "rotateFailed": "Yeni link yaratmaq mümkün olmadı. Bir an sonra yenidən cəhd edin."
+    },
+    "rules": {
+      "title": "Quranlar",
+      "intro": "Sizin stream-inizdə bir şey baş verdikdə, DeHub sizin seçdiyiniz kimi işləyir: xəbər göstərir, səs çıxarır, bir şeyi səsli oxuyur, sizin çatınızda yazıb yoxsa Discord-ınıza bildirir.",
+      "add": "Quran əlavə et",
+      "limit": "{{count}} quranınızın sərhədinə çatdıq.",
+      "loadFailed": "Quranlarınız yüklənmədi. Səhifəni tazələyərək yenidən cəhd edin.",
+      "empty": "Hələ quranınız yox. Birini əlavə edərək tip, izləyicilər və ya çat komandalarına reaksiya göstərin.",
+      "saved": "Quranlar qorunub saxlandı. Onlar sizin sonraki tip, izləyici və ya mesajınızda işləyəcək.",
+      "saveFailed": "Quranlarınız qorunub saxlanılmadı.",
+      "testFailed": "Bu test keçmədi. Bir az sonra yenidən cəhd edin.",
+      "saveToTest": "Quranlarınızı test etmək üçün qorunub saxlayın",
+      "test": "Test",
+      "enabled": "Quranın işləməsi",
+      "remove": "Quranı sil",
+      "save": "Quranları qorunub saxla",
+      "needsAlertWidget": "Bəzi quranlar xəbər göstərir. Qeydlər xəbərləri widget-ini əlavə edərək, onlar üçün görünəcək yer yaradın.",
+      "name": "Ad",
+      "when": "Ne zaman",
+      "then": "Sonra",
+      "minAmount": "Ən kiçik tip (DHB)",
+      "command": "Komanda",
+      "keyword": "Söz və ya ifadə",
+      "audience": "Kim bu quranı aktiv edə bilər",
+      "blockedWords": "Bloklaşdırılmış sözlər",
+      "blockedWordsHint": "Vərgi ilə ayrın. Onlar içərən mesajlar ignor edilib və səsli oxunmur.",
+      "cooldown": "İstifadə arası müddət (saniyə)",
+      "userCooldown": "İstifadəçi başına müddət (saniyə)",
+      "addAction": "Əməli əlavə et",
+      "removeAction": "Əməli sil",
+      "placeholders": "Mətninizdə {name}, {amount} və {message} istifadə edin. Mesajlardakı linklər silinir.",
+      "alertText": "Xəbərdarlıq mətni",
+      "sound": "Səs",
+      "sayText": "Ucadan oxumaq üçün mətn",
+      "chatText": "Yazmaq üçün mesaj",
+      "chatHint": "Hesabınızdan axınınızın söhbətinə göndərildi. O, izləyicinin mesajını təkrarlaya bilməz.",
+      "webhookUrl": "Vebhook ünvanı",
+      "webhookHint": "Kəşf və ya Slack webhook və ya YAZINI qəbul edən hər hansı https ünvanı.",
+      "webhookText": "Göndərmək üçün mesaj göndərin",
+      "triggers": {
+        "tip": "İpucu gəlir",
+        "follow": "Kimsə aşağıdakıları edir",
+        "subscribe": "Kimsə abunə olur",
+        "share": "Kimsə axını paylaşır",
+        "command": "Söhbət əmri istifadə olunur",
+        "keyword": "Söhbət mesajında bir kəlmə var",
+        "chat": "Hər hansı söhbət mesajı"
+      },
+      "audiences": {
+        "everyone": "Hər kəs",
+        "followers": "İzləyicilər",
+        "subscribers": "Abunəçilər"
+      },
+      "actionTypes": {
+        "alert": "Xəbərdarlığı göstər",
+        "sound": "Səs çalın",
+        "say": "Ucadan oxuyun",
+        "chat": "Söhbətdə dərc et",
+        "webhook": "Webhook-a göndərin"
+      },
+      "summary": {
+        "tip": "İpucu {{amount}}DHB və ya daha çox"
+      },
+      "presets": {
+        "blank": "Boş qayda",
+        "readChat": "Söhbəti ucadan oxuyun",
+        "bigTip": "Böyük ipucları üçün hava buynuzu",
+        "thankFollowers": "Yeni izləyicilərə təşəkkür edirik",
+        "command": "Söhbət əmri"
+      },
+      "presetHints": {
+        "blank": "Heç nədən başlayın",
+        "readChat": "Hər 30 saniyədə izləyicinizin mesajlarını ucadan oxuyur",
+        "bigTip": "Hava buynuzu oynayır və 100 000 DHB və ya daha çox ipucu üçün xəbərdarlıq göstərir",
+        "thankFollowers": "Kimsə izlədikdə söhbətinizdə təşəkkür mesajı göndərirsiniz",
+        "command": "Söhbətinizdə!əmrinə cavab verir"
+      },
+      "presetText": {
+        "readChat": "{name} deyir {message}",
+        "bigTip": "{name} göndərildi {amount} DHB!",
+        "thankFollowers": "İzlədiyiniz üçün təşəkkür edirik, {name}!",
+        "command": "Salam {name}, axına xoş gəlmisiniz!"
+      },
+      "sounds": {
+        "airhorn": "Hava buynuzu",
+        "applause": "Alqışlar",
+        "cricket": "Cırcıramalar",
+        "drumroll": "Baraban rulonu",
+        "lol": "Gülüş",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (kişi)",
+        "ohh-girl": "Ohh (qadın)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Cılız",
+        "magic-spell": "Sehrli sehr",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -9206,7 +9206,8 @@
       "frame": "Untertitel",
       "reaction_counter": "Reaktionszähler",
       "event_feed": "Aktuelle Aktivität",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Regel-Warnungen"
     },
     "hints": {
       "tip_alert": "Feiert jeden Tipp, angepasst an die Stufe",
@@ -9223,7 +9224,8 @@
       "reaction_counter": "Zählt jede Reaktion, die dein Live-Stream bekommt",
       "event_feed": "Die neuesten Geschenke, Follower, Abonnenten und Leute, die deinen Stream teilen",
       "chat_box": "Zeigt die Chat-Nachrichten deines Streams auf dem Bildschirm",
-      "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt"
+      "ticker": "Eine Zeile deines eigenen Textes, die über den Bildschirm scrollt",
+      "rule_alert": "Wo deine Regel-Warnungen erscheinen"
     },
     "fields": {
       "style": "Stil",
@@ -9279,6 +9281,82 @@
       "rotateConfirm": "Möchtest du einen neuen Link erstellen? Der alte funktioniert direkt nach dem Erstellen nicht mehr, also musst du den neuen in OBS einfügen.",
       "rotated": "Neuer Link fertig. Einfügen in OBS.",
       "rotateFailed": "Kann ne Link neu erstelle. Versuchs in e Moment no wieder."
+    },
+    "rules": {
+      "title": "Regeln",
+      "intro": "Wenn etwas auf deinem Stream passiert, macht DeHub, was du möchtest: zeigt eine Warnung, spielt ein Geräusch, liest etwas vor, postet in deinem Chat oder sagt etwas in deinem Discord.",
+      "add": "Regel hinzufügen",
+      "limit": "Du hast die maximale Anzahl von {{count}} Regeln erreicht.",
+      "loadFailed": "Deine Regeln konnten nicht geladen werden. Aktualisiere die Seite und versuche es erneut.",
+      "empty": "Noch keine Regeln. Füge eine hinzu, um auf Tips, Follows oder Chat-Befehle zu reagieren.",
+      "saved": "Regeln gespeichert. Sie laufen beim nächsten Tip, Follow oder Nachricht.",
+      "saveFailed": "Deine Regeln konnten nicht gespeichert werden.",
+      "testFailed": "Dieser Test ist nicht durchgegangen. Versuche es in Kürze erneut.",
+      "saveToTest": "Speichere deine Regeln, um sie zu testen",
+      "test": "Test",
+      "enabled": "Regel aktivieren",
+      "remove": "Regel löschen",
+      "save": "Regeln speichern",
+      "needsAlertWidget": "Etliche Regeln zeigä a Warnung. Fügä d’Widget «Regel-Warnungen» hinzu, wo’s erscheinen kann.",
+      "name": "Name",
+      "when": "Wann",
+      "then": "Dann",
+      "minAmount": "Kleinster Tip (DHB)",
+      "command": "Befehl",
+      "keyword": "Wort oder Phrase",
+      "audience": "Wer kann sie auslösen",
+      "blockedWords": "Blockierte Wörter",
+      "blockedWordsHint": "Trenne mit Kommas. Nachrichten, die sie enthalten, werden ignoriert und nie vorgelesen.",
+      "cooldown": "Wartezeit zwischen Benutzungen (Sekunden)",
+      "userCooldown": "Wartezeit pro Zuschauer (Sekunden)",
+      "addAction": "Aktion hinzufügen",
+      "removeAction": "Aktion entfernen",
+      "chatHint": "Geschrieben von deinem Konto in den Chat deiner Stream-Liveübertragung. Es darf nicht die Nachricht des Zuschauers wiederholen.",
+      "webhookUrl": "Webhook-Adresse",
+      "webhookHint": "Einer Discord- oder Slack-Webhook, oder ei Webadress (HTTPS) wo ei POST-Aufruf funktioniert.",
+      "triggers": {
+        "tip": "Eini Tipp kommt an.",
+        "follow": "Jemänd follows dir.",
+        "subscribe": "Jemand abonniert.",
+        "share": "Jemand teilt den Stream.",
+        "command": "E chattbefehl wird gnutzt.",
+        "keyword": "A Chatnachricht enthält ein Wort.",
+        "chat": "Any Chatnachricht"
+      },
+      "audiences": {
+        "followers": "Follower"
+      },
+      "actionTypes": {
+        "alert": "Zeig a Alert.",
+        "webhook": "Send zu einem Webhook."
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "bigTip": "Lufthorn für grosse Trinkgeldbeträge"
+      },
+      "presetHints": {
+        "blank": "Start mit nix.",
+        "readChat": "Liest die Nachrichten deiner Follower laut vor, je eine pro Zuschauer alle 30 Sekunden.",
+        "thankFollowers": "Gschiib a Dankeschön in de Chat, wenn mer wer folgt.",
+        "command": "Antworte auf ein `!command` in unserem Chat."
+      },
+      "presetText": {
+        "readChat": "{name} sagt {message}",
+        "bigTip": "{name} schick{amount} DHB!",
+        "thankFollowers": "Merci fürs Follow, {name}!",
+        "command": "Grüezi {name}, willkommen beim Stream!"
+      },
+      "sounds": {
+        "airhorn": "Airhorn",
+        "applause": "Applaus",
+        "lol": "Lachen",
+        "ooh-ahh": "Ooh äh",
+        "ooh-man": "Ooh (Mensch)",
+        "ohh-girl": "Ohh (Frau)",
+        "ba-dum-tish": "Ba dum tish",
+        "magic-spell": "Mägi Zauberformel",
+        "shhh": "Shhh"
+      }
     }
   }
 }

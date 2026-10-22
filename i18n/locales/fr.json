@@ -10783,7 +10783,8 @@
       "reaction_counter": "Compteur de réaction",
       "event_feed": "Activité récente",
       "chat_box": "Boîte de discussion",
-      "ticker": "Bandeau défilant"
+      "ticker": "Bandeau défilant",
+      "rule_alert": "Alertes de règle"
     },
     "hints": {
       "tip_alert": "Célèbre chaque pourboire, dimensionné à son niveau",
@@ -10800,7 +10801,8 @@
       "reaction_counter": "Compte chaque réaction que votre émission reçoit",
       "event_feed": "Les derniers cadeaux, followers, abonnés et personnes partageant votre émission",
       "chat_box": "Affiche les messages de chat de votre diffusion à l'écran",
-      "ticker": "Une ligne de votre propre texte qui défile sur l'écran"
+      "ticker": "Une ligne de votre propre texte qui défile sur l'écran",
+      "rule_alert": "Où les alertes de vos règles apparaissent"
     },
     "fields": {
       "style": "Style",
@@ -10857,6 +10859,102 @@
       "rotateConfirm": "Créer un nouveau lien ? L'ancien cesse de fonctionner immédiatement, vous devrez donc coller le nouveau dans OBS.",
       "rotated": "Nouveau lien prêt. Collez-le dans OBS.",
       "rotateFailed": "Impossible de créer un nouveau lien. Réessayez dans un instant."
+    },
+    "rules": {
+      "title": "Règles",
+      "intro": "Lorsque quelque chose se passe sur votre flux, DeHub fait ce que vous choisissez : affiche une alerte, émet un son, lit quelque chose à haute voix, publie dans votre chat ou le dit à votre Discord.",
+      "add": "Ajouter une règle",
+      "limit": "Vous avez atteint la limite de {{count}} règles.",
+      "loadFailed": "Vos règles n'ont pas pu être chargées. Actualisez la page pour réessayer.",
+      "empty": "Pas encore de règles. Ajoutez-en une pour réagir aux conseils, aux suivis ou aux commandes de chat.",
+      "saved": "Règles enregistrées. Elles s'exécutent sur votre prochain pourboire, suivi ou message.",
+      "saveFailed": "Vos règles n'ont pas pu être enregistrées.",
+      "testFailed": "Ce test n'est pas passé. Réessayez dans un instant.",
+      "saveToTest": "Enregistrez vos règles pour les tester",
+      "enabled": "Statuer sur",
+      "remove": "Supprimer la règle",
+      "save": "Enregistrer les règles",
+      "needsAlertWidget": "Certaines règles affichent une alerte. Ajoutez le widget Alertes de règle pour qu'il apparaisse quelque part.",
+      "name": "Nom",
+      "when": "Quand",
+      "then": "Alors",
+      "minAmount": "Embout le plus petit (DHB)",
+      "command": "Commande",
+      "keyword": "Mot ou phrase",
+      "audience": "Qui peut le déclencher",
+      "blockedWords": "Mots bloqués",
+      "blockedWordsHint": "Séparez-les par des virgules. Les messages qui les contiennent sont ignorés et ne sont jamais lus à haute voix.",
+      "cooldown": "Attendre entre les utilisations (secondes)",
+      "userCooldown": "Attendre par spectateur (secondes)",
+      "addAction": "Ajouter une action",
+      "removeAction": "Supprimer l'action",
+      "placeholders": "Utilisez {name}, {amount} et {message} dans votre texte. Les liens dans les messages sont supprimés.",
+      "alertText": "Texte d'alerte",
+      "sound": "Son",
+      "sayText": "Texte à lire à haute voix",
+      "chatText": "Message à publier",
+      "chatHint": "Publié à partir de votre compte dans le chat de votre flux. Il ne peut pas répéter le message du spectateur.",
+      "webhookUrl": "Adresse Webhook",
+      "webhookHint": "Un webhook Discord ou Slack, ou toute adresse https qui accepte une PUBLICATION.",
+      "webhookText": "Message à envoyer",
+      "triggers": {
+        "tip": "Un pourboire arrive",
+        "follow": "Quelqu'un suit",
+        "subscribe": "Quelqu'un s'abonne",
+        "share": "Quelqu'un partage le flux",
+        "command": "Une commande de chat est utilisée",
+        "keyword": "Un message de chat contient un mot",
+        "chat": "Tout message de chat"
+      },
+      "audiences": {
+        "everyone": "Tout le monde",
+        "followers": "Suivez-moi",
+        "subscribers": "Abonnés"
+      },
+      "actionTypes": {
+        "alert": "Afficher une alerte",
+        "sound": "Jouer un son",
+        "say": "Lire à haute voix",
+        "chat": "Publier dans le chat",
+        "webhook": "Envoyer à un webhook"
+      },
+      "summary": {
+        "tip": "Conseil de {{amount}} DHB ou plus"
+      },
+      "presets": {
+        "blank": "Règle vide",
+        "readChat": "Lire le chat à haute voix",
+        "bigTip": "Klaxon pneumatique pour gros embouts",
+        "thankFollowers": "Remercier les nouveaux abonnés",
+        "command": "Commande de chat"
+      },
+      "presetHints": {
+        "blank": "Partir de rien",
+        "readChat": "Lit les messages de vos abonnés à haute voix, un par téléspectateur toutes les 30 secondes",
+        "bigTip": "Joue un klaxon pneumatique et affiche une alerte pour des pourboires de 100 000 DHB ou plus",
+        "thankFollowers": "Poste un remerciement dans votre chat quand quelqu'un suit",
+        "command": "Répond à une !commande dans votre chat"
+      },
+      "presetText": {
+        "readChat": "{name} dit {message}",
+        "bigTip": "{name} sent {amount} DHB !",
+        "thankFollowers": "Merci de nous avoir suivis, {name} !",
+        "command": "Bonjour {name}, bienvenue sur la chaîne !"
+      },
+      "sounds": {
+        "airhorn": "Klaxon pneumatique",
+        "applause": "Applaudissements",
+        "cricket": "Grillons",
+        "drumroll": "Rouleau de tambour",
+        "lol": "Rire",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (homme)",
+        "ohh-girl": "Ohh (femme)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Effrayant",
+        "magic-spell": "Sort magique",
+        "shhh": "Chut"
+      }
     }
   }
 }

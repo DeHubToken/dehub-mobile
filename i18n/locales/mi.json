@@ -9172,7 +9172,8 @@
       "reaction_counter": "Te whakahe i te urupare",
       "event_feed": "Ngā mahi hou",
       "chat_box": "Pouaka kōrerorero",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Onagrams Ture"
     },
     "hints": {
       "tip_alert": "E whakanui ana i nga tohu katoa, e whakanuia ana ki tona taumata",
@@ -9189,7 +9190,8 @@
       "reaction_counter": "Ka whakaarohia e koe nga urupare katoa e puta mai ana i to whakaaturanga",
       "event_feed": "Ko nga taonga hou, nga kaiwhaiwhai, nga kaiohauru me nga tangata e tohatoha ana i to whakaaturanga",
       "chat_box": "Whakaatuhia nga karere korerorero o to whakaaturanga i runga i te mata",
-      "ticker": "He raina o to tuhinga ake e rere ana puta noa i te mata"
+      "ticker": "He raina o to tuhinga ake e rere ana puta noa i te mata",
+      "rule_alert": "Kei hea te putanga o ō ture onagrams"
     },
     "fields": {
       "style": "Kāhua",
@@ -9244,6 +9246,103 @@
       "rotateConfirm": "Hangaia he hononga hou? Ko te tawhito mutu mahi tonu, na ka hiahia koe ki te tāuta i te hou i roto i te tawhito.",
       "rotated": "He hononga hou kua rite. Paste reira i roto i te tawhito.",
       "rotateFailed": "Kaore e taea te hanga hononga hou. Whakamātauria ano i roto i te wa."
+    },
+    "rules": {
+      "title": "Ture",
+      "intro": "Ka puta he mea ki runga i tō ripa, ka mahi a DeHub i tā koe whiriwhiri: ka whakaatu i te onagrams, ka whakatangi i te oro, ka pānui i te mea, ka tāpui ki tō kōrero, ki a Discord rānei.",
+      "add": "Tāpiri i te ture",
+      "limit": "Kua eke koe ki te tepe o {{count}} ture.",
+      "loadFailed": "Kaore i taea te uta i ō ture. Whakahou i te whārangi kia ngana anō.",
+      "empty": "Kaore he ture tonu. Tāpiri i te tahi kia urupare ki ngā tīpuna, ngā whai, ngā whakahau kōrero rānei.",
+      "saved": "Kua tiakina ngā ture. Ka rere i tō tino tīpuna, whai, kupu rānei.",
+      "saveFailed": "Kaore i taea te tiaki i ō ture.",
+      "testFailed": "Kaore i haere tēnei whakamatau. Ngana anō i te iti harikoa.",
+      "saveToTest": "Tiakina ō ture kia whakamatau ai",
+      "test": "Whakamatau",
+      "enabled": "Ture kia whakatupu",
+      "remove": "Mukua te ture",
+      "save": "Tiakina ngā ture",
+      "needsAlertWidget": "Ko ētahi ture ka whakaatu i te onagrams. Tāpiri i te Onagrams Ture widget kia whai wāhi ai.",
+      "name": "Ingoa",
+      "when": "Ina",
+      "then": "Katahi",
+      "minAmount": "Te tīpuna iti (DHB)",
+      "command": "Whakahau",
+      "keyword": "Kupu, kupu rānei",
+      "audience": "Ko wai e taea te whakatupu",
+      "blockedWords": "Kupu kua ārai",
+      "blockedWordsHint": "Whakawehewehenga ki te ōmitomita. Ko ngā karere e whai ana i ēnei kupu ka wareware, e kore e pānuihia.",
+      "cooldown": "Tatari i waenganui i ngā whakamahi (hēkona)",
+      "userCooldown": "Tatari mō ia kaimātakitaki (hēkona)",
+      "addAction": "Tāpiri i te mahi",
+      "removeAction": "Tango i te mahi",
+      "placeholders": "Whakamahia {name}, {amount} me {message} i roto i to tuhinga. Ka tangohia nga hononga i roto i nga karere.",
+      "alertText": "Tuhinga o mua",
+      "sound": "Whakarongo",
+      "sayText": "Ngā tuhinga hei pānui i te reo nui",
+      "chatText": "He karere ki te tuku",
+      "chatHint": "I whakaputaina mai i tō pūkete i roto i te kōrerorero o tō awa. Kaore e taea te whakahoki mai i te karere a te kaitirotiro.",
+      "webhookUrl": "Ngārewha tūhono",
+      "webhookHint": "He paetukutuku Discord, Slack ranei, tetahi wāhitau https ranei e whakaae ana ki te pou.",
+      "webhookText": "He karere ki te tuku",
+      "triggers": {
+        "tip": "Ka tae mai he tohu",
+        "follow": "Ko te tangata e whai ake nei",
+        "subscribe": "He tangata e haina ana",
+        "share": "Ka tohaina e tetahi te awa",
+        "command": "Ka whakamahia he whakahau korerorero",
+        "keyword": "Kei roto i te karere kōrerorero he kupu",
+        "chat": "He karere kōrerorero katoa"
+      },
+      "audiences": {
+        "everyone": "Katoa",
+        "followers": "Ngā Kaihautū",
+        "subscribers": "Kaitohu"
+      },
+      "actionTypes": {
+        "alert": "Whakaatuhia he whakatupato",
+        "sound": "Tākaro i te tangi",
+        "say": "Pānuihia te reo nui",
+        "chat": "Post i roto i te kōrerorero",
+        "webhook": "Tukuna he paetukutuku"
+      },
+      "summary": {
+        "tip": "Tohu o {{amount}} DHB neke atu ranei"
+      },
+      "presets": {
+        "blank": "Ko te ture puru",
+        "readChat": "Pānuihia te kōrerorero nui",
+        "bigTip": "Air haona mo nga tohutohu nui",
+        "thankFollowers": "Ngā mihi ki ngā kaiwhaiwhai hou",
+        "command": "Kōrerorero whakahau"
+      },
+      "presetHints": {
+        "blank": "Tīmata i tetahi mea",
+        "readChat": "Pānuihia ngā karere o ō kaiwhaiwhai, kotahi ia mātakitaki i ia 30 hēkona",
+        "bigTip": "Whakaritea he haona hau me te whakaatu i te whakatupato mo nga tohutohu o te 100,000 DHB neke atu ranei",
+        "thankFollowers": "Tukuna he mihi ki a koe i roto i to korerorero ina whai ake tetahi",
+        "command": "Whakautu a!whakahau i roto i to koutou kōrerorero"
+      },
+      "presetText": {
+        "readChat": "{name} ka mea {message}",
+        "bigTip": "{name} i tukuna {amount} DHB!",
+        "thankFollowers": "Mauruuru koe mo te whai ake, {name}!",
+        "command": "Kia ora {name}, Nau mai ki te awa!"
+      },
+      "sounds": {
+        "airhorn": "Te haona o te rangi",
+        "applause": "Te tono",
+        "cricket": "Crickets",
+        "drumroll": "Roll Drum",
+        "lol": "Te kata",
+        "ooh-ahh": "He aha te mea e pā ana ki a koe",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (wahine)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Ko te karaihe makutu",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -9035,7 +9035,8 @@
       "reaction_counter": "Reaction counter",
       "event_feed": "Recent activity",
       "chat_box": "Chat box",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Rule alerts"
     },
     "hints": {
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
@@ -9086,6 +9087,82 @@
       "copied": "Link copied",
       "rotated": "Link new go wey. Paste wey go OBS.",
       "rotateFailed": "No fit make new link. Try again in small time."
+    },
+    "rules": {
+      "title": "Rules",
+      "intro": "Wen something happen on your stream, DeHub go do what you say: show alert, play sound, read something out loud, post in your chat, or tell your Discord.",
+      "add": "Add a rule",
+      "loadFailed": "Yas rules wey you no fit load. Come back page wey you fit try again.",
+      "empty": "No rule yet. Add one fo react fo tip, follow, or chat command.",
+      "saved": "Wetin you say go dey save. Dem go run for your next tip, follow, or message.",
+      "saveFailed": "Wetin you dey try save no go save wey. Try again or check if you have permission.",
+      "testFailed": "Na test dis no go well. Try again after a while.",
+      "test": "Test",
+      "enabled": "Rule on",
+      "remove": "Delete rule",
+      "save": "Save rules",
+      "needsAlertWidget": "Some rule show wey dey alert. Add Rule alerts widget so wey dem go fit show up somewhere.",
+      "name": "Name",
+      "when": "When",
+      "then": "Then",
+      "minAmount": "Smallest tip (DHB)",
+      "command": "Command",
+      "keyword": "Word or phrase",
+      "audience": "Won man a go set dis off?",
+      "blockedWords": "Blocked words",
+      "cooldown": "Wait between uses (seconds)",
+      "userCooldown": "Wait per viewer (seconds)",
+      "addAction": "Add an action",
+      "removeAction": "Remove action",
+      "alertText": "Alert text",
+      "sound": "Sound",
+      "chatText": "Message to post",
+      "webhookUrl": "Webhook address",
+      "webhookText": "Message to send",
+      "triggers": {
+        "tip": "A tip arrives",
+        "follow": "Someone follows",
+        "subscribe": "Someone subscribes",
+        "chat": "Any chat message"
+      },
+      "audiences": {
+        "everyone": "Everyone",
+        "followers": "Followers",
+        "subscribers": "Subscribers"
+      },
+      "actionTypes": {
+        "alert": "Show an alert",
+        "sound": "Play a sound",
+        "say": "Read aloud",
+        "chat": "Post in chat",
+        "webhook": "Send to a webhook"
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "readChat": "Read chat aloud",
+        "command": "Chat command"
+      },
+      "presetHints": {
+        "readChat": "Reads yu followers messages out loud, one for each person, every 30 seconds."
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} sent {amount} DHB!"
+      },
+      "sounds": {
+        "airhorn": "Air horn",
+        "applause": "Applause",
+        "cricket": "Crickets",
+        "drumroll": "Drum roll",
+        "lol": "Laughter",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (woman)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Magic spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

@@ -9164,7 +9164,8 @@
       "reaction_counter": "Ka soo horjeeda falcelinta",
       "event_feed": "Dhawaan waxqabadka",
       "chat_box": "Sanduuqa sheekaysiga",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Digniinta xeerka"
     },
     "hints": {
       "tip_alert": "Waxay u dabaaldegtaa talooyin kasta, oo si weyn loo cabbiray heerarkeeda",
@@ -9181,7 +9182,8 @@
       "reaction_counter": "Xisaab falcelin kasta oo baahintaadu hesho",
       "event_feed": "Hadiyadihii ugu dambeeyay, kuwa raacsan, macaamiisha iyo dadka la wadaagaya baahintaada",
       "chat_box": "Muuji farriimaha sheekaysiga ee baahintaada shaashadda",
-      "ticker": "Khadka qoraalkaaga oo ku xardhan shaashadda oo dhan"
+      "ticker": "Khadka qoraalkaaga oo ku xardhan shaashadda oo dhan",
+      "rule_alert": "Halka digniinta sharciyadaada ay ka muuqato"
     },
     "fields": {
       "style": "Qaabka",
@@ -9236,6 +9238,101 @@
       "rotateConfirm": "Samee xiriir cusub? Midka hore wuxuu joojiyaa shaqada isla markiiba, markaa waxaad u baahan doontaa inaad ku dhejiso midka cusub.",
       "rotated": "Link cusub diyaar u ah. ku dheji in OBS.",
       "rotateFailed": "Ma sameyn karo xiriir cusub. Isku day mar kale in daqiiqad ah."
+    },
+    "rules": {
+      "title": "Xeerarka",
+      "intro": "Marka wax ku dhaco durdurkaaga, DeHub wuxuu sameeyaa waxa aad doorato: wuxuu muujinayaa feejignaan, wuxuu ciyaaraa dhawaaq, wuxuu akhriyaa wax cod dheer, qoraallo ku jira sheekadaada ama wuxuu u sheegaa Discord-kaaga.",
+      "add": "Ku dar xeer",
+      "limit": "Waxaad gaadhay xadka {{count}} rules.",
+      "loadFailed": "Qaynuunnadaada lama qaadi karo. Dib u cusboonaysii bogga si aad u tijaabiso mar kale.",
+      "empty": "No rules yet. ku dar mid ka mid ah in ay ka jawaabaan talooyin, raaco ama amarada chat.",
+      "saved": "Xeerarka la keydiyay. waxay ku ordaan tip-kaaga xiga, raac ama fariin.",
+      "saveFailed": "Qaynuunnadaada lama badbaadin karo.",
+      "testFailed": "Imtixaankaas ma uusan dhaafin. Isku day mar kale in daqiiqad ah.",
+      "saveToTest": "Badbaadi sharciyadaada si aad u tijaabiso",
+      "test": "Imtixaanka",
+      "enabled": "Xeerka on",
+      "remove": "Tirtir xeerka",
+      "save": "Keydso xeerarka",
+      "needsAlertWidget": "Xeerarka qaarkood waxay muujinayaan feejignaan. Ku dar widgetka digniinta xeerka sidaa darteed waxay leedahay meel ay ku muuqato.",
+      "name": "Magaca",
+      "when": "Marka",
+      "then": "Markacadeey \"",
+      "minAmount": "Talooyinka ugu yar (DHB)",
+      "command": "Amarka",
+      "keyword": "Erey ama weedho",
+      "audience": "Yaa ka saari kara",
+      "blockedWords": "Ereyada la xannibay",
+      "blockedWordsHint": "Kala sooc komas. farriimo ay ku jiraan waa la iska indho tirayaa marna si qayaxan loo akhriyo.",
+      "cooldown": "Sug inta u dhaxaysa isticmaalka (seconds)",
+      "userCooldown": "Sug qof kasta oo daawadayaal ah (seconds)",
+      "addAction": "Ku dar ficil",
+      "removeAction": "Ka saar ficil",
+      "placeholders": "Isticmaal {name}, {amount} iyo {message} qoraalkaaga. Xiriirada farriimaha waa laga saaraa.",
+      "alertText": "Qoraalka digniinta",
+      "sound": "Cod",
+      "sayText": "Qoraalka si aad u akhrido cod dheer",
+      "chatText": "Fariin ku socota boostada",
+      "chatHint": "Posted ka account in your stream's chat. Ma soo celin karo fariinta daawadayaasha.",
+      "webhookUrl": "Cinwaanka Webhook",
+      "webhookHint": "A Discord ama Slack webhook, ama cinwaan kasta oo https ah oo aqbalaya boostada.",
+      "webhookText": "Fariin si aad u dirto",
+      "triggers": {
+        "tip": "Talo ayaa imanaysa",
+        "follow": "Qof baa raaca",
+        "subscribe": "Qof isdiiwaangeliya",
+        "share": "Qof ayaa la wadaagaya qulqulka",
+        "command": "Amarka wada sheekaysiga ayaa loo adeegsadaa",
+        "keyword": "Farriinta sheekada waxaa ku jira erayga",
+        "chat": "Fariin kasta oo sheeko ah"
+      },
+      "audiences": {
+        "everyone": "Qof walba",
+        "followers": "Raacayaasha",
+        "subscribers": "Macaamiisha"
+      },
+      "actionTypes": {
+        "alert": "Muuji digniin",
+        "say": "Si weyn u akhri",
+        "chat": "Ku dhaji sheekaysiga",
+        "webhook": "U dir websaydhka"
+      },
+      "summary": {
+        "tip": "Tip ee {{amount}} DHB ama ka badan"
+      },
+      "presets": {
+        "blank": "Xeerka madhan",
+        "readChat": "Hoos ka aqriso Wadahadalka",
+        "bigTip": "Hordhaca Hawada ee Talooyinka Waaweyn",
+        "thankFollowers": "Waad ku mahadsan tahay kuwa raacsan cusub",
+        "command": "Amarka wadahadalka"
+      },
+      "presetHints": {
+        "blank": "Waxba ka biloow",
+        "readChat": "Akhrinta farriimaha taageerayaashaada si weyn, mid ka mid ah daawadayaasha 30 ilbiriqsi kasta",
+        "bigTip": "Wuxuu dhigaa geeska hawada wuxuuna muujinayaa feejignaan talooyin ah 100,000 DHB ama ka badan",
+        "thankFollowers": "Posted in Maqaal | Comments Off on Waad ku mahadsan tahay sheekadaada marka aad qof raacdo",
+        "command": "Jawaabaha a !amarka sheekadaada"
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} diray {amount} DHB!",
+        "thankFollowers": "Waad ku mahadsan tahay soo socda, {name}!",
+        "command": "Waad salaaman tahay {name}, soo dhawow qulqulka!"
+      },
+      "sounds": {
+        "airhorn": "Hordhaca Hawada",
+        "applause": "Raali Gelinta",
+        "cricket": "Crickets",
+        "drumroll": "Rullaluistemadka Drum",
+        "lol": "Qosol",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Spooky",
+        "magic-spell": "Magic spell",
+        "shhh": "Shhh"
+      }
     }
   }
 }

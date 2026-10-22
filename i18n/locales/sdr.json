@@ -9216,7 +9216,8 @@
       "subscribe_alert": "सब्सक्राइबर अलर्ट",
       "share_alert": "साझा चेतावनी",
       "stream_timer": "برادکاست تایمر",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Rule alerts"
     },
     "hints": {
       "tip_alert": "हर टिप मनाता है, अपने स्तर के अनुसार आकार दिया गया",
@@ -9267,6 +9268,44 @@
       "rotate": "नवा लिंक बनाय",
       "rotated": "نکته جدید آماده. آن را در OBS چسبانید.",
       "rotateFailed": "بَشَكَرَ، يَا صَاحِب، يَا حَاوِلْ مَعَاهَدَةً تَانِيَةً بَعْدَ قَلِيلٍ مِنَ الزَّمَانِ."
+    },
+    "rules": {
+      "add": "Ekta niyam joro",
+      "saved": "قواعد مخزنة. ستعمل عند تفعيلها من خلال التيب أو التفاعل مع الحساب أو إرسال رسالة.",
+      "saveFailed": "کودهای شما ذخیره نشد.",
+      "testFailed": "ओ परीक्षा नहीं गेल। थोड़ा समय बाद फिर से कोशिश करो।",
+      "needsAlertWidget": "بَعضُ القَواعِدِ تُظْهِرُ تَحْذِيرًا. أَضِفِ وَجْهَةَ التَّحْذِيرَاتِ لِلْقَاعِدَةِ لِتَكُونَ لَهَا مَكَانًا لِلظَّهْرِ",
+      "name": "نام",
+      "minAmount": "بەشەکەتەن تۆپ (DHB)",
+      "keyword": "کلمه یا عبارت",
+      "userCooldown": "دقیقه بر هر نگاهنده (ثانیه)",
+      "webhookText": "भेजेक ले संदेश",
+      "audiences": {
+        "followers": "फॉलोअर्स",
+        "subscribers": "सदस्य"
+      },
+      "actionTypes": {
+        "alert": "Alert दिखाओ"
+      },
+      "presets": {
+        "blank": "Blank rule"
+      },
+      "presetHints": {
+        "blank": "किछु नाइँ स' शुरू कर",
+        "command": "Tor chat me ek !command ke jawab dewe hai"
+      },
+      "presetText": {
+        "readChat": "{name} می‌گوید: {message}",
+        "bigTip": "{name} {amount} DHB فرستاد!",
+        "thankFollowers": "شکر از دنبال کردن، {name}!",
+        "command": "سلام {name}، خوش آمدید به پخش!"
+      },
+      "sounds": {
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "ओह (मन)",
+        "ohh-girl": "Ohh (زنی)",
+        "ba-dum-tish": "Ba dum tish"
+      }
     }
   }
 }

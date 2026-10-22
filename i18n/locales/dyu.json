@@ -9118,7 +9118,8 @@
       "reaction_counter": "KɔrɔbɔliModifier",
       "event_feed": "Sanni dɔɔni, u ye baara kɛ",
       "chat_box": "Kala Lagaw Ya",
-      "ticker": "Fɛɛn minw be sɔrɔ o la"
+      "ticker": "Fɛɛn minw be sɔrɔ o la",
+      "rule_alert": "Kɔrɔbɔli sariya"
     },
     "hints": {
       "follow_alert": "Ka tugu mɔgɔ kuraw kɔ",
@@ -9133,7 +9134,8 @@
       "reaction_counter": "I ka kan ka min fɔ, o ye tiɲɛ ye",
       "event_feed": "I ka kalan labanw, i ka kalandenw, i ka sɛbɛw ani i ka kalanw jɛnsɛnbagaw",
       "chat_box": "- I ka videokalanw yira i ka filɛli la",
-      "ticker": "O kɔ, a ye fɛɛn dɔ yira a la min be se k'a bali ka fɛɛn dɔ ye."
+      "ticker": "O kɔ, a ye fɛɛn dɔ yira a la min be se k'a bali ka fɛɛn dɔ ye.",
+      "rule_alert": "I ka sariyaw be yɔrɔ min na"
     },
     "fields": {
       "style": "O ye ɲɛyirali ɲuman ye",
@@ -9188,6 +9190,97 @@
       "rotateConfirm": "Mun na an ka ɲi ka tugu ɲɔgɔn kɔ? O kɔrɔ ko, i ka ɲi ka baara dabila joona joona.",
       "rotated": "N'a sɔrɔ i tun b'a fɛ ka dɔ fara i ka baara kan.",
       "rotateFailed": "\"Ne ma se ka bataki filanan dayɛlɛ fɔɔ ka taga se a laban ma. I be se k'a ɲini tugu miniti damanin kɔnɔ."
+    },
+    "rules": {
+      "title": "Sariya",
+      "intro": "Ni koo dɔ kɛra i ka site web kan, DeHub b'a fɛ ka min kɛ, a b'o kɛ: a be lasɔmini dɔ yira, a be mankan dɔ bɔ, a be fɛɛn dɔ kalan ni kaanba ye, a be kuma i ka site web kɔnɔ wala a be kuma i ka Discord koo la.",
+      "add": "A ka sariya sigi",
+      "limit": "I sera dan na {{count}} Rules.",
+      "loadFailed": "I ka sariyaw tɛ se ka sigi sen kan. ka to ka sɛbɛ nin ɲɛɛ tugu",
+      "empty": "No rules yet. ka mɔgɔ dɔ fara a kan ka ladiliw jaabi, ka tugu u kɔ wala ka kumaɲɔgɔnya kɛ n'u ye.",
+      "saved": "U be baara kɛ i ka ladili nata kan, ka tugu i kɔ wala ka kuma dɔ fɔ.",
+      "saveFailed": "O kɔ, u tɛ se ka to nii na.",
+      "testFailed": "A tun ma miiri ko a bena se ka koo dɔ kɛ. I be se k'a ɲini tugu miniti damanin kɔnɔ.",
+      "saveToTest": "I ka kan ka min kɛ, o filɛ",
+      "test": "Kɔrɔbɔli",
+      "enabled": "A ka sariya",
+      "remove": "Fanga min be sɔrɔ a ka sariya la",
+      "save": "Sariyaw",
+      "needsAlertWidget": "N'i ye mɔgɔ fila lasɔmi, o be se k'i nafa. Aw ye sira nin fara a kan walisa a ka kɛ yɔrɔ dɔ ye min ka kan ka ye.",
+      "name": "Tɔgɔ",
+      "when": "Nka, tuma min na",
+      "then": "O kɔ,",
+      "minAmount": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
+      "command": "Kɛlɛkɛyɔrɔ",
+      "keyword": "Kuma wala kumaden",
+      "blockedWords": "Kuma minw be se ka mɔgɔ bali ka kuma",
+      "blockedWordsHint": "Minw b'a fɔ u ma ko u bena koo minw kɛ, olu be miiri u la.",
+      "userCooldown": "Mɔgɔ min be filɛli kɛ, o tigi ka kan ka kɔnɔni kɛ.",
+      "addAction": "Ka kɛ dɔ ye",
+      "removeAction": "K'a to a ka baara la",
+      "placeholders": "I ka barokun kɔnɔ, i ka {name}, {amount} ani {message} kɛ. O la, mɔgɔ si tun tɛ se ka kuma n'a ye.",
+      "alertText": "Alert text",
+      "sound": "Sound",
+      "sayText": "Ka to ka kalan kɛ",
+      "chatText": "Message to post",
+      "chatHint": "I ka site web ka kunnafoniw bila ka bɔ i ka site web kan. A tɛ se ka mɔgɔ filɛbaga ka kumaw fɔ tugun.",
+      "webhookUrl": "Webhook address",
+      "webhookText": "Message to send",
+      "triggers": {
+        "tip": "A tip arrives",
+        "follow": "Someone follows",
+        "subscribe": "Someone subscribes",
+        "share": "Mɔgɔ dɔ be se ka na ni a ye",
+        "command": "O kama, an ka kan ka baro kɛ ni mɔgɔ wɛrɛw ye.",
+        "keyword": "Kuma kelen dɔrɔn lo be sɔrɔ a kɔnɔ.",
+        "chat": "Any chat message"
+      },
+      "audiences": {
+        "everyone": "Everyone",
+        "followers": "Followers",
+        "subscribers": "Subscribers"
+      },
+      "actionTypes": {
+        "alert": "Show an alert",
+        "sound": "Play a sound",
+        "say": "Read aloud",
+        "chat": "Post in chat",
+        "webhook": "Send to a webhook"
+      },
+      "summary": {
+        "tip": "{{amount}}DHB wala ka tɛmɛ o kan"
+      },
+      "presets": {
+        "blank": "Blank rule",
+        "readChat": "Read chat aloud",
+        "bigTip": "O kɔ, a ye sira di a ma ko a ka taga n'a ye.",
+        "thankFollowers": "Ne b'a fɛ k'a fɔ aw ye ko aw ye ne",
+        "command": "Chat command"
+      },
+      "presetHints": {
+        "blank": "Ka bɔ fɛɛn si kan",
+        "readChat": "I ka kalandenw ka lɛtɛrɛw kalan ni kaanba ye, mɔgɔ kelen kelen bɛɛ ka lɛtɛrɛw kalan ni kaanba ye segindi 30 o segindi 30",
+        "bigTip": "A be fɔɲɔbana dɔ kɛ ani a be lasɔmini dɔ yira a ka ladiliw la min be se ka kɛ DHB 100 000 wala a tɛmɛ o kan",
+        "thankFollowers": "N'i ye mɔgɔ dɔ ye min be tugu i kɔ, i ka barika la a ye",
+        "command": "I ka kan ka min fɔ, o ye tiɲɛ ye."
+      },
+      "presetText": {
+        "readChat": "{name} says {message}",
+        "bigTip": "{name} sent {amount} DHB!"
+      },
+      "sounds": {
+        "airhorn": "Fanga min be fɔɲɔ kan",
+        "applause": "Ne b'i fo kosɔbɛ",
+        "cricket": "Kɛlɛkɛyɔrɔ",
+        "drumroll": "Drum roll",
+        "lol": "A be yɛlɛla",
+        "ooh-ahh": "O ye ne ka koo ye.",
+        "ooh-man": "Cɛ (cɛ)",
+        "ohh-girl": "Muso (muso)",
+        "ba-dum-tish": "O ye ne ka koo ye.",
+        "magic-spell": "O ye kabako ye.",
+        "shhh": "O ye n ka miiriya ye."
+      }
     }
   }
 }

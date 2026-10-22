@@ -10779,7 +10779,8 @@
       "reaction_counter": "Reaksiyon sayacı",
       "event_feed": "Son etkinlikler",
       "chat_box": "Sohbet kutusu",
-      "ticker": "Kayan yazı"
+      "ticker": "Kayan yazı",
+      "rule_alert": "Kural uyarıları"
     },
     "hints": {
       "tip_alert": "Seviyesine göre boyutlandırılmış her bahşişi kutlar",
@@ -10796,7 +10797,8 @@
       "reaction_counter": "Yayınınızın aldığı her tepkiyi sayar",
       "event_feed": "En son hediyeler, takipçiler, aboneler ve yayınınızı paylaşan kişiler",
       "chat_box": "Yayınınızın sohbet mesajlarını ekranda gösterir",
-      "ticker": "Ekranda kayan kendi metninizin bir satırı"
+      "ticker": "Ekranda kayan kendi metninizin bir satırı",
+      "rule_alert": "Kurallarınızın uyarılarının göründüğü yer"
     },
     "fields": {
       "banner": "Afiş",
@@ -10853,6 +10855,101 @@
       "rotateConfirm": "Yeni bir bağlantı oluşturulsun mu? Eskisi hemen çalışmayı durdurur, bu yüzden yenisini OBS'ye yapıştırmanız gerekir.",
       "rotated": "Yeni bağlantı hazır. OBS'ye yapıştırın.",
       "rotateFailed": "Yeni bir bağlantı oluşturulamadı. Birazdan tekrar deneyin."
+    },
+    "rules": {
+      "title": "Kurallar",
+      "intro": "Bir şeyin canlı yayınınızda olması durumunda, DeHub sizin seçtiğiniz gibi davranır: uyarı gösterir, bir ses çalır, bir şeyi okur, chat'inize yazı yazdırır veya Discord'unuza söyler.",
+      "add": "Kural ekle",
+      "limit": "{{count}} kural sınırına ulaştınız.",
+      "loadFailed": "Kurallarınız yüklenemedi. Tekrar denemek için sayfayı yenileyin.",
+      "empty": "Henüz kural yok. İpuçlarına, takiplere veya sohbet komutlarına yanıt vermek için bir tane ekleyin.",
+      "saved": "Kurallar kaydedildi. Kurallar bir sonraki ipucunuzda, uygulamanızda veya mesajınızda çalışır.",
+      "saveFailed": "Kurallarınız kaydedilemedi.",
+      "testFailed": "O test geçmedi. Birazdan tekrar deneyin.",
+      "saveToTest": "Test etmek için kurallarınızı kaydedin",
+      "remove": "Kuralı sil",
+      "save": "Kuralları kaydet",
+      "needsAlertWidget": "Bazı kurallar bir uyarı gösterir. Kural uyarıları widget'ını ekleyin, böylece görünecek bir yeri olur.",
+      "name": "Adı",
+      "when": "Ne zaman",
+      "then": "Sonra",
+      "minAmount": "En küçük uç (DHB)",
+      "command": "Komut",
+      "keyword": "Kelime veya ifade",
+      "audience": "Kimler ayarlayabilir?",
+      "blockedWords": "Engellenen kelimeler",
+      "blockedWordsHint": "Virgülle ayırın. Bunları içeren mesajlar göz ardı edilir ve asla yüksek sesle okunmaz.",
+      "cooldown": "Kullanımlar arasında bekle (saniye)",
+      "userCooldown": "İzleyici başına bekleme (saniye)",
+      "addAction": "Eylem ekle",
+      "removeAction": "Eylemi kaldır",
+      "placeholders": "Mesajınızda {name}, {amount} ve {message} kullanın. Mesajlardaki bağlantılar kaldırılır.",
+      "alertText": "Uyarı metni",
+      "sound": "Ses",
+      "sayText": "Yüksek sesle okunacak metin",
+      "chatText": "Gönderilecek mesaj",
+      "chatHint": "Yanıtınızın hesabınızdan akışınızın chat’ına gönderildi. İzleyici mesajını tekrar edemez.",
+      "webhookUrl": "Webhook adresi",
+      "webhookHint": "Bir Discord veya Slack web kancası veya bir GÖNDERİYİ kabul eden herhangi bir https adresi.",
+      "webhookText": "Gönderilecek mesaj",
+      "triggers": {
+        "tip": "Bir bahşiş gelir",
+        "follow": "Biri takip ediyor",
+        "subscribe": "Birisi abone oluyor",
+        "share": "Biri akışı paylaşıyor",
+        "command": "Bir sohbet komutu kullanılır.",
+        "keyword": "Bir sohbet mesajı bir kelime içeriyor",
+        "chat": "Herhangi bir sohbet mesajı"
+      },
+      "audiences": {
+        "everyone": "Herkes",
+        "followers": "Takipçiler",
+        "subscribers": "Aboneler"
+      },
+      "actionTypes": {
+        "alert": "Uyarı göster",
+        "sound": "Ses çal",
+        "say": "Yüksek sesle oku",
+        "chat": "Sohbete gönder",
+        "webhook": "Bir web kancasına gönder"
+      },
+      "summary": {
+        "tip": "{{amount}} DHB veya daha fazlasının bahşişi"
+      },
+      "presets": {
+        "blank": "Boş kural",
+        "readChat": "Sohbeti yüksek sesle okuyun",
+        "bigTip": "Büyük ipuçları için havalı korna",
+        "thankFollowers": "Yeni takipçilere teşekkür et",
+        "command": "Sohbet komutu"
+      },
+      "presetHints": {
+        "blank": "Sıfırdan başla",
+        "readChat": "Takipçilerinizin mesajlarını yüksek sesle okur, her 30 saniyede bir izleyici başına bir tane",
+        "bigTip": "Havalı korna çalar ve 100.000 DHB veya daha fazla ipucu için uyarı gösterir",
+        "thankFollowers": "Birisi sizi takip ettiğinde sohbetinize bir teşekkür mesajı gönderir",
+        "command": "Sohbetinizde a !komutunu yanıtlar"
+      },
+      "presetText": {
+        "readChat": "{name} diyor ki: {message}",
+        "bigTip": "{name},{amount} DHB gönderdi!",
+        "thankFollowers": "Takip için teşekkürler, {name}!",
+        "command": "Merhaba {name}, yayına hoş geldiniz!"
+      },
+      "sounds": {
+        "airhorn": "Havalı korna",
+        "applause": "Alkış",
+        "cricket": "Cırcır böcekleri",
+        "drumroll": "Tambur rulosu",
+        "lol": "Kahkaha",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (adam)",
+        "ohh-girl": "Ohh (kadın)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Ürkütücü",
+        "magic-spell": "Büyü",
+        "shhh": "Şşşt"
+      }
     }
   }
 }

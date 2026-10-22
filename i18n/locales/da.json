@@ -9195,7 +9195,8 @@
       "reaction_counter": "Reaktionstæller",
       "event_feed": "Seneste aktivitet",
       "chat_box": "Chatboks",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Regeladvarsler"
     },
     "hints": {
       "tip_alert": "Fejrer hvert tip, tilpasset dets niveau",
@@ -9212,7 +9213,8 @@
       "reaction_counter": "Tæller hver reaktion, din udsendelse får",
       "event_feed": "De seneste gaver, følgere, abonnenter og personer, der deler din udsendelse",
       "chat_box": "Viser din udsendelses chatbeskeder på skærmen",
-      "ticker": "En linje med din egen tekst, der ruller hen over skærmen"
+      "ticker": "En linje med din egen tekst, der ruller hen over skærmen",
+      "rule_alert": "Hvor dine reglers påmindelser vises"
     },
     "fields": {
       "style": "Stil",
@@ -9268,6 +9270,103 @@
       "rotateConfirm": "Vil du oprette et nyt link? Den gamle holder op med at virke med det samme, så du bliver nødt til at indsætte den nye i Obs.",
       "rotated": "Nyt link klar. Indsæt det i OBS.",
       "rotateFailed": "Kunne ikke oprette et nyt link. Prøv igen om et øjeblik."
+    },
+    "rules": {
+      "title": "Regler",
+      "intro": "Når der sker noget på din stream, gør DeHub det, du vælger: viser en advarsel, afspiller en lyd, læser noget højt, slår noget op i din chat eller fortæller din Discord.",
+      "add": "Tilføj en regel",
+      "limit": "Du har nået grænsen på {{count}} regler.",
+      "loadFailed": "Dine regler kunne ikke indlæses. Opdater siden for at prøve igen.",
+      "empty": "Ingen regler endnu. Tilføj en for at reagere på tip, følg eller chatkommandoer.",
+      "saved": "Regler gemt. De kører på din næste drikkepenge, følg eller besked.",
+      "saveFailed": "Dine regler kunne ikke gemmes.",
+      "testFailed": "Den test gik ikke igennem. Prøv igen om et øjeblik.",
+      "saveToTest": "Gem dine regler for at teste dem",
+      "test": "Test",
+      "enabled": "Regel om",
+      "remove": "Slet regel",
+      "save": "Gem regler",
+      "needsAlertWidget": "Nogle regler viser en advarsel. Tilføj Rule alerts-widgeten, så den har et sted at dukke op.",
+      "name": "Navn",
+      "when": "Hvornår",
+      "then": "Derefter",
+      "minAmount": "Mindste spids (DHB)",
+      "command": "Kommando",
+      "keyword": "Ord eller sætning",
+      "audience": "Hvem kan udløse det",
+      "blockedWords": "Blokerede ord",
+      "blockedWordsHint": "Adskil med kommaer. Beskeder, der indeholder dem, ignoreres og læses aldrig højt.",
+      "cooldown": "Vent mellem brug (sekunder)",
+      "userCooldown": "Vent pr. seer (sekunder)",
+      "addAction": "Tilføj en handling",
+      "removeAction": "Fjern handling",
+      "placeholders": "Brug {name}, {amount} og {message} i din tekst. Links i meddelelser fjernes.",
+      "alertText": "Advarselstekst",
+      "sound": "Lyd",
+      "sayText": "Tekst, der skal læses højt",
+      "chatText": "Besked til opslag",
+      "chatHint": "Slået op fra din konto i din streams chat. Den kan ikke gentage seerens besked.",
+      "webhookUrl": "Webhook-adresse",
+      "webhookHint": "En Discord- eller Slack-webhook eller en hvilken som helst https-adresse, der accepterer et OPSLAG.",
+      "webhookText": "Besked, der skal sendes",
+      "triggers": {
+        "tip": "Der kommer drikkepenge",
+        "follow": "Nogen følger",
+        "subscribe": "Nogen abonnerer",
+        "share": "Nogen deler strømmen",
+        "command": "Der bruges en chatkommando",
+        "keyword": "En chatbesked indeholder et ord",
+        "chat": "Enhver chatbesked"
+      },
+      "audiences": {
+        "everyone": "Alle",
+        "followers": "Følgere",
+        "subscribers": "Abonnenter"
+      },
+      "actionTypes": {
+        "alert": "Vis en advarsel",
+        "sound": "Afspil en lyd",
+        "say": "Læs højt",
+        "chat": "Slå op i chatten",
+        "webhook": "Send til en webhook"
+      },
+      "summary": {
+        "tip": "Tip på{{amount}} DHB eller mere"
+      },
+      "presets": {
+        "blank": "Tom regel",
+        "readChat": "Læs chat højt",
+        "bigTip": "Lufthorn til store spidser",
+        "thankFollowers": "Tak til nye følgere",
+        "command": "Chat-kommando"
+      },
+      "presetHints": {
+        "blank": "Start fra ingenting",
+        "readChat": "Læser dine følgeres beskeder højt, en pr. seer hvert 30. sekund",
+        "bigTip": "Afspiller et lufthorn og viser en advarsel om drikkepenge på 100.000 DHB eller mere",
+        "thankFollowers": "Slår et tak op i din chat, når nogen følger med",
+        "command": "Besvarer en !-kommando i din chat"
+      },
+      "presetText": {
+        "readChat": "{name} siger {message}",
+        "bigTip": "{name}sendt{amount}DHB!",
+        "thankFollowers": "Tak for din opfølgning, {name}!",
+        "command": "Hej{name}, velkommen til streamen!"
+      },
+      "sounds": {
+        "airhorn": "Lufthorn",
+        "applause": "Bifald",
+        "cricket": "Fårekyllinger",
+        "drumroll": "Trommehvirvel",
+        "lol": "Latter",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (mand)",
+        "ohh-girl": "Ohh (kvinde)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Uhyggelig",
+        "magic-spell": "Magisk besværgelse",
+        "shhh": "Shhh"
+      }
     }
   }
 }

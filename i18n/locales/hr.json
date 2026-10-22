@@ -9194,7 +9194,8 @@
       "reaction_counter": "Brojač reakcija",
       "event_feed": "Nedavna aktivnost",
       "chat_box": "Okvir za razgovor",
-      "ticker": "Ticker"
+      "ticker": "Ticker",
+      "rule_alert": "Obavijesti o pravilima"
     },
     "hints": {
       "tip_alert": "Slavi svaki tip, prilagođen njegovoj razini",
@@ -9211,7 +9212,8 @@
       "reaction_counter": "Broji svaku reakciju koju vaše emitiranje dobije",
       "event_feed": "Najnoviji darovi, pratitelji, pretplatnici i osobe koje dijele vašu emisiju",
       "chat_box": "Prikazuje poruke chata vašeg emitiranja na zaslonu",
-      "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu"
+      "ticker": "Redak vlastitog teksta koji se pomiče po zaslonu",
+      "rule_alert": "Gdje se prikazuju obavijesti o pravilima"
     },
     "fields": {
       "style": "Stil",
@@ -9268,6 +9270,102 @@
       "rotateConfirm": "Želite li napraviti novu poveznicu? Stari odmah prestaje raditi, pa ćete morati zalijepiti novi u OBS.",
       "rotated": "Spremna je nova poveznica. Zalijepite je u OBS.",
       "rotateFailed": "Nije moguće kreirati novu poveznicu. Pokušajte ponovno za nekoliko trenutaka."
+    },
+    "rules": {
+      "title": "Pravila",
+      "intro": "Kada se nešto dogodi na vašem streamu, DeHub radi ono što odaberete: prikazuje upozorenje, reproducira zvuk, čita nešto naglas, objavljuje u vašem chatu ili govori vašem Discordu.",
+      "add": "Dodajte pravilo",
+      "limit": "Dosegli ste ograničenje od {{count}} pravila.",
+      "loadFailed": "Učitavanje pravila nije uspjelo. Osvježite stranicu i pokušajte ponovno.",
+      "empty": "Još nema pravila. Dodajte jedno da biste reagirali na savjete, naredbe za praćenje ili chat.",
+      "saved": "Pravila su spremljena. Pokreću se na temelju vaše sljedeće napojnice, praćenja ili poruke.",
+      "saveFailed": "Vaše pravila nisu uspjela biti sačuvana.",
+      "testFailed": "Taj test nije prošao. Pokušajte ponovno za nekoliko trenutaka.",
+      "saveToTest": "Spremite pravila kako biste ih testirali",
+      "enabled": "Pravilo o",
+      "remove": "Izbriši pravilo",
+      "save": "Spremi pravila",
+      "needsAlertWidget": "Neka pravila prikazuju upozorenje. Dodajte widget s upozorenjima o pravilima kako bi se imao gdje pojaviti.",
+      "name": "Ime",
+      "when": "Kada",
+      "then": "Zatim",
+      "minAmount": "Najmanji vrh (DHB)",
+      "command": "Naredba",
+      "keyword": "Riječ ili fraza",
+      "audience": "Tko ga može aktivirati",
+      "blockedWords": "Blokirane riječi",
+      "blockedWordsHint": "Odvojite zarezima. Poruke koje ih sadrže zanemaruju se i nikada se ne čitaju naglas.",
+      "cooldown": "Pričekajte između korištenja (sekunde)",
+      "userCooldown": "Pričekajte po gledatelju (sekunde)",
+      "addAction": "Dodajte radnju",
+      "removeAction": "Ukloni radnju",
+      "placeholders": "Upotrijebite {name}, {amount} i {message} u svom tekstu. Uklanjaju se poveznice u porukama.",
+      "alertText": "Tekst upozorenja",
+      "sound": "Zvuk",
+      "sayText": "Tekst za čitanje naglas",
+      "chatText": "Poruka za objavu",
+      "chatHint": "Objavljen s tvog računa u chatu na tvom streamu. Ne može ponoviti poruku gledatelja.",
+      "webhookUrl": "Adresa web-dojavnika",
+      "webhookHint": "Web-dojavnik na Discordu ili Slacku ili bilo koja https adresa koja prihvaća OBJAVU.",
+      "webhookText": "Poruka za slanje",
+      "triggers": {
+        "tip": "Stiže napojnica",
+        "follow": "Netko prati",
+        "subscribe": "Netko se pretplatio",
+        "share": "Netko dijeli stream",
+        "command": "Koristi se naredba za chat",
+        "keyword": "Poruka u chatu sadrži riječ",
+        "chat": "Svaka poruka u čatu"
+      },
+      "audiences": {
+        "everyone": "Svi",
+        "followers": "Pratitelji",
+        "subscribers": "Pretplatnici"
+      },
+      "actionTypes": {
+        "alert": "Prikaži obavijest",
+        "sound": "Reproduciraj zvuk",
+        "say": "Čitajte naglas",
+        "chat": "Objavi u chatu",
+        "webhook": "Pošalji u webhook"
+      },
+      "summary": {
+        "tip": "Napojnica od {{amount}} DHB ili više"
+      },
+      "presets": {
+        "blank": "Prazno pravilo",
+        "readChat": "Čitajte chat naglas",
+        "bigTip": "Truba za velike savjete",
+        "thankFollowers": "Zahvali novim pratiteljima",
+        "command": "Naredba za razgovor"
+      },
+      "presetHints": {
+        "blank": "Krenite od ničega",
+        "readChat": "Čita poruke vaših pratitelja naglas, jedan po gledatelju svakih 30 sekundi",
+        "bigTip": "Svira zračna truba i prikazuje upozorenje za napojnice od 100 000 DHB ili više",
+        "thankFollowers": "Objavljuje zahvalnicu u svom chatu kad netko prati",
+        "command": "Odgovara na naredbu! u vašem chatu"
+      },
+      "presetText": {
+        "readChat": "{name} kaže {message}",
+        "bigTip": "{name} sent {amount} DHB!",
+        "thankFollowers": "Hvala na praćenju, {name}!",
+        "command": "Pozdrav {name}, dobro došli u stream!"
+      },
+      "sounds": {
+        "airhorn": "Zračna sirena",
+        "applause": "Pljesak",
+        "cricket": "Cvrčci",
+        "drumroll": "Bubanj",
+        "lol": "Smijeh",
+        "ooh-ahh": "Ooh ahh",
+        "ooh-man": "Ooh (man)",
+        "ohh-girl": "Ohh (žena)",
+        "ba-dum-tish": "Ba dum tish",
+        "spooky": "Sablasno",
+        "magic-spell": "Čarolija",
+        "shhh": "Shhh"
+      }
     }
   }
 }
