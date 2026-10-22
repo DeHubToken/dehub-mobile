@@ -4785,7 +4785,7 @@
     "usernameReserved": "Voatokana io anaran'ny mpampiasa io",
     "profileSet": "Voapetraka soa aman-tsara ny mombamomba!",
     "profileFailed": "Tsy voapetraka ny mombamomba",
-    "displayNameHint": "Ny anaranao ampahibemaso miseho amin'ny mombamomba anao."
+    "displayNameHint": "Ny anaranao ampahibemaso miseho amin'ny mombamomba anao. Tsy voatery — avelao ho banga mba hampiasana ny anaram-pikambanao."
   },
   "events": {
     "mine": "Ahy",
@@ -5026,6 +5026,7 @@
     "accountHasA": "Manana ity kaonty ity",
     "ifYouUsedDehub": "Raha efa nampiasa dehub.io ianao teo aloha, sokafy amin'ny solosainao izy, midira amin'ny fomba mitovy sy amin'ny kaonty mitovy, ary",
     "biometricExplainer": "Sokafy amin'ny dian-tananao na ny tarehinao — tsy misy soratana na tadidiana. Mijanona amin'ity finday ity ny lakile, ka hasehonay anao andianteny famerenana misy teny 12 hosoratanao; io no hany lalana hiverenana avy amin'ny finday hafa, avy amin'ny tranonkala, na aorian'ny fametrahana indray. Fidio kosa ny Tenimiafina, dia ny tenimiafina mihitsy no manao izany asa izany.",
+    "biometricExplainerSecuring": "Sokafy amin'ny dian-tananao na ny tarehinao — tsy misy soratana na tadidiana. Mijanona amin'ity finday ity ny lakile. Mba hidirana indray avy amin'ny finday hafa, avy amin'ny tranonkala, na aorian'ny fametrahana indray, tehirizo any aoriana ao amin'ny Fikirana ny andianteny famerenana misy teny 12. Fidio kosa ny Tenimiafina, dia ny tenimiafina mihitsy no manao izany asa izany.",
     "biometricPrompt": "Arovan'ny biometrika an'ity fitaovana ity ity poketra ity. Hamarino amin'ny dian-tanana na tarehy mba hanohizana.",
     "enterRecoveryPhrase": "Ampidiro ny andianteny famerenana misy teny 12 izay notehirizinao rehefa namorona ity poketra ity (na ny lakile manokana, raha nanondrana iray ianao). Miverina amin'ilay kaonty ihany izy io, ary ny tenimiafina apetrakao etsy ambany dia lasa tahiry miasa na aiza na aiza manomboka izao.",
     "copyPhrase": "Adikao ny andianteny",
@@ -5098,6 +5099,7 @@
     "unlockWithPasswordExplainer": "Ity kaonty ity dia efa manana wallet, voaro amin'ny tenimiafina. Ampidiro izany mba hamerenana ny wallet-nao amin'ity fitaovana ity.",
     "deviceTab": "Ity fitaovana ity",
     "deviceExplainer": "Tsy misy ny mitendry na mitadidy — ny fanalahidy dia mijanona eo amin'ity fitaovana ity. Hanome anao teny backup 12 izahay mba hanoratana; Io no hany fomba hiverenana any amin'ny fitaovana hafa, avy amin'ny tranonkala, na aorian'ny fametrahana azy. Fidio ny tenimiafinao ary ny teny fanalahidy ihany no manao io asa io.",
+    "deviceExplainerSecuring": "Tsy misy soratana na tadidiana — mijanona amin'ity fitaovana ity ny lakile. Mba hidirana indray avy amin'ny fitaovana hafa, avy amin'ny tranonkala, na aorian'ny fametrahana indray, tehirizo any aoriana ao amin'ny Fikirana ny andianteny famerenana misy teny 12. Fidio kosa ny Tenimiafina, dia ny tenimiafina mihitsy no manao izany asa izany.",
     "secureOnDevice": "Ataovy ity periferika ity ilay famaha"
   },
   "transcript": {

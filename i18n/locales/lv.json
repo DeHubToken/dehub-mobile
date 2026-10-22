@@ -4771,7 +4771,7 @@
     "usernameReserved": "Šis lietotājvārds ir rezervēts",
     "profileSet": "Profils veiksmīgi iestatīts!",
     "profileFailed": "Neizdevās iestatīt profilu",
-    "displayNameHint": "Tavs publiskais vārds, kas redzams profilā."
+    "displayNameHint": "Tavs publiskais vārds profilā. Nav obligāts — atstāj tukšu, lai izmantotu savu lietotājvārdu."
   },
   "events": {
     "mine": "Mani",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Šim kontam ir",
     "ifYouUsedDehub": "Ja esi jau lietojis dehub.io, atver to datorā, pieraksties tādā pašā veidā un ar to pašu kontu, un",
     "biometricExplainer": "Atbloķē ar pirksta nospiedumu vai seju — nekas nav jāraksta vai jāatceras. Atslēga paliek šajā tālrunī, tāpēc parādīsim 12 vārdu atkopšanas frāzi, ko pierakstīt; tas ir vienīgais ceļš atpakaļ no cita tālruņa, no vietnes vai pēc pārinstalēšanas. Izvēlies Paroli, un šo darbu paveic pati parole.",
+    "biometricExplainerSecuring": "Atbloķē ar pirksta nospiedumu vai seju — nekas nav jāraksta vai jāatceras. Atslēga paliek šajā tālrunī. Lai atgrieztos no cita tālruņa, no vietnes vai pēc pārinstalēšanas, vēlāk Iestatījumos saglabā 12 vārdu dublējumu. Izvēlies Paroli, un šo darbu paveic pati parole.",
     "biometricPrompt": "Šis maks ir aizsargāts ar šīs ierīces biometriju. Lai turpinātu, apstiprini ar pirksta nospiedumu vai seju.",
     "enterRecoveryPhrase": "Ievadi 12 vārdu atkopšanas frāzi, ko saglabāji, izveidojot šo maku (vai tā privāto atslēgu, ja to eksportēji). Tā atgriež tajā pašā kontā, un zemāk iestatītā parole no šī brīža kļūst par rezerves ceļu, kas darbojas visur.",
     "copyPhrase": "Kopēt frāzi",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Šim kontam jau ir maks, ko aizsargā parole. Ievadiet to, lai atgūtu savu maku šajā ierīcē.",
     "deviceTab": "Šī ierīce",
     "deviceExplainer": "Nav ko rakstīt vai atcerēties — atslēga paliek šajā ierīcē. Mēs jums piedāvāsim 12 vārdu dublējumu, ko pierakstīt; tas ir vienīgais veids, kā atgriezties no citas ierīces, no vietnes vai pēc atkārtotas instalēšanas. Tā vietā izvēlieties Password (Parole), un parole pati veic šo darbu.",
+    "deviceExplainerSecuring": "Nekas nav jāraksta vai jāatceras — atslēga paliek šajā ierīcē. Lai atgrieztos no citas ierīces, no vietnes vai pēc pārinstalēšanas, vēlāk Iestatījumos saglabā 12 vārdu dublējumu. Izvēlies Paroli, un šo darbu paveic pati parole.",
     "secureOnDevice": "Turiet atslēgu šajā ierīcē"
   },
   "transcript": {

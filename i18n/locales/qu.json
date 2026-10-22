@@ -4793,7 +4793,7 @@
     "usernameReserved": "Kay sutiqa waqaychasqa",
     "profileSet": "Perfil allinta churasqa!",
     "profileFailed": "Perfilta mana churayta atikunchu",
-    "displayNameHint": "Perfilniykipi rikuchikuq sutiyki."
+    "displayNameHint": "Perfilniykipi rikuchikuq sutiyki. Munaspallam — ch'usaqta saqiptiykiqa runa sutiykitam llamkachisaqku."
   },
   "events": {
     "mine": "Ñuqap",
@@ -5034,6 +5034,7 @@
     "accountHasA": "Kay cuentaqa kapun",
     "ifYouUsedDehub": "Ñawpaqta dehub.io llamkachisqaykiqa, computadoraykipi kichay, kaqlla ñanninta hinaspa kaqlla cuentawan yaykuy, hinaspa",
     "biometricExplainer": "Ruk'anaykip unanchanwan icha uyaykiwan kicharinki — mana imapas qillqanapaq nitaq yuyananpaq. Llaveqa kay celularpim qhipan, chayrayku 12 simiyuq kutichina simita rikuchisqayki qillqanaykipaq; chaymi sapallan ñan huk celularmanta, web nisqamanta, icha musuqmanta churasqa qhipaman kutimunapaq. Chaypa rantinqa Yaykuna simita akllay, chay llamkaytam yaykuna simi kikin ruwan.",
+    "biometricExplainerSecuring": "Ruk'anaykip unanchanwan icha uyaykiwan kicharinki — mana imapas qillqanapaq nitaq yuyananpaq. Llaveqa kay celularpim qhipan. Huk celularmanta, web nisqamanta, icha musuqmanta churasqa qhipaman kutimunaykipaq, qhipamanqa Churanapi 12 simiyuq kutichina simita waqaychay. Chaypa rantinqa Yaykuna simita akllay, chay llamkaytam yaykuna simi kikin ruwan.",
     "biometricPrompt": "Kay qullqi waqaychanaqa kay antap biometricanwan amachasqa. Qatinaykipaq ruk'anayki unanchanwan icha uyaykiwan takyachiy.",
     "enterRecoveryPhrase": "Kay qullqi waqaychanata kamaspa waqaychasqayki 12 simiyuq kutichina simita qillqay (icha sapan llavinta, sichus horqumurqanki). Chayqa kaqlla cuentaman kutichin, uraypi churasqayki yaykuna simitaq kunanmanta pacha maypipas llamkaq yanapaq tukun.",
     "copyPhrase": "Simi huñuta kikinchay",
@@ -5106,6 +5107,7 @@
     "unlockWithPasswordExplainer": "Kay yupayqa billeterayuqñam, contraseñawan waqaychasqa. Chayta yaykuy kay dispositivopi billeteraykita kutichipunaykipaq.",
     "deviceTab": "Kay aparato",
     "deviceExplainer": "Mana imapas qillqanapaq utaq yuyarinapaq — llaveqa kay dispositivopi qhipan. 12 simiyuq yanapakuyta qusqaykiku qillqanaykipaq; huk dispositivomanta, web kitimanta utaq wakmanta churasqamanta kutimuylla. Aswanpas Contraseña akllay chaymanta kikin contraseña chay llamk'ayta ruwan.",
+    "deviceExplainerSecuring": "Mana imapas qillqanapaq nitaq yuyananpaq — llaveqa kay aparatopim qhipan. Huk aparatomanta, web nisqamanta, icha musuqmanta churasqa qhipaman kutimunaykipaq, qhipamanqa Churanapi 12 simiyuq kutichina simita waqaychay. Chaypa rantinqa Yaykuna simita akllay, chay llamkaytam yaykuna simi kikin ruwan.",
     "secureOnDevice": "Kay aparatopi llaveta waqaychay"
   },
   "transcript": {

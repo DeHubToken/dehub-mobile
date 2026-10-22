@@ -4775,7 +4775,7 @@
     "usernameReserved": "Dette brugernavn er reserveret",
     "profileSet": "Profilen blev oprettet!",
     "profileFailed": "Kunne ikke oprette profil",
-    "displayNameHint": "Dit offentlige navn, der vises på din profil."
+    "displayNameHint": "Dit offentlige navn på din profil. Valgfrit — lad feltet stå tomt for at bruge dit brugernavn."
   },
   "events": {
     "mine": "Mine",
@@ -5016,6 +5016,7 @@
     "accountHasA": "Denne konto har en",
     "ifYouUsedDehub": "Hvis du har brugt dehub.io før, så åbn det på din computer, log ind på samme måde og med samme konto, og",
     "biometricExplainer": "Lås op med fingeraftryk eller ansigt — intet at taste eller huske. Nøglen bliver på denne telefon, så vi viser dig en gendannelsesfrase på 12 ord, du skal skrive ned; det er den eneste vej tilbage fra en anden telefon, fra hjemmesiden eller efter geninstallation. Vælg Adgangskode i stedet, så gør adgangskoden selv det arbejde.",
+    "biometricExplainerSecuring": "Lås op med fingeraftryk eller ansigt — intet at taste eller huske. Nøglen bliver på denne telefon. For at komme ind igen fra en anden telefon, fra hjemmesiden eller efter geninstallation skal du senere gemme en sikkerhedskopi på 12 ord under Indstillinger. Vælg Adgangskode i stedet, så gør adgangskoden selv det arbejde.",
     "biometricPrompt": "Denne tegnebog er beskyttet af enhedens biometri. Bekræft med fingeraftryk eller ansigt for at fortsætte.",
     "enterRecoveryPhrase": "Indtast den 12-ords gendannelsesfrase, du gemte, da du oprettede denne tegnebog (eller dens private nøgle, hvis du eksporterede en). Den fører tilbage til samme konto, og adgangskoden, du sætter nedenfor, bliver en sikkerhedskopi, der fra nu af virker overalt.",
     "copyPhrase": "Kopiér frase",
@@ -5088,6 +5089,7 @@
     "unlockWithPasswordExplainer": "Denne konto har allerede en wallet, beskyttet af en adgangskode. Indtast den for at gendanne din wallet på denne enhed.",
     "deviceTab": "Denne enhed",
     "deviceExplainer": "Intet at skrive eller huske — nøglen forbliver på denne enhed. Vi tilbyder dig en sikkerhedskopi på 12 ord, som du kan skrive ned. Det er den eneste vej tilbage fra en anden enhed, fra hjemmesiden eller efter geninstallation. Vælg Adgangskode i stedet, og adgangskoden selv gør det job.",
+    "deviceExplainerSecuring": "Intet at taste eller huske — nøglen bliver på denne enhed. For at komme ind igen fra en anden enhed, fra hjemmesiden eller efter geninstallation skal du senere gemme en sikkerhedskopi på 12 ord under Indstillinger. Vælg Adgangskode i stedet, så gør adgangskoden selv det arbejde.",
     "secureOnDevice": "Behold nøglen på denne enhed"
   },
   "transcript": {

@@ -4775,7 +4775,7 @@
     "usernameReserved": "Ez a felhasználónév foglalt",
     "profileSet": "Profil sikeresen beállítva!",
     "profileFailed": "A profil beállítása sikertelen",
-    "displayNameHint": "A profilodon megjelenő nyilvános neved."
+    "displayNameHint": "Nyilvános neved a profilodon. Nem kötelező — hagyd üresen, ha a felhasználónevedet szeretnéd használni."
   },
   "events": {
     "mine": "Sajátjaim",
@@ -5016,6 +5016,7 @@
     "accountHasA": "Ehhez a fiókhoz tartozik egy",
     "ifYouUsedDehub": "Ha korábban használtad a dehub.io-t, nyisd meg a számítógépeden, jelentkezz be ugyanúgy és ugyanazzal a fiókkal, majd",
     "biometricExplainer": "Oldd fel ujjlenyomattal vagy arccal — nincs mit begépelni vagy megjegyezni. A kulcs ezen a telefonon marad, ezért mutatunk egy 12 szavas helyreállítási kifejezést, amit leírsz; ez az egyetlen út vissza egy másik készülékről, a weboldalról vagy újratelepítés után. Válaszd inkább a Jelszót, és ezt a feladatot maga a jelszó látja el.",
+    "biometricExplainerSecuring": "Oldd fel ujjlenyomattal vagy arccal — nincs mit begépelni vagy megjegyezni. A kulcs ezen a telefonon marad. Ha egy másik telefonról, a weboldalról vagy újratelepítés után is vissza akarsz jutni, később ments egy 12 szavas biztonsági másolatot a Beállításokban. Válaszd inkább a Jelszót, és ezt a feladatot maga a jelszó látja el.",
     "biometricPrompt": "Ezt a tárcát az eszköz biometriája védi. A folytatáshoz erősítsd meg ujjlenyomattal vagy arccal.",
     "enterRecoveryPhrase": "Add meg a 12 szavas helyreállítási kifejezést, amit a tárca létrehozásakor mentettél (vagy a privát kulcsát, ha exportáltad). Ugyanahhoz a fiókhoz vezet vissza, és az alább beállított jelszó mostantól mindenhol működő tartalékká válik.",
     "copyPhrase": "Kifejezés másolása",
@@ -5088,6 +5089,7 @@
     "unlockWithPasswordExplainer": "Ez a fiók már rendelkezik egy tárcával, amelyet jelszó véd. Add meg azt a tárca visszaállításához ezen az eszközön.",
     "deviceTab": "Ez az eszköz",
     "deviceExplainer": "Nincs mit beírni vagy megjegyezni — a kulcs az eszközön marad. Kínálunk Önnek egy 12 szavas biztonsági másolatot, amelyet leírhat; ez az egyetlen módja annak, hogy egy másik eszközről, a webhelyről vagy az újratelepítés után visszatérjen. Válassza inkább a Jelszó lehetőséget, és maga a jelszó elvégzi ezt a feladatot.",
+    "deviceExplainerSecuring": "Nincs mit begépelni vagy megjegyezni — a kulcs ezen az eszközön marad. Ha egy másik eszközről, a weboldalról vagy újratelepítés után is vissza akarsz jutni, később ments egy 12 szavas biztonsági másolatot a Beállításokban. Válaszd inkább a Jelszót, és ezt a feladatot maga a jelszó látja el.",
     "secureOnDevice": "Tartsa a kulcsot ezen az eszközön"
   },
   "transcript": {

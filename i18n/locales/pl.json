@@ -4771,7 +4771,7 @@
     "usernameReserved": "Ta nazwa użytkownika jest zarezerwowana",
     "profileSet": "Profil ustawiony pomyślnie!",
     "profileFailed": "Nie udało się ustawić profilu",
-    "displayNameHint": "Twoja publiczna nazwa widoczna w profilu."
+    "displayNameHint": "Twoja publiczna nazwa widoczna w profilu. Opcjonalnie — zostaw puste, aby używać nazwy użytkownika."
   },
   "events": {
     "mine": "Moje",
@@ -5012,6 +5012,7 @@
     "accountHasA": "To konto ma",
     "ifYouUsedDehub": "Jeśli korzystałeś już z dehub.io, otwórz go na komputerze, zaloguj się w ten sam sposób i na to samo konto, a następnie",
     "biometricExplainer": "Odblokowuj odciskiem palca lub twarzą — nic nie trzeba wpisywać ani pamiętać. Klucz zostaje na tym telefonie, więc pokażemy ci 12-wyrazową frazę odzyskiwania do zapisania; to jedyna droga powrotu z innego telefonu, ze strony lub po ponownej instalacji. Wybierz zamiast tego Hasło, a tę rolę pełni samo hasło.",
+    "biometricExplainerSecuring": "Odblokowuj odciskiem palca lub twarzą — nic nie trzeba wpisywać ani pamiętać. Klucz zostaje na tym telefonie. Aby wrócić z innego telefonu, ze strony lub po ponownej instalacji, zapisz później w Ustawieniach 12-wyrazową kopię zapasową. Wybierz zamiast tego Hasło, a tę rolę pełni samo hasło.",
     "biometricPrompt": "Ten portfel jest chroniony biometrią tego urządzenia. Potwierdź odciskiem palca lub twarzą, aby kontynuować.",
     "enterRecoveryPhrase": "Wprowadź 12-wyrazową frazę odzyskiwania zapisaną przy tworzeniu tego portfela (albo jego klucz prywatny, jeśli go wyeksportowałeś). Wraca do tego samego konta, a hasło ustawione poniżej staje się od teraz zapasowym sposobem działającym wszędzie.",
     "copyPhrase": "Kopiuj frazę",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "To konto ma już portfel, zabezpieczony hasłem. Wprowadź je, aby odzyskać swój portfel na tym urządzeniu.",
     "deviceTab": "To urządzenie",
     "deviceExplainer": "Nie ma nic do wpisania lub zapamiętania — klucz pozostaje na tym urządzeniu. Oferujemy 12-wyrazową kopię zapasową do zapisania; jest to jedyny sposób, aby wrócić z innego urządzenia, ze strony internetowej lub po ponownej instalacji. Zamiast tego wybierz Hasło, a samo hasło wykona tę pracę.",
+    "deviceExplainerSecuring": "Nic nie trzeba wpisywać ani pamiętać — klucz zostaje na tym urządzeniu. Aby wrócić z innego urządzenia, ze strony lub po ponownej instalacji, zapisz później w Ustawieniach 12-wyrazową kopię zapasową. Wybierz zamiast tego Hasło, a tę rolę pełni samo hasło.",
     "secureOnDevice": "Trzymaj klucz na tym urządzeniu"
   },
   "walletBackup": {

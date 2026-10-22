@@ -4789,7 +4789,7 @@
     "usernameReserved": "Bu foydalanuvchi nomi band qilingan",
     "profileSet": "Profil muvaffaqiyatli sozlandi!",
     "profileFailed": "Profilni sozlab bo‘lmadi",
-    "displayNameHint": "Profilingizda ko‘rinadigan ommaviy ismingiz."
+    "displayNameHint": "Profilingizdagi ommaviy ismingiz. Ixtiyoriy — bo‘sh qoldirsangiz, foydalanuvchi nomingiz ishlatiladi."
   },
   "events": {
     "mine": "Meniki",
@@ -5030,6 +5030,7 @@
     "accountHasA": "Bu hisobda bor",
     "ifYouUsedDehub": "Agar ilgari dehub.io dan foydalangan bo‘lsangiz, uni kompyuteringizda oching, xuddi shu usulda va xuddi shu hisob bilan kiring va",
     "biometricExplainer": "Barmoq izingiz yoki yuzingiz bilan oching — yozadigan yoki eslab qoladigan narsa yo‘q. Kalit shu telefonda qoladi, shuning uchun yozib olishingiz uchun 12 so‘zli tiklash iborasini ko‘rsatamiz; boshqa telefondan, veb-saytdan yoki qayta o‘rnatgandan keyin qaytishning yagona yo‘li shu. Buning o‘rniga Parolni tanlasangiz, bu ishni parolning o‘zi bajaradi.",
+    "biometricExplainerSecuring": "Barmoq izingiz yoki yuzingiz bilan oching — yozadigan yoki eslab qoladigan narsa yo‘q. Kalit shu telefonda qoladi. Boshqa telefondan, veb-saytdan yoki qayta o‘rnatgandan keyin qaytib kirish uchun keyinroq Sozlamalarda 12 so‘zli zaxira nusxasini saqlang. Buning o‘rniga Parolni tanlasangiz, bu ishni parolning o‘zi bajaradi.",
     "biometricPrompt": "Ushbu hamyon shu qurilma biometrikasi bilan himoyalangan. Davom etish uchun barmoq izi yoki yuz bilan tasdiqlang.",
     "enterRecoveryPhrase": "Ushbu hamyonni yaratganingizda saqlagan 12 so‘zli tiklash iborasini kiriting (yoki eksport qilgan bo‘lsangiz, uning shaxsiy kalitini). U xuddi shu hisobga qaytaradi, quyida o‘rnatadigan parolingiz esa bundan buyon hamma joyda ishlaydigan zaxiraga aylanadi.",
     "copyPhrase": "Iborani nusxalash",
@@ -5102,6 +5103,7 @@
     "unlockWithPasswordExplainer": "Ushbu hisobda allaqachon parol bilan himoyalangan hamyon mavjud. Ushbu qurilmada hamyoningizni tiklash uchun parolni kiriting.",
     "deviceTab": "Ushbu qurilma",
     "deviceExplainer": "Yozish yoki eslab qolish uchun hech narsa yo'q — kalit ushbu qurilmada qoladi. Sizga yozib olish uchun 12 so'zdan iborat zaxira nusxasini taklif qilamiz; bu boshqa qurilmadan, veb-saytdan yoki qayta o'rnatgandan so'ng kirishning yagona yo'li. Buning o'rniga Parolni tanlang, shunda parolning o'zi bu ishni bajaradi.",
+    "deviceExplainerSecuring": "Yozadigan yoki eslab qoladigan narsa yo‘q — kalit shu qurilmada qoladi. Boshqa qurilmadan, veb-saytdan yoki qayta o‘rnatgandan keyin qaytib kirish uchun keyinroq Sozlamalarda 12 so‘zli zaxira nusxasini saqlang. Buning o‘rniga Parolni tanlasangiz, bu ishni parolning o‘zi bajaradi.",
     "secureOnDevice": "Kalitni ushbu qurilmada saqlang"
   },
   "transcript": {

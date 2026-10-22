@@ -4762,7 +4762,7 @@
     "usernameReserved": "Magacan isticmaale waa la kaydiyay",
     "profileSet": "Astaanta si guul leh ayaa loo dejiyay!",
     "profileFailed": "Lama dejin karin astaanta",
-    "displayNameHint": "Magacaaga dadweynaha ee ka muuqda boggaaga."
+    "displayNameHint": "Magacaaga dadweynaha ee boggaaga. Waa ikhtiyaari — haddii aad bannaan ka tagto, waxaa la isticmaalayaa magaca isticmaalahaaga."
   },
   "events": {
     "mine": "Kayga",
@@ -5003,6 +5003,7 @@
     "accountHasA": "Akoonkan wuxuu leeyahay",
     "ifYouUsedDehub": "Haddii aad hore u isticmaashay dehub.io, ka fur kombiyuutarkaaga, si isku mid ah oo akoon isku mid ah ku gal, ka dibna",
     "biometricExplainer": "Ku fur farahaaga ama wejigaaga — waxba lama qorayo lamana xasuusanayo. Furahu wuxuu ku sii jiraa taleefankan, sidaas darteed waxaan ku tusi doonaa weedh soo celin ah oo 12 eray ah oo aad qorto; waa habka kaliya ee aad kaga soo noqon karto taleefan kale, websaydka, ama ka dib markii aad dib u rakibto. Beddelkeeda dooro Erey sir ah, eraygu isagaa qaban doona shaqadaas.",
+    "biometricExplainerSecuring": "Ku fur farahaaga ama wejigaaga — waxba lama qorayo lamana xasuusanayo. Furahu wuxuu ku sii jiraa taleefankan. Si aad dib ugu soo gasho adoo isticmaalaya taleefan kale, websaydka, ama ka dib markaad dib u rakibto, mar dambe Dejinta ka samee nuqul kayd ah oo 12 eray ah. Beddelkeeda dooro Erayga sirta ah, erayga sirta ahna isagaa qabanaya shaqadaas.",
     "biometricPrompt": "Boorsadan waxaa ilaaliya biometrics-ka qalabkan. Ku xaqiiji farahaaga ama wejigaaga si aad u sii wadato.",
     "enterRecoveryPhrase": "Geli weedhaha soo celinta ee 12-ka eray ah ee aad kaydisay markaad abuurtay boorsadan (ama furaha gaarka ah, haddii aad mid dhoofisay). Waxay ku celinaysaa isla akoonkii, erayga sirta ah ee aad hoos u dejinaysona wuxuu noqonayaa kaabe meel kasta ka shaqeeya laga bilaabo hadda.",
     "copyPhrase": "Koobi weedha",
@@ -5075,6 +5076,7 @@
     "unlockWithPasswordExplainer": "Koontadan horeyba waxay leedahay kayd, oo lagu ilaaliyo furaha. Geli si aad u soo ceshato kaydkaaga qalabkan.",
     "deviceTab": "Qalabkan",
     "deviceExplainer": "Ma jiraan wax la qoro ama la xasuusto — furaha ayaa ku jira qalabkan. Waxaan ku siin doonaa 12 eray gurmad ah si aad u qorto hoos; waa habka kaliya ee ka soo noqoshada aalad kale, laga bilaabo websaydhka, ama ka dib markaad dib u rakibto. Dooro Password halkii iyo password laftiisa sameeyo shaqadaas.",
+    "deviceExplainerSecuring": "Waxba lama qorayo lamana xasuusanayo — furahu wuxuu ku sii jiraa qalabkan. Si aad dib ugu soo gasho adoo isticmaalaya qalab kale, websaydka, ama ka dib markaad dib u rakibto, mar dambe Dejinta ka samee nuqul kayd ah oo 12 eray ah. Beddelkeeda dooro Erayga sirta ah, erayga sirta ahna isagaa qabanaya shaqadaas.",
     "secureOnDevice": "Furaha ku hay qalabkan"
   },
   "transcript": {
@@ -8956,17 +8958,17 @@
     "topUpEmptyHint": "Ku dar calaamadaha si aad u soo saarto AI"
   },
   "accountDeletion": {
-    "title": "Delete account",
+    "title": "Tirtir akoonka",
     "description": "Si joogto ah u tirtir akoonkaaga iyo xogtaada shakhsiyeed",
     "warning": "Tani waxay si joogto ah u tirtiraysaa profile-kaaga DeHub, qoraallada, faallooyinka, farriimaha iyo nuqulka kaydka jeebka. Kaydi faahfaahinta soo kabashada jeebkaaga oo marka hore u wareeji hanti kasta. Hawlgallada blockchain-ka ee dadweynaha iyo diiwaanada lacag bixinta ee sharciga ah lama tirtiri karo. Profile-kaaga si degdeg ah ayaa loo qariyaa; tirtirida waxay dhamaataa 30 maalmood gudahood. Tani lama celin karo.",
-    "cancel": "Cancel",
+    "cancel": "Jooji",
     "confirm": "Si joogto ah u tirtir akoonkeyga",
     "busy": "Soo gudbin codsiga tirtirida…",
     "accepted": "Codsiga tirtirida akoonka waa la codsaday",
     "receipt": "Codsigaaga tirtirida waa la keydiyay. Profile-kaaga waa la qariyay waxaana akoonkaaga si joogto ah loo tirtiri doonaa 30 maalmood gudahood. Galitaanka dib looma joojin karo codsigan.",
-    "done": "Done",
+    "done": "Dhammaatay",
     "error": "Lama soo gudbin karin codsigaaga tirtirida. Akoonkaaga lama xaqiijinin in la tirtiro. Fadlan isku day mar kale.",
-    "back": "Back to Settings",
+    "back": "Ku noqo Dejinta",
     "signIn": "Soo gal si aad u tirtirto akoonkaaga",
     "acknowledge": "Waxaan kaydiyay faahfaahinta soo kabashada jeebkayga oo waxaan fahamsanahay in tirtiridu ay tahay mid joogto ah."
   },
