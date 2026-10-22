@@ -1,3 +1,5 @@
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
+import { useAppTheme } from '../../context/ThemeContext';
 /**
  * RadioMiniPlayer — the corner control for whatever station is on
  * ===============================================================
@@ -25,6 +27,7 @@ import { getCountryFlag, getPrimaryTags } from "../../libs/radio-browser";
 
 const RadioMiniPlayer: React.FC = () => {
   const { t } = useTranslation();
+  const { theme, skin } = useAppTheme();
   const { station, isPlaying, isLoading } = useRadioPlayer();
   const { currentSpace, isConnected } = useStages();
   const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
@@ -35,7 +38,7 @@ const RadioMiniPlayer: React.FC = () => {
   const liveBarShowing = !!currentSpace && isConnected;
 
   return (
-    <View style={[styles.container, liveBarShowing && styles.aboveLiveBar]}>
+    <View style={[styles.container, theme === 'glass' && skin?.card, liveBarShowing && styles.aboveLiveBar]}>
       <View style={styles.logo}>
         {station.favicon && failedLogoUri !== station.favicon ? (
           <Image source={{ uri: station.favicon }} style={StyleSheet.absoluteFill} contentFit="cover" onError={() => setFailedLogoUri(station.favicon)} />
@@ -56,7 +59,7 @@ const RadioMiniPlayer: React.FC = () => {
 
       <TouchableOpacity
         onPress={() => toggleRadioStation(station)}
-        style={styles.playBtn}
+        style={[styles.playBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
         hitSlop={6}
         accessibilityRole="button"
         accessibilityLabel={isPlaying ? t("music.pauseStation") : t("music.resumeStation")}
@@ -70,7 +73,7 @@ const RadioMiniPlayer: React.FC = () => {
 
       <TouchableOpacity
         onPress={stopRadio}
-        style={styles.closeBtn}
+        style={[styles.closeBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
         hitSlop={8}
         accessibilityRole="button"
         accessibilityLabel={t("music.stopRadio")}

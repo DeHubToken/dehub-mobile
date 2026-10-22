@@ -1,3 +1,5 @@
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
+import { useAppTheme } from '../../context/ThemeContext';
 /**
  * StageRecordingPlayer — the control every recording is played from
  * =================================================================
@@ -79,6 +81,7 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
   style,
 }) => {
   const { t } = useTranslation();
+  const { theme, skin } = useAppTheme();
   const { spaceId: loadedId, loading, paused, popout, progress, seekable, timeLeft } =
     useStagePlayback();
 
@@ -133,22 +136,22 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
   if (!recordingUrl) return null;
 
   return (
-    <View style={[styles.row, style]} accessibilityLabel={t("stages.stageRecording")}>
+    <View style={[styles.row, theme === 'glass' && skin?.card, style]} accessibilityLabel={t("stages.stageRecording")}>
       <TouchableOpacity
         onPress={togglePlay}
-        style={[styles.playBtn, isLoaded ? styles.playBtnLoaded : styles.playBtnIdle]}
+        style={[styles.playBtn, isLoaded ? styles.playBtnLoaded : styles.playBtnIdle, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
         accessibilityRole="button"
         accessibilityLabel={isPlaying ? t("stages.pauseRecording") : t("stages.playRecording")}
         accessibilityState={{ selected: isLoaded }}
       >
         {busy ? (
-          <ActivityIndicator size="small" color={isLoaded ? "#FFFFFF" : "#09090B"} />
+          <ActivityIndicator size="small" color={isLoaded || theme === 'glass' ? '#FFFFFF' : '#09090B'} />
         ) : (
           <Icon
             name={isPlaying ? "Pause" : "Play"}
             size={16}
-            color={isLoaded ? "#FFFFFF" : "#09090B"}
-            fill={isLoaded ? "#FFFFFF" : "#09090B"}
+            color={isLoaded || theme === 'glass' ? '#FFFFFF' : '#09090B'}
+            fill={isLoaded || theme === 'glass' ? '#FFFFFF' : '#09090B'}
           />
         )}
       </TouchableOpacity>
@@ -177,7 +180,7 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
       {!hidePopout && (
         <TouchableOpacity
           onPress={togglePopout}
-          style={[styles.popoutBtn, isPoppedOut && styles.popoutBtnOn]}
+          style={[styles.popoutBtn, isPoppedOut && styles.popoutBtnOn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           hitSlop={6}
           accessibilityRole="button"
           accessibilityState={{ selected: isPoppedOut }}

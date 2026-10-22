@@ -4771,7 +4771,7 @@
     "usernameReserved": "Tämä käyttäjänimi on varattu",
     "profileSet": "Profiili määritetty onnistuneesti!",
     "profileFailed": "Profiilin määritys epäonnistui",
-    "displayNameHint": "Julkinen nimesi, joka näkyy profiilissasi."
+    "displayNameHint": "Julkinen nimesi profiilissasi. Valinnainen — jätä tyhjäksi, niin käytetään käyttäjätunnustasi."
   },
   "events": {
     "mine": "Omat",
@@ -5012,6 +5012,7 @@
     "accountHasA": "Tällä tilillä on",
     "ifYouUsedDehub": "Jos olet käyttänyt dehub.io:ta aiemmin, avaa se tietokoneellasi, kirjaudu sisään samalla tavalla ja samalla tilillä, ja",
     "biometricExplainer": "Avaa sormenjäljellä tai kasvoilla — mitään ei tarvitse kirjoittaa tai muistaa. Avain pysyy tässä puhelimessa, joten näytämme sinulle 12 sanan palautuslauseen, jonka kirjoitat ylös; se on ainoa tie takaisin toisesta puhelimesta, verkkosivustolta tai uudelleenasennuksen jälkeen. Valitse sen sijaan Salasana, jolloin salasana itse hoitaa tämän tehtävän.",
+    "biometricExplainerSecuring": "Avaa sormenjäljellä tai kasvoilla — mitään ei tarvitse kirjoittaa tai muistaa. Avain pysyy tässä puhelimessa. Jos haluat päästä takaisin toisesta puhelimesta, verkkosivustolta tai uudelleenasennuksen jälkeen, tallenna myöhemmin 12 sanan varmuuskopio Asetuksissa. Valitse sen sijaan Salasana, jolloin salasana itse hoitaa tämän tehtävän.",
     "biometricPrompt": "Tämä lompakko on suojattu tämän laitteen biometrialla. Vahvista sormenjäljellä tai kasvoilla jatkaaksesi.",
     "enterRecoveryPhrase": "Syötä 12 sanan palautuslause, jonka tallensit luodessasi tämän lompakon (tai sen yksityinen avain, jos veit sellaisen). Se palauttaa samalle tilille, ja alla asettamastasi salasanasta tulee varakeino, joka toimii tästä lähtien kaikkialla.",
     "copyPhrase": "Kopioi lause",
@@ -5084,6 +5085,7 @@
     "unlockWithPasswordExplainer": "Tällä tilillä on jo lompakko, joka on suojattu salasanalla. Syötä se palauttaaksesi lompakkosi tälle laitteelle.",
     "deviceTab": "Tämä laite",
     "deviceExplainer": "Ei mitään kirjoitettavaa tai muistettavaa — avain pysyy tällä laitteella. Tarjoamme sinulle 12 sanan varmuuskopion, jonka voit kirjoittaa muistiin. Se on ainoa tapa palata toiselta laitteelta, verkkosivustolta tai uudelleenasennuksen jälkeen. Valitse sen sijaan salasana, ja salasana itse tekee tämän työn.",
+    "deviceExplainerSecuring": "Mitään ei tarvitse kirjoittaa tai muistaa — avain pysyy tässä laitteessa. Jos haluat päästä takaisin toisesta laitteesta, verkkosivustolta tai uudelleenasennuksen jälkeen, tallenna myöhemmin 12 sanan varmuuskopio Asetuksissa. Valitse sen sijaan Salasana, jolloin salasana itse hoitaa tämän tehtävän.",
     "secureOnDevice": "Pidä avain tässä laitteessa"
   },
   "transcript": {
@@ -8991,7 +8993,7 @@
     "done": "Valmis",
     "error": "Poistamispyyntöä ei voitu lähettää. Tiliäsi ei ole vahvistettu poistettavaksi. Yritä uudelleen.",
     "back": "Takaisin asetukset -sivulle",
-    "signIn": "Kirjaudu tilillesi",
+    "signIn": "Kirjaudu sisään poistaaksesi tilisi",
     "acknowledge": "Olen tallentanut lompakkoni palautustiedot ja ymmärrän, että poistaminen on pysyvää."
   },
   "miniApps": {

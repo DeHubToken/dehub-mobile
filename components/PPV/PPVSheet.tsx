@@ -56,6 +56,8 @@ import { formatCompactNumber } from "../../libs";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 
+const PPV_CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
+
 export interface PPVSheetProps {
   visible: boolean;
   onClose: () => void;
@@ -228,6 +230,12 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         setPpvError(t("ppv.missingWeb3"));
         return;
       }
+      // USDC/USDT posts are paid on the post's own chain: the same token on
+      // another chain pays the creator but never unlocks the post.
+      if (tokenSymbol !== "DHB" && paymentChainId && chainId !== paymentChainId) {
+        setPpvError(t("ppv.switchTo", { chain: PPV_CHAIN_NAMES[paymentChainId] || `chain ${paymentChainId}` }));
+        return;
+      }
       if (isSelf) { setPpvError(t("ppv.cantPaySelf")); return; }
 
       try {
@@ -239,6 +247,12 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         const dhbBalance = await tokenContract.balanceOf(account);
         if (ethers.BigNumber.from(dhbBalance).lt(amountBN)) {
           const heldHuman = Number(ethers.utils.formatUnits(dhbBalance, tokenDecimals));
+          // USDC/USDT have no top-up step (it buys DHB); the viewer brings them.
+          if (tokenSymbol !== "DHB") {
+            setPhase("idle");
+            setPpvError(t("ppv.notEnoughToken", { amount: numericAmount, symbol: tokenSymbol, held: heldHuman }));
+            return;
+          }
 
           // Every branch from here down that cannot pay hands the gap to the
           // top-up step instead of dead-ending on a red line. `canTopUpInApp`
@@ -401,7 +415,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
               {/* Looking short is no longer a reason to block the button: the
                   balance here is the cached one, and the real check happens
                   on-chain and offers a top-up when it comes back short. */}
-              {insufficient && phase === "idle" && (
+              {insufficient && phase === "idle" && tokenSymbol === "DHB" && (
                 <Text style={styles.hintText}>{_copy("copy.fefe0a37bf94", { defaultValue: "Low on " })}{tokenSymbol}{_copy("copy.1ee7202b84ad", { defaultValue: "? We'll top you up before unlocking." })}</Text>
               )}
               {isSelf && (

@@ -5030,7 +5030,7 @@
     "usernameReserved": "Nama pengguna ini dikhaskan",
     "profileSet": "Profil berjaya ditetapkan!",
     "profileFailed": "Gagal menetapkan profil",
-    "displayNameHint": "Nama awam anda yang dipaparkan pada profil."
+    "displayNameHint": "Nama awam anda yang dipaparkan pada profil. Pilihan — biarkan kosong untuk menggunakan nama pengguna anda."
   },
   "events": {
     "mine": "Milik saya",
@@ -5271,6 +5271,7 @@
     "accountHasA": "Akaun ini mempunyai",
     "ifYouUsedDehub": "Jika anda pernah menggunakan dehub.io sebelum ini, bukanya pada komputer anda, log masuk dengan cara dan akaun yang sama, dan",
     "biometricExplainer": "Buka dengan cap jari atau wajah anda — tiada apa yang perlu ditaip atau diingat. Kunci kekal pada telefon ini, jadi kami akan menunjukkan frasa pemulihan 12 perkataan untuk anda catat; itulah satu-satunya jalan kembali dari telefon lain, dari laman web, atau selepas memasang semula. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
+    "biometricExplainerSecuring": "Buka dengan cap jari atau wajah anda — tiada apa yang perlu ditaip atau diingat. Kunci kekal pada telefon ini. Untuk masuk semula dari telefon lain, dari laman web, atau selepas memasang semula, simpan sandaran 12 perkataan kemudian dalam Tetapan. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
     "biometricPrompt": "Dompet ini dilindungi oleh biometrik peranti ini. Sahkan dengan cap jari atau wajah untuk meneruskan.",
     "enterRecoveryPhrase": "Masukkan frasa pemulihan 12 perkataan yang anda simpan semasa mencipta dompet ini (atau kunci peribadinya, jika anda pernah mengeksportnya). Ia kembali ke akaun yang sama, dan kata laluan yang anda tetapkan di bawah menjadi sandaran yang mulai sekarang berfungsi di mana-mana.",
     "copyPhrase": "Salin frasa",
@@ -5343,6 +5344,7 @@
     "unlockWithPasswordExplainer": "Akaun ini sudah mempunyai dompet, dilindungi oleh kata laluan. Masukkannya untuk memulihkan dompet anda pada peranti ini.",
     "deviceTab": "Peranti ini",
     "deviceExplainer": "Tiada apa yang perlu ditaip atau diingati — kekunci kekal pada peranti ini. Kami akan menawarkan sandaran 12 perkataan kepada anda untuk ditulis; ia adalah satu-satunya cara untuk masuk semula dari peranti lain, dari laman web, atau selepas pemasangan semula. Pilih Kata Laluan dan kata laluan itu sendiri berfungsi dengan baik.",
+    "deviceExplainerSecuring": "Tiada apa yang perlu ditaip atau diingat — kunci kekal pada peranti ini. Untuk masuk semula dari peranti lain, dari laman web, atau selepas memasang semula, simpan sandaran 12 perkataan kemudian dalam Tetapan. Pilih Kata Laluan sebaliknya dan kata laluan itu sendiri melakukan tugas tersebut.",
     "secureOnDevice": "Simpan kunci pada peranti ini"
   },
   "transcript": {
