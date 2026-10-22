@@ -9367,5 +9367,28 @@
         "shhh": "Ššš"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Srauto apibendrinimas",
+    "justEnded": "Srauto apibendrinimas",
+    "lastStream": "Jūsų paskutinis srautas",
+    "none": "Dar nėra baigtų srautų. Jūsų santrauka pasirodys čia po pirmosios.",
+    "share": "Dalytis",
+    "shareText": "Ką tik transliavau „{{title}}“ per DeHub: {{duration}} live, {{peak}} žiūri piko metu ir {{followers}} naujų sekėjų.",
+    "untitled": "Srautas be pavadinimo",
+    "loadFailed": "Dangtelis neįkraunamas. Netrukus bandykite dar kartą.",
+    "duration": "Tiesioginė transliacija laiku",
+    "peakViewers": "Daugiausia žiūrima vienu metu",
+    "gifts_one": "Nuo {{count}} dovana",
+    "gifts_other": "Nuo {{count}} dovanos",
+    "newFollowers": "Nauji sekėjai",
+    "chatMessages": "Pokalbio žinutės",
+    "chatters": "Žmonės kalbasi",
+    "reactions": "Reakcijos",
+    "shares": "Žmonės dalijasi",
+    "topSupporters": "Geriausi rėmėjai",
+    "polls": "Apklausos",
+    "pollWinner": "{{option}} laimėjo",
+    "stillCounting": "Vis dar skaičiuojama: dovanų patvirtinimas gali užtrukti minutę."
   }
 }

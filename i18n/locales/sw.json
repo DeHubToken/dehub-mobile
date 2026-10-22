@@ -9368,5 +9368,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Muhtasari wa mkondo",
+    "justEnded": "Muhtasari wa mkondo wako",
+    "lastStream": "Mtiririko wako wa mwisho",
+    "none": "Bado hakuna mito iliyomalizika. Muhtasari wako unaonekana hapa baada ya ule wa kwanza.",
+    "share": "Shiriki",
+    "shareText": "Nimetiririsha \"{{title}}\" kwenye DeHub: {{duration}} live, {{peak}} kuangalia kwenye kilele na {{followers}} wafuasi wapya.",
+    "untitled": "Mkondo usio na kichwa",
+    "loadFailed": "Muhtasari haukupakia. Jaribu tena baada ya muda mfupi.",
+    "duration": "Muda wa moja kwa moja",
+    "peakViewers": "Mara nyingi hutazama mara moja",
+    "gifts_one": "Kutoka {{count}} gift",
+    "gifts_other": "Kutoka kwa {{count}} gifts",
+    "newFollowers": "Wafuasi wapya",
+    "chatMessages": "Sehemu ya Ujumbe",
+    "chatters": "Watu wanaopiga gumzo",
+    "reactions": "Miitikio",
+    "shares": "Watu wanaoshiriki",
+    "topSupporters": "Wafuasi wakuu",
+    "polls": "Kura ya maoni",
+    "pollWinner": "{{option}} alishinda",
+    "stillCounting": "Bado inahesabika: zawadi zinaweza kuchukua dakika moja kuthibitisha."
   }
 }

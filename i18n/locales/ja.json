@@ -9456,5 +9456,28 @@
         "shhh": "しーっ"
       }
     }
+  },
+  "liveRecap": {
+    "title": "ストリームのまとめ",
+    "justEnded": "ストリームのまとめ",
+    "lastStream": "最後のストリーム",
+    "none": "完了したストリームはまだありません。最初のものの後に要約がここに表示されます。",
+    "share": "共有",
+    "shareText": "DeHubで「{{title}}」をストリーミングしました：{{duration}}ライブ、{{peak}}ピーク時に視聴、{{followers}}新しいフォロワー。",
+    "untitled": "無題のストリーム",
+    "loadFailed": "要約が読み込まれませんでした。しばらくしてからもう一度お試しください。",
+    "duration": "ライブ中です",
+    "peakViewers": "一度に最も視聴している",
+    "gifts_one": "{{count}}からの贈り物",
+    "gifts_other": "{{count}}からのギフト",
+    "newFollowers": "新しいフォロワー",
+    "chatMessages": "チャットメッセージ",
+    "chatters": "チャットしている人",
+    "reactions": "リアクション",
+    "shares": "共有しているユーザー",
+    "topSupporters": "トップサポーター",
+    "polls": "投票",
+    "pollWinner": "{{option}}ウォン",
+    "stillCounting": "まだまだ続きます。ギフトの確認には少し時間がかかる場合があります。"
   }
 }

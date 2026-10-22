@@ -9331,5 +9331,26 @@
         "shhh": "ŞHH"
       }
     }
+  },
+  "liveRecap": {
+    "justEnded": "Seniň gaýdyp gelmegiň",
+    "lastStream": "Seniň soňky akyşyň",
+    "none": "Hany, tamamlanmady. Bu adam onuň dogany bolany üçin, onuň soragyna jogap berer.",
+    "share": "Paylaş",
+    "shareText": "Men \"{{title}}\" diýen ýazgylary DeHub-da ýaýratdym: {{duration}} live, {{peak}} seretmek we {{followers}} täze şägirtler.",
+    "untitled": "Adsyz akma",
+    "loadFailed": "Garawul diňi we Garawul diňi. Gaýtalaň",
+    "duration": "Wagtyň geçmegi bilen",
+    "peakViewers": "Birdenkä seredýänleriň köpüsi",
+    "gifts_one": "{{count}} sowgat",
+    "gifts_other": "{{count}} sowgatlar",
+    "newFollowers": "Täze şägirtler",
+    "chatMessages": "Çat habarlary",
+    "chatters": "Adamlar gürrüňdeşlik edýärler",
+    "reactions": "Reaksiýalar",
+    "shares": "Adamlar paýlaşýar",
+    "topSupporters": "Ýolbaşçylyk maslahaty",
+    "polls": "Saýlamalar",
+    "stillCounting": "Hany, henizem: sowgatlar bir minutlap tassyklanýar."
   }
 }

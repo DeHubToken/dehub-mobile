@@ -9370,5 +9370,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Streamsammanfattning",
+    "justEnded": "Sammanfattning av ditt flöde",
+    "lastStream": "Din senaste ström",
+    "none": "Inga färdiga strömmar ännu. Din sammanfattning visas här efter din första.",
+    "share": "Dela",
+    "shareText": "Jag strömmade precis \"{{title}}\" på DeHub: {{duration}} live, {{peak}} tittar på toppen och {{followers}} nya följare.",
+    "untitled": "Namnlös ström",
+    "loadFailed": "Sammanfattningen laddades inte. Försök igen om en stund.",
+    "duration": "Tid live",
+    "peakViewers": "Mest tittande på en gång",
+    "gifts_one": "Från {{count}} gåva",
+    "gifts_other": "Från {{count}} gåvor",
+    "newFollowers": "Nya följare",
+    "chatMessages": "Chattmeddelanden",
+    "chatters": "Folk chattar",
+    "reactions": "Reaktioner",
+    "shares": "Personer som delar",
+    "topSupporters": "Toppanhängare",
+    "polls": "Omröstningar",
+    "pollWinner": "{{option}} vann",
+    "stillCounting": "Räknar fortfarande: gåvor kan ta en minut att bekräfta."
   }
 }

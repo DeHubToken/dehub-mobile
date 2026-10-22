@@ -9214,5 +9214,13 @@
         "ohh-girl": "Ohh (女仔)"
       }
     }
+  },
+  "liveRecap": {
+    "share": "分享",
+    "shareText": "我剛剛在DeHub直播{{title}}：{{duration}}線上，{{peak}}人同時觀看，{{followers}}新粉絲。",
+    "untitled": "未命名的流",
+    "duration": "時間直播",
+    "gifts_one": "{{count}} 送啥？",
+    "topSupporters": "顶级支持者"
   }
 }

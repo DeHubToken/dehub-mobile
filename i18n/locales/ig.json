@@ -9330,5 +9330,24 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "justEnded": "Gị iyi recap",
+    "lastStream": "Ikpeazụ gị iyi",
+    "none": "Enweghi iyi ndị e mechara emecha. Ntughari gị na-apụta ebe a ka nke mbụ gị gachara.",
+    "share": "Ekekọrịta",
+    "shareText": "M nnọọ streamed \"{{title}}\" na DeHub: {{duration}} ndụ, {{peak}} ekiri na elu na {{followers}} ọhụrụ na-eso ụzọ.",
+    "loadFailed": "Ntughari ahụ ebughị ibu. Gbalịa ọzọ n 'otu ntabi anya.",
+    "duration": "Oge LIVE",
+    "peakViewers": "Ọtụtụ na-ekiri n 'otu oge",
+    "gifts_one": "Site na {{count}} onyinye",
+    "newFollowers": "New na-eso ụzọ",
+    "chatMessages": "Ozi nkata",
+    "chatters": "Ndị mmadụ na-akparịta ụka",
+    "reactions": "Mmetụta",
+    "shares": "Ndị mmadụ na-ekere òkè",
+    "topSupporters": "Top akwado",
+    "polls": "Ntuli aka",
+    "stillCounting": "Ka na-agụta: onyinye nwere ike iwe otu nkeji iji gosi."
   }
 }

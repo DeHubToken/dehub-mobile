@@ -9368,5 +9368,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Stream opsummering",
+    "justEnded": "Opsummering af din stream",
+    "lastStream": "Din sidste stream",
+    "none": "Ingen færdige streams endnu. Din oversigt vises her efter din første.",
+    "share": "Del",
+    "shareText": "Jeg har lige streamet \"{{title}}\" på DeHub: {{duration}}live, {{peak}} på toppen og {{followers}} nye følgere.",
+    "untitled": "Stream uden titel",
+    "loadFailed": "Opsummeringen blev ikke indlæst. Prøv igen om et øjeblik.",
+    "duration": "Live tid",
+    "peakViewers": "De fleste ser på én gang",
+    "gifts_one": "Fra {{count}} gave",
+    "gifts_other": "Fra {{count}} gaver",
+    "newFollowers": "Nye følgere",
+    "chatMessages": "Chatbeskeder",
+    "chatters": "Folk chatter",
+    "reactions": "Reaktioner",
+    "shares": "Deling af personer",
+    "topSupporters": "Toptilhængere",
+    "polls": "Polls",
+    "pollWinner": "{{option}} vandt",
+    "stillCounting": "Tæller stadig: Gaver kan tage et minut at bekræfte."
   }
 }

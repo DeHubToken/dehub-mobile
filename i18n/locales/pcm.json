@@ -8974,5 +8974,20 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Stream recap",
+    "share": "Share",
+    "untitled": "Untitled stream",
+    "loadFailed": "Na dem load no recap dey fail. Try again after a while.",
+    "duration": "Time live",
+    "newFollowers": "New followers",
+    "chatMessages": "Chat messages",
+    "chatters": "People chatting",
+    "reactions": "Reactions",
+    "shares": "People sharing",
+    "topSupporters": "Top supporters",
+    "polls": "Polls",
+    "pollWinner": "{{option}} won"
   }
 }

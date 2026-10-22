@@ -9366,5 +9366,28 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Virran yhteenveto",
+    "justEnded": "Suoratoistosi yhteenveto",
+    "lastStream": "Viimeinen suoratoistosi",
+    "none": "Ei vielä valmiita striimejä. Yhteenvetosi näkyy tässä ensimmäisen yhteenvetosi jälkeen.",
+    "share": "Jaa",
+    "shareText": "Striimasin juuri \"{{title}}\" DeHubissa: {{duration}} live, {{peak}} katselu huipulla ja {{followers}} uutta seuraajaa.",
+    "untitled": "Nimetön stream",
+    "loadFailed": "Yhteenveto ei latautunut. Yritä hetken kuluttua uudelleen.",
+    "duration": "Live-aika",
+    "peakViewers": "Useimmat katsovat kerralla",
+    "gifts_one": "Lähettäjä:{{count}} Gift",
+    "gifts_other": "Lahjoista {{count}}",
+    "newFollowers": "Uudet seuraajat",
+    "chatMessages": "Chat-viestit",
+    "chatters": "Ihmiset juttelevat",
+    "reactions": "Reaktiot",
+    "shares": "Henkilöiden jakaminen",
+    "topSupporters": "Parhaat kannattajat",
+    "polls": "Kyselyt",
+    "pollWinner": "{{option}} voitti",
+    "stillCounting": "Vielä lasketaan: lahjojen vahvistaminen voi kestää hetken."
   }
 }

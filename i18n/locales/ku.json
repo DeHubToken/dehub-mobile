@@ -9278,5 +9278,28 @@
         "shhh": "Şşş"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Kurteya weşana zindî",
+    "justEnded": "Kurteya weşana we",
+    "lastStream": "Weşana te ya dawî",
+    "none": "Hîn weşanên qediyayî tune ne. Kurteya we piştî weşana we ya yekem li vir xuya dibe.",
+    "share": "Par",
+    "shareText": "Min tenê \"{{title}}\" li ser DeHub weşand: {{duration}} zindî, {{peak}} li lûtkeyê temaşekirin û {{followers}} şopînerên nû.",
+    "untitled": "Herikîna bêsernav",
+    "loadFailed": "Kurteya daneyan nehat barkirin. Piştî demekê dîsa biceribînin.",
+    "duration": "Demjimêr zindî",
+    "peakViewers": "Piraniya temaşekirinê di carekê de",
+    "gifts_one": "Ji diyariya {{count}}",
+    "gifts_other": "Ji diyariyên {{count}}",
+    "newFollowers": "Şopînerên nû",
+    "chatMessages": "Peyamên sohbetê",
+    "chatters": "Xelk sohbet dikin",
+    "reactions": "Bertekên",
+    "shares": "Parvekirina mirovan",
+    "topSupporters": "Piştgirên herî jor",
+    "polls": "ڕاپرسییەکان",
+    "pollWinner": "{{option}} qezenc kir",
+    "stillCounting": "Hîn jî hejmartin: piştrastkirina diyariyan dikare deqeyek bidome."
   }
 }

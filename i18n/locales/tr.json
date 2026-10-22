@@ -10953,5 +10953,28 @@
         "shhh": "Şşşt"
       }
     }
+  },
+  "liveRecap": {
+    "title": "Akış özeti",
+    "justEnded": "Akış özetiniz",
+    "lastStream": "Son akışınız",
+    "none": "Henüz bitmiş akış yok. Özetiniz, ilk özetinizden sonra burada görünür.",
+    "share": "Paylaş",
+    "shareText": "Az önce DeHub'da \"{{title}}\" izledim: {{duration}} canlı, {{peak}} zirvede izliyor ve {{followers}} yeni takipçiler.",
+    "untitled": "Başlıksız akış",
+    "loadFailed": "Özet yüklenmedi. Birazdan tekrar deneyin.",
+    "duration": "Canlı yayın süresi",
+    "peakViewers": "Çoğu aynı anda izliyor",
+    "gifts_one": "{{count}} hediyesinden",
+    "gifts_other": "{{count}} hediyeden",
+    "newFollowers": "Yeni takipçiler",
+    "chatMessages": "Sohbet mesajları",
+    "chatters": "Sohbet eden insanlar",
+    "reactions": "Tepkiler",
+    "shares": "Paylaşan insanlar",
+    "topSupporters": "En iyi destekçiler",
+    "polls": "Anketler",
+    "pollWinner": "{{option}} kazandı",
+    "stillCounting": "Hâlâ artıyor: Hediyelerin onaylanması bir dakika sürebilir."
   }
 }

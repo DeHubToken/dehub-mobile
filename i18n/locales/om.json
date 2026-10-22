@@ -9394,5 +9394,27 @@
         "shhh": "Shhh"
       }
     }
+  },
+  "liveRecap": {
+    "justEnded": "Irra deebiin yaa'aa keessan",
+    "lastStream": "Dhangala'aa kee isa dhumaa",
+    "none": "Hanga ammaatti sulula xumurame hin jiru. Irra deebiin kee kan jalqabaa kee booda asitti mul'ata.",
+    "share": "Qooduu",
+    "shareText": "Reefu \"{{title}}\" DeHub irratti tamsaaseera: {{duration}} kallattiin, {{peak}} yeroo olka'iinsaatti ilaalaa fi {{followers}} hordoftoota haaraa.",
+    "untitled": "Dhangala'aa mata duree hin qabne",
+    "loadFailed": "Irra deebiin hin fe'amne. Yeroo muraasa booda irra deebi'ii yaali.",
+    "duration": "Yeroon jiraadhu",
+    "peakViewers": "Irra caalaan isaanii yeroo tokkotti ilaaluu",
+    "gifts_one": "Kennaa {{count}} irraa",
+    "gifts_other": "{{count}} kennaa irraa",
+    "newFollowers": "Hordoftoota haaraa",
+    "chatMessages": "Ergaawwan chat",
+    "chatters": "Namoonni chatting",
+    "reactions": "Deebiin kennamu",
+    "shares": "Namoonni qooddachaa jiran",
+    "topSupporters": "Deeggartoota olaanoo",
+    "polls": "Filannoo",
+    "pollWinner": "{{option}} injifate",
+    "stillCounting": "Ammas lakkaa'aa jira: kennaawwan mirkaneessuuf daqiiqaa tokko fudhachuu danda'u."
   }
 }
