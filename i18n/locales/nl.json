@@ -1251,6 +1251,8 @@
     "payFailed": "Kon {{symbol}} niet converteren naar DeHub-tokens",
     "stageDelivering": "DeHub Pay stuurt uw tokens…",
     "payViaDpay": "Betaald aan DeHub Pay, tokens arriveren in ongeveer 30s",
+    "payDirect": "Rechtstreeks naar {{name}} gestuurd in {{symbol}} op {{chain}}. Geen swap.",
+    "payDirectNoName": "Rechtstreeks naar de maker gestuurd in {{symbol}} op {{chain}}. Geen swap.",
     "payViaBridgeDpay": "Verplaatst naar Base en betaald aan DeHub Pay, tokens arriveren in ongeveer een minuut",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens"

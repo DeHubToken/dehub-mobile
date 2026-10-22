@@ -1061,6 +1061,8 @@
     "payFailed": "{{symbol}} DeHub tokenlarına dönüştürülemedi",
     "stageDelivering": "DeHub Pay tokenlarınızı gönderiyor…",
     "payViaDpay": "DeHub Pay'e ödendi, tokenlar yaklaşık 30 saniyede gelir",
+    "payDirect": "{{chain}} üzerinde {{symbol}} olarak doğrudan {{name}} kişisine gönderilir. Takas yok.",
+    "payDirectNoName": "{{chain}} üzerinde {{symbol}} olarak doğrudan içerik üreticisine gönderilir. Takas yok.",
     "payViaBridgeDpay": "Base'e taşındı ve DeHub Pay'e ödendi, tokenlar yaklaşık bir dakikada gelir",
     "tokensUnit": "token",
     "tokenAmount": "{{amount}} token"

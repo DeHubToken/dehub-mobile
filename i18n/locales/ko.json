@@ -945,6 +945,8 @@
     "payFailed": "{{symbol}}개를 DeHub 토큰으로 전환할 수 없습니다.",
     "stageDelivering": "DeHub Pay에서 토큰을 전송 중입니다…",
     "payViaDpay": "DeHub Pay로 결제됨, 약 30초 후 토큰 도착",
+    "payDirect": "{{chain}}의 {{symbol}}(으)로 {{name}}님에게 바로 전송됩니다. 스왑 없음.",
+    "payDirectNoName": "{{chain}}의 {{symbol}}(으)로 크리에이터에게 바로 전송됩니다. 스왑 없음.",
     "payViaBridgeDpay": "Base로 이동하여 DeHub Pay로 결제됨, 약 1분 후 토큰 도착",
     "tokensUnit": "토큰",
     "tokenAmount": "{{amount}} 토큰"

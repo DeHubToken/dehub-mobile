@@ -946,6 +946,8 @@
     "payFailed": "无法将 {{symbol}} 兑换为 DeHub 代币",
     "stageDelivering": "DeHub Pay 正在发送您的代币…",
     "payViaDpay": "已支付给 DeHub Pay，代币约 30 秒后到账",
+    "payDirect": "以 {{chain}} 上的 {{symbol}} 直接发送给 {{name}}，无需兑换。",
+    "payDirectNoName": "以 {{chain}} 上的 {{symbol}} 直接发送给创作者，无需兑换。",
     "payViaBridgeDpay": "已移至 Base 并支付给 DeHub Pay，代币约一分钟后到账",
     "tokensUnit": "代币",
     "tokenAmount": "{{amount}} 代币"

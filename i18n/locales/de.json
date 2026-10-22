@@ -991,6 +991,8 @@
     "payFailed": "Konnte {{symbol}} nicht in DeHub-Tokens umwandeln",
     "stageDelivering": "DeHub Pay sendet Ihre Tokens…",
     "payViaDpay": "An DeHub Pay bezahlt, Tokens kommen in ca. 30s an",
+    "payDirect": "Direkt an {{name}} in {{symbol}} auf {{chain}} gesendet. Kein Swap.",
+    "payDirectNoName": "Direkt an den Creator in {{symbol}} auf {{chain}} gesendet. Kein Swap.",
     "payViaBridgeDpay": "Auf Base verschoben und an DeHub Pay bezahlt, Tokens kommen in ca. einer Minute an",
     "tokensUnit": "Tokens",
     "tokenAmount": "{{amount}} Tokens"
