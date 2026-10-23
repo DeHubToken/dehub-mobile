@@ -23,9 +23,7 @@ import {
   TextInput,
   ActivityIndicator,
   Alert,
-  KeyboardAvoidingView,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import type { TFunction } from "i18next";
 import Icon from "../components/ui/Icon";
@@ -38,7 +36,7 @@ import AccountBadge from "../components/common/AccountBadge";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
-import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
+import { useComposerKeyboard } from "../hooks/useComposerKeyboard";
 import { ScreenNames } from "../navigation/ScreenNames";
 import {
   useGovernanceProposal,
@@ -158,12 +156,15 @@ const CommentRow: React.FC<{
 
 export default function GovernanceProposalScreen() {
   const { t } = useTranslation();
-  const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
   const proposalId: string | undefined = route.params?.proposalId;
   const focusedCommentId: string | undefined = route.params?.commentId;
-  const keyboardOffset = useKeyboardOffset();
+  // The comment box is docked under the discussion and rides the keyboard, as
+  // on the post page and in DMs. Inside the scroll, under a
+  // KeyboardAvoidingView, the screen pan lifted it a second time: the box sat
+  // behind the keys and the screen slid off into black.
+  const composerKeyboard = useComposerKeyboard(0, { gap: 0 });
 
   const user = useUser() as any;
   const { isSignedIn, needsUsername } = useAuthState();
@@ -384,10 +385,10 @@ export default function GovernanceProposalScreen() {
           action={<KitButton variant="quiet" label={t("common.retry")} onPress={() => refetch()} />}
         />
       ) : (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={keyboardOffset}>
+        <>
           <ScrollView
             ref={scrollRef}
-            contentContainerStyle={{ paddingBottom: insets.bottom + 24, paddingTop: 4 }}
+            contentContainerStyle={{ paddingBottom: 16, paddingTop: 4 }}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
@@ -485,59 +486,65 @@ export default function GovernanceProposalScreen() {
               ) : (
                 threads.map(renderThread)
               )}
-
-              {replyTo && (
-                <View style={styles.replyingBar}>
-                  <Text style={styles.replyingText} numberOfLines={1}>
-                    {t("governance.discussion.replyingTo", {
-                      name: replyTo.username ? `@${replyTo.username}` : shortAddr(replyTo.wallet_address),
-                    })}
-                  </Text>
-                  <Pressable
-                    onPress={() => setReplyTo.complete(replyTo, null)}
-                    hitSlop={8}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("common.cancel")}
-                  >
-                    <Icon name="X" size={14} color="#808089" />
-                  </Pressable>
-                </View>
-              )}
-
-              {isAuthed ? (
-                <View style={styles.composer}>
-                  <TextInput
-                    ref={inputRef}
-                    value={draft}
-                    onChangeText={(v) => setDraft(v.slice(0, COMMENT_MAX))}
-                    placeholder={replyTo ? t("governance.discussion.writeReply") : t("governance.addComment")}
-                    placeholderTextColor="#52525B"
-                    style={styles.composerInput}
-                    multiline
-                  />
-                  <Pressable
-                    onPress={send}
-                    disabled={!draft.trim() || submitComment.isPending}
-                    accessibilityRole="button"
-                    accessibilityLabel={t("governance.addComment")}
-                    style={[styles.sendBtn, (!draft.trim() || submitComment.isPending) && styles.sendBtnDisabled]}
-                  >
-                    {submitComment.isPending ? (
-                      <ActivityIndicator size="small" color="#FFFFFF" />
-                    ) : (
-                      <Icon name="Send" size={14} color="#FFFFFF" />
-                    )}
-                  </Pressable>
-                </View>
-              ) : (
-                <Pressable onPress={() => navigation.navigate(ScreenNames.SignIn)} style={styles.signInBar}>
-                  <Text style={styles.signInText}>{t("governance.discussion.signInToComment")}</Text>
-                </Pressable>
-              )}
             </PageSection>
             </View>
           </ScrollView>
-        </KeyboardAvoidingView>
+          <View
+            ref={composerKeyboard.ref}
+            collapsable={false}
+            onLayout={composerKeyboard.onLayout}
+            style={[styles.composerDock, { marginBottom: composerKeyboard.lift }]}
+          >
+            {replyTo && (
+              <View style={styles.replyingBar}>
+                <Text style={styles.replyingText} numberOfLines={1}>
+                  {t("governance.discussion.replyingTo", {
+                    name: replyTo.username ? `@${replyTo.username}` : shortAddr(replyTo.wallet_address),
+                  })}
+                </Text>
+                <Pressable
+                  onPress={() => setReplyTo.complete(replyTo, null)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("common.cancel")}
+                >
+                  <Icon name="X" size={14} color="#808089" />
+                </Pressable>
+              </View>
+            )}
+
+            {isAuthed ? (
+              <View style={styles.composer}>
+                <TextInput
+                  ref={inputRef}
+                  value={draft}
+                  onChangeText={(v) => setDraft(v.slice(0, COMMENT_MAX))}
+                  placeholder={replyTo ? t("governance.discussion.writeReply") : t("governance.addComment")}
+                  placeholderTextColor="#52525B"
+                  style={styles.composerInput}
+                  multiline
+                />
+                <Pressable
+                  onPress={send}
+                  disabled={!draft.trim() || submitComment.isPending}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("governance.addComment")}
+                  style={[styles.sendBtn, (!draft.trim() || submitComment.isPending) && styles.sendBtnDisabled]}
+                >
+                  {submitComment.isPending ? (
+                    <ActivityIndicator size="small" color="#FFFFFF" />
+                  ) : (
+                    <Icon name="Send" size={14} color="#FFFFFF" />
+                  )}
+                </Pressable>
+              </View>
+            ) : (
+              <Pressable onPress={() => navigation.navigate(ScreenNames.SignIn)} style={styles.signInBar}>
+                <Text style={styles.signInText}>{t("governance.discussion.signInToComment")}</Text>
+              </Pressable>
+            )}
+          </View>
+        </>
       )}
       <RepostShareSheet
         visible={shareOpen}
@@ -641,10 +648,16 @@ const styles = StyleSheet.create({
   showMoreElbow: { position: "absolute", left: THREAD_X - 14, top: 15, width: 18, height: 1, backgroundColor: THREAD_LINE },
   showMoreText: { color: "#A1A1AA", fontSize: 12 },
 
-  replyingBar: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8, marginTop: 6 },
+  composerDock: {
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: "rgba(255,255,255,0.10)",
+  },
+  replyingBar: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 6 },
   replyingText: { color: "#A1A1AA", fontSize: 12, flex: 1 },
 
-  composer: { flexDirection: "row", alignItems: "flex-end", gap: 8, marginTop: 4 },
+  composer: { flexDirection: "row", alignItems: "flex-end", gap: 8 },
   composerInput: {
     flex: 1,
     minHeight: 36,
@@ -670,7 +683,6 @@ const styles = StyleSheet.create({
   },
   sendBtnDisabled: { opacity: 0.3 },
   signInBar: {
-    marginTop: 4,
     borderRadius: 12,
     backgroundColor: "rgba(255,255,255,0.05)",
     borderWidth: 1,
