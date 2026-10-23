@@ -9679,5 +9679,15 @@
     "youAreBanned": "No pots xatejar en els streams d'aquest creador",
     "youAreTimedOut": "Estàs desconnegit per un moment",
     "title": "Modera"
+  },
+  "loginStack": {
+    "tip": "Propina en DHB",
+    "headlineTop": "Ho tindràs tot",
+    "headlineAccent": "i seràs feliç.",
+    "orContinueWith": "o continua amb",
+    "phone": "Telèfon",
+    "fingerprint": "Empremta",
+    "exploreFirst": "Explora primer",
+    "codeNote": "T'enviem un codi per correu, sense contrasenya."
   }
 }

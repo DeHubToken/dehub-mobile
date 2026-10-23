@@ -11483,5 +11483,15 @@
     "youAreBanned": "لا يمكنك التحدث في تدفقات هذا المبدع",
     "youAreTimedOut": "أنت محظور مؤقتًا لوهلة",
     "title": "تعديل"
+  },
+  "loginStack": {
+    "tip": "ادعم بـ DHB",
+    "headlineTop": "ستملك كل شيء",
+    "headlineAccent": "وستكون سعيدًا.",
+    "orContinueWith": "أو تابع باستخدام",
+    "phone": "الهاتف",
+    "fingerprint": "البصمة",
+    "exploreFirst": "استكشف أولًا",
+    "codeNote": "نرسل لك رمزًا عبر البريد الإلكتروني، دون كلمة مرور."
   }
 }

@@ -11435,5 +11435,15 @@
     "8912e65bf642": "Drag to reorder photo {{value1}} of {{value2}}",
     "01acc2c0f94b": "Use account {{value1}}",
     "8456b09b5e76": "Remove account {{value1}}"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "You will own everything",
+    "headlineAccent": "and be happy.",
+    "orContinueWith": "or continue with",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Explore first",
+    "codeNote": "We email you a code, no password needed."
   }
 }

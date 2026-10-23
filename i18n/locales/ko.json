@@ -9713,5 +9713,15 @@
     "youAreBanned": "이 크리에이터의 스트림에서 채팅할 수 없습니다.",
     "youAreTimedOut": "잠시 시간 제한됨.",
     "title": "모데레이터"
+  },
+  "loginStack": {
+    "tip": "DHB 팁",
+    "headlineTop": "모든 것을 소유하고",
+    "headlineAccent": "행복해질 거예요.",
+    "orContinueWith": "또는 다음으로 계속",
+    "phone": "전화",
+    "fingerprint": "지문",
+    "exploreFirst": "먼저 둘러보기",
+    "codeNote": "이메일로 코드를 보내드려요. 비밀번호는 필요 없어요."
   }
 }

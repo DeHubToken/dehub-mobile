@@ -9678,5 +9678,15 @@
     "youAreBanned": "Et voi chattailla tässä luovan suoratoiston aikana",
     "youAreTimedOut": "Olet hetkellisesti aika ulos",
     "title": "Moderoi"
+  },
+  "loginStack": {
+    "tip": "Anna DHB-tippi",
+    "headlineTop": "Omistat kaiken",
+    "headlineAccent": "ja olet onnellinen.",
+    "orContinueWith": "tai jatka käyttäen",
+    "phone": "Puhelin",
+    "fingerprint": "Sormenjälki",
+    "exploreFirst": "Tutustu ensin",
+    "codeNote": "Lähetämme sinulle koodin sähköpostilla, ilman salasanaa."
   }
 }

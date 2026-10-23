@@ -11479,5 +11479,15 @@
     "youAreBanned": "No puedes chatear en los streams de este creador",
     "youAreTimedOut": "Estás en tiempo de espera por un momento",
     "title": "Moderar"
+  },
+  "loginStack": {
+    "tip": "Propina en DHB",
+    "headlineTop": "Lo tendrás todo",
+    "headlineAccent": "y serás feliz.",
+    "orContinueWith": "o continúa con",
+    "phone": "Teléfono",
+    "fingerprint": "Huella",
+    "exploreFirst": "Explorar primero",
+    "codeNote": "Te enviamos un código por correo, sin contraseña."
   }
 }

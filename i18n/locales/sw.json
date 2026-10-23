@@ -9679,5 +9679,15 @@
     "youAreBanned": "Huwezi kupiga gumzo kwenye mikondo ya mtengenezaji huyu",
     "youAreTimedOut": "Umepitwa na wakati kwa muda",
     "title": "Kadiri"
+  },
+  "loginStack": {
+    "tip": "Tuza kwa DHB",
+    "headlineTop": "Utamiliki kila kitu",
+    "headlineAccent": "na utakuwa na furaha.",
+    "orContinueWith": "au endelea kwa",
+    "phone": "Simu",
+    "fingerprint": "Alama ya kidole",
+    "exploreFirst": "Gundua kwanza",
+    "codeNote": "Tunakutumia msimbo kwa barua pepe, bila nenosiri."
   }
 }

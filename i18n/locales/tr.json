@@ -11479,5 +11479,15 @@
     "youAreBanned": "Bu yaratıcının canlı yayınlarında sohbete katılamazsın.",
     "youAreTimedOut": "Anlık olarak zaman aşımına uğradın.",
     "title": "Yönet"
+  },
+  "loginStack": {
+    "tip": "DHB bahşiş",
+    "headlineTop": "Her şeye sahip olacaksın",
+    "headlineAccent": "ve mutlu olacaksın.",
+    "orContinueWith": "veya şununla devam et",
+    "phone": "Telefon",
+    "fingerprint": "Parmak izi",
+    "exploreFirst": "Önce keşfet",
+    "codeNote": "E-postana bir kod göndeririz, şifre gerekmez."
   }
 }

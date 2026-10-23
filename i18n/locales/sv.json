@@ -9682,5 +9682,15 @@
     "youAreBanned": "Du kan inte chatta i denna skaparens strömmar",
     "youAreTimedOut": "Du är tidsutrymmes för en stund",
     "title": "Moderera"
+  },
+  "loginStack": {
+    "tip": "Ge DHB-dricks",
+    "headlineTop": "Du kommer att äga allt",
+    "headlineAccent": "och vara lycklig.",
+    "orContinueWith": "eller fortsätt med",
+    "phone": "Telefon",
+    "fingerprint": "Fingeravtryck",
+    "exploreFirst": "Utforska först",
+    "codeNote": "Vi mejlar dig en kod, inget lösenord behövs."
   }
 }

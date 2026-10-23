@@ -9770,5 +9770,15 @@
     "youAreBanned": "Bạn không thể chat trong các stream của người tạo nội dung này.",
     "youAreTimedOut": "Bạn đang bị time out một lúc.",
     "title": "Quản lý"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Bạn sẽ sở hữu mọi thứ",
+    "headlineAccent": "và hạnh phúc.",
+    "orContinueWith": "hoặc tiếp tục với",
+    "phone": "Điện thoại",
+    "fingerprint": "Vân tay",
+    "exploreFirst": "Khám phá trước",
+    "codeNote": "Chúng tôi gửi mã qua email, không cần mật khẩu."
   }
 }

@@ -9678,5 +9678,15 @@
     "youAreBanned": "Nemůžete chatovat v přenosu tohoto tvůrce",
     "youAreTimedOut": "Zrovna jste časově omezeni",
     "title": "Moderovat"
+  },
+  "loginStack": {
+    "tip": "Spropitné v DHB",
+    "headlineTop": "Budeš vlastnit všechno",
+    "headlineAccent": "a budeš šťastný.",
+    "orContinueWith": "nebo pokračuj přes",
+    "phone": "Telefon",
+    "fingerprint": "Otisk prstu",
+    "exploreFirst": "Nejdřív se rozhlédni",
+    "codeNote": "Pošleme ti kód e-mailem, bez hesla."
   }
 }

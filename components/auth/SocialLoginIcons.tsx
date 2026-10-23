@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
+import { Pressable, StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
-import { AuthButton } from "./AuthControls";
+import { AuthButton, authColors, AUTH_DISABLED_OPACITY } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isTelegramLoginAvailable } from "../../services/auth/supabaseAuth.service";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
@@ -58,7 +59,41 @@ interface SocialLoginIconsProps {
    * clear of the keyboard that input's own autoFocus just raised.
    */
   onFieldExpand?: (node: View | null) => void;
+  /**
+   * `stack` is the email-first sign-in (Shorts Stack): the email field open,
+   * then round buttons for the rest (the host shows wallet options as links
+   * via ImportWallet variant="links"). `list` is the original
+   * one-row-per-provider stack.
+   */
+  layout?: "list" | "stack";
 }
+
+interface OptionDiscProps {
+  label: string;
+  onPress: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+  active?: boolean;
+  renderIcon: (color: string, size: number) => React.ReactNode;
+}
+
+/** A 48pt round button with its label underneath (the stack layout's "or continue with" row). */
+const OptionDisc: React.FC<OptionDiscProps> = ({ label, onPress, disabled, loading, active, renderIcon }) => (
+  <Pressable
+    onPress={onPress}
+    disabled={disabled || loading}
+    accessibilityRole="button"
+    accessibilityLabel={label}
+    accessibilityState={{ disabled: !!disabled, busy: !!loading, expanded: active }}
+    hitSlop={6}
+    style={({ pressed }) => [styles.option, (disabled && !loading) && { opacity: AUTH_DISABLED_OPACITY }, pressed && { opacity: 0.7 }]}
+  >
+    <View style={[styles.disc, active && styles.discActive]}>
+      {loading ? <ActivityIndicator size="small" color={authColors.label} /> : renderIcon(authColors.label, 22)}
+    </View>
+    <Text style={styles.optionLabel} numberOfLines={1}>{label}</Text>
+  </Pressable>
+);
 
 /**
  * The sign-in option stack. Mirrors dehubweb's LoginModal main step: one
@@ -82,6 +117,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   busyProvider,
   disabled,
   onFieldExpand,
+  layout = "list",
 }) => {
   const { t } = useTranslation();
   const [telegramReady, setTelegramReady] = useState(false);
@@ -99,6 +135,98 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
       cancelled = true;
     };
   }, [onTelegram]);
+
+  // Stack layout: which round button has its flow open under the row.
+  const [openFlow, setOpenFlow] = useState<"phone" | "passkey" | null>(null);
+  const toggleFlow = (flow: "phone" | "passkey") => setOpenFlow((f) => (f === flow ? null : flow));
+
+  if (layout === "stack") {
+    return (
+      <View style={{ width: "100%", gap: 18 }}>
+        <EmailLoginFlow
+          startOpen
+          onSubmit={(_provider, email) => {
+            if (email) onEmailSubmit(email);
+          }}
+          onPasswordSubmit={onEmailPasswordSubmit}
+          loading={busyProvider === "email"}
+          disabled={disabled}
+          onExpand={onFieldExpand}
+        />
+
+        <View style={styles.divider}>
+          <View style={styles.rule} />
+          <Text style={styles.dividerText}>{t("loginStack.orContinueWith", "or continue with")}</Text>
+          <View style={styles.rule} />
+        </View>
+
+        <View style={styles.row}>
+          <OptionDisc
+            label="Google"
+            onPress={onGoogle}
+            disabled={disabled}
+            loading={busyProvider === "google"}
+            renderIcon={(c, sz) => <SvgXml xml={googleIcon("currentColor")} color={c} width={sz} height={sz} />}
+          />
+          <OptionDisc
+            label="Apple"
+            onPress={onApple}
+            disabled={disabled}
+            loading={busyProvider === "apple"}
+            renderIcon={(c, sz) => <SvgXml xml={appleIcon("currentColor")} color={c} width={sz} height={sz} />}
+          />
+          <OptionDisc
+            label={t("loginStack.phone", "Phone")}
+            onPress={() => toggleFlow("phone")}
+            disabled={disabled}
+            loading={busyProvider === "phone"}
+            active={openFlow === "phone"}
+            renderIcon={(c, sz) => <Ionicons name="call" color={c} size={sz - 2} />}
+          />
+          {passkeyReady && (
+            <OptionDisc
+              label={t("loginStack.fingerprint", "Fingerprint")}
+              onPress={() => toggleFlow("passkey")}
+              disabled={disabled}
+              loading={busyProvider === "passkey-signin" || busyProvider === "passkey-signup"}
+              active={openFlow === "passkey"}
+              renderIcon={(c, sz) => <Ionicons name="finger-print" color={c} size={sz} />}
+            />
+          )}
+          {onTelegram && telegramReady && (
+            <OptionDisc
+              label="Telegram"
+              onPress={onTelegram}
+              disabled={disabled}
+              loading={busyProvider === "telegram"}
+              renderIcon={(c, sz) => <SvgXml xml={telegramIcon("currentColor")} color={c} width={sz} height={sz} />}
+            />
+          )}
+        </View>
+
+        {openFlow === "phone" && (
+          <PhoneLoginFlow
+            startOpen
+            onSubmit={onPhoneSubmit}
+            loading={busyProvider === "phone"}
+            disabled={disabled}
+            onExpand={onFieldExpand}
+          />
+        )}
+        {openFlow === "passkey" && passkeyReady && (
+          <PasskeyLoginFlow
+            startOpen
+            onSignIn={onPasskeySignIn!}
+            onSignUp={onPasskeySignUp!}
+            busy={busyProvider === "passkey-signin" ? "signin" : busyProvider === "passkey-signup" ? "signup" : null}
+            disabled={disabled}
+            error={passkeyError}
+            suggestCreate={passkeySuggestCreate}
+          />
+        )}
+      </View>
+    );
+  }
 
   return (
     <View style={{ width: "100%", gap: 12 }}>
@@ -180,5 +308,25 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  divider: { flexDirection: "row", alignItems: "center", gap: 12 },
+  rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: authColors.hairline },
+  dividerText: { color: authColors.subtle, fontSize: 12, fontWeight: "500" },
+  row: { flexDirection: "row", justifyContent: "center", gap: 24 },
+  option: { alignItems: "center", gap: 6, minWidth: 56 },
+  disc: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: authColors.surface,
+    borderWidth: 1,
+    borderColor: authColors.border,
+  },
+  discActive: { backgroundColor: authColors.surfacePressed, borderColor: authColors.label },
+  optionLabel: { color: authColors.label, fontSize: 11, fontWeight: "600" },
+});
 
 export default SocialLoginIcons;

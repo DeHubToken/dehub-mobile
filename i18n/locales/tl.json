@@ -9859,5 +9859,15 @@
     "youAreBanned": "Hindi ka maaaring makipag - chat sa mga stream ng tagalikha na ito",
     "youAreTimedOut": "Naka - time out ka nang ilang sandali",
     "title": "Katamtaman"
+  },
+  "loginStack": {
+    "tip": "Mag-tip ng DHB",
+    "headlineTop": "Mapapasaiyo ang lahat",
+    "headlineAccent": "at magiging masaya ka.",
+    "orContinueWith": "o magpatuloy gamit ang",
+    "phone": "Telepono",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Mag-explore muna",
+    "codeNote": "Magpapadala kami ng code sa email, walang password."
   }
 }

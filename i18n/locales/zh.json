@@ -9775,5 +9775,15 @@
     "youAreBanned": "您无法在该创作者的直播间聊天。",
     "youAreTimedOut": "您暂时被超时。",
     "title": "管理"
+  },
+  "loginStack": {
+    "tip": "打赏 DHB",
+    "headlineTop": "你将拥有一切",
+    "headlineAccent": "并且很快乐。",
+    "orContinueWith": "或使用以下方式继续",
+    "phone": "手机",
+    "fingerprint": "指纹",
+    "exploreFirst": "先逛逛",
+    "codeNote": "我们会通过邮件发送验证码，无需密码。"
   }
 }
