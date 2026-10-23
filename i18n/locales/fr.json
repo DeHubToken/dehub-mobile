@@ -5038,7 +5038,10 @@
     "pause": "Pause",
     "listens_one": "{{count}} écoute",
     "listens_other": "{{count}} écoutes",
-    "visualizerColour": "Couleur de la visualisation"
+    "visualizerColour": "Couleur de la visualisation",
+    "lyrics": "Paroles",
+    "lyricsLoading": "Recherche des paroles…",
+    "lyricsNone": "Aucune parole trouvée"
   },
   "transfer": {
     "arcTitle": "Envoyer des USDC sur Arc",

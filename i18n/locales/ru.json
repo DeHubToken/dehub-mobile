@@ -4690,7 +4690,10 @@
     "play": "Воспроизвести",
     "pause": "Пауза",
     "listens_one": "{{count}} прослушивание",
-    "listens_other": "{{count}} прослушиваний"
+    "listens_other": "{{count}} прослушиваний",
+    "lyrics": "Текст песни",
+    "lyricsLoading": "Ищем текст…",
+    "lyricsNone": "Текст не найден"
   },
   "transfer": {
     "arcTitle": "Отправить USDC в сети Arc",

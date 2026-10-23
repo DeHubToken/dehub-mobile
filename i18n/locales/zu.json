@@ -4649,7 +4649,10 @@
     "play": "Dlala",
     "pause": "Misa okwesikhashana",
     "listens_one": "{{count}} lalela",
-    "listens_other": "{{count}} uyalalela"
+    "listens_other": "{{count}} uyalalela",
+    "lyrics": "Amazwi engoma",
+    "lyricsLoading": "Kufunwa amazwi…",
+    "lyricsNone": "Awekho amazwi atholakele"
   },
   "transfer": {
     "arcTitle": "Thumela i-USDC ku-Arc",

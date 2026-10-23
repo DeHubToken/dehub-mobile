@@ -4614,7 +4614,10 @@
     "play": "ಪ್ಲೇ ಮಾಡಿ",
     "pause": "ವಿರಾಮ",
     "listens_one": "{{count}} ಆಲಿಸಿ",
-    "listens_other": "{{count}} ಕೇಳುತ್ತದೆ"
+    "listens_other": "{{count}} ಕೇಳುತ್ತದೆ",
+    "lyrics": "ಹಾಡಿನ ಸಾಹಿತ್ಯ",
+    "lyricsLoading": "ಸಾಹಿತ್ಯ ಹುಡುಕಲಾಗುತ್ತಿದೆ…",
+    "lyricsNone": "ಸಾಹಿತ್ಯ ಸಿಗಲಿಲ್ಲ"
   },
   "transfer": {
     "arcTitle": "Arc ನಲ್ಲಿ USDC ಕಳುಹಿಸಿ",

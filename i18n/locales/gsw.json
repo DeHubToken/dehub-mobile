@@ -4656,7 +4656,10 @@
     "play": "Spiele",
     "pause": "Pausiere",
     "listens_one": "{{count}} höre",
-    "listens_other": "{{count}} höört"
+    "listens_other": "{{count}} höört",
+    "lyrics": "Songtext",
+    "lyricsLoading": "Songtext wird gsuecht…",
+    "lyricsNone": "Kei Songtext gfunde"
   },
   "transfer": {
     "arcTitle": "USDC uf Arc schicke",

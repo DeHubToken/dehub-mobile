@@ -4624,7 +4624,10 @@
     "play": "खेळ",
     "pause": "विराम द्या",
     "listens_one": "{{count}} ऐका",
-    "listens_other": "{{count}} वेळा ऐकले"
+    "listens_other": "{{count}} वेळा ऐकले",
+    "lyrics": "गाण्याचे बोल",
+    "lyricsLoading": "बोल शोधत आहे…",
+    "lyricsNone": "बोल सापडले नाहीत"
   },
   "transfer": {
     "arcTitle": "Arc वर USDC पाठवा",

@@ -4638,7 +4638,10 @@
     "play": "დაკვრა",
     "pause": "შეჩერება",
     "listens_one": "{{count}} მოსმენა",
-    "listens_other": "{{count}} უსმენს"
+    "listens_other": "{{count}} უსმენს",
+    "lyrics": "ტექსტი",
+    "lyricsLoading": "ვეძებთ ტექსტს…",
+    "lyricsNone": "ტექსტი ვერ მოიძებნა"
   },
   "transfer": {
     "arcTitle": "USDC-ის გაგზავნა Arc-ზე",

@@ -4635,7 +4635,10 @@
     "play": "Toista",
     "pause": "Keskeytä",
     "listens_one": "{{count}} kuuntele",
-    "listens_other": "{{count}} kuuntelee"
+    "listens_other": "{{count}} kuuntelee",
+    "lyrics": "Sanat",
+    "lyricsLoading": "Haetaan sanoja…",
+    "lyricsNone": "Sanoja ei löytynyt"
   },
   "transfer": {
     "arcTitle": "Lähetä USDC Arc-verkossa",

@@ -4614,7 +4614,10 @@
     "play": "ଚଲାନ୍ତୁ",
     "pause": "ବିରତି",
     "listens_one": "{{count}} ଶୁଣନ୍ତୁ",
-    "listens_other": "{{count}} ଶୁଣୁଛି"
+    "listens_other": "{{count}} ଶୁଣୁଛି",
+    "lyrics": "ଗୀତର ଶବ୍ଦ",
+    "lyricsLoading": "ଶବ୍ଦ ଖୋଜୁଛି…",
+    "lyricsNone": "କୌଣସି ଶବ୍ଦ ମିଳିଲା ନାହିଁ"
   },
   "transfer": {
     "arcTitle": "Arc ରେ USDC ପଠାନ୍ତୁ",

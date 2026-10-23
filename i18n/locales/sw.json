@@ -4636,7 +4636,10 @@
     "play": "Cheza",
     "pause": "Sitisha",
     "listens_one": "{{count}} sikiliza",
-    "listens_other": "{{count}} anasikiliza"
+    "listens_other": "{{count}} anasikiliza",
+    "lyrics": "Maneno ya wimbo",
+    "lyricsLoading": "Inatafuta maneno…",
+    "lyricsNone": "Hakuna maneno yaliyopatikana"
   },
   "transfer": {
     "arcTitle": "Tuma USDC kwenye Arc",

@@ -4663,7 +4663,10 @@
     "play": "شروع",
     "pause": "توقف",
     "listens_one": "{{count}} گوش کن",
-    "listens_other": "{{count}} گوش می‌دهد"
+    "listens_other": "{{count}} گوش می‌دهد",
+    "lyrics": "متن آهنگ",
+    "lyricsLoading": "در حال یافتن متن…",
+    "lyricsNone": "متنی پیدا نشد"
   },
   "transfer": {
     "arcTitle": "ارسال USDC در Arc",

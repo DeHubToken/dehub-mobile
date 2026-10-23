@@ -4615,7 +4615,10 @@
     "pause": "Dakatar da",
     "listens_one": "{{count}} saurare",
     "listens_other": "{{count}} sauraro",
-    "untitled": "Rubutun sauti"
+    "untitled": "Rubutun sauti",
+    "lyrics": "Kalmomin waƙa",
+    "lyricsLoading": "Ana neman kalmomi…",
+    "lyricsNone": "Ba a sami kalmomi ba"
   },
   "transfer": {
     "arcTitle": "Aika USDC a kan Arc",

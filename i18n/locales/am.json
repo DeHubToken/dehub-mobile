@@ -4640,7 +4640,10 @@
     "play": "አጫውት",
     "pause": "እረፍት",
     "listens_one": "{{count}} ያዳምጡ",
-    "listens_other": "{{count}} ያዳምጡ"
+    "listens_other": "{{count}} ያዳምጡ",
+    "lyrics": "የዘፈን ግጥም",
+    "lyricsLoading": "ግጥም በመፈለግ ላይ…",
+    "lyricsNone": "ምንም ግጥም አልተገኘም"
   },
   "transfer": {
     "arcTitle": "USDC በArc ላይ ላክ",

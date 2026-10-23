@@ -4636,7 +4636,10 @@
     "play": "کھیلیں",
     "pause": "موقوف کریں",
     "listens_one": "{{count}} سنیں",
-    "listens_other": "{{count}} فہرستیں"
+    "listens_other": "{{count}} فہرستیں",
+    "lyrics": "گیت کے بول",
+    "lyricsLoading": "بول تلاش کیے جا رہے ہیں…",
+    "lyricsNone": "کوئی بول نہیں ملے"
   },
   "transfer": {
     "arcTitle": "Arc پر USDC بھیجیں",

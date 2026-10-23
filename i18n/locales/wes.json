@@ -7760,7 +7760,10 @@
     "listens_other": "{{count}} listen dem",
     "popOut": "Pop am out — continue to listen while you di browse",
     "closeCornerPlayer": "Klos di player fo kona",
-    "stopAndClose": "Stop am and close the player"
+    "stopAndClose": "Stop am and close the player",
+    "lyrics": "Song words",
+    "lyricsLoading": "We di find song words…",
+    "lyricsNone": "No song words"
   },
   "banned": {
     "reason": "Wai: {{reason}}",

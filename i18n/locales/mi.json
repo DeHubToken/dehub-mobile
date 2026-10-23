@@ -4617,7 +4617,10 @@
     "listens_one": "{{count}} whakarongo",
     "listens_other": "{{count}} whakarongo",
     "play": "Tākoro",
-    "pause": "Waihokeyboard label"
+    "pause": "Waihokeyboard label",
+    "lyrics": "Kupu waiata",
+    "lyricsLoading": "E rapu ana i ngā kupu…",
+    "lyricsNone": "Kāore he kupu i kitea"
   },
   "transfer": {
     "arcTitle": "Tukua he USDC ki Arc",

@@ -7788,7 +7788,10 @@
     "play": "Пусти",
     "pause": "Паузирај",
     "listens_one": "{{count}} слушај",
-    "listens_other": "{{count}} слушају"
+    "listens_other": "{{count}} слушају",
+    "lyrics": "Текст песме",
+    "lyricsLoading": "Тражимо текст…",
+    "lyricsNone": "Текст није пронађен"
   },
   "banned": {
     "title": "Ваш налог је забрањен",

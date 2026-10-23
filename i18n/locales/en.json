@@ -4997,7 +4997,10 @@
     "pause": "Pause",
     "listens_one": "{{count}} listen",
     "listens_other": "{{count}} listens",
-    "visualizerColour": "Visualizer colour"
+    "visualizerColour": "Visualizer colour",
+    "lyrics": "Lyrics",
+    "lyricsLoading": "Finding lyrics…",
+    "lyricsNone": "No lyrics found"
   },
   "transfer": {
     "arcTitle": "Send USDC on Arc",

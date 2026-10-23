@@ -4636,7 +4636,10 @@
     "play": "खेल्नुहोस्",
     "pause": "पज गर्नुहोस्",
     "listens_one": "{{count}} सुन्नुहोस्",
-    "listens_other": "{{count}} लिस्टेन्स"
+    "listens_other": "{{count}} लिस्टेन्स",
+    "lyrics": "गीतका शब्द",
+    "lyricsLoading": "शब्द खोज्दै…",
+    "lyricsNone": "कुनै शब्द भेटिएन"
   },
   "transfer": {
     "arcTitle": "Arc मा USDC पठाउनुहोस्",

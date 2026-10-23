@@ -39,6 +39,7 @@ import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { MediaControlIcon, MediaControlText } from "../common/MediaControlGlyph";
 import { VideoScrubZone, VideoScrubButton } from "./VideoScrubZone";
+import { AudioLyrics } from "./AudioLyrics";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { configureForBackgroundPlayback } from "../../libs/audioSession";
 import { claimLockScreen, releaseLockScreen } from "../../libs/lockScreen";
@@ -404,6 +405,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const { theme, skin, accent, isLight } = useAppTheme();
   const studio = theme === 'glass' || (theme === 'system' && !isLight);
   const [glassOptions, setGlassOptions] = useState(false);
+  /** Lyrics over the animation, toggled beside the pop-out button. */
+  const [showLyrics, setShowLyrics] = useState(false);
   const insets = useSafeAreaInsets();
   const playerRef = useRef<AudioPlayer | null>(null);
   /** The card's status subscription, so it can be dropped when the player moves. */
@@ -1163,6 +1166,16 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 
         <View pointerEvents="none" style={{ flex: 1 }} />
         <VideoScrubButton
+          onPress={() => setShowLyrics((v) => !v)}
+          hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
+          style={[styles.squareControl, showLyrics && styles.squareControlOn]}
+          accessibilityRole="button"
+          accessibilityState={{ selected: showLyrics }}
+          accessibilityLabel={t("audioPost.lyrics")}
+        >
+          <MediaControlIcon name="MicVocal" active={showLyrics} />
+        </VideoScrubButton>
+        <VideoScrubButton
           onPress={handlePopOut}
           hitSlop={{ top: 4, bottom: 0, left: 4, right: 4 }}
           style={[styles.squareControl, isPoppedOut && styles.squareControlOn]}
@@ -1209,6 +1222,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         <View style={{ height: Math.max(104, Math.min(220, glassWidth * .35)) + 40, borderTopLeftRadius: 20, borderTopRightRadius: 20, overflow: 'hidden', backgroundColor: theme === 'glass' ? 'rgba(2,20,26,.12)' : '#030405', marginTop: 12, marginBottom: -40 }}>
           {renderVisualizer(Math.max(104, Math.min(220, glassWidth * .35)) + 40)}
+          {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} top={8} bottom={48} />}
         </View>
         <View style={[styles.glassDeck, { paddingTop: glassWaveHeight + 22, borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, backgroundColor: 'transparent' }, compactGlass && { paddingBottom: 8 }]}>
           <LinearGradient pointerEvents="none" colors={theme === 'glass' ? ['rgba(220,255,255,.07)', 'rgba(0,20,24,.55)', 'rgba(0,20,24,.7)'] : ['rgba(20,24,28,.4)', 'rgba(11,13,16,.94)', '#0b0d10']} style={[StyleSheet.absoluteFill, { borderBottomLeftRadius: 28, borderBottomRightRadius: 28 }]} />
@@ -1235,6 +1249,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.glassControl}><MediaControlIcon name={isEffectivelyMuted ? 'VolumeX' : 'Volume2'} /></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.lyrics')} accessibilityState={{ selected: showLyrics }} onPress={() => setShowLyrics(v => !v)} style={[styles.glassControl, showLyrics && { backgroundColor: 'rgba(255,255,255,.22)' }]}><MediaControlIcon name="MicVocal" /></TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.glassControl}><MediaControlIcon name="PictureInPicture2" /></TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.glassControl}><MediaControlIcon name={isFullscreen ? 'Minimize' : 'Maximize'} /></TouchableOpacity>
           </View>
@@ -1247,6 +1262,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         onLayout={mode === "inline" ? onInlineLayout : onFullLayout}
       >
         <View style={StyleSheet.absoluteFill}>{height > 0 && renderVisualizer(height)}</View>
+        {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} />}
         {renderTopChrome(mode)}
         {renderBottomChrome()}
       </View>
@@ -1343,7 +1359,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 14,
     left: 80,
-    right: 80,
+    right: 80 + CONTROL_SIZE + 4,
     height: CONTROL_SIZE,
     justifyContent: "center",
   },

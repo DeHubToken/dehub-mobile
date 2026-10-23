@@ -4679,7 +4679,10 @@
     "play": "播放",
     "pause": "暂停",
     "listens_one": "{{count}} 次收听",
-    "listens_other": "{{count}} 次收听"
+    "listens_other": "{{count}} 次收听",
+    "lyrics": "歌词",
+    "lyricsLoading": "正在获取歌词…",
+    "lyricsNone": "未找到歌词"
   },
   "transfer": {
     "arcTitle": "在 Arc 上发送 USDC",
