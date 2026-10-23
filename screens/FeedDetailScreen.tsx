@@ -9,6 +9,8 @@ import ScreenHeader from "../components/ScreenHeader";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
+import { selectAuthorThreadIds } from "../libs/author-thread";
+import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
@@ -899,9 +901,30 @@ function FeedDetailContent() {
    * any reply is simply the last depth-0 row above it.
    */
   const threadCreator: string | undefined = item?.minter || (item as any)?.minterUser?.address;
+  // The creator's opening comments read as the post's own thread, under the
+  // card, and leave the list (web's AuthorThread). Only once every comment is
+  // loaded: with older ones still unfetched, the oldest loaded row is not
+  // necessarily the first comment on the post.
+  const allCommentsLoaded = !!item && comments.length >= Number(item.commentCount ?? Infinity);
+  const authorThreadIds = useMemo(
+    () => (allCommentsLoaded ? selectAuthorThreadIds(comments, threadCreator) : new Set<string>()),
+    [allCommentsLoaded, comments, threadCreator],
+  );
+  const authorThreadEntries = useMemo(
+    () =>
+      comments
+        .filter((c) => authorThreadIds.has(String(c.id)))
+        .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()),
+    [comments, authorThreadIds],
+  );
   const orderedComments = useMemo(
-    () => orderThreads(comments, commentSort, commentSearchOpen ? commentQuery : ""),
-    [comments, commentSort, commentSearchOpen, commentQuery],
+    () =>
+      orderThreads(
+        authorThreadIds.size ? comments.filter((c) => !authorThreadIds.has(String(c.id))) : comments,
+        commentSort,
+        commentSearchOpen ? commentQuery : "",
+      ),
+    [comments, authorThreadIds, commentSort, commentSearchOpen, commentQuery],
   );
   const { visibleComments, threadMeta, focusRoot, focusOnly } = useMemo(() => {
     const comments = orderedComments;
@@ -1442,6 +1465,7 @@ function FeedDetailContent() {
           )}
         </View>
       ) : null}
+      {!!item && <AuthorThreadBlock entries={authorThreadEntries} renderRow={(c) => renderCommentItem({ item: c })} />}
       {/* The comment tab row. Measured so the pinned copy can take over once
           it scrolls under the top of the screen. */}
       {!postUnavailable && (
@@ -1460,7 +1484,7 @@ function FeedDetailContent() {
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
