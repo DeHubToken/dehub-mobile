@@ -184,6 +184,8 @@ interface FeedVideoPlayerProps {
   creator?: string | null;
   creatorUsername?: string;
   downloadTitle?: string;
+  /** The post's seek-preview sheet as the API sends it; the fullscreen player shows it while scrubbing. */
+  storyboard?: unknown;
   hideControls?: boolean;
   /** Mounted by a tap on the poster that stood in for this card: start at once. */
   startOnMount?: boolean;
@@ -286,6 +288,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   creator,
   creatorUsername,
   downloadTitle,
+  storyboard,
   hideControls = false,
   startOnMount = false,
   autoplaySettled = false,
@@ -1137,9 +1140,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     preparePostMediaNavigation(videoUrl);
     navigation.navigate(ScreenNames.FullscreenVideo as never, {
       videoUrl, startTime: time, isMuted: muted, thumbnail,
-      tokenId, isSignedIn, creatorUsername, downloadTitle,
+      tokenId, isSignedIn, creatorUsername, downloadTitle, storyboard,
     } as never);
-  }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation, creatorUsername, downloadTitle]);
+  }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation, creatorUsername, downloadTitle, storyboard]);
 
   // Video posts: the player's buttons are bare icons with a soft shadow,
   // mute in the top corner, with subtitles, speed, loop and picture in picture

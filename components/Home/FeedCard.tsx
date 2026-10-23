@@ -1633,6 +1633,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       videoUrl={isActuallyGated ? undefined : (postVideoUrl || undefined)}
       onPlaybackFailed={requiresVideoAccess ? onVideoPlaybackFailed : undefined}
       transcodingStatus={item.transcodingStatus}
+      storyboard={isActuallyGated ? undefined : item.storyboard}
       isOwner={!!isOwnerPost}
       duration={duration}
       tokenId={tokenId}
