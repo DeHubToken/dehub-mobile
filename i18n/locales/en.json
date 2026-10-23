@@ -2462,6 +2462,11 @@
       "comment": "Comment",
       "profile": "Profile update",
       "window": {
+        "authorAll": "All creators",
+        "authorChoose": "Choose creator",
+        "categoryAll": "All categories",
+        "categoryChoose": "Choose categories",
+        "categoryHint": "Add any category names separated by commas, up to 20. A post can match any selected category. Leave empty for all.",
         "last1h": "Last hour",
         "last30d": "Last 30 days",
         "allTime": "All time",
