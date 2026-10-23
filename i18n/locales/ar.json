@@ -2115,7 +2115,11 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "mostPlayed": "الأكثر تشغيلًا",
+    "mostLiked": "الأكثر إعجابًا",
+    "mostRecent": "الأحدث",
+    "chartOrder": "ترتيب المقاطع الصوتية"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",
@@ -4983,7 +4987,8 @@
     "play": "تشغيل",
     "pause": "إيقاف مؤقت",
     "listens_one": "{{count}} استماع",
-    "listens_other": "{{count}} استماع"
+    "listens_other": "{{count}} استماع",
+    "visualizerColour": "لون المؤثرات البصرية"
   },
   "transfer": {
     "arcTitle": "إرسال USDC على Arc",
@@ -6604,7 +6609,8 @@
     "pipUnavailable": "صورة داخل صورة غير متاحة. تحقق من أنها مسموح بها لـ DeHub في إعدادات جهازك.",
     "noVideo": "لا يوجد فيديو",
     "rotate": "تدوير",
-    "yourDhbBalance": "رصيد رموزك: {{amount}}"
+    "yourDhbBalance": "رصيد رموزك: {{amount}}",
+    "volume": "مستوى الصوت"
   },
   "liveViewer": {
     "loadingStream": "جارٍ تحميل البث...",

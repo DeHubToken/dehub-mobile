@@ -2078,7 +2078,11 @@
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
     "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "listeningTo": "Listening to {{name}} on DeHub",
+    "mostPlayed": "Most played",
+    "mostLiked": "Most liked",
+    "mostRecent": "Most recent",
+    "chartOrder": "Audio chart order"
   },
   "notFound": {
     "title": "Page Not Found",
@@ -4942,7 +4946,8 @@
     "play": "Play",
     "pause": "Pause",
     "listens_one": "{{count}} listen",
-    "listens_other": "{{count}} listens"
+    "listens_other": "{{count}} listens",
+    "visualizerColour": "Visualizer colour"
   },
   "transfer": {
     "arcTitle": "Send USDC on Arc",
@@ -6563,7 +6568,8 @@
     "doubleTapForward": "Double tap to skip forward",
     "pipUnavailable": "Picture in picture is unavailable. Check that it is allowed for DeHub in your device settings.",
     "noVideo": "No video",
-    "rotate": "Rotate"
+    "rotate": "Rotate",
+    "volume": "Volume level"
   },
   "liveViewer": {
     "loadingStream": "Loading stream...",
