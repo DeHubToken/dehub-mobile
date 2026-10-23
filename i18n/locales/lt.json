@@ -3812,6 +3812,10 @@
     "priceRange": "Tarp {{min}} ir {{max}} žetonų."
   },
   "stores": {
+    "edit": "Redaguoti",
+    "listingUpdated": "Skelbimas atnaujintas!",
+    "saveListing": "Išsaugoti pakeitimus",
+    "editListing": "Redaguoti skelbimą",
     "podToggle": "Spausdinimo pagal užsakymą prekė",
     "podHint": "Susiekite prekę iš savo spausdinimo pagal užsakymą parduotuvės. Tiekėjas atspausdina ir išsiunčia kiekvieną užsakymą, atsargų nereikia.",
     "podUrlLabel": "Prekės nuoroda",

@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Non hai ancora abbastanza {{symbol}}. Questo post richiede {{needed}}.",
+    "holdShort": "Hai {{held}} {{symbol}}. Questo post richiede {{needed}}."
+  },
   "liveRecap": {
     "title": "Riepilogo della diretta",
     "justEnded": "Riepilogo del tuo stream",
@@ -977,6 +981,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Segna o vota sponsor e intro",
+    "skippableSections": "Sezioni saltabili",
     "options": "Opzioni",
     "sendTip": "Invia mancia",
     "queue": "Coda",
@@ -3056,6 +3062,7 @@
     "dhb_staked_on_chain": "{{amount}} token messi in staking su {{chain}}."
   },
   "staking": {
+    "foundNewDeposits": "Trovati {{count}} nuovi depositi on-chain",
     "title": "Staking",
     "subtitle": "Deposita per sbloccare quota sui profitti, commissioni più basse, superpoteri e molto altro!",
     "stakeDhb": "Deposita",
@@ -3815,6 +3822,10 @@
     "priceRange": "Tra {{min}} e {{max}} token."
   },
   "stores": {
+    "edit": "Modifica",
+    "listingUpdated": "Annuncio aggiornato!",
+    "saveListing": "Salva modifiche",
+    "editListing": "Modifica annuncio",
     "podToggle": "Articolo stampa su richiesta",
     "podHint": "Collega un prodotto dal tuo negozio di stampa su richiesta. Il fornitore stampa e spedisce ogni ordine, senza magazzino.",
     "podUrlLabel": "Link del prodotto",
@@ -6072,6 +6083,14 @@
     "coverFailed": "Impossibile cambiare la copertina"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Riempitivo",
+      "interaction": "Like e iscriviti",
+      "selfpromo": "Autopromozione",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Sponsor"
+    },
     "openSettings": "Apri impostazioni",
     "viewPlans": "Vedi i piani",
     "playbackSpeed": "Velocità di riproduzione",

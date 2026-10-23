@@ -3803,6 +3803,10 @@
     "priceRange": "Inta u dhaxaysa {{min}} iyo {{max}} token."
   },
   "stores": {
+    "edit": "Wax ka bedel",
+    "listingUpdated": "Liiska la cusbooneysiiyay!",
+    "saveListing": "Keydso Isbedelada",
+    "editListing": "Wax ka bedel Liiska",
     "podToggle": "Shay la daabaco marka la dalbado",
     "podHint": "Ku xir alaab ka timid dukaankaaga daabacaadda dalabka. Bixiyuhu wuxuu daabacaa oo diraa dalab kasta, markaa kayd uma baahnid.",
     "podUrlLabel": "Xiriirka alaabta",

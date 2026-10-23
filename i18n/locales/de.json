@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Noch nicht genug {{symbol}}. Dieser Beitrag braucht {{needed}}.",
+    "holdShort": "Du hältst {{held}} {{symbol}}. Dieser Beitrag braucht {{needed}}."
+  },
   "liveRecap": {
     "title": "Stream-Zusammenfassung",
     "justEnded": "Ihre Stream-Zusammenfassung",
@@ -1021,6 +1025,8 @@
     "tokenAmount": "{{amount}} Tokens"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Sponsoren und Intros markieren oder bewerten",
+    "skippableSections": "Überspringbare Abschnitte",
     "options": "Optionen",
     "sendTip": "Trinkgeld senden",
     "queue": "Warteschlange",
@@ -3103,6 +3109,7 @@
     "dhb_staked_on_chain": "{{amount}} Tokens auf {{chain}} gestaked."
   },
   "staking": {
+    "foundNewDeposits": "{{count}} neue Einzahlungen on-chain gefunden",
     "title": "Abstecken",
     "subtitle": "Zahle ein und schalte Gewinnbeteiligung, niedrigere Gebühren, Superkräfte und mehr frei!",
     "stakeDhb": "Einzahlen",
@@ -3862,6 +3869,10 @@
     "priceRange": "Zwischen {{min}} und {{max}} Token."
   },
   "stores": {
+    "edit": "Bearbeiten",
+    "listingUpdated": "Inserat aktualisiert!",
+    "saveListing": "Änderungen speichern",
+    "editListing": "Inserat bearbeiten",
     "podToggle": "Print-on-Demand-Artikel",
     "podHint": "Verlinke ein Produkt aus deinem Print-on-Demand-Shop. Der Anbieter druckt und versendet jede Bestellung, du brauchst kein Lager.",
     "podUrlLabel": "Produktlink",
@@ -6119,6 +6130,14 @@
     "coverFailed": "Cover konnte nicht geändert werden"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Füller",
+      "interaction": "Like & Abo",
+      "selfpromo": "Eigenwerbung",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Sponsor"
+    },
     "openSettings": "Einstellungen öffnen",
     "viewPlans": "Pläne ansehen",
     "playbackSpeed": "Wiedergabegeschwindigkeit",

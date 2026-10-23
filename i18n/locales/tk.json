@@ -3801,6 +3801,10 @@
     "priceRange": "{{min}} bilen {{max}} tokenyň arasynda."
   },
   "stores": {
+    "edit": "Edit",
+    "listingUpdated": "Täzeleşdirilen listeler!",
+    "saveListing": "Özgertmeleri Gaýd Et",
+    "editListing": "Çykyşy Editle",
     "podToggle": "Sargyt boýunça çap edilýän haryt",
     "podHint": "Sargyt boýunça çap dükanyňyzdan harydy baglaň. Üpjünçi her sargydy çap edip iberýär, ätiýaçlyk gerek däl.",
     "podUrlLabel": "Haryt salgysy",

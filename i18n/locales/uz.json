@@ -3830,6 +3830,10 @@
     "priceRange": "{{min}} va {{max}} token orasida."
   },
   "stores": {
+    "edit": "Tahrirlash",
+    "listingUpdated": "Ro'yxat yangilandi!",
+    "saveListing": "O'zgarishlarni saqlash",
+    "editListing": "Ro'yxatni tahrirlash",
     "podToggle": "Buyurtma asosida chop etiladigan mahsulot",
     "podHint": "Buyurtma asosida chop etish do'koningizdan mahsulotni bog'lang. Ta'minotchi har bir buyurtmani chop etib yuboradi, zaxira kerak emas.",
     "podUrlLabel": "Mahsulot havolasi",

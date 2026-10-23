@@ -68,6 +68,7 @@ import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
+import { registerVideoClock } from "../../libs/video-clock";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect, getMeasuredMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
@@ -471,6 +472,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       // The session, rather than a card, releases the native player.
     };
   }, [player]);
+
+  // Lets the skippable-sections sheet (opened from the options menu) read
+  // where this video is up to.
+  useEffect(
+    () => registerVideoClock(tokenId, () => playerRef.current?.currentTime ?? 0),
+    [tokenId],
+  );
 
   // Crowdsourced sponsor reads and intros. Fetched only while this card has a
   // source attached and the viewer asked for skipping — otherwise a feed of

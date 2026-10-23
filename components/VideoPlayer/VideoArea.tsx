@@ -62,7 +62,20 @@ const VideoArea: React.FC<VideoAreaProps> = ({
     effectiveVideoUrl === undefined ? null : effectiveVideoUrl;
   const user = useUser();
   const { isSignedIn } = useAuthState();
-  const { requireAuth } = useAuthActions();
+  const { requireAuth, refreshUser } = useAuthActions();
+  // Verify & Unlock: the gate is read from the user's balances, so a refresh
+  // re-opens it when the viewer now holds enough.
+  const [verifying, setVerifying] = useState(false);
+  const verifyHoldings = useCallback(() => {
+    if (!isSignedIn) {
+      requireAuth(() => {});
+      return;
+    }
+    setVerifying(true);
+    Promise.resolve(refreshUser())
+      .catch(() => {})
+      .finally(() => setVerifying(false));
+  }, [isSignedIn, requireAuth, refreshUser]);
   const { chainId } = useProvider();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
@@ -231,8 +244,21 @@ const VideoArea: React.FC<VideoAreaProps> = ({
             {t("player.yourDhbBalance", { amount: formatCompactNumber(userDhbBalance) })}
           </Text>
           <TouchableOpacity
+            onPress={verifying ? undefined : verifyHoldings}
+            className="mt-4 bg-white/15 border border-white/25 rounded-xl px-5 py-2 flex-row items-center"
+            style={{ gap: 6, opacity: verifying ? 0.6 : 1 }}
+            activeOpacity={0.85}
+          >
+            {verifying && <ActivityIndicator size="small" color="#fff" />}
+            <Text className="text-white text-xs font-semibold">
+              {verifying
+                ? t("copy.48201f5584e2", { defaultValue: "Checking your balance…" })
+                : t("copy.ff701a069af2", { defaultValue: "Verify & Unlock" })}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => handleTopUp(neededAmt, neededSymbol)}
-            className="mt-4 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
+            className="mt-2 bg-white/10 border border-white/20 rounded-xl px-5 py-2"
             activeOpacity={0.85}
           >
             <Text className="text-white text-xs font-semibold">

@@ -3802,6 +3802,10 @@
     "priceRange": "Tsakanin jimlar kuɗi {{min}} da {{max}}."
   },
   "stores": {
+    "edit": "Gyara",
+    "listingUpdated": "Jerin sabuntawa!",
+    "saveListing": "Ajiye Canje-canje",
+    "editListing": "Shirya Jerin",
     "podToggle": "Kayan bugawa bisa buƙata",
     "podHint": "Haɗa kaya daga shagon bugawa bisa buƙata naka. Mai samarwa yana bugawa kuma yana aika kowane oda, don haka ba ka riƙe kaya.",
     "podUrlLabel": "Hanyar haɗin kaya",

@@ -151,6 +151,7 @@ import { WEBSITE_LINK } from "../../config";
 import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
+import HoldGateSheet from "../common/HoldGateSheet";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -801,6 +802,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     seedPostDetail(tokenId, item);
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
   }, [disablePress, isLive, isShort, tokenId, item]);
+
+  // Hold-gated posts open the gate sheet, which can re-check balances.
+  const [showHoldGate, setShowHoldGate] = useState(false);
+  const openHoldGate = useCallback(() => {
+    if (scrubBoundary.claimed.value) return;
+    setShowHoldGate(true);
+  }, [scrubBoundary]);
+  const closeHoldGate = useCallback(() => setShowHoldGate(false), []);
 
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
@@ -1526,7 +1535,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (isActuallyLockedHoldings) {
       return (
         <Pressable
-          onPress={handleCardPress}
+          onPress={openHoldGate}
           className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
@@ -1640,7 +1649,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       }}
       onTapReaction={handleVideoTapReaction}
       onPPVPress={DIGITAL_PURCHASES_ENABLED ? handlePPVPress : undefined}
-      onLockPress={handleCardPress}
+      onLockPress={openHoldGate}
       onBountyPress={handleBountyBadgePress}
     />
     </FeedScrubContext.Provider>
@@ -2029,6 +2038,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             ? () => { const url = getVideoUrl(tokenId); if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
+          canMarkSegments={isVideo && !isLive && !isActuallyGated}
           // Also on the action bar as icons. Both are wanted: the icon is for
           // the thumb, the labelled row is for anyone who opens the menu
           // looking for the action by name.
@@ -2038,6 +2048,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onAskAi={handleAiPress}
         />
       )}
+
+      {showHoldGate && <HoldGateSheet visible={showHoldGate} onClose={closeHoldGate} post={item} />}
 
       {showShareToDm && tokenId != null && (
         <ShareToDmSheet

@@ -3788,6 +3788,9 @@
     "askingPriceDhb": "I be se ka wari di mɔgɔ ma cogo di?"
   },
   "stores": {
+    "listingUpdated": "An ka kunnafoniw lajɛ!",
+    "saveListing": "Ka yɛlɛmani dɔw kɛ",
+    "editListing": "Ladili labɛn",
     "podToggle": "Article en impression à la demande",
     "podHint": "Liez un produit de votre boutique d'impression à la demande. Le prestataire imprime et expédie chaque commande, sans stock de votre côté.",
     "podUrlLabel": "Lien du produit",

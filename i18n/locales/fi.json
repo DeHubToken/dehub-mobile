@@ -3812,6 +3812,10 @@
     "priceRange": "{{min}} ja {{max}} tokenin välillä."
   },
   "stores": {
+    "edit": "Muokkaa",
+    "listingUpdated": "Ilmoitus päivitetty!",
+    "saveListing": "Tallenna muutokset",
+    "editListing": "Muokkaa ilmoitusta",
     "podToggle": "Tilauspainatustuote",
     "podHint": "Linkitä tuote tilauspainatuskaupastasi. Palveluntarjoaja painaa ja lähettää jokaisen tilauksen, joten varastoa ei tarvita.",
     "podUrlLabel": "Tuotelinkki",

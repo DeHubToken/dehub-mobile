@@ -3834,6 +3834,10 @@
     "priceRange": "{{min}} chaynataq {{max}} tokenkunapura."
   },
   "stores": {
+    "edit": "Ruwapay",
+    "listingUpdated": "Lista actualizada!",
+    "saveListing": "Waqaychay Tikraykunata",
+    "editListing": "Lista nisqapi llamk'apuy",
     "podToggle": "Mañakuyman hina ñit'isqa ima",
     "podHint": "Mañakuyman hina ñit'iq tiendaykimanta huk rurukunata t'inkiy. Quqqa sapa mañakuyta ñit'in, apachin ima, chayrayku mana waqaychasqa kaqta munankichu.",
     "podUrlLabel": "Rurukunap t'inkin",

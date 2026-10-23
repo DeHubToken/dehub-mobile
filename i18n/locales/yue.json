@@ -3808,6 +3808,10 @@
     "priceRange": "介於 {{min}} 和 {{max}} 個代幣之間。"
   },
   "stores": {
+    "edit": "修改",
+    "listingUpdated": "樓盤更新咗！",
+    "saveListing": "儲存變更",
+    "editListing": "編輯列表",
     "podToggle": "按需印刷商品",
     "podHint": "連結你按需印刷店舖嘅商品。服務商逐單印刷同寄貨，你唔使囤貨。",
     "podUrlLabel": "商品連結",

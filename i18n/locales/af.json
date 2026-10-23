@@ -3845,6 +3845,10 @@
     "priceRange": "Tussen {{min}} en {{max}} tokens."
   },
   "stores": {
+    "edit": "Redigeer",
+    "listingUpdated": "Aanbieding opgedateer!",
+    "saveListing": "Stoor Veranderinge",
+    "editListing": "Redigeer lys",
     "podToggle": "Druk-op-aanvraag-item",
     "podHint": "Koppel 'n produk uit jou druk-op-aanvraag-winkel. Die verskaffer druk en stuur elke bestelling, so jy hou geen voorraad nie.",
     "podUrlLabel": "Produkskakel",

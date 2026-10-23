@@ -19,6 +19,7 @@ jest.mock('react-native', () => {
     Modal: 'Modal',
     TextInput: 'TextInput',
     KeyboardAvoidingView: 'KeyboardAvoidingView',
+    ScrollView: 'ScrollView',
     StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
     Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android },
     Alert: { alert: jest.fn() },

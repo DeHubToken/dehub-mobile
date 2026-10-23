@@ -3804,6 +3804,9 @@
     "priceRange": "Di navbera tokenên {{min}} û {{max}} de."
   },
   "stores": {
+    "edit": "ئێدیت",
+    "listingUpdated": "ڕێکخستن نوێکرایەوە!",
+    "saveListing": "گۆڕانکارییەکان بپارێزە",
     "podToggle": "Berhema çapkirinê li gorî daxwazê",
     "podHint": "Berhemekê ji dikana xwe ya çapkirinê li gorî daxwazê girêde. Peydaker her fermanê çap dike û dişîne, ji ber vê yekê stok ne pêwîst e.",
     "podUrlLabel": "Girêdana berhemê",

@@ -3812,6 +3812,10 @@
     "priceRange": "{{min}} ilə {{max}} token arasında."
   },
   "stores": {
+    "edit": "Redaktə et",
+    "listingUpdated": "Siyahı yeniləndi!",
+    "saveListing": "Dəyişiklikləri Saxla",
+    "editListing": "Elanı redaktə et",
     "podToggle": "Sifarişlə çap məhsulu",
     "podHint": "Sifarişlə çap mağazanızdan məhsul əlaqələndirin. Təchizatçı hər sifarişi çap edib göndərir, ehtiyat saxlamırsınız.",
     "podUrlLabel": "Məhsul linki",

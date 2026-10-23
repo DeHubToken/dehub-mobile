@@ -3801,6 +3801,9 @@
     "priceRange": "介于 {{min}} 和 {{max}} 个代币之间。"
   },
   "stores": {
+    "edit": "編輯",
+    "listingUpdated": "清單已更新！",
+    "saveListing": "儲存變更",
     "podToggle": "按需印刷商品",
     "podHint": "链接你的按需印刷店铺中的商品。服务商按单印刷并发货，你无需囤货。",
     "podUrlLabel": "商品链接",

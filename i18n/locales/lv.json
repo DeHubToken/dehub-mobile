@@ -3812,6 +3812,10 @@
     "priceRange": "Starp {{min}} un {{max}} žetoniem."
   },
   "stores": {
+    "edit": "Rediģēt",
+    "listingUpdated": "Atjaunināts saraksts!",
+    "saveListing": "Saglabāt izmaiņas",
+    "editListing": "Rediģēt sludinājumu",
     "podToggle": "Druka pēc pieprasījuma prece",
     "podHint": "Piesaisti preci no sava drukas pēc pieprasījuma veikala. Piegādātājs izdrukā un nosūta katru pasūtījumu, krājumi nav vajadzīgi.",
     "podUrlLabel": "Preces saite",

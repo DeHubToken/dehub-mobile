@@ -3816,6 +3816,10 @@
     "priceRange": "{{min}}에서 {{max}} 토큰 사이."
   },
   "stores": {
+    "edit": "수정",
+    "listingUpdated": "숙소가 업데이트되었습니다!",
+    "saveListing": "변경사항 저장",
+    "editListing": "숙소 정보 수정하기",
     "podToggle": "주문형 인쇄 상품",
     "podHint": "주문형 인쇄 샵의 상품을 연결하세요. 제공업체가 주문마다 인쇄하고 배송하므로 재고가 필요 없습니다.",
     "podUrlLabel": "상품 링크",

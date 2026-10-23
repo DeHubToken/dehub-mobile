@@ -3834,6 +3834,10 @@
     "priceRange": "Phakathi kwama-tokeni angu-{{min}} no-{{max}}."
   },
   "stores": {
+    "edit": "Hlela",
+    "listingUpdated": "Indlu ibuyekeziwe!",
+    "saveListing": "Gcina Izinguquko",
+    "editListing": "Hlela Indlu",
     "podToggle": "Into ephrintwa uma icelwa",
     "podHint": "Xhuma umkhiqizo ovela esitolo sakho sokuphrinta uma kucelwa. Umhlinzeki uphrinta futhi athumele i-oda ngalinye, ngakho awudingi isitoko.",
     "podUrlLabel": "Isixhumanisi somkhiqizo",
