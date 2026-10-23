@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
-import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
+import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../context/PagerGestureContext";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from '../../context/ThemeContext';
@@ -234,16 +234,18 @@ interface StylePickerProps {
 }
 
 const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => {
-  // Claim Android touches before the feed pager can turn a tab, including
-  // drags starting on a button or at either end of the strip. Keep scrolling
-  // native: selection must not re-centre the strip or change chip widths.
-  return (
-  <PagerSafe claimOnStart>
+  // Same pairing as the suggested-accounts carousel: the strip's native scroll
+  // blocks the Home pager while it runs, and a sideways drag that starts
+  // anywhere on the row (a chip, a gap, either end) claims the pager too, so
+  // swiping here scrolls the styles instead of turning the feed tab.
+  const scrollGuard = useHorizontalScrollGuard();
+  const rowGuard = useHorizontalSectionGuard(scrollGuard);
+  const strip = (
   <ScrollView
     horizontal
     bounces={false}
     overScrollMode="never"
-    directionalLockEnabled
+    nestedScrollEnabled
     showsHorizontalScrollIndicator={false}
     keyboardShouldPersistTaps="handled"
     contentContainerStyle={{ flexDirection: "row", gap: 4, alignItems: "center" }}
@@ -282,8 +284,10 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
       );
     })}
   </ScrollView>
-  </PagerSafe>
   );
+  const guarded = scrollGuard ? <GestureDetector gesture={scrollGuard}>{strip}</GestureDetector> : strip;
+  const row = <View collapsable={false}>{guarded}</View>;
+  return rowGuard ? <GestureDetector gesture={rowGuard}>{row}</GestureDetector> : row;
 });
 
 const pickerStyles = StyleSheet.create({
@@ -306,9 +310,12 @@ const pickerStyles = StyleSheet.create({
 interface HueSliderProps {
   hue: number;
   onHueChange: (h: number) => void;
+  /** Fixed width in the corner; left out, it shares its row by flex. */
+  width?: number;
+  flex?: number;
 }
 
-const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
+const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange, width, flex = 1 }) => {
   const { t } = useTranslation();
   // Local state so drag is silky — parent only gets notified on release
   const [localHue, setLocalHue] = useState(hue);
@@ -321,7 +328,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
     : `hsl(${localHue}, 80%, 65%)`;
 
   return (
-    <View style={{ height: 36, flex: 1, minWidth: 120, justifyContent: "center" }}>
+    <View style={width ? { height: 36, width, justifyContent: "center" } : { height: 36, flex, minWidth: 0, justifyContent: "center" }}>
       <LinearGradient
         colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
         start={{ x: 0, y: 0 }}
@@ -427,14 +434,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [totalDuration, setTotalDuration] = useState(duration);
   const [hue, setHue] = useState(() => studio ? 0 : getCachedHue());
-  // Every card starts on Default; a pick sticks for this card.
+  // Every card starts on Bars; a pick sticks for this card.
   const styleKey = `audio-style-${tokenId ?? audioUrl}`;
   const readStyle = (): VisualizerStyle => {
     try {
       const saved = storage.getString(styleKey);
       if (VISUALIZER_STYLES.some(item => item.value === saved)) return saved as VisualizerStyle;
     } catch { /* Session-only preferences. */ }
-    return studio ? 'liquid' : 'static';
+    return 'bars';
   };
   const [vizStyle, setVizStyle] = useState<VisualizerStyle>(readStyle);
   useEffect(() => { setVizStyle(readStyle()); }, [styleKey, studio]);
@@ -1085,7 +1092,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       >
         <MediaControlIcon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} />
       </TouchableOpacity>
-      <View style={{ width: 48, height: CONTROL_SIZE, justifyContent: "center" }}>
+      <View style={{ width: 58, height: CONTROL_SIZE, justifyContent: "center" }}>
         <PagerSafe>
         <Slider
           style={{ width: "100%" }}
@@ -1114,7 +1121,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       </View>
       <View pointerEvents="box-none" className="flex-row items-center gap-2 ml-auto">
         {(mode === "fullscreen" || !firstFeedPost) && volumeControl}
-        <HueSlider hue={hue} onHueChange={handleHueChange} />
+        <HueSlider hue={hue} onHueChange={handleHueChange} width={104} />
       </View>
     </View>
   );
@@ -1217,9 +1224,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           </View>
         </View>
         <View style={{ paddingTop: 12 }}><StylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, paddingTop: 12 }}>
-          <HueSlider hue={hue} onHueChange={handleHueChange} />
-          <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingTop: 12 }}>
+          <HueSlider hue={hue} onHueChange={handleHueChange} flex={0.85} />
+          <View style={{ flex: 2, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}><MediaControlIcon name={isEffectivelyMuted ? 'VolumeX' : 'Volume2'} /></TouchableOpacity>
+            <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
+          </View>
         </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
