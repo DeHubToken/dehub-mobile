@@ -237,6 +237,8 @@ interface FeedCardProps {
   item: UnifiedFeedItem;
   /** Dedicated post navigation, rendered beside the player's volume control. */
   onBack?: () => void;
+  /** The retained feed pill already provides the post page\'s back control. */
+  retainFeedNav?: boolean;
   onCategorySelect?: (category: string) => void;
   fullContent?: boolean;
   disablePress?: boolean;
@@ -307,6 +309,7 @@ function PostMetaItems({ timeAgo, icon, count }: { timeAgo?: string; icon: IconN
 const FeedCardComponent: React.FC<FeedCardProps> = ({
   item,
   onBack,
+  retainFeedNav = false,
   onCategorySelect,
   fullContent = false,
   disablePress = false,
@@ -1610,7 +1613,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <FeedVideoPlayer
       thumbnail={thumbnail}
       postPage={fullContent}
-      onBack={postVideo ? onBack : undefined}
+      onBack={postVideo && !retainFeedNav ? onBack : undefined}
       videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
       transcodingStatus={item.transcodingStatus}
       isOwner={!!isOwnerPost}
@@ -2118,10 +2121,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         {stageMedia ? (
           <View style={{ marginHorizontal: -IMMERSIVE_INSET, marginBottom: 12 }} onLayout={reportAnchor}>
             {renderContent()}
-            {!postVideo && !postImage && <PostStageChrome overMedia />}
+            {!retainFeedNav && !postVideo && !postImage && <PostStageChrome overMedia />}
           </View>
         ) : (
-          <PostStageChrome overMedia={false} />
+          !retainFeedNav && <PostStageChrome overMedia={false} />
         )}
         <PostStageCreator
           avatarUrl={avatar}
@@ -2662,7 +2665,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       )}
       {/* No wrapper row: the header is a full-width row of its own, and a
           card is ~100 native views, each one paid for at mount mid-fling. */}
-      {postVideo && matureGate.isGated && <PostStageChrome overMedia={false} />}
+      {!retainFeedNav && postVideo && matureGate.isGated && <PostStageChrome overMedia={false} />}
       <FeedCardHeader
         avatarUrl={avatar}
         displayName={displayName}
