@@ -1574,9 +1574,9 @@ function FeedDetailContent() {
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (
         <Animated.View
+          pointerEvents={hideComposer ? "none" : "auto"}
           ref={composerRef}
           collapsable={false}
-          pointerEvents={hideComposer ? "none" : "auto"}
           style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
