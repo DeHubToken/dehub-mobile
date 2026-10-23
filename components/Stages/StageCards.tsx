@@ -242,7 +242,7 @@ export const LiveStageCard: React.FC<{
       accessibilityRole="button"
       accessibilityState={{ disabled: isBusy }}
     >
-      {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
+      <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
 
       <View style={[styles.body, isMinimal && m.body]}>
         <View style={styles.topRow}>
@@ -326,7 +326,7 @@ export const ScheduledStageCard: React.FC<{
 
   return (
     <PageSection flush>
-      {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
+      <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
 
       <View style={[styles.body, isMinimal && m.body]}>
         <View style={styles.topRow}>
@@ -449,7 +449,7 @@ export const RecordedStageCard: React.FC<{
   return (
     <PageSection flush>
       <TouchableOpacity onPress={openStage} activeOpacity={0.85} accessibilityRole="button" accessibilityLabel={space.title}>
-        {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
+        <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
 
         <View style={[styles.body, isMinimal && m.body, (hasRecording || isMine) && styles.bodyTop]}>
           <View style={styles.topRow}>
