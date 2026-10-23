@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Porofili yɔrɔw",
+    "description": "Sira naani fo ka fara i ka porofili kan, i n'a fɔ siti walima i ka tɔgɔnɔnaw.",
+    "label": "Tɔgɔ",
+    "content": "Kɔnɔkow",
+    "save": "Yɔrɔw mara",
+    "saved": "Porofili yɔrɔw marala",
+    "failed": "A ma mara. A lajɛ tugun.",
+    "verified": "Siri lajɛlen",
+    "verifyHint": "Ka siri lajɛ, nin fara o siti kan, o kɔ a mara tugun: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Kunnafoniw sɛgɛsɛgɛ ka bɔ",
     "description": "A sugandi min bɛ kɛ ni mɔgɔ dɔ min tɛ i ka mɔgɔw cɛ ye ka baara kɛ i fɛ. Kunnafoni sɛgɛsɛgɛlenw bɛ makɔnɔ \"Sɛgɛsɛgɛlenw\" kɔnɔ, taamasiyɛn ni pusi tɛ.",

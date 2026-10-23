@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profilmezők",
+    "description": "Legfeljebb négy extra sor a profilodon, például weboldal vagy a névmásaid.",
+    "label": "Címke",
+    "content": "Tartalom",
+    "save": "Mezők mentése",
+    "saved": "Profilmezők mentve",
+    "failed": "Nem sikerült menteni. Próbáld újra.",
+    "verified": "Ellenőrzött hivatkozás",
+    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Értesítések szűrése tőlük",
     "description": "Válaszd ki, mi történjen, ha valaki a körödön kívülről lép kapcsolatba veled. A szűrt értesítések a Szűrt alatt várnak, jelvény és push nélkül.",

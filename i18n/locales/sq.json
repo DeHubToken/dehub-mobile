@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Fushat e profilit",
+    "description": "Deri në katër rreshta shtesë në profilin tënd, si një faqe interneti ose përemrat e tu.",
+    "label": "Etiketa",
+    "content": "Përmbajtja",
+    "save": "Ruaj fushat",
+    "saved": "Fushat e profilit u ruajtën",
+    "failed": "Nuk u ruajt. Provo përsëri.",
+    "verified": "Lidhje e verifikuar",
+    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtro njoftimet nga",
     "description": "Zgjidh çfarë ndodh kur dikush jashtë rrethit tënd ndërvepron me ty. Njoftimet e filtruara presin te Të filtruara, pa distinktiv dhe pa njoftim push.",

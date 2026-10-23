@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profilfelt",
+    "description": "Opptil fire ekstra linjer på profilen din, for eksempel et nettsted eller pronomenene dine.",
+    "label": "Etikett",
+    "content": "Innhold",
+    "save": "Lagre felt",
+    "saved": "Profilfelt lagret",
+    "failed": "Det ble ikke lagret. Prøv igjen.",
+    "verified": "Bekreftet lenke",
+    "verifyHint": "For å bekrefte en lenke, legg dette til på den siden og lagre igjen: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrer varsler fra",
     "description": "Velg hva som skjer når noen utenfor kretsen din samhandler med deg. Filtrerte varsler venter under Filtrert, uten merke og uten push.",

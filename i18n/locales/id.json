@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Kolom profil",
+    "description": "Hingga empat baris tambahan di profilmu, seperti situs web atau kata gantimu.",
+    "label": "Label",
+    "content": "Isi",
+    "save": "Simpan kolom",
+    "saved": "Kolom profil tersimpan",
+    "failed": "Tidak tersimpan. Coba lagi.",
+    "verified": "Tautan terverifikasi",
+    "verifyHint": "Untuk memverifikasi tautan, tambahkan ini ke halaman itu, lalu simpan lagi: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Saring notifikasi dari",
     "description": "Pilih apa yang terjadi saat seseorang di luar lingkaranmu berinteraksi denganmu. Notifikasi yang disaring menunggu di Disaring, tanpa lencana dan tanpa push.",

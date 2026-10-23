@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Camps del perfil",
+    "description": "Fins a quatre línies més al teu perfil, com un lloc web o els teus pronoms.",
+    "label": "Etiqueta",
+    "content": "Contingut",
+    "save": "Desa els camps",
+    "saved": "S'han desat els camps del perfil",
+    "failed": "No s'ha desat. Torna-ho a provar.",
+    "verified": "Enllaç verificat",
+    "verifyHint": "Per verificar un enllaç, afegeix això a aquella pàgina i desa de nou: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtra les notificacions de",
     "description": "Tria què passa quan algú de fora del teu cercle interactua amb tu. Les notificacions filtrades esperen a Filtrades, sense indicador ni avís push.",

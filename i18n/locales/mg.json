@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Saha ao amin'ny mombamomba",
+    "description": "Andalana efatra fanampiny ao amin'ny mombamombanao, toy ny tranonkala na ny mpisolo anaranao.",
+    "label": "Marika",
+    "content": "Votoaty",
+    "save": "Tehirizo ny saha",
+    "saved": "Voatahiry ny sahan'ny mombamomba",
+    "failed": "Tsy voatahiry. Andramo indray.",
+    "verified": "Rohy voamarina",
+    "verifyHint": "Mba hanamarinana rohy, ampio ity amin'io pejy io, dia tehirizo indray: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Sivano ny fampandrenesana avy amin'ny",
     "description": "Safidio izay hitranga rehefa misy olona ivelan'ny faribolanao mifandray aminao. Miandry ao amin'ny \"Voasivana\" ireo fampandrenesana voasivana, tsy misy marika na fampandrenesana tampoka.",

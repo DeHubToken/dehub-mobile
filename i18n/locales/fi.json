@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profiilikentät",
+    "description": "Enintään neljä lisäriviä profiiliisi, kuten verkkosivusto tai pronominisi.",
+    "label": "Nimi",
+    "content": "Sisältö",
+    "save": "Tallenna kentät",
+    "saved": "Profiilikentät tallennettu",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
+    "verified": "Vahvistettu linkki",
+    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Suodata ilmoitukset",
     "description": "Valitse, mitä tapahtuu, kun joku piirisi ulkopuolelta on vuorovaikutuksessa kanssasi. Suodatetut ilmoitukset odottavat kohdassa Suodatetut ilman merkkiä ja push-ilmoitusta.",

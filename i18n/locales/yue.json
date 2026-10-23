@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "個人檔案欄位",
+    "description": "喺個人檔案加最多四行，例如網站或者你嘅代名詞。",
+    "label": "標籤",
+    "content": "內容",
+    "save": "儲存欄位",
+    "saved": "已儲存個人檔案欄位",
+    "failed": "儲存唔到，請再試吓。",
+    "verified": "已驗證連結",
+    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}"
+  },
   "notificationFilters": {
     "title": "過濾以下來源嘅通知",
     "description": "揀選圈子以外嘅人同你互動嘅時候會點。被過濾嘅通知會留喺「已過濾」，唔會有角標，亦唔會推送。",

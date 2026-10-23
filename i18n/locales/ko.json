@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "프로필 항목",
+    "description": "프로필에 웹사이트나 대명사 같은 줄을 최대 4개까지 추가해요.",
+    "label": "라벨",
+    "content": "내용",
+    "save": "항목 저장",
+    "saved": "프로필 항목을 저장했어요",
+    "failed": "저장하지 못했어요. 다시 시도해 주세요.",
+    "verified": "인증된 링크",
+    "verifyHint": "링크를 인증하려면 그 페이지에 이걸 넣고 다시 저장하세요: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "알림 필터 대상",
     "description": "내 주변 사람이 아닌 누군가가 반응했을 때 어떻게 할지 고르세요. 필터된 알림은 배지나 푸시 없이 '필터됨'에 보관돼요.",

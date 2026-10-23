@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profil alanları",
+    "description": "Profiline dört satıra kadar ek bilgi ekle; örneğin bir web sitesi ya da zamirlerin.",
+    "label": "Etiket",
+    "content": "İçerik",
+    "save": "Alanları kaydet",
+    "saved": "Profil alanları kaydedildi",
+    "failed": "Kaydedilmedi. Tekrar dene.",
+    "verified": "Doğrulanmış bağlantı",
+    "verifyHint": "Bir bağlantıyı doğrulamak için bunu o sayfaya ekle, sonra yeniden kaydet: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Bildirimleri filtrele",
     "description": "Çevren dışından biri seninle etkileşime girdiğinde ne olacağını seç. Filtrelenen bildirimler rozet ve anlık bildirim olmadan Filtrelenenler altında bekler.",

@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Dirreewwan piroofaayilii",
+    "description": "Hanga sararoota dabalataa afurii piroofaayilii kee irratti, kan akka marsariitii ykn bakka bu'aa maqaa kee.",
+    "label": "Mallattoo",
+    "content": "Qabiyyee",
+    "save": "Dirreewwan olkaa'i",
+    "saved": "Dirreewwan piroofaayilii olkaa'aman",
+    "failed": "Hin olkaa'amne. Irra deebi'ii yaali.",
+    "verified": "Liinkii mirkanaa'e",
+    "verifyHint": "Liinkii mirkaneessuuf, kana fuula sana irratti dabali, achiis irra deebi'ii olkaa'i: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Beeksisa irraa calali",
     "description": "Yeroo namni geengoo kee alaa si wajjin walqunnamu maaltu akka ta'u filadhu. Beeksisni calalame mallattoo fi dhiibbaa malee jalatti \"Calalame\" eegu.",
