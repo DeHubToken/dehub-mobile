@@ -3,17 +3,17 @@
  * ========================================
  * Port of web's `ChartDesk`: a title, its chart orders, the picked entry up
  * front (player, video, station or stage card) and the numbered list under
- * it. Audio uploads, music videos, radio and stages all use it, so every
- * shelf on the Music feed reads the same way.
+ * it, which holds every entry and scrolls on its own with no scrollbar.
+ * Audio uploads, music videos, radio and stages all use it, so every shelf
+ * on the Music feed reads the same way.
  *
  * @module components/Music/ChartShelf
  */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { Image } from "expo-image";
-import { useTranslation } from "react-i18next";
 
 import Icon, { type IconName } from "../ui/Icon";
 import { FEED_SIDE } from "../Home/feedLayout";
@@ -30,7 +30,8 @@ export interface ChartShelfRow {
   badge?: string;
 }
 
-const INITIAL_ROWS = 6;
+/** The list scrolls inside this height instead of growing the page. */
+const LIST_MAX_HEIGHT = 320;
 
 function ChartShelf<S extends string>({
   icon,
@@ -60,16 +61,15 @@ function ChartShelf<S extends string>({
   thumbs?: "none" | "wide" | "square";
   renderSelected: (id: string) => React.ReactNode;
 }) {
-  const { t } = useTranslation();
   const scrollGuard = useHorizontalScrollGuard();
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [visible, setVisible] = useState(INITIAL_ROWS);
+  const listRef = useRef<ScrollView>(null);
   const selected = rows.find(row => row.id === selectedId) || rows[0];
 
-  // A new order starts at its number one with the short list again.
+  // A new order starts at its number one, scrolled back to the top.
   useEffect(() => {
     setSelectedId(null);
-    setVisible(INITIAL_ROWS);
+    listRef.current?.scrollTo({ y: 0, animated: false });
   }, [sort]);
 
   const chips = (
@@ -105,8 +105,8 @@ function ChartShelf<S extends string>({
       ) : (
         <View style={styles.body}>
           {renderSelected(selected.id)}
-          <View style={{ gap: 2 }}>
-            {rows.slice(0, visible).map((row, index) => {
+          <ScrollView ref={listRef} nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.list} contentContainerStyle={{ gap: 2 }}>
+            {rows.map((row, index) => {
               const current = row.id === selected.id;
               return (
                 <TouchableOpacity
@@ -134,13 +134,7 @@ function ChartShelf<S extends string>({
                 </TouchableOpacity>
               );
             })}
-            {visible < rows.length && (
-              <TouchableOpacity accessibilityRole="button" onPress={() => setVisible(count => count + INITIAL_ROWS)} style={styles.more}>
-                <Text style={styles.moreText}>{t("stages.seeAll")}</Text>
-                <Icon name="ChevronRight" size={15} color="rgba(255,255,255,.6)" />
-              </TouchableOpacity>
-            )}
-          </View>
+          </ScrollView>
         </View>
       )}
     </View>
@@ -187,6 +181,5 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, gap: 4, minWidth: 0 },
   rowTitle: { color: "#fff", fontSize: 13, fontWeight: "500" },
   rowSubtitle: { color: "rgba(255,255,255,.5)", fontSize: 10 },
-  more: { flexDirection: "row", alignItems: "center", gap: 4, paddingVertical: 12, paddingHorizontal: 8 },
-  moreText: { color: "rgba(255,255,255,.7)", fontSize: 13 },
+  list: { maxHeight: LIST_MAX_HEIGHT },
 });

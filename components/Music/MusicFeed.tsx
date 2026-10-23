@@ -50,7 +50,7 @@ import MusicVideoCard from "./MusicVideoCard";
 import RadioStationCard from "./RadioStationCard";
 import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
-import { StagesChart } from "./StagesCarousel";
+import StagesChart from "./StagesChart";
 import ChartShelf from "./ChartShelf";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
