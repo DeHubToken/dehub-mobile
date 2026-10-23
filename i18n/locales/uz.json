@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kim javob bera oladi",
+    "public": "Har kim",
+    "followers": "Obunachilaringiz",
+    "following": "Siz kuzatadigan odamlar",
+    "mentioned": "Faqat eslatilganlar",
+    "noticeFollowers": "Faqat muallifning obunachilari javob bera oladi",
+    "noticeFollowing": "Faqat muallif kuzatadigan odamlar javob bera oladi",
+    "noticeMentioned": "Faqat postda eslatilganlar javob bera oladi",
+    "refused": "Muallif bu postga kim javob bera olishini cheklagan"
+  },
   "quotePolicy": {
     "label": "Kim iqtibos keltira oladi",
     "public": "Har kim",

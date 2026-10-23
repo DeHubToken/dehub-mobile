@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "מי יכול להגיב",
+    "public": "כולם",
+    "followers": "העוקבים שלך",
+    "following": "מי שאתה עוקב אחריו",
+    "mentioned": "רק מי שהוזכר",
+    "noticeFollowers": "רק עוקבי המחבר יכולים להגיב",
+    "noticeFollowing": "רק מי שהמחבר עוקב אחריו יכול להגיב",
+    "noticeMentioned": "רק מי שהוזכר בפוסט יכול להגיב",
+    "refused": "המחבר הגביל מי יכול להגיב לפוסט הזה"
+  },
   "quotePolicy": {
     "label": "מי יכול לצטט",
     "public": "כולם",

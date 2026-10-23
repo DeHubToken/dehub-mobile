@@ -512,6 +512,7 @@ export default function PostInfoScreen() {
           initialForKids={post.forKids}
           initialSpoilerText={post.spoilerText}
           initialQuotePolicy={post.quotePolicy}
+          initialReplyPolicy={post.replyPolicy}
           initialShopLinks={post.shopLinks}
           alwaysShowTitle={post.postType === "feed-audio"}
           onSuccess={(edited) => {

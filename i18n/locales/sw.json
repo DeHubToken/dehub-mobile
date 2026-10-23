@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Nani anaweza kujibu",
+    "public": "Mtu yeyote",
+    "followers": "Wafuasi wako",
+    "following": "Watu unaowafuata",
+    "mentioned": "Waliotajwa tu",
+    "noticeFollowers": "Wafuasi wa mwandishi tu ndio wanaweza kujibu",
+    "noticeFollowing": "Watu anaowafuata mwandishi tu ndio wanaweza kujibu",
+    "noticeMentioned": "Watu waliotajwa kwenye chapisho tu ndio wanaweza kujibu",
+    "refused": "Mwandishi amedhibiti nani anaweza kujibu chapisho hili"
+  },
   "quotePolicy": {
     "label": "Nani anaweza kunukuu",
     "public": "Mtu yeyote",

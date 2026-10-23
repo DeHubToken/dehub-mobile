@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Qui pot respondre",
+    "public": "Qualsevol",
+    "followers": "Els teus seguidors",
+    "following": "Gent que segueixes",
+    "mentioned": "Només mencionats",
+    "noticeFollowers": "Només els seguidors de l'autor poden respondre",
+    "noticeFollowing": "Només la gent que segueix l'autor pot respondre",
+    "noticeMentioned": "Només la gent mencionada a la publicació pot respondre",
+    "refused": "L'autor ha limitat qui pot respondre a aquesta publicació"
+  },
   "quotePolicy": {
     "label": "Qui pot citar",
     "public": "Qualsevol",

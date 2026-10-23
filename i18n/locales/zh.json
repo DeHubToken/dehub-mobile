@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "谁可以回复",
+    "public": "任何人",
+    "followers": "你的粉丝",
+    "following": "你关注的人",
+    "mentioned": "仅被提及的人",
+    "noticeFollowers": "只有作者的粉丝可以回复",
+    "noticeFollowing": "只有作者关注的人可以回复",
+    "noticeMentioned": "只有帖子中提及的人可以回复",
+    "refused": "作者限制了谁可以回复此帖子"
+  },
   "quotePolicy": {
     "label": "谁可以引用",
     "public": "任何人",

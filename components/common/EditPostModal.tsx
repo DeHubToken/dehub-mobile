@@ -58,6 +58,8 @@ interface EditPostModalProps {
   initialSpoilerText?: string;
   /** Who may quote the post; absent means anyone. */
   initialQuotePolicy?: "public" | "followers" | "nobody";
+  /** Who may reply to the post; absent means anyone. */
+  initialReplyPolicy?: "public" | "followers" | "following" | "mentioned";
   /** Offer the "replace the file" row — creator, video post, not live. */
   canReplaceVideo?: boolean;
   /** Offer the title even when the post has none — audio tracks can be named later. */
@@ -72,6 +74,7 @@ interface EditPostModalProps {
     forKids?: boolean;
     spoilerText?: string;
     quotePolicy?: "public" | "followers" | "nobody";
+    replyPolicy?: "public" | "followers" | "following" | "mentioned";
     shopLinks?: ShopLink[];
     shopListingCount?: number;
   }) => void;
@@ -91,6 +94,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialForKids,
   initialSpoilerText = "",
   initialQuotePolicy = "public",
+  initialReplyPolicy = "public",
   canReplaceVideo = false,
   alwaysShowTitle = false,
   onSuccess,
@@ -101,6 +105,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [isForKids, setIsForKids] = useState(initialForKids === true);
   const [spoilerText, setSpoilerText] = useState(initialSpoilerText);
   const [quotePolicy, setQuotePolicy] = useState(initialQuotePolicy);
+  const [replyPolicy, setReplyPolicy] = useState(initialReplyPolicy);
   const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(`post:edit:${tokenId}` + ":shopLinks", initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   /**
@@ -307,6 +312,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       if (quotePolicy !== initialQuotePolicy) {
         payload.quotePolicy = quotePolicy;
       }
+      if (replyPolicy !== initialReplyPolicy) {
+        payload.replyPolicy = replyPolicy;
+      }
       const nextRating = isMature ? "mature" : "safe";
       if (nextRating !== (initialContentRating ?? "safe")) {
         payload.contentRating = nextRating;
@@ -365,6 +373,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         contentRating: payload.contentRating,
         spoilerText: payload.spoilerText,
         quotePolicy: payload.quotePolicy,
+        replyPolicy: payload.replyPolicy,
         shopLinks: payload.shopLinks,
         shopListingCount: payload.shopListingCount as number | undefined,
       });
@@ -404,6 +413,8 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     spoilerText,
     initialQuotePolicy,
     quotePolicy,
+    initialReplyPolicy,
+    replyPolicy,
     onSuccess,
     onClose, setArticleBody, setDescription, setSelectedCategories, setShopLinks, setTitle]);
 
@@ -414,6 +425,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     commentsDisabled !== initialCommentsDisabled ||
     spoilerText.trim() !== initialSpoilerText.trim() ||
     quotePolicy !== initialQuotePolicy ||
+    replyPolicy !== initialReplyPolicy ||
     commonGroundChanged ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     isForKids !== (initialForKids === true) ||
@@ -517,6 +529,26 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             >
               <Text className={`text-sm ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
                 {t(`quotePolicy.${option}`)}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* Who may reply from now on. Replies already made stay. */}
+        <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+          {t("replyPolicy.label")}
+        </Text>
+        <View className="flex-row flex-wrap mb-3">
+          {(["public", "followers", "following", "mentioned"] as const).map((option) => (
+            <TouchableOpacity
+              key={option}
+              onPress={() => setReplyPolicy(option)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: replyPolicy === option }}
+              className={`mr-2 mb-2 rounded-xl px-3 py-2 ${replyPolicy === option ? "bg-white" : "bg-white/5 border border-white/10"}`}
+            >
+              <Text className={`text-sm ${replyPolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                {t(`replyPolicy.${option}`)}
               </Text>
             </TouchableOpacity>
           ))}

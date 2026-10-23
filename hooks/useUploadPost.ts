@@ -105,6 +105,8 @@ export type UploadPayload = {
   spoilerText?: string;
   /** Who may quote it. Absent means anyone. */
   quotePolicy?: "followers" | "nobody";
+  /** Who may reply. Absent means anyone. */
+  replyPolicy?: "followers" | "following" | "mentioned";
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
 };
@@ -326,6 +328,7 @@ export function useUploadPost() {
         mediaDescriptions: p.mediaDescriptions,
         spoilerText: p.spoilerText,
         quotePolicy: p.quotePolicy,
+        replyPolicy: p.replyPolicy,
       };
 
       const isBounty = p.monetization.bountyEnabled;
@@ -406,6 +409,7 @@ export function useUploadPost() {
       mediaDescriptions?: string[];
       spoilerText?: string;
       quotePolicy?: "followers" | "nobody";
+      replyPolicy?: "followers" | "following" | "mentioned";
     }): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
@@ -454,6 +458,7 @@ export function useUploadPost() {
           mediaDescriptions: p.mediaDescriptions,
           spoilerText: p.spoilerText,
           quotePolicy: p.quotePolicy,
+          replyPolicy: p.replyPolicy,
         },
         chainId: activeChainId,
         walletAddress: addr,

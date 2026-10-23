@@ -346,6 +346,8 @@ export default function UploadScreen() {
   const [contentWarning, setContentWarning] = useState<string | null>(null);
   // Who may quote the post. Anyone, unless the creator narrows it.
   const [quotePolicy, setQuotePolicy] = useState<"public" | "followers" | "nobody">("public");
+  // Who may reply. Anyone, unless the creator narrows it.
+  const [replyPolicy, setReplyPolicy] = useState<"public" | "followers" | "following" | "mentioned">("public");
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -1156,8 +1158,9 @@ export default function UploadScreen() {
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
+      replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy, replyPolicy]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1178,6 +1181,7 @@ export default function UploadScreen() {
         setPickedImages([]);
         setContentWarning(null);
         setQuotePolicy("public");
+        setReplyPolicy("public");
         setPickedAudio(null);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -1405,6 +1409,7 @@ export default function UploadScreen() {
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
+      replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
     });
     if (!ok) return false;
     // Held through the navigation for the same reason as submitPost above.
@@ -1415,7 +1420,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning, quotePolicy,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning, quotePolicy, replyPolicy,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -1463,6 +1468,7 @@ export default function UploadScreen() {
         setPickedImages([]);
         setContentWarning(null);
         setQuotePolicy("public");
+        setReplyPolicy("public");
         setPickedVideo(null);
         setThumbnailUri(null);
         consumeRestoredDraft();
@@ -3320,6 +3326,31 @@ export default function UploadScreen() {
                     >
                       <Text className={`text-xs ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
                         {t(`quotePolicy.${option}`)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
+              )}
+
+              {/* Who may reply — four options, so they wrap under the label. */}
+              {!isLiveMode && (
+              <View className="py-3">
+                <View className="flex-row items-center">
+                  <Icon name="Reply" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("replyPolicy.label")}</Text>
+                </View>
+                <View className="flex-row flex-wrap mt-2 ml-7">
+                  {(["public", "followers", "following", "mentioned"] as const).map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      onPress={() => setReplyPolicy(option)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: replyPolicy === option }}
+                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${replyPolicy === option ? "bg-white" : "bg-white/10"}`}
+                    >
+                      <Text className={`text-xs ${replyPolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                        {t(`replyPolicy.${option}`)}
                       </Text>
                     </TouchableOpacity>
                   ))}

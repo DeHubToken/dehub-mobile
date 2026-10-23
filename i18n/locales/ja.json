@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "返信できる人",
+    "public": "全員",
+    "followers": "あなたのフォロワー",
+    "following": "あなたがフォローしている人",
+    "mentioned": "メンションした人のみ",
+    "noticeFollowers": "投稿者のフォロワーのみ返信できます",
+    "noticeFollowing": "投稿者がフォローしている人のみ返信できます",
+    "noticeMentioned": "投稿でメンションされた人のみ返信できます",
+    "refused": "投稿者はこの投稿に返信できる人を制限しています"
+  },
   "quotePolicy": {
     "label": "引用できる人",
     "public": "全員",

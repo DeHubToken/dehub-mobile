@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Siapa boleh membalas",
+    "public": "Sesiapa",
+    "followers": "Pengikut anda",
+    "following": "Orang yang anda ikuti",
+    "mentioned": "Yang disebut sahaja",
+    "noticeFollowers": "Hanya pengikut penulis boleh membalas",
+    "noticeFollowing": "Hanya orang yang diikuti penulis boleh membalas",
+    "noticeMentioned": "Hanya orang yang disebut dalam siaran boleh membalas",
+    "refused": "Penulis telah mengehadkan siapa boleh membalas siaran ini"
+  },
   "quotePolicy": {
     "label": "Siapa boleh memetik",
     "public": "Sesiapa",

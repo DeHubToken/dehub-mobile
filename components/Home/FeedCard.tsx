@@ -202,6 +202,7 @@ type PostEdits = {
   hidden?: boolean;
   spoilerText?: string;
   quotePolicy?: "public" | "followers" | "nobody";
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
 };
 const NO_EDITS: PostEdits = {};
 // One shared empty list, so a post with no categories keeps FeedCaption's memo.
@@ -1958,6 +1959,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={localCommentsDisabled}
+          replyPolicy={edits.replyPolicy ?? item.replyPolicy}
           forKids={localForKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />
@@ -2057,6 +2059,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentForKids={localForKids}
           currentSpoilerText={edits.spoilerText ?? item.spoilerText}
           currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
+          currentReplyPolicy={edits.replyPolicy ?? item.replyPolicy}
           hideReportContent={isLive}
           hideEdit={isLive}
           isAudio={isAudioPost}
