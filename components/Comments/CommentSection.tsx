@@ -222,7 +222,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // text and the reply it was aimed at — read once so the two can't disagree.
   const commentDraftScope = commentDraftKey(user?.walletAddress || user?.address, tokenId);
   const [restoredDraft] = useState(() => loadCommentDraft(commentDraftScope));
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme, skin } = useAppTheme();
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
@@ -1672,7 +1672,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           borderTopColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.06)",
           // Opaque: the comment list scrolls underneath this bar, and the
           // translucent fill put scrolled text behind the input.
-          backgroundColor: "#0C0C0E",
+          backgroundColor: theme === 'glass' ? (skin?.centre.backgroundColor || '#102d32') : "#0C0C0E",
           marginBottom: inputLift,
         }}
       >
