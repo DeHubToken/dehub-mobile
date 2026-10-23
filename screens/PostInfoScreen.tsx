@@ -41,6 +41,7 @@ import { getTransactionLink, openInApp } from "../libs/links.utils";
 import { toastError, toastSuccess } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DhbCoin } from "../components/common/DhbCoin";
+import TranscriptSection from "../components/Post/TranscriptSection";
 
 const CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 const EXPLORER_NAMES: Record<number, string> = { 8453: "BaseScan", 56: "BscScan" };
@@ -427,6 +428,8 @@ export default function PostInfoScreen() {
             {!!post.description && <Text style={styles.muted}>{post.description}</Text>}
           </Section>
         )}
+
+        {!!post.videoUrl && <TranscriptSection tokenId={post.tokenId} />}
 
         {categories.length > 0 && (
           <Section title={t("postInfo.categories")}>

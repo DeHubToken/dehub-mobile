@@ -19,9 +19,11 @@ interface Props {
   stream: MediaStream;
   /** `cover` fills the frame and crops; the feed and the viewer both want it. */
   objectFit?: "cover" | "contain";
+  /** The picture's own size, whenever the native renderer reports one. */
+  onVideoSize?: (size: { width: number; height: number }) => void;
 }
 
-const LiveWebRtcView: React.FC<Props> = ({ stream, objectFit = "contain" }) => {
+const LiveWebRtcView: React.FC<Props> = ({ stream, objectFit = "contain", onVideoSize }) => {
   const [renderedStream, setRenderedStream] = useState<MediaStream | null>(null);
   // Unlike the HLS player, RTCView does not hold the screen on by itself.
   useKeepScreenOn(true, "live-webrtc-view");
@@ -32,7 +34,10 @@ const LiveWebRtcView: React.FC<Props> = ({ stream, objectFit = "contain" }) => {
       style={StyleSheet.absoluteFill}
       objectFit={objectFit}
       onDimensionsChange={({ nativeEvent: { width, height } }) => {
-        if (width > 0 && height > 0) setRenderedStream(stream);
+        if (width > 0 && height > 0) {
+          setRenderedStream(stream);
+          onVideoSize?.({ width, height });
+        }
       }}
       /* On Android an RTCView is a SurfaceView, and two of them at zOrder 0
          resolve by luck. The feed's own preview of the same stream can still

@@ -32,8 +32,9 @@ export interface RepostShareSheetProps {
   shareText?: string;
   quoteCount: number;
   repostCount: number;
-  onViewQuotes: () => void;
-  onViewReposts: () => void;
+  /** Omit both to leave out the who-quoted / who-reposted lists (a governance proposal has none). */
+  onViewQuotes?: () => void;
+  onViewReposts?: () => void;
 }
 
 /** Share targets that take a link in their URL; each falls back to its web page. */
@@ -157,6 +158,7 @@ function RepostShareSheetComponent({
           <ShareTarget icon="Ellipsis" label={t("feedCard.moreShare")} radius={radius} onPress={nativeShare} />
         </View>
 
+        {onViewQuotes && onViewReposts && (
         <View style={[styles.lists, { borderRadius: radius }]}>
           <Pressable
             onPress={() => later(onViewQuotes)}
@@ -182,6 +184,7 @@ function RepostShareSheetComponent({
             <Icon name="ChevronRight" size={16} color={MUTED} />
           </Pressable>
         </View>
+        )}
       </View>
     </GlassModal>
   );

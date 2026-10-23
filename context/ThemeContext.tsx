@@ -103,6 +103,8 @@ const DARK_COLOR_VARS = {
 };
 
 /** System Light's values for the same keys: ink #0B0B0D on white. */
+// Greys 300-600 are text greys in the dark-written screens; in light they sit
+// at 7:1+ on white (AAA), darkest first so the dark theme's order holds.
 export const SYSTEM_LIGHT_ROOT_VARS = vars({
   '--radius-sm': 4,
   '--radius': 3.5,
@@ -120,25 +122,25 @@ export const SYSTEM_LIGHT_ROOT_VARS = vars({
   '--color-zinc-50': '11 11 13',
   '--color-zinc-100': '24 24 27',
   '--color-zinc-200': '39 39 42',
-  '--color-zinc-300': '63 63 70',
-  '--color-zinc-400': '113 113 122',
-  '--color-zinc-500': '128 128 137',
-  '--color-zinc-600': '161 161 170',
+  '--color-zinc-300': '52 52 58',
+  '--color-zinc-400': '60 60 66',
+  '--color-zinc-500': '68 68 74',
+  '--color-zinc-600': '76 76 82',
   '--color-zinc-700': '228 228 231',
   '--color-zinc-800': '239 239 241',
   '--color-zinc-900': '244 244 246',
   '--color-theme-neutrals-50': '11 11 13',
   '--color-theme-neutrals-100': '24 24 27',
   '--color-theme-neutrals-200': '39 39 42',
-  '--color-theme-neutrals-300': '63 63 70',
-  '--color-theme-neutrals-400': '113 113 122',
-  '--color-theme-neutrals-500': '139 141 144',
-  '--color-theme-neutrals-600': '161 161 170',
+  '--color-theme-neutrals-300': '52 52 58',
+  '--color-theme-neutrals-400': '60 60 66',
+  '--color-theme-neutrals-500': '68 68 74',
+  '--color-theme-neutrals-600': '76 76 82',
   '--color-theme-neutrals-700': '228 228 231',
   '--color-theme-neutrals-800': '244 244 245',
   '--color-theme-accent': '11 11 13',
   '--color-theme-accent-foreground': '255 255 255',
-  '--color-theme-accent-secondary': '113 113 122',
+  '--color-theme-accent-secondary': '63 63 70',
 });
 
 export const SYSTEM_ROOT_VARS = vars({

@@ -105,6 +105,7 @@ const StageWaveform: React.FC<StageWaveformProps> = ({
     // callbacks only move a piece of React state, so they belong on JS.
     const tap = Gesture.Tap()
       .runOnJS(true)
+      .hitSlop({ vertical: 10 })
       .onEnd((e) => {
         onSeek(ratioAt(e.x));
       });
@@ -119,8 +120,12 @@ const StageWaveform: React.FC<StageWaveformProps> = ({
     // playhead to that point for the length of the swipe.
     const pan = Gesture.Pan()
       .runOnJS(true)
-      .activeOffsetX([-6, 6])
-      .failOffsetY([-12, 12])
+      .activeOffsetX([-4, 4])
+      .failOffsetY([-20, 20])
+      // A 36pt strip is a thin target for a thumb; take touches a little
+      // above and below it too.
+      .hitSlop({ vertical: 10 })
+      .shouldCancelWhenOutside(false)
       .onStart((e) => setDragAt(ratioAt(e.x)))
       .onUpdate((e) => setDragAt(ratioAt(e.x)))
       .onEnd((e) => onSeek(ratioAt(e.x)))

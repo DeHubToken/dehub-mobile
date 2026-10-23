@@ -13,5 +13,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.source_files = '*.swift', 'Shared/*.swift'
   s.frameworks = 'AVFoundation', 'CoreImage', 'CoreMedia', 'ReplayKit', 'UIKit'
-  s.weak_frameworks = 'ScreenCaptureKit'
+  # ScreenCaptureKit is in the iOS 27 device SDK only. Weak-linked on device builds
+  # made with that SDK; other builds compile ModernCaptureDriver out and link without it.
+  s.user_target_xcconfig = { 'OTHER_LDFLAGS[sdk=iphoneos27*]' => '$(inherited) -weak_framework ScreenCaptureKit' }
 end

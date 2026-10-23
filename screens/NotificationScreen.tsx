@@ -75,7 +75,7 @@ import {
   MINIMAL_WASH,
 } from "../theme/minimal";
 
-type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'communities' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
+type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'features' | 'communities' | 'stores' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
 
 function hideDuplicateReplyMentions(items: NotificationItem[]): NotificationItem[] {
   const replies = new Set(
@@ -99,7 +99,9 @@ const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] 
   { key: 'follows', icon: 'UserPlus', label: "notifications.follows" },
   { key: 'comments', icon: 'MessageSquareText', label: "notifications.comments" },
   { key: 'reposts', icon: 'Repeat2', label: "notifications.reposts" },
+  { key: 'features', icon: 'Lightbulb', label: "notifications.features" },
   { key: 'communities', icon: 'UsersRound', label: "nav.communities" },
+  { key: 'stores', icon: 'Store', label: "notifications.stores" },
   { key: 'subscriptions', icon: 'Users', label: "notifications.subs" },
   { key: 'tips', icon: 'Gem', label: "notifications.tips" },
   { key: 'payments', icon: 'CreditCard', label: "notifications.payments" },
@@ -108,12 +110,42 @@ const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] 
 
 const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   all: [],
-  likes: [NotificationType.LIKE, NotificationType.COMMENT_LIKE],
+  likes: [
+    NotificationType.LIKE,
+    NotificationType.COMMENT_LIKE,
+    ...(['feature_request_like', 'governance_vote'] as unknown as NotificationType[]),
+  ],
   follows: [NotificationType.FOLLOWING, NotificationType.FOLLOW_REQUEST, NotificationType.FOLLOW_REQUEST_ACCEPTED],
-  comments: [NotificationType.COMMENT, NotificationType.COMMENT_REPLY, NotificationType.MENTION, 'work_application_reply' as NotificationType],
+  comments: [
+    NotificationType.COMMENT,
+    NotificationType.COMMENT_REPLY,
+    NotificationType.MENTION,
+    ...([
+      'community_mention',
+      'feature_request_comment',
+      'feature_request_reply',
+      'feature_request_mention',
+      'governance_comment',
+      'governance_reply',
+      'work_application_reply',
+    ] as unknown as NotificationType[]),
+  ],
   reposts: [NotificationType.REPOST, NotificationType.QUOTE],
+  // Same split as web's filterTypeMap: feature request and store/trade rows
+  // get their own tabs instead of only showing under All.
+  features: [
+    ...(['feature_request_like', 'feature_request_comment', 'feature_request_reply', 'feature_request_mention'] as unknown as NotificationType[]),
+  ],
   communities: [
     ...(['community_join', 'community_mention', 'community_here'] as unknown as NotificationType[]),
+  ],
+  stores: [
+    ...([
+      'store_order',
+      'fraction_offer', 'fraction_offer_accepted', 'fraction_offer_rejected',
+      'fraction_purchased', 'fraction_sold', 'fraction_delivered', 'fraction_settled',
+      'username_offer', 'username_offer_accepted', 'username_offer_declined',
+    ] as unknown as NotificationType[]),
   ],
   subscriptions: [NotificationType.SUBSCRIPTION, NotificationType.PPV_PURCHASE],
   // work_application / work_submission are Supabase-side rows with no entry in
@@ -126,7 +158,10 @@ const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
     ...(['work_application', 'work_submission'] as unknown as NotificationType[]),
   ],
   payments: [NotificationType.FIAT_PAYMENT_COMPLETED],
-  livestreams: [NotificationType.LIVESTREAM_START],
+  livestreams: [
+    NotificationType.LIVESTREAM_START,
+    ...(['stage_live', 'stage_reminder'] as unknown as NotificationType[]),
+  ],
 };
 
 /**
@@ -148,6 +183,19 @@ const CLIENT_ONLY_TYPES = new Set<string>([
   'community_join',
   'community_mention',
   'community_here',
+  'feature_request_like',
+  'feature_request_comment',
+  'feature_request_reply',
+  'feature_request_mention',
+  'governance_vote',
+  'governance_comment',
+  'governance_reply',
+  'store_order',
+  'fraction_sold',
+  'fraction_delivered',
+  'fraction_settled',
+  'stage_live',
+  'stage_reminder',
 ]);
 
 /** The subset of a tab's types the API can filter on, or undefined for no server filter. */
@@ -1276,7 +1324,7 @@ const NotificationScreen = () => {
 
   const tabCounts = useMemo(() => {
     const counts: Record<NotificationTypeFilter, number> = {
-      all: 0, likes: 0, follows: 0, comments: 0, communities: 0,
+      all: 0, likes: 0, follows: 0, comments: 0, features: 0, communities: 0, stores: 0,
       reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
     const unread = visibleCountsSource.filter((n) => !n.read);
@@ -1295,7 +1343,7 @@ const NotificationScreen = () => {
   // rows must not outrank a category whose visible badge is larger.
   const tabActivityCounts = useMemo(() => {
     const counts: Record<NotificationTypeFilter, number> = {
-      all: tabCounts.all, likes: 0, follows: 0, comments: 0, communities: 0,
+      all: tabCounts.all, likes: 0, follows: 0, comments: 0, features: 0, communities: 0, stores: 0,
       reposts: 0, subscriptions: 0, tips: 0, payments: 0, livestreams: 0,
     };
 

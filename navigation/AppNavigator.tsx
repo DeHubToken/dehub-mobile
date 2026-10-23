@@ -201,6 +201,10 @@ function AppNavigatorContent() {
           getComponent={() => require("../screens/StagesScreen").default}
         />
         <Stack.Screen
+          name={ScreenNames.StageRecording}
+          getComponent={() => require("../screens/StageRecordingScreen").default}
+        />
+        <Stack.Screen
           name={ScreenNames.Careers}
           getComponent={() => require("../screens/CareersScreen").default}
         />
@@ -526,6 +530,10 @@ function AppNavigatorContent() {
             <Stack.Screen
               name={ScreenNames.AccountSettings}
               getComponent={() => require("../screens/AccountSettingsScreen").default}
+            />
+            <Stack.Screen
+              name={ScreenNames.LiveStudio}
+              getComponent={() => require("../screens/LiveStudioScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.ActiveSessions}

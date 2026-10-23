@@ -681,7 +681,9 @@ const LiveProducerScreen: React.FC = () => {
     endedRef.current = true;
     discardDeadLaunchRef.current();
     toastSuccess(t("goLive.livestreamEnded"));
-    navigation.goBack();
+    // A broadcast that aired has a recap waiting in Live Studio.
+    if (streamId && everLiveRef.current) navigation.replace(ScreenNames.LiveStudio as any, { recap: String(streamId) });
+    else navigation.goBack();
   }, [end, navigation, stage, streamId, socketEmitAuthed]);
 
   const requestClose = useCallback(() => {

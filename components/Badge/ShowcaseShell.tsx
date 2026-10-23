@@ -132,6 +132,17 @@ const THUMB = 40;
 const THUMB_GAP = 2;
 /** Between the details, the dock, the actions and the bottom edge. */
 const SECTION_GAP = 12;
+/**
+ * A close always finishes within this long. The flight home and the sticker
+ * page's own close report back when they end, but a page that never answers
+ * (killed under memory pressure, or asked to close mid-opening) left the
+ * black screen up with every way out already spent.
+ */
+const CLOSE_FAILSAFE_MS = 1500;
+/** The X shows this long after opening even if the opening has not finished. */
+const CLOSE_BUTTON_DELAY_MS = 2000;
+/** Still opening after this long: drop the sticker and show the flat art and details. */
+const ENTER_TIMEOUT_MS = 9000;
 
 // CSS's curves, for the transitions web writes as Tailwind classes.
 const EASE = Easing.bezier(0.25, 0.1, 0.25, 1);
@@ -232,12 +243,22 @@ export default function ShowcaseShell({
   // the showcase or yank the badge mid-flight home.
   const closing = useRef(false);
   const mounted = useRef(true);
+  const closed = useRef(false);
+  const failsafe = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(
     () => () => {
       mounted.current = false;
+      if (failsafe.current) clearTimeout(failsafe.current);
     },
     [],
   );
+  // Every way out ends here, once.
+  const finish = useCallback(() => {
+    if (closed.current) return;
+    closed.current = true;
+    if (failsafe.current) clearTimeout(failsafe.current);
+    onClose();
+  }, [onClose]);
 
   // Metal opens with its own art; the rest of the dock waits until landing.
   useEffect(() => {
@@ -464,19 +485,44 @@ export default function ShowcaseShell({
 
   const pause = useCallback(() => setPlaying(false), []);
 
+  /* ---------- watchdogs ---------- */
+
+  // The X never waits on the opening: if it stalls, there is still a way out.
+  const [closeEarly, setCloseEarly] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setCloseEarly(true), CLOSE_BUTTON_DELAY_MS);
+    return () => clearTimeout(id);
+  }, []);
+
+  // An opening that never lands (the sticker page stopped answering) falls
+  // back to the flat art, so the details and actions still come in.
+  useEffect(() => {
+    if (phase !== "enter") return;
+    const id = setTimeout(() => {
+      if (!mounted.current || closing.current) return;
+      setCeremony(null);
+      setStickerOn(false);
+      setGlFailed(true);
+      setLanded(true);
+    }, ENTER_TIMEOUT_MS);
+    return () => clearTimeout(id);
+  }, [phase]);
+
   /* ---------- close ---------- */
 
   const requestClose = useCallback(() => {
-    if (phaseRef.current === "exit") return;
+    // Asked again while already closing: go now rather than wait it out.
+    if (phaseRef.current === "exit") return finish();
     phaseRef.current = "exit";
     closing.current = true;
+    failsafe.current = setTimeout(finish, CLOSE_FAILSAFE_MS);
     // Closing mid-promotion cancels it; the new badge still flies home.
     setCeremony(null);
     setPhase("exit");
     setPlaying(false);
     const fade = () => {
       setFading(true);
-      setTimeout(onClose, reduceMotion ? 0 : 240);
+      setTimeout(finish, reduceMotion ? 0 : 240);
     };
     const from = heroRef.current;
     if (!from || reduceMotion || index !== originIndex) return fade();
@@ -495,10 +541,10 @@ export default function ShowcaseShell({
       setStickerOn(false);
       setFlying(true);
       flight.value = withTiming(1, { duration: FLY_HOME_MS, easing: Easing.linear }, (done) => {
-        if (done) runOnJS(onClose)();
+        if (done) runOnJS(finish)();
       });
     });
-  }, [anchor, H, reduceMotion, index, originIndex, onClose, flight, homeward, fromBox, toBox, cinematic, glFailed, stickerReady]);
+  }, [anchor, H, reduceMotion, index, originIndex, finish, flight, homeward, fromBox, toBox, cinematic, glFailed, stickerReady]);
 
   /* ---------- autoplay ---------- */
 
@@ -556,11 +602,12 @@ export default function ShowcaseShell({
 
   const open = shown && phase !== "exit";
   const panelIn = phase === "open";
+  const closeShown = (panelIn || closeEarly) && phase !== "exit";
   const backdrop = useTransition(open ? 1 : 0, 500, EASE_OUT);
   const glow = useTransition(open ? 1 : 0, 700);
   const sticker = useTransition(stickerOn ? 1 : 0, 200);
   const loader = useTransition(waiting ? 1 : 0, 200);
-  const closeIn = useTransition(panelIn ? 1 : 0, 300);
+  const closeIn = useTransition(closeShown ? 1 : 0, 300);
   const detailsIn = useTransition(panelIn ? 1 : 0, 500, EASE_OUT);
   const dockIn = useTransition(panelIn ? 1 : 0, 700, EASE_DOCK);
   const fadeOut = useTransition(fading ? 1 : 0, 200);
@@ -590,7 +637,7 @@ export default function ShowcaseShell({
     goTo,
     pause,
     close: (then) => {
-      onClose();
+      finish();
       then?.();
     },
     dismiss: requestClose,
@@ -621,10 +668,10 @@ export default function ShowcaseShell({
             <View style={StyleSheet.absoluteFill}>
               <StickerStage
                 ref={stageRef} items={items} origin={originIndex} metallic={metallic} world={world} hero={hero} reducedMotion={reduceMotion}
-                onReady={(ok) => { if (closing.current) { if (!ok) onClose(); return; } if (ok) setStickerReady(true); else { setGlFailed(true); setStickerOn(false); } }}
+                onReady={(ok) => { if (closing.current) { if (!ok) finish(); return; } if (ok) setStickerReady(true); else { setGlFailed(true); setStickerOn(false); } }}
                 onStarted={() => { if (!closing.current) setShown(true); }}
                 onLanded={() => { if (!closing.current) setLanded(true); }}
-                onClosed={onClose} onTap={() => goTo(index + 1)} onMiss={requestClose} onInteract={pause}
+                onClosed={finish} onTap={() => goTo(index + 1)} onMiss={requestClose} onInteract={pause}
               />
             </View>
           ) : null}
@@ -743,7 +790,7 @@ export default function ShowcaseShell({
             </Animated.View>
           ) : null}
 
-          <Animated.View style={[styles.closeWrap, { top: insets.top + 12 }, closeStyle]} pointerEvents={panelIn ? "box-none" : "none"}>
+          <Animated.View style={[styles.closeWrap, { top: insets.top + 12 }, closeStyle]} pointerEvents={closeShown ? "box-none" : "none"}>
             <Chrome dark onPress={requestClose} hitSlop={10} style={styles.close} accessibilityLabel={t("badgeShowcase.close")}>
               <Icon name="X" size={18} color="#f3f4f6" />
             </Chrome>

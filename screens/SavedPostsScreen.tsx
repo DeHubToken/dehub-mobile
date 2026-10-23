@@ -1,7 +1,8 @@
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import type { GetNFTsResult } from "../services/nft.service";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -17,6 +18,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   BackHandler,
+  ScrollView,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -45,6 +47,33 @@ import {
 
 type ActiveTab = "all" | "folders";
 
+// Web's bookmark filters (BookmarksPage): search plus Recent / Images /
+// Videos / Text, applied to what has loaded, as web does.
+type SavedKind = "all" | "recent" | "images" | "videos" | "text";
+const SAVED_KINDS: { id: SavedKind; label: string }[] = [
+  { id: "all", label: "bookmarks.all" },
+  { id: "recent", label: "bookmarks.recent" },
+  { id: "images", label: "bookmarks.images" },
+  { id: "videos", label: "bookmarks.videos" },
+  { id: "text", label: "bookmarks.textPosts" },
+];
+
+function savedKindOf(item: GetNFTsResult): "images" | "videos" | "text" {
+  const postType = String(item.postType || "");
+  if (postType === "feed-images" || postType === "image") return "images";
+  if (postType === "feed-simple" || postType === "text" || postType === "article") return "text";
+  if (!postType && !item.videoUrl && !item.imageUrl && !item.thumbnailUrl) return "text";
+  return "videos";
+}
+
+function savedMatches(item: GetNFTsResult, q: string): boolean {
+  return [item.name, item.description, item.minterDisplayName, item.mintername, item.minterUsername]
+    .some((v) => typeof v === "string" && v.toLowerCase().includes(q));
+}
+
+const byNewest = (a: GetNFTsResult, b: GetNFTsResult) =>
+  new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+
 const SavedPostsScreen: React.FC = () => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -54,6 +83,16 @@ const SavedPostsScreen: React.FC = () => {
   useGateToHome(allow);
 
   const [activeTab, setActiveTab] = useState<ActiveTab>("all");
+  const [savedKind, setSavedKind] = useState<SavedKind>("all");
+  const [savedSearch, setSavedSearch] = useState("");
+  const savedFilter = useMemo(() => {
+    const q = savedSearch.trim().toLowerCase();
+    if (savedKind !== "all" && savedKind !== "recent") {
+      return (item: GetNFTsResult) =>
+        savedKindOf(item) === savedKind && (!q || savedMatches(item, q));
+    }
+    return q ? (item: GetNFTsResult) => savedMatches(item, q) : undefined;
+  }, [savedKind, savedSearch]);
   const [selectedFolder, setSelectedFolder] = useState<BookmarkFolder | null>(null);
 
   // Folders list state
@@ -422,7 +461,60 @@ const SavedPostsScreen: React.FC = () => {
       />
 
       {activeTab === "all" ? (
-        <PostsInfiniteList variant="saved" bottomPadding={80} />
+        <View style={{ flex: 1 }}>
+          <View style={styles.savedSearchWrap}>
+            <Icon name="Search" size={15} color="#808089" />
+            <TextInput
+              value={savedSearch}
+              onChangeText={setSavedSearch}
+              placeholder={t("bookmarks.searchPlaceholder")}
+              placeholderTextColor="#8B8D90"
+              style={styles.savedSearchInput}
+              returnKeyType="search"
+            />
+            {savedSearch.length > 0 && (
+              <Pressable
+                onPress={() => setSavedSearch("")}
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel={t("sidebar.clearSearch")}
+              >
+                <Icon name="X" size={15} color="#808089" />
+              </Pressable>
+            )}
+          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.savedChipScroll}
+            contentContainerStyle={styles.savedChipRow}
+          >
+            {SAVED_KINDS.map((k) => (
+              <Pressable
+                key={k.id}
+                onPress={() => setSavedKind(k.id)}
+                style={[styles.savedChip, savedKind === k.id && styles.savedChipActive]}
+                accessibilityRole="button"
+                accessibilityState={{ selected: savedKind === k.id }}
+              >
+                <Text style={[styles.savedChipText, savedKind === k.id && styles.savedChipTextActive]}>
+                  {t(k.label)}
+                </Text>
+              </Pressable>
+            ))}
+          </ScrollView>
+          <PostsInfiniteList
+            variant="saved"
+            bottomPadding={80}
+            filter={savedFilter}
+            sort={savedKind === "recent" ? byNewest : undefined}
+            filteredEmptyMessage={
+              savedSearch.trim()
+                ? t("bookmarks.noMatchSearch", { query: savedSearch.trim() })
+                : t("bookmarks.noMatchingBookmarks")
+            }
+          />
+        </View>
       ) : (
         <View style={{ flex: 1 }}>
           {loadingFolders ? (
@@ -661,6 +753,34 @@ const SavedPostsScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  savedSearchWrap: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginHorizontal: 16,
+    marginTop: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  savedSearchInput: { flex: 1, color: "#FFFFFF", fontSize: 14, padding: 0 },
+  savedChipScroll: { flexGrow: 0, flexShrink: 0 },
+  savedChipRow: { gap: 8, paddingHorizontal: 16, paddingVertical: 10, alignItems: "center" },
+  savedChip: {
+    paddingHorizontal: 14,
+    height: 30,
+    justifyContent: "center",
+    borderRadius: 8,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  savedChipActive: { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" },
+  savedChipText: { color: "#A1A1AA", fontSize: 12, lineHeight: 16, fontWeight: "600" },
+  savedChipTextActive: { color: "#000000" },
   minimalCreateCard: {
     justifyContent: "flex-start",
     backgroundColor: "transparent",

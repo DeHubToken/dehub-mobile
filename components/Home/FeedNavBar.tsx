@@ -20,6 +20,7 @@ import { GRAIN, glassTint } from "../../theme/skins";
 import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
 import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
+import { useAppPrefs } from '../../hooks/useAppPrefs';
 
 interface NavItem {
   icon: IconName;
@@ -42,6 +43,17 @@ const NAV_ITEMS: NavItem[] = [
 /** The tabs in pager order, for chrome that names the current one (the
  *  system theme's collapsed island). */
 export const FEED_NAV_ITEMS: readonly NavItem[] = NAV_ITEMS;
+const NAV_ITEMS_NO_SHORTS: readonly NavItem[] = NAV_ITEMS.filter((item) => item.postType !== "short");
+
+/**
+ * The tabs actually shown, in pager order. Turning Shorts off in Settings
+ * drops the Shorts tab, as web's GlobalFeedNav does. HomeScreen's pager,
+ * this bar and the island menu all index against this same list.
+ */
+export function useFeedNavItems(): readonly NavItem[] {
+  const { shorts } = useAppPrefs();
+  return shorts ? NAV_ITEMS : NAV_ITEMS_NO_SHORTS;
+}
 
 interface FeedNavBarProps {
   /** Settled tab index — drives the icon highlight. */
@@ -73,8 +85,6 @@ interface FeedNavBarProps {
 const SNAP_BACK = { duration: 260, easing: Easing.bezier(0.22, 1, 0.36, 1) } as const;
 const EDGE_RESISTANCE = 0.28;
 const VELOCITY_PROJECTION = 0.12;
-const LAST_INDEX = NAV_ITEMS.length - 1;
-
 const NavButton = memo<{
   icon: IconName;
   label: string;
@@ -142,6 +152,8 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
 }) => {
   useSwipeBackAction(onBackPress, backMode);
   const { t: _copy } = _useCopy();
+  const NAV_ITEMS = useFeedNavItems();
+  const LAST_INDEX = NAV_ITEMS.length - 1;
   const { isMinimal, skin, isLight } = useAppTheme();
   const tint = useMemo(
     () => (skin ? { on: skin.tabIconActive, off: skin.tabIcon } : undefined),
@@ -178,7 +190,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
       const postType = NAV_ITEMS[idx]?.postType;
       if (postType) onPostTypeChange(postType);
     },
-    [onPostTypeChange],
+    [onPostTypeChange, NAV_ITEMS],
   );
 
   // Dragging across the nav bar scrubs the pager itself, same maths as the
@@ -223,7 +235,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             runOnJS(commitIndex)(target);
           }
         }),
-    [buttonWidth, commitIndex, progress, dragStart],
+    [buttonWidth, commitIndex, progress, dragStart, LAST_INDEX],
   );
 
   // Sliding glass indicator — always visible, UI-thread driven. The +1 is the

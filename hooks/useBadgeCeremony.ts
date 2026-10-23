@@ -7,10 +7,16 @@
  * visit to their own profile after the tier went up, which is the one screen
  * where the badge is large, still, and beside their name.
  *
- * What is stored is the tier the holder last saw a ceremony for, not a flag.
- * Someone who climbs two tiers between visits gets one ceremony, for the tier
- * they landed on; someone who drops a tier and earns it back sees it again.
- * Demotions never play.
+ * What is stored is the highest tier the holder has seen a ceremony for, not
+ * a flag. Someone who climbs two tiers between visits gets one ceremony, for
+ * the tier they landed on. Demotions never play and never lower the marker:
+ * the ladder moves with the token price, so a holder near a threshold can
+ * flip between two tiers from one visit to the next, and moving the marker
+ * down replayed the same ceremony every time they came back.
+ *
+ * The marker is written before the showcase opens, and a tier is also
+ * remembered in memory for the session, so the ceremony can never reopen
+ * itself, even if storage is slow or fails.
  *
  * @module hooks/useBadgeCeremony
  */
@@ -20,6 +26,8 @@ import { canonicalTierName } from "../libs/misc";
 import { isPromotion } from "../libs/badgeMotion";
 
 const KEY_PREFIX = "dehub.badgeCeremonySeen.";
+/** `address:tier` pairs already played this session. */
+const played = new Set<string>();
 
 function storageKey(address: string | null | undefined): string | null {
   const a = address?.trim().toLowerCase();
@@ -50,6 +58,8 @@ export function useBadgeCeremony({ enabled, address, tier }: Args) {
     if (!enabled || !current || !address || ceremony || checking.current) return;
     const key = storageKey(address);
     if (!key) return;
+    const playedKey = `${key}:${current}`;
+    if (played.has(playedKey)) return;
 
     checking.current = true;
     let cancelled = false;
@@ -59,11 +69,11 @@ export function useBadgeCeremony({ enabled, address, tier }: Args) {
         if (cancelled) return;
         const seen = canonicalTierName(raw);
         if (seen === current) return;
-        if (!isPromotion(seen, current)) {
-          // A demotion, or a tier already shown. Move the marker so the next
-          // genuine promotion is the one that plays.
-          return AsyncStorage.setItem(key, current).then(() => undefined);
-        }
+        // A demotion, or a tier already shown: nothing plays, and the marker
+        // stays on the highest tier seen.
+        if (!isPromotion(seen, current)) return;
+        played.add(playedKey);
+        AsyncStorage.setItem(key, current).catch(() => undefined);
         setCeremony({ from: seen, to: current });
       })
       .catch(() => {
@@ -79,18 +89,9 @@ export function useBadgeCeremony({ enabled, address, tier }: Args) {
     };
   }, [enabled, address, current, ceremony]);
 
-  /** Call once the ceremony has been handed to the badge showcase — the marker
-   *  is written here, so one skipped or closed early is not replayed on the
-   *  next visit. */
-  const dismiss = useCallback(() => {
-    setCeremony((playing) => {
-      const key = storageKey(address);
-      if (playing && key) {
-        AsyncStorage.setItem(key, playing.to).catch(() => undefined);
-      }
-      return null;
-    });
-  }, [address]);
+  /** Call once the ceremony has been handed to the badge showcase. The marker
+   *  is already written, so one skipped or closed early is not replayed. */
+  const dismiss = useCallback(() => setCeremony(null), []);
 
   return { ceremony, dismiss };
 }

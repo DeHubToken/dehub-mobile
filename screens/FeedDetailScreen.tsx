@@ -32,6 +32,7 @@ import { useBannedAccount } from "../hooks/useBannedAccount";
 import { useKidsMode } from "../hooks/useKidsMode";
 import { useUser, useAuthActions } from "../context/AuthContext";
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
+import { useSelfLiftingComposer } from "../hooks/useComposerKeyboard";
 import { useMentions } from "../hooks/useMentions";
 import { useCommentTipTotals } from "../hooks/useCommentTipTotals";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -250,6 +251,9 @@ function FeedDetailContent() {
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
+  // The composer rides kbLift; keep the screen pan from moving it as well.
+  const composerRef = useRef<View>(null);
+  useSelfLiftingComposer(composerRef);
   const { showUserProfile } = useUserProfileSheet();
 
   // The three states in which the composer is replaced by a notice, decided
@@ -1571,6 +1575,8 @@ function FeedDetailContent() {
       {!postUnavailable && (
         <Animated.View
           pointerEvents={hideComposer ? "none" : "auto"}
+          ref={composerRef}
+          collapsable={false}
           style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
