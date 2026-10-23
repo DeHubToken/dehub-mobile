@@ -10,8 +10,25 @@ describe('video gesture wiring', () => {
 
     expect(viewer).toContain('Gesture.Tap()');
     expect(viewer).toContain('.maxDistance(MEDIA_TAP_SLOP_PX)');
-    expect(viewer).toContain('Gesture.Race(restorePan, hold, tap)');
+    expect(viewer).toContain('Gesture.Race(makeEdgeBack(), restorePan, hold, tap)');
     expect(viewer).not.toContain('onPress={handleScreenPress}');
+  });
+
+  it('keeps the shorts video tap out of the top button strip while it shows', () => {
+    // The video's Tap used to win taps on the edge of Back (RN hitSlop is
+    // invisible to gesture-handler) and cancel the press: back only hid the buttons.
+    const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
+
+    expect(viewer).toContain('const mediaHitSlop = { top: chromeVisible ? -topChromeBand : 0 };');
+    expect(viewer.match(/\.hitSlop\(mediaHitSlop\)/g)?.length).toBe(2);
+  });
+
+  it('leaves shorts on a sideways swipe from the left edge', () => {
+    const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
+
+    expect(viewer).toContain('.hitSlop({ left: 0, width: EDGE_BACK_ZONE })');
+    expect(viewer).toContain('.failOffsetY([-EDGE_BACK_CLAIM, EDGE_BACK_CLAIM])');
+    expect(viewer).toContain('Gesture.Race(makeEdgeBack(), hidePan)');
   });
 
   it('keeps the feed timeline outside the play-pause press target', () => {
