@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { PageSection, KitButton } from '../components/page/PageKit';
 import { agentTaskRequest } from '../services/agents.service';
-import { PERMISSIONS, NEWS_TOPICS, workspaceCounts, type AgentSettings, type WorkspaceOverview, type PlanPreview } from '../libs/agent-workspace';
+import { PERMISSIONS, NEWS_TOPICS, BUILDER_ACTIONS, buildAgentPrompt, workspaceCounts, type BuilderAction, type AgentSettings, type WorkspaceOverview, type PlanPreview } from '../libs/agent-workspace';
 
 function Settings({ wallet, agentId }: { wallet: string; agentId: string }) {
   const { t } = useTranslation();
@@ -44,6 +44,9 @@ export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
   const [requestId, setRequestId] = useState(randomUUID);
   const [history, setHistory] = useState(false);
   const [filter, setFilter] = useState('all');
+  const [action, setAction] = useState<BuilderAction>('post');
+  const [topic, setTopic] = useState('');
+  const [cadence, setCadence] = useState('daily');
   const overview = useQuery({ queryKey: ['agent-workspace', wallet], queryFn: () => agentTaskRequest<WorkspaceOverview>(wallet, { operation: 'workspace_overview' }) });
   const agentId = overview.data?.agents.some(agent => agent.id === selected) ? selected : overview.data?.agents[0]?.id;
   const counts = workspaceCounts(overview.data);
@@ -63,12 +66,17 @@ export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
     <View style={styles.row}>{overview.data?.agents.map(agent => <KitButton key={agent.id} label={`@${agent.name}`} variant={agentId === agent.id ? 'primary' : 'quiet'} onPress={() => { setSelected(agent.id); preview.reset(); run.reset(); setRequestId(randomUUID()); }} />)}</View>
     {agentId && <Settings key={agentId} wallet={wallet} agentId={agentId} />}
     <Text style={styles.title}>{t('agents.workspace.library', 'Templates and task builder')}</Text>
+    <View style={styles.row}>{BUILDER_ACTIONS.map(item => <KitButton key={item} variant={action === item ? 'primary' : 'quiet'} label={t(`agents.workspace.builder.${item}`, { defaultValue: item === 'news' ? 'React to news' : item === 'reply' ? 'Reply to recent posts' : item === 'curate' ? 'Like relevant posts' : 'Write a post' })} onPress={() => setAction(item)} />)}</View>
+    <TextInput accessibilityLabel={t('agents.workspace.subject', 'Topic or reply style')} placeholder={t('agents.workspace.subject', 'Topic or reply style')} placeholderTextColor="#A1A1AA" style={styles.input} value={topic} maxLength={500} onChangeText={setTopic} />
+    <View style={styles.row}>{(action === 'reply' ? ['once'] : action === 'curate' ? ['once', 'daily'] : ['once', 'daily', 'twice']).map(item => <KitButton key={item} variant={(action === 'reply' ? 'once' : cadence) === item ? 'primary' : 'quiet'} label={t(`agents.workspace.cadence.${item}`, { defaultValue: item === 'once' ? 'Once' : item === 'daily' ? 'Daily' : 'Twice daily' })} onPress={() => setCadence(item)} />)}</View>
+    <KitButton variant="quiet" label={t('agents.workspace.useBuilder', 'Use these instructions')} disabled={!topic.trim()} onPress={() => changePrompt(buildAgentPrompt(action, topic, cadence))} />
     <View style={styles.row}>{overview.data?.templates.map(item => <KitButton key={item.id} variant="quiet" label={`${item.name}${item.published ? ' · Shared' : ''}`} onPress={() => changePrompt(item.prompt)} />)}</View>
     <Text style={styles.muted}>{t('agents.workspace.builderHelp', 'Choose a template, describe the action, audience and schedule, then simulate before running. Shared templates are instructions from their authors, not verified capabilities.')}</Text>
     <TextInput accessibilityLabel={t('agents.tasks.instructions', 'Instructions')} style={styles.input} multiline maxLength={4000} value={prompt} onChangeText={changePrompt} />
     <View style={styles.row}><KitButton label={t('agents.workspace.simulate', 'Simulate plan')} disabled={!agentId || !prompt.trim() || preview.isPending} onPress={() => preview.mutate()} /><KitButton variant="quiet" label={t('agents.tasks.run', 'Run task')} disabled={!agentId || !prompt.trim() || run.isPending || run.isSuccess} onPress={() => run.mutate()} /></View>
     {preview.data && <View style={styles.card}><Text style={styles.text}>{preview.data.plan.summary}</Text><Text style={styles.muted}>{preview.data.message}</Text>{preview.data.checks.map((check, index) => <Text key={index} style={styles.text}>{check.tool} · {check.audience} · {check.permission ?? t('agents.workspace.allowed', 'Allowed')}</Text>)}</View>}
     {run.isSuccess && <Text accessibilityRole="alert" style={styles.text}>{t('agents.tasks.queued', 'Task queued.')}</Text>}
+    {preview.data?.draft && <Text selectable style={styles.text}>{preview.data.draft}</Text>}
     <TextInput accessibilityLabel={t('agents.workspace.templateName', 'Template name')} placeholder={t('agents.workspace.templateName', 'Template name')} placeholderTextColor="#A1A1AA" style={styles.input} value={name} maxLength={80} onChangeText={setName} />
     <View style={styles.row}><Switch accessibilityLabel={t('agents.workspace.share', 'Share this template with other Agents users')} value={published} onValueChange={setPublished} /><Text style={[styles.text, { flex: 1 }]}>{t('agents.workspace.share', 'Share this template with other Agents users')}</Text></View>
     <KitButton variant="quiet" label={t('agents.workspace.saveTemplate', 'Save template')} disabled={!name.trim() || !prompt.trim() || template.isPending || template.isSuccess} onPress={() => template.mutate()} />

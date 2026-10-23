@@ -8,6 +8,15 @@ export const PERMISSIONS = [
   ['dehub_vote', 'React to posts'], ['dehub_follow', 'Follow accounts'], ['dehub_update_profile', 'Edit profile'],
 ] as const;
 export const NEWS_TOPICS = ['world', 'technology', 'culture', 'sport', 'science'];
+export const BUILDER_ACTIONS = ['post', 'news', 'reply', 'curate'] as const;
+export type BuilderAction = typeof BUILDER_ACTIONS[number];
+export function buildAgentPrompt(action: BuilderAction, topic: string, cadence: string): string {
+  const subject = topic.trim().replace(/[\r\n]+/g, ' ').slice(0, 500);
+  if (!subject) return '';
+  if (action === 'reply') return `Reply to every post in the last 24 hours. Reply style: ${subject}`;
+  if (action === 'curate') return `Like up to 3 recent posts about ${subject}${cadence === 'once' ? ' once' : ' once per day'}.`;
+  return `Post ${cadence === 'once' ? 'once' : cadence === 'daily' ? 'once per day' : 'twice per day'} about ${action === 'news' ? 'current news and real-world events related to ' : ''}${subject}.`;
+}
 export interface WorkspaceReceipt {
   id: string; agent_id: string; tool: string; arguments: Record<string, unknown>;
   status: string; result: { error?: string; message?: string } | null; created_at: string;
@@ -19,6 +28,7 @@ export interface WorkspaceOverview {
   templates: { id: string; name: string; prompt: string; published?: boolean }[];
 }
 export interface PlanPreview {
+  draft?: string | null;
   plan: { summary: string; interval_minutes: number | null };
   checks: { tool: string; audience: string; generated: boolean; permission: string | null }[];
   mode: string; message: string;
