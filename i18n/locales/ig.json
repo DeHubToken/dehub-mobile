@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tinye nkọwa",
+    "edit": "Dezie nkọwa",
+    "titleImage": "Kọwaa foto a",
+    "titleVideo": "Kọwaa vidiyo a",
+    "help": "Maka ndị na-enweghị ike ịhụ ya. Ndị na-agụ ihuenyo na-agụpụta ya n'olu dara ụda.",
+    "placeholder": "Gịnị ka ọ na-egosi? Tinye ederede ọ bụla dị n'ime ya.",
+    "show": "Gosi nkọwa",
+    "saved": "Echekwala nkọwa",
+    "saveFailed": "Enweghị ike ịchekwa nkọwa ahụ"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} meriri",
     "title": "Nchịkọta mgbasa ozi",

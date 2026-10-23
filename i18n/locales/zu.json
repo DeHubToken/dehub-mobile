@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Engeza incazelo",
+    "edit": "Hlela incazelo",
+    "titleImage": "Chaza lesi sithombe",
+    "titleVideo": "Chaza le vidiyo",
+    "help": "Kubantu abangakwazi ukuyibona. Abafundi besikrini bayifunda ngokuzwakalayo.",
+    "placeholder": "Ibonisani? Faka noma imuphi umbhalo okuyo.",
+    "show": "Bonisa incazelo",
+    "saved": "Incazelo igciniwe",
+    "saveFailed": "Ayikwazanga ukugcina incazelo"
+  },
   "liveRecap": {
     "title": "Ukudlala kabusha kokusakaza",
     "justEnded": "Ukubuyekezwa kokusakaza kwakho",

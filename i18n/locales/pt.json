@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Adicionar descrição",
+    "edit": "Editar descrição",
+    "titleImage": "Descreva esta imagem",
+    "titleVideo": "Descreva este vídeo",
+    "help": "Para quem não consegue vê-la. Leitores de tela a leem em voz alta.",
+    "placeholder": "O que ela mostra? Inclua qualquer texto que apareça.",
+    "show": "Mostrar descrição",
+    "saved": "Descrição salva",
+    "saveFailed": "Não foi possível salvar a descrição"
+  },
   "postGate": {
     "holdShortUnknown": "Ainda não há {{symbol}} suficiente. Esta publicação exige {{needed}}.",
     "holdShort": "Você tem {{held}} {{symbol}}. Esta publicação exige {{needed}}."

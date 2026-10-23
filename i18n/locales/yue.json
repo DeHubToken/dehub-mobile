@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "加入描述",
+    "edit": "編輯描述",
+    "titleImage": "描述呢張圖片",
+    "titleVideo": "描述呢條片",
+    "help": "畀睇唔到嘅人用。螢幕閱讀器會讀出嚟。",
+    "placeholder": "入面有啲咩？圖入面嘅字都寫埋。",
+    "show": "顯示描述",
+    "saved": "已儲存描述",
+    "saveFailed": "儲存唔到描述"
+  },
   "liveRecap": {
     "title": "串流總結",
     "justEnded": "你嘅串流總結",

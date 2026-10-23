@@ -99,6 +99,8 @@ export type UploadPayload = {
    * after the mint returns a tokenId — there is nothing to attach to before.
    */
   shopListingIds?: string[];
+  /** Alt text in upload order: the video, or each photo by position. */
+  mediaDescriptions?: string[];
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
 };
@@ -317,6 +319,7 @@ export function useUploadPost() {
         shopLinks: p.shopLinks,
         shopListingIds: p.shopListingIds,
         crossPostAccountIds: p.crossPostAccountIds,
+        mediaDescriptions: p.mediaDescriptions,
       };
 
       const isBounty = p.monetization.bountyEnabled;
@@ -394,6 +397,7 @@ export function useUploadPost() {
       coverUri: string | null;
       thumbnailUri: string | null;
       quotedTokenId: number;
+      mediaDescriptions?: string[];
     }): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
@@ -439,6 +443,7 @@ export function useUploadPost() {
           audio,
           thumbnailUri: thumb,
           streamInfoJson: "{}",
+          mediaDescriptions: p.mediaDescriptions,
         },
         chainId: activeChainId,
         walletAddress: addr,

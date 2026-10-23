@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "添加描述",
+    "edit": "编辑描述",
+    "titleImage": "描述这张图片",
+    "titleVideo": "描述这个视频",
+    "help": "为看不见的人提供。屏幕阅读器会朗读出来。",
+    "placeholder": "图中有什么？请写出其中的文字。",
+    "show": "显示描述",
+    "saved": "描述已保存",
+    "saveFailed": "无法保存描述"
+  },
   "liveRecap": {
     "title": "流程回顾",
     "justEnded": "你的直播回顾",

@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Dodaj opis",
+    "edit": "Uredi opis",
+    "titleImage": "Opišite ovu sliku",
+    "titleVideo": "Opišite ovaj videozapis",
+    "help": "Za ljude koji je ne mogu vidjeti. Čitači zaslona čitaju ga naglas.",
+    "placeholder": "Što prikazuje? Uključite i tekst koji sadrži.",
+    "show": "Prikaži opis",
+    "saved": "Opis je spremljen",
+    "saveFailed": "Opis nije moguće spremiti"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} je pobijedio",
     "title": "Rekapitulacija streama",

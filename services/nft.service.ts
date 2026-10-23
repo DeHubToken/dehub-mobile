@@ -1169,6 +1169,8 @@ export async function getShopLinkAllowance(): Promise<ShopLinkAllowance> {
 export interface EditPostInput {
   name?: string;
   description?: string;
+  /** Replace the post's alt text, one per piece of media in display order. `[]` clears it. */
+  mediaDescriptions?: string[];
   articleBody?: string;
   category?: string[];
   /** true turns replies off. Existing comments stay readable — only new ones

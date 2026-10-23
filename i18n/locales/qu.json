@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Willakuyta yapay",
+    "edit": "Willakuyta allichay",
+    "titleImage": "Kay siq'ita willay",
+    "titleVideo": "Kay videota willay",
+    "help": "Mana rikuyta atiqkunapaq. Pantalla ñawinchaqkunam kunkawan ñawinchanku.",
+    "placeholder": "¿Imatataq rikuchin? Ukhunpi ima qillqapas kaptin, chaytapas qillqay.",
+    "show": "Willakuyta rikuchiy",
+    "saved": "Willakuyqa waqaychasqañam",
+    "saveFailed": "Manam willakuyta waqaychayta atikurqanchu"
+  },
   "liveRecap": {
     "title": "Stream recap nisqa",
     "justEnded": "Qampa mayu recap",

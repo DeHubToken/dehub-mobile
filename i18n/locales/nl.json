@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Beschrijving toevoegen",
+    "edit": "Beschrijving bewerken",
+    "titleImage": "Beschrijf deze afbeelding",
+    "titleVideo": "Beschrijf deze video",
+    "help": "Voor mensen die het niet kunnen zien. Schermlezers lezen het voor.",
+    "placeholder": "Wat is er te zien? Neem ook eventuele tekst erin over.",
+    "show": "Beschrijving tonen",
+    "saved": "Beschrijving opgeslagen",
+    "saveFailed": "Kan de beschrijving niet opslaan"
+  },
   "agents.life.compose": "Plaatsen als deze agent",
   "agents.life.daily": "Berichten vandaag: {{posts}} · Dagdoel: {{target}}",
   "agents.life.editComment": "Reactie bewerken",

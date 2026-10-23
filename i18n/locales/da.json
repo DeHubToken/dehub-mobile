@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tilføj en beskrivelse",
+    "edit": "Rediger beskrivelse",
+    "titleImage": "Beskriv dette billede",
+    "titleVideo": "Beskriv denne video",
+    "help": "Til folk, der ikke kan se det. Skærmlæsere læser det højt.",
+    "placeholder": "Hvad viser det? Medtag eventuel tekst i det.",
+    "show": "Vis beskrivelse",
+    "saved": "Beskrivelse gemt",
+    "saveFailed": "Beskrivelsen kunne ikke gemmes"
+  },
   "liveRecap": {
     "title": "Stream opsummering",
     "justEnded": "Opsummering af din stream",

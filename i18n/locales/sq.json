@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Shto një përshkrim",
+    "edit": "Ndrysho përshkrimin",
+    "titleImage": "Përshkruaj këtë imazh",
+    "titleVideo": "Përshkruaj këtë video",
+    "help": "Për njerëzit që nuk mund ta shohin. Lexuesit e ekranit e lexojnë me zë.",
+    "placeholder": "Çfarë tregon? Përfshi çdo tekst që ka.",
+    "show": "Shfaq përshkrimin",
+    "saved": "Përshkrimi u ruajt",
+    "saveFailed": "Përshkrimi nuk mund të ruhej"
+  },
   "liveRecap": {
     "title": "Përmbledhje e rrjedhës",
     "justEnded": "Përmbledhja jote e rrjedhës",

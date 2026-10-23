@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Lisää kuvaus",
+    "edit": "Muokkaa kuvausta",
+    "titleImage": "Kuvaile tämä kuva",
+    "titleVideo": "Kuvaile tämä video",
+    "help": "Ihmisille, jotka eivät näe sitä. Ruudunlukijat lukevat sen ääneen.",
+    "placeholder": "Mitä siinä näkyy? Kirjoita myös siinä oleva teksti.",
+    "show": "Näytä kuvaus",
+    "saved": "Kuvaus tallennettu",
+    "saveFailed": "Kuvausta ei voitu tallentaa"
+  },
   "liveRecap": {
     "title": "Virran yhteenveto",
     "justEnded": "Suoratoistosi yhteenveto",

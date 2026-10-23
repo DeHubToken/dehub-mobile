@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Ṣafikun apejuwe",
+    "edit": "Ṣatunkọ apejuwe",
+    "titleImage": "Ṣapejuwe aworan yii",
+    "titleVideo": "Ṣapejuwe fidio yii",
+    "help": "Fun awọn eniyan ti ko le ri i. Awọn oluka iboju n ka a soke.",
+    "placeholder": "Kini o fihan? Fi eyikeyi ọrọ ti o wa ninu rẹ kun.",
+    "show": "Fi apejuwe han",
+    "saved": "A ti fi apejuwe pamọ",
+    "saveFailed": "Ko ṣee ṣe lati fi apejuwe pamọ"
+  },
   "liveRecap": {
     "duration": "Àkókò ìgbéjáde",
     "topSupporters": "Awọn alatilẹyin ti o ga julọ",

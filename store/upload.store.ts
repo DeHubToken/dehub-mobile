@@ -73,6 +73,8 @@ export interface SerializedUploadPayload {
   shopListingIds?: string[];
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
+  /** Alt text in upload order: the video, or each photo by position. */
+  mediaDescriptions?: string[];
 }
 
 export interface MintParams {
