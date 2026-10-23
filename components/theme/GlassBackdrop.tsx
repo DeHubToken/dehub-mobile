@@ -1,23 +1,27 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, StyleSheet, View } from 'react-native';
-import Svg, { Defs, LinearGradient as SvgGradient, Stop, Path } from 'react-native-svg';
+import Svg, { Defs, LinearGradient as SvgGradient, Stop, Path, Filter, FeGaussianBlur } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppTheme } from '../../context/ThemeContext';
 import { visualActivity } from '../../libs/visualActivity';
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from '../../libs/themeBackdrop';
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from '../../libs/scrollActivity';
+import { optionalSkia } from '../../libs/skia';
+
+const LightField = optionalSkia(() => (require('./GlassLightField') as typeof import('./GlassLightField')).default);
 
 const ribbons = [
   'M-220 1220C160 520 550 1050 940 460S1420-160 1850-80',
-  'M-220 520C300 1100 690 570 1010 240S1480-100 1840 110',
-  'M260-180C660 200 560 360 1020 350S1360 650 1770 620',
+  'M-200 80C240 100 340 450 820 510S1310 390 1800 650',
+  'M-200 1200C400 1100 820 800 1200 660S1600 630 1800 680',
 ];
 function LightRibbons({ color }: { color: string }) {
   return <Svg width="100%" height="100%" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none">
     <Defs><SvgGradient id="crystalFace" x1="0" y1="0" x2=".75" y2="1">
       <Stop stopColor={color} stopOpacity={0} /><Stop offset=".18" stopColor={color} stopOpacity={.03} /><Stop offset=".37" stopColor={color} stopOpacity={.14} /><Stop offset=".48" stopColor="#b8f5ff" stopOpacity={.27} /><Stop offset=".53" stopColor="#e2fbff" stopOpacity={.36} /><Stop offset=".57" stopColor={color} stopOpacity={.18} /><Stop offset=".72" stopColor={color} stopOpacity={.05} /><Stop offset="1" stopColor={color} stopOpacity={0} />
-    </SvgGradient></Defs>
-    {ribbons.flatMap((d, i) => Array.from({ length: 32 }, (_, layer) => <Path key={`${i}-${layer}`} d={d} stroke="url(#crystalFace)" strokeWidth={300 * (1 - layer / 32)} strokeOpacity={(i === 2 ? .3 : 1) * (.006 + layer * .0005)} strokeLinecap="round" />))}
+    </SvgGradient><Filter id="crystalSoft" x="-50%" y="-50%" width="200%" height="200%"><FeGaussianBlur stdDeviation="14" /></Filter></Defs>
+    {ribbons.map((d, i) => <Path key={i} d={d} stroke={color} strokeWidth={i === 2 ? 72 : 125} strokeOpacity={i === 2 ? .17 : .28} strokeLinecap="round" filter="url(#crystalSoft)" />)}
+    {ribbons.slice(0, 2).map((d, i) => <Path key={`crest-${i}`} d={d} stroke="url(#crystalFace)" strokeWidth={46} strokeOpacity={.7} strokeLinecap="round" filter="url(#crystalSoft)" />)}
   </Svg>;
 }
 /** Native vector light ribbons shared by every screen. */
@@ -58,7 +62,7 @@ function GlassBackdrop() {
       { rotate: progress.interpolate({ inputRange: [0, 1], outputRange: ['-3deg', '3deg'] }) },
       { scale: 1.1 },
     ] }]}>
-      <LightRibbons color={`rgb(${accent.map(c => Math.round(c * .65 + 255 * .35)).join(',')})`} />
+      {LightField ? <LightField accent={accent} /> : <LightRibbons color={`rgb(${accent.join(',')})`} />}
     </Animated.View>
 </View>;
 }
