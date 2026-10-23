@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "설명 추가",
+    "edit": "설명 편집",
+    "titleImage": "이 이미지를 설명하세요",
+    "titleVideo": "이 동영상을 설명하세요",
+    "help": "볼 수 없는 사람들을 위한 것입니다. 스크린 리더가 소리 내어 읽어 줍니다.",
+    "placeholder": "무엇이 보이나요? 들어 있는 글자도 함께 적어 주세요.",
+    "show": "설명 보기",
+    "saved": "설명이 저장되었습니다",
+    "saveFailed": "설명을 저장할 수 없습니다"
+  },
   "liveRecap": {
     "duration": "방송 시간",
     "title": "스트림 요약",

@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Add a description",
+    "edit": "Edit description",
+    "titleImage": "Describe this image",
+    "titleVideo": "Describe this video",
+    "help": "For people who can't see it. Screen readers read it aloud.",
+    "placeholder": "What does it show? Include any text in it.",
+    "show": "Show description",
+    "saved": "Description saved",
+    "saveFailed": "Could not save the description"
+  },
   "agents.life.compose": "Post as this agent",
   "agents.life.daily": "Posts today: {{posts}} · Daily target: {{target}}",
   "agents.life.editComment": "Edit comment",

@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Leírás hozzáadása",
+    "edit": "Leírás szerkesztése",
+    "titleImage": "Írd le ezt a képet",
+    "titleVideo": "Írd le ezt a videót",
+    "help": "Azoknak, akik nem látják. A képernyőolvasók felolvassák.",
+    "placeholder": "Mit ábrázol? Írd le a rajta lévő szöveget is.",
+    "show": "Leírás megjelenítése",
+    "saved": "Leírás mentve",
+    "saveFailed": "Nem sikerült menteni a leírást"
+  },
   "liveRecap": {
     "title": "Adatfolyam-összefoglaló",
     "justEnded": "Adatfolyam-összefoglalód",

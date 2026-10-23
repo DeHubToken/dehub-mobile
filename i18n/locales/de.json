@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Beschreibung hinzufügen",
+    "edit": "Beschreibung bearbeiten",
+    "titleImage": "Beschreibe dieses Bild",
+    "titleVideo": "Beschreibe dieses Video",
+    "help": "Für Menschen, die es nicht sehen können. Screenreader lesen es laut vor.",
+    "placeholder": "Was zeigt es? Gib auch Text darin wieder.",
+    "show": "Beschreibung anzeigen",
+    "saved": "Beschreibung gespeichert",
+    "saveFailed": "Beschreibung konnte nicht gespeichert werden"
+  },
   "postGate": {
     "holdShortUnknown": "Noch nicht genug {{symbol}}. Dieser Beitrag braucht {{needed}}.",
     "holdShort": "Du hältst {{held}} {{symbol}}. Dieser Beitrag braucht {{needed}}."

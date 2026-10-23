@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Adaugă o descriere",
+    "edit": "Editează descrierea",
+    "titleImage": "Descrie această imagine",
+    "titleVideo": "Descrie acest videoclip",
+    "help": "Pentru persoanele care nu o pot vedea. Cititoarele de ecran o citesc cu voce tare.",
+    "placeholder": "Ce arată? Include orice text pe care îl conține.",
+    "show": "Arată descrierea",
+    "saved": "Descriere salvată",
+    "saveFailed": "Descrierea nu a putut fi salvată"
+  },
   "liveRecap": {
     "pollWinner": "A câștigat {{option}}",
     "title": "Recapitulare flux",

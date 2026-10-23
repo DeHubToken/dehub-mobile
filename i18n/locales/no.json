@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Legg til en beskrivelse",
+    "edit": "Rediger beskrivelse",
+    "titleImage": "Beskriv dette bildet",
+    "titleVideo": "Beskriv denne videoen",
+    "help": "For folk som ikke kan se det. Skjermlesere leser det høyt.",
+    "placeholder": "Hva viser det? Ta med eventuell tekst i det.",
+    "show": "Vis beskrivelse",
+    "saved": "Beskrivelse lagret",
+    "saveFailed": "Kunne ikke lagre beskrivelsen"
+  },
   "liveRecap": {
     "title": "Strømmeoppsummering",
     "justEnded": "Oppsummeringen av strømmen din",

@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Hanampy famaritana",
+    "edit": "Hanova ny famaritana",
+    "titleImage": "Fariteo ity sary ity",
+    "titleVideo": "Fariteo ity horonantsary ity",
+    "help": "Ho an'ireo tsy mahita azy. Vakian'ny mpamaky efijery mafy izany.",
+    "placeholder": "Inona no asehony? Ampidiro koa izay soratra ao aminy.",
+    "show": "Asehoy ny famaritana",
+    "saved": "Voatahiry ny famaritana",
+    "saveFailed": "Tsy afaka nitahiry ny famaritana"
+  },
   "liveRecap": {
     "shareText": "Vao avy nandefa \"{{title}}\" tao amin'ny DeHub aho: {{duration}} mivantana, mpijery {{peak}} indrindra ary mpanaraka vaovao {{followers}}.",
     "title": "Avereno alefa",

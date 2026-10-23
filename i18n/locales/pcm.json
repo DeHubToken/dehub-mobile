@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Add description",
+    "edit": "Change description",
+    "titleImage": "Describe dis picture",
+    "titleVideo": "Describe dis video",
+    "help": "For people wey no fit see am. Screen reader go read am out loud.",
+    "placeholder": "Wetin e dey show? Put any writing wey dey inside am.",
+    "show": "Show description",
+    "saved": "Description don save",
+    "saveFailed": "We no fit save di description"
+  },
   "liveRecap": {
     "justEnded": "Your stream recap",
     "lastStream": "Your last stream",

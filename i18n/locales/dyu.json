@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Ɲɛfɔli fara a kan",
+    "edit": "Ɲɛfɔli yɛlɛma",
+    "titleImage": "Nin ja ɲɛfɔ",
+    "titleVideo": "Nin videwo ɲɛfɔ",
+    "help": "Mɔgɔ minnu tɛ se k'a ye, olu ye. Ekran kalanbagaw b'a kalan kan na.",
+    "placeholder": "A bɛ mun jira? Sɛbɛn o sɛbɛn b'a kɔnɔ, o fana sɛbɛn.",
+    "show": "Ɲɛfɔli jira",
+    "saved": "Ɲɛfɔli maralen don",
+    "saveFailed": "A ma se ka ɲɛfɔli mara"
+  },
   "liveRecap": {
     "justEnded": "Récapitulatif de votre flux",
     "untitled": "Flux sans titre",

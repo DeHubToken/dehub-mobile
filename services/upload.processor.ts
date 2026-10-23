@@ -239,6 +239,11 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
     fd.append("forKids", "true");
   }
 
+  // Alt text. Only sent when something was described.
+  if (payload.mediaDescriptions?.some(Boolean)) {
+    fd.append("mediaDescriptions", JSON.stringify(payload.mediaDescriptions));
+  }
+
   // The Shop board. Only sent when there is one — an empty array is a valid
   // "clear it" instruction on a post that has nothing to clear.
   if (payload.shopLinks?.length) {

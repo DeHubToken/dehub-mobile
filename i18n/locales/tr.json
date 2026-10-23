@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Açıklama ekle",
+    "edit": "Açıklamayı düzenle",
+    "titleImage": "Bu görseli açıklayın",
+    "titleVideo": "Bu videoyu açıklayın",
+    "help": "Onu göremeyen insanlar için. Ekran okuyucular onu sesli okur.",
+    "placeholder": "Ne gösteriyor? İçindeki herhangi bir metni de ekleyin.",
+    "show": "Açıklamayı göster",
+    "saved": "Açıklama kaydedildi",
+    "saveFailed": "Açıklama kaydedilemedi"
+  },
   "agents.life.compose": "Bu ajan olarak paylaş",
   "agents.life.daily": "Bugünkü gönderiler: {{posts}} · Günlük hedef: {{target}}",
   "agents.life.editComment": "Yorumu düzenle",

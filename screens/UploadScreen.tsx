@@ -72,6 +72,7 @@ import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
+import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
 import CommunityDrawer from "../components/Upload/CommunityDrawer";
 import { getUserCommunities } from "../services/communities.service";
 import type { Community } from "../types/community";
@@ -215,7 +216,15 @@ type PickedAsset = ImagePicker.ImagePickerAsset & {
   editBaseUri?: string;
   filter?: FilterSettings;
   filterPresetId?: string;
+  /** Alt text: what the picture or video shows, for people who cannot see it. */
+  description?: string;
 };
+
+/** Alt text in upload order: the video, or each photo by position. */
+function mediaDescriptionsOf(video: PickedAsset | null, images: PickedAsset[]): string[] | undefined {
+  if (video) return video.description ? [video.description] : undefined;
+  return images.some(img => img.description) ? images.map(img => img.description || "") : undefined;
+}
 
 const isGifAsset = (a: PickedAsset) =>
   a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
@@ -328,6 +337,7 @@ export default function UploadScreen() {
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
+  const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -1114,6 +1124,7 @@ export default function UploadScreen() {
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
       crossPostAccountIds: articleMode ? [] : [...crossPostState.selected],
+      mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
     };
   }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
 
@@ -1358,6 +1369,7 @@ export default function UploadScreen() {
       coverUri,
       thumbnailUri,
       quotedTokenId: Number(quotedTokenId),
+      mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
     });
     if (!ok) return false;
     // Held through the navigation for the same reason as submitPost above.
@@ -2578,6 +2590,11 @@ export default function UploadScreen() {
                           contentFit="cover"
                         />
                       </TouchableOpacity>
+                      <AltTextPill
+                        hasText={!!img.description}
+                        onPress={() => setAltEditor({ kind: "image", index: idx })}
+                        className="absolute top-2 left-2"
+                      />
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
                         className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
@@ -2664,6 +2681,11 @@ export default function UploadScreen() {
                   style={{ width: "100%", height: 220, backgroundColor: "#111" }}
                   contentFit="contain"
                   nativeControls={false}
+                />
+                <AltTextPill
+                  hasText={!!pickedVideo.description}
+                  onPress={() => setAltEditor({ kind: "video", index: 0 })}
+                  className="absolute bottom-2 left-12 z-20"
                 />
                 {attachedSound && (
                   <View className="absolute top-2 left-2 dark-surface bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
@@ -3827,6 +3849,25 @@ export default function UploadScreen() {
           />
         );
       })()}
+
+      {altEditor && (
+        <AltTextSheet
+          visible
+          onClose={() => setAltEditor(null)}
+          kind={altEditor.kind}
+          previewUri={altEditor.kind === "image" ? pickedImages[altEditor.index]?.uri : undefined}
+          initial={altEditor.kind === "image" ? pickedImages[altEditor.index]?.description : pickedVideo?.description}
+          onSave={(text) => {
+            const description = text || undefined;
+            if (altEditor.kind === "video") {
+              setPickedVideo(prev => (prev ? { ...prev, description } : prev));
+            } else {
+              const index = altEditor.index;
+              setPickedImages(prev => prev.map((img, i) => (i === index ? { ...img, description } : img)));
+            }
+          }}
+        />
+      )}
     </View>
   );
 }

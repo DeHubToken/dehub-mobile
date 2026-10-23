@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Dodaj opis",
+    "edit": "Edytuj opis",
+    "titleImage": "Opisz ten obraz",
+    "titleVideo": "Opisz ten film",
+    "help": "Dla osób, które go nie widzą. Czytniki ekranu odczytują go na głos.",
+    "placeholder": "Co przedstawia? Uwzględnij też tekst, który się na nim znajduje.",
+    "show": "Pokaż opis",
+    "saved": "Opis zapisany",
+    "saveFailed": "Nie udało się zapisać opisu"
+  },
   "liveRecap": {
     "pollWinner": "Wygrywa: {{option}}",
     "title": "Streszczenie strumienia",

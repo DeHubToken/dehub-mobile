@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Lägg till en beskrivning",
+    "edit": "Redigera beskrivning",
+    "titleImage": "Beskriv den här bilden",
+    "titleVideo": "Beskriv den här videon",
+    "help": "För personer som inte kan se den. Skärmläsare läser upp den.",
+    "placeholder": "Vad visar den? Ta med eventuell text i den.",
+    "show": "Visa beskrivning",
+    "saved": "Beskrivningen sparades",
+    "saveFailed": "Det gick inte att spara beskrivningen"
+  },
   "liveRecap": {
     "title": "Streamsammanfattning",
     "justEnded": "Sammanfattning av ditt flöde",
