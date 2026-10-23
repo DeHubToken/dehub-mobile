@@ -66,7 +66,7 @@ import {
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
-import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
+import { useComposerKeyboard, useSelfLiftingComposer } from "../../hooks/useComposerKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
@@ -351,6 +351,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // on the keys whichever window the sheet is in (hooks/useComposerKeyboard).
   const composerKeyboard = useComposerKeyboard(0, { gap: 0, enabled: !keyboardHandled });
   const inputLift = keyboardHandled ? 0 : composerKeyboard.lift;
+  // The Shorts split lifts this sheet itself; keep the screen pan off it.
+  useSelfLiftingComposer(composerKeyboard.ref, keyboardHandled);
 
   // Build flat list with replies inline after their parent using recursive depth tracking.
   // If highlightCommentId is a reply, its root ancestor chain is emitted first.
