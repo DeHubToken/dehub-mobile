@@ -2839,6 +2839,8 @@
     "yourFractions": "Tum {{count}} mein se {{total}} fraction hold karte ho"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS فیڈ لنک کاپی کرو",
+    "copyRssFeedHint": "یہ پوسٹ کسی بھی فیڈ ریڈر میں فالو کرو",
     "copyProfileUrl": "پروفائل URL کاپی کرو",
     "copyUsername": "یوزرنیم کاپی کرو",
     "copyAddress": "پتہ کاپی کرو",

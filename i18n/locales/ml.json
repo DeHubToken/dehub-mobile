@@ -2823,6 +2823,8 @@
     "notMinted": "നാണയം നിർമ്മിച്ചിട്ടില്ല"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ഫീഡ് ലിങ്ക് പകർത്തുക",
+    "copyRssFeedHint": "ഏത് ഫീഡ് റീഡറിലും ഈ പോസ്റ്റുകൾ പിന്തുടരുക",
     "copyProfileUrl": "പ്രൊഫൈൽ URL പകർത്തുക",
     "copyUsername": "ഉപയോക്തൃനാമം പകർത്തുക",
     "copyAddress": "വിലാസം പകർത്തുക",

@@ -2830,6 +2830,8 @@
     "yourFractions": "Поседујете {{count}} од {{total}} удела"
   },
   "profileOptions": {
+    "copyRssFeed": "Копирај линк RSS фида",
+    "copyRssFeedHint": "Пратите ове објаве у било ком читачу фидова",
     "copyProfileUrl": "Копирај URL профила",
     "copyUsername": "Копирај корисничко име",
     "copyAddress": "Копирај адресу",

@@ -2827,6 +2827,8 @@
     "yourFractions": "Jums priklauso {{count}} iš {{total}} dalių"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopijuoti RSS srauto nuorodą",
+    "copyRssFeedHint": "Sekite šiuos įrašus bet kurioje srautų skaityklėje",
     "copyProfileUrl": "Kopijuoti profilio URL",
     "copyUsername": "Kopijuoti vartotojo vardą",
     "copyAddress": "Kopijuoti adresą",

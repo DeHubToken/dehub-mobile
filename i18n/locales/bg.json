@@ -2838,6 +2838,8 @@
     "yourFractions": "Притежавате {{count}} от {{total}} части"
   },
   "profileOptions": {
+    "copyRssFeed": "Копирай връзката към RSS емисията",
+    "copyRssFeedHint": "Следете тези публикации във всеки RSS четец",
     "copyProfileUrl": "Копирай URL на профила",
     "copyUsername": "Копирай потребителско име",
     "copyAddress": "Копирай адрес",

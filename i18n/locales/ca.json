@@ -2835,6 +2835,8 @@
     "yourFractions": "Tens {{count}} de {{total}} fraccions"
   },
   "profileOptions": {
+    "copyRssFeed": "Copia l'enllaç del canal RSS",
+    "copyRssFeedHint": "Segueix aquestes publicacions en qualsevol lector de canals",
     "copyProfileUrl": "Copia l'URL del perfil",
     "copyUsername": "Copia el nom d'usuari",
     "copyAddress": "Copia l'adreça",

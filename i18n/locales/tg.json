@@ -2804,6 +2804,8 @@
     "yourFractions": "Шумо {{count}} қисм аз {{total}} қисмро доред"
   },
   "profileOptions": {
+    "copyRssFeed": "Нусхабардории пайванди тасмаи RSS",
+    "copyRssFeedHint": "Ин нашрияҳоро дар ҳар хонандаи тасма пайгирӣ кунед",
     "copyProfileUrl": "Нусхабардории URL профил",
     "copyUsername": "Нусхабардории номи корбар",
     "copyAddress": "Нусхабардории суроға",

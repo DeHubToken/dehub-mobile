@@ -2835,6 +2835,8 @@
     "yourFractions": "Вы трымаеце {{count}} з {{total}} фракцыі"
   },
   "profileOptions": {
+    "copyRssFeed": "Капіяваць спасылку на RSS-стужку",
+    "copyRssFeedHint": "Сачыце за гэтымі допісамі ў любым чытальніку стужак",
     "copyProfileUrl": "Капіяваць URL профілю",
     "copyUsername": "Капіяваць імя карыстальніка",
     "copyAddress": "Капіяваць адрас",

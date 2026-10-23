@@ -2837,6 +2837,8 @@
     "yourFractions": "Anda memegang {{count}} dari {{total}} pecahan"
   },
   "profileOptions": {
+    "copyRssFeed": "Salin tautan feed RSS",
+    "copyRssFeedHint": "Ikuti postingan ini di pembaca feed mana pun",
     "copyProfileUrl": "Salin URL profil",
     "copyUsername": "Salin nama pengguna",
     "copyAddress": "Salin alamat",

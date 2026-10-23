@@ -2843,6 +2843,8 @@
     "yourFractions": "Detieni {{count}} di {{total}} frazioni"
   },
   "profileOptions": {
+    "copyRssFeed": "Copia link del feed RSS",
+    "copyRssFeedHint": "Segui questi post in qualsiasi lettore di feed",
     "copyProfileUrl": "Copia URL profilo",
     "copyUsername": "Copia nome utente",
     "copyAddress": "Copia indirizzo",

@@ -2841,6 +2841,8 @@
     "yourFractions": "Mitazona {{count}} amin'ny ampahany {{total}} ianao"
   },
   "profileOptions": {
+    "copyRssFeed": "Adikao ny rohy RSS feed",
+    "copyRssFeedHint": "Araho ireo lahatsoratra ireo amin'izay mpamaky feed tianao",
     "copyProfileUrl": "Adikao ny URL profil",
     "copyUsername": "Adikao ny anarana mpampiasa",
     "copyAddress": "Adikao ny adiresy",

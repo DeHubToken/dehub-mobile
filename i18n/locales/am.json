@@ -2845,6 +2845,8 @@
     "yourFractions": "የ {{total}} ክፍልፋዮች {{count}} ያላችሁት እርስዎ ነዎት"
   },
   "profileOptions": {
+    "copyRssFeed": "የRSS ምግብ አገናኝ ቅዳ",
+    "copyRssFeedHint": "እነዚህን ልጥፎች በማንኛውም የምግብ አንባቢ ይከታተሉ",
     "copyProfileUrl": "የመገለጫ URL ቅዳ",
     "copyUsername": "የተጠቃሚ ስም ቅዳ",
     "copyAddress": "አድራሻ ቅዳ",

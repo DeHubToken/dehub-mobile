@@ -2839,6 +2839,8 @@
     "yourFractions": "آپ {{total}} فریکشنز میں سے {{count}} فریکشنز رکھتے ہیں"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS فیڈ لنک کاپی کریں",
+    "copyRssFeedHint": "ان پوسٹس کو کسی بھی فیڈ ریڈر میں فالو کریں",
     "copyProfileUrl": "پروفائل URL کاپی کریں",
     "copyUsername": "صارف نام کاپی کریں",
     "copyAddress": "پتہ کاپی کریں",

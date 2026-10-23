@@ -2818,6 +2818,8 @@
     "yourFractions": "Waxaad haysataa {{count}} qaybood oo ka mid ah {{total}} qaybood"
   },
   "profileOptions": {
+    "copyRssFeed": "Koobi xiriirka quudinta RSS",
+    "copyRssFeedHint": "Ku raac qoraalladan akhriste kasta oo quudin ah",
     "copyProfileUrl": "Koobi URL-ka profile-ka",
     "copyUsername": "Koobi magaca isticmaalaha",
     "copyAddress": "Koobi cinwaanka",

@@ -2827,6 +2827,8 @@
     "yourFractions": "Ju zotëroni {{count}} nga {{total}} fraksione"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopjo lidhjen e burimit RSS",
+    "copyRssFeedHint": "Ndiqi këto postime në çdo lexues burimesh",
     "copyProfileUrl": "Kopjo URL-në e profilit",
     "copyUsername": "Kopjo emrin e përdoruesit",
     "copyAddress": "Kopjo adresën",

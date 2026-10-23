@@ -2817,6 +2817,8 @@
     "yourFractions": "ನೀವು {{total}} ಭಾಗಗಳಲ್ಲಿ {{count}} ಅನ್ನು ಹೊಂದಿದ್ದೀರಿ"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ಫೀಡ್ ಲಿಂಕ್ ನಕಲಿಸಿ",
+    "copyRssFeedHint": "ಈ ಪೋಸ್ಟ್‌ಗಳನ್ನು ಯಾವುದೇ ಫೀಡ್ ರೀಡರ್‌ನಲ್ಲಿ ಅನುಸರಿಸಿ",
     "copyProfileUrl": "ಪ್ರೊಫೈಲ್ URL ನಕಲಿಸಿ",
     "copyUsername": "ಬಳಕೆದಾರ ಹೆಸರು ನಕಲಿಸಿ",
     "copyAddress": "ವಿಳಾಸ ನಕಲಿಸಿ",

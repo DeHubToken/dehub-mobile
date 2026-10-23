@@ -2829,6 +2829,8 @@
     "yourFractions": "သင်သည် {{total}} အပိုင်းခွဲများ၏ {{count}} ကို ကိုင်ဆောင်ထားပါသည်။"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS feed လင့်ခ်ကို ကူးယူရန်",
+    "copyRssFeedHint": "ဤပို့စ်များကို မည်သည့် feed reader တွင်မဆို လိုက်ကြည့်ပါ",
     "copyProfileUrl": "ပရိုဖိုင် URL ကူးယူရန်",
     "copyUsername": "အသုံးပြုသူအမည် ကူးယူရန်",
     "copyAddress": "လိပ်စာ ကူးယူရန်",

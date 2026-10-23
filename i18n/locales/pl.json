@@ -2837,6 +2837,8 @@
     "yourFractions": "Posiadasz {{count}} z {{total}} ułamków"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiuj link do kanału RSS",
+    "copyRssFeedHint": "Obserwuj te posty w dowolnym czytniku kanałów",
     "copyProfileUrl": "Kopiuj URL profilu",
     "copyUsername": "Kopiuj nazwę użytkownika",
     "copyAddress": "Kopiuj adres",

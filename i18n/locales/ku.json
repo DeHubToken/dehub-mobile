@@ -2819,6 +2819,8 @@
     "yourFractions": "{{count}} ji {{total}} parçeyan di destê te de ne"
   },
   "profileOptions": {
+    "copyRssFeed": "بەستەری فیدی RSS کۆپی بکە",
+    "copyRssFeedHint": "ئەم پۆستانە لە هەر فید خوێنەرێکدا بەدوادا بچە",
     "copyProfileUrl": "URL-ya profîlê kopî bike",
     "copyUsername": "Navê bikarhêner kopî bike",
     "copyAddress": "Navnîşanê kopî bike",

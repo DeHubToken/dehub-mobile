@@ -2865,6 +2865,8 @@
     "yourFractions": "شما {{count}} از {{total}} کسری را در اختیار دارید"
   },
   "profileOptions": {
+    "copyRssFeed": "کپی لینک خوراک RSS",
+    "copyRssFeedHint": "این پست‌ها را در هر خوراک‌خوانی دنبال کنید",
     "copyProfileUrl": "کپی لینک پروفایل",
     "copyUsername": "کپی نام کاربری",
     "copyAddress": "کپی آدرس",

@@ -2827,6 +2827,8 @@
     "yourFractions": "Դուք ունեք {{count}} մասնաբաժին {{total}}-ից"
   },
   "profileOptions": {
+    "copyRssFeed": "Պատճենել RSS հոսքի հղումը",
+    "copyRssFeedHint": "Հետևեք այս գրառումներին ցանկացած հոսքերի ընթերցիչում",
     "copyProfileUrl": "Պատdelays profili URL-ə",
     "copyUsername": "Պdelays ogtagorci anun",
     "copyAddress": "Պdelays hascen",

@@ -2823,6 +2823,8 @@
     "yourFractions": "તમે {{total}} ફ્રેક્શનમાંથી {{count}} ધરાવો છો"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ફીડ લિંક કૉપિ કરો",
+    "copyRssFeedHint": "આ પોસ્ટ્સને કોઈપણ ફીડ રીડરમાં ફોલો કરો",
     "copyProfileUrl": "પ્રોફાઈલ URL કૉપિ કરો",
     "copyUsername": "યૂઝરનેમ કૉપિ કરો",
     "copyAddress": "એડ્રેસ કૉપિ કરો",

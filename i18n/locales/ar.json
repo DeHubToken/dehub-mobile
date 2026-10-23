@@ -3147,6 +3147,8 @@
     "yourFractions": "تمتلك {{count}} من كسور {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "نسخ رابط خلاصة RSS",
+    "copyRssFeedHint": "تابع هذه المنشورات في أي قارئ خلاصات",
     "copyProfileUrl": "نسخ رابط الملف الشخصي",
     "copyUsername": "نسخ اسم المستخدم",
     "copyAddress": "نسخ العنوان",

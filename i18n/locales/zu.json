@@ -2849,6 +2849,8 @@
     "yourFractions": "Ubambe {{count}} wezingxenye {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopisha isixhumanisi sokuphakelayo kwe-RSS",
+    "copyRssFeedHint": "Landela lokhu okuthunyelwe kunoma yisiphi isifundi sokuphakelayo",
     "copyProfileUrl": "Kopisha i-URL yephrofayela",
     "copyUsername": "Kopisha igama lomsebenzisi",
     "copyAddress": "Kopisha ikheli",
