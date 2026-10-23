@@ -181,7 +181,7 @@ function IncomingRow({ offer }: { offer: UsernameOffer }) {
         </View>
       ) : answering ? (
         <View style={styles.block}>
-          <Text style={styles.fieldLabel}>{t("usernames.newHandleWhenSold")}</Text>
+          <Text style={styles.fieldLabel}>{t("usernames.newHandleLabel")}</Text>
           <View style={styles.inputRow}>
             <Text style={styles.inputPrefix}>@</Text>
             <TextInput

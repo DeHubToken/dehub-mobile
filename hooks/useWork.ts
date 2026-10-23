@@ -915,7 +915,7 @@ export function usePublishJob() {
  return useMutation({mutationFn:async(jobId:string)=>{
   if(!wallet) throw new Error('Not authenticated');
   await workRpc(wallet,'work_publish',{p_job:jobId});
- },onSuccess:()=>{qc.invalidateQueries({queryKey:['work-job']});qc.invalidateQueries({queryKey:['work-my-posted']});qc.invalidateQueries({queryKey:['work-jobs-browse']});toastSuccess(i18n.t('work.integrity.posted'));},onError:(e:any)=>toastError(e,i18n.t('work.postFailed'))});
+ },onSuccess:()=>{qc.invalidateQueries({queryKey:['work-job']});qc.invalidateQueries({queryKey:['work-my-posted']});qc.invalidateQueries({queryKey:['work-jobs-browse']});toastSuccess(i18n.t('work.integrity.posted'));},onError:(e:any)=>toastError(e,i18n.t('toasts.failed_to_create_post'))});
 }
 export function useFundJob() {
  const wallet=useWallet(); const escrow=useWorkEscrow(wallet); const qc=useQueryClient();
@@ -927,7 +927,7 @@ export function useFundJob() {
   }
   return escrow.fund(params.job_id,params.hash);
  },onSettled:()=>{qc.invalidateQueries({queryKey:['work-job']});qc.invalidateQueries({queryKey:['work-my-posted']});qc.invalidateQueries({queryKey:['work-jobs-browse']});},
- onSuccess:state=>toastSuccess(i18n.t('work.integrity.'+(state==='confirmed'?'published':state==='pending'?'fundingPending':'signatureReleased'))),onError:(e:any)=>toastError(e,i18n.t('work.postFailed'))});
+ onSuccess:state=>toastSuccess(i18n.t('work.integrity.'+(state==='confirmed'?'published':state==='pending'?'fundingPending':'signatureReleased'))),onError:(e:any)=>toastError(e,i18n.t('toasts.failed_to_create_post'))});
 }
 export function useReleasePayment() {
  const wallet=useWallet(); const qc=useQueryClient();
@@ -938,5 +938,5 @@ export function useReleasePayment() {
   const id=(data as any).id;
   if(await AsyncStorage.getItem('work-payment:'+id)) throw new Error('A payment transaction is saved. Check it first.');
   await workRpc(wallet,'work_cancel_signature',{p_intent:id});
- },onSettled:()=>qc.invalidateQueries({queryKey:['work-subs']}),onError:(e:any)=>toastError(e,i18n.t('work.detail.paymentFailed'))});
+ },onSettled:()=>qc.invalidateQueries({queryKey:['work-subs']}),onError:(e:any)=>toastError(e,i18n.t('paywall.paymentFailed'))});
 }

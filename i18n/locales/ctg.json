@@ -933,6 +933,7 @@
     "themeColorBrandFailed": "আঁর প্রোফাইল ছবি তুন রঙ পড়া যায় ন"
   },
   "common": {
+    "refresh": "রিফ্রেশ করুন",
     "mute": "আওয়াজ বন্ধ গরন",
     "unmute": "আওয়াজ চালু গরন",
     "fullscreen": "ফুল স্ক্রিন",
@@ -4311,6 +4312,7 @@
     "noVoice": "অনর ডিভাইসত এই ভাষার লাই কোনো আওয়াজ নাই।"
   },
   "stages": {
+    "previewFailed": "স্টেজে প্রিভিউ প্লে করা যাচ্ছিল না",
     "allStages": "সব অডিও রুম",
     "addToCalendar": "ক্যালেন্ডারে যোগ করুন",
     "nowPlaying": "বর্তমানে চলছে",
@@ -4683,6 +4685,7 @@
     "anyBadgeHolder": "যেকোনো ব্যাজ হোল্ডার সুপারপাওয়ার পায়। একটি ব্যাজ আনলক করতে ডিহাব টোকেন কিনুন — স্টেক করার প্রয়োজন নেই।"
   },
   "follow": {
+    "noResults": "কোন ফলাফল পাওয়া যাইনি",
     "sortAlphabetical": "A-Z",
     "thisUser": "এই ইউজার",
     "cancelRequestTo": "@{{username}}-এর ফলো রিকোয়েস্ট বাতিল করুন?",
@@ -7364,6 +7367,7 @@
       "delete": "মুছি ফেলো"
     },
     "export": {
+      "cancel": "বাতিল গরো",
       "scope": "ডাউনলোড রেঞ্জ",
       "downloadTimeline": "হোল টাইমলাইন",
       "downloadSelection": "সিলেক্টেড ভিডিও ক্লিপস ({{count}})",
@@ -7641,6 +7645,7 @@
     }
   },
   "creator": {
+    "sending": "পাঠাইতেছে...",
     "navStudio": "স্টুডিও",
     "editor": "এডিটর",
     "untitled": "নাম ছাড়া",
@@ -8184,6 +8189,7 @@
     "transferIncomplete": "টোকেন ট্রান্সফার কমপ্লিট অয় নাই। পরের পেইড পোস্টর আগে আবার চাইবো।"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ইমোজি খোজো",
     "noEmoji": "কুনো ইমোজি নাই",
     "searchResults": "খোজর ফলাফল",

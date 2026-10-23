@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Nuk u lexuan dot ngjyrat nga fotoja jote e profilit"
   },
   "common": {
+    "refresh": "Rifresko",
     "mute": "Hiq zërin",
     "unmute": "Aktivizo zërin",
     "fullscreen": "Ekran i plotë",
@@ -4211,6 +4212,7 @@
     "noVoice": "Pajisja juaj nuk ka zë për këtë gjuhë."
   },
   "stages": {
+    "previewFailed": "Nuk mund të luajti parashikimin në skenë.",
     "allStages": "Të gjitha dhomat audio",
     "addToCalendar": "Shtoni në kalendar",
     "nowPlaying": "Tani në lojë",
@@ -4583,6 +4585,7 @@
     "anyBadgeHolder": "Çdo mbajtës i emblemës merr SuperFuqi. Bleni DeHub token për të zhbllokuar një emblemë — staking nuk kërkohet."
   },
   "follow": {
+    "noResults": "Nuk u gjetën rezultate",
     "followers": "Njerëz që të ndjekin",
     "following": "Njerëz që ndjek",
     "requests": "Kërkesa",
@@ -7211,6 +7214,7 @@
       "delete": "Fshi"
     },
     "export": {
+      "cancel": "Anulo",
       "scope": "Gama e shkarkimeve",
       "downloadTimeline": "I gjithë afati kohor",
       "downloadSelection": "Videoklipe të zgjedhura ({{count}})",
@@ -7490,6 +7494,7 @@
     }
   },
   "creator": {
+    "sending": "Transmetohet",
     "navStudio": "Studio",
     "editor": "Redaktori",
     "untitled": "Pa titull",
@@ -8056,6 +8061,7 @@
     "transferIncomplete": "Transferimi i shenjës nuk përfundoi. Do të pyetesh përsëri para postimit tënd të ardhshëm të paguar."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Kërko emoji",
     "noEmoji": "Nuk u gjet asnjë emoji",
     "searchResults": "Rezultatet e kërkimit",

@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Nepavyko nuskaityti spalvų iš jūsų profilio nuotraukos"
   },
   "common": {
+    "refresh": "Atnaujinti",
     "mute": "Nutildyti",
     "unmute": "Įjungti garsą",
     "fullscreen": "Visas ekranas",
@@ -4211,6 +4212,7 @@
     "noVoice": "Jūsų įrenginyje nėra balso šiai kalbai."
   },
   "stages": {
+    "previewFailed": "Nepavyko paleisti peržiūros garso kambaryje",
     "allStages": "Visi garso kambariai",
     "addToCalendar": "Pridėti į kalendorių",
     "nowPlaying": "Dabar groja",
@@ -4583,6 +4585,7 @@
     "anyBadgeHolder": "Bet kuris ženklelio turėtojas gauna Supergalias. Pirkite „DeHub“ žetonus, kad atrakintumėte ženklelį – statymas nereikalingas."
   },
   "follow": {
+    "noResults": "Rezultatų nerasta",
     "followers": "Sekėjai",
     "following": "Sekami",
     "requests": "Užklausos",
@@ -7211,6 +7214,7 @@
       "delete": "Ištrinti"
     },
     "export": {
+      "cancel": "Atšaukti",
       "scope": "Atsisiuntimo diapazonas",
       "downloadTimeline": "Visa laiko juosta",
       "downloadSelection": "Pasirinkti vaizdo įrašai ({{count}})",
@@ -7490,6 +7494,7 @@
     }
   },
   "creator": {
+    "sending": "Siunčiama",
     "navStudio": "Studija",
     "editor": "Redaktorius",
     "untitled": "Pavadinimas nenurodytas",
@@ -8056,6 +8061,7 @@
     "transferIncomplete": "Atpažinimo ženklo perdavimas nebaigtas. Jūsų bus paprašyta dar kartą prieš kitą mokamą įrašą."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Ieškoti jaustukų",
     "noEmoji": "Jaustukų nerasta",
     "searchResults": "Paieškos rezultatai",

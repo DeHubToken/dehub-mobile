@@ -916,6 +916,7 @@
     "themeColorBrandFailed": "ອ່ານສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າບໍ່ໄດ້"
   },
   "common": {
+    "refresh": "ໂຫຼດ​ຄືນ",
     "mute": "ປິດສຽງ",
     "unmute": "ເປີດສຽງ",
     "fullscreen": "ເຕັມຈໍ",
@@ -4185,6 +4186,7 @@
     "noVoice": "ອຸປະກອນຂອງທ່ານບໍ່ມີສຽງສຳລັບພາສານີ້."
   },
   "stages": {
+    "previewFailed": "ບໍ່ສາມາດຫຼິ້ນຕົວຢ່າງໃນຫ້ອງສຽງໄດ້",
     "allStages": "ຫ້ອງສຽງທັງໝົດ",
     "addToCalendar": "ເພີ່ມໃສ່ປະຕິທິນ",
     "nowPlaying": "ກຳລັງຫຼິ້ນ",
@@ -4556,6 +4558,7 @@
     "anyBadgeHolder": "ຜູ້ຖື badge ໃດກໍ່ຕາມໄດ້ຮັບ SuperPowers. ຊື້ DeHub token ເພື່ອປົດລັອກ badge — ບໍ່ຈໍາເປັນຕ້ອງ stake."
   },
   "follow": {
+    "noResults": "ບໍ່ພົບຜົນການຄົ້ນຫາ",
     "followers": "ຜູ້ຕິດຕາມ",
     "following": "ກຳລັງຕິດຕາມ",
     "requests": "ຄຳຮ້ອງຂໍ",
@@ -4704,7 +4707,7 @@
     "kindVideo": "ວີດີໂອ",
     "kindAudio": "ສຽງ",
     "kindImage": "ຮູບພາບ",
-    "tileSourceKind": "{{ແຫຼ່ງຂໍ້ມູນ}} · {{ປະເພດ}}",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "ການທົບທວນຄືນກ່ອນການໂພສ",
     "reviewSubtitle": "ຈາກ {{source}}, ເປັນ {{kind}}. ແກ້ໄຂທຸກສິ່ງທີ່ທ່ານຕ້ອງການ - ໃຫ້ຫົວຂໍ້ເປົ່າເພື່ອຮັກສາຕົ້ນສະບັບ.",
     "reviewName": "ຫົວຂໍ້",
@@ -7173,6 +7176,7 @@
       "delete": "ລຶບ"
     },
     "export": {
+      "cancel": "ຍົກເລີກ",
       "scope": "ຂອບເຂດການດາວໂຫຼດ",
       "downloadTimeline": "ຕາຕະລາງເວລາທັງໝົດ",
       "downloadSelection": "ຄລິບວີດີໂອທີ່ເລືອກ ({{count}})",
@@ -7450,6 +7454,7 @@
     }
   },
   "creator": {
+    "sending": "ກຳລັງສົ່ງ",
     "navStudio": "ສະຕູດິໂອ",
     "editor": "ບັນນາທິການ",
     "untitled": "ບໍ່ໄດ້ຕັ້ງຊື່",
@@ -8015,6 +8020,7 @@
     "transferIncomplete": "ການໂອນສັນຍານບໍ່ສຳເລັດ. ທ່ານຈະຖືກຖາມອີກຄັ້ງກ່ອນການຈ່າຍເງິນຕໍ່ໄປຂອງທ່ານ."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ຄົ້ນຫາອີໂມຈິ",
     "noEmoji": "ບໍ່ພົບອີໂມຈິ",
     "searchResults": "ຜົນການຄົ້ນຫາ",

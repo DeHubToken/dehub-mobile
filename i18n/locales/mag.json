@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "अहाँक प्रोफाइल फोटो स' रंग नै पढ़ल जा सकल"
   },
   "common": {
+    "refresh": "ताज़ा करें",
     "mute": "आवाज बंद करू",
     "unmute": "आवाज चालू करू",
     "fullscreen": "पूरा स्क्रीन",
@@ -4208,6 +4209,7 @@
     "noVoice": "तोहर डिवाइस में ई भाषा ला कोनो आवाज न हे।"
   },
   "stages": {
+    "previewFailed": "अगला लेखसड़क पर केकरो ध्यान न हई",
     "allStages": "सब ऑडियो रूम",
     "addToCalendar": "कैलेंडर में जोड़ें",
     "nowPlaying": "अब चलिरहेको छ",
@@ -4580,6 +4582,7 @@
     "anyBadgeHolder": "कोई भी बैज होल्डर सुपरपावर पावेला। बैज अनलॉक करे खातिर डीहब टोकन खरीदऽ — स्टेकिंग के जरूरत नइखे।"
   },
   "follow": {
+    "noResults": "कोई परिणाम नहीं मिला",
     "followers": "अनुयायी",
     "following": "अनुसरण",
     "requests": "अनुरोध",
@@ -4730,7 +4733,7 @@
     "kindVideo": "इ औ सेकसी वीडियो",
     "kindAudio": "ऑडियो कैलक्यूलेटर",
     "kindImage": "इ औ सेकसी फोटो",
-    "tileSourceKind": "{{MONTHNAME}} से मिलई छई",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "पोस्ट करे से पहले Review करे",
     "reviewName": "Title \"दस्तावेज के समय खतम हो",
     "reviewNamePlaceholder": "Title \"ई पता पर रोक लगावल गेल अछि \">",
@@ -7196,6 +7199,7 @@
       "delete": "हटाईं"
     },
     "export": {
+      "cancel": "रद्द करीं",
       "scope": "डाउनलोड रेंज",
       "downloadTimeline": "पूरा टाइमलाइन",
       "downloadSelection": "चयनित वीडियो क्लिप्स ({{count}})",
@@ -7473,6 +7477,7 @@
     }
   },
   "creator": {
+    "sending": "भेज रहा हूँ...",
     "navStudio": "स्टूडियो",
     "editor": "एडिटर",
     "untitled": "बिना नाम के",
@@ -8034,6 +8039,7 @@
     "transferIncomplete": "ठहर, पत्र अभियो तैयार नयँ हइ । अगला लेखसड़क पर केकरो ध्यान न हई"
   },
   "emojiPicker": {
+    "tabGif": "जीएलई बनाम जीएलई",
     "searchEmoji": "इमोजी खोजो",
     "noEmoji": "कोनो इमोजी न मिलल",
     "searchResults": "खोज के नतीजा",

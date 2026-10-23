@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Uyachaykimanta llimpikunata mana ñawinchay atirqanchu"
   },
   "common": {
+    "refresh": "Musuqchay",
     "mute": "Upallachiy",
     "unmute": "Uyarichiy",
     "fullscreen": "Hunt'a pantalla",
@@ -4233,6 +4234,7 @@
     "noVoice": "Antaykiqa manam kay simipaq kunkayuqchu."
   },
   "stages": {
+    "previewFailed": "Mana escenariopi ñawpaq qhawayta pukllayta atirqanchu",
     "allStages": "Tukuy rimanakuy wasikuna",
     "addToCalendar": "Calendarioman yapay",
     "nowPlaying": "Kunanqa pukllachkan",
@@ -4605,6 +4607,7 @@
     "anyBadgeHolder": "Tukuy badgeniyki kaqniykiqa chaskiqmi SuperPowers. Rikuy DeHub tokenkunata unlockniyta badge — stakingqa mana necesitaqchu."
   },
   "follow": {
+    "noResults": "Mana tarisqachu",
     "followers": "Qatiqkuna",
     "following": "Qatiq",
     "requests": "Kuyaykuna",
@@ -7225,6 +7228,7 @@
       "delete": "Chinkachiy"
     },
     "export": {
+      "cancel": "Harkay",
       "scope": "Rango de descarga",
       "downloadTimeline": "Tukuy pacha chiru",
       "downloadSelection": "Akllasqa video clips ({{count}})",
@@ -7504,6 +7508,7 @@
     }
   },
   "creator": {
+    "sending": "Kachay",
     "navStudio": "Estudio",
     "editor": "Editor",
     "untitled": "Mana sutiyuq",
@@ -8067,6 +8072,7 @@
     "transferIncomplete": "Token transferenciaqa manam tukusqachu. Hukmanta tapusqa kanki manaraq qatiq qullqiyuq qillqasqayki kachkaptin."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emojita maskay",
     "noEmoji": "Mana emoji tarikurqanchu",
     "searchResults": "Maskasqapa ruruynin",

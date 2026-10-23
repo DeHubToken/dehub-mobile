@@ -920,6 +920,7 @@
     "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä"
   },
   "common": {
+    "refresh": "Päivitä",
     "mute": "Mykistä",
     "unmute": "Poista mykistys",
     "fullscreen": "Koko näyttö",
@@ -4219,6 +4220,7 @@
     "noVoice": "Laitteessasi ei ole ääntä tälle kielelle."
   },
   "stages": {
+    "previewFailed": "Esikatselua ei voitu toistaa äänihuoneessa",
     "allStages": "Kaikki äänihuoneet",
     "addToCalendar": "Lisää kalenteriin",
     "nowPlaying": "Nyt soi",
@@ -4591,6 +4593,7 @@
     "anyBadgeHolder": "Kaikki merkin haltijat saavat Supervoimat. Osta DeHub-tokeneita avataksesi merkin — panostaminen ei ole pakollista."
   },
   "follow": {
+    "noResults": "Ei tuloksia",
     "followers": "Seuraajat",
     "following": "Seurataan",
     "requests": "Pyynnöt",
@@ -7219,6 +7222,7 @@
       "delete": "Poista"
     },
     "export": {
+      "cancel": "Peruuta",
       "scope": "Latausalue",
       "downloadTimeline": "Koko aikajana",
       "downloadSelection": "Valitut videoleikkeet ({{count}})",
@@ -7498,6 +7502,7 @@
     }
   },
   "creator": {
+    "sending": "Lähetetään",
     "navStudio": "Studio",
     "editor": "Editori",
     "untitled": "Nimetön",
@@ -8064,6 +8069,7 @@
     "transferIncomplete": "Tunnuksen siirtoa ei suoritettu loppuun. Sinulta kysytään uudelleen ennen seuraavaa maksullista julkaisuasi."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Hae emojeja",
     "noEmoji": "Emojeja ei löytynyt",
     "searchResults": "Hakutulokset",

@@ -917,6 +917,7 @@
     "themeColorBrandFailed": "اپݨی پروفائل تصویر کنوں رنگ پڑھے کائنی ڳئے"
   },
   "common": {
+    "refresh": "ري-فريش ڪريو",
     "mute": "آواز بند کرو",
     "unmute": "آواز کھولو",
     "fullscreen": "پوری سکرین",
@@ -4203,6 +4204,7 @@
     "noVoice": "تہاڈے ڈیوائس وچ ایں زبان کیتے کوئی آواز کائنی۔"
   },
   "stages": {
+    "previewFailed": "Stage تے نئیں وج سکدا",
     "allStages": "سارے آڈیو روم",
     "addToCalendar": "کالنڈر میں شامل کروئں",
     "nowPlaying": "ابھی چل رہی ہے",
@@ -4574,6 +4576,7 @@
     "anyBadgeHolder": "کوئی بہترین کارکردگی والا شخص ہو جائے تو اس کے پاس SuperPowers مل جاتے ہیں۔ DeHub ٹوکنز خریدیں اور ایک ٹیگ کے لئے بہتر بنائیں — اسٹیکنگ ضروری نہیں ہے۔"
   },
   "follow": {
+    "noResults": "نتائج نہ مل سڳے",
     "followers": "فالوورز",
     "following": "پوءِ",
     "requests": "درخواستاں",
@@ -7194,6 +7197,7 @@
       "delete": "مٹاؤ"
     },
     "export": {
+      "cancel": "منسوخ کر",
       "scope": "ڈاؤنلوڈ رینج",
       "downloadTimeline": "پوری ٹائم لائن",
       "downloadSelection": "منتخب ویڈیو کلپس ({{count}})",
@@ -7471,6 +7475,7 @@
     }
   },
   "creator": {
+    "sending": "بُجھا کرنا",
     "navStudio": "سٹوڈیو",
     "editor": "ایڈیٹر",
     "untitled": "بے ناں",
@@ -8019,6 +8024,7 @@
     "dhbPending": "ایپیل کی تصدیق ہو چکی ہے لیکن ابھی تک وہ ظاہر نہیں ہوا ہے۔ جلد ہی دوبارہ بھیجنا شروع کریں۔"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ایموجی ڳولو",
     "noEmoji": "کوئی ایموجی نئیں لبھا",
     "searchResults": "ڳول دے نتیجے",

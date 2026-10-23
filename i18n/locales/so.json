@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Lagama akhrin karin midabada sawirka profilkaaga"
   },
   "common": {
+    "refresh": "Dib u cusboonaysii",
     "mute": "Aamusi",
     "unmute": "Codka fur",
     "fullscreen": "Shaashad buuxda",
@@ -4202,6 +4203,7 @@
     "noVoice": "Qalabkaagu ma laha cod luqaddan."
   },
   "stages": {
+    "previewFailed": "Ma ciyaari karo horudhaca marxaladda",
     "allStages": "Dhammaan qolalka codka",
     "addToCalendar": "Ku dar kalandarka",
     "nowPlaying": "Hadda ciyaaraya",
@@ -4573,6 +4575,7 @@
     "anyBadgeHolder": "Qof kasta oo haysta astaan wuxuu helayaa SuperPowers. Iibso DeHub token-kaaga si aad u furto astaan — ma aha lagama maarmaan in la keydiyo."
   },
   "follow": {
+    "noResults": "Ma helin wax natiijo ah",
     "followers": "Taageerayaal",
     "following": "Kuwa la raacayo",
     "requests": "Codsi",
@@ -7190,6 +7193,7 @@
       "delete": "Tirtir"
     },
     "export": {
+      "cancel": "Ka noqo",
       "scope": "Soo dejisan kala duwan",
       "downloadTimeline": "Jadwalka waqtiga oo dhan",
       "downloadSelection": "Muuqaallada fiidiyowga ee la xushay ({{count}})",
@@ -7469,6 +7473,7 @@
     }
   },
   "creator": {
+    "sending": "Dirista",
     "navStudio": "Istuudiyo",
     "editor": "Tafatire",
     "untitled": "Aan cinwaan lahayn",
@@ -8031,6 +8036,7 @@
     "transferIncomplete": "Wareejinta calaamadda ma aysan dhammaystirin. Waxaa mar kale la weydiin doonaa ka hor inta aan la bixin boostadaada soo socota."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Raadi emoji",
     "noEmoji": "Emoji lama helin",
     "searchResults": "Natiijooyinka raadinta",

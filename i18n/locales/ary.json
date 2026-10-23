@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "ما قدرناش نقراو الألوان من الصورة ديالك"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "سكّت الصوت",
     "unmute": "رجّع الصوت",
     "fullscreen": "الشاشة كاملة",
@@ -4236,6 +4237,7 @@
     "noVoice": "الجهاز ديالك ماعندوش صوت لهاد اللغة."
   },
   "stages": {
+    "previewFailed": "تعذر تشغيل المعاينة على المسرح",
     "allStages": "كاع الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "قيد التشغيل الآن",
@@ -4608,6 +4610,7 @@
     "anyBadgeHolder": "أي واحد عندو الشارة كياخد الـ SuperPowers. شري توكنز DeHub باش تحل شارة — الـ staking ماشي ضروري."
   },
   "follow": {
+    "noResults": "لم يتم العثور على نتائج",
     "followers": "المتابعون",
     "following": "المتابعة",
     "requests": "الطلبات",
@@ -7232,6 +7235,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "تحميل النطاق",
       "downloadTimeline": "كل الخط الزمني",
       "downloadSelection": "مقاطع الفيديو المختارة ({{count}})",
@@ -7509,6 +7513,7 @@
     }
   },
   "creator": {
+    "sending": "يُرْسِل",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -8074,6 +8079,7 @@
     "transferIncomplete": "لم يكتمل نقل الرمز المميز. سيتم سؤالك مرة أخرى قبل مشاركتك المدفوعة التالية."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "قلب على إيموجي",
     "noEmoji": "ما كاين حتى إيموجي",
     "searchResults": "نتائج البحث",

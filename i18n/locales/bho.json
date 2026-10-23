@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "आपन प्रोफाइल फोटो से रंग ना पढ़ल जा सकल"
   },
   "common": {
+    "refresh": "ताज़ा करें",
     "mute": "आवाज़ बंद करीं",
     "unmute": "आवाज़ चालू करीं",
     "fullscreen": "पूरा स्क्रीन",
@@ -4207,6 +4208,7 @@
     "noVoice": "रउरा डिवाइस में एह भाषा खातिर कवनो आवाज़ नइखे।"
   },
   "stages": {
+    "previewFailed": "बैठक सूचना भेजने में असमर्थ, बैठक मौजूद नहीं",
     "allStages": "सब ऑडियो रूम",
     "addToCalendar": "कैलेंडर में जोड़ें",
     "nowPlaying": "खेला करेनीं",
@@ -4579,6 +4581,7 @@
     "anyBadgeHolder": "कोई भी बैज धारक सुपरपावर्स प्राप्त करता है। एक बैज को अनलॉक करने के लिए DeHub टोकन खरीदें — स्टेकिंग आवश्यक नहीं है।"
   },
   "follow": {
+    "noResults": "कोई परिणाम नहीं मिला",
     "followers": "फ़ॉलोअर्स",
     "following": "फ़ॉलोइंग",
     "requests": "अनुरोध",
@@ -4729,7 +4732,7 @@
     "kindVideo": "वीडियो समायोजित करें",
     "kindAudio": "ऑडियो समायोजित करें",
     "kindImage": "फोटो खींचल गइल",
-    "tileSourceKind": "(= डिफ़ॉल्ट आउर = delete अनुमति बा, हालांकि, हालाँकि ।",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Post लिखने से पहले जरूर check करे",
     "reviewName": "नामांकन कइल गइल",
     "reviewNamePlaceholder": "पिछला लेखसड़क पर रोक लगावे खातिर खाली छोड़ दीं",
@@ -7194,6 +7197,7 @@
       "delete": "हटाईं"
     },
     "export": {
+      "cancel": "रद्द करीं",
       "scope": "डाउनलोड दायरा",
       "downloadTimeline": "पूरा टाइमलाइन",
       "downloadSelection": "चुनल वीडियो क्लिप ({{count}})",
@@ -7471,6 +7475,7 @@
     }
   },
   "creator": {
+    "sending": "भेज रहल बा",
     "navStudio": "स्टूडियो",
     "editor": "एडिटर",
     "untitled": "बिना नाम के",
@@ -8033,6 +8038,7 @@
     "transferIncomplete": "अनुबाद के समापन पूरा नइखे भइल. अगला लेखसड़क पर केहू ध्यान नइखे देत"
   },
   "emojiPicker": {
+    "tabGif": "गिफ्ट, गिफ्ट,",
     "searchEmoji": "इमोजी खोजीं",
     "noEmoji": "कवनो इमोजी ना मिलल",
     "searchResults": "खोज के नतीजा",

@@ -920,6 +920,7 @@
     "themeColorBrandFailed": "Tidak bisa membaca warna dari foto profil Anda"
   },
   "common": {
+    "refresh": "Segarkan",
     "mute": "Bisukan",
     "unmute": "Bunyikan",
     "fullscreen": "Layar penuh",
@@ -4270,6 +4271,7 @@
     "filedOn": "Dikirim {{date}}"
   },
   "stages": {
+    "previewFailed": "Tidak bisa memutar pratinjau di ruang audio",
     "allStages": "Semua ruang audio",
     "addToCalendar": "Tambahkan ke kalender",
     "nowPlaying": "Sedang diputar",
@@ -4642,6 +4644,7 @@
     "anyBadgeHolder": "Pemegang lencana mana pun mendapatkan SuperPowers. Beli token DeHub untuk membuka lencana — staking tidak diperlukan."
   },
   "follow": {
+    "noResults": "Tidak ada hasil yang ditemukan",
     "followers": "Pengikut",
     "following": "Mengikuti",
     "requests": "Permintaan",
@@ -7303,6 +7306,7 @@
       "delete": "Hapus"
     },
     "export": {
+      "cancel": "Batal",
       "scope": "Rentang unduhan",
       "downloadTimeline": "Seluruh linimasa",
       "downloadSelection": "Klip video yang dipilih ({{count}})",
@@ -7582,6 +7586,7 @@
     }
   },
   "creator": {
+    "sending": "Mengirim",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Tanpa judul",
@@ -8098,6 +8103,7 @@
     "transferIncomplete": "Transfer token tidak selesai. Anda akan ditanya lagi sebelum postingan berbayar berikutnya."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Cari emoji",
     "noEmoji": "Emoji tidak ditemukan",
     "searchResults": "Hasil pencarian",

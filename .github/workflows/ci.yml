@@ -65,6 +65,12 @@ jobs:
           node scripts/check-priority-locales.mjs
           npm run i18n:coverage
 
+      # A t() key that resolves to a group of keys renders "key 'x (en)'
+      # returned an object instead of string."; one with no English renders the
+      # raw key. Also catches translations with broken {{placeholders}}.
+      - name: i18n key check
+        run: node scripts/i18n-key-check.mjs
+
       # The check above can only see a key that reaches no locale. It cannot
       # see text that was never keyed at all — that renders English in all 110
       # languages and merges green, which is how ~780 of them accumulated. Not

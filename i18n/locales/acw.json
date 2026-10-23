@@ -917,6 +917,7 @@
     "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "اكتم الصوت",
     "unmute": "فعّل الصوت",
     "fullscreen": "ملء الشاشة",
@@ -4205,6 +4206,7 @@
     "noVoice": "جهازك ما فيه صوت لهذي اللغة."
   },
   "stages": {
+    "previewFailed": "ما شاء الله، مش قادر أشوف التايم بريفيو على الستيدج",
     "allStages": "كل الغرف الصوتية",
     "addToCalendar": "أضفه إلى التقويم",
     "nowPlaying": "جاري اللعب الآن",
@@ -4577,6 +4579,7 @@
     "anyBadgeHolder": "أي حامل شارة ياخذ قوى خارقة. اشترِ رموز DeHub عشان تفتح شارة — ما يحتاج ستاكينق."
   },
   "follow": {
+    "noResults": "لم يتم العثور على نتائج",
     "followers": "المتابعون",
     "following": "المتابَعون",
     "requests": "الطلبات",
@@ -7204,6 +7207,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "حمّل النطاق",
       "downloadTimeline": "كل الخط الزمني",
       "downloadSelection": "مقاطع الفيديو المختارة ({{count}})",
@@ -7481,6 +7485,7 @@
     }
   },
   "creator": {
+    "sending": "مرسل",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -8030,6 +8035,7 @@
     "transferIncomplete": "تحويل التوكن ما اكتمل. بتنسأل مرة ثانية قبل بوستك المدفوع الجاي."
   },
   "emojiPicker": {
+    "tabGif": "غيغ",
     "searchEmoji": "دوّر على إيموجي",
     "noEmoji": "مافي إيموجي",
     "searchResults": "نتائج البحث",
