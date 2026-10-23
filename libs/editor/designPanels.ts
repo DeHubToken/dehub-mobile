@@ -10,6 +10,7 @@ export function designSelectionAction(clip: Clip): DesignSelectionAction | null 
   if (clip.kind === "audio") return null;
   if (clip.kind === "text") return { id: "text", label: "Edit text", edit: "text" };
   if (clip.kind === "image" || clip.kind === "video") return { id: clip.isPageBackground ? "reframe" : clip.kind === "image" ? "photo" : "video", label: clip.isPageBackground ? "Reframe background" : clip.kind === "image" ? "Crop photo" : "Crop video", edit: "crop" };
+  if (clip.kind !== "shape") return null;
   if (clip.chart) return { id: "chart", label: "Edit chart", panel: "data" };
   if (clip.table) return { id: "table", label: "Edit table", panel: "data" };
   if (clip.qr) return { id: "qr", label: "Edit QR code", panel: "qr" };

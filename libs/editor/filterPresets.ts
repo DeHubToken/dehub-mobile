@@ -8,6 +8,7 @@ import type { ClipEffects } from "./types";
 
 export interface FilterPreset {
   id: string;
+  label?: string;
   effects: ClipEffects;
 }
 

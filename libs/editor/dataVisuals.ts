@@ -348,8 +348,8 @@ export function validDataVisuals(value: { chart?: unknown; table?: unknown }): b
     for (const [key, limit] of [["title", 100], ["caption", 200], ["description", 1000]] as const) if (chart[key] !== undefined && (typeof chart[key] !== "string" || chart[key].length > limit || /[\u0000-\u001f\u007f]/.test(chart[key]))) return false;
     if (!validGraphicFont(chart.fontFamily)) return false;
     if (!validChartValueFormat(chart.xValueFormat)) return false;
-    if (chart.labelEvery !== undefined && (!Number.isInteger(chart.labelEvery) || chart.labelEvery < 1 || chart.labelEvery > 10)) return false;
-    if (chart.labelAngle !== undefined && (!Number.isFinite(chart.labelAngle) || chart.labelAngle < -90 || chart.labelAngle > 90)) return false;
+    if (chart.labelEvery !== undefined && (typeof chart.labelEvery !== "number" || !Number.isInteger(chart.labelEvery) || chart.labelEvery < 1 || chart.labelEvery > 10)) return false;
+    if (chart.labelAngle !== undefined && (typeof chart.labelAngle !== "number" || !Number.isFinite(chart.labelAngle) || chart.labelAngle < -90 || chart.labelAngle > 90)) return false;
     if (chart.labelWrap !== undefined && typeof chart.labelWrap !== "boolean") return false;
     if (chart.pointLabelMode !== undefined && !["value", "coordinates"].includes(String(chart.pointLabelMode))) return false;
     if (!validChartValueFormat(chart.valueFormat)) return false;
