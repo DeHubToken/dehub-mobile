@@ -32,9 +32,11 @@ import {
 export interface RadioStationCardProps {
   station: RadioStation;
   variant?: "card" | "row";
+  /** Span the row, as the radio chart's picked station does. */
+  wide?: boolean;
 }
 
-const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = "row" }) => {
+const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = "row", wide = false }) => {
   const { theme } = useAppTheme();
   const { t: _copy } = _useCopy();
   const { station: current, isPlaying, isLoading } = useRadioPlayer();
@@ -56,7 +58,7 @@ const RadioStationCard: React.FC<RadioStationCardProps> = ({ station, variant = 
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.85}
-      style={[styles.base, isCard ? styles.card : styles.row, isCurrent && styles.current]}
+      style={[styles.base, isCard ? styles.card : styles.row, wide && { width: "100%" }, isCurrent && styles.current]}
       accessibilityRole="button"
       accessibilityState={{ selected: isCurrent }}
       accessibilityLabel={isThisPlaying ? _copy("copy.7a4ebea4b617", { defaultValue: "Pause {{value1}}", value1: station.name }) : _copy("copy.f2598220db3e", { defaultValue: "Play {{value1}}", value1: station.name })}
