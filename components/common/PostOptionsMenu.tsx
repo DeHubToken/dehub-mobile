@@ -24,6 +24,7 @@ import GlassModal from "../ui/GlassModal";
 import ConfirmModal from "./ConfirmModal";
 import ConfirmBlockModal from "./ConfirmBlockModal";
 import EditPostModal from "./EditPostModal";
+import CreatePollSheet from "../DM/CreatePollSheet";
 import type { ShopLink } from "../../services/nft.service";
 import ReportModal from "./ReportModal";
 import {
@@ -284,6 +285,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showReportUser, setShowReportUser] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
   const [showSegments, setShowSegments] = useState(false);
+  const [showPoll, setShowPoll] = useState(false);
 
   /**
    * The sheet hides itself for a sub-modal instead of calling onClose().
@@ -654,6 +656,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           {/* Owner-only actions */}
           {isOwner && (
             <>
+              {numericTokenId != null && !Number.isNaN(numericTokenId) && numericTokenId > 0 && (
+                <OptionRow
+                  icon="ChartNoAxesColumn"
+                  label={t("copy.b8e082c979d9", { defaultValue: " Create Poll" }).trim()}
+                  onPress={() => openSubModal(() => setShowPoll(true))}
+                />
+              )}
               {!hideEdit && (
                 <OptionRow
                   icon="Pencil"
@@ -778,6 +787,15 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           visible={showSegments}
           tokenId={tokenId}
           onClose={() => { setShowSegments(false); closeAll(); }}
+        />
+      )}
+
+      {showPoll && numericTokenId != null && (
+        <CreatePollSheet
+          visible={showPoll}
+          tokenId={numericTokenId}
+          onClose={() => { setShowPoll(false); closeAll(); }}
+          onCreated={() => { setShowPoll(false); closeAll(); }}
         />
       )}
 

@@ -25,11 +25,11 @@ import { storage } from "../libs/storage";
 // So: every card that mounts in the same tick is asked about together, in one
 // GET /polls?tokenIds=..., and the answers are cached.
 //
-// A poll can only be attached at post-creation time (there is no "add a poll to
-// an existing post" flow), so "this post has no poll" is permanent and worth
-// keeping across launches — after the first pass over a feed a returning reader
-// asks about nothing at all. Only real polls, which gain votes over time, are
-// re-fetched on a TTL.
+// "This post has no poll" is kept across launches, so after the first pass over
+// a feed a returning reader asks about nothing at all. The owner can still add
+// a poll to an existing post from its options menu; that clears the entry and
+// tells any card showing the post to look again (see pollCreated). Only real
+// polls, which gain votes over time, are re-fetched on a TTL.
 const POLL_CACHE_TTL = 5 * 60 * 1000;
 
 // One frame is enough to collect a screenful. Long enough that a page of cards
@@ -172,6 +172,15 @@ export function invalidatePoll(tokenId: number) {
   forgetEmpty(tokenId);
 }
 
+// Cards showing a post that just got a poll, waiting to refetch it.
+const createdListeners = new Map<number, Set<() => void>>();
+
+/** A poll was just added to this post: drop what we knew and refetch it on screen. */
+function pollCreated(tokenId: number) {
+  invalidatePoll(tokenId);
+  createdListeners.get(tokenId)?.forEach((fn) => fn());
+}
+
 export function usePoll(tokenId: number | null) {
   const [poll, setPoll] = useState<DmPoll | null>(() =>
     tokenId != null ? pollCache.get(tokenId)?.data ?? null : null,
@@ -217,6 +226,18 @@ export function usePoll(tokenId: number | null) {
     if (mountedRef.current) setPoll(data);
   }, [tokenId]);
 
+  useEffect(() => {
+    if (tokenId == null) return;
+    const fn = () => { void refetch(); };
+    let set = createdListeners.get(tokenId);
+    if (!set) createdListeners.set(tokenId, (set = new Set()));
+    set.add(fn);
+    return () => {
+      set!.delete(fn);
+      if (set!.size === 0) createdListeners.delete(tokenId);
+    };
+  }, [tokenId, refetch]);
+
   return { poll, loading, refetch };
 }
 
@@ -228,6 +249,7 @@ export function useCreatePoll() {
     setLoading(true);
     try {
       const res = await createPoll(params);
+      if (params.tokenId > 0) pollCreated(params.tokenId);
       toastSuccess(_copy("copy.05ea13855698", { defaultValue: "Poll created" }));
       return res.result;
     } catch (e: any) {
