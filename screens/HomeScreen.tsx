@@ -33,6 +33,8 @@ import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption, FEED_FILTER_MAX_HEIGHT } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
+import { feedDefaultsEvents, getAppFeedToggles, getDefaultFeedTab, setAppFeedToggles } from "../libs/feed-defaults";
+import { useFeedDefaultsSync } from "../hooks/useFeedDefaultsSync";
 import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useAppPrefs } from "../hooks/useAppPrefs";
@@ -143,6 +145,21 @@ const PAGE_TURN_RATIO = 2;
 const VELOCITY_PROJECTION = 0.12;
 
 /**
+ * The filters Home opens with: the viewer's default tab (Settings > Appearance)
+ * and the toggles they left on (libs/feed-defaults), else the stock defaults.
+ */
+const savedFilters = (): FeedFilters => {
+  const saved = getAppFeedToggles();
+  return {
+    ...DEFAULT_FILTERS,
+    postType: getDefaultFeedTab(),
+    ...(saved.sortBy ? { sortBy: saved.sortBy as FeedFilters["sortBy"] } : null),
+    ...(saved.dateRange !== undefined ? { dateRange: saved.dateRange as FeedFilters["dateRange"] } : null),
+    ...(saved.contentAccess ? { contentAccess: saved.contentAccess as FeedFilters["contentAccess"] } : null),
+  };
+};
+
+/**
  * Pager slot for a post type. Filter-panel-only types ("feed-simple") have no
  * tab of their own, so they render in the Home slot — previously they matched
  * no list at all and left the screen blank.
@@ -168,7 +185,7 @@ export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [imageFeed, setImageFeed] = useState<ImageFeedRequest | null>(null);
   const imageFeedToken = useRef(0);
-  const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
+  const [filters, setFilters] = useState<FeedFilters>(savedFilters);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth, height: pageHeight } = useWindowDimensions();
   const isFocused = useIsFocused();
@@ -209,10 +226,11 @@ export default function HomeScreen() {
     if (!isFocused && feedProfileVisible) hideUserProfile();
   }, [feedProfileVisible, hideUserProfile, isFocused]);
 
-  // Load persisted category on mount (MMKV is sync — no async race)
+  // Load persisted category on mount (MMKV is sync — no async race). The
+  // account's saved toggles win over this device's last category.
   useEffect(() => {
     try {
-      const val = storage.getString(CATEGORY_STORAGE_KEY);
+      const val = getAppFeedToggles().category ?? storage.getString(CATEGORY_STORAGE_KEY);
       if (val) setSelectedCategory(val);
     } catch {}
   }, []);
@@ -795,6 +813,39 @@ export default function HomeScreen() {
   );
 
   useEffect(() => homeTabEvents.setVisibleTab(activeTabKey), [activeTabKey]);
+
+  // Toggles the viewer sets stay as their defaults until they reset them.
+  // Post type is the tab, not a toggle; the default tab is its own setting.
+  const categoryLoadedRef = useRef(false);
+  useEffect(() => {
+    // The first pass runs before the persisted category is read back.
+    if (!categoryLoadedRef.current) { categoryLoadedRef.current = true; return; }
+    setAppFeedToggles({
+      sortBy: filters.sortBy,
+      dateRange: filters.dateRange,
+      contentAccess: filters.contentAccess,
+      category: selectedCategory,
+    });
+  }, [filters.sortBy, filters.dateRange, filters.contentAccess, selectedCategory]);
+
+  // Saved toggles changed elsewhere (reset in Settings, or the account's
+  // arriving on sign-in): put the feed on them.
+  const applySavedToggles = useCallback(() => {
+    const saved = getAppFeedToggles();
+    const next = savedFilters();
+    setFilters((prev) => {
+      const same =
+        prev.sortBy === next.sortBy &&
+        prev.dateRange === next.dateRange &&
+        prev.contentAccess.length === next.contentAccess.length &&
+        prev.contentAccess.every((a) => next.contentAccess.includes(a));
+      return same ? prev : { ...prev, sortBy: next.sortBy, dateRange: next.dateRange, contentAccess: next.contentAccess };
+    });
+    setSelectedCategory(saved.category);
+    try { storage.set(CATEGORY_STORAGE_KEY, saved.category ?? ""); } catch {}
+  }, []);
+  useEffect(() => feedDefaultsEvents.subscribe(applySavedToggles), [applySavedToggles]);
+  useFeedDefaultsSync(applySavedToggles);
 
   useEffect(() => {
     let mounted = true;

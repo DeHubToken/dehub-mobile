@@ -20,7 +20,7 @@ import CustomSwitch from '../ui/CustomSwitch';
 import GlassModal from '../ui/GlassModal';
 import { InSettingsBento, SettingsAnchor } from './SettingsAnchor';
 import { toastInfo } from '../../libs';
-import { useAppTheme } from '../../context/ThemeContext';
+import { useAppTheme, useThemeRootStyle } from '../../context/ThemeContext';
 import { MINIMAL_HAIRLINE } from '../../theme/colors';
 
 /**
@@ -263,7 +263,11 @@ export const SettingsOptionModal: React.FC<{
   options: SettingOption[];
   onSelect: (value: string) => void;
   maxHeight?: string;
-}> = ({ visible, onClose, title, value, options, onSelect, maxHeight = '50%' }) => (
+}> = ({ visible, onClose, title, value, options, onSelect, maxHeight = '50%' }) => {
+  // The modal draws outside the themed root, so its text would fall back to
+  // white on System Light's pale sheet without the theme's variables here.
+  const rootStyle = useThemeRootStyle();
+  return (
   <GlassModal scrollable
     visible={visible}
     onClose={onClose}
@@ -271,7 +275,7 @@ export const SettingsOptionModal: React.FC<{
     maxHeight={maxHeight}
     blurIntensity={30}
   >
-    <View className="pb-4 pt-2">
+    <View className="pb-4 pt-2" style={rootStyle}>
       <Text className="text-theme-neutrals-400 text-xs text-center py-3 font-semibold uppercase tracking-widest">
         {title}
       </Text>
@@ -296,7 +300,8 @@ export const SettingsOptionModal: React.FC<{
       ))}
     </View>
   </GlassModal>
-);
+  );
+};
 
 /** Grey explainer block web renders under several sections. */
 export const SettingsNote: React.FC<{ children: React.ReactNode }> = ({ children }) => (
