@@ -85,7 +85,11 @@ export default function KeyboardPanView({ children }: { children: React.ReactNod
           // measureInWindow is below the status bar on Android; the keys are in screen space.
           const windowTop = Platform.OS === "android" ? StatusBar?.currentHeight ?? 0 : 0;
           const overlap = y + windowTop + h + panned - top;
-          moveTo(overlap > 0 ? overlap + CLEARANCE : 0);
+          // Never more than the keyboard is tall. A field scrolled out of its
+          // list measures far below the keys, and panning for it slid the
+          // whole screen off and left it black.
+          const keyboardHeight = Math.max((Dimensions.get("screen")?.height ?? 0) - top, 0);
+          moveTo(overlap > 0 ? Math.min(overlap + CLEARANCE, keyboardHeight) : 0);
         });
       })();
     };

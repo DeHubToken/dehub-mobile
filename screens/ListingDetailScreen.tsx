@@ -22,7 +22,6 @@ import {
   TextInput,
   ActivityIndicator,
   useWindowDimensions,
-  KeyboardAvoidingView,
   Alert,
   Linking,
 } from "react-native";
@@ -36,7 +35,6 @@ import { useNavigation, useRoute, type RouteProp } from "@react-navigation/nativ
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
-import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import ShareLinkButton from "../components/common/ShareLinkButton";
 import { ShareLinks } from "../navigation/linking.config";
 import Avatar from "../components/common/Avatar";
@@ -112,9 +110,6 @@ const ReviewRow: React.FC<{ review: StoreReview }> = ({ review }) => (
 export default function ListingDetailScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  // The KeyboardAvoidingView's frame is measured from its parent, so the
-  // ScreenHeader above it is already counted. Only the status-bar inset is added.
-  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.ListingDetail>>();
   const { listingId, listing: seed } = route.params;
@@ -322,11 +317,7 @@ export default function ListingDetailScreen() {
         }
       />
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior="padding"
-        keyboardVerticalOffset={keyboardOffset}
-      >
+      <View style={{ flex: 1 }}>
       <ScrollView
         contentContainerStyle={{ paddingBottom: insets.bottom + 28 }}
         showsVerticalScrollIndicator={false}
@@ -570,7 +561,7 @@ export default function ListingDetailScreen() {
           )}
         </View>
       </ScrollView>
-      </KeyboardAvoidingView>
+      </View>
       <DeHubRefreshMark refreshing={isRefetching} />
     </View>
   );

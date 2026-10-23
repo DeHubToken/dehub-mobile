@@ -16,7 +16,7 @@
  */
 
 import React, { useCallback, useState } from "react";
-import { KeyboardAvoidingView, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
@@ -88,9 +88,7 @@ export default function StageRecordingScreen() {
   return (
     <View className="bg-theme-neutrals-900" style={[styles.root, theme === 'glass' && { backgroundColor: 'transparent' }]}>
       <ScreenHeader icon="stages" title={t("stages.stageRecording")} />
-      {/* Edge-to-edge Android doesn't resize for the keyboard; the comment
-          box at the bottom would sit under it. */}
-      <KeyboardAvoidingView behavior="padding" style={styles.root}>
+      <View style={styles.root}>
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingTop: 4, paddingBottom: insets.bottom + 40 }}
@@ -199,7 +197,7 @@ export default function StageRecordingScreen() {
           </View>
         </PageSection>
       </ScrollView>
-      </KeyboardAvoidingView>
+      </View>
 
       <StageTranscriptSheet space={transcriptOpen ? space : null} visible={transcriptOpen} onClose={() => setTranscriptOpen(false)} />
     </View>
