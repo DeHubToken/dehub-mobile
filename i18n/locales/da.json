@@ -9687,5 +9687,15 @@
     "youAreBanned": "Du kan ikke chatte i denne kreatørs streams",
     "youAreTimedOut": "Du er udløbet et øjeblik",
     "title": "Moderat"
+  },
+  "loginStack": {
+    "tip": "Giv DHB-drikkepenge",
+    "headlineTop": "Du kommer til at eje alt",
+    "headlineAccent": "og være glad.",
+    "orContinueWith": "eller fortsæt med",
+    "phone": "Telefon",
+    "fingerprint": "Fingeraftryk",
+    "exploreFirst": "Udforsk først",
+    "codeNote": "Vi sender dig en kode på e-mail, ingen adgangskode."
   }
 }

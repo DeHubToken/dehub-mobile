@@ -9670,5 +9670,15 @@
     "youAreBanned": "את/ה לא יכול/הת לדבר בחדר השיחה בזרימות של יצר/ת זה",
     "youAreTimedOut": "את/ה נעזר לזמן קצר",
     "title": "מתווך"
+  },
+  "loginStack": {
+    "tip": "טיפ ב-DHB",
+    "headlineTop": "הכול יהיה שלך",
+    "headlineAccent": "ותהיה מאושר.",
+    "orContinueWith": "או המשך עם",
+    "phone": "טלפון",
+    "fingerprint": "טביעת אצבע",
+    "exploreFirst": "קודם תסתובב",
+    "codeNote": "נשלח לך קוד במייל, בלי סיסמה."
   }
 }

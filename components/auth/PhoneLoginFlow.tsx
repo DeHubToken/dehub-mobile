@@ -21,6 +21,8 @@ interface PhoneLoginFlowProps {
    * opens underneath the keyboard that its own autoFocus just raised.
    */
   onExpand?: (node: View | null) => void;
+  /** Render the field already open (opened from the round Phone button). */
+  startOpen?: boolean;
 }
 
 const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
@@ -28,9 +30,10 @@ const PhoneLoginFlow: React.FC<PhoneLoginFlowProps> = ({
   loading,
   disabled,
   onExpand,
+  startOpen,
 }) => {
   const { t } = useTranslation();
-  const [showInput, setShowInput] = useState(false);
+  const [showInput, setShowInput] = useState(!!startOpen);
   // Digits only — the "+" is painted by the field, never typed. The raw text is
   // kept alongside them because the hint needs it: a pasted national number
   // reduces to digits that are perfectly valid for some other country, and only

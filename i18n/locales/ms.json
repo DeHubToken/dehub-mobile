@@ -9942,5 +9942,15 @@
     "youAreBanned": "Anda tidak boleh bertukar dalam aliran-aliran pengarah ini",
     "youAreTimedOut": "Anda sedang waktu habis untuk seketika",
     "title": "Moderat"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Anda akan memiliki segalanya",
+    "headlineAccent": "dan gembira.",
+    "orContinueWith": "atau teruskan dengan",
+    "phone": "Telefon",
+    "fingerprint": "Cap jari",
+    "exploreFirst": "Teroka dahulu",
+    "codeNote": "Kami e-melkan kod kepada anda, tanpa kata laluan."
   }
 }
