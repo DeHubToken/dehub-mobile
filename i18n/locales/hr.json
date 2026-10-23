@@ -4622,7 +4622,10 @@
     "play": "Pokreni",
     "pause": "Pauziraj",
     "listens_one": "{{count}} slušaj",
-    "listens_other": "{{count}} sluša"
+    "listens_other": "{{count}} sluša",
+    "lyrics": "Tekst pjesme",
+    "lyricsLoading": "Tražimo tekst…",
+    "lyricsNone": "Tekst nije pronađen"
   },
   "transfer": {
     "arcTitle": "Pošalji USDC na mreži Arc",

@@ -4652,7 +4652,10 @@
     "play": "Αναπαραγωγή",
     "pause": "Παύση",
     "listens_one": "{{count}} άκου",
-    "listens_other": "{{count}} ακούει"
+    "listens_other": "{{count}} ακούει",
+    "lyrics": "Στίχοι",
+    "lyricsLoading": "Αναζήτηση στίχων…",
+    "lyricsNone": "Δεν βρέθηκαν στίχοι"
   },
   "transfer": {
     "arcTitle": "Αποστολή USDC στο Arc",

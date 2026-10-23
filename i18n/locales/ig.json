@@ -4611,7 +4611,10 @@
     "listens_one": "{{count}} gee ntị",
     "listens_other": "{{count}} na-ege ntị",
     "cornerPlayer": "Nkpọghachi egwu post",
-    "untitled": "Post egwu"
+    "untitled": "Post egwu",
+    "lyrics": "Okwu abụ",
+    "lyricsLoading": "Na-achọ okwu abụ…",
+    "lyricsNone": "Ahụghị okwu abụ"
   },
   "transfer": {
     "arcTitle": "Zipu USDC na Arc",

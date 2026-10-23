@@ -4595,7 +4595,10 @@
     "play": "ຫຼິ້ນ",
     "pause": "ພັກຜ່ອນ",
     "listens_one": "{{count}} ຮັບຟັງ",
-    "listens_other": "{{count}} ຟັງ"
+    "listens_other": "{{count}} ຟັງ",
+    "lyrics": "ເນື້ອເພງ",
+    "lyricsLoading": "ກຳລັງຊອກຫາເນື້ອເພງ…",
+    "lyricsNone": "ບໍ່ພົບເນື້ອເພງ"
   },
   "transfer": {
     "arcTitle": "ສົ່ງ USDC ໃນ Arc",

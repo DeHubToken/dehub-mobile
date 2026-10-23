@@ -4609,7 +4609,10 @@
     "play": "बजाव",
     "pause": "ठहरव",
     "listens_one": "{{count}} सुनता है",
-    "listens_other": "{{count}} सुनता है"
+    "listens_other": "{{count}} सुनता है",
+    "lyrics": "गीत के बोल",
+    "lyricsLoading": "बोल ढूँढ रहे हैं…",
+    "lyricsNone": "कोई बोल नहीं मिले"
   },
   "transfer": {
     "arcTitle": "Arc म USDC भेजव",

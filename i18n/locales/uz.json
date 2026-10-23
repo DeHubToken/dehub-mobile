@@ -4640,7 +4640,10 @@
     "pause": "Pausekeyboard label",
     "listens_other": "{{count}} tinglaydi",
     "untitled": "Audio joylanma",
-    "listens_one": "{{count}} tinglang"
+    "listens_one": "{{count}} tinglang",
+    "lyrics": "Qoʻshiq matni",
+    "lyricsLoading": "Matn qidirilmoqda…",
+    "lyricsNone": "Matn topilmadi"
   },
   "transfer": {
     "arcTitle": "Arc tarmog‘ida USDC yuborish",

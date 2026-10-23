@@ -4622,7 +4622,10 @@
     "play": "ਚਲਾਓ",
     "pause": "ਵਿਰਾਮ",
     "listens_one": "{{count}} ਸੁਣੋ",
-    "listens_other": "{{count}} ਸੁਣਦਾ ਹੈ"
+    "listens_other": "{{count}} ਸੁਣਦਾ ਹੈ",
+    "lyrics": "ਗੀਤ ਦੇ ਬੋਲ",
+    "lyricsLoading": "ਬੋਲ ਲੱਭ ਰਹੇ ਹਾਂ…",
+    "lyricsNone": "ਕੋਈ ਬੋਲ ਨਹੀਂ ਮਿਲੇ"
   },
   "transfer": {
     "arcTitle": "Arc 'ਤੇ USDC ਭੇਜੋ",

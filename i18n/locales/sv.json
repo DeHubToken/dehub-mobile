@@ -4634,7 +4634,10 @@
     "play": "Spela",
     "pause": "Pausa",
     "listens_one": "{{count}} lyssna",
-    "listens_other": "{{count}} lyssnar"
+    "listens_other": "{{count}} lyssnar",
+    "lyrics": "Låttext",
+    "lyricsLoading": "Hämtar låttext…",
+    "lyricsNone": "Ingen låttext hittades"
   },
   "transfer": {
     "arcTitle": "Skicka USDC på Arc",

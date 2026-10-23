@@ -4622,7 +4622,10 @@
     "play": "Luaj",
     "pause": "Ndalo",
     "listens_one": "{{count}} dëgjo",
-    "listens_other": "{{count}} listens"
+    "listens_other": "{{count}} listens",
+    "lyrics": "Teksti i këngës",
+    "lyricsLoading": "Po kërkojmë tekstin…",
+    "lyricsNone": "Nuk u gjet tekst"
   },
   "transfer": {
     "arcTitle": "Dërgo USDC në Arc",

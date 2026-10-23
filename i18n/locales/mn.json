@@ -4601,7 +4601,10 @@
     "play": "Тоглуулах",
     "pause": "Түр зогсоох",
     "listens_one": "{{count}} сонсох",
-    "listens_other": "{{count}} сонсож байна"
+    "listens_other": "{{count}} сонсож байна",
+    "lyrics": "Дууны үг",
+    "lyricsLoading": "Үг хайж байна…",
+    "lyricsNone": "Үг олдсонгүй"
   },
   "transfer": {
     "arcTitle": "Arc сүлжээнд USDC илгээх",

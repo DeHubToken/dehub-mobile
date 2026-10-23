@@ -4633,7 +4633,10 @@
     "play": "Hrát",
     "pause": "Pozastavit",
     "listens_one": "{{count}} naslouchat",
-    "listens_other": "{{count}} naslouchá"
+    "listens_other": "{{count}} naslouchá",
+    "lyrics": "Text písně",
+    "lyricsLoading": "Hledáme text…",
+    "lyricsNone": "Text nenalezen"
   },
   "transfer": {
     "arcTitle": "Odeslat USDC na Arc",

@@ -4595,7 +4595,10 @@
     "play": "वाद्यताम्",
     "pause": "विरामः",
     "listens_one": "{{count}} ऐका",
-    "listens_other": "{{count}} ऐकतो"
+    "listens_other": "{{count}} ऐकतो",
+    "lyrics": "गीतशब्दाः",
+    "lyricsLoading": "शब्दाः अन्विष्यन्ते…",
+    "lyricsNone": "शब्दाः न लब्धाः"
   },
   "transfer": {
     "arcTitle": "Arc इत्यत्र USDC प्रेषयतु",

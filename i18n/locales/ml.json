@@ -4615,7 +4615,10 @@
     "play": "പ്ലേ ചെയ്യുക",
     "pause": "താല്‍ക്കാലികമായി നിര്‍ത്തുക",
     "listens_one": "{{count}}ശ്രദ്ധിക്കുക",
-    "listens_other": "{{count}} കേൾക്കുന്നു"
+    "listens_other": "{{count}} കേൾക്കുന്നു",
+    "lyrics": "വരികൾ",
+    "lyricsLoading": "വരികൾ തിരയുന്നു…",
+    "lyricsNone": "വരികൾ കണ്ടെത്തിയില്ല"
   },
   "transfer": {
     "arcTitle": "Arc-ൽ USDC അയയ്ക്കുക",

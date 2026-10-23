@@ -4605,7 +4605,10 @@
     "play": "Ойнотуу",
     "pause": "Пауза",
     "listens_one": "{{count}} угуу",
-    "listens_other": "{{count}} угуу"
+    "listens_other": "{{count}} угуу",
+    "lyrics": "Ыр сөздөрү",
+    "lyricsLoading": "Сөздөр изделүүдө…",
+    "lyricsNone": "Сөздөр табылган жок"
   },
   "transfer": {
     "arcTitle": "Arc тармагында USDC жөнөтүү",

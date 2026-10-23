@@ -4613,7 +4613,10 @@
     "untitled": "Ifiweranṣẹ ohun",
     "play": "Play",
     "pause": "Duro",
-    "listens_one": "{{count}} gbọ"
+    "listens_one": "{{count}} gbọ",
+    "lyrics": "Ọ̀rọ̀ orin",
+    "lyricsLoading": "À ń wá ọ̀rọ̀ orin…",
+    "lyricsNone": "A kò rí ọ̀rọ̀ orin"
   },
   "transfer": {
     "arcTitle": "Fi USDC ránṣẹ́ lórí Arc",

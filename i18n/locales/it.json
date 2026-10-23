@@ -4689,7 +4689,10 @@
     "play": "Riproduci",
     "pause": "Pausa",
     "listens_one": "{{count}} ascolto",
-    "listens_other": "{{count}} ascolti"
+    "listens_other": "{{count}} ascolti",
+    "lyrics": "Testo",
+    "lyricsLoading": "Cerco il testo…",
+    "lyricsNone": "Nessun testo trovato"
   },
   "transfer": {
     "arcTitle": "Invia USDC su Arc",

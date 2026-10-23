@@ -5023,7 +5023,10 @@
     "pause": "Duraklat",
     "listens_one": "{{count}} dinlenme",
     "listens_other": "{{count}} dinlenme",
-    "visualizerColour": "Görselleştirici rengi"
+    "visualizerColour": "Görselleştirici rengi",
+    "lyrics": "Şarkı sözleri",
+    "lyricsLoading": "Sözler aranıyor…",
+    "lyricsNone": "Söz bulunamadı"
   },
   "transfer": {
     "arcTitle": "Arc'ta USDC gönder",

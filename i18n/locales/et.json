@@ -4622,7 +4622,10 @@
     "play": "Esita",
     "pause": "Peata",
     "listens_one": "{{count}} kuula",
-    "listens_other": "{{count}} kuulab"
+    "listens_other": "{{count}} kuulab",
+    "lyrics": "Laulusõnad",
+    "lyricsLoading": "Otsin laulusõnu…",
+    "lyricsNone": "Laulusõnu ei leitud"
   },
   "transfer": {
     "arcTitle": "Saada USDC Arc-võrgus",

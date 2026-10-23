@@ -4593,7 +4593,10 @@
     "play": "ተጻወት",
     "pause": "ዕረፍቲ",
     "listens_one": "{{count}} ስማዕ",
-    "listens_other": "{{count}} ይሰምዕ"
+    "listens_other": "{{count}} ይሰምዕ",
+    "lyrics": "ግጥሚ",
+    "lyricsLoading": "ግጥሚ ይድለ ኣሎ…",
+    "lyricsNone": "ግጥሚ ኣይተረኽበን"
   },
   "transfer": {
     "arcTitle": "USDC ኣብ Arc ስደድ",

@@ -4631,7 +4631,10 @@
     "play": "चलाओ",
     "pause": "रोको",
     "listens_one": "{{count}} सुनो",
-    "listens_other": "{{count}} सुनता है"
+    "listens_other": "{{count}} सुनता है",
+    "lyrics": "गीत के बोल",
+    "lyricsLoading": "बोल ढूँढ रहे हैं…",
+    "lyricsNone": "कोई बोल नहीं मिले"
   },
   "transfer": {
     "arcTitle": "Arc में USDC भेजा",

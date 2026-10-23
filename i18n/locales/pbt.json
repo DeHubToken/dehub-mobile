@@ -4602,7 +4602,10 @@
     "play": "لوبې وکړئ",
     "pause": "په وقفه کې",
     "listens_one": "{{count}} اوري",
-    "listens_other": "{{count}} اوري"
+    "listens_other": "{{count}} اوري",
+    "lyrics": "د سندرې متن",
+    "lyricsLoading": "متن لټول کیږي…",
+    "lyricsNone": "متن ونه موندل شو"
   },
   "transfer": {
     "arcTitle": "په Arc کې USDC ولېږئ",

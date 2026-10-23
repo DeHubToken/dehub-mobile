@@ -4627,7 +4627,10 @@
     "play": "הפעלה",
     "pause": "השהיה",
     "listens_one": "{{count}} האזנה",
-    "listens_other": "{{count}} מקשיבים"
+    "listens_other": "{{count}} מקשיבים",
+    "lyrics": "מילים",
+    "lyricsLoading": "מחפשים מילים…",
+    "lyricsNone": "לא נמצאו מילים"
   },
   "transfer": {
     "arcTitle": "שליחת USDC ברשת Arc",

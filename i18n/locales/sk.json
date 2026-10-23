@@ -4730,7 +4730,10 @@
     "play": "Prehrať",
     "pause": "Pozastaviť",
     "listens_one": "{{count}} počúvajte",
-    "listens_other": "{{count}} počúva"
+    "listens_other": "{{count}} počúva",
+    "lyrics": "Text piesne",
+    "lyricsLoading": "Hľadáme text…",
+    "lyricsNone": "Text sa nenašiel"
   },
   "transfer": {
     "arcTitle": "Odoslať USDC v sieti Arc",
