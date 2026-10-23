@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Bunu kimler görebilir",
+    "public": "Herkes",
+    "followers": "Yalnızca takipçiler",
+    "direct": "Yalnızca bahsedilenler",
+    "noRepost": "Yalnızca herkese açık gönderiler yeniden paylaşılabilir",
+    "directHint": "Bu gönderiyi yalnızca @ ile bahsettiğin kişiler görecek",
+    "needsMention": "Yalnızca bahsedilenlere göndermek için en az bir kişiden @ ile bahset"
+  },
   "replyPolicy": {
     "label": "Kimler yanıtlayabilir",
     "public": "Herkes",

@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Quem pode ver isto",
+    "public": "Todos",
+    "followers": "Só seguidores",
+    "direct": "Só pessoas mencionadas",
+    "noRepost": "Só publicações públicas podem ser republicadas",
+    "directHint": "Só as pessoas que você mencionar com @ verão esta publicação",
+    "needsMention": "Mencione pelo menos uma pessoa com @ para publicar só para as pessoas mencionadas"
+  },
   "replyPolicy": {
     "label": "Quem pode responder",
     "public": "Qualquer pessoa",

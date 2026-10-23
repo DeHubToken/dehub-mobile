@@ -100,6 +100,8 @@ export interface UnifiedFeedItem {
   quoteRevoked?: boolean;
   /** Who may reply; absent means anyone. */
   replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Who may see it; absent means everyone. */
+  visibility?: "public" | "followers" | "direct";
   thumbnailUrl?: string;
   videoUrl?: string;
   /** Adaptive HLS master playlist, a bucket key like videoUrl. Only on public

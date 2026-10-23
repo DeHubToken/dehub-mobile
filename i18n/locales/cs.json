@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kdo to může vidět",
+    "public": "Všichni",
+    "followers": "Jen sledující",
+    "direct": "Jen zmínění lidé",
+    "noRepost": "Znovu sdílet lze jen veřejné příspěvky",
+    "directHint": "Tento příspěvek uvidí jen lidé, které zmíníte pomocí @",
+    "needsMention": "Zmiňte pomocí @ aspoň jednoho člověka, abyste mohli publikovat jen pro zmíněné"
+  },
   "replyPolicy": {
     "label": "Kdo může odpovídat",
     "public": "Kdokoli",

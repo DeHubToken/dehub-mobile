@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Nani anaweza kuona hii",
+    "public": "Kila mtu",
+    "followers": "Wafuasi pekee",
+    "direct": "Watu waliotajwa pekee",
+    "noRepost": "Machapisho ya umma pekee yanaweza kuchapishwa upya",
+    "directHint": "Watu utakaowataja kwa @ pekee ndio wataona chapisho hili",
+    "needsMention": "Mtaje angalau mtu mmoja kwa @ ili kuchapisha kwa watu waliotajwa pekee"
+  },
   "replyPolicy": {
     "label": "Nani anaweza kujibu",
     "public": "Mtu yeyote",

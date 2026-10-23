@@ -475,6 +475,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const isOwnShort = !!(
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
+  // Only a public post can be reposted, quoted or embedded — see FeedCard.
+  const isPublicShort = !(item as any).visibility || (item as any).visibility === "public";
 
   // Shared overlay — every surface showing this post reads the same numbers.
   const engagementKey = engagementKeyOf(item);
@@ -1822,9 +1824,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onRepost={() => handleRepost(true)}
           onUndoRepost={() => handleRepost(false)}
           onQuote={handleQuote}
-          canQuote={(item as any).quotePolicy !== "nobody" || isOwnShort}
+          canQuote={isPublicShort && ((item as any).quotePolicy !== "nobody" || isOwnShort)}
+          canRepost={isPublicShort}
           onCopyLink={handleCopyLink}
-          embedTokenId={tokenId}
+          embedTokenId={isPublicShort ? tokenId : undefined}
         />
       )}
 

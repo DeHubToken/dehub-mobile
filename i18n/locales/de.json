@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Wer kann das sehen",
+    "public": "Alle",
+    "followers": "Nur Follower",
+    "direct": "Nur erwähnte Personen",
+    "noRepost": "Nur öffentliche Beiträge können repostet werden",
+    "directHint": "Nur die Personen, die du mit @ erwähnst, sehen diesen Beitrag",
+    "needsMention": "Erwähne mindestens eine Person mit @, um nur für erwähnte Personen zu posten"
+  },
   "replyPolicy": {
     "label": "Wer darf antworten",
     "public": "Alle",

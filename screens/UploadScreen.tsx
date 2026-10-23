@@ -348,6 +348,8 @@ export default function UploadScreen() {
   const [quotePolicy, setQuotePolicy] = useState<"public" | "followers" | "nobody">("public");
   // Who may reply. Anyone, unless the creator narrows it.
   const [replyPolicy, setReplyPolicy] = useState<"public" | "followers" | "following" | "mentioned">("public");
+  // Who may see the post. Everyone, unless the creator narrows it; fixed once posted.
+  const [visibility, setVisibility] = useState<"public" | "followers" | "direct">("public");
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -1154,13 +1156,17 @@ export default function UploadScreen() {
       forKids: isForKids ? true : undefined,
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
-      crossPostAccountIds: articleMode ? [] : [...crossPostState.selected],
+      // Never for a followers-only or direct post: another network would
+      // publish it to everyone there.
+      crossPostAccountIds: articleMode || visibility !== "public" ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
       quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
       replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
+      // A livestream is always public.
+      visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy, replyPolicy]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy, replyPolicy, visibility, isLiveMode]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1182,6 +1188,7 @@ export default function UploadScreen() {
         setContentWarning(null);
         setQuotePolicy("public");
         setReplyPolicy("public");
+        setVisibility("public");
         setPickedAudio(null);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -1277,6 +1284,13 @@ export default function UploadScreen() {
 
   const submitPost = useCallback(async () => {
     let payload = getPayload();
+
+    // A post for mentioned people only needs somebody mentioned. The server
+    // refuses one without (VISIBILITY_NEEDS_MENTION); say so before uploading.
+    if (payload.visibility === "direct" && !/@[a-zA-Z0-9_]{1,30}\b/.test(payload.description || "")) {
+      toastError(t("postVisibility.needsMention"));
+      return false;
+    }
 
     if (payload.shouldMint !== false && isSolanaChain(payload.postChainId)) {
       const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
@@ -1469,6 +1483,7 @@ export default function UploadScreen() {
         setContentWarning(null);
         setQuotePolicy("public");
         setReplyPolicy("public");
+        setVisibility("public");
         setPickedVideo(null);
         setThumbnailUri(null);
         consumeRestoredDraft();
@@ -2387,11 +2402,14 @@ export default function UploadScreen() {
                 </TouchableOpacity>
               )}
 
+              {/* Not for a followers-only or direct post — see getPayload. */}
+              {visibility === "public" && (
               <CrossPostButton
                 open={crossPostOpen}
                 onToggle={() => setCrossPostOpen((v) => !v)}
                 onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })}
               />
+              )}
 
               {!activeIsUploading && (
                 <TouchableOpacity
@@ -2451,7 +2469,7 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {crossPostOpen && (
+          {crossPostOpen && visibility === "public" && (
             <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
           )}
 
@@ -3308,8 +3326,38 @@ export default function UploadScreen() {
                 creator reach on a post they believe is fine, so it sits past
                 the options they came to set rather than second, under the
                 thumb, where a stray tap goes unnoticed. */}
+              {/* Who may see the post — everyone, followers, or only the
+                  people it mentions. First, because it decides the rows
+                  below it: a post nobody else can see cannot be quoted. */}
+              {!isLiveMode && !isQuoteMode && (
+              <View className="py-3">
+                <View className="flex-row items-center">
+                  <Icon name="Eye" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("postVisibility.label")}</Text>
+                </View>
+                <View className="flex-row flex-wrap mt-2 ml-7">
+                  {(["public", "followers", "direct"] as const).map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      onPress={() => setVisibility(option)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: visibility === option }}
+                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${visibility === option ? "bg-white" : "bg-white/10"}`}
+                    >
+                      <Text className={`text-xs ${visibility === option ? "text-black font-semibold" : "text-white"}`}>
+                        {t(`postVisibility.${option}`)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                {visibility === "direct" && (
+                  <Text className="text-theme-neutrals-400 text-xs mt-1 ml-7">{t("postVisibility.directHint")}</Text>
+                )}
+              </View>
+              )}
+
               {/* Who may quote the post — anyone, followers, or only the creator. */}
-              {!isLiveMode && (
+              {!isLiveMode && visibility === "public" && (
               <View className="flex-row items-center justify-between py-3">
                 <View className="flex-row items-center flex-1 mr-3">
                   <Icon name="Quote" size={18} color="#fff" />

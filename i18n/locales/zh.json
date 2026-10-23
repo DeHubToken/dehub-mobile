@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "谁可以看到",
+    "public": "所有人",
+    "followers": "仅粉丝",
+    "direct": "仅被提及的人",
+    "noRepost": "只有公开帖子可以转发",
+    "directHint": "只有你用 @ 提及的人才能看到这条帖子",
+    "needsMention": "请至少用 @ 提及一个人，才能仅对被提及的人发布"
+  },
   "replyPolicy": {
     "label": "谁可以回复",
     "public": "任何人",

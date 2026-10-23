@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kas to var redzēt",
+    "public": "Visi",
+    "followers": "Tikai sekotāji",
+    "direct": "Tikai pieminētie",
+    "noRepost": "Atkārtoti publicēt var tikai publiskas ziņas",
+    "directHint": "Šo ziņu redzēs tikai cilvēki, kurus pieminēsi ar @",
+    "needsMention": "Piemini ar @ vismaz vienu cilvēku, lai publicētu tikai pieminētajiem"
+  },
   "replyPolicy": {
     "label": "Kas var atbildēt",
     "public": "Jebkurš",

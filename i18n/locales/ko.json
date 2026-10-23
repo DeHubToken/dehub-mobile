@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "공개 범위",
+    "public": "전체 공개",
+    "followers": "팔로워만",
+    "direct": "언급한 사람만",
+    "noRepost": "공개 게시물만 리포스트할 수 있어요",
+    "directHint": "@로 언급한 사람만 이 게시물을 볼 수 있어요",
+    "needsMention": "언급한 사람에게만 게시하려면 @로 한 명 이상 언급하세요"
+  },
   "replyPolicy": {
     "label": "답글을 달 수 있는 사람",
     "public": "모두",

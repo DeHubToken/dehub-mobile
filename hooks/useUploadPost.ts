@@ -107,6 +107,8 @@ export type UploadPayload = {
   quotePolicy?: "followers" | "nobody";
   /** Who may reply. Absent means anyone. */
   replyPolicy?: "followers" | "following" | "mentioned";
+  /** Who may see it. Absent means everyone; fixed once posted. */
+  visibility?: "followers" | "direct";
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
 };
@@ -329,6 +331,7 @@ export function useUploadPost() {
         spoilerText: p.spoilerText,
         quotePolicy: p.quotePolicy,
         replyPolicy: p.replyPolicy,
+        visibility: p.visibility,
       };
 
       const isBounty = p.monetization.bountyEnabled;

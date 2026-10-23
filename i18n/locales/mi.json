@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Ko wai ka kite i tēnei",
+    "public": "Te katoa",
+    "followers": "Ngā kaiwhai anake",
+    "direct": "Te hunga i whakahuatia anake",
+    "noRepost": "Ko ngā pānui tūmatanui anake ka taea te tuku anō",
+    "directHint": "Ko te hunga anake ka whakahuatia e koe ki te @ ka kite i tēnei pānui",
+    "needsMention": "Whakahuatia kia kotahi te tangata ki te @ hei tuku ki te hunga i whakahuatia anake"
+  },
   "replyPolicy": {
     "label": "Ko wai ka āhei ki te whakautu",
     "public": "Te katoa",

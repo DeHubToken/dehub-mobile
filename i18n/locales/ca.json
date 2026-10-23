@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Qui pot veure això",
+    "public": "Tothom",
+    "followers": "Només seguidors",
+    "direct": "Només persones esmentades",
+    "noRepost": "Només es poden republicar les publicacions públiques",
+    "directHint": "Només les persones que esmentis amb @ veuran aquesta publicació",
+    "needsMention": "Esmenta almenys una persona amb @ per publicar només per a les persones esmentades"
+  },
   "replyPolicy": {
     "label": "Qui pot respondre",
     "public": "Qualsevol",

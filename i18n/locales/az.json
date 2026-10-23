@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Bunu kim görə bilər",
+    "public": "Hamı",
+    "followers": "Yalnız izləyicilər",
+    "direct": "Yalnız qeyd olunanlar",
+    "noRepost": "Yalnız açıq paylaşımlar yenidən paylaşıla bilər",
+    "directHint": "Bu paylaşımı yalnız @ ilə qeyd etdiyiniz insanlar görəcək",
+    "needsMention": "Yalnız qeyd olunanlara paylaşmaq üçün ən azı bir nəfəri @ ilə qeyd edin"
+  },
   "replyPolicy": {
     "label": "Kim cavab verə bilər",
     "public": "Hər kəs",

@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Wer darf das gseh",
+    "public": "Alli",
+    "followers": "Nur Follower",
+    "direct": "Nur erwähnti Lüüt",
+    "noRepost": "Nur öffentlichi Biiträg chönd wiitergeh wärde",
+    "directHint": "Nur d Lüüt, wo du mit @ erwähnsch, gsehnd dä Biitrag",
+    "needsMention": "Erwähn mindestens ei Person mit @, zum nur für erwähnti Lüüt poste"
+  },
   "replyPolicy": {
     "label": "Wer darf antworte",
     "public": "Alli",

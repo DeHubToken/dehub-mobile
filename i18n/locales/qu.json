@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Pitaq kayta rikuyta atin",
+    "public": "Llapanku",
+    "followers": "Qatiqkunalla",
+    "direct": "Sutichasqa runakunalla",
+    "noRepost": "Llapanpaq qillqakunallam huk kutita churakuyta atin",
+    "directHint": "@ nisqawan sutichasqayki runakunallam kay qillqata rikunqaku",
+    "needsMention": "Sutichasqakunallapaq churanaykipaq, huk runatapas @ nisqawan sutichay"
+  },
   "replyPolicy": {
     "label": "Pitaq kutichiyta atin",
     "public": "Pipas",
