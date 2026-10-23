@@ -120,7 +120,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
 import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../libs/post-text-limit";
 import { haptic } from "../libs/haptics";
-import { useAppTheme } from "../context/ThemeContext";
+import { useAppTheme, useThemeRootStyle } from "../context/ThemeContext";
 import LinkPreviewCard from "../components/common/LinkPreviewCard";
 import { minimalFlat } from "../theme/minimal";
 import { uploadLocalFileToBucket, fileExtension, contentTypeForExtension } from "../libs/storage-upload";
@@ -211,6 +211,8 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
+/** Closing with more words than this saves the post to Drafts without asking. */
+const AUTO_DRAFT_MIN_WORDS = 3;
 type PickedAsset = ImagePicker.ImagePickerAsset & {
   /** The picture a filter is drawn over, so filtering again never stacks on the last filter. */
   editBaseUri?: string;
@@ -404,6 +406,9 @@ export default function UploadScreen() {
   const [pollIsMultiple, setPollIsMultiple] = useDraftState(draftScope + ":pollIsMultiple", false);
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
+  // The draft popups draw in their own window, outside the screen's theme
+  // colours, so System Light printed white text on the light panel.
+  const draftModalTheme = useThemeRootStyle();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [showPlanForm, setShowPlanForm] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
@@ -910,14 +915,28 @@ export default function UploadScreen() {
     [bodyText, titleText, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode, pollEnabled],
   );
 
+  // A post being written with more than three words is saved to Drafts on
+  // close instead of asking; shorter content still gets the keep-or-discard
+  // prompt. Quotes and live setups always ask — a quote loses its target
+  // outside this screen, and a broadcast is not a draft.
+  const autoDraftOnClose = useMemo(() => {
+    if (isQuoteMode || isLiveMode || isStageMode) return false;
+    const words = `${titleText} ${articleMode ? articleBody.replace(/<[^>]*>/g, " ") : bodyText}`
+      .split(/\s+/).filter(Boolean).length;
+    return words > AUTO_DRAFT_MIN_WORDS;
+  }, [isQuoteMode, isLiveMode, isStageMode, titleText, articleMode, articleBody, bodyText]);
+  const autoDraftRef = useRef<() => void>(() => {});
+
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
   const handleClose = useCallback(() => {
-    if (formHasContent) {
+    if (autoDraftOnClose) {
+      autoDraftRef.current();
+    } else if (formHasContent) {
       setShowDiscardModal(true);
     } else {
       nav.goBack();
     }
-  }, [nav, formHasContent]);
+  }, [nav, formHasContent, autoDraftOnClose]);
 
   /**
    * Runs the body copy through the shared `enhance-text` edge function — the
@@ -1056,6 +1075,10 @@ export default function UploadScreen() {
         toastInfo(t("upload.uploadInProgressStay"));
         return true;
       }
+      if (autoDraftOnClose) {
+        autoDraftRef.current();
+        return true;
+      }
       if (formHasContent) {
         setShowDiscardModal(true);
         return true;
@@ -1063,7 +1086,7 @@ export default function UploadScreen() {
       return false; // let default back happen
     });
     return () => sub.remove();
-  }, [formHasContent, activeIsUploading]);
+  }, [formHasContent, activeIsUploading, autoDraftOnClose]);
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState("");
@@ -1544,6 +1567,19 @@ export default function UploadScreen() {
     consumeRestoredDraft();
     nav.goBack();
   }, [saveDraft, buildDraftData, nav, consumeRestoredDraft]);
+
+  // Saved quietly with a toast; if the save fails the screen stays open with
+  // the text intact so nothing is lost.
+  autoDraftRef.current = () => {
+    if (submittingRef.current) return;
+    saveDraft(buildDraftData())
+      .then(() => {
+        consumeRestoredDraft();
+        toastSuccess(t("toasts.draft_saved"));
+        nav.goBack();
+      })
+      .catch(() => setShowDiscardModal(true));
+  };
 
   /** "Discard" from discard warning modal */
   const handleDiscard = useCallback(() => {
@@ -2349,11 +2385,11 @@ export default function UploadScreen() {
                   <Icon name="Save" size={16} color="#fff" />
                   {drafts.length > 0 && (
                     <View
-                      className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
-                      style={{ top: -4, right: -4 }}
+                      className="absolute h-4 rounded-full bg-white items-center justify-center"
+                      style={{ top: -4, right: -4, minWidth: 16, paddingHorizontal: 3 }}
                     >
                       <Text className="text-black font-bold" style={{ fontSize: 10 }}>
-                        {drafts.length}
+                        {drafts.length > 9 ? "9+" : drafts.length}
                       </Text>
                     </View>
                   )}
@@ -3563,7 +3599,7 @@ export default function UploadScreen() {
         maxHeight="40%"
         blurIntensity={30}
       >
-        <View className="p-5">
+        <View className="p-5" style={draftModalTheme}>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t("drafts.saveTitle")}
           </Text>
@@ -3764,7 +3800,7 @@ export default function UploadScreen() {
         blurIntensity={30}
         dismissible={false}
       >
-        <View className="p-5">
+        <View className="p-5" style={draftModalTheme}>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t("upload.discardPostTitle")}
           </Text>
