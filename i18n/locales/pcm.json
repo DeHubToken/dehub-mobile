@@ -2532,6 +2532,9 @@
     "legal": "Prize draws na for promotion, and na only DeHub account holders wey don reach 18 fit enter; e no valid where local law no allow am. DeHub staff, contractors and their household no fit enter. You no fit change prizes to cash unless dem talk am, and the announcement for each draw carry im full terms."
   },
   "dao": {
+    "votingPowerNote": "Voting dey last for 7 days. Power of voting be each contributor’s total token dey contribute when dis proposal open. At least 10% must join in, and \"Accept\" must win more than \"Reject\".",
+    "tokenAmount": "Token amount",
+    "pricePerTokenUsd": "Price per token (USD)",
     "title": "DAO Treasury",
     "subtitle": "One wallet, community dey fund am, na vote dey spend am",
     "contribute": "Contribute",

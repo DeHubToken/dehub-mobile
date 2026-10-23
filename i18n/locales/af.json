@@ -2594,6 +2594,10 @@
     "legal": "Prystrekkings is promosioneel en oop vir DeHub-rekeninghouers van 18 jaar en ouer, nietig waar plaaslike wetgewing dit verbied. DeHub-personeel, kontrakteurs en hul huishoudings kom nie in aanmerking nie. Pryse is nie uitruilbaar vir kontant nie, tensy anders vermeld, en elke trekking se eie aankondiging bevat sy volledige bepalings."
   },
   "dao": {
+    "votingPowerNote": "Stemming duur 7 dae. Stemkrag is elke bydraer se kumulatiewe tokenbydrae wanneer hierdie voorstel oopmaak. Ten minste 10% moet deelneem en Aanvaar moet Wen bo Verwerp.",
+    "tokenAmount": "Token bedrag",
+    "pricePerTokenUsd": "Prys per token (USD)",
+    "offerToBuyTokens": "Bied aan om DeHub-tokens te koop",
     "title": "DAO Tesourie",
     "subtitle": "Een beursie, befonds deur die gemeenskap, bestee deur sy stem",
     "contribute": "Dra by",

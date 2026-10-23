@@ -2823,6 +2823,10 @@
     "legal": "Cabutan hadiah adalah promosi dan terbuka kepada pemegang akaun DeHub yang berumur 18 tahun ke atas, tidak sah jika undang-undang tempatan melarangnya. Kakitangan DeHub, kontraktor dan isi rumah mereka tidak layak. Hadiah tidak boleh ditukar dengan wang tunai melainkan dinyatakan, dan pengumuman setiap cabutan sendiri membawa terma penuh."
   },
   "dao": {
+    "votingPowerNote": "Undian berlangsung selama 7 hari. Kuasa mengundi ialah sumbangan token kumulatif setiap penyumbang apabila cadangan ini dibuka. Sekurang-kurangnya 10% mesti mengambil bahagian dan Terima mesti mengatasi Tolak.",
+    "tokenAmount": "Jumlah token",
+    "pricePerTokenUsd": "Harga setiap token (USD)",
+    "offerToBuyTokens": "Tawarkan untuk membeli token DeHub",
     "title": "Perbendaharaan DAO",
     "subtitle": "Satu dompet, dibiayai oleh komuniti, dibelanjakan mengikut undiannya",
     "contribute": "Sumbangan",

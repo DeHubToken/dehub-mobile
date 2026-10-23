@@ -2571,6 +2571,10 @@
     "legal": "Le estrazioni a premi sono promozionali e aperte ai titolari di account DeHub di età pari o superiore a 18 anni, non valide laddove la legge locale lo vieti. Il personale DeHub, gli appaltatori e le loro famiglie non sono idonei. I premi non sono scambiabili con denaro contante a meno che non sia indicato, e l'annuncio di ogni estrazione porta i suoi termini completi."
   },
   "dao": {
+    "votingPowerNote": "Il voto dura 7 giorni. Il potere di voto è il contributo cumulativo in token di ciascun contributore all'apertura di questa proposta. Almeno il 10% deve partecipare e Accetta deve prevalere su Rifiuta.",
+    "tokenAmount": "Quantità di token",
+    "pricePerTokenUsd": "Prezzo per token (USD)",
+    "offerToBuyTokens": "Offerta per acquistare token DeHub",
     "title": "Tesoro della DAO",
     "subtitle": "Un portafoglio, finanziato dalla comunità, speso dal suo voto",
     "contribute": "Contribuisci",

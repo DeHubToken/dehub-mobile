@@ -2563,6 +2563,10 @@
     "legal": "Priisverlosige sind werbig und offen für DeHub Account Inhaber ab 18 Johr, ungültig, wo s'lokali Gsetz sie verbüted. DeHub Mitarbeiter, Uftraggebe und ihri Huushalt sind nöd berechtigt. Priise sind nöd geg Bargeld uszüüschbar, es sii denn, es isch aagäh, und jede Priisverlosig ihri eigeti Aakündigung träit ihri volli Bedingige."
   },
   "dao": {
+    "votingPowerNote": "Abstimmige dauert 7 Tag. D Abstimmigskraft isch jede Biitragende sini kumulativi Token-Biitrag, wenn die Vorschlag uuftut. Mindeschtens 10% müend mitmache und \"Aanää\" muess \"Ablehne\" überbiete.",
+    "tokenAmount": "Token-Betrag",
+    "pricePerTokenUsd": "Priis pro Token (USD)",
+    "offerToBuyTokens": "Aagebot zum DeHub Tokens choufe",
     "title": "DAO Schatzchämmer",
     "subtitle": "Ein Wallet, vo de Community gfüederet, vo ihre Stimm usgäh",
     "contribute": "Beitraged",

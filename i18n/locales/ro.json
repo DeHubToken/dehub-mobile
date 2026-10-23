@@ -2563,6 +2563,10 @@
     "legal": "Extragerile de premii sunt promoționale și deschise titularilor de conturi DeHub cu vârsta de cel puțin 18 ani, nule în cazul în care legislația locală le interzice. Personalul DeHub, contractanții și gospodăriile acestora nu sunt eligibili. Premiile nu pot fi schimbate în numerar, cu excepția cazului în care se specifică acest lucru, iar anunțul fiecărei extrageri poartă termenii săi deplini."
   },
   "dao": {
+    "votingPowerNote": "Votarea durează 7 zile. Puterea de vot este contribuția cumulativă de tokenuri a fiecărui contributor atunci când această propunere se deschide. Cel puțin 10% trebuie să participe și Accept trebuie să învingă Reject.",
+    "tokenAmount": "Cantitate de tokenuri",
+    "pricePerTokenUsd": "Preț per token (USD)",
+    "offerToBuyTokens": "Oferă-te să cumperi tokenuri DeHub",
     "title": "Tezaurul DAO",
     "subtitle": "Un portofel, finanțat de comunitate, cheltuit prin votul acesteia",
     "contribute": "Contribuie",

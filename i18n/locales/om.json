@@ -2567,6 +2567,10 @@
     "legal": "Carraan badhaasni beeksisaaf kan oolu yoo ta’u, abbootii herrega DeHub umuriin isaanii waggaa 18 fi isaa ol ta’eef banaadha, bakka seerri naannoo dhorkutti gatii hin qabu. Hojjettoonni DeHub, kontiraaktarootaa fi maatiin isaanii ulaagaa hin guutan. Badhaasni yoo ibsame malee maallaqaan kan hin jijjiiramne yoo ta’u, tokkoon tokkoon carraa beeksisni mataa isaa haala isaa guutuu qaba."
   },
   "dao": {
+    "votingPowerNote": "Sagalee kennuunis guyyaa 7 fudhata. Aangoon sagalee kennuu gumaacha mallattoo kuufamaa tokkoon tokkoon gumaachaa yeroo yaadni kun banamudha. Yoo xiqqaate %10 hirmaachuu qaba, Fudhachuun immoo Diduu mo'achuu qaba.",
+    "tokenAmount": "Hanga mallattoo",
+    "pricePerTokenUsd": "Gatiin mallattoo tokkoof (USD) .",
+    "offerToBuyTokens": "Tookiin DeHub bitachuuf dhiyeessii",
     "title": "Kasaa DAO",
     "subtitle": "Booda tokko, hawaasa irraa kan argate, sagalee isaa irratti kan fayyadame",
     "contribute": "Gargaari",

@@ -2563,6 +2563,10 @@
     "legal": "Nagradne igre su promotivne i otvorene za vlasnike DeHub računa u dobi od 18 ili više godina, nevažeće ako ih lokalni zakon zabranjuje. Osoblje DeHub-a, izvođači radova i njihova kućanstva ne ispunjavaju uvjete. Nagrade se ne mogu zamijeniti za gotovinu osim ako nije navedeno, a najava svakog izvlačenja nosi svoje pune uvjete."
   },
   "dao": {
+    "votingPowerNote": "Glasovanje traje 7 dana. Snaga glasovanja je kumulativni doprinos tokena svakog suradnika kada se ovaj prijedlog otvori. Najmanje 10% mora sudjelovati, a Prihvati mora pobijediti Odbij.",
+    "tokenAmount": "Iznos tokena",
+    "pricePerTokenUsd": "Cijena po tokenu (USD)",
+    "offerToBuyTokens": "Ponuda za kupnju DeHub tokena",
     "title": "DAO Riznica",
     "subtitle": "Jedan novčanik, financiran od strane zajednice, potrošen njezinim glasom",
     "contribute": "Doprinos",

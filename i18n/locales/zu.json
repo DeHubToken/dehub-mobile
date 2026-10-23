@@ -2555,6 +2555,10 @@
     "legal": "Ukudonswa komklomelo kuyiphromoshini futhi kuvulekele abanikazi be-akhawunti ye-DeHub abaneminyaka engu-18 noma ngaphezulu, akunalutho lapho umthetho wendawo ubavimbela khona. Abasebenzi be-DeHub, osonkontileka nemindeni yabo abafaneleki. Imiklomelo ayinakushintshaniswa ngemali ngaphandle uma kushiwo, futhi isimemezelo somdwebo ngamunye sinemigomo yaso egcwele."
   },
   "dao": {
+    "votingPowerNote": "Ukuvota kuhlala izinsuku eziyi-7. Amandla okuvota yisamba samathokheni esinikezwe umnikelo ngamunye lapho le ncwadana ivulwa. Okungenani okungu-10% kufanele kuhlanganyele futhi Okwamukelayo kufanele kudlule Okwenqatshelwe.",
+    "tokenAmount": "Isamba samathokheni",
+    "pricePerTokenUsd": "Intengo ngayinye yethokheni (USD)",
+    "offerToBuyTokens": "Nikeza ukuthenga ama-DeHub tokens",
     "title": "Isikhwama se-DAO",
     "subtitle": "Isikhwama esisodwa, esixhaswa umphakathi, esichithwa yivoti yaso",
     "contribute": "Nikela",

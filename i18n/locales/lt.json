@@ -2563,6 +2563,10 @@
     "legal": "Prizų traukimai yra reklaminiai ir atviri 18 metų ir vyresniems „DeHub“ paskyros turėtojams, negaliojantys, jei tai draudžia vietos įstatymai. „DeHub“ darbuotojai, rangovai ir jų namų ūkiai neatitinka reikalavimų. Jei nenurodyta kitaip, prizai negali būti keičiami į grynuosius pinigus, o kiekvieno lošimo skelbime nurodomos visos sąlygos."
   },
   "dao": {
+    "votingPowerNote": "Balsavimas trunka 7 dienas. Balsavimo galia yra kiekvieno prisidėjusiojo sukauptas žetonų indėlis, kai šis pasiūlymas atidaromas. Mažiausiai 10% turi dalyvauti, o „Priimti“ turi nugalėti „Atmesti“.",
+    "tokenAmount": "Žetonų kiekis",
+    "pricePerTokenUsd": "Kaina už žetoną (USD)",
+    "offerToBuyTokens": "Pasiūlymas pirkti „DeHub“ žetonus",
     "title": "DAO iždas",
     "subtitle": "Viena piniginė, finansuojama bendruomenės, išleidžiama jos balsu",
     "contribute": "Prisidėkite",

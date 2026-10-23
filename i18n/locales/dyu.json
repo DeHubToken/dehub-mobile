@@ -2546,6 +2546,10 @@
     "legal": "O la, a ka di mɔgɔ minw ye ka baara kɛ ni DeHub ye, olu ka kan ka wari sɔrɔ. O kama, a ka ɲi ka ladili ɲumanw di a ma. Ni o tɛ, o saraw tɛ se ka yɛlɛma ni wari ye."
   },
   "dao": {
+    "votingPowerNote": "O kama, u ye vote kɛ tile 7 kɔnɔ. O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye. Ni mɔgɔ dɔ ye mɔgɔ dɔ ye, a ka kan ka sɔn a ma.",
+    "tokenAmount": "Fɛɛn min be se ka kɛ",
+    "pricePerTokenUsd": "O wari be se ka kɛ wari ye min be se ka kɛ wari ye.",
+    "offerToBuyTokens": "O kɔ, a ye dɔ fara a ka baara kan.",
     "title": "DAO nafolomarayɔrɔ",
     "subtitle": "Wallet kelen, jamana ka mɔgɔw b'a fa, a be don ni u ka kalata ye",
     "contribute": "Niyɔrɔ di",

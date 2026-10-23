@@ -2554,6 +2554,10 @@
     "legal": "Rasiidka abaal-marinta waa ololayaal waxaana u furan dadka haysta koontada DeHub da'doodu tahay 18 jir ama ka weyn, waxaana la burinayaa meelaha ay sharciga maxalliga ahi mamnuucayaan. Shaqaalaha DeHub, qandaraaslayaasha iyo qoysaskooda ma u qalmaan. Abaal-marinta lama beddeli karo lacag haddii aan la sheegin, waxaana ku dhawaaqista rasiid kasta oo u gaar ah ay sidataa shuruudaheeda buuxa."
   },
   "dao": {
+    "votingPowerNote": "Codbixintu waxay socotaa 7 maalmood. Awoodda codbixinta waa wax ku darsiga token-ka ee isku dhafka ah ee qof kasta oo wax ku darsada marka hindisahan furmo. Ugu yaraan 10% waa inay ka qayb qaataan, oo Aqbal waa inuu ka guuleystaa Diidmo.",
+    "tokenAmount": "Qadarka Token",
+    "pricePerTokenUsd": "Qiimaha halkii token (USD)",
+    "offerToBuyTokens": "U soo bandhig inaad iibsato DeHub tokens",
     "title": "Kaydka DAO",
     "subtitle": "Hal jeeb, oo ay maalgelisay bulshada, oo ay ku bixiso coddeeda",
     "contribute": "Ka qaybqaado",

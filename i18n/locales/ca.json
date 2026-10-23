@@ -2563,6 +2563,10 @@
     "legal": "Els sortejos són promocionals i estan oberts als titulars de comptes DeHub de 18 anys o més, i no tenen cap import on la legislació local els prohibeixi. El personal de DeHub, els contractistes i les seves llars no compleixen els requisits. Els premis no es poden canviar per diners en efectiu a menys que s'indiqui, i l'anunci de cada sorteig inclou les seves condicions completes."
   },
   "dao": {
+    "votingPowerNote": "La votació dura 7 dies. El poder de vot és la contribució acumulada de fitxes de cada col·laborador quan s'obre aquesta proposta. Almenys el 10% ha de participar i Acceptar ha de guanyar a Rebutjar.",
+    "tokenAmount": "Quantitat de fitxes",
+    "pricePerTokenUsd": "Preu per fitxa (USD)",
+    "offerToBuyTokens": "Oferta per comprar fitxes DeHub",
     "title": "Tresoreria DAO",
     "subtitle": "Una cartera, finançada per la comunitat, gastada pel seu vot",
     "contribute": "Contribueix",

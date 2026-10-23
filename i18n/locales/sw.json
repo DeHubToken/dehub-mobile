@@ -2564,6 +2564,10 @@
     "legal": "Michango ya zawadi ni ya promosheni na imefunguliwa kwa wamiliki wa akaunti za DeHub wenye umri wa miaka 18 au zaidi, ikiwa batili ambapo sheria za eneo husika zinawakataza. Wafanyakazi wa DeHub, wakandarasi na kaya zao hawastahiki. Zawadi haziwezi kubadilishwa kwa pesa taslimu isipokuwa zimesemwa, na tangazo la kila droo lenyewe lina masharti yake kamili."
   },
   "dao": {
+    "votingPowerNote": "Kupiga kura hudumu kwa siku 7. Nguvu ya kupiga kura ni mchango wa tokeni wa kila mchangiaji wakati pendekezo hili linafunguliwa. Angalau 10% lazima washiriki na Kubali lazima ipite Kukataa.",
+    "tokenAmount": "Kiasi cha tokeni",
+    "pricePerTokenUsd": "Bei kwa tokeni (USD)",
+    "offerToBuyTokens": "Toa ofa ya kununua tokeni za DeHub",
     "title": "Hazina ya DAO",
     "subtitle": "Mkoba mmoja, unaofadhiliwa na jamii, unatumiwa kwa kura zake",
     "contribute": "Changia",

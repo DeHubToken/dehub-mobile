@@ -2577,6 +2577,10 @@
     "legal": "Rút thăm trúng thưởng là chương trình khuyến mãi và dành cho chủ tài khoản DeHub từ 18 tuổi trở lên, không áp dụng nếu luật pháp địa phương cấm họ. Nhân viên DeHub, nhà thầu và hộ gia đình của họ không đủ điều kiện. Các giải thưởng không thể quy đổi thành tiền mặt trừ khi được nêu rõ, và mỗi thông báo rút thăm đều có các điều khoản đầy đủ."
   },
   "dao": {
+    "votingPowerNote": "Thời gian bỏ phiếu là 7 ngày. Sức mạnh bỏ phiếu là sự đóng góp token tích lũy của mỗi người đóng góp khi đề xuất này mở ra. Ít nhất 10% phải tham gia và Chấp nhận phải thắng Từ chối.",
+    "tokenAmount": "Số lượng token",
+    "pricePerTokenUsd": "Giá mỗi token (USD)",
+    "offerToBuyTokens": "Đề nghị mua token DeHub",
     "title": "Kho bạc DAO",
     "subtitle": "Một ví, được cộng đồng tài trợ, chi tiêu theo phiếu bầu của cộng đồng",
     "contribute": "Đóng góp",
