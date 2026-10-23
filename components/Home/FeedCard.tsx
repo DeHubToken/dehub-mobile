@@ -2125,7 +2125,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onRepost={handleConfirmRepost}
           onUndoRepost={handleUndoRepost}
           onQuote={handleQuotePress}
-          canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || isOwnerPost}
+          canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost}
           onCopyLink={handleCopyLink}
           onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
           onShareAsImage={handleSharePress}
@@ -2307,7 +2307,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onRepost={handleConfirmRepost}
             onUndoRepost={handleUndoRepost}
             onQuote={handleQuotePress}
-            canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || isOwnerPost}
+            canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
             shareText={localTitle || undefined}
