@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} ਟੋਕਨ"
   },
   "postOptions": {
+    "embed": "ਏਮਬੈੱਡ",
+    "copyEmbedCode": "ਏਮਬੈੱਡ ਕੋਡ ਕਾਪੀ ਕਰੋ",
+    "embedCodeCopied": "ਏਮਬੈੱਡ ਕੋਡ ਕਾਪੀ ਹੋ ਗਿਆ",
     "options": "ਵਿਕਲਪ",
     "sendTip": "ਟਿੱਪ ਭੇਜੋ",
     "queue": "ਕਤਾਰ",

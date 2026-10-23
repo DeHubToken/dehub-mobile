@@ -984,6 +984,9 @@
     "tokenAmount": "{{amount}} ໂຕເຄັນ"
   },
   "postOptions": {
+    "embed": "ຝັງ",
+    "copyEmbedCode": "ຄັດລອກໂຄດຝັງ",
+    "embedCodeCopied": "ຄັດລອກໂຄດຝັງແລ້ວ",
     "options": "ຕົວເລືອກ",
     "sendTip": "ສົ່ງທິບ",
     "queue": "ແຖວ",

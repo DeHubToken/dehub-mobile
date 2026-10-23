@@ -8,6 +8,9 @@ import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
+import { copyToClipboard } from "../../libs/clipboard.utils";
+import { toastSuccess } from "../../libs/toast";
+import { postEmbedCode } from "../../libs/embed-code";
 
 const TEXT = "#F4F4F5";
 const MUTED = "#9A9AA2";
@@ -35,6 +38,8 @@ export interface RepostShareSheetProps {
   /** Omit both to leave out the who-quoted / who-reposted lists (a governance proposal has none). */
   onViewQuotes?: () => void;
   onViewReposts?: () => void;
+  /** The post to offer embed code for; omit to leave the Embed target out. */
+  embedTokenId?: string | number;
 }
 
 /** Share targets that take a link in their URL; each falls back to its web page. */
@@ -81,6 +86,7 @@ function RepostShareSheetComponent({
   repostCount,
   onViewQuotes,
   onViewReposts,
+  embedTokenId,
 }: RepostShareSheetProps) {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
@@ -155,6 +161,19 @@ function RepostShareSheetComponent({
           <ShareTarget glyph="𝕏" label={BRAND_X} radius={radius} onPress={() => openTarget("x")} />
           <ShareTarget icon="Send" label={t("careers.telegram")} radius={radius} onPress={() => openTarget("telegram")} />
           <ShareTarget icon="MessageCircle" label={BRAND_WHATSAPP} radius={radius} onPress={() => openTarget("whatsapp")} />
+          {embedTokenId != null && (
+            <ShareTarget
+              glyph="</>"
+              label={t("postOptions.embed")}
+              radius={radius}
+              onPress={() => {
+                copyToClipboard(postEmbedCode(embedTokenId));
+                toastSuccess(t("postOptions.embedCodeCopied"));
+                track("share", { kind: "post", channel: "embed", has_ref: false });
+                onClose();
+              }}
+            />
+          )}
           <ShareTarget icon="Ellipsis" label={t("feedCard.moreShare")} radius={radius} onPress={nativeShare} />
         </View>
 

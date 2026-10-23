@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} токенаў"
   },
   "postOptions": {
+    "embed": "Убудаваць",
+    "copyEmbedCode": "Капіяваць код для ўбудавання",
+    "embedCodeCopied": "Код для ўбудавання скапіяваны",
     "options": "Параметры",
     "sendTip": "Адправіць чаявыя",
     "queue": "Чарга",

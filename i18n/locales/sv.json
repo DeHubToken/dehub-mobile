@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Bädda in",
+    "copyEmbedCode": "Kopiera inbäddningskod",
+    "embedCodeCopied": "Inbäddningskod kopierad",
     "options": "Alternativ",
     "sendTip": "Skicka dricks",
     "queue": "Kö",

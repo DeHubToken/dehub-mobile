@@ -968,6 +968,9 @@
     "payFailed": "Wey no dey convert {{symbol}} to DeHub tokens."
   },
   "postOptions": {
+    "embed": "Embed",
+    "copyEmbedCode": "Copy embed code",
+    "embedCodeCopied": "Embed code don copy",
     "options": "Options",
     "sendTip": "Send Tip",
     "queue": "Queue",

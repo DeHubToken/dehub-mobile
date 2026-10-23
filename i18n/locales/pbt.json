@@ -981,6 +981,9 @@
     "tokenAmount": "{{amount}} ټوکنونه"
   },
   "postOptions": {
+    "embed": "ښخول",
+    "copyEmbedCode": "د ښخولو کوډ کاپي کړئ",
+    "embedCodeCopied": "د ښخولو کوډ کاپي شو",
     "options": "اختیارونه",
     "sendTip": "ټپ ولیږئ",
     "queue": "قطار",

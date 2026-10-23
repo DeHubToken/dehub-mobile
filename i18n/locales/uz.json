@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Joylashtirish",
+    "copyEmbedCode": "Joylashtirish kodini nusxalash",
+    "embedCodeCopied": "Joylashtirish kodi nusxalandi",
     "options": "Parametrlar",
     "sendTip": "Tip yuborish",
     "queue": "Navbat",

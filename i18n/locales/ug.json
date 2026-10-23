@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} توكن"
   },
   "postOptions": {
+    "embed": "سىڭدۈرۈش",
+    "copyEmbedCode": "سىڭدۈرۈش كودىنى كۆچۈرۈش",
+    "embedCodeCopied": "سىڭدۈرۈش كودى كۆچۈرۈلدى",
     "options": "تاللانمىلار",
     "sendTip": "ئىئانە ئەۋەتىش",
     "queue": "نۆۋەت",

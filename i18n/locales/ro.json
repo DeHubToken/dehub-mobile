@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokenuri"
   },
   "postOptions": {
+    "embed": "Încorporează",
+    "copyEmbedCode": "Copiază codul de încorporare",
+    "embedCodeCopied": "Codul de încorporare a fost copiat",
     "options": "Opțiuni",
     "sendTip": "Trimite sugestia",
     "queue": "Coadă de așteptare",

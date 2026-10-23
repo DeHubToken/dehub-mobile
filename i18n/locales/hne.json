@@ -980,6 +980,9 @@
     "tokenAmount": "{{amount}} टोकन"
   },
   "postOptions": {
+    "embed": "एम्बेड",
+    "copyEmbedCode": "एम्बेड कोड कॉपी करव",
+    "embedCodeCopied": "एम्बेड कोड कॉपी हो गे",
     "options": "विकल्प",
     "sendTip": "टिप भेजव",
     "queue": "कतार",

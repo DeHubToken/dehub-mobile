@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokenů"
   },
   "postOptions": {
+    "embed": "Vložit",
+    "copyEmbedCode": "Kopírovat kód pro vložení",
+    "embedCodeCopied": "Kód pro vložení zkopírován",
     "options": "Možnosti",
     "sendTip": "Poslat spropitné",
     "queue": "Fronta",

@@ -982,6 +982,9 @@
     "payViaBridgeDpay": "O kɔ, a ye wari di a ma. A ye wari di a ma."
   },
   "postOptions": {
+    "embed": "Don kɔnɔ",
+    "copyEmbedCode": "Don-kɔnɔ kode kopi",
+    "embedCodeCopied": "Don-kɔnɔ kode kopira",
     "options": "Sugandiliw",
     "sendTip": "Bonya ci",
     "queue": "Ɲɔgɔn kɔ",

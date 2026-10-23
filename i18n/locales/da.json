@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Indlejr",
+    "copyEmbedCode": "Kopiér indlejringskode",
+    "embedCodeCopied": "Indlejringskode kopieret",
     "options": "Valgmuligheder",
     "sendTip": "Send drikkepenge",
     "queue": "Kø",

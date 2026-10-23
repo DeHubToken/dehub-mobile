@@ -1124,6 +1124,9 @@
     "tokenAmount": "{{amount}} رموز"
   },
   "postOptions": {
+    "embed": "تضمين",
+    "copyEmbedCode": "نسخ رمز التضمين",
+    "embedCodeCopied": "تم نسخ رمز التضمين",
     "skippableSectionsDesc": "حدّد الرعايات والمقدمات أو صوّت عليها",
     "skippableSections": "أقسام قابلة للتخطي",
     "options": "خيارات",

@@ -988,6 +988,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Inbed",
+    "copyEmbedCode": "Kopieer inbedkode",
+    "embedCodeCopied": "Inbedkode gekopieer",
     "options": "Opsies",
     "sendTip": "Stuur Wenner",
     "queue": "Ry",
