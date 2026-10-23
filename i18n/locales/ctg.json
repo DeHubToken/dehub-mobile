@@ -1611,6 +1611,8 @@
     }
   },
   "notifications": {
+    "stores": "দোকান",
+    "features": "ফিচার",
     "title": "জানাইন",
     "loadFailed": "নোটিফিকেশন লোড অইল না",
     "markAllRead": "সব পড়া চিহ্নিত গরো",

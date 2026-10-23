@@ -1556,6 +1556,8 @@
     }
   },
   "notifications": {
+    "stores": "المتاجر",
+    "features": "الميزات",
     "title": "الإشعارات",
     "loadFailed": "ما قدرنا نجيب الإشعارات",
     "markAllRead": "قرأ الكل",

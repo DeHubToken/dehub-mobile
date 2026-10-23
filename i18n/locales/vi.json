@@ -1573,6 +1573,8 @@
     }
   },
   "notifications": {
+    "stores": "Cửa hàng",
+    "features": "Tính năng",
     "title": "Thông báo",
     "loadFailed": "Không thể tải thông báo",
     "markAllRead": "Đánh dấu đã đọc hết",

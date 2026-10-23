@@ -1561,6 +1561,8 @@
     }
   },
   "notifications": {
+    "stores": "Negozi",
+    "features": "Funzionalità",
     "title": "Notifiche",
     "loadFailed": "Impossibile caricare le notifiche",
     "markAllRead": "Segna tutto come letto",
@@ -3246,6 +3248,7 @@
       "years": "{{count}} a"
     },
     "chatPanel": {
+      "jumpToLatest": "Vai ai più recenti",
       "anon": "Anon",
       "edited": "modificato",
       "deleteTitle": "Elimina messaggio",

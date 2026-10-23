@@ -1639,6 +1639,8 @@
     "addBookmark": "বুকমার্ক দেও"
   },
   "notifications": {
+    "stores": "দোকান",
+    "features": "ফিচার",
     "title": "খবর",
     "loadFailed": "নোটিফিকেশন লোড অইল না",
     "markAllRead": "সব পড়া মার্ক করো",

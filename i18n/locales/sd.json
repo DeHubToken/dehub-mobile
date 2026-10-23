@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "دڪان",
+    "features": "خاصيتون",
     "title": "اطلاعون",
     "loadFailed": "نوٽيفڪيشن لوڊ نه ٿي سگهيا",
     "markAllRead": "سڀ پڙهيل نشان ڪريو",

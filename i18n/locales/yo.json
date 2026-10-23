@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "Àwọn ilé ìtajà",
+    "features": "Àwọn ẹ̀ya ara",
     "title": "Ìwífúnni",
     "loadFailed": "Kò lè gbé àwọn ìfitónilétí wọlé",
     "markAllRead": "Samisi gbogbo rẹ̀ bíi pé a ti kà",

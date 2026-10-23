@@ -1558,6 +1558,8 @@
     }
   },
   "notifications": {
+    "stores": "Shaguna",
+    "features": "Fasaloli",
     "title": "Sanarwa",
     "loadFailed": "Ba a iya loda sanarwa ba",
     "markAllRead": "Yi wa duka alama an karanta",

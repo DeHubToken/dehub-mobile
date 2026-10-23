@@ -1553,6 +1553,8 @@
     }
   },
   "notifications": {
+    "stores": "Butikiw",
+    "features": "Fɛɛrɛw",
     "title": "Kunnafoniw",
     "loadFailed": "Kunnafoniw ma se ka ta",
     "markAllRead": "A bɛɛ kalanna",

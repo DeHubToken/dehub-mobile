@@ -1558,6 +1558,8 @@
     }
   },
   "notifications": {
+    "stores": "دکان",
+    "features": "خاصیتاں",
     "title": "اطلاع",
     "loadFailed": "نوٹیفکیشن لوڈ نہ تھی سگے",
     "markAllRead": "سارے پڑھے نشان لاؤ",

@@ -1549,6 +1549,8 @@
     }
   },
   "notifications": {
+    "stores": "ድኳናት",
+    "features": "ባህርያት",
     "title": "ምልክታታት",
     "loadFailed": "መልእኽትታት ክጽዓን ኣይተኻእለን",
     "markAllRead": "ኩሉ ከም ዝተነበ ምልክት ግበር",

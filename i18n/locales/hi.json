@@ -1567,6 +1567,8 @@
     }
   },
   "notifications": {
+    "stores": "स्टोर",
+    "features": "सुविधाएँ",
     "title": "सूचनाएँ",
     "loadFailed": "सूचनाएँ लोड नहीं हो सकीं",
     "markAllRead": "सभी को पढ़ा हुआ चिह्नित करें",

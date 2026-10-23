@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "Dyqane",
+    "features": "Veçori",
     "title": "Njoftimet",
     "loadFailed": "Njoftimet nuk u ngarkuan dot",
     "markAllRead": "Shëno të gjitha si të lexuara",

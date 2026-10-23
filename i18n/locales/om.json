@@ -1572,6 +1572,8 @@
     }
   },
   "notifications": {
+    "stores": "Suuqiiwwan",
+    "features": "Amaloota",
     "title": "Beeksisa",
     "loadFailed": "Beeksisawwan fe'uun hin danda'amne",
     "markAllRead": "Hundaa dubbifame jedhi",

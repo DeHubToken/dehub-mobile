@@ -333,6 +333,8 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "shortsEnabledDesc": "إظهار تبويب خلاصة Shorts ودوارات Shorts على الصفحة الرئيسية.",
+    "shortsEnabled": "مقاطع قصيرة",
     "postingChain": "شبكة النشر",
     "showOnline": "اعرض عندما أكون متصلاً بالإنترنت",
     "showOnlineDesc": "يرى الأشخاص الذين تراسلهم نقطة خضراء بجوار اسمك أثناء استخدام DeHub",
@@ -1676,6 +1678,8 @@
     }
   },
   "notifications": {
+    "stores": "المتاجر",
+    "features": "الميزات",
     "title": "الإشعارات",
     "loadFailed": "تعذّر تحميل الإشعارات",
     "markAllRead": "تحديد الكل كمقروء",
@@ -3524,6 +3528,7 @@
       "years": "{{count}} سنة"
     },
     "chatPanel": {
+      "jumpToLatest": "الانتقال إلى الأحدث",
       "anon": "مجهول",
       "edited": "تم التعديل",
       "deleteTitle": "حذف الرسالة",

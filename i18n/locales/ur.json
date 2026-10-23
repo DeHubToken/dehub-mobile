@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "اسٹورز",
+    "features": "خصوصیات",
     "title": "اطلاعات",
     "loadFailed": "اطلاعات لوڈ نہیں ہو سکیں",
     "markAllRead": "سب پڑھا ہوا نشان زد کریں",

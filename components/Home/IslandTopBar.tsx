@@ -12,7 +12,7 @@ import NavPillSurface, { NAV_PILL_RADIUS, NAV_PILL_SHADOW } from "../ui/NavPillS
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
 import { getAvatarUrl } from "../../libs/misc";
-import { FEED_NAV_ITEMS } from "./FeedNavBar";
+import { useFeedNavItems } from "./FeedNavBar";
 import FeedPillPullEffect from './FeedPillPullEffect';
 import type { HomePullMotion } from '../../context/HomePullRefreshContext';
 
@@ -99,7 +99,8 @@ export const IslandCapsule = memo(function IslandCapsule({
     () => requireAuth(() => navigation.navigate(ScreenNames.Notifications)),
     [navigation, requireAuth],
   );
-  const tab = FEED_NAV_ITEMS[activeIndex] ?? FEED_NAV_ITEMS[0];
+  const feedNavItems = useFeedNavItems();
+  const tab = feedNavItems[activeIndex] ?? feedNavItems[0];
   const label = t(TAB_LABEL_KEYS[tab.postType] ?? "feed.home");
   // Both controls have a fixed 28pt box. Avoid feeding Android layout
   // measurements back into their parent width on every layout pass.
@@ -172,11 +173,12 @@ export const IslandFeedMenu = memo(function IslandFeedMenu({
   const { t } = useTranslation();
   const { requireAuth } = useAuthActions();
   const navigation = useNavigation<any>();
+  const feedNavItems = useFeedNavItems();
   return (
     <Animated.View entering={menuEnter} exiting={menuExit} pointerEvents="box-none" style={styles.menuWrap}>
       <View style={styles.menu}>
         <NavPillSurface />
-        {FEED_NAV_ITEMS.map((item, index) => {
+        {feedNavItems.map((item, index) => {
           const current = index === activeIndex;
           return (
             <Pressable
