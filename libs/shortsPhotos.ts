@@ -17,7 +17,7 @@ export function shortsPhotoMedia(post: PhotoPost, allowSilent = false) {
     .filter((url): url is string => typeof url === 'string' && !!url.trim() &&
       (/^https?:/i.test(url) || !/^[a-z][a-z\d+.-]*:/i.test(url))));
   if ((!allowSilent && !sound.soundtrackUrl) || !imageUrls.length) return undefined;
-  return { ...sound, imageUrls, videoUrl: '', thumbnail: imageUrls[0],
+  return { ...sound, imageUrls, videoUrl: '', hlsUrl: undefined, thumbnail: imageUrls[0],
     transcodingStatus: undefined,
     description: (post.description || '').replace(/\[soundtrack:[^\]]*\]/g, '').trim(),
     sound: [sound.soundtrackTitle, sound.soundtrackCreator].filter(Boolean).join(' — ') };
