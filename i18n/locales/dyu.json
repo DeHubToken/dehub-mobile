@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Kɔnɔkow lasɔmini",
+    "placeholder": "I ka lasɔmini sɛbɛn yan",
+    "add": "Kɔnɔkow lasɔmini fara a kan",
+    "remove": "Kɔnɔkow lasɔmini bɔ",
+    "show": "Post jira"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Ɲɛfɔli fara a kan",

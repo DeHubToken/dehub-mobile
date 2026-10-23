@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Cảnh báo nội dung",
+    "placeholder": "Viết cảnh báo của bạn ở đây",
+    "add": "Thêm cảnh báo nội dung",
+    "remove": "Xóa cảnh báo nội dung",
+    "show": "Hiện bài đăng"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Thêm mô tả",

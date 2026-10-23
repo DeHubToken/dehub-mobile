@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Upozorenje o sadržaju",
+    "placeholder": "Ovdje napišite upozorenje",
+    "add": "Dodaj upozorenje o sadržaju",
+    "remove": "Ukloni upozorenje o sadržaju",
+    "show": "Prikaži objavu"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Dodaj opis",

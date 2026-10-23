@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Innholdsadvarsel",
+    "placeholder": "Skriv advarselen din her",
+    "add": "Legg til innholdsadvarsel",
+    "remove": "Fjern innholdsadvarsel",
+    "show": "Vis innlegg"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Legg til en beskrivelse",

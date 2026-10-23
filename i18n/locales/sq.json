@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Paralajërim për përmbajtjen",
+    "placeholder": "Shkruaj paralajërimin këtu",
+    "add": "Shto paralajërim për përmbajtjen",
+    "remove": "Hiq paralajërimin për përmbajtjen",
+    "show": "Shfaq postimin"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Shto një përshkrim",

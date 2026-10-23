@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "İçerik uyarısı",
+    "placeholder": "Uyarınızı buraya yazın",
+    "add": "İçerik uyarısı ekle",
+    "remove": "İçerik uyarısını kaldır",
+    "show": "Gönderiyi göster"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Açıklama ekle",

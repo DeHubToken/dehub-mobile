@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Isexwayiso sokuqukethwe",
+    "placeholder": "Bhala isexwayiso sakho lapha",
+    "add": "Engeza isexwayiso sokuqukethwe",
+    "remove": "Susa isexwayiso sokuqukethwe",
+    "show": "Bonisa okuthunyelwe"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Engeza incazelo",

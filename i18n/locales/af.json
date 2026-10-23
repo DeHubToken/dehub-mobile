@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Inhoudwaarskuwing",
+    "placeholder": "Skryf jou waarskuwing hier",
+    "add": "Voeg inhoudwaarskuwing by",
+    "remove": "Verwyder inhoudwaarskuwing",
+    "show": "Wys plasing"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Voeg 'n beskrywing by",

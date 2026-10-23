@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Avís de contingut",
+    "placeholder": "Escriu l'avís aquí",
+    "add": "Afegeix un avís de contingut",
+    "remove": "Treu l'avís de contingut",
+    "show": "Mostra la publicació"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Afegeix una descripció",

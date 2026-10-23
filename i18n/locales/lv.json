@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Satura brīdinājums",
+    "placeholder": "Uzrakstiet savu brīdinājumu šeit",
+    "add": "Pievienot satura brīdinājumu",
+    "remove": "Noņemt satura brīdinājumu",
+    "show": "Rādīt ziņu"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Pievienot aprakstu",

@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Innehållsvarning",
+    "placeholder": "Skriv din varning här",
+    "add": "Lägg till innehållsvarning",
+    "remove": "Ta bort innehållsvarning",
+    "show": "Visa inlägg"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Lägg till en beskrivning",

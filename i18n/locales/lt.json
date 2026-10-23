@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Įspėjimas dėl turinio",
+    "placeholder": "Įspėjimą parašykite čia",
+    "add": "Pridėti įspėjimą dėl turinio",
+    "remove": "Pašalinti įspėjimą dėl turinio",
+    "show": "Rodyti įrašą"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Pridėti aprašymą",

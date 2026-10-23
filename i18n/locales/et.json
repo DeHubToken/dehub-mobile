@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Sisuhoiatus",
+    "placeholder": "Kirjuta oma hoiatus siia",
+    "add": "Lisa sisuhoiatus",
+    "remove": "Eemalda sisuhoiatus",
+    "show": "Näita postitust"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Lisa kirjeldus",
