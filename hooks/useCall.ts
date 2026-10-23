@@ -1,3 +1,4 @@
+import { ensureWalletSession } from '../libs/wallet-session';
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { Platform, PermissionsAndroid, AppState } from "react-native";
 import createAgoraRtcEngine, {
@@ -273,7 +274,10 @@ export function useCall(): UseCallReturn {
       const call = data as CallSession;
       if (generationRef.current !== generation) { await markEnded(call); return; }
       publishCall(call);
-      void apiClient.post("/push/call-ring", { sessionId: call.id }, { isAuthRequired: true })
+      void ensureWalletSession(call.caller_address).then(session => {
+        if (!session) throw new Error("Signed call session unavailable");
+        return apiClient.post("/push/call-ring", { sessionId: call.id, walletSession: session.token }, { isAuthRequired: true });
+      })
         .catch(error => log.warn("Call ring push failed", error));
       callMessageHandlerRef.current?.(callType === "video" ? "📹 Video call" : "📞 Voice call");
       const joined = await joinChannel(call, generation);
