@@ -4892,7 +4892,28 @@
     "interestedCount": "{{count}} liana",
     "loadFailed": "Tsy voaraikitra ny hetsika"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Mpitsidika isan'andro", "dailyHint": "mpitsidika tsy mitovy isan'andro", "empty": "Mbola tsy misy angona ho an'ity vanim-potoana ity"},
+    "definitions": {
+      "visitorsTerm": "Mpitsidika"
+    },
+    "unavailable": {
+      "title": "Tsy misy antontan'isa amin'izao fotoana izao"
+    },
+    "browsers": {
+      "window": "araka ny fijerena pejy",
+      "title": "Mpitety tranonkala"
+    },
+    "countries": {
+      "window": "{{days}} andro lasa",
+      "title": "Firenena voalohany"
+    },
+    "tile": {
+      "inRange": "amin'ity elanelana ity",
+      "requestsLabel": "Fangatahana",
+      "pageViews": "Fijerena pejy",
+      "soFarToday": "androany hatramin'izao, UTC",
+      "visitorsToday": "Mpitsidika androany"
+    },
     "feedback": {
       "title": "Fampahalalana",
       "intro": "Efa nanao fampiasana DeHub mandritra ny fotoana? Lazao aminay hoe ahoana ny nohitanao. Tsara, ratsy na manokana — lahat amin izany dia vakina. Raha faly ianao hahavela anay hanonona anao, asio ny boaty ary mety hampiasainay izany amin ny posta, video na amin ny tranonkala.",
@@ -6774,6 +6795,9 @@
       "sold": "Namidy {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Mbola tsy misy angona ho an'ity vanim-potoana ity",
+      "dailyHint": "mpitsidika tsy mitovy isan'andro",
+      "daily": "Mpitsidika isan'andro",
       "bookStarts": "Manomboka eto ny boky",
       "firstOrder": "Apetraho ny voalohany mba hanampiana ny liquidity.",
       "waiting": "Miandry ny vidin'ny angona",

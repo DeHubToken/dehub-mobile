@@ -4829,7 +4829,28 @@
     "interestedCount": "{{count}} dey interested",
     "loadFailed": "We no fit load di events"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Visitor dem per dei", "dailyHint": "unique visitor dem per dei", "empty": "No data dei for dis window yet"},
+    "definitions": {
+      "visitorsTerm": "Visitor dem"
+    },
+    "unavailable": {
+      "title": "Stats no dei available rait nau"
+    },
+    "browsers": {
+      "window": "bai page view dem",
+      "title": "Browser dem"
+    },
+    "countries": {
+      "window": "las {{days}} dei dem",
+      "title": "Top country dem"
+    },
+    "tile": {
+      "inRange": "fo dis range",
+      "requestsLabel": "Request dem",
+      "pageViews": "Page view dem",
+      "soFarToday": "so far tudei, UTC",
+      "visitorsToday": "Visitor dem tudei"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "You don dey use DeHub fo some time? Tell we how e don be. Good, bad or someting particular — we di read all. If you gree make we quote you, tick di box and we fit use am fo post, vidio or fo di site.",
@@ -6662,6 +6683,9 @@
       "noMyOrders": "You no get any open order for this pool."
     },
     "chart": {
+      "empty": "No data dei for dis window yet",
+      "dailyHint": "unique visitor dem per dei",
+      "daily": "Visitor dem per dei",
       "depthLabel": "Hau order book deep by USD price",
       "bookStarts": "The book start from here",
       "firstOrder": "Put di first order fo add liquidity.",

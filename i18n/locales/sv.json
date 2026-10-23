@@ -4883,7 +4883,28 @@
     "interestedCount": "{{count}} intresserade",
     "loadFailed": "Det gick inte att läsa in evenemang"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Besökare per dag", "dailyHint": "unika besökare per dag", "empty": "Ingen data för den här perioden ännu"},
+    "definitions": {
+      "visitorsTerm": "Besökare"
+    },
+    "unavailable": {
+      "title": "Statistiken är inte tillgänglig just nu"
+    },
+    "browsers": {
+      "window": "efter sidvisningar",
+      "title": "Webbläsare"
+    },
+    "countries": {
+      "window": "senaste {{days}} dagarna",
+      "title": "Toppländer"
+    },
+    "tile": {
+      "inRange": "i det här intervallet",
+      "requestsLabel": "Förfrågningar",
+      "pageViews": "Sidvisningar",
+      "soFarToday": "hittills i dag, UTC",
+      "visitorsToday": "Besökare i dag"
+    },
     "feedback": {
       "title": "Återkoppling",
       "intro": "Har du använt DeHub ett tag? Berätta vad det har varit som. Bra, dåligt eller specifikt — allt läses. Om du är glad för att vi citerar dig, bocka i rutan och vi kan komma att använda det i inlägg, videor eller på webbplatsen.",
@@ -6774,6 +6795,9 @@
       "sold": "Såld {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Ingen data för den här perioden ännu",
+      "dailyHint": "unika besökare per dag",
+      "daily": "Besökare per dag",
       "bookStarts": "Boken börjar här",
       "firstOrder": "Lägg den första beställningen för att lägga till likviditet.",
       "waiting": "Väntar på prisdata",

@@ -4883,7 +4883,28 @@
     "interestedCount": "{{count}} érdeklődik",
     "loadFailed": "Az események betöltése sikertelen"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Látogatók naponta", "dailyHint": "egyedi látogatók naponta", "empty": "Ehhez az időszakhoz még nincs adat"},
+    "definitions": {
+      "visitorsTerm": "Látogatók"
+    },
+    "unavailable": {
+      "title": "A statisztika most nem érhető el"
+    },
+    "browsers": {
+      "window": "oldalmegtekintések szerint",
+      "title": "Böngészők"
+    },
+    "countries": {
+      "window": "utolsó {{days}} nap",
+      "title": "Vezető országok"
+    },
+    "tile": {
+      "inRange": "ebben a tartományban",
+      "requestsLabel": "Kérések",
+      "pageViews": "Oldalmegtekintések",
+      "soFarToday": "ma eddig, UTC szerint",
+      "visitorsToday": "Mai látogatók"
+    },
     "feedback": {
       "title": "Visszajelzés",
       "intro": "Már egy ideje használod a DeHubot? Mesélj nekünk, milyen volt. Jó, rossz vagy konkrét — mindent elolvasunk. Ha szívesen engedélyezed, hogy idézzünk, jelöld be a négyzetet, és felhasználhatjuk bejegyzésekben, videókban vagy az oldalon.",
@@ -6774,6 +6795,9 @@
       "sold": "Eladva:{{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Ehhez az időszakhoz még nincs adat",
+      "dailyHint": "egyedi látogatók naponta",
+      "daily": "Látogatók naponta",
       "bookStarts": "A könyv itt kezdődik",
       "firstOrder": "A likviditás hozzáadásához adja le az első megrendelést.",
       "waiting": "Várakozás az áradatokra",

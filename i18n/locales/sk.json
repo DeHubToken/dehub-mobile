@@ -4987,7 +4987,28 @@
     "interestedCount": "{{count}} má záujem",
     "loadFailed": "Podujatia sa nepodarilo načítať"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Návštevníci za deň", "dailyHint": "jedineční návštevníci za deň", "empty": "Pre toto obdobie zatiaľ nie sú údaje"},
+    "definitions": {
+      "visitorsTerm": "Návštevníci"
+    },
+    "unavailable": {
+      "title": "Štatistiky teraz nie sú dostupné"
+    },
+    "browsers": {
+      "window": "podľa zobrazení stránok",
+      "title": "Prehliadače"
+    },
+    "countries": {
+      "window": "posledných {{days}} dní",
+      "title": "Najčastejšie krajiny"
+    },
+    "tile": {
+      "inRange": "v tomto rozsahu",
+      "requestsLabel": "Požiadavky",
+      "pageViews": "Zobrazenia stránok",
+      "soFarToday": "dnes doteraz, UTC",
+      "visitorsToday": "Návštevníci dnes"
+    },
     "feedback": {
       "title": "Spätná väzba",
       "intro": "Používate DeHub už nejaký čas? Povedzte nám, ako sa vám to páči. Dobré, zlé alebo špecifické — všetko čítame. Ak nám dovolíte vás citovať, zaškrtnite políčko a môžeme to použiť v príspevkoch, videách alebo na webe.",
@@ -6879,6 +6900,9 @@
       "sold": "Predané {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Pre toto obdobie zatiaľ nie sú údaje",
+      "dailyHint": "jedineční návštevníci za deň",
+      "daily": "Návštevníci za deň",
       "bookStarts": "Kniha začína tu",
       "firstOrder": "Zadajte prvý príkaz na pridanie likvidity.",
       "waiting": "Čaká sa na údaje o cene",

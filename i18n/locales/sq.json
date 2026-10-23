@@ -4879,7 +4879,28 @@
     "interestedCount": "{{count}} të interesuar",
     "loadFailed": "Ngjarjet nuk u ngarkuan dot"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Vizitorë në ditë", "dailyHint": "vizitorë unikë në ditë", "empty": "Ende nuk ka të dhëna për këtë periudhë"},
+    "definitions": {
+      "visitorsTerm": "Vizitorë"
+    },
+    "unavailable": {
+      "title": "Statistikat nuk janë të disponueshme tani"
+    },
+    "browsers": {
+      "window": "sipas shikimeve të faqeve",
+      "title": "Shfletues"
+    },
+    "countries": {
+      "window": "{{days}} ditët e fundit",
+      "title": "Vendet kryesore"
+    },
+    "tile": {
+      "inRange": "në këtë interval",
+      "requestsLabel": "Kërkesa",
+      "pageViews": "Shikime faqesh",
+      "soFarToday": "sot deri tani, UTC",
+      "visitorsToday": "Vizitorë sot"
+    },
     "feedback": {
       "title": "Përshtypje",
       "intro": "Jeni duke përdorur DeHub për një kohë? Tregoni na se si ka qenë. Mirë, keq ose specifik — të gjitha lexohen. Nëse jeni të lumtur që ne të ju citojmë, shënoni kutinë dhe mund ta përdorim në postime, video ose në faqe.",
@@ -6769,6 +6790,9 @@
       "sold": "Shitur {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Ende nuk ka të dhëna për këtë periudhë",
+      "dailyHint": "vizitorë unikë në ditë",
+      "daily": "Vizitorë në ditë",
       "bookStarts": "Libri fillon këtu",
       "firstOrder": "Vendosni rendin e parë për të shtuar likuiditetin.",
       "waiting": "Në pritje të të dhënave të çmimeve",

@@ -4867,7 +4867,28 @@
     "interestedCount": "{{count}} suna sha'awa",
     "loadFailed": "An kasa loda abubuwan"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Baƙi kowace rana", "dailyHint": "baƙi na musamman kowace rana", "empty": "Har yanzu babu bayanai don wannan lokacin"},
+    "definitions": {
+      "visitorsTerm": "Baƙi"
+    },
+    "unavailable": {
+      "title": "Kididdiga ba ta samuwa yanzu"
+    },
+    "browsers": {
+      "window": "bisa kallon shafuka",
+      "title": "Burauza"
+    },
+    "countries": {
+      "window": "kwanaki {{days}} da suka wuce",
+      "title": "Manyan ƙasashe"
+    },
+    "tile": {
+      "inRange": "a wannan kewayon",
+      "requestsLabel": "Buƙatu",
+      "pageViews": "Kallon shafuka",
+      "soFarToday": "har yanzu yau, UTC",
+      "visitorsToday": "Baƙi yau"
+    },
     "feedback": {
       "title": "Bayani",
       "intro": "Kun yi amfani da DeHub na waje? Gaya mana abin da ya kasance. Kyau, mummuna ko takaici - duk shi ana karantawa. Idan kun yi farin ciki don mu yi amfani da cikakken magana naka, bugi akwatin kuma kila mu yi amfani da shi a jigogin jiya, bidiyo ko a gida.",
@@ -6749,6 +6770,9 @@
       "sold": "An sayar {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Har yanzu babu bayanai don wannan lokacin",
+      "dailyHint": "baƙi na musamman kowace rana",
+      "daily": "Baƙi kowace rana",
       "bookStarts": "Littafin ya fara a nan",
       "firstOrder": "Sanya umarni na farko don ƙara ruwa.",
       "waiting": "Jiran farashin bayanai",
