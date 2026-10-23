@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "መን ክጠቅስ ይኽእል",
+    "public": "ዝኾነ ሰብ",
+    "followers": "ተኸተልቲ",
+    "nobody": "ኣነ ጥራይ",
+    "off": "ደራሲ ምጥቃስ ኣጥፊኡ ኣሎ",
+    "removed": "ደራሲ ጽሑፉ ካብዚ ጥቕሲ ኣልጊሱ",
+    "remove": "ኣልግስ",
+    "removedToast": "ጽሑፍካ ካብዚ ጥቕሲ ተኣልዩ",
+    "removeFailed": "ጽሑፍካ ካብ ጥቕሲ ክእለ ኣይተኻእለን",
+    "refused": "ደራሲ ነዚ ጽሑፍ ክትጠቕሶ ኣይፈቕደልካን"
+  },
   "contentWarning": {
     "label": "ናይ ትሕዝቶ መጠንቀቕታ",
     "placeholder": "መጠንቀቕታኻ ኣብዚ ጽሓፍ",

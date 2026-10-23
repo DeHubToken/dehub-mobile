@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Wie kan citeren",
+    "public": "Iedereen",
+    "followers": "Volgers",
+    "nobody": "Alleen ik",
+    "off": "De auteur heeft citeren uitgezet",
+    "removed": "De auteur heeft het bericht uit dit citaat gehaald",
+    "remove": "Verwijderen",
+    "removedToast": "Je bericht is uit dit citaat gehaald",
+    "removeFailed": "Kan je bericht niet uit het citaat halen",
+    "refused": "De auteur laat je dit bericht niet citeren"
+  },
   "contentWarning": {
     "label": "Inhoudswaarschuwing",
     "placeholder": "Schrijf hier je waarschuwing",

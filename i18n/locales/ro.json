@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Cine poate cita",
+    "public": "Oricine",
+    "followers": "Urmăritori",
+    "nobody": "Doar eu",
+    "off": "Autorul a dezactivat citările",
+    "removed": "Autorul și-a retras postarea din această citare",
+    "remove": "Elimină",
+    "removedToast": "Postarea ta a fost eliminată din această citare",
+    "removeFailed": "Postarea ta nu a putut fi eliminată din citare",
+    "refused": "Autorul nu îți permite să citezi această postare"
+  },
   "contentWarning": {
     "label": "Avertisment de conținut",
     "placeholder": "Scrie avertismentul aici",

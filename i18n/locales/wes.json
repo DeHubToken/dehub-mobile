@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Who fit quote",
+    "public": "Anybody",
+    "followers": "Followers",
+    "nobody": "Na only me",
+    "off": "The person weh post am don off quote",
+    "removed": "The person weh post am don comot yi post from this quote",
+    "remove": "Comot am",
+    "removedToast": "Your post don comot from this quote",
+    "removeFailed": "We no fit comot your post from the quote",
+    "refused": "The person weh post am no gree make you quote this post"
+  },
   "contentWarning": {
     "label": "Content warning",
     "placeholder": "Write your warning for here",

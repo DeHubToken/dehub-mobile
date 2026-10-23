@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Hvem kan citere",
+    "public": "Alle",
+    "followers": "Følgere",
+    "nobody": "Kun mig",
+    "off": "Forfatteren har slået citater fra",
+    "removed": "Forfatteren har fjernet sit opslag fra dette citat",
+    "remove": "Fjern",
+    "removedToast": "Dit opslag er fjernet fra dette citat",
+    "removeFailed": "Dit opslag kunne ikke fjernes fra citatet",
+    "refused": "Forfatteren tillader ikke, at du citerer dette opslag"
+  },
   "contentWarning": {
     "label": "Indholdsadvarsel",
     "placeholder": "Skriv din advarsel her",

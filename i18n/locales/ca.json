@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Qui pot citar",
+    "public": "Qualsevol",
+    "followers": "Seguidors",
+    "nobody": "Només jo",
+    "off": "L'autor ha desactivat les cites",
+    "removed": "L'autor ha retirat la seva publicació d'aquesta cita",
+    "remove": "Treu",
+    "removedToast": "La teva publicació s'ha retirat d'aquesta cita",
+    "removeFailed": "No s'ha pogut retirar la teva publicació de la cita",
+    "refused": "L'autor no et permet citar aquesta publicació"
+  },
   "contentWarning": {
     "label": "Avís de contingut",
     "placeholder": "Escriu l'avís aquí",

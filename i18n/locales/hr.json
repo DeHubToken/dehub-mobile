@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Tko može citirati",
+    "public": "Bilo tko",
+    "followers": "Pratitelji",
+    "nobody": "Samo ja",
+    "off": "Autor je isključio citiranje",
+    "removed": "Autor je uklonio svoju objavu iz ovog citata",
+    "remove": "Ukloni",
+    "removedToast": "Vaša objava uklonjena je iz ovog citata",
+    "removeFailed": "Vašu objavu nije moguće ukloniti iz citata",
+    "refused": "Autor vam ne dopušta citiranje ove objave"
+  },
   "contentWarning": {
     "label": "Upozorenje o sadržaju",
     "placeholder": "Ovdje napišite upozorenje",

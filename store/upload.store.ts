@@ -77,6 +77,8 @@ export interface SerializedUploadPayload {
   mediaDescriptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
+  /** Who may quote it. Absent means anyone. */
+  quotePolicy?: "followers" | "nobody";
 }
 
 export interface MintParams {

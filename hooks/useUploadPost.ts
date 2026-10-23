@@ -103,6 +103,8 @@ export type UploadPayload = {
   mediaDescriptions?: string[];
   /** Content warning: the post opens collapsed behind this one line. */
   spoilerText?: string;
+  /** Who may quote it. Absent means anyone. */
+  quotePolicy?: "followers" | "nobody";
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
 };
@@ -323,6 +325,7 @@ export function useUploadPost() {
         crossPostAccountIds: p.crossPostAccountIds,
         mediaDescriptions: p.mediaDescriptions,
         spoilerText: p.spoilerText,
+        quotePolicy: p.quotePolicy,
       };
 
       const isBounty = p.monetization.bountyEnabled;
@@ -402,6 +405,7 @@ export function useUploadPost() {
       quotedTokenId: number;
       mediaDescriptions?: string[];
       spoilerText?: string;
+      quotePolicy?: "followers" | "nobody";
     }): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
@@ -449,6 +453,7 @@ export function useUploadPost() {
           streamInfoJson: "{}",
           mediaDescriptions: p.mediaDescriptions,
           spoilerText: p.spoilerText,
+          quotePolicy: p.quotePolicy,
         },
         chainId: activeChainId,
         walletAddress: addr,

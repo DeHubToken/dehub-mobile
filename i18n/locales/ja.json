@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "引用できる人",
+    "public": "全員",
+    "followers": "フォロワー",
+    "nobody": "自分のみ",
+    "off": "投稿者は引用をオフにしています",
+    "removed": "投稿者がこの引用から投稿を削除しました",
+    "remove": "削除",
+    "removedToast": "この引用からあなたの投稿を削除しました",
+    "removeFailed": "引用からあなたの投稿を削除できませんでした",
+    "refused": "投稿者はあなたがこの投稿を引用することを許可していません"
+  },
   "contentWarning": {
     "label": "閲覧注意",
     "placeholder": "ここに注意書きを入力",

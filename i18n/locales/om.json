@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Eenyuutu caqasuu danda'a",
+    "public": "Nama kamiyyuu",
+    "followers": "Hordoftoota",
+    "nobody": "Ana qofa",
+    "off": "Barreessaan caqasuu cufeera",
+    "removed": "Barreessaan maxxansa isaa caqasa kana irraa haqeera",
+    "remove": "Haqi",
+    "removedToast": "Maxxansi kee caqasa kana irraa haqameera",
+    "removeFailed": "Maxxansa kee caqasa irraa haquun hin danda'amne",
+    "refused": "Barreessaan maxxansa kana akka caqastu siif hin hayyamu"
+  },
   "contentWarning": {
     "label": "Akeekkachiisa qabiyyee",
     "placeholder": "Akeekkachiisa kee asitti barreessi",

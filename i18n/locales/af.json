@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Wie kan aanhaal",
+    "public": "Enigiemand",
+    "followers": "Volgers",
+    "nobody": "Net ek",
+    "off": "Die outeur het aanhalings afgeskakel",
+    "removed": "Die outeur het hul plasing uit hierdie aanhaling verwyder",
+    "remove": "Verwyder",
+    "removedToast": "Jou plasing is uit hierdie aanhaling verwyder",
+    "removeFailed": "Kon nie jou plasing uit die aanhaling verwyder nie",
+    "refused": "Die outeur laat jou nie toe om hierdie plasing aan te haal nie"
+  },
   "contentWarning": {
     "label": "Inhoudwaarskuwing",
     "placeholder": "Skryf jou waarskuwing hier",
