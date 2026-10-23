@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Mga field ng profile",
+    "description": "Hanggang apat na dagdag na linya sa profile mo, gaya ng website o ng iyong pronouns.",
+    "label": "Label",
+    "content": "Nilalaman",
+    "save": "I-save ang mga field",
+    "saved": "Na-save ang mga field ng profile",
+    "failed": "Hindi na-save. Subukan ulit.",
+    "verified": "Na-verify na link",
+    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "I-filter ang mga notification mula sa",
     "description": "Piliin kung ano ang mangyayari kapag may taong labas sa iyong grupo na nakipag-ugnayan sa iyo. Naghihintay ang mga na-filter na notification sa Na-filter, walang badge at walang push.",

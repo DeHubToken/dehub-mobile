@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profielvelden",
+    "description": "Tot vier extra regels op je profiel, zoals een website of je voornaamwoorden.",
+    "label": "Label",
+    "content": "Inhoud",
+    "save": "Velden opslaan",
+    "saved": "Profielvelden opgeslagen",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
+    "verified": "Geverifieerde link",
+    "verifyHint": "Om een link te verifiëren, voeg je dit toe aan die pagina en sla je opnieuw op: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Meldingen filteren van",
     "description": "Kies wat er gebeurt als iemand buiten je kring met je communiceert. Gefilterde meldingen wachten onder Gefilterd, zonder badge en zonder pushmelding.",

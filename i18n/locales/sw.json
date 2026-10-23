@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Sehemu za wasifu",
+    "description": "Hadi mistari minne ya ziada kwenye wasifu wako, kama tovuti au viwakilishi vyako.",
+    "label": "Lebo",
+    "content": "Maudhui",
+    "save": "Hifadhi sehemu",
+    "saved": "Sehemu za wasifu zimehifadhiwa",
+    "failed": "Haikuhifadhiwa. Jaribu tena.",
+    "verified": "Kiungo kilichothibitishwa",
+    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Chuja arifa kutoka kwa",
     "description": "Chagua kinachotokea mtu aliye nje ya mduara wako anapoingiliana nawe. Arifa zilizochujwa husubiri chini ya Zilizochujwa, bila beji wala arifa ya kusukuma.",

@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Polia profilu",
+    "description": "Až štyri riadky navyše na vašom profile, napríklad web alebo vaše zámená.",
+    "label": "Označenie",
+    "content": "Obsah",
+    "save": "Uložiť polia",
+    "saved": "Polia profilu uložené",
+    "failed": "Neuložilo sa. Skúste to znova.",
+    "verified": "Overený odkaz",
+    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrovať upozornenia od",
     "description": "Vyberte, čo sa stane, keď s vami bude komunikovať niekto mimo vášho okruhu. Filtrované upozornenia čakajú v časti Filtrované, bez odznaku a bez push upozornenia.",

@@ -58,6 +58,7 @@ import { useIsUserLive } from "../../hooks/useIsUserLive";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import type { Community } from "../../types/community";
 import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
+import ProfileFieldsList from "./ProfileFieldsList";
 
 // Minimal header buttons: no glass slab, just a 1px outline, and a 44pt box so
 // losing the padded pill does not shrink the tap target.
@@ -503,6 +504,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               />
             </View>
           )}
+
+          <ProfileFieldsList fields={(user as any)?.profileFields} />
 
           {/* Joined */}
           {!!createdAtFormatted && (

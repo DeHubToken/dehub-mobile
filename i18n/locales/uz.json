@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profil maydonlari",
+    "description": "Profilingizda to'rttagacha qo'shimcha qator, masalan veb-sayt yoki olmoshlaringiz.",
+    "label": "Yorliq",
+    "content": "Mazmun",
+    "save": "Maydonlarni saqlash",
+    "saved": "Profil maydonlari saqlandi",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring.",
+    "verified": "Tasdiqlangan havola",
+    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Bildirishnomalarni filtrlash",
     "description": "Doirangizdan tashqaridagi kimdir siz bilan muloqot qilganda nima bo'lishini tanlang. Filtrlangan bildirishnomalar belgi va push'siz «Filtrlangan» bo'limida kutadi.",

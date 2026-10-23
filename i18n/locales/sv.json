@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profilfält",
+    "description": "Upp till fyra extra rader på din profil, till exempel en webbplats eller dina pronomen.",
+    "label": "Etikett",
+    "content": "Innehåll",
+    "save": "Spara fält",
+    "saved": "Profilfälten sparades",
+    "failed": "Det sparades inte. Försök igen.",
+    "verified": "Verifierad länk",
+    "verifyHint": "För att verifiera en länk lägger du till det här på den sidan och sparar igen: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrera aviseringar från",
     "description": "Välj vad som händer när någon utanför din krets interagerar med dig. Filtrerade aviseringar väntar under Filtrerat, utan märke och utan push.",

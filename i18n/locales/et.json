@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profiiliväljad",
+    "description": "Kuni neli lisarida sinu profiilil, näiteks veebisait või sinu asesõnad.",
+    "label": "Silt",
+    "content": "Sisu",
+    "save": "Salvesta väljad",
+    "saved": "Profiiliväljad salvestatud",
+    "failed": "Ei salvestunud. Proovi uuesti.",
+    "verified": "Kinnitatud link",
+    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtreeri teavitusi",
     "description": "Vali, mis juhtub, kui keegi väljastpoolt sinu ringi sinuga suhtleb. Filtreeritud teavitused ootavad jaotises Filtreeritud, ilma märgi ja tõuketeateta.",

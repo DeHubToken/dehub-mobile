@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Campos do perfil",
+    "description": "Até quatro linhas extras no seu perfil, como um site ou seus pronomes.",
+    "label": "Rótulo",
+    "content": "Conteúdo",
+    "save": "Salvar campos",
+    "saved": "Campos do perfil salvos",
+    "failed": "Não foi salvo. Tente de novo.",
+    "verified": "Link verificado",
+    "verifyHint": "Para verificar um link, adicione isto àquela página e salve de novo: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrar notificações de",
     "description": "Escolha o que acontece quando alguém fora do seu círculo interage com você. As notificações filtradas ficam em Filtradas, sem selo e sem notificação push.",
