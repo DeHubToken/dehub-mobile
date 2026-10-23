@@ -255,6 +255,9 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
 }
 
 async function processJob(job: UploadJob): Promise<void> {
+  // Jobs saved before quotes explicitly opted out did not record a mint
+  // choice. Quote mode had no such choice; recover them without a wallet.
+  if (job.isQuote && job.mintOptOut == null) job = { ...job, mintOptOut: true };
   const abortRef = getAbortRef(job.id);
   abortRef.current = false;
 
@@ -357,6 +360,10 @@ async function processJob(job: UploadJob): Promise<void> {
       if (!Number.isFinite(createdTokenId)) {
         throw new Error("Upload succeeded but no token id came back");
       }
+      // Older quote endpoints still return a mint authorization even with
+      // mintOptOut. Persist the off-chain choice so their expiry sweep cannot
+      // remove a successfully published quote a few minutes later.
+      if (job.isQuote && !result?.duplicate) await keepPostOffChain(createdTokenId);
       mintParams = { createdTokenId } as MintParams;
       uploadActions.updateStage(job.id, "processing", mintParams);
     } else {
