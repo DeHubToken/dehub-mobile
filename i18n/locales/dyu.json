@@ -2809,6 +2809,8 @@
     "yourFractions": "Oteekamu {{count}} ku bitundu {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS feed lien kopi",
+    "copyRssFeedHint": "Nin postw kɔlɔsi feed kalanbaga o kalanbaga la",
     "copyProfileUrl": "Profil URL kopi",
     "copyUsername": "Tɔgɔ kopi",
     "copyAddress": "Adirɛsi kopi",

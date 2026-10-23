@@ -2789,6 +2789,8 @@
     "yourFractions": "You get {{count}} out of {{total}} fraction dem"
   },
   "profileOptions": {
+    "copyRssFeed": "Copy RSS feed link",
+    "copyRssFeedHint": "Follow dis posts for any feed reader",
     "copyProfileUrl": "Copy profile URL",
     "copyUsername": "Copy username",
     "copyAddress": "Copy address",

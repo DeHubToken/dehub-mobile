@@ -2818,6 +2818,8 @@
     "yourFractions": "سىز {{total}} تارقاق پارچىنىڭ {{count}} نى ساقلاۋاتىسىز"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ئۇچۇر ئېقىمى ئۇلىنىشىنى كۆچۈرۈش",
+    "copyRssFeedHint": "بۇ يازمىلارنى خالىغان ئۇچۇر ئېقىمى ئوقۇغۇچتا ئەگىشىڭ",
     "copyProfileUrl": "ئارخىپ URL نى كۆچۈرۈش",
     "copyUsername": "ئىشلەتكۈچى نامىنى كۆچۈرۈش",
     "copyAddress": "ئادرېسنى كۆچۈرۈش",

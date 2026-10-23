@@ -2822,6 +2822,8 @@
     "yourFractions": "អ្នកកាន់ {{count}} នៃ {{total}} ភាគហ៊ុន"
   },
   "profileOptions": {
+    "copyRssFeed": "ចម្លងតំណ RSS feed",
+    "copyRssFeedHint": "តាមដានការបង្ហោះទាំងនេះនៅក្នុងកម្មវិធីអាន feed ណាមួយ",
     "copyProfileUrl": "ចម្លង URL ប្រវត្តិរូប",
     "copyUsername": "ចម្លងឈ្មោះអ្នកប្រើប្រាស់",
     "copyAddress": "ចម្លងអាសយដ្ឋាន",

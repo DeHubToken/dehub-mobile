@@ -2882,6 +2882,8 @@
     "yourFractions": "Hawak mo ang {{count}} ng {{total}} na bahagi"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopyahin ang link ng RSS feed",
+    "copyRssFeedHint": "Sundan ang mga post na ito sa anumang feed reader",
     "copyProfileUrl": "Kopyahin ang URL ng profile",
     "copyUsername": "Kopyahin ang username",
     "copyAddress": "Kopyahin ang address",

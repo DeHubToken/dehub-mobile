@@ -3143,6 +3143,8 @@
     "yourFractions": "{{total}} kesrin {{count}} tanesine sahipsiniz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS akışı bağlantısını kopyala",
+    "copyRssFeedHint": "Bu gönderileri herhangi bir akış okuyucuda takip edin",
     "copyProfileUrl": "Profil URL'sini kopyala",
     "copyUsername": "Kullanıcı adını kopyala",
     "copyAddress": "Adresi kopyala",

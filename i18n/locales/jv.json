@@ -2818,6 +2818,8 @@
     "yourFractions": "Sampeyan nyekel {{count}} saka {{total}} pecahan"
   },
   "profileOptions": {
+    "copyRssFeed": "Salin pranala feed RSS",
+    "copyRssFeedHint": "Tindakake kiriman iki ing pamaca feed apa wae",
     "copyProfileUrl": "Salin URL profil",
     "copyUsername": "Salin jeneng pangguna",
     "copyAddress": "Salin alamat",

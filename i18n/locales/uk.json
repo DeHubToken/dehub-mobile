@@ -3192,6 +3192,8 @@
     "yourFractions": "Ви володієте {{count}} з {{total}} часток"
   },
   "profileOptions": {
+    "copyRssFeed": "Копіювати посилання на RSS-стрічку",
+    "copyRssFeedHint": "Стежте за цими дописами в будь-якому читачі стрічок",
     "copyProfileUrl": "Копіювати URL профілю",
     "copyUsername": "Копіювати ім'я користувача",
     "copyAddress": "Копіювати адресу",

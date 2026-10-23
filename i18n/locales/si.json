@@ -2819,6 +2819,8 @@
     "yourFractions": "ඔබ {{total}} භාග වලින් {{count}} ක් සතුව ඇත"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS සංග්‍රහ සබැඳිය පිටපත් කරන්න",
+    "copyRssFeedHint": "ඕනෑම සංග්‍රහ කියවනයක මෙම පළ කිරීම් අනුගමනය කරන්න",
     "copyProfileUrl": "පැතිකඩ URL පිටපත් කරන්න",
     "copyUsername": "පරිශීලක නම පිටපත් කරන්න",
     "copyAddress": "ලිපිනය පිටපත් කරන්න",

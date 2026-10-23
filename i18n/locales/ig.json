@@ -2818,6 +2818,8 @@
     "yourFractions": "I jide {{count}} nke {{total}} fractions"
   },
   "profileOptions": {
+    "copyRssFeed": "Detụọ njikọ feed RSS",
+    "copyRssFeedHint": "Soro ozi ndị a n'ihe ọgụgụ feed ọ bụla",
     "copyProfileUrl": "Detụọ URL profaịlụ",
     "copyUsername": "Detụọ aha onye ọrụ",
     "copyAddress": "Detụọ adreesị",

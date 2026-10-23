@@ -2827,6 +2827,8 @@
     "yourFractions": "Jums pieder {{count}} no {{total}} daļām"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopēt RSS plūsmas saiti",
+    "copyRssFeedHint": "Sekojiet šīm ziņām jebkurā plūsmu lasītājā",
     "copyProfileUrl": "Kopēt profila URL",
     "copyUsername": "Kopēt lietotājvārdu",
     "copyAddress": "Kopēt adresi",

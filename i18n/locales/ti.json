@@ -2806,6 +2806,8 @@
     "yourFractions": "ንሕና {{count}} ካብ {{total}} ክፋላት ንሕዞ"
   },
   "profileOptions": {
+    "copyRssFeed": "ናይ RSS ፊድ መላግቦ ቅዳሕ",
+    "copyRssFeedHint": "ነዞም ጽሑፋት ኣብ ዝኾነ ኣንባቢ ፊድ ተኸታተሎም",
     "copyProfileUrl": "ናይ ፕሮፋይል URL ቅዳሕ",
     "copyUsername": "ናይ ተጠቃሚ ስም ቅዳሕ",
     "copyAddress": "ኣድራሻ ቅዳሕ",

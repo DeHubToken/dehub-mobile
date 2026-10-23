@@ -3333,6 +3333,8 @@
     "yourFractions": "Je bezit {{count}} van {{total}} fracties"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-feedlink kopiëren",
+    "copyRssFeedHint": "Volg deze berichten in elke feedlezer",
     "copyProfileUrl": "Profiel-URL kopiëren",
     "copyUsername": "Gebruikersnaam kopiëren",
     "copyAddress": "Adres kopiëren",

@@ -2820,6 +2820,8 @@
     "yourFractions": "侬持有 {{count}} 分之 {{total}} 份额"
   },
   "profileOptions": {
+    "copyRssFeed": "复制 RSS 订阅链接",
+    "copyRssFeedHint": "随便啥阅读器里侪好关注搿眼帖子",
     "copyProfileUrl": "复制资料链接",
     "copyUsername": "复制用户名",
     "copyAddress": "复制地址",

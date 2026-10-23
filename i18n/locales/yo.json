@@ -2818,6 +2818,8 @@
     "yourFractions": "O ni {{count}} ninu {{total}} awọn ipin"
   },
   "profileOptions": {
+    "copyRssFeed": "Daakọ ọna asopọ RSS feed",
+    "copyRssFeedHint": "Tẹle awọn ifiweranṣẹ wọnyi ni eyikeyi oluka feed",
     "copyProfileUrl": "Daakọ URL profaili",
     "copyUsername": "Daakọ orukọ olumulo",
     "copyAddress": "Daakọ adirẹsi",

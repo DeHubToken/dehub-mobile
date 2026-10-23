@@ -3147,6 +3147,8 @@
     "yourFractions": "Vous détenez {{count}} fractions sur {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "Copier le lien du flux RSS",
+    "copyRssFeedHint": "Suivez ces publications dans n'importe quel lecteur de flux",
     "copyProfileUrl": "Copier l'URL du profil",
     "copyUsername": "Copier le nom d'utilisateur",
     "copyAddress": "Copier l'adresse",

@@ -2841,6 +2841,8 @@
     "yourFractions": "Вы владеете {{count}} из {{total}} долей"
   },
   "profileOptions": {
+    "copyRssFeed": "Копировать ссылку на RSS-ленту",
+    "copyRssFeedHint": "Следите за этими публикациями в любой RSS-читалке",
     "copyProfileUrl": "Копировать URL профиля",
     "copyUsername": "Копировать имя пользователя",
     "copyAddress": "Копировать адрес",

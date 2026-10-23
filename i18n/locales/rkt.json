@@ -2972,6 +2972,8 @@
     "yourFractions": "তোমার কাছোত {{total}}-টার মইধ্যে {{count}}-টা ফ্র্যাকশন আছে"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ফিড লিংক কপি করো",
+    "copyRssFeedHint": "যেকোনো ফিড রিডারত এই পোস্টগুলা ফলো করো",
     "copyProfileUrl": "প্রোফাইল URL কপি করো",
     "copyUsername": "ইউজারনেম কপি করো",
     "copyAddress": "ঠিকানা কপি করো",
