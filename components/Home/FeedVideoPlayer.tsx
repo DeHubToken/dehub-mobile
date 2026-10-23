@@ -148,6 +148,11 @@ interface FeedVideoPlayerProps {
   isOwner?: boolean;
   duration?: string;
   tokenId: string | number | undefined;
+  /**
+   * Playback failed for good. A gated post's signed URL may have lapsed; the
+   * card fetches a fresh one and the player resumes where it stopped.
+   */
+  onPlaybackFailed?: () => void;
   isContentGated: boolean;
   isPPVLocked: boolean;
   isHoldingsLocked: boolean;
@@ -256,6 +261,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   isOwner,
   duration,
   tokenId,
+  onPlaybackFailed,
   isContentGated,
   isPPVLocked,
   isHoldingsLocked,
@@ -626,14 +632,20 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       (isVisible || isPictureInPicturePlayer(player)) && canStartVideo(player) &&
       !videoSession.userPaused && (!autoStartRef.current || getAppPrefs().autoplay),
   });
+  // Where to pick up once a renewed URL has loaded.
+  const resumeAtRef = useRef(0);
   useEffect(() => {
     if (playbackPhase === 'failed') {
       pendingPlayRef.current = false;
       isPlayingRef.current = false;
       setIsPlaying(false);
       endStarting();
+      if (onPlaybackFailed) {
+        resumeAtRef.current = currentTimeRef.current;
+        onPlaybackFailed();
+      }
     }
-  }, [playbackPhase, endStarting]);
+  }, [playbackPhase, endStarting, onPlaybackFailed]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || (isPictureInPicturePlayer(playerRef.current) && !visualActivity.isCallBusy())) return;
     playbackAllowedRef.current = false;
@@ -746,6 +758,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
+            const resumeAt = resumeAtRef.current;
+            resumeAtRef.current = 0;
+            if (resumeAt > 0 && resumeAt < player.duration) player.currentTime = resumeAt;
             // The deferred source has arrived; honour the intent that
             // attached it.
             flushPendingPlay(true);
