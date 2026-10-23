@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "답글을 달 수 있는 사람",
+    "public": "모두",
+    "followers": "내 팔로워",
+    "following": "내가 팔로우하는 사람",
+    "mentioned": "언급된 사람만",
+    "noticeFollowers": "작성자의 팔로워만 답글을 달 수 있습니다",
+    "noticeFollowing": "작성자가 팔로우하는 사람만 답글을 달 수 있습니다",
+    "noticeMentioned": "게시물에서 언급된 사람만 답글을 달 수 있습니다",
+    "refused": "작성자가 이 게시물에 답글을 달 수 있는 사람을 제한했습니다"
+  },
   "quotePolicy": {
     "label": "인용 가능한 사람",
     "public": "모두",

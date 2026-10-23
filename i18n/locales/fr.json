@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Qui peut répondre",
+    "public": "Tout le monde",
+    "followers": "Vos abonnés",
+    "following": "Les personnes que vous suivez",
+    "mentioned": "Mentionnés uniquement",
+    "noticeFollowers": "Seuls les abonnés de l'auteur peuvent répondre",
+    "noticeFollowing": "Seules les personnes que l'auteur suit peuvent répondre",
+    "noticeMentioned": "Seules les personnes mentionnées dans la publication peuvent répondre",
+    "refused": "L'auteur a limité qui peut répondre à cette publication"
+  },
   "quotePolicy": {
     "label": "Qui peut citer",
     "public": "Tout le monde",

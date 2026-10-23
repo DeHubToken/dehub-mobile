@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kim cavab verə bilər",
+    "public": "Hər kəs",
+    "followers": "İzləyiciləriniz",
+    "following": "İzlədiyiniz insanlar",
+    "mentioned": "Yalnız qeyd olunanlar",
+    "noticeFollowers": "Yalnız müəllifin izləyiciləri cavab verə bilər",
+    "noticeFollowing": "Yalnız müəllifin izlədiyi insanlar cavab verə bilər",
+    "noticeMentioned": "Yalnız paylaşımda qeyd olunanlar cavab verə bilər",
+    "refused": "Müəllif bu paylaşıma kimin cavab verə biləcəyini məhdudlaşdırıb"
+  },
   "quotePolicy": {
     "label": "Kim sitat gətirə bilər",
     "public": "Hər kəs",

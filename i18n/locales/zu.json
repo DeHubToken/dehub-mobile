@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Ubani ongaphendula",
+    "public": "Noma ubani",
+    "followers": "Abalandeli bakho",
+    "following": "Abantu obalandelayo",
+    "mentioned": "Abashiwoyo kuphela",
+    "noticeFollowers": "Abalandeli bombhali kuphela abangaphendula",
+    "noticeFollowing": "Abantu umbhali abalandelayo kuphela abangaphendula",
+    "noticeMentioned": "Abashiwoyo kokuthunyelwe kuphela abangaphendula",
+    "refused": "Umbhali ukhawulele ukuthi ubani ongaphendula kulokhu okuthunyelwe"
+  },
   "quotePolicy": {
     "label": "Ubani ongacaphuna",
     "public": "Noma ubani",

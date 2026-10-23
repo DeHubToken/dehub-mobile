@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Ki válaszolhat",
+    "public": "Bárki",
+    "followers": "A követőid",
+    "following": "Akiket követsz",
+    "mentioned": "Csak az említettek",
+    "noticeFollowers": "Csak a szerző követői válaszolhatnak",
+    "noticeFollowing": "Csak azok válaszolhatnak, akiket a szerző követ",
+    "noticeMentioned": "Csak a bejegyzésben említettek válaszolhatnak",
+    "refused": "A szerző korlátozta, ki válaszolhat erre a bejegyzésre"
+  },
   "quotePolicy": {
     "label": "Ki idézheti",
     "public": "Bárki",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "መን ክምልስ ይኽእል",
+    "public": "ዝኾነ ሰብ",
+    "followers": "ተኸተልትኻ",
+    "following": "ትኽተሎም ሰባት",
+    "mentioned": "ዝተጠቕሱ ጥራይ",
+    "noticeFollowers": "ተኸተልቲ ደራሲ ጥራይ ክምልሱ ይኽእሉ",
+    "noticeFollowing": "ደራሲ ዝኽተሎም ሰባት ጥራይ ክምልሱ ይኽእሉ",
+    "noticeMentioned": "ኣብቲ ጽሑፍ ዝተጠቕሱ ጥራይ ክምልሱ ይኽእሉ",
+    "refused": "ደራሲ ነዚ ጽሑፍ መን ክምልስ ከም ዝኽእል ደሪቱ"
+  },
   "quotePolicy": {
     "label": "መን ክጠቅስ ይኽእል",
     "public": "ዝኾነ ሰብ",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Jɔn bɛ se ka jaabi di",
+    "public": "Mɔgɔ bɛɛ",
+    "followers": "I ka tugubagaw",
+    "following": "I bɛ minnu tugu",
+    "mentioned": "Tɔgɔ fɔlenw dɔrɔn",
+    "noticeFollowers": "Sɛbɛnbaga ka tugubagaw dɔrɔn de bɛ se ka jaabi di",
+    "noticeFollowing": "Sɛbɛnbaga bɛ minnu tugu, olu dɔrɔn de bɛ se ka jaabi di",
+    "noticeMentioned": "Post kɔnɔ tɔgɔ fɔlenw dɔrɔn de bɛ se ka jaabi di",
+    "refused": "Sɛbɛnbaga ye jaabidilaw dan nin post la"
+  },
   "quotePolicy": {
     "label": "Jɔn bɛ se ka kuma fɔ ka bɔ a la",
     "public": "Mɔgɔ bɛɛ",

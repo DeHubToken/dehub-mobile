@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kas var atbildēt",
+    "public": "Jebkurš",
+    "followers": "Jūsu sekotāji",
+    "following": "Cilvēki, kuriem sekojat",
+    "mentioned": "Tikai pieminētie",
+    "noticeFollowers": "Atbildēt var tikai autora sekotāji",
+    "noticeFollowing": "Atbildēt var tikai cilvēki, kuriem seko autors",
+    "noticeMentioned": "Atbildēt var tikai ziņā pieminētie",
+    "refused": "Autors ir ierobežojis, kas var atbildēt uz šo ziņu"
+  },
   "quotePolicy": {
     "label": "Kas var citēt",
     "public": "Jebkurš",

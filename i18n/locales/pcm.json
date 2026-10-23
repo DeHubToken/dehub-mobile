@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Who fit reply",
+    "public": "Anybody",
+    "followers": "Your followers",
+    "following": "People wey you dey follow",
+    "mentioned": "Na only people wey dem mention",
+    "noticeFollowers": "Na only di person followers fit reply",
+    "noticeFollowing": "Na only people wey di person dey follow fit reply",
+    "noticeMentioned": "Na only people wey dem mention for di post fit reply",
+    "refused": "Di person wey post am don limit who fit reply dis post"
+  },
   "quotePolicy": {
     "label": "Who fit quote",
     "public": "Anybody",

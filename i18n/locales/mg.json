@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Iza no afaka mamaly",
+    "public": "Na iza na iza",
+    "followers": "Ireo mpanaraka anao",
+    "following": "Ireo arahinao",
+    "mentioned": "Ireo voatonona ihany",
+    "noticeFollowers": "Ireo mpanaraka ny mpanoratra ihany no afaka mamaly",
+    "noticeFollowing": "Ireo arahin'ny mpanoratra ihany no afaka mamaly",
+    "noticeMentioned": "Ireo voatonona ao amin'ny lahatsoratra ihany no afaka mamaly",
+    "refused": "Noferan'ny mpanoratra izay afaka mamaly ity lahatsoratra ity"
+  },
   "quotePolicy": {
     "label": "Iza no afaka manonona",
     "public": "Na iza na iza",

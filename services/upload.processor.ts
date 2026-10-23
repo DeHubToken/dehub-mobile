@@ -254,6 +254,11 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
     fd.append("quotePolicy", payload.quotePolicy);
   }
 
+  // Who may reply. Only sent when it is narrower than anyone.
+  if (payload.replyPolicy) {
+    fd.append("replyPolicy", payload.replyPolicy);
+  }
+
   // The Shop board. Only sent when there is one — an empty array is a valid
   // "clear it" instruction on a post that has nothing to clear.
   if (payload.shopLinks?.length) {

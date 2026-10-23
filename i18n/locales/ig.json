@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Onye nwere ike ịza",
+    "public": "Onye ọ bụla",
+    "followers": "Ndị na-eso gị",
+    "following": "Ndị ị na-eso",
+    "mentioned": "Naanị ndị a kpọrọ aha",
+    "noticeFollowers": "Naanị ndị na-eso onye dere ya nwere ike ịza",
+    "noticeFollowing": "Naanị ndị onye dere ya na-eso nwere ike ịza",
+    "noticeMentioned": "Naanị ndị a kpọrọ aha n'ozi ahụ nwere ike ịza",
+    "refused": "Onye dere ya ebelatala ndị nwere ike ịza ozi a"
+  },
   "quotePolicy": {
     "label": "Onye nwere ike ịkọ",
     "public": "Onye ọ bụla",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Cine poate răspunde",
+    "public": "Oricine",
+    "followers": "Urmăritorii tăi",
+    "following": "Oameni pe care îi urmărești",
+    "mentioned": "Doar cei menționați",
+    "noticeFollowers": "Doar urmăritorii autorului pot răspunde",
+    "noticeFollowing": "Doar oamenii pe care îi urmărește autorul pot răspunde",
+    "noticeMentioned": "Doar cei menționați în postare pot răspunde",
+    "refused": "Autorul a limitat cine poate răspunde la această postare"
+  },
   "quotePolicy": {
     "label": "Cine poate cita",
     "public": "Oricine",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Sapa sing bisa mbales",
+    "public": "Sapa wae",
+    "followers": "Pengikutmu",
+    "following": "Wong sing koktindakake",
+    "mentioned": "Mung sing disebut",
+    "noticeFollowers": "Mung pengikut penulis sing bisa mbales",
+    "noticeFollowing": "Mung wong sing ditindakake penulis sing bisa mbales",
+    "noticeMentioned": "Mung wong sing disebut ing kiriman sing bisa mbales",
+    "refused": "Penulis mbatesi sapa sing bisa mbales kiriman iki"
+  },
   "quotePolicy": {
     "label": "Sapa sing bisa ngutip",
     "public": "Sapa wae",

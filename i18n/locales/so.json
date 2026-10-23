@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Yaa jawaabi kara",
+    "public": "Qof kasta",
+    "followers": "Kuwa ku raaca",
+    "following": "Dadka aad raacdo",
+    "mentioned": "Kuwa la xusay keliya",
+    "noticeFollowers": "Kuwa raaca qoraaga keliya ayaa jawaabi kara",
+    "noticeFollowing": "Dadka uu qoraagu raaco keliya ayaa jawaabi kara",
+    "noticeMentioned": "Dadka lagu xusay qoraalka keliya ayaa jawaabi kara",
+    "refused": "Qoraagu wuxuu xaddiday cidda ka jawaabi karta qoraalkan"
+  },
   "quotePolicy": {
     "label": "Yaa soo xigan kara",
     "public": "Qof kasta",

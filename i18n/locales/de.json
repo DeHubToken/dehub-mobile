@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Wer darf antworten",
+    "public": "Alle",
+    "followers": "Deine Follower",
+    "following": "Leute, denen du folgst",
+    "mentioned": "Nur Erwähnte",
+    "noticeFollowers": "Nur Follower des Autors können antworten",
+    "noticeFollowing": "Nur Leute, denen der Autor folgt, können antworten",
+    "noticeMentioned": "Nur im Beitrag erwähnte Leute können antworten",
+    "refused": "Der Autor hat eingeschränkt, wer auf diesen Beitrag antworten darf"
+  },
   "quotePolicy": {
     "label": "Wer darf zitieren",
     "public": "Alle",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "邊個可以回覆",
+    "public": "任何人",
+    "followers": "你嘅追蹤者",
+    "following": "你追蹤嘅人",
+    "mentioned": "淨係被提及嘅人",
+    "noticeFollowers": "淨係作者嘅追蹤者可以回覆",
+    "noticeFollowing": "淨係作者追蹤嘅人可以回覆",
+    "noticeMentioned": "淨係帖子入面提及嘅人可以回覆",
+    "refused": "作者限制咗邊個可以回覆呢個帖子"
+  },
   "quotePolicy": {
     "label": "邊個可以引用",
     "public": "任何人",
