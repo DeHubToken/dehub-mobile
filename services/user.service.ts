@@ -937,6 +937,26 @@ export async function getSuggestedAccounts(
 }
 
 
+/**
+ * The endless Who to follow list: everyone you don't follow, a page at a time.
+ * `active` (feed) puts recently active, complete profiles first; `newest`
+ * (Explore) the newest sign-ups. Empty profiles come last on both.
+ * `nextCursor` is null once everyone has been shown. Throws on failure so the
+ * caller can fall back to the old picks.
+ */
+export async function getRankedSuggestions(
+  sort: "active" | "newest",
+  cursor: string | null,
+  limit: number = 10,
+): Promise<{ items: SuggestedAccount[]; nextCursor: string | null }> {
+  const params = `sort=${sort}&limit=${limit}${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`;
+  const res = await apiClient.get<any>(`/suggested-accounts?${params}`, { isAuthRequired: true });
+  const wrapper = res?.data ?? res;
+  const result = wrapper?.result ?? wrapper;
+  const items: SuggestedAccount[] = Array.isArray(result?.items) ? result.items : [];
+  return { items, nextCursor: typeof result?.nextCursor === "string" ? result.nextCursor : null };
+}
+
 export interface RepostItem {
   repostId: string;
   repostedAt: string;
