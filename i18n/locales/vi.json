@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} bài đăng"
   },
   "settings": {
+    "showDislikesDesc": "Ai cũng có thể mở tab Không thích trên hồ sơ của bạn. Khi tắt, chỉ bạn xem được.",
+    "showDislikes": "Hiển thị lượt không thích của tôi cho mọi người",
     "postingChain": "Chuỗi khối đăng bài",
     "showOnline": "Hiển thị khi tôi trực tuyến",
     "showOnlineDesc": "Những người bạn nhắn tin thấy một dấu chấm màu xanh lá cây bên cạnh tên của bạn trong khi bạn đang sử dụng DeHub",
@@ -1939,6 +1941,12 @@
     "returnHome": "Trở về Trang chủ"
   },
   "profile": {
+    "dislikesPrivateDesc": "Tài khoản này giữ kín lượt không thích.",
+    "dislikesPrivateTitle": "Lượt không thích là riêng tư",
+    "dislikesEmptyOther": "Chưa có gì.",
+    "dislikesEmptyOwn": "Bài bạn không thích sẽ rời khỏi bảng tin và hiện ở đây. Hủy không thích để đưa bài trở lại.",
+    "dislikesEmptyTitle": "Chưa có lượt không thích",
+    "tabDislikes": "Không thích",
     "replyThread": {
       "postUnavailable": "Bài đăng này không khả dụng",
       "commentUnavailable": "Bình luận này không còn khả dụng"

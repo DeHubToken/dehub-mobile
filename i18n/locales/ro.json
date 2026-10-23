@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} postări"
   },
   "settings": {
+    "showDislikesDesc": "Oricine poate deschide fila Nu-mi place din profilul tău. Când e dezactivat, doar tu o vezi.",
+    "showDislikes": "Arată tuturor ce nu-mi place",
     "postingChain": "Blockchain pentru postări",
     "showOnline": "Afișează când sunt online",
     "showOnlineDesc": "Persoanele cărora le trimiți mesaje văd un punct verde lângă numele tău în timp ce folosești DeHub",
@@ -1925,6 +1927,12 @@
     "returnHome": "Întoarce-te acasă"
   },
   "profile": {
+    "dislikesPrivateDesc": "Acest cont își păstrează nu-mi place-urile pentru sine.",
+    "dislikesPrivateTitle": "Nu-mi place este privat",
+    "dislikesEmptyOther": "Încă nimic.",
+    "dislikesEmptyOwn": "Postările care nu-ți plac dispar din fluxurile tale și apar aici. Anulează nu-mi place pentru a aduce postarea înapoi.",
+    "dislikesEmptyTitle": "Încă nimic",
+    "tabDislikes": "Nu-mi place",
     "replyThread": {
       "postUnavailable": "Această postare nu este disponibilă",
       "commentUnavailable": "Acest comentariu nu mai este disponibil"

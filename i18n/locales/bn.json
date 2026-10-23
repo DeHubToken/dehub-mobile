@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} টি পোস্ট"
   },
   "settings": {
+    "showDislikesDesc": "যে কেউ আপনার প্রোফাইলের অপছন্দ ট্যাব খুলতে পারবে। বন্ধ থাকলে শুধু আপনি দেখতে পাবেন।",
+    "showDislikes": "আমার অপছন্দগুলো সবাইকে দেখাও",
     "postingChain": "পোস্টের ব্লকচেইন",
     "showOnline": "আমি যখন অনলাইনে থাকি তখন দেখান",
     "showOnlineDesc": "আপনি যাদের মেসেজ পাঠিয়েছেন তারা DeHub ব্যবহার করার সময় আপনার নামের পাশে একটি সবুজ বিন্দু দেখতে পাচ্ছেন",
@@ -1925,6 +1927,12 @@
     "returnHome": "হোমে ফিরুন"
   },
   "profile": {
+    "dislikesPrivateDesc": "এই অ্যাকাউন্ট তার অপছন্দ নিজের কাছে রাখে।",
+    "dislikesPrivateTitle": "অপছন্দ ব্যক্তিগত",
+    "dislikesEmptyOther": "এখনও কিছু নেই।",
+    "dislikesEmptyOwn": "যে পোস্ট আপনি অপছন্দ করেন তা আপনার ফিড থেকে সরে যায় এবং এখানে দেখা যায়। পোস্ট ফেরাতে অপছন্দ বাতিল করুন।",
+    "dislikesEmptyTitle": "এখনও কোনো অপছন্দ নেই",
+    "tabDislikes": "অপছন্দ",
     "replyThread": {
       "postUnavailable": "এই পোস্টটি উপলভ্য নয়",
       "commentUnavailable": "এই মন্তব্যটি আর উপলভ্য নয়"

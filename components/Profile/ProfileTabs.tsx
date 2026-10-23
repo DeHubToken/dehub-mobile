@@ -21,6 +21,7 @@ import PostsRoute from "./PostsRoute";
 import SubscribersRoute from "./SubscribersRoute";
 import PinnedRoute from "./PinnedRoute";
 import PlaylistsRoute from "./PlaylistsRoute";
+import DislikesRoute from "./DislikesRoute";
 import FractionsRoute from "./FractionsRoute";
 import ProfileTabBar, { type ProfileTabItem } from "./ProfileTabBar";
 import ProfileContentToolbar from "./ProfileContentToolbar";
@@ -111,7 +112,8 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         ((counts as Record<string, number | undefined>)[b.key] ?? 0) -
         ((counts as Record<string, number | undefined>)[a.key] ?? 0),
     );
-    return [home, ...rest];
+    // Your own Dislikes are always here, last: they are what you turned away, not what you made.
+    return [home, ...rest, { key: "dislikes", title: t("profile.tabDislikes"), icon: "ThumbsDown" }];
   }, [counts, t, _copy]);
 
   const tabItems = useMemo<ProfileTabItem[]>(
@@ -179,6 +181,8 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         return <PinnedRoute address={address} listHeader={listHeader} onScroll={workletScroll} />;
       case "playlists":
         return <PlaylistsRoute address={address} listHeader={listHeader} onScroll={workletScroll} isOwnProfile />;
+      case "dislikes":
+        return <DislikesRoute address={address} listHeader={listHeader} onScroll={workletScroll} isOwnProfile />;
       default:
         return null;
     }

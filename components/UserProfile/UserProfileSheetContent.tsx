@@ -24,6 +24,7 @@ import { withShareRef } from "../../libs/shareRef";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
+import { dislikesArePublic } from '../../libs/disliked-posts-store';
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -429,6 +430,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         blockedYou={blockedYou}
         pendingTab={pendingTab}
         defaultTab={getDefaultProfileTab(data)}
+        showDislikesTab={dislikesArePublic((data as any)?.customs)}
         onPendingTabConsumed={handlePendingTabConsumed}
         backToTopBottom={backToTopBottom}
       />

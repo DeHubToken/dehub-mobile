@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} publicacions"
   },
   "settings": {
+    "showDislikesDesc": "Qualsevol pot obrir la pestanya «No m'agrada» del teu perfil. Si està desactivat, només tu la pots veure.",
+    "showDislikes": "Mostra a tothom els meus «no m'agrada»",
     "postingChain": "Cadena de blocs de les publicacions",
     "showOnline": "Mostra quan estic en línia",
     "showOnlineDesc": "Les persones a les quals enviïs missatges veuen un punt verd al costat del teu nom mentre utilitzes DeHub",
@@ -1925,6 +1927,12 @@
     "returnHome": "Tornar a l'inici"
   },
   "profile": {
+    "dislikesPrivateDesc": "Aquest compte es guarda els seus «no m'agrada».",
+    "dislikesPrivateTitle": "Els «no m'agrada» són privats",
+    "dislikesEmptyOther": "Encara res.",
+    "dislikesEmptyOwn": "Les publicacions que no t'agraden surten dels teus feeds i apareixen aquí. Desfés el «no m'agrada» per recuperar la publicació.",
+    "dislikesEmptyTitle": "Encara cap «no m'agrada»",
+    "tabDislikes": "No m'agrada",
     "replyThread": {
       "postUnavailable": "Aquesta publicació no està disponible",
       "commentUnavailable": "Aquest comentari ja no està disponible"

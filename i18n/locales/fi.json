@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} julkaisua"
   },
   "settings": {
+    "showDislikesDesc": "Kuka tahansa voi avata profiilisi En tykkää -välilehden. Kun tämä on pois päältä, vain sinä näet sen.",
+    "showDislikes": "Näytä en tykkää -merkintäni kaikille",
     "postingChain": "Julkaisujen lohkoketju",
     "showOnline": "Näytä, kun olen online-tilassa",
     "showOnlineDesc": "Viestisi näkevät vihreän pisteen nimesi vieressä, kun käytät DeHubia",
@@ -1925,6 +1927,12 @@
     "returnHome": "Palaa etusivulle"
   },
   "profile": {
+    "dislikesPrivateDesc": "Tämä tili pitää en tykkää -merkintänsä omana tietonaan.",
+    "dislikesPrivateTitle": "En tykkää -merkinnät ovat yksityisiä",
+    "dislikesEmptyOther": "Ei vielä mitään.",
+    "dislikesEmptyOwn": "Julkaisut, joista et tykkää, poistuvat syötteistäsi ja näkyvät täällä. Peru merkintä palauttaaksesi julkaisun.",
+    "dislikesEmptyTitle": "Ei vielä en tykkää -merkintöjä",
+    "tabDislikes": "En tykkää",
     "replyThread": {
       "postUnavailable": "Tämä julkaisu ei ole saatavilla",
       "commentUnavailable": "Tämä kommentti ei ole enää saatavilla"

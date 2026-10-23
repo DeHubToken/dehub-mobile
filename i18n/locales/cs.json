@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} příspěvků"
   },
   "settings": {
+    "showDislikesDesc": "Kdokoli může otevřít kartu Nelíbí se na tvém profilu. Když je to vypnuté, vidíš ji jen ty.",
+    "showDislikes": "Zobrazit všem, co se mi nelíbí",
     "postingChain": "Blockchain příspěvků",
     "showOnline": "Zobrazit, když jsem online",
     "showOnlineDesc": "Lidé, kterým posíláte zprávu, uvidí zelenou tečku vedle vašeho jména, když používáte službu DeHub",
@@ -1925,6 +1927,12 @@
     "returnHome": "Zpět na hlavní stránku"
   },
   "profile": {
+    "dislikesPrivateDesc": "Tento účet si svá nelíbí se nechává pro sebe.",
+    "dislikesPrivateTitle": "Nelíbí se je soukromé",
+    "dislikesEmptyOther": "Zatím nic.",
+    "dislikesEmptyOwn": "Příspěvky, které se ti nelíbí, zmizí z tvých kanálů a objeví se tady. Zruš nelíbí se a příspěvek se vrátí.",
+    "dislikesEmptyTitle": "Zatím nic",
+    "tabDislikes": "Nelíbí se",
     "replyThread": {
       "postUnavailable": "Tento příspěvek není k dispozici",
       "commentUnavailable": "Tento komentář již není k dispozici"

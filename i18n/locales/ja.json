@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} 件の投稿"
   },
   "settings": {
+    "showDislikesDesc": "誰でもプロフィールの「よくないね」タブを開けます。オフのときは自分だけが見られます。",
+    "showDislikes": "自分の「よくないね」を全員に表示",
     "postingChain": "投稿用ブロックチェーン",
     "showOnline": "オンライン中に表示する",
     "showOnlineDesc": "DeHubを使用している間、メッセージを送る相手に名前の横に緑色の点が表示されます",
@@ -1925,6 +1927,12 @@
     "returnHome": "ホームに戻る"
   },
   "profile": {
+    "dislikesPrivateDesc": "このアカウントは「よくないね」を公開していません。",
+    "dislikesPrivateTitle": "「よくないね」は非公開です",
+    "dislikesEmptyOther": "まだ何もありません。",
+    "dislikesEmptyOwn": "「よくないね」した投稿はフィードから消え、ここに表示されます。取り消すと投稿が戻ります。",
+    "dislikesEmptyTitle": "まだ「よくないね」はありません",
+    "tabDislikes": "よくないね",
     "replyThread": {
       "postUnavailable": "この投稿は利用できません",
       "commentUnavailable": "このコメントはもう利用できません"

@@ -42,6 +42,7 @@ import VideosRoute from "../Profile/VideosRoute";
 import LivestreamsRoute from "../Profile/LivestreamsRoute";
 import FractionsRoute from "../Profile/FractionsRoute";
 import PinnedRoute from "../Profile/PinnedRoute";
+import DislikesRoute from "../Profile/DislikesRoute";
 import PlaylistsRoute from "../Profile/PlaylistsRoute";
 import ProfileFeedTypeRoute from "../Profile/ProfileFeedTypeRoute";
 import PostsRoute from "../Profile/PostsRoute";
@@ -91,6 +92,8 @@ interface UserProfileBottomContentTabsProps {
   onPendingTabConsumed?: () => void;
   /** The tab the owner chose for visitors to land on (`customs.defaultProfileTab`). */
   defaultTab?: ProfileDefaultTab;
+  /** Someone else's profile whose owner made their Dislikes tab public. */
+  showDislikesTab?: boolean;
   /** Back-to-top button's distance from the bottom; the host knows what sits there. */
   backToTopBottom?: number;
 }
@@ -113,7 +116,8 @@ type ContentTab =
   | "fractions"
   | "subscribers"
   | "pinned"
-  | "playlists";
+  | "playlists"
+  | "dislikes";
 
 const BASE_TAB_ITEMS: ProfileTabItem<ContentTab>[] = [
   { key: "home", get label() { return _translateCopy("copy.a52ace420f21", { defaultValue: "All" }); }, icon: "House" },
@@ -155,6 +159,7 @@ const UserProfileBottomContentTabs: React.FC<
   onPendingTabConsumed,
   defaultTab = DEFAULT_PROFILE_TAB,
   backToTopBottom,
+  showDislikesTab = false,
 }) => {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -203,8 +208,12 @@ const UserProfileBottomContentTabs: React.FC<
     const rest = withCounts
       .filter((item) => item.key !== "home")
       .sort((a, b) => (b.count ?? 0) - (a.count ?? 0));
-    return [home, ...rest];
-  }, [counts, t]);
+    // Dislikes: always on your own profile, on anyone else's only if they made it public. Last, unsorted.
+    const dislikes: ProfileTabItem<ContentTab>[] = isOwnProfile || showDislikesTab
+      ? [{ key: "dislikes", label: t("profile.tabDislikes"), icon: "ThumbsDown", count: 0 }]
+      : [];
+    return [home, ...rest, ...dislikes];
+  }, [counts, t, isOwnProfile, showDislikesTab]);
 
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -673,6 +682,12 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <PinnedRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+          </View>
+        );
+      case "dislikes":
+        return (
+          <View style={{ flex: 1, marginTop: mt }}>
+            <DislikesRoute listRef={listRef} address={address} isOwnProfile={isOwnProfile} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "playlists":

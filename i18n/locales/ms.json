@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} siaran"
   },
   "settings": {
+    "showDislikesDesc": "Sesiapa boleh membuka tab Tidak Suka pada profil anda. Apabila dimatikan, hanya anda yang boleh melihatnya.",
+    "showDislikes": "Tunjukkan tidak suka saya kepada semua",
     "postingChain": "Rantaian blok siaran",
     "showOnline": "Tunjukkan apabila saya berada dalam talian",
     "showOnlineDesc": "Orang yang anda mesej melihat titik hijau di sebelah nama anda semasa anda menggunakan DeHub",
@@ -2185,6 +2187,12 @@
     "returnHome": "Kembali ke Laman Utama"
   },
   "profile": {
+    "dislikesPrivateDesc": "Akaun ini menyimpan tidak sukanya sendiri.",
+    "dislikesPrivateTitle": "Tidak suka adalah peribadi",
+    "dislikesEmptyOther": "Belum ada apa-apa.",
+    "dislikesEmptyOwn": "Siaran yang anda tidak suka keluar dari suapan anda dan dipaparkan di sini. Batalkan tidak suka untuk mengembalikan siaran.",
+    "dislikesEmptyTitle": "Belum ada tidak suka",
+    "tabDislikes": "Tidak Suka",
     "replyThread": {
       "postUnavailable": "Hantaran ini tidak tersedia",
       "commentUnavailable": "Komen ini tidak lagi tersedia"
