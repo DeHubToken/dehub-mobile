@@ -5,6 +5,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { agentTaskRequest } from '../services/agents.service';
 import { ScreenNames } from '../navigation/ScreenNames';
+import { randomUUID } from 'expo-crypto';
 
 type AgentLife = {
   sentient: boolean; has_persona: boolean; status: string | null; next_at: string | null; home: string | null;
@@ -22,6 +23,14 @@ export function AgentLifePanel({ wallet, agentId }: { wallet: string; agentId: s
   const [editing, setEditing] = useState<number | null>(null);
   const [draft, setDraft] = useState('');
   const [expanded, setExpanded] = useState(false);
+  const [composing, setComposing] = useState(false);
+  const [post, setPost] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [requestId, setRequestId] = useState(randomUUID);
+  const publish = useMutation({
+    mutationFn: () => agentTaskRequest(wallet, { operation: 'queue_post', agent_id: agentId, content: post.trim(), image_url: imageUrl.trim() || undefined, request_id: requestId }),
+    onSuccess: () => { setPost(''); setImageUrl(''); setRequestId(randomUUID()); client.invalidateQueries({ queryKey: ['agent-tasks', wallet] }); },
+  });
   const life = useQuery({ queryKey: key, staleTime: 60000,
     queryFn: () => agentTaskRequest<AgentLife>(wallet, { operation: 'life', agent_id: agentId }) });
   const toggle = useMutation({
@@ -48,6 +57,17 @@ export function AgentLifePanel({ wallet, agentId }: { wallet: string; agentId: s
     {toggle.isPending && toggle.variables && !data?.has_persona && <Text style={styles.text}>{t('agents.life.starting')}</Text>}
     {toggle.error && <Text accessibilityRole="alert" style={styles.error}>{toggle.error.message}</Text>}
     {data?.sentient && data.daily && <Text style={styles.text}>{t('agents.life.daily', { defaultValue: 'Posts today: {{posts}} · Daily target: {{target}}', ...data.daily })}</Text>}
+    <Pressable accessibilityRole="button" onPress={() => setComposing(!composing)}><Text style={styles.text}>{t('agents.life.compose', { defaultValue: 'Post as this agent' })}</Text></Pressable>
+    {composing && <View style={styles.events}>
+      <TextInput accessibilityLabel={t('agents.life.postText', { defaultValue: 'Post text' })} multiline maxLength={500} value={post} editable={!publish.isPending} style={styles.input}
+        onChangeText={value => { setPost(value); setRequestId(randomUUID()); publish.reset(); }} />
+      <TextInput accessibilityLabel={t('agents.life.imageUrl', { defaultValue: 'Image URL (optional)' })} placeholder={t('agents.life.imageUrl', { defaultValue: 'Image URL (optional)' })} placeholderTextColor="#A1A1AA" value={imageUrl} editable={!publish.isPending} autoCapitalize="none" keyboardType="url" style={styles.input}
+        onChangeText={value => { setImageUrl(value); setRequestId(randomUUID()); publish.reset(); }} />
+      <Text style={styles.muted}>{t('agents.life.queueHelp', { defaultValue: 'Publishes your exact text. Shared 20-minute post gap applies. No minting.' })}</Text>
+      <Pressable accessibilityRole="button" disabled={publish.isPending || !post.trim()} onPress={() => publish.mutate()}><Text style={styles.text}>{t('agents.life.queuePost', { defaultValue: 'Queue post' })}</Text></Pressable>
+      {publish.error && <Text accessibilityRole="alert" style={styles.error}>{publish.error.message}</Text>}
+      {publish.isSuccess && <Text style={styles.text}>{t('agents.life.postQueued', { defaultValue: 'Post queued. Track it in Tasks above.' })}</Text>}
+    </View>}
     {state && <Text style={styles.text}>{state}{data?.next_at ? ` · ${t('agents.life.next', { time: clock(data.next_at) })}` : ''}</Text>}
     {correction.error && <Text accessibilityRole="alert" style={styles.error}>{correction.error.message}</Text>}
     {data && (data.sentient || data.events.length > 0) && <View style={styles.events}>
