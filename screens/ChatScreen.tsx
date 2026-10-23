@@ -35,6 +35,7 @@ import MessageContextMenu, {
 import ForwardPickerModal from "../components/DM/ForwardPickerModal";
 import DmFeeBanner from "../components/DM/DmFeeBanner";
 import DmEncryptionBanner from "../components/DM/DmEncryptionBanner";
+import DmLockedState, { DmUndecryptableRun } from "../components/DM/DmLockedState";
 import NewChatIntro from "../components/DM/NewChatIntro";
 import TipAmountSheet from "../components/DM/TipAmountSheet";
 import PollCard from "../components/DM/PollCard";
@@ -597,6 +598,24 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setE2eeRetrying(false);
     }
   }, [address, sessionProvider, e2eeRetrying]);
+
+  // No key yet and the thread holds lines only a key can open: one unlock
+  // screen instead of the same "can't be opened" row on every line.
+  const showLockedState = e2eeStatus !== "ready" && messageList.some((m) => m.undecryptable);
+
+  // Lines encrypted for another device collapse into one row per run. Keyed by
+  // the run's first id in list order; 0 hides the rest of the run.
+  const undecryptableRuns = useMemo(() => {
+    const runs = new Map<string, number>();
+    for (let i = 0; i < messageList.length; i++) {
+      if (!messageList[i].undecryptable) continue;
+      if (messageList[i - 1]?.undecryptable) { runs.set(messageList[i]._id, 0); continue; }
+      let n = 1;
+      while (messageList[i + n]?.undecryptable) n++;
+      runs.set(messageList[i]._id, n);
+    }
+    return runs;
+  }, [messageList]);
 
   // Re-run the history fetch below once the identity comes online, so lines
   // fetched before it (held as "undecryptable") open.
@@ -1572,6 +1591,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           </View>
         );
       }
+      const run = undecryptableRuns.get(item._id);
+      if (run !== undefined) return run > 0 ? <DmUndecryptableRun count={run} /> : null;
       return (
         <View>
           <MessageBubble
@@ -1587,7 +1608,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
         </View>
       );
     },
-    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId],
+    [isMine, onLongPressMessage, handleSwipeToReply, handleReplyPress, highlightedId, undecryptableRuns],
   );
 
   const keyExtractor = useCallback((item: DmMessage) => item._id, []);
@@ -1674,11 +1695,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
 
         {/* Says so when this device has no key, instead of silently sending
             in the clear and showing the peer's lines as unopenable. */}
-        <DmEncryptionBanner
-          status={e2eeStatus}
-          busy={e2eeRetrying}
-          onRetry={retryEncryption}
-        />
+        {!showLockedState && (
+          <DmEncryptionBanner
+            status={e2eeStatus}
+            busy={e2eeRetrying}
+            onRetry={retryEncryption}
+          />
+        )}
 
         {/* Pinned message banner */}
         {pinnedMessage && (
@@ -1700,6 +1723,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 avatarImageUrl: peerAvatarUri,
               }}
               policy={peerPolicy}
+            />
+          ) : showLockedState ? (
+            <DmLockedState
+              status={e2eeStatus}
+              busy={e2eeRetrying}
+              peerName={peerLabel}
+              peerAvatarUri={peerAvatarUri}
+              onUnlock={retryEncryption}
             />
           ) : initialLoading && messageList.length === 0 ? (
             <View className="flex-1 items-center justify-center">
@@ -1762,7 +1793,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               composerKeyboard.onLayout();
             }}
           >
-            {voiceRecorder.isRecording ? (
+            {showLockedState ? null : voiceRecorder.isRecording ? (
               <VoiceNoteRecordingOverlay recorder={voiceRecorder} />
             ) : dmDisabled ? (
               <View className="px-4 py-3 bg-theme-neutrals-800 border-t border-theme-neutrals-700/50">
