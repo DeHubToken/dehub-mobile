@@ -31,7 +31,7 @@ export default function GlassLightField({ accent }: { accent: readonly number[] 
     setSize(current => current.width === layout.width && current.height === layout.height ? current : layout);
   }}>
     {size.width > 0 && size.height > 0 && <Canvas style={StyleSheet.absoluteFill}>
-      <Fill><Shader source={field} uniforms={{ size: [size.width, size.height], accent: accent.map(channel => channel / 255) }} /></Fill>
+      <Fill><Shader source={field!} uniforms={{ size: [size.width, size.height], accent: accent.map(channel => channel / 255) }} /></Fill>
     </Canvas>}
   </View>;
 }
