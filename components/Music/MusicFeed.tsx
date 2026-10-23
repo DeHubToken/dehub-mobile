@@ -62,7 +62,7 @@ import {
 } from "../../libs/radio-browser";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
-import { getAudioUrl, getAvatarUrl } from "../../libs/misc";
+import { getAudioUrl, getImageUrl } from "../../libs/misc";
 import { isHoldGated } from "../../libs/content-gate";
 import { useTranslation } from "react-i18next";
 
@@ -642,10 +642,6 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
   const title = nft.name || (nft as any).title || "Untitled";
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
-  const creatorAvatar = getAvatarUrl(
-    (nft as any).minterUser?.avatarImageUrl || (nft as any).minterAvatarUrl || "",
-    512,
-  );
 
   return (
     <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }, desk && { width: '100%' }]}>
@@ -666,7 +662,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
           isVisible={isVisible}
           title={title}
           artist={creator || undefined}
-          artworkUrl={creatorAvatar === "default-avatar" ? undefined : creatorAvatar}
+          artworkUrl={nft.imageUrl || nft.thumbnailUrl ? getImageUrl(nft.imageUrl || nft.thumbnailUrl || '', 512) : undefined}
           compact={!glass}
         />
       ) : (
