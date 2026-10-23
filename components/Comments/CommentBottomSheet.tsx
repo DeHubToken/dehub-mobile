@@ -1,6 +1,6 @@
 import { useSheetClosed } from '../../hooks/useSheetClosed';
-import React, { memo, useCallback, useEffect, useState } from "react";
-import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, BackHandler } from "react-native";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, BackHandler, Platform } from "react-native";
 import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
@@ -19,6 +19,7 @@ import QuoteTab from "./QuoteTab";
 import useKeyboard from "../../hooks/useKeyboard";
 import type { PostCreator } from "../../libs/impersonation";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useUserProfilePresentation } from "../../context/UserProfileSheetContext";
 import {
   MINIMAL_HAIRLINE,
   MINIMAL_TAB_TEXT,
@@ -69,6 +70,25 @@ interface CommentBottomSheetProps {
   forKids?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips on comments. */
   postCreator?: PostCreator | null;
+}
+
+/**
+ * A name, mention or liker tapped in the sheet opens a profile. On Android the
+ * profile is drawn in the app window, under this sheet's native Modal, so the
+ * sheet (and the keyboard, when mid-reply) stayed on top of it. Calls
+ * onProfileOpen when a profile opens, or changes, after the sheet came up.
+ * Mounted only while the sheet is open, so closed sheets on every feed card
+ * don't re-render with the profile state.
+ */
+function ProfileOpenWatcher({ onProfileOpen }: { onProfileOpen: () => void }) {
+  const { profileVisible, profileIdentifier } = useUserProfilePresentation();
+  const shown = profileVisible ? profileIdentifier : null;
+  const atOpen = useRef(shown);
+  useEffect(() => {
+    if (shown && shown !== atOpen.current) onProfileOpen();
+    atOpen.current = shown;
+  }, [shown, onProfileOpen]);
+  return null;
 }
 
 const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
@@ -190,6 +210,14 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
   const onDirtyChange = useCallback((dirty: boolean) => setHasUnsent(dirty), []);
 
+  // No discard prompt here: the tap was the person's own, and an unsent reply
+  // is already in the draft store, so it is back when they reopen the sheet.
+  const stepAsideForProfile = useCallback(() => {
+    Keyboard.dismiss();
+    setConfirming(false);
+    if (!inline) closeSheet();
+  }, [inline, closeSheet]);
+
   // Only a clear downward drag takes over, so taps on the tab row it now
   // covers still switch tabs.
   const gesture = Gesture.Pan()
@@ -223,6 +251,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
 
   const content = (
       <GestureHandlerRootView style={{ flex: 1 }}>
+        {visible && Platform.OS === "android" && <ProfileOpenWatcher onProfileOpen={stepAsideForProfile} />}
         {!inline && <Animated.View
           style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
         >
