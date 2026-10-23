@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Ibsa dabali",
+    "edit": "Ibsa gulaali",
+    "titleImage": "Suuraa kana ibsi",
+    "titleVideo": "Viidiyoo kana ibsi",
+    "help": "Namoota arguu hin dandeenyeef. Dubbistoonni iskiriinii sagaleedhaan dubbisu.",
+    "placeholder": "Maal agarsiisa? Barreeffama keessa jiru kamiyyuu itti dabali.",
+    "show": "Ibsa agarsiisi",
+    "saved": "Ibsi olkaa'ameera",
+    "saveFailed": "Ibsa olkaa'uun hin danda'amne"
+  },
   "liveRecap": {
     "title": "Cuunfaa tamsaasaa",
     "justEnded": "Irra deebiin yaa'aa keessan",

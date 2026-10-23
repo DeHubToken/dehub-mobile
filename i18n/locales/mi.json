@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tāpiritia he whakaahuatanga",
+    "edit": "Whakatika i te whakaahuatanga",
+    "titleImage": "Whakaahuatia tēnei pikitia",
+    "titleVideo": "Whakaahuatia tēnei ataata",
+    "help": "Mō te hunga kāore e kite. Ka pānuitia e ngā pūpānui mata ki te reo.",
+    "placeholder": "He aha e whakaaturia ana? Whakaurua anō ngā kupu kei roto.",
+    "show": "Whakaatu i te whakaahuatanga",
+    "saved": "Kua tiakina te whakaahuatanga",
+    "saveFailed": "Kāore i taea te tiaki i te whakaahuatanga"
+  },
   "liveRecap": {
     "justEnded": "Te whakarāpopototanga o tō pāho",
     "title": "Te whakahoutanga o te awa",

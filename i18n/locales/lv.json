@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Pievienot aprakstu",
+    "edit": "Rediģēt aprakstu",
+    "titleImage": "Aprakstiet šo attēlu",
+    "titleVideo": "Aprakstiet šo video",
+    "help": "Cilvēkiem, kuri to nevar redzēt. Ekrāna lasītāji to nolasa skaļi.",
+    "placeholder": "Ko tas rāda? Iekļaujiet arī tajā esošo tekstu.",
+    "show": "Rādīt aprakstu",
+    "saved": "Apraksts saglabāts",
+    "saveFailed": "Neizdevās saglabāt aprakstu"
+  },
   "liveRecap": {
     "title": "Straumes kopsavilkums",
     "justEnded": "Jūsu straumes kopsavilkums",

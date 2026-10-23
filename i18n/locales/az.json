@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Təsvir əlavə et",
+    "edit": "Təsviri redaktə et",
+    "titleImage": "Bu şəkli təsvir edin",
+    "titleVideo": "Bu videonu təsvir edin",
+    "help": "Onu görə bilməyən insanlar üçün. Ekran oxuyucuları onu səsli oxuyur.",
+    "placeholder": "Nəyi göstərir? İçindəki istənilən mətni də yazın.",
+    "show": "Təsviri göstər",
+    "saved": "Təsvir saxlanıldı",
+    "saveFailed": "Təsviri saxlamaq mümkün olmadı"
+  },
   "liveRecap": {
     "title": "Axının xülasəsi",
     "justEnded": "Axınının xülasəsi",

@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tavsif qoʻshish",
+    "edit": "Tavsifni tahrirlash",
+    "titleImage": "Bu rasmni tavsiflang",
+    "titleVideo": "Bu videoni tavsiflang",
+    "help": "Uni koʻra olmaydigan odamlar uchun. Ekran oʻquvchilari uni ovoz chiqarib oʻqiydi.",
+    "placeholder": "Unda nima koʻrsatilgan? Undagi har qanday matnni ham yozing.",
+    "show": "Tavsifni koʻrsatish",
+    "saved": "Tavsif saqlandi",
+    "saveFailed": "Tavsifni saqlab boʻlmadi"
+  },
   "liveRecap": {
     "title": "Strim xulosasi",
     "justEnded": "Strimingiz xulosasi",

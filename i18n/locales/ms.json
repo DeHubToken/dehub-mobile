@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tambah penerangan",
+    "edit": "Sunting penerangan",
+    "titleImage": "Terangkan imej ini",
+    "titleVideo": "Terangkan video ini",
+    "help": "Untuk orang yang tidak dapat melihatnya. Pembaca skrin membacanya dengan kuat.",
+    "placeholder": "Apa yang ditunjukkannya? Sertakan sebarang teks di dalamnya.",
+    "show": "Tunjukkan penerangan",
+    "saved": "Penerangan disimpan",
+    "saveFailed": "Tidak dapat menyimpan penerangan"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} menang",
     "title": "Ringkasan strim",

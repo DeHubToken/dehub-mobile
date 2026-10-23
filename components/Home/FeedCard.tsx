@@ -1604,6 +1604,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <ContainedFeedImage
             active={isVisible}
             uri={galleryImages[0]}
+            description={item.mediaDescriptions?.[0]}
             width={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             fallbackWidth={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
@@ -1617,6 +1618,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         postId={String(tokenId)}
         key={galleryImages.join('|')}
         images={galleryImages}
+        descriptions={item.mediaDescriptions}
         width={itemWidth}
         fallbackWidth={IMAGE_WIDTH}
         active={isVisible}

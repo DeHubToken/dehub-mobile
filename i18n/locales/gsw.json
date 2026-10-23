@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Beschriibig hinzuefüege",
+    "edit": "Beschriibig bearbeite",
+    "titleImage": "Beschriib das Bild",
+    "titleVideo": "Beschriib das Video",
+    "help": "Für Lüüt, wo s nöd chönd gseh. Screenreader läsed s luut vor.",
+    "placeholder": "Was zeigt s? Schriib au de Text drin uf.",
+    "show": "Beschriibig aazeige",
+    "saved": "Beschriibig gspeicheret",
+    "saveFailed": "D Beschriibig het nöd chöne gspeicheret werde"
+  },
   "liveRecap": {
     "share": "Anteil",
     "shareText": "Ich habe gerade \"{{title}}\" auf DeHub gestreamt: {{duration}} live, {{peak}} auf dem Gipfel und {{followers}} neue Follower.",

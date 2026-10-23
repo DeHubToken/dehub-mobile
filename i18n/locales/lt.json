@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Pridėti aprašymą",
+    "edit": "Redaguoti aprašymą",
+    "titleImage": "Aprašykite šį vaizdą",
+    "titleVideo": "Aprašykite šį vaizdo įrašą",
+    "help": "Žmonėms, kurie jo nemato. Ekrano skaitytuvai jį perskaito garsiai.",
+    "placeholder": "Ką jis rodo? Įtraukite ir jame esantį tekstą.",
+    "show": "Rodyti aprašymą",
+    "saved": "Aprašymas išsaugotas",
+    "saveFailed": "Nepavyko išsaugoti aprašymo"
+  },
   "liveRecap": {
     "title": "Srauto apibendrinimas",
     "justEnded": "Srauto apibendrinimas",

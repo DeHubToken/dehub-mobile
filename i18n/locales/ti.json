@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "መግለጺ ወስኽ",
+    "edit": "መግለጺ ኣመሓይሽ",
+    "titleImage": "ነዚ ስእሊ ግለጾ",
+    "titleVideo": "ነዚ ቪድዮ ግለጾ",
+    "help": "ንዘይርእዩ ሰባት። ኣንበብቲ ስክሪን ብዓው ኢሎም የንብብዎ።",
+    "placeholder": "እንታይ የርኢ? ኣብኡ ዘሎ ዝኾነ ጽሑፍ እውን ኣእቱ።",
+    "show": "መግለጺ ኣርኢ",
+    "saved": "መግለጺ ተዓቂቡ",
+    "saveFailed": "መግለጺ ክዕቀብ ኣይተኻእለን"
+  },
   "liveRecap": {
     "shareText": "ኣብ DeHub \"{{title}}\" ፈኒወ: {{duration}} ብቐጥታ፣ ብዝበዝሐ {{peak}} ተዓዘብቲ ከምኡውን {{followers}} ሓደሽቲ ሰዓብቲ።",
     "title": "ናይ ዥረት ዳግመ-ምግቢ",

@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Magdagdag ng paglalarawan",
+    "edit": "I-edit ang paglalarawan",
+    "titleImage": "Ilarawan ang larawang ito",
+    "titleVideo": "Ilarawan ang video na ito",
+    "help": "Para sa mga taong hindi ito nakikita. Binabasa ito nang malakas ng mga screen reader.",
+    "placeholder": "Ano ang ipinapakita nito? Isama ang anumang teksto rito.",
+    "show": "Ipakita ang paglalarawan",
+    "saved": "Na-save ang paglalarawan",
+    "saveFailed": "Hindi ma-save ang paglalarawan"
+  },
   "liveRecap": {
     "pollWinner": "Nanalo ang {{option}}",
     "title": "I - recap ang stream",
