@@ -269,39 +269,6 @@ export default function UploadScreen() {
   // the readiness check. Read the latest wallet when focus/preference changes.
   const postingWalletRef = useRef({ activeChainId, switchChain });
   postingWalletRef.current = { activeChainId, switchChain };
-  useFocusEffect(useCallback(() => {
-    let cancelled = false;
-    setPostChainId(undefined);
-    const prepareChain = async () => {
-      if (isSolanaChain(preferredChainId)) {
-        const addr = await getSolanaAddress();
-        if (cancelled) return;
-        if (!addr) {
-          toastError(t("upload.solanaUnavailable"));
-          return;
-        }
-        const status = await getSolanaMintStatus().catch(() => null);
-        if (cancelled) return;
-        if (status?.mintingEnabled === false) {
-          toastError(status.message || t("upload.solanaTempUnavailable"));
-          return;
-        }
-        setSolanaAddress(addr);
-      } else {
-        setSolanaAddress(null);
-        const wallet = postingWalletRef.current;
-        if (preferredChainId !== wallet.activeChainId) await wallet.switchChain(preferredChainId);
-      }
-      if (!cancelled) setPostChainId(preferredChainId);
-    };
-    void prepareChain().catch(() => {
-      if (!cancelled) toastError(_copy("copy.f0ed7becd58e", { defaultValue: "Could not switch to your posting chain. Choose a chain in Settings and try again." }));
-    });
-    return () => { cancelled = true; };
-  }, [preferredChainId, _copy]));
-  const postingChainReady = !isSwitchingChain && postChainId === preferredChainId && (
-    isSolanaChain(preferredChainId) ? !!solanaAddress : activeChainId === preferredChainId
-  );
   const titleRef = useRef<TextInput>(null);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
@@ -540,6 +507,47 @@ export default function UploadScreen() {
   // post that never goes on-chain.
   const mintRequired = monetization.bountyEnabled;
   const effectiveShouldMint = shouldMint || mintRequired;
+  const needsPostingWallet = !isQuoteMode && !isStageMode && effectiveShouldMint;
+  useFocusEffect(useCallback(() => {
+    let cancelled = false;
+    setPostChainId(undefined);
+    // A quote or an off-chain post is authenticated by the account session.
+    // Merely opening that composer must not unlock or switch a wallet.
+    if (!needsPostingWallet) {
+      setSolanaAddress(null);
+      setPostChainId(preferredChainId);
+      return () => { cancelled = true; };
+    }
+    const prepareChain = async () => {
+      if (isSolanaChain(preferredChainId)) {
+        const addr = await getSolanaAddress();
+        if (cancelled) return;
+        if (!addr) {
+          toastError(t("upload.solanaUnavailable"));
+          return;
+        }
+        const status = await getSolanaMintStatus().catch(() => null);
+        if (cancelled) return;
+        if (status?.mintingEnabled === false) {
+          toastError(status.message || t("upload.solanaTempUnavailable"));
+          return;
+        }
+        setSolanaAddress(addr);
+      } else {
+        setSolanaAddress(null);
+        const wallet = postingWalletRef.current;
+        if (preferredChainId !== wallet.activeChainId) await wallet.switchChain(preferredChainId);
+      }
+      if (!cancelled) setPostChainId(preferredChainId);
+    };
+    void prepareChain().catch(() => {
+      if (!cancelled) toastError(_copy("copy.f0ed7becd58e", { defaultValue: "Could not switch to your posting chain. Choose a chain in Settings and try again." }));
+    });
+    return () => { cancelled = true; };
+  }, [preferredChainId, needsPostingWallet, _copy]));
+  const postingChainReady = !needsPostingWallet || !isSwitchingChain && postChainId === preferredChainId && (
+    isSolanaChain(preferredChainId) ? !!solanaAddress : activeChainId === preferredChainId
+  );
 
   /** What the mint costs. Only sponsored sessions are charged, so only they ask. */
   useEffect(() => {
@@ -1222,7 +1230,7 @@ export default function UploadScreen() {
   const submitPost = useCallback(async () => {
     let payload = getPayload();
 
-    if (isSolanaChain(payload.postChainId)) {
+    if (payload.shouldMint !== false && isSolanaChain(payload.postChainId)) {
       const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
       if (!addr) {
         toastError(t("upload.solanaUnavailable"));
