@@ -176,7 +176,7 @@ export function useCommunityChat(
   }, [active, isPrivate, communityId, queryClient, key]);
 
   const sendMessage = useCallback(
-    async (content: string, replyToId?: string) => {
+    async (content: string, replyToId?: string, media?: { type: "gif" | "voice"; url: string }) => {
       if (!communityId || !walletAddress) throw new Error("Sign in to send a message");
       const msg = {
         community_id: communityId,
@@ -186,8 +186,10 @@ export function useCommunityChat(
         avatar_url: user?.avatarImageUrl || user?.avatarUrl || null,
         badge_balance: user?.badgeBalance ?? null,
         content,
-        message_type: "text",
-        image_url: null,
+        // Same shapes web writes: a GIF or voice note carries its URL in
+        // image_url, and the body is empty (GIF) or the URL again (voice).
+        message_type: media?.type ?? "text",
+        image_url: media?.url ?? null,
         reply_to_id: replyToId || null,
         reactions: {},
       };
