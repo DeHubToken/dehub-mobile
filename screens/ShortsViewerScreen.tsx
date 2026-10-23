@@ -165,6 +165,7 @@ import { blockQuickActions } from "../libs/quickActions";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 import { useTranslation as useCopy } from "react-i18next";
+import { hideDislikedPost, restoreDislikedPost } from "../libs/disliked-posts-store";
 
 
 
@@ -875,8 +876,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       };
 
       applyEngagement(engagementKey, countsAt(voteWeight));
+      // A disliked short leaves this viewer's feeds; undoing it brings it back.
+      if (nextNegative && !wasNegative) hideDislikedPost(tokenId);
+      else if (wasNegative && !nextNegative) restoreDislikedPost(tokenId);
 
       const rollback = () => {
+        if (nextNegative && !wasNegative) restoreDislikedPost(tokenId);
+        else if (wasNegative && !nextNegative) hideDislikedPost(tokenId);
         // Restore only the fields this handler owns, so a concurrent save or
         // repost that succeeded is not undone.
         revertEngagement(engagementKey, {

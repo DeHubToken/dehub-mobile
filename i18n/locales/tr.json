@@ -350,6 +350,8 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "showDislikesDesc": "Herkes profilindeki Beğenilmeyenler sekmesini açabilir. Bu kapalıyken yalnızca sen görebilirsin.",
+    "showDislikes": "Beğenmediklerimi herkese göster",
     "shortsEnabledDesc": "Kısa videolar (Shorts) sekmesini ve Anasayfadaki Shorts karuselini göster.",
     "shortsEnabled": "Kısa Videolar",
     "postingChain": "Gönderi blokzinciri",
@@ -2135,6 +2137,12 @@
     "returnHome": "Ana Sayfaya Dön"
   },
   "profile": {
+    "dislikesPrivateDesc": "Bu hesap beğenmediklerini kendine saklıyor.",
+    "dislikesPrivateTitle": "Beğenilmeyenler gizli",
+    "dislikesEmptyOther": "Henüz beğenilmeyen bir şey yok.",
+    "dislikesEmptyOwn": "Beğenmediğin gönderiler akışlarından çıkar ve burada görünür. Gönderiyi geri getirmek için beğenmemeyi geri al.",
+    "dislikesEmptyTitle": "Henüz beğenmediğin bir şey yok",
+    "tabDislikes": "Beğenilmeyenler",
     "replyThread": {
       "postUnavailable": "Bu gönderi kullanılamıyor",
       "commentUnavailable": "Bu yorum artık mevcut değil"

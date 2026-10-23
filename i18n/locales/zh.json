@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} 条帖子"
   },
   "settings": {
+    "showDislikesDesc": "任何人都可以打开你个人资料中的“踩”标签。关闭后只有你自己能看到。",
+    "showDislikes": "向所有人显示我踩过的内容",
     "postingChain": "发帖区块链",
     "showOnline": "在我上线时显示",
     "showOnlineDesc": "当您使用DeHub时，您发送消息的人会在您的姓名旁边看到一个绿点",
@@ -1926,6 +1928,12 @@
     "returnHome": "返回首页"
   },
   "profile": {
+    "dislikesPrivateDesc": "此账号不公开踩过的内容。",
+    "dislikesPrivateTitle": "踩过的内容是私密的",
+    "dislikesEmptyOther": "还没有踩过任何内容。",
+    "dislikesEmptyOwn": "你踩过的帖子会从你的信息流中消失并显示在这里。取消踩即可恢复该帖子。",
+    "dislikesEmptyTitle": "还没有踩过的内容",
+    "tabDislikes": "踩",
     "replyThread": {
       "postUnavailable": "此帖不可用",
       "commentUnavailable": "此评论不再可用"

@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} mga post"
   },
   "settings": {
+    "showDislikesDesc": "Kahit sino ay puwedeng magbukas ng tab na Ayaw sa profile mo. Kapag naka-off, ikaw lang ang makakakita.",
+    "showDislikes": "Ipakita sa lahat ang mga ayaw ko",
     "postingChain": "Blockchain para sa mga post",
     "showOnline": "Ipakita kapag ako ay online",
     "showOnlineDesc": "Nakakakita ang mga taong pinadalhan mo ng mensahe ng berdeng tuldok sa tabi ng iyong pangalan habang gumagamit ka ng DeHub",
@@ -1972,6 +1974,12 @@
     "returnHome": "Bumalik sa Bahay"
   },
   "profile": {
+    "dislikesPrivateDesc": "Itinatago ng account na ito ang mga ayaw nito.",
+    "dislikesPrivateTitle": "Pribado ang mga ayaw",
+    "dislikesEmptyOther": "Wala pang ayaw.",
+    "dislikesEmptyOwn": "Ang mga post na ayaw mo ay aalis sa mga feed mo at lalabas dito. I-undo ang ayaw para ibalik ang post.",
+    "dislikesEmptyTitle": "Wala pang ayaw",
+    "tabDislikes": "Ayaw",
     "replyThread": {
       "postUnavailable": "Hindi available ang post na ito",
       "commentUnavailable": "Hindi na available ang komentong ito"

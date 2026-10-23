@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} โพสต์"
   },
   "settings": {
+    "showDislikesDesc": "ทุกคนเปิดแท็บไม่ชอบในโปรไฟล์ของคุณได้ หากปิดไว้ จะมีแค่คุณที่เห็น",
+    "showDislikes": "แสดงสิ่งที่ฉันไม่ชอบให้ทุกคนเห็น",
     "postingChain": "บล็อกเชนสำหรับโพสต์",
     "showOnline": "แสดงเมื่อฉันออนไลน์",
     "showOnlineDesc": "คนที่คุณส่งข้อความจะเห็นจุดสีเขียวถัดจากชื่อของคุณในขณะที่คุณใช้ DeHub",
@@ -1949,6 +1951,12 @@
     "returnHome": "กลับไปยังหน้าหลัก"
   },
   "profile": {
+    "dislikesPrivateDesc": "บัญชีนี้เก็บสิ่งที่ไม่ชอบไว้เป็นส่วนตัว",
+    "dislikesPrivateTitle": "สิ่งที่ไม่ชอบเป็นส่วนตัว",
+    "dislikesEmptyOther": "ยังไม่มีอะไร",
+    "dislikesEmptyOwn": "โพสต์ที่คุณไม่ชอบจะหายไปจากฟีดและแสดงที่นี่ ยกเลิกไม่ชอบเพื่อนำโพสต์กลับมา",
+    "dislikesEmptyTitle": "ยังไม่มีสิ่งที่ไม่ชอบ",
+    "tabDislikes": "ไม่ชอบ",
     "replyThread": {
       "postUnavailable": "โพสต์นี้ไม่พร้อมใช้งาน",
       "commentUnavailable": "ความคิดเห็นนี้ไม่มีแล้ว"

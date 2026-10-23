@@ -52,6 +52,8 @@ import {
 import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, useDeletedPostsVersion, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { isDislikeGoneSync, useDislikedPostsVersion } from "../../libs/disliked-posts-store";
+import { DislikeVanish } from "./DislikeVanish";
 import { flattenFeedPages, nextFeedPage } from "../../libs/feed-pages";
 import { setFeedScrolling } from "../../libs/scrollActivity";
 import {
@@ -276,6 +278,7 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
 }) {
   const { isVisible, isAutoplay } = useRowVisibility(store, item.__listKey);
   return (
+    <DislikeVanish key={item.__listKey} tokenId={(item as any).tokenId ?? (item as any).id}>
     <FeedCard
       item={item}
       onCategorySelect={onCategorySelect}
@@ -290,6 +293,7 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
       topChromeInset={topChromeInset}
       hideDivider={hideDivider}
     />
+    </DislikeVanish>
   );
 });
 
@@ -593,13 +597,15 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // itself, and under FlashList that lasts until its cell is handed another
   // post: the deleted post then came back further down the scroll.
   const deletedVersion = useDeletedPostsVersion();
+  // Same for a post the viewer disliked, once its card has folded away.
+  const dislikedVersion = useDislikedPostsVersion();
 
   // Pages repeat rows across the offset boundary; flattenFeedPages keeps the
   // first copy and drops tombstoned posts (see libs/feed-pages.ts).
   const rawItems = useMemo<FeedItem[]>(
-    () => flattenFeedPages<FeedItem>(data?.pages ?? [], isPostDeletedSync),
+    () => flattenFeedPages<FeedItem>(data?.pages ?? [], (id) => isPostDeletedSync(id) || isDislikeGoneSync(id)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data, tombstonesReady, deletedVersion],
+    [data, tombstonesReady, deletedVersion, dislikedVersion],
   );
 
   // Videos already played, dropped only when the reader asked for that in
@@ -1061,7 +1067,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const isRenderable = useCallback(
     (row: any) => {
       const id = row?.tokenId ?? row?.id ?? row?.stream?.tokenId;
-      if (id != null && isPostDeletedSync(id)) return false;
+      if (id != null && (isPostDeletedSync(id) || isDislikeGoneSync(id))) return false;
       if (row?.postType === "live" && liveStreams.complete) {
         return id != null && liveStreams.byToken.has(String(id));
       }

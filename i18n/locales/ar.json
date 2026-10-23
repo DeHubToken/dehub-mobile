@@ -350,6 +350,8 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "showDislikesDesc": "يمكن لأي شخص فتح تبويب «عدم الإعجاب» في ملفك الشخصي. عند إيقاف هذا الخيار، تراه أنت فقط.",
+    "showDislikes": "أظهر عدم إعجاباتي للجميع",
     "shortsEnabledDesc": "إظهار تبويب خلاصة Shorts ودوارات Shorts على الصفحة الرئيسية.",
     "shortsEnabled": "مقاطع قصيرة",
     "postingChain": "شبكة النشر",
@@ -2135,6 +2137,12 @@
     "returnHome": "العودة للرئيسية"
   },
   "profile": {
+    "dislikesPrivateDesc": "هذا الحساب يحتفظ بعدم إعجاباته لنفسه.",
+    "dislikesPrivateTitle": "عدم الإعجاب خاص",
+    "dislikesEmptyOther": "لا يوجد شيء لم يعجبه بعد.",
+    "dislikesEmptyOwn": "المنشورات التي لا تعجبك تختفي من خلاصاتك وتظهر هنا. ألغِ عدم الإعجاب لإعادة المنشور.",
+    "dislikesEmptyTitle": "لا توجد منشورات لم تعجبك بعد",
+    "tabDislikes": "عدم الإعجاب",
     "replyThread": {
       "postUnavailable": "هذا المنشور غير متاح",
       "commentUnavailable": "لم يعد هذا التعليق متاحًا"

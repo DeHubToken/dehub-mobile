@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} innlegg"
   },
   "settings": {
+    "showDislikesDesc": "Alle kan åpne fanen Misliker på profilen din. Når dette er av, kan bare du se den.",
+    "showDislikes": "Vis mine misliker for alle",
     "postingChain": "Blokkjede for innlegg",
     "showOnline": "Vis når jeg er pålogget",
     "showOnlineDesc": "Folk du sender meldinger til ser en grønn prikk ved siden av navnet ditt mens du bruker DeHub",
@@ -1925,6 +1927,12 @@
     "returnHome": "Gå tilbake til hjem"
   },
   "profile": {
+    "dislikesPrivateDesc": "Denne kontoen holder misliker for seg selv.",
+    "dislikesPrivateTitle": "Misliker er private",
+    "dislikesEmptyOther": "Ingenting ennå.",
+    "dislikesEmptyOwn": "Innlegg du misliker forsvinner fra feedene dine og vises her. Angre en misliker for å få innlegget tilbake.",
+    "dislikesEmptyTitle": "Ingen misliker ennå",
+    "tabDislikes": "Misliker",
     "replyThread": {
       "postUnavailable": "Dette innlegget er ikke tilgjengelig",
       "commentUnavailable": "Denne kommentaren er ikke lenger tilgjengelig"

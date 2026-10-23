@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} opslag"
   },
   "settings": {
+    "showDislikesDesc": "Alle kan åbne fanen Dislikes på din profil. Når dette er slået fra, kan kun du se den.",
+    "showDislikes": "Vis mine dislikes for alle",
     "postingChain": "Blockchain til opslag",
     "showOnline": "Vis, når jeg er online",
     "showOnlineDesc": "Personer, du sender en besked til, ser en grøn prik ved siden af dit navn, mens du bruger DeHub",
@@ -1925,6 +1927,12 @@
     "returnHome": "Tilbage til forsiden"
   },
   "profile": {
+    "dislikesPrivateDesc": "Denne konto holder sine dislikes for sig selv.",
+    "dislikesPrivateTitle": "Dislikes er private",
+    "dislikesEmptyOther": "Intet endnu.",
+    "dislikesEmptyOwn": "Opslag, du disliker, forsvinder fra dine feeds og vises her. Fortryd et dislike for at få opslaget tilbage.",
+    "dislikesEmptyTitle": "Ingen dislikes endnu",
+    "tabDislikes": "Dislikes",
     "replyThread": {
       "postUnavailable": "Dette opslag er ikke tilgængeligt",
       "commentUnavailable": "Denne kommentar er ikke længere tilgængelig"

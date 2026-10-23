@@ -219,6 +219,8 @@
     "postCount_other": "machapisho {{count}}"
   },
   "settings": {
+    "showDislikesDesc": "Mtu yeyote anaweza kufungua kichupo cha Sivyopenda kwenye wasifu wako. Kikizimwa, ni wewe tu unayekiona.",
+    "showDislikes": "Onyesha nisivyopenda kwa kila mtu",
     "postingChain": "Mnyororo wa bloku wa machapisho",
     "showOnline": "Onyesha wakati niko mtandaoni",
     "showOnlineDesc": "Watu unaotuma ujumbe wanaona nukta ya kijani karibu na jina lako unapotumia DeHub",
@@ -1926,6 +1928,12 @@
     "returnHome": "Rudi Nyumbani"
   },
   "profile": {
+    "dislikesPrivateDesc": "Akaunti hii inaweka sivyopenda vyake kwa siri.",
+    "dislikesPrivateTitle": "Sivyopenda ni siri",
+    "dislikesEmptyOther": "Bado hakuna kitu.",
+    "dislikesEmptyOwn": "Machapisho usiyoyapenda yanaondoka kwenye milisho yako na kuonekana hapa. Tendua usiyopenda ili kurudisha chapisho.",
+    "dislikesEmptyTitle": "Bado hakuna",
+    "tabDislikes": "Sivyopenda",
     "replyThread": {
       "postUnavailable": "Chapisho hili halipatikani",
       "commentUnavailable": "Maoni haya hayapatikani tena"

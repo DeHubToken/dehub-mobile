@@ -223,6 +223,8 @@
     "postCount_other": "{{count}} post"
   },
   "settings": {
+    "showDislikesDesc": "Chiunque può aprire la scheda «Non mi piace» del tuo profilo. Se disattivato, solo tu puoi vederla.",
+    "showDislikes": "Mostra a tutti i miei «non mi piace»",
     "postingChain": "Blockchain dei post",
     "showOnline": "Mostra quando sono online",
     "showOnlineDesc": "Le persone a cui invii un messaggio vedono un punto verde accanto al tuo nome mentre utilizzi DeHub",
@@ -1933,6 +1935,12 @@
     "returnHome": "Torna alla home"
   },
   "profile": {
+    "dislikesPrivateDesc": "Questo account tiene per sé i suoi «non mi piace».",
+    "dislikesPrivateTitle": "I «non mi piace» sono privati",
+    "dislikesEmptyOther": "Ancora niente.",
+    "dislikesEmptyOwn": "I post che non ti piacciono escono dai tuoi feed e compaiono qui. Annulla il «non mi piace» per riportare indietro il post.",
+    "dislikesEmptyTitle": "Ancora nessun «non mi piace»",
+    "tabDislikes": "Non mi piace",
     "replyThread": {
       "postUnavailable": "Questo post non è disponibile",
       "commentUnavailable": "Questo commento non è più disponibile"
