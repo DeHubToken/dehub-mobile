@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} पोस्ट"
   },
   "settings": {
+    "showDislikesDesc": "कोई भी आपकी प्रोफ़ाइल पर नापसंद टैब खोल सकता है। बंद होने पर सिर्फ़ आप इसे देख सकते हैं।",
+    "showDislikes": "मेरी नापसंद सबको दिखाएँ",
     "postingChain": "पोस्ट के लिए ब्लॉकचेन",
     "showOnline": "मेरे ऑनलाइन होने पर दिखाएँ",
     "showOnlineDesc": "आप जिन लोगों को मैसेज भेजते हैं, उन्हें DeHub का इस्तेमाल करते समय आपके नाम के बगल में हरे रंग की डॉट दिखाई देती है",
@@ -1933,6 +1935,12 @@
     "returnHome": "होम पर लौटें"
   },
   "profile": {
+    "dislikesPrivateDesc": "यह खाता अपनी नापसंद निजी रखता है।",
+    "dislikesPrivateTitle": "नापसंद निजी हैं",
+    "dislikesEmptyOther": "अभी तक कुछ नापसंद नहीं किया।",
+    "dislikesEmptyOwn": "जिन पोस्ट को आप नापसंद करते हैं वे आपकी फ़ीड से हट जाती हैं और यहाँ दिखती हैं। पोस्ट वापस लाने के लिए नापसंद हटाएँ।",
+    "dislikesEmptyTitle": "अभी तक कोई नापसंद नहीं",
+    "tabDislikes": "नापसंद",
     "replyThread": {
       "postUnavailable": "यह पोस्ट उपलब्ध नहीं है",
       "commentUnavailable": "यह टिप्पणी अब उपलब्ध नहीं है"

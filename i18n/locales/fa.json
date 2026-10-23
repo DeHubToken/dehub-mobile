@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} پست"
   },
   "settings": {
+    "showDislikesDesc": "هر کسی می‌تواند زبانه نپسندیدن‌ها را در نمایه‌ات باز کند. وقتی خاموش است، فقط خودت آن را می‌بینی.",
+    "showDislikes": "نمایش نپسندیدن‌هایم به همه",
     "postingChain": "بلاک‌چین انتشار پست",
     "showOnline": "نمایش وقتی آنلاین هستم",
     "showOnlineDesc": "افرادی که به آنها پیام می‌دهید، هنگام استفاده از DeHub، یک نقطه سبز در کنار نام شما می‌بینند",
@@ -1925,6 +1927,12 @@
     "returnHome": "بازگشت به خانه"
   },
   "profile": {
+    "dislikesPrivateDesc": "این حساب نپسندیدن‌هایش را برای خودش نگه می‌دارد.",
+    "dislikesPrivateTitle": "نپسندیدن‌ها خصوصی است",
+    "dislikesEmptyOther": "هنوز چیزی نیست.",
+    "dislikesEmptyOwn": "پست‌هایی که نمی‌پسندی از فیدهایت خارج می‌شوند و اینجا نشان داده می‌شوند. نپسندیدن را لغو کن تا پست برگردد.",
+    "dislikesEmptyTitle": "هنوز چیزی نیست",
+    "tabDislikes": "نپسندیدن‌ها",
     "replyThread": {
       "postUnavailable": "این پست در دسترس نیست",
       "commentUnavailable": "این نظر دیگر در دسترس نیست"

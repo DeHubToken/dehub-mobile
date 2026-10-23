@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} פוסטים"
   },
   "settings": {
+    "showDislikesDesc": "כל אחד יכול לפתוח את הלשונית 'לא אהבתי' בפרופיל שלך. כשזה כבוי, רק את/ה רואה אותה.",
+    "showDislikes": "להציג לכולם את מה שלא אהבתי",
     "postingChain": "בלוקצ׳יין לפרסום",
     "showOnline": "הצגה כשאני במצב מחובר",
     "showOnlineDesc": "אנשים שאתם שולחים להם הודעה רואים נקודה ירוקה ליד השם שלכם בזמן שאתם משתמשים ב - DeHub",
@@ -1922,6 +1924,12 @@
     "returnHome": "חזור לדף הבית"
   },
   "profile": {
+    "dislikesPrivateDesc": "החשבון הזה שומר את מה שלא אהב לעצמו.",
+    "dislikesPrivateTitle": "לא אהבתי הוא פרטי",
+    "dislikesEmptyOther": "עדיין אין כלום.",
+    "dislikesEmptyOwn": "פוסטים שלא אהבת יוצאים מהפידים שלך ומופיעים כאן. בטל/י את הלא-אהבתי כדי להחזיר את הפוסט.",
+    "dislikesEmptyTitle": "עדיין אין",
+    "tabDislikes": "לא אהבתי",
     "replyThread": {
       "postUnavailable": "הפוסט הזה לא זמין",
       "commentUnavailable": "התגובה הזו כבר לא זמינה"

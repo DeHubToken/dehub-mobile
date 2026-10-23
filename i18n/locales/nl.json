@@ -350,6 +350,8 @@
     "postCount_other": "{{count}} berichten"
   },
   "settings": {
+    "showDislikesDesc": "Iedereen kan het tabblad Dislikes op je profiel openen. Staat dit uit, dan zie alleen jij het.",
+    "showDislikes": "Mijn dislikes aan iedereen tonen",
     "shortsEnabledDesc": "Toon het tabblad Shorts-feed en Shorts-carousels op Home.",
     "shortsEnabled": "Korte broeken",
     "postingChain": "Blockchain voor berichten",
@@ -2325,6 +2327,12 @@
     "returnHome": "Terug naar home"
   },
   "profile": {
+    "dislikesPrivateDesc": "Dit account houdt zijn dislikes voor zichzelf.",
+    "dislikesPrivateTitle": "Dislikes zijn privé",
+    "dislikesEmptyOther": "Nog niets gedisliket.",
+    "dislikesEmptyOwn": "Berichten die je disliket verdwijnen uit je feeds en verschijnen hier. Maak een dislike ongedaan om het bericht terug te halen.",
+    "dislikesEmptyTitle": "Nog geen dislikes",
+    "tabDislikes": "Dislikes",
     "replyThread": {
       "postUnavailable": "Dit bericht is niet beschikbaar",
       "commentUnavailable": "Deze reactie is niet meer beschikbaar"

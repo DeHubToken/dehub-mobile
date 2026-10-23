@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} postingan"
   },
   "settings": {
+    "showDislikesDesc": "Siapa pun bisa membuka tab Tidak Suka di profilmu. Jika nonaktif, hanya kamu yang bisa melihatnya.",
+    "showDislikes": "Tampilkan tidak sukaku ke semua orang",
     "postingChain": "Blockchain postingan",
     "showOnline": "Tampilkan saat saya online",
     "showOnlineDesc": "Orang yang Anda kirimi pesan melihat titik hijau di samping nama Anda saat Anda menggunakan DeHub",
@@ -1927,6 +1929,12 @@
     "returnHome": "Kembali ke Beranda"
   },
   "profile": {
+    "dislikesPrivateDesc": "Akun ini menyimpan tidak sukanya sendiri.",
+    "dislikesPrivateTitle": "Tidak suka bersifat pribadi",
+    "dislikesEmptyOther": "Belum ada yang tidak disukai.",
+    "dislikesEmptyOwn": "Postingan yang tidak kamu sukai hilang dari feed-mu dan muncul di sini. Batalkan tidak suka untuk mengembalikan postingan.",
+    "dislikesEmptyTitle": "Belum ada tidak suka",
+    "tabDislikes": "Tidak Suka",
     "replyThread": {
       "postUnavailable": "Postingan ini tidak tersedia",
       "commentUnavailable": "Komentar ini tidak lagi tersedia"

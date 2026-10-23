@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} postów"
   },
   "settings": {
+    "showDislikesDesc": "Każdy może otworzyć kartę „Nie lubię” na twoim profilu. Gdy to jest wyłączone, widzisz ją tylko ty.",
+    "showDislikes": "Pokazuj wszystkim moje łapki w dół",
     "postingChain": "Blockchain postów",
     "showOnline": "Pokaż, gdy jestem online",
     "showOnlineDesc": "Osoby, do których piszesz, widzą zieloną kropkę obok Twojego imienia podczas korzystania z DeHub",
@@ -1927,6 +1929,12 @@
     "returnHome": "Wróć na stronę główną"
   },
   "profile": {
+    "dislikesPrivateDesc": "To konto zachowuje swoje łapki w dół dla siebie.",
+    "dislikesPrivateTitle": "Łapki w dół są prywatne",
+    "dislikesEmptyOther": "Jeszcze nic.",
+    "dislikesEmptyOwn": "Posty, którym dajesz łapkę w dół, znikają z twoich kanałów i pojawiają się tutaj. Cofnij łapkę w dół, aby przywrócić post.",
+    "dislikesEmptyTitle": "Brak łapek w dół",
+    "tabDislikes": "Nie lubię",
     "replyThread": {
       "postUnavailable": "Ten post jest niedostępny",
       "commentUnavailable": "Ten komentarz nie jest już dostępny"
