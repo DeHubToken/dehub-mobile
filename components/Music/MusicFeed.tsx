@@ -83,7 +83,7 @@ const SUB_TABS: { value: MusicSubTab; label: string; icon: IconName }[] = [
 
 /** Shelves rendered under All, in web's order. */
 type Shelf = "videos" | "radio" | "audio" | "stages" | "tracks" | "podcasts";
-const ALL_SHELVES: Shelf[] = ["videos", "radio", "audio", "stages", "tracks", "podcasts"];
+const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages", "tracks", "podcasts"];
 
 const CAROUSEL_PAGE_SIZE = 12;
 const VIDEOS_PAGE_SIZE = 10;
@@ -591,50 +591,29 @@ const AUDIO_CARD_WIDTH = 280;
  * the shelf has actually settled on counts.
  */
 const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[]; active: boolean }> = ({ items, active }) => {
-  const scrollGuard = useHorizontalScrollGuard();
-  const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
-
-  // Both must be stable for the lifetime of the list — FlatList throws on a
-  // changed onViewableItemsChanged.
-  const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 60 }).current;
-  const onViewableItemsChanged = useRef(
-    ({ viewableItems }: { viewableItems: Array<{ key: string }> }) => {
-      setVisibleIds(new Set(viewableItems.map((v) => v.key)));
-    },
-  ).current;
-
-  const list = (
-    <FlatList
-      data={items}
-      keyExtractor={(item, i) => String(item.tokenId ?? item.id ?? i)}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      nestedScrollEnabled
-      initialNumToRender={2}
-      windowSize={3}
-      contentContainerStyle={styles.shelfContent}
-      viewabilityConfig={viewabilityConfig}
-      onViewableItemsChanged={onViewableItemsChanged}
-      renderItem={({ item, index }) => (
-        <AudioUploadCard
-          nft={item}
-          isVisible={active && visibleIds.has(String(item.tokenId ?? item.id ?? index))}
-        />
-      )}
-      extraData={visibleIds}
-    />
-  );
-
-  return scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list;
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const selected = items.find(item => String(item.tokenId ?? item.id) === selectedId) || items[0];
+  if (selected) return <View style={{ paddingHorizontal: FEED_SIDE, gap: 16 }}>
+    <AudioUploadCard nft={selected} isVisible={active} desk />
+    <View style={{ gap: 2 }}>
+      {items.map((item, index) => {
+        const id = String(item.tokenId ?? item.id ?? index);
+        const current = String(selected.tokenId ?? selected.id) === id;
+        return <TouchableOpacity key={id} accessibilityRole="button" accessibilityState={{ selected: current }} onPress={() => setSelectedId(id)} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, paddingHorizontal: 10, borderRadius: 10, backgroundColor: current ? 'rgba(255,255,255,.06)' : 'transparent', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(255,255,255,.08)' }}>
+          <Text style={{ color: 'rgba(255,255,255,.4)', fontSize: 10 }}>{String(index + 1).padStart(2, '0')}</Text>
+          <View style={{ flex: 1, gap: 4 }}><Text numberOfLines={1} style={{ color: '#fff', fontSize: 13, fontWeight: '500' }}>{item.name || (item as any).title}</Text><Text style={{ color: 'rgba(255,255,255,.5)', fontSize: 10 }}>{(item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername}</Text></View>
+          <Icon name="Play" size={16} color="#fff" />
+        </TouchableOpacity>;
+      })}
+    </View>
+  </View>;
+  return null;
 };
 
-/**
- * An audio post on the shelf: title, creator, and the same compact player the
- * feed card uses, so a track can be heard without opening it.
- */
-const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
+const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?: boolean }> = ({
   nft,
   isVisible,
+  desk = false,
 }) => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
@@ -643,7 +622,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
   // link: the player needs the CDN host in front, the same as the feed card.
   const rawAudioUrl = (nft as any).audioUrl as string | undefined;
   const audioUrl = rawAudioUrl ? getAudioUrl(rawAudioUrl) : undefined;
-  const glass = theme === 'glass' && !!audioUrl && tokenId != null;
+  const glass = (theme === 'glass' || theme === 'system') && !!audioUrl && tokenId != null;
   const streamInfo = (nft as any).streamInfo;
   // Paid and gated tracks are private on the CDN; fetch a signed link first.
   const requiresAccess = !!streamInfo?.isPayPerView
@@ -658,7 +637,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean }> = ({
   );
 
   return (
-    <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }]}>
+    <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }, desk && { width: '100%' }]}>
       {!glass && <Text style={styles.audioTitle} numberOfLines={1}>
         {title}
       </Text>}
