@@ -870,6 +870,8 @@ export interface SuggestedAccount {
   username?: string;
   displayName?: string;
   avatarImageUrl?: string;
+  /** Profile banner path, as the profile API returns it. */
+  coverImageUrl?: string | null;
   aboutMe?: string;
   followers: number;
   followings: number;
