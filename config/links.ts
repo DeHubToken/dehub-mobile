@@ -8,7 +8,9 @@ export const SUPPORT_MAIL="dev@dehub.io"
 export const DEV_MAIL="alhaji4megahit@gmail.com"
 export const LIVEPEER_RMTP_URL="rtmp://rtmp.livepeer.com/live"
 export const WEBSITE_LINK="https://dehub.io"
+/** A creator's OBS browser-source overlay is this plus their overlay token. */
+export const OVERLAY_LINK_BASE = "https://dehub.io/overlay/"
 export const DPAY_TX_LINK="https://dehub.io/dpay/tnx"
 export const LEGACY_WEBSITE_LINK= env.LEGACY_APP_ORIGIN
 export const GOOGLE_PLAY_LINK="https://play.google.com/store/apps/details?id=io.dehub.mobile"
-export const APP_STORE_LINK=""
+export const APP_STORE_LINK="https://apps.apple.com/app/id6770382811"

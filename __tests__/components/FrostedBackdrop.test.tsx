@@ -5,6 +5,10 @@ import { FrostedBackdropProvider, FrostedBackground, FrostedContent, useFrostedS
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({ Platform: { OS: 'android', Version: 36 }, View: 'View', StyleSheet: { absoluteFill: {} } }));
 jest.mock('expo-blur', () => ({ BlurTargetView: 'BlurTargetView' }));
+let mockLight = false;
+jest.mock('../../context/ThemeContext', () => ({
+  useAppTheme: () => ({ isLight: mockLight, colors: { background: '#010305' } }),
+}));
 jest.mock('@react-navigation/native', () => ({
   useFocusEffect: (callback: () => void) => jest.requireActual('react').useEffect(callback, [callback]),
 }));
@@ -39,4 +43,23 @@ it('keeps WebView backdrops outside blur capture while navigation samples the na
   expect(sources.navigation).toBeUndefined();
   expect(tree.root.findAllByType("BlurTargetView" as any)).toHaveLength(0);
   act(() => tree.unmount());
+});
+
+it('paints the page behind the captured feed in System Light, where the empty layer would be black', () => {
+  const render = () => {
+    let tree!: ReturnType<typeof create>;
+    act(() => {
+      tree = create(
+        <FrostedBackdropProvider backdrop={null}>
+          <FrostedContent>{null}</FrostedContent>
+        </FrostedBackdropProvider>,
+      );
+    });
+    return tree.root.findByType('BlurTargetView' as any).props.style;
+  };
+  mockLight = false;
+  expect(render().backgroundColor).toBeUndefined();
+  mockLight = true;
+  expect(render().backgroundColor).toBe('#010305');
+  mockLight = false;
 });

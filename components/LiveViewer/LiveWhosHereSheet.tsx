@@ -29,7 +29,6 @@ import { liveAccent } from "./liveAccent";
 const TEXT = "#F4F4F5";
 const MUTED = "#9A9AA2";
 const LINE = "rgba(255,255,255,0.10)";
-const LIVE_RED = "#EF4444";
 
 interface Props {
   visible: boolean;
@@ -45,19 +44,17 @@ const Row: React.FC<{
   account: LiveAudienceAccount;
   meta: React.ReactNode;
   right?: React.ReactNode;
-  ring?: boolean;
+  large?: boolean;
   onOpen: (a: LiveAudienceAccount) => void;
   divider: boolean;
-}> = ({ account, meta, right, ring, onOpen, divider }) => (
+}> = ({ account, meta, right, large, onOpen, divider }) => (
   <Pressable
     onPress={() => onOpen(account)}
     accessibilityRole="button"
     accessibilityLabel={audienceName(account)}
     style={[styles.row, divider ? styles.rowDivider : null]}
   >
-    <View style={[styles.avatarWrap, ring ? styles.ring : null]}>
-      <Avatar uri={getAvatarUrl(account.avatarImageUrl) || undefined} size={ring ? 36 : 32} name={audienceName(account)} />
-    </View>
+    <Avatar uri={getAvatarUrl(account.avatarImageUrl) || undefined} size={large ? 36 : 32} name={audienceName(account)} />
     <View style={styles.rowText}>
       <Text style={styles.name} numberOfLines={1}>{audienceName(account)}</Text>
       <View style={styles.metaRow}>{meta}</View>
@@ -118,7 +115,7 @@ function LiveWhosHereSheetComponent({ visible, onClose, audience, loading }: Pro
               t("liveViewer.host"),
               <Row
                 account={host}
-                ring
+                large
                 onOpen={open}
                 divider={false}
                 meta={
@@ -212,8 +209,6 @@ const styles = StyleSheet.create({
   label: { color: MUTED, fontSize: 11, fontWeight: "800", letterSpacing: 0.8, textTransform: "uppercase", marginBottom: 4 },
   row: { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 7 },
   rowDivider: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: LINE },
-  avatarWrap: { borderRadius: 999 },
-  ring: { borderWidth: 2, borderColor: LIVE_RED, padding: 1 },
   rowText: { flex: 1, minWidth: 0 },
   name: { color: TEXT, fontSize: 14, fontWeight: "700" },
   metaRow: { flexDirection: "row", alignItems: "center", gap: 4, marginTop: 1 },

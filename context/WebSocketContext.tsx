@@ -7,6 +7,7 @@ import { getAuthToken as readStoredAuthToken } from '../libs/auth.utils';
 import { tokenRefreshManager } from '../libs/token-refresh';
 import { createLogger } from '../libs/logger';
 import { DMSocketEvent, DMSocketEventSet } from '../services/enums/dm-socket-events.enum';
+import { bindSocketEvents } from '../libs/socket-events';
 
 /**
  * Connection state. Changes on every connect and disconnect of either
@@ -342,6 +343,8 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       subsRef.current.delete(sub);
     }
   }, []);
+  // Lets the upload queue follow its server events without being a component.
+  useEffect(() => bindSocketEvents(on), [on]);
   const isCoreConnected = useCallback(() => connectedCoreRef.current, []);
   const onDmReconnect = useCallback((listener: () => void) => {
     dmReconnectListenersRef.current.add(listener);

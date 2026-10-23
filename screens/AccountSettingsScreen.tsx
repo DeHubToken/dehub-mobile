@@ -65,6 +65,7 @@ import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
 import EmailSignInSection from "../components/Settings/EmailSignInSection";
 import StreamKeySection from "../components/Settings/StreamKeySection";
+import { TwitchMirrorSection } from "../components/Settings/TwitchMirrorSection";
 import GettingStartedRow from "../components/Settings/GettingStartedRow";
 import {
   SettingsSection,
@@ -330,6 +331,17 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           up once and never re-key it again. Under the profile rows because it
           is an account-level credential, not a per-broadcast one. */}
       {isSignedIn ? <StreamKeySection /> : null}
+      {isSignedIn ? <TwitchMirrorSection /> : null}
+      {isSignedIn ? (
+        <SettingsSection label={t("liveStudio.settingsLinkTitle")} icon="Radio" anchor="live-studio">
+          <SettingsLinkRow
+            icon="Radio"
+            label={t("liveStudio.open")}
+            description={t("liveStudio.settingsLinkBody")}
+            onPress={() => navigation.navigate(ScreenNames.LiveStudio)}
+          />
+        </SettingsSection>
+      ) : null}
 
       <SettingsSection label={t("settings.yourContent")} icon="Film" anchor="your-content">
         <SettingsLinkRow
@@ -348,6 +360,19 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           icon="FileText"
           label={t("settings.drafts")}
           onPress={() => navigation.navigate(ScreenNames.Drafts)}
+        />
+      </SettingsSection>
+
+      {/* On the tab Settings opens on. At the foot of Support, the last tab in
+          the strip, App Review did not find it and rejected the app for
+          having no account deletion (Guideline 5.1.1(v)). */}
+      <SettingsSection label={t("settings.account")} icon="UserMinus" anchor="delete-account">
+        <SettingsLinkRow
+          icon="Trash2"
+          destructive
+          label={t("accountDeletion.title")}
+          description={t(deletingAccount ? "accountDeletion.busy" : "accountDeletion.description")}
+          onPress={handleDeleteAccount}
         />
       </SettingsSection>
 
@@ -393,6 +418,8 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           onPress={() => openInApp(PRIVACY_POLICY_LINK)}
         />
         <Divider />
+        {/* Also on the Profile tab. Kept here because the deletion recording
+            attached to the App Review notes walks this path. */}
         <SettingsLinkRow
           icon="Trash2"
           destructive

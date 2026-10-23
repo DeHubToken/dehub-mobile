@@ -6,11 +6,11 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
-  Share,
   FlatList,
   KeyboardAvoidingView,
   useWindowDimensions,
 } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { storageImageSource } from "../libs/cdnImage";
@@ -48,6 +48,7 @@ import {
 import { usePendingMembersQuery, useCommunityModeration } from "../hooks/useCommunityAdmin";
 import CustomSwitch from "../components/ui/CustomSwitch";
 import { CommunityInfoEditor } from "../components/Communities/CommunityInfoEditor";
+import CommunityEventsTab from "../components/Events/CommunityEventsTab";
 import { CommunityChatPanel } from "../components/Communities/CommunityChatPanel";
 import { CommunityManageSheet } from "../components/Communities/manage/CommunityManageSheet";
 import Avatar from "../components/common/Avatar";
@@ -60,7 +61,7 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 /** Members rendered (and profile-resolved) per page of the Members tab. */
 const MEMBERS_PAGE = 30;
 
-type Tab = "posts" | "chat" | "members" | "about";
+type Tab = "posts" | "chat" | "events" | "members" | "about";
 
 const CommunityDetailScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -284,7 +285,7 @@ const CommunityDetailScreen: React.FC = () => {
     if (!community) return;
     const url = ShareLinks.community(community.slug);
     try {
-      await Share.share({ message: `${t("communities.shareMessage", { name: community.name })}\n${url}`, url });
+      await shareWithRef({ message: `${t("communities.shareMessage", { name: community.name })}\n${url}`, url });
     } catch {
       copyToClipboard(url);
       toastSuccess(t("communities.linkCopied"));
@@ -355,6 +356,7 @@ const CommunityDetailScreen: React.FC = () => {
         [
           { key: "posts" as Tab, label: t("communities.posts") },
           { key: "chat" as Tab, label: t("communities.chat") },
+          { key: "events" as Tab, label: t("copy.8d14f6e72de8", { defaultValue: "Events" }) },
           { key: "members" as Tab, label: t("communities.membersLabel") },
           { key: "about" as Tab, label: t("communities.about") },
         ] as const
@@ -366,7 +368,7 @@ const CommunityDetailScreen: React.FC = () => {
           accessibilityRole="tab"
           accessibilityState={{ selected: tab === item.key }}
         >
-          {/* Four equal cells on one line; a long translation shrinks to fit
+          {/* Five equal cells on one line; a long translation shrinks to fit
               instead of pushing the last tab off a 360dp screen. */}
           <Text
             style={[styles.tabText, tab === item.key && styles.tabTextActive]}
@@ -503,6 +505,13 @@ const CommunityDetailScreen: React.FC = () => {
           {TabBar}
           <CommunityChatPanel community={community} membership={membership} isMember={isMember} />
         </View>
+      ) : tab === "events" ? (
+        <CommunityEventsTab
+          communityId={community.id}
+          canCreate={abilities.can("create_events")}
+          listHeader={HeaderBlock}
+          refreshControl={refreshControl}
+        />
       ) : tab === "members" ? (
         <FlatList
           className="flex-1"

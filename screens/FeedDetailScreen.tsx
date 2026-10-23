@@ -3,12 +3,14 @@ import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
+import { selectAuthorThreadIds } from "../libs/author-thread";
+import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
@@ -32,6 +34,7 @@ import { useBannedAccount } from "../hooks/useBannedAccount";
 import { useKidsMode } from "../hooks/useKidsMode";
 import { useUser, useAuthActions } from "../context/AuthContext";
 import { useKeyboardLift } from "../hooks/useKeyboardLayout";
+import { useSelfLiftingComposer } from "../hooks/useComposerKeyboard";
 import { useMentions } from "../hooks/useMentions";
 import { useCommentTipTotals } from "../hooks/useCommentTipTotals";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -250,6 +253,9 @@ function FeedDetailContent() {
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
+  // The composer rides kbLift; keep the screen pan from moving it as well.
+  const composerRef = useRef<View>(null);
+  useSelfLiftingComposer(composerRef);
   const { showUserProfile } = useUserProfileSheet();
 
   // The three states in which the composer is replaced by a notice, decided
@@ -895,9 +901,30 @@ function FeedDetailContent() {
    * any reply is simply the last depth-0 row above it.
    */
   const threadCreator: string | undefined = item?.minter || (item as any)?.minterUser?.address;
+  // The creator's opening comments read as the post's own thread, under the
+  // card, and leave the list (web's AuthorThread). Only once every comment is
+  // loaded: with older ones still unfetched, the oldest loaded row is not
+  // necessarily the first comment on the post.
+  const allCommentsLoaded = !!item && comments.length >= Number(item.commentCount ?? Infinity);
+  const authorThreadIds = useMemo(
+    () => (allCommentsLoaded ? selectAuthorThreadIds(comments, threadCreator) : new Set<string>()),
+    [allCommentsLoaded, comments, threadCreator],
+  );
+  const authorThreadEntries = useMemo(
+    () =>
+      comments
+        .filter((c) => authorThreadIds.has(String(c.id)))
+        .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()),
+    [comments, authorThreadIds],
+  );
   const orderedComments = useMemo(
-    () => orderThreads(comments, commentSort, commentSearchOpen ? commentQuery : ""),
-    [comments, commentSort, commentSearchOpen, commentQuery],
+    () =>
+      orderThreads(
+        authorThreadIds.size ? comments.filter((c) => !authorThreadIds.has(String(c.id))) : comments,
+        commentSort,
+        commentSearchOpen ? commentQuery : "",
+      ),
+    [comments, authorThreadIds, commentSort, commentSearchOpen, commentQuery],
   );
   const { visibleComments, threadMeta, focusRoot, focusOnly } = useMemo(() => {
     const comments = orderedComments;
@@ -1438,6 +1465,7 @@ function FeedDetailContent() {
           )}
         </View>
       ) : null}
+      {!!item && <AuthorThreadBlock entries={authorThreadEntries} renderRow={(c) => renderCommentItem({ item: c })} />}
       {/* The comment tab row. Measured so the pinned copy can take over once
           it scrolls under the top of the screen. */}
       {!postUnavailable && (
@@ -1456,7 +1484,7 @@ function FeedDetailContent() {
         </View>
       )}
     </View>
-  ), [item, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1571,6 +1599,8 @@ function FeedDetailContent() {
       {!postUnavailable && (
         <Animated.View
           pointerEvents={hideComposer ? "none" : "auto"}
+          ref={composerRef}
+          collapsable={false}
           style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >

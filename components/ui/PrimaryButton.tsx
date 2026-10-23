@@ -10,10 +10,12 @@ type PrimaryButtonProps = {
   className?: string;
   style?: ViewStyle;
   neutral?: boolean;
+  /** The full-width call to action at the foot of a first-run step. */
+  large?: boolean;
 };
 
 /** Shared primary action using the active theme's existing chrome. */
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress, disabled, className, style, neutral = false }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress, disabled, className, style, neutral = false, large = false }) => {
   const { skin } = useAppTheme();
   return (
     <TouchableOpacity
@@ -21,11 +23,11 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ title, onPress, disabled,
       accessibilityRole="button"
       disabled={disabled}
       activeOpacity={0.85}
-      className={`overflow-hidden rounded-xl ${disabled ? "opacity-60" : ""} ${className || ""}`}
+      className={`overflow-hidden ${large ? "rounded-2xl" : "rounded-xl"} ${disabled ? "opacity-60" : ""} ${className || ""}`}
       style={style}
     >
-      <AccentButtonGradient style={styles.fill} neutral={neutral}>
-        <Text style={[styles.label, skin && !neutral && { color: skin.centreIcon }]}>{title}</Text>
+      <AccentButtonGradient style={[styles.fill, large && styles.fillLarge]} borderRadius={large ? 16 : 12} neutral={neutral}>
+        <Text style={[styles.label, large && styles.labelLarge, skin && !neutral && { color: skin.centreIcon }]}>{title}</Text>
       </AccentButtonGradient>
     </TouchableOpacity>
   );
@@ -40,6 +42,14 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.30)",
+  },
+  fillLarge: {
+    height: 54,
+    borderRadius: 16,
+  },
+  labelLarge: {
+    fontSize: 17,
+    fontWeight: "600",
   },
   label: {
     color: "#FFFFFF",

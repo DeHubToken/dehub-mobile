@@ -2,7 +2,7 @@ import React, { useCallback, memo } from "react";
 import { View, TouchableOpacity, Text, I18nManager, useWindowDimensions } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
 import { CINEMATIC_PHONE_MAX_WIDTH } from "../hooks/useCinematicPhone";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import ElectricLogo from "./common/ElectricLogo";
 import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
 import Avatar from "./common/Avatar";
@@ -111,13 +111,13 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
           className="w-9 h-9 items-center justify-center"
         >
-          <Icon name="Bell" size={24} color={colors.neutrals[200]} />
+          <Icon name="Bell" size={26} color={colors.foreground} />
           {hasUnread && (
             <View
               style={{
                 position: "absolute",
                 top: 0,
-                right: -8,
+                right: -4,
                 minWidth: 18,
                 height: 18,
                 paddingHorizontal: 4,

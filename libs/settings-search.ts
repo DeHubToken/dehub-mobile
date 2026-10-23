@@ -44,8 +44,10 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'sign-in', label: 'Sign-in email', labelKey: 'settings.emailSignIn', keywords: 'email login log in sign in code password without wallet' },
   { tab: 'profile', anchor: 'ens',label: 'ENS name', labelKey: 'settings.ensHandle', keywords: 'ens domain eth alias verified handle' },
   { tab: 'profile', anchor: 'stream-key', label: 'Stream key', labelKey: 'settings.streamKey.section', keywords: 'obs encoder rtmp stream key ingest server xbox twitch aircast go live broadcast' },
+  { tab: 'profile', anchor: 'twitch-mirror', label: 'Twitch mirroring', labelKey: 'twitchMirror.title', keywords: 'twitch mirror relay console xbox ps5 playstation aircast automatic stream broadcast' },
   { tab: 'profile', anchor: 'your-content', label: 'Your Content', labelKey: 'settings.yourContent', keywords: 'videos saved posts drafts library' },
   { tab: 'profile', anchor: 'profiles', label: 'Profiles', labelKey: 'settings.profiles', keywords: 'accounts switch add account multiple' },
+  { tab: 'profile', anchor: 'delete-account', label: 'Delete account', labelKey: 'accountDeletion.title', keywords: 'delete remove close erase account data personal information' },
 
   // Appearance
   { tab: 'appearance', anchor: 'theme', label: 'Theme', labelKey: 'settings.theme', keywords: 'minimal look style dark black square flat cosmic hazy nights swarms lava lamp winter war osaka jungle background animated' },
@@ -72,6 +74,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   // Privacy
   { tab: 'privacy', anchor: 'account-visibility', label: 'Account Visibility', labelKey: 'settings.accountVisibility', keywords: 'private account lock approve requests' },
   { tab: 'privacy', anchor: 'post-visibility', label: 'Post Visibility', labelKey: 'settings.postVisibility', keywords: 'default public private posts' },
+  { tab: 'privacy', anchor: 'default-profile-tab', label: 'Default profile tab', labelKey: 'settings.defaultProfileTab', keywords: 'landing tab visitors profile open first' },
   { tab: 'privacy', anchor: 'show-online', label: "Show when I'm online", labelKey: 'settings.showOnline', keywords: 'online status presence green dot active messages' },
   { tab: 'privacy', anchor: 'ai-scraping', label: 'Allow AI training', labelKey: 'settings.aiScraping.label', keywords: 'ai scraping training llm crawler bot noai' },
   { tab: 'privacy', anchor: 'follower-visibility', label: 'Follower Visibility', labelKey: 'settings.followerVisibilitySection', keywords: 'followers following hide counts' },
@@ -106,7 +109,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'multipost', anchor: 'multipost', label: 'Multi-posting', labelKey: 'multiPost.title', keywords: 'cross post crosspost share x twitter youtube facebook instagram tiktok linkedin threads pinterest reddit schedule credits' },
 
   // Support
-  { tab: 'support', anchor: 'support', label: 'Support', labelKey: 'settings.support', keywords: 'report bug help terms privacy policy delete account rate review' },
+  { tab: 'support', anchor: 'support', label: 'Support', labelKey: 'settings.support', keywords: 'report bug help terms privacy policy rate review' },
   { tab: 'support', anchor: 'about', label: 'About', labelKey: 'settings.about', keywords: 'version build' },
 ];
 

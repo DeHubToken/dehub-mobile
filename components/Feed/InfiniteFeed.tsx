@@ -15,7 +15,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "./DeHubRefreshControl";
 import Animated from "react-native-reanimated";
 import { feedRenderBudget } from "../../libs/feed-render-budget";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { theme } from "../../theme";
 import { getFeedNFTs, type GetNFTsResult, type GetNFTsResponse, type SearchParams } from "../../services";
 import FeedCardSkeleton from "./FeedCardSkeleton";
@@ -32,6 +32,7 @@ import { isLiveItem, isVideoItem } from "../../services/feed.unified.service";
 import { resolveContentType } from "../Home/FeedCard";
 import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos";
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
+import { feedEvents } from "../../libs/eventBus";
 import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
 
 export type InfiniteFeedRenderItemInfo = {
@@ -423,6 +424,14 @@ const InfiniteFeedBase: React.FC<
   const retry = useCallback(() => {
     refetch();
   }, [refetch]);
+
+  // Listen for feed refresh requests (e.g., after a new post is uploaded), so
+  // profile and community feeds pick up a new post the way Home does.
+  useEffect(() => {
+    return feedEvents.onRefreshRequested(() => {
+      onRefresh();
+    });
+  }, [onRefresh]);
 
   useEffect(() => {
     if (!navigationForTabPress) return;

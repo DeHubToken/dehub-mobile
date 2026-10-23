@@ -4,7 +4,7 @@ import React, { useState, useMemo, useCallback, useEffect, useRef } from "react"
 import { View, Text, TouchableOpacity, Pressable, ActivityIndicator, useWindowDimensions } from "react-native";
 import SmartImage from "../common/SmartImage";
 import Avatar from "../common/Avatar";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import LiquidGlass from "../ui/LiquidGlass";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -45,7 +45,7 @@ import {
 import { runWithPermissions } from "../../libs/permissions.util";
 import { AuthService } from "../../services/auth.service";
 import { toastError, toastSuccess } from "../../libs/toast";
-import { WEBSITE_LINK } from "../../config";
+import { ShareLinks } from "../../navigation/linking.config";
 import { translateText, getUserLanguage } from "../../services/translation.service";
 import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
@@ -54,6 +54,7 @@ import TotalReachPill from "./TotalReachPill";
 import ProfileLinksPill from "./ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useCinematicPhone } from "../../hooks/useCinematicPhone";
+import { useIsUserLive } from "../../hooks/useIsUserLive";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import type { Community } from "../../types/community";
 import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
@@ -100,6 +101,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   const ensName = user?.ensName || "";
 
   const shortAddr = truncateAddress(address, 5, 5);
+  const live = useIsUserLive(address, user?.username);
   // Explicit sizes: this avatar renders at 88pt, well above the 48pt default
   // getAvatarUrl assumes for feed and comment rows, and the cover is full-bleed.
   const avatarUrl = getAvatarUrl(user?.avatarImageUrl, PROFILE_AVATAR_PT);
@@ -170,7 +172,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
 
   const handleShare = useCallback(async () => {
     const profileSlug = username || address;
-    const url = `${WEBSITE_LINK}/${profileSlug}`;
+    if (!profileSlug) return;
+    const url = ShareLinks.profile(profileSlug);
     const message = `Check out my dehub profile ${url}`;
     await shareProfile(url, message);
   }, [username, address]);
@@ -334,6 +337,8 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
               name={displayName}
               size={88}
               style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
+              live={live}
+              liveQuiet
               onPress={() =>
                 openViewer(
                   avatarFullUrl === "default-avatar" ? undefined : avatarFullUrl

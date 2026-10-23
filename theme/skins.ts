@@ -13,6 +13,7 @@ import type { AppThemeName } from './colors';
  * border.
  */
 export interface ThemeSkin {
+  material?: 'glass';
   /** Web runs a live canvas behind this theme; every screen shows it. */
   backdrop: true;
   /** Page colour. Page fills become a see-through veil of it (libs/jsx/shape.js). */
@@ -45,6 +46,15 @@ export interface ThemeSkin {
 
 /** War's readout type (web: ui-monospace, 0.1em tracking). */
 export const MONO_TEXT = { fontFamily: 'monospace', letterSpacing: 1.2 } as const;
+
+export const GLASS_PLAYBACK_CONTROL: ViewStyle = {
+  backgroundColor: 'rgba(210,255,255,0.12)',
+  borderWidth: 1,
+  borderColor: 'rgba(225,255,255,0.45)',
+  borderTopColor: 'rgba(255,255,255,0.85)',
+  borderBottomColor: 'rgba(180,255,255,0.35)',
+  borderRadius: 999,
+};
 
 /** Cosmic, Hazy Nights, Swarms, Lava Lamp and Winter share one smoked glass. */
 const glass: Omit<ThemeSkin, 'page'> = {
@@ -93,6 +103,18 @@ const RAIN = 'rgb(57,255,136)';
 const SAKURA = 'rgb(255,111,181)';
 
 const SKINS: Partial<Record<AppThemeName, ThemeSkin>> = {
+  glass: {
+    ...glass,
+    material: 'glass',
+    page: '#082a30',
+    card: { ...glass.card, borderRadius: 24, borderColor: 'rgba(225,255,255,0.65)', borderTopColor: 'rgba(255,255,255,0.95)', borderBottomColor: 'rgba(225,255,255,0.45)' },
+    strip: { ...glass.strip, borderRadius: 24, borderColor: 'rgba(225,255,255,0.65)', borderTopColor: 'rgba(255,255,255,0.95)' },
+    stripActive: { ...glass.stripActive, borderRadius: 20, borderColor: 'rgba(225,255,255,0.5)', backgroundColor: 'rgba(210,255,255,0.18)' },
+    barBorder: { ...glass.barBorder, borderRadius: 28, borderColor: 'rgba(225,255,255,0.65)', borderTopColor: 'rgba(255,255,255,0.95)' },
+    centre: { ...glass.centre, borderRadius: 999, borderColor: 'rgba(225,255,255,0.5)' },
+    tabIcon: '#B8D5D8',
+    barIcon: '#B8D5D8',
+  },
   cosmic: { ...glass, page: '#040407' },
   hazy: { ...glass, page: '#0A0714' },
   swarms: { ...glass, page: '#03080D' },

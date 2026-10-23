@@ -1,6 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Platform, ScrollView, Share } from "react-native";
+import { View, Text, StyleSheet, TextInput, Platform, ScrollView } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
@@ -214,9 +215,9 @@ const CreateStageModal: React.FC = () => {
           <TouchableOpacity
             style={styles.secondaryBtn}
             onPress={() => {
-              Share.share({
+              shareWithRef({
                 message: `${t("stages.announcement", { title: title.trim(), date: whenLabel, time: timeLabel })}\n\n${scheduledLink}`,
-              }).catch(() => {});
+              }, undefined, "stage").catch(() => {});
             }}
           >
             <Text style={styles.secondaryText}>{t("stages.shareLink")}</Text>

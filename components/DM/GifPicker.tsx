@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View, Platform } from 'react-native';
 import SmartImage from '../common/SmartImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
 import { PackGrid, PackStrip, StickerPanel, useGifPacks } from '../packs/PackPickerParts';
 import { useKidsModeLock } from '../../hooks/useKidsModeLock';

@@ -1,3 +1,6 @@
+// ScreenCaptureKit is in the iOS 27 device SDK only; simulator builds use the
+// broadcast extension instead (see ScreenCaptureHost.modernCaptureAvailable).
+#if canImport(ScreenCaptureKit)
 import Foundation
 import CoreMedia
 import AVFoundation
@@ -127,3 +130,5 @@ final class ModernCaptureDriver: NSObject, CaptureDriver, SCContentSharingPicker
     changed()
   }
 }
+
+#endif

@@ -19,12 +19,12 @@ import {
   FlatList,
   Modal,
   Pressable,
-  Share,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -106,7 +106,7 @@ export default function CreatorFlowScreen() {
       run(async () => {
         if (!row.isPublic) await publishFlow(wallet!, row.id, true);
         const url = ShareLinks.creatorFlow(row.id);
-        void Share.share({ message: `${row.name}\n${url}`, url }).catch(() => {});
+        void shareWithRef({ message: `${row.name}\n${url}`, url }).catch(() => {});
       }, "creatorFlow.shareFailed"),
     [run, wallet],
   );

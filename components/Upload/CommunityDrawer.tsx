@@ -16,7 +16,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import SmartImage from "../common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import GlassModal from "../ui/GlassModal";
 import type { Community } from "../../types/community";
 

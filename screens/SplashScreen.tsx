@@ -24,20 +24,15 @@ import { Fit, RiveView, useRiveFile } from "@rive-app/react-native";
  * - Visual jarring from mismatched backgrounds
  */
 /**
- * How long the splash has to still be up before the Rive animation is worth
- * loading at all.
+ * The logo animation is the app's first paint, so it starts loading at once.
  *
- * The file is ~1.5 MB and gets decoded at the most contended moment in the
- * app's life: auth resolving, the query cache rehydrating out of MMKV, the
- * navigation state restoring. On a warm start all of that finishes in a few
- * hundred milliseconds and the animation never becomes visible — so the cost
- * was paid for nothing, and it was paid out of exactly the frames that decide
- * how fast the app feels.
- *
- * Under this threshold the static logo carries the whole splash on its own,
- * which is what was on screen for the first 700ms in any case.
+ * It used to wait 400ms and then hold the still logo for another 700ms, which
+ * meant a normal launch never got far enough to show it: people only ever saw
+ * the animation on a slow phone. The still logo still covers the moment the
+ * file takes to decode, and a first launch holds the curtain until the intro
+ * has played (FIRST_RUN_INTRO_MS in App.tsx).
  */
-const RIVE_LOAD_DELAY_MS = 400;
+const RIVE_CROSSFADE_DELAY_MS = 150;
 
 export default function SplashScreen() {
   // The static layer must be indistinguishable from what the native splash
@@ -50,19 +45,7 @@ export default function SplashScreen() {
   const { width: vw, height: vh } = useWindowDimensions();
   const legacySplashSize = Math.min(vw, vh);
 
-  // Gates the require, not just the render: useRiveFile starts loading the
-  // moment it is handed a source.
-  const [wantRive, setWantRive] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setWantRive(true), RIVE_LOAD_DELAY_MS);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // `undefined`, not `null` — that is the absent value useRiveFile's own
-  // signature accepts (RiveFileInput | undefined).
-  const { riveFile } = useRiveFile(
-    wantRive ? require("../assets/riv/dehub_-_loading_screen.riv") : undefined
-  );
+  const { riveFile } = useRiveFile(require("../assets/riv/dehub_-_loading_screen.riv"));
 
   // Track if Rive is ready and played for at least a moment
   const [riveReady, setRiveReady] = useState(false);
@@ -70,17 +53,17 @@ export default function SplashScreen() {
 
   useEffect(() => {
     if (riveFile) {
-      // Give Rive more time to render its first frame before crossfading,
-      // preventing the flash between the static logo and the animated icon.
+      // A beat for Rive to draw its first frame before crossfading, so the
+      // swap from the still logo never flashes.
       const timer = setTimeout(() => {
         Animated.timing(fadeAnim, {
           toValue: 0,
-          duration: 500,
+          duration: 250,
           useNativeDriver: true,
         }).start(() => {
           setRiveReady(true);
         });
-      }, 700);
+      }, RIVE_CROSSFADE_DELAY_MS);
       
       return () => clearTimeout(timer);
     }

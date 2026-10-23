@@ -27,7 +27,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import Icon from "../components/ui/Icon";
 import FeedFilterPanel, { type FeedFilters } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
@@ -212,7 +212,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const insets = useSafeAreaInsets();
   // The header floats over the KeyboardAvoidingView rather than sitting above
   // it, so the view starts at the top of the screen and the only chrome above
@@ -1080,12 +1080,13 @@ const SearchScreen: React.FC = () => {
                 black rather than a filled slab. */}
             <View
               className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2"
-              style={isMinimal ? styles.minimalInput : undefined}
+              style={isMinimal ? styles.minimalInput : skin?.material === 'glass' ? skin.card : undefined}
             >
               <Icon name="Search" size={18} color="#9CA3AF" />
               <TextInput
                 ref={inputRef}
                 className="flex-1 text-white px-2 py-1"
+                style={skin?.material === 'glass' ? { backgroundColor: 'transparent', borderWidth: 0 } : undefined}
                 placeholder={t("search.searchDehub")}
                 placeholderTextColor="#9CA3AF"
                 value={searchQuery}

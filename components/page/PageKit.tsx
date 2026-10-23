@@ -44,9 +44,9 @@ function useKitColors() {
     hairline: app.isMinimal ? MINIMAL_HAIRLINE : HAIRLINE,
     chipBg: app.isMinimal ? "transparent" : "rgba(255,255,255,0.07)",
     chipInk: "rgba(255,255,255,0.72)",
-    activeBg: themed ? `rgb(${accent![0]},${accent![1]},${accent![2]})` : "#FFFFFF",
+    activeBg: app.skin?.material === 'glass' ? app.skin.stripActive.backgroundColor : themed ? `rgb(${accent![0]},${accent![1]},${accent![2]})` : "#FFFFFF",
     // The brighter accents (hazy, swarms, lavalamp, island) carry white ink, as on web.
-    activeInk: themed && BRIGHT_INK_THEMES.has(app.theme) ? "#FFFFFF" : "#0B0B0C",
+    activeInk: app.skin?.material === 'glass' || themed && BRIGHT_INK_THEMES.has(app.theme) ? "#FFFFFF" : "#0B0B0C",
     card: app.colors?.card ?? "#18181B",
     cardMaterial: app.skin?.card,
     primaryMaterial: app.skin?.centre,

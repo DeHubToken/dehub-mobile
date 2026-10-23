@@ -18,12 +18,12 @@ const duration = (value: number) => Math.floor(value / 60) + ':' + String(Math.f
 
 export default function RichLinkCard({ preview, style }: { preview: RichPreview; style?: StyleProp<ViewStyle> }) {
   const { t, i18n } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const data = preview.rich;
   const number = (value: number) => new Intl.NumberFormat(i18n.language, { notation: 'compact', maximumFractionDigits: 1 }).format(value);
   const metric = (item: RichDetails['metrics'][number]) => item.kind === 'duration' ? duration(item.value) : item.kind === 'tvl'
     ? new Intl.NumberFormat(i18n.language, { style: 'currency', currency: 'USD', notation: 'compact', maximumFractionDigits: 2 }).format(item.value) : number(item.value);
-  return <View style={[styles.card, isMinimal && minimalFlat, style]}>
+  return <View style={[styles.card, isMinimal && minimalFlat, skin?.material === 'glass' && skin.card, style]}>
     <TouchableOpacity activeOpacity={0.85} accessibilityRole="link" onPress={() => openInApp(preview.url)} style={styles.body}>
       <View style={styles.row}>
         <Text style={styles.source}>{preview.siteName}</Text>

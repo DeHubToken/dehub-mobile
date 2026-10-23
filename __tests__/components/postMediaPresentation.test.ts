@@ -39,7 +39,7 @@ describe('post media presentation', () => {
   it('separates post content from its metadata row', () => {
     const feedCard = readSource('components', 'Home', 'FeedCard.tsx');
 
-    expect(feedCard).toContain('<View className="flex-row items-center gap-2 pt-3">');
+    expect(feedCard).toContain('<View className="flex-row flex-wrap items-center gap-3 pt-3">');
     expect(feedCard).not.toContain('<View className="flex-row items-center gap-2 pt-1.5">');
   });
 
@@ -142,6 +142,8 @@ describe('post media presentation', () => {
     expect(video).toContain('win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)');
     expect(video).toContain('width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls)');
     expect(video).toContain('alignSelf: "flex-start"');
+    // aspectRatio on the sized box makes Yoga widen a portrait clip to the card.
+    expect(video).not.toMatch(/container: \{[^}]*aspectRatio/);
   });
 
   it('keeps post action controls evenly inset from every bento edge', () => {

@@ -5,6 +5,10 @@ import { getAuthToken, getStoredSupabaseUserId } from '../../libs/auth.utils';
 import { stageIncomingIdentity } from '../../libs/profiles';
 import { getPendingWalletReplacement, completeWalletReplacement } from '../../libs/wallet-core/replacement';
 import { AuthService } from '../../services';
+import { createAndSaveEvmWalletForIdentity } from '../../libs/identity-wallet';
+import { checkLegacyAccount } from '../../libs/wallet-core/legacy-detect';
+import { markWalletSecureOffer } from '../../libs/wallet-core/secure-offer';
+import { setWalletSetupIntent } from '../../libs/wallet-setup-intent';
 
 jest.mock('../../libs/wallet-core/replacement', () => ({
   getPendingWalletReplacement: jest.fn().mockResolvedValue(null),
@@ -22,7 +26,9 @@ jest.mock('../../libs/identity-wallet', () => ({
   resolveEvmWalletForIdentity: jest.fn(), getKnownWalletAddress: jest.fn(),
   forgetLocalWalletForIdentity: jest.fn(), releaseWalletKeyForSignIn: jest.fn(),
   retryPendingResetCleanup: jest.fn().mockResolvedValue(undefined),
+  createAndSaveEvmWalletForIdentity: jest.fn(),
 }));
+jest.mock('../../libs/wallet-core/secure-offer', () => ({ markWalletSecureOffer: jest.fn() }));
 jest.mock('../../libs/profiles', () => ({ stageIncomingIdentity: jest.fn() }));
 jest.mock('../../libs/wallet-core/store', () => ({ fetchWallet: jest.fn(), fetchWalletReliably: jest.fn() }));
 jest.mock('../../libs/wallet-core/legacy-detect', () => ({ checkLegacyAccount: jest.fn() }));
@@ -145,4 +151,32 @@ it('keeps the replacement pending when profile rotation fails', async () => {
   jest.mocked(deps.completeLocalSignIn).mockRejectedValue(new Error('rotation failed'));
   await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'error', message: 'rotation failed' });
   expect(completeWalletReplacement).not.toHaveBeenCalled();
+});
+
+it('signs a brand-new account straight in with a wallet kept on this device', async () => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'needs-create-password' } as any);
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  jest.mocked(checkLegacyAccount).mockResolvedValue({ exists: false } as any);
+  jest.mocked(createAndSaveEvmWalletForIdentity).mockResolvedValue({ address, privateKey: '0xnew', secret: 'words' });
+  jest.mocked(deps.getSupabaseAuthMeta).mockResolvedValue({ verifier: 'supabase' });
+  await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({ kind: 'signed-in' });
+  expect(createAndSaveEvmWalletForIdentity).toHaveBeenCalledWith('uid', { kind: 'biometric' });
+  expect(markWalletSecureOffer).toHaveBeenCalledWith('uid', address);
+  expect(deps.completeLocalSignIn).toHaveBeenCalledWith(address, '0xnew', { verifier: 'supabase' });
+});
+
+it('keeps the wallet sheet when Migrate account finds no earlier account', async () => {
+  jest.mocked(resolveEvmWalletForIdentity).mockResolvedValue({ status: 'needs-create-password' } as any);
+  jest.mocked(deps.signInWithSupabaseSession).mockResolvedValue('not-linked');
+  jest.mocked(checkLegacyAccount).mockResolvedValue({ exists: false } as any);
+  setWalletSetupIntent('migrate');
+  try {
+    await expect(provisionAndSignIn('uid', deps)).resolves.toEqual({
+      kind: 'wallet-setup', request: { mode: 'create', supabaseUserId: 'uid' },
+    });
+  } finally {
+    setWalletSetupIntent(null);
+  }
+  expect(createAndSaveEvmWalletForIdentity).not.toHaveBeenCalled();
+  expect(deps.completeLocalSignIn).not.toHaveBeenCalled();
 });

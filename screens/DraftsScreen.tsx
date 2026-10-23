@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { DeHubLoader } from "../components/DeHubLoader";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { useUser, useAuthState } from "../context/AuthContext";

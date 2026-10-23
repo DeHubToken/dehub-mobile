@@ -142,6 +142,13 @@ const FullscreenVideoScreen = () => {
     p.bufferOptions = FULLSCREEN_BUFFER_OPTIONS;
   });
 
+  // The player may come from a feed card that pauses in the background.
+  useEffect(() => {
+    if (!ownsVideo) return;
+    player.staysActiveInBackground = true;
+    player.showNowPlayingNotification = true;
+  }, [player, ownsVideo]);
+
   const isLooping = useMediaLooping();
   useEffect(() => {
     if (ownsVideo) player.loop = isLooping;

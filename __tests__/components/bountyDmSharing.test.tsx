@@ -29,7 +29,7 @@ jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) =>
 jest.mock('../../components/common/BadgeArtwork', () => 'BadgeArtwork');
 jest.mock('../../components/common/SmartImage', () => 'SmartImage');
 jest.mock('../../components/common/Avatar', () => 'Avatar');
-jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../../components/ui/GlassModal', () => ({ children }: { children: React.ReactNode }) => children);
 jest.mock('../../libs', () => ({ getAvatarUrl: () => undefined, toastSuccess: (...args: unknown[]) => mockToastSuccess(...args), toastError: (...args: unknown[]) => mockToastError(...args) }));
 jest.mock('../../libs/misc', () => ({ getBadgeUrlFor: () => undefined }));

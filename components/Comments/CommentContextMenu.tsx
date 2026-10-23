@@ -14,8 +14,8 @@ import {
   Pressable,
   Platform,
   useWindowDimensions,
-  Share,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import SmartImage from "../common/SmartImage";
 import Animated, {
   FadeIn,
@@ -320,7 +320,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
       if (tokenId && comment) {
         shareUrl = `${WEBSITE_LINK}/app/post/${tokenId}?c=${comment.id}`;
       }
-      await Share.share({ message: t("comments.shareMessage", { url: shareUrl }), url: shareUrl });
+      await shareWithRef({ message: t("comments.shareMessage", { url: shareUrl }), url: shareUrl }, undefined, "comment");
     } catch (e) {
       console.error("Share error:", e);
     }

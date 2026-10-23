@@ -1,3 +1,4 @@
+import type { AudioSpace } from "../hooks/useStages";
 
 import type { StackScreenProps } from '@react-navigation/stack';
 import type {
@@ -38,6 +39,7 @@ export type AuthStackScreenProps<T extends keyof AuthStackParamList> = Composite
 export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
   [ScreenNames.Maboroshi]: { preset?: string; clip?: string } | undefined;
+  [ScreenNames.CreatorRemake]: { preset?: string; clip?: string } | undefined;
   [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; clip?: string; effect?: string; initialPrompt?: string; editorDraft?: GenerationDraft } | undefined;
   [ScreenNames.CreatorFlow]: undefined;
   /** `flow` is set when opened from your own list, so a private flow renders
@@ -134,6 +136,8 @@ export type AppStackParamList = {
     section?: "newMembers";
   } | undefined;
   [ScreenNames.AccountSettings]: { initialTab?: string } | undefined;
+  /** `recap`: a stream just ended, whose recap to open. */
+  [ScreenNames.LiveStudio]: { recap?: string } | undefined;
   [ScreenNames.ActiveSessions]: undefined;
   [ScreenNames.TvRequests]: undefined;
   [ScreenNames.SignInTv]: undefined;
@@ -222,8 +226,10 @@ export type AppStackParamList = {
   /** `slug` keys into miniapp_apps; `from` is the launch source the app sees. */
   [ScreenNames.MiniApp]: { slug: string; from?: string; url?: string; query?: string };
   [ScreenNames.MiniAppDev]: { url: string; name?: string };
-  [ScreenNames.Events]: undefined;
+  [ScreenNames.Events]: { eventNumber?: string } | undefined;
   [ScreenNames.Stages]: undefined;
+  /** `space` paints the page at once; the row is still re-read by `spaceId`. */
+  [ScreenNames.StageRecording]: { spaceId: string; space?: AudioSpace };
   [ScreenNames.Careers]: undefined;
   [ScreenNames.Raffle]: undefined;
   /** With no `filmId` the search hub; with one, that title (`filmType` is `film` or `series`). */
@@ -239,7 +245,7 @@ export type AppStackParamList = {
   [ScreenNames.Affiliate]: undefined;
   /** `requestId` is a notification's deep link into one request, `commentId`
    *  the comment inside it the row was about. */
-  [ScreenNames.FeatureRequests]: { requestId?: string; commentId?: string } | undefined;
+  [ScreenNames.FeatureRequests]: { requestId?: string; commentId?: string; tab?: "requests" | "shipping" | "shipped" } | undefined;
   /** `handle` is the shared-listing deep link (`dehub.io/usernames?handle=x`);
    *  `tab` opens a panel directly (an offer notification lands on `offers`). */
   [ScreenNames.Usernames]: { handle?: string; tab?: "browse" | "mine" | "sell" | "offers" } | undefined;

@@ -66,9 +66,11 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
         accessibilityState={{ selected: focused }}
         onPress={() => onChange(item.key)}
         activeOpacity={0.72}
-        style={[styles.tab, !compact && styles.expandedTab, focused && styles.tabActive, isMinimal && minimalTab, isMinimal && focused && minimalTabActive]}
+        style={[styles.tab, !compact && styles.expandedTab, !isMinimal && !focused && styles.tabIdle, isMinimal && minimalTab, isMinimal && focused && minimalTabActive]}
       >
-        {focused && !isMinimal && <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0.2)', 'rgba(255,255,255,0.05)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.indicator} />}
+        {/* "Beam": a short glowing line under the selected tab, in the tab's
+            own ink, instead of a box behind it. Minimal keeps its folder tab. */}
+        {focused && !isMinimal && <View pointerEvents="none" style={[styles.beam, { backgroundColor: iconColor, shadowColor: iconColor }]} />}
         <Icon name={item.icon} size={18} color={iconColor} strokeWidth={2} />
         <Text numberOfLines={1} style={[styles.count, { color: iconColor }]}>{typeof item.count === "number" ? formatCompactNumber(item.count) : ""}</Text>
       </TouchableOpacity>
@@ -121,8 +123,8 @@ const styles = StyleSheet.create({
   expandedRow: { width: '100%' },
   tab: { width: TAB_WIDTH, height: TAB_HEIGHT, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
   expandedTab: { flex: 1, width: undefined },
-  tabActive: { backgroundColor: 'rgba(255,255,255,0.12)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.3)' },
-  indicator: { ...StyleSheet.absoluteFillObject, borderRadius: 11 },
+  tabIdle: { opacity: 0.6 },
+  beam: { position: 'absolute', bottom: 2, left: '30%', right: '30%', height: 3, borderRadius: 3, shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 } },
   count: { textAlign: 'center', fontSize: 10, lineHeight: 12, marginTop: 1, fontWeight: '500' },
   minimalOuterWrap: { paddingHorizontal: 0 },
   minimalContainer: { ...minimalTabStrip, paddingVertical: 0, alignItems: 'flex-end' },

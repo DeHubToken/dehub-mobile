@@ -13,7 +13,8 @@ import {
 } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import ConfirmModal from "../components/common/ConfirmModal";

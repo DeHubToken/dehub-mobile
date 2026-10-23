@@ -249,6 +249,18 @@ export async function getAccountSummaries(addresses: string[]): Promise<AccountS
   return responses.flatMap((response) => response?.result || []);
 }
 
+/** Resolve @handles to accounts with the same batch endpoint. Unknown handles are skipped. */
+export async function getAccountSummariesByUsernames(usernames: string[]): Promise<AccountSummary[]> {
+  if (usernames.length === 0) return [];
+  const unique = [...new Set(usernames.filter(Boolean).map((name) => name.replace(/^@/, "").trim().toLowerCase()))];
+  const response = await apiClient.post<{ result: AccountSummary[] }>(
+    "/account_info/batch",
+    { usernames: unique.slice(0, 100) },
+    { isAuthRequired: false },
+  );
+  return response?.result || [];
+}
+
 /**
  * Search for users
  */

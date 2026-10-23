@@ -45,6 +45,7 @@ import TVChatPanel from "../components/TV/TVChatPanel";
 import { theme } from "../theme";
 import { toastError } from "../libs/toast";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from '../context/ThemeContext';
 import {
   getTVChannelsByCountry,
   searchTVChannels,
@@ -194,9 +195,10 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
   onPress,
 }) => {
   const { t } = useTranslation();
+  const { skin } = useAppTheme();
   return (
   <Pressable
-    style={({ pressed }) => [styles.card, { width }, pressed && { opacity: 0.85 }]}
+    style={({ pressed }) => [styles.card, skin?.material === 'glass' && skin.card, { width }, pressed && { opacity: 0.85 }]}
     onPress={onPress}
   >
     <View style={[styles.logoWrap, { height: Math.round(width * 0.62) }]}>
@@ -231,6 +233,7 @@ const ChannelCard: React.FC<{ channel: TVChannel; width: number; onPress: () => 
 
 export default function TVScreen() {
   const { t } = useTranslation();
+  const { skin } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { width: screenW } = useWindowDimensions();
 
@@ -282,14 +285,14 @@ export default function TVScreen() {
         }
       />
 
-      <View style={styles.searchWrap}>
+      <View style={[styles.searchWrap, skin?.material === 'glass' && skin.card]}>
         <Icon name="Search" size={15} color={theme.colors.neutrals[400]} />
         <TextInput
           value={search}
           onChangeText={setSearch}
           placeholder={t("tv.searchPlaceholder")}
           placeholderTextColor={theme.colors.neutrals[500]}
-          style={styles.searchInput}
+          style={[styles.searchInput, skin?.material === 'glass' && { backgroundColor: 'transparent', borderWidth: 0 }]}
           returnKeyType="search"
         />
         {search.length > 0 && (

@@ -283,6 +283,7 @@ interface BandProps {
 /* ─── Static (Default) ──────────────────────────────────────────────────── */
 
 interface WaveformBarsProps {
+  glass?: boolean;
   bars: number[];
   wHeight: number;
   bw: number;
@@ -293,14 +294,14 @@ interface WaveformBarsProps {
 
 /** Memo'd bar row, never re-renders on seek. */
 export const WaveformBars: React.FC<WaveformBarsProps> = memo(
-  ({ bars, wHeight, bw, bg, count, color }) => (
-    <View style={{ flexDirection: "row", alignItems: "center", height: wHeight }}>
+  ({ bars, wHeight, bw, bg, count, color, glass }) => (
+    <View style={{ flexDirection: "row", alignItems: glass ? "flex-end" : "center", height: wHeight }}>
       {bars.map((h, i) => (
         <View
           key={i}
           style={{
             width: bw,
-            height: Math.max(2, h * wHeight * 0.85),
+            height: Math.max(glass ? 1 : 2, h * wHeight * 0.85 * (glass ? .025 + .975 * Math.pow(Math.sin(Math.PI * i / Math.max(1, count - 1)), 1.5) : 1)),
             borderRadius: bw / 2,
             marginRight: i < count - 1 ? bg : 0,
             backgroundColor: color,
@@ -312,6 +313,7 @@ export const WaveformBars: React.FC<WaveformBarsProps> = memo(
 );
 
 interface StaticWaveformProps {
+  glass?: boolean;
   seed: string;
   position: SharedValue<number>;
   compact?: boolean;
@@ -327,15 +329,16 @@ interface StaticWaveformProps {
 const GLINT_FRACTION = 0.09;
 
 export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
-  ({ seed, position, compact, hue, height, isPlaying = false, onLayout }) => {
+  ({ seed, position, compact, hue, height, isPlaying = false, onLayout, glass }) => {
+    const { width, handleLayout } = useBandWidth(onLayout);
     const count = compact ? COMPACT_BAR_COUNT : BAR_COUNT;
-    const bw = compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
-    const bg = compact ? COMPACT_BAR_GAP : BAR_GAP;
+    const bw = glass && width > 0 ? width / (count + (count - 1) * .6) : compact ? COMPACT_BAR_WIDTH : BAR_WIDTH;
+    const bg = glass && width > 0 ? bw * .6 : compact ? COMPACT_BAR_GAP : BAR_GAP;
     const wHeight = height ?? (compact ? COMPACT_WAVEFORM_HEIGHT : WAVEFORM_HEIGHT);
     const bars = useMemo(() => generateBars(seed, count), [seed, count]);
 
     const playedColor = hue === 0 ? "rgba(255,255,255,0.95)" : `hsla(${hue}, 78%, 72%, 0.95)`;
-    const unplayedColor = "rgba(255,255,255,0.22)";
+    const unplayedColor = glass ? "rgba(190,255,250,.65)" : "rgba(255,255,255,0.22)";
 
     // The played copy of the bars is 80 more native views, and at position 0
     // it is zero width. Feed audio cards mostly sit there, so it mounts on the
@@ -378,13 +381,13 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
     }));
 
     return (
-      <View onLayout={onLayout} style={{ height: wHeight }}>
+      <View onLayout={glass ? handleLayout : onLayout} style={{ height: wHeight }}>
         {/* Unplayed layer — static, never re-renders during seek */}
-        <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={unplayedColor} />
+        <WaveformBars glass={glass} bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={unplayedColor} />
         {/* Played layer — only clip width changes, bars never re-render */}
         {hasProgress && (
           <Animated.View style={playedLayerStyle}>
-            <WaveformBars bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={playedColor} />
+            <WaveformBars glass={glass} bars={bars} wHeight={wHeight} bw={bw} bg={bg} count={count} color={playedColor} />
           </Animated.View>
         )}
         {/* The chrome, as shadow rather than light.
@@ -396,12 +399,12 @@ export const StaticWaveform: React.FC<StaticWaveformProps> = memo(
             care that they were darkened twice. Stops are CHROME_SHADE, the
             complement of web's CHROME_RAMP, including the hard step just past
             the middle that is the whole reason it reads as metal. */}
-        <LinearGradient
+        {!glass && <LinearGradient
           pointerEvents="none"
           colors={CHROME_SHADE.colors}
           locations={CHROME_SHADE.locations}
           style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0 }}
-        />
+        />}
 
         {/* Glint, then the hairline, both above the chrome shade so the shade
             cannot dim the very thing it is meant to be reflecting. */}

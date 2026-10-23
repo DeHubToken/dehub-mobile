@@ -19,10 +19,10 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  Share,
   Alert,
   StyleSheet,
 } from "react-native";
+import { shareWithRef } from "../../../libs/shareRef";
 import { useTranslation } from "react-i18next";
 import Icon from "../../ui/Icon";
 import CustomSwitch from "../../ui/CustomSwitch";
@@ -246,7 +246,7 @@ export function InviteLinksTab({ community, membership }: InviteLinksTabProps) {
         defaultValue: "Join this community on DeHub",
       });
       try {
-        await Share.share({ message: `${intro}\n${url}`, url });
+        await shareWithRef({ message: `${intro}\n${url}`, url });
       } catch {
         copyToClipboard(url);
         toastSuccess(t("communities.linkCopied", { defaultValue: "Link copied" }));

@@ -17,6 +17,8 @@ import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import Slider from "@react-native-community/slider";
 import { useTranslation } from "react-i18next";
+import { useAppTheme } from '../../context/ThemeContext';
+import GlassAudioShoulder from './GlassAudioShoulder';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getCachedHue, setHueState } from "../../libs/audioHueState";
 import Animated, {
@@ -258,16 +260,17 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
             paddingHorizontal: 10,
             paddingVertical: 5,
             borderRadius: 999,
-            overflow: "hidden",
             // Faint dark backing so labels stay readable over white-heavy themes.
-            backgroundColor: isActive ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.28)",
-            borderWidth: 1,
-            borderColor: isActive ? "rgba(255,255,255,0.15)" : "transparent",
+            backgroundColor: "rgba(0,0,0,0.28)",
+            opacity: isActive ? 1 : 0.6,
           }}
         >
+          {/* "Beam", like the profile tabs: a short glowing line under the
+              selected style instead of a filled pill. */}
+          {isActive && <View pointerEvents="none" style={pickerStyles.beam} />}
           <Text
             style={{
-              color: isActive ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.7)",
+              color: "#fff",
               fontSize: 10,
               fontWeight: "600",
             }}
@@ -280,6 +283,22 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
   </ScrollView>
   </PagerSafe>
   );
+});
+
+const pickerStyles = StyleSheet.create({
+  beam: {
+    position: "absolute",
+    bottom: 2,
+    left: "30%",
+    right: "30%",
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: "#fff",
+    shadowColor: "#fff",
+    shadowOpacity: 0.9,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 0 },
+  },
 });
 
 /* ─── Color Hue Slider ──────────────────────────────────────── */
@@ -371,6 +390,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   postPage = false,
 }) => {
   const { t } = useTranslation();
+  const { theme, skin, accent } = useAppTheme();
+  const [glassOptions, setGlassOptions] = useState(false);
   const insets = useSafeAreaInsets();
   const playerRef = useRef<AudioPlayer | null>(null);
   /** The card's status subscription, so it can be dropped when the player moves. */
@@ -410,6 +431,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   // The media window is measured, not fixed: the visualizer needs a height to
   // draw into, and the inline card and the fullscreen modal have different ones.
   const [inlineHeight, setInlineHeight] = useState(0);
+  const [glassWidth, setGlassWidth] = useState(390);
+  const compactGlass = glassWidth < 330;
+  const glassWaveHeight = compactGlass ? 18 : 24;
   const [fullHeight, setFullHeight] = useState(0);
   const listenRecordedRef = useRef(false);
   const positionIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -986,7 +1010,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   if (compact) {
     return (
       <View className="rounded-xl overflow-hidden">
-        <View className="px-3 py-2.5" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
+        <View className="px-3 py-2.5" style={{ backgroundColor: theme === 'glass' ? skin?.card.backgroundColor : "rgba(0,0,0,0.6)" }}>
           <View className="flex-row items-center gap-2.5">
             <TouchableOpacity
               onPress={handlePlayPause}
@@ -1143,6 +1167,39 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
      in the fullscreen modal it is the whole screen. */
   const renderWindow = (mode: "inline" | "fullscreen") => {
     const height = mode === "inline" ? inlineHeight : fullHeight;
+    if (theme === 'glass') return (
+      <View style={[styles.glassWindow, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
+        <View style={styles.glassCrown}>
+        <GlassAudioShoulder />
+        <Text numberOfLines={1} style={[styles.glassTitle, compactGlass && { fontSize: 10 }]}>{resolvedTitle}</Text>
+        <Text numberOfLines={1} style={[styles.glassArtist, compactGlass && { fontSize: 8 }]}>{resolvedArtist}</Text>
+        <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
+        <View style={{ height: glassWaveHeight, marginTop: 6, overflow: 'hidden' }}>{vizStyle === 'static' ? <ScrubSurface surface={artworkSurface}><StaticWaveform glass seed={seed} position={position} hue={hue} height={glassWaveHeight} isPlaying={shownPlaying} /></ScrubSurface> : renderVisualizer(glassWaveHeight)}</View>
+        </View>
+        <View style={[styles.glassDeck, { backgroundColor: `rgba(${accent.join(',')},.06)` }, compactGlass && { paddingTop: 20, paddingBottom: 8 }]}>
+          <LinearGradient pointerEvents="none" colors={['rgba(220,255,255,.07)', 'rgba(0,20,24,.16)']} style={[StyleSheet.absoluteFill, { borderRadius: 48 }]} />
+          <View style={{ position: 'absolute', top: -10, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={styles.glassTime}>{fmtDuration(shownTime)}</Text><Text style={styles.glassTime}>{fmtDuration(shownDuration)}</Text></View>
+          <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="#d7ffff" maximumTrackTintColor="rgba(225,255,255,.2)" thumbTintColor="#efffff" style={{ height: 12 }} /></PagerSafe></View>
+          <View style={[styles.glassTransport, compactGlass && { gap: 12 }]}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="−10 s" onPress={() => handleSeek(shownDuration ? (shownTime - 10) / shownDuration : 0)} style={[styles.glassControl, compactGlass && { width: 28, height: 28 }]}><Text style={styles.glassSkip}>−10</Text></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause} style={[styles.glassControl, styles.glassPlay, { backgroundColor: `rgba(${accent.join(',')},.12)` }, compactGlass && { width: 36, height: 36 }]}>
+              <LinearGradient pointerEvents="none" colors={['rgba(230,255,255,.35)', 'transparent']} style={StyleSheet.absoluteFill} />
+              <MediaControlIcon name={shownLoading ? 'Loader' : shownPlaying ? 'Pause' : 'Play'} />
+            </TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel="+10 s" onPress={() => handleSeek(shownDuration ? (shownTime + 10) / shownDuration : 0)} style={[styles.glassControl, compactGlass && { width: 28, height: 28 }]}><Text style={styles.glassSkip}>+10</Text></TouchableOpacity>
+          </View>
+        </View>
+        {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
+          <StylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <HueSlider hue={hue} onHueChange={handleHueChange} />
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.glassControl}><MediaControlIcon name={isEffectivelyMuted ? 'VolumeX' : 'Volume2'} /></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.glassControl}><MediaControlIcon name="PictureInPicture2" /></TouchableOpacity>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.glassControl}><MediaControlIcon name={isFullscreen ? 'Minimize' : 'Maximize'} /></TouchableOpacity>
+          </View>
+        </View>}
+      </View>
+    );
     return (
       <View
         style={mode === "inline" ? styles.windowInline : styles.windowFull}
@@ -1156,7 +1213,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   };
 
   return (
-    <View style={[styles.card, edgeToEdge && styles.cardEdge]}>
+    <View style={[styles.card, edgeToEdge && styles.cardEdge, theme === 'glass' && { backgroundColor: 'transparent', borderRadius: 28 }]}>
       {renderWindow("inline")}
 
       {/* An RN <Modal>, mounted here rather than routed to: a
@@ -1173,11 +1230,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <View
           style={[
             styles.fullscreenRoot,
+            theme === 'glass' && { justifyContent: 'center', backgroundColor: '#04181c' },
             {
               paddingTop: insets.top,
               paddingBottom: insets.bottom,
-              paddingLeft: insets.left,
-              paddingRight: insets.right,
+              paddingLeft: Math.max(insets.left, theme === 'glass' ? 24 : 0),
+              paddingRight: Math.max(insets.right, theme === 'glass' ? 24 : 0),
             },
           ]}
         >
@@ -1189,6 +1247,17 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 };
 
 const styles = StyleSheet.create({
+  glassWindow: { overflow: 'visible' },
+  glassCrown: { paddingTop: 8, paddingHorizontal: '8%' },
+  glassTitle: { color: '#efffff', fontSize: 12, fontWeight: '500', textAlign: 'center', marginHorizontal: 32 },
+  glassArtist: { color: '#c3e8e9', fontSize: 9, letterSpacing: 1, textAlign: 'center', marginTop: 3 },
+  glassOptions: { position: 'absolute', top: 12, right: 12, padding: 6, zIndex: 2 },
+  glassDeck: { borderRadius: 48, borderWidth: 1, borderColor: 'rgba(225,255,255,.35)', borderTopColor: 'rgba(255,255,255,.55)', paddingHorizontal: 16, paddingTop: 22, paddingBottom: 10, overflow: 'visible' },
+  glassTime: { color: '#efffff', opacity: .65, fontSize: 8, fontVariant: ['tabular-nums'] },
+  glassTransport: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 16 },
+  glassControl: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, borderColor: 'rgba(225,255,255,.3)', borderTopColor: 'rgba(255,255,255,.5)', backgroundColor: 'rgba(200,255,255,.05)', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  glassPlay: { width: 44, height: 44, borderRadius: 22 },
+  glassSkip: { color: '#efffff', fontSize: 13, fontWeight: '500' },
   card: {
     marginTop: 12,
     borderRadius: 12,

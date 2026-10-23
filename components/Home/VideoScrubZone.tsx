@@ -4,6 +4,9 @@ import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useScrubGesture } from '../../hooks/useScrubGesture';
 import { FeedScrubContext, SCRUB_HIT_HEIGHT } from '../../hooks/useFeedScrubBoundary';
+import { useAppTheme } from '../../context/ThemeContext';
+import { KeepDarkScope } from '../../libs/jsx/tone';
+import { MediaControlGroundProvider, PAPER_INK } from '../common/MediaControlGlyph';
 
 const ScrubbedTouch = createContext<React.MutableRefObject<boolean> | null>(null);
 export const VIDEO_CONTROL_STRIP_HEIGHT = 47;
@@ -43,6 +46,10 @@ type Props = {
 
 export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children, plainStrip = false }: Props) {
   const boundary = useContext(FeedScrubContext);
+  // System Light: the strip under the picture belongs to the page (web parity),
+  // paper with ink controls. Everything on the picture itself stays white.
+  const { isLight } = useAppTheme();
+  const paper = plainStrip && isLight;
   const scrubbed = useRef(false);
   const origin = useRef({ x: 0, y: 0 });
   const width = useRef(1);
@@ -67,6 +74,8 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
     onCancel,
   });
   return (
+    <KeepDarkScope>
+    <MediaControlGroundProvider value={paper ? 'paper' : 'picture'}>
     <ScrubbedTouch.Provider value={scrubbed}>
       <GestureDetector gesture={gesture}>
         <View
@@ -88,7 +97,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
           onTouchEnd={event => event.stopPropagation()}
           onTouchCancel={event => { event.stopPropagation(); scrubbed.current = true; }}
         >
-          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={styles.stripSurface} />}
+          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={[styles.stripSurface, paper && styles.paperSurface]} />}
           <Pressable
             testID="video-scrub-tap"
             style={StyleSheet.absoluteFill}
@@ -102,8 +111,8 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
               onCommit(Math.max(0, Math.min(1, event.nativeEvent.locationX / width.current)));
             }}
           />
-          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, { opacity }]}>
-            {line ?? <View style={[styles.played, { width: `${progress}%` }]} />}
+          <Animated.View pointerEvents="none" style={[styles.line, plainStrip && styles.plainLine, paper && styles.paperLine, { opacity }]}>
+            {line ?? <View style={[styles.played, paper && styles.paperPlayed, { width: `${progress}%` }]} />}
           </Animated.View>
           <Animated.View pointerEvents={showControls ? 'box-none' : 'none'} style={[styles.row, plainStrip && { bottom: 9 }, { opacity }]}>
             {children}
@@ -111,6 +120,8 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
         </View>
       </GestureDetector>
     </ScrubbedTouch.Provider>
+    </MediaControlGroundProvider>
+    </KeepDarkScope>
   );
 }
 
@@ -118,6 +129,9 @@ const styles = StyleSheet.create({
   zone: { position: 'absolute', bottom: 0, left: 0, right: 0, height: SCRUB_HIT_HEIGHT, backgroundColor: 'transparent' },
   stripSurface: { position: 'absolute', bottom: 0, left: 0, right: 0, height: VIDEO_CONTROL_STRIP_HEIGHT, backgroundColor: '#000' },
   plainLine: { borderWidth: 0, backgroundColor: '#444' },
+  paperSurface: { backgroundColor: '#FFFFFF', borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: 'rgba(11,11,13,0.10)' },
+  paperLine: { backgroundColor: 'rgba(11,11,13,0.16)' },
+  paperPlayed: { backgroundColor: PAPER_INK },
   row: { position: 'absolute', bottom: 14, left: 0, right: 0, backgroundColor: 'transparent' },
   line: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 3, borderWidth: 0.5, borderColor: 'rgba(0,0,0,0.65)', overflow: 'hidden', backgroundColor: 'rgba(255,255,255,0.3)' },
   played: { height: '100%', backgroundColor: '#FFFFFF' },

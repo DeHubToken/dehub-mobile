@@ -10,6 +10,9 @@ const API_BASE_URL = env.API_URL;
 
 const UPLOAD_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
 
+/** A failed upload, carrying the HTTP status and the body's `code` when there was one. */
+export type XhrUploadError = Error & { status?: number; code?: string };
+
 export interface XhrUploadOptions {
   endpoint: string;
   formData: FormData;
@@ -117,7 +120,10 @@ export async function xhrUploadFormData<T = any>(
           // msg is a one-line summary; the rest of the body is usually where
           // the actual cause (a validation error, a chain-specific reason) is.
           console.error(`[xhr-upload] ${opts.endpoint} failed (${xhr.status})`, body ?? xhr.responseText);
-          reject(new Error(msg));
+          const err: XhrUploadError = new Error(msg);
+          err.status = xhr.status;
+          if (typeof body?.code === "string") err.code = body.code;
+          reject(err);
         }
       });
     };

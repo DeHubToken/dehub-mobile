@@ -1,6 +1,8 @@
 import React, { memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Linking, Pressable, Share, StyleSheet, Text, View } from "react-native";
+import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
+import { getShareRefCode, shareWithRef, withShareRef } from "../../libs/shareRef";
+import { track } from "../../libs/analytics";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
@@ -30,8 +32,9 @@ export interface RepostShareSheetProps {
   shareText?: string;
   quoteCount: number;
   repostCount: number;
-  onViewQuotes: () => void;
-  onViewReposts: () => void;
+  /** Omit both to leave out the who-quoted / who-reposted lists (a governance proposal has none). */
+  onViewQuotes?: () => void;
+  onViewReposts?: () => void;
 }
 
 /** Share targets that take a link in their URL; each falls back to its web page. */
@@ -90,12 +93,13 @@ function RepostShareSheetComponent({
 
   const openTarget = useCallback((target: "x" | "telegram" | "whatsapp") => {
     onClose();
-    Linking.openURL(shareTargetUrl(target, shareUrl, shareText)).catch(() => {});
+    Linking.openURL(shareTargetUrl(target, withShareRef(shareUrl), shareText)).catch(() => {});
+    track("share", { kind: "post", channel: target, has_ref: !!getShareRefCode() });
   }, [onClose, shareUrl, shareText]);
 
   const nativeShare = useCallback(() => {
     later(() => {
-      Share.share({ message: shareText ? `${shareText}\n${shareUrl}` : shareUrl, url: shareUrl }).catch(() => {});
+      shareWithRef({ message: shareText ? `${shareText}\n${shareUrl}` : shareUrl, url: shareUrl }, undefined, "post").catch(() => {});
     });
   }, [later, shareUrl, shareText]);
 
@@ -154,6 +158,7 @@ function RepostShareSheetComponent({
           <ShareTarget icon="Ellipsis" label={t("feedCard.moreShare")} radius={radius} onPress={nativeShare} />
         </View>
 
+        {onViewQuotes && onViewReposts && (
         <View style={[styles.lists, { borderRadius: radius }]}>
           <Pressable
             onPress={() => later(onViewQuotes)}
@@ -179,6 +184,7 @@ function RepostShareSheetComponent({
             <Icon name="ChevronRight" size={16} color={MUTED} />
           </Pressable>
         </View>
+        )}
       </View>
     </GlassModal>
   );

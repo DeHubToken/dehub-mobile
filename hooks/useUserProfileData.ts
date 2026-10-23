@@ -537,7 +537,7 @@ export const useUserProfileData = (
   const handleShare = useCallback(async () => {
     const profileSlug = profileData?.username || profileData?.address;
     if (!profileSlug) return;
-    const url = `${WEBSITE_LINK}/${profileSlug}`;
+    const url = `${WEBSITE_LINK}/@${profileSlug}`;
     const message = `Check out this dehub profile ${url}`;
     await shareProfile(url, message);
   }, [profileData?.username, profileData?.address]);

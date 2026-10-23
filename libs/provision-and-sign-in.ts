@@ -16,7 +16,10 @@ import {
   resolveEvmWalletForIdentity,
   releaseWalletKeyForSignIn,
   retryPendingResetCleanup,
+  createAndSaveEvmWalletForIdentity,
 } from "./identity-wallet";
+import { markWalletSecureOffer } from "./wallet-core/secure-offer";
+import { getWalletSetupIntent } from "./wallet-setup-intent";
 import { stageIncomingIdentity } from "./profiles";
 import { fetchWalletReliably } from "./wallet-core/store";
 import { checkLegacyAccount } from "./wallet-core/legacy-detect";
@@ -153,7 +156,8 @@ async function trySessionExchange(
 /**
  * After Supabase identity is established (Google/email), finish DeHub sign-in.
  *
- * The server selects the linked profile; wallet setup is only for new identities.
+ * The server selects the linked profile. A brand-new identity gets its wallet
+ * made silently on this device; securing it waits for the first wallet action.
  */
 export async function provisionAndSignIn(
   supabaseUserId: string,
@@ -280,7 +284,28 @@ async function provisionAndSignInInner(
   if (legacyHint.exists !== false) {
     return { kind: "error", message: "Could not check your existing profile. Please try again." };
   }
-  return { kind: "wallet-setup", request: { mode: "create", supabaseUserId } };
+  // "Migrate account" with no earlier account behind it keeps the sheet: the
+  // sign-in screen says no old account was found, and a silent new account
+  // would read as the migration having quietly done nothing.
+  if (getWalletSetupIntent() === "migrate") {
+    return { kind: "wallet-setup", request: { mode: "create", supabaseUserId } };
+  }
+  // A brand-new account. The backend only creates an account from a wallet
+  // signature, so the wallet is made here under this device's key and the
+  // person goes straight into the app. Asking them to secure it at the door
+  // is what App Review hit: Continue with Apple, then a wallet panel before
+  // the app had even opened. "Secure your wallet" now waits for the first
+  // action that uses the wallet (see wallet-core/secure-offer).
+  const created = await createAndSaveEvmWalletForIdentity(supabaseUserId, { kind: "biometric" });
+  await markWalletSecureOffer(supabaseUserId, created.address);
+  try {
+    await deps.provisionSolanaAddressForWallet(created.address, created.privateKey);
+  } catch {
+    // Best-effort, as in the wallet-setup sign-in: never blocks the sign-up.
+  }
+  await deps.completeLocalSignIn(created.address, created.privateKey, await deps.getSupabaseAuthMeta());
+  await markSupabaseIdentitySignedIn(supabaseUserId);
+  return { kind: "signed-in" };
 }
 
 /** Call after wallet unlock/create sign-in completes successfully. */

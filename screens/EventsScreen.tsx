@@ -4,24 +4,28 @@
  * Native port of the web EventsPage (/app/events). Lists community events from
  * Supabase with Upcoming / Past / Mine filters and going/interested RSVP.
  */
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, useWindowDimensions } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
 import { storageImageSource } from "../libs/cdnImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useRoute } from "@react-navigation/native";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import i18n from "../i18n";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
-import { useUser, useAuthState } from "../context/AuthContext";
+import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { theme } from "../theme";
 import { toastInfo, toastError } from "../libs";
 import { DhbCoin } from "../components/common/DhbCoin";
+import EventDetailSheet from "../components/Events/EventDetailSheet";
+import EventFormSheet from "../components/Events/EventFormSheet";
 import {
+  getEventByNumber,
   getEvents,
   getMyRsvps,
   toggleRsvp,
@@ -51,46 +55,54 @@ interface EventCardProps {
   event: CommunityEvent;
   rsvp?: RsvpStatus;
   onRsvp: (event: CommunityEvent, status: "going" | "interested") => void;
+  onOpen: (event: CommunityEvent) => void;
 }
 
-const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp }) => {
+export const EventCard: React.FC<EventCardProps> = ({ event, rsvp, onRsvp, onOpen }) => {
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
   const going = rsvp === "going";
   const interested = rsvp === "interested";
   return (
     <PageSection flush>
-      {event.cover_image_url ? (
-        <Image source={storageImageSource(event.cover_image_url, windowWidth)} style={styles.cover} contentFit="cover" transition={150} />
-      ) : (
-        <View style={[styles.cover, styles.coverPlaceholder]}>
-          <Icon name="CalendarDays" size={32} color="#3F3F46" />
-        </View>
-      )}
-
-      <View style={styles.cardBody}>
-        <Text style={styles.dateText}>{formatEventDate(event.starts_at)}</Text>
-        <Text style={styles.eventTitle} numberOfLines={2}>{event.title}</Text>
-
-        {!!event.location && (
-          <View style={styles.locationRow}>
-            <Icon name="MapPin" size={13} color="#808089" />
-            <Text style={styles.locationText} numberOfLines={1}>{event.location}</Text>
+      <Pressable onPress={() => onOpen(event)} accessibilityRole="button" accessibilityLabel={event.title}>
+        {event.cover_image_url ? (
+          <Image source={storageImageSource(event.cover_image_url, windowWidth)} style={styles.cover} contentFit="cover" transition={150} />
+        ) : (
+          <View style={[styles.cover, styles.coverPlaceholder]}>
+            <Icon name="CalendarDays" size={32} color="#3F3F46" />
           </View>
         )}
 
-        <View style={styles.metaRow}>
-          <Text style={styles.metaText}>{t("events.goingCount", { count: event.going_count || 0 })}</Text>
-          <Text style={styles.metaDot}>·</Text>
-          <Text style={styles.metaText}>{t("events.interestedCount", { count: event.interested_count || 0 })}</Text>
-          {(event.gate_fee ?? 0) > 0 && (
-            <>
-              <Text style={styles.metaDot}>·</Text>
-              <Text style={styles.gateFee}>{event.gate_fee} <DhbCoin size={12} /></Text>
-            </>
-          )}
-        </View>
+        <View style={styles.cardBody}>
+          <Text style={styles.dateText}>{formatEventDate(event.starts_at)}</Text>
+          <View style={styles.titleRow}>
+            {event.is_private && <Icon name="Lock" size={13} color="#A1A1AA" />}
+            <Text style={[styles.eventTitle, { flex: 1 }]} numberOfLines={2}>{event.title}</Text>
+          </View>
 
+          {!!event.location && (
+            <View style={styles.locationRow}>
+              <Icon name="MapPin" size={13} color="#808089" />
+              <Text style={styles.locationText} numberOfLines={1}>{event.location}</Text>
+            </View>
+          )}
+
+          <View style={styles.metaRow}>
+            <Text style={styles.metaText}>{t("events.goingCount", { count: event.going_count || 0 })}</Text>
+            <Text style={styles.metaDot}>·</Text>
+            <Text style={styles.metaText}>{t("events.interestedCount", { count: event.interested_count || 0 })}</Text>
+            {(event.gate_fee ?? 0) > 0 && (
+              <>
+                <Text style={styles.metaDot}>·</Text>
+                <Text style={styles.gateFee}>{event.gate_fee} <DhbCoin size={12} /></Text>
+              </>
+            )}
+          </View>
+        </View>
+      </Pressable>
+
+      <View style={styles.actionsWrap}>
         <View style={styles.actions}>
           <Pressable
             style={[styles.rsvpBtn, going && styles.rsvpBtnActive]}
@@ -125,6 +137,25 @@ export default function EventsScreen() {
   const queryClient = useQueryClient();
 
   const [filter, setFilter] = useState<EventsFilter>("upcoming");
+  const [openEvent, setOpenEvent] = useState<CommunityEvent | null>(null);
+  const [createOpen, setCreateOpen] = useState(false);
+  const { requireAuth } = useAuthActions();
+  const route = useRoute<any>();
+  const linkedNumber = Number(route.params?.eventNumber);
+
+  // dehub.io/app/events/:n lands here: open that event over the list.
+  useEffect(() => {
+    if (!Number.isFinite(linkedNumber) || linkedNumber <= 0) return;
+    let cancelled = false;
+    getEventByNumber(linkedNumber)
+      .then((e) => {
+        if (!cancelled && e) setOpenEvent(e);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [linkedNumber]);
 
   const { data: events = [], isLoading, isError, refetch, isRefetching } = useQuery({
     queryKey: ["events", filter, wallet],
@@ -154,6 +185,11 @@ export default function EventsScreen() {
         return;
       }
       const current = myRsvps[event.id];
+      // Private and gated events are decided in the detail sheet.
+      if (event.is_private || (event.gate_fee ?? 0) > 0) {
+        setOpenEvent(event);
+        return;
+      }
       // Tapping the active status again clears it, mirroring the web toggle.
       const next = current === status ? "remove" : status;
       rsvpMutation.mutate({ eventId: event.id, status: next });
@@ -164,7 +200,7 @@ export default function EventsScreen() {
   const keyExtractor = useCallback((e: CommunityEvent) => e.id, []);
   const renderItem = useCallback(
     ({ item }: { item: CommunityEvent }) => (
-      <EventCard event={item} rsvp={myRsvps[item.id]} onRsvp={handleRsvp} />
+      <EventCard event={item} rsvp={myRsvps[item.id]} onRsvp={handleRsvp} onOpen={setOpenEvent} />
     ),
     [myRsvps, handleRsvp],
   );
@@ -178,6 +214,17 @@ export default function EventsScreen() {
   return (
     <View className="bg-theme-neutrals-900" style={styles.root}>
       <ScreenHeader icon="events" title={t("nav.events")} subtitle={t("events.subtitle")}
+        rightContent={
+          <Pressable
+            onPress={() => requireAuth(() => setCreateOpen(true))}
+            accessibilityRole="button"
+            accessibilityLabel={t("events.createEvent")}
+            className="items-center justify-center bg-theme-neutrals-800"
+            style={{ width: 36, height: 36, borderRadius: 10 }}
+          >
+            <Icon name="Plus" size={18} color="#FFFFFF" />
+          </Pressable>
+        }
         tabs={
           <PageTabs
             value={filter}
@@ -213,6 +260,10 @@ export default function EventsScreen() {
         />
       )}
       <DeHubRefreshMark refreshing={isRefetching} />
+      <EventDetailSheet event={openEvent} visible={!!openEvent} onClose={() => setOpenEvent(null)} />
+      {createOpen && (
+        <EventFormSheet visible={createOpen} onClose={() => setCreateOpen(false)} onCreated={setOpenEvent} />
+      )}
     </View>
   );
 }
@@ -231,6 +282,8 @@ const styles = StyleSheet.create({
   metaText: { color: "#A1A1AA", fontSize: 12 },
   metaDot: { color: "#52525B", fontSize: 12 },
   gateFee: { color: theme.colors.accent, fontSize: 12, fontWeight: "600" },
+  titleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
+  actionsWrap: { paddingHorizontal: 16, paddingBottom: 16, marginTop: -8 },
   actions: { flexDirection: "row", gap: 8, marginTop: 8 },
   rsvpBtn: {
     flex: 1,

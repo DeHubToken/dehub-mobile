@@ -19,9 +19,16 @@ final class ScreenCaptureHost {
     let storage = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: CaptureLedger.appGroup) != nil
     let upload = Bundle.main.builtInPlugInsURL?.appendingPathComponent("DeHubCaptureUpload.appex")
     let legacy = upload.map { FileManager.default.fileExists(atPath: $0.path) } ?? false
-    var modern = false
-    if #available(iOS 27.0, *) { modern = true }
-    return ["available": storage && (modern || legacy), "systemAudio": true, "microphone": true, "background": true]
+    return ["available": storage && (modernCaptureAvailable || legacy), "systemAudio": true, "microphone": true, "background": true]
+  }
+
+  /// ScreenCaptureKit exists in the iOS 27 device SDK only, not the simulator
+  /// SDK; without it the broadcast extension is the recorder.
+  private static var modernCaptureAvailable: Bool {
+#if canImport(ScreenCaptureKit)
+    if #available(iOS 27.0, *) { return true }
+#endif
+    return false
   }
 
   func start(id: String, scope: String, playheadMs: Double, microphone: Bool, systemAudio: Bool, title: String, save: String, cancel: String) async throws {
@@ -30,17 +37,22 @@ final class ScreenCaptureHost {
     var ticket = CaptureTicket(sessionId: id, scopeKey: scope, playheadMs: playheadMs, hostInstanceId: captureHostInstanceId,
       microphone: microphone, systemAudio: systemAudio, state: .pending, cancelRequested: false)
     ticket.title = title; ticket.saveLabel = save; ticket.cancelLabel = cancel
-    if #available(iOS 27.0, *) { ticket.captureProvider = "stream" } else { ticket.captureProvider = "broadcast" }
+    ticket.captureProvider = Self.modernCaptureAvailable ? "stream" : "broadcast"
     try ledger.reserve(ticket); owned[id] = scope
     do {
       let driver: CaptureDriver
       let changed: () -> Void = { [weak self] in self?.publish(id) }
-      if #available(iOS 27.0, *) { driver = try ModernCaptureDriver(ticket: ticket, ledger: ledger, changed: changed) }
-      else {
+      let legacyDriver = { () throws -> CaptureDriver in
         guard var root = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).flatMap({ $0.windows }).first(where: { $0.isKeyWindow })?.rootViewController else { throw CaptureLedgerError.unavailable }
         while let presented = root.presentedViewController { root = presented }
-        driver = LegacyCaptureDriver(ticket: ticket, ledger: ledger, presenter: root, changed: changed)
+        return LegacyCaptureDriver(ticket: ticket, ledger: self.ledger, presenter: root, changed: changed)
       }
+#if canImport(ScreenCaptureKit)
+      if #available(iOS 27.0, *) { driver = try ModernCaptureDriver(ticket: ticket, ledger: ledger, changed: changed) }
+      else { driver = try legacyDriver() }
+#else
+      driver = try legacyDriver()
+#endif
       drivers[id] = driver; monitor(id)
       try await driver.start()
       guard let current = try ledger.ticket(id, scopeKey: scope), !current.cancelRequested,

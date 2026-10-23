@@ -14,7 +14,7 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'es' } }) }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
-jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
+jest.mock('@expo/vector-icons/Ionicons', () => () => null);
 jest.mock('../../components/common/MediaControlGlyph', () => ({ MediaControlIcon: () => null }));
 jest.mock('../../components/VideoPlayerCore/CaptionFixSheet', () => () => null);
 jest.mock('../../libs', () => ({ toastInfo: jest.fn() }));

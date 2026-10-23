@@ -97,7 +97,7 @@ import { PostStageActions, PostStageChrome, PostStageCreator } from "./PostStage
 import { clearPostStage, patchPostStage } from "../../libs/postStage";
 import { followUser, unfollowUser } from "../../services/user.service";
 import CashtagSheet from "./CashtagSheet";
-import Icon from "../ui/Icon";
+import Icon, { type IconName } from "../ui/Icon";
 import TranslateButton from "../ui/TranslateButton";
 import SoundtrackBadge, { SoundDrift } from "../Post/SoundtrackBadge";
 import { parseSoundtrack } from "../../libs/parseSoundtrack";
@@ -151,6 +151,7 @@ import { WEBSITE_LINK } from "../../config";
 import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
+import HoldGateSheet from "../common/HoldGateSheet";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -281,6 +282,27 @@ interface FeedCardProps {
 
 /** Side inset for the text of an immersive post; the media ignores it. */
 const IMMERSIVE_INSET = 16;
+
+const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
+// The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
+const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
+
+/** Clock + time, then the post kind's icon + count. A fragment, so the row adds no wrapper views. */
+function PostMetaItems({ timeAgo, icon, count }: { timeAgo?: string; icon: IconName; count: string }) {
+  return (
+    <>
+      {timeAgo ? (
+        <>
+          <Icon name="TimeAgo" size={13} color="#6F7174" />
+          <Text style={META_LABEL}>{timeAgo}</Text>
+        </>
+      ) : null}
+      <Icon name={icon} size={13} color="#6F7174" />
+      <Text style={META_LABEL}>{count}</Text>
+    </>
+  );
+}
+
 
 const FeedCardComponent: React.FC<FeedCardProps> = ({
   item,
@@ -781,6 +803,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
   }, [disablePress, isLive, isShort, tokenId, item]);
 
+  // Hold-gated posts open the gate sheet, which can re-check balances.
+  const [showHoldGate, setShowHoldGate] = useState(false);
+  const openHoldGate = useCallback(() => {
+    if (scrubBoundary.claimed.value) return;
+    setShowHoldGate(true);
+  }, [scrubBoundary]);
+  const closeHoldGate = useCallback(() => setShowHoldGate(false), []);
+
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
@@ -818,7 +848,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleImagePress = useCallback((index: number = 0) => {
     if (!hasImages) return;
-    if (!isActuallyGated && !matureGate.isGated && tokenId != null) {
+    // Only photos with a song continue in the shorts viewer; plain photos open the image viewer.
+    if (soundtrack?.url && !isActuallyGated && !matureGate.isGated && tokenId != null) {
       rememberGalleryIndex(String(tokenId), index);
       onBeforeNavigate?.();
       hideUserProfile();
@@ -1504,7 +1535,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     if (isActuallyLockedHoldings) {
       return (
         <Pressable
-          onPress={handleCardPress}
+          onPress={openHoldGate}
           className={edgeMedia ? "overflow-hidden" : "mt-2 rounded-xl overflow-hidden"}
           style={{ height: (edgeMedia ? SCREEN_WIDTH : IMAGE_WIDTH) * 0.75 }}
         >
@@ -1618,7 +1649,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       }}
       onTapReaction={handleVideoTapReaction}
       onPPVPress={DIGITAL_PURCHASES_ENABLED ? handlePPVPress : undefined}
-      onLockPress={handleCardPress}
+      onLockPress={openHoldGate}
       onBountyPress={handleBountyBadgePress}
     />
     </FeedScrubContext.Provider>
@@ -2007,6 +2038,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             ? () => { const url = getVideoUrl(tokenId); if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
+          canMarkSegments={isVideo && !isLive && !isActuallyGated}
           // Also on the action bar as icons. Both are wanted: the icon is for
           // the thumb, the labelled row is for anyone who opens the menu
           // looking for the action by name.
@@ -2016,6 +2048,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onAskAi={handleAiPress}
         />
       )}
+
+      {showHoldGate && <HoldGateSheet visible={showHoldGate} onClose={closeHoldGate} post={item} />}
 
       {showShareToDm && tokenId != null && (
         <ShareToDmSheet
@@ -2093,6 +2127,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           avatarUrl={avatar}
           displayName={displayName}
           username={username}
+          address={minterAddress}
           followers={minterUser?.followers ?? item.minterFollowers}
           badgeImage={badgeImg}
           onUserPress={handleUserPress}
@@ -2176,27 +2211,17 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             listingCount={localShopListingCount ?? (item as any).shopListingCount}
           />
         )}
-        <View className="flex-row items-center gap-2 pt-2" testID="post-stage-meta">
-          <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
-            {timeAgo}
-            <Text style={{ color: "#6F7174" }}>{"  ·"}</Text>
-          </Text>
-          <Icon name={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} size={13} color="#6F7174" />
-          <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90", marginLeft: -4 }}>
-            {formatCompactNumber(views)}
-          </Text>
+        <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
+          <PostMetaItems timeAgo={timeAgo} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} />
           {showTranslate && (
-            <>
-              <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
-              <TranslateButton
-                isTranslated={isTranslated}
-                isLoading={translating}
-                detectedLanguage={translationSourceLang}
-                onTranslate={handleTranslate}
-                onShowOriginal={handleShowOriginal}
-                inline
-              />
-            </>
+            <TranslateButton
+              isTranslated={isTranslated}
+              isLoading={translating}
+              detectedLanguage={translationSourceLang}
+              onTranslate={handleTranslate}
+              onShowOriginal={handleShowOriginal}
+              inline
+            />
           )}
         </View>
         {postVideo && <PostStageActions onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
@@ -2523,17 +2548,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           )}
         </View>
         {(
-          <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
-            <Text style={{ color: "#6F7174" }}>·</Text>
-            <Icon name="Eye" size={13} color="#6F7174" />
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{formatCompactNumber(views)}{isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}</Text>
-            {translateButton ? (
-              <>
-                <Text style={{ color: "#6F7174" }}>·</Text>
-                {translateButton}
-              </>
-            ) : null}
+          <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
+            <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} />
+            {translateButton}
           </View>
         )}
         <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 4 }}>
@@ -2771,46 +2788,30 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         />
       )}
 
-      <View className="flex-row items-center gap-2 pt-3">
-        {/* Time and dot are one native text with two spans, and the view
-            count sits directly in the row (the -4 keeps its 4px gap to the
-            icon under the row's 8px gap). Two views fewer per card. */}
-        <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>
-          {timeAgo}
-          <Text style={{ color: "#6F7174" }}>{"  ·"}</Text>
-        </Text>
-        <Icon
-          name={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
-          size={13}
-          color="#6F7174"
-        />
+      <View className="flex-row flex-wrap items-center gap-3 pt-3">
         {/* One number for every post type, same as web: the icon says what
             kind of post it is, the count is always the post's own views. An
             audio post's listen tally lives inside the player, where it is
             labelled; printed here it read as the view count and undercounted
             by an order of magnitude. */}
-        <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90", marginLeft: -4 }}>
-          {formatCompactNumber(views)}{isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}
-        </Text>
+        <PostMetaItems
+          timeAgo={timeAgo}
+          icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
+          count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}
+        />
         {isLive && peakAudience > 0 && (
-          <>
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>{_copy("copy.e22a9a53a007", { defaultValue: "Peak: " })}{formatCompactNumber(peakAudience)}
-            </Text>
-          </>
+          <Text style={META_TEXT}>{_copy("copy.e22a9a53a007", { defaultValue: "Peak: " })}{formatCompactNumber(peakAudience)}
+          </Text>
         )}
         {showTranslate && (
-          <>
-            <Text style={{ fontSize: 13, lineHeight: 18, color: "#6F7174" }}>·</Text>
-            <TranslateButton
-              isTranslated={isTranslated}
-              isLoading={translating}
-              detectedLanguage={translationSourceLang}
-              onTranslate={handleTranslate}
-              onShowOriginal={handleShowOriginal}
-              inline
-            />
-          </>
+          <TranslateButton
+            isTranslated={isTranslated}
+            isLoading={translating}
+            detectedLanguage={translationSourceLang}
+            onTranslate={handleTranslate}
+            onShowOriginal={handleShowOriginal}
+            inline
+          />
         )}
       </View>
 

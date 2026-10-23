@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export interface AnimatedCheckProps {
   size?: number; // diameter of the circle

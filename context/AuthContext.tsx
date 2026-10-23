@@ -22,6 +22,19 @@ import {
   getAuthMethod,
 } from "../libs/auth.utils";
 import { createLogger } from "../libs/logger";
+import { getSavedSetupStep } from "../libs/onboarding-choices";
+
+/**
+ * A signed-out device part way through the first-run setup goes back to it on
+ * launch, even if it has been through the auth screens before. Switching to
+ * System Light can rebuild the whole app on Android, and a guest who opened
+ * the setup from dehub://welcome was dropped on the feed instead.
+ */
+async function hasSeenAuthOutsideSetup(): Promise<boolean> {
+  if (!(await hasSeenAuth())) return false;
+  if ((await getSavedSetupStep()) <= 0) return true;
+  return !!(await getAuthToken());
+}
 import { setLogUserAddress } from "../libs/errorReporter";
 import { clearEoaSigningProvider, getSigningProvider, clearSigningProvider } from "../libs/provider.registry";
 import { useProviderLifecycle, type EIP1193Provider, type ProviderStatus } from "../hooks/useProviderLifecycle";
@@ -41,6 +54,8 @@ import { setViewAccount } from "../services/view.service";
 import { tokenRefreshManager } from "../libs/token-refresh";
 import { clearPersistedNavigationState } from "../hooks/useNavigationPersistence";
 import { markOnboardingOfferPending } from "../hooks/useOnboardingChecklist";
+import { identifyWallet, resetAnalytics, track } from "../libs/analytics";
+import { setShareRefCode } from "../libs/shareRef";
 import {
   currentProfileId,
   beginAddProfileAttempt,
@@ -312,6 +327,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }).catch(() => undefined);
     return () => { cancelled = true; stop?.(); };
   }, [referralWallet]);
+  const analyticsWalletRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (analyticsWalletRef.current && analyticsWalletRef.current !== referralWallet) resetAnalytics();
+    analyticsWalletRef.current = referralWallet;
+    setShareRefCode(null);
+    if (!referralWallet) return;
+    identifyWallet(referralWallet);
+    let cancelled = false;
+    void import('../libs/affiliate')
+      .then(({ findAffiliateCode }) => findAffiliateCode(referralWallet))
+      .then((code) => { if (!cancelled) setShareRefCode(code); })
+      .catch(() => undefined);
+    return () => { cancelled = true; };
+  }, [referralWallet]);
   const [balancesLoading, setBalancesLoading] = useState(false);
   const [provisionalUser, setProvisionalUser] = useState<any | null>(null);
   const [provisionalToken, setProvisionalToken] = useState<string | null>(null); // kept for backward compatibility
@@ -327,7 +356,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // step sits between them — so the guided-tour offer is written to durable
   // storage here and read back on Home rather than kept in memory.
   useEffect(() => {
-    if (needsUsername) markOnboardingOfferPending();
+    if (!needsUsername) return;
+    markOnboardingOfferPending();
+    track('signup');
   }, [needsUsername]);
 
   const [authMethod, setAuthMethodState] = useState<'local' | null>(null);
@@ -498,7 +529,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useAuthBoot<User>({
     getAuthUser,
     getAuthToken,
-    hasSeenAuth,
+    hasSeenAuth: hasSeenAuthOutsideSetup,
     setUser,
     setIsSignedIn,
     setIsFirstTimeUser,

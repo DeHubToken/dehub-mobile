@@ -46,26 +46,37 @@ export interface LiveStreamIndex {
 
 const EMPTY: LiveStreamIndex = { byToken: new Map(), complete: false };
 
+/**
+ * The query itself, shared with useIsUserLive so the avatars' live ring reads
+ * this same cache entry instead of asking `/live` again.
+ */
+export const liveStreamsQuery = {
+  queryKey: ["dehub-live-streams", UNIT, "recent"],
+  queryFn: () => getLiveVideos({ unit: UNIT, sortMode: "recent" }),
+  // Matches web's /api/live window. A stream going live is worth seeing
+  // within a minute; a pull-to-refresh gets it sooner.
+  staleTime: 60_000,
+  gcTime: 10 * 60_000,
+  retry: 1,
+} as const;
+
+/**
+ * The controller answers with a bare array; the envelope is only there on
+ * some deployments. Both shapes have shipped, so read both.
+ */
+export function liveStreamRows(data: unknown): LiveStreamEntity[] {
+  return Array.isArray(data)
+    ? data
+    : Array.isArray((data as any)?.result)
+      ? (data as any).result
+      : [];
+}
+
 export function useLiveStreams(enabled = true): LiveStreamIndex {
-  const { data } = useQuery({
-    queryKey: ["dehub-live-streams", UNIT, "recent"],
-    queryFn: () => getLiveVideos({ unit: UNIT, sortMode: "recent" }),
-    enabled,
-    // Matches web's /api/live window. A stream going live is worth seeing
-    // within a minute; a pull-to-refresh gets it sooner.
-    staleTime: 60_000,
-    gcTime: 10 * 60_000,
-    retry: 1,
-  });
+  const { data } = useQuery({ ...liveStreamsQuery, enabled });
 
   return useMemo(() => {
-    // The controller answers with a bare array; the envelope is only there on
-    // some deployments. Both shapes have shipped, so read both.
-    const rows: LiveStreamEntity[] = Array.isArray(data)
-      ? data
-      : Array.isArray((data as any)?.result)
-        ? (data as any).result
-        : [];
+    const rows = liveStreamRows(data);
     if (!rows.length) return data ? { byToken: new Map(), complete: true } : EMPTY;
 
     const byToken = new Map<string, LiveStreamEntity>();

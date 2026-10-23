@@ -7,7 +7,7 @@ import {
   Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import i18n from 'i18next';
 import { colors } from '../theme/colors';
 import PrimaryButton from './ui/PrimaryButton';

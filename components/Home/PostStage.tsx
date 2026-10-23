@@ -11,6 +11,8 @@ import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MONO_TEXT } from "../../theme/skins";
+import { useLiveTarget } from "../../hooks/useIsUserLive";
+import { openLiveTarget } from "../../libs/openLiveTarget";
 
 /** Glass squares: rounded rectangles, never circles. */
 export const STAGE_SQUARE = 40;
@@ -111,6 +113,7 @@ type CreatorProps = {
   avatarUrl?: string;
   displayName: string;
   username?: string;
+  address?: string;
   followers?: number;
   badgeImage?: any;
   onUserPress: () => void;
@@ -127,6 +130,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   avatarUrl,
   displayName,
   username,
+  address,
   followers,
   badgeImage,
   onUserPress,
@@ -139,6 +143,8 @@ export const PostStageCreator = memo(function PostStageCreator({
   const { t } = useTranslation();
   const { skin } = useAppTheme();
   const badgeRef = useRef<View>(null);
+  const liveTarget = useLiveTarget(address, username);
+  const live = !!liveTarget;
   const mono = skin?.mono ? MONO_TEXT : null;
   const sub = [
     username ? `@${username}` : null,
@@ -148,7 +154,15 @@ export const PostStageCreator = memo(function PostStageCreator({
   return (
     <View style={styles.creator} testID="post-stage-creator">
       <Pressable onPress={onUserPress} hitSlop={6} style={styles.identity} accessibilityRole="button" accessibilityLabel={displayName}>
-        <Avatar uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined} size={40} name={displayName || username} />
+        <Avatar
+          uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
+          size={40}
+          name={displayName || username}
+          live={live}
+          // Its own touchable while live, so the avatar opens the stream and
+          // the name beside it still opens the profile.
+          onPress={liveTarget ? () => openLiveTarget(liveTarget) : undefined}
+        />
         <View style={styles.identityText}>
           <View style={styles.nameRow}>
             <Text numberOfLines={1} style={[styles.name, mono]}>{displayName}</Text>
@@ -193,8 +207,10 @@ export const PostStageCreator = memo(function PostStageCreator({
 const styles = StyleSheet.create({
   square: { alignItems: "center", justifyContent: "center", borderWidth: 1, overflow: "hidden" },
   chromeOver: {
+    // Same inset from the top as from the sides, so the corner buttons sit
+    // evenly in the media's corners.
     position: "absolute",
-    top: 10,
+    top: 12,
     left: 12,
     right: 12,
     flexDirection: "row",

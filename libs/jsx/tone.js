@@ -66,8 +66,12 @@ function parse(color) {
   return null;
 }
 
+function chroma(rgba) {
+  return Math.max(rgba[0], rgba[1], rgba[2]) - Math.min(rgba[0], rgba[1], rgba[2]);
+}
+
 function grey(rgba) {
-  return Math.max(rgba[0], rgba[1], rgba[2]) - Math.min(rgba[0], rgba[1], rgba[2]) <= 14;
+  return chroma(rgba) <= 14;
 }
 
 /**
@@ -85,12 +89,32 @@ function format(lum, a) {
  * background, where pure black (media wells) and see-through blacks (scrims
  * over pictures) stay as they are.
  */
-function toneColor(color, fill) {
+function toneColor(color, fill, text) {
   const rgba = parse(color);
-  if (!rgba || !grey(rgba) || rgba[3] === 0) return color;
+  if (!rgba || rgba[3] === 0) return color;
+  // Text also counts the cool slate greys some screens use for muted copy
+  // (Dex #919CA9), which would otherwise stay pale on white.
+  if (!grey(rgba) && !(text && chroma(rgba) <= 32)) return color;
   const lum = (rgba[0] + rgba[1] + rgba[2]) / 3;
   if (fill && lum <= 2) return color;
+  // Light text (the dark theme's body and muted copy) turns into ink on white;
+  // dark labels (on a white key that becomes an ink key) just turn around.
+  if (text && lum >= 100 && rgba[3] >= 0.2) return formatText(lum, rgba[3]);
   return format(lum, rgba[3]);
+}
+
+/**
+ * Text greys, turned around and held to AAA (7:1 on white). A dark theme's
+ * faint labels (#71717A, white at 50%) land at 3-4:1 on white when simply
+ * inverted, so text is flattened onto white and capped at #4a4a4a (8.9:1 on white, 7.9:1 on the pale cards).
+ * Darker greys keep their own value, so ink stays ink.
+ */
+const TEXT_MAX_L = 74;
+function formatText(lum, a) {
+  const inverted = Math.max(0, Math.min(255, 266 - lum));
+  const onWhite = 255 - a * (255 - inverted);
+  const l = Math.min(onWhite, TEXT_MAX_L);
+  return `hsla(0,0%,${Math.round((l / 255) * 1000) / 10}%,1)`;
 }
 
 const TEXT_KEYS = ["color", "tintColor", "textDecorationColor"];
@@ -108,7 +132,7 @@ function toneObject(style) {
       const k = TEXT_KEYS[i];
       const v = style[k];
       if (v === undefined) continue;
-      const next = toneColor(v, false);
+      const next = toneColor(v, false, k === "color");
       if (next !== v) (out || (out = {}))[k] = next;
     }
   }
@@ -159,7 +183,7 @@ function toneProps(props) {
   for (let i = 0; i < PROP_TEXT.length; i++) {
     const k = PROP_TEXT[i];
     if (typeof props[k] !== "string") continue;
-    const v = toneColor(props[k], false);
+    const v = toneColor(props[k], false, k === "color");
     if (v !== props[k]) (next || (next = { ...props }))[k] = v;
   }
   for (let i = 0; i < PROP_FILL.length; i++) {
@@ -189,9 +213,12 @@ function toneProps(props) {
 const DARK_SURFACE = /(?:^|\s)dark-surface(?=\s|$)/;
 
 const ToneFill = React.forwardRef(function ToneFill(props, ref) {
-  const { __toneType: type, __toned: toned, ...rest } = props;
+  const { __toneType: type, __toned: _toned, ...rest } = props;
   const dark = React.useContext(KeepDark);
-  const chosen = dark ? rest : { ...toned, children: rest.children };
+  // Toned from the props as they arrive here, not as they were when the
+  // element was made: a parent can clone in more (ScrollView hands its
+  // refreshControl a `style`), and the earlier copy would drop them.
+  const chosen = dark ? rest : toneProps(rest);
   return jsxAny(type, ref ? { ...chosen, ref } : chosen);
 });
 
@@ -212,6 +239,9 @@ function isMediaType(type) {
     add(() => require("react-native").ImageBackground);
     add(() => require("expo-image").Image);
     add(() => require("expo-video").VideoView);
+    // The app's own wrappers around those two.
+    add(() => require("../../components/common/SmartImage").SmartImage);
+    add(() => require("../../components/common/PersistentVideoView").PersistentVideoView);
   }
   return mediaTypes.has(type);
 }
