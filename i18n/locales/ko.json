@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "프로필 사진에서 색상을 읽을 수 없습니다"
   },
   "common": {
+    "refresh": "새로고침",
     "mute": "음소거",
     "unmute": "음소거 해제",
     "fullscreen": "전체 화면",
@@ -4272,6 +4273,7 @@
     "filedOn": "{{date}} 접수"
   },
   "stages": {
+    "previewFailed": "오디오 룸에서 미리보기를 재생할 수 없습니다",
     "allStages": "모든 오디오 룸",
     "addToCalendar": "캘린더에 추가",
     "nowPlaying": "현재 재생 중",
@@ -4644,6 +4646,7 @@
     "anyBadgeHolder": "배지 보유자는 누구나 슈퍼파워를 얻을 수 있습니다. 배지를 잠금 해제하려면 DeHub 토큰을 구매하세요. 스테이킹은 필요하지 않습니다."
   },
   "follow": {
+    "noResults": "결과 없음",
     "followers": "팔로워",
     "following": "팔로잉",
     "requests": "요청",
@@ -7326,6 +7329,7 @@
       "delete": "삭제"
     },
     "export": {
+      "cancel": "취소",
       "scope": "다운로드 범위",
       "downloadTimeline": "전체 타임라인",
       "downloadSelection": "선택한 동영상 클립 ({{count}})",
@@ -7616,6 +7620,7 @@
     }
   },
   "creator": {
+    "sending": "전송 중",
     "navStudio": "스튜디오",
     "editor": "편집기",
     "untitled": "제목 없음",
@@ -8130,6 +8135,7 @@
     "transferIncomplete": "토큰 전송이 완료되지 않았습니다. 다음 유료 포스트가 게시되기 전에 다시 질문을 받게 됩니다."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "이모지 검색",
     "noEmoji": "이모지를 찾을 수 없음",
     "searchResults": "검색 결과",

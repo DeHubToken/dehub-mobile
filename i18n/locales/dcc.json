@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "تمہاری پروفائل تصویر سے رنگ نکو پڑھ سکے"
   },
   "common": {
+    "refresh": "ریفریش",
     "mute": "آواز بند کرو",
     "unmute": "آواز چالو کرو",
     "fullscreen": "فل اسکرین",
@@ -4204,6 +4205,7 @@
     "noVoice": "تمہارے ڈیوائس میں اس زبان کی آواز نہیں ہے۔"
   },
   "stages": {
+    "previewFailed": "نہیں چل سکا پریویو اسٹیج پر",
     "allStages": "سب آڈیو روم",
     "addToCalendar": "کالینڈر میں جڑیں",
     "nowPlaying": "ابھی چل رہی ہے",
@@ -4564,6 +4566,7 @@
     "anyBadgeHolder": "کوئی بھی بیج ہولڈر سپر پاورز حاصل کرتا ہے۔ ڈی ہب ٹوکن خرید کر بیج کو ان لاک کریں — اسٹیکنگ کی ضرورت نہیں ہے۔"
   },
   "follow": {
+    "noResults": "نہیں ملے",
     "sortAlphabetical": "A-Z",
     "cancelRequestTo": "@{{username}}؟ کی فالو ریکویسٹ منسوخ کریں",
     "followingUser": "@{{username}} کو فالو کر رہے ہیں",
@@ -6912,6 +6915,7 @@
       "delete": "مٹاؤ"
     },
     "export": {
+      "cancel": "منسوخ",
       "scope": "ڈاؤنلوڈ رینج",
       "downloadTimeline": "پورا ٹائم لائن",
       "downloadSelection": "منتخب ویڈیو کلپس ({{count}})",
@@ -7189,6 +7193,7 @@
     }
   },
   "creator": {
+    "sending": "بجھا کر بھجوانا ہے",
     "navStudio": "اسٹوڈیو",
     "editor": "ایڈیٹر",
     "untitled": "بغیر نام",
@@ -7983,6 +7988,7 @@
     "dhbPending": "ٹوکن کی خریداری کی تصدیق ہوگئی ہے لیکن ابھی تک وہ ظاہر نہیں ہوا ہے۔ جلد ہی دوبارہ بھیج دیں۔"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ایموجی ڈھونڈو",
     "noEmoji": "کوئی ایموجی نئیں ملا",
     "searchResults": "ڈھونڈنے کے نتیجے",

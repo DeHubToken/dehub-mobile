@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل"
   },
   "common": {
+    "refresh": "تازہ کرو",
     "mute": "आवाज बंद करा",
     "unmute": "आवाज चालू करा",
     "fullscreen": "पूरा स्क्रीन",
@@ -4222,6 +4223,7 @@
     "noVoice": "तोहर डिवाइस में ई भाषा ले कोनो आवाज़ नखे।"
   },
   "stages": {
+    "previewFailed": "نمی‌توانید پیش‌نما را در صحنه پخش کنید",
     "allStages": "سب آڈیو روم",
     "addToCalendar": "به تقویم اضافه کن",
     "subtitles": "Subtitles",
@@ -4592,6 +4594,7 @@
     "anyBadgeHolder": "هر دارنده نشان ابرقدرت‌ها را دریافت می‌کند. توکن‌های DeHub را برای باز کردن قفل نشان خریداری کنید - استیکینگ لازم نیست."
   },
   "follow": {
+    "noResults": "نتیجه ای یافت نشد",
     "followers": "فالوورز",
     "following": "فالووینگ",
     "requests": "ڕیکوێستەکان",
@@ -7258,6 +7261,7 @@
       "delete": "مٹاؤ"
     },
     "export": {
+      "cancel": "رد کرو",
       "scope": "डाउनलोड रेंज",
       "downloadTimeline": "पूरा टाइमलाइन",
       "downloadSelection": "चुने गेल वीडियो क्लिप्स ({{count}})",
@@ -7537,6 +7541,7 @@
     }
   },
   "creator": {
+    "sending": "ارسال در حال انجام است",
     "navStudio": "اسٹوڈیو",
     "editor": "ایڈیٹر",
     "untitled": "بنا نام",
@@ -8099,6 +8104,7 @@
     "transferIncomplete": "انتقال توکن تکمیل نشد. قبل از پست پولی بعدی از شما دوباره خواسته خواهد شد."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ایموجی کھوجو",
     "noEmoji": "کوئی ایموجی نہیں ملا",
     "searchResults": "کھوج کے نتیجے",

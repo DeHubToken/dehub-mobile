@@ -920,6 +920,7 @@
     "themeColorBrandFailed": "Nem sikerült színeket kiolvasni a profilképedből"
   },
   "common": {
+    "refresh": "Frissítés",
     "mute": "Némítás",
     "unmute": "Némítás feloldása",
     "fullscreen": "Teljes képernyő",
@@ -4223,6 +4224,7 @@
     "noVoice": "Az eszközödön nincs hang ehhez a nyelvhez."
   },
   "stages": {
+    "previewFailed": "Nem sikerült lejátszani az előnézetet a hangszobában",
     "allStages": "Összes hangszoba",
     "addToCalendar": "Hozzáadás a naptárhoz",
     "nowPlaying": "Jelenleg lejátszás alatt",
@@ -4595,6 +4597,7 @@
     "anyBadgeHolder": "Minden jelvénytulajdonos megkapja a Szuperképességeket. Vásárolj DeHub tokeneket egy jelvény feloldásához – a staking nem szükséges."
   },
   "follow": {
+    "noResults": "Nincs találat",
     "followers": "Követők",
     "following": "Követés",
     "requests": "Kérések",
@@ -7223,6 +7226,7 @@
       "delete": "Törlés"
     },
     "export": {
+      "cancel": "Mégse",
       "scope": "Letöltési tartomány",
       "downloadTimeline": "Teljes idővonal",
       "downloadSelection": "Kiválasztott videoklipek ({{count}})",
@@ -7502,6 +7506,7 @@
     }
   },
   "creator": {
+    "sending": "Küldés",
     "navStudio": "Stúdió",
     "editor": "Szerkesztő",
     "untitled": "Névtelen",
@@ -8067,6 +8072,7 @@
     "transferIncomplete": "A tokenátutalás nem fejeződött be. A következő fizetős bejegyzésed előtt újra meg fogjuk kérdezni."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji keresése",
     "noEmoji": "Nincs találat emojira",
     "searchResults": "Keresési találatok",

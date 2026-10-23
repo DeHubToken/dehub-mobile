@@ -917,6 +917,7 @@
     "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
   },
   "common": {
+    "refresh": "አድስ",
     "mute": "ድምፅ አጥፋ",
     "unmute": "ድምፅ አብራ",
     "fullscreen": "ሙሉ ማያ",
@@ -4225,6 +4226,7 @@
     "noVoice": "መሣሪያዎ ለዚህ ቋንቋ ድምፅ የለውም።"
   },
   "stages": {
+    "previewFailed": "በመድረክ ላይ ቅድመ እይታን መጫወት አልተቻለም",
     "allStages": "ሁሉም የድምፅ ክፍሎች",
     "addToCalendar": "ወደ የቀን መቁጠሪያ ያክሉ",
     "nowPlaying": "አሁን በመጫወት ላይ",
@@ -4596,6 +4598,7 @@
     "anyBadgeHolder": "ማንኛውም ባጅ ባለቤት የሱፐር ሃይሎችን ያገኛል። ባጅ ለመክፈት የDeHub ቶከኖችን ይግዙ — መንከባከብ አያስፈልግም።"
   },
   "follow": {
+    "noResults": "ምንም ውጤት አልተገኘም",
     "followers": "ተከታዮች",
     "following": "የሚከተሉ",
     "requests": "ጥያቄዎች",
@@ -4739,7 +4742,7 @@
     "kindAudio": "ኦዲዮ",
     "kindImage": "ሙዚቃ",
     "reviewTitle": "ከመለጠፍዎ በፊት ይገምግሙ",
-    "reviewSubtitle": "ከ {{source}} ፣ እንደ {{kind}}} ። የሚወዱትን ማንኛውንም ነገር ያርትዑ — የመጀመሪያውን ለማቆየት ርዕሱን ባዶ ይተው ።",
+    "reviewSubtitle": "ከ {{source}} ፣ እንደ {{kind}} ። የሚወዱትን ማንኛውንም ነገር ያርትዑ — የመጀመሪያውን ለማቆየት ርዕሱን ባዶ ይተው ።",
     "reviewName": "ርዕስ",
     "reviewNamePlaceholder": "የመጀመሪያውን ርዕስ ለማቆየት ባዶ ይተው",
     "reviewDescription": "መግለጫ",
@@ -7211,6 +7214,7 @@
       "delete": "ሰርዝ"
     },
     "export": {
+      "cancel": "ሰርዝ",
       "scope": "ክልል አውርድ",
       "downloadTimeline": "ሙሉ የጊዜ መስመር",
       "downloadSelection": "የተመረጡ የቪዲዮ ክሊፖች ({{count}})",
@@ -7488,6 +7492,7 @@
     }
   },
   "creator": {
+    "sending": "መላክ",
     "navStudio": "ስቱዲዮ",
     "editor": "አርታዒ",
     "untitled": "ርዕስ የሌለው",
@@ -8052,6 +8057,7 @@
     "transferIncomplete": "የቶክ ማስተላለፊያ አልተጠናቀቀም ። ከሚቀጥለው የሚከፈልበት ልኡክ ጽሁፍዎ በፊት እንደገና ይጠየቃሉ ።"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ኢሞጂ ፈልግ",
     "noEmoji": "ምንም ኢሞጂ አልተገኘም",
     "searchResults": "የፍለጋ ውጤቶች",

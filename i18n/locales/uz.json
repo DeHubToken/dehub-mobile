@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Profil rasmingizdan ranglarni o'qib bo'lmadi"
   },
   "common": {
+    "refresh": "Yangilash",
     "mute": "Ovozni o‘chirish",
     "unmute": "Ovozni yoqish",
     "fullscreen": "To‘liq ekran",
@@ -4229,6 +4230,7 @@
     "noVoice": "Qurilmangizda bu til uchun ovoz yo‘q."
   },
   "stages": {
+    "previewFailed": "Oʻynash mumkin emas edi: sahna oldida eshittirish mumkin emas edi",
     "allStages": "Barcha audio xonalar",
     "addToCalendar": "Kalendarga qoʻshing",
     "nowPlaying": "Hozir oʻynayotgan",
@@ -4601,6 +4603,7 @@
     "anyBadgeHolder": "Har qanday rozetka egasi SuperQobiliyatlarni oladi. Rozetkani ochish uchun DeHub tokenlarini sotib oling — stavka qilish shart emas."
   },
   "follow": {
+    "noResults": "Natijalar topilmadi",
     "followers": "Obunachilar",
     "following": "Obunalar",
     "requests": "So'rovlar",
@@ -7266,6 +7269,7 @@
       "delete": "Oʻchirish"
     },
     "export": {
+      "cancel": "Bekor qilish",
       "scope": "Yuklab olish diapazoni",
       "downloadTimeline": "Butun vaqt jadvali",
       "downloadSelection": "Tanlangan videokliplar ({{count}})",
@@ -7545,6 +7549,7 @@
     }
   },
   "creator": {
+    "sending": "Yuborishda",
     "navStudio": "Studiya",
     "editor": "Muharrir",
     "untitled": "Nomsiz",
@@ -8111,6 +8116,7 @@
     "transferIncomplete": "Token oʻtkazmasi yakunlanmadi. Keyingi pullik postingizdan oldin sizdan yana soʻraladi."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji qidirish",
     "noEmoji": "Emoji topilmadi",
     "searchResults": "Qidiruv natijalari",

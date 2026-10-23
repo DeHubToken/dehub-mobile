@@ -968,6 +968,7 @@
     "themeColorBrandFailed": "Farben deines Profilbilds konnten nicht gelesen werden"
   },
   "common": {
+    "refresh": "Aktualisieren",
     "mute": "Stumm schalten",
     "unmute": "Ton einschalten",
     "fullscreen": "Vollbild",
@@ -4325,6 +4326,7 @@
     "filedOn": "Eingereicht am {{date}}"
   },
   "stages": {
+    "previewFailed": "Vorschau konnte im Audioraum nicht abgespielt werden",
     "allStages": "Alle Audioräume",
     "addToCalendar": "Zum Kalender hinzufügen",
     "nowPlaying": "Wird gerade abgespielt",
@@ -4697,6 +4699,7 @@
     "anyBadgeHolder": "Jeder Abzeicheninhaber erhält Superkräfte. Kaufen Sie DeHub-Token, um ein Abzeichen freizuschalten – Staking ist nicht erforderlich."
   },
   "follow": {
+    "noResults": "Keine Ergebnisse gefunden",
     "followers": "Follower",
     "following": "Folge ich",
     "requests": "Anfragen",
@@ -7394,6 +7397,7 @@
       "delete": "Löschen"
     },
     "export": {
+      "cancel": "Abbrechen",
       "scope": "Download-Bereich",
       "downloadTimeline": "Gesamte Zeitleiste",
       "downloadSelection": "Ausgewählte Videoclips ({{count}})",
@@ -7775,6 +7779,7 @@
     }
   },
   "creator": {
+    "sending": "Wird gesendet",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",
     "toolMaboroshiDesc": "Ersetze Figuren und Objekte, prüfe einen Entwurf und exportiere mit der ursprünglichen Tonspur.",
@@ -8292,6 +8297,7 @@
     "transferIncomplete": "Die Token-Übertragung wurde nicht abgeschlossen. Sie werden vor Ihrem nächsten bezahlten Post erneut gefragt."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji suchen",
     "noEmoji": "Keine Emoji gefunden",
     "searchResults": "Suchergebnisse",

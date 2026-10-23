@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Ayikwazanga ukufunda imibala esithombeni sakho sephrofayela"
   },
   "common": {
+    "refresh": "Vuselela",
     "mute": "Thulisa",
     "unmute": "Vula umsindo",
     "fullscreen": "Isikrini esigcwele",
@@ -4233,6 +4234,7 @@
     "noVoice": "Idivayisi yakho ayinalo izwi lalolu limi."
   },
   "stages": {
+    "previewFailed": "Ayikwazanga ukudlala ukubuka kuqala esiteji",
     "allStages": "Wonke amagumbi omsindo",
     "addToCalendar": "Faka ekhalendeni",
     "nowPlaying": "Manje iyadlala",
@@ -4605,6 +4607,7 @@
     "anyBadgeHolder": "Wonke umnikazi webheji uyawathola ama-SuperPowers. Thenga amathokheni e-DeHub ukuze uvule ibheji — ukubeka akudingekile."
   },
   "follow": {
+    "noResults": "Azikho iziphumo ezitholakele",
     "followers": "Ababukeli",
     "following": "Okulandelayo",
     "requests": "Izicelo",
@@ -7224,6 +7227,7 @@
       "delete": "Susa"
     },
     "export": {
+      "cancel": "Khansela",
       "scope": "Dawuniloda ububanzi",
       "downloadTimeline": "Isikhathi esiphelele",
       "downloadSelection": "Iziqeshana zevidiyo ezikhethiwe ({{count}})",
@@ -7503,6 +7507,7 @@
     }
   },
   "creator": {
+    "sending": "Iyathumela",
     "navStudio": "Isitudiyo",
     "editor": "Umhleli",
     "untitled": "Akunasihloko",
@@ -8068,6 +8073,7 @@
     "transferIncomplete": "Ukudluliselwa kwethokheni akuzange kuqedwe. Uzocelwa futhi ngaphambi kwephosti yakho elandelayo ekhokhelwayo."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Sesha ama-emoji",
     "noEmoji": "Awekho ama-emoji atholakele",
     "searchResults": "Imiphumela yosesho",

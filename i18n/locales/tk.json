@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Profil suratyňyzdan reňkleri okap bolmady"
   },
   "common": {
+    "refresh": "Täzelemek",
     "mute": "Sesi öçür",
     "unmute": "Sesi aç",
     "fullscreen": "Doly ekran",
@@ -4200,6 +4201,7 @@
     "noVoice": "Enjamyňyzda bu dil üçin ses ýok."
   },
   "stages": {
+    "previewFailed": "Sahnada öňünden seretmek mümkin däl",
     "allStages": "Ähli ses otaglary",
     "addToCalendar": "Kalendara goşuň",
     "nowPlaying": "Halda oýnattyr",
@@ -4572,6 +4574,7 @@
     "anyBadgeHolder": "Her badgyň eýesi SuperPowers-yny alýar. Badgy açmak üçin DeHub tokenlerini alyň — paýnama zerur däl."
   },
   "follow": {
+    "noResults": "Netije tapylmady",
     "followers": "Meýletinler",
     "following": "Yzarlaýanlar",
     "requests": "Sargytlar",
@@ -7190,6 +7193,7 @@
       "delete": "Poz"
     },
     "export": {
+      "cancel": "Ýatyrmak",
       "scope": "Çykyş aralygy",
       "downloadTimeline": "Bütin wagt haty",
       "downloadSelection": "Saýlanan video klipler ({{count}})",
@@ -7469,6 +7473,7 @@
     }
   },
   "creator": {
+    "sending": "Gönderer",
     "navStudio": "Studiýa",
     "editor": "Redaktor",
     "untitled": "Atsyz",
@@ -8031,6 +8036,7 @@
     "transferIncomplete": "Token geçiriş tamamlanyp bilmedi. Tölegli ýazgyňyzdan öň ýene soralar."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji gözle",
     "noEmoji": "Emoji tapylmady",
     "searchResults": "Gözleg netijeleri",

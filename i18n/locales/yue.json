@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "讀唔到你頭像嘅顏色"
   },
   "common": {
+    "refresh": "刷新",
     "mute": "靜音",
     "unmute": "取消靜音",
     "fullscreen": "全螢幕",
@@ -4205,6 +4206,7 @@
     "noVoice": "你部機冇呢種語言嘅語音。"
   },
   "stages": {
+    "previewFailed": "喺台上播放唔到預覽",
     "allStages": "所有語音房",
     "addToCalendar": "加入日曆",
     "nowPlaying": "正在播放",
@@ -4576,6 +4578,7 @@
     "anyBadgeHolder": "任何徽章持有者都可以獲得超級能力。購買 DeHub 代幣以解鎖徽章 — 無需質押。"
   },
   "follow": {
+    "noResults": "找不到結果",
     "followers": "追隨者",
     "following": "正在追蹤",
     "requests": "請求",
@@ -4728,7 +4731,7 @@
     "kindVideo": "影片",
     "kindAudio": "音頻",
     "kindImage": "圖片",
-    "tileSourceKind": "{{ 來源 } } · {{ 種類 } }",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "喺發佈之前睇吓",
     "reviewSubtitle": "由 {{source}} ，作為 {{kind}} 。編輯任何你鍾意嘅內容 — 將標題留空，以保留原始內容。",
     "reviewName": "標題:",
@@ -7202,6 +7205,7 @@
       "delete": "刪除"
     },
     "export": {
+      "cancel": "取消",
       "scope": "下載範圍",
       "downloadTimeline": "成個時間線",
       "downloadSelection": "所選影片片段（ {{count}} ）",
@@ -7479,6 +7483,7 @@
     }
   },
   "creator": {
+    "sending": "正在傳送",
     "navStudio": "工作室",
     "editor": "編輯器",
     "untitled": "未命名",
@@ -8044,6 +8049,7 @@
     "transferIncomplete": "代幣轉移未完成。喺你下一個付費帖子之前，我哋會再問你一次。"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "搜尋表情符號",
     "noEmoji": "搵唔到表情符號",
     "searchResults": "搜尋結果",

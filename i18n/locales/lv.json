@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Neizdevās nolasīt krāsas no jūsu profila attēla"
   },
   "common": {
+    "refresh": "Atsvaidzināt",
     "mute": "Izslēgt skaņu",
     "unmute": "Ieslēgt skaņu",
     "fullscreen": "Pilnekrāns",
@@ -4211,6 +4212,7 @@
     "noVoice": "Jūsu ierīcē nav balss šai valodai."
   },
   "stages": {
+    "previewFailed": "Neizdevās atskaņot priekšskatījumu audio istabā",
     "allStages": "Visas audio istabas",
     "addToCalendar": "Pievienot kalendāram",
     "nowPlaying": "Tagad atskaņo",
@@ -4583,6 +4585,7 @@
     "anyBadgeHolder": "Jebkurš nozīmītes turētājs saņem SuperSpējas. Pērciet DeHub marķierus, lai atbloķētu nozīmīti — likšana nav nepieciešama."
   },
   "follow": {
+    "noResults": "Rezultāti nav atrasti",
     "followers": "Sekotāji",
     "following": "Sekot",
     "requests": "Pieprasījumi",
@@ -7211,6 +7214,7 @@
       "delete": "Dzēst"
     },
     "export": {
+      "cancel": "Atcelt",
       "scope": "Lejupielādes diapazons",
       "downloadTimeline": "Visa laika skala",
       "downloadSelection": "Atlasītie videoklipi ({{count}})",
@@ -7490,6 +7494,7 @@
     }
   },
   "creator": {
+    "sending": "Sūta",
     "navStudio": "Studija",
     "editor": "Redaktors",
     "untitled": "Nenodēvēts",
@@ -8056,6 +8061,7 @@
     "transferIncomplete": "Pilnvaras pārsūtīšana netika pabeigta. Jums tiks jautāts vēlreiz pirms nākamā apmaksātā ieraksta."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Meklēt emocijzīmes",
     "noEmoji": "Emocijzīmes nav atrastas",
     "searchResults": "Meklēšanas rezultāti",

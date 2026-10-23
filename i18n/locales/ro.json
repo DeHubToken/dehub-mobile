@@ -920,6 +920,7 @@
     "themeColorBrandFailed": "Nu am putut citi culorile din poza ta de profil"
   },
   "common": {
+    "refresh": "Reîmprospătează",
     "mute": "Dezactivează sunetul",
     "unmute": "Activează sunetul",
     "fullscreen": "Ecran complet",
@@ -4219,6 +4220,7 @@
     "noVoice": "Dispozitivul tău nu are o voce pentru această limbă."
   },
   "stages": {
+    "previewFailed": "Nu s-a putut reda previzualizarea în camera audio",
     "allStages": "Toate camerele audio",
     "addToCalendar": "Adaugă în calendar",
     "nowPlaying": "Se redă acum",
@@ -4591,6 +4593,7 @@
     "anyBadgeHolder": "Orice deținător de insignă primește Superputeri. Cumpără tokenuri DeHub pentru a debloca o insignă — stakingul nu este necesar."
   },
   "follow": {
+    "noResults": "Niciun rezultat găsit",
     "followers": "Urmăritori",
     "following": "Urmărește",
     "requests": "Solicitări",
@@ -7234,6 +7237,7 @@
       "delete": "Șterge"
     },
     "export": {
+      "cancel": "Anulare",
       "scope": "Gama de descărcare",
       "downloadTimeline": "Întregul calendar",
       "downloadSelection": "Videoclipuri selectate ({{count}})",
@@ -7513,6 +7517,7 @@
     }
   },
   "creator": {
+    "sending": "Se trimite",
     "navStudio": "Garsonieră",
     "editor": "Editor",
     "untitled": "Fără titlu",
@@ -8079,6 +8084,7 @@
     "notEnoughTokens": "{{subject}} costă {{amount}} tokenuri și ai {{held}}."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Caută emoji",
     "noEmoji": "Nu s-au găsit emoji",
     "searchResults": "Rezultatele căutării",

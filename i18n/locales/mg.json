@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "Tsy afaka namaky loko avy amin'ny sarinao"
   },
   "common": {
+    "refresh": "_Avereno zahana",
     "mute": "Hampangina",
     "unmute": "Hampandre feo",
     "fullscreen": "Efijery feno",
@@ -4225,6 +4226,7 @@
     "noVoice": "Tsy manana feo ho an'ity fiteny ity ny fitaovanao."
   },
   "stages": {
+    "previewFailed": "Tsy nety nalefa tao amin'ny efitrano feo ny santionany",
     "allStages": "Ireo efitrano feo rehetra",
     "addToCalendar": "Ampidiro ao amin'ny kalandrie",
     "nowPlaying": "Mandeha izao",
@@ -4597,6 +4599,7 @@
     "anyBadgeHolder": "Ny tompon'ny badge rehetra dia mahazo SuperPowers. Mividiana DeHub token mba hamahana ny badge — tsy takiana ny staking."
   },
   "follow": {
+    "noResults": "Tsy nisy vokatra hita",
     "followers": "Mpanaraka",
     "following": "Manaraka",
     "requests": "Fangatahana",
@@ -7291,6 +7294,7 @@
       "delete": "Hamafa"
     },
     "export": {
+      "cancel": "Foanana",
       "scope": "Download isan-karazany",
       "downloadTimeline": "Manontolo ny fandaharam-potoana",
       "downloadSelection": "Sary mihetsika voafantina ({{count}})",
@@ -7570,6 +7574,7 @@
     }
   },
   "creator": {
+    "sending": "Mandefa...",
     "navStudio": "Studio",
     "editor": "Fanovana",
     "untitled": "Tsy misy lohateny",
@@ -8136,6 +8141,7 @@
     "transferIncomplete": "Tsy vita ilay mari-pamantarana. Noho izany dia hodinihina indray izany alohan'ny handoavanao ny taratasinao manaraka."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Hikaroka emoji",
     "noEmoji": "Tsy nahitana emoji",
     "searchResults": "Valin'ny fikarohana",

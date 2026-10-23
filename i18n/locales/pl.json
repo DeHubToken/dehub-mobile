@@ -920,6 +920,7 @@
     "themeColorBrandFailed": "Nie udało się odczytać kolorów ze zdjęcia profilowego"
   },
   "common": {
+    "refresh": "Odśwież",
     "mute": "Wycisz",
     "unmute": "Włącz dźwięk",
     "fullscreen": "Pełny ekran",
@@ -4221,6 +4222,7 @@
     "noVoice": "Twoje urządzenie nie ma głosu dla tego języka."
   },
   "stages": {
+    "previewFailed": "Nie udało się odtworzyć podglądu w pokoju audio",
     "allStages": "Wszystkie pokoje audio",
     "addToCalendar": "Dodaj do kalendarza",
     "nowPlaying": "Teraz odtwarzane",
@@ -4593,6 +4595,7 @@
     "anyBadgeHolder": "Każdy posiadacz odznaki otrzymuje SuperMoce. Kup tokeny DeHub, aby odblokować odznakę — staking nie jest wymagany."
   },
   "follow": {
+    "noResults": "Nie znaleziono wyników",
     "followers": "Obserwujący",
     "following": "Obserwowani",
     "requests": "Prośby",
@@ -7324,6 +7327,7 @@
       "delete": "Usuń"
     },
     "export": {
+      "cancel": "Anuluj",
       "scope": "Zakres pobierania",
       "downloadTimeline": "Cała oś czasu",
       "downloadSelection": "Wybrane klipy wideo ({{count}})",
@@ -7603,6 +7607,7 @@
     }
   },
   "creator": {
+    "sending": "Wysyłanie",
     "navStudio": "Studio",
     "editor": "Edytor",
     "untitled": "Bez tytułu",
@@ -8169,6 +8174,7 @@
     "transferIncomplete": "Transfer tokena nie został zakończony. Zostaniesz ponownie poproszony przed następnym płatnym postem."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Szukaj emoji",
     "noEmoji": "Nie znaleziono emoji",
     "searchResults": "Wyniki wyszukiwania",

@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "مقدرناش نقرا الألوان من صورة بروفايلك"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "اكتم الصوت",
     "unmute": "شغّل الصوت",
     "fullscreen": "ملء الشاشة",
@@ -4207,6 +4208,7 @@
     "noVoice": "جهازك ماعندوش صوت للغة دي."
   },
   "stages": {
+    "previewFailed": "لم يتم تشغيل معاينة الصوت على المسرح",
     "allStages": "كل الغرف الصوتية",
     "addToCalendar": "اضف للتقويم",
     "nowPlaying": "جاري الآن",
@@ -4579,6 +4581,7 @@
     "anyBadgeHolder": "أي حد معاه شارة بياخد الـ SuperPowers. اشتري توكن DeHub عشان تفتح شارة — مش لازم تعمل staking."
   },
   "follow": {
+    "noResults": "مفيش نتائج",
     "followers": "متابعين",
     "following": "متابعة",
     "requests": "طلبات",
@@ -7211,6 +7214,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "حمّل النطاق",
       "downloadTimeline": "الخط الزمني كله",
       "downloadSelection": "مقاطع الفيديو المختارة ({{count}})",
@@ -7488,6 +7492,7 @@
     }
   },
   "creator": {
+    "sending": "مرسل",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -8011,6 +8016,7 @@
     "transferIncomplete": "نقل التوكن مكملش. هيتسأل تاني قبل منشورك المدفوع الجاي."
   },
   "emojiPicker": {
+    "tabGif": "غيڤ",
     "searchEmoji": "دوّر على إيموجي",
     "noEmoji": "مافيش إيموجي",
     "searchResults": "نتايج البحث",

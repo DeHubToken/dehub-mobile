@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "อ่านสีจากฮูปโปรไฟล์ของเจ้าบ่ได้"
   },
   "common": {
+    "refresh": "รีเฟรช",
     "mute": "ปิดเสียง",
     "unmute": "เปิดเสียง",
     "fullscreen": "เต็มจอ",
@@ -4210,6 +4211,7 @@
     "noVoice": "อุปกรณ์ของเจ้าบ่มีเสียงสำหรับภาษานี้"
   },
   "stages": {
+    "previewFailed": "ไม่สามารถเล่นตัวอย่างในเวทีได้",
     "allStages": "ห้องเสียงทั้งหมด",
     "addToCalendar": "เพิ่มลงในปฏิทิน",
     "nowPlaying": "กำลังเล่นอยู่ตอนนี้",
@@ -4582,6 +4584,7 @@
     "anyBadgeHolder": "ผู้ถือตราสัญลักษณ์ทุกคนจะได้รับ SuperPowers ซื้อโทเคน DeHub เพื่อปลดล็อกตราสัญลักษณ์ — ไม่จำเป็นต้องวางเดิมพัน"
   },
   "follow": {
+    "noResults": "ไม่พบผลลัพธ์",
     "followers": "ผู้ติดตาม",
     "following": "กำลังติดตาม",
     "requests": "คำขอ",
@@ -7203,6 +7206,7 @@
       "delete": "ลบ"
     },
     "export": {
+      "cancel": "ยกเลิก",
       "scope": "ดาวน์โหลดช่วง",
       "downloadTimeline": "ไทม์ไลน์ทั้งหมด",
       "downloadSelection": "คลิปวิดีโอที่เลือก ({{count}})",
@@ -7482,6 +7486,7 @@
     }
   },
   "creator": {
+    "sending": "ส่งไปแล้ว",
     "navStudio": "สตูดิโอ",
     "editor": "ตัวแก้ไข",
     "untitled": "บ่มีซื่อ",
@@ -8042,6 +8047,7 @@
     "transferIncomplete": "การโอนเหรียญไม่สำเร็จ เจ้าจะถูกถามอีกครั้งก่อนโพสต์ที่ต้องจ่ายครั้งต่อไป"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ค้นหาอีโมจิ",
     "noEmoji": "บ่พ้ออีโมจิ",
     "searchResults": "ผลการค้นหา",

@@ -920,6 +920,7 @@
     "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך"
   },
   "common": {
+    "refresh": "רענן",
     "mute": "השתק",
     "unmute": "בטל השתקה",
     "fullscreen": "מסך מלא",
@@ -1566,7 +1567,7 @@
   },
   "bookmarks": {
     "title": "סימניות",
-    "savedCount": "פוסט שמור אחד",
+    "savedCount": "{{count}} פוסטים שמורים",
     "savedCountPlural": "{{count}} פוסטים שמורים",
     "refresh": "רענן סימניות",
     "searchPlaceholder": "חפש בסימניות...",
@@ -4216,6 +4217,7 @@
     "noVoice": "אין במכשיר שלכם קול לשפה הזו."
   },
   "stages": {
+    "previewFailed": "לא ניתן היה להשמיע תצוגה מקדימה בחדר האודיו",
     "allStages": "כל חדרי האודיו",
     "addToCalendar": "הוסף ללוח השנה",
     "nowPlaying": "מתנגן כעת",
@@ -4588,6 +4590,7 @@
     "anyBadgeHolder": "כל בעל תג מקבל \"סופר-כוחות\". קנה אסימוני DeHub כדי לפתוח תג — אין צורך בהפקדה."
   },
   "follow": {
+    "noResults": "לא נמצאו תוצאות",
     "followers": "עוקבים",
     "following": "אחרי",
     "requests": "בקשות",
@@ -7211,6 +7214,7 @@
       "delete": "מחיקה"
     },
     "export": {
+      "cancel": "בטל",
       "scope": "טווח הורדות",
       "downloadTimeline": "ציר הזמן כולו",
       "downloadSelection": "קטעי וידאו נבחרים ({{count}})",
@@ -7488,6 +7492,7 @@
     }
   },
   "creator": {
+    "sending": "שולח",
     "navStudio": "סטודיו",
     "editor": "עורך",
     "untitled": "ללא כותרת",
@@ -8052,6 +8057,7 @@
     "transferIncomplete": "העברת האסימון לא הושלמה. תישאל שוב לפני הפוסט הבא שלך בתשלום."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "חיפוש אימוג'י",
     "noEmoji": "לא נמצאו אימוג'י",
     "searchResults": "תוצאות חיפוש",

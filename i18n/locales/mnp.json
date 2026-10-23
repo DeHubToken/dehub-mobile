@@ -917,6 +917,7 @@
     "themeColorBrandFailed": "对汝头像读无着色"
   },
   "common": {
+    "refresh": "刷新",
     "mute": "静音",
     "unmute": "取消静音",
     "fullscreen": "全屏",
@@ -4197,6 +4198,7 @@
     "noVoice": "你的设备无此语言的语音。"
   },
   "stages": {
+    "previewFailed": "無法在舞台上播放預覽",
     "allStages": "所有語音房",
     "addToCalendar": "加入日曆",
     "subtitles": "字幕",
@@ -4565,6 +4567,7 @@
     "anyBadgeHolder": "任何徽章持有者都可以获得超级能力。购买 DeHub 代币以解锁徽章 — 无需质押。"
   },
   "follow": {
+    "noResults": "未找到结果",
     "followers": "关注者",
     "following": "正在关注",
     "requests": "请求",
@@ -7235,6 +7238,7 @@
       "delete": "删除"
     },
     "export": {
+      "cancel": "取消",
       "scope": "下载范围",
       "downloadTimeline": "整个时间线",
       "downloadSelection": "选定的视频剪辑（{{count}}）",
@@ -7512,6 +7516,7 @@
     }
   },
   "creator": {
+    "sending": "正在傳送",
     "navStudio": "工作室",
     "editor": "编辑器",
     "untitled": "未命名",
@@ -8040,6 +8045,7 @@
     "transferIncomplete": "代幣轉賬未完成。汝將在下次付費發帖前再次被詢問。"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "搜索表情",
     "noEmoji": "未找到表情",
     "searchResults": "搜索结果",

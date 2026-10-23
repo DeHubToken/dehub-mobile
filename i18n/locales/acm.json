@@ -918,6 +918,7 @@
     "themeColorBrandFailed": "ماكدرنا نقرا الألوان من صورة بروفايلك"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "اكتم الصوت",
     "unmute": "شغّل الصوت",
     "fullscreen": "ملء الشاشة",
@@ -4205,6 +4206,7 @@
     "noVoice": "جهازك ما بيه صوت لهاي اللغة."
   },
   "stages": {
+    "previewFailed": "ما بيشوفش التايم بريديو على الستيدج",
     "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "الآن يلعبون",
@@ -4577,6 +4579,7 @@
     "anyBadgeHolder": "أي حامل شارة يحصل على \"قوى خارقة\". اشتري توكن DeHub حتى تفتح شارة — ما يحتاج ستاكينغ."
   },
   "follow": {
+    "noResults": "لم يتم العثور على نتائج",
     "followers": "متابعون",
     "following": "متابعة",
     "requests": "طلبات",
@@ -7204,6 +7207,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "حمّل النطاق",
       "downloadTimeline": "الخط الزمني كاملًا",
       "downloadSelection": "مقاطع الفيديو المختارة ({{count}})",
@@ -7481,6 +7485,7 @@
     }
   },
   "creator": {
+    "sending": "إرسال",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -7991,6 +7996,7 @@
     "transferIncomplete": "تحويل التوكن ما كمل. راح نطلب منك مرة ثانية قبل بوستك المدفوع الجاي."
   },
   "emojiPicker": {
+    "tabGif": "غيغ",
     "searchEmoji": "دوّر على إيموجي",
     "noEmoji": "ماكو إيموجي",
     "searchResults": "نتائج البحث",
