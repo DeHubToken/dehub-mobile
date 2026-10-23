@@ -99,6 +99,9 @@ jobs:
       - name: Release animation runtime regression checks
         run: node scripts/animation-runtime.test.cjs
 
+      - name: Glass light shader compilation and rendered contrast
+        run: node scripts/glass-light-field-check.cjs
+
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4
