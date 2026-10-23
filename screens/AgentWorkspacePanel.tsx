@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { PageSection, KitButton } from '../components/page/PageKit';
 import { agentTaskRequest } from '../services/agents.service';
 import type { GrowthReport } from '../libs/agent-workspace';
-import { PERMISSIONS, NEWS_TOPICS, BUILDER_ACTIONS, buildAgentPrompt, workspaceCounts, type BuilderAction, type AgentSettings, type WorkspaceOverview, type PlanPreview } from '../libs/agent-workspace';
+import { PERMISSIONS, NEWS_TOPICS, BUILDER_ACTIONS, buildAgentPrompt, workspaceCounts, workspaceAvailable, type BuilderAction, type AgentSettings, type WorkspaceOverview, type PlanPreview } from '../libs/agent-workspace';
 
 function Settings({ wallet, agentId }: { wallet: string; agentId: string }) {
   const { t } = useTranslation();
@@ -39,6 +39,24 @@ function Settings({ wallet, agentId }: { wallet: string; agentId: string }) {
 }
 
 export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
+  const capability = useQuery({
+    queryKey: ['agent-workspace-capabilities', wallet],
+    queryFn: async () => {
+      try {
+        return await agentTaskRequest<{ workspace: boolean; version: number }>(wallet, { operation: 'workspace_capabilities' });
+      } catch {
+        // Production may still run the older function, or its migration may
+        // not be available yet. Existing agent/task controls remain mounted.
+        return null;
+      }
+    },
+    retry: false,
+    staleTime: 60_000,
+  });
+  return workspaceAvailable(capability.data) ? <AgentWorkspaceContent wallet={wallet} /> : null;
+}
+
+function AgentWorkspaceContent({ wallet }: { wallet: string }) {
   const { t } = useTranslation();
   const client = useQueryClient();
   const [selected, setSelected] = useState('');

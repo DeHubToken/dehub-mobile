@@ -45,3 +45,11 @@ export function workspaceCounts(data?: WorkspaceOverview) {
     succeeded: data?.receipts.filter(receipt => receipt.status === 'succeeded').length ?? 0,
   };
 }
+
+
+/** Only a verified, supported backend contract activates workspace controls. */
+export function workspaceAvailable(value: unknown): boolean {
+  if (!value || typeof value !== 'object') return false;
+  const capability = value as { workspace?: unknown; version?: unknown };
+  return capability.workspace === true && capability.version === 1;
+}
