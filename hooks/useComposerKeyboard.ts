@@ -29,6 +29,25 @@ const KEEP_MEASURING_MS = 400;
 export const selfLiftingComposers = new Set<React.RefObject<View | null>>();
 
 /**
+ * Mark a composer whose screen lifts it some other way (the post page's
+ * keyboard lift, the Shorts split) so KeyboardPanView leaves it alone.
+ *
+ * iOS only. There the pan and the screen's own lift both answer the same
+ * keyboardWillShow, the pan measured the box before the lift landed, threw
+ * the whole screen up a keyboard's height and dropped it back a beat later.
+ * iOS sends that event again whenever the keyboard's frame changes while
+ * typing (the suggestion strip coming and going), so a reply box bobbed up
+ * and down as you typed. Android keeps the pan as its safety net.
+ */
+export function useSelfLiftingComposer(ref: React.RefObject<View | null>, enabled: boolean = true) {
+  useEffect(() => {
+    if (!enabled || Platform.OS !== "ios") return;
+    selfLiftingComposers.add(ref);
+    return () => { selfLiftingComposers.delete(ref); };
+  }, [ref, enabled]);
+}
+
+/**
  * Measure the composer itself and lift it until its bottom sits on the
  * keyboard. Deriving the lift from the keyboard height and the safe-area
  * insets depends on the device: whether the window resizes, how tall the
