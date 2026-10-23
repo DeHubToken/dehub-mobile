@@ -34,6 +34,7 @@ import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import Avatar from "../components/common/Avatar";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { getAvatarUrl } from "../libs/misc";
+import AccountBadge from "../components/common/AccountBadge";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -104,7 +105,12 @@ const CommentRow: React.FC<{
       </Pressable>
       <View style={{ flex: 1, minWidth: 0 }}>
         <View style={styles.commentHead}>
-          <Text style={styles.commentAuthor} numberOfLines={1}>{name}</Text>
+          {/* Name and badge in their own row so the badge keeps the 2px it
+              has beside a name everywhere else. */}
+          <View style={styles.commentAuthorRow}>
+            <Text style={styles.commentAuthor} numberOfLines={1}>{name}</Text>
+            <AccountBadge lookupId={comment.username || comment.wallet_address} size={13} lineHeight={16} />
+          </View>
           {isProposalAuthor && (
             <View style={styles.authorChip}>
               <Text style={styles.authorChipText}>{t("governance.discussion.authorChip")}</Text>
@@ -342,7 +348,10 @@ export default function GovernanceProposalScreen() {
             <PageSection style={styles.card}>
               <View style={styles.authorRow}>
                 <Avatar uri={getAvatarUrl(proposal.author_avatar)} size={28} name={authorName} />
-                <Text style={styles.authorName} numberOfLines={1}>@{authorName}</Text>
+                <View style={styles.authorNameRow}>
+                  <Text style={styles.authorName} numberOfLines={1}>@{authorName}</Text>
+                  <AccountBadge lookupId={proposal.author_username || proposal.author_wallet_address} size={13} lineHeight={17} />
+                </View>
                 <Text style={styles.time}>{timeAgo(proposal.created_at, t)}</Text>
               </View>
 
@@ -487,7 +496,8 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
   card: { gap: 8 },
   authorRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  authorName: { flex: 1, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
+  authorNameRow: { flex: 1, flexDirection: "row", alignItems: "center", minWidth: 0 },
+  authorName: { flexShrink: 1, minWidth: 0, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
   time: { color: "#A1A1AA", fontSize: 12 },
   cardTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", lineHeight: 21 },
   cardDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19 },
@@ -533,7 +543,8 @@ const styles = StyleSheet.create({
   threadLineAbove: { position: "absolute", left: THREAD_X, top: 0, height: 6 + 14, width: 1, backgroundColor: THREAD_LINE },
   threadLineBelow: { position: "absolute", left: THREAD_X, top: 6 + 14, bottom: 0, width: 1, backgroundColor: THREAD_LINE },
   commentHead: { flexDirection: "row", alignItems: "center", gap: 6 },
-  commentAuthor: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "600", flexShrink: 1 },
+  commentAuthorRow: { flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0 },
+  commentAuthor: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "600", flexShrink: 1, minWidth: 0 },
   authorChip: {
     paddingHorizontal: 5,
     paddingVertical: 2,

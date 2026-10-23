@@ -23,6 +23,7 @@ import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/
 import Avatar from "../components/common/Avatar";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
+import AccountBadge from "../components/common/AccountBadge";
 import { formatCompactNumber } from "../libs";
 import { getProposals, type GovernanceProposal, type GovernanceTab } from "../services/governance.service";
 
@@ -50,7 +51,10 @@ const ProposalCard: React.FC<{ proposal: GovernanceProposal; onPress: () => void
       <PageSection style={styles.card}>
       <View style={styles.authorRow}>
         <Avatar uri={getAvatarUrl(proposal.author_avatar)} size={28} name={username} />
-        <Text style={styles.authorName} numberOfLines={1}>@{username}</Text>
+        <View style={styles.authorNameRow}>
+          <Text style={styles.authorName} numberOfLines={1}>@{username}</Text>
+          <AccountBadge lookupId={proposal.author_username || proposal.author_wallet_address} size={13} lineHeight={17} />
+        </View>
         <Text style={styles.time}>{timeAgo(proposal.created_at)}</Text>
       </View>
 
@@ -177,7 +181,8 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
   card: { gap: 8 },
   authorRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  authorName: { flex: 1, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
+  authorNameRow: { flex: 1, flexDirection: "row", alignItems: "center", minWidth: 0 },
+  authorName: { flexShrink: 1, minWidth: 0, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
   time: { color: "#A1A1AA", fontSize: 12 },
   cardTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", lineHeight: 20 },
   cardDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19 },
