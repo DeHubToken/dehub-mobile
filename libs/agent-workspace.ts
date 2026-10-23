@@ -2,11 +2,13 @@ export interface AgentSettings {
   mode: 'autonomous' | 'approval' | 'draft';
   permissions: string[]; voice: string; knowledge: string; blocked_topics: string[];
   news_enabled: boolean; news_topics: string[];
+  alert_webhook: string;
 }
 export interface GrowthReport { followers: number; following: number; captured_at: string; previous_at: string | null; follower_change: number | null }
 export const PERMISSIONS = [
   ['dehub_post_create', 'Publish posts'], ['dehub_comment', 'Reply and comment'],
   ['dehub_vote', 'React to posts'], ['dehub_follow', 'Follow accounts'], ['dehub_update_profile', 'Edit profile'],
+  ['dehub_stream_timeout', 'Moderate stream chat'],
 ] as const;
 export const NEWS_TOPICS = ['world', 'technology', 'culture', 'sport', 'science'];
 export const BUILDER_ACTIONS = ['post', 'news', 'reply', 'curate'] as const;
@@ -21,6 +23,7 @@ export function buildAgentPrompt(action: BuilderAction, topic: string, cadence: 
 export interface WorkspaceReceipt {
   id: string; agent_id: string; tool: string; arguments: Record<string, unknown>;
   status: string; result: { error?: string; message?: string } | null; created_at: string;
+  reversal?: string | null; rollback_status?: string | null; alert_delivery?: string | null;
 }
 export interface WorkspaceOverview {
   agents: { id: string; name: string; is_active: boolean }[];
