@@ -19,13 +19,21 @@
  *
  * The host still owns `open`. `onClose` is how the backdrop, the back button
  * and a downward swipe hand that back.
+ *
+ * THE KEYBOARD
+ * A Modal is its own Android window. When it closes, the screen underneath
+ * gets window focus back, and Android re-attaches the keyboard to whatever
+ * text box there still holds focus (a comment box whose keyboard was hidden
+ * with the back button keeps focus). So picking 👎 popped the keyboard up and
+ * the screen jumped to make room for it. Opening the tray now blurs that box,
+ * and for a moment after it closes any keyboard that shows up is sent away.
  */
 
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { useUser } from "../../context/AuthContext";
 import { markReactionTipSeen } from "../../libs/reaction-tip";
 import { useTranslation } from "react-i18next";
-import { Modal, Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { Keyboard, Modal, Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import Animated, {
   Easing,
   runOnJS,
@@ -50,6 +58,9 @@ import { ReactionEmoji } from "./ReactionEmoji";
 const IOS_GLASS_TINT = "rgba(8,8,10,0.55)";
 const SELECTED_BG = "#FFFFFF14";
 const DIVIDER = "#FFFFFF2E";
+
+/** How long after the tray closes a keyboard that appears is treated as stray. */
+const STRAY_KEYBOARD_MS = 700;
 
 /** Badge-style corners: the card at 12, each reaction tile at 10. */
 const SHEET_RADIUS = 12;
@@ -130,6 +141,18 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
   }, [onClosed]);
   const translateY = useSharedValue(screenHeight);
   const backdrop = useSharedValue(0);
+
+  // Nothing should be typing while the tray is up; see THE KEYBOARD above.
+  useEffect(() => {
+    if (!open) return;
+    // Blurs the focused box, not just the keys, so nothing is left to refocus.
+    Keyboard.dismiss();
+    if (Platform.OS !== "android") return;
+    return () => {
+      const sub = Keyboard.addListener("keyboardDidShow", () => Keyboard.dismiss());
+      setTimeout(() => sub.remove(), STRAY_KEYBOARD_MS);
+    };
+  }, [open]);
 
   useEffect(() => {
     if (open) {
