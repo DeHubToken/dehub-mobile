@@ -105,8 +105,15 @@ export default function KeyboardPanView({ children }: { children: React.ReactNod
         navBar.current,
       );
       clear();
-      check();
-      timers = SETTLE_MS.map((ms) => setTimeout(check, ms));
+      // iOS fires this before the keys slide up, and before any screen that
+      // lifts its own field on the same event has re-rendered. Measuring now
+      // saw the field still at the bottom and panned for it, then the next
+      // check undid it: a jolt each time the keyboard's frame changed. Wait
+      // for the slide to finish first.
+      const settleFrom = Platform.OS === "ios" ? Math.max(event.duration ?? 250, 0) + 50 : 0;
+      if (!settleFrom) check();
+      timers = (settleFrom ? [settleFrom, ...SETTLE_MS.map((ms) => settleFrom + ms)] : SETTLE_MS)
+        .map((ms) => setTimeout(check, ms));
       poll = setInterval(check, POLL_MS);
     };
     const hide = () => {
