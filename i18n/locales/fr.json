@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrer les notifications de",
+    "description": "Choisissez ce qui se passe quand quelqu'un hors de votre cercle interagit avec vous. Les notifications filtrées attendent dans Filtrées, sans badge ni notification push.",
+    "notFollowing": "Personnes que vous ne suivez pas",
+    "notFollowers": "Personnes qui ne vous suivent pas",
+    "newAccounts": "Nouveaux comptes (moins de 30 jours)",
+    "accept": "Me notifier",
+    "filter": "Filtrer",
+    "drop": "Masquer complètement",
+    "filteredTitle": "Notifications filtrées",
+    "filteredEmpty": "Rien n'a été filtré.",
+    "failed": "Ça n'a pas été enregistré. Réessayez."
+  },
   "followedTags": {
     "follow": "Suivre #{{tag}}",
     "following": "Suivi",

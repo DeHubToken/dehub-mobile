@@ -62,6 +62,11 @@ export interface NotificationPreferences {
   inApp: Record<NotificationPreferenceKey, boolean>;
   push: Record<NotificationPreferenceKey, boolean>;
   quietHours: QuietHours;
+  /**
+   * Who may reach you at all (backend src/notification/notification-policy).
+   * Absent keys mean "accept".
+   */
+  policy?: Partial<Record<'notFollowing' | 'notFollowers' | 'newAccounts', 'accept' | 'filter' | 'drop'>>;
 }
 
 export interface PushTokenPayload {

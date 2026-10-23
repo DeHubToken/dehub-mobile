@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrera aviseringar från",
+    "description": "Välj vad som händer när någon utanför din krets interagerar med dig. Filtrerade aviseringar väntar under Filtrerat, utan märke och utan push.",
+    "notFollowing": "Personer du inte följer",
+    "notFollowers": "Personer som inte följer dig",
+    "newAccounts": "Nya konton (under 30 dagar)",
+    "accept": "Meddela mig",
+    "filter": "Filtrera",
+    "drop": "Dölj helt",
+    "filteredTitle": "Filtrerade aviseringar",
+    "filteredEmpty": "Inget har filtrerats.",
+    "failed": "Det sparades inte. Försök igen."
+  },
   "followedTags": {
     "follow": "Följ #{{tag}}",
     "following": "Följer",

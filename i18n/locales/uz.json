@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Bildirishnomalarni filtrlash",
+    "description": "Doirangizdan tashqaridagi kimdir siz bilan muloqot qilganda nima bo'lishini tanlang. Filtrlangan bildirishnomalar belgi va push'siz «Filtrlangan» bo'limida kutadi.",
+    "notFollowing": "Siz kuzatmaydigan odamlar",
+    "notFollowers": "Sizni kuzatmaydigan odamlar",
+    "newAccounts": "Yangi akkauntlar (30 kundan kam)",
+    "accept": "Menga xabar bering",
+    "filter": "Filtrlash",
+    "drop": "To'liq yashirish",
+    "filteredTitle": "Filtrlangan bildirishnomalar",
+    "filteredEmpty": "Hech narsa filtrlanmagan.",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring."
+  },
   "followedTags": {
     "follow": "#{{tag}} ni kuzatish",
     "following": "Kuzatyapsiz",

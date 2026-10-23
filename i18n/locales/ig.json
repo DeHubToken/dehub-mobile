@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Zachaa ọkwa sitere n'aka",
+    "description": "Họrọ ihe ga-eme mgbe onye nọ n'èzí okirikiri gị na gị na-emekọrịta ihe. Ọkwa ezachara na-echere n'okpuru \"Ezachara\", na-enweghị akara ma ọ bụ mkpali.",
+    "notFollowing": "Ndị ị na-esoghị",
+    "notFollowers": "Ndị na-esoghị gị",
+    "newAccounts": "Akaụntụ ọhụrụ (erughị ụbọchị 30)",
+    "accept": "Gwa m",
+    "filter": "Zachaa",
+    "drop": "Zoo kpamkpam",
+    "filteredTitle": "Ọkwa ezachara",
+    "filteredEmpty": "Ọ dịghị ihe ezachara.",
+    "failed": "Edebeghị ya. Nwaa ọzọ."
+  },
   "followedTags": {
     "follow": "Soro #{{tag}}",
     "following": "Ị na-eso",

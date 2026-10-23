@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Lọc thông báo từ",
+    "description": "Chọn điều sẽ xảy ra khi ai đó ngoài vòng của bạn tương tác với bạn. Thông báo đã lọc nằm trong mục Đã lọc, không có huy hiệu và không đẩy thông báo.",
+    "notFollowing": "Người bạn không theo dõi",
+    "notFollowers": "Người không theo dõi bạn",
+    "newAccounts": "Tài khoản mới (dưới 30 ngày)",
+    "accept": "Báo cho tôi",
+    "filter": "Lọc",
+    "drop": "Ẩn hoàn toàn",
+    "filteredTitle": "Thông báo đã lọc",
+    "filteredEmpty": "Chưa có gì bị lọc.",
+    "failed": "Chưa lưu được. Hãy thử lại."
+  },
   "followedTags": {
     "follow": "Theo dõi #{{tag}}",
     "following": "Đang theo dõi",

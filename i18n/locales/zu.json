@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Hlunga izaziso ezivela ku-",
+    "description": "Khetha okwenzekayo uma othile ongaphandle kwendilinga yakho exhumana nawe. Izaziso ezihlungiwe zilinda ngaphansi kokuthi \"Kuhlungiwe\", ngaphandle kwebheji noma isaziso esiphushwayo.",
+    "notFollowing": "Abantu ongabalandeli",
+    "notFollowers": "Abantu abangakulandeli",
+    "newAccounts": "Ama-akhawunti amasha (angaphansi kwezinsuku ezingu-30)",
+    "accept": "Ngazise",
+    "filter": "Hlunga",
+    "drop": "Fihla ngokuphelele",
+    "filteredTitle": "Izaziso ezihlungiwe",
+    "filteredEmpty": "Akukho okuhlungiwe.",
+    "failed": "Akulondolozwanga. Zama futhi."
+  },
   "followedTags": {
     "follow": "Landela i-#{{tag}}",
     "following": "Uyalandela",

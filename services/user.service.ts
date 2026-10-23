@@ -181,6 +181,8 @@ export interface GetNotificationsParams {
   types?: string[];
   page?: number;
   limit?: number;
+  /** The notifications the reader's notification filters held back, instead of the main list. */
+  filtered?: boolean;
 }
 
 interface NotificationsResponse { result: NotificationItem[] }
@@ -297,6 +299,9 @@ export async function getNotifications(params?: GetNotificationsParams) {
   }
   if (params?.types?.length) {
     cleaned.types = params.types.join(',');
+  }
+  if (params?.filtered) {
+    cleaned.filtered = 'true';
   }
   if (params?.page !== undefined) {
     cleaned.page = String(params.page);

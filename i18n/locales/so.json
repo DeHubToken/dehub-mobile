@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Ka sifee ogeysiisyada",
+    "description": "Dooro waxa dhacaya marka qof ka baxsan goobaabintaada uu kula macaamilo. Ogeysiisyada la sifeeyay waxay sugaan \"La sifeeyay\" hoostiisa, calaamad iyo riixid la'aan.",
+    "notFollowing": "Dadka aadan raacin",
+    "notFollowers": "Dadka aan ku raacin",
+    "newAccounts": "Akoonnada cusub (ka yar 30 maalmood)",
+    "accept": "I ogeysii",
+    "filter": "Sifee",
+    "drop": "Gebi ahaanba qari",
+    "filteredTitle": "Ogeysiisyada la sifeeyay",
+    "filteredEmpty": "Waxba lama sifeyn.",
+    "failed": "Lama kaydin. Isku day mar kale."
+  },
   "followedTags": {
     "follow": "Raac #{{tag}}",
     "following": "Waad raacaysaa",

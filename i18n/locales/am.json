@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "ማሳወቂያዎችን አጣራ ከ",
+    "description": "ከክበብዎ ውጪ ያለ ሰው ከእርስዎ ጋር ሲገናኝ ምን እንደሚሆን ይምረጡ። የተጣሩ ማሳወቂያዎች ያለ ምልክትና ያለ ግፊት ማሳወቂያ በ«የተጣሩ» ስር ይጠብቃሉ።",
+    "notFollowing": "የማይከተሏቸው ሰዎች",
+    "notFollowers": "የማይከተሉዎ ሰዎች",
+    "newAccounts": "አዲስ መለያዎች (ከ30 ቀን በታች)",
+    "accept": "አሳውቀኝ",
+    "filter": "አጣራ",
+    "drop": "ሙሉ በሙሉ ደብቅ",
+    "filteredTitle": "የተጣሩ ማሳወቂያዎች",
+    "filteredEmpty": "ምንም አልተጣራም።",
+    "failed": "አልተቀመጠም። እንደገና ይሞክሩ።"
+  },
   "followedTags": {
     "follow": "#{{tag}}ን ተከተል",
     "following": "እየተከተሉ ነው",
