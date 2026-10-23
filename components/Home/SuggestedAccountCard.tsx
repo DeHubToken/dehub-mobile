@@ -5,13 +5,13 @@ import { getBadgeHoverOpticalStyle } from "../../libs/misc";
  * SuggestedAccountCard – a "cover card" for the who-to-follow rows.
  *
  * A mini profile, the same card web draws (components/app/FollowCoverCard.tsx):
- *   • their cover banner (or a blurred, blown-up copy of their avatar when
- *     they have none), with a small X to skip them
+ *   • the banner their profile shows (their own, or the same default banner
+ *     the profile picks for them), with a small X to skip them
  *   • the avatar over the banner's lower edge, name + badge, @handle
- *   • two lines of bio
- *   • why they are here: "Follows you", or the faces and names of people you
- *     follow who follow them
- *   • follower count and a solid Follow button in the theme's accent
+ *   • two lines of bio, or "No bio yet"
+ *   • the faces and names of people you follow who follow them, when any do
+ *   • follower count and a solid Follow button in the theme's accent, reading
+ *     Follow back when they already follow you
  *
  * Skinned themes draw the card in their own surface (skin.card). System,
  * System Light and Minimal draw no box at all: the cards stand on the page with
@@ -24,7 +24,7 @@ import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
-import { getAvatarUrl, getBadgeUrlFor, getCoverUrl, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getCoverUrl, getDefaultBanner, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   followUser,
@@ -88,6 +88,8 @@ interface SuggestedAccountCardProps {
   onDismiss?: (address: string) => void;
   /** Last card in the row: no hairline after it in the flat themes. */
   isLast?: boolean;
+  /** Some card in the row has mutual friends: keep the line so the row lines up. */
+  reasonRow?: boolean;
 }
 
 
@@ -96,6 +98,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   onFollowChange,
   onDismiss,
   isLast = false,
+  reasonRow = false,
 }) => {
   const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
@@ -129,22 +132,19 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const badgeImage = getBadgeUrlFor(account);
   const bio = account.aboutMe?.trim() || "";
   const mutuals = useMemo(
-    () => (account.followsYou ? [] : (account.mutualConnections ?? []).slice(0, 2)),
-    [account.followsYou, account.mutualConnections],
+    () => (account.mutualConnections ?? []).slice(0, 2),
+    [account.mutualConnections],
   );
 
   const reasonLine = useMemo(() => {
-    if (account.reason === "follows_you" || account.followsYou) {
-      return _copy("follow.followsYou", { defaultValue: "Follows you" });
-    }
-    if (account.reason === "followed_by_people_you_know" && mutuals.length) {
+    if (mutuals.length) {
       const names = mutuals
         .map((c) => c.displayName || c.username || "someone")
         .join(", ");
       return _copy("copy.fef6a1a97127", { defaultValue: "Followed by {{value1}}", value1: names });
     }
     return null;
-  }, [account.reason, account.followsYou, mutuals, _copy]);
+  }, [mutuals, _copy]);
 
 
   const handlePress = useCallback(() => {
@@ -225,18 +225,11 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       {/* The banner is a picture: dark-surface keeps System Light's tone pass
           off it and off the X chip that sits on it. */}
       <View className="dark-surface" style={[styles.cover, { borderRadius: coverRadius }]}>
-        {cover ? (
-          <SmartImage source={{ uri: cover }} style={StyleSheet.absoluteFill} contentFit="cover" />
-        ) : displayAvatar ? (
-          // No banner: their own avatar, blown up and blurred, so the card
-          // still opens in that person's colours.
-          <SmartImage
-            source={{ uri: displayAvatar }}
-            style={[StyleSheet.absoluteFill, styles.coverWash]}
-            contentFit="cover"
-            blurRadius={24}
-          />
-        ) : null}
+        <SmartImage
+          source={cover ? { uri: cover } : getDefaultBanner(account.address || "")}
+          style={StyleSheet.absoluteFill}
+          contentFit="cover"
+        />
         {/* Fill on an inner view: a neutral-filled touchable would be
             repainted as the theme's control glass (libs/jsx/controls.js). */}
         <TouchableOpacity
@@ -279,10 +272,14 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         <Text style={[styles.handle, { color: ink.muted }, textMono]} numberOfLines={1}>
           @{username}
         </Text>
-        <Text style={[styles.bio, { color: ink.ink }]} numberOfLines={2}>
-          {bio || " "}
+        <Text
+          style={[styles.bio, bio ? { color: ink.ink } : [styles.bioEmpty, { color: ink.muted }]]}
+          numberOfLines={2}
+        >
+          {bio || _copy("copy.0c820caf16c0", { defaultValue: "No bio yet" })}
         </Text>
 
+        {reasonLine || reasonRow ? (
         <View style={styles.reasonRow}>
           {mutuals.length > 0 ? (
             <View style={styles.mutuals}>
@@ -310,6 +307,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
             </Text>
           ) : null}
         </View>
+        ) : null}
 
         <View style={styles.foot}>
           <Text style={[styles.count, { color: ink.muted }]} numberOfLines={1}>
@@ -371,10 +369,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#27272A",
   },
-  coverWash: {
-    transform: [{ scale: 1.8 }],
-    opacity: 0.9,
-  },
   dismissHit: {
     position: "absolute",
     top: 8,
@@ -408,6 +402,9 @@ const styles = StyleSheet.create({
     lineHeight: 17.5,
     marginTop: 6,
     minHeight: 35,
+  },
+  bioEmpty: {
+    fontStyle: "italic",
   },
   reasonRow: {
     flexDirection: "row",
