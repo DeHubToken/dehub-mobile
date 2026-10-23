@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kuka voi nähdä tämän",
+    "public": "Kaikki",
+    "followers": "Vain seuraajat",
+    "direct": "Vain mainitut henkilöt",
+    "noRepost": "Vain julkisia julkaisuja voi jakaa uudelleen",
+    "directHint": "Vain @-merkillä mainitsemasi henkilöt näkevät tämän julkaisun",
+    "needsMention": "Mainitse vähintään yksi henkilö @-merkillä, jotta voit julkaista vain mainituille"
+  },
   "replyPolicy": {
     "label": "Kuka voi vastata",
     "public": "Kuka tahansa",

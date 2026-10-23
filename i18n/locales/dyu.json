@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Jɔn bɛ se ka nin ye",
+    "public": "Bɛɛ",
+    "followers": "Tugubagaw dɔrɔn",
+    "direct": "Mɔgɔ tɔgɔ fɔlenw dɔrɔn",
+    "noRepost": "Post foroba dɔrɔn de bɛ se ka lase tugun",
+    "directHint": "I bɛ mɔgɔ minnu tɔgɔ fɔ ni @ ye, olu dɔrɔn de bɛ nin post ye",
+    "needsMention": "Mɔgɔ kelen tɔgɔ fɔ ni @ ye walasa ka post ci mɔgɔ tɔgɔ fɔlenw dɔrɔn ma"
+  },
   "replyPolicy": {
     "label": "Jɔn bɛ se ka jaabi di",
     "public": "Mɔgɔ bɛɛ",

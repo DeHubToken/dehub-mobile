@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kes seda näha saab",
+    "public": "Kõik",
+    "followers": "Ainult jälgijad",
+    "direct": "Ainult mainitud inimesed",
+    "noRepost": "Uuesti jagada saab ainult avalikke postitusi",
+    "directHint": "Seda postitust näevad ainult need, keda mainid @-iga",
+    "needsMention": "Maini @-iga vähemalt ühte inimest, et postitada ainult mainitutele"
+  },
   "replyPolicy": {
     "label": "Kes saab vastata",
     "public": "Igaüks",

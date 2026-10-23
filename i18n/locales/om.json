@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kana eenyuutu arguu danda'a",
+    "public": "Hunda",
+    "followers": "Hordoftoota qofa",
+    "direct": "Namoota maqaan isaanii eerame qofa",
+    "noRepost": "Maxxansota uummataa qofatu irra deebi'amee maxxanfamuu danda'a",
+    "directHint": "Namoota @ dhaan maqaa isaanii eertu qofatu maxxansa kana arga",
+    "needsMention": "Namoota eeraman qofaaf maxxansuuf yoo xiqqaate nama tokko @ dhaan eeri"
+  },
   "replyPolicy": {
     "label": "Eenyuutu deebii kennuu danda'a",
     "public": "Nama kamiyyuu",

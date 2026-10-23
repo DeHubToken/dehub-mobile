@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Ai có thể xem",
+    "public": "Mọi người",
+    "followers": "Chỉ người theo dõi",
+    "direct": "Chỉ người được nhắc đến",
+    "noRepost": "Chỉ bài đăng công khai mới đăng lại được",
+    "directHint": "Chỉ những người bạn nhắc đến bằng @ mới thấy bài đăng này",
+    "needsMention": "Nhắc đến ít nhất một người bằng @ để chỉ đăng cho những người được nhắc đến"
+  },
   "replyPolicy": {
     "label": "Ai có thể trả lời",
     "public": "Mọi người",

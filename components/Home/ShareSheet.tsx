@@ -58,6 +58,8 @@ interface ShareSheetProps {
   onQuote: () => void;
   /** False when the author lets nobody else quote this post: the row is left out. */
   canQuote?: boolean;
+  /** False for a followers-only or direct post: Repost gives way to a line saying why. */
+  canRepost?: boolean;
   onCopyLink: () => void;
   /** Send in a message — only shown when a DM share is possible. */
   onSendToDm?: () => void;
@@ -75,6 +77,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
   onUndoRepost,
   onQuote,
   canQuote = true,
+  canRepost = true,
   onCopyLink,
   onSendToDm,
   onShareAsImage,
@@ -125,6 +128,8 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
               onClose();
             }}
           />
+        ) : !canRepost ? (
+          <Text className="text-theme-neutrals-400 text-sm px-5 py-3">{t("postVisibility.noRepost")}</Text>
         ) : (
           <ShareRow
             icon="Repeat2"

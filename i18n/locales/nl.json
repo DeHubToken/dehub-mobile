@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Wie kan dit zien",
+    "public": "Iedereen",
+    "followers": "Alleen volgers",
+    "direct": "Alleen genoemde personen",
+    "noRepost": "Alleen openbare berichten kunnen opnieuw worden geplaatst",
+    "directHint": "Alleen de mensen die je met @ noemt, zien dit bericht",
+    "needsMention": "Noem minstens één persoon met @ om alleen voor genoemde personen te plaatsen"
+  },
   "replyPolicy": {
     "label": "Wie kan reageren",
     "public": "Iedereen",

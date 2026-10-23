@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Yaa arki kara tan",
+    "public": "Qof walba",
+    "followers": "Kaliya kuwa ku raaca",
+    "direct": "Kaliya dadka la xusay",
+    "noRepost": "Kaliya qoraallada guud ayaa dib loo daabici karaa",
+    "directHint": "Kaliya dadka aad @ ku xusto ayaa arki doona qoraalkan",
+    "needsMention": "Ku xus ugu yaraan hal qof @ si aad ugu daabacdo dadka la xusay oo kaliya"
+  },
   "replyPolicy": {
     "label": "Yaa jawaabi kara",
     "public": "Qof kasta",
