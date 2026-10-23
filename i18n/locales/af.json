@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Wie kan dit sien",
+    "public": "Almal",
+    "followers": "Net volgers",
+    "direct": "Net genoemde mense",
+    "noRepost": "Net openbare plasings kan herplaas word",
+    "directHint": "Net die mense wat jy met @ noem, sal hierdie plasing sien",
+    "needsMention": "Noem ten minste een persoon met @ om net aan genoemde mense te plaas"
+  },
   "replyPolicy": {
     "label": "Wie kan antwoord",
     "public": "Enigiemand",

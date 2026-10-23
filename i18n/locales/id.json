@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Siapa yang bisa melihat ini",
+    "public": "Semua orang",
+    "followers": "Hanya pengikut",
+    "direct": "Hanya orang yang disebut",
+    "noRepost": "Hanya postingan publik yang bisa diposting ulang",
+    "directHint": "Hanya orang yang kamu sebut dengan @ yang akan melihat postingan ini",
+    "needsMention": "Sebut setidaknya satu orang dengan @ untuk memposting hanya ke orang yang disebut"
+  },
   "replyPolicy": {
     "label": "Siapa yang bisa membalas",
     "public": "Siapa saja",

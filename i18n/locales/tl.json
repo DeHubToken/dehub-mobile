@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Sino ang makakakita nito",
+    "public": "Lahat",
+    "followers": "Mga follower lang",
+    "direct": "Mga binanggit lang",
+    "noRepost": "Mga pampublikong post lang ang puwedeng i-repost",
+    "directHint": "Ang mga taong babanggitin mo gamit ang @ lang ang makakakita ng post na ito",
+    "needsMention": "Bumanggit ng kahit isang tao gamit ang @ para mag-post sa mga binanggit lang"
+  },
   "replyPolicy": {
     "label": "Sino ang puwedeng sumagot",
     "public": "Kahit sino",

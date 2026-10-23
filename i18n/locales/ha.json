@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Wa zai iya ganin wannan",
+    "public": "Kowa",
+    "followers": "Mabiya kawai",
+    "direct": "Mutanen da aka ambata kawai",
+    "noRepost": "Rubutun jama'a kawai za a iya sake wallafawa",
+    "directHint": "Mutanen da ka ambata da @ ne kawai za su ga wannan rubutu",
+    "needsMention": "Ambaci aƙalla mutum ɗaya da @ don wallafa wa mutanen da aka ambata kawai"
+  },
   "replyPolicy": {
     "label": "Wa zai iya amsawa",
     "public": "Kowa",

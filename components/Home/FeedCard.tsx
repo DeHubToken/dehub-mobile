@@ -297,8 +297,18 @@ const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
 // The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
 const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
 
-/** Clock + time, then the post kind's icon + count. A fragment, so the row adds no wrapper views. */
-function PostMetaItems({ timeAgo, icon, count }: { timeAgo?: string; icon: IconName; count: string }) {
+/**
+ * Clock + time, then the post kind's icon + count, then who may see it when
+ * that is narrower than everyone. A fragment, so the row adds no wrapper views.
+ */
+function PostMetaItems({ timeAgo, icon, count, visibility }: {
+  timeAgo?: string;
+  icon: IconName;
+  count: string;
+  visibility?: string;
+}) {
+  const { t } = useCopy();
+  const restricted = visibility === "followers" || visibility === "direct";
   return (
     <>
       {timeAgo ? (
@@ -309,6 +319,14 @@ function PostMetaItems({ timeAgo, icon, count }: { timeAgo?: string; icon: IconN
       ) : null}
       <Icon name={icon} size={13} color="#6F7174" />
       <Text style={META_LABEL}>{count}</Text>
+      {restricted ? (
+        <>
+          <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color="#6F7174" />
+          <Text style={META_LABEL} testID="post-visibility-label">
+            {visibility === "direct" ? t("postVisibility.direct") : t("postVisibility.followers")}
+          </Text>
+        </>
+      ) : null}
     </>
   );
 }
@@ -443,6 +461,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isOwnerPost = !!(item as any).isOwner || (
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
+  // A followers-only or direct post cannot be reposted, quoted, embedded or
+  // sent in a message — each would hand it to people it was not written for.
+  const isPublicPost = !item.visibility || item.visibility === "public";
 
   const { isMinimal, skin, theme } = useAppTheme();
   const articleUi = useMemo(() => articleLook(theme), [theme]);
@@ -2128,11 +2149,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onRepost={handleConfirmRepost}
           onUndoRepost={handleUndoRepost}
           onQuote={handleQuotePress}
-          canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost}
+          canQuote={isPublicPost && ((edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost)}
+          canRepost={isPublicPost}
           onCopyLink={handleCopyLink}
-          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          onSendToDm={isSignedIn && isPublicPost ? () => setShowShareToDm(true) : undefined}
           onShareAsImage={handleSharePress}
-          embedTokenId={tokenId}
+          embedTokenId={isPublicPost ? tokenId : undefined}
         />
       )}
 
@@ -2266,7 +2288,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} />
+          <PostMetaItems timeAgo={timeAgo} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -2310,7 +2332,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onRepost={handleConfirmRepost}
             onUndoRepost={handleUndoRepost}
             onQuote={handleQuotePress}
-            canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost}
+            canQuote={isPublicPost && ((edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost)}
+            canRepost={isPublicPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
             shareText={localTitle || undefined}
@@ -2318,7 +2341,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             repostCount={Math.max(0, repostCount - stageQuotes)}
             onViewQuotes={() => openRepostQuoteList("quotes")}
             onViewReposts={() => openRepostQuoteList("reposts")}
-            embedTokenId={tokenId}
+            embedTokenId={isPublicPost ? tokenId : undefined}
           />
         )}
       </View>
@@ -2609,7 +2632,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} />
+            <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
             {translateButton}
           </View>
         )}
@@ -2860,6 +2883,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             by an order of magnitude. */}
         <PostMetaItems
           timeAgo={timeAgo}
+          visibility={item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}
         />

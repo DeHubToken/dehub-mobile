@@ -25,9 +25,15 @@ const EXPIRY_MARGIN_MS = 10 * 60 * 1000;
  * Whether the post's file is gated at all, before the viewer's own unlock
  * state. The same test the gated audio player uses.
  */
-export function videoNeedsAccess(post: { streamInfo?: any; plansDetails?: unknown[] | null }): boolean {
+export function videoNeedsAccess(post: {
+  streamInfo?: any;
+  plansDetails?: unknown[] | null;
+  /** A followers-only or direct post's video is stored private as well. */
+  visibility?: string | null;
+}): boolean {
   const info = post?.streamInfo || {};
-  return !!info.isPayPerView
+  return (!!post?.visibility && post.visibility !== "public")
+    || !!info.isPayPerView
     || isHoldGated(info.isLockContent, info.lockAmount ?? info.lockContentAmount)
     || !!post?.plansDetails?.length;
 }

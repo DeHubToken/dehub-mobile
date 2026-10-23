@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Ta ni ó lè rí èyí",
+    "public": "Gbogbo ènìyàn",
+    "followers": "Àwọn olùtẹ̀lé nìkan",
+    "direct": "Àwọn tí a mẹ́nu bà nìkan",
+    "noRepost": "Àwọn ìfìwéránṣẹ́ gbangba nìkan ni a lè tún fi ránṣẹ́",
+    "directHint": "Àwọn tí o bá mẹ́nu bà pẹ̀lú @ nìkan ni yóò rí ìfìwéránṣẹ́ yìí",
+    "needsMention": "Mẹ́nu ba ènìyàn kan ó kéré tán pẹ̀lú @ láti fi ránṣẹ́ sí àwọn tí a mẹ́nu bà nìkan"
+  },
   "replyPolicy": {
     "label": "Ta ni o le fesi",
     "public": "Ẹnikẹ́ni",

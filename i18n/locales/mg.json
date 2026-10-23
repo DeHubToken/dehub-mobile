@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Iza no afaka mahita an'ity",
+    "public": "Ny rehetra",
+    "followers": "Mpanaraka ihany",
+    "direct": "Olona voatonona ihany",
+    "noRepost": "Ny lahatsoratra ho an'ny daholobe ihany no azo averina zaraina",
+    "directHint": "Ny olona tononinao amin'ny @ ihany no hahita ity lahatsoratra ity",
+    "needsMention": "Tonony amin'ny @ olona iray farafahakeliny raha hamoaka ho an'ny olona voatonona ihany"
+  },
   "replyPolicy": {
     "label": "Iza no afaka mamaly",
     "public": "Na iza na iza",

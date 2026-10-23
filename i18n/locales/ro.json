@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Cine poate vedea asta",
+    "public": "Toată lumea",
+    "followers": "Doar urmăritorii",
+    "direct": "Doar persoanele menționate",
+    "noRepost": "Doar postările publice pot fi repostate",
+    "directHint": "Doar persoanele pe care le menționezi cu @ vor vedea această postare",
+    "needsMention": "Menționează cel puțin o persoană cu @ ca să postezi doar pentru persoanele menționate"
+  },
   "replyPolicy": {
     "label": "Cine poate răspunde",
     "public": "Oricine",

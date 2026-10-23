@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Ubani ongakubona lokhu",
+    "public": "Wonke umuntu",
+    "followers": "Abalandeli kuphela",
+    "direct": "Abantu abashiwoyo kuphela",
+    "noRepost": "Okuthunyelwe komphakathi kuphela okungaphinda kuthunyelwe",
+    "directHint": "Abantu obabiza nge-@ kuphela abazobona lokhu okuthunyelwe",
+    "needsMention": "Shono okungenani umuntu oyedwa nge-@ ukuze uthumele kubantu abashiwoyo kuphela"
+  },
   "replyPolicy": {
     "label": "Ubani ongaphendula",
     "public": "Noma ubani",

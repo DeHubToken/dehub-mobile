@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Hvem kan se dette",
+    "public": "Alle",
+    "followers": "Bare følgere",
+    "direct": "Bare nevnte personer",
+    "noRepost": "Bare offentlige innlegg kan deles på nytt",
+    "directHint": "Bare personene du nevner med @, ser dette innlegget",
+    "needsMention": "Nevn minst én person med @ for å publisere bare til nevnte personer"
+  },
   "replyPolicy": {
     "label": "Hvem kan svare",
     "public": "Alle",

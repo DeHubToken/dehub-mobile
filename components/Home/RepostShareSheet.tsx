@@ -30,6 +30,8 @@ export interface RepostShareSheetProps {
   onQuote: () => void;
   /** False when the author lets nobody else quote this post: the tile stays, disabled, saying so. */
   canQuote?: boolean;
+  /** False for a followers-only or direct post: the Repost tile stays, disabled, saying why. */
+  canRepost?: boolean;
   onCopyLink: () => void;
   /** The post's public link, for the share targets. */
   shareUrl: string;
@@ -82,6 +84,7 @@ function RepostShareSheetComponent({
   onUndoRepost,
   onQuote,
   canQuote = true,
+  canRepost = true,
   onCopyLink,
   shareUrl,
   shareText,
@@ -126,15 +129,17 @@ function RepostShareSheetComponent({
               else onRepost();
               onClose();
             }}
+            disabled={!isReposted && !canRepost}
             accessibilityRole="button"
+            accessibilityState={{ disabled: !isReposted && !canRepost }}
             accessibilityLabel={isReposted ? t("feedCard.undoRepost") : t("feedCard.repost")}
-            style={[styles.bigTile, { borderRadius: radius }]}
+            style={[styles.bigTile, { borderRadius: radius }, !isReposted && !canRepost && { opacity: 0.45 }]}
           >
             <View style={styles.tileHead}>
               <Icon name="Repeat2" size={20} color={TEXT} strokeWidth={isReposted ? 2.6 : 2} />
               <Text style={styles.tileTitle}>{isReposted ? t("feedCard.undoRepost") : t("feedCard.repost")}</Text>
             </View>
-            <Text style={styles.tileHint}>{t("feedCard.repostHint")}</Text>
+            <Text style={styles.tileHint}>{isReposted || canRepost ? t("feedCard.repostHint") : t("postVisibility.noRepost")}</Text>
           </Pressable>
           <Pressable
             onPress={() => later(onQuote)}
@@ -148,7 +153,7 @@ function RepostShareSheetComponent({
               <Icon name="Quote" size={20} color={TEXT} />
               <Text style={styles.tileTitle}>{t("transcript.quote")}</Text>
             </View>
-            <Text style={styles.tileHint}>{canQuote ? t("feedCard.quoteHint") : t("quotePolicy.off")}</Text>
+            <Text style={styles.tileHint}>{canQuote ? t("feedCard.quoteHint") : canRepost ? t("quotePolicy.off") : t("postVisibility.noRepost")}</Text>
           </Pressable>
         </View>
 
