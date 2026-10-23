@@ -129,6 +129,14 @@ const PAGE_ANIM = { duration: 260, easing: Easing.bezier(0.22, 1, 0.36, 1) } as 
 // How far past the first/last tab a drag is allowed to pull, as a fraction of
 // the real distance — the give is what tells you there is nothing beyond.
 const EDGE_RESISTANCE = 0.28;
+/** Travel before a drag is judged a page turn or a feed scroll, in points. */
+const PAGE_TURN_DECIDE_PX = 14;
+/**
+ * A page turn must be at least this many times more sideways than vertical.
+ * A thumb's upward flick starts with a sideways drift; with plain 14pt offsets
+ * that drift reached the X threshold first and flipped the tab mid-scroll.
+ */
+const PAGE_TURN_RATIO = 2;
 // Seconds of flick velocity folded into the release position, so a fast short
 // swipe turns the page instead of snapping back. Waiting for half a screen of
 // travel is precisely what read as slow.
@@ -357,6 +365,7 @@ export default function HomeScreen() {
   // another, which is why the highlight moved while the feed below sat still.
   const progress = useSharedValue(activeIndex);
   const dragStart = useSharedValue(activeIndex);
+  const pagerTouch = useSharedValue({ x: 0, y: 0, decided: false });
   // Index the gesture has already animated to, so the sync effect below doesn't
   // restart the same animation a frame later.
   const animatedToRef = useRef(activeIndex);
@@ -453,9 +462,28 @@ export default function HomeScreen() {
       Gesture.Pan()
         // Horizontal intent only: a vertical drag belongs to the feed's own
         // scroll view and must never be stolen by the pager.
-        .activeOffsetX([-14, 14])
-        .failOffsetY([-14, 14])
+        // Decided by angle, not by which axis crosses 14pt first: only a
+        // clearly sideways drag turns the page.
+        .manualActivation(true)
+        .maxPointers(1)
         .withRef(pagerGestureRef)
+        .onTouchesDown((event, manager) => {
+          const point = event.allTouches[0];
+          if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+          pagerTouch.value = { x: point.absoluteX, y: point.absoluteY, decided: false };
+        })
+        .onTouchesMove((event, manager) => {
+          const origin = pagerTouch.value;
+          if (origin.decided) return;
+          const point = event.allTouches[0];
+          if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+          const dx = Math.abs(point.absoluteX - origin.x);
+          const dy = Math.abs(point.absoluteY - origin.y);
+          if (Math.max(dx, dy) < PAGE_TURN_DECIDE_PX) return;
+          pagerTouch.value = { ...origin, decided: true };
+          if (dx >= dy * PAGE_TURN_RATIO) manager.activate();
+          else manager.fail();
+        })
         .onStart(() => {
           cancelAnimation(progress);
           dragStart.value = progress.value;
@@ -485,7 +513,7 @@ export default function HomeScreen() {
           progress.value = withTiming(target, PAGE_ANIM);
           if (target !== from) runOnJS(commitIndex)(target);
         }),
-    [pageWidth, commitIndex, progress, dragStart, showHeader, LAST_INDEX],
+    [pageWidth, commitIndex, progress, dragStart, pagerTouch, showHeader, LAST_INDEX],
   );
   const homeGestures = useMemo(() => Gesture.Race(pagerGesture, homePull.gesture), [pagerGesture, homePull.gesture]);
 
