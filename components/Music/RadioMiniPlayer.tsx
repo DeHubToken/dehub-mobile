@@ -24,6 +24,7 @@ import Icon from "../ui/Icon";
 import { useStages } from "../../context/StageContext";
 import { stopRadio, toggleRadioStation, useRadioPlayer } from "../../libs/radio-player";
 import { getCountryFlag, getPrimaryTags } from "../../libs/radio-browser";
+import RadioFullscreen from "./RadioFullscreen";
 
 const RadioMiniPlayer: React.FC = () => {
   const { t } = useTranslation();
@@ -31,6 +32,7 @@ const RadioMiniPlayer: React.FC = () => {
   const { station, isPlaying, isLoading } = useRadioPlayer();
   const { currentSpace, isConnected } = useStages();
   const [failedLogoUri, setFailedLogoUri] = useState<string | null>(null);
+  const [fullscreen, setFullscreen] = useState(false);
 
   if (!station) return null;
 
@@ -47,7 +49,7 @@ const RadioMiniPlayer: React.FC = () => {
         )}
       </View>
 
-      <View style={styles.info}>
+      <TouchableOpacity style={styles.info} onPress={() => setFullscreen(true)} accessibilityRole="button" accessibilityLabel={t("copy.8b2ae991573c", { defaultValue: "Now Playing" })}>
         <Text style={styles.name} numberOfLines={1}>
           {station.name?.trim() || t("music.radio")}
         </Text>
@@ -55,7 +57,17 @@ const RadioMiniPlayer: React.FC = () => {
           {getCountryFlag(station.countrycode)}
           {tags.length ? `  ${tags[0]}` : ""}
         </Text>
-      </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => setFullscreen(true)}
+        style={styles.closeBtn}
+        hitSlop={6}
+        accessibilityRole="button"
+        accessibilityLabel={t("copy.8b2ae991573c", { defaultValue: "Now Playing" })}
+      >
+        <Icon name="Maximize2" size={15} color="rgba(255,255,255,0.6)" />
+      </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => toggleRadioStation(station)}
@@ -80,6 +92,7 @@ const RadioMiniPlayer: React.FC = () => {
       >
         <Icon name="X" size={15} color="rgba(255,255,255,0.5)" />
       </TouchableOpacity>
+      {fullscreen && <RadioFullscreen visible={fullscreen} onClose={() => setFullscreen(false)} />}
     </View>
   );
 };
