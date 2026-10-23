@@ -17,6 +17,7 @@ import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../context/PagerGestureContext";
 import Slider from "@react-native-community/slider";
+import { GlassHold } from "./GlassHold";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from '../../context/ThemeContext';
 import { storage } from '../../libs/storage';
@@ -328,7 +329,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange, width, fle
     : `hsl(${localHue}, 80%, 65%)`;
 
   return (
-    <View style={width ? { height: 36, width, justifyContent: "center" } : { height: 36, flex, minWidth: 0, justifyContent: "center" }}>
+    <GlassHold style={width ? { height: 36, width, justifyContent: "center" } : { height: 36, flex, minWidth: 0, justifyContent: "center" }}>
       <LinearGradient
         colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
         start={{ x: 0, y: 0 }}
@@ -356,7 +357,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange, width, fle
         thumbTintColor={previewColor}
       />
       </PagerSafe>
-    </View>
+    </GlassHold>
   );
 });
 
@@ -1092,7 +1093,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       >
         <MediaControlIcon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} />
       </TouchableOpacity>
-      <View style={{ width: 58, height: CONTROL_SIZE, justifyContent: "center" }}>
+      <GlassHold style={{ width: 58, height: CONTROL_SIZE, justifyContent: "center" }}>
         <PagerSafe>
         <Slider
           style={{ width: "100%" }}
@@ -1106,7 +1107,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           thumbTintColor="#ffffff"
         />
         </PagerSafe>
-      </View>
+      </GlassHold>
     </View>
   );
 
@@ -1228,7 +1229,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           <HueSlider hue={hue} onHueChange={handleHueChange} flex={0.85} />
           <View style={{ flex: 2, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}><MediaControlIcon name={isEffectivelyMuted ? 'VolumeX' : 'Volume2'} /></TouchableOpacity>
-            <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
+            <GlassHold style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></GlassHold>
           </View>
         </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
