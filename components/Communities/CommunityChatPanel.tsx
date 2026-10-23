@@ -1,3 +1,4 @@
+import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useDraftState } from '../../hooks/useDraftState';
 import BadgeArtwork from "../common/BadgeArtwork";
@@ -338,6 +339,9 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const canPin = abilities.can("pin_messages");
   const canSendMedia = abilities.can("send_media");
   const [gifOpen, setGifOpen] = useState(false);
+  const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
+  const gifPress = useMemo(() => keyboardSwap.pressProps(() => keyboardSwap.swapTo(() => setGifOpen(true))), [keyboardSwap]);
   const canDeleteAny = abilities.can("delete_messages");
   const canSend = isMember && !abilities.isMuted && abilities.can("send_messages");
 
@@ -779,7 +783,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             {canSendMedia && !editing && (
               <View style={styles.mediaBtns}>
                 <Pressable
-                  onPress={() => setGifOpen(true)}
+                  {...gifPress}
                   disabled={sending || cooldown > 0}
                   style={styles.mediaBtn}
                   hitSlop={4}
@@ -803,6 +807,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
               </View>
             )}
             <TextInput
+              ref={inputRef}
               value={text}
               onChangeText={(v) => {
                 if (v.length <= MAX_LEN) mentions.handleChangeText(v);
@@ -837,9 +842,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
       {gifOpen && (
         <GifPicker
           visible={gifOpen}
-          onClose={() => setGifOpen(false)}
+          onClose={() => {
+            setGifOpen(false);
+            keyboardSwap.restore();
+          }}
           onPick={(url) => {
             setGifOpen(false);
+            keyboardSwap.restore();
             void sendMedia("gif", url);
           }}
         />

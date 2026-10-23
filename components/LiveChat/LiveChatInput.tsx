@@ -1,3 +1,4 @@
+import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -98,6 +99,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
   const [enhancing, setEnhancing] = useState(false);
   const [uploadingVoice, setUploadingVoice] = useState(false);
   const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
   const cooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleVoiceRecordingComplete = useCallback(
@@ -202,8 +204,8 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
   const handlePickGif = useCallback(() => {
     setAttachOpen(false);
-    onGifPress?.();
-  }, [onGifPress]);
+    keyboardSwap.swapTo(() => onGifPress?.());
+  }, [onGifPress, keyboardSwap]);
 
   const handleEnhance = useCallback(async () => {
     const trimmed = text.trim();
@@ -359,7 +361,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
         <View className="flex-row items-center justify-between px-2 pb-2 pt-1">
           {!disabled && (
             <TouchableOpacity
-              onPress={() => setAttachOpen(true)}
+              onPress={() => keyboardSwap.swapTo(() => setAttachOpen(true))}
               className="items-center justify-center"
               hitSlop={4}
               activeOpacity={0.6}
@@ -437,7 +439,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
       <LiveChatAttachSheet
         visible={attachOpen}
-        onClose={() => setAttachOpen(false)}
+        onClose={() => {
+          setAttachOpen(false);
+          keyboardSwap.restore();
+        }}
         onPickImage={handlePickImage}
         onPickGif={handlePickGif}
         onPickEmoji={handlePickEmoji}
@@ -449,7 +454,10 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
       />
       <EmojiSheet
         visible={emojiSheetOpen}
-        onClose={() => setEmojiSheetOpen(false)}
+        onClose={() => {
+          setEmojiSheetOpen(false);
+          keyboardSwap.restore();
+        }}
         onSelect={handlePickEmoji}
       />
     </View>
