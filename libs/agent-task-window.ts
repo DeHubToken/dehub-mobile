@@ -1,13 +1,17 @@
 /** Builds the exact "every post in a time period" instruction the task runner parses without the planner. */
-export type WindowPreset = 'today' | 'last24h' | 'last7d' | 'next7d' | 'custom';
-export type WindowAction = 'view' | 'like' | 'reply';
-export const WINDOW_PRESETS: WindowPreset[] = ['today', 'last24h', 'last7d', 'next7d', 'custom'];
-export const WINDOW_ACTIONS: WindowAction[] = ['view', 'like', 'reply'];
+export type WindowPreset = 'today' | 'last1h' | 'last24h' | 'last7d' | 'last30d' | 'allTime' | 'next7d' | 'custom';
+export type WindowAction = 'view' | 'like' | 'dislike' | 'reply';
+export const WINDOW_PRESETS: WindowPreset[] = ['today', 'last1h', 'last24h', 'last7d', 'last30d', 'allTime', 'next7d', 'custom'];
+export const WINDOW_ACTIONS: WindowAction[] = ['view', 'like', 'dislike', 'reply'];
+export function toggleWindowAction(actions: WindowAction[], action: WindowAction): WindowAction[] {
+  if (actions.includes(action)) return actions.filter(value => value !== action);
+  return [...actions.filter(value => !(action === 'like' && value === 'dislike') && !(action === 'dislike' && value === 'like')), action];
+}
 const DAY = 86400000;
 /** Matches LIVE_WINDOW_MAX_DAYS in the task runner. */
 export const WINDOW_MAX_DAYS_AHEAD = 31;
 
-/** "2026-10-17 18:30" (or with a T) in the phone's local time; a bare date means midnight. */
+/** Typed dates use the phone's local time; a bare date means midnight. */
 export function parseLocal(value: string): Date {
   const match = value.trim().match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{1,2}):(\d{2}))?$/);
   if (!match) return new Date(NaN);
@@ -24,12 +28,17 @@ export function windowRange(preset: WindowPreset, custom: { from: string; to: st
   }
   if (preset === 'today') { const from = new Date(now); from.setHours(0, 0, 0, 0); return { from, to: new Date(from.getTime() + DAY) }; }
   if (preset === 'last24h') return { from: new Date(now.getTime() - DAY), to: now };
+  if (preset === 'last1h') return { from: new Date(now.getTime() - 3600000), to: now };
+  if (preset === 'last30d') return { from: new Date(now.getTime() - 30 * DAY), to: now };
+  if (preset === 'allTime') return { from: new Date(0), to: now };
   if (preset === 'last7d') return { from: new Date(now.getTime() - 7 * DAY), to: now };
   return { from: now, to: new Date(now.getTime() + 7 * DAY) };
 }
 
-export function windowPrompt(range: { from: Date; to: Date }, actions: WindowAction[], replyStyle: string): string {
+export function windowPrompt(range: { from: Date; to: Date }, actions: WindowAction[], replyStyle: string, filters: { author?: string; category?: string } = {}): string {
   const ordered = WINDOW_ACTIONS.filter(action => actions.includes(action));
   return [`Every post from ${range.from.toISOString()} to ${range.to.toISOString()}`, `Actions: ${ordered.join(', ')}`,
+    ...(filters.author?.trim() ? [`Author: ${filters.author.trim().replace(/\s+/g, ' ')}`] : []),
+    ...(filters.category?.trim() ? [`Category: ${filters.category.trim().replace(/\s+/g, ' ')}`] : []),
     ...(ordered.includes('reply') ? [`Reply style: ${replyStyle.trim().replace(/\s+/g, ' ').slice(0, 500)}`] : [])].join('\n');
 }

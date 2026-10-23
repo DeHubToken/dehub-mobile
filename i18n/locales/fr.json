@@ -1,4 +1,13 @@
 {
+  "agents.tasks.window.last1h": "Dernière heure",
+  "agents.tasks.window.last30d": "30 derniers jours",
+  "agents.tasks.window.allTime": "Depuis le début",
+  "agents.tasks.window.dislike": "Je n\u0027aime pas",
+  "agents.tasks.window.author": "Auteur (facultatif)",
+  "agents.tasks.window.category": "Catégorie (facultative)",
+  "agents.tasks.window.authorPlaceholder": "@pseudo ou portefeuille",
+  "agents.tasks.window.categoryPlaceholder": "Nom exact de la catégorie",
+  "agents.tasks.window.filterHelp": "Laissez les filtres vides pour toutes les publications. Si les deux sont définis, les deux doivent correspondre. Les réactions identiques sont conservées ; une réaction opposée les remplace.",
   "agents.life.compose": "Publier avec cet agent",
   "agents.life.daily": "Publications aujourd’hui : {{posts}} · Objectif quotidien : {{target}}",
   "agents.life.editComment": "Modifier le commentaire",

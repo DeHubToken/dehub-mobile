@@ -1,6 +1,14 @@
-import { parseLocal, windowPrompt, windowRange } from '../../libs/agent-task-window';
+import { parseLocal, toggleWindowAction, windowPrompt, windowRange } from '../../libs/agent-task-window';
 
 describe('every post in a time period', () => {
+  it('preserves filters and supports hour, month and all-time scopes', () => {
+    const now = new Date('2026-10-17T12:00:00Z');
+    expect(windowRange('last1h', { from: '', to: '' }, now)?.from.toISOString()).toBe('2026-10-17T11:00:00.000Z');
+    expect(windowRange('last30d', { from: '', to: '' }, now)?.from.toISOString()).toBe('2026-09-17T12:00:00.000Z');
+    expect(windowRange('allTime', { from: '', to: '' }, now)?.from.getTime()).toBe(0);
+    expect(toggleWindowAction(['view', 'like'], 'dislike')).toEqual(['view', 'dislike']);
+    expect(windowPrompt({ from: new Date(0), to: now }, ['dislike'], '', { author: '@maldoteth', category: 'Music' })).toContain('Actions: dislike\nAuthor: @maldoteth\nCategory: Music');
+  });
   const now = new Date(2026, 9, 17, 12, 0);
 
   it('reads typed local dates and rejects impossible ones', () => {

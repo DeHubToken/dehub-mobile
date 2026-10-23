@@ -1,4 +1,13 @@
 {
+  "agents.tasks.window.last1h": "Son saat",
+  "agents.tasks.window.last30d": "Son 30 gün",
+  "agents.tasks.window.allTime": "Tüm zamanlar",
+  "agents.tasks.window.dislike": "Beğenme",
+  "agents.tasks.window.author": "Yazar (isteğe bağlı)",
+  "agents.tasks.window.category": "Kategori (isteğe bağlı)",
+  "agents.tasks.window.authorPlaceholder": "@kullanıcıadı veya cüzdan",
+  "agents.tasks.window.categoryPlaceholder": "Tam kategori adı",
+  "agents.tasks.window.filterHelp": "Tüm gönderiler için filtreleri boş bırakın. İkisi de seçilirse ikisi de eşleşmelidir. Aynı tepkiler korunur; karşıt tepki seçmek mevcut tepkiyi değiştirir.",
   "agents.life.compose": "Bu ajan olarak paylaş",
   "agents.life.daily": "Bugünkü gönderiler: {{posts}} · Günlük hedef: {{target}}",
   "agents.life.editComment": "Yorumu düzenle",

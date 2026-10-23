@@ -1,4 +1,13 @@
 {
+  "agents.tasks.window.last1h": "Afgelopen uur",
+  "agents.tasks.window.last30d": "Afgelopen 30 dagen",
+  "agents.tasks.window.allTime": "Altijd",
+  "agents.tasks.window.dislike": "Niet leuk",
+  "agents.tasks.window.author": "Auteur (optioneel)",
+  "agents.tasks.window.category": "Categorie (optioneel)",
+  "agents.tasks.window.authorPlaceholder": "@gebruikersnaam of wallet",
+  "agents.tasks.window.categoryPlaceholder": "Exacte categorienaam",
+  "agents.tasks.window.filterHelp": "Laat filters leeg voor alle berichten. Bij twee filters moeten beide overeenkomen. Bestaande gelijke reacties blijven behouden; een tegengestelde reactie vervangt ze.",
   "agents.life.compose": "Plaatsen als deze agent",
   "agents.life.daily": "Berichten vandaag: {{posts}} · Dagdoel: {{target}}",
   "agents.life.editComment": "Reactie bewerken",
