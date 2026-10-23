@@ -198,7 +198,7 @@ export function useUploadPost() {
       const postingOnSolana = isSolanaChain(p.postChainId);
 
       // Solana posts sign a partial tx with the embedded ed25519 wallet — no EVM gas.
-      if (!postingOnSolana && authMethod === "local" && ethBalance <= 0) {
+      if ((p.shouldMint !== false || p.monetization.bountyEnabled) && !postingOnSolana && authMethod === "local" && ethBalance <= 0) {
         // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless --
         // no ETH needed regardless of balance. Only chains without an AA setup still
         // fall back to a plain EOA transaction, which does need ETH for gas.
@@ -334,7 +334,7 @@ export function useUploadPost() {
 
       // Solana post (#41): mints on Solana via the user's base58 wallet as `minter`.
       // The EVM `address` (auth/owner identity) is kept in walletAddress.
-      const postingOnSolana = isSolanaChain(p.postChainId);
+      const postingOnSolana = (p.shouldMint !== false || isBounty) && isSolanaChain(p.postChainId);
       const isSolanaPost = postingOnSolana && !!p.solanaAddress;
 
       if (postingOnSolana && !p.solanaAddress) {
@@ -444,6 +444,9 @@ export function useUploadPost() {
         walletAddress: addr,
         isBounty: false,
         isQuote: true,
+        // Quote mode offers no mint switch. Never request a wallet signature
+        // merely to publish the authenticated quote.
+        mintOptOut: true,
         quotedTokenId: p.quotedTokenId,
       };
 
