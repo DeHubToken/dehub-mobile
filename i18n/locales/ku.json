@@ -4606,7 +4606,10 @@
     "play": "Bilîze",
     "pause": "Navber",
     "listens_other": "{{count}} guhdarî dike",
-    "listens_one": "{{count}} guhdarî bike"
+    "listens_one": "{{count}} guhdarî bike",
+    "lyrics": "Gotinên stranê",
+    "lyricsLoading": "Gotin tên lêgerîn…",
+    "lyricsNone": "Gotin nehatin dîtin"
   },
   "transfer": {
     "arcTitle": "USDC li ser Arc bişîne",

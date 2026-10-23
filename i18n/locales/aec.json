@@ -4618,7 +4618,10 @@
     "play": "شغل",
     "pause": "وقف",
     "listens_one": "{{count}} استمع",
-    "listens_other": "{{count}} يستمع"
+    "listens_other": "{{count}} يستمع",
+    "lyrics": "كلمات الأغنية",
+    "lyricsLoading": "جارٍ جلب الكلمات…",
+    "lyricsNone": "لا توجد كلمات"
   },
   "transfer": {
     "arcTitle": "إرسال USDC على Arc",

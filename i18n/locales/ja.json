@@ -4672,7 +4672,10 @@
     "play": "再生",
     "pause": "一時停止",
     "listens_one": "{{count}}回再生",
-    "listens_other": "{{count}}回再生"
+    "listens_other": "{{count}}回再生",
+    "lyrics": "歌詞",
+    "lyricsLoading": "歌詞を取得中…",
+    "lyricsNone": "歌詞が見つかりません"
   },
   "transfer": {
     "arcTitle": "ArcでUSDCを送金",

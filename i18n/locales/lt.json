@@ -4622,7 +4622,10 @@
     "play": "Paleisti",
     "pause": "Pristabdyti",
     "listens_one": "{{count}} klausytis",
-    "listens_other": "{{count}} klauso"
+    "listens_other": "{{count}} klauso",
+    "lyrics": "Žodžiai",
+    "lyricsLoading": "Ieškome žodžių…",
+    "lyricsNone": "Žodžių nerasta"
   },
   "transfer": {
     "arcTitle": "Siųsti USDC Arc tinkle",

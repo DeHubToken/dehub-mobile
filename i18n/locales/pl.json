@@ -4632,7 +4632,10 @@
     "play": "Odtwórz",
     "pause": "Wstrzymaj",
     "listens_one": "{{count}} odsłuchanie",
-    "listens_other": "{{count}} odsłuchań"
+    "listens_other": "{{count}} odsłuchań",
+    "lyrics": "Tekst",
+    "lyricsLoading": "Szukamy tekstu…",
+    "lyricsNone": "Nie znaleziono tekstu"
   },
   "transfer": {
     "arcTitle": "Wyślij USDC w sieci Arc",

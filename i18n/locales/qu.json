@@ -4644,7 +4644,10 @@
     "play": "Pukllay",
     "pause": "keyboard label",
     "listens_one": "{{count}} uyariychik",
-    "listens_other": "{{count}} uyarin"
+    "listens_other": "{{count}} uyarin",
+    "lyrics": "Takiy simikuna",
+    "lyricsLoading": "Simikunata maskachkan…",
+    "lyricsNone": "Mana simikuna tarikunchu"
   },
   "transfer": {
     "arcTitle": "USDC Arc-pi kachay",

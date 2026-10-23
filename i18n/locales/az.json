@@ -4622,7 +4622,10 @@
     "listens_other": "{{count}} dinləyir",
     "closeCornerPlayer": "Künc oyunçusunu bağlayın",
     "creator": "DeHub yaradıcısı",
-    "play": "Oxut"
+    "play": "Oxut",
+    "lyrics": "Mahnı sözləri",
+    "lyricsLoading": "Sözlər axtarılır…",
+    "lyricsNone": "Söz tapılmadı"
   },
   "transfer": {
     "arcTitle": "Arc-da USDC göndər",

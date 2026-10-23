@@ -4622,7 +4622,10 @@
     "play": "Նվագարկել",
     "pause": "Դադարեցնել",
     "listens_one": "{{count}} լսել",
-    "listens_other": "{{count}} լսում"
+    "listens_other": "{{count}} լսում",
+    "lyrics": "Բառեր",
+    "lyricsLoading": "Բառերը որոնվում են…",
+    "lyricsNone": "Բառեր չգտնվեցին"
   },
   "transfer": {
     "arcTitle": "Ուղարկել USDC Arc-ում",

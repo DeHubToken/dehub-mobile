@@ -5027,7 +5027,10 @@
     "pause": "إيقاف مؤقت",
     "listens_one": "{{count}} استماع",
     "listens_other": "{{count}} استماع",
-    "visualizerColour": "لون المؤثرات البصرية"
+    "visualizerColour": "لون المؤثرات البصرية",
+    "lyrics": "كلمات الأغنية",
+    "lyricsLoading": "جارٍ جلب الكلمات…",
+    "lyricsNone": "لا توجد كلمات"
   },
   "transfer": {
     "arcTitle": "إرسال USDC على Arc",

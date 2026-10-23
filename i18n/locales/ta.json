@@ -4618,7 +4618,10 @@
     "play": "இயக்கு",
     "pause": "இடைநிறுத்து",
     "listens_one": "{{count}} கேளுங்கள்",
-    "listens_other": "{{count}} கேட்கிறது"
+    "listens_other": "{{count}} கேட்கிறது",
+    "lyrics": "பாடல் வரிகள்",
+    "lyricsLoading": "வரிகளைத் தேடுகிறது…",
+    "lyricsNone": "வரிகள் இல்லை"
   },
   "transfer": {
     "arcTitle": "Arc-இல் USDC அனுப்பு",

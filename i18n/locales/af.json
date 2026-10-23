@@ -4655,7 +4655,10 @@
     "play": "Speel",
     "pause": "Pouseer",
     "listens_one": "{{count}} luister",
-    "listens_other": "{{count}} luisteraars"
+    "listens_other": "{{count}} luisteraars",
+    "lyrics": "Lirieke",
+    "lyricsLoading": "Soek lirieke…",
+    "lyricsNone": "Geen lirieke gevind nie"
   },
   "transfer": {
     "arcTitle": "Stuur USDC op Arc",
