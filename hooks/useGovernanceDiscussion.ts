@@ -20,7 +20,7 @@ import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
-import { getProposal } from "../services/governance.service";
+import { castVote, getMyVote, getProposal, needsOwnBadge } from "../services/governance.service";
 
 const log = createLogger("useGovernanceDiscussion");
 
@@ -188,6 +188,52 @@ export function useDeleteProposalComment() {
     onError: (error) => {
       log.error("Delete comment failed:", error);
       toastError(error, _copy("copy.c65a5314ca9e", { defaultValue: "Failed to delete comment" }));
+    },
+  });
+}
+
+/** The signed-in wallet's vote on a proposal (1, -1, or 0 for none). */
+export function useMyProposalVote(proposalId: string | null | undefined) {
+  const wallet = useWallet();
+  return useQuery({
+    queryKey: ["governance-my-vote", proposalId, wallet?.toLowerCase()],
+    queryFn: () => getMyVote(proposalId!, wallet!),
+    enabled: !!proposalId && !!wallet,
+    staleTime: 60_000,
+  });
+}
+
+/**
+ * Vote for (1) or against (-1); pressing the side already chosen withdraws it.
+ * The tallies are re-summed by a trigger on the votes table, so the proposal
+ * is re-read afterwards rather than patched here.
+ */
+export function useVoteOnProposal() {
+  const { t } = _useCopy();
+  const queryClient = useQueryClient();
+  const wallet = useWallet();
+
+  return useMutation({
+    mutationFn: async ({ proposalId, voteType }: { proposalId: string; voteType: 1 | -1 }) => {
+      if (!wallet) throw new Error("Not authenticated");
+      return castVote(proposalId, voteType, wallet);
+    },
+    onSuccess: (result, { proposalId, voteType }) => {
+      queryClient.setQueryData(
+        ["governance-my-vote", proposalId, wallet?.toLowerCase()],
+        result.action === "removed" ? 0 : voteType,
+      );
+    },
+    onError: (error) => {
+      // A missing or lent badge is explained by the screen, with a way to buy.
+      if (needsOwnBadge(error)) return;
+      log.error("Vote failed:", error);
+      toastError(error, t("governance.mustHoldTokens"));
+    },
+    onSettled: (_data, _error, { proposalId }) => {
+      queryClient.invalidateQueries({ queryKey: ["governance-proposal", proposalId] });
+      queryClient.invalidateQueries({ queryKey: ["governance-proposals"] });
+      queryClient.invalidateQueries({ queryKey: ["governance-my-vote", proposalId] });
     },
   });
 }
