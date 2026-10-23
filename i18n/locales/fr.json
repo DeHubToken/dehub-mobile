@@ -2115,7 +2115,11 @@
     "likeStation": "Aimer la station",
     "unlikeStation": "Ne plus aimer la station",
     "shareStation": "Partager la station",
-    "listeningTo": "J'écoute {{name}} sur DeHub"
+    "listeningTo": "J'écoute {{name}} sur DeHub",
+    "mostPlayed": "Les plus écoutés",
+    "mostLiked": "Les plus aimés",
+    "mostRecent": "Les plus récents",
+    "chartOrder": "Ordre du classement audio"
   },
   "notFound": {
     "title": "Page non trouvée",
@@ -4983,7 +4987,8 @@
     "play": "Lecture",
     "pause": "Pause",
     "listens_one": "{{count}} écoute",
-    "listens_other": "{{count}} écoutes"
+    "listens_other": "{{count}} écoutes",
+    "visualizerColour": "Couleur de la visualisation"
   },
   "transfer": {
     "arcTitle": "Envoyer des USDC sur Arc",
@@ -6604,7 +6609,8 @@
     "pipUnavailable": "L'image dans l'image n'est pas disponible. Vérifiez qu'elle est autorisée pour DeHub dans les paramètres de votre appareil.",
     "noVideo": "Aucune vidéo",
     "rotate": "Rotation",
-    "yourDhbBalance": "Votre solde de tokens : {{amount}}"
+    "yourDhbBalance": "Votre solde de tokens : {{amount}}",
+    "volume": "Volume"
   },
   "liveViewer": {
     "loadingStream": "Chargement de la diffusion...",

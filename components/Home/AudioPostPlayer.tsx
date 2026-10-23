@@ -3,6 +3,7 @@ import { useMediaMuted, setMutedState as setSelfMuted } from '../../libs/videoMu
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
 import {
   View,
+  Image,
   Text,
   TouchableOpacity,
   Pressable,
@@ -308,6 +309,7 @@ interface HueSliderProps {
 }
 
 const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
+  const { t } = useTranslation();
   // Local state so drag is silky — parent only gets notified on release
   const [localHue, setLocalHue] = useState(hue);
 
@@ -319,7 +321,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
     : `hsl(${localHue}, 80%, 65%)`;
 
   return (
-    <View style={{ height: 32, width: 76, justifyContent: "center" }}>
+    <View style={{ height: 36, flex: 1, minWidth: 120, justifyContent: "center" }}>
       <LinearGradient
         colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
         start={{ x: 0, y: 0 }}
@@ -337,6 +339,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
         style={{ width: "100%" }}
         minimumValue={0}
         maximumValue={360}
+        accessibilityLabel={t('audioPost.visualizerColour', { defaultValue: 'Visualizer colour' })}
         step={1}
         value={localHue}
         onValueChange={setLocalHue}
@@ -1182,16 +1185,19 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     const height = mode === "inline" ? inlineHeight : fullHeight;
     if (studio) return (
       <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
-        <View style={styles.glassCrown}>
+        <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 12 }]}>
+        {artworkUrl && !artworkUrl.split('?')[0].endsWith('/placeholder.svg') && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10 }} />}
+        <View style={{ flex: 1, minWidth: 0 }}>
         <Text numberOfLines={1} style={[styles.glassTitle, compactGlass && { fontSize: 14 }]}>{resolvedTitle}</Text>
         <Text numberOfLines={1} style={[styles.glassArtist, compactGlass && { fontSize: 8 }]}>{resolvedArtist}</Text>
+        </View>
         <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
         </View>
-        <View style={{ height: Math.max(104, Math.min(220, glassWidth * .35)), borderRadius: 20, overflow: 'hidden', backgroundColor: theme === 'glass' ? 'rgba(2,20,26,.12)' : '#030405', marginTop: 12 }}>
-          {renderVisualizer(Math.max(104, Math.min(220, glassWidth * .35)))}
+        <View style={{ height: Math.max(104, Math.min(220, glassWidth * .35)) + 40, borderTopLeftRadius: 20, borderTopRightRadius: 20, overflow: 'hidden', backgroundColor: theme === 'glass' ? 'rgba(2,20,26,.12)' : '#030405', marginTop: 12, marginBottom: -40 }}>
+          {renderVisualizer(Math.max(104, Math.min(220, glassWidth * .35)) + 40)}
         </View>
-        <View style={[styles.glassDeck, { paddingTop: glassWaveHeight + 22, backgroundColor: theme === 'glass' ? `rgba(${accent.join(',')},.04)` : '#0b0d10' }, compactGlass && { paddingBottom: 8 }]}>
-          <LinearGradient pointerEvents="none" colors={['rgba(220,255,255,.07)', 'rgba(0,20,24,.16)']} style={[StyleSheet.absoluteFill, { borderRadius: 48 }]} />
+        <View style={[styles.glassDeck, { paddingTop: glassWaveHeight + 22, borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, backgroundColor: 'transparent' }, compactGlass && { paddingBottom: 8 }]}>
+          <LinearGradient pointerEvents="none" colors={theme === 'glass' ? ['rgba(220,255,255,.07)', 'rgba(0,20,24,.55)', 'rgba(0,20,24,.7)'] : ['rgba(20,24,28,.4)', 'rgba(11,13,16,.94)', '#0b0d10']} style={[StyleSheet.absoluteFill, { borderBottomLeftRadius: 28, borderBottomRightRadius: 28 }]} />
           <View style={{ position: 'absolute', top: 3, left: 16, right: 16 }}><StaticWaveform glass seed={seed} position={position} hue={0} height={glassWaveHeight} isPlaying={shownPlaying} /></View>
           <View style={{ position: 'absolute', top: glassWaveHeight + 8, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={styles.glassTime}>{fmtDuration(shownTime)}</Text><Text style={styles.glassTime}>{fmtDuration(shownDuration)}</Text></View>
           <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="#efffff" style={{ height: glassWaveHeight + 4 }} /></PagerSafe></View>
@@ -1205,9 +1211,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           </View>
         </View>
         <View style={{ paddingTop: 12 }}><StylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, paddingTop: 12 }}>
+          <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
+          <HueSlider hue={hue} onHueChange={handleHueChange} />
+        </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-            <HueSlider hue={hue} onHueChange={handleHueChange} />
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.glassControl}><MediaControlIcon name={isEffectivelyMuted ? 'VolumeX' : 'Volume2'} /></TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.glassControl}><MediaControlIcon name="PictureInPicture2" /></TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.glassControl}><MediaControlIcon name={isFullscreen ? 'Minimize' : 'Maximize'} /></TouchableOpacity>

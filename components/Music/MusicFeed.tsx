@@ -62,7 +62,7 @@ import {
 } from "../../libs/radio-browser";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
-import { getAudioUrl, getAvatarUrl } from "../../libs/misc";
+import { getAudioUrl, getImageUrl } from "../../libs/misc";
 import { isHoldGated } from "../../libs/content-gate";
 import { useTranslation } from "react-i18next";
 
@@ -191,6 +191,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   }, [feedRef]);
 
   const [tab, setTab] = useState<MusicSubTab>("all");
+  const [chartSort, setChartSort] = useState<'trending' | 'popular' | 'new'>('trending');
   const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
   const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 10, minimumViewTime: 150 }).current;
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ key: string }> }) => {
@@ -222,12 +223,12 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   });
 
   const { data: audioUploads = [], isLoading: loadingAudio } = useQuery({
-    queryKey: ["music-audio-uploads", address],
+    queryKey: ["music-audio-uploads", address, chartSort],
     queryFn: async () => {
       const res = await getNFTs({
         postType: "feed-audio",
         unit: CAROUSEL_PAGE_SIZE,
-        sortMode: "new",
+        sortMode: chartSort,
         address,
       });
       return (res.result || []).filter(isVisibleInMusic);
@@ -357,6 +358,9 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return (
             <View style={styles.section}>
               <SectionHeader icon="Disc3" title={t("music.audioUploads")} count={audioUploads.length} />
+              <View style={{ flexDirection: 'row', gap: 6, paddingHorizontal: FEED_SIDE, paddingBottom: 14 }}>
+                {(['trending', 'popular', 'new'] as const).map(sort => <TouchableOpacity key={sort} accessibilityRole="button" accessibilityState={{ selected: chartSort === sort }} onPress={() => setChartSort(sort)} style={{ paddingHorizontal: 12, paddingVertical: 9, borderRadius: 99, backgroundColor: chartSort === sort ? 'rgba(255,255,255,.08)' : 'transparent', borderWidth: 1, borderColor: chartSort === sort ? 'rgba(255,255,255,.15)' : 'transparent' }}><Text style={{ color: '#fff', opacity: chartSort === sort ? 1 : .55, fontSize: 11 }}>{sort === 'trending' ? t('music.mostPlayed', { defaultValue: 'Most played' }) : sort === 'popular' ? t('music.mostLiked', { defaultValue: 'Most liked' }) : t('music.mostRecent', { defaultValue: 'Most recent' })}</Text></TouchableOpacity>)}
+              </View>
               {loadingAudio ? (
                 <ShelfSkeleton width={280} height={124} />
               ) : audioUploads.length === 0 ? (
@@ -374,7 +378,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
-    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, visibleIds, t],
+    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, t],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -638,10 +642,6 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
   const title = nft.name || (nft as any).title || "Untitled";
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
-  const creatorAvatar = getAvatarUrl(
-    (nft as any).minterUser?.avatarImageUrl || (nft as any).minterAvatarUrl || "",
-    512,
-  );
 
   return (
     <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }, desk && { width: '100%' }]}>
@@ -662,7 +662,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
           isVisible={isVisible}
           title={title}
           artist={creator || undefined}
-          artworkUrl={creatorAvatar === "default-avatar" ? undefined : creatorAvatar}
+          artworkUrl={nft.imageUrl || nft.thumbnailUrl ? getImageUrl(nft.imageUrl || nft.thumbnailUrl || '', 512) : undefined}
           compact={!glass}
         />
       ) : (
