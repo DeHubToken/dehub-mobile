@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Nani anaweza kunukuu",
+    "public": "Mtu yeyote",
+    "followers": "Wafuasi",
+    "nobody": "Mimi tu",
+    "off": "Mwandishi amezima kunukuu",
+    "removed": "Mwandishi ameondoa chapisho lake kwenye nukuu hii",
+    "remove": "Ondoa",
+    "removedToast": "Chapisho lako limeondolewa kwenye nukuu hii",
+    "removeFailed": "Imeshindwa kuondoa chapisho lako kwenye nukuu",
+    "refused": "Mwandishi hakuruhusu kunukuu chapisho hili"
+  },
   "contentWarning": {
     "label": "Onyo la maudhui",
     "placeholder": "Andika onyo lako hapa",

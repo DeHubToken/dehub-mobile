@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Ai có thể trích dẫn",
+    "public": "Mọi người",
+    "followers": "Người theo dõi",
+    "nobody": "Chỉ mình tôi",
+    "off": "Tác giả đã tắt trích dẫn",
+    "removed": "Tác giả đã gỡ bài đăng của họ khỏi trích dẫn này",
+    "remove": "Gỡ",
+    "removedToast": "Bài đăng của bạn đã được gỡ khỏi trích dẫn này",
+    "removeFailed": "Không thể gỡ bài đăng của bạn khỏi trích dẫn",
+    "refused": "Tác giả không cho phép bạn trích dẫn bài đăng này"
+  },
   "contentWarning": {
     "label": "Cảnh báo nội dung",
     "placeholder": "Viết cảnh báo của bạn ở đây",

@@ -344,6 +344,8 @@ export default function UploadScreen() {
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
   // The content warning being written: null is "none", "" is "toggled on, still empty".
   const [contentWarning, setContentWarning] = useState<string | null>(null);
+  // Who may quote the post. Anyone, unless the creator narrows it.
+  const [quotePolicy, setQuotePolicy] = useState<"public" | "followers" | "nobody">("public");
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -1153,8 +1155,9 @@ export default function UploadScreen() {
       crossPostAccountIds: articleMode ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
+      quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1174,6 +1177,7 @@ export default function UploadScreen() {
         setPickedVideo(null);
         setPickedImages([]);
         setContentWarning(null);
+        setQuotePolicy("public");
         setPickedAudio(null);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -1400,6 +1404,7 @@ export default function UploadScreen() {
       quotedTokenId: Number(quotedTokenId),
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
       spoilerText: contentWarning?.trim() || undefined,
+      quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
     });
     if (!ok) return false;
     // Held through the navigation for the same reason as submitPost above.
@@ -1410,7 +1415,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning, quotePolicy,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -1457,6 +1462,7 @@ export default function UploadScreen() {
         setLiveThumbnailUri(null);
         setPickedImages([]);
         setContentWarning(null);
+        setQuotePolicy("public");
         setPickedVideo(null);
         setThumbnailUri(null);
         consumeRestoredDraft();
@@ -3296,6 +3302,31 @@ export default function UploadScreen() {
                 creator reach on a post they believe is fine, so it sits past
                 the options they came to set rather than second, under the
                 thumb, where a stray tap goes unnoticed. */}
+              {/* Who may quote the post — anyone, followers, or only the creator. */}
+              {!isLiveMode && (
+              <View className="flex-row items-center justify-between py-3">
+                <View className="flex-row items-center flex-1 mr-3">
+                  <Icon name="Quote" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("quotePolicy.label")}</Text>
+                </View>
+                <View className="flex-row">
+                  {(["public", "followers", "nobody"] as const).map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      onPress={() => setQuotePolicy(option)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: quotePolicy === option }}
+                      className={`ml-1 rounded-lg px-2 py-1 ${quotePolicy === option ? "bg-white" : "bg-white/10"}`}
+                    >
+                      <Text className={`text-xs ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                        {t(`quotePolicy.${option}`)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
+              )}
+
               {MATURE_CONTENT_ENABLED && (
               <View className="flex-row items-center justify-between py-3">
                 <View className="flex-row items-center flex-1 mr-3">

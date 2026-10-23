@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Siapa yang bisa mengutip",
+    "public": "Siapa saja",
+    "followers": "Pengikut",
+    "nobody": "Hanya saya",
+    "off": "Penulis menonaktifkan kutipan",
+    "removed": "Penulis menghapus postingannya dari kutipan ini",
+    "remove": "Hapus",
+    "removedToast": "Postingan Anda dihapus dari kutipan ini",
+    "removeFailed": "Tidak dapat menghapus postingan Anda dari kutipan",
+    "refused": "Penulis tidak mengizinkan Anda mengutip postingan ini"
+  },
   "contentWarning": {
     "label": "Peringatan konten",
     "placeholder": "Tulis peringatan Anda di sini",

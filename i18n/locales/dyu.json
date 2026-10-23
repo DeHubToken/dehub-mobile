@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Jɔn bɛ se ka kuma fɔ ka bɔ a la",
+    "public": "Mɔgɔ bɛɛ",
+    "followers": "Tugubagaw",
+    "nobody": "Ne dɔrɔn",
+    "off": "Sɛbɛnbaga ye kuma bɔli datugu",
+    "removed": "Sɛbɛnbaga y'a ka post bɔ nin kuma bɔli la",
+    "remove": "A bɔ",
+    "removedToast": "I ka post bɔra nin kuma bɔli la",
+    "removeFailed": "A ma se ka i ka post bɔ kuma bɔli la",
+    "refused": "Sɛbɛnbaga t'a to i ka kuma bɔ nin post la"
+  },
   "contentWarning": {
     "label": "Kɔnɔkow lasɔmini",
     "placeholder": "I ka lasɔmini sɛbɛn yan",

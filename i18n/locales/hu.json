@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Ki idézheti",
+    "public": "Bárki",
+    "followers": "Követők",
+    "nobody": "Csak én",
+    "off": "A szerző kikapcsolta az idézést",
+    "removed": "A szerző eltávolította a bejegyzését ebből az idézetből",
+    "remove": "Eltávolítás",
+    "removedToast": "A bejegyzésed eltávolítva ebből az idézetből",
+    "removeFailed": "Nem sikerült eltávolítani a bejegyzésedet az idézetből",
+    "refused": "A szerző nem engedi, hogy idézd ezt a bejegyzést"
+  },
   "contentWarning": {
     "label": "Tartalmi figyelmeztetés",
     "placeholder": "Írd ide a figyelmeztetést",

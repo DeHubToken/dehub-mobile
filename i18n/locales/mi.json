@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Ko wai ka āhei ki te whakahua",
+    "public": "Te katoa",
+    "followers": "Ngā kaiwhai",
+    "nobody": "Ko au anake",
+    "off": "Kua whakawetohia e te kaituhi te whakahua",
+    "removed": "Kua tangohia e te kaituhi tana pānui i tēnei whakahua",
+    "remove": "Tango",
+    "removedToast": "Kua tangohia tō pānui i tēnei whakahua",
+    "removeFailed": "Kāore i taea te tango i tō pānui i te whakahua",
+    "refused": "Kāore te kaituhi e whakaae kia whakahuatia e koe tēnei pānui"
+  },
   "contentWarning": {
     "label": "Whakatūpato ihirangi",
     "placeholder": "Tuhia tō whakatūpato ki konei",

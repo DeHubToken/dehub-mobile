@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kush mund të citojë",
+    "public": "Kushdo",
+    "followers": "Ndjekësit",
+    "nobody": "Vetëm unë",
+    "off": "Autori i ka çaktivizuar citimet",
+    "removed": "Autori e hoqi postimin e tij nga ky citim",
+    "remove": "Hiq",
+    "removedToast": "Postimi yt u hoq nga ky citim",
+    "removeFailed": "Postimi yt nuk mund të hiqej nga citimi",
+    "refused": "Autori nuk të lejon ta citosh këtë postim"
+  },
   "contentWarning": {
     "label": "Paralajërim për përmbajtjen",
     "placeholder": "Shkruaj paralajërimin këtu",

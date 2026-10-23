@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kes saab tsiteerida",
+    "public": "Igaüks",
+    "followers": "Jälgijad",
+    "nobody": "Ainult mina",
+    "off": "Autor lülitas tsiteerimise välja",
+    "removed": "Autor eemaldas oma postituse sellest tsitaadist",
+    "remove": "Eemalda",
+    "removedToast": "Sinu postitus eemaldati sellest tsitaadist",
+    "removeFailed": "Sinu postitust ei õnnestunud tsitaadist eemaldada",
+    "refused": "Autor ei luba sul seda postitust tsiteerida"
+  },
   "contentWarning": {
     "label": "Sisuhoiatus",
     "placeholder": "Kirjuta oma hoiatus siia",

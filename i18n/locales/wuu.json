@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "啥人好引用",
+    "public": "随便啥人",
+    "followers": "粉丝",
+    "nobody": "只有我",
+    "off": "作者关脱了引用",
+    "removed": "作者拿自家个帖子从搿条引用里拿脱了",
+    "remove": "拿脱",
+    "removedToast": "侬个帖子已经从搿条引用里拿脱了",
+    "removeFailed": "侬个帖子拿勿脱",
+    "refused": "作者勿让侬引用搿条帖子"
+  },
   "contentWarning": {
     "label": "内容警告",
     "placeholder": "辣海搭写警告",

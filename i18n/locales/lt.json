@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kas gali cituoti",
+    "public": "Bet kas",
+    "followers": "Sekėjai",
+    "nobody": "Tik aš",
+    "off": "Autorius išjungė citavimą",
+    "removed": "Autorius pašalino savo įrašą iš šios citatos",
+    "remove": "Pašalinti",
+    "removedToast": "Jūsų įrašas pašalintas iš šios citatos",
+    "removeFailed": "Nepavyko pašalinti jūsų įrašo iš citatos",
+    "refused": "Autorius neleidžia jums cituoti šio įrašo"
+  },
   "contentWarning": {
     "label": "Įspėjimas dėl turinio",
     "placeholder": "Įspėjimą parašykite čia",

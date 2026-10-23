@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Wer darf zitiere",
+    "public": "Alli",
+    "followers": "Follower",
+    "nobody": "Nur ich",
+    "off": "De Autor het Zitat abgstellt",
+    "removed": "De Autor het sin Biitrag us dem Zitat entfernt",
+    "remove": "Entferne",
+    "removedToast": "Din Biitrag isch us dem Zitat entfernt worde",
+    "removeFailed": "Din Biitrag het nöd chöne us em Zitat entfernt werde",
+    "refused": "De Autor erlaubt dir nöd, dä Biitrag z zitiere"
+  },
   "contentWarning": {
     "label": "Inhaltswarnig",
     "placeholder": "Schriib dini Warnig da",

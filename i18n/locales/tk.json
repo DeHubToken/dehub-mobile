@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kim sitata getirip biler",
+    "public": "Islendik adam",
+    "followers": "Yzarlaýjylar",
+    "nobody": "Diňe men",
+    "off": "Awtor sitata getirmegi öçürdi",
+    "removed": "Awtor ýazgysyny bu sitatadan aýyrdy",
+    "remove": "Aýyr",
+    "removedToast": "Ýazgyňyz bu sitatadan aýryldy",
+    "removeFailed": "Ýazgyňyzy sitatadan aýryp bolmady",
+    "refused": "Awtor bu ýazgydan sitata getirmegiňize rugsat bermeýär"
+  },
   "contentWarning": {
     "label": "Mazmun barada duýduryş",
     "placeholder": "Duýduryşyňyzy şu ýere ýazyň",

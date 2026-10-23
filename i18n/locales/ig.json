@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Onye nwere ike ịkọ",
+    "public": "Onye ọ bụla",
+    "followers": "Ndị na-eso",
+    "nobody": "Naanị m",
+    "off": "Onye dere ya gbanyụrụ ịkọ",
+    "removed": "Onye dere ya wepụrụ ozi ya na nkọwa a",
+    "remove": "Wepụ",
+    "removedToast": "Ewepụla ozi gị na nkọwa a",
+    "removeFailed": "Enweghị ike iwepụ ozi gị na nkọwa ahụ",
+    "refused": "Onye dere ya anaghị ekwe ka ị kọọ ozi a"
+  },
   "contentWarning": {
     "label": "Ịdọ aka ná ntị maka ọdịnaya",
     "placeholder": "Dee ịdọ aka ná ntị gị ebe a",

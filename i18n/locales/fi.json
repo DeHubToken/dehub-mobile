@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kuka voi lainata",
+    "public": "Kuka tahansa",
+    "followers": "Seuraajat",
+    "nobody": "Vain minä",
+    "off": "Tekijä on poistanut lainaukset käytöstä",
+    "removed": "Tekijä poisti julkaisunsa tästä lainauksesta",
+    "remove": "Poista",
+    "removedToast": "Julkaisusi poistettiin tästä lainauksesta",
+    "removeFailed": "Julkaisuasi ei voitu poistaa lainauksesta",
+    "refused": "Tekijä ei salli sinun lainata tätä julkaisua"
+  },
   "contentWarning": {
     "label": "Sisältövaroitus",
     "placeholder": "Kirjoita varoitus tähän",

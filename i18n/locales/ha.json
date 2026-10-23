@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Wa zai iya ambato",
+    "public": "Kowa",
+    "followers": "Mabiya",
+    "nobody": "Ni kaɗai",
+    "off": "Marubucin ya kashe ambato",
+    "removed": "Marubucin ya cire rubutunsa daga wannan ambaton",
+    "remove": "Cire",
+    "removedToast": "An cire rubutunka daga wannan ambaton",
+    "removeFailed": "Ba a iya cire rubutunka daga ambaton ba",
+    "refused": "Marubucin bai ba ka damar ambaton wannan rubutun ba"
+  },
   "contentWarning": {
     "label": "Gargaɗin abun ciki",
     "placeholder": "Rubuta gargaɗinka a nan",

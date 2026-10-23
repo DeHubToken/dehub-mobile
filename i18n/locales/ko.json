@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "인용 가능한 사람",
+    "public": "모두",
+    "followers": "팔로워",
+    "nobody": "나만",
+    "off": "작성자가 인용을 껐습니다",
+    "removed": "작성자가 이 인용에서 게시물을 삭제했습니다",
+    "remove": "삭제",
+    "removedToast": "이 인용에서 내 게시물이 삭제되었습니다",
+    "removeFailed": "인용에서 내 게시물을 삭제할 수 없습니다",
+    "refused": "작성자가 이 게시물의 인용을 허용하지 않습니다"
+  },
   "contentWarning": {
     "label": "내용 경고",
     "placeholder": "여기에 경고 문구를 쓰세요",

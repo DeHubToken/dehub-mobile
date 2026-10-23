@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kto może cytować",
+    "public": "Każdy",
+    "followers": "Obserwujący",
+    "nobody": "Tylko ja",
+    "off": "Autor wyłączył cytowanie",
+    "removed": "Autor usunął swój post z tego cytatu",
+    "remove": "Usuń",
+    "removedToast": "Twój post został usunięty z tego cytatu",
+    "removeFailed": "Nie udało się usunąć twojego posta z cytatu",
+    "refused": "Autor nie pozwala ci cytować tego posta"
+  },
   "contentWarning": {
     "label": "Ostrzeżenie o treści",
     "placeholder": "Tu wpisz swoje ostrzeżenie",

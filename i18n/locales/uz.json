@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kim iqtibos keltira oladi",
+    "public": "Har kim",
+    "followers": "Obunachilar",
+    "nobody": "Faqat men",
+    "off": "Muallif iqtibos keltirishni oʻchirib qoʻygan",
+    "removed": "Muallif postini bu iqtibosdan olib tashladi",
+    "remove": "Olib tashlash",
+    "removedToast": "Postingiz bu iqtibosdan olib tashlandi",
+    "removeFailed": "Postingizni iqtibosdan olib tashlab boʻlmadi",
+    "refused": "Muallif bu postdan iqtibos keltirishingizga ruxsat bermaydi"
+  },
   "contentWarning": {
     "label": "Kontent haqida ogohlantirish",
     "placeholder": "Ogohlantirishingizni shu yerga yozing",
