@@ -39,7 +39,9 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const active = agents.filter(agent => agent.is_active);
   const agentId = active.some(agent => agent.id === chosen) ? chosen : active[0]?.id;
   const swarmIds = active.filter(agent => selected.includes(agent.id)).map(agent => agent.id);
-  const tasks = useQuery({ queryKey: ['agent-tasks', wallet], queryFn: () => agentTaskRequest<{ tasks: AgentTask[] }>(wallet, { operation: 'list' }) });
+  const tasks = useQuery({ queryKey: ['agent-tasks', wallet],
+    refetchInterval: query => query.state.data?.tasks.some(task => ['queued', 'running'].includes(task.status)) ? 10000 : false,
+    queryFn: () => agentTaskRequest<{ tasks: AgentTask[] }>(wallet, { operation: 'list' }) });
   const history = useQuery({ queryKey: ['agent-task-history', wallet, historyId], enabled: !!historyId,
     queryFn: () => agentTaskRequest<{ actions: AgentTaskAction[] }>(wallet, { operation: 'history', task_id: historyId }) });
   const refresh = () => { client.invalidateQueries({ queryKey: ['agent-tasks', wallet] }); client.invalidateQueries({ queryKey: ['agent-task-history', wallet] }); };
