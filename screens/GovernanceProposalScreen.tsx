@@ -51,6 +51,12 @@ import {
   type ProposalThread,
 } from "../hooks/useGovernanceDiscussion";
 import { isVotingOpen, needsOwnBadge } from "../services/governance.service";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import RepostShareSheet from "../components/Home/RepostShareSheet";
+import { getProposalRepostState, toggleProposalRepost } from "../services/repost.service";
+import { SHARE_ORIGIN } from "../libs/dehub-links";
+import { copyToClipboard } from "../libs/clipboard.utils";
+import { toastError, toastSuccess } from "../libs/toast";
 
 const COMMENT_MAX = 500;
 /** Replies shown before a thread collapses behind "Show N more replies". */
@@ -290,6 +296,47 @@ export default function GovernanceProposalScreen() {
     );
   };
 
+  // Repost / quote, like a post. A quote is a post carrying the proposal's
+  // link, which every feed renders as a proposal card.
+  const queryClient = useQueryClient();
+  const [shareOpen, setShareOpen] = useState(false);
+  const repostKey = ["proposal-repost", proposalId, isAuthed ? myWallet : null];
+  const { data: repostState } = useQuery({
+    queryKey: repostKey,
+    queryFn: () => getProposalRepostState(proposalId!, isAuthed),
+    enabled: !!proposalId,
+    staleTime: 30_000,
+    retry: false,
+  });
+  const reposted = !!repostState?.reposted;
+  const repostCount = repostState?.count ?? 0;
+  const proposalUrl = proposalId ? `${SHARE_ORIGIN}/app/governance/${proposalId}` : "";
+  const toggleRepost = useCallback(() => {
+    if (!proposalId || !proposal) return;
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    const previous = { count: repostCount, reposted };
+    const next = { count: Math.max(0, repostCount + (reposted ? -1 : 1)), reposted: !reposted };
+    queryClient.setQueryData(repostKey, next);
+    if (next.reposted) toastSuccess(t("toasts.reposted"));
+    toggleProposalRepost(proposalId, { title: proposal.title, author: proposal.author_wallet_address })
+      .then((res) => queryClient.setQueryData(repostKey, { count: Number(res?.repostCount) || 0, reposted: !!res?.reposted }))
+      .catch(() => {
+        queryClient.setQueryData(repostKey, previous);
+        toastError(previous.reposted ? t("feedCard.removeRepostFailed") : t("toasts.failed_to_repost"));
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [proposalId, proposal, isAuthed, navigation, repostCount, reposted, queryClient, myWallet, t]);
+  const quoteProposal = useCallback(() => {
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    navigation.navigate(ScreenNames.Upload, { initialText: proposalUrl });
+  }, [isAuthed, navigation, proposalUrl]);
+
   const forW = proposal?.like_count || 0;
   const againstW = proposal?.dislike_count || 0;
   const total = forW + againstW;
@@ -412,6 +459,17 @@ export default function GovernanceProposalScreen() {
                   <Icon name="MessageCircle" size={13} color="#808089" />
                   <Text style={styles.metaText}>{formatCompactNumber(proposal.comment_count || 0)}</Text>
                 </View>
+                <Pressable
+                  onPress={() => setShareOpen(true)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("feedCard.repostAndShare")}
+                  accessibilityState={{ selected: reposted }}
+                  style={styles.metaItem}
+                >
+                  <Icon name="Repeat2" size={13} color="#F4F4F5" strokeWidth={reposted ? 2.6 : 2} />
+                  <Text style={styles.metaText}>{formatCompactNumber(repostCount)}</Text>
+                </Pressable>
               </View>
             </PageSection>
 
@@ -481,6 +539,22 @@ export default function GovernanceProposalScreen() {
           </ScrollView>
         </KeyboardAvoidingView>
       )}
+      <RepostShareSheet
+        visible={shareOpen}
+        onClose={() => setShareOpen(false)}
+        isReposted={reposted}
+        onRepost={toggleRepost}
+        onUndoRepost={toggleRepost}
+        onQuote={quoteProposal}
+        onCopyLink={() => {
+          copyToClipboard(proposalUrl);
+          toastSuccess(t("feedCard.linkCopied"));
+        }}
+        shareUrl={proposalUrl}
+        shareText={proposal?.title}
+        quoteCount={0}
+        repostCount={repostCount}
+      />
     </View>
   );
 }
