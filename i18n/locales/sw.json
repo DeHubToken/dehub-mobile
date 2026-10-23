@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Chuja arifa kutoka kwa",
+    "description": "Chagua kinachotokea mtu aliye nje ya mduara wako anapoingiliana nawe. Arifa zilizochujwa husubiri chini ya Zilizochujwa, bila beji wala arifa ya kusukuma.",
+    "notFollowing": "Watu usiowafuata",
+    "notFollowers": "Watu wasiokufuata",
+    "newAccounts": "Akaunti mpya (chini ya siku 30)",
+    "accept": "Nijulishe",
+    "filter": "Chuja",
+    "drop": "Ficha kabisa",
+    "filteredTitle": "Arifa zilizochujwa",
+    "filteredEmpty": "Hakuna kilichochujwa.",
+    "failed": "Haikuhifadhiwa. Jaribu tena."
+  },
   "followedTags": {
     "follow": "Fuata #{{tag}}",
     "following": "Unafuata",

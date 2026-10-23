@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Tātari pānui mai i",
+    "description": "Kōwhiria te mea ka puta ina whakawhitiwhiti tētahi i waho o tō porowhita ki a koe. Ka tatari ngā pānui kua tātarihia ki raro i \"Kua tātarihia\", kāore he tohu, kāore he pānui pana.",
+    "notFollowing": "Ngā tāngata kāore koe e whai ana",
+    "notFollowers": "Ngā tāngata kāore e whai ana i a koe",
+    "newAccounts": "Ngā pūkete hou (iti iho i te 30 rā)",
+    "accept": "Whakamōhio mai",
+    "filter": "Tātari",
+    "drop": "Hunaia katoatia",
+    "filteredTitle": "Ngā pānui kua tātarihia",
+    "filteredEmpty": "Kāore anō kia tātarihia tētahi mea.",
+    "failed": "Kāore i tiakina. Whakamātauria anō."
+  },
   "followedTags": {
     "follow": "Whai i #{{tag}}",
     "following": "E whai ana",

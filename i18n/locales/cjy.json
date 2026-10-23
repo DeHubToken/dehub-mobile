@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "过滤以下来源的通知",
+    "description": "选择圈子以外的人与你互动时会发生什么。被过滤的通知会留在“已过滤”里，不显示角标，也不推送。",
+    "notFollowing": "你没有关注的人",
+    "notFollowers": "没有关注你的人",
+    "newAccounts": "新账号（不满 30 天）",
+    "accept": "通知我",
+    "filter": "过滤",
+    "drop": "完全隐藏",
+    "filteredTitle": "已过滤的通知",
+    "filteredEmpty": "没有被过滤的通知。",
+    "failed": "没有保存成功，请再试一次。"
+  },
   "followedTags": {
     "follow": "关注 #{{tag}}",
     "following": "已关注",

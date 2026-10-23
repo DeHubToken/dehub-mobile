@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Tace sanarwa daga",
+    "description": "Zaɓi abin da zai faru idan wani a wajen da'irarka ya yi hulɗa da kai. Sanarwar da aka tace tana jira a ƙarƙashin \"An tace\", ba alama ba turawa.",
+    "notFollowing": "Mutanen da ba ka bi ba",
+    "notFollowers": "Mutanen da ba sa bin ka",
+    "newAccounts": "Sabbin asusu (ƙasa da kwana 30)",
+    "accept": "Sanar da ni",
+    "filter": "Tace",
+    "drop": "Ɓoye gaba ɗaya",
+    "filteredTitle": "Sanarwar da aka tace",
+    "filteredEmpty": "Ba a tace komai ba.",
+    "failed": "Ba a ajiye ba. Sake gwadawa."
+  },
   "followedTags": {
     "follow": "Bi #{{tag}}",
     "following": "Kana bi",

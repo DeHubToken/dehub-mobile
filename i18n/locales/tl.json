@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "I-filter ang mga notification mula sa",
+    "description": "Piliin kung ano ang mangyayari kapag may taong labas sa iyong grupo na nakipag-ugnayan sa iyo. Naghihintay ang mga na-filter na notification sa Na-filter, walang badge at walang push.",
+    "notFollowing": "Mga taong hindi mo fina-follow",
+    "notFollowers": "Mga taong hindi ka fina-follow",
+    "newAccounts": "Mga bagong account (wala pang 30 araw)",
+    "accept": "Abisuhan ako",
+    "filter": "I-filter",
+    "drop": "Itago nang buo",
+    "filteredTitle": "Mga na-filter na notification",
+    "filteredEmpty": "Wala pang na-filter.",
+    "failed": "Hindi na-save. Subukan ulit."
+  },
   "followedTags": {
     "follow": "I-follow ang #{{tag}}",
     "following": "Fina-follow",

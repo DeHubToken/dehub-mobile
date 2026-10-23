@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Ṣàlẹ̀mọ́ àwọn ìfitónilétí láti ọ̀dọ̀",
+    "description": "Yan ohun tí yóò ṣẹlẹ̀ nígbà tí ẹnìkan tí kò sí nínú àyíká rẹ bá bá ọ ṣe nǹkan. Àwọn ìfitónilétí tí a ṣàlẹ̀mọ́ ń dúró sí abẹ́ \"A ti ṣàlẹ̀mọ́\", láìsí àmì àti láìsí ìtaniji.",
+    "notFollowing": "Àwọn tí o kò tẹ̀lé",
+    "notFollowers": "Àwọn tí kò tẹ̀lé ọ",
+    "newAccounts": "Àwọn àkọọ́lẹ̀ tuntun (kò tó ọjọ́ 30)",
+    "accept": "Sọ fún mi",
+    "filter": "Ṣàlẹ̀mọ́",
+    "drop": "Fi pamọ́ pátápátá",
+    "filteredTitle": "Àwọn ìfitónilétí tí a ṣàlẹ̀mọ́",
+    "filteredEmpty": "Kò sí ohun tí a ṣàlẹ̀mọ́.",
+    "failed": "Kò fi pamọ́. Tún gbìyànjú."
+  },
   "followedTags": {
     "follow": "Tẹ̀lé #{{tag}}",
     "following": "O ń tẹ̀lé",

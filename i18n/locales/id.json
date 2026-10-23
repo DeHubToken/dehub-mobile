@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Saring notifikasi dari",
+    "description": "Pilih apa yang terjadi saat seseorang di luar lingkaranmu berinteraksi denganmu. Notifikasi yang disaring menunggu di Disaring, tanpa lencana dan tanpa push.",
+    "notFollowing": "Orang yang tidak kamu ikuti",
+    "notFollowers": "Orang yang tidak mengikutimu",
+    "newAccounts": "Akun baru (kurang dari 30 hari)",
+    "accept": "Beri tahu saya",
+    "filter": "Saring",
+    "drop": "Sembunyikan sepenuhnya",
+    "filteredTitle": "Notifikasi yang disaring",
+    "filteredEmpty": "Belum ada yang disaring.",
+    "failed": "Tidak tersimpan. Coba lagi."
+  },
   "followedTags": {
     "follow": "Ikuti #{{tag}}",
     "following": "Mengikuti",

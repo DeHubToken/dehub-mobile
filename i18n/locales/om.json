@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Beeksisa irraa calali",
+    "description": "Yeroo namni geengoo kee alaa si wajjin walqunnamu maaltu akka ta'u filadhu. Beeksisni calalame mallattoo fi dhiibbaa malee jalatti \"Calalame\" eegu.",
+    "notFollowing": "Namoota ati hin hordofne",
+    "notFollowers": "Namoota si hin hordofne",
+    "newAccounts": "Herrega haaraa (guyyaa 30 gadi)",
+    "accept": "Natti himi",
+    "filter": "Calali",
+    "drop": "Guutummaan dhoksi",
+    "filteredTitle": "Beeksisa calalaman",
+    "filteredEmpty": "Wanti calalame hin jiru.",
+    "failed": "Hin olkaa'amne. Irra deebi'ii yaali."
+  },
   "followedTags": {
     "follow": "#{{tag}} hordofi",
     "following": "Hordofaa jirta",

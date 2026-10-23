@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtreeri teavitusi",
+    "description": "Vali, mis juhtub, kui keegi väljastpoolt sinu ringi sinuga suhtleb. Filtreeritud teavitused ootavad jaotises Filtreeritud, ilma märgi ja tõuketeateta.",
+    "notFollowing": "Inimestelt, keda sa ei jälgi",
+    "notFollowers": "Inimestelt, kes sind ei jälgi",
+    "newAccounts": "Uutelt kontodelt (alla 30 päeva)",
+    "accept": "Teavita mind",
+    "filter": "Filtreeri",
+    "drop": "Peida täielikult",
+    "filteredTitle": "Filtreeritud teavitused",
+    "filteredEmpty": "Midagi pole filtreeritud.",
+    "failed": "Ei salvestunud. Proovi uuesti."
+  },
   "followedTags": {
     "follow": "Jälgi #{{tag}}",
     "following": "Jälgid",
