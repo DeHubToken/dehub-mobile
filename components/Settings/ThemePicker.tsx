@@ -271,7 +271,7 @@ const ThemePicker: React.FC = () => {
         <ThemeSample
           key={value}
           value={value}
-          label={t(value === 'system-light' ? 'settings.systemLight' : `settings.${value}`)}
+          label={value === 'glass' ? 'Glassy' : t(value === 'system-light' ? 'settings.systemLight' : `settings.${value}`)}
           active={themeChoice === value}
           ring={ring}
           onPress={() => setTheme(value)}
