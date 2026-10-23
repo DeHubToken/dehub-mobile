@@ -4617,7 +4617,10 @@
     "play": "Mainake",
     "listens_one": "{{count}} ngrungokake",
     "listens_other": "{{count}} ngrungokake",
-    "pause": "Jeda"
+    "pause": "Jeda",
+    "lyrics": "Lirik",
+    "lyricsLoading": "Nggoleki lirik…",
+    "lyricsNone": "Lirik ora ketemu"
   },
   "transfer": {
     "arcTitle": "Kirim USDC ing Arc",

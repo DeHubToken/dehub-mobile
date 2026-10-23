@@ -4619,7 +4619,10 @@
     "play": "ចាក់",
     "pause": "ផ្អាក",
     "listens_one": "{{count}} ស្តាប់",
-    "listens_other": "{{count}} ស្តាប់"
+    "listens_other": "{{count}} ស្តាប់",
+    "lyrics": "ទំនុកច្រៀង",
+    "lyricsLoading": "កំពុងស្វែងរកទំនុកច្រៀង…",
+    "lyricsNone": "រកមិនឃើញទំនុកច្រៀង"
   },
   "transfer": {
     "arcTitle": "ផ្ញើ USDC លើ Arc",

@@ -4630,7 +4630,10 @@
     "play": "taphachuu",
     "pause": "Gidduutti dhaabuu",
     "listens_other": "{{count}} dhaggeeffata",
-    "listens_one": "{{count}} dhaggeeffadhaa"
+    "listens_one": "{{count}} dhaggeeffadhaa",
+    "lyrics": "Jechoota sirbaa",
+    "lyricsLoading": "Jechoota barbaadaa jira…",
+    "lyricsNone": "Jechoonni hin argamne"
   },
   "transfer": {
     "arcTitle": "USDC Arc irratti ergi",

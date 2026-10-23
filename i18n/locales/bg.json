@@ -4635,7 +4635,10 @@
     "play": "Възпроизвеждане",
     "pause": "Пауза",
     "listens_one": "{{count}} слушайте",
-    "listens_other": "{{count}} слуша"
+    "listens_other": "{{count}} слуша",
+    "lyrics": "Текст",
+    "lyricsLoading": "Търсим текста…",
+    "lyricsNone": "Няма намерен текст"
   },
   "transfer": {
     "arcTitle": "Изпрати USDC в Arc",

@@ -4615,7 +4615,10 @@
     "play": "کيڏيو",
     "pause": "پوئتي هٽايو",
     "listens_one": "{{count}} ٻڌو",
-    "listens_other": "{{count}} سنين"
+    "listens_other": "{{count}} سنين",
+    "lyrics": "گيت جا لفظ",
+    "lyricsLoading": "لفظ ڳولي رهيا آهيون…",
+    "lyricsNone": "ڪوبه لفظ نه مليو"
   },
   "transfer": {
     "arcTitle": "Arc تي USDC موڪليو",

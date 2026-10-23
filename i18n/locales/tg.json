@@ -4591,7 +4591,10 @@
     "play": "Бозикунӣ",
     "pause": "Таваққуф",
     "listens_one": "{{count}} гӯш кунед",
-    "listens_other": "{{count}} гӯш мекунанд"
+    "listens_other": "{{count}} гӯш мекунанд",
+    "lyrics": "Матни суруд",
+    "lyricsLoading": "Матн ҷустуҷӯ мешавад…",
+    "lyricsNone": "Матн ёфт нашуд"
   },
   "transfer": {
     "arcTitle": "Фиристодани USDC дар Arc",

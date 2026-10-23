@@ -4623,7 +4623,10 @@
     "play": "खेला करेनीं",
     "pause": "ब्रेक लें",
     "listens_one": "{{count}} सुनता है",
-    "listens_other": "{{count}} सुनती हैं"
+    "listens_other": "{{count}} सुनती हैं",
+    "lyrics": "गीत के बोल",
+    "lyricsLoading": "बोल ढूँढ रहे हैं…",
+    "lyricsNone": "कोई बोल नहीं मिले"
   },
   "transfer": {
     "arcTitle": "Arc पर USDC भेजीं",

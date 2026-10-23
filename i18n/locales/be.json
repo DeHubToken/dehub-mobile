@@ -4628,7 +4628,10 @@
     "play": "Прайграць",
     "pause": "Паўза",
     "listens_one": "{{count}} слухаць",
-    "listens_other": "{{count}} слухае"
+    "listens_other": "{{count}} слухае",
+    "lyrics": "Тэкст песні",
+    "lyricsLoading": "Шукаем тэкст…",
+    "lyricsNone": "Тэкст не знойдзены"
   },
   "transfer": {
     "arcTitle": "Адправіць USDC у Arc",

@@ -4742,7 +4742,10 @@
     "play": "চালান",
     "pause": "বিরাম",
     "listens_one": "{{count}} শুনুন",
-    "listens_other": "{{count}} শোনে"
+    "listens_other": "{{count}} শোনে",
+    "lyrics": "গানের কথা",
+    "lyricsLoading": "গানের কথা খোঁজা হচ্ছে…",
+    "lyricsNone": "কোনো গানের কথা পাওয়া যায়নি"
   },
   "transfer": {
     "arcTitle": "Arc-ত USDC পাঠাও",

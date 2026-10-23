@@ -4637,7 +4637,10 @@
     "play": "Ойнату",
     "pause": "Пауза",
     "listens_one": "{{count}} тыңдаңыз",
-    "listens_other": "{{count}} тыңдау"
+    "listens_other": "{{count}} тыңдау",
+    "lyrics": "Ән мәтіні",
+    "lyricsLoading": "Мәтін ізделуде…",
+    "lyricsNone": "Мәтін табылмады"
   },
   "transfer": {
     "arcTitle": "Arc желісінде USDC жіберу",

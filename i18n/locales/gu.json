@@ -4620,7 +4620,10 @@
     "play": "રમો",
     "pause": "થોભો",
     "listens_one": "{{count}} સાંભળો",
-    "listens_other": "{{count}} સાંભળે છે"
+    "listens_other": "{{count}} સાંભળે છે",
+    "lyrics": "ગીતના બોલ",
+    "lyricsLoading": "બોલ શોધી રહ્યા છીએ…",
+    "lyricsNone": "કોઈ બોલ મળ્યા નથી"
   },
   "transfer": {
     "arcTitle": "Arc પર USDC મોકલો",

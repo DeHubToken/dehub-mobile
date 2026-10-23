@@ -4741,7 +4741,10 @@
     "play": "Abspielen",
     "pause": "Pause",
     "listens_one": "{{count}} Wiedergabe",
-    "listens_other": "{{count}} Wiedergaben"
+    "listens_other": "{{count}} Wiedergaben",
+    "lyrics": "Songtext",
+    "lyricsLoading": "Songtext wird gesucht…",
+    "lyricsNone": "Kein Songtext gefunden"
   },
   "transfer": {
     "arcTitle": "USDC auf Arc senden",

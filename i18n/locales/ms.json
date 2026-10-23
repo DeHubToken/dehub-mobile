@@ -4894,7 +4894,10 @@
     "play": "Main",
     "pause": "Jeda",
     "listens_one": "{{count}} dengar",
-    "listens_other": "{{count}} mendengar"
+    "listens_other": "{{count}} mendengar",
+    "lyrics": "Lirik",
+    "lyricsLoading": "Mencari lirik…",
+    "lyricsNone": "Tiada lirik ditemui"
   },
   "transfer": {
     "arcTitle": "Hantar USDC di Arc",

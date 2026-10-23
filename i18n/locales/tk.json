@@ -4616,7 +4616,10 @@
     "play": "Oynat",
     "pause": "Galanlar",
     "listens_one": "{{count}} gulak asyň",
-    "listens_other": "{{count}} diňleýär"
+    "listens_other": "{{count}} diňleýär",
+    "lyrics": "Aýdymyň sözleri",
+    "lyricsLoading": "Sözler gözlenýär…",
+    "lyricsNone": "Söz tapylmady"
   },
   "transfer": {
     "arcTitle": "Arc-da USDC iber",

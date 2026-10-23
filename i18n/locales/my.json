@@ -4624,7 +4624,10 @@
     "play": "ကစားပါ",
     "pause": "ခေတ္တရပ်နားပါ",
     "listens_one": "{{count}} နားထောင်ပါ",
-    "listens_other": "{{count}} နားထောင်သည်"
+    "listens_other": "{{count}} နားထောင်သည်",
+    "lyrics": "သီချင်းစာသား",
+    "lyricsLoading": "စာသားရှာနေသည်…",
+    "lyricsNone": "စာသားမတွေ့ပါ"
   },
   "transfer": {
     "arcTitle": "Arc ပေါ်တွင် USDC ပို့ရန်",

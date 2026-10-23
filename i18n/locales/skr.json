@@ -4618,7 +4618,10 @@
     "play": "چلاؤ",
     "pause": "موقوف کرو",
     "listens_one": "{{count}} سنو",
-    "listens_other": "{{count}} سنے"
+    "listens_other": "{{count}} سنے",
+    "lyrics": "گیت دے بول",
+    "lyricsLoading": "بول لبھ رہے ہیں…",
+    "lyricsNone": "کوئی بول نہیں لبھے"
   },
   "transfer": {
     "arcTitle": "Arc تے USDC بھیجو",

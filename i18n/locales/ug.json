@@ -4618,7 +4618,10 @@
     "play": "قويۇش",
     "pause": "توختىتىش",
     "listens_one": "{{count}} ئاڭلايدۇ",
-    "listens_other": "{{count}} ئاڭلايدۇ"
+    "listens_other": "{{count}} ئاڭلايدۇ",
+    "lyrics": "ناخشا تېكىستى",
+    "lyricsLoading": "تېكىست ئىزدەۋاتىدۇ…",
+    "lyricsNone": "تېكىست تېپىلمىدى"
   },
   "transfer": {
     "arcTitle": "Arc دا USDC يوللاش",

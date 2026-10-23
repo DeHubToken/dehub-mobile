@@ -5175,7 +5175,10 @@
     "pause": "Pauzeren",
     "listens_one": "{{count}} keer beluisterd",
     "listens_other": "{{count}} keer beluisterd",
-    "visualizerColour": "Kleur van de visualisatie"
+    "visualizerColour": "Kleur van de visualisatie",
+    "lyrics": "Songtekst",
+    "lyricsLoading": "Songtekst zoeken…",
+    "lyricsNone": "Geen songtekst gevonden"
   },
   "transfer": {
     "arcTitle": "USDC versturen op Arc",

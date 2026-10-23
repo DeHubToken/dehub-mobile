@@ -4625,7 +4625,10 @@
     "play": "ప్లే చేయండి",
     "pause": "పాజ్ చేయండి",
     "listens_one": "{{count}} వినండి",
-    "listens_other": "{{count}} వింటుంది"
+    "listens_other": "{{count}} వింటుంది",
+    "lyrics": "పాట సాహిత్యం",
+    "lyricsLoading": "సాహిత్యం వెతుకుతోంది…",
+    "lyricsNone": "సాహిత్యం దొరకలేదు"
   },
   "transfer": {
     "arcTitle": "Arc లో USDC పంపండి",

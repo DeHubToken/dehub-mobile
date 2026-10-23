@@ -4635,7 +4635,10 @@
     "play": "Jugar",
     "pause": "Pausa",
     "listens_one": "{{count}} escolta",
-    "listens_other": "{{count}} escolta"
+    "listens_other": "{{count}} escolta",
+    "lyrics": "Lletra",
+    "lyricsLoading": "Cercant la lletra…",
+    "lyricsNone": "No s'ha trobat la lletra"
   },
   "transfer": {
     "arcTitle": "Envia USDC a Arc",

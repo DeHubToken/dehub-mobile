@@ -4635,7 +4635,10 @@
     "play": "Redare",
     "pause": "Pauză",
     "listens_one": "{{count}} ascultă",
-    "listens_other": "{{count}} ascultări"
+    "listens_other": "{{count}} ascultări",
+    "lyrics": "Versuri",
+    "lyricsLoading": "Căutăm versurile…",
+    "lyricsNone": "Nu am găsit versuri"
   },
   "transfer": {
     "arcTitle": "Trimite USDC pe Arc",

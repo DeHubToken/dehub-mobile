@@ -4654,7 +4654,10 @@
     "play": "เล่น",
     "pause": "หยุดชั่วคราว",
     "listens_one": "{{count}} ฟัง",
-    "listens_other": "{{count}} ฟัง"
+    "listens_other": "{{count}} ฟัง",
+    "lyrics": "เนื้อเพลง",
+    "lyricsLoading": "กำลังหาเนื้อเพลง…",
+    "lyricsNone": "ไม่พบเนื้อเพลง"
   },
   "transfer": {
     "arcTitle": "ส่ง USDC บน Arc",

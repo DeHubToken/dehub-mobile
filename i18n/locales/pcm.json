@@ -7686,7 +7686,10 @@
     "listens_other": "{{count}} listens",
     "popOut": "Pop am out — continue to listen while you dey browse",
     "closeCornerPlayer": "Close di corner player",
-    "stopAndClose": "Stop am and close the player"
+    "stopAndClose": "Stop am and close the player",
+    "lyrics": "Song words",
+    "lyricsLoading": "Dey find song words…",
+    "lyricsNone": "No song words dey"
   },
   "banned": {
     "reason": "Reason: {{reason}}",

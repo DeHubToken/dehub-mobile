@@ -4614,7 +4614,10 @@
     "play": "වාදනය කරන්න",
     "pause": "විරාමය",
     "listens_one": "{{count}} ඇහුම්කන් දෙන්න",
-    "listens_other": "{{count}} ඇහුම්කන් දීම"
+    "listens_other": "{{count}} ඇහුම්කන් දීම",
+    "lyrics": "ගී පද",
+    "lyricsLoading": "ගී පද සොයමින්…",
+    "lyricsNone": "ගී පද හමු නොවීය"
   },
   "transfer": {
     "arcTitle": "Arc හි USDC යවන්න",

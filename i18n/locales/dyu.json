@@ -4598,7 +4598,10 @@
     "play": "Plɛɛ",
     "pause": "Pɔɔz",
     "listens_one": "{{count}} lisɛŋ",
-    "listens_other": "{{count}} lisɛŋs"
+    "listens_other": "{{count}} lisɛŋs",
+    "lyrics": "Dɔnkili kumaw",
+    "lyricsLoading": "Dɔnkili kumaw bɛ ɲinina…",
+    "lyricsNone": "Dɔnkili kuma si ma sɔrɔ"
   },
   "transfer": {
     "arcTitle": "USDC ci Arc kan",
