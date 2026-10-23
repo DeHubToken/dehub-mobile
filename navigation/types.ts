@@ -226,7 +226,7 @@ export type AppStackParamList = {
   /** `slug` keys into miniapp_apps; `from` is the launch source the app sees. */
   [ScreenNames.MiniApp]: { slug: string; from?: string; url?: string; query?: string };
   [ScreenNames.MiniAppDev]: { url: string; name?: string };
-  [ScreenNames.Events]: undefined;
+  [ScreenNames.Events]: { eventNumber?: string } | undefined;
   [ScreenNames.Stages]: undefined;
   /** `space` paints the page at once; the row is still re-read by `spaceId`. */
   [ScreenNames.StageRecording]: { spaceId: string; space?: AudioSpace };
