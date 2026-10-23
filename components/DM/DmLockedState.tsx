@@ -49,7 +49,7 @@ const DmLockedStateComponent: React.FC<DmLockedStateProps> = ({ status, busy, pe
     <Animated.View
       entering={FadeIn.duration(200)}
       accessibilityLiveRegion="polite"
-      className="flex-1 items-center justify-center px-8 pb-10"
+      style={{ flex: 1, alignItems: "center", justifyContent: "center", paddingHorizontal: 32, paddingBottom: 40 }}
     >
       <View style={{ width: 78, height: 64, marginBottom: 14 }}>
         <View style={{ position: "absolute", left: 0, top: 0 }}>
