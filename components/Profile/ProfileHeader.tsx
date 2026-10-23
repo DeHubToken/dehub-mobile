@@ -49,6 +49,7 @@ import { ShareLinks } from "../../navigation/linking.config";
 import { translateText, getUserLanguage } from "../../services/translation.service";
 import { TranslateButton } from "../ui/TranslateButton";
 import NewMemberChip from "../common/NewMemberChip";
+import ImageViewerModal from "../common/ImageViewerModal";
 import BadgePatronChip from "../common/BadgePatronChip";
 import TotalReachPill from "./TotalReachPill";
 import ProfileLinksPill from "./ProfileLinksPill";
@@ -178,16 +179,11 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
     await shareProfile(url, message);
   }, [username, address]);
 
-  const openViewer = useCallback(
-    (uri?: string) => {
-      if (!uri) return;
-      (navigation as any).navigate(ScreenNames.ImageViewer, {
-        images: [uri],
-        initialIndex: 0,
-      });
-    },
-    [navigation]
-  );
+  // In place, as on other people's profiles, rather than a pushed screen.
+  const [viewerImages, setViewerImages] = useState<string[] | null>(null);
+  const openViewer = useCallback((uri?: string) => {
+    if (uri) setViewerImages([uri]);
+  }, []);
 
   const goToFollowList = useCallback(
     (tab: "followers" | "following") => {
@@ -554,6 +550,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
         onClose={() => setCopyAddressVisible(false)}
         evmAddress={address}
       />
+      <ImageViewerModal images={viewerImages} onClose={() => setViewerImages(null)} />
     </View>
   );
 };
