@@ -2563,6 +2563,10 @@
     "legal": "Shortet e çmimeve janë promovuese dhe të hapura për mbajtësit e llogarisë DeHub të moshës 18 vjeç e lart, të pavlefshme aty ku ligji lokal i ndalon ato. Stafi i DeHub, kontraktorët dhe familjet e tyre nuk kualifikohen. Çmimet nuk mund të shkëmbehen për para në dorë nëse nuk thuhet ndryshe, dhe shpallja e secilit short përmban kushtet e tij të plota."
   },
   "dao": {
+    "votingPowerNote": "Votimi zgjat 7 ditë. Fuqia e votimit është kontributi kumulativ i tokenave të secilit kontribues kur hapet kjo propozim. Të paktën 10% duhet të marrin pjesë dhe Prano duhet të tejkalojë Refuzo.",
+    "tokenAmount": "Sasia e tokenave",
+    "pricePerTokenUsd": "Çmimi për token (USD)",
+    "offerToBuyTokens": "Ofertë për të blerë tokena DeHub",
     "title": "Thesari i DAO",
     "subtitle": "Një portofol, i financuar nga komuniteti, i shpenzuar nga vota e tij",
     "contribute": "Kontribuo",

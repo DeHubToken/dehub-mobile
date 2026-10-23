@@ -2565,6 +2565,10 @@
     "legal": "Undian hadiah bersifat promosi dan terbuka untuk pemegang akun DeHub yang berusia 18 tahun ke atas, tidak berlaku jika undang - undang setempat melarangnya. Staf DeHub, kontraktor, dan rumah tangga mereka tidak memenuhi syarat. Hadiah tidak dapat ditukar dengan uang tunai kecuali dinyatakan, dan pengumuman masing - masing undian membawa syarat lengkapnya."
   },
   "dao": {
+    "votingPowerNote": "Pemungutan suara berlangsung selama 7 hari. Kekuatan pemungutan suara adalah kontribusi token kumulatif setiap kontributor saat proposal ini dibuka. Setidaknya 10% harus berpartisipasi dan Terima harus mengalahkan Tolak.",
+    "tokenAmount": "Jumlah token",
+    "pricePerTokenUsd": "Harga per token (USD)",
+    "offerToBuyTokens": "Tawarkan untuk membeli token DeHub",
     "title": "Perbendaharaan DAO",
     "subtitle": "Satu dompet, didanai oleh komunitas, dibelanjakan atas pemungutan suara mereka",
     "contribute": "Berkontribusi",

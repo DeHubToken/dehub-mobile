@@ -2555,6 +2555,10 @@
     "legal": "Premio sorteokuna promocional kanku chaymanta DeHub cuentayuqkunapaq kichasqa kanku 18 watayuq utaq aswan watayuq, mana valeq maypichus llaqta kamachiy harkan. DeHub llamkaqkuna, contratistakuna chaymanta wasinku mana allinchu kanku. Premiokuna manan qolqewan cambiasqachu kanman mana nisqa kaqtinqa, sapa sorteo nisqapa kikin willakuyninqa hunt’asqa términos nisqakunatan apamun."
   },
   "dao": {
+    "votingPowerNote": "Votacionqa 7 punchawmi. Votacion atiyqa sapa yanapakuqpa token qullqi qusqanmi kay propuesta kicharikuptin. Al menos 10% participananku tiyan chaymanta Aceptar atipanan tiyan Rejetar.",
+    "tokenAmount": "Token nisqa qullqi",
+    "pricePerTokenUsd": "Sapa tokenpa chanin (USD) .",
+    "offerToBuyTokens": "DeHub tokenkuna rantiyta quy",
     "title": "DAO Qullqa",
     "subtitle": "Huk qatuy, runakunamanta hunt'asqa, paykunap kamachisninwan ususqa",
     "contribute": "Qullqata Yupay",

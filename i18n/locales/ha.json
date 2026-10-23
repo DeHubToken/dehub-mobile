@@ -2553,6 +2553,10 @@
     "legal": "Zaben kyaututtuka na talla ne kuma a buɗe ga masu asusun DeHub masu shekaru 18 ko fiye, babu inganci inda doka ta ƙasa ta haramta su. Ma’aikatan DeHub, kwangiloli da iyalansu ba su cancanta ba. Ba za a iya musanya kyaututtuka da kuɗi ba sai an bayyana, kuma kowanne sanarwar zabe tana ɗauke da cikakken sharuɗɗanta."
   },
   "dao": {
+    "votingPowerNote": "Ƙididdigar jefa ƙuri'a tana ɗaukar kwanaki 7. Ƙarfin jefa ƙuri'a shine gudummawar token da aka tara na kowane mai ba da gudummawa lokacin da wannan tayin ya buɗe. Dole ne aƙalla 10% su shiga kuma Karɓa ya yi nasara akan Ƙi.",
+    "tokenAmount": "Adadin Token",
+    "pricePerTokenUsd": "Farashi a kowace token (USD)",
+    "offerToBuyTokens": "Bayar da siyan DeHub tokens",
     "title": "Gidan Kuɗi na DAO",
     "subtitle": "Wata walat, wadda al'umma ke ba da kuɗi, ana kashewa ta hanyar zaɓensu",
     "contribute": "Bayarwa",

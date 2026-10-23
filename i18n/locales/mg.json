@@ -2577,6 +2577,10 @@
     "legal": "Ny loka dia fampahafantarana sy misokatra ho an'ireo tompon'ny kaonty DeHub 18 taona na mihoatra, raha tsy misy ny lalàna mandràra azy ireo. Ny mpiasan'ny DeHub, ny mpiantoka ary ny tokantranony dia tsy mahazo alalana. Tsy azo aloa vola ny loka raha tsy voalaza, ary mitondra ny teny feno ny fanambarana manokana nataon'ny antsapaka tsirairay."
   },
   "dao": {
+    "votingPowerNote": "Ny latsa-bato dia maharitra 7 andro. Ny hery hifidianana dia ny fandraisan'anjaran'ny token isaky ny mpandray anjara rehefa misokatra ity tolo-kevitra ity. Farafahakeliny 10% no tsy maintsy mandray anjara ary ny Eny dia tsy maintsy mihoatra ny Tsia.",
+    "tokenAmount": "Habetsaky ny token",
+    "pricePerTokenUsd": "Vidin'ny token iray (USD)",
+    "offerToBuyTokens": "Manolotra hividy DeHub tokens",
     "title": "Tahirim-bolan'ny DAO",
     "subtitle": "Kitapom-bolany iray, vatsian'ny fiarahamonina vola lany tamin'ny latsa-batony",
     "contribute": "Mandray anjara",

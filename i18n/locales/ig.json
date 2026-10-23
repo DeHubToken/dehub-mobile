@@ -2554,6 +2554,10 @@
     "legal": "Nrite na-adọta bụ nkwado ma na-emeghe ka DeHub akaụntụ njide afọ 18 ma ọ bụ n 'elu, efu ebe obodo iwu machibidoro ha. Ndị ọrụ DeHub, ndị ọrụ ngo na ezinụlọ ha erughị eru. Nrite enweghị ike ịgbanwe maka ego ọ gwụla ma ekwuputara, na ọkwa nke ọ bụla na-eburu usoro ya zuru oke."
   },
   "dao": {
+    "votingPowerNote": "Ihe omume ntuli aka na-ewe ụbọchị 7. Ike ntuli aka bụ nchikota ntinye token nke onye ọ bụla nyere aka mgbe aro a meghere. Opekempe 10% ga-esonye ma Nabata ga-emerịrị Reject.",
+    "tokenAmount": "Ego token",
+    "pricePerTokenUsd": "Ọnụahịa kwa token (USD)",
+    "offerToBuyTokens": "Nye iji zụta DeHub tokens",
     "title": "Akụ̀ ego DAO",
     "subtitle": "Otu akpa ego, nke obodo kwadoro, nke votu ha na-eji",
     "contribute": "Tinye aka",

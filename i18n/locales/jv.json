@@ -2554,6 +2554,10 @@
     "legal": "Undian hadiah sifate promosi lan kabukak kanggo pemegang akun DeHub umur 18 taun utawa luwih, batal ing ngendi hukum lokal nglarang. Karyawan DeHub, kontraktor, lan kulawargané ora layak. Hadiah ora bisa ditukokaké dhuwit kajaba disebutaké, lan pangumumé saben undian nduwèni syarat lengkapé."
   },
   "dao": {
+    "votingPowerNote": "Voting tahan 7 dina. Kekuwatan voting minangka kontribusi token kumulatif saben kontributor nalika proposal iki dibukak. Minimal 10% kudu melu lan Nampa kudu ngalahake Nolak.",
+    "tokenAmount": "Jumlah token",
+    "pricePerTokenUsd": "Regane saben token (USD)",
+    "offerToBuyTokens": "Tawaran kanggo tuku token DeHub",
     "title": "Perbendaharaan DAO",
     "subtitle": "Siji dompet, dibiayai dening komunitas, dibelanjakake kanthi voting",
     "contribute": "Sumbang",

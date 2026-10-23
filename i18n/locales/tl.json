@@ -2610,6 +2610,10 @@
     "legal": "Ang mga prize draw ay promosyonal at bukas sa mga may - ari ng DeHub account na may edad na 18 pataas, na walang bisa kung saan ipinagbabawal ng lokal na batas ang mga ito. Ang mga kawani ng DeHub, mga kontratista at kanilang mga sambahayan ay hindi karapat - dapat. Ang mga premyo ay hindi mapapalitan ng cash maliban kung nakasaad, at ang sariling anunsyo ng bawat draw ay nagdadala ng buong termino nito."
   },
   "dao": {
+    "votingPowerNote": "Ang pagboto ay tumatagal ng 7 araw. Ang kapangyarihan sa pagboto ay ang pinagsama-samang kontribusyon ng token ng bawat kontribyutor kapag nagbukas ang panukalang ito. Hindi bababa sa 10% ang dapat lumahok at ang Pabor ay dapat talunin ang Tutol.",
+    "tokenAmount": "Dami ng token",
+    "pricePerTokenUsd": "Presyo bawat token (USD)",
+    "offerToBuyTokens": "Mag-alok na bumili ng DeHub tokens",
     "title": "Kaban ng DAO",
     "subtitle": "Isang wallet, pinondohan ng komunidad, ginastos sa pamamagitan ng boto nito",
     "contribute": "Mag-ambag",

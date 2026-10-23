@@ -2563,6 +2563,10 @@
     "legal": "Palkintoarvonnat ovat myynninedistämistarkoituksessa järjestettyjä, ja ne ovat avoinna vähintään 18-vuotiaille DeHub-tilin haltijoille. Ne mitätöidään, jos paikallinen DeHubin henkilökunta, urakoitsijat ja heidän kotitaloutensa eivät ole kelpuutettuja. Palkintoja ei voi vaihtaa rahaksi, ellei toisin mainita, ja jokaisen arvonnan oma ilmoitus sisältää sen täydet ehdot."
   },
   "dao": {
+    "votingPowerNote": "Äänestys kestää 7 päivää. Äänestysvalta on kunkin osallistujan kumulatiivinen token-panos, kun tämä ehdotus avautuu. Vähintään 10 % on osallistuttava ja Hyväksy-äänten on voitettava Hylkää-äänet.",
+    "tokenAmount": "Token-määrä",
+    "pricePerTokenUsd": "Hinta per token (USD)",
+    "offerToBuyTokens": "Tarjoudu ostamaan DeHub-tokeneita",
     "title": "DAO:n kassaholvi",
     "subtitle": "Yksi lompakko, yhteisön rahoittama, sen äänestyksen perusteella käytetty",
     "contribute": "Osallistu",

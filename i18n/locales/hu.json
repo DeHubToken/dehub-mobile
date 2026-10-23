@@ -2567,6 +2567,10 @@
     "legal": "A nyereménysorsolások promóciós jellegűek, és a DeHub legalább 18 éves fióktulajdonosai számára nyithatók meg, és a helyi jogszabályok által tiltott esetekben érvénytelenek. A DeHub munkatársai, vállalkozói és háztartásaik nem jogosultak a részvételre. A nyeremények nem cserélhetők készpénzre, kivéve, ha fel vannak tüntetve, és minden egyes sorsolás saját bejelentése a teljes feltételeit hordozza."
   },
   "dao": {
+    "votingPowerNote": "A szavazás 7 napig tart. A szavazati jog az egyes közreműködők összesített token-hozzájárulása az ajánlat megnyitásakor. Legalább 10% -nak részt kell vennie, és az Elfogadásnak meg kell előznie az Elutasítást.",
+    "tokenAmount": "Token összege",
+    "pricePerTokenUsd": "Tokenenkénti ár (USD)",
+    "offerToBuyTokens": "Ajánlat DeHub tokenek vásárlására",
     "title": "DAO Kincstár",
     "subtitle": "Egy tárca, a közösség által finanszírozva, a szavazata által költve",
     "contribute": "Hozzájárulás",

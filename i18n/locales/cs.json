@@ -2567,6 +2567,10 @@
     "legal": "Slosování o ceny jsou propagační a otevřená pro majitele účtů DeHub ve věku 18 let a více, neplatná tam, kde to místní zákony zakazují. Zaměstnanci společnosti DeHub, dodavatelé a jejich domácnosti nejsou způsobilí. Výhry nelze vyměnit za hotovost, pokud není uvedeno jinak, a vlastní oznámení každého slosování má své plné podmínky."
   },
   "dao": {
+    "votingPowerNote": "Hlasování trvá 7 dní. Hlasovací síla je kumulativní příspěvek tokenů každého přispěvatele, když se tento návrh otevře. Musí se zúčastnit alespoň 10 % a Přijmout musí převážit Odmítnout.",
+    "tokenAmount": "Množství tokenů",
+    "pricePerTokenUsd": "Cena za token (USD)",
+    "offerToBuyTokens": "Nabídka nákupu tokenů DeHub",
     "title": "Pokladna DAO",
     "subtitle": "Jedna peněženka financovaná komunitou, utrácená jejím hlasováním",
     "contribute": "Přispějte",

@@ -2618,6 +2618,10 @@
     "legal": "Verlosungen sind werbewirksam und offen für DeHub-Kontoinhaber ab 18 Jahren. Sie sind ungültig, wenn lokale Gesetze dies verbieten. DeHub-Mitarbeiter, Auftragnehmer und deren Haushalte sind nicht teilnahmeberechtigt. Die Preise können nicht gegen Bargeld eingetauscht werden, es sei denn, dies ist angegeben, und die Ankündigung jeder Ziehung trägt ihre vollen Bedingungen."
   },
   "dao": {
+    "votingPowerNote": "Die Abstimmung dauert 7 Tage. Die Stimmkraft ist der kumulative Token-Beitrag jedes Teilnehmers, wenn dieser Vorschlag geöffnet wird. Mindestens 10 % müssen teilnehmen und Akzeptieren muss Ablehnen schlagen.",
+    "tokenAmount": "Token-Betrag",
+    "pricePerTokenUsd": "Preis pro Token (USD)",
+    "offerToBuyTokens": "Angebot zum Kauf von DeHub-Tokens",
     "title": "DAO-Schatzkammer",
     "subtitle": "Eine Wallet, finanziert von der Community, ausgegeben nach deren Abstimmung",
     "contribute": "Beitragen",

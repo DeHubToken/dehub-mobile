@@ -2553,6 +2553,10 @@
     "faq5A": "Bäzi DeHub hesabýna sahip, 18 ýaşdan böýük, oýnýýýn yasaýlaýan yerde yaýan her kesi. DeHub işçileri, kontraktorlar ve onlarýn aileleri elverişsizdir, oýnýýýn yerel yasa qoymagan yerlerdege boþdur."
   },
   "dao": {
+    "votingPowerNote": "Ses bermek 7 gün dowam edýär. Ses bermek güýji, bu teklip açylanda her gatnaşyjynyň jemlenen token goşandy. Iň az 10% gatnaşmaly we \"Kabul et\" \"Ýok\"dan köp bolmaly.",
+    "tokenAmount": "Token mukdary",
+    "pricePerTokenUsd": "Token üçin bahasy (USD)",
+    "offerToBuyTokens": "DeHub tokenlerini satyn almagy teklip ediň",
     "title": "DAO hazynasy",
     "subtitle": "Jemgyýet tarapyndan maliýeleşdirilýän, ses bermek arkaly harçlanýan bir gap",
     "contribute": "Goşant goş",
