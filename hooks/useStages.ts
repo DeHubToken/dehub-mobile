@@ -1040,8 +1040,12 @@ export function useStages(): UseStagesReturn {
           const updated = payload.new as AudioSpace;
           if (updated.status === "ended") {
             // Silent for 30 minutes means the server closed it, not the host.
-            const lastSpoke = updated.last_speech_at || updated.started_at;
-            if (lastSpoke && Date.now() - new Date(lastSpoke).getTime() >= 29 * 60_000) {
+            // Silence from before the stage went live does not count.
+            const lastSpoke = Math.max(
+              updated.last_speech_at ? new Date(updated.last_speech_at).getTime() : 0,
+              updated.started_at ? new Date(updated.started_at).getTime() : 0,
+            );
+            if (lastSpoke > 0 && Date.now() - lastSpoke >= 29 * 60_000) {
               toastInfo(t("stages.autoEnd.title"), {
                 description: t("stages.autoEnd.description", { title: updated.title }),
               });
@@ -1262,6 +1266,9 @@ export function useStages(): UseStagesReturn {
             // a scheduled stage is whenever it was announced. Stamp the real
             // start so duration and the recorded list stay honest.
             started_at: new Date().toISOString(),
+            // last_speech_at was stamped at announcement too, so the 30-minute
+            // idle sweep ended the stage within minutes of going live.
+            last_speech_at: new Date().toISOString(),
             speaker_count: 1,
           })
           .eq("id", spaceId)
