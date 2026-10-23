@@ -4510,6 +4510,7 @@
     "filedOn": "Abierto el {{date}}"
   },
   "stages": {
+    "allStages": "Todas las salas de audio",
     "addToCalendar": "Añadir al calendario",
     "nowPlaying": "Sonando ahora",
     "onTheRadio": "En la radio",

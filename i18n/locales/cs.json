@@ -4153,6 +4153,7 @@
     "noVoice": "Vaše zařízení nemá hlas pro tento jazyk."
   },
   "stages": {
+    "allStages": "Všechny audio místnosti",
     "addToCalendar": "Přidat do kalendáře",
     "nowPlaying": "Nyní se přehrává",
     "onTheRadio": "V rádiu",

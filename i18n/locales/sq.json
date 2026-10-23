@@ -4150,6 +4150,7 @@
     "noVoice": "Pajisja juaj nuk ka zë për këtë gjuhë."
   },
   "stages": {
+    "allStages": "Të gjitha dhomat audio",
     "addToCalendar": "Shtoni në kalendar",
     "nowPlaying": "Tani në lojë",
     "onTheRadio": "Në radio",

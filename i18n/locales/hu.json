@@ -4154,6 +4154,7 @@
     "noVoice": "Az eszközödön nincs hang ehhez a nyelvhez."
   },
   "stages": {
+    "allStages": "Összes hangszoba",
     "addToCalendar": "Hozzáadás a naptárhoz",
     "nowPlaying": "Jelenleg lejátszás alatt",
     "onTheRadio": "A rádióban",

@@ -4258,6 +4258,7 @@
     "noVoice": "Vaše zariadenie nemá hlas pre tento jazyk."
   },
   "stages": {
+    "allStages": "Všetky audio miestnosti",
     "addToCalendar": "Pridať do kalendára",
     "nowPlaying": "Hralo sa",
     "onTheRadio": "Na rádií",

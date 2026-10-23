@@ -4195,6 +4195,7 @@
     "filedOn": "提交于 {{date}}"
   },
   "stages": {
+    "allStages": "全部语音房",
     "addToCalendar": "添加到日历",
     "nowPlaying": "正在播放",
     "onTheRadio": "电台播放中",

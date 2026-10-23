@@ -4138,6 +4138,7 @@
     "noVoice": "你的设备没有这种语言的语音。"
   },
   "stages": {
+    "allStages": "所有语音房",
     "addToCalendar": "添加到日历",
     "nowPlaying": "正在播放",
     "onTheRadio": "在广播中",

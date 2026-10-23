@@ -17,7 +17,7 @@
 
 import React, { useCallback, useState } from "react";
 import { KeyboardAvoidingView, ScrollView, Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useRoute, type RouteProp } from "@react-navigation/native";
+import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -25,7 +25,7 @@ import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import { DeHubLoader } from "../components/DeHubLoader";
-import { PageSection } from "../components/page/PageKit";
+import { PageSection, ThemeIcon } from "../components/page/PageKit";
 import StageCoverArt from "../components/Stages/StageCoverArt";
 import StageRecordingPlayer from "../components/Stages/StageRecordingPlayer";
 import { HostRow, formatStageDate, stageDuration } from "../components/Stages/StageCards";
@@ -44,6 +44,7 @@ type Route = RouteProp<AppStackParamList, ScreenNames.StageRecording>;
 export default function StageRecordingScreen() {
   const { t } = useTranslation();
   const { params } = useRoute<Route>();
+  const nav = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const { isMinimal } = useAppTheme();
   const [transcriptOpen, setTranscriptOpen] = useState(false);
@@ -99,9 +100,21 @@ export default function StageRecordingScreen() {
           {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
 
           <View style={styles.body}>
-            <View style={[styles.chip, isMinimal && styles.outline]}>
-              <Icon name="Clock" size={12} color="#D4D4D8" />
-              <Text style={styles.chipText}>{t("stages.ended")}</Text>
+            <View style={styles.chipRow}>
+              <View style={[styles.chip, isMinimal && styles.outline]}>
+                <Icon name="Clock" size={12} color="#D4D4D8" />
+                <Text style={styles.chipText}>{t("stages.ended")}</Text>
+              </View>
+              {/* Back to the whole list, in the card's empty top-right corner. */}
+              <TouchableOpacity
+                onPress={() => nav.navigate(ScreenNames.Stages)}
+                style={[styles.chip, isMinimal && styles.outline]}
+                accessibilityRole="link"
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <ThemeIcon icon="stages" size={14} />
+                <Text style={styles.chipText}>{t("stages.allStages")}</Text>
+              </TouchableOpacity>
             </View>
 
             <Text style={styles.title}>{space.title}</Text>
@@ -207,6 +220,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.md,
     backgroundColor: "rgba(255,255,255,0.1)",
   },
+  chipRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 8 },
   chipText: { color: "#D4D4D8", fontSize: 11, fontWeight: "600" },
   outline: { backgroundColor: "transparent", borderWidth: 1, borderColor: "rgba(255,255,255,0.18)" },
   title: { color: "#FFFFFF", fontSize: 22, fontWeight: "700", lineHeight: 28 },

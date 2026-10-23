@@ -4141,6 +4141,7 @@
     "noVoice": "ئۈسكۈنىڭىزدە بۇ تىل ئۈچۈن ئاۋاز يوق."
   },
   "stages": {
+    "allStages": "بارلىق ئاۋازلىق ئۆيلەر",
     "addToCalendar": "Takvimga qo'shing",
     "nowPlaying": "ھازىر ئوينىماقتا",
     "onTheRadio": "رادىيودا",

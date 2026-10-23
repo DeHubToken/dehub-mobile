@@ -4256,6 +4256,7 @@
     "filedOn": "Eingereicht am {{date}}"
   },
   "stages": {
+    "allStages": "Alle Audioräume",
     "addToCalendar": "Zum Kalender hinzufügen",
     "nowPlaying": "Wird gerade abgespielt",
     "onTheRadio": "Im Radio",

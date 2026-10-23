@@ -4150,6 +4150,7 @@
     "noVoice": "Vaš uređaj nema glas za ovaj jezik."
   },
   "stages": {
+    "allStages": "Sve audio sobe",
     "addToCalendar": "Dodajte u kalendar",
     "nowPlaying": "Sada se reproducira",
     "onTheRadio": "Na radiju",

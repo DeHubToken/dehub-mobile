@@ -4161,6 +4161,7 @@
     "noVoice": "तोहर डिवाइस में ई भाषा ले कोनो आवाज़ नखे।"
   },
   "stages": {
+    "allStages": "سب آڈیو روم",
     "addToCalendar": "به تقویم اضافه کن",
     "subtitles": "Subtitles",
     "subtitlesIn": "Subtitles · {{language}}",

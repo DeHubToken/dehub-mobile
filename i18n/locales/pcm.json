@@ -4074,6 +4074,7 @@
     "noVoice": "Your phone no get voice for dis language."
   },
   "stages": {
+    "allStages": "All Audio room dem",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
     "onTheRadio": "On the radio",

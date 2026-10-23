@@ -4164,6 +4164,7 @@
     "noVoice": "መሣሪያዎ ለዚህ ቋንቋ ድምፅ የለውም።"
   },
   "stages": {
+    "allStages": "ሁሉም የድምፅ ክፍሎች",
     "addToCalendar": "ወደ የቀን መቁጠሪያ ያክሉ",
     "nowPlaying": "አሁን በመጫወት ላይ",
     "onTheRadio": "በሬዲዮ ላይ",
