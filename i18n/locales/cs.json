@@ -2839,6 +2839,8 @@
     "yourFractions": "Vlastníte {{count}} zlomků z {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopírovat odkaz na RSS kanál",
+    "copyRssFeedHint": "Sledujte tyto příspěvky v libovolné čtečce kanálů",
     "copyProfileUrl": "Kopírovat URL profilu",
     "copyUsername": "Kopírovat uživatelské jméno",
     "copyAddress": "Kopírovat adresu",

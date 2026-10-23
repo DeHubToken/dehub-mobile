@@ -2826,6 +2826,8 @@
     "yourFractions": "คุณถือ {{count}} ใน {{total}} ส่วน"
   },
   "profileOptions": {
+    "copyRssFeed": "คัดลอกลิงก์ฟีด RSS",
+    "copyRssFeedHint": "ติดตามโพสต์เหล่านี้ในแอปอ่านฟีดใดกะได้",
     "copyProfileUrl": "คัดลอก URL โปรไฟล์",
     "copyUsername": "คัดลอกชื่อผู้ใช้",
     "copyAddress": "คัดลอกที่อยู่",

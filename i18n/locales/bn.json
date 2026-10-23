@@ -2834,6 +2834,8 @@
     "yourFractions": "আপনি {{total}} ভগ্নাংশের {{count}} অংশ ধারণ করেন"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ফিড লিংক কপি করুন",
+    "copyRssFeedHint": "যেকোনো ফিড রিডারে এই পোস্টগুলো অনুসরণ করুন",
     "copyProfileUrl": "প্রোফাইল URL কপি করুন",
     "copyUsername": "ব্যবহারকারীর নাম কপি করুন",
     "copyAddress": "ঠিকানা কপি করুন",

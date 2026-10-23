@@ -2996,6 +2996,8 @@
     "yourFractions": "আপনার কাছে {{total}}-টার মাঝে {{count}}-টা ফ্র্যাকশন আছে"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ফিড লিংক কপি করো",
+    "copyRssFeedHint": "যেকোনো ফিড রিডারো এই পোস্টগুলা ফলো করো",
     "copyProfileUrl": "প্রোফাইল URL কপি করো",
     "copyUsername": "ইউজারনেম কপি করো",
     "copyAddress": "ঠিকানা কপি করো",

@@ -2813,6 +2813,8 @@
     "yourFractions": "Сиз {{total}} фракциянын {{count}} бөлүгүнө ээлик кыласыз"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS тасмасынын шилтемесин көчүрүү",
+    "copyRssFeedHint": "Бул жазууларды каалаган тасма окугучта көзөмөлдөңүз",
     "copyProfileUrl": "Профиль URL көчүрүү",
     "copyUsername": "Колдонуучу атын көчүрүү",
     "copyAddress": "Даректи көчүрүү",

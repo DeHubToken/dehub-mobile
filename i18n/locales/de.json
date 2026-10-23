@@ -2890,6 +2890,8 @@
     "yourFractions": "Sie halten {{count}} von {{total}} Bruchteilen"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-Feed-Link kopieren",
+    "copyRssFeedHint": "Folge diesen Beiträgen in jedem Feedreader",
     "copyProfileUrl": "Profil-URL kopieren",
     "copyUsername": "Benutzername kopieren",
     "copyAddress": "Adresse kopieren",

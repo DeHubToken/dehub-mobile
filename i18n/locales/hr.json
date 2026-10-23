@@ -2827,6 +2827,8 @@
     "yourFractions": "Posjedujete {{count}} od {{total}} udjela"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiraj poveznicu RSS feeda",
+    "copyRssFeedHint": "Pratite ove objave u bilo kojem čitaču feedova",
     "copyProfileUrl": "Kopiraj URL profila",
     "copyUsername": "Kopiraj korisničko ime",
     "copyAddress": "Kopiraj adresu",

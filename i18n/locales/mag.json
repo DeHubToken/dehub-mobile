@@ -2826,6 +2826,8 @@
     "yourFractions": "तs {{count}} फ्रैक्शन में से {{total}} फ्रैक्शन के मालिक हई"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS फीड लिंक कॉपी करीं",
+    "copyRssFeedHint": "ई पोस्ट सब के कउनो फीड रीडर में फॉलो करीं",
     "copyProfileUrl": "प्रोफाइल URL कॉपी करीं",
     "copyUsername": "यूजरनेम कॉपी करीं",
     "copyAddress": "पता कॉपी करीं",

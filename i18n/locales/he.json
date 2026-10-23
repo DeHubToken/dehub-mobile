@@ -2835,6 +2835,8 @@
     "yourFractions": "אתה מחזיק {{count}} מתוך {{total}} חלקים"
   },
   "profileOptions": {
+    "copyRssFeed": "העתק קישור לפיד RSS",
+    "copyRssFeedHint": "עקבו אחרי הפוסטים האלה בכל קורא פידים",
     "copyProfileUrl": "העתק קישור לפרופיל",
     "copyUsername": "העתק שם משתמש",
     "copyAddress": "העתק כתובת",

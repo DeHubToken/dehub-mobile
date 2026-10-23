@@ -2826,6 +2826,8 @@
     "yourFractions": "आप {{total}} अंशों में से {{count}} अंश रखते हैं"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS फ़ीड लिंक कॉपी करीं",
+    "copyRssFeedHint": "ई पोस्ट सभ के कवनो फ़ीड रीडर में फॉलो करीं",
     "copyProfileUrl": "प्रोफ़ाइल URL कॉपी करीं",
     "copyUsername": "यूज़रनेम कॉपी करीं",
     "copyAddress": "पता कॉपी करीं",

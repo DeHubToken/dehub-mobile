@@ -2817,6 +2817,8 @@
     "yourFractions": "توهان {{total}} حصن مان {{count}} حصا رکو ٿا"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS فيڊ لنڪ ڪاپي ڪريو",
+    "copyRssFeedHint": "اهي پوسٽون ڪنهن به فيڊ ريڊر ۾ فالو ڪريو",
     "copyProfileUrl": "پروفائل URL ڪاپي ڪريو",
     "copyUsername": "يوزرنيم ڪاپي ڪريو",
     "copyAddress": "ايڊريس ڪاپي ڪريو",

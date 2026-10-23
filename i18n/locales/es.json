@@ -3143,6 +3143,8 @@
     "yourFractions": "Tienes {{count}} de {{total}} fracciones"
   },
   "profileOptions": {
+    "copyRssFeed": "Copiar enlace del feed RSS",
+    "copyRssFeedHint": "Sigue estas publicaciones en cualquier lector de feeds",
     "copyProfileUrl": "Copiar URL del perfil",
     "copyUsername": "Copiar nombre de usuario",
     "copyAddress": "Copiar dirección",

@@ -2857,6 +2857,8 @@
     "yourFractions": "Du hesch {{count}} vo {{total}} Bruchteile"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-Feed-Link kopiere",
+    "copyRssFeedHint": "Folg dene Biiträg i jedem Feedreader",
     "copyProfileUrl": "Profil-URL kopiere",
     "copyUsername": "Benutzername kopiere",
     "copyAddress": "Adrässe kopiere",

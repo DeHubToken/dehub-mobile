@@ -2826,6 +2826,8 @@
     "yourFractions": "تُساں {{count}} دے {{total}} فریکشنز رَکّھدے پئے او"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS فیڈ لنک کاپی کرو",
+    "copyRssFeedHint": "ایہ پوسٹاں کہیں وی فیڈ ریڈر وچ فالو کرو",
     "copyProfileUrl": "پروفائل URL کاپی کرو",
     "copyUsername": "یوزرنیم کاپی کرو",
     "copyAddress": "پتہ کاپی کرو",

@@ -2839,6 +2839,8 @@
     "yourFractions": "{{total}}개 프랙션 중 {{count}}개를 보유하고 있습니다"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS 피드 링크 복사",
+    "copyRssFeedHint": "아무 피드 리더에서나 이 게시물을 팔로우하세요",
     "copyProfileUrl": "프로필 URL 복사",
     "copyUsername": "사용자 이름 복사",
     "copyAddress": "주소 복사",

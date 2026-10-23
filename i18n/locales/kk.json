@@ -2840,6 +2840,8 @@
     "yourFractions": "Сізде {{count}} бөлшектің {{total}} бөлігі бар"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS арнасының сілтемесін көшіру",
+    "copyRssFeedHint": "Бұл жазбаларды кез келген арна оқырманында бақылаңыз",
     "copyProfileUrl": "Профиль URL көшіру",
     "copyUsername": "Пайдаланушы атын көшіру",
     "copyAddress": "Мекенжайды көшіру",

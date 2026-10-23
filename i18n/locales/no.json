@@ -2835,6 +2835,8 @@
     "yourFractions": "Du eier {{count}} av {{total}} brøkdeler"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopier lenke til RSS-feed",
+    "copyRssFeedHint": "Følg disse innleggene i en hvilken som helst feedleser",
     "copyProfileUrl": "Kopier profil-URL",
     "copyUsername": "Kopier brukernavn",
     "copyAddress": "Kopier adresse",

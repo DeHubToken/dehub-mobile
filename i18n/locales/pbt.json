@@ -2809,6 +2809,8 @@
     "yourFractions": "تاسو د {{total}} برخو څخه {{count}} لري"
   },
   "profileOptions": {
+    "copyRssFeed": "د RSS فیډ لینک کاپي کړئ",
+    "copyRssFeedHint": "دا پوسټونه په هر فیډ لوستونکي کې تعقیب کړئ",
     "copyProfileUrl": "د پروفایل URL کاپي کړئ",
     "copyUsername": "د کارونکي نوم کاپي کړئ",
     "copyAddress": "پته کاپي کړئ",

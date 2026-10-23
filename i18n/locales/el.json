@@ -2860,6 +2860,8 @@
     "yourFractions": "Κατέχεις {{count}} από {{total}} κλάσματα"
   },
   "profileOptions": {
+    "copyRssFeed": "Αντιγραφή συνδέσμου ροής RSS",
+    "copyRssFeedHint": "Ακολουθήστε αυτές τις αναρτήσεις σε οποιονδήποτε αναγνώστη ροών",
     "copyProfileUrl": "Αντιγραφή URL προφίλ",
     "copyUsername": "Αντιγραφή ονόματος χρήστη",
     "copyAddress": "Αντιγραφή διεύθυνσης",

@@ -2818,6 +2818,8 @@
     "yourFractions": "Kei a koe {{count}} o {{total}} ngā hautau"
   },
   "profileOptions": {
+    "copyRssFeed": "Tāruatia te hono whāngai RSS",
+    "copyRssFeedHint": "Whaia ēnei pānui i tētahi kaipānui whāngai",
     "copyProfileUrl": "Tārua URL kōnae",
     "copyUsername": "Tārua ingoa kaiwhakamahi",
     "copyAddress": "Tārua wāhitau",

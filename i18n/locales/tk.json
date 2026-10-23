@@ -2816,6 +2816,8 @@
     "yourFractions": "Paýnamalaryň {{total}}-siniň {{count}}-sini özüňizde saklaýarsyňyz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS lenta baglanyşygyny göçür",
+    "copyRssFeedHint": "Bu ýazgylary islendik lenta okaýjysynda yzarlaň",
     "copyProfileUrl": "Profil URL-ni göçür",
     "copyUsername": "Ulanyjy adyny göçür",
     "copyAddress": "Salgy göçür",
