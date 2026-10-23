@@ -1,6 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
+import { fetchVideoAccess, isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../libs/video-access";
 import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
 import { postMediaIsTransferring } from '../libs/post-media-session';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
@@ -368,7 +369,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
   // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
   const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
-  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
+  // A gated short's file is private: an entitled viewer plays a signed URL,
+  // anyone else is refused one and keeps the poster.
+  const viewer = useUser();
+  const signedShort = !photoMedia && videoNeedsAccess(item);
+  const shortAccess = useVideoAccess(tokenId, signedShort, viewer?.walletAddress || viewer?.address);
+  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : getVideoUrl(tokenId)) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     // Shorts pause when the app is left; only a PiP window keeps them going.
     p.staysActiveInBackground = false;
@@ -629,6 +635,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     component: 'ShortsViewer', postId: tokenId,
     allowed: () => ownsPlayerRef.current() && (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
   });
+  // A lapsed signature fails like a broken file; fetch a fresh one.
+  const refetchShortAccess = shortAccess.refetch;
+  useEffect(() => {
+    if (playbackPhase === 'failed' && shortAccess.data?.private && isVideoAccessExpiring(shortAccess.data)) void refetchShortAccess();
+  }, [playbackPhase, shortAccess.data, refetchShortAccess]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(player)) return;
     recovery.stop();
@@ -2440,7 +2451,13 @@ const ShortsViewerScreen = () => {
           onDownloadVideo={activeItem.postType === "short" && !activeItem.imageUrls?.length &&
             (isOwnerOfActive || activeItem.isUnlocked || (!activeItem.streamInfo?.isPayPerView && !isHoldGated(activeItem.streamInfo?.isLockContent, activeItem.streamInfo?.lockContentAmount))) &&
             !(activeItem as { contentRating?: string }).contentRating?.includes("mature")
-            ? () => { const url = getVideoUrl(activeTokenId); if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername }); }
+            ? () => { void (async () => {
+                // A gated short's file is private; download it through a signed URL.
+                const url = videoNeedsAccess(activeItem)
+                  ? (await fetchVideoAccess(activeTokenId).catch(() => null))?.url
+                  : getVideoUrl(activeTokenId);
+                if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername });
+              })(); }
             : undefined}
           onToggleSave={handleToggleSave}
           onFollowChange={handleFollowChange}

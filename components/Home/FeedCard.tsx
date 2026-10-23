@@ -6,6 +6,7 @@ import { createLogger } from "../../libs/logger";
 import { useIsWatchedVideo } from "../../hooks/useWatchedVideos";
 import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
+import { isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../../libs/video-access";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
 import {
   View,
@@ -703,6 +704,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
   const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings || isActuallySubGated;
+  // A gated post's file is private: once the viewer is through the gate it
+  // plays from a signed URL the API hands out. A locked viewer never asks.
+  const requiresVideoAccess = isVideo && !isLive && videoNeedsAccess(item as any);
+  const videoAccess = useVideoAccess(tokenId, requiresVideoAccess && !isActuallyGated, userAddress);
+  const postVideoUrl = requiresVideoAccess ? videoAccess.data?.url : getVideoUrl(tokenId);
+  const refetchVideoAccess = videoAccess.refetch;
+  const onVideoPlaybackFailed = useCallback(() => {
+    if (videoAccess.data?.private && isVideoAccessExpiring(videoAccess.data)) void refetchVideoAccess();
+  }, [videoAccess.data, refetchVideoAccess]);
   const soundtrackOnMedia = hasSoundtrack && !isActuallyGated && hasImages
     && contentType !== "live" && contentType !== "short" && contentType !== "video" && contentType !== "audio";
   // The owner's edits from the options menu, laid over the post's own fields
@@ -818,7 +828,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
-    preparePostMediaNavigation(getVideoUrl(tokenId));
+    if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
     if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     onBeforeNavigate?.();
@@ -846,7 +856,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isShort, isOwnerPost, item, tokenId,
+    disablePress, isLive, isShort, isOwnerPost, item, tokenId, postVideoUrl,
     accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
   ]);
 
@@ -1620,7 +1630,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       thumbnail={thumbnail}
       postPage={fullContent}
       onBack={postVideo && !retainFeedNav ? onBack : undefined}
-      videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
+      videoUrl={isActuallyGated ? undefined : (postVideoUrl || undefined)}
+      onPlaybackFailed={requiresVideoAccess ? onVideoPlaybackFailed : undefined}
       transcodingStatus={item.transcodingStatus}
       isOwner={!!isOwnerPost}
       duration={duration}
@@ -1646,7 +1657,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       onPress={handleCardPress}
       onOpenViewer={() => {
         if (isActuallyGated || tokenId == null) return;
-        preparePostMediaNavigation(getVideoUrl(tokenId));
+        if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
         onBeforeNavigate?.();
         hideUserProfile();
         navigation.navigate(ScreenNames.ShortsViewer, {
@@ -2044,7 +2055,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
-            ? () => { const url = getVideoUrl(tokenId); if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
+            ? () => { const url = postVideoUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
           canMarkSegments={isVideo && !isLive && !isActuallyGated}
