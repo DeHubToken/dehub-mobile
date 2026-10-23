@@ -1822,7 +1822,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 isSignedIn={isSignedIn}
                 title={title}
                 artist={displayName}
-                artworkUrl={avatar || undefined}
+                artworkUrl={item.imageUrl || item.thumbnailUrl ? getImageUrl(item.imageUrl || item.thumbnailUrl || '', IMAGE_WIDTH) : undefined}
                 topLeftAction={isBounty ? (
                   <TouchableOpacity
                     accessibilityLabel={t("drawers.bountyTitle")}
