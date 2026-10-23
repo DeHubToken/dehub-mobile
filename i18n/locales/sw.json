@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "Haikuweza kusoma rangi kutoka picha yako ya wasifu"
   },
   "common": {
+    "refresh": "Onyesha upya",
     "mute": "Nyamazisha",
     "unmute": "Washa sauti",
     "fullscreen": "Skrini nzima",
@@ -4249,6 +4250,7 @@
     "noVoice": "Kifaa chako hakina sauti ya lugha hii."
   },
   "stages": {
+    "previewFailed": "Imeshindwa kucheza onyesho kwenye chumba cha sauti",
     "allStages": "Vyumba vyote vya sauti",
     "addToCalendar": "Ongeza kwenye kalenda",
     "nowPlaying": "Inacheza sasa",
@@ -4621,6 +4623,7 @@
     "anyBadgeHolder": "Mwenye beji yeyote hupata SuperPowers. Nunua tokeni za DeHub ili kufungua beji — kuweka rehani hakuhitajiki."
   },
   "follow": {
+    "noResults": "Hakuna matokeo yaliyopatikana",
     "followers": "Wafuasi",
     "following": "Wanaofuata",
     "requests": "Maombi",
@@ -7250,6 +7253,7 @@
       "delete": "Futa"
     },
     "export": {
+      "cancel": "Ghairisha",
       "scope": "Pakua masafa",
       "downloadTimeline": "Ratiba nzima ya wakati",
       "downloadSelection": "Klipu za video zilizochaguliwa ({{count}})",
@@ -7529,6 +7533,7 @@
     }
   },
   "creator": {
+    "sending": "Inatuma",
     "navStudio": "Studio",
     "editor": "Mhariri",
     "untitled": "Bila kichwa",
@@ -8095,6 +8100,7 @@
     "transferIncomplete": "Uhamisho wa tokeni haujakamilika. Utaulizwa tena kabla ya chapisho lako lijalo kulipwa."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Tafuta emoji",
     "noEmoji": "Hakuna emoji zilizopatikana",
     "searchResults": "Matokeo ya utafutaji",

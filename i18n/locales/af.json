@@ -948,6 +948,7 @@
     "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie"
   },
   "common": {
+    "refresh": "Verfris",
     "mute": "Demp",
     "unmute": "Ontdemp",
     "fullscreen": "Volskerm",
@@ -4273,6 +4274,7 @@
     "noVoice": "Jou toestel het geen stem vir hierdie taal nie."
   },
   "stages": {
+    "previewFailed": "Kon nie voorskou in die oudiokamer speel nie",
     "allStages": "Alle oudiokamers",
     "addToCalendar": "Voeg by kalender",
     "nowPlaying": "Speel nou",
@@ -4645,6 +4647,7 @@
     "anyBadgeHolder": "Enige kentekenhouer kry SuperPowers. Koop DeHub-tokens om 'n kenteken te ontsluit — staking is nie nodig nie."
   },
   "follow": {
+    "noResults": "Geen resultate gevind nie",
     "followers": "Volgelinge",
     "following": "Volg",
     "requests": "Versoeke",
@@ -7366,6 +7369,7 @@
       "delete": "Skrap"
     },
     "export": {
+      "cancel": "Kanselleer",
       "scope": "Laai reeks af",
       "downloadTimeline": "Hele tydlyn",
       "downloadSelection": "Geselekteerde video-knipsels ({{count}})",
@@ -7645,6 +7649,7 @@
     }
   },
   "creator": {
+    "sending": "Stuur",
     "navStudio": "Studio",
     "editor": "Redigeerder",
     "untitled": "Naamloos",
@@ -8211,6 +8216,7 @@
     "transferIncomplete": "Die token-oordrag het nie voltooi nie. U sal weer gevra word voor u volgende betaalde pos."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Soek emoji",
     "noEmoji": "Geen emoji gevind nie",
     "searchResults": "Soekresultate",

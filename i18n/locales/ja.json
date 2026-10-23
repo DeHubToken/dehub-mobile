@@ -948,6 +948,7 @@
     "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
   },
   "common": {
+    "refresh": "更新",
     "mute": "ミュート",
     "unmute": "ミュート解除",
     "fullscreen": "全画面",
@@ -4291,6 +4292,7 @@
     "filedOn": "{{date}} に作成"
   },
   "stages": {
+    "previewFailed": "音声ルームでプレビューを再生できませんでした",
     "allStages": "すべての音声ルーム",
     "addToCalendar": "カレンダーに追加",
     "nowPlaying": "現在再生中",
@@ -4662,6 +4664,7 @@
     "anyBadgeHolder": "バッジ所有者は誰でもスーパーパワーを取得できます。バッジをアンロックするためにDeHubトークンを購入してください。ステーキングは必要ありません。"
   },
   "follow": {
+    "noResults": "結果が見つかりませんでした",
     "followers": "フォロワー",
     "following": "フォロー中",
     "requests": "リクエスト",
@@ -7339,6 +7342,7 @@
       "delete": "削除"
     },
     "export": {
+      "cancel": "キャンセル",
       "scope": "ダウンロード範囲",
       "downloadTimeline": "タイムライン全体",
       "downloadSelection": "選択したビデオクリップ({{count}})",
@@ -7709,6 +7713,7 @@
     }
   },
   "creator": {
+    "sending": "送信中",
     "navStudio": "スタジオ",
     "editor": "エディター",
     "untitled": "タイトルなし",
@@ -8223,6 +8228,7 @@
     "transferIncomplete": "トークンの転送が完了しませんでした。次の有料投稿の前にもう一度質問されます。"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "絵文字を検索",
     "noEmoji": "絵文字が見つかりません",
     "searchResults": "検索結果",

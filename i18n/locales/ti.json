@@ -939,6 +939,7 @@
     "themeColorBrandFailed": "ካብ ስእሊ መለለይኻ ሕብርታት ከንብብ ኣይከኣለን"
   },
   "common": {
+    "refresh": "ተሐድሶ",
     "mute": "ድምጺ ኣጥፍእ",
     "unmute": "ድምጺ ኣብርህ",
     "fullscreen": "ምሉእ ስክሪን",
@@ -4211,6 +4212,7 @@
     "noVoice": "መሳርሒኻ ነዚ ቋንቋ ዝኸውን ድምጺ የብሉን።"
   },
   "stages": {
+    "previewFailed": "ኣብ መድረኽ ቅድመ ምርኣይ ክጻወት ኣይከኣለን ።",
     "allStages": "ኩሎም ናይ ድምጺ ክፍልታት",
     "addToCalendar": "ናብ ኣቆጣጠር ኣክል",
     "nowPlaying": "ሕጂ ድማ ክጻወት እየ ።",
@@ -4583,6 +4585,7 @@
     "anyBadgeHolder": "ሓደገኛ  \"badge holder\"  \"SuperPowers\"  ይረኽብ።  DeHub  ቶክን  ብምዕያይ  \"badge\"  ክፈትሑ —  ምዕያይ  ኣይድለይን።"
   },
   "follow": {
+    "noResults": "ኣይተረኽበን",
     "followers": "ተኸታተልቲ",
     "following": "ምኽታል",
     "requests": "ሕቶታት",
@@ -4733,7 +4736,7 @@
     "kindAudio": "ድምፂ",
     "kindImage": "ስእልታት",
     "reviewTitle": "ቅድሚ ምእታዉ ገምግም",
-    "reviewSubtitle": "ካብ {{source}} ፡ ከም {{kind}}} ። ነቲ ኦሪጅናል ንምዕቃብ ፡ ነቲ ኣርእስቲ ባዶ ግበር ።",
+    "reviewSubtitle": "ካብ {{source}} ፡ ከም {{kind}} ። ነቲ ኦሪጅናል ንምዕቃብ ፡ ነቲ ኣርእስቲ ባዶ ግበር ።",
     "reviewName": "ኣርእስቲ",
     "reviewNamePlaceholder": "ነቲ ናይ መጀመርታ ኣርእስቲ ንምሕላው ባዶ ግበር",
     "reviewDescription": "መግለጺ",
@@ -7199,6 +7202,7 @@
       "delete": "ሰርዝ"
     },
     "export": {
+      "cancel": "ኣቋርጽ",
       "scope": "ስፍሓት ኣውጽእ",
       "downloadTimeline": "ምሉእ ግዜ",
       "downloadSelection": "ዝተመረጹ ቪድዮታት ({{count}})",
@@ -7476,6 +7480,7 @@
     }
   },
   "creator": {
+    "sending": "ልኢኽካ",
     "navStudio": "ስቱድዮ",
     "editor": "ኣርታዒ",
     "untitled": "ኣርእስቲ ዘይብሉ",
@@ -8038,6 +8043,7 @@
     "paidForPost": "{{amount}} tokens ንዚኣዚ  ጽሑፍ ተኸፊሉ።"
   },
   "emojiPicker": {
+    "tabGif": "ግሪፍ",
     "searchEmoji": "ኢሞጂ ድለ",
     "noEmoji": "ኢሞጂ ኣይተረኽበን",
     "searchResults": "ውጽኢት ምድላይ",

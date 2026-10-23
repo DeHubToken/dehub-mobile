@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Suuraa profaayilii kee irraa halluuwwan dubbisuun hin danda'amne"
   },
   "common": {
+    "refresh": "Akkamii deebisu",
     "mute": "Sagalee cufi",
     "unmute": "Sagalee bani",
     "fullscreen": "Iskiriinii guutuu",
@@ -4243,6 +4244,7 @@
     "noVoice": "Meeshaan kee afaan kanaaf sagalee hin qabu."
   },
   "stages": {
+    "previewFailed": "Waltajjii irratti dursee ilaaluu taphachuu hin dandeenye",
     "allStages": "Kutaalee sagalee hunda",
     "addToCalendar": "Kaalaandarii irratti dabali",
     "nowPlaying": "Amma taphachaa jira",
@@ -4615,6 +4617,7 @@
     "anyBadgeHolder": "Abbaan baajii kamiyyuu SuperPowers argata. Baajii banuuf mallattoo DeHub bitadhu — staking hin barbaachisu."
   },
   "follow": {
+    "noResults": "Mootummoonni hin argamne",
     "followers": "Hordoftoota",
     "following": "Hordofaa",
     "requests": "Gaaffiiwwan",
@@ -7271,6 +7274,7 @@
       "delete": "Haquu"
     },
     "export": {
+      "cancel": "Haquu",
       "scope": "Buufadhu daangaa",
       "downloadTimeline": "Guutuu yeroo",
       "downloadSelection": "Kiliippiiwwan viidiyoo filataman ({{count}})",
@@ -7550,6 +7554,7 @@
     }
   },
   "creator": {
+    "sending": "Ergaa",
     "navStudio": "Istuudiyoo",
     "editor": "Gulaalaa",
     "untitled": "Maqaa malee",
@@ -8113,6 +8118,7 @@
     "transferIncomplete": "Jijjiirraan mallattoo hin xumuramne. Barreeffama kaffaltii itti aanu dura irra deebi'amee si gaafatama."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoojii barbaadi",
     "noEmoji": "Emoojiin hin argamne",
     "searchResults": "Bu'aa barbaachaa",

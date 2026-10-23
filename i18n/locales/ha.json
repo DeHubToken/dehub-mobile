@@ -946,6 +946,7 @@
     "themeColorBrandFailed": "Ba a iya karanta launuka daga hoton bayanan martabarka ba"
   },
   "common": {
+    "refresh": "Sake sabuntawa",
     "mute": "Kashe sauti",
     "unmute": "Kunna sauti",
     "fullscreen": "Cikakken allo",
@@ -4230,6 +4231,7 @@
     "noVoice": "Na'urarka ba ta da murya don wannan harshe."
   },
   "stages": {
+    "previewFailed": "Ba zai iya taka preview a kan mataki",
     "allStages": "Duk dakunan sauti",
     "addToCalendar": "Ƙara zuwa kalanda",
     "nowPlaying": "Yanzu wasa",
@@ -4600,6 +4602,7 @@
     "anyBadgeHolder": "Duk wanda ke riƙe da badge yana samun SuperPowers. Sayi DeHub tokens don buɗe badge — ba a buƙatar saka."
   },
   "follow": {
+    "noResults": "Babu sakamako da aka samu",
     "followers": "Masu bibiya",
     "following": "Masu bibiya",
     "requests": "Bukatu",
@@ -7220,6 +7223,7 @@
       "delete": "Share"
     },
     "export": {
+      "cancel": "Soke",
       "scope": "Download kewayon",
       "downloadTimeline": "Dukan Layin Lokaci",
       "downloadSelection": "Shirye-shiryen bidiyo da aka zaɓa ({{count}})",
@@ -7499,6 +7503,7 @@
     }
   },
   "creator": {
+    "sending": "Aikawa",
     "navStudio": "Situdiyo",
     "editor": "Edita",
     "untitled": "Ba shi da suna",
@@ -8059,6 +8064,7 @@
     "transferIncomplete": "Canja wurin token bai cika ba. Za a sake tambayar ku kafin post ɗinku na gaba da aka biya."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Bincika emoji",
     "noEmoji": "Ba a sami emoji ba",
     "searchResults": "Sakamakon bincike",

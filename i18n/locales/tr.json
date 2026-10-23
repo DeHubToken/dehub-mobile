@@ -1082,6 +1082,7 @@
     "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
   },
   "common": {
+    "refresh": "Yenile",
     "mute": "Sesi kapat",
     "unmute": "Sesi aç",
     "fullscreen": "Tam ekran",
@@ -4646,6 +4647,7 @@
     "filedOn": "{{date}} tarihinde açıldı"
   },
   "stages": {
+    "previewFailed": "Önizleme sesli odada çalınamadı",
     "allStages": "Tüm sesli odalar",
     "addToCalendar": "Takvime ekle",
     "nowPlaying": "Şimdi çalıyor",
@@ -5018,6 +5020,7 @@
     "anyBadgeHolder": "Herhangi bir rozet sahibi Süper Güçler kazanır. Bir rozeti etkinleştirmek için DeHub jetonu satın alın — stake etmek gerekmez."
   },
   "follow": {
+    "noResults": "Sonuç bulunamadı",
     "followers": "Takipçiler",
     "following": "Takip Edilenler",
     "requests": "İstekler",
@@ -7802,6 +7805,7 @@
       "delete": "Sil"
     },
     "export": {
+      "cancel": "İptal",
       "scope": "İndirme aralığı",
       "downloadTimeline": "Tüm zaman çizelgesi",
       "downloadSelection": "Seçili video klipler ({{count}})",
@@ -8189,6 +8193,7 @@
     }
   },
   "creator": {
+    "sending": "Gönderiliyor",
     "navStudio": "Stüdyo",
     "editor": "Editör",
     "untitled": "Başlıksız",
@@ -8976,6 +8981,7 @@
     "transferIncomplete": "Token transferi tamamlanmadı. Bir sonraki ücretli gönderinizden önce tekrar sorulacaktır."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji ara",
     "noEmoji": "Emoji bulunamadı",
     "searchResults": "Arama sonuçları",

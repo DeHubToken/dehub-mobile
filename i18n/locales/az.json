@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Profil şəklinizdən rənglər oxuna bilmədi"
   },
   "common": {
+    "refresh": "Yenilə",
     "mute": "Səssiz et",
     "unmute": "Səsi aç",
     "fullscreen": "Tam ekran",
@@ -4240,6 +4241,7 @@
     "noVoice": "Cihazınızda bu dil üçün səs yoxdur."
   },
   "stages": {
+    "previewFailed": "Önizləməni səsli otaqda oynatmaq olmadı",
     "allStages": "Bütün səsli otaqlar",
     "addToCalendar": "Təqvimə əlavə edin",
     "nowPlaying": "İndi oynatılır",
@@ -4612,6 +4614,7 @@
     "anyBadgeHolder": "Hər hansı bir rozet sahibi SuperGüclər əldə edir. Rozet açmaq üçün DeHub tokenləri alın — steykinq tələb olunmur."
   },
   "follow": {
+    "noResults": "Nəticə tapılmadı",
     "followers": "Təqibçilər",
     "following": "Təqib etdiklərim",
     "requests": "Xahişlər",
@@ -7238,6 +7241,7 @@
       "delete": "Sil"
     },
     "export": {
+      "cancel": "Ləğv et",
       "scope": "Endirmə diap",
       "downloadTimeline": "Bütün vaxt qrafiki",
       "downloadSelection": "Seçilmiş video kliplər ({{count}})",
@@ -7517,6 +7521,7 @@
     }
   },
   "creator": {
+    "sending": "Göndərilir",
     "navStudio": "Studiya",
     "editor": "Redaktor",
     "untitled": "Başlıqsız",
@@ -8082,6 +8087,7 @@
     "transferIncomplete": "Mötədil köçürmə tamamlanmadı. Növbəti ödənişli yazıdan əvvəl sizdən yenidən soruşulacaq."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji axtar",
     "noEmoji": "Emoji tapılmadı",
     "searchResults": "Axtarış nəticələri",

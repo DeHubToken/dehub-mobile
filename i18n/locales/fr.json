@@ -1082,6 +1082,7 @@
     "themeColorBrandFailed": "Impossible de lire les couleurs de votre photo de profil"
   },
   "common": {
+    "refresh": "Actualiser",
     "mute": "Couper le son",
     "unmute": "Activer le son",
     "fullscreen": "Plein écran",
@@ -4650,6 +4651,7 @@
     "filedOn": "Ouvert le {{date}}"
   },
   "stages": {
+    "previewFailed": "Impossible de lire l'aperçu dans le salon audio",
     "allStages": "Tous les salons audio",
     "addToCalendar": "Ajouter au calendrier",
     "nowPlaying": "En cours de lecture",
@@ -5022,6 +5024,7 @@
     "anyBadgeHolder": "Tout détenteur de badge obtient des SuperPouvoirs. Achetez des tokens DeHub pour débloquer un badge — le staking n'est pas requis."
   },
   "follow": {
+    "noResults": "Aucun résultat trouvé",
     "followers": "Abonnés",
     "following": "Abonnements",
     "requests": "Demandes",
@@ -7777,6 +7780,7 @@
       "delete": "Supprimer"
     },
     "export": {
+      "cancel": "Annuler",
       "scope": "Gamme de téléchargement",
       "downloadTimeline": "Chronologie complète",
       "downloadSelection": "Clips vidéo sélectionnés ({{count}})",
@@ -8193,6 +8197,7 @@
     }
   },
   "creator": {
+    "sending": "Envoi en cours",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",
     "toolMaboroshiDesc": "Remplacez des personnages et des objets, vérifiez un brouillon, puis exportez avec votre bande-son originale.",
@@ -8980,6 +8985,7 @@
     "transferIncomplete": "Le transfert de jeton ne s'est pas terminé. Il vous sera demandé à nouveau avant votre prochaine publication payante."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Rechercher un emoji",
     "noEmoji": "Aucun emoji trouvé",
     "searchResults": "Résultats de recherche",

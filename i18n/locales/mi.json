@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha"
   },
   "common": {
+    "refresh": "Whakahou",
     "mute": "Whakangū",
     "unmute": "Whakaora oro",
     "fullscreen": "Mata katoa",
@@ -4230,6 +4231,7 @@
     "noVoice": "Kāore he reo i tō pūrere mō tēnei reo."
   },
   "stages": {
+    "previewFailed": "E kore e taea e ahau te tākaro i te tirohanga i runga i te atamira",
     "allStages": "Ngā rūma ororongo katoa",
     "addToCalendar": "Tāpirihia ki te maramataka",
     "nowPlaying": "I tenei wa ka takaro ahau",
@@ -4602,6 +4604,7 @@
     "anyBadgeHolder": "Ka whiwhi ngā kaipupuri tohu katoa i ngā SuperPowers. Hokona ngā tohu DeHub kia iriti ai koe i tētahi tohu — kāore e hiahiatia te tāpiri."
   },
   "follow": {
+    "noResults": "Kāore he hua i kitea",
     "followers": "Ngā Kaiwhai",
     "following": "E whai ana",
     "requests": "Ngā Tono",
@@ -4756,7 +4759,7 @@
     "kindImage": "Whakaahua",
     "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Arotake i mua i te tuku",
-    "reviewSubtitle": "Mai i te {{puna}}, rite {{kind}}}. Whakatika i nga mea katoa e hiahia ana koe — waiho te taitara kore ki te pupuri i te taketake.",
+    "reviewSubtitle": "Mai i te {{source}}, rite {{kind}}. Whakatika i nga mea katoa e hiahia ana koe — waiho te taitara kore ki te pupuri i te taketake.",
     "reviewName": "Ingoa",
     "reviewNamePlaceholder": "Waiho noa ki te pupuri i te taitara taketake",
     "reviewDescription": "Whakaahuatanga",
@@ -7221,6 +7224,7 @@
       "delete": "Mukua"
     },
     "export": {
+      "cancel": "Whakakore",
       "scope": "Tikiake whānuitanga",
       "downloadTimeline": "He raupapa wā katoa",
       "downloadSelection": "Ngā ataata i tīpakohia ({{count}})",
@@ -7500,6 +7504,7 @@
     }
   },
   "creator": {
+    "sending": "Te tuku",
     "navStudio": "Taiwhanga",
     "editor": "Etita",
     "untitled": "Kāore he taitara",
@@ -8065,6 +8070,7 @@
     "transferIncomplete": "Kaore i oti te whakawhiti tohu. Ka ui koe ano i mua i to koutou pou utu e whai ake nei."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Rapua he emoji",
     "noEmoji": "Kāore he emoji i kitea",
     "searchResults": "Ngā hua rapu",

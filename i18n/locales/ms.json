@@ -4507,6 +4507,7 @@
     "noVoice": "Peranti anda tiada suara untuk bahasa ini."
   },
   "stages": {
+    "previewFailed": "Tidak dapat memainkan pratonton di bilik audio",
     "allStages": "Semua bilik audio",
     "addToCalendar": "Tambah ke kalendar",
     "nowPlaying": "Sedang dimainkan",
@@ -4879,6 +4880,7 @@
     "anyBadgeHolder": "Pemegang lencana mana pun mendapatkan SuperPowers. Beli token DeHub untuk membuka lencana — staking tidak diperlukan."
   },
   "follow": {
+    "noResults": "Tiada hasil ditemui",
     "followers": "Pengikut",
     "following": "Mengikut",
     "requests": "Permintaan",
@@ -7506,6 +7508,7 @@
       "delete": "Hapus"
     },
     "export": {
+      "cancel": "Batal",
       "scope": "Julat muat turun",
       "downloadTimeline": "Seluruh garis masa",
       "downloadSelection": "Klip video yang dipilih ({{count}})",
@@ -7785,6 +7788,7 @@
     }
   },
   "creator": {
+    "sending": "Menghantar",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Tanpa Tajuk",
@@ -8351,6 +8355,7 @@
     "transferIncomplete": "Pemindahan token tidak selesai. Anda akan ditanya sekali lagi sebelum hantaran berbayar anda yang seterusnya."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Cari emoji",
     "noEmoji": "Tiada emoji ditemui",
     "searchResults": "Hasil carian",

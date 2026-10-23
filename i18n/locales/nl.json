@@ -1082,6 +1082,7 @@
     "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
   },
   "common": {
+    "refresh": "Vernieuwen",
     "mute": "Dempen",
     "unmute": "Dempen opheffen",
     "fullscreen": "Volledig scherm",
@@ -4787,6 +4788,7 @@
     "noVoice": "Je apparaat heeft geen stem voor deze taal."
   },
   "stages": {
+    "previewFailed": "Kon voorbeeld niet afspelen in de audioruimte",
     "allStages": "Alle audioruimtes",
     "addToCalendar": "Toevoegen aan agenda",
     "nowPlaying": "Nu aan het spelen",
@@ -5159,6 +5161,7 @@
     "anyBadgeHolder": "Elke badgehouder krijgt SuperPowers. Koop DeHub-tokens om een badge te ontgrendelen — staken is niet vereist."
   },
   "follow": {
+    "noResults": "Geen resultaten gevonden",
     "followers": "Volgers",
     "following": "Volgend",
     "requests": "Verzoeken",
@@ -8007,6 +8010,7 @@
       "delete": "Verwijderen"
     },
     "export": {
+      "cancel": "Annuleren",
       "scope": "Downloadbereik",
       "downloadTimeline": "Hele tijdlijn",
       "downloadSelection": "Geselecteerde videoclips ({{count}})",
@@ -8394,6 +8398,7 @@
     }
   },
   "creator": {
+    "sending": "Verzenden",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Naamloos",
@@ -9230,6 +9235,7 @@
     "transferIncomplete": "De tokenoverdracht is niet voltooid. Je wordt opnieuw gevraagd voordat je je volgende betaalde post plaatst."
   },
   "emojiPicker": {
+    "tabGif": "Gif",
     "searchEmoji": "Emoji zoeken",
     "noEmoji": "Geen emoji gevonden",
     "searchResults": "Zoekresultaten",

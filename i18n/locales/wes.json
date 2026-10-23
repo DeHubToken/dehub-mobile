@@ -937,6 +937,7 @@
     "themeColorBrandFailed": "I no fit read color dem from yua profile picture"
   },
   "common": {
+    "refresh": "Refresh",
     "mute": "Off di sound",
     "unmute": "On di sound",
     "fullscreen": "Full screen",
@@ -4211,6 +4212,7 @@
     "noVoice": "Ya phone no get voice for dis language."
   },
   "stages": {
+    "previewFailed": "We no fit play dat one for stage",
     "allStages": "All Audio room dem",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
@@ -4582,6 +4584,7 @@
     "holdToUnlock": "Buy DeHub tokens to unlock a badj na im SuperPowers. Any bodi wey get badj, dem get am - staking no dey required."
   },
   "follow": {
+    "noResults": "No results found",
     "followers": "Follower dem",
     "following": "Following",
     "requests": "Requests",
@@ -7165,6 +7168,7 @@
       "delete": "Delete"
     },
     "export": {
+      "cancel": "Cancel",
       "scope": "Di part for download",
       "downloadTimeline": "Di whole timeline",
       "downloadSelection": "Video clip dem wey you select ({{count}})",
@@ -7442,6 +7446,7 @@
     }
   },
   "creator": {
+    "sending": "Sending",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "No name",
@@ -8004,6 +8009,7 @@
     "dhbPending": "Token purchase confirm, but no dey show yet. Send again for now."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Find emoji",
     "noEmoji": "We no find any emoji",
     "searchResults": "Wetin we find",

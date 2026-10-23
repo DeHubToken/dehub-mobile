@@ -196,7 +196,7 @@ export default function FeedbackSection({ source }: { source?: 'converter' | 'mi
         >
           <Text style={styles.intro} accessibilityLiveRegion="polite">
             {feedback.isPending ? t('common.loading') : null}
-            {!feedback.isPending && !feedback.isError && approved.length === 0 ? t('search.noResults') : null}
+            {!feedback.isPending && !feedback.isError && approved.length === 0 ? t('common.noResults') : null}
             {feedback.isError ? t('common.failedToLoad') : null}
           </Text>
           {approved.map((item) => (

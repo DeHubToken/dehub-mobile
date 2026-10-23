@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "پروفائل تصوير مان رنگ پڙهي نه سگهيا"
   },
   "common": {
+    "refresh": "ريفرش ڪريو",
     "mute": "آواز بند ڪريو",
     "unmute": "آواز کوليو",
     "fullscreen": "پوري اسڪرين",
@@ -4228,6 +4229,7 @@
     "noVoice": "توهان جي ڊوائيس ۾ هن ٻولي لاءِ ڪو آواز ناهي."
   },
   "stages": {
+    "previewFailed": "اسٽيج تي ڏيکاءُ کيڏي نه سگھيو",
     "allStages": "سڀ آڊيو روم",
     "addToCalendar": "ڪئلينڊر ۾ شامل ڪريو",
     "nowPlaying": "ھاڻي کيڏڻ",
@@ -4600,6 +4602,7 @@
     "anyBadgeHolder": "ڪو به بيج هولڊر سپر پاورز حاصل ڪري ٿو. بيج انلاڪ ڪرڻ لاءِ DeHub ٽوڪن خريد ڪريو — اسٽيڪنگ جي ضرورت ناهي."
   },
   "follow": {
+    "noResults": "ڪو به نتيجو نه مليو",
     "followers": "فالوورز",
     "following": "فالوئنگ",
     "requests": "درخواستون",
@@ -4752,7 +4755,7 @@
     "kindVideo": "وڊيو",
     "kindAudio": "آڊيو",
     "kindImage": "تصويرون",
-    "tileSourceKind": "{{مبسس4}} آيت {{مبسس4}}",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "پوسٽ ڪرڻ کان اڳ نظرثاني ڪريو",
     "reviewSubtitle": "{{source}} کان، جيئن {{kind}}. ڪنهن به شيءَ کي ايڊٽ ڪريو جيڪو توهان پسند ڪيو — اصل رکڻ لاءِ عنوان کي خالي ڇڏي ڏيو.",
     "reviewName": "عنوان",
@@ -7219,6 +7222,7 @@
       "delete": "ختم ڪريو"
     },
     "export": {
+      "cancel": "منسوخ ڪريو",
       "scope": "ڊائونلوڊ جي حد",
       "downloadTimeline": "پوري ٽائم لائن",
       "downloadSelection": "منتخب ٿيل وڊيو ڪلپس ({{count}})",
@@ -7497,6 +7501,7 @@
     }
   },
   "creator": {
+    "sending": "موڪليندي",
     "navStudio": "اسٽوڊيو",
     "editor": "ايڊيٽر",
     "untitled": "بي عنوان",
@@ -8059,6 +8064,7 @@
     "transferIncomplete": "ٽوڪن جي منتقلي مڪمل نه ٿي. اوھان کي اوھان جي ايندڙ ادا پوسٽ کان اڳ وري پڇا ڳاڇا ڪئي ويندي."
   },
   "emojiPicker": {
+    "tabGif": "ڳيف",
     "searchEmoji": "ايموجي ڳوليو",
     "noEmoji": "ڪو ايموجي نه مليو",
     "searchResults": "ڳولا جا نتيجا",

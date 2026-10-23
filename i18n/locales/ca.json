@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "No s'han pogut llegir els colors de la teva foto de perfil"
   },
   "common": {
+    "refresh": "Actualitzar",
     "mute": "Silencia",
     "unmute": "Activa el so",
     "fullscreen": "Pantalla completa",
@@ -4248,6 +4249,7 @@
     "noVoice": "El teu dispositiu no té cap veu per a aquest idioma."
   },
   "stages": {
+    "previewFailed": "No s'ha pogut reproduir la vista prèvia a la sala d'àudio",
     "allStages": "Totes les sales d'àudio",
     "addToCalendar": "Afegeix al calendari",
     "nowPlaying": "Reproduint-se ara",
@@ -4620,6 +4622,7 @@
     "anyBadgeHolder": "Qualsevol posseïdor d'insígnia obté Superpoders. Compra tokens DeHub per desbloquejar una insígnia: no cal fer staking."
   },
   "follow": {
+    "noResults": "No s'han trobat resultats",
     "followers": "Seguidors",
     "following": "Seguint",
     "requests": "Sol·licituds",
@@ -7249,6 +7252,7 @@
       "delete": "Elimina"
     },
     "export": {
+      "cancel": "Cancel·la",
       "scope": "Interval de descàrregues",
       "downloadTimeline": "Cronologia sencera",
       "downloadSelection": "Clips de vídeo seleccionats ({{count}})",
@@ -7528,6 +7532,7 @@
     }
   },
   "creator": {
+    "sending": "Enviant",
     "navStudio": "Estudi",
     "editor": "Editor",
     "untitled": "Sense títol",
@@ -8094,6 +8099,7 @@
     "transferIncomplete": "La transferència del token no s'ha completat. Se't demanarà de nou abans de la teva propera publicació de pagament."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Cerca emojis",
     "noEmoji": "No s'han trobat emojis",
     "searchResults": "Resultats de la cerca",

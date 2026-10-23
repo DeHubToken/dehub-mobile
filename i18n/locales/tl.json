@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo"
   },
   "common": {
+    "refresh": "I-refresh",
     "mute": "I-mute",
     "unmute": "I-unmute",
     "fullscreen": "Fullscreen",
@@ -4295,6 +4296,7 @@
     "noVoice": "Walang boses ang iyong device para sa wikang ito."
   },
   "stages": {
+    "previewFailed": "Hindi ma-play ang preview sa audio room",
     "allStages": "Lahat ng audio room",
     "addToCalendar": "Idagdag sa kalendaryo",
     "nowPlaying": "Kasalukuyang tumutugtog",
@@ -4667,6 +4669,7 @@
     "anyBadgeHolder": "Anumang may-ari ng badge ay makakakuha ng SuperPowers. Bumili ng DeHub token upang ma-unlock ang isang badge — hindi kinakailangan ang staking."
   },
   "follow": {
+    "noResults": "Walang nahanap na resulta",
     "followers": "Mga Tagasubaybay",
     "following": "Sinusundan",
     "requests": "Mga Kahilingan",
@@ -7429,6 +7432,7 @@
       "delete": "Tanggalin"
     },
     "export": {
+      "cancel": "Kanselahin",
       "scope": "I - download ang range",
       "downloadTimeline": "Buong timeline",
       "downloadSelection": "Mga napiling video clip ({{count}})",
@@ -7708,6 +7712,7 @@
     }
   },
   "creator": {
+    "sending": "Nagpapadala",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Walang pamagat",
@@ -8274,6 +8279,7 @@
     "transferIncomplete": "Hindi nakumpleto ang token transfer. Hihilingin sa iyo muli bago ang iyong susunod na bayad na post."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Maghanap ng emoji",
     "noEmoji": "Walang nahanap na emoji",
     "searchResults": "Mga resulta ng paghahanap",

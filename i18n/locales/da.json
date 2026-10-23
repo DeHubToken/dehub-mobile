@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "Kunne ikke læse farver fra dit profilbillede"
   },
   "common": {
+    "refresh": "Opdater",
     "mute": "Slå lyd fra",
     "unmute": "Slå lyd til",
     "fullscreen": "Fuld skærm",
@@ -4252,6 +4253,7 @@
     "noVoice": "Din enhed har ingen stemme til dette sprog."
   },
   "stages": {
+    "previewFailed": "Kunne ikke afspille forhåndsvisning i lydrummet",
     "allStages": "Alle lydrum",
     "addToCalendar": "Tilføj til kalender",
     "nowPlaying": "Afspilles nu",
@@ -4624,6 +4626,7 @@
     "anyBadgeHolder": "Alle badge-indehavere får Superkræfter. Køb DeHub-tokens for at låse op for et badge — staking er ikke påkrævet."
   },
   "follow": {
+    "noResults": "Ingen resultater fundet",
     "followers": "Følgere",
     "following": "Følger",
     "requests": "Anmodninger",
@@ -7253,6 +7256,7 @@
       "delete": "Slet"
     },
     "export": {
+      "cancel": "Annuller",
       "scope": "Download interval",
       "downloadTimeline": "Hele tidslinjen",
       "downloadSelection": "Udvalgte videoklip ({{count}})",
@@ -7532,6 +7536,7 @@
     }
   },
   "creator": {
+    "sending": "Sender",
     "navStudio": "Studiolejlighed",
     "editor": "Editor",
     "untitled": "Uden titel",
@@ -8095,6 +8100,7 @@
     "transferIncomplete": "Tokenoverførslen blev ikke gennemført. Du vil blive spurgt igen før dit næste betalte opslag."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Søg efter emoji",
     "noEmoji": "Ingen emoji fundet",
     "searchResults": "Søgeresultater",
