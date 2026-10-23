@@ -119,7 +119,6 @@ export const isExtraStyle = (s: string): s is ExtraStyle => EXTRA_SET.has(s);
 const THEME_DEFAULT: Record<string, string> = {
   minimal: 'static',
   system: 'glint',
-  immersive: 'glint',
   light: 'paper',
   cosmic: 'warp',
   hazy: 'haze',
@@ -459,20 +458,36 @@ function metaballs(c: Ctx2D, gw: number, gh: number, cw: number, ch: number, fie
 const P: Record<ExtraStyle, Painter> = {
   /* 1 Default, upgraded */
   liquid(c, w, h, F, C) {
-    const n = 56, bw = w / n, mid = h / 2;
-    const g = c.createLinearGradient(0, h * 0.1, 0, h * 0.9);
-    g.addColorStop(0, C.ink(1, 1)); g.addColorStop(0.4, C.ink(0.55, 0.95)); g.addColorStop(0.5, C.ink(0, 0.95));
-    g.addColorStop(0.56, C.ink(1, 1)); g.addColorStop(1, C.ink(0.45, 0.9));
-    for (let i = 0; i < n; i++) {
-      const u = i / n, d = (u - F.progress) * n, bl = F.level * 1.3 * Math.exp((-d * d) / 18);
-      const bh = Math.max(3, (peakAt(F, u) * 0.6 + bl * 0.35) * h * 0.8);
-      const wob = Math.sin(i * 0.35 - F.t * 5) * F.bass * h * 0.08 + Math.sin(i * 0.9 + F.t * 2) * F.treble * h * 0.02;
-      c.fillStyle = u < F.progress ? g : C.ink(0.25, 0.35);
-      rr(c, i * bw + bw * 0.18, mid - bh / 2 + wob, bw * 0.64, bh, bw * 0.32);
+    for (let ribbon = 0; ribbon < 5; ribbon++) {
+      const phase = ribbon * .72 + F.t * .24;
+      const centre = (u: number) => h * (.48 + Math.sin(u * 5.8 + phase) * (.17 + F.bass * .045) + Math.sin(u * 10.2 - phase * .7) * .055 + (ribbon - 2) * .035);
+      const thickness = (u: number) => h * (.025 + .065 * Math.pow(Math.sin(Math.PI * u), 2)) * (1 + .3 * Math.sin(u * 8 + phase));
+      const g = c.createLinearGradient(0, h * .12, w * .16, h * .88);
+      g.addColorStop(0, C.ink(.08, .3));
+      g.addColorStop(.22, C.ink(.85, .85));
+      g.addColorStop(.38, C.ink(.18, .9));
+      g.addColorStop(.49, C.ink(1, .95));
+      g.addColorStop(.54, C.ink(.38, .8));
+      g.addColorStop(.72, C.ink(.05, .85));
+      g.addColorStop(.88, C.ink(.8, .7));
+      g.addColorStop(1, C.ink(.1, .2));
+      c.beginPath();
+      for (let i = 0; i <= 96; i++) {
+        const u = i / 96, y = centre(u) - thickness(u);
+        if (i === 0) c.moveTo(0, y); else c.lineTo(u * w, y);
+      }
+      for (let i = 96; i >= 0; i--) {
+        const u = i / 96;
+        c.lineTo(u * w, centre(u) + thickness(u));
+      }
+      c.closePath(); c.fillStyle = g; c.fill();
+      c.beginPath();
+      for (let i = 0; i <= 96; i++) {
+        const u = i / 96, y = centre(u) - thickness(u);
+        if (i === 0) c.moveTo(0, y); else c.lineTo(u * w, y);
+      }
+      c.strokeStyle = C.ink(1, .55); c.lineWidth = .7; c.stroke();
     }
-    const x = F.progress * w, pg = c.createLinearGradient(x - 8, 0, x + 8, 0);
-    pg.addColorStop(0, C.accent(0)); pg.addColorStop(0.5, C.accent(0.9)); pg.addColorStop(1, C.accent(0));
-    c.fillStyle = pg; c.fillRect(x - 8, h * 0.06, 16, h * 0.88);
   },
   glint(c, w, h, F, C, S) {
     const p: { x: number; y: number; vx: number; vy: number; l: number }[] = (S.p ||= []);

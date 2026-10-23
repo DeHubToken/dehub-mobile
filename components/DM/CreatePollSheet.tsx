@@ -20,6 +20,7 @@ import Icon from "../ui/Icon";
 import { useCreatePoll } from "../../hooks/usePolls";
 import { ButtonLoader } from "../DeHubLoader";
 import { useTranslation } from "react-i18next";
+import { useThemeRootStyle } from "../../context/ThemeContext";
 
 interface CreatePollSheetProps {
   visible: boolean;
@@ -45,6 +46,8 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  // A Modal draws outside the app root, so it needs the theme variables itself.
+  const rootStyle = useThemeRootStyle();
   const { createPoll, loading } = useCreatePoll();
 
   const [question, setQuestion] = useSurfaceDraft("components/DM/CreatePollSheet.tsx:question", "");
@@ -117,7 +120,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
           entering={SlideInUp.duration(300)}
           exiting={SlideOutDown.duration(200)}
           className="overflow-hidden rounded-t-[20px] border-t border-white/10 max-h-[80%]"
-          style={{ paddingBottom: insets.bottom + 16 }}
+          style={[{ paddingBottom: insets.bottom + 16 }, rootStyle]}
         >
           <MessageSurface />
           {/* Header */}

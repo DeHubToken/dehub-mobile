@@ -4150,6 +4150,7 @@
     "noVoice": "Pajisja juaj nuk ka zë për këtë gjuhë."
   },
   "stages": {
+    "allStages": "Të gjitha dhomat audio",
     "addToCalendar": "Shtoni në kalendar",
     "nowPlaying": "Tani në lojë",
     "onTheRadio": "Në radio",
@@ -4878,7 +4879,28 @@
     "interestedCount": "{{count}} të interesuar",
     "loadFailed": "Ngjarjet nuk u ngarkuan dot"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Vizitorë në ditë", "dailyHint": "vizitorë unikë në ditë", "empty": "Ende nuk ka të dhëna për këtë periudhë"},
+    "definitions": {
+      "visitorsTerm": "Vizitorë"
+    },
+    "unavailable": {
+      "title": "Statistikat nuk janë të disponueshme tani"
+    },
+    "browsers": {
+      "window": "sipas shikimeve të faqeve",
+      "title": "Shfletues"
+    },
+    "countries": {
+      "window": "{{days}} ditët e fundit",
+      "title": "Vendet kryesore"
+    },
+    "tile": {
+      "inRange": "në këtë interval",
+      "requestsLabel": "Kërkesa",
+      "pageViews": "Shikime faqesh",
+      "soFarToday": "sot deri tani, UTC",
+      "visitorsToday": "Vizitorë sot"
+    },
     "feedback": {
       "title": "Përshtypje",
       "intro": "Jeni duke përdorur DeHub për një kohë? Tregoni na se si ka qenë. Mirë, keq ose specifik — të gjitha lexohen. Nëse jeni të lumtur që ne të ju citojmë, shënoni kutinë dhe mund ta përdorim në postime, video ose në faqe.",
@@ -6144,7 +6166,11 @@
     "noTrendingThisWeek": "Asnjë përmbajtje e popullarizuar këtë javë",
     "closeFilterOptions": "Mbyllni opsionet e filtrit",
     "openFilterOptions": "Hapni opsionet e filtrit",
-    "fillQuery": "Plotëso kërkimin me \"{{query}}\""
+    "fillQuery": "Plotëso kërkimin me \"{{query}}\"",
+    "clearHistory": "Pastro historikun",
+    "clearHistoryTitle": "Të pastrohet historiku i kërkimeve?",
+    "clearHistoryBody": "Kjo heq të gjitha kërkimet e tua të fundit.",
+    "removeFromHistory": "Hiq \"{{query}}\" nga historiku"
   },
   "notifPrompt": {
     "stayInLoop": "Qëndro i informuar",
@@ -6768,6 +6794,9 @@
       "sold": "Shitur {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Ende nuk ka të dhëna për këtë periudhë",
+      "dailyHint": "vizitorë unikë në ditë",
+      "daily": "Vizitorë në ditë",
       "bookStarts": "Libri fillon këtu",
       "firstOrder": "Vendosni rendin e parë për të shtuar likuiditetin.",
       "waiting": "Në pritje të të dhënave të çmimeve",

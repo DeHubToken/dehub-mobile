@@ -76,6 +76,8 @@ interface FeedNavBarProps {
    * the same control in the same place.
    */
   backMode?: boolean;
+  /** Back names the surface being closed; image drawers keep the grid label. */
+  backLabel?: string;
   onBackPress?: () => void;
 }
 
@@ -148,6 +150,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
   onFilterPress,
   onActiveTabLongPress,
   backMode = false,
+  backLabel,
   onBackPress,
 }) => {
   useSwipeBackAction(onBackPress, backMode);
@@ -273,7 +276,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               onPress={backMode ? onBackPress : onFilterPress}
               style={styles.minimalButton}
               accessibilityRole="button"
-              accessibilityLabel={backMode ? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
+              accessibilityLabel={backMode ? backLabel ?? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
               accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
             >
               {({ pressed }) => {
@@ -357,7 +360,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               onPress={backMode ? onBackPress : onFilterPress}
               style={[styles.navButton, styles.leadSlot]}
               accessibilityRole="button"
-              accessibilityLabel={backMode ? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
+              accessibilityLabel={backMode ? backLabel ?? _copy("copy.68f5b97c66d9", { defaultValue: "Back to grid" }) : _copy("copy.57702fa51a5e", { defaultValue: "Feed filters" })}
               accessibilityState={backMode ? undefined : { expanded: isFilterOpen }}
             >
               {({ pressed }) => {

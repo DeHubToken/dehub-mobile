@@ -4141,6 +4141,7 @@
     "noVoice": "Di cîhaza te de ji bo vî zimanî deng tune."
   },
   "stages": {
+    "allStages": "هەموو ژوورە دەنگییەکان",
     "addToCalendar": "بۆ ڕۆژژمێر زیاد بکە",
     "nowPlaying": "ئێستا لێدەدرێت",
     "onTheRadio": "لە ڕادیۆ",
@@ -4844,7 +4845,28 @@
     "interestedCount": "{{count}} eleqedar in",
     "loadFailed": "Bûyer nehatin barkirin"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Serdankerên rojane", "dailyHint": "serdankerên yekta yên rojane", "empty": "Ji bo vê demê hîn dane tune"},
+    "definitions": {
+      "visitorsTerm": "Serdanker"
+    },
+    "unavailable": {
+      "title": "Statîstîk niha ne berdest in"
+    },
+    "browsers": {
+      "window": "li gorî temaşekirina rûpelan",
+      "title": "Gerok"
+    },
+    "countries": {
+      "window": "{{days}} rojên dawî",
+      "title": "Welatên Jorîn"
+    },
+    "tile": {
+      "inRange": "di vê navberê de",
+      "requestsLabel": "Daxwaz",
+      "pageViews": "Temaşekirina Rûpelan",
+      "soFarToday": "heta niha îro, UTC",
+      "visitorsToday": "Serdankerên Îro"
+    },
     "feedback": {
       "title": "Nirxandin",
       "intro": "Demek dirêj e DeHub bi kar tînî? Ji me re bêje ka çawa bû. Baş, xirab an taybetî - hemî têne xwendin. Heke hûn razî ne ku em ji we îqtibas bikin, qutiyê nîşan bikin û dibe ku em wê di postan, vîdyoyan an li ser malperê de bikar bînin.",
@@ -6094,7 +6116,11 @@
     "noTrendingThisWeek": "Vê hefteyê naveroka trend tune",
     "closeFilterOptions": "Vebijarkên fîlterê bigire",
     "openFilterOptions": "Vebijarkên fîlterê veke",
-    "fillQuery": "\"{{query}}\" têxe lêgerînê"
+    "fillQuery": "\"{{query}}\" têxe lêgerînê",
+    "clearHistory": "Dîrokê paqij bike",
+    "clearHistoryTitle": "Dîroka lêgerînê paqij bibe?",
+    "clearHistoryBody": "Ev hemû lêgerînên te yên dawî jê dibe.",
+    "removeFromHistory": "\"{{query}}\" ji dîrokê rake"
   },
   "notifPrompt": {
     "stayInLoop": "Agahdar bimîne",
@@ -6642,6 +6668,9 @@
     "resumeMint": "Fermana ji nû ve bidin destpêkirin",
     "resumeNeedsBalances": "Bîlançoyên berîka hîn jî tên barkirin. Piştî demekê dîsa biceribînin.",
     "chart": {
+      "empty": "Ji bo vê demê hîn dane tune",
+      "dailyHint": "serdankerên yekta yên rojane",
+      "daily": "Serdankerên rojane",
       "bookStarts": "Pirtûk li vir dest pê dike",
       "firstOrder": "Fermana yekem bicîh bikin da ku lîkvîdîteyê zêde bikin.",
       "waiting": "Li benda daneyên bihayê ne",

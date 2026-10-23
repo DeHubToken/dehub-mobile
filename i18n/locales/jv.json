@@ -4141,6 +4141,7 @@
     "noVoice": "Piranti sampeyan ora duwe swara kanggo basa iki."
   },
   "stages": {
+    "allStages": "Kabeh ruang swara",
     "addToCalendar": "Tambah ke kalender",
     "onTheRadio": "Di radio",
     "subtitles": "Subtitul",
@@ -4868,7 +4869,28 @@
     "interestedCount": "{{count}} kepéngin",
     "loadFailed": "Ora bisa ngemot acara"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Tamu saben dina", "dailyHint": "tamu unik saben dina", "empty": "Durung ana data kanggo periode iki"},
+    "definitions": {
+      "visitorsTerm": "Tamu"
+    },
+    "unavailable": {
+      "title": "Statistik ora kasedhiya saiki"
+    },
+    "browsers": {
+      "window": "miturut tampilan kaca",
+      "title": "Panjelajah"
+    },
+    "countries": {
+      "window": "{{days}} dina pungkasan",
+      "title": "Negara ndhuwur"
+    },
+    "tile": {
+      "inRange": "ing rentang iki",
+      "requestsLabel": "Panjaluk",
+      "pageViews": "Tampilan kaca",
+      "soFarToday": "nganti saiki dina iki, UTC",
+      "visitorsToday": "Tamu dina iki"
+    },
     "feedback": {
       "title": "Umpan Balik",
       "intro": "Wis nggunakake DeHub sawetara? Kandakake apa rasane. Apik, ala utawa spesifik — kabeh iku dibaca. Yen sampeyan seneng yen kami ngutip, centang kothak lan kami bisa nggunakake ing posting, video utawa ing situs.",
@@ -6125,7 +6147,11 @@
     "noTrendingThisWeek": "Ora ana konten populer minggu iki",
     "closeFilterOptions": "Tutup pilihan filter",
     "openFilterOptions": "Buka pilihan filter",
-    "fillQuery": "Isi panelusuran nganggo \"{{query}}\""
+    "fillQuery": "Isi panelusuran nganggo \"{{query}}\"",
+    "clearHistory": "Busak riwayat",
+    "clearHistoryTitle": "Busak riwayat panggolekan?",
+    "clearHistoryBody": "Iki bakal mbusak kabeh panggolekan paling anyar sampeyan.",
+    "removeFromHistory": "Busak \"{{query}}\" saka riwayat"
   },
   "notifPrompt": {
     "stayInLoop": "Tetep ngerti kabar",
@@ -6751,6 +6777,9 @@
       "sold": "Adol {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Durung ana data kanggo periode iki",
+      "dailyHint": "tamu unik saben dina",
+      "daily": "Tamu saben dina",
       "bookStarts": "Buku diwiwiti ing kene",
       "firstOrder": "Selehake pesenan pisanan kanggo nambah likuiditas.",
       "waiting": "Ngenteni data rega",

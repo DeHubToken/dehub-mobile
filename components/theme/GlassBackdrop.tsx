@@ -1,38 +1,26 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, StyleSheet, View } from 'react-native';
-import Svg, { G, Path } from 'react-native-svg';
+import Svg, { Defs, LinearGradient as SvgGradient, Stop, Path } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppTheme } from '../../context/ThemeContext';
 import { visualActivity } from '../../libs/visualActivity';
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from '../../libs/themeBackdrop';
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from '../../libs/scrollActivity';
 
-const ribbons = Array.from({ length: 18 }, (_, index) => {
-  const vertical = index >= 9;
-  const lane = index % 9;
-  const points = Array.from({ length: 10 }, (_, step) => {
-    const along = step * 200 - 300;
-    const across = lane * 170 - 120 + Math.sin(step * 1.37 + lane * 1.8) * 100 + Math.cos(step * .71 - lane) * 60;
-    return vertical ? [across, along] : [along, across];
-  });
-  let d = `M${points[0].join(' ')}`;
-  for (let i = 0; i < points.length - 1; i++) {
-    const a = points[Math.max(0, i - 1)], b = points[i], c = points[i + 1], e = points[Math.min(points.length - 1, i + 2)];
-    d += ` C${b[0] + (c[0] - a[0]) / 6} ${b[1] + (c[1] - a[1]) / 6} ${c[0] - (e[0] - b[0]) / 6} ${c[1] - (e[1] - b[1]) / 6} ${c.join(' ')}`;
-  }
-  return d;
-});
+const ribbons = [
+  'M-240 910C160 160 500 1240 920 520S1420-80 1850 180L1810 225C1430-15 1290 920 890 600S210 300-200 960Z',
+  'M-150 110C390 750 540-160 1060 240S1490 1080 1810 680L1840 730C1440 1210 1370 630 1010 330S340 860-190 145Z',
+  'M160-230C950 120 80 690 760 1000L710 1080C-70 790 820 130 120-170Z',
+  'M1130-200C500 240 1710 470 1120 1120L1190 1170C1810 510 680 220 1200-170Z',
+];
 function LightRibbons({ color }: { color: string }) {
-  return <Svg width="100%" height="100%" viewBox="0 0 1200 1200" preserveAspectRatio="xMidYMid slice" fill="none">
-    {ribbons.map((d, i) => <G key={i}>
-      <Path d={d} stroke={color} strokeWidth={80} opacity={.045} />
-      <Path d={d} stroke={color} strokeWidth={38} opacity={.09} />
-      <Path d={d} stroke={color} strokeWidth={16} opacity={.2} />
-      <Path d={d} stroke={color} strokeWidth={5} opacity={.5} />
-    </G>)}
+  return <Svg width="100%" height="100%" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none">
+    <Defs><SvgGradient id="crystalFace" x1="0" y1="0" x2="1" y2="1">
+      <Stop stopColor="#efffff" stopOpacity={.02} /><Stop offset=".24" stopColor="#efffff" stopOpacity={.2} /><Stop offset=".28" stopColor="#fff" stopOpacity={.55} /><Stop offset=".31" stopColor={color} stopOpacity={.04} /><Stop offset=".65" stopColor={color} stopOpacity={.16} /><Stop offset=".92" stopColor="#fff" stopOpacity={.3} /><Stop offset="1" stopColor="#fff" stopOpacity={.04} />
+    </SvgGradient></Defs>
+    {ribbons.map((d, i) => <Path key={i} d={d} fill="url(#crystalFace)" stroke="#eaffff" strokeOpacity={.3} strokeWidth={1.2} />)}
   </Svg>;
 }
-
 /** Native vector light ribbons shared by every screen. */
 function GlassBackdrop() {
   const { accent, skin } = useAppTheme();
@@ -63,20 +51,17 @@ function GlassBackdrop() {
     return () => { loop?.stop(); subscriptions.forEach(unsubscribe => unsubscribe()); };
   }, [progress, reduced]);
   const tint = (alpha: number) => `rgba(${accent.join(',')},${alpha})`;
-  return <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { backgroundColor: skin?.page ?? '#082a30', overflow: 'hidden' }]}>
-    <LinearGradient colors={[tint(.36), 'transparent', tint(.16)]} style={StyleSheet.absoluteFill} />
+  return <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { backgroundColor: skin?.page ?? '#06151b', overflow: 'hidden' }]}>
+    <LinearGradient colors={[tint(.12), 'transparent', tint(.04)]} style={StyleSheet.absoluteFill} />
     <Animated.View style={[styles.light, { transform: [
       { translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [-24, 32] }) },
       { translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [-16, 36] }) },
-      { rotate: progress.interpolate({ inputRange: [0, 1], outputRange: ['-12deg', '12deg'] }) },
+      { rotate: progress.interpolate({ inputRange: [0, 1], outputRange: ['-3deg', '3deg'] }) },
       { scale: 1.1 },
     ] }]}>
       <LightRibbons color={`rgb(${accent.map(c => Math.round(c * .65 + 255 * .35)).join(',')})`} />
     </Animated.View>
-    <Animated.View style={[styles.light, { opacity: .4, transform: [{ translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [30, -25] }) }, { rotate: '-35deg' }, { scale: 1.4 }] }]}>
-      <LightRibbons color={tint(1)} />
-    </Animated.View>
-  </View>;
+</View>;
 }
 const styles = StyleSheet.create({ light: { position: 'absolute', top: '-12%', bottom: '-12%', left: '-12%', right: '-12%' } });
 export default memo(GlassBackdrop);

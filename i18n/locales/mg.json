@@ -4164,6 +4164,7 @@
     "noVoice": "Tsy manana feo ho an'ity fiteny ity ny fitaovanao."
   },
   "stages": {
+    "allStages": "Ireo efitrano feo rehetra",
     "addToCalendar": "Ampidiro ao amin'ny kalandrie",
     "nowPlaying": "Mandeha izao",
     "onTheRadio": "Ao amin'ny radio",
@@ -4891,7 +4892,28 @@
     "interestedCount": "{{count}} liana",
     "loadFailed": "Tsy voaraikitra ny hetsika"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Mpitsidika isan'andro", "dailyHint": "mpitsidika tsy mitovy isan'andro", "empty": "Mbola tsy misy angona ho an'ity vanim-potoana ity"},
+    "definitions": {
+      "visitorsTerm": "Mpitsidika"
+    },
+    "unavailable": {
+      "title": "Tsy misy antontan'isa amin'izao fotoana izao"
+    },
+    "browsers": {
+      "window": "araka ny fijerena pejy",
+      "title": "Mpitety tranonkala"
+    },
+    "countries": {
+      "window": "{{days}} andro lasa",
+      "title": "Firenena voalohany"
+    },
+    "tile": {
+      "inRange": "amin'ity elanelana ity",
+      "requestsLabel": "Fangatahana",
+      "pageViews": "Fijerena pejy",
+      "soFarToday": "androany hatramin'izao, UTC",
+      "visitorsToday": "Mpitsidika androany"
+    },
     "feedback": {
       "title": "Fampahalalana",
       "intro": "Efa nanao fampiasana DeHub mandritra ny fotoana? Lazao aminay hoe ahoana ny nohitanao. Tsara, ratsy na manokana — lahat amin izany dia vakina. Raha faly ianao hahavela anay hanonona anao, asio ny boaty ary mety hampiasainay izany amin ny posta, video na amin ny tranonkala.",
@@ -6148,7 +6170,11 @@
     "noTrendingThisWeek": "Tsy misy votoaty malaza amin'ity herinandro ity",
     "closeFilterOptions": "Akana ny safidy sivana",
     "openFilterOptions": "Sokafy ny safidy sivana",
-    "fillQuery": "Apetraho ao amin'ny fikarohana ny \"{{query}}\""
+    "fillQuery": "Apetraho ao amin'ny fikarohana ny \"{{query}}\"",
+    "clearHistory": "Fafao ny tantara",
+    "clearHistoryTitle": "Hofafana ve ny tantaran'ny fikarohana?",
+    "clearHistoryBody": "Hamafa ny fikarohanao vao haingana rehetra izany.",
+    "removeFromHistory": "Esory amin'ny tantara ny \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Mahafantatra hatrany",
@@ -6773,6 +6799,9 @@
       "sold": "Namidy {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Mbola tsy misy angona ho an'ity vanim-potoana ity",
+      "dailyHint": "mpitsidika tsy mitovy isan'andro",
+      "daily": "Mpitsidika isan'andro",
       "bookStarts": "Manomboka eto ny boky",
       "firstOrder": "Apetraho ny voalohany mba hanampiana ny liquidity.",
       "waiting": "Miandry ny vidin'ny angona",

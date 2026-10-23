@@ -18,6 +18,7 @@ import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshContr
 import Icon from "../ui/Icon";
 import { COMPOSER, composerStyles } from "./composerLayout";
 import { useGrowingTextInput } from "../../hooks/useGrowingTextInput";
+import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import CommentItem from "./CommentItem";
 import CommentContextMenu from "./CommentContextMenu";
 import CommentLikersSheet from "./CommentLikersSheet";
@@ -205,6 +206,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
   const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
 
   // State - flat list of comments with replies inline
   const [flatComments, setFlatComments] = useState<FlatComment[]>([]);
@@ -787,17 +789,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Open GIF picker
   const handleOpenGifPicker = useCallback(() => {
     if (!requireAuth) return;
-    requireAuth(() => {
-      Keyboard.dismiss();
-      setGifPickerVisible(true);
-    });
-  }, [requireAuth]);
+    requireAuth(() => keyboardSwap.swapTo(() => setGifPickerVisible(true)));
+  }, [requireAuth, keyboardSwap]);
 
   // Open emoji picker
   const handleOpenEmojiPicker = useCallback(() => {
-    Keyboard.dismiss();
-    setEmojiPickerVisible(true);
-  }, []);
+    keyboardSwap.swapTo(() => setEmojiPickerVisible(true));
+  }, [keyboardSwap]);
 
   // Android: with the keyboard up, the first tap's onPress is swallowed while
   // the keyboard hides, so the picker needed a second tap. Open on touch-start
@@ -827,7 +825,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   const handleCloseEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(false);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleStartRecording = useCallback(() => {
     Keyboard.dismiss();
@@ -835,16 +834,19 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   }, [recorder]);
 
   // GIF selected from picker
+  const gifPress = useMemo(() => keyboardSwap.pressProps(handleOpenGifPicker), [keyboardSwap, handleOpenGifPicker]);
+
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
     // Typed text is kept — see handleVoiceRecordingComplete.
     setMediaAttachment({ type: "gif", url });
-    Keyboard.dismiss();
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleCloseGifPicker = useCallback(() => {
     setGifPickerVisible(false);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   // (Voice recording handlers moved above useVoiceRecorder hook call)
 
@@ -1943,7 +1945,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Icon name="Image" size={20} color="#8B8D90" />
                 </Pressable>
                 <Pressable
-                  onPress={handleOpenGifPicker}
+                  {...gifPress}
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("comments.addGif")}

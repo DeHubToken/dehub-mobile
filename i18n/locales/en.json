@@ -2462,6 +2462,20 @@
       "comment": "Comment",
       "profile": "Profile update",
       "window": {
+        "authorAll": "All creators",
+        "authorChoose": "Choose creator",
+        "categoryAll": "All categories",
+        "categoryChoose": "Choose categories",
+        "categoryHint": "Add any category names separated by commas, up to 20. A post can match any selected category. Leave empty for all.",
+        "last1h": "Last hour",
+        "last30d": "Last 30 days",
+        "allTime": "All time",
+        "dislike": "Dislike",
+        "author": "Author (optional)",
+        "category": "Category (optional)",
+        "authorPlaceholder": "@username or wallet",
+        "categoryPlaceholder": "Exact category name",
+        "filterHelp": "Leave filters empty for all posts. When both are set, both must match. Existing reactions are preserved; choosing the opposite reaction changes it.",
         "mode": "Task type",
         "write": "Write instructions",
         "title": "Every post in a time period",
@@ -4473,6 +4487,7 @@
     "filedOn": "Filed {{date}}"
   },
   "stages": {
+    "allStages": "All Stages",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
     "onTheRadio": "On the radio",
@@ -5201,7 +5216,28 @@
     "interestedCount": "{{count}} interested",
     "loadFailed": "Couldn't load events"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Visitors per day", "dailyHint": "unique visitors per day", "empty": "No data for this window yet"},
+    "definitions": {
+      "visitorsTerm": "Visitors"
+    },
+    "unavailable": {
+      "title": "Stats are not available right now"
+    },
+    "browsers": {
+      "window": "by page views",
+      "title": "Browsers"
+    },
+    "countries": {
+      "window": "last {{days}} days",
+      "title": "Top countries"
+    },
+    "tile": {
+      "inRange": "in this range",
+      "requestsLabel": "Requests",
+      "pageViews": "Page views",
+      "soFarToday": "so far today, UTC",
+      "visitorsToday": "Visitors today"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Been using DeHub for a while? Tell us what it has been like. Good, bad or specific — all of it is read. If you are happy for us to quote you, tick the box and we may use it in posts, videos or on the site.",
@@ -6576,7 +6612,11 @@
     "noTrendingThisWeek": "No trending content this week",
     "closeFilterOptions": "Close filter options",
     "openFilterOptions": "Open filter options",
-    "fillQuery": "Fill search with \"{{query}}\""
+    "fillQuery": "Fill search with \"{{query}}\"",
+    "clearHistory": "Clear history",
+    "clearHistoryTitle": "Clear search history?",
+    "clearHistoryBody": "This removes all your recent searches.",
+    "removeFromHistory": "Remove \"{{query}}\" from history"
   },
   "notifPrompt": {
     "stayInLoop": "Stay in the loop",
@@ -7599,6 +7639,9 @@
       "sold": "Sold {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "No data for this window yet",
+      "dailyHint": "unique visitors per day",
+      "daily": "Visitors per day",
       "bookStarts": "The book starts here",
       "firstOrder": "Place the first order to add liquidity.",
       "waiting": "Waiting for price data",
@@ -10407,6 +10450,31 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "085cd98e8e2e": " Copy link",
+    "c184b8c9592f": "That has to be a page on dehub.io.",
+    "9b44fb81d89e": "Destination page",
+    "12a7c0529934": "/docs/getting-started",
+    "ae4410aa9943": "Paste any DeHub page — a docs section, a bounty, your profile. The link below still attributes the visit to you, then takes them straight there.",
+    "fc036ea0e9f0": "Link to a specific page",
+    "df0fe9e00d35": "Try Again",
+    "24df132b16d3": "Swapping...",
+    "220277ae54c6": "Confirm Swap",
+    "0e9161011702": "Refresh",
+    "2eef6c9af0ae": "Getting quote...",
+    "85249a6f8dd5": "Get Quote",
+    "9c71e7639046": "Swap successful!",
+    "9ccba222f889": "Estimated cost",
+    "ac4d49f28b40": "Swap {{value1}} {{value2}}",
+    "6627a8114830": "Buy {{value1}} {{value2}}",
+    "f4b06ef6d3c8": "To",
+    "218197693424": "From",
+    "c772e8fc6314": "Token Swap",
+    "8d2e3063a993": "Buy $",
+    "f6ec7f0c995b": "Visualization",
+    "8b2ae991573c": "Now Playing",
+    "b8e082c979d9": " Create Poll",
+    "7614c65db3bf": "Copy wallet address",
+    "854cbbb4f34f": " fractions (",
     "da8e926af644": "Failed to edit message",
     "f6f4688ff23d": "Send",
     "f42e0f66017d": "No messages yet",

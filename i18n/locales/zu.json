@@ -4172,6 +4172,7 @@
     "noVoice": "Idivayisi yakho ayinalo izwi lalolu limi."
   },
   "stages": {
+    "allStages": "Wonke amagumbi omsindo",
     "addToCalendar": "Faka ekhalendeni",
     "nowPlaying": "Manje iyadlala",
     "onTheRadio": "Emsakazweni",
@@ -4900,7 +4901,28 @@
     "interestedCount": "{{count}} bayathakazelisa",
     "loadFailed": "Ayikwazanga ukulayisha imicimbi"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Izivakashi ngosuku", "dailyHint": "izivakashi ezihlukile ngosuku", "empty": "Ayikho idatha yale nkathi okwamanje"},
+    "definitions": {
+      "visitorsTerm": "Izivakashi"
+    },
+    "unavailable": {
+      "title": "Izibalo azitholakali okwamanje"
+    },
+    "browsers": {
+      "window": "ngokubukwa kwamakhasi",
+      "title": "Iziphequluli"
+    },
+    "countries": {
+      "window": "izinsuku ezingu-{{days}} ezedlule",
+      "title": "Amazwe aphezulu"
+    },
+    "tile": {
+      "inRange": "kuleli banga",
+      "requestsLabel": "Izicelo",
+      "pageViews": "Ukubukwa kwamakhasi",
+      "soFarToday": "kuze kube manje namuhla, i-UTC",
+      "visitorsToday": "Izivakashi namuhla"
+    },
     "feedback": {
       "title": "Umuntu Onethembeka",
       "intro": "Nabe kusetshenziswa iDeHub isikhathi eside? Sitshele ukuthi kwakunjani. Okuhle, okubi noma okuthile okucacile — konke kufundwa. Uma usiyavumelela ukuthi sikuquote, bheka ibhokisi futhi singase sikusetshenzise ezipositini, emavidiyo noma kusite.",
@@ -6157,7 +6179,11 @@
     "noTrendingThisWeek": "Awekho okuqukethwe okuthrendayo ngalesi sikhathi",
     "closeFilterOptions": "Vala izinketho zokuhlunga",
     "openFilterOptions": "Vula izinketho zokuhlunga",
-    "fillQuery": "Faka \"{{query}}\" ebhokisini lokusesha"
+    "fillQuery": "Faka \"{{query}}\" ebhokisini lokusesha",
+    "clearHistory": "Sula umlando",
+    "clearHistoryTitle": "Sula umlando wokusesha?",
+    "clearHistoryBody": "Lokhu kususa konke ukusesha kwakho kwakamuva.",
+    "removeFromHistory": "Susa \"{{query}}\" emlandweni"
   },
   "notifPrompt": {
     "stayInLoop": "Hlala wazi",
@@ -6782,6 +6808,9 @@
       "sold": "Ithengisiwe {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Ayikho idatha yale nkathi okwamanje",
+      "dailyHint": "izivakashi ezihlukile ngosuku",
+      "daily": "Izivakashi ngosuku",
       "bookStarts": "Incwadi iqala lapha",
       "firstOrder": "Beka i-oda lokuqala ukuze ufake uketshezi.",
       "waiting": "Ilinde idatha yamanani",

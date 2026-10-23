@@ -4207,6 +4207,7 @@
     "filedOn": "{{date}} को दर्ज किया गया"
   },
   "stages": {
+    "allStages": "सभी ऑडियो रूम",
     "addToCalendar": "कैलेंडर में जोड़ें",
     "nowPlaying": "अभी चल रहा है",
     "onTheRadio": "रेडियो पर",
@@ -4935,7 +4936,28 @@
     "interestedCount": "{{count}} को रुचि है",
     "loadFailed": "कार्यक्रम लोड नहीं हो सके"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "प्रतिदिन आगंतुक", "dailyHint": "प्रतिदिन अद्वितीय आगंतुक", "empty": "इस अवधि के लिए अभी कोई डेटा नहीं"},
+    "definitions": {
+      "visitorsTerm": "आगंतुक"
+    },
+    "unavailable": {
+      "title": "आँकड़े अभी उपलब्ध नहीं हैं"
+    },
+    "browsers": {
+      "window": "पेज व्यू के अनुसार",
+      "title": "ब्राउज़र"
+    },
+    "countries": {
+      "window": "पिछले {{days}} दिन",
+      "title": "शीर्ष देश"
+    },
+    "tile": {
+      "inRange": "इस अंतराल में",
+      "requestsLabel": "अनुरोध",
+      "pageViews": "पेज व्यू",
+      "soFarToday": "आज अब तक, UTC",
+      "visitorsToday": "आज के आगंतुक"
+    },
     "feedback": {
       "title": "प्रतिक्रिया",
       "intro": "क्या आप कुछ समय से DeHub का उपयोग कर रहे हैं? हमें बताएं कि यह कैसा रहा है। अच्छा, बुरा या विशिष्ट — सब कुछ पढ़ा जाता है। यदि आप हमें आपको उद्धृत करने के लिए खुश हैं, तो बॉक्स को चेक करें और हम इसे पोस्ट, वीडियो या साइट पर उपयोग कर सकते हैं।",
@@ -6235,7 +6257,11 @@
     "noTrendingThisWeek": "इस सप्ताह कोई ट्रेंडिंग सामग्री नहीं",
     "closeFilterOptions": "फ़िल्टर विकल्प बंद करें",
     "openFilterOptions": "फ़िल्टर विकल्प खोलें",
-    "fillQuery": "खोज में \"{{query}}\" भरें"
+    "fillQuery": "खोज में \"{{query}}\" भरें",
+    "clearHistory": "इतिहास साफ़ करें",
+    "clearHistoryTitle": "खोज इतिहास साफ़ करें?",
+    "clearHistoryBody": "इससे आपकी सभी हाल की खोजें हट जाएँगी।",
+    "removeFromHistory": "\"{{query}}\" को इतिहास से हटाएँ"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट रहें",
@@ -6859,6 +6885,9 @@
       "sold": "बिक गया {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "इस अवधि के लिए अभी कोई डेटा नहीं",
+      "dailyHint": "प्रतिदिन अद्वितीय आगंतुक",
+      "daily": "प्रतिदिन आगंतुक",
       "bookStarts": "किताब यहाँ से शुरू होती है",
       "firstOrder": "तरलता जोड़ने के लिए पहला ऑर्डर दें।",
       "waiting": "किराए के डेटा का इंतज़ार है",

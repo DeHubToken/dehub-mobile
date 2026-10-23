@@ -4144,6 +4144,7 @@
     "noVoice": "جهازك ما بيه صوت لهاي اللغة."
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "الآن يلعبون",
     "onTheRadio": "في الراديو",
@@ -4871,7 +4872,28 @@
     "interestedCount": "{{count}} مهتم",
     "loadFailed": "ما گدرنا نحمّل الفعاليات"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "الزوار باليوم", "dailyHint": "زوار فريدين باليوم", "empty": "بعد ماكو بيانات لهذي الفترة"},
+    "definitions": {
+      "visitorsTerm": "الزوار"
+    },
+    "unavailable": {
+      "title": "الإحصائيات مو متوفرة هسه"
+    },
+    "browsers": {
+      "window": "حسب مشاهدات الصفحة",
+      "title": "المتصفحات"
+    },
+    "countries": {
+      "window": "آخر {{days}} أيام",
+      "title": "أفضل الدول"
+    },
+    "tile": {
+      "inRange": "بهذا المدى",
+      "requestsLabel": "الطلبات",
+      "pageViews": "مشاهدات الصفحة",
+      "soFarToday": "لحد هسه اليوم، UTC",
+      "visitorsToday": "زوار اليوم"
+    },
     "feedback": {
       "title": "تقييم",
       "intro": "استخدمت DeHub لفترة؟ قول لنا شنو الحال. حلو، سيء أو شي معين — كلشي نقراه. إذا انت فرحان، شيك الصندوق وممكن نستخدمه في البوستات أو الفيديوهات أو الموقع.",
@@ -6137,7 +6159,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
     "openFilterOptions": "فتح خيارات التصفية",
-    "fillQuery": "ضع \"{{query}}\" في مربع البحث"
+    "fillQuery": "ضع \"{{query}}\" في مربع البحث",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",
@@ -6761,6 +6787,9 @@
       "sold": "بعت {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "بعد ماكو بيانات لهذي الفترة",
+      "dailyHint": "زوار فريدين باليوم",
+      "daily": "الزوار باليوم",
       "bookStarts": "الكتاب يبدأ من هنا",
       "firstOrder": "حط أول طلب حتى تضيف سيولة.",
       "waiting": "ننتظر بيانات السعر",

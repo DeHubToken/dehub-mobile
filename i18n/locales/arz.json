@@ -4147,6 +4147,7 @@
     "noVoice": "جهازك مفيهوش صوت للغة دي."
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "قيد التشغيل الآن",
     "onTheRadio": "على الراديو",
@@ -4874,7 +4875,28 @@
     "interestedCount": "{{count}} مهتم",
     "loadFailed": "مقدرناش نحمّل الفعاليات"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "الزوار في اليوم", "dailyHint": "زوار فريدين في اليوم", "empty": "لسه مفيش بيانات للفترة دي"},
+    "definitions": {
+      "visitorsTerm": "الزوار"
+    },
+    "unavailable": {
+      "title": "الإحصائيات مش متاحة دلوقتي"
+    },
+    "browsers": {
+      "window": "حسب مشاهدات الصفحات",
+      "title": "المتصفحات"
+    },
+    "countries": {
+      "window": "آخر {{days}} يوم",
+      "title": "أهم الدول"
+    },
+    "tile": {
+      "inRange": "في المدى ده",
+      "requestsLabel": "الطلبات",
+      "pageViews": "مشاهدات الصفحات",
+      "soFarToday": "لحد دلوقتي النهارده، بتوقيت UTC",
+      "visitorsToday": "زوار النهارده"
+    },
     "feedback": {
       "title": "تقييم",
       "intro": "هل تستخدم DeHub منذ فترة؟ أخبرنا عن تجربتك. سواء كانت جيدة أو سيئة أو محددة — كل شيء سيتم قراءته. إذا كنت موافقاً على أن نقتبس منك، ضع علامة في الصندوق وقد نستخدمه في المنشورات أو الفيديوهات أو على الموقع.",
@@ -6140,7 +6162,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
     "openFilterOptions": "فتح خيارات التصفية",
-    "fillQuery": "حط \"{{query}}\" في خانة البحث"
+    "fillQuery": "حط \"{{query}}\" في خانة البحث",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "فضل عارف",
@@ -6762,6 +6788,9 @@
       "sold": "تم البيع {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "لسه مفيش بيانات للفترة دي",
+      "dailyHint": "زوار فريدين في اليوم",
+      "daily": "الزوار في اليوم",
       "bookStarts": "يبدأ الكتاب من هنا",
       "firstOrder": "ضع الأمر الأول لإضافة السيولة.",
       "waiting": "في انتظار بيانات الأسعار",

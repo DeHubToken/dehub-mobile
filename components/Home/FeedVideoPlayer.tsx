@@ -10,6 +10,7 @@ import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVi
 import { useQueryClient } from "@tanstack/react-query";
 import { hasPostVideoSession, postMediaIsTransferring, preparePostMediaNavigation } from "../../libs/post-media-session";
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import PostTapSurface from "./PostTapSurface";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -1405,7 +1406,15 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           {/* The video tap target is a sibling behind the controls. Nesting the
               timeline inside it let a seek bubble into play/pause, and made the
               whole media box too eager to claim vertical feed flicks. */}
-          <Pressable {...mediaTap} style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} />
+          {feedPreview && onTapReaction ? (
+            <PostTapSurface resetKey={String(tokenId ?? videoUrl)} style={StyleSheet.absoluteFill}
+              onPress={() => { preparePostMediaNavigation(videoUrl); onOpenViewer?.(); }}
+              onReaction={onTapReaction} accessibilityLabel={t("audioPost.play")}>
+              {null}
+            </PostTapSurface>
+          ) : (
+            <Pressable {...mediaTap} style={StyleSheet.absoluteFill} accessibilityRole="button" accessibilityLabel={t(isPlaying ? "audioPost.pause" : "audioPost.play")} />
+          )}
           {feedPreview && (
             <Pressable onPress={handleToggleMute} hitSlop={8}
               style={[styles.previewMute, { top: bareTop }]}
@@ -2039,8 +2048,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible"> & { feedPreview?: boolean }> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, postPage = false, onBack, feedPreview = false, isVisible }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction"> & { feedPreview?: boolean }> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible }) => {
     const { t } = useTranslation();
     const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
     const posterAspect = getMeasuredMediaAspect(thumbnail);
@@ -2081,11 +2090,16 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             <Icon name="VideoOff" size={40} color="#666" />
           </View>
         )}
-        {!hideControls && (
+        {!hideControls && (feedPreview && onTapReaction ? (
+          <PostTapSurface resetKey={String(tokenId ?? thumbnail)} style={[styles.playOverlay, BARE_LAYER]}
+            onPress={onPress} onReaction={onTapReaction} accessibilityLabel={t("audioPost.play")}>
+            <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
+          </PostTapSurface>
+        ) : (
           <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]} accessibilityRole="button" accessibilityLabel={t("audioPost.play")}>
             <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
           </Pressable>
-        )}
+        ))}
         {onBack && !hideControls && (
           <Pressable onPress={onBack} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("common.goBack")} style={[styles.mediaBack, styles.bareButton, { top: 6 }]}>
             <View style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}><BareIcon name="ArrowLeft" /></View>
@@ -2184,6 +2198,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       postPage={props.postPage}
       onBack={props.onBack}
       onPress={onPosterPress}
+      onTapReaction={props.onTapReaction}
       feedPreview={!props.postPage && !!props.onOpenViewer && !isContentGated}
     />
   );

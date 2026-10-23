@@ -2499,6 +2499,20 @@
       "comment": "Yorum",
       "profile": "Profil güncellemesi",
       "window": {
+        "authorAll": "Tüm üreticiler",
+        "authorChoose": "Üretici seç",
+        "categoryAll": "Tüm kategoriler",
+        "categoryChoose": "Kategori seç",
+        "categoryHint": "Virgülle ayrılmış en fazla 20 kategori ekleyin. Herhangi biri eşleşebilir. Tümü için boş bırakın.",
+        "last1h": "Son saat",
+        "last30d": "Son 30 gün",
+        "allTime": "Tüm zamanlar",
+        "dislike": "Beğenme",
+        "author": "Yazar (isteğe bağlı)",
+        "category": "Kategori (isteğe bağlı)",
+        "authorPlaceholder": "@kullanıcıadı veya cüzdan",
+        "categoryPlaceholder": "Tam kategori adı",
+        "filterHelp": "Tüm gönderiler için filtreleri boş bırakın. İkisi de seçilirse ikisi de eşleşmelidir. Aynı tepkiler korunur; karşıt tepki seçmek mevcut tepkiyi değiştirir.",
         "mode": "Görev türü",
         "write": "Talimat yaz",
         "title": "Bir zaman aralığındaki her gönderi",
@@ -4510,6 +4524,7 @@
     "filedOn": "{{date}} tarihinde açıldı"
   },
   "stages": {
+    "allStages": "Tüm sesli odalar",
     "addToCalendar": "Takvime ekle",
     "nowPlaying": "Şimdi çalıyor",
     "onTheRadio": "Radyoda",
@@ -5238,7 +5253,28 @@
     "interestedCount": "{{count}} kişi ilgileniyor",
     "loadFailed": "Etkinlikler yüklenemedi"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Günlük ziyaretçi", "dailyHint": "günlük benzersiz ziyaretçi", "empty": "Bu aralık için henüz veri yok"},
+    "definitions": {
+      "visitorsTerm": "Ziyaretçiler"
+    },
+    "unavailable": {
+      "title": "İstatistikler şu anda kullanılamıyor"
+    },
+    "browsers": {
+      "window": "sayfa görüntülemesine göre",
+      "title": "Tarayıcılar"
+    },
+    "countries": {
+      "window": "son {{days}} gün",
+      "title": "En çok ülke"
+    },
+    "tile": {
+      "inRange": "bu aralıkta",
+      "requestsLabel": "İstekler",
+      "pageViews": "Sayfa görüntülemeleri",
+      "soFarToday": "bugün şu ana kadar, UTC",
+      "visitorsToday": "Bugünkü ziyaretçiler"
+    },
     "feedback": {
       "title": "Geri Bildirim",
       "intro": "DeHub'ı bir süredir kullanıyor musunuz? Bize nasıl olduğunu anlatın. İyi, kötü veya spesifik — hepsi okunur. Sizi alıntılamaktan mutlu iseniz, kutuyu işaretleyin ve bunu yazılarda, videolarda veya sitede kullanabiliriz.",
@@ -6613,7 +6649,11 @@
     "noTrendingThisWeek": "Bu hafta trend içerik yok",
     "closeFilterOptions": "Filtre seçeneklerini kapat",
     "openFilterOptions": "Filtre seçeneklerini aç",
-    "fillQuery": "Aramaya \"{{query}}\" yaz"
+    "fillQuery": "Aramaya \"{{query}}\" yaz",
+    "clearHistory": "Geçmişi temizle",
+    "clearHistoryTitle": "Arama geçmişi temizlensin mi?",
+    "clearHistoryBody": "Bu, tüm son aramalarını kaldırır.",
+    "removeFromHistory": "\"{{query}}\" aramasını geçmişten kaldır"
   },
   "notifPrompt": {
     "stayInLoop": "Haberdar ol",
@@ -7239,6 +7279,9 @@
       "sold": "Satıldı {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Bu aralık için henüz veri yok",
+      "dailyHint": "günlük benzersiz ziyaretçi",
+      "daily": "Günlük ziyaretçi",
       "bookStarts": "Kitap burada başlıyor",
       "firstOrder": "Likidite eklemek için ilk siparişi verin.",
       "waiting": "Fiyat verisi bekleniyor",
@@ -10033,6 +10076,31 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "085cd98e8e2e": " Bağlantıyı kopyala",
+    "c184b8c9592f": "Bu dehub.io'da bir sayfa olmalı.",
+    "9b44fb81d89e": "Hedef sayfa",
+    "12a7c0529934": "/docs/başlangıç",
+    "ae4410aa9943": "Herhangi bir DeHub sayfasını yapıştırın — bir dokümanlar bölümü, bir ödül, profiliniz. Aşağıdaki bağlantı hala ziyareti size atfediyor, ardından onları doğrudan oraya götürüyor.",
+    "fc036ea0e9f0": "Belirli bir sayfaya bağlantı",
+    "df0fe9e00d35": "Tekrar Dene",
+    "24df132b16d3": "Değiştiriliyor...",
+    "220277ae54c6": "Takası Onayla",
+    "0e9161011702": "Yenile",
+    "2eef6c9af0ae": "Fiyat teklifi alınıyor...",
+    "85249a6f8dd5": "Teklif Al",
+    "9c71e7639046": "Takas başarılı!",
+    "9ccba222f889": "Tahmini maliyet",
+    "ac4d49f28b40": "{{value1}} {{value2}} takas et",
+    "6627a8114830": "{{value1}}{{value2}} satın alın",
+    "f4b06ef6d3c8": "Nereye",
+    "218197693424": "Nereden",
+    "c772e8fc6314": "Token Takası",
+    "8d2e3063a993": "Satın Al $",
+    "f6ec7f0c995b": "Görselleştirme",
+    "8b2ae991573c": "Şimdi Çalınıyor",
+    "b8e082c979d9": " Anket Oluştur",
+    "7614c65db3bf": "Cüzdan adresini kopyala",
+    "854cbbb4f34f": " kesirler (",
     "da8e926af644": "Mesaj düzenlenemedi",
     "f6f4688ff23d": "Gönder",
     "f42e0f66017d": "Henüz mesaj yok",

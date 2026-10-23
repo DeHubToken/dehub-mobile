@@ -1,3 +1,4 @@
+import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useDraftState } from '../../hooks/useDraftState';
 import BadgeArtwork from "../common/BadgeArtwork";
@@ -20,12 +21,10 @@ import BadgeArtwork from "../common/BadgeArtwork";
  * The database is the authority on every one of these — the gating here only
  * avoids offering a control that would be refused.
  *
- * There is deliberately no attachment affordance: useCommunityChat.sendMessage
- * hard-codes message_type "text" and image_url null, and uploadCommunityMedia
- * only accepts "avatar" | "banner", so a picker here would have nowhere to
- * send an image. Nothing is therefore gated on send_media — when a media path
- * lands, its button belongs behind abilities.can("send_media"). Incoming
- * image messages from web still render.
+ * GIFs and voice notes, as on web, sit behind abilities.can("send_media"):
+ * a GIF posts its GIPHY URL, a voice note is uploaded through the same
+ * dm-upload-media function web uses and posts the stored URL. Plain photos
+ * are not offered because web does not send them here either.
  *
  * Sizing is the caller's job: this fills whatever box it is given (flex: 1).
  */
@@ -68,6 +67,12 @@ import MentionSuggestions from "../common/MentionSuggestions";
 import EmojiSheet from "../Upload/EmojiSheet";
 import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
 import { useMentions } from "../../hooks/useMentions";
+import GifPicker from "../DM/GifPicker";
+import VoiceNotePlayer from "../Comments/VoiceNotePlayer";
+import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNoteRecorder";
+import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
+import { uploadLiveChatImage } from "../../services/livechat.service";
+import { toastError } from "../../libs/toast";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -206,7 +211,11 @@ const ChatRow: React.FC<{
           </View>
         )}
 
-        {!!message.image_url && (
+        {message.message_type === "voice" && !!message.image_url ? (
+          <View style={{ marginBottom: 4, maxWidth: 260 }}>
+            <VoiceNotePlayer audioUrl={message.image_url} compact />
+          </View>
+        ) : !!message.image_url && (
           <Image
             source={storageImageSource(message.image_url, 180)}
             style={styles.messageImage}
@@ -328,6 +337,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const [cooldown, setCooldown] = useState(0);
 
   const canPin = abilities.can("pin_messages");
+  const canSendMedia = abilities.can("send_media");
+  const [gifOpen, setGifOpen] = useState(false);
+  const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
+  const gifPress = useMemo(() => keyboardSwap.pressProps(() => keyboardSwap.swapTo(() => setGifOpen(true))), [keyboardSwap]);
   const canDeleteAny = abilities.can("delete_messages");
   const canSend = isMember && !abilities.isMuted && abilities.can("send_messages");
 
@@ -444,6 +458,40 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     scrollToBottom,
     slowModeApplies,
     slowSeconds, setText, setReplyTo]);
+
+  // A GIF or voice note goes out at once, like web, then the same after-send
+  // steps as text: reply cleared, scrolled to the bottom, slow mode shown.
+  const sendMedia = useCallback(async (type: "gif" | "voice", url: string) => {
+    setSending(true);
+    try {
+      await sendMessage(type === "voice" ? url : "", replyTo?.id, { type, url });
+      setReplyTo.complete(replyTo, null);
+      atBottomRef.current = true;
+      scrollToBottom();
+      if (slowModeApplies) setCooldown(slowSeconds);
+    } catch {
+      // the hook already toasted
+    } finally {
+      setSending(false);
+    }
+  }, [sendMessage, replyTo, setReplyTo, scrollToBottom, slowModeApplies, slowSeconds]);
+
+  const handleVoiceDone = useCallback(async (result: VoiceNoteResult) => {
+    if (!myAddress) return;
+    setSending(true);
+    try {
+      // dm-upload-media takes audio/mp4 for the m4a the recorder writes.
+      const mime = /m4a|aac|mp4/i.test(result.mimeType || "") || !result.mimeType ? "audio/mp4" : result.mimeType;
+      const name = result.uri.split("/").pop() || `voice-${Date.now()}.m4a`;
+      const { url } = await uploadLiveChatImage(result.uri, mime, name, myAddress);
+      await sendMedia("voice", url);
+    } catch (e: any) {
+      toastError(e?.message || t("liveChat.voiceUploadFailed"));
+      setSending(false);
+    }
+  }, [myAddress, sendMedia, t]);
+
+  const recorder = useVoiceRecorder({ onRecordingComplete: handleVoiceDone, onCancel: () => {} });
 
   const handleToggleReaction = useCallback(
     (id: string, emoji: string) => {
@@ -726,9 +774,40 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             <Icon name={noticeIcon} size={14} color="#808089" />
             <Text style={styles.noticeText}>{composerNotice}</Text>
           </View>
+        ) : recorder.isRecording || recorder.isStopping ? (
+          <View style={{ flex: 1 }}>
+            <VoiceNoteRecordingOverlay recorder={recorder} />
+          </View>
         ) : (
           <>
+            {canSendMedia && !editing && (
+              <View style={styles.mediaBtns}>
+                <Pressable
+                  {...gifPress}
+                  disabled={sending || cooldown > 0}
+                  style={styles.mediaBtn}
+                  hitSlop={4}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("comments.addGif")}
+                >
+                  <Text style={styles.gifText}>{t("liveChat.attachGif")}</Text>
+                </Pressable>
+                {!text.trim() && (
+                  <Pressable
+                    onPress={() => recorder.startRecording()}
+                    disabled={sending || cooldown > 0}
+                    style={styles.mediaBtn}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.recordVoice")}
+                  >
+                    <Icon name="Mic" size={17} color="#A1A1AA" />
+                  </Pressable>
+                )}
+              </View>
+            )}
             <TextInput
+              ref={inputRef}
               value={text}
               onChangeText={(v) => {
                 if (v.length <= MAX_LEN) mentions.handleChangeText(v);
@@ -759,6 +838,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           </>
         )}
       </View>
+
+      {gifOpen && (
+        <GifPicker
+          visible={gifOpen}
+          onClose={() => {
+            setGifOpen(false);
+            keyboardSwap.restore();
+          }}
+          onPick={(url) => {
+            setGifOpen(false);
+            keyboardSwap.restore();
+            void sendMedia("gif", url);
+          }}
+        />
+      )}
 
       <Modal
         visible={!!sheetFor}
@@ -1028,6 +1122,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.08)",
   },
+  mediaBtns: { flexDirection: "row", gap: 6 },
+  mediaBtn: {
+    minWidth: 36,
+    height: 36,
+    paddingHorizontal: 6,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 12,
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.08)",
+  },
+  gifText: { color: "#A1A1AA", fontSize: 11, fontWeight: "700", letterSpacing: 0.5 },
   sendBtn: {
     minWidth: 36,
     height: 36,

@@ -4150,6 +4150,7 @@
     "noVoice": "Enheten din har ingen stemme for dette språket."
   },
   "stages": {
+    "allStages": "Alle lydrom",
     "addToCalendar": "Legg til i kalender",
     "nowPlaying": "Spiller nå",
     "onTheRadio": "På radioen",
@@ -4878,7 +4879,28 @@
     "interestedCount": "{{count}} interesserte",
     "loadFailed": "Kunne ikke laste arrangementer"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Besøkende per dag", "dailyHint": "unike besøkende per dag", "empty": "Ingen data for denne perioden ennå"},
+    "definitions": {
+      "visitorsTerm": "Besøkende"
+    },
+    "unavailable": {
+      "title": "Statistikken er ikke tilgjengelig akkurat nå"
+    },
+    "browsers": {
+      "window": "etter sidevisninger",
+      "title": "Nettlesere"
+    },
+    "countries": {
+      "window": "siste {{days}} dager",
+      "title": "Toppland"
+    },
+    "tile": {
+      "inRange": "i dette området",
+      "requestsLabel": "Forespørsler",
+      "pageViews": "Sidevisninger",
+      "soFarToday": "hittil i dag, UTC",
+      "visitorsToday": "Besøkende i dag"
+    },
     "feedback": {
       "title": "Tilbakemelding",
       "intro": "Har du brukt DeHub en stund? Fortell oss hvordan det har vært. Bra, dårlig eller spesifikt — alt blir lest. Hvis du er glad for at vi siterer deg, huk av boksen og vi kan bruke det i innlegg, videoer eller på nettstedet.",
@@ -6144,7 +6166,11 @@
     "noTrendingThisWeek": "Ingen populært innhold denne uken",
     "closeFilterOptions": "Lukk filteralternativer",
     "openFilterOptions": "Åpne filteralternativer",
-    "fillQuery": "Fyll inn \"{{query}}\" i søket"
+    "fillQuery": "Fyll inn \"{{query}}\" i søket",
+    "clearHistory": "Tøm historikk",
+    "clearHistoryTitle": "Tømme søkehistorikken?",
+    "clearHistoryBody": "Dette fjerner alle de nylige søkene dine.",
+    "removeFromHistory": "Fjern «{{query}}» fra historikken"
   },
   "notifPrompt": {
     "stayInLoop": "Hold deg oppdatert",
@@ -6768,6 +6794,9 @@
       "sold": "Solgt {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Ingen data for denne perioden ennå",
+      "dailyHint": "unike besøkende per dag",
+      "daily": "Besøkende per dag",
       "bookStarts": "Boken starter her",
       "firstOrder": "Legg inn den første ordren for å øke likviditeten.",
       "waiting": "Venter på prisdata",

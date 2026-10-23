@@ -4140,6 +4140,7 @@
     "noVoice": "Kāore he reo i tō pūrere mō tēnei reo."
   },
   "stages": {
+    "allStages": "Ngā rūma ororongo katoa",
     "addToCalendar": "Tāpirihia ki te maramataka",
     "nowPlaying": "I tenei wa ka takaro ahau",
     "onTheRadio": "I runga i te reo irirangi",
@@ -4867,7 +4868,28 @@
     "interestedCount": "{{count}} e hiahia ana",
     "loadFailed": "Kāore i taea te uta i ngā huihuinga"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Manuhiri ia rā", "dailyHint": "manuhiri motuhake ia rā", "empty": "Kāore anō he raraunga mō tēnei wā"},
+    "definitions": {
+      "visitorsTerm": "Manuhiri"
+    },
+    "unavailable": {
+      "title": "Kāore ngā tatauranga e wātea ana i tēnei wā"
+    },
+    "browsers": {
+      "window": "mā ngā tirohanga whārangi",
+      "title": "Ngā pūtirotiro"
+    },
+    "countries": {
+      "window": "ngā rā {{days}} kua hipa",
+      "title": "Ngā whenua matua"
+    },
+    "tile": {
+      "inRange": "i tēnei whānuitanga",
+      "requestsLabel": "Ngā tono",
+      "pageViews": "Tirohanga whārangi",
+      "soFarToday": "i tēnei rā tae noa ki nāianei, UTC",
+      "visitorsToday": "Manuhiri i tēnei rā"
+    },
     "feedback": {
       "title": "Urupare",
       "intro": "Kua whakamahi koe i a DeHub mo te whakatupuranga? Kōrerotia mai ki a mātou he aha te ahuatanga. He pai, he kino, he mea motuhake rānei — ka pānuitia e mātou te katoa. Mēnā kua pai ki a koe kia whakatupuranga mātou i ō kupu, tīkina te pouaka a mātou ka whakamahia pea i roto i ngā pōst, ngā ataata, i te paetukutuku rānei.",
@@ -6124,7 +6146,11 @@
     "noTrendingThisWeek": "Kāore he ihirangi tūāhua o tēnei wiki",
     "closeFilterOptions": "Katia ngā kōwhiringa tātari",
     "openFilterOptions": "Whakatuwheratia ngā kōwhiringa tātari",
-    "fillQuery": "Whakakīia te rapu ki \"{{query}}\""
+    "fillQuery": "Whakakīia te rapu ki \"{{query}}\"",
+    "clearHistory": "Ūkuia te hītori",
+    "clearHistoryTitle": "Ūkuia te hītori rapunga?",
+    "clearHistoryBody": "Ka tangohia ō rapunga hou katoa.",
+    "removeFromHistory": "Tangohia a \"{{query}}\" i te hītori"
   },
   "notifPrompt": {
     "stayInLoop": "Kia mōhio tonu",
@@ -6749,6 +6775,9 @@
       "noOrders": "Kāore anō kia whai ota tuwhera mō te {{symbol}}. Whakaritea te tuatahi."
     },
     "chart": {
+      "empty": "Kāore anō he raraunga mō tēnei wā",
+      "dailyHint": "manuhiri motuhake ia rā",
+      "daily": "Manuhiri ia rā",
       "bookStarts": "Ka tīmata te pukapuka i konei",
       "firstOrder": "Tuhia te tikanga tuatahi ki te tāpiri i te pūtea.",
       "waiting": "Te tatari mo nga raraunga utu",

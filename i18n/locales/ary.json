@@ -4175,6 +4175,7 @@
     "noVoice": "الجهاز ديالك ماعندوش صوت لهاد اللغة."
   },
   "stages": {
+    "allStages": "كاع الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "قيد التشغيل الآن",
     "onTheRadio": "على الراديو",
@@ -4900,7 +4901,28 @@
     "interestedCount": "{{count}} مهتمين",
     "loadFailed": "ما قدرناش نحملو الأنشطة"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "الزوار فاليوم", "dailyHint": "زوار فريدين فاليوم", "empty": "مازال ما كاينين حتى معطيات لهاد الفترة"},
+    "definitions": {
+      "visitorsTerm": "الزوار"
+    },
+    "unavailable": {
+      "title": "الإحصائيات ماشي متاحة دابا"
+    },
+    "browsers": {
+      "window": "حسب مشاهدات الصفحات",
+      "title": "المتصفحات"
+    },
+    "countries": {
+      "window": "آخر {{days}} يوم",
+      "title": "أهم البلدان"
+    },
+    "tile": {
+      "inRange": "فهاد المدى",
+      "requestsLabel": "الطلبات",
+      "pageViews": "مشاهدات الصفحات",
+      "soFarToday": "حتى لدابا اليوم، بتوقيت UTC",
+      "visitorsToday": "زوار اليوم"
+    },
     "feedback": {
       "title": "الملاحظات والتعليقات",
       "intro": "هل تستخدم DeHub لفترة من الوقت ؟ أخبرنا كيف كان الأمر. جيد أو سيء أو محدد — كل ذلك مقروء. إذا كنت سعيدًا باقتباسك، فضع علامة في المربع وقد نستخدمه في المنشورات أو مقاطع الفيديو أو على الموقع.",
@@ -6166,7 +6188,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
     "openFilterOptions": "فتح خيارات التصفية",
-    "fillQuery": "حط \"{{query}}\" فخانة التقلاب"
+    "fillQuery": "حط \"{{query}}\" فخانة التقلاب",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "بقا على علم",
@@ -6789,6 +6815,9 @@
       "sold": "تم البيع {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "مازال ما كاينين حتى معطيات لهاد الفترة",
+      "dailyHint": "زوار فريدين فاليوم",
+      "daily": "الزوار فاليوم",
       "bookStarts": "يبدأ الكتاب من هنا",
       "firstOrder": "ضع الأمر الأول لإضافة السيولة.",
       "waiting": "في انتظار بيانات الأسعار",

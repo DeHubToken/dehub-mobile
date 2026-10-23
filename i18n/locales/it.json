@@ -4209,6 +4209,7 @@
     "filedOn": "Aperto il {{date}}"
   },
   "stages": {
+    "allStages": "Tutte le stanze audio",
     "addToCalendar": "Aggiungi al calendario",
     "nowPlaying": "In riproduzione",
     "onTheRadio": "Alla radio",
@@ -4937,7 +4938,28 @@
     "interestedCount": "{{count}} interessati",
     "loadFailed": "Impossibile caricare gli eventi"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Visitatori al giorno", "dailyHint": "visitatori unici al giorno", "empty": "Ancora nessun dato per questo intervallo"},
+    "definitions": {
+      "visitorsTerm": "Visitatori"
+    },
+    "unavailable": {
+      "title": "Le statistiche non sono disponibili al momento"
+    },
+    "browsers": {
+      "window": "per pagine viste",
+      "title": "Browser"
+    },
+    "countries": {
+      "window": "ultimi {{days}} giorni",
+      "title": "Paesi principali"
+    },
+    "tile": {
+      "inRange": "in questo intervallo",
+      "requestsLabel": "Richieste",
+      "pageViews": "Pagine viste",
+      "soFarToday": "finora oggi, UTC",
+      "visitorsToday": "Visitatori oggi"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Stai usando DeHub da un po'? Raccontaci come è stato. Positivo, negativo o specifico — leggiamo tutto. Se sei felice che ti citiamo, spunta la casella e potremmo usarlo nei post, nei video o sul sito.",
@@ -6252,7 +6274,11 @@
     "noTrendingThisWeek": "Nessun contenuto in tendenza questa settimana",
     "closeFilterOptions": "Chiudi opzioni filtro",
     "openFilterOptions": "Apri opzioni filtro",
-    "fillQuery": "Inserisci \"{{query}}\" nella ricerca"
+    "fillQuery": "Inserisci \"{{query}}\" nella ricerca",
+    "clearHistory": "Cancella cronologia",
+    "clearHistoryTitle": "Cancellare la cronologia delle ricerche?",
+    "clearHistoryBody": "Verranno rimosse tutte le tue ricerche recenti.",
+    "removeFromHistory": "Rimuovi \"{{query}}\" dalla cronologia"
   },
   "notifPrompt": {
     "stayInLoop": "Resta aggiornato",
@@ -6878,6 +6904,9 @@
       "sold": "Venduto {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Ancora nessun dato per questo intervallo",
+      "dailyHint": "visitatori unici al giorno",
+      "daily": "Visitatori al giorno",
       "bookStarts": "Il libro inizia qui",
       "firstOrder": "Effettua il primo ordine per aggiungere liquidità.",
       "waiting": "In attesa dei dati sui prezzi",

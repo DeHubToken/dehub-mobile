@@ -4164,6 +4164,7 @@
     "noVoice": "Thiết bị của bạn không có giọng đọc cho ngôn ngữ này."
   },
   "stages": {
+    "allStages": "Tất cả phòng âm thanh",
     "addToCalendar": "Thêm vào lịch",
     "nowPlaying": "Đang phát",
     "onTheRadio": "Trên đài phát thanh",
@@ -4892,7 +4893,28 @@
     "interestedCount": "{{count}} quan tâm",
     "loadFailed": "Không tải được sự kiện"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Khách truy cập mỗi ngày", "dailyHint": "khách truy cập duy nhất mỗi ngày", "empty": "Chưa có dữ liệu cho khoảng thời gian này"},
+    "definitions": {
+      "visitorsTerm": "Khách truy cập"
+    },
+    "unavailable": {
+      "title": "Hiện chưa xem được thống kê"
+    },
+    "browsers": {
+      "window": "theo lượt xem trang",
+      "title": "Trình duyệt"
+    },
+    "countries": {
+      "window": "{{days}} ngày qua",
+      "title": "Quốc gia hàng đầu"
+    },
+    "tile": {
+      "inRange": "trong khoảng này",
+      "requestsLabel": "Yêu cầu",
+      "pageViews": "Lượt xem trang",
+      "soFarToday": "tính đến hiện tại hôm nay, giờ UTC",
+      "visitorsToday": "Khách truy cập hôm nay"
+    },
     "feedback": {
       "title": "Phản hồi",
       "intro": "Bạn đã sử dụng DeHub trong một thời gian? Hãy cho chúng tôi biết nó như thế nào. Tốt, xấu hay cụ thể — tất cả đều được đọc. Nếu bạn vui lòng cho phép chúng tôi trích dẫn bạn, hãy đánh dấu vào ô và chúng tôi có thể sử dụng nó trong các bài viết, video hoặc trên trang web.",
@@ -6192,7 +6214,11 @@
     "noTrendingThisWeek": "Không có nội dung thịnh hành trong tuần này",
     "closeFilterOptions": "Đóng tùy chọn bộ lọc",
     "openFilterOptions": "Mở tùy chọn bộ lọc",
-    "fillQuery": "Điền \"{{query}}\" vào ô tìm kiếm"
+    "fillQuery": "Điền \"{{query}}\" vào ô tìm kiếm",
+    "clearHistory": "Xóa lịch sử",
+    "clearHistoryTitle": "Xóa lịch sử tìm kiếm?",
+    "clearHistoryBody": "Thao tác này sẽ xóa tất cả tìm kiếm gần đây của bạn.",
+    "removeFromHistory": "Xóa \"{{query}}\" khỏi lịch sử"
   },
   "notifPrompt": {
     "stayInLoop": "Không bỏ lỡ tin tức",
@@ -6817,6 +6843,9 @@
       "sold": "Đã bán {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Chưa có dữ liệu cho khoảng thời gian này",
+      "dailyHint": "khách truy cập duy nhất mỗi ngày",
+      "daily": "Khách truy cập mỗi ngày",
       "bookStarts": "Cuốn sách bắt đầu từ đây",
       "firstOrder": "Đặt lệnh đầu tiên để thêm thanh khoản.",
       "waiting": "Đang chờ dữ liệu giá",

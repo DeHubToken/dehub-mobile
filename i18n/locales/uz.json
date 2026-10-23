@@ -4168,6 +4168,7 @@
     "noVoice": "Qurilmangizda bu til uchun ovoz yo‘q."
   },
   "stages": {
+    "allStages": "Barcha audio xonalar",
     "addToCalendar": "Kalendarga qoʻshing",
     "nowPlaying": "Hozir oʻynayotgan",
     "onTheRadio": "Radio orqali",
@@ -4896,7 +4897,28 @@
     "interestedCount": "{{count}} kishi qiziqadi",
     "loadFailed": "Tadbirlarni yuklab bo‘lmadi"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Kunlik tashrif buyuruvchilar", "dailyHint": "kunlik noyob tashrif buyuruvchilar", "empty": "Bu davr uchun hali ma'lumot yo'q"},
+    "definitions": {
+      "visitorsTerm": "Tashrif buyuruvchilar"
+    },
+    "unavailable": {
+      "title": "Statistika hozir mavjud emas"
+    },
+    "browsers": {
+      "window": "sahifa ko'rishlari bo'yicha",
+      "title": "Brauzerlar"
+    },
+    "countries": {
+      "window": "so'nggi {{days}} kun",
+      "title": "Yetakchi davlatlar"
+    },
+    "tile": {
+      "inRange": "shu oraliqda",
+      "requestsLabel": "So'rovlar",
+      "pageViews": "Sahifa ko'rishlari",
+      "soFarToday": "bugun hozirgacha, UTC",
+      "visitorsToday": "Bugungi tashrif buyuruvchilar"
+    },
     "feedback": {
       "title": "Fikr-mulohaza",
       "intro": "DeHub-dan foydalanib turganmisiz? Uning qanday bo'lganini bizga ayting. Yaxshi, yomon yoki aniq — hammasini o'qiyamiz. Agar biz sizni sitata qilishiga rozi bo'lsangiz, katakni belgilang va biz uni postlarda, videolarda yoki saytda ishlatishimiz mumkin.",
@@ -6162,7 +6184,11 @@
     "noTrendingThisWeek": "Bu hafta trenddagi kontent yo'q",
     "closeFilterOptions": "Filtri variantlarini yopish",
     "openFilterOptions": "Filtri variantlarini ochish",
-    "fillQuery": "Qidiruvga \"{{query}}\" ni kiritish"
+    "fillQuery": "Qidiruvga \"{{query}}\" ni kiritish",
+    "clearHistory": "Tarixni tozalash",
+    "clearHistoryTitle": "Qidiruv tarixi tozalansinmi?",
+    "clearHistoryBody": "Bu barcha soʻnggi qidiruvlaringizni oʻchiradi.",
+    "removeFromHistory": "“{{query}}”ni tarixdan olib tashlash"
   },
   "notifPrompt": {
     "stayInLoop": "Xabardor bo'ling",
@@ -6786,6 +6812,9 @@
       "sold": "Sotilgan {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Bu davr uchun hali ma'lumot yo'q",
+      "dailyHint": "kunlik noyob tashrif buyuruvchilar",
+      "daily": "Kunlik tashrif buyuruvchilar",
       "bookStarts": "Kitob shu yerdan boshlanadi",
       "firstOrder": "Likvidlikni qo'shish uchun birinchi buyurtmani joylashtiring.",
       "waiting": "Narx ma'lumotlari kutilmoqda",

@@ -4139,6 +4139,7 @@
     "noVoice": "Enjamyňyzda bu dil üçin ses ýok."
   },
   "stages": {
+    "allStages": "Ähli ses otaglary",
     "addToCalendar": "Kalendara goşuň",
     "nowPlaying": "Halda oýnattyr",
     "onTheRadio": "Radio da",
@@ -4866,7 +4867,28 @@
     "interestedCount": "{{count}} gyzyklanýar",
     "loadFailed": "Çäreler ýüklenip bilmedi"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Gün başyna myhmanlar", "dailyHint": "gün başyna täkrarsyz myhmanlar", "empty": "Bu wagt aralygy üçin heniz maglumat ýok"},
+    "definitions": {
+      "visitorsTerm": "Myhmanlar"
+    },
+    "unavailable": {
+      "title": "Statistika häzir elýeterli däl"
+    },
+    "browsers": {
+      "window": "sahypa görnüşi boýunça",
+      "title": "Brauzerler"
+    },
+    "countries": {
+      "window": "soňky {{days}} gün",
+      "title": "Iň ýokary ýurtlar"
+    },
+    "tile": {
+      "inRange": "bu aralykda",
+      "requestsLabel": "Haýyşlar",
+      "pageViews": "Sahypa görnüşleri",
+      "soFarToday": "şu güne çenli, UTC",
+      "visitorsToday": "Şu günki myhmanlar"
+    },
     "feedback": {
       "title": "Jikme-jik",
       "intro": "Birnäçe wagtdan bäri DeHub ulanýarmyň? Diýmek, bize muny nädip edip biljekdigimizi aýt! Ýagşy, erbet ýa-da belli - bularyň bary okalýar. Eger siz biziň size aýtmagymyza begenýän bolsaňyz, onda gapyny basyň we biz ony ýerlerde, videolarda ýa-da web-saytda ulanyp bileris.",
@@ -6123,7 +6145,11 @@
     "noTrendingThisWeek": "Bu hepdede meşhur kontent ýok",
     "closeFilterOptions": "Süzgüç opsiýalaryny ýapyň",
     "openFilterOptions": "Süzgüç opsiýalaryny açyň",
-    "fillQuery": "Gözlege \"{{query}}\" goş"
+    "fillQuery": "Gözlege \"{{query}}\" goş",
+    "clearHistory": "Taryhy arassala",
+    "clearHistoryTitle": "Gözleg taryhy arassalansynmy?",
+    "clearHistoryBody": "Bu siziň ähli soňky gözleglerinizi aýyrar.",
+    "removeFromHistory": "\"{{query}}\" taryhdan aýyr"
   },
   "notifPrompt": {
     "stayInLoop": "Habarly boluň",
@@ -6748,6 +6774,9 @@
       "sold": "{{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Bu wagt aralygy üçin heniz maglumat ýok",
+      "dailyHint": "gün başyna täkrarsyz myhmanlar",
+      "daily": "Gün başyna myhmanlar",
       "bookStarts": "Bu kitap şu ýerde başlaýar",
       "firstOrder": "Birinji tabşyrygy goýup, likviditi goşyň.",
       "waiting": "Öňki ýaly, bu hem birmeňzeşlikdir.",

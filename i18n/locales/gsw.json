@@ -4179,6 +4179,7 @@
     "noVoice": "Dis Grät het kei Stimm für die Sprach."
   },
   "stages": {
+    "allStages": "Alli Audio-Rüüm",
     "addToCalendar": "Zum Kalender hinzufügen",
     "nowPlaying": "Jetzt läuft",
     "onTheRadio": "Auf dem Radio",
@@ -4906,7 +4907,28 @@
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "D Events hend nid chönne glade werde"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Bsucher pro Tag", "dailyHint": "eindütigi Bsucher pro Tag", "empty": "No kei Date für die Periode"},
+    "definitions": {
+      "visitorsTerm": "Bsucher"
+    },
+    "unavailable": {
+      "title": "Statistike sind grad nid verfüegbar"
+    },
+    "browsers": {
+      "window": "noch Syte-Ufrüef",
+      "title": "Browser"
+    },
+    "countries": {
+      "window": "letschti {{days}} Täg",
+      "title": "Top-Länder"
+    },
+    "tile": {
+      "inRange": "i däre Periode",
+      "requestsLabel": "Aafroge",
+      "pageViews": "Syteufrüef",
+      "soFarToday": "bis jetzt hüt, UTC",
+      "visitorsToday": "Bsucher hüt"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Häsch DeHub scho e Wiile brucht? Säg üs, wie's gsi isch. Guet, schlecht oder spezifisch — alles wird gläse. Wenn du glücklich bisch, dass mir dich zitiere, mach e Häkche und mir chönnted's villicht i Posts, Videos oder uf dr Website bruuche.",
@@ -6172,7 +6194,11 @@
     "noTrendingThisWeek": "Diese Woche keine aktuellen Inhalte",
     "closeFilterOptions": "Filteroptionen schliessen",
     "openFilterOptions": "Filteroptionen öffnen",
-    "fillQuery": "\"{{query}}\" i d Suechi übernäh"
+    "fillQuery": "\"{{query}}\" i d Suechi übernäh",
+    "clearHistory": "Verlauf lösche",
+    "clearHistoryTitle": "Suechverlauf lösche?",
+    "clearHistoryBody": "Das entfernt alli dini letschte Suechene.",
+    "removeFromHistory": "„{{query}}“ us em Verlauf entferne"
   },
   "notifPrompt": {
     "stayInLoop": "Bliib uf em Laufende",
@@ -6797,6 +6823,9 @@
       "sold": "{{amount}} {{symbol}} verchouft"
     },
     "chart": {
+      "empty": "No kei Date für die Periode",
+      "dailyHint": "eindütigi Bsucher pro Tag",
+      "daily": "Bsucher pro Tag",
       "bookStarts": "S Buech fangt do a",
       "firstOrder": "Mach die erschti Bestellig zum Liquidität zue gee.",
       "waiting": "Warret uf Priis-Date",

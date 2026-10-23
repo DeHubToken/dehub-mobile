@@ -4144,6 +4144,7 @@
     "noVoice": "你部機冇呢種語言嘅語音。"
   },
   "stages": {
+    "allStages": "所有語音房",
     "addToCalendar": "加入日曆",
     "nowPlaying": "正在播放",
     "onTheRadio": "在廣播",
@@ -4871,7 +4872,28 @@
     "interestedCount": "{{count}} 人感興趣",
     "loadFailed": "無法載入活動"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "每日訪客", "dailyHint": "每日獨立訪客", "empty": "呢段時間仲未有數據"},
+    "definitions": {
+      "visitorsTerm": "訪客"
+    },
+    "unavailable": {
+      "title": "統計數據暫時未能提供"
+    },
+    "browsers": {
+      "window": "按頁面瀏覽量",
+      "title": "瀏覽器"
+    },
+    "countries": {
+      "window": "最近 {{days}} 日",
+      "title": "主要國家/地區"
+    },
+    "tile": {
+      "inRange": "喺呢個範圍內",
+      "requestsLabel": "請求",
+      "pageViews": "頁面瀏覽量",
+      "soFarToday": "今日到目前為止，UTC",
+      "visitorsToday": "今日訪客"
+    },
     "feedback": {
       "title": "反應",
       "intro": "用咗 DeHub 一段時間？話畀我哋知佢係點樣嘅。好、壞或者具體 — 全部都係讀完。如果你好開心我哋引用你嘅說話，勾選方塊，我哋可能會喺帖子、影片或者網站上面用佢。",
@@ -6137,7 +6159,11 @@
     "noTrendingThisWeek": "本週沒有熱門內容",
     "closeFilterOptions": "關閉篩選選項",
     "openFilterOptions": "開啟篩選選項",
-    "fillQuery": "將「{{query}}」填入搜尋欄"
+    "fillQuery": "將「{{query}}」填入搜尋欄",
+    "clearHistory": "清除記錄",
+    "clearHistoryTitle": "清除搜尋記錄？",
+    "clearHistoryBody": "這會刪除你所有的最近搜尋。",
+    "removeFromHistory": "從記錄中刪除「{{query}}」"
   },
   "notifPrompt": {
     "stayInLoop": "唔好錯過任何消息",
@@ -6761,6 +6787,9 @@
       "sold": "賣咗 {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "呢段時間仲未有數據",
+      "dailyHint": "每日獨立訪客",
+      "daily": "每日訪客",
       "bookStarts": "呢本書由呢度開始",
       "firstOrder": "落第一個訂單嚟增加流動性。",
       "waiting": "等緊價錢數據",
