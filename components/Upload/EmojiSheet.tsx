@@ -1,6 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
+  Animated,
   View,
   Text,
   TextInput,
@@ -9,7 +10,8 @@ import {
   StyleSheet,
   useWindowDimensions,
   type ListRenderItem,
-  type ViewToken,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
 } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
@@ -266,7 +268,11 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     setAdding(false);
     setActive(key);
     const index = sections.length ? rows.findIndex((r) => r.kind === "header" && r.section === key) : -1;
-    if (index >= 0) listRef.current?.scrollToOffset({ offset: offsets[index], animated: true });
+    if (index < 0) return;
+    // Hold the tapped tab while the list scrolls past the sections in between
+    // (and when the last ones can't reach the top), so the highlight moves once.
+    jumpLock.current = { offset: offsets[index], until: Date.now() + 900 };
+    listRef.current?.scrollToOffset({ offset: offsets[index], animated: true });
   };
 
   // Back from the add form: the list remounts, then lands on the custom section.
@@ -279,10 +285,47 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
     return () => cancelAnimationFrame(id);
   }, [adding, rows, offsets]);
 
-  const onViewable = useRef(({ viewableItems }: { viewableItems: ViewToken<Row>[] }) => {
-    const first = viewableItems[0]?.item;
-    if (first) setActive(first.section);
-  }).current;
+  // The tab bar follows the row at the top of the list, read straight from the
+  // scroll offset so it can't bounce the way viewability callbacks do.
+  const jumpLock = useRef<{ offset: number; until: number } | null>(null);
+  const onListScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (results) return;
+    const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+    const y = contentOffset.y;
+    const lock = jumpLock.current;
+    if (lock) {
+      const target = Math.min(lock.offset, Math.max(0, contentSize.height - layoutMeasurement.height));
+      if (Math.abs(y - target) < 2 || Date.now() > lock.until) jumpLock.current = null;
+      return;
+    }
+    let lo = 0;
+    let hi = offsets.length - 1;
+    while (lo < hi) {
+      const mid = (lo + hi + 1) >> 1;
+      if (offsets[mid] <= y + 1) lo = mid;
+      else hi = mid - 1;
+    }
+    const row = rows[lo];
+    if (row && row.section !== active) setActive(row.section);
+  };
+
+  // One underline that slides to the active tab rather than each tab
+  // switching its own border on and off.
+  const [catsWidth, setCatsWidth] = useState(0);
+  const activeIndex = results ? -1 : sections.findIndex((s) => s.key === active);
+  const catW = sections.length ? (catsWidth - 8) / sections.length : 0;
+  const lineX = useRef(new Animated.Value(0)).current;
+  const lineReady = useRef(false);
+  useEffect(() => {
+    if (activeIndex < 0 || !catW) return;
+    const to = activeIndex * catW;
+    if (!lineReady.current) {
+      lineReady.current = true;
+      lineX.setValue(to);
+      return;
+    }
+    Animated.timing(lineX, { toValue: to, duration: 180, useNativeDriver: true }).start();
+  }, [activeIndex, catW, lineX]);
 
   const renderRow: ListRenderItem<Row> = ({ item }) => {
     if (item.kind === "header") {
@@ -408,7 +451,13 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
         )}
 
         {/* Categories */}
-        <View style={styles.cats}>
+        <View style={styles.cats} onLayout={(e) => setCatsWidth(e.nativeEvent.layout.width)}>
+          {catsWidth > 0 && activeIndex >= 0 && (
+            <Animated.View
+              pointerEvents="none"
+              style={[styles.catLine, { width: catW, transform: [{ translateX: lineX }] }]}
+            />
+          )}
           {sections.map((s) => {
             const on = !results && active === s.key;
             return (
@@ -416,7 +465,7 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
                 key={s.key}
                 onPress={() => jumpTo(s.key)}
                 accessibilityLabel={t(`emojiPicker.group.${s.key}`)}
-                style={[styles.cat, on && styles.catOn]}
+                style={styles.cat}
               >
                 <Icon name={SECTION_ICONS[s.key]} size={17} color={on ? "#ffffff" : "#71717a"} />
               </Pressable>
@@ -452,8 +501,11 @@ export default function EmojiSheet({ visible, onClose, onSelect, selected }: Emo
             windowSize={7}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
-            onViewableItemsChanged={onViewable}
-            viewabilityConfig={{ itemVisiblePercentThreshold: 10 }}
+            onScroll={onListScroll}
+            scrollEventThrottle={32}
+            onScrollBeginDrag={() => {
+              jumpLock.current = null;
+            }}
             contentContainerStyle={styles.listContent}
           />
         )}
@@ -502,8 +554,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "rgba(255,255,255,0.12)",
     paddingHorizontal: 4,
   },
-  cat: { flex: 1, height: 36, alignItems: "center", justifyContent: "center", borderBottomWidth: 2, borderBottomColor: "transparent" },
-  catOn: { borderBottomColor: "#ffffff" },
+  cat: { flex: 1, height: 36, alignItems: "center", justifyContent: "center" },
+  catLine: { position: "absolute", left: 4, bottom: 0, height: 2, borderRadius: 1, backgroundColor: "#ffffff" },
   listContent: { paddingHorizontal: 6, paddingBottom: 24 },
   header: { height: HEADER_H, justifyContent: "center", paddingHorizontal: 8 },
   headerText: { color: "#a1a1aa", fontSize: 12, fontWeight: "500" },

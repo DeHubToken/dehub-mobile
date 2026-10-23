@@ -1,5 +1,6 @@
 import ThemePanel from '../components/ui/ThemePanel';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
+import { useKeyboardSwap } from "../hooks/useKeyboardSwap";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
@@ -250,6 +251,7 @@ function FeedDetailContent() {
   const { totals: tipTotals, bump: bumpTipTotal, topTippedIds, tippers: tipTippers } = useCommentTipTotals(tokenId);
 
   const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -323,25 +325,26 @@ function FeedDetailContent() {
 
   const handleOpenGifPicker = useCallback(() => {
     if (!requireAuth) return;
-    requireAuth(() => {
-      setGifPickerVisible(true);
-    });
-  }, [requireAuth]);
+    requireAuth(() => keyboardSwap.swapTo(() => setGifPickerVisible(true)));
+  }, [requireAuth, keyboardSwap]);
+
+  const gifPress = useMemo(() => keyboardSwap.pressProps(handleOpenGifPicker), [keyboardSwap, handleOpenGifPicker]);
 
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
     // Typed text is kept — see handleVoiceRecordingComplete.
     setMediaAttachment({ type: "gif", url });
-    Keyboard.dismiss();
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleCloseGifPicker = useCallback(() => {
     setGifPickerVisible(false);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleOpenEmojiPicker = useCallback(() => {
-    setEmojiPickerVisible(true);
-  }, []);
+    keyboardSwap.swapTo(() => setEmojiPickerVisible(true));
+  }, [keyboardSwap]);
 
   // Android: with the keyboard up, the first tap's onPress is swallowed while
   // the keyboard hides, so the picker needed a second tap. Open on touch-start
@@ -371,7 +374,8 @@ function FeedDetailContent() {
 
   const handleCloseEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(false);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleRemoveMedia = useCallback(() => {
     setMediaAttachment(null);
@@ -1807,7 +1811,7 @@ function FeedDetailContent() {
                     <Icon name="Image" size={20} color={theme.colors.mutedForeground} />
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={handleOpenGifPicker}
+                    {...gifPress}
                     activeOpacity={0.7}
                     accessibilityRole="button"
                     accessibilityLabel={t("comments.addGif")}
