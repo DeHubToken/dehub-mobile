@@ -632,7 +632,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         // With the viewer's address, or every reply fetched here came back
         // un-liked — including the ones the viewer had liked.
         const res = await getCommentReplies(commentId, { limit: 100, address: userAddress });
-        const replies = res.result?.items || [];
+        // Rows render from `user`. An older API sends only `writor` here, which
+        // left expanded replies with no name and no badge.
+        const replies = (res.result?.items || []).map((item: any) =>
+          item.user || !item.writor ? item : { ...item, user: item.writor },
+        );
 
         setExpandedCommentIds((prev) => {
           const next = new Set(prev);

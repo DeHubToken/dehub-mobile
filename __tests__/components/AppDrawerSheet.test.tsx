@@ -72,7 +72,7 @@ jest.mock('../../context/AuthContext', () => ({
   useAuthActions: () => ({ signOut: jest.fn() }),
   useUser: () => null,
 }));
-jest.mock('../../libs/misc', () => ({ getAvatarUrl: () => '' }));
+jest.mock('../../libs/misc', () => ({ getAvatarUrl: () => '', getBadgeUrlFor: () => undefined, getBadgeHoverOpticalStyle: () => ({}) }));
 jest.mock('../../libs', () => ({ toastError: jest.fn(), toastInfo: jest.fn() }));
 jest.mock('../../libs/links.utils', () => ({ openInApp: jest.fn() }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
