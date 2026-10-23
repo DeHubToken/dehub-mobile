@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Avertisment de conținut",
+    "placeholder": "Scrie avertismentul aici",
+    "add": "Adaugă avertisment de conținut",
+    "remove": "Elimină avertismentul de conținut",
+    "show": "Arată postarea"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Adaugă o descriere",

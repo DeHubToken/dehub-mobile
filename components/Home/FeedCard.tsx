@@ -31,6 +31,7 @@ import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
 import MatureContentGate, { useMatureGate } from "./MatureContentGate";
+import ContentWarningGate, { useContentWarning } from "./ContentWarningGate";
 import AudioPostPlayer from "./ProtectedAudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import { rememberGalleryIndex } from "../../libs/media-presentation";
@@ -199,6 +200,7 @@ type PostEdits = {
   shopLinks?: ShopLink[];
   shopListingCount?: number;
   hidden?: boolean;
+  spoilerText?: string;
 };
 const NO_EDITS: PostEdits = {};
 // One shared empty list, so a post with no categories keeps FeedCaption's memo.
@@ -748,6 +750,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // pay-per-view, and the creator's own post is warned about too — the warning
   // is for whoever is holding the phone.
   const matureGate = useMatureGate(localContentRating, postKey);
+  const contentWarning = useContentWarning(edits.spoilerText ?? item.spoilerText, postKey);
   const isHidden = edits.hidden ?? !!(item as any).isHidden;
   const [follow, setFollow] = useKeyedState<{ following: boolean; pending: boolean } | null>(followKey, null);
   const isFollowingCreator = follow ? follow.following : !!(item as any).isFollowing;
@@ -2051,6 +2054,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentShopLinks={localShopLinks ?? (item as any).shopLinks}
           currentContentRating={localContentRating}
           currentForKids={localForKids}
+          currentSpoilerText={edits.spoilerText ?? item.spoilerText}
           hideReportContent={isLive}
           hideEdit={isLive}
           isAudio={isAudioPost}
@@ -2177,7 +2181,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onFollow={handleStageFollow}
           onMore={handleOpenOptions}
         />
-        {matureGate.isGated ? (
+        {contentWarning.hidden ? (
+          <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+        ) : matureGate.isGated ? (
           <MatureContentGate onReveal={matureGate.reveal} />
         ) : (
           <>
@@ -2311,7 +2317,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }
 
   if (cinematicFeed) {
-    const embeds = matureGate.isGated ? null : (
+    const embeds = (matureGate.isGated || contentWarning.hidden) ? null : (
       <>
         {(item as any).isQuotePost && (
           <QuotedPostEmbed
@@ -2491,7 +2497,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               }
               isHidden={isHidden}
             />
-            {matureGate.isGated ? (
+            {contentWarning.hidden ? (
+              <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+            ) : matureGate.isGated ? (
               // In place of the media, so edge to edge like the media.
               <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>
                 <MatureContentGate onReveal={matureGate.reveal} edgeToEdge />
@@ -2725,7 +2733,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           hiding only the media would warn about nothing. The header above and
           the timestamp/action bar below stay live, so a post can be reported
           or opened without being read first. */}
-      {matureGate.isGated ? (
+      {contentWarning.hidden ? (
+        <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+      ) : matureGate.isGated ? (
         <MatureContentGate onReveal={matureGate.reveal} />
       ) : (
         <>

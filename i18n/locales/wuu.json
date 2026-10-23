@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "内容警告",
+    "placeholder": "辣海搭写警告",
+    "add": "添加内容警告",
+    "remove": "拿脱内容警告",
+    "show": "显示帖子"
+  },
   "altText": {
     "badge": "ALT",
     "add": "添加描述",

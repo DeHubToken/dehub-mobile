@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Upozornenie na obsah",
+    "placeholder": "Sem napíšte upozornenie",
+    "add": "Pridať upozornenie na obsah",
+    "remove": "Odstrániť upozornenie na obsah",
+    "show": "Zobraziť príspevok"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Pridať popis",

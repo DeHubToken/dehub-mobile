@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "ናይ ትሕዝቶ መጠንቀቕታ",
+    "placeholder": "መጠንቀቕታኻ ኣብዚ ጽሓፍ",
+    "add": "ናይ ትሕዝቶ መጠንቀቕታ ወስኽ",
+    "remove": "ናይ ትሕዝቶ መጠንቀቕታ ኣልግስ",
+    "show": "ጽሑፍ ኣርኢ"
+  },
   "altText": {
     "badge": "ALT",
     "add": "መግለጺ ወስኽ",

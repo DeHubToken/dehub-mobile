@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Whakatūpato ihirangi",
+    "placeholder": "Tuhia tō whakatūpato ki konei",
+    "add": "Tāpiritia he whakatūpato ihirangi",
+    "remove": "Tangohia te whakatūpato ihirangi",
+    "show": "Whakaatu i te pānui"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Tāpiritia he whakaahuatanga",

@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Content warning",
+    "placeholder": "Write your warning for here",
+    "add": "Add content warning",
+    "remove": "Comot content warning",
+    "show": "Show the post"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Add description",

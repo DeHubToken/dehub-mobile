@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Onyo la maudhui",
+    "placeholder": "Andika onyo lako hapa",
+    "add": "Ongeza onyo la maudhui",
+    "remove": "Ondoa onyo la maudhui",
+    "show": "Onyesha chapisho"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Ongeza maelezo",

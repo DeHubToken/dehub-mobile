@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Fampitandremana momba ny votoaty",
+    "placeholder": "Soraty eto ny fampitandremanao",
+    "add": "Hanampy fampitandremana momba ny votoaty",
+    "remove": "Esory ny fampitandremana momba ny votoaty",
+    "show": "Asehoy ny lahatsoratra"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Hanampy famaritana",

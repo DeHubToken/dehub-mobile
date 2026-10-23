@@ -510,6 +510,7 @@ export default function PostInfoScreen() {
           initialCategories={categories}
           initialContentRating={post.contentRating}
           initialForKids={post.forKids}
+          initialSpoilerText={post.spoilerText}
           initialShopLinks={post.shopLinks}
           alwaysShowTitle={post.postType === "feed-audio"}
           onSuccess={(edited) => {
