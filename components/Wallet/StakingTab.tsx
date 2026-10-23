@@ -1,5 +1,6 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
+import StakingHistory from "./StakingHistory";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
@@ -843,6 +844,8 @@ const StakingTab: React.FC = () => {
           <Ionicons name="copy-outline" size={14} color="rgba(255,255,255,0.4)" />
         </TouchableOpacity>
       </View>
+
+      <StakingHistory walletAddress={walletAddress} style={mFlat} />
 
       <TouchableOpacity
         onPress={fetchData}

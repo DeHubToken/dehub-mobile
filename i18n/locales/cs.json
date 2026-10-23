@@ -3815,6 +3815,10 @@
     "priceRange": "Mezi {{min}} a {{max}} tokeny."
   },
   "stores": {
+    "edit": "Upravit",
+    "listingUpdated": "Nabídka aktualizována!",
+    "saveListing": "Uložit změny",
+    "editListing": "Upravit nabídku",
     "podToggle": "Položka tisku na vyžádání",
     "podHint": "Propojte produkt ze svého obchodu s tiskem na vyžádání. Dodavatel každou objednávku vytiskne a odešle, takže nedržíte zásoby.",
     "podUrlLabel": "Odkaz na produkt",

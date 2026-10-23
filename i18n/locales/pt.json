@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Ainda não há {{symbol}} suficiente. Esta publicação exige {{needed}}.",
+    "holdShort": "Você tem {{held}} {{symbol}}. Esta publicação exige {{needed}}."
+  },
   "liveRecap": {
     "title": "Recapitulação do fluxo",
     "justEnded": "Recapitulação da sua transmissão",
@@ -977,6 +981,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Marque ou vote em patrocínios e introduções",
+    "skippableSections": "Seções puláveis",
     "options": "Opções",
     "sendTip": "Enviar gorjeta",
     "queue": "Fila",
@@ -3060,6 +3066,7 @@
     "dhb_staked_on_chain": "{{amount}} tokens em staking em {{chain}}."
   },
   "staking": {
+    "foundNewDeposits": "{{count}} novos depósitos encontrados na blockchain",
     "title": "Estaqueamento",
     "subtitle": "Deposite para liberar participação nos lucros, taxas menores, superpoderes e mais!",
     "stakeDhb": "Depositar",
@@ -3819,6 +3826,10 @@
     "priceRange": "Entre {{min}} e {{max}} tokens."
   },
   "stores": {
+    "edit": "Editar",
+    "listingUpdated": "Anúncio atualizado!",
+    "saveListing": "Guardar alterações",
+    "editListing": "Editar anúncio",
     "podToggle": "Item de impressão sob demanda",
     "podHint": "Vincule um produto da sua loja de impressão sob demanda. O fornecedor imprime e envia cada pedido, então você não precisa de estoque.",
     "podUrlLabel": "Link do produto",
@@ -6076,6 +6087,14 @@
     "coverFailed": "Não foi possível alterar a capa"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Enchimento",
+      "interaction": "Curtir e inscrever-se",
+      "selfpromo": "Autopromoção",
+      "outro": "Encerramento",
+      "intro": "Introdução",
+      "sponsor": "Patrocínio"
+    },
     "openSettings": "Abrir definições",
     "viewPlans": "Ver planos",
     "playbackSpeed": "Velocidade de reprodução",

@@ -3803,6 +3803,10 @@
     "priceRange": "Láàrin {{min}} àti {{max}} àmi-ìṣe."
   },
   "stores": {
+    "edit": "Ṣatunkọ",
+    "listingUpdated": "Àtòjọ tí a ṣe àtúnṣe!",
+    "saveListing": "Fi Àwọn Ìyípadà pamọ́",
+    "editListing": "Ṣàtúnṣe Àtòjọ",
     "podToggle": "Ọjà títẹ̀ lórí ìbéèrè",
     "podHint": "So ọjà kan pọ̀ láti ṣọ́ọ̀bù títẹ̀-lórí-ìbéèrè rẹ. Olùpèsè ń tẹ̀ ó sì ń fi ìbéèrè kọ̀ọ̀kan ránṣẹ́, nítorí náà o kò nílò ọjà ní ìpamọ́.",
     "podUrlLabel": "Ìsopọ̀ ọjà",

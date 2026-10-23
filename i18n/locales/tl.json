@@ -3859,6 +3859,10 @@
     "priceRange": "Sa pagitan ng {{min}} at {{max}} na token."
   },
   "stores": {
+    "edit": "I - edit",
+    "listingUpdated": "Na - update na ang listing!",
+    "saveListing": "I - save ang mga Pagbabago",
+    "editListing": "I - edit ang Listing",
     "podToggle": "Item na print-on-demand",
     "podHint": "I-link ang produkto mula sa iyong print-on-demand shop. Ang provider ang nagpi-print at nagpapadala ng bawat order, kaya walang stock na kailangan.",
     "podUrlLabel": "Link ng produkto",

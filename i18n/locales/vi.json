@@ -3826,6 +3826,10 @@
     "priceRange": "Giữa {{min}} và {{max}} token."
   },
   "stores": {
+    "edit": "Chỉnh sửa",
+    "listingUpdated": "Đã cập nhật nhà/phòng cho thuê!",
+    "saveListing": "Lưu thay đổi",
+    "editListing": "Chỉnh sửa nhà/phòng cho thuê",
     "podToggle": "Sản phẩm in theo yêu cầu",
     "podHint": "Liên kết sản phẩm từ cửa hàng in theo yêu cầu của bạn. Nhà cung cấp in và giao từng đơn, nên bạn không cần tồn kho.",
     "podUrlLabel": "Liên kết sản phẩm",

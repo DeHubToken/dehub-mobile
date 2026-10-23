@@ -3816,6 +3816,10 @@
     "priceRange": "{{min}} és {{max}} token között."
   },
   "stores": {
+    "edit": "Szerkesztés",
+    "listingUpdated": "A hirdetés frissítve!",
+    "saveListing": "Módosítások mentése",
+    "editListing": "Hirdetés szerkesztése",
     "podToggle": "Igény szerinti nyomtatású termék",
     "podHint": "Kapcsolj össze egy terméket az igény szerinti nyomtatási boltodból. A szolgáltató minden rendelést kinyomtat és elküld, így nem kell készlet.",
     "podUrlLabel": "Termék linkje",

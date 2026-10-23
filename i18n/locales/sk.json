@@ -3920,6 +3920,10 @@
     "priceRange": "Medzi {{min}} a {{max}} tokenmi."
   },
   "stores": {
+    "edit": "Upraviť",
+    "listingUpdated": "Zoznam aktualizovaný!",
+    "saveListing": "Uložiť zmeny",
+    "editListing": "Upraviť ponuku",
     "podToggle": "Položka tlače na požiadanie",
     "podHint": "Prepojte produkt zo svojho obchodu s tlačou na požiadanie. Dodávateľ každú objednávku vytlačí a odošle, zásoby nepotrebujete.",
     "podUrlLabel": "Odkaz na produkt",

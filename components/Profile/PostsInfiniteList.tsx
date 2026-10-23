@@ -30,6 +30,12 @@ interface PostsInfiniteListProps {
   pageSize?: number;
   bottomPadding?: number;
   folderId?: string | number;
+  /** Narrows what is shown without refetching (search, type chips). */
+  filter?: (item: GetNFTsResult) => boolean;
+  /** Reorders what is shown without refetching. */
+  sort?: (a: GetNFTsResult, b: GetNFTsResult) => number;
+  /** Shown instead of the usual empty state when a filter leaves nothing. */
+  filteredEmptyMessage?: string;
 }
 
 interface PostItem extends GetNFTsResult {}
@@ -42,6 +48,9 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   pageSize = DEFAULT_PAGE_SIZE,
   bottomPadding = 0,
   folderId,
+  filter,
+  sort,
+  filteredEmptyMessage,
 }) => {
   const { t } = useTranslation();
   const [items, setItems] = useState<PostItem[]>([]);
@@ -57,6 +66,12 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
   // a Retry row in the footer instead of a spinner that never resolves.
   const [pageError, setPageError] = useState(false);
   const loadingRef = useRef(false);
+
+  const shownItems = useMemo(() => {
+    let out = filter ? items.filter(filter) : items;
+    if (sort) out = [...out].sort(sort);
+    return out;
+  }, [items, filter, sort]);
 
   const fetcher = useCallback(
     (opts: { page: number; unit: number }): Promise<GetNFTsResponse> => {
@@ -249,17 +264,17 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
           color="#808089"
         />
         <Text className="text-theme-neutrals-400 text-base mt-4 text-center">
-          {emptyMessage}
+          {items.length > 0 && filteredEmptyMessage ? filteredEmptyMessage : emptyMessage}
         </Text>
       </View>
     );
-  }, [loading, error, variant, emptyMessage, loadPage, t]);
+  }, [loading, error, variant, emptyMessage, loadPage, t, items.length, filteredEmptyMessage]);
 
   return (
     <View className="flex-1">
       <FlatList
       className="flex-1 bg-theme-neutrals-900"
-      data={items}
+      data={shownItems}
       keyExtractor={keyExtractor}
       renderItem={renderItem}
       onEndReached={onEndReached}
@@ -284,7 +299,7 @@ const PostsInfiniteList: React.FC<PostsInfiniteListProps> = ({
         paddingHorizontal: 16,
         paddingTop: 8,
         paddingBottom: bottomPadding,
-        flexGrow: items.length === 0 && !loading ? 1 : undefined,
+        flexGrow: shownItems.length === 0 && !loading ? 1 : undefined,
       }}
       ListEmptyComponent={ListEmpty}
       showsVerticalScrollIndicator={false}

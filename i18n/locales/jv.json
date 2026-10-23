@@ -3803,6 +3803,10 @@
     "priceRange": "Antarane {{min}} lan {{max}} token."
   },
   "stores": {
+    "edit": "Edit",
+    "listingUpdated": "Daftar ngawasih!",
+    "saveListing": "Simpan Perubahan",
+    "editListing": "Edit Daftar",
     "podToggle": "Barang cetak miturut pesenan",
     "podHint": "Tautna produk saka toko cetak miturut pesenan sampeyan. Panyedhiya nyithak lan ngirim saben pesenan, dadi ora perlu stok.",
     "podUrlLabel": "Tautan produk",

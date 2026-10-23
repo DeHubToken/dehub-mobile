@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Not enough {{symbol}} yet. This post needs {{needed}}.",
+    "holdShort": "You hold {{held}} {{symbol}}. This post needs {{needed}}."
+  },
   "liveRecap": {
     "title": "Stream recap",
     "justEnded": "Your stream recap",
@@ -1056,6 +1060,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Mark or vote on sponsor reads and intros",
+    "skippableSections": "Skippable sections",
     "options": "Options",
     "sendTip": "Send Tip",
     "queue": "Queue",
@@ -3268,6 +3274,7 @@
     "failedToUnfollowUser": "Failed to unfollow user"
   },
   "staking": {
+    "foundNewDeposits": "Found {{count}} new deposits on-chain",
     "pendingRetired": "This deposit is no longer pending on the network. Tracking cleared; check your wallet activity before depositing again.",
     "title": "Staking",
     "subtitle": "Deposit to unlock profit share, lower fees, superpowers and more!",
@@ -4054,6 +4061,10 @@
     "boughtToVaultToast": "@{{handle}} is now in your usernames"
   },
   "stores": {
+    "edit": "Edit",
+    "listingUpdated": "Listing updated!",
+    "saveListing": "Save Changes",
+    "editListing": "Edit Listing",
     "podToggle": "Print-on-demand item",
     "podHint": "Link a product from your print-on-demand shop. The provider prints and ships each order, so you hold no stock.",
     "podUrlLabel": "Product link",
@@ -6371,6 +6382,14 @@
     "coverFailed": "Could not change the cover"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Filler",
+      "interaction": "Like & subscribe",
+      "selfpromo": "Self promo",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Sponsor"
+    },
     "openSettings": "Open Settings",
     "viewPlans": "View plans",
     "playbackSpeed": "Playback speed",
@@ -10309,6 +10328,54 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "50b2bdd7a1e5": "Completed staking withdrawals will appear here.",
+    "cbfc01a6c13a": "Completed staking deposits will appear here.",
+    "1fdecb2c9a54": "No withdrawals yet",
+    "4574472bb474": "No deposits yet",
+    "5b5a9671e539": "Scan on-chain for missing deposits",
+    "31a3711c4ab5": "All your withdrawal transactions",
+    "701ef1840612": "All your stake transactions",
+    "a7b7e36d6fdf": "Your Withdrawals",
+    "a3b7dbe57071": "Your Deposits",
+    "2d240e231566": "Failed to sync deposits",
+    "7082f2b3815d": "Deposits are up to date",
+    "ff701a069af2": "Verify & Unlock",
+    "48201f5584e2": "Checking your balance…",
+    "3aefdd5f5915": "Content unlocked! 🎉",
+    "6e929effed4e": " Writing overview…",
+    "14c5558a8cd9": "No transcript matches",
+    "a54084383e3c": "matches",
+    "4945a70fa7f9": "match",
+    "7adf0298ab5e": " Chapters",
+    "2baeddfdc699": "Search transcript…",
+    "d0bd6ec267f9": " Text",
+    "dea0ff385abf": " Copy",
+    "55de39f882a3": " Try again",
+    "9fddb94edef5": "Transcription failed: ",
+    "4c2ea0ddf64b": "This video has no speech in it, so there is nothing to transcribe.",
+    "5561cf90d112": "Transcribing",
+    "6662a5411155": "Write it now",
+    "60aac7666712": "A transcript is written automatically shortly after a video is posted.",
+    "5ae4bb109db7": "No transcript yet",
+    "ba3bbbe10d8b": "Loading…",
+    "ee871105e875": "writing",
+    "d91fca0e24bb": " lines",
+    "721164f0dc70": "Transcript",
+    "3c42f559d757": "Sign in to mark or vote. Skipping works either way.",
+    "58db9997b230": "This section is wrong",
+    "dc469bffc7c0": "This section is right",
+    "77f3aefe8b8b": "Remove your mark",
+    "2f41333ad013": " · {{value1}} disagree",
+    "72915d37182e": " agree",
+    "e5f6facf9cbe": "Nothing marked on this video yet",
+    "155f816c0407": "Submit",
+    "5218ce9ed7ab": "Submit {{value1}} – {{value2}}",
+    "78de1ed22dcb": "End {{value1}}",
+    "f4db1e48476f": "End",
+    "5e2495b60820": "Start {{value1}}",
+    "e4bb9f1ece9a": "Start",
+    "b5f85f952b0b": "Mark a sponsor read or intro and everyone with skipping on jumps past it. Let the video run — tap Start when it begins and End when it stops.",
+    "30f4d96b8d72": "Skippable sections",
     "c7bf4bbdbcd8": "AD",
     "d357175cfe89": "Media",
     "27c7325ba6f7": "This costs ",

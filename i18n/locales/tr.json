@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Henüz yeterli {{symbol}} yok. Bu gönderi {{needed}} gerektiriyor.",
+    "holdShort": "{{held}} {{symbol}} tutuyorsun. Bu gönderi {{needed}} gerektiriyor."
+  },
   "liveRecap": {
     "title": "Akış özeti",
     "justEnded": "Akış özetiniz",
@@ -1093,6 +1097,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Sponsor ve girişleri işaretle veya oyla",
+    "skippableSections": "Atlanabilir bölümler",
     "options": "Seçenekler",
     "sendTip": "Bahşiş Gönder",
     "queue": "Sıra",
@@ -3305,6 +3311,7 @@
     "dhb_staked_on_chain": "{{amount}} token {{chain}} üzerinde stake edildi."
   },
   "staking": {
+    "foundNewDeposits": "Zincirde {{count}} yeni yatırım bulundu",
     "pendingRetired": "Bu yatırma işlemi artık ağda beklemiyor. Takip temizlendi; tekrar yatırmadan önce cüzdan hareketlerinizi kontrol edin.",
     "title": "Staking",
     "subtitle": "Kâr payı, düşük ücretler, süper güçler ve daha fazlasının kilidini açmak için yatırın!",
@@ -4091,6 +4098,10 @@
     "priceRange": "{{min}} ile {{max}} jeton arasında."
   },
   "stores": {
+    "edit": "Düzenle",
+    "listingUpdated": "İlan güncellendi!",
+    "saveListing": "Değişiklikleri Kaydet",
+    "editListing": "İlanı Düzenle",
     "podToggle": "İsteğe bağlı baskı ürünü",
     "podHint": "İsteğe bağlı baskı mağazanızdan bir ürün bağlayın. Sağlayıcı her siparişi basar ve gönderir, stok tutmanız gerekmez.",
     "podUrlLabel": "Ürün bağlantısı",
@@ -6408,6 +6419,14 @@
     "coverFailed": "Kapak değiştirilemedi"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Dolgu",
+      "interaction": "Beğen ve abone ol",
+      "selfpromo": "Kendi tanıtımı",
+      "outro": "Kapanış",
+      "intro": "Giriş",
+      "sponsor": "Sponsor"
+    },
     "openSettings": "Ayarları aç",
     "viewPlans": "Planları görüntüle",
     "playbackSpeed": "Oynatma hızı",
@@ -9935,6 +9954,54 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "50b2bdd7a1e5": "Tamamlanan staking para çekme işlemleri burada görünecektir.",
+    "cbfc01a6c13a": "Tamamlanan staking para yatırma işlemleri burada görünecektir.",
+    "1fdecb2c9a54": "Henüz para çekme yok",
+    "4574472bb474": "Henüz para yatırma yok",
+    "5b5a9671e539": "Eksik para yatırma işlemleri için zincirde tarama yapın",
+    "31a3711c4ab5": "Tüm para çekme işlemleriniz",
+    "701ef1840612": "Tüm stake işlemleriniz",
+    "a7b7e36d6fdf": "Para Çekme İşlemleriniz",
+    "a3b7dbe57071": "Para Yatırma İşlemleriniz",
+    "2d240e231566": "Para yatırma işlemleri senkronize edilemedi",
+    "7082f2b3815d": "Para yatırma işlemleri güncel",
+    "ff701a069af2": "Doğrula & Aç",
+    "48201f5584e2": "Bakiyenizi kontrol ediyor…",
+    "3aefdd5f5915": "İçerik açıldı! 🎉",
+    "6e929effed4e": " Metin yazılıyor…",
+    "14c5558a8cd9": "Hiç uygun metin bulunamadı",
+    "a54084383e3c": "uygunluklar",
+    "4945a70fa7f9": "uygun",
+    "7adf0298ab5e": " Bölümler",
+    "2baeddfdc699": "Dökümde ara…",
+    "d0bd6ec267f9": " Metin",
+    "dea0ff385abf": " Kopyala",
+    "55de39f882a3": " Tekrar dene",
+    "9fddb94edef5": "Transkripsiyon başarısız oldu: ",
+    "4c2ea0ddf64b": "Bu videoda konuşma yok, transkribe edilecek hiçbir şey yok.",
+    "5561cf90d112": "Metin yazılıyor",
+    "6662a5411155": "Şimdi yaz",
+    "60aac7666712": "Bir video yayınlandıktan kısa süre sonra metin otomatik olarak yazılır.",
+    "5ae4bb109db7": "Henüz metin yok",
+    "ba3bbbe10d8b": "Yükleniyor…",
+    "ee871105e875": "yazma",
+    "d91fca0e24bb": " satırlar",
+    "721164f0dc70": "Döküm",
+    "3c42f559d757": "İşaretlemek veya oy vermek için oturum açın. Atlamak her iki şekilde de işe yarar.",
+    "58db9997b230": "Bu bölüm yanlış",
+    "dc469bffc7c0": "Bu bölüm şu anda doğru",
+    "77f3aefe8b8b": "İşaretini kaldır",
+    "2f41333ad013": " ·{{value1}} katılmıyorum",
+    "72915d37182e": " Anladım",
+    "e5f6facf9cbe": "Bu videoda henüz hiçbir şey işaretlenmemiş",
+    "155f816c0407": "Gönder",
+    "5218ce9ed7ab": "Gönder: {{value1}} – {{value2}}",
+    "78de1ed22dcb": "Son {{value1}}",
+    "f4db1e48476f": "Sonlandır",
+    "5e2495b60820": "{{value1}} Başlat",
+    "e4bb9f1ece9a": "Başlat",
+    "b5f85f952b0b": "Bir sponsor okumasını veya girişini işaretleyin ve herkes atlayıp geçerken videonun devam etmesini sağlayın. Videonun başladığında Başlat'a dokunun ve bittiğinde Bitiş'e dokunun.",
+    "30f4d96b8d72": "Atlanabilir bölümler",
     "d357175cfe89": "Medya",
     "0d79ff168b4a": "· düzenlendi",
     "35e0d0360a0a": "CANLI",

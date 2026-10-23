@@ -3801,6 +3801,10 @@
     "priceRange": "N'etiti {{min}} na {{max}} tokens."
   },
   "stores": {
+    "edit": "Dezie",
+    "listingUpdated": "Ndepụta emelitere!",
+    "saveListing": "Chekwaa mgbanwe",
+    "editListing": "Dezie Ndepụta",
     "podToggle": "Ihe e bipụtara mgbe a chọrọ ya",
     "podHint": "Jikọọ ngwaahịa site n'ụlọ ahịa mbipụta-mgbe-a-chọrọ gị. Onye na-enye ọrụ na-ebipụta ma zipu iwu ọ bụla, ya mere ịchọghị ngwaahịa n'aka.",
     "podUrlLabel": "Njikọ ngwaahịa",

@@ -3814,6 +3814,10 @@
     "priceRange": "Między {{min}} a {{max}} tokenów."
   },
   "stores": {
+    "edit": "Edytuj",
+    "listingUpdated": "Ogłoszenie zaktualizowane!",
+    "saveListing": "Zapisz zmiany",
+    "editListing": "Edytuj ofertę",
     "podToggle": "Produkt drukowany na żądanie",
     "podHint": "Połącz produkt ze swojego sklepu z drukiem na żądanie. Dostawca drukuje i wysyła każde zamówienie, więc nie potrzebujesz zapasów.",
     "podUrlLabel": "Link do produktu",

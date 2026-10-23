@@ -3841,6 +3841,10 @@
     "priceRange": "Zwüsched {{min}} und {{max}} Tokens."
   },
   "stores": {
+    "edit": "Editieren",
+    "listingUpdated": "Angebot aktualisiert!",
+    "saveListing": "Änderungen speichern",
+    "editListing": "Artikel bearbeiten",
     "podToggle": "Print-on-Demand-Artikel",
     "podHint": "Verlinke ein Produkt aus deinem Print-on-Demand-Shop. Der Anbieter druckt und versendet jede Bestellung, du brauchst kein Lager.",
     "podUrlLabel": "Produktlink",
