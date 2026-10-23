@@ -267,6 +267,8 @@
     "postCount_other": "{{count}} Beiträge"
   },
   "settings": {
+    "showDislikesDesc": "Jeder kann den Tab „Dislikes“ in deinem Profil öffnen. Wenn das aus ist, siehst nur du ihn.",
+    "showDislikes": "Meine Dislikes allen zeigen",
     "postingChain": "Blockchain für Beiträge",
     "showOnline": "Anzeigen, wenn ich online bin",
     "showOnlineDesc": "Personen, denen Sie eine Nachricht senden, sehen einen grünen Punkt neben Ihrem Namen, während Sie DeHub verwenden",
@@ -1980,6 +1982,12 @@
     "returnHome": "Zur Startseite"
   },
   "profile": {
+    "dislikesPrivateDesc": "Dieses Konto behält seine Dislikes für sich.",
+    "dislikesPrivateTitle": "Dislikes sind privat",
+    "dislikesEmptyOther": "Noch nichts gedislikt.",
+    "dislikesEmptyOwn": "Beiträge, die du dislikest, verschwinden aus deinen Feeds und erscheinen hier. Nimm ein Dislike zurück, um den Beitrag zurückzuholen.",
+    "dislikesEmptyTitle": "Noch keine Dislikes",
+    "tabDislikes": "Dislikes",
     "replyThread": {
       "postUnavailable": "Dieser Beitrag ist nicht verfügbar",
       "commentUnavailable": "Dieser Kommentar ist nicht mehr verfügbar"

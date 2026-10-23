@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} inlägg"
   },
   "settings": {
+    "showDislikesDesc": "Vem som helst kan öppna fliken Ogillanden på din profil. När detta är av kan bara du se den.",
+    "showDislikes": "Visa mina ogillanden för alla",
     "postingChain": "Blockkedja för inlägg",
     "showOnline": "Visa när jag är online",
     "showOnlineDesc": "Personer du skickar meddelanden till ser en grön prick bredvid ditt namn när du använder DeHub",
@@ -1925,6 +1927,12 @@
     "returnHome": "Tillbaka till startsidan"
   },
   "profile": {
+    "dislikesPrivateDesc": "Det här kontot håller sina ogillanden för sig själv.",
+    "dislikesPrivateTitle": "Ogillanden är privata",
+    "dislikesEmptyOther": "Inget ogillat än.",
+    "dislikesEmptyOwn": "Inlägg du ogillar försvinner från dina flöden och visas här. Ångra ogillandet för att få tillbaka inlägget.",
+    "dislikesEmptyTitle": "Inga ogillanden än",
+    "tabDislikes": "Ogillanden",
     "replyThread": {
       "postUnavailable": "Det här inlägget är inte tillgängligt",
       "commentUnavailable": "Den här kommentaren är inte längre tillgänglig"

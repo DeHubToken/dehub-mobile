@@ -152,6 +152,7 @@ import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
 import HoldGateSheet from "../common/HoldGateSheet";
+import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -957,11 +958,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // Publish to the shared overlay; the sync effect above pushes it into
       // this card and every other mounted card for the same post.
       applyEngagement(engagementKey, countsAt(voteWeight));
+      // A dislike takes the post out of this viewer's feeds; undoing it brings it back.
+      if (nextNegative && !wasNegative) hideDislikedPost(tokenId);
+      else if (wasNegative && !nextNegative) restoreDislikedPost(tokenId);
 
       const rollback = (error?: unknown) => {
         // Session invalidation already cleared account-specific overlays.
         // Restoring the old vote here would paint the signed-out feed with it.
         if (error instanceof SessionExpiredError) return;
+        if (nextNegative && !wasNegative) restoreDislikedPost(tokenId);
+        else if (wasNegative && !nextNegative) hideDislikedPost(tokenId);
         // Restore only the fields this handler owns, so a concurrent save or
         // repost that succeeded is not undone.
         revertEngagement(engagementKey, {

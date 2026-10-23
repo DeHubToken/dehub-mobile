@@ -318,6 +318,8 @@
     "postingChain": "Posting chain",
     "showOnline": "Show when I'm online",
     "showOnlineDesc": "People you message see a green dot next to your name while you're using DeHub",
+    "showDislikes": "Show my dislikes to everyone",
+    "showDislikesDesc": "Anyone can open the Dislikes tab on your profile. When this is off, only you can see it.",
     "smartReplies": "Suggested replies",
     "smartRepliesDesc": "Draft two replies you can tap in a chat. The × on the suggestions turns this off.",
     "signIn": "Sign-in",
@@ -2172,7 +2174,13 @@
     "tabVideos": "Videos",
     "tabAudio": "Audio",
     "tabLive": "Live",
-    "tabPinned": "Pinned"
+    "tabPinned": "Pinned",
+    "tabDislikes": "Dislikes",
+    "dislikesEmptyTitle": "No dislikes yet",
+    "dislikesEmptyOwn": "Posts you dislike leave your feeds and show up here. Undo a dislike to bring the post back.",
+    "dislikesEmptyOther": "Nothing disliked yet.",
+    "dislikesPrivateTitle": "Dislikes are private",
+    "dislikesPrivateDesc": "This account keeps its dislikes to itself."
   },
   "tv": {
     "title": "TV",

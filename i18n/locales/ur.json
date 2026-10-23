@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} پوسٹس"
   },
   "settings": {
+    "showDislikesDesc": "کوئی بھی آپ کی پروفائل پر ناپسند ٹیب کھول سکتا ہے۔ بند ہونے پر صرف آپ اسے دیکھ سکتے ہیں۔",
+    "showDislikes": "میری ناپسندیدگیاں سب کو دکھائیں",
     "postingChain": "پوسٹ کی بلاک چین",
     "showOnline": "جب میں آن لائن ہوں تو دکھائیں",
     "showOnlineDesc": "جن لوگوں کو آپ میسج کرتے ہیں انہیں DeHub استعمال کرتے وقت آپ کے نام کے ساتھ ایک سبز نقطہ نظر نظر آتا ہے",
@@ -1925,6 +1927,12 @@
     "returnHome": "ہوم پر واپس جائیں"
   },
   "profile": {
+    "dislikesPrivateDesc": "یہ اکاؤنٹ اپنی ناپسندیدگیاں اپنے پاس رکھتا ہے۔",
+    "dislikesPrivateTitle": "ناپسند نجی ہیں",
+    "dislikesEmptyOther": "ابھی کچھ نہیں۔",
+    "dislikesEmptyOwn": "جو پوسٹس آپ ناپسند کرتے ہیں وہ آپ کی فیڈ سے ہٹ جاتی ہیں اور یہاں دکھائی دیتی ہیں۔ پوسٹ واپس لانے کے لیے ناپسند ختم کریں۔",
+    "dislikesEmptyTitle": "ابھی کوئی ناپسند نہیں",
+    "tabDislikes": "ناپسند",
     "replyThread": {
       "postUnavailable": "یہ پوسٹ دستیاب نہیں ہے",
       "commentUnavailable": "یہ تبصرہ اب دستیاب نہیں ہے"

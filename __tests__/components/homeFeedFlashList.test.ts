@@ -376,7 +376,7 @@ describe('home feed on FlashList: pages off screen', () => {
   it('drops a deleted post from the rows at once', () => {
     // A card that only hides itself loses that once its cell is reused.
     expect(feed).toContain('const deletedVersion = useDeletedPostsVersion();');
-    expect(feed).toContain('[data, tombstonesReady, deletedVersion],');
+    expect(feed).toContain('[data, tombstonesReady, deletedVersion, dislikedVersion],');
   });
 });
 

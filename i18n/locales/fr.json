@@ -350,6 +350,8 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "showDislikesDesc": "Tout le monde peut ouvrir l'onglet « Je n'aime pas » de votre profil. Désactivé, vous seul pouvez le voir.",
+    "showDislikes": "Montrer mes « je n'aime pas » à tout le monde",
     "shortsEnabledDesc": "Affichez l’onglet du fil Shorts et les carrousels Shorts sur l’accueil.",
     "shortsEnabled": "Courts",
     "postingChain": "Blockchain des publications",
@@ -2135,6 +2137,12 @@
     "returnHome": "Retour à l'accueil"
   },
   "profile": {
+    "dislikesPrivateDesc": "Ce compte garde ses « je n'aime pas » pour lui.",
+    "dislikesPrivateTitle": "Les « je n'aime pas » sont privés",
+    "dislikesEmptyOther": "Rien pour l'instant.",
+    "dislikesEmptyOwn": "Les publications que vous n'aimez pas quittent vos fils et apparaissent ici. Annulez le « je n'aime pas » pour faire revenir la publication.",
+    "dislikesEmptyTitle": "Aucun « je n'aime pas » pour l'instant",
+    "tabDislikes": "Je n'aime pas",
     "replyThread": {
       "postUnavailable": "Cet article n'est pas disponible",
       "commentUnavailable": "Ce commentaire n'est plus disponible"

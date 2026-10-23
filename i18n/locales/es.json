@@ -350,6 +350,8 @@
     "postCount_other": "{{count}} publicaciones"
   },
   "settings": {
+    "showDislikesDesc": "Cualquiera puede abrir la pestaña «No me gusta» de tu perfil. Si está desactivado, solo tú puedes verla.",
+    "showDislikes": "Mostrar mis «no me gusta» a todos",
     "shortsEnabledDesc": "Mostrar la pestaña de Shorts feed y los carruseles de Shorts en Inicio.",
     "shortsEnabled": "Cortos",
     "postingChain": "Cadena de bloques de las publicaciones",
@@ -2135,6 +2137,12 @@
     "returnHome": "Volver al inicio"
   },
   "profile": {
+    "dislikesPrivateDesc": "Esta cuenta mantiene sus «no me gusta» en privado.",
+    "dislikesPrivateTitle": "Los «no me gusta» son privados",
+    "dislikesEmptyOther": "Todavía nada marcado con «no me gusta».",
+    "dislikesEmptyOwn": "Las publicaciones que no te gustan salen de tus feeds y aparecen aquí. Quita el «no me gusta» para recuperar la publicación.",
+    "dislikesEmptyTitle": "Aún no hay «no me gusta»",
+    "tabDislikes": "No me gusta",
     "replyThread": {
       "postUnavailable": "Esta publicación no está disponible",
       "commentUnavailable": "Este comentario ya no está disponible"

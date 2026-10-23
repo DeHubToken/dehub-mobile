@@ -219,6 +219,8 @@
     "postCount_other": "{{count}} bejegyzés"
   },
   "settings": {
+    "showDislikesDesc": "Bárki megnyithatja a profilod Nemtetszések lapját. Ha ki van kapcsolva, csak te látod.",
+    "showDislikes": "Nemtetszéseim megjelenítése mindenkinek",
     "postingChain": "Bejegyzések blokklánca",
     "showOnline": "Megjelenítés, amikor online vagyok",
     "showOnlineDesc": "Azok a személyek, akiknek üzenetet küldesz, egy zöld pontot látnak a neved mellett, miközben a DeHubot használod",
@@ -1925,6 +1927,12 @@
     "returnHome": "Vissza a kezdőlapra"
   },
   "profile": {
+    "dislikesPrivateDesc": "Ez a fiók megtartja magának a nemtetszéseit.",
+    "dislikesPrivateTitle": "A nemtetszések privátak",
+    "dislikesEmptyOther": "Még semmi.",
+    "dislikesEmptyOwn": "A nem tetsző bejegyzések eltűnnek a hírfolyamaidból, és itt jelennek meg. Vond vissza a nemtetszést, hogy visszahozd a bejegyzést.",
+    "dislikesEmptyTitle": "Még nincs nemtetszés",
+    "tabDislikes": "Nemtetszések",
     "replyThread": {
       "postUnavailable": "Ez a bejegyzés nem érhető el",
       "commentUnavailable": "Ez a megjegyzés már nem érhető el"
