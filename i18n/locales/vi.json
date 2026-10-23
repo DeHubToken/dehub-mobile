@@ -4893,7 +4893,28 @@
     "interestedCount": "{{count}} quan tâm",
     "loadFailed": "Không tải được sự kiện"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Khách truy cập mỗi ngày", "dailyHint": "khách truy cập duy nhất mỗi ngày", "empty": "Chưa có dữ liệu cho khoảng thời gian này"},
+    "definitions": {
+      "visitorsTerm": "Khách truy cập"
+    },
+    "unavailable": {
+      "title": "Hiện chưa xem được thống kê"
+    },
+    "browsers": {
+      "window": "theo lượt xem trang",
+      "title": "Trình duyệt"
+    },
+    "countries": {
+      "window": "{{days}} ngày qua",
+      "title": "Quốc gia hàng đầu"
+    },
+    "tile": {
+      "inRange": "trong khoảng này",
+      "requestsLabel": "Yêu cầu",
+      "pageViews": "Lượt xem trang",
+      "soFarToday": "tính đến hiện tại hôm nay, giờ UTC",
+      "visitorsToday": "Khách truy cập hôm nay"
+    },
     "feedback": {
       "title": "Phản hồi",
       "intro": "Bạn đã sử dụng DeHub trong một thời gian? Hãy cho chúng tôi biết nó như thế nào. Tốt, xấu hay cụ thể — tất cả đều được đọc. Nếu bạn vui lòng cho phép chúng tôi trích dẫn bạn, hãy đánh dấu vào ô và chúng tôi có thể sử dụng nó trong các bài viết, video hoặc trên trang web.",
@@ -6818,6 +6839,9 @@
       "sold": "Đã bán {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Chưa có dữ liệu cho khoảng thời gian này",
+      "dailyHint": "khách truy cập duy nhất mỗi ngày",
+      "daily": "Khách truy cập mỗi ngày",
       "bookStarts": "Cuốn sách bắt đầu từ đây",
       "firstOrder": "Đặt lệnh đầu tiên để thêm thanh khoản.",
       "waiting": "Đang chờ dữ liệu giá",

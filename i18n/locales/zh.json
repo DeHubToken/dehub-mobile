@@ -4922,7 +4922,28 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "每日访客", "dailyHint": "每日独立访客", "empty": "此时间范围暂无数据"},
+    "definitions": {
+      "visitorsTerm": "访客"
+    },
+    "unavailable": {
+      "title": "统计数据当前不可用"
+    },
+    "browsers": {
+      "window": "按页面浏览量",
+      "title": "浏览器"
+    },
+    "countries": {
+      "window": "最近 {{days}} 天",
+      "title": "主要国家/地区"
+    },
+    "tile": {
+      "inRange": "在此范围内",
+      "requestsLabel": "请求",
+      "pageViews": "页面浏览量",
+      "soFarToday": "今天截至目前，UTC",
+      "visitorsToday": "今日访客"
+    },
     "feedback": {
       "title": "反馈",
       "intro": "使用DeHub有一段时间了？告诉我们这段时间的体验如何。好的、不好的或具体的——我们会阅读所有内容。如果您同意我们引用您的反馈，请勾选该框，我们可能会在帖子、视频或网站上使用它。",
@@ -6843,6 +6864,9 @@
       "sold": "已售出{{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "此时间范围暂无数据",
+      "dailyHint": "每日独立访客",
+      "daily": "每日访客",
       "bookStarts": "这本书从这里开始",
       "firstOrder": "下第一个订单以增加流动性。",
       "waiting": "正在等待价格数据",

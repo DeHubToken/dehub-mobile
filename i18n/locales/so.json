@@ -4868,7 +4868,28 @@
     "interestedCount": "{{count}} ayaa xiiseynaya",
     "loadFailed": "Lama soo rarin karin munaasabadaha"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Booqdayaal maalintii", "dailyHint": "booqdayaal gaar ah maalintii", "empty": "Weli xog ma jirto muddadan"},
+    "definitions": {
+      "visitorsTerm": "Booqdayaal"
+    },
+    "unavailable": {
+      "title": "Tirakoobku hadda ma diyaar aha"
+    },
+    "browsers": {
+      "window": "sida muuqaalada bogga",
+      "title": "Browserada"
+    },
+    "countries": {
+      "window": "{{days}} maalmood ee la soo dhaafay",
+      "title": "Wadamada ugu sarreeya"
+    },
+    "tile": {
+      "inRange": "xilligan",
+      "requestsLabel": "Codsiyo",
+      "pageViews": "Muuqaalada bogga",
+      "soFarToday": "maanta ilaa hadda, UTC",
+      "visitorsToday": "Booqdayaasha maanta"
+    },
     "feedback": {
       "title": "Jawaab celin",
       "intro": "Ma jirta DeHub muddo dhow? Ogsow naga sheeg waxa ay ahayd. Wanaag, xumo ama gaar ah — waxaan oo dhan waxaan akhrinnaa. Haddii aad ku faraxsan tahay inaan ku sheegno, tick-ka buuxi oo waxaan ku isticmaali karno posts, videos ama site-ka.",
@@ -6748,6 +6769,9 @@
       "sold": "Iibiyey {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Weli xog ma jirto muddadan",
+      "dailyHint": "booqdayaal gaar ah maalintii",
+      "daily": "Booqdayaal maalintii",
       "bookStarts": "Buuggu wuxuu ka bilaabmayaa halkan",
       "firstOrder": "Ku rid amarka ugu horreeya si aad ugu darto dheecaan.",
       "waiting": "Sugitaanka xogta qiimaha",

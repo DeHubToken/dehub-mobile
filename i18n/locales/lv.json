@@ -4879,7 +4879,28 @@
     "interestedCount": "{{count}} ieinteresēti",
     "loadFailed": "Neizdevās ielādēt pasākumus"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Apmeklētāji dienā", "dailyHint": "unikālie apmeklētāji dienā", "empty": "Šim periodam vēl nav datu"},
+    "definitions": {
+      "visitorsTerm": "Apmeklētāji"
+    },
+    "unavailable": {
+      "title": "Statistika pašlaik nav pieejama"
+    },
+    "browsers": {
+      "window": "pēc lapu skatījumiem",
+      "title": "Pārlūki"
+    },
+    "countries": {
+      "window": "pēdējās {{days}} dienas",
+      "title": "Populārākās valstis"
+    },
+    "tile": {
+      "inRange": "šajā diapazonā",
+      "requestsLabel": "Pieprasījumi",
+      "pageViews": "Lapu skatījumi",
+      "soFarToday": "šodien līdz šim, UTC",
+      "visitorsToday": "Apmeklētāji šodien"
+    },
     "feedback": {
       "title": "Atsauksmes",
       "intro": "Jau kādu laiku izmantojat DeHub? Pastāstiet mums, kāda tā ir bijusi. Laba, slikta vai konkrēta — visu mēs lasām. Ja jūs piekrītat, ka mēs varam jūs citēt, atzīmējiet lodziņu, un mēs to varētu izmantot ierakstos, videoklipus vai vietnē.",
@@ -6770,6 +6791,9 @@
       "sold": "Pārdots {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Šim periodam vēl nav datu",
+      "dailyHint": "unikālie apmeklētāji dienā",
+      "daily": "Apmeklētāji dienā",
       "bookStarts": "Grāmata sākas šeit",
       "firstOrder": "Veiciet pirmo pasūtījumu, lai pievienotu likviditāti.",
       "waiting": "Gaida cenu datus",

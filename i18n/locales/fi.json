@@ -4879,7 +4879,28 @@
     "interestedCount": "{{count}} kiinnostunutta",
     "loadFailed": "Tapahtumia ei voitu ladata"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Kävijöitä päivässä", "dailyHint": "yksilöllisiä kävijöitä päivässä", "empty": "Tälle jaksolle ei ole vielä tietoja"},
+    "definitions": {
+      "visitorsTerm": "Kävijät"
+    },
+    "unavailable": {
+      "title": "Tilastot eivät ole juuri nyt saatavilla"
+    },
+    "browsers": {
+      "window": "sivunäyttöjen mukaan",
+      "title": "Selaimet"
+    },
+    "countries": {
+      "window": "viimeiset {{days}} päivää",
+      "title": "Kärkimaat"
+    },
+    "tile": {
+      "inRange": "tällä aikavälillä",
+      "requestsLabel": "Pyynnöt",
+      "pageViews": "Sivunäytöt",
+      "soFarToday": "tähän mennessä tänään, UTC",
+      "visitorsToday": "Kävijöitä tänään"
+    },
     "feedback": {
       "title": "Palaute",
       "intro": "Oletko käyttänyt DeHubia jonkin aikaa? Kerro meille, millaista se on ollut. Hyvää, huonoa tai spesifiä — kaikki luetaan. Jos olet tyytyväinen siihen, että siteeraamme sinua, rastita ruutu ja saatamme käyttää sitä posteissa, videoissa tai sivustolla.",
@@ -6770,6 +6791,9 @@
       "sold": "Myyty {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Tälle jaksolle ei ole vielä tietoja",
+      "dailyHint": "yksilöllisiä kävijöitä päivässä",
+      "daily": "Kävijöitä päivässä",
       "bookStarts": "Kirja alkaa täältä",
       "firstOrder": "Tee ensimmäinen tilaus lisätäksesi likviditeettiä.",
       "waiting": "Odotetaan hintatietoja",

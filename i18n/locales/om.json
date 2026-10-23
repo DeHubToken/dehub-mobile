@@ -4881,7 +4881,28 @@
     "interestedCount": "{{count}} fedhii qabu",
     "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Guyyaatti daawwattoota", "dailyHint": "guyyaatti daawwattoota adda ta'an", "empty": "Yeroo kanaaf deetaan ammatti hin jiru"},
+    "definitions": {
+      "visitorsTerm": "Daawwattoota"
+    },
+    "unavailable": {
+      "title": "Istaatistiksiin amma hin argamu"
+    },
+    "browsers": {
+      "window": "ilaalcha fuulaatiin",
+      "title": "Browseroota"
+    },
+    "countries": {
+      "window": "guyyoota {{days}} darban",
+      "title": "Biyyoota ol'aanoo"
+    },
+    "tile": {
+      "inRange": "hangii kana keessatti",
+      "requestsLabel": "Gaaffiiwwan",
+      "pageViews": "Ilaalcha fuulaa",
+      "soFarToday": "har'a hanga ammaatti, UTC",
+      "visitorsToday": "Daawwattoota har'aa"
+    },
     "feedback": {
       "title": "Feeddhaakii",
       "intro": "DeHub fayyadamaa jirtaa? Akkaataa isaa nuuf gaafii. Gaarii, hamaa ykn addaa — hunduu dubbifama. Yoo nu waamicha keenya kennuuf fedhii qabaatte, sanduuqa cuqaasi; haala kanaan poostii, viidiyoo ykn saayitii keenyatti fayyadamuu ni danda'amu.",
@@ -6764,6 +6785,9 @@
       "sold": "Gurgurame {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Yeroo kanaaf deetaan ammatti hin jiru",
+      "dailyHint": "guyyaatti daawwattoota adda ta'an",
+      "daily": "Guyyaatti daawwattoota",
       "bookStarts": "Kitaabni kun asirraa eegala",
       "firstOrder": "Liquidity dabaluudhaaf ajaja jalqabaa kaa’i.",
       "waiting": "Daataa gatii eegaa jira",

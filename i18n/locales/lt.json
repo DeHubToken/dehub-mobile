@@ -4879,7 +4879,28 @@
     "interestedCount": "{{count}} domisi",
     "loadFailed": "Nepavyko įkelti renginių"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Lankytojų per dieną", "dailyHint": "unikalių lankytojų per dieną", "empty": "Šiam laikotarpiui duomenų dar nėra"},
+    "definitions": {
+      "visitorsTerm": "Lankytojai"
+    },
+    "unavailable": {
+      "title": "Statistika šiuo metu neprieinama"
+    },
+    "browsers": {
+      "window": "pagal puslapių peržiūras",
+      "title": "Naršyklės"
+    },
+    "countries": {
+      "window": "paskutinės {{days}} dienos",
+      "title": "Populiariausios šalys"
+    },
+    "tile": {
+      "inRange": "šiame intervale",
+      "requestsLabel": "Užklausos",
+      "pageViews": "Puslapių peržiūros",
+      "soFarToday": "šiandien iki šiol, UTC",
+      "visitorsToday": "Lankytojų šiandien"
+    },
     "feedback": {
       "title": "Atsiliepimai",
       "intro": "Naudojate DeHub jau kurį laiką? Pasakykite mums, kaip tai buvo. Gerai, blogai ar konkretūs dalykai — viską skaitome. Jei sutinkate, kad mus cituotume, pažymėkite langelį ir mes galime tai panaudoti įrašuose, vaizdo įrašuose arba svetainėje.",
@@ -6769,6 +6790,9 @@
       "sold": "Parduota {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Šiam laikotarpiui duomenų dar nėra",
+      "dailyHint": "unikalių lankytojų per dieną",
+      "daily": "Lankytojų per dieną",
       "bookStarts": "Knyga prasideda čia",
       "firstOrder": "Pateikite pirmąjį užsakymą, kad padidintumėte likvidumą.",
       "waiting": "Laukiama kainos duomenų",
