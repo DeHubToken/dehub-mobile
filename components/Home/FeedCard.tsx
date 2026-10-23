@@ -363,7 +363,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
   // The HLS ladder when the post has one, else the MP4. The player and every
   // hand-off to the shorts viewer or post page key the native player on this
-  // exact string. Downloads stay on getVideoUrl: they need the file.
+  // exact string (via postVideoUrl below). Downloads use postFileUrl: they
+  // need the file.
   const videoPlaybackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
   const isWatchedVideo = useIsWatchedVideo(contentType === "video" || contentType === "short" ? tokenId : undefined);
   // Which post this card is showing. Everything the card remembers about a
