@@ -5521,6 +5521,8 @@
     "creatorEarnsDirect": "Abonentler DeHub tokensinde töleýärler. Siziň paýyňyz olaryň ýazylan pursadyna çenli pul çuwalyňyzda ýerleşýär, bu bolsa pul çuwalyňyz üçin platformyň tölegini azaltýar."
   },
   "live": {
+    "bigEvent": "Uly çäre",
+    "bigEventHint": "Köp tomaşaçy üçin: tomaşaçylar takmynan 20 sekunt gijikme bilen, emma az kesilme bilen görýärler.",
     "notSet": "Bellenmedi",
     "liveChat": "Göni söhbet",
     "pickDate": "Senäni saýla",

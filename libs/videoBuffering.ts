@@ -116,3 +116,22 @@ export const LIVE_BUFFER_OPTIONS: BufferOptions = {
   minBufferForPlayback: 0.5,
   waitsToMinimizeStalling: false,
 };
+
+/**
+ * A big-event broadcast: HLS by design, played well behind the live edge, so a
+ * crowd on mixed networks rides out a hiccup in the buffer instead of stalling.
+ * Latency is the price, and the creator chose it when they marked the event.
+ */
+export const EVENT_LIVE_BUFFER_OPTIONS: BufferOptions = {
+  preferredForwardBufferDuration: 20,
+  maxBufferBytes: 32 * 1024 * 1024,
+  minBufferForPlayback: 2,
+  waitsToMinimizeStalling: true,
+};
+
+/**
+ * How far behind live a big event plays on iOS: about ten two-second segments,
+ * the depth the web player syncs to. AVPlayer is the only player here that
+ * takes a target offset; ExoPlayer follows the playlist's own hold-back.
+ */
+export const EVENT_TARGET_OFFSET_FROM_LIVE_SEC = 20;

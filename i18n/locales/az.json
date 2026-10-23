@@ -5531,6 +5531,8 @@
     "creatorEarnsDirect": "Abunəçilər DeHub tokenlərində ödəniş edirlər. Pay torpaqlarınız abunə olduqları an cüzdanınızda olur, nişan səviyyəniz üçün platforma haqqını azaldın."
   },
   "live": {
+    "bigEvent": "Böyük tədbir",
+    "bigEventHint": "Böyük auditoriya üçün: izləyicilər yayımı təxminən 20 saniyə gecikmə ilə, daha az fasilə ilə izləyir.",
     "notSet": "Təyin edilməyib",
     "liveChat": "Canlı söhbət",
     "pickDate": "Tarix seç",

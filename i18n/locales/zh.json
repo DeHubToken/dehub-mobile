@@ -5618,6 +5618,8 @@
     "creatorEarnsDirect": "订阅者以DeHub代币支付。订阅会员订阅后，您的份额即会显示在您的钱包中，减去徽章等级的平台费。"
   },
   "live": {
+    "bigEvent": "大型活动",
+    "bigEventHint": "适合大量观众：观众会延迟约 20 秒观看，卡顿更少。",
     "notSet": "未设置",
     "liveChat": "直播聊天",
     "pickDate": "选择日期",

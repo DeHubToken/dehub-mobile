@@ -6035,6 +6035,8 @@
     "creatorEarnsDirect": "Los suscriptores pagan en tokens DeHub. Tu acción llega a tu billetera en el momento en que se suscriben, menos la tarifa de la plataforma para tu nivel de insignia."
   },
   "live": {
+    "bigEvent": "Gran evento",
+    "bigEventHint": "Para grandes audiencias: los espectadores lo ven unos 20 segundos por detrás, con menos interrupciones.",
     "notSet": "Sin definir",
     "liveChat": "Chat en directo",
     "pickDate": "Elegir fecha",

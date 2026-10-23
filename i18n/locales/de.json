@@ -5688,6 +5688,8 @@
     "creatorEarnsDirect": "Abonnenten zahlen in DeHub-Token. Deine Aktie landet in deinem Wallet, sobald sie abonniert wird, abzüglich der Plattformgebühr für dein Abzeichen-Level."
   },
   "live": {
+    "bigEvent": "Großes Event",
+    "bigEventHint": "Für ein großes Publikum: Zuschauer sehen etwa 20 Sekunden zeitversetzt, dafür mit weniger Aussetzern.",
     "notSet": "Nicht festgelegt",
     "liveChat": "Live-Chat",
     "pickDate": "Datum wählen",

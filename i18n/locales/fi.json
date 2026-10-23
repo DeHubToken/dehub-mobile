@@ -5541,6 +5541,8 @@
     "creatorEarnsDirect": "Tilaajat maksavat DeHub-poletteina. Osuutesi siirtyy lompakkoosi heti, kun he tilaavat sen, vähennettynä erikoismerkkitasostasi perittävällä alustamaksulla."
   },
   "live": {
+    "bigEvent": "Suurtapahtuma",
+    "bigEventHint": "Suurelle yleisölle: katsojat näkevät lähetyksen noin 20 sekuntia jäljessä, mutta vähemmillä katkoksilla.",
     "notSet": "Ei asetettu",
     "liveChat": "Live-keskustelu",
     "pickDate": "Valitse päivä",

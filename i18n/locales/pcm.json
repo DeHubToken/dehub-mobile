@@ -5416,6 +5416,8 @@
     "creatorEarnsDirect": "Subscribers dey pay with DeHub tokens. Your share go land for your wallet di moment dem subscribe, minus di platform fee for your badge level."
   },
   "live": {
+    "bigEvent": "Big event",
+    "bigEventHint": "For plenty viewers: people go dey watch about 20 seconds behind, but e no go dey cut too much.",
     "notSet": "Dem never set am",
     "liveChat": "Live chat",
     "pickDate": "Pick date",

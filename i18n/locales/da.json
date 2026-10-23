@@ -5545,6 +5545,8 @@
     "creatorEarnsDirect": "Abonnenter betaler i DeHub-tokens. Din andel lander i din tegnebog, så snart vedkommende abonnerer, minus platformsgebyret for dit badgeniveau."
   },
   "live": {
+    "bigEvent": "Stort event",
+    "bigEventHint": "Til store publikummer: seerne ser cirka 20 sekunder forsinket, men med færre afbrydelser.",
     "notSet": "Ikke angivet",
     "liveChat": "Livechat",
     "pickDate": "Vælg dato",

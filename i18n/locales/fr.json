@@ -6039,6 +6039,8 @@
     "creatorEarnsDirect": "Les abonnés paient en jetons DeHub. Votre part atterrit dans votre portefeuille au moment où ils s'abonnent, moins les frais de plateforme pour votre niveau de badge."
   },
   "live": {
+    "bigEvent": "Grand événement",
+    "bigEventHint": "Pour un large public : les spectateurs regardent avec environ 20 secondes de décalage, avec moins de coupures.",
     "notSet": "Non défini",
     "liveChat": "Chat en direct",
     "pickDate": "Choisir la date",

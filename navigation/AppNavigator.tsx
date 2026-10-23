@@ -40,36 +40,14 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
  *
  * Note that React Navigation calls `getComponent()` on every render of the
  * scene, not once: it must return a stable identity or the screen remounts each
- * time. Bare `require(...).default` is stable via Metro's module cache; the two
- * provider-wrapped screens below need the component built once and cached.
+ * time. Bare `require(...).default` is stable via Metro's module cache.
  */
-let liveProducerScreen: React.ComponentType<any> | undefined;
-const getLiveProducerScreen = () => {
-  if (!liveProducerScreen) {
-    const { LivepeerProvider } = require("../config/livepeer.config");
-    const LiveProducerScreen = require("../screens/LiveProducerScreen").default;
-    liveProducerScreen = (props: any) => (
-      <LivepeerProvider>
-        <LiveProducerScreen {...props} />
-      </LivepeerProvider>
-    );
-  }
-  return liveProducerScreen;
-};
+// The two live screens used to sit inside a Livepeer client built with an API
+// key bundled into the app. Nothing on either screen read that client, and
+// the key is gone; they load like any other screen now.
+const getLiveProducerScreen = () => require("../screens/LiveProducerScreen").default;
 
-let liveViewerScreen: React.ComponentType<any> | undefined;
-const getLiveViewerScreen = () => {
-  if (!liveViewerScreen) {
-    const { LivepeerProvider } = require("../config/livepeer.config");
-    const LiveViewerScreen = require("../screens/LiveViewerScreen").default;
-    liveViewerScreen = (props: any) => (
-      <LivepeerProvider>
-        <LiveViewerScreen {...props} />
-      </LivepeerProvider>
-    );
-  }
-  return liveViewerScreen;
-};
+const getLiveViewerScreen = () => require("../screens/LiveViewerScreen").default;
 
 function AppNavigatorContent() {
   const { isSignedIn, needsUsername } = useAuthState();

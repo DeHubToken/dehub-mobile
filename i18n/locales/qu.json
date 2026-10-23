@@ -5555,6 +5555,8 @@
     "creatorEarnsDirect": "Suscriptorkuna DeHub tokenkunapi qullqita qunku. Accionesniyki billeteraykipi chayan chay rato suscribisqanku, menos plataforma qullqita insignia nivelniykipaq."
   },
   "live": {
+    "bigEvent": "Hatun raymi",
+    "bigEventHint": "Achka qhawaqkunapaq: qhawaqkunaqa yaqa 20 sikundu qhipallata qhawanqaku, pisi sayaykunawan.",
     "notSet": "Mana churasqa",
     "liveChat": "Kunan pacha rimanakuy",
     "pickDate": "P'unchawta akllay",

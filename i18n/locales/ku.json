@@ -5492,6 +5492,8 @@
     "creatorEarnsDirect": "بەشداربووان بە تۆکنی DeHub پارە دەدەن. کاتێک بەشداری دەکەن، بەشەکەت دەگاتە جزدانەکەت، دوای کرێی پلاتفۆرم بەپێی ئاستی باجەکەت."
   },
   "live": {
+    "bigEvent": "Bûyera mezin",
+    "bigEventHint": "Ji bo temaşevanên zêde: temaşevan bi qasî 20 çirkeyan paşve temaşe dikin, bi kêmtir navberan.",
     "notSet": "Nehatiye danîn",
     "liveChat": "Chata rasterast",
     "pickDate": "Dîrokê hilbijêre",
