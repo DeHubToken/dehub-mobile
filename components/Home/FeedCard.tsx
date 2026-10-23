@@ -119,7 +119,8 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import PollCard from "../DM/PollCard";
 // Direct module imports, not the `libs` barrel — it `export *`s the axios
 // client and auth utils into every card module.
-import { getAvatarUrl, getBadgeUrlFor, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getVideoUrl, getShortsThumbnailUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getVideoUrl, getPlaybackUrl, getShortsThumbnailUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
+import { useHlsFallback } from "../../libs/hls-fallback";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { copyToClipboard } from "../../libs/clipboard.utils";
@@ -360,6 +361,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const stream = (item as any).stream;
   const streamInfo = (item as any).streamInfo || stream?.streamInfo;
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
+  // The HLS ladder when the post has one, else the MP4. The player and every
+  // hand-off to the shorts viewer or post page key the native player on this
+  // exact string. Downloads stay on getVideoUrl: they need the file.
+  const videoPlaybackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
   const isWatchedVideo = useIsWatchedVideo(contentType === "video" || contentType === "short" ? tokenId : undefined);
   // Which post this card is showing. Everything the card remembers about a
   // post (open sheets, edits, a deletion) is held against this, so none of it
@@ -708,7 +713,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // plays from a signed URL the API hands out. A locked viewer never asks.
   const requiresVideoAccess = isVideo && !isLive && videoNeedsAccess(item as any);
   const videoAccess = useVideoAccess(tokenId, requiresVideoAccess && !isActuallyGated, userAddress);
-  const postVideoUrl = requiresVideoAccess ? videoAccess.data?.url : getVideoUrl(tokenId);
+  // What the player loads: the signed file for a gated post, otherwise the
+  // HLS ladder when the post has one. postFileUrl is always a real file, for
+  // the download and the rotation probe.
+  const postFileUrl = requiresVideoAccess ? videoAccess.data?.url : getVideoUrl(tokenId);
+  const postVideoUrl = requiresVideoAccess ? videoAccess.data?.url : videoPlaybackUrl;
   const refetchVideoAccess = videoAccess.refetch;
   const onVideoPlaybackFailed = useCallback(() => {
     if (videoAccess.data?.private && isVideoAccessExpiring(videoAccess.data)) void refetchVideoAccess();
@@ -1631,6 +1640,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       postPage={fullContent}
       onBack={postVideo && !retainFeedNav ? onBack : undefined}
       videoUrl={isActuallyGated ? undefined : (postVideoUrl || undefined)}
+      mp4Url={isActuallyGated ? undefined : (postFileUrl || undefined)}
       onPlaybackFailed={requiresVideoAccess ? onVideoPlaybackFailed : undefined}
       transcodingStatus={item.transcodingStatus}
       storyboard={isActuallyGated ? undefined : item.storyboard}
@@ -2056,7 +2066,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
-            ? () => { const url = postVideoUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
+            ? () => { const url = postFileUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
           canMarkSegments={isVideo && !isLive && !isActuallyGated}

@@ -5,7 +5,8 @@ import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { GRID_PREVIEW_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import Icon from "../ui/Icon";
-import { getShortsThumbnailUrl, getVideoUrl, getAvatarUrl, buildCdnPath, buildFeedImageUrls, getBadgeUrlFor, getBadgeHoverOpticalStyle } from "../../libs/misc";
+import { getShortsThumbnailUrl, getPlaybackUrl, getAvatarUrl, buildCdnPath, buildFeedImageUrls, getBadgeUrlFor, getBadgeHoverOpticalStyle } from "../../libs/misc";
+import { markHlsFailed, useHlsFallback } from "../../libs/hls-fallback";
 import Avatar from "../common/Avatar";
 import BadgeArtwork from "../common/BadgeArtwork";
 import { formatCompactNumber } from "../../libs/numbers.util";
@@ -70,6 +71,8 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
       subs.push(
         player.addListener("statusChange", ({ status }) => {
           if (status === "readyToPlay") setIsReady(true);
+          // A ladder that will not load is retired; the cell remounts on the MP4.
+          if (status === "error") markHlsFailed(previewUrl);
         }),
       );
       subs.push(
@@ -79,7 +82,7 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
       );
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player]);
+  }, [player, previewUrl]);
 
   useEffect(() => {
     if (!player || hasStarted) return;
@@ -164,13 +167,15 @@ const ShortsGridCardComponent: React.FC<ShortsGridCardProps> = ({ item, index, i
   // Autoplay (only the one cell the grid picks) the full video like web (ShortsFeed → AutoplayVideo uses videos/{id}.mp4).
   // Only use item.previewUrl if the API actually returns one; the derived
   // previews/{id}.mp4 path does NOT exist on the CDN, so never fall back to it.
-  const previewUrl = useMemo(
-    () => item.postType === "feed-images" ? undefined :
-      resolveCdn(item.previewUrl) ||
-      resolveCdn(item.videoUrl) ||
-      getVideoUrl(tokenId),
-    [item.postType, item.previewUrl, item.videoUrl, tokenId],
-  );
+  // Otherwise the post's own playback source, the HLS ladder when it has one.
+  // Never resolveCdn: that is the image transform, which cannot serve a video.
+  const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
+  const previewUrl = useMemo(() => {
+    if (item.postType === "feed-images") return undefined;
+    const clip = item.previewUrl;
+    if (clip) return clip.startsWith("http") ? clip : buildCdnPath(clip);
+    return playbackUrl;
+  }, [item.postType, item.previewUrl, playbackUrl]);
   const previewSettled = useSettledAutoplay(isVisible, previewUrl, 400);
 
   const username = item.minterUser?.username || item.minterUsername || "";

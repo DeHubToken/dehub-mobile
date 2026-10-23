@@ -35,6 +35,10 @@ import type { BufferOptions } from "expo-video";
  * Feed, shorts and preview players — anything that can exist several at a time.
  * Ten seconds is well past the point where a scroll-by clip stalls, and 12 MB
  * covers ten seconds of anything the transcoder produces.
+ *
+ * On an HLS ladder the cap applies to whichever rung is playing. A lower rung
+ * holds more seconds in the same bytes, so there the duration is usually what
+ * stops the fetch, and the cap matters most for the MP4.
  */
 export const FEED_BUFFER_OPTIONS: BufferOptions = {
   preferredForwardBufferDuration: 10,
@@ -74,6 +78,11 @@ export const FEED_BUFFER_OPTIONS: BufferOptions = {
  * fullscreen cap. Two feed players plus the fullscreen one opened from them
  * come to 80 MB at most, against the ~141 MB a single player could take on
  * media3's defaults.
+ *
+ * Those figures are for the MP4, which old posts, gated posts and a failed
+ * ladder still play. On an HLS ladder the same caps bound whichever rung is
+ * playing, and a lower rung keeps more seconds in the same bytes; the 80 MB
+ * ceiling is unchanged.
  */
 export const ACTIVE_FEED_BUFFER_OPTIONS: BufferOptions = {
   ...FEED_BUFFER_OPTIONS,
