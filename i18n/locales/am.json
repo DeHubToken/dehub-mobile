@@ -4915,7 +4915,12 @@
     "interestedCount": "{{count}} ፍላጎት አላቸው",
     "loadFailed": "ዝግጅቶችን መጫን አልተቻለም"
   },
-  "stats": {"chart": {"daily": "በቀን ጎብኚዎች", "dailyHint": "በቀን ልዩ ጎብኚዎች", "empty": "ለዚህ ጊዜ መስኮት እስካሁን መረጃ የለም"},
+  "stats": {
+    "chart": {
+      "daily": "በቀን ጎብኚዎች",
+      "dailyHint": "በቀን ልዩ ጎብኚዎች",
+      "empty": "ለዚህ ጊዜ መስኮት እስካሁን መረጃ የለም"
+    },
     "definitions": {
       "visitorsTerm": "ጎብኚዎች"
     },
@@ -9669,5 +9674,15 @@
     "youAreBanned": "በዚህ ፈጣሪ ጅረቶች ውስጥ መወያየት አይችሉም",
     "youAreTimedOut": "ለትንሽ ጊዜ ተዘጋጅተሃል",
     "title": "መካከለኛ"
+  },
+  "loginStack": {
+    "tip": "ጠቃሚ ምክር DHB",
+    "headlineTop": "ሁሉንም ነገር ትይዛለህ",
+    "headlineAccent": "ደስተኛም ሁኑ ።",
+    "orContinueWith": "ወይም ጋር መቀጠል",
+    "phone": "ስልክ",
+    "fingerprint": "የጣት አሻራ",
+    "exploreFirst": "በመጀመሪያ ያስሱ",
+    "codeNote": "ኮድ እንልክልዎታለን ፣ ምንም የይለፍ ቃል አያስፈልግም ።"
   }
 }

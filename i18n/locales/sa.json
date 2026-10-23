@@ -4874,7 +4874,12 @@
     "interestedCount": "{{count}} रुचिं धारयन्ति",
     "loadFailed": "कार्यक्रमाः लोड् कर्तुं न शक्यन्ते"
   },
-  "stats": {"chart": {"daily": "प्रतिदिनं दर्शकाः", "dailyHint": "प्रतिदिनं अद्वितीयदर्शकाः", "empty": "अस्मै कालावधये अद्यापि दत्तांशाः न सन्ति"},
+  "stats": {
+    "chart": {
+      "daily": "प्रतिदिनं दर्शकाः",
+      "dailyHint": "प्रतिदिनं अद्वितीयदर्शकाः",
+      "empty": "अस्मै कालावधये अद्यापि दत्तांशाः न सन्ति"
+    },
     "definitions": {
       "visitorsTerm": "दर्शकाः"
     },
@@ -9579,5 +9584,15 @@
     "failed": "पुनरपि एकवारं प्रयत्नं कुर्मः_= Let us try once more (फिर से एकबार",
     "youAreTimedOut": "तुमकहां हो भोले क्षणों",
     "title": "मध्यमम्"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "त्वं तु सर्वस्वं",
+    "headlineAccent": "एवं सुखी भव ।",
+    "orContinueWith": "अथवा नित्यं",
+    "phone": "दूरभाषः",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "अन्वेषणं प्रथमं",
+    "codeNote": "- भवतः/भवत्याः कूटशब्दः आवश्यकः नास्ति ।"
   }
 }

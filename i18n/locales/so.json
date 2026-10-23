@@ -4893,7 +4893,12 @@
     "interestedCount": "{{count}} ayaa xiiseynaya",
     "loadFailed": "Lama soo rarin karin munaasabadaha"
   },
-  "stats": {"chart": {"daily": "Booqdayaal maalintii", "dailyHint": "booqdayaal gaar ah maalintii", "empty": "Weli xog ma jirto muddadan"},
+  "stats": {
+    "chart": {
+      "daily": "Booqdayaal maalintii",
+      "dailyHint": "booqdayaal gaar ah maalintii",
+      "empty": "Weli xog ma jirto muddadan"
+    },
     "definitions": {
       "visitorsTerm": "Booqdayaal"
     },
@@ -9645,5 +9650,15 @@
     "youAreBanned": "Kuma karto hadal ku hadal hadalkaan abuuraha",
     "youAreTimedOut": "Waxaa joojiyey daqiiqad yar",
     "title": "Dhig"
+  },
+  "loginStack": {
+    "tip": "Talo DHB",
+    "headlineTop": "Wax walba waad iska lahaan doontaa",
+    "headlineAccent": "farxadna u noqo.",
+    "orContinueWith": "ama sii wad",
+    "phone": "Taleefanka",
+    "fingerprint": "Sawirka faraha",
+    "exploreFirst": "Baadh marka hore",
+    "codeNote": "Waxaan kuu soo dirnaa emayl koodh, ma jiro erayga sirta ah ee loo baahan yahay."
   }
 }

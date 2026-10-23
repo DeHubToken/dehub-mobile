@@ -4874,7 +4874,12 @@
     "interestedCount": "{{count}} b'a fɛ",
     "loadFailed": "Kow ma se ka doni"
   },
-  "stats": {"chart": {"daily": "Taalabagaw tile kelen-kelen na", "dailyHint": "taalabaga kelenw tile kelen-kelen na", "empty": "Kunnafoni si tɛ yen nin waati in kama fɔlɔ"},
+  "stats": {
+    "chart": {
+      "daily": "Taalabagaw tile kelen-kelen na",
+      "dailyHint": "taalabaga kelenw tile kelen-kelen na",
+      "empty": "Kunnafoni si tɛ yen nin waati in kama fɔlɔ"
+    },
     "definitions": {
       "visitorsTerm": "Taalabagaw"
     },
@@ -9597,5 +9602,15 @@
     "youAreBanned": "I ka tɛ sɛbɛn cɛ ni creator ye stream la",
     "youAreTimedOut": "I be bɔ waati dɔ la",
     "title": "Ka kɛ mɔgɔ majiginin ye"
+  },
+  "loginStack": {
+    "tip": "Dɔgɔtɔrɔ tɛ sigida min na.",
+    "headlineTop": "I bena fɛɛn bɛɛ sɔrɔ",
+    "headlineAccent": "aw ka to ka n'a ye.",
+    "orContinueWith": "o kɔ, an ka taga ɲɛ",
+    "phone": "Foun foun fé",
+    "fingerprint": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
+    "exploreFirst": "Kɔrɔbɔli fɔlɔ",
+    "codeNote": "An b'i weele ka na an ka site web kan, an mako t'a la i ka kumaɲɔgɔnya kɛ n'i ye."
   }
 }
