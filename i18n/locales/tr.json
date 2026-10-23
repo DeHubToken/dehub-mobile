@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Bildirimleri filtrele",
+    "description": "Çevren dışından biri seninle etkileşime girdiğinde ne olacağını seç. Filtrelenen bildirimler rozet ve anlık bildirim olmadan Filtrelenenler altında bekler.",
+    "notFollowing": "Takip etmediğin kişiler",
+    "notFollowers": "Seni takip etmeyen kişiler",
+    "newAccounts": "Yeni hesaplar (30 günden yeni)",
+    "accept": "Bana bildir",
+    "filter": "Filtrele",
+    "drop": "Tamamen gizle",
+    "filteredTitle": "Filtrelenen bildirimler",
+    "filteredEmpty": "Hiçbir şey filtrelenmedi.",
+    "failed": "Kaydedilmedi. Tekrar dene."
+  },
   "followedTags": {
     "follow": "#{{tag}} takip et",
     "following": "Takip ediliyor",

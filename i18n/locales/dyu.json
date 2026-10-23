@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Kunnafoniw sɛgɛsɛgɛ ka bɔ",
+    "description": "A sugandi min bɛ kɛ ni mɔgɔ dɔ min tɛ i ka mɔgɔw cɛ ye ka baara kɛ i fɛ. Kunnafoni sɛgɛsɛgɛlenw bɛ makɔnɔ \"Sɛgɛsɛgɛlenw\" kɔnɔ, taamasiyɛn ni pusi tɛ.",
+    "notFollowing": "Mɔgɔ minnu tɛ i ka tugubaga ye",
+    "notFollowers": "Mɔgɔ minnu tɛ i tugu",
+    "newAccounts": "Jatebila kuraw (tile 30 kɔnɔ)",
+    "accept": "A fɔ n ye",
+    "filter": "A sɛgɛsɛgɛ",
+    "drop": "A dogo pewu",
+    "filteredTitle": "Kunnafoni sɛgɛsɛgɛlenw",
+    "filteredEmpty": "Foyi ma sɛgɛsɛgɛ.",
+    "failed": "A ma mara. A lajɛ tugun."
+  },
   "followedTags": {
     "follow": "#{{tag}} tugu",
     "following": "I b'a tugu",

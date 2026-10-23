@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Bildirişleri süz",
+    "description": "Töweregiňizden daşardaky biri siz bilen gatnaşanda näme boljakdygyny saýlaň. Süzülen bildirişler bellik we push bolmazdan «Süzülenler» bölüminde garaşýar.",
+    "notFollowing": "Yzarlamaýan adamlaryňyz",
+    "notFollowers": "Sizi yzarlamaýan adamlar",
+    "newAccounts": "Täze hasaplar (30 günden az)",
+    "accept": "Maňa habar ber",
+    "filter": "Süz",
+    "drop": "Doly gizle",
+    "filteredTitle": "Süzülen bildirişler",
+    "filteredEmpty": "Hiç zat süzülmedi.",
+    "failed": "Ýatda saklanmady. Gaýtadan synanyşyň."
+  },
   "followedTags": {
     "follow": "#{{tag}} yzarla",
     "following": "Yzarlaýarsyňyz",

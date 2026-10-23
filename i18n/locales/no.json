@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrer varsler fra",
+    "description": "Velg hva som skjer når noen utenfor kretsen din samhandler med deg. Filtrerte varsler venter under Filtrert, uten merke og uten push.",
+    "notFollowing": "Folk du ikke følger",
+    "notFollowers": "Folk som ikke følger deg",
+    "newAccounts": "Nye kontoer (under 30 dager)",
+    "accept": "Varsle meg",
+    "filter": "Filtrer",
+    "drop": "Skjul helt",
+    "filteredTitle": "Filtrerte varsler",
+    "filteredEmpty": "Ingenting er filtrert.",
+    "failed": "Det ble ikke lagret. Prøv igjen."
+  },
   "followedTags": {
     "follow": "Følg #{{tag}}",
     "following": "Følger",

@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filter notifications from",
+    "description": "Choose wetin go happen when person wey no dey your circle interact with you. Filtered notifications go wait under Filtered, no badge and no push.",
+    "notFollowing": "People wey you no follow",
+    "notFollowers": "People wey no follow you",
+    "newAccounts": "New accounts (under 30 days)",
+    "accept": "Tell me",
+    "filter": "Filter",
+    "drop": "Hide am finish",
+    "filteredTitle": "Filtered notifications",
+    "filteredEmpty": "Nothing don filter.",
+    "failed": "E no save. Try again."
+  },
   "followedTags": {
     "follow": "Follow #{{tag}}",
     "following": "You dey follow",

@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Benachrichtigunge filtere vo",
+    "description": "Wähl, was passiert, wenn öpper usserhalb vo dim Umfeld mit dir interagiert. Gfilteredi Benachrichtigunge warted under „Gfilteret“, ohni Zähler und ohni Push.",
+    "notFollowing": "Lüüt, dene du nöd folgsch",
+    "notFollowers": "Lüüt, wo dir nöd folged",
+    "newAccounts": "Neui Konte (jünger als 30 Täg)",
+    "accept": "Benachrichtige",
+    "filter": "Filtere",
+    "drop": "Ganz usblände",
+    "filteredTitle": "Gfilteredi Benachrichtigunge",
+    "filteredEmpty": "Nüt isch gfilteret worde.",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal."
+  },
   "followedTags": {
     "follow": "#{{tag}} folge",
     "following": "Folg ich",

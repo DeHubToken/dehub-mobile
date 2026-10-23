@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrér notifikationer fra",
+    "description": "Vælg, hvad der sker, når nogen uden for din kreds interagerer med dig. Filtrerede notifikationer venter under Filtreret uden badge og uden push.",
+    "notFollowing": "Folk, du ikke følger",
+    "notFollowers": "Folk, der ikke følger dig",
+    "newAccounts": "Nye konti (under 30 dage)",
+    "accept": "Giv mig besked",
+    "filter": "Filtrér",
+    "drop": "Skjul helt",
+    "filteredTitle": "Filtrerede notifikationer",
+    "filteredEmpty": "Intet er blevet filtreret.",
+    "failed": "Det blev ikke gemt. Prøv igen."
+  },
   "followedTags": {
     "follow": "Følg #{{tag}}",
     "following": "Følger",

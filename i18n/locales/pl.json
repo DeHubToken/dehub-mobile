@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtruj powiadomienia od",
+    "description": "Wybierz, co się dzieje, gdy ktoś spoza twojego kręgu wchodzi z tobą w interakcję. Odfiltrowane powiadomienia czekają w sekcji Odfiltrowane, bez plakietki i bez powiadomienia push.",
+    "notFollowing": "Osób, których nie obserwujesz",
+    "notFollowers": "Osób, które cię nie obserwują",
+    "newAccounts": "Nowych kont (poniżej 30 dni)",
+    "accept": "Powiadamiaj mnie",
+    "filter": "Filtruj",
+    "drop": "Ukryj całkowicie",
+    "filteredTitle": "Odfiltrowane powiadomienia",
+    "filteredEmpty": "Nic nie zostało odfiltrowane.",
+    "failed": "Nie zapisano. Spróbuj ponownie."
+  },
   "followedTags": {
     "follow": "Obserwuj #{{tag}}",
     "following": "Obserwujesz",

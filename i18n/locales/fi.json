@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Suodata ilmoitukset",
+    "description": "Valitse, mitä tapahtuu, kun joku piirisi ulkopuolelta on vuorovaikutuksessa kanssasi. Suodatetut ilmoitukset odottavat kohdassa Suodatetut ilman merkkiä ja push-ilmoitusta.",
+    "notFollowing": "Ihmisiltä, joita et seuraa",
+    "notFollowers": "Ihmisiltä, jotka eivät seuraa sinua",
+    "newAccounts": "Uusilta tileiltä (alle 30 päivää)",
+    "accept": "Ilmoita minulle",
+    "filter": "Suodata",
+    "drop": "Piilota kokonaan",
+    "filteredTitle": "Suodatetut ilmoitukset",
+    "filteredEmpty": "Mitään ei ole suodatettu.",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen."
+  },
   "followedTags": {
     "follow": "Seuraa #{{tag}}",
     "following": "Seuraat",

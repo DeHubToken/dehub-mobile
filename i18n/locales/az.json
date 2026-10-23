@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Bildirişləri süz",
+    "description": "Çevrənizdən kənar biri sizinlə əlaqə qurduqda nə baş verəcəyini seçin. Süzülmüş bildirişlər nişan və push olmadan \"Süzülənlər\" bölməsində gözləyir.",
+    "notFollowing": "İzləmədiyiniz insanlar",
+    "notFollowers": "Sizi izləməyən insanlar",
+    "newAccounts": "Yeni hesablar (30 gündən az)",
+    "accept": "Mənə bildir",
+    "filter": "Süz",
+    "drop": "Tam gizlət",
+    "filteredTitle": "Süzülmüş bildirişlər",
+    "filteredEmpty": "Heç nə süzülməyib.",
+    "failed": "Yadda saxlanılmadı. Yenidən cəhd edin."
+  },
   "followedTags": {
     "follow": "#{{tag}} izlə",
     "following": "İzləyirsiniz",

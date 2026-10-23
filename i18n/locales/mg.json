@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Sivano ny fampandrenesana avy amin'ny",
+    "description": "Safidio izay hitranga rehefa misy olona ivelan'ny faribolanao mifandray aminao. Miandry ao amin'ny \"Voasivana\" ireo fampandrenesana voasivana, tsy misy marika na fampandrenesana tampoka.",
+    "notFollowing": "Olona tsy arahinao",
+    "notFollowers": "Olona tsy manaraka anao",
+    "newAccounts": "Kaonty vaovao (latsaky ny 30 andro)",
+    "accept": "Ampahafantaro aho",
+    "filter": "Sivano",
+    "drop": "Afeno tanteraka",
+    "filteredTitle": "Fampandrenesana voasivana",
+    "filteredEmpty": "Tsy misy voasivana.",
+    "failed": "Tsy voatahiry. Andramo indray."
+  },
   "followedTags": {
     "follow": "Araho #{{tag}}",
     "following": "Manaraka",

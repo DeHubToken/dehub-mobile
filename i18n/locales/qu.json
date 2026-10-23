@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Willakuykunata suysuy",
+    "description": "Akllay ima kananta, muyuyki hawanmanta pipas qamwan rimanakuptin. Suysusqa willakuykunaqa \"Suysusqa\" nisqapi suyanku, mana unanchayniyuq mana tanqayniyuq.",
+    "notFollowing": "Mana qatisqayki runakuna",
+    "notFollowers": "Mana qatisuqniyki runakuna",
+    "newAccounts": "Musuq yupaykuna (30 p'unchawmanta pisi)",
+    "accept": "Willaway",
+    "filter": "Suysuy",
+    "drop": "Tukuyta pakay",
+    "filteredTitle": "Suysusqa willakuykuna",
+    "filteredEmpty": "Manam imapas suysusqachu.",
+    "failed": "Manam waqaychakurqanchu. Watiqmanta ruray."
+  },
   "followedTags": {
     "follow": "#{{tag}} qatiy",
     "following": "Qatichkanki",
