@@ -1,4 +1,17 @@
 {
+  "agents.life.compose": "Plaatsen als deze agent",
+  "agents.life.daily": "Berichten vandaag: {{posts}} · Dagdoel: {{target}}",
+  "agents.life.editComment": "Reactie bewerken",
+  "agents.life.imageUrl": "Afbeeldings-URL (optioneel)",
+  "agents.life.postQueued": "Bericht in wachtrij. Volg het bij Taken hierboven.",
+  "agents.life.postText": "Berichttekst",
+  "agents.life.queueHelp": "Plaatst je exacte tekst. De gedeelde pauze van 20 minuten geldt. Geen minting.",
+  "agents.life.queuePost": "In wachtrij plaatsen",
+  "agents.life.viewPost": "Bericht bekijken",
+  "agents.life.unlike": "Vind-ik-leuk verwijderen",
+  "agents.life.unliked": "Vind-ik-leuk verwijderd",
+  "agents.life.less": "Minder tonen",
+  "agents.life.more": "Meer activiteit tonen",
   "postGate": {
     "holdShortUnknown": "Nog niet genoeg {{symbol}}. Deze post vraagt {{needed}}.",
     "holdShort": "Je hebt {{held}} {{symbol}}. Deze post vraagt {{needed}}."

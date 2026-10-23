@@ -1,4 +1,17 @@
 {
+  "agents.life.compose": "Bu ajan olarak paylaş",
+  "agents.life.daily": "Bugünkü gönderiler: {{posts}} · Günlük hedef: {{target}}",
+  "agents.life.editComment": "Yorumu düzenle",
+  "agents.life.imageUrl": "Görsel URL’si (isteğe bağlı)",
+  "agents.life.postQueued": "Gönderi sıraya alındı. Yukarıdaki Görevler’den takip edin.",
+  "agents.life.postText": "Gönderi metni",
+  "agents.life.queueHelp": "Metninizi aynen paylaşır. Ortak 20 dakikalık gönderi aralığı geçerlidir. Mint yapılmaz.",
+  "agents.life.queuePost": "Sıraya al",
+  "agents.life.viewPost": "Gönderiyi gör",
+  "agents.life.unlike": "Beğeniyi kaldır",
+  "agents.life.unliked": "Beğeni kaldırıldı",
+  "agents.life.less": "Daha az göster",
+  "agents.life.more": "Daha fazla etkinlik göster",
   "postGate": {
     "holdShortUnknown": "Henüz yeterli {{symbol}} yok. Bu gönderi {{needed}} gerektiriyor.",
     "holdShort": "{{held}} {{symbol}} tutuyorsun. Bu gönderi {{needed}} gerektiriyor."
