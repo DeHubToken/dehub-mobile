@@ -2309,7 +2309,16 @@
     "mostPlayed": "Meest afgespeeld",
     "mostLiked": "Meest geliket",
     "mostRecent": "Meest recent",
-    "chartOrder": "Volgorde van de audiolijst"
+    "chartOrder": "Volgorde van de audiolijst",
+    "chartKind": "Muzieklijst",
+    "chartAudio": "Audio",
+    "chartVideos": "Muziekvideo's",
+    "videoCharts": "Muziekvideo-hitlijsten",
+    "mostViewed": "Meest bekeken",
+    "trendingWeek": "Trending deze week",
+    "newest": "Nieuwste",
+    "videoChartOrder": "Volgorde van de muziekvideolijst",
+    "viewsCount": "{{views}} weergaven"
   },
   "notFound": {
     "title": "Pagina niet gevonden",

@@ -24,10 +24,17 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
  */
 
 import { isVisibleInMusic } from "./music-curation";
+import { fetchMusicVideoChart, MUSIC_VIDEO_CHART_SORTS, type MusicVideoChartSort } from "./music-video-chart";
+import { Image } from "expo-image";
+import { useNavigation } from "@react-navigation/native";
+import { ScreenNames } from "../../navigation/ScreenNames";
+import { secondsToHMMSS } from "../../libs/date.util";
+import { formatCompactNumber, resolveViewCount } from "../../libs/numbers.util";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -86,6 +93,8 @@ type Shelf = "videos" | "radio" | "audio" | "stages" | "tracks" | "podcasts";
 const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages", "tracks", "podcasts"];
 
 const CAROUSEL_PAGE_SIZE = 12;
+// Rows the music video chart shows before "See all".
+const CHART_INITIAL_ROWS = 10;
 const VIDEOS_PAGE_SIZE = 10;
 
 export interface MusicFeedHandle {
@@ -192,6 +201,9 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
   const [tab, setTab] = useState<MusicSubTab>("all");
   const [chartSort, setChartSort] = useState<'trending' | 'popular' | 'new'>('trending');
+  const [chartKind, setChartKind] = useState<'audio' | 'videos'>('audio');
+  const { colors: themeColors, isMinimal } = useAppTheme();
+  const [videoChartSort, setVideoChartSort] = useState<MusicVideoChartSort>('views');
   const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
   const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 10, minimumViewTime: 150 }).current;
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ key: string }> }) => {
@@ -233,6 +245,14 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       });
       return (res.result || []).filter(isVisibleInMusic);
     },
+    staleTime: 5 * 60_000,
+  });
+
+  // Music video charts, ranked on the server (same orders as web).
+  const { data: videoChart = [], isLoading: loadingVideoChart } = useQuery({
+    queryKey: ["music-video-chart", address, videoChartSort],
+    enabled: chartKind === "videos",
+    queryFn: async () => (await fetchMusicVideoChart(videoChartSort, address)).filter(isVisibleInMusic),
     staleTime: 5 * 60_000,
   });
 
@@ -354,14 +374,43 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               )}
             </View>
           );
-        case "audio":
+        case "audio": {
+          const isVideos = chartKind === "videos";
+          const sorts: { value: string; label: string }[] = isVideos
+            ? MUSIC_VIDEO_CHART_SORTS.map(sort => ({ value: sort.value, label: t(sort.key, { defaultValue: sort.fallback }) }))
+            : [
+              { value: 'trending', label: t('music.mostPlayed', { defaultValue: 'Most played' }) },
+              { value: 'popular', label: t('music.mostLiked', { defaultValue: 'Most liked' }) },
+              { value: 'new', label: t('music.mostRecent', { defaultValue: 'Most recent' }) },
+            ];
+          const activeSort: string = isVideos ? videoChartSort : chartSort;
+          const items = isVideos ? videoChart : audioUploads;
           return (
             <View style={styles.section}>
-              <SectionHeader icon="Disc3" title={t("music.audioUploads")} count={audioUploads.length} />
-              <View style={{ flexDirection: 'row', gap: 6, paddingHorizontal: FEED_SIDE, paddingBottom: 14 }}>
-                {(['trending', 'popular', 'new'] as const).map(sort => <TouchableOpacity key={sort} accessibilityRole="button" accessibilityState={{ selected: chartSort === sort }} onPress={() => setChartSort(sort)} style={{ paddingHorizontal: 12, paddingVertical: 9, borderRadius: 99, backgroundColor: chartSort === sort ? 'rgba(255,255,255,.08)' : 'transparent', borderWidth: 1, borderColor: chartSort === sort ? 'rgba(255,255,255,.15)' : 'transparent' }}><Text style={{ color: '#fff', opacity: chartSort === sort ? 1 : .55, fontSize: 11 }}>{sort === 'trending' ? t('music.mostPlayed', { defaultValue: 'Most played' }) : sort === 'popular' ? t('music.mostLiked', { defaultValue: 'Most liked' }) : t('music.mostRecent', { defaultValue: 'Most recent' })}</Text></TouchableOpacity>)}
+              <SectionHeader icon={isVideos ? "Play" : "Disc3"} title={isVideos ? t("music.videoCharts", { defaultValue: "Music Video Charts" }) : t("music.audioUploads")} count={items.length} />
+              <View accessibilityRole="tablist" style={{ flexDirection: 'row', gap: 4, paddingHorizontal: FEED_SIDE - 6, paddingBottom: 4 }}>
+                {(['audio', 'videos'] as const).map(kind => {
+                  const current = chartKind === kind;
+                  return <TouchableOpacity key={kind} accessibilityRole="tab" accessibilityState={{ selected: current }} onPress={() => setChartKind(kind)} style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 10, paddingTop: 8, paddingBottom: 11, opacity: current ? 1 : .6 }}>
+                    <Icon name={kind === 'videos' ? 'Play' : 'Disc3'} size={14} color="#fff" />
+                    <Text style={{ color: '#fff', fontSize: 13, fontWeight: '600' }}>{kind === 'videos' ? t('music.chartVideos', { defaultValue: 'Music videos' }) : t('music.chartAudio', { defaultValue: 'Audio' })}</Text>
+                    {/* "Beam", like the profile tabs: a short glowing line under the selected tab. */}
+                    {current && !isMinimal && <View pointerEvents="none" style={[styles.chartBeam, { backgroundColor: themeColors.foreground, shadowColor: themeColors.foreground }]} />}
+                  </TouchableOpacity>;
+                })}
               </View>
-              {loadingAudio ? (
+              <GuardedRow><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: FEED_SIDE, paddingBottom: 14 }}>
+                {sorts.map(sort => <TouchableOpacity key={sort.value} accessibilityRole="button" accessibilityState={{ selected: activeSort === sort.value }} onPress={() => isVideos ? setVideoChartSort(sort.value as MusicVideoChartSort) : setChartSort(sort.value as 'trending' | 'popular' | 'new')} style={{ paddingHorizontal: 12, paddingVertical: 9, borderRadius: 99, backgroundColor: activeSort === sort.value ? 'rgba(255,255,255,.08)' : 'transparent', borderWidth: 1, borderColor: activeSort === sort.value ? 'rgba(255,255,255,.15)' : 'transparent' }}><Text style={{ color: '#fff', opacity: activeSort === sort.value ? 1 : .55, fontSize: 11 }}>{sort.label}</Text></TouchableOpacity>)}
+              </ScrollView></GuardedRow>
+              {isVideos ? (
+                loadingVideoChart ? (
+                  <ShelfSkeleton width={280} height={124} />
+                ) : videoChart.length === 0 ? (
+                  <Text style={styles.shelfNote}>{t("music.noMusicVideos")}</Text>
+                ) : (
+                  <MusicVideoChart key={videoChartSort} items={videoChart} />
+                )
+              ) : loadingAudio ? (
                 <ShelfSkeleton width={280} height={124} />
               ) : audioUploads.length === 0 ? (
                 <Text style={styles.shelfNote}>{t("music.noAudioUploads")}</Text>
@@ -370,6 +419,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               )}
             </View>
           );
+        }
         case "stages":
           return <StagesCarousel />;
         case "tracks":
@@ -378,7 +428,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
-    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, t],
+    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, chartKind, videoChart, loadingVideoChart, videoChartSort, themeColors, isMinimal, t],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -621,6 +671,46 @@ const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[]; isVisible: boolean }
   return null;
 };
 
+/**
+ * The music video chart: a ranked list (thumbnail, title, creator and
+ * views). Tapping a row opens the post, where the real player lives.
+ */
+const MusicVideoChart: React.FC<{ items: GetNFTsResult[] }> = ({ items }) => {
+  const { t } = useTranslation();
+  const navigation = useNavigation<any>();
+  const [visible, setVisible] = useState(CHART_INITIAL_ROWS);
+  const open = (item: GetNFTsResult) => {
+    const tokenId = item.tokenId ?? item.id;
+    if (tokenId == null) return;
+    navigation.navigate(ScreenNames.FeedDetail, { tokenId: String(tokenId), postId: String(tokenId) });
+  };
+  return <View style={{ paddingHorizontal: FEED_SIDE, gap: 2 }}>
+    {items.slice(0, visible).map((item, index) => {
+      const id = String(item.tokenId ?? item.id ?? index);
+      const rawThumb = (item as any).thumbnail || item.thumbnailUrl || item.imageUrl || '';
+      const creator = (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || '';
+      const views = resolveViewCount(item);
+      const duration = secondsToHMMSS(item.videoDuration);
+      return <TouchableOpacity key={id} accessibilityRole="button" onPress={() => open(item)} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10, paddingHorizontal: 8, borderRadius: 10, backgroundColor: index === 0 ? 'rgba(255,255,255,.06)' : 'transparent', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(255,255,255,.08)' }}>
+        <Text style={{ color: index < 3 ? '#fff' : 'rgba(255,255,255,.4)', fontSize: 11, fontWeight: index < 3 ? '700' : '400', width: 18, textAlign: 'center' }}>{index + 1}</Text>
+        <View style={styles.chartThumb}>
+          {rawThumb ? <Image source={{ uri: getImageUrl(rawThumb, 160) }} style={StyleSheet.absoluteFill} contentFit="cover" transition={150} /> : <Icon name="Play" size={14} color="rgba(255,255,255,.5)" />}
+          {!!duration && <View style={styles.chartDuration}><Text style={{ color: '#fff', fontSize: 9 }}>{duration}</Text></View>}
+        </View>
+        <View style={{ flex: 1, gap: 4, minWidth: 0 }}>
+          <Text numberOfLines={1} style={{ color: '#fff', fontSize: 13, fontWeight: '500' }}>{item.name || (item as any).title}</Text>
+          <Text numberOfLines={1} style={{ color: 'rgba(255,255,255,.5)', fontSize: 10 }}>{[creator, views ? t('music.viewsCount', { defaultValue: '{{views}} views', views: formatCompactNumber(views) }) : ''].filter(Boolean).join(' · ')}</Text>
+        </View>
+        <Icon name="Play" size={16} color="#fff" />
+      </TouchableOpacity>;
+    })}
+    {visible < items.length && <TouchableOpacity accessibilityRole="button" onPress={() => setVisible(count => count + CHART_INITIAL_ROWS)} style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingVertical: 12, paddingHorizontal: 8 }}>
+      <Text style={{ color: 'rgba(255,255,255,.7)', fontSize: 13 }}>{t('stages.seeAll')}</Text>
+      <Icon name="ChevronRight" size={15} color="rgba(255,255,255,.6)" />
+    </TouchableOpacity>}
+  </View>;
+};
+
 const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?: boolean }> = ({
   nft,
   isVisible,
@@ -695,6 +785,35 @@ const styles = StyleSheet.create({
   skeletonRow: {
     flexDirection: "row",
     overflow: "hidden",
+  },
+  chartBeam: {
+    position: 'absolute',
+    bottom: 3,
+    alignSelf: 'center',
+    left: '30%',
+    right: '30%',
+    height: 2,
+    borderRadius: 99,
+    shadowOpacity: 0.9,
+    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 0 },
+  },
+  chartThumb: {
+    width: 64,
+    aspectRatio: 16 / 9,
+    borderRadius: 6,
+    overflow: 'hidden',
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  chartDuration: {
+    position: 'absolute',
+    right: 3,
+    bottom: 3,
+    paddingHorizontal: 3,
+    borderRadius: 3,
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
   rowWrap: {
     paddingHorizontal: FEED_SIDE,

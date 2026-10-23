@@ -2119,7 +2119,16 @@
     "mostPlayed": "Más reproducidos",
     "mostLiked": "Con más me gusta",
     "mostRecent": "Más recientes",
-    "chartOrder": "Orden de la lista de audio"
+    "chartOrder": "Orden de la lista de audio",
+    "chartKind": "Lista musical",
+    "chartAudio": "Audio",
+    "chartVideos": "Videos musicales",
+    "videoCharts": "Listas de videos musicales",
+    "mostViewed": "Más vistos",
+    "trendingWeek": "Tendencia esta semana",
+    "newest": "Más nuevos",
+    "videoChartOrder": "Orden de la lista de videos musicales",
+    "viewsCount": "{{views}} vistas"
   },
   "notFound": {
     "title": "Página no encontrada",
