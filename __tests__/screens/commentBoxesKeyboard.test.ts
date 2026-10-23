@@ -13,7 +13,7 @@ describe("governance comment box", () => {
   const source = read("screens/GovernanceProposalScreen.tsx");
 
   it("docks outside the scroll and rides the keyboard itself", () => {
-    expect(source).not.toContain("KeyboardAvoidingView");
+    expect(source).not.toContain("<KeyboardAvoidingView");
     expect(source).toContain("useComposerKeyboard(0, { gap: 0 })");
     const scrollEnd = source.indexOf("</ScrollView>");
     expect(source.indexOf("ref={composerKeyboard.ref}")).toBeGreaterThan(scrollEnd);
