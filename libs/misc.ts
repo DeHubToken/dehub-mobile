@@ -1,7 +1,8 @@
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
 import { badgeHoverArt } from "./badgeHoverArt";
-import { Share, Platform } from "react-native";
+import { Platform } from "react-native";
+import { shareWithRef } from "./shareRef";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
 
@@ -879,14 +880,16 @@ export function resolveBadgeLock(
 /** Generic share helper.
  * Provide an already formatted message; will include url param on iOS automatically.
  */
-export async function shareProfile(url: string, message: string) {
+export async function shareProfile(url: string, message: string, kind = "profile") {
   if (!url || !message) return;
   try {
-    await Share.share(
+    await shareWithRef(
       Platform.select({
         ios: { message, url },
         default: { message },
-      }) as any
+      }) as any,
+      undefined,
+      kind,
     );
   } catch (e) {
     console.warn("[shareProfile] failed", e);

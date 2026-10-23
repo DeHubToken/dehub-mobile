@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Pressable, Share, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { shareWithRef } from '../../libs/shareRef';
 import * as Clipboard from 'expo-clipboard';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -61,7 +62,7 @@ export default function BountyShareButton({ job }: { job: WorkJob }) {
           {row('Send', t('feedCard.sendInMessage'), () => authenticated(() => setDmOpen(true)))}
           {row('MessageSquare', t('buyCoins.shareToFeed'), () => authenticated(() => navigation.navigate(ScreenNames.Upload, { tab: 'feed', initialText: url })))}
           {row('Share2', t('feedCard.moreShare'), () => later(() => {
-            void Share.share({ message: `${job.title}\n${url}`, url, title: job.title }).catch(() => {});
+            void shareWithRef({ message: `${job.title}\n${url}`, url, title: job.title }).catch(() => {});
           }))}
         </View>
       </GlassModal>
