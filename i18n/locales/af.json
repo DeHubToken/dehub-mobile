@@ -6178,7 +6178,11 @@
     "noTrendingThisWeek": "Geen gewilde inhoud hierdie week nie",
     "closeFilterOptions": "Sluit filteropsies",
     "openFilterOptions": "Maak filteropsies oop",
-    "fillQuery": "Vul soektog in met \"{{query}}\""
+    "fillQuery": "Vul soektog in met \"{{query}}\"",
+    "clearHistory": "Vee geskiedenis uit",
+    "clearHistoryTitle": "Vee soekgeskiedenis uit?",
+    "clearHistoryBody": "Dit verwyder al jou onlangse soektogte.",
+    "removeFromHistory": "Verwyder \"{{query}}\" uit geskiedenis"
   },
   "notifPrompt": {
     "stayInLoop": "Bly op hoogte",

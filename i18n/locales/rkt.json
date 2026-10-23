@@ -6256,7 +6256,11 @@
     "noTrendingThisWeek": "এই সপ্তাহে কোন ট্রেন্ডিং বিষয়বস্তু নেই",
     "closeFilterOptions": "ফিল্টার অপশন বন্ধ করুন",
     "openFilterOptions": "ফিল্টার অপশন খুলুন",
-    "fillQuery": "খোঁজত \"{{query}}\" বসাও"
+    "fillQuery": "খোঁজত \"{{query}}\" বসাও",
+    "clearHistory": "ইতিহাস মুছুন",
+    "clearHistoryTitle": "অনুসন্ধানের ইতিহাস মুছবেন?",
+    "clearHistoryBody": "এটি আপনার সব সাম্প্রতিক অনুসন্ধান সরিয়ে দেবে।",
+    "removeFromHistory": "ইতিহাস থেকে \"{{query}}\" সরান"
   },
   "notifPrompt": {
     "stayInLoop": "খবরত থাকেন",

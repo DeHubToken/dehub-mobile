@@ -6122,7 +6122,11 @@
     "noTrendingThisWeek": "ಈ ವಾರ ಟ್ರೆಂಡಿಂಗ್ ವಿಷಯಗಳಿಲ್ಲ",
     "closeFilterOptions": "ಫಿಲ್ಟರ್ ಆಯ್ಕೆಗಳನ್ನು ಮುಚ್ಚಿ",
     "openFilterOptions": "ಫಿಲ್ಟರ್ ಆಯ್ಕೆಗಳನ್ನು ತೆರೆಯಿರಿ",
-    "fillQuery": "ಹುಡುಕಾಟದಲ್ಲಿ \"{{query}}\" ತುಂಬಿ"
+    "fillQuery": "ಹುಡುಕಾಟದಲ್ಲಿ \"{{query}}\" ತುಂಬಿ",
+    "clearHistory": "ಇತಿಹಾಸ ತೆರವುಗೊಳಿಸಿ",
+    "clearHistoryTitle": "ಹುಡುಕಾಟ ಇತಿಹಾಸ ತೆರವುಗೊಳಿಸುವುದೇ?",
+    "clearHistoryBody": "ಇದು ನಿಮ್ಮ ಎಲ್ಲಾ ಇತ್ತೀಚಿನ ಹುಡುಕಾಟಗಳನ್ನು ತೆಗೆದುಹಾಕುತ್ತದೆ.",
+    "removeFromHistory": "\"{{query}}\" ಅನ್ನು ಇತಿಹಾಸದಿಂದ ತೆಗೆದುಹಾಕಿ"
   },
   "notifPrompt": {
     "stayInLoop": "ಮಾಹಿತಿಯಲ್ಲಿರಿ",

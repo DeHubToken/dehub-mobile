@@ -6167,7 +6167,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
     "openFilterOptions": "فتح خيارات التصفية",
-    "fillQuery": "حط \"{{query}}\" فخانة التقلاب"
+    "fillQuery": "حط \"{{query}}\" فخانة التقلاب",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "بقا على علم",

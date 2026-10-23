@@ -6163,7 +6163,11 @@
     "noTrendingThisWeek": "Bu hafta trenddagi kontent yo'q",
     "closeFilterOptions": "Filtri variantlarini yopish",
     "openFilterOptions": "Filtri variantlarini ochish",
-    "fillQuery": "Qidiruvga \"{{query}}\" ni kiritish"
+    "fillQuery": "Qidiruvga \"{{query}}\" ni kiritish",
+    "clearHistory": "Tarixni tozalash",
+    "clearHistoryTitle": "Qidiruv tarixi tozalansinmi?",
+    "clearHistoryBody": "Bu barcha soʻnggi qidiruvlaringizni oʻchiradi.",
+    "removeFromHistory": "“{{query}}”ni tarixdan olib tashlash"
   },
   "notifPrompt": {
     "stayInLoop": "Xabardor bo'ling",

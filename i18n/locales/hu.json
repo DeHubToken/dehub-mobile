@@ -6149,7 +6149,11 @@
     "noTrendingThisWeek": "Nincs felkapott tartalom ezen a héten",
     "closeFilterOptions": "Szűrőbeállítások bezárása",
     "openFilterOptions": "Szűrőbeállítások megnyitása",
-    "fillQuery": "\"{{query}}\" beírása a keresőbe"
+    "fillQuery": "\"{{query}}\" beírása a keresőbe",
+    "clearHistory": "Előzmények törlése",
+    "clearHistoryTitle": "Törlöd a keresési előzményeket?",
+    "clearHistoryBody": "Ez eltávolítja az összes legutóbbi keresésedet.",
+    "removeFromHistory": "„{{query}}” eltávolítása az előzményekből"
   },
   "notifPrompt": {
     "stayInLoop": "Maradj naprakész",

@@ -6147,7 +6147,11 @@
     "noTrendingThisWeek": "በዚህ ሳምንት ምንም ተወዳጅ ይዘት የለም።",
     "closeFilterOptions": "የማጣሪያ አማራጮችን ዝጋ",
     "openFilterOptions": "የማጣሪያ አማራጮችን ክፈት",
-    "fillQuery": "\"{{query}}\"ን በፍለጋ ሳጥን ውስጥ አስገባ"
+    "fillQuery": "\"{{query}}\"ን በፍለጋ ሳጥን ውስጥ አስገባ",
+    "clearHistory": "ታሪክ አጽዳ",
+    "clearHistoryTitle": "የፍለጋ ታሪክ ይጽዳ?",
+    "clearHistoryBody": "ይህ ሁሉንም የቅርብ ጊዜ ፍለጋዎችዎን ያስወግዳል።",
+    "removeFromHistory": "\"{{query}}\"ን ከታሪክ አስወግድ"
   },
   "notifPrompt": {
     "stayInLoop": "መረጃ ይከታተሉ",

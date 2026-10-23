@@ -6145,7 +6145,11 @@
     "noTrendingThisWeek": "Այս շաբաթ հիթային բովանդակություն չկա",
     "closeFilterOptions": "Փակել զտիչի տարբերակները",
     "openFilterOptions": "Բացել զտիչի տարբերակները",
-    "fillQuery": "Լրացնել որոնումը \"{{query}}\"-ով"
+    "fillQuery": "Լրացնել որոնումը \"{{query}}\"-ով",
+    "clearHistory": "Մաքրել պատմությունը",
+    "clearHistoryTitle": "Մաքրե՞լ որոնման պատմությունը",
+    "clearHistoryBody": "Սա կհեռացնի ձեր բոլոր վերջին որոնումները։",
+    "removeFromHistory": "Հեռացնել «{{query}}»-ը պատմությունից"
   },
   "notifPrompt": {
     "stayInLoop": "Մնացեք տեղեկացված",

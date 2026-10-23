@@ -6123,7 +6123,11 @@
     "noTrendingThisWeek": "ଏ ସପ୍ତାହରେ କୌଣସି ଟ୍ରେଣ୍ଡିଂ କଣ୍ଟେଣ୍ଟ୍ ନାହିଁ",
     "closeFilterOptions": "ଫିଲ୍ଟର୍ ବିକଳ୍ପ ବନ୍ଦ କରନ୍ତୁ",
     "openFilterOptions": "ଫିଲ୍ଟର୍ ବିକଳ୍ପ ଖୋଲନ୍ତୁ",
-    "fillQuery": "ସନ୍ଧାନରେ \"{{query}}\" ଭରନ୍ତୁ"
+    "fillQuery": "ସନ୍ଧାନରେ \"{{query}}\" ଭରନ୍ତୁ",
+    "clearHistory": "ଇତିହାସ ସଫା କରନ୍ତୁ",
+    "clearHistoryTitle": "ସନ୍ଧାନ ଇତିହାସ ସଫା କରିବେ?",
+    "clearHistoryBody": "ଏହା ଆପଣଙ୍କର ସମସ୍ତ ସମ୍ପ୍ରତିକ ସନ୍ଧାନ ହଟାଇଦେବ।",
+    "removeFromHistory": "\"{{query}}\" କୁ ଇତିହାସରୁ ହଟାନ୍ତୁ"
   },
   "notifPrompt": {
     "stayInLoop": "ଅବଗତ ରୁହନ୍ତୁ",

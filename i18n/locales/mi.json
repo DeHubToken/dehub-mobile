@@ -6125,7 +6125,11 @@
     "noTrendingThisWeek": "Kāore he ihirangi tūāhua o tēnei wiki",
     "closeFilterOptions": "Katia ngā kōwhiringa tātari",
     "openFilterOptions": "Whakatuwheratia ngā kōwhiringa tātari",
-    "fillQuery": "Whakakīia te rapu ki \"{{query}}\""
+    "fillQuery": "Whakakīia te rapu ki \"{{query}}\"",
+    "clearHistory": "Ūkuia te hītori",
+    "clearHistoryTitle": "Ūkuia te hītori rapunga?",
+    "clearHistoryBody": "Ka tangohia ō rapunga hou katoa.",
+    "removeFromHistory": "Tangohia a \"{{query}}\" i te hītori"
   },
   "notifPrompt": {
     "stayInLoop": "Kia mōhio tonu",

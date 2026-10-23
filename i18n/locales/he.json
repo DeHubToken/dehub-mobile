@@ -6140,7 +6140,11 @@
     "noTrendingThisWeek": "אין תוכן פופולרי השבוע",
     "closeFilterOptions": "סגור אפשרויות סינון",
     "openFilterOptions": "פתח אפשרויות סינון",
-    "fillQuery": "הכנס את \"{{query}}\" לחיפוש"
+    "fillQuery": "הכנס את \"{{query}}\" לחיפוש",
+    "clearHistory": "ניקוי היסטוריה",
+    "clearHistoryTitle": "לנקות את היסטוריית החיפושים?",
+    "clearHistoryBody": "פעולה זו מסירה את כל החיפושים האחרונים שלך.",
+    "removeFromHistory": "הסרת \"{{query}}\" מההיסטוריה"
   },
   "notifPrompt": {
     "stayInLoop": "הישארו מעודכנים",

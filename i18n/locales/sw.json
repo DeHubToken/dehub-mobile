@@ -6146,7 +6146,11 @@
     "noTrendingThisWeek": "Hakuna maudhui yanayovuma wiki hii",
     "closeFilterOptions": "Funga chaguo za kichujio",
     "openFilterOptions": "Fungua chaguo za kichujio",
-    "fillQuery": "Jaza utafutaji kwa \"{{query}}\""
+    "fillQuery": "Jaza utafutaji kwa \"{{query}}\"",
+    "clearHistory": "Futa historia",
+    "clearHistoryTitle": "Futa historia ya utafutaji?",
+    "clearHistoryBody": "Hii itaondoa tafuti zako zote za hivi karibuni.",
+    "removeFromHistory": "Ondoa \"{{query}}\" kwenye historia"
   },
   "notifPrompt": {
     "stayInLoop": "Endelea kufahamu",

@@ -6124,7 +6124,11 @@
     "noTrendingThisWeek": "Ma jiraan waxyaabo caan ah toddobaadkan",
     "closeFilterOptions": "Xir fursadaha filtarka",
     "openFilterOptions": "Fur fursadaha filtarka",
-    "fillQuery": "Geli \"{{query}}\" sanduuqa raadinta"
+    "fillQuery": "Geli \"{{query}}\" sanduuqa raadinta",
+    "clearHistory": "Nadiifi taariikhda",
+    "clearHistoryTitle": "Ma nadiifinaysaa taariikhda raadinta?",
+    "clearHistoryBody": "Tani waxay tirtiraysaa dhammaan raadinnadaadii dhawaa.",
+    "removeFromHistory": "Ka saar \"{{query}}\" taariikhda"
   },
   "notifPrompt": {
     "stayInLoop": "Ku sii jir warka",

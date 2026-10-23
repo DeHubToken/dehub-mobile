@@ -6138,7 +6138,11 @@
     "noTrendingThisWeek": "本週沒有熱門內容",
     "closeFilterOptions": "關閉篩選選項",
     "openFilterOptions": "開啟篩選選項",
-    "fillQuery": "將「{{query}}」填入搜尋欄"
+    "fillQuery": "將「{{query}}」填入搜尋欄",
+    "clearHistory": "清除記錄",
+    "clearHistoryTitle": "清除搜尋記錄？",
+    "clearHistoryBody": "這會刪除你所有的最近搜尋。",
+    "removeFromHistory": "從記錄中刪除「{{query}}」"
   },
   "notifPrompt": {
     "stayInLoop": "唔好錯過任何消息",

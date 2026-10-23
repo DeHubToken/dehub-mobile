@@ -6108,7 +6108,11 @@
     "noTrendingThisWeek": "ບໍ່ມີເນື້ອຫາທີ່ນິຍົມໃນອາທິດນີ້",
     "closeFilterOptions": "ປິດຕົວເລືອກການກັ່ນຕອງ",
     "openFilterOptions": "ເປີດຕົວເລືອກການກັ່ນຕອງ",
-    "fillQuery": "ໃສ່ \"{{query}}\" ໃນຊ່ອງຄົ້ນຫາ"
+    "fillQuery": "ໃສ່ \"{{query}}\" ໃນຊ່ອງຄົ້ນຫາ",
+    "clearHistory": "ລຶບປະຫວັດ",
+    "clearHistoryTitle": "ລຶບປະຫວັດການຄົ້ນຫາບໍ?",
+    "clearHistoryBody": "ນີ້ຈະລຶບການຄົ້ນຫາຫຼ້າສຸດທັງໝົດຂອງທ່ານ.",
+    "removeFromHistory": "ລຶບ \"{{query}}\" ອອກຈາກປະຫວັດ"
   },
   "notifPrompt": {
     "stayInLoop": "ຕິດຕາມຂ່າວສານ",

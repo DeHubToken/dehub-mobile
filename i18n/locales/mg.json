@@ -6149,7 +6149,11 @@
     "noTrendingThisWeek": "Tsy misy votoaty malaza amin'ity herinandro ity",
     "closeFilterOptions": "Akana ny safidy sivana",
     "openFilterOptions": "Sokafy ny safidy sivana",
-    "fillQuery": "Apetraho ao amin'ny fikarohana ny \"{{query}}\""
+    "fillQuery": "Apetraho ao amin'ny fikarohana ny \"{{query}}\"",
+    "clearHistory": "Fafao ny tantara",
+    "clearHistoryTitle": "Hofafana ve ny tantaran'ny fikarohana?",
+    "clearHistoryBody": "Hamafa ny fikarohanao vao haingana rehetra izany.",
+    "removeFromHistory": "Esory amin'ny tantara ny \"{{query}}\""
   },
   "notifPrompt": {
     "stayInLoop": "Mahafantatra hatrany",

@@ -6143,7 +6143,11 @@
     "noTrendingThisWeek": "Bu həftə trenddə olan məzmun yoxdur",
     "closeFilterOptions": "Filtir seçimlərini bağlayın",
     "openFilterOptions": "Filtir seçimlərini açın",
-    "fillQuery": "Axtarışa \"{{query}}\" yaz"
+    "fillQuery": "Axtarışa \"{{query}}\" yaz",
+    "clearHistory": "Tarixçəni təmizlə",
+    "clearHistoryTitle": "Axtarış tarixçəsi təmizlənsin?",
+    "clearHistoryBody": "Bu, bütün son axtarışlarınızı siləcək.",
+    "removeFromHistory": "\"{{query}}\" tarixçədən silinsin"
   },
   "notifPrompt": {
     "stayInLoop": "Xəbərdar olun",

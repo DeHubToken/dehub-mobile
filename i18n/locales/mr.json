@@ -6141,7 +6141,11 @@
     "noTrendingThisWeek": "या आठवड्यात कोणतीही ट्रेंडिंग सामग्री नाही",
     "closeFilterOptions": "फिल्टर पर्याय बंद करा",
     "openFilterOptions": "फिल्टर पर्याय उघडा",
-    "fillQuery": "शोधात \"{{query}}\" भरा"
+    "fillQuery": "शोधात \"{{query}}\" भरा",
+    "clearHistory": "इतिहास साफ करा",
+    "clearHistoryTitle": "शोध इतिहास साफ करायचा?",
+    "clearHistoryBody": "यामुळे तुमचे सर्व अलीकडील शोध काढले जातील.",
+    "removeFromHistory": "\"{{query}}\" इतिहासातून काढा"
   },
   "notifPrompt": {
     "stayInLoop": "अपडेट राहा",

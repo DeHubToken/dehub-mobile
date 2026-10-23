@@ -6126,7 +6126,11 @@
     "noTrendingThisWeek": "بۇ ھەپتىدە مودا بولغان مەزمۇن يوق",
     "closeFilterOptions": "سۈزگۈچ تاللانمىلىرىنى تاقاش",
     "openFilterOptions": "سۈزگۈچ تاللانمىلىرىنى ئېچىش",
-    "fillQuery": "ئىزدەشكە \"{{query}}\" نى كىرگۈزۈش"
+    "fillQuery": "ئىزدەشكە \"{{query}}\" نى كىرگۈزۈش",
+    "clearHistory": "تارىخنى تازىلاش",
+    "clearHistoryTitle": "ئىزدەش تارىخىنى تازىلامسىز؟",
+    "clearHistoryBody": "بۇ سىزنىڭ بارلىق يېقىنقى ئىزدەشلىرىڭىزنى ئۆچۈرىدۇ.",
+    "removeFromHistory": "\"{{query}}\" نى تارىختىن چىقىرىش"
   },
   "notifPrompt": {
     "stayInLoop": "خەۋەردار بولۇڭ",

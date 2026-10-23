@@ -6128,7 +6128,11 @@
     "noTrendingThisWeek": "اِس ہفتے کوئی رجحان مواد نہ اے",
     "closeFilterOptions": "فلٹر دے اختیارات بند کرو",
     "openFilterOptions": "فلٹر دے اختیارات کھولھو",
-    "fillQuery": "ڳولݨ وچ \"{{query}}\" پاؤ"
+    "fillQuery": "ڳولݨ وچ \"{{query}}\" پاؤ",
+    "clearHistory": "ہسٹری صاف کرو",
+    "clearHistoryTitle": "تلاش دی ہسٹری صاف کروں؟",
+    "clearHistoryBody": "ایں نال تہاݙیاں ساریاں حالیہ تلاشاں ہٹ ویسن۔",
+    "removeFromHistory": "\"{{query}}\" کوں ہسٹری توں ہٹاؤ"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رہو",
