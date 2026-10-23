@@ -11,6 +11,10 @@
  * followed and only then swapped the whole batch, so the row read as frozen
  * for most of the interaction.
  *
+ * It never runs dry: the feed pages through everyone ranked by activity and
+ * profile completeness, Explore by newest sign-up, empty profiles last, until
+ * nobody is left.
+ *
  * Placed as a ListHeaderComponent inside InfiniteVideoFeed on the HomeScreen.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -18,7 +22,7 @@ import { StyleSheet, View, Text, FlatList, TouchableOpacity, type ListRenderItem
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../context/PagerGestureContext";
 import { useTranslation } from "react-i18next";
-import { getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
+import { getRankedSuggestions, getSuggestedAccounts, type SuggestedAccount } from "../../services/user.service";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
 import SuggestedAccountCard from "./SuggestedAccountCard";
@@ -38,11 +42,8 @@ const CINEMATIC_HAIRLINE = "rgba(255,255,255,0.12)";
 /** Page size. Matches the web carousel so both rails page identically. */
 const BATCH_SIZE = 10;
 
-/** Stop after this many pages — the suggestion pool is not infinite. */
-const MAX_PAGES = 10;
-
 /** Pull the next page once the row is down to this many cards. */
-const LOW_WATER_MARK = 3;
+const LOW_WATER_MARK = 5;
 
 /** How long a followed card shows "Following" before it leaves the row. */
 const FOLLOWED_LINGER_MS = 700;
@@ -65,6 +66,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
   const [dismissed, setDismissed] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const pageRef = useRef(0);
+  const cursorRef = useRef<string | null>(null);
   const loadingRef = useRef(false);
   const mountedRef = useRef(true);
   const lingerTimers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
@@ -80,15 +82,30 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
   }, []);
 
   const loadNextPage = useCallback(async () => {
-    if (loadingRef.current || !hasMore || pageRef.current >= MAX_PAGES) return;
+    if (loadingRef.current || !hasMore) return;
     loadingRef.current = true;
     setLoadingMore(true);
     try {
       const nextPage = pageRef.current + 1;
-      const { items, hasMore: more } = await getSuggestedAccounts(BATCH_SIZE, nextPage);
+      let items: SuggestedAccount[];
+      let more: boolean;
+      try {
+        const page = await getRankedSuggestions(
+          surface === "explore" ? "newest" : "active",
+          cursorRef.current,
+          BATCH_SIZE,
+        );
+        items = page.items;
+        more = !!page.nextCursor;
+        cursorRef.current = page.nextCursor;
+      } catch {
+        // A server without the ranked list yet still gets the old ten picks.
+        items = nextPage === 1 ? (await getSuggestedAccounts(BATCH_SIZE, 1)).items : [];
+        more = false;
+      }
       if (!mountedRef.current) return;
       pageRef.current = nextPage;
-      setHasMore(more && nextPage < MAX_PAGES);
+      setHasMore(more);
       if (items.length > 0) {
         // The endpoint randomises, so the same account can arrive twice.
         setAccounts((prev) => {
@@ -103,7 +120,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
       loadingRef.current = false;
       if (mountedRef.current) setLoadingMore(false);
     }
-  }, [hasMore]);
+  }, [hasMore, surface]);
 
   // First page, once authenticated.
   const fetchedRef = useRef(false);
@@ -128,7 +145,14 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
     if (visibleAccounts.length < LOW_WATER_MARK && hasMore && !loadingRef.current) {
       void loadNextPage();
     }
-  }, [visibleAccounts.length, hasMore, loadNextPage, user?.address]);
+  }, [visibleAccounts.length, hasMore, loadingMore, loadNextPage, user?.address]);
+
+  // Cards in a row don't stretch to each other, so the mutual-friends line is
+  // kept on every card when any card has one.
+  const anyMutuals = useMemo(
+    () => visibleAccounts.some((a) => (a.mutualConnections?.length ?? 0) > 0),
+    [visibleAccounts],
+  );
 
   const hide = useCallback((address: string) => {
     setHiddenAddresses((prev) => {
@@ -192,9 +216,10 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
         onFollowChange={handleFollowChange}
         onDismiss={handleDismissCard}
         isLast={index === visibleAccounts.length - 1}
+        reasonRow={anyMutuals}
       />
     ),
-    [handleFollowChange, handleDismissCard, visibleAccounts.length],
+    [handleFollowChange, handleDismissCard, visibleAccounts.length, anyMutuals],
   );
 
   const keyExtractor = useCallback((item: SuggestedAccount) => item.address, []);
