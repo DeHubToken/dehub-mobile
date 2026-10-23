@@ -2453,9 +2453,8 @@ const ShortsViewerScreen = () => {
             !(activeItem as { contentRating?: string }).contentRating?.includes("mature")
             ? () => { void (async () => {
                 // A gated short's file is private; download it through a signed URL.
-                const url = videoNeedsAccess(activeItem)
-                  ? (await fetchVideoAccess(activeTokenId).catch(() => null))?.url
-                  : getVideoUrl(activeTokenId);
+                const url = !videoNeedsAccess(activeItem) ? getVideoUrl(activeTokenId)
+                  : activeTokenId != null ? (await fetchVideoAccess(activeTokenId).catch(() => null))?.url : undefined;
                 if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername });
               })(); }
             : undefined}
