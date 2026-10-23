@@ -94,6 +94,33 @@ export const RESERVED_LINK_SEGMENTS = new Set<string>([
 ]);
 
 /**
+ * Brand names. `riftn` is the name DeHub is moving to (riftn.com), so nobody
+ * may hold it or an obvious copy of it: `riftn_`, `riftn-official`, `RIFTN`,
+ * `r1ftn`, `official_riftn` and the like. Matched by rule rather than listed,
+ * because the copies are endless.
+ */
+const BRAND_NAMES = ["riftn"];
+const BRAND_PREFIXES = ["", "official", "real", "the", "team", "iam", "its", "get", "join", "hey"];
+
+// Drop separators and fold the usual lookalike characters, so `r1ftn`,
+// `rlftn` and `riftn_` all read as `riftn`.
+const foldLookalikes = (value: string) =>
+  value
+    .replace(/[^a-z0-9]/g, "")
+    .replace(/[1l]/g, "i")
+    .replace(/0/g, "o");
+
+const BRAND_LOOKALIKES = BRAND_NAMES.flatMap((brand) =>
+  BRAND_PREFIXES.map((prefix) => foldLookalikes(prefix + brand)),
+);
+
+/** True for a brand name or an impersonation of one. */
+export function isBrandLookalike(name: string): boolean {
+  const compact = foldLookalikes(name);
+  return BRAND_LOOKALIKES.some((stem) => compact.startsWith(stem));
+}
+
+/**
  * Stored usernames are lowercase, but input arrives with an `@`, with padding
  * and — from the edit screen, whose TextInput was unfiltered — in mixed case.
  * Web router matching is case-insensitive, so `App` collides with /app exactly
@@ -112,6 +139,7 @@ export function isReservedUsername(value: string | null | undefined): boolean {
   const name = normalizeUsername(value);
   if (!name) return false;
   if (RESERVED_USERNAMES.has(name)) return true;
+  if (isBrandLookalike(name)) return true;
   // A dotted name is read as a file by the web edge worker, never a profile —
   // and this stays true even now that dehub.io/mal.eth resolves. A verified ENS
   // name is an ALIAS stored in accounts.ensName, proved with a signature from

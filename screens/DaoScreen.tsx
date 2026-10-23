@@ -39,6 +39,7 @@ import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useDaoTreasury, useContributeToDao } from "../hooks/useDaoTreasury";
 import { appLocale } from "../libs/date.util";
 import { DhbCoin } from "../components/common/DhbCoin";
+import DaoProposals from "../components/Dao/DaoProposals";
 import {
   DAO_TREASURY_ADDRESS,
   daoTxUrl,
@@ -267,6 +268,7 @@ export default function DaoScreen() {
         refreshControl={<DeHubRefreshControl refreshing={isRefetching} onRefresh={refetch} tintColor={theme.colors.accent} />}
       >
         {header}
+        <DaoProposals />
         <PageSection
           title={t("dao.contributors")}
           action={data ? <Text style={styles.hint}>{t("dao.pooledTotal", { amount: formatDhb(data.totalContributed) })}</Text> : undefined}

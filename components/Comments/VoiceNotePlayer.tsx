@@ -1,4 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
+import { useAppTheme } from '../../context/ThemeContext';
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
 /**
  * VoiceNotePlayer — Telegram-style voice note waveform player.
  *
@@ -92,6 +94,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   compact = false,
 }) => {
   const { t: _copy } = _useCopy();
+  const { theme } = useAppTheme();
   // The URL is known at mount, so the source is attached directly — the hook
   // handles loading and releases the player on unmount. This replaces the old
   // manual preload effect.
@@ -300,19 +303,20 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       <Animated.View style={playBtnStyle}>
         <TouchableOpacity
           onPress={handlePlayPress}
+          style={theme === 'glass' ? GLASS_PLAYBACK_CONTROL : undefined}
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={isPlaying ? _copy("copy.e01c5d16178b", { defaultValue: "Pause voice note" }) : _copy("copy.89ce2d7c9996", { defaultValue: "Play voice note" })}
           className="w-9 h-9 rounded-xl bg-white items-center justify-center mr-2.5"
         >
           {isLoading ? (
-            <ActivityIndicator size="small" color="#000" />
+            <ActivityIndicator size="small" color={theme === 'glass' ? '#efffff' : '#000'} />
           ) : (
             <Icon
               name={isPlaying ? "Pause" : "Play"}
               size={16}
-              color="#000"
-              fill={isPlaying ? undefined : "#000"}
+              color={theme === 'glass' ? '#efffff' : '#000'}
+              fill={isPlaying ? undefined : theme === 'glass' ? '#efffff' : '#000'}
             />
           )}
         </TouchableOpacity>

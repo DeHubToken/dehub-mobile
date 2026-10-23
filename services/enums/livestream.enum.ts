@@ -7,6 +7,13 @@ export enum LivestreamEvents {
   AnonJoinStream = "stream.join.anon",
   LeaveStream = "stream.left",
   TipStreamer = "streamer.tip",
+  /** The chain paid for a gift. Carries the paid amount, never the claim. */
+  TipConfirmed = "streamer.tip.confirmed",
+  Follow = "stream.follow",
+  Subscribe = "stream.subscribe",
+  Share = "stream.share",
+  /** The live creator saved their overlay; redraw it. */
+  OverlayUpdated = "stream.overlay.updated",
   SendMessage = "stream.message",
   LikeStream = "stream.like",
   ViewCountUpdate = "stream.viewers.update",

@@ -4,6 +4,7 @@ import {
   reconcileReactionCounts,
   resolveLeadReaction,
   resolveThumbReaction,
+  resolveThumbCount,
   resolveReactionCounts,
   NEGATIVE_REACTION_LIST,
   POSITIVE_REACTION_LIST,
@@ -242,9 +243,24 @@ describe("resolveThumbReaction", () => {
     expect(resolveThumbReaction({ hot: 40 }, "dislike")).toBe("dislike");
   });
 
-  it("never wears the crowd's 👎", () => {
-    expect(resolveThumbReaction({ dislike: 90, like: 1 }, null)).toBeNull();
-    expect(resolveThumbReaction({ dislike: 90, hot: 1 }, null)).toBe("hot");
+  it("wears the crowd's 👎 with the dislike total once dislikes outnumber likes", () => {
+    expect(resolveThumbReaction({ dislike: 90, like: 1 }, null)).toBe("dislike");
+    expect(resolveThumbReaction({ dislike: 9, hot: 2, love: 3 }, null)).toBe("dislike");
+    expect(resolveThumbCount(5, 9, "dislike")).toBe(9);
+  });
+
+  it("keeps the likes on a tie or when likes lead", () => {
+    expect(resolveThumbReaction({ like: 4, dislike: 4 }, null)).toBeNull();
+    expect(resolveThumbReaction({ hot: 2, love: 3, dislike: 4 }, null)).toBe("love");
+  });
+
+  it("shows your own positive reaction even on a disliked post", () => {
+    expect(resolveThumbReaction({ like: 1, dislike: 9 }, "like")).toBeNull();
+    expect(resolveThumbReaction({ lol: 1, dislike: 9 }, "lol")).toBe("lol");
+  });
+
+  it("still casts a like on a tap when the crowd's 👎 is showing", () => {
+    expect(reactionForTap(true, null, { dislike: 9 })).toBe("like");
   });
 
   it("otherwise follows resolveLeadReaction", () => {

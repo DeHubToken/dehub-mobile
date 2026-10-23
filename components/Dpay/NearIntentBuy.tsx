@@ -22,6 +22,7 @@ import { useCryptoPurchase } from '../../hooks/useCryptoPurchase';
 import Icon from '../ui/Icon';
 import dhbLogo from '../../assets/web-icons/dehub-coin.png';
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { DHB_SALES_PAUSED } from '../../libs/dhb-sales';
 
 const tokenLogos: Record<string, number> = {
   ETH: require('../../assets/tokens/ETH.png'), USDC: require('../../assets/tokens/USDC.png'),
@@ -125,6 +126,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
   const begin = async () => {
     picker.lockSelection();
     if (!quote) return flow.price();
+    if (DHB_SALES_PAUSED) return;
     const saved = await flow.create();
     if (saved?.route === 'direct' && saved.amountInFormatted === quote.amountInFormatted) await flow.pay(saved, sendPayment);
   };
@@ -195,7 +197,7 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
         {quote && <View className="my-2"><Text className="text-theme-neutrals-400 text-xs">{t('nearBuy.gasReserve', { amount: (quote.gasReserveUsd || 0).toFixed(4) })}</Text>{estimate}</View>}
         {quote && <><TouchableOpacity accessibilityRole="checkbox" accessibilityState={{ checked: agreed }} disabled={busy === 'create'} onPress={() => setAgreed(value => !value)} className="py-2"><Text className="text-white text-xs">{agreed ? '☑' : '☐'} {t('nearBuy.acceptTerms')}</Text></TouchableOpacity><Action label={t('nearBuy.terms')} onPress={() => openInApp(TERMS_OF_SERVICE_LINK)} /></>}
         {needsSolana && <Action label={t(connectingSolana ? 'nearBuy.loading' : 'nearBuy.connectSolana')} disabled={connectingSolana} onPress={connectSolana} />}
-        {!needsSolana && <Action label={busy ? t('nearBuy.loading') : quote ? t(direct ? 'nearBuy.pay' : 'nearBuy.paymentAction') : t('nearBuy.getQuote')} disabled={flow.loading || flow.historyFailed || !!busy || !validDhbAmount(amount) || (!!quote && (!flow.refund.trim() || !agreed))} onPress={begin} />}
+        {!needsSolana && <Action label={busy ? t('nearBuy.loading') : quote && DHB_SALES_PAUSED ? t('stores.soldOut') : quote ? t(direct ? 'nearBuy.pay' : 'nearBuy.paymentAction') : t('nearBuy.getQuote')} disabled={flow.loading || flow.historyFailed || !!busy || !validDhbAmount(amount) || (!!quote && (DHB_SALES_PAUSED || !flow.refund.trim() || !agreed))} onPress={begin} />}
       </View>}
     </>}
     {!!flow.error && <Text accessibilityLiveRegion="polite" className="text-red-400 text-sm my-2">{flow.error}</Text>}

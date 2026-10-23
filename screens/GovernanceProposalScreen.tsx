@@ -34,6 +34,7 @@ import { KitButton, PageEmpty, PageSection } from "../components/page/PageKit";
 import Avatar from "../components/common/Avatar";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { getAvatarUrl } from "../libs/misc";
+import AccountBadge from "../components/common/AccountBadge";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -44,9 +45,18 @@ import {
   useProposalDiscussion,
   useSubmitProposalComment,
   useDeleteProposalComment,
+  useMyProposalVote,
+  useVoteOnProposal,
   type ProposalComment,
   type ProposalThread,
 } from "../hooks/useGovernanceDiscussion";
+import { isVotingOpen, needsOwnBadge } from "../services/governance.service";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import RepostShareSheet from "../components/Home/RepostShareSheet";
+import { getProposalRepostState, toggleProposalRepost } from "../services/repost.service";
+import { SHARE_ORIGIN } from "../libs/dehub-links";
+import { copyToClipboard } from "../libs/clipboard.utils";
+import { toastError, toastSuccess } from "../libs/toast";
 
 const COMMENT_MAX = 500;
 /** Replies shown before a thread collapses behind "Show N more replies". */
@@ -101,7 +111,12 @@ const CommentRow: React.FC<{
       </Pressable>
       <View style={{ flex: 1, minWidth: 0 }}>
         <View style={styles.commentHead}>
-          <Text style={styles.commentAuthor} numberOfLines={1}>{name}</Text>
+          {/* Name and badge in their own row so the badge keeps the 2px it
+              has beside a name everywhere else. */}
+          <View style={styles.commentAuthorRow}>
+            <Text style={styles.commentAuthor} numberOfLines={1}>{name}</Text>
+            <AccountBadge lookupId={comment.username || comment.wallet_address} size={13} lineHeight={16} />
+          </View>
           {isProposalAuthor && (
             <View style={styles.authorChip}>
               <Text style={styles.authorChipText}>{t("governance.discussion.authorChip")}</Text>
@@ -159,6 +174,8 @@ export default function GovernanceProposalScreen() {
   const { data: threads = [], isLoading: threadsLoading } = useProposalDiscussion(proposalId);
   const submitComment = useSubmitProposalComment();
   const deleteComment = useDeleteProposalComment();
+  const { data: myVote = 0 } = useMyProposalVote(isAuthed ? proposalId : null);
+  const vote = useVoteOnProposal();
 
   const [draft, setDraft] = useSurfaceDraft("screens/GovernanceProposalScreen.tsx:draft", "");
   const [replyTo, setReplyTo] = useDraftState<ProposalComment | null>(`proposal:${proposalId}:reply`, null);
@@ -279,11 +296,74 @@ export default function GovernanceProposalScreen() {
     );
   };
 
+  // Repost / quote, like a post. A quote is a post carrying the proposal's
+  // link, which every feed renders as a proposal card.
+  const queryClient = useQueryClient();
+  const [shareOpen, setShareOpen] = useState(false);
+  const repostKey = ["proposal-repost", proposalId, isAuthed ? myWallet : null];
+  const { data: repostState } = useQuery({
+    queryKey: repostKey,
+    queryFn: () => getProposalRepostState(proposalId!, isAuthed),
+    enabled: !!proposalId,
+    staleTime: 30_000,
+    retry: false,
+  });
+  const reposted = !!repostState?.reposted;
+  const repostCount = repostState?.count ?? 0;
+  const proposalUrl = proposalId ? `${SHARE_ORIGIN}/app/governance/${proposalId}` : "";
+  const toggleRepost = useCallback(() => {
+    if (!proposalId || !proposal) return;
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    const previous = { count: repostCount, reposted };
+    const next = { count: Math.max(0, repostCount + (reposted ? -1 : 1)), reposted: !reposted };
+    queryClient.setQueryData(repostKey, next);
+    if (next.reposted) toastSuccess(t("toasts.reposted"));
+    toggleProposalRepost(proposalId, { title: proposal.title, author: proposal.author_wallet_address })
+      .then((res) => queryClient.setQueryData(repostKey, { count: Number(res?.repostCount) || 0, reposted: !!res?.reposted }))
+      .catch(() => {
+        queryClient.setQueryData(repostKey, previous);
+        toastError(previous.reposted ? t("feedCard.removeRepostFailed") : t("toasts.failed_to_repost"));
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [proposalId, proposal, isAuthed, navigation, repostCount, reposted, queryClient, myWallet, t]);
+  const quoteProposal = useCallback(() => {
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    navigation.navigate(ScreenNames.Upload, { initialText: proposalUrl });
+  }, [isAuthed, navigation, proposalUrl]);
+
   const forW = proposal?.like_count || 0;
   const againstW = proposal?.dislike_count || 0;
   const total = forW + againstW;
   const forPct = total > 0 ? Math.round((forW / total) * 100) : 0;
   const againstPct = total > 0 ? 100 - forPct : 0;
+  const votingOpen = !!proposal && isVotingOpen(proposal);
+  const onVote = (voteType: 1 | -1) => {
+    if (!proposalId || vote.isPending) return;
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    vote.mutate(
+      { proposalId, voteType },
+      {
+        onError: (error) => {
+          if (!needsOwnBadge(error)) return;
+          // The server's reason says whether the badge is lent; the button
+          // takes them to buying DHB, which is how they get a vote.
+          Alert.alert(t("governance.holdTokensToVote"), (error as Error).message, [
+            { text: t("common.cancel"), style: "cancel" },
+            { text: t("paywall.buyDhb"), onPress: () => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" }) },
+          ]);
+        },
+      },
+    );
+  };
   const authorName = proposal
     ? proposal.author_username || shortAddr(proposal.author_wallet_address)
     : "";
@@ -315,7 +395,10 @@ export default function GovernanceProposalScreen() {
             <PageSection style={styles.card}>
               <View style={styles.authorRow}>
                 <Avatar uri={getAvatarUrl(proposal.author_avatar)} size={28} name={authorName} />
-                <Text style={styles.authorName} numberOfLines={1}>@{authorName}</Text>
+                <View style={styles.authorNameRow}>
+                  <Text style={styles.authorName} numberOfLines={1}>@{authorName}</Text>
+                  <AccountBadge lookupId={proposal.author_username || proposal.author_wallet_address} size={13} lineHeight={17} />
+                </View>
                 <Text style={styles.time}>{timeAgo(proposal.created_at, t)}</Text>
               </View>
 
@@ -331,6 +414,38 @@ export default function GovernanceProposalScreen() {
                 <Text style={styles.againstText}>{againstPct}% {t("governance.againstLabel")}</Text>
               </View>
 
+              {votingOpen && (
+                <View style={styles.voteRow}>
+                  {([1, -1] as const).map((side) => {
+                    const chosen = myVote === side;
+                    return (
+                      <Pressable
+                        key={side}
+                        onPress={() => onVote(side)}
+                        disabled={vote.isPending}
+                        accessibilityRole="button"
+                        accessibilityState={{ selected: chosen, busy: vote.isPending }}
+                        accessibilityLabel={side === 1 ? t("governance.forLabel") : t("governance.againstLabel")}
+                        style={[styles.voteBtn, chosen && styles.voteBtnChosen, vote.isPending && styles.voteBtnBusy]}
+                      >
+                        {vote.isPending && vote.variables?.voteType === side ? (
+                          <ActivityIndicator size="small" color={chosen ? "#010305" : "#FFFFFF"} />
+                        ) : (
+                          <Icon
+                            name={side === 1 ? "ThumbsUp" : "ThumbsDown"}
+                            size={15}
+                            color={chosen ? "#010305" : "#FFFFFF"}
+                          />
+                        )}
+                        <Text style={[styles.voteBtnText, chosen && styles.voteBtnTextChosen]}>
+                          {side === 1 ? t("governance.forLabel") : t("governance.againstLabel")}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              )}
+
               <View style={styles.metaRow}>
                 <View style={styles.metaItem}>
                   <Icon name="ThumbsUp" size={13} color="#F4F4F5" />
@@ -344,6 +459,17 @@ export default function GovernanceProposalScreen() {
                   <Icon name="MessageCircle" size={13} color="#808089" />
                   <Text style={styles.metaText}>{formatCompactNumber(proposal.comment_count || 0)}</Text>
                 </View>
+                <Pressable
+                  onPress={() => setShareOpen(true)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel={t("feedCard.repostAndShare")}
+                  accessibilityState={{ selected: reposted }}
+                  style={styles.metaItem}
+                >
+                  <Icon name="Repeat2" size={13} color="#F4F4F5" strokeWidth={reposted ? 2.6 : 2} />
+                  <Text style={styles.metaText}>{formatCompactNumber(repostCount)}</Text>
+                </Pressable>
               </View>
             </PageSection>
 
@@ -413,6 +539,22 @@ export default function GovernanceProposalScreen() {
           </ScrollView>
         </KeyboardAvoidingView>
       )}
+      <RepostShareSheet
+        visible={shareOpen}
+        onClose={() => setShareOpen(false)}
+        isReposted={reposted}
+        onRepost={toggleRepost}
+        onUndoRepost={toggleRepost}
+        onQuote={quoteProposal}
+        onCopyLink={() => {
+          copyToClipboard(proposalUrl);
+          toastSuccess(t("feedCard.linkCopied"));
+        }}
+        shareUrl={proposalUrl}
+        shareText={proposal?.title}
+        quoteCount={0}
+        repostCount={repostCount}
+      />
     </View>
   );
 }
@@ -428,7 +570,8 @@ const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 64 },
   card: { gap: 8 },
   authorRow: { flexDirection: "row", alignItems: "center", gap: 8 },
-  authorName: { flex: 1, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
+  authorNameRow: { flex: 1, flexDirection: "row", alignItems: "center", minWidth: 0 },
+  authorName: { flexShrink: 1, minWidth: 0, color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
   time: { color: "#A1A1AA", fontSize: 12 },
   cardTitle: { color: "#FFFFFF", fontSize: 16, fontWeight: "700", lineHeight: 21 },
   cardDesc: { color: "#A1A1AA", fontSize: 13, lineHeight: 19 },
@@ -445,6 +588,23 @@ const styles = StyleSheet.create({
   pctRow: { flexDirection: "row", justifyContent: "space-between" },
   forText: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
   againstText: { color: "#8B8D90", fontSize: 12, fontWeight: "600" },
+  voteRow: { flexDirection: "row", gap: 10, marginTop: 6 },
+  voteBtn: {
+    flex: 1,
+    height: 40,
+    borderRadius: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    backgroundColor: GLASS_BG,
+    borderWidth: 1,
+    borderColor: GLASS_BORDER,
+  },
+  voteBtnChosen: { backgroundColor: "#F4F4F5", borderColor: "#F4F4F5" },
+  voteBtnBusy: { opacity: 0.6 },
+  voteBtnText: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
+  voteBtnTextChosen: { color: "#010305" },
   metaRow: { flexDirection: "row", gap: 16, marginTop: 2 },
   metaItem: { flexDirection: "row", alignItems: "center", gap: 5 },
   metaText: { color: "#A1A1AA", fontSize: 12 },
@@ -457,7 +617,8 @@ const styles = StyleSheet.create({
   threadLineAbove: { position: "absolute", left: THREAD_X, top: 0, height: 6 + 14, width: 1, backgroundColor: THREAD_LINE },
   threadLineBelow: { position: "absolute", left: THREAD_X, top: 6 + 14, bottom: 0, width: 1, backgroundColor: THREAD_LINE },
   commentHead: { flexDirection: "row", alignItems: "center", gap: 6 },
-  commentAuthor: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "600", flexShrink: 1 },
+  commentAuthorRow: { flexDirection: "row", alignItems: "center", flexShrink: 1, minWidth: 0 },
+  commentAuthor: { color: "#FFFFFF", fontSize: 12.5, fontWeight: "600", flexShrink: 1, minWidth: 0 },
   authorChip: {
     paddingHorizontal: 5,
     paddingVertical: 2,

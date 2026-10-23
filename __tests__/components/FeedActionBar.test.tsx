@@ -66,7 +66,7 @@ it('keeps holding for the reaction tray distinct from casting a reaction', () =>
 it('has no thumbs-down button — 👎 is the last pick in the like tray', () => {
   const handlers = props();
   const view = render(
-    <FeedActionBar {...handlers} reactionCounts={{ like: 2, love: 1, dislike: 4 }} />,
+    <FeedActionBar {...handlers} reactionCounts={{ like: 2, love: 1, dislike: 2 }} />,
   );
   expect(view.queryByLabelText(/Dislike/)).toBeNull();
   const icons = view.UNSAFE_getAllByType('Icon' as any).map(node => node.props.name);
@@ -76,9 +76,19 @@ it('has no thumbs-down button — 👎 is the last pick in the like tray', () =>
   fireEvent(view.getByLabelText(/Like.*hold to react, 3/), 'longPress');
   const tray = view.UNSAFE_getByType('ReactionPicker' as any);
   expect(tray.props.open).toBe(true);
-  expect(tray.props.counts).toEqual({ like: 2, love: 1, dislike: 4 });
+  expect(tray.props.counts).toEqual({ like: 2, love: 1, dislike: 2 });
   fireEvent(tray, 'select', 'dislike');
   expect(handlers.onReact).toHaveBeenCalledWith('dislike');
+});
+
+it('shows 👎 and the dislike total when dislikes outnumber likes, and a tap still likes', () => {
+  const handlers = props();
+  const view = render(
+    <FeedActionBar {...handlers} likeCount={3} dislikeCount={4} reactionCounts={{ like: 2, love: 1, dislike: 4 }} />,
+  );
+  const thumb = view.getByLabelText(/hold to react, 4/);
+  fireEvent.press(thumb);
+  expect(handlers.onLike).toHaveBeenCalled();
 });
 
 it('wears the viewer\'s 👎 on the thumbs-up, and a tap takes it back', () => {

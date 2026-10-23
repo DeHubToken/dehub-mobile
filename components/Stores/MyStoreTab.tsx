@@ -11,7 +11,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
  * since React Native has no File object.
  */
 import { appLocale } from "../../libs/date.util";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { POD_PROVIDERS, detectPodProvider, parsePodUrl, type PodProvider } from "../../libs/pod-providers";
 import {
   View,
@@ -257,22 +257,27 @@ const ListingForm: React.FC<{
   visible: boolean;
   storeId: string;
   onClose: () => void;
-}> = ({ visible, storeId, onClose }) => {
+  /** Set to edit an existing listing instead of creating one. */
+  editing?: StoreListing | null;
+}> = ({ visible, storeId, onClose, editing }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const createListing = useCreateListing();
-  const [title, setTitle] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:title", "", storeId);
-  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:1", "", storeId);
-  const [price, setPrice] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:price", "", storeId);
+  const updateListing = useUpdateListing();
+  // Edits keep their own drafts so they never mix with a half-written new listing.
+  const draftId = editing ? `edit:${editing.id}` : storeId;
+  const [title, setTitle] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:title", "", draftId);
+  const [description, setDescription] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:description:1", "", draftId);
+  const [price, setPrice] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:price", "", draftId);
   const [category, setCategory] = useState("other");
   const [condition, setCondition] = useState("new");
   const [isDigital, setIsDigital] = useState(false);
-  const [shippingInfo, setShippingInfo] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:shippingInfo", "", storeId);
-  const [stockQty, setStockQty] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:stockQty", "", storeId);
+  const [shippingInfo, setShippingInfo] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:shippingInfo", "", draftId);
+  const [stockQty, setStockQty] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:stockQty", "", draftId);
   const [images, setImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [isPod, setIsPod] = useState(false);
-  const [podUrl, setPodUrl] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:podUrl", "", storeId);
+  const [podUrl, setPodUrl] = useSurfaceDraft("components/Stores/MyStoreTab.tsx:podUrl", "", draftId);
   const [podProvider, setPodProvider] = useState<PodProvider>("other");
 
   const reset = useCallback(() => {
@@ -289,6 +294,22 @@ const ListingForm: React.FC<{
     setStockQty.complete(stockQty, "");
     setImages([]);
   }, [setDescription, setPodUrl, setPrice, setShippingInfo, setStockQty, setTitle, description, podUrl, price, shippingInfo, stockQty, title]);
+
+  useEffect(() => {
+    if (!visible || !editing) return;
+    setTitle.initialize(editing.title || "");
+    setDescription.initialize(editing.description || "");
+    setPrice.initialize(editing.price != null ? String(editing.price) : "");
+    setCategory(editing.category || "other");
+    setCondition(editing.condition || "new");
+    setIsDigital(!!editing.is_digital);
+    setShippingInfo.initialize(editing.shipping_info || "");
+    setStockQty.initialize(editing.stock_quantity != null ? String(editing.stock_quantity) : "");
+    setImages(Array.isArray(editing.images) ? (editing.images as string[]) : []);
+    setIsPod(!!editing.external_url);
+    setPodUrl.initialize(editing.external_url || "");
+    setPodProvider(((editing.pod_provider as PodProvider) || "other"));
+  }, [visible, editing, setTitle, setDescription, setPrice, setShippingInfo, setStockQty, setPodUrl]);
 
   const addImage = useCallback(async () => {
     if (images.length >= MAX_IMAGES) return;
@@ -312,6 +333,33 @@ const ListingForm: React.FC<{
     }
     if (isPod && !parsePodUrl(podUrl)) {
       toastError(t("stores.podInvalidUrl"));
+      return;
+    }
+    if (editing) {
+      updateListing.mutate(
+        {
+          id: editing.id,
+          title: title.trim(),
+          description: description.trim(),
+          price: Number(price),
+          category,
+          images,
+          stock_quantity: stockQty ? Number(stockQty) : null,
+          is_digital: isDigital,
+          condition,
+          shipping_info: isPod ? null : shippingInfo.trim() || null,
+          external_url: isPod ? podUrl.trim() : null,
+          pod_provider: isPod ? podProvider : null,
+        },
+        {
+          onSuccess: () => {
+            toastSuccess(t("stores.listingUpdated"));
+            reset();
+            onClose();
+          },
+          onError: (e: any) => toastError(e),
+        },
+      );
       return;
     }
     createListing.mutate(
@@ -352,6 +400,8 @@ const ListingForm: React.FC<{
     podProvider,
     storeId,
     createListing,
+    updateListing,
+    editing,
     reset,
     onClose,
     t,
@@ -363,7 +413,7 @@ const ListingForm: React.FC<{
         <KeyboardAvoidingView behavior="padding">
           <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
             <View style={styles.sheetHeader}>
-              <Text style={styles.sheetTitle}>{t("stores.newListing")}</Text>
+              <Text style={styles.sheetTitle}>{editing ? t("stores.editListing") : t("stores.newListing")}</Text>
               <Pressable
                 onPress={onClose}
                 hitSlop={12}
@@ -557,16 +607,16 @@ const ListingForm: React.FC<{
 
             <Pressable
               onPress={submit}
-              disabled={createListing.isPending || uploading}
+              disabled={createListing.isPending || updateListing.isPending || uploading}
               style={[
                 styles.primaryBtn,
-                (createListing.isPending || uploading) && styles.disabled,
+                (createListing.isPending || updateListing.isPending || uploading) && styles.disabled,
               ]}
             >
-              {createListing.isPending ? (
+              {createListing.isPending || updateListing.isPending ? (
                 <ActivityIndicator color="#000000" />
               ) : (
-                <Text style={styles.primaryBtnText}>{t("stores.publishListing")}</Text>
+                <Text style={styles.primaryBtnText}>{editing ? t("stores.saveListing") : t("stores.publishListing")}</Text>
               )}
             </Pressable>
           </View>
@@ -603,6 +653,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   const [storeFormOpen, setStoreFormOpen] = useState(false);
   const [editingStore, setEditingStore] = useState<Store | null>(null);
   const [listingFormOpen, setListingFormOpen] = useState(false);
+  const [editingListing, setEditingListing] = useState<StoreListing | null>(null);
 
   const activeStore = useMemo(
     () => stores.find((s) => s.id === selectedStoreId) || stores[0] || null,
@@ -633,6 +684,13 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   const listingMenu = useCallback(
     (l: StoreListing) => {
       Alert.alert(l.title, undefined, [
+        {
+          text: t("stores.edit"),
+          onPress: () => {
+            setEditingListing(l);
+            setListingFormOpen(true);
+          },
+        },
         { text: t("stores.archive"), onPress: () => archive(l.id) },
         { text: t("stores.markSold"), onPress: () => markSold(l.id) },
         { text: t("common.cancel"), style: "cancel" },
@@ -793,7 +851,10 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
       <View style={styles.actionRow}>
         <KitButton
           label={t("stores.newListing")}
-          onPress={() => setListingFormOpen(true)}
+          onPress={() => {
+            setEditingListing(null);
+            setListingFormOpen(true);
+          }}
           style={{ flex: 1 }}
         />
         <KitButton
@@ -904,7 +965,11 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
         <ListingForm
           visible={listingFormOpen}
           storeId={activeStore.id}
-          onClose={() => setListingFormOpen(false)}
+          editing={editingListing}
+          onClose={() => {
+            setListingFormOpen(false);
+            setEditingListing(null);
+          }}
         />
       )}
     </ScrollView>

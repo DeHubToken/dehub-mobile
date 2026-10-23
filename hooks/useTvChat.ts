@@ -27,7 +27,9 @@ const log = createLogger("useTvChat");
 
 export interface TvChatMessage {
   id: string;
-  channel_id: string;
+  /** TV rooms key on channel_id, stage rooms on space_id. */
+  channel_id?: string;
+  space_id?: string;
   wallet_address: string;
   username: string | null;
   display_name: string | null;
@@ -46,15 +48,40 @@ export interface TvChatMessage {
   };
 }
 
-const QUERY_KEY = "tv-chat-messages";
 const PAGE_LIMIT = 200;
 
+/**
+ * A chat room table. TV channels and stages store the same message shape in
+ * their own tables (web: use-tv-chat / use-stage-chat), keyed by a different
+ * column, so both rooms share this one data layer.
+ */
+export interface ChatRoom {
+  table: "tv_chat_messages" | "stage_chat_messages";
+  column: "channel_id" | "space_id";
+  id: string | undefined;
+  /** The stage host moderates their room: they can delete anyone's message. */
+  hostWallet?: string | null;
+}
+
 export function useTvChat(channelId: string | undefined, enabled = true) {
+  return useRoomChat({ table: "tv_chat_messages", column: "channel_id", id: channelId }, enabled);
+}
+
+/** Same table, filter and reaction maths as web's use-stage-chat. */
+export function useStageChat(spaceId: string | undefined, hostWallet?: string | null, enabled = true) {
+  return useRoomChat({ table: "stage_chat_messages", column: "space_id", id: spaceId, hostWallet }, enabled);
+}
+
+export function useRoomChat(room: ChatRoom, enabled = true) {
   const { t: _copy } = _useCopy();
   const user = useUser();
   const queryClient = useQueryClient();
   const walletAddress = (user?.walletAddress || user?.address || "") || null;
+  const { table, column, id: channelId, hostWallet } = room;
+  const QUERY_KEY = `${table}-messages`;
   const active = !!channelId && enabled;
+  const isHost =
+    !!walletAddress && !!hostWallet && walletAddress.toLowerCase() === hostWallet.toLowerCase();
 
   const { data: rawMessages = [], isLoading } = useQuery({
     queryKey: [QUERY_KEY, channelId],
@@ -63,9 +90,9 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
       // Newest N, then flipped back to reading order — a channel that has been
       // chatting for months should open on the current conversation.
       const { data, error } = await supabase
-        .from("tv_chat_messages")
+        .from(table as any)
         .select("*")
-        .eq("channel_id", channelId)
+        .eq(column, channelId)
         .order("created_at", { ascending: false })
         .limit(PAGE_LIMIT);
       if (error) throw error;
@@ -95,14 +122,14 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
   useEffect(() => {
     if (!active) return;
     const chan = supabase
-      .channel(`tv-chat-${channelId}`)
+      .channel(`${table}-${channelId}`)
       .on(
         "postgres_changes",
         {
           event: "*",
           schema: "public",
-          table: "tv_chat_messages",
-          filter: `channel_id=eq.${channelId}`,
+          table,
+          filter: `${column}=eq.${channelId}`,
         },
         (payload: any) => {
           if (payload.eventType === "INSERT") {
@@ -128,13 +155,13 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
     return () => {
       void supabase.removeChannel(chan);
     };
-  }, [active, channelId, queryClient]);
+  }, [active, channelId, queryClient, table, column, QUERY_KEY]);
 
   const sendMessage = useCallback(
     async (content: string, replyToId?: string) => {
       if (!channelId || !walletAddress) return;
       const msg = {
-        channel_id: channelId,
+        [column]: channelId,
         wallet_address: walletAddress.toLowerCase(),
         username: user?.username || null,
         display_name: user?.displayName || null,
@@ -148,7 +175,7 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
       };
 
       const { error } = await withWalletHeader(
-        supabase.from("tv_chat_messages").insert(msg as any),
+        supabase.from(table as any).insert(msg as any),
         walletAddress
       );
       if (error) {
@@ -157,7 +184,7 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
         throw error;
       }
     },
-    [channelId, walletAddress, user, _copy]
+    [channelId, walletAddress, user, _copy, table, column]
   );
 
   const addReaction = useCallback(
@@ -175,11 +202,11 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
       );
 
       await withWalletHeader(
-        supabase.from("tv_chat_messages").update({ reactions } as any).eq("id", messageId),
+        supabase.from(table as any).update({ reactions } as any).eq("id", messageId),
         walletAddress
       );
     },
-    [rawMessages, walletAddress, channelId, queryClient]
+    [rawMessages, walletAddress, channelId, queryClient, table, QUERY_KEY]
   );
 
   const removeReaction = useCallback(
@@ -197,11 +224,11 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
       );
 
       await withWalletHeader(
-        supabase.from("tv_chat_messages").update({ reactions } as any).eq("id", messageId),
+        supabase.from(table as any).update({ reactions } as any).eq("id", messageId),
         walletAddress
       );
     },
-    [rawMessages, walletAddress, channelId, queryClient]
+    [rawMessages, walletAddress, channelId, queryClient, table, QUERY_KEY]
   );
 
   const deleteMessage = useCallback(
@@ -212,12 +239,11 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
         old.filter((m) => m.id !== messageId)
       );
 
+      // The host can clear anything said in their room; everyone else is
+      // scoped to their own rows (web's use-stage-chat does the same).
+      const base = supabase.from(table as any).delete().eq("id", messageId);
       const { error } = await withWalletHeader(
-        supabase
-          .from("tv_chat_messages")
-          .delete()
-          .eq("id", messageId)
-          .eq("wallet_address", walletAddress.toLowerCase()),
+        isHost ? base.eq(column, channelId) : base.eq("wallet_address", walletAddress.toLowerCase()),
         walletAddress
       );
       if (error) {
@@ -226,8 +252,8 @@ export function useTvChat(channelId: string | undefined, enabled = true) {
         void queryClient.invalidateQueries({ queryKey: [QUERY_KEY, channelId] });
       }
     },
-    [walletAddress, channelId, queryClient, _copy]
+    [walletAddress, channelId, queryClient, _copy, table, column, isHost, QUERY_KEY]
   );
 
-  return { messages, isLoading, sendMessage, deleteMessage, addReaction, removeReaction };
+  return { messages, isLoading, isHost, sendMessage, deleteMessage, addReaction, removeReaction };
 }
