@@ -66,7 +66,7 @@ export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
   const receipts = overview.data?.receipts.filter(receipt => (filter === 'all' || receipt.status === filter) && (!selected || receipt.agent_id === selected)) ?? [];
   return <PageSection><View style={styles.panel}>
     <Text style={styles.title}>{t('agents.workspace.title', 'Agent workspace')}</Text>
-    <KitButton variant="quiet" label={t('common.refresh', 'Refresh')} disabled={overview.isFetching} onPress={refresh} />
+    <KitButton variant="quiet" label={t('agents.tasks.refresh')} disabled={overview.isFetching} onPress={refresh} />
     <View style={styles.row}>{Object.entries(counts).map(([key, count]) => <View key={key} style={styles.metric}><Text style={styles.title}>{count}</Text><Text style={styles.muted}>{t(`agents.workspace.count.${key}`, { defaultValue: key === 'pending' ? 'Drafts to review' : key === 'succeeded' ? 'Recent successes' : key === 'scheduled' ? 'Scheduled tasks' : 'Active agents' })}</Text></View>)}</View>
     <Text style={styles.muted}>{t('agents.workspace.sample', 'Activity and alerts cover the latest 100 actions and 200 tasks. Counts are not lifetime totals or billing usage.')}</Text>
     {overview.data?.alerts.map(alert => <Text key={alert.id} accessibilityRole="alert" style={styles.error}>{alert.message}</Text>)}
