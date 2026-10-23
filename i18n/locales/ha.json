@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Ƙara bayani",
+    "edit": "Gyara bayani",
+    "titleImage": "Bayyana wannan hoton",
+    "titleVideo": "Bayyana wannan bidiyon",
+    "help": "Ga mutanen da ba sa iya ganinsa. Masu karanta allo suna karanta shi da babbar murya.",
+    "placeholder": "Me yake nunawa? Haɗa duk wani rubutu da ke ciki.",
+    "show": "Nuna bayani",
+    "saved": "An adana bayani",
+    "saveFailed": "Ba a iya adana bayanin ba"
+  },
   "liveRecap": {
     "polls": "Kuri'u",
     "title": "Stream sake kunnawa",

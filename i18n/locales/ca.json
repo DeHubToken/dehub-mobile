@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Afegeix una descripció",
+    "edit": "Edita la descripció",
+    "titleImage": "Descriu aquesta imatge",
+    "titleVideo": "Descriu aquest vídeo",
+    "help": "Per a les persones que no la poden veure. Els lectors de pantalla la llegeixen en veu alta.",
+    "placeholder": "Què mostra? Inclou qualsevol text que hi aparegui.",
+    "show": "Mostra la descripció",
+    "saved": "Descripció desada",
+    "saveFailed": "No s'ha pogut desar la descripció"
+  },
   "liveRecap": {
     "title": "Resum de la transmissió",
     "justEnded": "Resum de la teva transmissió",

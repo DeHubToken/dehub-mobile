@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Aggiungi una descrizione",
+    "edit": "Modifica descrizione",
+    "titleImage": "Descrivi questa immagine",
+    "titleVideo": "Descrivi questo video",
+    "help": "Per chi non può vederla. Gli screen reader la leggono ad alta voce.",
+    "placeholder": "Cosa mostra? Includi l'eventuale testo presente.",
+    "show": "Mostra descrizione",
+    "saved": "Descrizione salvata",
+    "saveFailed": "Impossibile salvare la descrizione"
+  },
   "postGate": {
     "holdShortUnknown": "Non hai ancora abbastanza {{symbol}}. Questo post richiede {{needed}}.",
     "holdShort": "Hai {{held}} {{symbol}}. Questo post richiede {{needed}}."

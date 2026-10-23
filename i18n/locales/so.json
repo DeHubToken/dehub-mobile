@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Ku dar sharraxaad",
+    "edit": "Wax ka beddel sharraxaadda",
+    "titleImage": "Sharax sawirkan",
+    "titleVideo": "Sharax muuqaalkan",
+    "help": "Dadka aan arki karin. Akhristayaasha shaashaddu kor ayay u akhriyaan.",
+    "placeholder": "Maxay muujinaysaa? Ku dar qoraal kasta oo ku jira.",
+    "show": "Muuji sharraxaadda",
+    "saved": "Sharraxaadda waa la keydiyay",
+    "saveFailed": "Lama keydin karin sharraxaadda"
+  },
   "liveRecap": {
     "title": "Dib-u-cusboonaysiinta qulqulka",
     "justEnded": "Dib u soo celi durdurkaaga",

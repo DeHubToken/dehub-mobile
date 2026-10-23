@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tambahkan deskripsi",
+    "edit": "Edit deskripsi",
+    "titleImage": "Jelaskan gambar ini",
+    "titleVideo": "Jelaskan video ini",
+    "help": "Untuk orang yang tidak bisa melihatnya. Pembaca layar membacakannya dengan keras.",
+    "placeholder": "Apa yang ditampilkan? Sertakan teks apa pun di dalamnya.",
+    "show": "Tampilkan deskripsi",
+    "saved": "Deskripsi disimpan",
+    "saveFailed": "Tidak dapat menyimpan deskripsi"
+  },
   "liveRecap": {
     "title": "Rekap streaming",
     "justEnded": "Rekap streaming Anda",

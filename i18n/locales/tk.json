@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Düşündiriş goş",
+    "edit": "Düşündirişi üýtget",
+    "titleImage": "Bu suraty beýan ediň",
+    "titleVideo": "Bu wideony beýan ediň",
+    "help": "Ony görüp bilmeýän adamlar üçin. Ekran okaýjylary ony sesli okaýar.",
+    "placeholder": "Ol näme görkezýär? Içindäki islendik teksti hem ýazyň.",
+    "show": "Düşündirişi görkez",
+    "saved": "Düşündiriş ýatda saklandy",
+    "saveFailed": "Düşündirişi ýatda saklap bolmady"
+  },
   "liveRecap": {
     "title": "Ýaýlymyň gysgaça mazmuny",
     "pollWinner": "{{option}} ýeňdi",

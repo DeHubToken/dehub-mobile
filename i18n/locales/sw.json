@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Ongeza maelezo",
+    "edit": "Hariri maelezo",
+    "titleImage": "Eleza picha hii",
+    "titleVideo": "Eleza video hii",
+    "help": "Kwa watu wasioweza kuiona. Visomaji skrini huisoma kwa sauti.",
+    "placeholder": "Inaonyesha nini? Jumuisha maandishi yoyote yaliyomo.",
+    "show": "Onyesha maelezo",
+    "saved": "Maelezo yamehifadhiwa",
+    "saveFailed": "Imeshindwa kuhifadhi maelezo"
+  },
   "liveRecap": {
     "title": "Muhtasari wa mkondo",
     "justEnded": "Muhtasari wa mkondo wako",

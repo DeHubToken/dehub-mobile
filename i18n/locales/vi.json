@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Thêm mô tả",
+    "edit": "Sửa mô tả",
+    "titleImage": "Mô tả hình ảnh này",
+    "titleVideo": "Mô tả video này",
+    "help": "Dành cho người không thể nhìn thấy. Trình đọc màn hình sẽ đọc to nội dung này.",
+    "placeholder": "Nó hiển thị gì? Ghi cả chữ có trong đó.",
+    "show": "Hiện mô tả",
+    "saved": "Đã lưu mô tả",
+    "saveFailed": "Không thể lưu mô tả"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} thắng",
     "title": "Tóm tắt luồng",

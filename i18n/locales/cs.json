@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Přidat popis",
+    "edit": "Upravit popis",
+    "titleImage": "Popište tento obrázek",
+    "titleVideo": "Popište toto video",
+    "help": "Pro lidi, kteří ho nevidí. Čtečky obrazovky ho přečtou nahlas.",
+    "placeholder": "Co zobrazuje? Uveďte i text, který obsahuje.",
+    "show": "Zobrazit popis",
+    "saved": "Popis uložen",
+    "saveFailed": "Popis se nepodařilo uložit"
+  },
   "liveRecap": {
     "title": "Rekapitulace streamu",
     "justEnded": "Rekapitulace vašeho streamu",

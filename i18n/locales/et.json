@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Lisa kirjeldus",
+    "edit": "Muuda kirjeldust",
+    "titleImage": "Kirjelda seda pilti",
+    "titleVideo": "Kirjelda seda videot",
+    "help": "Inimestele, kes seda ei näe. Ekraanilugejad loevad selle ette.",
+    "placeholder": "Mida see näitab? Lisa ka selles olev tekst.",
+    "show": "Näita kirjeldust",
+    "saved": "Kirjeldus salvestatud",
+    "saveFailed": "Kirjeldust ei õnnestunud salvestada"
+  },
   "liveRecap": {
     "title": "Voo kokkuvõte",
     "justEnded": "Sinu voo kokkuvõte",

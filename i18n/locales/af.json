@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Voeg 'n beskrywing by",
+    "edit": "Wysig beskrywing",
+    "titleImage": "Beskryf hierdie prent",
+    "titleVideo": "Beskryf hierdie video",
+    "help": "Vir mense wat dit nie kan sien nie. Skermlesers lees dit hardop voor.",
+    "placeholder": "Wat wys dit? Sluit enige teks daarin in.",
+    "show": "Wys beskrywing",
+    "saved": "Beskrywing gestoor",
+    "saveFailed": "Kon nie die beskrywing stoor nie"
+  },
   "liveRecap": {
     "title": "Stroom oorskakeling",
     "justEnded": "Jou stroomherhaling",

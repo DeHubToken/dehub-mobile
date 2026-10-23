@@ -1,4 +1,16 @@
 {
+  "altText": {
+    "badge": "ALT",
+    "add": "Tambahake katrangan",
+    "edit": "Owahi katrangan",
+    "titleImage": "Terangna gambar iki",
+    "titleVideo": "Terangna video iki",
+    "help": "Kanggo wong sing ora bisa ndeleng. Pamaca layar maca kanthi banter.",
+    "placeholder": "Apa sing ditampilake? Tulisen uga teks sing ana ing kono.",
+    "show": "Tampilake katrangan",
+    "saved": "Katrangan wis disimpen",
+    "saveFailed": "Ora bisa nyimpen katrangan"
+  },
   "liveRecap": {
     "title": "Rekap streaming",
     "shareText": "Saya baru saja streaming \"{{title}}\" di DeHub: {{duration}} live, {{peak}} menonton di puncak dan {{followers}} pengikut baru.",
