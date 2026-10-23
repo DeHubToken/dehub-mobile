@@ -191,6 +191,11 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   }, [feedRef]);
 
   const [tab, setTab] = useState<MusicSubTab>("all");
+  const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
+  const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 10, minimumViewTime: 150 }).current;
+  const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ key: string }> }) => {
+    setVisibleIds(new Set(viewableItems.map(item => item.key)));
+  }).current;
   const [genre, setGenre] = useState<RadioGenreId>("top");
   const [search, setSearch] = useSurfaceDraft("components/Music/MusicFeed.tsx:search", "");
   const debouncedSearch = useDebouncedValue(search, 300);
@@ -357,7 +362,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               ) : audioUploads.length === 0 ? (
                 <Text style={styles.shelfNote}>{t("music.noAudioUploads")}</Text>
               ) : (
-                <AudioUploadsShelf items={audioUploads} active={active} />
+                <AudioUploadsShelf items={audioUploads} isVisible={active && visibleIds.has('shelf-audio')} />
               )}
             </View>
           );
@@ -369,7 +374,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
-    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, t],
+    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, visibleIds, t],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -547,6 +552,8 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       data={data}
       keyExtractor={keyExtractor as any}
       renderItem={renderItem as any}
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
       ListHeaderComponent={listHeader}
       ListEmptyComponent={listEmpty}
       ListFooterComponent={
@@ -590,7 +597,7 @@ const AUDIO_CARD_WIDTH = 280;
  * pull half a dozen audio files down for a shelf nobody has touched. Only what
  * the shelf has actually settled on counts.
  */
-const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[]; active: boolean }> = ({ items, active }) => {
+const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[]; isVisible: boolean }> = ({ items, isVisible: active }) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = items.find(item => String(item.tokenId ?? item.id) === selectedId) || items[0];
   if (selected) return <View style={{ paddingHorizontal: FEED_SIDE, gap: 16 }}>
