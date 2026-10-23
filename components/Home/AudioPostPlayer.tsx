@@ -1188,8 +1188,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
      in the fullscreen modal it is the whole screen. */
   const renderWindow = (mode: "inline" | "fullscreen") => {
     const height = mode === "inline" ? inlineHeight : fullHeight;
-    if (studio) return (
-      <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
+    // Fullscreen is the animation alone, so the studio card only draws inline.
+    if (studio && mode === "inline") return (
+      <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 12 }]}>
         {artworkUrl && !artworkUrl.split('?')[0].endsWith('/placeholder.svg') && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10 }} />}
         <View style={{ flex: 1, minWidth: 0 }}>
@@ -1259,12 +1260,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <View
           style={[
             styles.fullscreenRoot,
-            studio && { justifyContent: 'center', backgroundColor: theme === 'glass' ? '#04181c' : '#030609' },
             {
               paddingTop: insets.top,
               paddingBottom: insets.bottom,
-              paddingLeft: Math.max(insets.left, studio ? 24 : 0),
-              paddingRight: Math.max(insets.right, studio ? 24 : 0),
+              paddingLeft: insets.left,
+              paddingRight: insets.right,
             },
           ]}
         >
