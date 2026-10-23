@@ -3813,6 +3813,10 @@
     "priceRange": "Kati ya {{min}} na {{max}} tokeni."
   },
   "stores": {
+    "edit": "Hariri",
+    "listingUpdated": "Orodha ilibadilishwa!",
+    "saveListing": "Hifadhi Mabadiliko",
+    "editListing": "Hariri Tangazo",
     "podToggle": "Bidhaa ya kuchapishwa kwa oda",
     "podHint": "Unganisha bidhaa kutoka duka lako la kuchapisha kwa oda. Mtoa huduma huchapisha na kutuma kila oda, hivyo huhitaji hisa.",
     "podUrlLabel": "Kiungo cha bidhaa",

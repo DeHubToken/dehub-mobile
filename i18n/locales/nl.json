@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Nog niet genoeg {{symbol}}. Deze post vraagt {{needed}}.",
+    "holdShort": "Je hebt {{held}} {{symbol}}. Deze post vraagt {{needed}}."
+  },
   "liveRecap": {
     "title": "Stroom samenvatting",
     "justEnded": "Je stroom samenvatting",
@@ -1283,6 +1287,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Markeer of stem op sponsors en intro’s",
+    "skippableSections": "Overslaanbare delen",
     "options": "Opties",
     "sendTip": "Fooi sturen",
     "queue": "Wachtrij",
@@ -3495,6 +3501,7 @@
     "dhb_staked_on_chain": "{{amount}} tokens gestaked op {{chain}}."
   },
   "staking": {
+    "foundNewDeposits": "{{count}} nieuwe stortingen gevonden op de chain",
     "pendingRetired": "Deze storting staat niet meer in behandeling op het netwerk. De tracking is gewist; controleer je walletactiviteit voordat je opnieuw stort.",
     "title": "Uitzetten",
     "subtitle": "Leg in en ontgrendel winstdeling, lagere kosten, superkrachten en meer!",
@@ -4281,6 +4288,10 @@
     "priceRange": "Tussen {{min}} en {{max}} tokens."
   },
   "stores": {
+    "edit": "Bewerken",
+    "listingUpdated": "Aanbieding bijgewerkt!",
+    "saveListing": "Wijzigingen opslaan",
+    "editListing": "Advertentie bewerken",
     "podToggle": "Print-on-demand-artikel",
     "podHint": "Koppel een product uit je print-on-demand-winkel. De aanbieder drukt en verzendt elke bestelling, dus je hebt geen voorraad nodig.",
     "podUrlLabel": "Productlink",
@@ -6549,6 +6560,14 @@
     "coverFailed": "Kon de omslag niet wijzigen"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Opvulling",
+      "interaction": "Like & abonneer",
+      "selfpromo": "Zelfpromotie",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Sponsor"
+    },
     "openSettings": "Instellingen openen",
     "viewPlans": "Abonnementen bekijken",
     "playbackSpeed": "Afspeelsnelheid",
@@ -10189,6 +10208,54 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "50b2bdd7a1e5": "Voltooide staking-uitbetalingen zullen hier verschijnen.",
+    "cbfc01a6c13a": "Voltooide stortingsdeposito's worden hier weergegeven.",
+    "1fdecb2c9a54": "Nog geen uitbetalingen",
+    "4574472bb474": "Nog geen stortingen",
+    "5b5a9671e539": "Scan on-chain op ontbrekende afzettingen",
+    "31a3711c4ab5": "Alle je uitbetalingstransacties",
+    "701ef1840612": "Al uw inzettransacties",
+    "a7b7e36d6fdf": "Je Uitbetalingen",
+    "a3b7dbe57071": "Uw stortingen",
+    "2d240e231566": "Mislukt om deposito's te synchroniseren",
+    "7082f2b3815d": "Deposito's zijn up-to-date",
+    "ff701a069af2": "Verifiëren & ontgrendelen",
+    "48201f5584e2": "Je saldo controleren…",
+    "3aefdd5f5915": "Inhoud ontgrendeld! 🎉",
+    "6e929effed4e": " Schrijfoverzicht…",
+    "14c5558a8cd9": "Geen transcriptie past",
+    "a54084383e3c": "wedstrijden",
+    "4945a70fa7f9": "match",
+    "7adf0298ab5e": " Hoofdstukken",
+    "2baeddfdc699": "Transcript doorzoeken…",
+    "d0bd6ec267f9": " Tekst",
+    "dea0ff385abf": " Kopiëren",
+    "55de39f882a3": " Probeer opnieuw",
+    "9fddb94edef5": "Transcriptie mislukt: ",
+    "4c2ea0ddf64b": "Deze video bevat geen spraak, dus er is niets om te transcriberen.",
+    "5561cf90d112": "Transcriberen",
+    "6662a5411155": "Schrijf het nu",
+    "60aac7666712": "Een transcript wordt automatisch kort na het uploaden van een video geschreven.",
+    "5ae4bb109db7": "Geen transcriptie nog",
+    "ba3bbbe10d8b": "Laden…",
+    "ee871105e875": "schrijven",
+    "d91fca0e24bb": " regels",
+    "721164f0dc70": "Transcriptie",
+    "3c42f559d757": "Log in om te markeren of te stemmen. Overslaan werkt hoe dan ook.",
+    "58db9997b230": "Deze sectie is onjuist",
+    "dc469bffc7c0": "Dit gedeelte is juist",
+    "77f3aefe8b8b": "Verwijder je markering",
+    "2f41333ad013": " · {{value1}} oneens",
+    "72915d37182e": " mee eens",
+    "e5f6facf9cbe": "Nog niets gemarkeerd op deze video",
+    "155f816c0407": "Indienen",
+    "5218ce9ed7ab": "Indienen {{value1}} – {{value2}}",
+    "78de1ed22dcb": "Einde {{value1}}",
+    "f4db1e48476f": "Beëindigen",
+    "5e2495b60820": "Start {{value1}}",
+    "e4bb9f1ece9a": "Start",
+    "b5f85f952b0b": "Markeer een sponsor als gelezen of intro en iedereen met overslaan springt er voorbij. Laat de video draaien — tik op Starten wanneer deze begint en op Einde wanneer deze stopt.",
+    "30f4d96b8d72": "Overslaapbare secties",
     "d357175cfe89": "Media",
     "0d79ff168b4a": "· bewerkt",
     "35e0d0360a0a": "LIVE",

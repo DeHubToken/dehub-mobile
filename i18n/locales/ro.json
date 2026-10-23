@@ -3812,6 +3812,10 @@
     "priceRange": "Între {{min}} și {{max}} tokeni."
   },
   "stores": {
+    "edit": "Editează",
+    "listingUpdated": "Anunț actualizat!",
+    "saveListing": "Salvați modificările",
+    "editListing": "Editează anunțul",
     "podToggle": "Articol tipărit la cerere",
     "podHint": "Leagă un produs din magazinul tău de tipărire la cerere. Furnizorul tipărește și expediază fiecare comandă, fără stoc.",
     "podUrlLabel": "Link produs",

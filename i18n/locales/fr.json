@@ -1,4 +1,8 @@
 {
+  "postGate": {
+    "holdShortUnknown": "Pas encore assez de {{symbol}}. Cette publication en demande {{needed}}.",
+    "holdShort": "Vous détenez {{held}} {{symbol}}. Cette publication en demande {{needed}}."
+  },
   "liveRecap": {
     "title": "Récapitulatif du flux",
     "justEnded": "Récapitulatif de votre flux",
@@ -1093,6 +1097,8 @@
     "tokenAmount": "{{amount}} jetons"
   },
   "postOptions": {
+    "skippableSectionsDesc": "Marquez ou votez sponsors et intros",
+    "skippableSections": "Sections à passer",
     "options": "Options",
     "sendTip": "Envoyer un pourboire",
     "queue": "File d'attente",
@@ -3309,6 +3315,7 @@
     "dhb_staked_on_chain": "{{amount}} jetons mis en jeu sur {{chain}}."
   },
   "staking": {
+    "foundNewDeposits": "{{count}} nouveaux dépôts trouvés sur la chaîne",
     "pendingRetired": "Ce dépôt n’est plus en attente sur le réseau. Le suivi a été effacé ; vérifiez l’activité de votre portefeuille avant de déposer à nouveau.",
     "title": "Staking",
     "subtitle": "Déposez pour débloquer le partage des bénéfices, des frais réduits, des superpouvoirs et plus encore !",
@@ -4095,6 +4102,10 @@
     "priceRange": "Entre {{min}} et {{max}} jetons."
   },
   "stores": {
+    "edit": "Modifier",
+    "listingUpdated": "Annonce mise à jour !",
+    "saveListing": "Enregistrer les modifications",
+    "editListing": "Modifier l'annonce",
     "podToggle": "Article en impression à la demande",
     "podHint": "Liez un produit de votre boutique d'impression à la demande. Le prestataire imprime et expédie chaque commande, sans stock de votre côté.",
     "podUrlLabel": "Lien du produit",
@@ -6412,6 +6423,14 @@
     "coverFailed": "Impossible de changer la couverture"
   },
   "player": {
+    "segmentLabel": {
+      "filler": "Remplissage",
+      "interaction": "Like et abonnement",
+      "selfpromo": "Autopromo",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Sponsor"
+    },
     "openSettings": "Ouvrir les réglages",
     "viewPlans": "Voir les formules",
     "playbackSpeed": "Vitesse de lecture",
@@ -9954,6 +9973,54 @@
     "watch": "Regarder une publicité pour soutenir ce créateur"
   },
   "copy": {
+    "50b2bdd7a1e5": "Les retraits de jalonnement terminés apparaîtront ici.",
+    "cbfc01a6c13a": "Les dépôts de jalonnement terminés apparaîtront ici.",
+    "1fdecb2c9a54": "Aucun retrait pour le moment",
+    "4574472bb474": "Aucun dépôt pour le moment",
+    "5b5a9671e539": "Scanner sur la chaîne pour les dépôts manquants",
+    "31a3711c4ab5": "Toutes vos transactions de retrait",
+    "701ef1840612": "Toutes vos transactions de mise",
+    "a7b7e36d6fdf": "Vos retraits",
+    "a3b7dbe57071": "Vos dépôts",
+    "2d240e231566": "Échec de la synchronisation des dépôts",
+    "7082f2b3815d": "Les dépôts sont à jour",
+    "ff701a069af2": "Vérifier & Déverrouiller",
+    "48201f5584e2": "Vérification de votre solde…",
+    "3aefdd5f5915": "Contenu débloqué ! 🎉",
+    "6e929effed4e": " Aperçu de l'écriture…",
+    "14c5558a8cd9": "Aucun transcript ne correspond.",
+    "a54084383e3c": "correspondances",
+    "4945a70fa7f9": "correspondance",
+    "7adf0298ab5e": " Chapitres",
+    "2baeddfdc699": "Rechercher dans la transcription…",
+    "d0bd6ec267f9": " Texte",
+    "dea0ff385abf": " Copier",
+    "55de39f882a3": " Réessayer",
+    "9fddb94edef5": "Échec de la transcription : ",
+    "4c2ea0ddf64b": "Cette vidéo ne contient pas de parole, donc il n'y a rien à transcrire.",
+    "5561cf90d112": "Transcription en cours",
+    "6662a5411155": "Écrivez-le maintenant",
+    "60aac7666712": "Un transcript est écrit automatiquement peu après qu'une vidéo est publiée.",
+    "5ae4bb109db7": "Aucun transcript encore",
+    "ba3bbbe10d8b": "Chargement…",
+    "ee871105e875": "écriture",
+    "d91fca0e24bb": " lignes",
+    "721164f0dc70": "Transcription",
+    "3c42f559d757": "Connectez-vous pour marquer ou voter. Sauter fonctionne dans les deux cas.",
+    "58db9997b230": "Cette section est incorrecte",
+    "dc469bffc7c0": "Cette section est correcte",
+    "77f3aefe8b8b": "Supprimez votre marque",
+    "2f41333ad013": " · {{value1}} ne pas être d'accord",
+    "72915d37182e": " d'accord",
+    "e5f6facf9cbe": "Rien n'a encore été marqué sur cette vidéo",
+    "155f816c0407": "Soumettre",
+    "5218ce9ed7ab": "Soumettre {{value1}} – {{value2}}",
+    "78de1ed22dcb": "Se termine {{value1}}",
+    "f4db1e48476f": "Terminer",
+    "5e2495b60820": "Commencer {{value1}}",
+    "e4bb9f1ece9a": "Commencer",
+    "b5f85f952b0b": "Marquez un sponsor qui lit ou introduit et tous ceux qui sautent sur les sauts qui le dépassent. Laissez la vidéo s'exécuter — appuyez sur Démarrer quand elle commence et sur Terminer quand elle s'arrête.",
+    "30f4d96b8d72": "Sections sautables",
     "d357175cfe89": "Médias",
     "0d79ff168b4a": "· modifié",
     "35e0d0360a0a": "EN DIRECT",

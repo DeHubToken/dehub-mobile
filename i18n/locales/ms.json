@@ -4071,6 +4071,10 @@
     "priceRange": "Antara {{min}} dan {{max}} token."
   },
   "stores": {
+    "edit": "Edit",
+    "listingUpdated": "Penyenaraian dikemas kini!",
+    "saveListing": "Simpan Perubahan",
+    "editListing": "Edit Penyenaraian",
     "podToggle": "Item cetak atas permintaan",
     "podHint": "Pautkan produk daripada kedai cetak atas permintaan anda. Pembekal mencetak dan menghantar setiap pesanan, jadi tiada stok diperlukan.",
     "podUrlLabel": "Pautan produk",

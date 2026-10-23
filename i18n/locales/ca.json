@@ -3812,6 +3812,10 @@
     "priceRange": "Entre {{min}} i {{max}} fitxes."
   },
   "stores": {
+    "edit": "Modifica",
+    "listingUpdated": "Anunci actualitzat!",
+    "saveListing": "Guardar canvis",
+    "editListing": "Modifica l'anunci",
     "podToggle": "Article d'impressió sota demanda",
     "podHint": "Enllaça un producte de la teva botiga d'impressió sota demanda. El proveïdor imprimeix i envia cada comanda, així que no necessites estoc.",
     "podUrlLabel": "Enllaç del producte",

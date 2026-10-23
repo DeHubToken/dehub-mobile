@@ -3807,6 +3807,10 @@
     "priceRange": "{{min}} ～ {{max}} トークン。"
   },
   "stores": {
+    "edit": "編集",
+    "listingUpdated": "リスティングが更新されました！",
+    "saveListing": "変更を保存",
+    "editListing": "リスティングを編集",
     "podToggle": "オンデマンド印刷商品",
     "podHint": "オンデマンド印刷ショップの商品をリンクします。注文ごとにプロバイダーが印刷・発送するため、在庫は不要です。",
     "podUrlLabel": "商品リンク",

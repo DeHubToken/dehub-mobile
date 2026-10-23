@@ -3816,6 +3816,10 @@
     "priceRange": "Mellem {{min}} og {{max}} tokens."
   },
   "stores": {
+    "edit": "Rediger",
+    "listingUpdated": "Annonce opdateret!",
+    "saveListing": "Gem ændringer",
+    "editListing": "Rediger opslag",
     "podToggle": "Print-on-demand-vare",
     "podHint": "Link et produkt fra din print-on-demand-butik. Udbyderen printer og sender hver ordre, så du har intet lager.",
     "podUrlLabel": "Produktlink",

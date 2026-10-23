@@ -3778,6 +3778,10 @@
     "priceRange": "Дар байни {{min}} ва {{max}} токенҳо."
   },
   "stores": {
+    "edit": "Таҳрир",
+    "listingUpdated": "I-update ang listahan!",
+    "saveListing": "I-save ang Mga Pagbabago",
+    "editListing": "Таҳрир кардани рӯйхат",
     "podToggle": "Моли чоп бо фармоиш",
     "podHint": "Маҳсулотро аз мағозаи чопи фармоишии худ пайваст кунед. Таъминкунанда ҳар фармоишро чоп ва ирсол мекунад, захира лозим нест.",
     "podUrlLabel": "Пайванди маҳсулот",

@@ -3812,6 +3812,10 @@
     "priceRange": "Između {{min}} i {{max}} tokena."
   },
   "stores": {
+    "edit": "Uredite",
+    "listingUpdated": "Oglas je ažuriran!",
+    "saveListing": "Spremi promjene",
+    "editListing": "Uredite oglas",
     "podToggle": "Artikl tiska na zahtjev",
     "podHint": "Povežite proizvod iz svoje trgovine s tiskom na zahtjev. Pružatelj tiska i šalje svaku narudžbu, pa ne trebate zalihe.",
     "podUrlLabel": "Poveznica proizvoda",

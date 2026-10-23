@@ -40,6 +40,7 @@ import { useCallInProgress, visualActivity } from '../../libs/visualActivity';
 import { getPlaybackRateFor, setPlaybackRate as persistPlaybackRate } from '../../libs/video-preferences';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
 import { useVideoSegments, segmentAt } from '../../hooks/useVideoSegments';
+import { registerVideoClock } from '../../libs/video-clock';
 import { useTranslation } from 'react-i18next';
 import { toastInfo } from '../../libs';
 import {
@@ -262,6 +263,12 @@ const VideoPlayerCore: React.FC<VideoPlayerCoreProps> = ({
     p.bufferOptions = liveMode ? LIVE_BUFFER_OPTIONS : FULLSCREEN_BUFFER_OPTIONS;
   });
   const player = sharedLivePlayer ?? ownPlayer;
+  const playerForClockRef = useRef(player);
+  playerForClockRef.current = player;
+  useEffect(
+    () => (liveMode ? () => {} : registerVideoClock(tokenId, () => playerForClockRef.current?.currentTime ?? 0)),
+    [tokenId, liveMode],
+  );
   useEffect(() => { player.loop = isLooping; }, [player, isLooping]);
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, sourceUrl, {
     component: 'VideoPlayerCore', postId: tokenId,

@@ -3747,6 +3747,10 @@
     "priceRange": "Wia {{min}} na {{max}}."
   },
   "stores": {
+    "edit": "Edit",
+    "listingUpdated": "Listing updated!",
+    "saveListing": "Save Changes",
+    "editListing": "Edit Listing",
     "podToggle": "Print-on-demand item",
     "podHint": "Link one product from your print-on-demand shop. Di provider go print and ship every order, so you no need keep stock.",
     "podUrlLabel": "Product link",
