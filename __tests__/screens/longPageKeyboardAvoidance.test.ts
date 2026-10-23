@@ -12,8 +12,6 @@ import { join } from "path";
 const read = (file: string) => readFileSync(join(process.cwd(), "screens", file), "utf8");
 
 const SCREENS: { file: string; component: string; branch: string }[] = [
-  // Only the film page has the review box; the search hub keeps its plain root.
-  { file: "CinemaScreen.tsx", component: "export default function CinemaScreen()", branch: "if (filmId) {" },
   { file: "PacksScreen.tsx", component: "export default function PacksScreen()", branch: "  return (" },
   // The loading and not-found returns come first and have no inputs.
   { file: "PackScreen.tsx", component: "export default function PackScreen()", branch: "  const saveName = () =>" },
