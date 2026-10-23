@@ -4810,6 +4810,17 @@
     "displayNameHint": "اسمك العلني اللي بيظهر في ملفك. اختياري — سيبه فاضي وهنستخدم اسم المستخدم بتاعك."
   },
   "events": {
+    "startDate": "تاريخ البدء *",
+    "requestWasDenied": "تطلبتك رفضت",
+    "requestSent": "الطلب مرفوع للصانع الحدث",
+    "payFeeToJoin": "دفع رسوم الدخوله ليشارك في الحدث ده",
+    "eventName": "إسم الحدث *",
+    "entryFeeCoins_other": "{{count}} رسوم دخول العملة",
+    "entryFeeCoins_one": "{{count}} رسوم دخول العملة",
+    "descriptionPlaceholder": "قول للناس عن الحدث ده...",
+    "description": "وصف",
+    "chargeEntryFee": "شغل رسوم الدخول",
+    "cancel": "إلغاء",
     "mine": "بتاعي",
     "subtitle": "اكتشف فعاليات المجتمع وأكّد حضورك",
     "going": "رايح",
