@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "关注 #{{tag}}",
+    "following": "已经关注",
+    "unfollow": "取消关注 #{{tag}}",
+    "followed": "已经关注 #{{tag}}，相关帖子会出现勒侬个关注动态里。",
+    "unfollowed": "已经取消关注 #{{tag}}",
+    "failed": "呒没保存好，请再试一趟。",
+    "clear": "清脱"
+  },
   "keywordFilters": {
     "title": "屏蔽词",
     "description": "隐藏包含搿眼词个帖子搭评论，或者拿伊拉折叠勒提示后头。只有侬看得到搿张列表。",

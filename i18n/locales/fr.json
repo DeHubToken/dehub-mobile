@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Suivre #{{tag}}",
+    "following": "Suivi",
+    "unfollow": "Ne plus suivre #{{tag}}",
+    "followed": "Vous suivez maintenant #{{tag}}. Ses publications apparaîtront dans votre fil Abonnements.",
+    "unfollowed": "Vous ne suivez plus #{{tag}}",
+    "failed": "Ça n'a pas été enregistré. Réessayez.",
+    "clear": "Effacer"
+  },
   "keywordFilters": {
     "title": "Mots masqués",
     "description": "Masquez les publications et commentaires qui contiennent ces mots, ou repliez-les derrière un avertissement. Vous seul voyez cette liste.",

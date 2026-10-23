@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Raac #{{tag}}",
+    "following": "Waad raacaysaa",
+    "unfollow": "Jooji raacitaanka #{{tag}}",
+    "followed": "Hadda waxaad raacaysaa #{{tag}}. Qoraalladiisa waxay ka soo muuqan doonaan quudinta aad raacdo.",
+    "unfollowed": "Waad joojisay raacitaanka #{{tag}}",
+    "failed": "Lama kaydin. Isku day mar kale.",
+    "clear": "Nadiifi"
+  },
   "keywordFilters": {
     "title": "Erayada la aamusiyay",
     "description": "Qari qoraallada iyo faallooyinka ay ku jiraan erayadan, ama ku laab digniin gadaasheed. Adiga keliya ayaa arka liiskan.",

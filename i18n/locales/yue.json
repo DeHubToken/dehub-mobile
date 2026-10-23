@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "追蹤 #{{tag}}",
+    "following": "追蹤緊",
+    "unfollow": "取消追蹤 #{{tag}}",
+    "followed": "而家追蹤緊 #{{tag}}，相關帖子會喺你嘅追蹤動態出現。",
+    "unfollowed": "已取消追蹤 #{{tag}}",
+    "failed": "儲存唔到，請再試吓。",
+    "clear": "清除"
+  },
   "keywordFilters": {
     "title": "靜音字詞",
     "description": "隱藏包含呢啲字詞嘅帖子同留言，或者摺埋喺提示後面。呢個清單淨係你睇到。",

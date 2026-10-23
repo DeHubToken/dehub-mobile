@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Tẹ̀lé #{{tag}}",
+    "following": "O ń tẹ̀lé",
+    "unfollow": "Dẹ́kun títẹ̀lé #{{tag}}",
+    "followed": "O ti ń tẹ̀lé #{{tag}} báyìí. Àwọn ìfìwéránṣẹ́ rẹ̀ yóò hàn nínú àwọn tí o ń tẹ̀lé.",
+    "unfollowed": "O ti dẹ́kun títẹ̀lé #{{tag}}",
+    "failed": "Kò fi pamọ́. Tún gbìyànjú.",
+    "clear": "Pa rẹ́"
+  },
   "keywordFilters": {
     "title": "Àwọn ọ̀rọ̀ tí a pa lẹ́nu mọ́",
     "description": "Fi àwọn ìfìwéránṣẹ́ àti àsọyé tí ó ní àwọn ọ̀rọ̀ wọ̀nyí pamọ́, tàbí ká wọn sí ẹ̀yìn ìkìlọ̀. Ìwọ nìkan ló ń rí àtòkọ yìí.",

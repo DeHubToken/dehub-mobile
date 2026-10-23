@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Prati #{{tag}}",
+    "following": "Pratiš",
+    "unfollow": "Prestani pratiti #{{tag}}",
+    "followed": "Sada pratiš #{{tag}}. Njegove objave pojavit će se u tvom feedu Praćeno.",
+    "unfollowed": "Prestao si pratiti #{{tag}}",
+    "failed": "Nije spremljeno. Pokušaj ponovno.",
+    "clear": "Očisti"
+  },
   "keywordFilters": {
     "title": "Utišane riječi",
     "description": "Sakrij objave i komentare s ovim riječima ili ih presavij iza upozorenja. Samo ti vidiš ovaj popis.",

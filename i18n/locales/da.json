@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Følg #{{tag}}",
+    "following": "Følger",
+    "unfollow": "Stop med at følge #{{tag}}",
+    "followed": "Du følger nu #{{tag}}. Opslag med det vises i dit Følger-feed.",
+    "unfollowed": "Du følger ikke længere #{{tag}}",
+    "failed": "Det blev ikke gemt. Prøv igen.",
+    "clear": "Ryd"
+  },
   "keywordFilters": {
     "title": "Skjulte ord",
     "description": "Skjul opslag og kommentarer, der indeholder disse ord, eller fold dem sammen bag en advarsel. Kun du kan se listen.",

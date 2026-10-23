@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} yzarla",
+    "following": "Yzarlaýarsyňyz",
+    "unfollow": "#{{tag}} yzarlamagy bes et",
+    "followed": "Indi #{{tag}} yzarlaýarsyňyz. Onuň ýazgylary yzarlaýanlaryňyzyň lentasynda görüner.",
+    "unfollowed": "#{{tag}} yzarlamagy bes etdiňiz",
+    "failed": "Ýatda saklanmady. Gaýtadan synanyşyň.",
+    "clear": "Arassala"
+  },
   "keywordFilters": {
     "title": "Sesi öçürilen sözler",
     "description": "Bu sözleri öz içine alýan ýazgylary we teswirleri gizläň ýa-da duýduryşyň aňyrsyna epiň. Bu sanawy diňe siz görýärsiňiz.",

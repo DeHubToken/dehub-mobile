@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Volg #{{tag}}",
+    "following": "Volg tans",
+    "unfollow": "Ontvolg #{{tag}}",
+    "followed": "Jy volg nou #{{tag}}. Sy plasings sal in jou Volg-voer wys.",
+    "unfollowed": "#{{tag}} ontvolg",
+    "failed": "Dit is nie gestoor nie. Probeer weer.",
+    "clear": "Maak skoon"
+  },
   "keywordFilters": {
     "title": "Gedempte woorde",
     "description": "Versteek plasings en kommentaar wat hierdie woorde bevat, of vou hulle agter 'n waarskuwing. Net jy sien hierdie lys.",

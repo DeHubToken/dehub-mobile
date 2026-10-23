@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Whai i #{{tag}}",
+    "following": "E whai ana",
+    "unfollow": "Kaua e whai i #{{tag}}",
+    "followed": "Kei te whai koe i #{{tag}} ināianei. Ka puta ōna pānui ki tō whāngai Ka whāia.",
+    "unfollowed": "Kua mutu tō whai i #{{tag}}",
+    "failed": "Kāore i tiakina. Whakamātauria anō.",
+    "clear": "Ūkui"
+  },
   "keywordFilters": {
     "title": "Ngā kupu kua whakaroaina",
     "description": "Hunaia ngā pānui me ngā tākupu kei roto ēnei kupu, kōpakihia rānei ki muri i tētahi whakatūpato. Ko koe anake e kite i tēnei rārangi.",

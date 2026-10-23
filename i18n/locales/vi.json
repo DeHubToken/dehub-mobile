@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Theo dõi #{{tag}}",
+    "following": "Đang theo dõi",
+    "unfollow": "Bỏ theo dõi #{{tag}}",
+    "followed": "Bạn đang theo dõi #{{tag}}. Bài đăng của thẻ này sẽ hiện trong bảng tin Đang theo dõi.",
+    "unfollowed": "Đã bỏ theo dõi #{{tag}}",
+    "failed": "Chưa lưu được. Hãy thử lại.",
+    "clear": "Xóa"
+  },
   "keywordFilters": {
     "title": "Từ đã tắt tiếng",
     "description": "Ẩn bài đăng và bình luận chứa những từ này, hoặc gập chúng sau một cảnh báo. Chỉ bạn thấy danh sách này.",
