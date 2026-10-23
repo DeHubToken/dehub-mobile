@@ -2119,7 +2119,16 @@
     "mostPlayed": "En çok çalınanlar",
     "mostLiked": "En çok beğenilenler",
     "mostRecent": "En yeniler",
-    "chartOrder": "Ses sıralaması"
+    "chartOrder": "Ses sıralaması",
+    "chartKind": "Müzik listesi",
+    "chartAudio": "Ses",
+    "chartVideos": "Müzik videoları",
+    "videoCharts": "Müzik Video Listeleri",
+    "mostViewed": "En çok izlenen",
+    "trendingWeek": "Bu hafta trend",
+    "newest": "En yeni",
+    "videoChartOrder": "Müzik video listesi sıralaması",
+    "viewsCount": "{{views}} görüntülenme"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
