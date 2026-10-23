@@ -33,6 +33,9 @@ const MAX_BAR_HEIGHT = 24;
 const MIN_BAR_HEIGHT = 3;
 const PLAYED_COLOR = "#FFFFFF";
 const UNPLAYED_COLOR = "rgba(255,255,255,0.25)";
+// Light themes: white bars vanished on the paper background.
+const PLAYED_COLOR_LIGHT = "#111111";
+const UNPLAYED_COLOR_LIGHT = "rgba(0,0,0,0.25)";
 
 const generateWaveform = (seed: string): number[] => {
   let h = 0;
@@ -57,9 +60,10 @@ interface WaveformBarProps {
   index: number;
   progress: SharedValue<number>;
   isSeeking: SharedValue<boolean>;
+  light?: boolean;
 }
 
-const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, progress, isSeeking }) => {
+const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, progress, isSeeking, light }) => {
   const threshold = (index + 0.5) / BAR_COUNT;
 
   const animStyle = useAnimatedStyle(() => {
@@ -74,10 +78,12 @@ const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, progress,
       height,
       borderRadius: BAR_WIDTH / 2,
       marginRight: index < BAR_COUNT - 1 ? BAR_GAP : 0,
-      backgroundColor: played ? PLAYED_COLOR : UNPLAYED_COLOR,
+      backgroundColor: light
+        ? (played ? PLAYED_COLOR_LIGHT : UNPLAYED_COLOR_LIGHT)
+        : (played ? PLAYED_COLOR : UNPLAYED_COLOR),
       transform: [{ scaleY: withSpring(scale, { damping: 12, stiffness: 180 }) }],
     };
-  }, [height, index]);
+  }, [height, index, light]);
 
   return <Animated.View style={animStyle} />;
 });
@@ -94,7 +100,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   compact = false,
 }) => {
   const { t: _copy } = _useCopy();
-  const { theme } = useAppTheme();
+  const { theme, isLight } = useAppTheme();
   // The URL is known at mount, so the source is attached directly — the hook
   // handles loading and releases the player on unmount. This replaces the old
   // manual preload effect.
@@ -335,6 +341,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
               index={i}
               progress={progress}
               isSeeking={isSeeking}
+              light={isLight}
             />
           ))}
         </View>
