@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Polja profila",
+    "description": "Do četiri dodatna retka na tvom profilu, poput web-stranice ili tvojih zamjenica.",
+    "label": "Oznaka",
+    "content": "Sadržaj",
+    "save": "Spremi polja",
+    "saved": "Polja profila spremljena",
+    "failed": "Nije spremljeno. Pokušaj ponovno.",
+    "verified": "Potvrđena poveznica",
+    "verifyHint": "Za potvrdu poveznice dodaj ovo na tu stranicu pa ponovno spremi: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtriraj obavijesti od",
     "description": "Odaberi što se događa kad netko izvan tvog kruga stupi u interakciju s tobom. Filtrirane obavijesti čekaju pod Filtrirano, bez oznake i bez push obavijesti.",

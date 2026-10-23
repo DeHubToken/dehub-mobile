@@ -260,6 +260,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           followsYou={followsYou}
           isPrivate={isPrivate}
           bio={data?.aboutMe}
+          profileFields={(data as any)?.profileFields}
           bioLanguage={(data as any)?.detectedLanguage}
           isFollowing={isFollowing}
           isFollowRequestPending={isFollowRequestPending}

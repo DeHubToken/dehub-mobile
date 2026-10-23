@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Kolom profil",
+    "description": "Nganti papat baris tambahan ing profil sampeyan, kayata situs web utawa tembung ganti sampeyan.",
+    "label": "Label",
+    "content": "Isi",
+    "save": "Simpen kolom",
+    "saved": "Kolom profil kesimpen",
+    "failed": "Ora kesimpen. Coba maneh.",
+    "verified": "Pranala sing diverifikasi",
+    "verifyHint": "Kanggo verifikasi pranala, tambahake iki ing kaca kasebut, banjur simpen maneh: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Saring kabar saka",
     "description": "Pilih apa sing kedadeyan nalika wong ing njaba bunderanmu sesambungan karo sampeyan. Kabar sing disaring ngenteni ing Disaring, tanpa lencana lan tanpa push.",

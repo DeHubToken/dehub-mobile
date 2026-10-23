@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Pola profilu",
+    "description": "Do czterech dodatkowych wierszy w profilu, np. strona internetowa lub twoje zaimki.",
+    "label": "Etykieta",
+    "content": "Treść",
+    "save": "Zapisz pola",
+    "saved": "Zapisano pola profilu",
+    "failed": "Nie zapisano. Spróbuj ponownie.",
+    "verified": "Zweryfikowany link",
+    "verifyHint": "Aby zweryfikować link, dodaj to na tamtej stronie i zapisz ponownie: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtruj powiadomienia od",
     "description": "Wybierz, co się dzieje, gdy ktoś spoza twojego kręgu wchodzi z tobą w interakcję. Odfiltrowane powiadomienia czekają w sekcji Odfiltrowane, bez plakietki i bez powiadomienia push.",

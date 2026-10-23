@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Medan profil",
+    "description": "Sehingga empat baris tambahan pada profil anda, seperti laman web atau kata ganti nama anda.",
+    "label": "Label",
+    "content": "Kandungan",
+    "save": "Simpan medan",
+    "saved": "Medan profil disimpan",
+    "failed": "Tidak disimpan. Cuba lagi.",
+    "verified": "Pautan disahkan",
+    "verifyHint": "Untuk mengesahkan pautan, tambah ini pada halaman itu, kemudian simpan semula: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Tapis pemberitahuan daripada",
     "description": "Pilih apa yang berlaku apabila seseorang di luar bulatan anda berinteraksi dengan anda. Pemberitahuan yang ditapis menunggu di bawah Ditapis, tanpa lencana dan tanpa push.",

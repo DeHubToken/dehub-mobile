@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Campi del profilo",
+    "description": "Fino a quattro righe in più sul tuo profilo, come un sito web o i tuoi pronomi.",
+    "label": "Etichetta",
+    "content": "Contenuto",
+    "save": "Salva campi",
+    "saved": "Campi del profilo salvati",
+    "failed": "Non è stato salvato. Riprova.",
+    "verified": "Link verificato",
+    "verifyHint": "Per verificare un link, aggiungi questo a quella pagina e salva di nuovo: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtra le notifiche da",
     "description": "Scegli cosa succede quando qualcuno fuori dalla tua cerchia interagisce con te. Le notifiche filtrate restano in Filtrate, senza badge né notifica push.",

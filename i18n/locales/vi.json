@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Trường hồ sơ",
+    "description": "Tối đa bốn dòng thêm trên hồ sơ của bạn, như trang web hoặc đại từ nhân xưng.",
+    "label": "Nhãn",
+    "content": "Nội dung",
+    "save": "Lưu các trường",
+    "saved": "Đã lưu các trường hồ sơ",
+    "failed": "Chưa lưu được. Hãy thử lại.",
+    "verified": "Liên kết đã xác minh",
+    "verifyHint": "Để xác minh liên kết, hãy thêm đoạn này vào trang đó rồi lưu lại: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Lọc thông báo từ",
     "description": "Chọn điều sẽ xảy ra khi ai đó ngoài vòng của bạn tương tác với bạn. Thông báo đã lọc nằm trong mục Đã lọc, không có huy hiệu và không đẩy thông báo.",

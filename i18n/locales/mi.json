@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Ngā āpure kōtaha",
+    "description": "Tae atu ki ngā rārangi tāpiri e whā i tō kōtaha, pērā i tētahi paetukutuku, ō tūpou rānei.",
+    "label": "Tapanga",
+    "content": "Ihirangi",
+    "save": "Tiakina ngā āpure",
+    "saved": "Kua tiakina ngā āpure kōtaha",
+    "failed": "Kāore i tiakina. Whakamātauria anō.",
+    "verified": "Hono kua manatokona",
+    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Tātari pānui mai i",
     "description": "Kōwhiria te mea ka puta ina whakawhitiwhiti tētahi i waho o tō porowhita ki a koe. Ka tatari ngā pānui kua tātarihia ki raro i \"Kua tātarihia\", kāore he tohu, kāore he pānui pana.",

@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Izinkambu zephrofayela",
+    "description": "Kufika emigqeni emine eyengeziwe kuphrofayela yakho, njengewebhusayithi noma izabizwana zakho.",
+    "label": "Ilebula",
+    "content": "Okuqukethwe",
+    "save": "Londoloza izinkambu",
+    "saved": "Izinkambu zephrofayela zilondoloziwe",
+    "failed": "Akulondolozwanga. Zama futhi.",
+    "verified": "Isixhumanisi esiqinisekisiwe",
+    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Hlunga izaziso ezivela ku-",
     "description": "Khetha okwenzekayo uma othile ongaphandle kwendilinga yakho exhumana nawe. Izaziso ezihlungiwe zilinda ngaphansi kokuthi \"Kuhlungiwe\", ngaphandle kwebheji noma isaziso esiphushwayo.",

@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Câmpuri de profil",
+    "description": "Până la patru rânduri în plus pe profilul tău, cum ar fi un site web sau pronumele tale.",
+    "label": "Etichetă",
+    "content": "Conținut",
+    "save": "Salvează câmpurile",
+    "saved": "Câmpurile de profil au fost salvate",
+    "failed": "Nu s-a salvat. Încearcă din nou.",
+    "verified": "Link verificat",
+    "verifyHint": "Ca să verifici un link, adaugă asta pe acea pagină, apoi salvează din nou: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrează notificările de la",
     "description": "Alege ce se întâmplă când cineva din afara cercului tău interacționează cu tine. Notificările filtrate așteaptă la Filtrate, fără insignă și fără notificare push.",

@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Riqsichikuy t'aqakuna",
+    "description": "Riqsichikuyniykipi tawa yapasqa siqikama, web nisqa utaq sutiq rantinkunapas.",
+    "label": "Sutichay",
+    "content": "Ukhu",
+    "save": "T'aqakunata waqaychay",
+    "saved": "Riqsichikuy t'aqakuna waqaychasqa",
+    "failed": "Manam waqaychakurqanchu. Watiqmanta ruray.",
+    "verified": "Chiqaqchasqa t'inki",
+    "verifyHint": "T'inkita chiqaqchanaykipaq, kayta chay p'anqaman yapay, hinaspa watiqmanta waqaychay: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Willakuykunata suysuy",
     "description": "Akllay ima kananta, muyuyki hawanmanta pipas qamwan rimanakuptin. Suysusqa willakuykunaqa \"Suysusqa\" nisqapi suyanku, mana unanchayniyuq mana tanqayniyuq.",
