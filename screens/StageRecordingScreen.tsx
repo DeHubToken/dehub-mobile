@@ -97,7 +97,7 @@ export default function StageRecordingScreen() {
         showsVerticalScrollIndicator={false}
       >
         <PageSection flush>
-          {!!space.cover_image_url && <StageCoverArt uri={space.cover_image_url} title={space.title} />}
+          <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
 
           <View style={styles.body}>
             <View style={styles.chipRow}>

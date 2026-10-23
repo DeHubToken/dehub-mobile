@@ -26,6 +26,7 @@ import { storedAvatarSources } from "../../libs/misc";
 import type { AudioSpace } from "../../hooks/useStages";
 import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
+import StageCoverArt from "../Stages/StageCoverArt";
 
 const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space, onPress }) => {
   const { t } = useTranslation();
@@ -34,6 +35,9 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
 
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.85} style={styles.card}>
+      {/* The host's cover, or the stage's generated poster when there is none. */}
+      <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
+      <View style={styles.cardBody}>
       <View style={styles.topRow}>
         <View style={styles.liveChip}>
           <View style={styles.liveDot} />
@@ -69,6 +73,7 @@ const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space
           {space.description}
         </Text>
       )}
+      </View>
     </TouchableOpacity>
   );
 };
@@ -152,6 +157,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.1)",
     backgroundColor: "rgba(255,255,255,0.03)",
+    overflow: "hidden",
+  },
+  cardBody: {
     padding: 12,
   },
   topRow: {

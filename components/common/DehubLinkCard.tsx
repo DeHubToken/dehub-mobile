@@ -38,6 +38,7 @@ import { dehubLinkLabel, type DehubLinkMatch } from '../../libs/dehub-links';
 import { useStages } from '../../context/StageContext';
 import { useUserProfileSheet } from '../../context/UserProfileSheetContext';
 import StageRecordingPlayer from '../Stages/StageRecordingPlayer';
+import GeneratedStageCover from '../Stages/GeneratedStageCover';
 import { useWorkJob } from '../../hooks/useWork';
 import { appLocale } from "../../libs/date.util";
 import { useAppTheme } from '../../context/ThemeContext';
@@ -63,6 +64,8 @@ interface RowCardProps {
   /** Icon shown when there is no image. */
   fallbackIcon: IconName;
   bannerUri?: string | null;
+  /** Drawn in the banner's place when there is no `bannerUri` (a stage's generated poster). */
+  bannerFallback?: React.ReactNode;
   dimmed?: boolean;
   /**
    * Controls that live inside the card but are not the card. Rendered under the
@@ -84,6 +87,7 @@ const RowCard: React.FC<RowCardProps> = ({
   imageUri,
   fallbackIcon,
   bannerUri,
+  bannerFallback,
   dimmed,
   footer,
   onPress,
@@ -109,10 +113,11 @@ const RowCard: React.FC<RowCardProps> = ({
       {!!bannerUri && (
         <Image source={storageImageSource(bannerUri, windowWidth)} style={styles.banner} contentFit="contain" />
       )}
+      {!bannerUri && bannerFallback}
       <View style={[styles.row, isMinimal && styles.minimalRow]}>
         {/* With the banner showing the artwork in full, repeating it as a 48px
             square is noise — the thumb only earns its place bannerless. */}
-        {!bannerUri && (
+        {!bannerUri && !bannerFallback && (
           <View style={[styles.thumbWrap, isMinimal && styles.minimalThumbWrap]}>
             {imageUri ? (
               <Image source={storageImageSource(imageUri, 48)} style={styles.thumb} contentFit="cover" />
@@ -442,6 +447,7 @@ const StageCardEmbed: React.FC<{
       meta={`@${data.host_username || String(data.host_wallet_address || '').slice(0, 6)}`}
       imageUri={data.cover_image_url}
       bannerUri={data.cover_image_url}
+      bannerFallback={<GeneratedStageCover stage={data} />}
       fallbackIcon="Mic"
       dimmed={isEnded}
       // Listen back where the card sits. What you want from a post about a
