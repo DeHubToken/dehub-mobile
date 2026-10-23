@@ -1,16 +1,50 @@
 <!-- @license lucide-static v0.468.0 - ISC -->
-<svg
-  class="lucide lucide-settings"
-  xmlns="http://www.w3.org/2000/svg"
-  width="24"
-  height="24"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="#e2ffff"
-  stroke-width="1.5"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-  <circle cx="12" cy="12" r="3" />
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128" viewBox="-2 -2 28 28" fill="none" stroke-linecap="round" stroke-linejoin="round" data-material="liquid-prism">
+  <defs>
+    <g id="prism-shape"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+  <circle cx="12" cy="12" r="3" /></g>
+    <linearGradient id="prism-rim" x1="2" y1="1" x2="21" y2="23" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset=".15" stop-color="#d3efff"/>
+      <stop offset=".29" stop-color="#6ea6d9"/>
+      <stop offset=".39" stop-color="#f8ffff"/>
+      <stop offset=".52" stop-color="#b4c8e9"/>
+      <stop offset=".65" stop-color="#526b93"/>
+      <stop offset=".78" stop-color="#f3ffff"/>
+      <stop offset=".9" stop-color="#a8dce7"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="prism-spectrum" x1="2" y1="20" x2="22" y2="3" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#83edff"/>
+      <stop offset=".16" stop-color="#88aaff"/>
+      <stop offset=".3" stop-color="#cca7f8"/>
+      <stop offset=".42" stop-color="#ffe4b0"/>
+      <stop offset=".52" stop-color="#f9ffff"/>
+      <stop offset=".65" stop-color="#8eeaff"/>
+      <stop offset=".78" stop-color="#b7c8ff"/>
+      <stop offset=".9" stop-color="#ffc9de"/>
+      <stop offset="1" stop-color="#fff2cb"/>
+    </linearGradient>
+    <linearGradient id="prism-core" x1="5" y1="2" x2="18" y2="23" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#efffff" stop-opacity=".9"/>
+      <stop offset=".25" stop-color="#a8cddc" stop-opacity=".38"/>
+      <stop offset=".48" stop-color="#163d55" stop-opacity=".66"/>
+      <stop offset=".7" stop-color="#c7f5ff" stop-opacity=".58"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".92"/>
+    </linearGradient>
+    <linearGradient id="prism-glint" x1="4" y1="2" x2="16" y2="22" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff"/>
+      <stop offset=".27" stop-color="#ffffff" stop-opacity=".95"/>
+      <stop offset=".45" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".68" stop-color="#ffffff" stop-opacity=".12"/>
+      <stop offset=".86" stop-color="#ffffff" stop-opacity=".85"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".3"/>
+    </linearGradient>
+  </defs>
+  <use xlink:href="#prism-shape" stroke="#061820" stroke-width="3.15" opacity=".42" transform="translate(0 .65)"/>
+  <use xlink:href="#prism-shape" stroke="url(#prism-rim)" stroke-width="2.9"/>
+  <use xlink:href="#prism-shape" stroke="url(#prism-spectrum)" stroke-width="2.28" opacity=".86"/>
+  <use xlink:href="#prism-shape" stroke="url(#prism-core)" stroke-width="1.55"/>
+  <use xlink:href="#prism-shape" stroke="url(#prism-glint)" stroke-width=".42" transform="translate(-.32 -.48)"/>
+  <use xlink:href="#prism-shape" stroke="url(#prism-spectrum)" stroke-width=".28" opacity=".7" transform="translate(.45 .5)"/>
 </svg>
