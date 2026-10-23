@@ -157,6 +157,7 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
 import HoldGateSheet from "../common/HoldGateSheet";
 import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
+import KeywordFilterGate from "./KeywordFilterGate";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -2961,9 +2962,16 @@ const hideCard = () => null;
  * made the whole feed unusable.
  */
 const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
+  const item = props.item as any;
   return (
     <ErrorBoundary scope="feed-card" renderFallback={hideCard}>
-      <FeedCardComponent {...props} />
+      {/* The viewer's muted words — see KeywordFilterGate. */}
+      <KeywordFilterGate
+        texts={[item?.name, item?.description, item?.articleBody, item?.spoilerText, ...(item?.mediaDescriptions ?? [])]}
+        authorAddress={item?.minter || item?.owner}
+      >
+        <FeedCardComponent {...props} />
+      </KeywordFilterGate>
     </ErrorBoundary>
   );
 });
