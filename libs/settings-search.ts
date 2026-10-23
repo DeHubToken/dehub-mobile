@@ -85,6 +85,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'privacy', anchor: 'account-security', label: 'Account Security', labelKey: 'settings.accountSecurity', keywords: 'two-factor 2fa mfa security tv sign in biometric fingerprint face id wallet unlock android passkey' },
   { tab: 'privacy', anchor: 'account-security', label: 'Active sessions', labelKey: 'settings.activeSessions', keywords: 'devices logged in revoke' },
   { tab: 'privacy', anchor: 'account-security', label: 'Blocked accounts', labelKey: 'settings.blockedAccounts', keywords: 'block unblock mute' },
+  { tab: 'privacy', anchor: 'account-security', label: 'Muted words', labelKey: 'keywordFilters.title', keywords: 'filter keyword word phrase hide spoiler mute' },
   { tab: 'privacy', anchor: 'your-data', label: 'Your Data', labelKey: 'settings.yourData', keywords: 'export download import gdpr' },
   { tab: 'privacy', anchor: 'geo-blocking', label: 'Geo-blocking', labelKey: 'settings.geoBlocking', keywords: 'country region restrict' },
 

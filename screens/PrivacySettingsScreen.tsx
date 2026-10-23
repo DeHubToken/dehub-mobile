@@ -36,6 +36,7 @@ import {
 import { getAvatarUrl } from '../libs/misc';
 import { ScreenNames } from '../navigation/ScreenNames';
 import BlockedAccountsModal from '../components/Settings/BlockedAccountsModal';
+import KeywordFiltersModal from '../components/Settings/KeywordFiltersModal';
 import { getAiScrapingPreference, type AiScrapingPreference } from '../libs/ai-scraping';
 import { getShowOnline } from '../libs/online-presence';
 import GeoBlockingSection from '../components/Settings/GeoBlockingSection';
@@ -131,6 +132,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
   // Blocked accounts (web keeps this on the Privacy tab — `BlockedUsersSection`)
   const [blockedModalVisible, setBlockedModalVisible] = useState(false);
+  const [mutedWordsVisible, setMutedWordsVisible] = useState(false);
   const blockedCount = ((user as any)?.blocklist?.blocked?.length || 0) as number;
 
   /**
@@ -738,6 +740,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             description={blockedCount > 0 ? _copy("copy.fbd1210fffc5", { defaultValue: "{{value1}} blocked", value1: blockedCount }) : t('settings.noneBlocked')}
             onPress={() => setBlockedModalVisible(true)}
           />
+          <Divider />
+          <SettingsLinkRow
+            icon="Funnel"
+            label={t('keywordFilters.title')}
+            description={t('keywordFilters.description')}
+            onPress={() => setMutedWordsVisible(true)}
+          />
         </SettingsSection>
 
         {/* Your data — web's Extract Data row. */}
@@ -761,6 +770,8 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         visible={blockedModalVisible}
         onClose={() => setBlockedModalVisible(false)}
       />
+
+      <KeywordFiltersModal visible={mutedWordsVisible} onClose={() => setMutedWordsVisible(false)} />
 
       {/* Go Public confirmation modal */}
       <GlassModal
