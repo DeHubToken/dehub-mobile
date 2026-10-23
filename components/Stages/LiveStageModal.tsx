@@ -37,6 +37,8 @@ import { toastError, toastSuccess } from "../../libs";
 import { useTranslation } from "react-i18next";
 import { confirmEndStage } from "./confirmEndStage";
 import { useStageReminderFaces } from "../../hooks/useStageReminder";
+import { useAppTheme } from '../../context/ThemeContext';
+import GlassBackdrop from '../theme/GlassBackdrop';
 
 /**
  * Ceiling for a shared screen inside the sheet. A 16:9 box off the full width
@@ -323,6 +325,7 @@ const ListenerCard: React.FC<ListenerCardProps> = ({ participant, onInvite, reac
 // ── LiveStageModal ─────────────────────────────────────────────────────────
 
 const LiveStageModal: React.FC = () => {
+  const { theme } = useAppTheme();
   const { t: _copy } = _useCopy();
   const { height: windowHeight } = useWindowDimensions();
   // Insets from the app's root provider. A SafeAreaView inside this
@@ -456,8 +459,9 @@ const LiveStageModal: React.FC = () => {
           backdrop, and the whole room went unreadable. */}
       <View
         className="dark-surface"
-        style={{ flex: 1, backgroundColor: "#000", paddingTop: insets.top, paddingBottom: insets.bottom }}
+        style={{ flex: 1, backgroundColor: theme === 'glass' ? '#021018' : "#000", paddingTop: insets.top, paddingBottom: insets.bottom }}
       >
+        {theme === 'glass' && <GlassBackdrop />}
         {/* Host's cover graphic, behind the room.
             Deliberately faint and heavily scrimmed: this is a listening surface
             with avatars, controls and a TTS input stacked over it, and a

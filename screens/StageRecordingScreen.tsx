@@ -46,7 +46,7 @@ export default function StageRecordingScreen() {
   const { params } = useRoute<Route>();
   const nav = useNavigation<any>();
   const insets = useSafeAreaInsets();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme } = useAppTheme();
   const [transcriptOpen, setTranscriptOpen] = useState(false);
 
   const { data: fetched, isLoading } = useQuery({
@@ -72,7 +72,7 @@ export default function StageRecordingScreen() {
 
   if (!space) {
     return (
-      <View className="bg-theme-neutrals-900" style={styles.root}>
+      <View className="bg-theme-neutrals-900" style={[styles.root, theme === 'glass' && { backgroundColor: 'transparent' }]}>
         <ScreenHeader icon="stages" title={t("stages.stageRecording")} />
         <View style={styles.center}>
           {isLoading ? <DeHubLoader size={56} /> : <Icon name="Mic" size={40} color="#3F3F46" />}
@@ -86,7 +86,7 @@ export default function StageRecordingScreen() {
   const aired = formatStageDate(space.ended_at);
 
   return (
-    <View className="bg-theme-neutrals-900" style={styles.root}>
+    <View className="bg-theme-neutrals-900" style={[styles.root, theme === 'glass' && { backgroundColor: 'transparent' }]}>
       <ScreenHeader icon="stages" title={t("stages.stageRecording")} />
       {/* Edge-to-edge Android doesn't resize for the keyboard; the comment
           box at the bottom would sit under it. */}
