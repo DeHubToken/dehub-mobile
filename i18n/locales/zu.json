@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ama-app axhunyiwe",
+    "connectedDescription": "Ama-app e-Mastodon ongene kuwo ngale akhawunti. Susa eyodwa ukuze uyiphume.",
+    "connectedEmpty": "Awekho ama-app axhunyiwe okwamanje.",
+    "lastUsed": "Igcine ukusetshenziswa {{date}}",
+    "remove": "Susa",
+    "removed": "I-app isusiwe",
+    "failed": "Akusebenzanga. Zama futhi."
+  },
   "fediverse": {
     "title": "I-Fediverse",
     "description": "Abantu abaku-Mastodon nakwamanye ama-app e-fediverse bangakuthola futhi bakulandele kuleli kheli. Okuthunyelwe kwakho okusha komphakathi kubafinyelela lapho.",

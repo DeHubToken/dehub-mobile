@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Manhajojin da aka haɗa",
+    "connectedDescription": "Manhajojin Mastodon da ka shiga da wannan asusun. Cire ɗaya don fita daga cikinsa.",
+    "connectedEmpty": "Babu manhajar da aka haɗa tukuna.",
+    "lastUsed": "An yi amfani na ƙarshe {{date}}",
+    "remove": "Cire",
+    "removed": "An cire manhajar",
+    "failed": "Hakan bai yi aiki ba. Sake gwadawa."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mutane a Mastodon da sauran manhajojin fediverse za su iya samunka su bi ka a wannan adireshin. Sabbin rubuce-rubucenka na jama'a suna isa gare su a can.",

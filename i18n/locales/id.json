@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikasi terhubung",
+    "connectedDescription": "Aplikasi Mastodon yang kamu masuki dengan akun ini. Hapus salah satu untuk mengeluarkannya.",
+    "connectedEmpty": "Belum ada aplikasi yang terhubung.",
+    "lastUsed": "Terakhir dipakai {{date}}",
+    "remove": "Hapus",
+    "removed": "Aplikasi dihapus",
+    "failed": "Tidak berhasil. Coba lagi."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Orang di Mastodon dan aplikasi fediverse lain bisa menemukan dan mengikutimu di alamat ini. Postingan publik barumu sampai ke mereka di sana.",

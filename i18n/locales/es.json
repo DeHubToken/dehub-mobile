@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apps conectadas",
+    "connectedDescription": "Apps de Mastodon en las que iniciaste sesión con esta cuenta. Quita una para cerrar su sesión.",
+    "connectedEmpty": "Todavía no hay apps conectadas.",
+    "lastUsed": "Último uso {{date}}",
+    "remove": "Quitar",
+    "removed": "App quitada",
+    "failed": "No funcionó. Inténtalo de nuevo."
+  },
   "fediverse": {
     "title": "Fediverso",
     "description": "La gente de Mastodon y otras apps del fediverso puede encontrarte y seguirte en esta dirección. Tus nuevas publicaciones públicas les llegan allí.",

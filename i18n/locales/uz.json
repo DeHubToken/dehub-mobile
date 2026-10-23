@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ulangan ilovalar",
+    "connectedDescription": "Bu akkaunt bilan kirgan Mastodon ilovalaringiz. Chiqish uchun birini olib tashlang.",
+    "connectedEmpty": "Hali ulangan ilova yoʻq.",
+    "lastUsed": "Oxirgi marta ishlatilgan {{date}}",
+    "remove": "Olib tashlash",
+    "removed": "Ilova olib tashlandi",
+    "failed": "Boʻlmadi. Qayta urinib koʻring."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mastodon va boshqa fediverse ilovalaridagi odamlar sizni shu manzil orqali topib, kuzata oladi. Yangi ommaviy postlaringiz u yerda ularga yetib boradi.",

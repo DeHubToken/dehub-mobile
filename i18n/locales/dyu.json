@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apli minnu sirilen don",
+    "connectedDescription": "Mastodon apli minnu i donna u la ni nin jatebila ye. Kelen bɔ walasa ka bɔ a la.",
+    "connectedEmpty": "Apli si ma siri fɔlɔ.",
+    "lastUsed": "Laban baarakɛ {{date}}",
+    "remove": "A bɔ",
+    "removed": "Apli bɔra",
+    "failed": "A ma se. A lajɛ tugun."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mɔgɔ minnu bɛ Mastodon ni fediverse apli wɛrɛw kan, olu bɛ se ka i sɔrɔ ka i tugu nin adiresi la. I ka post foroba kuraw bɛ se u ma yen.",
