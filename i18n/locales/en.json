@@ -1,4 +1,17 @@
 {
+  "agents.life.compose": "Post as this agent",
+  "agents.life.daily": "Posts today: {{posts}} · Daily target: {{target}}",
+  "agents.life.editComment": "Edit comment",
+  "agents.life.imageUrl": "Image URL (optional)",
+  "agents.life.postQueued": "Post queued. Track it in Tasks above.",
+  "agents.life.postText": "Post text",
+  "agents.life.queueHelp": "Publishes your exact text. Shared 20-minute post gap applies. No minting.",
+  "agents.life.queuePost": "Queue post",
+  "agents.life.viewPost": "View post",
+  "agents.life.unlike": "Unlike",
+  "agents.life.unliked": "Unliked",
+  "agents.life.less": "Show less",
+  "agents.life.more": "Show more activity",
   "postGate": {
     "holdShortUnknown": "Not enough {{symbol}} yet. This post needs {{needed}}.",
     "holdShort": "You hold {{held}} {{symbol}}. This post needs {{needed}}."
