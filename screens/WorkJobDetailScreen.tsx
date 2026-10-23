@@ -32,7 +32,6 @@ import { useNavigation, useRoute, type RouteProp } from "@react-navigation/nativ
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
-import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { theme } from "../theme";
 import { openInApp } from "../libs/links.utils";
 import { toastError } from "../libs/toast";
@@ -119,9 +118,6 @@ export default function WorkJobDetailScreen() {
   const { isMinimal } = useAppTheme();
   const rowStyle = [styles.row, isMinimal && styles.minimalRow];
   const insets = useSafeAreaInsets();
-  // The KeyboardAvoidingView measures itself from its parent, which already
-  // includes the ScreenHeader above it; only the status-bar inset is missing.
-  const keyboardOffset = useKeyboardOffset();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.WorkJobDetail>>();
   const { jobId, job: seed } = route.params;
@@ -279,11 +275,7 @@ export default function WorkJobDetailScreen() {
         }
       />
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior="padding"
-        keyboardVerticalOffset={keyboardOffset}
-      >
+      <View style={{ flex: 1 }}>
         <ScrollView
           contentContainerStyle={{ paddingHorizontal: isMinimal ? 16 : 12, paddingBottom: insets.bottom + 32 }}
           showsVerticalScrollIndicator={false}
@@ -821,7 +813,7 @@ export default function WorkJobDetailScreen() {
             </View>
           )}
         </ScrollView>
-      </KeyboardAvoidingView>
+      </View>
 
       {/* Rejection reason — web uses window.prompt(), which RN has no
           cross-platform equivalent for. */}
