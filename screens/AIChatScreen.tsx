@@ -527,9 +527,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
       const token = (await getAuthToken()) || undefined;
       let streamed = '';
+      let swapAction: AIChatMessage['swapAction'];
 
       const commit = (content: string, isError = false) => {
-        const reply: AIChatMessage = { role: 'assistant', content, ...(isError && { isError: true }) };
+        const reply: AIChatMessage = { role: 'assistant', content, ...(isError && { isError: true }), ...(!isError && swapAction && { swapAction }) };
         saveMessage([...history, reply]);
       };
 
@@ -551,6 +552,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         },
         {
           onTool: ({ status, tools }) => setActiveTools(status === 'running' ? tools : []),
+          onSwapAction: (action) => { swapAction = action; },
           onDelta: (delta) => {
             streamed += delta;
             // Render the partial answer as it arrives, but only persist the
