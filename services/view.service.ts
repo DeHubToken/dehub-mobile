@@ -7,9 +7,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { recordAnonViews } from "./anonView.service";
 
 
-// Post view threshold: 50% visible for 2 seconds
+// Post view: counts the moment half of it is on screen. No dwell time — the
+// same rule as web (view-tracker.ts): every impression is a view.
 const POST_VISIBILITY_PERCENT = 0.5; // 50% of post must be visible
-const POST_MIN_VIEW_TIME_MS = 2000; // 2 seconds
 
 // Batch settings
 const BATCH_MAX_SIZE = 50; // Max tokens per batch request
@@ -291,7 +291,7 @@ export function createViewRecorder(base: Pick<RecordViewOptions, "tokenId" | "is
 
 /**
  * Queue a post view for batch submission.
- * Called when a post has been 50%+ visible for 2+ seconds.
+ * Called the moment a post is 50%+ visible.
  * Signed-out viewers are queued too, and go to the anonymous view backend.
  */
 export async function queuePostView(tokenId: TokenId, isSignedIn: boolean): Promise<void> {
@@ -407,32 +407,12 @@ export function forceFlushBatchViews(): void {
 /**
  * Creates a visibility tracker for a single post/feed item.
  * Call `onVisibilityChange` when the item's visibility changes.
- * The tracker will automatically queue a view when the post has been
- * 50%+ visible for 2+ seconds.
+ * The tracker queues a view the moment the post is 50%+ visible, and again
+ * each time it leaves the screen and comes back.
  */
 export function createPostViewTracker(tokenId: TokenId, isSignedIn: boolean) {
-  let visibleStartTime: number | null = null;
   let hasRecorded = false;
-  let checkTimer: ReturnType<typeof setTimeout> | null = null;
-  
-  const cleanup = () => {
-    if (checkTimer) {
-      clearTimeout(checkTimer);
-      checkTimer = null;
-    }
-  };
-  
-  const checkAndRecord = () => {
-    if (hasRecorded) return;
-    if (!visibleStartTime) return;
-    
-    const elapsed = Date.now() - visibleStartTime;
-    if (elapsed >= POST_MIN_VIEW_TIME_MS) {
-      hasRecorded = true;
-      queuePostView(tokenId, isSignedIn);
-    }
-  };
-  
+
   return {
     /**
      * Call this when visibility changes.
@@ -441,36 +421,24 @@ export function createPostViewTracker(tokenId: TokenId, isSignedIn: boolean) {
     onVisibilityChange(visiblePercent: number): void {
       const isVisible = visiblePercent >= POST_VISIBILITY_PERCENT;
 
-      // Scrolled away after counting: re-arm, so coming back to it can count
-      // again. queuePostView's cooldown decides whether it actually does.
-      if (hasRecorded) {
-        if (!isVisible) {
-          hasRecorded = false;
-          visibleStartTime = null;
-          cleanup();
-        }
+      // Scrolled away: re-arm, so coming back to it is another impression.
+      if (!isVisible) {
+        hasRecorded = false;
         return;
       }
-      
-      if (isVisible && !visibleStartTime) {
-        // Just became visible enough - start timer
-        visibleStartTime = Date.now();
-        cleanup();
-        checkTimer = setTimeout(checkAndRecord, POST_MIN_VIEW_TIME_MS + 100);
-      } else if (!isVisible && visibleStartTime) {
-        // No longer visible enough - reset
-        visibleStartTime = null;
-        cleanup();
-      }
+      if (hasRecorded) return;
+
+      hasRecorded = true;
+      void queuePostView(tokenId, isSignedIn);
     },
-    
+
     /** Check if view has been recorded */
     hasRecorded(): boolean {
       return hasRecorded;
     },
-    
-    /** Cleanup timers (call on unmount) */
-    cleanup,
+
+    /** Nothing is pending any more; kept so unmount callers stay unchanged. */
+    cleanup(): void {},
   };
 }
 
