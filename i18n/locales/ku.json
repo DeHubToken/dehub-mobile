@@ -1560,6 +1560,8 @@
     }
   },
   "notifications": {
+    "stores": "Dikan",
+    "features": "Taybetmendî",
     "title": "Agahdarî",
     "loadFailed": "Agahdarî nehatin barkirin",
     "markAllRead": "Hemûyan wek xwendî nîşan bike",

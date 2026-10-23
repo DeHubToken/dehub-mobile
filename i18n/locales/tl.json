@@ -1601,6 +1601,8 @@
     }
   },
   "notifications": {
+    "stores": "Mga tindahan",
+    "features": "Mga feature",
     "title": "Mga Notipikasyon",
     "loadFailed": "Hindi ma-load ang mga notification",
     "markAllRead": "Markahan lahat bilang nabasa",

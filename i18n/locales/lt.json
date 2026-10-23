@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "Parduotuvės",
+    "features": "Funkcijos",
     "title": "Pranešimai",
     "loadFailed": "Nepavyko įkelti pranešimų",
     "markAllRead": "Pažymėti viską kaip skaitytą",

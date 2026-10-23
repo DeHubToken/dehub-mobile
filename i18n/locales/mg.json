@@ -1582,6 +1582,8 @@
     }
   },
   "notifications": {
+    "stores": "Fivarotana",
+    "features": "Endri-javatra",
     "title": "Fampandrenesana",
     "loadFailed": "Tsy afaka nampiditra ny fampandrenesana",
     "markAllRead": "Mariho fa voavaky daholo",

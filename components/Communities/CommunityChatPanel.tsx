@@ -280,6 +280,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
 
   const listRef = useRef<FlatList<CommunityChatMessage>>(null);
   const atBottomRef = useRef(true);
+  // "Jump to latest", as web's CommunityChat draws it: shown once the reader
+  // has scrolled up, with a count of the messages that arrived since.
+  const [showJump, setShowJump] = useState(false);
+  const [unseen, setUnseen] = useState(0);
   const flashTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const alertTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -387,6 +391,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => listRef.current?.scrollToEnd({ animated: true }));
   }, []);
+
+  const lastCountRef = useRef(0);
+  useEffect(() => {
+    const count = messages.length;
+    const added = count - lastCountRef.current;
+    lastCountRef.current = count;
+    if (added > 0 && !atBottomRef.current) setUnseen((n) => n + added);
+  }, [messages.length]);
+
+  const jumpToLatest = useCallback(() => {
+    atBottomRef.current = true;
+    setUnseen(0);
+    setShowJump(false);
+    scrollToBottom();
+  }, [scrollToBottom]);
 
   const handleSend = useCallback(async () => {
     const body = text.trim();
@@ -551,6 +570,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       ) : (
+        <View style={{ flex: 1 }}>
         <FlatList
           ref={listRef}
           // "Show earlier messages" prepends a page; without this the list jumped
@@ -569,8 +589,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
           maxToRenderPerBatch={20}
           onScroll={(e) => {
             const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
-            atBottomRef.current =
-              contentSize.height - contentOffset.y - layoutMeasurement.height < 80;
+            const fromBottom = contentSize.height - contentOffset.y - layoutMeasurement.height;
+            atBottomRef.current = fromBottom < 80;
+            const farUp = fromBottom > 240;
+            setShowJump((was) => (was === farUp ? was : farUp));
+            if (fromBottom < 80) setUnseen((n) => (n === 0 ? n : 0));
           }}
           scrollEventThrottle={100}
           onContentSizeChange={() => {
@@ -606,6 +629,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             </View>
           }
         />
+        {showJump || unseen > 0 ? (
+          <Pressable
+            onPress={jumpToLatest}
+            hitSlop={8}
+            style={styles.jumpLatest}
+            accessibilityRole="button"
+            accessibilityLabel={t("communities.chatPanel.jumpToLatest", { defaultValue: "Jump to latest" })}
+          >
+            <Icon name="ArrowDown" size={14} color="#F4F4F5" />
+            {unseen > 0 ? (
+              <Text style={styles.jumpLatestText}>{unseen > 99 ? "99+" : unseen}</Text>
+            ) : null}
+          </Pressable>
+        ) : null}
+        </View>
       )}
 
       {!!replyTo && !editing && (
@@ -928,6 +966,23 @@ const styles = StyleSheet.create({
   pinnedName: { color: "#e4e4e7", fontWeight: "600" },
 
   showMore: { alignSelf: "center", paddingVertical: 8, paddingHorizontal: 14 },
+  jumpLatest: {
+    position: "absolute",
+    right: 12,
+    bottom: 10,
+    minWidth: 36,
+    height: 36,
+    paddingHorizontal: 10,
+    borderRadius: 18,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 4,
+    backgroundColor: "rgba(39,39,42,0.92)",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: "rgba(255,255,255,0.18)",
+  },
+  jumpLatestText: { color: "#F4F4F5", fontSize: 12, fontWeight: "700" },
   showMoreText: { color: "#A1A1AA", fontSize: 12, fontWeight: "600" },
 
   contextBar: {

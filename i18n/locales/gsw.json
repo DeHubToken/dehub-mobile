@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "Läde",
+    "features": "Features",
     "title": "Nochrichtä",
     "loadFailed": "Benachrichtigunge hend nöd glade werde chöne",
     "markAllRead": "Alli als gläse markiere",

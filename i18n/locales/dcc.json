@@ -1558,6 +1558,8 @@
     }
   },
   "notifications": {
+    "stores": "دکانیں",
+    "features": "فیچرز",
     "title": "اطلاع",
     "loadFailed": "نوٹیفکیشن لوڈ نہیں ہو سکے",
     "markAllRead": "سب پڑھا نشان لگاؤ",

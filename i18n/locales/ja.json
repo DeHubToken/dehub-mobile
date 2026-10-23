@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "ストア",
+    "features": "機能",
     "title": "通知",
     "loadFailed": "通知を読み込めませんでした",
     "markAllRead": "すべて既読にする",

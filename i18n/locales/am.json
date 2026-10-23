@@ -1557,6 +1557,8 @@
     }
   },
   "notifications": {
+    "stores": "መደብሮች",
+    "features": "ባህሪያት",
     "title": "ማሳወቂያዎች",
     "loadFailed": "ማሳወቂያዎችን መጫን አልተቻለም",
     "markAllRead": "ሁሉንም እንደተነበቡ ምልክት አድርግ",

@@ -333,6 +333,8 @@
     "postCount_other": "{{count}} publicaciones"
   },
   "settings": {
+    "shortsEnabledDesc": "Mostrar la pestaña de Shorts feed y los carruseles de Shorts en Inicio.",
+    "shortsEnabled": "Cortos",
     "postingChain": "Cadena de bloques de las publicaciones",
     "showOnline": "Mostrar cuando estoy conectado",
     "showOnlineDesc": "Las personas a las que envías mensajes ven un punto verde junto a tu nombre mientras usas DeHub",
@@ -1676,6 +1678,8 @@
     }
   },
   "notifications": {
+    "stores": "Tiendas",
+    "features": "Funciones",
     "title": "Notificaciones",
     "loadFailed": "No se pudieron cargar las notificaciones",
     "markAllRead": "Marcar todo leído",
@@ -3520,6 +3524,7 @@
       "years": "{{count}} a"
     },
     "chatPanel": {
+      "jumpToLatest": "Ir a lo más reciente",
       "anon": "Anónimo",
       "edited": "editado",
       "deleteTitle": "Eliminar mensaje",

@@ -296,6 +296,8 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "shortsEnabledDesc": "Show the Shorts feed tab and Shorts carousels on Home.",
+    "shortsEnabled": "Shorts",
     "postingChain": "Posting chain",
     "showOnline": "Show when I'm online",
     "showOnlineDesc": "People you message see a green dot next to your name while you're using DeHub",
@@ -1639,6 +1641,8 @@
     }
   },
   "notifications": {
+    "stores": "Stores",
+    "features": "Features",
     "title": "Notifications",
     "loadFailed": "Couldn't load notifications",
     "markAllRead": "Mark all read",
@@ -3483,6 +3487,7 @@
       "years": "{{count}}y"
     },
     "chatPanel": {
+      "jumpToLatest": "Jump to latest",
       "anon": "Anon",
       "edited": "edited",
       "deleteTitle": "Delete message",
