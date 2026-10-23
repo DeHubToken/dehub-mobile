@@ -93,6 +93,19 @@ export interface UnifiedFeedItem {
   thumbnailUrl?: string;
   videoUrl?: string;
   previewUrl?: string;
+  /**
+   * Seek-preview sprite sheet: `url` is a bucket key, `private` marks a paid
+   * post's sheet. Read it through libs/storyboard.
+   */
+  storyboard?: {
+    url: string;
+    spriteWidth: number;
+    spriteHeight: number;
+    spriteCount: number;
+    spriteDuration: number;
+    columns: number;
+    private?: boolean;
+  };
   
   // Type & Status
   postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short";

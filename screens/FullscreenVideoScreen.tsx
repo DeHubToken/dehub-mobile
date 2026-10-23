@@ -4,7 +4,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -52,6 +52,8 @@ import { isBrainrotSwipe } from "../libs/brainrotFeed";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { getIsLooping, useMediaLooping } from '../libs/video-preferences';
+import { toStoryboard } from '../libs/storyboard';
+import StoryboardPreview from '../components/VideoPlayerCore/StoryboardPreview';
 
 const DISMISS_THRESHOLD = 150;
 const CONTROLS_TIMEOUT = PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY;
@@ -78,7 +80,12 @@ const FullscreenVideoScreen = () => {
     isSignedIn = false,
     creatorUsername,
     downloadTitle,
+    storyboard: rawStoryboard,
   } = (route?.params as any) || {};
+  const storyboard = useMemo(() => toStoryboard(rawStoryboard), [rawStoryboard]);
+  /** The storyboard tile shows while a finger is dragging the timeline. */
+  const [isScrubbing, setIsScrubbing] = useState(false);
+  const [trackWidth, setTrackWidth] = useState(0);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
@@ -359,10 +366,14 @@ const FullscreenVideoScreen = () => {
     .activeOffsetX([-6, 6])
     .failOffsetY([-15, 15])
     .onStart((e) => {
+      runOnJS(setIsScrubbing)(true);
       runOnJS(handleSeek)(e.x);
     })
     .onUpdate((e) => {
       runOnJS(handleSeek)(e.x);
+    })
+    .onFinalize(() => {
+      runOnJS(setIsScrubbing)(false);
     });
 
   const animContainer = useAnimatedStyle(() => ({
@@ -417,7 +428,10 @@ const FullscreenVideoScreen = () => {
           <Animated.View style={styles.bottomSeek}>
             <Pressable style={styles.progressTrackPress}
               onPress={event => handleSeek(event.nativeEvent.locationX)}
-              onLayout={event => { progressTrackWidthRef.current = event.nativeEvent.layout.width; }}
+              onLayout={event => {
+                progressTrackWidthRef.current = event.nativeEvent.layout.width;
+                setTrackWidth(event.nativeEvent.layout.width);
+              }}
               accessibilityRole="adjustable" accessibilityLabel={t('player.videoProgress', { percent: Math.round(progressPercent) })}
               accessibilityHint={t('player.tapToSeek')}>
               <View style={styles.bottomLine}><View style={[styles.progressFill, { width: `${progressPercent}%` }]} /></View>
@@ -450,6 +464,16 @@ const FullscreenVideoScreen = () => {
           </View>
         </View>
       </View>
+
+      {/* A sibling of the strip rather than its child, so Android cannot clip it. */}
+      <StoryboardPreview
+        storyboard={storyboard}
+        fraction={videoDuration > 0 ? currentTime / videoDuration : 0}
+        duration={videoDuration}
+        trackWidth={trackWidth}
+        visible={isScrubbing}
+        bottom={VIDEO_CONTROL_STRIP_HEIGHT + 8}
+      />
 
       {isBuffering && (
         <View style={styles.bufferingOverlay} pointerEvents="none">
