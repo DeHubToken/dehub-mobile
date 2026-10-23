@@ -98,6 +98,8 @@ export interface UnifiedFeedItem {
   quotePolicy?: "public" | "followers" | "nobody";
   /** A quote whose quoted author took their post back out of it. */
   quoteRevoked?: boolean;
+  /** Who may reply; absent means anyone. */
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
   thumbnailUrl?: string;
   videoUrl?: string;
   /** Adaptive HLS master playlist, a bucket key like videoUrl. Only on public

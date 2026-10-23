@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kimler yanıtlayabilir",
+    "public": "Herkes",
+    "followers": "Takipçilerin",
+    "following": "Takip ettiklerin",
+    "mentioned": "Yalnızca bahsedilenler",
+    "noticeFollowers": "Yalnızca yazarın takipçileri yanıtlayabilir",
+    "noticeFollowing": "Yalnızca yazarın takip ettiği kişiler yanıtlayabilir",
+    "noticeMentioned": "Yalnızca gönderide bahsedilen kişiler yanıtlayabilir",
+    "refused": "Yazar bu gönderiyi kimlerin yanıtlayabileceğini sınırladı"
+  },
   "quotePolicy": {
     "label": "Kimler alıntılayabilir",
     "public": "Herkes",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kas gali atsakyti",
+    "public": "Bet kas",
+    "followers": "Jūsų sekėjai",
+    "following": "Žmonės, kuriuos sekate",
+    "mentioned": "Tik paminėti",
+    "noticeFollowers": "Atsakyti gali tik autoriaus sekėjai",
+    "noticeFollowing": "Atsakyti gali tik žmonės, kuriuos seka autorius",
+    "noticeMentioned": "Atsakyti gali tik įraše paminėti žmonės",
+    "refused": "Autorius apribojo, kas gali atsakyti į šį įrašą"
+  },
   "quotePolicy": {
     "label": "Kas gali cituoti",
     "public": "Bet kas",

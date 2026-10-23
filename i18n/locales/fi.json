@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kuka voi vastata",
+    "public": "Kuka tahansa",
+    "followers": "Seuraajasi",
+    "following": "Seuraamasi ihmiset",
+    "mentioned": "Vain mainitut",
+    "noticeFollowers": "Vain tekijän seuraajat voivat vastata",
+    "noticeFollowing": "Vain tekijän seuraamat ihmiset voivat vastata",
+    "noticeMentioned": "Vain julkaisussa mainitut voivat vastata",
+    "refused": "Tekijä on rajannut, kuka voi vastata tähän julkaisuun"
+  },
   "quotePolicy": {
     "label": "Kuka voi lainata",
     "public": "Kuka tahansa",

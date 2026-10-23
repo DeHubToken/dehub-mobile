@@ -1837,6 +1837,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
+          replyPolicy={(item as any).replyPolicy}
           forKids={!!(item as any).forKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />

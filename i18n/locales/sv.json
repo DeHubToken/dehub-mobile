@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Vem kan svara",
+    "public": "Alla",
+    "followers": "Dina följare",
+    "following": "Personer du följer",
+    "mentioned": "Bara nämnda",
+    "noticeFollowers": "Bara skaparens följare kan svara",
+    "noticeFollowing": "Bara personer som skaparen följer kan svara",
+    "noticeMentioned": "Bara personer som nämns i inlägget kan svara",
+    "refused": "Skaparen har begränsat vem som kan svara på det här inlägget"
+  },
   "quotePolicy": {
     "label": "Vem kan citera",
     "public": "Alla",

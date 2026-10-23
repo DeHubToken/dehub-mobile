@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Ko wai ka āhei ki te whakautu",
+    "public": "Te katoa",
+    "followers": "Ō kaiwhai",
+    "following": "Te hunga e whaia ana e koe",
+    "mentioned": "Te hunga i whakahuatia anake",
+    "noticeFollowers": "Ko ngā kaiwhai anake o te kaituhi ka āhei ki te whakautu",
+    "noticeFollowing": "Ko te hunga e whaia ana e te kaituhi anake ka āhei ki te whakautu",
+    "noticeMentioned": "Ko te hunga i whakahuatia i te pānui anake ka āhei ki te whakautu",
+    "refused": "Kua whakawhāitihia e te kaituhi te hunga ka āhei ki te whakautu"
+  },
   "quotePolicy": {
     "label": "Ko wai ka āhei ki te whakahua",
     "public": "Te katoa",

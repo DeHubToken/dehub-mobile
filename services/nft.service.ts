@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import i18n from "i18next";
 import { normalizeCategoryList } from "../libs/strings.util";
 import { streamInfoKeys } from "../config/constants";
 import type { PostReaction } from "../libs/reactions";
@@ -388,6 +389,10 @@ export interface PostCommentResponse { result?: any; [k: string]: any }
  */
 function assertCommentAccepted(response: any, fallback = 'Could not post comment'): void {
   if (response && typeof response === 'object' && response.result === false) {
+    // The author's reply controls refused this account
+    // (dehub-stream-backend src/reaction/reply-policy) — said in the reader's
+    // language rather than the server's English sentence.
+    if (response.code === 'REPLY_NOT_ALLOWED') throw new Error(i18n.t('replyPolicy.refused'));
     throw new Error(response.error || fallback);
   }
 }
@@ -1175,6 +1180,8 @@ export interface EditPostInput {
   spoilerText?: string;
   /** Who may quote it from now on. Quotes already made stay. */
   quotePolicy?: 'public' | 'followers' | 'nobody';
+  /** Who may reply from now on. Replies already made stay. */
+  replyPolicy?: 'public' | 'followers' | 'following' | 'mentioned';
   articleBody?: string;
   category?: string[];
   /** true turns replies off. Existing comments stay readable — only new ones

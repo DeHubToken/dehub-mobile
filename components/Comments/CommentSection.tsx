@@ -109,6 +109,8 @@ interface CommentSectionProps {
    *  the list alone — disabling hides no history, the server simply refuses new
    *  comments (requestCommentFunc), so this is presentation not enforcement. */
   commentsDisabled?: boolean;
+  /** Who may reply, when replies are on; said above the composer. */
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
   /**
    * The post is published for children, so its thread is a Kids Mode room:
    * only a Kids Mode session may write in it. Presentation only — the server
@@ -190,6 +192,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   highlightCommentId,
   contentType = "video",
   commentsDisabled = false,
+  replyPolicy,
   forKids = false,
   postCreator,
   onDirtyChange,
@@ -1697,6 +1700,27 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             >
               <Icon name="X" size={16} color="#6F7174" />
             </Pressable>
+          </View>
+        )}
+
+        {/* Who may reply, when the author narrowed it. Said up front, so a
+            refused reply is never the first anybody hears of it. */}
+        {!!replyPolicy && replyPolicy !== "public" && !isOwnThread && !commentsDisabled && !kidsOnlyThread && !accountBanned && (
+          <View
+            className="flex-row items-start"
+            style={{ gap: 8, paddingHorizontal: COMPOSER.gutter, paddingTop: 10 }}
+            testID="reply-policy-banner"
+          >
+            <View style={{ marginTop: 1 }}>
+              <Icon name="MessageCircle" size={14} color="#A1A1AA" />
+            </View>
+            <Text style={{ flex: 1, fontSize: 12, color: "#A1A1AA" }}>
+              {replyPolicy === "followers"
+                ? t("replyPolicy.noticeFollowers")
+                : replyPolicy === "following"
+                  ? t("replyPolicy.noticeFollowing")
+                  : t("replyPolicy.noticeMentioned")}
+            </Text>
           </View>
         )}
 

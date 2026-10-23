@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Ai có thể trả lời",
+    "public": "Mọi người",
+    "followers": "Người theo dõi bạn",
+    "following": "Người bạn theo dõi",
+    "mentioned": "Chỉ người được nhắc đến",
+    "noticeFollowers": "Chỉ người theo dõi tác giả mới có thể trả lời",
+    "noticeFollowing": "Chỉ người được tác giả theo dõi mới có thể trả lời",
+    "noticeMentioned": "Chỉ người được nhắc đến trong bài mới có thể trả lời",
+    "refused": "Tác giả đã giới hạn người có thể trả lời bài đăng này"
+  },
   "quotePolicy": {
     "label": "Ai có thể trích dẫn",
     "public": "Mọi người",

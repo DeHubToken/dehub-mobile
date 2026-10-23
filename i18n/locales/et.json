@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kes saab vastata",
+    "public": "Igaüks",
+    "followers": "Sinu jälgijad",
+    "following": "Inimesed, keda jälgid",
+    "mentioned": "Ainult mainitud",
+    "noticeFollowers": "Vastata saavad ainult autori jälgijad",
+    "noticeFollowing": "Vastata saavad ainult inimesed, keda autor jälgib",
+    "noticeMentioned": "Vastata saavad ainult postituses mainitud inimesed",
+    "refused": "Autor piiras, kes saab sellele postitusele vastata"
+  },
   "quotePolicy": {
     "label": "Kes saab tsiteerida",
     "public": "Igaüks",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Eenyuutu deebii kennuu danda'a",
+    "public": "Nama kamiyyuu",
+    "followers": "Hordoftoota kee",
+    "following": "Warra ati hordoftu",
+    "mentioned": "Warra maqaan isaanii eerame qofa",
+    "noticeFollowers": "Hordoftoota barreessaa qofatu deebii kennuu danda'a",
+    "noticeFollowing": "Warra barreessaan hordofu qofatu deebii kennuu danda'a",
+    "noticeMentioned": "Warra maxxansa keessatti maqaan isaanii eerame qofatu deebii kennuu danda'a",
+    "refused": "Barreessaan eenyuu deebii kennuu akka danda'u daangeesseera"
+  },
   "quotePolicy": {
     "label": "Eenyuutu caqasuu danda'a",
     "public": "Nama kamiyyuu",

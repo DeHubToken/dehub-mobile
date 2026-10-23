@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "啥人好回复",
+    "public": "随便啥人",
+    "followers": "侬个粉丝",
+    "following": "侬关注个人",
+    "mentioned": "只有被提到个人",
+    "noticeFollowers": "只有作者个粉丝好回复",
+    "noticeFollowing": "只有作者关注个人好回复",
+    "noticeMentioned": "只有帖子里提到个人好回复",
+    "refused": "作者限制了啥人好回复搿条帖子"
+  },
   "quotePolicy": {
     "label": "啥人好引用",
     "public": "随便啥人",

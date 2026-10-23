@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Hvem kan svare",
+    "public": "Alle",
+    "followers": "Dine følgere",
+    "following": "Folk du følger",
+    "mentioned": "Kun nævnte",
+    "noticeFollowers": "Kun forfatterens følgere kan svare",
+    "noticeFollowing": "Kun folk, forfatteren følger, kan svare",
+    "noticeMentioned": "Kun folk, der nævnes i opslaget, kan svare",
+    "refused": "Forfatteren har begrænset, hvem der kan svare på dette opslag"
+  },
   "quotePolicy": {
     "label": "Hvem kan citere",
     "public": "Alle",

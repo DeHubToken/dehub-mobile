@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kto môže odpovedať",
+    "public": "Ktokoľvek",
+    "followers": "Vaši sledovatelia",
+    "following": "Ľudia, ktorých sledujete",
+    "mentioned": "Iba spomenutí",
+    "noticeFollowers": "Odpovedať môžu iba sledovatelia autora",
+    "noticeFollowing": "Odpovedať môžu iba ľudia, ktorých autor sleduje",
+    "noticeMentioned": "Odpovedať môžu iba ľudia spomenutí v príspevku",
+    "refused": "Autor obmedzil, kto môže odpovedať na tento príspevok"
+  },
   "quotePolicy": {
     "label": "Kto môže citovať",
     "public": "Ktokoľvek",
