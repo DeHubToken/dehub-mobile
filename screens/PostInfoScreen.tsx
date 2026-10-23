@@ -42,6 +42,14 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DhbCoin } from "../components/common/DhbCoin";
 import TranscriptSection from "../components/Post/TranscriptSection";
+import { Image } from "expo-image";
+import { getTokenHolders } from "../libs/token-holders";
+
+const MEDALS: Record<number, number> = {
+  1: require("../assets/badges/1-medal.png"),
+  2: require("../assets/badges/2-medal.png"),
+  3: require("../assets/badges/3-medal.png"),
+};
 
 const CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 const EXPLORER_NAMES: Record<number, string> = { 8453: "BaseScan", 56: "BscScan" };
@@ -129,6 +137,14 @@ export default function PostInfoScreen() {
 
   const { data: listings = [] } = useFractionListings(isMinted ? tokenId : undefined);
   const { data: myBalance } = useFractionBalance(isMinted ? tokenId : undefined, chainId);
+  // Read from the chain, so cached for five minutes like web.
+  const { data: holders = [], isLoading: loadingHolders } = useQuery({
+    queryKey: ["token-holders", tokenId, chainId],
+    enabled: isMinted && tokenId != null,
+    staleTime: 5 * 60_000,
+    retry: 1,
+    queryFn: () => getTokenHolders(tokenId!, chainId),
+  });
 
   const viewer = (user?.address || user?.walletAddress || "").toLowerCase();
   const minter = String(post?.minter || "");
@@ -382,6 +398,48 @@ export default function PostInfoScreen() {
             >
               <Text style={styles.buttonText}>{t("fractions.makeAnOffer")}</Text>
             </Pressable>
+
+            <View style={[styles.rowBetween, { marginTop: 12 }]}>
+              <Text style={styles.label}>{t("postInfo.distribution")}</Text>
+              <Text style={styles.value}>
+                {loadingHolders ? t("postInfo.loading") : t("postInfo.owner", { count: Math.max(1, holders.length) })}
+              </Text>
+            </View>
+            {loadingHolders ? (
+              <ActivityIndicator color="rgba(255,255,255,0.6)" style={{ paddingVertical: 8 }} />
+            ) : (
+              (holders.length > 0 ? holders : [{ address: minter.toLowerCase(), balance: TOTAL_FRACTIONS, percentage: 100 }])
+                .filter((h) => !!h.address)
+                .map((h, i) => (
+                  <View key={h.address} style={styles.holderRow}>
+                    {MEDALS[i + 1] && holders.length > 0 ? (
+                      <Image source={MEDALS[i + 1]} style={styles.medal} contentFit="contain" />
+                    ) : (
+                      <View style={styles.rank}>
+                        <Text style={styles.rankText}>{i + 1}</Text>
+                      </View>
+                    )}
+                    <View style={{ flex: 1, minWidth: 0 }}>
+                      <Text style={[styles.value, styles.holderAddress]} numberOfLines={1}>{shortAddress(h.address)}</Text>
+                      <Text style={styles.muted}>
+                        {h.balance}/{TOTAL_FRACTIONS}
+                        {t("copy.854cbbb4f34f", { defaultValue: " fractions (" })}
+                        {h.percentage}%)
+                      </Text>
+                    </View>
+                    <Pressable
+                      hitSlop={8}
+                      onPress={() => {
+                        copyToClipboard(h.address);
+                        toastSuccess(t("postInfo.copied"));
+                      }}
+                      accessibilityLabel={t("copy.7614c65db3bf", { defaultValue: "Copy wallet address" })}
+                    >
+                      <Icon name="Copy" size={16} color="rgba(255,255,255,0.6)" />
+                    </Pressable>
+                  </View>
+                ))
+            )}
           </Section>
         )}
 
@@ -495,6 +553,11 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 10,
   },
+  holderRow: { flexDirection: "row", alignItems: "center", gap: 12, marginTop: 10 },
+  medal: { width: 36, height: 36 },
+  rank: { width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.1)", alignItems: "center", justifyContent: "center" },
+  rankText: { color: "#fff", fontSize: 13, fontWeight: "700" },
+  holderAddress: { fontFamily: "monospace", fontSize: 13 },
   sectionHead: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   sectionTitle: { color: "rgba(255,255,255,0.6)", fontSize: 13, fontWeight: "600" },
   rowBetween: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
