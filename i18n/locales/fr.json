@@ -11497,5 +11497,15 @@
     "youAreBanned": "Vous ne pouvez pas discuter dans les streams de ce créateur",
     "youAreTimedOut": "Vous êtes en temps d'attente pour un moment",
     "title": "Modérer"
+  },
+  "loginStack": {
+    "tip": "Pourboire en DHB",
+    "headlineTop": "Tu posséderas tout",
+    "headlineAccent": "et tu seras heureux.",
+    "orContinueWith": "ou continuer avec",
+    "phone": "Téléphone",
+    "fingerprint": "Empreinte",
+    "exploreFirst": "Explorer d'abord",
+    "codeNote": "On t'envoie un code par e-mail, sans mot de passe."
   }
 }

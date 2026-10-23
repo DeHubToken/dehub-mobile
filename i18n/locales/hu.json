@@ -9689,5 +9689,15 @@
     "youAreBanned": "Nem beszélhetsz ezen a kreatőr streamjein.",
     "youAreTimedOut": "Most ideiglenesen időzítés alatt vagy.",
     "title": "Moderál"
+  },
+  "loginStack": {
+    "tip": "DHB borravaló",
+    "headlineTop": "Mindened meglesz",
+    "headlineAccent": "és boldog leszel.",
+    "orContinueWith": "vagy folytasd ezzel",
+    "phone": "Telefon",
+    "fingerprint": "Ujjlenyomat",
+    "exploreFirst": "Előbb nézz körül",
+    "codeNote": "E-mailben küldünk egy kódot, jelszó nélkül."
   }
 }

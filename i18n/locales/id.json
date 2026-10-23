@@ -9689,5 +9689,15 @@
     "youAreBanned": "Anda tidak bisa berobrol di stream kreator ini",
     "youAreTimedOut": "Anda sedang waktu habis sejenak",
     "title": "Moderasi"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Kamu akan memiliki segalanya",
+    "headlineAccent": "dan bahagia.",
+    "orContinueWith": "atau lanjut dengan",
+    "phone": "Telepon",
+    "fingerprint": "Sidik jari",
+    "exploreFirst": "Jelajahi dulu",
+    "codeNote": "Kami kirim kode lewat email, tanpa kata sandi."
   }
 }

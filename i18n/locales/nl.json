@@ -11747,5 +11747,15 @@
     "youAreBanned": "Je kunt niet chatten in de streams van deze creator.",
     "youAreTimedOut": "Je bent even tijdelijk uitgeschakeld.",
     "title": "Modereer"
+  },
+  "loginStack": {
+    "tip": "Fooi in DHB",
+    "headlineTop": "Je zult alles bezitten",
+    "headlineAccent": "en gelukkig zijn.",
+    "orContinueWith": "of ga verder met",
+    "phone": "Telefoon",
+    "fingerprint": "Vingerafdruk",
+    "exploreFirst": "Eerst rondkijken",
+    "codeNote": "We mailen je een code, geen wachtwoord nodig."
   }
 }

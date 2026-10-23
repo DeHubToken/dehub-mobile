@@ -9700,5 +9700,15 @@
     "youAreBanned": "Nu puteți chatea în difuziunile acestui creator",
     "youAreTimedOut": "Ați fost pus în pauză pentru un moment",
     "title": "Moderează"
+  },
+  "loginStack": {
+    "tip": "Bacșiș în DHB",
+    "headlineTop": "Vei deține totul",
+    "headlineAccent": "și vei fi fericit.",
+    "orContinueWith": "sau continuă cu",
+    "phone": "Telefon",
+    "fingerprint": "Amprentă",
+    "exploreFirst": "Explorează mai întâi",
+    "codeNote": "Îți trimitem un cod pe e-mail, fără parolă."
   }
 }

@@ -9681,5 +9681,15 @@
     "youAreBanned": "Du kan ikke chatte i denne skaperens strømmer.",
     "youAreTimedOut": "Du er tidsutløpt i et øyeblikk.",
     "title": "Moderer"
+  },
+  "loginStack": {
+    "tip": "Gi DHB-tips",
+    "headlineTop": "Du kommer til å eie alt",
+    "headlineAccent": "og være lykkelig.",
+    "orContinueWith": "eller fortsett med",
+    "phone": "Telefon",
+    "fingerprint": "Fingeravtrykk",
+    "exploreFirst": "Utforsk først",
+    "codeNote": "Vi sender deg en kode på e-post, uten passord."
   }
 }

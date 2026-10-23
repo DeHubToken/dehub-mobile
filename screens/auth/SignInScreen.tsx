@@ -17,6 +17,7 @@ import FullScreenLoader from "../../components/FullScreenLoader";
 import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
 import EmailCodeEntry from "../../components/auth/EmailCodeEntry";
 import ImportWallet from "../../components/auth/ImportWallet";
+import LoginShortsStack from "../../components/auth/LoginShortsStack";
 import WalletSetupScreen, {
   type WalletSetupRequest,
   type CreateProtection,
@@ -796,16 +797,35 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           contentContainerStyle={{ flexGrow: 1 }}
           className="px-6"
         >
-          {/* Header */}
-          <View style={{ alignItems: "center", marginTop: 48, marginBottom: 32 }}>
+          {/* Header: logo left, "Explore first" right (the old bottom
+              "Explore without signing in" button, moved up). */}
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 12, marginBottom: 12, minHeight: 40 }}>
             <Image
               source={require("../../assets/web-icons/dehub-logo-center.png")}
-              style={{ width: 72, height: 72, marginBottom: 16 }}
+              style={{ width: 36, height: 36, tintColor: "#FFFFFF" }}
               resizeMode="contain"
               accessibilityIgnoresInvertColors
+              accessibilityLabel={t("auth.welcomeToDehub")}
             />
-            <Text style={authText.title}>{t("auth.welcomeToDehub")}</Text>
+            {!needsUsername && (
+              <AuthButton
+                variant="glass"
+                size="compact"
+                label={t("loginStack.exploreFirst", "Explore first")}
+                onPress={handleSkipOrClose}
+                disabled={isLoading}
+                accessibilityLabel={
+                  isFirstTimeUser ? _copy("copy.488017ad5c75", { defaultValue: "Explore DeHub without signing in" }) : _copy("copy.61d2a857dd18", { defaultValue: "Continue exploring DeHub" })
+                }
+              />
+            )}
           </View>
+
+          {authStep === "main" ? (
+            <View style={{ marginBottom: 24 }}>
+              <LoginShortsStack />
+            </View>
+          ) : null}
 
           {authStep === "main" && isSignupBlocked ? (
             <AuthErrorNotice message={t("auth.walletSignupBlocked")} style={{ marginBottom: 16 }} />
@@ -829,6 +849,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               busyProvider={isLocalLoading ? currentProvider : isWalletLoading ? "wallet" : undefined}
               disabled={isLoading}
               onFieldExpand={scrollIntoView}
+              layout="stack"
             />
           ) : authStep === "email-code" ? (
             <EmailCodeEntry
@@ -851,7 +872,11 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           )}
 
           {/* Import Wallet */}
-          <ImportWallet disabled={isLoading} />
+          {authStep === "main" ? (
+            <View style={{ marginTop: 20 }}>
+              <ImportWallet variant="links" disabled={isLoading} onConnectWallet={handleWalletConnect} />
+            </View>
+          ) : null}
 
           <WalletSetupScreen
             visible={!!walletSetupRequest}
@@ -895,6 +920,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             <Text style={[authText.caption, { textAlign: "center" }]}>
               {/* The links travel with the sentence so languages that reorder
                   the terms and the policy still read correctly. */}
+              {t("loginStack.codeNote", "We email you a code, no password needed.")}{" "}
               <Trans
                 i18nKey="auth.legalLine"
                 components={{
@@ -920,17 +946,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Spacer */}
           <View className="flex-1" />
 
-          {/* Explore without signing in */}
-          <AuthButton
-            variant="ghost"
-            label={isFirstTimeUser ? _copy("copy.d099aa79934a", { defaultValue: "Explore without signing in" }) : _copy("copy.ba12ecefbd57", { defaultValue: "Continue exploring" })}
-            onPress={handleSkipOrClose}
-            disabled={isLoading || needsUsername}
-            accessibilityLabel={
-              isFirstTimeUser ? _copy("copy.488017ad5c75", { defaultValue: "Explore DeHub without signing in" }) : _copy("copy.61d2a857dd18", { defaultValue: "Continue exploring DeHub" })
-            }
-            style={{ marginTop: 24, marginBottom: 32 }}
-          />
+          <View style={{ height: 24 }} />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
