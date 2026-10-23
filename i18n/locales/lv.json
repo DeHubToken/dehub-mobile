@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profila lauki",
+    "description": "Līdz četrām papildu rindām tavā profilā, piemēram, vietne vai tavi vietniekvārdi.",
+    "label": "Nosaukums",
+    "content": "Saturs",
+    "save": "Saglabāt laukus",
+    "saved": "Profila lauki saglabāti",
+    "failed": "Netika saglabāts. Mēģini vēlreiz.",
+    "verified": "Apstiprināta saite",
+    "verifyHint": "Lai apstiprinātu saiti, pievieno šo tajā lapā un saglabā vēlreiz: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrēt paziņojumus no",
     "description": "Izvēlies, kas notiek, kad kāds ārpus tava loka ar tevi mijiedarbojas. Filtrētie paziņojumi gaida sadaļā Filtrētie, bez nozīmītes un bez push paziņojuma.",

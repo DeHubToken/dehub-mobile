@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Pole profilu",
+    "description": "Až čtyři řádky navíc na vašem profilu, třeba web nebo vaše zájmena.",
+    "label": "Popisek",
+    "content": "Obsah",
+    "save": "Uložit pole",
+    "saved": "Pole profilu uložena",
+    "failed": "Neuložilo se. Zkuste to znovu.",
+    "verified": "Ověřený odkaz",
+    "verifyHint": "Chcete-li odkaz ověřit, přidejte toto na danou stránku a uložte znovu: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrovat oznámení od",
     "description": "Vyberte, co se stane, když s vámi bude komunikovat někdo mimo váš okruh. Filtrovaná oznámení čekají ve složce Filtrováno, bez odznaku a bez push oznámení.",

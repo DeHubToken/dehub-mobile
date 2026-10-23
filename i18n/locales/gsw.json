@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profilfälder",
+    "description": "Bis zu vier zuesätzlichi Ziile i dim Profil, wie e Websiite oder dini Pronome.",
+    "label": "Bezeichnig",
+    "content": "Inhalt",
+    "save": "Fälder speichere",
+    "saved": "Profilfälder gspeicheret",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
+    "verified": "Bestätigte Link",
+    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Benachrichtigunge filtere vo",
     "description": "Wähl, was passiert, wenn öpper usserhalb vo dim Umfeld mit dir interagiert. Gfilteredi Benachrichtigunge warted under „Gfilteret“, ohni Zähler und ohni Push.",

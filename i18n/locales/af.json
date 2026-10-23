@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profielvelde",
+    "description": "Tot vier ekstra reëls op jou profiel, soos 'n webwerf of jou voornaamwoorde.",
+    "label": "Etiket",
+    "content": "Inhoud",
+    "save": "Stoor velde",
+    "saved": "Profielvelde gestoor",
+    "failed": "Dit is nie gestoor nie. Probeer weer.",
+    "verified": "Geverifieerde skakel",
+    "verifyHint": "Om 'n skakel te verifieer, voeg dit by daardie bladsy en stoor weer: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filter kennisgewings van",
     "description": "Kies wat gebeur wanneer iemand buite jou kring met jou in wisselwerking tree. Gefiltreerde kennisgewings wag onder Gefiltreer, sonder 'n kenteken of 'n stootkennisgewing.",

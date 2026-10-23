@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Champs du profil",
+    "description": "Jusqu'à quatre lignes en plus sur votre profil, comme un site web ou vos pronoms.",
+    "label": "Libellé",
+    "content": "Contenu",
+    "save": "Enregistrer les champs",
+    "saved": "Champs du profil enregistrés",
+    "failed": "Ça n'a pas été enregistré. Réessayez.",
+    "verified": "Lien vérifié",
+    "verifyHint": "Pour vérifier un lien, ajoutez ceci à cette page, puis enregistrez à nouveau : {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtrer les notifications de",
     "description": "Choisissez ce qui se passe quand quelqu'un hors de votre cercle interagit avec vous. Les notifications filtrées attendent dans Filtrées, sans badge ni notification push.",

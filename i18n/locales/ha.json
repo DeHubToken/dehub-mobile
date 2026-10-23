@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Filayen bayanan martaba",
+    "description": "Har zuwa ƙarin layi huɗu a bayanan martabarka, kamar shafin yanar gizo ko karin magananka.",
+    "label": "Lakabi",
+    "content": "Abun ciki",
+    "save": "Ajiye filayen",
+    "saved": "An ajiye filayen bayanan martaba",
+    "failed": "Ba a ajiye ba. Sake gwadawa.",
+    "verified": "Hanyar haɗi da aka tabbatar",
+    "verifyHint": "Don tabbatar da hanyar haɗi, ƙara wannan a wannan shafin, sannan ka sake ajiyewa: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Tace sanarwa daga",
     "description": "Zaɓi abin da zai faru idan wani a wajen da'irarka ya yi hulɗa da kai. Sanarwar da aka tace tana jira a ƙarƙashin \"An tace\", ba alama ba turawa.",

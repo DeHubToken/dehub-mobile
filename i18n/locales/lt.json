@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profilio laukai",
+    "description": "Iki keturių papildomų eilučių jūsų profilyje, pvz., svetainė ar jūsų įvardžiai.",
+    "label": "Etiketė",
+    "content": "Turinys",
+    "save": "Išsaugoti laukus",
+    "saved": "Profilio laukai išsaugoti",
+    "failed": "Neišsaugota. Bandykite dar kartą.",
+    "verified": "Patvirtinta nuoroda",
+    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filtruoti pranešimus iš",
     "description": "Pasirinkite, kas nutinka, kai su jumis bendrauja kas nors ne iš jūsų rato. Išfiltruoti pranešimai laukia skiltyje „Išfiltruoti“ be ženklelio ir be iššokančio pranešimo.",

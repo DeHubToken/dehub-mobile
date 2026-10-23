@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profile fields",
+    "description": "Up to four extra lines on your profile, such as a website or your pronouns.",
+    "label": "Label",
+    "content": "Content",
+    "save": "Save fields",
+    "saved": "Profile fields saved",
+    "failed": "That didn't save. Try again.",
+    "verified": "Verified link",
+    "verifyHint": "To verify a link, add this to that page, then save again: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Filter notifications from",
     "description": "Choose what happens when someone outside your circle interacts with you. Filtered notifications wait under Filtered, with no badge and no push.",

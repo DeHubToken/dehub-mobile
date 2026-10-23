@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "个人资料字段",
+    "description": "在个人资料中最多添加四行，比如网站或你的代词。",
+    "label": "标签",
+    "content": "内容",
+    "save": "保存字段",
+    "saved": "个人资料字段已保存",
+    "failed": "保存失败，请重试。",
+    "verified": "已验证的链接",
+    "verifyHint": "要验证链接，请把这段代码添加到该页面，然后再保存一次：{{snippet}}"
+  },
   "notificationFilters": {
     "title": "过滤以下来源的通知",
     "description": "选择圈子以外的人与你互动时会怎样。被过滤的通知会留在“已过滤”中，不显示角标，也不推送。",

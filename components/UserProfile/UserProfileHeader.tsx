@@ -30,6 +30,7 @@ import { openLiveTarget } from "../../libs/openLiveTarget";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import type { Community } from "../../types/community";
 import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
+import ProfileFieldsList, { type ProfileField } from "../Profile/ProfileFieldsList";
 
 const GLASS_GRADIENT: [string, string, string] = [
   "rgba(255,255,255,0.20)",
@@ -62,6 +63,8 @@ export interface UserProfileHeaderProps {
   /** ISO 639-1 the backend detected for the bio, so a bio already in the
    *  reader's language costs no request at all. */
   bioLanguage?: string | null;
+  /** Label/value lines under the bio — see ProfileFieldsList. */
+  profileFields?: ProfileField[] | null;
   isFollowing?: boolean;
   isFollowRequestPending?: boolean;
   followLoading?: boolean;
@@ -111,6 +114,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   isPrivate,
   bio,
   bioLanguage,
+  profileFields,
   isFollowing = false,
   isFollowRequestPending = false,
   followLoading = false,
@@ -409,6 +413,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
               )}
             </View>
           )}
+
+          <ProfileFieldsList fields={profileFields} />
 
           {!!joinedDate && (
             <Text className="text-zinc-400 text-sm mt-3">{t("profile.joined")} {joinedDate}</Text>

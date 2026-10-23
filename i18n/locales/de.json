@@ -1,4 +1,15 @@
 {
+  "profileFields": {
+    "title": "Profilfelder",
+    "description": "Bis zu vier zusätzliche Zeilen in deinem Profil, etwa eine Website oder deine Pronomen.",
+    "label": "Bezeichnung",
+    "content": "Inhalt",
+    "save": "Felder speichern",
+    "saved": "Profilfelder gespeichert",
+    "failed": "Das wurde nicht gespeichert. Versuch es noch einmal.",
+    "verified": "Bestätigter Link",
+    "verifyHint": "Um einen Link zu bestätigen, füge das auf der Seite ein und speichere erneut: {{snippet}}"
+  },
   "notificationFilters": {
     "title": "Benachrichtigungen filtern von",
     "description": "Wähle, was passiert, wenn jemand außerhalb deines Umfelds mit dir interagiert. Gefilterte Benachrichtigungen warten unter „Gefiltert“, ohne Zähler und ohne Push.",
