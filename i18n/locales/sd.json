@@ -6124,7 +6124,11 @@
     "noTrendingThisWeek": "هن هفتي ڪو به رجحان مواد نه آهي",
     "closeFilterOptions": "فلٽر جا اختيار بند ڪريو",
     "openFilterOptions": "فلٽر جا اختيار کوليو",
-    "fillQuery": "ڳولا ۾ \"{{query}}\" وجهو"
+    "fillQuery": "ڳولا ۾ \"{{query}}\" وجهو",
+    "clearHistory": "تاريخ صاف ڪريو",
+    "clearHistoryTitle": "ڳولا جي تاريخ صاف ڪجي؟",
+    "clearHistoryBody": "اهو توهان جون سڀ تازيون ڳولھيون هٽائي ڇڏيندو.",
+    "removeFromHistory": "\"{{query}}\" کي تاريخ مان هٽايو"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رهو",

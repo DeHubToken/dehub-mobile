@@ -6125,7 +6125,11 @@
     "noTrendingThisWeek": "Enweghị ọdịnaya na-ewu ewu n'izu a",
     "closeFilterOptions": "Mechie nhọrọ nzacha",
     "openFilterOptions": "Mepee nhọrọ nzacha",
-    "fillQuery": "Tinye \"{{query}}\" n'igbe ọchụchọ"
+    "fillQuery": "Tinye \"{{query}}\" n'igbe ọchụchọ",
+    "clearHistory": "Hichapụ akụkọ",
+    "clearHistoryTitle": "Hichapụ akụkọ nchọgharị?",
+    "clearHistoryBody": "Nke a ga-ewepụ nchọgharị gị niile na-adịbeghị anya.",
+    "removeFromHistory": "Wepụ \"{{query}}\" na akụkọ"
   },
   "notifPrompt": {
     "stayInLoop": "Nọrọ na-amata",

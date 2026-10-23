@@ -6114,7 +6114,11 @@
     "noTrendingThisWeek": "پدې اونۍ کې هیڅ خورا مشهور مینځپانګه نشته",
     "closeFilterOptions": "د فلټر اختیارونه بند کړئ",
     "openFilterOptions": "د فلټر اختیارونه خلاص کړئ",
-    "fillQuery": "لټون کې \"{{query}}\" واچوئ"
+    "fillQuery": "لټون کې \"{{query}}\" واچوئ",
+    "clearHistory": "تاریخچه پاکه کړه",
+    "clearHistoryTitle": "د لټون تاریخچه پاکه شي؟",
+    "clearHistoryBody": "دا ستاسو ټول وروستي لټونونه لرې کوي.",
+    "removeFromHistory": "\"{{query}}\" له تاریخچې لرې کړه"
   },
   "notifPrompt": {
     "stayInLoop": "باخبره اوسئ",

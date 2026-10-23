@@ -257,6 +257,17 @@ export async function addToHistory(term: string, address?: string): Promise<void
   }
 }
 
+export async function removeFromHistory(term: string, address?: string): Promise<string[]> {
+  try {
+    const next = (await getHistory(address)).filter((x) => x !== term);
+    await AsyncStorage.setItem(historyKey(address), JSON.stringify(next));
+    return next;
+  } catch (e) {
+    console.warn('[search.service] removeFromHistory error', e);
+    return getHistory(address);
+  }
+}
+
 export async function clearHistory(address?: string): Promise<void> {
   try {
     await AsyncStorage.removeItem(historyKey(address));

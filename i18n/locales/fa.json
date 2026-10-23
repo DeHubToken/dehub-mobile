@@ -6172,7 +6172,11 @@
     "noTrendingThisWeek": "محتوای داغی این هفته وجود ندارد",
     "closeFilterOptions": "بستن گزینه‌های فیلتر",
     "openFilterOptions": "باز کردن گزینه‌های فیلتر",
-    "fillQuery": "قرار دادن \"{{query}}\" در جستجو"
+    "fillQuery": "قرار دادن \"{{query}}\" در جستجو",
+    "clearHistory": "پاک کردن تاریخچه",
+    "clearHistoryTitle": "تاریخچه جستجو پاک شود؟",
+    "clearHistoryBody": "این کار همه جستجوهای اخیر شما را حذف می‌کند.",
+    "removeFromHistory": "حذف «{{query}}» از تاریخچه"
   },
   "notifPrompt": {
     "stayInLoop": "در جریان باشید",

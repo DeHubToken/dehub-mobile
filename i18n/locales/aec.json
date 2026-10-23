@@ -6101,7 +6101,11 @@
     "noTrendingThisWeek": "مفيش حاجة ماشية الأسبوع ده",
     "closeFilterOptions": "اقفل خيارات الفلتر",
     "openFilterOptions": "افتح خيارات الفلتر",
-    "fillQuery": "حط \"{{query}}\" في خانة الدوّير"
+    "fillQuery": "حط \"{{query}}\" في خانة الدوّير",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",

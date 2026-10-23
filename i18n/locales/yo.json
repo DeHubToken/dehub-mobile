@@ -6126,7 +6126,11 @@
     "noTrendingThisWeek": "Ko si akoonu gbajumọ ni ọsẹ yii",
     "closeFilterOptions": "Pa awọn aṣayan àlẹmọ",
     "openFilterOptions": "Ṣii awọn aṣayan àlẹmọ",
-    "fillQuery": "Fi \"{{query}}\" sínú àpótí ìwádìí"
+    "fillQuery": "Fi \"{{query}}\" sínú àpótí ìwádìí",
+    "clearHistory": "Pa ìtàn rẹ́",
+    "clearHistoryTitle": "Ṣé kí a pa ìtàn ìwádìí rẹ́?",
+    "clearHistoryBody": "Èyí yóò yọ gbogbo ìwádìí rẹ àìpẹ́ kúrò.",
+    "removeFromHistory": "Yọ \"{{query}}\" kúrò nínú ìtàn"
   },
   "notifPrompt": {
     "stayInLoop": "Máa gbọ́ ìròyìn",

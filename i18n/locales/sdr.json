@@ -6133,6 +6133,10 @@
     "closeFilterOptions": "فلٹر کے اختیارات بند کریں",
     "openFilterOptions": "فلٹر کے اختیارات کھولیں",
     "fillQuery": "کھوج میں \"{{query}}\" بھرو",
+    "clearHistory": "ہسٹری صاف کریں",
+    "clearHistoryTitle": "تلاش کی ہسٹری صاف کریں؟",
+    "clearHistoryBody": "اس سے آپ کی تمام حالیہ تلاشیں ہٹ جائیں گی۔",
+    "removeFromHistory": "\"{{query}}\" کو ہسٹری سے ہٹائیں",
     "trendingThisWeek": "باوترین ئەم هەفتەیە",
     "tryDifferentKeywords": "هەوڵ بدە وشەی جیاواز بەکاربهێنیت یان ڕێنووسی خۆت بپشکنە",
     "noTrendingThisWeek": "هیچ ناوەڕۆکی باو ئەم هەفتەیە نییە"

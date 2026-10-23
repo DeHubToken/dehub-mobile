@@ -6402,7 +6402,11 @@
     "noTrendingThisWeek": "Tiada kandungan trend minggu ini",
     "closeFilterOptions": "Tutup pilihan penapis",
     "openFilterOptions": "Buka pilihan penapis",
-    "fillQuery": "Isi carian dengan \"{{query}}\""
+    "fillQuery": "Isi carian dengan \"{{query}}\"",
+    "clearHistory": "Kosongkan sejarah",
+    "clearHistoryTitle": "Kosongkan sejarah carian?",
+    "clearHistoryBody": "Ini akan membuang semua carian terkini anda.",
+    "removeFromHistory": "Buang \"{{query}}\" daripada sejarah"
   },
   "notifPrompt": {
     "stayInLoop": "Kekal dimaklumkan",

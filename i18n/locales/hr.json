@@ -6145,7 +6145,11 @@
     "noTrendingThisWeek": "Nema popularnog sadržaja ovaj tjedan",
     "closeFilterOptions": "Zatvori opcije filtriranja",
     "openFilterOptions": "Otvori opcije filtriranja",
-    "fillQuery": "Upiši \"{{query}}\" u pretragu"
+    "fillQuery": "Upiši \"{{query}}\" u pretragu",
+    "clearHistory": "Očisti povijest",
+    "clearHistoryTitle": "Očistiti povijest pretraživanja?",
+    "clearHistoryBody": "Ovo uklanja sva vaša nedavna pretraživanja.",
+    "removeFromHistory": "Ukloni „{{query}}” iz povijesti"
   },
   "notifPrompt": {
     "stayInLoop": "Ostanite u toku",

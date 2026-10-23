@@ -6145,7 +6145,11 @@
     "noTrendingThisWeek": "Šią savaitę populiaraus turinio nerasta",
     "closeFilterOptions": "Uždaryti filtro parinktis",
     "openFilterOptions": "Atidaryti filtro parinktis",
-    "fillQuery": "Įrašyti \"{{query}}\" į paiešką"
+    "fillQuery": "Įrašyti \"{{query}}\" į paiešką",
+    "clearHistory": "Išvalyti istoriją",
+    "clearHistoryTitle": "Išvalyti paieškos istoriją?",
+    "clearHistoryBody": "Bus pašalintos visos jūsų naujausios paieškos.",
+    "removeFromHistory": "Pašalinti „{{query}}“ iš istorijos"
   },
   "notifPrompt": {
     "stayInLoop": "Būkite informuoti",

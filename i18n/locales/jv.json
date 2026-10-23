@@ -6126,7 +6126,11 @@
     "noTrendingThisWeek": "Ora ana konten populer minggu iki",
     "closeFilterOptions": "Tutup pilihan filter",
     "openFilterOptions": "Buka pilihan filter",
-    "fillQuery": "Isi panelusuran nganggo \"{{query}}\""
+    "fillQuery": "Isi panelusuran nganggo \"{{query}}\"",
+    "clearHistory": "Busak riwayat",
+    "clearHistoryTitle": "Busak riwayat panggolekan?",
+    "clearHistoryBody": "Iki bakal mbusak kabeh panggolekan paling anyar sampeyan.",
+    "removeFromHistory": "Busak \"{{query}}\" saka riwayat"
   },
   "notifPrompt": {
     "stayInLoop": "Tetep ngerti kabar",

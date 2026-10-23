@@ -6173,7 +6173,11 @@
     "noTrendingThisWeek": "Diese Woche keine aktuellen Inhalte",
     "closeFilterOptions": "Filteroptionen schliessen",
     "openFilterOptions": "Filteroptionen öffnen",
-    "fillQuery": "\"{{query}}\" i d Suechi übernäh"
+    "fillQuery": "\"{{query}}\" i d Suechi übernäh",
+    "clearHistory": "Verlauf lösche",
+    "clearHistoryTitle": "Suechverlauf lösche?",
+    "clearHistoryBody": "Das entfernt alli dini letschte Suechene.",
+    "removeFromHistory": "„{{query}}“ us em Verlauf entferne"
   },
   "notifPrompt": {
     "stayInLoop": "Bliib uf em Laufende",

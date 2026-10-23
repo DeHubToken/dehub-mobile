@@ -6577,7 +6577,11 @@
     "noTrendingThisWeek": "No trending content this week",
     "closeFilterOptions": "Close filter options",
     "openFilterOptions": "Open filter options",
-    "fillQuery": "Fill search with \"{{query}}\""
+    "fillQuery": "Fill search with \"{{query}}\"",
+    "clearHistory": "Clear history",
+    "clearHistoryTitle": "Clear search history?",
+    "clearHistoryBody": "This removes all your recent searches.",
+    "removeFromHistory": "Remove \"{{query}}\" from history"
   },
   "notifPrompt": {
     "stayInLoop": "Stay in the loop",

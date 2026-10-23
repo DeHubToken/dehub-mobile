@@ -6137,7 +6137,11 @@
     "noTrendingThisWeek": "ഈ ആഴ്ച ട്രെൻഡിംഗ് ഉള്ളടക്കങ്ങളൊന്നും ലഭ്യമല്ല",
     "closeFilterOptions": "ഫിൽട്ടർ ഓപ്ഷനുകൾ അടയ്ക്കുക",
     "openFilterOptions": "ഫിൽട്ടർ ഓപ്ഷനുകൾ തുറക്കുക",
-    "fillQuery": "തിരയലിൽ \"{{query}}\" ചേർക്കുക"
+    "fillQuery": "തിരയലിൽ \"{{query}}\" ചേർക്കുക",
+    "clearHistory": "ചരിത്രം മായ്ക്കുക",
+    "clearHistoryTitle": "തിരയൽ ചരിത്രം മായ്ക്കണോ?",
+    "clearHistoryBody": "ഇത് നിങ്ങളുടെ എല്ലാ സമീപകാല തിരയലുകളും നീക്കം ചെയ്യും.",
+    "removeFromHistory": "\"{{query}}\" ചരിത്രത്തിൽ നിന്ന് നീക്കം ചെയ്യുക"
   },
   "notifPrompt": {
     "stayInLoop": "വിവരം അറിഞ്ഞിരിക്കൂ",

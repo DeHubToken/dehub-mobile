@@ -6145,7 +6145,11 @@
     "noTrendingThisWeek": "Asnjë përmbajtje e popullarizuar këtë javë",
     "closeFilterOptions": "Mbyllni opsionet e filtrit",
     "openFilterOptions": "Hapni opsionet e filtrit",
-    "fillQuery": "Plotëso kërkimin me \"{{query}}\""
+    "fillQuery": "Plotëso kërkimin me \"{{query}}\"",
+    "clearHistory": "Pastro historikun",
+    "clearHistoryTitle": "Të pastrohet historiku i kërkimeve?",
+    "clearHistoryBody": "Kjo heq të gjitha kërkimet e tua të fundit.",
+    "removeFromHistory": "Hiq \"{{query}}\" nga historiku"
   },
   "notifPrompt": {
     "stayInLoop": "Qëndro i informuar",

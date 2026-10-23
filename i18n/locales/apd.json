@@ -6106,7 +6106,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
     "openFilterOptions": "فتح خيارات التصفية",
-    "fillQuery": "ختّ \"{{query}}\" في خانة البحث"
+    "fillQuery": "ختّ \"{{query}}\" في خانة البحث",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",

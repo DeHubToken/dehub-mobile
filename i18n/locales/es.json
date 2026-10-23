@@ -6614,7 +6614,11 @@
     "noTrendingThisWeek": "No hay contenido de tendencia esta semana",
     "closeFilterOptions": "Cerrar opciones de filtro",
     "openFilterOptions": "Abrir opciones de filtro",
-    "fillQuery": "Rellenar la búsqueda con \"{{query}}\""
+    "fillQuery": "Rellenar la búsqueda con \"{{query}}\"",
+    "clearHistory": "Borrar historial",
+    "clearHistoryTitle": "¿Borrar el historial de búsqueda?",
+    "clearHistoryBody": "Esto elimina todas tus búsquedas recientes.",
+    "removeFromHistory": "Quitar «{{query}}» del historial"
   },
   "notifPrompt": {
     "stayInLoop": "Mantente al día",

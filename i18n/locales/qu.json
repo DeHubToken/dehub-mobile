@@ -6156,6 +6156,10 @@
     "closeFilterOptions": "Filtro akllanakunata wichqay",
     "openFilterOptions": "Filtro akllanakunata kichay",
     "fillQuery": "Maskanapi \"{{query}}\" churay",
+    "clearHistory": "Ñawpa willakuyta pichay",
+    "clearHistoryTitle": "Maskay ñawpa willakuyta pichanki?",
+    "clearHistoryBody": "Kayqa llapan kunan maskasqaykikunata qichunqa.",
+    "removeFromHistory": "\"{{query}}\" ñawpa willakuymanta qichuy",
     "trendingThisWeek": "Kay Simanapi Tendencia",
     "tryDifferentKeywords": "Huk niraq simikunata pruebay otaq ortografiaykita qhaway",
     "noTrendingThisWeek": "Mana kay semanapi contenido tendenciayuqchu"

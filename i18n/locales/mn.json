@@ -6111,7 +6111,11 @@
     "noTrendingThisWeek": "Энэ долоо хоногт тренд агуулга байхгүй байна",
     "closeFilterOptions": "Шүүлтүүрийн сонголтуудыг хаах",
     "openFilterOptions": "Шүүлтүүрийн сонголтуудыг нээх",
-    "fillQuery": "Хайлтад \"{{query}}\" оруулах"
+    "fillQuery": "Хайлтад \"{{query}}\" оруулах",
+    "clearHistory": "Түүх цэвэрлэх",
+    "clearHistoryTitle": "Хайлтын түүхийг цэвэрлэх үү?",
+    "clearHistoryBody": "Энэ нь таны бүх сүүлийн хайлтыг устгана.",
+    "removeFromHistory": "\"{{query}}\"-г түүхээс хасах"
   },
   "notifPrompt": {
     "stayInLoop": "Мэдээллээ аваарай",

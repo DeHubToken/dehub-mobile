@@ -6126,7 +6126,11 @@
     "noTrendingThisWeek": "មិនមានមាតិកាពេញនិយមប្រចាំសប្តាហ៍ទេ",
     "closeFilterOptions": "បិទជម្រើសតម្រង",
     "openFilterOptions": "បើកជម្រើសតម្រង",
-    "fillQuery": "បញ្ចូល \"{{query}}\" ក្នុងប្រអប់ស្វែងរក"
+    "fillQuery": "បញ្ចូល \"{{query}}\" ក្នុងប្រអប់ស្វែងរក",
+    "clearHistory": "សម្អាតប្រវត្តិ",
+    "clearHistoryTitle": "សម្អាតប្រវត្តិស្វែងរក?",
+    "clearHistoryBody": "វានឹងលុបការស្វែងរកថ្មីៗទាំងអស់របស់អ្នក។",
+    "removeFromHistory": "លុប \"{{query}}\" ចេញពីប្រវត្តិ"
   },
   "notifPrompt": {
     "stayInLoop": "ទទួលព័ត៌មានទាន់ហេតុការណ៍",
