@@ -17,7 +17,7 @@ describe("governance comment box", () => {
     expect(source).toContain("useComposerKeyboard(0, { gap: 0 })");
     const scrollEnd = source.indexOf("</ScrollView>");
     expect(source.indexOf("ref={composerKeyboard.ref}")).toBeGreaterThan(scrollEnd);
-    expect(source.indexOf("<TextInput")).toBeGreaterThan(scrollEnd);
+    expect(source.indexOf("ref={inputRef}")).toBeGreaterThan(scrollEnd);
   });
 });
 
