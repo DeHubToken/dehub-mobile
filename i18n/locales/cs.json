@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Sledovat #{{tag}}",
+    "following": "Sledujete",
+    "unfollow": "Přestat sledovat #{{tag}}",
+    "followed": "Teď sledujete #{{tag}}. Jeho příspěvky se zobrazí ve vašem kanálu Sledované.",
+    "unfollowed": "Přestali jste sledovat #{{tag}}",
+    "failed": "Neuložilo se. Zkuste to znovu.",
+    "clear": "Vymazat"
+  },
   "keywordFilters": {
     "title": "Ztlumená slova",
     "description": "Skryjte příspěvky a komentáře s těmito slovy, nebo je sbalte za varování. Tento seznam vidíte jen vy.",

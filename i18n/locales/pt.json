@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Seguir #{{tag}}",
+    "following": "Seguindo",
+    "unfollow": "Deixar de seguir #{{tag}}",
+    "followed": "Agora você segue #{{tag}}. As publicações aparecerão no seu feed Seguindo.",
+    "unfollowed": "Você deixou de seguir #{{tag}}",
+    "failed": "Não foi salvo. Tente de novo.",
+    "clear": "Limpar"
+  },
   "keywordFilters": {
     "title": "Palavras silenciadas",
     "description": "Oculte publicações e comentários com estas palavras ou dobre-os atrás de um aviso. Só você vê esta lista.",

@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} folgen",
+    "following": "Folge ich",
+    "unfollow": "#{{tag}} entfolgen",
+    "followed": "Du folgst jetzt #{{tag}}. Beiträge damit erscheinen in deinem Folge-ich-Feed.",
+    "unfollowed": "Du folgst #{{tag}} nicht mehr",
+    "failed": "Das wurde nicht gespeichert. Versuch es noch einmal.",
+    "clear": "Löschen"
+  },
   "keywordFilters": {
     "title": "Stummgeschaltete Wörter",
     "description": "Beiträge und Kommentare mit diesen Wörtern ausblenden oder hinter einer Warnung einklappen. Nur du siehst diese Liste.",

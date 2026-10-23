@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} takip et",
+    "following": "Takip ediliyor",
+    "unfollow": "#{{tag}} takibi bırak",
+    "followed": "Artık #{{tag}} takip ediyorsun. Gönderileri Takip Edilenler akışında görünecek.",
+    "unfollowed": "#{{tag}} takibi bırakıldı",
+    "failed": "Kaydedilmedi. Tekrar dene.",
+    "clear": "Temizle"
+  },
   "keywordFilters": {
     "title": "Sessize alınan kelimeler",
     "description": "Bu kelimeleri içeren gönderileri ve yorumları gizle ya da bir uyarının arkasına katla. Bu listeyi yalnızca sen görürsün.",

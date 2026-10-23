@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Follow #{{tag}}",
+    "following": "You dey follow",
+    "unfollow": "Unfollow #{{tag}}",
+    "followed": "You don dey follow #{{tag}}. Im posts go show for your Following feed.",
+    "unfollowed": "You don unfollow #{{tag}}",
+    "failed": "E no save. Try again.",
+    "clear": "Clear am"
+  },
   "keywordFilters": {
     "title": "Words wey you mute",
     "description": "Hide posts and comments wey get these words, or fold dem behind warning. Na only you dey see dis list.",

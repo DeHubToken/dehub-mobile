@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Volg #{{tag}}",
+    "following": "Volgend",
+    "unfollow": "Ontvolg #{{tag}}",
+    "followed": "Je volgt nu #{{tag}}. Berichten ermee verschijnen in je Volgend-feed.",
+    "unfollowed": "Je volgt #{{tag}} niet meer",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
+    "clear": "Wissen"
+  },
   "keywordFilters": {
     "title": "Gedempte woorden",
     "description": "Verberg berichten en reacties met deze woorden, of vouw ze in achter een waarschuwing. Alleen jij ziet deze lijst.",

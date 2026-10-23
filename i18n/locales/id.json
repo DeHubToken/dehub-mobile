@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Ikuti #{{tag}}",
+    "following": "Mengikuti",
+    "unfollow": "Berhenti mengikuti #{{tag}}",
+    "followed": "Kamu sekarang mengikuti #{{tag}}. Postingannya akan muncul di feed Mengikuti.",
+    "unfollowed": "Berhenti mengikuti #{{tag}}",
+    "failed": "Tidak tersimpan. Coba lagi.",
+    "clear": "Hapus"
+  },
   "keywordFilters": {
     "title": "Kata yang dibisukan",
     "description": "Sembunyikan postingan dan komentar yang memuat kata-kata ini, atau lipat di balik peringatan. Hanya kamu yang melihat daftar ini.",

@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Seuraa #{{tag}}",
+    "following": "Seuraat",
+    "unfollow": "Lopeta #{{tag}} seuraaminen",
+    "followed": "Seuraat nyt tunnistetta #{{tag}}. Sen julkaisut näkyvät Seuratut-syötteessäsi.",
+    "unfollowed": "Lopetit tunnisteen #{{tag}} seuraamisen",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
+    "clear": "Tyhjennä"
+  },
   "keywordFilters": {
     "title": "Mykistetyt sanat",
     "description": "Piilota julkaisut ja kommentit, joissa on näitä sanoja, tai taita ne varoituksen taakse. Vain sinä näet tämän listan.",

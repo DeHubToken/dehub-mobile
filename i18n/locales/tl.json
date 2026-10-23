@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "I-follow ang #{{tag}}",
+    "following": "Fina-follow",
+    "unfollow": "I-unfollow ang #{{tag}}",
+    "followed": "Fina-follow mo na ang #{{tag}}. Lalabas ang mga post nito sa Following feed mo.",
+    "unfollowed": "Na-unfollow ang #{{tag}}",
+    "failed": "Hindi na-save. Subukan ulit.",
+    "clear": "I-clear"
+  },
   "keywordFilters": {
     "title": "Mga naka-mute na salita",
     "description": "Itago ang mga post at komento na may ganitong mga salita, o itupi sila sa likod ng babala. Ikaw lang ang nakakakita ng listahang ito.",

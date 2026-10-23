@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Tut #{{tag}}",
+    "following": "Ngetut",
+    "unfollow": "Mandheg ngetut #{{tag}}",
+    "followed": "Saiki sampeyan ngetut #{{tag}}. Kirimané bakal katon ing feed Sing dituti.",
+    "unfollowed": "Wis mandheg ngetut #{{tag}}",
+    "failed": "Ora kesimpen. Coba maneh.",
+    "clear": "Busak"
+  },
   "keywordFilters": {
     "title": "Tembung sing dibisokake",
     "description": "Delikake kiriman lan komentar sing ngemot tembung-tembung iki, utawa lempit ing mburi pènget. Mung sampeyan sing ndeleng dhaptar iki.",
