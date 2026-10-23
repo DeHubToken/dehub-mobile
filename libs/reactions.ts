@@ -169,9 +169,10 @@ export function resolveLeadReaction(
  *
  * With the thumbs-down gone, the thumbs-up is the only place a viewer's 👎 can
  * show that it landed — so their own negative reaction is drawn on it (and a
- * tap takes it back off, see `reactionForTap`). The crowd's negatives still
- * never lead: negative reactions are anonymous, and drawing one on every
- * reader's copy of a post because somebody cast it would point at them.
+ * tap takes it back off, see `reactionForTap`). Your own reaction always
+ * wins. Without one, a post whose dislikes outnumber its likes wears 👎 and
+ * `resolveThumbCount` shows the dislike total. A tap is unaffected: with
+ * nothing held it still casts the positive lead.
  *
  * Null means "draw the plain thumbs-up icon".
  */
@@ -180,7 +181,24 @@ export function resolveThumbReaction(
   myReaction?: PostReaction | null,
 ): PostReaction | null {
   if (myReaction && !isPositiveReaction(myReaction)) return myReaction;
+  if (!myReaction && dislikesOutnumberLikes(counts)) return DEFAULT_NEGATIVE_REACTION;
   return resolveLeadReaction(counts, myReaction);
+}
+
+/**
+ * True when a post's dislikes outnumber every positive reaction combined.
+ * A tie stays with the likes.
+ */
+export function dislikesOutnumberLikes(counts: ReactionCounts | null | undefined): boolean {
+  if (!counts) return false;
+  let likes = 0;
+  let dislikes = 0;
+  for (const key of POST_REACTIONS) {
+    const value = Math.max(0, counts[key] ?? 0);
+    if (isPositiveReaction(key)) likes += value;
+    else dislikes += value;
+  }
+  return dislikes > likes;
 }
 
 /** The displayed total follows the polarity of the thumb's visible reaction. */
