@@ -755,6 +755,8 @@ export interface UserReplyPost {
   thumbnailUrl?: string;
   thumbnail_url?: string;
   videoUrl?: string;
+  /** HLS master playlist key; see UnifiedFeedItem.hlsUrl. */
+  hlsUrl?: string;
   postType?: string;
   createdAt?: string;
   minter?: string;

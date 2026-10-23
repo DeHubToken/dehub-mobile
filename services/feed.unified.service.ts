@@ -92,6 +92,9 @@ export interface UnifiedFeedItem {
   imageUrls?: string[]; // For multi-image posts
   thumbnailUrl?: string;
   videoUrl?: string;
+  /** Adaptive HLS master playlist, a bucket key like videoUrl. Only on public
+   *  posts with a rendition ready; play it through getPlaybackUrl. */
+  hlsUrl?: string;
   previewUrl?: string;
   /**
    * Seek-preview sprite sheet: `url` is a bucket key, `private` marks a paid

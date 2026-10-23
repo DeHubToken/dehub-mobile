@@ -11,6 +11,7 @@ import {
   ensurePreviewNavigationGuards,
 } from "../../libs/previewRegistry";
 import { revokeAudioFocus } from "../../libs/audioFocus";
+import { markHlsFailed } from "../../libs/hls-fallback";
 
 interface VideoPreviewProps {
   previewUrl: string;
@@ -58,6 +59,19 @@ export default function VideoPreview({
     }
   );
   useSilenceOnRelease(player);
+
+  // An HLS ladder that will not load is retired; the card then hands this
+  // preview the MP4, and the new player picks up the buffering phase.
+  useEffect(() => {
+    if (!player) return;
+    let sub: { remove: () => void } | undefined;
+    try {
+      sub = player.addListener("statusChange", ({ status }) => {
+        if (status === "error") markHlsFailed(previewUrl);
+      });
+    } catch {}
+    return () => { try { sub?.remove(); } catch {} };
+  }, [player, previewUrl]);
 
   useEffect(() => {
     playerRef.current = player;

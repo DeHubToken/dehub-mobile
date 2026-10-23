@@ -183,6 +183,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   description: item.description,
   imageUrl: item.imageUrl,
   videoUrl: item.videoUrl,
+  hlsUrl: item.hlsUrl,
   videoDuration: item.videoDuration,
   thumbnailUrl: item.thumbnailUrl || item.imageUrl,
   imageUrls: item.imageUrls,

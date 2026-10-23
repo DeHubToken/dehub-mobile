@@ -11,7 +11,8 @@ import env from "../../config/env"; // kept if needed for other props
 import VideoPreview from "./VideoPreview";
 import { formatDistance } from "date-fns";
 import { secondsToHMMSS } from "../../libs/date.util";
-import { getAvatarUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL, getImageUrl, getBadgeUrlFor, getVideoUrl } from "../../libs/misc";
+import { getAvatarUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL, getImageUrl, getBadgeUrlFor, getPlaybackUrl } from "../../libs/misc";
+import { useHlsFallback } from "../../libs/hls-fallback";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
@@ -42,6 +43,9 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const { t } = useTranslation();
   const streamInfo = nft.streamInfo || (nft as any).stream?.streamInfo;
   const tokenId = nft.tokenId || (nft as any).stream?.tokenId;
+  // The HLS ladder when the post has one; VideoPreview retires it for the MP4
+  // if it will not play.
+  const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: nft.hlsUrl }));
   const status: string | undefined = (nft as any).status;
   const isLive = !!(nft as any).streamKey || !!streamInfo?.isLive;
   const duration = nft.videoDuration
@@ -216,7 +220,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
           {enablePreview && !isLive && tokenId && hasThumbnail && (
             <View className="absolute inset-0">
               <VideoPreview
-                previewUrl={getVideoUrl(tokenId) || ""}
+                previewUrl={playbackUrl || ""}
                 handlePressVideo={handlePressVideo}
               />
             </View>

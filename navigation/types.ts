@@ -189,7 +189,10 @@ export type AppStackParamList = {
   /** Menu entries deep-link to a tab: Bookmarks opens "saved". */
   [ScreenNames.MyLibrary]: { initialTab?: "myPosts" | "liked" | "saved" | "unlocked" | "watched" } | undefined;
   [ScreenNames.FullscreenVideo]: {
+    /** The source the feed card was playing: the HLS ladder when the post has one. */
     videoUrl: string;
+    /** The post's MP4. What the download saves, and the fallback if the ladder fails. */
+    downloadUrl?: string;
     startTime?: number;
     isMuted?: boolean;
     thumbnail?: string;
