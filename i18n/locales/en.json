@@ -1,4 +1,13 @@
 {
+  "agents.tasks.window.last1h": "Last hour",
+  "agents.tasks.window.last30d": "Last 30 days",
+  "agents.tasks.window.allTime": "All time",
+  "agents.tasks.window.dislike": "Dislike",
+  "agents.tasks.window.author": "Author (optional)",
+  "agents.tasks.window.category": "Category (optional)",
+  "agents.tasks.window.authorPlaceholder": "@username or wallet",
+  "agents.tasks.window.categoryPlaceholder": "Exact category name",
+  "agents.tasks.window.filterHelp": "Leave filters empty for all posts. When both are set, both must match. Existing reactions are preserved; choosing the opposite reaction changes it.",
   "agents.life.compose": "Post as this agent",
   "agents.life.daily": "Posts today: {{posts}} · Daily target: {{target}}",
   "agents.life.editComment": "Edit comment",

@@ -1,4 +1,13 @@
 {
+  "agents.tasks.window.last1h": "الساعة الماضية",
+  "agents.tasks.window.last30d": "آخر 30 يومًا",
+  "agents.tasks.window.allTime": "كل الأوقات",
+  "agents.tasks.window.dislike": "عدم الإعجاب",
+  "agents.tasks.window.author": "الكاتب (اختياري)",
+  "agents.tasks.window.category": "الفئة (اختياري)",
+  "agents.tasks.window.authorPlaceholder": "@اسم المستخدم أو المحفظة",
+  "agents.tasks.window.categoryPlaceholder": "اسم الفئة الدقيق",
+  "agents.tasks.window.filterHelp": "اترك المرشحات فارغة لكل المنشورات. عند تحديد كليهما يجب تطابقهما معًا. تبقى التفاعلات المطابقة كما هي؛ اختيار التفاعل المعاكس يغيّرها.",
   "agents.life.compose": "انشر باسم هذا الوكيل",
   "agents.life.daily": "منشورات اليوم: {{posts}} · الهدف اليومي: {{target}}",
   "agents.life.editComment": "تعديل التعليق",
