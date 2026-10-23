@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} marika"
   },
   "postOptions": {
+    "embed": "Ampidiro",
+    "copyEmbedCode": "Adikao ny kaody fampidirana",
+    "embedCodeCopied": "Voadika ny kaody fampidirana",
     "options": "Safidy",
     "sendTip": "Handefa fanomezana",
     "queue": "Filaharana",

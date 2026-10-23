@@ -1031,6 +1031,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "I-embed",
+    "copyEmbedCode": "Kopyahin ang embed code",
+    "embedCodeCopied": "Nakopya ang embed code",
     "options": "Mga Opsyon",
     "sendTip": "Magpadala ng Tip",
     "queue": "Queue",

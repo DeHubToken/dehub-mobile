@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} โทเค็น"
   },
   "postOptions": {
+    "embed": "ฝัง",
+    "copyEmbedCode": "คัดลอกโค้ดฝัง",
+    "embedCodeCopied": "คัดลอกโค้ดฝังแล้ว",
     "options": "ตัวเลือก",
     "sendTip": "ส่งทิป",
     "queue": "คิว",

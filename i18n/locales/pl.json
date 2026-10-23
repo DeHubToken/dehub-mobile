@@ -991,6 +991,9 @@
     "tokenAmount": "{{amount}} tokenów"
   },
   "postOptions": {
+    "embed": "Osadź",
+    "copyEmbedCode": "Kopiuj kod do osadzenia",
+    "embedCodeCopied": "Kod do osadzenia skopiowany",
     "options": "Opcje",
     "sendTip": "Wyślij napiwek",
     "queue": "Kolejka",

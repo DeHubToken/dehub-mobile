@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} tokkenoota"
   },
   "postOptions": {
+    "embed": "Keessa galchi",
+    "copyEmbedCode": "Koodii keessa galchuu waraabi",
+    "embedCodeCopied": "Koodiin keessa galchuu waraabame",
     "options": "Filannoowwan",
     "sendTip": "Tiippii Ergi",
     "queue": "Tartiiba",

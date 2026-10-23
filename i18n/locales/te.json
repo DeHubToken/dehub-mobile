@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} టోకెన్లు"
   },
   "postOptions": {
+    "embed": "ఎంబెడ్",
+    "copyEmbedCode": "ఎంబెడ్ కోడ్ కాపీ చేయండి",
+    "embedCodeCopied": "ఎంబెడ్ కోడ్ కాపీ అయింది",
     "options": "ఎంపికలు",
     "sendTip": "టిప్ పంపు",
     "queue": "క్యూ",

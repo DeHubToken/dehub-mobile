@@ -1346,6 +1346,9 @@
     "tokenAmount": "{{amount}} токенів"
   },
   "postOptions": {
+    "embed": "Вбудувати",
+    "copyEmbedCode": "Копіювати код для вбудовування",
+    "embedCodeCopied": "Код для вбудовування скопійовано",
     "options": "Опції",
     "sendTip": "Надіслати чайові",
     "queue": "Черга",

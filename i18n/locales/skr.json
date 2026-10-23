@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} ٹوکنز"
   },
   "postOptions": {
+    "embed": "ایمبیڈ",
+    "copyEmbedCode": "ایمبیڈ کوڈ کاپی کرو",
+    "embedCodeCopied": "ایمبیڈ کوڈ کاپی تھی ڳیا",
     "options": "اختیارات",
     "sendTip": "ٹِپ گھلو",
     "queue": "قطار",

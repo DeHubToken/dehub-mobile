@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} 토큰"
   },
   "postOptions": {
+    "embed": "퍼가기",
+    "copyEmbedCode": "퍼가기 코드 복사",
+    "embedCodeCopied": "퍼가기 코드가 복사되었습니다",
     "options": "옵션",
     "sendTip": "팁 보내기",
     "queue": "대기열",

@@ -987,6 +987,9 @@
     "tokenAmount": "Amathokheni angu-{{amount}}"
   },
   "postOptions": {
+    "embed": "Shumeka",
+    "copyEmbedCode": "Kopisha ikhodi yokushumeka",
+    "embedCodeCopied": "Ikhodi yokushumeka ikopishiwe",
     "options": "Izinketho",
     "sendTip": "Thumela Ithiphu",
     "queue": "Umugqa",

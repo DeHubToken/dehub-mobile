@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Ku dhex rid",
+    "copyEmbedCode": "Koobi koodka ku dhex ridista",
+    "embedCodeCopied": "Koodka ku dhex ridista waa la koobiyay",
     "options": "Ikhtiyaarada",
     "sendTip": "Dir Bakhshiish",
     "queue": "Safka",

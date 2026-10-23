@@ -991,6 +991,9 @@
     "tokenAmount": "{{amount}} токенов"
   },
   "postOptions": {
+    "embed": "Встроить",
+    "copyEmbedCode": "Копировать код для встраивания",
+    "embedCodeCopied": "Код для встраивания скопирован",
     "options": "Опции",
     "sendTip": "Отправить чаевые",
     "queue": "Очередь",

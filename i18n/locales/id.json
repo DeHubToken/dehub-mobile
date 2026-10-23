@@ -991,6 +991,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Sematkan",
+    "copyEmbedCode": "Salin kode sematan",
+    "embedCodeCopied": "Kode sematan disalin",
     "options": "Opsi",
     "sendTip": "Kirim Tip",
     "queue": "Antrian",

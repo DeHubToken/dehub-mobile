@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} awọn ami-ami"
   },
   "postOptions": {
+    "embed": "Fi sinu",
+    "copyEmbedCode": "Daakọ koodu ifisinu",
+    "embedCodeCopied": "A ti daakọ koodu ifisinu",
     "options": "Àwọn àṣàyàn",
     "sendTip": "Fi Ẹ̀bùn Ránṣẹ́",
     "queue": "Ìlà",

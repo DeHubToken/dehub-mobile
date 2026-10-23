@@ -995,6 +995,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Incorpora",
+    "copyEmbedCode": "Copia codice di incorporamento",
+    "embedCodeCopied": "Codice di incorporamento copiato",
     "skippableSectionsDesc": "Segna o vota sponsor e intro",
     "skippableSections": "Sezioni saltabili",
     "options": "Opzioni",

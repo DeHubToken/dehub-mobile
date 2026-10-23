@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Bygg inn",
+    "copyEmbedCode": "Kopier innbyggingskode",
+    "embedCodeCopied": "Innbyggingskode kopiert",
     "options": "Alternativer",
     "sendTip": "Send tips",
     "queue": "Kø",

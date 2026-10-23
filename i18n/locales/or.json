@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} ଟୋକେନ୍"
   },
   "postOptions": {
+    "embed": "ଏମ୍ବେଡ୍",
+    "copyEmbedCode": "ଏମ୍ବେଡ୍ କୋଡ୍ କପି କରନ୍ତୁ",
+    "embedCodeCopied": "ଏମ୍ବେଡ୍ କୋଡ୍ କପି ହୋଇଛି",
     "options": "ବିକଳ୍ପ",
     "sendTip": "ଟିପ ପଠାନ୍ତୁ",
     "queue": "ସାରି",

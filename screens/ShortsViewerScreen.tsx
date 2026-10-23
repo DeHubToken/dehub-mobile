@@ -1823,6 +1823,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onUndoRepost={() => handleRepost(false)}
           onQuote={handleQuote}
           onCopyLink={handleCopyLink}
+          embedTokenId={tokenId}
         />
       )}
 

@@ -982,6 +982,9 @@
     "tokenAmount": "{{amount}} टोकन"
   },
   "postOptions": {
+    "embed": "अन्तर्निवेशय",
+    "copyEmbedCode": "अन्तर्निवेश-कूटं प्रतिलिपिं कुर्वन्तु",
+    "embedCodeCopied": "अन्तर्निवेश-कूटं प्रतिलिपितम्",
     "options": "विकल्पाः",
     "sendTip": "उपहारं प्रेषयतु",
     "queue": "पङ्क्तिः",

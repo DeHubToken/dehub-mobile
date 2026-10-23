@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} توکن"
   },
   "postOptions": {
+    "embed": "جاسازی",
+    "copyEmbedCode": "کپی کد جاسازی",
+    "embedCodeCopied": "کد جاسازی کپی شد",
     "options": "گزینه‌ها",
     "sendTip": "ارسال انعام",
     "queue": "صف",

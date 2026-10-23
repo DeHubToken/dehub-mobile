@@ -990,6 +990,9 @@
     "tokenAmount": "{{amount}} トークン"
   },
   "postOptions": {
+    "embed": "埋め込み",
+    "copyEmbedCode": "埋め込みコードをコピー",
+    "embedCodeCopied": "埋め込みコードをコピーしました",
     "options": "オプション",
     "sendTip": "チップを送る",
     "queue": "キュー",

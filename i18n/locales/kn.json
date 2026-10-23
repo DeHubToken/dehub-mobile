@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} ಟೋಕನ್‌ಗಳು"
   },
   "postOptions": {
+    "embed": "ಎಂಬೆಡ್",
+    "copyEmbedCode": "ಎಂಬೆಡ್ ಕೋಡ್ ನಕಲಿಸಿ",
+    "embedCodeCopied": "ಎಂಬೆಡ್ ಕೋಡ್ ನಕಲಾಗಿದೆ",
     "options": "ಆಯ್ಕೆಗಳು",
     "sendTip": "ಉಡುಗೊರೆ ಕಳುಹಿಸಿ",
     "queue": "ಕ್ಯೂ",

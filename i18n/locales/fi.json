@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokenia"
   },
   "postOptions": {
+    "embed": "Upota",
+    "copyEmbedCode": "Kopioi upotuskoodi",
+    "embedCodeCopied": "Upotuskoodi kopioitu",
     "options": "Vaihtoehdot",
     "sendTip": "Lähetä tippi",
     "queue": "Jono",

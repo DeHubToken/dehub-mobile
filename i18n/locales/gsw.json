@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} Tokens"
   },
   "postOptions": {
+    "embed": "Iibette",
+    "copyEmbedCode": "Iibettigscode kopiere",
+    "embedCodeCopied": "Iibettigscode kopiert",
     "options": "Optione",
     "sendTip": "Trinkgäld schicke",
     "queue": "Warteschlange",

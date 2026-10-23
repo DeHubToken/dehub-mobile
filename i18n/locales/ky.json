@@ -985,6 +985,9 @@
     "tokenAmount": "{{amount}} токен"
   },
   "postOptions": {
+    "embed": "Кыстаруу",
+    "copyEmbedCode": "Кыстаруу кодун көчүрүү",
+    "embedCodeCopied": "Кыстаруу коду көчүрүлдү",
     "options": "Тандоолор",
     "sendTip": "Сыйлык жөнөтүү",
     "queue": "Кезек",

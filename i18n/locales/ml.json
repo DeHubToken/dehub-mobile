@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} ടോക്കണുകൾ"
   },
   "postOptions": {
+    "embed": "എംബെഡ്",
+    "copyEmbedCode": "എംബെഡ് കോഡ് പകർത്തുക",
+    "embedCodeCopied": "എംബെഡ് കോഡ് പകർത്തി",
     "options": "ഓപ്ഷനുകൾ",
     "sendTip": "ടിപ്പ് അയയ്ക്കുക",
     "queue": "ക്യൂ",

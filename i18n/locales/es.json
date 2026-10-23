@@ -1124,6 +1124,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Insertar",
+    "copyEmbedCode": "Copiar código de inserción",
+    "embedCodeCopied": "Código de inserción copiado",
     "skippableSectionsDesc": "Marca o vota patrocinios e intros",
     "skippableSections": "Secciones omitibles",
     "options": "Opciones",

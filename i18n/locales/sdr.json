@@ -987,6 +987,9 @@
     "stageSwap": "در حال خرید توکن‌های DeHub در Uniswap…"
   },
   "postOptions": {
+    "embed": "ایمبیڈ",
+    "copyEmbedCode": "ایمبیڈ کوڈ کاپی کرو",
+    "embedCodeCopied": "ایمبیڈ کوڈ کاپی ہو گیا",
     "options": "آپشن",
     "sendTip": "ٹِپ بھیجو",
     "queue": "قطار",

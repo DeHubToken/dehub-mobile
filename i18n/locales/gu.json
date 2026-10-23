@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} ટોકન્સ"
   },
   "postOptions": {
+    "embed": "એમ્બેડ",
+    "copyEmbedCode": "એમ્બેડ કોડ કૉપિ કરો",
+    "embedCodeCopied": "એમ્બેડ કોડ કૉપિ થયો",
     "options": "વિકલ્પો",
     "sendTip": "ટિપ મોકલો",
     "queue": "કતાર",

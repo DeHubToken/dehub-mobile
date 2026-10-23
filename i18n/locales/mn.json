@@ -983,6 +983,9 @@
     "tokenAmount": "{{amount}} токен"
   },
   "postOptions": {
+    "embed": "Суулгах",
+    "copyEmbedCode": "Суулгах кодыг хуулах",
+    "embedCodeCopied": "Суулгах код хуулагдлаа",
     "options": "Сонголтууд",
     "sendTip": "Бэлэг илгээх",
     "queue": "Дараалал",
