@@ -68,6 +68,9 @@ interface SocialLoginIconsProps {
   layout?: "list" | "stack";
 }
 
+// Brand names stay as they are in every language.
+const BRAND_NAMES = { google: "Google", apple: "Apple", telegram: "Telegram" } as const;
+
 interface OptionDiscProps {
   label: string;
   onPress: () => void;
@@ -162,14 +165,14 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
 
         <View style={styles.row}>
           <OptionDisc
-            label="Google"
+            label={BRAND_NAMES.google}
             onPress={onGoogle}
             disabled={disabled}
             loading={busyProvider === "google"}
             renderIcon={(c, sz) => <SvgXml xml={googleIcon("currentColor")} color={c} width={sz} height={sz} />}
           />
           <OptionDisc
-            label="Apple"
+            label={BRAND_NAMES.apple}
             onPress={onApple}
             disabled={disabled}
             loading={busyProvider === "apple"}
@@ -195,7 +198,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           )}
           {onTelegram && telegramReady && (
             <OptionDisc
-              label="Telegram"
+              label={BRAND_NAMES.telegram}
               onPress={onTelegram}
               disabled={disabled}
               loading={busyProvider === "telegram"}
