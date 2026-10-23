@@ -1,3 +1,4 @@
+import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
@@ -154,6 +155,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
   const [ordinaryText, setOrdinaryText] = useDraft(draftKey);
   const [editText, setEditText] = useDraftState(editingMessage && draftKey ? `${draftKey}:edit:${editingMessage._id}` : null, editingMessage?.content || "");
   const text = editingMessage ? editText : ordinaryText;
@@ -449,11 +451,14 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
     }
   }, []);
 
+  const gifPress = useMemo(() => keyboardSwap.pressProps(() => keyboardSwap.swapTo(() => setGifPickerVisible(true))), [keyboardSwap]);
+
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
     setMedia(null); // clear media if any
     setGifUrl(url);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleRemoveMedia = useCallback(() => {
     setMedia(null);
@@ -765,7 +770,7 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           </TouchableOpacity>
 
           {canAddTip && onTipPress ? <TouchableOpacity onPress={onTipPress} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.addTip")}><Icon name="Gem" size={20} color="#A1A1AA" /></TouchableOpacity> : null}
-          <TouchableOpacity onPress={() => setGifPickerVisible(true)} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.chooseGif")}><Icon name="Smile" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity {...gifPress} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.chooseGif")}><Icon name="Smile" size={20} color="#A1A1AA" /></TouchableOpacity>
           <TouchableOpacity onPress={handlePickImage} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachImage")}><Icon name="Image" size={20} color="#A1A1AA" /></TouchableOpacity>
           <TouchableOpacity onPress={handlePickFile} disabled={enhancing} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("dm.attachFile")}><Icon name="Paperclip" size={20} color="#A1A1AA" /></TouchableOpacity>
           <TouchableOpacity onPress={onStartVoice} disabled={enhancing || sending} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("comments.recordVoice")}><Icon name="Mic" size={20} color="#A1A1AA" /></TouchableOpacity>
@@ -847,7 +852,10 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
       <GifPicker
         visible={gifPickerVisible}
         onPick={handleGifPicked}
-        onClose={() => setGifPickerVisible(false)}
+        onClose={() => {
+          setGifPickerVisible(false);
+          keyboardSwap.restore();
+        }}
       />
 
       <ChatAttachSheet
