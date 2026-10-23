@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "อ่านสีจากรูปโปรไฟล์ของคุณไม่ได้"
   },
   "common": {
+    "refresh": "รีเฟรช",
     "mute": "ปิดเสียง",
     "unmute": "เปิดเสียง",
     "fullscreen": "เต็มจอ",
@@ -4268,6 +4269,7 @@
     "noVoice": "อุปกรณ์ของคุณไม่มีเสียงสำหรับภาษานี้"
   },
   "stages": {
+    "previewFailed": "ไม่สามารถเล่นตัวอย่างในห้องเสียง",
     "allStages": "ห้องเสียงทั้งหมด",
     "addToCalendar": "เพิ่มไปยังปฏิทิน",
     "nowPlaying": "กำลังเล่น",
@@ -4639,6 +4641,7 @@
     "anyBadgeHolder": "ผู้ถือป้ายทุกคนจะได้รับ SuperPowers ซื้อโทเค็น DeHub เพื่อปลดล็อกป้าย — ไม่จำเป็นต้อง Stake"
   },
   "follow": {
+    "noResults": "ไม่พบผลลัพธ์",
     "followers": "ผู้ติดตาม",
     "following": "กำลังติดตาม",
     "requests": "คำขอ",
@@ -7280,6 +7283,7 @@
       "delete": "ลบ"
     },
     "export": {
+      "cancel": "ยกเลิก",
       "scope": "ช่วงการดาวน์โหลด",
       "downloadTimeline": "ไทม์ไลน์ทั้งหมด",
       "downloadSelection": "คลิปวิดีโอที่เลือก ({{count}})",
@@ -7557,6 +7561,7 @@
     }
   },
   "creator": {
+    "sending": "กำลังส่ง",
     "navStudio": "สตูดิโอ",
     "editor": "บรรณาธิการ",
     "untitled": "ไม่มีชื่อ",
@@ -8121,6 +8126,7 @@
     "transferIncomplete": "การโอนโทเค็นไม่เสร็จสมบูรณ์ระบบจะถามคุณอีกครั้งก่อนโพสต์แบบชำระเงินครั้งต่อไป"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ค้นหาอีโมจิ",
     "noEmoji": "ไม่พบอีโมจิ",
     "searchResults": "ผลการค้นหา",

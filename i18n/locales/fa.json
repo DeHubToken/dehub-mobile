@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "نتوانستیم رنگ‌ها را از عکس نمایه شما بخوانیم"
   },
   "common": {
+    "refresh": "تازه‌سازی",
     "mute": "بی‌صدا",
     "unmute": "باصدا",
     "fullscreen": "تمام‌صفحه",
@@ -4276,6 +4277,7 @@
     "noVoice": "دستگاه شما صدایی برای این زبان ندارد."
   },
   "stages": {
+    "previewFailed": "پخش پیش‌نمایش در اتاق صوتی ممکن نشد",
     "allStages": "همه اتاق‌های صوتی",
     "addToCalendar": "به تقویم اضافه کن",
     "nowPlaying": "اکنون در حال پخش",
@@ -4648,6 +4650,7 @@
     "anyBadgeHolder": "هر دارنده نشان ابرقدرت‌ها را دریافت می‌کند. توکن‌های DeHub را برای باز کردن قفل یک نشان خریداری کنید - استیکینگ لازم نیست."
   },
   "follow": {
+    "noResults": "نتیجه‌ای یافت نشد",
     "followers": "دنبال‌کنندگان",
     "following": "دنبال‌شوندگان",
     "requests": "درخواست‌ها",
@@ -4800,7 +4803,7 @@
     "kindVideo": "ویدیو",
     "kindAudio": "صدا",
     "kindImage": "عکس",
-    "tileSourceKind": "{{منبع}} · {{نوع}}",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "قبل از ارسال، مرور کنید",
     "reviewSubtitle": "از {{source}}، به صورت {{kind}}. هر چیزی را که دوست دارید ویرایش کنید — عنوان را خالی بگذارید تا نسخه اصلی باقی بماند.",
     "reviewName": "عنوان",
@@ -7275,6 +7278,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "لغو",
       "scope": "محدوده دانلود",
       "downloadTimeline": "کل خط زمان",
       "downloadSelection": "کلیپ‌های ویدیویی منتخب ({{count}})",
@@ -7552,6 +7556,7 @@
     }
   },
   "creator": {
+    "sending": "درحال ارسال",
     "navStudio": "استودیو",
     "editor": "ویرایشگر",
     "untitled": "بدون عنوان",
@@ -8118,6 +8123,7 @@
     "transferIncomplete": "انتقال توکن تکمیل نشد. قبل از ارسال بعدی وجه، دوباره از شما سوال خواهد شد."
   },
   "emojiPicker": {
+    "tabGif": "گیف",
     "searchEmoji": "جستجوی ایموجی",
     "noEmoji": "ایموجی‌ای پیدا نشد",
     "searchResults": "نتایج جستجو",

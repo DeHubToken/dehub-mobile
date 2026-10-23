@@ -949,6 +949,7 @@
     "themeColorBrandFailed": "Kunde inte läsa färger från din profilbild"
   },
   "common": {
+    "refresh": "Uppdatera",
     "mute": "Stäng av ljud",
     "unmute": "Slå på ljud",
     "fullscreen": "Helskärm",
@@ -4252,6 +4253,7 @@
     "noVoice": "Din enhet har ingen röst för det här språket."
   },
   "stages": {
+    "previewFailed": "Kunde inte spela upp förhandsvisningen i ljudrummet",
     "allStages": "Alla ljudrum",
     "addToCalendar": "Lägg till i kalender",
     "nowPlaying": "Spelar nu",
@@ -4624,6 +4626,7 @@
     "anyBadgeHolder": "Alla märkesinnehavare får Superkrafter. Köp DeHub-tokens för att låsa upp ett märke — insats är inte nödvändigt."
   },
   "follow": {
+    "noResults": "Inga resultat hittades",
     "followers": "Följare",
     "following": "Följer",
     "requests": "Begäran",
@@ -7252,6 +7255,7 @@
       "delete": "Radera"
     },
     "export": {
+      "cancel": "Avbryt",
       "scope": "Nedladdningsintervall",
       "downloadTimeline": "Hela tidslinjen",
       "downloadSelection": "Valda videoklipp ({{count}})",
@@ -7531,6 +7535,7 @@
     }
   },
   "creator": {
+    "sending": "Skickar",
     "navStudio": "Studio",
     "editor": "Redigerare",
     "untitled": "Namnlös",
@@ -8097,6 +8102,7 @@
     "transferIncomplete": "Tokenöverföringen slutfördes inte. Du kommer att bli ombedd igen innan ditt nästa betalda inlägg."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Sök emoji",
     "noEmoji": "Inga emoji hittades",
     "searchResults": "Sökresultat",

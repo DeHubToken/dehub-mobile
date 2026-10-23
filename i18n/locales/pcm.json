@@ -933,6 +933,7 @@
     "themeColorBrandFailed": "E no fit read colour from your profile picture"
   },
   "common": {
+    "refresh": "Refresh",
     "mute": "Off di sound",
     "unmute": "On di sound",
     "fullscreen": "Full screen",
@@ -4164,6 +4165,7 @@
     "noVoice": "Your phone no get voice for dis language."
   },
   "stages": {
+    "previewFailed": "We no fit play dat one for stage",
     "allStages": "All Audio room dem",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
@@ -4533,6 +4535,7 @@
     "boostsLeftOf": "{{left}} for {{total}} boosts remain"
   },
   "follow": {
+    "noResults": "No results found",
     "followers": "Followers",
     "following": "Following",
     "requests": "Requests",
@@ -7092,6 +7095,7 @@
       "delete": "Delete"
     },
     "export": {
+      "cancel": "Cancel",
       "scope": "Di part wey you wan download",
       "downloadTimeline": "Di whole timeline",
       "downloadSelection": "Video clips wey you select ({{count}})",
@@ -7371,6 +7375,7 @@
     }
   },
   "creator": {
+    "sending": "Sending",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "No name",
@@ -7925,6 +7930,7 @@
     "dhbPending": "Token purchase don confirm but no dey show yet. Send again for now."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Find emoji",
     "noEmoji": "No emoji dey",
     "searchResults": "Wetin we find",

@@ -948,6 +948,7 @@
     "themeColorBrandFailed": "Rengên ji wêneyê profîlê nehatin xwendin"
   },
   "common": {
+    "refresh": "Nû bike",
     "mute": "Bêdeng bike",
     "unmute": "Deng veke",
     "fullscreen": "Dîmendera tijî",
@@ -4231,6 +4232,7 @@
     "noVoice": "Di cîhaza te de ji bo vî zimanî deng tune."
   },
   "stages": {
+    "previewFailed": "نەتوانرا پێشبینین لە ژووری دەنگیدا لێبدرێت",
     "allStages": "هەموو ژوورە دەنگییەکان",
     "addToCalendar": "بۆ ڕۆژژمێر زیاد بکە",
     "nowPlaying": "ئێستا لێدەدرێت",
@@ -4596,6 +4598,7 @@
     "anyBadgeHolder": "هەر خاوەن نیشانەیەک سووپەرپاوەرەکان بەدەست دەهێنێت. تۆکنی DeHub بکڕە بۆ کردنەوەی نیشانەیەک - ناوبەستن پێویست نییە."
   },
   "follow": {
+    "noResults": "هیچ ئەنجامێک نەدۆزرایەوە",
     "followers": "Şopîner",
     "following": "Pêketînî",
     "requests": "Daxwaz",
@@ -4714,7 +4717,7 @@
     "kindVideo": "Dîmen",
     "kindAudio": "Deng",
     "kindImage": "Wêne",
-    "tileSourceKind": "{{çavkanî}} · {{cure}}",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Berî şandinê binirxîne",
     "reviewSubtitle": "Ji {{source}}, wek {{kind}}. Her tiştê ku hûn dixwazin biguherînin - sernavê vala bihêlin da ku orîjînal bimîne.",
     "reviewName": "Nav",
@@ -7108,6 +7111,7 @@
       "delete": "Jê bibe"
     },
     "export": {
+      "cancel": "هەڵوەشاندنەوە",
       "scope": "مەودای داگرتن",
       "downloadTimeline": "تەواوی هێڵی کات",
       "downloadSelection": "کلیپە ڤیدیۆییە هەڵبژێردراوەکان ({{count}})",
@@ -7387,6 +7391,7 @@
     }
   },
   "creator": {
+    "sending": "ناردن",
     "navStudio": "Stûdyo",
     "editor": "Edîtor",
     "untitled": "Bênav",
@@ -7980,6 +7985,7 @@
     "transferIncomplete": "Veguhestina nîşanekê temam nebû. Berî posta we ya din a bi pere, dê ji we dîsa were pirsîn."
   },
   "emojiPicker": {
+    "tabGif": "وێنەی جوڵاو",
     "searchEmoji": "Emojiyan bigerin",
     "noEmoji": "Tu emojî nehat dîtin",
     "searchResults": "Encamên lêgerînê",

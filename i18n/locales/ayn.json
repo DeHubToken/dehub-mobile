@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "اكتم الصوت",
     "unmute": "شغّل الصوت",
     "fullscreen": "ملء الشاشة",
@@ -4236,6 +4237,7 @@
     "noVoice": "جهازك ما فيه صوت لهذي اللغة."
   },
   "stages": {
+    "previewFailed": "ما شفتش مشوار على الساحة",
     "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "الآن يلعبون",
@@ -4607,6 +4609,7 @@
     "anyBadgeHolder": "يحصل أي حامل شارة على قوى خارقة. اشترِ توكنات DeHub لفتح شارة — لا يلزم التخزين."
   },
   "follow": {
+    "noResults": "لم يتم العثور على نتائج",
     "followers": "متابعون",
     "following": "متابعة",
     "requests": "طلبات",
@@ -7218,6 +7221,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "حمّل النطاق",
       "downloadTimeline": "كل الخط الزمني",
       "downloadSelection": "مقاطع الفيديو المختارة ({{count}})",
@@ -7495,6 +7499,7 @@
     }
   },
   "creator": {
+    "sending": "إرسلي",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -8052,6 +8057,7 @@
     "transferIncomplete": "تحويل التوكن ما اكتمل. بتنسأل مرة ثانية قبل منشورك المدفوع الجاي."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ابحث عن إيموجي",
     "noEmoji": "ما بش إيموجي",
     "searchResults": "نتائج البحث",

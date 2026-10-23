@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde"
   },
   "common": {
+    "refresh": "Aktualisiere",
     "mute": "Stumm schalte",
     "unmute": "Ton iischalte",
     "fullscreen": "Vollbild",
@@ -4269,6 +4270,7 @@
     "noVoice": "Dis Grät het kei Stimm für die Sprach."
   },
   "stages": {
+    "previewFailed": "Vorschau konnte nicht auf der Bühne abgespielt werden",
     "allStages": "Alli Audio-Rüüm",
     "addToCalendar": "Zum Kalender hinzufügen",
     "nowPlaying": "Jetzt läuft",
@@ -4641,6 +4643,7 @@
     "anyBadgeHolder": "Alli Badge-Halter erhalted SuperPowers. Chauf DeHub-Tokens, zum en Badge freizschalte — Staking isch nöd nötig."
   },
   "follow": {
+    "noResults": "Keini Resultat gfunde",
     "followers": "Follower",
     "following": "Folgend",
     "requests": "Uufdrägs",
@@ -7268,6 +7271,7 @@
       "delete": "Lösche"
     },
     "export": {
+      "cancel": "Abbreche",
       "scope": "Download‑Bereich",
       "downloadTimeline": "Ganzä Zytlini",
       "downloadSelection": "Usgwählte Video‑Clips ({{count}})",
@@ -7547,6 +7551,7 @@
     }
   },
   "creator": {
+    "sending": "Wird gesendet",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Ohni Titel",
@@ -8107,6 +8112,7 @@
     "transferIncomplete": "Dr Token-Transfer isch nöd fertig worde. Du wirsch nomal gfrogt, bevor din nächst bezahlte Post chunt."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji sueche",
     "noEmoji": "Kei Emoji gfunde",
     "searchResults": "Suechresultat",

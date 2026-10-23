@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Nije bilo moguće očitati boje s vaše profilne slike"
   },
   "common": {
+    "refresh": "Osvježi",
     "mute": "Isključi zvuk",
     "unmute": "Uključi zvuk",
     "fullscreen": "Cijeli zaslon",
@@ -4240,6 +4241,7 @@
     "noVoice": "Vaš uređaj nema glas za ovaj jezik."
   },
   "stages": {
+    "previewFailed": "Nije moguće reproducirati pregled u audio sobi",
     "allStages": "Sve audio sobe",
     "addToCalendar": "Dodajte u kalendar",
     "nowPlaying": "Sada se reproducira",
@@ -4612,6 +4614,7 @@
     "anyBadgeHolder": "Svaki vlasnik bedža dobiva Supermoći. Kupite DeHub tokene kako biste otključali bedž — staking nije potreban."
   },
   "follow": {
+    "noResults": "Nema rezultata",
     "followers": "Pratitelji",
     "following": "Prati",
     "requests": "Zahtjevi",
@@ -7241,6 +7244,7 @@
       "delete": "Izbriši"
     },
     "export": {
+      "cancel": "Otkaži",
       "scope": "Preuzmi raspon",
       "downloadTimeline": "Cijeli vremenski okvir",
       "downloadSelection": "Odabrani video isječci ({{count}})",
@@ -7520,6 +7524,7 @@
     }
   },
   "creator": {
+    "sending": "Slanje",
     "navStudio": "Studio",
     "editor": "Uređivač",
     "untitled": "Bez naslova",
@@ -8086,6 +8091,7 @@
     "transferIncomplete": "Prijenos tokena nije dovršen. Ponovno ćemo te pitati prije sljedeće plaćene objave."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Pretraži emoji",
     "noEmoji": "Nema pronađenih emojija",
     "searchResults": "Rezultati pretraživanja",

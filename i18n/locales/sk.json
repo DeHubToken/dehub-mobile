@@ -951,6 +951,7 @@
     "themeColorBrandFailed": "Nepodarilo sa načítať farby z tvojej profilovej fotky"
   },
   "common": {
+    "refresh": "Obnoviť",
     "mute": "Stlmiť",
     "unmute": "Zapnúť zvuk",
     "fullscreen": "Celá obrazovka",
@@ -4348,6 +4349,7 @@
     "noVoice": "Vaše zariadenie nemá hlas pre tento jazyk."
   },
   "stages": {
+    "previewFailed": "Nepodarilo sa prehrať ukážku na pódiu",
     "allStages": "Všetky audio miestnosti",
     "addToCalendar": "Pridať do kalendára",
     "nowPlaying": "Hralo sa",
@@ -4720,6 +4722,7 @@
     "anyBadgeHolder": "Každý držiteľ odznaku dostane SuperSchopnosti. Kúpte si tokeny DeHub, aby ste odomkli odznak — stakovanie nie je potrebné."
   },
   "follow": {
+    "noResults": "Nenašli sa žiadne výsledky",
     "followers": "Sledujúci",
     "following": "Sledujem",
     "requests": "Žiadosti",
@@ -7406,6 +7409,7 @@
       "delete": "Odstrániť"
     },
     "export": {
+      "cancel": "Zrušiť",
       "scope": "Rozsah sťahovania",
       "downloadTimeline": "Celá časová os",
       "downloadSelection": "Vybrané videoklipy ({{count}})",
@@ -7685,6 +7689,7 @@
     }
   },
   "creator": {
+    "sending": "Odosielam...",
     "navStudio": "Štúdio",
     "editor": "Editor",
     "untitled": "Bez názvu",
@@ -8251,6 +8256,7 @@
     "transferIncomplete": "Prenos tokenu sa nedokončil. Pred ďalším zaplateným príspevkom vás znova požiadame."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Hľadať emoji",
     "noEmoji": "Nenašli sa žiadne emoji",
     "searchResults": "Výsledky vyhľadávania",

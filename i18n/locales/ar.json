@@ -1082,6 +1082,7 @@
     "themeColorBrandFailed": "تعذّرت قراءة الألوان من صورتك الشخصية"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "كتم الصوت",
     "unmute": "إلغاء كتم الصوت",
     "fullscreen": "ملء الشاشة",
@@ -4650,6 +4651,7 @@
     "filedOn": "فُتحت في {{date}}"
   },
   "stages": {
+    "previewFailed": "تعذّر تشغيل المعاينة في الغرفة الصوتية",
     "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "يُشغَّل الآن",
@@ -5022,6 +5024,7 @@
     "anyBadgeHolder": "يحصل أي حامل شارة على قوى خارقة. اشترِ رموز DeHub لفتح شارة — لا يلزم التخزين."
   },
   "follow": {
+    "noResults": "لم يتم العثور على نتائج",
     "followers": "المتابعون",
     "following": "المتابعة",
     "requests": "طلبات",
@@ -7806,6 +7809,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "نطاق التنزيل",
       "downloadTimeline": "الجدول الزمني الكامل",
       "downloadSelection": "مقاطع الفيديو المحددة ({{count}})",
@@ -8193,6 +8197,7 @@
     }
   },
   "creator": {
+    "sending": "جارٍ الإرسال",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -8980,6 +8985,7 @@
     "transferIncomplete": "لم يكتمل نقل الرمز المميز. سيتم سؤالك مرة أخرى قبل مشاركتك المدفوعة التالية."
   },
   "emojiPicker": {
+    "tabGif": "غيغ",
     "searchEmoji": "ابحث عن إيموجي",
     "noEmoji": "لم يتم العثور على إيموجي",
     "searchResults": "نتائج البحث",

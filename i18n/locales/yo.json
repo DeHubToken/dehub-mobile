@@ -946,6 +946,7 @@
     "themeColorBrandFailed": "A kò lè ka àwọn àwọ̀ láti àwòrán profáìlì rẹ"
   },
   "common": {
+    "refresh": "Tunto",
     "mute": "Pa ohùn",
     "unmute": "Tan ohùn",
     "fullscreen": "Kíkún ojú ìpele",
@@ -4231,6 +4232,7 @@
     "noVoice": "Ẹ̀rọ rẹ kò ní ohùn fún èdè yìí."
   },
   "stages": {
+    "previewFailed": "Kò lè ṣe àtẹnudẹ́nu lórí ìtàgé",
     "allStages": "Gbogbo àwọn yàrá ohùn",
     "addToCalendar": "Ṣafikun si kalẹnda",
     "nowPlaying": "Nisisiyi ti ndun",
@@ -4603,6 +4605,7 @@
     "anyBadgeHolder": "Oludimu aami eyikeyi n gba SuperPowers. Ra awọn DeHub token lati ṣii aami kan — idoko-owo ko nilo."
   },
   "follow": {
+    "noResults": "Kò sí ohun tí a rí",
     "followers": "Àwọn Olùṣọ́fẹ́",
     "following": "Àwọn tí mo ń ṣọ́fẹ́",
     "requests": "Àwọn Ìbéèrè",
@@ -4757,7 +4760,7 @@
     "kindImage": "Àwọn àwòrán",
     "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Ṣe àtúnyẹ̀wò kí o tó gbé e jáde",
-    "reviewSubtitle": "Láti {{orísun}}, bí {{irú}}. Ṣàtúnṣe ohunkóhun tí o bá fẹ́ — jẹ́ kí àkọlé náà di òfìfo láti fi ojúlówó pamọ́.",
+    "reviewSubtitle": "Láti {{source}}, bí {{kind}}. Ṣàtúnṣe ohunkóhun tí o bá fẹ́ — jẹ́ kí àkọlé náà di òfìfo láti fi ojúlówó pamọ́.",
     "reviewName": "Àkọlé",
     "reviewNamePlaceholder": "Fi òfìfo sílẹ̀ láti pa àkọlé ìpilẹ̀ṣẹ̀ náà mọ́.",
     "reviewDescription": "Àpèjúwe",
@@ -7221,6 +7224,7 @@
       "delete": "Paarẹ"
     },
     "export": {
+      "cancel": "Fagile",
       "scope": "Ṣe igbasilẹ ibiti",
       "downloadTimeline": "Gbogbo akoko",
       "downloadSelection": "Awọn gige fidio ti a yan ({{count}})",
@@ -7500,6 +7504,7 @@
     }
   },
   "creator": {
+    "sending": "Firanṣẹ",
     "navStudio": "Ilé-iṣẹ́",
     "editor": "Olóòtú",
     "untitled": "Láìní àkọlé",
@@ -8062,6 +8067,7 @@
     "transferIncomplete": "Ìfipamọ́ àfipamọ́ náà kò parí. Wọ́n máa béèrè lọ́wọ́ rẹ lẹ́ẹ̀kan sí i kí wọ́n tó san owó ìfìwéránṣẹ́ rẹ tó kàn."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Wá emoji",
     "noEmoji": "Kò rí emoji kankan",
     "searchResults": "Àbájáde ìwádìí",

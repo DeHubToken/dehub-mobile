@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị"
   },
   "common": {
+    "refresh": "Mee ka ọ dị ọhụrụ",
     "mute": "Mechie ụda",
     "unmute": "Mepee ụda",
     "fullscreen": "Ihuenyo zuru ezu",
@@ -4229,6 +4230,7 @@
     "noVoice": "Ngwaọrụ gị enweghị olu maka asụsụ a."
   },
   "stages": {
+    "previewFailed": "Agaghị enwenwu ike igosi nhụchalụ n 'usoroiheomume",
     "allStages": "Ọnụ ụlọ olu niile",
     "addToCalendar": "Tinye na kalenda",
     "nowPlaying": "Ugbu a na-akpọ",
@@ -4601,6 +4603,7 @@
     "anyBadgeHolder": "Onye ọ bụla nwere akara ngosi na-enweta SuperPowers. Zụta DeHub tokens iji mepee akara ngosi — itinye ego adịghị mkpa."
   },
   "follow": {
+    "noResults": "Enweghị nsonaazụ achọtara",
     "followers": "Ndị na-eso ụzọ",
     "following": "Ndị na-eso",
     "requests": "Ngwa",
@@ -7220,6 +7223,7 @@
       "delete": "Hichaa"
     },
     "export": {
+      "cancel": "Kagbuo",
       "scope": "Download nso",
       "downloadTimeline": "Usoroiheomume niile",
       "downloadSelection": "Vidio ndị a họọrọ ({{count}})",
@@ -7499,6 +7503,7 @@
     }
   },
   "creator": {
+    "sending": "Na-eziga",
     "navStudio": "Stụdiyo",
     "editor": "Ndezi",
     "untitled": "Enweghị aha",
@@ -8055,6 +8060,7 @@
     "notEnoughTokens": "{{subject}} na-eri {{amount}} token ma ị nwere {{held}}."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Chọọ emoji",
     "noEmoji": "Ahụghị emoji ọ bụla",
     "searchResults": "Nsonaazụ nchọcha",

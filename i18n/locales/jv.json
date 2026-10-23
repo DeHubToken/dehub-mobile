@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu"
   },
   "common": {
+    "refresh": "Segarke",
     "mute": "Bisu",
     "unmute": "Uripake swara",
     "fullscreen": "Layar kebak",
@@ -4231,6 +4232,7 @@
     "noVoice": "Piranti sampeyan ora duwe swara kanggo basa iki."
   },
   "stages": {
+    "previewFailed": "Gak bisa mainin preview di stage",
     "allStages": "Kabeh ruang swara",
     "addToCalendar": "Tambah ke kalender",
     "onTheRadio": "Di radio",
@@ -4602,6 +4604,7 @@
     "anyBadgeHolder": "Sembarang pemegang lencana entuk SuperPowers. Tuku token DeHub kanggo mbukak kunci lencana — staking ora perlu."
   },
   "follow": {
+    "noResults": "Ora ana asil sing ditemokake",
     "followers": "Ngetutake",
     "following": "Ngetutake",
     "requests": "Panyuwunan",
@@ -7222,6 +7225,7 @@
       "delete": "Busak"
     },
     "export": {
+      "cancel": "Batal",
       "scope": "Unduh rentang",
       "downloadTimeline": "Seluruh garis wektu",
       "downloadSelection": "Klip video sing dipilih ({{count}})",
@@ -7501,6 +7505,7 @@
     }
   },
   "creator": {
+    "sending": "Sedane dikirim.",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Tanpa irah-irahan",
@@ -8062,6 +8067,7 @@
     "transferIncomplete": "Transfer token boten kasil. Panjenengan badhe dipun takeni malih sakderengipun kiriman panjenengan ingkang mbayar salajengipun."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Goleki emoji",
     "noEmoji": "Emoji ora ketemu",
     "searchResults": "Asil telusuran",

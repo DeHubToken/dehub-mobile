@@ -942,6 +942,7 @@
     "themeColorBrandFailed": "Kulɛriw ma se ka kalan i ka ja la"
   },
   "common": {
+    "refresh": "A kuraya",
     "mute": "Kan bɔ",
     "unmute": "Kan lase",
     "fullscreen": "Yɔrɔ bɛɛ",
@@ -1215,7 +1216,7 @@
   },
   "assistant": {
     "title": "Dɛmɛbaga",
-    "welcome": "Kɔrɔbɔ kɛ fɔlɔw. {{context}}\n\nKɔrɔbɔ kɛ?",
+    "welcome": "Use the text box below or these action buttons to get started.",
     "welcomeAlt": "I ni ce! Kɔrɔbɔ kɛ, DeHub kɛ fɔlɔw.",
     "thinking": "A bɛ ka miiri...",
     "errorGeneric": "Kɔrɔbɔ bɔ. Kɔrɔbɔ kɛ.",
@@ -1543,7 +1544,7 @@
     "failedPurchaseSession": "Sanni ma se ka daminɛ",
     "searchTokens": "Token ɲini...",
     "zeroBalance": "Wari tɛ yen",
-    "selectChain": "Kɔrɔbɔ — Kɔrɔbɔ",
+    "selectChain": "Send {{symbol}} — Select Chain",
     "receiveTokens": "Token sɔrɔ",
     "receiveDescription": "Token ci i ka wallet adiresi ma (a bɛ sɔrɔ chain dɛmɛnen bɛɛ kan)",
     "copyAddress": "Adiresi kopi",
@@ -4211,6 +4212,7 @@
     "noVoice": "Kumakan si tɛ i ka minɛn kan nin kan in na."
   },
   "stages": {
+    "previewFailed": "A tun tɛ se ka lɔyɔrɔba sɔrɔ",
     "allStages": "Kan bonw bɛɛ",
     "addToCalendar": "A ka kalandiri",
     "nowPlaying": "A be to ka to ka dɔnkili la",
@@ -4583,6 +4585,7 @@
     "homePage": "A be sanfɛ, a be sanfɛ."
   },
   "follow": {
+    "noResults": "Nɔ rɛzʊltz fɔɔnd",
     "followers": "O kɔ, u ye tugu u kɔ.",
     "following": "O kɔ, a ka tugu a",
     "requests": "Ɲiningali",
@@ -7186,6 +7189,7 @@
       "delete": "A jɔsi"
     },
     "export": {
+      "cancel": "A dabila",
       "scope": "Téléchargement dan",
       "downloadTimeline": "Timeline bɛɛ",
       "downloadSelection": "Videyo klip sugandilenw ({{count}})",
@@ -7465,6 +7469,7 @@
     }
   },
   "creator": {
+    "sending": "Ka taga",
     "navStudio": "Sitidiyo",
     "editor": "Labɛnna",
     "untitled": "Tɔgɔ tɛ a la",
@@ -8024,6 +8029,7 @@
     "transferredConfirming": "I ka tagamasiɲɛw yɛlɛmana. An bena a fɔ ko an ye wari min sara, an bena o sara joona joona."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji ɲini",
     "noEmoji": "Emoji si ma sɔrɔ",
     "searchResults": "Ɲinini jaabiw",

@@ -948,6 +948,7 @@
     "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn"
   },
   "common": {
+    "refresh": "Làm mới",
     "mute": "Tắt tiếng",
     "unmute": "Bật tiếng",
     "fullscreen": "Toàn màn hình",
@@ -4262,6 +4263,7 @@
     "noVoice": "Thiết bị của bạn không có giọng đọc cho ngôn ngữ này."
   },
   "stages": {
+    "previewFailed": "Không thể phát bản nghe thử trong phòng âm thanh",
     "allStages": "Tất cả phòng âm thanh",
     "addToCalendar": "Thêm vào lịch",
     "nowPlaying": "Đang phát",
@@ -4634,6 +4636,7 @@
     "anyBadgeHolder": "Bất kỳ người giữ huy hiệu nào cũng nhận được Siêu năng lực. Mua token DeHub để mở khóa huy hiệu — không yêu cầu đặt cọc."
   },
   "follow": {
+    "noResults": "Không tìm thấy kết quả nào",
     "followers": "Người theo dõi",
     "following": "Đang theo dõi",
     "requests": "Yêu cầu",
@@ -7371,6 +7374,7 @@
       "delete": "Xóa"
     },
     "export": {
+      "cancel": "Hủy",
       "scope": "Phạm vi tải xuống",
       "downloadTimeline": "Toàn bộ dòng thời gian",
       "downloadSelection": "Các video clip đã chọn ({{count}})",
@@ -7650,6 +7654,7 @@
     }
   },
   "creator": {
+    "sending": "Đang gửi",
     "navStudio": "Studio",
     "editor": "Biên tập viên",
     "untitled": "Không có tiêu đề",
@@ -8216,6 +8221,7 @@
     "transferIncomplete": "Việc chuyển mã thông báo chưa hoàn tất. Bạn sẽ được hỏi lại trước bài đăng trả phí tiếp theo."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Tìm emoji",
     "noEmoji": "Không tìm thấy emoji",
     "searchResults": "Kết quả tìm kiếm",

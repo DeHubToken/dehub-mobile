@@ -947,6 +947,7 @@
     "themeColorBrandFailed": "Sinu profiilipildilt ei õnnestunud värve lugeda"
   },
   "common": {
+    "refresh": "Värskenda",
     "mute": "Vaigista",
     "unmute": "Lülita heli sisse",
     "fullscreen": "Täisekraan",
@@ -4240,6 +4241,7 @@
     "noVoice": "Sinu seadmel pole selle keele jaoks häält."
   },
   "stages": {
+    "previewFailed": "Eelvaadet ei saanud helitoas esitada",
     "allStages": "Kõik helitoad",
     "addToCalendar": "Lisa kalendrisse",
     "nowPlaying": "Nüüd mängitakse",
@@ -4612,6 +4614,7 @@
     "anyBadgeHolder": "Iga märgi omanik saab SuperPowers. Ostke DeHubi märke, et avada märgi – panustamine pole vajalik."
   },
   "follow": {
+    "noResults": "Tulemusi ei leitud",
     "followers": "Jälgijad",
     "following": "Jälgin",
     "requests": "Taotlused",
@@ -7240,6 +7243,7 @@
       "delete": "Kustuta"
     },
     "export": {
+      "cancel": "Tühista",
       "scope": "Allalaadimisvahemik",
       "downloadTimeline": "Kogu ajajoon",
       "downloadSelection": "Valitud videoklipid ({{count}})",
@@ -7519,6 +7523,7 @@
     }
   },
   "creator": {
+    "sending": "Saatmine",
     "navStudio": "Stuudio",
     "editor": "Redaktor",
     "untitled": "Pealkirjata",
@@ -8085,6 +8090,7 @@
     "transferIncomplete": "Loa edastamist ei viidud lõpule. Enne järgmist tasulist postitust küsitakse sinult uuesti."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Otsi emojit",
     "noEmoji": "Emojisid ei leitud",
     "searchResults": "Otsingutulemused",

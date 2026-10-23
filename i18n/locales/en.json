@@ -1045,6 +1045,7 @@
     "themeColorBrandFailed": "Couldn't read colors from your profile picture"
   },
   "common": {
+    "refresh": "Refresh",
     "mute": "Mute",
     "unmute": "Unmute",
     "fullscreen": "Fullscreen",
@@ -4609,6 +4610,7 @@
     "filedOn": "Filed {{date}}"
   },
   "stages": {
+    "previewFailed": "Could not play preview on stage",
     "allStages": "All Stages",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
@@ -4981,6 +4983,7 @@
     "spend": "Spend"
   },
   "follow": {
+    "noResults": "No results found",
     "followers": "Followers",
     "following": "Following",
     "requests": "Requests",
@@ -8132,6 +8135,7 @@
       "delete": "Delete"
     },
     "export": {
+      "cancel": "Cancel",
       "scope": "Download range",
       "downloadTimeline": "Whole timeline",
       "downloadSelection": "Selected video clips ({{count}})",
@@ -8548,6 +8552,7 @@
     }
   },
   "creator": {
+    "sending": "Sending",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",
     "toolMaboroshiDesc": "Replace characters and objects, review a draft, then export with your original soundtrack.",
@@ -9335,6 +9340,7 @@
     "transferIncomplete": "The token transfer did not complete. You will be asked again before your next paid post."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Search emoji",
     "noEmoji": "No emoji found",
     "searchResults": "Search results",

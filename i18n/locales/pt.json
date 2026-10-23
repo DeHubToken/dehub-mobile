@@ -953,6 +953,7 @@
     "themeColorBrandFailed": "Não foi possível ler as cores da sua foto de perfil"
   },
   "common": {
+    "refresh": "Atualizar",
     "mute": "Silenciar",
     "unmute": "Ativar som",
     "fullscreen": "Ecrã inteiro",
@@ -4311,6 +4312,7 @@
     "filedOn": "Aberto em {{date}}"
   },
   "stages": {
+    "previewFailed": "Não foi possível reproduzir a prévia na sala de áudio",
     "allStages": "Todas as salas de áudio",
     "addToCalendar": "Adicionar ao calendário",
     "nowPlaying": "Agora tocando",
@@ -4683,6 +4685,7 @@
     "anyBadgeHolder": "Qualquer portador de distintivo obtém Superpoderes. Compre tokens DeHub para desbloquear um distintivo — o staking não é necessário."
   },
   "follow": {
+    "noResults": "Nenhum resultado encontrado",
     "followers": "Seguidores",
     "following": "Seguindo",
     "requests": "Solicitações",
@@ -7380,6 +7383,7 @@
       "delete": "Eliminar"
     },
     "export": {
+      "cancel": "Cancelar",
       "scope": "Intervalo de transferências",
       "downloadTimeline": "Linha do tempo inteira",
       "downloadSelection": "Videoclipes selecionados ({{count}})",
@@ -7752,6 +7756,7 @@
     }
   },
   "creator": {
+    "sending": "Enviando",
     "navStudio": "Estúdio",
     "editor": "Editor",
     "untitled": "Sem título",
@@ -8269,6 +8274,7 @@
     "transferIncomplete": "A transferência de token não foi concluída. Ser-lhe-á perguntado novamente antes do seu próximo post pago."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Buscar emoji",
     "noEmoji": "Nenhum emoji encontrado",
     "searchResults": "Resultados da busca",
