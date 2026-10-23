@@ -49,6 +49,8 @@ import {
   reconcileReactionCounts,
   resolveLeadReaction,
   resolveThumbReaction,
+  resolveThumbCount,
+  dislikesOutnumberLikes,
   type PostReaction,
   type ReactionCounts,
 } from "../../libs/reactions";
@@ -274,10 +276,14 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
    * thumbs-down to show it), else the thread's most-used. On your own comment
    * the crowd's pick is not drawn: that thumb is the door to the likers list.
    */
+  const shownCounts = reconcileReactionCounts(likeCount, dislikeCount, reactionCounts);
   const thumbGlyph =
     (isOwnComment
-      ? myReaction && !isPositiveReaction(myReaction) ? myReaction : null
-      : resolveThumbReaction(reactionCounts, myReaction)) ?? undefined;
+      ? myReaction && !isPositiveReaction(myReaction)
+        ? myReaction
+        : dislikesOutnumberLikes(shownCounts) ? "dislike" : null
+      : resolveThumbReaction(shownCounts, myReaction)) ?? undefined;
+  const thumbCount = resolveThumbCount(likeCount, dislikeCount, thumbGlyph);
   /** Your own reaction is the one that moves. */
   const thumbAnimated = !!thumbGlyph && thumbGlyph === myReaction;
 
@@ -828,8 +834,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                     />
                   )}
                 </Animated.View>
-                {likeCount > 0 && (
-                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>{likeCount}</Text>
+                {thumbCount > 0 && (
+                  <Text style={{ fontSize: 12, color: "#8B8D90" }}>{thumbCount}</Text>
                 )}
               </Pressable>
             </View>
