@@ -1,4 +1,4 @@
-import { inAppDehubUrl } from '../../libs/links.utils';
+import { inAppDehubUrl } from '../../libs/in-app-dehub-url';
 
 describe('inAppDehubUrl', () => {
   it('keeps governance links in the app', () => {

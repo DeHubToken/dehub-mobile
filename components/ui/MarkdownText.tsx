@@ -18,7 +18,7 @@ import React, { memo, useCallback } from 'react';
 import { Linking, StyleSheet, Text, TextStyle, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { toastSuccess } from '../../libs/toast';
-import { inAppDehubUrl } from '../../libs/links.utils';
+import { inAppDehubUrl } from '../../libs/in-app-dehub-url';
 
 interface MarkdownTextProps {
   content: string;
