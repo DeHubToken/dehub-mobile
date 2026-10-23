@@ -6035,6 +6035,8 @@
     "creatorEarnsDirect": "Aboneler DeHub tokenleri ile ödeme yapar. Payınız, abone oldukları anda cüzdanınıza düşer ve rozet seviyenizin platform ücreti düşülür."
   },
   "live": {
+    "bigEvent": "Büyük etkinlik",
+    "bigEventHint": "Büyük kitleler için: izleyiciler yayını yaklaşık 20 saniye geriden, daha az kesintiyle izler.",
     "notSet": "Ayarlanmadı",
     "liveChat": "Canlı sohbet",
     "pickDate": "Tarih seç",

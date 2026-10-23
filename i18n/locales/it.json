@@ -5641,6 +5641,8 @@
     "creatorEarnsDirect": "Gli abbonati pagano in token DeHub. La tua quota arriva nel tuo portafoglio nel momento in cui si iscrivono, meno la commissione della piattaforma per il tuo livello di badge."
   },
   "live": {
+    "bigEvent": "Grande evento",
+    "bigEventHint": "Per un grande pubblico: gli spettatori guardano con circa 20 secondi di ritardo, con meno interruzioni.",
     "notSet": "Non impostato",
     "liveChat": "Chat dal vivo",
     "pickDate": "Scegli la data",

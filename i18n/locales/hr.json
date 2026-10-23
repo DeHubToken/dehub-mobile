@@ -5533,6 +5533,8 @@
     "creatorEarnsDirect": "Pretplatnici plaćaju u DeHub žetonima. Tvoja dionica završava u novčaniku čim se pretplati, umanjena za naknadu za platformu za tvoju razinu značke."
   },
   "live": {
+    "bigEvent": "Veliki događaj",
+    "bigEventHint": "Za veliku publiku: gledatelji gledaju s kašnjenjem od oko 20 sekundi, uz manje prekida.",
     "notSet": "Nije postavljeno",
     "liveChat": "Chat uživo",
     "pickDate": "Odaberi datum",

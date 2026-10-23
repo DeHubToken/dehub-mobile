@@ -77,7 +77,8 @@ import { liveReactionType } from "../../libs/live-reaction-flow";
 import { LivestreamEvents } from "../../services/enums/livestream.enum";
 import { cdnImage } from "../../libs/cdnImage";
 import { FEED_BENTO_RADIUS } from "../../libs/feed-image-layout";
-import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
+import { hlsUrlFor, isBigEvent, liveThumbnailFor } from "../../libs/live-ingest";
+import { markBigEventLive } from "../../libs/sharedLivePlayer";
 import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
@@ -624,10 +625,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // HLS ladder for the in-card preview. Derived from the playbackId the same
   // way the post page does it — `playbackUrl` off the API is usually absent
   // for a self-hosted stream.
-  const livePreviewUrl = useMemo(
-    () => (isLive ? hlsUrlFor(stream as any) : null),
-    [isLive, stream],
-  );
+  const livePreviewUrl = useMemo(() => {
+    if (!isLive) return null;
+    const url = hlsUrlFor(stream as any);
+    // The card often builds the shared player the viewer later takes over, so
+    // a big event's deep buffer has to be known here, before it exists.
+    markBigEventLive(url, isBigEvent(stream as any));
+    return url;
+  }, [isLive, stream]);
 
   // A finished stream leaves a plain mp4 replay on the CDN once its capture
   // reports ready, and the HLS ladder above is dead the moment ingest stops.

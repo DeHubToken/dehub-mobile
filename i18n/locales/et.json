@@ -5533,6 +5533,8 @@
     "creatorEarnsDirect": "Tellijad maksavad DeHubi žetoonides. Sinu osa jõuab Sinu rahakotti kohe, kui nad tellimuse tellivad, millest on maha arvatud platvormi tasu Sinu erimärgi taseme eest."
   },
   "live": {
+    "bigEvent": "Suursündmus",
+    "bigEventHint": "Suurele publikule: vaatajad näevad umbes 20-sekundilise viivitusega, kuid vähemate katkestustega.",
     "notSet": "Määramata",
     "liveChat": "Otsevestlus",
     "pickDate": "Vali kuupäev",

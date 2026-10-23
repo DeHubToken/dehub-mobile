@@ -5587,6 +5587,8 @@
     "creatorEarnsDirect": "Nagbabayad ang mga subscriber sa mga token ng DeHub. Ang iyong share ay nasa iyong wallet sa sandaling mag - subscribe sila, mas mababa ang bayarin sa platform para sa iyong badge tier."
   },
   "live": {
+    "bigEvent": "Malaking event",
+    "bigEventHint": "Para sa malalaking audience: mga 20 segundong huli ang panonood ng mga manonood, pero mas kaunti ang pagkaputol.",
     "notSet": "Hindi nakatakda",
     "liveChat": "Live chat",
     "pickDate": "Pumili ng petsa",

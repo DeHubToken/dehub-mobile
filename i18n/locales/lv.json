@@ -5533,6 +5533,8 @@
     "creatorEarnsDirect": "Abonenti maksā DeHub žetonos. Abonēšanas brīdī jūsu daļa nonāk jūsu makā, atskaitot platformas nodevu par jūsu nozīmītes līmeni."
   },
   "live": {
+    "bigEvent": "Liels pasākums",
+    "bigEventHint": "Lielai auditorijai: skatītāji skatās ar aptuveni 20 sekunžu aizkavi, bet ar mazāk pārtraukumiem.",
     "notSet": "Nav iestatīts",
     "liveChat": "Tiešraides tērzēšana",
     "pickDate": "Izvēlieties datumu",

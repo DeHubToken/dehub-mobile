@@ -5535,6 +5535,8 @@
     "creatorEarnsDirect": "Maamiltoonni mallattoo DeHub tiin kaffalu. Aksiyooniin keessan yeroo isaan subscribe godhanitti boorsaa keessan keessa bu'a, kaffaltii waltajjii sadarkaa baajii keessanii hir'isuun."
   },
   "live": {
+    "bigEvent": "Taatee guddaa",
+    "bigEventHint": "Daawwattoota baay'eef: daawwattoonni gara sekondii 20 booda ilaalu, addaan citiinsi xiqqaa ta'a.",
     "notSet": "Hin qindoofne",
     "liveChat": "Haasaa kallattii",
     "pickDate": "Guyyaa filadhu",

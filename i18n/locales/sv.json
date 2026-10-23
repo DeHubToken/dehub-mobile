@@ -5545,6 +5545,8 @@
     "creatorEarnsDirect": "Prenumeranter betalar i DeHub-tokens. Din andel hamnar i din plånbok så fort de prenumererar, minus plattformsavgiften för din märkesnivå."
   },
   "live": {
+    "bigEvent": "Stort evenemang",
+    "bigEventHint": "För stor publik: tittarna ser sändningen cirka 20 sekunder fördröjd, med färre avbrott.",
     "notSet": "Inte angivet",
     "liveChat": "Livechatt",
     "pickDate": "Välj datum",

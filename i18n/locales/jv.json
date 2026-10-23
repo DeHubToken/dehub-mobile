@@ -5523,6 +5523,8 @@
     "creatorEarnsDirect": "Pelanggan mbayar nganggo token DeHub. Bagianmu mlebu ing dompetmu nalika dheweke langganan, dikurangi biaya platform kanggo tingkatan lencana."
   },
   "live": {
+    "bigEvent": "Acara gedhe",
+    "bigEventHint": "Kanggo penonton akèh: penonton nonton kira-kira 20 detik telat, kanthi gangguan luwih sithik.",
     "notSet": "Durung disetel",
     "liveChat": "Obrolan langsung",
     "pickDate": "Pilih tanggal",

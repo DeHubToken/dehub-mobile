@@ -5625,6 +5625,8 @@
     "creatorEarnsDirect": "Pelanggan membayar dalam token DeHub. Bagian Anda masuk ke dompet Anda saat mereka berlangganan, dikurangi biaya platform untuk tingkatan lencana Anda."
   },
   "live": {
+    "bigEvent": "Acara besar",
+    "bigEventHint": "Untuk penonton besar: penonton menonton sekitar 20 detik tertinggal, dengan lebih sedikit gangguan.",
     "notSet": "Belum diatur",
     "liveChat": "Obrolan langsung",
     "pickDate": "Pilih tanggal",

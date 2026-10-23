@@ -5542,6 +5542,8 @@
     "creatorEarnsDirect": "Wasajili hulipa kwa ishara za DeHub. Gawio lako linatua kwenye mkoba wako pindi wanapojisajili, punguza ada ya tovuti ya kiwango cha beji yako."
   },
   "live": {
+    "bigEvent": "Tukio kubwa",
+    "bigEventHint": "Kwa hadhira kubwa: watazamaji hutazama nyuma kwa takriban sekunde 20, na kukatika kidogo.",
     "notSet": "Haijawekwa",
     "liveChat": "Gumzo la moja kwa moja",
     "pickDate": "Chagua tarehe",

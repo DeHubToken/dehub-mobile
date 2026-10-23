@@ -5561,6 +5561,8 @@
     "creatorEarnsDirect": "Abonnente zahled mit DeHub Tokens. Din Anteil landet i dim Wallet, grad wenn sie abonniered, abzüglich de Plattformgebühr für din Badge-Tier."
   },
   "live": {
+    "bigEvent": "Grosse Event",
+    "bigEventHint": "Für es grosses Publikum: d Zuschauer gsehnd öppe 20 Sekunde verzögeret, defür mit weniger Unterbrüch.",
     "notSet": "Nöd festgleit",
     "liveChat": "Live-Chat",
     "pickDate": "Datum uswähle",

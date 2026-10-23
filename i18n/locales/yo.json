@@ -5523,6 +5523,8 @@
     "creatorEarnsDirect": "Àwọn alábàáṣepọ̀ ń san ní àmi DeHub. Ìpín rẹ̀ ń wọ́ sínú apamọwọ rẹ̀ lẹ́sẹ̀kẹsẹ̀ tí wọ́n bá forúkọ sílẹ̀, lẹ́yìn fífi owó pẹpẹ̀kìkì fún ìpele àmi rẹ̀ kúrò."
   },
   "live": {
+    "bigEvent": "Ìṣẹ̀lẹ̀ ńlá",
+    "bigEventHint": "Fún ọ̀pọ̀ òǹwòran: àwọn òǹwòran yóò máa wò ó ní nǹkan bí ìṣẹ́jú-àáyá 20 sẹ́yìn, pẹ̀lú ìdádúró díẹ̀.",
     "notSet": "Kò tíì ṣètò",
     "liveChat": "Ìfọ̀rọ̀wérọ̀ tààrà",
     "pickDate": "Yan ọjọ́",
