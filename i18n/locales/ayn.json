@@ -4883,7 +4883,12 @@
     "interestedCount": "{{count}} مهتم",
     "loadFailed": "ما قدرنا نحمّل الفعاليات"
   },
-  "stats": {"chart": {"daily": "الزوار يومياً", "dailyHint": "زوار فريدين يومياً", "empty": "لسع ما في بيانات لذي الفترة"},
+  "stats": {
+    "chart": {
+      "daily": "الزوار يومياً",
+      "dailyHint": "زوار فريدين يومياً",
+      "empty": "لسع ما في بيانات لذي الفترة"
+    },
     "definitions": {
       "visitorsTerm": "الزوار"
     },
@@ -9585,5 +9590,15 @@
     "timedOut": "مُعطل.",
     "failed": "لما عملش. حاول تاني.",
     "youAreBanned": "ما بتستطيع تتكلمش في ستريمات المبدع ده"
+  },
+  "loginStack": {
+    "tip": "نصيحة DHB",
+    "headlineTop": "بتصير لك كل شيء",
+    "headlineAccent": "وتكون مبسوط.",
+    "orContinueWith": "أو استمر مع",
+    "phone": "الموبايل",
+    "fingerprint": "البصمة",
+    "exploreFirst": "استكشف أولاً",
+    "codeNote": "نرسل لك كود على الإيميل، ما تحتاج كلمة سر."
   }
 }

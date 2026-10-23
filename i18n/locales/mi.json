@@ -4893,7 +4893,12 @@
     "interestedCount": "{{count}} e hiahia ana",
     "loadFailed": "Kāore i taea te uta i ngā huihuinga"
   },
-  "stats": {"chart": {"daily": "Manuhiri ia rā", "dailyHint": "manuhiri motuhake ia rā", "empty": "Kāore anō he raraunga mō tēnei wā"},
+  "stats": {
+    "chart": {
+      "daily": "Manuhiri ia rā",
+      "dailyHint": "manuhiri motuhake ia rā",
+      "empty": "Kāore anō he raraunga mō tēnei wā"
+    },
     "definitions": {
       "visitorsTerm": "Manuhiri"
     },
@@ -9654,5 +9659,15 @@
     "failed": "Kaore i mahi. Whakamātauria ano.",
     "youAreBanned": "Kaore e taea e koe te korero i roto i nga awa o tenei kaihanga",
     "youAreTimedOut": "Kei te waatea koe mo tetahi wa"
+  },
+  "loginStack": {
+    "tip": "Tohu DHB",
+    "headlineTop": "Ka whai koe i nga mea katoa",
+    "headlineAccent": "kia hari.",
+    "orContinueWith": "ranei haere tonu ki",
+    "phone": "Waea",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Whakamātauria te tuatahi",
+    "codeNote": "Ka tukuna atu e matou he waehere ki a koe, kaore he kupuhipa e hiahiatia ana."
   }
 }
