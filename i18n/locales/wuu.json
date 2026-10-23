@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "啥人好看到",
+    "public": "所有人",
+    "followers": "只有粉丝",
+    "direct": "只有被提到个人",
+    "noRepost": "只有公开个帖子好转发",
+    "directHint": "只有侬用 @ 提到个人好看到搿条帖子",
+    "needsMention": "至少用 @ 提到一个人，再好只发拨被提到个人"
+  },
   "replyPolicy": {
     "label": "啥人好回复",
     "public": "随便啥人",

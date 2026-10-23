@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Siapa boleh melihat ini",
+    "public": "Semua orang",
+    "followers": "Pengikut sahaja",
+    "direct": "Orang yang disebut sahaja",
+    "noRepost": "Hanya siaran awam boleh disiarkan semula",
+    "directHint": "Hanya orang yang anda sebut dengan @ akan melihat siaran ini",
+    "needsMention": "Sebut sekurang-kurangnya seorang dengan @ untuk menyiarkan kepada orang yang disebut sahaja"
+  },
   "replyPolicy": {
     "label": "Siapa boleh membalas",
     "public": "Sesiapa",

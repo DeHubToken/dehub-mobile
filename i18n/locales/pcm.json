@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Who fit see dis",
+    "public": "Everybody",
+    "followers": "Na only followers",
+    "direct": "Na only people wey you mention",
+    "noRepost": "Na only public post fit repost",
+    "directHint": "Na only di people wey you mention with @ go see dis post",
+    "needsMention": "Mention at least one person with @ to post am for only di people wey you mention"
+  },
   "replyPolicy": {
     "label": "Who fit reply",
     "public": "Anybody",

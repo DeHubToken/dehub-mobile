@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Tko ovo može vidjeti",
+    "public": "Svi",
+    "followers": "Samo pratitelji",
+    "direct": "Samo spomenute osobe",
+    "noRepost": "Ponovno se mogu objaviti samo javne objave",
+    "directHint": "Samo osobe koje spomenete s @ vidjet će ovu objavu",
+    "needsMention": "Spomenite barem jednu osobu s @ da biste objavili samo za spomenute"
+  },
   "replyPolicy": {
     "label": "Tko može odgovoriti",
     "public": "Bilo tko",

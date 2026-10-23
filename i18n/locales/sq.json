@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kush mund ta shohë këtë",
+    "public": "Të gjithë",
+    "followers": "Vetëm ndjekësit",
+    "direct": "Vetëm personat e përmendur",
+    "noRepost": "Vetëm postimet publike mund të ripostohen",
+    "directHint": "Vetëm personat që përmend me @ do ta shohin këtë postim",
+    "needsMention": "Përmend të paktën një person me @ për të postuar vetëm për të përmendurit"
+  },
   "replyPolicy": {
     "label": "Kush mund të përgjigjet",
     "public": "Kushdo",

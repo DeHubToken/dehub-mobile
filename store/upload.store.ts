@@ -81,6 +81,8 @@ export interface SerializedUploadPayload {
   quotePolicy?: "followers" | "nobody";
   /** Who may reply. Absent means anyone. */
   replyPolicy?: "followers" | "following" | "mentioned";
+  /** Who may see it. Absent means everyone. */
+  visibility?: "followers" | "direct";
 }
 
 export interface MintParams {

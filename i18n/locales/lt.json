@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Kas gali tai matyti",
+    "public": "Visi",
+    "followers": "Tik sekėjai",
+    "direct": "Tik paminėti žmonės",
+    "noRepost": "Pakartotinai skelbti galima tik viešus įrašus",
+    "directHint": "Šį įrašą matys tik žmonės, kuriuos paminėsite su @",
+    "needsMention": "Paminėkite bent vieną žmogų su @, kad paskelbtumėte tik paminėtiesiems"
+  },
   "replyPolicy": {
     "label": "Kas gali atsakyti",
     "public": "Bet kas",

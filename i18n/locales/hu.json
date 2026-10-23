@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Ki láthatja ezt",
+    "public": "Mindenki",
+    "followers": "Csak követők",
+    "direct": "Csak az említettek",
+    "noRepost": "Csak nyilvános bejegyzések oszthatók meg újra",
+    "directHint": "Ezt a bejegyzést csak azok látják, akiket @-cal megemlítesz",
+    "needsMention": "Említs meg @-cal legalább egy személyt, hogy csak az említetteknek posztolj"
+  },
   "replyPolicy": {
     "label": "Ki válaszolhat",
     "public": "Bárki",

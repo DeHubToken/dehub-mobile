@@ -10,6 +10,12 @@ describe('videoNeedsAccess', () => {
     expect(videoNeedsAccess({ plansDetails: [{ id: '1' }] })).toBe(true);
   });
 
+  it('asks for one for a followers-only or direct post too', () => {
+    expect(videoNeedsAccess({ visibility: 'followers' })).toBe(true);
+    expect(videoNeedsAccess({ visibility: 'direct' })).toBe(true);
+    expect(videoNeedsAccess({ visibility: 'public' })).toBe(false);
+  });
+
   it('plays an open post straight from the CDN', () => {
     expect(videoNeedsAccess({})).toBe(false);
     // A hold toggle with no amount is no gate at all.

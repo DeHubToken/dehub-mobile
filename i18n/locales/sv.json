@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Vem kan se det här",
+    "public": "Alla",
+    "followers": "Bara följare",
+    "direct": "Bara nämnda personer",
+    "noRepost": "Bara offentliga inlägg kan delas vidare",
+    "directHint": "Bara de personer du nämner med @ ser det här inlägget",
+    "needsMention": "Nämn minst en person med @ för att bara publicera för nämnda personer"
+  },
   "replyPolicy": {
     "label": "Vem kan svara",
     "public": "Alla",

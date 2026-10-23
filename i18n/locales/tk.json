@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Muny kim görüp biler",
+    "public": "Hemmeler",
+    "followers": "Diňe yzarlaýjylar",
+    "direct": "Diňe agzalan adamlar",
+    "noRepost": "Diňe köpçülikleýin ýazgylary gaýtadan paýlaşyp bolýar",
+    "directHint": "Bu ýazgyny diňe @ bilen agzan adamlaryňyz görer",
+    "needsMention": "Diňe agzalanlara paýlaşmak üçin iň bolmanda bir adamy @ bilen agzaň"
+  },
   "replyPolicy": {
     "label": "Kim jogap berip biler",
     "public": "Islendik adam",

@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Onye nwere ike ịhụ nke a",
+    "public": "Onye ọ bụla",
+    "followers": "Ndị na-eso naanị",
+    "direct": "Ndị a kpọtụrụ aha naanị",
+    "noRepost": "Ọ bụ naanị ihe e bipụtara n'ihu ọha ka a ga-ebipụtaghachi",
+    "directHint": "Ọ bụ naanị ndị ị kpọtụrụ aha site na @ ga-ahụ ihe a e bipụtara",
+    "needsMention": "Kpọtụrụ ma ọ dịkarịa ala otu onye aha site na @ iji bipụta nye naanị ndị a kpọtụrụ aha"
+  },
   "replyPolicy": {
     "label": "Onye nwere ike ịza",
     "public": "Onye ọ bụla",

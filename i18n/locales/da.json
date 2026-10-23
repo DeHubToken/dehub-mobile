@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Hvem kan se dette",
+    "public": "Alle",
+    "followers": "Kun følgere",
+    "direct": "Kun nævnte personer",
+    "noRepost": "Kun offentlige opslag kan deles igen",
+    "directHint": "Kun de personer, du nævner med @, kan se dette opslag",
+    "needsMention": "Nævn mindst én person med @ for kun at dele med nævnte personer"
+  },
   "replyPolicy": {
     "label": "Hvem kan svare",
     "public": "Alle",

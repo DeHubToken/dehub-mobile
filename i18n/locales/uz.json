@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Buni kim ko'ra oladi",
+    "public": "Hamma",
+    "followers": "Faqat obunachilar",
+    "direct": "Faqat tilga olinganlar",
+    "noRepost": "Faqat ommaviy postlarni qayta joylash mumkin",
+    "directHint": "Bu postni faqat siz @ bilan tilga olgan odamlar ko'radi",
+    "needsMention": "Faqat tilga olinganlarga joylash uchun kamida bir kishini @ bilan tilga oling"
+  },
   "replyPolicy": {
     "label": "Kim javob bera oladi",
     "public": "Har kim",

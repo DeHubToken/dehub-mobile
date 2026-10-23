@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "Sapa sing bisa ndeleng iki",
+    "public": "Kabeh wong",
+    "followers": "Mung pandherek",
+    "direct": "Mung wong sing disebut",
+    "noRepost": "Mung kiriman umum sing bisa dikirim ulang",
+    "directHint": "Mung wong sing kokdebut nganggo @ sing bakal ndeleng kiriman iki",
+    "needsMention": "Sebutna paling ora siji wong nganggo @ kanggo ngirim mung marang wong sing disebut"
+  },
   "replyPolicy": {
     "label": "Sapa sing bisa mbales",
     "public": "Sapa wae",

@@ -1,4 +1,13 @@
 {
+  "postVisibility": {
+    "label": "公開範囲",
+    "public": "全員",
+    "followers": "フォロワーのみ",
+    "direct": "メンションした人のみ",
+    "noRepost": "リポストできるのは公開投稿のみです",
+    "directHint": "@でメンションした人だけがこの投稿を見られます",
+    "needsMention": "メンションした人のみに投稿するには、@で1人以上メンションしてください"
+  },
   "replyPolicy": {
     "label": "返信できる人",
     "public": "全員",
