@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Lüüt uf Mastodon und andere Fediverse-Apps chönd di under dere Adrässe finde und dir folge. Dini neue öffentliche Biiträg erreiched si det.",
+    "copy": "Kopiere",
+    "copied": "Kopiert",
+    "privateNote": "Privati Konte wärded im Fediverse nöd zeigt.",
+    "noUsername": "Wähl en Benutzername, zum e Fediverse-Adrässe übercho."
+  },
   "profileFields": {
     "title": "Profilfälder",
     "description": "Bis zu vier zuesätzlichi Ziile i dim Profil, wie e Websiite oder dini Pronome.",

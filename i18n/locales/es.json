@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverso",
+    "description": "La gente de Mastodon y otras apps del fediverso puede encontrarte y seguirte en esta dirección. Tus nuevas publicaciones públicas les llegan allí.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "privateNote": "Las cuentas privadas no se muestran en el fediverso.",
+    "noUsername": "Elige un nombre de usuario para tener una dirección en el fediverso."
+  },
   "profileFields": {
     "title": "Campos del perfil",
     "description": "Hasta cuatro líneas extra en tu perfil, como un sitio web o tus pronombres.",

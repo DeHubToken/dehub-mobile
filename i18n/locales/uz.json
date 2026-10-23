@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon va boshqa fediverse ilovalaridagi odamlar sizni shu manzil orqali topib, kuzata oladi. Yangi ommaviy postlaringiz u yerda ularga yetib boradi.",
+    "copy": "Nusxalash",
+    "copied": "Nusxalandi",
+    "privateNote": "Shaxsiy akkauntlar fediverse'da ko'rsatilmaydi.",
+    "noUsername": "Fediverse manzilini olish uchun foydalanuvchi nomini tanlang."
+  },
   "profileFields": {
     "title": "Profil maydonlari",
     "description": "Profilingizda to'rttagacha qo'shimcha qator, masalan veb-sayt yoki olmoshlaringiz.",

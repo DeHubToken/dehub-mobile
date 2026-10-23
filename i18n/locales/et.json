@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Födiversum",
+    "description": "Mastodoni ja teiste födiversumi rakenduste inimesed leiavad sind sellelt aadressilt ja saavad sind jälgida. Sinu uued avalikud postitused jõuavad neini seal.",
+    "copy": "Kopeeri",
+    "copied": "Kopeeritud",
+    "privateNote": "Privaatkontosid födiversumis ei näidata.",
+    "noUsername": "Vali kasutajanimi, et saada födiversumi aadress."
+  },
   "profileFields": {
     "title": "Profiiliväljad",
     "description": "Kuni neli lisarida sinu profiilil, näiteks veebisait või sinu asesõnad.",

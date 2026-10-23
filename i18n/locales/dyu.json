@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mɔgɔ minnu bɛ Mastodon ni fediverse apli wɛrɛw kan, olu bɛ se ka i sɔrɔ ka i tugu nin adiresi la. I ka post foroba kuraw bɛ se u ma yen.",
+    "copy": "A kopi",
+    "copied": "A kopila",
+    "privateNote": "Jatebila gundolaw tɛ jira fediverse kan.",
+    "noUsername": "Baarakɛlaw tɔgɔ dɔ sugandi walasa ka fediverse adiresi sɔrɔ."
+  },
   "profileFields": {
     "title": "Porofili yɔrɔw",
     "description": "Sira naani fo ka fara i ka porofili kan, i n'a fɔ siti walima i ka tɔgɔnɔnaw.",

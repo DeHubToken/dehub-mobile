@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Dadka ku jira Mastodon iyo apps-ka kale ee fediverse waxay kugu heli karaan oo ku raaci karaan cinwaankan. Qoraalladaada cusub ee guud halkaas ayay ku gaaraan.",
+    "copy": "Koobbi",
+    "copied": "Waa la koobiyeeyay",
+    "privateNote": "Akoonnada gaarka ah laguma muujiyo fediverse.",
+    "noUsername": "Dooro magac isticmaale si aad u hesho cinwaan fediverse."
+  },
   "profileFields": {
     "title": "Meelaha astaanta",
     "description": "Ilaa afar sadar oo dheeraad ah oo astaantaada ku jira, sida bog internet ama magac-u-yaalladaada.",

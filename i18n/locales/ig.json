@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ndị nọ na Mastodon na ngwa fediverse ndị ọzọ nwere ike ịchọta gị ma soro gị na adreesị a. Ihe ọhụrụ i bipụtara n'ihu ọha na-erute ha n'ebe ahụ.",
+    "copy": "Detuo",
+    "copied": "E detuola",
+    "privateNote": "A naghị egosi akaụntụ nzuzo na fediverse.",
+    "noUsername": "Họrọ aha njirimara iji nweta adreesị fediverse."
+  },
   "profileFields": {
     "title": "Mpaghara profaịlụ",
     "description": "Ruo ahịrị anọ ọzọ na profaịlụ gị, dị ka weebụsaịtị ma ọ bụ nnọchiaha gị.",

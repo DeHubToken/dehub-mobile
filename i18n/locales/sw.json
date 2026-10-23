@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Watu kwenye Mastodon na programu nyingine za fediverse wanaweza kukupata na kukufuata kwenye anwani hii. Machapisho yako mapya ya umma yanawafikia huko.",
+    "copy": "Nakili",
+    "copied": "Imenakiliwa",
+    "privateNote": "Akaunti za faragha hazionyeshwi kwenye fediverse.",
+    "noUsername": "Chagua jina la mtumiaji ili kupata anwani ya fediverse."
+  },
   "profileFields": {
     "title": "Sehemu za wasifu",
     "description": "Hadi mistari minne ya ziada kwenye wasifu wako, kama tovuti au viwakilishi vyako.",

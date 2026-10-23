@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon nisqapi, huk fediverse app nisqakunapipas runakunaqa kay tiyana sutiwan tarisunkiku, qatisunkikutaq. Musuq llapanpaq qillqaykikuna chaypi paykunaman chayan.",
+    "copy": "Qillqay",
+    "copied": "Qillqasqa",
+    "privateNote": "Sapan yupaykunaqa manam fediverse nisqapi rikukunchu.",
+    "noUsername": "Fediverse tiyana suti kananpaq ruraq sutiyki akllay."
+  },
   "profileFields": {
     "title": "Riqsichikuy t'aqakuna",
     "description": "Riqsichikuyniykipi tawa yapasqa siqikama, web nisqa utaq sutiq rantinkunapas.",

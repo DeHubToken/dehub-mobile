@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverss",
+    "description": "Cilvēki Mastodon un citās fediversa lietotnēs var tevi atrast un sekot tev šajā adresē. Tavi jaunie publiskie ieraksti tur viņus sasniedz.",
+    "copy": "Kopēt",
+    "copied": "Nokopēts",
+    "privateNote": "Privātie konti fediversā netiek rādīti.",
+    "noUsername": "Izvēlies lietotājvārdu, lai iegūtu fediversa adresi."
+  },
   "profileFields": {
     "title": "Profila lauki",
     "description": "Līdz četrām papildu rindām tavā profilā, piemēram, vietne vai tavi vietniekvārdi.",

@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Orang di Mastodon dan aplikasi fediverse lain bisa menemukan dan mengikutimu di alamat ini. Postingan publik barumu sampai ke mereka di sana.",
+    "copy": "Salin",
+    "copied": "Tersalin",
+    "privateNote": "Akun privat tidak ditampilkan di fediverse.",
+    "noUsername": "Pilih nama pengguna untuk mendapatkan alamat fediverse."
+  },
   "profileFields": {
     "title": "Kolom profil",
     "description": "Hingga empat baris tambahan di profilmu, seperti situs web atau kata gantimu.",
