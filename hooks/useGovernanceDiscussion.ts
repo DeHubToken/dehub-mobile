@@ -19,6 +19,7 @@ import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../libs/toast";
+import { dehubAuthHeaders } from "../services/ai.service";
 import { createLogger } from "../libs/logger";
 import { castVote, getMyVote, getProposal, needsOwnBadge } from "../services/governance.service";
 
@@ -137,6 +138,8 @@ export function useSubmitProposalComment() {
     }) => {
       if (!wallet) throw new Error("Not authenticated");
       const addr = wallet.toLowerCase();
+      const headers = await dehubAuthHeaders(addr);
+      if (!headers['x-dehub-token']) throw new Error('Not authenticated');
 
       const { data, error } = await withWalletHeader(
         supabase
@@ -150,7 +153,8 @@ export function useSubmitProposalComment() {
             parent_id: parentId ?? null,
           })
           .select()
-          .single(),
+          .single()
+          .setHeader('x-dehub-token', headers['x-dehub-token']),
         addr,
       );
       if (error) throw error;
@@ -160,6 +164,10 @@ export function useSubmitProposalComment() {
       invalidateProposal(queryClient, variables.proposalId);
     },
     onError: (error) => {
+      if (error.message === 'Badge holders only') {
+        toastError('Badge holders only');
+        return;
+      }
       log.error("Post comment failed:", error);
       toastError(error, _copy("copy.791ab06be905", { defaultValue: "Failed to post comment" }));
     },
