@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredVa
 import { BackHandler, Pressable, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
 import { useTranslation } from "react-i18next";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import Animated, {
   cancelAnimation,
@@ -51,6 +51,7 @@ import type {
 } from "../services/feed.unified.service";
 import { TAB_BAR_CONTENT_INSET } from "../navigation/tabBarLayout";
 import { tabPressIntentOf } from "../navigation/tabPressIntent";
+import { ScreenNames } from "../navigation/ScreenNames";
 import type { BottomTabParamList } from "../navigation/types";
 import { isKidsModeLocked } from "../libs/kids-mode-lock";
 import {
@@ -594,6 +595,19 @@ export default function HomeScreen() {
 
   // ── Navigation ───────────────────────────────────────────────────────────
   const tabNavigation = useNavigation<BottomTabNavigationProp<BottomTabParamList>>();
+  const homeRoute = useRoute<RouteProp<BottomTabParamList, typeof ScreenNames.Home>>();
+
+  // A post page keeps this feed\'s pill. Its tabs pop to this existing Home,
+  // then apply the requested feed, rather than stacking a second tab navigator.
+  useEffect(() => {
+    const requested = homeRoute.params?.feedTab;
+    if (!requested) return;
+    const next = TAB_ORDER.includes(requested as TabKey) ? requested : "all";
+    handleNavPostTypeChange(next);
+    setFilterPanelVisible(!!homeRoute.params?.openFeedFilters);
+    showHeader();
+    tabNavigation.setParams({ feedTab: undefined, openFeedFilters: undefined });
+  }, [homeRoute.params?.feedTab, homeRoute.params?.openFeedFilters, TAB_ORDER, handleNavPostTypeChange, showHeader, tabNavigation]);
 
   // Each pager page mounts on its first visit. Gesture handlers select the
   // intended page before the animation commits; hidden screens do no boot work.
