@@ -377,7 +377,7 @@ const ProposalCardEmbed: React.FC<{ proposalId: string; onOpen: () => void; fall
       subtitle={author}
       meta={`${forPct}% ${t('governance.forLabel')} · ${100 - forPct}% ${t('governance.againstLabel')}`}
       description={data.description || undefined}
-      imageUri={getAvatarUrl(data.author_avatar) || null}
+      imageUri={data.author_avatar ? getAvatarUrl(data.author_avatar) : null}
       fallbackIcon="Vote"
       onPress={onOpen}
     />
