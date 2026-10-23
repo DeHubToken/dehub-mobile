@@ -4,6 +4,30 @@ import { Linking } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { supportedNetworks } from "../config/web3.constants";
 import { normalizeSocialUrl } from './social-links';
+import { parseDehubLink } from './dehub-links';
+
+/**
+ * A DeHub page the app has its own screen for, as a dehub:// link, or null.
+ *
+ * iOS never hands an app its own universal link: opened from inside the app,
+ * dehub.io/app/governance/<id> went to Safari instead of the proposal screen.
+ * The custom scheme always comes back to the app, and the router opens any
+ * /app page it has no screen for in the in-app browser, so nothing dead-ends.
+ */
+export function inAppDehubUrl(rawUrl: string): string | null {
+  const match = parseDehubLink(rawUrl);
+  if (match?.kind === 'proposal') return `dehub://app/governance/${match.proposalId}`;
+  const own = rawUrl.match(/^(?:https?:\/\/)?(?:www\.)?dehub\.io\/(app(?:[/?#].*)?)$/i);
+  return own ? `dehub://${own[1]}` : null;
+}
+
+/** Open a DeHub link on its app screen. True when it was handled. */
+function openDehubLinkInApp(url: string): boolean {
+  const inApp = inAppDehubUrl(url);
+  if (!inApp) return false;
+  Linking.openURL(inApp).catch((e) => console.warn('[openDehubLinkInApp] failed', e));
+  return true;
+}
 
 /**
  * Normalize a raw social input (username or partial/full link) into a full https URL for a given host.
@@ -49,6 +73,7 @@ export async function openExternalLink(rawUrl?: string) {
     let url = rawUrl.trim();
     if (url === '#' || url.length < 2) return;
     if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+    if (openDehubLinkInApp(url)) return;
     // Encode any spaces that slipped through
     url = withDeHubLanguage(url.replace(/\s/g, '%20'), i18n.language || 'en');
     if (/^https?:\/\//i.test(url)) {
@@ -68,6 +93,7 @@ export async function openInApp(rawUrl?: string) {
   try {
     let url = rawUrl.trim();
     if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+    if (openDehubLinkInApp(url)) return;
     url = withDeHubLanguage(url.replace(/\s/g, '%20'), i18n.language || 'en');
     try {
       await WebBrowser.openBrowserAsync(url, {
