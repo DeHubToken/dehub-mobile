@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediwers",
+    "description": "Mastodon-daky we beýleki fediwers programmalaryndaky adamlar sizi şu salgy boýunça tapyp yzarlap bilerler. Täze köpçülikleýin ýazgylaryňyz olara şol ýerde ýetýär.",
+    "copy": "Göçür",
+    "copied": "Göçürildi",
+    "privateNote": "Şahsy hasaplar fediwersde görkezilmeýär.",
+    "noUsername": "Fediwers salgysyny almak üçin ulanyjy adyny saýlaň."
+  },
   "profileFields": {
     "title": "Profil meýdanlary",
     "description": "Profiliňizde dört goşmaça setire çenli, meselem web sahypa ýa-da çalyşmalaryňyz.",

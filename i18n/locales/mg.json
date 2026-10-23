@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ny olona ao amin'ny Mastodon sy ireo rindranasa fediverse hafa dia afaka mahita sy manaraka anao amin'ity adiresy ity. Tonga any aminy ireo lahatsoratrao vaovao ho an'ny daholobe.",
+    "copy": "Adikao",
+    "copied": "Voadika",
+    "privateNote": "Tsy aseho ao amin'ny fediverse ny kaonty tsy miankina.",
+    "noUsername": "Misafidiana anarana mpampiasa mba hahazoana adiresy fediverse."
+  },
   "profileFields": {
     "title": "Saha ao amin'ny mombamomba",
     "description": "Andalana efatra fanampiny ao amin'ny mombamombanao, toy ny tranonkala na ny mpisolo anaranao.",

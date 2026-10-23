@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mutane a Mastodon da sauran manhajojin fediverse za su iya samunka su bi ka a wannan adireshin. Sabbin rubuce-rubucenka na jama'a suna isa gare su a can.",
+    "copy": "Kwafa",
+    "copied": "An kwafa",
+    "privateNote": "Ba a nuna asusun sirri a fediverse ba.",
+    "noUsername": "Zaɓi sunan mai amfani don samun adireshin fediverse."
+  },
   "profileFields": {
     "title": "Filayen bayanan martaba",
     "description": "Har zuwa ƙarin layi huɗu a bayanan martabarka, kamar shafin yanar gizo ko karin magananka.",

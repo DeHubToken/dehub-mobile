@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fedivisata",
+    "description": "Žmonės Mastodon ir kitose fedivisatos programėlėse gali jus rasti ir sekti šiuo adresu. Nauji jūsų vieši įrašai juos ten pasiekia.",
+    "copy": "Kopijuoti",
+    "copied": "Nukopijuota",
+    "privateNote": "Privačios paskyros fedivisatoje nerodomos.",
+    "noUsername": "Pasirinkite vartotojo vardą, kad gautumėte fedivisatos adresą."
+  },
   "profileFields": {
     "title": "Profilio laukai",
     "description": "Iki keturių papildomų eilučių jūsų profilyje, pvz., svetainė ar jūsų įvardžiai.",

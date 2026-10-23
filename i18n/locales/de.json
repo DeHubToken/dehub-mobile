@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Leute auf Mastodon und in anderen Fediverse-Apps können dich unter dieser Adresse finden und dir folgen. Deine neuen öffentlichen Beiträge erreichen sie dort.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "privateNote": "Private Konten werden im Fediverse nicht angezeigt.",
+    "noUsername": "Wähle einen Benutzernamen, um eine Fediverse-Adresse zu bekommen."
+  },
   "profileFields": {
     "title": "Profilfelder",
     "description": "Bis zu vier zusätzliche Zeilen in deinem Profil, etwa eine Website oder deine Pronomen.",

@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "I-Fediverse",
+    "description": "Abantu abaku-Mastodon nakwamanye ama-app e-fediverse bangakuthola futhi bakulandele kuleli kheli. Okuthunyelwe kwakho okusha komphakathi kubafinyelela lapho.",
+    "copy": "Kopisha",
+    "copied": "Kukopishiwe",
+    "privateNote": "Ama-akhawunti ayimfihlo awaboniswa ku-fediverse.",
+    "noUsername": "Khetha igama lomsebenzisi ukuze uthole ikheli le-fediverse."
+  },
   "profileFields": {
     "title": "Izinkambu zephrofayela",
     "description": "Kufika emigqeni emine eyengeziwe kuphrofayela yakho, njengewebhusayithi noma izabizwana zakho.",
