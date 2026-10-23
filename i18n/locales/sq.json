@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Ndiq #{{tag}}",
+    "following": "E ndjek",
+    "unfollow": "Mos e ndiq më #{{tag}}",
+    "followed": "Tani e ndjek #{{tag}}. Postimet e tij do të shfaqen te prurja Të ndjekurit.",
+    "unfollowed": "Nuk e ndjek më #{{tag}}",
+    "failed": "Nuk u ruajt. Provo përsëri.",
+    "clear": "Pastro"
+  },
   "keywordFilters": {
     "title": "Fjalë të heshtura",
     "description": "Fshih postimet dhe komentet që përmbajnë këto fjalë, ose palosi pas një paralajmërimi. Vetëm ti e sheh këtë listë.",

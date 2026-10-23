@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Följ #{{tag}}",
+    "following": "Följer",
+    "unfollow": "Sluta följa #{{tag}}",
+    "followed": "Du följer nu #{{tag}}. Inlägg med den visas i ditt Följer-flöde.",
+    "unfollowed": "Du följer inte längre #{{tag}}",
+    "failed": "Det sparades inte. Försök igen.",
+    "clear": "Rensa"
+  },
   "keywordFilters": {
     "title": "Tystade ord",
     "description": "Dölj inlägg och kommentarer som innehåller de här orden, eller vik ihop dem bakom en varning. Bara du ser listan.",

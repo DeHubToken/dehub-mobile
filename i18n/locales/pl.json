@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Obserwuj #{{tag}}",
+    "following": "Obserwujesz",
+    "unfollow": "Przestań obserwować #{{tag}}",
+    "followed": "Obserwujesz teraz #{{tag}}. Posty z nim pojawią się w twoim kanale Obserwowane.",
+    "unfollowed": "Przestałeś obserwować #{{tag}}",
+    "failed": "Nie zapisano. Spróbuj ponownie.",
+    "clear": "Wyczyść"
+  },
   "keywordFilters": {
     "title": "Wyciszone słowa",
     "description": "Ukrywaj posty i komentarze zawierające te słowa albo zwijaj je za ostrzeżeniem. Tę listę widzisz tylko ty.",

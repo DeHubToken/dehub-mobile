@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "关注 #{{tag}}",
+    "following": "已关注",
+    "unfollow": "取消关注 #{{tag}}",
+    "followed": "已关注 #{{tag}}，相关帖子会出现在你的关注动态中。",
+    "unfollowed": "已取消关注 #{{tag}}",
+    "failed": "保存失败，请重试。",
+    "clear": "清除"
+  },
   "keywordFilters": {
     "title": "屏蔽词",
     "description": "隐藏包含这些词的帖子和评论，或将其折叠在提示后面。只有你能看到此列表。",

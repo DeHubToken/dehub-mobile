@@ -67,6 +67,7 @@ import { useAppTheme } from "../context/ThemeContext";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
+import FollowTagBar from "../components/Home/FollowTagBar";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -720,6 +721,21 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, [beginFilterTransition]);
 
+  // One hashtag picked — where a tapped #tag lands: offer to follow it above
+  // the feed (FollowTagBar). Otherwise the header is just the stages bar.
+  const feedHeader = useMemo(
+    () =>
+      selectedCategory ? (
+        <>
+          <FollowTagBar tag={selectedCategory} onClear={() => handleCategorySelect("All")} />
+          {LIVE_STAGES_HEADER}
+        </>
+      ) : (
+        LIVE_STAGES_HEADER
+      ),
+    [selectedCategory, handleCategorySelect],
+  );
+
   const handleRefresh = useCallback(() => {
     showHeader();
     refreshShuffleSeed();
@@ -979,7 +995,7 @@ export default function HomeScreen() {
         // "live" are somebody asking for one format, and a boosted text post
         // arriving at the top of those reads as a bug rather than as a boost.
         showBoostSlot={feedType === "all"}
-        headerComponent={LIVE_STAGES_HEADER}
+        headerComponent={feedHeader}
       />
     );
   };

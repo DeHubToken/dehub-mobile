@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Ikuti #{{tag}}",
+    "following": "Mengikuti",
+    "unfollow": "Nyahikut #{{tag}}",
+    "followed": "Anda kini mengikuti #{{tag}}. Siarannya akan muncul dalam suapan Mengikuti anda.",
+    "unfollowed": "Berhenti mengikuti #{{tag}}",
+    "failed": "Tidak disimpan. Cuba lagi.",
+    "clear": "Kosongkan"
+  },
   "keywordFilters": {
     "title": "Perkataan yang dibisukan",
     "description": "Sembunyikan siaran dan komen yang mengandungi perkataan ini, atau lipat di sebalik amaran. Hanya anda yang melihat senarai ini.",

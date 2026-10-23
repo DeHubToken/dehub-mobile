@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} ni kuzatish",
+    "following": "Kuzatyapsiz",
+    "unfollow": "#{{tag}} ni kuzatishni to'xtatish",
+    "followed": "Endi #{{tag}} ni kuzatyapsiz. Uning postlari Kuzatuvlar lentangizda chiqadi.",
+    "unfollowed": "#{{tag}} kuzatilmaydi",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring.",
+    "clear": "Tozalash"
+  },
   "keywordFilters": {
     "title": "Ovozi o'chirilgan so'zlar",
     "description": "Bu so'zlar bor post va izohlarni yashiring yoki ogohlantirish ortiga yig'ing. Bu ro'yxatni faqat siz ko'rasiz.",

@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Follow #{{tag}}",
+    "following": "Following",
+    "unfollow": "Unfollow #{{tag}}",
+    "followed": "Following #{{tag}}. Its posts will show in your Following feed.",
+    "unfollowed": "Unfollowed #{{tag}}",
+    "failed": "That didn't save. Try again.",
+    "clear": "Clear"
+  },
   "keywordFilters": {
     "title": "Muted words",
     "description": "Hide posts and comments that contain these words, or fold them behind a warning. Only you see this list.",

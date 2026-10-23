@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Jälgi #{{tag}}",
+    "following": "Jälgid",
+    "unfollow": "Lõpeta #{{tag}} jälgimine",
+    "followed": "Jälgid nüüd #{{tag}}. Selle postitused ilmuvad sinu Jälgitavate voos.",
+    "unfollowed": "Lõpetasid #{{tag}} jälgimise",
+    "failed": "Ei salvestunud. Proovi uuesti.",
+    "clear": "Tühjenda"
+  },
   "keywordFilters": {
     "title": "Vaigistatud sõnad",
     "description": "Peida neid sõnu sisaldavad postitused ja kommentaarid või voldi need hoiatuse taha. Seda loendit näed ainult sina.",

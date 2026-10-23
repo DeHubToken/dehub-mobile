@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} tugu",
+    "following": "I b'a tugu",
+    "unfollow": "#{{tag}} tugu dabila",
+    "followed": "I bɛ #{{tag}} tugu sisan. A ka postw bɛna bɔ i ka tugulikɛ kɔnɔ.",
+    "unfollowed": "I ye #{{tag}} tugu dabila",
+    "failed": "A ma mara. A lajɛ tugun.",
+    "clear": "A jɔsi"
+  },
   "keywordFilters": {
     "title": "Kuma minnu dagbɛlen",
     "description": "I ka post ni jaabi minnu bɛ nin kumaw kɔnɔ dogo, walima k'u biri lasɔmini kɔfɛ. E dɔrɔn de bɛ nin lisi ye.",
