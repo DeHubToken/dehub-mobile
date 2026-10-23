@@ -1,5 +1,7 @@
 import { appLocale } from "../../libs/date.util";
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import DexInstantDhbTrade from "../DexInstantDhbTrade";
+import { useAuthActions, useUser } from "../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -137,6 +139,18 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
   // the listing-soon signup instead of "No data found".
   const isDhb = isDhbListingSymbol(clean);
 
+  // Quick buy, as web's cashtag card has: any Base token can be bought (or
+  // sold) at the aggregated market price right here.
+  const user = useUser() as any;
+  const { requireAuth } = useAuthActions();
+  const wallet: string = user?.walletAddress || user?.address || "";
+  const [buyOpen, setBuyOpen] = useState(false);
+  const tradeToken = useMemo(
+    () => (pair && pair.chainId === "base" ? { address: pair.baseToken.address, symbol: pair.baseToken.symbol } : undefined),
+    [pair],
+  );
+  useEffect(() => setBuyOpen(false), [symbol]);
+
   const load = useCallback(async () => {
     if (!clean || isDhb) return;
     setLoading(true);
@@ -265,6 +279,20 @@ const CashtagSheetComponent: React.FC<CashtagSheetProps> = ({ visible, symbol, o
                 {/* Network badge */}
                 <Text style={styles.network}>{pair.chainId.toUpperCase()} · {pair.dexId}</Text>
 
+                {!!tradeToken && (wallet && buyOpen ? (
+                  <DexInstantDhbTrade address={wallet} token={tradeToken} onDone={() => {}} />
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => requireAuth(() => setBuyOpen(true))}
+                    style={styles.buyBtn}
+                    activeOpacity={0.85}
+                    accessibilityRole="button"
+                  >
+                    <Icon name="ShoppingCart" size={15} color="#061410" />
+                    <Text style={styles.buyText}>{`${t("copy.8d2e3063a993", { defaultValue: "Buy $" }).trim()}${pair.baseToken.symbol}`}</Text>
+                  </TouchableOpacity>
+                ))}
+
                 {/* Chart */}
                 <PriceChart candles={candles} positive={isPositive} />
 
@@ -357,6 +385,8 @@ const styles = StyleSheet.create({
   },
   statLabel: { color: "#6F7174", fontSize: 13 },
   statValue: { color: "#F9FBFF", fontSize: 13, fontWeight: "600" },
+  buyBtn: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8, backgroundColor: "#20c997", borderRadius: 12, paddingVertical: 12, marginTop: 6, marginBottom: 14 },
+  buyText: { color: "#061410", fontSize: 14, fontWeight: "700" },
   dexLink: {
     flexDirection: "row",
     alignItems: "center",

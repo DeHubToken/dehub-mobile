@@ -67,6 +67,18 @@ export interface AIChatMessage {
    */
   templateId?: string;
   creatorSettings?: CreatorStudioSettings;
+  /** A swap the assistant read out of the request, confirmed by the user on a card. */
+  swapAction?: AssistantSwapAction;
+}
+
+/** general-ai-chat's swap intent: token addresses on Base (`0x0` is native ETH). */
+export interface AssistantSwapAction {
+  tokenIn: string;
+  tokenOut: string;
+  tokenInSymbol: string;
+  tokenOutSymbol: string;
+  amount: string;
+  amountType: 'input' | 'output';
 }
 
 export interface AIPostContext {
@@ -748,6 +760,8 @@ export interface StreamChatHandlers {
    * so the UI can say what it is doing instead of showing a bare spinner.
    */
   onTool?: (event: { status: 'running' | 'done'; tools: string[] }) => void;
+  /** A swap intent. The server answers those with plain JSON instead of a stream. */
+  onSwapAction?: (action: AssistantSwapAction) => void;
   onDone: () => void;
   onError: (error: AIServiceError) => void;
 }
@@ -772,7 +786,7 @@ export function streamAIChat(
   request: AIChatRequest,
   handlers: StreamChatHandlers,
 ): StreamHandle {
-  const { onDelta, onMeta, onTool, onDone, onError } = handlers;
+  const { onDelta, onMeta, onTool, onSwapAction, onDone, onError } = handlers;
   const xhr = new XMLHttpRequest();
   let consumed = 0;
   let carry = '';
@@ -887,6 +901,18 @@ export function streamAIChat(
         }
       }
       carry = '';
+    }
+
+    // A swap intent comes back as one JSON body, not SSE, even on a stream
+    // request; without this the reply was empty and the swap lost.
+    if (!text.includes('data: ')) {
+      try {
+        const body = JSON.parse(text) as { response?: string; swapAction?: AssistantSwapAction };
+        if (typeof body.response === 'string' && body.response) onDelta(body.response);
+        if (body.swapAction) onSwapAction?.(body.swapAction);
+      } catch {
+        // Not JSON either; nothing more to read.
+      }
     }
 
     finish(onDone);
