@@ -309,6 +309,7 @@ interface HueSliderProps {
 }
 
 const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
+  const { t } = useTranslation();
   // Local state so drag is silky — parent only gets notified on release
   const [localHue, setLocalHue] = useState(hue);
 
@@ -338,6 +339,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange }) => {
         style={{ width: "100%" }}
         minimumValue={0}
         maximumValue={360}
+        accessibilityLabel={t('audioPost.visualizerColour', { defaultValue: 'Visualizer colour' })}
         step={1}
         value={localHue}
         onValueChange={setLocalHue}
@@ -1183,10 +1185,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     const height = mode === "inline" ? inlineHeight : fullHeight;
     if (studio) return (
       <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
-        <View style={styles.glassCrown}>
-        {artworkUrl && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10, marginBottom: 10 }} />}
+        <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 12 }]}>
+        {artworkUrl && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10 }} />}
+        <View style={{ flex: 1, minWidth: 0 }}>
         <Text numberOfLines={1} style={[styles.glassTitle, compactGlass && { fontSize: 14 }]}>{resolvedTitle}</Text>
         <Text numberOfLines={1} style={[styles.glassArtist, compactGlass && { fontSize: 8 }]}>{resolvedArtist}</Text>
+        </View>
         <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('nav.settings')} onPress={() => setGlassOptions(v => !v)} style={styles.glassOptions}><Text style={{ color: '#efffff', letterSpacing: 2 }}>•••</Text></TouchableOpacity>
         </View>
         <View style={{ height: Math.max(104, Math.min(220, glassWidth * .35)) + 40, borderTopLeftRadius: 20, borderTopRightRadius: 20, overflow: 'hidden', backgroundColor: theme === 'glass' ? 'rgba(2,20,26,.12)' : '#030405', marginTop: 12, marginBottom: -40 }}>
@@ -1208,7 +1212,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         <View style={{ paddingTop: 12 }}><StylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, paddingTop: 12 }}>
-          <View style={{ flex: 1 }}><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume')} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></View>
+          <View style={{ flex: 1 }}><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></View>
           <HueSlider hue={hue} onHueChange={handleHueChange} />
         </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
