@@ -58,6 +58,14 @@ describe('wallet session fetch', () => {
     expect(base).toHaveBeenCalledTimes(1);
   });
 
+  it.each(['call_sessions', 'callback_requests', 'audio_spaces', 'space_participants', 'raise_hand_requests', 'stage_reminders'])('never sends an unsigned %s request after mint failure', async (table) => {
+    const { createWalletSessionFetch } = require('../../libs/wallet-session');
+    const base = makeBase(null, false);
+    const response = await createWalletSessionFetch(base)(`https://proj.supabase.co/rest/v1/${table}?select=*`, { headers: { 'x-wallet-address': WALLET } });
+    expect(response.status).toBe(401);
+    expect(restCalls(base)).toHaveLength(0);
+  });
+
   it('reports the first unsigned request once, with the server refusal', async () => {
     const { createWalletSessionFetch } = require('../../libs/wallet-session');
     const { reportError } = require('../../libs/errorReporter');

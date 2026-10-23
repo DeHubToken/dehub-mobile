@@ -12,6 +12,7 @@ jest.mock('../../libs/api.client', () => ({ apiClient: { post: () => Promise.res
 jest.mock('../../libs/audioFocus', () => ({ revokeAudioFocus: jest.fn() }));
 jest.mock('../../libs/feedVideoFocus', () => ({ revokeAllFeedVideo: jest.fn() }));
 jest.mock('../../services/supabase', () => ({
+  walletScopedClient: () => jest.requireMock('../../services/supabase').supabase,
   fetchAgoraToken: (...args: unknown[]) => mockToken(...args),
   supabase: {
     from: () => ({

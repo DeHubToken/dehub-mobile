@@ -132,7 +132,6 @@ const StagesChart: React.FC = () => {
       icon="Mic"
       title={t("nav.stages")}
       count={liveSpaces.length || undefined}
-      onSeeAll={() => openModal("browse")}
       sorts={[
         { value: "live", label: t("music.stagesLive", { defaultValue: "Live now" }) },
         { value: "upcoming", label: t("music.upcoming", { defaultValue: "Upcoming" }) },
