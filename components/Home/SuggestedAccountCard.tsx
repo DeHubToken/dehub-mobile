@@ -2,20 +2,29 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 /**
- * SuggestedAccountCard – Compact vertical card for the suggested-accounts carousel.
+ * SuggestedAccountCard – a "cover card" for the who-to-follow rows.
  *
- * Extends the SearchAccountChip pattern but adds contextual reason lines:
- *   • "Follows you"
- *   • "Followed by Jane, Bob"  (mutual connections)
- *   • No extra line for engagement_overlap / suggested fallback
+ * A mini profile, the same card web draws (components/app/FollowCoverCard.tsx):
+ *   • their cover banner (or a blurred, blown-up copy of their avatar when
+ *     they have none), with a small X to skip them
+ *   • the avatar over the banner's lower edge, name + badge, @handle
+ *   • two lines of bio
+ *   • why they are here: "Follows you", or the faces and names of people you
+ *     follow who follow them
+ *   • follower count and a solid Follow button in the theme's accent
+ *
+ * Skinned themes draw the card in their own surface (skin.card). System,
+ * System Light and Minimal draw no box at all: the cards stand on the page with
+ * a hairline between them, as their feeds do. Written dark like the rest of
+ * the app; System Light's tone pass turns the greys around.
  */
 import React, { FC, useCallback, useState, useMemo } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, type StyleProp, type ViewStyle } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
-import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getCoverUrl, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   followUser,
@@ -24,17 +33,61 @@ import {
 } from "../../services/user.service";
 import { reportActionError } from "../../libs/error-feedback";
 import Avatar from "../common/Avatar";
-import GlassFollowButton from "../ui/GlassFollowButton";
 import type { FollowState } from "../Search/SearchAccountChip";
 import { useAppTheme } from "../../context/ThemeContext";
-import { minimalFlat } from "../../theme/minimal";
+import { MONO_TEXT } from "../../theme/skins";
 
+export const COVER_CARD_WIDTH = 232;
+const COVER_H = 76;
+const AVATAR = 56;
+
+/** Hairline between flat cards (System, System Light, Minimal). */
+const FLAT_DIVIDER = "rgba(255,255,255,0.12)";
+
+/** Follow button, avatar ring and text per theme: the theme's one accent. */
+interface CardInk {
+  button: string;
+  buttonText: string;
+  ring: string;
+  ringWidth: number;
+  ink: string;
+  muted: string;
+  avatarFill: string;
+}
+
+const DEFAULT_INK: CardInk = {
+  button: "#FFFFFF",
+  buttonText: "#09090B",
+  ring: "#0A0A0A",
+  ringWidth: 3,
+  ink: "#FFFFFF",
+  muted: "#A1A1AA",
+  avatarFill: "#2A2C2E",
+};
+const GLASS_INK: CardInk = { ...DEFAULT_INK, ring: "rgba(255,255,255,0.9)", ringWidth: 2, muted: "rgba(255,255,255,0.64)" };
+
+const THEME_INK: Record<string, CardInk> = {
+  glass: { ...GLASS_INK, button: "#D7FFFF", buttonText: "#06343B", ink: "#F2FFFF", muted: "#B8D5D8", ring: "rgba(225,255,255,0.85)" },
+  cosmic: GLASS_INK,
+  hazy: GLASS_INK,
+  swarms: GLASS_INK,
+  lavalamp: GLASS_INK,
+  winter: GLASS_INK,
+  island: { ...GLASS_INK, button: "#FF7A8A", buttonText: "#2A0A10" },
+  horror: { ...GLASS_INK, button: "#FF2B2B", buttonText: "#FFFFFF" },
+  osaka: { ...DEFAULT_INK, button: "rgb(255,111,181)", buttonText: "#1A0614", ring: "rgba(111,227,255,0.7)", ringWidth: 1.5, ink: "#F4F1FF", muted: "rgb(176,170,196)", avatarFill: "rgba(255,111,181,0.2)" },
+  war: { ...DEFAULT_INK, button: "rgb(79,227,224)", buttonText: "#041312", ring: "rgba(79,227,224,0.7)", ringWidth: 1.5, ink: "rgb(214,208,190)", muted: "rgb(190,196,194)", avatarFill: "rgba(79,227,224,0.16)" },
+  hacker: { ...DEFAULT_INK, button: "rgb(57,255,136)", buttonText: "#001A09", ring: "rgba(57,255,136,0.7)", ringWidth: 1.5, ink: "rgb(57,255,136)", muted: "rgb(120,200,150)", avatarFill: "rgba(57,255,136,0.14)" },
+  jungle: { ...DEFAULT_INK, button: "#E2B060", buttonText: "#22160A", ring: "rgb(38,28,19)", ink: "rgb(246,240,227)", muted: "rgb(198,182,158)", avatarFill: "rgba(226,176,96,0.2)" },
+};
 
 interface SuggestedAccountCardProps {
   account: SuggestedAccount;
   onFollowChange?: (address: string, newState: FollowState) => void;
   /** Called when user dismisses this suggestion (X button). */
   onDismiss?: (address: string) => void;
+  /** Last card in the row: no hairline after it in the flat themes. */
+  isLast?: boolean;
 }
 
 
@@ -42,12 +95,17 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   account,
   onFollowChange,
   onDismiss,
+  isLast = false,
 }) => {
   const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
-  const { isMinimal, skin } = useAppTheme();
+  const { skin, theme } = useAppTheme();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
+  const flat = !skin;
+  const ink = (theme && THEME_INK[theme]) || DEFAULT_INK;
+  const square = !!skin?.square;
+  const mono = !!skin?.mono;
 
   const isOwnAccount = !!(
     myAddress &&
@@ -65,26 +123,28 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const avatarSrc = getAvatarUrl(account.avatarImageUrl || "");
   const displayAvatar =
     avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
+  const coverSrc = account.coverImageUrl ? getCoverUrl(account.coverImageUrl, COVER_CARD_WIDTH) : DEFAULT_BANNER_SENTINEL;
+  const cover = coverSrc !== DEFAULT_BANNER_SENTINEL ? coverSrc : undefined;
   const followers = account.followers ?? 0;
   const badgeImage = getBadgeUrlFor(account);
-
+  const bio = account.aboutMe?.trim() || "";
+  const mutuals = useMemo(
+    () => (account.followsYou ? [] : (account.mutualConnections ?? []).slice(0, 2)),
+    [account.followsYou, account.mutualConnections],
+  );
 
   const reasonLine = useMemo(() => {
     if (account.reason === "follows_you" || account.followsYou) {
-      return "Follows you";
+      return _copy("follow.followsYou", { defaultValue: "Follows you" });
     }
-    if (
-      account.reason === "followed_by_people_you_know" &&
-      account.mutualConnections?.length
-    ) {
-      const names = account.mutualConnections
-        .slice(0, 2)
-        .map((c) => c.displayName || c.username || "someone");
-      if (names.length === 2) return `Followed by ${names[0]}, ${names[1]}`;
-      return `Followed by ${names[0]}`;
+    if (account.reason === "followed_by_people_you_know" && mutuals.length) {
+      const names = mutuals
+        .map((c) => c.displayName || c.username || "someone")
+        .join(", ");
+      return _copy("copy.fef6a1a97127", { defaultValue: "Followed by {{value1}}", value1: names });
     }
     return null;
-  }, [account.reason, account.followsYou, account.mutualConnections]);
+  }, [account.reason, account.followsYou, mutuals, _copy]);
 
 
   const handlePress = useCallback(() => {
@@ -129,7 +189,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
       }
     } catch (e) {
       console.error("[SuggestedAccountCard] follow error", e);
-      // The row hides a card the moment its follow lands, so a rejected tap
+      // The row hides a card shortly after its follow lands, so a rejected tap
       // has to put it back — and a rejection from the rate limiter says so out
       // loud, because the reader is usually mid-burst and not watching.
       onFollowChange?.(account.address, {
@@ -142,91 +202,265 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     }
   }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
 
+  const done = isFollowing || isPending;
+  const followLabel = isPending
+    ? _copy("follow.requested", { defaultValue: "Requested" })
+    : isFollowing
+      ? _copy("follow.following", { defaultValue: "Following" })
+      : account.followsYou
+        ? _copy("follow.followBack", { defaultValue: "Follow back" })
+        : _copy("follow.follow", { defaultValue: "Follow" });
 
-  const renderFollowButton = () => {
-    if (isOwnAccount) return null;
-    return (
-      <GlassFollowButton
-        isFollowing={isFollowing}
-        isPending={isPending}
-        isLoading={followLoading}
-        followsYou={account.followsYou}
-        onPress={handleFollowToggle}
-        className="mt-2.5 w-full"
-      />
-    );
-  };
-
+  // Skinned themes: the theme's own card, clipped so the banner takes its top
+  // corners. Flat themes: no surface, a hairline after the card.
+  const cardStyle: StyleProp<ViewStyle> = flat
+    ? [styles.card, styles.flatCard, !isLast && styles.flatDivider]
+    : [styles.card, skin!.card as ViewStyle, { overflow: "hidden" }, square && { borderRadius: 0 }];
+  const coverRadius = flat ? (theme === "minimal" ? 0 : 10) : 0;
+  const pad = flat ? 0 : 12;
+  const textMono = mono ? MONO_TEXT : undefined;
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={handlePress}
-      className="w-[150px] items-center rounded-xl py-3.5 px-3 mr-2.5"
-      // Minimal: no box — just avatar, name and the Follow button standing
-      // on the black, the column itself is the card.
-      style={isMinimal ? minimalFlat : skin?.material === 'glass' ? skin.card : { backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' }}
-    >
-      {/* Dismiss (X) button */}
-      <TouchableOpacity
-        onPress={handleDismiss}
-        activeOpacity={0.6}
-        className="absolute top-2 right-2 w-5 h-5 items-center justify-center rounded-lg bg-theme-neutrals-700/60"
-        style={skin?.material === 'glass' ? { backgroundColor: 'transparent' } : undefined}
-        hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
-      >
-        <Icon name="X" size={12} color={skin?.material === 'glass' ? '#B8D5D8' : '#9CA3AF'} />
-      </TouchableOpacity>
-
-      <Avatar uri={displayAvatar} size={72} name={displayName} />
-
-      {/* Name + badge */}
-      {/* Keep a fixed name-and-badge line so an unbadged profile cannot pull
-          the metadata and Follow button upward. */}
-      <View
-        className="flex-row items-center mt-2 px-0.5"
-        style={{ maxWidth: 130, minHeight: 20 }}
-      >
-        <Text
-          className="text-white font-semibold text-center flex-shrink"
-          style={{ fontSize: 16, lineHeight: 20 }}
-          numberOfLines={1}
-        >
-          {displayName}
-        </Text>
-        {badgeImage ? (
-          <BadgeArtwork
-            source={badgeImage}
-            style={getBadgeHoverOpticalStyle(badgeImage, 16, 0, 20)}
-            contentFit="contain"
+    <TouchableOpacity activeOpacity={0.85} onPress={handlePress} style={cardStyle}>
+      {/* The banner is a picture: dark-surface keeps System Light's tone pass
+          off it and off the X chip that sits on it. */}
+      <View className="dark-surface" style={[styles.cover, { borderRadius: coverRadius }]}>
+        {cover ? (
+          <SmartImage source={{ uri: cover }} style={StyleSheet.absoluteFill} contentFit="cover" />
+        ) : displayAvatar ? (
+          // No banner: their own avatar, blown up and blurred, so the card
+          // still opens in that person's colours.
+          <SmartImage
+            source={{ uri: displayAvatar }}
+            style={[StyleSheet.absoluteFill, styles.coverWash]}
+            contentFit="cover"
+            blurRadius={24}
           />
         ) : null}
-      </View>
-      <Text
-        className="text-theme-neutrals-400 text-center"
-        style={{ fontSize: 14, lineHeight: 18 }}
-        numberOfLines={1}
-      >
-        @{username}
-      </Text>
-      <Text className="text-theme-neutrals-500 mt-0.5" style={{ fontSize: 13, lineHeight: 18 }}>
-        {formatCompactNumber(followers)}{_copy("copy.916a8b871759", { defaultValue: " followers" })}</Text>
-
-      {/* Contextual reason line */}
-      {reasonLine ? (
-        <Text
-          className="text-theme-neutrals-400 font-medium mt-1 text-center px-1"
-          style={{ fontSize: 12, lineHeight: 16 }}
-          numberOfLines={1}
+        {/* Fill on an inner view: a neutral-filled touchable would be
+            repainted as the theme's control glass (libs/jsx/controls.js). */}
+        <TouchableOpacity
+          onPress={handleDismiss}
+          activeOpacity={0.6}
+          style={styles.dismissHit}
+          hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+          accessibilityLabel={_copy("converter.dismiss", { defaultValue: "Dismiss" })}
         >
-          {reasonLine}
-        </Text>
-      ) : null}
+          <View style={[styles.dismiss, square && { borderRadius: 0 }]}>
+            <Icon name="X" size={13} color="#FFFFFF" />
+          </View>
+        </TouchableOpacity>
+      </View>
 
-      {renderFollowButton()}
+      <View style={{ marginTop: -AVATAR / 2, marginLeft: flat ? 10 : pad, alignSelf: "flex-start" }}>
+        <Avatar
+          uri={displayAvatar}
+          size={AVATAR}
+          name={displayName}
+          borderWidth={ink.ringWidth}
+          borderColor={ink.ring}
+          style={square ? { borderRadius: 0 } : undefined}
+        />
+      </View>
+
+      <View style={{ paddingHorizontal: pad, paddingTop: 8, paddingBottom: pad }}>
+        <View style={styles.nameRow}>
+          <Text style={[styles.name, { color: ink.ink }, textMono]} numberOfLines={1}>
+            {displayName}
+          </Text>
+          {badgeImage ? (
+            <BadgeArtwork
+              source={badgeImage}
+              style={getBadgeHoverOpticalStyle(badgeImage, 15, 0, 20)}
+              contentFit="contain"
+            />
+          ) : null}
+        </View>
+        <Text style={[styles.handle, { color: ink.muted }, textMono]} numberOfLines={1}>
+          @{username}
+        </Text>
+        <Text style={[styles.bio, { color: ink.ink }]} numberOfLines={2}>
+          {bio || " "}
+        </Text>
+
+        <View style={styles.reasonRow}>
+          {mutuals.length > 0 ? (
+            <View style={styles.mutuals}>
+              {mutuals.map((m, i) => {
+                const src = getAvatarUrl(m.avatarImageUrl || "");
+                const face = src && src !== "default-avatar" ? src : undefined;
+                return (
+                  <View
+                    key={m.address}
+                    style={[
+                      styles.mutual,
+                      { borderColor: ink.ring, backgroundColor: ink.avatarFill, marginLeft: i === 0 ? 0 : -5 },
+                      square && { borderRadius: 0 },
+                    ]}
+                  >
+                    {face ? <SmartImage source={{ uri: face }} style={StyleSheet.absoluteFill} contentFit="cover" /> : null}
+                  </View>
+                );
+              })}
+            </View>
+          ) : null}
+          {reasonLine ? (
+            <Text style={[styles.reason, { color: ink.muted }]} numberOfLines={1}>
+              {reasonLine}
+            </Text>
+          ) : null}
+        </View>
+
+        <View style={styles.foot}>
+          <Text style={[styles.count, { color: ink.muted }]} numberOfLines={1}>
+            {_copy("follow.followerCount", { defaultValue: "{{compact}} followers", compact: formatCompactNumber(followers) })}
+          </Text>
+          {isOwnAccount ? null : (
+            // The solid accent is the point of this button, so its fill sits
+            // on an inner view where the control pass leaves it alone.
+            <TouchableOpacity
+              activeOpacity={0.85}
+              onPress={handleFollowToggle}
+              disabled={followLoading}
+              hitSlop={{ top: 6, bottom: 6 }}
+            >
+              <View
+                style={[
+                  styles.follow,
+                  done
+                    ? { backgroundColor: "rgba(255,255,255,0.12)" }
+                    : { backgroundColor: ink.button },
+                  theme === "minimal" || square ? { borderRadius: 0 } : undefined,
+                  mono ? { paddingHorizontal: 12 } : undefined,
+                ]}
+              >
+              {followLoading ? (
+                <ActivityIndicator size="small" color={done ? ink.ink : ink.buttonText} />
+              ) : (
+                <View style={styles.followInner}>
+                  {done ? <Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /> : null}
+                  <Text style={[styles.followLabel, { color: done ? ink.ink : ink.buttonText }, textMono]}>
+                    {followLabel}
+                  </Text>
+                </View>
+              )}
+              </View>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    width: COVER_CARD_WIDTH,
+    marginRight: 10,
+  },
+  flatCard: {
+    paddingRight: 14,
+    marginRight: 14,
+  },
+  flatDivider: {
+    borderRightWidth: StyleSheet.hairlineWidth,
+    borderRightColor: FLAT_DIVIDER,
+  },
+  cover: {
+    height: COVER_H,
+    overflow: "hidden",
+    backgroundColor: "#27272A",
+  },
+  coverWash: {
+    transform: [{ scale: 1.8 }],
+    opacity: 0.9,
+  },
+  dismissHit: {
+    position: "absolute",
+    top: 8,
+    right: 8,
+  },
+  dismiss: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+  nameRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    minHeight: 20,
+  },
+  name: {
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "700",
+    flexShrink: 1,
+  },
+  handle: {
+    fontSize: 13,
+    lineHeight: 17,
+  },
+  bio: {
+    fontSize: 13,
+    lineHeight: 17.5,
+    marginTop: 6,
+    minHeight: 35,
+  },
+  reasonRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    minHeight: 18,
+    marginTop: 8,
+  },
+  mutuals: {
+    flexDirection: "row",
+    marginRight: 6,
+  },
+  mutual: {
+    width: 18,
+    height: 18,
+    borderRadius: 6,
+    borderWidth: 1.5,
+    overflow: "hidden",
+  },
+  reason: {
+    fontSize: 12,
+    lineHeight: 16,
+    flexShrink: 1,
+  },
+  foot: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 10,
+  },
+  count: {
+    fontSize: 12,
+    lineHeight: 16,
+    flexShrink: 1,
+    marginRight: 8,
+  },
+  follow: {
+    height: 32,
+    minWidth: 84,
+    paddingHorizontal: 16,
+    borderRadius: 999,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  followInner: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+  },
+  followLabel: {
+    fontSize: 13,
+    fontWeight: "700",
+  },
+});
 
 export const SuggestedAccountCard = React.memo(SuggestedAccountCardComponent);
 export default SuggestedAccountCard;

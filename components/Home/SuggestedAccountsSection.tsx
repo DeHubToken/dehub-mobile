@@ -44,12 +44,21 @@ const MAX_PAGES = 10;
 /** Pull the next page once the row is down to this many cards. */
 const LOW_WATER_MARK = 3;
 
-const SuggestedAccountsSection: React.FC = () => {
+/** How long a followed card shows "Following" before it leaves the row. */
+const FOLLOWED_LINGER_MS = 700;
+
+interface SuggestedAccountsSectionProps {
+  /** Explore lists it among its sections: its own spacing, no feed hairlines. */
+  surface?: "feed" | "explore";
+}
+
+const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ surface = "feed" }) => {
   const user = useUser() as { address?: string } | null;
   const { t } = useTranslation();
   const { isMinimal, theme, skin } = useAppTheme();
   // Immersive lays the home feed out as a cinematic list (FeedCard).
-  const cinematic = !isMinimal && theme === "immersive" && !skin;
+  const cinematic = surface === "feed" && !isMinimal && theme === "immersive" && !skin;
+  const minimalRow = surface === "feed" && isMinimal;
   const [accounts, setAccounts] = useState<SuggestedAccount[]>([]);
   /** Addresses followed or dismissed this session — never shown again. */
   const [hiddenAddresses, setHiddenAddresses] = useState<Set<string>>(new Set());
@@ -58,12 +67,15 @@ const SuggestedAccountsSection: React.FC = () => {
   const pageRef = useRef(0);
   const loadingRef = useRef(false);
   const mountedRef = useRef(true);
+  const lingerTimers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
   const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     mountedRef.current = true;
+    const timers = lingerTimers.current;
     return () => {
       mountedRef.current = false;
+      timers.forEach(clearTimeout);
     };
   }, []);
 
@@ -150,8 +162,16 @@ const SuggestedAccountsSection: React.FC = () => {
     (address: string, newState: FollowState) => {
       // A landed follow (or a sent request on a private account) retires the
       // suggestion immediately; a failure puts it back.
+      // The card says Following for a moment first, so the tap visibly lands.
+      const key = address.toLowerCase();
+      const pending = lingerTimers.current.get(key);
+      if (pending) clearTimeout(pending);
+      lingerTimers.current.delete(key);
       if (newState.isFollowing || newState.isFollowRequestPending) {
-        hide(address);
+        lingerTimers.current.set(key, setTimeout(() => {
+          lingerTimers.current.delete(key);
+          if (mountedRef.current) hide(address);
+        }, FOLLOWED_LINGER_MS));
       } else {
         unhide(address);
       }
@@ -166,14 +186,15 @@ const SuggestedAccountsSection: React.FC = () => {
   const sectionGuard = useHorizontalSectionGuard(scrollGuard);
 
   const renderItem: ListRenderItem<SuggestedAccount> = useCallback(
-    ({ item }) => (
+    ({ item, index }) => (
       <SuggestedAccountCard
         account={item}
         onFollowChange={handleFollowChange}
         onDismiss={handleDismissCard}
+        isLast={index === visibleAccounts.length - 1}
       />
     ),
-    [handleFollowChange, handleDismissCard],
+    [handleFollowChange, handleDismissCard, visibleAccounts.length],
   );
 
   const keyExtractor = useCallback((item: SuggestedAccount) => item.address, []);
@@ -198,7 +219,7 @@ const SuggestedAccountsSection: React.FC = () => {
       nestedScrollEnabled
       onEndReached={handleEndReached}
       onEndReachedThreshold={0.6}
-      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : 8 }}
+      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8 }}
     />
   );
 
@@ -209,8 +230,8 @@ const SuggestedAccountsSection: React.FC = () => {
     // their hairline. The post above it drops its own, so there is one line.
     <View
       collapsable={false}
-      className={isMinimal || cinematic ? undefined : "mb-3"}
-      style={[{ borderTopWidth: 0 }, isMinimal ? {
+      className={minimalRow || cinematic ? undefined : "mb-3"}
+      style={[{ borderTopWidth: 0 }, minimalRow ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 14,
         paddingBottom: 14,
@@ -222,15 +243,15 @@ const SuggestedAccountsSection: React.FC = () => {
         paddingBottom: 12,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: CINEMATIC_HAIRLINE,
-      } : skin?.material === 'glass' ? { ...skin.card, paddingVertical: 16 } : undefined]}
+      } : { paddingVertical: surface === "explore" ? 4 : 12 }]}
     >
       {/* Header row */}
       <View
-        className="flex-row items-center justify-between px-2 mb-2.5"
-        style={isMinimal ? { paddingHorizontal: MINIMAL_INSET } : cinematic ? { paddingHorizontal: 14 } : undefined}
+        className="flex-row items-center justify-between mb-3"
+        style={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8 }}
       >
-        <Text className="text-white text-sm font-semibold">
-          {t("profile.followSuggestions")}
+        <Text className="text-white font-bold" style={{ fontSize: 16, letterSpacing: -0.2 }}>
+          {t("copy.036cfd952896", { defaultValue: "Who to follow" })}
         </Text>
         <TouchableOpacity
           onPress={handleDismissAll}
