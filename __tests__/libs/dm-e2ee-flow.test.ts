@@ -1,3 +1,4 @@
+import { apiClient } from "../../libs/api.client";
 // The whole client flow against the real key manager, with the network, the
 // signing provider and the keychain stubbed: two users set up identities from
 // signatures, publish keys, seal messages to each other and open them; a peer
@@ -253,7 +254,9 @@ describe("dm-e2ee client flow", () => {
     const rotated = deriveIdentityFromSignature('0x' + '47'.repeat(65));
     mockRegistry.set(B, toBase64(rotated.publicKey));
     const incoming = encryptText('new history', deriveSessionKey(rotated.privateKey, mine.publicKey, B, A));
+    jest.mocked(apiClient.get).mockClear();
     expect(await Promise.all(Array.from({ length: 10 }, () => decryptFromPeer(B, incoming)))).toEqual(Array(10).fill('new history'));
+    expect(jest.mocked(apiClient.get).mock.calls.filter(([endpoint]) => endpoint === `/dm/e2ee-key/${B}`).length).toBe(1);
     expect(await decryptFromPeer(B, oldMessage)).toBe('old history');
     unloadIdentity();
     await loadIdentity(A);
