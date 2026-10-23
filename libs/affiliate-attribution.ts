@@ -1,11 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Application from 'expo-application';
 import * as Linking from 'expo-linking';
+import { Platform } from 'react-native';
 import { normalizeSubReferral, referralFromUrl, type ReferralTouch } from './affiliate-subref';
 import { supabase } from '../services/supabase';
 import { withWalletHeader } from './supabase-wallet-client';
 import { ensureWalletSession } from './wallet-session';
 
 const KEY = 'dehub-affiliate-first-touch';
+const INSTALL_REFERRER_READ_KEY = 'dehub-install-referrer-read';
 const TTL = 90 * 86400_000;
 let writes: Promise<unknown> = Promise.resolve();
 const attributed = new Set<string>();
@@ -31,6 +34,19 @@ export function captureAffiliateUrl(url: string): Promise<void> {
   return next;
 }
 
+/**
+ * Play Store links shared with `&referrer=ref%3DCODE` hand that query to the
+ * app once installed. Read it a single time: Play keeps returning the same
+ * value for the life of the install, which would revive an expired touch.
+ */
+export async function captureInstallReferrer(): Promise<void> {
+  if (Platform.OS !== 'android') return;
+  if (await AsyncStorage.getItem(INSTALL_REFERRER_READ_KEY)) return;
+  const referrer = await Application.getInstallReferrerAsync();
+  await AsyncStorage.setItem(INSTALL_REFERRER_READ_KEY, '1');
+  if (referrer) await captureAffiliateUrl(`https://dehub.io/?${referrer.replace(/^[?&]+/, '')}`);
+}
+
 export async function attributePendingReferral(wallet: string): Promise<void> {
   await writes.catch(() => undefined);
   const touch = await readTouch();
@@ -53,6 +69,7 @@ export function watchAffiliateAttribution(wallet: string | null): () => void {
     if (active && wallet) await attributePendingReferral(wallet);
   };
   const subscription = Linking.addEventListener('url', ({ url }) => { void handle(url).catch(() => undefined); });
-  void Linking.getInitialURL().then(handle).catch(() => undefined);
+  void captureInstallReferrer().catch(() => undefined)
+    .then(() => Linking.getInitialURL()).then(handle).catch(() => undefined);
   return () => { active = false; subscription.remove(); };
 }

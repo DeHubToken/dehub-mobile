@@ -1303,7 +1303,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     const postId = streamEntity?.tokenId ?? tokenId ?? streamId;
     const url = postId != null ? `${WEBSITE_LINK}/app/post/${postId}` : null;
     if (!url) return;
-    await shareProfile(url, `Check out this stream ${url}`);
+    await shareProfile(url, `Check out this stream ${url}`, "live");
   }, [streamEntity?.tokenId, streamId, tokenId]);
 
   // Sound. A stream is opened on purpose, so it starts audible whether or not

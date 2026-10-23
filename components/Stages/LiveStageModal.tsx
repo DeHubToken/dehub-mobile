@@ -8,13 +8,13 @@ import {
   TouchableOpacity,
   ScrollView,
   Animated,
-  Share,
   useWindowDimensions,
   StatusBar,
   TextInput,
   ActivityIndicator,
   KeyboardAvoidingView,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import SmartImage from "../common/SmartImage";
 import { storageImage } from "../../libs/cdnImage";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -375,9 +375,11 @@ const LiveStageModal: React.FC = () => {
     if (!currentSpace) return;
     // The link is the point. This used to send "Join me on DeHub Stages" and
     // nothing to tap; it is the same link the stage cards share.
-    Share.share({
-      message: `${t("stages.joinMe", { title: spaceTitle })}\n\n${ShareLinks.stage(currentSpace)}`,
-    }).catch(() => {});
+    shareWithRef(
+      { message: `${t("stages.joinMe", { title: spaceTitle })}\n\n${ShareLinks.stage(currentSpace)}`, title: spaceTitle },
+      undefined,
+      "stage",
+    ).catch(() => {});
   }, [currentSpace, spaceTitle, t]);
 
   // Front Row is the Blue Whale rung. `status.powers` decides whether this

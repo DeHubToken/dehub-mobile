@@ -9,6 +9,7 @@ import { supabase } from "../services/supabase";
 import env from "../config/env";
 import { shareProfile } from "./misc";
 import { withWalletHeader } from "./supabase-wallet-client";
+import { setShareRefCode } from "./shareRef";
 
 export const AFFILIATE_COMMISSION_PCT = 20;
 /** Direct (tier 1) commission — you invited them. */
@@ -128,6 +129,27 @@ export async function getOrCreateAffiliateCode(
   return null;
 }
 
+// Per-wallet in-memory cache so repeat taps don't re-hit Supabase.
+let _cache: { addr: string; code: string } | null = null;
+
+/** Read-only lookup: unlike getOrCreateAffiliateCode it never mints a code. */
+export async function findAffiliateCode(ownerAddress: string): Promise<string | null> {
+  const addr = (ownerAddress || "").toLowerCase();
+  if (!addr) return null;
+  if (_cache && _cache.addr === addr) return _cache.code;
+  // @ts-ignore - affiliate_codes not in generated Database types
+  const { data } = await supabase
+    .from("affiliate_codes" as never)
+    .select("code")
+    .ilike("owner_address", addr)
+    .eq("active", true)
+    .order("created_at", { ascending: true })
+    .limit(1) as unknown as { data: Array<{ code: string }> | null };
+  const code = data?.[0]?.code ?? null;
+  if (code) _cache = { addr, code };
+  return code;
+}
+
 export function buildInviteLink(code: string): string {
   const origin = (env.APP_ORIGIN || "https://dehub.io").replace(/\/+$/, "");
   return `${origin}/r/${code}`;
@@ -136,9 +158,6 @@ export function buildInviteLink(code: string): string {
 export function buildInviteMessage(code: string, link: string): string {
   return `Use invite code ${code} to join DeHub — the decentralised creator network for video, music, social, jobs and Web3.\n\n${link}`;
 }
-
-// Per-wallet in-memory cache so repeat taps don't re-hit Supabase.
-let _cache: { addr: string; code: string } | null = null;
 
 export async function resolveInviteCode(
   ownerAddress: string,
@@ -149,7 +168,10 @@ export async function resolveInviteCode(
   if (_cache && _cache.addr === addr) return _cache.code;
   const res = await getOrCreateAffiliateCode(addr, shareName);
   const code = res?.code ?? null;
-  if (code) _cache = { addr, code };
+  if (code) {
+    _cache = { addr, code };
+    setShareRefCode(code);
+  }
   return code;
 }
 
@@ -271,6 +293,7 @@ export async function loadAffiliateStats(
   const l1EarnedCents = rows.filter((r) => r.tier !== 2).reduce((s, r) => s + (r.commission_cents ?? 0), 0);
   const l2EarnedCents = rows.filter((r) => r.tier === 2).reduce((s, r) => s + (r.commission_cents ?? 0), 0);
   const code = codeRes?.code ?? null;
+  if (code) setShareRefCode(code);
   // @ts-ignore - customization columns are introduced by the shared migration
   const { data: landingRow } = code ? await supabase
     .from("affiliate_codes" as never)
@@ -343,7 +366,7 @@ export async function shareInvite(ownerAddress: string, shareName?: string | nul
   const code = await resolveInviteCode(ownerAddress, shareName);
   if (!code) return false;
   const link = buildInviteLink(code);
-  await shareProfile(link, buildInviteMessage(code, link));
+  await shareProfile(link, buildInviteMessage(code, link), "invite");
   return true;
 }
 import { ensureWalletSession } from './wallet-session';

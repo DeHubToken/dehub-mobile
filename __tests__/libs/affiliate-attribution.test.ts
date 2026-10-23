@@ -2,12 +2,15 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(), setItem: jest.fn(),
 }));
 jest.mock('expo-linking', () => ({ addEventListener: jest.fn(), getInitialURL: jest.fn() }));
+jest.mock('expo-application', () => ({ getInstallReferrerAsync: jest.fn() }));
 jest.mock('../../services/supabase', () => ({ supabase: { rpc: jest.fn() } }));
 jest.mock('../../libs/supabase-wallet-client', () => ({ withWalletHeader: (query: unknown) => query }));
 jest.mock('../../libs/wallet-session', () => ({ ensureWalletSession: jest.fn() }));
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '../../services/supabase';
-import { attributePendingReferral, captureAffiliateUrl } from '../../libs/affiliate-attribution';
+import * as Application from 'expo-application';
+import { Platform } from 'react-native';
+import { attributePendingReferral, captureAffiliateUrl, captureInstallReferrer } from '../../libs/affiliate-attribution';
 import { ensureWalletSession } from '../../libs/wallet-session';
 
 const stored = new Map<string, string>();
@@ -40,4 +43,26 @@ it('waits for a signed session and preserves attribution when signing is unavail
   expect(supabase.rpc).not.toHaveBeenCalled();
   await attributePendingReferral('0x3333333333333333333333333333333333333333');
   expect(supabase.rpc).toHaveBeenCalledWith('attribute_affiliate_referral', { p_code: 'PARENT', p_sub_id: 'crew' });
+});
+
+describe('Play install referrer', () => {
+  const originalOS = Platform.OS;
+  beforeEach(() => { Object.defineProperty(Platform, 'OS', { configurable: true, value: 'android' }); });
+  afterAll(() => { Object.defineProperty(Platform, 'OS', { configurable: true, value: originalOS }); });
+
+  it('attributes a fresh install to the ref in its Play referrer, read only once', async () => {
+    (Application.getInstallReferrerAsync as jest.Mock).mockResolvedValue('ref=INVITER&sub=promo&utm_source=share');
+    await captureInstallReferrer();
+    await captureInstallReferrer();
+    expect(Application.getInstallReferrerAsync).toHaveBeenCalledTimes(1);
+    await attributePendingReferral('0x4444444444444444444444444444444444444444');
+    expect(supabase.rpc).toHaveBeenCalledWith('attribute_affiliate_referral', { p_code: 'INVITER', p_sub_id: 'promo' });
+  });
+
+  it('ignores organic installs', async () => {
+    (Application.getInstallReferrerAsync as jest.Mock).mockResolvedValue('utm_source=google-play&utm_medium=organic');
+    await captureInstallReferrer();
+    await attributePendingReferral('0x5555555555555555555555555555555555555555');
+    expect(supabase.rpc).not.toHaveBeenCalled();
+  });
 });

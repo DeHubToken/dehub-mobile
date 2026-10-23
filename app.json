@@ -270,6 +270,11 @@
               "scheme": "https",
               "host": "dehub.io",
               "pathPrefix": "/@"
+            },
+            {
+              "scheme": "https",
+              "host": "dehub.io",
+              "pathPrefix": "/r/"
             }
           ],
           "category": [

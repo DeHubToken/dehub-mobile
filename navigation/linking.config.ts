@@ -813,8 +813,13 @@ export const createDeepLink = (
 export const ShareLinks = {
   /** Feed post or video — dehub.io/app/post/:tokenId */
   post: (tokenId: string | number) => `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}`,
-  /** Profile — dehub.io/:username */
-  profile: (username: string) => `${SHARE_BASE}/${encodeURIComponent(username)}`,
+  /**
+   * Profile — dehub.io/@:username (a wallet address works in place of the name).
+   *
+   * The `@` form, not bare /:username: Android app links can only claim a path
+   * prefix, so /@ is what opens the app, and web serves both shapes.
+   */
+  profile: (username: string) => `${SHARE_BASE}/@${encodeURIComponent(username.replace(/^@+/, ''))}`,
   /**
    * The same profile at its verified ENS name — dehub.io/mal.eth.
    *

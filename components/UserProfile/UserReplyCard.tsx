@@ -5,9 +5,9 @@ import {
   Text,
   TouchableOpacity,
   Animated,
-  Share,
   StyleSheet,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import SmartImage from "../common/SmartImage";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
@@ -401,7 +401,7 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
       const shareUrl = item.tokenId
         ? `${WEBSITE_LINK}/app/post/${item.tokenId}?c=${item.id}`
         : WEBSITE_LINK;
-      await Share.share({ message: `Check this out: ${shareUrl}`, url: shareUrl });
+      await shareWithRef({ message: `Check this out: ${shareUrl}`, url: shareUrl }, undefined, "comment");
     } catch (e) {
       console.error("Share error:", e);
     }

@@ -10,7 +10,8 @@
  * sign from the wallet the app already holds, so they belong here.
  */
 import React, { useState } from "react";
-import { View, StyleSheet, Pressable, Share } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Icon from "../components/ui/Icon";
@@ -63,7 +64,7 @@ export default function FractionsScreen() {
 
   const share = () => {
     const url = ShareLinks.fractions();
-    void Share.share({ message: `${t("fractions.shareMessage")}\n${url}`, url });
+    void shareWithRef({ message: `${t("fractions.shareMessage")}\n${url}`, url });
   };
 
   return (

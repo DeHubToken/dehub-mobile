@@ -38,9 +38,9 @@ import {
   ActivityIndicator,
   Alert,
   Platform,
-  Share,
   useWindowDimensions,
 } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { Image } from "expo-image";
@@ -456,7 +456,7 @@ const FeatureCard: React.FC<{
   }, [feature, t, deleteMutation, setEditDescription, setEditTitle]);
 
   const onShare = useCallback(() => {
-    void Share.share({
+    void shareWithRef({
       message: `${feature.title}\nhttps://dehub.io/app/features?feature=${feature.id}`,
     });
   }, [feature.id, feature.title]);

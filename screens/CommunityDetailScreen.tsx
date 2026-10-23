@@ -6,11 +6,11 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
-  Share,
   FlatList,
   KeyboardAvoidingView,
   useWindowDimensions,
 } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { Image } from "expo-image";
 import { storageImageSource } from "../libs/cdnImage";
@@ -285,7 +285,7 @@ const CommunityDetailScreen: React.FC = () => {
     if (!community) return;
     const url = ShareLinks.community(community.slug);
     try {
-      await Share.share({ message: `${t("communities.shareMessage", { name: community.name })}\n${url}`, url });
+      await shareWithRef({ message: `${t("communities.shareMessage", { name: community.name })}\n${url}`, url });
     } catch {
       copyToClipboard(url);
       toastSuccess(t("communities.linkCopied"));
