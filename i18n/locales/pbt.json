@@ -4130,6 +4130,7 @@
     "noVoice": "ستاسو وسیله د دې ژبې لپاره غږ نه لري."
   },
   "stages": {
+    "allStages": "ټولې غږيزې خونې",
     "addToCalendar": "د کالېنډر ته وړاندې کړئ",
     "nowPlaying": "اوس لوبې وکړئ",
     "onTheRadio": "په رادیو کې",
@@ -4857,7 +4858,28 @@
     "interestedCount": "{{count}} لیوالتیا لري",
     "loadFailed": "پیښې بار نشوې"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "ورځنی لیدونکي", "dailyHint": "ورځنی ځانګړي لیدونکي", "empty": "د دې مودې لپاره معلومات نشته"},
+    "definitions": {
+      "visitorsTerm": "لیدونکي"
+    },
+    "unavailable": {
+      "title": "احصایې اوس مهال شتون نلري"
+    },
+    "browsers": {
+      "window": "د پاڼې لیدنو له مخې",
+      "title": "براوزرونه"
+    },
+    "countries": {
+      "window": "وروستۍ {{days}} ورځې",
+      "title": "غوره هیوادونه"
+    },
+    "tile": {
+      "inRange": "پدې مهال کې",
+      "requestsLabel": "غوښتنې",
+      "pageViews": "د پاڼې لیدنې",
+      "soFarToday": "تر اوسه نن، UTC",
+      "visitorsToday": "نن لیدونکي"
+    },
     "feedback": {
       "title": "فیډبیک",
       "intro": "DeHub استعمال کړی یاست؟ موږ ته وویل چې دا څنګه وی. ښه، خراب یا مشخص — ټول یې لوستل کیږي. که تاسو خوشحال یاست چې موږ تاسو حوالہ کړو، بکس ټیک کړئ او موږ ممکن دا پوسټونو، ویډیوز یا سایټ کې استعمال کړو.",
@@ -6113,7 +6135,11 @@
     "noTrendingThisWeek": "پدې اونۍ کې هیڅ خورا مشهور مینځپانګه نشته",
     "closeFilterOptions": "د فلټر اختیارونه بند کړئ",
     "openFilterOptions": "د فلټر اختیارونه خلاص کړئ",
-    "fillQuery": "لټون کې \"{{query}}\" واچوئ"
+    "fillQuery": "لټون کې \"{{query}}\" واچوئ",
+    "clearHistory": "تاریخچه پاکه کړه",
+    "clearHistoryTitle": "د لټون تاریخچه پاکه شي؟",
+    "clearHistoryBody": "دا ستاسو ټول وروستي لټونونه لرې کوي.",
+    "removeFromHistory": "\"{{query}}\" له تاریخچې لرې کړه"
   },
   "notifPrompt": {
     "stayInLoop": "باخبره اوسئ",
@@ -6736,6 +6762,9 @@
       "sold": "{{amount}} {{symbol}} وپلورل"
     },
     "chart": {
+      "empty": "د دې مودې لپاره معلومات نشته",
+      "dailyHint": "ورځنی ځانګړي لیدونکي",
+      "daily": "ورځنی لیدونکي",
       "bookStarts": "کتاب له همدې ځایه پیلیږي",
       "firstOrder": "د مایعاتو اضافه کولو لپاره لومړی امر ځای په ځای کړئ.",
       "waiting": "د قیمتي ډبرو لپاره انتظار وکړئ",

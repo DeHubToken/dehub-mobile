@@ -103,12 +103,12 @@ function getArchiveUrls(): Promise<Record<number, string>> {
   return archiveUrls;
 }
 
-async function rpcUrlFor(chainId: number): Promise<string> {
+export async function rpcUrlFor(chainId: number): Promise<string> {
   const archive = await getArchiveUrls();
   return archive[chainId] || NETWORK_URLS[chainId];
 }
 
-async function rpc<T>(url: string, method: string, params: unknown[]): Promise<T> {
+export async function rpc<T>(url: string, method: string, params: unknown[]): Promise<T> {
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },

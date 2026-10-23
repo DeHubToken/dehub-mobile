@@ -4183,6 +4183,7 @@
     "noVoice": "Jou toestel het geen stem vir hierdie taal nie."
   },
   "stages": {
+    "allStages": "Alle oudiokamers",
     "addToCalendar": "Voeg by kalender",
     "nowPlaying": "Speel nou",
     "onTheRadio": "Op die radio",
@@ -4911,7 +4912,28 @@
     "interestedCount": "{{count}} belangstellend",
     "loadFailed": "Kon nie geleenthede laai nie"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Besoekers per dag", "dailyHint": "unieke besoekers per dag", "empty": "Nog geen data vir hierdie tydperk nie"},
+    "definitions": {
+      "visitorsTerm": "Besoekers"
+    },
+    "unavailable": {
+      "title": "Statistiek is nou nie beskikbaar nie"
+    },
+    "browsers": {
+      "window": "volgens bladsyaansigte",
+      "title": "Blaaiers"
+    },
+    "countries": {
+      "window": "laaste {{days}} dae",
+      "title": "Topslande"
+    },
+    "tile": {
+      "inRange": "in hierdie reeks",
+      "requestsLabel": "Versoeke",
+      "pageViews": "Bladsyaansigte",
+      "soFarToday": "tot dusver vandag, UTC",
+      "visitorsToday": "Besoekers vandag"
+    },
     "feedback": {
       "title": "Terugvoer",
       "intro": "Gebruik jy DeHub al 'n tyd? Vertel ons hoe dit vir jou was. Goed, sleg of spesifiek — ons lees alles. As jy gelukkig is dat ons jou kan aanhaal, merk die blokkie en ons mag dit dalk in plasings, video's of op die webwerf gebruik.",
@@ -6177,7 +6199,11 @@
     "noTrendingThisWeek": "Geen gewilde inhoud hierdie week nie",
     "closeFilterOptions": "Sluit filteropsies",
     "openFilterOptions": "Maak filteropsies oop",
-    "fillQuery": "Vul soektog in met \"{{query}}\""
+    "fillQuery": "Vul soektog in met \"{{query}}\"",
+    "clearHistory": "Vee geskiedenis uit",
+    "clearHistoryTitle": "Vee soekgeskiedenis uit?",
+    "clearHistoryBody": "Dit verwyder al jou onlangse soektogte.",
+    "removeFromHistory": "Verwyder \"{{query}}\" uit geskiedenis"
   },
   "notifPrompt": {
     "stayInLoop": "Bly op hoogte",
@@ -6803,6 +6829,9 @@
       "sold": "Verkoop {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Nog geen data vir hierdie tydperk nie",
+      "dailyHint": "unieke besoekers per dag",
+      "daily": "Besoekers per dag",
       "bookStarts": "Book Begins Here",
       "firstOrder": "Plaas die eerste bestelling om likiditeit by te voeg.",
       "waiting": "Wag vir prys data",

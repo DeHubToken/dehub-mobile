@@ -15,6 +15,7 @@ import {
   ActivityIndicator,
   BackHandler,
   FlatList,
+  Alert,
 } from "react-native";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
@@ -36,6 +37,8 @@ import {
   fetchSuggestions,
   getHistory,
   addToHistory,
+  removeFromHistory,
+  clearHistory,
   logSearchAnalytics,
   topHistorySubset,
   SearchContentResult,
@@ -54,6 +57,7 @@ import {
 import { useIsFocused, useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from '@tanstack/react-query';
 import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import SwipeableRow from "../components/common/SwipeableRow";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
@@ -301,6 +305,27 @@ const SearchScreen: React.FC = () => {
   useEffect(() => {
     getHistory(userAddress).then(setSearchHistory);
   }, [userAddress]);
+
+  // One tap (the X) or a swipe drops a single search; no confirm, it is one
+  // line of history. Clearing everything asks first.
+  const handleRemoveHistory = useCallback((term: string) => {
+    setSearchHistory((prev) => prev.filter((x) => x !== term));
+    removeFromHistory(term, userAddress).then(setSearchHistory);
+  }, [userAddress]);
+
+  const handleClearHistory = useCallback(() => {
+    Alert.alert(t("search.clearHistoryTitle"), t("search.clearHistoryBody"), [
+      { text: t("common.cancel"), style: "cancel" },
+      {
+        text: t("search.clearHistory"),
+        style: "destructive",
+        onPress: () => {
+          setSearchHistory([]);
+          clearHistory(userAddress);
+        },
+      },
+    ]);
+  }, [t, userAddress]);
 
   // The filter panel is an in-tree overlay, so Android back would otherwise
   // pop the whole screen. Close the panel first.
@@ -934,26 +959,60 @@ const SearchScreen: React.FC = () => {
         // Minimal: no grouped box — the rows run the full width, each with
         // its own hairline, and only the text keeps the 16pt inset.
         <View className={isMinimal ? undefined : "px-4"} style={{ paddingTop: headerHeight + 12 }}>
-          <Text className={`text-theme-neutrals-400 text-xs font-semibold mb-2 ${isMinimal ? "px-4" : "px-1"}`}>
-            {t("search.recentSearches")}
-          </Text>
+          <View className={`flex-row items-center justify-between mb-2 ${isMinimal ? "px-4" : "px-1"}`}>
+            <Text className="text-theme-neutrals-400 text-xs font-semibold">
+              {t("search.recentSearches")}
+            </Text>
+            <TouchableOpacity
+              onPress={handleClearHistory}
+              accessibilityRole="button"
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              className="flex-row items-center"
+            >
+              <Icon name="Trash2" size={14} color="#9CA3AF" />
+              <Text className="text-theme-neutrals-400 text-xs font-semibold ml-1">
+                {t("search.clearHistory")}
+              </Text>
+            </TouchableOpacity>
+          </View>
           <ThemePanel className={isMinimal ? undefined : "rounded-xl overflow-hidden bg-theme-neutrals-800"}>
-            {topHistorySubset(searchHistory, 5).map((item, index) => (
-              <TouchableOpacity
-                key={`history-${index}`}
-                className="px-4 py-3 flex-row items-center"
-                onPress={() => handleSuggestionClick(item)}
-                activeOpacity={0.8}
-                style={isMinimal ? minimalRow : {
-                  borderBottomWidth: index === topHistorySubset(searchHistory, 5).length - 1 ? 0 : StyleSheet.hairlineWidth,
-                  borderBottomColor: "#333",
-                }}
+            {topHistorySubset(searchHistory, 5).map((item, index, shown) => (
+              <SwipeableRow
+                key={`history-${item}`}
+                backgroundClassName="bg-transparent"
+                actions={[{
+                  key: "delete",
+                  label: t("common.delete"),
+                  icon: "trash-outline",
+                  color: "#DC2626",
+                  destructive: true,
+                  onPress: () => handleRemoveHistory(item),
+                }]}
               >
-                <Icon name="Clock" size={18} color="#9CA3AF" />
-                <Text className="text-theme-neutrals-100 flex-1 ml-3" numberOfLines={1}>
-                  {item}
-                </Text>
-              </TouchableOpacity>
+                <TouchableOpacity
+                  className="pl-4 pr-2 py-2.5 flex-row items-center"
+                  onPress={() => handleSuggestionClick(item)}
+                  activeOpacity={0.8}
+                  style={isMinimal ? minimalRow : {
+                    borderBottomWidth: index === shown.length - 1 ? 0 : StyleSheet.hairlineWidth,
+                    borderBottomColor: "#333",
+                  }}
+                >
+                  <Icon name="Clock" size={18} color="#9CA3AF" />
+                  <Text className="text-theme-neutrals-100 flex-1 ml-3" numberOfLines={1}>
+                    {item}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => handleRemoveHistory(item)}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("search.removeFromHistory", { query: item })}
+                    hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    className="w-8 h-6 items-center justify-center"
+                  >
+                    <Icon name="X" size={16} color="#9CA3AF" />
+                  </TouchableOpacity>
+                </TouchableOpacity>
+              </SwipeableRow>
             ))}
           </ThemePanel>
         </View>
@@ -1075,7 +1134,8 @@ const SearchScreen: React.FC = () => {
             ScreenHeader have none of their own, and the feed now scrolls
             underneath them rather than below them. */}
         <View className="bg-theme-neutrals-900">
-          <View className="px-4 pb-2">
+          {/* pt-3: the search box sat flush against the title island above. */}
+          <View className="px-4 pt-3 pb-2">
             {/* Minimal: still reads as an input, but by a 1px outline on
                 black rather than a filled slab. */}
             <View

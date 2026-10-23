@@ -4143,6 +4143,7 @@
     "noVoice": "تمہارے ڈیوائس میں اس زبان کی آواز نہیں ہے۔"
   },
   "stages": {
+    "allStages": "سب آڈیو روم",
     "addToCalendar": "کالینڈر میں جڑیں",
     "nowPlaying": "ابھی چل رہی ہے",
     "onTheRadio": "رڈیو پر",
@@ -4834,7 +4835,28 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نئیں ہو سکے"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "روزانہ آنے والے", "dailyHint": "روزانہ الگ الگ آنے والے", "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"},
+    "definitions": {
+      "visitorsTerm": "آنے والے"
+    },
+    "unavailable": {
+      "title": "اعداد ابھی دستیاب نکو"
+    },
+    "browsers": {
+      "window": "پیج ویوز کے حساب سے",
+      "title": "براؤزرز"
+    },
+    "countries": {
+      "window": "پچھلے {{days}} دن",
+      "title": "اوپر کے ملک"
+    },
+    "tile": {
+      "inRange": "اس وقفے میں",
+      "requestsLabel": "درخواستیں",
+      "pageViews": "پیج ویوز",
+      "soFarToday": "آج تک، UTC",
+      "visitorsToday": "آج کے آنے والے"
+    },
     "feedback": {
       "title": "تاثرات",
       "intro": "کچھ عرصے سے DeHub استعمال کر رہے ہیں ؟ ہمیں بتائیں کہ یہ کیسا رہا ہے ۔ اچھا، برا یا مخصوص — یہ سب پڑھا جاتا ہے ۔ اگر آپ خوش ہیں کہ ہم آپ کو حوالہ دے رہے ہیں تو، باکس پر نشان لگائیں اور ہم اسے پوسٹس، ویڈیوز یا سائٹ پر استعمال کرسکتے ہیں ۔",
@@ -6093,7 +6115,11 @@
     "noTrendingThisWeek": "اس ہفتے کوئی ٹرینڈنگ مواد نہیں",
     "closeFilterOptions": "فلٹر کے اختیارات بند کریں",
     "openFilterOptions": "فلٹر کے اختیارات کھولیں",
-    "fillQuery": "تلاش میں \"{{query}}\" ڈالو"
+    "fillQuery": "تلاش میں \"{{query}}\" ڈالو",
+    "clearHistory": "ہسٹری صاف کریں",
+    "clearHistoryTitle": "تلاش کی ہسٹری صاف کریں؟",
+    "clearHistoryBody": "اس سے آپ کی تمام حالیہ تلاشیں ہٹ جائیں گی۔",
+    "removeFromHistory": "\"{{query}}\" کو ہسٹری سے ہٹائیں"
   },
   "notifPrompt": {
     "stayInLoop": "باخبر رہیں",
@@ -6608,6 +6634,9 @@
       "sold": "فروخت شدہ {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو",
+      "dailyHint": "روزانہ الگ الگ آنے والے",
+      "daily": "روزانہ آنے والے",
       "bookStarts": "کتاب یہاں سے شروع ہوتی ہے",
       "firstOrder": "لیکویڈیٹی شامل کرنے کے لیے پہلا آرڈر دیں ۔",
       "waiting": "قیمت کے ڈیٹا کا انتظار ہے",

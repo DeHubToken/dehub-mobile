@@ -58,9 +58,11 @@ export interface RadioPlayerState {
   station: RadioStation | null;
   isPlaying: boolean;
   isLoading: boolean;
+  /** 0..1, kept across stations like web's mini player. */
+  volume: number;
 }
 
-const IDLE: RadioPlayerState = { station: null, isPlaying: false, isLoading: false };
+const IDLE: RadioPlayerState = { station: null, isPlaying: false, isLoading: false, volume: 1 };
 
 let state: RadioPlayerState = IDLE;
 const subscribers = new Set<(next: RadioPlayerState) => void>();
@@ -70,7 +72,8 @@ function publish(patch: Partial<RadioPlayerState>) {
   if (
     next.station === state.station &&
     next.isPlaying === state.isPlaying &&
-    next.isLoading === state.isLoading
+    next.isLoading === state.isLoading &&
+    next.volume === state.volume
   ) {
     return;
   }
@@ -109,8 +112,22 @@ function ensurePlayer(): AudioPlayer {
   if (player) return player;
   const p = createAudioPlayer(null, { updateInterval: 500 });
   p.addListener("playbackStatusUpdate", onStatus);
+  p.volume = state.volume;
   player = p;
   return p;
+}
+
+/** Set the station volume, 0..1. Survives changing station. */
+export function setRadioVolume(volume: number) {
+  const v = Math.max(0, Math.min(1, volume));
+  if (player) {
+    try {
+      player.volume = v;
+    } catch (e) {
+      log.warn("Volume change failed", e);
+    }
+  }
+  publish({ volume: v });
 }
 
 /** Stop the stream and drop the source. */
@@ -126,7 +143,7 @@ export function stopRadio() {
   }
   releaseLockScreen(LOCK_SCREEN_ID);
   releaseAudioFocus(stopRadio);
-  publish(IDLE);
+  publish({ ...IDLE, volume: state.volume });
 }
 
 /** Tune in. Replaces whatever was playing, radio or otherwise. */

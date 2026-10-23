@@ -4150,6 +4150,7 @@
     "noVoice": "Sinu seadmel pole selle keele jaoks häält."
   },
   "stages": {
+    "allStages": "Kõik helitoad",
     "addToCalendar": "Lisa kalendrisse",
     "nowPlaying": "Nüüd mängitakse",
     "onTheRadio": "Raadios",
@@ -4878,7 +4879,28 @@
     "interestedCount": "{{count}} huvitatud",
     "loadFailed": "Üritusi ei õnnestunud laadida"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Külastajaid päevas", "dailyHint": "unikaalseid külastajaid päevas", "empty": "Selle perioodi kohta pole veel andmeid"},
+    "definitions": {
+      "visitorsTerm": "Külastajad"
+    },
+    "unavailable": {
+      "title": "Statistika pole praegu saadaval"
+    },
+    "browsers": {
+      "window": "lehevaatamiste järgi",
+      "title": "Brauserid"
+    },
+    "countries": {
+      "window": "viimased {{days}} päeva",
+      "title": "Peamised riigid"
+    },
+    "tile": {
+      "inRange": "selles vahemikus",
+      "requestsLabel": "Päringud",
+      "pageViews": "Lehevaatamised",
+      "soFarToday": "tänase seisuga, UTC",
+      "visitorsToday": "Külastajaid täna"
+    },
     "feedback": {
       "title": "Tagasiside",
       "intro": "Oled DeHubi kasutanud juba mõnda aega? Räägi meile, kuidas see on olnud. Hea, halb või konkreetne — kõike loetakse. Kui oled nõus, et meid tsiteeritakse, märgi kast ja me võime seda kasutada postitustes, videotes või veebisaidel.",
@@ -6144,7 +6166,11 @@
     "noTrendingThisWeek": "Sel nädalal pole populaarset sisu",
     "closeFilterOptions": "Sulge filtrid",
     "openFilterOptions": "Ava filtrid",
-    "fillQuery": "Sisesta \"{{query}}\" otsingusse"
+    "fillQuery": "Sisesta \"{{query}}\" otsingusse",
+    "clearHistory": "Tühjenda ajalugu",
+    "clearHistoryTitle": "Kas tühjendada otsinguajalugu?",
+    "clearHistoryBody": "See eemaldab kõik sinu hiljutised otsingud.",
+    "removeFromHistory": "Eemalda „{{query}}“ ajaloost"
   },
   "notifPrompt": {
     "stayInLoop": "Ole kursis",
@@ -6769,6 +6795,9 @@
       "sold": "Müüdud {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Selle perioodi kohta pole veel andmeid",
+      "dailyHint": "unikaalseid külastajaid päevas",
+      "daily": "Külastajaid päevas",
       "bookStarts": "Raamat algab siit",
       "firstOrder": "Likviidsuse lisamiseks esita esimene tellimus.",
       "waiting": "Hinnaandmete ootamine",

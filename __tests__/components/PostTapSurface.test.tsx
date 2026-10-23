@@ -18,15 +18,37 @@ describe('text and image post gestures', () => {
     const react = jest.fn();
     const view = render(<PostTapSurface onPress={open} onReaction={react}><Text>Post</Text></PostTapSurface>);
     const surface = view.UNSAFE_getByType(Pressable);
-    const event = (x = 20) => ({ nativeEvent: { pageX: x, pageY: 20 }, stopPropagation: jest.fn() });
+    fireEvent(surface, 'layout', { nativeEvent: { layout: { width: 200, height: 200, x: 0, y: 0 } } });
+    const event = (x = 100, y = 100) => ({ nativeEvent: { pageX: x, pageY: y, locationX: x, locationY: y }, stopPropagation: jest.fn() });
     const tap = () => { fireEvent(surface, 'touchStart', event()); fireEvent.press(surface, event()); };
     return { ...view, open, react, surface, event, tap };
   }
 
-  it('opens an image after one tap, without reacting', () => {
+  it('opens the image after one central tap, without reacting', () => {
     const s = setup(); s.tap();
     expect(s.open).not.toHaveBeenCalled();
     act(() => jest.advanceTimersByTime(360));
+    expect(s.open).toHaveBeenCalledTimes(1);
+    expect(s.react).not.toHaveBeenCalled();
+  });
+
+  it('opens immediately outside the center without waiting for another tap', () => {
+    const s = setup();
+    fireEvent(s.surface, 'touchStart', s.event(20));
+    fireEvent.press(s.surface, s.event(20));
+    expect(s.open).toHaveBeenCalledTimes(1);
+    expect(s.react).not.toHaveBeenCalled();
+    act(() => jest.advanceTimersByTime(1000));
+    expect(s.open).toHaveBeenCalledTimes(1);
+    expect(s.react).not.toHaveBeenCalled();
+  });
+
+  it('cancels a pending central gesture when the next tap opens outside it', () => {
+    const s = setup(); s.tap();
+    fireEvent(s.surface, 'touchStart', s.event(20));
+    fireEvent.press(s.surface, s.event(20));
+    expect(s.open).toHaveBeenCalledTimes(1);
+    act(() => jest.advanceTimersByTime(1000));
     expect(s.open).toHaveBeenCalledTimes(1);
     expect(s.react).not.toHaveBeenCalled();
   });
@@ -52,7 +74,7 @@ describe('text and image post gestures', () => {
   it('ignores a scroll even when no move event was delivered', () => {
     const s = setup();
     fireEvent(s.surface, 'touchStart', s.event());
-    fireEvent.press(s.surface, s.event(100));
+    fireEvent.press(s.surface, s.event(180));
     act(() => jest.advanceTimersByTime(1000));
     expect(s.open).not.toHaveBeenCalled();
     expect(s.react).not.toHaveBeenCalled();

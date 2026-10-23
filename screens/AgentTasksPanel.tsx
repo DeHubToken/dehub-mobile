@@ -8,7 +8,7 @@ import { agentTaskRequest, type AIAgent, type AgentTask, type AgentTaskAction } 
 import { openInApp } from '../libs/links.utils';
 import { useTranslation } from 'react-i18next';
 import LiquidGlass from '../components/ui/LiquidGlass';
-import { WINDOW_ACTIONS, WINDOW_PRESETS, windowPrompt, windowRange, type WindowAction, type WindowPreset } from '../libs/agent-task-window';
+import { WINDOW_ACTIONS, WINDOW_PRESETS, toggleWindowAction, windowPrompt, windowRange, type WindowAction, type WindowPreset } from '../libs/agent-task-window';
 
 const actionNames: Record<string, string> = { dehub_follow: 'agents.tasks.follow', dehub_vote: 'agents.tasks.reaction', dehub_post_create: 'agents.tasks.post', dehub_comment: 'agents.tasks.comment', dehub_update_profile: 'agents.tasks.profile', dehub_view: 'agents.tasks.window.view' };
 
@@ -32,6 +32,8 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const [custom, setCustom] = useState({ from: '', to: '' });
   const [windowActions, setWindowActions] = useState<WindowAction[]>(['view']);
   const [replyStyle, setReplyStyle] = useState('');
+  const [filters, setFilters] = useState({ author: '', category: '' });
+  const [filterModes, setFilterModes] = useState({ author: false, category: false });
   const range = windowRange(preset, custom);
   const windowReady = !!range && windowActions.length > 0 && (!windowActions.includes('reply') || !!replyStyle.trim());
   const active = agents.filter(agent => agent.is_active);
@@ -104,9 +106,19 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
               onChangeText={value => { setCustom(current => ({ ...current, [field]: value })); changed(); }} /></LiquidGlass></View>)}
         </View>}
         {preset === 'custom' && !!custom.from && !!custom.to && !range && <Text accessibilityRole="alert" style={styles.error}>{t('agents.tasks.window.invalid')}</Text>}
+        {(['author', 'category'] as const).map(field => <View key={field} style={styles.card}>
+          <Text style={styles.text}>{t(`agents.tasks.window.${field}`)}</Text>
+          <View style={styles.row}>{([false, true] as const).map(specific => <Pressable key={String(specific)} accessibilityRole="button" accessibilityState={{ selected: filterModes[field] === specific }} disabled={create.isPending}
+            onPress={() => { setFilterModes(current => ({ ...current, [field]: specific })); changed(); }} style={[styles.chip, filterModes[field] === specific && styles.selected]}><Text style={styles.text}>{t(`agents.tasks.window.${field}${specific ? 'Choose' : 'All'}`)}</Text></Pressable>)}</View>
+          {filterModes[field] && <LiquidGlass style={{ borderRadius: 10 }}><TextInput accessibilityLabel={t(`agents.tasks.window.${field}`)} value={filters[field]} editable={!create.isPending}
+            maxLength={field === 'author' ? 50 : 1000} autoCapitalize="none" autoCorrect={false} placeholder={t(`agents.tasks.window.${field}Placeholder`)} placeholderTextColor="#A1A1AA" style={styles.dateInput}
+            onChangeText={value => { setFilters(current => ({ ...current, [field]: value })); changed(); }} /></LiquidGlass>}
+          {field === 'category' && filterModes.category && <Text style={styles.muted}>{t('agents.tasks.window.categoryHint')}</Text>}
+        </View>)}
+        <Text style={styles.muted}>{t('agents.tasks.window.filterHelp')}</Text>
         <Text style={styles.text}>{t('agents.tasks.window.actions')}</Text>
         <View style={styles.row}>{WINDOW_ACTIONS.map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: windowActions.includes(value) }} disabled={create.isPending}
-          onPress={() => { setWindowActions(list => list.includes(value) ? list.filter(item => item !== value) : [...list, value]); changed(); }}
+          onPress={() => { setWindowActions(list => toggleWindowAction(list, value)); changed(); }}
           style={[styles.chip, windowActions.includes(value) && styles.selected]}><Text style={styles.text}>{t(`agents.tasks.window.${value}`)}</Text></Pressable>)}</View>
         {windowActions.includes('reply') && <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.window.replyStyle')} value={replyStyle} editable={!create.isPending} multiline maxLength={500}
           onChangeText={value => { setReplyStyle(value); changed(); }} placeholder={t('agents.tasks.window.replyPlaceholder')} placeholderTextColor="#A1A1AA" style={[styles.input, { minHeight: 80 }]} /></LiquidGlass>}
@@ -114,7 +126,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
       </View> : <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.instructions')} value={prompt} editable={!create.isPending} multiline maxLength={4000}
         onChangeText={value => { setPrompt(value); setRequestId(randomUUID()); create.reset(); }} placeholder={t('agents.tasks.examples')}
         placeholderTextColor="#A1A1AA" style={styles.input} /></LiquidGlass>}
-      <KitButton label={create.isPending ? t('agents.tasks.preparing') : swarm ? t('agents.tasks.runSwarm') : t('agents.tasks.run')} disabled={(windowMode ? !windowReady : !prompt.trim()) || create.isPending || (swarm && swarmIds.length < 2)} onPress={() => create.mutate(windowMode && range ? windowPrompt(range, windowActions, replyStyle) : prompt)} />
+      <KitButton label={create.isPending ? t('agents.tasks.preparing') : swarm ? t('agents.tasks.runSwarm') : t('agents.tasks.run')} disabled={(windowMode ? !windowReady : !prompt.trim()) || create.isPending || (swarm && swarmIds.length < 2)} onPress={() => create.mutate(windowMode && range ? windowPrompt(windowRange(preset, custom)!, windowActions, replyStyle, { author: filterModes.author ? filters.author : '', category: filterModes.category ? filters.category : '' }) : prompt)} />
       <Text style={styles.muted}>{t('agents.tasks.limits')}</Text>
     </> : <Text style={styles.muted}>{t('agents.tasks.createFirst')}</Text>}
     {create.error && <Text accessibilityRole="alert" style={styles.error}>{create.error.message}</Text>}

@@ -4121,6 +4121,7 @@
     "noVoice": "መሳርሒኻ ነዚ ቋንቋ ዝኸውን ድምጺ የብሉን።"
   },
   "stages": {
+    "allStages": "ኩሎም ናይ ድምጺ ክፍልታት",
     "addToCalendar": "ናብ ኣቆጣጠር ኣክል",
     "nowPlaying": "ሕጂ ድማ ክጻወት እየ ።",
     "onTheRadio": "ኣብ ሬድዮ",
@@ -4847,7 +4848,28 @@
     "interestedCount": "{{count}} ተገዳስነት ኣለዎም",
     "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "በጻሕቲ ኣብ መዓልቲ", "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ", "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"},
+    "definitions": {
+      "visitorsTerm": "በጻሕቲ"
+    },
+    "unavailable": {
+      "title": "ስታትስቲክስ ሕጂ ኣይርከብን"
+    },
+    "browsers": {
+      "window": "ብናይ ገጽ ርእይቶታት",
+      "title": "ብራውዘራት"
+    },
+    "countries": {
+      "window": "ዝሓለፉ {{days}} መዓልታት",
+      "title": "ላዕለዎት ሃገራት"
+    },
+    "tile": {
+      "inRange": "ኣብዚ ክሊ",
+      "requestsLabel": "ጠለባት",
+      "pageViews": "ናይ ገጽ ርእይቶታት",
+      "soFarToday": "ክሳብ ሕጂ ሎሚ፡ UTC",
+      "visitorsToday": "ሎሚ በጻሕቲ"
+    },
     "feedback": {
       "title": "ግብረ-ሙግት",
       "intro": "DeHub ለ ጊዜ ተጠቀምክ? ምን ይመስል ነበር ንገረን። ጥሩ ይሁን ፣ መጥፎ ይሁን ወይም ተወሳኪ — ሁሉም ይነበብ ። እኛ ምልክት ክትክት ከሆነ ፣ ሳጥኑን ምልክት ያድርጉ እና በልጥፎች ፣ በቪዲዮዎች ወይም በሳይቱ ላይ ሊጠቀስ ይችላል ።",
@@ -6104,7 +6126,11 @@
     "noTrendingThisWeek": "ኣብዚ ሰሙን እዚ ዝዝርግሕ ትሕዝቶ የለን ።",
     "closeFilterOptions": "ናይ ማጣሪያ ኣማራጺታት ምዕጻው",
     "openFilterOptions": "ኣማራጺታት ፍሊተር ክፉት",
-    "fillQuery": "\"{{query}}\" ኣብ መድለዪ ኣእቱ"
+    "fillQuery": "\"{{query}}\" ኣብ መድለዪ ኣእቱ",
+    "clearHistory": "ታሪኽ ኣጽሪ",
+    "clearHistoryTitle": "ታሪኽ ምድላይ ይጽረ?",
+    "clearHistoryBody": "እዚ ኩሎም ናይ ቀረባ እዋን ምድላያትካ የወግዶም።",
+    "removeFromHistory": "\"{{query}}\" ካብ ታሪኽ ኣወግድ"
   },
   "notifPrompt": {
     "stayInLoop": "ሓበሬታ ሓዝ",
@@ -6729,6 +6755,9 @@
       "sold": "ሸይጡ {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "ንዚ እዋን እዚ ገና ዳታ የለን",
+      "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ",
+      "daily": "በጻሕቲ ኣብ መዓልቲ",
       "bookStarts": "እቲ መጽሓፍ ኣብዚ ይጅምር",
       "firstOrder": "ንዋናነት ንምእታው ቀዳመይቲ ትእዛዝ ኣንብብ ።",
       "waiting": "ናይ ዋጋ ሓበሬታ",

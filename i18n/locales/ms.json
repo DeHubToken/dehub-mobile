@@ -4409,6 +4409,7 @@
     "noVoice": "Peranti anda tiada suara untuk bahasa ini."
   },
   "stages": {
+    "allStages": "Semua bilik audio",
     "addToCalendar": "Tambah ke kalendar",
     "nowPlaying": "Sedang dimainkan",
     "onTheRadio": "Di radio",
@@ -5137,7 +5138,28 @@
     "interestedCount": "{{count}} berminat",
     "loadFailed": "Tidak dapat memuatkan acara"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Pelawat sehari", "dailyHint": "pelawat unik sehari", "empty": "Belum ada data untuk tempoh ini"},
+    "definitions": {
+      "visitorsTerm": "Pelawat"
+    },
+    "unavailable": {
+      "title": "Statistik tidak tersedia buat masa ini"
+    },
+    "browsers": {
+      "window": "mengikut paparan halaman",
+      "title": "Pelayar"
+    },
+    "countries": {
+      "window": "{{days}} hari lepas",
+      "title": "Negara teratas"
+    },
+    "tile": {
+      "inRange": "dalam julat ini",
+      "requestsLabel": "Permintaan",
+      "pageViews": "Paparan halaman",
+      "soFarToday": "setakat ini hari ini, UTC",
+      "visitorsToday": "Pelawat hari ini"
+    },
     "feedback": {
       "title": "Maklum Balas",
       "intro": "Sudah lama menggunakan DeHub? Beritahu kami bagaimana pengalamannya. Baik, buruk atau spesifik — semuanya kami baca. Jika anda bersetuju untuk kami petik kata-kata anda, tandakan kotak dan kami mungkin menggunakannya dalam siaran, video atau di laman web.",
@@ -6401,7 +6423,11 @@
     "noTrendingThisWeek": "Tiada kandungan trend minggu ini",
     "closeFilterOptions": "Tutup pilihan penapis",
     "openFilterOptions": "Buka pilihan penapis",
-    "fillQuery": "Isi carian dengan \"{{query}}\""
+    "fillQuery": "Isi carian dengan \"{{query}}\"",
+    "clearHistory": "Kosongkan sejarah",
+    "clearHistoryTitle": "Kosongkan sejarah carian?",
+    "clearHistoryBody": "Ini akan membuang semua carian terkini anda.",
+    "removeFromHistory": "Buang \"{{query}}\" daripada sejarah"
   },
   "notifPrompt": {
     "stayInLoop": "Kekal dimaklumkan",
@@ -7027,6 +7053,9 @@
       "sold": "Dijual {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Belum ada data untuk tempoh ini",
+      "dailyHint": "pelawat unik sehari",
+      "daily": "Pelawat sehari",
       "bookStarts": "Buku ini bermula di sini",
       "firstOrder": "Buat pesanan pertama untuk menambah kecairan.",
       "waiting": "Menunggu data harga",

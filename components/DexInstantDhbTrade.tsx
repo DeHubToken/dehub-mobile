@@ -14,11 +14,24 @@ import { NATIVE, evmProvider, quoteSwap, runSwap, type SwapCall } from '../libs/
 import { DHB_BASE, POOL_CHAIN_INFO } from '../libs/dex-pools';
 
 const USDC = POOL_CHAIN_INFO.base.usdc;
-const ERC20 = ['function balanceOf(address) view returns (uint256)'];
+const ERC20 = ['function balanceOf(address) view returns (uint256)', 'function decimals() view returns (uint8)'];
 type Pay = 'USDC' | 'ETH';
 
-/** Market buy / sell of DHB on Base at the best aggregated price, beside the range-order ticket. */
-export default function DexInstantDhbTrade({ address, disabled, onDone }: { address: string; disabled?: boolean; onDone: () => void }) {
+/** Any Base ERC-20 to trade instead of DHB, e.g. a cashtag's token. Decimals are read on chain when not given. */
+export type InstantTradeToken = { address: string; symbol: string; decimals?: number };
+
+/** Market buy / sell of DHB (or `token`) on Base at the best aggregated price, beside the range-order ticket. */
+export default function DexInstantDhbTrade({ address, disabled, onDone, token }: { address: string; disabled?: boolean; onDone: () => void; token?: InstantTradeToken }) {
+  const target = token?.address ?? DHB_BASE;
+  const targetSymbol = token?.symbol ?? 'DHB';
+  const [targetDecimals, setTargetDecimals] = useState(token?.decimals ?? 18);
+  useEffect(() => {
+    if (!token || token.decimals != null) return;
+    let live = true;
+    (new ethers.Contract(token.address, ERC20, evmProvider(ChainId.BASE_MAINNET)).decimals() as Promise<number>)
+      .then((d) => { if (live) setTargetDecimals(Number(d)); }).catch(() => {});
+    return () => { live = false; };
+  }, [token]);
   const { t } = useTranslation();
   const signer = useDexSigner();
   const [side, setSide] = useState<'buy' | 'sell' | null>(null);
@@ -49,14 +62,14 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
     void Promise.all([
       new ethers.Contract(USDC, ERC20, provider).balanceOf(address) as Promise<ethers.BigNumber>,
       provider.getBalance(address),
-      new ethers.Contract(DHB_BASE, ERC20, provider).balanceOf(address) as Promise<ethers.BigNumber>,
+      new ethers.Contract(target, ERC20, provider).balanceOf(address) as Promise<ethers.BigNumber>,
     ]).then(([usdc, eth, dhb]) => {
-      if (live) setBalances({ usdc: Number(ethers.utils.formatUnits(usdc, 6)), eth: Number(ethers.utils.formatUnits(eth, 18)), dhb: Number(ethers.utils.formatUnits(dhb, 18)) });
+      if (live) setBalances({ usdc: Number(ethers.utils.formatUnits(usdc, 6)), eth: Number(ethers.utils.formatUnits(eth, 18)), dhb: Number(ethers.utils.formatUnits(dhb, targetDecimals)) });
     }).catch(() => {});
     return () => { live = false; };
-  }, [address, side, revision]);
+  }, [address, side, revision, target, targetDecimals]);
 
-  const spend = side === 'sell' ? { symbol: 'DHB', address: DHB_BASE, decimals: 18 }
+  const spend = side === 'sell' ? { symbol: targetSymbol, address: target, decimals: targetDecimals }
     : pay === 'ETH' ? { symbol: 'ETH', address: NATIVE, decimals: 18 } : { symbol: 'USDC', address: USDC, decimals: 6 };
   const balance = !balances ? 0 : side === 'sell' ? balances.dhb : pay === 'ETH' ? balances.eth : balances.usdc;
 
@@ -70,18 +83,18 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
       if (!quote) {
         const [whole, fraction = ''] = amount.split('.');
         const units = BigInt(ethers.utils.parseUnits(fraction ? `${whole}.${fraction.slice(0, spend.decimals)}` : whole, spend.decimals).toString());
-        setQuote(await quoteSwap({ chainId: ChainId.BASE_MAINNET, tokenIn: spend.address, tokenOut: side === 'buy' ? DHB_BASE : USDC, amountIn: units, recipient: address }));
+        setQuote(await quoteSwap({ chainId: ChainId.BASE_MAINNET, tokenIn: spend.address, tokenOut: side === 'buy' ? target : USDC, amountIn: units, recipient: address }));
         return;
       }
       const provider = await signer(ChainId.BASE_MAINNET, t('dex.unlockWallet'));
       await runSwap(quote, provider, address);
-      toastSuccess(t(side === 'buy' ? 'dex.pool.bought' : 'dex.pool.sold', { amount: formatSize(side === 'buy' ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), 18)) : value), symbol: tokenLabel() }));
+      toastSuccess(t(side === 'buy' ? 'dex.pool.bought' : 'dex.pool.sold', { amount: formatSize(side === 'buy' ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), targetDecimals)) : value), symbol: tokenLabel(targetSymbol) }));
       setAmount.complete(amount, ''); setQuote(null); setRevision((n) => n + 1); onDone();
     } catch (e) { setError(dexActionError(e, t('dex.prepareFailed'))); }
     finally { setBusy(false); }
   }
 
-  const out = quote ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), side === 'buy' ? 18 : 6)) : null;
+  const out = quote ? Number(ethers.utils.formatUnits(quote.amountOut.toString(), side === 'buy' ? targetDecimals : 6)) : null;
   const locked = busy || !!disabled;
   return <View style={s.box}>
     <View style={s.row}>
@@ -96,7 +109,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone }: { addr
       <Text style={[s.muted, s.label]}>{t(side === 'buy' ? 'dex.spend' : 'dex.sellAmount')}</Text>
       <View style={s.inputWrap}><TextInput editable={!locked} accessibilityLabel={t('dex.amountToken', { token: tokenLabel(spend.symbol) })} keyboardType="decimal-pad" placeholder="0.00" placeholderTextColor="#596675" value={amount} onChangeText={(v) => setAmount(v.replace(',', '.').trim())} style={s.input} /><Text style={s.unit}>{tokenLabel(spend.symbol)}</Text></View>
       <View style={s.between}><Text style={s.muted}>{t('dex.available')}</Text><Text style={s.white}>{balances ? `${formatSize(balance)} ${tokenLabel(spend.symbol)}` : t('dex.checking')}</Text></View>
-      <View style={s.between}><Text style={s.muted}>{t('dex.pool.youReceive')}</Text><Text style={s.white}>{out != null ? `${formatSize(out)} ${side === 'buy' ? tokenLabel() : 'USDC'}` : '—'}</Text></View>
+      <View style={s.between}><Text style={s.muted}>{t('dex.pool.youReceive')}</Text><Text style={s.white}>{out != null ? `${formatSize(out)} ${side === 'buy' ? tokenLabel(targetSymbol) : 'USDC'}` : '—'}</Text></View>
       {!!error && <Text accessibilityRole="alert" style={s.alert}>{error}</Text>}
       <TouchableOpacity disabled={locked || !(Number(amount) > 0)} onPress={() => void submit()} style={[s.submit, { backgroundColor: side === 'buy' ? '#20c997' : '#f05b72', opacity: locked || !(Number(amount) > 0) ? 0.5 : 1 }]}>
         {busy && <ActivityIndicator color="#061410" />}

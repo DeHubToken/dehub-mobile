@@ -4074,6 +4074,7 @@
     "noVoice": "Your phone no get voice for dis language."
   },
   "stages": {
+    "allStages": "All Audio room dem",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
     "onTheRadio": "On the radio",
@@ -4773,7 +4774,28 @@
     "interestedCount": "{{count}} dey interested",
     "loadFailed": "We no fit load di events"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Visitors per day", "dailyHint": "unique visitors per day", "empty": "No data for dis period yet"},
+    "definitions": {
+      "visitorsTerm": "Visitors"
+    },
+    "unavailable": {
+      "title": "Stats no dey available now"
+    },
+    "browsers": {
+      "window": "by page views",
+      "title": "Browsers"
+    },
+    "countries": {
+      "window": "last {{days}} days",
+      "title": "Top countries"
+    },
+    "tile": {
+      "inRange": "for dis range",
+      "requestsLabel": "Requests",
+      "pageViews": "Page views",
+      "soFarToday": "so far today, UTC",
+      "visitorsToday": "Visitors today"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "You don dey use DeHub for some time? Tell us how e don be. Good, bad or specific — we dey read all of am. If you gree make we quote you, tick di box and we fit use am for posts, videos or for di site.",
@@ -6018,6 +6040,10 @@
     "closeFilterOptions": "Close di filter options",
     "openFilterOptions": "Open di filter options",
     "fillQuery": "Put \"{{query}}\" for search box",
+    "clearHistory": "Clear history",
+    "clearHistoryTitle": "Clear search history?",
+    "clearHistoryBody": "Dis one go remove all your recent searches.",
+    "removeFromHistory": "Comot \"{{query}}\" from history",
     "trendingThisWeek": "Wetin Dey Trend Dis Week",
     "tryDifferentKeywords": "Try another keywords or check your spelling",
     "noTrendingThisWeek": "Nothing dey trend dis week"
@@ -6591,6 +6617,9 @@
       "noMyOrders": "You no get any open order for this pool."
     },
     "chart": {
+      "empty": "No data for dis period yet",
+      "dailyHint": "unique visitors per day",
+      "daily": "Visitors per day",
       "depthLabel": "How deep order book be by USD price",
       "bookStarts": "The book start from here",
       "firstOrder": "Put di first order make liquidity enter.",

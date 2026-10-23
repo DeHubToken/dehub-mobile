@@ -2689,6 +2689,20 @@
       "comment": "Opmerking",
       "profile": "Profielupdate",
       "window": {
+        "authorAll": "Alle makers",
+        "authorChoose": "Kies maker",
+        "categoryAll": "Alle categorieën",
+        "categoryChoose": "Kies categorieën",
+        "categoryHint": "Voeg maximaal 20 categorieën toe, gescheiden door komma\u0027s. Eén overeenkomst is genoeg. Laat leeg voor alles.",
+        "last1h": "Afgelopen uur",
+        "last30d": "Afgelopen 30 dagen",
+        "allTime": "Altijd",
+        "dislike": "Niet leuk",
+        "author": "Auteur (optioneel)",
+        "category": "Categorie (optioneel)",
+        "authorPlaceholder": "@gebruikersnaam of wallet",
+        "categoryPlaceholder": "Exacte categorienaam",
+        "filterHelp": "Laat filters leeg voor alle berichten. Bij twee filters moeten beide overeenkomen. Bestaande gelijke reacties blijven behouden; een tegengestelde reactie vervangt ze.",
         "mode": "Taaktype",
         "write": "Instructies schrijven",
         "title": "Elke post in een periode",
@@ -4651,6 +4665,7 @@
     "noVoice": "Je apparaat heeft geen stem voor deze taal."
   },
   "stages": {
+    "allStages": "Alle audioruimtes",
     "addToCalendar": "Toevoegen aan agenda",
     "nowPlaying": "Nu aan het spelen",
     "onTheRadio": "Op de radio",
@@ -5379,7 +5394,28 @@
     "interestedCount": "{{count}} geïnteresseerd",
     "loadFailed": "Kon evenementen niet laden"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Bezoekers per dag", "dailyHint": "unieke bezoekers per dag", "empty": "Nog geen gegevens voor dit venster"},
+    "definitions": {
+      "visitorsTerm": "Bezoekers"
+    },
+    "unavailable": {
+      "title": "Statistieken zijn nu niet beschikbaar"
+    },
+    "browsers": {
+      "window": "op paginaweergaven",
+      "title": "Browsers"
+    },
+    "countries": {
+      "window": "laatste {{days}} dagen",
+      "title": "Belangrijkste landen"
+    },
+    "tile": {
+      "inRange": "in dit bereik",
+      "requestsLabel": "Verzoeken",
+      "pageViews": "Paginaweergaven",
+      "soFarToday": "tot nu toe vandaag, UTC",
+      "visitorsToday": "Bezoekers vandaag"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Gebruikt u DeHub al een tijdje? Vertel ons hoe het is geweest. Goed, slecht of specifiek — alles wordt gelezen. Als u het goed vindt dat we u citeren, vink het vakje aan en we kunnen het mogelijk gebruiken in berichten, video's of op de site.",
@@ -6754,7 +6790,11 @@
     "noTrendingThisWeek": "Geen populaire inhoud deze week",
     "closeFilterOptions": "Filteropties sluiten",
     "openFilterOptions": "Filteropties openen",
-    "fillQuery": "Zoekopdracht invullen met \"{{query}}\""
+    "fillQuery": "Zoekopdracht invullen met \"{{query}}\"",
+    "clearHistory": "Geschiedenis wissen",
+    "clearHistoryTitle": "Zoekgeschiedenis wissen?",
+    "clearHistoryBody": "Hiermee worden al je recente zoekopdrachten verwijderd.",
+    "removeFromHistory": "\"{{query}}\" uit geschiedenis verwijderen"
   },
   "notifPrompt": {
     "stayInLoop": "Blijf op de hoogte",
@@ -7380,6 +7420,9 @@
       "sold": "Verkocht {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Nog geen gegevens voor dit venster",
+      "dailyHint": "unieke bezoekers per dag",
+      "daily": "Bezoekers per dag",
       "bookStarts": "Het boek begint hier",
       "firstOrder": "Plaats de eerste bestelling om liquiditeit toe te voegen.",
       "waiting": "Wachten op prijsgegevens",
@@ -10287,6 +10330,31 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "085cd98e8e2e": " Link kopiëren",
+    "c184b8c9592f": "Dat moet een pagina zijn op dehub.io.",
+    "9b44fb81d89e": "Bestemmingspagina",
+    "12a7c0529934": "/docs/getting-started",
+    "ae4410aa9943": "Plak elke DeHub-pagina — een documentensectie, een bounty, je profiel. De onderstaande link schrijft het bezoek nog steeds aan u toe en brengt ze er vervolgens meteen naartoe.",
+    "fc036ea0e9f0": "Link naar een specifieke pagina",
+    "df0fe9e00d35": "Opnieuw proberen",
+    "24df132b16d3": "Wisselen...",
+    "220277ae54c6": "Bevestig verwisseling",
+    "0e9161011702": "Vernieuwen",
+    "2eef6c9af0ae": "Offerte ontvangen...",
+    "85249a6f8dd5": "Offerte aanvragen",
+    "9c71e7639046": "Ruilen gelukt!",
+    "9ccba222f889": "Geraamde kosten",
+    "ac4d49f28b40": "Wissel {{value1}}{{value2}}",
+    "6627a8114830": "Koop {{value1}}{{value2}}",
+    "f4b06ef6d3c8": "Naar",
+    "218197693424": "Van",
+    "c772e8fc6314": "Token swap",
+    "8d2e3063a993": "Koop $",
+    "f6ec7f0c995b": "Visualisatie",
+    "8b2ae991573c": "Nu afspelen",
+    "b8e082c979d9": " Poll aanmaken",
+    "7614c65db3bf": "Kopieer wallet-adres",
+    "854cbbb4f34f": " Fractions (",
     "da8e926af644": "Bericht bewerken mislukt",
     "f6f4688ff23d": "Versturen",
     "f42e0f66017d": "Nog geen berichten",

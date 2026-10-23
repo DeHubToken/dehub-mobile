@@ -4197,6 +4197,7 @@
     "noVoice": "Walang boses ang iyong device para sa wikang ito."
   },
   "stages": {
+    "allStages": "Lahat ng audio room",
     "addToCalendar": "Idagdag sa kalendaryo",
     "nowPlaying": "Kasalukuyang tumutugtog",
     "onTheRadio": "Sa radyo",
@@ -4925,7 +4926,28 @@
     "interestedCount": "{{count}} ang interesado",
     "loadFailed": "Hindi ma-load ang mga event"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Mga bisita kada araw", "dailyHint": "mga natatanging bisita kada araw", "empty": "Wala pang datos para sa panahong ito"},
+    "definitions": {
+      "visitorsTerm": "Mga bisita"
+    },
+    "unavailable": {
+      "title": "Hindi available ang istatistika ngayon"
+    },
+    "browsers": {
+      "window": "ayon sa page view",
+      "title": "Mga browser"
+    },
+    "countries": {
+      "window": "huling {{days}} araw",
+      "title": "Nangungunang bansa"
+    },
+    "tile": {
+      "inRange": "sa saklaw na ito",
+      "requestsLabel": "Mga kahilingan",
+      "pageViews": "Mga page view",
+      "soFarToday": "hanggang ngayon ngayong araw, UTC",
+      "visitorsToday": "Mga bisita ngayong araw"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Matagal na ba kayong gumagamit ng DeHub? Sabihin sa amin kung paano ito para sa inyo. Mabuti, masama o partikular — lahat ay binabasa. Kung masaya kayo na kami ay mag-quote sa inyo, i-tick ang kahon at maaari naming gamitin ito sa mga post, video o sa site.",
@@ -6190,7 +6212,11 @@
     "noTrendingThisWeek": "Walang trending na nilalaman ngayong linggo",
     "closeFilterOptions": "Isara ang mga opsyon sa filter",
     "openFilterOptions": "Buksan ang mga opsyon sa filter",
-    "fillQuery": "Punan ang paghahanap ng \"{{query}}\""
+    "fillQuery": "Punan ang paghahanap ng \"{{query}}\"",
+    "clearHistory": "I-clear ang history",
+    "clearHistoryTitle": "I-clear ang search history?",
+    "clearHistoryBody": "Aalisin nito ang lahat ng kamakailan mong paghahanap.",
+    "removeFromHistory": "Alisin ang \"{{query}}\" sa history"
   },
   "notifPrompt": {
     "stayInLoop": "Manatiling updated",
@@ -6816,6 +6842,9 @@
       "missingTitle": "Hindi nahanap ang pool — DeHub DEX"
     },
     "chart": {
+      "empty": "Wala pang datos para sa panahong ito",
+      "dailyHint": "mga natatanging bisita kada araw",
+      "daily": "Mga bisita kada araw",
       "bookStarts": "Ang libro ay nagsisimula dito",
       "firstOrder": "Ilagay ang unang order upang magdagdag ng pagkatubig.",
       "waiting": "Naghihintay para sa data ng presyo",

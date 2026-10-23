@@ -41,6 +41,7 @@ import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import {
+  AccessibilityInfo,
   View,
   type LayoutChangeEvent,
 } from "react-native";
@@ -56,6 +57,7 @@ import Animated, {
   type SharedValue,
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
+import Svg, { Defs, LinearGradient as SvgGradient, Path, Stop } from 'react-native-svg';
 import type { SkPicture } from "@shopify/react-native-skia";
 import { useAppTheme } from "../../context/ThemeContext";
 import { optionalSkia } from "../../libs/skia";
@@ -1622,11 +1624,42 @@ export interface AudioVisualizerProps {
   onLayout?: (e: LayoutChangeEvent) => void;
 }
 
+const LiquidChromeFallback: React.FC<BandProps> = memo(({ isPlaying, hue, height, onLayout }) => {
+  const { width, handleLayout } = useBandWidth(onLayout);
+  const clock = useClock(isPlaying, 16000);
+  const id = React.useId().replace(/:/g, '');
+  const motion = useAnimatedStyle(() => ({ transform: [{ translateY: Math.sin(clock.value * TAU) * 7 }, { translateX: Math.sin(clock.value * TAU) * 10 }] }));
+  const paths = useMemo(() => Array.from({ length: 5 }, (_, ribbon) => {
+    const centre = (u: number) => height * (.48 + Math.sin(u * 5.8 + ribbon * .72) * .17 + Math.sin(u * 10.2 - ribbon * .5) * .055 + (ribbon - 2) * .035);
+    const thickness = (u: number) => height * (.025 + .065 * Math.pow(Math.sin(Math.PI * u), 2));
+    let path = '';
+    for (let i = 0; i <= 64; i++) { const u = i / 64; path += `${i ? 'L' : 'M'}${u * width} ${centre(u) - thickness(u)}`; }
+    for (let i = 64; i >= 0; i--) { const u = i / 64; path += `L${u * width} ${centre(u) + thickness(u)}`; }
+    return path + 'Z';
+  }), [width, height]);
+  return <View onLayout={handleLayout} style={{ width: '100%', height, overflow: 'hidden' }}><Animated.View style={[{ width: '100%', height }, motion]}>
+    <Svg width="100%" height={height} viewBox={`0 0 ${Math.max(1, width)} ${height}`}>
+      <Defs><SvgGradient id={id} x1="0" y1="0" x2=".16" y2="1"><Stop stopColor="#121519"/><Stop offset=".22" stopColor="#e5e8eb"/><Stop offset=".38" stopColor="#30363c"/><Stop offset=".49" stopColor="#fff"/><Stop offset=".54" stopColor={tint(hue, 65, .9)}/><Stop offset=".72" stopColor="#080b0d"/><Stop offset=".88" stopColor="#bcc3c9"/><Stop offset="1" stopColor="#161c21"/></SvgGradient></Defs>
+      {paths.map((path, index) => <Path key={index} d={path} fill={`url(#${id})`} stroke="#eff5fa" strokeOpacity={.45} strokeWidth={.6} />)}
+    </Svg>
+  </Animated.View></View>;
+});
+
 export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
-  const { seed, isPlaying, hue, position, onLayout } = props;
+  const { seed, hue, position, onLayout } = props;
+  const [reducedMotion, setReducedMotion] = useState(true);
+  useEffect(() => {
+    let alive = true;
+    void AccessibilityInfo.isReduceMotionEnabled().then(value => { if (alive) setReducedMotion(value); }).catch(() => {});
+    const subscription = AccessibilityInfo.addEventListener('reduceMotionChanged', setReducedMotion);
+    return () => { alive = false; subscription.remove(); };
+  }, []);
+  const isPlaying = props.isPlaying && !reducedMotion;
   const style = drawnStyle(props.style);
   const height = props.height ?? styleBandHeight(style);
   const band = { seed, isPlaying, hue, height, onLayout };
+
+  if (!skia && props.style === 'liquid') return <LiquidChromeFallback {...band} />;
 
   if (isExtraStyle(style)) {
     return <ExtraVisualizer style={style} seed={seed} isPlaying={isPlaying} hue={hue} position={position} height={height} onLayout={onLayout} />;

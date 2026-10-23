@@ -2499,6 +2499,20 @@
       "comment": "Comentario",
       "profile": "Actualización del perfil",
       "window": {
+        "authorAll": "Todos los creadores",
+        "authorChoose": "Elegir creador",
+        "categoryAll": "Todas las categorías",
+        "categoryChoose": "Elegir categorías",
+        "categoryHint": "Añade hasta 20 categorías separadas por comas. Basta con coincidir con una. Deja vacío para todas.",
+        "last1h": "Última hora",
+        "last30d": "Últimos 30 días",
+        "allTime": "Todo el tiempo",
+        "dislike": "No me gusta",
+        "author": "Autor (opcional)",
+        "category": "Categoría (opcional)",
+        "authorPlaceholder": "@usuario o cartera",
+        "categoryPlaceholder": "Nombre exacto de la categoría",
+        "filterHelp": "Deja los filtros vacíos para incluir todas las publicaciones. Si usas ambos, ambos deben coincidir. Las reacciones existentes se conservan; elegir la opuesta las cambia.",
         "mode": "Tipo de tarea",
         "write": "Escribir instrucciones",
         "title": "Cada publicación en un periodo",
@@ -4510,6 +4524,7 @@
     "filedOn": "Abierto el {{date}}"
   },
   "stages": {
+    "allStages": "Todas las salas de audio",
     "addToCalendar": "Añadir al calendario",
     "nowPlaying": "Sonando ahora",
     "onTheRadio": "En la radio",
@@ -5238,7 +5253,28 @@
     "interestedCount": "{{count}} interesados",
     "loadFailed": "No se pudieron cargar los eventos"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Visitantes por día", "dailyHint": "visitantes únicos por día", "empty": "Aún no hay datos para este periodo"},
+    "definitions": {
+      "visitorsTerm": "Visitantes"
+    },
+    "unavailable": {
+      "title": "Las estadísticas no están disponibles ahora mismo"
+    },
+    "browsers": {
+      "window": "por páginas vistas",
+      "title": "Navegadores"
+    },
+    "countries": {
+      "window": "últimos {{days}} días",
+      "title": "Países principales"
+    },
+    "tile": {
+      "inRange": "en este rango",
+      "requestsLabel": "Peticiones",
+      "pageViews": "Páginas vistas",
+      "soFarToday": "hasta ahora hoy, UTC",
+      "visitorsToday": "Visitantes hoy"
+    },
     "feedback": {
       "title": "Comentarios",
       "intro": "¿Llevas un tiempo usando DeHub? Cuéntanos cómo ha sido. Bueno, malo o específico — todo se lee. Si estás de acuerdo en que te citemos, marca la casilla y es posible que usemos tu comentario en publicaciones, vídeos o en el sitio.",
@@ -6613,7 +6649,11 @@
     "noTrendingThisWeek": "No hay contenido de tendencia esta semana",
     "closeFilterOptions": "Cerrar opciones de filtro",
     "openFilterOptions": "Abrir opciones de filtro",
-    "fillQuery": "Rellenar la búsqueda con \"{{query}}\""
+    "fillQuery": "Rellenar la búsqueda con \"{{query}}\"",
+    "clearHistory": "Borrar historial",
+    "clearHistoryTitle": "¿Borrar el historial de búsqueda?",
+    "clearHistoryBody": "Esto elimina todas tus búsquedas recientes.",
+    "removeFromHistory": "Quitar «{{query}}» del historial"
   },
   "notifPrompt": {
     "stayInLoop": "Mantente al día",
@@ -7239,6 +7279,9 @@
       "sold": "Vendido {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Aún no hay datos para este periodo",
+      "dailyHint": "visitantes únicos por día",
+      "daily": "Visitantes por día",
       "bookStarts": "El libro empieza aquí",
       "firstOrder": "Realice el primer pedido para añadir liquidez.",
       "waiting": "Esperando datos de precios",
@@ -10048,6 +10091,31 @@
     "watch": "Ver un anuncio para apoyar a este creador"
   },
   "copy": {
+    "085cd98e8e2e": " Copiar enlace",
+    "c184b8c9592f": "Eso tiene que ser una página en dehub.io.",
+    "9b44fb81d89e": "Página de destino",
+    "12a7c0529934": "/docs/getting-started",
+    "ae4410aa9943": "Pega cualquier página de DeHub — una sección de documentos, una recompensa, tu perfil. El enlace a continuación aún atribuye la visita a ti, luego los lleva directamente allí.",
+    "fc036ea0e9f0": "Enlace a una página específica",
+    "df0fe9e00d35": "Intentar de nuevo",
+    "24df132b16d3": "Intercambiando...",
+    "220277ae54c6": "Confirmar intercambio",
+    "0e9161011702": "Actualizar",
+    "2eef6c9af0ae": "Obteniendo presupuesto...",
+    "85249a6f8dd5": "Obtener presupuesto",
+    "9c71e7639046": "¡Intercambio realizado correctamente!",
+    "9ccba222f889": "Coste estimado",
+    "ac4d49f28b40": "Intercambiar {{value1}}{{value2}}",
+    "6627a8114830": "Comprar {{value1}}{{value2}}",
+    "f4b06ef6d3c8": "Hacia",
+    "218197693424": "Desde",
+    "c772e8fc6314": "Intercambio de tokens",
+    "8d2e3063a993": "Comprar $",
+    "f6ec7f0c995b": "Visualización",
+    "8b2ae991573c": "Reproduciendo ahora",
+    "b8e082c979d9": " Crear encuesta",
+    "7614c65db3bf": "Copiar dirección de billetera",
+    "854cbbb4f34f": " fracciones (",
     "da8e926af644": "No se pudo editar el mensaje",
     "f6f4688ff23d": "Enviar",
     "f42e0f66017d": "Aún no hay mensajes",

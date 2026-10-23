@@ -4150,6 +4150,7 @@
     "noVoice": "Vaš uređaj nema glas za ovaj jezik."
   },
   "stages": {
+    "allStages": "Sve audio sobe",
     "addToCalendar": "Dodajte u kalendar",
     "nowPlaying": "Sada se reproducira",
     "onTheRadio": "Na radiju",
@@ -4878,7 +4879,28 @@
     "interestedCount": "{{count}} zainteresirano",
     "loadFailed": "Učitavanje događaja nije uspjelo"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Posjetitelja dnevno", "dailyHint": "jedinstvenih posjetitelja dnevno", "empty": "Za ovo razdoblje još nema podataka"},
+    "definitions": {
+      "visitorsTerm": "Posjetitelji"
+    },
+    "unavailable": {
+      "title": "Statistika trenutačno nije dostupna"
+    },
+    "browsers": {
+      "window": "prema pregledima stranica",
+      "title": "Preglednici"
+    },
+    "countries": {
+      "window": "zadnjih {{days}} dana",
+      "title": "Vodeće zemlje"
+    },
+    "tile": {
+      "inRange": "u ovom rasponu",
+      "requestsLabel": "Zahtjevi",
+      "pageViews": "Pregledi stranica",
+      "soFarToday": "danas do sada, UTC",
+      "visitorsToday": "Posjetitelji danas"
+    },
     "feedback": {
       "title": "Povratne informacije",
       "intro": "Koristiš DeHub već neko vrijeme? Reci nam kako je to bilo. Dobro, loše ili specifično — sve se čita. Ako nam dozvoljavaš da te citiramo, označi polje i možda ćemo to koristiti u postovima, videima ili na web-mjestu.",
@@ -6144,7 +6166,11 @@
     "noTrendingThisWeek": "Nema popularnog sadržaja ovaj tjedan",
     "closeFilterOptions": "Zatvori opcije filtriranja",
     "openFilterOptions": "Otvori opcije filtriranja",
-    "fillQuery": "Upiši \"{{query}}\" u pretragu"
+    "fillQuery": "Upiši \"{{query}}\" u pretragu",
+    "clearHistory": "Očisti povijest",
+    "clearHistoryTitle": "Očistiti povijest pretraživanja?",
+    "clearHistoryBody": "Ovo uklanja sva vaša nedavna pretraživanja.",
+    "removeFromHistory": "Ukloni „{{query}}” iz povijesti"
   },
   "notifPrompt": {
     "stayInLoop": "Ostanite u toku",
@@ -6770,6 +6796,9 @@
       "sold": "Prodano {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Za ovo razdoblje još nema podataka",
+      "dailyHint": "jedinstvenih posjetitelja dnevno",
+      "daily": "Posjetitelja dnevno",
       "bookStarts": "Knjiga počinje ovdje",
       "firstOrder": "Pošalji prvu narudžbu za dodavanje likvidnosti.",
       "waiting": "Čekaju se podaci o cijeni",

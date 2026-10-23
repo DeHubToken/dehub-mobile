@@ -4145,6 +4145,7 @@
     "noVoice": "جهازك ما فيه صوت لهاللغة."
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "أضفه إلى التقويم",
     "nowPlaying": "حاضر بيشوف",
     "onTheRadio": "في الراديو",
@@ -4867,7 +4868,28 @@
     "interestedCount": "{{count}} مهتم",
     "loadFailed": "ما قدرنا نحمّل الفعاليات"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "الزوار باليوم", "dailyHint": "زوار فريدين باليوم", "empty": "لسا ما في بيانات لهاد الفترة"},
+    "definitions": {
+      "visitorsTerm": "الزوار"
+    },
+    "unavailable": {
+      "title": "الإحصائيات مش متوفرة هلق"
+    },
+    "browsers": {
+      "window": "حسب مشاهدات الصفحة",
+      "title": "المتصفحات"
+    },
+    "countries": {
+      "window": "آخر {{days}} أيام",
+      "title": "أفضل الدول"
+    },
+    "tile": {
+      "inRange": "بهاد المدى",
+      "requestsLabel": "الطلبات",
+      "pageViews": "مشاهدات الصفحة",
+      "soFarToday": "لهلق اليوم، UTC",
+      "visitorsToday": "زوار اليوم"
+    },
     "feedback": {
       "title": "تقييم",
       "intro": "استخدمت DeHub لفترة؟ قول لنا كيف كانت التجربة. حلو أو سيء أو تفاصيل معينة — كل شي بنقرأه. إذا كنت راضي نقتبس كلامك، علّم الصندوق وممكن نستخدمه في البوستات أو الفيديوهات أو الموقع.",
@@ -6133,7 +6155,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات الفلتر",
     "openFilterOptions": "فتح خيارات الفلتر",
-    "fillQuery": "حط \"{{query}}\" بخانة البحث"
+    "fillQuery": "حط \"{{query}}\" بخانة البحث",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "ضل على اطلاع",
@@ -6756,6 +6782,9 @@
       "sold": "بعت {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "لسا ما في بيانات لهاد الفترة",
+      "dailyHint": "زوار فريدين باليوم",
+      "daily": "الزوار باليوم",
       "bookStarts": "الكتاب بيبدأ من هون",
       "firstOrder": "حط أول طلب لإضافة سيولة.",
       "waiting": "بانتظر بيانات الأسعار",

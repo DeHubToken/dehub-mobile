@@ -17,3 +17,10 @@ export const TAP_LOVE_ANIMATION_MS = 1100;
 export function continuesTapGesture(previousTapAt: number, now: number): boolean {
   return previousTapAt > 0 && now - previousTapAt < TAP_GESTURE_WINDOW_MS;
 }
+
+/** Only the middle 40% of a surface claims the multi-tap reaction ladder.
+ * A zero-size/unmeasured target opens normally rather than delaying a tap. */
+export function isInTapReactionCenter(x: number, y: number, width: number, height: number): boolean {
+  return Number.isFinite(x) && Number.isFinite(y) && width > 0 && height > 0 &&
+    x >= width * 0.3 && x <= width * 0.7 && y >= height * 0.3 && y <= height * 0.7;
+}

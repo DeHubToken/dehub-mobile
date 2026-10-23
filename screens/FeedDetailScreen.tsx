@@ -1,11 +1,12 @@
 import ThemePanel from '../components/ui/ThemePanel';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
+import { useKeyboardSwap } from "../hooks/useKeyboardSwap";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityIndicator, Keyboard, Platform, StyleSheet, Alert, Animated, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import ScreenHeader from "../components/ScreenHeader";
+import PostFeedNav from "../components/Home/PostFeedNav";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
@@ -250,6 +251,7 @@ function FeedDetailContent() {
   const { totals: tipTotals, bump: bumpTipTotal, topTippedIds, tippers: tipTippers } = useCommentTipTotals(tokenId);
 
   const inputRef = useRef<TextInput>(null);
+  const keyboardSwap = useKeyboardSwap(inputRef);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -323,25 +325,26 @@ function FeedDetailContent() {
 
   const handleOpenGifPicker = useCallback(() => {
     if (!requireAuth) return;
-    requireAuth(() => {
-      setGifPickerVisible(true);
-    });
-  }, [requireAuth]);
+    requireAuth(() => keyboardSwap.swapTo(() => setGifPickerVisible(true)));
+  }, [requireAuth, keyboardSwap]);
+
+  const gifPress = useMemo(() => keyboardSwap.pressProps(handleOpenGifPicker), [keyboardSwap, handleOpenGifPicker]);
 
   const handleGifPicked = useCallback((url: string) => {
     setGifPickerVisible(false);
     // Typed text is kept — see handleVoiceRecordingComplete.
     setMediaAttachment({ type: "gif", url });
-    Keyboard.dismiss();
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleCloseGifPicker = useCallback(() => {
     setGifPickerVisible(false);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleOpenEmojiPicker = useCallback(() => {
-    setEmojiPickerVisible(true);
-  }, []);
+    keyboardSwap.swapTo(() => setEmojiPickerVisible(true));
+  }, [keyboardSwap]);
 
   // Android: with the keyboard up, the first tap's onPress is swallowed while
   // the keyboard hides, so the picker needed a second tap. Open on touch-start
@@ -371,7 +374,8 @@ function FeedDetailContent() {
 
   const handleCloseEmojiPicker = useCallback(() => {
     setEmojiPickerVisible(false);
-  }, []);
+    keyboardSwap.restore();
+  }, [keyboardSwap]);
 
   const handleRemoveMedia = useCallback(() => {
     setMediaAttachment(null);
@@ -1318,7 +1322,6 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
-  const postVideo = !!item && (resolveContentType(item) === "video" || resolveContentType(item) === "short");
   const handlePostBack = useStageBack();
   const handleStageAnchor = useCallback((y: number) => {
     stageAnchorRef.current = y;
@@ -1373,11 +1376,11 @@ function FeedDetailContent() {
 
   const renderHeader = useCallback(() => (
     <View>
-      {!immersive && !stage && <ScreenHeader appearance="controls" title={t("screens.post")} />}
       {item && stage ? (
         <FeedCard
           item={item}
           onBack={handlePostBack}
+          retainFeedNav
           fullContent
           disablePress
           prioritizeMedia
@@ -1391,6 +1394,7 @@ function FeedDetailContent() {
         <FeedCard
           item={item}
           onBack={handlePostBack}
+          retainFeedNav
           fullContent
           disablePress
           prioritizeMedia
@@ -1510,6 +1514,8 @@ function FeedDetailContent() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
+      <PostFeedNav onBack={handlePostBack} />
+      <View style={{ flex: 1 }}>
       <FrostedContent>
       <FlatList
         ref={listRef}
@@ -1584,15 +1590,11 @@ function FeedDetailContent() {
           style={[
             { position: "absolute", top: 0, left: 0, right: 0 },
             isMinimal ? { backgroundColor: "#000" } : skin ? { backgroundColor: skin.page } : null,
-            // The immersive page keeps its floating back button over this bar
-            // (top 10, 36 tall): the tabs start clear of it, level with it.
-            immersive && { paddingLeft: 48, paddingTop: 5 },
           ]}
         >
           {renderCommentTabs()}
         </View>
       )}
-      {immersive && !stage && !postVideo && <ScreenHeader title={t("screens.post")} overlay />}
       {stage && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
@@ -1807,7 +1809,7 @@ function FeedDetailContent() {
                     <Icon name="Image" size={20} color={theme.colors.mutedForeground} />
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={handleOpenGifPicker}
+                    {...gifPress}
                     activeOpacity={0.7}
                     accessibilityRole="button"
                     accessibilityLabel={t("comments.addGif")}
@@ -1922,6 +1924,7 @@ function FeedDetailContent() {
         onClose={() => setLikersCommentId(null)}
         commentId={likersCommentId}
       />
+      </View>
     </View>
   );
 }

@@ -305,7 +305,11 @@ export type AppStackNavigationProp<T extends keyof AppStackParamList> = Composit
 >;
 
 export type BottomTabParamList = {
-  [ScreenNames.Home]: undefined;
+  [ScreenNames.Home]: {
+    /** Return from a retained post pill to the existing feed and selected tab. */
+    feedTab?: import("../components/Home/FeedFilterPanel").PostTypeOption;
+    openFeedFilters?: boolean;
+  } | undefined;
   [ScreenNames.DM]: undefined;
   [ScreenNames.UploadTab]: undefined;
   /** `initialPrompt` seeds the composer — used by the Prompt entry screen. */

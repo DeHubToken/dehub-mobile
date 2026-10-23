@@ -4193,6 +4193,7 @@
     "filedOn": "{{date}} に作成"
   },
   "stages": {
+    "allStages": "すべての音声ルーム",
     "addToCalendar": "カレンダーに追加",
     "nowPlaying": "現在再生中",
     "onTheRadio": "ラジオで放送中",
@@ -4920,7 +4921,28 @@
     "interestedCount": "{{count}}人が興味あり",
     "loadFailed": "イベントを読み込めませんでした"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "1 日あたりの訪問者", "dailyHint": "1 日あたりのユニーク訪問者", "empty": "この期間のデータはまだありません"},
+    "definitions": {
+      "visitorsTerm": "訪問者"
+    },
+    "unavailable": {
+      "title": "統計は現在利用できません"
+    },
+    "browsers": {
+      "window": "ページビュー順",
+      "title": "ブラウザ"
+    },
+    "countries": {
+      "window": "過去 {{days}} 日間",
+      "title": "上位の国"
+    },
+    "tile": {
+      "inRange": "この期間",
+      "requestsLabel": "リクエスト",
+      "pageViews": "ページビュー",
+      "soFarToday": "本日ここまで、UTC",
+      "visitorsToday": "本日の訪問者"
+    },
     "feedback": {
       "title": "フィードバック",
       "intro": "DeHubを使用していますか？どのような経験をしたか教えてください。良い点、悪い点、または具体的な内容など、すべてのご意見をお聞きします。引用を許可していただける場合は、チェックボックスをオンにしてください。投稿、動画、またはサイトで使用させていただく可能性があります。",
@@ -6219,7 +6241,11 @@
     "noTrendingThisWeek": "今週の人気コンテンツはありません",
     "closeFilterOptions": "フィルターオプションを閉じる",
     "openFilterOptions": "フィルターオプションを開く",
-    "fillQuery": "\"{{query}}\"を検索欄に入力"
+    "fillQuery": "\"{{query}}\"を検索欄に入力",
+    "clearHistory": "履歴を消去",
+    "clearHistoryTitle": "検索履歴を消去しますか？",
+    "clearHistoryBody": "最近の検索がすべて削除されます。",
+    "removeFromHistory": "「{{query}}」を履歴から削除"
   },
   "notifPrompt": {
     "stayInLoop": "最新情報を受け取る",
@@ -6842,6 +6868,9 @@
       "sold": "{{amount}}{{symbol}}を売却しました"
     },
     "chart": {
+      "empty": "この期間のデータはまだありません",
+      "dailyHint": "1 日あたりのユニーク訪問者",
+      "daily": "1 日あたりの訪問者",
       "bookStarts": "本はここから始まります",
       "firstOrder": "最初の注文で流動性を追加します。",
       "waiting": "料金データを待っています",
