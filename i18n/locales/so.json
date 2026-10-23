@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Yaa soo xigan kara",
+    "public": "Qof kasta",
+    "followers": "Kuwa ku raaca",
+    "nobody": "Aniga keliya",
+    "off": "Qoraagu wuu damiyay soo xigashada",
+    "removed": "Qoraagu wuxuu qoraalkiisa ka saaray soo xigashadan",
+    "remove": "Ka saar",
+    "removedToast": "Qoraalkaaga waa laga saaray soo xigashadan",
+    "removeFailed": "Lama saari karin qoraalkaaga soo xigashada",
+    "refused": "Qoraagu kuma oggola inaad soo xigato qoraalkan"
+  },
   "contentWarning": {
     "label": "Digniinta waxa ku jira",
     "placeholder": "Halkan ku qor digniintaada",

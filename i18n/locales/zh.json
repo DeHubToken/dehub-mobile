@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "谁可以引用",
+    "public": "任何人",
+    "followers": "粉丝",
+    "nobody": "仅我自己",
+    "off": "作者已关闭引用",
+    "removed": "作者已将其帖子从此引用中移除",
+    "remove": "移除",
+    "removedToast": "你的帖子已从此引用中移除",
+    "removeFailed": "无法将你的帖子从引用中移除",
+    "refused": "作者不允许你引用此帖子"
+  },
   "contentWarning": {
     "label": "内容警告",
     "placeholder": "在此写下你的警告",

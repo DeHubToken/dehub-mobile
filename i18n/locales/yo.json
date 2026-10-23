@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Ta ni o le fa ọrọ yọ",
+    "public": "Ẹnikẹ́ni",
+    "followers": "Àwọn olùtẹ̀lé",
+    "nobody": "Èmi nìkan",
+    "off": "Onkọwe ti pa fífa ọrọ yọ",
+    "removed": "Onkọwe ti yọ ifiweranṣẹ rẹ kuro ninu ọrọ yii",
+    "remove": "Yọ kúrò",
+    "removedToast": "A ti yọ ifiweranṣẹ rẹ kuro ninu ọrọ yii",
+    "removeFailed": "Ko ṣee ṣe lati yọ ifiweranṣẹ rẹ kuro ninu ọrọ naa",
+    "refused": "Onkọwe ko gba ọ laaye lati fa ọrọ yọ lati ifiweranṣẹ yii"
+  },
   "contentWarning": {
     "label": "Ìkìlọ̀ àkóónú",
     "placeholder": "Kọ ìkìlọ̀ rẹ síbí",

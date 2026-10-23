@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kimler alıntılayabilir",
+    "public": "Herkes",
+    "followers": "Takipçiler",
+    "nobody": "Yalnızca ben",
+    "off": "Yazar alıntılamayı kapattı",
+    "removed": "Yazar gönderisini bu alıntıdan kaldırdı",
+    "remove": "Kaldır",
+    "removedToast": "Gönderin bu alıntıdan kaldırıldı",
+    "removeFailed": "Gönderin alıntıdan kaldırılamadı",
+    "refused": "Yazar bu gönderiyi alıntılamana izin vermiyor"
+  },
   "contentWarning": {
     "label": "İçerik uyarısı",
     "placeholder": "Uyarınızı buraya yazın",

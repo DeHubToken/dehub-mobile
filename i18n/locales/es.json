@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Quién puede citar",
+    "public": "Cualquiera",
+    "followers": "Seguidores",
+    "nobody": "Solo yo",
+    "off": "El autor desactivó las citas",
+    "removed": "El autor retiró su publicación de esta cita",
+    "remove": "Quitar",
+    "removedToast": "Tu publicación se retiró de esta cita",
+    "removeFailed": "No se pudo retirar tu publicación de la cita",
+    "refused": "El autor no te permite citar esta publicación"
+  },
   "contentWarning": {
     "label": "Aviso de contenido",
     "placeholder": "Escribe tu aviso aquí",

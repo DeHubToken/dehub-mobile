@@ -93,6 +93,8 @@ export interface PostOptionsMenuProps {
   currentForKids?: boolean;
   /** The post's content warning, for the edit sheet. */
   currentSpoilerText?: string;
+  /** Who may quote the post, for the edit sheet. */
+  currentQuotePolicy?: "public" | "followers" | "nobody";
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
@@ -228,6 +230,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentContentRating,
   currentForKids,
   currentSpoilerText,
+  currentQuotePolicy,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -829,6 +832,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialContentRating={currentContentRating}
         initialForKids={currentForKids}
         initialSpoilerText={currentSpoilerText}
+        initialQuotePolicy={currentQuotePolicy}
         canReplaceVideo={canReplaceVideo}
         alwaysShowTitle={isAudio}
         onSuccess={handleEditDone}

@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Who can quote",
+    "public": "Anyone",
+    "followers": "Followers",
+    "nobody": "Only me",
+    "off": "The author turned off quotes",
+    "removed": "The author removed their post from this quote",
+    "remove": "Remove",
+    "removedToast": "Your post was removed from this quote",
+    "removeFailed": "Could not remove your post from the quote",
+    "refused": "The author doesn't let you quote this post"
+  },
   "contentWarning": {
     "label": "Content warning",
     "placeholder": "Write your warning here",

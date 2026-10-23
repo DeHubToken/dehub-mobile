@@ -28,6 +28,8 @@ export interface RepostShareSheetProps {
   onRepost: () => void;
   onUndoRepost: () => void;
   onQuote: () => void;
+  /** False when the author lets nobody else quote this post: the tile stays, disabled, saying so. */
+  canQuote?: boolean;
   onCopyLink: () => void;
   /** The post's public link, for the share targets. */
   shareUrl: string;
@@ -79,6 +81,7 @@ function RepostShareSheetComponent({
   onRepost,
   onUndoRepost,
   onQuote,
+  canQuote = true,
   onCopyLink,
   shareUrl,
   shareText,
@@ -135,15 +138,17 @@ function RepostShareSheetComponent({
           </Pressable>
           <Pressable
             onPress={() => later(onQuote)}
+            disabled={!canQuote}
             accessibilityRole="button"
+            accessibilityState={{ disabled: !canQuote }}
             accessibilityLabel={t("transcript.quote")}
-            style={[styles.bigTile, { borderRadius: radius }]}
+            style={[styles.bigTile, { borderRadius: radius }, !canQuote && { opacity: 0.45 }]}
           >
             <View style={styles.tileHead}>
               <Icon name="Quote" size={20} color={TEXT} />
               <Text style={styles.tileTitle}>{t("transcript.quote")}</Text>
             </View>
-            <Text style={styles.tileHint}>{t("feedCard.quoteHint")}</Text>
+            <Text style={styles.tileHint}>{canQuote ? t("feedCard.quoteHint") : t("quotePolicy.off")}</Text>
           </Pressable>
         </View>
 

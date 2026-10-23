@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Vem kan citera",
+    "public": "Alla",
+    "followers": "Följare",
+    "nobody": "Bara jag",
+    "off": "Skaparen har stängt av citat",
+    "removed": "Skaparen har tagit bort sitt inlägg från det här citatet",
+    "remove": "Ta bort",
+    "removedToast": "Ditt inlägg togs bort från det här citatet",
+    "removeFailed": "Det gick inte att ta bort ditt inlägg från citatet",
+    "refused": "Skaparen låter dig inte citera det här inlägget"
+  },
   "contentWarning": {
     "label": "Innehållsvarning",
     "placeholder": "Skriv din varning här",

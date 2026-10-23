@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kas var citēt",
+    "public": "Jebkurš",
+    "followers": "Sekotāji",
+    "nobody": "Tikai es",
+    "off": "Autors ir izslēdzis citēšanu",
+    "removed": "Autors noņēma savu ziņu no šī citāta",
+    "remove": "Noņemt",
+    "removedToast": "Jūsu ziņa noņemta no šī citāta",
+    "removeFailed": "Neizdevās noņemt jūsu ziņu no citāta",
+    "refused": "Autors neļauj jums citēt šo ziņu"
+  },
   "contentWarning": {
     "label": "Satura brīdinājums",
     "placeholder": "Uzrakstiet savu brīdinājumu šeit",

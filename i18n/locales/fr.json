@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Qui peut citer",
+    "public": "Tout le monde",
+    "followers": "Abonnés",
+    "nobody": "Moi uniquement",
+    "off": "L'auteur a désactivé les citations",
+    "removed": "L'auteur a retiré sa publication de cette citation",
+    "remove": "Retirer",
+    "removedToast": "Votre publication a été retirée de cette citation",
+    "removeFailed": "Impossible de retirer votre publication de la citation",
+    "refused": "L'auteur ne vous autorise pas à citer cette publication"
+  },
   "contentWarning": {
     "label": "Avertissement de contenu",
     "placeholder": "Écrivez votre avertissement ici",

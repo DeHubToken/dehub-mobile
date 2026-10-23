@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Sapa sing bisa ngutip",
+    "public": "Sapa wae",
+    "followers": "Pengikut",
+    "nobody": "Mung aku",
+    "off": "Penulis mateni kutipan",
+    "removed": "Penulis mbusak kirimane saka kutipan iki",
+    "remove": "Busak",
+    "removedToast": "Kirimanmu wis dibusak saka kutipan iki",
+    "removeFailed": "Ora bisa mbusak kirimanmu saka kutipan",
+    "refused": "Penulis ora ngidini kowe ngutip kiriman iki"
+  },
   "contentWarning": {
     "label": "Pènget isi",
     "placeholder": "Tulisen pènget ing kéné",
