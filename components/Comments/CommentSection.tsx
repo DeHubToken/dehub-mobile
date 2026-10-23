@@ -88,6 +88,7 @@ import CoachSuggestions from "./CoachSuggestions";
 import { AI_STYLE_OPTIONS } from "../../config/ai-styles.constants";
 import { enhanceText } from "../../services/ai.service";
 import CommonGroundSheet from "./CommonGroundSheet";
+import KeywordFilterGate from "../Home/KeywordFilterGate";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -1472,6 +1473,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     const itemNumId = Number(item.id);
     const meta = threadMeta.get(itemNumId);
     return (
+      // The viewer's muted words, under Conversations — see KeywordFilterGate.
+      <KeywordFilterGate
+        texts={[item.content]}
+        own={!!userAddress && !!item.address && item.address.toLowerCase() === userAddress.toLowerCase()}
+        context="thread"
+      >
       <View style={{ position: "relative" }}>
         {/* Thread line. Replies are not indented — they sit flush with their
             parent and this line through the avatars carries the relationship,
@@ -1516,6 +1523,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loadingReplies={meta?.toggleRootId != null && !!loadingRepliesMap[meta.toggleRootId]}
         />
       </View>
+      </KeywordFilterGate>
     );
   }, [
     threadMeta,
