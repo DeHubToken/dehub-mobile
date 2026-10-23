@@ -40,6 +40,7 @@ export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
   const client = useQueryClient();
   const [selected, setSelected] = useState('');
   const [prompt, setPrompt] = useState('');
+  const [templateId, setTemplateId] = useState<string | null>(null);
   const [name, setName] = useState('');
   const [published, setPublished] = useState(false);
   const [requestId, setRequestId] = useState(randomUUID);
@@ -54,10 +55,10 @@ export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
   const report = useMutation({ mutationFn: () => agentTaskRequest<GrowthReport>(wallet, { operation: 'workspace_report', agent_id: agentId }) });
   const refresh = () => { void overview.refetch(); client.invalidateQueries({ queryKey: ['agent-tasks', wallet] }); };
   const preview = useMutation({ mutationFn: () => agentTaskRequest<PlanPreview>(wallet, { operation: 'workspace_preview', agent_id: agentId, prompt, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }) });
-  const run = useMutation({ mutationFn: () => agentTaskRequest(wallet, { operation: 'create', agent_id: agentId, prompt, request_id: requestId, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }), onSuccess: refresh });
-  const template = useMutation({ mutationFn: () => agentTaskRequest(wallet, { operation: 'workspace_save_template', name, prompt, published }), onSuccess: refresh });
+  const run = useMutation({ mutationFn: () => agentTaskRequest(wallet, { operation: 'create', agent_id: agentId, prompt, template_id: templateId, request_id: requestId, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }), onSuccess: refresh });
+  const template = useMutation({ mutationFn: () => agentTaskRequest(wallet, { operation: 'workspace_save_template', agent_id: agentId, name, prompt, published }), onSuccess: refresh });
   const review = useMutation({ mutationFn: ({ id, agent, approve }: { id: string; agent: string; approve: boolean }) => agentTaskRequest(wallet, { operation: approve ? 'workspace_approve' : 'workspace_reject', agent_id: agent, receipt_id: id }), onSettled: refresh });
-  const changePrompt = (text: string) => { setPrompt(text); setRequestId(randomUUID()); preview.reset(); run.reset(); template.reset(); };
+  const changePrompt = (text: string) => { setPrompt(text); setTemplateId(null); setRequestId(randomUUID()); preview.reset(); run.reset(); template.reset(); };
   const receipts = overview.data?.receipts.filter(receipt => (filter === 'all' || receipt.status === filter) && (!selected || receipt.agent_id === selected)) ?? [];
   return <PageSection><View style={styles.panel}>
     <Text style={styles.title}>{t('agents.workspace.title', 'Agent workspace')}</Text>
@@ -75,7 +76,7 @@ export function AgentWorkspacePanel({ wallet }: { wallet: string }) {
     <TextInput accessibilityLabel={t('agents.workspace.subject', 'Topic or reply style')} placeholder={t('agents.workspace.subject', 'Topic or reply style')} placeholderTextColor="#A1A1AA" style={styles.input} value={topic} maxLength={500} onChangeText={setTopic} />
     <View style={styles.row}>{(action === 'reply' ? ['once'] : action === 'curate' ? ['once', 'daily'] : ['once', 'daily', 'twice']).map(item => <KitButton key={item} variant={(action === 'reply' ? 'once' : cadence) === item ? 'primary' : 'quiet'} label={t(`agents.workspace.cadence.${item}`, { defaultValue: item === 'once' ? 'Once' : item === 'daily' ? 'Daily' : 'Twice daily' })} onPress={() => setCadence(item)} />)}</View>
     <KitButton variant="quiet" label={t('agents.workspace.useBuilder', 'Use these instructions')} disabled={!topic.trim()} onPress={() => changePrompt(buildAgentPrompt(action, topic, cadence))} />
-    <View style={styles.row}>{overview.data?.templates.filter(item => item.id !== 'growth').map(item => <KitButton key={item.id} variant="quiet" label={`${item.name}${item.published ? ' · Shared' : ''}`} onPress={() => changePrompt(item.prompt)} />)}</View>
+    {overview.data?.templates.filter(item => item.id !== 'growth').map(item => <View key={item.id} style={styles.card}><KitButton variant="quiet" label={`${item.name}${item.published ? ' · Shared' : ''}`} onPress={() => { changePrompt(item.prompt); setTemplateId(item.id); }} /><Text style={styles.muted}>{t('agents.workspace.runs', { defaultValue: '{{runs}} recent runs · {{completed}} completed · {{failed}} failed', runs: item.runs ?? 0, completed: item.completed ?? 0, failed: item.failed ?? 0 })}</Text>{item.evaluation?.checked_at && <Text style={styles.muted}>{t('agents.workspace.planValidated', 'Plan validated')} · {item.evaluation.tools?.join(', ')}</Text>}</View>)}
     <Text style={styles.muted}>{t('agents.workspace.builderHelp', 'Choose a template, describe the action, audience and schedule, then simulate before running. Shared templates are instructions from their authors, not verified capabilities.')}</Text>
     <TextInput accessibilityLabel={t('agents.tasks.instructions', 'Instructions')} style={styles.input} multiline maxLength={4000} value={prompt} onChangeText={changePrompt} />
     <View style={styles.row}><KitButton label={t('agents.workspace.simulate', 'Simulate plan')} disabled={!agentId || !prompt.trim() || preview.isPending} onPress={() => preview.mutate()} /><KitButton variant="quiet" label={t('agents.tasks.run', 'Run task')} disabled={!agentId || !prompt.trim() || run.isPending || run.isSuccess} onPress={() => run.mutate()} /></View>

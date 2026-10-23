@@ -26,7 +26,7 @@ export interface WorkspaceOverview {
   agents: { id: string; name: string; is_active: boolean }[];
   tasks: { id: string; agent_id: string; status: string; next_run_at: string; message: string | null }[];
   receipts: WorkspaceReceipt[]; alerts: { id: string; message: string }[];
-  templates: { id: string; name: string; prompt: string; published?: boolean }[];
+  templates: { id: string; name: string; prompt: string; published?: boolean; runs?: number; completed?: number; failed?: number; evaluation?: { checked_at?: string; tools?: string[] } }[];
 }
 export interface PlanPreview {
   draft?: string | null;
