@@ -4154,6 +4154,7 @@
     "noVoice": "Din enhed har ingen stemme til dette sprog."
   },
   "stages": {
+    "allStages": "Alle lydrum",
     "addToCalendar": "Tilføj til kalender",
     "nowPlaying": "Afspilles nu",
     "onTheRadio": "På radioen",

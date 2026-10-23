@@ -4146,6 +4146,7 @@
     "noVoice": "جهازك ماعندوش صوت للغة دي."
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "اضف للتقويم",
     "nowPlaying": "جاري الآن",
     "onTheRadio": "في الراديو",

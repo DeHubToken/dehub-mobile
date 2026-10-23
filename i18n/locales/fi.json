@@ -4150,6 +4150,7 @@
     "noVoice": "Laitteessasi ei ole ääntä tälle kielelle."
   },
   "stages": {
+    "allStages": "Kaikki äänihuoneet",
     "addToCalendar": "Lisää kalenteriin",
     "nowPlaying": "Nyt soi",
     "onTheRadio": "Radiossa",

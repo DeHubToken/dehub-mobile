@@ -4213,6 +4213,7 @@
     "filedOn": "Aberto em {{date}}"
   },
   "stages": {
+    "allStages": "Todas as salas de áudio",
     "addToCalendar": "Adicionar ao calendário",
     "nowPlaying": "Agora tocando",
     "onTheRadio": "No rádio",

@@ -4164,6 +4164,7 @@
     "noVoice": "Thiết bị của bạn không có giọng đọc cho ngôn ngữ này."
   },
   "stages": {
+    "allStages": "Tất cả phòng âm thanh",
     "addToCalendar": "Thêm vào lịch",
     "nowPlaying": "Đang phát",
     "onTheRadio": "Trên đài phát thanh",

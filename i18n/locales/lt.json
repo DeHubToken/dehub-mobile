@@ -4150,6 +4150,7 @@
     "noVoice": "Jūsų įrenginyje nėra balso šiai kalbai."
   },
   "stages": {
+    "allStages": "Visi garso kambariai",
     "addToCalendar": "Pridėti į kalendorių",
     "nowPlaying": "Dabar groja",
     "onTheRadio": "Per radiją",

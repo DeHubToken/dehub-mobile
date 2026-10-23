@@ -4197,6 +4197,7 @@
     "noVoice": "Walang boses ang iyong device para sa wikang ito."
   },
   "stages": {
+    "allStages": "Lahat ng audio room",
     "addToCalendar": "Idagdag sa kalendaryo",
     "nowPlaying": "Kasalukuyang tumutugtog",
     "onTheRadio": "Sa radyo",

@@ -4514,6 +4514,7 @@
     "filedOn": "فُتحت في {{date}}"
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "يُشغَّل الآن",
     "onTheRadio": "على الراديو",

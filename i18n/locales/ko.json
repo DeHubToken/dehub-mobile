@@ -4203,6 +4203,7 @@
     "filedOn": "{{date}} 접수"
   },
   "stages": {
+    "allStages": "모든 오디오 룸",
     "addToCalendar": "캘린더에 추가",
     "nowPlaying": "현재 재생 중",
     "onTheRadio": "라디오에서",

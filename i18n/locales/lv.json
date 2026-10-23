@@ -4150,6 +4150,7 @@
     "noVoice": "Jūsu ierīcē nav balss šai valodai."
   },
   "stages": {
+    "allStages": "Visas audio istabas",
     "addToCalendar": "Pievienot kalendāram",
     "nowPlaying": "Tagad atskaņo",
     "onTheRadio": "Radio",

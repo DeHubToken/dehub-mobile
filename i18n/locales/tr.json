@@ -4510,6 +4510,7 @@
     "filedOn": "{{date}} tarihinde açıldı"
   },
   "stages": {
+    "allStages": "Tüm sesli odalar",
     "addToCalendar": "Takvime ekle",
     "nowPlaying": "Şimdi çalıyor",
     "onTheRadio": "Radyoda",
