@@ -4205,6 +4205,7 @@
     "filedOn": "Создано {{date}}"
   },
   "stages": {
+    "allStages": "Все аудиокомнаты",
     "addToCalendar": "Добавить в календарь",
     "nowPlaying": "Сейчас играет",
     "onTheRadio": "На радио",

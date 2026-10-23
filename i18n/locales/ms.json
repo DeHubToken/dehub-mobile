@@ -4409,6 +4409,7 @@
     "noVoice": "Peranti anda tiada suara untuk bahasa ini."
   },
   "stages": {
+    "allStages": "Semua bilik audio",
     "addToCalendar": "Tambah ke kalendar",
     "nowPlaying": "Sedang dimainkan",
     "onTheRadio": "Di radio",

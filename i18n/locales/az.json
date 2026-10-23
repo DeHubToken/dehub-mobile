@@ -4150,6 +4150,7 @@
     "noVoice": "Cihazınızda bu dil üçün səs yoxdur."
   },
   "stages": {
+    "allStages": "Bütün səsli otaqlar",
     "addToCalendar": "Təqvimə əlavə edin",
     "nowPlaying": "İndi oynatılır",
     "onTheRadio": "Radioda",

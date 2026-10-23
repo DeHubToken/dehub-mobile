@@ -4145,6 +4145,7 @@
     "noVoice": "جهازك ما فيه صوت لهاللغة."
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "أضفه إلى التقويم",
     "nowPlaying": "حاضر بيشوف",
     "onTheRadio": "في الراديو",

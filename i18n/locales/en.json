@@ -4473,6 +4473,7 @@
     "filedOn": "Filed {{date}}"
   },
   "stages": {
+    "allStages": "All Stages",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
     "onTheRadio": "On the radio",

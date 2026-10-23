@@ -4207,6 +4207,7 @@
     "filedOn": "{{date}} को दर्ज किया गया"
   },
   "stages": {
+    "allStages": "सभी ऑडियो रूम",
     "addToCalendar": "कैलेंडर में जोड़ें",
     "nowPlaying": "अभी चल रहा है",
     "onTheRadio": "रेडियो पर",

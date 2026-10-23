@@ -4150,6 +4150,7 @@
     "noVoice": "Dispozitivul tău nu are o voce pentru această limbă."
   },
   "stages": {
+    "allStages": "Toate camerele audio",
     "addToCalendar": "Adaugă în calendar",
     "nowPlaying": "Se redă acum",
     "onTheRadio": "La radio",

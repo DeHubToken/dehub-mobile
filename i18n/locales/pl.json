@@ -4152,6 +4152,7 @@
     "noVoice": "Twoje urządzenie nie ma głosu dla tego języka."
   },
   "stages": {
+    "allStages": "Wszystkie pokoje audio",
     "addToCalendar": "Dodaj do kalendarza",
     "nowPlaying": "Teraz odtwarzane",
     "onTheRadio": "W radiu",

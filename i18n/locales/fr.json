@@ -4514,6 +4514,7 @@
     "filedOn": "Ouvert le {{date}}"
   },
   "stages": {
+    "allStages": "Tous les salons audio",
     "addToCalendar": "Ajouter au calendrier",
     "nowPlaying": "En cours de lecture",
     "onTheRadio": "À la radio",

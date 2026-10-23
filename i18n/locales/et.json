@@ -4150,6 +4150,7 @@
     "noVoice": "Sinu seadmel pole selle keele jaoks häält."
   },
   "stages": {
+    "allStages": "Kõik helitoad",
     "addToCalendar": "Lisa kalendrisse",
     "nowPlaying": "Nüüd mängitakse",
     "onTheRadio": "Raadios",
