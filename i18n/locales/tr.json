@@ -2115,7 +2115,11 @@
     "likeStation": "İstasyonu beğen",
     "unlikeStation": "Beğeniyi kaldır",
     "shareStation": "İstasyonu paylaş",
-    "listeningTo": "DeHub'da {{name}} dinliyorum"
+    "listeningTo": "DeHub'da {{name}} dinliyorum",
+    "mostPlayed": "En çok çalınanlar",
+    "mostLiked": "En çok beğenilenler",
+    "mostRecent": "En yeniler",
+    "chartOrder": "Ses sıralaması"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
@@ -4979,7 +4983,8 @@
     "play": "Oynat",
     "pause": "Duraklat",
     "listens_one": "{{count}} dinlenme",
-    "listens_other": "{{count}} dinlenme"
+    "listens_other": "{{count}} dinlenme",
+    "visualizerColour": "Görselleştirici rengi"
   },
   "transfer": {
     "arcTitle": "Arc'ta USDC gönder",
@@ -6600,7 +6605,8 @@
     "pipUnavailable": "Resim içinde resim kullanılamıyor. Cihaz ayarlarınızda DeHub için izin verildiğini kontrol edin.",
     "noVideo": "Video yok",
     "rotate": "Döndür",
-    "yourDhbBalance": "Jeton bakiyeniz: {{amount}}"
+    "yourDhbBalance": "Jeton bakiyeniz: {{amount}}",
+    "volume": "Ses düzeyi"
   },
   "liveViewer": {
     "loadingStream": "Yayın yükleniyor...",
