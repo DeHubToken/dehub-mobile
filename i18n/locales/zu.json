@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Ubani ongacaphuna",
+    "public": "Noma ubani",
+    "followers": "Abalandeli",
+    "nobody": "Mina kuphela",
+    "off": "Umbhali uvale ukucaphuna",
+    "removed": "Umbhali ususe okuthunyelwe kwakhe kulesi sicaphuno",
+    "remove": "Susa",
+    "removedToast": "Okuthunyelwe kwakho kususiwe kulesi sicaphuno",
+    "removeFailed": "Ayikwazanga ukususa okuthunyelwe kwakho esicaphunweni",
+    "refused": "Umbhali akakuvumeli ukuthi ucaphune lokhu okuthunyelwe"
+  },
   "contentWarning": {
     "label": "Isexwayiso sokuqukethwe",
     "placeholder": "Bhala isexwayiso sakho lapha",

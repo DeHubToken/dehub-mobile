@@ -1173,6 +1173,8 @@ export interface EditPostInput {
   mediaDescriptions?: string[];
   /** Replace the content warning. `''` takes it off. */
   spoilerText?: string;
+  /** Who may quote it from now on. Quotes already made stay. */
+  quotePolicy?: 'public' | 'followers' | 'nobody';
   articleBody?: string;
   category?: string[];
   /** true turns replies off. Existing comments stay readable — only new ones
@@ -1220,6 +1222,14 @@ export async function editPost(tokenId: number | string, input: EditPostInput): 
     console.error('[NFTService] editPost error', e);
     throw e;
   }
+}
+
+/**
+ * Take your post back out of somebody else's quote. Only the quoted post's
+ * author may; the quote stays up and its embed of your post reads as removed.
+ */
+export async function revokeQuote(quoteTokenId: number | string): Promise<{ result: boolean }> {
+  return apiClient.post<{ result: boolean }>(`/quotes/${encodeURIComponent(String(quoteTokenId))}/revoke`, {}, { isAuthRequired: true });
 }
 
 export function getPostImageAllowance(tokenId: number | string) {

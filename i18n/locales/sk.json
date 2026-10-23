@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kto môže citovať",
+    "public": "Ktokoľvek",
+    "followers": "Sledovatelia",
+    "nobody": "Iba ja",
+    "off": "Autor vypol citovanie",
+    "removed": "Autor odstránil svoj príspevok z tejto citácie",
+    "remove": "Odstrániť",
+    "removedToast": "Váš príspevok bol odstránený z tejto citácie",
+    "removeFailed": "Váš príspevok sa nepodarilo odstrániť z citácie",
+    "refused": "Autor vám nedovoľuje citovať tento príspevok"
+  },
   "contentWarning": {
     "label": "Upozornenie na obsah",
     "placeholder": "Sem napíšte upozornenie",

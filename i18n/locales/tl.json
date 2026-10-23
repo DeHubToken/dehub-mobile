@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Sino ang puwedeng mag-quote",
+    "public": "Kahit sino",
+    "followers": "Mga tagasunod",
+    "nobody": "Ako lang",
+    "off": "Pinatay ng may-akda ang pag-quote",
+    "removed": "Inalis ng may-akda ang kanilang post sa quote na ito",
+    "remove": "Alisin",
+    "removedToast": "Inalis ang iyong post sa quote na ito",
+    "removeFailed": "Hindi maalis ang iyong post sa quote",
+    "refused": "Hindi ka pinapayagan ng may-akda na i-quote ang post na ito"
+  },
   "contentWarning": {
     "label": "Babala sa nilalaman",
     "placeholder": "Isulat dito ang iyong babala",

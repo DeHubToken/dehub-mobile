@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "ማን መጥቀስ ይችላል",
+    "public": "ማንኛውም ሰው",
+    "followers": "ተከታዮች",
+    "nobody": "እኔ ብቻ",
+    "off": "ደራሲው መጥቀስን አጥፍቷል",
+    "removed": "ደራሲው ልጥፋቸውን ከዚህ ጥቅስ አስወግደዋል",
+    "remove": "አስወግድ",
+    "removedToast": "ልጥፍዎ ከዚህ ጥቅስ ተወግዷል",
+    "removeFailed": "ልጥፍዎን ከጥቅሱ ማስወገድ አልተቻለም",
+    "refused": "ደራሲው ይህን ልጥፍ እንዲጠቅሱ አይፈቅድልዎትም"
+  },
   "contentWarning": {
     "label": "የይዘት ማስጠንቀቂያ",
     "placeholder": "ማስጠንቀቂያዎን እዚህ ይጻፉ",

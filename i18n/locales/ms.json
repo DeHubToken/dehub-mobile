@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Siapa boleh memetik",
+    "public": "Sesiapa",
+    "followers": "Pengikut",
+    "nobody": "Saya sahaja",
+    "off": "Penulis telah mematikan petikan",
+    "removed": "Penulis telah membuang siarannya daripada petikan ini",
+    "remove": "Buang",
+    "removedToast": "Siaran anda telah dibuang daripada petikan ini",
+    "removeFailed": "Tidak dapat membuang siaran anda daripada petikan",
+    "refused": "Penulis tidak membenarkan anda memetik siaran ini"
+  },
   "contentWarning": {
     "label": "Amaran kandungan",
     "placeholder": "Tulis amaran anda di sini",

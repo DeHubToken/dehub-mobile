@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Pitaq rimachiyta atin",
+    "public": "Pipas",
+    "followers": "Qatiqkuna",
+    "nobody": "Ñuqalla",
+    "off": "Qillqaqqa rimachiyta wañuchirqan",
+    "removed": "Qillqaqqa kay rimachiymanta qillqanta qichurqan",
+    "remove": "Qichuy",
+    "removedToast": "Qillqaykiqa kay rimachiymanta qichusqañam",
+    "removeFailed": "Manam qillqaykita rimachiymanta qichuyta atikurqanchu",
+    "refused": "Qillqaqqa manam kay qillqata rimachinaykipaq saqisunkichu"
+  },
   "contentWarning": {
     "label": "Ukhunmanta willakuy",
     "placeholder": "Kaypi willakuyniykita qillqay",

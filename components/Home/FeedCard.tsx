@@ -201,6 +201,7 @@ type PostEdits = {
   shopListingCount?: number;
   hidden?: boolean;
   spoilerText?: string;
+  quotePolicy?: "public" | "followers" | "nobody";
 };
 const NO_EDITS: PostEdits = {};
 // One shared empty list, so a post with no categories keeps FeedCaption's memo.
@@ -2055,6 +2056,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentContentRating={localContentRating}
           currentForKids={localForKids}
           currentSpoilerText={edits.spoilerText ?? item.spoilerText}
+          currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
           hideReportContent={isLive}
           hideEdit={isLive}
           isAudio={isAudioPost}
@@ -2123,6 +2125,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onRepost={handleConfirmRepost}
           onUndoRepost={handleUndoRepost}
           onQuote={handleQuotePress}
+          canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost}
           onCopyLink={handleCopyLink}
           onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
           onShareAsImage={handleSharePress}
@@ -2239,6 +2242,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 key={postKey}
                 quotedPost={(item as any).quotedPost}
                 quotedTokenId={(item as any).quotedTokenId}
+                revoked={(item as any).quoteRevoked}
+                quoteTokenId={tokenId ?? undefined}
               />
             )}
             <DehubLinkCards links={dehubLinks} />
@@ -2302,6 +2307,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onRepost={handleConfirmRepost}
             onUndoRepost={handleUndoRepost}
             onQuote={handleQuotePress}
+            canQuote={(edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
             shareText={localTitle || undefined}
@@ -2324,6 +2330,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             key={postKey}
             quotedPost={(item as any).quotedPost}
             quotedTokenId={(item as any).quotedTokenId}
+            revoked={(item as any).quoteRevoked}
+            quoteTokenId={tokenId ?? undefined}
           />
         )}
         <DehubLinkCards links={dehubLinks} />
@@ -2802,6 +2810,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           key={postKey}
           quotedPost={(item as any).quotedPost}
           quotedTokenId={(item as any).quotedTokenId}
+          revoked={(item as any).quoteRevoked}
+          quoteTokenId={tokenId ?? undefined}
         />
       )}
 

@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kdo může citovat",
+    "public": "Kdokoli",
+    "followers": "Sledující",
+    "nobody": "Jen já",
+    "off": "Autor vypnul citování",
+    "removed": "Autor odebral svůj příspěvek z této citace",
+    "remove": "Odebrat",
+    "removedToast": "Váš příspěvek byl odebrán z této citace",
+    "removeFailed": "Váš příspěvek se nepodařilo odebrat z citace",
+    "refused": "Autor vám nedovoluje tento příspěvek citovat"
+  },
   "contentWarning": {
     "label": "Upozornění na obsah",
     "placeholder": "Sem napište upozornění",

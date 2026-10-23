@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Kim sitat gətirə bilər",
+    "public": "Hər kəs",
+    "followers": "İzləyicilər",
+    "nobody": "Yalnız mən",
+    "off": "Müəllif sitat gətirməni bağlayıb",
+    "removed": "Müəllif paylaşımını bu sitatdan çıxarıb",
+    "remove": "Çıxar",
+    "removedToast": "Paylaşımınız bu sitatdan çıxarıldı",
+    "removeFailed": "Paylaşımınızı sitatdan çıxarmaq mümkün olmadı",
+    "refused": "Müəllif bu paylaşımdan sitat gətirməyinizə icazə vermir"
+  },
   "contentWarning": {
     "label": "Məzmun xəbərdarlığı",
     "placeholder": "Xəbərdarlığınızı buraya yazın",

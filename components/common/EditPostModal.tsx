@@ -56,6 +56,8 @@ interface EditPostModalProps {
   initialForKids?: boolean;
   /** The post's content warning, if it has one. */
   initialSpoilerText?: string;
+  /** Who may quote the post; absent means anyone. */
+  initialQuotePolicy?: "public" | "followers" | "nobody";
   /** Offer the "replace the file" row — creator, video post, not live. */
   canReplaceVideo?: boolean;
   /** Offer the title even when the post has none — audio tracks can be named later. */
@@ -69,6 +71,7 @@ interface EditPostModalProps {
     contentRating?: string;
     forKids?: boolean;
     spoilerText?: string;
+    quotePolicy?: "public" | "followers" | "nobody";
     shopLinks?: ShopLink[];
     shopListingCount?: number;
   }) => void;
@@ -87,6 +90,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialContentRating,
   initialForKids,
   initialSpoilerText = "",
+  initialQuotePolicy = "public",
   canReplaceVideo = false,
   alwaysShowTitle = false,
   onSuccess,
@@ -96,6 +100,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
   const [isForKids, setIsForKids] = useState(initialForKids === true);
   const [spoilerText, setSpoilerText] = useState(initialSpoilerText);
+  const [quotePolicy, setQuotePolicy] = useState(initialQuotePolicy);
   const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(`post:edit:${tokenId}` + ":shopLinks", initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   /**
@@ -299,6 +304,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       if (spoilerText.trim() !== initialSpoilerText.trim()) {
         payload.spoilerText = spoilerText.trim();
       }
+      if (quotePolicy !== initialQuotePolicy) {
+        payload.quotePolicy = quotePolicy;
+      }
       const nextRating = isMature ? "mature" : "safe";
       if (nextRating !== (initialContentRating ?? "safe")) {
         payload.contentRating = nextRating;
@@ -356,6 +364,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         commentsDisabled: payload.commentsDisabled,
         contentRating: payload.contentRating,
         spoilerText: payload.spoilerText,
+        quotePolicy: payload.quotePolicy,
         shopLinks: payload.shopLinks,
         shopListingCount: payload.shopListingCount as number | undefined,
       });
@@ -393,6 +402,8 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     initialForKids,
     initialSpoilerText,
     spoilerText,
+    initialQuotePolicy,
+    quotePolicy,
     onSuccess,
     onClose, setArticleBody, setDescription, setSelectedCategories, setShopLinks, setTitle]);
 
@@ -402,6 +413,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     (initialArticleBody !== undefined && articleBody.trim() !== initialArticleBody) ||
     commentsDisabled !== initialCommentsDisabled ||
     spoilerText.trim() !== initialSpoilerText.trim() ||
+    quotePolicy !== initialQuotePolicy ||
     commonGroundChanged ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     isForKids !== (initialForKids === true) ||
@@ -489,6 +501,26 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
           placeholderTextColor="#8B8D90"
           className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm mb-3"
         />
+
+        {/* Who may quote it from now on. Quotes already made stay. */}
+        <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+          {t("quotePolicy.label")}
+        </Text>
+        <View className="flex-row mb-3">
+          {(["public", "followers", "nobody"] as const).map((option) => (
+            <TouchableOpacity
+              key={option}
+              onPress={() => setQuotePolicy(option)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: quotePolicy === option }}
+              className={`mr-2 rounded-xl px-3 py-2 ${quotePolicy === option ? "bg-white" : "bg-white/5 border border-white/10"}`}
+            >
+              <Text className={`text-sm ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                {t(`quotePolicy.${option}`)}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
         {/* Description — only shown if the post has a description */}
         {initialArticleBody !== undefined && <View className="mb-3">

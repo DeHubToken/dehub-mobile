@@ -1,4 +1,16 @@
 {
+  "quotePolicy": {
+    "label": "Iza no afaka manonona",
+    "public": "Na iza na iza",
+    "followers": "Mpanaraka",
+    "nobody": "Izaho ihany",
+    "off": "Novonoin'ny mpanoratra ny fanononana",
+    "removed": "Nesorin'ny mpanoratra tamin'ity fanononana ity ny lahatsorany",
+    "remove": "Esory",
+    "removedToast": "Nesorina tamin'ity fanononana ity ny lahatsoratrao",
+    "removeFailed": "Tsy afaka nanala ny lahatsoratrao tamin'ny fanononana",
+    "refused": "Tsy mamela anao hanonona ity lahatsoratra ity ny mpanoratra"
+  },
   "contentWarning": {
     "label": "Fampitandremana momba ny votoaty",
     "placeholder": "Soraty eto ny fampitandremanao",
