@@ -1070,46 +1070,51 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     </ScrubSurface>
   );
 
-  /* Only the first feed card moves colour left of the navigation pill. Transport shares
-     the video's bottom row and edge scrubber in inline and fullscreen modes. */
+  const volumeControl = (
+    <View
+      className="flex-row items-center gap-1.5"
+      style={{ height: CONTROL_SIZE }}
+    >
+      <TouchableOpacity
+        onPress={handleToggleMute}
+        activeOpacity={0.7}
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
+        accessibilityRole="button"
+        accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
+        style={styles.squareControl}
+      >
+        <MediaControlIcon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} />
+      </TouchableOpacity>
+      <View style={{ width: 48, height: CONTROL_SIZE, justifyContent: "center" }}>
+        <PagerSafe>
+        <Slider
+          style={{ width: "100%" }}
+          minimumValue={0}
+          maximumValue={1}
+          step={0.01}
+          value={isEffectivelyMuted ? 0 : volume}
+          onValueChange={handleVolumeChange}
+          minimumTrackTintColor="rgba(255,255,255,0.85)"
+          maximumTrackTintColor="rgba(255,255,255,0.25)"
+          thumbTintColor="#ffffff"
+        />
+        </PagerSafe>
+      </View>
+    </View>
+  );
+
+  /* Colour sits in the corner with volume beside it. Only the first feed card moves volume
+     left of the navigation pill. Transport shares the video's bottom row and edge scrubber
+     in inline and fullscreen modes. */
   const renderTopChrome = (mode: "inline" | "fullscreen") => (
     <View pointerEvents="box-none" style={styles.topChrome}>
       <View pointerEvents="box-none" className="flex-row items-center gap-2">
-        {mode === "inline" && firstFeedPost && <HueSlider hue={hue} onHueChange={handleHueChange} />}
+        {mode === "inline" && firstFeedPost && volumeControl}
         {topLeftAction}
       </View>
       <View pointerEvents="box-none" className="flex-row items-center gap-2 ml-auto">
-        {(mode === "fullscreen" || !firstFeedPost) && <HueSlider hue={hue} onHueChange={handleHueChange} />}
-        <View
-          className="flex-row items-center gap-1.5"
-          style={{ height: CONTROL_SIZE }}
-        >
-          <TouchableOpacity
-            onPress={handleToggleMute}
-            activeOpacity={0.7}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 4 }}
-            accessibilityRole="button"
-            accessibilityLabel={isEffectivelyMuted ? t("common.unmute") : t("common.mute")}
-            style={styles.squareControl}
-          >
-            <MediaControlIcon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} />
-          </TouchableOpacity>
-          <View style={{ width: 48, height: CONTROL_SIZE, justifyContent: "center" }}>
-            <PagerSafe>
-            <Slider
-              style={{ width: "100%" }}
-              minimumValue={0}
-              maximumValue={1}
-              step={0.01}
-              value={isEffectivelyMuted ? 0 : volume}
-              onValueChange={handleVolumeChange}
-              minimumTrackTintColor="rgba(255,255,255,0.85)"
-              maximumTrackTintColor="rgba(255,255,255,0.25)"
-              thumbTintColor="#ffffff"
-            />
-            </PagerSafe>
-          </View>
-        </View>
+        {(mode === "fullscreen" || !firstFeedPost) && volumeControl}
+        <HueSlider hue={hue} onHueChange={handleHueChange} />
       </View>
     </View>
   );
@@ -1183,8 +1188,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
      in the fullscreen modal it is the whole screen. */
   const renderWindow = (mode: "inline" | "fullscreen") => {
     const height = mode === "inline" ? inlineHeight : fullHeight;
-    if (studio) return (
-      <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
+    // Fullscreen is the animation alone, so the studio card only draws inline.
+    if (studio && mode === "inline") return (
+      <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 12 }]}>
         {artworkUrl && !artworkUrl.split('?')[0].endsWith('/placeholder.svg') && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10 }} />}
         <View style={{ flex: 1, minWidth: 0 }}>
@@ -1212,8 +1218,8 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         <View style={{ paddingTop: 12 }}><StylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, paddingTop: 12 }}>
-          <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
           <HueSlider hue={hue} onHueChange={handleHueChange} />
+          <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
         </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -1254,12 +1260,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <View
           style={[
             styles.fullscreenRoot,
-            studio && { justifyContent: 'center', backgroundColor: theme === 'glass' ? '#04181c' : '#030609' },
             {
               paddingTop: insets.top,
               paddingBottom: insets.bottom,
-              paddingLeft: Math.max(insets.left, studio ? 24 : 0),
-              paddingRight: Math.max(insets.right, studio ? 24 : 0),
+              paddingLeft: insets.left,
+              paddingRight: insets.right,
             },
           ]}
         >
