@@ -2,7 +2,7 @@ name: Prepare security dependency updates
 on:
   pull_request:
     branches: [main]
-    paths: ['.github/workflows/security-dependencies.yml']
+    paths: ['.github/workflows/security-dependencies.yml', 'package.json']
   workflow_dispatch:
 permissions:
   contents: read
