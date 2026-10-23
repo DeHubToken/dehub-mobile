@@ -10432,6 +10432,12 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "085cd98e8e2e": " Copy link",
+    "c184b8c9592f": "That has to be a page on dehub.io.",
+    "9b44fb81d89e": "Destination page",
+    "12a7c0529934": "/docs/getting-started",
+    "ae4410aa9943": "Paste any DeHub page — a docs section, a bounty, your profile. The link below still attributes the visit to you, then takes them straight there.",
+    "fc036ea0e9f0": "Link to a specific page",
     "df0fe9e00d35": "Try Again",
     "24df132b16d3": "Swapping...",
     "220277ae54c6": "Confirm Swap",

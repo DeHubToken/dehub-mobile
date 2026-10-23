@@ -41,6 +41,7 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { getAccountSummaries, type AccountSummary } from "../services/user.service";
 import { getAvatarUrl, shareProfile } from "../libs/misc";
 import { copyToClipboard } from "../libs/clipboard.utils";
+import { buildReferralDeepLink, sanitizeDeepLinkPath } from "../libs/affiliate-deeplink";
 import { track } from "../libs/analytics";
 import { toastError, toastSuccess } from "../libs/toast";
 import env from "../config/env";
@@ -584,6 +585,7 @@ export default function AffiliateScreen() {
                   <Text style={styles.primaryBtnText}>{t("affiliate.share", "Share")}</Text>
                 </Pressable>
               </View>
+              <DeepLinkBuilder inviteLink={inviteLink} />
             </>
           ) : (
             <Text style={styles.cardSub}>
@@ -712,7 +714,50 @@ export default function AffiliateScreen() {
   );
 }
 
+/** Web's "Link to a specific page": the invite link that lands on any DeHub page. */
+export function DeepLinkBuilder({ inviteLink }: { inviteLink: string }) {
+  const { t } = useTranslation();
+  const [target, setTarget] = useSurfaceDraft("screens/AffiliateScreen.tsx:deepLinkTarget", "");
+  const trimmed = target.trim();
+  const invalid = trimmed.length > 0 && !sanitizeDeepLinkPath(trimmed);
+  const link = buildReferralDeepLink(inviteLink, trimmed);
+  return (
+    <View style={styles.deepLink}>
+      <Text style={styles.sectionTitleSmall}>{t("copy.fc036ea0e9f0", { defaultValue: "Link to a specific page" })}</Text>
+      <Text style={styles.cardSub}>{t("copy.ae4410aa9943", { defaultValue: "Paste any DeHub page — a docs section, a bounty, your profile. The link below still attributes the visit to you, then takes them straight there." })}</Text>
+      <TextInput
+        value={target}
+        onChangeText={setTarget}
+        placeholder={t("copy.12a7c0529934", { defaultValue: "/docs/getting-started" })}
+        placeholderTextColor="#52525B"
+        accessibilityLabel={t("copy.9b44fb81d89e", { defaultValue: "Destination page" })}
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="url"
+        style={[styles.input, { marginTop: 10 }]}
+      />
+      <Text style={[styles.deepLinkOut, invalid && { color: "#F87171" }]} selectable>
+        {invalid ? t("copy.c184b8c9592f", { defaultValue: "That has to be a page on dehub.io." }) : link}
+      </Text>
+      <Pressable
+        style={[styles.secondaryBtn, { marginTop: 10, flex: 0, opacity: invalid ? 0.5 : 1 }]}
+        disabled={invalid}
+        onPress={() => {
+          copyToClipboard(link);
+          toastSuccess(t("affiliate.linkCopied", "Invite link copied"));
+        }}
+      >
+        <Icon name="Copy" size={15} color="#E4E4E7" />
+        <Text style={styles.secondaryBtnText}>{t("copy.085cd98e8e2e", { defaultValue: " Copy link" }).trim()}</Text>
+      </Pressable>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  deepLink: { marginTop: 18, paddingTop: 16, borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.08)" },
+  sectionTitleSmall: { color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
+  deepLinkOut: { color: "#A1A1AA", fontSize: 12, marginTop: 8 },
   root: { flex: 1, backgroundColor: "#010305" },
 
   shareImageWrap: {
