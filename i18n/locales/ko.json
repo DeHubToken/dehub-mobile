@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "알림 필터 대상",
+    "description": "내 주변 사람이 아닌 누군가가 반응했을 때 어떻게 할지 고르세요. 필터된 알림은 배지나 푸시 없이 '필터됨'에 보관돼요.",
+    "notFollowing": "내가 팔로우하지 않는 사람",
+    "notFollowers": "나를 팔로우하지 않는 사람",
+    "newAccounts": "새 계정(30일 미만)",
+    "accept": "알림 받기",
+    "filter": "필터",
+    "drop": "완전히 숨기기",
+    "filteredTitle": "필터된 알림",
+    "filteredEmpty": "필터된 알림이 없어요.",
+    "failed": "저장하지 못했어요. 다시 시도해 주세요."
+  },
   "followedTags": {
     "follow": "#{{tag}} 팔로우",
     "following": "팔로우 중",

@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrovať upozornenia od",
+    "description": "Vyberte, čo sa stane, keď s vami bude komunikovať niekto mimo vášho okruhu. Filtrované upozornenia čakajú v časti Filtrované, bez odznaku a bez push upozornenia.",
+    "notFollowing": "Ľudí, ktorých nesledujete",
+    "notFollowers": "Ľudí, ktorí nesledujú vás",
+    "newAccounts": "Nových účtov (mladších ako 30 dní)",
+    "accept": "Upozorniť ma",
+    "filter": "Filtrovať",
+    "drop": "Úplne skryť",
+    "filteredTitle": "Filtrované upozornenia",
+    "filteredEmpty": "Nič nebolo odfiltrované.",
+    "failed": "Neuložilo sa. Skúste to znova."
+  },
   "followedTags": {
     "follow": "Sledovať #{{tag}}",
     "following": "Sledujete",

@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtriraj obavijesti od",
+    "description": "Odaberi što se događa kad netko izvan tvog kruga stupi u interakciju s tobom. Filtrirane obavijesti čekaju pod Filtrirano, bez oznake i bez push obavijesti.",
+    "notFollowing": "Ljudi koje ne pratiš",
+    "notFollowers": "Ljudi koji te ne prate",
+    "newAccounts": "Novi računi (mlađi od 30 dana)",
+    "accept": "Obavijesti me",
+    "filter": "Filtriraj",
+    "drop": "Potpuno sakrij",
+    "filteredTitle": "Filtrirane obavijesti",
+    "filteredEmpty": "Ništa nije filtrirano.",
+    "failed": "Nije spremljeno. Pokušaj ponovno."
+  },
   "followedTags": {
     "follow": "Prati #{{tag}}",
     "following": "Pratiš",

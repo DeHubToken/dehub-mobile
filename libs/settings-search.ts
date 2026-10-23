@@ -72,6 +72,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'notifications', anchor: 'chat', label: 'Chat', labelKey: 'settings.chatSection', keywords: 'buy bot messages' },
   { tab: 'notifications', anchor: 'chat', label: 'Public chat', labelKey: 'settings.publicChatAlerts', keywords: 'public chat room global alerts rate limit per hour raid spam' },
   { tab: 'notifications', anchor: 'quiet-hours', label: 'Quiet Hours', labelKey: 'settings.quietHours', keywords: 'silence mute schedule night' },
+  { tab: 'notifications', anchor: 'notification-filters', label: 'Filter notifications', labelKey: 'notificationFilters.title', keywords: 'filter strangers new accounts spam followers people you follow mute' },
 
   // Privacy
   { tab: 'privacy', anchor: 'account-visibility', label: 'Account Visibility', labelKey: 'settings.accountVisibility', keywords: 'private account lock approve requests' },

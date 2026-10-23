@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrar notificaciones de",
+    "description": "Elige qué pasa cuando alguien fuera de tu círculo interactúa contigo. Las notificaciones filtradas esperan en Filtradas, sin contador ni aviso push.",
+    "notFollowing": "Personas que no sigues",
+    "notFollowers": "Personas que no te siguen",
+    "newAccounts": "Cuentas nuevas (menos de 30 días)",
+    "accept": "Avisarme",
+    "filter": "Filtrar",
+    "drop": "Ocultar del todo",
+    "filteredTitle": "Notificaciones filtradas",
+    "filteredEmpty": "No se ha filtrado nada.",
+    "failed": "No se guardó. Inténtalo de nuevo."
+  },
   "followedTags": {
     "follow": "Seguir #{{tag}}",
     "following": "Siguiendo",

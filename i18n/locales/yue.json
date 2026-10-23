@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "過濾以下來源嘅通知",
+    "description": "揀選圈子以外嘅人同你互動嘅時候會點。被過濾嘅通知會留喺「已過濾」，唔會有角標，亦唔會推送。",
+    "notFollowing": "你冇追蹤嘅人",
+    "notFollowers": "冇追蹤你嘅人",
+    "newAccounts": "新帳戶（唔夠 30 日）",
+    "accept": "通知我",
+    "filter": "過濾",
+    "drop": "完全隱藏",
+    "filteredTitle": "已過濾嘅通知",
+    "filteredEmpty": "冇嘢被過濾。",
+    "failed": "儲存唔到，請再試吓。"
+  },
   "followedTags": {
     "follow": "追蹤 #{{tag}}",
     "following": "追蹤緊",

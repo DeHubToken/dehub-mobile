@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtrează notificările de la",
+    "description": "Alege ce se întâmplă când cineva din afara cercului tău interacționează cu tine. Notificările filtrate așteaptă la Filtrate, fără insignă și fără notificare push.",
+    "notFollowing": "Persoane pe care nu le urmărești",
+    "notFollowers": "Persoane care nu te urmăresc",
+    "newAccounts": "Conturi noi (sub 30 de zile)",
+    "accept": "Anunță-mă",
+    "filter": "Filtrează",
+    "drop": "Ascunde complet",
+    "filteredTitle": "Notificări filtrate",
+    "filteredEmpty": "Nu s-a filtrat nimic.",
+    "failed": "Nu s-a salvat. Încearcă din nou."
+  },
   "followedTags": {
     "follow": "Urmărește #{{tag}}",
     "following": "Urmărești",

@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "通知をフィルターする相手",
+    "description": "あなたの身近な人以外から反応があったときの扱いを選べます。フィルターされた通知は「フィルター済み」に入り、バッジやプッシュ通知は出ません。",
+    "notFollowing": "フォローしていない人",
+    "notFollowers": "フォローされていない人",
+    "newAccounts": "新しいアカウント（30日未満）",
+    "accept": "通知する",
+    "filter": "フィルター",
+    "drop": "完全に非表示",
+    "filteredTitle": "フィルターされた通知",
+    "filteredEmpty": "フィルターされた通知はありません。",
+    "failed": "保存できませんでした。もう一度お試しください。"
+  },
   "followedTags": {
     "follow": "#{{tag}} をフォロー",
     "following": "フォロー中",

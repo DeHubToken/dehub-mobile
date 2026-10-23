@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtra les notificacions de",
+    "description": "Tria què passa quan algú de fora del teu cercle interactua amb tu. Les notificacions filtrades esperen a Filtrades, sense indicador ni avís push.",
+    "notFollowing": "Gent que no segueixes",
+    "notFollowers": "Gent que no et segueix",
+    "newAccounts": "Comptes nous (menys de 30 dies)",
+    "accept": "Avisa'm",
+    "filter": "Filtra",
+    "drop": "Amaga del tot",
+    "filteredTitle": "Notificacions filtrades",
+    "filteredEmpty": "No s'ha filtrat res.",
+    "failed": "No s'ha desat. Torna-ho a provar."
+  },
   "followedTags": {
     "follow": "Segueix #{{tag}}",
     "following": "Seguint",

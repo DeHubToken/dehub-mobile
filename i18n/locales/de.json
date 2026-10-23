@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Benachrichtigungen filtern von",
+    "description": "Wähle, was passiert, wenn jemand außerhalb deines Umfelds mit dir interagiert. Gefilterte Benachrichtigungen warten unter „Gefiltert“, ohne Zähler und ohne Push.",
+    "notFollowing": "Personen, denen du nicht folgst",
+    "notFollowers": "Personen, die dir nicht folgen",
+    "newAccounts": "Neue Konten (jünger als 30 Tage)",
+    "accept": "Benachrichtigen",
+    "filter": "Filtern",
+    "drop": "Ganz ausblenden",
+    "filteredTitle": "Gefilterte Benachrichtigungen",
+    "filteredEmpty": "Nichts wurde gefiltert.",
+    "failed": "Das wurde nicht gespeichert. Versuch es noch einmal."
+  },
   "followedTags": {
     "follow": "#{{tag}} folgen",
     "following": "Folge ich",

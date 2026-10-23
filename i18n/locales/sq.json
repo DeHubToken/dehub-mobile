@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filtro njoftimet nga",
+    "description": "Zgjidh çfarë ndodh kur dikush jashtë rrethit tënd ndërvepron me ty. Njoftimet e filtruara presin te Të filtruara, pa distinktiv dhe pa njoftim push.",
+    "notFollowing": "Njerëz që nuk i ndjek",
+    "notFollowers": "Njerëz që nuk të ndjekin",
+    "newAccounts": "Llogari të reja (nën 30 ditë)",
+    "accept": "Më njofto",
+    "filter": "Filtro",
+    "drop": "Fshih plotësisht",
+    "filteredTitle": "Njoftime të filtruara",
+    "filteredEmpty": "Asgjë nuk është filtruar.",
+    "failed": "Nuk u ruajt. Provo përsëri."
+  },
   "followedTags": {
     "follow": "Ndiq #{{tag}}",
     "following": "E ndjek",

@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Meldingen filteren van",
+    "description": "Kies wat er gebeurt als iemand buiten je kring met je communiceert. Gefilterde meldingen wachten onder Gefilterd, zonder badge en zonder pushmelding.",
+    "notFollowing": "Mensen die je niet volgt",
+    "notFollowers": "Mensen die jou niet volgen",
+    "newAccounts": "Nieuwe accounts (jonger dan 30 dagen)",
+    "accept": "Laat het me weten",
+    "filter": "Filteren",
+    "drop": "Helemaal verbergen",
+    "filteredTitle": "Gefilterde meldingen",
+    "filteredEmpty": "Er is niets gefilterd.",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw."
+  },
   "followedTags": {
     "follow": "Volg #{{tag}}",
     "following": "Volgend",

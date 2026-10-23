@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Értesítések szűrése tőlük",
+    "description": "Válaszd ki, mi történjen, ha valaki a körödön kívülről lép kapcsolatba veled. A szűrt értesítések a Szűrt alatt várnak, jelvény és push nélkül.",
+    "notFollowing": "Akiket nem követsz",
+    "notFollowers": "Akik nem követnek téged",
+    "newAccounts": "Új fiókok (30 napnál fiatalabbak)",
+    "accept": "Értesíts",
+    "filter": "Szűrés",
+    "drop": "Teljes elrejtés",
+    "filteredTitle": "Szűrt értesítések",
+    "filteredEmpty": "Semmi sincs kiszűrve.",
+    "failed": "Nem sikerült menteni. Próbáld újra."
+  },
   "followedTags": {
     "follow": "#{{tag}} követése",
     "following": "Követed",

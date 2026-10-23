@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Filter kennisgewings van",
+    "description": "Kies wat gebeur wanneer iemand buite jou kring met jou in wisselwerking tree. Gefiltreerde kennisgewings wag onder Gefiltreer, sonder 'n kenteken of 'n stootkennisgewing.",
+    "notFollowing": "Mense wat jy nie volg nie",
+    "notFollowers": "Mense wat jou nie volg nie",
+    "newAccounts": "Nuwe rekeninge (jonger as 30 dae)",
+    "accept": "Laat my weet",
+    "filter": "Filtreer",
+    "drop": "Versteek heeltemal",
+    "filteredTitle": "Gefiltreerde kennisgewings",
+    "filteredEmpty": "Niks is gefiltreer nie.",
+    "failed": "Dit is nie gestoor nie. Probeer weer."
+  },
   "followedTags": {
     "follow": "Volg #{{tag}}",
     "following": "Volg tans",

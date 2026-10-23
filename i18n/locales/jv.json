@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "Saring kabar saka",
+    "description": "Pilih apa sing kedadeyan nalika wong ing njaba bunderanmu sesambungan karo sampeyan. Kabar sing disaring ngenteni ing Disaring, tanpa lencana lan tanpa push.",
+    "notFollowing": "Wong sing ora sampeyan tut",
+    "notFollowers": "Wong sing ora ngetut sampeyan",
+    "newAccounts": "Akun anyar (kurang saka 30 dina)",
+    "accept": "Kabari aku",
+    "filter": "Saring",
+    "drop": "Delikake babar pisan",
+    "filteredTitle": "Kabar sing disaring",
+    "filteredEmpty": "Durung ana sing disaring.",
+    "failed": "Ora kesimpen. Coba maneh."
+  },
   "followedTags": {
     "follow": "Tut #{{tag}}",
     "following": "Ngetut",

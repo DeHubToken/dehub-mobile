@@ -1,4 +1,17 @@
 {
+  "notificationFilters": {
+    "title": "过滤以下来源个通知",
+    "description": "选择圈子外头个人搭侬互动辰光会哪能。过滤脱个通知会摆勒“已过滤”里，呒没角标，也勿推送。",
+    "notFollowing": "侬呒没关注个人",
+    "notFollowers": "呒没关注侬个人",
+    "newAccounts": "新账号（勿满 30 日）",
+    "accept": "通知我",
+    "filter": "过滤",
+    "drop": "全部隐藏",
+    "filteredTitle": "已过滤个通知",
+    "filteredEmpty": "呒没过滤脱啥。",
+    "failed": "呒没保存好，请再试一趟。"
+  },
   "followedTags": {
     "follow": "关注 #{{tag}}",
     "following": "已经关注",
