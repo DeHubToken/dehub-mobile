@@ -22,6 +22,7 @@ jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('../../components/Music/SectionHeader', () => 'SectionHeader');
 jest.mock('../../components/Stages/StageMiniPlayer', () => 'StageMiniPlayer');
+jest.mock('../../components/Stages/StageCoverArt', () => 'StageCoverArt');
 jest.mock('../../context/StageContext', () => ({ useStages: () => mockStage }));
 jest.mock('../../context/PagerGestureContext', () => ({ useHorizontalScrollGuard: () => null }));
 jest.mock('../../hooks/useKidsMode', () => ({ useKidsMode: () => ({ isKidsMode: false }) }));
