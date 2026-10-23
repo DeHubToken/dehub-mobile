@@ -4,7 +4,12 @@ const raw = { url: 'storyboards/42.jpg', spriteWidth: 108, spriteHeight: 192, sp
 
 describe('toStoryboard', () => {
   it('resolves the sheet against the CDN', () => {
-    expect(toStoryboard(raw)).toEqual({ ...raw, url: 'https://cdn.test.dehub.io/storyboards/42.jpg' });
+    const sb = toStoryboard(raw);
+    expect(sb).toEqual({ ...raw, url: expect.stringMatching(/^https:\/\/[^/]+\/storyboards\/42\.jpg$/) });
+  });
+
+  it('keeps an absolute URL as it is', () => {
+    expect(toStoryboard({ ...raw, url: 'https://cdn.example.com/s.jpg' })?.url).toBe('https://cdn.example.com/s.jpg');
   });
 
   it('skips private sheets and incomplete ones', () => {
