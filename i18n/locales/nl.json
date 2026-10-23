@@ -1314,6 +1314,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Insluiten",
+    "copyEmbedCode": "Insluitcode kopiëren",
+    "embedCodeCopied": "Insluitcode gekopieerd",
     "skippableSectionsDesc": "Markeer of stem op sponsors en intro’s",
     "skippableSections": "Overslaanbare delen",
     "options": "Opties",

@@ -1124,6 +1124,9 @@
     "tokenAmount": "{{amount}} jetons"
   },
   "postOptions": {
+    "embed": "Intégrer",
+    "copyEmbedCode": "Copier le code d'intégration",
+    "embedCodeCopied": "Code d'intégration copié",
     "skippableSectionsDesc": "Marquez ou votez sponsors et intros",
     "skippableSections": "Sections à passer",
     "options": "Options",

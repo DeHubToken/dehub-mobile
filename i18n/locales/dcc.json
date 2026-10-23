@@ -987,6 +987,9 @@
     "tokensUnit": "टोकन्स"
   },
   "postOptions": {
+    "embed": "ایمبیڈ",
+    "copyEmbedCode": "ایمبیڈ کوڈ کاپی کرو",
+    "embedCodeCopied": "ایمبیڈ کوڈ کاپی ہو گیا",
     "options": "آپشن",
     "sendTip": "ٹپ بھیجو",
     "queue": "قطار",

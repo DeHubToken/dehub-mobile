@@ -973,6 +973,9 @@
     "payViaBridgeDpay": "Move wey go Base, pay wey go DeHub Pay, token dey come afo about one minute"
   },
   "postOptions": {
+    "embed": "Embed",
+    "copyEmbedCode": "Copy embed code",
+    "embedCodeCopied": "Embed code don copy",
     "options": "Options",
     "sendTip": "Sen Tip",
     "queue": "Lain",

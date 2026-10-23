@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} žetoni"
   },
   "postOptions": {
+    "embed": "Iegult",
+    "copyEmbedCode": "Kopēt iegulšanas kodu",
+    "embedCodeCopied": "Iegulšanas kods nokopēts",
     "options": "Opcijas",
     "sendTip": "Sūtīt dzeramnaudu",
     "queue": "Rinda",

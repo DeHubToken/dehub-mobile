@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} ženklų"
   },
   "postOptions": {
+    "embed": "Įterpti",
+    "copyEmbedCode": "Kopijuoti įterpimo kodą",
+    "embedCodeCopied": "Įterpimo kodas nukopijuotas",
     "options": "Parinktys",
     "sendTip": "Siųsti arbatpinigius",
     "queue": "Eilė",

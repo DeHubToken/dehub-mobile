@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} տոկեններ"
   },
   "postOptions": {
+    "embed": "Ներդնել",
+    "copyEmbedCode": "Պատճենել ներդրման կոդը",
+    "embedCodeCopied": "Ներդրման կոդը պատճենվեց",
     "options": "Ընտրանքներ",
     "sendTip": "Ուղարկել խորհուրդ",
     "queue": "Հերթ",

@@ -1124,6 +1124,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Yerleştir",
+    "copyEmbedCode": "Yerleştirme kodunu kopyala",
+    "embedCodeCopied": "Yerleştirme kodu kopyalandı",
     "skippableSectionsDesc": "Sponsor ve girişleri işaretle veya oyla",
     "skippableSections": "Atlanabilir bölümler",
     "options": "Seçenekler",

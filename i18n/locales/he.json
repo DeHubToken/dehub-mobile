@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} אסימונים"
   },
   "postOptions": {
+    "embed": "הטמעה",
+    "copyEmbedCode": "העתק קוד הטמעה",
+    "embedCodeCopied": "קוד ההטמעה הועתק",
     "options": "אפשרויות",
     "sendTip": "שלח טיפ",
     "queue": "תור",

@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} ቶከኖች"
   },
   "postOptions": {
+    "embed": "አካትት",
+    "copyEmbedCode": "የማካተቻ ኮድ ቅዳ",
+    "embedCodeCopied": "የማካተቻ ኮድ ተቀድቷል",
     "options": "አማራጮች",
     "sendTip": "ጥቆማ ላክ",
     "queue": "ወረፋ",

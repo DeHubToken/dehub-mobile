@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Saka",
+    "copyEmbedCode": "Kwafi lambar sakawa",
+    "embedCodeCopied": "An kwafi lambar sakawa",
     "options": "Zaɓuɓɓuka",
     "sendTip": "Aika Kyauta",
     "queue": "Jerin jira",

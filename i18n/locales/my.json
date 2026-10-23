@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} တိုကင်"
   },
   "postOptions": {
+    "embed": "ထည့်သွင်းရန်",
+    "copyEmbedCode": "ထည့်သွင်းကုဒ်ကို ကူးယူရန်",
+    "embedCodeCopied": "ထည့်သွင်းကုဒ်ကို ကူးယူပြီးပါပြီ",
     "options": "ရွေးချယ်စရာများ",
     "sendTip": "အကူအညီပေးရန်",
     "queue": "တန်းစီ",

@@ -1012,6 +1012,9 @@
     "payViaDpay": "ডিহাব পে এ পেমেন্ট করুন, টোকেন ৩০ সেকেন্ডের মধ্যে আসে"
   },
   "postOptions": {
+    "embed": "এমবেড",
+    "copyEmbedCode": "এমবেড কোড কপি করো",
+    "embedCodeCopied": "এমবেড কোড কপি হইছে",
     "options": "বিকল্প",
     "sendTip": "টিপ পাঠান",
     "queue": "সারি",

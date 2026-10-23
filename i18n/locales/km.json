@@ -984,6 +984,9 @@
     "tokensUnit": "ថូខឹន"
   },
   "postOptions": {
+    "embed": "បង្កប់",
+    "copyEmbedCode": "ចម្លងកូដបង្កប់",
+    "embedCodeCopied": "បានចម្លងកូដបង្កប់",
     "options": "ជម្រើស",
     "sendTip": "ផ្ញើជំនួយ",
     "queue": "ជួរ",

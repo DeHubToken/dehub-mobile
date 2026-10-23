@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Beágyazás",
+    "copyEmbedCode": "Beágyazási kód másolása",
+    "embedCodeCopied": "Beágyazási kód másolva",
     "options": "Lehetőségek",
     "sendTip": "Borravaló küldése",
     "queue": "Várólista",

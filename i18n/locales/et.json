@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} märki"
   },
   "postOptions": {
+    "embed": "Manusta",
+    "copyEmbedCode": "Kopeeri manustamiskood",
+    "embedCodeCopied": "Manustamiskood kopeeritud",
     "options": "Valikud",
     "sendTip": "Saada jootraha",
     "queue": "Järjekord",

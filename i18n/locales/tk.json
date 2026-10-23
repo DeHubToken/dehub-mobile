@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Goýmak",
+    "copyEmbedCode": "Goýma koduny göçür",
+    "embedCodeCopied": "Goýma kody göçürildi",
     "options": "Saýlawlar",
     "sendTip": "Sylag iber",
     "queue": "Nobat",

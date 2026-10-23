@@ -984,6 +984,9 @@
     "tokenAmount": "{{amount}} токенӣ"
   },
   "postOptions": {
+    "embed": "Ҷойгир кардан",
+    "copyEmbedCode": "Нусхабардории коди ҷойгиркунӣ",
+    "embedCodeCopied": "Коди ҷойгиркунӣ нусхабардорӣ шуд",
     "options": "Имконот",
     "sendTip": "Фиристодани инъом",
     "queue": "Навбат",

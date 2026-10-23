@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} ٽوڪن"
   },
   "postOptions": {
+    "embed": "ايمبيڊ",
+    "copyEmbedCode": "ايمبيڊ ڪوڊ ڪاپي ڪريو",
+    "embedCodeCopied": "ايمبيڊ ڪوڊ ڪاپي ٿي ويو",
     "options": "اختيار",
     "sendTip": "ٽپ موڪليو",
     "queue": "قطار",

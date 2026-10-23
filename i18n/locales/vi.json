@@ -1003,6 +1003,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Nhúng",
+    "copyEmbedCode": "Sao chép mã nhúng",
+    "embedCodeCopied": "Đã sao chép mã nhúng",
     "options": "Tuỳ chọn",
     "sendTip": "Gửi tiền thưởng",
     "queue": "Hàng chờ",

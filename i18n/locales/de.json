@@ -1039,6 +1039,9 @@
     "tokenAmount": "{{amount}} Tokens"
   },
   "postOptions": {
+    "embed": "Einbetten",
+    "copyEmbedCode": "Einbettungscode kopieren",
+    "embedCodeCopied": "Einbettungscode kopiert",
     "skippableSectionsDesc": "Sponsoren und Intros markieren oder bewerten",
     "skippableSections": "Überspringbare Abschnitte",
     "options": "Optionen",

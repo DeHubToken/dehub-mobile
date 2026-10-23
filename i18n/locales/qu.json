@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} simikuna"
   },
   "postOptions": {
+    "embed": "Churay",
+    "copyEmbedCode": "Churana kodigota copiay",
+    "embedCodeCopied": "Churana kodigoqa copiasqañam",
     "options": "Akllakuna",
     "sendTip": "Propina apachiy",
     "queue": "Suyay",
