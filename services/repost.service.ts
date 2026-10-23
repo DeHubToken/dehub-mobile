@@ -241,3 +241,32 @@ export async function getQuotePosts(params: GetQuotePostsParams): Promise<GetQuo
     throw e;
   }
 }
+
+// ─── Governance proposal reposts ─────────────────────────────────────
+// Proposals live in Supabase with no tokenId, so they have their own endpoints
+// keyed by the proposal's uuid.
+
+/** Repost or un-repost a governance proposal. Endpoint: POST /repost/proposal */
+export async function toggleProposalRepost(
+  proposalId: string,
+  hint?: { title?: string; author?: string },
+): Promise<ToggleRepostResponse> {
+  const res = await apiClient.post<ToggleRepostResponse>(
+    "/repost/proposal",
+    { proposalId, title: hint?.title, author: hint?.author },
+    { isAuthRequired: true },
+  );
+  return (res as any)?.data ?? res;
+}
+
+/** Repost count for a proposal and whether the viewer reposted it. Endpoint: GET /repost/proposal */
+export async function getProposalRepostState(
+  proposalId: string,
+  signedIn: boolean,
+): Promise<{ count: number; reposted: boolean }> {
+  const res = await apiClient.get<any>(`/repost/proposal?proposalId=${encodeURIComponent(proposalId)}`, {
+    isAuthRequired: signedIn,
+  });
+  const data = res?.data ?? res;
+  return { count: Number(data?.count) || 0, reposted: !!data?.reposted };
+}
