@@ -2119,7 +2119,16 @@
     "mostPlayed": "الأكثر تشغيلًا",
     "mostLiked": "الأكثر إعجابًا",
     "mostRecent": "الأحدث",
-    "chartOrder": "ترتيب المقاطع الصوتية"
+    "chartOrder": "ترتيب المقاطع الصوتية",
+    "chartKind": "قائمة الموسيقى",
+    "chartAudio": "صوت",
+    "chartVideos": "فيديوهات موسيقية",
+    "videoCharts": "قوائم الفيديوهات الموسيقية",
+    "mostViewed": "الأكثر مشاهدة",
+    "trendingWeek": "الرائج هذا الأسبوع",
+    "newest": "الأحدث",
+    "videoChartOrder": "ترتيب قائمة الفيديوهات الموسيقية",
+    "viewsCount": "{{views}} مشاهدة"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",

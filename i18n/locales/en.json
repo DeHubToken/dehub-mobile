@@ -2082,7 +2082,16 @@
     "mostPlayed": "Most played",
     "mostLiked": "Most liked",
     "mostRecent": "Most recent",
-    "chartOrder": "Audio chart order"
+    "chartOrder": "Audio chart order",
+    "chartKind": "Music chart",
+    "chartAudio": "Audio",
+    "chartVideos": "Music videos",
+    "videoCharts": "Music Video Charts",
+    "mostViewed": "Most viewed",
+    "trendingWeek": "Trending this week",
+    "newest": "Newest",
+    "videoChartOrder": "Music video chart order",
+    "viewsCount": "{{views}} views"
   },
   "notFound": {
     "title": "Page Not Found",
