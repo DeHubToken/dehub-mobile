@@ -147,6 +147,7 @@ jest.mock('../../libs/token-refresh', () => ({
   },
 }));
 jest.mock('../../libs/auth.utils', () => ({ getAuthToken: jest.fn(async () => mockAuth.token) }));
+jest.mock('../../config/env', () => ({ __esModule: true, default: { API_URL: 'https://api.test.dehub.io/api' } }));
 
 class MockXhr {
   status = 0;
