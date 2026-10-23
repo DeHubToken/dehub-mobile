@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Àwọn àpù tí a so pọ̀",
+    "connectedDescription": "Àwọn àpù Mastodon tí o wọlé sí pẹ̀lú àkọọ́lẹ̀ yìí. Yọ ọ̀kan kúrò láti jáde nínú rẹ̀.",
+    "connectedEmpty": "Kò sí àpù tí a so pọ̀ síbẹ̀.",
+    "lastUsed": "Ìgbà ìkẹyìn tí a lò ó {{date}}",
+    "remove": "Yọ kúrò",
+    "removed": "A ti yọ àpù náà kúrò",
+    "failed": "Kò ṣiṣẹ́. Gbìyànjú lẹ́ẹ̀kan sí i."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Àwọn ènìyàn lórí Mastodon àti àwọn àpù fediverse mìíràn lè rí ọ kí wọ́n sì tẹ̀lé ọ ní àdírẹ́sì yìí. Àwọn ìfìwéránṣẹ́ gbangba tuntun rẹ máa dé ọ̀dọ̀ wọn níbẹ̀.",

@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Bağlı uygulamalar",
+    "connectedDescription": "Bu hesapla giriş yaptığın Mastodon uygulamaları. Oturumunu kapatmak için birini kaldır.",
+    "connectedEmpty": "Henüz bağlı uygulama yok.",
+    "lastUsed": "Son kullanım {{date}}",
+    "remove": "Kaldır",
+    "removed": "Uygulama kaldırıldı",
+    "failed": "Olmadı. Tekrar dene."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mastodon ve diğer fediverse uygulamalarındaki kişiler seni bu adreste bulup takip edebilir. Yeni herkese açık gönderilerin onlara orada ulaşır.",

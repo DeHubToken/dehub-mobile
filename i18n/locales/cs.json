@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Připojené aplikace",
+    "connectedDescription": "Aplikace pro Mastodon, do kterých jste se tímto účtem přihlásili. Odebráním aplikace se z ní odhlásíte.",
+    "connectedEmpty": "Zatím nejsou připojené žádné aplikace.",
+    "lastUsed": "Naposledy použito {{date}}",
+    "remove": "Odebrat",
+    "removed": "Aplikace odebrána",
+    "failed": "Nepovedlo se. Zkuste to znovu."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Lidé na Mastodonu a v dalších aplikacích fediverse vás na této adrese najdou a mohou vás sledovat. Vaše nové veřejné příspěvky k nim dorazí tam.",

@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Verbundene Apps",
+    "connectedDescription": "Mastodon-Apps, bei denen du dich mit diesem Konto angemeldet hast. Entferne eine, um sie abzumelden.",
+    "connectedEmpty": "Noch keine Apps verbunden.",
+    "lastUsed": "Zuletzt verwendet {{date}}",
+    "remove": "Entfernen",
+    "removed": "App entfernt",
+    "failed": "Das hat nicht geklappt. Versuch es noch einmal."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Leute auf Mastodon und in anderen Fediverse-Apps können dich unter dieser Adresse finden und dir folgen. Deine neuen öffentlichen Beiträge erreichen sie dort.",

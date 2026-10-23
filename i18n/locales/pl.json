@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Połączone aplikacje",
+    "connectedDescription": "Aplikacje Mastodon, w których zalogowano się tym kontem. Usuń jedną, aby ją wylogować.",
+    "connectedEmpty": "Nie ma jeszcze połączonych aplikacji.",
+    "lastUsed": "Ostatnio używana {{date}}",
+    "remove": "Usuń",
+    "removed": "Aplikacja usunięta",
+    "failed": "Nie udało się. Spróbuj ponownie."
+  },
   "fediverse": {
     "title": "Fediwersum",
     "description": "Osoby na Mastodonie i w innych aplikacjach fediwersum mogą cię znaleźć i obserwować pod tym adresem. Twoje nowe publiczne posty docierają do nich tam.",

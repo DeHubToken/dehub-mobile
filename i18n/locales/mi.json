@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ngā taupānga hono",
+    "connectedDescription": "Ngā taupānga Mastodon i takiuru koe mā tēnei pūkete. Tangohia tētahi kia takiputa ai.",
+    "connectedEmpty": "Kāore anō he taupānga kia hono.",
+    "lastUsed": "Whakamahia whakamutunga {{date}}",
+    "remove": "Tangohia",
+    "removed": "Kua tangohia te taupānga",
+    "failed": "Kāore i tutuki. Ngana anō."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Ka taea e te tāngata kei Mastodon me ētahi atu taupānga fediverse te kite me te whai i a koe i tēnei wāhitau. Ka tae ō pānui tūmatanui hou ki a rātou ki reira.",

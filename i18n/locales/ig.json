@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ngwa ejikọrọ",
+    "connectedDescription": "Ngwa Mastodon ị banyere na ya site n'akaụntụ a. Wepụ otu iji wepụ ya.",
+    "connectedEmpty": "Enweghị ngwa ejikọrọ ugbu a.",
+    "lastUsed": "Ejiri ya mgbe ikpeazụ {{date}}",
+    "remove": "Wepụ",
+    "removed": "E wepụla ngwa ahụ",
+    "failed": "Nke ahụ arụghị ọrụ. Nwaa ọzọ."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Ndị nọ na Mastodon na ngwa fediverse ndị ọzọ nwere ike ịchọta gị ma soro gị na adreesị a. Ihe ọhụrụ i bipụtara n'ihu ọha na-erute ha n'ebe ahụ.",

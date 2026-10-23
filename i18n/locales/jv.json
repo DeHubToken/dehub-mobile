@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikasi sing kasambung",
+    "connectedDescription": "Aplikasi Mastodon sing sampeyan lebuni nganggo akun iki. Busak salah siji kanggo metu saka kono.",
+    "connectedEmpty": "Durung ana aplikasi sing kasambung.",
+    "lastUsed": "Pungkasan dienggo {{date}}",
+    "remove": "Busak",
+    "removed": "Aplikasi wis dibusak",
+    "failed": "Ora kasil. Coba maneh."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Wong ing Mastodon lan aplikasi fediverse liyane bisa nemokake lan ngetut sampeyan ing alamat iki. Kiriman umum anyar sampeyan tekan dheweke ing kana.",

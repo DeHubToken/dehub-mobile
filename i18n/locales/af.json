@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Gekoppelde toepe",
+    "connectedDescription": "Mastodon-toepe waarby jy met hierdie rekening aangemeld het. Verwyder een om dit af te meld.",
+    "connectedEmpty": "Nog geen toepe gekoppel nie.",
+    "lastUsed": "Laas gebruik {{date}}",
+    "remove": "Verwyder",
+    "removed": "Toep verwyder",
+    "failed": "Dit het nie gewerk nie. Probeer weer."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mense op Mastodon en ander fediverse-toepassings kan jou by hierdie adres vind en volg. Jou nuwe openbare plasings bereik hulle daar.",

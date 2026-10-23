@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Yhdistetyt sovellukset",
+    "connectedDescription": "Mastodon-sovellukset, joihin olet kirjautunut tällä tilillä. Poista sovellus kirjautuaksesi siitä ulos.",
+    "connectedEmpty": "Ei vielä yhdistettyjä sovelluksia.",
+    "lastUsed": "Viimeksi käytetty {{date}}",
+    "remove": "Poista",
+    "removed": "Sovellus poistettu",
+    "failed": "Se ei onnistunut. Yritä uudelleen."
+  },
   "fediverse": {
     "title": "Fediversumi",
     "description": "Mastodonin ja muiden fediversumin sovellusten käyttäjät voivat löytää ja seurata sinua tästä osoitteesta. Uudet julkiset julkaisusi tavoittavat heidät siellä.",

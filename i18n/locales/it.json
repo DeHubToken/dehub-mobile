@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "App collegate",
+    "connectedDescription": "App Mastodon a cui hai effettuato l'accesso con questo account. Rimuovine una per scollegarla.",
+    "connectedEmpty": "Ancora nessuna app collegata.",
+    "lastUsed": "Ultimo utilizzo {{date}}",
+    "remove": "Rimuovi",
+    "removed": "App rimossa",
+    "failed": "Non ha funzionato. Riprova."
+  },
   "fediverse": {
     "title": "Fediverso",
     "description": "Le persone su Mastodon e su altre app del fediverso possono trovarti e seguirti a questo indirizzo. I tuoi nuovi post pubblici le raggiungono lì.",

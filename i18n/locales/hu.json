@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Csatlakoztatott alkalmazások",
+    "connectedDescription": "Mastodon-alkalmazások, amelyekbe ezzel a fiókkal jelentkeztél be. Távolíts el egyet a kijelentkeztetéshez.",
+    "connectedEmpty": "Még nincs csatlakoztatott alkalmazás.",
+    "lastUsed": "Utoljára használva: {{date}}",
+    "remove": "Eltávolítás",
+    "removed": "Alkalmazás eltávolítva",
+    "failed": "Nem sikerült. Próbáld újra."
+  },
   "fediverse": {
     "title": "Födiverzum",
     "description": "A Mastodonon és más födiverzum-alkalmazásokban lévők ezen a címen megtalálhatnak és követhetnek. Az új nyilvános bejegyzéseid ott érik el őket.",

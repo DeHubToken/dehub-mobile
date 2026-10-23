@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Appiiwwan walqabatan",
+    "connectedDescription": "Appiiwwan Mastodon herrega kanaan itti seente. Ba'uuf tokko balleessi.",
+    "connectedEmpty": "Ammallee appiin walqabate hin jiru.",
+    "lastUsed": "Yeroo dhumaaf kan fayyadame {{date}}",
+    "remove": "Balleessi",
+    "removed": "Appiin balleeffame",
+    "failed": "Hin milkoofne. Irra deebi'ii yaali."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Namoonni Mastodon fi appiiwwan fediverse biroo irra jiran teessoo kanaan si argatanii si hordofuu danda'u. Maxxansaaleen kee haaraan uummataa achitti isaan ga'u.",

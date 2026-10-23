@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ứng dụng đã kết nối",
+    "connectedDescription": "Các ứng dụng Mastodon bạn đã đăng nhập bằng tài khoản này. Gỡ một ứng dụng để đăng xuất khỏi nó.",
+    "connectedEmpty": "Chưa có ứng dụng nào được kết nối.",
+    "lastUsed": "Dùng lần cuối {{date}}",
+    "remove": "Gỡ",
+    "removed": "Đã gỡ ứng dụng",
+    "failed": "Không được. Hãy thử lại."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mọi người trên Mastodon và các ứng dụng fediverse khác có thể tìm và theo dõi bạn ở địa chỉ này. Bài đăng công khai mới của bạn sẽ đến với họ ở đó.",

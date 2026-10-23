@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Tilkoblede apper",
+    "connectedDescription": "Mastodon-apper du har logget inn i med denne kontoen. Fjern en for å logge den ut.",
+    "connectedEmpty": "Ingen tilkoblede apper ennå.",
+    "lastUsed": "Sist brukt {{date}}",
+    "remove": "Fjern",
+    "removed": "App fjernet",
+    "failed": "Det fungerte ikke. Prøv igjen."
+  },
   "fediverse": {
     "title": "Fødiverset",
     "description": "Folk på Mastodon og andre fødivers-apper kan finne og følge deg på denne adressen. De nye offentlige innleggene dine når dem der.",
