@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon və digər fediverse tətbiqlərindəki insanlar sizi bu ünvanda tapıb izləyə bilər. Yeni açıq paylaşımlarınız onlara orada çatır.",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "privateNote": "Şəxsi hesablar fediverse-də göstərilmir.",
+    "noUsername": "Fediverse ünvanı almaq üçün istifadəçi adı seçin."
+  },
   "profileFields": {
     "title": "Profil sahələri",
     "description": "Profilinizdə dörd əlavə sətrə qədər, məsələn veb sayt və ya əvəzlikləriniz.",

@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Wong ing Mastodon lan aplikasi fediverse liyane bisa nemokake lan ngetut sampeyan ing alamat iki. Kiriman umum anyar sampeyan tekan dheweke ing kana.",
+    "copy": "Salin",
+    "copied": "Wis disalin",
+    "privateNote": "Akun pribadi ora ditampilake ing fediverse.",
+    "noUsername": "Pilih jeneng pangguna supaya duwe alamat fediverse."
+  },
   "profileFields": {
     "title": "Kolom profil",
     "description": "Nganti papat baris tambahan ing profil sampeyan, kayata situs web utawa tembung ganti sampeyan.",

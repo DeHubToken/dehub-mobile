@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Puwede kang hanapin at i-follow ng mga tao sa Mastodon at iba pang fediverse app sa address na ito. Doon din aabot sa kanila ang mga bago mong pampublikong post.",
+    "copy": "Kopyahin",
+    "copied": "Nakopya",
+    "privateNote": "Hindi ipinapakita sa fediverse ang mga private account.",
+    "noUsername": "Pumili ng username para magkaroon ng fediverse address."
+  },
   "profileFields": {
     "title": "Mga field ng profile",
     "description": "Hanggang apat na dagdag na linya sa profile mo, gaya ng website o ng iyong pronouns.",

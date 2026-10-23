@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Lidé na Mastodonu a v dalších aplikacích fediverse vás na této adrese najdou a mohou vás sledovat. Vaše nové veřejné příspěvky k nim dorazí tam.",
+    "copy": "Kopírovat",
+    "copied": "Zkopírováno",
+    "privateNote": "Soukromé účty se ve fediverse nezobrazují.",
+    "noUsername": "Zvolte si uživatelské jméno, abyste získali adresu ve fediverse."
+  },
   "profileFields": {
     "title": "Pole profilu",
     "description": "Až čtyři řádky navíc na vašem profilu, třeba web nebo vaše zájmena.",

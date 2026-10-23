@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverzum",
+    "description": "Ľudia na Mastodone a v ďalších aplikáciách fediverza vás na tejto adrese nájdu a môžu vás sledovať. Vaše nové verejné príspevky sa k nim dostanú tam.",
+    "copy": "Kopírovať",
+    "copied": "Skopírované",
+    "privateNote": "Súkromné účty sa vo fediverze nezobrazujú.",
+    "noUsername": "Zvoľte si používateľské meno, aby ste získali adresu vo fediverze."
+  },
   "profileFields": {
     "title": "Polia profilu",
     "description": "Až štyri riadky navyše na vašom profile, napríklad web alebo vaše zámená.",

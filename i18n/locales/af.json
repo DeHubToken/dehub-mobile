@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mense op Mastodon en ander fediverse-toepassings kan jou by hierdie adres vind en volg. Jou nuwe openbare plasings bereik hulle daar.",
+    "copy": "Kopieer",
+    "copied": "Gekopieer",
+    "privateNote": "Privaat rekeninge word nie op die fediverse gewys nie.",
+    "noUsername": "Kies 'n gebruikersnaam om 'n fediverse-adres te kry."
+  },
   "profileFields": {
     "title": "Profielvelde",
     "description": "Tot vier ekstra reëls op jou profiel, soos 'n webwerf of jou voornaamwoorde.",

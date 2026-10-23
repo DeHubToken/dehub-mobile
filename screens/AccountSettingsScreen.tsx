@@ -63,6 +63,7 @@ import AssetsPanel from "../components/Settings/AssetsPanel";
 import MessagesPanel from "../components/Settings/MessagesPanel";
 import ProfilesSection from "../components/Settings/ProfilesSection";
 import EnsHandleSection from "../components/Settings/EnsHandleSection";
+import FediverseHandleSection from "../components/Settings/FediverseHandleSection";
 import EmailSignInSection from "../components/Settings/EmailSignInSection";
 import StreamKeySection from "../components/Settings/StreamKeySection";
 import { TwitchMirrorSection } from "../components/Settings/TwitchMirrorSection";
@@ -326,6 +327,10 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
           <EnsHandleSection />
         </SettingsAnchor>
       ) : null}
+
+      {/* The @username@dehub.io address Mastodon can follow — another way to
+          reach the same profile, so it sits beside the ENS alias. */}
+      {isSignedIn ? <FediverseHandleSection /> : null}
 
       {/* Permanent encoder credentials — set OBS, a capture app or a console
           up once and never re-key it again. Under the profile rows because it

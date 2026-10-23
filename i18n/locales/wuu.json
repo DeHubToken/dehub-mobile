@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "联邦宇宙",
+    "description": "Mastodon 搭其他联邦宇宙应用浪个人好通过搿只地址寻着侬、关注侬。侬新个公开帖子会勒伊面送到伊拉。",
+    "copy": "复制",
+    "copied": "复制好了",
+    "privateNote": "私密账号勿会出现勒联邦宇宙里。",
+    "noUsername": "选一只用户名，好拿到联邦宇宙地址。"
+  },
   "profileFields": {
     "title": "个人资料字段",
     "description": "勒个人资料里最多加四行，譬如网站或者侬个代词。",

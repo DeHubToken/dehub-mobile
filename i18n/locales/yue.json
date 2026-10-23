@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "聯邦宇宙",
+    "description": "Mastodon 同其他聯邦宇宙 app 上嘅人可以用呢個地址搵到你同追蹤你。你新嘅公開帖子會喺嗰度送到佢哋。",
+    "copy": "複製",
+    "copied": "已複製",
+    "privateNote": "私人帳戶唔會喺聯邦宇宙顯示。",
+    "noUsername": "揀個用戶名就會有聯邦宇宙地址。"
+  },
   "profileFields": {
     "title": "個人檔案欄位",
     "description": "喺個人檔案加最多四行，例如網站或者你嘅代名詞。",

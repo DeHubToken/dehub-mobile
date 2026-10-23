@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fødiverset",
+    "description": "Folk på Mastodon og andre fødivers-apper kan finne og følge deg på denne adressen. De nye offentlige innleggene dine når dem der.",
+    "copy": "Kopier",
+    "copied": "Kopiert",
+    "privateNote": "Private kontoer vises ikke i fødiverset.",
+    "noUsername": "Velg et brukernavn for å få en fødivers-adresse."
+  },
   "profileFields": {
     "title": "Profilfelt",
     "description": "Opptil fire ekstra linjer på profilen din, for eksempel et nettsted eller pronomenene dine.",
