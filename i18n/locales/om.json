@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Namoonni Mastodon fi appiiwwan fediverse biroo irra jiran teessoo kanaan si argatanii si hordofuu danda'u. Maxxansaaleen kee haaraan uummataa achitti isaan ga'u.",
+    "copy": "Garagalchi",
+    "copied": "Garagalfame",
+    "privateNote": "Herregni dhuunfaa fediverse irratti hin mul'atu.",
+    "noUsername": "Teessoo fediverse argachuuf maqaa fayyadamaa filadhu."
+  },
   "profileFields": {
     "title": "Dirreewwan piroofaayilii",
     "description": "Hanga sararoota dabalataa afurii piroofaayilii kee irratti, kan akka marsariitii ykn bakka bu'aa maqaa kee.",

@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ka taea e te tāngata kei Mastodon me ētahi atu taupānga fediverse te kite me te whai i a koe i tēnei wāhitau. Ka tae ō pānui tūmatanui hou ki a rātou ki reira.",
+    "copy": "Tārua",
+    "copied": "Kua tāruatia",
+    "privateNote": "Kāore ngā pūkete tūmataiti e whakaaturia ki te fediverse.",
+    "noUsername": "Kōwhiria he ingoa kaiwhakamahi kia whiwhi wāhitau fediverse."
+  },
   "profileFields": {
     "title": "Ngā āpure kōtaha",
     "description": "Tae atu ki ngā rārangi tāpiri e whā i tō kōtaha, pērā i tētahi paetukutuku, ō tūpou rānei.",

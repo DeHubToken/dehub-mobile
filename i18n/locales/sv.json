@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediversum",
+    "description": "Folk på Mastodon och andra fediversum-appar kan hitta och följa dig på den här adressen. Dina nya offentliga inlägg når dem där.",
+    "copy": "Kopiera",
+    "copied": "Kopierat",
+    "privateNote": "Privata konton visas inte i fediversum.",
+    "noUsername": "Välj ett användarnamn för att få en fediversum-adress."
+  },
   "profileFields": {
     "title": "Profilfält",
     "description": "Upp till fyra extra rader på din profil, till exempel en webbplats eller dina pronomen.",

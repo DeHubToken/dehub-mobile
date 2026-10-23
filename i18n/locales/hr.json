@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverzum",
+    "description": "Ljudi na Mastodonu i u drugim aplikacijama fediverzuma mogu te pronaći i pratiti na ovoj adresi. Tvoje nove javne objave tamo stižu do njih.",
+    "copy": "Kopiraj",
+    "copied": "Kopirano",
+    "privateNote": "Privatni računi ne prikazuju se u fediverzumu.",
+    "noUsername": "Odaberi korisničko ime da dobiješ adresu u fediverzumu."
+  },
   "profileFields": {
     "title": "Polja profila",
     "description": "Do četiri dodatna retka na tvom profilu, poput web-stranice ili tvojih zamjenica.",

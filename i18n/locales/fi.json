@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediversumi",
+    "description": "Mastodonin ja muiden fediversumin sovellusten käyttäjät voivat löytää ja seurata sinua tästä osoitteesta. Uudet julkiset julkaisusi tavoittavat heidät siellä.",
+    "copy": "Kopioi",
+    "copied": "Kopioitu",
+    "privateNote": "Yksityisiä tilejä ei näytetä fediversumissa.",
+    "noUsername": "Valitse käyttäjänimi saadaksesi fediversumiosoitteen."
+  },
   "profileFields": {
     "title": "Profiilikentät",
     "description": "Enintään neljä lisäriviä profiiliisi, kuten verkkosivusto tai pronominisi.",

@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Oamenii de pe Mastodon și din alte aplicații fediverse te pot găsi și urmări la această adresă. Postările tale publice noi ajung la ei acolo.",
+    "copy": "Copiază",
+    "copied": "Copiat",
+    "privateNote": "Conturile private nu apar în fediverse.",
+    "noUsername": "Alege un nume de utilizator ca să ai o adresă fediverse."
+  },
   "profileFields": {
     "title": "Câmpuri de profil",
     "description": "Până la patru rânduri în plus pe profilul tău, cum ar fi un site web sau pronumele tale.",

@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Födiverzum",
+    "description": "A Mastodonon és más födiverzum-alkalmazásokban lévők ezen a címen megtalálhatnak és követhetnek. Az új nyilvános bejegyzéseid ott érik el őket.",
+    "copy": "Másolás",
+    "copied": "Másolva",
+    "privateNote": "A privát fiókok nem jelennek meg a födiverzumban.",
+    "noUsername": "Válassz felhasználónevet, hogy födiverzum-címed legyen."
+  },
   "profileFields": {
     "title": "Profilmezők",
     "description": "Legfeljebb négy extra sor a profilodon, például weboldal vagy a névmásaid.",

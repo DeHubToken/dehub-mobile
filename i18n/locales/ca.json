@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fedivers",
+    "description": "La gent de Mastodon i d'altres apps del fedivers et pot trobar i seguir en aquesta adreça. Les teves noves publicacions públiques els arriben allà.",
+    "copy": "Copia",
+    "copied": "Copiat",
+    "privateNote": "Els comptes privats no es mostren al fedivers.",
+    "noUsername": "Tria un nom d'usuari per tenir una adreça al fedivers."
+  },
   "profileFields": {
     "title": "Camps del perfil",
     "description": "Fins a quatre línies més al teu perfil, com un lloc web o els teus pronoms.",

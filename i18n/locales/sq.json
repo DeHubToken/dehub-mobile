@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Njerëzit në Mastodon dhe aplikacione të tjera fediverse mund të të gjejnë dhe të ndjekin në këtë adresë. Postimet e tua të reja publike u arrijnë atje.",
+    "copy": "Kopjo",
+    "copied": "U kopjua",
+    "privateNote": "Llogaritë private nuk shfaqen në fediverse.",
+    "noUsername": "Zgjidh një emër përdoruesi për të marrë një adresë fediverse."
+  },
   "profileFields": {
     "title": "Fushat e profilit",
     "description": "Deri në katër rreshta shtesë në profilin tënd, si një faqe interneti ose përemrat e tu.",

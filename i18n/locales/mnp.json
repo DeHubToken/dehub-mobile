@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "联邦宇宙",
+    "description": "Mastodon 和其他联邦宇宙应用上的人可以通过这个地址找到并关注你。你的新公开帖子会在那里送达他们。",
+    "copy": "复制",
+    "copied": "已复制",
+    "privateNote": "私密账号不会出现在联邦宇宙中。",
+    "noUsername": "选择一个用户名来获得联邦宇宙地址。"
+  },
   "profileFields": {
     "title": "个人资料字段",
     "description": "在个人资料里最多添加四行，比如网站或你的代词。",

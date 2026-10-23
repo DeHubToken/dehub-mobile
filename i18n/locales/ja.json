@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon などの Fediverse アプリの人は、このアドレスであなたを見つけてフォローできます。新しい公開投稿はそこにも届きます。",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "privateNote": "非公開アカウントは Fediverse に表示されません。",
+    "noUsername": "Fediverse のアドレスを持つにはユーザー名を設定してください。"
+  },
   "profileFields": {
     "title": "プロフィール項目",
     "description": "ウェブサイトや代名詞など、プロフィールに最大4行まで追加できます。",

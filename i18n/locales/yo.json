@@ -1,4 +1,12 @@
 {
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Àwọn ènìyàn lórí Mastodon àti àwọn àpù fediverse mìíràn lè rí ọ kí wọ́n sì tẹ̀lé ọ ní àdírẹ́sì yìí. Àwọn ìfìwéránṣẹ́ gbangba tuntun rẹ máa dé ọ̀dọ̀ wọn níbẹ̀.",
+    "copy": "Daakọ",
+    "copied": "A ti daakọ",
+    "privateNote": "A kì í fi àwọn àkọọ́lẹ̀ àdáni hàn lórí fediverse.",
+    "noUsername": "Yan orúkọ oníṣe kí o lè ní àdírẹ́sì fediverse."
+  },
   "profileFields": {
     "title": "Àwọn pápá profaili",
     "description": "Títí dé ìlà mẹ́rin àfikún lórí profaili rẹ, bí ojúlé wẹ́ẹ̀bù tàbí àwọn arọ́pò orúkọ rẹ.",
