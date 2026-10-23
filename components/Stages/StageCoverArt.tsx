@@ -18,6 +18,9 @@ import { translateCopy as _translateCopy } from '../../i18n/copy';
  * borders show, and is also why the art no longer sits behind the text — a
  * contained image has empty space in it, and text over that reads as a mistake.
  *
+ * A stage with no cover gets its generated poster (GeneratedStageCover) when
+ * the caller passes `stage`.
+ *
  * @module components/Stages/StageCoverArt
  */
 
@@ -25,15 +28,21 @@ import React from "react";
 import { Dimensions, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 import { Image } from "expo-image";
 import { storageImageSource } from "../../libs/cdnImage";
+import type { StageCoverSource } from "../../libs/stage-cover";
+import GeneratedStageCover from "./GeneratedStageCover";
 
 export interface StageCoverArtProps {
-  uri: string;
+  uri?: string | null;
   /** Used for the screen-reader label; a cover with no title is decorative. */
   title?: string | null;
+  /** The stage itself; with no `uri` its generated poster is drawn instead. */
+  stage?: StageCoverSource;
   style?: StyleProp<ViewStyle>;
 }
 
-const StageCoverArt: React.FC<StageCoverArtProps> = ({ uri, title, style }) => (
+const StageCoverArt: React.FC<StageCoverArtProps> = ({ uri, title, stage, style }) => {
+  if (!uri) return stage ? <GeneratedStageCover stage={stage} style={style} /> : null;
+  return (
   <View style={[styles.frame, style]}>
     <Image
       // Every placement is a full-width card, so the window bounds the frame.
@@ -45,7 +54,8 @@ const StageCoverArt: React.FC<StageCoverArtProps> = ({ uri, title, style }) => (
       accessibilityLabel={title ? _translateCopy("copy.99ca327a47b5", { defaultValue: "Cover graphic for {{value1}}", value1: title }) : undefined}
     />
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   frame: {
