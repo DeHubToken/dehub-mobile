@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Araho #{{tag}}",
+    "following": "Manaraka",
+    "unfollow": "Aza manaraka #{{tag}} intsony",
+    "followed": "Manaraka #{{tag}} ianao izao. Hiseho ao amin'ny lahatsoratra arahinao ireo lahatsorany.",
+    "unfollowed": "Tsy manaraka #{{tag}} intsony ianao",
+    "failed": "Tsy voatahiry. Andramo indray.",
+    "clear": "Fafao"
+  },
   "keywordFilters": {
     "title": "Teny nampanginina",
     "description": "Afeno ny lahatsoratra sy fanehoan-kevitra misy ireo teny ireo, na aforony ao ambadiky ny fampitandremana. Ianao ihany no mahita ity lisitra ity.",

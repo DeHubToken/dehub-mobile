@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} izlə",
+    "following": "İzləyirsiniz",
+    "unfollow": "#{{tag}} izləməni dayandır",
+    "followed": "İndi #{{tag}} izləyirsiniz. Onun paylaşımları İzlədikləriniz lentində görünəcək.",
+    "unfollowed": "#{{tag}} izlənmir",
+    "failed": "Yadda saxlanılmadı. Yenidən cəhd edin.",
+    "clear": "Təmizlə"
+  },
   "keywordFilters": {
     "title": "Səssiz sözlər",
     "description": "Bu sözlər olan paylaşımları və şərhləri gizlədin və ya xəbərdarlığın arxasına qatlayın. Bu siyahını yalnız siz görürsünüz.",

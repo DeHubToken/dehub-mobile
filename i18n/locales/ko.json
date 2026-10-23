@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} 팔로우",
+    "following": "팔로우 중",
+    "unfollow": "#{{tag}} 팔로우 취소",
+    "followed": "이제 #{{tag}}을(를) 팔로우해요. 관련 게시물이 팔로잉 피드에 표시돼요.",
+    "unfollowed": "#{{tag}} 팔로우를 취소했어요",
+    "failed": "저장하지 못했어요. 다시 시도해 주세요.",
+    "clear": "지우기"
+  },
   "keywordFilters": {
     "title": "뮤트한 단어",
     "description": "이 단어가 들어간 게시물과 댓글을 숨기거나 경고 뒤로 접어 둡니다. 이 목록은 나만 볼 수 있어요.",

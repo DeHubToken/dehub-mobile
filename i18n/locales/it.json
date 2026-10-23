@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Segui #{{tag}}",
+    "following": "Segui già",
+    "unfollow": "Smetti di seguire #{{tag}}",
+    "followed": "Ora segui #{{tag}}. I suoi post compariranno nel feed Seguiti.",
+    "unfollowed": "Non segui più #{{tag}}",
+    "failed": "Non è stato salvato. Riprova.",
+    "clear": "Cancella"
+  },
   "keywordFilters": {
     "title": "Parole silenziate",
     "description": "Nascondi i post e i commenti che contengono queste parole, o ripiegali dietro un avviso. Solo tu vedi questo elenco.",

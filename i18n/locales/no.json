@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Følg #{{tag}}",
+    "following": "Følger",
+    "unfollow": "Slutt å følge #{{tag}}",
+    "followed": "Du følger nå #{{tag}}. Innlegg med den vises i Følger-feeden din.",
+    "unfollowed": "Du følger ikke lenger #{{tag}}",
+    "failed": "Det ble ikke lagret. Prøv igjen.",
+    "clear": "Tøm"
+  },
   "keywordFilters": {
     "title": "Dempede ord",
     "description": "Skjul innlegg og kommentarer som inneholder disse ordene, eller brett dem bak en advarsel. Bare du ser denne listen.",

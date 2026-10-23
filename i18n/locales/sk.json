@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Sledovať #{{tag}}",
+    "following": "Sledujete",
+    "unfollow": "Prestať sledovať #{{tag}}",
+    "followed": "Teraz sledujete #{{tag}}. Jeho príspevky sa zobrazia v kanáli Sledované.",
+    "unfollowed": "Prestali ste sledovať #{{tag}}",
+    "failed": "Neuložilo sa. Skúste to znova.",
+    "clear": "Vymazať"
+  },
   "keywordFilters": {
     "title": "Stlmené slová",
     "description": "Skryte príspevky a komentáre s týmito slovami alebo ich zbaľte za upozornenie. Tento zoznam vidíte len vy.",

@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} folge",
+    "following": "Folg ich",
+    "unfollow": "#{{tag}} nüme folge",
+    "followed": "Du folgsch jetzt #{{tag}}. Biiträg demit erschiined i dim Folge-Feed.",
+    "unfollowed": "Du folgsch #{{tag}} nüme",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
+    "clear": "Lösche"
+  },
   "keywordFilters": {
     "title": "Stummgschalteti Wörter",
     "description": "Biiträg und Kommentär mit dene Wörter usblände oder hinter ere Warnig iiklappe. Nur du gsehsch die Lischte.",

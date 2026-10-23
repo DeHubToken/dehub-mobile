@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} hordofi",
+    "following": "Hordofaa jirta",
+    "unfollow": "#{{tag}} hordofuu dhiisi",
+    "followed": "Amma #{{tag}} hordofaa jirta. Maxxansaaleen isaa fayyaa hordoftu keessatti mul'atu.",
+    "unfollowed": "#{{tag}} hordofuu dhiifte",
+    "failed": "Hin olkaa'amne. Irra deebi'ii yaali.",
+    "clear": "Qulqulleessi"
+  },
   "keywordFilters": {
     "title": "Jechoota callisiifaman",
     "description": "Maxxansaalee fi yaada jechoota kana qaban dhoksi, ykn akeekkachiisa duuba isaan maruu. Tarree kana kan argitu ati qofa.",

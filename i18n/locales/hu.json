@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "#{{tag}} követése",
+    "following": "Követed",
+    "unfollow": "#{{tag}} követésének leállítása",
+    "followed": "Mostantól követed: #{{tag}}. A bejegyzései a Követettek hírfolyamodban jelennek meg.",
+    "unfollowed": "Már nem követed: #{{tag}}",
+    "failed": "Nem sikerült menteni. Próbáld újra.",
+    "clear": "Törlés"
+  },
   "keywordFilters": {
     "title": "Némított szavak",
     "description": "Rejtsd el az ezeket a szavakat tartalmazó bejegyzéseket és hozzászólásokat, vagy hajtsd őket egy figyelmeztetés mögé. Ezt a listát csak te látod.",

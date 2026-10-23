@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Bi #{{tag}}",
+    "following": "Kana bi",
+    "unfollow": "Daina bin #{{tag}}",
+    "followed": "Yanzu kana bin #{{tag}}. Rubuce-rubucensa za su bayyana a cikin abincin Waɗanda kake bi.",
+    "unfollowed": "Ka daina bin #{{tag}}",
+    "failed": "Ba a ajiye ba. Sake gwadawa.",
+    "clear": "Share"
+  },
   "keywordFilters": {
     "title": "Kalmomin da aka kashe",
     "description": "Ɓoye rubuce-rubuce da sharhi masu ɗauke da waɗannan kalmomi, ko ninke su a bayan gargaɗi. Kai kaɗai kake ganin wannan jerin.",

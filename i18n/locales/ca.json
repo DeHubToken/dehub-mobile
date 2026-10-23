@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Segueix #{{tag}}",
+    "following": "Seguint",
+    "unfollow": "Deixa de seguir #{{tag}}",
+    "followed": "Ara segueixes #{{tag}}. Les seves publicacions sortiran al teu feed de Seguint.",
+    "unfollowed": "Has deixat de seguir #{{tag}}",
+    "failed": "No s'ha desat. Torna-ho a provar.",
+    "clear": "Esborra"
+  },
   "keywordFilters": {
     "title": "Paraules silenciades",
     "description": "Amaga les publicacions i els comentaris que continguin aquestes paraules, o plega'ls darrere d'un avís. Només tu veus aquesta llista.",

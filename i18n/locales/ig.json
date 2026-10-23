@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Soro #{{tag}}",
+    "following": "Ị na-eso",
+    "unfollow": "Kwụsị iso #{{tag}}",
+    "followed": "Ị na-eso #{{tag}} ugbu a. Ihe e bipụtara ya ga-apụta na ndepụta Ndị ị na-eso.",
+    "unfollowed": "Ị kwụsịrị iso #{{tag}}",
+    "failed": "Edebeghị ya. Nwaa ọzọ.",
+    "clear": "Hichapụ"
+  },
   "keywordFilters": {
     "title": "Okwu a gbachiri nkịtị",
     "description": "Zoo ihe e bipụtara na nkọwa nwere okwu ndị a, ma ọ bụ tụkọọ ha n'azụ ịdọ aka ná ntị. Ọ bụ naanị gị na-ahụ ndepụta a.",

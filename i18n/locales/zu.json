@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Landela i-#{{tag}}",
+    "following": "Uyalandela",
+    "unfollow": "Yeka ukulandela i-#{{tag}}",
+    "followed": "Manje uyalandela i-#{{tag}}. Okuthunyelwe kwayo kuzovela kokuphakelayo kwakho Okulandelayo.",
+    "unfollowed": "Uyekile ukulandela i-#{{tag}}",
+    "failed": "Akulondolozwanga. Zama futhi.",
+    "clear": "Sula"
+  },
   "keywordFilters": {
     "title": "Amagama athuliswe",
     "description": "Fihla okuthunyelwe nemibono okuqukethe lawa magama, noma kugoqe ngemuva kwesexwayiso. Nguwe kuphela obona lolu hlu.",

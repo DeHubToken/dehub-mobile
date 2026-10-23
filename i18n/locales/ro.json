@@ -1,4 +1,13 @@
 {
+  "followedTags": {
+    "follow": "Urmărește #{{tag}}",
+    "following": "Urmărești",
+    "unfollow": "Nu mai urmări #{{tag}}",
+    "followed": "Acum urmărești #{{tag}}. Postările lui vor apărea în fluxul Urmăriți.",
+    "unfollowed": "Nu mai urmărești #{{tag}}",
+    "failed": "Nu s-a salvat. Încearcă din nou.",
+    "clear": "Șterge"
+  },
   "keywordFilters": {
     "title": "Cuvinte ascunse",
     "description": "Ascunde postările și comentariile care conțin aceste cuvinte sau pliază-le în spatele unui avertisment. Doar tu vezi această listă.",
