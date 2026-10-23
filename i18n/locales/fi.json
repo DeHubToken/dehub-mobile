@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Sisältövaroitus",
+    "placeholder": "Kirjoita varoitus tähän",
+    "add": "Lisää sisältövaroitus",
+    "remove": "Poista sisältövaroitus",
+    "show": "Näytä julkaisu"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Lisää kuvaus",

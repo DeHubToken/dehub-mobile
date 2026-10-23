@@ -244,6 +244,11 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
     fd.append("mediaDescriptions", JSON.stringify(payload.mediaDescriptions));
   }
 
+  // Content warning. Only sent when there is one.
+  if (payload.spoilerText?.trim()) {
+    fd.append("spoilerText", payload.spoilerText.trim());
+  }
+
   // The Shop board. Only sent when there is one — an empty array is a valid
   // "clear it" instruction on a post that has nothing to clear.
   if (payload.shopLinks?.length) {

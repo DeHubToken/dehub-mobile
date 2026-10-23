@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Tartalmi figyelmeztetés",
+    "placeholder": "Írd ide a figyelmeztetést",
+    "add": "Tartalmi figyelmeztetés hozzáadása",
+    "remove": "Tartalmi figyelmeztetés eltávolítása",
+    "show": "Bejegyzés megjelenítése"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Leírás hozzáadása",

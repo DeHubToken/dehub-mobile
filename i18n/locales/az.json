@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Məzmun xəbərdarlığı",
+    "placeholder": "Xəbərdarlığınızı buraya yazın",
+    "add": "Məzmun xəbərdarlığı əlavə et",
+    "remove": "Məzmun xəbərdarlığını sil",
+    "show": "Paylaşımı göstər"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Təsvir əlavə et",

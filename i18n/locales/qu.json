@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Ukhunmanta willakuy",
+    "placeholder": "Kaypi willakuyniykita qillqay",
+    "add": "Ukhunmanta willakuyta yapay",
+    "remove": "Ukhunmanta willakuyta qichuy",
+    "show": "Qillqata rikuchiy"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Willakuyta yapay",

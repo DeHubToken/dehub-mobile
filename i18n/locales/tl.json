@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Babala sa nilalaman",
+    "placeholder": "Isulat dito ang iyong babala",
+    "add": "Magdagdag ng babala sa nilalaman",
+    "remove": "Alisin ang babala sa nilalaman",
+    "show": "Ipakita ang post"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Magdagdag ng paglalarawan",

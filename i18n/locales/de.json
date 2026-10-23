@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Inhaltswarnung",
+    "placeholder": "Schreib deine Warnung hier",
+    "add": "Inhaltswarnung hinzufügen",
+    "remove": "Inhaltswarnung entfernen",
+    "show": "Beitrag anzeigen"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Beschreibung hinzufügen",

@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Digniinta waxa ku jira",
+    "placeholder": "Halkan ku qor digniintaada",
+    "add": "Ku dar digniinta waxa ku jira",
+    "remove": "Ka saar digniinta waxa ku jira",
+    "show": "Muuji qoraalka"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Ku dar sharraxaad",

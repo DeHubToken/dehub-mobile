@@ -73,6 +73,8 @@ import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
 import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
 import CommunityDrawer from "../components/Upload/CommunityDrawer";
 import { getUserCommunities } from "../services/communities.service";
 import type { Community } from "../types/community";
@@ -340,6 +342,8 @@ export default function UploadScreen() {
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
   const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
+  // The content warning being written: null is "none", "" is "toggled on, still empty".
+  const [contentWarning, setContentWarning] = useState<string | null>(null);
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -1148,8 +1152,9 @@ export default function UploadScreen() {
       shopListingIds,
       crossPostAccountIds: articleMode ? [] : [...crossPostState.selected],
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      spoilerText: contentWarning?.trim() || undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1168,6 +1173,7 @@ export default function UploadScreen() {
         // Entering live mode: clear media
         setPickedVideo(null);
         setPickedImages([]);
+        setContentWarning(null);
         setPickedAudio(null);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -1393,6 +1399,7 @@ export default function UploadScreen() {
       thumbnailUri,
       quotedTokenId: Number(quotedTokenId),
       mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      spoilerText: contentWarning?.trim() || undefined,
     });
     if (!ok) return false;
     // Held through the navigation for the same reason as submitPost above.
@@ -1403,7 +1410,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -1449,6 +1456,7 @@ export default function UploadScreen() {
         setIsStageMode(false);
         setLiveThumbnailUri(null);
         setPickedImages([]);
+        setContentWarning(null);
         setPickedVideo(null);
         setThumbnailUri(null);
         consumeRestoredDraft();
@@ -2437,6 +2445,22 @@ export default function UploadScreen() {
 
           <View className="mt-3">
             {isLiveMode && React.createElement(require("../components/Upload/ScheduledLivestreams").default, { address: authUser?.walletAddress || authUser?.address || "" })}
+            {/* Content warning: shown instead of the post until a viewer opens it. */}
+            {!isLiveMode && contentWarning !== null && (
+              <View className="mb-2 flex-row items-center rounded-xl border border-amber-400/30 bg-amber-400/10 px-3 py-2">
+                <Ionicons name="warning-outline" size={16} color="#FCD34D" />
+                <TextInput
+                  value={contentWarning}
+                  onChangeText={setContentWarning}
+                  placeholder={t("contentWarning.placeholder")}
+                  placeholderTextColor="rgba(255,255,255,0.5)"
+                  maxLength={CONTENT_WARNING_MAX}
+                  autoFocus
+                  accessibilityLabel={t("contentWarning.label")}
+                  className="flex-1 ml-2 text-white text-sm"
+                />
+              </View>
+            )}
             {showTitleInput && !articleMode && (
               <TextInput
                 ref={titleRef}
@@ -3467,6 +3491,22 @@ export default function UploadScreen() {
               accessibilityLabel={t("upload.addPoll")}
             >
               <Icon name="ChartBarBig" size={20} color="#fff" />
+            </TouchableOpacity>
+          )}
+
+          {/* Content warning — a live stream opens straight to the stream, so it has none. */}
+          {!isLiveMode && (
+            <TouchableOpacity
+              onPress={() => setContentWarning(prev => (prev === null ? "" : null))}
+              activeOpacity={0.7}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+              style={{ backgroundColor: contentWarning !== null ? "rgba(255,255,255,0.2)" : "transparent" }}
+              accessibilityRole="button"
+              accessibilityState={{ selected: contentWarning !== null }}
+              accessibilityLabel={contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}
+            >
+              <Ionicons name="warning-outline" size={20} color="#fff" />
             </TouchableOpacity>
           )}
 

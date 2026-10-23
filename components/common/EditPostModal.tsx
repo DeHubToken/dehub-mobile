@@ -36,6 +36,7 @@ import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import EditPostImages from './EditPostImages';
 import EditPostCover from './EditPostCover';
+import { CONTENT_WARNING_MAX } from '../Home/ContentWarningGate';
 import { useTranslation } from "react-i18next";
 
 interface EditPostModalProps {
@@ -53,6 +54,8 @@ interface EditPostModalProps {
   initialContentRating?: string;
   /** Whether this post is published for children — the Kids Mode allowlist. */
   initialForKids?: boolean;
+  /** The post's content warning, if it has one. */
+  initialSpoilerText?: string;
   /** Offer the "replace the file" row — creator, video post, not live. */
   canReplaceVideo?: boolean;
   /** Offer the title even when the post has none — audio tracks can be named later. */
@@ -65,6 +68,7 @@ interface EditPostModalProps {
     commentsDisabled?: boolean;
     contentRating?: string;
     forKids?: boolean;
+    spoilerText?: string;
     shopLinks?: ShopLink[];
     shopListingCount?: number;
   }) => void;
@@ -82,6 +86,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialShopLinks,
   initialContentRating,
   initialForKids,
+  initialSpoilerText = "",
   canReplaceVideo = false,
   alwaysShowTitle = false,
   onSuccess,
@@ -90,6 +95,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
   const [isForKids, setIsForKids] = useState(initialForKids === true);
+  const [spoilerText, setSpoilerText] = useState(initialSpoilerText);
   const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(`post:edit:${tokenId}` + ":shopLinks", initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   /**
@@ -290,6 +296,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       }
       // The API stores nothing for a safe post, so an unrated one arrives as
       // undefined — compare against the rating it means, not the field.
+      if (spoilerText.trim() !== initialSpoilerText.trim()) {
+        payload.spoilerText = spoilerText.trim();
+      }
       const nextRating = isMature ? "mature" : "safe";
       if (nextRating !== (initialContentRating ?? "safe")) {
         payload.contentRating = nextRating;
@@ -346,6 +355,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         category: payload.category,
         commentsDisabled: payload.commentsDisabled,
         contentRating: payload.contentRating,
+        spoilerText: payload.spoilerText,
         shopLinks: payload.shopLinks,
         shopListingCount: payload.shopListingCount as number | undefined,
       });
@@ -381,6 +391,8 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     initialShopLinks,
     initialContentRating,
     initialForKids,
+    initialSpoilerText,
+    spoilerText,
     onSuccess,
     onClose, setArticleBody, setDescription, setSelectedCategories, setShopLinks, setTitle]);
 
@@ -389,6 +401,7 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     description.trim() !== initialDescription ||
     (initialArticleBody !== undefined && articleBody.trim() !== initialArticleBody) ||
     commentsDisabled !== initialCommentsDisabled ||
+    spoilerText.trim() !== initialSpoilerText.trim() ||
     commonGroundChanged ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     isForKids !== (initialForKids === true) ||
@@ -463,6 +476,19 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </Text>
           </>
         ) : null}
+
+        {/* Content warning — the post opens collapsed behind it. Empty takes it off. */}
+        <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+          {t("contentWarning.label")}
+        </Text>
+        <TextInput
+          value={spoilerText}
+          onChangeText={setSpoilerText}
+          maxLength={CONTENT_WARNING_MAX}
+          placeholder={t("contentWarning.placeholder")}
+          placeholderTextColor="#8B8D90"
+          className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm mb-3"
+        />
 
         {/* Description — only shown if the post has a description */}
         {initialArticleBody !== undefined && <View className="mb-3">

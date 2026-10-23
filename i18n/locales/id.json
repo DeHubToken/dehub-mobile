@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Peringatan konten",
+    "placeholder": "Tulis peringatan Anda di sini",
+    "add": "Tambahkan peringatan konten",
+    "remove": "Hapus peringatan konten",
+    "show": "Tampilkan postingan"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Tambahkan deskripsi",

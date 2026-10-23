@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Amaran kandungan",
+    "placeholder": "Tulis amaran anda di sini",
+    "add": "Tambah amaran kandungan",
+    "remove": "Buang amaran kandungan",
+    "show": "Tunjukkan siaran"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Tambah penerangan",

@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Mazmun barada duýduryş",
+    "placeholder": "Duýduryşyňyzy şu ýere ýazyň",
+    "add": "Mazmun barada duýduryş goş",
+    "remove": "Mazmun barada duýduryşy aýyr",
+    "show": "Ýazgyny görkez"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Düşündiriş goş",

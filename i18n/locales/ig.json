@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Ịdọ aka ná ntị maka ọdịnaya",
+    "placeholder": "Dee ịdọ aka ná ntị gị ebe a",
+    "add": "Tinye ịdọ aka ná ntị maka ọdịnaya",
+    "remove": "Wepụ ịdọ aka ná ntị maka ọdịnaya",
+    "show": "Gosi ozi"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Tinye nkọwa",

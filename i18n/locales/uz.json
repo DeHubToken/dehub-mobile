@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Kontent haqida ogohlantirish",
+    "placeholder": "Ogohlantirishingizni shu yerga yozing",
+    "add": "Kontent haqida ogohlantirish qoʻshish",
+    "remove": "Kontent haqidagi ogohlantirishni olib tashlash",
+    "show": "Postni koʻrsatish"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Tavsif qoʻshish",

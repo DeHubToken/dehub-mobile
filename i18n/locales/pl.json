@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Ostrzeżenie o treści",
+    "placeholder": "Tu wpisz swoje ostrzeżenie",
+    "add": "Dodaj ostrzeżenie o treści",
+    "remove": "Usuń ostrzeżenie o treści",
+    "show": "Pokaż post"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Dodaj opis",
