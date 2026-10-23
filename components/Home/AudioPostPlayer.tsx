@@ -1186,7 +1186,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     if (studio) return (
       <View style={[styles.glassWindow, { padding: 12, borderRadius: 26, borderWidth: 1, borderColor: theme === 'glass' ? 'rgba(225,255,255,.3)' : 'rgba(255,255,255,.14)', backgroundColor: theme === 'glass' ? 'rgba(8,35,42,.18)' : '#101215' }, mode === 'fullscreen' && { width: '100%', maxWidth: 640, alignSelf: 'center' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 12 }]}>
-        {artworkUrl && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10 }} />}
+        {artworkUrl && !artworkUrl.split('?')[0].endsWith('/placeholder.svg') && <Image source={{ uri: artworkUrl }} style={{ width: 52, height: 52, borderRadius: 10 }} />}
         <View style={{ flex: 1, minWidth: 0 }}>
         <Text numberOfLines={1} style={[styles.glassTitle, compactGlass && { fontSize: 14 }]}>{resolvedTitle}</Text>
         <Text numberOfLines={1} style={[styles.glassArtist, compactGlass && { fontSize: 8 }]}>{resolvedArtist}</Text>
