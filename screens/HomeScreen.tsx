@@ -35,6 +35,8 @@ import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
 import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
+import { useAppPrefs } from "../hooks/useAppPrefs";
+import { useShortsServerSync } from "../hooks/useShortsEnabled";
 import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
 import FeedPillGlow from '../components/Home/FeedPillGlow';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
@@ -89,9 +91,11 @@ const DEFAULT_FILTERS: FeedFilters = {
 // instead of waiting for a fling to be recognised and then swapping lists.
 // Indexed against FeedNavBar's NAV_ITEMS — the two must stay in the same order,
 // which is also web's FEED_TABS order.
-const TAB_ORDER = ["all", "short", "feed-images", "video", "feed-audio", "live"] as const;
-type TabKey = (typeof TAB_ORDER)[number];
-const LAST_INDEX = TAB_ORDER.length - 1;
+// Settings > Content can turn Shorts off, which drops its tab (web hides it the
+// same way); the component then works from TAB_ORDER_NO_SHORTS.
+const ALL_TAB_ORDER = ["all", "short", "feed-images", "video", "feed-audio", "live"] as const;
+type TabKey = (typeof ALL_TAB_ORDER)[number];
+const TAB_ORDER_NO_SHORTS: readonly TabKey[] = ALL_TAB_ORDER.filter((key) => key !== "short");
 
 // Keep the slot and React state, but draw a page only while it intersects the
 // pager viewport. Idle neighbours otherwise retain hundreds of GPU textures
@@ -134,8 +138,8 @@ const VELOCITY_PROJECTION = 0.12;
  * tab of their own, so they render in the Home slot — previously they matched
  * no list at all and left the screen blank.
  */
-const indexForPostType = (postType: PostTypeOption): number => {
-  const i = TAB_ORDER.indexOf(postType as TabKey);
+const indexForPostType = (postType: PostTypeOption, tabOrder: readonly TabKey[]): number => {
+  const i = tabOrder.indexOf(postType as TabKey);
   return i >= 0 ? i : 0;
 };
 
@@ -221,7 +225,11 @@ export default function HomeScreen() {
   // scrolling — see PagerGestureContext.
   const pagerGestureRef = useRef<GestureType | undefined>(undefined);
 
-  const activeIndex = indexForPostType(filters.postType);
+  useShortsServerSync();
+  const { shorts: shortsEnabled } = useAppPrefs();
+  const TAB_ORDER: readonly TabKey[] = shortsEnabled ? ALL_TAB_ORDER : TAB_ORDER_NO_SHORTS;
+  const LAST_INDEX = TAB_ORDER.length - 1;
+  const activeIndex = indexForPostType(filters.postType, TAB_ORDER);
   const activeTabKey = TAB_ORDER[activeIndex];
   // Starting and stopping video playback is the expensive half of a tab switch
   // and none of it is on screen yet — the pager translate already moved. Let it
@@ -244,7 +252,7 @@ export default function HomeScreen() {
     if (activeIndex > 0) next.add(TAB_ORDER[activeIndex - 1]);
     if (activeIndex < LAST_INDEX) next.add(TAB_ORDER[activeIndex + 1]);
     return next;
-  }, [mountedTabs, activeIndex]);
+  }, [mountedTabs, activeIndex, TAB_ORDER, LAST_INDEX]);
 
   useEffect(() => {
     if (visibleTabs.size !== mountedTabs.size) setMountedTabs(visibleTabs);
@@ -325,7 +333,7 @@ export default function HomeScreen() {
   // of their own, so it is the one list whose postType isn't simply its own key.
   const homeSlotPostType = useMemo<FeedPostType | undefined>(
     () =>
-      TAB_ORDER.includes(filters.postType as TabKey)
+      ALL_TAB_ORDER.includes(filters.postType as TabKey)
         ? undefined
         : (filters.postType as FeedPostType),
     [filters.postType],
@@ -436,7 +444,7 @@ export default function HomeScreen() {
       animatedToRef.current = index;
       setPostType(TAB_ORDER[index]);
     },
-    [setPostType],
+    [setPostType, TAB_ORDER],
   );
 
   const pagerGesture = useMemo(
@@ -476,7 +484,7 @@ export default function HomeScreen() {
           progress.value = withTiming(target, PAGE_ANIM);
           if (target !== from) runOnJS(commitIndex)(target);
         }),
-    [pageWidth, commitIndex, progress, dragStart, showHeader],
+    [pageWidth, commitIndex, progress, dragStart, showHeader, LAST_INDEX],
   );
   const homeGestures = useMemo(() => Gesture.Race(pagerGesture, homePull.gesture), [pagerGesture, homePull.gesture]);
 
@@ -550,7 +558,7 @@ export default function HomeScreen() {
   const handleIslandSelect = useCallback((index: number) => {
     setIslandMenuOpen(false);
     handleNavPostTypeChange(TAB_ORDER[index]);
-  }, [handleNavPostTypeChange]);
+  }, [handleNavPostTypeChange, TAB_ORDER]);
   const handleIslandFilters = useCallback(() => {
     setIslandMenuOpen(false);
     setFilterPanelVisible(true);

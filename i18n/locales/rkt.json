@@ -1620,6 +1620,8 @@
     }
   },
   "notifications": {
+    "stores": "দোকান",
+    "features": "ফিচার",
     "title": "খবর",
     "loadFailed": "নোটিফিকেশন লোড হইল না",
     "markAllRead": "সব পড়া মার্ক করো",

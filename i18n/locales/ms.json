@@ -1819,6 +1819,8 @@
     }
   },
   "notifications": {
+    "stores": "Kedai",
+    "features": "Ciri",
     "title": "Pemberitahuan",
     "loadFailed": "Pemberitahuan tidak dapat dimuatkan",
     "markAllRead": "Tandai semua sudah dibaca",

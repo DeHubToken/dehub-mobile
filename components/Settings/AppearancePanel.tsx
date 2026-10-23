@@ -29,6 +29,7 @@ import ThemeColorPicker from './ThemeColorPicker';
 import { hasThemeColor } from '../../theme/themeColor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
 import { useDataSaver, setDataSaverPref } from '../../hooks/useDataSaver';
+import { useShortsEnabled } from '../../hooks/useShortsEnabled';
 import { useHighQualityImages, setHighQualityImages } from '../../libs/cdnImage';
 import {
   getCreatorPlaybackRateCount,
@@ -43,6 +44,7 @@ const AppearancePanel: React.FC = () => {
   const { colors } = useAppTheme();
   const { pref: dataSaverPref } = useDataSaver();
   const highQuality = useHighQualityImages();
+  const { shortsEnabled, setShortsEnabled, saving: savingShorts } = useShortsEnabled();
   const [languageModalVisible, setLanguageModalVisible] = useState(false);
   const [currentLang, setCurrentLang] = useState(i18nInstance.language);
 
@@ -181,6 +183,19 @@ const AppearancePanel: React.FC = () => {
           value={highQuality}
           onValueChange={setHighQualityImages}
         />
+        <Divider />
+        {/* Account-level and shared with web: off hides the Shorts tab and the
+            Shorts carousels on Home. */}
+        <SettingsAnchor id="shorts">
+          <SettingsToggleRow
+            icon="Shorts"
+            label={t('settings.shortsEnabled', 'Shorts')}
+            description={t('settings.shortsEnabledDesc', 'Show the Shorts feed tab and Shorts carousels on Home.')}
+            value={shortsEnabled}
+            onValueChange={(v) => void setShortsEnabled(v)}
+            disabled={savingShorts}
+          />
+        </SettingsAnchor>
         <Divider />
         <SettingsToggleRow
           icon="Hand"

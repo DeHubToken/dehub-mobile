@@ -1558,6 +1558,8 @@
     }
   },
   "notifications": {
+    "stores": "દુકાનો",
+    "features": "સુવિધાઓ",
     "title": "સૂચનાઓ",
     "loadFailed": "સૂચનાઓ લોડ થઈ શકી નથી",
     "markAllRead": "બધા વાંચ્યા તરીકે ચિહ્નિત કરો",

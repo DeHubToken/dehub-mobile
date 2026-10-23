@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "Ngā toa",
+    "features": "Ngā āhuatanga",
     "title": "Whakamōhio",
     "loadFailed": "Kāore i taea te uta i ngā whakamōhiotanga",
     "markAllRead": "Tohu katoa hei kua pānui",

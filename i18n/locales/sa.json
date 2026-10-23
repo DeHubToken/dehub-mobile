@@ -1554,6 +1554,8 @@
     }
   },
   "notifications": {
+    "stores": "आपणाः",
+    "features": "विशेषताः",
     "title": "सूचनाः",
     "loadFailed": "सूचनाः आनेतुं न शक्यन्ते",
     "markAllRead": "सर्वाः पठिताः इति चिह्नयतु",

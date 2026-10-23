@@ -1559,6 +1559,8 @@
     }
   },
   "notifications": {
+    "stores": "스토어",
+    "features": "기능",
     "title": "알림",
     "loadFailed": "알림을 불러올 수 없습니다",
     "markAllRead": "모두 읽음 처리",

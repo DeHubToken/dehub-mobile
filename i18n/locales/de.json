@@ -1606,6 +1606,8 @@
     }
   },
   "notifications": {
+    "stores": "Shops",
+    "features": "Funktionen",
     "title": "Benachrichtigungen",
     "loadFailed": "Benachrichtigungen konnten nicht geladen werden",
     "markAllRead": "Alle als gelesen markieren",
@@ -3293,6 +3295,7 @@
       "years": "{{count}} J."
     },
     "chatPanel": {
+      "jumpToLatest": "Zu den neuesten",
       "anon": "Anon",
       "edited": "bearbeitet",
       "deleteTitle": "Nachricht löschen",

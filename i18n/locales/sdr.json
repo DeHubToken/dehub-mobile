@@ -1557,6 +1557,8 @@
     }
   },
   "notifications": {
+    "stores": "دکان",
+    "features": "خاصیت",
     "title": "خبر",
     "loadFailed": "सूचना लोड नाय होय सकलक",
     "markAllRead": "سب پڑھا نشان لگاؤ",

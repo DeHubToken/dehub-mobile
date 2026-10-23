@@ -26,6 +26,7 @@ import {
   pinCommunityMessage,
 } from "../services/communities.service";
 import { communityErrorMessage } from "../libs/community-permissions";
+import { notifyCommunityMentions } from "../libs/community-mention-notify";
 import { toastError, toastSuccess } from "../libs/toast";
 import { createLogger } from "../libs/logger";
 import type { CommunityChatMessage } from "../types/community";
@@ -191,8 +192,8 @@ export function useCommunityChat(
         reactions: {},
       };
 
-      const { error } = await withWalletHeader(
-        supabase.from("community_chat_messages").insert(msg as any),
+      const { data: inserted, error } = await withWalletHeader(
+        supabase.from("community_chat_messages").insert(msg as any).select("id").single(),
         walletAddress,
       );
       if (error) {
@@ -205,6 +206,11 @@ export function useCommunityChat(
       // No realtime echo in a private community: fetch the new tail now rather
       // than leaving the sender waiting on the next poll.
       if (isPrivate) void queryClient.invalidateQueries({ queryKey: key });
+      // Fire and forget: a failed notify must never read as a failed send.
+      const messageId = (inserted as { id?: string } | null)?.id;
+      if (messageId) {
+        void notifyCommunityMentions({ communityId, messageId, content, walletAddress });
+      }
     },
     [communityId, walletAddress, user, isPrivate, queryClient, key],
   );

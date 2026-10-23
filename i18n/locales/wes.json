@@ -1541,6 +1541,8 @@
     }
   },
   "notifications": {
+    "stores": "Store dem",
+    "features": "Feature dem",
     "title": "Notification dem",
     "loadFailed": "We no fit load notifications",
     "markAllRead": "Mark ol as read",

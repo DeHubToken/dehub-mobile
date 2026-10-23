@@ -1568,6 +1568,8 @@
     }
   },
   "notifications": {
+    "stores": "Winkels",
+    "features": "Kenmerke",
     "title": "Kennisgewings",
     "loadFailed": "Kon nie kennisgewings laai nie",
     "markAllRead": "Merk alles as gelees",

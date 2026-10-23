@@ -1561,6 +1561,8 @@
     }
   },
   "notifications": {
+    "stores": "Toko",
+    "features": "Fitur",
     "title": "Notifikasi",
     "loadFailed": "Notifikasi tidak dapat dimuat",
     "markAllRead": "Tandai semua dibaca",

@@ -1558,6 +1558,8 @@
     }
   },
   "notifications": {
+    "stores": "المحلات",
+    "features": "الخصائص",
     "title": "الإشعارات",
     "loadFailed": "ما قدرناش نجيبو الإشعارات",
     "markAllRead": "علم كلشي كمقروء",

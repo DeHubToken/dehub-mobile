@@ -1558,6 +1558,8 @@
     }
   },
   "notifications": {
+    "stores": "المتاجر",
+    "features": "الميزات",
     "title": "الإشعارات",
     "loadFailed": "مقدرناش نجيب الإشعارات",
     "markAllRead": "علّم الكل مقروء",

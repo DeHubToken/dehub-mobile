@@ -1601,6 +1601,8 @@
     "addBookmark": "Pridať záložku"
   },
   "notifications": {
+    "stores": "Obchody",
+    "features": "Funkcie",
     "title": "Upozornenia",
     "loadFailed": "Upozornenia sa nepodarilo načítať",
     "markAllRead": "Označiť všetko ako prečítané",

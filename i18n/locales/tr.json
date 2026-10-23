@@ -333,6 +333,8 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "shortsEnabledDesc": "Kısa videolar (Shorts) sekmesini ve Anasayfadaki Shorts karuselini göster.",
+    "shortsEnabled": "Kısa Videolar",
     "postingChain": "Gönderi blokzinciri",
     "showOnline": "Çevrimiçi olduğumda göster",
     "showOnlineDesc": "Mesaj gönderdiğiniz kişiler, DeHub'ı kullanırken adınızın yanında yeşil bir nokta görür",
@@ -1676,6 +1678,8 @@
     }
   },
   "notifications": {
+    "stores": "Mağazalar",
+    "features": "Özellikler",
     "title": "Bildirimler",
     "loadFailed": "Bildirimler yüklenemedi",
     "markAllRead": "Tümünü okundu işaretle",
@@ -3520,6 +3524,7 @@
       "years": "{{count}} yıl"
     },
     "chatPanel": {
+      "jumpToLatest": "En yeniye git",
       "anon": "Anonim",
       "edited": "düzenlendi",
       "deleteTitle": "Mesajı sil",

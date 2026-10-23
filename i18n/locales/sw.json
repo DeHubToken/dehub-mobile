@@ -1560,6 +1560,8 @@
     }
   },
   "notifications": {
+    "stores": "Maduka",
+    "features": "Vipengele",
     "title": "Arifa",
     "loadFailed": "Arifa hazikuweza kupakiwa",
     "markAllRead": "Tia alama zote kuwa zimesomwa",

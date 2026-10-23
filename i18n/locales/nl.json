@@ -333,6 +333,8 @@
     "postCount_other": "{{count}} berichten"
   },
   "settings": {
+    "shortsEnabledDesc": "Toon het tabblad Shorts-feed en Shorts-carousels op Home.",
+    "shortsEnabled": "Korte broeken",
     "postingChain": "Blockchain voor berichten",
     "showOnline": "Laat zien wanneer ik online ben",
     "showOnlineDesc": "Mensen die je een bericht stuurt, zien een groene stip naast je naam terwijl je DeHub gebruikt",
@@ -1866,6 +1868,8 @@
     }
   },
   "notifications": {
+    "stores": "Winkels",
+    "features": "Functies",
     "title": "Meldingen",
     "loadFailed": "Meldingen konden niet worden geladen",
     "markAllRead": "Alles als gelezen markeren",
@@ -3710,6 +3714,7 @@
       "years": "{{count}} j"
     },
     "chatPanel": {
+      "jumpToLatest": "Naar nieuwste",
       "anon": "Anonymous",
       "edited": "bewerkt",
       "deleteTitle": "Bericht verwijderen",
