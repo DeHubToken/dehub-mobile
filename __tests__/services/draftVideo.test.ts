@@ -10,6 +10,15 @@ const mockUpload = jest.fn();
 jest.mock('../../libs/xhr-upload', () => ({
   xhrUploadFormData: (opts: any) => mockUpload(opts),
 }));
+const mockResumable = jest.fn();
+jest.mock('../../libs/resumable-upload', () => {
+  class ResumableUnsupportedError extends Error {}
+  return { ResumableUnsupportedError, resumableUploadFile: (opts: any) => mockResumable(opts) };
+});
+const unsupported = () => {
+  const { ResumableUnsupportedError } = jest.requireMock('../../libs/resumable-upload');
+  return Promise.reject(new ResumableUnsupportedError('not here'));
+};
 jest.mock('../../libs', () => ({ apiClient: { get: jest.fn(() => new Promise(() => {})) } }));
 jest.mock('../../libs/toast', () => ({ toastError: jest.fn() }));
 const mockUnsubscribe = jest.fn();
@@ -31,6 +40,31 @@ beforeEach(() => {
   jest.useRealTimers();
   mockUpload.mockReset();
   mockUnsubscribe.mockReset();
+  // The multipart cases below run with the resumable path unavailable.
+  mockResumable.mockReset();
+  mockResumable.mockImplementation(unsupported);
+});
+
+it('sends the video in resumable chunks when it can', async () => {
+  mockResumable.mockResolvedValue({ draftId: 'r1', status: 'processing' });
+  const key = startDraftVideo(media('file:///r.mp4'), 'video');
+
+  await expect(waitForDraftVideo(key, () => {}, { current: false })).resolves.toBe('r1');
+  expect(mockResumable).toHaveBeenCalledWith(
+    expect.objectContaining({ endpoint: '/draft_video/resumable', uri: 'file:///r.mp4', metadata: { postType: 'video' } }),
+  );
+  expect(mockUpload).not.toHaveBeenCalled();
+  releaseDraftVideo(key);
+});
+
+it('does not resend a file the resumable upload was refused for', async () => {
+  mockResumable.mockRejectedValue(Object.assign(new Error('not a video'), { status: 400 }));
+  const key = startDraftVideo(media('file:///bad.mp4'));
+
+  await expect(waitForDraftVideo(key, () => {}, { current: false })).resolves.toBeNull();
+  expect(getDraftVideo(key)?.phase).toBe('failed');
+  expect(mockUpload).not.toHaveBeenCalled();
+  releaseDraftVideo(key);
 });
 
 it('hands a finished upload to the post and follows its transcode', async () => {
@@ -63,7 +97,7 @@ it('falls back to the file when the server has no draft endpoint', async () => {
 
 it('drops an unclaimed draft when the composer lets go of it', () => {
   let opts: any;
-  mockUpload.mockImplementation((o: any) => {
+  mockResumable.mockImplementation((o: any) => {
     opts = o;
     return new Promise(() => {});
   });
