@@ -52,6 +52,7 @@ import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
 import StagesChart from "./StagesChart";
 import ChartShelf from "./ChartShelf";
+import RadioStage from "./RadioStage";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
 import { useAppTheme } from '../../context/ThemeContext';
@@ -275,7 +276,6 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               icon="Play"
               title={t("music.musicVideos")}
               count={videoChart.length}
-              onSeeAll={videoChart.length ? () => setTab("videos") : undefined}
               sorts={MUSIC_VIDEO_CHART_SORTS.map(option => ({ value: option.value, label: t(option.key, { defaultValue: option.fallback }) }))}
               sort={videoChartSort}
               onSort={setVideoChartSort}
@@ -301,7 +301,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
             />
           );
         case "radio":
-          return <RadioChart curated={curatedStations} onSeeAll={() => setTab("radio")} />;
+          return <RadioChart curated={curatedStations} />;
         case "audio":
           return (
             <ChartShelf
@@ -559,7 +559,7 @@ type RadioChartSort = "picks" | "played" | "voted" | "trending";
  * ranked by plays, votes or how fast it is climbing. The picked station
  * plays from its card.
  */
-const RadioChart: React.FC<{ curated: RadioStation[]; onSeeAll: () => void }> = ({ curated, onSeeAll }) => {
+const RadioChart: React.FC<{ curated: RadioStation[] }> = ({ curated }) => {
   const { t } = useTranslation();
   const [sort, setSort] = useState<RadioChartSort>("picks");
   const { data: top = [], isLoading } = useQuery({
@@ -577,7 +577,6 @@ const RadioChart: React.FC<{ curated: RadioStation[]; onSeeAll: () => void }> = 
     <ChartShelf
       icon="Radio"
       title={t("music.radioStations")}
-      onSeeAll={onSeeAll}
       sorts={[
         { value: "picks", label: t("music.radioPicks", { defaultValue: "Our picks" }) },
         { value: "played", label: t("music.mostPlayed", { defaultValue: "Most played" }) },
@@ -595,9 +594,11 @@ const RadioChart: React.FC<{ curated: RadioStation[]; onSeeAll: () => void }> = 
       loading={sort === "picks" ? curated.length === 0 : isLoading}
       emptyText={t("music.noStationsAvailable", { defaultValue: "No stations available" })}
       thumbs="square"
-      renderSelected={id => {
-        const station = stations.find(item => item.stationuuid === id);
-        return station ? <RadioStationCard station={station} variant="card" wide /> : null;
+      renderSelected={(id, { next }) => {
+        const index = stations.findIndex(item => item.stationuuid === id);
+        if (index < 0) return null;
+        const following = stations.length > 1 ? stations[(index + 1) % stations.length] : undefined;
+        return <RadioStage key={id} station={stations[index]} next={following} onNext={following ? next : undefined} />;
       }}
     />
   );
