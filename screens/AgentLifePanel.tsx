@@ -8,6 +8,7 @@ import { ScreenNames } from '../navigation/ScreenNames';
 
 type AgentLife = {
   sentient: boolean; has_persona: boolean; status: string | null; next_at: string | null; home: string | null;
+  daily?: { posts: number; target: number };
   events: { kind: string; content: string | null; target: string | null; created_at: string }[];
 };
 const clock = (iso: string) => new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -38,6 +39,7 @@ export function AgentLifePanel({ wallet, agentId }: { wallet: string; agentId: s
     </View>
     {toggle.isPending && toggle.variables && !data?.has_persona && <Text style={styles.text}>{t('agents.life.starting')}</Text>}
     {toggle.error && <Text accessibilityRole="alert" style={styles.error}>{toggle.error.message}</Text>}
+    {data?.sentient && data.daily && <Text style={styles.text}>{t('agents.life.daily', { defaultValue: 'Posts today: {{posts}} · Daily target: {{target}}', ...data.daily })}</Text>}
     {state && <Text style={styles.text}>{state}{data?.next_at ? ` · ${t('agents.life.next', { time: clock(data.next_at) })}` : ''}</Text>}
     {data?.sentient && <View style={styles.events}>
       <Text style={styles.label}>{t('agents.life.recent')}</Text>
