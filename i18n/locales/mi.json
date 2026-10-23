@@ -2554,6 +2554,10 @@
     "legal": "Ko nga utu utu he whakatairanga, he tuwhera hoki ki nga kaipupuri kaute DeHub 18 tau neke atu ranei, kaore he waahi e aukati ana i te ture a rohe. Kaore nga kaimahi DeHub, nga kirimana me o raatau kaainga e tika ana. Kaore e taea te whakawhiti i nga utu mo te moni ki te kore e whakahuatia, a, ko te panui a ia draw ake e mau ana i ona tikanga katoa."
   },
   "dao": {
+    "votingPowerNote": "E 7 nga ra te roa o te pooti. Ko te mana pooti ko te kohinga tohu a ia kaituku i te whakatuwheratanga o tenei tono. Me 10% te iti rawa o te hunga ka uru, me te whakaae kia nui ake i te paopao.",
+    "tokenAmount": "Te nui o te tohu",
+    "pricePerTokenUsd": "Utu mo ia tohu (USD)",
+    "offerToBuyTokens": "Tukua kia hoko DeHub tohu",
     "title": "Te Putea a te DAO",
     "subtitle": "Kotahi pēke, nā te hapori i tautoko, nā tōna pōtanga i whakapau",
     "contribute": "Tukua mai",

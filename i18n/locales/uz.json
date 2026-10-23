@@ -2581,6 +2581,10 @@
     "legal": "Sovrinli o'yinlar reklama xarakteriga ega va 18 yosh va undan katta bo'lgan DeHub hisob egalari uchun ochiq, mahalliy qonunlar taqiqlagan hollarda esa amal qilmaydi. DeHub xodimlari, pudratchilari va ularning oilalari ishtirok etish huquqiga ega emas. Sovrinlar, agar ko'rsatilmagan bo'lsa, naqd pulga almashtirilmaydi va har bir o'yinning o'z e'lonida uning to'liq shartlari ko'rsatilgan."
   },
   "dao": {
+    "votingPowerNote": "Ovoz berish 7 kun davom etadi. Ovoz berish kuchi ushbu taklif ochilganda har bir ishtirokchining kumulyativ token hissasi hisoblanadi. Kamida 10% ishtirok etishi kerak va \"Qabul qilish\" \"Rad etish\"dan ustun bo'lishi kerak.",
+    "tokenAmount": "Token miqdori",
+    "pricePerTokenUsd": "Token narxi (USD)",
+    "offerToBuyTokens": "DeHub tokenlarini sotib olishni taklif qiling",
     "title": "DAO xazinasi",
     "subtitle": "Bir hamyon, hamjamiyat tomonidan moliyalashtirilgan, uning ovozi bilan sarflangan",
     "contribute": "Hissa qo'shing",

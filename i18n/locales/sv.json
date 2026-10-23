@@ -2567,6 +2567,10 @@
     "legal": "Prisdragningar är reklam och öppna för DeHub-kontoinnehavare som är 18 år eller äldre, ogiltiga där lokal lagstiftning förbjuder dem. DeHub-personal, entreprenörer och deras hushåll är inte berättigade. Priser kan inte bytas mot kontanter om inte annat anges, och varje dragnings eget tillkännagivande har sina fullständiga villkor."
   },
   "dao": {
+    "votingPowerNote": "Omröstningen varar i 7 dagar. Röstningskraft är varje bidragsgivares kumulativa tokenbidrag när denna förfrågan öppnas. Minst 10 % måste delta och Godkänn måste slå Avvisa.",
+    "tokenAmount": "Tokenbelopp",
+    "pricePerTokenUsd": "Pris per token (USD)",
+    "offerToBuyTokens": "Erbjudande att köpa DeHub-tokens",
     "title": "DAO-kassan",
     "subtitle": "En plånbok, finansierad av gemenskapen, spenderad genom dess röst",
     "contribute": "Bidra",

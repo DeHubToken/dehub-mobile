@@ -2575,6 +2575,10 @@
     "legal": "Os sorteios são promocionais e abertos a titulares de contas DeHub com 18 anos ou mais, sem efeito onde a lei local os proíbe. O pessoal da DeHub, os empreiteiros e os seus agregados familiares não são elegíveis. Os prêmios não podem ser trocados por dinheiro, a menos que indicado, e o anúncio de cada sorteio traz seus termos completos."
   },
   "dao": {
+    "votingPowerNote": "A votação dura 7 dias. O poder de voto é a contribuição cumulativa de tokens de cada colaborador quando esta proposta é aberta. Pelo menos 10% devem participar e Aceitar deve superar Rejeitar.",
+    "tokenAmount": "Quantidade de tokens",
+    "pricePerTokenUsd": "Preço por token (USD)",
+    "offerToBuyTokens": "Oferecer para comprar tokens DeHub",
     "title": "Tesouraria da DAO",
     "subtitle": "Uma carteira, financiada pela comunidade, gasta por seu voto",
     "contribute": "Contribuir",

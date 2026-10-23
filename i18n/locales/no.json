@@ -2563,6 +2563,10 @@
     "legal": "Premietrekningene er reklame og åpne for DeHub-kontoinnehavere som er 18 år eller eldre, og er ugyldige der lokale lover forbyr dem. DeHub-ansatte, kontraktører og deres husstander er ikke kvalifisert. Premiene kan ikke byttes mot kontanter med mindre annet er oppgitt, og hver treknings kunngjøring inneholder de fullstendige vilkårene."
   },
   "dao": {
+    "votingPowerNote": "Avstemningen varer i 7 dager. Stemmekraft er hver bidragsyters kumulative token-bidrag når dette forslaget åpnes. Minst 10 % må delta, og Godta må slå Avvis.",
+    "tokenAmount": "Token-beløp",
+    "pricePerTokenUsd": "Pris per token (USD)",
+    "offerToBuyTokens": "Tilby å kjøpe DeHub-tokens",
     "title": "DAO-kasse",
     "subtitle": "Én lommebok, finansiert av fellesskapet, brukt etter dets stemme",
     "contribute": "Bidra",

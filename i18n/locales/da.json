@@ -2567,6 +2567,10 @@
     "legal": "Præmietrækninger er salgsfremmende og åbne for DeHub-kontoindehavere på 18 år eller derover, ugyldige, hvor lokal lovgivning forbyder dem. DeHub-personale, kontrahenter og deres husstande er ikke kvalificerede. Præmier kan ikke ombyttes til kontanter, medmindre det er angivet, og hver træknings egen meddelelse bærer sine fulde vilkår."
   },
   "dao": {
+    "votingPowerNote": "Afstemning varer 7 dage. Stemmekraft er hver bidragyders kumulative tokenbidrag, når dette forslag åbner. Mindst 10% skal deltage, og Accept skal slå Reject.",
+    "tokenAmount": "Tokenbeløb",
+    "pricePerTokenUsd": "Pris pr. token (USD)",
+    "offerToBuyTokens": "Tilbud om at købe DeHub tokens",
     "title": "DAO-kasse",
     "subtitle": "Én wallet, finansieret af fællesskabet, brugt af dets stemme",
     "contribute": "Bidrag",

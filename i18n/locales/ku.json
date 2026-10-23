@@ -2555,6 +2555,10 @@
     "legal": "Pêşkêşkirinên xelatan promosyonî ne û ji bo xwediyên hesabên DeHub ên 18 salî û jor vekirî ne, li cihên ku qanûnên herêmî wan qedexe dikin ev yek betal e. Karmend, peymankar û malbatên wan ên DeHub ne mafdar in. Xelat bi pereyan nayên guhertin heya ku nehatibe diyarkirin, û daxuyaniya her pêşkêşkirinê şertên xwe yên tevahî vedihewîne."
   },
   "dao": {
+    "votingPowerNote": "دەنگدانەکە ٧ ڕۆژ دەخایەنێت. هێزی دەنگدان کۆی بەشداری توکنی هەر بەشدارێکە کاتێک ئەم پێشنیارە کراوەتەوە. لایەنی کەم ١٠% دەبێت بەشداری بکات و پەسەندکردن دەبێت لە ڕەتکردنەکان زیاتر بێت.",
+    "tokenAmount": "بڕی توکن",
+    "pricePerTokenUsd": "نرخی هەر توکنێک (USD)",
+    "offerToBuyTokens": "پێشکەشکردنی کڕینی DeHub tokens",
     "title": "Xezîneya DAO",
     "subtitle": "Yek berîk, ji aliyê civakê ve tê dagirtin, bi dengê wê tê xerckirin",
     "contribute": "Beşdarî bike",

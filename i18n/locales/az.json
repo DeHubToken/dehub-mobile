@@ -2563,6 +2563,10 @@
     "legal": "Mükafat tirajları reklam xarakteri daşıyır və 18 və ya daha çox yaşı olan DeHub hesab sahibləri üçün açıqdır, yerli qanunun qadağan etdiyi yerlərdə etibarsızdır. DeHub heyəti, podratçılar və onların ev təsərrüfatları tələblərə cavab vermir. Göstərilməyənə qədər mükafatlar nağd pula dəyişdirilə bilməz və hər tirajın öz elanı onun tam şərtlərini daşıyır."
   },
   "dao": {
+    "votingPowerNote": "Səsvermə 7 gün davam edir. Səsvermə gücü, bu təklif açıldıqda hər bir kontribyutorun ümumi token töhfəsidir. Minimum 10% iştirak etməli və Qəbul Rəddi üstələməlidir.",
+    "tokenAmount": "Token miqdarı",
+    "pricePerTokenUsd": "Token başına qiymət (USD)",
+    "offerToBuyTokens": "DeHub tokenləri almağı təklif edin",
     "title": "DAO Xəzinəsi",
     "subtitle": "Bir cüzdan, icma tərəfindən maliyyələşdirilir, onun səsverməsi ilə xərclənir",
     "contribute": "Qatılın",

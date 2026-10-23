@@ -2563,6 +2563,10 @@
     "legal": "Balvu izlozes ir veicinošas un pieejamas DeHub kontu īpašniekiem no 18 gadu vecuma, un tās nav spēkā, ja to aizliedz vietējie tiesību akti. DeHub darbinieki, darbuzņēmēji un viņu mājsaimniecības nav piemēroti. Balvas nav apmaināmas pret skaidru naudu, ja vien nav norādīts citādi, un katras izlozes paziņojumam ir pilni noteikumi."
   },
   "dao": {
+    "votingPowerNote": "Balsošana ilgst 7 dienas. Balsošanas spēks ir katra dalībnieka kumulatīvais žetonu ieguldījums, kad šis priekšlikums tiek atvērts. Vismaz 10% ir jāpiedalās, un \"Pieņemt\" ir jāpārspēj \"Noraidīt\".",
+    "tokenAmount": "Žetonu daudzums",
+    "pricePerTokenUsd": "Cena par žetonu (USD)",
+    "offerToBuyTokens": "Piedāvājums iegādāties DeHub žetonus",
     "title": "DAO kase",
     "subtitle": "Viena maku, ko finansē kopiena, ko tērē tās balsojums",
     "contribute": "Sniegt ieguldījumu",

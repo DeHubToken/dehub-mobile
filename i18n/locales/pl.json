@@ -2565,6 +2565,10 @@
     "legal": "Losowania nagród mają charakter promocyjny i są dostępne dla posiadaczy kont DeHub w wieku co najmniej 18 lat, tracą ważność, jeśli lokalne prawo tego zabrania. Pracownicy DeHub, wykonawcy i ich gospodarstwa domowe nie kwalifikują się. Nagrody nie podlegają wymianie na gotówkę, chyba że określono inaczej, a ogłoszenie każdego losowania zawiera pełne warunki."
   },
   "dao": {
+    "votingPowerNote": "Głosowanie trwa 7 dni. Siła głosu to skumulowany wkład tokenów każdego uczestnika w momencie otwarcia tego wniosku. Musi wziąć udział co najmniej 10%, a Akceptacja musi przewyższyć Odrzucenie.",
+    "tokenAmount": "Ilość tokenów",
+    "pricePerTokenUsd": "Cena za token (USD)",
+    "offerToBuyTokens": "Oferta zakupu tokenów DeHub",
     "title": "Skarbiec DAO",
     "subtitle": "Jeden portfel, finansowany przez społeczność, wydawany przez jej głos",
     "contribute": "Wspieraj",

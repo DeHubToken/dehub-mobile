@@ -2658,6 +2658,10 @@
     "legal": "Žrebovanie cien je propagačné a otvorené pre majiteľov účtov DeHub vo veku 18 rokov a viac, neplatí tam, kde to miestne zákony zakazujú. Zamestnanci spoločnosti DeHub, dodávatelia a ich domácnosti nie sú oprávnení. Ceny nie sú vymeniteľné za hotovosť, pokiaľ nie je uvedené inak, a každé vlastné oznámenie o žrebovaní má svoje plné podmienky."
   },
   "dao": {
+    "votingPowerNote": "Hlasovanie trvá 7 dní. Hlasovacia sila je kumulatívny príspevok tokenov každého prispievateľa v čase otvorenia tohto návrhu. Musí sa zúčastniť najmenej 10 % a „Prijať“ musí prevážiť nad „Odmietnuť“.",
+    "tokenAmount": "Počet tokenov",
+    "pricePerTokenUsd": "Cena za token (USD)",
+    "offerToBuyTokens": "Ponuka na kúpu tokenov DeHub",
     "title": "DAO pokladnica",
     "subtitle": "Jedna peňaženka, financovaná komunitou, míňaná jej hlasovaním",
     "contribute": "Prispejte",

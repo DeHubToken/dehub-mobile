@@ -2554,6 +2554,10 @@
     "legal": "Àwọn àmì ẹ̀yẹ náà jẹ́ ìpolówó àti ṣíṣí sílẹ̀ fún àwọn tó ní àkọsílẹ̀ DeHub tí wọ́n ti pé ọmọ ọdún méjìdínlógún tàbí jù bẹ́ẹ̀ lọ, kò sí níbi tí òfin àdúgbò ti fòfin de wọn. Àwọn òṣìṣẹ́ DeHub, àwọn agbẹjọ́rò àti àwọn ilé wọn kò tóótun. Àwọn èrè kì í ṣe pàṣípààrọ̀ fún owó àyàfi tí wọ́n bá sọ, àti pé ìkéde ara ẹni kọ̀ọ̀kan ní àwọn ìlànà rẹ̀."
   },
   "dao": {
+    "votingPowerNote": "Ìbò máa ń gba ọjọ́ 7. Agbára ìbò ni ìfowópamọ́ àkójọpọ̀ àwọn olùpínlẹ̀ kọ̀ọ̀kan nígbà tí àbá yìí bá ṣí sílẹ̀. Ó kéré tán 10% gbọdọ̀ kópa kí wọ́n sì gbà á gbọdọ̀ ṣẹ́gun Reject.",
+    "tokenAmount": "Iye tí a fi àmì hàn",
+    "pricePerTokenUsd": "Iye owo fun ami (USD)",
+    "offerToBuyTokens": "Pese lati ra awọn ami DeHub",
     "title": "Ìṣúra DAO",
     "subtitle": "Akọọlẹ kan, ti agbegbe nṣe onigbọwọ, ti a lo nipasẹ idibo wọn",
     "contribute": "Ṣe alabapin",

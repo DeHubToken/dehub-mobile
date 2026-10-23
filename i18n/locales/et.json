@@ -2563,6 +2563,10 @@
     "legal": "Auhindade loosimine on reklaam ja avatud vähemalt 18-aastastele DeHubi kontoomanikele. Loosimine on tühine, kui kohalikud seadused seda keelavad. DeHubi töötajad, töövõtjad ja nende leibkonnad ei vasta nõuetele. Auhindu ei saa sularaha vastu vahetada, välja arvatud juhul, kui see on märgitud, ja iga loosimise enda teadaanne sisaldab kõiki selle tingimusi."
   },
   "dao": {
+    "votingPowerNote": "Hääletamine kestab 7 päeva. Hääletusõigus on iga kaastöötaja kumulatiivne žetoonide panus, kui see ettepanek avatakse. Vähemalt 10% peab osalema ja \"Nõustun\" peab olema \"Keeldun\" ees.",
+    "tokenAmount": "Žetoonide kogus",
+    "pricePerTokenUsd": "Hind žetooni kohta (USD)",
+    "offerToBuyTokens": "Pakkumine DeHubi žetoonide ostmiseks",
     "title": "DAO rahakott",
     "subtitle": "Üks rahakott, mida rahastab kogukond, kulutatakse selle hääletusega",
     "contribute": "Panusta",
