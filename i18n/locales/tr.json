@@ -6635,7 +6635,11 @@
     "noTrendingThisWeek": "Bu hafta trend içerik yok",
     "closeFilterOptions": "Filtre seçeneklerini kapat",
     "openFilterOptions": "Filtre seçeneklerini aç",
-    "fillQuery": "Aramaya \"{{query}}\" yaz"
+    "fillQuery": "Aramaya \"{{query}}\" yaz",
+    "clearHistory": "Geçmişi temizle",
+    "clearHistoryTitle": "Arama geçmişi temizlensin mi?",
+    "clearHistoryBody": "Bu, tüm son aramalarını kaldırır.",
+    "removeFromHistory": "\"{{query}}\" aramasını geçmişten kaldır"
   },
   "notifPrompt": {
     "stayInLoop": "Haberdar ol",

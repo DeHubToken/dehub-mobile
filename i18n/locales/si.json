@@ -6143,7 +6143,11 @@
     "noTrendingThisWeek": "මෙම සතියේ ජනප්‍රිය අන්තර්ගතයක් නැත",
     "closeFilterOptions": "පෙරහන් විකල්ප වසන්න",
     "openFilterOptions": "පෙරහන් විකල්ප විවෘත කරන්න",
-    "fillQuery": "සෙවුමට \"{{query}}\" ඇතුළත් කරන්න"
+    "fillQuery": "සෙවුමට \"{{query}}\" ඇතුළත් කරන්න",
+    "clearHistory": "ඉතිහාසය හිස් කරන්න",
+    "clearHistoryTitle": "සෙවුම් ඉතිහාසය හිස් කරන්නද?",
+    "clearHistoryBody": "මෙය ඔබගේ මෑත සෙවුම් සියල්ල ඉවත් කරයි.",
+    "removeFromHistory": "\"{{query}}\" ඉතිහාසයෙන් ඉවත් කරන්න"
   },
   "notifPrompt": {
     "stayInLoop": "දැනුවත්ව සිටින්න",

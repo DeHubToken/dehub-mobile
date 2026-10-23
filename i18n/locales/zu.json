@@ -6179,7 +6179,11 @@
     "noTrendingThisWeek": "Awekho okuqukethwe okuthrendayo ngalesi sikhathi",
     "closeFilterOptions": "Vala izinketho zokuhlunga",
     "openFilterOptions": "Vula izinketho zokuhlunga",
-    "fillQuery": "Faka \"{{query}}\" ebhokisini lokusesha"
+    "fillQuery": "Faka \"{{query}}\" ebhokisini lokusesha",
+    "clearHistory": "Sula umlando",
+    "clearHistoryTitle": "Sula umlando wokusesha?",
+    "clearHistoryBody": "Lokhu kususa konke ukusesha kwakho kwakamuva.",
+    "removeFromHistory": "Susa \"{{query}}\" emlandweni"
   },
   "notifPrompt": {
     "stayInLoop": "Hlala wazi",

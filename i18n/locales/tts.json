@@ -6158,7 +6158,11 @@
     "noTrendingThisWeek": "ไม่มีเนื้อหาที่กำลังเป็นที่นิยมในสัปดาห์นี้",
     "closeFilterOptions": "ปิดตัวเลือกตัวกรอง",
     "openFilterOptions": "เปิดตัวเลือกตัวกรอง",
-    "fillQuery": "ใส่ \"{{query}}\" ในช่องค้นหา"
+    "fillQuery": "ใส่ \"{{query}}\" ในช่องค้นหา",
+    "clearHistory": "ล้างประวัติ",
+    "clearHistoryTitle": "ล้างประวัติการค้นหา?",
+    "clearHistoryBody": "การดำเนินการนี้จะลบการค้นหาล่าสุดทั้งหมดของคุณ",
+    "removeFromHistory": "ลบ \"{{query}}\" ออกจากประวัติ"
   },
   "notifPrompt": {
     "stayInLoop": "บ่พลาดตุกความเคลื่อนไหว",

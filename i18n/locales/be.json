@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "Няма папулярнага змесціва на гэтым тыдні",
     "closeFilterOptions": "Закрыць параметры фільтра",
     "openFilterOptions": "Адкрыць параметры фільтра",
-    "fillQuery": "Уставіць \"{{query}}\" у пошук"
+    "fillQuery": "Уставіць \"{{query}}\" у пошук",
+    "clearHistory": "Ачысціць гісторыю",
+    "clearHistoryTitle": "Ачысціць гісторыю пошуку?",
+    "clearHistoryBody": "Гэта выдаліць усе вашы нядаўнія пошукі.",
+    "removeFromHistory": "Выдаліць «{{query}}» з гісторыі"
   },
   "notifPrompt": {
     "stayInLoop": "Будзьце ў курсе",

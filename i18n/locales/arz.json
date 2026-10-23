@@ -6162,7 +6162,11 @@
     "noTrendingThisWeek": "لا يوجد محتوى رائج هذا الأسبوع",
     "closeFilterOptions": "إغلاق خيارات التصفية",
     "openFilterOptions": "فتح خيارات التصفية",
-    "fillQuery": "حط \"{{query}}\" في خانة البحث"
+    "fillQuery": "حط \"{{query}}\" في خانة البحث",
+    "clearHistory": "مسح السجل",
+    "clearHistoryTitle": "مسح سجل البحث؟",
+    "clearHistoryBody": "سيؤدي هذا إلى إزالة جميع عمليات البحث الأخيرة.",
+    "removeFromHistory": "إزالة \"{{query}}\" من السجل"
   },
   "notifPrompt": {
     "stayInLoop": "فضل عارف",

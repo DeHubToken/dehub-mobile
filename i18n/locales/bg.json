@@ -6165,7 +6165,11 @@
     "noTrendingThisWeek": "Няма популярно съдържание тази седмица",
     "closeFilterOptions": "Затваряне на опциите за филтриране",
     "openFilterOptions": "Отваряне на опциите за филтриране",
-    "fillQuery": "Постави \"{{query}}\" в търсенето"
+    "fillQuery": "Постави \"{{query}}\" в търсенето",
+    "clearHistory": "Изчисти историята",
+    "clearHistoryTitle": "Да се изчисти ли историята на търсенията?",
+    "clearHistoryBody": "Това премахва всички ваши скорошни търсения.",
+    "removeFromHistory": "Премахни „{{query}}“ от историята"
   },
   "notifPrompt": {
     "stayInLoop": "Бъди в течение",

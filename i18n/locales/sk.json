@@ -6274,7 +6274,11 @@
     "noTrendingThisWeek": "Tento týždeň žiadny trendový obsah",
     "closeFilterOptions": "Zavrieť možnosti filtra",
     "openFilterOptions": "Otvoriť možnosti filtra",
-    "fillQuery": "Vložiť \"{{query}}\" do vyhľadávania"
+    "fillQuery": "Vložiť \"{{query}}\" do vyhľadávania",
+    "clearHistory": "Vymazať históriu",
+    "clearHistoryTitle": "Vymazať históriu vyhľadávania?",
+    "clearHistoryBody": "Týmto odstránite všetky nedávne vyhľadávania.",
+    "removeFromHistory": "Odstrániť „{{query}}“ z histórie"
   },
   "notifPrompt": {
     "stayInLoop": "Buďte v obraze",

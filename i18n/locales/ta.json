@@ -6161,7 +6161,11 @@
     "noTrendingThisWeek": "இந்த வாரம் பிரபலமான உள்ளடக்கம் எதுவும் இல்லை",
     "closeFilterOptions": "வடிகட்டி விருப்பங்களை மூடு",
     "openFilterOptions": "வடிகட்டி விருப்பங்களைத் திற",
-    "fillQuery": "தேடலில் \"{{query}}\" நிரப்பு"
+    "fillQuery": "தேடலில் \"{{query}}\" நிரப்பு",
+    "clearHistory": "வரலாற்றை அழி",
+    "clearHistoryTitle": "தேடல் வரலாற்றை அழிக்கவா?",
+    "clearHistoryBody": "இது உங்கள் சமீபத்திய தேடல்கள் அனைத்தையும் நீக்கும்.",
+    "removeFromHistory": "\"{{query}}\" ஐ வரலாற்றிலிருந்து நீக்கு"
   },
   "notifPrompt": {
     "stayInLoop": "தகவல் அறிந்திருங்கள்",

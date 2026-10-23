@@ -6176,7 +6176,11 @@
     "noTrendingThisWeek": "ამ კვირაში ტრენდული შინაარსი არ არის",
     "closeFilterOptions": "ფილტრის პარამეტრების დახურვა",
     "openFilterOptions": "ფილტრის პარამეტრების გახსნა",
-    "fillQuery": "ძიებაში \"{{query}}\"-ის ჩასმა"
+    "fillQuery": "ძიებაში \"{{query}}\"-ის ჩასმა",
+    "clearHistory": "ისტორიის გასუფთავება",
+    "clearHistoryTitle": "გასუფთავდეს ძიების ისტორია?",
+    "clearHistoryBody": "ეს წაშლის თქვენს ყველა ბოლო ძიებას.",
+    "removeFromHistory": "„{{query}}“-ის ისტორიიდან წაშლა"
   },
   "notifPrompt": {
     "stayInLoop": "იყავით კურსში",

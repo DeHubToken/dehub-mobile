@@ -6101,6 +6101,10 @@
     "closeFilterOptions": "Klos filter choice dem",
     "openFilterOptions": "Opin filter choice dem",
     "fillQuery": "Put \"{{query}}\" for search box",
+    "clearHistory": "Clean history",
+    "clearHistoryTitle": "Clean search history?",
+    "clearHistoryBody": "Dis go comot all ya recent searches.",
+    "removeFromHistory": "Comot \"{{query}}\" from history",
     "trendingThisWeek": "Weti Di Trend Dis Week",
     "tryDifferentKeywords": "Try other keywords or check ya spelling",
     "noTrendingThisWeek": "Notin di trend dis week"

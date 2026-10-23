@@ -6185,7 +6185,11 @@
     "noTrendingThisWeek": "Δεν υπάρχει δημοφιλές περιεχόμενο αυτή την εβδομάδα",
     "closeFilterOptions": "Κλείσιμο επιλογών φίλτρου",
     "openFilterOptions": "Άνοιγμα επιλογών φίλτρου",
-    "fillQuery": "Συμπλήρωση αναζήτησης με \"{{query}}\""
+    "fillQuery": "Συμπλήρωση αναζήτησης με \"{{query}}\"",
+    "clearHistory": "Διαγραφή ιστορικού",
+    "clearHistoryTitle": "Διαγραφή ιστορικού αναζητήσεων;",
+    "clearHistoryBody": "Αυτό αφαιρεί όλες τις πρόσφατες αναζητήσεις σας.",
+    "removeFromHistory": "Αφαίρεση του «{{query}}» από το ιστορικό"
   },
   "notifPrompt": {
     "stayInLoop": "Μείνετε ενημερωμένοι",

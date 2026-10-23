@@ -6175,7 +6175,11 @@
     "noTrendingThisWeek": "Осы аптада трендтегі мазмұн жоқ",
     "closeFilterOptions": "Сүзгі опцияларын жабу",
     "openFilterOptions": "Сүзгі опцияларын ашу",
-    "fillQuery": "Іздеуге \"{{query}}\" енгізу"
+    "fillQuery": "Іздеуге \"{{query}}\" енгізу",
+    "clearHistory": "Тарихты тазалау",
+    "clearHistoryTitle": "Іздеу тарихын тазалау керек пе?",
+    "clearHistoryBody": "Бұл барлық соңғы іздеулеріңізді жояды.",
+    "removeFromHistory": "«{{query}}» тарихтан жою"
   },
   "notifPrompt": {
     "stayInLoop": "Хабардар болыңыз",

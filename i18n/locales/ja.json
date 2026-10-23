@@ -6241,7 +6241,11 @@
     "noTrendingThisWeek": "今週の人気コンテンツはありません",
     "closeFilterOptions": "フィルターオプションを閉じる",
     "openFilterOptions": "フィルターオプションを開く",
-    "fillQuery": "\"{{query}}\"を検索欄に入力"
+    "fillQuery": "\"{{query}}\"を検索欄に入力",
+    "clearHistory": "履歴を消去",
+    "clearHistoryTitle": "検索履歴を消去しますか？",
+    "clearHistoryBody": "最近の検索がすべて削除されます。",
+    "removeFromHistory": "「{{query}}」を履歴から削除"
   },
   "notifPrompt": {
     "stayInLoop": "最新情報を受け取る",

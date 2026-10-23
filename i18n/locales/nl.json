@@ -6776,7 +6776,11 @@
     "noTrendingThisWeek": "Geen populaire inhoud deze week",
     "closeFilterOptions": "Filteropties sluiten",
     "openFilterOptions": "Filteropties openen",
-    "fillQuery": "Zoekopdracht invullen met \"{{query}}\""
+    "fillQuery": "Zoekopdracht invullen met \"{{query}}\"",
+    "clearHistory": "Geschiedenis wissen",
+    "clearHistoryTitle": "Zoekgeschiedenis wissen?",
+    "clearHistoryBody": "Hiermee worden al je recente zoekopdrachten verwijderd.",
+    "removeFromHistory": "\"{{query}}\" uit geschiedenis verwijderen"
   },
   "notifPrompt": {
     "stayInLoop": "Blijf op de hoogte",

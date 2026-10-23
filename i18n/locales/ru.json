@@ -6255,7 +6255,11 @@
     "noTrendingThisWeek": "Нет популярного контента на этой неделе",
     "closeFilterOptions": "Закрыть параметры фильтра",
     "openFilterOptions": "Открыть параметры фильтра",
-    "fillQuery": "Вставить \"{{query}}\" в поиск"
+    "fillQuery": "Вставить \"{{query}}\" в поиск",
+    "clearHistory": "Очистить историю",
+    "clearHistoryTitle": "Очистить историю поиска?",
+    "clearHistoryBody": "Это удалит все ваши недавние поиски.",
+    "removeFromHistory": "Удалить «{{query}}» из истории"
   },
   "notifPrompt": {
     "stayInLoop": "Будьте в курсе",

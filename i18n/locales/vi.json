@@ -6214,7 +6214,11 @@
     "noTrendingThisWeek": "Không có nội dung thịnh hành trong tuần này",
     "closeFilterOptions": "Đóng tùy chọn bộ lọc",
     "openFilterOptions": "Mở tùy chọn bộ lọc",
-    "fillQuery": "Điền \"{{query}}\" vào ô tìm kiếm"
+    "fillQuery": "Điền \"{{query}}\" vào ô tìm kiếm",
+    "clearHistory": "Xóa lịch sử",
+    "clearHistoryTitle": "Xóa lịch sử tìm kiếm?",
+    "clearHistoryBody": "Thao tác này sẽ xóa tất cả tìm kiếm gần đây của bạn.",
+    "removeFromHistory": "Xóa \"{{query}}\" khỏi lịch sử"
   },
   "notifPrompt": {
     "stayInLoop": "Không bỏ lỡ tin tức",
