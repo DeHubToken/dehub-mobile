@@ -2831,6 +2831,8 @@
     "yourFractions": "Firaakshinii {{total}} {{count}} qabatta"
   },
   "profileOptions": {
+    "copyRssFeed": "Liinkii RSS feed waraabi",
+    "copyRssFeedHint": "Maxxansaalee kana dubbisaa feed kamiin iyyuu hordofi",
     "copyProfileUrl": "URL piroofaayilii waraabi",
     "copyUsername": "Maqaa fayyadamaa waraabi",
     "copyAddress": "Teessoo waraabi",

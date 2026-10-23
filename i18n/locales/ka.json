@@ -2841,6 +2841,8 @@
     "yourFractions": "თქვენ ფლობთ {{count}}-ის {{total}} წილს"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS არხის ბმულის კოპირება",
+    "copyRssFeedHint": "მიჰყევით ამ პოსტებს ნებისმიერ არხების წამკითხველში",
     "copyProfileUrl": "პროფილის URL-ის კოპირება",
     "copyUsername": "მომხმარებლის სახელის კოპირება",
     "copyAddress": "მისამართის კოპირება",

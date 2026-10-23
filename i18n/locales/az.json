@@ -2827,6 +2827,8 @@
     "yourFractions": "Siz {{count}} fraksiyadan {{total}} -nə sahibsiniz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS lent linkini kopyala",
+    "copyRssFeedHint": "Bu paylaşımları istənilən lent oxuyucusunda izləyin",
     "copyProfileUrl": "Profil URL-ni kopyala",
     "copyUsername": "İstifadəçi adını kopyala",
     "copyAddress": "Ünvanı kopyala",

@@ -2849,6 +2849,8 @@
     "yourFractions": "Bạn nắm giữ {{count}}/{{total}} phần sở hữu"
   },
   "profileOptions": {
+    "copyRssFeed": "Sao chép liên kết nguồn cấp RSS",
+    "copyRssFeedHint": "Theo dõi các bài đăng này trên bất kỳ trình đọc nguồn cấp nào",
     "copyProfileUrl": "Sao chép URL hồ sơ",
     "copyUsername": "Sao chép tên người dùng",
     "copyAddress": "Sao chép địa chỉ",

@@ -2817,6 +2817,8 @@
     "yourFractions": "ଆପଣ {{count}} ର {{total}} ଭଗ୍ନାଂଶ ଧାରଣ କରିଛନ୍ତି"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ଫିଡ୍ ଲିଙ୍କ କପି କରନ୍ତୁ",
+    "copyRssFeedHint": "ଏହି ପୋଷ୍ଟଗୁଡ଼ିକୁ ଯେକୌଣସି ଫିଡ୍ ରିଡରରେ ଫଲୋ କରନ୍ତୁ",
     "copyProfileUrl": "ପ୍ରୋଫାଇଲ୍ URL କପି କରନ୍ତୁ",
     "copyUsername": "ବ୍ୟବହାରକାରୀ ନାମ କପି କରନ୍ତୁ",
     "copyAddress": "ଠିକଣା କପି କରନ୍ତୁ",

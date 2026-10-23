@@ -2809,6 +2809,8 @@
     "yourFractions": "Та {{total}} хуваалцлын {{count}}-ийг эзэмшиж байна"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS сувгийн холбоосыг хуулах",
+    "copyRssFeedHint": "Эдгээр нийтлэлийг дурын суваг уншигчаар дагаарай",
     "copyProfileUrl": "Профайл URL хуулах",
     "copyUsername": "Хэрэглэгчийн нэр хуулах",
     "copyAddress": "Хаяг хуулах",

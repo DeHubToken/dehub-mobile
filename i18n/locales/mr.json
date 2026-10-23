@@ -2830,6 +2830,8 @@
     "yourFractions": "तुम्ही {{total}} पैकी {{count}} फ्रॅक्शन्स धारण करता"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS फीड लिंक कॉपी करा",
+    "copyRssFeedHint": "या पोस्ट कोणत्याही फीड रीडरमध्ये फॉलो करा",
     "copyProfileUrl": "प्रोफाइल URL कॉपी करा",
     "copyUsername": "वापरकर्ता नाव कॉपी करा",
     "copyAddress": "पत्ता कॉपी करा",

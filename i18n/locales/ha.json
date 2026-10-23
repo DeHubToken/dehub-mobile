@@ -2817,6 +2817,8 @@
     "yourFractions": "Kuna rike da {{count}} na {{total}} rabo"
   },
   "profileOptions": {
+    "copyRssFeed": "Kwafi hanyar haɗin ciyarwar RSS",
+    "copyRssFeedHint": "Bi waɗannan rubuce-rubucen a kowace manhajar karanta ciyarwa",
     "copyProfileUrl": "Kwafi URL ɗin bayanai",
     "copyUsername": "Kwafi sunan mai amfani",
     "copyAddress": "Kwafi adireshin",

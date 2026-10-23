@@ -2839,6 +2839,8 @@
     "yourFractions": "{{count}} törtrész a(z) {{total}} törtrészből a birtokodban van"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-hírcsatorna linkjének másolása",
+    "copyRssFeedHint": "Kövesd ezeket a bejegyzéseket bármelyik hírolvasóban",
     "copyProfileUrl": "Profil URL másolása",
     "copyUsername": "Felhasználónév másolása",
     "copyAddress": "Cím másolása",

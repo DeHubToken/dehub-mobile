@@ -2830,6 +2830,8 @@
     "yourFractions": "ਤੁਸੀਂ {{count}}{{total}} ਫਰੈਕਸ਼ਨਾਂ ਨੂੰ ਫੜਦੇ ਹੋ"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ਫੀਡ ਲਿੰਕ ਕਾਪੀ ਕਰੋ",
+    "copyRssFeedHint": "ਇਨ੍ਹਾਂ ਪੋਸਟਾਂ ਨੂੰ ਕਿਸੇ ਵੀ ਫੀਡ ਰੀਡਰ ਵਿੱਚ ਫਾਲੋ ਕਰੋ",
     "copyProfileUrl": "ਪ੍ਰੋਫਾਈਲ URL ਕਾਪੀ ਕਰੋ",
     "copyUsername": "ਯੂਜ਼ਰਨੇਮ ਕਾਪੀ ਕਰੋ",
     "copyAddress": "ਪਤਾ ਕਾਪੀ ਕਰੋ",

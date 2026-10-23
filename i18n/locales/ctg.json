@@ -2930,6 +2930,8 @@
     "yourFractions": "তুই {{total}} fraction-এর {{count}} টা ধরস"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ফিড লিংক কপি গরো",
+    "copyRssFeedHint": "যিয়ান ইচ্ছা ফিড রিডারত এই পোস্টগুন ফলো গরো",
     "copyProfileUrl": "প্রোফাইল লিংক কপি গরো",
     "copyUsername": "ইউজারনেম কপি গরো",
     "copyAddress": "ঠিকানা কপি গরো",

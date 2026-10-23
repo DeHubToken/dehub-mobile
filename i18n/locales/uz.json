@@ -2845,6 +2845,8 @@
     "yourFractions": "Siz {{total}} ulushning {{count}} ulushiga egasiz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS lenta havolasini nusxalash",
+    "copyRssFeedHint": "Bu postlarni istalgan lenta oʻquvchisida kuzating",
     "copyProfileUrl": "Profil URL nusxalash",
     "copyUsername": "Foydalanuvchi nomini nusxalash",
     "copyAddress": "Manzilni nusxalash",

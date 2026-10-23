@@ -2825,6 +2825,8 @@
     "yourFractions": "您持有 {{count}} 個 {{total}} 分數中的"
   },
   "profileOptions": {
+    "copyRssFeed": "複製 RSS 訂閱連結",
+    "copyRssFeedHint": "喺任何閱讀器都可以追蹤呢啲帖子",
     "copyProfileUrl": "複製個人資料連結",
     "copyUsername": "複製用戶名",
     "copyAddress": "複製地址",

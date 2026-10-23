@@ -2835,6 +2835,8 @@
     "yourFractions": "Deții {{count}} din {{total}} fracțiuni"
   },
   "profileOptions": {
+    "copyRssFeed": "Copiază linkul fluxului RSS",
+    "copyRssFeedHint": "Urmărește aceste postări în orice cititor de fluxuri",
     "copyProfileUrl": "Copiază URL-ul profilului",
     "copyUsername": "Copiază numele de utilizator",
     "copyAddress": "Copiază adresa",

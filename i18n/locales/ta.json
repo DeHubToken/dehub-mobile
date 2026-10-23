@@ -2828,6 +2828,8 @@
     "yourFractions": "நீங்கள் {{total}} பகுதிகளில் {{count}} ஐ வைத்திருக்கிறார்கள்"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ஊட்ட இணைப்பை நகலெடு",
+    "copyRssFeedHint": "எந்த ஊட்ட வாசிப்பானிலும் இந்தப் பதிவுகளைப் பின்தொடருங்கள்",
     "copyProfileUrl": "சுயவிவர URL நகலெடு",
     "copyUsername": "பயனர்பெயர் நகலெடு",
     "copyAddress": "முகவரி நகலெடு",

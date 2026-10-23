@@ -2839,6 +2839,8 @@
     "yourFractions": "Du ejer {{count}} af {{total}} brøker"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiér link til RSS-feed",
+    "copyRssFeedHint": "Følg disse opslag i en hvilken som helst feedlæser",
     "copyProfileUrl": "Kopiér profil-URL",
     "copyUsername": "Kopiér brugernavn",
     "copyAddress": "Kopiér adresse",

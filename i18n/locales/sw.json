@@ -2836,6 +2836,8 @@
     "yourFractions": "Unamiliki {{count}} kati ya {{total}} sehemu"
   },
   "profileOptions": {
+    "copyRssFeed": "Nakili kiungo cha mlisho wa RSS",
+    "copyRssFeedHint": "Fuatilia machapisho haya kwenye kisomaji chochote cha milisho",
     "copyProfileUrl": "Nakili URL ya wasifu",
     "copyUsername": "Nakili jina la mtumiaji",
     "copyAddress": "Nakili anwani",

@@ -2833,6 +2833,8 @@
     "yourFractions": "{{total}}フラクション中{{count}}を保有しています"
   },
   "profileOptions": {
+    "copyRssFeed": "RSSフィードのリンクをコピー",
+    "copyRssFeedHint": "お好きなフィードリーダーでこれらの投稿をフォロー",
     "copyProfileUrl": "プロフィールURLをコピー",
     "copyUsername": "ユーザー名をコピー",
     "copyAddress": "アドレスをコピー",

@@ -2847,6 +2847,8 @@
     "yourFractions": "Tem {{count}} de {{total}} frações"
   },
   "profileOptions": {
+    "copyRssFeed": "Copiar link do feed RSS",
+    "copyRssFeedHint": "Acompanhe estas publicações em qualquer leitor de feeds",
     "copyProfileUrl": "Copiar URL do perfil",
     "copyUsername": "Copiar nome de utilizador",
     "copyAddress": "Copiar endereço",

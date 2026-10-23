@@ -2805,6 +2805,8 @@
     "yourFractions": "ເຈົ້າຖື {{count}} ຂອງ {{total}} ສ່ວນຮຸ້ນ"
   },
   "profileOptions": {
+    "copyRssFeed": "ຄັດລອກລິ້ງ RSS feed",
+    "copyRssFeedHint": "ຕິດຕາມໂພສເຫຼົ່ານີ້ໃນແອັບອ່ານ feed ໃດກໍໄດ້",
     "copyProfileUrl": "ຄັດລອກ URL ໂປຣໄຟລ໌",
     "copyUsername": "ຄັດລອກຊື່ຜູ້ໃຊ້",
     "copyAddress": "ຄັດລອກທີ່ຢູ່",

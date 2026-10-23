@@ -2835,6 +2835,8 @@
     "yourFractions": "Sinulla on {{count}} / {{total}} murto-osasta"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopioi RSS-syötteen linkki",
+    "copyRssFeedHint": "Seuraa näitä julkaisuja millä tahansa syötteenlukijalla",
     "copyProfileUrl": "Kopioi profiilin URL",
     "copyUsername": "Kopioi käyttäjänimi",
     "copyAddress": "Kopioi osoite",

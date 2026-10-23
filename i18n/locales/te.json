@@ -2828,6 +2828,8 @@
     "yourFractions": "మీరు {{total}} భిన్నాలలో {{count}} ను కలిగి ఉన్నారు"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS ఫీడ్ లింక్ కాపీ చేయండి",
+    "copyRssFeedHint": "ఏ ఫీడ్ రీడర్‌లోనైనా ఈ పోస్ట్‌లను ఫాలో అవ్వండి",
     "copyProfileUrl": "ప్రొఫైల్ URL కాపీ చేయండి",
     "copyUsername": "వాడుకరి పేరు కాపీ చేయండి",
     "copyAddress": "చిరునామా కాపీ చేయండి",

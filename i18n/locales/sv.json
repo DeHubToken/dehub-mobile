@@ -2839,6 +2839,8 @@
     "yourFractions": "Du äger {{count}} av {{total}} fraktioner"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiera länk till RSS-flöde",
+    "copyRssFeedHint": "Följ de här inläggen i valfri flödesläsare",
     "copyProfileUrl": "Kopiera profil-URL",
     "copyUsername": "Kopiera användarnamn",
     "copyAddress": "Kopiera adress",

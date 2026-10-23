@@ -2819,6 +2819,8 @@
     "yourFractions": "您持有 {{count}} / {{total}} 份份额"
   },
   "profileOptions": {
+    "copyRssFeed": "复制 RSS 订阅链接",
+    "copyRssFeedHint": "在任意阅读器里关注这些帖子",
     "copyProfileUrl": "复制资料链接",
     "copyUsername": "复制用户名",
     "copyAddress": "复制地址",

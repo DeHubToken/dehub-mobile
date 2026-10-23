@@ -2827,6 +2827,8 @@
     "yourFractions": "Teil on {{count}} murdosast {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopeeri RSS-voo link",
+    "copyRssFeedHint": "Jälgi neid postitusi mis tahes voolugejas",
     "copyProfileUrl": "Kopeeri profiili URL",
     "copyUsername": "Kopeeri kasutajanimi",
     "copyAddress": "Kopeeri aadress",

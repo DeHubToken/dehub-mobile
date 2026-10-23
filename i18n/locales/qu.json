@@ -2849,6 +2849,8 @@
     "yourFractions": "Kamachiykuna {{count}} pakakunamanta {{total}} pakakunamanta hap'ishanki"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS feed tinkiyta copiay",
+    "copyRssFeedHint": "Kay qillqakunata ima feed ñawinchaqpipas qatiy",
     "copyProfileUrl": "Profilpa URL nisqanta copiay",
     "copyUsername": "Sutita copiay",
     "copyAddress": "Ñanta copiay",
