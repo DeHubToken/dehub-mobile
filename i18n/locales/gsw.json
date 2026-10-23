@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Wer darf antworte",
+    "public": "Alli",
+    "followers": "Dini Follower",
+    "following": "Lüüt, wo du ne folgsch",
+    "mentioned": "Nur Erwähnti",
+    "noticeFollowers": "Nur Follower vom Autor chönd antworte",
+    "noticeFollowing": "Nur Lüüt, wo de Autor ne folgt, chönd antworte",
+    "noticeMentioned": "Nur im Biitrag erwähnti Lüüt chönd antworte",
+    "refused": "De Autor het iigschränkt, wer uf dä Biitrag antworte darf"
+  },
   "quotePolicy": {
     "label": "Wer darf zitiere",
     "public": "Alli",

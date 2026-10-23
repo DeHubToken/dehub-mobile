@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Wa zai iya amsawa",
+    "public": "Kowa",
+    "followers": "Mabiyanka",
+    "following": "Waɗanda kake bi",
+    "mentioned": "Waɗanda aka ambata kaɗai",
+    "noticeFollowers": "Mabiya marubucin kaɗai ne za su iya amsawa",
+    "noticeFollowing": "Waɗanda marubucin ke bi kaɗai ne za su iya amsawa",
+    "noticeMentioned": "Waɗanda aka ambata a rubutun kaɗai ne za su iya amsawa",
+    "refused": "Marubucin ya iyakance wanda zai iya amsa wannan rubutun"
+  },
   "quotePolicy": {
     "label": "Wa zai iya ambato",
     "public": "Kowa",

@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "ማን መልስ መስጠት ይችላል",
+    "public": "ማንኛውም ሰው",
+    "followers": "የእርስዎ ተከታዮች",
+    "following": "የሚከተሏቸው ሰዎች",
+    "mentioned": "የተጠቀሱ ብቻ",
+    "noticeFollowers": "የደራሲው ተከታዮች ብቻ መልስ መስጠት ይችላሉ",
+    "noticeFollowing": "ደራሲው የሚከተላቸው ሰዎች ብቻ መልስ መስጠት ይችላሉ",
+    "noticeMentioned": "በልጥፉ የተጠቀሱ ሰዎች ብቻ መልስ መስጠት ይችላሉ",
+    "refused": "ደራሲው በዚህ ልጥፍ ላይ ማን መልስ መስጠት እንደሚችል ገድቧል"
+  },
   "quotePolicy": {
     "label": "ማን መጥቀስ ይችላል",
     "public": "ማንኛውም ሰው",

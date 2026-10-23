@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kdo může odpovídat",
+    "public": "Kdokoli",
+    "followers": "Vaši sledující",
+    "following": "Lidé, které sledujete",
+    "mentioned": "Jen zmínění",
+    "noticeFollowers": "Odpovídat mohou jen sledující autora",
+    "noticeFollowing": "Odpovídat mohou jen lidé, které autor sleduje",
+    "noticeMentioned": "Odpovídat mohou jen lidé zmínění v příspěvku",
+    "refused": "Autor omezil, kdo může na tento příspěvek odpovídat"
+  },
   "quotePolicy": {
     "label": "Kdo může citovat",
     "public": "Kdokoli",

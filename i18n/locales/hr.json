@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Tko može odgovoriti",
+    "public": "Bilo tko",
+    "followers": "Vaši pratitelji",
+    "following": "Ljudi koje pratite",
+    "mentioned": "Samo spomenuti",
+    "noticeFollowers": "Odgovoriti mogu samo pratitelji autora",
+    "noticeFollowing": "Odgovoriti mogu samo ljudi koje autor prati",
+    "noticeMentioned": "Odgovoriti mogu samo ljudi spomenuti u objavi",
+    "refused": "Autor je ograničio tko može odgovoriti na ovu objavu"
+  },
   "quotePolicy": {
     "label": "Tko može citirati",
     "public": "Bilo tko",

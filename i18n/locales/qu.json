@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Pitaq kutichiyta atin",
+    "public": "Pipas",
+    "followers": "Qatiqniykikuna",
+    "following": "Qatisqaykikuna",
+    "mentioned": "Sutichasqakunalla",
+    "noticeFollowers": "Qillqaqpa qatiqninkunallam kutichiyta atinku",
+    "noticeFollowing": "Qillqaq qatisqankunallam kutichiyta atinku",
+    "noticeMentioned": "Qillqapi sutichasqakunallam kutichiyta atinku",
+    "refused": "Qillqaqqa pikuna kay qillqaman kutichinankuta hark'arqan"
+  },
   "quotePolicy": {
     "label": "Pitaq rimachiyta atin",
     "public": "Pipas",

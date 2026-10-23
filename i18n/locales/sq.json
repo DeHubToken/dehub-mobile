@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kush mund të përgjigjet",
+    "public": "Kushdo",
+    "followers": "Ndjekësit e tu",
+    "following": "Njerëzit që ndjek",
+    "mentioned": "Vetëm të përmendurit",
+    "noticeFollowers": "Vetëm ndjekësit e autorit mund të përgjigjen",
+    "noticeFollowing": "Vetëm njerëzit që ndjek autori mund të përgjigjen",
+    "noticeMentioned": "Vetëm të përmendurit në postim mund të përgjigjen",
+    "refused": "Autori ka kufizuar se kush mund t'i përgjigjet këtij postimi"
+  },
   "quotePolicy": {
     "label": "Kush mund të citojë",
     "public": "Kushdo",

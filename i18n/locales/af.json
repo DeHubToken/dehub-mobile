@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Wie kan antwoord",
+    "public": "Enigiemand",
+    "followers": "Jou volgers",
+    "following": "Mense wat jy volg",
+    "mentioned": "Net genoemdes",
+    "noticeFollowers": "Net die outeur se volgers kan antwoord",
+    "noticeFollowing": "Net mense wat die outeur volg, kan antwoord",
+    "noticeMentioned": "Net mense wat in die plasing genoem word, kan antwoord",
+    "refused": "Die outeur het beperk wie op hierdie plasing kan antwoord"
+  },
   "quotePolicy": {
     "label": "Wie kan aanhaal",
     "public": "Enigiemand",

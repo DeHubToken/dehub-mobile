@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Sino ang puwedeng sumagot",
+    "public": "Kahit sino",
+    "followers": "Iyong mga tagasunod",
+    "following": "Mga taong sinusundan mo",
+    "mentioned": "Mga nabanggit lang",
+    "noticeFollowers": "Mga tagasunod lang ng may-akda ang puwedeng sumagot",
+    "noticeFollowing": "Mga sinusundan lang ng may-akda ang puwedeng sumagot",
+    "noticeMentioned": "Mga nabanggit lang sa post ang puwedeng sumagot",
+    "refused": "Nilimitahan ng may-akda kung sino ang puwedeng sumagot sa post na ito"
+  },
   "quotePolicy": {
     "label": "Sino ang puwedeng mag-quote",
     "public": "Kahit sino",

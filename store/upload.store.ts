@@ -79,6 +79,8 @@ export interface SerializedUploadPayload {
   spoilerText?: string;
   /** Who may quote it. Absent means anyone. */
   quotePolicy?: "followers" | "nobody";
+  /** Who may reply. Absent means anyone. */
+  replyPolicy?: "followers" | "following" | "mentioned";
 }
 
 export interface MintParams {

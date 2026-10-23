@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Ta ni o le fesi",
+    "public": "Ẹnikẹ́ni",
+    "followers": "Àwọn olùtẹ̀lé rẹ",
+    "following": "Àwọn tí o ń tẹ̀lé",
+    "mentioned": "Àwọn tí a mẹ́nu bà nìkan",
+    "noticeFollowers": "Àwọn olùtẹ̀lé onkọwe nìkan ló lè fesi",
+    "noticeFollowing": "Àwọn tí onkọwe ń tẹ̀lé nìkan ló lè fesi",
+    "noticeMentioned": "Àwọn tí a mẹ́nu bà nínú ifiweranṣẹ nìkan ló lè fesi",
+    "refused": "Onkọwe ti dín àwọn tí ó lè fesi sí ifiweranṣẹ yìí kù"
+  },
   "quotePolicy": {
     "label": "Ta ni o le fa ọrọ yọ",
     "public": "Ẹnikẹ́ni",

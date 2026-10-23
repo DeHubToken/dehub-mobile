@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Hvem kan svare",
+    "public": "Alle",
+    "followers": "Følgerne dine",
+    "following": "Folk du følger",
+    "mentioned": "Bare nevnte",
+    "noticeFollowers": "Bare forfatterens følgere kan svare",
+    "noticeFollowing": "Bare folk forfatteren følger, kan svare",
+    "noticeMentioned": "Bare folk som nevnes i innlegget, kan svare",
+    "refused": "Forfatteren har begrenset hvem som kan svare på dette innlegget"
+  },
   "quotePolicy": {
     "label": "Hvem kan sitere",
     "public": "Alle",

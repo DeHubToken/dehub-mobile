@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Kim jogap berip biler",
+    "public": "Islendik adam",
+    "followers": "Siziň yzarlaýjylaryňyz",
+    "following": "Siziň yzarlaýan adamlaryňyz",
+    "mentioned": "Diňe agzalanlar",
+    "noticeFollowers": "Diňe awtoryň yzarlaýjylary jogap berip biler",
+    "noticeFollowing": "Diňe awtoryň yzarlaýan adamlary jogap berip biler",
+    "noticeMentioned": "Diňe ýazgyda agzalanlar jogap berip biler",
+    "refused": "Awtor bu ýazga kimiň jogap berip biljekdigini çäklendirdi"
+  },
   "quotePolicy": {
     "label": "Kim sitata getirip biler",
     "public": "Islendik adam",

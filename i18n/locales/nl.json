@@ -1,4 +1,15 @@
 {
+  "replyPolicy": {
+    "label": "Wie kan reageren",
+    "public": "Iedereen",
+    "followers": "Je volgers",
+    "following": "Mensen die je volgt",
+    "mentioned": "Alleen genoemden",
+    "noticeFollowers": "Alleen volgers van de auteur kunnen reageren",
+    "noticeFollowing": "Alleen mensen die de auteur volgt kunnen reageren",
+    "noticeMentioned": "Alleen mensen die in het bericht genoemd worden kunnen reageren",
+    "refused": "De auteur heeft beperkt wie op dit bericht kan reageren"
+  },
   "quotePolicy": {
     "label": "Wie kan citeren",
     "public": "Iedereen",
