@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} رموز"
   },
   "postOptions": {
+    "embed": "تضمين",
+    "copyEmbedCode": "نسخ كود التضمين",
+    "embedCodeCopied": "تم نسخ كود التضمين",
     "options": "خيارات",
     "sendTip": "أرسل إكرامية",
     "queue": "قائمة الانتظار",

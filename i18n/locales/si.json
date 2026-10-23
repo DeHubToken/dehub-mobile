@@ -983,6 +983,9 @@
     "tokenAmount": "{{amount}} ටෝකන"
   },
   "postOptions": {
+    "embed": "කාවැද්දීම",
+    "copyEmbedCode": "කාවැද්දීමේ කේතය පිටපත් කරන්න",
+    "embedCodeCopied": "කාවැද්දීමේ කේතය පිටපත් විය",
     "options": "විකල්ප",
     "sendTip": "ටිප් එවන්න",
     "queue": "පෝලිම",

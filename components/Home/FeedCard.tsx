@@ -2122,6 +2122,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onCopyLink={handleCopyLink}
           onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
           onShareAsImage={handleSharePress}
+          embedTokenId={tokenId}
         />
       )}
 
@@ -2302,6 +2303,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             repostCount={Math.max(0, repostCount - stageQuotes)}
             onViewQuotes={() => openRepostQuoteList("quotes")}
             onViewReposts={() => openRepostQuoteList("reposts")}
+            embedTokenId={tokenId}
           />
         )}
       </View>

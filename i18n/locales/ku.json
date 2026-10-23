@@ -988,6 +988,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "تێخستن",
+    "copyEmbedCode": "کۆدی تێخستن کۆپی بکە",
+    "embedCodeCopied": "کۆدی تێخستن کۆپی کرا",
     "options": "Vebijêrk",
     "sendTip": "Bexşîş Bişîne",
     "queue": "Rêz",

@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} токена"
   },
   "postOptions": {
+    "embed": "Вграждане",
+    "copyEmbedCode": "Копирай кода за вграждане",
+    "embedCodeCopied": "Кодът за вграждане е копиран",
     "options": "Опции",
     "sendTip": "Изпрати бакшиш",
     "queue": "Опашка",

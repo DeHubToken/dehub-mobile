@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} டோக்கன்கள்"
   },
   "postOptions": {
+    "embed": "உட்பொதி",
+    "copyEmbedCode": "உட்பொதிப்புக் குறியீட்டை நகலெடு",
+    "embedCodeCopied": "உட்பொதிப்புக் குறியீடு நகலெடுக்கப்பட்டது",
     "options": "விருப்பங்கள்",
     "sendTip": "டிப் அனுப்பு",
     "queue": "வரிசை",

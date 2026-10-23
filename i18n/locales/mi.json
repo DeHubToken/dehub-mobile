@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} tohu"
   },
   "postOptions": {
+    "embed": "Tāmau",
+    "copyEmbedCode": "Tāruatia te waehere tāmau",
+    "embedCodeCopied": "Kua tāruatia te waehere tāmau",
     "options": "Kōwhiringa",
     "sendTip": "Tukuna koha",
     "queue": "Rārangi",

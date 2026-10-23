@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} 代币"
   },
   "postOptions": {
+    "embed": "嵌入",
+    "copyEmbedCode": "复制嵌入代码",
+    "embedCodeCopied": "嵌入代码已复制",
     "options": "选项",
     "sendTip": "送打赏",
     "queue": "排队",

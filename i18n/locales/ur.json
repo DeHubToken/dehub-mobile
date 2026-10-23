@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} ٹکٹس"
   },
   "postOptions": {
+    "embed": "ایمبیڈ",
+    "copyEmbedCode": "ایمبیڈ کوڈ کاپی کریں",
+    "embedCodeCopied": "ایمبیڈ کوڈ کاپی ہو گیا",
     "options": "اختیارات",
     "sendTip": "ٹپ بھیجیں",
     "queue": "قطار",

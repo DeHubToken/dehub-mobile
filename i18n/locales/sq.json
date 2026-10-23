@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} tokena"
   },
   "postOptions": {
+    "embed": "Ngulit",
+    "copyEmbedCode": "Kopjo kodin e ngulitjes",
+    "embedCodeCopied": "Kodi i ngulitjes u kopjua",
     "options": "Opsionet",
     "sendTip": "Dërgo Bakshish",
     "queue": "Radhë",

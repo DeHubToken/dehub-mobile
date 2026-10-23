@@ -1249,6 +1249,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Benamkan",
+    "copyEmbedCode": "Salin kod benam",
+    "embedCodeCopied": "Kod benam disalin",
     "options": "Pilihan",
     "sendTip": "Hantar Petua",
     "queue": "Barisan",

@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Insereix",
+    "copyEmbedCode": "Copia el codi d'inserció",
+    "embedCodeCopied": "Codi d'inserció copiat",
     "options": "Opcions",
     "sendTip": "Enviar propina",
     "queue": "Cua",

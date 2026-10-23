@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} токенови"
   },
   "postOptions": {
+    "embed": "Угради",
+    "copyEmbedCode": "Копирај код за уградњу",
+    "embedCodeCopied": "Код за уградњу је копиран",
     "options": "Опције",
     "sendTip": "Пошаљи напојницу",
     "queue": "Ред чекања",

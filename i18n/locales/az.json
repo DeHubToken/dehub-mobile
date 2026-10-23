@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Yerləşdir",
+    "copyEmbedCode": "Yerləşdirmə kodunu kopyala",
+    "embedCodeCopied": "Yerləşdirmə kodu kopyalandı",
     "options": "Seçimlər",
     "sendTip": "Bəxşiş Göndər",
     "queue": "Növbə",

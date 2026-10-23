@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} tokeni"
   },
   "postOptions": {
+    "embed": "Pachika",
+    "copyEmbedCode": "Nakili msimbo wa kupachika",
+    "embedCodeCopied": "Msimbo wa kupachika umenakiliwa",
     "options": "Chaguzi",
     "sendTip": "Tuma Kidokezo",
     "queue": "Foleni",

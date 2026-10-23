@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Tinye n'ime",
+    "copyEmbedCode": "Detụọ koodu ntinye",
+    "embedCodeCopied": "Edepụtala koodu ntinye",
     "options": "Nhọrọ",
     "sendTip": "Ziga Onyinye",
     "queue": "Ahịrị",

@@ -1087,6 +1087,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Embed",
+    "copyEmbedCode": "Copy embed code",
+    "embedCodeCopied": "Embed code copied",
     "skippableSectionsDesc": "Mark or vote on sponsor reads and intros",
     "skippableSections": "Skippable sections",
     "options": "Options",

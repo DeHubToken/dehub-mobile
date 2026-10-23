@@ -979,6 +979,9 @@
     "tokenAmount": "{{amount}} ቶክንስ"
   },
   "postOptions": {
+    "embed": "ኣእቱ",
+    "copyEmbedCode": "ናይ ምእታው ኮድ ቅዳሕ",
+    "embedCodeCopied": "ናይ ምእታው ኮድ ተቐዲሑ",
     "options": "ምርጫታት",
     "sendTip": "ሽልማት ስደድ",
     "queue": "ሪጋ",

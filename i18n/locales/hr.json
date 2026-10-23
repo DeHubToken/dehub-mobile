@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} tokena"
   },
   "postOptions": {
+    "embed": "Ugradi",
+    "copyEmbedCode": "Kopiraj kod za ugradnju",
+    "embedCodeCopied": "Kod za ugradnju kopiran",
     "options": "Mogućnosti",
     "sendTip": "Pošalji napojnicu",
     "queue": "Red čekanja",

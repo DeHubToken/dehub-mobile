@@ -987,6 +987,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Lebokake",
+    "copyEmbedCode": "Salin kode lebokan",
+    "embedCodeCopied": "Kode lebokan wis disalin",
     "options": "Opsi",
     "sendTip": "Kirim Hadiah",
     "queue": "Antrian",

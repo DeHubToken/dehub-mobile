@@ -989,6 +989,9 @@
     "tokenAmount": "{{amount}} টোকেন"
   },
   "postOptions": {
+    "embed": "এমবেড",
+    "copyEmbedCode": "এমবেড কোড কপি করুন",
+    "embedCodeCopied": "এমবেড কোড কপি হয়েছে",
     "options": "বিকল্প",
     "sendTip": "টিপ পাঠান",
     "queue": "সারি",

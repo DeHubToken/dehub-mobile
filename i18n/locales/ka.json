@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} სიმბოლოს"
   },
   "postOptions": {
+    "embed": "ჩაშენება",
+    "copyEmbedCode": "ჩაშენების კოდის კოპირება",
+    "embedCodeCopied": "ჩაშენების კოდი დაკოპირდა",
     "options": "პარამეტრები",
     "sendTip": "ტიპის გაგზავნა",
     "queue": "რიგი",

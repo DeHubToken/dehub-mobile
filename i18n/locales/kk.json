@@ -986,6 +986,9 @@
     "tokenAmount": "{{amount}} токен"
   },
   "postOptions": {
+    "embed": "Ендіру",
+    "copyEmbedCode": "Ендіру кодын көшіру",
+    "embedCodeCopied": "Ендіру коды көшірілді",
     "options": "Параметрлер",
     "sendTip": "Тип жіберу",
     "queue": "Кезек",

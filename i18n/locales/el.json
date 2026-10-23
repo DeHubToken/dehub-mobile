@@ -988,6 +988,9 @@
     "tokenAmount": "{{amount}} μάρκες"
   },
   "postOptions": {
+    "embed": "Ενσωμάτωση",
+    "copyEmbedCode": "Αντιγραφή κώδικα ενσωμάτωσης",
+    "embedCodeCopied": "Ο κώδικας ενσωμάτωσης αντιγράφηκε",
     "options": "Επιλογές",
     "sendTip": "Φιλοδώρημα",
     "queue": "Ουρά",

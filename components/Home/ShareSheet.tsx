@@ -11,9 +11,14 @@ import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
+import { copyToClipboard } from "../../libs/clipboard.utils";
+import { toastSuccess } from "../../libs/toast";
+import { postEmbedCode } from "../../libs/embed-code";
 
 interface ShareRowProps {
-  icon: IconName;
+  /** An Icon, or `glyph` for a mark the bundled set has no icon for. */
+  icon?: IconName;
+  glyph?: string;
   label: string;
   color?: string;
   loading?: boolean;
@@ -21,7 +26,7 @@ interface ShareRowProps {
 }
 
 const ShareRow: React.FC<ShareRowProps> = memo(
-  ({ icon, label, color = "#E5E7EB", loading, onPress }) => (
+  ({ icon, glyph, label, color = "#E5E7EB", loading, onPress }) => (
     <TouchableOpacity
       onPress={onPress}
       disabled={loading}
@@ -31,8 +36,10 @@ const ShareRow: React.FC<ShareRowProps> = memo(
       <View className="w-5 h-5 items-center justify-center mr-3">
         {loading ? (
           <ActivityIndicator size="small" color={color} />
-        ) : (
+        ) : icon ? (
           <Icon name={icon} size={20} color={color} strokeWidth={1.9} />
+        ) : (
+          <Text style={{ color, fontSize: 13, fontWeight: "800" }}>{glyph}</Text>
         )}
       </View>
       <Text style={{ color }} className="text-[15px] font-medium">
@@ -54,6 +61,8 @@ interface ShareSheetProps {
   onSendToDm?: () => void;
   /** Share as image — only shown when supported for this post. */
   onShareAsImage?: () => void | Promise<void>;
+  /** The post to offer embed code for; omit to leave the row out. */
+  embedTokenId?: string | number;
 }
 
 const ShareSheetComponent: React.FC<ShareSheetProps> = ({
@@ -66,6 +75,7 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
   onCopyLink,
   onSendToDm,
   onShareAsImage,
+  embedTokenId,
 }) => {
   const { t } = useTranslation();
   const [sharingImage, setSharingImage] = useState(false);
@@ -159,6 +169,18 @@ const ShareSheetComponent: React.FC<ShareSheetProps> = ({
             onClose();
           }}
         />
+
+        {embedTokenId != null && (
+          <ShareRow
+            glyph="</>"
+            label={t("postOptions.copyEmbedCode")}
+            onPress={() => {
+              copyToClipboard(postEmbedCode(embedTokenId));
+              toastSuccess(t("postOptions.embedCodeCopied"));
+              onClose();
+            }}
+          />
+        )}
 
       </View>
     </GlassModal>
