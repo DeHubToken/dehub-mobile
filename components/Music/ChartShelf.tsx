@@ -2,8 +2,9 @@
  * ChartShelf — one chart on the Music feed
  * ========================================
  * Port of web's `ChartDesk`: a title, its chart orders, the picked entry up
- * front (player, video, station or stage card) and the numbered list under
- * it, which holds every entry and scrolls on its own with no scrollbar.
+ * front (player, video, station or stage card) under a rank chip, and the
+ * numbered list under it, which holds every entry and scrolls on its own with
+ * no scrollbar. There is no "See all": the list is the whole chart.
  * Audio uploads, music videos, radio and stages all use it, so every shelf
  * on the Music feed reads the same way.
  *
@@ -37,7 +38,6 @@ function ChartShelf<S extends string>({
   icon,
   title,
   count,
-  onSeeAll,
   sorts,
   sort,
   onSort,
@@ -50,7 +50,6 @@ function ChartShelf<S extends string>({
   icon: IconName;
   title: string;
   count?: number;
-  onSeeAll?: () => void;
   sorts: { value: NoInfer<S>; label: string }[];
   sort: S;
   onSort: (sort: NoInfer<S>) => void;
@@ -59,12 +58,18 @@ function ChartShelf<S extends string>({
   emptyText: string;
   /** Artwork shape in the list: 16:9 posters, square logos, or none. */
   thumbs?: "none" | "wide" | "square";
-  renderSelected: (id: string) => React.ReactNode;
+  /** `next` moves the pick one down the chart, wrapping at the end. */
+  renderSelected: (id: string, controls: { next: () => void }) => React.ReactNode;
 }) {
   const scrollGuard = useHorizontalScrollGuard();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const listRef = useRef<ScrollView>(null);
   const selected = rows.find(row => row.id === selectedId) || rows[0];
+  const selectedIndex = selected ? rows.indexOf(selected) : -1;
+  const sortName = sorts.find(option => option.value === sort)?.label;
+  const next = () => {
+    if (rows.length > 1) setSelectedId(rows[(selectedIndex + 1) % rows.length].id);
+  };
 
   // A new order starts at its number one, scrolled back to the top.
   useEffect(() => {
@@ -82,9 +87,11 @@ function ChartShelf<S extends string>({
             accessibilityRole="button"
             accessibilityState={{ selected: current }}
             onPress={() => onSort(option.value)}
-            style={[styles.chip, current && styles.chipActive]}
+            style={styles.chip}
           >
-            <Text style={[styles.chipText, { opacity: current ? 1 : 0.55 }]}>{option.label}</Text>
+            <Text style={[styles.chipText, current ? styles.chipTextActive : { opacity: 0.6 }]}>{option.label}</Text>
+            {/* "Beam", as on profile tabs: a short glowing line under the pick. */}
+            {current && <View pointerEvents="none" style={styles.beam} />}
           </TouchableOpacity>
         );
       })}
@@ -93,7 +100,7 @@ function ChartShelf<S extends string>({
 
   return (
     <View style={styles.section}>
-      <SectionHeader icon={icon} title={title} count={count} onSeeAll={onSeeAll} />
+      <SectionHeader icon={icon} title={title} count={count} />
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{chips}</GestureDetector> : chips}
       {loading ? (
         <View style={styles.body}>
@@ -104,7 +111,12 @@ function ChartShelf<S extends string>({
         <Text style={styles.empty}>{emptyText}</Text>
       ) : (
         <View style={styles.body}>
-          {renderSelected(selected.id)}
+          <View style={{ gap: 8 }}>
+            <View style={styles.rankChip}>
+              <Text style={styles.rankChipText}>#{selectedIndex + 1}{sortName ? ` · ${sortName}` : ""}</Text>
+            </View>
+            {renderSelected(selected.id, { next })}
+          </View>
           <ScrollView ref={listRef} nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.list} contentContainerStyle={{ gap: 2 }}>
             {rows.map((row, index) => {
               const current = row.id === selected.id;
@@ -146,9 +158,12 @@ export default ChartShelf;
 const styles = StyleSheet.create({
   section: { marginBottom: 24 },
   chips: { gap: 6, paddingHorizontal: FEED_SIDE, paddingBottom: 14 },
-  chip: { paddingHorizontal: 12, paddingVertical: 9, borderRadius: 99, borderWidth: 1, borderColor: "transparent" },
-  chipActive: { backgroundColor: "rgba(255,255,255,.08)", borderColor: "rgba(255,255,255,.15)" },
-  chipText: { color: "#fff", fontSize: 11 },
+  chip: { paddingHorizontal: 10, paddingTop: 9, paddingBottom: 11 },
+  chipText: { color: "#fff", fontSize: 13, fontWeight: "500" },
+  chipTextActive: { fontWeight: "700" },
+  beam: { position: "absolute", bottom: 2, left: "30%", right: "30%", height: 3, borderRadius: 3, backgroundColor: "#fff", shadowColor: "#fff", shadowOpacity: 0.9, shadowRadius: 6, shadowOffset: { width: 0, height: 0 } },
+  rankChip: { alignSelf: "flex-start", paddingHorizontal: 10, paddingVertical: 5, borderRadius: 99, backgroundColor: "rgba(255,255,255,.1)" },
+  rankChipText: { color: "#fff", fontSize: 11, fontWeight: "600" },
   body: { paddingHorizontal: FEED_SIDE, gap: 14 },
   empty: { color: "rgba(255,255,255,0.4)", fontSize: 13, paddingHorizontal: FEED_SIDE },
   skeletonHero: { height: 180, borderRadius: 16, backgroundColor: "rgba(255,255,255,0.05)" },
@@ -179,7 +194,7 @@ const styles = StyleSheet.create({
   badge: { position: "absolute", right: 3, bottom: 3, paddingHorizontal: 3, borderRadius: 3, backgroundColor: "rgba(0,0,0,0.6)" },
   badgeText: { color: "#fff", fontSize: 9 },
   rowText: { flex: 1, gap: 4, minWidth: 0 },
-  rowTitle: { color: "#fff", fontSize: 13, fontWeight: "500" },
-  rowSubtitle: { color: "rgba(255,255,255,.5)", fontSize: 10 },
+  rowTitle: { color: "#fff", fontSize: 14, fontWeight: "600" },
+  rowSubtitle: { color: "rgba(255,255,255,.72)", fontSize: 12 },
   list: { maxHeight: LIST_MAX_HEIGHT },
 });
