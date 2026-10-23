@@ -3,6 +3,7 @@ export interface AgentSettings {
   permissions: string[]; voice: string; knowledge: string; blocked_topics: string[];
   news_enabled: boolean; news_topics: string[];
 }
+export interface GrowthReport { followers: number; following: number; captured_at: string; previous_at: string | null; follower_change: number | null }
 export const PERMISSIONS = [
   ['dehub_post_create', 'Publish posts'], ['dehub_comment', 'Reply and comment'],
   ['dehub_vote', 'React to posts'], ['dehub_follow', 'Follow accounts'], ['dehub_update_profile', 'Edit profile'],
