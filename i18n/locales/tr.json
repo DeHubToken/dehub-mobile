@@ -2499,6 +2499,11 @@
       "comment": "Yorum",
       "profile": "Profil güncellemesi",
       "window": {
+        "authorAll": "Tüm üreticiler",
+        "authorChoose": "Üretici seç",
+        "categoryAll": "Tüm kategoriler",
+        "categoryChoose": "Kategori seç",
+        "categoryHint": "Virgülle ayrılmış en fazla 20 kategori ekleyin. Herhangi biri eşleşebilir. Tümü için boş bırakın.",
         "last1h": "Son saat",
         "last30d": "Son 30 gün",
         "allTime": "Tüm zamanlar",

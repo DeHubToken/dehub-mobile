@@ -37,8 +37,9 @@ export function windowRange(preset: WindowPreset, custom: { from: string; to: st
 
 export function windowPrompt(range: { from: Date; to: Date }, actions: WindowAction[], replyStyle: string, filters: { author?: string; category?: string } = {}): string {
   const ordered = WINDOW_ACTIONS.filter(action => actions.includes(action));
+  const categories = [...new Set((filters.category ?? '').split(',').map(value => value.trim().replace(/\s+/g, ' ')).filter(Boolean))];
   return [`Every post from ${range.from.toISOString()} to ${range.to.toISOString()}`, `Actions: ${ordered.join(', ')}`,
     ...(filters.author?.trim() ? [`Author: ${filters.author.trim().replace(/\s+/g, ' ')}`] : []),
-    ...(filters.category?.trim() ? [`Category: ${filters.category.trim().replace(/\s+/g, ' ')}`] : []),
+    ...(categories.length > 1 ? [`Categories: ${JSON.stringify(categories)}`] : categories.length ? [`Category: ${categories[0]}`] : []),
     ...(ordered.includes('reply') ? [`Reply style: ${replyStyle.trim().replace(/\s+/g, ' ').slice(0, 500)}`] : [])].join('\n');
 }

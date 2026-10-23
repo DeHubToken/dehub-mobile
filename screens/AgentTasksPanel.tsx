@@ -33,6 +33,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const [windowActions, setWindowActions] = useState<WindowAction[]>(['view']);
   const [replyStyle, setReplyStyle] = useState('');
   const [filters, setFilters] = useState({ author: '', category: '' });
+  const [filterModes, setFilterModes] = useState({ author: false, category: false });
   const range = windowRange(preset, custom);
   const windowReady = !!range && windowActions.length > 0 && (!windowActions.includes('reply') || !!replyStyle.trim());
   const active = agents.filter(agent => agent.is_active);
@@ -105,11 +106,14 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
               onChangeText={value => { setCustom(current => ({ ...current, [field]: value })); changed(); }} /></LiquidGlass></View>)}
         </View>}
         {preset === 'custom' && !!custom.from && !!custom.to && !range && <Text accessibilityRole="alert" style={styles.error}>{t('agents.tasks.window.invalid')}</Text>}
-        {(['author', 'category'] as const).map(field => <View key={field}>
+        {(['author', 'category'] as const).map(field => <View key={field} style={styles.card}>
           <Text style={styles.text}>{t(`agents.tasks.window.${field}`)}</Text>
-          <LiquidGlass style={{ borderRadius: 10 }}><TextInput accessibilityLabel={t(`agents.tasks.window.${field}`)} value={filters[field]} editable={!create.isPending}
-            maxLength={field === 'author' ? 50 : 100} autoCapitalize="none" autoCorrect={false} placeholder={t(`agents.tasks.window.${field}Placeholder`)} placeholderTextColor="#A1A1AA" style={styles.dateInput}
-            onChangeText={value => { setFilters(current => ({ ...current, [field]: value })); changed(); }} /></LiquidGlass>
+          <View style={styles.row}>{([false, true] as const).map(specific => <Pressable key={String(specific)} accessibilityRole="button" accessibilityState={{ selected: filterModes[field] === specific }} disabled={create.isPending}
+            onPress={() => { setFilterModes(current => ({ ...current, [field]: specific })); changed(); }} style={[styles.chip, filterModes[field] === specific && styles.selected]}><Text style={styles.text}>{t(`agents.tasks.window.${field}${specific ? 'Choose' : 'All'}`)}</Text></Pressable>)}</View>
+          {filterModes[field] && <LiquidGlass style={{ borderRadius: 10 }}><TextInput accessibilityLabel={t(`agents.tasks.window.${field}`)} value={filters[field]} editable={!create.isPending}
+            maxLength={field === 'author' ? 50 : 1000} autoCapitalize="none" autoCorrect={false} placeholder={t(`agents.tasks.window.${field}Placeholder`)} placeholderTextColor="#A1A1AA" style={styles.dateInput}
+            onChangeText={value => { setFilters(current => ({ ...current, [field]: value })); changed(); }} /></LiquidGlass>}
+          {field === 'category' && filterModes.category && <Text style={styles.muted}>{t('agents.tasks.window.categoryHint')}</Text>}
         </View>)}
         <Text style={styles.muted}>{t('agents.tasks.window.filterHelp')}</Text>
         <Text style={styles.text}>{t('agents.tasks.window.actions')}</Text>
@@ -122,7 +126,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
       </View> : <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.instructions')} value={prompt} editable={!create.isPending} multiline maxLength={4000}
         onChangeText={value => { setPrompt(value); setRequestId(randomUUID()); create.reset(); }} placeholder={t('agents.tasks.examples')}
         placeholderTextColor="#A1A1AA" style={styles.input} /></LiquidGlass>}
-      <KitButton label={create.isPending ? t('agents.tasks.preparing') : swarm ? t('agents.tasks.runSwarm') : t('agents.tasks.run')} disabled={(windowMode ? !windowReady : !prompt.trim()) || create.isPending || (swarm && swarmIds.length < 2)} onPress={() => create.mutate(windowMode && range ? windowPrompt(windowRange(preset, custom)!, windowActions, replyStyle, filters) : prompt)} />
+      <KitButton label={create.isPending ? t('agents.tasks.preparing') : swarm ? t('agents.tasks.runSwarm') : t('agents.tasks.run')} disabled={(windowMode ? !windowReady : !prompt.trim()) || create.isPending || (swarm && swarmIds.length < 2)} onPress={() => create.mutate(windowMode && range ? windowPrompt(windowRange(preset, custom)!, windowActions, replyStyle, { author: filterModes.author ? filters.author : '', category: filterModes.category ? filters.category : '' }) : prompt)} />
       <Text style={styles.muted}>{t('agents.tasks.limits')}</Text>
     </> : <Text style={styles.muted}>{t('agents.tasks.createFirst')}</Text>}
     {create.error && <Text accessibilityRole="alert" style={styles.error}>{create.error.message}</Text>}

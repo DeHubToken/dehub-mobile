@@ -2499,6 +2499,11 @@
       "comment": "Comentario",
       "profile": "Actualización del perfil",
       "window": {
+        "authorAll": "Todos los creadores",
+        "authorChoose": "Elegir creador",
+        "categoryAll": "Todas las categorías",
+        "categoryChoose": "Elegir categorías",
+        "categoryHint": "Añade hasta 20 categorías separadas por comas. Basta con coincidir con una. Deja vacío para todas.",
         "last1h": "Última hora",
         "last30d": "Últimos 30 días",
         "allTime": "Todo el tiempo",

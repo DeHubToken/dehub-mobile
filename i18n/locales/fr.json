@@ -2499,6 +2499,11 @@
       "comment": "Commentaire",
       "profile": "Mise à jour du profil",
       "window": {
+        "authorAll": "Tous les créateurs",
+        "authorChoose": "Choisir un créateur",
+        "categoryAll": "Toutes les catégories",
+        "categoryChoose": "Choisir des catégories",
+        "categoryHint": "Ajoutez jusqu\u0027à 20 catégories séparées par des virgules. Une seule correspondance suffit. Laissez vide pour toutes.",
         "last1h": "Dernière heure",
         "last30d": "30 derniers jours",
         "allTime": "Depuis le début",
