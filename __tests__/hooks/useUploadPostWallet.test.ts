@@ -25,7 +25,7 @@ import { uploadActions } from '../../store/upload.store';
 const payload = (extra: Partial<UploadPayload> = {}): UploadPayload => ({
   bodyText: '', description: 'https://dehub.io/governance/proposal/1', categories: [],
   pickedVideo: null, pickedAudio: null, pickedImages: [], coverUri: null, thumbnailUri: null,
-  monetization: { bountyEnabled: false, subscribersEnabled: false } as UploadPayload['monetization'],
+  monetization: { ppvEnabled: false, ppvData: { price: '' }, bountyEnabled: false, bountyData: { rewardPerPerson: '', viewers: '', commenters: '' }, tokenGatedEnabled: false, tokenGateData: { minAmount: '' }, subscribersEnabled: false },
   shouldMint: false, postChainId: 8453, ...extra,
 });
 const queued = () => { const calls = (uploadActions.enqueue as jest.Mock).mock.calls; return calls[calls.length - 1][0]; };
@@ -65,7 +65,7 @@ it('keeps an explicitly selected mint on chain', () => {
 });
 
 it('retains the mint requirement for a funded bounty', () => {
-  const monetization = { bountyEnabled: true, bountyData: { rewardPerPerson: 1, viewers: 2, commenters: 2 } } as UploadPayload['monetization'];
+  const monetization: UploadPayload['monetization'] = { ...payload().monetization, bountyEnabled: true, bountyData: { rewardPerPerson: '1', viewers: '2', commenters: '2' } };
   expect(useUploadPost().enqueueJob(payload({ monetization }))).toBe(true);
   expect(queued()).toMatchObject({ isBounty: true, mintOptOut: false });
 });
