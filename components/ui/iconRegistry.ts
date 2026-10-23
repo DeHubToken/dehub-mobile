@@ -28,6 +28,7 @@ import AwardIcon from "lucide-react-native/dist/esm/icons/award";
 import BabyIcon from "lucide-react-native/dist/esm/icons/baby";
 import BanIcon from "lucide-react-native/dist/esm/icons/ban";
 import BanknoteIcon from "lucide-react-native/dist/esm/icons/banknote";
+import BatteryIcon from "lucide-react-native/dist/esm/icons/battery";
 import BellIcon from "lucide-react-native/dist/esm/icons/bell";
 import BellOffIcon from "lucide-react-native/dist/esm/icons/bell-off";
 import BellRingIcon from "lucide-react-native/dist/esm/icons/bell-ring";
@@ -39,11 +40,14 @@ import BookmarkIcon from "lucide-react-native/dist/esm/icons/bookmark";
 import BotIcon from "lucide-react-native/dist/esm/icons/bot";
 import BriefcaseIcon from "lucide-react-native/dist/esm/icons/briefcase";
 import BugIcon from "lucide-react-native/dist/esm/icons/bug";
+import CakeIcon from "lucide-react-native/dist/esm/icons/cake";
+import CalculatorIcon from "lucide-react-native/dist/esm/icons/calculator";
 import CalendarIcon from "lucide-react-native/dist/esm/icons/calendar";
 import CalendarClockIcon from "lucide-react-native/dist/esm/icons/calendar-clock";
 import CalendarDaysIcon from "lucide-react-native/dist/esm/icons/calendar-days";
 import CameraIcon from "lucide-react-native/dist/esm/icons/camera";
 import CaptionsIcon from "lucide-react-native/dist/esm/icons/captions";
+import CarIcon from "lucide-react-native/dist/esm/icons/car";
 import CaseUpperIcon from "lucide-react-native/dist/esm/icons/case-upper";
 import ChartBarBigIcon from "lucide-react-native/dist/esm/icons/chart-bar-big";
 import ChartColumnIcon from "lucide-react-native/dist/esm/icons/chart-column";
@@ -52,6 +56,7 @@ import ChartNoAxesCombinedIcon from "lucide-react-native/dist/esm/icons/chart-no
 import ChartPieIcon from "lucide-react-native/dist/esm/icons/chart-pie";
 import CheckIcon from "lucide-react-native/dist/esm/icons/check";
 import CheckCheckIcon from "lucide-react-native/dist/esm/icons/check-check";
+import CherryIcon from "lucide-react-native/dist/esm/icons/cherry";
 import ChevronDownIcon from "lucide-react-native/dist/esm/icons/chevron-down";
 import ChevronLeftIcon from "lucide-react-native/dist/esm/icons/chevron-left";
 import ChevronRightIcon from "lucide-react-native/dist/esm/icons/chevron-right";
@@ -64,24 +69,32 @@ import CircleCheckBigIcon from "lucide-react-native/dist/esm/icons/circle-check-
 import CircleMinusIcon from "lucide-react-native/dist/esm/icons/circle-minus";
 import CirclePlayIcon from "lucide-react-native/dist/esm/icons/circle-play";
 import CircleXIcon from "lucide-react-native/dist/esm/icons/circle-x";
+import CitrusIcon from "lucide-react-native/dist/esm/icons/citrus";
 import ClapperboardIcon from "lucide-react-native/dist/esm/icons/clapperboard";
 import ClipboardIcon from "lucide-react-native/dist/esm/icons/clipboard";
 import ClipboardPasteIcon from "lucide-react-native/dist/esm/icons/clipboard-paste";
 import ClockIcon from "lucide-react-native/dist/esm/icons/clock";
+import CloudIcon from "lucide-react-native/dist/esm/icons/cloud";
 import CloudUploadIcon from "lucide-react-native/dist/esm/icons/cloud-upload";
 import CoinsIcon from "lucide-react-native/dist/esm/icons/coins";
 import CompassIcon from "lucide-react-native/dist/esm/icons/compass";
 import ComponentIcon from "lucide-react-native/dist/esm/icons/component";
+import ContactIcon from "lucide-react-native/dist/esm/icons/contact";
+import CookieIcon from "lucide-react-native/dist/esm/icons/cookie";
 import CopyIcon from "lucide-react-native/dist/esm/icons/copy";
 import CornerDownLeftIcon from "lucide-react-native/dist/esm/icons/corner-down-left";
 import CpuIcon from "lucide-react-native/dist/esm/icons/cpu";
 import CreditCardIcon from "lucide-react-native/dist/esm/icons/credit-card";
 import CropIcon from "lucide-react-native/dist/esm/icons/crop";
+import CrossIcon from "lucide-react-native/dist/esm/icons/cross";
 import CrosshairIcon from "lucide-react-native/dist/esm/icons/crosshair";
 import CrownIcon from "lucide-react-native/dist/esm/icons/crown";
+import CurrencyIcon from "lucide-react-native/dist/esm/icons/currency";
 import DeleteIcon from "lucide-react-native/dist/esm/icons/delete";
+import DiamondIcon from "lucide-react-native/dist/esm/icons/diamond";
 import Disc3Icon from "lucide-react-native/dist/esm/icons/disc-3";
 import DollarSignIcon from "lucide-react-native/dist/esm/icons/dollar-sign";
+import DonutIcon from "lucide-react-native/dist/esm/icons/donut";
 import DownloadIcon from "lucide-react-native/dist/esm/icons/download";
 import EllipsisIcon from "lucide-react-native/dist/esm/icons/ellipsis";
 import EllipsisVerticalIcon from "lucide-react-native/dist/esm/icons/ellipsis-vertical";
@@ -99,6 +112,7 @@ import FlagIcon from "lucide-react-native/dist/esm/icons/flag";
 import FlameIcon from "lucide-react-native/dist/esm/icons/flame";
 import FlipHorizontal2Icon from "lucide-react-native/dist/esm/icons/flip-horizontal-2";
 import FlipVertical2Icon from "lucide-react-native/dist/esm/icons/flip-vertical-2";
+import FlowerIcon from "lucide-react-native/dist/esm/icons/flower";
 import FolderIcon from "lucide-react-native/dist/esm/icons/folder";
 import FolderInputIcon from "lucide-react-native/dist/esm/icons/folder-input";
 import FolderPlusIcon from "lucide-react-native/dist/esm/icons/folder-plus";
@@ -112,6 +126,7 @@ import GemIcon from "lucide-react-native/dist/esm/icons/gem";
 import GiftIcon from "lucide-react-native/dist/esm/icons/gift";
 import GlobeIcon from "lucide-react-native/dist/esm/icons/globe";
 import GripIcon from "lucide-react-native/dist/esm/icons/grip";
+import GroupIcon from "lucide-react-native/dist/esm/icons/group";
 import HammerIcon from "lucide-react-native/dist/esm/icons/hammer";
 import HandIcon from "lucide-react-native/dist/esm/icons/hand";
 import HandCoinsIcon from "lucide-react-native/dist/esm/icons/hand-coins";
@@ -124,6 +139,7 @@ import HeartIcon from "lucide-react-native/dist/esm/icons/heart";
 import HeartHandshakeIcon from "lucide-react-native/dist/esm/icons/heart-handshake";
 import HeartOffIcon from "lucide-react-native/dist/esm/icons/heart-off";
 import HexagonIcon from "lucide-react-native/dist/esm/icons/hexagon";
+import HighlighterIcon from "lucide-react-native/dist/esm/icons/highlighter";
 import HistoryIcon from "lucide-react-native/dist/esm/icons/history";
 import HouseIcon from "lucide-react-native/dist/esm/icons/house";
 import IdCardIcon from "lucide-react-native/dist/esm/icons/id-card";
@@ -140,6 +156,7 @@ import KeyRoundIcon from "lucide-react-native/dist/esm/icons/key-round";
 import LampIcon from "lucide-react-native/dist/esm/icons/lamp";
 import LandmarkIcon from "lucide-react-native/dist/esm/icons/landmark";
 import LanguagesIcon from "lucide-react-native/dist/esm/icons/languages";
+import LaptopIcon from "lucide-react-native/dist/esm/icons/laptop";
 import LayersIcon from "lucide-react-native/dist/esm/icons/layers";
 import LayoutDashboardIcon from "lucide-react-native/dist/esm/icons/layout-dashboard";
 import LayoutGridIcon from "lucide-react-native/dist/esm/icons/layout-grid";
@@ -154,6 +171,8 @@ import LockIcon from "lucide-react-native/dist/esm/icons/lock";
 import LockOpenIcon from "lucide-react-native/dist/esm/icons/lock-open";
 import LogInIcon from "lucide-react-native/dist/esm/icons/log-in";
 import LogOutIcon from "lucide-react-native/dist/esm/icons/log-out";
+import LollipopIcon from "lucide-react-native/dist/esm/icons/lollipop";
+import MagnetIcon from "lucide-react-native/dist/esm/icons/magnet";
 import MailIcon from "lucide-react-native/dist/esm/icons/mail";
 import MailOpenIcon from "lucide-react-native/dist/esm/icons/mail-open";
 import MapIcon from "lucide-react-native/dist/esm/icons/map";
@@ -170,6 +189,7 @@ import MessagesSquareIcon from "lucide-react-native/dist/esm/icons/messages-squa
 import MicIcon from "lucide-react-native/dist/esm/icons/mic";
 import MicOffIcon from "lucide-react-native/dist/esm/icons/mic-off";
 import MicVocalIcon from "lucide-react-native/dist/esm/icons/mic-vocal";
+import MicroscopeIcon from "lucide-react-native/dist/esm/icons/microscope";
 import MinimizeIcon from "lucide-react-native/dist/esm/icons/minimize";
 import Minimize2Icon from "lucide-react-native/dist/esm/icons/minimize-2";
 import MinusIcon from "lucide-react-native/dist/esm/icons/minus";
@@ -185,14 +205,17 @@ import Music2Icon from "lucide-react-native/dist/esm/icons/music-2";
 import NavigationIcon from "lucide-react-native/dist/esm/icons/navigation";
 import NetworkIcon from "lucide-react-native/dist/esm/icons/network";
 import NewspaperIcon from "lucide-react-native/dist/esm/icons/newspaper";
+import OctagonIcon from "lucide-react-native/dist/esm/icons/octagon";
 import PackageIcon from "lucide-react-native/dist/esm/icons/package";
 import PaintBucketIcon from "lucide-react-native/dist/esm/icons/paint-bucket";
 import PaletteIcon from "lucide-react-native/dist/esm/icons/palette";
 import PaperclipIcon from "lucide-react-native/dist/esm/icons/paperclip";
 import PauseIcon from "lucide-react-native/dist/esm/icons/pause";
 import PawPrintIcon from "lucide-react-native/dist/esm/icons/paw-print";
+import PenIcon from "lucide-react-native/dist/esm/icons/pen";
 import PenLineIcon from "lucide-react-native/dist/esm/icons/pen-line";
 import PencilIcon from "lucide-react-native/dist/esm/icons/pencil";
+import PentagonIcon from "lucide-react-native/dist/esm/icons/pentagon";
 import PercentIcon from "lucide-react-native/dist/esm/icons/percent";
 import PhoneIcon from "lucide-react-native/dist/esm/icons/phone";
 import PhoneOffIcon from "lucide-react-native/dist/esm/icons/phone-off";
@@ -203,7 +226,9 @@ import PlaneIcon from "lucide-react-native/dist/esm/icons/plane";
 import PlayIcon from "lucide-react-native/dist/esm/icons/play";
 import PlugIcon from "lucide-react-native/dist/esm/icons/plug";
 import PlusIcon from "lucide-react-native/dist/esm/icons/plus";
+import PresentationIcon from "lucide-react-native/dist/esm/icons/presentation";
 import QuoteIcon from "lucide-react-native/dist/esm/icons/quote";
+import RadarIcon from "lucide-react-native/dist/esm/icons/radar";
 import RadioIcon from "lucide-react-native/dist/esm/icons/radio";
 import ReceiptIcon from "lucide-react-native/dist/esm/icons/receipt";
 import RectangleHorizontalIcon from "lucide-react-native/dist/esm/icons/rectangle-horizontal";
@@ -217,6 +242,7 @@ import RocketIcon from "lucide-react-native/dist/esm/icons/rocket";
 import RotateCcwIcon from "lucide-react-native/dist/esm/icons/rotate-ccw";
 import RotateCwIcon from "lucide-react-native/dist/esm/icons/rotate-cw";
 import RulerIcon from "lucide-react-native/dist/esm/icons/ruler";
+import SatelliteIcon from "lucide-react-native/dist/esm/icons/satellite";
 import SaveIcon from "lucide-react-native/dist/esm/icons/save";
 import ScaleIcon from "lucide-react-native/dist/esm/icons/scale";
 import ScanLineIcon from "lucide-react-native/dist/esm/icons/scan-line";
@@ -236,9 +262,11 @@ import ShieldCheckIcon from "lucide-react-native/dist/esm/icons/shield-check";
 import ShieldOffIcon from "lucide-react-native/dist/esm/icons/shield-off";
 import ShoppingBagIcon from "lucide-react-native/dist/esm/icons/shopping-bag";
 import ShoppingCartIcon from "lucide-react-native/dist/esm/icons/shopping-cart";
+import SignpostIcon from "lucide-react-native/dist/esm/icons/signpost";
 import SlidersHorizontalIcon from "lucide-react-native/dist/esm/icons/sliders-horizontal";
 import SmartphoneIcon from "lucide-react-native/dist/esm/icons/smartphone";
 import SmileIcon from "lucide-react-native/dist/esm/icons/smile";
+import SnowflakeIcon from "lucide-react-native/dist/esm/icons/snowflake";
 import SparklesIcon from "lucide-react-native/dist/esm/icons/sparkles";
 import SpellCheckIcon from "lucide-react-native/dist/esm/icons/spell-check";
 import SquareIcon from "lucide-react-native/dist/esm/icons/square";
@@ -247,9 +275,14 @@ import SquareRoundCornerIcon from "lucide-react-native/dist/esm/icons/square-rou
 import StampIcon from "lucide-react-native/dist/esm/icons/stamp";
 import StarIcon from "lucide-react-native/dist/esm/icons/star";
 import StoreIcon from "lucide-react-native/dist/esm/icons/store";
+import StrikethroughIcon from "lucide-react-native/dist/esm/icons/strikethrough";
 import SunIcon from "lucide-react-native/dist/esm/icons/sun";
+import SunsetIcon from "lucide-react-native/dist/esm/icons/sunset";
+import TableIcon from "lucide-react-native/dist/esm/icons/table";
+import TabletIcon from "lucide-react-native/dist/esm/icons/tablet";
 import TagIcon from "lucide-react-native/dist/esm/icons/tag";
 import TargetIcon from "lucide-react-native/dist/esm/icons/target";
+import TerminalIcon from "lucide-react-native/dist/esm/icons/terminal";
 import TextIcon from "lucide-react-native/dist/esm/icons/text";
 import ThumbsDownIcon from "lucide-react-native/dist/esm/icons/thumbs-down";
 import ThumbsUpIcon from "lucide-react-native/dist/esm/icons/thumbs-up";
@@ -269,6 +302,7 @@ import TypeIcon from "lucide-react-native/dist/esm/icons/type";
 import UnderlineIcon from "lucide-react-native/dist/esm/icons/underline";
 import UndoIcon from "lucide-react-native/dist/esm/icons/undo";
 import Undo2Icon from "lucide-react-native/dist/esm/icons/undo-2";
+import UngroupIcon from "lucide-react-native/dist/esm/icons/ungroup";
 import UploadIcon from "lucide-react-native/dist/esm/icons/upload";
 import UserIcon from "lucide-react-native/dist/esm/icons/user";
 import UserCheckIcon from "lucide-react-native/dist/esm/icons/user-check";
@@ -288,6 +322,7 @@ import VoteIcon from "lucide-react-native/dist/esm/icons/vote";
 import WalletIcon from "lucide-react-native/dist/esm/icons/wallet";
 import WandIcon from "lucide-react-native/dist/esm/icons/wand";
 import WandSparklesIcon from "lucide-react-native/dist/esm/icons/wand-sparkles";
+import WavesIcon from "lucide-react-native/dist/esm/icons/waves";
 import WifiOffIcon from "lucide-react-native/dist/esm/icons/wifi-off";
 import WrenchIcon from "lucide-react-native/dist/esm/icons/wrench";
 import XIcon from "lucide-react-native/dist/esm/icons/x";
@@ -321,6 +356,7 @@ export const iconRegistry = {
   Baby: BabyIcon,
   Ban: BanIcon,
   Banknote: BanknoteIcon,
+  Battery: BatteryIcon,
   Bell: BellIcon,
   BellOff: BellOffIcon,
   BellRing: BellRingIcon,
@@ -332,11 +368,14 @@ export const iconRegistry = {
   Bot: BotIcon,
   Briefcase: BriefcaseIcon,
   Bug: BugIcon,
+  Cake: CakeIcon,
+  Calculator: CalculatorIcon,
   Calendar: CalendarIcon,
   CalendarClock: CalendarClockIcon,
   CalendarDays: CalendarDaysIcon,
   Camera: CameraIcon,
   Captions: CaptionsIcon,
+  Car: CarIcon,
   CaseUpper: CaseUpperIcon,
   ChartBarBig: ChartBarBigIcon,
   ChartColumn: ChartColumnIcon,
@@ -345,6 +384,7 @@ export const iconRegistry = {
   ChartPie: ChartPieIcon,
   Check: CheckIcon,
   CheckCheck: CheckCheckIcon,
+  Cherry: CherryIcon,
   ChevronDown: ChevronDownIcon,
   ChevronLeft: ChevronLeftIcon,
   ChevronRight: ChevronRightIcon,
@@ -357,24 +397,32 @@ export const iconRegistry = {
   CircleMinus: CircleMinusIcon,
   CirclePlay: CirclePlayIcon,
   CircleX: CircleXIcon,
+  Citrus: CitrusIcon,
   Clapperboard: ClapperboardIcon,
   Clipboard: ClipboardIcon,
   ClipboardPaste: ClipboardPasteIcon,
   Clock: ClockIcon,
+  Cloud: CloudIcon,
   CloudUpload: CloudUploadIcon,
   Coins: CoinsIcon,
   Compass: CompassIcon,
   Component: ComponentIcon,
+  Contact: ContactIcon,
+  Cookie: CookieIcon,
   Copy: CopyIcon,
   CornerDownLeft: CornerDownLeftIcon,
   Cpu: CpuIcon,
   CreditCard: CreditCardIcon,
   Crop: CropIcon,
+  Cross: CrossIcon,
   Crosshair: CrosshairIcon,
   Crown: CrownIcon,
+  Currency: CurrencyIcon,
   Delete: DeleteIcon,
+  Diamond: DiamondIcon,
   Disc3: Disc3Icon,
   DollarSign: DollarSignIcon,
+  Donut: DonutIcon,
   Download: DownloadIcon,
   Ellipsis: EllipsisIcon,
   EllipsisVertical: EllipsisVerticalIcon,
@@ -392,6 +440,7 @@ export const iconRegistry = {
   Flame: FlameIcon,
   FlipHorizontal2: FlipHorizontal2Icon,
   FlipVertical2: FlipVertical2Icon,
+  Flower: FlowerIcon,
   Folder: FolderIcon,
   FolderInput: FolderInputIcon,
   FolderPlus: FolderPlusIcon,
@@ -405,6 +454,7 @@ export const iconRegistry = {
   Gift: GiftIcon,
   Globe: GlobeIcon,
   Grip: GripIcon,
+  Group: GroupIcon,
   Hammer: HammerIcon,
   Hand: HandIcon,
   HandCoins: HandCoinsIcon,
@@ -417,6 +467,7 @@ export const iconRegistry = {
   HeartHandshake: HeartHandshakeIcon,
   HeartOff: HeartOffIcon,
   Hexagon: HexagonIcon,
+  Highlighter: HighlighterIcon,
   History: HistoryIcon,
   House: HouseIcon,
   IdCard: IdCardIcon,
@@ -433,6 +484,7 @@ export const iconRegistry = {
   Lamp: LampIcon,
   Landmark: LandmarkIcon,
   Languages: LanguagesIcon,
+  Laptop: LaptopIcon,
   Layers: LayersIcon,
   LayoutDashboard: LayoutDashboardIcon,
   LayoutGrid: LayoutGridIcon,
@@ -447,6 +499,8 @@ export const iconRegistry = {
   LockOpen: LockOpenIcon,
   LogIn: LogInIcon,
   LogOut: LogOutIcon,
+  Lollipop: LollipopIcon,
+  Magnet: MagnetIcon,
   Mail: MailIcon,
   MailOpen: MailOpenIcon,
   Map: MapIcon,
@@ -463,6 +517,7 @@ export const iconRegistry = {
   Mic: MicIcon,
   MicOff: MicOffIcon,
   MicVocal: MicVocalIcon,
+  Microscope: MicroscopeIcon,
   Minimize: MinimizeIcon,
   Minimize2: Minimize2Icon,
   Minus: MinusIcon,
@@ -478,14 +533,17 @@ export const iconRegistry = {
   Navigation: NavigationIcon,
   Network: NetworkIcon,
   Newspaper: NewspaperIcon,
+  Octagon: OctagonIcon,
   Package: PackageIcon,
   PaintBucket: PaintBucketIcon,
   Palette: PaletteIcon,
   Paperclip: PaperclipIcon,
   Pause: PauseIcon,
   PawPrint: PawPrintIcon,
+  Pen: PenIcon,
   PenLine: PenLineIcon,
   Pencil: PencilIcon,
+  Pentagon: PentagonIcon,
   Percent: PercentIcon,
   Phone: PhoneIcon,
   PhoneOff: PhoneOffIcon,
@@ -496,7 +554,9 @@ export const iconRegistry = {
   Play: PlayIcon,
   Plug: PlugIcon,
   Plus: PlusIcon,
+  Presentation: PresentationIcon,
   Quote: QuoteIcon,
+  Radar: RadarIcon,
   Radio: RadioIcon,
   Receipt: ReceiptIcon,
   RectangleHorizontal: RectangleHorizontalIcon,
@@ -510,6 +570,7 @@ export const iconRegistry = {
   RotateCcw: RotateCcwIcon,
   RotateCw: RotateCwIcon,
   Ruler: RulerIcon,
+  Satellite: SatelliteIcon,
   Save: SaveIcon,
   Scale: ScaleIcon,
   ScanLine: ScanLineIcon,
@@ -529,9 +590,11 @@ export const iconRegistry = {
   ShieldOff: ShieldOffIcon,
   ShoppingBag: ShoppingBagIcon,
   ShoppingCart: ShoppingCartIcon,
+  Signpost: SignpostIcon,
   SlidersHorizontal: SlidersHorizontalIcon,
   Smartphone: SmartphoneIcon,
   Smile: SmileIcon,
+  Snowflake: SnowflakeIcon,
   Sparkles: SparklesIcon,
   SpellCheck: SpellCheckIcon,
   Square: SquareIcon,
@@ -540,9 +603,14 @@ export const iconRegistry = {
   Stamp: StampIcon,
   Star: StarIcon,
   Store: StoreIcon,
+  Strikethrough: StrikethroughIcon,
   Sun: SunIcon,
+  Sunset: SunsetIcon,
+  Table: TableIcon,
+  Tablet: TabletIcon,
   Tag: TagIcon,
   Target: TargetIcon,
+  Terminal: TerminalIcon,
   Text: TextIcon,
   ThumbsDown: ThumbsDownIcon,
   ThumbsUp: ThumbsUpIcon,
@@ -562,6 +630,7 @@ export const iconRegistry = {
   Underline: UnderlineIcon,
   Undo: UndoIcon,
   Undo2: Undo2Icon,
+  Ungroup: UngroupIcon,
   Upload: UploadIcon,
   User: UserIcon,
   UserCheck: UserCheckIcon,
@@ -581,6 +650,7 @@ export const iconRegistry = {
   Wallet: WalletIcon,
   Wand: WandIcon,
   WandSparkles: WandSparklesIcon,
+  Waves: WavesIcon,
   WifiOff: WifiOffIcon,
   Wrench: WrenchIcon,
   X: XIcon,

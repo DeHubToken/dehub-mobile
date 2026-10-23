@@ -3,7 +3,7 @@ import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 function runtime() {
   const code = EDITOR_CANVAS_HTML.slice(EDITOR_CANVAS_HTML.indexOf("  async function exportImage(m) {"), EDITOR_CANVAS_HTML.indexOf("  async function exportVideo(m) {"));
   const op = { clip: { id: "video", mediaId: "source", kind: "video", trimIn: 2, start: 5, duration: 5, speed: 2 } };
-  const context = { fillRect: jest.fn(), fillStyle: "" };
+  const context = { fillRect: jest.fn(), setTransform: jest.fn(), fillStyle: "" };
   const env = {
     state: { time: 2.6, snapshot: { clips: [op.clip], settings: { width: 640, height: 360, fps: 30, background: "black", pages: [0, 5] } } },
     post: jest.fn(), ops: jest.fn(() => [op]), seek: jest.fn().mockResolvedValue(undefined), draw: jest.fn(),
@@ -14,6 +14,7 @@ function runtime() {
   const result = new Function("env", `
     var state = env.state, exporting = false, exportAborted = false, videoJobId = null;
     var document = env.document, post = env.post, stopPlaying = env.pause, schedule = env.schedule;
+    var waitForDesignFonts = function () { return document.fonts.ready; };
     var videos = env.videos, images = env.images, videoAliases = env.aliases;
     var matteMeta = new Map(), prepareMatteOps = env.mattePages;
     var computeRenderOps = env.ops, seekVideo = env.seek, drawOps = env.draw, prepareVideoSources = env.prepare, assertVideoMattes = env.matte;
@@ -36,7 +37,7 @@ it("captures the requested page after its video frame is decoded without changin
   expect(env.draw).not.toHaveBeenCalled();
   finish(); await pending;
   expect(env.draw.mock.calls[0][4]).toBe(5);
-  expect(env.post).toHaveBeenCalledWith({ type: "exported", reqId: "page", dataUrl: "data:image/png;base64,YQ==" });
+  expect(env.post).toHaveBeenCalledWith({ type: "exported", reqId: "page", links: [], dataUrl: "data:image/png;base64,YQ==" });
   expect(JSON.stringify(env.state)).toBe(before); expect(result.active()).toBe(false);
 });
 it("drops cancelled or missing-media captures instead of saving the wrong frame", async () => {
