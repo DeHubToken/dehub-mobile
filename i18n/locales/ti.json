@@ -4121,6 +4121,7 @@
     "noVoice": "መሳርሒኻ ነዚ ቋንቋ ዝኸውን ድምጺ የብሉን።"
   },
   "stages": {
+    "allStages": "ኩሎም ናይ ድምጺ ክፍልታት",
     "addToCalendar": "ናብ ኣቆጣጠር ኣክል",
     "nowPlaying": "ሕጂ ድማ ክጻወት እየ ።",
     "onTheRadio": "ኣብ ሬድዮ",

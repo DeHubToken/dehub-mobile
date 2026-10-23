@@ -4209,6 +4209,7 @@
     "filedOn": "Aperto il {{date}}"
   },
   "stages": {
+    "allStages": "Tutte le stanze audio",
     "addToCalendar": "Aggiungi al calendario",
     "nowPlaying": "In riproduzione",
     "onTheRadio": "Alla radio",

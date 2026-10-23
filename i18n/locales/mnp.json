@@ -4136,6 +4136,7 @@
     "noVoice": "你的设备无此语言的语音。"
   },
   "stages": {
+    "allStages": "所有語音房",
     "addToCalendar": "加入日曆",
     "subtitles": "字幕",
     "subtitlesIn": "字幕 · {{language}}",

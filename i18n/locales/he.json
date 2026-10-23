@@ -4147,6 +4147,7 @@
     "noVoice": "אין במכשיר שלכם קול לשפה הזו."
   },
   "stages": {
+    "allStages": "כל חדרי האודיו",
     "addToCalendar": "הוסף ללוח השנה",
     "nowPlaying": "מתנגן כעת",
     "onTheRadio": "ברדיו",

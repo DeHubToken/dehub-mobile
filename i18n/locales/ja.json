@@ -4193,6 +4193,7 @@
     "filedOn": "{{date}} に作成"
   },
   "stages": {
+    "allStages": "すべての音声ルーム",
     "addToCalendar": "カレンダーに追加",
     "nowPlaying": "現在再生中",
     "onTheRadio": "ラジオで放送中",

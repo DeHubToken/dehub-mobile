@@ -4150,6 +4150,7 @@
     "noVoice": "El teu dispositiu no té cap veu per a aquest idioma."
   },
   "stages": {
+    "allStages": "Totes les sales d'àudio",
     "addToCalendar": "Afegeix al calendari",
     "nowPlaying": "Reproduint-se ara",
     "onTheRadio": "A la ràdio",

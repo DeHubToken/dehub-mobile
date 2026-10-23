@@ -4150,6 +4150,7 @@
     "noVoice": "Enheten din har ingen stemme for dette språket."
   },
   "stages": {
+    "allStages": "Alle lydrom",
     "addToCalendar": "Legg til i kalender",
     "nowPlaying": "Spiller nå",
     "onTheRadio": "På radioen",

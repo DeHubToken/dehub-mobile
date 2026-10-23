@@ -4651,6 +4651,7 @@
     "noVoice": "Je apparaat heeft geen stem voor deze taal."
   },
   "stages": {
+    "allStages": "Alle audioruimtes",
     "addToCalendar": "Toevoegen aan agenda",
     "nowPlaying": "Nu aan het spelen",
     "onTheRadio": "Op de radio",

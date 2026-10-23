@@ -4144,6 +4144,7 @@
     "noVoice": "جهازك ما بيه صوت لهاي اللغة."
   },
   "stages": {
+    "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "الآن يلعبون",
     "onTheRadio": "في الراديو",

@@ -4154,6 +4154,7 @@
     "noVoice": "Din enhet har ingen röst för det här språket."
   },
   "stages": {
+    "allStages": "Alla ljudrum",
     "addToCalendar": "Lägg till i kalender",
     "nowPlaying": "Spelar nu",
     "onTheRadio": "På radion",

@@ -4168,6 +4168,7 @@
     "noVoice": "Qurilmangizda bu til uchun ovoz yo‘q."
   },
   "stages": {
+    "allStages": "Barcha audio xonalar",
     "addToCalendar": "Kalendarga qoʻshing",
     "nowPlaying": "Hozir oʻynayotgan",
     "onTheRadio": "Radio orqali",
