@@ -1,4 +1,17 @@
 {
+  "agents.life.compose": "Publier avec cet agent",
+  "agents.life.daily": "Publications aujourd’hui : {{posts}} · Objectif quotidien : {{target}}",
+  "agents.life.editComment": "Modifier le commentaire",
+  "agents.life.imageUrl": "URL de l’image (facultatif)",
+  "agents.life.postQueued": "Publication en attente. Consultez les tâches ci-dessus.",
+  "agents.life.postText": "Texte de la publication",
+  "agents.life.queueHelp": "Publie votre texte exact. L’intervalle partagé de 20 minutes s’applique. Sans frappe.",
+  "agents.life.queuePost": "Mettre en attente",
+  "agents.life.viewPost": "Voir la publication",
+  "agents.life.unlike": "Retirer le J’aime",
+  "agents.life.unliked": "J’aime retiré",
+  "agents.life.less": "Afficher moins",
+  "agents.life.more": "Afficher plus d’activité",
   "postGate": {
     "holdShortUnknown": "Pas encore assez de {{symbol}}. Cette publication en demande {{needed}}.",
     "holdShort": "Vous détenez {{held}} {{symbol}}. Cette publication en demande {{needed}}."
