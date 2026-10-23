@@ -474,7 +474,10 @@ const AnimBar: React.FC<AnimBarProps> = memo(
     const barStyle = useAnimatedStyle(() => {
       const swing = 0.5 + 0.5 * Math.sin((clock.value * rate + offset) * TAU);
       const peak = baseHeight + (maxH - baseHeight) * swing;
-      const h = minH + (peak - minH) * drive.value;
+      // Paused bars hold the track's own shape (like web's idle frame), so
+      // picking Bars always shows bars instead of a 3px line under the chrome.
+      const rest = Math.max(minH, baseHeight * 0.75);
+      const h = rest + (peak - rest) * drive.value;
       return { transform: [{ scaleY: Math.max(0.02, h / maxH) }] };
     });
 
@@ -532,7 +535,10 @@ const AnimBar: React.FC<AnimBarProps> = memo(
 
 const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
   ({ seed, isPlaying, hue, height, mode, onLayout }) => {
-    const maxH = mode === "mirror" ? height / 2 - 2 : height;
+    // Bars stand on a floor above the play row and the studio deck, which
+    // both cover the bottom fifth of the band, and stop short of the top row.
+    const floor = mode === "bars" ? Math.round(height * 0.22) : 0;
+    const maxH = mode === "mirror" ? height / 2 - 2 : Math.max(8, height * 0.6);
     const minH = 3;
     const bars = useMemo(() => generateBars(seed, BAR_COUNT), [seed]);
     const clock = useClock(isPlaying, 2400);
@@ -545,6 +551,7 @@ const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
           flexDirection: "row",
           alignItems: mode === "mirror" ? "center" : "flex-end",
           height,
+          paddingBottom: floor,
           justifyContent: "center",
         }}
       >
