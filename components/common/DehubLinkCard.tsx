@@ -44,6 +44,7 @@ import { useAppTheme } from '../../context/ThemeContext';
 import { fetchTitleOffers } from '../../services/justwatch.service';
 import { detectLocale } from '../../libs/cinema-locales';
 import { minimalFlat } from '../../theme/minimal';
+import { useGovernanceProposal } from '../../hooks/useGovernanceDiscussion';
 
 /** How many cards one message or caption may draw before the rest stay as text. */
 export const MAX_CARDS_PER_MESSAGE = 2;
@@ -338,6 +339,46 @@ const EventCardEmbed: React.FC<{ eventNumber: string; onOpen: () => void; fallba
       imageUri={data.cover_image_url}
       bannerUri={data.cover_image_url}
       fallbackIcon="Calendar"
+      onPress={onOpen}
+    />
+  );
+};
+
+/** A governance proposal: what a quoted proposal looks like in a post or DM. */
+const ProposalCardEmbed: React.FC<{ proposalId: string; onOpen: () => void; fallback: React.ReactElement }> = ({
+  proposalId,
+  onOpen,
+  fallback,
+}) => {
+  const { t } = useTranslation();
+  const { data, isLoading, isError } = useGovernanceProposal(proposalId);
+
+  if (isLoading) return <SkeletonCard />;
+  if (isError || !data) return fallback;
+
+  const forW = data.like_count || 0;
+  const againstW = data.dislike_count || 0;
+  const total = forW + againstW;
+  const forPct = total > 0 ? Math.round((forW / total) * 100) : 50;
+  const verdict = data.status === 'passed' || (data.status === 'completed' && forW > againstW)
+    ? t('governance.passed')
+    : data.status === 'rejected' || data.status === 'completed'
+      ? t('governance.rejected')
+      : null;
+  const author = data.author_username
+    ? `@${data.author_username}`
+    : `${data.author_wallet_address.slice(0, 6)}...${data.author_wallet_address.slice(-4)}`;
+
+  return (
+    <RowCard
+      eyebrow={[t('governance.title'), verdict].filter(Boolean).join(' · ')}
+      title={data.title}
+      titleLines={2}
+      subtitle={author}
+      meta={`${forPct}% ${t('governance.forLabel')} · ${100 - forPct}% ${t('governance.againstLabel')}`}
+      description={data.description || undefined}
+      imageUri={getAvatarUrl(data.author_avatar) || null}
+      fallbackIcon="Vote"
       onPress={onOpen}
     />
   );
@@ -684,6 +725,9 @@ export function useOpenDehubLink() {
           });
           return;
         }
+        case 'proposal':
+          navigation.navigate(ScreenNames.GovernanceProposal, { proposalId: link.proposalId });
+          return;
         case 'film':
           navigation.navigate(ScreenNames.Cinema, {
             filmType: link.filmObjectType === 'show' ? 'series' : 'film',
@@ -767,6 +811,9 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       break;
     case 'app':
       card = <AppCardEmbed slug={link.appSlug!} onOpen={open} fallback={fallback} />;
+      break;
+    case 'proposal':
+      card = <ProposalCardEmbed proposalId={link.proposalId!} onOpen={open} fallback={fallback} />;
       break;
     case 'bounty':
       card = <BountyCardEmbed jobKey={link.bountyJobKey!} onOpen={open} fallback={fallback} />;
