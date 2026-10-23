@@ -5551,6 +5551,8 @@
     "creatorEarnsDirect": "Obunachilar DeHub tokenlarida to'lov qilishadi. Ular obuna bo'lgan zahoti sizning ulushingiz hamyoningizga tushadi, nishon darajangiz uchun platforma to'lovi chegiriladi."
   },
   "live": {
+    "bigEvent": "Katta tadbir",
+    "bigEventHint": "Katta auditoriya uchun: tomoshabinlar taxminan 20 soniya kechikish bilan, lekin kamroq uzilishlar bilan tomosha qiladi.",
     "notSet": "Belgilanmagan",
     "liveChat": "Jonli chat",
     "pickDate": "Sanani tanlang",

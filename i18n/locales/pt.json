@@ -5645,6 +5645,8 @@
     "creatorEarnsDirect": "Os assinantes pagam em tokens DeHub. A sua parte fica na sua carteira no momento em que é subscrita, menos a taxa da plataforma para o seu nível de emblema."
   },
   "live": {
+    "bigEvent": "Grande evento",
+    "bigEventHint": "Para grandes públicos: os espectadores assistem com cerca de 20 segundos de atraso, com menos interrupções.",
     "notSet": "Não definido",
     "liveChat": "Chat ao vivo",
     "pickDate": "Escolher data",

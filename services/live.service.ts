@@ -129,6 +129,29 @@ export async function updateStreamSettings(
   );
 }
 
+/**
+ * Move a stream that never got on air off the self-hosted ingest and onto
+ * Livepeer, keeping its post (owner only). The publisher calls this when every
+ * route to the self-hosted server has failed before any media flowed, and
+ * republishes with what comes back — the creator never has to start over.
+ */
+export async function fallbackToLivepeer(streamId: string) {
+  if (!streamId) throw new Error('streamId required');
+  const res: any = await apiClient.post<any>(
+    `/live/${encodeURIComponent(streamId)}/ingest-fallback`,
+    {},
+    { isAuthRequired: true },
+  );
+  const body = res?.result ?? res;
+  return body as {
+    provider: string;
+    playbackId: string;
+    streamKey: string;
+    livepeerId?: string;
+    ingestUrl?: string;
+  };
+}
+
 // Fetch ingest URL (owner only) — GET /live/:streamId/ingesturl
 export async function getIngestUrl(streamId: string) {
   if (!streamId) throw new Error('streamId required');

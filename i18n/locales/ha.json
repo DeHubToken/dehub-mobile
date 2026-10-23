@@ -5521,6 +5521,8 @@
     "creatorEarnsDirect": "Masu biyan kuɗi suna biyan kuɗi a cikin alamun DeHub. Kasashen rabon ku a cikin walat ɗin ku lokacin da suka yi rajista, ƙasa da kuɗin dandamali don ƙimar alamar ku."
   },
   "live": {
+    "bigEvent": "Babban taro",
+    "bigEventHint": "Don masu kallo da yawa: masu kallo za su gani da jinkirin kusan daƙiƙa 20, tare da ƙarancin katsewa.",
     "notSet": "Ba a saita ba",
     "liveChat": "Hira kai tsaye",
     "pickDate": "Zaɓi kwanan wata",

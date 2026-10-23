@@ -5541,6 +5541,8 @@
     "creatorEarnsDirect": "Els subscriptors paguen amb fitxes DeHub. La teva participació arribarà a la teva cartera en el moment en què es subscriguin, menys la tarifa de la plataforma per al teu nivell d'distintiu."
   },
   "live": {
+    "bigEvent": "Gran esdeveniment",
+    "bigEventHint": "Per a grans audiències: els espectadors ho veuen uns 20 segons endarrere, amb menys interrupcions.",
     "notSet": "Sense definir",
     "liveChat": "Xat en directe",
     "pickDate": "Tria la data",

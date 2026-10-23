@@ -5566,6 +5566,8 @@
     "creatorEarnsDirect": "Intekenare betaal in DeHub-tokens. Jou aandeel land in jou beursie die oomblik dat hulle inteken, minder die platformfooi vir jou wapenvlak."
   },
   "live": {
+    "bigEvent": "Groot geleentheid",
+    "bigEventHint": "Vir groot gehore: kykers kyk sowat 20 sekondes agter, met minder onderbrekings.",
     "notSet": "Nie gestel nie",
     "liveChat": "Regstreekse klets",
     "pickDate": "Kies datum",

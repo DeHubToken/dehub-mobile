@@ -5555,6 +5555,8 @@
     "creatorEarnsDirect": "Ababhalisile bakhokha ngamathokheni e-DeHub. Izabelo zakho zihlala esikhwameni sakho semali lapho zibhalisa, nciphisa inani lepulatifomu lebanga lakho lebheji."
   },
   "live": {
+    "bigEvent": "Umcimbi omkhulu",
+    "bigEventHint": "Ezilalelini ezinkulu: ababukeli babuka bephuze cishe imizuzwana engama-20, kodwa kuphazamiseka kancane.",
     "notSet": "Akuzange kusethwe",
     "liveChat": "Ingxoxo ebukhoma",
     "pickDate": "Khetha usuku",

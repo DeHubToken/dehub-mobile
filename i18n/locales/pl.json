@@ -5577,6 +5577,8 @@
     "creatorEarnsDirect": "Abonenci płacą w tokenach DeHub. Twój udział pojawi się w portfelu w momencie subskrypcji, pomniejszony o opłatę platformową za próg odznaki."
   },
   "live": {
+    "bigEvent": "Duże wydarzenie",
+    "bigEventHint": "Dla dużej widowni: widzowie oglądają z około 20-sekundowym opóźnieniem, ale z mniejszą liczbą przerw.",
     "notSet": "Nie ustawiono",
     "liveChat": "Czat na żywo",
     "pickDate": "Wybierz datę",

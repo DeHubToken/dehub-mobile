@@ -16,6 +16,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
 
 export type LiveProvider = 'livepeer' | 'mediamtx';
 
@@ -40,13 +41,32 @@ export function liveProviderOf(stream: LiveStreamRef | null | undefined): LivePr
   return stream?.provider === 'mediamtx' ? 'mediamtx' : 'livepeer';
 }
 
+/**
+ * Whether the creator marked this broadcast as a big event.
+ *
+ * A big event plays over HLS, well behind the live edge, instead of a WebRTC
+ * session per viewer: the ingest serves an HLS crowd from one muxer however
+ * many are watching, and the deep buffer rides out a bad network instead of
+ * stalling. Normal broadcasts keep WebRTC. The web app reads the same field.
+ */
+export function isBigEvent(stream: { settings?: { latencyMode?: string } | null } | null | undefined): boolean {
+  return stream?.settings?.latencyMode === 'event';
+}
+
 /** HLS ladder — what the player pulls. */
 export function hlsUrlFor(stream: LiveStreamRef | null | undefined): string | null {
   const playbackId = stream?.playbackId;
   if (!playbackId) return null;
-  return liveProviderOf(stream) === 'mediamtx'
-    ? `https://${MEDIAMTX_HOST}/${playbackId}/index.m3u8`
-    : `https://livepeercdn.studio/hls/${playbackId}/index.m3u8`;
+  if (liveProviderOf(stream) !== 'mediamtx') {
+    return `https://livepeercdn.studio/hls/${playbackId}/index.m3u8`;
+  }
+  // The self-hosted ingest forwards the broadcaster's Opus audio, which
+  // AVPlayer cannot play in HLS at all. iOS takes the AAC copy the server
+  // makes on demand (`{playbackId}-aac`, video untouched); Android decodes
+  // Opus and keeps the original. The web app makes the same split by codec.
+  return Platform.OS === 'ios'
+    ? `https://${MEDIAMTX_HOST}/${playbackId}-aac/index.m3u8`
+    : `https://${MEDIAMTX_HOST}/${playbackId}/index.m3u8`;
 }
 
 /**

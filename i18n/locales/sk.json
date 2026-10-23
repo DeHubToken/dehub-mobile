@@ -5641,6 +5641,8 @@
     "creatorEarnsDirect": "Predplatitelia platia v žetónoch DeHub. Váš podiel sa dostane do peňaženky v okamihu, keď sa prihlásia na odber, po odpočítaní poplatku za platformu pre vašu úroveň odznaku."
   },
   "live": {
+    "bigEvent": "Veľká udalosť",
+    "bigEventHint": "Pre veľké publikum: diváci sledujú približne s 20-sekundovým oneskorením, ale s menej výpadkami.",
     "notSet": "Nenastavené",
     "liveChat": "Živý chat",
     "pickDate": "Vybrať dátum",

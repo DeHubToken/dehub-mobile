@@ -5545,6 +5545,8 @@
     "creatorEarnsDirect": "Az előfizetők DeHub tokenekben fizetnek. A részvényed az előfizetés pillanatában a pénztárcádba kerül, levonva belőle a jelvényszinted platformdíját."
   },
   "live": {
+    "bigEvent": "Nagy esemény",
+    "bigEventHint": "Nagy közönségnek: a nézők nagyjából 20 másodperces késéssel, de kevesebb akadással látják.",
     "notSet": "Nincs beállítva",
     "liveChat": "Élő csevegés",
     "pickDate": "Dátum kiválasztása",

@@ -5533,6 +5533,8 @@
     "creatorEarnsDirect": "Abonentët paguajnë në tokenët DeHub. Pjesa jote vendoset në portofolin tënd në momentin që ata regjistrohen, minus tarifën e platformës për nivelin e distinktivit tënd."
   },
   "live": {
+    "bigEvent": "Ngjarje e madhe",
+    "bigEventHint": "Për audienca të mëdha: shikuesit e shohin me rreth 20 sekonda vonesë, me më pak ndërprerje.",
     "notSet": "I pacaktuar",
     "liveChat": "Bisedë live",
     "pickDate": "Zgjidh datën",
