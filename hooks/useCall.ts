@@ -4,7 +4,7 @@ import createAgoraRtcEngine, {
   type IRtcEngine, type IRtcEngineEventHandler, type VideoCanvas,
   VideoSourceType, RenderModeType, ChannelProfileType, ClientRoleType,
 } from "react-native-agora";
-import { supabase, fetchAgoraToken } from "../services/supabase";
+import { supabase, fetchAgoraToken, walletScopedClient } from "../services/supabase";
 import { AGORA_APP_ID } from "../config/agora.config";
 import { useAuth } from "../context/AuthContext";
 import { createLogger } from "../libs/logger";
@@ -49,6 +49,7 @@ export function useCall(): UseCallReturn {
   const [isMinimized, setMinimized] = useState(false);
   const { user } = useAuth();
   const userAddress = (user?.walletAddress || user?.address || "").toLowerCase();
+  const callClient = useMemo(() => userAddress ? walletScopedClient(userAddress) : supabase, [userAddress]);
   const currentCallRef = useRef<CallSession | null>(null);
   const startedAtRef = useRef<number | null>(null);
   const generationRef = useRef(0);
@@ -70,9 +71,9 @@ export function useCall(): UseCallReturn {
   }, []);
   const markEnded = useCallback(async (call: CallSession | null) => {
     if (!call || call.id === "pending") return;
-    try { await supabase.from("call_sessions").update({ status: "ended" }).eq("id", call.id); }
+    try { await callClient.from("call_sessions").update({ status: "ended" }).eq("id", call.id); }
     catch (error) { log.warn("Call status update failed", error); }
-  }, []);
+  }, [callClient]);
   const disposeMedia = useCallback((media: CallMedia | null) => {
     if (!media || media.closed) return;
     media.closed = true;
@@ -193,7 +194,7 @@ export function useCall(): UseCallReturn {
     const request = { wallet: userAddress, generation, recover: false };
     ringCheckRef.current = request;
     try {
-      const { data } = await supabase.from("call_sessions").select("id,caller_address,recipient_address,status,call_type,created_at")
+      const { data } = await callClient.from("call_sessions").select("id,caller_address,recipient_address,status,call_type,created_at")
         .eq("recipient_address", userAddress).eq("status", "ringing")
         .order("created_at", { ascending: false }).limit(1).single();
       if (!data || generationRef.current !== generation || currentCallRef.current || AppState.currentState !== "active") return;
@@ -215,7 +216,7 @@ export function useCall(): UseCallReturn {
         if (request.recover && generationRef.current === generation) void checkRef.current();
       }
     }
-  }, [userAddress, publishCall, endCall]);
+  }, [userAddress, callClient, publishCall, endCall]);
   const checkRef = useRef(checkForRing);
   checkRef.current = checkForRing;
 
@@ -264,7 +265,7 @@ export function useCall(): UseCallReturn {
     visualActivity.setCall(true, true);
     revokeAllFeedVideo(); revokeAudioFocus();
     try {
-      const { data, error } = await supabase.from("call_sessions").insert({
+      const { data, error } = await callClient.from("call_sessions").insert({
         caller_address: pending.caller_address, recipient_address: pending.recipient_address,
         status: "ringing", call_type: callType,
       }).select().single();
@@ -288,7 +289,7 @@ export function useCall(): UseCallReturn {
     } catch (error) {
       if (generationRef.current === generation) { log.error("Call start failed", error); await endCall(); }
     }
-  }, [userAddress, publishCall, markEnded, joinChannel, endCall]);
+  }, [userAddress, callClient, publishCall, markEnded, joinChannel, endCall]);
 
   const acceptCall = useCallback(async () => {
     const call = currentCallRef.current;
@@ -298,7 +299,7 @@ export function useCall(): UseCallReturn {
     clearTimeouts();
     setIsIncoming(false); setIsConnecting(true);
     try {
-      const { error } = await supabase.from("call_sessions").update({ status: "connected" }).eq("id", call.id);
+      const { error } = await callClient.from("call_sessions").update({ status: "connected" }).eq("id", call.id);
       if (generationRef.current !== generation) { await markEnded(call); return; }
       if (error) throw error;
       publishCall({ ...call, status: "connected" });
@@ -307,7 +308,7 @@ export function useCall(): UseCallReturn {
     } catch (error) {
       if (generationRef.current === generation) { log.error("Call accept failed", error); await endCall(); }
     } finally { if (generationRef.current === generation) joiningRef.current = false; }
-  }, [clearTimeouts, publishCall, joinChannel, endCall, markEnded]);
+  }, [callClient, clearTimeouts, publishCall, joinChannel, endCall, markEnded]);
 
   const toggleMute = useCallback(() => {
     const engine = mediaRef.current?.engine;

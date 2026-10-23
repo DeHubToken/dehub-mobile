@@ -193,13 +193,13 @@ export function createWalletSessionFetch(baseFetch: typeof fetch = fetch): typeo
     const valid = sessions.get(wallet);
     const usable = valid && valid.expiresAt - 30_000 > Date.now() ? valid : null;
     if (usable && !fresh(wallet)) void ensure(wallet, baseFetch);
-    const bountyWrite=/\/rest\/v1\/(?:rpc\/)?work_/.test(url);
-    const session = usable ?? (await timeout(ensure(wallet, baseFetch), bountyWrite ? 12000 : FIRST_WAIT_MS));
+    const protectedRequest=/\/rest\/v1\/(?:call_sessions|callback_requests|audio_spaces|space_participants|raise_hand_requests|stage_reminders|(?:rpc\/)?work_)(?:[/?]|$)/.test(url) || /\/rest\/v1\/(?:rpc\/)?work_/.test(url);
+    const session = usable ?? (await timeout(ensure(wallet, baseFetch), protectedRequest ? 12000 : FIRST_WAIT_MS));
     if (!session || session === TIMED_OUT) {
       reportUnsigned(wallet, url, session === TIMED_OUT
         ? { reason: "timeout", detail: `no session within ${FIRST_WAIT_MS}ms` }
         : lastFailure.get(wallet) ?? { reason: "mint_error", detail: "unknown" });
-      if(bountyWrite) return new Response(JSON.stringify({message:'Sign in again to manage bounties',code:'42501'}),{status:401,headers:{'Content-Type':'application/json'}});
+      if(protectedRequest) return new Response(JSON.stringify({message:'Session verification is temporarily unavailable. Please retry.',code:'42501'}),{status:401,headers:{'Content-Type':'application/json'}});
       return baseFetch(input, init);
     }
     headers.set("x-wallet-session", session.token);
