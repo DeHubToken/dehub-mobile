@@ -224,8 +224,8 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
   let source: import("expo-file-system").File;
   let size: number;
   try {
-    fs = await import("expo-file-system");
-    legacy = await import("expo-file-system/legacy");
+    fs = require("expo-file-system") as typeof import("expo-file-system");
+    legacy = require("expo-file-system/legacy") as typeof import("expo-file-system/legacy");
     if (!opts.uri.startsWith("file://")) throw new Error("not a file:// URI");
     source = new fs.File(opts.uri);
     size = source.size;
