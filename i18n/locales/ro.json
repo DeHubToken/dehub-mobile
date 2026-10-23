@@ -4878,7 +4878,28 @@
     "interestedCount": "{{count}} interesați",
     "loadFailed": "Evenimentele nu au putut fi încărcate"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Vizitatori pe zi", "dailyHint": "vizitatori unici pe zi", "empty": "Încă nu există date pentru acest interval"},
+    "definitions": {
+      "visitorsTerm": "Vizitatori"
+    },
+    "unavailable": {
+      "title": "Statisticile nu sunt disponibile acum"
+    },
+    "browsers": {
+      "window": "după afișări de pagină",
+      "title": "Browsere"
+    },
+    "countries": {
+      "window": "ultimele {{days}} zile",
+      "title": "Țări de top"
+    },
+    "tile": {
+      "inRange": "în acest interval",
+      "requestsLabel": "Cereri",
+      "pageViews": "Afișări de pagină",
+      "soFarToday": "până acum azi, UTC",
+      "visitorsToday": "Vizitatori azi"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Ai folosit DeHub de ceva timp? Spune-ne cum a fost. Bun, rău sau specific — totul este citit. Dacă ești fericit să ne cităm, bifează caseta și este posibil să o folosim în postări, videoclipuri sau pe site.",
@@ -6770,6 +6791,9 @@
       "sold": "Vândut {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Încă nu există date pentru acest interval",
+      "dailyHint": "vizitatori unici pe zi",
+      "daily": "Vizitatori pe zi",
       "bookStarts": "Cartea începe aici",
       "firstOrder": "Plasați prima comandă pentru a adăuga lichiditate.",
       "waiting": "Se așteaptă datele despre preț",

@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import ScreenHeader from "../components/ScreenHeader";
 import { KitButton, PageEmpty, PageSection, PageTabs } from "../components/page/PageKit";
 import FinanceSection from "../components/Stats/FinanceSection";
+import TrafficSection from "../components/Stats/TrafficSection";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import Icon from "../components/ui/Icon";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -156,6 +157,8 @@ export default function StatsScreen() {
           refreshControl={<DeHubRefreshControl refreshing={query.isFetching} onRefresh={() => query.refetch()} tintColor="#F4F4F5" />}
         >
 
+
+          <TrafficSection days={option.days} />
 
           <PageSection>
             <Metric label={t("communities.membersLabel")} value={query.data.totals.total} hint={t("stats.livePlatformTotal")} />

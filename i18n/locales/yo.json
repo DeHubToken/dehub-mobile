@@ -4868,7 +4868,28 @@
     "interestedCount": "{{count}} nífẹ̀ẹ́ sí",
     "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Àwọn àlejò lójúmọ́", "dailyHint": "àwọn àlejò aláìlẹ́gbẹ́ lójúmọ́", "empty": "Kò sí data fún àkókò yìí síbẹ̀"},
+    "definitions": {
+      "visitorsTerm": "Àwọn àlejò"
+    },
+    "unavailable": {
+      "title": "Ìṣirò kò sí ní àkókò yìí"
+    },
+    "browsers": {
+      "window": "gẹ́gẹ́ bí ìwòye ojú-ìwé",
+      "title": "Àwọn aṣàwákiri"
+    },
+    "countries": {
+      "window": "ọjọ́ {{days}} sẹ́yìn",
+      "title": "Àwọn orílẹ̀-èdè gíga"
+    },
+    "tile": {
+      "inRange": "nínú àkókò yìí",
+      "requestsLabel": "Àwọn ìbéèrè",
+      "pageViews": "Ìwòye ojú-ìwé",
+      "soFarToday": "títí di ìsinsìnyí lónìí, UTC",
+      "visitorsToday": "Àwọn àlejò lónìí"
+    },
     "feedback": {
       "title": "Ibalopẹ",
       "intro": "Ṣe o ti lo DeHub fun igba kan? Sọ fun wa ohun ti o ti jẹ. Dara, buruku tabi ohun kan pàtó — a ka gbogbo rẹ. Ti o ba dun fun wa lati gbolohun ọ, tẹ apẹrẹ naa ki a le lo ni awọn iwe, awọn fidio tabi lori aaye naa.",
@@ -6750,6 +6771,9 @@
       "sold": "Ta {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Kò sí data fún àkókò yìí síbẹ̀",
+      "dailyHint": "àwọn àlejò aláìlẹ́gbẹ́ lójúmọ́",
+      "daily": "Àwọn àlejò lójúmọ́",
       "bookStarts": "Ìwé náà bẹ̀rẹ̀ níbí",
       "firstOrder": "Gbé àṣẹ àkọ́kọ́ láti fi owó kún un.",
       "waiting": "Dúró fún ìsofunni iye owó",

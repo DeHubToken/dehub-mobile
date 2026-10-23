@@ -4929,7 +4929,28 @@
     "interestedCount": "{{count}} tertarik",
     "loadFailed": "Tidak dapat memuat acara"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Pengunjung per hari", "dailyHint": "pengunjung unik per hari", "empty": "Belum ada data untuk rentang ini"},
+    "definitions": {
+      "visitorsTerm": "Pengunjung"
+    },
+    "unavailable": {
+      "title": "Statistik sedang tidak tersedia"
+    },
+    "browsers": {
+      "window": "menurut tampilan halaman",
+      "title": "Browser"
+    },
+    "countries": {
+      "window": "{{days}} hari terakhir",
+      "title": "Negara teratas"
+    },
+    "tile": {
+      "inRange": "dalam rentang ini",
+      "requestsLabel": "Permintaan",
+      "pageViews": "Tampilan halaman",
+      "soFarToday": "sejauh ini hari ini, UTC",
+      "visitorsToday": "Pengunjung hari ini"
+    },
     "feedback": {
       "title": "Umpan Balik",
       "intro": "Sudah menggunakan DeHub untuk sementara waktu? Beritahu kami seperti apa pengalamannya. Baik, buruk atau spesifik — semuanya kami baca. Jika Anda senang kami mengutip Anda, centang kotak dan kami mungkin menggunakannya di postingan, video atau di situs.",
@@ -6853,6 +6874,9 @@
       "sold": "Terjual {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Belum ada data untuk rentang ini",
+      "dailyHint": "pengunjung unik per hari",
+      "daily": "Pengunjung per hari",
       "bookStarts": "Buku dimulai di sini",
       "firstOrder": "Lakukan pemesanan pertama untuk menambah likuiditas.",
       "waiting": "Menunggu data harga",

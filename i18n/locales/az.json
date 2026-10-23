@@ -4876,7 +4876,28 @@
     "interestedCount": "{{count}} maraqlanır",
     "loadFailed": "Tədbirlər yüklənmədi"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Gündəlik ziyarətçi", "dailyHint": "gündəlik unikal ziyarətçi", "empty": "Bu dövr üçün hələ məlumat yoxdur"},
+    "definitions": {
+      "visitorsTerm": "Ziyarətçilər"
+    },
+    "unavailable": {
+      "title": "Statistika hazırda əlçatan deyil"
+    },
+    "browsers": {
+      "window": "səhifə baxışlarına görə",
+      "title": "Brauzerlər"
+    },
+    "countries": {
+      "window": "son {{days}} gün",
+      "title": "Aparıcı ölkələr"
+    },
+    "tile": {
+      "inRange": "bu aralıqda",
+      "requestsLabel": "Sorğular",
+      "pageViews": "Səhifə baxışları",
+      "soFarToday": "bu gün indiyədək, UTC",
+      "visitorsToday": "Bugünkü ziyarətçilər"
+    },
     "feedback": {
       "title": "Rəy-Təklif",
       "intro": "DeHub-dan bir müddətdir istifadə edirsiniz? Bunun necə olduğunu bizə deyin. Yaxşı, pis və ya spesifik — hamısı oxunur. Əgər bizi sizi sitat gətirməyə icazə verirsiniz, qutuyu işarələyin və biz bunu yazılarda, videolarda və ya saytda istifadə edə bilərik.",
@@ -6767,6 +6788,9 @@
       "sold": "Satılır {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Bu dövr üçün hələ məlumat yoxdur",
+      "dailyHint": "gündəlik unikal ziyarətçi",
+      "daily": "Gündəlik ziyarətçi",
       "bookStarts": "Kitab burada başlayır",
       "firstOrder": "Likvidlik əlavə etmək üçün ilk sifarişi verin.",
       "waiting": "Qiymət məlumatları gözlənilir",

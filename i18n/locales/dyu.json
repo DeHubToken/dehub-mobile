@@ -4848,7 +4848,28 @@
     "interestedCount": "{{count}} b'a fɛ",
     "loadFailed": "Kow ma se ka doni"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Taalabagaw tile kelen-kelen na", "dailyHint": "taalabaga kelenw tile kelen-kelen na", "empty": "Kunnafoni si tɛ yen nin waati in kama fɔlɔ"},
+    "definitions": {
+      "visitorsTerm": "Taalabagaw"
+    },
+    "unavailable": {
+      "title": "Kunnafoniw tɛ yen sisan"
+    },
+    "browsers": {
+      "window": "pasi filɛli hakɛ fɛ",
+      "title": "Bɔrizɛriw"
+    },
+    "countries": {
+      "window": "tile {{days}} laban",
+      "title": "Jamana banbaw"
+    },
+    "tile": {
+      "inRange": "nin waati kɔnɔ",
+      "requestsLabel": "Ɲininiw",
+      "pageViews": "Pasi filɛliw",
+      "soFarToday": "bi ma se yɔrɔ min, UTC",
+      "visitorsToday": "Taalabagaw bi"
+    },
     "feedback": {
       "title": "Hakilina",
       "placeholder": "I ka kɔ kɔnɔ…",
@@ -6696,6 +6717,9 @@
       "noOrders": "Komandi yɛlɛnen si tɛ {{symbol}} ye fɔlɔ. A fɔlɔ bila."
     },
     "chart": {
+      "empty": "Kunnafoni si tɛ yen nin waati in kama fɔlɔ",
+      "dailyHint": "taalabaga kelenw tile kelen-kelen na",
+      "daily": "Taalabagaw tile kelen-kelen na",
       "bookStarts": "O koo be daminɛ yan.",
       "firstOrder": "I ka kɔn ka wari di fɔlɔ walisa ka wari sɔrɔ.",
       "waiting": "An ka jatiminɛ kɛ ka ɲɛsin o ma.",

@@ -4931,7 +4931,28 @@
     "interestedCount": "{{count}}명 관심 있음",
     "loadFailed": "행사를 불러오지 못했습니다"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "일별 방문자", "dailyHint": "일별 순 방문자", "empty": "이 기간의 데이터가 아직 없습니다"},
+    "definitions": {
+      "visitorsTerm": "방문자"
+    },
+    "unavailable": {
+      "title": "지금은 통계를 볼 수 없습니다"
+    },
+    "browsers": {
+      "window": "페이지뷰 기준",
+      "title": "브라우저"
+    },
+    "countries": {
+      "window": "최근 {{days}}일",
+      "title": "상위 국가"
+    },
+    "tile": {
+      "inRange": "이 기간 동안",
+      "requestsLabel": "요청",
+      "pageViews": "페이지뷰",
+      "soFarToday": "오늘 현재까지, UTC",
+      "visitorsToday": "오늘 방문자"
+    },
     "feedback": {
       "title": "피드백",
       "intro": "DeHub를 사용한 지 얼마나 되셨나요? 어떤 경험이 있으셨는지 알려주세요. 좋은 점, 나쁜 점, 구체적인 내용 등 모든 의견을 읽고 있습니다. 저희가 당신의 의견을 인용해도 괜찮으시다면 체크박스를 선택해 주세요. 게시물, 영상 또는 웹사이트에 사용할 수 있습니다.",
@@ -6855,6 +6876,9 @@
       "sold": "{{amount}} {{symbol}} 판매"
     },
     "chart": {
+      "empty": "이 기간의 데이터가 아직 없습니다",
+      "dailyHint": "일별 순 방문자",
+      "daily": "일별 방문자",
       "bookStarts": "이 책은 여기서 시작한다.",
       "firstOrder": "유동성을 추가하려면 첫 번째 주문을 하세요.",
       "waiting": "가격 데이터 대기 중",

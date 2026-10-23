@@ -4878,7 +4878,28 @@
     "interestedCount": "{{count}} huvitatud",
     "loadFailed": "Üritusi ei õnnestunud laadida"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Külastajaid päevas", "dailyHint": "unikaalseid külastajaid päevas", "empty": "Selle perioodi kohta pole veel andmeid"},
+    "definitions": {
+      "visitorsTerm": "Külastajad"
+    },
+    "unavailable": {
+      "title": "Statistika pole praegu saadaval"
+    },
+    "browsers": {
+      "window": "lehevaatamiste järgi",
+      "title": "Brauserid"
+    },
+    "countries": {
+      "window": "viimased {{days}} päeva",
+      "title": "Peamised riigid"
+    },
+    "tile": {
+      "inRange": "selles vahemikus",
+      "requestsLabel": "Päringud",
+      "pageViews": "Lehevaatamised",
+      "soFarToday": "tänase seisuga, UTC",
+      "visitorsToday": "Külastajaid täna"
+    },
     "feedback": {
       "title": "Tagasiside",
       "intro": "Oled DeHubi kasutanud juba mõnda aega? Räägi meile, kuidas see on olnud. Hea, halb või konkreetne — kõike loetakse. Kui oled nõus, et meid tsiteeritakse, märgi kast ja me võime seda kasutada postitustes, videotes või veebisaidel.",
@@ -6769,6 +6790,9 @@
       "sold": "Müüdud {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Selle perioodi kohta pole veel andmeid",
+      "dailyHint": "unikaalseid külastajaid päevas",
+      "daily": "Külastajaid päevas",
       "bookStarts": "Raamat algab siit",
       "firstOrder": "Likviidsuse lisamiseks esita esimene tellimus.",
       "waiting": "Hinnaandmete ootamine",

@@ -4878,7 +4878,28 @@
     "interestedCount": "{{count}} interessats",
     "loadFailed": "No s'han pogut carregar els esdeveniments"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Visitants per dia", "dailyHint": "visitants únics per dia", "empty": "Encara no hi ha dades per a aquest període"},
+    "definitions": {
+      "visitorsTerm": "Visitants"
+    },
+    "unavailable": {
+      "title": "Les estadístiques no estan disponibles ara mateix"
+    },
+    "browsers": {
+      "window": "per pàgines vistes",
+      "title": "Navegadors"
+    },
+    "countries": {
+      "window": "últims {{days}} dies",
+      "title": "Països principals"
+    },
+    "tile": {
+      "inRange": "en aquest interval",
+      "requestsLabel": "Sol·licituds",
+      "pageViews": "Pàgines vistes",
+      "soFarToday": "fins ara avui, UTC",
+      "visitorsToday": "Visitants avui"
+    },
     "feedback": {
       "title": "Comentaris",
       "intro": "Has estat utilitzant DeHub durant una estona? Explica'ns com ha estat. Bé, malament o específic — tot es llegeix. Si ets content que et citem, marca la casella i és possible que l'utilitzem en publicacions, vídeos o al lloc web.",
@@ -6770,6 +6791,9 @@
       "sold": "Venut a {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Encara no hi ha dades per a aquest període",
+      "dailyHint": "visitants únics per dia",
+      "daily": "Visitants per dia",
       "bookStarts": "El llibre comença aquí",
       "firstOrder": "Fes la primera comanda per afegir liquiditat.",
       "waiting": "S'estan esperant les dades dels preus",

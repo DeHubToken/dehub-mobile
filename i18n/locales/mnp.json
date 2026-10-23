@@ -4859,7 +4859,28 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "逐日访客", "dailyHint": "逐日不重复访客", "empty": "只段时间还无数据"},
+    "definitions": {
+      "visitorsTerm": "访客"
+    },
+    "unavailable": {
+      "title": "数据这站无法度用"
+    },
+    "browsers": {
+      "window": "照页面浏览量算",
+      "title": "浏览器"
+    },
+    "countries": {
+      "window": "过去 {{days}} 日",
+      "title": "头前国家"
+    },
+    "tile": {
+      "inRange": "只段范围内底",
+      "requestsLabel": "请求",
+      "pageViews": "页面浏览量",
+      "soFarToday": "今仔日到今，UTC",
+      "visitorsToday": "今仔日访客"
+    },
     "feedback": {
       "title": "反馈",
       "intro": "使用 DeHub 有一段时间了吗？告诉我们这段时间的体验如何。好的、不好的或具体的——我们都会阅读。如果你愿意让我们引用你的意见，请勾选该框，我们可能会在帖子、视频或网站上使用它。",
@@ -6748,6 +6769,9 @@
       "sold": "卖出 {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "只段时间还无数据",
+      "dailyHint": "逐日不重复访客",
+      "daily": "逐日访客",
       "bookStarts": "书从这里开始",
       "firstOrder": "落第一笔单，加流动性。",
       "waiting": "等待价格数据",

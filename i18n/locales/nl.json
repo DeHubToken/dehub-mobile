@@ -5379,7 +5379,28 @@
     "interestedCount": "{{count}} geïnteresseerd",
     "loadFailed": "Kon evenementen niet laden"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Bezoekers per dag", "dailyHint": "unieke bezoekers per dag", "empty": "Nog geen gegevens voor dit venster"},
+    "definitions": {
+      "visitorsTerm": "Bezoekers"
+    },
+    "unavailable": {
+      "title": "Statistieken zijn nu niet beschikbaar"
+    },
+    "browsers": {
+      "window": "op paginaweergaven",
+      "title": "Browsers"
+    },
+    "countries": {
+      "window": "laatste {{days}} dagen",
+      "title": "Belangrijkste landen"
+    },
+    "tile": {
+      "inRange": "in dit bereik",
+      "requestsLabel": "Verzoeken",
+      "pageViews": "Paginaweergaven",
+      "soFarToday": "tot nu toe vandaag, UTC",
+      "visitorsToday": "Bezoekers vandaag"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Gebruikt u DeHub al een tijdje? Vertel ons hoe het is geweest. Goed, slecht of specifiek — alles wordt gelezen. Als u het goed vindt dat we u citeren, vink het vakje aan en we kunnen het mogelijk gebruiken in berichten, video's of op de site.",
@@ -7380,6 +7401,9 @@
       "sold": "Verkocht {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Nog geen gegevens voor dit venster",
+      "dailyHint": "unieke bezoekers per dag",
+      "daily": "Bezoekers per dag",
       "bookStarts": "Het boek begint hier",
       "firstOrder": "Plaats de eerste bestelling om liquiditeit toe te voegen.",
       "waiting": "Wachten op prijsgegevens",

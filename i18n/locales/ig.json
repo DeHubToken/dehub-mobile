@@ -4867,7 +4867,28 @@
     "interestedCount": "{{count}} nwere mmasị",
     "loadFailed": "Enweghị ike ibubata mmemme"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Ndị Ọbịa Kwa Ụbọchị", "dailyHint": "ndị ọbịa nke ọ bụla kwa ụbọchị", "empty": "Enweghị data maka oge a ma"},
+    "definitions": {
+      "visitorsTerm": "Ndị Ọbịa"
+    },
+    "unavailable": {
+      "title": "Ọnụọgụ Adịghị Ugbu A"
+    },
+    "browsers": {
+      "window": "dịka ọnụọgụ ngosi",
+      "title": "Ndị Browser"
+    },
+    "countries": {
+      "window": "ụbọchị {{days}} gara aga",
+      "title": "Mba Kacha Elu"
+    },
+    "tile": {
+      "inRange": "n'ime oge a",
+      "requestsLabel": "Arịrịọ",
+      "pageViews": "Ngosi Peeji",
+      "soFarToday": "ruo ugbu a taa, UTC",
+      "visitorsToday": "Ndị Ọbịa Taa"
+    },
     "feedback": {
       "title": "Mmekorita",
       "intro": "Ị na-eji DeHub ogologo oge? Gwa anyị ihe ọ dị ka. Mma, njọ ma ọ bụ ihe kpọmkwem — a na-agụ ihe niile. Ọ bụrụ na obi dị gị ụtọ ka anyị na-akpọ gị, tịa igbe ahụ na anyị nwere ike iji ya n'ọrụ, vidio ma ọ bụ n'ọrụ.",
@@ -6747,6 +6768,9 @@
       "sold": "Ere {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "Enweghị data maka oge a ma",
+      "dailyHint": "ndị ọbịa nke ọ bụla kwa ụbọchị",
+      "daily": "Ndị Ọbịa Kwa Ụbọchị",
       "bookStarts": "Wanna mara ebe na otú na-ebipụta ihe ebook?",
       "firstOrder": "Debe iwu nke mbụ iji tinye ego.",
       "waiting": "Chere maka price data",

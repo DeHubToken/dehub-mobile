@@ -4889,7 +4889,28 @@
     "interestedCount": "{{count}} ፍላጎት አላቸው",
     "loadFailed": "ዝግጅቶችን መጫን አልተቻለም"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "በቀን ጎብኚዎች", "dailyHint": "በቀን ልዩ ጎብኚዎች", "empty": "ለዚህ ጊዜ መስኮት እስካሁን መረጃ የለም"},
+    "definitions": {
+      "visitorsTerm": "ጎብኚዎች"
+    },
+    "unavailable": {
+      "title": "ስታቲስቲክስ አሁን አይገኙም"
+    },
+    "browsers": {
+      "window": "በገጽ እይታዎች መሠረት",
+      "title": "አሳሾች"
+    },
+    "countries": {
+      "window": "ያለፉት {{days}} ቀናት",
+      "title": "ከፍተኛ ሀገራት"
+    },
+    "tile": {
+      "inRange": "በዚህ ክልል ውስጥ",
+      "requestsLabel": "ጥያቄዎች",
+      "pageViews": "የገጽ እይታዎች",
+      "soFarToday": "እስካሁን ዛሬ፣ UTC",
+      "visitorsToday": "ዛሬ ጎብኚዎች"
+    },
     "feedback": {
       "title": "ግብረ-ሰናይ",
       "intro": "DeHub ለተወሰነ ጊዜ ተጠቅመዋል? ምን ይመስላል ይንገሩን። ጥሩ፣ መጥፎ ወይም ተለይ — ሁሉም ይነበባል። ለመጠቀስ ደስ ብሎዎት ከሆነ፣ ሳጥኑን ምልክት ያድርጉ እና በልጥፎች፣ ቪዲዮዎች ወይም በሳይቱ ላይ ሊጠቀስ ይችላል።",
@@ -6767,6 +6788,9 @@
       "sold": "የተሸጠ {{amount}} {{symbol}}"
     },
     "chart": {
+      "empty": "ለዚህ ጊዜ መስኮት እስካሁን መረጃ የለም",
+      "dailyHint": "በቀን ልዩ ጎብኚዎች",
+      "daily": "በቀን ጎብኚዎች",
       "bookStarts": "መጽሐፉ የሚጀምረው እዚህ ነው",
       "firstOrder": "ፈሳሽ ለመጨመር የመጀመሪያውን ትዕዛዝ ያስቀምጡ ።",
       "waiting": "የዋጋ ውሂብ በመጠባበቅ ላይ",

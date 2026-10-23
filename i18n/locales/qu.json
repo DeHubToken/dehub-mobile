@@ -4900,7 +4900,28 @@
     "interestedCount": "{{count}} munanku",
     "loadFailed": "Ruwaykunata mana chaqnayta atikunchu"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Watukuqkuna sapa punchaw", "dailyHint": "sapa punchaw huk kaq watukuqkuna", "empty": "Kay pachapaq manaraq willay kanchu"},
+    "definitions": {
+      "visitorsTerm": "Watukuqkuna"
+    },
+    "unavailable": {
+      "title": "Yupaykuna kunanqa mana kanchu"
+    },
+    "browsers": {
+      "window": "p'anqa qhawariykunawan",
+      "title": "Browserkuna"
+    },
+    "countries": {
+      "window": "qayna {{days}} punchawkuna",
+      "title": "Hanaq llaqtakuna"
+    },
+    "tile": {
+      "inRange": "kay pachapi",
+      "requestsLabel": "Mañakuykuna",
+      "pageViews": "P'anqa qhawariykuna",
+      "soFarToday": "kunan punchaw kunankama, UTC",
+      "visitorsToday": "Kunan punchaw watukuqkuna"
+    },
     "feedback": {
       "title": "Rimaykuna",
       "intro": "¿Huk pachaña DeHub nisqawan llamk'achkanki? Willawayku imayna kasqanmanta. Allin, mana allin utaq específico — llapanmi ñawinchasqa. Sichus kusisqa kanki ñuqaykumanta citasqaykumanta, chay cuadrota ñit'iy chaymanta chayta llamk'achiykuman qillqakunapi, videokunapi utaq sitiopi.",
@@ -6782,6 +6803,9 @@
       "solanaLimitNote": "Fichasniykikuna huk orden cadena kaqpi qhipakunku chaninniykimanhina hunt'anankama utaq cancelanaykikama."
     },
     "chart": {
+      "empty": "Kay pachapaq manaraq willay kanchu",
+      "dailyHint": "sapa punchaw huk kaq watukuqkuna",
+      "daily": "Watukuqkuna sapa punchaw",
       "bookStarts": "Kaypim qillqaqa qallarin",
       "firstOrder": "Ñawpaq kaq kamachiyta churay liquidez nisqa yapanapaq.",
       "waiting": "Preciomanta willakuykunata suyaspa",

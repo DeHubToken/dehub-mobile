@@ -4984,7 +4984,28 @@
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "Events konnten nicht geladen werden"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Besucher pro Tag", "dailyHint": "eindeutige Besucher pro Tag", "empty": "Noch keine Daten für diesen Zeitraum"},
+    "definitions": {
+      "visitorsTerm": "Besucher"
+    },
+    "unavailable": {
+      "title": "Statistiken sind gerade nicht verfügbar"
+    },
+    "browsers": {
+      "window": "nach Seitenaufrufen",
+      "title": "Browser"
+    },
+    "countries": {
+      "window": "letzte {{days}} Tage",
+      "title": "Top-Länder"
+    },
+    "tile": {
+      "inRange": "in diesem Zeitraum",
+      "requestsLabel": "Anfragen",
+      "pageViews": "Seitenaufrufe",
+      "soFarToday": "bisher heute, UTC",
+      "visitorsToday": "Besucher heute"
+    },
     "feedback": {
       "title": "Feedback",
       "intro": "Nutzt du DeHub schon eine Weile? Erzähl uns, wie es für dich war. Gut, schlecht oder spezifisch — wir lesen alles. Wenn du uns erlaubst, dich zu zitieren, aktiviere das Kästchen und wir verwenden dein Feedback möglicherweise in Beiträgen, Videos oder auf der Website.",
@@ -6925,6 +6946,9 @@
       "sold": "{{amount}}{{symbol}} verkauft"
     },
     "chart": {
+      "empty": "Noch keine Daten für diesen Zeitraum",
+      "dailyHint": "eindeutige Besucher pro Tag",
+      "daily": "Besucher pro Tag",
       "bookStarts": "Das Buch beginnt hier",
       "firstOrder": "Geben Sie die erste Bestellung auf, um Liquidität hinzuzufügen.",
       "waiting": "Warten auf Preisdaten",

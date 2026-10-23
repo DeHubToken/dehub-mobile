@@ -4879,7 +4879,28 @@
     "interestedCount": "{{count}} wana hamu",
     "loadFailed": "Imeshindwa kupakia matukio"
   },
-  "stats": {
+  "stats": {"chart": {"daily": "Wageni kwa siku", "dailyHint": "wageni wa kipekee kwa siku", "empty": "Bado hakuna data kwa kipindi hiki"},
+    "definitions": {
+      "visitorsTerm": "Wageni"
+    },
+    "unavailable": {
+      "title": "Takwimu hazipatikani kwa sasa"
+    },
+    "browsers": {
+      "window": "kwa mionekano ya kurasa",
+      "title": "Vivinjari"
+    },
+    "countries": {
+      "window": "siku {{days}} zilizopita",
+      "title": "Nchi zinazoongoza"
+    },
+    "tile": {
+      "inRange": "katika kipindi hiki",
+      "requestsLabel": "Maombi",
+      "pageViews": "Mionekano ya kurasa",
+      "soFarToday": "hadi sasa leo, UTC",
+      "visitorsToday": "Wageni leo"
+    },
     "feedback": {
       "title": "Maoni",
       "intro": "Umekuwa ukitumia DeHub kwa muda? Tuambie jinsi gani inavyokuwa. Nzuri, mbaya au mahususi — yote yanasome. Ikiwa unafurahi kwa sisi kukuquote, tiki sanduku na tunaweza kuitumia katika machapisho, video au kwenye tovuti.",
@@ -6771,6 +6792,9 @@
       "sold": "Imeuzwa {{amount}}{{symbol}}"
     },
     "chart": {
+      "empty": "Bado hakuna data kwa kipindi hiki",
+      "dailyHint": "wageni wa kipekee kwa siku",
+      "daily": "Wageni kwa siku",
       "bookStarts": "Kitabu kinaanzia hapa",
       "firstOrder": "Weka agizo la kwanza ili kuongeza ukwasi.",
       "waiting": "Inasubiri data ya bei",
