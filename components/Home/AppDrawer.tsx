@@ -37,7 +37,8 @@ import { useTotalUnreadMessagesCount } from "../../store/dm.store";
 import { usePublicChatUnreadCount } from "../../hooks/usePublicChatUnread";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { WEBSITE_LINK } from "../../config/links";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
+import BadgeArtwork from "../common/BadgeArtwork";
 import { toastError, toastInfo } from "../../libs";
 import { openInApp } from "../../libs/links.utils";
 import { useTranslation } from "react-i18next";
@@ -465,6 +466,8 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const displayName = user?.displayName || user?.username || t("common.anonymous");
   const handle = user?.username ? `@${user.username}` : "";
   const avatarUrl = user?.avatarImageUrl ? getAvatarUrl(user.avatarImageUrl) : undefined;
+  // Same badge as beside the name on your posts and comments.
+  const badgeImg = useMemo(() => getBadgeUrlFor(user as any), [user]);
   // The DHB the wallet actually holds; badgeBalance can include delegation.
   const dhbBalance = Math.floor(user?.ownBadgeBalance ?? user?.badgeBalance ?? 0);
 
@@ -545,7 +548,16 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
                 >
                   <Avatar uri={avatarUrl} size={44} name={displayName || handle} />
                   <View style={styles.headerText}>
-                    <Text style={styles.headerName} numberOfLines={1}>{displayName}</Text>
+                    <View style={styles.headerNameRow}>
+                      <Text style={[styles.headerName, styles.headerNameText]} numberOfLines={1}>{displayName}</Text>
+                      {badgeImg && (
+                        <BadgeArtwork
+                          source={badgeImg}
+                          style={[getBadgeOpticalStyle(badgeImg, 16, 0, 20), { marginLeft: 2 }]}
+                          contentFit="contain"
+                        />
+                      )}
+                    </View>
                     {handle ? <Text style={styles.headerHandle} numberOfLines={1}>{handle}</Text> : null}
                   </View>
                 </TouchableOpacity>
@@ -721,6 +733,15 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "700",
+  },
+  headerNameRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    minWidth: 0,
+  },
+  headerNameText: {
+    flexShrink: 1,
+    minWidth: 0,
   },
   headerHandle: {
     color: "#A1A1AA",
