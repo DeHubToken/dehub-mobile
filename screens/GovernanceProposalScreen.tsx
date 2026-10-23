@@ -44,9 +44,12 @@ import {
   useProposalDiscussion,
   useSubmitProposalComment,
   useDeleteProposalComment,
+  useMyProposalVote,
+  useVoteOnProposal,
   type ProposalComment,
   type ProposalThread,
 } from "../hooks/useGovernanceDiscussion";
+import { isVotingOpen, needsOwnBadge } from "../services/governance.service";
 
 const COMMENT_MAX = 500;
 /** Replies shown before a thread collapses behind "Show N more replies". */
@@ -159,6 +162,8 @@ export default function GovernanceProposalScreen() {
   const { data: threads = [], isLoading: threadsLoading } = useProposalDiscussion(proposalId);
   const submitComment = useSubmitProposalComment();
   const deleteComment = useDeleteProposalComment();
+  const { data: myVote = 0 } = useMyProposalVote(isAuthed ? proposalId : null);
+  const vote = useVoteOnProposal();
 
   const [draft, setDraft] = useSurfaceDraft("screens/GovernanceProposalScreen.tsx:draft", "");
   const [replyTo, setReplyTo] = useDraftState<ProposalComment | null>(`proposal:${proposalId}:reply`, null);
@@ -284,6 +289,28 @@ export default function GovernanceProposalScreen() {
   const total = forW + againstW;
   const forPct = total > 0 ? Math.round((forW / total) * 100) : 0;
   const againstPct = total > 0 ? 100 - forPct : 0;
+  const votingOpen = !!proposal && isVotingOpen(proposal);
+  const onVote = (voteType: 1 | -1) => {
+    if (!proposalId || vote.isPending) return;
+    if (!isAuthed) {
+      navigation.navigate(ScreenNames.SignIn);
+      return;
+    }
+    vote.mutate(
+      { proposalId, voteType },
+      {
+        onError: (error) => {
+          if (!needsOwnBadge(error)) return;
+          // The server's reason says whether the badge is lent; the button
+          // takes them to buying DHB, which is how they get a vote.
+          Alert.alert(t("governance.holdTokensToVote"), (error as Error).message, [
+            { text: t("common.cancel"), style: "cancel" },
+            { text: t("paywall.buyDhb"), onPress: () => navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" }) },
+          ]);
+        },
+      },
+    );
+  };
   const authorName = proposal
     ? proposal.author_username || shortAddr(proposal.author_wallet_address)
     : "";
@@ -330,6 +357,38 @@ export default function GovernanceProposalScreen() {
                 <Text style={styles.forText}>{forPct}% {t("governance.forLabel")}</Text>
                 <Text style={styles.againstText}>{againstPct}% {t("governance.againstLabel")}</Text>
               </View>
+
+              {votingOpen && (
+                <View style={styles.voteRow}>
+                  {([1, -1] as const).map((side) => {
+                    const chosen = myVote === side;
+                    return (
+                      <Pressable
+                        key={side}
+                        onPress={() => onVote(side)}
+                        disabled={vote.isPending}
+                        accessibilityRole="button"
+                        accessibilityState={{ selected: chosen, busy: vote.isPending }}
+                        accessibilityLabel={side === 1 ? t("governance.forLabel") : t("governance.againstLabel")}
+                        style={[styles.voteBtn, chosen && styles.voteBtnChosen, vote.isPending && styles.voteBtnBusy]}
+                      >
+                        {vote.isPending && vote.variables?.voteType === side ? (
+                          <ActivityIndicator size="small" color={chosen ? "#010305" : "#FFFFFF"} />
+                        ) : (
+                          <Icon
+                            name={side === 1 ? "ThumbsUp" : "ThumbsDown"}
+                            size={15}
+                            color={chosen ? "#010305" : "#FFFFFF"}
+                          />
+                        )}
+                        <Text style={[styles.voteBtnText, chosen && styles.voteBtnTextChosen]}>
+                          {side === 1 ? t("governance.forLabel") : t("governance.againstLabel")}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              )}
 
               <View style={styles.metaRow}>
                 <View style={styles.metaItem}>
@@ -445,6 +504,23 @@ const styles = StyleSheet.create({
   pctRow: { flexDirection: "row", justifyContent: "space-between" },
   forText: { color: "#F4F4F5", fontSize: 12, fontWeight: "600" },
   againstText: { color: "#8B8D90", fontSize: 12, fontWeight: "600" },
+  voteRow: { flexDirection: "row", gap: 10, marginTop: 6 },
+  voteBtn: {
+    flex: 1,
+    height: 40,
+    borderRadius: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 6,
+    backgroundColor: GLASS_BG,
+    borderWidth: 1,
+    borderColor: GLASS_BORDER,
+  },
+  voteBtnChosen: { backgroundColor: "#F4F4F5", borderColor: "#F4F4F5" },
+  voteBtnBusy: { opacity: 0.6 },
+  voteBtnText: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
+  voteBtnTextChosen: { color: "#010305" },
   metaRow: { flexDirection: "row", gap: 16, marginTop: 2 },
   metaItem: { flexDirection: "row", alignItems: "center", gap: 5 },
   metaText: { color: "#A1A1AA", fontSize: 12 },
