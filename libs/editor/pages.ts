@@ -36,6 +36,11 @@ export function getPages(settings: ProjectSettings, clips: Clip[]): Page[] {
   });
 }
 
+/** Preview safely inside a page, before its entrance animation has settled. */
+export function pagePreviewTime(page: Page): number {
+  return page.start + Math.min(0.6, (page.end - page.start) / 2);
+}
+
 export function pageAt(pages: Page[], t: number): Page {
   return pages.find((p) => t >= p.start && t < p.end) ?? pages[pages.length - 1];
 }
@@ -48,7 +53,7 @@ export function appendPage(settings: ProjectSettings, clips: Clip[], time: numbe
     const from = Math.max(c.start, current.start), to = Math.min(c.start + c.duration, current.end);
     return to - from >= 0.05 ? [sliceTimelineClip(c, from - c.start, to - from, makeId(), start + from - current.start)] : [];
   }) : clips.filter(c => c.kind === "text" && c.pageNumber && !c.locked && c.start < pages[pages.length - 1].end && c.start + c.duration > pages[pages.length - 1].start).map(c => ({ ...c, id: makeId(), groupId: undefined, start, duration: PAGE_MIN } as Clip));
-  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], ...(settings.pageDetails ? { pageDetails: [...pages.map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })), duplicate ? { title: "", notes: "", ...settings.pageDetails[current.index] } : { title: "", notes: "" }] } : {}), pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: refreshPageNumberClips([...clips, ...remapDesignGroups(duplicate ? retargetCopiedPageLinks(copies, new Map([[current.index, pages.length]])) : copies, makeId)], [...pages.map(p => p.start), start]), start };
+  return { settings: { ...settings, pages: [...pages.map(p => p.start), start], ...(settings.pageDetails ? { pageDetails: [...pages.map(p => ({ title: "", notes: "", ...settings.pageDetails?.[p.index] })), duplicate ? { ...(settings.pageDetails[current.index] ?? { title: "", notes: "" }) } : { title: "", notes: "" }] } : {}), pageEnd: start + (duplicate ? current.end - current.start : PAGE_MIN) }, clips: refreshPageNumberClips([...clips, ...remapDesignGroups(duplicate ? retargetCopiedPageLinks(copies, new Map([[current.index, pages.length]])) : copies, makeId)], [...pages.map(p => p.start), start]), start };
 }
 
 export function removePage(settings: ProjectSettings, clips: Clip[], index: number, makeId: () => string) {

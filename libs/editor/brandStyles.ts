@@ -40,7 +40,8 @@ export function applyBrandStyles(project: ProjectSnapshot, input: BrandStyles): 
       const fontFamily = (clip.fontSize >= 100 ? brand.headingFont ?? brand.bodyFont : brand.bodyFont ?? brand.headingFont) || clip.fontFamily;
       const family = fontFamily.split(",")[0].trim().replace(/^['"]|['"]$/g, "");
       const font = GOOGLE_FONTS.find(value => value.family.toLowerCase() === family.toLowerCase());
-      const fontWeight = font ? font.weights.reduce((best, weight) => Math.abs(weight - clip.fontWeight) < Math.abs(best - clip.fontWeight) ? weight : best, font.weights[0]) : clip.fontWeight;
+      const requestedWeight = clip.fontWeight;
+      const fontWeight = font ? font.weights.reduce((best, weight) => Math.abs(weight - requestedWeight) < Math.abs(best - requestedWeight) ? weight : best, font.weights[0]) : clip.fontWeight;
       if (!brand.colors.length) return { ...clip, fontFamily, fontWeight };
       const background = clip.background && clip.background.opacity >= 0.7 ? clip.background.color : project.settings.background;
       const color = readableColour(brand.colors, background, textIndex++);
