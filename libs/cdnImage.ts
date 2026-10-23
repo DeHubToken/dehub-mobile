@@ -44,7 +44,7 @@
  * a per-device escape hatch back to plain CDN URLs.
  */
 import { useCallback, useEffect, useState } from "react";
-import { PixelRatio } from "react-native";
+import { AppState, PixelRatio } from "react-native";
 import env from "../config/env";
 import { storage } from "./storage";
 
@@ -152,6 +152,107 @@ export function useHighQualityImages(): boolean {
   return isHighQualityImages();
 }
 
+// ── Transform reachability ──────────────────────────────────────────────────
+//
+// Every sized image goes through dehub.io, while the originals live on the
+// Spaces CDN. Some networks cannot reach dehub.io at all (Spanish ISPs block
+// whole Cloudflare ranges during LaLiga matches) while the Spaces host and the
+// API still answer, and then every avatar and thumbnail sat on a 10s connect
+// timeout and drew nothing. A short probe decides whether transforms are
+// usable; while they are not, sized calls return the original instead.
+
+const DOWN_KEY = "dehub:imageTransformDownUntil";
+/** How long a failed probe is trusted across launches before dehub.io is tried again. */
+const DOWN_FOR_MS = 6 * 60 * 60 * 1000;
+const PROBE_TIMEOUT_MS = 5000;
+
+let downUntil: number | null = null;
+const reachListeners = new Set<() => void>();
+
+function readDownUntil(): number {
+  if (downUntil === null) {
+    try {
+      downUntil = storage.getNumber(DOWN_KEY) ?? 0;
+    } catch {
+      downUntil = 0;
+    }
+  }
+  return downUntil;
+}
+
+/** False while dehub.io is known to be unreachable from this network. */
+export function isTransformReachable(): boolean {
+  return readDownUntil() <= Date.now();
+}
+
+function setTransformDown(until: number): void {
+  const was = isTransformReachable();
+  downUntil = until;
+  try {
+    storage.set(DOWN_KEY, until);
+  } catch {
+    // Best effort — the in-memory value still applies for this session.
+  }
+  if (was === isTransformReachable()) return;
+  reachListeners.forEach((l) => {
+    try {
+      l();
+    } catch {
+      /* a bad listener must not stop the rest */
+    }
+  });
+}
+
+export function markTransformUnreachable(): void {
+  setTransformDown(Date.now() + DOWN_FOR_MS);
+}
+
+export function markTransformReachable(): void {
+  setTransformDown(0);
+}
+
+export function onTransformReachabilityChange(listener: () => void): () => void {
+  reachListeners.add(listener);
+  return () => {
+    reachListeners.delete(listener);
+  };
+}
+
+/** Re-renders the caller when dehub.io becomes reachable or unreachable. */
+export function useTransformReachable(): boolean {
+  const [, force] = useState(0);
+  const onChange = useCallback(() => force((n) => n + 1), []);
+  useEffect(() => onTransformReachabilityChange(onChange), [onChange]);
+  return isTransformReachable();
+}
+
+let probing: Promise<void> | null = null;
+
+/** Any HTTP answer counts as reachable; only a network failure or timeout does not. */
+export function probeTransformOrigin(): Promise<void> {
+  if (probing) return probing;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
+  probing = fetch(`${TRANSFORM_ORIGIN}/favicon.ico`, { method: "HEAD", signal: controller.signal })
+    .then(markTransformReachable, markTransformUnreachable)
+    .finally(() => {
+      clearTimeout(timer);
+      probing = null;
+    });
+  return probing;
+}
+
+let watching = false;
+/** Probe now and again whenever the app comes back to the foreground, since networks change. */
+export function watchTransformOrigin(): void {
+  if (watching) return;
+  watching = true;
+  void probeTransformOrigin();
+  AppState.addEventListener("change", (state) => {
+    if (state === "active") void probeTransformOrigin();
+  });
+}
+
 // ── The transform ───────────────────────────────────────────────────────────
 
 export interface CdnImageOptions {
@@ -190,6 +291,7 @@ export function cdnImage(
   if (!CDN_PREFIXES.some((prefix) => url.startsWith(prefix))) return url;
   if (NON_TRANSFORMABLE.test(url)) return url;
   if (isHighQualityImages()) return url;
+  if (!isTransformReachable()) return url;
 
   const params = [
     "format=webp",

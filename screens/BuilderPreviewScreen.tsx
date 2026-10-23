@@ -5,7 +5,8 @@
  * sign-in-free renderer for a Builder app. This is where a shared link lands.
  */
 import React, { useState } from "react";
-import { Pressable, Share, View } from "react-native";
+import { Pressable, View } from "react-native";
+import { shareWithRef } from "../libs/shareRef";
 import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
@@ -30,7 +31,7 @@ export default function BuilderPreviewScreen() {
       key: "share",
       icon: "Share2" as const,
       label: t("postOptions.share"),
-      run: () => void Share.share({ message: `${t("builder.previewHint")}\n${shareUrl}`, url: shareUrl }).catch(() => {}),
+      run: () => void shareWithRef({ message: `${t("builder.previewHint")}\n${shareUrl}`, url: shareUrl }).catch(() => {}),
     },
   ];
 

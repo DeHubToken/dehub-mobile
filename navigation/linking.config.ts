@@ -400,6 +400,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
           [ScreenNames.Feedback]: 'feedback',
+          // dehub.io/live-studio — the same page on the web.
+          [ScreenNames.LiveStudio]: 'live-studio',
 
           [ScreenNames.GovernanceProposal]: {
             path: DeepLinkPaths.GOVERNANCE_PROPOSAL,
@@ -442,6 +444,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           },
           [ScreenNames.CreatorFlow]: DeepLinkPaths.CREATOR_FLOW,
           [ScreenNames.Maboroshi]: 'creator/maboroshi',
+          [ScreenNames.CreatorRemake]: 'creator/remake',
           [ScreenNames.CreatorStudio]: { path: 'creator', parse: { workflow: (value: string) => value === 'swap' || value === 'motion' ? value : undefined, mode: (mode: string) => ['image', 'video', 'audio', '3d'].includes(mode) ? mode : 'image' } },
 
           [ScreenNames.Raffle]: DeepLinkPaths.RAFFLE,
@@ -688,7 +691,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     if (segments[0] === 'stages') {
       // Only the numeric shape is one stage; a bare /stages is the hub itself,
       // which the handler opens with no id to join.
-      const shortId = segments[1] && /^\d+$/.test(segments[1]) ? Number(segments[1]) : undefined;
+      const rawShortId = segments[1] && /^\d+$/.test(segments[1]) ? Number(segments[1]) : undefined;
+      // Stage 15 was replaced by stage 18; old links open the new one.
+      const shortId = rawShortId === 15 ? 18 : rawShortId;
       logger.info('Stage deep link', { shortId });
       emitStageDeepLink(shortId != null ? { shortId } : {});
       return homeState();
@@ -808,8 +813,13 @@ export const createDeepLink = (
 export const ShareLinks = {
   /** Feed post or video — dehub.io/app/post/:tokenId */
   post: (tokenId: string | number) => `${SHARE_BASE}/app/post/${encodeURIComponent(String(tokenId))}`,
-  /** Profile — dehub.io/:username */
-  profile: (username: string) => `${SHARE_BASE}/${encodeURIComponent(username)}`,
+  /**
+   * Profile — dehub.io/@:username (a wallet address works in place of the name).
+   *
+   * The `@` form, not bare /:username: Android app links can only claim a path
+   * prefix, so /@ is what opens the app, and web serves both shapes.
+   */
+  profile: (username: string) => `${SHARE_BASE}/@${encodeURIComponent(username.replace(/^@+/, ''))}`,
   /**
    * The same profile at its verified ENS name — dehub.io/mal.eth.
    *

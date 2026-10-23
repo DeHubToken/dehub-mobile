@@ -26,6 +26,10 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import ReactionOverlay from "../LiveProducer/ReactionOverlay";
 import TipAnimationsOverlay from "../LiveProducer/TipAnimationsOverlay";
+import LiveOverlayLayer from "../LiveOverlay/LiveOverlayLayer";
+import ReplayOverlayLayer from "../LiveOverlay/ReplayOverlayLayer";
+import { useStreamOverlay } from "../../hooks/useStreamOverlay";
+import { REPLACES_BUILT_IN_CELEBRATION } from "../../libs/live-overlay/registry";
 import GiftModal from "../Tip/GiftModal";
 import StreamShopOverlay from "../LiveViewer/StreamShopOverlay";
 import ShopBoard from "../common/ShopBoard";
@@ -41,7 +45,9 @@ import {
   StreamActivityType,
   StreamStatus,
 } from "../../services/enums/livestream.enum";
-import { toastError } from "../../libs";
+import { toastError, toastSuccess } from "../../libs";
+import { SettingsOptionModal } from "../Settings/SettingsPrimitives";
+import { addStreamModerator, banFromStreams, timeOutInStream } from "../../services/livechat.service";
 import { useStreamDetails } from "../../hooks/useStreamDetails";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -72,7 +78,6 @@ import { useTranslation as useCopy } from "react-i18next";
 import { EDGE } from "../common/ViewerChrome";
 import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { tierFromAmount } from "../../config/gift-tiers";
-import { TipSpeaker } from "../Live/TipSpeaker";
 import ViewerScrubBar from "../common/ViewerScrubBar";
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 
@@ -495,6 +500,28 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   useEffect(() => {
     if (!isLiveEffective) clearReactions();
   }, [isLiveEffective, clearReactions]);
+
+  /**
+   * The creator's overlay. A creator who placed their own tip alert gets theirs
+   * instead of the built-in celebration — whether this screen draws it or their
+   * OBS has already burned it into the picture — never both.
+   */
+  // A replay draws the overlay too, from the stream's own log (ReplayOverlayLayer).
+  const { data: streamOverlay } = useStreamOverlay(streamId, isLiveEffective || !!extractReplayUrl(streamEntity));
+  // Paused alerts silence the built-in celebration too.
+  const overlayOwnsCelebration = !!streamOverlay?.controls?.alertsPaused || !!streamOverlay?.widgets.some(
+    (w) => w.enabled && (REPLACES_BUILT_IN_CELEBRATION as readonly string[]).includes(w.kind),
+  );
+  // The creator stopped read-aloud for everyone (quick controls). A ref: the
+  // room handlers below are bound once per stream.
+  const readAloudMutedRef = useRef(false);
+  readAloudMutedRef.current = !!streamOverlay?.controls?.readAloudMuted;
+  // The picture's own size, from whichever surface is playing it, so widgets
+  // land on the picture and not in the letterbox around it.
+  const [videoSize, setVideoSize] = useState({ width: 0, height: 0 });
+  const onVideoSize = useCallback((size: { width: number; height: number }) => {
+    setVideoSize((prev) => (prev.width === size.width && prev.height === size.height ? prev : size));
+  }, []);
   // Effective playback URL, only when playable.
   //
   // The HLS ladder is dead the moment ingest stops, so an ended stream played
@@ -886,10 +913,9 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         });
         return;
       }
-      // Gifts from other users: add once. Read the sender line out over the
-      // stream off the broadcast, so every viewer hears the same words on
-      // the same beat; the sender heard their own at submit time.
-      speakTipMessage(payload?.gift?.meta?.message);
+      // Gifts from other users: add once. The message is read out when the
+      // tip is paid (TipConfirmed below), not here: this broadcast goes out
+      // before anything is paid, with whatever the sender posted.
       addActivity({
         status: StreamActivityType.TIP,
         address: sender,
@@ -905,6 +931,20 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         username,
         selectedTier: payload?.gift?.meta?.selectedTier,
       } as any);
+    });
+    // Read the sender's line out over the stream once the chain has paid the
+    // tip. Reading it off the unpaid broadcast let anyone with a well-formed
+    // transaction hash speak to every viewer for free. Every device in the
+    // room speaks off this one event, so the room still hears it together;
+    // the sender heard their own at submit time.
+    bind(LivestreamEvents.TipConfirmed, (payload: any) => {
+      if (payload?.streamId && String(payload.streamId) !== String(streamId)) return;
+      if (!(Number(payload?.paidAmount) > 0)) return;
+      const txHash = String(payload?.transactionHash || "").toLowerCase();
+      const sender = String(payload?.address || "").toLowerCase();
+      const me = String((user?.walletAddress || user?.address || "")).toLowerCase();
+      if ((txHash && ownGiftHashesRef.current.has(txHash)) || (!!me && sender === me) || readAloudMutedRef.current) return;
+      speakTipMessage(typeof payload?.message === "string" ? payload.message : undefined);
     });
     // Reaction events from other viewers. The viewer's own thumb is played on
     // tap (handleLiveLike) the same beat a tipper gets their celebration, so
@@ -1263,7 +1303,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     const postId = streamEntity?.tokenId ?? tokenId ?? streamId;
     const url = postId != null ? `${WEBSITE_LINK}/app/post/${postId}` : null;
     if (!url) return;
-    await shareProfile(url, `Check out this stream ${url}`);
+    await shareProfile(url, `Check out this stream ${url}`, "live");
   }, [streamEntity?.tokenId, streamId, tokenId]);
 
   // Sound. A stream is opened on purpose, so it starts audible whether or not
@@ -1273,10 +1313,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // ever muted a feed card got a silent stream and nothing to press.
   const [isMuted, setIsMuted] = useState(false);
 
-  // Muting the stream mutes the tip readings with it. They are synthesised in
-  // a WebView, so the player own volume does not reach them — a viewer who
-  // muted a stream in a quiet room would otherwise have had an old man start
-  // shouting tip messages at them.
+  // Muting the stream mutes the tip readings with it. They are spoken by the
+  // phone's speech engine, so the player's own volume does not reach them; a
+  // viewer who muted a stream in a quiet room would otherwise have tip
+  // messages read out loud at them.
   useEffect(() => {
     setTipTtsEnabled(!isMuted);
   }, [isMuted]);
@@ -1320,7 +1360,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const scrubbingRef = useRef(false);
   const seekRef = useRef<((ratio: number) => void) | null>(null);
   const [seekable, setSeekable] = useState(false);
+  // Where a replay is, for the overlay that plays its log back (ReplayOverlayLayer).
+  const replayPositionRef = useRef(0);
   const handleProgress = useCallback((positionMs: number, durationMs: number) => {
+    replayPositionRef.current = positionMs;
     durationRef.current = durationMs;
     setSeekable(durationMs > 0);
     // A drag owns the bar until the finger lifts; the clock would otherwise
@@ -1476,20 +1519,17 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     // One "joined" per viewer, and it is the FIRST one. The socket re-emits
     // JoinStream on every reconnect and every background/foreground, and
     // keeping the latest copy moved a viewer's arrival below the tip they
-    // sent minutes earlier. A LEFT in between clears the slot so a real
-    // return still shows.
+    // sent minutes earlier. Each reconnect also sends a LEFT first, so a LEFT
+    // must not clear the slot either, or every network blip shows the same
+    // viewer joining again.
     const arrivals = new Set<string>();
     const moments = activities.filter((a) => {
       if (a.status === StreamActivityType.MESSAGE) return false;
-      const address = (a.address || a.user?.address || "").toLowerCase();
-      if (!address) return true;
-      if (a.status === StreamActivityType.LEFT) {
-        arrivals.delete(address);
-        return true;
-      }
       if (a.status !== StreamActivityType.JOINED) return true;
-      if (arrivals.has(address)) return false;
-      arrivals.add(address);
+      const who = (a.address || a.user?.address || a.user?.username || a.meta?.username || "").toLowerCase();
+      if (!who) return true;
+      if (arrivals.has(who)) return false;
+      arrivals.add(who);
       return true;
     });
     if ((isLiveEffective || isEndedEffective) && !moments.some((a) => a.status === StreamActivityType.START)) {
@@ -1540,6 +1580,46 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     liveChat.sendMessage({ content: url, messageType: "gif", media: [{ url, type: "gif" }] });
   }, [chatRoomId, isSignedIn, liveChat]);
 
+  // The creator and the moderators they appointed act on other people's lines
+  // with a long press: time out, ban from these streams, make moderator.
+  const isStreamOwner = ownerStatus === "owner" || (streamEntity as any)?.isOwner === true;
+  const canModerate = !!postTokenId && (isStreamOwner || liveChat.isModerator);
+  const [moderating, setModerating] = useState<{ address: string; name: string } | null>(null);
+  const openModeration = useCallback((activity: any) => {
+    const address = String(activity?.user?.address || activity?.address || "").toLowerCase();
+    const me = String(user?.walletAddress || user?.address || "").toLowerCase();
+    if (!address || address === me) return;
+    setModerating({ address, name: activity?.user?.displayName || activity?.user?.username || activity?.meta?.username || "" });
+  }, [user?.walletAddress, user?.address]);
+  const moderate = useCallback(async (choice: string) => {
+    const target = moderating;
+    setModerating(null);
+    if (!target || postTokenId == null) return;
+    try {
+      if (choice === "ban") {
+        await banFromStreams(postTokenId, target.address);
+        toastSuccess(t("liveChatModeration.banned"));
+      } else if (choice === "moderator") {
+        await addStreamModerator(target.address);
+        toastSuccess(t("liveChatModeration.madeModerator"));
+      } else {
+        await timeOutInStream(postTokenId, target.address, Number(choice));
+        toastSuccess(t("liveChatModeration.timedOut"));
+      }
+    } catch {
+      toastError(t("liveChatModeration.failed"));
+    }
+  }, [moderating, postTokenId, t]);
+  // A stream timeout quiets this viewer until it runs out, then lets go.
+  const [muted, setMuted] = useState(false);
+  useEffect(() => {
+    const left = liveChat.mutedUntil ? liveChat.mutedUntil - Date.now() : 0;
+    setMuted(left > 0);
+    if (left <= 0) return;
+    const id = setTimeout(() => setMuted(false), left);
+    return () => clearTimeout(id);
+  }, [liveChat.mutedUntil]);
+
 
   // Determine status overlay type
   const overlayStatus = useMemo(() => {
@@ -1556,14 +1636,12 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   return (
     <View className="flex-1 dark-surface bg-black"
       onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}>
-      {/* Reads tip messages out loud. Zero-size, no chrome, no layout. */}
-      <TipSpeaker />
       {/* Full-screen video player as background */}
       <View className="absolute inset-0">
         {whepLive.stream ? (
           /* WebRTC is carrying the picture. The chrome below is drawn over
              whatever renders it, so this swaps in without touching any of it. */
-          <LiveWebRtcView stream={whepLive.stream} />
+          <LiveWebRtcView stream={whepLive.stream} onVideoSize={onVideoSize} />
         ) : whepLive.pending && !isPausedEffective ? (
           /* An attempt is in flight. The ladder waits rather than starting
              underneath it: on a working network WebRTC arrives before HLS has
@@ -1600,6 +1678,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             fullscreen
             hideTopControls
             muted={isMuted}
+            onVideoSize={onVideoSize}
           />
         ) : (
           <View className="flex-1 dark-surface bg-black" />
@@ -1723,13 +1802,27 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
   
                 {/* The room. Read-only now — saying something is the bar's job. */}
-                <LiveViewerChat activities={chatActivities} />
+                <LiveViewerChat activities={chatActivities} onModerate={canModerate ? openModeration : undefined} />
+                <SettingsOptionModal
+                  visible={!!moderating}
+                  onClose={() => setModerating(null)}
+                  title={moderating?.name || t("liveChatModeration.title")}
+                  value=""
+                  options={[
+                    { value: "60", label: t("liveChatModeration.timeout1m") },
+                    { value: "600", label: t("liveChatModeration.timeout10m") },
+                    { value: "3600", label: t("liveChatModeration.timeout1h") },
+                    { value: "ban", label: t("liveChatModeration.ban") },
+                    ...(isStreamOwner ? [{ value: "moderator", label: t("liveChatModeration.makeModerator") }] : []),
+                  ]}
+                  onSelect={(choice) => void moderate(choice)}
+                />
 
                 {/* Say something, or do something: one row of it. */}
                 <LiveViewerActionBar
                   draftScope={chatRoomId ? `stream:${chatRoomId}:composer` : null}
                   viewportHeight={viewportHeight}
-                  canSend={!!canChat && liveChat.connected && !liveChat.isBanned}
+                  canSend={!!canChat && liveChat.connected && !liveChat.isBanned && !muted}
                   chatEnabled={liveChatEnabled}
                   isLive={isLiveEffective}
                   isEnded={isEndedEffective}
@@ -1763,8 +1856,27 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         {/* Floating Reaction Bubbles - right side */}
         <ReactionOverlay reactions={reactions} onRemove={removeReaction} />
 
-        {/* Tip Animations Overlay */}
-        <TipAnimationsOverlay items={tipEffects} />
+        {/* The creator's widgets, placed against the picture. Mounted only for
+            a creator who has saved an overlay at least once (version > 0), so a
+            stream with none binds nothing. Under the cleared state too: the
+            overlay is part of the stream, not the app's chrome. */}
+        {streamOverlay && streamOverlay.version > 0 && streamId && isLiveEffective && !isPlayingReplay ? (
+          <LiveOverlayLayer
+            streamId={streamId}
+            overlay={streamOverlay}
+            videoSize={videoSize}
+            initialViewers={liveViewers ?? 0}
+            chatMessages={liveChat.messages}
+            creator={creator?.walletAddress || creator?.address}
+          />
+        ) : null}
+        {streamOverlay && streamOverlay.version > 0 && streamOverlay.renderIn === "app" && streamId && isPlayingReplay ? (
+          <ReplayOverlayLayer streamId={streamId} overlay={streamOverlay} videoSize={videoSize} positionRef={replayPositionRef} />
+        ) : null}
+
+        {/* Tip Animations Overlay — the built-in one, unless the creator's
+            overlay has its own tip alert. */}
+        {!overlayOwnsCelebration && <TipAnimationsOverlay items={tipEffects} />}
 
         {/* Status overlays: paused/ended/scheduled/offline/loading */}
         <LiveViewerStatusOverlay

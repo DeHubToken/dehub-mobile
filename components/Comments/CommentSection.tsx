@@ -5,7 +5,6 @@ import {
   Text,
   TextInput,
   Pressable,
-  FlatList,
   ActivityIndicator,
   Keyboard,
   Platform,
@@ -13,6 +12,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
@@ -66,7 +66,7 @@ import {
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
-import { useComposerKeyboard } from "../../hooks/useComposerKeyboard";
+import { useComposerKeyboard, useSelfLiftingComposer } from "../../hooks/useComposerKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
@@ -351,6 +351,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // on the keys whichever window the sheet is in (hooks/useComposerKeyboard).
   const composerKeyboard = useComposerKeyboard(0, { gap: 0, enabled: !keyboardHandled });
   const inputLift = keyboardHandled ? 0 : composerKeyboard.lift;
+  // The Shorts split lifts this sheet itself; keep the screen pan off it.
+  useSelfLiftingComposer(composerKeyboard.ref, keyboardHandled);
 
   // Build flat list with replies inline after their parent using recursive depth tracking.
   // If highlightCommentId is a reply, its root ancestor chain is emitted first.
@@ -630,7 +632,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         // With the viewer's address, or every reply fetched here came back
         // un-liked — including the ones the viewer had liked.
         const res = await getCommentReplies(commentId, { limit: 100, address: userAddress });
-        const replies = res.result?.items || [];
+        // Rows render from `user`. An older API sends only `writor` here, which
+        // left expanded replies with no name and no badge.
+        const replies = (res.result?.items || []).map((item: any) =>
+          item.user || !item.writor ? item : { ...item, user: item.writor },
+        );
 
         setExpandedCommentIds((prev) => {
           const next = new Set(prev);
@@ -1581,6 +1587,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         </View>
       ) : (
         <FlatList
+          nestedScrollEnabled
+          disallowInterruption
           data={visibleComments}
           renderItem={renderComment}
           keyExtractor={keyExtractor}
@@ -1862,6 +1870,20 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 Send Pressable as GIF would deliver that release to the picker. */}
             {inputText.trim() || editingComment ? (
               <View key="text-actions" style={{ flexDirection: "row", alignItems: "flex-end", gap: COMPOSER.gap / 2 }}>
+              {/* Two columns: Attach over Emoji, AI over Send, so the corner
+                  is an even block of four equal buttons. */}
+              <View style={{ alignItems: "center", gap: 4 }}>
+                {!editingComment && (
+                  <Pressable
+                    onPress={handlePickImage}
+                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                    accessibilityRole="button"
+                    accessibilityLabel={t("comments.addImage")}
+                    style={composerStyles.iconControl}
+                  >
+                    <Icon name="Image" size={20} color="#8B8D90" />
+                  </Pressable>
+                )}
               <Pressable
                   onPress={handleEmojiPress}
                   onTouchStart={handleEmojiTouchStart}
@@ -1872,6 +1894,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 >
                 <Text style={{ fontSize: 18 }}>🙂</Text>
               </Pressable>
+              </View>
               <View style={{ alignItems: "center", gap: 4 }}>
                 {!editingComment && inputText.trim().length > 0 && (
                   <Pressable
@@ -1882,9 +1905,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                     accessibilityLabel={t("conversation.coach.aiMenu")}
                     testID="comment-ai-menu"
                     className="flex-row items-center"
-                    style={[composerStyles.iconControl, { width: 32, height: 32 }]}
+                    style={composerStyles.iconControl}
                   >
-                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={15} color="#A6A9AC" />}
+                    {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={18} color="#8B8D90" />}
                   </Pressable>
                 )}
               <Pressable

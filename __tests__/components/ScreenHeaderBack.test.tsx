@@ -14,7 +14,7 @@ jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/ChromeSurface', () => () => null);
 jest.mock('../../components/ui/NavPillSurface', () => 'NavPillSurface');
 jest.mock('../../theme/icons', () => ({ themeIconUrl: () => undefined }));
-jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
+jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: jest.fn(() => ({ isMinimal: false, theme: 'system' })) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 

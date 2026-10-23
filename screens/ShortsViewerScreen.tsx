@@ -64,13 +64,14 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Reanimated, { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { VideoView, useVideoPlayer } from "expo-video";
 import { shortsPhotoMedia } from "../libs/shortsPhotos";
 import { ShortsPhotoPager } from "../components/Post/ShortsPhotoPager";
+import { useAppTheme } from "../context/ThemeContext";
 import { useSettledVideoSource } from "../hooks/useSettledVideoSource";
 import { useSettledPagerIndex } from "../hooks/useSettledPagerIndex";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
@@ -214,6 +215,10 @@ const DRAG_CLAIM_MIN = 16;
 const DRAG_RELEASE_MIN = 6;
 const RESTORE_ZONE_TOP = 0.61; // 30% -> 24% of the frame (20% smaller).
 const RESTORE_ZONE_BOTTOM = 0.85;
+// The play/pause target: the middle third of the frame on both axes, as web.
+// A tap outside it hides or shows the buttons instead.
+const PAUSE_ZONE_START = 1 / 3;
+const PAUSE_ZONE_END = 2 / 3;
 
 /**
  * How long a short plays untouched before the chrome clears itself.
@@ -354,10 +359,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
   const tokenId = item.tokenId ?? item.id;
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
+  // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
+  const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
   const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
-    p.staysActiveInBackground = activeItem && playbackAllowed;
-    p.showNowPlayingNotification = activeItem && playbackAllowed;
+    // Shorts pause when the app is left; only a PiP window keeps them going.
+    p.staysActiveInBackground = false;
+    p.showNowPlayingNotification = false;
     p.loop = getIsLooping();
     p.muted = isMuted;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
@@ -560,6 +568,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   /** The first tap pauses/resumes immediately. If tap two arrives, put that
    *  reversible toggle back before resolving Like/Love. */
   const singleTapToggledPlaybackRef = useRef(false);
+  /** Chrome state from before a single tap hid/showed the buttons, so tap two
+   *  of a double tap (a like) can put it back. */
+  const singleTapChromeRef = useRef<{ overlaysHidden: boolean; autoHidden: boolean } | null>(null);
   const tapAnimProgress = useRef(new Animated.Value(0)).current;
   const [tapAnimReaction, setTapAnimReaction] = useState<"like" | "love" | null>(null);
   const [tapAnimPos, setTapAnimPos] = useState({ x: 0, y: 0 });
@@ -577,6 +588,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     tapCountRef.current = 0;
     lastTapRef.current = 0;
     singleTapToggledPlaybackRef.current = false;
+    singleTapChromeRef.current = null;
   }, []);
 
   useEffect(() => {
@@ -643,8 +655,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   useEffect(() => {
     if (!player || !ownsPlayerRef.current()) return;
-    player.staysActiveInBackground = isActive || isPictureInPicturePlayer(player);
-    player.showNowPlayingNotification = isActive || isPictureInPicturePlayer(player);
+    player.staysActiveInBackground = isPictureInPicturePlayer(player);
+    player.showNowPlayingNotification = isPictureInPicturePlayer(player);
     if (isActive) {
       // The same callback identity must be used for request and release. The
       // old anonymous callbacks could never release either global focus slot.
@@ -1148,21 +1160,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       setOpenTray(null);
       return;
     }
-    // A restore tap changes only the panel. Outside this band, hidden chrome
-    // must not swallow video playback or multi-tap reactions.
-    if (overlaysHidden &&
-      pageY > itemHeight * RESTORE_ZONE_TOP &&
-      pageY < itemHeight * RESTORE_ZONE_BOTTOM
-    ) {
-      setOverlaysHidden(false);
-      setAutoHidden(false);
-      resetTapSequence();
-      return;
-    }
-    // The auto-clear takes no band and swallows no tap: it was not asked for,
-    // so undoing it should not cost the viewer the play/pause they meant. The
-    // timer re-arms from the state change and clears the frame again.
-    if (autoHidden) setAutoHidden(false);
+    // The centre third plays/pauses. Anywhere else on the video clears every
+    // button for an immersive view, and the next tap there brings them back.
+    const inPauseZone =
+      pageX >= SCREEN_WIDTH * PAUSE_ZONE_START && pageX <= SCREEN_WIDTH * PAUSE_ZONE_END &&
+      pageY >= itemHeight * PAUSE_ZONE_START && pageY <= itemHeight * PAUSE_ZONE_END;
     const now = Date.now();
     const continuesGesture = continuesTapGesture(lastTapRef.current, now);
 
@@ -1170,17 +1172,30 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
       lastTapRef.current = now;
       tapCountRef.current = 1;
-      // Play/pause is reversible, so do it on finger-up instead of making a
-      // normal tap feel broken for the whole double-tap window. Tap two below
-      // silently reverses this before showing the reaction.
-      singleTapToggledPlaybackRef.current = true;
-      togglePlayPauseRef.current();
+      // Both actions are reversible, so they happen on finger-up instead of
+      // making a normal tap feel broken for the whole double-tap window. Tap
+      // two below silently reverses this before showing the reaction.
+      if (inPauseZone) {
+        // The auto-clear was not asked for, so a pause tap also undoes it.
+        if (autoHidden) setAutoHidden(false);
+        singleTapToggledPlaybackRef.current = true;
+        singleTapChromeRef.current = null;
+        togglePlayPauseRef.current();
+      } else {
+        singleTapToggledPlaybackRef.current = false;
+        singleTapChromeRef.current = { overlaysHidden, autoHidden };
+        const hide = !(overlaysHidden || autoHidden);
+        setOverlaysHidden(hide);
+        setAutoHidden(false);
+        if (hide) setCaptionExpanded(false);
+      }
       tapTimerRef.current = setTimeout(() => {
         tapTimerRef.current = null;
         if (tapCountRef.current !== 1) return;
         tapCountRef.current = 0;
         lastTapRef.current = 0;
         singleTapToggledPlaybackRef.current = false;
+        singleTapChromeRef.current = null;
       }, TAP_GESTURE_WINDOW_MS);
       return;
     }
@@ -1192,6 +1207,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       if (singleTapToggledPlaybackRef.current) {
         singleTapToggledPlaybackRef.current = false;
         togglePlayPauseRef.current();
+      }
+      const chromeBefore = singleTapChromeRef.current;
+      if (chromeBefore) {
+        singleTapChromeRef.current = null;
+        setOverlaysHidden(chromeBefore.overlaysHidden);
+        setAutoHidden(chromeBefore.autoHidden);
       }
       // Feedback stays immediate. Only the request waits long enough for a
       // third tap to upgrade it, so the gesture never feels swallowed.
@@ -1348,24 +1369,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
       <GestureDetector gesture={screenGesture}>
         <Reanimated.View
-          style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, playerStyle]}
+          style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, photoMedia && { backgroundColor: photoBackdrop }, playerStyle]}
         >
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
-        {thumbnail && (!firstFrameRendered || !isActive) ? (
+        {photoMedia ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
           <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
-        {/* Only the current short owns a native view: preloaded neighbours must
-            not overwrite the activity's automatic PiP configuration. */}
+        {/* Leaving the app from Shorts never starts PiP; the PiP button still does. */}
         {player && isActive && ownsVideo && !photoMedia ? (
           <PersistentVideoView
             ref={activeVideoRef}
             allowsPictureInPicture
-            startsPictureInPictureAutomatically={isPlaying}
+            startsPictureInPictureAutomatically={false}
             player={player}
             style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
             contentFit="contain"
@@ -1524,6 +1544,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         style={[StyleSheet.absoluteFill, { opacity: chromeOpacity }]}
         pointerEvents={chromeVisible ? "box-none" : "none"}
       >
+        {/* An open caption dims the video so it reads properly, as on web. A
+            tap on the dimmed video closes it again. */}
+        {captionExpanded && (
+          <Reanimated.View
+            entering={FadeIn.duration(200)}
+            exiting={FadeOut.duration(200)}
+            style={[StyleSheet.absoluteFill, styles.captionDim]}
+          >
+            <Pressable
+              style={StyleSheet.absoluteFill}
+              onPress={() => setCaptionExpanded(false)}
+              accessibilityRole="button"
+              accessibilityLabel={_copy("copy.4fdd3b6201a2", { defaultValue: "less" })}
+            />
+          </Reanimated.View>
+        )}
+
         {/* Legibility gradient behind the bottom stack, as on web. */}
         <LinearGradient
           colors={["transparent", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.85)"]}
@@ -1631,7 +1668,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 The first and last cell align to their outer edges, so the row
                 still starts and ends flush with the caption above it exactly as
                 web's does. */}
-            <View style={styles.actionBar}>
+            <View testID="shorts-actions" className="dark-surface" style={styles.actionBar}>
               {/* Views — a readout, not a button, as on web. */}
               <View style={[styles.actionCell, styles.actionCellFirst]}>
                 <Icon name="Eye" size={20} color={ICON_COLOR} strokeWidth={1.8} />
@@ -2446,6 +2483,11 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: "700",
   },
+  captionDim: {
+    backgroundColor: "rgba(0,0,0,0.7)",
+    // Over the gradient, under the caption stack it is there to make legible.
+    zIndex: 6,
+  },
   bottomGradient: {
     position: "absolute",
     left: 0,
@@ -2578,6 +2620,7 @@ const styles = StyleSheet.create({
   // No wrapper and no fixed height any more: without a slab to fill, the row
   // is exactly as tall as its tallest cell.
   actionBar: {
+    backgroundColor: "transparent",
     flexDirection: "row",
     alignItems: "center",
   },

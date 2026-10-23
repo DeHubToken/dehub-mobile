@@ -37,7 +37,7 @@ const VISIBLE_LIMIT = 20;
 const NewMembersRail: FC = () => {
   const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin } = useAppTheme();
   const { requireAuth } = useAuth();
   const authUser = useUser() as { address?: string; walletAddress?: string } | null;
   const viewerAddress = authUser?.address ?? authUser?.walletAddress;
@@ -101,7 +101,7 @@ const NewMembersRail: FC = () => {
   if (visibleMembers.length === 0) return null;
 
   return (
-    <View className="mb-2">
+    <View className="mb-2" style={skin?.material === 'glass' ? { ...skin.card, paddingVertical: 8 } : undefined}>
       <View className="px-4 pt-3 pb-2">
         <Text className="text-white text-base font-bold">{t("stats.newMembers")}</Text>
         <Text className="text-theme-neutrals-500 text-xs mt-0.5">{t("feed.newMembersHint")}</Text>
@@ -121,6 +121,7 @@ const NewMembersRail: FC = () => {
               key={member.address}
               // Minimal: no card fill — avatar, name and Follow stand on the black.
               className={isMinimal ? "w-28 items-center px-2 py-3" : "w-28 items-center rounded-2xl bg-theme-neutrals-800 px-2 py-3"}
+              style={skin?.material === 'glass' ? skin.card : undefined}
             >
               <TouchableOpacity activeOpacity={0.8} onPress={() => openProfile(member)}>
                 <Avatar uri={member.avatarUrl} size={56} name={member.displayName} />

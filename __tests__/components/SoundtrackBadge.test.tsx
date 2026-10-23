@@ -34,7 +34,7 @@ const mockPlayer = {
 jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn(() => mockPlayer) }));
 jest.mock('@react-navigation/native', () => ({ useIsFocused: () => true }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
-jest.mock('@expo/vector-icons', () => ({ Ionicons: () => null }));
+jest.mock('@expo/vector-icons/Ionicons', () => () => null);
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('../../components/ui/IosGlassPill', () => () => null);
 jest.mock('../../libs/audioSession', () => ({ configureForDuckedPlayback: jest.fn(() => Promise.resolve()) }));

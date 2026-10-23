@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import { FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
 import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
@@ -55,7 +55,11 @@ export default function CreatorScreen() {
   const user = useUser();
   const appTheme = useAppTheme();
   const themeName: string = appTheme.theme ?? (appTheme.isMinimal ? 'minimal' : 'system');
-  const stage = STAGE_ACCENT[themeName] ?? STAGE_ACCENT.system;
+  const glass = appTheme.skin?.material === 'glass';
+  const stage = useMemo(() => glass ? {
+    colors: ['rgba(225,255,255,0.28)', `rgba(${appTheme.accent.join(',')},0.24)`] as [string, string],
+    ink: '#efffff',
+  } : STAGE_ACCENT[themeName] ?? STAGE_ACCENT.system, [glass, themeName, appTheme.accent]);
   const accentInk = stage.ink;
   const { width } = useWindowDimensions();
   const half = Math.floor((width - PAD * 2 - GAP) / 2);
@@ -84,6 +88,7 @@ export default function CreatorScreen() {
     { key: '3d', icon: 'fractions', label: t('creator.door3d'), note: t('creator.door3dNote'), open: () => openStudio('3d') },
   ];
   const tools = [
+    { key: 'remake', icon: 'videos', label: t('creator.toolRemake'), note: t('creator.toolMaboroshiDesc'), open: () => nav.navigate(ScreenNames.CreatorRemake) },
     { key: 'agents', icon: 'assistant', label: t('creator.navAgents'), note: t('creator.doorAgentsNote'), open: () => nav.navigate(ScreenNames.Root, { screen: ScreenNames.AIChat }) },
     { key: 'editor', icon: 'tv', label: t('creator.editor'), note: t('creator.editorNote'), open: () => nav.navigate(ScreenNames.MediaEditor) },
     { key: 'flow', icon: 'command', label: t('creator.flow'), note: t('creator.flowNote'), open: () => nav.navigate(ScreenNames.CreatorFlow) },
@@ -99,7 +104,7 @@ export default function CreatorScreen() {
         accessibilityLabel={item.label}
         onPress={item.open}
         className="rounded-3xl border border-white/10 bg-theme-neutrals-800 p-4"
-        style={{ width: half, minHeight: 136, justifyContent: 'space-between' }}
+        style={[glass && appTheme.skin?.card, { width: half, minHeight: 136, justifyContent: 'space-between' }]}
       >
         {iconUrl ? (
           <SmartImage source={{ uri: iconUrl }} recyclingKey={iconUrl} style={{ width: 48, height: 48 }} contentFit="contain" />
@@ -122,7 +127,7 @@ export default function CreatorScreen() {
             colors={stage.colors}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
-            style={{ borderRadius: 22, flexDirection: 'row', alignItems: 'center', padding: 8, gap: 12 }}
+            style={[glass && appTheme.skin?.card, { borderRadius: 22, flexDirection: 'row', alignItems: 'center', padding: 8, gap: 12 }]}
           >
             <View className="h-12 w-12 items-center justify-center rounded-full" style={{ backgroundColor: 'rgba(0,0,0,0.85)' }}>
               <SmartImage source={require('../assets/web-icons/dehub-coin.png')} style={{ width: 30, height: 30 }} contentFit="contain" />
@@ -152,7 +157,7 @@ export default function CreatorScreen() {
     </View>
   );
 
-  }, [t, themeName, half, nav, openStudio, accentInk, stage, query.isLoading]);
+  }, [t, themeName, half, nav, openStudio, accentInk, stage, query.isLoading, glass, appTheme.skin]);
   const renderAsset = useCallback(({ item }: { item: CreatorAsset }) => <CreatorLibraryCard item={item} posterUrl={item.posterUrl ?? previews[item.id]} width={half} />, [half, previews]);
 
   return (
@@ -185,13 +190,14 @@ export default function CreatorScreen() {
 
 const CreatorLibraryCard = memo(function CreatorLibraryCard({ item, posterUrl, width }: { item: CreatorAsset; posterUrl?: string; width: number }) {
   const { t } = useTranslation();
+  const { skin } = useAppTheme();
   return (
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={t('creator.openGeneration', { prompt: item.prompt || item.modelName })}
             onPress={() => { if (item.url) void openInApp(item.url); }}
             className="overflow-hidden rounded-2xl border border-white/10 bg-theme-neutrals-800"
-            style={{ width: width }}
+            style={[skin?.material === 'glass' && skin.card, { width: width }]}
           >
             <CreatorMediaPreview kind={item.kind} url={item.url} posterUrl={posterUrl} width={width} height={item.kind === 'audio' ? width * 0.6 : width} />
             <View className="p-3">

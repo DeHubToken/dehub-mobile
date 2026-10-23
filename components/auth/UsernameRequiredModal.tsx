@@ -1,11 +1,12 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, ActivityIndicator, type ViewStyle } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import GlassModal from '../ui/GlassModal';
 import { AuthButton, AuthErrorNotice, AuthField, authColors, authText } from './AuthControls';
 import { AuthService } from '../../services/auth.service';
+import { getSignInDisplayName } from '../../services/auth/supabaseAuth.service';
 import { useDebounceCallback } from '../../hooks/useDebounceCallback';
 import { toastSuccess } from '../../libs';
 import { setAuthUser } from '../../libs/auth.utils';
@@ -49,6 +50,22 @@ export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser
     }
   }, [visible, setDisplayName, setUsername]);
 
+  // Start from the name Apple or Google already gave us. The field below is
+  // uncontrolled, so a filled-in name remounts it to show.
+  const [nameSeed, setNameSeed] = useState(0);
+  const displayNameRef = useRef(displayName);
+  displayNameRef.current = displayName;
+  useEffect(() => {
+    if (!visible) return;
+    let cancelled = false;
+    void getSignInDisplayName().then((name) => {
+      if (cancelled || !name || displayNameRef.current) return;
+      setDisplayName(name);
+      setNameSeed((seed) => seed + 1);
+    });
+    return () => { cancelled = true; };
+  }, [visible]);
+
   const runAvailability = useDebounceCallback(async (name: string) => {
     if (!name) { setAvailable(null); setAvailabilityMessage(null); return; }
     setChecking(true);
@@ -70,16 +87,20 @@ export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser
     setDisplayName(text);
   };
 
-  const isDisplayNameValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
+  // Optional, as on SetProfileScreen: left blank, the username stands in.
+  const trimmedDisplayName = displayName.trim();
+  const isDisplayNameValid =
+    trimmedDisplayName.length === 0 || (trimmedDisplayName.length >= 2 && trimmedDisplayName.length <= 50);
   const disabled = !username.trim() || available === false || checking || submitting || !isDisplayNameValid;
 
   const handleSubmit = async () => {
     if (disabled) return;
     setSubmitting(true);
     setError(null);
+    const finalDisplayName = trimmedDisplayName || username.trim();
     try {
-      await AuthService.updateProfile({ username: username.trim(), displayName: displayName.trim() });
-      const finalUser: User = { ...provisionalUser, username: username.trim(), displayName: displayName.trim() };
+      await AuthService.updateProfile({ username: username.trim(), displayName: finalDisplayName });
+      const finalUser: User = { ...provisionalUser, username: username.trim(), displayName: finalDisplayName };
   // token already stored during initial sign in
       await setAuthUser(finalUser);
       toastSuccess(_copy("copy.c9a2d61de5a7", { defaultValue: "Username set" }));
@@ -138,6 +159,7 @@ export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser
         </View>
 
         <AuthField
+          key={nameSeed}
           defaultValue={displayName}
           onChangeText={handleDisplayNameChange}
           autoCapitalize="words"

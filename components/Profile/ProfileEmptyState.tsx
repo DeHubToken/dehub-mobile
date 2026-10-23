@@ -5,6 +5,8 @@ import {
   View,
   type ImageSourcePropType,
 } from "react-native";
+import { useAppTheme } from '../../context/ThemeContext';
+import { ThemeIcon } from '../page/PageKit';
 
 export type ProfileEmptyStateKind =
   | "home"
@@ -41,17 +43,21 @@ const ProfileEmptyState: React.FC<ProfileEmptyStateProps> = ({
   kind,
   title,
   subtitle,
-}) => (
+}) => {
+  const { theme } = useAppTheme();
+  const icon = kind === 'songs' ? 'audio' : kind === 'subscribers' ? 'subscriptions' : kind === 'playlists' ? 'bookmarks' : kind;
+  return (
   <View className="items-center justify-center px-6 py-12">
-    <Image
+    {theme === 'glass' ? <ThemeIcon icon={icon} size={64} style={{ marginBottom: 12 }} /> : <Image
       source={ICONS[kind]}
       accessibilityLabel={title}
       resizeMode="contain"
       style={{ width: 64, height: 64, marginBottom: 12 }}
-    />
+    />}
     <Text className="text-white text-lg font-medium text-center">{title}</Text>
     <Text className="text-white/70 text-sm mt-1 text-center">{subtitle}</Text>
   </View>
-);
+  );
+};
 
 export default memo(ProfileEmptyState);

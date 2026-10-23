@@ -1,7 +1,7 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Trans, useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import PasswordStrengthMeter from "./PasswordStrengthMeter";
@@ -69,6 +69,13 @@ export type WalletSetupRequest =
        * people who just lost a device-bound key.
        */
       replacing?: { address: string; clearOtherSeedCopies: boolean };
+      /**
+       * Set by WalletUnlockHost at the first wallet action after a silent
+       * sign-up: the wallet already exists under this device's key, and this
+       * sheet only lets the person keep that (Face ID / device) or add a
+       * password. Backing up is the Wallet tab's reminder afterwards.
+       */
+      securing?: { address: string };
     };
 
 export type CreateProtection = { kind: "password"; password: string } | { kind: "biometric" };
@@ -505,15 +512,17 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
       isBiometricUnlockAvailable().then((available) => {
         if (cancelled) return;
         setBiometricAvailable(available);
-        // No enrolled fingerprint/face (or no sensor) — the biometric tab is
-        // not rendered at all in that case, so the choice has to move off it
-        // or the create body would show an option the user cannot pick.
+        // The device key is offered whether or not a fingerprint or face is
+        // enrolled. It is stored without a biometric flag either way, and
+        // unlocking on a phone with no screen lock is already "unenforceable"
+        // rather than refused. Leaving such a phone with only the 12-character
+        // password form is what App Review hit on an iPad with no Touch ID: four
+        // minutes on the password rules after Continue with Apple, then back
+        // at the login screen.
         //
-        // Replacing an unreachable wallet forces it too: this user is, by
-        // definition, someone a device-bound key just locked out, so the
-        // option that survives a lost handset should be preselected.
-        // Biometric stays selectable in that case.
-        setProtectionChoice(!available || replacingUnreachable ? "password" : "biometric");
+        // Replacing an unreachable wallet still preselects the password: this
+        // user is, by definition, someone a device-bound key just locked out.
+        setProtectionChoice(replacingUnreachable ? "password" : "biometric");
       });
       return () => {
         cancelled = true;
@@ -854,9 +863,13 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
         presentation="bottom"
         blurIntensity={50}
         maxHeight="92%"
-        // Dismissible throughout. On the backup offer the wallet is already
-        // saved, and handleClose turns a dismiss into "Skip for now".
-        dismissible={!busy}
+        // This sheet sits between a finished identity sign-in and the app, so
+        // a stray tap on the dim backdrop, a swipe or an edge-swipe must not
+        // throw the user back to the login screen with no word of why. Leaving
+        // is the Cancel button below. On the backup offer the wallet is
+        // already saved and handleClose turns a dismiss into "Skip for now",
+        // so that stage stays dismissible.
+        dismissible={!busy && !!recoveryPhrase}
       >
         <ScrollView
           style={{ flexShrink: 1 }}
@@ -940,7 +953,7 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 {t("walletSetup.protectWallet")}
               </Text>
 
-              {biometricAvailable && !(request?.mode === 'create' && request.replacing) && (
+              {!(request?.mode === 'create' && request.replacing) && (
                 <View style={styles.segment} accessibilityRole="tablist">
                   {(["biometric", "password"] as const).map((choice) => {
                     const active = protectionChoice === choice;
@@ -954,7 +967,11 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                         style={[styles.segmentItem, active && styles.segmentItemActive]}
                       >
                         <Text style={[styles.segmentLabel, active && styles.segmentLabelActive]}>
-                          {choice === "biometric" ? t("walletSetup.biometricTab") : t("walletSetup.password")}
+                          {choice === "password"
+                            ? t("walletSetup.password")
+                            : biometricAvailable
+                            ? t("walletSetup.biometricTab")
+                            : t("walletSetup.deviceTab")}
                         </Text>
                       </TouchableOpacity>
                     );
@@ -962,19 +979,35 @@ const WalletSetupScreen: React.FC<WalletSetupScreenProps> = memo(
                 </View>
               )}
 
-              {protectionChoice === "biometric" && biometricAvailable ? (
+              {protectionChoice === "biometric" ? (
                 <View>
                   <View style={styles.note}>
-                    <Ionicons name="finger-print" size={22} color={authColors.label} />
+                    <Ionicons
+                      name={biometricAvailable ? "finger-print" : "phone-portrait-outline"}
+                      size={22}
+                      color={authColors.label}
+                    />
                     <Text style={[authText.caption, { flex: 1 }]}>
-                      {t("walletSetup.biometricExplainer")}
+                      {/* Securing an existing wallet shows no recovery phrase:
+                          the backup is offered later, from Settings. */}
+                      {request?.mode === "create" && request.securing
+                        ? biometricAvailable
+                          ? t("walletSetup.biometricExplainerSecuring")
+                          : t("walletSetup.deviceExplainerSecuring")
+                        : biometricAvailable
+                        ? t("walletSetup.biometricExplainer")
+                        : t("walletSetup.deviceExplainer")}
                     </Text>
                   </View>
                   <AuthErrorNotice message={error} style={{ marginTop: 12 }} />
                   <AuthButton
                     variant="primary"
-                    icon="finger-print"
-                    label={t("walletSetup.secureWithBiometrics")}
+                    icon={biometricAvailable ? "finger-print" : "phone-portrait-outline"}
+                    label={
+                      biometricAvailable
+                        ? t("walletSetup.secureWithBiometrics")
+                        : t("walletSetup.secureOnDevice")
+                    }
                     onPress={handleCreateWithBiometric}
                     loading={busy}
                     style={{ marginTop: 16 }}

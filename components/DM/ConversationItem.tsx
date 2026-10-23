@@ -16,7 +16,10 @@ import { useUnreadCount } from "../../store/dm.store";
 import { dmDraftKey } from "../../libs/draft-cache";
 import { useTranslation } from "react-i18next";
 import { isEncryptedContent } from "../../libs/dm-e2ee/crypto";
+import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
 import { useDraftText } from "../../hooks/useDraft";
+import { useLiveTarget } from "../../hooks/useIsUserLive";
+import { openLiveTarget } from "../../libs/openLiveTarget";
 import SwipeableRow, { type SwipeAction } from "../common/SwipeableRow";
 import { useAppTheme } from "../../context/ThemeContext";
 
@@ -62,6 +65,8 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
   const username = other?.username;
   const avatarUrl = getAvatarUrl(other?.avatarImageUrl);
   const badgeImg = getBadgeUrlFor(other as any);
+  const liveTarget = useLiveTarget(other?.address, username);
+  const live = !!liveTarget;
 
   // Last message preview
   const { previewText, previewIcon } = useMemo(() => {
@@ -71,6 +76,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     const last = msgs[0] as DmMessage;
     const isMine = last.author === "me";
     const withPrefix = (s: string) => (isMine ? t("dm.youSaid", { text: s }) : s);
+    const mediaLabel = last.encMedia ? encryptedMediaLabel(last.encMedia, t) : t("dm.photo");
 
     if (last.msgType === "voice") {
       return {
@@ -97,7 +103,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         ? `${Number(last.tipAmount).toLocaleString()} ${last.tipSymbol}`
         : t("dm.tokenAmount", { amount: Number(last.tipAmount).toLocaleString() });
       const contentPreview = last.content?.replace(/\n/g, " ")?.trim();
-      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? t("dm.photo") : contentPreview || t("dm.message");
+      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? mediaLabel : contentPreview || t("dm.message");
       return {
         previewText: withPrefix(`${msgLabel} · ${amt}`),
         previewIcon: "diamond" as const,
@@ -106,7 +112,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     // Per-message fee message (paymentStatus set but no tipAmount — fee-based)
     if (last.paymentStatus || last.paymentTxHash) {
       const contentPreview = last.content?.replace(/\n/g, " ")?.trim();
-      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? t("dm.photo") : contentPreview || t("dm.message");
+      const msgLabel = last.msgType === "gif" ? "GIF" : last.msgType === "media" ? mediaLabel : contentPreview || t("dm.message");
       return {
         previewText: withPrefix(t("dm.paidPreview", { label: msgLabel })),
         previewIcon: "diamond" as const,
@@ -114,6 +120,13 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
     }
     if (last.msgType === "gif") {
       return { previewText: withPrefix("GIF"), previewIcon: "gif" as const };
+    }
+    if (last.msgType === "media" && last.encMedia) {
+      const kind = last.encMedia.kind;
+      return {
+        previewText: withPrefix(mediaLabel),
+        previewIcon: kind === "video" ? ("videocam" as const) : kind === "image" ? ("image" as const) : null,
+      };
     }
     if (last.msgType === "media") {
       const hasVideo = last.mediaUrls?.some(
@@ -202,7 +215,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
         className="flex-row items-center px-4 py-4 gap-3"
       >
         <TouchableOpacity
-          onPress={handleAvatarPress}
+          onPress={liveTarget ? () => openLiveTarget(liveTarget) : handleAvatarPress}
           activeOpacity={0.8}
           className="relative"
         >
@@ -214,6 +227,7 @@ const ConversationItemComponent: React.FC<ConversationItemProps> = ({
             }
             size={48}
             name={displayName}
+            live={live}
           />
         </TouchableOpacity>
 

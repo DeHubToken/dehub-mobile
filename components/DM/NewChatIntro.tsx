@@ -13,7 +13,7 @@
 import React, { memo } from "react";
 import { View, Text } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { truncateAddress } from "../../libs/strings.util";

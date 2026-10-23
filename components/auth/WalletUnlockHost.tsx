@@ -30,10 +30,13 @@ import i18n from "i18next";
 import WalletSetupScreen, { type WalletSetupRequest, type CreateProtection, type CreateResult } from "./WalletSetupScreen";
 import {
   registerWalletUnlockHandler,
+  registerWalletSecureHandler,
   setWalletUnlockRefusal,
   openWalletUnlockPrompt,
   closeWalletUnlockPrompt,
 } from "../../libs/wallet-lock";
+import { readWalletSecureOffer, clearWalletSecureOffer } from "../../libs/wallet-core/secure-offer";
+import { hasBiometricWrapKey, unlockWithBiometrics } from "../../libs/wallet-core/biometric-unlock";
 import { getSupabaseUserId } from "../../services/auth/supabaseAuth.service";
 import {
   resolveEvmWalletForIdentity,
@@ -50,7 +53,7 @@ import {
   upsertLocalAccount,
 } from "../../libs/wallets.local";
 import { getAuthUser } from "../../libs/auth.utils";
-import { decryptString } from "../../libs/wallet-core/crypto";
+import { decryptString, getPayloadKdf, type EncryptedPayload } from "../../libs/wallet-core/crypto";
 import { deriveFromSecret, generateMnemonic12 } from "../../libs/wallet-core/derive";
 import { fetchWalletReliably } from '../../libs/wallet-core/store';
 import { getPendingWalletReplacement } from '../../libs/wallet-core/replacement';
@@ -145,11 +148,14 @@ const WalletUnlockHost: React.FC = () => {
   // is waiting on it forever, which is worse than a refused unlock.
   const pendingRef = useRef<Pending | null>(null);
   const replacementSecretRef = useRef<string | null>(null);
+  // The saved wallet of a silent sign-up, while "Secure your wallet" is up.
+  const securePayloadRef = useRef<EncryptedPayload | null>(null);
 
   const settle = useCallback((unlocked: boolean) => {
     const current = pendingRef.current;
     pendingRef.current = null;
     replacementSecretRef.current = null;
+    securePayloadRef.current = null;
     setPending(null);
     closeWalletUnlockPrompt();
     if (current) {
@@ -240,8 +246,44 @@ const WalletUnlockHost: React.FC = () => {
           return refuse("not-unlockable", i18n.t("wallet.unlockNoAccount"));
       }
     });
+    // "Secure your wallet" for a wallet sign-up made silently: asked once, at
+    // the first action that uses it, before that action signs anything.
+    const unregisterSecure = registerWalletSecureHandler(async () => {
+      const supabaseUserId = await getSupabaseUserId();
+      if (!supabaseUserId) return true;
+      const address = await readWalletSecureOffer(supabaseUserId);
+      if (!address) return true;
+      const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
+      if (failed) return true;
+      const payload = wallet?.payload ?? null;
+      // Secured some other way since (a password added on dehub.io), replaced,
+      // or not openable on this phone: there is nothing left to offer here.
+      if (
+        !wallet ||
+        !payload ||
+        wallet.ethAddress.toLowerCase() !== address ||
+        getPayloadKdf(payload) !== "hkdf" ||
+        !(await hasBiometricWrapKey(address))
+      ) {
+        await clearWalletSecureOffer(supabaseUserId);
+        return true;
+      }
+      securePayloadRef.current = payload;
+      const sessionAddress = await sessionAddressOf();
+      await openWalletUnlockPrompt();
+      return new Promise<boolean>((resolve) => {
+        const next: Pending = {
+          request: { mode: "create", supabaseUserId, securing: { address } },
+          sessionAddress,
+          resolve,
+        };
+        pendingRef.current = next;
+        setPending(next);
+      });
+    });
     return () => {
       unregister();
+      unregisterSecure();
       // Anything still waiting is answered rather than abandoned.
       if (pendingRef.current) settle(false);
     };
@@ -373,12 +415,31 @@ const WalletUnlockHost: React.FC = () => {
 
   const handleCreate = useCallback(async (protection: CreateProtection): Promise<CreateResult> => {
     const request = pendingRef.current?.request;
+    if (request?.mode === 'create' && request.securing) {
+      if (protection.kind === 'password') {
+        // A password re-wraps the same wallet so it opens on any device. Its
+        // words are under this device's key, so this is the Face ID / passcode
+        // check the waiting action would have asked for anyway.
+        const payload = securePayloadRef.current;
+        if (!payload) throw new Error(i18n.t("walletSetup.couldNotSecure"));
+        const secret = await unlockWithBiometrics(request.securing.address, payload);
+        await createAndSaveEvmWalletForIdentity(request.supabaseUserId, protection, secret);
+        // Covers the waiting action, so it is not followed by a second check.
+        rememberSuccessfulWalletUnlock();
+      }
+      // Face ID / the device key leaves the wallet exactly as sign-up saved it;
+      // the waiting action's own device check follows. No recovery phrase
+      // here: backing up is the Wallet tab's reminder afterwards.
+      await clearWalletSecureOffer(request.supabaseUserId);
+      settle(true);
+      return undefined;
+    }
     if (request?.mode !== 'create' || !request.replacing) return undefined;
     const secret = replacementSecretRef.current ?? generateMnemonic12();
     replacementSecretRef.current = secret;
     const created = await createAndSaveEvmWalletForIdentity(request.supabaseUserId, protection, secret, request.replacing);
     return { recoveryPhrase: created.secret, address: created.address };
-  }, []);
+  }, [settle]);
 
   const handleCreateConfirmed = useCallback(async () => {
     const request = pendingRef.current?.request;

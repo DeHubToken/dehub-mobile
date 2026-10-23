@@ -19,12 +19,13 @@ interface Props {
   onAttach?: () => void;
   onWorkflow?: (workflow: 'swap' | 'motion') => void;
   onMaboroshi?: () => void;
+  onRemake?: () => void;
   disabled: boolean;
 }
 
 const MODE_ICONS: Record<CreatorMode, IconName> = { image: 'Image', video: 'Video', audio: 'Music', '3d': 'Package' };
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, disabled }: Props) {
+export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, onRemake, disabled }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
@@ -43,6 +44,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
     onChange(next);
   };
   const models = [
+    ...(settings.mode === 'video' && onRemake ? [{ id: 'remake', name: t('creator.toolRemake'), description: t('creator.toolMaboroshiDesc') }] : []),
     ...(settings.mode === 'video' && onMaboroshi ? [{ id: 'maboroshi', name: t('creator.toolMaboroshi'), description: t('creator.toolMaboroshiDesc') }] : []),
     ...creatorModels(settings.mode),
   ];
@@ -53,6 +55,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
     : ['none', 'standard', ...(MODEL3D_MODELS[settings.model]?.hdMultiplier ? ['HD'] : [])].map((id) => ({ id, name: t(`creator.studioTexture.${id}`) }));
   const choose = (id: string) => {
     if (disabled) return;
+    if (picker === 'model' && id === 'remake') { setPicker(null); onRemake?.(); return; }
     if (picker === 'model' && id === 'maboroshi') { setPicker(null); onMaboroshi?.(); return; }
     if (picker === 'model' && onWorkflow && (id === 'kling-o3-edit' || id === 'kling-3-motion')) {
       setPicker(null); onWorkflow(id === 'kling-o3-edit' ? 'swap' : 'motion'); return;

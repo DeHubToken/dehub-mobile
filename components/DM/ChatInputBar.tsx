@@ -56,6 +56,8 @@ export type ChatMediaAttachment = {
   name?: string;
   /** Documents only — bytes, so the composer chip can show a size. */
   size?: number;
+  /** Videos only — seconds, when the picker reports it. */
+  duration?: number;
 };
 
 interface ChatInputBarProps {
@@ -397,6 +399,8 @@ const ChatInputBarComponent: React.FC<ChatInputBarProps> = ({
           uri: asset.uri,
           thumbnailUri: thumb,
           mimeType: asset.mimeType,
+          // expo-image-picker reports milliseconds.
+          duration: asset.duration ? asset.duration / 1000 : undefined,
         });
       } catch (e: unknown) {
         const err = e as { code?: string };

@@ -21,7 +21,7 @@ import Animated, {
   runOnJS,
 } from "react-native-reanimated";
 // import * as Device from "expo-device";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import GlassModal from "./ui/GlassModal";
 import AccentButtonGradient from "./ui/AccentButtonGradient";
 import { theme } from "../theme";

@@ -19,7 +19,7 @@ import React, { useEffect, useState } from "react";
 import { Linking, Platform, Text, TouchableOpacity, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Application from "expo-application";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import GlassModal from "./ui/GlassModal";
 import { theme } from "../theme";

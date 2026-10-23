@@ -10,13 +10,14 @@ import {
 } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { BlurView } from "expo-blur";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Avatar from "../common/Avatar";
 import { getAvatarUrl } from "../../libs/misc";
 import { formatRelativeFromNow } from "../../libs/date.util";
 import type { DmConversation, DmMessage, DmUser } from "../../services/dm/dm.types";
+import { encryptedMediaLabel } from "../../libs/dm-e2ee/media-label";
 
 
 interface ConversationContextMenuProps {
@@ -101,7 +102,7 @@ const ConversationContextMenuComponent: React.FC<ConversationContextMenuProps> =
     let text = "";
     if (last.msgType === "voice") text = t("dm.voiceNote");
     else if (last.msgType === "gif") text = "GIF";
-    else if (last.msgType === "media") text = t("dm.photo");
+    else if (last.msgType === "media") text = last.encMedia ? encryptedMediaLabel(last.encMedia, t) : t("dm.photo");
     else text = last.content?.replace(/\n/g, " ") || "";
     if (isMine) text = t("dm.youSaid", { text });
     const ts = formatRelativeFromNow(last.createdAt || conversation.lastMessageAt);

@@ -22,6 +22,7 @@ import { writeContractAA } from '../../libs/aa.write';
 import { copyToClipboard } from '../../libs/clipboard.utils';
 import { toastInfo, toastSuccess } from '../../libs/toast';
 import { ScreenNames } from '../../navigation/ScreenNames';
+import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import { FIELD_TEXT } from '../../theme/inputs';
 import TradeSheet from './TradeSheet';
 import ArcSendSheet from './ArcSendSheet';
@@ -121,10 +122,14 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
         <View style={s.actions}>
           <Action label={t('wallet.receive')} icon="ArrowDownToLine" onPress={() => setReceive(true)} />
           <Action label={t('wallet.send')} icon="Send" onPress={() => openSend(funded)} />
-          <Action label={t('wallet.buy')} icon="ShoppingCart" onPress={onBuy} />
-          <Action label={t('wallet.stake')} icon="Lock" onPress={onStake} />
-          <Action label={t('nav.bridge')} icon="ArrowLeftRight" onPress={() => navigation.navigate(ScreenNames.Bridge)} />
-          <Action label={t('wallet.trade')} icon="ChartNoAxesColumn" onPress={() => setTrade(true)} />
+          {/* Buying, staking, bridging and trading are not offered in the App
+              Store build (config/storefront, guideline 3.1.1). */}
+          {DIGITAL_PURCHASES_ENABLED && <>
+            <Action label={t('wallet.buy')} icon="ShoppingCart" onPress={onBuy} />
+            <Action label={t('wallet.stake')} icon="Lock" onPress={onStake} />
+            <Action label={t('nav.bridge')} icon="ArrowLeftRight" onPress={() => navigation.navigate(ScreenNames.Bridge)} />
+            <Action label={t('wallet.trade')} icon="ChartNoAxesColumn" onPress={() => setTrade(true)} />
+          </>}
         </View>
         <View style={s.search}>
           <Icon name="Search" size={18} color="#999" />

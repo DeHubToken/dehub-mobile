@@ -13,12 +13,13 @@ import {
   type ViewStyle,
 } from "react-native";
 import SmartImage from "../../components/common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, CommonActions } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { AuthService } from "../../services/auth.service";
+import { getSignInDisplayName } from "../../services/auth/supabaseAuth.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";
 import { toastError, toastSuccess, toastInfo } from "../../libs";
 import { setAuthUser } from "../../libs/auth.utils";
@@ -86,6 +87,14 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   useEffect(() => {
     isMountedRef.current = true;
     return () => { isMountedRef.current = false; };
+  }, []);
+
+  // Start from the name Apple or Google already gave us. Never overwrites
+  // anything typed, and the field stays optional when there is none.
+  useEffect(() => {
+    void getSignInDisplayName().then((name) => {
+      if (name && isMountedRef.current) setDisplayName((current) => current || name);
+    });
   }, []);
 
   /**
@@ -218,7 +227,11 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
   }, []);
 
   const isUsernameValid = username.length >= 3 && username.length <= 30;
-  const isDisplayNameValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
+  // Optional: left blank, the username stands in, so sign-up never demands a
+  // name the person chose not to share with Sign in with Apple.
+  const trimmedDisplayName = displayName.trim();
+  const isDisplayNameValid =
+    trimmedDisplayName.length === 0 || (trimmedDisplayName.length >= 2 && trimmedDisplayName.length <= 50);
   // `available !== true`, not `available === false`: the answer is null for the
   // whole debounce window, so the old gate let a name through that nothing had
   // checked yet.
@@ -232,10 +245,11 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
       return;
     }
     setSubmitting(true);
+    const finalDisplayName = trimmedDisplayName || username.trim();
     try {
       const payload: Record<string, any> = {
         username: username.trim(),
-        displayName: displayName.trim(),
+        displayName: finalDisplayName,
       };
       if (localAvatar) {
         // Both keys, matching EditProfileScreen — the backend reads one of the
@@ -248,7 +262,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
       const finalUser: User = {
         ...provisionalUser,
         username: username.trim(),
-        displayName: displayName.trim(),
+        displayName: finalDisplayName,
         ...(localAvatar ? { avatarImageUrl: localAvatar } : {}),
       };
       await setAuthUser(finalUser);
@@ -274,6 +288,10 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
         <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardShouldPersistTaps="handled"
+          // On iPad this iPhone-only app runs scaled up, and the iPad keyboard
+          // covers most of it: a drag must always be able to put it away so
+          // Continue is reachable.
+          keyboardDismissMode={Platform.OS === "ios" ? "interactive" : "on-drag"}
           className="px-6"
         >
           {/* Header */}
@@ -368,6 +386,8 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
             autoCapitalize="words"
             autoCorrect={false}
             placeholder={t("setProfile.displayNamePlaceholder")}
+            returnKeyType="done"
+            onSubmitEditing={handleSubmit}
           />
           <View style={{ marginTop: 8, marginBottom: 24, minHeight: 20 }}>
             <Text style={authText.caption}>{t("setProfile.displayNameHint")}</Text>

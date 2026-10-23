@@ -24,6 +24,20 @@ it('turns greys around and leaves colours, media black and scrims alone', () => 
   expect(toneColor('hsla(0,0%,4.3%,1)', false)).toBe('hsla(0,0%,4.3%,1)');
 });
 
+it('holds light text to AAA on white', () => {
+  // Plain white text is ink either way.
+  expect(toneColor('#FFFFFF', false, true)).toBe('hsla(0,0%,4.3%,1)');
+  // Faint dark-theme labels would invert to ~3:1; text caps at #565656 (7.3:1).
+  expect(toneColor('#71717A', false, true)).toBe('hsla(0,0%,29%,1)');
+  expect(toneColor('rgba(255,255,255,0.5)', false, true)).toBe('hsla(0,0%,29%,1)');
+  expect(toneColor('rgba(255,255,255,0.9)', false, true)).toBe('hsla(0,0%,13.9%,1)');
+  // Cool slate muted copy counts as grey for text, not for fills.
+  expect(toneColor('#919ca9', false, true)).toBe('hsla(0,0%,29%,1)');
+  expect(toneColor('#919ca9', true)).toBe('#919ca9');
+  // A dark label on a white key becomes the white label on an ink key.
+  expect(toneColor('#000000', false, true)).toBe('hsla(0,0%,100%,1)');
+});
+
 it('does nothing while System Light is off', () => {
   const props = { style: { color: '#fff' } };
   expect(tone(Text, props)).toEqual([Text, props]);

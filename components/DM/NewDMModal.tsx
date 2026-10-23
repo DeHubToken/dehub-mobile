@@ -18,7 +18,7 @@ import {
   View,
 } from "react-native";
 import SmartImage from "../common/SmartImage";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { User } from "../../context/AuthContext";
 import { usersSearch } from "../../services/user.service";
 import { useDebounceCallback } from "../../hooks/useDebounceCallback";

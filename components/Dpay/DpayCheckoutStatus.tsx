@@ -10,7 +10,7 @@ import {
   Animated,
   Easing,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { miniAddress } from "../../libs/strings.util";
 import { getDpayTnx } from "../../services";
 import { useAuthActions } from "../../context/AuthContext";

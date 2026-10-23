@@ -4,7 +4,7 @@ import { applyVideoVolume } from '../../libs/dub-mix';
 import DubVolumeSheet from '../VideoPlayerCore/DubVolumeSheet';
 import { useMediaVolume, getIsLooping, setIsLooping as persistLooping, useMediaLooping } from '../../libs/video-preferences';
 import { useFeedPlaybackAllowed, useFeedSurfaceActive, useCallInProgress, visualActivity } from "../../libs/visualActivity";
-import { MediaControlIcon as BareIcon, MediaControlText } from "../common/MediaControlGlyph";
+import { MediaControlIcon as BareIcon, MediaControlLabel, MediaControlText } from "../common/MediaControlGlyph";
 import { usePostVideoPlayer } from "../../hooks/usePostVideoPlayer";
 import { markVideoProcessing, useVideoProcessingStatus } from "../../hooks/useVideoProcessingStatus";
 import { useQueryClient } from "@tanstack/react-query";
@@ -68,6 +68,7 @@ import { getCachedMuted, setMutedState } from "../../libs/videoMutedState";
 import { useDataSaver } from "../../hooks/useDataSaver";
 import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
+import { registerVideoClock } from "../../libs/video-clock";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
 import { useMediaAspect, getMeasuredMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
@@ -471,6 +472,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       // The session, rather than a card, releases the native player.
     };
   }, [player]);
+
+  // Lets the skippable-sections sheet (opened from the options menu) read
+  // where this video is up to.
+  useEffect(
+    () => registerVideoClock(tokenId, () => playerRef.current?.currentTime ?? 0),
+    [tokenId],
+  );
 
   // Crowdsourced sponsor reads and intros. Fetched only while this card has a
   // source attached and the viewer asked for skipping — otherwise a feed of
@@ -1047,6 +1055,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     [applyVolume, handleToggleMute, isMuted, clearHideTimer, startHideTimer, dubAvailable],
   );
 
+  // Feed autoplay pauses when the app is left; the post page keeps playing (PiP).
+  useEffect(() => {
+    if (!ownsVideo || !player) return;
+    const keep = postPage || isPictureInPicturePlayer(player);
+    player.staysActiveInBackground = keep;
+    player.showNowPlayingNotification = keep;
+  }, [player, ownsVideo, postPage]);
+
   const isLooping = useMediaLooping();
   useEffect(() => {
     if (ownsVideo) player.loop = isLooping;
@@ -1283,7 +1299,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           allowsPictureInPicture
           onPictureInPictureStart={() => onPictureInPictureChange?.(true)}
           onPictureInPictureStop={() => onPictureInPictureChange?.(false)}
-          startsPictureInPictureAutomatically={isPlaying}
+          // Leaving the app only starts PiP from the post page, never from feed autoplay.
+          startsPictureInPictureAutomatically={postPage && isPlaying}
           // Android defaults to a SurfaceView, which renders in its own window
           // layer and can punch through / appear on top of other feed cards
           // while scrolling and recycling. A TextureView renders inside the
@@ -1432,7 +1449,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                         <View style={styles.volumeTrackInner}><View style={[styles.volumeFill, { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` }]} /></View>
                       </View>}
                     </View>
-                    {windowSize.width >= 360 && <Text style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</Text>}
+                    {windowSize.width >= 360 && <MediaControlLabel style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlLabel>}
                   </View>
                   <View pointerEvents="none" style={{ flex: 1 }} />
                 {tokenId != null && (
@@ -1455,7 +1472,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                   accessibilityLabel={t("player.playbackSpeed")}
                   style={styles.bareSpeed}
                 >
-                  <Text style={styles.bareSpeedText}>{playbackRate}x</Text>
+                  <MediaControlLabel style={styles.bareSpeedText}>{playbackRate}x</MediaControlLabel>
                 </VideoScrubButton>
                 <VideoScrubButton
                   onPress={handleToggleLoop}
@@ -1659,9 +1676,12 @@ const POST_PAGE_MEDIA = { marginTop: 0 } as const;
 const MINIMAL_EDGE = 16;
 
 const styles = StyleSheet.create({
+  // Every box sets its own width and height from the clip's shape. No
+  // aspectRatio here: Yoga sizes the cross axis from aspectRatio over an
+  // explicit width, which stretched portrait clips to full card width with
+  // grey side panels.
   container: {
     width: "100%",
-    aspectRatio: 16 / 9,
     backgroundColor: "#27272a",
     borderRadius: 8,
     overflow: "hidden",

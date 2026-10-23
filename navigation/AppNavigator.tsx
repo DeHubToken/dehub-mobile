@@ -106,6 +106,7 @@ function AppNavigatorContent() {
       <Stack.Group>
         <Stack.Screen name={ScreenNames.Creator} getComponent={() => require('../screens/CreatorScreen').default} />
         <Stack.Screen name={ScreenNames.Maboroshi} getComponent={() => require('../screens/MaboroshiScreen').default} />
+        <Stack.Screen name={ScreenNames.CreatorRemake} getComponent={() => require('../screens/MaboroshiScreen').default} />
         <Stack.Screen name={ScreenNames.CreatorStudio} getComponent={() => require('../screens/AIChatScreen').CreatorStudioScreen} />
         {/* A shared flow is readable signed-out; your flows and copying sign in. */}
         <Stack.Screen name={ScreenNames.CreatorFlow} getComponent={() => require('../screens/CreatorFlowScreen').default} />
@@ -198,6 +199,10 @@ function AppNavigatorContent() {
         <Stack.Screen
           name={ScreenNames.Stages}
           getComponent={() => require("../screens/StagesScreen").default}
+        />
+        <Stack.Screen
+          name={ScreenNames.StageRecording}
+          getComponent={() => require("../screens/StageRecordingScreen").default}
         />
         <Stack.Screen
           name={ScreenNames.Careers}
@@ -525,6 +530,10 @@ function AppNavigatorContent() {
             <Stack.Screen
               name={ScreenNames.AccountSettings}
               getComponent={() => require("../screens/AccountSettingsScreen").default}
+            />
+            <Stack.Screen
+              name={ScreenNames.LiveStudio}
+              getComponent={() => require("../screens/LiveStudioScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.ActiveSessions}

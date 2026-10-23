@@ -2,9 +2,11 @@ import React, { createContext, useContext, useEffect, type PropsWithChildren } f
 import { useStages as useStagesImpl } from "../hooks/useStages";
 import type { UseStagesReturn } from "../hooks/useStages";
 import { supabase } from "../services/supabase";
+import { ScreenNames } from "../navigation/ScreenNames";
 import { setStageDeepLinkHandler } from "../libs/deeplink.events";
 import { createLogger } from "../libs/logger";
 import { useStageAlerts } from "../hooks/useStageAlerts";
+import { setLiveStageHosts } from "../hooks/useIsUserLive";
 
 const log = createLogger("StageDeepLink");
 
@@ -19,6 +21,16 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   // It raises alerts through the same deep-link bus registered below, so the
   // toast's action lands in exactly the same place an invite link does.
   useStageAlerts();
+
+  // Hosts of live stages get the live ripple on their avatar everywhere.
+  // Handed to a store rather than read from this context, which changes far
+  // too often for every avatar on screen to subscribe to it.
+  const { liveSpaces } = stages;
+  useEffect(() => {
+    setLiveStageHosts(
+      liveSpaces.map((space) => ({ address: space.host_wallet_address, username: space.host_username, id: space.id })),
+    );
+  }, [liveSpaces]);
 
   /**
    * Open whatever a stage invite link points at.
@@ -37,18 +49,24 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     setStageDeepLinkHandler((link) => {
       void (async () => {
-        openModal("browse");
         try {
-          let id = link.id;
-          if (!id && link.shortId != null) {
-            // A /stages/<n> link carries no uuid, and joinSpace keys on one.
-            const { data } = await supabase
-              .from("audio_spaces")
-              .select("id")
-              .eq("short_id", link.shortId)
-              .maybeSingle();
-            id = (data as { id?: string } | null)?.id ?? undefined;
+          // Look the row up first: an ended stage has its own page, and the
+          // hub is only the landing spot for one that is live or upcoming.
+          const query = supabase.from("audio_spaces").select("id,status");
+          const { data } = await (link.id
+            ? query.eq("id", link.id)
+            : query.eq("short_id", link.shortId as number)
+          ).maybeSingle();
+          const row = data as { id?: string; status?: string } | null;
+          const id = link.id ?? row?.id;
+          if (row?.status === "ended" && id) {
+            const { navigationRef } = require("../App");
+            if (navigationRef.isReady()) {
+              navigationRef.navigate(ScreenNames.StageRecording as never, { spaceId: id } as never);
+              return;
+            }
           }
+          openModal("browse");
           if (!id) return;
           // A signed-in wallet can hold a seat; anyone else still gets to
           // listen, matching web's guest-listen invite link (no account, no
@@ -56,6 +74,7 @@ export const StageProvider: React.FC<PropsWithChildren> = ({ children }) => {
           if ((await joinSpace(id)) || (await guestListenSpace(id))) openModal("live");
         } catch (err) {
           log.error("Failed to open stage from deep link:", err);
+          openModal("browse");
         }
       })();
     });

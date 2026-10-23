@@ -1,4 +1,4 @@
-import { classifyStakeReceipt, confirmStake, refreshConfirmedStake, stakeFromReplacement, type StakeAttempt } from '../../libs/stake-confirmation';
+import { classifyStakeReceipt, confirmStake, recoverStake, readStakeEvidence, STAKE_MISSING_GRACE_MS, type StakeEvidence, refreshConfirmedStake, stakeFromReplacement, type StakeAttempt } from '../../libs/stake-confirmation';
 
 const attempt: StakeAttempt = {
   hash: `0x${'a'.repeat(64)}`, wallet: `0x${'1'.repeat(40)}`,
@@ -72,5 +72,73 @@ describe('stake confirmation', () => {
       async () => { calls.push('balances'); },
     );
     expect(calls).toEqual(['position', 'history', 'balances']);
+  });
+});
+
+describe('pending stake recovery after a reload', () => {
+  const now = 2_000_000_000_000;
+  const old = { ...attempt, submittedAt: now - STAKE_MISSING_GRACE_MS };
+  const missing = { receipt: null, transaction: null, latestNonce: '0x6', pendingNonce: '0x6' };
+  const read = (value: StakeEvidence) => async () => value;
+  const recover = (saved: StakeAttempt, values: StakeEvidence[]) => recoverStake(saved, values.map(read), undefined, now);
+
+  it('retires the historical missing 330,000 attempt without inventing a deposit or resending', async () => {
+    expect((await recover({ ...old, amount: '330000' }, [missing, missing])).outcome).toBe('not-found');
+  });
+  it('recognises a spent transaction nonce as replacement after a restart', async () => {
+    expect((await recover({ ...attempt, nonce: '0x5' }, [missing, missing])).outcome).toBe('replaced');
+  });
+  it('saves the nonce actually observed on the original transaction', async () => {
+    const visible = { receipt: null, transaction: { hash: attempt.hash, from: attempt.wallet, nonce: '0x5', blockNumber: null } };
+    expect(await recover(old, [visible, missing])).toMatchObject({ outcome: 'pending', attempt: { nonce: '0x5' } });
+    expect((await recover(old, [{ ...visible, transaction: { ...visible.transaction, from: attempt.pool } }, missing])).attempt.nonce).toBeUndefined();
+  });
+  it('does not expire new transactions', async () => {
+    expect((await recover({ ...old, submittedAt: now - STAKE_MISSING_GRACE_MS + 1 }, [missing, missing])).outcome).toBe('pending');
+  });
+  it('retires a missing legacy record saved before timestamps without waiting again', async () => {
+    const { submittedAt: _, ...legacy } = { ...attempt, amount: '330000' } as StakeAttempt;
+    expect((await recover(legacy, [missing, missing])).outcome).toBe('not-found');
+    expect((await recover(legacy, [missing, { ...missing, pendingNonce: '0x7' }])).outcome).toBe('pending');
+  });
+  it('keeps visible transactions and mined receipts with an unexpected transfer unresolved', async () => {
+    expect((await recover(old, [{ ...missing, transaction: { hash: attempt.hash } }, missing])).outcome).toBe('pending');
+    expect((await recover(old, [{ ...missing, receipt: { ...receipt(), logs: [] } }, missing])).outcome).toBe('pending');
+  });
+  it('requires two healthy RPCs and matching idle wallet nonces', async () => {
+    for (const values of [[missing], [missing, { ...missing, pendingNonce: '0x7' }], [missing, { ...missing, latestNonce: '0x7', pendingNonce: '0x7' }], [missing, { ...missing, latestNonce: undefined }]]) {
+      expect((await recover(old, values)).outcome).toBe('pending');
+    }
+    expect((await recoverStake(old, [read(missing), async () => { throw new Error('HTTP 429'); }], undefined, now)).outcome).toBe('pending');
+  });
+  it('preserves confirmed and reverted receipts and rejects conflicting RPCs', async () => {
+    expect((await recover(old, [{ ...missing, receipt: receipt() }, missing])).outcome).toBe('confirmed');
+    const reverted = { ...missing, receipt: { ...receipt(), status: '0x0' } };
+    expect((await recover(old, [reverted, missing])).outcome).toBe('reverted');
+    expect((await recover(old, [{ ...missing, receipt: receipt() }, reverted])).outcome).toBe('pending');
+  });
+});
+
+describe('staking recovery RPC evidence', () => {
+  it('only reads the hash and wallet nonces when retiring an old missing attempt', async () => {
+    const savedFetch = globalThis.fetch;
+    const calls: string[] = [];
+    globalThis.fetch = (async (_url: unknown, init: any) => {
+      const request = JSON.parse(init.body);
+      calls.push(request.method);
+      return { ok: true, json: async () => ({ result: request.method === 'eth_getTransactionCount' ? '0x6' : null }) } as Response;
+    }) as typeof fetch;
+    try {
+      const evidence = await readStakeEvidence('https://rpc.example', { ...attempt, submittedAt: Date.now() - STAKE_MISSING_GRACE_MS });
+      expect(evidence).toEqual({ receipt: null, transaction: null, latestNonce: '0x6', pendingNonce: '0x6' });
+      expect(calls).toEqual(['eth_getTransactionReceipt', 'eth_getTransactionByHash', 'eth_getTransactionCount', 'eth_getTransactionCount']);
+    } finally { globalThis.fetch = savedFetch; }
+  });
+  it('rejects an RPC error instead of treating it as a missing transaction', async () => {
+    const savedFetch = globalThis.fetch;
+    globalThis.fetch = (async () => ({ ok: true, json: async () => ({ error: { code: -32000 } }) }) as Response) as typeof fetch;
+    try {
+      await expect(readStakeEvidence('https://rpc.example', attempt)).rejects.toThrow('Stake RPC unavailable');
+    } finally { globalThis.fetch = savedFetch; }
   });
 });

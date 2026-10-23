@@ -5,6 +5,7 @@ import { useRoute, type RouteProp } from "@react-navigation/native";
 import { useAuthState } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusedInterval } from "../hooks/useFocusedInterval";
+import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
 import {
   View,
   ScrollView,
@@ -29,8 +30,19 @@ import { ChainId } from "../config/constants";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import type { AppStackParamList } from "../navigation/types";
+import { DHB_SALES_PAUSED } from "../libs/dhb-sales";
 
 type WalletTab = "wallet" | "buy" | "stake" | "bridge" | "solana";
+
+/**
+ * The App Store build offers no buying, staking or bridging (config/storefront,
+ * guideline 3.1.1). Its menus hide the wallet, but Settings → Assets,
+ * notifications and Command Centre still open it, so whatever tab they ask
+ * for, it opens on the overview there.
+ */
+function storefrontTab(tab: WalletTab | undefined): WalletTab {
+  return DIGITAL_PURCHASES_ENABLED ? (tab ?? "wallet") : "wallet";
+}
 
 const TABS: { key: WalletTab; label: string; labelKey?: string; icon: IconName }[] = [
   { key: "wallet", get label() { return _translateCopy("copy.d1c9a01d57e9", { defaultValue: "Wallet" }); }, labelKey: "wallet.title", icon: "Wallet" },
@@ -52,7 +64,7 @@ const DpayScreen: React.FC = () => {
   // Wallet opens its overview; purchase and staking shortcuts remain explicit.
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Dpay>>();
   const [activeTab, setActiveTab] = useState<WalletTab>(
-    route.params?.initialTab ?? "wallet",
+    storefrontTab(route.params?.initialTab),
   );
 
   // Re-select the tab when the drawer navigates to Dpay while it is already
@@ -63,7 +75,7 @@ const DpayScreen: React.FC = () => {
   // drawer entry again.
   const routeParams = route.params;
   useEffect(() => {
-    setActiveTab(routeParams?.initialTab ?? "wallet");
+    setActiveTab(storefrontTab(routeParams?.initialTab));
   }, [routeParams]);
   const [dataReady, setDataReady] = React.useState<boolean>(false);
   const [transfersTotal, setTransfersTotal] = React.useState<number | null>(null);
@@ -91,7 +103,8 @@ const DpayScreen: React.FC = () => {
       const baseMap = baseKey != null ? balanceRoot?.[baseKey] : null;
       const dhbKey = baseMap ? (baseMap['DHB'] !== undefined ? 'DHB' : (baseMap['dhb'] !== undefined ? 'dhb' : undefined)) : undefined;
       const supVal = dhbKey ? Number(baseMap[dhbKey]) : undefined;
-      if (Number.isFinite(supVal as number)) setSupplyAmount(supVal as number);
+      if (DHB_SALES_PAUSED) setSupplyAmount(0);
+      else if (Number.isFinite(supVal as number)) setSupplyAmount(supVal as number);
       else if (supVal === 0) setSupplyAmount(0);
     } catch {}
   };

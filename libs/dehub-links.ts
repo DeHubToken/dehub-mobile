@@ -33,7 +33,8 @@ export type DehubLinkKind =
   | 'stage'
   | 'bounty'
   | 'film'
-  | 'app';
+  | 'app'
+  | 'proposal';
 
 export interface DehubLinkMatch {
   kind: DehubLinkKind;
@@ -58,6 +59,8 @@ export interface DehubLinkMatch {
   bountyJobKey?: string;
   /** `/apps/<slug>` — a mini app in the store. */
   appSlug?: string;
+  /** `/app/governance/<uuid>` — a governance proposal. */
+  proposalId?: string;
   /** `/cinema/film/<id>` or `/cinema/series/<id>`: a JustWatch title id. */
   filmId?: string;
   /** The API's name for the URL's `film` / `series` segment. */
@@ -91,7 +94,7 @@ const ABSOLUTE_URL_RE = /(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?\/[^
 // also admits the short share form, /stages/7. `bounty` and `work` are the
 // same story for bounty detail pages — /bounty/7 is canonical, /work/<uuid>
 // is the pre-numbering form still out in the wild.
-const BARE_PATH_RE = /\/(?:app|apps|communities|stages?|bounty|work)\/[^\s<>"'`]*/gi;
+const BARE_PATH_RE = /\/(?:app|apps|communities|stages?|bounty|work|governance)\/[^\s<>"'`]*/gi;
 const TRAILING_PUNCTUATION_RE = /[.,;:!?)\]}>"']+$/;
 
 function trimTrailingPunctuation(token: string): string {
@@ -209,7 +212,8 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
   // bare /stages is the hub page, and anything else under it has no route.
   if (scoped[0] === 'stages' && scoped[1]) {
     if (!/^\d+$/.test(scoped[1])) return null;
-    return { ...base, kind: 'stage', stageShortId: scoped[1] };
+    // Stage 15 was replaced by stage 18; old links card the new one.
+    return { ...base, kind: 'stage', stageShortId: scoped[1] === '15' ? '18' : scoped[1] };
   }
 
   // ── /cinema/:type/:id — one film or series ──
@@ -235,6 +239,12 @@ export function parseDehubLink(input: string): DehubLinkMatch | null {
   if (scoped[0] === 'bounty' && scoped[1]) {
     if (!/^\d+$/.test(scoped[1])) return null;
     return { ...base, kind: 'bounty', bountyJobKey: scoped[1] };
+  }
+
+  // ── /app/governance/:uuid — one governance proposal ──
+  if (scoped[0] === 'governance' && scoped[1] && !scoped[2]) {
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(scoped[1])) return null;
+    return { ...base, kind: 'proposal', proposalId: scoped[1].toLowerCase() };
   }
 
   // ── /apps/:slug — one mini app ──
@@ -370,6 +380,7 @@ export function dehubLinkLabel(kind: DehubLinkKind): string {
     case 'bounty': return 'bounty';
     case 'app': return 'app';
     case 'film': return 'title';
+    case 'proposal': return 'proposal';
     default: return 'link';
   }
 }

@@ -16,8 +16,10 @@ export const NAV_PILL_SHADOW = Platform.select({
 /** The navigation material shared by the bottom bar and home header pill. */
 export default function NavPillSurface({ borderRadius }: { borderRadius?: number } = {}) {
   // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, isLight } = useAppTheme();
   const glass = !isMinimal;
+  // System Light's frost (FrostedPill) carries its own hairline rim.
+  const lightFrost = isLight && glass && !skin;
   const iosThemed = glass && Platform.OS === "ios" && !!skin;
   // Every painted layer must share the rim's shape. The capsule leaves its
   // controls unclipped, so a square fill otherwise shows behind rounded corners.
@@ -42,12 +44,12 @@ export default function NavPillSurface({ borderRadius }: { borderRadius?: number
         ]} />
       )}
       {skin?.grain && !iosThemed ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
-      <View pointerEvents="none" style={[
+      {lightFrost ? null : <View pointerEvents="none" style={[
         styles.border,
         isMinimal && { borderColor: MINIMAL_HAIRLINE },
         skin && skin.barBorder,
         { borderRadius: radius },
-      ]} />
+      ]} />}
       {skin?.brackets ? <HudBrackets color={skin.brackets} /> : null}
     </>
   );

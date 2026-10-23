@@ -7,15 +7,16 @@
  *
  * Uses GlassModal for the blurred glass aesthetic.
  */
+import SegmentMarkerSheet from "./SegmentMarkerSheet";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  Share,
   Platform,
 } from "react-native";
+import { shareWithRef } from "../../libs/shareRef";
 import { useTranslation } from "react-i18next";
 import Icon, { type IconName } from "../ui/Icon";
 import AssistantNavIcon from "../ui/AssistantNavIcon";
@@ -161,6 +162,8 @@ export interface PostOptionsMenuProps {
   hideEdit?: boolean;
   /** An audio track: its title stays editable even when empty, so it can be renamed. */
   isAudio?: boolean;
+  /** A playable (non-live) video: offers the skippable-sections sheet. */
+  canMarkSegments?: boolean;
 }
 
 interface OptionRowProps {
@@ -239,7 +242,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onDownloadVideo,
   onInfoPress,
   onAskAi,
-  hideReportContent = false,  hideEdit = false,  isAudio = false,}) => {
+  hideReportContent = false,  hideEdit = false,  isAudio = false,  canMarkSegments = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t, i18n } = useTranslation();
@@ -280,6 +283,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   const [showReportContent, setShowReportContent] = useState(false);
   const [showReportUser, setShowReportUser] = useState(false);
   const [showBlockConfirm, setShowBlockConfirm] = useState(false);
+  const [showSegments, setShowSegments] = useState(false);
 
   /**
    * The sheet hides itself for a sub-modal instead of calling onClose().
@@ -483,10 +487,10 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     if (tokenId == null) return;
     const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
     try {
-      await Share.share({
+      await shareWithRef({
         message: `Check out this post ${url}`,
         url,
-      });
+      }, undefined, "post");
     } catch {}
     onClose();
   }, [tokenId, onClose]);
@@ -626,6 +630,17 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
             />
           )}
 
+          {/* Skippable sections — mark sponsor reads and intros, vote on
+              other people's marks (web: VideoCard options). */}
+          {canMarkSegments && tokenId != null && (
+            <OptionRow
+              icon="FastForward"
+              label={t("postOptions.skippableSections")}
+              sublabel={t("postOptions.skippableSectionsDesc")}
+              onPress={() => openSubModal(() => setShowSegments(true))}
+            />
+          )}
+
           {/* Follow / Unfollow — only for non-owners */}
           {!isOwner && (
             <OptionRow
@@ -757,6 +772,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
           )}
         </View>
       </GlassModal>
+
+      {canMarkSegments && tokenId != null && (
+        <SegmentMarkerSheet
+          visible={showSegments}
+          tokenId={tokenId}
+          onClose={() => { setShowSegments(false); closeAll(); }}
+        />
+      )}
 
       {/* Delete confirmation */}
       <ConfirmModal

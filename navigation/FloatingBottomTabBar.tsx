@@ -15,6 +15,8 @@ import {
   type ViewStyle,
 } from "react-native";
 import NavPillSurface, { NAV_PILL_RADIUS, NAV_PILL_SHADOW } from "../components/ui/NavPillSurface";
+import { LIGHT_PILL_SHADOW } from "../components/ui/FrostedPill";
+import { KeepDarkScope } from "../libs/jsx/tone";
 import Reanimated, {
   useSharedValue,
   useAnimatedStyle,
@@ -225,7 +227,7 @@ const NavButton = memo<{
 }>(({ icon, label, isActive, isCenter, routeName, onPress, index, tabW, animProgress, badgeCount = 0 }) => {
   const { t: _copy } = _useCopy();
   // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
-  const { colors, isMinimal, skin } = useAppTheme();
+  const { colors, isMinimal, skin, isLight } = useAppTheme();
   const scale = useRef(new NativeAnimated.Value(1)).current;
   const iconColor = isMinimal
     ? isActive ? MINIMAL_TAB_TEXT_ACTIVE : MINIMAL_TAB_TEXT
@@ -254,6 +256,29 @@ const NavButton = memo<{
       opacity: itemProgress.interpolate({ inputRange: [0, 0.35, 1], outputRange: [0, 0.85, 1] }),
     };
   }, [animProgress, index, scale]);
+
+  if (isCenter && isLight && !isMinimal && !skin) {
+    // System Light: Create is the bar's one solid ink key, as on web. Written
+    // in its final colours and kept out of the colour pass, which made it a
+    // grey tile with a grey rim.
+    return (
+      <NativeAnimatedPressable
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        onPress={handlePress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={[styles.centerButton, { width: tabW }, animatedStyle]}
+      >
+        <KeepDarkScope>
+          <View pointerEvents="none" style={[styles.centerIconWrap, styles.centerInk]}>
+            <View style={[styles.createStroke, { width: 20, height: 2, backgroundColor: "#FFFFFF" }]} />
+            <View style={[styles.createStroke, { width: 2, height: 20, backgroundColor: "#FFFFFF" }]} />
+          </View>
+        </KeepDarkScope>
+      </NativeAnimatedPressable>
+    );
+  }
 
   if (isCenter) {
     const glyphColor = isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : skin ? skin.centreIcon : colors.foreground;
@@ -399,7 +424,7 @@ const ScrollNavButton = memo<{
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
   // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
-  const { colors, isMinimal, skin } = useAppTheme();
+  const { colors, isMinimal, skin, isLight } = useAppTheme();
   const insets = useSafeAreaInsets();
   // Recalculate equal slots when the window or attached stage chip changes.
   const { width: screenW } = useWindowDimensions();
@@ -619,7 +644,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
         style={[
           styles.navContainer,
           { width: pillWidth },
-          skin ? { borderRadius: skin.barBorder.borderRadius } : null,
+          skin ? { borderRadius: skin.barBorder.borderRadius } : isLight && !isMinimal ? LIGHT_PILL_SHADOW : null,
         ]}
       >
         <NavPillSurface />
@@ -728,6 +753,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.18)",
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.30)",
+  },
+  centerInk: {
+    backgroundColor: "#0B0B0D",
+    borderColor: "transparent",
+    boxShadow: "0px 2px 8px rgba(0,0,0,0.18)",
   },
   createStroke: {
     position: "absolute",

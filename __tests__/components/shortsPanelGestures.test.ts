@@ -16,7 +16,8 @@ function viewer(overrides: Record<string, unknown> = {}) {
     useMemo: (callback: Function) => callback(), useCallback: (callback: Function) => callback,
     Gesture: { Pan: () => pan }, runOnJS: (callback: Function) => callback,
     isActive: true, showComments: false, screenshotMode: false,
-    overlaysHidden: true, autoHidden: false, itemHeight: 800, SCREEN_HEIGHT: 800,
+    overlaysHidden: true, autoHidden: false, itemHeight: 800, SCREEN_HEIGHT: 800, SCREEN_WIDTH: 400,
+    PAUSE_ZONE_START: 1 / 3, PAUSE_ZONE_END: 2 / 3, setCaptionExpanded: jest.fn(), singleTapChromeRef: { current: null },
     RESTORE_ZONE_TOP: 0.61, RESTORE_ZONE_BOTTOM: 0.85,
     DRAG_CLAIM_MIN: 16, DRAG_RELEASE_MIN: 6, HIDE_SWIPE_MIN: 40,
     restorePanStart: { value: { x: 0, y: 0 } }, pagerGesture: {},
@@ -80,17 +81,35 @@ describe('shorts panel gestures', () => {
   });
 
   it.each([{ overlaysHidden: true }, { overlaysHidden: false }, { overlaysHidden: false, autoHidden: true }])(
-    'keeps central video pause/play taps working: %o', (state) => {
+    'a centre tap plays/pauses and leaves the buttons alone: %o', (state) => {
       const v = viewer(state);
-      v.handleScreenTap(150, 300);
+      v.handleScreenTap(200, 400);
       expect(v.togglePlayPauseRef.current).toHaveBeenCalledTimes(1);
+      expect(v.setOverlaysHidden).not.toHaveBeenCalled();
     },
   );
 
-  it('restores on a lower-band tap without toggling playback', () => {
-    const v = viewer();
-    v.handleScreenTap(150, 600);
-    expect(v.setOverlaysHidden).toHaveBeenCalledWith(false);
+  it.each([[40, 150], [380, 600], [200, 100], [200, 700]])('a tap outside the centre hides every button without pausing: %s,%s', (x, y) => {
+    const v = viewer({ overlaysHidden: false });
+    v.handleScreenTap(x, y);
+    expect(v.setOverlaysHidden).toHaveBeenCalledWith(true);
     expect(v.togglePlayPauseRef.current).not.toHaveBeenCalled();
+  });
+
+  it.each([{ overlaysHidden: true }, { overlaysHidden: false, autoHidden: true }])('the next outside tap brings them back: %o', (state) => {
+    const v = viewer(state);
+    v.handleScreenTap(40, 150);
+    expect(v.setOverlaysHidden).toHaveBeenCalledWith(false);
+    expect(v.setAutoHidden).toHaveBeenCalledWith(false);
+    expect(v.togglePlayPauseRef.current).not.toHaveBeenCalled();
+  });
+
+  it('a double tap outside the centre likes and puts the buttons back', () => {
+    let tapped = false;
+    const v = viewer({ overlaysHidden: false, continuesTapGesture: () => { const again = tapped; tapped = true; return again; } });
+    v.handleScreenTap(40, 150);
+    v.handleScreenTap(40, 150);
+    expect(v.setOverlaysHidden).toHaveBeenLastCalledWith(false);
+    expect(v.showTapReactionAnimation).toHaveBeenCalledWith('like', 40, 150);
   });
 });

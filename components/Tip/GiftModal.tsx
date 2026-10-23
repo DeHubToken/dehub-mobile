@@ -19,7 +19,7 @@ import {
 import { useTranslation } from "react-i18next";
 import GlassModal from "../ui/GlassModal";
 import AccentButtonGradient from "../ui/AccentButtonGradient";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Gem } from "../ui/cut-icons";
 import { GIFT_TIERS } from "../../config/gift-tiers";
 import { useUser, useAuthActions } from "../../context/AuthContext";
@@ -41,6 +41,7 @@ import { sanitizeAmountInput } from "../../libs/amount-input";
 import { formatNumber } from "../../libs/numbers.util";
 import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
+import { MIN_DIRECT_TIP, directTipToken, giftCostInDollars } from "../../libs/direct-tip-tokens";
 import { fundingErrorText } from "../../libs/tip-funding-error";
 
 export interface GiftModalProps {
@@ -112,12 +113,19 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const [buyOpen, setBuyOpen] = useState(false);
   const [buyMethod, setBuyMethod] = useState<"card" | "crypto">("card");
   const { provider, account, chainId } = useWeb3Provider();
+  // USDC/USDT picked under "Pay with": sent straight to the creator through
+  // the tip contract, on the wallet's chain (Base or BNB Chain). Gifts are
+  // still picked in DHB tiers and cost their DHB at the sale peg.
+  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
+  const canPayWithOther = (chainId === 8453 || chainId === 56) && !!account;
+  const directToken = canPayWithOther && payWith?.chainId === chainId ? directTipToken(payWith) : null;
   const tokenMeta = useMemo(() => {
     if (!chainId) return undefined;
+    if (directToken) return { address: directToken.address, decimals: directToken.decimals };
     return supportedTokens.find(
       (t) => t.chainId === chainId && t.symbol === "DHB"
     );
-  }, [chainId]);
+  }, [chainId, directToken]);
   const tokenAddress = tokenMeta?.address;
   const controllerAddress = chainId
     ? (require("../../config/web3.constants") as any)
@@ -131,8 +139,6 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const [phase, setPhase] = useState<
     "idle" | "funding" | "approving" | "sending" | "error"
   >("idle");
-  // Another token to pay with; it becomes DHB on Base before the gift is sent.
-  const [payWith, setPayWith] = useState<TipFundingSource | null>(null);
   const [fundingLabel, setFundingLabel] = useState("");
   const [giftError, setGiftError] = useState<string | null>(null);
   // `phase` alone does not stop a double tap: the second tap of a quick
@@ -153,9 +159,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
   const numericAmount = Number(amount) || 0;
   const balance = (user?.tokenBalances?.DHB ?? 0) as number;
   const overLimit = numericAmount > limitTip;
-  const insufficient = !payWith && numericAmount > balance;
-  // Funding lands DHB on Base, so it is offered only when the gift goes out on Base.
-  const canPayWithOther = chainId === 8453 && !!account;
+  const giftCost = directToken ? giftCostInDollars(numericAmount) : numericAmount;
+  const directBalance = directToken && payWith
+    ? Number(((ethersImport as any).ethers || ethersImport).utils.formatUnits(payWith.balance.toString(), payWith.decimals))
+    : null;
+  const insufficient = directBalance != null ? giftCost > directBalance : !payWith && numericAmount > balance;
+  const belowDirectMin = !!directToken && numericAmount > 0 && giftCost < MIN_DIRECT_TIP;
   const isSelf =
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
@@ -165,6 +174,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
     numericAmount <= 0 ||
     numericAmount < minTip ||
     insufficient ||
+    belowDirectMin ||
     overLimit ||
     isSelf ||
     !toAddress;
@@ -201,10 +211,10 @@ const GiftModal: React.FC<GiftModalProps> = ({
       try {
         const ethers = (ethersImport as any).ethers || ethersImport;
         const amountBN = ethers.utils.parseUnits(
-          String(numericAmount),
+          String(giftCost),
           tokenMeta.decimals || 18
         );
-        if (payWith && canPayWithOther) {
+        if (payWith && canPayWithOther && !directToken) {
           setPhase("funding");
           try {
             await fundTip({
@@ -270,7 +280,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
         onOpenChange(false);
         toastSuccess(t("tip.sent") as string);
         onSent?.({ amount: sentAmount, message: spoken, txHash });
-        patchUser(
+        if (!directToken) patchUser(
           (prev) =>
             ({
               tokenBalances: {
@@ -341,6 +351,8 @@ const GiftModal: React.FC<GiftModalProps> = ({
     stream,
     payWith,
     canPayWithOther,
+    directToken,
+    giftCost,
     t, setAmount, setMessage]);
 
   useEffect(() => {
@@ -496,10 +508,12 @@ const GiftModal: React.FC<GiftModalProps> = ({
               {canPayWithOther ? (
                 <TipPayWith
                   visible={open}
-                  amountDhb={numericAmount}
+                  amountDhb={0}
                   walletAddress={account || undefined}
                   value={payWith}
                   onChange={setPayWith}
+                  direct
+                  directChainId={chainId}
                 />
               ) : null}
               {insufficient && (
@@ -548,6 +562,7 @@ const GiftModal: React.FC<GiftModalProps> = ({
                     {phase === "approving" && (t("tip.approving") as string)}
                     {phase === "sending" && (t("tip.sending") as string)}
                     {phase === "idle" && (t("liveGift.sendGift") as string)}
+                    {phase === "idle" && directToken && numericAmount > 0 ? ` · ${giftCost} ${directToken.symbol}` : ""}
                     {phase === "error" && (t("common.retry") as string)}
                   </Text>
                 </TouchableOpacity>

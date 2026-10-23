@@ -142,6 +142,48 @@ export function hasWalletUnlockHandler(): boolean {
 }
 
 /**
+ * "Secure your wallet", asked at the first action that uses a wallet sign-up
+ * made silently (see wallet-core/secure-offer). Resolves true when the action
+ * may go on: secured, skipped, nothing to offer, or no host to ask. False only
+ * when the person backed out.
+ */
+export type WalletSecureHandler = () => Promise<boolean>;
+
+let secureHandler: WalletSecureHandler | null = null;
+let secureInFlight: Promise<boolean> | null = null;
+
+export function registerWalletSecureHandler(fn: WalletSecureHandler): () => void {
+  secureHandler = fn;
+  return () => {
+    if (secureHandler === fn) secureHandler = null;
+  };
+}
+
+export async function requestWalletSecure(reason: string): Promise<boolean> {
+  const current = secureHandler;
+  if (!current) return true;
+  if (secureInFlight) return secureInFlight;
+  const run = (async () => {
+    try {
+      return await current();
+    } catch (e) {
+      // The offer must never be the reason an action fails.
+      log.error("requestWalletSecure:error", {
+        reason,
+        errorName: e instanceof Error ? e.name : "unknown",
+      });
+      return true;
+    }
+  })();
+  secureInFlight = run;
+  try {
+    return await run;
+  } finally {
+    if (secureInFlight === run) secureInFlight = null;
+  }
+}
+
+/**
  * Ask the user to unlock, and wait for the answer.
  *
  * Concurrent callers share one prompt. A single tap on "post" can fan out into

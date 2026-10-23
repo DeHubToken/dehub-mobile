@@ -7,13 +7,18 @@ import Icon from "../ui/Icon";
 import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
+import { useLiveTarget } from "../../hooks/useIsUserLive";
+import { openLiveTarget } from "../../libs/openLiveTarget";
 
 const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
 const HEADER_ICON_SIZE = 22;
 const HEADER_ICON_PAD = 4;
-// Lucide's vertical dots end at x=14, including stroke, on a 24-unit grid.
-const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (10 / 24);
+// The cut vertical dots fill x 14-18, y 4-28 of a 32-unit grid. Shift them
+// right and up by that spare room so they sit on the card's inset from both
+// the side and the top: the corner reads evenly padded, like the web bento.
+const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (14 / 32);
+const MENU_ICON_TOP_SPACE = HEADER_ICON_SIZE * (4 / 32);
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
@@ -50,14 +55,23 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
 }) => {
   const { t } = useTranslation();
   const badgeRef = useRef<View>(null);
+  // While they are live the avatar opens the stream; name and @handle
+  // still open the profile.
+  const liveTarget = useLiveTarget(address, username);
+  const live = !!liveTarget;
   return (
     <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
-      <Pressable onPress={onUserPress} style={{ flexShrink: 0 }} hitSlop={IDENTITY_HIT_SLOP}>
+      <Pressable
+        onPress={liveTarget ? () => openLiveTarget(liveTarget) : onUserPress}
+        style={{ flexShrink: 0 }}
+        hitSlop={IDENTITY_HIT_SLOP}
+      >
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={avatarSize}
           className="mr-2"
           name={displayName || username}
+          live={live}
         />
       </Pressable>
 
@@ -164,7 +178,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >
-            <View style={{ left: MENU_ICON_END_SPACE }}>
+            <View style={{ left: MENU_ICON_END_SPACE, top: -MENU_ICON_TOP_SPACE }}>
               <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
             </View>
           </Pressable>

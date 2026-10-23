@@ -184,7 +184,10 @@ const LiveViewerActionBar: React.FC<Props> = ({
             style={styles.input}
             editable={!inputDisabled}
             maxLength={500}
-            multiline={false}
+            // Grows to four lines so the whole message stays readable; a
+            // one-line box scrolled the start of anything longer out of view.
+            multiline
+            submitBehavior="submit"
             returnKeyType="send"
             onSubmitEditing={handleSend}
           />
@@ -276,7 +279,7 @@ const LiveViewerActionBar: React.FC<Props> = ({
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
     paddingHorizontal: EDGE,
     gap: 8,
   },
@@ -295,11 +298,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    height: BAR_SIZE,
+    minHeight: BAR_SIZE,
     borderWidth: 1,
     borderColor: CHROME_HAIRLINE,
     borderRadius: CHROME_RADIUS,
 
+    paddingVertical: 6,
     paddingLeft: 16,
     paddingRight: 6,
     gap: 4,
@@ -309,7 +313,10 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "#fff",
     fontSize: 14,
-    paddingVertical: 0,
+    lineHeight: 19,
+    paddingVertical: 4,
+    maxHeight: 19 * 4 + 8,
+    textAlignVertical: "center",
   },
   sendButton: {
     width: 30,

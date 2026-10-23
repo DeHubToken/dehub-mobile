@@ -25,6 +25,8 @@ import TotalReachPill from "../Profile/TotalReachPill";
 import ProfileLinksPill from "../Profile/ProfileLinksPill";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useCinematicPhone } from "../../hooks/useCinematicPhone";
+import { useLiveTarget } from "../../hooks/useIsUserLive";
+import { openLiveTarget } from "../../libs/openLiveTarget";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import type { Community } from "../../types/community";
 import { PinnedCommunityWash } from "../Communities/PinnedCommunityStage";
@@ -139,6 +141,8 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
   const cinematicPhone = useCinematicPhone();
   const { width: windowWidth } = useWindowDimensions();
   const badgeRef = useRef<View>(null);
+  const liveTarget = useLiveTarget(address, username);
+  const live = !!liveTarget;
   // Bios go through the shared hook rather than a private translateText call,
   // which is what gets them auto-translation, the persisted cache and — the
   // reason the old code was wrong — the reader's CHOSEN language. It targeted
@@ -303,7 +307,9 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             name={displayName}
             size={88}
             style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
-            onPress={() => onOpenImage("avatar")}
+            live={live}
+            liveQuiet
+            onPress={liveTarget ? () => openLiveTarget(liveTarget) : () => onOpenImage("avatar")}
           />
           {(!isBlocked || !!onOpenOptions) && (
             <View ref={actionsRef} collapsable={false} onLayout={measureIdentity} className="flex-row items-center gap-2 self-start" style={{ marginTop: 56, marginRight: cinematicPhone ? -4 : -8 }}>

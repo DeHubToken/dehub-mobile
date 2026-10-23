@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { useStages } from "../../context/StageContext";
-import { getAvatarUrl } from "../../libs/misc";
+import { storedAvatarSources } from "../../libs/misc";
 import type { AudioSpace } from "../../hooks/useStages";
 
 const size = (s: AudioSpace) => (s.speaker_count || 1) + (s.listener_count || 0);
@@ -43,9 +43,10 @@ const LiveStagesBar: React.FC = () => {
         <TouchableOpacity key={space.id} onPress={() => open(space.id)} activeOpacity={0.85} style={styles.row}>
           <Icon name="Mic" size={18} color="rgba(255,255,255,0.8)" />
           <Avatar
-            uri={space.host_avatar ? getAvatarUrl(space.host_avatar, 24) : null}
+            {...storedAvatarSources(space.host_avatar, space.host_wallet_address, 24)}
             size={24}
             name={space.host_username || space.host_wallet_address}
+            live
           />
           <View style={styles.text}>
             <Text style={styles.title} numberOfLines={1}>

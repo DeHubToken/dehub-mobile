@@ -22,6 +22,7 @@ import { t } from 'i18next';
 import { getNotifications } from '../user.service';
 import { countUnreadNotifications, incrementUnreadCount } from '../../libs/notifications.unread';
 import { emitProfileDeepLink } from '../../libs/deeplink.events';
+import { noteNotificationMoment } from '../../libs/review-prompt';
 import { useOnboarding } from '../../context/OnboardingChecklistContext';
 
 const logger = createLogger('PushProvider');
@@ -648,6 +649,8 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           void patchUser((current) => ({
             notificationCount: incrementUnreadCount(current.notificationCount),
           }));
+          const type = (notification.request.content.data as Partial<NotificationData> | undefined)?.type;
+          void noteNotificationMoment(type);
         }
         // Notification will be shown by the OS based on setNotificationHandler config
       }

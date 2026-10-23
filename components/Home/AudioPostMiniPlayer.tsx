@@ -1,3 +1,4 @@
+import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
 /**
  * AudioPostMiniPlayer — the corner player for a popped-out audio post
  * ===================================================================
@@ -20,6 +21,8 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
+import { LinearGradient } from 'expo-linear-gradient';
+import { useAppTheme } from '../../context/ThemeContext';
 import { Easing, useSharedValue, withTiming } from "react-native-reanimated";
 
 import Icon from "../ui/Icon";
@@ -37,6 +40,7 @@ const noop = () => {};
 
 const AudioPostMiniPlayer: React.FC = () => {
   const { t } = useTranslation();
+  const { theme, skin } = useAppTheme();
   const { tokenId, track, isPlaying, isLoading, progress, currentTime, duration } =
     useAudioPostPlayback();
   const { currentSpace, isConnected } = useStages();
@@ -81,9 +85,10 @@ const AudioPostMiniPlayer: React.FC = () => {
 
   return (
     <View
-      style={[styles.container, liveBarShowing && styles.aboveLiveBar]}
+      style={[styles.container, liveBarShowing && styles.aboveLiveBar, theme === 'glass' && { backgroundColor: skin?.card.backgroundColor, borderRadius: 24, borderWidth: 1, borderColor: 'rgba(225,255,255,.4)', borderTopColor: 'rgba(255,255,255,.7)', overflow: 'hidden' }]}
       accessibilityLabel={t("audioPost.cornerPlayer")}
     >
+      {theme === 'glass' && <LinearGradient pointerEvents="none" colors={['rgba(225,255,255,.16)', 'transparent']} style={StyleSheet.absoluteFill} />}
       <View style={styles.row}>
         <View style={styles.art}>
           {track.artworkUrl ? (
@@ -104,7 +109,7 @@ const AudioPostMiniPlayer: React.FC = () => {
 
         <TouchableOpacity
           onPress={toggleAudioPost}
-          style={styles.playBtn}
+          style={[styles.playBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           hitSlop={6}
           accessibilityRole="button"
           accessibilityLabel={isPlaying ? t("audioPost.pause") : t("audioPost.play")}
@@ -118,7 +123,7 @@ const AudioPostMiniPlayer: React.FC = () => {
 
         <TouchableOpacity
           onPress={stopAudioPost}
-          style={styles.closeBtn}
+          style={[styles.closeBtn, theme === 'glass' && GLASS_PLAYBACK_CONTROL]}
           hitSlop={8}
           accessibilityRole="button"
           accessibilityLabel={t("audioPost.stopAndClose")}

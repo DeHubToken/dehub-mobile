@@ -147,8 +147,12 @@ const FloatingMessage: React.FC<{
       if (message.content?.startsWith("http")) return message.content;
       return null;
     }
+    // An encrypted attachment previews as its sender's blurred placeholder;
+    // the CDN copy is ciphertext.
+    if (message.encMedia) return message.encMedia.thumb || null;
     const first = message.mediaUrls?.[0];
     if (!first) return null;
+    if (typeof first === "object" && first.encrypted) return null;
     const url = typeof first === "string" ? first : first.url;
     return resolveMediaUrl(url);
   }, [message]);
@@ -253,6 +257,7 @@ const FloatingMessage: React.FC<{
             <SmartImage
               source={{ uri: mediaUrl }}
               recyclingKey={mediaUrl}
+              blurRadius={message.encMedia ? 12 : undefined}
               style={{ width: FLOAT_MAX_IMAGE_W, height: Math.round(FLOAT_MAX_IMAGE_W / (4 / 3)) }}
               contentFit="cover"
             />

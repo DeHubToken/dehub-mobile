@@ -1,5 +1,6 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
+import StakingHistory from "./StakingHistory";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   View,
@@ -11,7 +12,7 @@ import {
 } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { useTranslation } from "react-i18next";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { ethers } from "ethers";
 import { useUser, useProvider, useAuthActions } from "../../context/AuthContext";
 import { useFocusedInterval } from "../../hooks/useFocusedInterval";
@@ -23,7 +24,7 @@ import { refreshStakingPosition } from "../../services/staking.service";
 import { getAccount } from "../../services/user.service";
 import { dhbStaked } from "../../libs/dhb-position";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { confirmStake, readStakeReceipt, refreshConfirmedStake, type StakeAttempt } from "../../libs/stake-confirmation";
+import { confirmStake, recoverStake, readStakeEvidence, refreshConfirmedStake, type StakeAttempt } from "../../libs/stake-confirmation";
 import { createLogger } from "../../libs/logger";
 import { legacyWalletAddresses } from "../../libs/legacy-wallet-addresses";
 const stakeLog = createLogger("Staking");
@@ -356,13 +357,24 @@ const StakingTab: React.FC = () => {
     try {
       const urls = attempt.chainId === 56
         ? [BNB_RPC, 'https://bsc-rpc.publicnode.com']
-        : [BASE_RPC, 'https://base-rpc.publicnode.com'];
-      const outcome = await confirmStake(attempt, receipt ? [async () => receipt] : urls.map(url => () => readStakeReceipt(url, attempt.hash)), error => {
+        : [BASE_RPC, 'https://base.drpc.org'];
+      const onReadError = (error: unknown) => {
         const diagnostic = `${attempt.hash}:${String(error)}`;
         if (receiptDiagnostics.current.has(diagnostic)) return;
         receiptDiagnostics.current.add(diagnostic);
         stakeLog.error('Receipt lookup unavailable', { hash: attempt.hash, chainId: attempt.chainId }, String(error));
-      });
+      };
+      const recovery = receipt
+        ? { outcome: await confirmStake(attempt, [async () => receipt], onReadError), attempt }
+        : await recoverStake(attempt, urls.map(url => () => readStakeEvidence(url, attempt)), onReadError);
+      const { outcome } = recovery;
+      if (outcome === 'pending' && (recovery.attempt.nonce !== attempt.nonce || recovery.attempt.submittedAt !== attempt.submittedAt)) {
+        try {
+          const saved = JSON.parse(await AsyncStorage.getItem(pendingStakeKey(attempt.wallet)) || 'null');
+          if (saved?.hash === attempt.hash) await AsyncStorage.setItem(pendingStakeKey(attempt.wallet), JSON.stringify(recovery.attempt));
+        } catch {}
+        setPendingStake(previous => previous?.hash === attempt.hash ? recovery.attempt : previous);
+      }
       if (outcome === 'pending') return;
       await clearPendingStake(attempt);
       recordStakeEvent('Stake outcome verified', attempt, outcome);
@@ -380,6 +392,13 @@ const StakingTab: React.FC = () => {
         reconcileTimer.current = setTimeout(() => {
           void refreshStakingPosition(attempt.wallet).then(fetchData);
         }, 60_000);
+      } else if (outcome === 'replaced' || outcome === 'not-found') {
+        toastInfo(t('staking.pendingRetired'));
+        void refreshConfirmedStake(
+          () => refreshStakingPosition(attempt.wallet),
+          async () => { await supabase.functions.invoke('sync-staking-deposits', { body: { wallet: attempt.wallet } }); },
+          fetchData,
+        ).catch(() => {});
       } else {
         toastError(t("staking.stakeReverted"));
       }
@@ -825,6 +844,8 @@ const StakingTab: React.FC = () => {
           <Ionicons name="copy-outline" size={14} color="rgba(255,255,255,0.4)" />
         </TouchableOpacity>
       </View>
+
+      <StakingHistory walletAddress={walletAddress} style={mFlat} />
 
       <TouchableOpacity
         onPress={fetchData}

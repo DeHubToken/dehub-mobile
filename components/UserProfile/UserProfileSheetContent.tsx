@@ -2,7 +2,7 @@ import type { useProfileCollapse } from '../Profile/useProfileCollapse';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Platform, View, Text, TouchableOpacity, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import UserProfileSkeleton from "./UserProfileSkeleton";
 import UserProfileHeader from "./UserProfileHeader";
@@ -19,9 +19,11 @@ import { shareProfile, getBadgeHoverOpticalStyle } from "../../libs/misc";
 import BadgeArtwork from "../common/BadgeArtwork";
 import StreamerBadge from "../Live/StreamerBadge";
 import { useMutualFollowers } from "../../hooks/useMutualFollowers";
-import { WEBSITE_LINK } from "../../config/links";
+import { ShareLinks } from "../../navigation/linking.config";
+import { withShareRef } from "../../libs/shareRef";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
+import { getDefaultProfileTab } from "../../libs/profile-default-tab";
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -201,14 +203,17 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
   }, [closeMenuThen]);
 
   const handleMenuShare = useCallback(() => {
-    const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
+    const slug = profileData?.username || profileData?.address;
+    if (!slug) return;
+    const url = ShareLinks.profile(slug);
     const message = `Check out ${profileData?.displayName || "this user"} on DeHub ${url}`;
     closeMenuThen(() => { shareProfile(url, message); });
   }, [closeMenuThen, profileData]);
 
   const handleMenuCopyUrl = useCallback(() => {
-    const url = `${WEBSITE_LINK}/${profileData?.username || profileData?.address}`;
-    copyToClipboard(url);
+    const slug = profileData?.username || profileData?.address;
+    if (!slug) return;
+    copyToClipboard(withShareRef(ShareLinks.profile(slug)));
     setShowProfileMenu(false);
   }, [profileData]);
 
@@ -423,6 +428,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         youBlocked={youBlocked}
         blockedYou={blockedYou}
         pendingTab={pendingTab}
+        defaultTab={getDefaultProfileTab(data)}
         onPendingTabConsumed={handlePendingTabConsumed}
         backToTopBottom={backToTopBottom}
       />

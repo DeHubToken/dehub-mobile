@@ -17,9 +17,10 @@ import type { PostTypeOption } from "./FeedFilterPanel";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
-import FrostedPill from "../ui/FrostedPill";
+import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
 import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
+import { useAppPrefs } from '../../hooks/useAppPrefs';
 
 interface NavItem {
   icon: IconName;
@@ -42,6 +43,17 @@ const NAV_ITEMS: NavItem[] = [
 /** The tabs in pager order, for chrome that names the current one (the
  *  system theme's collapsed island). */
 export const FEED_NAV_ITEMS: readonly NavItem[] = NAV_ITEMS;
+const NAV_ITEMS_NO_SHORTS: readonly NavItem[] = NAV_ITEMS.filter((item) => item.postType !== "short");
+
+/**
+ * The tabs actually shown, in pager order. Turning Shorts off in Settings
+ * drops the Shorts tab, as web's GlobalFeedNav does. HomeScreen's pager,
+ * this bar and the island menu all index against this same list.
+ */
+export function useFeedNavItems(): readonly NavItem[] {
+  const { shorts } = useAppPrefs();
+  return shorts ? NAV_ITEMS : NAV_ITEMS_NO_SHORTS;
+}
 
 interface FeedNavBarProps {
   /** Settled tab index — drives the icon highlight. */
@@ -73,8 +85,6 @@ interface FeedNavBarProps {
 const SNAP_BACK = { duration: 260, easing: Easing.bezier(0.22, 1, 0.36, 1) } as const;
 const EDGE_RESISTANCE = 0.28;
 const VELOCITY_PROJECTION = 0.12;
-const LAST_INDEX = NAV_ITEMS.length - 1;
-
 const NavButton = memo<{
   icon: IconName;
   label: string;
@@ -142,7 +152,9 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
 }) => {
   useSwipeBackAction(onBackPress, backMode);
   const { t: _copy } = _useCopy();
-  const { isMinimal, skin } = useAppTheme();
+  const NAV_ITEMS = useFeedNavItems();
+  const LAST_INDEX = NAV_ITEMS.length - 1;
+  const { isMinimal, skin, isLight } = useAppTheme();
   const tint = useMemo(
     () => (skin ? { on: skin.tabIconActive, off: skin.tabIcon } : undefined),
     [skin],
@@ -178,7 +190,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
       const postType = NAV_ITEMS[idx]?.postType;
       if (postType) onPostTypeChange(postType);
     },
-    [onPostTypeChange],
+    [onPostTypeChange, NAV_ITEMS],
   );
 
   // Dragging across the nav bar scrubs the pager itself, same maths as the
@@ -223,7 +235,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
             runOnJS(commitIndex)(target);
           }
         }),
-    [buttonWidth, commitIndex, progress, dragStart],
+    [buttonWidth, commitIndex, progress, dragStart, LAST_INDEX],
   );
 
   // Sliding glass indicator — always visible, UI-thread driven. The +1 is the
@@ -233,8 +245,8 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
     transform: [{ translateX: (progress.value + 1) * buttonWidth }],
     width: buttonWidth,
   }));
-  // Web's glass indicator: 95% of the tab, centred, 35pt tall in the 36pt row,
-  // so its top rim sits just inside the pill instead of on its clipped edge.
+  // Web's glass indicator: 95% of the tab, 35pt tall, centred in the row so its
+  // rims sit an equal step inside the pill's top and bottom edges.
   const glassIndicatorStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: LEAD_SLOT_WIDTH + (progress.value + INDICATOR_SIDE_GAP) * buttonWidth }],
     width: buttonWidth * (1 - INDICATOR_SIDE_GAP * 2),
@@ -295,7 +307,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
       ) : (
       <View style={styles.outerWrap}>
         <View
-          style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : null]}
+          style={[styles.container, skin ? { borderRadius: skin.strip.borderRadius } : isLight ? LIGHT_PILL_SHADOW : null]}
           onLayout={handleLayout}
         >
           {skin ? (
@@ -441,7 +453,10 @@ const styles = StyleSheet.create({
   },
   glassIndicator: {
     position: "absolute",
-    top: 0.5,
+    // Centred on the row, not pinned under its top: the House icon makes the
+    // row 38pt, so a fixed top left the box riding high in the pill.
+    top: "50%",
+    marginTop: -INDICATOR_HEIGHT / 2,
     left: 0,
     height: INDICATOR_HEIGHT,
     borderRadius: 12,

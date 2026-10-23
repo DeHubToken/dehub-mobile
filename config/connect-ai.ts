@@ -3,11 +3,10 @@
  * walk through. Mirrors dehubweb's ConnectPage, ConnectChatGPTPage and
  * ConnectClaudePage constants; keep the URLs in step with those.
  */
-import env from "./env";
-
-// dehub-mcp is the full server. The older /functions/v1/mcp endpoint is a
-// read-only mirror of four of its tools and is not handed out any more.
-export const MCP_URL = `${(env.SUPABASE_URL || "").replace(/\/+$/, "")}/functions/v1/dehub-mcp`;
+// OAuth connects the person's own account. Agent connectors keep their separate
+// key-based endpoint in agents.service.ts.
+export const MCP_URL = 'https://dehub.io/mcp';
+export const ACCOUNT_CONNECTIONS_URL = 'https://dehub.io/connect/chatgpt?manage=1';
 
 export type AiAppId = "chatgpt" | "claude";
 

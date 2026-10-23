@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 
 interface GlassIndicatorProps {
   borderRadius?: number;
@@ -17,7 +18,15 @@ const GRADIENT_COLORS: [string, string, string] = [
 const GlassIndicator: React.FC<GlassIndicatorProps> = ({
   borderRadius = 12,
 }) => {
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, isLight } = useAppTheme();
+  // System Light: web's active tab, a white chip lifted off the pale pill.
+  if (isLight && !skin && !isMinimal) {
+    return (
+      <KeepDarkScope>
+        <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.lightChip, { borderRadius }]} />
+      </KeepDarkScope>
+    );
+  }
   // Minimal has no glass: no blur, gradient or highlight lines, just the one
   // flat outline that marks the selection.
   if (isMinimal) {
@@ -65,6 +74,10 @@ const GlassIndicator: React.FC<GlassIndicatorProps> = ({
 };
 
 const styles = StyleSheet.create({
+  lightChip: {
+    backgroundColor: "#FFFFFF",
+    boxShadow: "0px 0px 0px 0.5px rgba(11,11,13,0.06), 0px 1px 2px rgba(11,11,13,0.08), 0px 3px 10px -2px rgba(11,11,13,0.10)",
+  },
   minimalOutline: {
     borderWidth: 1,
     borderColor: MINIMAL_TAB_LINE,

@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useMemo, useRef, useStat
 import { Platform, View } from "react-native";
 import { BlurTargetView } from "expo-blur";
 import { useFocusEffect } from "@react-navigation/native";
+import { useAppTheme } from "../../context/ThemeContext";
 
 type Target = React.RefObject<View | null>;
 const Targets = createContext<{ target: Target | undefined; register: (target: Target) => () => void } | null>(null);
@@ -40,12 +41,18 @@ export function FrostedContent({ children }: { children: React.ReactNode }) {
   const ref = useRef<View>(null);
   const targets = useContext(Targets);
   const register = targets?.register;
+  const { isLight, colors } = useAppTheme();
   useFocusEffect(useCallback(() => {
     if (androidFrostSupported && register) return register(ref);
   }, [register]));
   if (!androidFrostSupported) return <>{children}</>;
   return (
-    <BlurTargetView ref={ref} style={{ flex: 1 }}>
+    // The blur target draws its children on its own layer, and on Android the
+    // empty parts of that layer come out black instead of showing the page
+    // underneath. Dark themes hide it; System Light got a black feed. So it
+    // carries the page colour itself (the dark value: System Light's colour
+    // pass turns it white).
+    <BlurTargetView ref={ref} style={{ flex: 1, backgroundColor: isLight ? colors.background : undefined }}>
       {/* Nested glass uses its static material instead of recursively capturing
           the feed or replaying the WebView backdrop into a blur RenderNode. */}
       <SourceOverride.Provider value={null}>

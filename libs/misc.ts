@@ -1,7 +1,8 @@
 import env from "../config/env";
 import { LIGHT_BADGE_IMAGES } from "./light-badge-artwork";
 import { badgeHoverArt } from "./badgeHoverArt";
-import { Share, Platform } from "react-native";
+import { Platform } from "react-native";
+import { shareWithRef } from "./shareRef";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
 
@@ -110,6 +111,44 @@ export function getAvatarUrl(
   const fileName = url.split("/").pop();
   const base = `${env.CDN_BASE_URL}/avatars/${fileName}`;
   return cdnImage(base, { width: sizePt });
+}
+
+/**
+ * The wallet's own picture on the CDN, which the backend keeps at a fixed name
+ * (`avatars/<wallet>.jpg`, `.webp` when the picture is animated) beside every
+ * revision. A row that stored no picture, or one that went stale, still finds
+ * the person's current face here. Same file web's buildAvatarCdnFallbackUrl
+ * falls back to.
+ *
+ * @param storedPath What the row stored, if anything: its extension picks
+ *   between the still and the animated file.
+ */
+export function getWalletAvatarUrl(
+  address: string | undefined | null,
+  sizePt: number = DEFAULT_AVATAR_PT,
+  storedPath?: string | null,
+): string | null {
+  if (!address || !/^0x[0-9a-f]{40}$/i.test(address)) return null;
+  const ext = /\.webp(?:[?#]|$)/i.test(storedPath || "") ? "webp" : "jpg";
+  return cdnImage(`${env.CDN_BASE_URL}/avatars/${address.toLowerCase()}.${ext}`, { width: sizePt });
+}
+
+/**
+ * Avatar props for a row that stored a picture at the time (a stage seat, a
+ * stage host): the stored picture, then the wallet's own, then the initial.
+ * Spread onto <Avatar>. A row that stored nothing goes straight to the wallet's
+ * picture rather than to the initial, since the person may well have one now.
+ */
+export function storedAvatarSources(
+  stored: string | undefined | null,
+  address: string | undefined | null,
+  sizePt: number = DEFAULT_AVATAR_PT,
+): { uri: string | null; fallbackUri: string | null } {
+  const wallet = getWalletAvatarUrl(address, sizePt, stored);
+  const primary = stored ? getAvatarUrl(stored, sizePt) : null;
+  return primary && primary !== "default-avatar"
+    ? { uri: primary, fallbackUri: wallet }
+    : { uri: wallet, fallbackUri: null };
 }
 
 /**
@@ -841,14 +880,16 @@ export function resolveBadgeLock(
 /** Generic share helper.
  * Provide an already formatted message; will include url param on iOS automatically.
  */
-export async function shareProfile(url: string, message: string) {
+export async function shareProfile(url: string, message: string, kind = "profile") {
   if (!url || !message) return;
   try {
-    await Share.share(
+    await shareWithRef(
       Platform.select({
         ios: { message, url },
         default: { message },
-      }) as any
+      }) as any,
+      undefined,
+      kind,
     );
   } catch (e) {
     console.warn("[shareProfile] failed", e);

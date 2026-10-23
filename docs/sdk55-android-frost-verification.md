@@ -77,7 +77,7 @@ on 6 October. Play processing and availability must be checked separately.
 | Forms | Composer and messaging keyboard/insets, draft retention | Pending |
 | Account | Existing session, wallet/account screens and payment form loading | Pending |
 | Streaming | Viewer playback and call/broadcast setup without contacting others | Pending |
-| Web | Matching material at staging.dehub.io, desktop and phone widths | Pending |
+| Web | Matching material at dehub.io, desktop and phone widths | Pending |
 
 No production charge, transfer, post, message or outgoing call is required for
 this regression pass. Transaction completion and multi-device call quality are
