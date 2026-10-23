@@ -1212,7 +1212,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         <View style={{ paddingTop: 12 }}><StylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, paddingTop: 12 }}>
-          <View style={{ flex: 1 }}><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></View>
+          <View style={{ flex: 1 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume' })} onValueChange={handleVolumeChange} minimumTrackTintColor="#e3eaee" maximumTrackTintColor="rgba(255,255,255,.2)" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></View>
           <HueSlider hue={hue} onHueChange={handleHueChange} />
         </View>
         {glassOptions && <View style={{ gap: 12, paddingTop: 16 }}>
