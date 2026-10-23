@@ -5526,6 +5526,8 @@
     "creatorEarnsDirect": "訂閱者用 DeHub 代幣付款。當佢哋訂閱嗰陣，你嘅份額就會喺你嘅銀包入面，減去你嘅徽章層嘅平台費用。"
   },
   "live": {
+    "bigEvent": "大型活動",
+    "bigEventHint": "啱大量觀眾：觀眾會遲大約 20 秒睇，但冇咁易斷。",
     "notSet": "未設定",
     "liveChat": "直播聊天",
     "pickDate": "選擇日期",

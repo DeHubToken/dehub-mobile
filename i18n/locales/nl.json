@@ -6176,6 +6176,8 @@
     "creatorEarnsDirect": "Abonnees betalen in DeHub-tokens. Je aandeel komt in je portemonnee terecht op het moment dat ze zich abonneren, minus de platformkosten voor je badge-niveau."
   },
   "live": {
+    "bigEvent": "Groot evenement",
+    "bigEventHint": "Voor een groot publiek: kijkers zien het ongeveer 20 seconden later, met minder onderbrekingen.",
     "notSet": "Niet ingesteld",
     "liveChat": "Livechat",
     "pickDate": "Datum kiezen",

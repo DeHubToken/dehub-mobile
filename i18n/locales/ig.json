@@ -5522,6 +5522,8 @@
     "creatorEarnsDirect": "Ndị debanyere aha na-akwụ ụgwọ na akara ngosi DeHub. Gị òkè ala gị obere akpa mgbe ha debanyere aha, obere n 'elu ikpo okwu ego maka gị baajị tier."
   },
   "live": {
+    "bigEvent": "Nnukwu mmemme",
+    "bigEventHint": "Maka ọtụtụ ndị na-ekiri: ndị na-ekiri ga-ahụ ya ihe dị ka sekọnd 20 azụ, na nkwụsị ole na ole.",
     "notSet": "Edobeghị",
     "liveChat": "Nkata ndụ",
     "pickDate": "Họrọ ụbọchị",

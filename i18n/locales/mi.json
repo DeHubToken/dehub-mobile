@@ -5522,6 +5522,8 @@
     "creatorEarnsDirect": "Ka utua e nga kaiohauru nga tohu DeHub. Ko to koutou wahi whenua i roto i to koutou putea i te wa e rēhita ratou, iti iho i te utu papa mo to koutou taumata badge."
   },
   "live": {
+    "bigEvent": "Takunetanga nui",
+    "bigEventHint": "Mō te hunga mātakitaki tini: ka mātakitaki rātou i muri tata ki te 20 hēkona, he iti iho ngā haukotinga.",
     "notSet": "Kāore i tautuhia",
     "liveChat": "Kōrerorero ora",
     "pickDate": "Kōwhiria te rā",

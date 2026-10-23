@@ -5533,6 +5533,8 @@
     "creatorEarnsDirect": "Prenumeratoriai moka DeHub žetonais. Kai tik užsiprenumeruosi, tavo dalis atsidurs tavo piniginėje, atėmus platformos mokestį už tavo ženklelio lygį."
   },
   "live": {
+    "bigEvent": "Didelis renginys",
+    "bigEventHint": "Didelei auditorijai: žiūrovai mato maždaug 20 sekundžių vėliau, bet su mažiau trikdžių.",
     "notSet": "Nenustatyta",
     "liveChat": "Tiesioginis pokalbis",
     "pickDate": "Pasirinkti datą",

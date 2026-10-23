@@ -5475,6 +5475,8 @@
     "creatorEarnsDirect": "Subscribers di pay with DeHub tokens. Your share go land for your wallet di moment dem subscribe, minus di platform fee for your badge level."
   },
   "live": {
+    "bigEvent": "Big event",
+    "bigEventHint": "For plenty pipul: viewers go di watch like 20 seconds behind, but e no go di cut plenty.",
     "notSet": "Dem never set am",
     "liveChat": "Live chat",
     "pickDate": "Pick date",

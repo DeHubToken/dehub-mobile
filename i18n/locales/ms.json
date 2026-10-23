@@ -5798,6 +5798,8 @@
     "creatorEarnsDirect": "Pelanggan membayar dalam token DeHub. Bahagian anda masuk ke dalam dompet anda sebaik sahaja mereka melanggan, tolak yuran platform untuk peringkat lencana anda."
   },
   "live": {
+    "bigEvent": "Acara besar",
+    "bigEventHint": "Untuk penonton ramai: penonton menonton kira-kira 20 saat ketinggalan, dengan kurang gangguan.",
     "notSet": "Belum ditetapkan",
     "liveChat": "Sembang langsung",
     "pickDate": "Pilih tarikh",

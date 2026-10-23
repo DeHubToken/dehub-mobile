@@ -5541,6 +5541,8 @@
     "creatorEarnsDirect": "Abonații plătesc în jetoane DeHub. Cota ta ajunge în portofel în momentul în care se abonează, mai puțin taxa de platformă pentru nivelul insignei."
   },
   "live": {
+    "bigEvent": "Eveniment mare",
+    "bigEventHint": "Pentru public numeros: spectatorii urmăresc cu o întârziere de circa 20 de secunde, dar cu mai puține întreruperi.",
     "notSet": "Nesetat",
     "liveChat": "Chat live",
     "pickDate": "Alege data",

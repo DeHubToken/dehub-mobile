@@ -5589,6 +5589,8 @@
     "creatorEarnsDirect": "Người đăng ký thanh toán bằng mã thông báo DeHub. Cổ phần của bạn nằm trong ví của bạn ngay khi họ đăng ký, trừ đi phí nền tảng cho cấp độ huy hiệu của bạn."
   },
   "live": {
+    "bigEvent": "Sự kiện lớn",
+    "bigEventHint": "Dành cho lượng người xem lớn: người xem sẽ xem chậm khoảng 20 giây nhưng ít bị gián đoạn hơn.",
     "notSet": "Chưa đặt",
     "liveChat": "Trò chuyện trực tiếp",
     "pickDate": "Chọn ngày",

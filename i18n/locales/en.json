@@ -5998,6 +5998,8 @@
     "creatorEarnsDirect": "Subscribers pay in DeHub tokens. Your share lands in your wallet the moment they subscribe, less the platform fee for your badge tier."
   },
   "live": {
+    "bigEvent": "Big event",
+    "bigEventHint": "For big audiences: viewers watch about 20 seconds behind, with fewer interruptions.",
     "notSet": "Not set",
     "liveChat": "Live Chat",
     "pickDate": "Pick Date",

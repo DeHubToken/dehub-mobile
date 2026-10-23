@@ -5546,6 +5546,8 @@
     "creatorEarnsDirect": "Ny mpandraharaha mandoa ao DeHub famantarana. Ny anjara tany ao amin'ny kitapom-batsy ny fotoana izy ireo misoratra anarana, tsy ny sehatra saran'ny noho ny badge Tier."
   },
   "live": {
+    "bigEvent": "Hetsika lehibe",
+    "bigEventHint": "Ho an'ny mpijery maro: mijery tara eo amin'ny 20 segondra eo ho eo ny mpijery, saingy vitsy kokoa ny fahatapahana.",
     "notSet": "Tsy voafaritra",
     "liveChat": "Resaka mivantana",
     "pickDate": "Mifidy daty",

@@ -5522,6 +5522,8 @@
     "creatorEarnsDirect": "Macaamiisha waxay bixiyaan calaamadaha DeHub. Dhulalka saamigaaga ee boorsadaada marka ay isdiiwaangeliyaan, ka yar qiimaha boosteejada ee heerka calaamaddaada."
   },
   "live": {
+    "bigEvent": "Dhacdo weyn",
+    "bigEventHint": "Daawadayaal badan: daawadayaashu waxay daawadaan qiyaastii 20 ilbiriqsi dib, iyadoo kala go'yadu ay yar yihiin.",
     "notSet": "Lama dejin",
     "liveChat": "Sheeko toos ah",
     "pickDate": "Dooro taariikhda",
