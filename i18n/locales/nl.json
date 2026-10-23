@@ -2305,7 +2305,11 @@
     "likeStation": "Zender liken",
     "unlikeStation": "Zender niet meer liken",
     "shareStation": "Zender delen",
-    "listeningTo": "Ik luister naar {{name}} op DeHub"
+    "listeningTo": "Ik luister naar {{name}} op DeHub",
+    "mostPlayed": "Meest afgespeeld",
+    "mostLiked": "Meest geliket",
+    "mostRecent": "Meest recent",
+    "chartOrder": "Volgorde van de audiolijst"
   },
   "notFound": {
     "title": "Pagina niet gevonden",
@@ -5120,7 +5124,8 @@
     "play": "Afspelen",
     "pause": "Pauzeren",
     "listens_one": "{{count}} keer beluisterd",
-    "listens_other": "{{count}} keer beluisterd"
+    "listens_other": "{{count}} keer beluisterd",
+    "visualizerColour": "Kleur van de visualisatie"
   },
   "transfer": {
     "arcTitle": "USDC versturen op Arc",
@@ -6741,7 +6746,8 @@
     "pipUnavailable": "Beeld in beeld is niet beschikbaar. Controleer of het is toegestaan voor DeHub in uw apparaatinstellingen.",
     "noVideo": "Geen video",
     "rotate": "Roteren",
-    "yourDhbBalance": "Je tokengoed: {{amount}}"
+    "yourDhbBalance": "Je tokengoed: {{amount}}",
+    "volume": "Volume"
   },
   "liveViewer": {
     "loadingStream": "Stream laden...",
