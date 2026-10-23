@@ -110,10 +110,14 @@ async function writeStored(address: string, keys: IdentityKeyPair): Promise<void
   // Read failures or invalid records must never turn into an overwrite.
   const raw = await SecureStore.getItemAsync(storeKey(address));
   const old = raw ? JSON.parse(raw) as StoredIdentity : null;
-  if (old && (!isValidPublicKey(old.pub) || fromBase64(old.priv).length !== 32)) {
+  if (old && (!isValidPublicKey(old.pub) || typeof old.priv !== 'string' || fromBase64(old.priv).length !== 32)) {
     throw new Error('Existing message identity could not be preserved');
   }
   const pub = toBase64(keys.publicKey);
+  if (old?.previous !== undefined && (!Array.isArray(old.previous) || !old.previous.every(item =>
+    isValidPublicKey(item?.pub) && typeof item?.priv === 'string' && fromBase64(item.priv).length === 32))) {
+    throw new Error('Existing message identity could not be preserved');
+  }
   const previous = [...(old?.previous ?? [])];
   if (old && old.pub !== pub && !previous.some(item => item.pub === old.pub)) {
     previous.push({ priv: old.priv, pub: old.pub });
@@ -140,8 +144,14 @@ export async function loadIdentity(address: string): Promise<boolean> {
   const stored = await readStored(addr);
   if (!stored) return false;
   try {
-    current = { address: addr, keys: { privateKey: fromBase64(stored.priv), publicKey: fromBase64(stored.pub) } };
-    previousIdentities = (stored.previous ?? []).map(item => ({ privateKey: fromBase64(item.priv), publicKey: fromBase64(item.pub) }));
+    const keys = { privateKey: fromBase64(stored.priv), publicKey: fromBase64(stored.pub) };
+    const previous = (stored.previous ?? []).map(item => ({ privateKey: fromBase64(item.priv), publicKey: fromBase64(item.pub) }));
+    if (keys.privateKey.length !== 32 || keys.publicKey.length !== 32 || previous.some(item => item.privateKey.length !== 32 || item.publicKey.length !== 32)) return false;
+    current = { address: addr, keys };
+    previousIdentities = previous;
+    historicalPublicKeys.clear();
+    refreshAttempts.clear();
+    peerKeys.clear();
     sessionKeys.clear();
     notify();
     return true;
