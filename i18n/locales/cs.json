@@ -6169,7 +6169,11 @@
     "noTrendingThisWeek": "Tento týden žádný populární obsah",
     "closeFilterOptions": "Zavřít možnosti filtrování",
     "openFilterOptions": "Otevřít možnosti filtrování",
-    "fillQuery": "Vložit \"{{query}}\" do vyhledávání"
+    "fillQuery": "Vložit \"{{query}}\" do vyhledávání",
+    "clearHistory": "Vymazat historii",
+    "clearHistoryTitle": "Vymazat historii hledání?",
+    "clearHistoryBody": "Tím odstraníte všechna nedávná hledání.",
+    "removeFromHistory": "Odebrat „{{query}}“ z historie"
   },
   "notifPrompt": {
     "stayInLoop": "Buďte v obraze",

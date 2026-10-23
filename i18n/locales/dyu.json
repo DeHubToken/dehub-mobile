@@ -6116,6 +6116,10 @@
     "closeFilterOptions": "Sugandili fɛɛrɛw datugu",
     "openFilterOptions": "Sugandili fɛɛrɛw dayɛlɛ",
     "fillQuery": "\"{{query}}\" sɛbɛn ɲinini kɔnɔ",
+    "clearHistory": "Tariku jɔsi",
+    "clearHistoryTitle": "Ɲininiw tariku jɔsi wa?",
+    "clearHistoryBody": "O bɛna i ka ɲinini kɔsɛninw bɛɛ bɔ.",
+    "removeFromHistory": "\"{{query}}\" bɔ tariku la",
     "trendingThisWeek": "Lɔgɔkun hakilila-nyuma",
     "tryDifferentKeywords": "I be se ka sɛbɛri kɛ ni kumaden dɔw ye wala i be se ka sɛbɛri kɛ ni kumaden dɔw ye.",
     "noTrendingThisWeek": "O lɔgɔkun na, kunnafoniw tun tɛ yen."

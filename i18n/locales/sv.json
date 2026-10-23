@@ -6170,7 +6170,11 @@
     "noTrendingThisWeek": "Inget populärt innehåll denna vecka",
     "closeFilterOptions": "Stäng filteralternativ",
     "openFilterOptions": "Öppna filteralternativ",
-    "fillQuery": "Fyll i sökningen med \"{{query}}\""
+    "fillQuery": "Fyll i sökningen med \"{{query}}\"",
+    "clearHistory": "Rensa historik",
+    "clearHistoryTitle": "Rensa sökhistoriken?",
+    "clearHistoryBody": "Detta tar bort alla dina senaste sökningar.",
+    "removeFromHistory": "Ta bort ”{{query}}” från historiken"
   },
   "notifPrompt": {
     "stayInLoop": "Håll dig uppdaterad",

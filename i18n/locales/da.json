@@ -6170,7 +6170,11 @@
     "noTrendingThisWeek": "Intet populært indhold i denne uge",
     "closeFilterOptions": "Luk filterindstillinger",
     "openFilterOptions": "Åbn filterindstillinger",
-    "fillQuery": "Indsæt \"{{query}}\" i søgefeltet"
+    "fillQuery": "Indsæt \"{{query}}\" i søgefeltet",
+    "clearHistory": "Ryd historik",
+    "clearHistoryTitle": "Ryd søgehistorik?",
+    "clearHistoryBody": "Dette fjerner alle dine seneste søgninger.",
+    "removeFromHistory": "Fjern \"{{query}}\" fra historikken"
   },
   "notifPrompt": {
     "stayInLoop": "Hold dig opdateret",

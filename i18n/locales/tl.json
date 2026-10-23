@@ -6212,7 +6212,11 @@
     "noTrendingThisWeek": "Walang trending na nilalaman ngayong linggo",
     "closeFilterOptions": "Isara ang mga opsyon sa filter",
     "openFilterOptions": "Buksan ang mga opsyon sa filter",
-    "fillQuery": "Punan ang paghahanap ng \"{{query}}\""
+    "fillQuery": "Punan ang paghahanap ng \"{{query}}\"",
+    "clearHistory": "I-clear ang history",
+    "clearHistoryTitle": "I-clear ang search history?",
+    "clearHistoryBody": "Aalisin nito ang lahat ng kamakailan mong paghahanap.",
+    "removeFromHistory": "Alisin ang \"{{query}}\" sa history"
   },
   "notifPrompt": {
     "stayInLoop": "Manatiling updated",

@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "No hi ha contingut de tendència aquesta setmana",
     "closeFilterOptions": "Tanca les opcions de filtre",
     "openFilterOptions": "Obre les opcions de filtre",
-    "fillQuery": "Omple la cerca amb \"{{query}}\""
+    "fillQuery": "Omple la cerca amb \"{{query}}\"",
+    "clearHistory": "Esborra l'historial",
+    "clearHistoryTitle": "Vols esborrar l'historial de cerca?",
+    "clearHistoryBody": "Això elimina totes les teves cerques recents.",
+    "removeFromHistory": "Elimina «{{query}}» de l'historial"
   },
   "notifPrompt": {
     "stayInLoop": "Mantén-te al dia",

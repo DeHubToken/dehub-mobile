@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "Ingen populært innhold denne uken",
     "closeFilterOptions": "Lukk filteralternativer",
     "openFilterOptions": "Åpne filteralternativer",
-    "fillQuery": "Fyll inn \"{{query}}\" i søket"
+    "fillQuery": "Fyll inn \"{{query}}\" i søket",
+    "clearHistory": "Tøm historikk",
+    "clearHistoryTitle": "Tømme søkehistorikken?",
+    "clearHistoryBody": "Dette fjerner alle de nylige søkene dine.",
+    "removeFromHistory": "Fjern «{{query}}» fra historikken"
   },
   "notifPrompt": {
     "stayInLoop": "Hold deg oppdatert",

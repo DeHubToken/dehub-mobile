@@ -6112,7 +6112,11 @@
     "noTrendingThisWeek": "Ин ҳафта мундариҷаи машҳур мавҷуд нест",
     "closeFilterOptions": "Пардаи филтрро пӯшед",
     "openFilterOptions": "Пардаи филтрро кушоед",
-    "fillQuery": "\"{{query}}\"-ро ба ҷустуҷӯ гузоштан"
+    "fillQuery": "\"{{query}}\"-ро ба ҷустуҷӯ гузоштан",
+    "clearHistory": "Тозакунии таърих",
+    "clearHistoryTitle": "Таърихи ҷустуҷӯ тоза шавад?",
+    "clearHistoryBody": "Ин ҳамаи ҷустуҷӯҳои охирини шуморо нест мекунад.",
+    "removeFromHistory": "«{{query}}»-ро аз таърих нест кардан"
   },
   "notifPrompt": {
     "stayInLoop": "Огоҳ бошед",

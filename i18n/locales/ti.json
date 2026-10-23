@@ -6126,7 +6126,11 @@
     "noTrendingThisWeek": "ኣብዚ ሰሙን እዚ ዝዝርግሕ ትሕዝቶ የለን ።",
     "closeFilterOptions": "ናይ ማጣሪያ ኣማራጺታት ምዕጻው",
     "openFilterOptions": "ኣማራጺታት ፍሊተር ክፉት",
-    "fillQuery": "\"{{query}}\" ኣብ መድለዪ ኣእቱ"
+    "fillQuery": "\"{{query}}\" ኣብ መድለዪ ኣእቱ",
+    "clearHistory": "ታሪኽ ኣጽሪ",
+    "clearHistoryTitle": "ታሪኽ ምድላይ ይጽረ?",
+    "clearHistoryBody": "እዚ ኩሎም ናይ ቀረባ እዋን ምድላያትካ የወግዶም።",
+    "removeFromHistory": "\"{{query}}\" ካብ ታሪኽ ኣወግድ"
   },
   "notifPrompt": {
     "stayInLoop": "ሓበሬታ ሓዝ",

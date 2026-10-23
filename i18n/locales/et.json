@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "Sel nädalal pole populaarset sisu",
     "closeFilterOptions": "Sulge filtrid",
     "openFilterOptions": "Ava filtrid",
-    "fillQuery": "Sisesta \"{{query}}\" otsingusse"
+    "fillQuery": "Sisesta \"{{query}}\" otsingusse",
+    "clearHistory": "Tühjenda ajalugu",
+    "clearHistoryTitle": "Kas tühjendada otsinguajalugu?",
+    "clearHistoryBody": "See eemaldab kõik sinu hiljutised otsingud.",
+    "removeFromHistory": "Eemalda „{{query}}“ ajaloost"
   },
   "notifPrompt": {
     "stayInLoop": "Ole kursis",

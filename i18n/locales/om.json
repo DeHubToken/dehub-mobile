@@ -6159,7 +6159,11 @@
     "noTrendingThisWeek": "Torban kana qabiyyee trending hin jiru",
     "closeFilterOptions": "Filannoowwan calaqqee cufi",
     "openFilterOptions": "Filannoowwan calaqqee banaa",
-    "fillQuery": "Barbaacha keessatti \"{{query}}\" galchi"
+    "fillQuery": "Barbaacha keessatti \"{{query}}\" galchi",
+    "clearHistory": "Seenaa haqi",
+    "clearHistoryTitle": "Seenaa barbaachaa haquu?",
+    "clearHistoryBody": "Kun barbaachawwan kee dhiheenyaa hunda ni haqa.",
+    "removeFromHistory": "\"{{query}}\" seenaa irraa haqi"
   },
   "notifPrompt": {
     "stayInLoop": "Odeeffannoo argadhu",

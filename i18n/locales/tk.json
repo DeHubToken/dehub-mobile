@@ -6145,7 +6145,11 @@
     "noTrendingThisWeek": "Bu hepdede meşhur kontent ýok",
     "closeFilterOptions": "Süzgüç opsiýalaryny ýapyň",
     "openFilterOptions": "Süzgüç opsiýalaryny açyň",
-    "fillQuery": "Gözlege \"{{query}}\" goş"
+    "fillQuery": "Gözlege \"{{query}}\" goş",
+    "clearHistory": "Taryhy arassala",
+    "clearHistoryTitle": "Gözleg taryhy arassalansynmy?",
+    "clearHistoryBody": "Bu siziň ähli soňky gözleglerinizi aýyrar.",
+    "removeFromHistory": "\"{{query}}\" taryhdan aýyr"
   },
   "notifPrompt": {
     "stayInLoop": "Habarly boluň",

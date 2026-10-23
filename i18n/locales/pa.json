@@ -6165,7 +6165,11 @@
     "noTrendingThisWeek": "ਇਸ ਹਫ਼ਤੇ ਕੋਈ ਟ੍ਰੈਂਡਿੰਗ ਸਮੱਗਰੀ ਨਹੀਂ",
     "closeFilterOptions": "ਫਿਲਟਰ ਵਿਕਲਪ ਬੰਦ ਕਰੋ",
     "openFilterOptions": "ਫਿਲਟਰ ਵਿਕਲਪ ਖੋਲ੍ਹੋ",
-    "fillQuery": "ਖੋਜ ਵਿੱਚ \"{{query}}\" ਭਰੋ"
+    "fillQuery": "ਖੋਜ ਵਿੱਚ \"{{query}}\" ਭਰੋ",
+    "clearHistory": "ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ",
+    "clearHistoryTitle": "ਖੋਜ ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰਨਾ ਹੈ?",
+    "clearHistoryBody": "ਇਹ ਤੁਹਾਡੀਆਂ ਸਾਰੀਆਂ ਹਾਲੀਆ ਖੋਜਾਂ ਹਟਾ ਦੇਵੇਗਾ।",
+    "removeFromHistory": "\"{{query}}\" ਨੂੰ ਇਤਿਹਾਸ ਤੋਂ ਹਟਾਓ"
   },
   "notifPrompt": {
     "stayInLoop": "ਜਾਣੂ ਰਹੋ",

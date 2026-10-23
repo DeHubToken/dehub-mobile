@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "Niciun conținut în trend săptămâna aceasta",
     "closeFilterOptions": "Închideți opțiunile de filtrare",
     "openFilterOptions": "Deschideți opțiunile de filtrare",
-    "fillQuery": "Completează căutarea cu „{{query}}”"
+    "fillQuery": "Completează căutarea cu „{{query}}”",
+    "clearHistory": "Șterge istoricul",
+    "clearHistoryTitle": "Ștergi istoricul căutărilor?",
+    "clearHistoryBody": "Aceasta elimină toate căutările tale recente.",
+    "removeFromHistory": "Elimină „{{query}}” din istoric"
   },
   "notifPrompt": {
     "stayInLoop": "Rămâi la curent",

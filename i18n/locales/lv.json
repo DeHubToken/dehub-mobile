@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "Šonedēļ nav populāra satura",
     "closeFilterOptions": "Aizvērt filtrēšanas opcijas",
     "openFilterOptions": "Atvērt filtrēšanas opcijas",
-    "fillQuery": "Ievietot \"{{query}}\" meklēšanā"
+    "fillQuery": "Ievietot \"{{query}}\" meklēšanā",
+    "clearHistory": "Notīrīt vēsturi",
+    "clearHistoryTitle": "Notīrīt meklēšanas vēsturi?",
+    "clearHistoryBody": "Tiks noņemti visi jūsu nesenie meklējumi.",
+    "removeFromHistory": "Noņemt “{{query}}” no vēstures"
   },
   "notifPrompt": {
     "stayInLoop": "Esiet lietas kursā",

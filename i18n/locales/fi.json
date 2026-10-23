@@ -6166,7 +6166,11 @@
     "noTrendingThisWeek": "Ei trendaavaa sisältöä tällä viikolla",
     "closeFilterOptions": "Sulje suodatusvaihtoehdot",
     "openFilterOptions": "Avaa suodatusvaihtoehdot",
-    "fillQuery": "Täytä hakuun \"{{query}}\""
+    "fillQuery": "Täytä hakuun \"{{query}}\"",
+    "clearHistory": "Tyhjennä historia",
+    "clearHistoryTitle": "Tyhjennetäänkö hakuhistoria?",
+    "clearHistoryBody": "Tämä poistaa kaikki viimeaikaiset hakusi.",
+    "removeFromHistory": "Poista ”{{query}}” historiasta"
   },
   "notifPrompt": {
     "stayInLoop": "Pysy ajan tasalla",

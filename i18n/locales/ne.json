@@ -6173,7 +6173,11 @@
     "noTrendingThisWeek": "यस हप्ता कुनै ट्रेन्डिङ सामग्री छैन",
     "closeFilterOptions": "फिल्टर विकल्पहरू बन्द गर्नुहोस्",
     "openFilterOptions": "फिल्टर विकल्पहरू खोल्नुहोस्",
-    "fillQuery": "खोजमा \"{{query}}\" भर्नुहोस्"
+    "fillQuery": "खोजमा \"{{query}}\" भर्नुहोस्",
+    "clearHistory": "इतिहास खाली गर्नुहोस्",
+    "clearHistoryTitle": "खोज इतिहास खाली गर्ने?",
+    "clearHistoryBody": "यसले तपाईंका सबै हालैका खोजहरू हटाउँछ।",
+    "removeFromHistory": "\"{{query}}\" इतिहासबाट हटाउनुहोस्"
   },
   "notifPrompt": {
     "stayInLoop": "जानकारीमा रहनुहोस्",

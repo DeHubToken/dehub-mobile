@@ -6162,7 +6162,11 @@
     "noTrendingThisWeek": "ఈ వారం ట్రెండింగ్ కంటెంట్ లేదు",
     "closeFilterOptions": "ఫిల్టర్ ఎంపికలను మూసివేయండి",
     "openFilterOptions": "ఫిల్టర్ ఎంపికలను తెరవండి",
-    "fillQuery": "శోధనలో \"{{query}}\" నింపండి"
+    "fillQuery": "శోధనలో \"{{query}}\" నింపండి",
+    "clearHistory": "చరిత్రను క్లియర్ చేయి",
+    "clearHistoryTitle": "శోధన చరిత్రను క్లియర్ చేయాలా?",
+    "clearHistoryBody": "ఇది మీ ఇటీవలి శోధనలన్నింటినీ తొలగిస్తుంది.",
+    "removeFromHistory": "\"{{query}}\" ను చరిత్ర నుండి తొలగించు"
   },
   "notifPrompt": {
     "stayInLoop": "సమాచారంలో ఉండండి",

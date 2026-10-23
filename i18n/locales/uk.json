@@ -6554,7 +6554,11 @@
     "noTrendingThisWeek": "Немає популярного контенту цього тижня",
     "closeFilterOptions": "Закрити параметри фільтра",
     "openFilterOptions": "Відкрити параметри фільтра",
-    "fillQuery": "Вставити \"{{query}}\" у пошук"
+    "fillQuery": "Вставити \"{{query}}\" у пошук",
+    "clearHistory": "Очистити історію",
+    "clearHistoryTitle": "Очистити історію пошуку?",
+    "clearHistoryBody": "Це видалить усі ваші нещодавні пошуки.",
+    "removeFromHistory": "Видалити «{{query}}» з історії"
   },
   "notifPrompt": {
     "stayInLoop": "Будьте в курсі",

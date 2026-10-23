@@ -6202,7 +6202,11 @@
     "noTrendingThisWeek": "Brak popularnych treści w tym tygodniu",
     "closeFilterOptions": "Zamknij opcje filtrowania",
     "openFilterOptions": "Otwórz opcje filtrowania",
-    "fillQuery": "Wpisz \"{{query}}\" w wyszukiwarkę"
+    "fillQuery": "Wpisz \"{{query}}\" w wyszukiwarkę",
+    "clearHistory": "Wyczyść historię",
+    "clearHistoryTitle": "Wyczyścić historię wyszukiwania?",
+    "clearHistoryBody": "Spowoduje to usunięcie wszystkich ostatnich wyszukiwań.",
+    "removeFromHistory": "Usuń „{{query}}” z historii"
   },
   "notifPrompt": {
     "stayInLoop": "Bądź na bieżąco",

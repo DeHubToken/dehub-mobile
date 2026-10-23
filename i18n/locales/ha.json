@@ -6145,7 +6145,11 @@
     "noTrendingThisWeek": "Babu abun ciki mai juyawa a wannan makon",
     "closeFilterOptions": "Rufe zaɓuɓɓukan tace",
     "openFilterOptions": "Bude zaɓuɓɓukan tace",
-    "fillQuery": "Saka \"{{query}}\" a akwatin bincike"
+    "fillQuery": "Saka \"{{query}}\" a akwatin bincike",
+    "clearHistory": "Share tarihi",
+    "clearHistoryTitle": "Share tarihin bincike?",
+    "clearHistoryBody": "Wannan zai cire duk bincikenka na kwanan nan.",
+    "removeFromHistory": "Cire \"{{query}}\" daga tarihi"
   },
   "notifPrompt": {
     "stayInLoop": "Ka kasance da labari",

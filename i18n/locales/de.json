@@ -6321,7 +6321,11 @@
     "noTrendingThisWeek": "Diese Woche keine angesagten Inhalte",
     "closeFilterOptions": "Filteroptionen schließen",
     "openFilterOptions": "Filteroptionen öffnen",
-    "fillQuery": "\"{{query}}\" in die Suche übernehmen"
+    "fillQuery": "\"{{query}}\" in die Suche übernehmen",
+    "clearHistory": "Verlauf löschen",
+    "clearHistoryTitle": "Suchverlauf löschen?",
+    "clearHistoryBody": "Dadurch werden alle deine letzten Suchen entfernt.",
+    "removeFromHistory": "„{{query}}“ aus dem Verlauf entfernen"
   },
   "notifPrompt": {
     "stayInLoop": "Bleib auf dem Laufenden",
