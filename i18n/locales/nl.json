@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Inhoudswaarschuwing",
+    "placeholder": "Schrijf hier je waarschuwing",
+    "add": "Inhoudswaarschuwing toevoegen",
+    "remove": "Inhoudswaarschuwing verwijderen",
+    "show": "Bericht tonen"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Beschrijving toevoegen",

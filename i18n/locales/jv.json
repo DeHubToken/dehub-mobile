@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Pènget isi",
+    "placeholder": "Tulisen pènget ing kéné",
+    "add": "Tambahake pènget isi",
+    "remove": "Busak pènget isi",
+    "show": "Tampilake kiriman"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Tambahake katrangan",

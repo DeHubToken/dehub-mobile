@@ -92,6 +92,8 @@ export interface UnifiedFeedItem {
   imageUrls?: string[]; // For multi-image posts
   /** Alt text, one per piece of media in display order (photos by position, a video first). */
   mediaDescriptions?: string[];
+  /** Content warning: the post opens collapsed behind this one line. */
+  spoilerText?: string;
   thumbnailUrl?: string;
   videoUrl?: string;
   /** Adaptive HLS master playlist, a bucket key like videoUrl. Only on public

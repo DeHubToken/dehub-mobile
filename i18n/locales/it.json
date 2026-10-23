@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Avviso sui contenuti",
+    "placeholder": "Scrivi qui il tuo avviso",
+    "add": "Aggiungi avviso sui contenuti",
+    "remove": "Rimuovi avviso sui contenuti",
+    "show": "Mostra post"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Aggiungi una descrizione",

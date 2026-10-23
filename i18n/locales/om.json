@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Akeekkachiisa qabiyyee",
+    "placeholder": "Akeekkachiisa kee asitti barreessi",
+    "add": "Akeekkachiisa qabiyyee dabali",
+    "remove": "Akeekkachiisa qabiyyee haqi",
+    "show": "Maxxansa agarsiisi"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Ibsa dabali",

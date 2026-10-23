@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "내용 경고",
+    "placeholder": "여기에 경고 문구를 쓰세요",
+    "add": "내용 경고 추가",
+    "remove": "내용 경고 삭제",
+    "show": "게시물 보기"
+  },
   "altText": {
     "badge": "ALT",
     "add": "설명 추가",

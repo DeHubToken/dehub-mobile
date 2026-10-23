@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Ìkìlọ̀ àkóónú",
+    "placeholder": "Kọ ìkìlọ̀ rẹ síbí",
+    "add": "Ṣafikun ìkìlọ̀ àkóónú",
+    "remove": "Yọ ìkìlọ̀ àkóónú kúrò",
+    "show": "Fi ifiweranṣẹ han"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Ṣafikun apejuwe",

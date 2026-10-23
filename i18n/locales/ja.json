@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "閲覧注意",
+    "placeholder": "ここに注意書きを入力",
+    "add": "閲覧注意を追加",
+    "remove": "閲覧注意を削除",
+    "show": "投稿を表示"
+  },
   "altText": {
     "badge": "ALT",
     "add": "説明を追加",

@@ -101,6 +101,8 @@ export type UploadPayload = {
   shopListingIds?: string[];
   /** Alt text in upload order: the video, or each photo by position. */
   mediaDescriptions?: string[];
+  /** Content warning: the post opens collapsed behind this one line. */
+  spoilerText?: string;
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
 };
@@ -320,6 +322,7 @@ export function useUploadPost() {
         shopListingIds: p.shopListingIds,
         crossPostAccountIds: p.crossPostAccountIds,
         mediaDescriptions: p.mediaDescriptions,
+        spoilerText: p.spoilerText,
       };
 
       const isBounty = p.monetization.bountyEnabled;
@@ -398,6 +401,7 @@ export function useUploadPost() {
       thumbnailUri: string | null;
       quotedTokenId: number;
       mediaDescriptions?: string[];
+      spoilerText?: string;
     }): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
@@ -444,6 +448,7 @@ export function useUploadPost() {
           thumbnailUri: thumb,
           streamInfoJson: "{}",
           mediaDescriptions: p.mediaDescriptions,
+          spoilerText: p.spoilerText,
         },
         chainId: activeChainId,
         walletAddress: addr,

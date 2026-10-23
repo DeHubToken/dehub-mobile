@@ -91,6 +91,8 @@ export interface PostOptionsMenuProps {
   currentContentRating?: string;
   /** Whether this post is published for children — the Kids Mode allowlist. */
   currentForKids?: boolean;
+  /** The post's content warning, for the edit sheet. */
+  currentSpoilerText?: string;
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
@@ -225,6 +227,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentShopLinks,
   currentContentRating,
   currentForKids,
+  currentSpoilerText,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -825,6 +828,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialShopLinks={currentShopLinks}
         initialContentRating={currentContentRating}
         initialForKids={currentForKids}
+        initialSpoilerText={currentSpoilerText}
         canReplaceVideo={canReplaceVideo}
         alwaysShowTitle={isAudio}
         onSuccess={handleEditDone}

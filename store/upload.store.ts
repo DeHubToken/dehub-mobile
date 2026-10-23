@@ -75,6 +75,8 @@ export interface SerializedUploadPayload {
   crossPostAccountIds?: string[];
   /** Alt text in upload order: the video, or each photo by position. */
   mediaDescriptions?: string[];
+  /** Content warning: the post opens collapsed behind this one line. */
+  spoilerText?: string;
 }
 
 export interface MintParams {

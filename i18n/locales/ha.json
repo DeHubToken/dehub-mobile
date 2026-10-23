@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Gargaɗin abun ciki",
+    "placeholder": "Rubuta gargaɗinka a nan",
+    "add": "Ƙara gargaɗin abun ciki",
+    "remove": "Cire gargaɗin abun ciki",
+    "show": "Nuna rubutu"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Ƙara bayani",

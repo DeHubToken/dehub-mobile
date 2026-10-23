@@ -1,4 +1,11 @@
 {
+  "contentWarning": {
+    "label": "Inhaltswarnig",
+    "placeholder": "Schriib dini Warnig da",
+    "add": "Inhaltswarnig hinzuefüege",
+    "remove": "Inhaltswarnig entferne",
+    "show": "Biitrag aazeige"
+  },
   "altText": {
     "badge": "ALT",
     "add": "Beschriibig hinzuefüege",
