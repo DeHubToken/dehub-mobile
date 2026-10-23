@@ -40,7 +40,7 @@ export function walletScopedClient(walletAddress: string): SupabaseClient {
   let client = walletClients.get(wallet);
   if (!client) {
     client = createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY, {
-      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, storageKey: `dehub-wallet-client-${wallet}` },
       global: { headers: { "x-wallet-address": wallet }, fetch: createWalletSessionFetch() },
     });
     walletClients.set(wallet, client);
