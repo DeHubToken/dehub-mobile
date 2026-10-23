@@ -1,0 +1,34 @@
+name: Prepare security dependency updates
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/security-dependencies.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Resolve compatible security updates without installing native packages
+        run: |
+          npm audit --package-lock-only --json > audit-before.json || test "$?" -eq 1
+          npm audit fix --package-lock-only --ignore-scripts --legacy-peer-deps > resolution.txt 2>&1 || test "$?" -eq 1
+          npm audit --package-lock-only --json > audit-after.json || test "$?" -eq 1
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: security-dependency-candidate
+          path: |
+            package.json
+            package-lock.json
+            pnpm-lock.yaml
+            audit-before.json
+            audit-after.json
+            resolution.txt
