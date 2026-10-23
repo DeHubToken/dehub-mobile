@@ -535,10 +535,7 @@ const AnimBar: React.FC<AnimBarProps> = memo(
 
 const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
   ({ seed, isPlaying, hue, height, mode, onLayout }) => {
-    // Bars stand on a floor above the play row and the studio deck, which
-    // both cover the bottom fifth of the band, and stop short of the top row.
-    const floor = mode === "bars" ? Math.round(height * 0.22) : 0;
-    const maxH = mode === "mirror" ? height / 2 - 2 : Math.max(8, height * 0.6);
+    const maxH = mode === "mirror" ? height / 2 - 2 : height;
     const minH = 3;
     const bars = useMemo(() => generateBars(seed, BAR_COUNT), [seed]);
     const clock = useClock(isPlaying, 2400);
@@ -551,7 +548,6 @@ const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
           flexDirection: "row",
           alignItems: mode === "mirror" ? "center" : "flex-end",
           height,
-          paddingBottom: floor,
           justifyContent: "center",
         }}
       >
@@ -590,6 +586,99 @@ const BarsVisualizer: React.FC<BandProps & { mode: "bars" | "mirror" }> = memo(
     );
   },
 );
+
+/* ─── Bars, as web draws them ─────────────────────────────────────────────
+
+   Web's `drawBars`: 56 bars spread across the whole band, a 22% gap, rounded
+   tops, standing on the bottom edge and reaching up to 88% of the height, a
+   bright peak cap on each, and a ramp that fades the bars toward their roots.
+   Paused, they hold the track's own shape (web's idle frame); playing, each
+   one swings on its own beat. Same seed, same silhouette as web. */
+
+const WEB_BAR_COUNT = 56;
+
+interface WebBarProps {
+  index: number;
+  clock: SharedValue<number>;
+  drive: SharedValue<number>;
+  level: number;
+  maxH: number;
+  x: number;
+  width: number;
+  color: string;
+  capColor: string;
+}
+
+const WebBar: React.FC<WebBarProps> = memo(({ index, clock, drive, level, maxH, x, width, color, capColor }) => {
+  const rate = 2 + ((index * 47) % 4);
+  const offset = ((index * 23) % 180) / 180;
+  const capH = Math.max(2, Math.min(3, maxH * 0.025));
+  const barStyle = useAnimatedStyle(() => {
+    const swing = Math.sin((clock.value * rate + offset) * TAU) ** 2;
+    const playing = Math.min(1, level * (0.55 + 0.6 * swing));
+    const v = level + (playing - level) * drive.value;
+    return { height: Math.max(2, v * maxH) };
+  });
+  const capStyle = useAnimatedStyle(() => {
+    const swing = Math.sin((clock.value * rate + offset) * TAU) ** 2;
+    const playing = Math.min(1, level * (0.55 + 0.6 * swing));
+    const v = level + (playing - level) * drive.value;
+    return { bottom: Math.max(2, v * maxH) + 1 };
+  });
+  const radius = Math.min(width / 2, 4);
+  return (
+    <>
+      <Animated.View
+        style={[
+          { position: "absolute", left: x, bottom: 0, width, backgroundColor: color, borderTopLeftRadius: radius, borderTopRightRadius: radius },
+          barStyle,
+        ]}
+      />
+      <Animated.View
+        style={[{ position: "absolute", left: x, width, height: capH, borderRadius: capH / 2, backgroundColor: capColor }, capStyle]}
+      />
+    </>
+  );
+});
+
+const WebBarsVisualizer: React.FC<BandProps> = memo(({ seed, isPlaying, hue, height, onLayout }) => {
+  const { width, handleLayout } = useBandWidth(onLayout);
+  // Web's gamma: a linear map would leave everything but the loud middle on the floor.
+  const levels = useMemo(() => generateBars(seed, WEB_BAR_COUNT).map((v) => Math.pow(Math.min(1, v), 0.72)), [seed]);
+  const clock = useClock(isPlaying, 2400);
+  const drive = useDrive(isPlaying);
+  const gap = Math.max(1, (width / WEB_BAR_COUNT) * 0.22);
+  const barWidth = Math.max(1, (width - gap * (WEB_BAR_COUNT - 1)) / WEB_BAR_COUNT);
+  const maxH = height * 0.88;
+  const color = tint(hue, 74, 1);
+  const capColor = tint(hue, 88, 0.85);
+
+  return (
+    <View onLayout={handleLayout} style={{ height, overflow: "hidden" }}>
+      {width > 0 && levels.map((level, i) => (
+        <WebBar
+          key={i}
+          index={i}
+          clock={clock}
+          drive={drive}
+          level={level}
+          maxH={maxH}
+          x={i * (barWidth + gap)}
+          width={barWidth}
+          color={color}
+          capColor={capColor}
+        />
+      ))}
+      {/* Web's ramp: bright at the tips, half strength at the roots. */}
+      <LinearGradient
+        pointerEvents="none"
+        colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.12)", "rgba(0,0,0,0.5)"]}
+        locations={[0, 0.55, 1]}
+        style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: maxH }}
+      />
+    </View>
+  );
+});
 
 /* ─── Wave — the oscilloscope trace ─────────────────────────────────────── */
 
@@ -1688,6 +1777,7 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = memo((props) => {
     case "orb":
       return <OrbVisualizer {...band} />;
     case "bars":
+      return <WebBarsVisualizer {...band} />;
     case "mirror":
       return <BarsVisualizer {...band} mode={style} />;
     case "static":
