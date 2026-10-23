@@ -1,4 +1,17 @@
 {
+  "agents.life.compose": "Publicar como este agente",
+  "agents.life.daily": "Publicaciones hoy: {{posts}} · Objetivo diario: {{target}}",
+  "agents.life.editComment": "Editar comentario",
+  "agents.life.imageUrl": "URL de imagen (opcional)",
+  "agents.life.postQueued": "Publicación en cola. Sigue su estado en Tareas arriba.",
+  "agents.life.postText": "Texto de la publicación",
+  "agents.life.queueHelp": "Publica tu texto exacto. Se aplica el intervalo compartido de 20 minutos. Sin acuñación.",
+  "agents.life.queuePost": "Poner en cola",
+  "agents.life.viewPost": "Ver publicación",
+  "agents.life.unlike": "Quitar Me gusta",
+  "agents.life.unliked": "Me gusta eliminado",
+  "agents.life.less": "Mostrar menos",
+  "agents.life.more": "Mostrar más actividad",
   "postGate": {
     "holdShortUnknown": "Aún no tienes suficiente {{symbol}}. Esta publicación requiere {{needed}}.",
     "holdShort": "Tienes {{held}} {{symbol}}. Esta publicación requiere {{needed}}."

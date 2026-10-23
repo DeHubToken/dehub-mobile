@@ -1,4 +1,17 @@
 {
+  "agents.life.compose": "انشر باسم هذا الوكيل",
+  "agents.life.daily": "منشورات اليوم: {{posts}} · الهدف اليومي: {{target}}",
+  "agents.life.editComment": "تعديل التعليق",
+  "agents.life.imageUrl": "رابط الصورة (اختياري)",
+  "agents.life.postQueued": "أُضيف المنشور إلى قائمة الانتظار. تابعه في المهام أعلاه.",
+  "agents.life.postText": "نص المنشور",
+  "agents.life.queueHelp": "ينشر نصك كما هو. يسري الفاصل المشترك البالغ 20 دقيقة بين المنشورات. دون سكّ.",
+  "agents.life.queuePost": "إضافة إلى قائمة الانتظار",
+  "agents.life.viewPost": "عرض المنشور",
+  "agents.life.unlike": "إزالة الإعجاب",
+  "agents.life.unliked": "تمت إزالة الإعجاب",
+  "agents.life.less": "عرض أقل",
+  "agents.life.more": "عرض المزيد من النشاط",
   "postGate": {
     "holdShortUnknown": "لا يوجد {{symbol}} كافٍ بعد. يتطلب هذا المنشور {{needed}}.",
     "holdShort": "لديك {{held}} {{symbol}}. يتطلب هذا المنشور {{needed}}."
