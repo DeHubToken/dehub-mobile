@@ -258,7 +258,7 @@ describe("dm-e2ee client flow", () => {
     unloadIdentity();
     await loadIdentity(A);
     expect(await decryptFromPeer(B, oldMessage)).toBe('old history');
-    expect(await decryptFromPeer(B, incoming)).toBe('new history');
+    expect(await Promise.all(Array.from({ length: 10 }, () => decryptFromPeer(B, incoming)))).toEqual(Array(10).fill('new history'));
     // The same current session must encrypt to the refreshed key.
     const reply = (await encryptForPeer(B, 'reply'))!;
     expect(decryptText(reply, deriveSessionKey(rotated.privateKey, mine.publicKey, B, A))).toBe('reply');
@@ -290,6 +290,19 @@ describe("dm-e2ee client flow", () => {
     expect(JSON.parse((await SecureStore.getItemAsync("dehub_dm_e2ee_" + A))!)).toEqual(oldRecord);
     expect(mockRegistry.has(A)).toBe(false);
     expect(getIdentity()).toBeNull();
+  });
+
+  it('keeps the identity and published key when replacement cannot be saved', async () => {
+    await become(A);
+    const before = await SecureStore.getItemAsync("dehub_dm_e2ee_" + A);
+    const publicKey = getIdentity()!.publicKey;
+    const save = jest.spyOn(SecureStore, 'setItemAsync').mockRejectedValueOnce(new Error('Storage full'));
+    try {
+      await expect(setupIdentity(A)).rejects.toThrow('Storage full');
+      expect(await SecureStore.getItemAsync("dehub_dm_e2ee_" + A)).toBe(before);
+      expect(getIdentity()!.publicKey).toBe(publicKey);
+      expect(mockRegistry.get(A)).toBe(publicKey);
+    } finally { save.mockRestore(); }
   });
 
 });
