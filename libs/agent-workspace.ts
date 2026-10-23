@@ -45,4 +45,3 @@ export function workspaceCounts(data?: WorkspaceOverview) {
     succeeded: data?.receipts.filter(receipt => receipt.status === 'succeeded').length ?? 0,
   };
 }
-
