@@ -25,7 +25,7 @@ import { useAppTheme } from '../../context/ThemeContext';
 
 export const MUSIC_CARD_WIDTH = 240;
 
-const MusicVideoCard: React.FC<{ nft: GetNFTsResult }> = ({ nft }) => {
+const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft, wide = false }) => {
   const { theme, skin } = useAppTheme();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
@@ -39,7 +39,8 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult }> = ({ nft }) => {
     "Anonymous";
   const handle = (nft as any).minterUsername || (nft as any).mintername || (nft as any).minter;
   const rawThumb = (nft as any).thumbnail || nft.thumbnailUrl || nft.imageUrl || "";
-  const thumb = getImageUrl(rawThumb, MUSIC_CARD_WIDTH);
+  // A chart's picked video spans the feed, so it asks for a bigger image.
+  const thumb = getImageUrl(rawThumb, wide ? 640 : MUSIC_CARD_WIDTH);
   const rawAvatar = (nft as any).minterAvatarUrl || (nft as any).minterUser?.avatarImageUrl || "";
   const duration = secondsToHMMSS(nft.videoDuration);
 
@@ -56,7 +57,7 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult }> = ({ nft }) => {
   }, [handle, showUserProfile]);
 
   return (
-    <View style={[styles.card, theme === 'glass' && skin?.card]}>
+    <View style={[styles.card, theme === 'glass' && skin?.card, wide && { width: '100%' }]}>
       <TouchableOpacity onPress={openPost} activeOpacity={0.85} style={styles.thumbWrap}>
         {thumb ? (
           <Image source={{ uri: thumb }} style={StyleSheet.absoluteFill} contentFit="cover" transition={150} />

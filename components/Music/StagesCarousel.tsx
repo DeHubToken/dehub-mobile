@@ -28,13 +28,13 @@ import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
 import StageCoverArt from "../Stages/StageCoverArt";
 
-const StageCard: React.FC<{ space: AudioSpace; onPress: () => void }> = ({ space, onPress }) => {
+export const StageCard: React.FC<{ space: AudioSpace; onPress: () => void; wide?: boolean }> = ({ space, onPress, wide = false }) => {
   const { t } = useTranslation();
   const heads = Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0));
   const host = space.host_username || String(space.host_wallet_address || "").slice(0, 6);
 
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.85} style={styles.card}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.85} style={[styles.card, wide && styles.cardWide]}>
       {/* The host's cover, or the stage's generated poster when there is none. */}
       <StageCoverArt uri={space.cover_image_url} title={space.title} stage={space} />
       <View style={styles.cardBody}>
@@ -143,13 +143,16 @@ const StagesCarousel: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   section: {
     marginBottom: 20,
   },
   listContent: {
     gap: 12,
     paddingHorizontal: FEED_SIDE,
+  },
+  cardWide: {
+    width: "100%",
   },
   card: {
     width: 260,
