@@ -19,6 +19,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { VideoView } from "expo-video";
 import { usePostVideoPlayer } from "../hooks/usePostVideoPlayer";
+import { hasHlsFailed, markHlsFailed, useHlsFallback } from "../libs/hls-fallback";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import {
@@ -72,7 +73,8 @@ const FullscreenVideoScreen = () => {
   const navigation = useNavigation<any>();
 
   const {
-    videoUrl,
+    videoUrl: handedUrl,
+    downloadUrl,
     startTime = 0,
     isMuted: initialMuted = false,
     thumbnail,
@@ -86,6 +88,11 @@ const FullscreenVideoScreen = () => {
   /** The storyboard tile shows while a finger is dragging the timeline. */
   const [isScrubbing, setIsScrubbing] = useState(false);
   const [trackWidth, setTrackWidth] = useState(0);
+  // The feed hands over its own source, the HLS ladder when the post has one,
+  // so the player carries straight over. downloadUrl is the MP4: what the
+  // download saves, and what plays here if the ladder fails.
+  const videoUrl: string | undefined = useHlsFallback(() =>
+    downloadUrl && hasHlsFailed(handedUrl) ? downloadUrl : handedUrl);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
@@ -201,6 +208,9 @@ const FullscreenVideoScreen = () => {
         if (!ownsPlayer()) return;
         setIsBuffering(status === "loading");
         if (status === "readyToPlay" && player.duration > 0) setVideoDuration(player.duration);
+        // Nothing here retries, so a ladder that errors is retired at once and
+        // the MP4 gets a fresh player (and the card behind follows it).
+        if (status === "error") markHlsFailed(videoUrl);
       }));
     } catch {}
     try {
@@ -216,7 +226,7 @@ const FullscreenVideoScreen = () => {
       }));
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, ownsPlayer]);
+  }, [player, ownsPlayer, videoUrl]);
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -452,9 +462,9 @@ const FullscreenVideoScreen = () => {
           </View>
           <View style={styles.splitGroup}>
             <PictureInPictureButton videoRef={videoViewRef} plain />
-            {videoUrl && <Pressable style={styles.plainButton} accessibilityRole="button"
+            {!!(downloadUrl ?? videoUrl) && <Pressable style={styles.plainButton} accessibilityRole="button"
               accessibilityLabel={t('postOptions.download')}
-              onPress={() => { player.pause(); void downloadVideo({ url: videoUrl, title: downloadTitle || 'video', username: creatorUsername }); }}>
+              onPress={() => { player.pause(); void downloadVideo({ url: downloadUrl ?? videoUrl, title: downloadTitle || 'video', username: creatorUsername }); }}>
               <MediaControlIcon name="Download" plain />
             </Pressable>}
             <Pressable onPress={handleToggleRotation} style={styles.plainButton}

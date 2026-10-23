@@ -5,6 +5,7 @@ import { fetchVideoAccess, isVideoAccessExpiring, useVideoAccess, videoNeedsAcce
 import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
 import { postMediaIsTransferring } from '../libs/post-media-session';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
+import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -104,6 +105,7 @@ import { appliedEngagementWeight } from "../libs/engagement-weight";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
+  getPlaybackUrl,
   getShortsThumbnailUrl,
   resolveThumbnail,
   DEFAULT_BANNER_SENTINEL,
@@ -374,7 +376,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const viewer = useUser();
   const signedShort = !photoMedia && videoNeedsAccess(item);
   const shortAccess = useVideoAccess(tokenId, signedShort, viewer?.walletAddress || viewer?.address);
-  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : getVideoUrl(tokenId)) || undefined;
+  // Otherwise the same string FeedCard plays, so a card opened into the
+  // viewer keeps its player: the HLS ladder when the post has one, else the MP4.
+  const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
+  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : playbackUrl) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     // Shorts pause when the app is left; only a PiP window keeps them going.
     p.staysActiveInBackground = false;
@@ -640,6 +645,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   useEffect(() => {
     if (playbackPhase === 'failed' && shortAccess.data?.private && isVideoAccessExpiring(shortAccess.data)) void refetchShortAccess();
   }, [playbackPhase, shortAccess.data, refetchShortAccess]);
+  // A ladder that will not play is retired for the session. videoUrl then
+  // resolves to the MP4, and the isActive effect below starts its player.
+  useEffect(() => {
+    if (playbackPhase === 'failed') markHlsFailed(videoUrl);
+  }, [playbackPhase, videoUrl]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(player)) return;
     recovery.stop();

@@ -5,6 +5,7 @@ import { Platform } from "react-native";
 import { shareWithRef } from "./shareRef";
 import { cdnImage } from "./cdnImage";
 import { overrideTierNameFor } from "./badgeOverrides";
+import { hasHlsFailed, isHlsUrl } from "./hls-fallback";
 
 /**
  * Default avatar request size, in CSS points. Every avatar in this app renders
@@ -186,6 +187,26 @@ export function getVideoUrl(tokenId?: string | number | null): string | undefine
   const id = typeof tokenId === 'number' ? tokenId.toString() : tokenId.trim();
   if (!id) return undefined;
   return `${env.CDN_BASE_URL}/videos/${id}.mp4`;
+}
+
+/**
+ * What a post's video player loads: the adaptive HLS ladder when the API sent
+ * one, otherwise the MP4. `hlsUrl` is a bucket key like `videoUrl`, and only
+ * comes on public posts with a rendition ready, so old and gated posts keep
+ * the MP4. The MP4 stays the download and the fallback once a ladder fails
+ * (libs/hls-fallback).
+ *
+ * Players and their sessions are keyed by this string, so every surface that
+ * plays or hands off the same post has to go through here.
+ */
+export function getPlaybackUrl(
+  post: { tokenId?: string | number | null; hlsUrl?: string | null } | null | undefined,
+): string | undefined {
+  const key = post?.hlsUrl?.trim();
+  // Not a manifest: expo-video would not play it as HLS, and it could never be retired.
+  const hls = key && isHlsUrl(key) ? (/^https?:\/\//i.test(key) ? key : buildCdnPath(key)) : undefined;
+  if (hls && !hasHlsFailed(hls)) return hls;
+  return getVideoUrl(post?.tokenId);
 }
 
 export function getShortsThumbnailUrl(
@@ -905,6 +926,7 @@ export const Misc = {
   getImageUrl,
   getAudioUrl,
   getVideoUrl,
+  getPlaybackUrl,
   getShortsThumbnailUrl,
   getPreviewUrl,
   getBadgeUrl,
