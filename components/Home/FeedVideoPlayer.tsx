@@ -100,6 +100,7 @@ const playbackLog = createLogger("FeedVideoPlayer");
 /** Inline videos and their transport strip occupy at most 55% of the screen,
  *  a bit taller than X's long-form videos; feeds align them left. */
 const INLINE_MAX_SCREEN = 0.55;
+const controlStripHeight = (width: number) => VIDEO_CONTROL_STRIP_HEIGHT + (width < 320 ? 32 : 0);
 const postPageMaxHeightFor = (screenHeight: number, _boxWidth: number) =>
   screenHeight * INLINE_MAX_SCREEN;
 
@@ -117,11 +118,13 @@ const mediaBoxWidth = (
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
-  return Math.min(fullWidth, Math.max(1, win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)) * mediaAspect);
+  const candidate = Math.min(fullWidth, Math.max(1, win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)) * mediaAspect);
+  const reserved = strip ? controlStripHeight(candidate) : 0;
+  return Math.min(fullWidth, Math.max(1, win.height * INLINE_MAX_SCREEN - reserved) * mediaAspect);
 };
 
 const mediaBoxHeight = (win: { width: number; height: number }, width: number, aspect: number, postPage: boolean, strip: boolean) =>
-  Math.min(width / aspect + (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0), postPageMaxHeightFor(win.height, width));
+  Math.min(width / aspect + (strip ? controlStripHeight(width) : 0), postPageMaxHeightFor(win.height, width));
 
 /** Whether this device can pop a video out. Not every platform build of
  *  expo-video carries the check, so a missing one reads as "no". */
@@ -571,6 +574,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const feedPreview = !postPage && !!onOpenViewer && !isContentGated;
   const bareControls = !feedPreview;
   const splitControls = !hideControls && !isContentGated && !feedPreview;
+  const frameWidth = mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls);
+  const stripHeight = controlStripHeight(frameWidth);
+  const compactStrip = splitControls && frameWidth < 320;
   const stripOpacity = useRef(new Animated.Value(1)).current;
 
   const hideControlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -1316,7 +1322,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         // showing the previous card's thumbnail.
         <SmartImage
           source={{ uri: thumbnail }}
-          style={[styles.thumbnail, splitControls && styles.stripPicture]}
+          style={[styles.thumbnail, splitControls && [styles.stripPicture, { bottom: stripHeight }]]}
           contentFit={cropMedia ? "cover" : "contain"}
           recyclingKey={thumbnail}
           transition={0}
@@ -1345,7 +1351,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           // normal view hierarchy, so it respects z-order and clipping.
           surfaceType="textureView"
           onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
-          style={[styles.thumbnail, splitControls && styles.stripPicture, { opacity: firstFrameRendered && (hideControls
+          style={[styles.thumbnail, splitControls && [styles.stripPicture, { bottom: stripHeight }], { opacity: firstFrameRendered && (hideControls
             ? (hasStartedAutoplay && videoReady)
             : (isPlaying || hasStartedAutoplay)
           ) ? 1 : 0 }]}
@@ -1473,6 +1479,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               opacity={stripOpacity}
               showControls
               plainStrip
+              stripHeight={stripHeight}
               label={t("player.progress")}
               progress={progressPercent}
               onStart={handleScrubStart}
@@ -1480,8 +1487,8 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
               onCommit={handleSeekCommit}
               onCancel={handleScrubCancel}
             >
-                <View pointerEvents="box-none" style={styles.bareBottomRow}>
-                  <View style={styles.stripTransport}>
+                <View pointerEvents="box-none" style={[styles.bareBottomRow, compactStrip && styles.compactBottomRow]}>
+                  <View style={[styles.stripTransport, compactStrip && styles.compactTransport]}>
                     <VideoScrubButton style={styles.bareButton} onPress={() => handleVideoPress()}
                       accessibilityRole="button" accessibilityLabel={t(isPlaying ? 'audioPost.pause' : 'audioPost.play')}>
                       <BareIcon name={isPlaying ? 'Pause' : 'Play'} plain />
@@ -1495,9 +1502,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
                         <View style={styles.volumeTrackInner}><View style={[styles.volumeFill, { height: `${Math.round((isMuted ? 0 : volume) * 100)}%` }]} /></View>
                       </View>}
                     </View>
-                    {windowSize.width >= 360 && <MediaControlLabel style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlLabel>}
+                    {frameWidth >= 360 && <MediaControlLabel style={[styles.timeText, styles.bareTime]}>{formatTime(Math.max(0, Math.ceil(videoDuration - currentTime)))}</MediaControlLabel>}
                   </View>
-                  <View pointerEvents="none" style={{ flex: 1 }} />
+                  {!compactStrip && <View pointerEvents="none" style={{ flex: 1 }} />}
                 {tokenId != null && (
                   <VideoScrubButton
                     onPress={() => { captionControls?.openLanguages(); startHideTimer(); }}
@@ -1565,7 +1572,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           tokenId={tokenId}
           positionMs={captionPosMs}
           controlsVisible={splitControls || showControls}
-          bottomOffset={(splitControls ? VIDEO_CONTROL_STRIP_HEIGHT + 16 : showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
+          bottomOffset={(splitControls ? stripHeight + 16 : showControls ? 56 : 16) + (bleed?.bottomInset ?? 0)}
           player={player}
           isPlaying={isPlaying}
           hideButton={bareControls}
@@ -1740,6 +1747,8 @@ const styles = StyleSheet.create({
   },
   stripPicture: { bottom: VIDEO_CONTROL_STRIP_HEIGHT, height: undefined },
   stripTransport: { flexDirection: 'row', alignItems: 'center', gap: 2 },
+  compactBottomRow: { flexWrap: 'wrap', justifyContent: 'space-between' },
+  compactTransport: { width: '100%' },
   noThumb: {
     backgroundColor: "#27272a",
     alignItems: "center",
@@ -2099,6 +2108,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const windowSize = useWindowDimensions();
     const cropMedia = false;
     const splitControls = !hideControls && !feedPreview;
+    const stripHeight = controlStripHeight(mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls));
     const mediaTap = useTapOnlyPress(() => onPress());
     return (
       <View
@@ -2117,7 +2127,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         {thumbnail ? (
           <SmartImage
             source={{ uri: thumbnail }}
-            style={[styles.thumbnail, splitControls && styles.stripPicture]}
+            style={[styles.thumbnail, splitControls && [styles.stripPicture, { bottom: stripHeight }]]}
             contentFit={cropMedia ? "cover" : "contain"}
             recyclingKey={thumbnail}
             transition={0}
