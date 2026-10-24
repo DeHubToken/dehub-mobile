@@ -30,6 +30,7 @@ import StageCoverArt from "../components/Stages/StageCoverArt";
 import StageRecordingPlayer from "../components/Stages/StageRecordingPlayer";
 import { HostRow, formatStageDate, stageDuration } from "../components/Stages/StageCards";
 import { StageTranscriptSheet } from "../components/Stages/StageTranscriptSheet";
+import StageRecordingLanguage from '../components/Stages/StageRecordingLanguage';
 import TVChatPanel from "../components/TV/TVChatPanel";
 import { useAppTheme } from "../context/ThemeContext";
 import { ShareLinks } from "../navigation/linking.config";
@@ -157,6 +158,7 @@ export default function StageRecordingScreen() {
             )}
 
             <View style={styles.actions}>
+              {!!space.recording_url && <StageRecordingLanguage space={space} />}
               {!!space.recording_url && (
                 <TouchableOpacity
                   onPress={() => setTranscriptOpen(true)}

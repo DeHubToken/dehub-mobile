@@ -28,6 +28,8 @@ import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import StageRateButton from "./StageRateButton";
 import StageWaveform from "./StageWaveform";
+import StageRecordingDubEngine from './StageRecordingDubEngine';
+import StageRecordingLanguage from './StageRecordingLanguage';
 import { useStages } from "../../context/StageContext";
 import {
   closeStagePopout,
@@ -44,11 +46,11 @@ const StageRecordingMiniPlayer: React.FC = () => {
     useStagePlayback();
   const { currentSpace, isConnected } = useStages();
 
-  if (!spaceId || !popout) return null;
-
   const liveBarShowing = !!currentSpace && isConnected;
 
   return (
+    <><StageRecordingDubEngine />
+    {spaceId && popout && (
     <View
       style={[styles.container, theme === 'glass' && skin?.card, liveBarShowing && styles.aboveLiveBar]}
       accessibilityLabel={t("stages.recordingPlayback")}
@@ -99,7 +101,8 @@ const StageRecordingMiniPlayer: React.FC = () => {
         {!!timeLeft && <Text style={styles.time}>{timeLeft}</Text>}
         <StageRateButton />
       </View>
-    </View>
+      <View style={{ marginTop: 8 }}><StageRecordingLanguage space={{ id: spaceId }} /></View>
+    </View>)}</>
   );
 };
 

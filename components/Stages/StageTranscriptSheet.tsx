@@ -23,7 +23,7 @@ import Dropdown from "../ui/Dropdown";
 import GlassModal from "../ui/GlassModal";
 import StageRecordingPlayer from "./StageRecordingPlayer";
 import { seekStageRecordingToTime, useStagePlayback } from "../../libs/stage-playback";
-import { useStageReplayDub } from '../../hooks/useStageReplayDub';
+import { setStageRecordingLanguage, useStageRecordingLanguage } from '../../libs/stage-recording-language';
 import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, SpeakerOverride } from "../../hooks/useStages";
 import { ButtonLoader, DeHubLoader } from "../DeHubLoader";
 import { usePendingAction } from "../../hooks/usePendingAction";
@@ -156,7 +156,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   const [hasRetriedLegacy, setHasRetriedLegacy] = useState(false);
 
   // Translation state
-  const [language, setLanguage] = useState("original");
+  const selectedAudio = useStageRecordingLanguage(space?.id);
+  const language = selectedAudio.language;
+  const setLanguage = (value: string) => { if (space) setStageRecordingLanguage(space.id, value); };
   const translationKey = useRef('');
   const [translationLanguage, setTranslationLanguage] = useState('');
   const [translation, setTranslation] = useState<{
@@ -178,9 +180,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   // store now serves stages and videos alike.
   const transcriptId = (transcript as any)?.id ?? null;
   translationKey.current = `${transcriptId}:${language}`;
-  const dubLanguage = visible && language !== 'original' && language !== transcript?.source_language ? language : null;
-  const replayDub = useStageReplayDub(stageId, transcriptId, dubLanguage,
-    translationLanguage === language && translation?.status === 'ready' ? translation.segments : null);
+  const dubLanguage = language !== 'original' && language !== transcript?.source_language ? language : null;
+  const replayDub = { ready: selectedAudio.status === 'ready' || selectedAudio.status === 'original', failed: selectedAudio.status === 'failed' };
   const isHost =
     !!walletAddress &&
     !!space?.host_wallet_address &&
@@ -314,7 +315,6 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
     if (!visible) {
       setTranscript(null);
       setTranslation(null);
-      setLanguage("original");
       setSearchQuery.initialize("");
       setRenamingSpeaker(null);
       setHasRetriedLegacy(false);
