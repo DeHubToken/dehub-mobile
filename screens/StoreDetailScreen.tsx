@@ -5,7 +5,7 @@
  * banner, identity and its active listings.
  */
 import { appLocale } from "../libs/date.util";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -37,6 +37,31 @@ import { useStoreById, useStoreListings, type StoreListing } from "../hooks/useS
 
 const GRID_GAP = 10;
 const H_PADDING = 16;
+
+function StoreBanner({ uri, width }: { uri: string; width: number }) {
+  const [failedUri, setFailedUri] = useState<string | null>(null);
+  return (
+    <View style={styles.banner}>
+      {failedUri !== uri && (
+        <Image source={storageImageSource(uri, width)} style={StyleSheet.absoluteFill} contentFit="cover" onError={() => setFailedUri(uri)} />
+      )}
+    </View>
+  );
+}
+
+function StoreThumbnail({ uri, width }: { uri: string | null; width: number }) {
+  const [failedUri, setFailedUri] = useState<string | null>(null);
+  return (
+    <>
+      <View style={styles.thumbFallback}>
+        <Icon name="Package" size={24} color="#3F3F46" />
+      </View>
+      {!!uri && failedUri !== uri && (
+        <Image source={storageImageSource(uri, width)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} onError={() => setFailedUri(uri)} />
+      )}
+    </>
+  );
+}
 
 function money(n: number): string {
   const v = Number(n) || 0;
@@ -89,7 +114,7 @@ export default function StoreDetailScreen() {
     // draws it (full width on System and minimal, an 8pt card elsewhere).
     <PageSection flush style={[styles.headerSection, { marginHorizontal: flat ? -H_PADDING : 8 - H_PADDING }]}>
       {!!store?.banner_url && (
-        <Image source={storageImageSource(store.banner_url, screenW)} style={styles.banner} contentFit="cover" />
+        <StoreBanner uri={store.banner_url} width={screenW} />
       )}
       <View style={styles.identity}>
         <Avatar
@@ -122,13 +147,7 @@ export default function StoreDetailScreen() {
         }
       >
         <View style={[styles.thumbWrap, { height: cardWidth }]}>
-          {img ? (
-            <Image source={storageImageSource(img, cardWidth)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
-          ) : (
-            <View style={styles.thumbFallback}>
-              <Icon name="Package" size={24} color="#3F3F46" />
-            </View>
-          )}
+          <StoreThumbnail uri={img} width={cardWidth} />
           {!!item.external_url && (
             <View style={styles.podPill}>
               <Text style={styles.podText} numberOfLines={1}>
