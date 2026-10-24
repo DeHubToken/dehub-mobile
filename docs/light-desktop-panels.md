@@ -8,6 +8,8 @@ straight panel, search-field and tab corners:
   border or shadow.
 - Panel cards use 20px corners; the shorter search field uses 12px corners.
 - Panels have equal 16px top and side padding.
+- The right rail starts 6px from the viewport top, aligned with System's
+  feed navigation pill. Panel widths and internal spacing stay unchanged.
 - Icon tabs share the available width, with 44px height and 8px gaps.
 - Selected tabs have a white surface and a restrained shadow.
 - The expanded desktop navigation uses the same material and 16px inset;
