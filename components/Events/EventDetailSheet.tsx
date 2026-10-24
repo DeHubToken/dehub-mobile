@@ -468,18 +468,21 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
           tipContext="user"
           recipientName={creatorName}
           lockedAmount={event.gate_fee}
-          onSuccess={(amount, txHash) => {
+          onSuccess={(amount, txHash, paid) => {
             setShowPay(false);
             if (!txHash || !wallet) return;
+            // Record the chain the wallet actually paid on and the account that
+            // signed — not an assumed Base and profile wallet, or the payment
+            // cannot be verified and the guest stays locked out after paying.
             recordEventGatePayment({
               eventId: event.id,
-              payer: wallet,
+              payer: paid?.payer ?? wallet,
               creator: event.creator_wallet_address,
               amount,
               txHash,
-              chainId: BASE_CHAIN_ID,
+              chainId: paid?.chainId ?? BASE_CHAIN_ID,
             })
-              .catch(() => {})
+              .catch(() => toastError(null, t("common.somethingWentWrong")))
               .finally(() => queryClient.invalidateQueries({ queryKey: ["event-gate-paid", event.id] }));
           }}
         />

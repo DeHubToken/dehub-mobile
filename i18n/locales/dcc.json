@@ -4981,7 +4981,12 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نئیں ہو سکے"
   },
-  "stats": {"chart": {"daily": "روزانہ آنے والے", "dailyHint": "روزانہ الگ الگ آنے والے", "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"},
+  "stats": {
+    "chart": {
+      "daily": "روزانہ آنے والے",
+      "dailyHint": "روزانہ الگ الگ آنے والے",
+      "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"
+    },
     "definitions": {
       "visitorsTerm": "آنے والے"
     },
@@ -9695,5 +9700,15 @@
     "timeout10m": "دس منٹوں کے لئے ٹائم آؤٹ",
     "failed": "اِس کا کام نہیں ہوا۔ دوبارہ کوشش کرو۔",
     "title": "معتدل"
+  },
+  "loginStack": {
+    "aiRestyle": "AI रीस्टाइल",
+    "headlineTop": "آپ ہر چیز کا مالک ہوں گے",
+    "headlineAccent": "اور خوش رہیں گے۔",
+    "orContinueWith": "یا جاری رکھیں",
+    "phone": "فون",
+    "fingerprint": "فنگر پرنٹ",
+    "exploreFirst": "پہلے ایکسپلور کریں",
+    "codeNote": "ہم آپ کو ایک کوڈ ای میل کرتے ہیں، پاس ورڈ کی ضرورت نہیں۔"
   }
 }

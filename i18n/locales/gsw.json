@@ -5053,7 +5053,12 @@
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "D Events hend nid chönne glade werde"
   },
-  "stats": {"chart": {"daily": "Bsucher pro Tag", "dailyHint": "eindütigi Bsucher pro Tag", "empty": "No kei Date für die Periode"},
+  "stats": {
+    "chart": {
+      "daily": "Bsucher pro Tag",
+      "dailyHint": "eindütigi Bsucher pro Tag",
+      "empty": "No kei Date für die Periode"
+    },
     "definitions": {
       "visitorsTerm": "Bsucher"
     },
@@ -9814,5 +9819,15 @@
     "youAreBanned": "Du kannst net in deim Creator-Streams chattaa.",
     "youAreTimedOut": "Du bisch für e Moment zu langsam.",
     "title": "Mässige"
+  },
+  "loginStack": {
+    "aiRestyle": "KI-Restyle",
+    "headlineTop": "Du wirsch alles ha",
+    "headlineAccent": "und glücklich si.",
+    "orContinueWith": "oder witergo mit",
+    "phone": "Telefon",
+    "fingerprint": "Fingerschtick",
+    "exploreFirst": "Zuerst entdecke",
+    "codeNote": "Mir schicke dir e Code per E‑Mail, kei Passwort nötig."
   }
 }

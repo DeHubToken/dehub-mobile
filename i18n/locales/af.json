@@ -5058,7 +5058,12 @@
     "interestedCount": "{{count}} belangstellend",
     "loadFailed": "Kon nie geleenthede laai nie"
   },
-  "stats": {"chart": {"daily": "Besoekers per dag", "dailyHint": "unieke besoekers per dag", "empty": "Nog geen data vir hierdie tydperk nie"},
+  "stats": {
+    "chart": {
+      "daily": "Besoekers per dag",
+      "dailyHint": "unieke besoekers per dag",
+      "empty": "Nog geen data vir hierdie tydperk nie"
+    },
     "definitions": {
       "visitorsTerm": "Besoekers"
     },
@@ -9928,5 +9933,15 @@
     "youAreBanned": "Jy kan nie in hierdie skepper se streams praat nie",
     "youAreTimedOut": "Jy is vir ’n oomblik tyd uit",
     "title": "Modereer"
+  },
+  "loginStack": {
+    "aiRestyle": "KI-herstilering",
+    "headlineTop": "Jy sal alles besit",
+    "headlineAccent": "en wees gelukkig.",
+    "orContinueWith": "of gaan voort met",
+    "phone": "Foon",
+    "fingerprint": "Vingerafdruk",
+    "exploreFirst": "Verken eers",
+    "codeNote": "Ons stuur vir jou 'n kode, geen wagwoord nodig nie."
   }
 }

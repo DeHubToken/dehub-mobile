@@ -5025,7 +5025,12 @@
     "interestedCount": "{{count}} domisi",
     "loadFailed": "Nepavyko įkelti renginių"
   },
-  "stats": {"chart": {"daily": "Lankytojų per dieną", "dailyHint": "unikalių lankytojų per dieną", "empty": "Šiam laikotarpiui duomenų dar nėra"},
+  "stats": {
+    "chart": {
+      "daily": "Lankytojų per dieną",
+      "dailyHint": "unikalių lankytojų per dieną",
+      "empty": "Šiam laikotarpiui duomenų dar nėra"
+    },
     "definitions": {
       "visitorsTerm": "Lankytojai"
     },
@@ -9802,5 +9807,15 @@
     "youAreBanned": "Negalite kalbėtis šio kūrėjo straumėjuose",
     "youAreTimedOut": "Jūs nutraukti laiko ribą akimirką",
     "title": "Moderuoti"
+  },
+  "loginStack": {
+    "aiRestyle": "AI stiliaus keitimas",
+    "headlineTop": "Jums priklausys viskas",
+    "headlineAccent": "ir būkite laimingi.",
+    "orContinueWith": "arba tęskite su",
+    "phone": "Telefonas",
+    "fingerprint": "Piršto atspaudas",
+    "exploreFirst": "Pirmiausia peržiūrėkite",
+    "codeNote": "Siunčiame kodą el. paštu, slaptažodžio nereikia."
   }
 }

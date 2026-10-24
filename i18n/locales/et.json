@@ -5025,7 +5025,12 @@
     "interestedCount": "{{count}} huvitatud",
     "loadFailed": "Üritusi ei õnnestunud laadida"
   },
-  "stats": {"chart": {"daily": "Külastajaid päevas", "dailyHint": "unikaalseid külastajaid päevas", "empty": "Selle perioodi kohta pole veel andmeid"},
+  "stats": {
+    "chart": {
+      "daily": "Külastajaid päevas",
+      "dailyHint": "unikaalseid külastajaid päevas",
+      "empty": "Selle perioodi kohta pole veel andmeid"
+    },
     "definitions": {
       "visitorsTerm": "Külastajad"
     },
@@ -9802,5 +9807,15 @@
     "youAreBanned": "Saad saadikejuhtide voogudes kirjutada.",
     "youAreTimedOut": "Sa oled hetkel aeg katkestatud.",
     "title": "Modereerida"
+  },
+  "loginStack": {
+    "aiRestyle": "AI-ümberstiil",
+    "headlineTop": "Kõik kuulub sulle",
+    "headlineAccent": "ja olla õnnelik.",
+    "orContinueWith": "või jätkake",
+    "phone": "Telefon",
+    "fingerprint": "Sõrmejälg",
+    "exploreFirst": "Esmalt uuri",
+    "codeNote": "Saadame sulle e-kirjaga koodi, parooli pole vaja."
   }
 }

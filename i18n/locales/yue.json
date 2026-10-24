@@ -5018,7 +5018,12 @@
     "interestedCount": "{{count}} 人感興趣",
     "loadFailed": "無法載入活動"
   },
-  "stats": {"chart": {"daily": "每日訪客", "dailyHint": "每日獨立訪客", "empty": "呢段時間仲未有數據"},
+  "stats": {
+    "chart": {
+      "daily": "每日訪客",
+      "dailyHint": "每日獨立訪客",
+      "empty": "呢段時間仲未有數據"
+    },
     "definitions": {
       "visitorsTerm": "訪客"
     },
@@ -9788,5 +9793,15 @@
     "youAreBanned": "你不能在這位創作者的直播間聊天",
     "youAreTimedOut": "你暫時被時間停止",
     "title": "管理"
+  },
+  "loginStack": {
+    "aiRestyle": "AI 換風格",
+    "headlineTop": "你會擁有所有嘢",
+    "headlineAccent": "同埋開心啲。",
+    "orContinueWith": "或者繼續用",
+    "phone": "電話",
+    "fingerprint": "指紋",
+    "exploreFirst": "探索先",
+    "codeNote": "我哋會電郵畀你一個代碼，唔需要密碼。"
   }
 }
