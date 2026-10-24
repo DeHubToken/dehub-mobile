@@ -3179,6 +3179,8 @@
     "tabSearch": "Cari"
   },
   "postInfo": {
+    "ownersUnavailable": "Pemilik semasa tidak boleh dibaca sekarang.",
+    "unavailable": "Tidak tersedia",
     "title": "Info Pos",
     "tokenId": "ID Token",
     "mintedOn": "Dihasilkan Pada",
@@ -5228,6 +5230,8 @@
     "displayNameHint": "Nama awam anda yang dipaparkan pada profil. Pilihan — biarkan kosong untuk menggunakan nama pengguna anda."
   },
   "events": {
+    "deleteConfirmBody": "Ini membuang acara, senarai tetamu dan sembangnya untuk semua orang. Ia tidak boleh dibatalkan.",
+    "deleteConfirmTitle": "Hapuskan acara ini?",
     "youreApproved": "Anda telah diluluskan",
     "youAreCreator": "Anda adalah pencipta",
     "typeMessage": "Taip mesej...",

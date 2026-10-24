@@ -2921,6 +2921,8 @@
     "tabSearch": "Cerca"
   },
   "postInfo": {
+    "ownersUnavailable": "Ara mateix no es pot llegir els propietaris actuals.",
+    "unavailable": "No disponible",
     "title": "Informació de la publicació",
     "tokenId": "ID del token",
     "mintedOn": "Creat el",
@@ -4970,6 +4972,8 @@
     "displayNameHint": "El teu nom públic al perfil. Opcional: deixa'l en blanc per fer servir el teu nom d'usuari."
   },
   "events": {
+    "deleteConfirmBody": "Això elimina l'esdeveniment, la llista de convidats i el xat per a tothom. No es pot desfer.",
+    "deleteConfirmTitle": "Vols eliminar aquest esdeveniment?",
     "youreApproved": "Estàs aprovat",
     "youAreCreator": "Ets el creador",
     "typeMessage": "Escriu un missatge...",

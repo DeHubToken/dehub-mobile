@@ -3242,6 +3242,8 @@
     "tabSearch": "Ara"
   },
   "postInfo": {
+    "ownersUnavailable": "Mevcut sahipler şu anda okunamıyor.",
+    "unavailable": "Uygun değil",
     "title": "Gönderi Bilgisi",
     "tokenId": "Token Kimliği",
     "mintedOn": "Basım Tarihi",
@@ -5376,6 +5378,8 @@
     "displayNameHint": "Profilindeki herkese açık adın. İsteğe bağlı — boş bırakırsan kullanıcı adın kullanılır."
   },
   "events": {
+    "deleteConfirmBody": "Bu, etkinliği, davetli listesini ve sohbeti herkes için kaldırır. Geri alınamaz.",
+    "deleteConfirmTitle": "Bu etkinlik silinsin mi?",
     "youreApproved": "Onaylandınız",
     "youAreCreator": "Etkinliği siz oluşturdunuz",
     "typeMessage": "Bir mesaj yazın...",
