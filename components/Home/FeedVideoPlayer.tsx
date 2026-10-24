@@ -203,6 +203,8 @@ interface FeedVideoPlayerProps {
   /** The person tapped play here, so the wrapper must keep this card mounted. */
   onUserStarted?: () => void;
   onPictureInPictureChange?: (active: boolean) => void;
+  /** The feed keeps its poster mounted underneath this temporary player. */
+  sharedPoster?: boolean;
 }
 
 // Grace period before a scrolled-to video gets a media source at all, so a
@@ -304,6 +306,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   autoplaySettled = false,
   onUserStarted,
   onPictureInPictureChange,
+  sharedPoster = false,
 }) => {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
@@ -1310,9 +1313,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         },
         (isMinimal || postPage) && MINIMAL_MEDIA,
         (postPage || bleed) && POST_PAGE_MEDIA,
+        sharedPoster && styles.sharedPosterPlayer,
       ]}
     >
-      {thumbnail ? (
+      {!sharedPoster && (thumbnail ? (
         // SmartImage (expo-image), not RN Image: RN's has no disk cache and no
         // recycling key, so every time FlatList reused this cell the full-width
         // thumbnail was re-fetched and re-decoded on the way past — the biggest
@@ -1331,7 +1335,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         <View style={[styles.thumbnail, styles.noThumb]}>
           <Icon name="VideoOff" size={40} color="#666" />
         </View>
-      )}
+      ))}
 
       {canPlay && isVisible && sourceRequested && ownsVideo && player && (
         <PersistentVideoView
@@ -1745,6 +1749,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  sharedPosterPlayer: {
+    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+  },
   stripPicture: { bottom: VIDEO_CONTROL_STRIP_HEIGHT, height: undefined },
   stripTransport: { flexDirection: 'row', alignItems: 'center', gap: 2 },
   compactBottomRow: { flexWrap: 'wrap', justifyContent: 'space-between' },
@@ -2094,8 +2104,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction"> & { feedPreview?: boolean }> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction"> & { feedPreview?: boolean; active?: boolean; children?: React.ReactNode }> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, children }) => {
     const { t } = useTranslation();
     const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
     const posterAspect = getMeasuredMediaAspect(thumbnail);
@@ -2137,7 +2147,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             <Icon name="VideoOff" size={40} color="#666" />
           </View>
         )}
-        {!hideControls && (feedPreview && onTapReaction ? (
+        {children}
+        {!active && !hideControls && (feedPreview && onTapReaction ? (
           <PostTapSurface resetKey={String(tokenId ?? thumbnail)} style={[styles.playOverlay, BARE_LAYER]}
             onPress={onPress} onReaction={onTapReaction} accessibilityLabel={t("audioPost.play")}>
             <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
@@ -2147,12 +2158,12 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
           </Pressable>
         ))}
-        {onBack && !hideControls && (
+        {!active && onBack && !hideControls && (
           <Pressable onPress={onBack} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("common.goBack")} style={[styles.mediaBack, styles.bareButton, { top: 6 }]}>
             <View style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}><BareIcon name="ArrowLeft" /></View>
           </Pressable>
         )}
-        {postPage && !hideControls && duration ? (
+        {!active && postPage && !hideControls && duration ? (
           <View style={[styles.durationBadge, edgeToEdge && { right: MINIMAL_EDGE }]}>
             <Text style={styles.durationText}>{duration}</Text>
           </View>
@@ -2227,7 +2238,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   // ladder is retired the MP4 starts on a fresh one, and a tap carries over
   // through startOnMount. Swapping the source in place stops playback.
   const onLadder = videoUrl !== props.mp4Url;
-  return mountPlayer ? (
+  const activePlayer = mountPlayer ? (
     <FeedVideoPlayerActive
       key={onLadder ? `${postKey}:hls` : postKey}
       {...props}
@@ -2238,8 +2249,14 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       startOnMount={wanted}
       autoplaySettled={autoplaySettled}
       onUserStarted={markWanted}
+      sharedPoster={!props.postPage}
     />
-  ) : (
+  ) : null;
+  if (props.postPage && activePlayer) return activePlayer;
+  // Keep one native image view through autoplay allocation, source fallback,
+  // and release. Replacing the poster component cleared its decoded bitmap
+  // for a frame every time a scrolling card mounted or unmounted a player.
+  return (
     <FeedVideoPoster
       tokenId={props.tokenId}
       isVisible={props.isVisible}
@@ -2251,7 +2268,10 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       onPress={onPosterPress}
       onTapReaction={props.onTapReaction}
       feedPreview={!props.postPage && !!props.onOpenViewer && !isContentGated}
-    />
+      active={mountPlayer}
+    >
+      {activePlayer}
+    </FeedVideoPoster>
   );
 };
 
