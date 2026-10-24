@@ -10,7 +10,6 @@ import {
   ScrollView,
   Modal,
   StyleSheet,
-  Platform,
   LayoutChangeEvent,
   Animated as NativeAnimated,
 } from "react-native";
@@ -37,7 +36,6 @@ import { usePostAudioSession } from "../../hooks/usePostAudioSession";
 import { postMediaIsTransferring } from "../../libs/post-media-session";
 import type { EventSubscription } from "expo-modules-core";
 import { LinearGradient } from "expo-linear-gradient";
-import { BlurView } from "expo-blur";
 import { useIsFocused } from "@react-navigation/native";
 import Icon from "../ui/Icon";
 import { MediaControlIcon, MediaControlText } from "../common/MediaControlGlyph";
@@ -1278,7 +1276,6 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             {/* Frost: a pale haze at the line that melts into the deck. */}
             <LinearGradient colors={theme === 'glass' ? ['rgba(220,255,255,.1)', 'rgba(0,20,24,.75)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
           </View>
-          {Platform.OS === 'ios' && <BlurView pointerEvents="none" intensity={40} tint="dark" style={{ position: 'absolute', left: 0, right: 0, top: studioVizHeight, height: STUDIO_BLEED }} />}
           {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} top={8} bottom={48} />}
         </View>
         <View style={[styles.glassDeck, { paddingTop: glassWaveHeight + 22, borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, backgroundColor: 'transparent' }, compactGlass && { paddingBottom: 8 }]}>
