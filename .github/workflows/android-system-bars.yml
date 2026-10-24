@@ -1,0 +1,53 @@
+name: Android system bar appearance
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'modules/system-bars/**'
+      - '.github/workflows/android-system-bars.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-system-bars-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Compile Android system bar appearance
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - name: Verify the optional module is linked
+        run: |
+          npx expo-modules-autolinking resolve --platform android --json > system-bars-modules.json
+          node <<'NODE'
+          const fs = require('fs');
+          const result = JSON.parse(fs.readFileSync('system-bars-modules.json', 'utf8'));
+          const projects = result.modules.flatMap(module => module.projects ?? []);
+          const bars = projects.filter(project => /\/modules\/system-bars\/android$/.test(project.sourceDir));
+          if (bars.length !== 1 || !/^[a-zA-Z0-9_-]+$/.test(bars[0].name)) throw new Error('System bars module must resolve exactly once');
+          fs.writeFileSync('system-bars-gradle-project.txt', bars[0].name);
+          NODE
+      - name: Compile the native appearance bridge
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          PROJECT="$(cat ../system-bars-gradle-project.txt)"
+          ./gradlew ":${PROJECT}:compileReleaseKotlin" --no-daemon --max-workers=2 -PreactNativeArchitectures=arm64-v8a
