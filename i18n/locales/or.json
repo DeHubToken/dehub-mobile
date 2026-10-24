@@ -2021,7 +2021,13 @@
     "title": "ବାର୍ତ୍ତା",
     "searchConversations": "ବାର୍ତ୍ତାଳାପ ଖୋଜନ୍ତୁ...",
     "failedToLoad": "ବାର୍ତ୍ତାଳାପ ଲୋଡ ହୋଇପାରିଲା ନାହିଁ",
-    "tryAgain": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"
+    "tryAgain": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
+    "lockedTitle": "ଆପଣଙ୍କର ସନ୍ଦେଶଗୁଡ଼ିକୁ ପଢ଼ିବା ପାଇଁ ଖୋଲନ୍ତୁ",
+    "lockedUnlock": "ୱାଲେଟକୁ ଖୋଲନ୍ତୁ",
+    "lockedTryAgain": "ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ",
+    "lockedPrivate": "କେବଳ ଆପଣ ଏହାକୁ ପଢ଼ିପାରିବେ ।",
+    "undecryptableRun_one": "{{count}} ସନ୍ଦେଶକୁ ଏହି ଉପକରଣରେ ଖୋଲାଯାଇପାରିବ ନାହିଁ",
+    "undecryptableRun_other": "{{count}} ସନ୍ଦେଶଗୁଡ଼ିକୁ ଏହି ଉପକରଣରେ ଖୋଲାଯାଇପାରିବ ନାହିଁ"
   },
   "music": {
     "all": "ସବୁ",
@@ -5012,7 +5018,12 @@
     "interestedCount": "{{count}} ଆଗ୍ରହୀ",
     "loadFailed": "କାର୍ଯ୍ୟକ୍ରମ ଲୋଡ୍ କରିହେଲା ନାହିଁ"
   },
-  "stats": {"chart": {"daily": "ପ୍ରତିଦିନ ଦର୍ଶକ", "dailyHint": "ପ୍ରତିଦିନ ୟୁନିକ ଦର୍ଶକ", "empty": "ଏହି ସମୟ ପାଇଁ ତଥ୍ୟ ନାହିଁ"},
+  "stats": {
+    "chart": {
+      "daily": "ପ୍ରତିଦିନ ଦର୍ଶକ",
+      "dailyHint": "ପ୍ରତିଦିନ ୟୁନିକ ଦର୍ଶକ",
+      "empty": "ଏହି ସମୟ ପାଇଁ ତଥ୍ୟ ନାହିଁ"
+    },
     "definitions": {
       "visitorsTerm": "ଦର୍ଶକ"
     },

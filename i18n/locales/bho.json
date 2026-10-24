@@ -2021,7 +2021,11 @@
     "title": "संदेस",
     "searchConversations": "बातचीत खोजीं...",
     "failedToLoad": "बातचीत लोड नइखे भइल",
-    "tryAgain": "फिर से कोशिश करीं"
+    "tryAgain": "फिर से कोशिश करीं",
+    "lockedTitle": "आपन सन्देश पढे खातिर क्लिक करीं",
+    "lockedUnlock": "खाली करें वॉलेट",
+    "lockedTryAgain": "कृपया उ के सक्षम करीं आ फिर से",
+    "lockedPrivate": "तोहरा के देखिल, बस ई कमी बा"
   },
   "music": {
     "all": "सभे",
@@ -5015,7 +5019,12 @@
     "interestedCount": "{{count}} के रुचि बा",
     "loadFailed": "कार्यक्रम लोड ना हो पावल"
   },
-  "stats": {"chart": {"daily": "रोज के आगंतुक", "dailyHint": "रोज के अनोखा आगंतुक", "empty": "एह अवधि खातिर अबहीं ले कवनो डेटा नइखे"},
+  "stats": {
+    "chart": {
+      "daily": "रोज के आगंतुक",
+      "dailyHint": "रोज के अनोखा आगंतुक",
+      "empty": "एह अवधि खातिर अबहीं ले कवनो डेटा नइखे"
+    },
     "definitions": {
       "visitorsTerm": "आगंतुक"
     },

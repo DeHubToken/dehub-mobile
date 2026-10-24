@@ -2019,7 +2019,14 @@
     "title": "الرسائل",
     "searchConversations": "قلب فالمحادثات...",
     "failedToLoad": "ما قدرش يحمل المحادثات",
-    "tryAgain": "عاود"
+    "tryAgain": "عاود",
+    "lockedTitle": "افتح لقراءة رسائلك",
+    "lockedBody": "دردشتك مع {{name}} مشفرة من طرف إلى طرف. افتح محفظتك على هذا الجهاز لفتحها.",
+    "lockedUnlock": "افتح المحفظة",
+    "lockedTryAgain": "حاول مرة أخرى",
+    "lockedPrivate": "أنت فقط من يمكنه قراءتها",
+    "undecryptableRun_one": "لا يمكن فتح رسالة {{count}} على هذا الجهاز",
+    "undecryptableRun_other": "لا يمكن فتح رسائل {{count}} على هذا الجهاز"
   },
   "music": {
     "all": "كلشي",
@@ -5047,7 +5054,12 @@
     "interestedCount": "{{count}} مهتمين",
     "loadFailed": "ما قدرناش نحملو الأنشطة"
   },
-  "stats": {"chart": {"daily": "الزوار فاليوم", "dailyHint": "زوار فريدين فاليوم", "empty": "مازال ما كاينين حتى معطيات لهاد الفترة"},
+  "stats": {
+    "chart": {
+      "daily": "الزوار فاليوم",
+      "dailyHint": "زوار فريدين فاليوم",
+      "empty": "مازال ما كاينين حتى معطيات لهاد الفترة"
+    },
     "definitions": {
       "visitorsTerm": "الزوار"
     },

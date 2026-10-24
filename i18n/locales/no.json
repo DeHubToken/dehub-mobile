@@ -2023,7 +2023,14 @@
     "title": "Meldinger",
     "searchConversations": "Søk i samtaler...",
     "failedToLoad": "Kunne ikke laste samtaler",
-    "tryAgain": "Prøv igjen"
+    "tryAgain": "Prøv igjen",
+    "lockedTitle": "Lås opp for å lese meldingene dine",
+    "lockedBody": "Chatten din med {{name}} er ende-til-ende-kryptert. Lås opp lommeboken din på denne enheten for å åpne den.",
+    "lockedUnlock": "Lås opp lommeboken",
+    "lockedTryAgain": "Prøv igjen",
+    "lockedPrivate": "Bare du kan lese dem",
+    "undecryptableRun_one": "{{count}}-meldingen kan ikke åpnes på denne enheten",
+    "undecryptableRun_other": "{{count}}-meldinger kan ikke åpnes på denne enheten"
   },
   "music": {
     "all": "Alle",
@@ -5033,7 +5040,12 @@
     "interestedCount": "{{count}} interesserte",
     "loadFailed": "Kunne ikke laste arrangementer"
   },
-  "stats": {"chart": {"daily": "Besøkende per dag", "dailyHint": "unike besøkende per dag", "empty": "Ingen data for denne perioden ennå"},
+  "stats": {
+    "chart": {
+      "daily": "Besøkende per dag",
+      "dailyHint": "unike besøkende per dag",
+      "empty": "Ingen data for denne perioden ennå"
+    },
     "definitions": {
       "visitorsTerm": "Besøkende"
     },

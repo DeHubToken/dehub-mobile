@@ -2023,7 +2023,14 @@
     "title": "Missatges",
     "searchConversations": "Cercar converses...",
     "failedToLoad": "Error en carregar converses",
-    "tryAgain": "Tornar a provar"
+    "tryAgain": "Tornar a provar",
+    "lockedTitle": "Desbloqueja per llegir els missatges",
+    "lockedBody": "El teu xat amb {{name}} està xifrat de punta a punta. Desbloqueja la teva cartera en aquest dispositiu per obrir-la.",
+    "lockedUnlock": "Desbloqueja la cartera",
+    "lockedTryAgain": "Torna-ho a provar",
+    "lockedPrivate": "Només tu pots llegir-los",
+    "undecryptableRun_one": "No es pot obrir el missatge {{count}} en aquest dispositiu",
+    "undecryptableRun_other": "Els missatges {{count}} no es poden obrir en aquest dispositiu"
   },
   "music": {
     "all": "Tot",
@@ -5033,7 +5040,12 @@
     "interestedCount": "{{count}} interessats",
     "loadFailed": "No s'han pogut carregar els esdeveniments"
   },
-  "stats": {"chart": {"daily": "Visitants per dia", "dailyHint": "visitants únics per dia", "empty": "Encara no hi ha dades per a aquest període"},
+  "stats": {
+    "chart": {
+      "daily": "Visitants per dia",
+      "dailyHint": "visitants únics per dia",
+      "empty": "Encara no hi ha dades per a aquest període"
+    },
     "definitions": {
       "visitorsTerm": "Visitants"
     },

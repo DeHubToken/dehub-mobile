@@ -2031,7 +2031,14 @@
     "title": "Mensagens",
     "searchConversations": "Buscar conversas...",
     "failedToLoad": "Falha ao carregar conversas",
-    "tryAgain": "Tentar novamente"
+    "tryAgain": "Tentar novamente",
+    "lockedTitle": "Desbloqueie para ler as suas mensagens",
+    "lockedBody": "O seu chat com {{name}} está encriptado de ponta a ponta. Desbloqueie a sua carteira neste dispositivo para abri-la.",
+    "lockedUnlock": "Desbloquear carteira",
+    "lockedTryAgain": "Tentar novamente",
+    "lockedPrivate": "Só tu os podes ler",
+    "undecryptableRun_one": "A mensagem {{count}} não pode ser aberta neste dispositivo",
+    "undecryptableRun_other": "As mensagens {{count}} não podem ser abertas neste dispositivo"
   },
   "music": {
     "all": "Tudo",
@@ -5096,7 +5103,12 @@
     "interestedCount": "{{count}} interessados",
     "loadFailed": "Não foi possível carregar os eventos"
   },
-  "stats": {"chart": {"daily": "Visitantes por dia", "dailyHint": "visitantes únicos por dia", "empty": "Ainda não há dados para este período"},
+  "stats": {
+    "chart": {
+      "daily": "Visitantes por dia",
+      "dailyHint": "visitantes únicos por dia",
+      "empty": "Ainda não há dados para este período"
+    },
     "definitions": {
       "visitorsTerm": "Visitantes"
     },

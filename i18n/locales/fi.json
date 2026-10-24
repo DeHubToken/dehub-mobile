@@ -2023,7 +2023,14 @@
     "title": "Viestit",
     "searchConversations": "Etsi keskusteluista...",
     "failedToLoad": "Keskustelujen lataus epäonnistui",
-    "tryAgain": "Yritä uudelleen"
+    "tryAgain": "Yritä uudelleen",
+    "lockedTitle": "Avaa lukitus lukeaksesi viestisi",
+    "lockedBody": "Keskustelusi käyttäjän {{name}} kanssa on täysin salattu. Avaa lompakkosi tällä laitteella avataksesi sen.",
+    "lockedUnlock": "Avaa lompakko",
+    "lockedTryAgain": "Yritä uudelleen",
+    "lockedPrivate": "Vain sinä voit lukea ne",
+    "undecryptableRun_one": "{{count}} viestiä ei voi avata tällä laitteella",
+    "undecryptableRun_other": "{{count}} viestiä ei voi avata tällä laitteella"
   },
   "music": {
     "all": "Kaikki",
@@ -5033,7 +5040,12 @@
     "interestedCount": "{{count}} kiinnostunutta",
     "loadFailed": "Tapahtumia ei voitu ladata"
   },
-  "stats": {"chart": {"daily": "Kävijöitä päivässä", "dailyHint": "yksilöllisiä kävijöitä päivässä", "empty": "Tälle jaksolle ei ole vielä tietoja"},
+  "stats": {
+    "chart": {
+      "daily": "Kävijöitä päivässä",
+      "dailyHint": "yksilöllisiä kävijöitä päivässä",
+      "empty": "Tälle jaksolle ei ole vielä tietoja"
+    },
     "definitions": {
       "visitorsTerm": "Kävijät"
     },

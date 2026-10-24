@@ -2023,7 +2023,14 @@
     "title": "پیغامات",
     "searchConversations": "بات چیت تلاش کریں...",
     "failedToLoad": "بات چیت لوڈ کرنے میں ناکامی",
-    "tryAgain": "دوبارہ کوشش کریں"
+    "tryAgain": "دوبارہ کوشش کریں",
+    "lockedTitle": "اپنے پیغامات پڑھنے کے لیے ان لاک کریں",
+    "lockedBody": "{{name}} کے ساتھ آپ کی چیٹ شروع سے آخر تک خفیہ ہے ۔ اسے کھولنے کے لیے اس ڈیوائس پر اپنا والٹ ان لاک کریں ۔",
+    "lockedUnlock": "والٹ ان لاک کریں",
+    "lockedTryAgain": "دوبارہ کوشش کریں",
+    "lockedPrivate": "صرف آپ انہیں پڑھ سکتے ہیں",
+    "undecryptableRun_one": "{{count}} اس ڈیوائس پر پیغام نہیں کھولا جا سکتا",
+    "undecryptableRun_other": "{{count}} اس ڈیوائس پر پیغامات نہیں کھولے جا سکتے"
   },
   "music": {
     "all": "سب",
@@ -5033,7 +5040,12 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نہیں ہو سکے"
   },
-  "stats": {"chart": {"daily": "یومیہ زائرین", "dailyHint": "یومیہ منفرد زائرین", "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"},
+  "stats": {
+    "chart": {
+      "daily": "یومیہ زائرین",
+      "dailyHint": "یومیہ منفرد زائرین",
+      "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"
+    },
     "definitions": {
       "visitorsTerm": "زائرین"
     },

@@ -2023,7 +2023,14 @@
     "title": "Meddelanden",
     "searchConversations": "Sök konversationer...",
     "failedToLoad": "Kunde inte ladda konversationer",
-    "tryAgain": "Försök igen"
+    "tryAgain": "Försök igen",
+    "lockedTitle": "Lås upp för att läsa dina meddelanden",
+    "lockedBody": "Din chatt med {{name}} är end-to-end-krypterad. Lås upp din plånbok på den här enheten för att öppna den.",
+    "lockedUnlock": "Lås upp plånboken",
+    "lockedTryAgain": "Försök igen",
+    "lockedPrivate": "Bara du kan läsa dem",
+    "undecryptableRun_one": "Meddelandet {{count}} kan inte öppnas på den här enheten",
+    "undecryptableRun_other": "{{count}} -meddelanden kan inte öppnas på den här enheten"
   },
   "music": {
     "all": "Alla",
@@ -5037,7 +5044,12 @@
     "interestedCount": "{{count}} intresserade",
     "loadFailed": "Det gick inte att läsa in evenemang"
   },
-  "stats": {"chart": {"daily": "Besökare per dag", "dailyHint": "unika besökare per dag", "empty": "Ingen data för den här perioden ännu"},
+  "stats": {
+    "chart": {
+      "daily": "Besökare per dag",
+      "dailyHint": "unika besökare per dag",
+      "empty": "Ingen data för den här perioden ännu"
+    },
     "definitions": {
       "visitorsTerm": "Besökare"
     },

@@ -1997,7 +1997,14 @@
     "title": "Messages",
     "searchConversations": "Find conversation...",
     "failedToLoad": "Conversations no fit load",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "lockedTitle": "Unlock make you read your messages",
+    "lockedBody": "Your chat wit {{name}} dey end-to-end encrypted. Unlock your wallet for dis device make e open am.",
+    "lockedUnlock": "Unlock wallet",
+    "lockedTryAgain": "Try again",
+    "lockedPrivate": "Na only you fit read dem",
+    "undecryptableRun_one": "{{count}} message no fit open for dis device",
+    "undecryptableRun_other": "{{count}} messages no fit open for dis device"
   },
   "music": {
     "all": "All",
@@ -4917,7 +4924,12 @@
     "interestedCount": "{{count}} dey interested",
     "loadFailed": "We no fit load di events"
   },
-  "stats": {"chart": {"daily": "Visitors per day", "dailyHint": "unique visitors per day", "empty": "No data for dis period yet"},
+  "stats": {
+    "chart": {
+      "daily": "Visitors per day",
+      "dailyHint": "unique visitors per day",
+      "empty": "No data for dis period yet"
+    },
     "definitions": {
       "visitorsTerm": "Visitors"
     },

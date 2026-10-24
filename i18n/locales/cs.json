@@ -2023,7 +2023,14 @@
     "title": "Zprávy",
     "searchConversations": "Hledat konverzace...",
     "failedToLoad": "Načtení konverzací selhalo",
-    "tryAgain": "Zkusit znovu"
+    "tryAgain": "Zkusit znovu",
+    "lockedTitle": "Odemkni a přečti si zprávy",
+    "lockedBody": "Váš chat s uživatelem {{name}} je šifrován od začátku do konce. Odemkni peněženku na tomto zařízení a otevři ji.",
+    "lockedUnlock": "Odemknout peněženku",
+    "lockedTryAgain": "Zkusit znovu",
+    "lockedPrivate": "Pouze vy si je můžete přečíst",
+    "undecryptableRun_one": "Zprávu {{count}} nelze na tomto zařízení otevřít",
+    "undecryptableRun_other": "Zprávy {{count}} nelze na tomto zařízení otevřít"
   },
   "music": {
     "all": "Vše",
@@ -5036,7 +5043,12 @@
     "interestedCount": "{{count}} má zájem",
     "loadFailed": "Akce se nepodařilo načíst"
   },
-  "stats": {"chart": {"daily": "Návštěvníci za den", "dailyHint": "unikátní návštěvníci za den", "empty": "Pro toto období zatím nejsou data"},
+  "stats": {
+    "chart": {
+      "daily": "Návštěvníci za den",
+      "dailyHint": "unikátní návštěvníci za den",
+      "empty": "Pro toto období zatím nejsou data"
+    },
     "definitions": {
       "visitorsTerm": "Návštěvníci"
     },

@@ -2025,7 +2025,14 @@
     "title": "Pesan",
     "searchConversations": "Cari percakapan...",
     "failedToLoad": "Gagal memuat percakapan",
-    "tryAgain": "Coba Lagi"
+    "tryAgain": "Coba Lagi",
+    "lockedTitle": "Buka kunci untuk membaca pesan Anda",
+    "lockedBody": "Obrolan Anda dengan {{name}} dienkripsi dari ujung ke ujung. Buka dompet Anda di perangkat ini untuk membukanya.",
+    "lockedUnlock": "Buka dompet",
+    "lockedTryAgain": "Coba lagi",
+    "lockedPrivate": "Hanya Anda yang bisa membacanya",
+    "undecryptableRun_one": "Pesan {{count}} tidak dapat dibuka di perangkat ini",
+    "undecryptableRun_other": "Pesan {{count}} tidak dapat dibuka di perangkat ini"
   },
   "music": {
     "all": "Semua",
@@ -5084,7 +5091,12 @@
     "interestedCount": "{{count}} tertarik",
     "loadFailed": "Tidak dapat memuat acara"
   },
-  "stats": {"chart": {"daily": "Pengunjung per hari", "dailyHint": "pengunjung unik per hari", "empty": "Belum ada data untuk rentang ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pengunjung per hari",
+      "dailyHint": "pengunjung unik per hari",
+      "empty": "Belum ada data untuk rentang ini"
+    },
     "definitions": {
       "visitorsTerm": "Pengunjung"
     },

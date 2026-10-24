@@ -2023,7 +2023,14 @@
     "title": "Üzenetek",
     "searchConversations": "Beszélgetések keresése...",
     "failedToLoad": "Beszélgetések betöltése sikertelen",
-    "tryAgain": "Újra"
+    "tryAgain": "Újra",
+    "lockedTitle": "Feloldás az üzeneteid olvasásához",
+    "lockedBody": "A (z) {{name}} felhasználóval folytatott csevegés végponttól végpontig titkosított. Nyisd ki a pénztárcádat ezen az eszközön.",
+    "lockedUnlock": "Pénztárca feloldása",
+    "lockedTryAgain": "Próbálkozz újra",
+    "lockedPrivate": "Csak te olvashatod el őket",
+    "undecryptableRun_one": "{{count}} üzenet nem nyitható meg ezen az eszközön",
+    "undecryptableRun_other": "{{count}} üzenet nem nyitható meg ezen az eszközön"
   },
   "music": {
     "all": "Összes",
@@ -5037,7 +5044,12 @@
     "interestedCount": "{{count}} érdeklődik",
     "loadFailed": "Az események betöltése sikertelen"
   },
-  "stats": {"chart": {"daily": "Látogatók naponta", "dailyHint": "egyedi látogatók naponta", "empty": "Ehhez az időszakhoz még nincs adat"},
+  "stats": {
+    "chart": {
+      "daily": "Látogatók naponta",
+      "dailyHint": "egyedi látogatók naponta",
+      "empty": "Ehhez az időszakhoz még nincs adat"
+    },
     "definitions": {
       "visitorsTerm": "Látogatók"
     },

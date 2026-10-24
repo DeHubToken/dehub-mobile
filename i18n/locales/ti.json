@@ -2010,7 +2010,14 @@
     "title": "መልእኽትታት",
     "searchConversations": "ዕላላት ድለ...",
     "failedToLoad": "ዕላላት ምጽዓን ኣይተዓወተን",
-    "tryAgain": "ዳግማይ ፈትን"
+    "tryAgain": "ዳግማይ ፈትን",
+    "lockedTitle": "መልእኽትታትካ ኣንብብ",
+    "lockedBody": "ምስ {{name}} እትገብሮ ዝርርብ ኣብ መወዳእታ ናብ መወዳእታ ዝተሰወረ እዩ ። ነዚ መሳርሒ እዚ ንምኽፋት ቦርሳኻ ክፉት ግበር ።",
+    "lockedUnlock": "ቦርሳ ክፉት ግበር",
+    "lockedTryAgain": "እንደገና ፈትኖ",
+    "lockedPrivate": "ንሶም ጥራይ እዮም ክነበብዎ ዝኽእሉ",
+    "undecryptableRun_one": "{{count}} መልእኽቲ ኣብዚ መሳርሒ እዚ ክኽፈት ኣይክእልን",
+    "undecryptableRun_other": "{{count}} መልእኽቲ ኣብዚ መሳርሒ እዚ ክኽፈት ኣይክእልን"
   },
   "music": {
     "all": "ኩሉ",
@@ -4994,7 +5001,12 @@
     "interestedCount": "{{count}} ተገዳስነት ኣለዎም",
     "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን"
   },
-  "stats": {"chart": {"daily": "በጻሕቲ ኣብ መዓልቲ", "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ", "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"},
+  "stats": {
+    "chart": {
+      "daily": "በጻሕቲ ኣብ መዓልቲ",
+      "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ",
+      "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"
+    },
     "definitions": {
       "visitorsTerm": "በጻሕቲ"
     },

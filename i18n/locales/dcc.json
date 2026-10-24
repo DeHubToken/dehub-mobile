@@ -2020,7 +2020,14 @@
     "title": "پیغام",
     "searchConversations": "بات چیت ڈھونڈو...",
     "failedToLoad": "بات چیت لوڈ نئیں ہوئی",
-    "tryAgain": "دوبارہ کوشش کرو"
+    "tryAgain": "دوبارہ کوشش کرو",
+    "lockedTitle": "اپنے پیغامات پڑھنے کے لیے انلاک کریں",
+    "lockedBody": "آپ کی چیٹ {{name}} کے ساتھ اینڈ‑ٹو‑اینڈ انکرپٹڈ ہے۔ اسے کھولنے کے لیے اس ڈیوائس پر اپنا والٹ انلاک کریں۔",
+    "lockedUnlock": "والٹ انلاک کریں",
+    "lockedTryAgain": "دوبارہ کوشش کریں",
+    "lockedPrivate": "صرف آپ ہی انہیں پڑھ سکتے ہیں",
+    "undecryptableRun_one": "{{count}} پیغام اس ڈیوائس پر نہیں کھولا جا سکتا",
+    "undecryptableRun_other": "{{count}} پیغامات اس ڈیوائس پر نہیں کھولے جا سکتے"
   },
   "music": {
     "all": "سب",
@@ -4981,7 +4988,12 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نئیں ہو سکے"
   },
-  "stats": {"chart": {"daily": "روزانہ آنے والے", "dailyHint": "روزانہ الگ الگ آنے والے", "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"},
+  "stats": {
+    "chart": {
+      "daily": "روزانہ آنے والے",
+      "dailyHint": "روزانہ الگ الگ آنے والے",
+      "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"
+    },
     "definitions": {
       "visitorsTerm": "آنے والے"
     },

@@ -2021,7 +2021,14 @@
     "title": "Nochrichtä",
     "searchConversations": "Gespräch sueche...",
     "failedToLoad": "Gespräch lade fehlgschlage",
-    "tryAgain": "Nomol probiere"
+    "tryAgain": "Nomol probiere",
+    "lockedTitle": "Entsperre, um dini Nachrichtä z läse",
+    "lockedBody": "Dini Chat mit {{name}} isch End-zu-End verschlüsslet. Entsperr dis Wallet uf däm Gerät, zum's öffne.",
+    "lockedUnlock": "Wallet entsperre",
+    "lockedTryAgain": "Nochmal probiere",
+    "lockedPrivate": "Nur du chasch sie läse",
+    "undecryptableRun_one": "{{count}} Nachricht cha uf däm Gerät nöd g'öffnet werde",
+    "undecryptableRun_other": "{{count}} Nachrichtä chöi uf däm Gerät nöd g'öffnet werde"
   },
   "music": {
     "all": "Alli",
@@ -5053,7 +5060,12 @@
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "D Events hend nid chönne glade werde"
   },
-  "stats": {"chart": {"daily": "Bsucher pro Tag", "dailyHint": "eindütigi Bsucher pro Tag", "empty": "No kei Date für die Periode"},
+  "stats": {
+    "chart": {
+      "daily": "Bsucher pro Tag",
+      "dailyHint": "eindütigi Bsucher pro Tag",
+      "empty": "No kei Date für die Periode"
+    },
     "definitions": {
       "visitorsTerm": "Bsucher"
     },

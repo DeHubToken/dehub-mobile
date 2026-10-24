@@ -2021,7 +2021,14 @@
     "title": "Mesajlar",
     "searchConversations": "Söhbətləri axtar...",
     "failedToLoad": "Söhbətləri yükləmək uğursuz oldu",
-    "tryAgain": "Yenidən Cəhd Et"
+    "tryAgain": "Yenidən Cəhd Et",
+    "lockedTitle": "Mesajlarınızı oxumaq üçün kilidi açın",
+    "lockedBody": "{{name}} ilə söhbətiniz bitər-bitməz şifrələnib. Cüzdanınızı açmaq üçün bu cihazda kilidi açın.",
+    "lockedUnlock": "Cüzdanı kiliddən çıxar",
+    "lockedTryAgain": "Yenidən cəhd et",
+    "lockedPrivate": "Onları yalnız siz oxuya bilərsiniz",
+    "undecryptableRun_one": "{{count}} mesajı bu cihazda açmaq mümkün deyil",
+    "undecryptableRun_other": "{{count}} mesajları bu cihazda açmaq mümkün deyil"
   },
   "music": {
     "all": "Hamısı",
@@ -5023,7 +5030,12 @@
     "interestedCount": "{{count}} maraqlanır",
     "loadFailed": "Tədbirlər yüklənmədi"
   },
-  "stats": {"chart": {"daily": "Gündəlik ziyarətçi", "dailyHint": "gündəlik unikal ziyarətçi", "empty": "Bu dövr üçün hələ məlumat yoxdur"},
+  "stats": {
+    "chart": {
+      "daily": "Gündəlik ziyarətçi",
+      "dailyHint": "gündəlik unikal ziyarətçi",
+      "empty": "Bu dövr üçün hələ məlumat yoxdur"
+    },
     "definitions": {
       "visitorsTerm": "Ziyarətçilər"
     },

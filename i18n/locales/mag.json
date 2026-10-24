@@ -2021,7 +2021,14 @@
     "title": "संदेश",
     "searchConversations": "बातचीत खोजो...",
     "failedToLoad": "बातचीत लोड नइ हो पावल",
-    "tryAgain": "फिर से कोशिश करो"
+    "tryAgain": "फिर से कोशिश करो",
+    "lockedTitle": "अपना संदेश पढ़े खातिर अनलॉक करीं",
+    "lockedBody": "आपके चैट {{name}} के साथ एंड-टू-एंड एन्क्रिप्टेड बा। ई डिवाइस पर आपन वॉलेट अनलॉक करीं ताकि खोल सकीं।",
+    "lockedUnlock": "वॉलेट अनलॉक करीं",
+    "lockedTryAgain": "फिर से कोशिश करीं",
+    "lockedPrivate": "केवल आप ही पढ़ सकत बानी",
+    "undecryptableRun_one": "{{count}} के संदेश ई डिवाइस पर खोलल नहीं जा सकत",
+    "undecryptableRun_other": "{{count}} के संदेश ई डिवाइस पर खोलल नहीं जा सकत"
   },
   "music": {
     "all": "सब",
@@ -5020,7 +5027,12 @@
     "interestedCount": "{{count}} के रुचि",
     "loadFailed": "कार्यक्रम लोड नै भेल"
   },
-  "stats": {"chart": {"daily": "रोज के विजिटर", "dailyHint": "रोज के यूनीक विजिटर", "empty": "ई अवधि लेल अखनी तक कोनो डेटा नै हे"},
+  "stats": {
+    "chart": {
+      "daily": "रोज के विजिटर",
+      "dailyHint": "रोज के यूनीक विजिटर",
+      "empty": "ई अवधि लेल अखनी तक कोनो डेटा नै हे"
+    },
     "definitions": {
       "visitorsTerm": "विजिटर"
     },
