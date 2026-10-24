@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -282,6 +283,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   chipRadius = PILL_BORDER_RADIUS,
 }) => {
   const { t } = useTranslation();
+  const categorySearchMaterial = useSearchFieldMaterial();
   const [categorySearch, setCategorySearch] = useSurfaceDraft("components/Home/FeedFilterPanel.tsx:categorySearch", "");
 
   const SORT_OPTIONS = useMemo(() => [
@@ -405,7 +407,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
               onChangeText={setCategorySearch}
               placeholder={t("filters.searchCategories")}
               placeholderTextColor="#808089"
-              style={[panelStyles.searchInput, navOverlap != null && panelStyles.hollowSearchInput]}
+              style={[panelStyles.searchInput, categorySearchMaterial.surface]}
+              onFocus={categorySearchMaterial.onFocus}
+              onBlur={categorySearchMaterial.onBlur}
               autoCapitalize="none"
               autoCorrect={false}
             />
@@ -547,17 +551,11 @@ const panelStyles = StyleSheet.create({
   searchInput: {
     backgroundColor: "#27272a",
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#3f3f46",
     paddingHorizontal: 12,
     paddingVertical: 6,
     fontSize: 12,
     color: "#e4e4e7",
     marginBottom: 4,
-  },
-  hollowSearchInput: {
-    backgroundColor: "transparent",
-    borderColor: "rgba(255, 255, 255, 0.18)",
   },
   noMatches: {
     fontSize: 12,
