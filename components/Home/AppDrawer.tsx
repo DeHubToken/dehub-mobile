@@ -250,7 +250,7 @@ const Tile = memo<TileProps>(({ label, icon, iconUrl, iconColor, width, active, 
           <Icon name={icon} size={26} color={glyphColor} strokeWidth={1.6} />
         )}
         {badgeCount > 0 && (
-          <View style={{ position: "absolute", top: -3, right: -5, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, backgroundColor: "#ef4444", alignItems: "center", justifyContent: "center" }}>
+          <View className="dark-surface" style={{ position: "absolute", top: -3, right: -5, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, backgroundColor: "#ef4444", alignItems: "center", justifyContent: "center" }}>
             <Text style={{ color: "#ffffff", fontSize: 10, fontWeight: "700" }}>
               {badgeCount > 99 ? "99+" : badgeCount}
             </Text>
