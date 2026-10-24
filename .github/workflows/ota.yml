@@ -241,6 +241,9 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
+      - name: Verify public delivery before publishing
+        run: node scripts/production-routing.mjs
+
       - name: Preflight - prove the config lands in a real bundle
         if: env.EXPO_TOKEN != ''
         run: |

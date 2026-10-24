@@ -1,0 +1,20 @@
+name: Production routing contract
+on:
+  pull_request:
+    paths: ['ops/production-routing.json', 'scripts/production-routing*', '.github/workflows/*ota.yml', '.github/workflows/routing-contract.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  routing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test scripts/production-routing.test.mjs
+      - name: Verify production without publishing an update
+        if: github.event_name == 'workflow_dispatch'
+        run: node scripts/production-routing.mjs
