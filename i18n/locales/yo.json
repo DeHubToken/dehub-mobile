@@ -4617,7 +4617,14 @@
     "title": "Ìfiránṣẹ́",
     "searchConversations": "Wá àwọn ìfọ̀rọ̀wérọ̀...",
     "failedToLoad": "Kò le gbé àwọn ìfọ̀rọ̀wérọ̀",
-    "tryAgain": "Gbìyànjú lẹ́ẹ̀kan sí"
+    "tryAgain": "Gbìyànjú lẹ́ẹ̀kan sí",
+    "lockedTitle": "Ṣii lati ka awọn ifiranṣẹ rẹ",
+    "lockedBody": "Ìjíròrò rẹ pẹ̀lú {{name}} ti wà ní ìfipamọ́ láti òpin dé òpin. Tú apamọwọ rẹ sí orí ẹ̀rọ yìí láti ṣí i.",
+    "lockedUnlock": "Tú apamọwọ",
+    "lockedTryAgain": "Gbiyanju lẹẹkansi",
+    "lockedPrivate": "Ìwọ nìkan ni o lè kà wọ́n",
+    "undecryptableRun_one": "{{count}} àtẹ̀jíṣẹ́ kò lè ṣí lórí ẹ̀rọ yìí",
+    "undecryptableRun_other": "{{count}} àwọn àtẹ̀jíṣẹ́ kò lè ṣí lórí ẹ̀rọ yìí"
   },
   "music": {
     "likeStation": "Gẹ́gẹ́ bí ibùdó",

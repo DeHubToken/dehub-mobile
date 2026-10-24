@@ -4666,7 +4666,14 @@
     "title": "Peyam",
     "searchConversations": "Sohbetan bigerin...",
     "failedToLoad": "Barkirina sohbetan têkçû",
-    "tryAgain": "Dîsa Biceribîne"
+    "tryAgain": "Dîsa Biceribîne",
+    "lockedTitle": "Ji bo xwendina peyamên xwe veke",
+    "lockedBody": "Sohbeta te bi {{name}} re ji serî heta binî şîfrekirî ye. Ji bo vekirina wê, berîka xwe li ser vê cîhazê veke.",
+    "lockedUnlock": "Berîka xwe veke",
+    "lockedTryAgain": "Dubare bixebitin",
+    "lockedPrivate": "Tenê hûn dikarin wan bixwînin",
+    "undecryptableRun_one": "Peyama {{count}} li ser vê cîhazê nayê vekirin",
+    "undecryptableRun_other": "Peyamên {{count}} li ser vê cîhazê nayên vekirin"
   },
   "music": {
     "likeStation": "لایکی وێستگە بکە",

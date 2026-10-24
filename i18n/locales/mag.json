@@ -4602,7 +4602,14 @@
     "title": "संदेश",
     "searchConversations": "बातचीत खोजो...",
     "failedToLoad": "बातचीत लोड नइ हो पावल",
-    "tryAgain": "फिर से कोशिश करो"
+    "tryAgain": "फिर से कोशिश करो",
+    "lockedTitle": "अपना संदेश पढ़े खातिर अनलॉक करीं",
+    "lockedBody": "आपके चैट {{name}} के साथ एंड-टू-एंड एन्क्रिप्टेड बा। ई डिवाइस पर आपन वॉलेट अनलॉक करीं ताकि खोल सकीं।",
+    "lockedUnlock": "वॉलेट अनलॉक करीं",
+    "lockedTryAgain": "फिर से कोशिश करीं",
+    "lockedPrivate": "केवल आप ही पढ़ सकत बानी",
+    "undecryptableRun_one": "{{count}} के संदेश ई डिवाइस पर खोलल नहीं जा सकत",
+    "undecryptableRun_other": "{{count}} के संदेश ई डिवाइस पर खोलल नहीं जा सकत"
   },
   "music": {
     "chartOrder": "ऑडियो कैलक्यूलेटर",

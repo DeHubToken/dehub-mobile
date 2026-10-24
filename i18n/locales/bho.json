@@ -4587,7 +4587,11 @@
     "title": "संदेस",
     "searchConversations": "बातचीत खोजीं...",
     "failedToLoad": "बातचीत लोड नइखे भइल",
-    "tryAgain": "फिर से कोशिश करीं"
+    "tryAgain": "फिर से कोशिश करीं",
+    "lockedTitle": "आपन सन्देश पढे खातिर क्लिक करीं",
+    "lockedUnlock": "खाली करें वॉलेट",
+    "lockedTryAgain": "कृपया उ के सक्षम करीं आ फिर से",
+    "lockedPrivate": "तोहरा के देखिल, बस ई कमी बा"
   },
   "music": {
     "chartOrder": "ऑडियो ऑर्डर समायोजित करें",

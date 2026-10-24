@@ -4627,7 +4627,11 @@
     "title": "संदेश",
     "searchConversations": "बातचीत खोजव...",
     "failedToLoad": "बातचीत लोड नइ होइस",
-    "tryAgain": "फेर कोशिश करव"
+    "tryAgain": "फेर कोशिश करव",
+    "lockedTitle": "आप मन के संदेस मन ल पढ़े बर अनलॉक करव",
+    "lockedUnlock": "बटुआ खोलव",
+    "lockedTryAgain": "फिर से कोसिस करव",
+    "lockedPrivate": "केवल ओमन ल पढ़ सकत हंव"
   },
   "music": {
     "chartOrder": "आडियो चार्ट अनुक्रम",

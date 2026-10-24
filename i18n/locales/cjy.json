@@ -4545,7 +4545,14 @@
     "title": "消息",
     "searchConversations": "搜索对话...",
     "failedToLoad": "加载对话失败",
-    "tryAgain": "再试一下"
+    "tryAgain": "再试一下",
+    "lockedTitle": "解锁以阅读你的消息",
+    "lockedBody": "你与 {{name}} 的聊天是端到端加密的。请在此设备上解锁你的钱包以打开它。",
+    "lockedUnlock": "解锁钱包",
+    "lockedTryAgain": "再试一次",
+    "lockedPrivate": "只有你能阅读它们",
+    "undecryptableRun_one": "{{count}} 的消息无法在此设备上打开",
+    "undecryptableRun_other": "{{count}} 的消息无法在此设备上打开"
   },
   "music": {
     "chartOrder": "音频排行榜顺序",

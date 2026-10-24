@@ -3717,7 +3717,14 @@
     "title": "Ujumbe",
     "searchConversations": "Tafuta mazungumzo...",
     "failedToLoad": "Imeshindwa kupakia mazungumzo",
-    "tryAgain": "Jaribu tena"
+    "tryAgain": "Jaribu tena",
+    "lockedTitle": "Fungua ili usome ujumbe wako",
+    "lockedBody": "Gumzo lako na {{name}}limesimbwa kwa njia fiche. Fungua mkoba wako kwenye kifaa hiki ili uufungue.",
+    "lockedUnlock": "Fungua pochi",
+    "lockedTryAgain": "Jaribu tena",
+    "lockedPrivate": "Ni wewe tu unayeweza kuyasoma",
+    "undecryptableRun_one": "{{count}} ujumbe hauwezi kufunguliwa kwenye kifaa hiki",
+    "undecryptableRun_other": "{{count}} ujumbe hauwezi kufunguliwa kwenye kifaa hiki"
   },
   "music": {
     "chartOrder": "Mpangilio wa chati ya sauti",

@@ -4639,7 +4639,14 @@
     "title": "Ozi",
     "searchConversations": "Chọọ mkparịta ụka...",
     "failedToLoad": "Enweghị ike ibudata mkparịta ụka",
-    "tryAgain": "Nwaa Ọzọ"
+    "tryAgain": "Nwaa Ọzọ",
+    "lockedTitle": "Kpọghe ka ị gụọ ozi gị",
+    "lockedBody": "Mkparịta ụka gị na {{name}} bụ ezoro ezo njedebe na njedebe. Meghee obere akpa gị na ngwaọrụ a iji mepee ya.",
+    "lockedUnlock": "Ị kpọghee ekwt obere akpa",
+    "lockedTryAgain": "Gbalịa ọzọ",
+    "lockedPrivate": "Naanị ị nwere ike ịgụ ha",
+    "undecryptableRun_one": "{{count}} enweghị ike imepe ozi na ngwaọrụ a",
+    "undecryptableRun_other": "{{count}} enweghị ike imepe ozi na ngwaọrụ a"
   },
   "music": {
     "likeStation": "Dị ka ọdụ",

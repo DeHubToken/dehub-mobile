@@ -4432,7 +4432,14 @@
     "title": "الرسايل",
     "searchConversations": "دوّر في المحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
-    "tryAgain": "جرّب تاني"
+    "tryAgain": "جرّب تاني",
+    "lockedTitle": "افتح عشان تقرا رسائلك",
+    "lockedBody": "الدردشة بتاعتك مع {{name}} مشفرة من الطرف للطرف. افتح محفظتك على الجهاز ده عشان تفتحها.",
+    "lockedUnlock": "افتح المحفظة",
+    "lockedTryAgain": "حاول تاني",
+    "lockedPrivate": "بس إنت اللي تقدر تقراهم",
+    "undecryptableRun_one": "ما تقدرش تفتح رسالة {{count}} على الجهاز ده",
+    "undecryptableRun_other": "ما تقدرش تفتح رسائل {{count}} على الجهاز ده"
   },
   "music": {
     "chartOrder": "ترتيب المقاطع الصوتية",

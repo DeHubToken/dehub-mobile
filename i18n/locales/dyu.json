@@ -4631,7 +4631,13 @@
     "title": "Cikanw",
     "searchConversations": "Barow ɲini...",
     "failedToLoad": "Barow ma se ka na",
-    "tryAgain": "A kɛ tuguni"
+    "tryAgain": "A kɛ tuguni",
+    "lockedTitle": "Ka to ka i ka sɛbɛw kalan",
+    "lockedBody": "I ka kumaɲɔgɔnya ni {{name}} ye sɛbɛnin ye. I ka wari bila o masini kan walisa k'a yɛlɛ.",
+    "lockedUnlock": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
+    "lockedPrivate": "I kelen lo be se k'u kalan",
+    "undecryptableRun_one": "{{count}} message tɛ se ka yɛlɛ nin masini kan",
+    "undecryptableRun_other": "{{count}} message tɛ se ka yɛlɛ nin masini kan"
   },
   "music": {
     "likeStation": "Station kan",

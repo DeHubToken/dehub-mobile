@@ -4709,7 +4709,14 @@
     "title": "Hafatra",
     "searchConversations": "Hikaroka resaka...",
     "failedToLoad": "Tsy nahomby ny fampidirana resaka",
-    "tryAgain": "Avereno indray"
+    "tryAgain": "Avereno indray",
+    "lockedTitle": "Hamaky ny hafatrao",
+    "lockedBody": "Ny karajia (chat) miaraka amin'ny {{name}} is end-to-end voaaro. Hamaha ny kitapom-batsy amin'ny fitaovana ity mba hanokatra izany.",
+    "lockedUnlock": "Hamaha kitapom-batsy",
+    "lockedTryAgain": "Andramo indray",
+    "lockedPrivate": "Azonao atao ny mamaky azy ireo fotsiny.",
+    "undecryptableRun_one": "{{count}} message Tsy afaka hosokafana amin'ity fitaovana ity",
+    "undecryptableRun_other": "{{count}} messages tsy afaka hosokafana amin'ity fitaovana ity"
   },
   "music": {
     "likeStation": "Ankafizo ny toby",

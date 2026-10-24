@@ -4698,7 +4698,14 @@
     "title": "Xabarlar",
     "searchConversations": "Suhbatlarni qidirish...",
     "failedToLoad": "Suhbatlarni yuklash amalga oshmadi",
-    "tryAgain": "Qayta urinib koʻring"
+    "tryAgain": "Qayta urinib koʻring",
+    "lockedTitle": "Xabarlaringizni o'qish uchun qulfni oching",
+    "lockedBody": "{{name}} bilan chatingiz boshdan-oyoq shifrlangan. Uni ochish uchun ushbu qurilmada hamyoningizni qulfdan chiqaring.",
+    "lockedUnlock": "Hamyonni qulfdan chiqaring",
+    "lockedTryAgain": "Qayta urinib ko'ring",
+    "lockedPrivate": "Ularni faqat siz o'qiy olasiz",
+    "undecryptableRun_one": "{{count}} xabarini ushbu qurilmada ochib bo'lmadi",
+    "undecryptableRun_other": "{{count}} xabarlarini ushbu qurilmada ochib bo'lmaydi"
   },
   "music": {
     "chartOrder": "Audio jadval tartibi",

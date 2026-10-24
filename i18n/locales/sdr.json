@@ -4454,7 +4454,14 @@
     "title": "پیغام",
     "searchConversations": "بات چیت کھوجو...",
     "failedToLoad": "بات چیت لوڈ نہیں ہوئی",
-    "tryAgain": "دوبارہ کوشش کرو"
+    "tryAgain": "دوبارہ کوشش کرو",
+    "lockedTitle": "अपना संदेश पढ़े बर अनलॉक करूँ",
+    "lockedBody": "आपके चैट {{name}} संग एन्ड-टु-एन्ड एन्क्रिप्टेड हे। ए डिवाइस में आपन वॉलेट अनलॉक करूँ, त ओखर खोल सकी।",
+    "lockedUnlock": "वॉलेट अनलॉक करूँ",
+    "lockedTryAgain": "फिर से कोसिस करूँ",
+    "lockedPrivate": "केवल आप ही ओकरे पढ़ सकी",
+    "undecryptableRun_one": "{{count}} संदेश ए डिवाइस में खोलै नहीं जा सकै",
+    "undecryptableRun_other": "{{count}} संदेश ए डिवाइस में खोलै नहीं जा सकै"
   },
   "music": {
     "chartOrder": "Ses listesi sıralaması",
