@@ -32,6 +32,7 @@ import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
 import StageCoverArt from "./StageCoverArt";
 import StageRecordingPlayer from "./StageRecordingPlayer";
+import StageRecordingLanguage from './StageRecordingLanguage';
 import { storedAvatarSources } from "../../libs/misc";
 import { radius } from "../../theme/radius";
 import { ShareLinks } from "../../navigation/linking.config";
@@ -506,6 +507,7 @@ export const RecordedStageCard: React.FC<{
         )}
 
         <View style={styles.actions}>
+          {hasRecording && <StageRecordingLanguage space={space} />}
           {hasRecording && (
             <TouchableOpacity
               onPress={onOpenTranscript}
