@@ -153,7 +153,7 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
       {showBack ? (
       <TouchableOpacity
         onPress={handleBack}
-        className="active:opacity-70"
+        className={plainBack ? "active:opacity-70" : "dark-surface active:opacity-70"}
         style={{
           position: 'absolute',
           alignItems: 'center',
