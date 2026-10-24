@@ -14,7 +14,7 @@ export default function StageRecordingLanguage({ space }: { space: StagePlayable
       onChange={(language) => {
         setStageRecordingLanguage(space.id, language);
         if (getStagePlaybackState().spaceId !== space.id) playStageRecording(space);
-        else resumeStageRecording();
+        else if (!getStagePlaybackState().loading) resumeStageRecording();
       }} />
     {selected.language !== 'original' && <Text className="text-xs text-theme-neutrals-400 mt-1" accessibilityRole="text">
       {t(selected.status === 'ready' ? 'dub.dubbed' : selected.status === 'failed' ? 'dub.noVoice' : 'dub.preparing')}
