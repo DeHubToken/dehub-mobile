@@ -7,15 +7,16 @@ jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' } }))
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: 'hazy' }) }));
 jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => {
   const React = require('react');
+  const element = React.createElement;
   return function Profile(props: { visible: boolean }) {
     const [commentsOpen, setCommentsOpen] = React.useState(false);
     const { useUserProfilePresentation } = require('../../context/UserProfileSheetContext');
     function Comments() {
       const state = useUserProfilePresentation();
-      return React.createElement('Comments', { identifier: state.profileIdentifier });
+      return element('Comments', { identifier: state.profileIdentifier });
     }
-    return React.createElement('Profile', { ...props, openComments: () => setCommentsOpen(true) },
-      commentsOpen ? React.createElement(Comments) : null);
+    return element('Profile', { ...props, openComments: () => setCommentsOpen(true) },
+      commentsOpen ? element(Comments) : null);
   };
 });
 jest.mock('../../components/UserProfile/ProfileSurface', () => ({ PROFILE_CLOSE_MS: 180 }));
