@@ -5034,7 +5034,12 @@
     "interestedCount": "{{count}} wana hamu",
     "loadFailed": "Imeshindwa kupakia matukio"
   },
-  "stats": {"chart": {"daily": "Wageni kwa siku", "dailyHint": "wageni wa kipekee kwa siku", "empty": "Bado hakuna data kwa kipindi hiki"},
+  "stats": {
+    "chart": {
+      "daily": "Wageni kwa siku",
+      "dailyHint": "wageni wa kipekee kwa siku",
+      "empty": "Bado hakuna data kwa kipindi hiki"
+    },
     "definitions": {
       "visitorsTerm": "Wageni"
     },
@@ -7580,6 +7585,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europe, Ufaransa, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Aina",
+      "sampleNorth": "Kaskazini",
+      "sampleSouth": "Kusini",
+      "sampleValue": "Thamani"
     }
   },
   "creator": {

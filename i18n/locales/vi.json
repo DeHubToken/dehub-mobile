@@ -5047,7 +5047,12 @@
     "interestedCount": "{{count}} quan tâm",
     "loadFailed": "Không tải được sự kiện"
   },
-  "stats": {"chart": {"daily": "Khách truy cập mỗi ngày", "dailyHint": "khách truy cập duy nhất mỗi ngày", "empty": "Chưa có dữ liệu cho khoảng thời gian này"},
+  "stats": {
+    "chart": {
+      "daily": "Khách truy cập mỗi ngày",
+      "dailyHint": "khách truy cập duy nhất mỗi ngày",
+      "empty": "Chưa có dữ liệu cho khoảng thời gian này"
+    },
     "definitions": {
       "visitorsTerm": "Khách truy cập"
     },
@@ -7701,6 +7706,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Châu Âu,Pháp,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Danh mục",
+      "sampleNorth": "Bắc",
+      "sampleSouth": "Nam",
+      "sampleValue": "Giá trị"
     }
   },
   "creator": {

@@ -5138,7 +5138,12 @@
     "interestedCount": "{{count}} জন আগ্রহী",
     "loadFailed": "ইভেন্ট লোড করা গেইল না"
   },
-  "stats": {"chart": {"daily": "দিনকার দর্শক", "dailyHint": "দিনকার অনন্য দর্শক", "empty": "এই সময়ের জইন্যে কোনো তথ্য নাই"},
+  "stats": {
+    "chart": {
+      "daily": "দিনকার দর্শক",
+      "dailyHint": "দিনকার অনন্য দর্শক",
+      "empty": "এই সময়ের জইন্যে কোনো তথ্য নাই"
+    },
     "definitions": {
       "visitorsTerm": "দর্শক"
     },
@@ -7595,6 +7600,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ইউরোপ, ফ্রান্স, ৩৫"
+    },
+    "dataImport": {
+      "sampleCategory": "ক্যাটাগরি",
+      "sampleNorth": "উত্তর",
+      "sampleSouth": "দক্ষিণ",
+      "sampleValue": "মূল্য"
     }
   },
   "creator": {

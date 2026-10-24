@@ -5025,7 +5025,12 @@
     "interestedCount": "{{count}} zainteresirano",
     "loadFailed": "Učitavanje događaja nije uspjelo"
   },
-  "stats": {"chart": {"daily": "Posjetitelja dnevno", "dailyHint": "jedinstvenih posjetitelja dnevno", "empty": "Za ovo razdoblje još nema podataka"},
+  "stats": {
+    "chart": {
+      "daily": "Posjetitelja dnevno",
+      "dailyHint": "jedinstvenih posjetitelja dnevno",
+      "empty": "Za ovo razdoblje još nema podataka"
+    },
     "definitions": {
       "visitorsTerm": "Posjetitelji"
     },
@@ -7571,6 +7576,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europa,Francuska, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategorija",
+      "sampleNorth": "Sjever",
+      "sampleSouth": "Jug",
+      "sampleValue": "Vrijednost"
     }
   },
   "creator": {

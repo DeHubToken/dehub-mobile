@@ -5014,7 +5014,12 @@
     "interestedCount": "{{count}} ayaa xiiseynaya",
     "loadFailed": "Lama soo rarin karin munaasabadaha"
   },
-  "stats": {"chart": {"daily": "Booqdayaal maalintii", "dailyHint": "booqdayaal gaar ah maalintii", "empty": "Weli xog ma jirto muddadan"},
+  "stats": {
+    "chart": {
+      "daily": "Booqdayaal maalintii",
+      "dailyHint": "booqdayaal gaar ah maalintii",
+      "empty": "Weli xog ma jirto muddadan"
+    },
     "definitions": {
       "visitorsTerm": "Booqdayaal"
     },
@@ -7549,6 +7554,14 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Yurub,Faransiiska, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Qeybta",
+      "sampleNorth": "Waqooyi",
+      "sampleSouth": "Koonfurta"
     }
   },
   "creator": {

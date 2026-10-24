@@ -5017,7 +5017,12 @@
     "interestedCount": "{{count}} പേർക്ക് താൽപ്പര്യം",
     "loadFailed": "ഇവന്റുകൾ ലോഡ് ചെയ്യാനായില്ല"
   },
-  "stats": {"chart": {"daily": "പ്രതിദിന സന്ദർശകർ", "dailyHint": "പ്രതിദിന അദ്വിതീയ സന്ദർശകർ", "empty": "ഈ കാലയളവിന് ഇതുവരെ ഡാറ്റയില്ല"},
+  "stats": {
+    "chart": {
+      "daily": "പ്രതിദിന സന്ദർശകർ",
+      "dailyHint": "പ്രതിദിന അദ്വിതീയ സന്ദർശകർ",
+      "empty": "ഈ കാലയളവിന് ഇതുവരെ ഡാറ്റയില്ല"
+    },
     "definitions": {
       "visitorsTerm": "സന്ദർശകർ"
     },
@@ -7559,6 +7564,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "യൂറോപ്പ്,ഫ്രാന്‍സ്, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "വിഭാഗം",
+      "sampleNorth": "വടക്ക്",
+      "sampleSouth": "തെക്ക്",
+      "sampleValue": "മൂല്യം"
     }
   },
   "creator": {

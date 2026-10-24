@@ -4994,7 +4994,12 @@
     "interestedCount": "{{count}} ተገዳስነት ኣለዎም",
     "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን"
   },
-  "stats": {"chart": {"daily": "በጻሕቲ ኣብ መዓልቲ", "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ", "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"},
+  "stats": {
+    "chart": {
+      "daily": "በጻሕቲ ኣብ መዓልቲ",
+      "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ",
+      "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"
+    },
     "definitions": {
       "visitorsTerm": "በጻሕቲ"
     },
@@ -7527,6 +7532,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ኤውሮጳ ፣ፈረንሳ ፣ 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ምድብ",
+      "sampleNorth": "ሰሜናዊ",
+      "sampleSouth": "ደቡብ",
+      "sampleValue": "ዋጋ"
     }
   },
   "creator": {

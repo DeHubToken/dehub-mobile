@@ -5092,7 +5092,12 @@
     "interestedCount": "{{count}} interessati",
     "loadFailed": "Impossibile caricare gli eventi"
   },
-  "stats": {"chart": {"daily": "Visitatori al giorno", "dailyHint": "visitatori unici al giorno", "empty": "Ancora nessun dato per questo intervallo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitatori al giorno",
+      "dailyHint": "visitatori unici al giorno",
+      "empty": "Ancora nessun dato per questo intervallo"
+    },
     "definitions": {
       "visitorsTerm": "Visitatori"
     },
@@ -7717,6 +7722,15 @@
       "retryRecovery": "Riprova il recupero",
       "personalCopy": "Salva una copia personale",
       "privateHint": "Entrare non carica le modifiche. La condivisione in diretta carica nuove fonti private; Salva crea una versione permanente."
+    },
+    "charts": {
+      "hierarchySample": "Europa,Francia,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Categoria",
+      "sampleNorth": "Nord",
+      "sampleSouth": "Sud",
+      "sampleValue": "Valore"
     }
   },
   "creator": {

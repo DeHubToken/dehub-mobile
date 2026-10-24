@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} ចាប់អារម្មណ៍",
     "loadFailed": "មិនអាចផ្ទុកព្រឹត្តិការណ៍បានទេ"
   },
-  "stats": {"chart": {"daily": "អ្នកទស្សនាក្នុងមួយថ្ងៃ", "dailyHint": "អ្នកទស្សនាតែមួយក្នុងមួយថ្ងៃ", "empty": "មិនទាន់មានទិន្នន័យសម្រាប់ចន្លោះពេលនេះទេ"},
+  "stats": {
+    "chart": {
+      "daily": "អ្នកទស្សនាក្នុងមួយថ្ងៃ",
+      "dailyHint": "អ្នកទស្សនាតែមួយក្នុងមួយថ្ងៃ",
+      "empty": "មិនទាន់មានទិន្នន័យសម្រាប់ចន្លោះពេលនេះទេ"
+    },
     "definitions": {
       "visitorsTerm": "អ្នកទស្សនា"
     },
@@ -7575,6 +7580,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "អឺរ៉ុប,បារាំង, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ប្រភេទ",
+      "sampleNorth": "ខាងជើង",
+      "sampleSouth": "ខាងត្បូង",
+      "sampleValue": "តម្លៃ"
     }
   },
   "creator": {

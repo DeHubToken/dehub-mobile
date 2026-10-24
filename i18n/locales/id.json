@@ -5084,7 +5084,12 @@
     "interestedCount": "{{count}} tertarik",
     "loadFailed": "Tidak dapat memuat acara"
   },
-  "stats": {"chart": {"daily": "Pengunjung per hari", "dailyHint": "pengunjung unik per hari", "empty": "Belum ada data untuk rentang ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pengunjung per hari",
+      "dailyHint": "pengunjung unik per hari",
+      "empty": "Belum ada data untuk rentang ini"
+    },
     "definitions": {
       "visitorsTerm": "Pengunjung"
     },
@@ -7662,6 +7667,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Eropa,Prancis,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategori",
+      "sampleNorth": "Utara",
+      "sampleSouth": "Selatan",
+      "sampleValue": "Nilai"
     }
   },
   "creator": {

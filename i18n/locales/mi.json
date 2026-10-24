@@ -5014,7 +5014,12 @@
     "interestedCount": "{{count}} e hiahia ana",
     "loadFailed": "Kāore i taea te uta i ngā huihuinga"
   },
-  "stats": {"chart": {"daily": "Manuhiri ia rā", "dailyHint": "manuhiri motuhake ia rā", "empty": "Kāore anō he raraunga mō tēnei wā"},
+  "stats": {
+    "chart": {
+      "daily": "Manuhiri ia rā",
+      "dailyHint": "manuhiri motuhake ia rā",
+      "empty": "Kāore anō he raraunga mō tēnei wā"
+    },
     "definitions": {
       "visitorsTerm": "Manuhiri"
     },
@@ -7551,6 +7556,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europe,France, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kāwai",
+      "sampleNorth": "Te Tai Tokerau",
+      "sampleSouth": "Te tonga",
+      "sampleValue": "Uara"
     }
   },
   "creator": {

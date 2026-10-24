@@ -5012,7 +5012,12 @@
     "interestedCount": "{{count}} ଆଗ୍ରହୀ",
     "loadFailed": "କାର୍ଯ୍ୟକ୍ରମ ଲୋଡ୍ କରିହେଲା ନାହିଁ"
   },
-  "stats": {"chart": {"daily": "ପ୍ରତିଦିନ ଦର୍ଶକ", "dailyHint": "ପ୍ରତିଦିନ ୟୁନିକ ଦର୍ଶକ", "empty": "ଏହି ସମୟ ପାଇଁ ତଥ୍ୟ ନାହିଁ"},
+  "stats": {
+    "chart": {
+      "daily": "ପ୍ରତିଦିନ ଦର୍ଶକ",
+      "dailyHint": "ପ୍ରତିଦିନ ୟୁନିକ ଦର୍ଶକ",
+      "empty": "ଏହି ସମୟ ପାଇଁ ତଥ୍ୟ ନାହିଁ"
+    },
     "definitions": {
       "visitorsTerm": "ଦର୍ଶକ"
     },
@@ -7546,6 +7551,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ଇଉରୋପ,ଫ୍ରାନ୍ସ, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ବିଭାଗ",
+      "sampleNorth": "ଉତ୍ତର",
+      "sampleSouth": "ଦକ୍ଷିଣ",
+      "sampleValue": "ମୂଲ୍ଯ"
     }
   },
   "creator": {

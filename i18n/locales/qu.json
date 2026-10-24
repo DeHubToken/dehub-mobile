@@ -5047,7 +5047,12 @@
     "interestedCount": "{{count}} munanku",
     "loadFailed": "Ruwaykunata mana chaqnayta atikunchu"
   },
-  "stats": {"chart": {"daily": "Watukuqkuna sapa punchaw", "dailyHint": "sapa punchaw huk kaq watukuqkuna", "empty": "Kay pachapaq manaraq willay kanchu"},
+  "stats": {
+    "chart": {
+      "daily": "Watukuqkuna sapa punchaw",
+      "dailyHint": "sapa punchaw huk kaq watukuqkuna",
+      "empty": "Kay pachapaq manaraq willay kanchu"
+    },
     "definitions": {
       "visitorsTerm": "Watukuqkuna"
     },
@@ -7584,6 +7589,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europa,Francia,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Ñiqichana",
+      "sampleNorth": "Chincha",
+      "sampleSouth": "Qulla",
+      "sampleValue": "Chanin"
     }
   },
   "creator": {

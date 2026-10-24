@@ -5018,7 +5018,12 @@
     "interestedCount": "{{count}} 人感興趣",
     "loadFailed": "無法載入活動"
   },
-  "stats": {"chart": {"daily": "每日訪客", "dailyHint": "每日獨立訪客", "empty": "呢段時間仲未有數據"},
+  "stats": {
+    "chart": {
+      "daily": "每日訪客",
+      "dailyHint": "每日獨立訪客",
+      "empty": "呢段時間仲未有數據"
+    },
     "definitions": {
       "visitorsTerm": "訪客"
     },
@@ -7559,6 +7564,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "歐洲，法國，35"
+    },
+    "dataImport": {
+      "sampleCategory": "類別",
+      "sampleNorth": "北",
+      "sampleSouth": "南面",
+      "sampleValue": "價值"
     }
   },
   "creator": {

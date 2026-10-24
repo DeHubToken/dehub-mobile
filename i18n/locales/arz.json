@@ -5021,7 +5021,12 @@
     "interestedCount": "{{count}} مهتم",
     "loadFailed": "مقدرناش نحمّل الفعاليات"
   },
-  "stats": {"chart": {"daily": "الزوار في اليوم", "dailyHint": "زوار فريدين في اليوم", "empty": "لسه مفيش بيانات للفترة دي"},
+  "stats": {
+    "chart": {
+      "daily": "الزوار في اليوم",
+      "dailyHint": "زوار فريدين في اليوم",
+      "empty": "لسه مفيش بيانات للفترة دي"
+    },
     "definitions": {
       "visitorsTerm": "الزوار"
     },
@@ -7562,6 +7567,14 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "أوروبا، فرنسا، 35"
+    },
+    "dataImport": {
+      "sampleNorth": "الشمال",
+      "sampleSouth": "الجنوب",
+      "sampleValue": "القيمة"
     }
   },
   "creator": {

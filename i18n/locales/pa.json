@@ -5024,7 +5024,12 @@
     "interestedCount": "{{count}} ਨੂੰ ਦਿਲਚਸਪੀ ਹੈ",
     "loadFailed": "ਸਮਾਗਮ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ"
   },
-  "stats": {"chart": {"daily": "ਰੋਜ਼ਾਨਾ ਵਿਜ਼ਿਟਰ", "dailyHint": "ਰੋਜ਼ਾਨਾ ਵਿਲੱਖਣ ਵਿਜ਼ਿਟਰ", "empty": "ਇਸ ਸਮੇਂ ਲਈ ਕੋਈ ਡਾਟਾ ਨਹੀਂ"},
+  "stats": {
+    "chart": {
+      "daily": "ਰੋਜ਼ਾਨਾ ਵਿਜ਼ਿਟਰ",
+      "dailyHint": "ਰੋਜ਼ਾਨਾ ਵਿਲੱਖਣ ਵਿਜ਼ਿਟਰ",
+      "empty": "ਇਸ ਸਮੇਂ ਲਈ ਕੋਈ ਡਾਟਾ ਨਹੀਂ"
+    },
     "definitions": {
       "visitorsTerm": "ਵਿਜ਼ਿਟਰ"
     },
@@ -7567,6 +7572,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ਯੂਰਪ,ਫਰਾਂਸ,35"
+    },
+    "dataImport": {
+      "sampleCategory": "ਸ਼੍ਰੇਣੀ",
+      "sampleNorth": "ਉੱਤਰ",
+      "sampleSouth": "ਦੱਖਣ",
+      "sampleValue": "ਮੁੱਲ"
     }
   },
   "creator": {

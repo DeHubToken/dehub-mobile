@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} के रुचि बा",
     "loadFailed": "कार्यक्रम लोड ना हो पावल"
   },
-  "stats": {"chart": {"daily": "रोज के आगंतुक", "dailyHint": "रोज के अनोखा आगंतुक", "empty": "एह अवधि खातिर अबहीं ले कवनो डेटा नइखे"},
+  "stats": {
+    "chart": {
+      "daily": "रोज के आगंतुक",
+      "dailyHint": "रोज के अनोखा आगंतुक",
+      "empty": "एह अवधि खातिर अबहीं ले कवनो डेटा नइखे"
+    },
     "definitions": {
       "visitorsTerm": "आगंतुक"
     },
@@ -7551,6 +7556,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "करेलियन - 35"
+    },
+    "dataImport": {
+      "sampleCategory": "श्रेणीःलेख जिनहन में",
+      "sampleNorth": "पूरब पश्चिम साथे",
+      "sampleSouth": "पूरब पश्चिम साथे",
+      "sampleValue": "मान की खातिर"
     }
   },
   "creator": {

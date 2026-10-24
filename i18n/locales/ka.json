@@ -5035,7 +5035,12 @@
     "interestedCount": "{{count}} დაინტერესებულია",
     "loadFailed": "ღონისძიებების ჩატვირთვა ვერ მოხერხდა"
   },
-  "stats": {"chart": {"daily": "ვიზიტორები დღეში", "dailyHint": "უნიკალური ვიზიტორები დღეში", "empty": "ამ პერიოდისთვის ჯერ არ არის მონაცემები"},
+  "stats": {
+    "chart": {
+      "daily": "ვიზიტორები დღეში",
+      "dailyHint": "უნიკალური ვიზიტორები დღეში",
+      "empty": "ამ პერიოდისთვის ჯერ არ არის მონაცემები"
+    },
     "definitions": {
       "visitorsTerm": "ვიზიტორები"
     },
@@ -7611,6 +7616,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ევროპა,საფრანგეთი,35"
+    },
+    "dataImport": {
+      "sampleCategory": "კატეგორია",
+      "sampleNorth": "ჩრდილოეთი",
+      "sampleSouth": "სამხრეთი",
+      "sampleValue": "ღირებულება"
     }
   },
   "creator": {

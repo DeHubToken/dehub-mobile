@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} জন আগ্রহী",
     "loadFailed": "ইভেন্ট লোড করা গেল না"
   },
-  "stats": {"chart": {"daily": "ہر دن آوے والا", "dailyHint": "ہر دن الگ الگ آوے والا", "empty": "ای وقت کے واسطے اڃا ڈیٹا نہیں ہے"},
+  "stats": {
+    "chart": {
+      "daily": "ہر دن آوے والا",
+      "dailyHint": "ہر دن الگ الگ آوے والا",
+      "empty": "ای وقت کے واسطے اڃا ڈیٹا نہیں ہے"
+    },
     "definitions": {
       "visitorsTerm": "آوے والا"
     },
@@ -7617,6 +7622,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europe,France,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Category",
+      "sampleNorth": "شمال",
+      "sampleSouth": "جنوب",
+      "sampleValue": "ارزش"
     }
   },
   "creator": {

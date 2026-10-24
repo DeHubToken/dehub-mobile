@@ -5017,7 +5017,12 @@
     "interestedCount": "{{count}} คนสนใจ",
     "loadFailed": "โหลดกิจกรรมบ่สำเร็จ"
   },
-  "stats": {"chart": {"daily": "ผู้เยี่ยมซมต่อมื้อ", "dailyHint": "ผู้เยี่ยมซมไม่ซ้ำต่อมื้อ", "empty": "ยังบ่มีข้อมูลสำหรับซ่วงนี้เทื่อ"},
+  "stats": {
+    "chart": {
+      "daily": "ผู้เยี่ยมซมต่อมื้อ",
+      "dailyHint": "ผู้เยี่ยมซมไม่ซ้ำต่อมื้อ",
+      "empty": "ยังบ่มีข้อมูลสำหรับซ่วงนี้เทื่อ"
+    },
     "definitions": {
       "visitorsTerm": "ผู้เยี่ยมซม"
     },
@@ -7562,6 +7567,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "อีโรป,ฝรั่งเศส,สามสิบห้า"
+    },
+    "dataImport": {
+      "sampleCategory": "หมวดหมู่",
+      "sampleNorth": "เหนือ",
+      "sampleSouth": "ใต้",
+      "sampleValue": "ค่าตัว"
     }
   },
   "creator": {

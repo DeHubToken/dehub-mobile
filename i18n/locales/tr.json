@@ -2629,7 +2629,25 @@
     "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} token'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub",
     "minDhbPurchase": "Minimum token alımı 50$'dır"
   },
-  "agents": {"life":{"title":"Canlı","help":"Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.","starting":"Kişiliği hazırlanıyor…","awake":"{{home}} şehrinde uyanık","asleep":"{{home}} şehrinde uyuyor","next":"sonraki ziyaret {{time}}","recent":"Son zamanlarda","empty":"Henüz bir şey yok. Yakında uğrayacak.","kind":{"post":"Paylaştı","comment":"Yorum yaptı","reply":"Yanıtladı","like":"Bir gönderiyi beğendi","profile":"Profilini güncelledi","error":"Bir şeyler ters gitti"}},
+  "agents": {
+    "life": {
+      "title": "Canlı",
+      "help": "Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.",
+      "starting": "Kişiliği hazırlanıyor…",
+      "awake": "{{home}} şehrinde uyanık",
+      "asleep": "{{home}} şehrinde uyuyor",
+      "next": "sonraki ziyaret {{time}}",
+      "recent": "Son zamanlarda",
+      "empty": "Henüz bir şey yok. Yakında uğrayacak.",
+      "kind": {
+        "post": "Paylaştı",
+        "comment": "Yorum yaptı",
+        "reply": "Yanıtladı",
+        "like": "Bir gönderiyi beğendi",
+        "profile": "Profilini güncelledi",
+        "error": "Bir şeyler ters gitti"
+      }
+    },
     "profile": {
       "edit": "Profili düzenle",
       "avatar": "Avatar",
@@ -4087,19 +4105,14 @@
       "completed": "Tamamlandı",
       "cancelled": "İptal edildi",
       "accepted": "Kabul edildi",
-      "open": "Açık",
       "pending": "Bekliyor",
       "awarded": "Atandı",
       "in_progress": "Devam ediyor",
       "approved": "Onaylandı",
       "paid": "Ödendi",
       "awaitingPayment": "Ödeme bekliyor",
-      "rejected": "Reddedildi",
-      "completed": "Tamamlandı",
-      "cancelled": "İptal edildi",
       "disputed": "İtiraz edildi",
-      "draft": "Taslak",
-      "expired": "Süresi doldu"
+      "draft": "Taslak"
     },
     "detail": {
       "notFound": "Ödüllü iş bulunamadı.",
@@ -5439,7 +5452,12 @@
     "interestedCount": "{{count}} kişi ilgileniyor",
     "loadFailed": "Etkinlikler yüklenemedi"
   },
-  "stats": {"chart": {"daily": "Günlük ziyaretçi", "dailyHint": "günlük benzersiz ziyaretçi", "empty": "Bu aralık için henüz veri yok"},
+  "stats": {
+    "chart": {
+      "daily": "Günlük ziyaretçi",
+      "dailyHint": "günlük benzersiz ziyaretçi",
+      "empty": "Bu aralık için henüz veri yok"
+    },
     "definitions": {
       "visitorsTerm": "Ziyaretçiler"
     },
@@ -8247,6 +8265,15 @@
       "received": "{{revision}} sürümü alındı.",
       "upToDate": "Zaten güncel.",
       "protectedUndo": "Eski yerel düzenlemeler paylaşılan değişikliklerle çakışıyor. Geri Alım paylaşılan değişiklikleri koruyacak."
+    },
+    "charts": {
+      "hierarchySample": "Avrupa,Fransa,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategori",
+      "sampleNorth": "Kuzey",
+      "sampleSouth": "Güney",
+      "sampleValue": "Değer"
     }
   },
   "creator": {

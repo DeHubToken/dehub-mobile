@@ -5000,7 +5000,12 @@
     "interestedCount": "{{count}} сонирхож байна",
     "loadFailed": "Арга хэмжээг ачаалж чадсангүй"
   },
-  "stats": {"chart": {"daily": "Өдрийн зочид", "dailyHint": "өдөрт ноогдох давтагдашгүй зочид", "empty": "Энэ хугацаанд одоогоор өгөгдөл алга"},
+  "stats": {
+    "chart": {
+      "daily": "Өдрийн зочид",
+      "dailyHint": "өдөрт ноогдох давтагдашгүй зочид",
+      "empty": "Энэ хугацаанд одоогоор өгөгдөл алга"
+    },
     "definitions": {
       "visitorsTerm": "Зочид"
     },
@@ -7531,6 +7536,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Европ,Франц, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Ангилал",
+      "sampleNorth": "Умард",
+      "sampleSouth": "Урд",
+      "sampleValue": "Утга"
     }
   },
   "creator": {

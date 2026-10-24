@@ -5008,7 +5008,12 @@
     "interestedCount": "{{count}} کوں دلچسپی ہے",
     "loadFailed": "تقریباں لوڈ نہ تھی سڳیاں"
   },
-  "stats": {"chart": {"daily": "ہر ݙین٘ہ آوݨ آلے", "dailyHint": "ہر ݙین٘ہ الگ الگ آوݨ آلے", "empty": "ایں ویلے کیتے اڄݨ تائیں ڈیٹا کائنی"},
+  "stats": {
+    "chart": {
+      "daily": "ہر ݙین٘ہ آوݨ آلے",
+      "dailyHint": "ہر ݙین٘ہ الگ الگ آوݨ آلے",
+      "empty": "ایں ویلے کیتے اڄݨ تائیں ڈیٹا کائنی"
+    },
     "definitions": {
       "visitorsTerm": "آوݨ آلے"
     },
@@ -7551,6 +7556,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "یورپ، فرانس، 35"
+    },
+    "dataImport": {
+      "sampleCategory": "کٹیگری",
+      "sampleNorth": "شمال",
+      "sampleSouth": "دکھن",
+      "sampleValue": "مقدار"
     }
   },
   "creator": {

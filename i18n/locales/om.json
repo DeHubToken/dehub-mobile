@@ -5027,7 +5027,12 @@
     "interestedCount": "{{count}} fedhii qabu",
     "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
   },
-  "stats": {"chart": {"daily": "Guyyaatti daawwattoota", "dailyHint": "guyyaatti daawwattoota adda ta'an", "empty": "Yeroo kanaaf deetaan ammatti hin jiru"},
+  "stats": {
+    "chart": {
+      "daily": "Guyyaatti daawwattoota",
+      "dailyHint": "guyyaatti daawwattoota adda ta'an",
+      "empty": "Yeroo kanaaf deetaan ammatti hin jiru"
+    },
     "definitions": {
       "visitorsTerm": "Daawwattoota"
     },
@@ -7601,6 +7606,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Awurooppaa,Faransaay,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Ramaddii",
+      "sampleNorth": "Kaaba",
+      "sampleSouth": "Kibba",
+      "sampleValue": "Gatii"
     }
   },
   "creator": {

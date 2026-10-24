@@ -5009,7 +5009,12 @@
     "interestedCount": "{{count}} के रुचि हे",
     "loadFailed": "कारजकरम लोड नइ होइस"
   },
-  "stats": {"chart": {"daily": "रोज के आगंतुक", "dailyHint": "रोज के अनोखा आगंतुक", "empty": "ये अवधि बर अभी तक डेटा नइ हे"},
+  "stats": {
+    "chart": {
+      "daily": "रोज के आगंतुक",
+      "dailyHint": "रोज के अनोखा आगंतुक",
+      "empty": "ये अवधि बर अभी तक डेटा नइ हे"
+    },
     "definitions": {
       "visitorsTerm": "आगंतुक"
     },
@@ -7591,6 +7596,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "कैलिफोर्निया, पुर्तगाल, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "स्रेनी",
+      "sampleNorth": "उत्तर",
+      "sampleSouth": "दक्छिनी",
+      "sampleValue": "मान"
     }
   },
   "creator": {

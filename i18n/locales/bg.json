@@ -5032,7 +5032,12 @@
     "interestedCount": "{{count}} проявяват интерес",
     "loadFailed": "Събитията не се заредиха"
   },
-  "stats": {"chart": {"daily": "Посетители на ден", "dailyHint": "уникални посетители на ден", "empty": "Все още няма данни за този период"},
+  "stats": {
+    "chart": {
+      "daily": "Посетители на ден",
+      "dailyHint": "уникални посетители на ден",
+      "empty": "Все още няма данни за този период"
+    },
     "definitions": {
       "visitorsTerm": "Посетители"
     },
@@ -7574,6 +7579,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Европа,Франция,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Категория",
+      "sampleNorth": "Север",
+      "sampleSouth": "Юг",
+      "sampleValue": "Стойност"
     }
   },
   "creator": {

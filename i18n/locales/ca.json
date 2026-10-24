@@ -5033,7 +5033,12 @@
     "interestedCount": "{{count}} interessats",
     "loadFailed": "No s'han pogut carregar els esdeveniments"
   },
-  "stats": {"chart": {"daily": "Visitants per dia", "dailyHint": "visitants únics per dia", "empty": "Encara no hi ha dades per a aquest període"},
+  "stats": {
+    "chart": {
+      "daily": "Visitants per dia",
+      "dailyHint": "visitants únics per dia",
+      "empty": "Encara no hi ha dades per a aquest període"
+    },
     "definitions": {
       "visitorsTerm": "Visitants"
     },
@@ -7579,6 +7584,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europa,França,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Categoria",
+      "sampleNorth": "Nord",
+      "sampleSouth": "Sud",
+      "sampleValue": "Valor"
     }
   },
   "creator": {

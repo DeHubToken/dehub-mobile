@@ -4995,7 +4995,12 @@
     "interestedCount": "{{count}} रुचिं धारयन्ति",
     "loadFailed": "कार्यक्रमाः लोड् कर्तुं न शक्यन्ते"
   },
-  "stats": {"chart": {"daily": "प्रतिदिनं दर्शकाः", "dailyHint": "प्रतिदिनं अद्वितीयदर्शकाः", "empty": "अस्मै कालावधये अद्यापि दत्तांशाः न सन्ति"},
+  "stats": {
+    "chart": {
+      "daily": "प्रतिदिनं दर्शकाः",
+      "dailyHint": "प्रतिदिनं अद्वितीयदर्शकाः",
+      "empty": "अस्मै कालावधये अद्यापि दत्तांशाः न सन्ति"
+    },
     "definitions": {
       "visitorsTerm": "दर्शकाः"
     },
@@ -7527,6 +7532,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "संयुक्त राज्य अमेरिका,स्पेन, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "वर्गः",
+      "sampleNorth": "उत्तरम्",
+      "sampleSouth": "दक्षिणा",
+      "sampleValue": "मानम्"
     }
   },
   "creator": {

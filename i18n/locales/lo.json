@@ -4997,7 +4997,12 @@
     "interestedCount": "{{count}} ສົນໃຈ",
     "loadFailed": "ບໍ່ສາມາດໂຫຼດກິດຈະກຳໄດ້"
   },
-  "stats": {"chart": {"daily": "ຜູ້ເຂົ້າຊົມຕໍ່ມື້", "dailyHint": "ຜູ້ເຂົ້າຊົມທີ່ບໍ່ຊ້ຳຕໍ່ມື້", "empty": "ຍັງບໍ່ມີຂໍ້ມູນສຳລັບຊ່ວງນີ້"},
+  "stats": {
+    "chart": {
+      "daily": "ຜູ້ເຂົ້າຊົມຕໍ່ມື້",
+      "dailyHint": "ຜູ້ເຂົ້າຊົມທີ່ບໍ່ຊ້ຳຕໍ່ມື້",
+      "empty": "ຍັງບໍ່ມີຂໍ້ມູນສຳລັບຊ່ວງນີ້"
+    },
     "definitions": {
       "visitorsTerm": "ຜູ້ເຂົ້າຊົມ"
     },
@@ -7530,6 +7535,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ເອີຣົບ,ປະເທດຝຣັ່ງ, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ປະເພດ",
+      "sampleNorth": "ພາກເໜືອ",
+      "sampleSouth": "ພາກໃຕ້",
+      "sampleValue": "ມູນຄ່າ"
     }
   },
   "creator": {

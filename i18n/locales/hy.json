@@ -5025,7 +5025,12 @@
     "interestedCount": "{{count}}-ը հետաքրքրված է",
     "loadFailed": "Չհաջողվեց բեռնել միջոցառումները"
   },
-  "stats": {"chart": {"daily": "Այցելուներ օրական", "dailyHint": "եզակի այցելուներ օրական", "empty": "Այս ժամանակահատվածի համար դեռ տվյալներ չկան"},
+  "stats": {
+    "chart": {
+      "daily": "Այցելուներ օրական",
+      "dailyHint": "եզակի այցելուներ օրական",
+      "empty": "Այս ժամանակահատվածի համար դեռ տվյալներ չկան"
+    },
     "definitions": {
       "visitorsTerm": "Այցելուներ"
     },
@@ -7569,6 +7574,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Եվրոպա,Ֆրանսիա,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Կատեգորիա",
+      "sampleNorth": "Հյուսիս",
+      "sampleSouth": "Հարավ",
+      "sampleValue": "Արժեք"
     }
   },
   "creator": {

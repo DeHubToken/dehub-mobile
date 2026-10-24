@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} kepéngin",
     "loadFailed": "Ora bisa ngemot acara"
   },
-  "stats": {"chart": {"daily": "Tamu saben dina", "dailyHint": "tamu unik saben dina", "empty": "Durung ana data kanggo periode iki"},
+  "stats": {
+    "chart": {
+      "daily": "Tamu saben dina",
+      "dailyHint": "tamu unik saben dina",
+      "empty": "Durung ana data kanggo periode iki"
+    },
     "definitions": {
       "visitorsTerm": "Tamu"
     },
@@ -7552,6 +7557,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europe,Pransya,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategori",
+      "sampleNorth": "Kulon",
+      "sampleSouth": "Kene",
+      "sampleValue": "Nila"
     }
   },
   "creator": {

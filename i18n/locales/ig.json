@@ -5014,7 +5014,12 @@
     "interestedCount": "{{count}} nwere mmasị",
     "loadFailed": "Enweghị ike ibubata mmemme"
   },
-  "stats": {"chart": {"daily": "Ndị Ọbịa Kwa Ụbọchị", "dailyHint": "ndị ọbịa nke ọ bụla kwa ụbọchị", "empty": "Enweghị data maka oge a ma"},
+  "stats": {
+    "chart": {
+      "daily": "Ndị Ọbịa Kwa Ụbọchị",
+      "dailyHint": "ndị ọbịa nke ọ bụla kwa ụbọchị",
+      "empty": "Enweghị data maka oge a ma"
+    },
     "definitions": {
       "visitorsTerm": "Ndị Ọbịa"
     },
@@ -7550,6 +7555,13 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europe,France, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Udi",
+      "sampleValue": "Uru"
     }
   },
   "creator": {

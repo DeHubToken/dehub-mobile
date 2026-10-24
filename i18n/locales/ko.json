@@ -5086,7 +5086,12 @@
     "interestedCount": "{{count}}명 관심 있음",
     "loadFailed": "행사를 불러오지 못했습니다"
   },
-  "stats": {"chart": {"daily": "일별 방문자", "dailyHint": "일별 순 방문자", "empty": "이 기간의 데이터가 아직 없습니다"},
+  "stats": {
+    "chart": {
+      "daily": "일별 방문자",
+      "dailyHint": "일별 순 방문자",
+      "empty": "이 기간의 데이터가 아직 없습니다"
+    },
     "definitions": {
       "visitorsTerm": "방문자"
     },
@@ -7696,6 +7701,15 @@
       "retryRecovery": "복구 다시 시도",
       "personalCopy": "개인 사본 저장",
       "privateHint": "참여만으로 편집 내용이 업로드되지는 않습니다. 실시간 공유는 새 비공개 소스를 업로드하며, 저장은 영구 버전을 만듭니다."
+    },
+    "charts": {
+      "hierarchySample": "유럽, 프랑스, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "카테고리",
+      "sampleNorth": "북쪽",
+      "sampleSouth": "남쪽",
+      "sampleValue": "값"
     }
   },
   "creator": {

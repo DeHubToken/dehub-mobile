@@ -5013,7 +5013,12 @@
     "interestedCount": "{{count}} suna sha'awa",
     "loadFailed": "An kasa loda abubuwan"
   },
-  "stats": {"chart": {"daily": "Baƙi kowace rana", "dailyHint": "baƙi na musamman kowace rana", "empty": "Har yanzu babu bayanai don wannan lokacin"},
+  "stats": {
+    "chart": {
+      "daily": "Baƙi kowace rana",
+      "dailyHint": "baƙi na musamman kowace rana",
+      "empty": "Har yanzu babu bayanai don wannan lokacin"
+    },
     "definitions": {
       "visitorsTerm": "Baƙi"
     },
@@ -7550,6 +7555,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Turai,Faransa, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategorien",
+      "sampleNorth": "Arewa",
+      "sampleSouth": "Kudancin Kudu",
+      "sampleValue": "Darajar"
     }
   },
   "creator": {

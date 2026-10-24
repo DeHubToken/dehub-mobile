@@ -5004,7 +5004,12 @@
     "interestedCount": "{{count}} لیوالتیا لري",
     "loadFailed": "پیښې بار نشوې"
   },
-  "stats": {"chart": {"daily": "ورځنی لیدونکي", "dailyHint": "ورځنی ځانګړي لیدونکي", "empty": "د دې مودې لپاره معلومات نشته"},
+  "stats": {
+    "chart": {
+      "daily": "ورځنی لیدونکي",
+      "dailyHint": "ورځنی ځانګړي لیدونکي",
+      "empty": "د دې مودې لپاره معلومات نشته"
+    },
     "definitions": {
       "visitorsTerm": "لیدونکي"
     },
@@ -7535,6 +7540,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "د اروپا،فرانسې، 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ډول",
+      "sampleNorth": "په شمال کې",
+      "sampleSouth": "جنوب",
+      "sampleValue": "د ارزونې ارزښت"
     }
   },
   "creator": {

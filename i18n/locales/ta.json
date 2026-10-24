@@ -5020,7 +5020,12 @@
     "interestedCount": "{{count}} பேர் ஆர்வமாக உள்ளனர்",
     "loadFailed": "நிகழ்வுகளை ஏற்ற முடியவில்லை"
   },
-  "stats": {"chart": {"daily": "நாளொன்றுக்கு வருகையாளர்கள்", "dailyHint": "நாளொன்றுக்கு தனித்த வருகையாளர்கள்", "empty": "இந்தக் காலத்திற்கு இன்னும் தரவு இல்லை"},
+  "stats": {
+    "chart": {
+      "daily": "நாளொன்றுக்கு வருகையாளர்கள்",
+      "dailyHint": "நாளொன்றுக்கு தனித்த வருகையாளர்கள்",
+      "empty": "இந்தக் காலத்திற்கு இன்னும் தரவு இல்லை"
+    },
     "definitions": {
       "visitorsTerm": "வருகையாளர்கள்"
     },
@@ -7562,6 +7567,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ஐரோப்பா,பிரான்ஸ், 35"
+    },
+    "dataImport": {
+      "sampleCategory": "வகை",
+      "sampleNorth": "வடக்கு",
+      "sampleSouth": "தெற்கு",
+      "sampleValue": "மதிப்பு"
     }
   },
   "creator": {

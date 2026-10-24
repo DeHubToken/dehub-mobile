@@ -5076,7 +5076,12 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {"chart": {"daily": "每日访客", "dailyHint": "每日独立访客", "empty": "此时间范围暂无数据"},
+  "stats": {
+    "chart": {
+      "daily": "每日访客",
+      "dailyHint": "每日独立访客",
+      "empty": "此时间范围暂无数据"
+    },
     "definitions": {
       "visitorsTerm": "访客"
     },
@@ -7760,6 +7765,15 @@
       "received": "已接收版本 {{revision}}。",
       "upToDate": "已是最新版本。",
       "protectedUndo": "较早的本地编辑与共享更改重叠。撤销操作将保留共享更改。"
+    },
+    "charts": {
+      "hierarchySample": "欧洲，法国， 35"
+    },
+    "dataImport": {
+      "sampleCategory": "类别",
+      "sampleNorth": "北",
+      "sampleSouth": "南",
+      "sampleValue": "值"
     }
   },
   "creator": {

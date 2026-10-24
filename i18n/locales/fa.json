@@ -5060,7 +5060,12 @@
     "interestedCount": "{{count}} نفر علاقه‌مند",
     "loadFailed": "بارگذاری رویدادها ممکن نشد"
   },
-  "stats": {"chart": {"daily": "بازدیدکنندگان در روز", "dailyHint": "بازدیدکنندگان یکتا در روز", "empty": "هنوز داده‌ای برای این بازه نیست"},
+  "stats": {
+    "chart": {
+      "daily": "بازدیدکنندگان در روز",
+      "dailyHint": "بازدیدکنندگان یکتا در روز",
+      "empty": "هنوز داده‌ای برای این بازه نیست"
+    },
     "definitions": {
       "visitorsTerm": "بازدیدکنندگان"
     },
@@ -7603,6 +7608,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "اروپا، فرانسه، 35"
+    },
+    "dataImport": {
+      "sampleCategory": "دسته بندی",
+      "sampleNorth": "شمال",
+      "sampleSouth": "جنوب",
+      "sampleValue": "ارزش"
     }
   },
   "creator": {

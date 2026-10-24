@@ -5013,7 +5013,12 @@
     "interestedCount": "{{count}} کي دلچسپي آهي",
     "loadFailed": "تقريبون لوڊ نه ٿي سگهيون"
   },
-  "stats": {"chart": {"daily": "روزانو ايندڙ ماڻهو", "dailyHint": "روزانو منفرد ايندڙ ماڻهو", "empty": "هن عرصي لاءِ اڃا ڊيٽا ناهي"},
+  "stats": {
+    "chart": {
+      "daily": "روزانو ايندڙ ماڻهو",
+      "dailyHint": "روزانو منفرد ايندڙ ماڻهو",
+      "empty": "هن عرصي لاءِ اڃا ڊيٽا ناهي"
+    },
     "definitions": {
       "visitorsTerm": "ايندڙ ماڻهو"
     },
@@ -7548,6 +7553,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "يورپ،فرانس، 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ڪيٽيگري",
+      "sampleNorth": "شمالي",
+      "sampleSouth": "جنوبي",
+      "sampleValue": "قدر"
     }
   },
   "creator": {

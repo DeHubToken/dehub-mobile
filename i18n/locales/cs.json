@@ -5036,7 +5036,12 @@
     "interestedCount": "{{count}} má zájem",
     "loadFailed": "Akce se nepodařilo načíst"
   },
-  "stats": {"chart": {"daily": "Návštěvníci za den", "dailyHint": "unikátní návštěvníci za den", "empty": "Pro toto období zatím nejsou data"},
+  "stats": {
+    "chart": {
+      "daily": "Návštěvníci za den",
+      "dailyHint": "unikátní návštěvníci za den",
+      "empty": "Pro toto období zatím nejsou data"
+    },
     "definitions": {
       "visitorsTerm": "Návštěvníci"
     },
@@ -7581,6 +7586,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Evropa,Francie,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategorie",
+      "sampleNorth": "Sever",
+      "sampleSouth": "Jih",
+      "sampleValue": "Hodnota"
     }
   },
   "creator": {

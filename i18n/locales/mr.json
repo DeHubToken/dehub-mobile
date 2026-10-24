@@ -5021,7 +5021,12 @@
     "interestedCount": "{{count}} जणांना स्वारस्य",
     "loadFailed": "कार्यक्रम लोड करता आले नाहीत"
   },
-  "stats": {"chart": {"daily": "दररोज अभ्यागत", "dailyHint": "दररोज अद्वितीय अभ्यागत", "empty": "या कालावधीसाठी अजून डेटा नाही"},
+  "stats": {
+    "chart": {
+      "daily": "दररोज अभ्यागत",
+      "dailyHint": "दररोज अद्वितीय अभ्यागत",
+      "empty": "या कालावधीसाठी अजून डेटा नाही"
+    },
     "definitions": {
       "visitorsTerm": "अभ्यागत"
     },
@@ -7562,6 +7567,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "युरोप,फ्रान्स, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "वर्गवारी",
+      "sampleNorth": "उत्तर",
+      "sampleSouth": "दक्षिण",
+      "sampleValue": "मूल्य"
     }
   },
   "creator": {

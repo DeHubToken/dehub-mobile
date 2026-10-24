@@ -5023,7 +5023,12 @@
     "interestedCount": "{{count}} maraqlanır",
     "loadFailed": "Tədbirlər yüklənmədi"
   },
-  "stats": {"chart": {"daily": "Gündəlik ziyarətçi", "dailyHint": "gündəlik unikal ziyarətçi", "empty": "Bu dövr üçün hələ məlumat yoxdur"},
+  "stats": {
+    "chart": {
+      "daily": "Gündəlik ziyarətçi",
+      "dailyHint": "gündəlik unikal ziyarətçi",
+      "empty": "Bu dövr üçün hələ məlumat yoxdur"
+    },
     "definitions": {
       "visitorsTerm": "Ziyarətçilər"
     },
@@ -7568,6 +7573,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Avropa,Fransa,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kateqoriya",
+      "sampleNorth": "Şimal",
+      "sampleSouth": "Cənub",
+      "sampleValue": "Dəyər"
     }
   },
   "creator": {

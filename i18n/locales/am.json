@@ -5036,7 +5036,12 @@
     "interestedCount": "{{count}} ፍላጎት አላቸው",
     "loadFailed": "ዝግጅቶችን መጫን አልተቻለም"
   },
-  "stats": {"chart": {"daily": "በቀን ጎብኚዎች", "dailyHint": "በቀን ልዩ ጎብኚዎች", "empty": "ለዚህ ጊዜ መስኮት እስካሁን መረጃ የለም"},
+  "stats": {
+    "chart": {
+      "daily": "በቀን ጎብኚዎች",
+      "dailyHint": "በቀን ልዩ ጎብኚዎች",
+      "empty": "ለዚህ ጊዜ መስኮት እስካሁን መረጃ የለም"
+    },
     "definitions": {
       "visitorsTerm": "ጎብኚዎች"
     },
@@ -7568,6 +7573,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "አውሮፓ,ፈረንሳይ,35"
+    },
+    "dataImport": {
+      "sampleCategory": "ምድብ",
+      "sampleNorth": "ሰሜን",
+      "sampleSouth": "ደቡብ",
+      "sampleValue": "ዋጋ"
     }
   },
   "creator": {

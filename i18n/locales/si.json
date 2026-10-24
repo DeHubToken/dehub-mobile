@@ -5011,7 +5011,12 @@
     "interestedCount": "{{count}} දෙනෙක් උනන්දුයි",
     "loadFailed": "උත්සව පූරණය කළ නොහැකි විය"
   },
-  "stats": {"chart": {"daily": "දිනකට අමුත්තන්", "dailyHint": "දිනකට අනන්‍ය අමුත්තන්", "empty": "මෙම කාලය සඳහා තවම දත්ත නැත"},
+  "stats": {
+    "chart": {
+      "daily": "දිනකට අමුත්තන්",
+      "dailyHint": "දිනකට අනන්‍ය අමුත්තන්",
+      "empty": "මෙම කාලය සඳහා තවම දත්ත නැත"
+    },
     "definitions": {
       "visitorsTerm": "අමුත්තන්"
     },
@@ -7570,6 +7575,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "යුරෝපය,ප් ‍ රංශය, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "කාණ්ඩය",
+      "sampleNorth": "උතුර",
+      "sampleSouth": "දකුණ",
+      "sampleValue": "අගය"
     }
   },
   "creator": {

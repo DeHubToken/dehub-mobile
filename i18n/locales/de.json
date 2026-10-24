@@ -5146,7 +5146,12 @@
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "Events konnten nicht geladen werden"
   },
-  "stats": {"chart": {"daily": "Besucher pro Tag", "dailyHint": "eindeutige Besucher pro Tag", "empty": "Noch keine Daten für diesen Zeitraum"},
+  "stats": {
+    "chart": {
+      "daily": "Besucher pro Tag",
+      "dailyHint": "eindeutige Besucher pro Tag",
+      "empty": "Noch keine Daten für diesen Zeitraum"
+    },
     "definitions": {
       "visitorsTerm": "Besucher"
     },
@@ -7862,6 +7867,15 @@
       "matchDuration": "Die passenden Aufnahmen sind kürzer als das gewünschte Video. Verkürze die Dauer oder wähle weitere Medien.",
       "matchFailed": "Die Szenensuche ist nicht verfügbar. Deine ausgewählten Clips und Zeiten bleiben unverändert. Du kannst sie manuell prüfen.",
       "reviewManually": "Clips manuell prüfen"
+    },
+    "charts": {
+      "hierarchySample": "Europe, Frankreich, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategorie",
+      "sampleNorth": "Nord",
+      "sampleSouth": "Süd",
+      "sampleValue": "Wert"
     }
   },
   "creator": {

@@ -5038,7 +5038,12 @@
     "interestedCount": "{{count}} liana",
     "loadFailed": "Tsy voaraikitra ny hetsika"
   },
-  "stats": {"chart": {"daily": "Mpitsidika isan'andro", "dailyHint": "mpitsidika tsy mitovy isan'andro", "empty": "Mbola tsy misy angona ho an'ity vanim-potoana ity"},
+  "stats": {
+    "chart": {
+      "daily": "Mpitsidika isan'andro",
+      "dailyHint": "mpitsidika tsy mitovy isan'andro",
+      "empty": "Mbola tsy misy angona ho an'ity vanim-potoana ity"
+    },
     "definitions": {
       "visitorsTerm": "Mpitsidika"
     },
@@ -7650,6 +7655,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Eoropa,Frantsa, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Sokajy",
+      "sampleNorth": "Avaratra",
+      "sampleSouth": "Atsimo",
+      "sampleValue": "Sanda"
     }
   },
   "creator": {

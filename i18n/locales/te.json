@@ -5021,7 +5021,12 @@
     "interestedCount": "{{count}} మందికి ఆసక్తి",
     "loadFailed": "ఈవెంట్లను లోడ్ చేయలేకపోయాము"
   },
-  "stats": {"chart": {"daily": "రోజుకు సందర్శకులు", "dailyHint": "రోజుకు ప్రత్యేక సందర్శకులు", "empty": "ఈ కాలానికి ఇంకా డేటా లేదు"},
+  "stats": {
+    "chart": {
+      "daily": "రోజుకు సందర్శకులు",
+      "dailyHint": "రోజుకు ప్రత్యేక సందర్శకులు",
+      "empty": "ఈ కాలానికి ఇంకా డేటా లేదు"
+    },
     "definitions": {
       "visitorsTerm": "సందర్శకులు"
     },
@@ -7564,6 +7569,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "యూరప్,ఫ్రాన్స్, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "వర్గం",
+      "sampleNorth": "ఉత్తరం",
+      "sampleSouth": "దక్షిణం",
+      "sampleValue": "విలువ"
     }
   },
   "creator": {

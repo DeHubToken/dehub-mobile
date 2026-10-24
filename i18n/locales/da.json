@@ -5037,7 +5037,12 @@
     "interestedCount": "{{count}} interesserede",
     "loadFailed": "Kunne ikke indlæse arrangementer"
   },
-  "stats": {"chart": {"daily": "Besøgende pr. dag", "dailyHint": "unikke besøgende pr. dag", "empty": "Endnu ingen data for denne periode"},
+  "stats": {
+    "chart": {
+      "daily": "Besøgende pr. dag",
+      "dailyHint": "unikke besøgende pr. dag",
+      "empty": "Endnu ingen data for denne periode"
+    },
     "definitions": {
       "visitorsTerm": "Besøgende"
     },
@@ -7583,6 +7588,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europa,Frankrig,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategori",
+      "sampleNorth": "Nord",
+      "sampleSouth": "Syd",
+      "sampleValue": "Værdi"
     }
   },
   "creator": {

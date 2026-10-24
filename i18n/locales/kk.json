@@ -5034,7 +5034,12 @@
     "interestedCount": "{{count}} қызығады",
     "loadFailed": "Іс-шараларды жүктеу мүмкін болмады"
   },
-  "stats": {"chart": {"daily": "Күніне келушілер", "dailyHint": "күніне бірегей келушілер", "empty": "Бұл кезең үшін әзірге деректер жоқ"},
+  "stats": {
+    "chart": {
+      "daily": "Күніне келушілер",
+      "dailyHint": "күніне бірегей келушілер",
+      "empty": "Бұл кезең үшін әзірге деректер жоқ"
+    },
     "definitions": {
       "visitorsTerm": "Келушілер"
     },
@@ -7611,6 +7616,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Еуропа,Франция, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Категория",
+      "sampleNorth": "Солтүстік",
+      "sampleSouth": "Оңтүстік",
+      "sampleValue": "Мән"
     }
   },
   "creator": {

@@ -5013,7 +5013,12 @@
     "interestedCount": "{{count}} gyzyklanýar",
     "loadFailed": "Çäreler ýüklenip bilmedi"
   },
-  "stats": {"chart": {"daily": "Gün başyna myhmanlar", "dailyHint": "gün başyna täkrarsyz myhmanlar", "empty": "Bu wagt aralygy üçin heniz maglumat ýok"},
+  "stats": {
+    "chart": {
+      "daily": "Gün başyna myhmanlar",
+      "dailyHint": "gün başyna täkrarsyz myhmanlar",
+      "empty": "Bu wagt aralygy üçin heniz maglumat ýok"
+    },
     "definitions": {
       "visitorsTerm": "Myhmanlar"
     },
@@ -7549,6 +7554,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Ýeropa,Fransiýa, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategoriýa",
+      "sampleNorth": "Şimal",
+      "sampleSouth": "Günorta",
+      "sampleValue": "Deger"
     }
   },
   "creator": {

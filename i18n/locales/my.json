@@ -5021,7 +5021,12 @@
     "interestedCount": "{{count}} ဦး စိတ်ဝင်စား",
     "loadFailed": "ပွဲများကို ဖွင့်၍မရပါ"
   },
-  "stats": {"chart": {"daily": "တစ်ရက်လျှင် ဧည့်သည်", "dailyHint": "တစ်ရက်လျှင် သီးခြား ဧည့်သည်", "empty": "ဤကာလအတွက် အချက်အလက် မရှိသေးပါ"},
+  "stats": {
+    "chart": {
+      "daily": "တစ်ရက်လျှင် ဧည့်သည်",
+      "dailyHint": "တစ်ရက်လျှင် သီးခြား ဧည့်သည်",
+      "empty": "ဤကာလအတွက် အချက်အလက် မရှိသေးပါ"
+    },
     "definitions": {
       "visitorsTerm": "ဧည့်သည်များ"
     },
@@ -7582,6 +7587,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ဥရောပ,ပြင်သစ်, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "အမျိုးအစား",
+      "sampleNorth": "မြောက်",
+      "sampleSouth": "တောင်ဘက်",
+      "sampleValue": "တန်ဖိုး"
     }
   },
   "creator": {

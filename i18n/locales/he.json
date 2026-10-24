@@ -5028,7 +5028,12 @@
     "interestedCount": "{{count}} מעוניינים",
     "loadFailed": "טעינת האירועים נכשלה"
   },
-  "stats": {"chart": {"daily": "מבקרים ליום", "dailyHint": "מבקרים ייחודיים ליום", "empty": "אין עדיין נתונים לטווח הזה"},
+  "stats": {
+    "chart": {
+      "daily": "מבקרים ליום",
+      "dailyHint": "מבקרים ייחודיים ליום",
+      "empty": "אין עדיין נתונים לטווח הזה"
+    },
     "definitions": {
       "visitorsTerm": "מבקרים"
     },
@@ -7568,6 +7573,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "אירופה, צרפת, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "קטגוריה",
+      "sampleNorth": "צפון",
+      "sampleSouth": "דרום",
+      "sampleValue": "ערך"
     }
   },
   "creator": {

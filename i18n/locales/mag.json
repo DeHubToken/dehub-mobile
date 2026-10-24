@@ -5020,7 +5020,12 @@
     "interestedCount": "{{count}} के रुचि",
     "loadFailed": "कार्यक्रम लोड नै भेल"
   },
-  "stats": {"chart": {"daily": "रोज के विजिटर", "dailyHint": "रोज के यूनीक विजिटर", "empty": "ई अवधि लेल अखनी तक कोनो डेटा नै हे"},
+  "stats": {
+    "chart": {
+      "daily": "रोज के विजिटर",
+      "dailyHint": "रोज के यूनीक विजिटर",
+      "empty": "ई अवधि लेल अखनी तक कोनो डेटा नै हे"
+    },
     "definitions": {
       "visitorsTerm": "विजिटर"
     },
@@ -7553,6 +7558,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "कोपेनहेगन, कोपेनहेगन,35"
+    },
+    "dataImport": {
+      "sampleCategory": "श्रेणीःखेल जोड़ल गेल",
+      "sampleNorth": "उत्तर हल, जबाव, उत्तर",
+      "sampleSouth": "पूर्वा पूर्व दिशा, पू",
+      "sampleValue": "मानहीन, मानहीन"
     }
   },
   "creator": {

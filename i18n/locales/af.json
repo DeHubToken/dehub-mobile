@@ -5058,7 +5058,12 @@
     "interestedCount": "{{count}} belangstellend",
     "loadFailed": "Kon nie geleenthede laai nie"
   },
-  "stats": {"chart": {"daily": "Besoekers per dag", "dailyHint": "unieke besoekers per dag", "empty": "Nog geen data vir hierdie tydperk nie"},
+  "stats": {
+    "chart": {
+      "daily": "Besoekers per dag",
+      "dailyHint": "unieke besoekers per dag",
+      "empty": "Nog geen data vir hierdie tydperk nie"
+    },
     "definitions": {
       "visitorsTerm": "Besoekers"
     },
@@ -7696,6 +7701,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europa,Frankryk, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategorie",
+      "sampleNorth": "Noord",
+      "sampleSouth": "Suid",
+      "sampleValue": "Waarde"
     }
   },
   "creator": {

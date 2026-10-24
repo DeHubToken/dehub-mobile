@@ -4995,7 +4995,12 @@
     "interestedCount": "{{count}} b'a fɛ",
     "loadFailed": "Kow ma se ka doni"
   },
-  "stats": {"chart": {"daily": "Taalabagaw tile kelen-kelen na", "dailyHint": "taalabaga kelenw tile kelen-kelen na", "empty": "Kunnafoni si tɛ yen nin waati in kama fɔlɔ"},
+  "stats": {
+    "chart": {
+      "daily": "Taalabagaw tile kelen-kelen na",
+      "dailyHint": "taalabaga kelenw tile kelen-kelen na",
+      "empty": "Kunnafoni si tɛ yen nin waati in kama fɔlɔ"
+    },
     "definitions": {
       "visitorsTerm": "Taalabagaw"
     },
@@ -7516,6 +7521,14 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Itali,Faransi, saan 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Yɔrɔ dɔw",
+      "sampleNorth": "Ne be kɔgɔdugu ɲafan fɛ",
+      "sampleSouth": "Kɔgɔdugu ɲafan ka league"
     }
   },
   "creator": {

@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} nífẹ̀ẹ́ sí",
     "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé"
   },
-  "stats": {"chart": {"daily": "Àwọn àlejò lójúmọ́", "dailyHint": "àwọn àlejò aláìlẹ́gbẹ́ lójúmọ́", "empty": "Kò sí data fún àkókò yìí síbẹ̀"},
+  "stats": {
+    "chart": {
+      "daily": "Àwọn àlejò lójúmọ́",
+      "dailyHint": "àwọn àlejò aláìlẹ́gbẹ́ lójúmọ́",
+      "empty": "Kò sí data fún àkókò yìí síbẹ̀"
+    },
     "definitions": {
       "visitorsTerm": "Àwọn àlejò"
     },
@@ -7551,6 +7556,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Europe,France, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Ẹ̀ka",
+      "sampleNorth": "Àríwá",
+      "sampleSouth": "Gúúsù",
+      "sampleValue": "Iye"
     }
   },
   "creator": {

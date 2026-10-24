@@ -5016,7 +5016,12 @@
     "interestedCount": "{{count}} ને રસ છે",
     "loadFailed": "કાર્યક્રમો લોડ થઈ શક્યા નહીં"
   },
-  "stats": {"chart": {"daily": "દરરોજ મુલાકાતીઓ", "dailyHint": "દરરોજ અનન્ય મુલાકાતીઓ", "empty": "આ સમયગાળા માટે હજી ડેટા નથી"},
+  "stats": {
+    "chart": {
+      "daily": "દરરોજ મુલાકાતીઓ",
+      "dailyHint": "દરરોજ અનન્ય મુલાકાતીઓ",
+      "empty": "આ સમયગાળા માટે હજી ડેટા નથી"
+    },
     "definitions": {
       "visitorsTerm": "મુલાકાતીઓ"
     },
@@ -7558,6 +7563,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "યુરોપ,ફ્રાન્સ, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "કેટેગરી",
+      "sampleNorth": "ઉત્તર",
+      "sampleSouth": "દક્ષિણ",
+      "sampleValue": "મૂલ્ય"
     }
   },
   "creator": {

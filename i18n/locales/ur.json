@@ -5033,7 +5033,12 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نہیں ہو سکے"
   },
-  "stats": {"chart": {"daily": "یومیہ زائرین", "dailyHint": "یومیہ منفرد زائرین", "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"},
+  "stats": {
+    "chart": {
+      "daily": "یومیہ زائرین",
+      "dailyHint": "یومیہ منفرد زائرین",
+      "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"
+    },
     "definitions": {
       "visitorsTerm": "زائرین"
     },
@@ -7576,6 +7581,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "یورپ،فرانس، 35"
+    },
+    "dataImport": {
+      "sampleCategory": "زمرہ",
+      "sampleNorth": "شمال",
+      "sampleSouth": "جنوب",
+      "sampleValue": "قدر"
     }
   },
   "creator": {

@@ -5133,7 +5133,12 @@
     "interestedCount": "{{count}} má záujem",
     "loadFailed": "Podujatia sa nepodarilo načítať"
   },
-  "stats": {"chart": {"daily": "Návštevníci za deň", "dailyHint": "jedineční návštevníci za deň", "empty": "Pre toto obdobie zatiaľ nie sú údaje"},
+  "stats": {
+    "chart": {
+      "daily": "Návštevníci za deň",
+      "dailyHint": "jedineční návštevníci za deň",
+      "empty": "Pre toto obdobie zatiaľ nie sú údaje"
+    },
     "definitions": {
       "visitorsTerm": "Návštevníci"
     },
@@ -7736,6 +7741,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Európa,Francúzsko,35"
+    },
+    "dataImport": {
+      "sampleCategory": "Kategória",
+      "sampleNorth": "Sever",
+      "sampleSouth": "Juh",
+      "sampleValue": "Hodnota"
     }
   },
   "creator": {

@@ -5025,7 +5025,12 @@
     "interestedCount": "{{count}} зацікаўлены",
     "loadFailed": "Не ўдалося загрузіць падзеі"
   },
-  "stats": {"chart": {"daily": "Наведвальнікаў за дзень", "dailyHint": "унікальных наведвальнікаў за дзень", "empty": "За гэты перыяд яшчэ няма даных"},
+  "stats": {
+    "chart": {
+      "daily": "Наведвальнікаў за дзень",
+      "dailyHint": "унікальных наведвальнікаў за дзень",
+      "empty": "За гэты перыяд яшчэ няма даных"
+    },
     "definitions": {
       "visitorsTerm": "Наведвальнікі"
     },
@@ -7593,6 +7598,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "Еўропа,Францыя, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "Катэгорыя",
+      "sampleNorth": "Поўнач",
+      "sampleSouth": "Поўдзень",
+      "sampleValue": "Значэнне"
     }
   },
   "creator": {

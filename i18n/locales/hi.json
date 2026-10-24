@@ -5090,7 +5090,12 @@
     "interestedCount": "{{count}} को रुचि है",
     "loadFailed": "कार्यक्रम लोड नहीं हो सके"
   },
-  "stats": {"chart": {"daily": "प्रतिदिन आगंतुक", "dailyHint": "प्रतिदिन अद्वितीय आगंतुक", "empty": "इस अवधि के लिए अभी कोई डेटा नहीं"},
+  "stats": {
+    "chart": {
+      "daily": "प्रतिदिन आगंतुक",
+      "dailyHint": "प्रतिदिन अद्वितीय आगंतुक",
+      "empty": "इस अवधि के लिए अभी कोई डेटा नहीं"
+    },
     "definitions": {
       "visitorsTerm": "आगंतुक"
     },
@@ -7689,6 +7694,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "यूरोप, फ्रांस, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "वर्गीकरण",
+      "sampleNorth": "उत्तर",
+      "sampleSouth": "दक्षिण",
+      "sampleValue": "मूल्य"
     }
   },
   "creator": {

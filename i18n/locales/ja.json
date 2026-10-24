@@ -5075,7 +5075,12 @@
     "interestedCount": "{{count}}人が興味あり",
     "loadFailed": "イベントを読み込めませんでした"
   },
-  "stats": {"chart": {"daily": "1 日あたりの訪問者", "dailyHint": "1 日あたりのユニーク訪問者", "empty": "この期間のデータはまだありません"},
+  "stats": {
+    "chart": {
+      "daily": "1 日あたりの訪問者",
+      "dailyHint": "1 日あたりのユニーク訪問者",
+      "empty": "この期間のデータはまだありません"
+    },
     "definitions": {
       "visitorsTerm": "訪問者"
     },
@@ -7760,6 +7765,15 @@
       "received": "バージョン {{revision}} を受信しました。",
       "upToDate": "すでに最新です。",
       "protectedUndo": "以前のローカル編集と共有された変更が重なっています。元に戻す操作でも共有された変更は保持されます。"
+    },
+    "charts": {
+      "hierarchySample": "ヨーロッパ、フランス、35"
+    },
+    "dataImport": {
+      "sampleCategory": "カテゴリ",
+      "sampleNorth": "北",
+      "sampleSouth": "南",
+      "sampleValue": "値"
     }
   },
   "creator": {

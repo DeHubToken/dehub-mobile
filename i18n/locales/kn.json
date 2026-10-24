@@ -5011,7 +5011,12 @@
     "interestedCount": "{{count}} ಆಸಕ್ತರು",
     "loadFailed": "ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"
   },
-  "stats": {"chart": {"daily": "ದಿನಕ್ಕೆ ಸಂದರ್ಶಕರು", "dailyHint": "ದಿನಕ್ಕೆ ವಿಶಿಷ್ಟ ಸಂದರ್ಶಕರು", "empty": "ಈ ಅವಧಿಗೆ ಇನ್ನೂ ಡೇಟಾ ಇಲ್ಲ"},
+  "stats": {
+    "chart": {
+      "daily": "ದಿನಕ್ಕೆ ಸಂದರ್ಶಕರು",
+      "dailyHint": "ದಿನಕ್ಕೆ ವಿಶಿಷ್ಟ ಸಂದರ್ಶಕರು",
+      "empty": "ಈ ಅವಧಿಗೆ ಇನ್ನೂ ಡೇಟಾ ಇಲ್ಲ"
+    },
     "definitions": {
       "visitorsTerm": "ಸಂದರ್ಶಕರು"
     },
@@ -7544,6 +7549,15 @@
       "disconnected": "Disconnected. Join again to reconnect.",
       "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+    },
+    "charts": {
+      "hierarchySample": "ಯುರೋಪ್,ಫ್ರಾನ್ಸ್, 35"
+    },
+    "dataImport": {
+      "sampleCategory": "ವರ್ಗ",
+      "sampleNorth": "ಉತ್ತರ",
+      "sampleSouth": "ದಕ್ಷಿಣ",
+      "sampleValue": "ಮೌಲ್ಯ"
     }
   },
   "creator": {
