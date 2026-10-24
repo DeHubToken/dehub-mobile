@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
@@ -182,13 +182,14 @@ export const PostStageCreator = memo(function PostStageCreator({
         </View>
       </Pressable>
       {showFollow ? (
-        <Pressable
+        <TouchableOpacity
           onPress={onFollow}
+          activeOpacity={0.8}
           accessibilityRole="button"
           accessibilityState={{ selected: followed }}
-          style={({ pressed }) => [
+          style={[
             styles.follow,
-            { borderRadius: skin?.square ? 0 : 10, opacity: pressed ? 0.8 : 1 },
+            { borderRadius: skin?.square ? 0 : 10 },
             followed ? styles.followOn : styles.followOff,
           ]}
         >
@@ -198,7 +199,7 @@ export const PostStageCreator = memo(function PostStageCreator({
           <Text style={[styles.followText, { color: followed ? "#F4F4F5" : "#09090B" }]}>
             {pending ? t("follow.requested") : following ? t("follow.following") : t("follow.follow")}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       ) : null}
       {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={34} /> : null}
     </View>
