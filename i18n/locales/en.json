@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Connected apps",
+    "connectedDescription": "Mastodon apps you signed in to with this account. Remove one to sign it out.",
+    "connectedEmpty": "No apps connected yet.",
+    "lastUsed": "Last used {{date}}",
+    "remove": "Remove",
+    "removed": "App removed",
+    "failed": "That didn't work. Try again."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "People on Mastodon and other fediverse apps can find and follow you at this address. Your new public posts reach them there.",

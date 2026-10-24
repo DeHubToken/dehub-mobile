@@ -44,6 +44,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'sign-in', label: 'Sign-in email', labelKey: 'settings.emailSignIn', keywords: 'email login log in sign in code password without wallet' },
   { tab: 'profile', anchor: 'ens',label: 'ENS name', labelKey: 'settings.ensHandle', keywords: 'ens domain eth alias verified handle' },
   { tab: 'profile', anchor: 'fediverse', label: 'Fediverse', labelKey: 'fediverse.title', keywords: 'mastodon activitypub federation handle follow decentralised' },
+  { tab: 'profile', anchor: 'connected-apps', label: 'Connected apps', labelKey: 'mastodonApps.connectedTitle', keywords: 'mastodon ivory tusky elk ice cubes apps sign in signed in oauth revoke remove access' },
   { tab: 'profile', anchor: 'stream-key', label: 'Stream key', labelKey: 'settings.streamKey.section', keywords: 'obs encoder rtmp stream key ingest server xbox twitch aircast go live broadcast' },
   { tab: 'profile', anchor: 'twitch-mirror', label: 'Twitch mirroring', labelKey: 'twitchMirror.title', keywords: 'twitch mirror relay console xbox ps5 playstation aircast automatic stream broadcast' },
   { tab: 'profile', anchor: 'your-content', label: 'Your Content', labelKey: 'settings.yourContent', keywords: 'videos saved posts drafts library' },

@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "連携中のアプリ",
+    "connectedDescription": "このアカウントでログインした Mastodon アプリです。削除するとそのアプリからログアウトします。",
+    "connectedEmpty": "連携中のアプリはまだありません。",
+    "lastUsed": "最終使用 {{date}}",
+    "remove": "削除",
+    "removed": "アプリを削除しました",
+    "failed": "うまくいきませんでした。もう一度お試しください。"
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mastodon などの Fediverse アプリの人は、このアドレスであなたを見つけてフォローできます。新しい公開投稿はそこにも届きます。",

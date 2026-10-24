@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Rindranasa mifandray",
+    "connectedDescription": "Rindranasa Mastodon nidiranao tamin'ity kaonty ity. Esory ny iray mba hivoahana aminy.",
+    "connectedEmpty": "Mbola tsy misy rindranasa mifandray.",
+    "lastUsed": "Nampiasaina farany {{date}}",
+    "remove": "Esory",
+    "removed": "Voaesotra ny rindranasa",
+    "failed": "Tsy nety izany. Andramo indray."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Ny olona ao amin'ny Mastodon sy ireo rindranasa fediverse hafa dia afaka mahita sy manaraka anao amin'ity adiresy ity. Tonga any aminy ireo lahatsoratrao vaovao ho an'ny daholobe.",

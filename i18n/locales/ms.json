@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikasi bersambung",
+    "connectedDescription": "Aplikasi Mastodon yang anda log masuk dengan akaun ini. Alih keluar satu untuk log keluar daripadanya.",
+    "connectedEmpty": "Belum ada aplikasi bersambung.",
+    "lastUsed": "Kali terakhir digunakan {{date}}",
+    "remove": "Alih keluar",
+    "removed": "Aplikasi dialih keluar",
+    "failed": "Tidak berjaya. Cuba lagi."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Orang di Mastodon dan aplikasi fediverse lain boleh mencari dan mengikuti anda di alamat ini. Siaran awam baharu anda sampai kepada mereka di sana.",

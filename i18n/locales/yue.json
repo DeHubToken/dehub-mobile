@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "已連接嘅 app",
+    "connectedDescription": "你用呢個帳戶登入過嘅 Mastodon app。移除一個就會將佢登出。",
+    "connectedEmpty": "仲未連接任何 app。",
+    "lastUsed": "上次用 {{date}}",
+    "remove": "移除",
+    "removed": "已移除 app",
+    "failed": "唔得。再試過。"
+  },
   "fediverse": {
     "title": "聯邦宇宙",
     "description": "Mastodon 同其他聯邦宇宙 app 上嘅人可以用呢個地址搵到你同追蹤你。你新嘅公開帖子會喺嗰度送到佢哋。",

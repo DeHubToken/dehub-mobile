@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Anslutna appar",
+    "connectedDescription": "Mastodon-appar du har loggat in i med det här kontot. Ta bort en för att logga ut den.",
+    "connectedEmpty": "Inga anslutna appar än.",
+    "lastUsed": "Senast använd {{date}}",
+    "remove": "Ta bort",
+    "removed": "Appen togs bort",
+    "failed": "Det fungerade inte. Försök igen."
+  },
   "fediverse": {
     "title": "Fediversum",
     "description": "Folk på Mastodon och andra fediversum-appar kan hitta och följa dig på den här adressen. Dina nya offentliga inlägg når dem där.",

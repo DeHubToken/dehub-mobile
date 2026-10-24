@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Pievienotās lietotnes",
+    "connectedDescription": "Mastodon lietotnes, kurās esi pierakstījies ar šo kontu. Noņem kādu, lai no tās izrakstītos.",
+    "connectedEmpty": "Vēl nav pievienotu lietotņu.",
+    "lastUsed": "Pēdējoreiz izmantota {{date}}",
+    "remove": "Noņemt",
+    "removed": "Lietotne noņemta",
+    "failed": "Neizdevās. Mēģini vēlreiz."
+  },
   "fediverse": {
     "title": "Fediverss",
     "description": "Cilvēki Mastodon un citās fediversa lietotnēs var tevi atrast un sekot tev šajā adresē. Tavi jaunie publiskie ieraksti tur viņus sasniedz.",

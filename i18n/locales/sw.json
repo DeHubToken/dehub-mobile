@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Programu zilizounganishwa",
+    "connectedDescription": "Programu za Mastodon ulizoingia kwa akaunti hii. Ondoa moja ili uitoe.",
+    "connectedEmpty": "Bado hakuna programu zilizounganishwa.",
+    "lastUsed": "Ilitumika mwisho {{date}}",
+    "remove": "Ondoa",
+    "removed": "Programu imeondolewa",
+    "failed": "Haikufanikiwa. Jaribu tena."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Watu kwenye Mastodon na programu nyingine za fediverse wanaweza kukupata na kukufuata kwenye anwani hii. Machapisho yako mapya ya umma yanawafikia huko.",

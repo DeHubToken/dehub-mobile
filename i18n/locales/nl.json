@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Gekoppelde apps",
+    "connectedDescription": "Mastodon-apps waarin je met dit account bent ingelogd. Verwijder er een om hem uit te loggen.",
+    "connectedEmpty": "Nog geen gekoppelde apps.",
+    "lastUsed": "Laatst gebruikt {{date}}",
+    "remove": "Verwijderen",
+    "removed": "App verwijderd",
+    "failed": "Dat lukte niet. Probeer het opnieuw."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mensen op Mastodon en andere fediverse-apps kunnen je op dit adres vinden en volgen. Je nieuwe openbare berichten bereiken ze daar.",

@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Povezane aplikacije",
+    "connectedDescription": "Aplikacije za Mastodon u koje si se prijavio ovim računom. Ukloni jednu da je odjaviš.",
+    "connectedEmpty": "Još nema povezanih aplikacija.",
+    "lastUsed": "Zadnje korišteno {{date}}",
+    "remove": "Ukloni",
+    "removed": "Aplikacija uklonjena",
+    "failed": "Nije uspjelo. Pokušaj ponovno."
+  },
   "fediverse": {
     "title": "Fediverzum",
     "description": "Ljudi na Mastodonu i u drugim aplikacijama fediverzuma mogu te pronaći i pratiti na ovoj adresi. Tvoje nove javne objave tamo stižu do njih.",

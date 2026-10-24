@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Mga nakakonektang app",
+    "connectedDescription": "Mga Mastodon app na pinag-sign in-an mo gamit ang account na ito. Alisin ang isa para i-sign out ito.",
+    "connectedEmpty": "Wala pang nakakonektang app.",
+    "lastUsed": "Huling ginamit {{date}}",
+    "remove": "Alisin",
+    "removed": "Naalis ang app",
+    "failed": "Hindi gumana. Subukan ulit."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Puwede kang hanapin at i-follow ng mga tao sa Mastodon at iba pang fediverse app sa address na ito. Doon din aabot sa kanila ang mga bago mong pampublikong post.",

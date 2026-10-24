@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "T'inkisqa appkuna",
+    "connectedDescription": "Kay yupaywan yaykusqayki Mastodon appkuna. Lluqsinaykipaq hukta qichuy.",
+    "connectedEmpty": "Manaraqmi mayqan app t'inkisqachu.",
+    "lastUsed": "Qhipa kutipi llamk'achisqa {{date}}",
+    "remove": "Qichuy",
+    "removed": "App qichusqa",
+    "failed": "Manam atikurqanchu. Yapamanta llamk'ay."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mastodon nisqapi, huk fediverse app nisqakunapipas runakunaqa kay tiyana sutiwan tarisunkiku, qatisunkikutaq. Musuq llapanpaq qillqaykikuna chaypi paykunaman chayan.",

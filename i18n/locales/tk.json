@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Birikdirilen programmalar",
+    "connectedDescription": "Bu hasap bilen giren Mastodon programmalaryňyz. Çykmak üçin birini aýyryň.",
+    "connectedEmpty": "Häzirlikçe birikdirilen programma ýok.",
+    "lastUsed": "Soňky gezek ulanylan {{date}}",
+    "remove": "Aýyr",
+    "removed": "Programma aýryldy",
+    "failed": "Başartmady. Täzeden synanyşyň."
+  },
   "fediverse": {
     "title": "Fediwers",
     "description": "Mastodon-daky we beýleki fediwers programmalaryndaky adamlar sizi şu salgy boýunça tapyp yzarlap bilerler. Täze köpçülikleýin ýazgylaryňyz olara şol ýerde ýetýär.",

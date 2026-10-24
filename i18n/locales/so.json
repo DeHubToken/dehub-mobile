@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apps-ka ku xiran",
+    "connectedDescription": "Apps-ka Mastodon ee aad ku gashay akoonkan. Ka saar mid si aad uga baxdo.",
+    "connectedEmpty": "Weli ma jiraan apps ku xiran.",
+    "lastUsed": "Markii ugu dambeysay la isticmaalay {{date}}",
+    "remove": "Ka saar",
+    "removed": "App-ka waa la saaray",
+    "failed": "Ma shaqayn. Isku day mar kale."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Dadka ku jira Mastodon iyo apps-ka kale ee fediverse waxay kugu heli karaan oo ku raaci karaan cinwaankan. Qoraalladaada cusub ee guud halkaas ayay ku gaaraan.",

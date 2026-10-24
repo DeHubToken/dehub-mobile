@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikacionet e lidhura",
+    "connectedDescription": "Aplikacionet Mastodon ku ke hyrë me këtë llogari. Hiq një për ta nxjerrë.",
+    "connectedEmpty": "Ende nuk ka aplikacione të lidhura.",
+    "lastUsed": "Përdorur së fundi {{date}}",
+    "remove": "Hiq",
+    "removed": "Aplikacioni u hoq",
+    "failed": "Nuk funksionoi. Provo sërish."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Njerëzit në Mastodon dhe aplikacione të tjera fediverse mund të të gjejnë dhe të ndjekin në këtë adresë. Postimet e tua të reja publike u arrijnë atje.",

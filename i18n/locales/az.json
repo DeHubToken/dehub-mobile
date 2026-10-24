@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Qoşulmuş tətbiqlər",
+    "connectedDescription": "Bu hesabla daxil olduğunuz Mastodon tətbiqləri. Çıxış etmək üçün birini silin.",
+    "connectedEmpty": "Hələ qoşulmuş tətbiq yoxdur.",
+    "lastUsed": "Son istifadə {{date}}",
+    "remove": "Sil",
+    "removed": "Tətbiq silindi",
+    "failed": "Alınmadı. Yenidən cəhd edin."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Mastodon və digər fediverse tətbiqlərindəki insanlar sizi bu ünvanda tapıb izləyə bilər. Yeni açıq paylaşımlarınız onlara orada çatır.",
