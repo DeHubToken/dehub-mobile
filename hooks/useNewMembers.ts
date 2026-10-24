@@ -16,6 +16,7 @@
  * by anyone but its owner, so every read below is already filtered.
  */
 import { useEffect } from "react";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
@@ -73,10 +74,12 @@ function toNewMember(row: NewMemberRow): NewMember {
 export function joinedAgoLabel(joinedAt: string): string {
   const ms = Date.now() - new Date(joinedAt).getTime();
   const hours = Math.floor(ms / 3_600_000);
-  if (hours < 1) return "just now";
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 1) return _translateCopy("copy.7ddb44d8a533", { defaultValue: "just now" });
+  if (hours < 24) return _translateCopy("copy.51452941c07c", { defaultValue: "{{value1}}h ago", value1: hours });
   const days = Math.floor(hours / 24);
-  return days === 1 ? "yesterday" : `${days}d ago`;
+  return days === 1
+    ? _translateCopy("copy.9523d9fbe79b", { defaultValue: "yesterday" })
+    : _translateCopy("copy.0dc906eaa41d", { defaultValue: "{{value1}}d ago", value1: days });
 }
 
 function walletOf(user: { walletAddress?: string; address?: string } | null): string | null {

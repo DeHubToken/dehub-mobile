@@ -73,6 +73,7 @@ import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNo
 import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 import { uploadLiveChatImage } from "../../services/livechat.service";
 import { toastError } from "../../libs/toast";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -83,30 +84,30 @@ const FLASH_MS = 1500;
 const ALERT_DELAY_MS = 250;
 
 const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  () => _translateCopy("copy.5c5db120cb11", { defaultValue: "Jan" }),
+  () => _translateCopy("copy.caf71b3f582d", { defaultValue: "Feb" }),
+  () => _translateCopy("copy.b4b7d3818dbf", { defaultValue: "Mar" }),
+  () => _translateCopy("copy.617531b4fec3", { defaultValue: "Apr" }),
+  () => _translateCopy("copy.8c78fe5b9936", { defaultValue: "May" }),
+  () => _translateCopy("copy.b27fd46ed1b6", { defaultValue: "Jun" }),
+  () => _translateCopy("copy.c43f56b9807e", { defaultValue: "Jul" }),
+  () => _translateCopy("copy.41e1d82aa990", { defaultValue: "Aug" }),
+  () => _translateCopy("copy.451e2b719061", { defaultValue: "Sep" }),
+  () => _translateCopy("copy.6877e8494c3a", { defaultValue: "Oct" }),
+  () => _translateCopy("copy.3e630d2964a0", { defaultValue: "Nov" }),
+  () => _translateCopy("copy.f2a0cfbcf191", { defaultValue: "Dec" }),
 ];
 
 const formatClock = (date: Date): string => {
   const h = date.getHours();
   const m = date.getMinutes().toString().padStart(2, "0");
-  const ampm = h >= 12 ? "PM" : "AM";
+  const ampm = h >= 12 ? _translateCopy("copy.6b987654a411", { defaultValue: "PM" }) : _translateCopy("copy.c8f48a68649d", { defaultValue: "AM" });
   return `${h % 12 || 12}:${m} ${ampm}`;
 };
 
 /** `4 Aug, 9:05 PM` — built by hand so it does not depend on Intl being present. */
 const formatWhen = (date: Date): string =>
-  `${date.getDate()} ${MONTHS[date.getMonth()]}, ${formatClock(date)}`;
+  `${date.getDate()} ${MONTHS[date.getMonth()]()}, ${formatClock(date)}`;
 
 const humaniseInterval = (seconds: number): string => {
   if (seconds < 60) return `${seconds}s`;

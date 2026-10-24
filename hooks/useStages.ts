@@ -863,7 +863,7 @@ export function useStages(): UseStagesReturn {
       );
       if (!response.ok) {
         const detail = await response.json().catch(() => ({})) as { error?: string };
-        throw new Error(detail.error || `TTS failed (${response.status})`);
+        throw new Error(detail.error || t("copy.19c37423d4b4", { defaultValue: "TTS failed ({{value1}})", value1: response.status }));
       }
 
       const arrayBuffer = await response.arrayBuffer();

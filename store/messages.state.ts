@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { proxy, subscribe, useSnapshot } from 'valtio';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { Conversation, ID, Message, ReadReceipt, TypingEvent, User } from './messages.types';
 import { createLogger } from '../libs/logger';
 
@@ -200,10 +201,11 @@ export function getUser(id: ID): User | undefined {
 }
 
 export function useTyping(convId: ID): string[] {
+  const { t: _copy } = _useCopy();
   const snap = useSnapshot(state);
   const map = snap.typingByConversation[convId] || {};
   const cutoff = Date.now() - 5000; // auto-stop after 5s
   return Object.entries(map)
     .filter(([, ts]) => ts > cutoff)
-    .map(([uid]) => snap.users[uid]?.displayName || 'Someone');
+    .map(([uid]) => snap.users[uid]?.displayName || _copy("copy.864c855e3d64", { defaultValue: "Someone" }));
 }

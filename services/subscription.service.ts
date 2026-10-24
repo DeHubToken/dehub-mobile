@@ -1,5 +1,6 @@
 import { apiClient } from "../libs";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
  * Creator subscription plans.
@@ -188,11 +189,10 @@ export function normaliseDuration(duration: unknown): number | null {
 
 export function formatDuration(duration: number): string {
   const n = normaliseDuration(duration);
-  if (n === null) return `${duration} months`;
-  if (n === LIFETIME_DURATION) return "lifetime";
-  if (n === 1) return "1 month";
-  if (n === 12) return "1 year";
-  return `${n} months`;
+  if (n === null) return _translateCopy("copy.c3efb7db2987", { defaultValue: "{{count}} months", count: duration });
+  if (n === LIFETIME_DURATION) return _translateCopy("copy.6f6a6d94fb43", { defaultValue: "lifetime" });
+  if (n === 12) return _translateCopy("copy.91647badc37b", { defaultValue: "1 year" });
+  return _translateCopy("copy.c3efb7db2987", { defaultValue: "{{count}} months", count: n });
 }
 
 // ── Shape helpers ───────────────────────────────────────────────────────

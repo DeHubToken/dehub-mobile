@@ -103,20 +103,17 @@ const LiveViewerActionBar: React.FC<Props> = ({
 
   const inputDisabled = !canSend || !chatEnabled || isScheduled;
 
-  // Carried over verbatim from the input bar this replaced. Untranslated
-  // there, untranslated here — moving them behind fresh keys would have
-  // been the same English in 109 locales with an i18n backlog entry on top.
   const placeholderText = isEnded
-    ? "Stream ended"
+    ? _copy("copy.a5813ef6159a", { defaultValue: "Stream ended" })
     : isScheduled
-      ? "Chat will open when live"
+      ? _copy("copy.e8df30b3017f", { defaultValue: "Chat will open when live" })
       : !isLive
-        ? "Waiting for stream..."
+        ? _copy("copy.489ef3352bdf", { defaultValue: "Waiting for stream..." })
         : !chatEnabled
-          ? "Chat is disabled"
+          ? _copy("copy.7acfdcb49adf", { defaultValue: "Chat is disabled" })
           : !canSend
-            ? "Sign in to chat"
-            : "Say something...";
+            ? _copy("copy.048ff525a56b", { defaultValue: "Sign in to chat" })
+            : _copy("copy.6a1dc61b311d", { defaultValue: "Say something..." });
 
   const handleSend = useCallback(async () => {
     const content = message.trim();

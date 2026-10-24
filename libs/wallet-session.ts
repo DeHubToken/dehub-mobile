@@ -20,6 +20,7 @@ import env from "../config/env";
 import { getAuthToken } from "./auth.utils";
 import { reportError } from "./errorReporter";
 import { tokenRefreshManager } from "./token-refresh";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const STORAGE_KEY = "dehub_wallet_sessions";
 const REFRESH_MARGIN_MS = 60 * 60 * 1000;
@@ -199,7 +200,7 @@ export function createWalletSessionFetch(baseFetch: typeof fetch = fetch): typeo
       reportUnsigned(wallet, url, session === TIMED_OUT
         ? { reason: "timeout", detail: `no session within ${FIRST_WAIT_MS}ms` }
         : lastFailure.get(wallet) ?? { reason: "mint_error", detail: "unknown" });
-      if(protectedRequest) return new Response(JSON.stringify({message:'Session verification is temporarily unavailable. Please retry.',code:'42501'}),{status:401,headers:{'Content-Type':'application/json'}});
+      if(protectedRequest) return new Response(JSON.stringify({message:_translateCopy('copy.25038f9d0520', { defaultValue: 'Session verification is temporarily unavailable. Please retry.' }),code:'42501'}),{status:401,headers:{'Content-Type':'application/json'}});
       return baseFetch(input, init);
     }
     headers.set("x-wallet-session", session.token);

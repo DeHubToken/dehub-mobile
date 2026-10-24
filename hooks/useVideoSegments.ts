@@ -103,14 +103,14 @@ export function useSegmentActions(tokenId: string | number | undefined) {
       invalidate();
       toastSuccess(_copy("copy.f5d57264900f", { defaultValue: "Thanks — that section is marked for everyone" }));
     },
-    onError: (error: Error) => toastError(error.message || "Could not save that section"),
+    onError: (error: Error) => toastError(error.message || _copy("copy.f073907137af", { defaultValue: "Could not save that section" })),
   });
 
   const vote = useMutation({
     mutationFn: ({ segmentId, value }: { segmentId: string; value: 1 | -1 | 0 }) =>
       voteVideoSegment(segmentId, value),
     onSuccess: invalidate,
-    onError: (error: Error) => toastError(error.message || "Could not record your vote"),
+    onError: (error: Error) => toastError(error.message || _copy("copy.0f7bb833f7ae", { defaultValue: "Could not record your vote" })),
   });
 
   const remove = useMutation({
@@ -119,7 +119,7 @@ export function useSegmentActions(tokenId: string | number | undefined) {
       invalidate();
       toastSuccess(_copy("copy.4118fb4fed0e", { defaultValue: "Removed" }));
     },
-    onError: (error: Error) => toastError(error.message || "Could not remove that"),
+    onError: (error: Error) => toastError(error.message || _copy("copy.e4cd198e255b", { defaultValue: "Could not remove that" })),
   });
 
   return { submit, vote, remove };

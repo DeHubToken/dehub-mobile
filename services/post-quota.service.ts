@@ -11,6 +11,7 @@
  */
 
 import { apiClient } from "../libs";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface PostQuotaStatus {
   /** UTC day the allowance resets on, `YYYY-MM-DD`. */
@@ -126,6 +127,6 @@ export async function settlePostCharge(
       { isAuthRequired: true },
     ),
   );
-  if (!res) throw new Error("The server did not answer the settlement.");
+  if (!res) throw new Error(_translateCopy("copy.45fe5f7cc2e6", { defaultValue: "The server did not answer the settlement." }));
   return res;
 }

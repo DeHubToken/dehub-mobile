@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { cloudProjectApi } from "./cloudProjectApi";
 import type { cloudProjectSession } from "./cloudProjectSession";
@@ -14,7 +15,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   const mounted = useRef(true), busyRef = useRef(false);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   const device = useMemo(() => /^0x[a-f0-9]{40}$/.test(wallet) ? factory(wallet, () => {
-    if (!mounted.current || scope.current.wallet !== wallet) throw new Error("Cloud project account changed");
+    if (!mounted.current || scope.current.wallet !== wallet) throw new Error(_translateCopy("copy.a61859af3755", { defaultValue: "Cloud project account changed" }));
   }) : null, [wallet, factory]);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [saved, setSaved] = useState(false);
   const currentId = context.current()?.id || "";
@@ -31,7 +32,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     if (device && currentId) void device.session.sharedOwner(currentId).then(owner => {
       if (alive && mounted.current && scope.current.wallet === wallet) setSharedLink({id:currentId,wallet,owner});
     }).catch(() => {
-      if (alive && mounted.current && scope.current.wallet === wallet) setError("Could not read this project's cloud link");
+      if (alive && mounted.current && scope.current.wallet === wallet) setError(_translateCopy("copy.f060b05629b5", { defaultValue: "Could not read this project's cloud link" }));
     });
     return () => { alive = false; };
   }, [wallet, device, currentId]);
@@ -48,10 +49,10 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
   async function run(action: (device: Device, check: () => void) => Promise<void>) {
     if (busyRef.current || !device) return;
     const selectedWallet = wallet;
-    const check = () => { if (!mounted.current || scope.current.wallet !== selectedWallet) throw new Error("Cloud project account changed"); };
+    const check = () => { if (!mounted.current || scope.current.wallet !== selectedWallet) throw new Error(_translateCopy("copy.a61859af3755", { defaultValue: "Cloud project account changed" })); };
     busyRef.current = true; setBusy(true); setError(""); setSaved(false);
     try { await action(device, check); check(); }
-    catch (cause) { if (mounted.current && scope.current.wallet === selectedWallet) setError(cause instanceof Error ? cause.message : "Cloud project operation failed"); }
+    catch (cause) { if (mounted.current && scope.current.wallet === selectedWallet) setError(cause instanceof Error ? cause.message : _translateCopy("copy.d271097f29d8", { defaultValue: "Cloud project operation failed" })); }
     finally { busyRef.current = false; if (mounted.current) setBusy(false); }
   }
   return { available: !!device, busy, error, saved, received: currentReceived, canReceive: !!device && !!context.receive && !!currentId && !linkPending, sharedOwner, linkPending, mergeCopy: availableMergeCopy, projects, history, selected, viewTrash, viewShared, sharedProjects, review, members, comments, clearReview,
@@ -76,7 +77,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       if (target.ownerWallet!==wallet) {
         const invitations=await api.review.inbox(); check();
         const live=invitations.find(row=>row.ownerWallet===target.ownerWallet && row.projectId===target.projectId && row.accepted);
-        if (!live) { clearReview(); throw new Error("Project review is unavailable"); }
+        if (!live) { clearReview(); throw new Error(_translateCopy("copy.a24c4be46c63", { defaultValue: "Project review is unavailable" })); }
         target={...target,role:live.role};
       }
       const rows=await api.review.comments(target.ownerWallet,target.projectId); check();
@@ -88,7 +89,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       if (review.ownerWallet!==wallet) {
         const invitations=await api.review.inbox(); check();
         const live=invitations.find(row=>row.ownerWallet===review.ownerWallet && row.projectId===review.projectId && row.accepted);
-        if (!live) { clearReview(); throw new Error("Project review is unavailable"); }
+        if (!live) { clearReview(); throw new Error(_translateCopy("copy.a24c4be46c63", { defaultValue: "Project review is unavailable" })); }
         setReview({...review,role:live.role});
       }
       const rows=await api.review.comments(review.ownerWallet,review.projectId); check();
@@ -96,13 +97,13 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       setComments(rows); setMembers(people);
     }),
     shareReview: (member: string, role: ProjectReviewRole | "none", success?: () => void) => run(async ({api},check) => {
-      if (!review || review.ownerWallet!==wallet) throw new Error("Only the project owner can manage review access");
+      if (!review || review.ownerWallet!==wallet) throw new Error(_translateCopy("copy.aa3f9ad37ecc", { defaultValue: "Only the project owner can manage review access" }));
       const recipient=projectReviewWallet(member), existing=members.find(person=>person.memberWallet===recipient);
       await api.review.share(review.projectId,recipient,role,existing?.stateVersion ?? 0); check();
       const people=await api.review.members(review.projectId); check(); setMembers(people); success?.();
     }),
     addReviewComment: (draft: ProjectReviewDraft, success?: () => void) => run(async ({api,uuid},check) => {
-      if (!review || review.role==='viewer') throw new Error("Comment access is unavailable");
+      if (!review || review.role==='viewer') throw new Error(_translateCopy("copy.bba6b5124dbd", { defaultValue: "Comment access is unavailable" }));
       const value=projectReviewDraft(draft), fingerprint=JSON.stringify({wallet,owner:review.ownerWallet,id:review.projectId,value});
       if (pendingComment.current?.fingerprint!==fingerprint) pendingComment.current={fingerprint,id:uuid()};
       await api.review.comment(review.ownerWallet,review.projectId,pendingComment.current.id,value); check();
@@ -110,16 +111,16 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       const rows=await api.review.comments(review.ownerWallet,review.projectId); check(); setComments(rows);
     }),
     resolveReviewComment: (comment: ProjectReviewComment) => run(async ({api},check) => {
-      if (!review || comment.ownerWallet!==review.ownerWallet || comment.projectId!==review.projectId) throw new Error("Project review changed");
+      if (!review || comment.ownerWallet!==review.ownerWallet || comment.projectId!==review.projectId) throw new Error(_translateCopy("copy.463baec4d48e", { defaultValue: "Project review changed" }));
       await api.review.resolve(comment,!comment.resolved); check(); const rows=await api.review.comments(review.ownerWallet,review.projectId); check(); setComments(rows);
     }),
     openShared: (success?: () => void) => run(async ({session},check) => {
-      if (!review || (review.ownerWallet !== wallet && review.role !== "editor")) throw new Error("Project editing access is unavailable");
+      if (!review || (review.ownerWallet !== wallet && review.role !== "editor")) throw new Error(_translateCopy("copy.63e6bea627d9", { defaultValue: "Project editing access is unavailable" }));
       const previous = scope.current.context.current(), previousKey = previous ? projectReviewSnapshotKey(previous) : "";
       await scope.current.context.preserve(); check();
       const snapshot = await session.openShared(review.ownerWallet, review.projectId); check();
       const now = scope.current.context.current();
-      if (now?.id !== previous?.id || (now ? projectReviewSnapshotKey(now) : "") !== previousKey) throw new Error("The current project changed during transfer");
+      if (now?.id !== previous?.id || (now ? projectReviewSnapshotKey(now) : "") !== previousKey) throw new Error(_translateCopy("copy.91e28d9a7136", { defaultValue: "The current project changed during transfer" }));
       await scope.current.context.open(snapshot); check(); setSharedLink({id:snapshot.id,wallet,owner:review.ownerWallet}); success?.();
     }),
     openReview: (revision?: number, seconds=0, success?: () => void) => run(async ({session},check) => {
@@ -132,7 +133,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       await scope.current.context.preserve(); check();
       const result=await session.openReview(review.ownerWallet,review.projectId,targetRevision); check();
       const afterTransfer=scope.current.context.current();
-      if (afterTransfer?.id!==previousId || (afterTransfer ? projectReviewSnapshotKey(afterTransfer) : "")!==previousKey) throw new Error("The current project changed during transfer");
+      if (afterTransfer?.id!==previousId || (afterTransfer ? projectReviewSnapshotKey(afterTransfer) : "")!==previousKey) throw new Error(_translateCopy("copy.91e28d9a7136", { defaultValue: "The current project changed during transfer" }));
       await scope.current.context.open(result.snapshot); check();
       openedReview.current={localId:result.snapshot.id,owner:review.ownerWallet,projectId:review.projectId,revision:result.revision,snapshotKey:projectReviewSnapshotKey(scope.current.context.current() || result.snapshot)};
       scope.current.context.seek?.(seconds);
@@ -147,7 +148,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       const before = scope.current.context.current(), key = before ? projectReviewSnapshotKey(before) : "";
       await scope.current.context.preserve(); check();
       const current = scope.current.context.current();
-      if (current?.id !== before?.id || (current ? projectReviewSnapshotKey(current) : "") !== key) throw new Error("The current project changed during transfer");
+      if (current?.id !== before?.id || (current ? projectReviewSnapshotKey(current) : "") !== key) throw new Error(_translateCopy("copy.91e28d9a7136", { defaultValue: "The current project changed during transfer" }));
       await scope.current.context.open(availableMergeCopy.snapshot); check();
       setSharedLink({id:availableMergeCopy.snapshot.id,wallet,owner:availableMergeCopy.owner}); setMergeCopy(null);
     }),
@@ -158,12 +159,12 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       let applied = false, protectedUndo = 0;
       const guard = () => {
         check(); const now = scope.current.context.current();
-        if (now?.id !== captured.id || (!applied && projectReviewSnapshotKey(now) !== expectedKey)) throw new Error("The current project changed during transfer");
+        if (now?.id !== captured.id || (!applied && projectReviewSnapshotKey(now) !== expectedKey)) throw new Error(_translateCopy("copy.91e28d9a7136", { defaultValue: "The current project changed during transfer" }));
       };
       await scope.current.context.preserve(); guard();
       const result = await session.receiveSaved(captured, snapshot => {
         guard(); const receive = scope.current.context.receive;
-        if (!receive) throw new Error("Shared timeline updates are unavailable");
+        if (!receive) throw new Error(_translateCopy("copy.376263ed51c3", { defaultValue: "Shared timeline updates are unavailable" }));
         protectedUndo = receive(snapshot, expectedKey) || 0; applied = true;
       }, guard);
       guard(); setReceived({wallet,localId:captured.id,revision:result.revision,changed:result.changed,protectedUndo});
@@ -171,7 +172,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
     save: (copy = false) => run(async ({ api, session }, check) => {
       const currentSnapshot = scope.current.context.current(); if (!currentSnapshot) return;
       const snapshot = JSON.parse(JSON.stringify(currentSnapshot, (_key, value) => {
-        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error(_translateCopy("copy.f6d38e821b59", { defaultValue: "Invalid project value" }));
         return value;
       })) as ProjectSnapshot;
       const capturedKey = projectReviewSnapshotKey(snapshot), sourceOwner = await session.sharedOwner(snapshot.id); check();
@@ -196,7 +197,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       const previousId = scope.current.context.current()?.id;
       await scope.current.context.preserve(); check();
       const snapshot = await session.open(id, revision); check();
-      if (scope.current.context.current()?.id !== previousId) throw new Error("The current project changed during transfer");
+      if (scope.current.context.current()?.id !== previousId) throw new Error(_translateCopy("copy.91e28d9a7136", { defaultValue: "The current project changed during transfer" }));
       await scope.current.context.open(snapshot); check();
     }),
     restore: (revision: number) => run(async ({ session, api }, check) => {
@@ -204,7 +205,7 @@ export function useCloudProjects(address: string | null | undefined, factory: (a
       const previousId = scope.current.context.current()?.id;
       await scope.current.context.preserve(); check();
       const snapshot = await session.restore(selected.projectId, revision, selected.revision); check();
-      if (scope.current.context.current()?.id !== previousId) throw new Error("The current project changed during transfer");
+      if (scope.current.context.current()?.id !== previousId) throw new Error(_translateCopy("copy.91e28d9a7136", { defaultValue: "The current project changed during transfer" }));
       await scope.current.context.open(snapshot); check();
       const rows = await api.list(); check(); setViewTrash(false); setProjects(rows); setSelected(null); setHistory([]); setSaved(true);
     }),

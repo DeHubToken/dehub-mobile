@@ -92,7 +92,8 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
     getCategoriesCached()
       .then((list) => {
         if (!mounted || !list?.length) return;
-        setCategories(["All", ...list.filter((c) => c && c.toLowerCase() !== "all")]);
+        // The filter panel draws its own translated "All" pill; an "All" entry here showed a second, English one.
+        setCategories(list.filter((c) => c && c.toLowerCase() !== "all"));
       })
       .catch(() => {});
     return () => {

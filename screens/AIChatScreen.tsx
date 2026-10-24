@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from '../hooks/useDraftState';
 import { useVideoDownload } from "../context/VideoDownloadContext";
@@ -136,9 +137,6 @@ const errorCodeOf = (err: unknown) => (err instanceof AIServiceError ? err.error
 const AI_AVATAR = require('../assets/web-icons/ai-assistant-avatar.png');
 const DEHUB_LOGO = require('../assets/web-icons/dehub-logo-white.png');
 
-const WELCOME_MESSAGE =
-  'Use the text box below or these action buttons to get started.';
-
 const TAB_BAR_HEIGHT = 80;
 const POLL_INTERVAL_MS = 5000;
 /**
@@ -183,12 +181,12 @@ const newTurnId = (): string => `t-${Date.now()}-${(turnSeq += 1)}`;
 
 async function hostCreatorImage(uri: string, asset?: CreatorReferenceAsset): Promise<string> {
   if (uri.startsWith('https://') && asset?.sourceClipId) {
-    if (!CreatorFileSystem.cacheDirectory) throw new Error('No cache directory available.');
+    if (!CreatorFileSystem.cacheDirectory) throw new Error(_translateCopy("copy.2b3a717c2c9c", { defaultValue: "No cache directory available." }));
     const local = `${CreatorFileSystem.cacheDirectory}creator-source-${Date.now()}-${asset.sourceClipId}.mp4`;
     try {
       const result = await CreatorFileSystem.downloadAsync(`https://dehub.io/api/creator-motion-source?id=${encodeURIComponent(asset.sourceClipId)}`, local);
       const info = await CreatorFileSystem.getInfoAsync(local);
-      if (result.status !== 200 || !info.exists || info.size > 100 * 1024 * 1024) throw new Error('This source clip is unavailable or exceeds 100 MB.');
+      if (result.status !== 200 || !info.exists || info.size > 100 * 1024 * 1024) throw new Error(_translateCopy("copy.0d752fdfe929", { defaultValue: "This source clip is unavailable or exceeds 100 MB." }));
       return await uploadLocalFileToBucket({ bucket: 'ai-media-uploads', path: `creator-sources/${Date.now()}-${asset.sourceClipId}.mp4`, uri: local });
     } finally { await CreatorFileSystem.deleteAsync(local, { idempotent: true }).catch(() => {}); }
   }
@@ -348,7 +346,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model: 'kling-3-motion', effect: undefined,
         durationSeconds: Math.ceil(effect.motionSeconds!), resolution: '1080p', referenceAssets: [
           ...(previous.referenceAssets?.filter(asset => asset.kind === 'image').slice(0, 1) ?? []),
-          { kind: 'video', uri: effect.preview!, label: effect.name, seconds: effect.motionSeconds, posterUrl: effect.poster },
+          { kind: 'video', uri: effect.preview!, label: effect.displayName ?? effect.name, seconds: effect.motionSeconds, posterUrl: effect.poster },
         ] }));
       return;
     }
@@ -501,20 +499,20 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     if (error instanceof AIServiceError) {
       switch (error.errorCode) {
         case 'RATE_LIMIT':
-          return 'Too many requests — try again shortly.';
+          return _copy("copy.6bcb0cd5c1ee", { defaultValue: "Too many requests — try again shortly." });
         case 'CREDITS_EXHAUSTED':
         case 'INSUFFICIENT_CREDITS':
           return t('aiChat.outOfCredit');
         case 'TIMEOUT':
-          return 'That request timed out. Try again.';
+          return _copy("copy.84df5adcc903", { defaultValue: "That request timed out. Try again." });
         case 'UNAUTHENTICATED':
-          return 'Sign in again to use the assistant.';
+          return _copy("copy.78651f723e9e", { defaultValue: "Sign in again to use the assistant." });
         default:
-          return error.message || 'Something went wrong.';
+          return error.message || _copy("copy.0c953ab32c60", { defaultValue: "Something went wrong." });
       }
     }
-    return error instanceof Error ? error.message : 'Something went wrong.';
-  }, []);
+    return error instanceof Error ? error.message : _copy("copy.0c953ab32c60", { defaultValue: "Something went wrong." });
+  }, [_copy]);
 
   /* ── Chat ────────────────────────────────────────────────────────────── */
 
@@ -572,7 +570,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             setIsLoading(false);
             setActiveTools([]);
             if (setInput.complete(submitted, '')) setAttachedImage(null);
-            commit(streamed || 'No response');
+            commit(streamed || _copy("copy.961136f9207a", { defaultValue: "No response" }));
             scrollToEnd();
           },
           onError: (err) => {
@@ -601,6 +599,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       saveMessage,
       scrollToEnd,
       describeError,
+      _copy,
     ],
   );
 
@@ -651,7 +650,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
         if (res.error) {
           const message = res.safetyBlocked
-            ? "That prompt was blocked by the model's safety filter. Try describing it differently."
+            ? _copy("copy.2d4a48f1702e", { defaultValue: "That prompt was blocked by the model's safety filter. Try describing it differently." })
             : res.error;
           // `clearHistory` means the conversation itself is what tripped the
           // filter, so carrying it forward would fail every following turn.
@@ -676,7 +675,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             ...history,
             {
               role: 'assistant',
-              content: res.text || "The image couldn't be generated. Try a different prompt.",
+              content: res.text || _copy("copy.b6063af3e303", { defaultValue: "The image couldn't be generated. Try a different prompt." }),
               isError: true,
             },
           ]);
@@ -693,7 +692,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         setIsGeneratingImage(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startNewConversation, describeError],
+    [walletAddress, saveMessage, scrollToEnd, startNewConversation, describeError, _copy],
   );
 
   /* ── Video ───────────────────────────────────────────────────────────── */
@@ -772,7 +771,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           stopPoll(pending.predictionId);
           AsyncStorage.removeItem(PENDING_VIDEO_KEY).catch(() => {});
           deliver({
-            content: `Video generation failed: ${res.error || 'unknown error'}`,
+            content: _copy("copy.a64e8f4a14b6", { defaultValue: "Video generation failed: {{value1}}", value1: res.error || _copy("copy.3e4443e52275", { defaultValue: "unknown error" }) }),
             isVideoGenerating: false,
             isError: true,
           });
@@ -783,7 +782,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         log.error('video poll failed:', err);
       }
     },
-    [walletAddress, stopPoll, patchMessage, patchStoredMessage, canPollNow],
+    [walletAddress, stopPoll, patchMessage, patchStoredMessage, canPollNow, _copy],
   );
 
   const startVideoPoll = useCallback(
@@ -829,7 +828,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         if (res.error) {
           await saveMessage([
             ...history,
-            { role: 'assistant', content: `Video generation failed: ${res.error}`, isError: true },
+            { role: 'assistant', content: _copy("copy.a64e8f4a14b6", { defaultValue: "Video generation failed: {{value1}}", value1: res.error }), isError: true },
           ]);
           return;
         }
@@ -846,14 +845,14 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             ...history,
             {
               role: 'assistant',
-              content: 'The video job started but returned no id, so it cannot be tracked.',
+              content: _copy("copy.911f76ea64b7", { defaultValue: "The video job started but returned no id, so it cannot be tracked." }),
               isError: true,
             },
           ]);
           return;
         }
 
-        const content = `🎬 Generating video with **${videoModel?.name || model}**…\n\n_This may take 1-3 minutes_`;
+        const content = `🎬 ${_copy("copy.0871e306f2e9", { defaultValue: "Generating video with {{value1}}…", value1: `**${videoModel?.name || model}**` })}\n\n_${_copy("copy.6945e5fa7a6a", { defaultValue: "This may take 1-3 minutes" })}_`;
         const messageId = newTurnId();
         await saveMessage([
           ...history,
@@ -892,7 +891,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         setIsLoading(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startVideoPoll, describeError],
+    [walletAddress, saveMessage, scrollToEnd, startVideoPoll, describeError, _copy],
   );
 
   /* ── fal.ai tools ────────────────────────────────────────────────────── */
@@ -936,10 +935,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             isToolProcessing: false,
             toolRequestId: undefined,
             content: res.modelUrl ? `[${t('creator.studioOpenModel')}](${res.modelUrl})` : res.text
-              ? `📝 **Transcription:**\n\n${res.text}`
+              ? `📝 **${_copy("copy.a6ea6d4f91b9", { defaultValue: "Transcription:" })}**\n\n${res.text}`
               : res.audioUrl || res.imageUrl
                 ? ''
-                : `${toolModel?.name || 'Tool'} completed successfully.`,
+                : _copy("copy.1d82652c7cc6", { defaultValue: "{{value1}} completed successfully.", value1: toolModel?.name || _copy("copy.2e53bdcd0740", { defaultValue: "Tool" }) }),
             ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
             ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
             ...(res.modelUrl ? { modelUrl: res.modelUrl } : {}),
@@ -951,7 +950,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           deliver({
             isToolProcessing: false,
             toolRequestId: undefined,
-            content: `Processing failed: ${res.error || 'unknown error'}`,
+            content: _copy("copy.2ad6f2da2267", { defaultValue: "Processing failed: {{value1}}", value1: res.error || _copy("copy.3e4443e52275", { defaultValue: "unknown error" }) }),
             isError: true,
           });
         }
@@ -959,7 +958,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         log.error('tool poll failed:', err);
       }
     },
-    [walletAddress, stopPoll, patchMessage, patchStoredMessage, canPollNow],
+    [walletAddress, stopPoll, patchMessage, patchStoredMessage, canPollNow, _copy],
   );
 
   const startToolPoll = useCallback(
@@ -1014,10 +1013,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             {
               role: 'assistant',
               content: res.text
-                ? `📝 **Transcription:**\n\n${res.text}`
+                ? `📝 **${_copy("copy.a6ea6d4f91b9", { defaultValue: "Transcription:" })}**\n\n${res.text}`
                 : res.audioUrl || res.imageUrl
                   ? ''
-                  : `${toolModel?.name || 'Tool'} completed.`,
+                  : _copy("copy.1e1f8f160342", { defaultValue: "{{value1}} completed.", value1: toolModel?.name || _copy("copy.2e53bdcd0740", { defaultValue: "Tool" }) }),
               ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
               ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
             },
@@ -1032,14 +1031,14 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             ...history,
             {
               role: 'assistant',
-              content: 'That tool started but returned no request id, so it cannot be tracked.',
+              content: _copy("copy.060acb64b8c6", { defaultValue: "That tool started but returned no request id, so it cannot be tracked." }),
               isError: true,
             },
           ]);
           return;
         }
 
-        const content = `${toolModel?.emoji || '⏳'} Processing with **${toolModel?.name || toolId}**…\n\n_This may take a minute_`;
+        const content = `${toolModel?.emoji || '⏳'} ${_copy("copy.a93f007481e7", { defaultValue: "Processing with {{value1}}…", value1: `**${toolModel?.name || toolId}**` })}\n\n_${_copy("copy.0dbd749f0550", { defaultValue: "This may take a minute" })}_`;
         const messageId = newTurnId();
         await saveMessage([
           ...history,
@@ -1078,7 +1077,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         setIsLoading(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startToolPoll, describeError],
+    [walletAddress, saveMessage, scrollToEnd, startToolPoll, describeError, _copy],
   );
 
   /* ── Resume work that outlived the app ───────────────────────────────── */
@@ -1126,7 +1125,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         appendLocalMessage({
           id: pending.messageId,
           role: 'assistant',
-          content: pending.content || '🎬 Resuming video generation…',
+          content: pending.content || `🎬 ${_copy("copy.4b54a74e0a54", { defaultValue: "Resuming video generation…" })}`,
           isVideoGenerating: true,
           videoPredictionId: pending.predictionId,
         });
@@ -1142,7 +1141,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         appendLocalMessage({
           id: pending.messageId,
           role: 'assistant',
-          content: pending.content || '⏳ Resuming processing…',
+          content: pending.content || `⏳ ${_copy("copy.c12e822ce71a", { defaultValue: "Resuming processing…" })}`,
           isToolProcessing: true,
           toolRequestId: pending.requestId,
           toolAppId: pending.appId,
@@ -1245,7 +1244,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           ...history,
           {
             role: 'assistant',
-            content: "Here's the official DeHub logo!",
+            content: _copy("copy.4cef372919b2", { defaultValue: "Here's the official DeHub logo!" }),
             imageUrl: Image.resolveAssetSource(DEHUB_LOGO).uri,
           },
         ]);
@@ -1305,7 +1304,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
       await doSendChat(text, history);
     },
-    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput],
+    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput, _copy],
   );
 
   const handleSend = useCallback(async () => {
@@ -1655,11 +1654,11 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         case 'builder':
           // Web links to dehub.io/builder. There is no builder screen in this app
           // yet, so the composer seeds the request instead of dead-ending.
-          setInput('Build me a mini app that ');
+          setInput(_copy("copy.a0bea2908910", { defaultValue: "Build me a mini app that " }));
           break;
       }
     },
-    [handleAttach, setInput],
+    [handleAttach, setInput, _copy],
   );
 
   /** Arming a template also adopts the model it was tuned for, as on web. */
@@ -1747,9 +1746,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       // Flagged here rather than after payment: these models have no edit
       // endpoint at all, so generate-image rejects the request.
       unavailableReason:
-        editing && !imageModelSupportsEdit(model) ? 'Cannot edit an attached image' : undefined,
+        editing && !imageModelSupportsEdit(model) ? _copy("copy.7afab3ec73f3", { defaultValue: "Cannot edit an attached image" }) : undefined,
     }));
-  }, [pendingSourceImage, pendingStudio]);
+  }, [pendingSourceImage, pendingStudio, _copy]);
 
   const videoPaywallModels = useMemo(
     () =>
@@ -1766,12 +1765,12 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         unavailableReason: pendingSourceImage
           ? videoSupportsImage(model)
             ? undefined
-            : 'Text-to-video only'
+            : _copy("copy.36aed2deea70", { defaultValue: "Text-to-video only" })
           : videoSupportsText(model)
             ? undefined
-            : 'Needs an image to animate',
+            : _copy("copy.46b8d772591d", { defaultValue: "Needs an image to animate" }),
       })),
-    [pendingSourceImage, pendingStudio],
+    [pendingSourceImage, pendingStudio, _copy],
   );
 
   const toolPaywallModels = useMemo(
@@ -1846,7 +1845,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       {isEmpty ? (
         <View style={s.welcomeWrap}>
           <View style={s.welcomeCenter}>
-            <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : WELCOME_MESSAGE}</Text>
+            <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : _copy("copy.ad64f44134a8", { defaultValue: "Use the text box below or these action buttons to get started." })}</Text>
             {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} model={studioSettings.model} /></View>}
           </View>
           {!studio && <QuickActionChips onAction={handleQuickAction} />}
@@ -1921,7 +1920,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             <Text style={s.templatePillText} numberOfLines={2}>
               {t('creator.presetPlaceholder', {
                 name: t(activeTemplate.nameKey),
-                sample: activeTemplate.sample,
+                sample: activeTemplate.displaySample ?? activeTemplate.sample,
               })}
             </Text>
             <TouchableOpacity
@@ -2036,7 +2035,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         onConfirmFree={pendingPosterConfig ? undefined : handleImageFree}
         footnote={
           pendingPosterConfig
-            ? 'The wordmark and headline are composited after generation, crisply.'
+            ? _copy("copy.9aacb13bd84d", { defaultValue: "The wordmark and headline are composited after generation, crisply." })
             : undefined
         }
       />
@@ -2052,7 +2051,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS }}
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoConfirm}
-        footnote="Renders take 1-3 minutes and keep going if you leave this screen."
+        footnote={_copy("copy.0f1f6dc49d7b", { defaultValue: "Renders take 1-3 minutes and keep going if you leave this screen." })}
       />
 
       <CreditPaywallSheet

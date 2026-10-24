@@ -1,5 +1,6 @@
 import { profileSessionMatchesWallet } from '../libs/profile-session';
 import { clearAuthTrace } from '../libs/auth-trace';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useCallback, useRef } from "react";
 import { maxStacked } from "../libs/validators.util";
 import { setHasSeenAuth, toastError } from "../libs";
@@ -323,7 +324,7 @@ export function useAuthSession({
   const handleSessionExpired = useCallback(
     async (trigger: string) => {
       // surface toast here to keep context thin
-      toastError?.("Session expired, login again");
+      toastError?.(_translateCopy("copy.5182f571479d", { defaultValue: "Session expired, login again" }));
       try {
         // Keep the stored profile snapshot — the account itself is fine; only
         // this session's tokens died.
@@ -386,9 +387,10 @@ export function useAuthSession({
           // list was refused. Say so, and name the tier that would lift it —
           // silence here would look like the account simply not appearing.
           const { allowance } = e;
+          // The error's own message is English; show the translated line instead.
           toastError(
-            e,
-            `You can keep ${allowance.maxProfiles} profiles on this device`,
+            null,
+            _translateCopy("copy.2c3583161a5f", { defaultValue: "You can keep {{value1}} profiles on this device", value1: allowance.maxProfiles }),
           );
           log.warn('applyWalletAuthResult:profileLimitReached', {
             maxProfiles: allowance.maxProfiles,

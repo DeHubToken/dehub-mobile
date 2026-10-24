@@ -22,6 +22,7 @@
  * the OS, but text, categories, and monetisation settings will always survive.
  */
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation as _useCopy } from 'react-i18next';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "../services/supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
@@ -260,6 +261,7 @@ export async function consumePublishedDraft(id: string, address: string): Promis
 }
 
 export function useDrafts(address?: string) {
+  const { t: _copy } = _useCopy();
   const [drafts, setDrafts] = useState<Draft[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -309,10 +311,10 @@ export function useDrafts(address?: string) {
         setDrafts(withRemote);
         await writeDrafts(withRemote, address);
       }
-      if (!savedLocally && !remoteId) throw new Error("Could not save this draft. Your text is still in the composer.");
+      if (!savedLocally && !remoteId) throw new Error(_copy("copy.028afecc47a4", { defaultValue: "Could not save this draft. Your text is still in the composer." }));
       return id;
     },
-    [drafts, address],
+    [drafts, address, _copy],
   );
 
   /** Delete a draft by id */

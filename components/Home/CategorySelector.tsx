@@ -72,7 +72,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
                 className={`text-sm font-medium text-theme-neutrals-400`}
                 style={{ includeFontPadding: false, lineHeight: 18 }}
               >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
+                {isAll ? _copy("copy.a52ace420f21", { defaultValue: "All" }) : category.charAt(0).toUpperCase() + category.slice(1)}
               </Text>
             </TouchableOpacity>
           );

@@ -385,7 +385,7 @@ const InfiniteFeedBase: React.FC<
 
   const endReached = hasNextPage === false;
   const initialLoading = isLoading;
-  const error = queryError ? (queryError as Error).message || "Failed to load feed" : null;
+  const error = queryError ? (queryError as Error).message || t("copy.5f91d3aa45f1", { defaultValue: "Failed to load feed" }) : null;
 
   useEffect(() => {
     if (endReached) onEndReachedAll?.();

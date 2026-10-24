@@ -36,6 +36,7 @@
  */
 
 import { useCallback, useEffect, useRef } from "react";
+import { useTranslation as _useCopy } from 'react-i18next';
 import { AppState } from "react-native";
 import { supabase } from "../services/supabase";
 import { useAuth } from "../context/AuthContext";
@@ -69,6 +70,7 @@ const STARTING_SOON_MS = 10 * 60 * 1000;
 const SWEEP_MS = 60_000;
 
 export function useStageAlerts() {
+  const { t: _copy } = _useCopy();
   const { user } = useAuth();
   const walletAddress = (user?.walletAddress || user?.address || "").toLowerCase();
 
@@ -99,14 +101,14 @@ export function useStageAlerts() {
       const open = () => emitStageDeepLink(link);
       const options = {
         duration: 12_000,
-        actionLabel: args.type === "stage_live" ? "Listen in" : "View stage",
+        actionLabel: args.type === "stage_live" ? _copy("copy.6f00beb36c9b", { defaultValue: "Listen in" }) : _copy("copy.2074fadab822", { defaultValue: "View stage" }),
         onActionPress: open,
       };
 
       if (args.type === "stage_live") toastSuccess(args.sentence, options);
       else toastInfo(args.sentence, options);
     },
-    [],
+    [_copy],
   );
 
   /** Do I hold a reminder for this stage? */
@@ -138,7 +140,7 @@ export function useStageAlerts() {
       if (alertedRef.current.has(`stage_live@${space.id}`)) return;
       if (!(await holdsReminder(space.id))) return;
 
-      const actorName = space.host_username ? `@${space.host_username}` : "Someone";
+      const actorName = space.host_username ? `@${space.host_username}` : _copy("copy.864c855e3d64", { defaultValue: "Someone" });
       raise({
         type: "stage_live",
         stage: space,
@@ -159,7 +161,7 @@ export function useStageAlerts() {
         log.error("Stage live alert failed:", err),
       );
     });
-  }, [walletAddress, holdsReminder, raise]);
+  }, [walletAddress, holdsReminder, raise, _copy]);
 
   // ── A stage I am waiting on is about to start ─────────────────────────────
   //

@@ -76,6 +76,7 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useLiveChat } from "../../hooks/useLiveChat";
 import { useLivePostReactions } from "../../hooks/useLivePostReactions";
 import { useTranslation as useCopy } from "react-i18next";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { EDGE } from "../common/ViewerChrome";
 import { speakTipMessage, setTipTtsEnabled } from "../../libs/tipTts";
 import { tierFromAmount } from "../../config/gift-tiers";
@@ -268,7 +269,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Derive display fields
   const resolvedTitle = (streamEntity?.title ||
     titleProp ||
-    "Live Stream") as string;
+    t("copy.7975f2a611d0", { defaultValue: "Live Stream" })) as string;
   const resolvedDescription = (streamEntity?.description ||
     descProp ||
     "") as string;
@@ -812,7 +813,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
       if (data?.streamId && data.streamId !== streamId) return;
       addActivity({
         status: StreamActivityType.JOINED,
-        meta: { username: "Visitor" },
+        meta: { username: _translateCopy("copy.cf9f5896322a", { defaultValue: "Visitor" }) },
       });
     });
     bind(LivestreamEvents.LeaveStream, (data: any) => {
@@ -1307,8 +1308,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     const postId = streamEntity?.tokenId ?? tokenId ?? streamId;
     const url = postId != null ? `${WEBSITE_LINK}/app/post/${postId}` : null;
     if (!url) return;
-    await shareProfile(url, `Check out this stream ${url}`, "live");
-  }, [streamEntity?.tokenId, streamId, tokenId]);
+    await shareProfile(url, t("copy.f6f435c8cbc6", { defaultValue: "Check out this stream {{value1}}", value1: url }), "live");
+  }, [streamEntity?.tokenId, streamId, tokenId, t]);
 
   // Sound. A stream is opened on purpose, so it starts audible whether or not
   // the user has silenced the feed. The player used to seed itself from the

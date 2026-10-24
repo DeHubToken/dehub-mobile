@@ -7,6 +7,7 @@ import { validConnector } from "./connectors";
 import { validPhotoTone } from "./photoTone";
 import { validBrandStyles } from "./brandStyles";
 import { normaliseDesignLink } from "./designLinks";
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
 import { validDataVisuals } from "./dataVisuals";
@@ -14,6 +15,8 @@ import { validGradientFill } from "./gradientFill";
 import { validQrGraphic } from "./qrGraphic";
 
 export class CloudProjectConflict extends Error {}
+/** A live edit that needs recovery. The class marks it, because the message is translated. */
+export class CloudDraftRecovery extends Error {}
 
 export const CLOUD_PROJECT_BUCKET = "editor-project-media";
 export const CLOUD_PROJECT_MAX_BYTES = 8 * 1024 * 1024;
@@ -38,7 +41,7 @@ export interface CloudProjectVersion { projectId: string; revision: number; head
 export interface CloudProjectSaved { projectId: string; revision: number; savedAt: string }
 export interface CloudProjectBinding { wallet: string; projectId: string; revision: number }
 
-function fail(): never { throw new Error("Invalid or incomplete cloud project"); }
+function fail(): never { throw new Error(_translateCopy("copy.3154e16634a3", { defaultValue: "Invalid or incomplete cloud project" })); }
 function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === "object" && !Array.isArray(value); }
 function positive(value: unknown, limit: number): boolean { return typeof value === "number" && Number.isFinite(value) && value > 0 && value <= limit; }
 function utf8Length(value: string): number {

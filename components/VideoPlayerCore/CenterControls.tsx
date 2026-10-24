@@ -25,23 +25,23 @@ const CenterControls: React.FC<CenterControlsProps> = ({
   const handleTogglePlay = useCallback(() => {
     onTogglePlay();
     AccessibilityInfo.announceForAccessibility(
-      isPlaying ? 'Paused' : 'Playing'
+      isPlaying ? _copy("copy.e159b06187d3", { defaultValue: "Paused" }) : _copy("copy.deaf6f9d23bc", { defaultValue: "Playing" })
     );
-  }, [onTogglePlay, isPlaying]);
+  }, [onTogglePlay, isPlaying, _copy]);
 
   const handleSeekBack = useCallback(() => {
     onSeekBack();
     AccessibilityInfo.announceForAccessibility(
-      `Rewinding ${PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS} seconds`
+      _copy("copy.919a3ccadb3f", { defaultValue: "Rewinding {{count}} seconds", count: PLAYER_CONSTANTS.SEEK_BACKWARD_SECONDS })
     );
-  }, [onSeekBack]);
+  }, [onSeekBack, _copy]);
 
   const handleSeekForward = useCallback(() => {
     onSeekForward();
     AccessibilityInfo.announceForAccessibility(
-      `Skipping forward ${PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS} seconds`
+      _copy("copy.8fbfb637ace6", { defaultValue: "Skipping forward {{count}} seconds", count: PLAYER_CONSTANTS.SEEK_FORWARD_SECONDS })
     );
-  }, [onSeekForward]);
+  }, [onSeekForward, _copy]);
 
   return (
     <View className="items-center justify-center">

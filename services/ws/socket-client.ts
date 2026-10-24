@@ -4,6 +4,7 @@ import Constants from "expo-constants";
 import { GenericHandler } from "./events";
 import { createLogger } from "../../libs/logger";
 import { LivestreamEvents } from "../enums/livestream.enum";
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 const WS_APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
 const WS_PLATFORM = Platform.OS; // 'ios' | 'android'
@@ -436,7 +437,7 @@ export class WebSocketClient {
     // the user has been told it failed. A fresh attempt can reconnect first.
     if (event === "sendMessage" && !this.socket?.connected) {
       this.connect();
-      throw new Error("Not connected to chat. Check your connection and try again.");
+      throw new Error(_translateCopy("copy.d2de8a1bb283", { defaultValue: "Not connected to chat. Check your connection and try again." }));
     }
     // Queue if not connected yet
     if (!this.socket || !this.socket.connected) {

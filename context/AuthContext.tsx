@@ -576,7 +576,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (!targetChainId) return;
     if (chainIdRef.current === targetChainId && providerStatusRef.current === 'ready') return;
     const chainName =
-      (SUPPORTED_NETWORKS as any)?.[targetChainId]?.chainName || `Chain ${targetChainId}`;
+      (SUPPORTED_NETWORKS as any)?.[targetChainId]?.chainName || _copy("copy.f68ce866a5b4", { defaultValue: "Chain {{value1}}", value1: targetChainId });
     const previousChainId = chainIdRef.current ?? (await getPreferredChainId());
     setIsSwitchingChain(true);
     try {
@@ -613,13 +613,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         // prevent. Refuse the chain rather than half-perform the switch.
         const signingAddress = await getProviderAccount();
         if (signingAddress && signingAddress.toLowerCase() !== address.toLowerCase()) {
-          throw new Error(`${chainName} is not available for this account.`);
+          throw new Error(_copy("copy.fa9e2ccb6de6", { defaultValue: "{{value1}} is not available for this account.", value1: chainName }));
         }
         await signInWithWallet(address, targetChainId);
         log.info('switchChain:reauth:success', { targetChainId });
       }
 
-      try { toastSuccess(`Switched to ${chainName}`); } catch {}
+      try { toastSuccess(_copy("copy.af717b4ca2b5", { defaultValue: "Switched to {{value1}}", value1: chainName })); } catch {}
     } catch (e) {
       log.error('switchChain:failed', e as any);
       // Put the wallet back on the chain it came from. Persisting the target up
@@ -787,7 +787,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         log.warn('switchToProfile:failed', e as any);
         await abortProfileSwitch(prevId);
         await rehydrateFromStorage();
-        toastError?.('Could not switch account');
+        toastError?.(_copy("copy.9e046e5e5d10", { defaultValue: "Could not switch account" }));
         return false;
       }
     },
@@ -949,7 +949,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             <AuthContext.Provider value={authContextValue}>
               {children}
               {isSwitchingChain && (
-                <FullScreenLoader message="Switching network…" />
+                <FullScreenLoader message={_copy("copy.72381872350b", { defaultValue: "Switching network…" })} />
               )}
               {/* Keep one native window through signup. Swapping modals on a
                   timer can lose the profile step while iOS is dismissing. */}
