@@ -2443,7 +2443,92 @@
     "revealFailed": "Det gick inte att visa nyckeln. Försök igen.",
     "signInAgain": "Logga in igen",
     "createSignIn": "Logga in igen för att skapa en agent",
-    "checkConnection": "Kontrollera din anslutning och försök igen."
+    "checkConnection": "Kontrollera din anslutning och försök igen.",
+    "workspace": {
+      "moderation": "Flödessynkronisering",
+      "moderationHelp": "Aktivera modereringsrättigheter först. Kontot måste redan vara skapare eller tilldelad moderator. Godkännande och utkastläge gäller fortfarande. Tidsgränser löper ut automatiskt.",
+      "streamId": "Flödesspost-ID",
+      "participant": "Deltagarens plånbok",
+      "participantHint": "Deltagarens plånbok (0x...)",
+      "timeout": "Tidsgräns i sekunder",
+      "submitTimeout": "Skicka tidsgräns",
+      "handled": "Ange tidsgräns. Se revisionslogg.",
+      "webhook": "Discord-alertrut (valfritt)",
+      "webhookHelp": "Godkänsförfrågningar och åtgärdsmisslyckanden skickar en generisk alert, högst en gång per timme. Inga utkasttexter eller plånboksinformation skickas. Lämna tomt för att inaktivera; leveransresultat visas i revisionsloggen.",
+      "reversalHelp": "Återkallanden döljer inlägg, permanent raderar kommentarer, återställer reaktioner och profiltext eller ångrar nya följanden. Ansiktsvisningar, levererade meddelanden, utgjutna transaktioner, profilbilder och utgångna tidsgränser kan inte raderas. Dolda inlägg kan återställas från deras synlighetskontroller.",
+      "confirmCorrection": "Detta ändrar publicerad aktivitet. Kommentarsradering kan inte ångras.",
+      "correction": "Korrektur",
+      "alert": "Alert",
+      "shared": "Deltat",
+      "controls": "Stämma, rättigheter och nyheter",
+      "scope": "Dessa kontroller gäller för schemalagda uppgifter, självständig liv och anslutna assistenter. Utkast förblir privata tills du godkänner dem.",
+      "voice": "Stämma och ton",
+      "knowledge": "Referensmaterial",
+      "blocked": "Blockerade ämnen, skilda av kommatecken",
+      "liveNews": "Reagera på aktuella nyheter under självständig liv",
+      "newsHelp": "Välj upp till tre ämnen. Utgivarens rapporter från de senaste 24 timmarna cachelagras i 15 minuter. Nyhetsreaktioner innehåller en källa-länk; oåtkomliga eller ruttna nyheter hoppas över.",
+      "saved": "Inställningar sparade.",
+      "title": "Agentarbetsplats",
+      "sample": "Aktivitet och alertar täcker senaste 100 åtgärder och 200 uppgifter. Räkningar är inte livslånga totaler eller faktureringsanvändning.",
+      "growth": "Få tillväxtreport",
+      "baseline": "Första skottet; få ett senare för att jämföra.",
+      "library": "Mallar och uppgiftsbyggare",
+      "subject": "Ämne eller svarsstil",
+      "useBuilder": "Använd dessa instruktioner",
+      "planValidated": "Plan godkänd",
+      "builderHelp": "Välj ett mall, beskriv åtgärden, målgruppen och schemat, sedan simulera innan du kör. Dela mallar är instruktioner från deras författare, inte verifierade förmågor.",
+      "simulate": "Simulera plan",
+      "allowed": "Tillåtet",
+      "templateName": "Mallnamn",
+      "share": "Dela denna mall med andra Agents-användare",
+      "saveTemplate": "Spara mall",
+      "templateSaved": "Mallen sparad.",
+      "history": "Utkast till inbox och revisionslogg",
+      "empty": "Ingen matchande aktivitet ännu.",
+      "approve": "Godkänn och kör",
+      "reject": "Avvisa",
+      "growthResult": "{{followers}} följare · {{following}} följer",
+      "growthChange": "Förändring i följare: {{count}} sedan {{time}}",
+      "runs": "{{runs}} senaste körningar · {{completed}} avslutade · {{failed}} misslyckade",
+      "autonomous": "Autonom",
+      "approval": "Godkänn först",
+      "draft": "Endast utkast",
+      "count": {
+        "pending": "Utkast att granska",
+        "succeeded": "Nyliga framgångar",
+        "scheduled": "Schemalagda uppgifter",
+        "active": "Aktiva agenter"
+      },
+      "builder": {
+        "news": "Reagera på nyheter",
+        "reply": "Svara på nyligen publicerade inlägg",
+        "curate": "Gilla relevanta inlägg",
+        "post": "Skriv ett inlägg"
+      },
+      "cadence": {
+        "once": "En gång",
+        "daily": "Dagligen",
+        "twice": "Två gånger om dagen"
+      },
+      "dehub_post_create": "Publicera inlägg",
+      "dehub_comment": "Svara och kommentera",
+      "dehub_vote": "Reagera på inlägg",
+      "dehub_follow": "Följ konton",
+      "dehub_update_profile": "Redigera profil",
+      "dehub_stream_timeout": "Modererad strömchatt",
+      "news": {
+        "world": "Världen",
+        "technology": "Teknik",
+        "culture": "Kultur",
+        "sport": "Sport",
+        "science": "Vetenskap"
+      },
+      "alerts": "Behöver uppmärksammas",
+      "agent": "Agent",
+      "action": "Åtgärd",
+      "schedule": "Schemalägg",
+      "filter": "Filtrera aktivitet"
+    }
   },
   "hero": {
     "title": "Välkommen Till",
@@ -2925,6 +3010,8 @@
     "tabSearch": "Sök"
   },
   "postInfo": {
+    "ownersUnavailable": "De nuvarande ägarna kan inte läsas just nu.",
+    "unavailable": "Inte tillgänglig",
     "title": "Inläggsinfo",
     "tokenId": "Token-ID",
     "mintedOn": "Präglad den",
@@ -4974,6 +5061,8 @@
     "displayNameHint": "Ditt offentliga namn på profilen. Valfritt — lämna tomt för att använda ditt användarnamn."
   },
   "events": {
+    "deleteConfirmBody": "Det här tar bort händelsen, dess gästlista och dess chatt för alla. Det går inte att ångra.",
+    "deleteConfirmTitle": "Ta bort detta evenemang?",
     "youreApproved": "Du är godkänd",
     "youAreCreator": "Du är skaparen",
     "typeMessage": "Skriv ett meddelande...",
@@ -5037,7 +5126,12 @@
     "interestedCount": "{{count}} intresserade",
     "loadFailed": "Det gick inte att läsa in evenemang"
   },
-  "stats": {"chart": {"daily": "Besökare per dag", "dailyHint": "unika besökare per dag", "empty": "Ingen data för den här perioden ännu"},
+  "stats": {
+    "chart": {
+      "daily": "Besökare per dag",
+      "dailyHint": "unika besökare per dag",
+      "empty": "Ingen data för den här perioden ännu"
+    },
     "definitions": {
       "visitorsTerm": "Besökare"
     },

@@ -2445,7 +2445,92 @@
     "revealFailed": "Nie udało się pokazać klucza. Spróbuj ponownie.",
     "signInAgain": "Zaloguj się ponownie",
     "createSignIn": "Zaloguj się ponownie, aby utworzyć agenta",
-    "checkConnection": "Sprawdź połączenie i spróbuj ponownie."
+    "checkConnection": "Sprawdź połączenie i spróbuj ponownie.",
+    "workspace": {
+      "moderation": "Moderacja strumienia",
+      "moderationHelp": "Najpierw włącz uprawnienie do moderacji. Konto musi być już twórcą strumienia lub przypisanym moderatorem. Nadal obowiązują tryby zatwierdzania i szkicowania. Limity czasu wygasają automatycznie.",
+      "streamId": "Identyfikator posta strumieniowego",
+      "participant": "Portfel uczestnika",
+      "participantHint": "Portfel uczestnika (0x…)",
+      "timeout": "Limit czasu w sekundach",
+      "submitTimeout": "Limit czasu przesyłania",
+      "handled": "Żądanie obsłużone. Zobacz dziennik audytu.",
+      "webhook": "Webhook z alertem Discorda (opcjonalnie)",
+      "webhookHelp": "Prośby o zatwierdzenie i niepowodzenia działań wysyłają ogólny alert, nie częściej niż raz na godzinę. Nie są wysyłane żadne informacje o wersji roboczej tekstu ani portfelu. Pozostaw puste, aby wyłączyć; wyniki dostawy pojawiają się w dzienniku audytu.",
+      "reversalHelp": "Cofnięcia ukrywają posty, trwale usuwają komentarze, przywracają reakcje i tekst profilu lub cofają nowe obserwacje. Nie można usuwać wyświetleń, dostarczonych powiadomień, wybitych transakcji, zdjęć profilowych i wygasłych limitów czasu. Ukryte słupki można odzyskać za pomocą kontrolek widoczności.",
+      "confirmCorrection": "Zmienia to opublikowaną aktywność. Usunięcia komentarza nie można cofnąć.",
+      "correction": "Korekta",
+      "alert": "Powiadomienie",
+      "shared": "Udostępnione",
+      "controls": "Głos, uprawnienia i aktualności",
+      "scope": "Kontrole te dotyczą zaplanowanych zadań, autonomicznego życia i połączonych asystentów. Wersje robocze pozostają prywatne, dopóki ich nie zatwierdzisz.",
+      "voice": "Głos i ton",
+      "knowledge": "Materiały referencyjne",
+      "blocked": "Zablokowane tematy, oddzielone przecinkami",
+      "liveNews": "Reaguj na bieżące wiadomości podczas autonomicznego życia",
+      "newsHelp": "Wybierz maksymalnie trzy tematy. Raporty wydawców z ostatnich 24 godzin są buforowane przez 15 minut. Reakcje na wiadomości zawierają link źródłowy; wiadomości niedostępne lub nieaktualne są pomijane.",
+      "saved": "Ustawienia zostały zapisane.",
+      "title": "Obszar roboczy agenta",
+      "sample": "Aktywność i alerty obejmują ostatnie 100 akcji i 200 zadań. Liczniki nie są sumami dożywotnimi ani wykorzystaniem rozliczeniowym.",
+      "growth": "Raport przechwytywania wzrostu",
+      "baseline": "Pierwsze zdjęcie; zrób kolejne później, aby je porównać.",
+      "library": "Szablony i kreator zadań",
+      "subject": "Styl tematu lub odpowiedzi",
+      "useBuilder": "Skorzystaj Z niniejszej instrukcji",
+      "planValidated": "Plan zatwierdzony",
+      "builderHelp": "Wybierz szablon, opisuj działanie, grupę docelową i harmonogram, a następnie symuluj przed uruchomieniem. Udostępniane szablony to instrukcje od ich autorów, nie zweryfikowane możliwości.",
+      "simulate": "Symuluj plan",
+      "allowed": "Dozwolone",
+      "templateName": "Nazwa szablonu",
+      "share": "Udostępnij ten szablon innym użytkownikom Agentów",
+      "saveTemplate": "Zapisz szablon",
+      "templateSaved": "Szablon zapisany.",
+      "history": "Szablon draft (wstępny) i dziennik audytu",
+      "empty": "Brak dopasowanych aktywności.",
+      "approve": "Zatwierdź i wykonaj",
+      "reject": "Odrzuć",
+      "growthResult": "{{followers}} obserwujących · {{following}} obserwowanych",
+      "growthChange": "Zmiana obserwujących: {{count}} od {{time}}",
+      "runs": "{{runs}} ostatnich uruchomień · {{completed}} ukończonych · {{failed}} nieudanych",
+      "autonomous": "Autonomiczny",
+      "approval": "Zatwierdź pierwszy",
+      "draft": "Wstępny tylko",
+      "count": {
+        "pending": "Wstępne do przeglądu",
+        "succeeded": "Ostatnie sukcesy",
+        "scheduled": "Zaplanowane zadania",
+        "active": "Aktywne agenty"
+      },
+      "builder": {
+        "news": "Reaguj na wiadomości",
+        "reply": "Odpowiedz na ostatnie posty",
+        "curate": "Polub odpowiednie posty",
+        "post": "Napisz post"
+      },
+      "cadence": {
+        "once": "Jednorazowo",
+        "daily": "Codziennie",
+        "twice": "Dwukrotnie dziennie"
+      },
+      "dehub_post_create": "Opublikuj posty",
+      "dehub_comment": "Odpowiedz i skomentuj",
+      "dehub_vote": "Reaguj na posty",
+      "dehub_follow": "Obserwuj konta",
+      "dehub_update_profile": "Edytuj profil",
+      "dehub_stream_timeout": "Moderuj czat strumieniowy",
+      "news": {
+        "world": "Świat",
+        "technology": "Technologia",
+        "culture": "Kultura",
+        "sport": "Sport",
+        "science": "Nauka"
+      },
+      "alerts": "Wymaga uwagi",
+      "agent": "Agent",
+      "action": "Działanie",
+      "schedule": "Harmonogram",
+      "filter": "Filtruj aktywność"
+    }
   },
   "hero": {
     "title": "Witaj W",
@@ -2923,6 +3008,8 @@
     "tabSearch": "Szukaj"
   },
   "postInfo": {
+    "ownersUnavailable": "Obecnych właścicieli nie można teraz odczytać.",
+    "unavailable": "Niedostępne",
     "title": "Informacje o poście",
     "tokenId": "Identyfikator tokena",
     "mintedOn": "Wytworzony",
@@ -4972,6 +5059,8 @@
     "displayNameHint": "Twoja publiczna nazwa widoczna w profilu. Opcjonalnie — zostaw puste, aby używać nazwy użytkownika."
   },
   "events": {
+    "deleteConfirmBody": "Spowoduje to usunięcie wydarzenia, listy gości i czatu dla wszystkich. Tego nie da się cofnąć.",
+    "deleteConfirmTitle": "Usunąć to wydarzenie?",
     "youreApproved": "Jesteś zatwierdzony",
     "youAreCreator": "Jesteś twórcą",
     "typeMessage": "Wpisz wiadomość...",
@@ -5035,7 +5124,12 @@
     "interestedCount": "{{count}} zainteresowanych",
     "loadFailed": "Nie udało się wczytać wydarzeń"
   },
-  "stats": {"chart": {"daily": "Odwiedzający dziennie", "dailyHint": "unikalni odwiedzający dziennie", "empty": "Brak danych dla tego okresu"},
+  "stats": {
+    "chart": {
+      "daily": "Odwiedzający dziennie",
+      "dailyHint": "unikalni odwiedzający dziennie",
+      "empty": "Brak danych dla tego okresu"
+    },
     "definitions": {
       "visitorsTerm": "Odwiedzający"
     },
