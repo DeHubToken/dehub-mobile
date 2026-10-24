@@ -803,7 +803,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 16, marginBottom: 12, marginHorizontal: -8, minHeight: 44, zIndex: 2, elevation: 2 }}>
             <Image
               source={require("../../assets/login-stack/mark.png")}
-              style={{ width: 34, height: 44, tintColor: "#FFFFFF" }}
+              style={{ width: 25, height: 32, tintColor: "#FFFFFF" }}
               resizeMode="contain"
               accessibilityIgnoresInvertColors
               accessibilityLabel={t("auth.welcomeToDehub")}

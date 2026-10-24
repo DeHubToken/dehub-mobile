@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SvgXml } from "react-native-svg";
@@ -9,7 +9,6 @@ import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import ImportWalletModal from "./ImportWalletModal";
 import { AuthButton, authColors, AUTH_DISABLED_OPACITY } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
-import { isTelegramLoginAvailable } from "../../services/auth/supabaseAuth.service";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
 // Monochrome Google glyph — tinted at render time so it stays legible on both
@@ -34,9 +33,8 @@ interface SocialLoginIconsProps {
   onGoogle: () => void;
   onApple: () => void;
   /**
-   * Telegram sign-in. The row renders only when this is supplied AND the
-   * telegram-auth edge function reports a bot — the token lives in that
-   * function's env, on its own deploy track, so an app build cannot know.
+   * Telegram sign-in remains visible when supplied. The sign-in action checks
+   * the current bot configuration rather than hiding the option on a probe failure.
    */
   onTelegram?: () => void;
   /**
@@ -124,21 +122,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   layout = "list",
 }) => {
   const { t } = useTranslation();
-  const [telegramReady, setTelegramReady] = useState(false);
   const passkeyReady = !!onPasskeySignIn && !!onPasskeySignUp && isPasskeyLoginAvailable();
-
-  // Starts false and only ever turns on: a project with no bot configured
-  // shows no Telegram row at all, rather than one that fails when tapped.
-  useEffect(() => {
-    if (!onTelegram) return;
-    let cancelled = false;
-    void isTelegramLoginAvailable().then((available) => {
-      if (!cancelled && available) setTelegramReady(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [onTelegram]);
 
   // Stack layout: which round button has its flow open under the row.
   const [openFlow, setOpenFlow] = useState<"phone" | "passkey" | "wallet" | null>(null);
@@ -198,6 +182,15 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
               renderIcon={(c, sz) => <Ionicons name="finger-print" color={c} size={sz} />}
             />
           )}
+          {onTelegram && (
+            <OptionDisc
+              label={BRAND_NAMES.telegram}
+              onPress={onTelegram}
+              disabled={disabled}
+              loading={busyProvider === "telegram"}
+              renderIcon={(c, sz) => <SvgXml xml={telegramIcon("currentColor")} color={c} width={sz} height={sz} />}
+            />
+          )}
           {/* One way in for every wallet: connect one or import a key, both
               under this button. */}
           <OptionDisc
@@ -208,15 +201,6 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
             active={openFlow === "wallet"}
             renderIcon={(c, sz) => <Ionicons name="wallet" color={c} size={sz - 2} />}
           />
-          {onTelegram && telegramReady && (
-            <OptionDisc
-              label={BRAND_NAMES.telegram}
-              onPress={onTelegram}
-              disabled={disabled}
-              loading={busyProvider === "telegram"}
-              renderIcon={(c, sz) => <SvgXml xml={telegramIcon("currentColor")} color={c} width={sz} height={sz} />}
-            />
-          )}
         </View>
 
         {openFlow === "phone" && (
@@ -306,7 +290,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         )}
       />
 
-      {onTelegram && telegramReady && (
+      {onTelegram && (
         <AuthButton
           label={t("loginModal.continueTelegram", "Continue with Telegram")}
           onPress={onTelegram}
