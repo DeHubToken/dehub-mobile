@@ -10058,5 +10058,15 @@
     "youAreBanned": "Nemôžete sa v tomto tvorcu chatovať",
     "youAreTimedOut": "Súčasne ste časovo vylučovaní",
     "title": "Moderuj"
+  },
+  "loginStack": {
+    "aiRestyle": "AI restyl",
+    "headlineTop": "Všetko ti bude patriť",
+    "headlineAccent": "a buďte šťastní.",
+    "orContinueWith": "alebo pokračujte",
+    "phone": "Telefón",
+    "fingerprint": "Odtlačok prsta",
+    "exploreFirst": "Najprv preskúmajte",
+    "codeNote": "Pošleme vám e-mail s kódom, nie je potrebné žiadne heslo."
   }
 }

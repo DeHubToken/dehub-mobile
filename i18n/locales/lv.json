@@ -9891,5 +9891,15 @@
     "youAreBanned": "Tu nevari tērzēt šī radītāja straumēs",
     "youAreTimedOut": "Jums uz brīdi ir iestājies taimauts",
     "title": "Vidēji"
+  },
+  "loginStack": {
+    "aiRestyle": "AI stila maiņa",
+    "headlineTop": "Jums piederēs viss",
+    "headlineAccent": "un esiet laimīgi.",
+    "orContinueWith": "vai turpiniet ar",
+    "phone": "Tālrunis",
+    "fingerprint": "Pirksta nospiedums",
+    "exploreFirst": "Izpētīt vispirms",
+    "codeNote": "Mēs nosūtām jums e-pasta ziņojumu ar kodu, un parole nav nepieciešama."
   }
 }

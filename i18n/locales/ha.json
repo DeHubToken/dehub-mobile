@@ -9851,5 +9851,15 @@
     "youAreBanned": "Ba za ka iya hira a cikin wannan mahalicci ta kõguna",
     "youAreTimedOut": "Kuna da lokaci don dan lokaci.",
     "title": "Matsakaici"
+  },
+  "loginStack": {
+    "aiRestyle": "Sabon salo da AI",
+    "headlineTop": "Za ku mallaki komai",
+    "headlineAccent": "kuma ku yi farin ciki.",
+    "orContinueWith": "ko ci gaba da",
+    "phone": "Wayar waya",
+    "fingerprint": "Rubutun yatsa",
+    "exploreFirst": "Bincika na farko",
+    "codeNote": "Muna imel da ku lambar, babu kalmar sirri da ake buƙata."
   }
 }

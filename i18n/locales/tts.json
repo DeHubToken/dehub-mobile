@@ -9804,5 +9804,15 @@
     "youAreBanned": "คุณไม่สามารถสนทนาในสตรีมของผู้สร้างนี้ได้",
     "youAreTimedOut": "คุณถูกเวลาปิดชั่วคราวชั่วคราวหน่อย",
     "title": "ดูแล"
+  },
+  "loginStack": {
+    "aiRestyle": "รีสไตล์ด้วย AI",
+    "headlineTop": "เจ้า สิเป็นเจ้าของทุกอย่าง",
+    "headlineAccent": "แล้วกะสุขใจ",
+    "orContinueWith": "หรือเฮ็ดต่อกับ",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Explore first",
+    "codeNote": "เฮาส่งอีเมลโค้ดให้เจ้า บ่ต้องใช้พาสเวิร์ด."
   }
 }

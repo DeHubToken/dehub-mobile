@@ -9854,5 +9854,15 @@
     "youAreBanned": "Gak bisa ngechat di stream kreator ini",
     "youAreTimedOut": "Waktu habis sebentar",
     "title": "Moderate"
+  },
+  "loginStack": {
+    "aiRestyle": "Gaya anyar AI",
+    "headlineTop": "Sampeyan bakal nduweni kabeh",
+    "headlineAccent": "lan bakal seneng.",
+    "orContinueWith": "utawa terusake karo",
+    "phone": "Telepon",
+    "fingerprint": "Sidik jari",
+    "exploreFirst": "Jelajahi dhisik",
+    "codeNote": "Kita ngirim kode menyang email sampeyan, ora perlu sandhi."
   }
 }

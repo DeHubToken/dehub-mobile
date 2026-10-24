@@ -9893,5 +9893,15 @@
     "youAreBanned": "Nemate mogućnost čatiranja u streamovima ovog kreatora.",
     "youAreTimedOut": "Trenutno ste izbačeni iz čata.",
     "title": "Moderiraj"
+  },
+  "loginStack": {
+    "aiRestyle": "AI restil",
+    "headlineTop": "Vi ćete posjedovati sve",
+    "headlineAccent": "i biti sretni.",
+    "orContinueWith": "ili nastavite s",
+    "phone": "Nazovi",
+    "fingerprint": "Otisak prsta",
+    "exploreFirst": "Prvo istražite",
+    "codeNote": "Poslat ćemo vam kod e-mailom, nije potrebna lozinka."
   }
 }

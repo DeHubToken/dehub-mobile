@@ -9897,5 +9897,15 @@
     "youAreBanned": "您无法在该创作者的直播间聊天",
     "youAreTimedOut": "您暂时被超时了",
     "title": "管理"
+  },
+  "loginStack": {
+    "aiRestyle": "AI 换风格",
+    "headlineTop": "你将拥有一切",
+    "headlineAccent": "并且会感到快乐。",
+    "orContinueWith": "或者继续使用",
+    "phone": "手机",
+    "fingerprint": "指纹",
+    "exploreFirst": "先探索",
+    "codeNote": "我们会给你发送验证码，无需密码。"
   }
 }

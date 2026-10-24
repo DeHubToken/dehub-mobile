@@ -52,17 +52,21 @@ export default function SwapActionCard({ action }: { action: AssistantSwapAction
   const [error, setError] = useState('');
   const [txHash, setTxHash] = useState('');
 
+  // Bumped to re-read decimals after a failed read.
+  const [decTry, setDecTry] = useState(0);
   useEffect(() => {
     let live = true;
+    // Never guess decimals: 18 for a 6-decimal token (USDC) quotes a trillion
+    // times the amount. Until the real values load, nothing can be quoted.
     Promise.all([decimalsOf(action.tokenIn), decimalsOf(action.tokenOut)])
       .then(([i, o]) => { if (live) setDec({ in: i, out: o }); })
-      .catch(() => { if (live) setDec({ in: 18, out: 18 }); });
+      .catch(() => { if (live) { setError(t('dex.prepareFailed')); setStatus('error'); } });
     return () => { live = false; };
-  }, [action.tokenIn, action.tokenOut]);
+  }, [action.tokenIn, action.tokenOut, decTry, t]);
 
   const getQuote = useCallback(async () => {
     if (!wallet) { requireAuth(() => {}); return; }
-    if (!dec) return;
+    if (!dec) { setError(''); setStatus('idle'); setDecTry((n) => n + 1); return; }
     setStatus('quoting'); setError('');
     try {
       const base = { chainId: BASE, tokenIn: addr(action.tokenIn), tokenOut: addr(action.tokenOut), recipient: wallet };

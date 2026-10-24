@@ -9970,5 +9970,15 @@
     "youAreBanned": "Tsy afaka ny hiresaka amin'ny mpamorona ity ny renirano",
     "youAreTimedOut": "Ianao no tapa-kevitra ny hanao ny fotoana.",
     "title": "Eo ho eo ihany"
+  },
+  "loginStack": {
+    "aiRestyle": "Fomba vaovao AI",
+    "headlineTop": "Ho tompon'ny zavatra rehetra ianareo",
+    "headlineAccent": "ary ho faly.",
+    "orContinueWith": "na tohizo miaraka",
+    "phone": "Telefaonina",
+    "fingerprint": "Diam-panondro",
+    "exploreFirst": "Hitady ny voalohany",
+    "codeNote": "Mandefa mailaka ho anao izahay, tsy misy teny miafina ilaina."
   }
 }

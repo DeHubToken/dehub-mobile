@@ -9823,5 +9823,15 @@
     "title": "मोडरेट करें",
     "timedOut": "Timed out.",
     "failed": "assistant error"
+  },
+  "loginStack": {
+    "aiRestyle": "AI रीस्टाइल",
+    "headlineTop": "Tuhar sab kuchh apne hoga",
+    "headlineAccent": "aur khush rahbo.",
+    "orContinueWith": "ya phir aage badho",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Pehle khoj karo",
+    "codeNote": "Hum tumhe ek code bhejenge, password ki jarurat nai."
   }
 }

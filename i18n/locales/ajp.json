@@ -9761,5 +9761,15 @@
     "youAreBanned": "ما بتستطيعش تتكلمش في البثات ده",
     "youAreTimedOut": "مُحجّر لوقت قصير",
     "title": "مدير"
+  },
+  "loginStack": {
+    "aiRestyle": "إعادة تصميم بالذكاء الاصطناعي",
+    "headlineTop": "رح تمتلك كل شي",
+    "headlineAccent": "وتكون مبسوط.",
+    "orContinueWith": "أو كمل مع",
+    "phone": "موبايل",
+    "fingerprint": "بصمة",
+    "exploreFirst": "استكشف أولاً",
+    "codeNote": "منبعثلك كود على الإيميل، ما في داعي لكلمة سر."
   }
 }

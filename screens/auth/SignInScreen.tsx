@@ -16,7 +16,6 @@ import { ChainId } from "../../config/constants";
 import FullScreenLoader from "../../components/FullScreenLoader";
 import SocialLoginIcons from "../../components/auth/SocialLoginIcons";
 import EmailCodeEntry from "../../components/auth/EmailCodeEntry";
-import ImportWallet from "../../components/auth/ImportWallet";
 import LoginShortsStack from "../../components/auth/LoginShortsStack";
 import WalletSetupScreen, {
   type WalletSetupRequest,
@@ -799,10 +798,12 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         >
           {/* Header: logo left, "Explore first" right (the old bottom
               "Explore without signing in" button, moved up). */}
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 12, marginBottom: 12, minHeight: 40 }}>
+          {/* Logo and Explore sit 16pt from the top and the sides (the
+              scroll view pads 24, so the row reaches 8 past it). */}
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 16, marginBottom: 12, marginHorizontal: -8, minHeight: 44 }}>
             <Image
-              source={require("../../assets/web-icons/dehub-logo-center.png")}
-              style={{ width: 36, height: 36, tintColor: "#FFFFFF" }}
+              source={require("../../assets/login-stack/mark.png")}
+              style={{ width: 34, height: 44, tintColor: "#FFFFFF" }}
               resizeMode="contain"
               accessibilityIgnoresInvertColors
               accessibilityLabel={t("auth.welcomeToDehub")}
@@ -871,12 +872,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             />
           )}
 
-          {/* Import Wallet */}
-          {authStep === "main" ? (
-            <View style={{ marginTop: 20 }}>
-              <ImportWallet variant="links" disabled={isLoading} onConnectWallet={handleWalletConnect} />
-            </View>
-          ) : null}
 
           <WalletSetupScreen
             visible={!!walletSetupRequest}

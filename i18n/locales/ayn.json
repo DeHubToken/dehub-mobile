@@ -9778,5 +9778,15 @@
     "timedOut": "مُعطل.",
     "failed": "لما عملش. حاول تاني.",
     "youAreBanned": "ما بتستطيع تتكلمش في ستريمات المبدع ده"
+  },
+  "loginStack": {
+    "aiRestyle": "إعادة تصميم بالذكاء الاصطناعي",
+    "headlineTop": "بتصير لك كل شيء",
+    "headlineAccent": "وتكون مبسوط.",
+    "orContinueWith": "أو استمر مع",
+    "phone": "الموبايل",
+    "fingerprint": "البصمة",
+    "exploreFirst": "استكشف أولاً",
+    "codeNote": "نرسل لك كود على الإيميل، ما تحتاج كلمة سر."
   }
 }

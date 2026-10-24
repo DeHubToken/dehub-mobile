@@ -9856,5 +9856,15 @@
     "youAreBanned": "Siz bu ýaradanyň akmalary bilen gürrüňdeş bolup bilmersiňiz",
     "youAreTimedOut": "Men bir wagtlap ýykylaryn",
     "title": "Moderat"
+  },
+  "loginStack": {
+    "aiRestyle": "AI täze stil",
+    "headlineTop": "Sen meniň üçin ähli zadyňy alarsyň",
+    "headlineAccent": "goý, şatlanyň.",
+    "orContinueWith": "ýa-da dowam ediň",
+    "phone": "Telefon",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Öňürti barlaň",
+    "codeNote": "Biz size kody iberýäris, hiç hili parol gerek däl."
   }
 }

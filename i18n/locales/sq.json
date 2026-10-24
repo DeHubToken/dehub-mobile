@@ -9889,5 +9889,15 @@
     "youAreBanned": "Ti nuk mund të flas në strema e këtij krijuesi",
     "youAreTimedOut": "Ti je i pushtuar për një moment",
     "title": "Moderator"
+  },
+  "loginStack": {
+    "aiRestyle": "Stil i ri me AI",
+    "headlineTop": "Do të zotërosh gjithçka",
+    "headlineAccent": "dhe të jesh i lumtur.",
+    "orContinueWith": "ose vazhdo me",
+    "phone": "Telefoni",
+    "fingerprint": "Gjurmë gishtash",
+    "exploreFirst": "Zbulo së pari",
+    "codeNote": "Të dërgojmë me email një kod, nuk nevojitet fjalëkalim."
   }
 }

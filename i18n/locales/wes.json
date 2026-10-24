@@ -9693,5 +9693,15 @@
     "youAreBanned": "Wah you no go chat wey dis creator dey stream, eh?",
     "youAreTimedOut": "Mun ya na time out for a moment.",
     "title": "Moderate"
+  },
+  "loginStack": {
+    "aiRestyle": "AI restyle",
+    "headlineTop": "Yu go get everything",
+    "headlineAccent": "an yu go happy.",
+    "orContinueWith": "or continue wit",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Explore first",
+    "codeNote": "We go send yu code by email, no password needed."
   }
 }

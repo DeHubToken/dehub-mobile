@@ -9886,5 +9886,15 @@
     "youAreBanned": "Bu yaradanın axınlarında söhbət edə bilməzsiniz",
     "youAreTimedOut": "Bir anlıq vaxtınız bitdi",
     "title": "Orta"
+  },
+  "loginStack": {
+    "aiRestyle": "Süni intellektlə yeni stil",
+    "headlineTop": "Hər şeyin sahibi olacaqsınız",
+    "headlineAccent": "və xoşbəxt olun.",
+    "orContinueWith": "və ya davam et",
+    "phone": "Telefon",
+    "fingerprint": "Barmaq izi",
+    "exploreFirst": "Əvvəlcə araşdırın",
+    "codeNote": "Kodu sizə e-poçtla göndəririk, parol tələb olunmur."
   }
 }

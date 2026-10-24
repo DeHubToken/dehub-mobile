@@ -9760,5 +9760,15 @@
     "youAreBanned": "تسیں اس کریٹر دی سٹریمز وچ چیٹ نئیں کر سکدے",
     "youAreTimedOut": "تسیں تھوڑی دیر لئی ٹائم آؤٹ اے",
     "title": "ماڈریٹ کرو"
+  },
+  "loginStack": {
+    "aiRestyle": "AI ری اسٹائل",
+    "headlineTop": "تُسیں ہر شے دی مالک ہووگے",
+    "headlineAccent": "تے خوش رہو گے۔",
+    "orContinueWith": "یا جاری رکھو",
+    "phone": "فون",
+    "fingerprint": "فنگر پرنٹ",
+    "exploreFirst": "پہلے ایکسپلور کرو",
+    "codeNote": "اسی تُہانوں ای میل نال کوڈ بھیج دے ہاں، پاس ورڈ دی لوڑ نئیں۔"
   }
 }

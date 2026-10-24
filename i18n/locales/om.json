@@ -9919,5 +9919,15 @@
     "youAreBanned": "Stream uumaa kanaa keessatti chat gochuu hin dandeessan",
     "youAreTimedOut": "Yeroo muraasaaf yeroon siif darbe",
     "title": "Giddugaleessa"
+  },
+  "loginStack": {
+    "aiRestyle": "Haala haaraa AI",
+    "headlineTop": "Waan hundumaa ni qabaatta",
+    "headlineAccent": "akkasumas gammadaa.",
+    "orContinueWith": "ykn itti fufa",
+    "phone": "Bilbila",
+    "fingerprint": "Ashaaraa qubaa",
+    "exploreFirst": "Dursa qoradhu",
+    "codeNote": "Koodii email siif goona, jecha icciitii hin barbaachisu."
   }
 }
