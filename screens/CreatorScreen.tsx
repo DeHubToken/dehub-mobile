@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo, useState } from 'react';
-import { FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
+import { Alert, FlatList, Pressable, Text, View, ActivityIndicator, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
@@ -15,6 +15,7 @@ import ScreenHeader from '../components/ScreenHeader';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { listCreatorAssets, type CreatorAsset } from '../services/creator.service';
 import { openInApp } from '../libs/links.utils';
+import { saveToLibrary, shareAudio } from '../libs/assistantMedia';
 import type { CreatorMode } from '../libs/creatorStudio';
 import { useUser } from '../context/AuthContext';
 import { useAppTheme } from '../context/ThemeContext';
@@ -191,11 +192,24 @@ export default function CreatorScreen() {
 const CreatorLibraryCard = memo(function CreatorLibraryCard({ item, posterUrl, width }: { item: CreatorAsset; posterUrl?: string; width: number }) {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
+  const nav = useNavigation<NativeStackNavigationProp<AppStackParamList>>();
+  // Tapping a generation offers what web's library card does: edit, download, open.
+  const showOptions = useCallback(() => {
+    const url = item.url;
+    if (!url) return;
+    const kind = item.kind;
+    if (kind === 'model3d') { void openInApp(url); return; }
+    Alert.alert(item.prompt || item.modelName, undefined, [
+      { text: t('creator.editor'), onPress: () => nav.navigate(ScreenNames.MediaEditor, { importMedia: { url, kind, name: item.prompt || item.modelName } }) },
+      { text: t('postOptions.download'), onPress: () => { void (kind === 'audio' ? shareAudio(url) : saveToLibrary(url, kind)); } },
+      { text: t('miniApps.card.open'), onPress: () => { void openInApp(url); } },
+    ], { cancelable: true });
+  }, [item, nav, t]);
   return (
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={t('creator.openGeneration', { prompt: item.prompt || item.modelName })}
-            onPress={() => { if (item.url) void openInApp(item.url); }}
+            onPress={showOptions}
             className="overflow-hidden rounded-2xl border border-white/10 bg-theme-neutrals-800"
             style={[skin?.material === 'glass' && skin.card, { width: width }]}
           >
