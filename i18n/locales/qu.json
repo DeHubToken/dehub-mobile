@@ -5047,7 +5047,12 @@
     "interestedCount": "{{count}} munanku",
     "loadFailed": "Ruwaykunata mana chaqnayta atikunchu"
   },
-  "stats": {"chart": {"daily": "Watukuqkuna sapa punchaw", "dailyHint": "sapa punchaw huk kaq watukuqkuna", "empty": "Kay pachapaq manaraq willay kanchu"},
+  "stats": {
+    "chart": {
+      "daily": "Watukuqkuna sapa punchaw",
+      "dailyHint": "sapa punchaw huk kaq watukuqkuna",
+      "empty": "Kay pachapaq manaraq willay kanchu"
+    },
     "definitions": {
       "visitorsTerm": "Watukuqkuna"
     },
@@ -9812,5 +9817,15 @@
     "youAreBanned": "Mana rimaykunki kay rikch'aq llaqtakunapi",
     "youAreTimedOut": "Minuta huk p'unchawqa llaqichisqa kanki",
     "title": "Moderay"
+  },
+  "loginStack": {
+    "tip": "Consejo DHB",
+    "headlineTop": "Tukuy imatam dueñon kanki",
+    "headlineAccent": "hinaspa kusisqa kaychis.",
+    "orContinueWith": "otaq hinalla puririy",
+    "phone": "Telefono",
+    "fingerprint": "Huella digital",
+    "exploreFirst": "Ñawpaqtaqa t’aqwiriy",
+    "codeNote": "Huk código correo electrónico nisqapi quyku, mana contraseña necesitakun."
   }
 }

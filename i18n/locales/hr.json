@@ -5025,7 +5025,12 @@
     "interestedCount": "{{count}} zainteresirano",
     "loadFailed": "Učitavanje događaja nije uspjelo"
   },
-  "stats": {"chart": {"daily": "Posjetitelja dnevno", "dailyHint": "jedinstvenih posjetitelja dnevno", "empty": "Za ovo razdoblje još nema podataka"},
+  "stats": {
+    "chart": {
+      "daily": "Posjetitelja dnevno",
+      "dailyHint": "jedinstvenih posjetitelja dnevno",
+      "empty": "Za ovo razdoblje još nema podataka"
+    },
     "definitions": {
       "visitorsTerm": "Posjetitelji"
     },
@@ -9803,5 +9808,15 @@
     "youAreBanned": "Nemate mogućnost čatiranja u streamovima ovog kreatora.",
     "youAreTimedOut": "Trenutno ste izbačeni iz čata.",
     "title": "Moderiraj"
+  },
+  "loginStack": {
+    "tip": "Savjet DHB",
+    "headlineTop": "Vi ćete posjedovati sve",
+    "headlineAccent": "i biti sretni.",
+    "orContinueWith": "ili nastavite s",
+    "phone": "Nazovi",
+    "fingerprint": "Otisak prsta",
+    "exploreFirst": "Prvo istražite",
+    "codeNote": "Poslat ćemo vam kod e-mailom, nije potrebna lozinka."
   }
 }

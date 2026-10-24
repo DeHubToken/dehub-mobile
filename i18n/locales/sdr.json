@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} জন আগ্রহী",
     "loadFailed": "ইভেন্ট লোড করা গেল না"
   },
-  "stats": {"chart": {"daily": "ہر دن آوے والا", "dailyHint": "ہر دن الگ الگ آوے والا", "empty": "ای وقت کے واسطے اڃا ڈیٹا نہیں ہے"},
+  "stats": {
+    "chart": {
+      "daily": "ہر دن آوے والا",
+      "dailyHint": "ہر دن الگ الگ آوے والا",
+      "empty": "ای وقت کے واسطے اڃا ڈیٹا نہیں ہے"
+    },
     "definitions": {
       "visitorsTerm": "آوے والا"
     },
@@ -9780,5 +9785,15 @@
     "title": "मोडरेट करें",
     "timedOut": "Timed out.",
     "failed": "assistant error"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Tuhar sab kuchh apne hoga",
+    "headlineAccent": "aur khush rahbo.",
+    "orContinueWith": "ya phir aage badho",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Pehle khoj karo",
+    "codeNote": "Hum tumhe ek code bhejenge, password ki jarurat nai."
   }
 }

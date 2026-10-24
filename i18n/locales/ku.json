@@ -4991,7 +4991,12 @@
     "interestedCount": "{{count}} eleqedar in",
     "loadFailed": "Bûyer nehatin barkirin"
   },
-  "stats": {"chart": {"daily": "Serdankerên rojane", "dailyHint": "serdankerên yekta yên rojane", "empty": "Ji bo vê demê hîn dane tune"},
+  "stats": {
+    "chart": {
+      "daily": "Serdankerên rojane",
+      "dailyHint": "serdankerên yekta yên rojane",
+      "empty": "Ji bo vê demê hîn dane tune"
+    },
     "definitions": {
       "visitorsTerm": "Serdanker"
     },
@@ -9697,5 +9702,15 @@
     "failed": "Ew nexebitî. Dîsa biceribîne.",
     "youAreBanned": "Tu nikarî di weşanên vê afirîner de sohbet bikî",
     "title": "Navînî"
+  },
+  "loginStack": {
+    "tip": "Serişteya DHB",
+    "headlineTop": "Tu dê xwediyê her tiştî bî",
+    "headlineAccent": "û kêfxweş bibin.",
+    "orContinueWith": "an jî berdewam bike bi",
+    "phone": "Telefon",
+    "fingerprint": "Şopa tilî",
+    "exploreFirst": "Pêşî keşif bike",
+    "codeNote": "Em kodê bi e-nameyê ji we re dişînin, şîfre ne hewce ye."
   }
 }

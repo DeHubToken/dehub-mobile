@@ -5006,7 +5006,12 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {"chart": {"daily": "逐日访客", "dailyHint": "逐日不重复访客", "empty": "只段时间还无数据"},
+  "stats": {
+    "chart": {
+      "daily": "逐日访客",
+      "dailyHint": "逐日不重复访客",
+      "empty": "只段时间还无数据"
+    },
     "definitions": {
       "visitorsTerm": "访客"
     },
@@ -9724,5 +9729,15 @@
     "ban": "禁止这些流媒体",
     "failed": "那个没有工作。再试一次。",
     "youAreTimedOut": "你剛剛超時一陣子"
+  },
+  "loginStack": {
+    "tip": "提示 DHB",
+    "headlineTop": "你将拥有一切",
+    "headlineAccent": "并且会感到快乐。",
+    "orContinueWith": "或者继续使用",
+    "phone": "手机",
+    "fingerprint": "指纹",
+    "exploreFirst": "先探索",
+    "codeNote": "我们会给你发送验证码，无需密码。"
   }
 }

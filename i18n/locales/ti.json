@@ -4994,7 +4994,12 @@
     "interestedCount": "{{count}} ተገዳስነት ኣለዎም",
     "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን"
   },
-  "stats": {"chart": {"daily": "በጻሕቲ ኣብ መዓልቲ", "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ", "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"},
+  "stats": {
+    "chart": {
+      "daily": "በጻሕቲ ኣብ መዓልቲ",
+      "dailyHint": "ፍሉያት በጻሕቲ ኣብ መዓልቲ",
+      "empty": "ንዚ እዋን እዚ ገና ዳታ የለን"
+    },
     "definitions": {
       "visitorsTerm": "በጻሕቲ"
     },
@@ -9745,5 +9750,14 @@
     "youAreBanned": "ኣብዚ ፈጣሪ ዥረት ክትዘራረብ ኣይትኽእልን ኢኻ",
     "youAreTimedOut": "ንነዊሕ እዋን ተጸሚድካ",
     "title": "ሚዛናዊ"
+  },
+  "loginStack": {
+    "headlineTop": "ኩሉ ነገር ክህልወካ እዩ",
+    "headlineAccent": "ብዙሕ ሓጎስ ከም እትረኽቡ ድማ ቃል እኣትወኩም",
+    "orContinueWith": "ወይ ከኣ ቀጺልካ",
+    "phone": "ስልኪ",
+    "fingerprint": "ናይ ኣጻብዕ ምልክት",
+    "exploreFirst": "ፈለማ መርምር",
+    "codeNote": "ኮድ ኢመይል ክንልእከልካ ኢና ፡ ዝኾነ ቃል-ምስጢር ኣየድልዮን እዩ ።"
   }
 }

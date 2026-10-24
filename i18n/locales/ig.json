@@ -5014,7 +5014,12 @@
     "interestedCount": "{{count}} nwere mmasị",
     "loadFailed": "Enweghị ike ibubata mmemme"
   },
-  "stats": {"chart": {"daily": "Ndị Ọbịa Kwa Ụbọchị", "dailyHint": "ndị ọbịa nke ọ bụla kwa ụbọchị", "empty": "Enweghị data maka oge a ma"},
+  "stats": {
+    "chart": {
+      "daily": "Ndị Ọbịa Kwa Ụbọchị",
+      "dailyHint": "ndị ọbịa nke ọ bụla kwa ụbọchị",
+      "empty": "Enweghị data maka oge a ma"
+    },
     "definitions": {
       "visitorsTerm": "Ndị Ọbịa"
     },
@@ -9767,5 +9772,15 @@
     "youAreBanned": "Ị nweghị ike ịkparịta ụka n 'ime iyi ndị na-emepụta ihe a",
     "youAreTimedOut": "A chụpụla gị n 'oge obere oge.",
     "title": "Agafeghị oke"
+  },
+  "loginStack": {
+    "tip": "NDỤMỌDỤ DHB",
+    "headlineTop": "Ị ga-nwe ihe niile",
+    "headlineAccent": "na enwe obi ụtọ.",
+    "orContinueWith": "ma ọ bụ gaa n 'ihu na",
+    "phone": "Ekwentị",
+    "fingerprint": "Mkpịsị aka",
+    "exploreFirst": "Inyocha mbụ",
+    "codeNote": "Anyị na-ezitere gị koodu, ọ dịghị paswọọdụ achọrọ."
   }
 }

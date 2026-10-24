@@ -4972,7 +4972,12 @@
     "interestedCount": "{{count}} dey interested",
     "loadFailed": "We no fit load di events"
   },
-  "stats": {"chart": {"daily": "Visitor dem per dei", "dailyHint": "unique visitor dem per dei", "empty": "No data dei for dis window yet"},
+  "stats": {
+    "chart": {
+      "daily": "Visitor dem per dei",
+      "dailyHint": "unique visitor dem per dei",
+      "empty": "No data dei for dis window yet"
+    },
     "definitions": {
       "visitorsTerm": "Visitor dem"
     },
@@ -9616,5 +9621,15 @@
     "youAreBanned": "Wah you no go chat wey dis creator dey stream, eh?",
     "youAreTimedOut": "Mun ya na time out for a moment.",
     "title": "Moderate"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Yu go get everything",
+    "headlineAccent": "an yu go happy.",
+    "orContinueWith": "or continue wit",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Explore first",
+    "codeNote": "We go send yu code by email, no password needed."
   }
 }
