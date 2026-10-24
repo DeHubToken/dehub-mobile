@@ -686,7 +686,7 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
                   people who have not staked yet. */}
               {!!onBoostPress && tokenId != null && (
                 <OptionRow
-                  icon="Rocket"
+                  icon="Zap"
                   label={t("feedCard.boostPost")}
                   sublabel={t("postOptions.boostPostDesc")}
                   onPress={() => { onClose(); setTimeout(() => onBoostPress(), 300); }}

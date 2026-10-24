@@ -103,7 +103,7 @@ export const PostStageActions = memo(function PostStageActions({ onMore, onBoost
   if (!onMore && !onBoost) return null;
   return (
     <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 4, marginTop: 8 }} testID="post-panel-actions">
-      {onBoost ? <StageGlassSquare icon="Rocket" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
+      {onBoost ? <StageGlassSquare icon="Zap" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
       {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} /> : null}
     </View>
   );
