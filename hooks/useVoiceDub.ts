@@ -35,6 +35,7 @@ try {
 
 /** The installed app can speak. False on builds that predate expo-speech. */
 export const speechAvailable = Speech !== null;
+export const getSpeechEngine = () => Speech;
 
 /** Faster than this and a synthetic voice stops being intelligible. */
 const MAX_RATE = 1.3;
