@@ -625,7 +625,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
     || !!(nft as any).plansDetails?.length
     || (nft as any).visibility === "followers"
     || (nft as any).visibility === "direct";
-  const title = nft.name || (nft as any).title || "Untitled";
+  const title = nft.name || (nft as any).title || t("copy.f59ab8d1331b", { defaultValue: "Untitled" });
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
 

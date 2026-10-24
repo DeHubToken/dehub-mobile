@@ -58,20 +58,20 @@ export default function MaboroshiScreen() {
       const headers = await dehubAuthHeaders(payer);
       const token = headers['x-dehub-token'] || '';
       const quote = await getMaboroshiQuote(input, token, payer);
-      if (activeWallet.current !== payer) throw new Error('The signed-in account changed.');
+      if (activeWallet.current !== payer) throw new Error(t("copy.b505158732b1", { defaultValue: "The signed-in account changed." }));
       let submitted = false;
       Alert.alert(t('creator.toolMaboroshi'), `${maboroshiStageLabel(quote.stage, quote.renderer)} · ${(quote.price_micros / 1000).toLocaleString()} DHB · $${(quote.price_micros / 1e6).toFixed(2)}`, [
-        { text: t('common.cancel'), style: 'cancel', onPress: () => finish('Payment cancelled.', true) },
+        { text: t('common.cancel'), style: 'cancel', onPress: () => finish(t("copy.2dced6f368ad", { defaultValue: "Payment cancelled." }), true) },
         { text: t('common.confirm'), onPress: () => {
           if (submitted) return;
           submitted = true;
           void completeMaboroshiPayment(quote, token, () => activeWallet.current, amount => {
-            if (!DIGITAL_PURCHASES_ENABLED || activePayingAccount.current?.toLowerCase() !== quote.wallet) throw new Error('Connect the wallet that owns this project.');
+            if (!DIGITAL_PURCHASES_ENABLED || activePayingAccount.current?.toLowerCase() !== quote.wallet) throw new Error(t("copy.dc5a9952000c", { defaultValue: "Connect the wallet that owns this project." }));
             return payForJob(amount);
           }).then(() => finish()).catch(error => finish(error.message));
         } },
       ], { cancelable: false });
-    } catch (error) { finish(error instanceof Error ? error.message : 'Payment could not be confirmed.'); }
+    } catch (error) { finish(error instanceof Error ? error.message : t("copy.8061131766c6", { defaultValue: "Payment could not be confirmed." })); }
   };
 
   const session = useCallback(async () => {

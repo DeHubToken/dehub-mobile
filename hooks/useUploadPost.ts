@@ -150,22 +150,22 @@ export function useUploadPost() {
     // Video mode: title + video + thumbnail required
     if (mode === "video") {
       const title = p.bodyText.trim();
-      if (title.length < 1) return { valid: false, error: "Title is required for video posts." };
-      if (!p.pickedVideo) return { valid: false, error: "A video is required." };
-      if (!p.coverUri && !p.thumbnailUri) return { valid: false, error: "A thumbnail is required for video posts." };
+      if (title.length < 1) return { valid: false, error: _copy("copy.5bc79652d91e", { defaultValue: "Title is required for video posts." }) };
+      if (!p.pickedVideo) return { valid: false, error: _copy("copy.afc6fa8a4045", { defaultValue: "A video is required." }) };
+      if (!p.coverUri && !p.thumbnailUri) return { valid: false, error: _copy("copy.0cd035d6feef", { defaultValue: "A thumbnail is required for video posts." }) };
     }
 
     // Audio mode: audio file required
     if (mode === "audio") {
-      if (!p.pickedAudio) return { valid: false, error: "An audio file is required." };
+      if (!p.pickedAudio) return { valid: false, error: _copy("copy.6b7d81cbc04f", { defaultValue: "An audio file is required." }) };
       if (p.pickedAudio.durationMs && p.pickedAudio.durationMs > 60_000) {
-        return { valid: false, error: "Audio posts must be 60 seconds or less." };
+        return { valid: false, error: _copy("copy.09a15e9d6911", { defaultValue: "Audio posts must be 60 seconds or less." }) };
       }
     }
 
     // Image mode: at least one image required
     if (mode === "images") {
-      if (p.pickedImages.length < 1) return { valid: false, error: "At least one image is required." };
+      if (p.pickedImages.length < 1) return { valid: false, error: _copy("copy.f9a80f03d57d", { defaultValue: "At least one image is required." }) };
     }
 
     // Text mode: description or a valid poll is required
@@ -175,10 +175,10 @@ export function useUploadPost() {
         (p.pollData.options.filter(o => o.trim()).length ?? 0) >= 2
       );
       if (p.description.trim().length < 1 && !hasPoll) {
-        return { valid: false, error: "Write something or add a poll to post." };
+        return { valid: false, error: _copy("copy.b2943a0fd48e", { defaultValue: "Write something or add a poll to post." }) };
       }
       if (p.articleBody && (!p.bodyText.trim() || !p.description.trim() || p.articleBody.trim().length < 100)) {
-        return { valid: false, error: "Articles need a title, summary and at least 100 characters of body text." };
+        return { valid: false, error: _copy("copy.32b0afdb3941", { defaultValue: "Articles need a title, summary and at least 100 characters of body text." }) };
       }
     }
 
@@ -188,7 +188,7 @@ export function useUploadPost() {
     if (monetizationError) return { valid: false, error: monetizationError };
 
     return { valid: true };
-  }, []);
+  }, [_copy]);
 
   // The chain an EVM payment settles on: the network the composer is pointed
   // at, which only this hook can resolve.
@@ -215,7 +215,7 @@ export function useUploadPost() {
         if (!isChainAASupported(activeChainId)) {
           return {
             valid: false,
-            error: "Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again.",
+            error: _copy("copy.5ee0b51d0cb7", { defaultValue: "Gas sponsorship isn't available on this network. Please deposit ETH for gas and try again." }),
           };
         }
 
@@ -227,15 +227,16 @@ export function useUploadPost() {
         if (hasAASetupFailed(activeChainId)) {
           return {
             valid: false,
-            error:
-              "Gas sponsorship is unavailable right now, so this post can't be sent for free. " +
-              "Sign out and back in to retry, or deposit ETH for gas.",
+            error: _copy("copy.6fe360de349d", {
+              defaultValue:
+                "Gas sponsorship is unavailable right now, so this post can't be sent for free. Sign out and back in to retry, or deposit ETH for gas.",
+            }),
           };
         }
       }
 
       if (postingOnSolana && p.monetization.bountyEnabled) {
-        return { valid: false, error: "Bounty is not available on Solana posts." };
+        return { valid: false, error: _copy("copy.4df4dd5fc0be", { defaultValue: "Bounty is not available on Solana posts." }) };
       }
 
       // For bounty, verify the user has enough tokens
@@ -255,7 +256,7 @@ export function useUploadPost() {
 
       return { valid: true };
     },
-    [authMethod, activeChainId, ethBalance, buildStreamInfo, user, tokenBalances],
+    [authMethod, activeChainId, ethBalance, buildStreamInfo, user, tokenBalances, _copy],
   );
 
 
@@ -365,7 +366,7 @@ export function useUploadPost() {
         progress: 0,
         retryCount: 0,
         createdAt: Date.now(),
-        title: p.bodyText.trim() || p.description.trim() || "New post",
+        title: p.bodyText.trim() || p.description.trim() || _copy("copy.7e50e2667b86", { defaultValue: "New post" }),
         thumbnailUri: thumb ?? undefined,
         payload: serialized,
         chainId: isSolanaPost ? (p.postChainId as number) : activeChainId,
@@ -382,7 +383,7 @@ export function useUploadPost() {
 
       const queued = uploadActions.enqueue(job);
       if (!queued) {
-        toastError(`Queue full (max ${MAX_QUEUE_SIZE}). Wait for current uploads to finish.`);
+        toastError(_copy("copy.bba244c3bd5d", { defaultValue: "Queue full (max {{value1}}). Wait for current uploads to finish.", value1: MAX_QUEUE_SIZE }));
         return false;
       }
 
@@ -446,7 +447,7 @@ export function useUploadPost() {
         progress: 0,
         retryCount: 0,
         createdAt: Date.now(),
-        title: quoteTitle.trim() || quoteDesc.trim() || "Quote post",
+        title: quoteTitle.trim() || quoteDesc.trim() || _copy("copy.6570c039b004", { defaultValue: "Quote post" }),
         thumbnailUri: thumb ?? undefined,
         payload: {
           bodyText: mode === "video" ? quoteTitle : "",
@@ -475,13 +476,13 @@ export function useUploadPost() {
 
       const queued = uploadActions.enqueue(job);
       if (!queued) {
-        toastError(`Queue full (max ${MAX_QUEUE_SIZE}). Wait for current uploads to finish.`);
+        toastError(_copy("copy.bba244c3bd5d", { defaultValue: "Queue full (max {{value1}}). Wait for current uploads to finish.", value1: MAX_QUEUE_SIZE }));
         return false;
       }
 
       return true;
     },
-    [user?.walletAddress, user?.address, activeChainId],
+    [user?.walletAddress, user?.address, activeChainId, _copy],
   );
 
   return {

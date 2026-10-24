@@ -17,6 +17,7 @@
  *   so a private community receives no live events at all.
  */
 import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
@@ -47,6 +48,7 @@ export function useCommunityChat(
   communityId: string | undefined,
   options?: { enabled?: boolean; isPrivate?: boolean },
 ) {
+  const { t: _copy } = _useCopy();
   const user = useUser() as any;
   const queryClient = useQueryClient();
   const walletAddress = (user?.walletAddress || user?.address || "") || null;
@@ -119,12 +121,12 @@ export function useCommunityChat(
         ...msg,
         reply_to: {
           id: parent.id,
-          content: parent.content || (parent.message_type === "gif" ? "GIF" : "Media"),
-          sender_name: parent.display_name || parent.username || "User",
+          content: parent.content || (parent.message_type === "gif" ? "GIF" : _copy("copy.d357175cfe89", { defaultValue: "Media" })),
+          sender_name: parent.display_name || parent.username || _copy("copy.b512d97e7cbf", { defaultValue: "User" }),
         },
       };
     });
-  }, [rawMessages]);
+  }, [rawMessages, _copy]);
 
   /** Newest pin wins, matching the single-pin banner the panel renders. */
   const pinnedMessage = useMemo(
@@ -177,7 +179,7 @@ export function useCommunityChat(
 
   const sendMessage = useCallback(
     async (content: string, replyToId?: string, media?: { type: "gif" | "voice"; url: string }) => {
-      if (!communityId || !walletAddress) throw new Error("Sign in to send a message");
+      if (!communityId || !walletAddress) throw new Error(_copy("copy.bc30560b2f21", { defaultValue: "Sign in to send a message" }));
       const msg = {
         community_id: communityId,
         wallet_address: walletAddress.toLowerCase(),
@@ -202,7 +204,7 @@ export function useCommunityChat(
         log.error("send failed", error);
         // Slow mode, mute and revoked send rights all arrive here as raised
         // conditions — say which one rather than a generic failure.
-        toastError(communityErrorMessage(error, "Failed to send message"));
+        toastError(communityErrorMessage(error, _copy("copy.66b8e077d85f", { defaultValue: "Failed to send message" })));
         throw error;
       }
       // No realtime echo in a private community: fetch the new tail now rather
@@ -214,12 +216,12 @@ export function useCommunityChat(
         void notifyCommunityMentions({ communityId, messageId, content, walletAddress });
       }
     },
-    [communityId, walletAddress, user, isPrivate, queryClient, key],
+    [communityId, walletAddress, user, isPrivate, queryClient, key, _copy],
   );
 
   const editMessage = useCallback(
     async (messageId: string, newContent: string) => {
-      if (!walletAddress || !communityId) throw new Error("Sign in to edit a message");
+      if (!walletAddress || !communityId) throw new Error(_copy("copy.fb948766d6ed", { defaultValue: "Sign in to edit a message" }));
       const trimmed = newContent.trim();
       if (!trimmed) return;
 
@@ -238,14 +240,14 @@ export function useCommunityChat(
       );
       if (error) {
         log.error("edit failed", error);
-        toastError(communityErrorMessage(error, "Failed to edit message"));
+        toastError(communityErrorMessage(error, _copy("copy.da8e926af644", { defaultValue: "Failed to edit message" })));
         if (prev) queryClient.setQueryData(key, prev);
         // Rethrow like sendMessage does, so the composer can keep the revised
         // text for a retry instead of clearing it on a refusal.
         throw error;
       }
     },
-    [walletAddress, communityId, queryClient, key],
+    [walletAddress, communityId, queryClient, key, _copy],
   );
 
   const reactionWrite = useCallback(
@@ -280,9 +282,9 @@ export function useCommunityChat(
       const addresses = reactions[emoji] || [];
       if (addresses.some((a) => a.toLowerCase() === walletAddress.toLowerCase())) return;
       reactions[emoji] = [...addresses, walletAddress.toLowerCase()];
-      await reactionWrite(messageId, reactions, "Failed to react");
+      await reactionWrite(messageId, reactions, _copy("copy.13931898084d", { defaultValue: "Failed to react" }));
     },
-    [rawMessages, walletAddress, reactionWrite],
+    [rawMessages, walletAddress, reactionWrite, _copy],
   );
 
   const removeReaction = useCallback(
@@ -294,9 +296,9 @@ export function useCommunityChat(
       const addresses = reactions[emoji] || [];
       reactions[emoji] = addresses.filter((a) => a.toLowerCase() !== walletAddress.toLowerCase());
       if (reactions[emoji].length === 0) delete reactions[emoji];
-      await reactionWrite(messageId, reactions, "Failed to remove reaction");
+      await reactionWrite(messageId, reactions, _copy("copy.bf206a215a1f", { defaultValue: "Failed to remove reaction" }));
     },
-    [rawMessages, walletAddress, reactionWrite],
+    [rawMessages, walletAddress, reactionWrite, _copy],
   );
 
   /** Own message, or a moderator deleting anyone's. Raises on refusal. */
@@ -311,11 +313,11 @@ export function useCommunityChat(
         await deleteCommunityMessage(walletAddress, messageId);
       } catch (error) {
         log.error("delete failed", error);
-        toastError(communityErrorMessage(error, "Failed to delete message"));
+        toastError(communityErrorMessage(error, _copy("copy.5ce4aeba4357", { defaultValue: "Failed to delete message" })));
         if (prev) queryClient.setQueryData(key, prev);
       }
     },
-    [walletAddress, communityId, queryClient, key],
+    [walletAddress, communityId, queryClient, key, _copy],
   );
 
   const setPinned = useCallback(
@@ -334,14 +336,14 @@ export function useCommunityChat(
               : m,
           ),
         );
-        toastSuccess(pinned ? "Message pinned" : "Message unpinned");
+        toastSuccess(pinned ? _copy("copy.480e61cdab71", { defaultValue: "Message pinned" }) : _copy("copy.dc1e29e33dc7", { defaultValue: "Message unpinned" }));
       } catch (error) {
         toastError(
-          communityErrorMessage(error, pinned ? "Failed to pin message" : "Failed to unpin message"),
+          communityErrorMessage(error, pinned ? _copy("copy.675c5fe95089", { defaultValue: "Failed to pin message" }) : _copy("copy.3b69de078742", { defaultValue: "Failed to unpin message" })),
         );
       }
     },
-    [walletAddress, communityId, queryClient, key],
+    [walletAddress, communityId, queryClient, key, _copy],
   );
 
   const refresh = useCallback(() => {

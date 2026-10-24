@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import { ethers } from 'ethers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { supabase } from '../services/supabase';
@@ -24,13 +25,14 @@ export async function workRow(table:string,id:string) {
  return data as any;
 }
 export function useWorkEscrow(wallet:string|null) {
+ const { t: _copy } = _useCopy();
  const {provider,chainId}=useWeb3Provider();
  async function contract(address:string,abi:string[]=WORK_ABI) {
-  if(Number(chainId)!==8453) throw new Error('Switch to Base to use bounty escrow');
-  if(!provider) throw new Error('Wallet is not ready');
+  if(Number(chainId)!==8453) throw new Error(_copy("copy.67f89b455298", { defaultValue: "Switch to Base to use bounty escrow" }));
+  if(!provider) throw new Error(_copy("copy.8b16bf4c69b6", { defaultValue: "Wallet is not ready" }));
   const c=await buildContract(provider,abi,address,true);
-  if(!c) throw new Error('Wallet is not ready');
-  if((await c.signer.getAddress()).toLowerCase()!==wallet?.toLowerCase()) throw new Error('The signing wallet does not match your bounty account');
+  if(!c) throw new Error(_copy("copy.8b16bf4c69b6", { defaultValue: "Wallet is not ready" }));
+  if((await c.signer.getAddress()).toLowerCase()!==wallet?.toLowerCase()) throw new Error(_copy("copy.04246863ce2d", { defaultValue: "The signing wallet does not match your bounty account" }));
   return c;
  }
  const currencyToken=(currency:string)=>currency==='USDC'?'0x833589fcd6edb6e08f4c7c32d4f71b54bda02913':'0xd20ab1015f6a2de4a6fddebab270113f689c2f7c';
@@ -42,7 +44,7 @@ export function useWorkEscrow(wallet:string|null) {
    return ready;
   });
   const sent=await writeContractAA(c,name,args,{context:'bounty-'+name});
-  if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
+  if(!sent.hash) throw new Error(_copy("copy.641982031959", { defaultValue: "Signing returned no transaction hash. Recover the transaction before retrying." }));
   return {hash:sent.hash,wait:(count:number)=>sent.wait(count)};
  };
  return {write,...createWorkEscrow({wallet:wallet || '',job:id=>workRow('work_jobs',id),config:getWorkConfig,
@@ -50,7 +52,7 @@ export function useWorkEscrow(wallet:string|null) {
   prepareFunding:async(address,currency,price,maxUnits)=>{
    const token=await contract(currencyToken(currency),['function balanceOf(address) view returns(uint256)','function allowance(address,address) view returns(uint256)','function approve(address,uint256) returns(bool)']);
    const owner=await token.signer.getAddress(); const amount=units(price,currency).mul(maxUnits);
-   if((await token.balanceOf(owner)).lt(amount)) throw new Error('Not enough '+currency+' to fund this bounty');
+   if((await token.balanceOf(owner)).lt(amount)) throw new Error(_copy("copy.f8142c2356a2", { defaultValue: "Not enough {{value1}} to fund this bounty", value1: currency }));
    if((await token.allowance(owner,address)).lt(amount)) {const approval=await writeContractAA(token,'approve',[address,amount],{context:'bounty-approval'}); await approval.wait(2);}
   },
   storage:{get:key=>AsyncStorage.getItem(key),set:(key,value)=>AsyncStorage.setItem(key,value),remove:key=>AsyncStorage.removeItem(key)},

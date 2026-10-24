@@ -359,7 +359,7 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
 
       const isVideo = /\.(mp4|mov|webm|avi)/i.test(urlPath);
       if (Platform.OS === "android") {
-        ToastAndroid.show(isVideo ? "Video saved" : "Image downloaded", ToastAndroid.SHORT);
+        ToastAndroid.show(isVideo ? t("copy.55ee4da247b0", { defaultValue: "Video saved" }) : t("copy.c37f27200a86", { defaultValue: "Image downloaded" }), ToastAndroid.SHORT);
       }
     } catch (err) {
       console.error("[ImageViewer] download failed:", err);
@@ -367,7 +367,7 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
     } finally {
       setIsSaving(false);
     }
-  }, [images, isSaving]);
+  }, [images, isSaving, t]);
 
   const closeViewer = onClose;
 

@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -69,7 +70,7 @@ const formatTime = (date?: string): string => {
   const d = new Date(date);
   const h = d.getHours();
   const m = d.getMinutes().toString().padStart(2, "0");
-  const ampm = h >= 12 ? "PM" : "AM";
+  const ampm = h >= 12 ? _translateCopy("copy.6b987654a411", { defaultValue: "PM" }) : _translateCopy("copy.c8f48a68649d", { defaultValue: "AM" });
   const h12 = h % 12 || 12;
   return `${h12}:${m} ${ampm}`;
 };

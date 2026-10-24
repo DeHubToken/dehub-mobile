@@ -19,6 +19,8 @@
  * lives in `reactionCounts` and only decides which icon leads on a card.
  */
 
+import { translateCopy as _translateCopy } from "../i18n/copy";
+
 /** Every reaction, in picker order — also the deterministic tiebreak order. */
 export const POST_REACTIONS = [
   "like",
@@ -58,16 +60,16 @@ export interface ReactionMeta {
 }
 
 const META: Record<PostReaction, ReactionMeta> = {
-  like:    { key: "like",    label: "Like",    emoji: "👍", positive: true },
-  love:    { key: "love",    label: "Love",    emoji: "❤️", positive: true },
-  respect: { key: "respect", label: "Respect", emoji: "✊", positive: true },
-  hot:     { key: "hot",     label: "Hot",     emoji: "🔥", positive: true },
+  like:    { key: "like",    get label() { return _translateCopy("copy.64f915cb8bfc", { defaultValue: "Like" }); },    emoji: "👍", positive: true },
+  love:    { key: "love",    get label() { return _translateCopy("copy.9f4024faec10", { defaultValue: "Love" }); },    emoji: "❤️", positive: true },
+  respect: { key: "respect", get label() { return _translateCopy("copy.23e2e7fc9b2d", { defaultValue: "Respect" }); }, emoji: "✊", positive: true },
+  hot:     { key: "hot",     get label() { return _translateCopy("copy.0ec53894d032", { defaultValue: "Hot" }); },     emoji: "🔥", positive: true },
   hundred: { key: "hundred", label: "100",     emoji: "💯", positive: true },
   lol:     { key: "lol",     label: "LOL",     emoji: "😂", positive: true },
-  sad:     { key: "sad",     label: "Sad",     emoji: "😢", positive: true },
-  cry:     { key: "cry",     label: "Crying",  emoji: "😭", positive: true },
-  poo:     { key: "poo",     label: "Poo",     emoji: "💩", positive: true },
-  dislike: { key: "dislike", label: "Dislike", emoji: "👎", positive: false },
+  sad:     { key: "sad",     get label() { return _translateCopy("copy.3ba6f1aeede1", { defaultValue: "Sad" }); },     emoji: "😢", positive: true },
+  cry:     { key: "cry",     get label() { return _translateCopy("copy.4d21bead5362", { defaultValue: "Crying" }); },  emoji: "😭", positive: true },
+  poo:     { key: "poo",     get label() { return _translateCopy("copy.03aff651969d", { defaultValue: "Poo" }); },     emoji: "💩", positive: true },
+  dislike: { key: "dislike", get label() { return _translateCopy("copy.119cec414af5", { defaultValue: "Dislike" }); }, emoji: "👎", positive: false },
 };
 
 /** Ordered metadata for the picker tray. */

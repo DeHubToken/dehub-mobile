@@ -21,6 +21,7 @@ import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
 import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 interface NavItem {
   icon: IconName;
@@ -32,12 +33,12 @@ interface NavItem {
 // TAB_ORDER must stay identical — the two are indexed against each other) and
 // it matches web's FEED_TABS, so the same tab sits in the same place on both.
 const NAV_ITEMS: NavItem[] = [
-  { icon: "House", postType: "all", tooltip: "Home" },
-  { icon: "Shorts", postType: "short", tooltip: "Shorts" },
-  { icon: "Image", postType: "feed-images", tooltip: "Images" },
-  { icon: "Video", postType: "video", tooltip: "Videos" },
-  { icon: "Mic", postType: "feed-audio", tooltip: "Music" },
-  { icon: "Radio", postType: "live", tooltip: "Live" },
+  { icon: "House", postType: "all", get tooltip() { return _translateCopy("copy.3a78695388b3", { defaultValue: "Home" }); } },
+  { icon: "Shorts", postType: "short", get tooltip() { return _translateCopy("copy.3c784a16cf27", { defaultValue: "Shorts" }); } },
+  { icon: "Image", postType: "feed-images", get tooltip() { return _translateCopy("copy.be7e2f201293", { defaultValue: "Images" }); } },
+  { icon: "Video", postType: "video", get tooltip() { return _translateCopy("copy.c9a9639463c2", { defaultValue: "Videos" }); } },
+  { icon: "Mic", postType: "feed-audio", get tooltip() { return _translateCopy("copy.6eb00b4b2614", { defaultValue: "Music" }); } },
+  { icon: "Radio", postType: "live", get tooltip() { return _translateCopy("copy.b64ac05f17e6", { defaultValue: "Live" }); } },
 ];
 
 /** The tabs in pager order, for chrome that names the current one (the

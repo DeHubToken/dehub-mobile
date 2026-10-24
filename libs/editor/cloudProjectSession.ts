@@ -1,10 +1,11 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { CloudProjectTransferBusy, withCloudProjectTransfer } from "./cloudProjectTransfer";
 import { cloudDraftOutbox, parseCloudDraftOutbox, type CloudDraftOutboxState } from "./cloudProjectDraftOutbox";
 import { parseCloudDraftCheckpoint, type CloudDraftCheckpoint, type cloudProjectDraftApi } from "./cloudProjectDraft";
 import { projectMediaProjection } from "./projectMediaProjection";
 import { mergeLocalProjectEdits } from "./projectHistory";
 import { videoMatteMediaIds } from "./videoMatte";
-import { CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
+import { CloudDraftRecovery, CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 import { notifyCloudProjectDraftStored, notifyCloudProjectSaved } from "./cloudProjectEvents";
 import { projectReviewCopy } from "./cloudProjectReview";
@@ -51,7 +52,7 @@ export function cloudProjectMediaIds(snapshot: ProjectSnapshot): string[] {
 
 function captureLiveSnapshot(snapshot: ProjectSnapshot): ProjectSnapshot {
   return JSON.parse(JSON.stringify(snapshot,(_key,value)=>{
-    if(typeof value==="number"&&!Number.isFinite(value))throw new Error("Invalid project value");
+    if(typeof value==="number"&&!Number.isFinite(value))throw new Error(_translateCopy("copy.f6d38e821b59", { defaultValue: "Invalid project value" }));
     return value;
   })) as ProjectSnapshot;
 }
@@ -62,18 +63,18 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
   const exclusive = <T,>(run: () => Promise<T>) => withCloudProjectTransfer(wallet, check, run);
   function rejectPendingDraft(localId: string, link: CloudProjectLink) {
     const draft = parseCloudDraftOutbox(link.liveDraft, { wallet, owner: link.sharedOwner || wallet, projectId: link.projectId, localId });
-    if (draft?.pending) throw new CloudProjectConflict("Recover the pending live edit before transferring a saved version. Your local draft was kept.");
+    if (draft?.pending) throw new CloudProjectConflict(_translateCopy("copy.bbcbb2cf0852", { defaultValue: "Recover the pending live edit before transferring a saved version. Your local draft was kept." }));
   }
   async function liveDraft(localId: string, trackBaseline = false, guard: () => void = check) {
     check(); const original = await deps.readLink(localId); check();
-    if (!original || original.wallet !== wallet || original.revision < 1) throw new Error("Save this project to cloud before joining live sharing.");
-    if (!deps.api.drafts) throw new Error("Live project sharing is unavailable");
+    if (!original || original.wallet !== wallet || original.revision < 1) throw new Error(_translateCopy("copy.7e9385fecce1", { defaultValue: "Save this project to cloud before joining live sharing." }));
+    if (!deps.api.drafts) throw new Error(_translateCopy("copy.347a0bbf6726", { defaultValue: "Live project sharing is unavailable" }));
     const api = deps.api.drafts, owner = original.sharedOwner || wallet;
     async function currentLink() {
       guard(); check(); const link = await deps.readLink(localId); check(); guard();
       if (!link || link.wallet !== wallet || link.projectId !== original!.projectId
-        || (link.sharedOwner || wallet) !== owner || link.revision !== original!.revision) throw new Error("Shared project changed during transfer");
-      if (link.pending) throw new CloudProjectConflict("Finish the pending cloud save before sending live edits. Your local draft was kept.");
+        || (link.sharedOwner || wallet) !== owner || link.revision !== original!.revision) throw new Error(_translateCopy("copy.e2bd927d9063", { defaultValue: "Shared project changed during transfer" }));
+      if (link.pending) throw new CloudProjectConflict(_translateCopy("copy.b200f37a40f9", { defaultValue: "Finish the pending cloud save before sending live edits. Your local draft was kept." }));
       return link;
     }
     return cloudDraftOutbox({ scope: { wallet, owner, projectId: original.projectId, localId }, check: () => { check(); guard(); }, uuid: deps.uuid,
@@ -82,7 +83,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const link = await currentLink();
         const state = parseCloudDraftOutbox(link.liveDraft, { wallet, owner, projectId: link.projectId, localId });
         if (state?.writer && !state.pending && state.writer.checkpoint.headRevision !== link.revision)
-          throw new CloudProjectConflict("Receive the latest saved version before sending live edits. Your local draft was kept.");
+          throw new CloudProjectConflict(_translateCopy("copy.6963efd33489", { defaultValue: "Receive the latest saved version before sending live edits. Your local draft was kept." }));
         return state;
       },
       write: async state => {
@@ -97,57 +98,57 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         } : undefined,
         save: async (sourceOwner, projectId, request) => {
           const link = await currentLink();
-          if (request.anchorRevision !== link.revision) throw new CloudProjectConflict("Receive the latest saved version before sending live edits. Your local draft was kept.");
+          if (request.anchorRevision !== link.revision) throw new CloudProjectConflict(_translateCopy("copy.6963efd33489", { defaultValue: "Receive the latest saved version before sending live edits. Your local draft was kept." }));
           return api.save(sourceOwner, projectId, request);
         },
       },
     });
   }
   function requireEditing() {
-    if (!deps.api.editing) throw new Error("Shared project editing is unavailable");
+    if (!deps.api.editing) throw new Error(_translateCopy("copy.71eafc16d148", { defaultValue: "Shared project editing is unavailable" }));
     return deps.api.editing;
   }
   async function draftSavePending(link: CloudProjectLink, pending: NonNullable<CloudProjectLink["pending"]>) {
-    if (!deps.api.drafts || !deps.api.checkpointSave) throw new Error("Protected live project saving is unavailable");
+    if (!deps.api.drafts || !deps.api.checkpointSave) throw new Error(_translateCopy("copy.7ba953cf194c", { defaultValue: "Protected live project saving is unavailable" }));
     const owner = link.sharedOwner || wallet;
     const checkpoint = await deps.api.drafts.load(owner, link.projectId); check();
     if (checkpoint.ownerWallet !== owner || checkpoint.projectId !== link.projectId || checkpoint.headRevision < pending.expectedRevision)
-      throw new Error("Shared save baseline changed during transfer");
+      throw new Error(_translateCopy("copy.06a27e30a40e", { defaultValue: "Shared save baseline changed during transfer" }));
     const versions = new Map<number, CloudProjectDocument>();
     async function exact(revision: number) {
       const cached = versions.get(revision); if (cached) return cached;
-      if (link.sharedOwner && !deps.api.review) throw new Error("Shared project history is unavailable");
+      if (link.sharedOwner && !deps.api.review) throw new Error(_translateCopy("copy.d15e3bcbd07a", { defaultValue: "Shared project history is unavailable" }));
       const version = link.sharedOwner ? await deps.api.review!.load(owner, link.projectId, revision) : await deps.api.load(link.projectId, revision); check();
       if (version.projectId !== link.projectId || version.revision !== revision || version.document.snapshot.id !== link.projectId)
-        throw new Error("Shared save baseline changed during transfer");
+        throw new Error(_translateCopy("copy.06a27e30a40e", { defaultValue: "Shared save baseline changed during transfer" }));
       versions.set(revision, version.document); return version.document;
     }
     let remote = checkpoint.document;
     if (checkpoint.anchorRevision < checkpoint.headRevision) {
       const result = mergeCloudProjectEdits(await exact(checkpoint.anchorRevision), remote, await exact(checkpoint.headRevision), owner); check();
-      if (!result.document) throw new CloudProjectConflict("Saved and live changes overlap. Your draft was kept; open a separate cloud copy or save a personal copy.");
+      if (!result.document) throw new CloudProjectConflict(_translateCopy("copy.6b5913bed1b4", { defaultValue: "Saved and live changes overlap. Your draft was kept; open a separate cloud copy or save a personal copy." }));
       remote = result.document;
     }
     const result = mergeCloudProjectEdits(await exact(pending.expectedRevision), pending.document, remote, owner); check();
-    if (!result.document) throw new CloudProjectConflict("Live changes overlap your local edits. Your draft was kept; open a separate cloud copy or save a personal copy.");
+    if (!result.document) throw new CloudProjectConflict(_translateCopy("copy.08cce8a3c3d7", { defaultValue: "Live changes overlap your local edits. Your draft was kept; open a separate cloud copy or save a personal copy." }));
     const changed = !sameCloudProjectEdit(result.document, pending.document);
     return { ...pending, document: result.document, expectedRevision: checkpoint.headRevision, expectedDraftRevision: checkpoint.draftRevision,
       ...(changed ? { originalDocument: pending.originalDocument || pending.document } : {}) };
   }
   async function exactLiveVersion(link: CloudProjectLink, revision: number, guard: () => void) {
     const owner=link.sharedOwner||wallet;
-    if(link.sharedOwner&&!deps.api.review)throw new Error("Shared project history is unavailable");
+    if(link.sharedOwner&&!deps.api.review)throw new Error(_translateCopy("copy.d15e3bcbd07a", { defaultValue: "Shared project history is unavailable" }));
     const version=link.sharedOwner?await deps.api.review!.load(owner,link.projectId,revision):await deps.api.load(link.projectId,revision);check();guard();
-    if(version.projectId!==link.projectId||version.revision!==revision||version.document.snapshot.id!==link.projectId)throw new Error("Shared live baseline changed during transfer");
+    if(version.projectId!==link.projectId||version.revision!==revision||version.document.snapshot.id!==link.projectId)throw new Error(_translateCopy("copy.d8e80044de6a", { defaultValue: "Shared live baseline changed during transfer" }));
     return version.document;
   }
   async function reconciledLiveCheckpoint(link: CloudProjectLink, guard: () => void) {
-    if(!deps.api.drafts)throw new Error("Live project sharing is unavailable");
+    if(!deps.api.drafts)throw new Error(_translateCopy("copy.347a0bbf6726", { defaultValue: "Live project sharing is unavailable" }));
     const owner=link.sharedOwner||wallet,checkpoint=parseCloudDraftCheckpoint(await deps.api.drafts.load(owner,link.projectId),owner,link.projectId);check();guard();
-    if(checkpoint.headRevision<link.revision)throw new Error("Shared live baseline changed during transfer");
+    if(checkpoint.headRevision<link.revision)throw new Error(_translateCopy("copy.d8e80044de6a", { defaultValue: "Shared live baseline changed during transfer" }));
     if(checkpoint.anchorRevision<checkpoint.headRevision){
       const merged=mergeCloudProjectEdits(await exactLiveVersion(link,checkpoint.anchorRevision,guard),checkpoint.document,await exactLiveVersion(link,checkpoint.headRevision,guard),owner);
-      if(!merged.document)throw new CloudProjectConflict("Saved and live changes overlap. Your draft was kept; recover or save a personal copy.");
+      if(!merged.document)throw new CloudProjectConflict(_translateCopy("copy.87f58771904d", { defaultValue: "Saved and live changes overlap. Your draft was kept; recover or save a personal copy." }));
       return {...checkpoint,anchorRevision:checkpoint.headRevision,document:merged.document};
     }
     return checkpoint;
@@ -158,7 +159,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     const send = () => pending!.expectedDraftRevision !== undefined
       ? deps.api.checkpointSave
         ? deps.api.checkpointSave(link.sharedOwner || wallet, link.projectId, pending!.document, pending!.expectedRevision, pending!.expectedDraftRevision, pending!.requestId)
-        : Promise.reject(new Error("Protected live project saving is unavailable"))
+        : Promise.reject(new Error(_translateCopy("copy.7ba953cf194c", { defaultValue: "Protected live project saving is unavailable" })))
       : link.sharedOwner
       ? requireEditing().save(link.sharedOwner, link.projectId, pending!.document, pending!.expectedRevision, pending!.requestId)
       : deps.api.save(link.projectId, pending!.document, pending!.expectedRevision, pending!.requestId);
@@ -176,7 +177,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const latest = link.sharedOwner ? await requireEditing().load(link.sharedOwner, link.projectId) : await deps.api.load(link.projectId); check();
         const base = link.sharedOwner ? await deps.api.review!.load(link.sharedOwner, link.projectId, pending.expectedRevision) : await deps.api.load(link.projectId, pending.expectedRevision); check();
         const result = mergeCloudProjectEdits(base.document, pending.document, latest.document, sourceOwner);
-        if (!result.document) throw new CloudProjectConflict("Concurrent edits changed the same item. Your draft was kept; open the latest cloud version or save a personal copy.");
+        if (!result.document) throw new CloudProjectConflict(_translateCopy("copy.093c17c27d9c", { defaultValue: "Concurrent edits changed the same item. Your draft was kept; open the latest cloud version or save a personal copy." }));
         pending = { requestId: deps.uuid(), expectedRevision: latest.revision, document: result.document, originalDocument: pending.originalDocument || pending.document };
       }
       link.pending = pending; await deps.writeLink(localId, link); check();
@@ -217,7 +218,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     async saveLiveProjectCopy(snapshot: ProjectSnapshot, guard: () => void): Promise<CloudProjectSaveResult & { snapshot: ProjectSnapshot }> {
       check();guard();
       const copied=JSON.parse(JSON.stringify(snapshot,(_key,value)=>{
-        if(typeof value==="number"&&!Number.isFinite(value))throw new Error("Invalid project value");
+        if(typeof value==="number"&&!Number.isFinite(value))throw new Error(_translateCopy("copy.f6d38e821b59", { defaultValue: "Invalid project value" }));
         return value;
       })) as ProjectSnapshot;
       copied.id=deps.uuid();
@@ -231,15 +232,15 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       catch(cause){
         check();guard();if(cause instanceof CloudProjectTransferBusy)throw cause;
         const resolution=await outbox.resolve();check();guard();
-        if(!resolution||resolution.status==="unknown")throw new Error("The previous live edit outcome is unknown. Its exact request and your local draft were kept. Retry recovery or save a personal copy.");
+        if(!resolution||resolution.status==="unknown")throw new CloudDraftRecovery(_translateCopy("copy.bda8b52a53e3", { defaultValue: "The previous live edit outcome is unknown. Its exact request and your local draft were kept. Retry recovery or save a personal copy." }));
       }
     },
     receiveLiveProject(snapshot: ProjectSnapshot, accept: (snapshot: ProjectSnapshot) => void, guard: () => void) {
       const captured=captureLiveSnapshot(snapshot);
       return exclusive(async()=>{
         check();guard();const link=await deps.readLink(captured.id);check();guard();
-        if(!link||link.wallet!==wallet||link.revision<1)throw new Error("Save this project to cloud before receiving live edits.");
-        if(link.pending)throw new CloudProjectConflict("Finish the pending cloud Save before live edits. Your draft was kept.");
+        if(!link||link.wallet!==wallet||link.revision<1)throw new Error(_translateCopy("copy.126b956fa6fa", { defaultValue: "Save this project to cloud before receiving live edits." }));
+        if(link.pending)throw new CloudProjectConflict(_translateCopy("copy.54c81a27ac22", { defaultValue: "Finish the pending cloud Save before live edits. Your draft was kept." }));
         rejectPendingDraft(captured.id,link);
         await deps.saveLocal(captured);check();guard();
         const owner=link.sharedOwner||wallet,remote=await reconciledLiveCheckpoint(link,guard);
@@ -247,7 +248,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const before=projectMediaProjection(baseline,owner,captured.id,link.media,deps.uuid);
         const incoming=projectMediaProjection(remote.document,owner,captured.id,before.bindings,deps.uuid);
         const merged=mergeLocalProjectEdits(before.snapshot,captured,incoming.snapshot);
-        if(!merged.snapshot)throw new CloudProjectConflict("Live edits overlap your local changes. Your draft and Undo were kept. Retry recovery or save a personal copy.");
+        if(!merged.snapshot)throw new CloudProjectConflict(_translateCopy("copy.f9f3b09805a9", { defaultValue: "Live edits overlap your local changes. Your draft and Undo were kept. Retry recovery or save a personal copy." }));
         link.media=incoming.bindings;await deps.writeLink(captured.id,link);check();guard();
         const used=new Set(cloudProjectMediaIds(merged.snapshot)),sources=new Map([...before.media,...incoming.media].map(item=>[item.id,item]));
         for(const item of sources.values())if(used.has(item.id)){check();guard();await deps.hydrate(item,()=>{check();guard();},owner);check();guard();}
@@ -264,8 +265,8 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       const captured=captureLiveSnapshot(snapshot);
       const prepared=await exclusive(async()=>{
         check();guard();const link=await deps.readLink(captured.id);check();guard();
-        if(!link||link.wallet!==wallet||link.revision<1||!link.liveBaseline)throw new Error("Receive the live baseline before sharing edits.");
-        if(link.pending)throw new CloudProjectConflict("Finish the pending cloud Save before sharing live edits. Your draft was kept.");
+        if(!link||link.wallet!==wallet||link.revision<1||!link.liveBaseline)throw new Error(_translateCopy("copy.c9cabe51a049", { defaultValue: "Receive the live baseline before sharing edits." }));
+        if(link.pending)throw new CloudProjectConflict(_translateCopy("copy.65263c94dd75", { defaultValue: "Finish the pending cloud Save before sharing live edits. Your draft was kept." }));
         rejectPendingDraft(captured.id,link);
         const owner=link.sharedOwner||wallet,accepted=parseCloudDraftCheckpoint(link.liveBaseline,owner,link.projectId);
         await deps.saveLocal(captured);check();guard();
@@ -282,13 +283,13 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
       });
       if(prepared.unchanged)return false;
       const outbox=await liveDraft(captured.id,true,guard),state=await outbox.inspect();check();guard();
-      if(state?.pending)throw new CloudProjectConflict("Recover the pending live receipt before sharing later edits.");
+      if(state?.pending)throw new CloudProjectConflict(_translateCopy("copy.183850b83b0e", { defaultValue: "Recover the pending live receipt before sharing later edits." }));
       if(!state?.writer||Date.parse(state.writer.expiresAt)<=(deps.now||Date.now)())await outbox.register();check();guard();
       await exclusive(async()=>{
         const link=await deps.readLink(captured.id);check();guard();
         if(!link||link.wallet!==wallet||!link.liveBaseline||link.revision!==prepared.accepted.headRevision
           ||link.liveBaseline.draftRevision!==prepared.accepted.draftRevision||!sameCloudProjectEdit(link.liveBaseline.document,prepared.accepted.document)
-          ||!link.liveDraft?.writer||link.liveDraft.pending)throw new CloudProjectConflict("The live baseline changed before sharing. Your draft was kept.");
+          ||!link.liveDraft?.writer||link.liveDraft.pending)throw new CloudProjectConflict(_translateCopy("copy.bd5712e66d75", { defaultValue: "The live baseline changed before sharing. Your draft was kept." }));
         link.liveDraft={...link.liveDraft,writer:{...link.liveDraft.writer,checkpoint:prepared.accepted}};
         await deps.writeLink(captured.id,link);check();guard();
       });
@@ -300,7 +301,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     sendLiveDraft(localId: string, document: CloudProjectDocument) {
       // Capture before reading device storage, so later edits cannot alter the request.
       const captured = JSON.parse(JSON.stringify(document, (_key, value) => {
-        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error(_translateCopy("copy.f6d38e821b59", { defaultValue: "Invalid project value" }));
         return value;
       })) as CloudProjectDocument;
       return liveDraft(localId).then(outbox => outbox.stage(captured));
@@ -308,7 +309,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     save(snapshot: ProjectSnapshot, separateCopy = false): Promise<CloudProjectSaveResult> {
       // Capture before awaiting: edits made during transfer stay in the editor.
       const captured = JSON.parse(JSON.stringify(snapshot, (_key, value) => {
-        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error(_translateCopy("copy.f6d38e821b59", { defaultValue: "Invalid project value" }));
         return value;
       })) as ProjectSnapshot;
       return exclusive(async () => {
@@ -333,7 +334,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
         const originalDocument = document;
         if (pending && recovered?.mergedDocument) {
           const rebased = mergeCloudProjectEdits(pending.originalDocument || pending.document, document, recovered.mergedDocument, link.sharedOwner || wallet);
-          if (!rebased.document) throw new CloudProjectConflict("Newer local edits conflict with the cloud version. Your draft was kept; open the latest cloud version or save a personal copy.");
+          if (!rebased.document) throw new CloudProjectConflict(_translateCopy("copy.82345ae48e48", { defaultValue: "Newer local edits conflict with the cloud version. Your draft was kept; open the latest cloud version or save a personal copy." }));
           document = rebased.document;
         }
         link.pending = { requestId: deps.uuid(), document, expectedRevision: recovered?.mergedDocument ? recovered.revision : link.revision,
@@ -347,27 +348,27 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     },
     receiveSaved(snapshot: ProjectSnapshot, accept: (snapshot: ProjectSnapshot) => void, guard: () => void = check) {
       const captured = JSON.parse(JSON.stringify(snapshot, (_key, value) => {
-        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Invalid project value");
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error(_translateCopy("copy.f6d38e821b59", { defaultValue: "Invalid project value" }));
         return value;
       })) as ProjectSnapshot;
       return exclusive(async () => {
         const verify = () => { check(); guard(); };
         verify();
         const link = await deps.readLink(captured.id); verify();
-        if (!link || link.wallet !== wallet || link.revision < 1) throw new Error("Save this project to cloud before receiving shared changes.");
-        if (link.pending) throw new CloudProjectConflict("Finish the pending cloud save before receiving shared changes. Your local draft was kept.");
+        if (!link || link.wallet !== wallet || link.revision < 1) throw new Error(_translateCopy("copy.f746f8b36a50", { defaultValue: "Save this project to cloud before receiving shared changes." }));
+        if (link.pending) throw new CloudProjectConflict(_translateCopy("copy.f5410e322a88", { defaultValue: "Finish the pending cloud save before receiving shared changes. Your local draft was kept." }));
         rejectPendingDraft(captured.id, link);
         const sourceOwner = link.sharedOwner || wallet;
         const latest = link.sharedOwner ? await requireEditing().load(sourceOwner,link.projectId) : await deps.api.load(link.projectId); verify();
-        if (latest.projectId !== link.projectId || latest.document.snapshot.id !== link.projectId) throw new Error("Shared project changed during transfer");
+        if (latest.projectId !== link.projectId || latest.document.snapshot.id !== link.projectId) throw new Error(_translateCopy("copy.e2bd927d9063", { defaultValue: "Shared project changed during transfer" }));
         if (latest.revision <= link.revision) return { changed: false, revision: link.revision };
-        if (link.sharedOwner && !deps.api.review) throw new Error("Shared project history is unavailable");
+        if (link.sharedOwner && !deps.api.review) throw new Error(_translateCopy("copy.d15e3bcbd07a", { defaultValue: "Shared project history is unavailable" }));
         const base = link.sharedOwner ? await deps.api.review!.load(sourceOwner,link.projectId,link.revision) : await deps.api.load(link.projectId,link.revision); verify();
-        if (base.projectId !== link.projectId || base.revision !== link.revision || base.document.snapshot.id !== link.projectId) throw new Error("Shared project base changed during transfer");
+        if (base.projectId !== link.projectId || base.revision !== link.revision || base.document.snapshot.id !== link.projectId) throw new Error(_translateCopy("copy.09847571a197", { defaultValue: "Shared project base changed during transfer" }));
         const original = projectMediaProjection(base.document,sourceOwner,captured.id,link.media,deps.uuid);
         const incoming = projectMediaProjection(latest.document,sourceOwner,captured.id,original.bindings,deps.uuid);
         const merged = mergeLocalProjectEdits(original.snapshot,captured,incoming.snapshot);
-        if (!merged.snapshot) throw new CloudProjectConflict("Shared changes overlap your local edits. Your draft and Undo were kept; open a separate cloud copy or save a personal copy.");
+        if (!merged.snapshot) throw new CloudProjectConflict(_translateCopy("copy.151fa93948eb", { defaultValue: "Shared changes overlap your local edits. Your draft and Undo were kept; open a separate cloud copy or save a personal copy." }));
         const used = new Set(cloudProjectMediaIds(merged.snapshot));
         const media = new Map([...original.media,...incoming.media].map(source => [source.id,source]));
         for (const source of media.values()) if (used.has(source.id)) { verify(); await deps.hydrate(source,verify,sourceOwner); verify(); }
@@ -402,7 +403,7 @@ export function cloudProjectSession(deps: CloudProjectSessionDeps) {
     },
     openReview(owner: string, id: string, revision?: number) {
       return exclusive(async () => {
-        if (!deps.api.review) throw new Error("Project review is unavailable");
+        if (!deps.api.review) throw new Error(_translateCopy("copy.a24c4be46c63", { defaultValue: "Project review is unavailable" }));
         const version = await deps.api.review.load(owner, id, revision); check();
         const copy = projectReviewCopy(version.document, owner, deps.uuid);
         for (const media of copy.media) { check(); await deps.hydrate(media, check, owner); check(); }

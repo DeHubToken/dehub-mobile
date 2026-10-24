@@ -1,4 +1,5 @@
-import { CloudProjectConflict } from "./cloudProjectFormat";
+import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { CloudDraftRecovery, CloudProjectConflict } from "./cloudProjectFormat";
 import { projectReviewSnapshotKey } from "./cloudProjectReview";
 import { CloudProjectTransferBusy, isCloudProjectTransferBusy, onCloudProjectTransferSettled } from "./cloudProjectTransfer";
 import type { ProjectSnapshot } from "./types";
@@ -31,7 +32,7 @@ export function cloudDraftController(wallet: string, localId: string, session: C
   const cleanup=()=>{timer?.();timer=null;offEditor?.();offEditor=null;offTransfer?.();offTransfer=null;};
   function guard(epoch:number,key?:string) {
     deps.check();
-    if(epoch!==generation||!mode||editor.current()?.id!==localId||editor.scope?.()!==editorScope)throw new Error("Live project sharing stopped");
+    if(epoch!==generation||!mode||editor.current()?.id!==localId||editor.scope?.()!==editorScope)throw new Error(_translateCopy("copy.bb0e439e4db7", { defaultValue: "Live project sharing stopped" }));
     if(editor.isEditing()||(key!==undefined&&projectReviewSnapshotKey(editor.current()!)!==key))throw new CloudDraftDeferred("Finish the current edit before transferring live changes");
   }
   function schedule(ms=700) {
@@ -65,7 +66,7 @@ export function cloudDraftController(wallet: string, localId: string, session: C
     }catch(cause){
       if(epoch!==generation||!mode)return;
       if(cause instanceof CloudDraftDeferred||cause instanceof CloudProjectTransferBusy){dirty=mode==="sharing";incoming=true;recovering=true;waitingTransfer=cause instanceof CloudProjectTransferBusy;update("waiting");}
-      else{paused=true;recovering=true;update(cause instanceof CloudProjectConflict?"conflict":/receipt|outcome|expired|recover/i.test(cause instanceof Error?cause.message:"")?"recovery":"error",cause instanceof Error?cause.message:"Live edits could not transfer. Your local draft was kept.");}
+      else{paused=true;recovering=true;update(cause instanceof CloudProjectConflict?"conflict":cause instanceof CloudDraftRecovery||/receipt|outcome|expired|recover/i.test(cause instanceof Error?cause.message:"")?"recovery":"error",cause instanceof Error?cause.message:_translateCopy("copy.3a8bf08111d3", { defaultValue: "Live edits could not transfer. Your local draft was kept." }));}
     }finally{
       busy=false;
       if(mode&&!paused)schedule();

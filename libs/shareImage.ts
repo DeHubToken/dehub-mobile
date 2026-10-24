@@ -2,6 +2,7 @@ import { Platform } from "react-native";
 import * as FileSystem from "expo-file-system/legacy";
 import env from "../config/env";
 import { shareWithRef } from "./shareRef";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 /** Keep the production text-card route in step with the web share drawer. */
 export function getTextPostShareImageUrl(tokenId: number | string): string {
@@ -29,7 +30,7 @@ export async function sharePostAsImage(
     // Android shares the link and lets its recipient load the same OG card.
     // Avoid downloading an image that this platform's share sheet never uses.
     if (Platform.OS !== "ios") {
-      await shareWithRef({ message: `${caption || "Check this out on DeHub"}\n${postUrl}` }, undefined, "post");
+      await shareWithRef({ message: `${caption || _translateCopy("copy.bc1ce78b29e6", { defaultValue: "Check this out on DeHub" })}\n${postUrl}` }, undefined, "post");
       return;
     }
     const { status, headers } = await FileSystem.downloadAsync(ogImageUrl, localPath);
@@ -48,7 +49,7 @@ export async function sharePostAsImage(
     await shareWithRef(
       Platform.select({
         ios: { message: postUrl, url: postUrl },
-        default: { message: `${caption || "Check this out on DeHub"}\n${postUrl}` },
+        default: { message: `${caption || _translateCopy("copy.bc1ce78b29e6", { defaultValue: "Check this out on DeHub" })}\n${postUrl}` },
       }) as any,
       undefined,
       "post",

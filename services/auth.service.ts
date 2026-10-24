@@ -7,6 +7,7 @@ import {
 import { User } from "../context/AuthContext";
 import { createLogger } from '../libs/logger';
 import { submitWalletProof } from '../libs/wallet-challenge';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const walletLoginLog = createLogger('WalletLogin');
 
@@ -26,7 +27,7 @@ interface AuthResponse {
  * login on this identity, not an error to surface to the user.
  */
 export class WalletNotLinkedError extends Error {
-  constructor(message = "No wallet is linked to this login yet.") {
+  constructor(message = _translateCopy("copy.f4def7ee0b28", { defaultValue: "No wallet is linked to this login yet." })) {
     super(message);
     this.name = "WalletNotLinkedError";
   }
@@ -43,7 +44,7 @@ export class WalletNotLinkedError extends Error {
  * theirs.
  */
 export class WalletLinkAmbiguousError extends Error {
-  constructor(message = "This login is linked to more than one wallet. Please sign in with your wallet.") {
+  constructor(message = _translateCopy("copy.e95f83545df9", { defaultValue: "This login is linked to more than one wallet. Please sign in with your wallet." })) {
     super(message);
     this.name = "WalletLinkAmbiguousError";
   }
@@ -175,7 +176,7 @@ export const AuthService = {
       const isAmbiguous =
         error?.code === "WALLET_LINK_AMBIGUOUS" ||
         /more than one wallet/i.test(error?.message || "");
-      if (isAmbiguous) throw new WalletLinkAmbiguousError("This login is linked to more than one profile. Please contact support.");
+      if (isAmbiguous) throw new WalletLinkAmbiguousError(_translateCopy("copy.dcc4b20621e4", { defaultValue: "This login is linked to more than one profile. Please contact support." }));
       if (error?.code === "WALLET_NOT_LINKED") {
         throw new WalletNotLinkedError(error?.message);
       }
@@ -218,7 +219,7 @@ export const AuthService = {
     const supabaseAccessToken = await getSupabaseAccessToken();
     if (!supabaseAccessToken) {
       throw new Error(
-        "Sign in again with your phone, email or Google account to finish creating your new wallet.",
+        _translateCopy("copy.80a14dd6196c", { defaultValue: "Sign in again with your phone, email or Google account to finish creating your new wallet." }),
       );
     }
 
@@ -264,12 +265,12 @@ export const AuthService = {
     rawUsername: string
   ): Promise<{ available: boolean; message?: string }> {
     if (!rawUsername || typeof rawUsername !== "string")
-      return { available: false, message: "Username required" };
+      return { available: false, message: _translateCopy("copy.08086257d7b1", { defaultValue: "Username required" }) };
     const username = rawUsername.trim();
     if (username.length < 3 || username.length > 30)
-      return { available: false, message: "3-30 chars required" };
+      return { available: false, message: _translateCopy("copy.c626f6220998", { defaultValue: "3-30 chars required" }) };
     if (!/^[a-zA-Z0-9_]+$/.test(username))
-      return { available: false, message: "Only letters, numbers, _" };
+      return { available: false, message: _translateCopy("copy.2a1ddf7ce70a", { defaultValue: "Only letters, numbers, _" }) };
     try {
       const res = await apiClient.get<any>(
         `/username/check?username=${encodeURIComponent(username)}`,
@@ -279,16 +280,16 @@ export const AuthService = {
       if (res?.status === true && typeof res.available === "boolean") {
         return {
           available: res.available,
-          message: res.available ? "Available" : "Taken",
+          message: res.available ? "Available" : _translateCopy("copy.c76e6790bc5b", { defaultValue: "Taken" }),
         };
       }
-      return { available: false, message: res?.message || "Unavailable" };
+      return { available: false, message: res?.message || _translateCopy("copy.ca1844969742", { defaultValue: "Unavailable" }) };
     } catch (e: any) {
       console.warn(
         "[AuthService] checkUsernameAvailability error",
         e?.message || e
       );
-      return { available: false, message: "Lookup failed" };
+      return { available: false, message: _translateCopy("copy.a8a25eeb73a1", { defaultValue: "Lookup failed" }) };
     }
   },
 
@@ -310,7 +311,7 @@ export const AuthService = {
     });
     if (body?.error)
       throw new Error(
-        body?.error_msg || body?.message || "Profile update failed"
+        body?.error_msg || body?.message || _translateCopy("copy.e51c5f7d0545", { defaultValue: "Profile update failed" })
       );
     return data as Partial<User>;
   },

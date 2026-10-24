@@ -242,7 +242,7 @@ const SellAccountPanel: React.FC<Props> = ({ isAuthed, onSignIn }) => {
                 <SaleRow key={s.id} sale={s} label={t("accounts.bought")} />
               ))}
             {history.map((l) => (
-              <HistoryRow key={l.id} listing={l} soldLabel={t("accounts.sold")} />
+              <HistoryRow key={l.id} listing={l} soldLabel={t("accounts.sold")} withdrawnLabel={t("copy.00c0b03fcfa2", { defaultValue: "Withdrawn" })} />
             ))}
           </View>
           </PageSection>
@@ -265,9 +265,10 @@ const SaleRow: React.FC<{ sale: AccountSale; label: string }> = ({ sale, label }
   </View>
 );
 
-const HistoryRow: React.FC<{ listing: MyAccountListing; soldLabel: string }> = ({
+const HistoryRow: React.FC<{ listing: MyAccountListing; soldLabel: string; withdrawnLabel: string }> = ({
   listing,
   soldLabel,
+  withdrawnLabel,
 }) => (
   <View style={styles.row}>
     <View style={styles.rowMain}>
@@ -276,7 +277,7 @@ const HistoryRow: React.FC<{ listing: MyAccountListing; soldLabel: string }> = (
         {listing.username}
       </Text>
       <Text style={styles.rowSub} numberOfLines={1}>
-        {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
+        {listing.status === "cancelled" ? listing.cancelReason || withdrawnLabel : soldLabel}
       </Text>
     </View>
     <Text style={styles.rowPriceMuted}>{listing.priceDhb.toLocaleString(appLocale())} <DhbCoin /></Text>

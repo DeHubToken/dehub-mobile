@@ -499,12 +499,12 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
     const url = `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
     try {
       await shareWithRef({
-        message: `Check out this post ${url}`,
+        message: t("copy.7cbcbe364e76", { defaultValue: "Check out this post {{value1}}", value1: url }),
         url,
       }, undefined, "post");
     } catch {}
     onClose();
-  }, [tokenId, onClose]);
+  }, [tokenId, onClose, t]);
 
   const followLabel = isFollowRequestPending
     ? t("postOptions.cancelRequest")

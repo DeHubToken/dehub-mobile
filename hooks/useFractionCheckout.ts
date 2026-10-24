@@ -26,6 +26,7 @@
 import { ethers } from "ethers";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { supabase } from "../services/supabase";
 import { dehubAuthHeaders } from "../services/ai.service";
 import { useERC20Contract, useStreamCollectionContract, useWeb3Provider } from "./use-web3";
@@ -96,7 +97,7 @@ async function callFraction<T>(body: Record<string, unknown>, wallet: string): P
     } catch {
       // Body was not JSON — fall back to the transport message.
     }
-    throw new Error(detail || error.message || "Request failed");
+    throw new Error(detail || error.message || _translateCopy("copy.cfce761befa8", { defaultValue: "Request failed" }));
   }
   if ((data as { error?: string })?.error) throw new Error((data as { error: string }).error);
   return data as T;
@@ -108,7 +109,7 @@ async function confirmWithRetry<T>(
   txHash: string,
   strandedMessage: string,
 ): Promise<T> {
-  let lastError = "Could not confirm the transaction";
+  let lastError = _translateCopy("copy.96165bbfc9cb", { defaultValue: "Could not confirm the transaction" });
   for (let attempt = 0; attempt < CONFIRM_ATTEMPTS; attempt++) {
     try {
       return await callFraction<T>({ ...body, txHash }, wallet);

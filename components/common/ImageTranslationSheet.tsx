@@ -12,6 +12,7 @@ import { DeHubLoader } from "../DeHubLoader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import type { ImageTranslateResponse } from "../../services/translation.service";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 interface Props {
   visible: boolean;
@@ -22,16 +23,44 @@ interface Props {
 }
 
 const LANG_NAMES: Record<string, string> = {
-  en: "English", es: "Spanish", fr: "French", de: "German",
-  it: "Italian", pt: "Portuguese", ru: "Russian", zh: "Chinese",
-  ja: "Japanese", ko: "Korean", ar: "Arabic", hi: "Hindi",
-  nl: "Dutch", pl: "Polish", tr: "Turkish", vi: "Vietnamese",
-  th: "Thai", id: "Indonesian", uk: "Ukrainian", sv: "Swedish",
-  da: "Danish", fi: "Finnish", cs: "Czech", el: "Greek",
-  he: "Hebrew", ro: "Romanian", hu: "Hungarian", bn: "Bengali",
-  ta: "Tamil", te: "Telugu", mr: "Marathi", gu: "Gujarati",
-  pa: "Punjabi", ur: "Urdu", fa: "Persian", ms: "Malay",
-  tl: "Filipino", sw: "Swahili",
+  get en() { return _translateCopy("copy.ba118bf7fc9c", { defaultValue: "English" }); },
+  get es() { return _translateCopy("copy.3411059cb8e0", { defaultValue: "Spanish" }); },
+  get fr() { return _translateCopy("copy.7458199fe97a", { defaultValue: "French" }); },
+  get de() { return _translateCopy("copy.a659b60d246d", { defaultValue: "German" }); },
+  get it() { return _translateCopy("copy.fe1d9c7db376", { defaultValue: "Italian" }); },
+  get pt() { return _translateCopy("copy.98b01b890687", { defaultValue: "Portuguese" }); },
+  get ru() { return _translateCopy("copy.5bcc40adf6e0", { defaultValue: "Russian" }); },
+  get zh() { return _translateCopy("copy.8a9779f42128", { defaultValue: "Chinese" }); },
+  get ja() { return _translateCopy("copy.be4ee906d3ef", { defaultValue: "Japanese" }); },
+  get ko() { return _translateCopy("copy.04656c6fe003", { defaultValue: "Korean" }); },
+  get ar() { return _translateCopy("copy.bafb66f32cd7", { defaultValue: "Arabic" }); },
+  get hi() { return _translateCopy("copy.63c2dc51d089", { defaultValue: "Hindi" }); },
+  get nl() { return _translateCopy("copy.45f16144c18c", { defaultValue: "Dutch" }); },
+  get pl() { return _translateCopy("copy.770341d6e89e", { defaultValue: "Polish" }); },
+  get tr() { return _translateCopy("copy.6e7aac65db01", { defaultValue: "Turkish" }); },
+  get vi() { return _translateCopy("copy.f25499e9df5c", { defaultValue: "Vietnamese" }); },
+  get th() { return _translateCopy("copy.ad705ee19c04", { defaultValue: "Thai" }); },
+  get id() { return _translateCopy("copy.4fe1bb67f3b9", { defaultValue: "Indonesian" }); },
+  get uk() { return _translateCopy("copy.6f424303fa12", { defaultValue: "Ukrainian" }); },
+  get sv() { return _translateCopy("copy.a89a9329d3d4", { defaultValue: "Swedish" }); },
+  get da() { return _translateCopy("copy.fe4338ad620c", { defaultValue: "Danish" }); },
+  get fi() { return _translateCopy("copy.5710b435f90a", { defaultValue: "Finnish" }); },
+  get cs() { return _translateCopy("copy.8b463ea23a7e", { defaultValue: "Czech" }); },
+  get el() { return _translateCopy("copy.5c74e5b8100c", { defaultValue: "Greek" }); },
+  get he() { return _translateCopy("copy.33e00df2aac3", { defaultValue: "Hebrew" }); },
+  get ro() { return _translateCopy("copy.096b861df653", { defaultValue: "Romanian" }); },
+  get hu() { return _translateCopy("copy.58801e6907f0", { defaultValue: "Hungarian" }); },
+  get bn() { return _translateCopy("copy.e7f4fe2631bb", { defaultValue: "Bengali" }); },
+  get ta() { return _translateCopy("copy.135d78ac8f56", { defaultValue: "Tamil" }); },
+  get te() { return _translateCopy("copy.a4504b3d0ff7", { defaultValue: "Telugu" }); },
+  get mr() { return _translateCopy("copy.6bbef3a79c78", { defaultValue: "Marathi" }); },
+  get gu() { return _translateCopy("copy.aa1324f5df47", { defaultValue: "Gujarati" }); },
+  get pa() { return _translateCopy("copy.9e61f8c4fbca", { defaultValue: "Punjabi" }); },
+  get ur() { return _translateCopy("copy.2c6ef73fc9e2", { defaultValue: "Urdu" }); },
+  get fa() { return _translateCopy("copy.7428909a1062", { defaultValue: "Persian" }); },
+  get ms() { return _translateCopy("copy.cd43b2d3b020", { defaultValue: "Malay" }); },
+  get tl() { return _translateCopy("copy.e8a6062c5c37", { defaultValue: "Filipino" }); },
+  get sw() { return _translateCopy("copy.ef13b74e5743", { defaultValue: "Swahili" }); },
 };
 
 const ImageTranslationSheet: React.FC<Props> = ({ visible, onClose, isLoading, error, result }) => {

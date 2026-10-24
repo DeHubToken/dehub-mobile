@@ -5,6 +5,7 @@ import { Platform } from 'react-native';
 import { apiClient } from '../../libs/api.client';
 import { getDeviceId, getDeviceName } from '../../libs/device';
 import { createLogger } from '../../libs/logger';
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 const logger = createLogger('PushService');
 
@@ -293,8 +294,8 @@ async function setupAndroidChannels(): Promise<void> {
   try {
     // Default channel for general notifications
     await Notifications.setNotificationChannelAsync('default', {
-      name: 'Default',
-      description: 'General notifications',
+      name: _translateCopy("copy.21b111cbfe6e", { defaultValue: "Default" }),
+      description: _translateCopy("copy.590f2733feef", { defaultValue: "General notifications" }),
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: '#000000',
@@ -303,8 +304,8 @@ async function setupAndroidChannels(): Promise<void> {
 
     // Engagement channel (likes, comments)
     await Notifications.setNotificationChannelAsync('engagement', {
-      name: 'Likes & Comments',
-      description: 'Notifications for likes, comments, and replies',
+      name: _translateCopy("copy.81b99ac02943", { defaultValue: "Likes & Comments" }),
+      description: _translateCopy("copy.fb73ee6bfbc2", { defaultValue: "Notifications for likes, comments, and replies" }),
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 200],
       lightColor: '#000000',
@@ -313,8 +314,8 @@ async function setupAndroidChannels(): Promise<void> {
 
     // Social channel (follows, mentions)
     await Notifications.setNotificationChannelAsync('social', {
-      name: 'Social',
-      description: 'Followers, mentions, and social interactions',
+      name: _translateCopy("copy.f1b7505afa5c", { defaultValue: "Social" }),
+      description: _translateCopy("copy.0b99e1e77bf2", { defaultValue: "Followers, mentions, and social interactions" }),
       importance: Notifications.AndroidImportance.DEFAULT,
       vibrationPattern: [0, 200],
       lightColor: '#000000',
@@ -323,8 +324,8 @@ async function setupAndroidChannels(): Promise<void> {
 
     // Monetization channel (tips, subscriptions, purchases)
     await Notifications.setNotificationChannelAsync('monetization', {
-      name: 'Tips & Earnings',
-      description: 'Tips, subscriptions, and purchase notifications',
+      name: _translateCopy("copy.2333bf767fe1", { defaultValue: "Tips & Earnings" }),
+      description: _translateCopy("copy.ad4e2d9a4bde", { defaultValue: "Tips, subscriptions, and purchase notifications" }),
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 100, 250],
       lightColor: '#000000',
@@ -333,8 +334,8 @@ async function setupAndroidChannels(): Promise<void> {
 
     // Live streams channel
     await Notifications.setNotificationChannelAsync('livestream', {
-      name: 'Live Streams',
-      description: 'When creators you follow go live',
+      name: _translateCopy("copy.213b402c329f", { defaultValue: "Live Streams" }),
+      description: _translateCopy("copy.465549460b2f", { defaultValue: "When creators you follow go live" }),
       importance: Notifications.AndroidImportance.HIGH,
       vibrationPattern: [0, 300, 100, 300],
       lightColor: '#000000',
@@ -344,8 +345,8 @@ async function setupAndroidChannels(): Promise<void> {
     // Incoming calls. MAX importance so a locked phone lights up and sounds
     // instead of dropping the call into the shade silently.
     await Notifications.setNotificationChannelAsync('calls', {
-      name: 'Calls',
-      description: 'Incoming voice and video calls',
+      name: _translateCopy("copy.b73a5e2ca645", { defaultValue: "Calls" }),
+      description: _translateCopy("copy.bf9e71502382", { defaultValue: "Incoming voice and video calls" }),
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 800, 400, 800, 400, 800],
       lightColor: '#000000',
@@ -356,8 +357,8 @@ async function setupAndroidChannels(): Promise<void> {
 
     // Content channel (milestones, moderation)
     await Notifications.setNotificationChannelAsync('content', {
-      name: 'Content Updates',
-      description: 'Milestones, content status, and moderation',
+      name: _translateCopy("copy.d5e589f88a38", { defaultValue: "Content Updates" }),
+      description: _translateCopy("copy.a33bcd1bfeee", { defaultValue: "Milestones, content status, and moderation" }),
       importance: Notifications.AndroidImportance.DEFAULT,
       lightColor: '#000000',
       sound: 'default',

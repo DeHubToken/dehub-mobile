@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { CloudProjectConflict, parseCloudProjectDocument, type CloudProjectDocument } from "./cloudProjectFormat";
 import { projectReviewWallet } from "./cloudProjectReview";
@@ -21,7 +22,7 @@ const integer = (value: unknown, min: number): value is number => typeof value =
 const object = (value: unknown): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value);
 const date = (value: unknown): value is string => typeof value === "string" && Number.isFinite(Date.parse(value));
 const id = (value: unknown): value is string => typeof value === "string" && uuid.test(value);
-function fail(): never { throw new Error("Invalid live draft response or request"); }
+function fail(): never { throw new Error(_translateCopy("copy.c7b51fecb62d", { defaultValue: "Invalid live draft response or request" })); }
 function scope(owner: string, projectId: string) { const wallet = projectReviewWallet(owner); if (!id(projectId)) fail(); return wallet; }
 
 export function parseCloudDraftCheckpoint(value: unknown, owner: string, projectId: string): CloudDraftCheckpoint {

@@ -323,13 +323,13 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         setReady(true);
         break;
       case "matteNeed": {
-        if (!liveMatteIds.current.has(msg.id)) { post({ type: "mattePage", reqId: msg.reqId, error: "Background page is missing" }); break; }
+        if (!liveMatteIds.current.has(msg.id)) { post({ type: "mattePage", reqId: msg.reqId, error: t("copy.4737e3f51be7", { defaultValue: "Background page is missing" }) }); break; }
         void (async () => {
           const meta = await getMedia(msg.id);
           const src = meta?.kind === "image" ? await mediaDataUrl(meta) : null;
           if (!liveMatteIds.current.has(msg.id)) return;
-          post({ type: "mattePage", reqId: msg.reqId, src, ...(src ? {} : { error: "Background page could not be read" }) });
-        })().catch(() => post({ type: "mattePage", reqId: msg.reqId, error: "Background page could not be read" }));
+          post({ type: "mattePage", reqId: msg.reqId, src, ...(src ? {} : { error: t("copy.6b151f5667d8", { defaultValue: "Background page could not be read" }) }) });
+        })().catch(() => post({ type: "mattePage", reqId: msg.reqId, error: t("copy.6b151f5667d8", { defaultValue: "Background page could not be read" }) }));
         break;
       }
       case "mediaAck": {
@@ -473,12 +473,12 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         const request = videoMatteReqs.current.get(msg.reqId); if (!request) break;
         request.reset();
         if (!request.storePage || request.storing || msg.pageIndex !== request.pages.length || msg.plan?.fps !== request.fps || !validVideoMattePageOutput(request.clip, msg.plan, msg.page, msg.pageIndex) || (request.planKey !== undefined && request.planKey !== JSON.stringify(msg.plan))) {
-          request.cleanup(); videoMatteReqs.current.delete(msg.reqId); post({ type: "videoMatteCancel", reqId: msg.reqId }); request.reject(new Error("Invalid background page")); break;
+          request.cleanup(); videoMatteReqs.current.delete(msg.reqId); post({ type: "videoMatteCancel", reqId: msg.reqId }); request.reject(new Error(t("copy.4634d733bfa1", { defaultValue: "Invalid background page" }))); break;
         }
         request.storing = true; request.planKey = JSON.stringify(msg.plan);
         void request.storePage(msg.page, msg.plan, msg.pageIndex).then(id => {
           if (videoMatteReqs.current.get(msg.reqId) !== request) return;
-          if (typeof id !== "string" || !id.length || request.pages.some(page => page.mediaId === id)) throw new Error("Invalid background page ID");
+          if (typeof id !== "string" || !id.length || request.pages.some(page => page.mediaId === id)) throw new Error(t("copy.412ea6e94353", { defaultValue: "Invalid background page ID" }));
           const { dataUrl: _dataUrl, ...page } = msg.page;
           request.pages.push({ ...page, mediaId: id }); request.storing = false; request.reset();
           post({ type: "videoMattePageSaved", reqId: msg.reqId, pageIndex: msg.pageIndex, mediaId: id });
@@ -497,7 +497,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           ? result?.matte && !request.storing && request.planKey === JSON.stringify(result.plan) && JSON.stringify(result.matte) === JSON.stringify({ ...result.plan, mediaId: request.pages[0]?.mediaId, pages: request.pages }) && validVideoMatte({ ...request.clip, videoMatte: result.matte })
           : result && typeof result.dataUrl === "string" && result.dataUrl.startsWith("data:image/png;base64,") && validVideoMatte({ ...request.clip, videoMatte: { ...result.plan, mediaId: "pending" } });
         if (msg.type === "videoMatteDone" && complete) request.resolve(result);
-        else request.reject(new Error(msg.error || "Background frames could not be saved"));
+        else request.reject(new Error(msg.error || t("copy.284f73ceacca", { defaultValue: "Background frames could not be saved" })));
         break;
       }
       case "cutoutProgress": {
@@ -522,7 +522,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         exports.current.delete(msg.reqId);
         break;
     }
-  }, []);
+  }, [t]);
 
   // Motion path: only for a selected layer whose position is keyed. The clip
   // object only changes when that layer is edited, so this is not per frame.
@@ -538,23 +538,23 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
 
   // A killed renderer process leaves a blank page; start a fresh one.
   const restart = useCallback(() => {
-    for (const r of videoMatteReqs.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
+    for (const r of videoMatteReqs.current.values()) { r.cleanup(); r.reject(new Error(t("copy.c5fe6ea908ed", { defaultValue: "canvas restarted" }))); }
     videoMatteReqs.current.clear();
-    for (const r of audioReqs.current.values()) { r.out?.discard(); r.cleanup(); r.reject(new Error("canvas restarted")); }
+    for (const r of audioReqs.current.values()) { r.out?.discard(); r.cleanup(); r.reject(new Error(t("copy.c5fe6ea908ed", { defaultValue: "canvas restarted" }))); }
     audioReqs.current.clear();
-    for (const r of captionReqs.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
+    for (const r of captionReqs.current.values()) { r.cleanup(); r.reject(new Error(t("copy.c5fe6ea908ed", { defaultValue: "canvas restarted" }))); }
     captionReqs.current.clear();
     for (const r of cutoutReqs.current.values()) r.done(null);
     cutoutReqs.current.clear();
-    for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(new Error("canvas restarted")); }
+    for (const r of videoReqs.current.values()) { r.out?.discard(); r.reject(new Error(t("copy.c5fe6ea908ed", { defaultValue: "canvas restarted" }))); }
     videoReqs.current.clear();
     for (const done of mediaAcks.current.values()) done();
-    for (const r of exports.current.values()) { r.cleanup(); r.reject(new Error("canvas restarted")); }
+    for (const r of exports.current.values()) { r.cleanup(); r.reject(new Error(t("copy.c5fe6ea908ed", { defaultValue: "canvas restarted" }))); }
     exports.current.clear();
     mediaAcks.current.clear();
     setReady(false);
     setWebKey((n) => n + 1);
-  }, []);
+  }, [t]);
 
   useImperativeHandle(ref, () => ({
     cancelExport: () => {
@@ -689,7 +689,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
       let timer: ReturnType<typeof setTimeout>;
       const cleanup = () => { clearTimeout(timer); signal?.removeEventListener("abort", abort); };
       const abort = () => { cleanup(); videoMatteReqs.current.delete(reqId); post({ type: "videoMatteCancel", reqId }); const error = new Error("cancelled"); error.name = "AbortError"; reject(error); };
-      const reset = () => { clearTimeout(timer); timer = setTimeout(() => { cleanup(); videoMatteReqs.current.delete(reqId); post({ type: "videoMatteCancel", reqId }); reject(new Error("Background removal stopped responding")); }, 200000); };
+      const reset = () => { clearTimeout(timer); timer = setTimeout(() => { cleanup(); videoMatteReqs.current.delete(reqId); post({ type: "videoMatteCancel", reqId }); reject(new Error(t("copy.d79956be9e5c", { defaultValue: "Background removal stopped responding" }))); }, 200000); };
       if (!ready || signal?.aborted) { abort(); return; }
       signal?.addEventListener("abort", abort, { once: true });
       videoMatteReqs.current.set(reqId, { clip, fps, pages: [], storePage, resolve, reject, progress: onProgress, cleanup, reset }); reset();
@@ -732,7 +732,7 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         });
         post({ type: "exportVideo", reqId, width, height, bitrate, username, format, range, snapshot, replaceEnding });
       }),
-  }), [post, ready]);
+  }), [post, ready, t]);
 
   // ── gestures ──
 

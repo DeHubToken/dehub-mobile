@@ -1,6 +1,7 @@
 import { apiClient } from "../libs";
 import { resolveFeedSort, resolveFeedPostType } from "./nft.service";
 import type { SearchParams, GetNFTsResult, GetNFTsResponse } from "./nft.service";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 // Local helpers (duplicated from nft.service with minimal scope)
 function removeUndefined<T extends Record<string, any>>(obj: T): Partial<T> {
@@ -83,7 +84,7 @@ export async function savePost(tokenId: number | string, address?: string): Prom
     return res;
   } catch (error) {
     console.error('[FeedService] Error saving post:', error);
-    throw new Error('Failed to save post');
+    throw new Error(_translateCopy("copy.24ee478fc4ee", { defaultValue: "Failed to save post" }));
   }
 }
 
