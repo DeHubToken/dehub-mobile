@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Pressable,
   ScrollView,
+  FlatList,
+  useWindowDimensions,
   Modal,
   StyleSheet,
   LayoutChangeEvent,
@@ -62,6 +64,7 @@ import {
   AudioVisualizer,
   StaticWaveform,
   VISUALIZER_STYLES,
+  generateBars,
   type VisualizerStyle,
 } from "./AudioVisualizers";
 
@@ -299,6 +302,8 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
 const pickerStyles = StyleSheet.create({
   studioChip: { height: 36, paddingHorizontal: 6, borderRadius: 10, alignItems: "center", justifyContent: "center" },
   studioLabel: { color: "#fff", fontSize: 12, fontWeight: "500" },
+  previewTile: { width: "33.33%", padding: 6, paddingBottom: 10, borderRadius: 12 },
+  previewWindow: { height: 44, borderRadius: 8, overflow: "hidden", backgroundColor: "#030405", boxShadow: "inset 0px 0px 0px 1px rgba(255,255,255,.08)" },
   studioPill: { height: 30, flexDirection: "row", alignItems: "center", gap: 5, paddingLeft: 12, paddingRight: 9, borderRadius: 10, boxShadow: "inset 0px 1px 0px rgba(255,255,255,.12), inset 0px 0px 0px 1px rgba(255,255,255,.2)", backgroundColor: "rgba(255,255,255,.07)" },
   beam: {
     position: "absolute",
@@ -354,6 +359,58 @@ const StudioPlayGlyph = ({ playing, color }: { playing: boolean; color: string }
   </Svg>
 );
 
+/** The deck's track line (web [data-audio-studio-wave]): 100 thin bars in the
+    card's ink, played part at 95%, the rest at 35%. */
+const StudioWave = memo(({ seed, position, height, ink }: { seed: string; position: SharedValue<number>; height: number; ink: string }) => {
+  const [width, setWidth] = useState(0);
+  const peaks = useMemo(() => generateBars(seed, 100), [seed]);
+  const playedStyle = useAnimatedStyle(() => ({ width: Math.max(0, Math.min(1, position.value)) * width }));
+  const row = (opacity: number) => (
+    <View style={{ width, height, flexDirection: 'row', alignItems: 'flex-end', opacity }}>
+      {peaks.map((peak, index) => {
+        const envelope = .1 + .9 * Math.pow(Math.sin(Math.PI * index / (peaks.length - 1)), .8);
+        const slot = width / peaks.length;
+        return <View key={index} style={{ width: slot, height, justifyContent: 'flex-end' }}>
+          <View style={{ width: Math.max(1, slot * .45), height: Math.max(2, peak * envelope * 30) * height / 32, borderRadius: 1, backgroundColor: ink }} />
+        </View>;
+      })}
+    </View>
+  );
+  return (
+    <View style={{ height }} onLayout={e => { const next = e.nativeEvent.layout.width; setWidth(previous => Math.abs(previous - next) < 1 ? previous : next); }} pointerEvents="none">
+      {width > 0 && <>
+        {row(.35)}
+        <Animated.View style={[{ position: 'absolute', left: 0, top: 0, height, overflow: 'hidden' }, playedStyle]}>{row(.95)}</Animated.View>
+      </>}
+    </View>
+  );
+});
+
+/** Colour slider on the studio card (web [data-audio-hue]): a thin pastel track and a white ring thumb. */
+const STUDIO_HUE_TRACK = ["#ffffff", "#ff6666", "#ffdc60", "#75e88a", "#68dfe9", "#6a8ff5", "#ca7af2", "#ff6666"] as const;
+const STUDIO_HUE_STOPS = [0, .07, .22, .38, .52, .68, .83, 1] as const;
+const StudioHueSlider = memo(({ hue, onHueChange }: { hue: number; onHueChange: (hue: number) => void }) => {
+  const { t } = useTranslation();
+  const [localHue, setLocalHue] = useState(hue);
+  const [width, setWidth] = useState(0);
+  useEffect(() => { setLocalHue(hue); }, [hue]);
+  const thumb = 15;
+  return (
+    <GlassHold style={{ height: 36, flex: 1, minWidth: 0, justifyContent: "center" }}>
+      <View style={{ height: 36, justifyContent: "center" }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>
+        <LinearGradient colors={STUDIO_HUE_TRACK} locations={STUDIO_HUE_STOPS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ position: "absolute", left: 0, right: 0, height: 8, borderRadius: 4 }} />
+        {width > 0 && <View pointerEvents="none" style={{ position: "absolute", left: (localHue / 360) * (width - thumb), width: thumb, height: thumb, borderRadius: thumb / 2, borderWidth: 2, borderColor: "#ffffff", boxShadow: "0px 1px 4px rgba(0,0,0,.6)" }} />}
+        <PagerSafe>
+          <Slider style={{ width: "100%" }} minimumValue={0} maximumValue={360} step={1} value={localHue}
+            accessibilityLabel={t('audioPost.visualizerColour', { defaultValue: 'Visualizer colour' })}
+            onValueChange={setLocalHue} onSlidingComplete={onHueChange}
+            minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="transparent" />
+        </PagerSafe>
+      </View>
+    </GlassHold>
+  );
+});
+
 /** Round transport button: a dark lens with a lit top rim (web [data-audio-studio-transport] button). */
 const StudioButton = ({ size, play, material, style, children, ...rest }: React.ComponentProps<typeof TouchableOpacity> & { size: number; play?: boolean; material: StudioMaterial }) => {
   const radius = size / 2;
@@ -373,32 +430,62 @@ const StudioButton = ({ size, play, material, style, children, ...rest }: React.
 
 /* ─── Studio card style picker ──────────────────────────────── */
 // System/Glass card: one pill naming the playing style; tap opens every style in a drawer (same as web).
-const StudioStylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => {
+/** Styles the drawer adds per step as it scrolls; each brings a live preview. */
+const STYLE_PAGE = 9;
+
+/** A small live example of one style: it moves only while its tile is on screen. */
+const StylePreviewTile = memo(({ style, label, active, live, hue, position, onPress }: { style: VisualizerStyle; label: string; active: boolean; live: boolean; hue: number; position: SharedValue<number>; onPress: () => void }) => (
+  <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected: active }}
+    style={[pickerStyles.previewTile, active && { backgroundColor: "rgba(255,255,255,.06)" }, { opacity: active ? 1 : .6 }]}>
+    <View pointerEvents="none" style={pickerStyles.previewWindow}>
+      <AudioVisualizer style={style} seed={`style-preview-${style}`} isPlaying={live} hue={hue} position={position} height={44} />
+    </View>
+    <Text numberOfLines={1} style={[pickerStyles.studioLabel, { textAlign: "center", marginTop: 4 }]}>{label}</Text>
+    {active && <View pointerEvents="none" style={[pickerStyles.beam, { bottom: 3 }]} />}
+  </Pressable>
+));
+
+const StudioStylePicker: React.FC<StylePickerProps & { hue: number }> = memo(({ style: activeStyle, onStyleChange, hue }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [shown, setShown] = useState(STYLE_PAGE);
+  const [visible, setVisible] = useState<ReadonlySet<string>>(() => new Set());
   const rootStyle = useThemeRootStyle();
+  const previewPosition = useSharedValue(.4);
+  const { height: screenHeight } = useWindowDimensions();
   const label = (v: VisualizerStyle) => VISUALIZER_STYLES.find((s) => s.value === v)?.label ?? v;
+  const onViewable = useRef(({ viewableItems }: { viewableItems: { key: string }[] }) => {
+    setVisible(new Set(viewableItems.map((item) => item.key)));
+  }).current;
+  const pick = (v: VisualizerStyle) => { onStyleChange(v); setOpen(false); };
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <Pressable onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel={t("poster.style")} hitSlop={{ top: 6, bottom: 6 }} style={pickerStyles.studioPill}>
         <Text numberOfLines={1} style={pickerStyles.studioLabel}>{label(activeStyle)}</Text>
         <Icon name="ChevronDown" size={13} color="rgba(255,255,255,.7)" />
       </Pressable>
-      <GlassModal surface="theme" visible={open} onClose={() => setOpen(false)} presentation="bottom" scrollable maxHeight="60%" blurIntensity={30}>
-        <View style={[{ paddingHorizontal: 12, paddingTop: 12, paddingBottom: 16 }, rootStyle]}>
+      <GlassModal surface="theme" visible={open} onClose={() => setOpen(false)} presentation="bottom" maxHeight="70%" blurIntensity={30}>
+        <View style={[{ paddingHorizontal: 12, paddingTop: 12 }, rootStyle]}>
           <Text style={[pickerStyles.studioLabel, { fontSize: 14, fontWeight: "600", paddingHorizontal: 8, paddingBottom: 8 }]}>{t("poster.style")}</Text>
-          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-            {VISUALIZER_STYLES.map((s) => {
-              const isActive = s.value === activeStyle;
-              return (
-                <Pressable key={s.value} onPress={() => { onStyleChange(s.value); setOpen(false); }} accessibilityRole="button" accessibilityState={{ selected: isActive }}
-                  style={[pickerStyles.studioChip, { width: "33.33%", opacity: isActive ? 1 : 0.6 }]}>
-                  {isActive && <View pointerEvents="none" style={pickerStyles.beam} />}
-                  <Text numberOfLines={1} style={pickerStyles.studioLabel}>{s.label}</Text>
-                </Pressable>
-              );
-            })}
-          </View>
+          {/* A page at a time: the next nine load as the list nears its end. */}
+          <FlatList
+            data={VISUALIZER_STYLES.slice(0, shown)}
+            keyExtractor={(item) => item.value}
+            numColumns={3}
+            style={{ maxHeight: screenHeight * .55 }}
+            contentContainerStyle={{ paddingBottom: 16 }}
+            initialNumToRender={STYLE_PAGE}
+            maxToRenderPerBatch={STYLE_PAGE}
+            windowSize={3}
+            removeClippedSubviews
+            onEndReachedThreshold={.5}
+            onEndReached={() => setShown((n) => Math.min(VISUALIZER_STYLES.length, n + STYLE_PAGE))}
+            onViewableItemsChanged={onViewable}
+            viewabilityConfig={{ itemVisiblePercentThreshold: 30 }}
+            renderItem={({ item }) => (
+              <StylePreviewTile style={item.value} label={item.label} active={item.value === activeStyle} live={open && visible.has(item.value)} hue={hue} position={previewPosition} onPress={() => pick(item.value)} />
+            )}
+          />
         </View>
       </GlassModal>
     </View>
@@ -1347,7 +1434,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         <View style={[styles.glassDeck, deckShape, { paddingTop: glassWaveHeight + 22 }, compactGlass && { paddingBottom: 8 }]}>
           <LinearGradient pointerEvents="none" colors={material === 'glass' ? ['rgba(220,255,255,.03)', 'rgba(0,20,24,.3)', 'rgba(0,20,24,.7)'] : ['rgba(20,24,28,.12)', 'rgba(13,16,19,.6)', 'rgba(9,11,13,.95)', '#060709']} locations={material === 'glass' ? [0, .35, 1] : [0, .3, .62, 1]} style={[StyleSheet.absoluteFill, deckShape]} />
-          <View style={{ position: 'absolute', top: 3, left: 16, right: 16 }}><StaticWaveform glass seed={seed} position={position} hue={0} height={glassWaveHeight} isPlaying={shownPlaying} /></View>
+          <View style={{ position: 'absolute', top: 3, left: 16, right: 16 }}><StudioWave seed={seed} position={position} height={glassWaveHeight} ink={ink} /></View>
           <View style={{ position: 'absolute', top: glassWaveHeight + 8, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownTime)}</Text><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownDuration)}</Text></View>
           <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="transparent" style={{ height: glassWaveHeight + 4 }} /></PagerSafe></View>
           <View style={[styles.glassTransport, { gap: Math.round(Math.max(22, Math.min(48, glassWidth * .07))) }, compactGlass && { gap: 14 }]}>
@@ -1362,13 +1449,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         {/* Options like web: style picks, then lyrics, pop out, sound and
             fullscreen, wrapping; the colour and volume sliders share a row. */}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 14, paddingTop: 14, paddingHorizontal: 4 }}>
-          <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} />
+          <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} hue={hue} />
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.lyrics')} accessibilityState={{ selected: showLyrics }} onPress={() => setShowLyrics(v => !v)} style={[styles.studioOption, { marginLeft: 'auto', opacity: showLyrics ? 1 : .7 }, showLyrics && { backgroundColor: 'rgba(255,255,255,.14)' }]}>{optionGlyph('MicVocal')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.studioOption}>{optionGlyph('PictureInPicture2')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.studioOption}>{optionGlyph(isEffectivelyMuted ? 'VolumeX' : 'Volume2')}</TouchableOpacity>
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.studioOption}>{optionGlyph(isFullscreen ? 'Minimize' : 'Maximize')}</TouchableOpacity>
           <View style={{ flexBasis: '100%', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-            <HueSlider hue={hue} onHueChange={handleHueChange} flex={1} />
+            <StudioHueSlider hue={hue} onHueChange={handleHueChange} />
             <GlassHold style={{ flex: 1, height: 36, justifyContent: 'center' }}><VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor="#dce4e7" trackColor="rgba(255,255,255,.2)" /><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></GlassHold>
           </View>
         </View>
