@@ -1,5 +1,6 @@
 import React from "react";
 import { Platform } from "react-native";
+import { useReducedMotion } from "react-native-reanimated";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
@@ -52,6 +53,7 @@ const getLiveProducerScreen = () => require("../screens/LiveProducerScreen").def
 const getLiveViewerScreen = () => require("../screens/LiveViewerScreen").default;
 
 function AppNavigatorContent() {
+  const reducedMotion = useReducedMotion();
   const { isSignedIn, needsUsername } = useAuthState();
   const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
@@ -64,9 +66,9 @@ function AppNavigatorContent() {
         screenLayout={withScreenBoundary}
         screenOptions={{
           headerShown: false,
-          // A short native fade/lift keeps posts and ordinary pages connected
-          // to their source, independent of the active theme or JS workload.
-          animation: Platform.OS === 'android' ? 'fade_from_bottom' : 'default',
+          // App resources give this native transition the same centre
+          // expansion as profiles, independent of the theme or JS workload.
+          animation: Platform.OS === 'android' ? reducedMotion ? 'none' : 'fade_from_bottom' : 'default',
           // An options object, but react-native-screens is compiled from
           // source with the app's JSX runtime and hands this to a View, so
           // System Light's colour pass DOES see it: a plain white turned into

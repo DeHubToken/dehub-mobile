@@ -1,0 +1,47 @@
+name: Android navigation motion
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'android/app/src/main/res/anim/**'
+      - 'android/app/src/main/res/anim-v32/**'
+      - '.github/workflows/android-navigation-motion.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-navigation-motion-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Compile native navigation motion
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and link animation resources against Android
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -n 1)"
+          ANDROID_JAR="$(find "$ANDROID_HOME/platforms" -name android.jar | sort -V | tail -n 1)"
+          WORK="$RUNNER_TEMP/navigation-motion"
+          mkdir -p "$WORK/compiled"
+          for RESOURCE in android/app/src/main/res/anim/*.xml android/app/src/main/res/anim-v32/*.xml; do
+            "$BUILD_TOOLS/aapt2" compile "$RESOURCE" -o "$WORK/compiled"
+          done
+          cat > "$WORK/AndroidManifest.xml" <<'XML'
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.dehub.motioncheck">
+            <uses-sdk android:minSdkVersion="24" />
+            <application />
+          </manifest>
+          XML
+          "$BUILD_TOOLS/aapt2" link -I "$ANDROID_JAR" --manifest "$WORK/AndroidManifest.xml" \
+            -o "$WORK/navigation-motion.apk" "$WORK/compiled/"*.flat
+          for RESOURCE in res/anim/rns_fade_from_bottom.xml res/anim/rns_fade_to_bottom.xml \
+            res/anim-v32/rns_fade_from_bottom.xml res/anim-v32/rns_fade_to_bottom.xml; do
+            "$BUILD_TOOLS/aapt2" dump xmltree "$WORK/navigation-motion.apk" --file "$RESOURCE"
+          done
