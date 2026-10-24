@@ -4,17 +4,17 @@ import SocialLoginIcons from '../../components/auth/SocialLoginIcons';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => {
-  const React = require('react');
+  const { createElement: element } = require('react');
   return {
     View: 'View', Text: 'Text', TextInput: 'TextInput', ScrollView: 'ScrollView', Switch: 'Switch', ActivityIndicator: 'ActivityIndicator',
-    Pressable: ({ children, style, ...props }: any) => React.createElement('View', { ...props, accessible: true, style: typeof style === 'function' ? style({ pressed: false }) : style }, children),
+    Pressable: ({ children, style, ...props }: any) => element('View', { ...props, accessible: true, style: typeof style === 'function' ? style({ pressed: false }) : style }, children),
     Keyboard: { dismiss: jest.fn() },
     StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: any) => Array.isArray(styles) ? Object.assign({}, ...styles) : styles },
   };
 });
 jest.mock('../../components/auth/AuthControls', () => {
-  const React = require('react');
-  const Button = ({ label, onPress }: any) => React.createElement('View', { accessible: true, accessibilityRole: 'button', accessibilityLabel: label, onPress }, React.createElement('Text', null, label));
+  const { createElement: element } = require('react');
+  const Button = ({ label, onPress }: any) => element('View', { accessible: true, accessibilityRole: 'button', accessibilityLabel: label, onPress }, element('Text', null, label));
   return { AuthButton: Button, AuthTextButton: Button, authColors: { label: '#fff' }, AUTH_DISABLED_OPACITY: 0.45 };
 });
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
@@ -24,19 +24,19 @@ jest.mock('../../config/reown.config', () => ({ isWalletConnectAvailable: true }
 jest.mock('../../services/auth/passkeyAuth.service', () => ({ isPasskeyLoginAvailable: () => true }));
 jest.mock('../../components/auth/ImportWalletModal', () => () => null);
 jest.mock('../../components/auth/EmailLoginFlow', () => () => {
-  const React = require('react');
+  const { createElement: element } = require('react');
   const { Text } = require('react-native');
-  return React.createElement(Text, null, 'Email form');
+  return element(Text, null, 'Email form');
 });
 jest.mock('../../components/auth/PhoneLoginFlow', () => () => {
-  const React = require('react');
+  const { createElement: element } = require('react');
   const { Text } = require('react-native');
-  return React.createElement(Text, null, 'Phone form');
+  return element(Text, null, 'Phone form');
 });
 jest.mock('../../components/auth/PasskeyLoginFlow', () => () => {
-  const React = require('react');
+  const { createElement: element } = require('react');
   const { Text } = require('react-native');
-  return React.createElement(Text, null, 'Fingerprint choices');
+  return element(Text, null, 'Fingerprint choices');
 });
 
 it('replaces the email form when selecting another method and keeps provider choices available', () => {
