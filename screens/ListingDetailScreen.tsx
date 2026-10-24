@@ -71,6 +71,17 @@ function money(n: number): string {
 
 const shortAddr = (a: string) => `${a.slice(0, 6)}…${a.slice(-4)}`;
 
+const ListingImage: React.FC<{ uri: string; width: number; height: number }> = ({ uri, width, height }) => {
+  const [failed, setFailed] = useState(false);
+  return failed ? (
+    <View style={{ width, height, alignItems: 'center', justifyContent: 'center' }}>
+      <Icon name="Package" size={48} color="#52525B" />
+    </View>
+  ) : (
+    <Image source={storageImageSource(uri, width)} style={{ width, height }} contentFit="cover" transition={200} onError={() => setFailed(true)} />
+  );
+};
+
 const Stars: React.FC<{ value: number; size?: number; onPick?: (n: number) => void }> = ({
   value,
   size = 14,
@@ -343,12 +354,11 @@ export default function ListingDetailScreen() {
                 }
               >
                 {images.map((uri, i) => (
-                  <Image
+                  <ListingImage
                     key={`${uri}-${i}`}
-                    source={storageImageSource(uri, screenW)}
-                    style={{ width: screenW, height: heroH }}
-                    contentFit="cover"
-                    transition={200}
+                    uri={uri}
+                    width={screenW}
+                    height={heroH}
                   />
                 ))}
               </ScrollView>
