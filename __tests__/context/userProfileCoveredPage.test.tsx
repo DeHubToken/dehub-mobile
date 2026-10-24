@@ -5,23 +5,23 @@ import { UserProfileSheetProvider, useUserProfileSheet, useUserProfilePresentati
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' } }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: 'hazy' }) }));
-jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => {
-  const React = require('react');
-  const element = React.createElement;
-  return function Profile(props: { visible: boolean }) {
-    const [commentsOpen, setCommentsOpen] = React.useState(false);
-    const { useUserProfilePresentation } = require('../../context/UserProfileSheetContext');
-    function Comments() {
-      const state = useUserProfilePresentation();
-      return element('Comments', { identifier: state.profileIdentifier });
-    }
-    return element('Profile', { ...props, openComments: () => setCommentsOpen(true) },
-      commentsOpen ? element(Comments) : null);
-  };
-});
+jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => jest.fn());
 jest.mock('../../components/UserProfile/ProfileSurface', () => ({ PROFILE_CLOSE_MS: 180 }));
 jest.mock('../../libs/deeplink.events', () => ({ setProfileDeepLinkHandler: jest.fn() }));
 jest.mock('../../libs/visualActivity', () => ({ FeedPlaybackActiveContext: require('react').createContext(true) }));
+
+// Keep rendered components outside the hoisted factory: NativeWind rewrites
+// createElement references to a module import that Jest cannot hoist with it.
+const profileSurface = jest.requireMock('../../components/UserProfile/UserProfileBottomSheet');
+function Comments() {
+  const state = useUserProfilePresentation();
+  return React.createElement('Comments', { identifier: state.profileIdentifier });
+}
+profileSurface.mockImplementation(function Profile(props: { visible: boolean }) {
+  const [commentsOpen, setCommentsOpen] = React.useState(false);
+  return React.createElement('Profile', { ...props, openComments: () => setCommentsOpen(true) },
+    commentsOpen ? <Comments /> : null);
+});
 
 it('hides the previous page through the profile close animation without unmounting it', () => {
   jest.useFakeTimers();
