@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo } from 'react';
-import { Platform } from 'react-native';
+import { AppState, Platform } from 'react-native';
 import * as SystemUI from 'expo-system-ui';
 import { colorScheme, vars } from 'nativewind';
 import { getAppPrefs, setAppPref, useAppPrefs } from '../hooks/useAppPrefs';
@@ -14,6 +14,7 @@ import {
 import { getThemeSkin, type ThemeSkin } from '../theme/skins';
 import { canvasPageBackground } from '../theme/pageBackground';
 import { themeAccent, tintSkin, type Rgb } from '../theme/themeColor';
+import { setNavigationBarDarkIcons } from '../modules/system-bars';
 // Plain JS shared with the JSX runtime, which loads before any of this.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { setThemePass } = require('../libs/jsx/shape') as {
@@ -277,6 +278,16 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     colorScheme.set(isLight ? 'light' : 'dark');
     SystemUI.setBackgroundColorAsync(pageColors.background).catch(() => {});
   }, [pageColors.background, theme, isLight]);
+
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const apply = () => { void setNavigationBarDarkIcons(isLight); };
+    apply();
+    const subscription = AppState?.addEventListener?.('change', state => {
+      if (state === 'active') apply();
+    });
+    return () => subscription?.remove();
+  }, [isLight]);
 
   const setTheme = useCallback((nextTheme: AppThemeName) => {
     setAppPref('theme', nextTheme);
