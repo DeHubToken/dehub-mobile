@@ -92,8 +92,8 @@ export default function NearIntentBuy({ active = false, initialDhbAmount = 50000
     if (!receipt.paymentTokenAddress || receipt.wrapNativePayment) {
       const balance = ethers.BigNumber.from(await signing.request({ method: 'eth_getBalance', params: [wallet, 'latest'] }));
       if (balance.lt(amount)) {
-        const symbol = receipt.originSymbol || 'native token';
-        throw new Error(`Insufficient ${symbol} on ${paymentChainName(receipt.originBlockchain || '')}. Your wallet has ${formatPaymentAmount(ethers.utils.formatUnits(balance, receipt.paymentDecimals))} ${symbol}; this payment needs ${formatPaymentAmount(receipt.amountInFormatted)} ${symbol}. Choose another currency or a smaller amount.`);
+        const symbol = receipt.originSymbol || t("copy.23d2c78e67a0", { defaultValue: "native token" });
+        throw new Error(t("copy.b9dd5e4e9c87", { defaultValue: "Insufficient {{value1}} on {{value2}}. Your wallet has {{value3}} {{value1}}; this payment needs {{value4}} {{value1}}. Choose another currency or a smaller amount.", value1: symbol, value2: paymentChainName(receipt.originBlockchain || ''), value3: formatPaymentAmount(ethers.utils.formatUnits(balance, receipt.paymentDecimals)), value4: formatPaymentAmount(receipt.amountInFormatted) }));
       }
     }
     if (signing.smartAccount) {

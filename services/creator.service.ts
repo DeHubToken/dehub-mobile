@@ -3,6 +3,7 @@ import { dehubAuthHeaders } from './ai.service';
 import * as FileSystem from 'expo-file-system/legacy';
 import { materialise } from '../libs/assistantMedia';
 import { contentTypeForExtension, fileExtension } from '../libs/storage-upload';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface CreatorAsset {
   id: string;
@@ -25,12 +26,12 @@ export interface CreatorAssetToSave extends CreatorAsset {
 
 async function libraryCall(body: Record<string, unknown>, walletAddress?: string): Promise<any> {
   const headers = await dehubAuthHeaders(walletAddress);
-  if (!headers['x-dehub-token']) throw new Error('Sign in to save your generations.');
+  if (!headers['x-dehub-token']) throw new Error(_translateCopy("copy.3aea1c77425c", { defaultValue: "Sign in to save your generations." }));
   const response = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/creator-library`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: JSON.stringify(body),
   });
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error || 'Could not save your generation.');
+  if (!response.ok) throw new Error(data.error || _translateCopy("copy.d76f182d2c8e", { defaultValue: "Could not save your generation." }));
   return data;
 }
 
@@ -39,13 +40,13 @@ export async function saveCreatorAsset(asset: CreatorAssetToSave, walletAddress?
   const { url, ...metadata } = asset;
   const prepared = await libraryCall({ action: 'prepare', id: asset.id, metadata }, walletAddress);
   if (prepared.saved) return;
-  if (!url || !prepared.path || !prepared.token) throw new Error('No generated media to save.');
+  if (!url || !prepared.path || !prepared.token) throw new Error(_translateCopy("copy.75b344eed348", { defaultValue: "No generated media to save." }));
   let local: string | undefined;
   try {
     if (asset.kind === 'model3d') {
-      if (!FileSystem.cacheDirectory) throw new Error('No cache directory available.');
+      if (!FileSystem.cacheDirectory) throw new Error(_translateCopy("copy.2b3a717c2c9c", { defaultValue: "No cache directory available." }));
       const download = await FileSystem.downloadAsync(url, `${FileSystem.cacheDirectory}${asset.id}.glb`);
-      if (download.status < 200 || download.status >= 300) throw new Error('Could not download the generated model.');
+      if (download.status < 200 || download.status >= 300) throw new Error(_translateCopy("copy.013235f0e197", { defaultValue: "Could not download the generated model." }));
       local = download.uri;
     } else {
       local = await materialise(url, asset.kind);
@@ -58,7 +59,7 @@ export async function saveCreatorAsset(asset: CreatorAssetToSave, walletAddress?
         headers: { apikey: env.SUPABASE_PUBLISHABLE_KEY, 'x-upsert': 'true',
           'Content-Type': asset.kind === 'model3d' ? 'model/gltf-binary' : contentTypeForExtension(ext) } },
     );
-    if (upload.status < 200 || upload.status >= 300) throw new Error('Could not upload the generated media.');
+    if (upload.status < 200 || upload.status >= 300) throw new Error(_translateCopy("copy.a810f804512d", { defaultValue: "Could not upload the generated media." }));
     await libraryCall({ action: 'complete', id: asset.id }, walletAddress);
   } finally {
     if (local && local !== url) await FileSystem.deleteAsync(local, { idempotent: true }).catch(() => {});
@@ -67,19 +68,19 @@ export async function saveCreatorAsset(asset: CreatorAssetToSave, walletAddress?
 
 export async function listCreatorAssets(offset = 0): Promise<{ jobs: CreatorAsset[]; nextOffset: number | null }> {
   const headers = await dehubAuthHeaders();
-  if (!headers['x-dehub-token']) throw new Error('Sign in to see your generations.');
+  if (!headers['x-dehub-token']) throw new Error(_translateCopy("copy.095d0fbbfc1e", { defaultValue: "Sign in to see your generations." }));
   const response = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/creator-library`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', ...headers },
     body: JSON.stringify({ action: 'list', offset }),
   });
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error || 'Could not load your generations.');
+  if (!response.ok) throw new Error(data.error || _translateCopy("copy.7c01265024ec", { defaultValue: "Could not load your generations." }));
   return data;
 }
 
 export async function saveCreatorPreview(id: string, dataUrl: string, walletAddress?: string): Promise<string> {
   const match = dataUrl.match(/^data:(image\/(?:webp|png|jpeg));base64,(.+)$/);
-  if (!match || dataUrl.length > 800_000 || !FileSystem.cacheDirectory) throw new Error('Invalid generation preview.');
+  if (!match || dataUrl.length > 800_000 || !FileSystem.cacheDirectory) throw new Error(_translateCopy("copy.2561f4b7a96a", { defaultValue: "Invalid generation preview." }));
   const prepared = await libraryCall({ action: 'prepare-preview', id }, walletAddress);
   const local = `${FileSystem.cacheDirectory}${id}-preview`;
   try {
@@ -89,7 +90,7 @@ export async function saveCreatorPreview(id: string, dataUrl: string, walletAddr
       local, { httpMethod: 'PUT', uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
         headers: { apikey: env.SUPABASE_PUBLISHABLE_KEY, 'x-upsert': 'true', 'Content-Type': match[1] } },
     );
-    if (upload.status < 200 || upload.status >= 300) throw new Error('Could not save the preview.');
+    if (upload.status < 200 || upload.status >= 300) throw new Error(_translateCopy("copy.af2cca1e7b95", { defaultValue: "Could not save the preview." }));
     const completed = await libraryCall({ action: 'complete-preview', id }, walletAddress);
     return completed.posterUrl;
   } finally { await FileSystem.deleteAsync(local, { idempotent: true }).catch(() => {}); }

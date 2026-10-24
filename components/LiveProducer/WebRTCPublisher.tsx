@@ -21,6 +21,7 @@ import {
   withOpusFec,
 } from "../../libs/live-ingest";
 import { videoEffectChain, type VideoLookId } from "./videoLooks";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 /**
  * How long after a publish is accepted a dead connection still means the media
@@ -253,7 +254,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       dbg('acquire() start', { facing, micMuted, cameraOff, Platform: Platform.OS });
       const granted = await ensureCapturePermissions();
       if (!granted) {
-        const err = new Error("Camera/Microphone permission denied");
+        const err = new Error(_translateCopy("copy.e00f9d796d44", { defaultValue: "Camera/Microphone permission denied" }));
         dbe('permission denied');
         onErrorRef.current?.(err);
         acquiringRef.current = false;
@@ -419,7 +420,8 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
             dbe('Livepeer fallback failed', fallbackErr);
           }
         }
-        onErrorRef.current?.(err);
+        // "Peer failed" stays literal at its throw sites; only the shown copy is translated.
+        onErrorRef.current?.(err?.message === "Peer failed" ? new Error(_translateCopy("copy.ff8bc3b6f5a4", { defaultValue: "Peer failed" })) : err);
       };
 
       /**
@@ -456,7 +458,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         if (!streamKey) {
           dbe('start(): aborted, streamKey is empty');
           startingRef.current = false;
-          onErrorRef.current?.(new Error("Stream key missing — cannot publish"));
+          onErrorRef.current?.(new Error(_translateCopy("copy.4ee92509d2e0", { defaultValue: "Stream key missing — cannot publish" })));
           return;
         }
         dbg('resolving WHIP endpoint', { gen: myGen });
@@ -606,7 +608,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
                 const cur = pcRef.current;
                 if (!cur || cur.connectionState !== "connected") {
                   setReconnecting(false);
-                  onErrorRef.current?.(new Error("Peer disconnected"));
+                  onErrorRef.current?.(new Error(_translateCopy("copy.3c6fe9ad4d75", { defaultValue: "Peer disconnected" })));
                 }
               }, graceMs);
             }
@@ -628,7 +630,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           };
           try { pc.addEventListener?.("icegatheringstatechange", fn); } catch {}
         });
-        if (!localDesc?.sdp) throw new Error("Failed to gather ICE candidates");
+        if (!localDesc?.sdp) throw new Error(_translateCopy("copy.31af95f9d13d", { defaultValue: "Failed to gather ICE candidates" }));
         dbg('posting offer to WHIP', { gen: myGen });
         let resp: Awaited<ReturnType<typeof fetch>>;
         // A dropped post never errors, it hangs — and the network-failure
@@ -674,7 +676,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
             if (directSelfHosted) directSignalingDead = true;
           }
           throw new Error(
-            `WHIP offer failed: ${resp.status} ${await resp.text()}`
+            _translateCopy("copy.f91fb5efc419", { defaultValue: "WHIP offer failed: {{value1}} {{value2}}", value1: resp.status, value2: await resp.text() })
           );
         }
         if (myGen !== pcGenerationRef.current) { dbg('start(): stale or cancelled before applying answer', { gen: myGen, currentGen: pcGenerationRef.current }); return; }
@@ -693,7 +695,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           if (myGen !== pcGenerationRef.current) return;
           if (!pcRef.current || pcRef.current.connectionState !== "connected") {
             setReconnecting(false);
-            void failOrFallBack(new Error("Negotiation timeout"));
+            void failOrFallBack(new Error(_translateCopy("copy.4961dc04f31c", { defaultValue: "Negotiation timeout" })));
           }
         }, graceMs);
 

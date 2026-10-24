@@ -27,7 +27,7 @@ interface Chip {
 }
 
 const CHIPS: Chip[] = [
-  { get label() { return _translateCopy("copy.f4b92103156d", { defaultValue: "📰 What's new?" }); }, action: { kind: 'prompt', text: "What's new on DeHub?" } },
+  { get label() { return _translateCopy("copy.f4b92103156d", { defaultValue: "📰 What's new?" }); }, action: { kind: 'prompt', get text() { return _translateCopy("copy.fcb915eabe62", { defaultValue: "What's new on DeHub?" }); } } },
   { label: '✨', labelKey: 'creator.presets', action: { kind: 'templates' } },
   { get label() { return _translateCopy("copy.9d5c64ebd6a0", { defaultValue: "🎨 Make DeHub Poster" }); }, action: { kind: 'poster' } },
   { get label() { return _translateCopy("copy.768e8893617f", { defaultValue: "🖼️ Generate image" }); }, action: { kind: 'prompt', text: 'Generate an image of ' } },

@@ -5,6 +5,7 @@ import env from "../config/env";
 import { getAuthToken } from "./auth.utils";
 import { tokenRefreshManager } from "./token-refresh";
 import { formatUploadErrorMessage, type XhrUploadError } from "./xhr-upload";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 /**
  * Chunked, resumable uploads — the node-uploadx protocol PeerTube uses.
@@ -62,8 +63,14 @@ export const MAX_CHUNK_BYTES = 16 * 1024 * 1024;
 const TARGET_CHUNK_MS = 8_000;
 const REQUEST_TIMEOUT_MS = 30_000;
 const MAX_RETRY_MS = 30_000;
-/** Give up once nothing has got through for this long; the server drops a session after an hour idle. */
-const GIVE_UP_AFTER_MS = 50 * 60_000;
+/**
+ * Give up once nothing has got through for this long. The post job waits on
+ * this upload, so it is long enough to ride out a dropped connection, not an
+ * hour: past it the post sends the file itself.
+ */
+const GIVE_UP_AFTER_MS = 10 * 60_000;
+/** Consecutive 5xx answers before handing over to the single-request upload. */
+const MAX_SERVER_ERRORS = 4;
 /** A session that cannot even be opened this many times means the endpoint is unreachable, not the network. */
 const CREATE_ATTEMPTS = 3;
 
@@ -77,6 +84,8 @@ interface Reply {
 class TransientError extends Error {}
 /** The token was refreshed after a 401: send again straight away. */
 class RetryNowError extends TransientError {}
+/** The server answered, with a 5xx. Retried, but only a few times in a row. */
+class ServerError extends TransientError {}
 /** The server no longer knows the session (expired after an hour idle): start a new one. */
 class SessionGoneError extends Error {}
 class CancelledError extends Error {
@@ -186,7 +195,7 @@ function errorFrom(reply: Reply): XhrUploadError {
   } catch {
     /* not JSON */
   }
-  const err: XhrUploadError = new Error(formatUploadErrorMessage(body, `Upload failed (${reply.status})`));
+  const err: XhrUploadError = new Error(formatUploadErrorMessage(body, _translateCopy("copy.c5fcf1849ea8", { defaultValue: "Upload failed ({{value1}})", value1: reply.status })));
   err.status = reply.status;
   if (typeof body?.code === "string") err.code = body.code;
   return err;
@@ -245,6 +254,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
   let createFailures = 0;
   let restarts = 0;
   let authRetries = 0;
+  let serverErrors = 0;
   let lastProgressAt = Date.now();
   let reported = -1;
 
@@ -256,7 +266,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
     }
   };
 
-  const signedOut = (): XhrUploadError => Object.assign(new Error("Session expired. Please sign in again."), { status: 401 });
+  const signedOut = (): XhrUploadError => Object.assign(new Error(_translateCopy("copy.94f5e55e39ef", { defaultValue: "Session expired. Please sign in again." })), { status: 401 });
 
   /** A 401 means the token lapsed mid-upload: refresh and go on, or stop if the session is gone. */
   const reauthenticate = async () => {
@@ -306,7 +316,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       throw new RetryNowError("retry with the new token");
     }
     if (reply.status === 404 || reply.status === 405) throw new ResumableUnsupportedError(`HTTP ${reply.status}`);
-    if (reply.status >= 500 && reply.status !== 507) throw new TransientError(`HTTP ${reply.status}`);
+    if (reply.status >= 500 && reply.status !== 507) throw new ServerError(`HTTP ${reply.status}`);
     throw errorFrom(reply);
   };
 
@@ -317,7 +327,8 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       throw new RetryNowError("retry with the new token");
     }
     if (reply.status === 404) throw new SessionGoneError();
-    if (reply.status === 409 || reply.status >= 500 || reply.status === 0) throw new TransientError(`HTTP ${reply.status}`);
+    if (reply.status >= 500) throw new ServerError(`HTTP ${reply.status}`);
+    if (reply.status === 409 || reply.status === 0) throw new TransientError(`HTTP ${reply.status}`);
     throw errorFrom(reply);
   };
 
@@ -440,6 +451,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       chunk = nextChunkSize(chunk, offset - start, Date.now() - startedAt);
       failures = 0;
       authRetries = 0;
+      serverErrors = 0;
       lastProgressAt = Date.now();
       report(offset);
     } catch (err) {
@@ -449,7 +461,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       }
       if (err instanceof SessionGoneError) {
         // Expired (an hour in the background) or swept: start again from byte zero.
-        if (++restarts > 2) throw new Error("Upload failed — please check your connection and try again");
+        if (++restarts > 2) throw new Error(_translateCopy("copy.580bfac1001b", { defaultValue: "Upload failed — please check your connection and try again" }));
         sessionUrl = null;
         offset = 0;
         resync = false;
@@ -465,12 +477,18 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
         if (!(err instanceof ResumableUnsupportedError)) cancel();
         throw err;
       }
+      if (err instanceof ServerError && ++serverErrors >= MAX_SERVER_ERRORS) {
+        // The old upload failed fast and fell back; a server that keeps
+        // erroring should not hold the post for the whole retry window.
+        cancel();
+        throw new ResumableUnsupportedError("server keeps failing");
+      }
       failures++;
       resync = true;
       chunk = Math.max(MIN_CHUNK_BYTES, Math.floor(chunk / 2 / MIN_CHUNK_BYTES) * MIN_CHUNK_BYTES);
       if (Date.now() - lastProgressAt > GIVE_UP_AFTER_MS) {
         cancel();
-        throw new Error("Upload failed — please check your connection and try again");
+        throw new Error(_translateCopy("copy.580bfac1001b", { defaultValue: "Upload failed — please check your connection and try again" }));
       }
       await waitToRetry(failures, retryBaseMs, abortRef).catch((cancelled) => {
         cancel();

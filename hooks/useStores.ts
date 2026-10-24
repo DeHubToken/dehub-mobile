@@ -175,7 +175,7 @@ export function useCreateStore() {
       avatar_url?: string;
       banner_url?: string;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { data, error } = await withWalletHeader(
         supabase
@@ -220,7 +220,7 @@ export function useUpdateStore() {
       avatar_url?: string;
       banner_url?: string;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { error } = await withWalletHeader(
         supabase.from("stores").update(updates).eq("id", id),
@@ -281,7 +281,7 @@ export function useCreateListing() {
       pod_provider?: string | null;
       status?: string;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { data, error } = await withWalletHeader(
         supabase
@@ -307,11 +307,12 @@ export function useCreateListing() {
 }
 
 export function useUpdateListing() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, ...updates }: { id: string; [key: string]: any }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { error } = await withWalletHeader(
         supabase.from("store_listings").update(updates).eq("id", id),
@@ -327,11 +328,12 @@ export function useUpdateListing() {
 }
 
 export function useUpdateOrderStatus() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, status }: { id: string; status: string }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { error } = await withWalletHeader(
         supabase.from("store_orders").update({ status }).eq("id", id),
@@ -462,7 +464,7 @@ export function useCreateOrder() {
       shipping_address?: string;
       notes?: string;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { data, error } = await withWalletHeader(
         supabase
@@ -534,7 +536,7 @@ export function useCreateReview() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (params: { listing_id: string; rating: number; comment?: string }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { data, error } = await withWalletHeader(
         supabase

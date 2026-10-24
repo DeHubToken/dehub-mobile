@@ -3,6 +3,7 @@ import Constants from "expo-constants";
 import env from "../config/env";
 import { createAuthHeaders } from "../libs/auth.utils";
 import { tokenRefreshManager } from "../libs/token-refresh";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
 const PLATFORM = Platform.OS;
@@ -29,6 +30,10 @@ export function unwrapUploadResponse<T = any>(res: unknown, unwrapResult = true)
   return ((raw as any)?.result ?? raw) as T;
 }
 
+/** What an upstream Solana RPC 429 is reported as. Also recognised by `isRateLimitUploadError`. */
+const solanaRateLimitMessage = () =>
+  _translateCopy("copy.f69016ffb3fc", { defaultValue: "Solana posting is temporarily unavailable — DeHub's server hit an RPC rate limit. Wait a few minutes and retry, or switch to Base/BNB to post now." });
+
 /** True when a thrown/rejected upload error looks like an upstream Solana RPC 429. */
 export function isRateLimitUploadError(message?: string): boolean {
   if (!message) return false;
@@ -37,7 +42,9 @@ export function isRateLimitUploadError(message?: string): boolean {
     lower.includes("429") ||
     lower.includes("rate limit") ||
     lower.includes("too many requests") ||
-    lower.includes("busy right now")
+    lower.includes("busy right now") ||
+    // The message below in the reader's language, so retries still fire outside English.
+    message.includes(solanaRateLimitMessage())
   );
 }
 
@@ -49,13 +56,10 @@ export function formatUploadErrorMessage(body: any, fallback: string): string {
 
   const lower = parts.toLowerCase();
   if (isRateLimitUploadError(lower)) {
-    return (
-      "Solana posting is temporarily unavailable — DeHub's server hit an RPC rate limit. " +
-      "Wait a few minutes and retry, or switch to Base/BNB to post now."
-    );
+    return solanaRateLimitMessage();
   }
   if (lower.includes("insufficient") && lower.includes("sol")) {
-    return "Insufficient SOL for transaction fees. Add a small amount of SOL to your wallet and try again.";
+    return _translateCopy("copy.8545ef1f05c7", { defaultValue: "Insufficient SOL for transaction fees. Add a small amount of SOL to your wallet and try again." });
   }
 
   return body?.msg || body?.error_msg || body?.message || fallback;
@@ -111,7 +115,7 @@ export async function xhrUploadFormData<T = any>(
             reject(new Error("Invalid JSON response from server"));
           }
         } else {
-          let msg = `Upload failed (${xhr.status})`;
+          let msg = _translateCopy("copy.c5fcf1849ea8", { defaultValue: "Upload failed ({{value1}})", value1: xhr.status });
           let body: any;
           try {
             body = JSON.parse(xhr.responseText);
@@ -129,11 +133,11 @@ export async function xhrUploadFormData<T = any>(
     };
 
     xhr.onerror = () => {
-      settle(() => reject(new Error("Network error during upload")));
+      settle(() => reject(new Error(_translateCopy("copy.ad73ec994362", { defaultValue: "Network error during upload" }))));
     };
 
     xhr.ontimeout = () => {
-      settle(() => reject(new Error("Upload timed out")));
+      settle(() => reject(new Error(_translateCopy("copy.4415167f2cdc", { defaultValue: "Upload timed out" }))));
     };
 
     // Periodically check if abort was requested

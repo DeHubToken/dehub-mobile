@@ -207,9 +207,9 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     const slug = profileData?.username || profileData?.address;
     if (!slug) return;
     const url = ShareLinks.profile(slug);
-    const message = `Check out ${profileData?.displayName || "this user"} on DeHub ${url}`;
+    const message = t("copy.13de76e4ca28", { defaultValue: "Check out {{value1}} on DeHub {{value2}}", value1: profileData?.displayName || t("copy.0913f7bb109b", { defaultValue: "this user" }), value2: url });
     closeMenuThen(() => { shareProfile(url, message); });
-  }, [closeMenuThen, profileData]);
+  }, [closeMenuThen, profileData, t]);
 
   const handleMenuCopyUrl = useCallback(() => {
     const slug = profileData?.username || profileData?.address;
@@ -676,7 +676,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
       <ConfirmBlockModal
         visible={showBlockConfirm}
         mode={youBlocked ? "unblock" : "block"}
-        targetLabel={profileData?.displayName || "user"}
+        targetLabel={profileData?.displayName || t("copy.04f8996da763", { defaultValue: "user" })}
         onConfirm={handleConfirmBlock}
         onCancel={() => setShowBlockConfirm(false)}
         loading={blockLoading}

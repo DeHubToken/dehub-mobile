@@ -1,3 +1,5 @@
+import i18n from 'i18next';
+import en from '../../i18n/locales/en.json';
 import {
   parseDehubLink,
   findDehubLinks,
@@ -297,6 +299,10 @@ describe('stripping', () => {
 });
 
 describe('dehubLinkLabel', () => {
+  beforeAll(async () => {
+    await i18n.init({ lng: 'en', fallbackLng: 'en', resources: { en: { translation: en } } });
+  });
+
   it('names every kind', () => {
     expect(dehubLinkLabel('post')).toBe('post');
     expect(dehubLinkLabel('listing')).toBe('item');

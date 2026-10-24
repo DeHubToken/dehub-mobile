@@ -7,6 +7,7 @@ import { getNFT } from "../../services/nft.service";
 import { getAvatarUrl, buildFeedImageUrls } from "../../libs/misc";
 import { truncateAddress } from "../../libs/strings.util";
 import { nftToReplyPost, resolveReplyPostThumbnail } from "../../libs/replyPostDisplay";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 /**
  * Rich preview card for a DeHub post link shared in a DM — mirrors the web
@@ -33,8 +34,11 @@ const metaCache = new Map<string, PostMeta | null>();
 const cardWidth = (windowWidth: number) => Math.min(240, Math.round(windowWidth * 0.75) - 40);
 
 /** True when the fetch came back without anything worth showing on the card. */
+const fallbackTitle = (tokenId: string): string =>
+  _translateCopy("copy.a17c49cfedad", { defaultValue: "Post #{{value1}}", value1: tokenId });
+
 const isSparse = (meta: PostMeta, tokenId: string): boolean =>
-  !meta.thumbnail && meta.title === `Post #${tokenId}`;
+  !meta.thumbnail && meta.title === fallbackTitle(tokenId);
 
 const resolveMeta = (raw: any, tokenId: string): PostMeta => {
   const r = raw?.result || raw || {};
@@ -56,7 +60,7 @@ const resolveMeta = (raw: any, tokenId: string): PostMeta => {
     (r.name || "").trim() ||
     (r.title || "").trim() ||
     (r.description || "").trim().slice(0, 120) ||
-    `Post #${tokenId}`;
+    fallbackTitle(tokenId);
   return {
     title,
     thumbnail,

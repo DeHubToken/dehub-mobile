@@ -38,15 +38,15 @@ const PaymentBadgeComponent: React.FC<PaymentBadgeProps> = ({
   if (failed) {
     label = displayAmount
       ? t("dm.paymentFailedAmount", { amount: amountText })
-      : `Payment failed`;
+      : t("copy.17aadc092fe6", { defaultValue: "Payment failed" });
   } else if (isPending) {
     label = displayAmount
       ? t("dm.paymentSendingAmount", { amount: amountText })
-      : `Confirming payment…`;
+      : t("copy.68f62ede29ae", { defaultValue: "Confirming payment…" });
   } else {
     label = displayAmount
       ? t("dm.paymentSentWith", { amount: amountText })
-      : `Paid message`;
+      : t("copy.86e6eb97b77a", { defaultValue: "Paid message" });
   }
 
   // Pick icon & color

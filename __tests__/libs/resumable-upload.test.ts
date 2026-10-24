@@ -292,6 +292,23 @@ it('starts a new session when the server has dropped the old one', async () => {
   expect(Buffer.from(mockServer.received).equals(Buffer.from(data))).toBe(true);
 });
 
+it('hands over to the old upload when the server keeps erroring, instead of holding the post', async () => {
+  putFile(3 * FIRST_CHUNK_BYTES);
+  mockServer.faults = [503, 500, 502, 500];
+
+  await expect(upload()).rejects.toBeInstanceOf(ResumableUnsupportedError);
+  expect(chunkPuts()).toHaveLength(4);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  expect(mockServer.requests.some((r) => r.method === 'DELETE' && r.url.includes('upload_id=s1'))).toBe(true);
+});
+
+it('keeps going through server errors that are not back to back', async () => {
+  putFile(3 * FIRST_CHUNK_BYTES);
+  mockServer.faults = [503, 500, 502, undefined, 500, 500, 500];
+
+  await expect(upload()).resolves.toMatchObject({ draftId: 'draft-1' });
+});
+
 it('leaves a file it cannot read in ranges to the old upload', async () => {
   await expect(upload({ uri: 'content://media/external/video/1' })).rejects.toBeInstanceOf(ResumableUnsupportedError);
   expect(mockServer.requests).toHaveLength(0);

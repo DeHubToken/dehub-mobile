@@ -17,6 +17,7 @@
  */
 import env from '../config/env';
 import { createLogger } from './logger';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const log = createLogger('SupabaseRelay');
 
@@ -106,7 +107,7 @@ export function createSupabaseRelayFetch(baseFetch: typeof fetch = fetch): typeo
         const res = await baseFetch(relayUrl, init);
         if (fromSupabase(res)) return res;
         relayFailed(path);
-        relayError = new TypeError('Network request failed');
+        relayError = new TypeError(_translateCopy('copy.14101cfd7af1', { defaultValue: 'Network request failed' }));
       } catch (err) {
         relayError = err;
       }
@@ -140,7 +141,7 @@ export function createSupabaseRelayFetch(baseFetch: typeof fetch = fetch): typeo
       if (signal?.aborted && !timedOut) throw caught;
       // Our deadline reads as an AbortError, which callers treat as their own
       // cancel. Surface it as the network failure it is.
-      const err = timedOut ? new TypeError('Network request timed out') : caught;
+      const err = timedOut ? new TypeError(_translateCopy('copy.5d9780ca6b35', { defaultValue: 'Network request timed out' })) : caught;
       directFailed(path, err);
       if (!replayable || Date.now() < relayUnusableUntil) throw err;
       try {

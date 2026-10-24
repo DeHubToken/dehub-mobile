@@ -830,14 +830,19 @@ export default function UploadScreen() {
       // rather than being refused for a time in the past.
       if (!Number.isNaN(when.getTime()) && when.getTime() > Date.now()) setScheduledDate(when);
     }
+    if (incomingDraft.visibility) setVisibility(incomingDraft.visibility);
+    if (incomingDraft.contentWarning !== undefined) setContentWarning(incomingDraft.contentWarning);
+    if (incomingDraft.quotePolicy) setQuotePolicy(incomingDraft.quotePolicy);
+    if (incomingDraft.replyPolicy) setReplyPolicy(incomingDraft.replyPolicy);
 
     // Restore images (we can only restore URIs — they may be stale)
     if (incomingDraft.imageUris.length > 0) {
-      const assets = incomingDraft.imageUris.map((uri) => ({
+      const assets = incomingDraft.imageUris.map((uri, i) => ({
         uri,
         width: 0,
         height: 0,
         assetId: undefined,
+        description: incomingDraft.imageAlts?.[i] ?? undefined,
       })) as any[];
       setPickedImages(assets);
     }
@@ -848,6 +853,7 @@ export default function UploadScreen() {
         width: 0,
         height: 0,
         assetId: undefined,
+        description: incomingDraft.videoAlt ?? undefined,
       } as any);
     }
     // Deliberately NOT deleted here. Deleting at mount meant a crash or
@@ -1576,7 +1582,15 @@ export default function UploadScreen() {
     scheduledDate: scheduledDate ? scheduledDate.toISOString() : null,
     isMature,
     isForKids,
-  }), [bodyText, titleText, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, isMature, isForKids]);
+    // Who may see, quote and reply, the warning and the alt text — a draft that
+    // dropped them reopened a followers-only post as a public one.
+    visibility,
+    contentWarning,
+    quotePolicy,
+    replyPolicy,
+    imageAlts: pickedImages.map((img) => img.description ?? null),
+    videoAlt: pickedVideo?.description ?? null,
+  }), [bodyText, titleText, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, thumbnailUri, coverUri, monetization, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, isMature, isForKids, visibility, contentWarning, quotePolicy, replyPolicy]);
 
   /** "Draft" button in top bar */
   const handleDraftButton = useCallback(() => {

@@ -402,17 +402,25 @@ export default function PostInfoScreen() {
             <View style={[styles.rowBetween, { marginTop: 12 }]}>
               <Text style={styles.label}>{t("postInfo.distribution")}</Text>
               <Text style={styles.value}>
-                {loadingHolders ? t("postInfo.loading") : t("postInfo.owner", { count: Math.max(1, holders.length) })}
+                {loadingHolders
+                  ? t("postInfo.loading")
+                  : holders.length > 0
+                    ? t("postInfo.owner", { count: holders.length })
+                    : t("postInfo.unavailable")}
               </Text>
             </View>
             {loadingHolders ? (
               <ActivityIndicator color="rgba(255,255,255,0.6)" style={{ paddingVertical: 8 }} />
+            ) : holders.length === 0 ? (
+              // A failed chain read, or no transfers in the scanned window, says
+              // nothing about who owns it, so no "creator owns 100%" row here.
+              <Text style={styles.muted}>{t("postInfo.ownersUnavailable")}</Text>
             ) : (
-              (holders.length > 0 ? holders : [{ address: minter.toLowerCase(), balance: TOTAL_FRACTIONS, percentage: 100 }])
+              holders
                 .filter((h) => !!h.address)
                 .map((h, i) => (
                   <View key={h.address} style={styles.holderRow}>
-                    {MEDALS[i + 1] && holders.length > 0 ? (
+                    {MEDALS[i + 1] ? (
                       <Image source={MEDALS[i + 1]} style={styles.medal} contentFit="contain" />
                     ) : (
                       <View style={styles.rank}>

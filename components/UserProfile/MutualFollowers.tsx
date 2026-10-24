@@ -19,18 +19,18 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
   const displayed = mutuals.slice(0, MAX_DISPLAY);
   const remaining = mutuals.length - MAX_DISPLAY;
 
-  const names = displayed.map((m) => m.user.username || m.user.displayName || "unknown");
+  const names = displayed.map((m) => m.user.username || m.user.displayName || _copy("copy.b23a6a8439c0", { defaultValue: "unknown" }));
 
   let text: string;
   if (names.length === 1) {
     text = names[0];
   } else if (names.length === 2) {
-    text = `${names[0]} and ${names[1]}`;
+    text = _copy("copy.f4780f76354c", { defaultValue: "{{value1}} and {{value2}}", value1: names[0], value2: names[1] });
   } else {
     text =
       remaining > 0
         ? `${names.join(", ")} +${remaining}`
-        : `${names[0]}, ${names[1]} and ${names[2]}`;
+        : _copy("copy.3ff66a9762c9", { defaultValue: "{{value1}}, {{value2}} and {{value3}}", value1: names[0], value2: names[1], value3: names[2] });
   }
 
   return (

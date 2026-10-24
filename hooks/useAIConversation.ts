@@ -1,3 +1,5 @@
+import { useTranslation as _useCopy } from 'react-i18next';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useDraftConversation } from './useDraftConversation';
 /**
  * Assistant conversation storage.
@@ -167,7 +169,7 @@ async function scanPostChats(userId: string): Promise<ConversationEntry[]> {
         const firstAssistant = messages.find((m: AIChatMessage) => m.role === 'assistant');
         const title = firstAssistant
           ? firstAssistant.content.slice(0, 60).replace(/\n/g, ' ')
-          : `Post chat`;
+          : _translateCopy("copy.5b930d003d06", { defaultValue: "Post chat" });
 
         entries.push({
           id: `post_${postId}`,
@@ -286,7 +288,7 @@ async function fetchRemoteConversations(wallet: string): Promise<ConversationEnt
       id: `remote_${row.id}`,
       remoteId: row.id,
       remoteOnly: true,
-      title: row.title || 'Conversation',
+      title: row.title || _translateCopy("copy.ccca18175753", { defaultValue: "Conversation" }),
       updatedAt: row.updated_at ? Date.parse(row.updated_at) : 0,
     }));
   } catch (err) {
@@ -384,6 +386,7 @@ export async function fetchAssistantMedia(wallet: string): Promise<AssistantMedi
 
 export function useAIConversation(userId: string, surface = 'assistant') {
   const draftSession = useDraftConversation(surface);
+  const { t: _copy } = _useCopy();
   const conversationId = draftSession.id;
   // Live copy for saveMessage. The reply is committed by a callback captured
   // before the first save assigned an id, so reading the state value there
@@ -615,7 +618,7 @@ export function useAIConversation(userId: string, surface = 'assistant') {
       const firstUser = newMessages.find((m) => m.role === 'user');
       const title = firstUser
         ? firstUser.content.slice(0, 60).replace(/\n/g, ' ')
-        : 'New conversation';
+        : _copy("copy.396c946f0c79", { defaultValue: "New conversation" });
 
       if (existingIdx >= 0) {
         index[existingIdx].updatedAt = now;
@@ -633,7 +636,7 @@ export function useAIConversation(userId: string, surface = 'assistant') {
       await writeIndex(userId, index);
       if (isMounted.current && isCurrent()) setConversations([...index]);
     },
-    [userId, postContext, signedIn, draftSession.assign, writeKey, writeVersion, writeContext],
+    [userId, postContext, signedIn, draftSession.assign, writeKey, writeVersion, writeContext, _copy],
   );
 
   const deleteConversation = useCallback(

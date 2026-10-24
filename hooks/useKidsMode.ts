@@ -15,6 +15,7 @@
  * adult navigation while a request is in flight.
  */
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useUser } from '../context/AuthContext';
 import { KidsModeService } from '../services/kids-mode.service';
 import {
@@ -31,6 +32,7 @@ import {
 } from '../libs/onboarding-choices';
 
 export function useKidsMode() {
+  const { t: _copy } = _useCopy();
   const user = useUser() as any;
   const [locked, setLocked] = useState<boolean>(() => isKidsModeLocked());
   const [saving, setSaving] = useState(false);
@@ -81,7 +83,7 @@ export function useKidsMode() {
     // A guest who picked Kids on the first-run setup has no account to ask, so
     // the PIN they set there is the one that lets them out.
     if (!user && hasPendingKidsPin()) {
-      if (pin !== getPendingKidsPin()) throw new Error('That PIN is not right.');
+      if (pin !== getPendingKidsPin()) throw new Error(_copy("copy.8209668bd0c1", { defaultValue: "That PIN is not right." }));
       await clearPendingKidsPin();
       await setKidsModeLocked(false);
       return;
@@ -93,7 +95,7 @@ export function useKidsMode() {
     } finally {
       setSaving(false);
     }
-  }, [user]);
+  }, [user, _copy]);
 
   return { isKidsMode: locked, enable, disable, saving };
 }

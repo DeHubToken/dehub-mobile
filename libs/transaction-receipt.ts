@@ -1,7 +1,9 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
+
 export class TransactionConfirmationPendingError extends Error {
   readonly code = 'TRANSACTION_CONFIRMATION_PENDING';
   constructor(readonly hash: string) {
-    super(`Transaction submitted (${hash}). Confirmation is still pending. Check its status before sending again.`);
+    super(_translateCopy('copy.a0c2876a0618', { defaultValue: 'Transaction submitted ({{value1}}). Confirmation is still pending. Check its status before sending again.', value1: hash }));
   }
 }
 

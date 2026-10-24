@@ -345,19 +345,21 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     } catch (err) {
       const lines: string[] = [];
       if (postContext.title) lines.push(`"${postContext.title}"`);
-      if (postContext.author) lines.push(`by ${postContext.author}`);
+      if (postContext.author) lines.push(_copy("copy.227ec51b7d71", { defaultValue: "by {{value1}}", value1: postContext.author }));
       if (postContext.type) lines.push(`(${postContext.type})`);
       const details: string[] = [];
-      if (postContext.views) details.push(`${postContext.views} views`);
-      if (postContext.likes) details.push(`${postContext.likes} likes`);
-      if (postContext.comments) details.push(`${postContext.comments} comments`);
-      const fallback = `Here's what I can see about this post ${lines.join(" ")}${details.length ? ` — ${details.join(", ")}` : ""}. What would you like to know?`;
+      if (postContext.views) details.push(_copy("copy.26bf295a1314", { defaultValue: "{{count}} views", count: postContext.views }));
+      if (postContext.likes) details.push(_copy("copy.6bcb1ec0c4fb", { defaultValue: "{{count}} likes", count: postContext.likes }));
+      if (postContext.comments) details.push(_copy("copy.3313c3ed57ad", { defaultValue: "{{count}} comments", count: postContext.comments }));
+      const fallback = details.length
+        ? _copy("copy.2e9e2f7fadca", { defaultValue: "Here's what I can see about this post {{value1}} — {{value2}}. What would you like to know?", value1: lines.join(" "), value2: details.join(", ") })
+        : _copy("copy.c81062cf08d3", { defaultValue: "Here's what I can see about this post {{value1}}. What would you like to know?", value1: lines.join(" ") });
       const greeting: AIChatMessage = { role: "assistant", content: fallback };
       setMessages([greeting]);
     } finally {
       setIsLoading(false);
     }
-  }, [postContext, userContext, user]);
+  }, [postContext, userContext, user, _copy]);
 
   const closeSheet = useCallback(() => {
     translateY.value = withTiming(
@@ -420,7 +422,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
           if (imgRes.imageUrl) {
             const imgMsg: AIChatMessage = {
               role: "assistant",
-              content: imgRes.text || "Here's the image I generated:",
+              content: imgRes.text || _copy("copy.476afa65f1d5", { defaultValue: "Here's the image I generated:" }),
               imageUrl: imgRes.imageUrl,
             };
             setMessages((prev) => [...prev, imgMsg]);
@@ -428,7 +430,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
           } else {
             const fallbackMsg: AIChatMessage = {
               role: "assistant",
-              content: imgRes.text || "The image couldn't be generated. Try a different prompt.",
+              content: imgRes.text || _copy("copy.b6063af3e303", { defaultValue: "The image couldn't be generated. Try a different prompt." }),
             };
             setMessages((prev) => [...prev, fallbackMsg]);
           }
@@ -475,7 +477,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [inputText, messages, isLoading, postContext, userContext, user, cacheKey, setInputText]);
+  }, [inputText, messages, isLoading, postContext, userContext, user, cacheKey, setInputText, _copy]);
 
   const handleImagePress = useCallback(
     (url: string, allUrls: string[]) => {

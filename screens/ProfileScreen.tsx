@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useCanGoBack } from "../hooks/useCanGoBack";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 import StandaloneTabBar from "../navigation/StandaloneTabBar";
+import { runWhenSettled } from "../libs/run-when-settled";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
@@ -37,9 +38,12 @@ const ProfileScreen: React.FC = () => {
       interval = setTimeout(run, REFRESH_INTERVAL_MS);
     };
     // Refresh as soon as the profile opens, not a minute later, so the
-    // follower counts are current the moment you look at them.
-    void run();
+    // follower counts are current the moment you look at them. Once the push
+    // has landed, though: the refreshed account re-renders everything that
+    // reads it, and doing that mid-slide is what held the page back.
+    const cancelFirst = runWhenSettled(() => { void run(); }, 600);
     return () => {
+      cancelFirst();
       cancelled = true;
       if (interval) clearTimeout(interval);
     };

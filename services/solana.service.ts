@@ -27,6 +27,7 @@ import { getPrivateKeyForAddress } from "../libs/wallets.local";
 import { deriveSolanaKeypair, hexToBytes } from "../libs/solana-derive";
 import { getSolanaRpcUrl, SOLANA_MAINNET_CHAIN_ID } from "../config/solana.constants";
 import { apiClient } from "../libs/api.client";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface SolanaMintStatus {
   chainsConfigured: number[];
@@ -64,15 +65,15 @@ export async function getSolanaKeypair(): Promise<Keypair> {
 
   const address = await getSignedInEvmAddress();
   if (!address) {
-    throw new Error("Solana wallet unavailable. Sign in to post on Solana.");
+    throw new Error(_translateCopy("copy.c35bc38cccff", { defaultValue: "Solana wallet unavailable. Sign in to post on Solana." }));
   }
 
   const evmPrivateKey = await getPrivateKeyForAddress(address, {
-    purpose: "Sign your Solana transaction",
+    purpose: _translateCopy("copy.4165a45c81e2", { defaultValue: "Sign your Solana transaction" }),
   });
   if (!evmPrivateKey) {
     throw new Error(
-      "Solana wallet unavailable — this device does not hold the key for your wallet.",
+      _translateCopy("copy.db111615735d", { defaultValue: "Solana wallet unavailable — this device does not hold the key for your wallet." }),
     );
   }
 
@@ -200,7 +201,7 @@ export async function broadcastSolanaMint(
     const raw = Buffer.from(params.transactionBase64, "base64");
     tx = Transaction.from(raw);
   } catch {
-    throw new Error("Invalid mint transaction from server. Please try again.");
+    throw new Error(_translateCopy("copy.1666243e94f1", { defaultValue: "Invalid mint transaction from server. Please try again." }));
   }
 
   // Sponsored mints are fully signed by the backend already (it pays fees +
@@ -214,7 +215,7 @@ export async function broadcastSolanaMint(
       tx.partialSign(keypair);
     } catch (err) {
       throw new Error(
-        err instanceof Error ? err.message : "Failed to sign Solana transaction",
+        err instanceof Error ? err.message : _translateCopy("copy.b397b6d54c82", { defaultValue: "Failed to sign Solana transaction" }),
       );
     }
   }
@@ -266,7 +267,7 @@ export async function broadcastSolanaMint(
       // never the user's own wallet running dry — it's DeHub's funded
       // wallet. Payments (a different flow, solana-payment.service.ts) do
       // still spend the user's own SOL and keep their own message for this.
-      throw new Error("Solana minting is temporarily unavailable. Please try again shortly.");
+      throw new Error(_translateCopy("copy.315963b38d2f", { defaultValue: "Solana minting is temporarily unavailable. Please try again shortly." }));
     }
     if (
       lower.includes("blockhash") ||
@@ -274,9 +275,9 @@ export async function broadcastSolanaMint(
       lower.includes("timeout") ||
       simErrStr.includes("blockhashnotfound")
     ) {
-      throw new Error("Solana transaction expired. Please try posting again.");
+      throw new Error(_translateCopy("copy.10f35f8e47ce", { defaultValue: "Solana transaction expired. Please try posting again." }));
     }
-    throw new Error(`Solana broadcast failed: ${msg}`);
+    throw new Error(_translateCopy("copy.51386f3a6a6a", { defaultValue: "Solana broadcast failed: {{value1}}", value1: msg }));
   }
 
   try {
@@ -296,7 +297,7 @@ export async function broadcastSolanaMint(
     return {
       signature,
       confirmWarning:
-        "Posted on-chain but server sync is delayed. Your post may take a few minutes to appear.",
+        _translateCopy("copy.34005e733262", { defaultValue: "Posted on-chain but server sync is delayed. Your post may take a few minutes to appear." }),
     };
   }
 

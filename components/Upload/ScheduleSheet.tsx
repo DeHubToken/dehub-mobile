@@ -21,6 +21,7 @@ import {
 } from "date-fns";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
+import { appLocale } from "../../libs/date.util";
 
 interface ScheduleSheetProps {
   visible: boolean;
@@ -95,7 +96,7 @@ export default function ScheduleSheet({
   const formatTime = (d: Date) => {
     let h = d.getHours();
     const m = d.getMinutes().toString().padStart(2, "0");
-    const ampm = h >= 12 ? "PM" : "AM";
+    const ampm = h >= 12 ? t("copy.6b987654a411", { defaultValue: "PM" }) : t("copy.c8f48a68649d", { defaultValue: "AM" });
     h = h % 12 || 12;
     return `${h}:${m} ${ampm}`;
   };
@@ -160,7 +161,7 @@ export default function ScheduleSheet({
           </TouchableOpacity>
 
           <Text className="text-white font-semibold text-sm">
-            {format(currentMonth, "MMMM yyyy")}
+            {currentMonth.toLocaleDateString(appLocale(), { month: "long", year: "numeric" })}
           </Text>
 
           <TouchableOpacity

@@ -4,6 +4,7 @@ import { requireDeviceOwner, type VerificationOutcome } from "./biometric-gate";
 import { createLogger } from "./logger";
 import { readWalletStorage, writeWalletStorage } from './wallet-core/secure-storage';
 import { deriveFromSecret, isRawPrivateKey } from './wallet-core/derive';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const log = createLogger("wallets.local");
 
@@ -108,7 +109,7 @@ export async function upsertLocalAccount(acc: {
   // Validate before publishing either the key or account metadata.
   const phrase = acc.recoveryPhrase ? deriveFromSecret(acc.recoveryPhrase) : null;
   if (phrase && (isRawPrivateKey(phrase.secret) || phrase.ethAddress.toLowerCase() !== address)) {
-    throw new Error('Recovery phrase does not match this wallet');
+    throw new Error(_translateCopy('copy.b035d87e326c', { defaultValue: 'Recovery phrase does not match this wallet' }));
   }
   const list = await readAll();
   const idx = list.findIndex((a) => a.address.toLowerCase() === address);
@@ -259,7 +260,7 @@ export async function hardenStoredKey(address: string): Promise<boolean> {
   const addr = address?.toLowerCase();
   if (!addr) return false;
   const pk = await getPrivateKeyForAddress(addr, {
-    purpose: "Secure your DeHub wallet key on this device",
+    purpose: _translateCopy("copy.f3dc7d1cb603", { defaultValue: "Secure your DeHub wallet key on this device" }),
   });
   if (!pk) return false;
   try {
@@ -289,7 +290,7 @@ export async function getLocalAccount(address: string): Promise<LocalAccount | n
 
 export async function getLocalAccountDetails(
   address: string,
-  options: KeyAccessOptions = { purpose: "Unlock your DeHub wallet" },
+  options: KeyAccessOptions = { purpose: _translateCopy("copy.69ee84e7ca69", { defaultValue: "Unlock your DeHub wallet" }) },
 ): Promise<LocalAccountDetails | null> {
   log.debug("getLocalAccountDetails:start", { address: address?.toLowerCase?.() });
   const meta = await getLocalAccount(address);

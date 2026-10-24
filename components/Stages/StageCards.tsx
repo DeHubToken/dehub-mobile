@@ -44,6 +44,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_WASH } from "../../theme/minimal";
 import { PageSection } from "../page/PageKit";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 /** How long the stage ran, from its own timestamps. Mirrors web's row. */
 export function stageDuration(space: AudioSpace): string | null {
@@ -93,9 +94,11 @@ function formatScheduledFor(dateStr?: string | null): string {
 }
 
 export const shareStage = (space: AudioSpace, when?: string) => {
-  const whenPart = when ? ` ${when}` : "";
+  const headline = when
+    ? _translateCopy("copy.cc68579c7d58", { defaultValue: "🎙️ {{value1}} — live on Stages {{value2}}", value1: space.title, value2: when })
+    : _translateCopy("copy.775b9e99d10c", { defaultValue: "🎙️ {{value1}} — live on Stages", value1: space.title });
   shareWithRef({
-    message: `🎙️ ${space.title} — live on Stages${whenPart}\n\n${ShareLinks.stage(space)}`,
+    message: `${headline}\n\n${ShareLinks.stage(space)}`,
   }, undefined, "stage").catch(() => {});
 };
 

@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
+
 type Job = { id:string; onchain_job_id:number|null; fund_tx_hash:string|null; currency:string; job_type:string; price_per_unit:number; max_units:number; deadline:string|null };
 type Config = { escrow_address:string|null; owner_address:string; fee_recipient:string; expected_code_hash:string|null };
 type Dependencies = {
@@ -16,7 +18,7 @@ type Dependencies = {
 export function createWorkEscrow(deps:Dependencies) {
   async function config() {
     const c=await deps.config();
-    if (!c.escrow_address) throw new Error('Escrow setup is required before publishing. Your draft is saved.');
+    if (!c.escrow_address) throw new Error(_translateCopy('copy.6b0a4a913d56', { defaultValue: 'Escrow setup is required before publishing. Your draft is saved.' }));
     return c.escrow_address;
   }
   async function chainAction(job:Job,name:string,args:unknown[],key:string,recoveryHash?:string) {
@@ -26,14 +28,14 @@ export function createWorkEscrow(deps:Dependencies) {
     if (!hash) {
       const sent=await deps.write(address,name,args);
       hash=sent.hash;
-      try { await deps.storage.set(storageKey,hash); } catch { throw new Error('Transaction submitted. Recover it with hash '+hash); }
+      try { await deps.storage.set(storageKey,hash); } catch { throw new Error(_translateCopy('copy.b65a2317ce7b', { defaultValue: 'Transaction submitted. Recover it with hash {{value1}}', value1: hash })); }
       try { await sent.wait(2); } catch { /* reconcile the actual chain receipt */ }
     }
     const proof=await deps.receipt(job.id,hash,8453);
-    if (!proof) throw new Error('Transaction submitted; confirmation is pending. Use the same action to check it. Hash: '+hash);
+    if (!proof) throw new Error(_translateCopy('copy.21b066daeff1', { defaultValue: 'Transaction submitted; confirmation is pending. Use the same action to check it. Hash: {{value1}}', value1: hash }));
     if (JSON.parse(proof.payload).status==='failed') {
       await deps.storage.remove(storageKey);
-      throw new Error('The escrow transaction reverted. No action was applied.');
+      throw new Error(_translateCopy('copy.3fc7b0d93732', { defaultValue: 'The escrow transaction reverted. No action was applied.' }));
     }
     return {p_payload:proof.payload,p_signature:proof.signature,clear:()=>deps.storage.remove(storageKey)};
   }
@@ -45,13 +47,13 @@ export function createWorkEscrow(deps:Dependencies) {
       const key='work-funding:'+id;
       let hash=recoveryHash || claim.hash || await deps.storage.get(key);
       if (!hash) {
-        if (!claim.created) throw new Error('Funding is already reserved. Recover its transaction hash, or release a rejected signature.');
+        if (!claim.created) throw new Error(_translateCopy('copy.ab6614df5c00', { defaultValue: 'Funding is already reserved. Recover its transaction hash, or release a rejected signature.' }));
         try {
           await deps.prepareFunding(address,job.currency,String(job.price_per_unit),job.max_units);
           const sent=await deps.write(address,'createJob',[job.currency==='USDC'?'0x833589fcd6edb6e08f4c7c32d4f71b54bda02913':'0xd20ab1015f6a2de4a6fddebab270113f689c2f7c',
             {shill:0,clipping:1,contract:2}[job.job_type],deps.units(String(job.price_per_unit),job.currency),job.max_units,Math.floor(Date.parse(job.deadline!)/1000)]);
           hash=sent.hash;
-          try {await deps.storage.set(key,hash);} catch {throw new Error('Funding submitted. Recover it with hash '+hash);}
+          try {await deps.storage.set(key,hash);} catch {throw new Error(_translateCopy('copy.34113edd8f45', { defaultValue: 'Funding submitted. Recover it with hash {{value1}}', value1: hash }));}
           await deps.rpc('work_record_funding',{p_job:id,p_hash:hash});
           try {await sent.wait(2);} catch { /* receipt decides whether funding succeeded */ }
         } catch(error:any) {
@@ -63,7 +65,7 @@ export function createWorkEscrow(deps:Dependencies) {
       if (!proof) return 'pending';
       await deps.rpc('work_publish_funded',{p_job:id,p_payload:proof.payload,p_signature:proof.signature});
       await deps.storage.remove(key);
-      if (JSON.parse(proof.payload).status==='failed') throw new Error('Funding reverted. The draft is saved and can be funded again.');
+      if (JSON.parse(proof.payload).status==='failed') throw new Error(_translateCopy('copy.a952b6ec2bab', { defaultValue: 'Funding reverted. The draft is saved and can be funded again.' }));
       return 'confirmed';
     },
     async register(id:string,url:string) {

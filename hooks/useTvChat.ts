@@ -111,8 +111,8 @@ export function useRoomChat(room: ChatRoom, enabled = true) {
       ...msg,
       reply_to: {
         id: parent.id,
-        content: parent.content || (parent.message_type === "gif" ? "GIF" : "Media"),
-        sender_name: parent.display_name || parent.username || "User",
+        content: parent.content || (parent.message_type === "gif" ? "GIF" : _copy("copy.d357175cfe89", { defaultValue: "Media" })),
+        sender_name: parent.display_name || parent.username || _copy("copy.b512d97e7cbf", { defaultValue: "User" }),
       },
     };
   });

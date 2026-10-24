@@ -15,7 +15,7 @@ export default function ImageViewerModal({ images, onClose }: {
 }) {
   if (!images?.length) return null;
   return (
-    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
+    <Modal visible transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onClose}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <ImageViewer params={{ images, initialIndex: 0 }} onClose={onClose} />
       </GestureHandlerRootView>

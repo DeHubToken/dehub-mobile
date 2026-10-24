@@ -1,3 +1,4 @@
+import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -13,16 +14,17 @@ export interface EmptyFeedStateProps {
 }
 
 const EmptyFeedState: React.FC<EmptyFeedStateProps> = ({
-  message = 'No videos found',
+  message,
   onClear,
-  clearLabel = 'Clear Filters',
+  clearLabel,
 }) => {
+  const { t: _copy } = _useCopy();
   const { isMinimal, skin } = useAppTheme();
   return (
     <View className="flex-1 items-center justify-center px-6 py-16">
       {skin?.material === 'glass' ? <ThemeIcon icon="videos" size={56} /> : <Ionicons name="videocam-off-outline" size={48} color={theme.colors.mutedForeground} />}
       <Text className="text-center mt-4 text-base font-medium" style={{ color: theme.colors.foreground }}>
-        {message}
+        {message ?? _copy("copy.15e0c82b52ff", { defaultValue: "No videos found" })}
       </Text>
       {onClear && (
         <Pressable
@@ -32,7 +34,7 @@ const EmptyFeedState: React.FC<EmptyFeedStateProps> = ({
           className={isMinimal ? "mt-6 px-5 py-2 border active:opacity-80" : "mt-6 px-5 py-2 rounded-md bg-theme-neutrals-700 active:opacity-80"}
           style={isMinimal ? { borderColor: MINIMAL_TAB_LINE } : skin?.material === 'glass' ? skin.centre : undefined}
         >
-          <Text className="text-sm font-medium" style={{ color: theme.colors.neutrals[100] }}>{clearLabel}</Text>
+          <Text className="text-sm font-medium" style={{ color: theme.colors.neutrals[100] }}>{clearLabel ?? _copy("copy.5776503c1a52", { defaultValue: "Clear Filters" })}</Text>
         </Pressable>
       )}
     </View>

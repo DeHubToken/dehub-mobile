@@ -86,7 +86,9 @@ const RangeRow: React.FC<{
   items: readonly string[];
   active: string;
   onSelect: (v: any) => void;
-}> = ({ items, active, onSelect }) => (
+}> = ({ items, active, onSelect }) => {
+  const { t } = useTranslation();
+  return (
   <View style={styles.rangeRow}>
     {items.map((r) => (
       <Pressable
@@ -95,11 +97,12 @@ const RangeRow: React.FC<{
         hitSlop={{ top: 10, bottom: 10 }}
         style={[styles.rangeChip, active === r && styles.rangeChipActive]}
       >
-        <Text style={[styles.rangeText, active === r && styles.rangeTextActive]}>{r}</Text>
+        <Text style={[styles.rangeText, active === r && styles.rangeTextActive]}>{r === "Max" ? t("copy.a1a5936d3b0f", { defaultValue: "Max" }) : r}</Text>
       </Pressable>
     ))}
   </View>
-);
+  );
+};
 
 /** A failed read, shown in place of the "nothing here" copy so it is not mistaken for no income. */
 const LoadError: React.FC<{ onRetry: () => void }> = ({ onRetry }) => {
