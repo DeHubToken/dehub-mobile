@@ -181,7 +181,7 @@ const StoreForm: React.FC<{
                 {bannerUrl ? (
                   <Image source={storageImageSource(bannerUrl, windowWidth)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
-                <View style={styles.pickOverlay}>
+                <View className="dark-surface" style={styles.pickOverlay}>
                   {uploading === "banner" ? (
                     <ActivityIndicator color="#FFFFFF" />
                   ) : (
@@ -203,7 +203,7 @@ const StoreForm: React.FC<{
                 {avatarUrl ? (
                   <Image source={storageImageSource(avatarUrl, 64)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
-                <View style={styles.pickOverlay}>
+                <View className="dark-surface" style={styles.pickOverlay}>
                   {uploading === "avatar" ? (
                     <ActivityIndicator color="#FFFFFF" size="small" />
                   ) : (
