@@ -50,7 +50,7 @@ function setup(showControls = true) {
 describe('video scrub zone', () => {
   it('enlarges only the invisible target while keeping the rail and button row anchored', () => {
     const s = setup();
-    expect(s.zone.props.style).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64, backgroundColor: 'transparent' });
+    expect(StyleSheet.flatten(s.zone.props.style)).toEqual({ position: 'absolute', bottom: 0, left: 0, right: 0, height: 64, backgroundColor: 'transparent' });
     expect(mockScrubOptions.immediateBottom).toBeUndefined();
     expect(mockScrubOptions.tapEnabled).toBe(false);
     const layers = s.UNSAFE_getAllByType(Animated.View).map(layer => StyleSheet.flatten(layer.props.style));
@@ -96,6 +96,22 @@ describe('video scrub zone', () => {
     expect(s.onCommit).not.toHaveBeenCalled();
     expect(s.buttonPress).not.toHaveBeenCalled();
   });
+});
+
+it('covers both control rows without moving the bottom seek rail', () => {
+  const onCommit = jest.fn();
+  const view = render(<VideoScrubZone enabled opacity={new Animated.Value(1)} showControls plainStrip stripHeight={79} label="Progress" progress={0} onStart={jest.fn()} onScrub={jest.fn()} onCommit={onCommit} onCancel={jest.fn()}>{null}</VideoScrubZone>);
+  const zone = view.getByTestId('video-scrub-zone');
+  expect(StyleSheet.flatten(zone.props.style).height).toBe(79);
+  expect(StyleSheet.flatten(view.getByTestId('video-control-strip').props.style).height).toBe(79);
+  const layers = view.UNSAFE_getAllByType(Animated.View).map(layer => StyleSheet.flatten(layer.props.style));
+  expect(layers).toEqual(expect.arrayContaining([
+    expect.objectContaining({ bottom: 0, height: 3 }),
+    expect.objectContaining({ bottom: 9 }),
+  ]));
+  fireEvent(zone, 'layout', { nativeEvent: { layout: { width: 230 } } });
+  fireEvent.press(view.getByTestId('video-scrub-tap'), { nativeEvent: { locationX: 115 }, stopPropagation: jest.fn() });
+  expect(onCommit).toHaveBeenCalledWith(0.5);
 });
 
 it('turns the plain strip to paper in System Light', () => {
