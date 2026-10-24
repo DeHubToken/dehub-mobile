@@ -4606,7 +4606,13 @@
     "title": "सन्देशाः",
     "searchConversations": "सम्भाषणानि अन्विष्यतु...",
     "failedToLoad": "सम्भाषणानि लोडयितुं विफलम्",
-    "tryAgain": "पुनः प्रयतताम्"
+    "tryAgain": "पुनः प्रयतताम्",
+    "lockedTitle": "तुम्हारे संदेशे पढ़कर",
+    "lockedUnlock": "अनलॉक बटुआ",
+    "lockedTryAgain": "पुनः प्रयच्छतु",
+    "lockedPrivate": "तत्र केवलं पठनीयम्",
+    "undecryptableRun_one": "{{count}} सन्देशः यो यन्त्रमा खोल्न सकिदैन",
+    "undecryptableRun_other": "{{count}} संदेशे इस उपकरण पर खोले नहीं जा सकते"
   },
   "music": {
     "likeStation": "यथास्थानं",

@@ -4521,7 +4521,12 @@
     "title": "Паёмҳо",
     "searchConversations": "Ҷустуҷӯи суҳбатҳо...",
     "failedToLoad": "Боркунии суҳбатҳо ноком шуд",
-    "tryAgain": "Дубора кӯшиш"
+    "tryAgain": "Дубора кӯшиш",
+    "lockedTitle": "Кушодани қулф барои хондани иттилооти шумо",
+    "lockedBody": "{{name}} is end-to-end encrypted. Кушодани ҳамён дар ин дастгоҳ барои кушодани он.",
+    "lockedUnlock": "Кушодани ҳамён",
+    "lockedTryAgain": "Бори дигар кӯшиш кунед",
+    "lockedPrivate": "Танҳо шумо метавонед онҳоро хонед"
   },
   "music": {
     "likeStation": "Монанди истгоҳ",

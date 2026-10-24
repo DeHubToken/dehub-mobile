@@ -4541,7 +4541,14 @@
     "title": "Messages",
     "searchConversations": "Fain tok-tok dem...",
     "failedToLoad": "E no fit load conversations",
-    "tryAgain": "Try am again"
+    "tryAgain": "Try am again",
+    "lockedTitle": "Unlock make you read ya messages",
+    "lockedBody": "Ya chat wit {{name}} dey end-to-end encrypted. Unlock ya wallet for dis device make e open it.",
+    "lockedUnlock": "Unlock wallet",
+    "lockedTryAgain": "Try again",
+    "lockedPrivate": "Na only you fit read dem",
+    "undecryptableRun_one": "{{count}} message no fit open for dis device",
+    "undecryptableRun_other": "{{count}} messages no fit open for dis device"
   },
   "music": {
     "chartOrder": "Audio chart order",

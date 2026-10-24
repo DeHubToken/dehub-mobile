@@ -4612,7 +4612,14 @@
     "title": "Saƙonni",
     "searchConversations": "Bincika tattaunawa...",
     "failedToLoad": "Ba a iya ɗora tattaunawa ba",
-    "tryAgain": "Sake gwadawa"
+    "tryAgain": "Sake gwadawa",
+    "lockedTitle": "Buše don karanta saƙonninku",
+    "lockedBody": "Tattaunawar ku tare da {{name}} an ɓoye ƙarshen zuwa ƙarshe. Buɗe walat ɗinku akan wannan na'urar don buɗe shi.",
+    "lockedUnlock": "Buše walat",
+    "lockedTryAgain": "Gwada kuma",
+    "lockedPrivate": "Kawai zaka iya karanta su",
+    "undecryptableRun_one": "{{count}} ba za a iya buɗe saƙon a kan wannan na'urar ba",
+    "undecryptableRun_other": "{{count}} ba za a iya buɗe saƙonni akan wannan na'urar ba"
   },
   "music": {
     "likeStation": "Kamar tasha",

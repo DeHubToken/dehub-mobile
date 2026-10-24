@@ -3718,7 +3718,14 @@
     "title": "Wiadomości",
     "searchConversations": "Szukaj konwersacji...",
     "failedToLoad": "Nie udało się załadować konwersacji",
-    "tryAgain": "Spróbuj ponownie"
+    "tryAgain": "Spróbuj ponownie",
+    "lockedTitle": "Odblokuj, aby przeczytać wiadomości",
+    "lockedBody": "Twój czat z {{name}} jest szyfrowany end-to-end. Odblokuj portfel na tym urządzeniu, aby go otworzyć.",
+    "lockedUnlock": "Odblokuj portfel",
+    "lockedTryAgain": "Spróbuj ponownie",
+    "lockedPrivate": "Tylko Ty możesz je przeczytać",
+    "undecryptableRun_one": "Nie można otworzyć wiadomości {{count}} na tym urządzeniu",
+    "undecryptableRun_other": "Nie można otworzyć {{count}} wiadomości na tym urządzeniu"
   },
   "music": {
     "chartOrder": "Kolejność wykresów audio",

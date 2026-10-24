@@ -4689,7 +4689,14 @@
     "title": "Willakuy",
     "searchConversations": "Rimanakuykuna maskay...",
     "failedToLoad": "Mana rimanakuykunata churayta atirqanchu",
-    "tryAgain": "Musuqmanta ruway"
+    "tryAgain": "Musuqmanta ruway",
+    "lockedTitle": "Willakuyniykikunata ñawinchanaykipaq kichay",
+    "lockedBody": "{{name}} kaqwan rimanakuyniykiqa tukukuymanta tukukuykama chifrasqa kachkan. Kay dispositivopi billeteraykita kichay kichanaykipaq.",
+    "lockedUnlock": "Billetera kichay",
+    "lockedTryAgain": "Hukmanta kallpachakuy",
+    "lockedPrivate": "Chaykunataqa qamllam ñawinchayta atinki",
+    "undecryptableRun_one": "{{count}} willakuyqa manam kay aparatopi kichayta atikunmanchu",
+    "undecryptableRun_other": "{{count}} willakuykunataqa manam kay aparatopi kichayta atikunmanchu"
   },
   "music": {
     "likeStation": "Kuyay kitita",

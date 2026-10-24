@@ -4646,7 +4646,14 @@
     "title": "پيغام",
     "searchConversations": "ڳالهه ٻولهه ڳولهيو...",
     "failedToLoad": "ڳالهه ٻولهه لوڊ نه ٿي سگهيو",
-    "tryAgain": "ٻيهر ڪوشش ڪريو"
+    "tryAgain": "ٻيهر ڪوشش ڪريو",
+    "lockedTitle": "توهان جا پيغام پڙهڻ لاءِ انلاڪ ڪريو",
+    "lockedBody": "{{name}} سان توهان جي چيٽ آخر کان آخر تائين انڪوڊ ٿيل آهي. ان کي کولڻ لاءِ هن ڊوائيس تي پنهنجو پرس کوليو.",
+    "lockedUnlock": "پرس کي انلاڪ ڪريو",
+    "lockedTryAgain": "ٻيهر ڪوشش ڪريو",
+    "lockedPrivate": "صرف توهان انهن کي پڙهي سگهو ٿا",
+    "undecryptableRun_one": "{{count}} پيغام هن ڊيوائس تي نه کوليو وڃي",
+    "undecryptableRun_other": "{{count}} پيغام هن ڊيوائس تي نه کولي سگهجن ٿا"
   },
   "music": {
     "likeStation": "اسٽيشن کي پسند ڪريو",

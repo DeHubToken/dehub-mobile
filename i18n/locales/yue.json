@@ -4662,7 +4662,14 @@
     "title": "訊息",
     "searchConversations": "搜尋對話...",
     "failedToLoad": "載入對話失敗",
-    "tryAgain": "再試過"
+    "tryAgain": "再試過",
+    "lockedTitle": "解鎖嚟睇你嘅訊息",
+    "lockedBody": "你同 {{name}} 嘅即時通訊係端對端加密嘅。喺呢部裝置上面解鎖你個銀包嚟打開佢。",
+    "lockedUnlock": "解鎖銀包",
+    "lockedTryAgain": "再試多次",
+    "lockedPrivate": "只有你先可以睇到佢哋",
+    "undecryptableRun_one": "喺呢部裝置上面開唔到 {{count}} 訊息",
+    "undecryptableRun_other": "喺呢部裝置上面開唔到 {{count}} 訊息"
   },
   "music": {
     "chartOrder": "音頻榜單排序",

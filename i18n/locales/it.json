@@ -3718,7 +3718,14 @@
     "title": "Messaggi",
     "searchConversations": "Cerca nelle conversazioni...",
     "failedToLoad": "Caricamento conversazioni fallito",
-    "tryAgain": "Riprova"
+    "tryAgain": "Riprova",
+    "lockedTitle": "Sblocca per leggere i tuoi messaggi",
+    "lockedBody": "La tua chat con {{name}} è crittografata end-to-end. Sblocca il tuo portafoglio su questo dispositivo per aprirlo.",
+    "lockedUnlock": "Sblocca portafoglio",
+    "lockedTryAgain": "Riprova",
+    "lockedPrivate": "Solo tu puoi leggerli",
+    "undecryptableRun_one": "Impossibile aprire il messaggio {{count}} su questo dispositivo",
+    "undecryptableRun_other": "Impossibile aprire i messaggi {{count}} su questo dispositivo"
   },
   "music": {
     "chartOrder": "Ordine grafico audio",
