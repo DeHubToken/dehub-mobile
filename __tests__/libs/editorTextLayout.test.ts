@@ -1,10 +1,12 @@
 import { measuredTextLayout, type MeasuredTextStyle } from "../../libs/editor/textLayout";
 import { TEXT_LAYOUT_RUNTIME } from "../../libs/editor/textLayoutRuntime";
+import { TEXT_DIRECTION_RUNTIME } from "../../libs/editor/textDirectionRuntime";
+import { BALANCED_TEXT_WRAP_RUNTIME } from "../../libs/editor/balancedTextWrapRuntime";
 import { subtitleLayers, exportSubtitles, parseSubtitles } from "../../libs/editor/subtitles";
 import { EDITOR_CANVAS_HTML } from "../../libs/editor/canvasHtml";
 import { captionLayers } from "../../libs/editor/captionLayout";
 
-const nativeLayout = new Function(TEXT_LAYOUT_RUNTIME + "; return measuredTextLayout;")() as typeof measuredTextLayout;
+const nativeLayout = new Function(TEXT_DIRECTION_RUNTIME + "\n" + BALANCED_TEXT_WRAP_RUNTIME + "\n" + TEXT_LAYOUT_RUNTIME + "; return measuredTextLayout;")() as typeof measuredTextLayout;
 const measure = (line: string, size: number, spacing: number) => Array.from(line).length * (size * 0.56 + spacing);
 const paragraph = "My first tip is to back up your videos before editing. Keep one copy on a separate drive so a mistake cannot destroy your originals.";
 const style = (patch: Partial<MeasuredTextStyle> = {}): MeasuredTextStyle => ({ text: paragraph, fontSize: 64, x: 0.5, y: 0.84, align: "centre", maxWidth: 0.9, maxHeight: 0.28, stroke: { width: 8 }, ...patch });
