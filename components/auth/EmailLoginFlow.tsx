@@ -3,15 +3,10 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, TextInput } from "react-native";
 import { useTranslation } from "react-i18next";
-import { AuthButton, AuthField, AuthTextButton } from "./AuthControls";
+import { AuthButton, AuthField } from "./AuthControls";
 
 interface EmailLoginFlowProps {
   onSubmit: (provider: string, email?: string) => void;
-  /**
-   * Password sign-in. Optional so hosts that only wire the code flow keep
-   * working — the password toggle simply isn't offered when it's absent.
-   */
-  onPasswordSubmit?: (email: string, password: string) => void;
   loading?: boolean;
   disabled?: boolean;
   /** See PhoneLoginFlow — lets the host screen scroll this clear of the keyboard. */
@@ -25,7 +20,6 @@ interface EmailLoginFlowProps {
 
 const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   onSubmit,
-  onPasswordSubmit,
   loading,
   disabled,
   onExpand,
@@ -34,11 +28,8 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [showInput, setShowInput] = useState(!!startOpen);
-  const [usePassword, setUsePassword] = useState(false);
   const [email, setEmail] = useSurfaceDraft("components/auth/EmailLoginFlow.tsx:email", "");
-  const [password, setPassword] = useState("");
   const inputRef = useRef<TextInput>(null);
-  const passwordRef = useRef<TextInput>(null);
   const containerRef = useRef<View>(null);
 
   // Focus input when it appears (not when it was open from the start)
@@ -48,19 +39,12 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
     }
   }, [showInput, startOpen]);
 
-  useEffect(() => {
-    if (usePassword && passwordRef.current) {
-      passwordRef.current.focus();
-    }
-  }, [usePassword]);
-
   const emailValid = !!email && email.includes("@");
-  const isValid = usePassword ? emailValid && !!password : emailValid;
+  const isValid = emailValid;
 
   const handleSubmit = () => {
     if (!isValid) return;
-    if (usePassword && onPasswordSubmit) onPasswordSubmit(email, password);
-    else onSubmit("email_passwordless", email);
+    onSubmit("email_passwordless", email);
   };
 
   // On focus rather than on layout — see PhoneLoginFlow for why.
@@ -73,7 +57,6 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   if (!showInput) {
     return (
       <AuthButton
-        icon="mail-outline"
         label={t("loginModal.continueEmail")}
         onPress={() => setShowInput(true)}
         disabled={disabled}
@@ -86,7 +69,6 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
     <View ref={containerRef} style={{ gap: 12 }}>
       <AuthField
         ref={inputRef}
-        icon="mail-outline"
         onFocus={handleFocus}
         value={email}
         onChangeText={setEmail}
@@ -99,53 +81,20 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         autoCapitalize="none"
         autoCorrect={false}
         autoFocus={!startOpen}
-        returnKeyType={usePassword ? "next" : "go"}
-        onSubmitEditing={usePassword ? () => passwordRef.current?.focus() : handleSubmit}
+        returnKeyType="go"
+        onSubmitEditing={handleSubmit}
+        style={{ textAlign: "center" }}
       />
-      {usePassword && (
-        <AuthField
-          ref={passwordRef}
-          icon="lock-closed"
-          onFocus={handleFocus}
-          value={password}
-          onChangeText={setPassword}
-          placeholder={t("loginModal.password")}
-          accessibilityLabel={t("loginModal.password")}
-          editable={!loading && !disabled}
-          secureTextEntry
-          textContentType="password"
-          autoComplete="current-password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          returnKeyType="go"
-          onSubmitEditing={handleSubmit}
-        />
-      )}
       <AuthButton
         variant="primary"
-        label={usePassword ? t("loginModal.signIn") : startOpen ? t("loginModal.continueEmail") : t("loginModal.sendCode")}
+        label={startOpen ? t("loginModal.continueEmail") : t("loginModal.sendCode")}
         onPress={handleSubmit}
         disabled={!isValid || disabled}
         loading={loading}
         accessibilityLabel={
-          usePassword ? t("loginModal.signIn") : t("loginModal.sendCode")
+          t("loginModal.sendCode")
         }
       />
-      {!!onPasswordSubmit && (
-        <AuthTextButton
-          tone="muted"
-          label={
-            usePassword
-              ? t("loginModal.useCodeInstead")
-              : t("loginModal.usePasswordInstead")
-          }
-          onPress={() => {
-            setPassword("");
-            setUsePassword((v) => !v);
-          }}
-          disabled={loading || disabled}
-        />
-      )}
     </View>
   );
 };
