@@ -8865,7 +8865,7 @@
       "svgPadding": "Extra párnázás",
       "svgScopeHint": "Legfeljebb 100 kiválasztott alakzatot, rajzot, szimbólumot és csatlakozó réteget exportál a jelenlegi kulcskocka elhelyezésükön. Az oldalméretek megtartása megőrzi pozíciójukat az oldalon; a növények elhelyezése a réteghatárok körül. A szöveg, a fényképek és az adatgrafikák saját exportjukat használják.",
       "title": "Kiválasztott vektorok stílusa ({{count}})",
-      "width": "A tulajdonsÃ¡gok alkalmazÃ¡sa"
+      "width": "Körvonal vastagsága"
     },
     "viewport": {
       "fit": "Szabás",

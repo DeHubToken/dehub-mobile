@@ -8863,7 +8863,7 @@
       "svgPadding": "Umplutură suplimentară",
       "svgScopeHint": "Exportă până la 100 de straturi selectate de formă, desen, simbol și conector la plasarea lor curentă de cadre cheie. Păstrarea dimensiunilor paginii își păstrează poziția pe pagină; montarea culturilor în jurul limitelor stratului. Textul, fotografiile și graficele de date utilizează propriile exporturi.",
       "title": "Stil vectori selectați ({{count}})",
-      "width": "Ãnchidere din toate direcÅ£iile"
+      "width": "Grosimea conturului"
     },
     "viewport": {
       "fit": "Se potrivi",

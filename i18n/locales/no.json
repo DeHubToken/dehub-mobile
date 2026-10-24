@@ -8715,7 +8715,7 @@
       "colourScale": "Cellefargeskala",
       "copyCellStyles": "Kopier cellestiler",
       "defaultCellTextSize": "Bruker tabelltekststørrelse",
-      "descending": "Sorter Å–A / 9–0",
+      "descending": "Sorter fra Å til A / 9 til 0",
       "dimensionSize": "{{name}} relativ størrelse",
       "duplicateCase": "Match-etuiet",
       "duplicateColumns": "Finn dupliserte rader ved hjelp av",
