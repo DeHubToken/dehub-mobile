@@ -217,5 +217,5 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.25)",
   },
   aiText: { color: "#FFFFFF", fontSize: 10, fontWeight: "800", letterSpacing: 0.2 },
-  headline: { marginTop: -64, textAlign: "left", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
+  headline: { marginTop: -64, textAlign: "center", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
 });
