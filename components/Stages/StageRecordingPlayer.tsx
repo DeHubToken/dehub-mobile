@@ -40,6 +40,7 @@ import {
 } from "../../libs/stage-playback";
 
 export interface StageRecordingPlayerProps {
+  playbackDisabled?: boolean;
   spaceId: string;
   /** No recording, no player — see the null return below. */
   recordingUrl?: string | null;
@@ -79,6 +80,7 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
   hidePopout = false,
   whenGone = "stop",
   style,
+  playbackDisabled = false,
 }) => {
   const { t } = useTranslation();
   const { theme, skin } = useAppTheme();
@@ -101,16 +103,17 @@ const StageRecordingPlayer: React.FC<StageRecordingPlayerProps> = ({
     [spaceId, title, recordingUrl, startedAt, endedAt],
   );
 
-  const togglePlay = useCallback(() => toggleStageRecording(space), [space]);
+  const togglePlay = useCallback(() => { if (!playbackDisabled) toggleStageRecording(space); }, [space, playbackDisabled]);
 
   // Pop out an idle recording and it starts playing, which is the only reading
   // of the control that makes sense from a card nobody has pressed play on.
   const togglePopout = useCallback(() => {
+    if (playbackDisabled) return;
     if (isPoppedOut) closeStagePopout();
     else popOutStageRecording(space);
-  }, [isPoppedOut, space]);
+  }, [isPoppedOut, space, playbackDisabled]);
 
-  const seek = useCallback((position: number) => seekStageRecording(space, position), [space]);
+  const seek = useCallback((position: number) => { if (!playbackDisabled) seekStageRecording(space, position); }, [space, playbackDisabled]);
 
   // Read through a ref so the cleanup does not re-run on every status tick —
   // an effect keyed on the live state would tear down and rebuild five times a
