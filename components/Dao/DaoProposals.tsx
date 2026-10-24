@@ -17,6 +17,7 @@ import { useSurfaceDraft } from "../../hooks/useSurfaceDraft";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { appLocale } from "../../libs/date.util";
 import { openInApp } from "../../libs/links.utils";
+import { parseAmountInput, sanitizeAmountInput } from "../../libs/amount-input";
 import {
   effectiveDaoProposalStatus,
   useCreateDaoProposal,
@@ -243,9 +244,12 @@ export function ProposeSheet({ visible, onClose }: { visible: boolean; onClose: 
   const [spendAmount, setSpendAmount] = useSurfaceDraft("components/Dao/DaoProposals.tsx:spendAmount", "", "dao");
   const [recipient, setRecipient] = useSurfaceDraft("components/Dao/DaoProposals.tsx:recipient", "", "dao");
 
-  const total = Number(dhbAmount) * Number(priceUsd);
-  const buyValid = Number(dhbAmount) > 0 && Number(priceUsd) > 0;
-  const spendValid = Number(spendAmount) > 0 && !!spendAsset.trim() && !!recipient.trim();
+  const dhb = parseAmountInput(dhbAmount);
+  const price = parseAmountInput(priceUsd);
+  const spend = parseAmountInput(spendAmount);
+  const total = dhb * price;
+  const buyValid = dhb > 0 && price > 0;
+  const spendValid = spend > 0 && !!spendAsset.trim() && !!recipient.trim();
   const valid = !!title.trim() && !!description.trim() && (kind === "buy" ? buyValid : spendValid);
 
   const submit = () => {
@@ -256,8 +260,8 @@ export function ProposeSheet({ visible, onClose }: { visible: boolean; onClose: 
         title,
         description,
         ...(kind === "buy"
-          ? { dhbAmount: Number(dhbAmount), priceUsd: Number(priceUsd) }
-          : { spendAsset, spendAmount: Number(spendAmount), recipientAddress: recipient.trim() }),
+          ? { dhbAmount: dhb, priceUsd: price }
+          : { spendAsset, spendAmount: spend, recipientAddress: recipient.trim() }),
       },
       {
         onSuccess: () => {
@@ -278,7 +282,7 @@ export function ProposeSheet({ visible, onClose }: { visible: boolean; onClose: 
   const field = (value: string, onChange: (v: string) => void, placeholder: string, opts: { numeric?: boolean; multiline?: boolean; mono?: boolean; max?: number } = {}) => (
     <TextInput
       value={value}
-      onChangeText={onChange}
+      onChangeText={opts.numeric ? (v) => onChange(sanitizeAmountInput(v)) : onChange}
       placeholder={placeholder}
       placeholderTextColor="#71717A"
       keyboardType={opts.numeric ? "decimal-pad" : "default"}
@@ -323,7 +327,7 @@ export function ProposeSheet({ visible, onClose }: { visible: boolean; onClose: 
               <View style={{ flexDirection: "row", gap: 10 }}>
                 <View style={{ flex: 1, gap: 6 }}>
                   <Text style={styles.label}>{t("dao.tokenAmount")}</Text>
-                  {field(dhbAmount, setDhbAmount, "1,000,000", { numeric: true })}
+                  {field(dhbAmount, setDhbAmount, "1000000", { numeric: true })}
                 </View>
                 <View style={{ flex: 1, gap: 6 }}>
                   <Text style={styles.label}>{t("dao.pricePerTokenUsd")}</Text>
@@ -347,7 +351,7 @@ export function ProposeSheet({ visible, onClose }: { visible: boolean; onClose: 
                 </View>
                 <View style={{ flex: 2, gap: 6 }}>
                   <Text style={styles.label}>{t("copy.49e96d7cdf58", { defaultValue: "Amount" })}</Text>
-                  {field(spendAmount, setSpendAmount, "5,000", { numeric: true })}
+                  {field(spendAmount, setSpendAmount, "5000", { numeric: true })}
                 </View>
               </View>
               <Text style={styles.label}>{t("copy.454d03911271", { defaultValue: "Recipient address" })}</Text>

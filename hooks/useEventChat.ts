@@ -50,10 +50,11 @@ export function useEventChat(eventId: string | undefined, walletAddress: string 
         .from("event_chat_messages" as any)
         .select("*")
         .eq("event_id", eventId!)
-        .order("created_at", { ascending: true })
+        .order("created_at", { ascending: false })
         .limit(200);
       if (error) throw error;
-      return (data || []) as unknown as EventChatMessage[];
+      // The newest 200, shown oldest first.
+      return ((data || []) as unknown as EventChatMessage[]).reverse();
     },
   });
 
