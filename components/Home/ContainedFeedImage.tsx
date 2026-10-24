@@ -25,6 +25,8 @@ interface ContainedFeedImageProps {
   /** The creator's alt text: the screen reader label, and an ALT badge for everybody else. */
   description?: string;
   postPage?: boolean;
+  /** The shape a gallery already measured, used until this image loads its own. */
+  aspect?: number;
 }
 
 /**
@@ -45,6 +47,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   drawBitmap = true,
   postPage = false,
   description,
+  aspect,
 }) => {
   const { t } = useTranslation();
   const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
@@ -53,7 +56,9 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
-  const { ratio: measuredAspect, measured, onLoad } = useImageAspect(uri);
+  const { ratio: ownAspect, measured: ownMeasured, onLoad } = useImageAspect(uri);
+  const measured = ownMeasured ?? aspect ?? null;
+  const measuredAspect = measured ?? ownAspect;
   // Pass the real shape as `measured` so a frame held at the placeholder shape
   // while the card scrolled in is corrected once the photo loads; without it
   // the 4:3 guess stuck and the photo sat inside it with panels around it.
