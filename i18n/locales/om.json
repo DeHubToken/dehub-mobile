@@ -2439,7 +2439,92 @@
     "revealFailed": "Furtuu agarsiisuun hin danda'amne. Irra deebi'ii yaali.",
     "signInAgain": "Irra deebi'ii seeni",
     "createSignIn": "Eejentii uumuuf irra deebi'ii seeni",
-    "checkConnection": "Walqunnamtii kee mirkaneessi, irra deebi'ii yaali."
+    "checkConnection": "Walqunnamtii kee mirkaneessi, irra deebi'ii yaali.",
+    "workspace": {
+      "moderation": "To'annoo gadi lakkifannaa (stream)",
+      "moderationHelp": "Dursa hayyama to'annoo hojiirra oolchi. Herregichi kan uumaa gadi lakkifannaa ykn modereetara ramadame ta'uu qaba. Moodonni hayyamaa fi qophii (draft) ammas hojiirra jiru. Yeroon dhaabbiin (timeouts) ofumaan xumurama.",
+      "streamId": "ID gadi lakkifannaa (stream post ID)",
+      "participant": "Wallet hirmaataa",
+      "participantHint": "Wallet hirmaataa (0x…)",
+      "timeout": "Sekondii yeroo dhaabbii",
+      "submitTimeout": "Yeroo dhaabbii ergi",
+      "handled": "Gaaffichi keessummeeffameera. Seenaa qorannoo (audit log) ilaali.",
+      "webhook": "Webhook beeksisuu Discord (filannoo)",
+      "webhookHelp": "Gaaffiileen hayyamaa fi kutaannoon gochaa beeksisu waligalaa, sa'aatii tokkotti al tokko qofa ergu. Barruun qophii ykn odeeffannoon wallet hin ergamu. Dhaabuuf duwwaa dhiisi; bu'aan geessisuu seenaa qorannoo keessatti mul'ata.",
+      "reversalHelp": "Deebisanii jijjiiruu (reversals) gadi lakkifannaa dhoksu, yaada (comments) dhaabbataatti haqu, deebii fi barruu piroofaayilii deebisu, ykn hordoffii haaraa haqu. Ilaaltonni, beeksisni ga'e, gurgurtaa (transactions) minted ta'an, suuraan piroofaayilii fi yeroon dhaabbii xumurame haquun hin danda'amu. Gadi lakkifannaan dhokate to'annoo mul'achuu isaa irraa deebi'ee argamuu danda'a.",
+      "confirmCorrection": "Kun hojii maxxanfame jijjiira. Haquun yaadaa deebi'ee sirreeffamuu hin danda'u.",
+      "correction": "Sirreeffama",
+      "alert": "Beeksisa",
+      "shared": "Qoodame",
+      "controls": "Sagalee, hayyamaa fi oduu",
+      "scope": "To'annoowwan kun hojiiwwan saganteeffaman, jireenya of danda'aa fi gargaartota walqabatan irratti hojiirra oolu. Qophiileen hanga ati hayyamtuutti iccitii ta'anii turu.",
+      "voice": "Sagalee fi toonii",
+      "knowledge": "Meeshaalee wabii",
+      "blocked": "Mata dureewwan dhoorkaman, komaatiin gargar baafaman",
+      "liveNews": "Jireenya of danda'aa keessatti oduu amma jiruuf deebii kenni",
+      "newsHelp": "Mata duree sadii filadhu. Gabaasni maxxansitootaa sa'aatii 24 darban keessatti ture daqiiqaa 15f kuufama (cached). Deebiin oduu hidhata madda qaba; oduun hin jirre ykn moofaan darbama.",
+      "saved": "Qindaa'inni kuufameera.",
+      "title": "Bakka hojii ejentii",
+      "sample": "Gochaa fi beeksisni gocha 100 fi hojii 200 dhumaa haguugu. Lakkoofsi kun guutummaa jireenyaa ykn fayyadama kaffaltii miti.",
+      "growth": "Gabaasa guddinaa qabi",
+      "baseline": "Suuraa jalqabaa; wal bira qabuuf booda kan biraa qabi.",
+      "library": "Templetii fi ijaaraa hojii",
+      "subject": "Mata duree ykn akaakuu deebii",
+      "useBuilder": "Qajeelfama kana fayyadami",
+      "planValidated": "Karoorri mirkanaa’e",
+      "builderHelp": "Unkaa filadhu, gocha, dhaggeeffattootaa fi sagantaa ibsi, sana booda osoo hin fiigin dura fakkeessi. Unkaaleen qoodaman qajeelfama barreessitoota isaanii irraa malee dandeettii mirkanaa'e miti.",
+      "simulate": "Karoora fakkeessuu",
+      "allowed": "Hayyamamaa",
+      "templateName": "Maqaa unkaa",
+      "share": "Unkaa kana fayyadamtoota Ergamtoota biroof qoodaa",
+      "saveTemplate": "Unkaa qusachuu",
+      "templateSaved": "Unkaan qusatameera.",
+      "history": "Wixinee saanduqa galtee fi galmee odiitii",
+      "empty": "Ammatti sochiin walsimsiisu hin jiru.",
+      "approve": "Raggaasisuu fi raawwachuu",
+      "reject": "Fudhachuu dhiisuu",
+      "growthResult": "{{followers}} hordoftoota · {{following}} hordoftoota",
+      "growthChange": "Jijjiirama hordoftootaa: {{count}} erga {{time}}",
+      "runs": "{{runs}} fiigicha dhiheenya kanaa · {{completed}} xumurame · {{failed}} hin milkoofne",
+      "autonomous": "Of danda’ee kan of danda’e",
+      "approval": "Dura raggaasi",
+      "draft": "Wixinee qofa",
+      "count": {
+        "pending": "Wixineewwan gamaaggamamuu qaban",
+        "succeeded": "Milkaa'ina dhiheenya kana",
+        "scheduled": "Hojiiwwan sagantaa qaban",
+        "active": "Ergamtoota sochii qaban"
+      },
+      "builder": {
+        "news": "Oduu irratti deebii kenni",
+        "reply": "Barreeffamoota dhiheenya kana maxxanfamaniif deebii kennaa",
+        "curate": "Barreeffamoota barbaachisoo ta'an like godha",
+        "post": "Barreeffama barreessaa"
+      },
+      "cadence": {
+        "once": "Al tokko",
+        "daily": "Guyyaa guyyaatti",
+        "twice": "Guyyaatti al lama"
+      },
+      "dehub_post_create": "Maxxansa maxxansaa",
+      "dehub_comment": "Deebii yaada kennaa",
+      "dehub_vote": "Maxxansa irratti deebii kenni",
+      "dehub_follow": "Akkaawuntii hordofaa",
+      "dehub_update_profile": "Profaayilii gulaali",
+      "dehub_stream_timeout": "Chaat yaa'aa giddu galeessaa",
+      "news": {
+        "world": "Addunyaa",
+        "technology": "Teeknooloojii",
+        "culture": "Aadaa",
+        "sport": "Ispoortii",
+        "science": "Saayinsii"
+      },
+      "alerts": "Xiyyeeffannoo barbaada",
+      "agent": "Bakka bu'aa",
+      "action": "Gocha",
+      "schedule": "Sagantaa",
+      "filter": "Sochii calaqqee"
+    }
   },
   "hero": {
     "title": "Baga Nagaan",
@@ -5027,7 +5112,12 @@
     "interestedCount": "{{count}} fedhii qabu",
     "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
   },
-  "stats": {"chart": {"daily": "Guyyaatti daawwattoota", "dailyHint": "guyyaatti daawwattoota adda ta'an", "empty": "Yeroo kanaaf deetaan ammatti hin jiru"},
+  "stats": {
+    "chart": {
+      "daily": "Guyyaatti daawwattoota",
+      "dailyHint": "guyyaatti daawwattoota adda ta'an",
+      "empty": "Yeroo kanaaf deetaan ammatti hin jiru"
+    },
     "definitions": {
       "visitorsTerm": "Daawwattoota"
     },

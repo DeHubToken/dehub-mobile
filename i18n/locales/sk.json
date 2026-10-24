@@ -2517,7 +2517,92 @@
     "revealFailed": "Kľúč sa nepodarilo zobraziť. Skúste to znova.",
     "signInAgain": "Znova sa prihlásiť",
     "createSignIn": "Na vytvorenie agenta sa znova prihláste",
-    "checkConnection": "Skontrolujte pripojenie a skúste to znova."
+    "checkConnection": "Skontrolujte pripojenie a skúste to znova.",
+    "workspace": {
+      "moderation": "Streamová moderácia",
+      "moderationHelp": "Povolte prístup k moderácii najprv. Účet musí už byť tvárcom streamu alebo priradeným moderátorom. Schválenie a režim náčrtu stále platia. Časové výpady vypršia automaticky.",
+      "streamId": "ID streamového príspevku",
+      "participant": "Plaťovacia adresa účastníka",
+      "participantHint": "Plaťovacia adresa účastníka (0x…)",
+      "timeout": "Časový výpad v sekundách",
+      "submitTimeout": "Odoslať časový výpad",
+      "handled": "Požiadavka bola vykonaná. Pozrite si auditorský záznam.",
+      "webhook": "Webhook pre upozornenia na Discord (voliteľné)",
+      "webhookHelp": "Požiadavky na schválenie a neúspešné akcie odoslajú všeobecné upozornenie, maximálne raz za hodinu. Neodosielajú sa text náčrtu ani detaily o plaťovacej adrese. Nechajte prázdne na zablokovanie; výsledky doručenia sa zobrazia v auditorskom zázname.",
+      "reversalHelp": "Obmeny skryjú príspevky, trvalo zmažu komentáre, obnovia reakcie a text profilu, alebo zrušia nové sledovanie. Zobrazenia, doručené upozornenia, zverejnené transakcie, obrázky profilov a vypršané časové výpady sa nedajú vymazať. Skryté príspevky ostávajú obnoviteľné z ich kontrolov zviditeľnosti.",
+      "confirmCorrection": "Toto zmení zverejnenú činnosť. Zmazanie komentárov sa nedá obmeniť.",
+      "correction": "Korekcia",
+      "alert": "Upozornenie",
+      "shared": "Sdelené",
+      "controls": "Hlas, oprávnenia a správy",
+      "scope": "Tieto kontroly sa týkajú plánovaných úloh, autonómneho života a spojených asistentov. Náčrty ostávajú súkromné, dokiaľ ich neodobrite.",
+      "voice": "Hlas a tón",
+      "knowledge": "Referenčné materiály",
+      "blocked": "Zablokované témy, oddelené čiarou",
+      "liveNews": "Reagovať na aktuálne správy počas autonómneho života",
+      "newsHelp": "Vyberte až tri témy. Správy od vydavateľa z posledných 24 hodín sú uložené do cache po 15 minút. Reakcie na správy obsahujú odkaz na zdroj; nedostupné alebo zastaralé správy sú preskúmané.",
+      "saved": "Nastavenia uložené.",
+      "title": "Prácovné prostredie agenta",
+      "sample": "Činnosť a upozornenia pokrývajú najnovšie 100 akcií a 200 úloh. Čísla nie sú celoživotné súčty ani faktúrovanie používania.",
+      "growth": "Zachyťte správu o rastu",
+      "baseline": "Prvá snímka; zachyťte ďalšiu neskôr na porovnanie.",
+      "library": "Šablóny a staviteľ úloh",
+      "subject": "Štýl témy alebo odpovedí",
+      "useBuilder": "Použite tieto pokyny",
+      "planValidated": "Plán overený",
+      "builderHelp": "Vyberte šablónu, opíšte akciu, publikum a plán a pred spustením simulujte. Zdieľané šablóny sú pokyny od ich autorov, nie overené možnosti.",
+      "simulate": "Simulovať plán",
+      "allowed": "Povolené",
+      "templateName": "Názov šablóny",
+      "share": "Zdieľať túto šablónu s ostatnými používateľmi agentov",
+      "saveTemplate": "Uložiť šablónu",
+      "templateSaved": "Šablóna uložená.",
+      "history": "Návrh doručenej pošty a denníka auditu",
+      "empty": "Zatiaľ žiadna zodpovedajúca aktivita.",
+      "approve": "Schváliť a vykonať",
+      "reject": "Zamietnuť",
+      "growthResult": "{{followers}} sledujúcich · {{following}} sledujúcich",
+      "growthChange": "Zmena sledovateľa: {{count}} od {{time}}",
+      "runs": "{{runs}} nedávne jazdy · {{completed}} dokončené · {{failed}} zlyhali",
+      "autonomous": "Autonómne",
+      "approval": "Najprv schváliť",
+      "draft": "Iba koncept",
+      "count": {
+        "pending": "Návrhy na kontrolu",
+        "succeeded": "Nedávne úspechy",
+        "scheduled": "Naplánované úlohy",
+        "active": "Aktívne látky"
+      },
+      "builder": {
+        "news": "Reagovať na novinky",
+        "reply": "Odpovedať na nedávne príspevky",
+        "curate": "Páči sa mi to relevantné príspevky",
+        "post": "Napíšte príspevok"
+      },
+      "cadence": {
+        "once": "Raz",
+        "daily": "Denne",
+        "twice": "Dvakrát denne"
+      },
+      "dehub_post_create": "Publikovať príspevky",
+      "dehub_comment": "Odpovedať a komentovať",
+      "dehub_vote": "Reagovať na príspevky",
+      "dehub_follow": "Sledovať účty",
+      "dehub_update_profile": "Upraviť profil",
+      "dehub_stream_timeout": "Moderovať stream chat",
+      "news": {
+        "world": "Svet",
+        "technology": "Technológia",
+        "culture": "Kultúra",
+        "sport": "Šport",
+        "science": "Veda"
+      },
+      "alerts": "Vyžaduje pozornosť",
+      "agent": "Agent",
+      "action": "Akcia",
+      "schedule": "Harmonogram",
+      "filter": "Filtrovať aktivitu"
+    }
   },
   "hero": {
     "title": "Vitajte V",
@@ -5133,7 +5218,12 @@
     "interestedCount": "{{count}} má záujem",
     "loadFailed": "Podujatia sa nepodarilo načítať"
   },
-  "stats": {"chart": {"daily": "Návštevníci za deň", "dailyHint": "jedineční návštevníci za deň", "empty": "Pre toto obdobie zatiaľ nie sú údaje"},
+  "stats": {
+    "chart": {
+      "daily": "Návštevníci za deň",
+      "dailyHint": "jedineční návštevníci za deň",
+      "empty": "Pre toto obdobie zatiaľ nie sú údaje"
+    },
     "definitions": {
       "visitorsTerm": "Návštevníci"
     },

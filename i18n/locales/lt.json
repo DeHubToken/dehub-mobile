@@ -2435,7 +2435,92 @@
     "revealFailed": "Nepavyko parodyti rakto. Bandykite dar kartą.",
     "signInAgain": "Prisijungti iš naujo",
     "createSignIn": "Prisijunkite iš naujo, kad sukurtumėte agentą",
-    "checkConnection": "Patikrinkite ryšį ir bandykite dar kartą."
+    "checkConnection": "Patikrinkite ryšį ir bandykite dar kartą.",
+    "workspace": {
+      "moderation": "Stream moderacija",
+      "moderationHelp": "Įjungkite moderacijos teises pirmiausia. Įrašas turi būti jau streamo kūrėjas arba priskirtas moderatorius. Patvirtinimo ir brėžinio režimai vis dar taikomi. Laiko trukmės baigiasi automatiškai.",
+      "streamId": "Streamo pranešimo ID",
+      "participant": "Dalyvio portfelis",
+      "participantHint": "Dalyvio portfelis (0x…)",
+      "timeout": "Laiko trukmė (sekundės)",
+      "submitTimeout": "Pateikti laiko trukmę",
+      "handled": "Užduotis vykdoma. Peržiūrėkite audito žurnalą.",
+      "webhook": "Discord pranešimų webhook (opcionalus)",
+      "webhookHelp": "Patvirtinimo prašymų ir nesėkmingų veiksmų pranešimai siunčiami bendru pranešimu, ne daugiau kaip vieną kartą per valandą. Neįtraukiama brėžinio tekstas ir portfelio detalės. Palikite tuščią, norint išjungti; siuntimo rezultatai rodomi audito žurnale.",
+      "reversalHelp": "Atšaukimai slėpia pranešimus, trukdo komentarų ištrynimą, atstatydina reakcijas ir profilio tekstą, arba atšaukia naujus sekičius. Peržiūros, siųstos pranešimo žinutės, mintos transakcijos, profilio vaizdai ir išlėkusios laiko trukmės negali būti ištrintos. Slėpti pranešimus galima atstatyti iš jų matomumo kontrolių.",
+      "confirmCorrection": "Tai keičia publikuotą veiklą. Komentarų ištrynimas negali būti atšauktas.",
+      "correction": "Išteisinimas",
+      "alert": "Pranešimas",
+      "shared": "Pasidalinimas",
+      "controls": "Balsas, teisės ir naujienos",
+      "scope": "Šie kontroliai taikomi planuotiems uždavinims, autonominei gyvenimui ir sujungtiems asistentams. Brėžiniai liks privatiems, kol juos nepatvirtinate.",
+      "voice": "Balsas ir tonas",
+      "knowledge": "Referencinis medžiaga",
+      "blocked": "Blokuoti temos, skirstytos kableliais",
+      "liveNews": "Reaguokite į dabartinę naujieną autonominiame gyvenime",
+      "newsHelp": "Pasirinkite iki trijų temų. Leidininko ataskaitos iš paskutinių 24 valandų laikomi 15 minučių kambaryje. Naujienų reakcijos įtraukia šaltinio nuorodą; nepasiekiamos arba pasenusios naujienos būna praleistos.",
+      "saved": "Nustatymai išsaugoti.",
+      "title": "Agentų darbo erdvė",
+      "sample": "Veiklos ir pranešimų apimtis apima paskutinius 100 veiksmų ir 200 uždavinių. Skaičiai nėra gyvenimo laikotarpio ar faktūrinio naudojimo bendrai.",
+      "growth": "Išsaugoti augimo ataskaitą",
+      "baseline": "Pirmasis nuotraukos snapšitas; išsaugokite kitą vėliau, norint palyginti.",
+      "library": "Šablonai ir uždavinio kūrėjas",
+      "subject": "Temos ar atsakymo stilius",
+      "useBuilder": "Naudokite šiuos instrukcijas",
+      "planValidated": "Planas patvirtintas",
+      "builderHelp": "Pasirinkite šabloną, aprašykite veiksmą, auditoriją ir tvarkaraštį, tada imituokite prieš vykdydami. Bendrinami šablonai yra jų autorių nurodymai, o ne patvirtintos galimybės.",
+      "simulate": "Imituoti planą",
+      "allowed": "Leidžiama",
+      "templateName": "Šablono pavadinimas",
+      "share": "Dalytis šiuo šablonu su kitais Agentų naudotojais",
+      "saveTemplate": "Išsaugoti šabloną",
+      "templateSaved": "Šablonas išsaugotas.",
+      "history": "Gauto pašto dėžutės ir audito žurnalo projektas",
+      "empty": "Dar nėra atitinkančios veiklos.",
+      "approve": "Patvirtinti ir vykdyti",
+      "reject": "Atmesti",
+      "growthResult": "{{followers}} pasekėjai · {{following}} sekimas",
+      "growthChange": "Sekėjo pakeitimas: {{count}} nuo {{time}}",
+      "runs": "{{runs}} pastarieji paleidimai · {{completed}} baigti · {{failed}} nepavyko",
+      "autonomous": "Autonominis",
+      "approval": "Pirmiausia patvirtinkite",
+      "draft": "Tik juodraštis",
+      "count": {
+        "pending": "Juodraščiai peržiūrai",
+        "succeeded": "Naujausi pasiekimai",
+        "scheduled": "Suplanuotos užduotys",
+        "active": "Aktyvūs agentai"
+      },
+      "builder": {
+        "news": "Reaguoti į naujienas",
+        "reply": "Atsakyti į naujausius įrašus",
+        "curate": "Patinka atitinkami įrašai",
+        "post": "Rašyti įrašą"
+      },
+      "cadence": {
+        "once": "Vieną kartą",
+        "daily": "Kasdien",
+        "twice": "Du kartus per dieną"
+      },
+      "dehub_post_create": "Skelbti įrašus",
+      "dehub_comment": "Atsakyti ir komentuoti",
+      "dehub_vote": "Reaguoti į įrašus",
+      "dehub_follow": "Sekti paskyras",
+      "dehub_update_profile": "Redaguoti profilį",
+      "dehub_stream_timeout": "Moderuoti srautinį pokalbį",
+      "news": {
+        "world": "Pasaulis",
+        "technology": "Technologijos",
+        "culture": "Kultūra",
+        "sport": "Sportas",
+        "science": "Mokslas"
+      },
+      "alerts": "Reikia atkreipti dėmesį",
+      "agent": "Atstovas",
+      "action": "Veiksmas",
+      "schedule": "Tvarkaraštis",
+      "filter": "Filtruoti veiklą"
+    }
   },
   "hero": {
     "title": "Sveiki Atvykę",
@@ -5025,7 +5110,12 @@
     "interestedCount": "{{count}} domisi",
     "loadFailed": "Nepavyko įkelti renginių"
   },
-  "stats": {"chart": {"daily": "Lankytojų per dieną", "dailyHint": "unikalių lankytojų per dieną", "empty": "Šiam laikotarpiui duomenų dar nėra"},
+  "stats": {
+    "chart": {
+      "daily": "Lankytojų per dieną",
+      "dailyHint": "unikalių lankytojų per dieną",
+      "empty": "Šiam laikotarpiui duomenų dar nėra"
+    },
     "definitions": {
       "visitorsTerm": "Lankytojai"
     },

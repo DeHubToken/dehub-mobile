@@ -2431,7 +2431,34 @@
     "revealFailed": "顯示不了密鑰。再試一下。",
     "signInAgain": "重新登錄",
     "createSignIn": "重新登錄才能創建代理",
-    "checkConnection": "檢查一下連接，再試一下。"
+    "checkConnection": "檢查一下連接，再試一下。",
+    "workspace": {
+      "moderation": "直播管理",
+      "participant": "參加者錢包",
+      "participantHint": "參加者錢包 (0x…)",
+      "timeout": "超時秒數",
+      "controls": "声音、权限和新闻",
+      "scope": "这些控制适用于预定任务、自主生活和连接助手。草稿直到您批准为止保持私密。",
+      "voice": "声调和语气",
+      "saved": "設定儲存囉。",
+      "allowed": "允许",
+      "saveTemplate": "保存模板",
+      "empty": "吾家目前还没有合适的活动喔。",
+      "reject": "拒绝",
+      "growthResult": "{{followers}} 追蹤者 · {{following}} 追蹤著",
+      "runs": "{{runs}} 最近執行 · {{completed}} 完成 · {{failed}} 失敗",
+      "cadence": {
+        "once": "一回",
+        "daily": "每日",
+        "twice": "兩次一天"
+      },
+      "dehub_post_create": "發布帖子",
+      "dehub_comment": "回复和评论",
+      "dehub_update_profile": "編輯個人資料",
+      "dehub_stream_timeout": "管理直播间聊天室",
+      "action": "动作",
+      "schedule": "日程表"
+    }
   },
   "hero": {
     "title": "欢迎来到",
@@ -5006,7 +5033,12 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {"chart": {"daily": "逐日访客", "dailyHint": "逐日不重复访客", "empty": "只段时间还无数据"},
+  "stats": {
+    "chart": {
+      "daily": "逐日访客",
+      "dailyHint": "逐日不重复访客",
+      "empty": "只段时间还无数据"
+    },
     "definitions": {
       "visitorsTerm": "访客"
     },

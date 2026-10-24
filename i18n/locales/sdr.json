@@ -2447,7 +2447,45 @@
     "revealFailed": "कुंजी नी देखाय पारलक। फिर से कोसिस करा।",
     "signInAgain": "फिर से साइन इन करा",
     "createSignIn": "एजेंट बनाएक लागिन फिर से साइन इन करा",
-    "checkConnection": "आपन कनेक्शन जाँच करा आउर फिर से कोसिस करा।"
+    "checkConnection": "आपन कनेक्शन जाँच करा आउर फिर से कोसिस करा।",
+    "workspace": {
+      "moderationHelp": "مُشَارَكَةُ المُوَدِّرَةِ قَبْلَ كُلِّ شَيْءٍ. يُحْتَمَلُ أَنَّ الحِسَابَ يَجِبُ أَنْ يَكُونَ خَالِصًا لِلْمُخْتَارِ أَوْ مُوَدِّرًا مُنَصَّبًا. مَوَاضِعُ التَّصْدِيقِ وَالْمَسْدَدَةِ لازِمَةٌ. يُنْقَضِي مُدَّتَا التَّعْطِيلِ بِالْوُجُودِ التَّأْوِيلِيِّ.",
+      "webhook": "Discord अलर्ट वेबहुक (वैकल्पिक)",
+      "webhookHelp": "Approval requests aur action failures ek generic alert bheje-la, ghanta mein ek baar se besi nai. Koi draft text ya wallet details nai bhejal jae-la. Disable kare ke khatir khali chhor de; delivery results audit log mein dikhe-la.",
+      "reversalHelp": "Reversals पोस्ट मन के लुकाएला, कमेंट्स के हमेशा खातिर मिटाएला, रिएक्शन और प्रोफाइल टेक्स्ट के वापस लाएला, या नया फॉलो के हटाएला। व्यूज, भेजल नोटिफिकेशन, मिंट भइल ट्रांजैक्शन, प्रोफाइल इमेज और एक्सपायर भइल टाइमआउट के मिटावल नइखे जा सके। लुकायल पोस्ट मन के उनकर विजिबिलिटी कंट्रोल से वापस पावल जा सकेला।",
+      "voice": "صدا و تنفس",
+      "knowledge": "مادەی پەروەردەیی",
+      "blocked": "قەدەغەكراوەکان، لەنێوان پێکەوە بەکۆما",
+      "liveNews": "ئەم ڕۆژانە لە ڕۆژنامەیەکی بەڕەھەڵهاتەوە، بەڵام لەبەر ئەوەی کە من ڕۆبۆتەم، من بەڵێنی نەدەبم کە من ڕێگەیەکی ڕەسمی بەڕۆژنامەیەک بەڕێوەبەرێت.",
+      "saved": "قواعد ذخیره شد.",
+      "title": "एजेंट वर्कस्पेस",
+      "library": "टेम्पलेट्स और टास्क बिल्डर",
+      "subject": "مۆلەتەوەنەکان",
+      "empty": "چې ځواب نه شوی.",
+      "approve": "मंजूर कर और लागू कर",
+      "growthResult": "{{followers}} फॉलोअर्स · {{following}} फॉलोइंग",
+      "growthChange": "Follower badlao: {{count}} {{time}} se",
+      "runs": "{{runs}} اخیرین اجراها · {{completed}} تکمیل شده · {{failed}} شکست خورده",
+      "draft": "Sirf draft",
+      "count": {
+        "pending": "देखेक लेल ड्राफ्ट्स"
+      },
+      "builder": {
+        "curate": "پست‌های مرتبط",
+        "post": "assistant can't help with that request."
+      },
+      "dehub_follow": "अकाउंट मन के फॉलो करा",
+      "news": {
+        "technology": "Təxnoloji",
+        "culture": "संस्कृति",
+        "sport": "Spor",
+        "science": "علم"
+      },
+      "alerts": "ڕێزەکان پێویستە",
+      "agent": "اژانس",
+      "action": "কর্ম",
+      "filter": "Activity ke chhanu"
+    }
   },
   "hero": {
     "title": "ہماری دنیا میں",
@@ -5015,7 +5053,12 @@
     "interestedCount": "{{count}} জন আগ্রহী",
     "loadFailed": "ইভেন্ট লোড করা গেল না"
   },
-  "stats": {"chart": {"daily": "ہر دن آوے والا", "dailyHint": "ہر دن الگ الگ آوے والا", "empty": "ای وقت کے واسطے اڃا ڈیٹا نہیں ہے"},
+  "stats": {
+    "chart": {
+      "daily": "ہر دن آوے والا",
+      "dailyHint": "ہر دن الگ الگ آوے والا",
+      "empty": "ای وقت کے واسطے اڃا ڈیٹا نہیں ہے"
+    },
     "definitions": {
       "visitorsTerm": "آوے والا"
     },

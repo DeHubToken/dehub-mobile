@@ -2435,7 +2435,89 @@
     "revealFailed": "Çelësi nuk u shfaq dot. Provoni përsëri.",
     "signInAgain": "Hyni përsëri",
     "createSignIn": "Hyni përsëri për të krijuar një agjent",
-    "checkConnection": "Kontrolloni lidhjen dhe provoni përsëri."
+    "checkConnection": "Kontrolloni lidhjen dhe provoni përsëri.",
+    "workspace": {
+      "moderation": "Moderimi i rrjedhës",
+      "moderationHelp": "Lëvizo rregullimin e moderimit para se të aktivizosh këtë. Konti duhet të jetë kreator i streamit ose një moderator i përzgjedhur. Modesh e miratimit dhe borrës së përgatitjes vazhdojnë të aplikohen. Çdo timeout përfundon automatikisht.",
+      "streamId": "ID-ja e postimit të rrjedhës",
+      "participant": "Portofoli i pjesëmarrësve",
+      "participantHint": "Portofoli i pjesëmarrësve (0x…)",
+      "timeout": "Kohës së mbylljes në sekonda",
+      "submitTimeout": "Koha e mbarimit",
+      "handled": "Kërkesa u trajtua. Shih regjistrin e auditimit.",
+      "webhook": "Webhook i sinjalizimit të mosmarrëveshjeve (opsional)",
+      "webhookHelp": "Kërkesat e miratimit dhe dështimet e veprimit dërgojnë një lajmërim të përgjithshëm, më së shumti një herë në orë. Asnjë draft teksti ose detajet e portofolit nuk janë dërguar. Lëreni bosh për të çaktivizuar; rezultatet e dorëzimit shfaqen në regjistrin e auditimit.",
+      "reversalHelp": "Përmbysjet fshehin postimet, fshijnë përgjithmonë komentet, rivendosin reagimet dhe tekstin e profilit ose anulojnë ndjekjet e reja. Shikimet, njoftimet e dërguara, transaksionet e prera, imazhet e profilit dhe afatet e skaduara nuk mund të fshihen. Postimet e fshehura mbeten të rikuperueshme nga kontrollet e tyre të dukshmërisë.",
+      "confirmCorrection": "Kjo ndryshon aktivitetin e publikuar. Fshirja e komentit nuk mund të zhbëhet.",
+      "correction": "Korrigjim",
+      "alert": "Lajmërim",
+      "shared": "E përbashkët",
+      "controls": "Zëri, lejet dhe lajmet",
+      "scope": "Këto kontrolle zbatohen për detyrat e planifikuara, jetën autonome dhe asistentët e lidhur. Draftet mbeten private derisa t 'i miratosh.",
+      "voice": "Zëri dhe toni",
+      "knowledge": "Materiali i referencës",
+      "blocked": "Temat e bllokuara, të ndara me presje",
+      "newsHelp": "Zgjidh deri në tre tema. Raportet e publikuesit nga 24 orët e fundit ruhen për 15 minuta. Reagimet e lajmeve përfshijnë një lidhje burimi; lajmet e padisponueshme ose të ndenjura janë anashkaluar.",
+      "saved": "Cilësimet u ruajtën.",
+      "title": "Hapësirë pune për agjentët",
+      "sample": "Aktiviteti dhe lajmërimet mbulojnë 100 veprimet dhe 200 detyrat e fundit. Numrat nuk janë totalet e jetës ose përdorimi i faturimit.",
+      "growth": "Regjistro raportin e rritjes",
+      "baseline": "Fotografia e parë; kap një tjetër më vonë për ta krahasuar.",
+      "library": "Shabllonet dhe ndërtuesi i detyrave",
+      "subject": "Stili i temës ose përgjigjes",
+      "planValidated": "Plani u vërtetua",
+      "builderHelp": "Zgjedhni një gabarit, përshkruaj veprimtarinë, publikun dhe kalendarin, pastaj simuloje para ekzekutimit. Gabaritë të përbashkëta janë instruksione nga autorët e tyre, jo aftësi të verifikuara.",
+      "simulate": "Simulo planin",
+      "allowed": "Lejohet",
+      "templateName": "Emri i modelit",
+      "share": "Shpërndaje këtë model me përdoruesit e tjerë të Agjentëve",
+      "saveTemplate": "Ruaje modelin",
+      "templateSaved": "Modeli u ruajt.",
+      "history": "Draft regjistri i kutisë së mesazheve dhe auditimit",
+      "empty": "Asnjë aktivitet ende nuk është.",
+      "approve": "Aprovo dhe ekzekuto",
+      "reject": "Refuzo",
+      "growthResult": "{{followers}} ndjekës · {{following}} ndjekës",
+      "growthChange": "Ndryshimi i ndjekësit: {{count}} që nga {{time}}",
+      "runs": "Përditësimet e fundit · {{runs}} të kryera · {{completed}} të përfunduara · {{failed}} të mëdha",
+      "autonomous": "Autonome",
+      "approval": "Mirato së pari",
+      "draft": "Punësimi i vetëm për një projekti të caktuar",
+      "count": {
+        "succeeded": "Sukseset e fundit",
+        "scheduled": "Detyrat e programuara",
+        "active": "Agjentë aktivë"
+      },
+      "builder": {
+        "news": "Reago ndaj lajmeve",
+        "reply": "Përgjigju postimeve të fundit",
+        "curate": "Pëlqe postimet përkatëse",
+        "post": "Shkruaj një postim"
+      },
+      "cadence": {
+        "once": "Një herë",
+        "daily": "Dita e sotme",
+        "twice": "Dy herë në ditë"
+      },
+      "dehub_post_create": "Publiko postimet",
+      "dehub_comment": "Përgjigje dhe koment",
+      "dehub_vote": "Reagjoni në postime",
+      "dehub_follow": "Njehni kontet",
+      "dehub_update_profile": "Redaktojeni profilin",
+      "dehub_stream_timeout": "Moderojeni chatin e streamit",
+      "news": {
+        "world": "Botë",
+        "technology": "Teknologji",
+        "culture": "Kulturë",
+        "sport": "Sport",
+        "science": "Shkencë"
+      },
+      "alerts": "Kërkon vëmendje",
+      "agent": "Agjent",
+      "action": "Veprim",
+      "schedule": "Program",
+      "filter": "Filtroni aktivitetin"
+    }
   },
   "hero": {
     "title": "Mirë Se Vini",
@@ -5025,7 +5107,12 @@
     "interestedCount": "{{count}} të interesuar",
     "loadFailed": "Ngjarjet nuk u ngarkuan dot"
   },
-  "stats": {"chart": {"daily": "Vizitorë në ditë", "dailyHint": "vizitorë unikë në ditë", "empty": "Ende nuk ka të dhëna për këtë periudhë"},
+  "stats": {
+    "chart": {
+      "daily": "Vizitorë në ditë",
+      "dailyHint": "vizitorë unikë në ditë",
+      "empty": "Ende nuk ka të dhëna për këtë periudhë"
+    },
     "definitions": {
       "visitorsTerm": "Vizitorë"
     },

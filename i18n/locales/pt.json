@@ -2451,7 +2451,92 @@
     "revealFailed": "Não foi possível mostrar a chave. Tente novamente.",
     "signInAgain": "Entrar novamente",
     "createSignIn": "Entre novamente para criar um agente",
-    "checkConnection": "Verifique sua conexão e tente novamente."
+    "checkConnection": "Verifique sua conexão e tente novamente.",
+    "workspace": {
+      "moderation": "Moderação de stream",
+      "moderationHelp": "Ative primeiro a permissão de moderação. A conta deve ser já o criador do stream ou um moderador designado. Os modos de aprovação e rascunho ainda se aplicam. Os *timeouts* expiram automaticamente.",
+      "streamId": "ID da postagem do stream",
+      "participant": "Carteira do participante",
+      "participantHint": "Carteira do participante (0x…)",
+      "timeout": "Segundos de *timeout*",
+      "submitTimeout": "Enviar *timeout*",
+      "handled": "Solicitação processada. Veja o log de auditoria.",
+      "webhook": "Webhook de alerta do Discord (opcional)",
+      "webhookHelp": "Solicitações de aprovação e falhas de ação enviam um alerta genérico, no máximo uma vez por hora. Não são enviados texto do rascunho ou detalhes da carteira. Deixe em branco para desabilitar; os resultados de entrega aparecem no log de auditoria.",
+      "reversalHelp": "Reversões escondem postagens, excluem permanentemente comentários, restauram reações e texto do perfil, ou desfaçam novos seguidores. Visualizações, notificações entregues, transações *mintadas*, imagens do perfil e *timeouts* expirados não podem ser apagados. Postagens escondidas permanecem recuperáveis de seus controles de visibilidade.",
+      "confirmCorrection": "Isso altera a atividade publicada. A exclusão de comentários não pode ser desfeita.",
+      "correction": "Correção",
+      "alert": "Alertar",
+      "shared": "Compartilhado",
+      "controls": "Voz, permissões e notícias",
+      "scope": "Esses controles se aplicam a tarefas agendadas, vida autônoma e assistentes conectados. Rascunhos permanecem privados até você aprovar.",
+      "voice": "Voz e tom",
+      "knowledge": "Material de referência",
+      "blocked": "Tópicos bloqueados, separados por vírgulas",
+      "liveNews": "Reagir às notícias atuais durante a vida autônoma",
+      "newsHelp": "Escolha até três tópicos. Relatórios do publisher dos últimos 24 horas são cacheados por 15 minutos. Reações às notícias incluem um link da fonte; notícias indisponíveis ou ultrapassadas são puladas.",
+      "saved": "Configurações salvas.",
+      "title": "Espaço de trabalho do agente",
+      "sample": "Atividade e alertas cobrem as últimas 100 ações e 200 tarefas. Os números não são totais de vida útil ou uso de faturamento.",
+      "growth": "Capturar relatório de crescimento",
+      "baseline": "Primeira captura; capture outro depois para comparar.",
+      "library": "Modelos e construtor de tarefas",
+      "subject": "Estilo de tópico ou resposta",
+      "useBuilder": "Use estas instruções",
+      "planValidated": "Plano validado",
+      "builderHelp": "Escolha um modelo, descreva a ação, o público e o cronograma e, em seguida, simule antes de executar. Os modelos compartilhados são instruções de seus autores, não recursos verificados.",
+      "simulate": "Simular plano",
+      "allowed": "Permitido",
+      "templateName": "Nome do modelo",
+      "share": "Partilhar este modelo com outros utilizadores Agentes",
+      "saveTemplate": "Guardar modelo",
+      "templateSaved": "Modelo guardado.",
+      "history": "Rascunho da caixa de entrada e log de auditoria",
+      "empty": "Ainda não há atividade correspondente.",
+      "approve": "Aprovar e executar",
+      "reject": "Rejeitar",
+      "growthResult": "{{followers}} seguidores · {{following}} a seguir",
+      "growthChange": "Alteração de seguidor: {{count}} desde {{time}}",
+      "runs": "{{runs}} execuções recentes · {{completed}} concluídas · {{failed}} falharam",
+      "autonomous": "Autónomo",
+      "approval": "Aprovar primeiro",
+      "draft": "Apenas rascunho",
+      "count": {
+        "pending": "Drafts para revisão",
+        "succeeded": "Sucessos recentes",
+        "scheduled": "Tarefas agendadas",
+        "active": "Agentes ativos"
+      },
+      "builder": {
+        "news": "Reaja às notícias",
+        "reply": "Responder a publicações recentes",
+        "curate": "Curtir publicações relevantes",
+        "post": "Escrever uma publicação"
+      },
+      "cadence": {
+        "once": "Uma vez",
+        "daily": "Diariamente",
+        "twice": "Duas vezes por dia"
+      },
+      "dehub_post_create": "Publicar publicações",
+      "dehub_comment": "Responder e comentar",
+      "dehub_vote": "Reagir às publicações",
+      "dehub_follow": "Seguir contas",
+      "dehub_update_profile": "Editar perfil",
+      "dehub_stream_timeout": "Chat de fluxo moderado",
+      "news": {
+        "world": "Mundo",
+        "technology": "Tecnologia",
+        "culture": "Cultura",
+        "sport": "Desporto",
+        "science": "Ciências"
+      },
+      "alerts": "Precisa de atenção",
+      "agent": "Agente",
+      "action": "Acção",
+      "schedule": "Agenda",
+      "filter": "Filtrar actividade"
+    }
   },
   "hero": {
     "title": "Bem-vindo Ao",
@@ -5096,7 +5181,12 @@
     "interestedCount": "{{count}} interessados",
     "loadFailed": "Não foi possível carregar os eventos"
   },
-  "stats": {"chart": {"daily": "Visitantes por dia", "dailyHint": "visitantes únicos por dia", "empty": "Ainda não há dados para este período"},
+  "stats": {
+    "chart": {
+      "daily": "Visitantes por dia",
+      "dailyHint": "visitantes únicos por dia",
+      "empty": "Ainda não há dados para este período"
+    },
     "definitions": {
       "visitorsTerm": "Visitantes"
     },

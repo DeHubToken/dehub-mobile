@@ -2490,7 +2490,91 @@
     "revealFailed": "Hindi maipakita ang key. Subukan muli.",
     "signInAgain": "Mag-sign in muli",
     "createSignIn": "Mag-sign in muli para gumawa ng agent",
-    "checkConnection": "Suriin ang iyong koneksyon at subukan muli."
+    "checkConnection": "Suriin ang iyong koneksyon at subukan muli.",
+    "workspace": {
+      "moderation": "Pagmo - moderate ng stream",
+      "moderationHelp": "I - enable muna ang pahintulot sa pagmo - moderate. Ang account ay dapat na ang tagalikha ng stream o isang nakatalagang moderator. Nalalapat pa rin ang pag - apruba at draft mode. Awtomatikong mag - e - expire ang mga timeout.",
+      "streamId": "I - stream ang post ID",
+      "participant": "Wallet ng kalahok",
+      "participantHint": "Wallet ng kalahok (0x…)",
+      "timeout": "Mga segundo ng timeout",
+      "submitTimeout": "Isumite ang time - out",
+      "handled": "Hinahawakan ang kahilingan. Tingnan ang log ng pag - audit.",
+      "webhook": "Webhook ng alerto sa discord (opsyonal)",
+      "webhookHelp": "Nagpapadala ang mga kahilingan sa pag - apruba at kabiguan sa pagkilos ng generic na alerto, nang hindi bababa sa isang beses bawat oras. Walang draft na teksto o mga detalye ng wallet ang ipinapadala. Mag - iwan ng blangko upang huwag paganahin; lumilitaw ang mga resulta ng paghahatid sa log ng pag - audit.",
+      "reversalHelp": "Ang mga pagbalik ay naglalagak ng mga post, nagpapatay ng mga komento sa pamamagitan ng paraan ng permanenteng pagtanggal, nagbabalik ng mga reaksyon at mga teksto ng profile, o nagbabalik ng mga bagong sumusunod. Hindi maaaring ilagak ang mga panonood, mga natatanggap na mga notipikasyon, mga transaksyon na minted, mga larawan ng profile, at mga expired na timeout. Ang mga hidden na post ay maaaring makita muli mula sa kanilang mga kontrol ng pagkakakita.",
+      "confirmCorrection": "Binabago nito ang nai - publish na aktibidad. Hindi mababawi ang pagtanggal ng komento.",
+      "correction": "Pagwawasto",
+      "alert": "Alerto",
+      "shared": "Ibinahagi",
+      "controls": "Voice, mga pahintulot at balita",
+      "scope": "Ang mga kontrol na ito ay tumutukoy sa mga task na naplano, mga buhay na autonomiko at mga asistenteng nakakonekta. Ang mga draft ay mananatili sa pribadong estado hanggang sa iaprubahan mo sila.",
+      "voice": "Tinig at tono",
+      "blocked": "Mga naka - block na paksa, pinaghihiwalay ng mga kuwit",
+      "liveNews": "Tumugon sa mga kasalukuyang balita habang nasa autonomous na buhay",
+      "newsHelp": "Pumili ng hanggang tatlong paksa. Ang mga ulat ng publisher mula sa huling 24 na oras ay naka - cache sa loob ng 15 minuto. Kasama sa mga reaksyon ng balita ang isang link ng mapagkukunan; laktawan ang hindi magagamit o lumang balita.",
+      "saved": "Na - save ang mga setting.",
+      "title": "Lugar ng trabaho ng ahente",
+      "sample": "Ang aktibidad at mga alerto ay sumasaklaw sa pinakabagong mga aksyon ng 100 at mga gawain ng 200. Ang mga bilang ay hindi mga kabuuan ng buhay o paggamit ng pagsingil.",
+      "growth": "I - capture ang ulat ng paglago",
+      "baseline": "Unang snapshot; hulihin ang isa pa mamaya upang ihambing.",
+      "library": "Mga template at tagabuo ng gawain",
+      "subject": "Estilo ng paksa o tugon",
+      "useBuilder": "Gamitin ang mga tagubiling ito",
+      "planValidated": "Ang plano ay kinumpirma",
+      "builderHelp": "Pumili ng template, uring ang aksyon, pangkalahatan at oras, at simula bago mag-eksperimento. Ang mga template na pinangalanan ay mga instruksiyon mula sa mga may-akda, hindi ang mga kapasidad na tinestigo.",
+      "simulate": "Simulahin ang plano",
+      "allowed": "Pinahintulutan",
+      "templateName": "Pangalan ng template",
+      "share": "Ibahagi ang template sa iba pang mga user ng Agent",
+      "saveTemplate": "I-save ang template",
+      "templateSaved": "Ang template ay na-save.",
+      "history": "Ang inbox at log ng audit",
+      "empty": "Walang matitipong aktibidad pa.",
+      "approve": "Tumanggap at mag-eksperimento",
+      "reject": "Tanggihan",
+      "growthResult": "{{followers}} tagasunod · {{following}} sumusunod",
+      "growthChange": "Ang pagbabago sa tagasunod: {{count}} mula sa {{time}}",
+      "runs": "{{runs}} mga nakalipas na pagsubok · {{completed}} na natapos · {{failed}} na pinaloob",
+      "autonomous": "Autonomous",
+      "approval": "Tumanggap ng unang pagsubok",
+      "draft": "Draft lamang",
+      "count": {
+        "pending": "Ang mga draft na para sa pagsusuri",
+        "succeeded": "Ang mga tagumpay na nakalipas",
+        "scheduled": "Ang mga aktibong mga taksang nakaplanado",
+        "active": "Ang mga aktibong mga agent"
+      },
+      "builder": {
+        "news": "Reaksyon sa balita",
+        "reply": "Sagot sa mga nakalipas na mga post",
+        "curate": "Magpahanga sa mga post na may kinalaman",
+        "post": "Isulat ang isang post"
+      },
+      "cadence": {
+        "once": "Isang beses",
+        "daily": "Araw-araw",
+        "twice": "Dalawang beses araw-araw"
+      },
+      "dehub_post_create": "Mag-publish ng mga post",
+      "dehub_comment": "Sumagot at magkomento",
+      "dehub_vote": "Mag - react sa mga post",
+      "dehub_follow": "Subaybayan ang mga account",
+      "dehub_update_profile": "I - edit ang profile",
+      "dehub_stream_timeout": "Katamtamang stream chat",
+      "news": {
+        "world": "Mundo",
+        "technology": "Teknolohiya",
+        "culture": "Kalinangan",
+        "sport": "Palakasan",
+        "science": "Agham"
+      },
+      "alerts": "Kailangan ng atensyon",
+      "agent": "Ahente",
+      "action": "Pagkilos",
+      "schedule": "Iskedyul",
+      "filter": "I - filter ang aktibidad"
+    }
   },
   "hero": {
     "title": "Maligayang Pagdating",
@@ -5080,7 +5164,12 @@
     "interestedCount": "{{count}} ang interesado",
     "loadFailed": "Hindi ma-load ang mga event"
   },
-  "stats": {"chart": {"daily": "Mga bisita kada araw", "dailyHint": "mga natatanging bisita kada araw", "empty": "Wala pang datos para sa panahong ito"},
+  "stats": {
+    "chart": {
+      "daily": "Mga bisita kada araw",
+      "dailyHint": "mga natatanging bisita kada araw",
+      "empty": "Wala pang datos para sa panahong ito"
+    },
     "definitions": {
       "visitorsTerm": "Mga bisita"
     },
