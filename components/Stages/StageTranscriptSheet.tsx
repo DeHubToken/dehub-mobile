@@ -23,6 +23,7 @@ import Dropdown from "../ui/Dropdown";
 import GlassModal from "../ui/GlassModal";
 import StageRecordingPlayer from "./StageRecordingPlayer";
 import { seekStageRecordingToTime, useStagePlayback } from "../../libs/stage-playback";
+import { useStageReplayDub } from '../../hooks/useStageReplayDub';
 import type { AudioSpace, StageTranscript, Segment, Chapter, SpeakerMapEntry, SpeakerOverride } from "../../hooks/useStages";
 import { ButtonLoader, DeHubLoader } from "../DeHubLoader";
 import { usePendingAction } from "../../hooks/usePendingAction";
@@ -156,6 +157,8 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
   // Translation state
   const [language, setLanguage] = useState("original");
+  const translationKey = useRef('');
+  const [translationLanguage, setTranslationLanguage] = useState('');
   const [translation, setTranslation] = useState<{
     status: "processing" | "ready" | "failed";
     segments: Segment[];
@@ -174,6 +177,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   // The translation cache keys on the transcript row, not the stage — one
   // store now serves stages and videos alike.
   const transcriptId = (transcript as any)?.id ?? null;
+  translationKey.current = `${transcriptId}:${language}`;
+  const dubLanguage = visible && language !== 'original' && language !== transcript?.source_language ? language : null;
+  const replayDub = useStageReplayDub(stageId, transcriptId, dubLanguage,
+    translationLanguage === language && translation?.status === 'ready' ? translation.segments : null);
   const isHost =
     !!walletAddress &&
     !!space?.host_wallet_address &&
@@ -209,6 +216,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
   // Load translation cache
   const fetchTranslation = useCallback(async () => {
+    const key = `${transcriptId}:${language}`;
     if (!transcriptId || language === "original") {
       setTranslation(null);
       return;
@@ -223,7 +231,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
         .maybeSingle();
 
       if (error) throw error;
-      setTranslation(data as any);
+      if (translationKey.current === key) {
+        setTranslation(data as any);
+        setTranslationLanguage(language);
+      }
     } catch (e) {
       console.warn("Failed to fetch translation", e);
     } finally {
@@ -374,10 +385,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   // Waiting for the lookup to finish keeps this from firing before we know
   // whether a translation already exists.
   useEffect(() => {
-    if (language !== "original" && !translation && !isTranslationLoading) {
+    if (visible && language !== "original" && !translation && !isTranslationLoading) {
       triggerTranslation();
     }
-  }, [language, translation, isTranslationLoading, triggerTranslation]);
+  }, [visible, language, translation, isTranslationLoading, triggerTranslation]);
 
   // Auto-transcribe legacy or missing transcripts
   useEffect(() => {
@@ -400,7 +411,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
 
   // Derived variables
   const status = transcript?.status || "pending";
-  const useTranslated = language !== "original" && translation?.status === "ready";
+  const useTranslated = language !== "original" && translationLanguage === language && translation?.status === "ready";
   const segments: Segment[] = useTranslated
     ? translation!.segments
     : transcript?.segments || [];
@@ -636,6 +647,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
             {!!space && (
               <View className="mb-3">
                 <StageRecordingPlayer
+                  playbackDisabled={!replayDub.ready}
                   spaceId={space.id}
                   recordingUrl={space.recording_url}
                   title={space.title}
@@ -644,6 +656,9 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 />
               </View>
             )}
+            {!!dubLanguage && <Text accessibilityRole="text" className="text-xs text-theme-neutrals-400 mb-2">
+              {t(replayDub.ready ? 'dub.dubbed' : replayDub.failed ? 'dub.noVoice' : 'dub.preparing')}
+            </Text>}
 
             {/* AI Summary and chapters panel */}
             {(summary || chapters.length > 0 || transcript?.summary_status === "processing") && (
@@ -706,7 +721,7 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
                 <Dropdown
                   options={LANGUAGES.map((l) => (l.value === "original" ? { ...l, label: t("stages.originalLanguage") } : l))}
                   value={language}
-                  onChange={setLanguage}
+                  onChange={(value) => { setTranslation(null); setTranslationLanguage(''); setLanguage(value); }}
                   placeholder={t("settings.language")}
                 />
               </View>

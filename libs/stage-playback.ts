@@ -40,7 +40,7 @@
 import { createAudioPlayer, type AudioPlayer, type AudioStatus } from "expo-audio";
 import i18n from "i18next";
 import { useEffect, useState } from "react";
-import { Platform } from "react-native";
+
 
 import { configureForBackgroundPlayback } from "./audioSession";
 import { claimLockScreen, releaseLockScreen } from "./lockScreen";
@@ -49,6 +49,7 @@ import { storage } from "./storage";
 import { toastError, toastInfo } from "./toast";
 import { translateCopy as _translateCopy } from "../i18n/copy";
 import { supabase } from "../services/supabase";
+import { playableStageRecording } from './stage-recording-source';
 
 const log = createLogger("stage-playback");
 
@@ -201,6 +202,10 @@ function publish(patch: Partial<StagePlaybackState>) {
 // there is no separate unload step, and no per-row player to leak.
 
 let player: AudioPlayer | null = null;
+let sourceGeneration = 0;
+
+/** The replay dub follows this player's clock and shares its transport. */
+export function getStageRecordingPlayer(): AudioPlayer | null { return player; }
 
 /** Seconds derived from started_at/ended_at — the fallback duration. */
 let estimatedDuration = 0;
@@ -365,6 +370,7 @@ async function seekToSeconds(seconds: number) {
 
 /** Stop playback and drop the source. */
 export function stopStageRecording() {
+  sourceGeneration++;
   if (endTimeout !== null) {
     clearTimeout(endTimeout);
     endTimeout = null;
@@ -397,48 +403,6 @@ export function stopStageRecording() {
 // recordings as MP4 from the start (the same Opus audio, re-wrapped); a
 // recording made before that is converted the first time anyone plays it, and
 // the stage is repointed at the copy for everybody after.
-
-const isWebm = (url: string) => /\.webm(?:[?#]|$)/i.test(url);
-
-/** Stages already sent off for their MP4 this session, so a replay does not ask again. */
-const playableCopyRequested = new Set<string>();
-
-function requestPlayableCopy(stageId: string) {
-  if (playableCopyRequested.has(stageId)) return;
-  playableCopyRequested.add(stageId);
-  void supabase.functions
-    .invoke("finalize-stage-recording", { body: { stageId, transcribe: false } })
-    .then(
-      ({ error }) => {
-        if (error) {
-          log.warn("Asking for a playable copy failed", error);
-          playableCopyRequested.delete(stageId);
-        }
-      },
-      (e) => {
-        log.warn("Asking for a playable copy failed", e);
-        playableCopyRequested.delete(stageId);
-      },
-    );
-}
-
-/** Polls until the stage points at its converted copy; null if it never does in time. */
-async function waitForPlayableCopy(stageId: string, timeoutMs = 90_000): Promise<string | null> {
-  const until = Date.now() + timeoutMs;
-  while (Date.now() < until) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    // Moved on to something else, or stopped: stop asking.
-    if (state.spaceId !== stageId) return null;
-    const { data } = await supabase
-      .from("audio_spaces")
-      .select("recording_url")
-      .eq("id", stageId)
-      .maybeSingle();
-    const url = (data as { recording_url?: string | null } | null)?.recording_url;
-    if (url && !isWebm(url)) return url;
-  }
-  return null;
-}
 
 function couldNotPlay(e: unknown) {
   toastError(e, _translateCopy("copy.49bbcbf7a97b", { defaultValue: "That recording could not be played" }));
@@ -491,27 +455,18 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
     timeLeft: "",
   });
 
-  const webm = isWebm(space.recording_url);
-  if (webm) requestPlayableCopy(space.id);
+  const generation = ++sourceGeneration;
 
   void (async () => {
     try {
-      let uri = space.recording_url!;
+      const uri = await playableStageRecording(space.id, space.recording_url!);
+      if (generation !== sourceGeneration) return;
       // Android plays the WebM while the copy is made. An iPhone never will,
       // so it holds on the loading state until the MP4 is there.
-      if (webm && Platform.OS === "ios") {
-        const copy = await waitForPlayableCopy(space.id);
-        if (state.spaceId !== space.id) return;
-        if (!copy) {
-          log.warn("No playable copy of this recording arrived in time");
-          couldNotPlay(null);
-          stopStageRecording();
-          return;
-        }
-        uri = copy;
-      }
       await configureForBackgroundPlayback();
+      if (generation !== sourceGeneration) return;
       p.replace({ uri });
+      p.volume = 1;
       // A fresh source starts at the persisted rate.
       try {
         p.shouldCorrectPitch = true;
@@ -519,7 +474,7 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
       } catch (e) {
         log.warn("setPlaybackRate failed", e);
       }
-      p.play();
+      if (!state.paused) p.play();
       // Seek buttons are offered on the assumption the source is scrubbable;
       // onStatus re-claims without them if a seek turns out not to land (the
       // WebM container web records into has no index at all).
@@ -528,6 +483,7 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
         showSeekBackward: true,
       });
     } catch (e) {
+      if (generation !== sourceGeneration) return;
       log.error("Could not start the recording", e);
       couldNotPlay(e);
       stopStageRecording();
