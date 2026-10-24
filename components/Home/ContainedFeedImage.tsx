@@ -27,6 +27,8 @@ interface ContainedFeedImageProps {
   postPage?: boolean;
   /** The shape a gallery already measured, used until this image loads its own. */
   aspect?: number;
+  /** A framed gallery's height: a shorter photo is cropped to fill it, full width. */
+  fillHeight?: number;
 }
 
 /**
@@ -48,6 +50,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   postPage = false,
   description,
   aspect,
+  fillHeight,
 }) => {
   const { t } = useTranslation();
   const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
@@ -69,7 +72,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const edgeToEdge = isMinimal || bleed;
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
-  const dimensions = useMemo(
+  const fitted = useMemo(
     () => fitFeedImageWithin(
           availableWidth,
           aspectRatio,
@@ -77,6 +80,8 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         ),
     [availableWidth, aspectRatio, screenHeight],
   );
+  const fills = !!fillHeight && fitted.height < fillHeight - 1;
+  const dimensions = fills ? { width: availableWidth, height: fillHeight } : fitted;
 
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
     if (width !== undefined) return;
@@ -113,7 +118,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         {drawBitmap && <SmartImage
           key={`${uri}:${attempt}`}
           source={source}
-          contentFit="contain"
+          contentFit={fills ? "cover" : "contain"}
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}
