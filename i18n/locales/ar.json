@@ -1128,7 +1128,8 @@
     "themeColorBrand": "العلامة",
     "themeColorBrandDesc": "استخدام ألوان صورتك الشخصية",
     "themeColorBrandNoAvatar": "أضف صورة شخصية لاستخدام ألوان العلامة",
-    "themeColorBrandFailed": "تعذّرت قراءة الألوان من صورتك الشخصية"
+    "themeColorBrandFailed": "تعذّرت قراءة الألوان من صورتك الشخصية",
+    "glass": "زجاجي"
   },
   "common": {
     "refresh": "تحديث",
@@ -2632,7 +2633,25 @@
     "sharePostTemplate": "لقد أضفت للتو {{amount}} $ إلى مكدسي على. البناء مع المجتمع. #DeHub",
     "minDhbPurchase": "الحد الأدنى لشراء الرموز هو 0.50 دولار"
   },
-  "agents": {"life":{"title":"حيّ","help":"يتيح لهذا الوكيل أن يعيش بمفرده. له مواعيده الخاصة، ينشر ويعجب ويرد بصوته الخاص، وينام ليلاً.","starting":"جارٍ إعداد شخصيته…","awake":"مستيقظ في {{home}}","asleep":"نائم في {{home}}","next":"الزيارة التالية {{time}}","recent":"مؤخراً","empty":"لا شيء بعد. سيمر قريباً.","kind":{"post":"نشر","comment":"علّق","reply":"ردّ","like":"أعجب بمنشور","profile":"حدّث ملفه الشخصي","error":"حدث خطأ ما"}},
+  "agents": {
+    "life": {
+      "title": "حيّ",
+      "help": "يتيح لهذا الوكيل أن يعيش بمفرده. له مواعيده الخاصة، ينشر ويعجب ويرد بصوته الخاص، وينام ليلاً.",
+      "starting": "جارٍ إعداد شخصيته…",
+      "awake": "مستيقظ في {{home}}",
+      "asleep": "نائم في {{home}}",
+      "next": "الزيارة التالية {{time}}",
+      "recent": "مؤخراً",
+      "empty": "لا شيء بعد. سيمر قريباً.",
+      "kind": {
+        "post": "نشر",
+        "comment": "علّق",
+        "reply": "ردّ",
+        "like": "أعجب بمنشور",
+        "profile": "حدّث ملفه الشخصي",
+        "error": "حدث خطأ ما"
+      }
+    },
     "profile": {
       "edit": "تعديل الملف الشخصي",
       "avatar": "الصورة الشخصية",
@@ -3139,7 +3158,8 @@
       "authorChip": "مؤلف الاقتراح"
     },
     "holdTokensToVote": "احتفظ برموز DeHub للتصويت",
-    "mustHoldTokens": "يجب عليك الاحتفاظ برموز DeHub للتصويت على مقترحات الحوكمة."
+    "mustHoldTokens": "يجب عليك الاحتفاظ برموز DeHub للتصويت على مقترحات الحوكمة.",
+    "badgeHoldersOnly": "حاملي الشارات فقط"
   },
   "sidebar": {
     "talkOfTheTown": "حديث المدينة",
@@ -4089,24 +4109,19 @@
     },
     "status": {
       "rejected": "مرفوض",
-      "open": "فتح",
-      "expired": "منتهي الصلاحية",
-      "completed": "مكتمل",
-      "cancelled": "تم الإلغاء",
-      "accepted": "مقبول",
       "open": "مفتوح",
+      "expired": "منتهية",
+      "completed": "مكتمل",
+      "cancelled": "ملغى",
+      "accepted": "مقبول",
       "pending": "معلّق",
       "awarded": "مُرسى",
       "in_progress": "قيد التنفيذ",
       "approved": "معتمد",
       "paid": "مدفوع",
       "awaitingPayment": "في انتظار الدفع",
-      "rejected": "مرفوض",
-      "completed": "مكتمل",
-      "cancelled": "ملغى",
       "disputed": "متنازع عليه",
-      "draft": "مسودة",
-      "expired": "منتهية"
+      "draft": "مسودة"
     },
     "detail": {
       "notFound": "المكافأة غير موجودة.",
@@ -5446,7 +5461,12 @@
     "interestedCount": "{{count}} مهتم",
     "loadFailed": "تعذّر تحميل الفعاليات"
   },
-  "stats": {"chart": {"daily": "الزوار يوميًا", "dailyHint": "زوار فريدون يوميًا", "empty": "لا توجد بيانات لهذه الفترة بعد"},
+  "stats": {
+    "chart": {
+      "daily": "الزوار يوميًا",
+      "dailyHint": "زوار فريدون يوميًا",
+      "empty": "لا توجد بيانات لهذه الفترة بعد"
+    },
     "definitions": {
       "visitorsTerm": "الزوار"
     },
@@ -11642,5 +11662,21 @@
     "fingerprint": "البصمة",
     "exploreFirst": "استكشف أولًا",
     "codeNote": "نرسل لك رمزًا عبر البريد الإلكتروني، دون كلمة مرور."
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "نشر",
+      "profile": "الملف الشخصي",
+      "community": "المجتمع",
+      "communityInvite": "دعوة المجتمع",
+      "store": "المتجر",
+      "listing": "البند",
+      "event": "الحدث",
+      "stage": "المرحلة",
+      "film": "العنوان",
+      "bounty": "مكافأة",
+      "app": "التطبيق",
+      "proposal": "اقتراح"
+    }
   }
 }

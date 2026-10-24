@@ -993,7 +993,8 @@
     "themeColorBrand": "برانڈ",
     "themeColorBrandDesc": "تہار پروفائل تصویر کے رنگ استعمال کرو",
     "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرے کے واسطے پروفائل تصویر جوڑو",
-    "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل"
+    "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل",
+    "showDislikesDesc": "هردوگەڵی بۆ بەڵگەنامەی ناخۆشییەکان لە پەڕگەیەکەتەوە دەتوانن بەڵگەنامەی ناخۆشییەکان بەخۆوە بۆبەخشان. لە کاتێکدا ئەگەر ئەم بەڵگەنامەیە بەڕێوەدەچێت، ھەر کەس نەبێتەوە بەڵگەنامەی ناخۆشییەکان بەخۆوە بۆبەخشان."
   },
   "common": {
     "refresh": "تازہ کرو",
@@ -2018,7 +2019,14 @@
     "title": "پیغام",
     "searchConversations": "بات چیت کھوجو...",
     "failedToLoad": "بات چیت لوڈ نہیں ہوئی",
-    "tryAgain": "دوبارہ کوشش کرو"
+    "tryAgain": "دوبارہ کوشش کرو",
+    "encryptionTurningOn": "پەیمانه‌وه‌ی وێنه‌ریی وەشانی‌ بۆ پەیمانه‌وه‌ی بۆنێت",
+    "encryptionSetupFailed": "کدگذاری تنظیمات با شکست مواجه شد. لطفاً دوباره تلاش کنید.",
+    "lockedBody": "{{name}}-ki chatê end-to-end şifreliyê. Bu cihazda cebelê xwe vekirin ji bo vekirina wê.",
+    "lockedUnlock": "Wallet kholay",
+    "lockedPrivate": "فقط تو میتونی ببینی",
+    "undecryptableRun_one": "{{count}} مۆشکێلەکەی پیغام نەتوانرێت لە ئامێرەکەدا بەخۆڕێک بەخۆڕێت",
+    "undecryptableRun_other": "{{count}} mesajlar bu cihazda açılabilir değil"
   },
   "music": {
     "all": "سب",
@@ -2054,7 +2062,31 @@
     "likeStation": "स्टेशन पसंद करें",
     "unlikeStation": "स्टेशन नापसंद करें",
     "shareStation": "स्टेशन शेयर करें",
-    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ",
+    "mostPlayed": "En çok oynananlar",
+    "radioPicks": "Seçimlerimiz",
+    "mostVoted": "En çok oy alanlar",
+    "trending": "Trendler",
+    "stagesLive": "Canlı şu an",
+    "upcoming": "Gelecek",
+    "mostListened": "En çok dinlenenler",
+    "recentStages": "Son olanlar",
+    "noStages": "Burada henüz bir sahne yok",
+    "listening": "dinliyorum",
+    "mostLiked": "En çok beğenilenler",
+    "mostRecent": "En son olanlar",
+    "chartOrder": "Ses listesi sıralaması",
+    "quality": "Kalite",
+    "votes": "Oylar",
+    "plays": "Oynatışlar",
+    "liveRadio": "Canlı radyo",
+    "listenLive": "Canlı dinle",
+    "nextStation": "Sonraki istasyon",
+    "mostViewed": "En çok görüntülenenler",
+    "trendingWeek": "Bu hafta trendler",
+    "newest": "Yeni olanlar",
+    "videoChartOrder": "Müzik videosu listesi sıralaması",
+    "viewsCount": "{{views}} görüntüleme"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -2149,7 +2181,13 @@
     "tabVideos": "Videolar",
     "tabAudio": "Sesler",
     "tabLive": "Canlı",
-    "tabPinned": "Pinli"
+    "tabPinned": "Pinli",
+    "tabDislikes": "Beğenilmeyenler",
+    "dislikesEmptyTitle": "Beğenilmeyenler yok",
+    "dislikesEmptyOwn": "Beğenilmeyenleri görüntülemek için beğenilerinizi bırakın ve burada görün. Beğeniyi kaldırarak gönderiyi geri getirin.",
+    "dislikesEmptyOther": "Hiç beğenilmeyen gönderi yok.",
+    "dislikesPrivateTitle": "Beğenilmeyenler gizlidir",
+    "dislikesPrivateDesc": "ई अकाउंट आपन नापसंद के आपन तक सीमित राखेला।"
   },
   "tv": {
     "title": "ٹی وی",
@@ -2446,7 +2484,39 @@
     "revealFailed": "कुंजी नी देखाय पारलक। फिर से कोसिस करा।",
     "signInAgain": "फिर से साइन इन करा",
     "createSignIn": "एजेंट बनाएक लागिन फिर से साइन इन करा",
-    "checkConnection": "आपन कनेक्शन जाँच करा आउर फिर से कोसिस करा।"
+    "checkConnection": "आपन कनेक्शन जाँच करा आउर फिर से कोसिस करा।",
+    "life": {
+      "daily": "پست‌های امروز: {{posts}} · هدف روزانه: {{target}}",
+      "imageUrl": "Image URL (optional)",
+      "postQueued": "پست در صف قرار گرفت. آن را در کارهای بالا پیگیری کنید.",
+      "postText": "पोस्ट करक",
+      "queuePost": "ڕێزەی کۆڵ",
+      "viewPost": "پۆست ببینە",
+      "unlike": "بەختیار نەبێ",
+      "unliked": "ناخوشا",
+      "less": "اہل سنت کے مبلغین کا کہنا ہے کہ یہ عمل ہرگز نہیں ہے۔"
+    },
+    "tasks": {
+      "runSwarm": "स्वार्म चलावा",
+      "preparing": "टास्क तैयार होवत है...",
+      "run": "प्रॉम्प्ट चलावा",
+      "window": {
+        "authorAll": "सभे क्रिएटर",
+        "authorChoose": "क्रिएटर चुनू",
+        "categoryAll": "सभे कैटेगरी",
+        "categoryChoose": "कैटेगरी चुनू",
+        "categoryHint": "कोनो भी कैटेगरी के नाम कॉमा लगा के लिखू, 20 तक। एगो पोस्ट कोनो भी चुनल कैटेगरी से मिल सकेला। सभे खातिर खाली छोड़ द।",
+        "last1h": "पिछला घंटा",
+        "last30d": "पिछला 30 दिन",
+        "allTime": "सभे समय",
+        "dislike": "नापसंद",
+        "author": "लेखक (वैकल्पिक)",
+        "category": "कैटेगरी (वैकल्पिक)",
+        "authorPlaceholder": "@यूजरनेम या वॉलेट",
+        "categoryPlaceholder": "सटीक कैटेगरी नाम",
+        "filterHelp": "सभे पोस्ट खातिर फिल्टर खाली छोड़ द। जब दुनों सेट होखे, त दुनों के मिलल जरूरी बा। पुरान रिएक्शन सुरक्षित बा; उल्टा रिएक्शन चुने से ओकर बदलाव हो जाई।"
+      }
+    }
   },
   "hero": {
     "title": "ہماری دنیا میں",
@@ -2751,7 +2821,13 @@
     "sendAnyWallet": "कोई भी किसी भी वॉलेट या एक्सचेंज से डीहब टोकन यहां भेज सकता है। बेस और বিএনबी पर ट्रांसफर आपके शेयर में गिने जाते हैं।",
     "yourContribution": "{{amount}} टोकन का योगदान",
     "pooledTotal": "{{amount}} टोकन पूल किए गए",
-    "contributeIntro": "अपने वॉलेट से खजाने में DeHub टोकन भेजें। आप जितना अधिक टोकन जोड़ेंगे, पूल में आपकी हिस्सेदारी उतनी ही बढ़ेगी, और जब DAO यह तय करेगा कि इसे कैसे खर्च किया जाए तो आपके वोट का वजन आपकी हिस्सेदारी से तय होगा।"
+    "contributeIntro": "अपने वॉलेट से खजाने में DeHub टोकन भेजें। आप जितना अधिक टोकन जोड़ेंगे, पूल में आपकी हिस्सेदारी उतनी ही बढ़ेगी, और जब DAO यह तय करेगा कि इसे कैसे खर्च किया जाए तो आपके वोट का वजन आपकी हिस्सेदारी से तय होगा।",
+    "votingClosed": "वोटिंग बंद",
+    "voteWithdrawn": "वोट वापस लेल गइल",
+    "voteRecorded": "वोट दर्ज भइल",
+    "voteFailed": "वोट दर्ज नइखे हो पावत",
+    "paymentUnderReview": "पेमेंट समीक्षा में बा",
+    "acceptedAwaitingPayment": "स्वीकार कइल गइल · पेमेंट के इंतजार बा"
   },
   "governance": {
     "title": "حکمرانی",
@@ -2814,7 +2890,8 @@
     },
     "againstLabel": "বিরুদ্ধে",
     "holdTokensToVote": "वोट करने के लिए डीहब टोकन रखें",
-    "mustHoldTokens": "गवर्नेंस प्रस्तावों पर वोट करने के लिए आपके पास डीहब टोकन होने चाहिए।"
+    "mustHoldTokens": "गवर्नेंस प्रस्तावों पर वोट करने के लिए आपके पास डीहब टोकन होने चाहिए।",
+    "badgeHoldersOnly": "सिर्फ बैज होल्डर खातिर"
   },
   "sidebar": {
     "talkOfTheTown": "شہر کی چرچا",
@@ -3308,7 +3385,8 @@
     "unstakeSent": "Withdrew {{amount}} tokens! TX: {{hash}}…",
     "tokensUnit": "tokens",
     "tokenAmount": "{{amount}} tokens",
-    "withdrawableOnBnb": "BNB चेन पर {{amount}} टोकन निकालने योग्य"
+    "withdrawableOnBnb": "BNB चेन पर {{amount}} टोकन निकालने योग्य",
+    "foundNewDeposits": "ऑन-चेन {{count}} नया डिपॉजिट मिलल"
   },
   "communities": {
     "title": "کمیونٹیز",
@@ -3415,7 +3493,8 @@
       "copied": "پیغام کاپی ہو گیا",
       "copyText": "متن کاپی کریں",
       "mutedUntil": "تۆ بێدەنگ کراویت تا {{date}}",
-      "slowMode": "سست موڈ: ہر {{interval}} پر ایک پیغام"
+      "slowMode": "سست موڈ: ہر {{interval}} پر ایک پیغام",
+      "jumpToLatest": "सबसे नया पर जाईं"
     },
     "manage": {
       "dismissAdminTitle": "ایڈمن کو برخاست کریں",
@@ -3746,7 +3825,8 @@
       "cancelled": "رد",
       "disputed": "جھگڑا والا",
       "draft": "मसौदा",
-      "expired": "समय खतम"
+      "expired": "समय खतम",
+      "accepted": "स्वीकार कइल गइल"
     },
     "detail": {
       "notFound": "انعام نہیں ملل۔",
@@ -4095,7 +4175,8 @@
       "cancelled": "رد"
     },
     "removePhoto": "تصویر ہٹائیں",
-    "listingOptions": "لسٹنگ کے اختیارات"
+    "listingOptions": "لسٹنگ کے اختیارات",
+    "listingUpdated": "लिस्टिंग अपडेट हो गइल!"
   },
   "accounts": {
     "browse": "دیکھو",
@@ -4759,7 +4840,8 @@
     "listens_other": "{{count}} सुनता है",
     "lyrics": "गीत के बोल",
     "lyricsLoading": "बोल ढूँढ रहे हैं…",
-    "lyricsNone": "कोई बोल नहीं मिले"
+    "lyricsNone": "कोई बोल नहीं मिले",
+    "visualizerColour": "विजुअलाइजर रंग"
   },
   "transfer": {
     "arcTitle": "Arc में USDC भेजा",
@@ -6259,7 +6341,13 @@
     "pipUnavailable": "पिक्चर-इन-पिक्चर अनुपलब्ध है। जांचें कि यह आपके डिवाइस की सेटिंग्स में DeHub के लिए अनुमत है या नहीं।",
     "noVideo": "कोई वीडियो नहीं",
     "rotate": "घुमाएँ",
-    "yourDhbBalance": "आपका टोकन शेष: {{amount}}"
+    "yourDhbBalance": "आपका टोकन शेष: {{amount}}",
+    "segmentLabel": {
+      "selfpromo": "خودآگهی",
+      "outro": "আবার দেখা হবে",
+      "intro": "assistant"
+    },
+    "volume": "دۆلایەتی گۆڕەپەرە"
   },
   "liveViewer": {
     "loadingStream": "پەخش بار دەکرێت...",
@@ -9794,5 +9882,134 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Pehle khoj karo",
     "codeNote": "Hum tumhe ek code bhejenge, password ki jarurat nai."
+  },
+  "postGate": {
+    "holdShortUnknown": "نقص {{symbol}} بعد. هذا المنشور يحتاج إلى {{needed}}."
+  },
+  "copy": {
+    "085cd98e8e2e": "لینک",
+    "c184b8c9592f": "ئەو لاپەرێک لە dehub.io دەبێت.",
+    "12a7c0529934": "/docs/çalışmaya başlama",
+    "ae4410aa9943": "DeHub कर कोनो पन्ना पेस्ट करा — कोनो डॉक्स सेक्शन, कोनो बाउंटी, या आपन प्रोफाइल। नीचे देल लिंक अभी भी विजिट के आपन नाम से जोड़त है, और ओकरा बाद सीधा ओतने ले जात है।",
+    "fc036ea0e9f0": "कोनो खास पन्ना के लिंक",
+    "df0fe9e00d35": "फेरु कोशिश करा",
+    "24df132b16d3": "स्वैप होत है...",
+    "220277ae54c6": "स्वैप कन्फर्म करा",
+    "0e9161011702": "रिफ्रेश",
+    "2eef6c9af0ae": "कोट मिलत है...",
+    "85249a6f8dd5": "कोट लेवा",
+    "9c71e7639046": "स्वैप सफल भेल!",
+    "9ccba222f889": "अनुमानित लागत",
+    "ac4d49f28b40": "स्वैप {{value1}} {{value2}}",
+    "6627a8114830": "किनवा {{value1}} {{value2}}",
+    "f4b06ef6d3c8": "केकरा लगे",
+    "218197693424": "कहाँ से",
+    "c772e8fc6314": "टोकन स्वैप",
+    "8d2e3063a993": "$ किनवा",
+    "f6ec7f0c995b": "विजुअलाइजेशन",
+    "8b2ae991573c": "अभी चलत है",
+    "b8e082c979d9": "पोल बनावा",
+    "7614c65db3bf": "वॉलेट एड्रेस कॉपी करा",
+    "854cbbb4f34f": "अंश (",
+    "da8e926af644": "मैसेज एडिट करे में फेल भेल",
+    "f6f4688ff23d": "भेजा",
+    "f42e0f66017d": "अभी तक कोनो मैसेज नईखे",
+    "de54ef8dc9c2": "अभी तक कोनो इवेंट नईखे",
+    "dbf362d4f210": "लिंक कॉपी करा",
+    "d980d2b4ac8b": "इवेंट बनावे में फेल भेल",
+    "d12860c21e78": "लिंक कॉपी हो गेल",
+    "ca1530e8d701": "बीतल",
+    "c26c60eb4a6c": "चैट करे वाला पहिलका बनवा।",
+    "b2742e6cae24": "Banay ke",
+    "ab77f2abb3ae": "Event update karek fail hoigae",
+    "93cb6b12aa06": "Paid",
+    "81cc1e80317c": "Approved",
+    "7a9f7d429145": "Event banao",
+    "68cc8e3eaed5": "Denied",
+    "5f1a2542e4e4": "Aave wala",
+    "5b7a1ac615bb": "Event delete hoigae",
+    "513ee42263bc": "Pending Requests (",
+    "460b3a7da007": "Chat",
+    "1603d5423679": "Event update hoigae!",
+    "0de0253da6f1": "Event banigae!",
+    "008ad4d946bb": "Community event hian dikhi.",
+    "f3c6dcdb78a4": "Sirf contributor jekhan e proposal khulal rahe vote kar sakele.",
+    "ebf6fba25211": "Proposal saat din khatir khulal hai",
+    "e1245cea2208": "Accept",
+    "d0be237244fa": "Proposal khulat hai…",
+    "c4c2179c3053": "Tor weight:",
+    "b8cfe281c012": "Ekta accept bhel kharcha manual DAO ya multisig execution khatir line mein hai. E proposal apne se paisa nai nikale.",
+    "b50104341b2b": "Accept",
+    "a4f6b2e41037": "Paisa transfer karo",
+    "9e6d88cbe11c": "0x… ya Solana address",
+    "9c7eca1df4f3": "Terms ke samjhao aur batao ki DAO ke kahe accept karek chahiye.",
+    "9155f2107df0": "by",
+    "90cdcff9db62": "Reject",
+    "895bc4b96601": "% participation · 10% quorum · contribution-weighted snapshot",
+    "80d298c9f240": "Asset",
+    "7e8cd2056da7": "Title",
+    "7d524ee72c64": "Pahila buy offer ya kharcha ke request ke kholo.",
+    "7ba3d14233b1": "Ekta kharcha ke request karo",
+    "794c8cef5f67": "نمی‌توانم پیشنهادهای DAO را بارگذاری کرد.",
+    "61cbb6454002": "پیشنهاد باز",
+    "554f86eedd6d": "پیشنهادهای DAO",
+    "52c6b1284570": "ڕێزەی دەرەدەستەکە بەڕێوەبەرایەتەوە بەڕێزەیەکە بەخشیەت",
+    "4c6c7de71386": "پرداخت اثبات شده برای تایید دستی DAO",
+    "4be2a5e0d00a": "Nanêkê ji bo escrow nabe. Ji bo verifikasi DAOyêkêkê, ji bo ku ji bo xatirçûna wanêkê, 72 saetên ji ber xatirçûna wanêkê.",
+    "4b00b1b86bfd": "to",
+    "454d03911271": "پەیمانگە",
+    "3d08de9152fe": "پیشنهاد به DAO",
+    "37bd766fa812": "Hər kə kiməsə təklif edə bilər. Müəlliflər qəbul və ya rədd edirlər və onların qeydiyyatdan keçmiş payı ilə.",
+    "1f5440e72187": "هیچ پیشنهاد هنوز داده نشده است",
+    "1cbd9e713d93": "پیشنهاد",
+    "07070fb32c93": "پەیمانه",
+    "02b24c18771c": "ڤەڵە",
+    "31a3711c4ab5": "আপনার সমস্ত অবক্ষয় ট্রান্সএকশন",
+    "701ef1840612": "مۆڵەتی ڕێکخراوەکان",
+    "2d240e231566": "پرداخت‌ها را به‌روز نکرد",
+    "48201f5584e2": "چک کردن توازن حساب شما…",
+    "14c5558a8cd9": "No transcript matches",
+    "a54084383e3c": "mɑtʃɛs",
+    "7adf0298ab5e": "دوره",
+    "2baeddfdc699": "جستجو نویسه‌نامه…",
+    "d0bd6ec267f9": "Text",
+    "dea0ff385abf": "Kopyalama",
+    "55de39f882a3": "Feri koshish kar",
+    "9fddb94edef5": "assistant",
+    "6662a5411155": "एके अभी लिख।",
+    "60aac7666712": "ڤیدیو پێشکەشکرا بۆ ڕێکخستنەوەی تەواوی ڤیدیۆیەکە بە تەنھا کاتی کەمتر لە ڕۆژ.",
+    "5ae4bb109db7": "assistant",
+    "ba3bbbe10d8b": "لودینگ…",
+    "ee871105e875": "نوشتن",
+    "d91fca0e24bb": "linis",
+    "dc469bffc7c0": "ए भाग सही आहै।",
+    "77f3aefe8b8b": "assistant",
+    "2f41333ad013": "{{value1}} qalib nist",
+    "72915d37182e": "সম্মত",
+    "e5f6facf9cbe": "ئەم وێدۆیە بەهۆی نەبوونی ڕێسەیەک لەسەرە",
+    "5218ce9ed7ab": "Submit {{value1}} – {{value2}}",
+    "78de1ed22dcb": "End {{value1}}",
+    "f4db1e48476f": "End",
+    "5e2495b60820": "Start {{value1}}",
+    "68f5b97c66d9": "بازگشت به شبکه اصلی",
+    "66b8e077d85f": "پاسخ پیام داده نشد",
+    "f0ed7becd58e": "پۆستەکانی تان بەڕێوە نەدەبەیت. لە ڕێنوێنی Settings چاڵاکەکەی تان بۆماوە و تەنها پەیڵەوە بەسەرە.",
+    "488017ad5c75": "DeHuba qeydən keçmək üçün qeydiyyatdan keçməyə ehtiyac yoxdur.",
+    "8d14f6e72de8": "مُحَافِظَات",
+    "85ee77346f10": "{{value1}} نۆو پۆستەکان، تەپ بە ئەرێنی بکە",
+    "fef6a1a97127": "{{value1}}",
+    "036cfd952896": "কে অনুসরণ করা যাক"
+  },
+  "dehubLinks": {
+    "kind": {
+      "profile": "پروفایل",
+      "store": "dükkan",
+      "listing": "item",
+      "film": "assistant",
+      "bounty": "بۆنتى",
+      "app": "assistant",
+      "proposal": "پیشنهاد",
+      "link": "لینک"
+    }
   }
 }

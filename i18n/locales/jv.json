@@ -993,7 +993,9 @@
     "themeColorBrand": "Merek",
     "themeColorBrandDesc": "Nganggo warna foto profilmu",
     "themeColorBrandNoAvatar": "Tambah foto profil kanggo nganggo warna Merek",
-    "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu"
+    "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu",
+    "showDislikes": "Kanggo ngarani sakae saking ngisorake kanggo semuanya",
+    "glass": "Kaca-kaca"
   },
   "common": {
     "refresh": "Segarke",
@@ -1189,7 +1191,9 @@
     "giftBoost": "Menehi boost",
     "giftBoostDesc": "Gunakake siji duwekmu kanggo kiriman iki",
     "askAi": "Takon AI",
-    "aiOverview": "Ringkesan AI"
+    "aiOverview": "Ringkesan AI",
+    "skippableSectionsDesc": "Kanggo ngarani atawa ngawini bacaan at intro sponsor",
+    "skippableSections": "Bagean sing bisa dilewati"
   },
   "filters": {
     "sort": "Urutake",
@@ -2020,7 +2024,15 @@
     "title": "Pesen",
     "searchConversations": "Goleki obrolan...",
     "failedToLoad": "Gagal ngemot obrolan",
-    "tryAgain": "Coba Maneh"
+    "tryAgain": "Coba Maneh",
+    "encryptionTurningOn": "Gede ngaheni gweh wallet muyo nganti enkripsi…",
+    "encryptionSetupFailed": "Gawé ngendhok encryption gagal. Mangsun kanggo ngulik.",
+    "lockedTitle": "Klik \"Buka\" guna ngerti pesen-mesenmu",
+    "lockedBody": "Kotak ngerti ngoko muye {{name}} nganti enkripsi end-to-end. Buka dompet muye di gadji ini guna buka.",
+    "lockedUnlock": "Ngetutup wadhah",
+    "lockedTryAgain": "Kasus iki wujud ingkang kawruh lan ngèlmu ingkang saé.",
+    "lockedPrivate": "Sira wae sing ngerti",
+    "undecryptableRun_other": "{{count}} pesan gak bisa dibuka di perangkat ini"
   },
   "music": {
     "all": "Kabeh",
@@ -2047,7 +2059,21 @@
     "tryAnotherGenre": "Coba genre liyane.",
     "pauseStation": "Mandhegake stasiun",
     "resumeStation": "Terusake stasiun",
-    "stopRadio": "Mandhegake radhio"
+    "stopRadio": "Mandhegake radhio",
+    "shareStation": "Kabari stasiun",
+    "listeningTo": "Ngheke {{name}} di DeHub",
+    "mostPlayed": "Paling sering diputer",
+    "trending": "Lagi tren",
+    "upcoming": "Kedepan",
+    "noStages": "Gak ada tahap/tahunan kanggo ngelakuin ngaweni.",
+    "chartOrder": "Gambar urut daun audio",
+    "quality": "Kualitas",
+    "plays": "Main-main",
+    "liveRadio": "Radio langsung ngajeng",
+    "mostViewed": "Konten paling ditonton",
+    "trendingWeek": "Trending ini minggu ini",
+    "newest": "Anyar",
+    "viewsCount": "{{views}} ngelmuh"
   },
   "notFound": {
     "title": "Halaman Ora Ditemokake",
@@ -2128,7 +2154,11 @@
     "tabVideos": "Vidéo",
     "tabAudio": "Suarané",
     "tabLive": "Nyumbul",
-    "tabPinned": "Dipasang"
+    "tabPinned": "Dipasang",
+    "tabDislikes": "Gak suka",
+    "dislikesEmptyOther": "Koyo ngisor ngedekeh.",
+    "dislikesPrivateTitle": "Dislike ngendi-endi.",
+    "dislikesPrivateDesc": "Akun ingkang ini ngendhok dislike ingkang ingkang."
   },
   "tv": {
     "title": "TV",
@@ -2425,7 +2455,39 @@
     "revealFailed": "Ora bisa nampilake kunci. Coba maneh.",
     "signInAgain": "Mlebu maneh",
     "createSignIn": "Mlebu maneh kanggo nggawe agen",
-    "checkConnection": "Priksa sambungan sampeyan banjur coba maneh."
+    "checkConnection": "Priksa sambungan sampeyan banjur coba maneh.",
+    "life": {
+      "daily": "Ngepostin ingkang dhuwur: {{posts}} · Target harini: {{target}}",
+      "editComment": "Sunting komentar",
+      "imageUrl": "Gambar URL (opsional)",
+      "postText": "Teks kiriman",
+      "queueHelp": "Kanggo ngarani ngisorake lan ngarani ngisorake 20 menit. Gak usah minting.",
+      "viewPost": "Deleng kiriman",
+      "unlike": "Kanggo nganggo, kanggo nganggo aja.",
+      "unliked": "Kurang disukai",
+      "less": "Tampilake luwih sethithik"
+    },
+    "tasks": {
+      "runSwarm": "Jalankan swarm",
+      "preparing": "Manggawe tugas…",
+      "run": "Jalankan prompt",
+      "window": {
+        "authorAll": "Semua kreator",
+        "authorChoose": "Pilih kreator",
+        "categoryAll": "Semua kategori",
+        "categoryChoose": "Pilih kategori",
+        "categoryHint": "Tambahin nama kategori ngendi-endi, nganggo koma, maksimal 20. Post ingkang bisa nganggo kategori ingkang dipilih. Kosongin kalau mau semua.",
+        "last1h": "Jam ingkang luyu",
+        "last30d": "30 haru ingkang luyu",
+        "allTime": "Semua waktu",
+        "dislike": "Dislike",
+        "author": "Penulis (optional)",
+        "category": "Kategori (optional)",
+        "authorPlaceholder": "@username atau dompet",
+        "categoryPlaceholder": "Nama kategori ngendi-endi",
+        "filterHelp": "Kosongin filter-filter ingkang ingkang kalau mau semua post. Kalau keduanya diisi, keduanya harus cocok. Reaksi ingkang ada ngendi-endi; pilih reaksi lawan ngantiin."
+      }
+    }
   },
   "hero": {
     "title": "Sugeng Rawuh",
@@ -2730,7 +2792,13 @@
     "sentDesc": "{{amount}} token dikirim menyang kas ing {{chain}}. Bagian sampeyan bakal dianyari sawise blok diindeks.",
     "sendAnyWallet": "Sapa wae bisa ngirim token DeHub ing kene saka dompet utawa bursa apa wae. Transfer ing Base lan BNB bakal diitung kanggo bagean sampeyan.",
     "yourContribution": "{{amount}} token disumbangake",
-    "pooledTotal": "{{amount}} token dikumpulake"
+    "pooledTotal": "{{amount}} token dikumpulake",
+    "votingClosed": "Pemilihan ditutup",
+    "voteWithdrawn": "Pemilihan ditarik",
+    "voteRecorded": "Pemilihan direkam",
+    "voteFailed": "Gak bisa direkam pemilihan",
+    "paymentUnderReview": "Pembayaran ngendi-endi",
+    "acceptedAwaitingPayment": "Diterima · menunggu pembayaran"
   },
   "governance": {
     "title": "Tata Kelola",
@@ -2793,7 +2861,8 @@
       "authorChip": "Panulis usulan"
     },
     "holdTokensToVote": "Tahan token DeHub kanggo milih",
-    "mustHoldTokens": "Sampeyan kudu nyekel token DeHub kanggo milih proposal tata kelola."
+    "mustHoldTokens": "Sampeyan kudu nyekel token DeHub kanggo milih proposal tata kelola.",
+    "badgeHoldersOnly": "Hanya pemegang badge"
   },
   "sidebar": {
     "talkOfTheTown": "Omongan Kutha",
@@ -3287,7 +3356,8 @@
     "lockedEarlyFee": "Dikunci nganti {{date}}. Narik saiki bakal ngasilake 88% — biaya 12%, kira-kira {{fee}} token. Tutul maneh kanggo nampa.",
     "unstakeSent": "Narik {{amount}} token! TX: {{hash}}…",
     "tokensUnit": "token",
-    "tokenAmount": "{{amount}} token"
+    "tokenAmount": "{{amount}} token",
+    "foundNewDeposits": "Ditemukan {{count}} deposit baru on-chain"
   },
   "communities": {
     "title": "Komunitas",
@@ -3394,7 +3464,8 @@
       "copied": "Pasan dikopi",
       "copyText": "Salin teks",
       "mutedUntil": "Sampeyan bisu nganti {{date}}",
-      "slowMode": "Mode alon: siji pesen saben {{interval}}"
+      "slowMode": "Mode alon: siji pesen saben {{interval}}",
+      "jumpToLatest": "Lompat ke terbaru"
     },
     "manage": {
       "dismissAdminTitle": "Tolak admin",
@@ -3725,7 +3796,8 @@
       "cancelled": "Dibatalake",
       "disputed": "Disengketakake",
       "draft": "Draf",
-      "expired": "Kedaluwarsa"
+      "expired": "Kedaluwarsa",
+      "accepted": "Diterima"
     },
     "detail": {
       "notFound": "Hadiah ora ditemokake.",
@@ -4740,7 +4812,8 @@
     "pause": "Jeda",
     "lyrics": "Lirik",
     "lyricsLoading": "Nggoleki lirik…",
-    "lyricsNone": "Lirik ora ketemu"
+    "lyricsNone": "Lirik ora ketemu",
+    "visualizerColour": "Wiwidianing Color"
   },
   "transfer": {
     "arcTitle": "Kirim USDC ing Arc",
@@ -6250,7 +6323,14 @@
     "pipUnavailable": "Gambar ing gambar ora kasedhiya. Priksa manawa diidini kanggo DeHub ing setelan piranti sampeyan.",
     "noVideo": "Ora ana video",
     "rotate": "Putar",
-    "yourDhbBalance": "Salda token sampeyan: {{amount}}"
+    "yourDhbBalance": "Salda token sampeyan: {{amount}}",
+    "segmentLabel": {
+      "filler": "Nanging",
+      "selfpromo": "Promosi dhiri",
+      "intro": "Pambuka",
+      "sponsor": "Sponsor"
+    },
+    "volume": "Ngaléngan volume"
   },
   "liveViewer": {
     "loadingStream": "Ngunggah siaran...",
@@ -9785,5 +9865,137 @@
     "fingerprint": "Sidik jari",
     "exploreFirst": "Jelajahi dhisik",
     "codeNote": "Kita ngirim kode menyang email sampeyan, ora perlu sandhi."
+  },
+  "postGate": {
+    "holdShortUnknown": "Gak cukup {{symbol}} nyuwun. Posting ini butuh {{needed}}.",
+    "holdShort": "Kamu ngarani {{held}} {{symbol}}. Post ini butuh {{needed}}."
+  },
+  "copy": {
+    "c184b8c9592f": "Kudu, ngarani page di dehub.io aja.",
+    "9b44fb81d89e": "Tujuan halaman",
+    "ae4410aa9943": "Kanggo ngarani link laman DeHub, ngarani sekar dokumen, sekar bounty, atawa profile, link diwongé ngarani ngarani kuno, lan ngarani langsung kekeh.",
+    "df0fe9e00d35": "Coba lagi.",
+    "24df132b16d3": "Swaping...",
+    "220277ae54c6": "Konoe ngaweni ngisorake swape",
+    "0e9161011702": "Segerake",
+    "85249a6f8dd5": "Nyuwun Penawaran",
+    "9ccba222f889": "Nggihaké ngarané ngantiya, ngantiya kanggo wong kanggo ngantiya.",
+    "ac4d49f28b40": "Ganti {{value1}} dhuwur {{value2}}",
+    "6627a8114830": "Koyo {{value1}} {{value2}}",
+    "f4b06ef6d3c8": "Tos",
+    "218197693424": "Kanggo",
+    "c772e8fc6314": "Tukar Token",
+    "8d2e3063a993": "Kuyup $",
+    "f6ec7f0c995b": "Visualisasi",
+    "8b2ae991573c": "Sedang Diputer",
+    "b8e082c979d9": "Gawe Jajak Pendapat",
+    "854cbbb4f34f": "frasé-frasé (",
+    "da8e926af644": "Gagal ngedit pesen",
+    "f6f4688ff23d": "Kirim",
+    "f42e0f66017d": "Gak ada pesan lanpis.",
+    "d980d2b4ac8b": "Gagal ngawin acara",
+    "d12860c21e78": "Link udh dipake",
+    "c26c60eb4a6c": "Dadi sing pisanan ngobrol.",
+    "b2742e6cae24": "Dibuat ngoko",
+    "ab77f2abb3ae": "Gagal ngawin update acara",
+    "93cb6b12aa06": "Bayar",
+    "68cc8e3eaed5": "Ditolak",
+    "5f1a2542e4e4": "Kedepan",
+    "513ee42263bc": "Kasus-kasus kang isih dadi tuku",
+    "460b3a7da007": "Ngobrol",
+    "1603d5423679": "Kabèh diupdate!",
+    "0de0253da6f1": "Kegiatan diadékaké!",
+    "008ad4d946bb": "Kegiatan komunitas bakal muncul ingi.",
+    "f3c6dcdb78a4": "Wong-wong sing ngisoraké iki bisa nggabungake suara nalika propinsi iki dibuka.",
+    "c4c2179c3053": "Kamu ngendhok:",
+    "b8cfe281c012": "Sang pengeluaran yang diterima udah diantriin gwe pikeutan DAO atau multisig. Proposal ini gak bakal nggerakkan uang sendiri.",
+    "a4f6b2e41037": "Tranfer uang",
+    "895bc4b96601": "% partisipasi · 10% kuorum · snapshot berdasar kontribusi",
+    "80d298c9f240": "Asset",
+    "7e8cd2056da7": "Gelaran",
+    "7d524ee72c64": "Kanggo buka penawaran beli pertama atau permintaan pengeluaran.",
+    "7ba3d14233b1": "Kanggo ngarani nganti kanggo ngelmu",
+    "794c8cef5f67": "Gak bisa ngeloadin usulan DAO.",
+    "700f18a93687": "Menehi aji",
+    "6cf2865295e4": "Namané lan harga?",
+    "69013bafaace": "Mituruté wong kontributor?",
+    "61cbb6454002": "Panggung Panyuwun",
+    "554f86eedd6d": "Pepali Propusi DAO",
+    "52c6b1284570": "Nulak DAO kirim aset",
+    "52a9fac889f1": "Kasih permintaan pengeluaran",
+    "4be2a5e0d00a": "Gak ada escrow. Kalau diterima, loe punya waktu 72 jam buat transfer pembayaran untuk verifikasi DAO manual.",
+    "4b00b1b86bfd": "to",
+    "49e96d7cdf58": "Kwantitas",
+    "454d03911271": "Alamat penerima",
+    "3d08de9152fe": "Usulna menyang DAO",
+    "37bd766fa812": "Saben wong bisa ngajenengi. Kontributor ngloloso utawi njalukane ngajenengi karo bobot kontribusine.",
+    "1f5440e72187": "Sampun ora ana usulan.",
+    "1cbd9e713d93": "Nawakake",
+    "07070fb32c93": "Kudu nganggo",
+    "50b2bdd7a1e5": "Selesai ngawitak staking bakal nampi di sini.",
+    "cbfc01a6c13a": "Selesai nganggo deposit staking bakal ngrupak di sini.",
+    "1fdecb2c9a54": "Gak ada penarikan uang belom.",
+    "5b5a9671e539": "Sangge scan di blockchain laning ngendepositan yén gak kelar",
+    "31a3711c4ab5": "Kulon semuha transaksimu ngedalangin.",
+    "701ef1840612": "Kulon siji transaksimu yén ngarani stake.",
+    "a7b7e36d6fdf": "Kamu gawe penarikan uangmu?",
+    "2d240e231566": "Gagal nyincak simpanan",
+    "7082f2b3815d": "Gajian udah tumpal.",
+    "ff701a069af2": "Verifikasi & Buka",
+    "48201f5584e2": "Ngisor-ngisori saldo mo…",
+    "3aefdd5f5915": "Kontén seng bener! 🎉",
+    "6e929effed4e": "Nulis ringkasan tulisan…",
+    "14c5558a8cd9": "No transcript matches",
+    "a54084383e3c": "mati-matian",
+    "4945a70fa7f9": "match",
+    "2baeddfdc699": "Kudu tulisan transkrip…",
+    "9fddb94edef5": "Transkripsi gagal:",
+    "4c2ea0ddf64b": "Video iki ora ana swarane, dadi ora ana sing perlu ditranskripsi.",
+    "6662a5411155": "Tulis saiki",
+    "60aac7666712": "Transkripé ditulis otomatis setelah video diunggah.",
+    "5ae4bb109db7": "Kudu, belom ada transkripsi lanjur.",
+    "ba3bbbe10d8b": "Sedang dimuat…",
+    "d91fca0e24bb": "goresan",
+    "3c42f559d757": "Mlebu kanggo nandhani utawa milih. Ngliwati isih bisa.",
+    "58db9997b230": "Bagean iki salah",
+    "dc469bffc7c0": "Bagean iki bener",
+    "77f3aefe8b8b": "Busak tandhamu",
+    "2f41333ad013": "{{value1}} ngaweni",
+    "72915d37182e": "sanget",
+    "e5f6facf9cbe": "Gak ada tulisan atau penandaan di video ini kanggo.",
+    "155f816c0407": "Kirim",
+    "5218ce9ed7ab": "Kasih {{value1}} – Kasih {{value2}}",
+    "78de1ed22dcb": "End {{value1}}",
+    "f4db1e48476f": "End",
+    "5e2495b60820": "Miwiti {{value1}}",
+    "e4bb9f1ece9a": "Miwiti",
+    "b5f85f952b0b": "Tandhani bagean sponsor utawa intro lan kabeh wong sing nganggo fitur skip bakal ngliwati bagean kuwi. Jarno videone mlaku — tutul Start pas wiwitane lan End pas rampunge.",
+    "30f4d96b8d72": "Bagean sing bisa dilewati",
+    "68f5b97c66d9": "Kembali ke grid",
+    "66b8e077d85f": "Gagal ngirim pesen",
+    "8d14f6e72de8": "Kebéyanan",
+    "29887a5ff984": "Bareng",
+    "85ee77346f10": "{{value1}} ngisor-ngisoran bareng, tap kekep guna ngisor",
+    "99ca327a47b5": "Gambar sampul cover untuk {{value1}}",
+    "fef6a1a97127": "Kudu ngoko {{value1}}",
+    "036cfd952896": "Keneh ngelaku",
+    "0c820caf16c0": "Gak pike ngoko"
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "post",
+      "profile": "profil",
+      "community": "komunitas",
+      "communityInvite": "undangan komunitas",
+      "store": "toko",
+      "listing": "barang",
+      "event": "event",
+      "stage": "tahapan",
+      "film": "judul",
+      "bounty": "imbalan",
+      "app": "aplikasi",
+      "proposal": "usulan",
+      "link": "tautan"
+    }
   }
 }

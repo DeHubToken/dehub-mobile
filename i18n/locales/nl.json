@@ -1128,7 +1128,8 @@
     "themeColorBrand": "Merk",
     "themeColorBrandDesc": "Kleuren van je profielfoto gebruiken",
     "themeColorBrandNoAvatar": "Voeg een profielfoto toe om Merkkleuren te gebruiken",
-    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
+    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen",
+    "glass": "Glasachtig"
   },
   "common": {
     "refresh": "Vernieuwen",
@@ -2818,7 +2819,25 @@
     "sharePostTemplate": "Ik heb zojuist {{amount}} tokens toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub",
     "minDhbPurchase": "Minimale token aankoop is $0,50"
   },
-  "agents": {"life":{"title":"Levend","help":"Laat deze agent zelfstandig leven. Hij heeft zijn eigen tijden, post, liket en reageert met zijn eigen stem, en slaapt 's nachts.","starting":"Persoonlijkheid wordt ingesteld…","awake":"Wakker in {{home}}","asleep":"Slaapt in {{home}}","next":"volgende keer {{time}}","recent":"Recent","empty":"Nog niets. Hij komt snel langs.","kind":{"post":"Plaatste","comment":"Reageerde","reply":"Antwoordde","like":"Vond een post leuk","profile":"Werkte zijn profiel bij","error":"Er ging iets mis"}},
+  "agents": {
+    "life": {
+      "title": "Levend",
+      "help": "Laat deze agent zelfstandig leven. Hij heeft zijn eigen tijden, post, liket en reageert met zijn eigen stem, en slaapt 's nachts.",
+      "starting": "Persoonlijkheid wordt ingesteld…",
+      "awake": "Wakker in {{home}}",
+      "asleep": "Slaapt in {{home}}",
+      "next": "volgende keer {{time}}",
+      "recent": "Recent",
+      "empty": "Nog niets. Hij komt snel langs.",
+      "kind": {
+        "post": "Plaatste",
+        "comment": "Reageerde",
+        "reply": "Antwoordde",
+        "like": "Vond een post leuk",
+        "profile": "Werkte zijn profiel bij",
+        "error": "Er ging iets mis"
+      }
+    },
     "profile": {
       "edit": "Profiel bewerken",
       "avatar": "Avatar",
@@ -2870,7 +2889,7 @@
         "authorChoose": "Kies maker",
         "categoryAll": "Alle categorieën",
         "categoryChoose": "Kies categorieën",
-        "categoryHint": "Voeg maximaal 20 categorieën toe, gescheiden door komma\u0027s. Eén overeenkomst is genoeg. Laat leeg voor alles.",
+        "categoryHint": "Voeg maximaal 20 categorieën toe, gescheiden door komma's. Eén overeenkomst is genoeg. Laat leeg voor alles.",
         "last1h": "Afgelopen uur",
         "last30d": "Afgelopen 30 dagen",
         "allTime": "Altijd",
@@ -3321,7 +3340,8 @@
       "authorChip": "Voorstel auteur"
     },
     "holdTokensToVote": "Houd DeHub tokens om te stemmen",
-    "mustHoldTokens": "Je moet DeHub tokens hebben om te stemmen op governance-voorstellen."
+    "mustHoldTokens": "Je moet DeHub tokens hebben om te stemmen op governance-voorstellen.",
+    "badgeHoldersOnly": "Alleen badgehouders"
   },
   "sidebar": {
     "talkOfTheTown": "Onderwerp van de dag",
@@ -4276,19 +4296,14 @@
       "completed": "Voltooid",
       "cancelled": "Geannuleerd",
       "accepted": "Geaccepteerd",
-      "open": "Open",
       "pending": "In behandeling",
       "awarded": "Toegewezen",
       "in_progress": "Bezig",
       "approved": "Goedgekeurd",
       "paid": "Betaald",
       "awaitingPayment": "Wacht op betaling",
-      "rejected": "Afgewezen",
-      "completed": "Voltooid",
-      "cancelled": "Geannuleerd",
       "disputed": "Betwist",
-      "draft": "Concept",
-      "expired": "Verlopen"
+      "draft": "Concept"
     },
     "detail": {
       "notFound": "Bounty niet gevonden.",
@@ -5579,7 +5594,12 @@
     "interestedCount": "{{count}} geïnteresseerd",
     "loadFailed": "Kon evenementen niet laden"
   },
-  "stats": {"chart": {"daily": "Bezoekers per dag", "dailyHint": "unieke bezoekers per dag", "empty": "Nog geen gegevens voor dit venster"},
+  "stats": {
+    "chart": {
+      "daily": "Bezoekers per dag",
+      "dailyHint": "unieke bezoekers per dag",
+      "empty": "Nog geen gegevens voor dit venster"
+    },
     "definitions": {
       "visitorsTerm": "Bezoekers"
     },
@@ -11888,5 +11908,22 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Eerst rondkijken",
     "codeNote": "We mailen je een code, geen wachtwoord nodig."
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "post",
+      "profile": "profiel",
+      "community": "community",
+      "communityInvite": "community-uitnodiging",
+      "store": "winkel",
+      "listing": "artikel",
+      "event": "evenement",
+      "stage": "fase",
+      "film": "titel",
+      "bounty": "premie",
+      "app": "app",
+      "proposal": "voorstel",
+      "link": "link"
+    }
   }
 }

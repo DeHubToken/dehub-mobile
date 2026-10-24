@@ -995,7 +995,10 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Gamitin ang mga kulay ng profile picture mo",
     "themeColorBrandNoAvatar": "Magdagdag ng profile picture para magamit ang mga kulay ng Brand",
-    "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo"
+    "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo",
+    "shortsEnabledDesc": "Ipakita ang tab na Shorts feed at Shorts carousels sa Home.",
+    "shortsEnabled": "Pantalon",
+    "glass": "Salamin"
   },
   "common": {
     "refresh": "I-refresh",
@@ -1233,7 +1236,9 @@
     "giftBoost": "Magregalo ng boost",
     "giftBoostDesc": "Gamitin ang isa sa iyo para sa post na ito",
     "askAi": "Tanungin ang AI",
-    "aiOverview": "Pangkalahatang - ideya ng AI"
+    "aiOverview": "Pangkalahatang - ideya ng AI",
+    "skippableSectionsDesc": "Markahan o bumoto sa mga babasahin at intro ng sponsor",
+    "skippableSections": "Mga seksyong madaling laktawan"
   },
   "filters": {
     "sort": "Ayusin",
@@ -2069,7 +2074,16 @@
     "title": "Mga Mensahe",
     "searchConversations": "Maghanap ng mga pag - uusap...",
     "failedToLoad": "Nabigong i - load ang mga pag - uusap",
-    "tryAgain": "Subukan Ulit"
+    "tryAgain": "Subukan Ulit",
+    "encryptionTurningOn": "Hinihintay na i - on ng iyong wallet ang encryption...",
+    "encryptionSetupFailed": "Nagfail ang setup ng enkripyong. Pumunta muli.",
+    "lockedTitle": "I - unlock para basahin ang iyong mga mensahe",
+    "lockedBody": "Naka - encrypt ang iyong chat sa {{name}}. I - unlock ang iyong wallet sa device na ito para buksan ito.",
+    "lockedUnlock": "I - unlock ang wallet",
+    "lockedTryAgain": "Subukan muli",
+    "lockedPrivate": "Kaya lamang natin sila makita.",
+    "undecryptableRun_one": "Hindi mabuksan sa device na ito ang {{count}} message",
+    "undecryptableRun_other": "Hindi mabubuksan sa device na ito ang {{count}} mensahe"
   },
   "music": {
     "all": "Lahat",
@@ -2105,7 +2119,31 @@
     "likeStation": "I-like ang istasyon",
     "unlikeStation": "I-unlike ang istasyon",
     "shareStation": "Ibahagi ang istasyon",
-    "listeningTo": "Nakikinig sa {{name}} sa DeHub"
+    "listeningTo": "Nakikinig sa {{name}} sa DeHub",
+    "mostPlayed": "Karamihan sa mga nilalaro",
+    "radioPicks": "Ang aming mga pinili",
+    "mostVoted": "Karamihan ay bumoto",
+    "trending": "Trending",
+    "stagesLive": "Live ngayon",
+    "upcoming": "Nalalapit",
+    "mostListened": "Karamihan ay nakikinig",
+    "recentStages": "Kamakailan lamang",
+    "noStages": "Wala pang yugto dito",
+    "listening": "pakikinig",
+    "mostLiked": "Pinaka nagustuhan",
+    "mostRecent": "Pinakahuli",
+    "chartOrder": "Pagkakasunud - sunod ng audio chart",
+    "quality": "Kalidad",
+    "votes": "Mga Boto",
+    "plays": "Mga Pag - play",
+    "liveRadio": "Live na radyo",
+    "listenLive": "Makinig nang live",
+    "nextStation": "Susunod na istasyon",
+    "mostViewed": "Pinakatitingin",
+    "trendingWeek": "Trending ngayong linggo",
+    "newest": "Pinakabago",
+    "videoChartOrder": "Pagkakasunud - sunod ng chart ng video ng musika",
+    "viewsCount": "{{views}} mga view"
   },
   "notFound": {
     "title": "Hindi Natagpuan ang Page",
@@ -2489,7 +2527,41 @@
     "revealFailed": "Hindi maipakita ang key. Subukan muli.",
     "signInAgain": "Mag-sign in muli",
     "createSignIn": "Mag-sign in muli para gumawa ng agent",
-    "checkConnection": "Suriin ang iyong koneksyon at subukan muli."
+    "checkConnection": "Suriin ang iyong koneksyon at subukan muli.",
+    "life": {
+      "compose": "Mag - post bilang ahente na ito",
+      "daily": "Mag - post ngayon: {{posts}} · Araw - araw na target:{{target}}",
+      "editComment": "Iyong pag-edit ng komento",
+      "imageUrl": "URL ng Larawan (opsyonal)",
+      "postQueued": "Ang post ay nakapaloob na sa pagpapalista. Ipinapalista ito sa mga Gawain sa itaas.",
+      "postText": "Email *",
+      "queueHelp": "Ipinapalabas ang iyong eksaktong teksto. Nakatutok na 20-minuto na pagkakalipat ng post ay nakatutok. Wala pang pagmimina.",
+      "queuePost": "Email *",
+      "unliked": "Hindi nagustuhan",
+      "less": "Magpakita ng mas kaunti",
+      "more": "Magpakita pa ng aktibidad"
+    },
+    "tasks": {
+      "runSwarm": "Patakbuhin ang swarm",
+      "preparing": "Inihahanda ang gawain...",
+      "run": "Patakbuhin ang prompt",
+      "window": {
+        "authorAll": "Lahat ng creator",
+        "authorChoose": "Pumili ng creator",
+        "categoryAll": "Lahat ng kategorya",
+        "categoryChoose": "Pumili ng mga kategorya",
+        "categoryHint": "Magdagdag ng anumang mga pangalan ng kategorya na pinaghihiwalay ng mga kuwit, hanggang sa 20. Maaaring tumugma ang isang post sa anumang napiling kategorya. Iwanan ang walang laman para sa lahat.",
+        "last1h": "Huling oras",
+        "last30d": "Huling 30 araw",
+        "allTime": "Lahat ng oras",
+        "dislike": "Hindi Gusto",
+        "author": "May - akda (opsyonal)",
+        "category": "Kategorya (opsyonal)",
+        "authorPlaceholder": "@username o wallet",
+        "categoryPlaceholder": "Eksaktong pangalan ng kategorya",
+        "filterHelp": "I-save ang mga filter sa lahat ng post. Kapag dalawa ang itinatakda, dapat magkapatid ang dalawa. Ang mga nakarehistrong reaksyon ay ipinagpatuloy; pagpili ng kabaligtarang reaksyon ay babago ito."
+      }
+    }
   },
   "hero": {
     "title": "Maligayang Pagdating",
@@ -2794,7 +2866,13 @@
     "sentDesc": "{{amount}} tokens na ipinadala sa treasury noong {{chain}}. Maa-update ang iyong bahagi kapag na-index na ang block.",
     "sendAnyWallet": "Maaaring magpadala ng DeHub tokens dito ang sinuman mula sa anumang wallet o exchange. Ang mga transfer sa Base at BNB ay bibilangin sa iyong bahagi.",
     "yourContribution": "{{amount}} tokens na naambag",
-    "pooledTotal": "{{amount}} tokens na na-pool"
+    "pooledTotal": "{{amount}} tokens na na-pool",
+    "votingClosed": "Sarado na ang pagboto",
+    "voteWithdrawn": "Binawi ang boto",
+    "voteRecorded": "Naitala ang boto",
+    "voteFailed": "Hindi maitala ang pagboto",
+    "paymentUnderReview": "Sinusuri ang pagbabayad",
+    "acceptedAwaitingPayment": "Tinanggap · naghihintay ng pagbabayad"
   },
   "governance": {
     "title": "Pamamahala",
@@ -2857,7 +2935,8 @@
       "authorChip": "May - akda ng panukala"
     },
     "holdTokensToVote": "Maghawak ng DeHub tokens para bumoto",
-    "mustHoldTokens": "Kailangan mong maghawak ng DeHub tokens para bumoto sa mga panukala sa pamamahala."
+    "mustHoldTokens": "Kailangan mong maghawak ng DeHub tokens para bumoto sa mga panukala sa pamamahala.",
+    "badgeHoldersOnly": "Mga may hawak lamang ng badge"
   },
   "sidebar": {
     "talkOfTheTown": "Tungkol sa City",
@@ -3351,7 +3430,8 @@
     "lockedEarlyFee": "Naka-lock hanggang {{date}}. Ang pag-withdraw ngayon ay magbabalik ng 88% — isang 12% na bayarin, humigit-kumulang {{fee}} tokens. I-tap muli para tanggapin.",
     "unstakeSent": "Nag-withdraw ng {{amount}} na token! TX: {{hash}}…",
     "tokensUnit": "token",
-    "tokenAmount": "{{amount}} na token"
+    "tokenAmount": "{{amount}} na token",
+    "foundNewDeposits": "Natagpuan ang {{count}} bagong mga deposito on - chain"
   },
   "communities": {
     "title": "Mga Komunidad",
@@ -3458,7 +3538,8 @@
       "copied": "Nakopya na ang mensahe",
       "copyText": "Kopyahin ang teksto",
       "mutedUntil": "Naka - mute ka hanggang {{date}}",
-      "slowMode": "Mabagal na mode: isang mensahe kada {{interval}}"
+      "slowMode": "Mabagal na mode: isang mensahe kada {{interval}}",
+      "jumpToLatest": "Lumaktaw sa pinakabagong"
     },
     "manage": {
       "dismissAdminTitle": "I - dismiss ang admin",
@@ -3789,7 +3870,8 @@
       "cancelled": "Kinansela",
       "disputed": "May dispute",
       "draft": "Borador",
-      "expired": "Lipas na"
+      "expired": "Lipas na",
+      "accepted": "Tinanggap"
     },
     "detail": {
       "notFound": "Hindi nakita ang bounty.",
@@ -4805,7 +4887,8 @@
     "listens_other": "{{count}} listens",
     "lyrics": "Liriko",
     "lyricsLoading": "Hinahanap ang liriko…",
-    "lyricsNone": "Walang nakitang liriko"
+    "lyricsNone": "Walang nakitang liriko",
+    "visualizerColour": "Kulay ng visualizer"
   },
   "transfer": {
     "arcTitle": "Magpadala ng USDC sa Arc",
@@ -5079,7 +5162,12 @@
     "interestedCount": "{{count}} ang interesado",
     "loadFailed": "Hindi ma-load ang mga event"
   },
-  "stats": {"chart": {"daily": "Mga bisita kada araw", "dailyHint": "mga natatanging bisita kada araw", "empty": "Wala pang datos para sa panahong ito"},
+  "stats": {
+    "chart": {
+      "daily": "Mga bisita kada araw",
+      "dailyHint": "mga natatanging bisita kada araw",
+      "empty": "Wala pang datos para sa panahong ito"
+    },
     "definitions": {
       "visitorsTerm": "Mga bisita"
     },
@@ -6318,7 +6406,16 @@
     "pipUnavailable": "Hindi magagamit ang Larawan sa larawan. Suriin kung pinapayagan ito para sa DeHub sa mga setting ng iyong device.",
     "noVideo": "Walang video",
     "rotate": "I-rotate",
-    "yourDhbBalance": "Ang iyong token balance: {{amount}}"
+    "yourDhbBalance": "Ang iyong token balance: {{amount}}",
+    "segmentLabel": {
+      "filler": "Pagpuno",
+      "interaction": "I - like at mag - subscribe",
+      "selfpromo": "Autoplay Loop",
+      "outro": "Iba pa",
+      "intro": "Panimula",
+      "sponsor": "Patron"
+    },
+    "volume": "Antas ng volume"
   },
   "liveViewer": {
     "loadingStream": "Nilo-load ang stream...",
@@ -10000,5 +10097,168 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Mag-explore muna",
     "codeNote": "Magpapadala kami ng code sa email, walang password."
+  },
+  "postGate": {
+    "holdShortUnknown": "Kulang pa {{symbol}}. Kailangan ng post na ito ng {{needed}}.",
+    "holdShort": "Hawak mo ang {{held}}{{symbol}}. Kailangan ng post na ito ng {{needed}}."
+  },
+  "copy": {
+    "085cd98e8e2e": "Kopya ng link",
+    "c184b8c9592f": "Iyan ay dapat na isang pahina sa dehub.io.",
+    "9b44fb81d89e": "Patutunguhang pahina",
+    "12a7c0529934": "/docs/pagsisimula",
+    "fc036ea0e9f0": "Mag - link sa isang tukoy na pahina",
+    "df0fe9e00d35": "Subukan Ulit",
+    "24df132b16d3": "Pagpapalit...",
+    "220277ae54c6": "Kumpirmahin ang Swap",
+    "0e9161011702": "I - refresh",
+    "2eef6c9af0ae": "Nagpapahayag ng pagtutol...",
+    "85249a6f8dd5": "Kumuha ng Quote",
+    "9c71e7639046": "Matagumpay ang swap!",
+    "9ccba222f889": "Tinatayang gastos",
+    "ac4d49f28b40": "Magpalit ng {{value1}}{{value2}}",
+    "6627a8114830": "Biliin ang {{value1}} ang {{value2}}",
+    "f4b06ef6d3c8": "Para kay",
+    "218197693424": "Mula",
+    "c772e8fc6314": "Token Swap",
+    "8d2e3063a993": "Chat",
+    "f6ec7f0c995b": "Ang Pagpapakita",
+    "8b2ae991573c": "Ngayon Nagpe - play",
+    "b8e082c979d9": "Gumawa ng Poll",
+    "7614c65db3bf": "Kopyahin ang address ng wallet",
+    "854cbbb4f34f": "mga praksiyon (",
+    "da8e926af644": "Nabigong i - edit ang mensahe",
+    "f6f4688ff23d": "Ipadala",
+    "f42e0f66017d": "Wala pang mensahe",
+    "de54ef8dc9c2": "Wala pang kaganapan",
+    "dbf362d4f210": "Kopyahin ang link",
+    "d980d2b4ac8b": "Nagpapatuloy ang paglikha ng pangyayari.",
+    "ca1530e8d701": "Mga nakaraan",
+    "c26c60eb4a6c": "Maging ang unang mag-chat.",
+    "b2742e6cae24": "Ginawa ng",
+    "ab77f2abb3ae": "Nagagaling na i-update ang pangyayari",
+    "93cb6b12aa06": "Nagbayad",
+    "81cc1e80317c": "Napagkaloob",
+    "7a9f7d429145": "Maglikha ng Pangyayari",
+    "68cc8e3eaed5": "Nakawala",
+    "5f1a2542e4e4": "Mga pangyayari sa darating na panahon",
+    "5b7a1ac615bb": "Nakaluklok na ang pangyayari",
+    "513ee42263bc": "Mga nakahihintay na paghihiling (",
+    "460b3a7da007": "Mag-chat",
+    "1603d5423679": "Nag-update ang pangyayari!",
+    "0de0253da6f1": "Naglikha ng pangyayari!",
+    "008ad4d946bb": "Maaaring makita ang mga pangyayaring komunidad dito.",
+    "f3c6dcdb78a4": "Walang iba kundi mga tagapagambala na nakalagay sa panahong ito ay maaaring bumoto.",
+    "ebf6fba25211": "Nagbukas ang paghihiling sa pitong araw",
+    "e1245cea2208": "Ipatupad",
+    "d0be237244fa": "Nagbubukas ang paghihiling…",
+    "c4c2179c3053": "Ang iyong timbang:",
+    "b8cfe281c012": "Ang isang napagkaloob na gastusin ay nakahihintay para sa manual na pagpapatupad ng DAO o multisig. Hindi ito naglilipat ng pera sa sarili nito.",
+    "b50104341b2b": "Ipatupad",
+    "a4f6b2e41037": "I-transport ang pagbabayad",
+    "9e6d88cbe11c": "0x… o address sa Solana",
+    "9c7eca1df4f3": "Paliwanag ang mga termino at bakit dapat ipagkaloob ng DAO.",
+    "9155f2107df0": "ng",
+    "90cdcff9db62": "Ibinoto",
+    "895bc4b96601": "% pagkakalabas · 10% quorum · contribution-weighted snapshot",
+    "80d298c9f240": "Asset",
+    "7e8cd2056da7": "Pangalan",
+    "7d524ee72c64": "Buksan ang unang pagsasagawa ng pagbili o pagsasaalang-alang sa paggastos.",
+    "7ba3d14233b1": "Pangangailangan ng gastusin",
+    "794c8cef5f67": "Hindi maibubuksan ang mga pagpropos na DAO.",
+    "700f18a93687": "Halaga ng pag-oferta",
+    "6cf2865295e4": "Ibigay ang iyong dami at presyo",
+    "69013bafaace": "Ano ang tinutugon ng mga nag-aambag?",
+    "61cbb6454002": "Buksan ang mga pagpropos",
+    "554f86eedd6d": "Mga pagpropos ng DAO",
+    "52c6b1284570": "Ibigay sa DAO na ipadala ang isang asset",
+    "52a9fac889f1": "Pag-aalang-alang sa gastusin",
+    "4c6c7de71386": "Nakapagbigay ng ebidensiya ng pagbabayad para sa manual na pagpapatibay ng DAO",
+    "4be2a5e0d00a": "Walang escrow. Kung tinanggap, mayroon kang 72 oras upang ipadala ang pagbabayad para sa manual na pagpapatibay ng DAO.",
+    "4b00b1b86bfd": "sa",
+    "49e96d7cdf58": "Kantidad",
+    "45989de49fb7": "Mga detalye",
+    "454d03911271": "Address ng tagatanggap",
+    "3d08de9152fe": "Ipropose sa DAO",
+    "37bd766fa812": "Mga sinumang maaaring magpropose. Ang mga nag-aambag ay tumatanggap o tinutanggihan sa kanilang na-rekord na timbang ng pag-aambag.",
+    "1f5440e72187": "Walang mga pagpropos pa",
+    "1cbd9e713d93": "Ipropose",
+    "07070fb32c93": "Pag-oferta ng pagbili",
+    "02b24c18771c": "Tutanggihan",
+    "50b2bdd7a1e5": "Makakakita na ang natapos na pagbabayad ng pagstake doon.",
+    "cbfc01a6c13a": "Makakakita na ang natapos na pagbabayad ng pagdeposit sa staking doon.",
+    "1fdecb2c9a54": "Walang mga pagbabayad pa sa pag-withdraw.",
+    "4574472bb474": "Walang mga pagdeposit pa sa staking.",
+    "5b5a9671e539": "Pansinin ang on-chain para sa mga nawawalang pagdeposit.",
+    "31a3711c4ab5": "Lahat ng iyong mga transaksyon sa pag-withdraw",
+    "701ef1840612": "Lahat ng iyong mga transaksyon sa pagstake",
+    "a7b7e36d6fdf": "Iyong mga Pag-withdraw",
+    "a3b7dbe57071": "Ang Iyong Deposito",
+    "2d240e231566": "Nagpapatuloy ang pag-sync ng mga deposito",
+    "7082f2b3815d": "Ang mga deposito ay nasa huling bersyon",
+    "ff701a069af2": "Pangalaga at Pagsasabit",
+    "48201f5584e2": "Nagsisimula ang pagtingin sa iyong balanse…",
+    "3aefdd5f5915": "Nagbukas na ang nilalaman! 🎉",
+    "6e929effed4e": "Nagsisulat ng overview…",
+    "14c5558a8cd9": "Walang nakakasang-ayon na transcript",
+    "a54084383e3c": "nakakasang-ayon",
+    "4945a70fa7f9": "nakakasang-ayon",
+    "7adf0298ab5e": "Kabanata",
+    "2baeddfdc699": "Hahanapin ang transcript…",
+    "d0bd6ec267f9": "Teksto",
+    "dea0ff385abf": "Kopya",
+    "55de39f882a3": "Subukan muli",
+    "9fddb94edef5": "Nagpapatuloy ang pagtala ng transkripsiyon:",
+    "4c2ea0ddf64b": "Ang video na ito ay walang salita, kaya walang anuman na dapat itala.",
+    "5561cf90d112": "Nagsisimula ang pagtala ng transkripsiyon",
+    "6662a5411155": "Isulat ito ngayon",
+    "60aac7666712": "Nagsisulat ang isang transcript sa pamamagitan ng automatikong pagpapatakbo pagkatapos ng pag-upload ng isang video.",
+    "5ae4bb109db7": "Walang transcript pa",
+    "ba3bbbe10d8b": "Nagsisilid",
+    "ee871105e875": "nagsisulat",
+    "d91fca0e24bb": "linya",
+    "721164f0dc70": "Transkripsiyon",
+    "3c42f559d757": "Mag-log in upang ibuhos o boto. Ang pagpasa ay magagamit sa parehong paraan.",
+    "58db9997b230": "Ang bahaging ito ay mali",
+    "dc469bffc7c0": "Ang bahaging ito ay tama",
+    "77f3aefe8b8b": "Alisin ang iyong marka",
+    "2f41333ad013": "· {{value1}} hindi sumang-ayon",
+    "72915d37182e": "sumasang - ayon",
+    "e5f6facf9cbe": "Walang nakalagay pa rin sa video ito.",
+    "155f816c0407": "Isumite",
+    "5218ce9ed7ab": "Isumite ang {{value1}} - {{value2}}",
+    "78de1ed22dcb": "End{{value1}}",
+    "f4db1e48476f": "Pagtatapos",
+    "5e2495b60820": "Magsimula {{value1}}",
+    "e4bb9f1ece9a": "Magsimula",
+    "b5f85f952b0b": "Markahan ang isang sponsor na basahin o intro at lahat ng may laktawan sa jumps nakalipas na ito. Hayaang tumakbo ang video — i — tap ang Magsimula kapag nagsimula ito at Magtapos kapag tumigil ito.",
+    "30f4d96b8d72": "Mga seksyong madaling laktawan",
+    "68f5b97c66d9": "Bumalik sa grid",
+    "57702fa51a5e": "Mga filter ng feed",
+    "66b8e077d85f": "Nabigong magpadala ng mensahe",
+    "f0ed7becd58e": "Hindi makalipat sa iyong chain sa pag - post. Pumili ng chain sa Mga Setting at subukang muli.",
+    "488017ad5c75": "I - explore ang DeHub nang hindi nagsa - sign in",
+    "61d2a857dd18": "Magpatuloy sa paggalugad ng DeHub",
+    "8d14f6e72de8": "Mga Kaganapan",
+    "29887a5ff984": "Ibahagi",
+    "85ee77346f10": "{{value1}} mga bagong post, i - tap para i - refresh",
+    "fef6a1a97127": "Sinundan ng {{value1}}",
+    "036cfd952896": "Sino ang susundin",
+    "0c820caf16c0": "Wala pang bio"
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "email *",
+      "profile": "Profile",
+      "community": "Komunidad",
+      "store": "magasin",
+      "event": "evento",
+      "stage": "entablado",
+      "film": "pamagat",
+      "bounty": "bounty",
+      "app": "app",
+      "proposal": "panukala",
+      "link": "link"
+    }
   }
 }

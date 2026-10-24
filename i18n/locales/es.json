@@ -1128,7 +1128,8 @@
     "themeColorBrand": "Marca",
     "themeColorBrandDesc": "Usar los colores de tu foto de perfil",
     "themeColorBrandNoAvatar": "Añade una foto de perfil para usar los colores de Marca",
-    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil"
+    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil",
+    "glass": "Glassy"
   },
   "common": {
     "refresh": "Actualizar",
@@ -2628,7 +2629,25 @@
     "sharePostTemplate": "Acabo de añadir {{amount}} tokens a mi pila en DeHub. Construir con la comunidad. #DeHub",
     "minDhbPurchase": "La compra mínima de tokens es de $0.50"
   },
-  "agents": {"life":{"title":"Con vida","help":"Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.","starting":"Preparando su personalidad…","awake":"Despierto en {{home}}","asleep":"Dormido en {{home}}","next":"próxima visita {{time}}","recent":"Últimamente","empty":"Nada todavía. Se pasará pronto.","kind":{"post":"Publicó","comment":"Comentó","reply":"Respondió","like":"Le gustó una publicación","profile":"Actualizó su perfil","error":"Algo salió mal"}},
+  "agents": {
+    "life": {
+      "title": "Con vida",
+      "help": "Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.",
+      "starting": "Preparando su personalidad…",
+      "awake": "Despierto en {{home}}",
+      "asleep": "Dormido en {{home}}",
+      "next": "próxima visita {{time}}",
+      "recent": "Últimamente",
+      "empty": "Nada todavía. Se pasará pronto.",
+      "kind": {
+        "post": "Publicó",
+        "comment": "Comentó",
+        "reply": "Respondió",
+        "like": "Le gustó una publicación",
+        "profile": "Actualizó su perfil",
+        "error": "Algo salió mal"
+      }
+    },
     "profile": {
       "edit": "Editar perfil",
       "avatar": "Avatar",
@@ -3131,7 +3150,8 @@
       "authorChip": "Autor de la propuesta"
     },
     "holdTokensToVote": "Mantén tokens DeHub para votar",
-    "mustHoldTokens": "Debes tener tokens DeHub para votar en las propuestas de gobernanza."
+    "mustHoldTokens": "Debes tener tokens DeHub para votar en las propuestas de gobernanza.",
+    "badgeHoldersOnly": "Solo portadores de insignias"
   },
   "sidebar": {
     "talkOfTheTown": "Lo más comentado",
@@ -4080,25 +4100,20 @@
       "clearDeadline": "Quitar fecha límite"
     },
     "status": {
-      "rejected": "Rechazado",
-      "open": "Abierto",
-      "expired": "Vencido",
-      "completed": "Completado",
-      "cancelled": "Cancelado",
-      "accepted": "Aceptado",
+      "rejected": "Rechazada",
       "open": "Abierta",
+      "expired": "Caducada",
+      "completed": "Completada",
+      "cancelled": "Cancelada",
+      "accepted": "Aceptado",
       "pending": "Pendiente",
       "awarded": "Adjudicada",
       "in_progress": "En curso",
       "approved": "Aprobada",
       "paid": "Pagado",
       "awaitingPayment": "Pendiente de pago",
-      "rejected": "Rechazada",
-      "completed": "Completada",
-      "cancelled": "Cancelada",
       "disputed": "En disputa",
-      "draft": "Borrador",
-      "expired": "Caducada"
+      "draft": "Borrador"
     },
     "detail": {
       "notFound": "Recompensa no encontrada.",
@@ -5438,7 +5453,12 @@
     "interestedCount": "{{count}} interesados",
     "loadFailed": "No se pudieron cargar los eventos"
   },
-  "stats": {"chart": {"daily": "Visitantes por día", "dailyHint": "visitantes únicos por día", "empty": "Aún no hay datos para este periodo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitantes por día",
+      "dailyHint": "visitantes únicos por día",
+      "empty": "Aún no hay datos para este periodo"
+    },
     "definitions": {
       "visitorsTerm": "Visitantes"
     },
@@ -11634,5 +11654,22 @@
     "fingerprint": "Huella",
     "exploreFirst": "Explorar primero",
     "codeNote": "Te enviamos un código por correo, sin contraseña."
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "post",
+      "profile": "perfil",
+      "community": "comunidad",
+      "communityInvite": "invitación a la comunidad",
+      "store": "tienda",
+      "listing": "artículo",
+      "event": "evento",
+      "stage": "etapa",
+      "film": "title",
+      "bounty": "recompensa",
+      "app": "app",
+      "proposal": "propuesta",
+      "link": "enlace"
+    }
   }
 }

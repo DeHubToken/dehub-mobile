@@ -979,7 +979,9 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Use your profile picture colours",
     "themeColorBrandNoAvatar": "Add profile picture before you fit use Brand colours",
-    "themeColorBrandFailed": "E no fit read colour from your profile picture"
+    "themeColorBrandFailed": "E no fit read colour from your profile picture",
+    "shortsEnabled": "Shorts",
+    "glass": "Glassy"
   },
   "common": {
     "refresh": "Refresh",
@@ -1170,7 +1172,8 @@
     "postUnpinned": "E don unpin from your profile",
     "pinFailed": "We no fit pin or unpin this post",
     "askAi": "Ask AI",
-    "aiOverview": "AI overview"
+    "aiOverview": "AI overview",
+    "skippableSections": "Skippable sections"
   },
   "filters": {
     "sort": "Sort",
@@ -1996,7 +1999,9 @@
     "title": "Messages",
     "searchConversations": "Find conversation...",
     "failedToLoad": "Conversations no fit load",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "lockedUnlock": "Unlock wallet",
+    "lockedTryAgain": "Try again"
   },
   "music": {
     "all": "All",
@@ -2032,7 +2037,28 @@
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
     "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "mostPlayed": "Most played",
+    "radioPicks": "Our picks",
+    "mostVoted": "Most voted",
+    "trending": "Trending",
+    "stagesLive": "Live now",
+    "upcoming": "Upcoming",
+    "mostListened": "Most listened",
+    "recentStages": "Recent",
+    "listening": "listening",
+    "mostLiked": "Most liked",
+    "mostRecent": "Most recent",
+    "chartOrder": "Audio chart order",
+    "quality": "Quality",
+    "votes": "Votes",
+    "plays": "Plays",
+    "liveRadio": "Live radio",
+    "listenLive": "Listen live",
+    "nextStation": "Next station",
+    "mostViewed": "Most viewed",
+    "newest": "Newest",
+    "videoChartOrder": "Music video chart order",
+    "viewsCount": "{{views}} views"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -2111,7 +2137,12 @@
     "tabLive": "Dei",
     "tabPinned": "Pinned",
     "offerWorthNow": "Wia di current rate, {{amount}} tokens dey be.",
-    "offerCommitsNothing": "Maka offer dey free, no token dey involved. You go pay only when owner accept am."
+    "offerCommitsNothing": "Maka offer dey free, no token dey involved. You go pay only when owner accept am.",
+    "tabDislikes": "Dislikes",
+    "dislikesEmptyTitle": "No dislikes yet",
+    "dislikesEmptyOwn": "Post you no like, go dey for your feed, come show for here. Use \"undo dislike\" for bring back post.",
+    "dislikesEmptyOther": "Nothing disliked yet.",
+    "dislikesPrivateDesc": "Dis account no dey show dislike for nobody."
   },
   "tv": {
     "title": "TV",
@@ -2405,7 +2436,37 @@
     "revealFailed": "We no fit show di key. Try again.",
     "signInAgain": "Sign in again",
     "createSignIn": "Sign in again make you fit create agent",
-    "checkConnection": "Check your network, den try am again."
+    "checkConnection": "Check your network, den try am again.",
+    "life": {
+      "daily": "Posts today: {{posts}} · Daily target: {{target}}",
+      "editComment": "Edit comment",
+      "imageUrl": "Image URL (optional)",
+      "postText": "Post text",
+      "queuePost": "Queue post",
+      "viewPost": "View post",
+      "unlike": "Unlike",
+      "unliked": "Unliked",
+      "less": "Show less"
+    },
+    "tasks": {
+      "runSwarm": "Run swarm",
+      "preparing": "Preparing task…",
+      "run": "Run prompt",
+      "window": {
+        "authorAll": "All creators",
+        "authorChoose": "Choose creator",
+        "categoryAll": "All categories",
+        "categoryChoose": "Choose categories",
+        "last1h": "Last hour",
+        "last30d": "Last 30 days",
+        "allTime": "All time",
+        "dislike": "Dislike",
+        "author": "Author (optional)",
+        "category": "Category (optional)",
+        "authorPlaceholder": "@username or wallet",
+        "categoryPlaceholder": "Exact category name"
+      }
+    }
   },
   "hero": {
     "title": "Welcome To",
@@ -2704,7 +2765,12 @@
     "sendAmount": "Send {{amount}} tokens",
     "yourContribution": "{{amount}} tokens contributed",
     "pooledTotal": "{{amount}} tokens pooled",
-    "sentDesc": "{{amount}} wey dem send to treasury for {{chain}}. Your share go update when block dey index."
+    "sentDesc": "{{amount}} wey dem send to treasury for {{chain}}. Your share go update when block dey index.",
+    "votingClosed": "Voting closed",
+    "voteWithdrawn": "Vote withdrawn",
+    "voteRecorded": "Vote recorded",
+    "paymentUnderReview": "Payment under review",
+    "acceptedAwaitingPayment": "Accepted · awaiting payment"
   },
   "governance": {
     "title": "Rul Dem",
@@ -2765,7 +2831,8 @@
       "signInToComment": "Sign in to join the talk",
       "empty": "No question yet. Start the talk.",
       "joinOnProposal": "Join the talk"
-    }
+    },
+    "badgeHoldersOnly": "Badge holders only"
   },
   "sidebar": {
     "talkOfTheTown": "Wetin Dey Happen",
@@ -3357,7 +3424,8 @@
       "copied": "Message don copy",
       "copyText": "Copy di text",
       "mutedUntil": "Dem don mute you until {{date}}",
-      "slowMode": "Slow mode: one message for every {{interval}}"
+      "slowMode": "Slow mode: one message for every {{interval}}",
+      "jumpToLatest": "Jump to latest"
     },
     "manage": {
       "dismissAdminTitle": "Comot am as admin",
@@ -3670,7 +3738,8 @@
       "cancelled": "Dem cancel am",
       "disputed": "Dispute dey",
       "draft": "Draft",
-      "expired": "E don expire"
+      "expired": "E don expire",
+      "accepted": "Accepted"
     },
     "detail": {
       "notFound": "Dem no find di bounty.",
@@ -6142,7 +6211,16 @@
     "tapShowControls": "Tap make controls show",
     "doubleTapRewind": "Double tap make e go back",
     "doubleTapForward": "Double tap make e skip front",
-    "pipUnavailable": "Picture in picture no dey available. Check sey dem allow am for DeHub for your device settings."
+    "pipUnavailable": "Picture in picture no dey available. Check sey dem allow am for DeHub for your device settings.",
+    "segmentLabel": {
+      "filler": "Filler",
+      "interaction": "Like & subscribe",
+      "selfpromo": "Self promo",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Sponsor"
+    },
+    "volume": "Volume level"
   },
   "liveViewer": {
     "loadingStream": "Stream dey load...",
@@ -7816,7 +7894,8 @@
     "stopAndClose": "Stop am and close the player",
     "lyrics": "Song words",
     "lyricsLoading": "Dey find song words…",
-    "lyricsNone": "No song words dey"
+    "lyricsNone": "No song words dey",
+    "visualizerColour": "Visualizer colour"
   },
   "banned": {
     "reason": "Reason: {{reason}}",
@@ -9441,5 +9520,115 @@
     "phone": "Phone",
     "fingerprint": "Fingerprint",
     "exploreFirst": "Explore first"
+  },
+  "postGate": {
+    "holdShort": "You dey hold {{held}} {{symbol}}. Dis post need {{needed}}."
+  },
+  "copy": {
+    "085cd98e8e2e": "Copy link",
+    "9b44fb81d89e": "Destination page",
+    "12a7c0529934": "/docs/getting-started",
+    "df0fe9e00d35": "Try Again",
+    "24df132b16d3": "Swapping...",
+    "220277ae54c6": "Confirm Swap",
+    "0e9161011702": "Refresh",
+    "2eef6c9af0ae": "Getting quote...",
+    "85249a6f8dd5": "Get Quote",
+    "9c71e7639046": "Swap successful!",
+    "9ccba222f889": "Estimated cost",
+    "ac4d49f28b40": "Swap {{value1}} {{value2}}",
+    "6627a8114830": "Buy {{value1}} {{value2}}",
+    "f4b06ef6d3c8": "To",
+    "218197693424": "From",
+    "c772e8fc6314": "Token Swap",
+    "8d2e3063a993": "Buy $",
+    "f6ec7f0c995b": "Visualization",
+    "8b2ae991573c": "Now Playing",
+    "b8e082c979d9": "Create Poll",
+    "7614c65db3bf": "Copy wallet address",
+    "854cbbb4f34f": "fractions (",
+    "f6f4688ff23d": "Send",
+    "f42e0f66017d": "No messages yet",
+    "de54ef8dc9c2": "No events yet",
+    "dbf362d4f210": "Copy link",
+    "d12860c21e78": "Link copied",
+    "ca1530e8d701": "Past",
+    "b2742e6cae24": "Created by",
+    "93cb6b12aa06": "Paid",
+    "81cc1e80317c": "Approved",
+    "7a9f7d429145": "Create Event",
+    "68cc8e3eaed5": "Denied",
+    "5f1a2542e4e4": "Upcoming",
+    "5b7a1ac615bb": "Event deleted",
+    "513ee42263bc": "Pending Requests (",
+    "460b3a7da007": "Chat",
+    "1603d5423679": "Event updated!",
+    "0de0253da6f1": "Event created!",
+    "e1245cea2208": "Accept",
+    "d0be237244fa": "Opening proposal…",
+    "c4c2179c3053": "Your weight:",
+    "b50104341b2b": "Accept",
+    "a4f6b2e41037": "Transfer payment",
+    "9e6d88cbe11c": "0x… or Solana address",
+    "9155f2107df0": "by",
+    "90cdcff9db62": "Reject",
+    "895bc4b96601": "% participation · 10% quorum · contribution-weighted snapshot",
+    "80d298c9f240": "Asset",
+    "7e8cd2056da7": "Title",
+    "7ba3d14233b1": "Request a spend",
+    "700f18a93687": "Offer value",
+    "61cbb6454002": "Open proposal",
+    "554f86eedd6d": "DAO proposals",
+    "52a9fac889f1": "Spend request",
+    "4b00b1b86bfd": "to",
+    "49e96d7cdf58": "Amount",
+    "45989de49fb7": "Details",
+    "454d03911271": "Recipient address",
+    "37bd766fa812": "Anybody can propose. Contributors go for *accept* or *reject* based on how much dey contribute.",
+    "1f5440e72187": "No proposals yet",
+    "1cbd9e713d93": "Propose",
+    "07070fb32c93": "Buy offer",
+    "02b24c18771c": "Reject",
+    "50b2bdd7a1e5": "Completed staking withdrawals go dey show here.",
+    "1fdecb2c9a54": "No withdrawals yet",
+    "4574472bb474": "No deposits yet",
+    "a7b7e36d6fdf": "Your Withdrawals",
+    "a3b7dbe57071": "Your Deposits",
+    "ff701a069af2": "Verify & Unlock",
+    "4945a70fa7f9": "match",
+    "4c2ea0ddf64b": "Dis video no talk inside, so no dey have anyting for me write out.",
+    "5561cf90d112": "Dey write am down",
+    "d91fca0e24bb": "Lain",
+    "721164f0dc70": "Na so dem dey talk for meeting.",
+    "3c42f559d757": "Sign in to mark or vote. Skip am work for both way.",
+    "78de1ed22dcb": "End {{value1}}",
+    "f4db1e48476f": "End",
+    "5e2495b60820": "Start {{value1}}",
+    "e4bb9f1ece9a": "Start",
+    "30f4d96b8d72": "Skippable sections",
+    "68f5b97c66d9": "Back to grid",
+    "57702fa51a5e": "Feed filters",
+    "61d2a857dd18": "Continue exploring DeHub",
+    "8d14f6e72de8": "Events",
+    "29887a5ff984": "Share",
+    "fef6a1a97127": "Followed by {{value1}}",
+    "036cfd952896": "Who to follow",
+    "0c820caf16c0": "No bio yet"
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "post",
+      "profile": "profile",
+      "community": "community",
+      "communityInvite": "community invite",
+      "store": "store",
+      "listing": "item",
+      "event": "event",
+      "stage": "stage",
+      "film": "title",
+      "bounty": "Bounty",
+      "proposal": "Proposal",
+      "link": "link"
+    }
   }
 }

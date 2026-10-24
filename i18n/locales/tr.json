@@ -1128,7 +1128,8 @@
     "themeColorBrand": "Marka",
     "themeColorBrandDesc": "Profil fotoğrafınızın renklerini kullan",
     "themeColorBrandNoAvatar": "Marka renklerini kullanmak için bir profil fotoğrafı ekleyin",
-    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
+    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı",
+    "glass": "Camsı"
   },
   "common": {
     "refresh": "Yenile",
@@ -2628,7 +2629,25 @@
     "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} token'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub",
     "minDhbPurchase": "Minimum token alımı 50$'dır"
   },
-  "agents": {"life":{"title":"Canlı","help":"Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.","starting":"Kişiliği hazırlanıyor…","awake":"{{home}} şehrinde uyanık","asleep":"{{home}} şehrinde uyuyor","next":"sonraki ziyaret {{time}}","recent":"Son zamanlarda","empty":"Henüz bir şey yok. Yakında uğrayacak.","kind":{"post":"Paylaştı","comment":"Yorum yaptı","reply":"Yanıtladı","like":"Bir gönderiyi beğendi","profile":"Profilini güncelledi","error":"Bir şeyler ters gitti"}},
+  "agents": {
+    "life": {
+      "title": "Canlı",
+      "help": "Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.",
+      "starting": "Kişiliği hazırlanıyor…",
+      "awake": "{{home}} şehrinde uyanık",
+      "asleep": "{{home}} şehrinde uyuyor",
+      "next": "sonraki ziyaret {{time}}",
+      "recent": "Son zamanlarda",
+      "empty": "Henüz bir şey yok. Yakında uğrayacak.",
+      "kind": {
+        "post": "Paylaştı",
+        "comment": "Yorum yaptı",
+        "reply": "Yanıtladı",
+        "like": "Bir gönderiyi beğendi",
+        "profile": "Profilini güncelledi",
+        "error": "Bir şeyler ters gitti"
+      }
+    },
     "profile": {
       "edit": "Profili düzenle",
       "avatar": "Avatar",
@@ -3131,7 +3150,8 @@
       "authorChip": "Teklif yazarı"
     },
     "holdTokensToVote": "Oylamak için DeHub tokeni tutun",
-    "mustHoldTokens": "Yönetişim teklifleri üzerinde oy kullanmak için DeHub tokeni tutmanız gerekir."
+    "mustHoldTokens": "Yönetişim teklifleri üzerinde oy kullanmak için DeHub tokeni tutmanız gerekir.",
+    "badgeHoldersOnly": "Sadece rozet tutucular"
   },
   "sidebar": {
     "talkOfTheTown": "Gündem",
@@ -4086,19 +4106,14 @@
       "completed": "Tamamlandı",
       "cancelled": "İptal edildi",
       "accepted": "Kabul edildi",
-      "open": "Açık",
       "pending": "Bekliyor",
       "awarded": "Atandı",
       "in_progress": "Devam ediyor",
       "approved": "Onaylandı",
       "paid": "Ödendi",
       "awaitingPayment": "Ödeme bekliyor",
-      "rejected": "Reddedildi",
-      "completed": "Tamamlandı",
-      "cancelled": "İptal edildi",
       "disputed": "İtiraz edildi",
-      "draft": "Taslak",
-      "expired": "Süresi doldu"
+      "draft": "Taslak"
     },
     "detail": {
       "notFound": "Ödüllü iş bulunamadı.",
@@ -5438,7 +5453,12 @@
     "interestedCount": "{{count}} kişi ilgileniyor",
     "loadFailed": "Etkinlikler yüklenemedi"
   },
-  "stats": {"chart": {"daily": "Günlük ziyaretçi", "dailyHint": "günlük benzersiz ziyaretçi", "empty": "Bu aralık için henüz veri yok"},
+  "stats": {
+    "chart": {
+      "daily": "Günlük ziyaretçi",
+      "dailyHint": "günlük benzersiz ziyaretçi",
+      "empty": "Bu aralık için henüz veri yok"
+    },
     "definitions": {
       "visitorsTerm": "Ziyaretçiler"
     },
@@ -11634,5 +11654,22 @@
     "fingerprint": "Parmak izi",
     "exploreFirst": "Önce keşfet",
     "codeNote": "E-postana bir kod göndeririz, şifre gerekmez."
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "gönderi",
+      "profile": "profil",
+      "community": "topluluk",
+      "communityInvite": "topluluk daveti",
+      "store": "mağaza",
+      "listing": "ürün",
+      "event": "etkinlik",
+      "stage": "aşama",
+      "film": "başlık",
+      "bounty": "ödül",
+      "app": "uygulama",
+      "proposal": "teklif",
+      "link": "link"
+    }
   }
 }

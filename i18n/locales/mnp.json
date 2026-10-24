@@ -2016,7 +2016,9 @@
     "title": "消息",
     "searchConversations": "搜索对话...",
     "failedToLoad": "加载对话失败",
-    "tryAgain": "再试一下"
+    "tryAgain": "再试一下",
+    "undecryptableRun_one": "{{count}} 這條訊息咱家手機開唔開得喔",
+    "undecryptableRun_other": "{{count}} 這邊手機開唔開得"
   },
   "music": {
     "all": "全部",
@@ -2052,7 +2054,31 @@
     "likeStation": "喜欢电台",
     "unlikeStation": "取消喜欢",
     "shareStation": "分享电台",
-    "listeningTo": "正在 DeHub 收听 {{name}}"
+    "listeningTo": "正在 DeHub 收听 {{name}}",
+    "mostPlayed": "最多人聽",
+    "radioPicks": "我推薦",
+    "mostVoted": "最多人選",
+    "trending": "熱門",
+    "stagesLive": "直播中",
+    "upcoming": "即將來臨",
+    "mostListened": "最多人聽",
+    "recentStages": "最近",
+    "noStages": "這邊還無舞台",
+    "listening": "聽歌中",
+    "mostLiked": "最多人喜歡",
+    "mostRecent": "最新",
+    "chartOrder": "音樂排行榜順序",
+    "quality": "品質",
+    "votes": "投票",
+    "plays": "播放次數",
+    "liveRadio": "直播電台",
+    "listenLive": "直播聽",
+    "nextStation": "下一台",
+    "mostViewed": "最多人看",
+    "trendingWeek": "這週熱門",
+    "newest": "最新",
+    "videoChartOrder": "音樂影片排行榜順序",
+    "viewsCount": "{{views}} 觀看次數"
   },
   "notFound": {
     "title": "页面找不着",
@@ -2133,7 +2159,13 @@
     "tabVideos": "视频",
     "tabAudio": "音频",
     "tabLive": "直播",
-    "tabPinned": "固定"
+    "tabPinned": "固定",
+    "tabDislikes": "不喜歡",
+    "dislikesEmptyTitle": "還無人不喜歡",
+    "dislikesEmptyOwn": "你不喜歡的文章會從你的動態中消失，並出現在這邊。取消不喜歡可以讓文章回到你的動態。",
+    "dislikesEmptyOther": "還無人不喜歡。",
+    "dislikesPrivateTitle": "不喜歡是私人的",
+    "dislikesPrivateDesc": "這個帳戶都自己藏著不滿意的事。"
   },
   "tv": {
     "title": "电视",
@@ -2430,7 +2462,30 @@
     "revealFailed": "顯示不了密鑰。再試一下。",
     "signInAgain": "重新登錄",
     "createSignIn": "重新登錄才能創建代理",
-    "checkConnection": "檢查一下連接，再試一下。"
+    "checkConnection": "檢查一下連接，再試一下。",
+    "life": {
+      "queuePost": "排队贴文"
+    },
+    "tasks": {
+      "preparing": "準備任務…",
+      "run": "執行提示",
+      "window": {
+        "authorAll": "所有創作者",
+        "authorChoose": "選擇創作者",
+        "categoryAll": "所有類別",
+        "categoryChoose": "選擇類別",
+        "categoryHint": "加入任何類別名稱，以逗號分隔，最多20個。一篇文章可以符合任何選擇的類別。留空則為所有類別。",
+        "last1h": "過去一小時",
+        "last30d": "過去30天",
+        "allTime": "全部時間",
+        "dislike": "不喜歡",
+        "author": "作者（選填）",
+        "category": "類別（選填）",
+        "authorPlaceholder": "@帳號或錢包",
+        "categoryPlaceholder": "精確類別名稱",
+        "filterHelp": "留空過濾器則為所有文章。當兩者都設定時，兩者都要符合。現有反應保留；選擇相反反應則會改變它。"
+      }
+    }
   },
   "hero": {
     "title": "欢迎来到",
@@ -2731,7 +2786,13 @@
     "sentDesc": "于 {{chain}} 将 {{amount}} 枚代币发送至金库。你的份额将在区块索引后更新。",
     "sendAnyWallet": "任何人都可以从任何钱包或交易所将 DeHub 代币发送至此处。在 Base 和 BNB 上的转账将计入你的份额。",
     "yourContribution": "{{amount}} 枚代币已贡献",
-    "pooledTotal": "{{amount}} 枚代币已汇集"
+    "pooledTotal": "{{amount}} 枚代币已汇集",
+    "votingClosed": "投票已關閉",
+    "voteWithdrawn": "投票撤回",
+    "voteRecorded": "投票紀錄",
+    "voteFailed": "無法紀錄投票",
+    "paymentUnderReview": "付款審核中",
+    "acceptedAwaitingPayment": "已接受·等待付款"
   },
   "governance": {
     "title": "治理",
@@ -2794,7 +2855,8 @@
     },
     "forLabel": "对于",
     "holdTokensToVote": "持有 DeHub 代币以投票",
-    "mustHoldTokens": "你必须持有 DeHub 代币才能对治理提案进行投票。"
+    "mustHoldTokens": "你必须持有 DeHub 代币才能对治理提案进行投票。",
+    "badgeHoldersOnly": "只有徽章持有者"
   },
   "sidebar": {
     "talkOfTheTown": "热门话题",
@@ -3287,7 +3349,8 @@
     "lockedEarlyFee": "锁定至 {{date}}。立即提取将返还 88%——收取 12% 的费用，约 {{fee}} 枚代币。再次点击以接受。",
     "unstakeSent": "撤回 {{amount}} 个代币！TX: {{hash}}…",
     "tokensUnit": "代币",
-    "tokenAmount": "{{amount}} 个代币"
+    "tokenAmount": "{{amount}} 个代币",
+    "foundNewDeposits": "在鏈上發現{{count}}新存款"
   },
   "communities": {
     "title": "社区",
@@ -3394,7 +3457,8 @@
       "copied": "消息已复制",
       "copyText": "复制文本",
       "mutedUntil": "汝未發聲，直到 {{date}}",
-      "slowMode": "慢速模式：每 {{interval}} 發送一條訊息"
+      "slowMode": "慢速模式：每 {{interval}} 發送一條訊息",
+      "jumpToLatest": "跳到最新"
     },
     "manage": {
       "dismissAdminTitle": "撤銷管理員",
@@ -3723,7 +3787,8 @@
       "cancelled": "取消去",
       "disputed": "有争议",
       "draft": "草稿",
-      "expired": "已過期"
+      "expired": "已過期",
+      "accepted": "已接受"
     },
     "detail": {
       "notFound": "寻无着赏金。",
@@ -4071,7 +4136,8 @@
       "cancelled": "取消去"
     },
     "removePhoto": "移除照片",
-    "listingOptions": "列表选项"
+    "listingOptions": "列表选项",
+    "editListing": "編輯列表"
   },
   "accounts": {
     "browse": "看看",
@@ -9738,5 +9804,96 @@
     "fingerprint": "指纹",
     "exploreFirst": "先探索",
     "codeNote": "我们会给你发送验证码，无需密码。"
+  },
+  "postGate": {
+    "holdShort": "你手上拿著{{held}} {{symbol}}。這篇貼文需要{{needed}}。"
+  },
+  "copy": {
+    "9b44fb81d89e": "目的頁面",
+    "9ccba222f889": "估計成本",
+    "ac4d49f28b40": "換{{value1}} {{value2}}",
+    "6627a8114830": "買 {{value1}} {{value2}}",
+    "8d2e3063a993": "買$",
+    "854cbbb4f34f": "分數 (",
+    "d0be237244fa": "開啟提案…",
+    "c4c2179c3053": "你的體重：",
+    "b8cfe281c012": "一个已接受的支出请求已排队等待手动DAO或多签执行。这个提议不会移动资金本身。",
+    "b50104341b2b": "接受",
+    "9e6d88cbe11c": "0x… 或 Solana 地址",
+    "90cdcff9db62": "拒絕",
+    "895bc4b96601": "% 參加率 · 10% 門檻 · 貢獻權重快照",
+    "80d298c9f240": "資產",
+    "6cf2865295e4": "数量 名稱 價格",
+    "52a9fac889f1": "使钱申请",
+    "4b00b1b86bfd": "乞",
+    "49e96d7cdf58": "数量",
+    "45989de49fb7": "详情",
+    "454d03911271": "收件地址",
+    "07070fb32c93": "買入報價",
+    "02b24c18771c": "拒絕",
+    "50b2bdd7a1e5": "完成的質押提款會出現喔",
+    "cbfc01a6c13a": "完成的質押存款會出現喔",
+    "1fdecb2c9a54": "目前沒有提款",
+    "4574472bb474": "目前沒有存款",
+    "5b5a9671e539": "掃描鏈上尋找遺失的存款",
+    "31a3711c4ab5": "你所有的提款交易",
+    "701ef1840612": "你所有的質押交易",
+    "a7b7e36d6fdf": "你的提款",
+    "a3b7dbe57071": "你的存款",
+    "2d240e231566": "存款同步失敗",
+    "7082f2b3815d": "存款已更新",
+    "ff701a069af2": "驗證與解鎖",
+    "48201f5584e2": "正在檢查你的餘額…",
+    "3aefdd5f5915": "內容已解鎖！🎉",
+    "6e929effed4e": "正在寫概要…",
+    "14c5558a8cd9": "沒有符合的錄音",
+    "a54084383e3c": "符合",
+    "4945a70fa7f9": "符合",
+    "7adf0298ab5e": "章節",
+    "2baeddfdc699": "搜尋錄音…",
+    "d0bd6ec267f9": "文字",
+    "dea0ff385abf": "複製",
+    "55de39f882a3": "再試一次",
+    "9fddb94edef5": "轉錄失敗：",
+    "4c2ea0ddf64b": "這支影片沒有語音，所以沒有東西可以轉錄。",
+    "5561cf90d112": "正在轉錄",
+    "6662a5411155": "現在就寫",
+    "60aac7666712": "影片上傳後不久，轉錄會自動寫好。",
+    "ee871105e875": "寫著",
+    "d91fca0e24bb": "行",
+    "721164f0dc70": "文字稿",
+    "3c42f559d757": "登入標記或投票。跳過都可以。",
+    "58db9997b230": "這段錯了",
+    "dc469bffc7c0": "這段對了",
+    "77f3aefe8b8b": "移除標記",
+    "2f41333ad013": "· {{value1}} 不同意",
+    "72915d37182e": "同意",
+    "e5f6facf9cbe": "這支影片還沒標記",
+    "155f816c0407": "提交",
+    "5218ce9ed7ab": "提交 {{value1}} – {{value2}}",
+    "78de1ed22dcb": "結束 {{value1}}",
+    "f4db1e48476f": "結束",
+    "5e2495b60820": "開始 {{value1}}",
+    "e4bb9f1ece9a": "開始",
+    "b5f85f952b0b": "標記一段贊助讀或介紹，然後所有人跳過的都會跳過它。讓影片播放——影片開始時按「開始」，結束時按「結束」。",
+    "30f4d96b8d72": "可跳過的段落",
+    "68f5b97c66d9": "回到網格",
+    "57702fa51a5e": "訊息過濾器",
+    "66b8e077d85f": "傳送訊息失敗",
+    "f0ed7becd58e": "無法切換到你的發文鏈結。請在設定中選擇一個鏈結再試一次。",
+    "488017ad5c75": "不登入也能探索 DeHub",
+    "61d2a857dd18": "繼續探索 DeHub",
+    "8d14f6e72de8": "活動",
+    "29887a5ff984": "分享",
+    "85ee77346f10": "{{value1}} 新文章，按一下刷新",
+    "99ca327a47b5": "{{value1}} 的封面圖",
+    "fef6a1a97127": "随后 {{value1}}"
+  },
+  "dehubLinks": {
+    "kind": {
+      "store": "店家",
+      "listing": "項目",
+      "stage": "舞台"
+    }
   }
 }
