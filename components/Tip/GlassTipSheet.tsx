@@ -136,7 +136,12 @@ export interface GlassTipSheetProps {
    * through the backend and does not hand a signature back, so callers that
    * need a hash — the TV approval flow — must stay on DHB.
    */
-  onSuccess?: (amount: number, txHash?: string) => void;
+  onSuccess?: (
+    amount: number,
+    txHash?: string,
+    /** Where the payment actually went: the wallet's chain and the signing account. */
+    paid?: { chainId?: number; payer?: string },
+  ) => void;
 }
 
 /**
@@ -577,7 +582,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
             if (commentId != null) emitPostTipped(commentTipKey(commentId));
             else if (tokenId) emitPostTipped(tokenId);
-            onSuccess?.(numericAmount, txHash || undefined);
+            onSuccess?.(numericAmount, txHash || undefined, { chainId, payer: account ?? undefined });
             setAmount.complete(amount, "");
             setSelectedPreset(null);
           };
