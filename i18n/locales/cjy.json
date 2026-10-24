@@ -4462,7 +4462,7 @@
     "edit": "编辑",
     "deleteRequestTitle": "删咾这个请求？",
     "deleteRequestDescription": "这个退不回来。",
-    "attachmentTooLarge": "每个文件得小于 20MB",
+    "attachmentTooLarge": "每个文件得小于 50MB",
     "deleteCommentA11y": "删除评论",
     "sendCommentA11y": "发送评论",
     "requestOptions": "请求选项"
@@ -5545,7 +5545,7 @@
     "noActiveNow": "当前没有进行中的提案",
     "subtitle": "为塑造平台的提案投票",
     "loadFailed": "无法加载提案",
-    "forLabel": "为了",
+    "forLabel": "赞成",
     "againstLabel": "反对",
     "discussion": {
       "title": "讨论",

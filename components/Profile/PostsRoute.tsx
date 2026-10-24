@@ -26,6 +26,7 @@ import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
 import Icon from "../ui/Icon";
+import { isTabListFresh, readTabList, writeTabList } from "../../libs/tab-list-cache";
 
 const PAGE_SIZE = 20;
 const MAX_REPLY_PAGES = 10;
@@ -73,14 +74,18 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   const isOwnProfile = !!(
     address && ownAddress && address.toLowerCase() === ownAddress.toLowerCase()
   );
-  const [posts, setPosts] = useState<UnifiedFeedItem[]>([]);
-  const [replies, setReplies] = useState<UserReplyItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const postsKey = JSON.stringify(["posts", address, isOwnProfile]);
+  const repliesKey = JSON.stringify(["replies", address]);
+  const [cachedPosts] = useState(() => readTabList<UnifiedFeedItem>(postsKey));
+  const [cachedReplies] = useState(() => readTabList<UserReplyItem>(repliesKey));
+  const [posts, setPosts] = useState<UnifiedFeedItem[]>(() => cachedPosts?.items ?? []);
+  const [replies, setReplies] = useState<UserReplyItem[]>(() => cachedReplies?.items ?? []);
+  const [loading, setLoading] = useState(() => !(cachedPosts && cachedReplies));
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
-  const postPageRef = useRef(0);
-  const postEndRef = useRef(false);
+  const postPageRef = useRef(cachedPosts?.page ?? 0);
+  const postEndRef = useRef(cachedPosts?.end ?? false);
 
   const loadReplies = useCallback(async (profileAddress: string) => {
     let page = 1;
@@ -167,8 +172,28 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   );
 
   useEffect(() => {
-    loadAll();
+    // Back on this tab a moment after leaving it: show what it had, as it was.
+    // An older copy stays on screen (no spinner) while it refreshes.
+    const hitPosts = readTabList<UnifiedFeedItem>(postsKey);
+    const hitReplies = readTabList<UserReplyItem>(repliesKey);
+    if (hitPosts && hitReplies && isTabListFresh(hitPosts) && isTabListFresh(hitReplies)) {
+      setPosts(hitPosts.items);
+      setReplies(hitReplies.items);
+      postPageRef.current = hitPosts.page;
+      postEndRef.current = hitPosts.end;
+      setLoading(false);
+      return;
+    }
+    loadAll(!!(hitPosts && hitReplies));
+    // The keys are derived from the same inputs as loadAll.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadAll]);
+
+  useEffect(() => {
+    if (loading || loadFailed) return;
+    writeTabList(postsKey, posts, postPageRef.current, postEndRef.current);
+    writeTabList(repliesKey, replies, 0, true);
+  }, [postsKey, repliesKey, posts, replies, loading, loadFailed]);
 
   const loadMorePosts = useCallback(async () => {
     if (!address || loadingMore || postEndRef.current || loading) return;

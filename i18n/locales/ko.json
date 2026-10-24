@@ -3633,7 +3633,7 @@
     "edit": "편집",
     "deleteRequestTitle": "이 요청을 삭제할까요?",
     "deleteRequestDescription": "되돌릴 수 없습니다.",
-    "attachmentTooLarge": "파일당 20MB 미만이어야 합니다",
+    "attachmentTooLarge": "파일당 50MB 미만이어야 합니다",
     "deleteCommentA11y": "설명 삭제",
     "sendCommentA11y": "댓글 보내기",
     "requestOptions": "요청 옵션"
@@ -4651,8 +4651,8 @@
     "noActiveNow": "현재 진행 중인 제안이 없습니다",
     "subtitle": "플랫폼을 만들어 가는 제안에 투표하세요",
     "loadFailed": "제안을 불러오지 못했습니다",
-    "forLabel": "에 대한",
-    "againstLabel": "대적",
+    "forLabel": "찬성",
+    "againstLabel": "반대",
     "discussion": {
       "title": "토론",
       "intro": "투표하기 전에 후속 질문을 하거나 제안에 대해 논의하세요.",

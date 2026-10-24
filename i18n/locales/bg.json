@@ -4599,7 +4599,7 @@
     "edit": "Редактиране",
     "deleteRequestTitle": "Изтриване на тази заявка?",
     "deleteRequestDescription": "Това не може да бъде отменено.",
-    "attachmentTooLarge": "Всеки файл трябва да е под 20MB",
+    "attachmentTooLarge": "Всеки файл трябва да е под 50MB",
     "deleteCommentA11y": "Изтриване на коментар",
     "sendCommentA11y": "Изпратете коментар",
     "requestOptions": "Опции за заявка"

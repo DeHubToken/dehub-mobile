@@ -4613,7 +4613,7 @@
     "edit": "แก้ไข",
     "deleteRequestTitle": "ลบคำขอนี้ไหม",
     "deleteRequestDescription": "การกระทำนี้ย้อนกลับไม่ได้",
-    "attachmentTooLarge": "แต่ละไฟล์ต้องเล็กกว่า 20MB",
+    "attachmentTooLarge": "แต่ละไฟล์ต้องเล็กกว่า 50MB",
     "deleteCommentA11y": "ลบความคิดเห็น",
     "sendCommentA11y": "ส่งความคิดเห็น",
     "requestOptions": "ตัวเลือกคำขอ"
@@ -5707,8 +5707,8 @@
     "noActiveNow": "ขณะนี้ไม่มีข้อเสนอที่ดำเนินอยู่",
     "subtitle": "โหวตข้อเสนอที่กำหนดทิศทางแพลตฟอร์ม",
     "loadFailed": "โหลดข้อเสนอไม่สำเร็จ",
-    "forLabel": "สำหรับ",
-    "againstLabel": "เขื่อนถม (ด้วยดิน หรือหิน)",
+    "forLabel": "เห็นด้วย",
+    "againstLabel": "ไม่เห็นด้วย",
     "discussion": {
       "title": "การอภิปราย",
       "intro": "ถามคำถามติดตามผลหรือพูดคุยเกี่ยวกับข้อเสนอก่อนที่คุณจะลงคะแนนเสียง",

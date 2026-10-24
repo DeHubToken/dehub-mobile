@@ -4606,7 +4606,7 @@
     "edit": "Allichay",
     "deleteRequestTitle": "¿Kay mañakuyta pichanki?",
     "deleteRequestDescription": "Kayqa mana kutichiy atinchu.",
-    "attachmentTooLarge": "Sapa qillqa 20MB-manta pisi kanan",
+    "attachmentTooLarge": "Sapa qillqa 50MB-manta pisi kanan",
     "deleteCommentA11y": "Comentariota chinkachiy",
     "sendCommentA11y": "Comentariota apachiy",
     "requestOptions": "Akllanakunata mañakuy"
@@ -5699,8 +5699,8 @@
     "noActiveNow": "Kunanqa mana kawsaq propuestakuna kanchu",
     "subtitle": "Plataformata ruwaq propuestakunapi votay",
     "loadFailed": "Propuestakuna mana chayamurqanchu",
-    "forLabel": "napaq...",
-    "againstLabel": "Contrapi",
+    "forLabel": "Arí",
+    "againstLabel": "Mana",
     "discussion": {
       "title": "Rimanakuy",
       "intro": "Qatipanapaq tapukuykunata ruway utaq manaraq votachkaspa chay propuestamanta rimanakuy.",

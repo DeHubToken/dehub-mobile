@@ -4607,7 +4607,7 @@
     "edit": "Gulaali",
     "deleteRequestTitle": "Gaaffii kana haqi?",
     "deleteRequestDescription": "Kun deebi'uu hin danda'u.",
-    "attachmentTooLarge": "Faayiliin tokkoon tokkoon isaa 20MB gadi ta'uu qaba",
+    "attachmentTooLarge": "Faayiliin tokkoon tokkoon isaa 50MB gadi ta'uu qaba",
     "deleteCommentA11y": "Yaada haquu",
     "sendCommentA11y": "Yaada ergaa",
     "requestOptions": "Filannoowwan gaafachuu"
@@ -5700,8 +5700,8 @@
     "noActiveNow": "Amma yaadni hojiirra jiru hin jiru",
     "subtitle": "Yaadota waldorgommii bocan irratti sagalee kenni",
     "loadFailed": "Yaadota fe'uun hin dandaʼamne",
-    "forLabel": "F",
-    "againstLabel": "Faallaa",
+    "forLabel": "Deeggara",
+    "againstLabel": "Mormuu",
     "discussion": {
       "title": "Marii",
       "intro": "Sagalee kennuu kee dura gaaffii hordoffii gaafadhu ykn yaada dhihaate irratti mari’adhu.",

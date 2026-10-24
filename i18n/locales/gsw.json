@@ -4549,7 +4549,7 @@
     "edit": "Bearbeite",
     "deleteRequestTitle": "Die Aafrog lösche?",
     "deleteRequestDescription": "Das cha nid rückgängig gmacht wärde.",
-    "attachmentTooLarge": "Jedi Datei mues under 20MB sy",
+    "attachmentTooLarge": "Jedi Datei mues under 50MB sy",
     "deleteCommentA11y": "Kommentar lösche",
     "sendCommentA11y": "Sänd Kommentär",
     "requestOptions": "Uuswahl vo de Optione"
@@ -5638,8 +5638,8 @@
     "noActiveNow": "Momentan kei aktivi Vorschläg",
     "subtitle": "Stimm über Vorschläg ab, wo d Plattform präged",
     "loadFailed": "D Vorschläg händ nid chönne glade wärde",
-    "forLabel": "Für",
-    "againstLabel": "Gäge",
+    "forLabel": "Dafür",
+    "againstLabel": "Dägäge",
     "discussion": {
       "title": "Diskussio",
       "intro": "Stell nöchti Froge oder diskutiere der Vorschlag, bevor du abstimmisch.",

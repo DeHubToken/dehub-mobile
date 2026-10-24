@@ -4534,7 +4534,7 @@
     "edit": "Ṣàtúnṣe",
     "deleteRequestTitle": "Pa ìbéèrè yìí rẹ́?",
     "deleteRequestDescription": "A kò lè yí èyí padà.",
-    "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 20MB",
+    "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 50MB",
     "deleteCommentA11y": "Pa àlàyé yìí rẹ́?",
     "sendCommentA11y": "Fi ọrọìwòye ranṣẹ",
     "requestOptions": "Beere awọn aṣayan"
@@ -5620,8 +5620,8 @@
     "noActiveNow": "Kò sí àbá tí ń lọ lọ́wọ́ báyìí",
     "subtitle": "Dìbò lórí àwọn àbá tí ń ṣe pẹpẹ náà",
     "loadFailed": "Kò lè gbé àwọn àbá wọlé",
-    "forLabel": "Fun ...",
-    "againstLabel": "Lodi si",
+    "forLabel": "Ní ojúrere",
+    "againstLabel": "Ní ìlòdì",
     "discussion": {
       "title": "Ìjíròrò",
       "intro": "Béèrè àwọn ìbéèrè tó tẹ̀lé e tàbí kí o jíròrò àbá náà kí o tó dìbò.",

@@ -4556,7 +4556,7 @@
     "edit": "සංස්කරණය",
     "deleteRequestTitle": "මෙම ඉල්ලීම මකන්නද?",
     "deleteRequestDescription": "මෙය ආපසු හැරවිය නොහැක.",
-    "attachmentTooLarge": "එක් ගොනුවක් 20MB ට අඩු විය යුතුය",
+    "attachmentTooLarge": "එක් ගොනුවක් 50MB ට අඩු විය යුතුය",
     "deleteCommentA11y": "අදහස මකන්න",
     "sendCommentA11y": "පණිවිඩයක් යවන්න",
     "requestOptions": "විකල්ප ඉල්ලන්න"
@@ -5644,7 +5644,7 @@
     "noActiveNow": "දැනට සක්‍රීය යෝජනා නැත",
     "subtitle": "වේදිකාව හැඩගස්වන යෝජනා සඳහා ඡන්දය දෙන්න",
     "loadFailed": "යෝජනා පූරණය කළ නොහැකි විය",
-    "forLabel": "පිනස",
+    "forLabel": "පක්ෂව",
     "discussion": {
       "title": "සාකච්ඡාව",
       "intro": "ඡන්ද විමසීමට පෙර පසු විපරම් ප් රශ්න අසන්න හෝ යෝජනාව සාකච්ඡා කරන්න.",
@@ -5661,7 +5661,7 @@
       "joinOnProposal": "සාකච්ඡාවට එක්වන්න",
       "authorChip": "යෝජනා කතුවරයා"
     },
-    "againstLabel": "විරුද්ධව",
+    "againstLabel": "විපක්ෂව",
     "holdTokensToVote": "DeHub ටෝකන තබා ඡන්දය දෙන්න",
     "mustHoldTokens": "ආණ්ඩුකාර යෝජනා වලට ඡන්දය දීමට ඔබ DeHub ටෝකන තබා ගත යුතුය."
   },

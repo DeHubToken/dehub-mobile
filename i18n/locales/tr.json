@@ -2252,7 +2252,7 @@
     "edit": "Düzenle",
     "deleteRequestTitle": "Bu istek silinsin mi?",
     "deleteRequestDescription": "Bu işlem geri alınamaz.",
-    "attachmentTooLarge": "Her dosya 20MB’den küçük olmalı",
+    "attachmentTooLarge": "Her dosya 50MB’den küçük olmalı",
     "deleteCommentA11y": "Yorum silme",
     "sendCommentA11y": "Yorum gönder",
     "requestOptions": "İstek seçenekleri"
@@ -3232,8 +3232,8 @@
     "noActiveNow": "Şu anda etkin öneri yok",
     "subtitle": "Platformu şekillendiren önerilere oy ver",
     "loadFailed": "Öneriler yüklenemedi",
-    "forLabel": "Çift bedenler için",
-    "againstLabel": "Karşı Taraf",
+    "forLabel": "Lehte",
+    "againstLabel": "Aleyhte",
     "discussion": {
       "title": "Tartışma",
       "intro": "Oy vermeden önce takip soruları sorun veya teklifi tartışın.",

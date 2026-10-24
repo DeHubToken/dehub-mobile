@@ -4360,7 +4360,7 @@
     "edit": "ترمیم کرو",
     "deleteRequestTitle": "ایہ درخواست مٹاوݨی ہے؟",
     "deleteRequestDescription": "ایہ واپس کائنی تھی سگدا۔",
-    "attachmentTooLarge": "ہر فائل 20MB کنوں گھٹ ہووݨ گھرجدی",
+    "attachmentTooLarge": "ہر فائل 50MB کنوں گھٹ ہووݨ گھرجدی",
     "deleteCommentA11y": "تبصره ختم کر",
     "sendCommentA11y": "تبصرہ گھلو",
     "requestOptions": "درخواست آپشن"
@@ -5395,8 +5395,8 @@
     "noActiveNow": "ہݨ کوئی فعال تجویز کائنی",
     "subtitle": "اونہاں تجویزاں تے ووٹ ݙیو جیہڑیاں پلیٹ فارم بݨیندیاں ہن",
     "loadFailed": "تجویزاں لوڈ نہ تھی سڳیاں",
-    "forLabel": "واسطے",
-    "againstLabel": "مخالف",
+    "forLabel": "حق وچ",
+    "againstLabel": "خلاف",
     "discussion": {
       "title": "بحث",
       "reply": "جواب",

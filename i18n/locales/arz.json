@@ -4597,7 +4597,7 @@
     "edit": "عدّل",
     "deleteRequestTitle": "تمسح الطلب ده؟",
     "deleteRequestDescription": "ده مش هيتراجع.",
-    "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB",
+    "attachmentTooLarge": "كل ملف لازم يكون أقل من 50MB",
     "deleteCommentA11y": "احذف التعليق",
     "sendCommentA11y": "ارسل التعليق",
     "requestOptions": "خيارات الطلب"
@@ -5691,8 +5691,8 @@
     "noActiveNow": "مفيش مقترحات نشطة دلوقتي",
     "subtitle": "صوّت على المقترحات اللي بتشكل المنصة",
     "loadFailed": "مقدرناش نحمّل المقترحات",
-    "forLabel": "من أجل",
-    "againstLabel": "ضد",
+    "forLabel": "مؤيد",
+    "againstLabel": "معارض",
     "discussion": {
       "title": "المناقشة",
       "intro": "اطرح أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",

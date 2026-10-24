@@ -4439,7 +4439,7 @@
     "edit": "عدّل",
     "deleteRequestTitle": "تمحي هذا الطلب؟",
     "deleteRequestDescription": "هذا ما يرجع.",
-    "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB",
+    "attachmentTooLarge": "كل ملف لازم يكون أقل من 50MB",
     "deleteCommentA11y": "احذف التعليق",
     "sendCommentA11y": "دز تعليق",
     "requestOptions": "خيارات الطلب"
@@ -5476,8 +5476,8 @@
     "noActiveNow": "ماكو مقترحات نشطة هسه",
     "subtitle": "صوّت على المقترحات اللي تشكل المنصة",
     "loadFailed": "ما گدرنا نحمّل المقترحات",
-    "forLabel": "لـ",
-    "againstLabel": "ضد",
+    "forLabel": "مؤيد",
+    "againstLabel": "معارض",
     "discussion": {
       "title": "مناقشة",
       "intro": "اطرح أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",

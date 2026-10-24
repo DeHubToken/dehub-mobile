@@ -3679,7 +3679,7 @@
     "edit": "I-edit",
     "deleteRequestTitle": "Burahin ang kahilingang ito?",
     "deleteRequestDescription": "Hindi ito mababawi.",
-    "attachmentTooLarge": "Dapat wala pang 20MB ang bawat file",
+    "attachmentTooLarge": "Dapat wala pang 50MB ang bawat file",
     "deleteCommentA11y": "I-delete ang komento",
     "sendCommentA11y": "Magpadala ng komento",
     "requestOptions": "Mga opsyon sa kahilingan"
@@ -4692,8 +4692,8 @@
     "noActiveNow": "Walang aktibong panukala ngayon",
     "subtitle": "Bumoto sa mga panukalang humuhubog sa platform",
     "loadFailed": "Hindi ma-load ang mga panukala",
-    "forLabel": "Para",
-    "againstLabel": "kinahinatnan",
+    "forLabel": "Pabor",
+    "againstLabel": "Laban",
     "discussion": {
       "title": "Talakayan",
       "intro": "Magtanong ng mga follow - up na tanong o talakayin ang panukala bago ka bumoto.",

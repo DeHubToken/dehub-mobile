@@ -3889,7 +3889,7 @@
     "edit": "Edit",
     "deleteRequestTitle": "Padam permintaan ini?",
     "deleteRequestDescription": "Ini tidak boleh dibatalkan.",
-    "attachmentTooLarge": "Setiap fail mesti di bawah 20MB",
+    "attachmentTooLarge": "Setiap fail mesti di bawah 50MB",
     "deleteCommentA11y": "Padam komen",
     "sendCommentA11y": "Hantar komen",
     "requestOptions": "Pilihan permohonan"
@@ -4903,8 +4903,8 @@
     "noActiveNow": "Tiada cadangan aktif buat masa ini",
     "subtitle": "Undi cadangan yang membentuk platform",
     "loadFailed": "Tidak dapat memuatkan cadangan",
-    "forLabel": "Misalnya,",
-    "againstLabel": "Disaster",
+    "forLabel": "Menyokong",
+    "againstLabel": "Menentang",
     "discussion": {
       "title": "Perbincangan",
       "intro": "Tanya soalan susulan atau bincangkan cadangan sebelum anda mengundi.",

@@ -4544,7 +4544,7 @@
     "edit": "संपादित करव",
     "deleteRequestTitle": "ये अनुरोध मिटावन?",
     "deleteRequestDescription": "ये ह वापस नइ हो सके।",
-    "attachmentTooLarge": "हर फाइल 20MB ले कम होना चाही",
+    "attachmentTooLarge": "हर फाइल 50MB ले कम होना चाही",
     "deleteCommentA11y": "टिप्पनी मेटाव",
     "sendCommentA11y": "टिप्पणी भेजें",
     "requestOptions": "विकल्प निवेदित करव"
@@ -5626,8 +5626,8 @@
     "noActiveNow": "अभी कोनो सक्रिय प्रस्ताव नइ हे",
     "subtitle": "ओ प्रस्ताव म वोट देवव जेन प्लेटफॉर्म ल गढ़थे",
     "loadFailed": "प्रस्ताव लोड नइ हो सकिन",
-    "forLabel": "बर",
-    "againstLabel": "विरोधाभास",
+    "forLabel": "पक्ष में",
+    "againstLabel": "विरोध में",
     "discussion": {
       "title": "चर्चा",
       "intro": "आगे के सवाल पूछव या मतदान करे से पहिली प्रस्ताव ल चर्चा करव ।",

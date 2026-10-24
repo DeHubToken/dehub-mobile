@@ -4586,7 +4586,7 @@
     "edit": "Hlela",
     "deleteRequestTitle": "Susa lesi sicelo?",
     "deleteRequestDescription": "Lokhu ngeke kuhlehliswe.",
-    "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-20MB",
+    "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-50MB",
     "deleteCommentA11y": "Susa ukuphawula",
     "sendCommentA11y": "Thumela ukuphawula",
     "requestOptions": "Cela ongakhetha kukho"
@@ -5680,8 +5680,8 @@
     "noActiveNow": "Azikho iziphakamiso ezisebenzayo njengamanje",
     "subtitle": "Vota eziphakamisweni ezakha inkundla",
     "loadFailed": "Ayikwazanga ukulayisha iziphakamiso",
-    "forLabel": "recurrpage",
-    "againstLabel": "Ngokumelene",
+    "forLabel": "Ngiyavuma",
+    "againstLabel": "Angivumi",
     "discussion": {
       "title": "Ingxoxo",
       "intro": "Buza imibuzo yokulandelela noma uxoxe ngesiphakamiso ngaphambi kokuba uvote.",

@@ -3634,7 +3634,7 @@
     "edit": "Hariri",
     "deleteRequestTitle": "Futa ombi hili?",
     "deleteRequestDescription": "Hili haliwezi kutenduliwa.",
-    "attachmentTooLarge": "Kila faili lazima liwe chini ya MB 20",
+    "attachmentTooLarge": "Kila faili lazima liwe chini ya MB 50",
     "deleteCommentA11y": "Futa maoni",
     "sendCommentA11y": "Tuma maoni",
     "requestOptions": "Omba machaguo"
@@ -4648,8 +4648,8 @@
     "noActiveNow": "Hakuna mapendekezo yanayoendelea sasa",
     "subtitle": "Piga kura kwa mapendekezo yanayounda jukwaa",
     "loadFailed": "Imeshindwa kupakia mapendekezo",
-    "forLabel": "Kwa",
-    "againstLabel": "Dhidi ya",
+    "forLabel": "Kuunga mkono",
+    "againstLabel": "Kupinga",
     "discussion": {
       "title": "Majadiliano",
       "intro": "Uliza maswali ya kufuatilia au jadili pendekezo kabla ya kupiga kura.",

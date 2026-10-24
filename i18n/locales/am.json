@@ -4594,7 +4594,7 @@
     "edit": "አርትዕ",
     "deleteRequestTitle": "ይህን ጥያቄ መሰረዝ?",
     "deleteRequestDescription": "ይህ መቀልበስ አይችልም።",
-    "attachmentTooLarge": "እያንዳንዱ ፋይል ከ20MB በታች መሆን አለበት",
+    "attachmentTooLarge": "እያንዳንዱ ፋይል ከ50MB በታች መሆን አለበት",
     "deleteCommentA11y": "አስተያየት ሰርዝ",
     "sendCommentA11y": "አስተያየት ይላኩ",
     "requestOptions": "የጥያቄ አማራጮች"
@@ -5686,8 +5686,8 @@
     "noActiveNow": "አሁን ንቁ ሀሳቦች የሉም",
     "subtitle": "መድረኩን በሚቀርጹ ሀሳቦች ላይ ድምጽ ይስጡ",
     "loadFailed": "ሀሳቦችን መጫን አልተቻለም",
-    "forLabel": "ለ",
-    "againstLabel": "ተቃራኒ",
+    "forLabel": "ድጋፍ",
+    "againstLabel": "ተቃውሞ",
     "discussion": {
       "title": "ውይይት",
       "intro": "የተከታታይ ጥያቄዎችን ይጠይቁ ወይም ከመምረጥዎ በፊት ሀሳቡን ይወያዩ ።",

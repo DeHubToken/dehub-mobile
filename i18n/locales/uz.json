@@ -4615,7 +4615,7 @@
     "edit": "Tahrirlash",
     "deleteRequestTitle": "Bu so'rov o'chirilsinmi?",
     "deleteRequestDescription": "Buni ortga qaytarib bo'lmaydi.",
-    "attachmentTooLarge": "Har bir fayl 20 MB dan kichik bo'lishi kerak",
+    "attachmentTooLarge": "Har bir fayl 50 MB dan kichik bo'lishi kerak",
     "deleteCommentA11y": "Sharhingizni o'chirish",
     "sendCommentA11y": "Izoh jo'natish",
     "requestOptions": "So'rov variantlari"
@@ -5707,7 +5707,7 @@
     "noActiveNow": "Hozircha faol takliflar yo‘q",
     "subtitle": "Platformani shakllantiruvchi takliflarga ovoz bering",
     "loadFailed": "Takliflarni yuklab bo‘lmadi",
-    "forLabel": "Quyidagi uchun",
+    "forLabel": "Yoqlab",
     "againstLabel": "Qarshi",
     "discussion": {
       "title": "Muhokama",

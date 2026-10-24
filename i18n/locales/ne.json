@@ -4610,7 +4610,7 @@
     "edit": "सम्पादन",
     "deleteRequestTitle": "यो अनुरोध मेटाउने?",
     "deleteRequestDescription": "यो फिर्ता गर्न सकिँदैन।",
-    "attachmentTooLarge": "प्रत्येक फाइल 20MB भन्दा कम हुनुपर्छ",
+    "attachmentTooLarge": "प्रत्येक फाइल 50MB भन्दा कम हुनुपर्छ",
     "deleteCommentA11y": "मेरो टिप्पणी मेट्नुहोस्",
     "sendCommentA11y": "टिप्पणी पठाउनुहोस्",
     "requestOptions": "अनुरोध विकल्पहरू"
@@ -5704,8 +5704,8 @@
     "noActiveNow": "अहिले कुनै सक्रिय प्रस्ताव छैन",
     "subtitle": "प्लेटफर्म बनाउने प्रस्तावहरूमा मत दिनुहोस्",
     "loadFailed": "प्रस्तावहरू लोड गर्न सकिएन",
-    "forLabel": "लागि",
-    "againstLabel": "विरुद्ध",
+    "forLabel": "पक्षमा",
+    "againstLabel": "विपक्षमा",
     "discussion": {
       "title": "छलफल",
       "intro": "तपाईंले मतदान गर्नु अघि फलो - अप प्रश्नहरू सोध्नुहोस् वा प्रस्तावमा छलफल गर्नुहोस् ।",

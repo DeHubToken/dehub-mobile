@@ -4608,7 +4608,7 @@
     "edit": "Redakto",
     "deleteRequestTitle": "Të fshihet kjo kërkesë?",
     "deleteRequestDescription": "Kjo nuk mund të zhbëhet.",
-    "attachmentTooLarge": "Çdo skedar duhet të jetë nën 20 MB",
+    "attachmentTooLarge": "Çdo skedar duhet të jetë nën 50 MB",
     "deleteCommentA11y": "Fshi komentin",
     "sendCommentA11y": "Dergo",
     "requestOptions": "Alternativat e kërkesës"
@@ -5699,7 +5699,7 @@
     "noActiveNow": "Aktualisht nuk ka propozime aktive",
     "subtitle": "Voto propozimet që formësojnë platformën",
     "loadFailed": "Propozimet nuk u ngarkuan dot",
-    "forLabel": "Për",
+    "forLabel": "Pro",
     "againstLabel": "Kundër",
     "discussion": {
       "title": "Diskutim",

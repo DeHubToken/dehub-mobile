@@ -4314,7 +4314,7 @@
     "edit": "编辑",
     "deleteRequestTitle": "删脱搿只请求？",
     "deleteRequestDescription": "搿个是转勿转来个。",
-    "attachmentTooLarge": "每只文件要小于 20MB",
+    "attachmentTooLarge": "每只文件要小于 50MB",
     "deleteCommentA11y": "删脱评论",
     "sendCommentA11y": "发评论",
     "requestOptions": "请求选项"
@@ -5325,8 +5325,8 @@
     "noActiveNow": "当前没有进行中的提案",
     "subtitle": "为塑造平台的提案投票",
     "loadFailed": "无法加载提案",
-    "forLabel": "为",
-    "againstLabel": "對",
+    "forLabel": "赞成",
+    "againstLabel": "反对",
     "discussion": {
       "title": "讨论",
       "intro": "投票前问一些后续问题或者讨论一下这个提议。",

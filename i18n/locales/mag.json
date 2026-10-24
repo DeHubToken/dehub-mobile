@@ -4519,7 +4519,7 @@
     "edit": "संपादित करूँ",
     "deleteRequestTitle": "ई अनुरोध मिटाबल जाय?",
     "deleteRequestDescription": "ई वापस नै भ' सक' हे।",
-    "attachmentTooLarge": "हर फाइल 20MB स' कम होबाक चाही",
+    "attachmentTooLarge": "हर फाइल 50MB स' कम होबाक चाही",
     "deleteCommentA11y": "टिप्पणी हटावल जाय",
     "sendCommentA11y": "टिप्पणी करे",
     "requestOptions": "हल मांगने वाला विकल्प"
@@ -5608,8 +5608,8 @@
     "noActiveNow": "अखन कोनो सक्रिय प्रस्ताव नै",
     "subtitle": "ओहि प्रस्ताव पर वोट दिअ जे प्लेटफॉर्म के गढ़ैत अछि",
     "loadFailed": "प्रस्ताव लोड नै भ सकल",
-    "forLabel": "के परिप्रेक्ष्य में,",
-    "againstLabel": "के खिलाफ, के खिलाफ",
+    "forLabel": "पक्ष में",
+    "againstLabel": "विरोध में",
     "discussion": {
       "title": "बहस हई",
       "intro": "Leave a Comment on कुछ देर ठहर जा ऐ जिंदगी...",

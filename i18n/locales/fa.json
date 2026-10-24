@@ -3633,7 +3633,7 @@
     "edit": "ویرایش",
     "deleteRequestTitle": "این درخواست حذف شود؟",
     "deleteRequestDescription": "این کار برگشت‌پذیر نیست.",
-    "attachmentTooLarge": "هر فایل باید کمتر از ۲۰ مگابایت باشد",
+    "attachmentTooLarge": "هر فایل باید کمتر از ۵۰ مگابایت باشد",
     "deleteCommentA11y": "حذف نظر",
     "sendCommentA11y": "ارسال نظر",
     "requestOptions": "گزینه‌های درخواست"
@@ -4647,7 +4647,7 @@
     "noActiveNow": "در حال حاضر پیشنهاد فعالی نیست",
     "subtitle": "به پیشنهادهایی که پلتفرم را شکل می‌دهند رأی دهید",
     "loadFailed": "بارگذاری پیشنهادها ممکن نشد",
-    "againstLabel": "علیه",
+    "againstLabel": "مخالف",
     "discussion": {
       "title": "بحث",
       "intro": "قبل از رأی دادن، سؤالات تکمیلی بپرسید یا در مورد پیشنهاد بحث کنید.",
@@ -4696,7 +4696,7 @@
     "weeksAgo": "{{count}} هفته پیش",
     "holdTokensToVote": "برای رأی دادن، توکن‌های DeHub را نگه دارید",
     "mustHoldTokens": "برای رأی دادن به پیشنهادات حاکمیتی، باید توکن‌های DeHub را نگه دارید.",
-    "forLabel": "برای"
+    "forLabel": "موافق"
   },
   "sidebar": {
     "talkOfTheTown": "حرف شهر",

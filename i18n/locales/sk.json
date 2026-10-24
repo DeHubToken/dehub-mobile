@@ -4667,7 +4667,7 @@
     "edit": "Upraviť",
     "deleteRequestTitle": "Zmazať túto požiadavku?",
     "deleteRequestDescription": "Toto sa nedá vrátiť.",
-    "attachmentTooLarge": "Každý súbor musí mať menej než 20 MB",
+    "attachmentTooLarge": "Každý súbor musí mať menej než 50 MB",
     "deleteCommentA11y": "Odstrániť komentár",
     "sendCommentA11y": "Odoslať komentár",
     "requestOptions": "Možnosti žiadosti"
@@ -5799,8 +5799,8 @@
     "noActiveNow": "Momentálne žiadne aktívne návrhy",
     "subtitle": "Hlasujte o návrhoch, ktoré formujú platformu",
     "loadFailed": "Návrhy sa nepodarilo načítať",
-    "forLabel": "Dôvod",
-    "againstLabel": "Hlasy proti:",
+    "forLabel": "Za",
+    "againstLabel": "Proti",
     "discussion": {
       "title": "Diskusia",
       "intro": "Pred hlasovaním sa opýtajte na nadväzujúce otázky alebo prediskutujte návrh.",

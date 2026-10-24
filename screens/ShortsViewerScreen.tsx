@@ -120,6 +120,7 @@ import { voteOnNFT, reactToNFT, getNFT } from "../services/nft.service";
 import ReactionPicker from "../components/Home/ReactionPicker";
 import ReactionInfoSheet from "../components/Home/ReactionInfoSheet";
 import ShareSheet from "../components/Home/ShareSheet";
+import ShareToDmSheet from "../components/DM/ShareToDmSheet";
 import PostOptionsMenu from "../components/common/PostOptionsMenu";
 import Avatar from "../components/common/Avatar";
 import TranslateButton from "../components/ui/TranslateButton";
@@ -539,6 +540,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   }, [isActive, showComments, onCommentsVisibilityChange]);
   const [showTipModal, setShowTipModal] = useState(false);
   const [showShareSheet, setShowShareSheet] = useState(false);
+  const [showShareToDm, setShowShareToDm] = useState(false);
+  const { isSignedIn: viewerSignedIn } = useAuthState();
   const [isPlaying, setIsPlaying] = useState(true);
   const [isPausedByUser, setIsPausedByUser] = useState(false);
   const pausedByUserRef = useRef(isPausedByUser);
@@ -1405,6 +1408,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       showComments ||
       showTipModal ||
       showShareSheet ||
+      showShareToDm ||
       pickerOpen
     ) {
       return;
@@ -1413,7 +1417,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     return () => clearTimeout(timer);
   }, [
     isActive, isPlaying, autoHidden, overlaysHidden, screenshotMode,
-    captionExpanded, showComments, showTipModal, showShareSheet, pickerOpen,
+    captionExpanded, showComments, showTipModal, showShareSheet, showShareToDm, pickerOpen,
   ]);
 
   // Pausing is a request to look at the frame, not to keep it clear — whatever
@@ -1828,7 +1832,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           canQuote={isPublicShort && ((item as any).quotePolicy !== "nobody" || isOwnShort)}
           canRepost={isPublicShort}
           onCopyLink={handleCopyLink}
+          // As on a feed post: send this short straight into a conversation.
+          onSendToDm={viewerSignedIn && isPublicShort ? () => setShowShareToDm(true) : undefined}
           embedTokenId={isPublicShort ? tokenId : undefined}
+        />
+      )}
+
+      {showShareToDm && tokenId != null && (
+        <ShareToDmSheet
+          visible={showShareToDm}
+          onClose={() => setShowShareToDm(false)}
+          tokenId={tokenId}
+          postTitle={title || undefined}
         />
       )}
 

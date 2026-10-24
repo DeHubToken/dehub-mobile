@@ -4413,7 +4413,7 @@
     "edit": "แก้ไข",
     "deleteRequestTitle": "ลบคำขอนี้บ่?",
     "deleteRequestDescription": "อันนี้ย้อนกลับบ่ได้",
-    "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 20MB",
+    "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 50MB",
     "deleteCommentA11y": "ลบคอมเมนต์",
     "sendCommentA11y": "ส่งคอมเมนต์",
     "requestOptions": "ขอทางเลือก"
@@ -5461,8 +5461,8 @@
     "noActiveNow": "ตอนนี้บ่มีข้อเสนอที่ดำเนินอยู่",
     "subtitle": "โหวตข้อเสนอที่กำหนดทิศทางแพลตฟอร์ม",
     "loadFailed": "โหลดข้อเสนอบ่สำเร็จ",
-    "forLabel": "สำหรับ",
-    "againstLabel": "ต่อต้าน",
+    "forLabel": "เห็นด้วย",
+    "againstLabel": "บ่เห็นด้วย",
     "discussion": {
       "title": "เสวนา",
       "intro": "ถามคำถามเพิ่มเติม หรือเสวนาข้อเสนอ ก่อนลงคะแนน",

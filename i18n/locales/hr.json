@@ -4607,7 +4607,7 @@
     "edit": "Uredi",
     "deleteRequestTitle": "Izbrisati ovaj zahtjev?",
     "deleteRequestDescription": "Ovo se ne može poništiti.",
-    "attachmentTooLarge": "Svaka datoteka mora biti manja od 20 MB",
+    "attachmentTooLarge": "Svaka datoteka mora biti manja od 50 MB",
     "deleteCommentA11y": "Izbriši komentar",
     "sendCommentA11y": "Pošalji komentar",
     "requestOptions": "Zatraži nove mogućnosti"

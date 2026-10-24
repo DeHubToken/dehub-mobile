@@ -3987,7 +3987,7 @@
     "edit": "Редагувати",
     "deleteRequestTitle": "Видалити цю заявку?",
     "deleteRequestDescription": "Це не можна скасувати.",
-    "attachmentTooLarge": "Кожен файл має бути менший за 20 МБ",
+    "attachmentTooLarge": "Кожен файл має бути менший за 50 МБ",
     "deleteCommentA11y": "Видалити коментар",
     "sendCommentA11y": "Надіслати коментар",
     "requestOptions": "Параметри запиту"
@@ -5001,7 +5001,7 @@
     "noActiveNow": "Наразі немає активних пропозицій",
     "subtitle": "Голосуйте за пропозиції, які формують платформу",
     "loadFailed": "Не вдалося завантажити пропозиції",
-    "forLabel": "Для",
+    "forLabel": "За",
     "againstLabel": "Проти",
     "discussion": {
       "title": "Обговорення",

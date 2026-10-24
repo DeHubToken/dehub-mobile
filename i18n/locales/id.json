@@ -3635,7 +3635,7 @@
     "edit": "Edit",
     "deleteRequestTitle": "Hapus permintaan ini?",
     "deleteRequestDescription": "Ini tidak bisa dibatalkan.",
-    "attachmentTooLarge": "Setiap berkas harus di bawah 20MB",
+    "attachmentTooLarge": "Setiap berkas harus di bawah 50MB",
     "deleteCommentA11y": "Hapus Komentar",
     "sendCommentA11y": "Kirim komentar",
     "requestOptions": "Opsi permintaan"
@@ -4649,8 +4649,8 @@
     "noActiveNow": "Tidak ada proposal aktif saat ini",
     "subtitle": "Beri suara untuk proposal yang membentuk platform",
     "loadFailed": "Tidak dapat memuat proposal",
-    "forLabel": "Sebagai",
-    "againstLabel": "Melawan",
+    "forLabel": "Setuju",
+    "againstLabel": "Menolak",
     "discussion": {
       "title": "Pembahasan",
       "intro": "Ajukan pertanyaan lanjutan atau diskusikan proposal sebelum Anda memilih.",

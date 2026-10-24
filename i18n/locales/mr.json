@@ -4573,7 +4573,7 @@
     "edit": "संपादित करा",
     "deleteRequestTitle": "ही विनंती हटवायची?",
     "deleteRequestDescription": "हे पूर्ववत करता येणार नाही.",
-    "attachmentTooLarge": "प्रत्येक फाइल 20MB पेक्षा कमी असावी",
+    "attachmentTooLarge": "प्रत्येक फाइल 50MB पेक्षा कमी असावी",
     "deleteCommentA11y": "टिप्पणी हटवा",
     "sendCommentA11y": "टिप्पणी पाठवा",
     "requestOptions": "विनंती पर्याय"
@@ -5668,7 +5668,7 @@
     "noActiveNow": "सध्या कोणतेही सक्रिय प्रस्ताव नाहीत",
     "subtitle": "प्लॅटफॉर्म घडवणाऱ्या प्रस्तावांवर मत द्या",
     "loadFailed": "प्रस्ताव लोड करता आले नाहीत",
-    "forLabel": "करीता",
+    "forLabel": "बाजूने",
     "discussion": {
       "title": "चर्चा",
       "intro": "मतदानापूर्वी पुढील प्रश्न विचारा किंवा प्रस्तावावर चर्चा करा.",
@@ -5685,7 +5685,7 @@
       "joinOnProposal": "चर्चेत सामील व्हा",
       "authorChip": "प्रस्ताव लेखक"
     },
-    "againstLabel": "विरुद्ध",
+    "againstLabel": "विरोधात",
     "holdTokensToVote": "डीहब टोकन होल्ड करा",
     "mustHoldTokens": "प्रशासकीय प्रस्तावांवर मतदान करण्यासाठी तुम्हाला डीहब टोकन होल्ड करणे आवश्यक आहे."
   },

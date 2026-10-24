@@ -3633,7 +3633,7 @@
     "edit": "Rediger",
     "deleteRequestTitle": "Slet denne anmodning?",
     "deleteRequestDescription": "Det kan ikke fortrydes.",
-    "attachmentTooLarge": "Hver fil skal være under 20 MB",
+    "attachmentTooLarge": "Hver fil skal være under 50 MB",
     "deleteCommentA11y": "Slet kommentar",
     "sendCommentA11y": "Send besked",
     "requestOptions": "Anmodningsmuligheder"
@@ -4651,8 +4651,8 @@
     "noActiveNow": "Ingen aktive forslag lige nu",
     "subtitle": "Stem om forslag, der former platformen",
     "loadFailed": "Kunne ikke indlæse forslag",
-    "forLabel": "Til",
-    "againstLabel": "Mod",
+    "forLabel": "For",
+    "againstLabel": "Imod",
     "discussion": {
       "title": "Diskussion",
       "intro": "Stil opfølgende spørgsmål eller diskuter forslaget, før du stemmer.",

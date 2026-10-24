@@ -3633,7 +3633,7 @@
     "edit": "Szerkesztés",
     "deleteRequestTitle": "Törlöd ezt a kérést?",
     "deleteRequestDescription": "Ez nem vonható vissza.",
-    "attachmentTooLarge": "Minden fájl legyen 20 MB alatt",
+    "attachmentTooLarge": "Minden fájl legyen 50 MB alatt",
     "deleteCommentA11y": "Hozzászólás törlése",
     "sendCommentA11y": "Megjegyzés küldése",
     "requestOptions": "Igénylési lehetőségek"
@@ -4650,7 +4650,7 @@
     "noActiveNow": "Jelenleg nincs aktív javaslat",
     "subtitle": "Szavazz a platformot alakító javaslatokra",
     "loadFailed": "A javaslatok betöltése sikertelen",
-    "forLabel": "->",
+    "forLabel": "Mellette",
     "againstLabel": "Ellene",
     "discussion": {
       "title": "Megbeszélés",
