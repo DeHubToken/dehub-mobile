@@ -1,4 +1,5 @@
 import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../../hooks/useSearchFieldMaterial';
 /**
  * AdministratorsTab
  * =================
@@ -41,6 +42,7 @@ export function AdministratorsTab({ community, membership }: Props) {
   );
 
   const [search, setSearch] = useSurfaceDraft("components/Communities/manage/AdministratorsTab.tsx:search", "", draftIdentity(community));
+  const searchMaterial = useSearchFieldMaterial();
   const [adminLimit, setAdminLimit] = useState(PAGE_SIZE);
   const [editing, setEditing] = useState<CommunityMember | null>(null);
 
@@ -153,10 +155,12 @@ export function AdministratorsTab({ community, membership }: Props) {
           <Text className="text-zinc-400 text-xs uppercase mt-6 mb-2">
             {t("communities.manage.addAdministrator", { defaultValue: "Add administrator" })}
           </Text>
-          <View style={styles.searchRow}>
+          <View style={[styles.searchRow, searchMaterial.surface]}>
             <Icon name="Search" size={15} color="#A1A1AA" />
             <TextInput
-              style={styles.searchInput}
+              style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+              onFocus={searchMaterial.onFocus}
+              onBlur={searchMaterial.onBlur}
               value={search}
               onChangeText={setSearch}
               placeholder={t("communities.manage.searchMembers", {

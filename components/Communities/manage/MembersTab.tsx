@@ -1,4 +1,5 @@
 import { useSurfaceDraft, draftIdentity } from '../../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../../hooks/useSearchFieldMaterial';
 /**
  * MembersTab
  * ==========
@@ -57,6 +58,7 @@ export function MembersTab({ community, membership }: MembersTabProps) {
   const moderation = useCommunityModeration(community.id);
 
   const [search, setSearch] = useSurfaceDraft("components/Communities/manage/MembersTab.tsx:search", "", draftIdentity(community));
+  const searchMaterial = useSearchFieldMaterial();
   const [visibleCount, setVisibleCount] = useState(PAGE);
   const [pendingCount, setPendingCount] = useState(PAGE);
   const [bannedCount, setBannedCount] = useState(PAGE);
@@ -184,10 +186,12 @@ export function MembersTab({ community, membership }: MembersTabProps) {
           {t("communities.manage.members", { defaultValue: "Members" })}
         </Text>
 
-        <View style={styles.searchBox}>
+        <View style={[styles.searchBox, searchMaterial.surface]}>
           <Icon name="Search" size={14} color="#808089" />
           <TextInput
-            style={styles.searchInput}
+            style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+            onFocus={searchMaterial.onFocus}
+            onBlur={searchMaterial.onBlur}
             placeholder={t("communities.manage.searchMembers", {
               defaultValue: "Search by wallet address",
             })}

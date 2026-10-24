@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../hooks/useSearchFieldMaterial';
 /**
  * MusicFeed — the Audio tab
  * =========================
@@ -154,6 +155,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   }).current;
   const [genre, setGenre] = useState<RadioGenreId>("top");
   const [search, setSearch] = useSurfaceDraft("components/Music/MusicFeed.tsx:search", "");
+  const searchMaterial = useSearchFieldMaterial();
   const debouncedSearch = useDebouncedValue(search, 300);
   const { user } = useAuth();
   const address = user?.walletAddress || user?.address || undefined;
@@ -409,14 +411,16 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
         {tab === "radio" && (
           <View style={styles.radioChrome}>
-            <View style={styles.searchWrap}>
+            <View style={[styles.searchWrap, searchMaterial.surface]}>
               <Icon name="Search" size={15} color="rgba(255,255,255,0.4)" />
               <TextInput
                 value={search}
                 onChangeText={setSearch}
                 placeholder={t("music.searchRadio")}
                 placeholderTextColor="rgba(255,255,255,0.35)"
-                style={styles.searchInput}
+                style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+                onFocus={searchMaterial.onFocus}
+                onBlur={searchMaterial.onBlur}
                 returnKeyType="search"
                 autoCorrect={false}
               />
