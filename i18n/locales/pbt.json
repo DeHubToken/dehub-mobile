@@ -4565,7 +4565,7 @@
     "edit": "سمول",
     "deleteRequestTitle": "دا غوښتنه ړنګه کړئ؟",
     "deleteRequestDescription": "دا بیرته نشي کیدای.",
-    "attachmentTooLarge": "هره فایل باید له 20MB څخه کم وي",
+    "attachmentTooLarge": "هره فایل باید له 50MB څخه کم وي",
     "deleteCommentA11y": "د نظرونو لرې کول",
     "sendCommentA11y": "نظرات ياداشت په نه په",
     "requestOptions": "د غوښتنې انتخابونه"
@@ -4648,7 +4648,11 @@
     "title": "پیغامونه",
     "searchConversations": "خبرې اترې ولټوئ...",
     "failedToLoad": "خبرې اترې نشي لوډ کیدلی",
-    "tryAgain": "بیا هڅه وکړئ"
+    "tryAgain": "بیا هڅه وکړئ",
+    "lockedTitle": "د خپلو پيغامونو د لوستلو لپاره دلته کليک وکړئ",
+    "lockedUnlock": "د بسته بندۍ بکس خلاص کړئ",
+    "lockedTryAgain": "یو ځل بیا هڅه وکړئ",
+    "lockedPrivate": "یوازې تاسو کولی شئ لوستل شئ"
   },
   "music": {
     "likeStation": "سټېشن خوښ کړئ",
@@ -5652,8 +5656,8 @@
     "noActiveNow": "اوس مهال هیڅ فعال وړاندیز نشته",
     "subtitle": "په هغو وړاندیزونو رایه ورکړئ چې پلیټ فارم جوړوي",
     "loadFailed": "وړاندیزونه ونه لوډ شول",
-    "forLabel": "د دې لپاره",
-    "againstLabel": "په مقابل کې",
+    "forLabel": "پلوي",
+    "againstLabel": "مخالف",
     "discussion": {
       "title": "مناظره او مناظره",
       "intro": "مخکې له دې چې خپل نظر وړاندې کړئ، لاندې پوښتنې وپوښتئ او یا یې په اړه بحث وکړئ.",

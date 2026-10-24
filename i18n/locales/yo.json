@@ -4534,7 +4534,7 @@
     "edit": "Ṣàtúnṣe",
     "deleteRequestTitle": "Pa ìbéèrè yìí rẹ́?",
     "deleteRequestDescription": "A kò lè yí èyí padà.",
-    "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 20MB",
+    "attachmentTooLarge": "Fáìlì kọ̀ọ̀kan gbọ́dọ̀ kéré sí 50MB",
     "deleteCommentA11y": "Pa àlàyé yìí rẹ́?",
     "sendCommentA11y": "Fi ọrọìwòye ranṣẹ",
     "requestOptions": "Beere awọn aṣayan"
@@ -4617,7 +4617,14 @@
     "title": "Ìfiránṣẹ́",
     "searchConversations": "Wá àwọn ìfọ̀rọ̀wérọ̀...",
     "failedToLoad": "Kò le gbé àwọn ìfọ̀rọ̀wérọ̀",
-    "tryAgain": "Gbìyànjú lẹ́ẹ̀kan sí"
+    "tryAgain": "Gbìyànjú lẹ́ẹ̀kan sí",
+    "lockedTitle": "Ṣii lati ka awọn ifiranṣẹ rẹ",
+    "lockedBody": "Ìjíròrò rẹ pẹ̀lú {{name}} ti wà ní ìfipamọ́ láti òpin dé òpin. Tú apamọwọ rẹ sí orí ẹ̀rọ yìí láti ṣí i.",
+    "lockedUnlock": "Tú apamọwọ",
+    "lockedTryAgain": "Gbiyanju lẹẹkansi",
+    "lockedPrivate": "Ìwọ nìkan ni o lè kà wọ́n",
+    "undecryptableRun_one": "{{count}} àtẹ̀jíṣẹ́ kò lè ṣí lórí ẹ̀rọ yìí",
+    "undecryptableRun_other": "{{count}} àwọn àtẹ̀jíṣẹ́ kò lè ṣí lórí ẹ̀rọ yìí"
   },
   "music": {
     "likeStation": "Gẹ́gẹ́ bí ibùdó",
@@ -5620,8 +5627,8 @@
     "noActiveNow": "Kò sí àbá tí ń lọ lọ́wọ́ báyìí",
     "subtitle": "Dìbò lórí àwọn àbá tí ń ṣe pẹpẹ náà",
     "loadFailed": "Kò lè gbé àwọn àbá wọlé",
-    "forLabel": "Fun ...",
-    "againstLabel": "Lodi si",
+    "forLabel": "Ní ojúrere",
+    "againstLabel": "Ní ìlòdì",
     "discussion": {
       "title": "Ìjíròrò",
       "intro": "Béèrè àwọn ìbéèrè tó tẹ̀lé e tàbí kí o jíròrò àbá náà kí o tó dìbò.",

@@ -4459,7 +4459,7 @@
     "edit": "Chenj",
     "deleteRequestTitle": "Yu wan delet dis request?",
     "deleteRequestDescription": "Yu no fit undo dis wan.",
-    "attachmentTooLarge": "Eni file mos dei anda 20MB",
+    "attachmentTooLarge": "Eni file mos dei anda 50MB",
     "deleteCommentA11y": "Delete comment",
     "sendCommentA11y": "Send comment",
     "requestOptions": "Request options"
@@ -4541,7 +4541,14 @@
     "title": "Messages",
     "searchConversations": "Fain tok-tok dem...",
     "failedToLoad": "E no fit load conversations",
-    "tryAgain": "Try am again"
+    "tryAgain": "Try am again",
+    "lockedTitle": "Unlock make you read ya messages",
+    "lockedBody": "Ya chat wit {{name}} dey end-to-end encrypted. Unlock ya wallet for dis device make e open it.",
+    "lockedUnlock": "Unlock wallet",
+    "lockedTryAgain": "Try again",
+    "lockedPrivate": "Na only you fit read dem",
+    "undecryptableRun_one": "{{count}} message no fit open for dis device",
+    "undecryptableRun_other": "{{count}} messages no fit open for dis device"
   },
   "music": {
     "chartOrder": "Audio chart order",
@@ -5522,8 +5529,8 @@
     "noActiveNow": "No active proposal dey now",
     "subtitle": "Vote for proposals wey dey shape di platform",
     "loadFailed": "We no fit load di proposals",
-    "forLabel": "Gri",
-    "againstLabel": "Againist",
+    "forLabel": "For",
+    "againstLabel": "Against",
     "discussion": {
       "title": "Tok-tok",
       "reply": "Reply",

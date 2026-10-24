@@ -4529,7 +4529,7 @@
     "edit": "Gyara",
     "deleteRequestTitle": "A goge wannan buƙatar?",
     "deleteRequestDescription": "Ba za a iya juyar da wannan ba.",
-    "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 20MB",
+    "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 50MB",
     "deleteCommentA11y": "Share sharhi",
     "sendCommentA11y": "Aika da sharhi",
     "requestOptions": "Neman zaɓuɓɓuka"
@@ -4612,7 +4612,14 @@
     "title": "Saƙonni",
     "searchConversations": "Bincika tattaunawa...",
     "failedToLoad": "Ba a iya ɗora tattaunawa ba",
-    "tryAgain": "Sake gwadawa"
+    "tryAgain": "Sake gwadawa",
+    "lockedTitle": "Buše don karanta saƙonninku",
+    "lockedBody": "Tattaunawar ku tare da {{name}} an ɓoye ƙarshen zuwa ƙarshe. Buɗe walat ɗinku akan wannan na'urar don buɗe shi.",
+    "lockedUnlock": "Buše walat",
+    "lockedTryAgain": "Gwada kuma",
+    "lockedPrivate": "Kawai zaka iya karanta su",
+    "undecryptableRun_one": "{{count}} ba za a iya buɗe saƙon a kan wannan na'urar ba",
+    "undecryptableRun_other": "{{count}} ba za a iya buɗe saƙonni akan wannan na'urar ba"
   },
   "music": {
     "likeStation": "Kamar tasha",
@@ -5616,8 +5623,8 @@
     "noActiveNow": "Babu shawarwari masu aiki a yanzu",
     "subtitle": "Ka kada kuri'a kan shawarwarin da ke tsara dandamalin",
     "loadFailed": "An kasa loda shawarwari",
-    "forLabel": "domin",
-    "againstLabel": "A kan",
+    "forLabel": "Goyon baya",
+    "againstLabel": "Adawa",
     "discussion": {
       "title": "Tattaunawa",
       "intro": "Tambayi tambayoyi masu biyowa ko tattauna shawarwarin kafin ka kada kuri'a.",

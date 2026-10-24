@@ -4556,7 +4556,7 @@
     "edit": "Dezie",
     "deleteRequestTitle": "Hichapụ arịrịọ a?",
     "deleteRequestDescription": "Enweghị ike ịkagbu nke a.",
-    "attachmentTooLarge": "Faịlụ ọ bụla ga-abụ ihe na-erughị 20MB",
+    "attachmentTooLarge": "Faịlụ ọ bụla ga-abụ ihe na-erughị 50MB",
     "deleteCommentA11y": "Hichaa nkọwa",
     "sendCommentA11y": "Ziga nkọwa",
     "requestOptions": "Arịrịọ nhọrọ"
@@ -4639,7 +4639,14 @@
     "title": "Ozi",
     "searchConversations": "Chọọ mkparịta ụka...",
     "failedToLoad": "Enweghị ike ibudata mkparịta ụka",
-    "tryAgain": "Nwaa Ọzọ"
+    "tryAgain": "Nwaa Ọzọ",
+    "lockedTitle": "Kpọghe ka ị gụọ ozi gị",
+    "lockedBody": "Mkparịta ụka gị na {{name}} bụ ezoro ezo njedebe na njedebe. Meghee obere akpa gị na ngwaọrụ a iji mepee ya.",
+    "lockedUnlock": "Ị kpọghee ekwt obere akpa",
+    "lockedTryAgain": "Gbalịa ọzọ",
+    "lockedPrivate": "Naanị ị nwere ike ịgụ ha",
+    "undecryptableRun_one": "{{count}} enweghị ike imepe ozi na ngwaọrụ a",
+    "undecryptableRun_other": "{{count}} enweghị ike imepe ozi na ngwaọrụ a"
   },
   "music": {
     "likeStation": "Dị ka ọdụ",
@@ -5641,7 +5648,7 @@
     "noActiveNow": "Enweghị atụmatụ na-arụ ọrụ ugbu a",
     "subtitle": "Tụọ vootu na atụmatụ na-akpụzi ikpo okwu ahụ",
     "loadFailed": "Enweghị ike ibudata atụmatụ",
-    "forLabel": "Maka",
+    "forLabel": "Kwado",
     "againstLabel": "Megide",
     "discussion": {
       "title": "Mkparịta ụka",

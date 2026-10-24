@@ -4626,7 +4626,7 @@
     "edit": "Hanova",
     "deleteRequestTitle": "Hofafana ity fangatahana ity?",
     "deleteRequestDescription": "Tsy azo averina intsony ity.",
-    "attachmentTooLarge": "Tsy maintsy latsaky ny 20MB ny rakitra tsirairay",
+    "attachmentTooLarge": "Tsy maintsy latsaky ny 50MB ny rakitra tsirairay",
     "deleteCommentA11y": "Fafao ilay fanamarihana",
     "sendCommentA11y": "Handefa fanehoan-kevitra",
     "requestOptions": "Safidin'ny Fangatahana"
@@ -4709,7 +4709,14 @@
     "title": "Hafatra",
     "searchConversations": "Hikaroka resaka...",
     "failedToLoad": "Tsy nahomby ny fampidirana resaka",
-    "tryAgain": "Avereno indray"
+    "tryAgain": "Avereno indray",
+    "lockedTitle": "Hamaky ny hafatrao",
+    "lockedBody": "Ny karajia (chat) miaraka amin'ny {{name}} is end-to-end voaaro. Hamaha ny kitapom-batsy amin'ny fitaovana ity mba hanokatra izany.",
+    "lockedUnlock": "Hamaha kitapom-batsy",
+    "lockedTryAgain": "Andramo indray",
+    "lockedPrivate": "Azonao atao ny mamaky azy ireo fotsiny.",
+    "undecryptableRun_one": "{{count}} message Tsy afaka hosokafana amin'ity fitaovana ity",
+    "undecryptableRun_other": "{{count}} messages tsy afaka hosokafana amin'ity fitaovana ity"
   },
   "music": {
     "likeStation": "Ankafizo ny toby",
@@ -5718,7 +5725,7 @@
     "noActiveNow": "Tsy misy tolo-kevitra mavitrika amin'izao",
     "subtitle": "Mifidiana tolo-kevitra izay mamolavola ny sehatra",
     "loadFailed": "Tsy voaloatra ny tolo-kevitra",
-    "forLabel": "Ny",
+    "forLabel": "Manohana",
     "againstLabel": "Manohitra",
     "discussion": {
       "title": "Fifanakalozan-kevitra",

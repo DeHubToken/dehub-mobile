@@ -4413,7 +4413,7 @@
     "edit": "แก้ไข",
     "deleteRequestTitle": "ลบคำขอนี้บ่?",
     "deleteRequestDescription": "อันนี้ย้อนกลับบ่ได้",
-    "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 20MB",
+    "attachmentTooLarge": "แต่ละไฟล์ต้องน้อยกว่า 50MB",
     "deleteCommentA11y": "ลบคอมเมนต์",
     "sendCommentA11y": "ส่งคอมเมนต์",
     "requestOptions": "ขอทางเลือก"
@@ -4496,7 +4496,14 @@
     "title": "ข้อความ",
     "searchConversations": "ค้นหาการสนทนา...",
     "failedToLoad": "โหลดการสนทนาล้มเหลว",
-    "tryAgain": "ลองใหม่"
+    "tryAgain": "ลองใหม่",
+    "lockedTitle": "ปลดล็อกเพื่ออ่านข้อความของคุณ",
+    "lockedBody": "การแชทของคุณกับ {{name}} ถูกเข้ารหัสแบบปลายถึงปลาย ปลดล็อกวอลเล็ตของคุณบนอุปกรณ์นี้เพื่อเปิดดู",
+    "lockedUnlock": "ปลดล็อกวอลเล็ต",
+    "lockedTryAgain": "ลองอีกครั้ง",
+    "lockedPrivate": "มีแค่คุณเท่านั้นที่อ่านได้",
+    "undecryptableRun_one": "ไม่สามารถเปิดข้อความของ {{count}} บนอุปกรณ์นี้ได้",
+    "undecryptableRun_other": "ไม่สามารถเปิดข้อความของ {{count}} บนอุปกรณ์นี้ได้"
   },
   "music": {
     "chartOrder": "ลำดับชาร์ตเพลง",
@@ -5461,8 +5468,8 @@
     "noActiveNow": "ตอนนี้บ่มีข้อเสนอที่ดำเนินอยู่",
     "subtitle": "โหวตข้อเสนอที่กำหนดทิศทางแพลตฟอร์ม",
     "loadFailed": "โหลดข้อเสนอบ่สำเร็จ",
-    "forLabel": "สำหรับ",
-    "againstLabel": "ต่อต้าน",
+    "forLabel": "เห็นด้วย",
+    "againstLabel": "บ่เห็นด้วย",
     "discussion": {
       "title": "เสวนา",
       "intro": "ถามคำถามเพิ่มเติม หรือเสวนาข้อเสนอ ก่อนลงคะแนน",

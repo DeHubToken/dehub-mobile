@@ -3632,7 +3632,7 @@
     "edit": "Editează",
     "deleteRequestTitle": "Ștergi această cerere?",
     "deleteRequestDescription": "Asta nu se poate anula.",
-    "attachmentTooLarge": "Fiecare fișier trebuie să fie sub 20 MB",
+    "attachmentTooLarge": "Fiecare fișier trebuie să fie sub 50 MB",
     "deleteCommentA11y": "Ștergere comentariu",
     "sendCommentA11y": "Trimite comentariu",
     "requestOptions": "Opțiuni de solicitare"
@@ -3715,7 +3715,14 @@
     "title": "Mesaje",
     "searchConversations": "Caută conversații...",
     "failedToLoad": "Încărcarea conversațiilor a eșuat",
-    "tryAgain": "Încearcă din nou"
+    "tryAgain": "Încearcă din nou",
+    "lockedTitle": "Deblochează pentru a-ți citi mesajele",
+    "lockedBody": "Chatul tău cu {{name}} este criptat integral. Deblochează-ți portofelul pe acest dispozitiv pentru a-l deschide.",
+    "lockedUnlock": "Deblochează portofelul",
+    "lockedTryAgain": "Încearcă din nou",
+    "lockedPrivate": "Numai tu le poți citi",
+    "undecryptableRun_one": "Mesajul {{count}} nu poate fi deschis pe acest dispozitiv",
+    "undecryptableRun_other": "Mesajele {{count}} nu pot fi deschise pe acest dispozitiv"
   },
   "music": {
     "chartOrder": "Ordinea diagramelor audio",
@@ -4646,8 +4653,8 @@
     "noActiveNow": "Momentan nu există propuneri active",
     "subtitle": "Votează propunerile care modelează platforma",
     "loadFailed": "Propunerile nu au putut fi încărcate",
-    "forLabel": "Pentru,",
-    "againstLabel": "împotriva",
+    "forLabel": "Pentru",
+    "againstLabel": "Împotrivă",
     "discussion": {
       "title": "Discuție",
       "intro": "Puneți întrebări ulterioare sau discutați propunerea înainte de a vota.",

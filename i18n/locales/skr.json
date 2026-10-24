@@ -4360,7 +4360,7 @@
     "edit": "ترمیم کرو",
     "deleteRequestTitle": "ایہ درخواست مٹاوݨی ہے؟",
     "deleteRequestDescription": "ایہ واپس کائنی تھی سگدا۔",
-    "attachmentTooLarge": "ہر فائل 20MB کنوں گھٹ ہووݨ گھرجدی",
+    "attachmentTooLarge": "ہر فائل 50MB کنوں گھٹ ہووݨ گھرجدی",
     "deleteCommentA11y": "تبصره ختم کر",
     "sendCommentA11y": "تبصرہ گھلو",
     "requestOptions": "درخواست آپشن"
@@ -4443,7 +4443,14 @@
     "title": "پیغام",
     "searchConversations": "گل بات ڳولو...",
     "failedToLoad": "گل بات لوڈ کائنی ہوئیاں",
-    "tryAgain": "ولا کوشش کرو"
+    "tryAgain": "ولا کوشش کرو",
+    "lockedTitle": "اپنے پیغامات پڑھن لئی ان لاک کرو",
+    "lockedBody": "تُہاڈا چیٹ {{name}} نال اینڈ ٹو اینڈ انکرپٹڈ اے۔ ایہ ڈیوائس تے اپنا والٹ ان لاک کرو تاکہ ایہ کھل سکے۔",
+    "lockedUnlock": "والٹ ان لاک کرو",
+    "lockedTryAgain": "دوبارہ کوشش کرو",
+    "lockedPrivate": "صرف تُسی ایہ پڑھ سکدے او",
+    "undecryptableRun_one": "{{count}} دا پیغام ایہ ڈیوائس تے نہیں کھولیا جا سکدا",
+    "undecryptableRun_other": "{{count}} دے پیغامات ایہ ڈیوائس تے نہیں کھولے جا سکدے"
   },
   "music": {
     "chartOrder": "آڈیو چارٹ آرڈر",
@@ -5395,8 +5402,8 @@
     "noActiveNow": "ہݨ کوئی فعال تجویز کائنی",
     "subtitle": "اونہاں تجویزاں تے ووٹ ݙیو جیہڑیاں پلیٹ فارم بݨیندیاں ہن",
     "loadFailed": "تجویزاں لوڈ نہ تھی سڳیاں",
-    "forLabel": "واسطے",
-    "againstLabel": "مخالف",
+    "forLabel": "حق وچ",
+    "againstLabel": "خلاف",
     "discussion": {
       "title": "بحث",
       "reply": "جواب",

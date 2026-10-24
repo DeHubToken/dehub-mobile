@@ -4356,7 +4356,7 @@
     "edit": "Edit",
     "deleteRequestTitle": "You wan delete dis request?",
     "deleteRequestDescription": "You no fit undo dis one.",
-    "attachmentTooLarge": "Every file must dey under 20MB",
+    "attachmentTooLarge": "Every file must dey under 50MB",
     "deleteCommentA11y": "Delete comment",
     "sendCommentA11y": "Send comment",
     "requestOptions": "Request options"
@@ -4438,7 +4438,14 @@
     "title": "Messages",
     "searchConversations": "Find conversation...",
     "failedToLoad": "Conversations no fit load",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "lockedTitle": "Unlock make you read your messages",
+    "lockedBody": "Your chat wit {{name}} dey end-to-end encrypted. Unlock your wallet for dis device make e open am.",
+    "lockedUnlock": "Unlock wallet",
+    "lockedTryAgain": "Try again",
+    "lockedPrivate": "Na only you fit read dem",
+    "undecryptableRun_one": "{{count}} message no fit open for dis device",
+    "undecryptableRun_other": "{{count}} messages no fit open for dis device"
   },
   "music": {
     "chartOrder": "Audio chart order",

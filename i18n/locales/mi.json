@@ -4604,7 +4604,7 @@
     "edit": "Whakatika",
     "deleteRequestTitle": "Mukua tēnei tono?",
     "deleteRequestDescription": "Kāore e taea te whakakore i tēnei.",
-    "attachmentTooLarge": "Me iti iho i te 20MB ia kōnae",
+    "attachmentTooLarge": "Me iti iho i te 50MB ia kōnae",
     "deleteCommentA11y": "Whakakorea ngā kōrero",
     "sendCommentA11y": "Tukuna mai he korero",
     "requestOptions": "Kōwhiringa tono"
@@ -4687,7 +4687,14 @@
     "title": "Karere",
     "searchConversations": "Rapu kōrerorero...",
     "failedToLoad": "Kāore i taea te uta kōrerorero",
-    "tryAgain": "Ngana anō"
+    "tryAgain": "Ngana anō",
+    "lockedTitle": "Whakatuwherahia ki te pānui i ō karere",
+    "lockedBody": "Ko to korerorero me {{name}} kua whakamunatia ki te mutunga. Whakatuwherahia to putea i runga i tenei taputapu hei whakatuwhera.",
+    "lockedUnlock": "Whakatuwherahia te putea",
+    "lockedTryAgain": "Whakamātauria ano",
+    "lockedPrivate": "Ka taea e koe anake te pānui i te reira",
+    "undecryptableRun_one": "{{count}} karere e kore e taea te whakatuwhera i runga i tenei pūrere",
+    "undecryptableRun_other": "{{count}} karere e kore e taea te whakatuwhera i runga i tenei pūrere"
   },
   "music": {
     "likeStation": "Ka rite ki te te teihana",
@@ -5693,8 +5700,8 @@
     "noActiveNow": "Kāore he marohi hohe i tēnei wā",
     "subtitle": "Pōti i ngā marohi e hanga ana i te papatono",
     "loadFailed": "Kāore i taea te uta i ngā marohi",
-    "forLabel": "ataahua te ra",
-    "againstLabel": "Ki te whawhai",
+    "forLabel": "Tautoko",
+    "againstLabel": "Whakahē",
     "discussion": {
       "title": "Kōrerorero",
       "intro": "Pātai i ngā pātai whai muri, kōrero rānei i te kaupapa i mua i te pōti.",

@@ -4532,7 +4532,7 @@
     "edit": "Owahi",
     "deleteRequestTitle": "Busak panjaluk iki?",
     "deleteRequestDescription": "Iki ora bisa dibatalake.",
-    "attachmentTooLarge": "Saben berkas kudu kurang saka 20MB",
+    "attachmentTooLarge": "Saben berkas kudu kurang saka 50MB",
     "deleteCommentA11y": "Busak komentar",
     "sendCommentA11y": "Kirim komentar",
     "requestOptions": "Pilihan panjaluk"
@@ -4615,7 +4615,14 @@
     "title": "Pesen",
     "searchConversations": "Goleki obrolan...",
     "failedToLoad": "Gagal ngemot obrolan",
-    "tryAgain": "Coba Maneh"
+    "tryAgain": "Coba Maneh",
+    "lockedTitle": "Bukak kunci kanggo maca pesenmu",
+    "lockedBody": "Obrolanmu karo {{name}} wis dienkripsi end-to-end. Bukak kunci dompetmu ing piranti iki kanggo mbukak.",
+    "lockedUnlock": "Bukak kunci dompet",
+    "lockedTryAgain": "Coba maneh",
+    "lockedPrivate": "Mung kowe sing bisa maca",
+    "undecryptableRun_one": "Pesen {{count}} ora bisa dibukak ing piranti iki",
+    "undecryptableRun_other": "Pesen {{count}} ora bisa dibukak ing piranti iki"
   },
   "music": {
     "likeStation": "Samanan",
@@ -5605,8 +5612,8 @@
     "noActiveNow": "Ora ana usulan aktif saiki",
     "subtitle": "Menehi swara kanggo usulan sing mbentuk platform",
     "loadFailed": "Ora bisa mbukak usulan",
-    "forLabel": "Kanggo",
-    "againstLabel": "Nalika",
+    "forLabel": "Setuju",
+    "againstLabel": "Nolak",
     "discussion": {
       "title": "Dhiskusi",
       "intro": "Ajokna pitakonan susulan utawa rembugen usulané sadurungé milih.",

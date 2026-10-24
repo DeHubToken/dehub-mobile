@@ -4554,7 +4554,7 @@
     "edit": "সম্পাদনা করেন",
     "deleteRequestTitle": "এই অনুরোধ মুছবেন?",
     "deleteRequestDescription": "এইটা ফিরানো যাইবে না।",
-    "attachmentTooLarge": "হারা ফাইল ২০MB-র কম হওয়া লাগবে",
+    "attachmentTooLarge": "হারা ফাইল ৫০MB-র কম হওয়া লাগবে",
     "decentralized": "বিকেন্দ্রীকৃত",
     "encrypted": "এনক্রিপ্টেড",
     "openSource": "ওপেন সোর্স",
@@ -4657,7 +4657,14 @@
     "send": "পাঠাও",
     "online": "অনলাইন",
     "offline": "অফলাইন",
-    "lastSeen": "শেষ দেখা"
+    "lastSeen": "শেষ দেখা",
+    "lockedTitle": "আপনার বার্তা গুলা পড়ার লাইগা আনলক করো",
+    "lockedBody": "আপনার চ্যাট {{name}} রে শেষ-থেকে-শেষ এনক্রিপ্টেড। এই ডিভাইসে আপনার ওয়ালেট আনলক করো যাতে খুলে যায়।",
+    "lockedUnlock": "ওয়ালেট আনলক করো",
+    "lockedTryAgain": "আবার চেষ্টা করো",
+    "lockedPrivate": "শুধু তুমি ইহা পড়তে পারবা",
+    "undecryptableRun_one": "{{count}} বার্তা এই ডিভাইসে খুলা যাইতে পারে না",
+    "undecryptableRun_other": "{{count}} বার্তাগুলা এই ডিভাইসে খুলা যাইতে পারে না"
   },
   "music": {
     "chartOrder": "অডিও চার্ট ক্রম",
@@ -5674,8 +5681,8 @@
     "noActiveNow": "এখন কোনো সক্রিয় প্রস্তাব নাই",
     "subtitle": "প্ল্যাটফর্ম গড়া প্রস্তাবত ভোট দেও",
     "loadFailed": "প্রস্তাব লোড করা গেইল না",
-    "forLabel": "জন্য",
-    "againstLabel": "সংরক্ষিত।",
+    "forLabel": "পক্ষে",
+    "againstLabel": "বিপক্ষে",
     "discussion": {
       "title": "আলোচনা",
       "intro": "ফলো-আপ প্রশ্ন জিজ্ঞাসা করুন বা ভোট দেওয়ার আগে প্রস্তাবটি নিয়ে আলোচনা করুন ।",

@@ -3645,7 +3645,7 @@
     "edit": "Sửa",
     "deleteRequestTitle": "Xóa yêu cầu này?",
     "deleteRequestDescription": "Không thể hoàn tác.",
-    "attachmentTooLarge": "Mỗi tệp phải nhỏ hơn 20MB",
+    "attachmentTooLarge": "Mỗi tệp phải nhỏ hơn 50MB",
     "deleteCommentA11y": "Xóa nhận xét",
     "sendCommentA11y": "Gửi bình luận",
     "requestOptions": "Tùy chọn yêu cầu"
@@ -3728,7 +3728,14 @@
     "title": "Thông báo",
     "searchConversations": "Tìm kiếm các cuộc trò chuyện...",
     "failedToLoad": "Không thể tải cuộc trò chuyện",
-    "tryAgain": "Thử lại"
+    "tryAgain": "Thử lại",
+    "lockedTitle": "Mở khóa để đọc tin nhắn của bạn",
+    "lockedBody": "Cuộc trò chuyện của bạn với {{name}} đã được mã hóa từ đầu đến cuối. Mở khóa ví của bạn trên thiết bị này để mở ví.",
+    "lockedUnlock": "Mở khóa ví",
+    "lockedTryAgain": "Thử lại",
+    "lockedPrivate": "Chỉ bạn mới có thể đọc chúng",
+    "undecryptableRun_one": "Không thể mở tin nhắn {{count}} trên thiết bị này",
+    "undecryptableRun_other": "Không thể mở {{count}} tin nhắn trên thiết bị này"
   },
   "music": {
     "chartOrder": "Thứ tự biểu đồ âm thanh",
@@ -4657,8 +4664,8 @@
     "noActiveNow": "Hiện chưa có đề xuất nào đang diễn ra",
     "subtitle": "Bỏ phiếu cho các đề xuất định hình nền tảng",
     "loadFailed": "Không tải được đề xuất",
-    "forLabel": "Cho",
-    "againstLabel": "Chống lại",
+    "forLabel": "Ủng hộ",
+    "againstLabel": "Phản đối",
     "discussion": {
       "title": "Thảo luận",
       "intro": "Đặt câu hỏi tiếp theo hoặc thảo luận về đề xuất trước khi bỏ phiếu.",

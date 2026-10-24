@@ -4583,7 +4583,7 @@
     "edit": "ಸಂಪಾದಿಸಿ",
     "deleteRequestTitle": "ಈ ವಿನಂತಿಯನ್ನು ಅಳಿಸುವುದೇ?",
     "deleteRequestDescription": "ಇದನ್ನು ಹಿಂತಿರುಗಿಸಲಾಗದು.",
-    "attachmentTooLarge": "ಪ್ರತಿ ಫೈಲ್ 20MB ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
+    "attachmentTooLarge": "ಪ್ರತಿ ಫೈಲ್ 50MB ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
     "deleteCommentA11y": "ಕಾಮೆಂಟ್ ಅಳಿಸಿ",
     "sendCommentA11y": "ಕಾಮೆಂಟ್ ಕಳುಹಿಸಿ",
     "requestOptions": "ವಿನಂತಿಯ ಆಯ್ಕೆಗಳು"
@@ -4666,7 +4666,14 @@
     "title": "ಸಂದೇಶಗಳು",
     "searchConversations": "ಸಂಭಾಷಣೆಗಳನ್ನು ಹುಡುಕಿ...",
     "failedToLoad": "ಸಂಭಾಷಣೆಗಳನ್ನು ಲೋಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ",
-    "tryAgain": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
+    "tryAgain": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+    "lockedTitle": "ನಿಮ್ಮ ಸಂದೇಶಗಳನ್ನು ಓದಲು ಅನ್‌ಲಾಕ್ ಮಾಡಿ",
+    "lockedBody": "{{name}} ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಚಾಟ್ ಎಂಡ್-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿದೆ. ಅದನ್ನು ತೆರೆಯಲು ಈ ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ವಾಲೆಟ್ ಅನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಿ.",
+    "lockedUnlock": "ವಾಲೆಟ್ ಅನ್‌ಲಾಕ್ ಮಾಡಿ",
+    "lockedTryAgain": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+    "lockedPrivate": "ನೀವು ಮಾತ್ರ ಅವುಗಳನ್ನು ಓದಬಹುದು",
+    "undecryptableRun_one": "{{count}} ಈ ಸಾಧನದಲ್ಲಿ ಸಂದೇಶವನ್ನು ತೆರೆಯಲಾಗುವುದಿಲ್ಲ",
+    "undecryptableRun_other": "{{count}} ಈ ಸಾಧನದಲ್ಲಿ ಸಂದೇಶಗಳನ್ನು ತೆರೆಯಲಾಗುವುದಿಲ್ಲ"
   },
   "music": {
     "likeStation": "ನಿಲ್ದಾಣದಂತೆ",
@@ -5677,7 +5684,7 @@
     "noActiveNow": "ಸದ್ಯಕ್ಕೆ ಸಕ್ರಿಯ ಪ್ರಸ್ತಾಪಗಳಿಲ್ಲ",
     "subtitle": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ರೂಪಿಸುವ ಪ್ರಸ್ತಾಪಗಳಿಗೆ ಮತ ಹಾಕಿ",
     "loadFailed": "ಪ್ರಸ್ತಾಪಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ",
-    "forLabel": "ಗೆ",
+    "forLabel": "ಪರವಾಗಿ",
     "againstLabel": "ವಿರುದ್ಧ",
     "discussion": {
       "title": "ಚರ್ಚೆ",

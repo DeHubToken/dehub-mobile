@@ -4572,7 +4572,7 @@
     "edit": "עריכה",
     "deleteRequestTitle": "למחוק את הבקשה הזו?",
     "deleteRequestDescription": "אי אפשר לבטל את זה.",
-    "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-20MB",
+    "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-50MB",
     "deleteCommentA11y": "מחק הערה",
     "sendCommentA11y": "שלח תגובה",
     "requestOptions": "אפשרויות בקשה"
@@ -4655,7 +4655,14 @@
     "title": "הודעות",
     "searchConversations": "חפש שיחות...",
     "failedToLoad": "טעינת השיחות נכשלה",
-    "tryAgain": "נסה שוב"
+    "tryAgain": "נסה שוב",
+    "lockedTitle": "בטל את הנעילה כדי לקרוא את ההודעות שלך",
+    "lockedBody": "הצ'אט שלכם עם {{name}} מוצפן מקצה לקצה. פתח את הארנק במכשיר זה כדי לפתוח אותו.",
+    "lockedUnlock": "שחרור נעילת הארנק",
+    "lockedTryAgain": "ניסיון חוזר",
+    "lockedPrivate": "רק אתם יכולים לקרוא אותם",
+    "undecryptableRun_one": "לא ניתן לפתוח את ההודעה {{count}} במכשיר זה",
+    "undecryptableRun_other": "לא ניתן לפתוח הודעות {{count}} במכשיר זה"
   },
   "music": {
     "chartOrder": "סדר תרשים שמע",
@@ -5670,8 +5677,8 @@
     "noActiveNow": "אין הצעות פעילות כרגע",
     "subtitle": "הצבע על הצעות שמעצבות את הפלטפורמה",
     "loadFailed": "טעינת ההצעות נכשלה",
-    "forLabel": "עבור",
-    "againstLabel": "מול",
+    "forLabel": "בעד",
+    "againstLabel": "נגד",
     "discussion": {
       "title": "דיון",
       "intro": "שאלו שאלות המשך או דנו בהצעה לפני שתצביעו.",

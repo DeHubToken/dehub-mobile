@@ -4533,7 +4533,7 @@
     "edit": "ସମ୍ପାଦନ",
     "deleteRequestTitle": "ଏହି ଅନୁରୋଧ ଡିଲିଟ କରିବେ?",
     "deleteRequestDescription": "ଏହା ପୂର୍ବବତ କରାଯାଇପାରିବ ନାହିଁ।",
-    "attachmentTooLarge": "ପ୍ରତ୍ୟେକ ଫାଇଲ 20MB ରୁ କମ ହେବା ଆବଶ୍ୟକ",
+    "attachmentTooLarge": "ପ୍ରତ୍ୟେକ ଫାଇଲ 50MB ରୁ କମ ହେବା ଆବଶ୍ୟକ",
     "deleteCommentA11y": "ଟିପ୍ପଣୀ ଅପସାରଣ କରନ୍ତୁ",
     "sendCommentA11y": "ଟିପ୍ପଣୀ ପଠାନ୍ତୁ",
     "requestOptions": "ଅନୁରୋଧ ବିକଳ୍ପଗୁଡ଼ିକ"
@@ -4616,7 +4616,13 @@
     "title": "ବାର୍ତ୍ତା",
     "searchConversations": "ବାର୍ତ୍ତାଳାପ ଖୋଜନ୍ତୁ...",
     "failedToLoad": "ବାର୍ତ୍ତାଳାପ ଲୋଡ ହୋଇପାରିଲା ନାହିଁ",
-    "tryAgain": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"
+    "tryAgain": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
+    "lockedTitle": "ଆପଣଙ୍କର ସନ୍ଦେଶଗୁଡ଼ିକୁ ପଢ଼ିବା ପାଇଁ ଖୋଲନ୍ତୁ",
+    "lockedUnlock": "ୱାଲେଟକୁ ଖୋଲନ୍ତୁ",
+    "lockedTryAgain": "ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ",
+    "lockedPrivate": "କେବଳ ଆପଣ ଏହାକୁ ପଢ଼ିପାରିବେ ।",
+    "undecryptableRun_one": "{{count}} ସନ୍ଦେଶକୁ ଏହି ଉପକରଣରେ ଖୋଲାଯାଇପାରିବ ନାହିଁ",
+    "undecryptableRun_other": "{{count}} ସନ୍ଦେଶଗୁଡ଼ିକୁ ଏହି ଉପକରଣରେ ଖୋଲାଯାଇପାରିବ ନାହିଁ"
   },
   "music": {
     "likeStation": "ଷ୍ଟେସନ ପରି",
@@ -5615,7 +5621,7 @@
     "noActiveNow": "ବର୍ତ୍ତମାନ କୌଣସି ସକ୍ରିୟ ପ୍ରସ୍ତାବ ନାହିଁ",
     "subtitle": "ପ୍ଲାଟଫର୍ମ ଗଢ଼ୁଥିବା ପ୍ରସ୍ତାବରେ ଭୋଟ୍ ଦିଅନ୍ତୁ",
     "loadFailed": "ପ୍ରସ୍ତାବ ଲୋଡ୍ କରିହେଲା ନାହିଁ",
-    "forLabel": "ପାଇଁ",
+    "forLabel": "ସପକ୍ଷରେ",
     "againstLabel": "ବିପକ୍ଷରେ",
     "discussion": {
       "title": "ଆଲୋଚନା",

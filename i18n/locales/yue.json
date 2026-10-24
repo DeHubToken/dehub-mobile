@@ -4579,7 +4579,7 @@
     "edit": "編輯",
     "deleteRequestTitle": "刪除呢個要求？",
     "deleteRequestDescription": "呢個係唔可以還原㗎。",
-    "attachmentTooLarge": "每個檔案要細過 20MB",
+    "attachmentTooLarge": "每個檔案要細過 50MB",
     "deleteCommentA11y": "刪除留言",
     "sendCommentA11y": "發送留言",
     "requestOptions": "要求選項"
@@ -4662,7 +4662,14 @@
     "title": "訊息",
     "searchConversations": "搜尋對話...",
     "failedToLoad": "載入對話失敗",
-    "tryAgain": "再試過"
+    "tryAgain": "再試過",
+    "lockedTitle": "解鎖嚟睇你嘅訊息",
+    "lockedBody": "你同 {{name}} 嘅即時通訊係端對端加密嘅。喺呢部裝置上面解鎖你個銀包嚟打開佢。",
+    "lockedUnlock": "解鎖銀包",
+    "lockedTryAgain": "再試多次",
+    "lockedPrivate": "只有你先可以睇到佢哋",
+    "undecryptableRun_one": "喺呢部裝置上面開唔到 {{count}} 訊息",
+    "undecryptableRun_other": "喺呢部裝置上面開唔到 {{count}} 訊息"
   },
   "music": {
     "chartOrder": "音頻榜單排序",
@@ -5671,7 +5678,7 @@
     "noActiveNow": "目前冇進行中嘅提案",
     "subtitle": "為塑造平台嘅提案投票",
     "loadFailed": "無法載入提案",
-    "forLabel": "畀",
+    "forLabel": "贊成",
     "againstLabel": "反對",
     "discussion": {
       "title": "討論",
