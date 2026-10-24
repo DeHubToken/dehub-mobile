@@ -3633,7 +3633,7 @@
     "edit": "Muokkaa",
     "deleteRequestTitle": "Poistetaanko tämä pyyntö?",
     "deleteRequestDescription": "Tätä ei voi perua.",
-    "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 20 Mt",
+    "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 50 Mt",
     "deleteCommentA11y": "Poista kommentti",
     "sendCommentA11y": "Lähetä kommentti",
     "requestOptions": "Pyyntövaihtoehdot"
@@ -3716,7 +3716,14 @@
     "title": "Viestit",
     "searchConversations": "Etsi keskusteluista...",
     "failedToLoad": "Keskustelujen lataus epäonnistui",
-    "tryAgain": "Yritä uudelleen"
+    "tryAgain": "Yritä uudelleen",
+    "lockedTitle": "Avaa lukitus lukeaksesi viestisi",
+    "lockedBody": "Keskustelusi käyttäjän {{name}} kanssa on täysin salattu. Avaa lompakkosi tällä laitteella avataksesi sen.",
+    "lockedUnlock": "Avaa lompakko",
+    "lockedTryAgain": "Yritä uudelleen",
+    "lockedPrivate": "Vain sinä voit lukea ne",
+    "undecryptableRun_one": "{{count}} viestiä ei voi avata tällä laitteella",
+    "undecryptableRun_other": "{{count}} viestiä ei voi avata tällä laitteella"
   },
   "music": {
     "chartOrder": "Audiokaavion järjestys",
@@ -4646,7 +4653,7 @@
     "noActiveNow": "Ei aktiivisia ehdotuksia juuri nyt",
     "subtitle": "Äänestä ehdotuksista, jotka muovaavat alustaa",
     "loadFailed": "Ehdotuksia ei voitu ladata",
-    "forLabel": "Tietoa",
+    "forLabel": "Puolesta",
     "againstLabel": "Vastaan",
     "discussion": {
       "title": "Keskustelu",

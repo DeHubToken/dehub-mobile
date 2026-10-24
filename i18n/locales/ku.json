@@ -4583,7 +4583,7 @@
     "edit": "Biguherîne",
     "deleteRequestTitle": "Ev daxwaz were jêbirin?",
     "deleteRequestDescription": "Ev nayê vegerandin.",
-    "attachmentTooLarge": "Divê her dosye ji 20MB kêmtir be",
+    "attachmentTooLarge": "Divê her dosye ji 50MB kêmtir be",
     "deleteCommentA11y": "Şîroveyê jê bibe",
     "sendCommentA11y": "Şîrove bişîne",
     "requestOptions": "Vebijarkên daxwazê"
@@ -4666,7 +4666,14 @@
     "title": "Peyam",
     "searchConversations": "Sohbetan bigerin...",
     "failedToLoad": "Barkirina sohbetan têkçû",
-    "tryAgain": "Dîsa Biceribîne"
+    "tryAgain": "Dîsa Biceribîne",
+    "lockedTitle": "Ji bo xwendina peyamên xwe veke",
+    "lockedBody": "Sohbeta te bi {{name}} re ji serî heta binî şîfrekirî ye. Ji bo vekirina wê, berîka xwe li ser vê cîhazê veke.",
+    "lockedUnlock": "Berîka xwe veke",
+    "lockedTryAgain": "Dubare bixebitin",
+    "lockedPrivate": "Tenê hûn dikarin wan bixwînin",
+    "undecryptableRun_one": "Peyama {{count}} li ser vê cîhazê nayê vekirin",
+    "undecryptableRun_other": "Peyamên {{count}} li ser vê cîhazê nayên vekirin"
   },
   "music": {
     "likeStation": "لایکی وێستگە بکە",
@@ -5677,8 +5684,8 @@
     "noActiveNow": "Niha pêşniyarên çalak tune",
     "subtitle": "Li ser pêşniyarên ku platformê şekil didin deng bide",
     "loadFailed": "Pêşniyar nehatin barkirin",
-    "againstLabel": "Dijî",
-    "forLabel": "Bo",
+    "againstLabel": "Dijber",
+    "forLabel": "Alîgir",
     "discussion": {
       "title": "Nîqaş",
       "intro": "Berî dengdanê pirsên dûvre bipirsin an jî li ser pêşniyarê nîqaş bikin.",

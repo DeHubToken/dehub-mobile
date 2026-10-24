@@ -3679,7 +3679,7 @@
     "edit": "I-edit",
     "deleteRequestTitle": "Burahin ang kahilingang ito?",
     "deleteRequestDescription": "Hindi ito mababawi.",
-    "attachmentTooLarge": "Dapat wala pang 20MB ang bawat file",
+    "attachmentTooLarge": "Dapat wala pang 50MB ang bawat file",
     "deleteCommentA11y": "I-delete ang komento",
     "sendCommentA11y": "Magpadala ng komento",
     "requestOptions": "Mga opsyon sa kahilingan"
@@ -3762,7 +3762,14 @@
     "title": "Mga Mensahe",
     "searchConversations": "Maghanap ng mga pag - uusap...",
     "failedToLoad": "Nabigong i - load ang mga pag - uusap",
-    "tryAgain": "Subukan Ulit"
+    "tryAgain": "Subukan Ulit",
+    "lockedTitle": "I - unlock para basahin ang iyong mga mensahe",
+    "lockedBody": "Naka - encrypt ang iyong chat sa {{name}}. I - unlock ang iyong wallet sa device na ito para buksan ito.",
+    "lockedUnlock": "I - unlock ang wallet",
+    "lockedTryAgain": "Subukan muli",
+    "lockedPrivate": "Ikaw lang ang makakabasa ng mga ito",
+    "undecryptableRun_one": "Hindi mabuksan sa device na ito ang {{count}} message",
+    "undecryptableRun_other": "Hindi mabubuksan sa device na ito ang {{count}} mensahe"
   },
   "music": {
     "chartOrder": "Pagkakasunud - sunod ng audio chart",
@@ -4692,8 +4699,8 @@
     "noActiveNow": "Walang aktibong panukala ngayon",
     "subtitle": "Bumoto sa mga panukalang humuhubog sa platform",
     "loadFailed": "Hindi ma-load ang mga panukala",
-    "forLabel": "Para",
-    "againstLabel": "kinahinatnan",
+    "forLabel": "Pabor",
+    "againstLabel": "Laban",
     "discussion": {
       "title": "Talakayan",
       "intro": "Magtanong ng mga follow - up na tanong o talakayin ang panukala bago ka bumoto.",

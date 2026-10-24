@@ -54,6 +54,7 @@ import { runWithPermissions } from "../libs/permissions.util";
 import { toastWarning } from "../libs/toast";
 import { localFileSize } from "../libs/storage-upload";
 import { featurePromptFields } from "../libs/feature-prompt";
+import { optionalSkia } from "../libs/skia";
 import { theme } from "../theme";
 import { getAvatarUrl } from "../libs/misc";
 import { formatCompactNumber } from "../libs";
@@ -630,6 +631,11 @@ const FeatureCard: React.FC<{
 
 // ── Submit sheet ────────────────────────────────────────────────────────────
 
+/** Draw & write from the composer, so a screenshot can be marked up before it is sent. Skia, so older installs skip it. */
+const ImageEditSheet = optionalSkia(
+  () => require("../components/Upload/ImageEditSheet").default as typeof import("../components/Upload/ImageEditSheet").default,
+);
+
 const PromptComposer: React.FC<{
   focusRequest: number;
   onSubmit: (v: { title: string; description: string; category: FeatureCategory; attachments: FeatureAttachment[] }) => Promise<unknown>;
@@ -643,6 +649,7 @@ const PromptComposer: React.FC<{
   const [category, setCategory] = useState<FeatureCategory>("new_feature");
   const [attachments, setAttachments] = useState<FeatureAttachment[]>([]);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [markupIndex, setMarkupIndex] = useState<number | null>(null);
   const inputRef = React.useRef<TextInput>(null);
   React.useEffect(() => { if (focusRequest) inputRef.current?.focus(); }, [focusRequest]);
   const { isSignedIn, needsUsername } = useAuthState();
@@ -665,7 +672,7 @@ const PromptComposer: React.FC<{
         if (size !== null && size > MAX_FEATURE_ATTACHMENT_BYTES) continue;
         accepted.push({ uri: asset.uri, mimeType: asset.mimeType, fileName: asset.fileName });
       }
-      if (accepted.length < assets.length) toastWarning(t("features.attachmentTooLarge", "Each file must be under 20MB"));
+      if (accepted.length < assets.length) toastWarning(t("features.attachmentTooLarge", "Each file must be under 50MB"));
       setAttachments(prev => [...prev, ...accepted].slice(0, MAX_FEATURE_ATTACHMENTS));
     });
   }, [attachments.length, submitting, t]);
@@ -704,10 +711,30 @@ const PromptComposer: React.FC<{
               accessibilityRole="button" accessibilityLabel={t("features.removePromptAttachment", "Remove {{name}}", { name: attachment.fileName || String(index + 1) })}>
               <Icon name="X" size={12} color="#FFFFFF" />
             </Pressable>
+            {ImageEditSheet && !attachment.mimeType?.startsWith("video/") && attachment.mimeType !== "image/gif" && (
+              <Pressable style={styles.pickMarkup} disabled={submitting} hitSlop={8}
+                onPress={() => setMarkupIndex(index)}
+                accessibilityRole="button" accessibilityLabel={t("upload.drawWrite")}>
+                <Icon name="Pencil" size={12} color="#FFFFFF" />
+              </Pressable>
+            )}
           </ThemePanel>
           <Text numberOfLines={1} style={styles.promptFilename}>{attachment.fileName || t("features.promptAttachment", "Attachment {{number}}", { number: index + 1 })}</Text>
         </View>)}
       </ScrollView>}
+      {ImageEditSheet && markupIndex !== null && attachments[markupIndex] && (
+        <ImageEditSheet
+          mode="draw"
+          uri={attachments[markupIndex].uri}
+          mimeType={attachments[markupIndex].mimeType}
+          onClose={() => setMarkupIndex(null)}
+          onApply={(result) => {
+            const index = markupIndex;
+            setAttachments(prev => prev.map((a, i) => (i === index ? { uri: result.uri, mimeType: result.mimeType, fileName: result.fileName } : a)));
+            setMarkupIndex(null);
+          }}
+        />
+      )}
       <View style={styles.promptToolbar}>
         <Pressable onPress={pickMedia} disabled={submitting || attachments.length >= MAX_FEATURE_ATTACHMENTS}
           accessibilityRole="button" style={[styles.promptAttach, (submitting || attachments.length >= MAX_FEATURE_ATTACHMENTS) && styles.disabled]}>
@@ -1547,6 +1574,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
     backgroundColor: "#18181B",
+  },
+  pickMarkup: {
+    position: "absolute",
+    top: 4,
+    left: 4,
+    width: 22,
+    height: 22,
+    borderRadius: 8,
+    backgroundColor: "rgba(0,0,0,0.7)",
+    alignItems: "center",
+    justifyContent: "center",
   },
   pickRemove: {
     position: "absolute",

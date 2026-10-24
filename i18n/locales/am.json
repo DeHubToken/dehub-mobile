@@ -4594,7 +4594,7 @@
     "edit": "አርትዕ",
     "deleteRequestTitle": "ይህን ጥያቄ መሰረዝ?",
     "deleteRequestDescription": "ይህ መቀልበስ አይችልም።",
-    "attachmentTooLarge": "እያንዳንዱ ፋይል ከ20MB በታች መሆን አለበት",
+    "attachmentTooLarge": "እያንዳንዱ ፋይል ከ50MB በታች መሆን አለበት",
     "deleteCommentA11y": "አስተያየት ሰርዝ",
     "sendCommentA11y": "አስተያየት ይላኩ",
     "requestOptions": "የጥያቄ አማራጮች"
@@ -4677,7 +4677,14 @@
     "title": "መልዕክቶች",
     "searchConversations": "ውይይቶችን ፈልግ...",
     "failedToLoad": "ውይይቶችን መጫን አልተሳካም",
-    "tryAgain": "ደግመህ ሞክር"
+    "tryAgain": "ደግመህ ሞክር",
+    "lockedTitle": "መልዕክቶችዎን ለማንበብ ይክፈቱ",
+    "lockedBody": "የእርስዎ ውይይት ከ {{name}} መጨረሻ-ወደ-መጨረሻ ኢንክሪፕት ነው ። ለመክፈት በዚህ መሣሪያ ላይ ቦርሳዎን ይክፈቱ.",
+    "lockedUnlock": "የኪስ ቦርሳ ይክፈቱ",
+    "lockedTryAgain": "እንደገና ሞክር",
+    "lockedPrivate": "እነሱን ማንበብ የሚችሉት እርስዎ ብቻ ናቸው",
+    "undecryptableRun_one": "{{count}} መልእክት በዚህ መሣሪያ ላይ ሊከፈት አይችልም",
+    "undecryptableRun_other": "{{count}} መልዕክቶች በዚህ መሣሪያ ላይ ሊከፈቱ አይችሉም"
   },
   "music": {
     "likeStation": "ጣቢያውን ወደድኩት",
@@ -5686,8 +5693,8 @@
     "noActiveNow": "አሁን ንቁ ሀሳቦች የሉም",
     "subtitle": "መድረኩን በሚቀርጹ ሀሳቦች ላይ ድምጽ ይስጡ",
     "loadFailed": "ሀሳቦችን መጫን አልተቻለም",
-    "forLabel": "ለ",
-    "againstLabel": "ተቃራኒ",
+    "forLabel": "ድጋፍ",
+    "againstLabel": "ተቃውሞ",
     "discussion": {
       "title": "ውይይት",
       "intro": "የተከታታይ ጥያቄዎችን ይጠይቁ ወይም ከመምረጥዎ በፊት ሀሳቡን ይወያዩ ።",

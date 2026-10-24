@@ -29,7 +29,7 @@
  * and for a moment after it closes any keyboard that shows up is sent away.
  */
 
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useUser } from "../../context/AuthContext";
 import { markReactionTipSeen } from "../../libs/reaction-tip";
 import { useTranslation } from "react-i18next";
@@ -61,6 +61,8 @@ const DIVIDER = "#FFFFFF2E";
 
 /** How long after the tray closes a keyboard that appears is treated as stray. */
 const STRAY_KEYBOARD_MS = 700;
+// How long iOS needs to finish taking a Modal down before it will present another.
+const IOS_MODAL_HANDOFF_MS = 120;
 
 /** Badge-style corners: the card at 12, each reaction tile at 10. */
 const SHEET_RADIUS = 12;
@@ -135,9 +137,17 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
 
   // Stay mounted through the closing slide, then drop the Modal.
   const [mounted, setMounted] = useState(open);
+  // "See who reacted" opens its own Modal. iOS cannot present a Modal while
+  // this one is still up or sliding away: the new one never shows and the
+  // closing tray's backdrop keeps every touch, so the screen froze. The info
+  // sheet opens only once this Modal is gone.
+  const pendingInfo = useRef<(() => void) | null>(null);
   const finishClose = useCallback(() => {
     setMounted(false);
     onClosed();
+    const show = pendingInfo.current;
+    pendingInfo.current = null;
+    if (show) setTimeout(show, Platform.OS === "ios" ? IOS_MODAL_HANDOFF_MS : 0);
   }, [onClosed]);
   const translateY = useSharedValue(screenHeight);
   const backdrop = useSharedValue(0);
@@ -285,7 +295,10 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
           {onShowInfo && (
             <Pressable
               accessibilityRole="menuitem"
-              onPress={onShowInfo}
+              onPress={() => {
+                pendingInfo.current = onShowInfo ?? null;
+                requestClose();
+              }}
               style={({ pressed }) => [styles.infoRow, { borderColor: colors.border }, pressed && { opacity: 0.6 }]}
             >
               <Icon name="Info" size={18} color="#8B8D90" strokeWidth={1.9} />

@@ -3632,7 +3632,7 @@
     "edit": "編集",
     "deleteRequestTitle": "このリクエストを削除しますか？",
     "deleteRequestDescription": "これは取り消せません。",
-    "attachmentTooLarge": "1ファイルあたり 20MB 未満にしてください",
+    "attachmentTooLarge": "1ファイルあたり 50MB 未満にしてください",
     "deleteCommentA11y": "コメントの削除",
     "sendCommentA11y": "コメントを送信",
     "requestOptions": "リクエストオプション"
@@ -3715,7 +3715,14 @@
     "title": "メッセージ",
     "searchConversations": "会話を検索...",
     "failedToLoad": "会話の読み込みに失敗",
-    "tryAgain": "再試行"
+    "tryAgain": "再試行",
+    "lockedTitle": "ロックを解除してメッセージを読む",
+    "lockedBody": "{{name}}さんとのチャットはエンドツーエンドで暗号化されています。 このデバイスでウォレットのロックを解除して開きます。",
+    "lockedUnlock": "ウォレットのロックを解除する",
+    "lockedTryAgain": "もう一度お試しください",
+    "lockedPrivate": "あなただけが読むことができます",
+    "undecryptableRun_one": "このデバイスでは{{count}}メッセージを開くことができません",
+    "undecryptableRun_other": "このデバイスでは{{count}}件のメッセージを開くことができません"
   },
   "music": {
     "chartOrder": "オーディオチャートの順序",
@@ -4645,8 +4652,8 @@
     "noActiveNow": "現在進行中の提案はありません",
     "subtitle": "プラットフォームを形づくる提案に投票しましょう",
     "loadFailed": "提案を読み込めませんでした",
-    "forLabel": "のために",
-    "againstLabel": "反する",
+    "forLabel": "賛成",
+    "againstLabel": "反対",
     "discussion": {
       "title": "ディスカッション",
       "intro": "投票する前に、フォローアップの質問をしたり、提案について話し合ったりしてください。",

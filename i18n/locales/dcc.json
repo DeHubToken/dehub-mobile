@@ -4395,7 +4395,7 @@
     "edit": "ترمیم کرو",
     "deleteRequestTitle": "یہ درخواست مٹانا کیا؟",
     "deleteRequestDescription": "یہ واپس نکو ہوتا۔",
-    "attachmentTooLarge": "ہر فائل 20MB سے کم ہونا مانگتا",
+    "attachmentTooLarge": "ہر فائل 50MB سے کم ہونا مانگتا",
     "deleteCommentA11y": "تبصرہ حذف کریں",
     "sendCommentA11y": "تبصرہ بھیجیں",
     "requestOptions": "آپشنز کی درخواست کریں"
@@ -4478,7 +4478,14 @@
     "title": "پیغام",
     "searchConversations": "بات چیت ڈھونڈو...",
     "failedToLoad": "بات چیت لوڈ نئیں ہوئی",
-    "tryAgain": "دوبارہ کوشش کرو"
+    "tryAgain": "دوبارہ کوشش کرو",
+    "lockedTitle": "اپنے پیغامات پڑھنے کے لیے انلاک کریں",
+    "lockedBody": "آپ کی چیٹ {{name}} کے ساتھ اینڈ‑ٹو‑اینڈ انکرپٹڈ ہے۔ اسے کھولنے کے لیے اس ڈیوائس پر اپنا والٹ انلاک کریں۔",
+    "lockedUnlock": "والٹ انلاک کریں",
+    "lockedTryAgain": "دوبارہ کوشش کریں",
+    "lockedPrivate": "صرف آپ ہی انہیں پڑھ سکتے ہیں",
+    "undecryptableRun_one": "{{count}} پیغام اس ڈیوائس پر نہیں کھولا جا سکتا",
+    "undecryptableRun_other": "{{count}} پیغامات اس ڈیوائس پر نہیں کھولے جا سکتے"
   },
   "music": {
     "chartOrder": "آڈیو چارت آرڈر",
@@ -5469,8 +5476,8 @@
     "noActiveNow": "ابھی کوئی فعال تجویز نئیں",
     "subtitle": "ان تجاویز پر ووٹ دو جو پلیٹ فارم بناتی ہیں",
     "loadFailed": "تجاویز لوڈ نئیں ہو سکیں",
-    "forLabel": "مثال کے طور پر،",
-    "againstLabel": "خلاف:",
+    "forLabel": "حق میں",
+    "againstLabel": "خلاف",
     "discussion": {
       "title": "تبادلہ خیال",
       "intro": "ووٹ دینے سے پہلے فالو اپ سوالات پوچھیں یا تجویز پر تبادلہ خیال کریں ۔",

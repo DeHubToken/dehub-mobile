@@ -3633,7 +3633,7 @@
     "edit": "Rediger",
     "deleteRequestTitle": "Slette denne forespørselen?",
     "deleteRequestDescription": "Dette kan ikke angres.",
-    "attachmentTooLarge": "Hver fil må være under 20 MB",
+    "attachmentTooLarge": "Hver fil må være under 50 MB",
     "deleteCommentA11y": "Slett kommentar",
     "sendCommentA11y": "send kommentar",
     "requestOptions": "Forespørselsalternativer"
@@ -3716,7 +3716,14 @@
     "title": "Meldinger",
     "searchConversations": "Søk i samtaler...",
     "failedToLoad": "Kunne ikke laste samtaler",
-    "tryAgain": "Prøv igjen"
+    "tryAgain": "Prøv igjen",
+    "lockedTitle": "Lås opp for å lese meldingene dine",
+    "lockedBody": "Chatten din med {{name}} er ende-til-ende-kryptert. Lås opp lommeboken din på denne enheten for å åpne den.",
+    "lockedUnlock": "Lås opp lommeboken",
+    "lockedTryAgain": "Prøv igjen",
+    "lockedPrivate": "Bare du kan lese dem",
+    "undecryptableRun_one": "{{count}}-meldingen kan ikke åpnes på denne enheten",
+    "undecryptableRun_other": "{{count}}-meldinger kan ikke åpnes på denne enheten"
   },
   "music": {
     "chartOrder": "Lyddiagramrekkefølge",
@@ -4647,7 +4654,7 @@
     "noActiveNow": "Ingen aktive forslag akkurat nå",
     "subtitle": "Stem på forslag som former plattformen",
     "loadFailed": "Kunne ikke laste forslag",
-    "forLabel": "Til",
+    "forLabel": "For",
     "againstLabel": "Mot",
     "discussion": {
       "title": "Samtale",

@@ -33,6 +33,8 @@ import Avatar from "../components/common/Avatar";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { getAvatarUrl } from "../libs/misc";
 import AccountBadge from "../components/common/AccountBadge";
+import TranslateButton from "../components/ui/TranslateButton";
+import { useTranslation as useAutoTranslate } from "../hooks/useTranslation";
 import { formatCompactNumber } from "../libs";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
@@ -89,6 +91,11 @@ const CommentRow: React.FC<{
   const { t } = useTranslation();
   const { showUserProfile } = useUserProfileSheet();
   const name = comment.username ? `@${comment.username}` : shortAddr(comment.wallet_address);
+  // Same translate line as post comments: auto when the reader has it on,
+  // otherwise one tap.
+  const translationTexts = useMemo(() => ({ content: comment.content || "" }), [comment.content]);
+  const translation = useAutoTranslate(translationTexts, undefined, true, true);
+  const body = translation.isTranslated ? (translation.translatedTexts.content || comment.content) : comment.content;
 
   return (
     <Pressable
@@ -123,7 +130,16 @@ const CommentRow: React.FC<{
           <Text style={styles.commentTime}>{timeAgo(comment.created_at, t)}</Text>
           {!!comment.updated_at && <Text style={styles.commentEdited}>{t("governance.discussion.edited")}</Text>}
         </View>
-        <Text style={styles.commentBody}>{comment.content}</Text>
+        <Text style={styles.commentBody}>{body}</Text>
+        {translation.shouldShow && (
+          <TranslateButton
+            isTranslated={translation.isTranslated}
+            isLoading={translation.isLoading}
+            detectedLanguage={translation.sourceLang}
+            onTranslate={translation.handleTranslate}
+            onShowOriginal={translation.handleShowOriginal}
+          />
+        )}
         <View style={styles.commentActions}>
           <Pressable
             onPress={() => onReply(comment)}

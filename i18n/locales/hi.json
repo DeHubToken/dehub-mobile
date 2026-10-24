@@ -3641,7 +3641,7 @@
     "edit": "संपादित करें",
     "deleteRequestTitle": "यह अनुरोध हटाएँ?",
     "deleteRequestDescription": "इसे पलटा नहीं जा सकता।",
-    "attachmentTooLarge": "हर फ़ाइल 20MB से कम होनी चाहिए",
+    "attachmentTooLarge": "हर फ़ाइल 50MB से कम होनी चाहिए",
     "deleteCommentA11y": "इस टिप्पणी को हटाना",
     "sendCommentA11y": "टिप्पणी भेजें",
     "requestOptions": "अनुरोध के विकल्प"
@@ -3724,7 +3724,14 @@
     "title": "संदेश",
     "searchConversations": "बातचीत खोजें...",
     "failedToLoad": "बातचीत लोड करने में विफल",
-    "tryAgain": "पुनः प्रयास"
+    "tryAgain": "पुनः प्रयास",
+    "lockedTitle": "अपने मैसेज पढ़ने के लिए अनलॉक करें",
+    "lockedBody": "{{name}} के साथ आपकी चैट एंड - टू - एंड एन्क्रिप्टेड है। इसे खोलने के लिए इस डिवाइस पर अपना वॉलेट अनलॉक करें।",
+    "lockedUnlock": "वॉलेट खोलें",
+    "lockedTryAgain": "फिर से कोशिश करें",
+    "lockedPrivate": "केवल आप उन्हें पढ़ सकते हैं",
+    "undecryptableRun_one": "{{count}} इस डिवाइस पर मैसेज नहीं खोला जा सकता",
+    "undecryptableRun_other": "{{count}} इस डिवाइस पर मैसेज नहीं खोले जा सकते"
   },
   "music": {
     "chartOrder": "ऑडियो चार्ट ऑर्डर",
@@ -4655,8 +4662,8 @@
     "noActiveNow": "अभी कोई सक्रिय प्रस्ताव नहीं",
     "subtitle": "उन प्रस्तावों पर वोट करें जो प्लेटफ़ॉर्म को आकार देते हैं",
     "loadFailed": "प्रस्ताव लोड नहीं हो सके",
-    "forLabel": "के लिए...",
-    "againstLabel": "विरुद्ध:",
+    "forLabel": "पक्ष में",
+    "againstLabel": "विपक्ष में",
     "discussion": {
       "title": "चर्चा",
       "intro": "मतदान करने से पहले अनुवर्ती प्रश्न पूछें या प्रस्ताव पर चर्चा करें।",

@@ -4591,7 +4591,7 @@
     "edit": "تەھرىرلەش",
     "deleteRequestTitle": "بۇ تەلەپنى ئۆچۈرەمسىز؟",
     "deleteRequestDescription": "بۇنى قايتۇرغىلى بولمايدۇ.",
-    "attachmentTooLarge": "ھەر بىر ھۆججەت 20MB دىن كىچىك بولۇشى كېرەك",
+    "attachmentTooLarge": "ھەر بىر ھۆججەت 50MB دىن كىچىك بولۇشى كېرەك",
     "deleteCommentA11y": "ئىنكاسنى ئۆچۈرۈش",
     "sendCommentA11y": "ئىنكاس يوللاش",
     "requestOptions": "تاللانمىلارنى سوراش"
@@ -4674,7 +4674,14 @@
     "title": "ئۇچۇرلار",
     "searchConversations": "سۆھبەتلەرنى ئىزدەش...",
     "failedToLoad": "سۆھبەتلەرنى يۈكلەش مەغلۇب بولدى",
-    "tryAgain": "قايتا سىناش"
+    "tryAgain": "قايتا سىناش",
+    "lockedTitle": "ئۇچۇرلىرىڭىزنى ئوقۇش ئۈچۈن قۇلۇپنى ئېچىڭ",
+    "lockedBody": "{{name}} بىلەن سۆھبىتىڭىز ئاخىرلاشتى. ئۇنى ئېچىش ئۈچۈن، يانچۇقىڭىزنى بۇ ئۈسكۈنىگە تاقاپ قويۇڭ.",
+    "lockedUnlock": "قۇلۇپنى ئاچ",
+    "lockedTryAgain": "قايتا سىناڭ",
+    "lockedPrivate": "ئۇلارنى پەقەت سەنلا ئوقۇيالايسەن",
+    "undecryptableRun_one": "{{count}} message بۇ ئۈسكۈنىدە ئېچىلمايدۇ",
+    "undecryptableRun_other": "{{count}} ئۇچۇرلار بۇ ئۈسكۈنىدە ئېچىلمايدۇ"
   },
   "music": {
     "likeStation": "ئىستانسىنى ياقتۇرۇش",
@@ -5684,8 +5691,8 @@
     "noActiveNow": "ھازىر ئاكتىپ تەكلىپ يوق",
     "subtitle": "سۇپىنى شەكىللەندۈرىدىغان تەكلىپلەرگە ئاۋاز بېرىڭ",
     "loadFailed": "تەكلىپلەرنى يۈكلىگىلى بولمىدى",
-    "forLabel": "ئۈچۈن",
-    "againstLabel": "قارشىلىق",
+    "forLabel": "قوللايمەن",
+    "againstLabel": "قارشى",
     "discussion": {
       "title": "تالاش- تارتىش",
       "intro": "ئاۋاز بېرىشتىن بۇرۇن كېيىنكى سوئاللارنى سوراڭ ياكى تەكلىپنى مۇزاكىرە قىلىڭ.",

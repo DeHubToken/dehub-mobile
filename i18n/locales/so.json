@@ -4584,7 +4584,7 @@
     "edit": "Wax ka beddel",
     "deleteRequestTitle": "Ma tirtiraysaa codsigan?",
     "deleteRequestDescription": "Tan dib looma celin karo.",
-    "attachmentTooLarge": "Fayl kastaa waa inuu ka yar yahay 20MB",
+    "attachmentTooLarge": "Fayl kastaa waa inuu ka yar yahay 50MB",
     "deleteCommentA11y": "Tirtir faallo",
     "sendCommentA11y": "Dir faallo",
     "requestOptions": "Fursadaha codsiga"
@@ -4667,7 +4667,14 @@
     "title": "Fariimaha",
     "searchConversations": "Raadi wada-sheekeysiyada...",
     "failedToLoad": "Soo dejinta wada-sheekeysiyadu wuu fashilmay",
-    "tryAgain": "Mar Kale Isku Day"
+    "tryAgain": "Mar Kale Isku Day",
+    "lockedTitle": "Fur si aad u akhrido farriimahaaga",
+    "lockedBody": "Wadahadalkaaga la {{name}} waa dhamaadka-ilaa-dhamaadka encrypted. Fur boorsadaada qalabkan si aad u furto.",
+    "lockedUnlock": "Fur boorsada",
+    "lockedTryAgain": "Isku day mar kale",
+    "lockedPrivate": "Kaliya waad akhrin kartaa iyaga.",
+    "undecryptableRun_one": "{{count}} fariin laguma furi karo qalabkan",
+    "undecryptableRun_other": "{{count}} fariimaha lama furi karo qalabkan"
   },
   "music": {
     "likeStation": "Sida saldhigga",
@@ -5670,8 +5677,8 @@
     "noActiveNow": "Hadda ma jiraan soo jeedin firfircoon",
     "subtitle": "U codee soo jeedinta qaabaynaysa goobta",
     "loadFailed": "Lama soo rari karin soo jeedinta",
-    "forLabel": "Wixii ...",
-    "againstLabel": "Ka soo horjeeda",
+    "forLabel": "Taageero",
+    "againstLabel": "Diidmo",
     "discussion": {
       "title": "Wadahadalka",
       "intro": "Weydii su 'aalaha la socda ama kala hadal soo jeedinta ka hor intaadan codeyn.",

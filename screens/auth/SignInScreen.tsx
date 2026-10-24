@@ -800,7 +800,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               "Explore without signing in" button, moved up). */}
           {/* Logo and Explore sit 16pt from the top and the sides (the
               scroll view pads 24, so the row reaches 8 past it). */}
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 16, marginBottom: 12, marginHorizontal: -8, minHeight: 44 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 16, marginBottom: 12, marginHorizontal: -8, minHeight: 44, zIndex: 2, elevation: 2 }}>
             <Image
               source={require("../../assets/login-stack/mark.png")}
               style={{ width: 34, height: 44, tintColor: "#FFFFFF" }}
@@ -815,6 +815,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
                 label={t("loginStack.exploreFirst", "Explore first")}
                 onPress={handleSkipOrClose}
                 disabled={isLoading}
+                // It sits over moving clips, so it needs a backing of its own.
+                // Near-black so System Light turns it white (pure black stays).
+                style={{ backgroundColor: "rgba(4,4,4,0.7)" }}
                 accessibilityLabel={
                   isFirstTimeUser ? _copy("copy.488017ad5c75", { defaultValue: "Explore DeHub without signing in" }) : _copy("copy.61d2a857dd18", { defaultValue: "Continue exploring DeHub" })
                 }
@@ -823,7 +826,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           </View>
 
           {authStep === "main" ? (
-            <View style={{ marginBottom: 24 }}>
+            // Pulled up under the header (16 + 44 + 12) so the clips run to the
+            // top of the screen.
+            <View style={{ marginTop: -72, marginBottom: 24 }}>
               <LoginShortsStack />
             </View>
           ) : null}

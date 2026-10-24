@@ -3633,7 +3633,7 @@
     "edit": "Upravit",
     "deleteRequestTitle": "Smazat tento požadavek?",
     "deleteRequestDescription": "Tohle nejde vrátit.",
-    "attachmentTooLarge": "Každý soubor musí mít méně než 20 MB",
+    "attachmentTooLarge": "Každý soubor musí mít méně než 50 MB",
     "deleteCommentA11y": "Odstranit komentář",
     "sendCommentA11y": "Odeslat komentář",
     "requestOptions": "Možnosti žádosti"
@@ -3716,7 +3716,14 @@
     "title": "Zprávy",
     "searchConversations": "Hledat konverzace...",
     "failedToLoad": "Načtení konverzací selhalo",
-    "tryAgain": "Zkusit znovu"
+    "tryAgain": "Zkusit znovu",
+    "lockedTitle": "Odemkni a přečti si zprávy",
+    "lockedBody": "Váš chat s uživatelem {{name}} je šifrován od začátku do konce. Odemkni peněženku na tomto zařízení a otevři ji.",
+    "lockedUnlock": "Odemknout peněženku",
+    "lockedTryAgain": "Zkusit znovu",
+    "lockedPrivate": "Pouze vy si je můžete přečíst",
+    "undecryptableRun_one": "Zprávu {{count}} nelze na tomto zařízení otevřít",
+    "undecryptableRun_other": "Zprávy {{count}} nelze na tomto zařízení otevřít"
   },
   "music": {
     "chartOrder": "Pořadí zvukových grafů",
@@ -4652,7 +4659,7 @@
     "subtitle": "Hlasujte o návrzích, které utvářejí platformu",
     "loadFailed": "Návrhy se nepodařilo načíst",
     "forLabel": "Pro",
-    "againstLabel": "Dožádaný stát",
+    "againstLabel": "Proti",
     "discussion": {
       "title": "Diskuze",
       "intro": "Před hlasováním se zeptejte na navazující otázky nebo diskutujte o návrhu.",

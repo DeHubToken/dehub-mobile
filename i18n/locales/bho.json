@@ -4504,7 +4504,7 @@
     "edit": "संपादित करीं",
     "deleteRequestTitle": "ई अनुरोध मिटावल जाव?",
     "deleteRequestDescription": "ई वापस ना हो सकी।",
-    "attachmentTooLarge": "हर फाइल 20MB से कम होखे के चाहीं",
+    "attachmentTooLarge": "हर फाइल 50MB से कम होखे के चाहीं",
     "deleteCommentA11y": "टिप्पणी हटावल गइल",
     "sendCommentA11y": "आपन टिप्पणी भेजीं",
     "requestOptions": "संसोधन के विकल्प"
@@ -4587,7 +4587,11 @@
     "title": "संदेस",
     "searchConversations": "बातचीत खोजीं...",
     "failedToLoad": "बातचीत लोड नइखे भइल",
-    "tryAgain": "फिर से कोशिश करीं"
+    "tryAgain": "फिर से कोशिश करीं",
+    "lockedTitle": "आपन सन्देश पढे खातिर क्लिक करीं",
+    "lockedUnlock": "खाली करें वॉलेट",
+    "lockedTryAgain": "कृपया उ के सक्षम करीं आ फिर से",
+    "lockedPrivate": "तोहरा के देखिल, बस ई कमी बा"
   },
   "music": {
     "chartOrder": "ऑडियो ऑर्डर समायोजित करें",
@@ -5587,8 +5591,8 @@
     "noActiveNow": "अभी कवनो सक्रिय प्रस्ताव नइखे",
     "subtitle": "ओह प्रस्ताव पर वोट दीं जे प्लेटफॉर्म के आकार देला",
     "loadFailed": "प्रस्ताव लोड ना हो पावल",
-    "forLabel": "खातिर",
-    "againstLabel": "खिलाफ हो रहे",
+    "forLabel": "पक्ष में",
+    "againstLabel": "विरोध में",
     "discussion": {
       "title": "बहस के समय रहे",
       "intro": "चर्चा वोट देवे से पहिले एगो सवाल पूछीं या फिर आपन विचार रखे के कोशिश करीं ।",

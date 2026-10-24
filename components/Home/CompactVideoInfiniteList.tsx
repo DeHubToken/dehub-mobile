@@ -25,6 +25,7 @@ import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import { getUserVideos, getUserLiveVideos, getLikedNFTs } from "../../services/user.service";
 import { GetNFTsResult } from "../../services/nft.service";
 import ProfileEmptyState from "../Profile/ProfileEmptyState";
+import { isTabListFresh, readTabList, writeTabList } from "../../libs/tab-list-cache";
 
 interface CompactVideoInfiniteListProps {
   address: string; // user address to fetch videos for
@@ -79,10 +80,12 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   onBeforeNavigate,
 }) => {
   const { t: _copy } = _useCopy();
-  const [items, setItems] = useState<VideoItem[]>([]);
-  const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const cacheKey = JSON.stringify([variant, address, pageSize, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked]);
+  const cached = useMemo(() => readTabList<VideoItem>(cacheKey), [cacheKey]);
+  const [items, setItems] = useState<VideoItem[]>(() => cached?.items ?? []);
+  const [page, setPage] = useState(() => cached?.page ?? 0);
+  const [hasMore, setHasMore] = useState(() => (cached ? !cached.end : true));
+  const [loading, setLoading] = useState(() => !cached);
   const [refreshing, setRefreshing] = useState(false);
   const loadingRef = useRef(false);
 
@@ -138,8 +141,22 @@ const CompactVideoInfiniteList: React.FC<CompactVideoInfiniteListProps> = ({
   );
 
   useEffect(() => {
+    // Back on a tab it showed a moment ago: keep that, no spinner, no refetch.
+    const hit = readTabList<VideoItem>(cacheKey);
+    if (hit && isTabListFresh(hit)) {
+      setItems(hit.items);
+      setPage(hit.page);
+      setHasMore(!hit.end);
+      setLoading(false);
+      return;
+    }
     loadPage(0, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadPage]);
+
+  useEffect(() => {
+    if (!loading && items.length > 0) writeTabList(cacheKey, items, page, !hasMore);
+  }, [cacheKey, items, page, hasMore, loading]);
 
   const onEndReached = useCallback(() => {
     if (!hasMore || loadingRef.current) return;

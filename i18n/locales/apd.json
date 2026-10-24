@@ -4373,7 +4373,7 @@
     "edit": "عدّل",
     "deleteRequestTitle": "تمسح الطلب دا؟",
     "deleteRequestDescription": "دا ما بيرجع.",
-    "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB",
+    "attachmentTooLarge": "كل ملف لازم يكون أقل من 50MB",
     "deleteCommentA11y": "امسح التعليق",
     "sendCommentA11y": "أرسل تعليق",
     "requestOptions": "خيارات الطلب"
@@ -4456,7 +4456,14 @@
     "title": "الرسايل",
     "searchConversations": "ابحث في المحادثات...",
     "failedToLoad": "ما قدرنا نحمّل المحادثات",
-    "tryAgain": "حاول تاني"
+    "tryAgain": "حاول تاني",
+    "lockedTitle": "افتح عشان تقرأ رسائلك",
+    "lockedBody": "الدردشة مع {{name}} مشفرة من الطرف للطرف. افتح محفظتك على الجهاز ده عشان تفتحها.",
+    "lockedUnlock": "افتح المحفظة",
+    "lockedTryAgain": "حاول تاني",
+    "lockedPrivate": "بس إنت اللي تقدر تقراها",
+    "undecryptableRun_one": "ما ممكن تفتح رسالة {{count}} على الجهاز ده",
+    "undecryptableRun_other": "ما ممكن تفتح رسائل {{count}} على الجهاز ده"
   },
   "music": {
     "chartOrder": "ترتيب شارت الأغاني",
@@ -5436,8 +5443,8 @@
     "noActiveNow": "مافي مقترحات نشطة هسي",
     "subtitle": "صوّت على المقترحات البتشكل المنصة",
     "loadFailed": "ما قدرنا نحمّل المقترحات",
-    "forLabel": "لـ",
-    "againstLabel": "ضد",
+    "forLabel": "مؤيد",
+    "againstLabel": "معارض",
     "discussion": {
       "title": "مناقشة",
       "intro": "اسأل أسئلة متابعة أو ناقش الاقتراح قبل أن تصوت.",

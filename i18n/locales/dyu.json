@@ -4548,7 +4548,7 @@
     "edit": "Yɛlɛma",
     "deleteRequestTitle": "Nin ɲinini jɔsi wa?",
     "deleteRequestDescription": "Nin tɛ se ka segin.",
-    "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 20MB ye",
+    "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 50MB ye",
     "deleteCommentA11y": "Ka kuma dɔ bɔ",
     "sendCommentA11y": "Ka kuma dɔ ci",
     "requestOptions": "Ɲiningaliw"
@@ -4631,7 +4631,13 @@
     "title": "Cikanw",
     "searchConversations": "Barow ɲini...",
     "failedToLoad": "Barow ma se ka na",
-    "tryAgain": "A kɛ tuguni"
+    "tryAgain": "A kɛ tuguni",
+    "lockedTitle": "Ka to ka i ka sɛbɛw kalan",
+    "lockedBody": "I ka kumaɲɔgɔnya ni {{name}} ye sɛbɛnin ye. I ka wari bila o masini kan walisa k'a yɛlɛ.",
+    "lockedUnlock": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
+    "lockedPrivate": "I kelen lo be se k'u kalan",
+    "undecryptableRun_one": "{{count}} message tɛ se ka yɛlɛ nin masini kan",
+    "undecryptableRun_other": "{{count}} message tɛ se ka yɛlɛ nin masini kan"
   },
   "music": {
     "likeStation": "Station kan",
@@ -5629,8 +5635,8 @@
     "noActiveNow": "Laɲini baarala si tɛ yen sisan",
     "subtitle": "Kalata laɲiniw kan minnu bɛ plateforme labɛn",
     "loadFailed": "Laɲiniw ma se ka lajɛ",
-    "forLabel": "Mun na do?",
-    "againstLabel": "O kama, a ka ɲi ka",
+    "forLabel": "Sɔn",
+    "againstLabel": "Ban",
     "discussion": {
       "title": "Ɲiningaliw",
       "intro": "A ka fisa fana ka baro kɛ n'i ma vote.",

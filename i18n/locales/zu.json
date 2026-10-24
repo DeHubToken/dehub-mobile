@@ -4586,7 +4586,7 @@
     "edit": "Hlela",
     "deleteRequestTitle": "Susa lesi sicelo?",
     "deleteRequestDescription": "Lokhu ngeke kuhlehliswe.",
-    "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-20MB",
+    "attachmentTooLarge": "Ifayela ngalinye kufanele libe ngaphansi kuka-50MB",
     "deleteCommentA11y": "Susa ukuphawula",
     "sendCommentA11y": "Thumela ukuphawula",
     "requestOptions": "Cela ongakhetha kukho"
@@ -4669,7 +4669,14 @@
     "title": "Layezo",
     "searchConversations": "Sesha izingxoxo...",
     "failedToLoad": "Kuhlulekile ukulayisha izingxoxo",
-    "tryAgain": "Zama futhi"
+    "tryAgain": "Zama futhi",
+    "lockedTitle": "Vula ukuze ufunde imilayezo yakho",
+    "lockedBody": "Ingxoxo yakho no- {{name}} ibethelwe ekupheleni kokuphela. Vula isikhwama sakho kule divayisi ukuze usivule.",
+    "lockedUnlock": "Vula isikhwama semali",
+    "lockedTryAgain": "Zama futhi",
+    "lockedPrivate": "Nguwe kuphela ongazifunda",
+    "undecryptableRun_one": "{{count}} umyalezo awukwazi ukuvulwa kule divayisi",
+    "undecryptableRun_other": "{{count}} imiyalezo ayikwazi ukuvulwa kule divayisi"
   },
   "music": {
     "likeStation": "Thanda isiteshi",
@@ -5680,8 +5687,8 @@
     "noActiveNow": "Azikho iziphakamiso ezisebenzayo njengamanje",
     "subtitle": "Vota eziphakamisweni ezakha inkundla",
     "loadFailed": "Ayikwazanga ukulayisha iziphakamiso",
-    "forLabel": "recurrpage",
-    "againstLabel": "Ngokumelene",
+    "forLabel": "Ngiyavuma",
+    "againstLabel": "Angivumi",
     "discussion": {
       "title": "Ingxoxo",
       "intro": "Buza imibuzo yokulandelela noma uxoxe ngesiphakamiso ngaphambi kokuba uvote.",

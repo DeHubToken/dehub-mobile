@@ -4606,7 +4606,7 @@
     "edit": "Allichay",
     "deleteRequestTitle": "¿Kay mañakuyta pichanki?",
     "deleteRequestDescription": "Kayqa mana kutichiy atinchu.",
-    "attachmentTooLarge": "Sapa qillqa 20MB-manta pisi kanan",
+    "attachmentTooLarge": "Sapa qillqa 50MB-manta pisi kanan",
     "deleteCommentA11y": "Comentariota chinkachiy",
     "sendCommentA11y": "Comentariota apachiy",
     "requestOptions": "Akllanakunata mañakuy"
@@ -4689,7 +4689,14 @@
     "title": "Willakuy",
     "searchConversations": "Rimanakuykuna maskay...",
     "failedToLoad": "Mana rimanakuykunata churayta atirqanchu",
-    "tryAgain": "Musuqmanta ruway"
+    "tryAgain": "Musuqmanta ruway",
+    "lockedTitle": "Willakuyniykikunata ñawinchanaykipaq kichay",
+    "lockedBody": "{{name}} kaqwan rimanakuyniykiqa tukukuymanta tukukuykama chifrasqa kachkan. Kay dispositivopi billeteraykita kichay kichanaykipaq.",
+    "lockedUnlock": "Billetera kichay",
+    "lockedTryAgain": "Hukmanta kallpachakuy",
+    "lockedPrivate": "Chaykunataqa qamllam ñawinchayta atinki",
+    "undecryptableRun_one": "{{count}} willakuyqa manam kay aparatopi kichayta atikunmanchu",
+    "undecryptableRun_other": "{{count}} willakuykunataqa manam kay aparatopi kichayta atikunmanchu"
   },
   "music": {
     "likeStation": "Kuyay kitita",
@@ -5699,8 +5706,8 @@
     "noActiveNow": "Kunanqa mana kawsaq propuestakuna kanchu",
     "subtitle": "Plataformata ruwaq propuestakunapi votay",
     "loadFailed": "Propuestakuna mana chayamurqanchu",
-    "forLabel": "napaq...",
-    "againstLabel": "Contrapi",
+    "forLabel": "Arí",
+    "againstLabel": "Mana",
     "discussion": {
       "title": "Rimanakuy",
       "intro": "Qatipanapaq tapukuykunata ruway utaq manaraq votachkaspa chay propuestamanta rimanakuy.",

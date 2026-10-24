@@ -3633,7 +3633,7 @@
     "edit": "Rediger",
     "deleteRequestTitle": "Slet denne anmodning?",
     "deleteRequestDescription": "Det kan ikke fortrydes.",
-    "attachmentTooLarge": "Hver fil skal være under 20 MB",
+    "attachmentTooLarge": "Hver fil skal være under 50 MB",
     "deleteCommentA11y": "Slet kommentar",
     "sendCommentA11y": "Send besked",
     "requestOptions": "Anmodningsmuligheder"
@@ -3716,7 +3716,14 @@
     "title": "Beskeder",
     "searchConversations": "Søg samtaler...",
     "failedToLoad": "Kunne ikke indlæse samtaler",
-    "tryAgain": "Prøv igen"
+    "tryAgain": "Prøv igen",
+    "lockedTitle": "Lås op for at læse dine beskeder",
+    "lockedBody": "Din chat med {{name}} er end-to-end-krypteret. Lås din tegnebog op på denne enhed for at åbne den.",
+    "lockedUnlock": "Lås tegnebog op",
+    "lockedTryAgain": "Prøv igen",
+    "lockedPrivate": "Kun du kan læse dem",
+    "undecryptableRun_one": "Meddelelsen {{count}} kan ikke åbnes på denne enhed",
+    "undecryptableRun_other": "{{count}}-meddelelser kan ikke åbnes på denne enhed"
   },
   "music": {
     "chartOrder": "Lydkortrækkefølge",
@@ -4651,8 +4658,8 @@
     "noActiveNow": "Ingen aktive forslag lige nu",
     "subtitle": "Stem om forslag, der former platformen",
     "loadFailed": "Kunne ikke indlæse forslag",
-    "forLabel": "Til",
-    "againstLabel": "Mod",
+    "forLabel": "For",
+    "againstLabel": "Imod",
     "discussion": {
       "title": "Diskussion",
       "intro": "Stil opfølgende spørgsmål eller diskuter forslaget, før du stemmer.",
