@@ -51,7 +51,7 @@ const AVATAR_SIZE = 28;
 function UnreadBadge({ count }: { count: number }) {
   if (count <= 0) return null;
   return (
-    <View pointerEvents="none" style={styles.badge}>
+    <View className="dark-surface" pointerEvents="none" style={styles.badge}>
       <Text style={styles.badgeText}>{count > 99 ? "99+" : count}</Text>
     </View>
   );

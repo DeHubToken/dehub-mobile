@@ -14,6 +14,17 @@ const useSkin = (theme: Parameters<typeof getThemeSkin>[0]) => {
 };
 afterEach(() => setControlMaterial(null));
 
+it('preserves marked media controls instead of putting white labels on a pale fill', () => {
+  setControlMaterial({ surface: { backgroundColor: '#F4F4F5', borderRadius: 12 }, foreground: '#FFFFFF' });
+  for (const own of [
+    { className: 'px-3 dark-surface bg-black/60' },
+    { className: 'dark-surface', style: { backgroundColor: 'rgba(0,0,0,0.5)' } },
+  ]) {
+    const props = { ...own, onPress: jest.fn(), children: createElement('Text', { style: { color: '#fff' } }, 'Shop') };
+    expect(controlProps(props)).toBe(props);
+  }
+});
+
 it('keeps existing theme cards and selected navigation surfaces intact', () => {
   const skin = useSkin('hazy');
   for (const surface of [skin.card, skin.strip, skin.stripActive]) {
