@@ -91,6 +91,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
   const [loginViewportHeight, setLoginViewportHeight] = useState<number>();
+  const [loginFormHeight, setLoginFormHeight] = useState(244);
+  const [loginLegalHeight, setLoginLegalHeight] = useState(36);
   // Email/Phone expand a field mid-stack and autoFocus it; without this the
   // keyboard opens over the field that was just revealed.
   const { scrollViewProps, scrollIntoView } = useScrollFieldIntoView();
@@ -785,7 +787,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         >
           {authStep === "main" ? (
             <View style={{ marginBottom: 24 }}>
-              <LoginShortsStack viewportHeight={loginViewportHeight} />
+              <LoginShortsStack viewportHeight={loginViewportHeight} reservedHeight={loginFormHeight + loginLegalHeight + 80} />
             </View>
           ) : null}
 
@@ -796,6 +798,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Sign-in options: Email, Phone, Google, Apple, and Connect Wallet
               are all live. */}
           {authStep === "main" ? (
+            <View onLayout={(event) => setLoginFormHeight(event.nativeEvent.layout.height)}>
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
@@ -813,6 +816,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
               onFieldExpand={scrollIntoView}
               layout="stack"
             />
+            </View>
           ) : authStep === "email-code" ? (
             <EmailCodeEntry
               email={pendingEmail}
@@ -872,7 +876,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
 
           {/* Terms and Privacy */}
-          <View style={{ marginTop: 24 }}>
+          <View style={{ marginTop: 24 }} onLayout={(event) => setLoginLegalHeight(event.nativeEvent.layout.height)}>
             <Text style={[authText.caption, { textAlign: "center" }]}>
               {/* The links travel with the sentence so languages that reorder
                   the terms and the policy still read correctly. */}
