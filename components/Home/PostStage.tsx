@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
@@ -39,14 +39,15 @@ export function StageGlassSquare({ icon, label, onPress, plain, size = STAGE_SQU
   const radius = skin?.square ? 0 : STAGE_SQUARE_RADIUS;
   const ios = Platform.OS === "ios" && !plain;
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
+      activeOpacity={0.7}
       hitSlop={6}
       accessibilityRole="button"
       accessibilityLabel={label}
-      style={({ pressed }) => [
+      style={[
         styles.square,
-        { width: size, height: size, borderRadius: radius, opacity: pressed ? 0.7 : 1 },
+        { width: size, height: size, borderRadius: radius },
         plain
           ? { backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.10)" }
           : ios
@@ -58,7 +59,7 @@ export function StageGlassSquare({ icon, label, onPress, plain, size = STAGE_SQU
       <View style={flip && I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}>
         <Icon name={icon} size={20} color="#FFFFFF" />
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
@@ -182,13 +183,14 @@ export const PostStageCreator = memo(function PostStageCreator({
         </View>
       </Pressable>
       {showFollow ? (
-        <Pressable
+        <TouchableOpacity
           onPress={onFollow}
+          activeOpacity={0.8}
           accessibilityRole="button"
           accessibilityState={{ selected: followed }}
-          style={({ pressed }) => [
+          style={[
             styles.follow,
-            { borderRadius: skin?.square ? 0 : 10, opacity: pressed ? 0.8 : 1 },
+            { borderRadius: skin?.square ? 0 : 10 },
             followed ? styles.followOn : styles.followOff,
           ]}
         >
@@ -198,7 +200,7 @@ export const PostStageCreator = memo(function PostStageCreator({
           <Text style={[styles.followText, { color: followed ? "#F4F4F5" : "#09090B" }]}>
             {pending ? t("follow.requested") : following ? t("follow.following") : t("follow.follow")}
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       ) : null}
       {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={34} /> : null}
     </View>
