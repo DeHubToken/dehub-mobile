@@ -35,7 +35,6 @@ import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
-import GlassModal from "../ui/GlassModal";
 import Avatar from "../common/Avatar";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { toastError, toastSuccess } from "../../libs/toast";
@@ -100,6 +99,7 @@ const StoreForm: React.FC<{
   const [avatarUrl, setAvatarUrl] = useState(existing?.avatar_url ?? "");
   const [bannerUrl, setBannerUrl] = useState(existing?.banner_url ?? "");
   const { width: windowWidth } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const [uploading, setUploading] = useState<"avatar" | "banner" | null>(null);
 
   // Re-seed when the sheet opens for a different store
@@ -636,6 +636,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 }) => {
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
   const rowStyle = styles.row;
   const {
     data: stores = [],
@@ -685,9 +686,16 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
 
   // A sheet, not an Alert: Android shows at most three Alert buttons, so the
   // fourth (and with it the way to dismiss) never appeared there.
+  // The listing stays set while the sheet slides away, so its title does not
+  // blank mid-animation; `menuOpen` is what shows it.
   const [menuListing, setMenuListing] = useState<StoreListing | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pendingEdit = useRef<StoreListing | null>(null);
-  const listingMenu = useCallback((l: StoreListing) => setMenuListing(l), []);
+  const listingMenu = useCallback((l: StoreListing) => {
+    setMenuListing(l);
+    setMenuOpen(true);
+  }, []);
+  const closeListingMenu = useCallback(() => setMenuOpen(false), []);
   const openPendingEdit = useCallback(() => {
     const l = pendingEdit.current;
     pendingEdit.current = null;
@@ -698,7 +706,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   const runListingAction = useCallback(
     (action: "edit" | "archive" | "sold") => {
       const l = menuListing;
-      setMenuListing(null);
+      setMenuOpen(false);
       if (!l) return;
       if (action === "archive") return archive(l.id);
       if (action === "sold") return markSold(l.id);
@@ -982,38 +990,46 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           }}
         />
       )}
-      <GlassModal
-        visible={!!menuListing}
-        onClose={() => setMenuListing(null)}
+      <Modal
+        visible={menuOpen}
+        animationType="slide"
+        transparent
+        onRequestClose={closeListingMenu}
         onDismiss={openPendingEdit}
-        presentation="bottom"
       >
-        <View style={styles.menuSheet}>
-          <Text style={styles.menuTitle} numberOfLines={2}>
-            {menuListing?.title}
-          </Text>
-          {(
-            [
-              { action: "edit", icon: "Pencil", label: t("stores.edit") },
-              { action: "archive", icon: "Archive", label: t("stores.archive") },
-              { action: "sold", icon: "CircleCheck", label: t("stores.markSold") },
-            ] as const
-          ).map((item) => (
-            <Pressable
-              key={item.action}
-              style={styles.menuRow}
-              onPress={() => runListingAction(item.action)}
-              accessibilityRole="button"
-            >
-              <Icon name={item.icon} size={17} color="#D4D4D8" />
-              <Text style={styles.menuText}>{item.label}</Text>
+        <View style={styles.backdrop}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={closeListingMenu}
+            accessibilityLabel={t("common.close")}
+          />
+          <View style={[styles.sheet, { paddingBottom: insets.bottom + 8 }]}>
+            <Text style={styles.menuTitle} numberOfLines={2}>
+              {menuListing?.title}
+            </Text>
+            {(
+              [
+                { action: "edit", icon: "Pencil", label: t("stores.edit") },
+                { action: "archive", icon: "Archive", label: t("stores.archive") },
+                { action: "sold", icon: "CircleCheck", label: t("stores.markSold") },
+              ] as const
+            ).map((item) => (
+              <Pressable
+                key={item.action}
+                style={styles.menuRow}
+                onPress={() => runListingAction(item.action)}
+                accessibilityRole="button"
+              >
+                <Icon name={item.icon} size={17} color="#D4D4D8" />
+                <Text style={styles.menuText}>{item.label}</Text>
+              </Pressable>
+            ))}
+            <Pressable style={[styles.menuRow, styles.menuCancel]} onPress={closeListingMenu} accessibilityRole="button">
+              <Text style={[styles.menuText, styles.menuCancelText]}>{t("common.cancel")}</Text>
             </Pressable>
-          ))}
-          <Pressable style={[styles.menuRow, styles.menuCancel]} onPress={() => setMenuListing(null)} accessibilityRole="button">
-            <Text style={[styles.menuText, styles.menuCancelText]}>{t("common.cancel")}</Text>
-          </Pressable>
+          </View>
         </View>
-      </GlassModal>
+      </Modal>
     </ScrollView>
   );
 };
@@ -1066,7 +1082,6 @@ const styles = StyleSheet.create({
   rowTitle: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
   rowMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 3, textTransform: "capitalize" },
 
-  menuSheet: { paddingHorizontal: 18, paddingTop: 16, paddingBottom: 8 },
   menuTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 6 },
   menuRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 13 },
   menuText: { color: "#FFFFFF", fontSize: 15, fontWeight: "500" },
