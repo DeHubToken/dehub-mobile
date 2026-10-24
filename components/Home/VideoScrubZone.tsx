@@ -42,9 +42,10 @@ type Props = {
   line?: React.ReactNode;
   children: React.ReactNode;
   plainStrip?: boolean;
+  stripHeight?: number;
 };
 
-export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children, plainStrip = false }: Props) {
+export function VideoScrubZone({ enabled, opacity, showControls, label, progress, onStart, onScrub, onCommit, onCancel, line, children, plainStrip = false, stripHeight = VIDEO_CONTROL_STRIP_HEIGHT }: Props) {
   const boundary = useContext(FeedScrubContext);
   // System Light: the strip under the picture belongs to the page (web parity),
   // paper with ink controls. Everything on the picture itself stays white.
@@ -82,7 +83,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
           ref={boundary?.trackRef}
           collapsable={false}
           testID="video-scrub-zone"
-          style={styles.zone}
+          style={[styles.zone, plainStrip && { height: Math.max(SCRUB_HIT_HEIGHT, stripHeight) }]}
           onLayout={event => { width.current = event.nativeEvent.layout.width || 1; onLayout(event); }}
           onTouchStart={event => {
             event.stopPropagation();
@@ -97,7 +98,7 @@ export function VideoScrubZone({ enabled, opacity, showControls, label, progress
           onTouchEnd={event => event.stopPropagation()}
           onTouchCancel={event => { event.stopPropagation(); scrubbed.current = true; }}
         >
-          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={[styles.stripSurface, paper && styles.paperSurface]} />}
+          {plainStrip && <View testID="video-control-strip" pointerEvents="none" style={[styles.stripSurface, { height: stripHeight }, paper && styles.paperSurface]} />}
           <Pressable
             testID="video-scrub-tap"
             style={StyleSheet.absoluteFill}
