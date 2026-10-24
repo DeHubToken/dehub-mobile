@@ -993,7 +993,8 @@
     "themeColorBrand": "برانڈ",
     "themeColorBrandDesc": "تہار پروفائل تصویر کے رنگ استعمال کرو",
     "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرے کے واسطے پروفائل تصویر جوڑو",
-    "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل"
+    "themeColorBrandFailed": "تہار پروفائل تصویر سے رنگ پڑھل نہیں جا سکل",
+    "shortsSaveFailed": "ڕێزێکی بەدەست نەبێت بۆ ڕێگەھێنانەوەی Shorts"
   },
   "common": {
     "refresh": "تازہ کرو",
@@ -2054,7 +2055,11 @@
     "likeStation": "स्टेशन पसंद करें",
     "unlikeStation": "स्टेशन नापसंद करें",
     "shareStation": "स्टेशन शेयर करें",
-    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ"
+    "listeningTo": "DeHub पर {{name}} सुन रहा हूँ",
+    "listeningCount_one": "{{count}} listening",
+    "listeningCount_other": "{{count}} listening",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -2751,7 +2756,15 @@
     "sendAnyWallet": "कोई भी किसी भी वॉलेट या एक्सचेंज से डीहब टोकन यहां भेज सकता है। बेस और বিএনबी पर ट्रांसफर आपके शेयर में गिने जाते हैं।",
     "yourContribution": "{{amount}} टोकन का योगदान",
     "pooledTotal": "{{amount}} टोकन पूल किए गए",
-    "contributeIntro": "अपने वॉलेट से खजाने में DeHub टोकन भेजें। आप जितना अधिक टोकन जोड़ेंगे, पूल में आपकी हिस्सेदारी उतनी ही बढ़ेगी, और जब DAO यह तय करेगा कि इसे कैसे खर्च किया जाए तो आपके वोट का वजन आपकी हिस्सेदारी से तय होगा।"
+    "contributeIntro": "अपने वॉलेट से खजाने में DeHub टोकन भेजें। आप जितना अधिक टोकन जोड़ेंगे, पूल में आपकी हिस्सेदारी उतनी ही बढ़ेगी, और जब DAO यह तय करेगा कि इसे कैसे खर्च किया जाए तो आपके वोट का वजन आपकी हिस्सेदारी से तय होगा।",
+    "status": {
+      "rejected": "Rejected",
+      "open": "Open",
+      "expired": "Expired",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "accepted": "Accepted"
+    }
   },
   "governance": {
     "title": "حکمرانی",
@@ -9794,5 +9807,24 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Pehle khoj karo",
     "codeNote": "Hum tumhe ek code bhejenge, password ki jarurat nai."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "replay",
+    "stage": "stage",
+    "upcoming": "upcoming"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Thanks!",
+    "20d4214b9d4b": "View shipped requests",
+    "2971f9103f78": "شكراً لجهودك في تحسين DeHub — ما طلبتَهُ الآن متوفر الآن:",
+    "8f3dc69e83c4": "پەیامی تان پەیمانگەیی بەردەوام بووە!",
+    "905392fbed15": "شكراً على مساعدتك في تحسين DeHub — {{value1}} من الأشياء التي طلبتها الآن تعمل:",
+    "bdd4f5015e96": "Close shipped request notification",
+    "da4c7c208cf4": "Check it out"
   }
 }

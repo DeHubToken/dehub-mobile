@@ -992,7 +992,8 @@
     "themeColorBrand": "برانڈ",
     "themeColorBrandDesc": "اپݨی پروفائل تصویر دے رنگ ورتو",
     "themeColorBrandNoAvatar": "برانڈ رنگ ورتݨ کیتے پروفائل تصویر ولاؤ",
-    "themeColorBrandFailed": "اپݨی پروفائل تصویر کنوں رنگ پڑھے کائنی ڳئے"
+    "themeColorBrandFailed": "اپݨی پروفائل تصویر کنوں رنگ پڑھے کائنی ڳئے",
+    "shortsSaveFailed": "ڈیجیٹل شاٹس کی ترجیحات نہیں محفوظ ہوسکے"
   },
   "common": {
     "refresh": "ري-فريش ڪريو",
@@ -2055,7 +2056,10 @@
     "likeStation": "اسٹیشن پسند کریں",
     "unlikeStation": "پسند ہٹائیں",
     "shareStation": "اسٹیشن شیئر کریں",
-    "listeningTo": "DeHub پر {{name}} سن رہا ہوں"
+    "listeningTo": "DeHub پر {{name}} سن رہا ہوں",
+    "listeningCount_one": "{{count}} سنیں دے رہے ہے",
+    "listeningCount_other": "{{count}} سنیں دے رہے ہے",
+    "viewsCount_one": "{{views}} دھونڈنا"
   },
   "notFound": {
     "title": "صفحہ کائنی ملیا",
@@ -2738,7 +2742,11 @@
     "sentDesc": "{{amount}} ٹوکن خزانے وچ {{chain}} کوں گھلے گئن۔ بلاک انڈیکس تھیونڑ تے تہاڈا حصہ اپ ڈیٹ تھیسی۔",
     "sendAnyWallet": "کوئی وی بندہ DeHub ٹوکن ایتھو کسے وی والیٹ یا ایکسچینج توں گھل سگدا اے۔ Base تے BNB تے ٹرانسفر تہاڈے حصے وچ شمار تھیسن۔",
     "yourContribution": "{{amount}} ٹوکن gópہ",
-    "pooledTotal": "{{amount}} ٹوکن جمع"
+    "pooledTotal": "{{amount}} ٹوکن جمع",
+    "status": {
+      "expired": "مفتہ",
+      "accepted": "ہم نے آپ کو قبول کر لیا ہے"
+    }
   },
   "governance": {
     "title": "حکمرانی",
@@ -9724,5 +9732,20 @@
     "fingerprint": "فنگر پرنٹ",
     "exploreFirst": "پہلے ایکسپلور کرو",
     "codeNote": "اسی تُہانوں ای میل نال کوڈ بھیج دے ہاں، پاس ورڈ دی لوڑ نئیں۔"
+  },
+  "stageCover": {
+    "admitOne": "ادمیٹ ایک",
+    "live": "زندہ رہو",
+    "minutes": "{{minutes}} مین",
+    "recorded": "رکورد کیا گیا",
+    "stage": "ستیج",
+    "upcoming": "آئندہ"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "شکرہ!",
+    "2971f9103f78": "شکرہ کرکے ڈےہاب کو بہتر بنانے میں مدد کرنے پر، آپ نے مانگے ہوئے ایک چیز اب چلنے لگی ہے:",
+    "8f3dc69e83c4": "آپ کی فیڈبیک شپ ہو گئی!",
+    "905392fbed15": "شکرہ کرکے ڈےہاب کو بہتر بنانے میں مدد کرنے پر، آپ نے مانگے ہوئے {{value1}} باتیں اب چل رہی ہیں۔",
+    "da4c7c208cf4": "چیکھ لیں گے"
   }
 }

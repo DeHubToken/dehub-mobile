@@ -997,7 +997,8 @@
     "themeColorBrand": "Značka",
     "themeColorBrandDesc": "Použiť farby tvojej profilovej fotky",
     "themeColorBrandNoAvatar": "Pridaj profilovú fotku, aby si mohol použiť farby značky",
-    "themeColorBrandFailed": "Nepodarilo sa načítať farby z tvojej profilovej fotky"
+    "themeColorBrandFailed": "Nepodarilo sa načítať farby z tvojej profilovej fotky",
+    "shortsSaveFailed": "Nepodarilo sa uložiť preferenciu Shorts"
   },
   "common": {
     "refresh": "Obnoviť",
@@ -2121,7 +2122,11 @@
     "likeStation": "Páči sa mi stanica",
     "unlikeStation": "Už sa mi nepáči",
     "shareStation": "Zdieľať stanicu",
-    "listeningTo": "Počúvam {{name}} na DeHub"
+    "listeningTo": "Počúvam {{name}} na DeHub",
+    "listeningCount_one": "{{count}} počúvanie",
+    "listeningCount_other": "{{count}} počúvanie",
+    "viewsCount_one": "Zobrazenie {{views}}",
+    "viewsCount_other": "Zobrazenia: {{views}}"
   },
   "notFound": {
     "title": "Stránka nenájdená",
@@ -2834,7 +2839,15 @@
     "sentDesc": "{{amount}} tokenov odoslaných do pokladnice dňa {{chain}}. Váš podiel sa aktualizuje po indexovaní bloku.",
     "sendAnyWallet": "Ktokoľvek môže poslať DeHub tokeny sem z akejkoľvek peňaženky alebo burzy. Prevody na Base a BNB sa započítavajú do vášho podielu.",
     "yourContribution": "{{amount}} tokenov prispelo",
-    "pooledTotal": "{{amount}} tokenov v pooloch"
+    "pooledTotal": "{{amount}} tokenov v pooloch",
+    "status": {
+      "rejected": "Zamietnuté",
+      "open": "Otvoriť",
+      "expired": "Platnosť vypršala",
+      "completed": "Dokončené",
+      "cancelled": "Zrušené",
+      "accepted": "Prijaté"
+    }
   },
   "governance": {
     "title": "Správa",
@@ -9982,5 +9995,24 @@
     "fingerprint": "Odtlačok prsta",
     "exploreFirst": "Najprv preskúmajte",
     "codeNote": "Pošleme vám e-mail s kódom, nie je potrebné žiadne heslo."
+  },
+  "stageCover": {
+    "admitOne": "PRIZNAŤ JEDEN",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "ZAZNAMENANÉ",
+    "replay": "prehrať",
+    "stage": "stupeň",
+    "upcoming": "nadchádzajúce"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Ďakujeme!",
+    "20d4214b9d4b": "Zobraziť odoslané žiadosti",
+    "2971f9103f78": "Ďakujeme, že ste pomohli zlepšiť DeHub — niečo, o čo ste požiadali, je teraz živé:",
+    "8f3dc69e83c4": "Vaša spätná väzba bola odoslaná!",
+    "905392fbed15": "Ďakujeme, že ste pomohli zlepšiť DeHub — {{value1}} veci, o ktoré ste požiadali, sú teraz v prevádzke:",
+    "bdd4f5015e96": "Zatvoriť upozornenie na odoslanú žiadosť",
+    "da4c7c208cf4": "Pozrite si to"
   }
 }

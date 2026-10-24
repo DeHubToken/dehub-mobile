@@ -993,7 +993,8 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "زيد صورة بروفايل حتى تستخدم ألوان البراند",
-    "themeColorBrandFailed": "ماكدرنا نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "ماكدرنا نقرا الألوان من صورة بروفايلك",
+    "shortsSaveFailed": "فشل في حفظ تفضيلات شورتس"
   },
   "common": {
     "refresh": "تحديث",
@@ -2055,7 +2056,11 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "listeningCount_one": "{{count}} مستمع",
+    "listeningCount_other": "{{count}} مستمع",
+    "viewsCount_one": "{{views}} مشاهدة",
+    "viewsCount_other": "{{views}} مشاهدات"
   },
   "notFound": {
     "title": "الصفحة مو موجودة",
@@ -2738,7 +2743,10 @@
     "sentDesc": "تم إرسال {{amount}} رمز للخزينة بتاريخ {{chain}}. حصتك تتحدث بعد فهرسة البلوك.",
     "sendAnyWallet": "أي شخص يمكنه إرسال رموز DeHub هنا من أي محفظة أو بورصة. التحويلات على Base و BNB تحتسب ضمن حصتك.",
     "yourContribution": "{{amount}} رمز مساهمة",
-    "pooledTotal": "{{amount}} رمز مجمعة"
+    "pooledTotal": "{{amount}} رمز مجمعة",
+    "status": {
+      "expired": "انتهى"
+    }
   },
   "governance": {
     "title": "الحوكمة",
@@ -9680,5 +9688,13 @@
     "fingerprint": "البصمة",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "نرسل لك كود على الإيميل، ما تحتاج كلمة سر."
+  },
+  "stageCover": {
+    "minutes": "{{minutes}} دقايق"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "شكرا!",
+    "2971f9103f78": "شكرا على مساعدتك في تحسين DeHub — ما طلبته الآن حيا:",
+    "905392fbed15": "شكرا على مساعدتك في تحسين DeHub — {{value1}} أشياء طلبتها الآن حيا:"
   }
 }

@@ -995,7 +995,8 @@
     "themeColorBrand": "Márka",
     "themeColorBrandDesc": "A profilképed színeinek használata",
     "themeColorBrandNoAvatar": "Adj hozzá profilképet a márkaszínek használatához",
-    "themeColorBrandFailed": "Nem sikerült színeket kiolvasni a profilképedből"
+    "themeColorBrandFailed": "Nem sikerült színeket kiolvasni a profilképedből",
+    "shortsSaveFailed": "Rövidnadrág-beállítás mentése sikertelen"
   },
   "common": {
     "refresh": "Frissítés",
@@ -2058,7 +2059,11 @@
     "likeStation": "Tetszik az állomás",
     "unlikeStation": "Már nem tetszik",
     "shareStation": "Állomás megosztása",
-    "listeningTo": "A(z) {{name}} állomást hallgatom a DeHubon"
+    "listeningTo": "A(z) {{name}} állomást hallgatom a DeHubon",
+    "listeningCount_one": "{{count}} odafigyelés",
+    "listeningCount_other": "{{count}} odafigyelés",
+    "viewsCount_one": "{{views}} nézet",
+    "viewsCount_other": "{{views}} megtekintés"
   },
   "notFound": {
     "title": "Az oldal nem található",
@@ -2751,7 +2756,15 @@
     "sentDesc": "{{amount}} tokent küldtek a kincstárba {{chain}}-án. A részesedésed frissül, amint a blokk indexelve lesz.",
     "sendAnyWallet": "Bárki küldhet DeHub tokeneket ide bármilyen tárcából vagy tőzsdéről. A Base és a BNB hálózatokon történő átutalások beleszámítanak a részesedésedbe.",
     "yourContribution": "{{amount}} token hozzájárulás",
-    "pooledTotal": "{{amount}} token lekötve"
+    "pooledTotal": "{{amount}} token lekötve",
+    "status": {
+      "rejected": "Elutasítva",
+      "open": "Megnyitás",
+      "expired": "Lejárt",
+      "completed": "Befejezve",
+      "cancelled": "Törölve",
+      "accepted": "Elfogadva"
+    }
   },
   "governance": {
     "title": "Irányítás",
@@ -5036,7 +5049,12 @@
     "interestedCount": "{{count}} érdeklődik",
     "loadFailed": "Az események betöltése sikertelen"
   },
-  "stats": {"chart": {"daily": "Látogatók naponta", "dailyHint": "egyedi látogatók naponta", "empty": "Ehhez az időszakhoz még nincs adat"},
+  "stats": {
+    "chart": {
+      "daily": "Látogatók naponta",
+      "dailyHint": "egyedi látogatók naponta",
+      "empty": "Ehhez az időszakhoz még nincs adat"
+    },
     "definitions": {
       "visitorsTerm": "Látogatók"
     },
@@ -9822,5 +9840,24 @@
     "fingerprint": "Ujjlenyomat",
     "exploreFirst": "Előbb nézz körül",
     "codeNote": "E-mailben küldünk egy kódot, jelszó nélkül."
+  },
+  "stageCover": {
+    "admitOne": "EGYET FOGADJ EL",
+    "live": "élő",
+    "minutes": "{{minutes}} perc",
+    "onAir": "LEVEGŐN",
+    "recorded": "RÖGZÍTVE",
+    "replay": "visszajátszás",
+    "stage": "színpad",
+    "upcoming": "közelgő"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Köszönjük!",
+    "20d4214b9d4b": "Kiszállított kérések megtekintése",
+    "2971f9103f78": "Köszönjük, hogy segítettél a DeHub jobbá tételében — amit kértél, mostantól elérhető:",
+    "8f3dc69e83c4": "Visszajelzése elküldve!",
+    "905392fbed15": "Köszönjük, hogy segítettél jobbá tenni a DeHubot — {{value1}} az általad kért dolgok mostantól elérhetők:",
+    "bdd4f5015e96": "Szállított kérés értesítés bezárása",
+    "da4c7c208cf4": "Nézd meg"
   }
 }

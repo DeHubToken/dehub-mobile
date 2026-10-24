@@ -993,7 +993,8 @@
     "themeColorBrand": "브랜드",
     "themeColorBrandDesc": "프로필 사진의 색상 사용",
     "themeColorBrandNoAvatar": "브랜드 색상을 쓰려면 프로필 사진을 추가하세요",
-    "themeColorBrandFailed": "프로필 사진에서 색상을 읽을 수 없습니다"
+    "themeColorBrandFailed": "프로필 사진에서 색상을 읽을 수 없습니다",
+    "shortsSaveFailed": "반바지 기본 설정을 저장하지 못했습니다"
   },
   "common": {
     "refresh": "새로고침",
@@ -2058,7 +2059,9 @@
     "likeStation": "스테이션 좋아요",
     "unlikeStation": "좋아요 취소",
     "shareStation": "스테이션 공유",
-    "listeningTo": "DeHub에서 {{name}} 듣는 중"
+    "listeningTo": "DeHub에서 {{name}} 듣는 중",
+    "viewsCount_one": "{{views}} 보기",
+    "viewsCount_other": "조회수 {{views}} 회"
   },
   "notFound": {
     "title": "페이지를 찾을 수 없음",
@@ -2751,7 +2754,15 @@
     "sendAnyWallet": "누구나 모든 지갑이나 거래소에서 DeHub 토큰을 여기에 보낼 수 있습니다. Base 및 BNB에서의 전송은 보유량에 포함됩니다.",
     "yourContribution": "기여된 토큰 {{amount}}개",
     "pooledTotal": "풀링된 토큰 {{amount}}개",
-    "sentDesc": "{{amount}} 토큰이 {{chain}} 에 재무부로 전송되었습니다. 블록이 인덱싱되면 공유가 업데이트됩니다."
+    "sentDesc": "{{amount}} 토큰이 {{chain}} 에 재무부로 전송되었습니다. 블록이 인덱싱되면 공유가 업데이트됩니다.",
+    "status": {
+      "rejected": "불합격됨",
+      "open": "열기",
+      "expired": "만료됨",
+      "completed": "완료됨",
+      "cancelled": "취소됨",
+      "accepted": "합격"
+    }
   },
   "governance": {
     "title": "거버넌스",
@@ -5085,7 +5096,12 @@
     "interestedCount": "{{count}}명 관심 있음",
     "loadFailed": "행사를 불러오지 못했습니다"
   },
-  "stats": {"chart": {"daily": "일별 방문자", "dailyHint": "일별 순 방문자", "empty": "이 기간의 데이터가 아직 없습니다"},
+  "stats": {
+    "chart": {
+      "daily": "일별 방문자",
+      "dailyHint": "일별 순 방문자",
+      "empty": "이 기간의 데이터가 아직 없습니다"
+    },
     "definitions": {
       "visitorsTerm": "방문자"
     },
@@ -9854,5 +9870,24 @@
     "fingerprint": "지문",
     "exploreFirst": "먼저 둘러보기",
     "codeNote": "이메일로 코드를 보내드려요. 비밀번호는 필요 없어요."
+  },
+  "stageCover": {
+    "admitOne": "하나 인정",
+    "live": "라이브",
+    "minutes": "{{minutes}} 분",
+    "onAir": "온에어",
+    "recorded": "기록됨",
+    "replay": "리플레이",
+    "stage": "스테이지",
+    "upcoming": "예정"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "감사합니다!",
+    "20d4214b9d4b": "배송된 요청 보기",
+    "2971f9103f78": "DeHub를 개선하는 데 도움을 주셔서 감사합니다. 요청하신 내용이 이제 공개되었습니다.",
+    "8f3dc69e83c4": "피드백이 전달되었습니다!",
+    "905392fbed15": "DeHub를 개선하는 데 도움을 주셔서 감사합니다 — 요청하신 {{value1}} 것들이 이제 활성화되었습니다:",
+    "bdd4f5015e96": "배송된 요청 알림 닫기",
+    "da4c7c208cf4": "확인하기"
   }
 }

@@ -1128,7 +1128,8 @@
     "themeColorBrand": "Merk",
     "themeColorBrandDesc": "Kleuren van je profielfoto gebruiken",
     "themeColorBrandNoAvatar": "Voeg een profielfoto toe om Merkkleuren te gebruiken",
-    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
+    "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen",
+    "shortsSaveFailed": "Kan Shorts-voorkeur niet opslaan"
   },
   "common": {
     "refresh": "Vernieuwen",
@@ -2475,7 +2476,10 @@
     "trendingWeek": "Trending deze week",
     "newest": "Nieuwste",
     "videoChartOrder": "Volgorde van de muziekvideolijst",
-    "viewsCount_other": "{{views}} weergaven"
+    "viewsCount_other": "{{views}} weergaven",
+    "listeningCount_one": "{{count}} luisteren",
+    "listeningCount_other": "{{count}} luisteren",
+    "viewsCount_one": "{{views}} view"
   },
   "notFound": {
     "title": "Pagina niet gevonden",
@@ -2817,7 +2821,25 @@
     "sharePostTemplate": "Ik heb zojuist {{amount}} tokens toegevoegd aan mijn stapel op DeHub. Bouwen met de community. #DeHub",
     "minDhbPurchase": "Minimale token aankoop is $0,50"
   },
-  "agents": {"life":{"title":"Levend","help":"Laat deze agent zelfstandig leven. Hij heeft zijn eigen tijden, post, liket en reageert met zijn eigen stem, en slaapt 's nachts.","starting":"Persoonlijkheid wordt ingesteld…","awake":"Wakker in {{home}}","asleep":"Slaapt in {{home}}","next":"volgende keer {{time}}","recent":"Recent","empty":"Nog niets. Hij komt snel langs.","kind":{"post":"Plaatste","comment":"Reageerde","reply":"Antwoordde","like":"Vond een post leuk","profile":"Werkte zijn profiel bij","error":"Er ging iets mis"}},
+  "agents": {
+    "life": {
+      "title": "Levend",
+      "help": "Laat deze agent zelfstandig leven. Hij heeft zijn eigen tijden, post, liket en reageert met zijn eigen stem, en slaapt 's nachts.",
+      "starting": "Persoonlijkheid wordt ingesteld…",
+      "awake": "Wakker in {{home}}",
+      "asleep": "Slaapt in {{home}}",
+      "next": "volgende keer {{time}}",
+      "recent": "Recent",
+      "empty": "Nog niets. Hij komt snel langs.",
+      "kind": {
+        "post": "Plaatste",
+        "comment": "Reageerde",
+        "reply": "Antwoordde",
+        "like": "Vond een post leuk",
+        "profile": "Werkte zijn profiel bij",
+        "error": "Er ging iets mis"
+      }
+    },
     "profile": {
       "edit": "Profiel bewerken",
       "avatar": "Avatar",
@@ -2869,7 +2891,7 @@
         "authorChoose": "Kies maker",
         "categoryAll": "Alle categorieën",
         "categoryChoose": "Kies categorieën",
-        "categoryHint": "Voeg maximaal 20 categorieën toe, gescheiden door komma\u0027s. Eén overeenkomst is genoeg. Laat leeg voor alles.",
+        "categoryHint": "Voeg maximaal 20 categorieën toe, gescheiden door komma's. Eén overeenkomst is genoeg. Laat leeg voor alles.",
         "last1h": "Afgelopen uur",
         "last30d": "Afgelopen 30 dagen",
         "allTime": "Altijd",
@@ -5580,7 +5602,12 @@
     "interestedCount": "{{count}} geïnteresseerd",
     "loadFailed": "Kon evenementen niet laden"
   },
-  "stats": {"chart": {"daily": "Bezoekers per dag", "dailyHint": "unieke bezoekers per dag", "empty": "Nog geen gegevens voor dit venster"},
+  "stats": {
+    "chart": {
+      "daily": "Bezoekers per dag",
+      "dailyHint": "unieke bezoekers per dag",
+      "empty": "Nog geen gegevens voor dit venster"
+    },
     "definitions": {
       "visitorsTerm": "Bezoekers"
     },
@@ -11460,7 +11487,14 @@
     "e63ffac3f5e5": "PEPE",
     "713d24d02e26": "XXXX-XXXX",
     "00c90f4b707a": "SRT / VTT",
-    "f223faa96f22": "Apple"
+    "f223faa96f22": "Apple",
+    "1aa7b1c1d5fb": "Bedankt!",
+    "20d4214b9d4b": "Verzonden aanvragen bekijken",
+    "2971f9103f78": "Bedankt voor je hulp om DeHub beter te maken — iets waar je om hebt gevraagd is nu live:",
+    "8f3dc69e83c4": "Je feedback is verzonden!",
+    "905392fbed15": "Bedankt voor je hulp om DeHub beter te maken — {{value1}} dingen waar je om hebt gevraagd zijn nu live:",
+    "bdd4f5015e96": "Verzonden aanvraagmelding sluiten",
+    "da4c7c208cf4": "Bekijk het hier"
   },
   "creatorSupport": {
     "campaignLabel": "Ondersteuningsadvertenties van creators",
@@ -11889,5 +11923,15 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Eerst rondkijken",
     "codeNote": "We mailen je een code, geen wachtwoord nodig."
+  },
+  "stageCover": {
+    "admitOne": "GEEF ER EEN TOE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "GEREGISTREERD",
+    "replay": "opnieuw afspelen",
+    "stage": "fase",
+    "upcoming": "aankomend"
   }
 }

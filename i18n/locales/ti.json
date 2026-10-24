@@ -985,7 +985,8 @@
     "themeColorBrand": "ብራንድ",
     "themeColorBrandDesc": "ሕብርታት ስእሊ መለለይኻ ተጠቀም",
     "themeColorBrandNoAvatar": "ናይ ብራንድ ሕብርታት ንምጥቃም፡ ስእሊ መለለዪ ወስኽ",
-    "themeColorBrandFailed": "ካብ ስእሊ መለለይኻ ሕብርታት ከንብብ ኣይከኣለን"
+    "themeColorBrandFailed": "ካብ ስእሊ መለለይኻ ሕብርታት ከንብብ ኣይከኣለን",
+    "shortsSaveFailed": "ናይ ሓጸርቲ ቪድዮታት ምርጫኻ ንምዕቃብ ተሳኒዩ"
   },
   "common": {
     "refresh": "ተሐድሶ",
@@ -2036,7 +2037,11 @@
     "tryAnotherGenre": "ካልእ ዓይነት ድለዩ።",
     "pauseStation": "ጣቢያ ደውሉ።",
     "resumeStation": "ቀጽሉ።",
-    "stopRadio": "ራድዮ ደውሉ።"
+    "stopRadio": "ራድዮ ደውሉ።",
+    "listeningCount_one": "{{count}} ሰብ ይሰምዕ ኣሎ",
+    "listeningCount_other": "{{count}} ሰብ ይሰምዑ ኣለዉ",
+    "viewsCount_one": "{{views}} ምርኢት",
+    "viewsCount_other": "{{views}} ምርኢታት"
   },
   "notFound": {
     "title": "ገጽ ኣይተረኽበን",
@@ -2719,7 +2724,15 @@
     "sendAnyWallet": "ዝኾነ ሰብ ካብ ዝኾነ ዋለትን ወይ ኤክስቼንጅን ናብዚ DeHub ቶክን ክሰደድ ይኽእል። ኣብ Baseን BNBን ዝግበሩ ዝውውራት ንርብሒኻ ይሕሳባ።",
     "yourContribution": "{{amount}} ቶክን ተበርኪ",
     "pooledTotal": "{{amount}} ቶክን ተኣኪቡ",
-    "contributeIntro": "ካብ ቦርሳኻ ናብ መዝገብካ ናይ DeHub ምልክታት ልኢኽ ። እቲ እትውስኽዎ ምልክት ፡ ነቲ ናይ ገንዳ ክፋልካ የዕብዮ ፡ እቲ ድምጺኻ ድማ እቲ ዳኦ ብኸመይ ከም ዚውዕል ምስ ዚውስኖ ፡ እቲ ድምጺኻ ዚወስዶ ክብደት እዩ ።"
+    "contributeIntro": "ካብ ቦርሳኻ ናብ መዝገብካ ናይ DeHub ምልክታት ልኢኽ ። እቲ እትውስኽዎ ምልክት ፡ ነቲ ናይ ገንዳ ክፋልካ የዕብዮ ፡ እቲ ድምጺኻ ድማ እቲ ዳኦ ብኸመይ ከም ዚውዕል ምስ ዚውስኖ ፡ እቲ ድምጺኻ ዚወስዶ ክብደት እዩ ።",
+    "status": {
+      "rejected": "ተነጺጉ",
+      "open": "ክፉት",
+      "expired": "ጊዜኡ ዝሓለፎ",
+      "completed": "ተዛዚሙ",
+      "cancelled": "ተሰሪዙ",
+      "accepted": "ተቐቢሉ"
+    }
   },
   "governance": {
     "title": "ምሕደራ",
@@ -9759,5 +9772,24 @@
     "fingerprint": "ናይ ኣጻብዕ ምልክት",
     "exploreFirst": "ፈለማ መርምር",
     "codeNote": "ኮድ ኢመይል ክንልእከልካ ኢና ፡ ዝኾነ ቃል-ምስጢር ኣየድልዮን እዩ ።"
+  },
+  "stageCover": {
+    "admitOne": "ሓደ ሰብ ይኣቱ",
+    "live": "ቀጥታ",
+    "minutes": "{{minutes}} ደቒቕ",
+    "onAir": "ኣየር ላይ",
+    "recorded": "ተቐሪጹ",
+    "replay": "ደጊምካ ምርኣይ",
+    "stage": "መድረኽ",
+    "upcoming": "ዝመጽእ"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "የቐንየለይ!",
+    "20d4214b9d4b": "ዝተላእኩ ሕቶታት ርአ",
+    "2971f9103f78": "DeHub ንምምሕያሽ ስለ ዝሓገዝካ የቐንየለይ — ዝሓተትካዮ ነገር ሕጂ ኣብ ስራሕ ውዒሉ ኣሎ፡",
+    "8f3dc69e83c4": "ርኢቶኻ ተፈጺሙ!",
+    "905392fbed15": "DeHub ንምምሕያሽ ስለ ዝሓገዝካ የቐንየለይ — ዝሓተትካዮም {{value1}} ነገራት ሕጂ ኣብ ስራሕ ውዒሎም ኣለዉ፡",
+    "bdd4f5015e96": "ዝተፈጸመ ሕቶ መዘኻኸሪ ዕጾ",
+    "da4c7c208cf4": "ርአዮ"
   }
 }

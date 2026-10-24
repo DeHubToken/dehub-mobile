@@ -993,7 +993,8 @@
     "themeColorBrand": "Merek",
     "themeColorBrandDesc": "Nganggo warna foto profilmu",
     "themeColorBrandNoAvatar": "Tambah foto profil kanggo nganggo warna Merek",
-    "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu"
+    "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu",
+    "shortsSaveFailed": "Gagal menyimpan preferensi Shorts"
   },
   "common": {
     "refresh": "Segarke",
@@ -2047,7 +2048,11 @@
     "tryAnotherGenre": "Coba genre liyane.",
     "pauseStation": "Mandhegake stasiun",
     "resumeStation": "Terusake stasiun",
-    "stopRadio": "Mandhegake radhio"
+    "stopRadio": "Mandhegake radhio",
+    "listeningCount_one": "{{count}} mendengarkan",
+    "listeningCount_other": "{{count}} mendengarkan",
+    "viewsCount_one": "{{views}} nengok",
+    "viewsCount_other": "{{views}} nengokan"
   },
   "notFound": {
     "title": "Halaman Ora Ditemokake",
@@ -2730,7 +2735,15 @@
     "sentDesc": "{{amount}} token dikirim menyang kas ing {{chain}}. Bagian sampeyan bakal dianyari sawise blok diindeks.",
     "sendAnyWallet": "Sapa wae bisa ngirim token DeHub ing kene saka dompet utawa bursa apa wae. Transfer ing Base lan BNB bakal diitung kanggo bagean sampeyan.",
     "yourContribution": "{{amount}} token disumbangake",
-    "pooledTotal": "{{amount}} token dikumpulake"
+    "pooledTotal": "{{amount}} token dikumpulake",
+    "status": {
+      "rejected": "Ditolak",
+      "open": "Dibuka",
+      "expired": "Kadaluarsa",
+      "completed": "Selesai",
+      "cancelled": "Dibatalkan",
+      "accepted": "Diterima"
+    }
   },
   "governance": {
     "title": "Tata Kelola",
@@ -9785,5 +9798,24 @@
     "fingerprint": "Sidik jari",
     "exploreFirst": "Jelajahi dhisik",
     "codeNote": "Kita ngirim kode menyang email sampeyan, ora perlu sandhi."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "live",
+    "minutes": "{{minutes}} menit",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "replay",
+    "stage": "panggung",
+    "upcoming": "upcoming"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Terima kasih!",
+    "20d4214b9d4b": "Nengok permintaan yang sudah dikirim",
+    "2971f9103f78": "Terima kasih karena membantu membuat DeHub lebih baik — yang kamu minta sekarang sudah live:",
+    "8f3dc69e83c4": "Ulasan kamu sudah dikirim!",
+    "905392fbed15": "Terima kasih karena membantu membuat DeHub lebih baik — {{value1}} hal yang kamu minta sekarang sudah live:",
+    "bdd4f5015e96": "Tutup notifikasi permintaan yang sudah dikirim",
+    "da4c7c208cf4": "Nengok aja!"
   }
 }

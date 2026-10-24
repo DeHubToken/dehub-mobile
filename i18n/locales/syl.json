@@ -1011,7 +1011,8 @@
     "themeColorBrand": "ব্র্যান্ড",
     "themeColorBrandDesc": "আপনার প্রোফাইল ছবির রঙ ব্যবহার করউক্কা",
     "themeColorBrandNoAvatar": "Brand রঙ ব্যবহার করতে একটা প্রোফাইল ছবি যোগ করউক্কা",
-    "themeColorBrandFailed": "আপনার প্রোফাইল ছবি তুন রঙ পড়া গেছে না"
+    "themeColorBrandFailed": "আপনার প্রোফাইল ছবি তুন রঙ পড়া গেছে না",
+    "shortsSaveFailed": "ফেইল করেছে স্কোর্টস পছন্দ সঞ্চয়"
   },
   "common": {
     "refresh": "রিফ্রেশ করুন",
@@ -2182,7 +2183,11 @@
     "likeStation": "স্টেশন পছন্দ করুন",
     "unlikeStation": "স্টেশন অপছন্দ করুন",
     "shareStation": "স্টেশন শেয়ার করুন",
-    "listeningTo": "DeHub-এ {{name}} শুনছি"
+    "listeningTo": "DeHub-এ {{name}} শুনছি",
+    "listeningCount_one": "{{count}} শুনছেন",
+    "listeningCount_other": "{{count}} শুনছেন",
+    "viewsCount_one": "{{views}} দেখছেন",
+    "viewsCount_other": "{{views}} দেখা"
   },
   "notFound": {
     "title": "পেজ পাওয়া যায় নাই",
@@ -2909,7 +2914,15 @@
     "sentDesc": "{{amount}} টোকেন {{chain}} তারিখে ট্রেজারিতে পাঠানো হয়েছে। ব্লক ইনডেক্স হওয়ার পর আপনার শেয়ার আপডেট হবে।",
     "sendAnyWallet": "যেকোনো ওয়ালেট বা এক্সচেঞ্জ থেকে এখানে ডিহাব টোকেন পাঠানো যাবে। বেস এবং বিএনবি-তে ট্রান্সফার আপনার শেয়ারের হিসাবে ধরা হবে।",
     "yourContribution": "{{amount}} টোকেন জমা দেওয়া হয়েছে",
-    "pooledTotal": "{{amount}} টোকেন পুল করা হয়েছে"
+    "pooledTotal": "{{amount}} টোকেন পুল করা হয়েছে",
+    "status": {
+      "rejected": "রিজেক্ট করা",
+      "open": "খুলে দেওয়া",
+      "expired": "মেয়াদ শেষ",
+      "completed": "সম্পূর্ণ",
+      "cancelled": "বাতিল",
+      "accepted": "কবুল"
+    }
   },
   "governance": {
     "title": "গভর্ন্যান্স",
@@ -9957,5 +9970,24 @@
     "fingerprint": "ফিঙ্গারপ্রিন্ট",
     "exploreFirst": "প্রথমে এক্সপ্লোর করো",
     "codeNote": "আমরা আপনে একডা কোড ইমেইল দিই, পাসওয়ার্ড দরকার নাই।"
+  },
+  "stageCover": {
+    "admitOne": "আপনার প্রস্তাব কবুল",
+    "live": "আজীবন",
+    "minutes": "{{minutes}} মিনিট",
+    "onAir": "আওয়ার",
+    "recorded": "রেকর্ড করা",
+    "replay": "রিপ্লে",
+    "stage": "মঞ্চ",
+    "upcoming": "আগামী"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ধন্যবাদ!",
+    "20d4214b9d4b": "দেখুন শিপড চাহিদা",
+    "2971f9103f78": "ধন্যবাদ দেহাব ভালো করতে সাহায্য করেছেন — আপনি চাইলেম এখন আওয়ার:",
+    "8f3dc69e83c4": "আপনার মতামত শিপড!",
+    "905392fbed15": "ধন্যবাদ দেহাব ভালো করতে সাহায্য করেছেন — {{value1}} আপনার চাইলেম এখন আওয়ার:",
+    "bdd4f5015e96": "শিপড চাহিদা বন্ধ করুন",
+    "da4c7c208cf4": "চেক আউট"
   }
 }

@@ -995,7 +995,8 @@
     "themeColorBrand": "Merkevare",
     "themeColorBrandDesc": "Bruk fargene fra profilbildet ditt",
     "themeColorBrandNoAvatar": "Legg til et profilbilde for å bruke merkevarefarger",
-    "themeColorBrandFailed": "Klarte ikke å lese farger fra profilbildet ditt"
+    "themeColorBrandFailed": "Klarte ikke å lese farger fra profilbildet ditt",
+    "shortsSaveFailed": "Kunne ikke lagre Shorts-preferansen"
   },
   "common": {
     "refresh": "Oppdater",
@@ -2058,7 +2059,11 @@
     "likeStation": "Lik stasjonen",
     "unlikeStation": "Fjern liker",
     "shareStation": "Del stasjonen",
-    "listeningTo": "Lytter til {{name}} på DeHub"
+    "listeningTo": "Lytter til {{name}} på DeHub",
+    "listeningCount_one": "{{count}} lytting",
+    "listeningCount_other": "{{count}} lytting",
+    "viewsCount_one": "{{views}} visning",
+    "viewsCount_other": "{{views}} visninger"
   },
   "notFound": {
     "title": "Side ikke funnet",
@@ -2747,7 +2752,15 @@
     "sentDesc": "{{amount}} tokens sendt til skattekammeret den {{chain}}. Din andel oppdateres når blokken er indeksert.",
     "sendAnyWallet": "Alle kan sende DeHub-tokens hit fra hvilken som helst lommebok eller børs. Overføringer på Base og BNB teller mot din andel.",
     "yourContribution": "{{amount}} tokens bidratt",
-    "pooledTotal": "{{amount}} tokens i pool"
+    "pooledTotal": "{{amount}} tokens i pool",
+    "status": {
+      "rejected": "Avvist",
+      "open": "Åpne",
+      "expired": "Utløpt",
+      "completed": "Fullført",
+      "cancelled": "Avlyst",
+      "accepted": "Godkjent"
+    }
   },
   "governance": {
     "title": "Styring",
@@ -5032,7 +5045,12 @@
     "interestedCount": "{{count}} interesserte",
     "loadFailed": "Kunne ikke laste arrangementer"
   },
-  "stats": {"chart": {"daily": "Besøkende per dag", "dailyHint": "unike besøkende per dag", "empty": "Ingen data for denne perioden ennå"},
+  "stats": {
+    "chart": {
+      "daily": "Besøkende per dag",
+      "dailyHint": "unike besøkende per dag",
+      "empty": "Ingen data for denne perioden ennå"
+    },
     "definitions": {
       "visitorsTerm": "Besøkende"
     },
@@ -9814,5 +9832,24 @@
     "fingerprint": "Fingeravtrykk",
     "exploreFirst": "Utforsk først",
     "codeNote": "Vi sender deg en kode på e-post, uten passord."
+  },
+  "stageCover": {
+    "admitOne": "INNLIV ÉN",
+    "live": "bo",
+    "minutes": "{{minutes}} min",
+    "onAir": "PÅ LUFT",
+    "recorded": "INNSPILLT",
+    "replay": "reprise",
+    "stage": "scene",
+    "upcoming": "kommende"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Takk!",
+    "20d4214b9d4b": "Se sendte forespørsler",
+    "2971f9103f78": "Takk for at du hjelper med å gjøre DeHub bedre – noe du ba om er nå tilgjengelig:",
+    "8f3dc69e83c4": "Tilbakemeldingen din er sendt!",
+    "905392fbed15": "Takk for at du hjelper til med å gjøre DeHub bedre – {{value1}} tingene du ba om er nå tilgjengelige:",
+    "bdd4f5015e96": "Lukk varsel om forespørsel om levering",
+    "da4c7c208cf4": "Sjekk det ut"
   }
 }

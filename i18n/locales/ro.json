@@ -995,7 +995,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Folosește culorile pozei tale de profil",
     "themeColorBrandNoAvatar": "Adaugă o poză de profil ca să folosești culorile de brand",
-    "themeColorBrandFailed": "Nu am putut citi culorile din poza ta de profil"
+    "themeColorBrandFailed": "Nu am putut citi culorile din poza ta de profil",
+    "shortsSaveFailed": "Eșuat la salvarea preferințelor Shorts"
   },
   "common": {
     "refresh": "Reîmprospătează",
@@ -2058,7 +2059,11 @@
     "likeStation": "Apreciază postul",
     "unlikeStation": "Nu mai aprecia",
     "shareStation": "Distribuie postul",
-    "listeningTo": "Ascult {{name}} pe DeHub"
+    "listeningTo": "Ascult {{name}} pe DeHub",
+    "listeningCount_one": "{{count}} ascultare",
+    "listeningCount_other": "{{count}} ascultare",
+    "viewsCount_one": "{{views}} vizualizare",
+    "viewsCount_other": "{{views}} vizualizări"
   },
   "notFound": {
     "title": "Pagina nu a fost găsită",
@@ -2747,7 +2752,15 @@
     "sentDesc": "{{amount}} tokenuri trimise către trezorerie pe {{chain}}. Cota ta se actualizează odată ce blocul este indexat.",
     "sendAnyWallet": "Oricine poate trimite tokenuri DeHub aici din orice portofel sau schimb. Transferurile pe Base și BNB contează pentru cota ta.",
     "yourContribution": "{{amount}} tokenuri contribuite",
-    "pooledTotal": "{{amount}} tokenuri în fond"
+    "pooledTotal": "{{amount}} tokenuri în fond",
+    "status": {
+      "rejected": "Respins",
+      "open": "Deschis",
+      "expired": "Expirat",
+      "completed": "Finalizat",
+      "cancelled": "Anulat",
+      "accepted": "Acceptat"
+    }
   },
   "governance": {
     "title": "Guvernanță",
@@ -5032,7 +5045,12 @@
     "interestedCount": "{{count}} interesați",
     "loadFailed": "Evenimentele nu au putut fi încărcate"
   },
-  "stats": {"chart": {"daily": "Vizitatori pe zi", "dailyHint": "vizitatori unici pe zi", "empty": "Încă nu există date pentru acest interval"},
+  "stats": {
+    "chart": {
+      "daily": "Vizitatori pe zi",
+      "dailyHint": "vizitatori unici pe zi",
+      "empty": "Încă nu există date pentru acest interval"
+    },
     "definitions": {
       "visitorsTerm": "Vizitatori"
     },
@@ -9833,5 +9851,24 @@
     "fingerprint": "Amprentă",
     "exploreFirst": "Explorează mai întâi",
     "codeNote": "Îți trimitem un cod pe e-mail, fără parolă."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT UNUL",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ÎN TRANSMISIE",
+    "recorded": "RECORDAT",
+    "replay": "replay",
+    "stage": "scenă",
+    "upcoming": "următoare"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Mulțumiri!",
+    "20d4214b9d4b": "Vizualizați cererile trimise",
+    "2971f9103f78": "Mulțumiri pentru faptul că v-ați ajutat să faceți DeHub mai bun — ceva pe care ați cerut este acum disponibil:",
+    "8f3dc69e83c4": "Feedback-ul dumneavoastră a fost trimis!",
+    "905392fbed15": "Mulțumiri pentru faptul că v-ați ajutat să faceți DeHub mai bun — {{value1}} lucruri pe care le-ați cerut sunt acum disponibile:",
+    "bdd4f5015e96": "Închideți notificarea de închidere a cererii",
+    "da4c7c208cf4": "Verificați-o!"
   }
 }

@@ -994,7 +994,8 @@
     "themeColorBrand": "品牌",
     "themeColorBrandDesc": "使用你头像的颜色",
     "themeColorBrandNoAvatar": "添加头像后才能使用品牌配色",
-    "themeColorBrandFailed": "无法从你的头像读取颜色"
+    "themeColorBrandFailed": "无法从你的头像读取颜色",
+    "shortsSaveFailed": "保存短裤偏好设置失败"
   },
   "common": {
     "refresh": "刷新",
@@ -2059,7 +2060,11 @@
     "likeStation": "喜欢电台",
     "unlikeStation": "取消喜欢",
     "shareStation": "分享电台",
-    "listeningTo": "正在 DeHub 收听 {{name}}"
+    "listeningTo": "正在 DeHub 收听 {{name}}",
+    "listeningCount_one": "{{count}}听",
+    "listeningCount_other": "{{count}}听",
+    "viewsCount_one": "{{views}}次浏览",
+    "viewsCount_other": "{{views}}次浏览"
   },
   "notFound": {
     "title": "页面未找到",
@@ -2749,7 +2754,15 @@
     "sentDesc": "于 {{chain}} 向金库发送了 {{amount}} 个代币。您的份额将在区块索引后更新。",
     "sendAnyWallet": "任何人都可以从任何钱包或交易所将 DeHub 代币发送到此处。Base 和 BNB 上的转账计入您的份额。",
     "yourContribution": "{{amount}} 个代币已贡献",
-    "pooledTotal": "{{amount}} 个代币已汇集"
+    "pooledTotal": "{{amount}} 个代币已汇集",
+    "status": {
+      "rejected": "已拒绝",
+      "open": "打开",
+      "expired": "已过期",
+      "completed": "已完成",
+      "cancelled": "已取消",
+      "accepted": "已接受"
+    }
   },
   "governance": {
     "title": "治理",
@@ -5075,7 +5088,12 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {"chart": {"daily": "每日访客", "dailyHint": "每日独立访客", "empty": "此时间范围暂无数据"},
+  "stats": {
+    "chart": {
+      "daily": "每日访客",
+      "dailyHint": "每日独立访客",
+      "empty": "此时间范围暂无数据"
+    },
     "definitions": {
       "visitorsTerm": "访客"
     },
@@ -9916,5 +9934,24 @@
     "fingerprint": "指纹",
     "exploreFirst": "先逛逛",
     "codeNote": "我们会通过邮件发送验证码，无需密码。"
+  },
+  "stageCover": {
+    "admitOne": "承认一个",
+    "live": "实时",
+    "minutes": "{{minutes}}分钟",
+    "onAir": "直播",
+    "recorded": "已录制",
+    "replay": "重播",
+    "stage": "阶段",
+    "upcoming": "即将开始"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "谢谢！",
+    "20d4214b9d4b": "查看已发货的派单",
+    "2971f9103f78": "感谢您帮助DeHub变得更好—您所要求的内容现已上线：",
+    "8f3dc69e83c4": "您的反馈已发送！",
+    "905392fbed15": "感谢您帮助我们改进DeHub — {{value1}}您要求的内容现已上线：",
+    "bdd4f5015e96": "关闭发货请求通知",
+    "da4c7c208cf4": "去看看吧"
   }
 }

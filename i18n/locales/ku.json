@@ -994,7 +994,8 @@
     "themeColorBrand": "Marka",
     "themeColorBrandDesc": "Rengên wêneyê profîla xwe bikar bîne",
     "themeColorBrandNoAvatar": "Ji bo bikaranîna rengên Marka wêneyekî profîlê zêde bike",
-    "themeColorBrandFailed": "Rengên ji wêneyê profîlê nehatin xwendin"
+    "themeColorBrandFailed": "Rengên ji wêneyê profîlê nehatin xwendin",
+    "shortsSaveFailed": "Tomarkirina tercîha Shorts bi ser neket"
   },
   "common": {
     "refresh": "Nû bike",
@@ -2048,7 +2049,11 @@
     "tryAnotherGenre": "Cureyek din biceribîne.",
     "pauseStation": "Îstasyonê rawestîne",
     "resumeStation": "Îstasyonê ji nû ve veke",
-    "stopRadio": "Radyoyê rawestîne"
+    "stopRadio": "Radyoyê rawestîne",
+    "listeningCount_one": "{{count}} guhdarîkirin",
+    "listeningCount_other": "{{count}} guhdarîkirin",
+    "viewsCount_one": "{{views}} dîtin",
+    "viewsCount_other": "{{views}} dîtin"
   },
   "notFound": {
     "title": "Rûpel Nehat Dîtin",
@@ -2731,7 +2736,15 @@
     "sentDesc": "{{amount}} توکن لە {{chain}} نێردرا بۆ گەنجینە. پشکی تۆ دوای ئەوەی بلۆکەکە ئیندێکس کرا نوێ دەکرێتەوە.",
     "sendAnyWallet": "هەر کەسێک دەتوانێت توکنی DeHub لێرە لە هەر والێتێک یان ئاڵوگۆڕێکەوە بنێرێت. گواستنەوەکان لەسەر Base و BNB بۆ پشکی تۆ هەژمار دەکرێن.",
     "yourContribution": "{{amount}} توکن بەشداربوو",
-    "pooledTotal": "{{amount}} توکن لە پۆل دایە"
+    "pooledTotal": "{{amount}} توکن لە پۆل دایە",
+    "status": {
+      "rejected": "Redkirî",
+      "open": "Vekirî",
+      "expired": "Derbasbûyî",
+      "completed": "Qediya",
+      "cancelled": "Betalkirî",
+      "accepted": "Qebûlkirî"
+    }
   },
   "governance": {
     "title": "Rêvebirî",
@@ -9711,5 +9724,24 @@
     "fingerprint": "Şopa tilî",
     "exploreFirst": "Pêşî keşif bike",
     "codeNote": "Em kodê bi e-nameyê ji we re dişînin, şîfre ne hewce ye."
+  },
+  "stageCover": {
+    "admitOne": "YEK QEBÛL BIKE",
+    "live": "jîyan",
+    "minutes": "{{minutes}} deqe",
+    "onAir": "ZINDÎ",
+    "recorded": "TOMARKIRÎ",
+    "replay": "dubarekirin",
+    "stage": "şanocî",
+    "upcoming": "pêşerojê"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Spas!",
+    "20d4214b9d4b": "Daxwazên şandî bibînin",
+    "2971f9103f78": "Spas ji bo alîkariya baştirkirina DeHub - tiştek ku we xwest niha çalak e:",
+    "8f3dc69e83c4": "Nirxandina te hat şandin!",
+    "905392fbed15": "Spas ji bo alîkariya baştirkirina DeHubê — {{value1}} tiştên ku te xwestin niha hatine weşandin:",
+    "bdd4f5015e96": "Agahdariya daxwaza şandinê bigire",
+    "da4c7c208cf4": "Hûn dixwazin"
   }
 }

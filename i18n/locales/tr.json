@@ -1128,7 +1128,8 @@
     "themeColorBrand": "Marka",
     "themeColorBrandDesc": "Profil fotoğrafınızın renklerini kullan",
     "themeColorBrandNoAvatar": "Marka renklerini kullanmak için bir profil fotoğrafı ekleyin",
-    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
+    "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı",
+    "shortsSaveFailed": "Kısa devre tercihi kaydedilemedi"
   },
   "common": {
     "refresh": "Yenile",
@@ -2285,7 +2286,10 @@
     "trendingWeek": "Bu hafta trend",
     "newest": "En yeni",
     "videoChartOrder": "Müzik video listesi sıralaması",
-    "viewsCount_other": "{{views}} görüntülenme"
+    "viewsCount_other": "{{views}} görüntülenme",
+    "listeningCount_one": "{{count}} dinleme",
+    "listeningCount_other": "{{count}} dinleme",
+    "viewsCount_one": "{{views}} görüntüleme"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
@@ -2627,7 +2631,25 @@
     "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} token'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub",
     "minDhbPurchase": "Minimum token alımı 50$'dır"
   },
-  "agents": {"life":{"title":"Canlı","help":"Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.","starting":"Kişiliği hazırlanıyor…","awake":"{{home}} şehrinde uyanık","asleep":"{{home}} şehrinde uyuyor","next":"sonraki ziyaret {{time}}","recent":"Son zamanlarda","empty":"Henüz bir şey yok. Yakında uğrayacak.","kind":{"post":"Paylaştı","comment":"Yorum yaptı","reply":"Yanıtladı","like":"Bir gönderiyi beğendi","profile":"Profilini güncelledi","error":"Bir şeyler ters gitti"}},
+  "agents": {
+    "life": {
+      "title": "Canlı",
+      "help": "Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.",
+      "starting": "Kişiliği hazırlanıyor…",
+      "awake": "{{home}} şehrinde uyanık",
+      "asleep": "{{home}} şehrinde uyuyor",
+      "next": "sonraki ziyaret {{time}}",
+      "recent": "Son zamanlarda",
+      "empty": "Henüz bir şey yok. Yakında uğrayacak.",
+      "kind": {
+        "post": "Paylaştı",
+        "comment": "Yorum yaptı",
+        "reply": "Yanıtladı",
+        "like": "Bir gönderiyi beğendi",
+        "profile": "Profilini güncelledi",
+        "error": "Bir şeyler ters gitti"
+      }
+    },
     "profile": {
       "edit": "Profili düzenle",
       "avatar": "Avatar",
@@ -5439,7 +5461,12 @@
     "interestedCount": "{{count}} kişi ilgileniyor",
     "loadFailed": "Etkinlikler yüklenemedi"
   },
-  "stats": {"chart": {"daily": "Günlük ziyaretçi", "dailyHint": "günlük benzersiz ziyaretçi", "empty": "Bu aralık için henüz veri yok"},
+  "stats": {
+    "chart": {
+      "daily": "Günlük ziyaretçi",
+      "dailyHint": "günlük benzersiz ziyaretçi",
+      "empty": "Bu aralık için henüz veri yok"
+    },
     "definitions": {
       "visitorsTerm": "Ziyaretçiler"
     },
@@ -11206,7 +11233,14 @@
     "468415f0e112": "Ag",
     "b62c681738d1": "Cu",
     "b602b7029be6": "Pt",
-    "53e6cdc30765": "you@example.com"
+    "53e6cdc30765": "you@example.com",
+    "1aa7b1c1d5fb": "Teşekkürler!",
+    "20d4214b9d4b": "Gönderilen talepleri görüntüle",
+    "2971f9103f78": "DeHub'ı daha iyi hale getirmeye yardımcı olduğunuz için teşekkürler. İstediğiniz bir şey artık yayında:",
+    "8f3dc69e83c4": "Geri bildiriminiz gönderildi!",
+    "905392fbed15": "DeHub'ı daha iyi hale getirmeye yardımcı olduğunuz için teşekkürler — {{value1}} istediğiniz şeyler artık yayında:",
+    "bdd4f5015e96": "Gönderilen istek bildirimini kapat",
+    "da4c7c208cf4": "Göz atın"
   },
   "creatorSupport": {
     "sponsoredBy": "{{advertiser}} sponsorluğunda",
@@ -11635,5 +11669,15 @@
     "fingerprint": "Parmak izi",
     "exploreFirst": "Önce keşfet",
     "codeNote": "E-postana bir kod göndeririz, şifre gerekmez."
+  },
+  "stageCover": {
+    "admitOne": "BİRİNİ KABUL ET",
+    "live": "canlı",
+    "minutes": "{{minutes}} dk",
+    "onAir": "YAYINDA",
+    "recorded": "KAYDEDİLDİ",
+    "replay": "yeniden oynat",
+    "stage": "aşama",
+    "upcoming": "yaklaşan"
   }
 }

@@ -992,7 +992,8 @@
     "themeColorBrand": "品牌",
     "themeColorBrandDesc": "用侬头像个颜色",
     "themeColorBrandNoAvatar": "加张头像才好用品牌配色",
-    "themeColorBrandFailed": "读勿出侬头像个颜色"
+    "themeColorBrandFailed": "读勿出侬头像个颜色",
+    "shortsSaveFailed": "儲存短片偏好設定失敗"
   },
   "common": {
     "refresh": "刷新",
@@ -2054,7 +2055,11 @@
     "likeStation": "喜欢电台",
     "unlikeStation": "取消喜欢",
     "shareStation": "分享电台",
-    "listeningTo": "正在 DeHub 收听 {{name}}"
+    "listeningTo": "正在 DeHub 收听 {{name}}",
+    "listeningCount_one": "{{count}} 聽聽",
+    "listeningCount_other": "{{count}} 聽聽",
+    "viewsCount_one": "{{views}} 觀看",
+    "viewsCount_other": "{{views}} 觀看次數"
   },
   "notFound": {
     "title": "搜弗到页面",
@@ -2733,7 +2738,15 @@
     "sentDesc": "{{amount}} 个代币已发送到国库，时间是 {{chain}}。侬的份额会在区块索引后更新。",
     "sendAnyWallet": "任何人侪可以从任何钱包或交易所发送 DeHub 代币到此地。Base 和 BNB 上个转账侪会算作侬个份额。",
     "yourContribution": "{{amount}} 个代币已贡献",
-    "pooledTotal": "{{amount}} 个代币已汇集"
+    "pooledTotal": "{{amount}} 个代币已汇集",
+    "status": {
+      "rejected": "被拒絕",
+      "open": "開放",
+      "expired": "已過期",
+      "completed": "已完成",
+      "cancelled": "已取消",
+      "accepted": "已接受"
+    }
   },
   "governance": {
     "title": "治理",
@@ -9687,5 +9700,23 @@
     "fingerprint": "指纹",
     "exploreFirst": "先探索",
     "codeNote": "吾们会给侬发一段验证码，无需密码。"
+  },
+  "stageCover": {
+    "admitOne": "承認",
+    "live": "直播中",
+    "minutes": "{{minutes}} 分鐘",
+    "recorded": "錄製",
+    "replay": "重播",
+    "stage": "舞台",
+    "upcoming": "即將上演"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "謝謝!",
+    "20d4214b9d4b": "查看已發佈的要求",
+    "2971f9103f78": "謝謝您幫助 DeHub 得到改善 —— 您要求的東西現在已經上線：",
+    "8f3dc69e83c4": "您的意見已發佈！",
+    "905392fbed15": "謝謝您幫助 DeHub 得到改善 —— {{value1}} 件您要求的東西現在已經上線：",
+    "bdd4f5015e96": "關閉已發佈的要求通知",
+    "da4c7c208cf4": "去看看"
   }
 }

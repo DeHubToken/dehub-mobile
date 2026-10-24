@@ -993,7 +993,8 @@
     "themeColorBrand": "Astaanta",
     "themeColorBrandDesc": "Isticmaal midabada sawirka profilkaaga",
     "themeColorBrandNoAvatar": "Ku dar sawir profile si aad u isticmaasho midabada Astaanta",
-    "themeColorBrandFailed": "Lagama akhrin karin midabada sawirka profilkaaga"
+    "themeColorBrandFailed": "Lagama akhrin karin midabada sawirka profilkaaga",
+    "shortsSaveFailed": "Ku guuldareystay in la badbaadiyo doorbididda Shorts"
   },
   "common": {
     "refresh": "Dib u cusboonaysii",
@@ -2047,7 +2048,11 @@
     "tryAnotherGenre": "Iska baar nooc kale.",
     "pauseStation": "Jooji idaacada",
     "resumeStation": "Dib u bilow idaacada",
-    "stopRadio": "Jooji raadiyaha"
+    "stopRadio": "Jooji raadiyaha",
+    "listeningCount_one": "{{count}} maqsood",
+    "listeningCount_other": "{{count}} maqsood",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views"
   },
   "notFound": {
     "title": "Bogga Lama Helin",
@@ -2730,7 +2735,15 @@
     "sentDesc": "{{amount}} tokens ayaa loo diray kaydka maalgelinta maalintii {{chain}}. Qaybtaada ayaa cusboonaysiisa marka block-ka la index-gareeyo.",
     "sendAnyWallet": "Qof kasta wuxuu halkan u diri karaa DeHub tokens ka wallet ama exchange kasta. Wareejinta Base iyo BNB waxay ku xisaabtamaysaa qaybtaada.",
     "yourContribution": "{{amount}} tokens ayaa la bixiyay",
-    "pooledTotal": "{{amount}} tokens ayaa la isku daray"
+    "pooledTotal": "{{amount}} tokens ayaa la isku daray",
+    "status": {
+      "rejected": "Diiday",
+      "open": "Furan",
+      "expired": "Wakhtigeedii dhamaaday",
+      "completed": "Dhammaystiray",
+      "cancelled": "Waa la joojiyay",
+      "accepted": "Aqbalay"
+    }
   },
   "governance": {
     "title": "Maamulidda",
@@ -9783,5 +9796,24 @@
     "fingerprint": "Sawirka faraha",
     "exploreFirst": "Baadh marka hore",
     "codeNote": "Waxaan kuu soo dirnaa emayl koodh, ma jiro erayga sirta ah ee loo baahan yahay."
+  },
+  "stageCover": {
+    "admitOne": "Qaado mid ka mid ah",
+    "live": "noolow",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON hawo",
+    "recorded": "Diiwaangashan",
+    "replay": "soo noqnoqda",
+    "stage": "marxaladda",
+    "upcoming": "soo socda"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Mahadsanid!",
+    "20d4214b9d4b": "Eeg codsiyada la raray",
+    "2971f9103f78": "Waad ku mahadsan tahay caawinta DeHub si fiican — wax aad weydiisatay hadda waa nool yahay:",
+    "8f3dc69e83c4": "Jawaab-celintaada waa la raray!",
+    "905392fbed15": "Waad ku mahadsan tahay caawinta DeHub si fiican — {{value1}} waxyaabaha aad codsatay hadda waa nool yihiin:",
+    "bdd4f5015e96": "Ogeysiiska codsiga ee la soo diray",
+    "da4c7c208cf4": "Iska hubi"
   }
 }

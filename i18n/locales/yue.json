@@ -993,7 +993,8 @@
     "themeColorBrand": "品牌",
     "themeColorBrandDesc": "用你頭像嘅顏色",
     "themeColorBrandNoAvatar": "加張頭像先可以用品牌配色",
-    "themeColorBrandFailed": "讀唔到你頭像嘅顏色"
+    "themeColorBrandFailed": "讀唔到你頭像嘅顏色",
+    "shortsSaveFailed": "儲存唔到短褲偏好設定"
   },
   "common": {
     "refresh": "刷新",
@@ -2056,7 +2057,11 @@
     "likeStation": "鍾意電台",
     "unlikeStation": "取消鍾意",
     "shareStation": "分享電台",
-    "listeningTo": "喺 DeHub 收聽緊 {{name}}"
+    "listeningTo": "喺 DeHub 收聽緊 {{name}}",
+    "listeningCount_one": "{{count}} 聽緊",
+    "listeningCount_other": "{{count}} 聽緊",
+    "viewsCount_one": "{{views}} 視圖",
+    "viewsCount_other": "{{views}} 觀看次數"
   },
   "notFound": {
     "title": "搵唔到頁面",
@@ -2738,7 +2743,15 @@
     "sentDesc": "於 {{chain}} 向金庫發送了 {{amount}} 個代幣。您的份額將在區塊索引後更新。",
     "sendAnyWallet": "任何人都可以從任何錢包或交易所將 DeHub 代幣發送到此處。在 Base 和 BNB 上的轉賬將計入您的份額。",
     "yourContribution": "已貢獻 {{amount}} 個代幣",
-    "pooledTotal": "已匯集 {{amount}} 個代幣"
+    "pooledTotal": "已匯集 {{amount}} 個代幣",
+    "status": {
+      "rejected": "拒絕咗",
+      "open": "打開",
+      "expired": "過咗期",
+      "completed": "完成咗",
+      "cancelled": "取消咗",
+      "accepted": "接受咗"
+    }
   },
   "governance": {
     "title": "治理",
@@ -9802,5 +9815,24 @@
     "fingerprint": "指紋",
     "exploreFirst": "探索先",
     "codeNote": "我哋會電郵畀你一個代碼，唔需要密碼。"
+  },
+  "stageCover": {
+    "admitOne": "認一個",
+    "live": "生活",
+    "minutes": "{{minutes}} 分鐘",
+    "onAir": "播緊",
+    "recorded": "錄咗",
+    "replay": "重播",
+    "stage": "階段",
+    "upcoming": "嚟緊"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "多謝！",
+    "20d4214b9d4b": "睇返已經寄出嘅要求",
+    "2971f9103f78": "多謝你幫手令 DeHub 更好 — 你要求嘅嘢而家開始直播喇：",
+    "8f3dc69e83c4": "你嘅意見已經寄出！",
+    "905392fbed15": "多謝你幫手令 DeHub 變得更好 — {{value1}} 你要求嘅嘢而家開始直播喇：",
+    "bdd4f5015e96": "閂咗已寄出嘅要求通知",
+    "da4c7c208cf4": "睇下啦"
   }
 }

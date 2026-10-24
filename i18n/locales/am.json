@@ -992,7 +992,8 @@
     "themeColorBrand": "የምርት ስም",
     "themeColorBrandDesc": "የመገለጫ ስዕልዎን ቀለሞች ይጠቀሙ",
     "themeColorBrandNoAvatar": "የምርት ስም ቀለሞችን ለመጠቀም የመገለጫ ስዕል ያክሉ",
-    "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
+    "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም",
+    "shortsSaveFailed": "የአጫጭር ምርጫን ማስቀመጥ አልተሳካም"
   },
   "common": {
     "refresh": "አድስ",
@@ -2044,7 +2045,11 @@
     "tryAnotherGenre": "ሌላ ዘውግ ይሞክሩ።",
     "pauseStation": "ጣቢያውን ለአፍታ ያቁሙ",
     "resumeStation": "ጣቢያውን ይቀጥሉ",
-    "stopRadio": "ሬዲዮውን ያቁሙ"
+    "stopRadio": "ሬዲዮውን ያቁሙ",
+    "listeningCount_one": "{{count}} ማዳመጥ",
+    "listeningCount_other": "{{count}} ማዳመጥ",
+    "viewsCount_one": "{{views}} እይታ",
+    "viewsCount_other": "{{views}} እይታዎች"
   },
   "notFound": {
     "title": "ገጽ አልተገኘም",
@@ -2727,7 +2732,15 @@
     "sentDesc": "{{amount}} ቶከኖች በ{{chain}} ወደ ግምጃ ቤቱ ተልከዋል። እገዳው ከተመዘገበ በኋላ ድርሻዎ ይዘምናል።",
     "sendAnyWallet": "ማንም ሰው ከማንኛውም የኪስ ቦርሳ ወይም ልውውጥ DeHub ቶከኖችን እዚህ መላክ ይችላል። በBase እና BNB ላይ የሚደረጉ ዝውውሮች ለድርሻዎ ይቆጠራሉ።",
     "yourContribution": "{{amount}} ቶከኖች ተሰጥተዋል",
-    "pooledTotal": "{{amount}} ቶከኖች ተሰብስበዋል"
+    "pooledTotal": "{{amount}} ቶከኖች ተሰብስበዋል",
+    "status": {
+      "rejected": "ተከልክሏል",
+      "open": "ክፈት",
+      "expired": "ጊዜው አልፏል",
+      "completed": "ተጠናቅቋል",
+      "cancelled": "ተሰርዟል",
+      "accepted": "ተቀባይነት አግኝቷል"
+    }
   },
   "governance": {
     "title": "አስተዳደር",
@@ -9807,5 +9820,24 @@
     "fingerprint": "የጣት አሻራ",
     "exploreFirst": "በመጀመሪያ ያስሱ",
     "codeNote": "ኮድ እንልክልዎታለን ፣ ምንም የይለፍ ቃል አያስፈልግም ።"
+  },
+  "stageCover": {
+    "admitOne": "አንዱን ያስተዋውቁ",
+    "live": "በቀጥታ",
+    "minutes": "{{minutes}} ደቂቃ",
+    "onAir": "በአየር ላይ",
+    "recorded": "የተመዘገበ",
+    "replay": "እንደገና ይመልሱ",
+    "stage": "ደረጃ",
+    "upcoming": "መጪ"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "አመሰግናለሁ!",
+    "20d4214b9d4b": "የተላኩ ጥያቄዎችን ይመልከቱ",
+    "2971f9103f78": "DeHub ን የተሻለ ለማድረግ ስለረዱ እናመሰግናለን — የጠየቁት ነገር አሁን በቀጥታ ነው-",
+    "8f3dc69e83c4": "የእርስዎ ግብረመልስ ተልኳል!",
+    "905392fbed15": "DeHub ን ለማሻሻል ስለረዱ እናመሰግናለን — {{value1}} የጠየቋቸው ነገሮች አሁን በቀጥታ ናቸው-",
+    "bdd4f5015e96": "የተላከ የጥያቄ ማሳወቂያ ይዝጉ",
+    "da4c7c208cf4": "ይፈትሹት"
   }
 }

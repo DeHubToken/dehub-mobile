@@ -999,7 +999,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Usa i colori della tua foto profilo",
     "themeColorBrandNoAvatar": "Aggiungi una foto profilo per usare i colori Brand",
-    "themeColorBrandFailed": "Non è stato possibile leggere i colori della tua foto profilo"
+    "themeColorBrandFailed": "Non è stato possibile leggere i colori della tua foto profilo",
+    "shortsSaveFailed": "Impossibile salvare la preferenza dei pantaloncini"
   },
   "common": {
     "refresh": "Aggiorna",
@@ -2066,7 +2067,11 @@
     "likeStation": "Mi piace la stazione",
     "unlikeStation": "Non mi piace più",
     "shareStation": "Condividi la stazione",
-    "listeningTo": "Sto ascoltando {{name}} su DeHub"
+    "listeningTo": "Sto ascoltando {{name}} su DeHub",
+    "listeningCount_one": "{{count}} in ascolto",
+    "listeningCount_other": "{{count}} in ascolto",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} visualizzazioni"
   },
   "notFound": {
     "title": "Pagina non trovata",
@@ -2755,7 +2760,15 @@
     "sentDesc": "{{amount}} token inviati al tesoro il {{chain}}. La tua quota si aggiorna una volta che il blocco viene indicizzato.",
     "sendAnyWallet": "Chiunque può inviare token DeHub qui da qualsiasi wallet o exchange. I trasferimenti su Base e BNB contano ai fini della tua quota.",
     "yourContribution": "{{amount}} token contribuiti",
-    "pooledTotal": "{{amount}} token messi in pool"
+    "pooledTotal": "{{amount}} token messi in pool",
+    "status": {
+      "rejected": "Rifiutato",
+      "open": "Apri",
+      "expired": "Scaduto",
+      "completed": "Completato",
+      "cancelled": "Annullato",
+      "accepted": "Accettato"
+    }
   },
   "governance": {
     "title": "Governanza",
@@ -5091,7 +5104,12 @@
     "interestedCount": "{{count}} interessati",
     "loadFailed": "Impossibile caricare gli eventi"
   },
-  "stats": {"chart": {"daily": "Visitatori al giorno", "dailyHint": "visitatori unici al giorno", "empty": "Ancora nessun dato per questo intervallo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitatori al giorno",
+      "dailyHint": "visitatori unici al giorno",
+      "empty": "Ancora nessun dato per questo intervallo"
+    },
     "definitions": {
       "visitorsTerm": "Visitatori"
     },
@@ -9875,5 +9893,24 @@
     "fingerprint": "Impronta",
     "exploreFirst": "Esplora prima",
     "codeNote": "Ti inviamo un codice via email, senza password."
+  },
+  "stageCover": {
+    "admitOne": "AMMETTINE UNO",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "IN ONDA",
+    "recorded": "REGISTRATO",
+    "replay": "riproduci",
+    "stage": "fase",
+    "upcoming": "imminente"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Grazie!",
+    "20d4214b9d4b": "Visualizza richieste spedite",
+    "2971f9103f78": "Grazie per aver contribuito a migliorare DeHub — qualcosa che hai chiesto è ora disponibile:",
+    "8f3dc69e83c4": "Il tuo feedback è stato spedito!",
+    "905392fbed15": "Grazie per aver contribuito a migliorare DeHub: {{value1}} le cose che hai chiesto sono ora disponibili:",
+    "bdd4f5015e96": "Chiudi notifica richiesta spedita",
+    "da4c7c208cf4": "Dai un'occhiata"
   }
 }

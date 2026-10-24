@@ -993,7 +993,8 @@
     "themeColorBrand": "Brend",
     "themeColorBrandDesc": "Koristi boje tvoje profilne slike",
     "themeColorBrandNoAvatar": "Dodajte profilnu sliku da biste koristili boje brenda",
-    "themeColorBrandFailed": "Nije bilo moguće očitati boje s vaše profilne slike"
+    "themeColorBrandFailed": "Nije bilo moguće očitati boje s vaše profilne slike",
+    "shortsSaveFailed": "Spremanje postavki kratkih hlača nije uspjelo"
   },
   "common": {
     "refresh": "Osvježi",
@@ -2056,7 +2057,11 @@
     "likeStation": "Sviđa mi se postaja",
     "unlikeStation": "Ukloni sviđanje",
     "shareStation": "Podijeli postaju",
-    "listeningTo": "Slušam {{name}} na DeHubu"
+    "listeningTo": "Slušam {{name}} na DeHubu",
+    "listeningCount_one": "{{count}} slušanje",
+    "listeningCount_other": "{{count}} slušanje",
+    "viewsCount_one": "{{views}} pregled",
+    "viewsCount_other": "Prikazi: {{views}}"
   },
   "notFound": {
     "title": "Stranica nije pronađena",
@@ -2739,7 +2744,15 @@
     "sentDesc": "{{amount}} tokena poslano u riznicu dana {{chain}}. Vaš udio se ažurira nakon indeksiranja bloka.",
     "sendAnyWallet": "Svatko može poslati DeHub tokene ovdje s bilo kojeg novčanika ili mjenjačnice. Prijenosi na Base i BNB računaju se u vaš udio.",
     "yourContribution": "{{amount}} tokena doprineseno",
-    "pooledTotal": "{{amount}} tokena uloženo u fond"
+    "pooledTotal": "{{amount}} tokena uloženo u fond",
+    "status": {
+      "rejected": "Odbijeno",
+      "open": "Otvori",
+      "expired": "Isteklo",
+      "completed": "Dovršeno",
+      "cancelled": "Otkazano",
+      "accepted": "Prihvaćeno"
+    }
   },
   "governance": {
     "title": "Upravljanje",
@@ -9817,5 +9830,24 @@
     "fingerprint": "Otisak prsta",
     "exploreFirst": "Prvo istražite",
     "codeNote": "Poslat ćemo vam kod e-mailom, nije potrebna lozinka."
+  },
+  "stageCover": {
+    "admitOne": "PRIZNAJTE JEDAN",
+    "live": "uživo",
+    "minutes": "{{minutes}} min",
+    "onAir": "U ETERU",
+    "recorded": "SNIMLJENO",
+    "replay": "ponovna reprodukcija",
+    "stage": "faza",
+    "upcoming": "nadolazeće"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Hvala!",
+    "20d4214b9d4b": "Prikaži poslane zahtjeve",
+    "2971f9103f78": "Hvala ti što pomažeš da DeHub bude bolji — nešto što si tražio sada je objavljeno:",
+    "8f3dc69e83c4": "Vaše su povratne informacije poslane!",
+    "905392fbed15": "Hvala vam što pomažete poboljšati DeHub — {{value1}} stvari koje ste zatražili sada su objavljene:",
+    "bdd4f5015e96": "Zatvori obavijest o poslanom zahtjevu",
+    "da4c7c208cf4": "Pogledajte"
   }
 }

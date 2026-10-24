@@ -992,7 +992,8 @@
     "themeColorBrand": "Alama",
     "themeColorBrandDesc": "Yi amfani da launukan hoton bayanan martabarka",
     "themeColorBrandNoAvatar": "Ƙara hoton bayanan martaba don amfani da launukan Alama",
-    "themeColorBrandFailed": "Ba a iya karanta launuka daga hoton bayanan martabarka ba"
+    "themeColorBrandFailed": "Ba a iya karanta launuka daga hoton bayanan martabarka ba",
+    "shortsSaveFailed": "An kasa ajiye Shorts fifiko"
   },
   "common": {
     "refresh": "Sake sabuntawa",
@@ -2046,7 +2047,11 @@
     "pauseStation": "Dakatar da tashar",
     "resumeStation": "Sake farawa tashar",
     "stopRadio": "Dakatar da rediyo",
-    "radioStations": "Gidan Rediyo"
+    "radioStations": "Gidan Rediyo",
+    "listeningCount_one": "{{count}} sauraron",
+    "listeningCount_other": "{{count}} sauraron",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} Ra'ayoyi"
   },
   "notFound": {
     "title": "Ba a Sami Shafin Ba",
@@ -2729,7 +2734,15 @@
     "sentDesc": "An aika {{amount}} tokens zuwa baitulmali a ranar {{chain}}. Rabin rabonka zai sabunta da zarar an yi rijistar block.",
     "sendAnyWallet": "Kowa na iya aika DeHub tokens anan daga kowace walat ko musayar kudi. Canja wuri akan Base da BNB suna lissafawa zuwa rabonka.",
     "yourContribution": "{{amount}} tokens da aka bayar",
-    "pooledTotal": "{{amount}} tokens da aka tara"
+    "pooledTotal": "{{amount}} tokens da aka tara",
+    "status": {
+      "rejected": "An ƙi",
+      "open": "Bude",
+      "expired": "Ya ƙare",
+      "completed": "An kammala",
+      "cancelled": "An soke",
+      "accepted": "An karɓa"
+    }
   },
   "governance": {
     "title": "Mulki",
@@ -9776,5 +9789,24 @@
     "fingerprint": "Rubutun yatsa",
     "exploreFirst": "Bincika na farko",
     "codeNote": "Muna imel da ku lambar, babu kalmar sirri da ake buƙata."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT daya",
+    "live": "raye raye",
+    "minutes": "{{minutes}} min",
+    "onAir": "A kan iska",
+    "recorded": "An rubuta",
+    "replay": "sake",
+    "stage": "mataki",
+    "upcoming": "gabba gabba"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Godiya!",
+    "20d4214b9d4b": "Duba buƙatun da aka aika",
+    "2971f9103f78": "Godiya ga taimaka wajen sa DeHub ya fi kyau — wani abu da kuka nema yanzu yana da rai:",
+    "8f3dc69e83c4": "Your feedback aikawa!",
+    "905392fbed15": "Godiya ga taimaka wajen sa DeHub ya fi kyau — {{value1}} abubuwan da kuka nema yanzu suna rayuwa:",
+    "bdd4f5015e96": "Rufe aikawa request sanarwar",
+    "da4c7c208cf4": "Duba shi"
   }
 }

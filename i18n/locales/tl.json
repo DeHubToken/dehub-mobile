@@ -995,7 +995,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Gamitin ang mga kulay ng profile picture mo",
     "themeColorBrandNoAvatar": "Magdagdag ng profile picture para magamit ang mga kulay ng Brand",
-    "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo"
+    "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo",
+    "shortsSaveFailed": "Nabigong i - save ang kagustuhan sa Shorts"
   },
   "common": {
     "refresh": "I-refresh",
@@ -2105,7 +2106,11 @@
     "likeStation": "I-like ang istasyon",
     "unlikeStation": "I-unlike ang istasyon",
     "shareStation": "Ibahagi ang istasyon",
-    "listeningTo": "Nakikinig sa {{name}} sa DeHub"
+    "listeningTo": "Nakikinig sa {{name}} sa DeHub",
+    "listeningCount_one": "{{count}} nakikinig",
+    "listeningCount_other": "{{count}} nakikinig",
+    "viewsCount_one": "{{views}}view",
+    "viewsCount_other": "{{views}} mga view"
   },
   "notFound": {
     "title": "Hindi Natagpuan ang Page",
@@ -2794,7 +2799,15 @@
     "sentDesc": "{{amount}} tokens na ipinadala sa treasury noong {{chain}}. Maa-update ang iyong bahagi kapag na-index na ang block.",
     "sendAnyWallet": "Maaaring magpadala ng DeHub tokens dito ang sinuman mula sa anumang wallet o exchange. Ang mga transfer sa Base at BNB ay bibilangin sa iyong bahagi.",
     "yourContribution": "{{amount}} tokens na naambag",
-    "pooledTotal": "{{amount}} tokens na na-pool"
+    "pooledTotal": "{{amount}} tokens na na-pool",
+    "status": {
+      "rejected": "Tinanggihan",
+      "open": "Buksan",
+      "expired": "Nag - expire na",
+      "completed": "Tapos na",
+      "cancelled": "Kinansela",
+      "accepted": "Tinanggap"
+    }
   },
   "governance": {
     "title": "Pamamahala",
@@ -5079,7 +5092,12 @@
     "interestedCount": "{{count}} ang interesado",
     "loadFailed": "Hindi ma-load ang mga event"
   },
-  "stats": {"chart": {"daily": "Mga bisita kada araw", "dailyHint": "mga natatanging bisita kada araw", "empty": "Wala pang datos para sa panahong ito"},
+  "stats": {
+    "chart": {
+      "daily": "Mga bisita kada araw",
+      "dailyHint": "mga natatanging bisita kada araw",
+      "empty": "Wala pang datos para sa panahong ito"
+    },
     "definitions": {
       "visitorsTerm": "Mga bisita"
     },
@@ -10000,5 +10018,24 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Mag-explore muna",
     "codeNote": "Magpapadala kami ng code sa email, walang password."
+  },
+  "stageCover": {
+    "admitOne": "AMININ ANG ISANG",
+    "live": "live",
+    "minutes": "{{minutes}}min",
+    "onAir": "ON AIR",
+    "recorded": "NAITALA",
+    "replay": "i - replay",
+    "stage": "entablado",
+    "upcoming": "nalalapit"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Salamat!",
+    "20d4214b9d4b": "Tingnan ang mga ipinadalang kahilingan",
+    "2971f9103f78": "Salamat sa pagtulong na gawing mas mahusay ang DeHub — isang bagay na iyong hiniling ay nakatira na ngayon:",
+    "8f3dc69e83c4": "Naipadala na ang iyong feedback!",
+    "905392fbed15": "Salamat sa pagtulong na mapabuti ang DeHub — {{value1}} mga bagay na hiniling mo ay live na ngayon:",
+    "bdd4f5015e96": "Isara ang naipadala na notification sa kahilingan",
+    "da4c7c208cf4": "Tingnan ito"
   }
 }

@@ -995,7 +995,8 @@
     "themeColorBrand": "Marca",
     "themeColorBrandDesc": "Fes servir els colors de la teva foto de perfil",
     "themeColorBrandNoAvatar": "Afegeix una foto de perfil per fer servir els colors de marca",
-    "themeColorBrandFailed": "No s'han pogut llegir els colors de la teva foto de perfil"
+    "themeColorBrandFailed": "No s'han pogut llegir els colors de la teva foto de perfil",
+    "shortsSaveFailed": "No s'ha pogut desar la preferència de pantalons curts"
   },
   "common": {
     "refresh": "Actualitzar",
@@ -2058,7 +2059,11 @@
     "likeStation": "M'agrada l'emissora",
     "unlikeStation": "Ja no m'agrada l'emissora",
     "shareStation": "Comparteix l'emissora",
-    "listeningTo": "Escoltant {{name}} a DeHub"
+    "listeningTo": "Escoltant {{name}} a DeHub",
+    "listeningCount_one": "{{count}} escoltant",
+    "listeningCount_other": "{{count}} escoltant",
+    "viewsCount_one": "{{views}} visualització",
+    "viewsCount_other": "{{views}} visites"
   },
   "notFound": {
     "title": "Pàgina no trobada",
@@ -2747,7 +2752,15 @@
     "sentDesc": "{{amount}} tokens enviats al tresor el {{chain}}. La teva participació s'actualitza un cop s'indexa el bloc.",
     "sendAnyWallet": "Qualsevol persona pot enviar tokens DeHub aquí des de qualsevol cartera o intercanvi. Les transferències a Base i BNB compten per a la teva participació.",
     "yourContribution": "{{amount}} tokens contribuïts",
-    "pooledTotal": "{{amount}} tokens en pool"
+    "pooledTotal": "{{amount}} tokens en pool",
+    "status": {
+      "rejected": "Rebutjat",
+      "open": "Obre",
+      "expired": "Caducat",
+      "completed": "Completat",
+      "cancelled": "Cancel·lada",
+      "accepted": "Acceptada"
+    }
   },
   "governance": {
     "title": "Governança",
@@ -5032,7 +5045,12 @@
     "interestedCount": "{{count}} interessats",
     "loadFailed": "No s'han pogut carregar els esdeveniments"
   },
-  "stats": {"chart": {"daily": "Visitants per dia", "dailyHint": "visitants únics per dia", "empty": "Encara no hi ha dades per a aquest període"},
+  "stats": {
+    "chart": {
+      "daily": "Visitants per dia",
+      "dailyHint": "visitants únics per dia",
+      "empty": "Encara no hi ha dades per a aquest període"
+    },
     "definitions": {
       "visitorsTerm": "Visitants"
     },
@@ -9820,5 +9838,24 @@
     "fingerprint": "Empremta",
     "exploreFirst": "Explora primer",
     "codeNote": "T'enviem un codi per correu, sense contrasenya."
+  },
+  "stageCover": {
+    "admitOne": "ADMET-NE UNA",
+    "live": "en directe",
+    "minutes": "{{minutes}} min",
+    "onAir": "A L'AIRE",
+    "recorded": "ENREGISTRAT",
+    "replay": "tornar a reproduir",
+    "stage": "etapa",
+    "upcoming": "properes"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Gràcies!",
+    "20d4214b9d4b": "Mostra les sol·licituds enviades",
+    "2971f9103f78": "Gràcies per ajudar a millorar DeHub: una cosa que has demanat ja està disponible:",
+    "8f3dc69e83c4": "S'han enviat els teus comentaris!",
+    "905392fbed15": "Gràcies per ajudar a millorar DeHub: {{value1}} les coses que has demanat ja estan disponibles:",
+    "bdd4f5015e96": "Tanca la notificació de sol·licitud enviada",
+    "da4c7c208cf4": "Fes-hi una ullada"
   }
 }

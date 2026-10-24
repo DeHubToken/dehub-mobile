@@ -994,7 +994,8 @@
     "themeColorBrand": "Thương hiệu",
     "themeColorBrandDesc": "Dùng màu từ ảnh đại diện của bạn",
     "themeColorBrandNoAvatar": "Thêm ảnh đại diện để dùng màu Thương hiệu",
-    "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn"
+    "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn",
+    "shortsSaveFailed": "Không thể lưu tùy chọn Quần short"
   },
   "common": {
     "refresh": "Làm mới",
@@ -2072,7 +2073,11 @@
     "likeStation": "Thích đài",
     "unlikeStation": "Bỏ thích đài",
     "shareStation": "Chia sẻ đài",
-    "listeningTo": "Đang nghe {{name}} trên DeHub"
+    "listeningTo": "Đang nghe {{name}} trên DeHub",
+    "listeningCount_one": "{{count}} đang nghe",
+    "listeningCount_other": "{{count}} đang nghe",
+    "viewsCount_one": "Chế độ xem {{views}}",
+    "viewsCount_other": "{{views}} lượt xem"
   },
   "notFound": {
     "title": "Không tìm thấy trang",
@@ -2761,7 +2766,15 @@
     "sentDesc": "{{amount}} token đã được gửi đến kho bạc vào ngày {{chain}}. Phần chia sẻ của bạn sẽ được cập nhật sau khi khối được lập chỉ mục.",
     "sendAnyWallet": "Bất kỳ ai cũng có thể gửi token DeHub tại đây từ bất kỳ ví hoặc sàn giao dịch nào. Các giao dịch trên Base và BNB sẽ được tính vào phần chia sẻ của bạn.",
     "yourContribution": "{{amount}} token đã đóng góp",
-    "pooledTotal": "{{amount}} token đã gộp"
+    "pooledTotal": "{{amount}} token đã gộp",
+    "status": {
+      "rejected": "Bị từ chối",
+      "open": "Mở",
+      "expired": "Đã hết hạn",
+      "completed": "Đã hoàn thành",
+      "cancelled": "Đã hủy",
+      "accepted": "Đã chấp nhận"
+    }
   },
   "governance": {
     "title": "Quản trị",
@@ -5046,7 +5059,12 @@
     "interestedCount": "{{count}} quan tâm",
     "loadFailed": "Không tải được sự kiện"
   },
-  "stats": {"chart": {"daily": "Khách truy cập mỗi ngày", "dailyHint": "khách truy cập duy nhất mỗi ngày", "empty": "Chưa có dữ liệu cho khoảng thời gian này"},
+  "stats": {
+    "chart": {
+      "daily": "Khách truy cập mỗi ngày",
+      "dailyHint": "khách truy cập duy nhất mỗi ngày",
+      "empty": "Chưa có dữ liệu cho khoảng thời gian này"
+    },
     "definitions": {
       "visitorsTerm": "Khách truy cập"
     },
@@ -9911,5 +9929,24 @@
     "fingerprint": "Vân tay",
     "exploreFirst": "Khám phá trước",
     "codeNote": "Chúng tôi gửi mã qua email, không cần mật khẩu."
+  },
+  "stageCover": {
+    "admitOne": "CHẤP NHẬN MỘT",
+    "live": "trực tiếp",
+    "minutes": "{{minutes}} phút",
+    "onAir": "ON AIR",
+    "recorded": "ĐÃ GHI",
+    "replay": "phát lại",
+    "stage": "giai đoạn",
+    "upcoming": "sắp tới"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Cảm ơn bạn!",
+    "20d4214b9d4b": "Xem yêu cầu vận chuyển",
+    "2971f9103f78": "Cảm ơn bạn đã giúp cải thiện DeHub — nội dung bạn yêu cầu hiện đã được đăng:",
+    "8f3dc69e83c4": "Phản hồi của bạn đã được gửi đi!",
+    "905392fbed15": "Cảm ơn bạn đã giúp cải thiện DeHub — {{value1}} những điều bạn yêu cầu hiện đã được đăng:",
+    "bdd4f5015e96": "Đóng thông báo yêu cầu vận chuyển",
+    "da4c7c208cf4": "Tìm hiểu ngay"
   }
 }

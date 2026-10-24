@@ -1008,7 +1008,8 @@
     "themeColorBrand": "ব্র্যান্ড",
     "themeColorBrandDesc": "আঁর প্রোফাইল ছবির রঙ ব্যবহার গরন",
     "themeColorBrandNoAvatar": "Brand রঙ ব্যবহার গরিত একখান প্রোফাইল ছবি যোগ গরন",
-    "themeColorBrandFailed": "আঁর প্রোফাইল ছবি তুন রঙ পড়া যায় ন"
+    "themeColorBrandFailed": "আঁর প্রোফাইল ছবি তুন রঙ পড়া যায় ন",
+    "shortsSaveFailed": "সংরক্ষণ করতে ব্যর্থ হয়েছে Shorts পছন্দ"
   },
   "common": {
     "refresh": "রিফ্রেশ করুন",
@@ -2131,7 +2132,11 @@
     "likeStation": "স্টেশন পছন্দ করুন",
     "unlikeStation": "স্টেশন অপছন্দ করুন",
     "shareStation": "স্টেশন শেয়ার করুন",
-    "listeningTo": "DeHub-এ {{name}} শুনছি"
+    "listeningTo": "DeHub-এ {{name}} শুনছি",
+    "listeningCount_one": "{{count}} শুনছে",
+    "listeningCount_other": "{{count}} শুনছে",
+    "viewsCount_one": "{{views}} দেখছে",
+    "viewsCount_other": "{{views}} ভিউ"
   },
   "notFound": {
     "title": "পৃষ্ঠা পাওয়া যায় নাই",
@@ -2843,7 +2848,15 @@
     "sentDesc": "{{amount}} টোকেন {{chain}} তারিখে ট্রেজারিত পাঠানো অইছে। ব্লক ইনডেক্স অইলে আঁর শেয়ার আপডেট অইব।",
     "sendAnyWallet": "যেই কেউ এইখানে DeHub টোকেন পাঠির পারিবো যেকোনো ওয়ালেট বা এক্সচেঞ্জ থাকি। Base আর BNB-ত ট্রান্সফার আঁর শেয়ারের হিসাবে আইব।",
     "yourContribution": "{{amount}} টোকেন কন্ট্রিবিউট অইছে",
-    "pooledTotal": "{{amount}} টোকেন পুল অইছে"
+    "pooledTotal": "{{amount}} টোকেন পুল অইছে",
+    "status": {
+      "rejected": "অনুমোদন করা হয়নি",
+      "open": "খোলা",
+      "expired": "মেয়াদ শেষ",
+      "completed": "সম্পন্ন",
+      "cancelled": "বাতিল করা",
+      "accepted": "গ্রহণ করা"
+    }
   },
   "governance": {
     "title": "শাসন",
@@ -9893,5 +9906,24 @@
     "fingerprint": "ফিঙ্গারপ্রিন্ট",
     "exploreFirst": "প্রথমে এক্সপ্লোর করুন",
     "codeNote": "আমরা আপনে একডা কোড ইমেইল করিমু, পাসওয়ার্ড দরকার নাই।"
+  },
+  "stageCover": {
+    "admitOne": "আমি একটা",
+    "live": "জীবন",
+    "minutes": "{{minutes}} মিনিট",
+    "onAir": "চলছে",
+    "recorded": "রেকর্ড করা",
+    "replay": "পুনরায় দেখুন",
+    "stage": "স্টেজ",
+    "upcoming": "আগামী"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ধন্যবাদ!",
+    "20d4214b9d4b": "শিপড রিকুয়েস্ট দেখুন",
+    "2971f9103f78": "DeHub ভালো করার জন্য আপনার সাহায্যার জন্য ধন্যবাদ — আপনি চাইছিলেন সেটা এখন চলছে:",
+    "8f3dc69e83c4": "আপনার ফিডব্যাক শিপড!",
+    "905392fbed15": "DeHub ভালো করার জন্য আপনার সাহায্যার জন্য ধন্যবাদ — {{value1}} টি আপনি চাইছিলেন সেগুলো এখন চলছে:",
+    "bdd4f5015e96": "শিপড রিকুয়েস্ট নোটিফিকেশন বন্ধ করুন",
+    "da4c7c208cf4": "সেটা দেখুন"
   }
 }

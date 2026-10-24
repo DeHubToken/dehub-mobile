@@ -993,7 +993,8 @@
     "themeColorBrand": "Bränd",
     "themeColorBrandDesc": "Kasuta oma profiilipildi värve",
     "themeColorBrandNoAvatar": "Lisa profiilipilt, et kasutada brändivärve",
-    "themeColorBrandFailed": "Sinu profiilipildilt ei õnnestunud värve lugeda"
+    "themeColorBrandFailed": "Sinu profiilipildilt ei õnnestunud värve lugeda",
+    "shortsSaveFailed": "Lühikeste pükste eelistuse salvestamine nurjus"
   },
   "common": {
     "refresh": "Värskenda",
@@ -2056,7 +2057,11 @@
     "likeStation": "Meeldib jaam",
     "unlikeStation": "Eemalda meeldimine",
     "shareStation": "Jaga jaama",
-    "listeningTo": "Kuulan DeHubis {{name}}"
+    "listeningTo": "Kuulan DeHubis {{name}}",
+    "listeningCount_one": "{{count}} kuulamine",
+    "listeningCount_other": "{{count}} kuulamine",
+    "viewsCount_one": "{{views}} vaata",
+    "viewsCount_other": "{{views}} vaatamist"
   },
   "notFound": {
     "title": "Lehte ei leitud",
@@ -2739,7 +2744,15 @@
     "sentDesc": "{{amount}} märki saadetud treasurysse {{chain}}. Sinu osalus uueneb pärast ploki indekseerimist.",
     "sendAnyWallet": "Igaüks saab saata DeHub märke siia mis tahes rahakotist või börsilt. Base'is ja BNB-s tehtud ülekanded arvestatakse sinu osaluse hulka.",
     "yourContribution": "{{amount}} märki panustatud",
-    "pooledTotal": "{{amount}} märki kogutud"
+    "pooledTotal": "{{amount}} märki kogutud",
+    "status": {
+      "rejected": "Tagasi lükatud",
+      "open": "Ava",
+      "expired": "Aegunud",
+      "completed": "Valmis",
+      "cancelled": "Tühistatud",
+      "accepted": "Kinnitatud"
+    }
   },
   "governance": {
     "title": "Valitsemine",
@@ -9816,5 +9829,24 @@
     "fingerprint": "Sõrmejälg",
     "exploreFirst": "Esmalt uuri",
     "codeNote": "Saadame sulle e-kirjaga koodi, parooli pole vaja."
+  },
+  "stageCover": {
+    "admitOne": "REGISTREERI ÜKS",
+    "live": "reaalajas",
+    "minutes": "{{minutes}} min",
+    "onAir": "ÕHUS",
+    "recorded": "SALVESTATUD",
+    "replay": "kordus",
+    "stage": "etapp",
+    "upcoming": "eelseisev"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Aitäh!",
+    "20d4214b9d4b": "Kuva saadetud taotlused",
+    "2971f9103f78": "Aitäh, et aitasid DeHubi paremaks muuta — midagi, mida palusid, on nüüd saadaval:",
+    "8f3dc69e83c4": "Sinu tagasiside on saadetud!",
+    "905392fbed15": "Aitäh, et aitasid DeHubi paremaks muuta — {{value1}} asjad, mida palusid, on nüüd avatud:",
+    "bdd4f5015e96": "Sulge saadetud taotluse teatis",
+    "da4c7c208cf4": "Vaata lähemalt"
   }
 }

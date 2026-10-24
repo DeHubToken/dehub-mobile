@@ -993,7 +993,8 @@
     "themeColorBrand": "برانڊ",
     "themeColorBrandDesc": "پنهنجي پروفائل تصوير جا رنگ استعمال ڪريو",
     "themeColorBrandNoAvatar": "برانڊ رنگ استعمال ڪرڻ لاءِ پروفائل تصوير شامل ڪريو",
-    "themeColorBrandFailed": "پروفائل تصوير مان رنگ پڙهي نه سگهيا"
+    "themeColorBrandFailed": "پروفائل تصوير مان رنگ پڙهي نه سگهيا",
+    "shortsSaveFailed": "شارٽس ترجيح محفوظ ڪرڻ ۾ ناڪام"
   },
   "common": {
     "refresh": "ريفرش ڪريو",
@@ -2047,7 +2048,11 @@
     "tryAnotherGenre": "ٻيو صنف آزمائيو.",
     "pauseStation": "اسٽيشن بند ڪريو",
     "resumeStation": "اسٽيشن جاري رکو",
-    "stopRadio": "ريڊيو بند ڪريو"
+    "stopRadio": "ريڊيو بند ڪريو",
+    "listeningCount_one": "{{count}} ٻڌو",
+    "listeningCount_other": "{{count}} ٻڌو",
+    "viewsCount_one": "{{views}} نظر",
+    "viewsCount_other": "نظرات ياداشت {{views}} نظرات"
   },
   "notFound": {
     "title": "صفحو نه مليو",
@@ -2730,7 +2735,15 @@
     "sentDesc": "{{amount}} ٽوڪن {{chain}} تي خزاني ۾ موڪليا ويا. بلاڪ انڊيڪس ٿيڻ کان پوءِ توهان جو حصو اپڊيٽ ٿيندو.",
     "sendAnyWallet": "ڪو به والٽ يا ايڪسچينج مان هتي DeHub ٽوڪن موڪلي سگهي ٿو. Base ۽ BNB تي منتقلي توهان جي حصي ۾ ڳڻيو ويندو.",
     "yourContribution": "{{amount}} ٽوڪن شامل ڪيا ويا",
-    "pooledTotal": "{{amount}} ٽوڪن گڏ ڪيا ويا"
+    "pooledTotal": "{{amount}} ٽوڪن گڏ ڪيا ويا",
+    "status": {
+      "rejected": "رد ٿيل",
+      "open": "کوليو",
+      "expired": "مدي خارج ٿيل",
+      "completed": "مڪمل",
+      "cancelled": "رد ٿيل",
+      "accepted": "قبول ڪيو"
+    }
   },
   "governance": {
     "title": "گورننس",
@@ -9784,5 +9797,24 @@
     "fingerprint": "فنگر پرنٽ",
     "exploreFirst": "پهرين ڳولا ڪريو",
     "codeNote": "اسان توهان کي هڪ ڪوڊ اي ميل ڪندا آهيون، پاسورڊ جي ضرورت ناهي."
+  },
+  "stageCover": {
+    "admitOne": "هڪ کي تسليم ڪريو",
+    "live": "رهندڙ",
+    "minutes": "{{minutes}} منٽ",
+    "onAir": "ايئر تي",
+    "recorded": "رڪارڊ ٿيل",
+    "replay": "ٻيهر هلايو",
+    "stage": "اسٽيج",
+    "upcoming": "ايندڙ"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "توھان جي مھرباني!",
+    "20d4214b9d4b": "موڪليل درخواستون ڏسو",
+    "2971f9103f78": "DeHub کي بهتر بڻائڻ ۾ مدد ڏيڻ جي مهرباني — ڪجهه جيڪو توهان کان پڇيو ويو آهي هاڻي لائيو آهي:",
+    "8f3dc69e83c4": "توھان جي راءِ موڪلي وئي!",
+    "905392fbed15": "DeHub کي بهتر بڻائڻ ۾ مدد ڏيڻ جي مهرباني — {{value1}} شيون جيڪي توهان کان پڇيا آهن اهي هاڻي لائيو آهن:",
+    "bdd4f5015e96": "موڪلڻ واري درخواست جو اطلاع بند ڪريو",
+    "da4c7c208cf4": "ان جي چڪاس ڪريو"
   }
 }

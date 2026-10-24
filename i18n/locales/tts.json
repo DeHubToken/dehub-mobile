@@ -993,7 +993,8 @@
     "themeColorBrand": "แบรนด์",
     "themeColorBrandDesc": "ใซ้สีจากฮูปโปรไฟล์ของเจ้า",
     "themeColorBrandNoAvatar": "เพิ่มฮูปโปรไฟล์เพื่อใซ้สีแบรนด์",
-    "themeColorBrandFailed": "อ่านสีจากฮูปโปรไฟล์ของเจ้าบ่ได้"
+    "themeColorBrandFailed": "อ่านสีจากฮูปโปรไฟล์ของเจ้าบ่ได้",
+    "shortsSaveFailed": "ไม่สำเร็จในการบันทึกการตั้งค่า Shorts"
   },
   "common": {
     "refresh": "รีเฟรช",
@@ -2055,7 +2056,11 @@
     "likeStation": "ถูกใจสถานี",
     "unlikeStation": "เลิกถูกใจสถานี",
     "shareStation": "แชร์สถานี",
-    "listeningTo": "กำลังฟัง {{name}} บน DeHub"
+    "listeningTo": "กำลังฟัง {{name}} บน DeHub",
+    "listeningCount_one": "{{count}} ฟัง",
+    "listeningCount_other": "{{count}} ฟัง",
+    "viewsCount_one": "{{views}} ดู",
+    "viewsCount_other": "{{views}} ดู"
   },
   "notFound": {
     "title": "บ่พบหน้า",
@@ -2738,7 +2743,15 @@
     "sentDesc": "ส่งโทเคน {{amount}} ไปยังคลังเมื่อ {{chain}}. ส่วนแบ่งของท่านจะอัปเดตเมื่อบล็อกถูกจัดทำดัชนี",
     "sendAnyWallet": "ใครๆ ก็สามารถส่งโทเคน DeHub มาที่นี่ได้จากกระเป๋าเงินหรือการแลกเปลี่ยนใดๆ การโอนบน Base และ BNB จะนับรวมเป็นส่วนแบ่งของท่าน",
     "yourContribution": "{{amount}} โทเคนที่ร่วมสมทบ",
-    "pooledTotal": "{{amount}} โทเคนที่รวมกัน"
+    "pooledTotal": "{{amount}} โทเคนที่รวมกัน",
+    "status": {
+      "rejected": "ปฏิเสธ",
+      "open": "เปิด",
+      "expired": "หมดอายุ",
+      "completed": "เสร็จสิ้น",
+      "cancelled": "ยกเลิก",
+      "accepted": "ยอมรับ"
+    }
   },
   "governance": {
     "title": "การปกครอง",
@@ -9762,5 +9775,24 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Explore first",
     "codeNote": "เฮาส่งอีเมลโค้ดให้เจ้า บ่ต้องใช้พาสเวิร์ด."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "อยู่บนอากาศ",
+    "minutes": "{{minutes}} นาที",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "รีเพลย์",
+    "stage": "เวที",
+    "upcoming": "ข้างหน้า"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ขอบคุณ!",
+    "20d4214b9d4b": "ดูคำขอจัดส่ง",
+    "2971f9103f78": "ขอบคุณที่ช่วยทำให้ DeHub ดีขึ้น — สิ่งที่คุณขออยู่แล้วมันอยู่บนอากาศ:",
+    "8f3dc69e83c4": "คำตอบของคุณจัดส่งแล้ว!",
+    "905392fbed15": "ขอบคุณที่ช่วยทำให้ DeHub ดีขึ้น — {{value1}} สิ่งที่คุณขออยู่แล้วมันอยู่บนอากาศ:",
+    "bdd4f5015e96": "ปิดการแจ้งเตือนคำขอจัดส่ง",
+    "da4c7c208cf4": "ดูสิ่งนั้น"
   }
 }

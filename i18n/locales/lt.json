@@ -993,7 +993,8 @@
     "themeColorBrand": "Prekės ženklas",
     "themeColorBrandDesc": "Naudoti profilio nuotraukos spalvas",
     "themeColorBrandNoAvatar": "Pridėkite profilio nuotrauką, kad naudotumėte prekės ženklo spalvas",
-    "themeColorBrandFailed": "Nepavyko nuskaityti spalvų iš jūsų profilio nuotraukos"
+    "themeColorBrandFailed": "Nepavyko nuskaityti spalvų iš jūsų profilio nuotraukos",
+    "shortsSaveFailed": "Nepavyko išsaugoti šortų nuostatos"
   },
   "common": {
     "refresh": "Atnaujinti",
@@ -2056,7 +2057,11 @@
     "likeStation": "Patinka stotis",
     "unlikeStation": "Nebepatinka",
     "shareStation": "Bendrinti stotį",
-    "listeningTo": "Klausausi {{name}} per DeHub"
+    "listeningTo": "Klausausi {{name}} per DeHub",
+    "listeningCount_one": "{{count}} klausymasis",
+    "listeningCount_other": "{{count}} klausymasis",
+    "viewsCount_one": "{{views}} rodinys",
+    "viewsCount_other": "{{views}} peržiūros"
   },
   "notFound": {
     "title": "Puslapis nerastas",
@@ -2739,7 +2744,15 @@
     "sentDesc": "{{amount}} žetonų išsiųsta į iždą {{chain}}. Jūsų dalis bus atnaujinta, kai bus indeksuotas blokas.",
     "sendAnyWallet": "Bet kas gali siųsti DeHub žetonus čia iš bet kurios piniginės ar biržos. Perdavimai „Base“ ir „BNB“ įskaitomi į jūsų dalį.",
     "yourContribution": "{{amount}} žetonų prisidėta",
-    "pooledTotal": "{{amount}} žetonų įtraukta į fondą"
+    "pooledTotal": "{{amount}} žetonų įtraukta į fondą",
+    "status": {
+      "rejected": "Atmesta",
+      "open": "Atidaryti",
+      "expired": "Nebegalioja",
+      "completed": "Atlikta",
+      "cancelled": "Atšaukta",
+      "accepted": "Priimta"
+    }
   },
   "governance": {
     "title": "Valdymas",
@@ -9816,5 +9829,24 @@
     "fingerprint": "Piršto atspaudas",
     "exploreFirst": "Pirmiausia peržiūrėkite",
     "codeNote": "Siunčiame kodą el. paštu, slaptažodžio nereikia."
+  },
+  "stageCover": {
+    "admitOne": "PRIIMTI VIENĄ",
+    "live": "gyvai",
+    "minutes": "{{minutes}} min.",
+    "onAir": "ORE",
+    "recorded": "ĮRAŠYTA",
+    "replay": "pakartoti",
+    "stage": "etapas",
+    "upcoming": "artėja"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Ačiū!",
+    "20d4214b9d4b": "Peržiūrėti išsiųstus užsakymus",
+    "2971f9103f78": "Dėkojame, kad padedate padaryti „DeHub“ geresnį — jūsų paprašyta informacija dabar yra aktyvi:",
+    "8f3dc69e83c4": "Jūsų atsiliepimas išsiųstas!",
+    "905392fbed15": "Dėkojame, kad padedate tobulinti „DeHub“ — {{value1}} dalykai, kurių prašėte, dabar yra aktyvūs:",
+    "bdd4f5015e96": "Uždaryti išsiųstos užklausos pranešimą",
+    "da4c7c208cf4": "Pažiūrėkite"
   }
 }

@@ -993,7 +993,8 @@
     "themeColorBrand": "العلامة",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "زد صورة بروفايل عشان تستخدم ألوان العلامة",
-    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك",
+    "shortsSaveFailed": "فشل حفظ تفضيلات شورتس"
   },
   "common": {
     "refresh": "تحديث",
@@ -2055,7 +2056,9 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "viewsCount_one": "{{views}} شوف",
+    "viewsCount_other": "{{views}} مشاهدات"
   },
   "notFound": {
     "title": "الصفحة مو موجودة",
@@ -9723,5 +9726,9 @@
     "fingerprint": "البصمة",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "نرسل لك كود على الإيميل، ما تحتاج كلمة سر."
+  },
+  "stageCover": {
+    "minutes": "{{minutes}} مين",
+    "stage": "المسرح"
   }
 }

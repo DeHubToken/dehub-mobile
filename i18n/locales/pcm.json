@@ -979,7 +979,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Use your profile picture colours",
     "themeColorBrandNoAvatar": "Add profile picture before you fit use Brand colours",
-    "themeColorBrandFailed": "E no fit read colour from your profile picture"
+    "themeColorBrandFailed": "E no fit read colour from your profile picture",
+    "shortsSaveFailed": "Wen u try save Shorts preference, e no dey save."
   },
   "common": {
     "refresh": "Refresh",
@@ -2032,7 +2033,11 @@
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
     "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "listeningTo": "Listening to {{name}} on DeHub",
+    "listeningCount_one": "{{count}} listening",
+    "listeningCount_other": "{{count}} listening",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -2704,7 +2709,15 @@
     "sendAmount": "Send {{amount}} tokens",
     "yourContribution": "{{amount}} tokens contributed",
     "pooledTotal": "{{amount}} tokens pooled",
-    "sentDesc": "{{amount}} wey dem send to treasury for {{chain}}. Your share go update when block dey index."
+    "sentDesc": "{{amount}} wey dem send to treasury for {{chain}}. Your share go update when block dey index.",
+    "status": {
+      "rejected": "Rejected",
+      "open": "Open",
+      "expired": "Expired",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "accepted": "Accepted"
+    }
   },
   "governance": {
     "title": "Rul Dem",
@@ -9441,5 +9454,22 @@
     "phone": "Phone",
     "fingerprint": "Fingerprint",
     "exploreFirst": "Explore first"
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "replay",
+    "stage": "stage",
+    "upcoming": "upcoming"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Thanks!",
+    "20d4214b9d4b": "View shipped requests",
+    "8f3dc69e83c4": "Feedback don ship!",
+    "bdd4f5015e96": "Close shipped request notification",
+    "da4c7c208cf4": "Check it out"
   }
 }

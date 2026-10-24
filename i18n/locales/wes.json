@@ -983,7 +983,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Yus yua profile picture color dem",
     "themeColorBrandNoAvatar": "Add wan profile picture mek yu yus Brand color dem",
-    "themeColorBrandFailed": "I no fit read color dem from yua profile picture"
+    "themeColorBrandFailed": "I no fit read color dem from yua profile picture",
+    "shortsSaveFailed": "Save preference fail."
   },
   "common": {
     "refresh": "Refresh",
@@ -2037,7 +2038,11 @@
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
     "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "listeningTo": "Listening to {{name}} on DeHub",
+    "listeningCount_one": "{{count}} listening",
+    "listeningCount_other": "{{count}} listening",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -2716,7 +2721,15 @@
     "yourContribution": "{{amount}} tokens contributed",
     "pooledTotal": "{{amount}} tokens pooled",
     "contributeIntro": "Send DeHub token frim yu wallet go treasury. Ebi yu add one, yu share fi pool go rise, an yu share go be weight fi yu vote when DAO decide how spend money.",
-    "sentDesc": "{{amount}} tokens na treasury fo {{chain}}. Yuh share go update wey block na index."
+    "sentDesc": "{{amount}} tokens na treasury fo {{chain}}. Yuh share go update wey block na index.",
+    "status": {
+      "rejected": "Rejected",
+      "open": "Open",
+      "expired": "Expired",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "accepted": "Accepted"
+    }
   },
   "governance": {
     "title": "Govnas",
@@ -9630,5 +9643,24 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Explore first",
     "codeNote": "We go send yu code by email, no password needed."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "replay",
+    "stage": "stage",
+    "upcoming": "upcoming"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Thanks!",
+    "20d4214b9d4b": "View shipped requests",
+    "2971f9103f78": "Tank yu wel for helpim make DeHub beta — somtin yu ask for na now laif:",
+    "8f3dc69e83c4": "Feedback bilong yu ship!",
+    "905392fbed15": "Tank yu for helpim make DeHub beta — {{value1}} tins wey you ask for don land:",
+    "bdd4f5015e96": "Close shipped request notification",
+    "da4c7c208cf4": "Check it out"
   }
 }

@@ -993,7 +993,8 @@
     "themeColorBrand": "Waitohu",
     "themeColorBrandDesc": "Whakamahia ngā tae o tō whakaahua kōtaha",
     "themeColorBrandNoAvatar": "Tāpirihia he whakaahua kōtaha kia whakamahi ai i ngā tae Waitohu",
-    "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha"
+    "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha",
+    "shortsSaveFailed": "Kaore e taea te whakaora i te hiahia o nga Shorts"
   },
   "common": {
     "refresh": "Whakahou",
@@ -2047,7 +2048,11 @@
     "tryAnotherGenre": "Whakamātauhia tētahi atu momo.",
     "pauseStation": "Tūruhi te teihana",
     "resumeStation": "Tāpiri anō te teihana",
-    "stopRadio": "Tūpokia te reo irirangi"
+    "stopRadio": "Tūpokia te reo irirangi",
+    "listeningCount_one": "{{count}} whakarongo",
+    "listeningCount_other": "{{count}} whakarongo",
+    "viewsCount_one": "{{views}} tirohanga",
+    "viewsCount_other": "{{views}} tirohanga"
   },
   "notFound": {
     "title": "Kāore i kitea te whārangi",
@@ -2730,7 +2735,15 @@
     "sentDesc": "{{amount}} tohu i tukua ki te whare taonga i te {{chain}}. Ka whakahoutia to wahanga i te wa e tohua ana te poraka.",
     "sendAnyWallet": "Ka taea e te tangata te tuku DeHub tohu ki konei mai i tetahi putea, whakawhitiwhiti ranei. Ko nga whakawhitiwhiti i runga i te Base me te BNB ka tatauhia ki to wahanga.",
     "yourContribution": "{{amount}} tohu i takoha",
-    "pooledTotal": "{{amount}} tohu i whakahiato"
+    "pooledTotal": "{{amount}} tohu i whakahiato",
+    "status": {
+      "rejected": "Whakakorea",
+      "open": "Whakatuwherahia",
+      "expired": "Kua roa",
+      "completed": "Kua oti",
+      "cancelled": "Whakakorea",
+      "accepted": "Whakauru"
+    }
   },
   "governance": {
     "title": "Kāwanatanga",
@@ -9792,5 +9805,24 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Whakamātauria te tuatahi",
     "codeNote": "Ka tukuna atu e matou he waehere ki a koe, kaore he kupuhipa e hiahiatia ana."
+  },
+  "stageCover": {
+    "admitOne": "Whakaaetia tetahi",
+    "live": "ora",
+    "minutes": "{{minutes}} min",
+    "onAir": "I runga i te rangi",
+    "recorded": "Rēhita",
+    "replay": "whakahoki",
+    "stage": "atamira",
+    "upcoming": "kei te haere mai"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Mauruuru koe!",
+    "20d4214b9d4b": "Tirohia nga tono i tukuna",
+    "2971f9103f78": "Mauruuru koe mo te awhina i a DeHub kia pai ake — ko te mea i tonoa e koe inaianei ko te ora:",
+    "8f3dc69e83c4": "Kua tukuna to urupare!",
+    "905392fbed15": "Mauruuru koe mo te awhina i a DeHub kia pai ake — {{value1}} mea i tonoa e koe kei te ora inaianei:",
+    "bdd4f5015e96": "Whakapā mai i te tono i tukuna tata",
+    "da4c7c208cf4": "Tirohia atu"
   }
 }

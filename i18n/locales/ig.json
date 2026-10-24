@@ -993,7 +993,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Jiri agba foto profaịlụ gị",
     "themeColorBrandNoAvatar": "Tinye foto profaịlụ iji jiri agba Brand",
-    "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị"
+    "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị",
+    "shortsSaveFailed": "Ndè ọ dị ọzọ ụlọ Shorts ụlọ."
   },
   "common": {
     "refresh": "Mee ka ọ dị ọhụrụ",
@@ -2047,7 +2048,11 @@
     "tryAnotherGenre": "Nwaa ụdị egwu ọzọ.",
     "pauseStation": "Kwụsịtụ redio",
     "resumeStation": "Malitegharịa redio",
-    "stopRadio": "Kwụsị redio"
+    "stopRadio": "Kwụsị redio",
+    "listeningCount_one": "{{count}} na-ege ntị",
+    "listeningCount_other": "{{count}} na-ege ntị",
+    "viewsCount_one": "{{views}} ụdị ụdị",
+    "viewsCount_other": "{{views}} echiche"
   },
   "notFound": {
     "title": "Achọtaghị Peeji",
@@ -2730,7 +2735,15 @@
     "sentDesc": "E zipụla {{amount}} tokens na ebe nchekwa na {{chain}}. Nkewa gị ga-agbanwe ozugbo emechara ndekọ blọk ahụ.",
     "sendAnyWallet": "Onye ọ bụla nwere ike izipu DeHub tokens ebe a site na akpa ego ma ọ bụ mgbanwe ọ bụla. Mbufe na Base na BNB na-agụ maka nkewa gị.",
     "yourContribution": "{{amount}} tokens etinyere",
-    "pooledTotal": "{{amount}} tokens etinyere na ọdọ mmiri"
+    "pooledTotal": "{{amount}} tokens etinyere na ọdọ mmiri",
+    "status": {
+      "rejected": "Jụrụ",
+      "open": "Mepee",
+      "expired": "Emebiela",
+      "completed": "Emechala",
+      "cancelled": "Akagbuola",
+      "accepted": "Anabatara"
+    }
   },
   "governance": {
     "title": "Ọchịchị",
@@ -9781,5 +9794,22 @@
     "fingerprint": "Mkpịsị aka",
     "exploreFirst": "Inyocha mbụ",
     "codeNote": "Anyị na-ezitere gị koodu, ọ dịghị paswọọdụ achọrọ."
+  },
+  "stageCover": {
+    "admitOne": "Ekweta otu",
+    "live": "ndụ",
+    "minutes": "{{minutes}} min",
+    "recorded": "E dekọrọ",
+    "replay": "ntughari",
+    "stage": "ogbo"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Daalụ!",
+    "20d4214b9d4b": "Gosi usoro mbubata",
+    "2971f9103f78": "Daalụ maka inye aka mee ka DeHub ka mma — ihe ị rịọrọ dị ndụ ugbu a:",
+    "8f3dc69e83c4": "E zigarawo nzaghachi gị!",
+    "905392fbed15": "Daalụ maka inye aka mee ka DeHub ka mma — {{value1}} ihe ị rịọrọ ugbu a:",
+    "bdd4f5015e96": "Mechie mbubata ozi mbubata",
+    "da4c7c208cf4": "Lelee ya"
   }
 }

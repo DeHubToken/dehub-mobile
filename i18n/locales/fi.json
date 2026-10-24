@@ -995,7 +995,8 @@
     "themeColorBrand": "Brändi",
     "themeColorBrandDesc": "Käytä profiilikuvasi värejä",
     "themeColorBrandNoAvatar": "Lisää profiilikuva käyttääksesi brändivärejä",
-    "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä"
+    "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä",
+    "shortsSaveFailed": "Shortsien asetuksen tallentaminen epäonnistui"
   },
   "common": {
     "refresh": "Päivitä",
@@ -2058,7 +2059,11 @@
     "likeStation": "Tykkää asemasta",
     "unlikeStation": "Poista tykkäys",
     "shareStation": "Jaa asema",
-    "listeningTo": "Kuuntelen {{name}} DeHubissa"
+    "listeningTo": "Kuuntelen {{name}} DeHubissa",
+    "listeningCount_one": "{{count}} kuuntelee",
+    "listeningCount_other": "{{count}} kuuntelee",
+    "viewsCount_one": "{{views}} näkymä",
+    "viewsCount_other": "{{views}} katselukertaa"
   },
   "notFound": {
     "title": "Sivua ei löytynyt",
@@ -2747,7 +2752,15 @@
     "sentDesc": "{{amount}} tokenia lähetetty treasuryyn {{chain}}. Osakkeesi päivittyy, kun lohko on indeksoitu.",
     "sendAnyWallet": "Kuka tahansa voi lähettää DeHub-tokeneita tänne mistä tahansa lompakosta tai pörssistä. Base- ja BNB-siirrot lasketaan osakkeeseesi.",
     "yourContribution": "{{amount}} tokenia talletettu",
-    "pooledTotal": "{{amount}} tokenia poolattu"
+    "pooledTotal": "{{amount}} tokenia poolattu",
+    "status": {
+      "rejected": "Hylätty",
+      "open": "Avaa",
+      "expired": "Vanhentunut",
+      "completed": "Valmis",
+      "cancelled": "Peruutettu",
+      "accepted": "Hyväksytty"
+    }
   },
   "governance": {
     "title": "Hallinto",
@@ -5032,7 +5045,12 @@
     "interestedCount": "{{count}} kiinnostunutta",
     "loadFailed": "Tapahtumia ei voitu ladata"
   },
-  "stats": {"chart": {"daily": "Kävijöitä päivässä", "dailyHint": "yksilöllisiä kävijöitä päivässä", "empty": "Tälle jaksolle ei ole vielä tietoja"},
+  "stats": {
+    "chart": {
+      "daily": "Kävijöitä päivässä",
+      "dailyHint": "yksilöllisiä kävijöitä päivässä",
+      "empty": "Tälle jaksolle ei ole vielä tietoja"
+    },
     "definitions": {
       "visitorsTerm": "Kävijät"
     },
@@ -9819,5 +9837,24 @@
     "fingerprint": "Sormenjälki",
     "exploreFirst": "Tutustu ensin",
     "codeNote": "Lähetämme sinulle koodin sähköpostilla, ilman salasanaa."
+  },
+  "stageCover": {
+    "admitOne": "HYVÄKSY YKSI",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ILMASSA",
+    "recorded": "NAUHOITETTU",
+    "replay": "toista",
+    "stage": "vaihe",
+    "upcoming": "tuleva"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Kiitos!",
+    "20d4214b9d4b": "Näytä lähetetyt pyynnöt",
+    "2971f9103f78": "Kiitos, että autat tekemään DeHubista paremman — jotain pyytämääsi on nyt julkaistu:",
+    "8f3dc69e83c4": "Palautteesi on lähetetty!",
+    "905392fbed15": "Kiitos, että autat tekemään DeHubista paremman — {{value1}} pyytämäsi asiat ovat nyt saatavilla:",
+    "bdd4f5015e96": "Sulje lähetettyä pyyntöä koskeva ilmoitus",
+    "da4c7c208cf4": "Tutustu"
   }
 }

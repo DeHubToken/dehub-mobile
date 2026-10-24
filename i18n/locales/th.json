@@ -995,7 +995,8 @@
     "themeColorBrand": "แบรนด์",
     "themeColorBrandDesc": "ใช้สีจากรูปโปรไฟล์ของคุณ",
     "themeColorBrandNoAvatar": "เพิ่มรูปโปรไฟล์เพื่อใช้สีแบรนด์",
-    "themeColorBrandFailed": "อ่านสีจากรูปโปรไฟล์ของคุณไม่ได้"
+    "themeColorBrandFailed": "อ่านสีจากรูปโปรไฟล์ของคุณไม่ได้",
+    "shortsSaveFailed": "บันทึกค่ากำหนดกางเกงขาสั้นล้มเหลว"
   },
   "common": {
     "refresh": "รีเฟรช",
@@ -2082,7 +2083,11 @@
     "likeStation": "ถูกใจสถานี",
     "unlikeStation": "เลิกถูกใจสถานี",
     "shareStation": "แชร์สถานี",
-    "listeningTo": "กำลังฟัง {{name}} บน DeHub"
+    "listeningTo": "กำลังฟัง {{name}} บน DeHub",
+    "listeningCount_one": "{{count}} กำลังฟัง",
+    "listeningCount_other": "{{count}} กำลังฟัง",
+    "viewsCount_one": "ดู {{views}} ครั้ง",
+    "viewsCount_other": "{{views}} ครั้ง"
   },
   "notFound": {
     "title": "ไม่พบหน้า",
@@ -2771,7 +2776,15 @@
     "sentDesc": "โทเค็น {{amount}} ถูกส่งไปยังคลังในวันที่ {{chain}} ส่วนแบ่งของคุณจะอัปเดตเมื่อบล็อกถูกจัดทำดัชนี",
     "sendAnyWallet": "ใครๆ ก็สามารถส่งโทเค็น DeHub มาที่นี่ได้จากกระเป๋าเงินหรือการแลกเปลี่ยนใดๆ การโอนบน Base และ BNB จะนับรวมในส่วนแบ่งของคุณ",
     "yourContribution": "โทเค็น {{amount}} ที่มีส่วนร่วม",
-    "pooledTotal": "โทเค็น {{amount}} ที่รวมอยู่ในพูล"
+    "pooledTotal": "โทเค็น {{amount}} ที่รวมอยู่ในพูล",
+    "status": {
+      "rejected": "ถูกปฏิเสธ",
+      "open": "เปิด",
+      "expired": "หมดอายุแล้ว",
+      "completed": "เสร็จสมบูรณ์แล้ว",
+      "cancelled": "ยกเลิกแล้ว",
+      "accepted": "ยอมรับแล้ว"
+    }
   },
   "governance": {
     "title": "การกำกับดูแล",
@@ -5050,7 +5063,12 @@
     "interestedCount": "{{count}} คนสนใจ",
     "loadFailed": "โหลดกิจกรรมไม่สำเร็จ"
   },
-  "stats": {"chart": {"daily": "ผู้เข้าชมต่อวัน", "dailyHint": "ผู้เข้าชมไม่ซ้ำต่อวัน", "empty": "ยังไม่มีข้อมูลสำหรับช่วงนี้"},
+  "stats": {
+    "chart": {
+      "daily": "ผู้เข้าชมต่อวัน",
+      "dailyHint": "ผู้เข้าชมไม่ซ้ำต่อวัน",
+      "empty": "ยังไม่มีข้อมูลสำหรับช่วงนี้"
+    },
     "definitions": {
       "visitorsTerm": "ผู้เข้าชม"
     },
@@ -9845,5 +9863,24 @@
     "fingerprint": "ลายนิ้วมือ",
     "exploreFirst": "สำรวจก่อน",
     "codeNote": "เราส่งรหัสทางอีเมล ไม่ต้องใช้รหัสผ่าน"
+  },
+  "stageCover": {
+    "admitOne": "ยอมรับหนึ่ง",
+    "live": "สด",
+    "minutes": "{{minutes}} นาที",
+    "onAir": "ออนแอร์",
+    "recorded": "บันทึกแล้ว",
+    "replay": "เล่นซ้ำ",
+    "stage": "ระยะ",
+    "upcoming": "กำลังจะมาถึง"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ขอบคุณ!",
+    "20d4214b9d4b": "ดูคำขอที่จัดส่งแล้ว",
+    "2971f9103f78": "ขอบคุณที่ช่วยทำให้ DeHub ดีขึ้นตอนนี้สิ่งที่คุณขอพร้อมใช้งานแล้ว:",
+    "8f3dc69e83c4": "ส่งข้อเสนอแนะของคุณแล้ว!",
+    "905392fbed15": "ขอบคุณที่ช่วยทำให้ DeHub ดีขึ้น — {{value1}} สิ่งที่คุณขอพร้อมใช้งานแล้ว:",
+    "bdd4f5015e96": "ปิดการแจ้งเตือนคำขอที่จัดส่งแล้ว",
+    "da4c7c208cf4": "ลองดูเลย"
   }
 }

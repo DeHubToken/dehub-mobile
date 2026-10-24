@@ -995,7 +995,8 @@
     "themeColorBrand": "Jenama",
     "themeColorBrandDesc": "Guna warna gambar profil anda",
     "themeColorBrandNoAvatar": "Tambah gambar profil untuk menggunakan warna Jenama",
-    "themeColorBrandFailed": "Tidak dapat membaca warna daripada gambar profil anda"
+    "themeColorBrandFailed": "Tidak dapat membaca warna daripada gambar profil anda",
+    "shortsSaveFailed": "Gagal menyimpan keutamaan Seluar Pendek"
   },
   "common": {
     "mute": "Bisukan",
@@ -2317,7 +2318,11 @@
     "likeStation": "Suka stesen",
     "unlikeStation": "Batal suka stesen",
     "shareStation": "Kongsi stesen",
-    "listeningTo": "Mendengar {{name}} di DeHub"
+    "listeningTo": "Mendengar {{name}} di DeHub",
+    "listeningCount_one": "{{count}} mendengar",
+    "listeningCount_other": "{{count}} mendengar",
+    "viewsCount_one": "{{views}} paparan",
+    "viewsCount_other": "{{views}} tinjauan"
   },
   "notFound": {
     "title": "Halaman Tidak Ditemui",
@@ -3006,7 +3011,15 @@
     "sentDesc": "{{amount}} token dihantar ke perbendaharaan pada {{chain}}. Kongsi anda dikemas kini sebaik sahaja blok diindeks.",
     "sendAnyWallet": "Sesiapa sahaja boleh menghantar token DeHub ke sini dari mana-mana dompet atau bursa. Pemindahan di Base dan BNB dikira untuk kongsi anda.",
     "yourContribution": "{{amount}} token disumbangkan",
-    "pooledTotal": "{{amount}} token digabungkan"
+    "pooledTotal": "{{amount}} token digabungkan",
+    "status": {
+      "rejected": "Ditolak",
+      "open": "Buka",
+      "expired": "Tamat tempoh",
+      "completed": "Selesai",
+      "cancelled": "Dibatalkan",
+      "accepted": "Diterima"
+    }
   },
   "governance": {
     "title": "Tadbir Urus",
@@ -5290,7 +5303,12 @@
     "interestedCount": "{{count}} berminat",
     "loadFailed": "Tidak dapat memuatkan acara"
   },
-  "stats": {"chart": {"daily": "Pelawat sehari", "dailyHint": "pelawat unik sehari", "empty": "Belum ada data untuk tempoh ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pelawat sehari",
+      "dailyHint": "pelawat unik sehari",
+      "empty": "Belum ada data untuk tempoh ini"
+    },
     "definitions": {
       "visitorsTerm": "Pelawat"
     },
@@ -10074,5 +10092,24 @@
     "fingerprint": "Cap jari",
     "exploreFirst": "Teroka dahulu",
     "codeNote": "Kami e-melkan kod kepada anda, tanpa kata laluan."
+  },
+  "stageCover": {
+    "admitOne": "AKUI SATU",
+    "live": "secara langsung",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "DIRAKAM",
+    "replay": "main semula",
+    "stage": "peringkat",
+    "upcoming": "akan datang"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Terima kasih!",
+    "20d4214b9d4b": "Lihat permintaan yang dihantar",
+    "2971f9103f78": "Terima kasih kerana membantu menjadikan DeHub lebih baik — sesuatu yang anda minta kini disiarkan:",
+    "8f3dc69e83c4": "Maklum balas anda telah dihantar!",
+    "905392fbed15": "Terima kasih kerana membantu menjadikan DeHub lebih baik — {{value1}} perkara yang anda minta kini disiarkan:",
+    "bdd4f5015e96": "Tutup pemberitahuan permintaan yang dihantar",
+    "da4c7c208cf4": "Cuba lihat"
   }
 }

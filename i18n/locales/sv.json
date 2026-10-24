@@ -995,7 +995,8 @@
     "themeColorBrand": "Varumärke",
     "themeColorBrandDesc": "Använd färgerna i din profilbild",
     "themeColorBrandNoAvatar": "Lägg till en profilbild för att använda varumärkesfärger",
-    "themeColorBrandFailed": "Kunde inte läsa färger från din profilbild"
+    "themeColorBrandFailed": "Kunde inte läsa färger från din profilbild",
+    "shortsSaveFailed": "Det gick inte att spara Shorts-preferensen"
   },
   "common": {
     "refresh": "Uppdatera",
@@ -2058,7 +2059,11 @@
     "likeStation": "Gilla stationen",
     "unlikeStation": "Sluta gilla stationen",
     "shareStation": "Dela stationen",
-    "listeningTo": "Lyssnar på {{name}} på DeHub"
+    "listeningTo": "Lyssnar på {{name}} på DeHub",
+    "listeningCount_one": "{{count}} lyssnar",
+    "listeningCount_other": "{{count}} lyssnar",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} visningar"
   },
   "notFound": {
     "title": "Sidan hittades inte",
@@ -2751,7 +2756,15 @@
     "sentDesc": "{{amount}} tokens skickades till statskassan den {{chain}}. Din andel uppdateras när blocket har indexerats.",
     "sendAnyWallet": "Vem som helst kan skicka DeHub-tokens hit från vilken plånbok eller börs som helst. Överföringar på Base och BNB räknas mot din andel.",
     "yourContribution": "{{amount}} tokens bidragna",
-    "pooledTotal": "{{amount}} tokens poolade"
+    "pooledTotal": "{{amount}} tokens poolade",
+    "status": {
+      "rejected": "Avvisad",
+      "open": "Öppna",
+      "expired": "Förfallen",
+      "completed": "Slutförd",
+      "cancelled": "Avbruten",
+      "accepted": "Accepterad"
+    }
   },
   "governance": {
     "title": "Styrning",
@@ -5036,7 +5049,12 @@
     "interestedCount": "{{count}} intresserade",
     "loadFailed": "Det gick inte att läsa in evenemang"
   },
-  "stats": {"chart": {"daily": "Besökare per dag", "dailyHint": "unika besökare per dag", "empty": "Ingen data för den här perioden ännu"},
+  "stats": {
+    "chart": {
+      "daily": "Besökare per dag",
+      "dailyHint": "unika besökare per dag",
+      "empty": "Ingen data för den här perioden ännu"
+    },
     "definitions": {
       "visitorsTerm": "Besökare"
     },
@@ -9823,5 +9841,24 @@
     "fingerprint": "Fingeravtryck",
     "exploreFirst": "Utforska först",
     "codeNote": "Vi mejlar dig en kod, inget lösenord behövs."
+  },
+  "stageCover": {
+    "admitOne": "ERKÄNNA EN",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "PÅ LUFT",
+    "recorded": "INSPELAD",
+    "replay": "spela upp igen",
+    "stage": "steg",
+    "upcoming": "kommande"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Tack!",
+    "20d4214b9d4b": "Visa skickade förfrågningar",
+    "2971f9103f78": "Tack för att du hjälper till att göra DeHub bättre — något du bad om är nu live:",
+    "8f3dc69e83c4": "Din feedback har skickats!",
+    "905392fbed15": "Tack för att du hjälper till att göra DeHub bättre — {{value1}} saker du bad om är nu live:",
+    "bdd4f5015e96": "Stäng meddelande om skickad begäran",
+    "da4c7c208cf4": "Kolla in det"
   }
 }

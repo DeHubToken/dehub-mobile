@@ -995,7 +995,8 @@
     "themeColorBrand": "Značka",
     "themeColorBrandDesc": "Použít barvy tvé profilové fotky",
     "themeColorBrandNoAvatar": "Přidej profilovou fotku, abys mohl použít barvy značky",
-    "themeColorBrandFailed": "Nepodařilo se načíst barvy z tvé profilové fotky"
+    "themeColorBrandFailed": "Nepodařilo se načíst barvy z tvé profilové fotky",
+    "shortsSaveFailed": "Nepodařilo se uložit předvolbu Shorts"
   },
   "common": {
     "refresh": "Obnovit",
@@ -2058,7 +2059,11 @@
     "likeStation": "Líbí se mi stanice",
     "unlikeStation": "Už se mi stanice nelíbí",
     "shareStation": "Sdílet stanici",
-    "listeningTo": "Poslouchám {{name}} na DeHub"
+    "listeningTo": "Poslouchám {{name}} na DeHub",
+    "listeningCount_one": "{{count}} naslouchání",
+    "listeningCount_other": "{{count}} naslouchání",
+    "viewsCount_one": "{{views}} zobrazení",
+    "viewsCount_other": "{{views}} zobrazení"
   },
   "notFound": {
     "title": "Stránka nenalezena",
@@ -2751,7 +2756,15 @@
     "sentDesc": "{{amount}} tokenů odesláno do pokladny dne {{chain}}. Váš podíl se aktualizuje po zaindexování bloku.",
     "sendAnyWallet": "Každý může poslat DeHub tokeny sem z jakékoli peněženky nebo burzy. Převody na Base a BNB se započítávají do vašeho podílu.",
     "yourContribution": "{{amount}} tokenů přispěno",
-    "pooledTotal": "{{amount}} tokenů v poolu"
+    "pooledTotal": "{{amount}} tokenů v poolu",
+    "status": {
+      "rejected": "Zamítnuto",
+      "open": "Otevřít",
+      "expired": "Vypršelo",
+      "completed": "Dokončeno",
+      "cancelled": "Zrušeno",
+      "accepted": "Přijato"
+    }
   },
   "governance": {
     "title": "Správa",
@@ -5035,7 +5048,12 @@
     "interestedCount": "{{count}} má zájem",
     "loadFailed": "Akce se nepodařilo načíst"
   },
-  "stats": {"chart": {"daily": "Návštěvníci za den", "dailyHint": "unikátní návštěvníci za den", "empty": "Pro toto období zatím nejsou data"},
+  "stats": {
+    "chart": {
+      "daily": "Návštěvníci za den",
+      "dailyHint": "unikátní návštěvníci za den",
+      "empty": "Pro toto období zatím nejsou data"
+    },
     "definitions": {
       "visitorsTerm": "Návštěvníci"
     },
@@ -9819,5 +9837,24 @@
     "fingerprint": "Otisk prstu",
     "exploreFirst": "Nejdřív se rozhlédni",
     "codeNote": "Pošleme ti kód e-mailem, bez hesla."
+  },
+  "stageCover": {
+    "admitOne": "PŘIZNAT JEDEN",
+    "live": "živě",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "NAHRÁNO",
+    "replay": "přehrát znovu",
+    "stage": "stupeň",
+    "upcoming": "nadcházející"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Díky!",
+    "20d4214b9d4b": "Zobrazit odeslané žádosti",
+    "2971f9103f78": "Děkujeme, že pomáháte zlepšovat DeHub — něco, o co jste požádali, je nyní zveřejněno:",
+    "8f3dc69e83c4": "Vaše zpětná vazba odeslána!",
+    "905392fbed15": "Děkujeme, že pomáháte zlepšovat DeHub — {{value1}} věci, o které jste požádali, jsou nyní v provozu:",
+    "bdd4f5015e96": "Zavřít oznámení o odeslané žádosti",
+    "da4c7c208cf4": "Podívej se na to"
   }
 }

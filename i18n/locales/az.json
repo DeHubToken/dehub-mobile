@@ -993,7 +993,8 @@
     "themeColorBrand": "Brend",
     "themeColorBrandDesc": "Profil şəklinizin rənglərini istifadə edin",
     "themeColorBrandNoAvatar": "Brend rənglərini istifadə etmək üçün profil şəkli əlavə edin",
-    "themeColorBrandFailed": "Profil şəklinizdən rənglər oxuna bilmədi"
+    "themeColorBrandFailed": "Profil şəklinizdən rənglər oxuna bilmədi",
+    "shortsSaveFailed": "Şort seçimini yaddaşda saxlamaq mümkün olmadı"
   },
   "common": {
     "refresh": "Yenilə",
@@ -2056,7 +2057,11 @@
     "likeStation": "Stansiyanı bəyən",
     "unlikeStation": "Stansiyanı bəyənmə",
     "shareStation": "Stansiyanı paylaş",
-    "listeningTo": "DeHub-da {{name}} dinləyirəm"
+    "listeningTo": "DeHub-da {{name}} dinləyirəm",
+    "listeningCount_one": "{{count}} dinləmək",
+    "listeningCount_other": "{{count}} dinləmək",
+    "viewsCount_one": "{{views}} bax",
+    "viewsCount_other": "{{views}} baxış"
   },
   "notFound": {
     "title": "Səhifə Tapılmadı",
@@ -2739,7 +2744,15 @@
     "sentDesc": "{{amount}} token {{chain}} tarixində xəzinəyə göndərildi. Sizin payınız blok indeksləndikdən sonra yenilənəcək.",
     "sendAnyWallet": "Hər kəs DeHub tokenlərini buradan istənilən cüzdandan və ya birjadan göndərə bilər. Base və BNB-dəki köçürmələr sizin payınıza hesab olunur.",
     "yourContribution": "{{amount}} token töhfə verilib",
-    "pooledTotal": "{{amount}} token havuzlanıb"
+    "pooledTotal": "{{amount}} token havuzlanıb",
+    "status": {
+      "rejected": "Rədd edildi",
+      "open": "Aç",
+      "expired": "Müddəti bitib",
+      "completed": "Tamamlanıb",
+      "cancelled": "Ləğv edildi",
+      "accepted": "Qəbul edildi"
+    }
   },
   "governance": {
     "title": "İdarəetmə",
@@ -9811,5 +9824,24 @@
     "fingerprint": "Barmaq izi",
     "exploreFirst": "Əvvəlcə araşdırın",
     "codeNote": "Kodu sizə e-poçtla göndəririk, parol tələb olunmur."
+  },
+  "stageCover": {
+    "admitOne": "BİRİNİ QƏBUL ET",
+    "live": "yaşamaq",
+    "minutes": "{{minutes}} dəq",
+    "onAir": "HAVADA",
+    "recorded": "QEYDƏ ALINIB",
+    "replay": "replay",
+    "stage": "mərhələ",
+    "upcoming": "qarşıdan gələn"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Təşəkkürlər!",
+    "20d4214b9d4b": "Göndərilmiş sorğulara baxın",
+    "2971f9103f78": "DeHub-ı daha da yaxşılaşdırmağa kömək etdiyiniz üçün təşəkkür edirik. Soruşduğunuz bir şey artıq dərc edilib:",
+    "8f3dc69e83c4": "Məxfi rəyiniz göndərildi.",
+    "905392fbed15": "DeHub-ın daha yaxşı olmasına yardım etdiyiniz üçün təşəkkür edirik — {{value1}} üçün soruşduğunuz şeylər artıq dərc edilib:",
+    "bdd4f5015e96": "Göndərilmiş sorğu bildirişini bağlayın",
+    "da4c7c208cf4": "Nəzər sal"
   }
 }

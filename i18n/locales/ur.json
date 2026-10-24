@@ -995,7 +995,8 @@
     "themeColorBrand": "برانڈ",
     "themeColorBrandDesc": "اپنی پروفائل تصویر کے رنگ استعمال کریں",
     "themeColorBrandNoAvatar": "برانڈ رنگ استعمال کرنے کے لیے پروفائل تصویر شامل کریں",
-    "themeColorBrandFailed": "آپ کی پروفائل تصویر سے رنگ نہیں پڑھے جا سکے"
+    "themeColorBrandFailed": "آپ کی پروفائل تصویر سے رنگ نہیں پڑھے جا سکے",
+    "shortsSaveFailed": "شارٹس کی ترجیح محفوظ کرنے میں ناکامی"
   },
   "common": {
     "refresh": "ریفریش کریں",
@@ -2058,7 +2059,11 @@
     "likeStation": "اسٹیشن پسند کریں",
     "unlikeStation": "پسند ہٹائیں",
     "shareStation": "اسٹیشن شیئر کریں",
-    "listeningTo": "DeHub پر {{name}} سن رہا ہوں"
+    "listeningTo": "DeHub پر {{name}} سن رہا ہوں",
+    "listeningCount_one": "{{count}} سننا",
+    "listeningCount_other": "{{count}} سننا",
+    "viewsCount_one": "{{views}} ویو",
+    "viewsCount_other": "{{views}} آراء"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -2751,7 +2756,15 @@
     "sentDesc": "{{amount}} ٹوکن {{chain}} پر خزانے میں بھیجے گئے۔ آپ کا حصہ بلاک کے انڈیکس ہونے کے بعد اپ ڈیٹ ہو جائے گا۔",
     "sendAnyWallet": "کوئی بھی DeHub ٹوکن یہاں کسی بھی والیٹ یا ایکسچینج سے بھیج سکتا ہے۔ Base اور BNB پر ٹرانسفر آپ کے حصے میں شمار ہوتے ہیں۔",
     "yourContribution": "{{amount}} ٹوکن شامل کیے گئے۔",
-    "pooledTotal": "{{amount}} ٹوکن پول کیے گئے۔"
+    "pooledTotal": "{{amount}} ٹوکن پول کیے گئے۔",
+    "status": {
+      "rejected": "مسترد شدہ",
+      "open": "کھولیں",
+      "expired": "میعاد ختم ہو گئی",
+      "completed": "مکمل شدہ",
+      "cancelled": "منسوخ شدہ",
+      "accepted": "قبول کر لیا گیا"
+    }
   },
   "governance": {
     "title": "گورننس",
@@ -5032,7 +5045,12 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نہیں ہو سکے"
   },
-  "stats": {"chart": {"daily": "یومیہ زائرین", "dailyHint": "یومیہ منفرد زائرین", "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"},
+  "stats": {
+    "chart": {
+      "daily": "یومیہ زائرین",
+      "dailyHint": "یومیہ منفرد زائرین",
+      "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"
+    },
     "definitions": {
       "visitorsTerm": "زائرین"
     },
@@ -9815,5 +9833,24 @@
     "fingerprint": "فنگر پرنٹ",
     "exploreFirst": "پہلے دیکھیں",
     "codeNote": "ہم آپ کو ای میل پر کوڈ بھیجتے ہیں، پاس ورڈ کی ضرورت نہیں۔"
+  },
+  "stageCover": {
+    "admitOne": "ایک کا اعتراف کریں",
+    "live": "لائیو",
+    "minutes": "{{minutes}} منٹ",
+    "onAir": "آن ایئر",
+    "recorded": "ریکارڈ شدہ",
+    "replay": "دوبارہ چلائیں",
+    "stage": "مرحلہ",
+    "upcoming": "آئندہ"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "شکریہ!",
+    "20d4214b9d4b": "بھیج دی گئی درخواستیں دیکھیں",
+    "2971f9103f78": "DeHub کو بہتر بنانے میں مدد کرنے کا شکریہ — جو چیز آپ نے مانگی تھی وہ اب لائیو ہے:",
+    "8f3dc69e83c4": "آپ کے تاثرات بھیج دیے گئے!",
+    "905392fbed15": "DeHub کو بہتر بنانے میں مدد کرنے کا شکریہ — {{value1}} آپ کی درخواست کردہ چیزیں اب لائیو ہیں:",
+    "bdd4f5015e96": "بھیجے گئے درخواست کی اطلاع بند کریں",
+    "da4c7c208cf4": "اسے چیک کریں"
   }
 }

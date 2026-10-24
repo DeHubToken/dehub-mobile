@@ -993,7 +993,8 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "زيد صورة بروفايل عشان تستخدم ألوان البراند",
-    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك",
+    "shortsSaveFailed": "فشل حفظ تفضيلات شورتس"
   },
   "common": {
     "refresh": "تحديث",
@@ -2055,7 +2056,9 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "viewsCount_one": "{{views}} شوف",
+    "viewsCount_other": "{{views}} مشاهدات"
   },
   "notFound": {
     "title": "الصفحة ما موجودة",
@@ -2738,7 +2741,10 @@
     "sentDesc": "تم إرسال {{amount}} توكنز للخزينة يوم {{chain}}. حصتك بتتحدث بعد ما البلوك يتفهرس.",
     "sendAnyWallet": "أي زول يقدر يرسل توكنز DeHub هنا من أي محفظة أو بورصة. التحويلات على Base و BNB بتحسب ضمن حصتك.",
     "yourContribution": "{{amount}} توكنز مساهمة",
-    "pooledTotal": "{{amount}} توكنز مجمعة"
+    "pooledTotal": "{{amount}} توكنز مجمعة",
+    "status": {
+      "expired": "انتهى"
+    }
   },
   "governance": {
     "title": "الحوكمة",
@@ -9686,5 +9692,19 @@
     "fingerprint": "بصمة الإصبع",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "نرسل لك كود عبر الإيميل، ما فيش كلمة سر مطلوبة."
+  },
+  "stageCover": {
+    "admitOne": "حسناً",
+    "live": "حَيّ",
+    "recorded": "سجل",
+    "replay": "إعادة اللعب",
+    "stage": "ستيج"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "شكرا",
+    "20d4214b9d4b": "المطالبات المرسلة",
+    "8f3dc69e83c4": "الرأي الخاص بك تم إرساله!",
+    "bdd4f5015e96": "إخطار إغلاق الطلب المسلّم",
+    "da4c7c208cf4": "ماذا تريد أن أترجم؟"
   }
 }

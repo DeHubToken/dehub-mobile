@@ -1128,7 +1128,8 @@
     "themeColorBrand": "Marca",
     "themeColorBrandDesc": "Usar los colores de tu foto de perfil",
     "themeColorBrandNoAvatar": "Añade una foto de perfil para usar los colores de Marca",
-    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil"
+    "themeColorBrandFailed": "No se pudieron leer los colores de tu foto de perfil",
+    "shortsSaveFailed": "Error al guardar la preferencia de pantalones cortos"
   },
   "common": {
     "refresh": "Actualizar",
@@ -2285,7 +2286,10 @@
     "trendingWeek": "Tendencia esta semana",
     "newest": "Más nuevos",
     "videoChartOrder": "Orden de la lista de videos musicales",
-    "viewsCount_other": "{{views}} vistas"
+    "viewsCount_other": "{{views}} vistas",
+    "listeningCount_one": "{{count}} escuchando",
+    "listeningCount_other": "{{count}} escuchando",
+    "viewsCount_one": "{{views}} ver"
   },
   "notFound": {
     "title": "Página no encontrada",
@@ -2627,7 +2631,25 @@
     "sharePostTemplate": "Acabo de añadir {{amount}} tokens a mi pila en DeHub. Construir con la comunidad. #DeHub",
     "minDhbPurchase": "La compra mínima de tokens es de $0.50"
   },
-  "agents": {"life":{"title":"Con vida","help":"Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.","starting":"Preparando su personalidad…","awake":"Despierto en {{home}}","asleep":"Dormido en {{home}}","next":"próxima visita {{time}}","recent":"Últimamente","empty":"Nada todavía. Se pasará pronto.","kind":{"post":"Publicó","comment":"Comentó","reply":"Respondió","like":"Le gustó una publicación","profile":"Actualizó su perfil","error":"Algo salió mal"}},
+  "agents": {
+    "life": {
+      "title": "Con vida",
+      "help": "Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.",
+      "starting": "Preparando su personalidad…",
+      "awake": "Despierto en {{home}}",
+      "asleep": "Dormido en {{home}}",
+      "next": "próxima visita {{time}}",
+      "recent": "Últimamente",
+      "empty": "Nada todavía. Se pasará pronto.",
+      "kind": {
+        "post": "Publicó",
+        "comment": "Comentó",
+        "reply": "Respondió",
+        "like": "Le gustó una publicación",
+        "profile": "Actualizó su perfil",
+        "error": "Algo salió mal"
+      }
+    },
     "profile": {
       "edit": "Editar perfil",
       "avatar": "Avatar",
@@ -5439,7 +5461,12 @@
     "interestedCount": "{{count}} interesados",
     "loadFailed": "No se pudieron cargar los eventos"
   },
-  "stats": {"chart": {"daily": "Visitantes por día", "dailyHint": "visitantes únicos por día", "empty": "Aún no hay datos para este periodo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitantes por día",
+      "dailyHint": "visitantes únicos por día",
+      "empty": "Aún no hay datos para este periodo"
+    },
     "definitions": {
       "visitorsTerm": "Visitantes"
     },
@@ -11221,7 +11248,14 @@
     "6ec282d40a8a": "Intercambiar",
     "9cc9f71c23f2": "Explore un mundo de inteligencia espacial en vivo y, si lo desea, coloque una versión deliberadamente aproximada de usted mismo entre la comunidad de DeHub.",
     "a61d44ba33d5": "La madre de todas las arenas. Opera como un viajero en el tiempo con docenas de pantallas. Disfruta de transmisiones en vivo desde Binance, Dexscreener o cualquier cosa que desees, desde videos hasta pestañas del navegador y todo lo demás.",
-    "1a00975a0ac1": "@channel"
+    "1a00975a0ac1": "@channel",
+    "1aa7b1c1d5fb": "¡Gracias!",
+    "20d4214b9d4b": "Ver solicitudes enviadas",
+    "2971f9103f78": "Gracias por ayudar a mejorar DeHub: algo que pediste ya está disponible:",
+    "8f3dc69e83c4": "¡Tus comentarios han sido enviados!",
+    "905392fbed15": "Gracias por ayudar a mejorar DeHub: {{value1}} las cosas que pediste ya están disponibles:",
+    "bdd4f5015e96": "Cerrar notificación de solicitud enviada",
+    "da4c7c208cf4": "Échale un vistazo"
   },
   "liveOverlay": {
     "wheelLanded": "{{name}} giró: {{result}}",
@@ -11635,5 +11669,15 @@
     "fingerprint": "Huella",
     "exploreFirst": "Explorar primero",
     "codeNote": "Te enviamos un código por correo, sin contraseña."
+  },
+  "stageCover": {
+    "admitOne": "ADMITIR UNO",
+    "live": "en directo",
+    "minutes": "{{minutes}} min",
+    "onAir": "EN EL AIRE",
+    "recorded": "REGISTRADO",
+    "replay": "reproducir",
+    "stage": "etapa",
+    "upcoming": "próximo"
   }
 }

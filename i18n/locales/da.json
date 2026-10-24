@@ -995,7 +995,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Brug farverne fra dit profilbillede",
     "themeColorBrandNoAvatar": "Tilføj et profilbillede for at bruge brandfarver",
-    "themeColorBrandFailed": "Kunne ikke læse farver fra dit profilbillede"
+    "themeColorBrandFailed": "Kunne ikke læse farver fra dit profilbillede",
+    "shortsSaveFailed": "Kunne ikke gemme Shorts-præference"
   },
   "common": {
     "refresh": "Opdater",
@@ -2058,7 +2059,11 @@
     "likeStation": "Synes godt om stationen",
     "unlikeStation": "Fjern synes godt om",
     "shareStation": "Del stationen",
-    "listeningTo": "Lytter til {{name}} på DeHub"
+    "listeningTo": "Lytter til {{name}} på DeHub",
+    "listeningCount_one": "{{count}} listening",
+    "listeningCount_other": "{{count}} listening",
+    "viewsCount_one": "{{views}} visning",
+    "viewsCount_other": "{{views}} visninger"
   },
   "notFound": {
     "title": "Siden blev ikke fundet",
@@ -2751,7 +2756,15 @@
     "sentDesc": "{{amount}} tokens sendt til kassen den {{chain}}. Din andel opdateres, når blokken er indekseret.",
     "sendAnyWallet": "Alle kan sende DeHub tokens herfra enhver wallet eller børs. Overførsler på Base og BNB tæller med i din andel.",
     "yourContribution": "{{amount}} tokens bidraget",
-    "pooledTotal": "{{amount}} tokens puljet"
+    "pooledTotal": "{{amount}} tokens puljet",
+    "status": {
+      "rejected": "Afvist",
+      "open": "Åbn",
+      "expired": "Udløbet",
+      "completed": "Gennemført",
+      "cancelled": "Annulleret",
+      "accepted": "Accepteret"
+    }
   },
   "governance": {
     "title": "Governance",
@@ -5036,7 +5049,12 @@
     "interestedCount": "{{count}} interesserede",
     "loadFailed": "Kunne ikke indlæse arrangementer"
   },
-  "stats": {"chart": {"daily": "Besøgende pr. dag", "dailyHint": "unikke besøgende pr. dag", "empty": "Endnu ingen data for denne periode"},
+  "stats": {
+    "chart": {
+      "daily": "Besøgende pr. dag",
+      "dailyHint": "unikke besøgende pr. dag",
+      "empty": "Endnu ingen data for denne periode"
+    },
     "definitions": {
       "visitorsTerm": "Besøgende"
     },
@@ -9820,5 +9838,24 @@
     "fingerprint": "Fingeraftryk",
     "exploreFirst": "Udforsk først",
     "codeNote": "Vi sender dig en kode på e-mail, ingen adgangskode."
+  },
+  "stageCover": {
+    "admitOne": "INDRØM EN",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "I LUFTEN",
+    "recorded": "OPTAGET",
+    "replay": "afspil igen",
+    "stage": "fase",
+    "upcoming": "kommende"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Tak!",
+    "20d4214b9d4b": "Se afsendte anmodninger",
+    "2971f9103f78": "Tak, fordi du hjælper med at gøre DeHub bedre — noget, du bad om, er nu live:",
+    "8f3dc69e83c4": "Din feedback er afsendt.",
+    "905392fbed15": "Tak, fordi du hjælper med at gøre DeHub bedre —{{value1}} ting, du har bedt om, er nu live:",
+    "bdd4f5015e96": "Luk meddelelsen om afsendt anmodning",
+    "da4c7c208cf4": "Tjek det ud"
   }
 }

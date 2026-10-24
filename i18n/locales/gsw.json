@@ -993,7 +993,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Bruuch d'Farbe vo dim Profilbild",
     "themeColorBrandNoAvatar": "Füeg es Profilbild dezue, zum d'Brand-Farbe z'bruuche",
-    "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde"
+    "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde",
+    "shortsSaveFailed": "Fehler beim Speichern der Shorts-Einstellungen"
   },
   "common": {
     "refresh": "Aktualisiere",
@@ -2056,7 +2057,11 @@
     "likeStation": "Sender liken",
     "unlikeStation": "Sender nicht mehr liken",
     "shareStation": "Sender teilen",
-    "listeningTo": "Ich höre {{name}} auf DeHub"
+    "listeningTo": "Ich höre {{name}} auf DeHub",
+    "listeningCount_one": "{{count}} hört zu",
+    "listeningCount_other": "{{count}} hört zu",
+    "viewsCount_one": "{{views}} anschauen",
+    "viewsCount_other": "{{views}} Ansichten"
   },
   "notFound": {
     "title": "Siite nid gfunde",
@@ -2739,7 +2744,15 @@
     "sentDesc": "{{amount}} Tokens sind am {{chain}} i d'Schatzchischte gschickt worde. Din Anteil wird aktualisiert, sobald de Block indexiert isch.",
     "sendAnyWallet": "Jeder chan DeHub Tokens vo egal welere Wallet oder Börse hierher schicke. Überwise uf Base und BNB zähle für din Anteil.",
     "yourContribution": "{{amount}} Tokens igzahlt",
-    "pooledTotal": "{{amount}} Tokens i's Pool glegt"
+    "pooledTotal": "{{amount}} Tokens i's Pool glegt",
+    "status": {
+      "rejected": "Abgelehnt",
+      "open": "Offen",
+      "expired": "Abgelaufen",
+      "completed": "Abgeschlossen",
+      "cancelled": "Storniert",
+      "accepted": "Angenommen"
+    }
   },
   "governance": {
     "title": "Verwaltig",
@@ -9828,5 +9841,24 @@
     "fingerprint": "Fingerschtick",
     "exploreFirst": "Zuerst entdecke",
     "codeNote": "Mir schicke dir e Code per E‑Mail, kei Passwort nötig."
+  },
+  "stageCover": {
+    "admitOne": "ADMITT EIN",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "LIVE",
+    "recorded": "AUFGEZEICHNET",
+    "replay": "Wiederholung",
+    "stage": "Bühne",
+    "upcoming": "kommend"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Danke!",
+    "20d4214b9d4b": "Gelieferte Anfragen anschauen",
+    "2971f9103f78": "Danke für deine Hilfe, damit DeHub besser wird – etwas, das du gefordert hast, ist jetzt live:",
+    "8f3dc69e83c4": "Deine Rückmeldung wurde umgesetzt!",
+    "905392fbed15": "Danke für deine Hilfe, damit DeHub besser wird – {{value1}} Dinge, die du gefordert hast, sind jetzt live:",
+    "bdd4f5015e96": "Schliessen der Benachrichtigung für gelieferte Anfragen",
+    "da4c7c208cf4": "Schau’s dir an"
   }
 }

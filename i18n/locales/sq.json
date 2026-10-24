@@ -993,7 +993,8 @@
     "themeColorBrand": "Marka",
     "themeColorBrandDesc": "Përdor ngjyrat e fotos sate të profilit",
     "themeColorBrandNoAvatar": "Shto një foto profili për të përdorur ngjyrat e markës",
-    "themeColorBrandFailed": "Nuk u lexuan dot ngjyrat nga fotoja jote e profilit"
+    "themeColorBrandFailed": "Nuk u lexuan dot ngjyrat nga fotoja jote e profilit",
+    "shortsSaveFailed": "Ruajtja e preferencës së pantallonave të shkurtra dështoi"
   },
   "common": {
     "refresh": "Rifresko",
@@ -2056,7 +2057,11 @@
     "likeStation": "Pëlqe stacionin",
     "unlikeStation": "Hiq pëlqimin",
     "shareStation": "Ndaj stacionin",
-    "listeningTo": "Po dëgjoj {{name}} në DeHub"
+    "listeningTo": "Po dëgjoj {{name}} në DeHub",
+    "listeningCount_one": "{{count}} duke dëgjuar",
+    "listeningCount_other": "{{count}} duke dëgjuar",
+    "viewsCount_one": "{{views}} pamje",
+    "viewsCount_other": "{{views}} shikime"
   },
   "notFound": {
     "title": "Faqja Nuk u Gjet",
@@ -2739,7 +2744,15 @@
     "sentDesc": "{{amount}} tokenë të dërguar në thesar më {{chain}}. Pjesa juaj përditësohet pasi blloku të indeksohet.",
     "sendAnyWallet": "Kushdo mund të dërgojë tokenë DeHub këtu nga çdo portofol ose shkëmbim. Transfertat në Base dhe BNB llogariten për pjesën tuaj.",
     "yourContribution": "{{amount}} tokenë të kontribuar",
-    "pooledTotal": "{{amount}} tokenë të grumbulluar"
+    "pooledTotal": "{{amount}} tokenë të grumbulluar",
+    "status": {
+      "rejected": "Refuzuar",
+      "open": "Hap",
+      "expired": "Skadoi",
+      "completed": "Përfundoi",
+      "cancelled": "Anuluar",
+      "accepted": "Pranuar"
+    }
   },
   "governance": {
     "title": "Qeverisja",
@@ -9816,5 +9829,24 @@
     "fingerprint": "Gjurmë gishtash",
     "exploreFirst": "Zbulo së pari",
     "codeNote": "Të dërgojmë me email një kod, nuk nevojitet fjalëkalim."
+  },
+  "stageCover": {
+    "admitOne": "PRANO NJË",
+    "live": "drejtpërsëdrejti",
+    "minutes": "{{minutes}} min",
+    "onAir": "NË AJËR",
+    "recorded": "REGJISTRUAR",
+    "replay": "ripërsërit",
+    "stage": "fazë",
+    "upcoming": "i ardhshëm"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Faleminderit!",
+    "20d4214b9d4b": "Shfaq kërkesat e dërguara",
+    "2971f9103f78": "Faleminderit që ndihmove DeHub të përmirësohet — diçka që kërkove tani është live:",
+    "8f3dc69e83c4": "Përshtypjet e tua u dërguan!",
+    "905392fbed15": "Faleminderit që ndihmove për ta bërë DeHub më të mirë — {{value1}} gjërat që kërkove tani janë live:",
+    "bdd4f5015e96": "Mbyll njoftimin e kërkesës së dërguar",
+    "da4c7c208cf4": "Zbuloje"
   }
 }

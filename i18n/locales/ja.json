@@ -994,7 +994,8 @@
     "themeColorBrand": "ブランド",
     "themeColorBrandDesc": "プロフィール画像の色を使う",
     "themeColorBrandNoAvatar": "ブランドカラーを使うにはプロフィール画像を追加してください",
-    "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
+    "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした",
+    "shortsSaveFailed": "ショートパンツの設定を保存できませんでした"
   },
   "common": {
     "refresh": "更新",
@@ -2058,7 +2059,11 @@
     "likeStation": "ステーションにいいね",
     "unlikeStation": "いいねを取り消す",
     "shareStation": "ステーションを共有",
-    "listeningTo": "DeHubで{{name}}を聴いています"
+    "listeningTo": "DeHubで{{name}}を聴いています",
+    "listeningCount_one": "{{count}}リスニング",
+    "listeningCount_other": "{{count}}リスニング",
+    "viewsCount_one": "{{views}}ビュー",
+    "viewsCount_other": "{{views}}ビュー"
   },
   "notFound": {
     "title": "ページが見つかりません",
@@ -2746,7 +2751,15 @@
     "sentDesc": "{{amount}} トークンが {{chain}} にトレジャリーに送信されました。ブロックがインデックス化されると、あなたのシェアが更新されます。",
     "sendAnyWallet": "誰でも任意のウォレットまたは取引所からここに DeHub トークンを送信できます。Base および BNB での送金は、あなたのシェアにカウントされます。",
     "yourContribution": "{{amount}} トークンが貢献されました",
-    "pooledTotal": "{{amount}} トークンがプールされました"
+    "pooledTotal": "{{amount}} トークンがプールされました",
+    "status": {
+      "rejected": "却下済み",
+      "open": "開く",
+      "expired": "期限切れ",
+      "completed": "完了",
+      "cancelled": "キャンセル済み",
+      "accepted": "承認済み"
+    }
   },
   "governance": {
     "title": "ガバナンス",
@@ -5074,7 +5087,12 @@
     "interestedCount": "{{count}}人が興味あり",
     "loadFailed": "イベントを読み込めませんでした"
   },
-  "stats": {"chart": {"daily": "1 日あたりの訪問者", "dailyHint": "1 日あたりのユニーク訪問者", "empty": "この期間のデータはまだありません"},
+  "stats": {
+    "chart": {
+      "daily": "1 日あたりの訪問者",
+      "dailyHint": "1 日あたりのユニーク訪問者",
+      "empty": "この期間のデータはまだありません"
+    },
     "definitions": {
       "visitorsTerm": "訪問者"
     },
@@ -9913,5 +9931,24 @@
     "fingerprint": "指紋",
     "exploreFirst": "先に見てみる",
     "codeNote": "メールでコードを送ります。パスワードは不要です。"
+  },
+  "stageCover": {
+    "admitOne": "1つ承認する",
+    "live": "ライブ",
+    "minutes": "{{minutes}}分",
+    "onAir": "オンエア",
+    "recorded": "録画済み",
+    "replay": "リプレイ",
+    "stage": "ステージ",
+    "upcoming": "今後の予定"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ありがとうございます！",
+    "20d4214b9d4b": "配送済みのリクエストを表示する",
+    "2971f9103f78": "DeHubの改善にご協力いただきありがとうございます。ご依頼いただいたものが公開されました。",
+    "8f3dc69e83c4": "フィードバックをお送りしました！",
+    "905392fbed15": "DeHubの改善にご協力いただきありがとうございます。{{value1}}リクエストしたものが公開されました。",
+    "bdd4f5015e96": "配送リクエスト通知を閉じる",
+    "da4c7c208cf4": "ぜひチェックしてみてください"
   }
 }

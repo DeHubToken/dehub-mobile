@@ -993,7 +993,8 @@
     "themeColorBrand": "Marca",
     "themeColorBrandDesc": "Uyachaykipa llimpinkunata apaykachay",
     "themeColorBrandNoAvatar": "Marca llimpikunata apaykachanaykipaq, uyachaykita yapay",
-    "themeColorBrandFailed": "Uyachaykimanta llimpikunata mana ñawinchay atirqanchu"
+    "themeColorBrandFailed": "Uyachaykimanta llimpikunata mana ñawinchay atirqanchu",
+    "shortsSaveFailed": "Shorts munasqa waqaychayta mana atirqanchu"
   },
   "common": {
     "refresh": "Musuqchay",
@@ -2048,7 +2049,11 @@
     "tryAnotherGenre": "Huk takiy rikchayta akllay.",
     "pauseStation": "Kachariy wasita samachiy",
     "resumeStation": "Kachariy wasita kutirichiy",
-    "stopRadio": "Radioqta pakay"
+    "stopRadio": "Radioqta pakay",
+    "listeningCount_one": "{{count}} uyarispa",
+    "listeningCount_other": "{{count}} uyarispa",
+    "viewsCount_one": "{{views}} qhaway",
+    "viewsCount_other": "{{views}} qhaway"
   },
   "notFound": {
     "title": "Mana p'anqa tarisqachu",
@@ -2731,7 +2736,15 @@
     "sentDesc": "{{amount}} llika kachasqa kasqa kasillapi {{chain}}. Ñuqanchikpa ruphayninmi allinchanqa p'anqata tarisqan qhepaman.",
     "sendAnyWallet": "Piqpas kayman DeHub llika kachayta atin imaymana k'uychawan utaq llamk'ayninmanta. Basepiwan BNBpiwan llamk'ayqa ñuqanchikpa ruphayninman yaykun.",
     "yourContribution": "{{amount}} llika yanapasqa",
-    "pooledTotal": "{{amount}} llika huñusqa"
+    "pooledTotal": "{{amount}} llika huñusqa",
+    "status": {
+      "rejected": "Rechazasqa",
+      "open": "Kichasqa",
+      "expired": "Tukusqa",
+      "completed": "Tukuchisqa",
+      "cancelled": "Cancelado",
+      "accepted": "Chaskisqa"
+    }
   },
   "governance": {
     "title": "Kamachiy",
@@ -9826,5 +9839,24 @@
     "fingerprint": "Huella digital",
     "exploreFirst": "Ñawpaqtaqa t’aqwiriy",
     "codeNote": "Huk código correo electrónico nisqapi quyku, mana contraseña necesitakun."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "kawsay",
+    "minutes": "{{minutes}} min",
+    "onAir": "EN AIR",
+    "recorded": "GRABADO",
+    "replay": "yapamanta pukllay",
+    "stage": "escenario",
+    "upcoming": "hamuq"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Riqsikuyki!",
+    "20d4214b9d4b": "Kachasqa mañakuykunata qhaway",
+    "2971f9103f78": "Gracias DeHub aswan allin kananpaq yanapasqaykimanta — imapas mañakusqayki kunan kawsachkan:",
+    "8f3dc69e83c4": "¡Qanpa yuyayniykikuna apachisqa!",
+    "905392fbed15": "Gracias DeHub aswan allin kananpaq yanapasqaykimanta — {{value1}} imakuna mañakusqayki kunan kawsachkanku:",
+    "bdd4f5015e96": "Enviado mañakuy willayta wichq'ay",
+    "da4c7c208cf4": "Chayta qhawaykuy"
   }
 }

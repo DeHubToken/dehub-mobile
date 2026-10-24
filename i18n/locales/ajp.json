@@ -993,7 +993,8 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "ضيف صورة بروفايل عشان تستخدم ألوان البراند",
-    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك",
+    "shortsSaveFailed": "فشل حفظ تفضيلات شورتس"
   },
   "common": {
     "refresh": "تحديث",
@@ -2055,7 +2056,10 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "listeningCount_one": "{{count}} بتسمعش؟",
+    "listeningCount_other": "{{count}} بتسمعش؟",
+    "viewsCount_one": "{{views}} شوف"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -9711,5 +9715,10 @@
     "fingerprint": "بصمة",
     "exploreFirst": "استكشف أولاً",
     "codeNote": "منبعثلك كود على الإيميل، ما في داعي لكلمة سر."
+  },
+  "stageCover": {
+    "minutes": "{{minutes}} مين",
+    "onAir": "علي الهواء",
+    "recorded": "مُسجّل"
   }
 }

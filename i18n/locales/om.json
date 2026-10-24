@@ -993,7 +993,8 @@
     "themeColorBrand": "Maqaa daldalaa",
     "themeColorBrandDesc": "Halluuwwan suuraa profaayilii keetii fayyadami",
     "themeColorBrandNoAvatar": "Halluuwwan maqaa daldalaa fayyadamuuf suuraa profaayilii dabali",
-    "themeColorBrandFailed": "Suuraa profaayilii kee irraa halluuwwan dubbisuun hin danda'amne"
+    "themeColorBrandFailed": "Suuraa profaayilii kee irraa halluuwwan dubbisuun hin danda'amne",
+    "shortsSaveFailed": "Filannoo Shorts qusachuu hin dandeenye"
   },
   "common": {
     "refresh": "Akkamii deebisu",
@@ -2060,7 +2061,11 @@
     "tryAnotherGenre": "Gosa biraa yaalaa.",
     "pauseStation": "Buufata sana dhaabi",
     "resumeStation": "Buufata sana irra deebi'ii jalqabi",
-    "stopRadio": "Raadiyoo dhaabaa"
+    "stopRadio": "Raadiyoo dhaabaa",
+    "listeningCount_one": "{{count}} dhaggeeffachaa",
+    "listeningCount_other": "{{count}} dhaggeeffachaa",
+    "viewsCount_one": "{{views}} ilaalaa",
+    "viewsCount_other": "{{views}} ilaalaa"
   },
   "notFound": {
     "title": "Fuulni hin argamne",
@@ -2743,7 +2748,15 @@
     "sentDesc": "Tokkeenota {{amount}} guyyaa {{chain}} irratti maatiiwwanitti ergameera. Qoodiinsi kee sa’aatii ispoortiiwwan erga galmaa’anii booda jijjiramuu danda’a.",
     "sendAnyWallet": "Namni kamiyyuu tokkeenota DeHub as irraa gara wallet ykn exchange irraa erguu danda’a. Base fi BNB irratti ergiinsi qooda kee irratti dhiibbaa qaba.",
     "yourContribution": "Tokkeenota {{amount}} dabalaman",
-    "pooledTotal": "Tokkeenota {{amount}} walitti makaman"
+    "pooledTotal": "Tokkeenota {{amount}} walitti makaman",
+    "status": {
+      "rejected": "Dide",
+      "open": "Banaa",
+      "expired": "Kan yeroon faayidaa kennu irra darbe",
+      "completed": "Xumurameera",
+      "cancelled": "Haqameera",
+      "accepted": "Fudhatama qaba"
+    }
   },
   "governance": {
     "title": "Bulchiinsa",
@@ -9843,5 +9856,24 @@
     "fingerprint": "Ashaaraa qubaa",
     "exploreFirst": "Dursa qoradhu",
     "codeNote": "Koodii email siif goona, jecha icciitii hin barbaachisu."
+  },
+  "stageCover": {
+    "admitOne": "TOKKO ADMIT",
+    "live": "jiraachuu",
+    "minutes": "{{minutes}} daqiiqaa",
+    "onAir": "QILLEENSAA IRRATTI",
+    "recorded": "GALMEESSE",
+    "replay": "irra deebi’anii taphachuu",
+    "stage": "waltajjii",
+    "upcoming": "dhufu"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Galatoomi!",
+    "20d4214b9d4b": "Gaaffii ergame ilaali",
+    "2971f9103f78": "DeHub akka fooyya'u gargaaruu keessaniif galatoomaa — wanti isin gaafattan amma live:",
+    "8f3dc69e83c4": "Yaadni keessan ergame!",
+    "905392fbed15": "DeHub akka fooyya'u gargaaruu keessaniif galatoomaa — {{value1}} wantootni isin gaafattan amma kallattiin jiru:",
+    "bdd4f5015e96": "Beeksisa gaaffii ergame cufi",
+    "da4c7c208cf4": "Mee ilaalaa"
   }
 }

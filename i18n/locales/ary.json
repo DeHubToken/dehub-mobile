@@ -993,7 +993,8 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استعمل ألوان الصورة ديالك",
     "themeColorBrandNoAvatar": "زيد صورة بروفايل باش تستعمل ألوان البراند",
-    "themeColorBrandFailed": "ما قدرناش نقراو الألوان من الصورة ديالك"
+    "themeColorBrandFailed": "ما قدرناش نقراو الألوان من الصورة ديالك",
+    "shortsSaveFailed": "تعذر حفظ تفضيلات السراويل القصيرة"
   },
   "common": {
     "refresh": "تحديث",
@@ -2054,7 +2055,11 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "listeningCount_one": "{{count}} يستمع",
+    "listeningCount_other": "{{count}} يستمع",
+    "viewsCount_one": "عرض {{views}}",
+    "viewsCount_other": "{{views}} مشاهدة"
   },
   "notFound": {
     "title": "الصفحة ما كايناش",
@@ -2737,7 +2742,15 @@
     "sentDesc": "تم إرسال {{amount}} رموز إلى الخزينة في {{chain}}. حصتك ستتحدث بعد فهرسة الكتلة.",
     "sendAnyWallet": "يمكن لأي شخص إرسال رموز DeHub هنا من أي محفظة أو بورصة. التحويلات على Base و BNB تحتسب ضمن حصتك.",
     "yourContribution": "{{amount}} رموز مساهمة",
-    "pooledTotal": "{{amount}} رموز مجمعة"
+    "pooledTotal": "{{amount}} رموز مجمعة",
+    "status": {
+      "rejected": "مرفوض",
+      "open": "فتح",
+      "expired": "منتهي الصلاحية",
+      "completed": "مكتمل",
+      "cancelled": "تم الإلغاء",
+      "accepted": "مقبول"
+    }
   },
   "governance": {
     "title": "الحكامة",
@@ -9834,5 +9847,24 @@
     "fingerprint": "بصمة الإصبع",
     "exploreFirst": "الاستكشاف أولاً",
     "codeNote": "نرسل إليك رمزًا بالبريد الإلكتروني، دون الحاجة إلى كلمة مرور."
+  },
+  "stageCover": {
+    "admitOne": "اعترف بواحد",
+    "live": "مباشر",
+    "minutes": "{{minutes}} دقيقة",
+    "onAir": "على الهواء",
+    "recorded": "مسجل",
+    "replay": "إعادة التشغيل",
+    "stage": "المرحلة",
+    "upcoming": "قادم"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "شكرًا!",
+    "20d4214b9d4b": "عرض الطلبات المشحونة",
+    "2971f9103f78": "نشكرك على المساعدة في تحسين DeHub — شيء طلبته متوفر الآن:",
+    "8f3dc69e83c4": "تم شحن ملاحظاتك!",
+    "905392fbed15": "نشكرك على المساعدة في جعل DeHub أفضل — {{value1}} الأشياء التي طلبتها متوفرة الآن:",
+    "bdd4f5015e96": "إغلاق إشعار الطلب المشحون",
+    "da4c7c208cf4": "ألقِ نظرة عليها"
   }
 }

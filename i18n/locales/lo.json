@@ -991,7 +991,8 @@
     "themeColorBrand": "ແບຣນ",
     "themeColorBrandDesc": "ໃຊ້ສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າ",
     "themeColorBrandNoAvatar": "ເພີ່ມຮູບໂປຣໄຟລ໌ເພື່ອໃຊ້ສີແບຣນ",
-    "themeColorBrandFailed": "ອ່ານສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າບໍ່ໄດ້"
+    "themeColorBrandFailed": "ອ່ານສີຈາກຮູບໂປຣໄຟລ໌ຂອງເຈົ້າບໍ່ໄດ້",
+    "shortsSaveFailed": "ບັນທຶກຄວາມມັກສັ້ນບໍ່ສຳເລັດ"
   },
   "common": {
     "refresh": "ໂຫຼດ​ຄືນ",
@@ -2040,7 +2041,11 @@
     "tryAnotherGenre": "ພະ ຍາ ຍາມ ກິ່ນຫອມ ອື່ນໆ.",
     "pauseStation": "ຢຸດສະຖານີ",
     "resumeStation": "ສືບຕໍ່ສະຖານີ",
-    "stopRadio": "ຢຸດວິທະຍຸ"
+    "stopRadio": "ຢຸດວິທະຍຸ",
+    "listeningCount_one": "{{count}} ການຟັງ",
+    "listeningCount_other": "{{count}} ການຟັງ",
+    "viewsCount_one": "{{views}} ເບິ່ງ",
+    "viewsCount_other": "{{views}} ຄວາມຄິດເຫັນ"
   },
   "notFound": {
     "title": "ບໍ່ພົບໜ້າ",
@@ -2718,7 +2723,15 @@
     "sendAnyWallet": "ໃຜກໍຕາມສາມາດສົ່ງ DeHub tokens ມາທີ່ນີ້ໄດ້ຈາກ wallet ຫຼື exchange ໃດກໍໄດ້. ການໂອນໃນ Base ແລະ BNB ຈະຖືກນັບເຂົ້າໃນສ່ວນແບ່ງຂອງເຈົ້າ.",
     "yourContribution": "{{amount}} ໂທເຄັນທີ່ປະກອບສ່ວນ",
     "pooledTotal": "{{amount}} ໂທເຄັນທີ່ລວມກັນ",
-    "amountLabel": "ຈຳນວນ (ໂຕເຄັນ)"
+    "amountLabel": "ຈຳນວນ (ໂຕເຄັນ)",
+    "status": {
+      "rejected": "ຖືກປະຕິເສດ",
+      "open": "ເປີດ",
+      "expired": "ໝົດອາຍຸ",
+      "completed": "ສຳເລັດແລ້ວ",
+      "cancelled": "ຍົກເລີກ",
+      "accepted": "ຍອມຮັບ"
+    }
   },
   "governance": {
     "title": "ການປົກຄອງ",
@@ -9769,5 +9782,23 @@
     "fingerprint": "ລາຍນິ້ວມື",
     "exploreFirst": "ສໍາຫຼວດກ່ອນ",
     "codeNote": "ພວກເຮົາສົ່ງລະຫັດອີເມວໃຫ້ທ່ານ, ບໍ່ ຈໍາ ເປັນຕ້ອງມີລະຫັດຜ່ານ."
+  },
+  "stageCover": {
+    "admitOne": "ພົບສະມາຊິກຈໍານວນ 1 ຄົນທີ່ມີຄໍາວ່າ ຊື່:",
+    "live": "ດໍາລົງຊີວິດ",
+    "onAir": "ທາງອາກາດ",
+    "recorded": "ບັນທຶກໄວ້",
+    "replay": "ການຫຼິ້ນຊໍ້າ",
+    "stage": "ດ່ານ",
+    "upcoming": "ກຳລັງຈະມາເຖິງ"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ຂອບໃຈ!",
+    "20d4214b9d4b": "ເບິ່ງຄຳຮ້ອງຂໍທີ່ສົ່ງ",
+    "2971f9103f78": "ຂອບໃຈທີ່ຊ່ວຍເຮັດໃຫ້ DeHub ດີຂື້ນ - ບາງສິ່ງບາງຢ່າງທີ່ທ່ານຂໍແມ່ນມີຊີວິດຢູ່ດຽວນີ້:",
+    "8f3dc69e83c4": "ຄຳຄິດເຫັນຂອງທ່ານຖືກສົ່ງໄປແລ້ວ!",
+    "905392fbed15": "ຂອບໃຈທີ່ຊ່ວຍເຮັດໃຫ້ DeHub ດີຂື້ນ - {{value1}} ສິ່ງຕ່າງໆທີ່ທ່ານຂໍໃຫ້ມີຊີວິດຢູ່ດຽວນີ້:",
+    "bdd4f5015e96": "ປິດການແຈ້ງການຄຳຮ້ອງຂໍທີ່ສົ່ງ",
+    "da4c7c208cf4": "ກວດເບິ່ງມັນອອກ"
   }
 }

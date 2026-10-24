@@ -995,7 +995,8 @@
     "themeColorBrand": "Chapa",
     "themeColorBrandDesc": "Tumia rangi za picha yako ya wasifu",
     "themeColorBrandNoAvatar": "Ongeza picha ya wasifu ili kutumia rangi za Chapa",
-    "themeColorBrandFailed": "Haikuweza kusoma rangi kutoka picha yako ya wasifu"
+    "themeColorBrandFailed": "Haikuweza kusoma rangi kutoka picha yako ya wasifu",
+    "shortsSaveFailed": "Iliyopunguzwa kuhifadhi mahitaji ya Shorts"
   },
   "common": {
     "refresh": "Onyesha upya",
@@ -2059,7 +2060,11 @@
     "likeStation": "Penda stesheni",
     "unlikeStation": "Acha kupenda stesheni",
     "shareStation": "Shiriki stesheni",
-    "listeningTo": "Ninasikiliza {{name}} kwenye DeHub"
+    "listeningTo": "Ninasikiliza {{name}} kwenye DeHub",
+    "listeningCount_one": "{{count}} kujisikia",
+    "listeningCount_other": "{{count}} kujisikia",
+    "viewsCount_one": "{{views}} kuona",
+    "viewsCount_other": "{{views}} maoni"
   },
   "notFound": {
     "title": "Ukurasa Haujapatikana",
@@ -2748,7 +2753,15 @@
     "sentDesc": "Tokeni {{amount}} zilitumwa kwenye hazina tarehe {{chain}}. Hisa yako itasasishwa mara tu kizuizi kitakapoandikwa.",
     "sendAnyWallet": "Mtu yeyote anaweza kutuma tokeni za DeHub hapa kutoka kwa mkoba wowote au ubadilishanaji. Uhamisho kwenye Base na BNB huhesabiwa kuelekea hisa yako.",
     "yourContribution": "Tokeni {{amount}} zimechangia",
-    "pooledTotal": "Tokeni {{amount}} zimeunganishwa"
+    "pooledTotal": "Tokeni {{amount}} zimeunganishwa",
+    "status": {
+      "rejected": "yaliyopigwa marufuku",
+      "open": "Imetolewa",
+      "expired": "Imetoka",
+      "completed": "Imekamilika",
+      "cancelled": "Imetoshwa",
+      "accepted": "Imetolewa"
+    }
   },
   "governance": {
     "title": "Utawala",
@@ -5033,7 +5046,12 @@
     "interestedCount": "{{count}} wana hamu",
     "loadFailed": "Imeshindwa kupakia matukio"
   },
-  "stats": {"chart": {"daily": "Wageni kwa siku", "dailyHint": "wageni wa kipekee kwa siku", "empty": "Bado hakuna data kwa kipindi hiki"},
+  "stats": {
+    "chart": {
+      "daily": "Wageni kwa siku",
+      "dailyHint": "wageni wa kipekee kwa siku",
+      "empty": "Bado hakuna data kwa kipindi hiki"
+    },
     "definitions": {
       "visitorsTerm": "Wageni"
     },
@@ -9820,5 +9838,24 @@
     "fingerprint": "Alama ya kidole",
     "exploreFirst": "Gundua kwanza",
     "codeNote": "Tunakutumia msimbo kwa barua pepe, bila nenosiri."
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "replay",
+    "stage": "stage",
+    "upcoming": "upcoming"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Asante!",
+    "20d4214b9d4b": "Ongeza mapitio ya mapitio",
+    "2971f9103f78": "Asante kwa kushirikiana katika kufanya DeHub kuwa bora — kitu ambacho ulitaka ni sasa imejaa:",
+    "8f3dc69e83c4": "Mawasiliano yako yaliyotolewa!",
+    "905392fbed15": "Asante kwa kushirikiana katika kufanya DeHub kuwa bora — {{value1}} vitu ambavyo ulivyoomba sasa imejaa:",
+    "bdd4f5015e96": "Fungia taarifa ya kushiriki kwa kufungwa",
+    "da4c7c208cf4": "Tafuta ni nini kinafanyika"
   }
 }

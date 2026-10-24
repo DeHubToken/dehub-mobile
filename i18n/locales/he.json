@@ -995,7 +995,8 @@
     "themeColorBrand": "מותג",
     "themeColorBrandDesc": "שימוש בצבעי תמונת הפרופיל שלך",
     "themeColorBrandNoAvatar": "הוסיפו תמונת פרופיל כדי להשתמש בצבעי המותג",
-    "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך"
+    "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך",
+    "shortsSaveFailed": "שמירת העדפת מכנסיים קצרים נכשלה"
   },
   "common": {
     "refresh": "רענן",
@@ -2055,7 +2056,11 @@
     "likeStation": "אהבתי את התחנה",
     "unlikeStation": "ביטול אהבתי",
     "shareStation": "שיתוף התחנה",
-    "listeningTo": "מאזין/ה ל-{{name}} ב-DeHub"
+    "listeningTo": "מאזין/ה ל-{{name}} ב-DeHub",
+    "listeningCount_one": "{{count}} האזנה",
+    "listeningCount_other": "{{count}} האזנה",
+    "viewsCount_one": "{{views}} צפייה",
+    "viewsCount_other": "{{views}} צפיות"
   },
   "notFound": {
     "title": "הדף לא נמצא",
@@ -2748,7 +2753,15 @@
     "sentDesc": "{{amount}} אסימונים נשלחו לאוצר ב-{{chain}}. חלקך מתעדכן לאחר שהבלוק יעובד.",
     "sendAnyWallet": "כל אחד יכול לשלוח אסימוני DeHub לכאן מכל ארנק או בורסה. העברות ב-Base וב-BNB נספרות לחלקך.",
     "yourContribution": "{{amount}} אסימונים שנתרמו",
-    "pooledTotal": "{{amount}} אסימונים שנאספו"
+    "pooledTotal": "{{amount}} אסימונים שנאספו",
+    "status": {
+      "rejected": "נדחה",
+      "open": "פתיחה",
+      "expired": "לא בתוקף",
+      "completed": "הושלם",
+      "cancelled": "בוטל",
+      "accepted": "אושרה"
+    }
   },
   "governance": {
     "title": "ממשל",
@@ -5027,7 +5040,12 @@
     "interestedCount": "{{count}} מעוניינים",
     "loadFailed": "טעינת האירועים נכשלה"
   },
-  "stats": {"chart": {"daily": "מבקרים ליום", "dailyHint": "מבקרים ייחודיים ליום", "empty": "אין עדיין נתונים לטווח הזה"},
+  "stats": {
+    "chart": {
+      "daily": "מבקרים ליום",
+      "dailyHint": "מבקרים ייחודיים ליום",
+      "empty": "אין עדיין נתונים לטווח הזה"
+    },
     "definitions": {
       "visitorsTerm": "מבקרים"
     },
@@ -9803,5 +9821,23 @@
     "fingerprint": "טביעת אצבע",
     "exploreFirst": "קודם תסתובב",
     "codeNote": "נשלח לך קוד במייל, בלי סיסמה."
+  },
+  "stageCover": {
+    "admitOne": "יש להודות באחד",
+    "live": "שידור חי",
+    "minutes": "{{minutes}} דק '",
+    "recorded": "הוקלט",
+    "replay": "הפעלה חוזרת",
+    "stage": "שלב",
+    "upcoming": "מתוכננת"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "תודה!",
+    "20d4214b9d4b": "הצגת בקשות למשלוח",
+    "2971f9103f78": "תודה שעזרת לשפר את DeHub — משהו שביקשת נמצא עכשיו בשידור חי:",
+    "8f3dc69e83c4": "המשוב שלך נשלח!",
+    "905392fbed15": "תודה שעזרת לשפר את DeHub — {{value1}} דברים שביקשתם זמינים כעת:",
+    "bdd4f5015e96": "סגור את הודעת הבקשה למשלוח",
+    "da4c7c208cf4": "אני רוצה לנסות"
   }
 }

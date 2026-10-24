@@ -995,7 +995,8 @@
     "themeColorBrand": "برند",
     "themeColorBrandDesc": "استفاده از رنگ‌های عکس نمایه شما",
     "themeColorBrandNoAvatar": "برای استفاده از رنگ‌های برند، عکس نمایه اضافه کنید",
-    "themeColorBrandFailed": "نتوانستیم رنگ‌ها را از عکس نمایه شما بخوانیم"
+    "themeColorBrandFailed": "نتوانستیم رنگ‌ها را از عکس نمایه شما بخوانیم",
+    "shortsSaveFailed": "ذخیره تنظیمات شورت ناموفق بود"
   },
   "common": {
     "refresh": "تازه‌سازی",
@@ -2058,7 +2059,11 @@
     "likeStation": "پسندیدن ایستگاه",
     "unlikeStation": "لغو پسند ایستگاه",
     "shareStation": "اشتراک‌گذاری ایستگاه",
-    "listeningTo": "در حال گوش دادن به {{name}} در DeHub"
+    "listeningTo": "در حال گوش دادن به {{name}} در DeHub",
+    "listeningCount_one": "{{count}} گوش دادن",
+    "listeningCount_other": "{{count}} گوش دادن",
+    "viewsCount_one": "{{views}} مشاهده",
+    "viewsCount_other": "{{views}} بازدیدها"
   },
   "notFound": {
     "title": "صفحه یافت نشد",
@@ -2747,7 +2752,15 @@
     "sentDesc": "{{amount}} توکن در تاریخ {{chain}} به خزانه ارسال شد. سهم شما پس از ایندکس شدن بلاک به‌روزرسانی می‌شود.",
     "sendAnyWallet": "هر کسی می‌تواند توکن‌های DeHub را از هر کیف پول یا صرافی به اینجا ارسال کند. انتقال در Base و BNB به سهم شما اضافه می‌شود.",
     "yourContribution": "{{amount}} توکن مشارکت شده",
-    "pooledTotal": "{{amount}} توکن در استخر قرار گرفته"
+    "pooledTotal": "{{amount}} توکن در استخر قرار گرفته",
+    "status": {
+      "rejected": "رد شد",
+      "open": "باز",
+      "expired": "منقضی شده",
+      "completed": "تکمیل شده",
+      "cancelled": "لغو شد",
+      "accepted": "پذیرفته شده"
+    }
   },
   "governance": {
     "title": "حکمرانی",
@@ -5059,7 +5072,12 @@
     "interestedCount": "{{count}} نفر علاقه‌مند",
     "loadFailed": "بارگذاری رویدادها ممکن نشد"
   },
-  "stats": {"chart": {"daily": "بازدیدکنندگان در روز", "dailyHint": "بازدیدکنندگان یکتا در روز", "empty": "هنوز داده‌ای برای این بازه نیست"},
+  "stats": {
+    "chart": {
+      "daily": "بازدیدکنندگان در روز",
+      "dailyHint": "بازدیدکنندگان یکتا در روز",
+      "empty": "هنوز داده‌ای برای این بازه نیست"
+    },
     "definitions": {
       "visitorsTerm": "بازدیدکنندگان"
     },
@@ -9844,5 +9862,24 @@
     "fingerprint": "اثر انگشت",
     "exploreFirst": "اول گشتی بزن",
     "codeNote": "یک کد برایت ایمیل می‌کنیم، بدون رمز عبور."
+  },
+  "stageCover": {
+    "admitOne": "یکی را بپذیر",
+    "live": "زنده",
+    "minutes": "{{minutes}} دقیقه",
+    "onAir": "روی هوا",
+    "recorded": "ضبط شده",
+    "replay": "پخش مجدد",
+    "stage": "مرحله",
+    "upcoming": "آینده"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "ممنون!",
+    "20d4214b9d4b": "مشاهده درخواست‌های ارسال شده",
+    "2971f9103f78": "ممنون از کمکتان برای بهتر شدن DeHub — چیزی که درخواست کرده بودید، اکنون در دسترس است:",
+    "8f3dc69e83c4": "بازخورد شما ارسال شد!",
+    "905392fbed15": "ممنون از کمکتون برای بهتر شدن DeHub — {{value1}} چیزهایی که خواسته بودید الان فعال هستند:",
+    "bdd4f5015e96": "اعلان درخواست ارسال بسته",
+    "da4c7c208cf4": "بررسیش کن."
   }
 }

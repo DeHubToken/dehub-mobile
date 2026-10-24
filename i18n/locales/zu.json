@@ -993,7 +993,8 @@
     "themeColorBrand": "Umkhiqizo",
     "themeColorBrandDesc": "Sebenzisa imibala yesithombe sakho sephrofayela",
     "themeColorBrandNoAvatar": "Engeza isithombe sephrofayela ukuze usebenzise imibala yoMkhiqizo",
-    "themeColorBrandFailed": "Ayikwazanga ukufunda imibala esithombeni sakho sephrofayela"
+    "themeColorBrandFailed": "Ayikwazanga ukufunda imibala esithombeni sakho sephrofayela",
+    "shortsSaveFailed": "Yehlulekile ukugcina izintandokazi ze-Shorts"
   },
   "common": {
     "refresh": "Vuselela",
@@ -2048,7 +2049,11 @@
     "tryAnotherGenre": "Zama uhlobo oluhlukile.",
     "pauseStation": "Misa isikhashana isiteshi",
     "resumeStation": "Qalisa kabusha isiteshi",
-    "stopRadio": "Yeka umsakazo"
+    "stopRadio": "Yeka umsakazo",
+    "listeningCount_one": "{{count}} ukulalela",
+    "listeningCount_other": "{{count}} ukulalela",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views"
   },
   "notFound": {
     "title": "Ikhasi Alitholakalanga",
@@ -2731,7 +2736,15 @@
     "sentDesc": "Amathokheni {{amount}} athunyelwe kumgcinimafa ngomhla ka-{{chain}}. Ingxenye yakho ibuyekezwa uma ibhulokhi isingenisiwe.",
     "sendAnyWallet": "Noma ubani angathumela amathokheni e-DeHub lapha kusuka kunoma iyiphi isikhwama noma i-exchange. Ukudluliswa ku-Base naku-BNB kubalwa engxenyeni yakho.",
     "yourContribution": "Amathokheni {{amount}} anikelwe",
-    "pooledTotal": "Amathokheni {{amount}} ahlanganisiwe"
+    "pooledTotal": "Amathokheni {{amount}} ahlanganisiwe",
+    "status": {
+      "rejected": "Kwenqatshiwe",
+      "open": "Vula",
+      "expired": "Iphelelwe yisikhathi",
+      "completed": "Kuphothuliwe",
+      "cancelled": "Ikhanseliwe",
+      "accepted": "Yamukelwe"
+    }
   },
   "governance": {
     "title": "Ukubusa",
@@ -9827,5 +9840,24 @@
     "fingerprint": "Uphawu lomunwe",
     "exploreFirst": "Hlola kuqala",
     "codeNote": "Sikuthumelela ikhodi nge-imeyili, ayikho iphasiwedi edingekayo."
+  },
+  "stageCover": {
+    "admitOne": "VUMA EYODWA",
+    "live": "bukhoma",
+    "minutes": "{{minutes}} min",
+    "onAir": "EMOYENI",
+    "recorded": "KUQOSHIWE",
+    "replay": "phinda udlale",
+    "stage": "isiteji",
+    "upcoming": "okuzayo"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Siyabonga!",
+    "20d4214b9d4b": "Buka izicelo ezithunyelwe",
+    "2971f9103f78": "Siyabonga ngokusiza ekwenzeni i-DeHub ibe ngcono — into oyicelile manje ibukhoma:",
+    "8f3dc69e83c4": "Umbiko wakho uthunyelwe!",
+    "905392fbed15": "Siyabonga ngokusiza ekwenzeni i-DeHub ibe ngcono — {{value1}} izinto ozicelile manje sezibukhoma:",
+    "bdd4f5015e96": "Vala isaziso sesicelo esithunyelwe",
+    "da4c7c208cf4": "Yihlole"
   }
 }

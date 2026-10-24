@@ -994,7 +994,8 @@
     "themeColorBrand": "Handelsmerk",
     "themeColorBrandDesc": "Gebruik die kleure van jou profielfoto",
     "themeColorBrandNoAvatar": "Voeg 'n profielfoto by om handelsmerkkleure te gebruik",
-    "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie"
+    "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie",
+    "shortsSaveFailed": "Kon nie kortbroekvoorkeure stoor nie"
   },
   "common": {
     "refresh": "Verfris",
@@ -2079,7 +2080,11 @@
     "likeStation": "Hou van stasie",
     "unlikeStation": "Hou nie meer van stasie nie",
     "shareStation": "Deel stasie",
-    "listeningTo": "Luister na {{name}} op DeHub"
+    "listeningTo": "Luister na {{name}} op DeHub",
+    "listeningCount_one": "{{count}} luister",
+    "listeningCount_other": "{{count}} luister",
+    "viewsCount_one": "{{views}} aansig",
+    "viewsCount_other": "{{views}} kyke"
   },
   "notFound": {
     "title": "Bladsy nie gevind nie",
@@ -2770,7 +2775,15 @@
     "sentDesc": "{{amount}} tokens gestuur na die tesourie op {{chain}}. Jou aandeel word opgedateer sodra die blok geïndekseer is.",
     "sendAnyWallet": "Enigiemand kan DeHub tokens hierheen stuur vanaf enige beursie of beurs. Oordragte op Base en BNB tel mee vir jou aandeel.",
     "yourContribution": "{{amount}} tokens bygedra",
-    "pooledTotal": "{{amount}} tokens in die poel"
+    "pooledTotal": "{{amount}} tokens in die poel",
+    "status": {
+      "rejected": "Verwerp",
+      "open": "Open",
+      "expired": "Verval",
+      "completed": "Voltooid",
+      "cancelled": "Gekanselleer",
+      "accepted": "Aanvaar"
+    }
   },
   "governance": {
     "title": "Bestuur",
@@ -9942,5 +9955,24 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Verken eers",
     "codeNote": "Ons stuur vir jou 'n kode, geen wagwoord nodig nie."
+  },
+  "stageCover": {
+    "admitOne": "Erken een",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "Opgeneem",
+    "replay": "herhaling",
+    "stage": "stadium",
+    "upcoming": "opkomende"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Dankie!",
+    "20d4214b9d4b": "Bekyk versend versoeke",
+    "2971f9103f78": "Dankie dat jy help om DeHub beter te maak — iets waarvoor jy gevra het, is nou lewendig:",
+    "8f3dc69e83c4": "Jou terugvoer is gestuur!",
+    "905392fbed15": "Dankie dat jy help om DeHub beter te maak — {{value1}} dinge waarvoor jy gevra het, is nou lewendig:",
+    "bdd4f5015e96": "Maak versend versoek kennisgewing toe",
+    "da4c7c208cf4": "Check dit uit"
   }
 }

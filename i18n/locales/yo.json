@@ -992,7 +992,8 @@
     "themeColorBrand": "Àmì-ọjà",
     "themeColorBrandDesc": "Lo àwọn àwọ̀ àwòrán profáìlì rẹ",
     "themeColorBrandNoAvatar": "Fi àwòrán profáìlì kún kí o lè lo àwọn àwọ̀ Àmì-ọjà",
-    "themeColorBrandFailed": "A kò lè ka àwọn àwọ̀ láti àwòrán profáìlì rẹ"
+    "themeColorBrandFailed": "A kò lè ka àwọn àwọ̀ láti àwòrán profáìlì rẹ",
+    "shortsSaveFailed": "Ó kùnà láti fi ààyò Shorts pamọ́."
   },
   "common": {
     "refresh": "Tunto",
@@ -2047,7 +2048,11 @@
     "tryAnotherGenre": "Gbìyànjú oríṣi mìíràn.",
     "pauseStation": "Dá ibùdó dúró",
     "resumeStation": "Bẹ̀rẹ̀ ibùdó náà",
-    "stopRadio": "Dúró rédíò"
+    "stopRadio": "Dúró rédíò",
+    "listeningCount_one": "{{count}} gbigbọ",
+    "listeningCount_other": "{{count}} gbigbọ",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} wiwo"
   },
   "notFound": {
     "title": "A Kò Rí Ojú Ìwé",
@@ -2730,7 +2735,15 @@
     "sentDesc": "{{amount}} ami ni a fi ranṣẹ si iṣura ni {{chain}}. Ipin rẹ yoo yipada ni kete ti a ba ṣeto bulọọki naa.",
     "sendAnyWallet": "Ẹnikẹni le fi awọn ami DeHub ranṣẹ nibi lati eyikeyi apamọwọ tabi paṣipaarọ. Gbigbe lori Base ati BNB ka si ipin rẹ.",
     "yourContribution": "{{amount}} ami ti a fi kun",
-    "pooledTotal": "{{amount}} ami ti a fi sinu adagun"
+    "pooledTotal": "{{amount}} ami ti a fi sinu adagun",
+    "status": {
+      "rejected": "Wọ́n kọ̀ ọ́",
+      "open": "Ṣii",
+      "expired": "Ti pari",
+      "completed": "Ti pari",
+      "cancelled": "Ti fagile",
+      "accepted": "Gba"
+    }
   },
   "governance": {
     "title": "Ìṣàkóso",
@@ -9791,5 +9804,24 @@
     "fingerprint": "Àtẹ ìka",
     "exploreFirst": "Ṣawari ni akọkọ",
     "codeNote": "A fi kọ̀m̀pútà ránṣẹ́ sí ọ, kò nílò ọ̀rọ̀ ìgbaniwọlé."
+  },
+  "stageCover": {
+    "admitOne": "Gba ọkan",
+    "live": "lIVE",
+    "minutes": "{{minutes}} min",
+    "onAir": "NÍ ÀWỌN ÀWỌN",
+    "recorded": "Ti gba silẹ",
+    "replay": "replay",
+    "stage": "ipele",
+    "upcoming": "tí ń bọ̀"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "O ṣeun!",
+    "20d4214b9d4b": "Wo àwọn ìbéèrè tí a rán jáde",
+    "2971f9103f78": "O ṣeun fún ìrànlọ́wọ́ láti mú kí DeHub dára — ohun tí o béèrè ti wà láàyè báyìí:",
+    "8f3dc69e83c4": "Èsì rẹ ránṣẹ́!",
+    "905392fbed15": "O ṣeun fún ìrànlọ́wọ́ láti mú kí DeHub dára sí i — {{value1}} àwọn nǹkan tí o béèrè ti wà láàyè báyìí:",
+    "bdd4f5015e96": "Sún ìkéde ìbẹ̀wò tí a rán jáde",
+    "da4c7c208cf4": "Ṣàyẹ̀wò rẹ̀"
   }
 }

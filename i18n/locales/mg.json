@@ -993,7 +993,8 @@
     "themeColorBrand": "Marika",
     "themeColorBrandDesc": "Ampiasao ny lokon'ny sarinao",
     "themeColorBrandNoAvatar": "Ampidiro sary mombamomba mba hampiasana ny lokon'ny Marika",
-    "themeColorBrandFailed": "Tsy afaka namaky loko avy amin'ny sarinao"
+    "themeColorBrandFailed": "Tsy afaka namaky loko avy amin'ny sarinao",
+    "shortsSaveFailed": "Tsy nahomby ny fandefasany ny tenany"
   },
   "common": {
     "refresh": "_Avereno zahana",
@@ -2070,7 +2071,8 @@
     "tryAnotherGenre": "Mba andramo ny karazana hafa.",
     "pauseStation": "Atsaharo vetivety ny gara",
     "resumeStation": "Tohizo ny gara",
-    "stopRadio": "Atsaharo ny radio"
+    "stopRadio": "Atsaharo ny radio",
+    "viewsCount_one": "{{views}} view"
   },
   "notFound": {
     "title": "Tsy nahitana pejy",
@@ -2753,7 +2755,15 @@
     "sentDesc": "{{amount}}tokens nalefa tany amin'ny tahirim-bola tao amin'ny {{chain}}. Ny mizara vaovao farany raha vao ny andian-tsoratra no indexed.",
     "sendAnyWallet": "Na iza na iza dia afaka mandefa famantarana DeHub eto avy amin'ny kitapom-batsy na fifanakalozana. Ny famindrana ao amin'ny Base and BnB dia manisa ny anjaranao.",
     "yourContribution": "{{amount}}tokens Nandray anjara",
-    "pooledTotal": "{{amount}} tokens tonga"
+    "pooledTotal": "{{amount}} tokens tonga",
+    "status": {
+      "rejected": "Nolavina",
+      "open": "Hanokatra",
+      "expired": "Anierdna",
+      "completed": "Vita",
+      "cancelled": "Nofoanana",
+      "accepted": "Ekena"
+    }
   },
   "governance": {
     "title": "Fitondrana",
@@ -9895,5 +9905,24 @@
     "fingerprint": "Diam-panondro",
     "exploreFirst": "Hitady ny voalohany",
     "codeNote": "Mandefa mailaka ho anao izahay, tsy misy teny miafina ilaina."
+  },
+  "stageCover": {
+    "admitOne": "Ekeo ny iray",
+    "live": "mivantana",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON RIVOTRA",
+    "recorded": "Voarakitra",
+    "replay": "mamerina",
+    "stage": "sehatra",
+    "upcoming": "ho avy"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Misaotra!",
+    "20d4214b9d4b": "Hizaha ny fangatahana alefa",
+    "2971f9103f78": "Misaotra ny fanampiana hampivoatra ny DeHub — ny zavatra nangatahinao dia izao velona:",
+    "8f3dc69e83c4": "Ny valinteninao dia nalefa!",
+    "905392fbed15": "Misaotra nanampy tamin'ny fanatsarana an'i DeHub — {{value1}} zavatra nangatahinao izao mba ho velona:",
+    "bdd4f5015e96": "Hidio ny fampahafantarana ny fangatahana",
+    "da4c7c208cf4": "Jereo izany"
   }
 }

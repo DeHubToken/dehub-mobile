@@ -993,7 +993,8 @@
     "themeColorBrand": "Brend",
     "themeColorBrandDesc": "Profil rasmingiz ranglaridan foydalanish",
     "themeColorBrandNoAvatar": "Brend ranglaridan foydalanish uchun profil rasmi qo'shing",
-    "themeColorBrandFailed": "Profil rasmingizdan ranglarni o'qib bo'lmadi"
+    "themeColorBrandFailed": "Profil rasmingizdan ranglarni o'qib bo'lmadi",
+    "shortsSaveFailed": "Shorts sozlamalari saqlanmadi"
   },
   "common": {
     "refresh": "Yangilash",
@@ -2074,7 +2075,11 @@
     "likeStation": "Stansiyani yoqtirish",
     "unlikeStation": "Yoqtirishni bekor qilish",
     "shareStation": "Stansiyani ulashish",
-    "listeningTo": "DeHub’da {{name}} tinglayapman"
+    "listeningTo": "DeHub’da {{name}} tinglayapman",
+    "listeningCount_one": "{{count}} tinglash",
+    "listeningCount_other": "{{count}} tinglash",
+    "viewsCount_one": "{{views}} ko'rinishi",
+    "viewsCount_other": "{{views}} ko'rishlar"
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -2757,7 +2762,15 @@
     "sendAnyWallet": "Har kim DeHub tokenlarini bu yerga istalgan hamyon yoki birjadan yuborishi mumkin. Base va BNB dagi transferlar sizning ulushingizga hisoblanadi.",
     "yourContribution": "{{amount}} token qo'shildi",
     "pooledTotal": "{{amount}} token birlashtirildi",
-    "sentDesc": "{{amount}} tokenlari {{chain}} da xazinachilikka yuboriladi. Blok indekslangandan so'ng, sizning aksiyangiz yangilanadi."
+    "sentDesc": "{{amount}} tokenlari {{chain}} da xazinachilikka yuboriladi. Blok indekslangandan so'ng, sizning aksiyangiz yangilanadi.",
+    "status": {
+      "rejected": "Rad etildi",
+      "open": "Ochiq",
+      "expired": "Muddati tugagan",
+      "completed": "Tugallandi",
+      "cancelled": "Bekor qilindi",
+      "accepted": "Qabul qilindi"
+    }
   },
   "governance": {
     "title": "Boshqaruv",
@@ -9870,5 +9883,24 @@
     "fingerprint": "Barmoq izi",
     "exploreFirst": "Avval o'rganing",
     "codeNote": "Sizga elektron pochta orqali kod yuboramiz, parol kerak emas."
+  },
+  "stageCover": {
+    "admitOne": "BIRINCHI QABUL QILING",
+    "live": "jonli",
+    "minutes": "{{minutes}} daqiqa",
+    "onAir": "Efirda",
+    "recorded": "YOZIB OLINGAN",
+    "replay": "qayta ijro etish",
+    "stage": "sahna",
+    "upcoming": "yaqinlashib kelayotgan"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Rahmat!",
+    "20d4214b9d4b": "Yetkazib berilgan so'rovlarni ko'rish",
+    "2971f9103f78": "DeHub’ni yaxshilashga yordam berganingiz uchun tashakkur — siz so‘ragan narsa endi ishga tushirildi:",
+    "8f3dc69e83c4": "Fikr-mulohazangiz yuborildi!",
+    "905392fbed15": "DeHub’ni yaxshilashga yordam berganingiz uchun tashakkur — {{value1}} siz so‘ragan narsalar endi ishga tushirildi:",
+    "bdd4f5015e96": "Yetkazib berish so'rovi bildirishnomasini yopish",
+    "da4c7c208cf4": "Tekshirib ko'r"
   }
 }

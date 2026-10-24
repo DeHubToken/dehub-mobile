@@ -988,7 +988,8 @@
     "themeColorBrand": "Marki",
     "themeColorBrandDesc": "I ka ja kulɛriw kɛ",
     "themeColorBrandNoAvatar": "Ja fara walisa ka Marki kulɛriw kɛ",
-    "themeColorBrandFailed": "Kulɛriw ma se ka kalan i ka ja la"
+    "themeColorBrandFailed": "Kulɛriw ma se ka kalan i ka ja la",
+    "shortsSaveFailed": "Ne tɛ se ka n yɛrɛ tanga n ka ɲɛnagwɛkow ma"
   },
   "common": {
     "refresh": "A kuraya",
@@ -2041,7 +2042,9 @@
     "tryAnotherGenre": "Jaribu aina nyingine.",
     "pauseStation": "Zima mawasilisho ya weredio",
     "resumeStation": "Endeleza mawasilisho ya weredio",
-    "stopRadio": "Zima weredio"
+    "stopRadio": "Zima weredio",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} vousêtes ici"
   },
   "notFound": {
     "title": "Ɲɛ ma sɔrɔ",
@@ -2721,7 +2724,15 @@
     "yourContribution": "{{amount}} tokens contributed",
     "pooledTotal": "{{amount}} tokens pooled",
     "sentDesc": "{{amount}}tokens sent to the Treasury on {{chain}}. I ka wari hakɛ kofɔra ka ban tuma min na, i ka wari hakɛ kofɔra ka ban.",
-    "sendAnyWallet": "Mɔgɔ o mɔgɔ be se ka DeHub ka tagamasiyɛnw ci yan ka bɔ wari la wala ka wari feere. O la, i bena a ye ko i ye wari min sɔrɔ, o ye wari min ye, o ye wari min ye."
+    "sendAnyWallet": "Mɔgɔ o mɔgɔ be se ka DeHub ka tagamasiyɛnw ci yan ka bɔ wari la wala ka wari feere. O la, i bena a ye ko i ye wari min sɔrɔ, o ye wari min ye, o ye wari min ye.",
+    "status": {
+      "rejected": "Ka ban",
+      "open": "Ka yɛlɛ",
+      "expired": "O bɛɛ banna.",
+      "completed": "Ka ban",
+      "cancelled": "Ka to ka to ka baara kɛ",
+      "accepted": "Ka sɔn"
+    }
   },
   "governance": {
     "title": "Ɲɛmɔgɔya",
@@ -9735,5 +9746,23 @@
     "fingerprint": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
     "exploreFirst": "Kɔrɔbɔli fɔlɔ",
     "codeNote": "An b'i weele ka na an ka site web kan, an mako t'a la i ka kumaɲɔgɔnya kɛ n'i ye."
+  },
+  "stageCover": {
+    "admitOne": "Ne b'a fɔ aw ye ko aw ka sɔn",
+    "live": "ka to ka ɲɛnamaya kɛ",
+    "minutes": "{{minutes}} min",
+    "onAir": "Fanga be fɔɲɔ la",
+    "recorded": "Ka to ka sɛbɛri kɛ",
+    "replay": "ka segi ka baara kɛ",
+    "stage": "o ye ɲɛyirali ɲuman ye",
+    "upcoming": "o kɔ, a bena na."
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Ne b'i fo!",
+    "20d4214b9d4b": "A ye min fɔ, o ye tiɲɛ ye",
+    "2971f9103f78": "Ne b'i fo i ka dɛmɛ kosɔn ka DeHub fisaya — i ye fɛɛn min deli, o be to niin na sisan:",
+    "8f3dc69e83c4": "I ka jaabili ye kabako ye dɛ!",
+    "bdd4f5015e96": "N'i ye mɔgɔ dɔ weele ka na i ka soo",
+    "da4c7c208cf4": "Aw ye taga a filɛ"
   }
 }

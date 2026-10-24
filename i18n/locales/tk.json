@@ -993,7 +993,8 @@
     "themeColorBrand": "Marka",
     "themeColorBrandDesc": "Profil suratyňyzyň reňklerini ulanyň",
     "themeColorBrandNoAvatar": "Marka reňklerini ulanmak üçin profil suraty goşuň",
-    "themeColorBrandFailed": "Profil suratyňyzdan reňkleri okap bolmady"
+    "themeColorBrandFailed": "Profil suratyňyzdan reňkleri okap bolmady",
+    "shortsSaveFailed": "Şortlaryň saýlamalaryny halas etmek üçin başarnyksyz"
   },
   "common": {
     "refresh": "Täzelemek",
@@ -2047,7 +2048,9 @@
     "tryAnotherGenre": "Başga bir görnüşi synap görüň.",
     "pauseStation": "Stansiýa dynç alyň",
     "resumeStation": "Garawul diňi we Garawul diňi",
-    "stopRadio": "Radiony goýuň"
+    "stopRadio": "Radiony goýuň",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views"
   },
   "notFound": {
     "title": "Sahypa tapylmady",
@@ -2728,7 +2731,15 @@
     "sentDesc": "{{amount}} token {{chain}}-da hazynalara iberildi. Blokuň indekslenmegi bilen paýyňyz täzelener.",
     "sendAnyWallet": "Her kim islendik gutardygdan ýa-da biržadan DeHub tokenlerini şu ýere iberip biler. Base we BNB-däki geçirimler paýyňyza hasaplanar.",
     "yourContribution": "{{amount}} token goşant goşdy",
-    "pooledTotal": "{{amount}} token birleşdirildi"
+    "pooledTotal": "{{amount}} token birleşdirildi",
+    "status": {
+      "rejected": "Rad edilen",
+      "open": "Aç",
+      "expired": "Ötdi",
+      "completed": "Bitir",
+      "cancelled": "Gaýd edilen",
+      "accepted": "Kabul edilen"
+    }
   },
   "governance": {
     "title": "Dolandyryş",
@@ -9782,5 +9793,23 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Öňürti barlaň",
     "codeNote": "Biz size kody iberýäris, hiç hili parol gerek däl."
+  },
+  "stageCover": {
+    "admitOne": "Birini kabul ediň",
+    "live": "ýaşaýyş",
+    "minutes": "{{minutes}} min",
+    "onAir": "Haýda",
+    "recorded": "Saýlan",
+    "replay": "gaýtalap oýna",
+    "stage": "sahna",
+    "upcoming": "gelejek"
+  },
+  "copy": {
+    "1aa7b1c1d5fb": "Sag boluň",
+    "20d4214b9d4b": "Çykyşlary gör",
+    "2971f9103f78": "DeHub-y has gowy etmäge kömek edendigiňiz üçin minnetdar — indi siz soran bir zat diridir:",
+    "8f3dc69e83c4": "Seniň pikirleriň ýykyldy!",
+    "bdd4f5015e96": "Dileg bildirişini ýapmak",
+    "da4c7c208cf4": "Çykaryň"
   }
 }
