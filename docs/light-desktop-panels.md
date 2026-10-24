@@ -1,7 +1,8 @@
 # Light desktop side panels
 
-Light and System Light use the soft-pearl treatment for desktop side panels
-at widths of 1024px and above in dehubweb:
+System Light uses the soft-pearl treatment for desktop side panels
+at widths of 1024px and above in dehubweb. Minimal Light retains its original
+straight panel, search-field and tab corners:
 
 - Pale cards (`#fbfbfc`) stand on the page without an outer rail fill,
   border or shadow.
