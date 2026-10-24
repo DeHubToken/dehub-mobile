@@ -18,6 +18,7 @@ interface PasskeyLoginFlowProps {
   suggestCreate?: boolean;
   /** Render the two choices already open (opened from the round Fingerprint button). */
   startOpen?: boolean;
+  compact?: boolean;
 }
 
 /**
@@ -37,6 +38,7 @@ const PasskeyLoginFlow: React.FC<PasskeyLoginFlowProps> = ({
   error,
   suggestCreate,
   startOpen,
+  compact = false,
 }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(!!startOpen);
@@ -55,9 +57,9 @@ const PasskeyLoginFlow: React.FC<PasskeyLoginFlowProps> = ({
 
   return (
     <View style={{ gap: 12 }}>
-      <Text style={styles.intro}>
+      {!compact && <Text style={styles.intro}>
         {t("loginModal.passkeyIntro", "Your fingerprint or face is your account. Nothing to remember, nothing to type.")}
-      </Text>
+      </Text>}
       <AuthButton
         variant={suggestCreate ? "secondary" : "primary"}
         icon="finger-print"
@@ -79,12 +81,12 @@ const PasskeyLoginFlow: React.FC<PasskeyLoginFlowProps> = ({
           {error}
         </Text>
       )}
-      <Text style={styles.hint}>
+      {!compact && <Text style={styles.hint}>
         {t(
           "loginModal.passkeyBackupHint",
           "Your account lives in this device's passkey. On most phones it syncs with your Google or Apple account, and you can add a password backup in Settings.",
         )}
-      </Text>
+      </Text>}
     </View>
   );
 };
