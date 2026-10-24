@@ -1,3 +1,4 @@
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from "../../hooks/useSearchFieldMaterial";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * Every open listing across every post — the market's front door. Before this
@@ -39,6 +40,7 @@ const BrowseFractionsTab: React.FC<Props> = ({ onOpenListing }) => {
   const wallet = useFractionWallet();
   const [sort, setSort] = useState<MarketSort>("newest");
   const [search, setSearch] = useSurfaceDraft("components/Fractions/BrowseFractionsTab.tsx:search", "");
+  const searchMaterial = useSearchFieldMaterial();
   const debounced = useDebouncedValue(search, 300);
   const { data: listings = [], isLoading, isError, refetch, isRefetching } = useMarketListings(sort, debounced);
   const { data: sellerStats = {} } = useSellerStatsBatch(listings.map((l) => l.seller_address));
@@ -90,14 +92,16 @@ const BrowseFractionsTab: React.FC<Props> = ({ onOpenListing }) => {
 
   const header = (
     <View style={styles.header}>
-      <View style={styles.searchWrap}>
+      <View style={[styles.searchWrap, searchMaterial.surface]}>
         <Icon name="Search" size={15} color="#808089" />
         <TextInput
           value={search}
           onChangeText={setSearch}
           placeholder={t("fractions.searchPlaceholder")}
           placeholderTextColor="#8B8D90"
-          style={styles.searchInput}
+          style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+          onFocus={searchMaterial.onFocus}
+          onBlur={searchMaterial.onBlur}
           autoCapitalize="none"
           autoCorrect={false}
           returnKeyType="search"
