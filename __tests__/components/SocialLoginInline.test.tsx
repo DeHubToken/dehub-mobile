@@ -24,16 +24,19 @@ jest.mock('../../config/reown.config', () => ({ isWalletConnectAvailable: true }
 jest.mock('../../services/auth/passkeyAuth.service', () => ({ isPasskeyLoginAvailable: () => true }));
 jest.mock('../../components/auth/ImportWalletModal', () => () => null);
 jest.mock('../../components/auth/EmailLoginFlow', () => () => {
+  const React = require('react');
   const { Text } = require('react-native');
-  return <Text>Email form</Text>;
+  return React.createElement(Text, null, 'Email form');
 });
 jest.mock('../../components/auth/PhoneLoginFlow', () => () => {
+  const React = require('react');
   const { Text } = require('react-native');
-  return <Text>Phone form</Text>;
+  return React.createElement(Text, null, 'Phone form');
 });
 jest.mock('../../components/auth/PasskeyLoginFlow', () => () => {
+  const React = require('react');
   const { Text } = require('react-native');
-  return <Text>Fingerprint choices</Text>;
+  return React.createElement(Text, null, 'Fingerprint choices');
 });
 
 it('replaces the email form when selecting another method and keeps provider choices available', () => {
