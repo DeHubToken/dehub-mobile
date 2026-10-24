@@ -13,13 +13,17 @@ import { prefetchUserProfile } from "../../hooks/useUserProfileData";
 
 const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
-const HEADER_ICON_SIZE = 22;
+const HEADER_ICON_SIZE = 20;
 const HEADER_ICON_PAD = 4;
-// The cut vertical dots fill x 14-18, y 4-28 of a 32-unit grid. Shift them
-// right and up by that spare room so they sit on the card's inset from both
-// the side and the top: the corner reads evenly padded, like the web bento.
-const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (14 / 32);
-const MENU_ICON_TOP_SPACE = HEADER_ICON_SIZE * (4 / 32);
+// How far the visible dots sit inside the card's content, from the top and
+// from the side alike: 18px from the bento's edge, matching web.
+const CORNER_INSET = 6;
+// The cut vertical dots fill x 14-18, y 4-28 of a 32-unit grid. Shift them by
+// that spare room, less the inset, so the corner reads evenly padded.
+const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (14 / 32) - CORNER_INSET;
+const CORNER_ICON_DROP = CORNER_INSET - HEADER_ICON_SIZE * (4 / 32);
+// Boost keeps 14px between its glyph box and the dots' (row gap 8, two pads).
+const BOOST_END_SPACE = 14 - 8 - 2 * HEADER_ICON_PAD - MENU_ICON_END_SPACE;
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
@@ -171,9 +175,11 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel={t("feedCard.boostPost")}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: HEADER_ICON_PAD, marginRight: 1.6 }}
+            style={{ padding: HEADER_ICON_PAD, marginRight: BOOST_END_SPACE }}
           >
-            <Icon name="Zap" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            <View style={{ top: CORNER_ICON_DROP }}>
+              <Icon name="Zap" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            </View>
           </Pressable>
         )}
         {onMenuPress && (
@@ -184,7 +190,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >
-            <View style={{ left: MENU_ICON_END_SPACE, top: -MENU_ICON_TOP_SPACE }}>
+            <View style={{ left: MENU_ICON_END_SPACE, top: CORNER_ICON_DROP }}>
               <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
             </View>
           </Pressable>
