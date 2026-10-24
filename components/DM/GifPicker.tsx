@@ -1,5 +1,6 @@
 import MessageSurface from "../DM/MessageSurface";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View, Platform } from 'react-native';
 import SmartImage from '../common/SmartImage';
@@ -51,6 +52,7 @@ const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
 };
 
 const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
+  const searchMaterial = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const [query, setQuery] = useSurfaceDraft("components/DM/GifPicker.tsx:query", '');
@@ -196,6 +198,9 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
                     placeholderTextColor="#9CA3AF"
                     value={query}
                     onChangeText={onChangeText}
+                    style={searchMaterial.surface}
+                    onFocus={searchMaterial.onFocus}
+                    onBlur={searchMaterial.onBlur}
                     autoCorrect={false}
                     className="h-11 px-3 mb-2 rounded-lg bg-theme-neutrals-800 text-theme-neutrals-100"
                   />
