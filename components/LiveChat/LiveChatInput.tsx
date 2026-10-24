@@ -321,7 +321,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             <SmartImage source={{ uri: attachmentUri }} recyclingKey={attachmentUri} style={{ width: 64, height: 64 }} contentFit="cover" />
             {attachmentBusy && (
               <View className="absolute inset-0 items-center justify-center dark-surface bg-black/50">
-                <ActivityIndicator size="small" color={composerActiveColor} />
+                <ActivityIndicator size="small" color="#F4F4F5" />
               </View>
             )}
             <TouchableOpacity
