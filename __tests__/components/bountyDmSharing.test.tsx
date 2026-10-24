@@ -36,6 +36,7 @@ jest.mock('../../libs', () => ({ getAvatarUrl: () => undefined, toastSuccess: (.
 jest.mock('../../libs/misc', () => ({ getBadgeUrlFor: () => undefined }));
 jest.mock('../../config', () => ({ WEBSITE_LINK: 'https://dehub.io' }));
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ id: 'me', address: '0xme' }) }));
+jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: false }) }));
 jest.mock('../../store/dm.store', () => ({ useDmContacts: () => [{ _id: 'conversation' }] }));
 jest.mock('../../services/dm/dm.types', () => ({ getOtherParticipant: () => ({ displayName: 'Pat', address: '0xpat' }) }));
 

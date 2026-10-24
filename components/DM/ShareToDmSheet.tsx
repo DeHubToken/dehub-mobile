@@ -1,5 +1,6 @@
 import Icon from "../ui/Icon";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../hooks/useSearchFieldMaterial';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -54,6 +55,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   }, [visible, tokenId, url]);
   const conversations = useDmContacts();
   const [search, setSearch] = useSurfaceDraft("components/DM/ShareToDmSheet.tsx:search", "");
+  const searchMaterial = useSearchFieldMaterial();
 
   const myUserId = (user as any)?._id || (user as any)?.id;
   const myAddress = (user as any)?.walletAddress || (user as any)?.address;
@@ -173,11 +175,14 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
           </TouchableOpacity>
         </View>
 
-        <View className="mx-4 mb-3 bg-theme-neutrals-800 rounded-xl px-3 py-2 flex-row items-center gap-2">
+        <View className="mx-4 mb-3 bg-theme-neutrals-800 rounded-xl px-3 py-2 flex-row items-center gap-2" style={searchMaterial.surface}>
           <Ionicons name="search" size={16} color="#A1A1AA" />
           <TextInput
             value={search}
             onChangeText={setSearch}
+            style={SEARCH_INPUT_CLEAR}
+            onFocus={searchMaterial.onFocus}
+            onBlur={searchMaterial.onBlur}
             placeholder={t("messages.searchConversations")}
             placeholderTextColor="#8B8D90"
             className="flex-1 text-white text-sm p-0 m-0"
