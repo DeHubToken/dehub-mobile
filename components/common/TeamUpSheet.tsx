@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../hooks/useSearchFieldMaterial';
 import React, { useDeferredValue, useState } from 'react';
 import {
   ActivityIndicator,
@@ -104,6 +105,7 @@ export default function TeamUpSheet({
   const [description, setDescription] = useSurfaceDraft("components/common/TeamUpSheet.tsx:description", '');
   const [isPrivate, setIsPrivate] = useState(false);
   const [search, setSearch] = useSurfaceDraft("components/common/TeamUpSheet.tsx:search", '');
+  const searchMaterial = useSearchFieldMaterial();
   // The private team whose request note is being written, if any.
   const [requesting, setRequesting] = useState<string | null>(null);
   const [requestMessage, setRequestMessage] = useSurfaceDraft("components/common/TeamUpSheet.tsx:requestMessage", '', requesting);
@@ -420,14 +422,16 @@ export default function TeamUpSheet({
               <Text style={styles.panelTitle}>{t('teamUp.join')}</Text>
               <Text style={styles.muted}>{t('teamUp.joinHint')}</Text>
             </View>
-            <View style={styles.searchWrap}>
+            <View style={[styles.searchWrap, searchMaterial.surface]}>
               <Icon name="Search" size={16} color="#71717A" />
               <TextInput
                 value={search}
                 onChangeText={setSearch}
                 placeholder={t('teamUp.searchPlaceholder')}
                 placeholderTextColor="#61616B"
-                style={styles.searchInput}
+                style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+                onFocus={searchMaterial.onFocus}
+                onBlur={searchMaterial.onBlur}
                 accessibilityLabel={t('teamUp.searchPlaceholder')}
               />
             </View>
