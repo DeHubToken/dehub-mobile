@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ngā taupānga hono",
+    "connectedDescription": "Ngā taupānga Mastodon i takiuru koe mā tēnei pūkete. Tangohia tētahi kia takiputa ai.",
+    "connectedEmpty": "Kāore anō he taupānga kia hono.",
+    "lastUsed": "Whakamahia whakamutunga {{date}}",
+    "remove": "Tangohia",
+    "removed": "Kua tangohia te taupānga",
+    "failed": "Kāore i tutuki. Ngana anō."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ka taea e te tāngata kei Mastodon me ētahi atu taupānga fediverse te kite me te whai i a koe i tēnei wāhitau. Ka tae ō pānui tūmatanui hou ki a rātou ki reira.",
+    "copy": "Tārua",
+    "copied": "Kua tāruatia",
+    "privateNote": "Kāore ngā pūkete tūmataiti e whakaaturia ki te fediverse.",
+    "noUsername": "Kōwhiria he ingoa kaiwhakamahi kia whiwhi wāhitau fediverse."
+  },
+  "profileFields": {
+    "title": "Ngā āpure kōtaha",
+    "description": "Tae atu ki ngā rārangi tāpiri e whā i tō kōtaha, pērā i tētahi paetukutuku, ō tūpou rānei.",
+    "label": "Tapanga",
+    "content": "Ihirangi",
+    "save": "Tiakina ngā āpure",
+    "saved": "Kua tiakina ngā āpure kōtaha",
+    "failed": "Kāore i tiakina. Whakamātauria anō.",
+    "verified": "Hono kua manatokona",
+    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Tātari pānui mai i",
+    "description": "Kōwhiria te mea ka puta ina whakawhitiwhiti tētahi i waho o tō porowhita ki a koe. Ka tatari ngā pānui kua tātarihia ki raro i \"Kua tātarihia\", kāore he tohu, kāore he pānui pana.",
+    "notFollowing": "Ngā tāngata kāore koe e whai ana",
+    "notFollowers": "Ngā tāngata kāore e whai ana i a koe",
+    "newAccounts": "Ngā pūkete hou (iti iho i te 30 rā)",
+    "accept": "Whakamōhio mai",
+    "filter": "Tātari",
+    "drop": "Hunaia katoatia",
+    "filteredTitle": "Ngā pānui kua tātarihia",
+    "filteredEmpty": "Kāore anō kia tātarihia tētahi mea.",
+    "failed": "Kāore i tiakina. Whakamātauria anō."
+  },
+  "followedTags": {
+    "follow": "Whai i #{{tag}}",
+    "following": "E whai ana",
+    "unfollow": "Kaua e whai i #{{tag}}",
+    "followed": "Kei te whai koe i #{{tag}} ināianei. Ka puta ōna pānui ki tō whāngai Ka whāia.",
+    "unfollowed": "Kua mutu tō whai i #{{tag}}",
+    "failed": "Kāore i tiakina. Whakamātauria anō.",
+    "clear": "Ūkui"
+  },
   "keywordFilters": {
     "title": "Ngā kupu kua whakaroaina",
     "description": "Hunaia ngā pānui me ngā tākupu kei roto ēnei kupu, kōpakihia rānei ki muri i tētahi whakatūpato. Ko koe anake e kite i tēnei rārangi.",

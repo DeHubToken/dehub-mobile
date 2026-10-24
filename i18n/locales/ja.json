@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "連携中のアプリ",
+    "connectedDescription": "このアカウントでログインした Mastodon アプリです。削除するとそのアプリからログアウトします。",
+    "connectedEmpty": "連携中のアプリはまだありません。",
+    "lastUsed": "最終使用 {{date}}",
+    "remove": "削除",
+    "removed": "アプリを削除しました",
+    "failed": "うまくいきませんでした。もう一度お試しください。"
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon などの Fediverse アプリの人は、このアドレスであなたを見つけてフォローできます。新しい公開投稿はそこにも届きます。",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "privateNote": "非公開アカウントは Fediverse に表示されません。",
+    "noUsername": "Fediverse のアドレスを持つにはユーザー名を設定してください。"
+  },
+  "profileFields": {
+    "title": "プロフィール項目",
+    "description": "ウェブサイトや代名詞など、プロフィールに最大4行まで追加できます。",
+    "label": "ラベル",
+    "content": "内容",
+    "save": "項目を保存",
+    "saved": "プロフィール項目を保存しました",
+    "failed": "保存できませんでした。もう一度お試しください。",
+    "verified": "認証済みリンク",
+    "verifyHint": "リンクを認証するには、そのページにこれを追加してからもう一度保存してください：{{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "通知をフィルターする相手",
+    "description": "あなたの身近な人以外から反応があったときの扱いを選べます。フィルターされた通知は「フィルター済み」に入り、バッジやプッシュ通知は出ません。",
+    "notFollowing": "フォローしていない人",
+    "notFollowers": "フォローされていない人",
+    "newAccounts": "新しいアカウント（30日未満）",
+    "accept": "通知する",
+    "filter": "フィルター",
+    "drop": "完全に非表示",
+    "filteredTitle": "フィルターされた通知",
+    "filteredEmpty": "フィルターされた通知はありません。",
+    "failed": "保存できませんでした。もう一度お試しください。"
+  },
+  "followedTags": {
+    "follow": "#{{tag}} をフォロー",
+    "following": "フォロー中",
+    "unfollow": "#{{tag}} のフォローを解除",
+    "followed": "#{{tag}} をフォローしました。関連する投稿がフォロー中フィードに表示されます。",
+    "unfollowed": "#{{tag}} のフォローを解除しました",
+    "failed": "保存できませんでした。もう一度お試しください。",
+    "clear": "クリア"
+  },
   "keywordFilters": {
     "title": "ミュートワード",
     "description": "これらの語句を含む投稿やコメントを非表示にするか、警告の後ろに折りたたみます。このリストはあなただけに表示されます。",

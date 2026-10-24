@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Manhajojin da aka haɗa",
+    "connectedDescription": "Manhajojin Mastodon da ka shiga da wannan asusun. Cire ɗaya don fita daga cikinsa.",
+    "connectedEmpty": "Babu manhajar da aka haɗa tukuna.",
+    "lastUsed": "An yi amfani na ƙarshe {{date}}",
+    "remove": "Cire",
+    "removed": "An cire manhajar",
+    "failed": "Hakan bai yi aiki ba. Sake gwadawa."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mutane a Mastodon da sauran manhajojin fediverse za su iya samunka su bi ka a wannan adireshin. Sabbin rubuce-rubucenka na jama'a suna isa gare su a can.",
+    "copy": "Kwafa",
+    "copied": "An kwafa",
+    "privateNote": "Ba a nuna asusun sirri a fediverse ba.",
+    "noUsername": "Zaɓi sunan mai amfani don samun adireshin fediverse."
+  },
+  "profileFields": {
+    "title": "Filayen bayanan martaba",
+    "description": "Har zuwa ƙarin layi huɗu a bayanan martabarka, kamar shafin yanar gizo ko karin magananka.",
+    "label": "Lakabi",
+    "content": "Abun ciki",
+    "save": "Ajiye filayen",
+    "saved": "An ajiye filayen bayanan martaba",
+    "failed": "Ba a ajiye ba. Sake gwadawa.",
+    "verified": "Hanyar haɗi da aka tabbatar",
+    "verifyHint": "Don tabbatar da hanyar haɗi, ƙara wannan a wannan shafin, sannan ka sake ajiyewa: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Tace sanarwa daga",
+    "description": "Zaɓi abin da zai faru idan wani a wajen da'irarka ya yi hulɗa da kai. Sanarwar da aka tace tana jira a ƙarƙashin \"An tace\", ba alama ba turawa.",
+    "notFollowing": "Mutanen da ba ka bi ba",
+    "notFollowers": "Mutanen da ba sa bin ka",
+    "newAccounts": "Sabbin asusu (ƙasa da kwana 30)",
+    "accept": "Sanar da ni",
+    "filter": "Tace",
+    "drop": "Ɓoye gaba ɗaya",
+    "filteredTitle": "Sanarwar da aka tace",
+    "filteredEmpty": "Ba a tace komai ba.",
+    "failed": "Ba a ajiye ba. Sake gwadawa."
+  },
+  "followedTags": {
+    "follow": "Bi #{{tag}}",
+    "following": "Kana bi",
+    "unfollow": "Daina bin #{{tag}}",
+    "followed": "Yanzu kana bin #{{tag}}. Rubuce-rubucensa za su bayyana a cikin abincin Waɗanda kake bi.",
+    "unfollowed": "Ka daina bin #{{tag}}",
+    "failed": "Ba a ajiye ba. Sake gwadawa.",
+    "clear": "Share"
+  },
   "keywordFilters": {
     "title": "Kalmomin da aka kashe",
     "description": "Ɓoye rubuce-rubuce da sharhi masu ɗauke da waɗannan kalmomi, ko ninke su a bayan gargaɗi. Kai kaɗai kake ganin wannan jerin.",

@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Tilkoblede apper",
+    "connectedDescription": "Mastodon-apper du har logget inn i med denne kontoen. Fjern en for å logge den ut.",
+    "connectedEmpty": "Ingen tilkoblede apper ennå.",
+    "lastUsed": "Sist brukt {{date}}",
+    "remove": "Fjern",
+    "removed": "App fjernet",
+    "failed": "Det fungerte ikke. Prøv igjen."
+  },
+  "fediverse": {
+    "title": "Fødiverset",
+    "description": "Folk på Mastodon og andre fødivers-apper kan finne og følge deg på denne adressen. De nye offentlige innleggene dine når dem der.",
+    "copy": "Kopier",
+    "copied": "Kopiert",
+    "privateNote": "Private kontoer vises ikke i fødiverset.",
+    "noUsername": "Velg et brukernavn for å få en fødivers-adresse."
+  },
+  "profileFields": {
+    "title": "Profilfelt",
+    "description": "Opptil fire ekstra linjer på profilen din, for eksempel et nettsted eller pronomenene dine.",
+    "label": "Etikett",
+    "content": "Innhold",
+    "save": "Lagre felt",
+    "saved": "Profilfelt lagret",
+    "failed": "Det ble ikke lagret. Prøv igjen.",
+    "verified": "Bekreftet lenke",
+    "verifyHint": "For å bekrefte en lenke, legg dette til på den siden og lagre igjen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrer varsler fra",
+    "description": "Velg hva som skjer når noen utenfor kretsen din samhandler med deg. Filtrerte varsler venter under Filtrert, uten merke og uten push.",
+    "notFollowing": "Folk du ikke følger",
+    "notFollowers": "Folk som ikke følger deg",
+    "newAccounts": "Nye kontoer (under 30 dager)",
+    "accept": "Varsle meg",
+    "filter": "Filtrer",
+    "drop": "Skjul helt",
+    "filteredTitle": "Filtrerte varsler",
+    "filteredEmpty": "Ingenting er filtrert.",
+    "failed": "Det ble ikke lagret. Prøv igjen."
+  },
+  "followedTags": {
+    "follow": "Følg #{{tag}}",
+    "following": "Følger",
+    "unfollow": "Slutt å følge #{{tag}}",
+    "followed": "Du følger nå #{{tag}}. Innlegg med den vises i Følger-feeden din.",
+    "unfollowed": "Du følger ikke lenger #{{tag}}",
+    "failed": "Det ble ikke lagret. Prøv igjen.",
+    "clear": "Tøm"
+  },
   "keywordFilters": {
     "title": "Dempede ord",
     "description": "Skjul innlegg og kommentarer som inneholder disse ordene, eller brett dem bak en advarsel. Bare du ser denne listen.",

@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Forbundne apps",
+    "connectedDescription": "Mastodon-apps, du har logget ind i med denne konto. Fjern en for at logge den ud.",
+    "connectedEmpty": "Ingen forbundne apps endnu.",
+    "lastUsed": "Sidst brugt {{date}}",
+    "remove": "Fjern",
+    "removed": "App fjernet",
+    "failed": "Det virkede ikke. Prøv igen."
+  },
+  "fediverse": {
+    "title": "Fediverset",
+    "description": "Folk på Mastodon og andre fediverse-apps kan finde og følge dig på denne adresse. Dine nye offentlige opslag når dem der.",
+    "copy": "Kopiér",
+    "copied": "Kopieret",
+    "privateNote": "Private konti vises ikke på fediverset.",
+    "noUsername": "Vælg et brugernavn for at få en fediverse-adresse."
+  },
+  "profileFields": {
+    "title": "Profilfelter",
+    "description": "Op til fire ekstra linjer på din profil, fx et website eller dine pronomener.",
+    "label": "Etiket",
+    "content": "Indhold",
+    "save": "Gem felter",
+    "saved": "Profilfelter gemt",
+    "failed": "Det blev ikke gemt. Prøv igen.",
+    "verified": "Bekræftet link",
+    "verifyHint": "For at bekræfte et link skal du tilføje dette på den side og gemme igen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrér notifikationer fra",
+    "description": "Vælg, hvad der sker, når nogen uden for din kreds interagerer med dig. Filtrerede notifikationer venter under Filtreret uden badge og uden push.",
+    "notFollowing": "Folk, du ikke følger",
+    "notFollowers": "Folk, der ikke følger dig",
+    "newAccounts": "Nye konti (under 30 dage)",
+    "accept": "Giv mig besked",
+    "filter": "Filtrér",
+    "drop": "Skjul helt",
+    "filteredTitle": "Filtrerede notifikationer",
+    "filteredEmpty": "Intet er blevet filtreret.",
+    "failed": "Det blev ikke gemt. Prøv igen."
+  },
+  "followedTags": {
+    "follow": "Følg #{{tag}}",
+    "following": "Følger",
+    "unfollow": "Stop med at følge #{{tag}}",
+    "followed": "Du følger nu #{{tag}}. Opslag med det vises i dit Følger-feed.",
+    "unfollowed": "Du følger ikke længere #{{tag}}",
+    "failed": "Det blev ikke gemt. Prøv igen.",
+    "clear": "Ryd"
+  },
   "keywordFilters": {
     "title": "Skjulte ord",
     "description": "Skjul opslag og kommentarer, der indeholder disse ord, eller fold dem sammen bag en advarsel. Kun du kan se listen.",

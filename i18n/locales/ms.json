@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikasi bersambung",
+    "connectedDescription": "Aplikasi Mastodon yang anda log masuk dengan akaun ini. Alih keluar satu untuk log keluar daripadanya.",
+    "connectedEmpty": "Belum ada aplikasi bersambung.",
+    "lastUsed": "Kali terakhir digunakan {{date}}",
+    "remove": "Alih keluar",
+    "removed": "Aplikasi dialih keluar",
+    "failed": "Tidak berjaya. Cuba lagi."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Orang di Mastodon dan aplikasi fediverse lain boleh mencari dan mengikuti anda di alamat ini. Siaran awam baharu anda sampai kepada mereka di sana.",
+    "copy": "Salin",
+    "copied": "Disalin",
+    "privateNote": "Akaun peribadi tidak dipaparkan di fediverse.",
+    "noUsername": "Pilih nama pengguna untuk mendapatkan alamat fediverse."
+  },
+  "profileFields": {
+    "title": "Medan profil",
+    "description": "Sehingga empat baris tambahan pada profil anda, seperti laman web atau kata ganti nama anda.",
+    "label": "Label",
+    "content": "Kandungan",
+    "save": "Simpan medan",
+    "saved": "Medan profil disimpan",
+    "failed": "Tidak disimpan. Cuba lagi.",
+    "verified": "Pautan disahkan",
+    "verifyHint": "Untuk mengesahkan pautan, tambah ini pada halaman itu, kemudian simpan semula: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Tapis pemberitahuan daripada",
+    "description": "Pilih apa yang berlaku apabila seseorang di luar bulatan anda berinteraksi dengan anda. Pemberitahuan yang ditapis menunggu di bawah Ditapis, tanpa lencana dan tanpa push.",
+    "notFollowing": "Orang yang anda tidak ikuti",
+    "notFollowers": "Orang yang tidak mengikuti anda",
+    "newAccounts": "Akaun baharu (kurang 30 hari)",
+    "accept": "Beritahu saya",
+    "filter": "Tapis",
+    "drop": "Sembunyikan sepenuhnya",
+    "filteredTitle": "Pemberitahuan yang ditapis",
+    "filteredEmpty": "Tiada apa yang ditapis.",
+    "failed": "Tidak disimpan. Cuba lagi."
+  },
+  "followedTags": {
+    "follow": "Ikuti #{{tag}}",
+    "following": "Mengikuti",
+    "unfollow": "Nyahikut #{{tag}}",
+    "followed": "Anda kini mengikuti #{{tag}}. Siarannya akan muncul dalam suapan Mengikuti anda.",
+    "unfollowed": "Berhenti mengikuti #{{tag}}",
+    "failed": "Tidak disimpan. Cuba lagi.",
+    "clear": "Kosongkan"
+  },
   "keywordFilters": {
     "title": "Perkataan yang dibisukan",
     "description": "Sembunyikan siaran dan komen yang mengandungi perkataan ini, atau lipat di sebalik amaran. Hanya anda yang melihat senarai ini.",

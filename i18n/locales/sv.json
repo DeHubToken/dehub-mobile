@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Anslutna appar",
+    "connectedDescription": "Mastodon-appar du har loggat in i med det här kontot. Ta bort en för att logga ut den.",
+    "connectedEmpty": "Inga anslutna appar än.",
+    "lastUsed": "Senast använd {{date}}",
+    "remove": "Ta bort",
+    "removed": "Appen togs bort",
+    "failed": "Det fungerade inte. Försök igen."
+  },
+  "fediverse": {
+    "title": "Fediversum",
+    "description": "Folk på Mastodon och andra fediversum-appar kan hitta och följa dig på den här adressen. Dina nya offentliga inlägg når dem där.",
+    "copy": "Kopiera",
+    "copied": "Kopierat",
+    "privateNote": "Privata konton visas inte i fediversum.",
+    "noUsername": "Välj ett användarnamn för att få en fediversum-adress."
+  },
+  "profileFields": {
+    "title": "Profilfält",
+    "description": "Upp till fyra extra rader på din profil, till exempel en webbplats eller dina pronomen.",
+    "label": "Etikett",
+    "content": "Innehåll",
+    "save": "Spara fält",
+    "saved": "Profilfälten sparades",
+    "failed": "Det sparades inte. Försök igen.",
+    "verified": "Verifierad länk",
+    "verifyHint": "För att verifiera en länk lägger du till det här på den sidan och sparar igen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrera aviseringar från",
+    "description": "Välj vad som händer när någon utanför din krets interagerar med dig. Filtrerade aviseringar väntar under Filtrerat, utan märke och utan push.",
+    "notFollowing": "Personer du inte följer",
+    "notFollowers": "Personer som inte följer dig",
+    "newAccounts": "Nya konton (under 30 dagar)",
+    "accept": "Meddela mig",
+    "filter": "Filtrera",
+    "drop": "Dölj helt",
+    "filteredTitle": "Filtrerade aviseringar",
+    "filteredEmpty": "Inget har filtrerats.",
+    "failed": "Det sparades inte. Försök igen."
+  },
+  "followedTags": {
+    "follow": "Följ #{{tag}}",
+    "following": "Följer",
+    "unfollow": "Sluta följa #{{tag}}",
+    "followed": "Du följer nu #{{tag}}. Inlägg med den visas i ditt Följer-flöde.",
+    "unfollowed": "Du följer inte längre #{{tag}}",
+    "failed": "Det sparades inte. Försök igen.",
+    "clear": "Rensa"
+  },
   "keywordFilters": {
     "title": "Tystade ord",
     "description": "Dölj inlägg och kommentarer som innehåller de här orden, eller vik ihop dem bakom en varning. Bara du ser listan.",

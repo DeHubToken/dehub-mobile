@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Programu zilizounganishwa",
+    "connectedDescription": "Programu za Mastodon ulizoingia kwa akaunti hii. Ondoa moja ili uitoe.",
+    "connectedEmpty": "Bado hakuna programu zilizounganishwa.",
+    "lastUsed": "Ilitumika mwisho {{date}}",
+    "remove": "Ondoa",
+    "removed": "Programu imeondolewa",
+    "failed": "Haikufanikiwa. Jaribu tena."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Watu kwenye Mastodon na programu nyingine za fediverse wanaweza kukupata na kukufuata kwenye anwani hii. Machapisho yako mapya ya umma yanawafikia huko.",
+    "copy": "Nakili",
+    "copied": "Imenakiliwa",
+    "privateNote": "Akaunti za faragha hazionyeshwi kwenye fediverse.",
+    "noUsername": "Chagua jina la mtumiaji ili kupata anwani ya fediverse."
+  },
+  "profileFields": {
+    "title": "Sehemu za wasifu",
+    "description": "Hadi mistari minne ya ziada kwenye wasifu wako, kama tovuti au viwakilishi vyako.",
+    "label": "Lebo",
+    "content": "Maudhui",
+    "save": "Hifadhi sehemu",
+    "saved": "Sehemu za wasifu zimehifadhiwa",
+    "failed": "Haikuhifadhiwa. Jaribu tena.",
+    "verified": "Kiungo kilichothibitishwa",
+    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Chuja arifa kutoka kwa",
+    "description": "Chagua kinachotokea mtu aliye nje ya mduara wako anapoingiliana nawe. Arifa zilizochujwa husubiri chini ya Zilizochujwa, bila beji wala arifa ya kusukuma.",
+    "notFollowing": "Watu usiowafuata",
+    "notFollowers": "Watu wasiokufuata",
+    "newAccounts": "Akaunti mpya (chini ya siku 30)",
+    "accept": "Nijulishe",
+    "filter": "Chuja",
+    "drop": "Ficha kabisa",
+    "filteredTitle": "Arifa zilizochujwa",
+    "filteredEmpty": "Hakuna kilichochujwa.",
+    "failed": "Haikuhifadhiwa. Jaribu tena."
+  },
+  "followedTags": {
+    "follow": "Fuata #{{tag}}",
+    "following": "Unafuata",
+    "unfollow": "Acha kufuata #{{tag}}",
+    "followed": "Sasa unafuata #{{tag}}. Machapisho yake yataonekana kwenye mlisho wa Unaowafuata.",
+    "unfollowed": "Umeacha kufuata #{{tag}}",
+    "failed": "Haikuhifadhiwa. Jaribu tena.",
+    "clear": "Futa"
+  },
   "keywordFilters": {
     "title": "Maneno yaliyonyamazishwa",
     "description": "Ficha machapisho na maoni yenye maneno haya, au yakunje nyuma ya onyo. Ni wewe tu unayeona orodha hii.",

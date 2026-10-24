@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Gekoppelde apps",
+    "connectedDescription": "Mastodon-apps waarin je met dit account bent ingelogd. Verwijder er een om hem uit te loggen.",
+    "connectedEmpty": "Nog geen gekoppelde apps.",
+    "lastUsed": "Laatst gebruikt {{date}}",
+    "remove": "Verwijderen",
+    "removed": "App verwijderd",
+    "failed": "Dat lukte niet. Probeer het opnieuw."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mensen op Mastodon en andere fediverse-apps kunnen je op dit adres vinden en volgen. Je nieuwe openbare berichten bereiken ze daar.",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd",
+    "privateNote": "Privéaccounts worden niet in de fediverse getoond.",
+    "noUsername": "Kies een gebruikersnaam om een fediverse-adres te krijgen."
+  },
+  "profileFields": {
+    "title": "Profielvelden",
+    "description": "Tot vier extra regels op je profiel, zoals een website of je voornaamwoorden.",
+    "label": "Label",
+    "content": "Inhoud",
+    "save": "Velden opslaan",
+    "saved": "Profielvelden opgeslagen",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
+    "verified": "Geverifieerde link",
+    "verifyHint": "Om een link te verifiëren, voeg je dit toe aan die pagina en sla je opnieuw op: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Meldingen filteren van",
+    "description": "Kies wat er gebeurt als iemand buiten je kring met je communiceert. Gefilterde meldingen wachten onder Gefilterd, zonder badge en zonder pushmelding.",
+    "notFollowing": "Mensen die je niet volgt",
+    "notFollowers": "Mensen die jou niet volgen",
+    "newAccounts": "Nieuwe accounts (jonger dan 30 dagen)",
+    "accept": "Laat het me weten",
+    "filter": "Filteren",
+    "drop": "Helemaal verbergen",
+    "filteredTitle": "Gefilterde meldingen",
+    "filteredEmpty": "Er is niets gefilterd.",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw."
+  },
+  "followedTags": {
+    "follow": "Volg #{{tag}}",
+    "following": "Volgend",
+    "unfollow": "Ontvolg #{{tag}}",
+    "followed": "Je volgt nu #{{tag}}. Berichten ermee verschijnen in je Volgend-feed.",
+    "unfollowed": "Je volgt #{{tag}} niet meer",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
+    "clear": "Wissen"
+  },
   "keywordFilters": {
     "title": "Gedempte woorden",
     "description": "Verberg berichten en reacties met deze woorden, of vouw ze in achter een waarschuwing. Alleen jij ziet deze lijst.",

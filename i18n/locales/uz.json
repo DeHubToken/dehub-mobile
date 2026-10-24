@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ulangan ilovalar",
+    "connectedDescription": "Bu akkaunt bilan kirgan Mastodon ilovalaringiz. Chiqish uchun birini olib tashlang.",
+    "connectedEmpty": "Hali ulangan ilova yoʻq.",
+    "lastUsed": "Oxirgi marta ishlatilgan {{date}}",
+    "remove": "Olib tashlash",
+    "removed": "Ilova olib tashlandi",
+    "failed": "Boʻlmadi. Qayta urinib koʻring."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon va boshqa fediverse ilovalaridagi odamlar sizni shu manzil orqali topib, kuzata oladi. Yangi ommaviy postlaringiz u yerda ularga yetib boradi.",
+    "copy": "Nusxalash",
+    "copied": "Nusxalandi",
+    "privateNote": "Shaxsiy akkauntlar fediverse'da ko'rsatilmaydi.",
+    "noUsername": "Fediverse manzilini olish uchun foydalanuvchi nomini tanlang."
+  },
+  "profileFields": {
+    "title": "Profil maydonlari",
+    "description": "Profilingizda to'rttagacha qo'shimcha qator, masalan veb-sayt yoki olmoshlaringiz.",
+    "label": "Yorliq",
+    "content": "Mazmun",
+    "save": "Maydonlarni saqlash",
+    "saved": "Profil maydonlari saqlandi",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring.",
+    "verified": "Tasdiqlangan havola",
+    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Bildirishnomalarni filtrlash",
+    "description": "Doirangizdan tashqaridagi kimdir siz bilan muloqot qilganda nima bo'lishini tanlang. Filtrlangan bildirishnomalar belgi va push'siz «Filtrlangan» bo'limida kutadi.",
+    "notFollowing": "Siz kuzatmaydigan odamlar",
+    "notFollowers": "Sizni kuzatmaydigan odamlar",
+    "newAccounts": "Yangi akkauntlar (30 kundan kam)",
+    "accept": "Menga xabar bering",
+    "filter": "Filtrlash",
+    "drop": "To'liq yashirish",
+    "filteredTitle": "Filtrlangan bildirishnomalar",
+    "filteredEmpty": "Hech narsa filtrlanmagan.",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} ni kuzatish",
+    "following": "Kuzatyapsiz",
+    "unfollow": "#{{tag}} ni kuzatishni to'xtatish",
+    "followed": "Endi #{{tag}} ni kuzatyapsiz. Uning postlari Kuzatuvlar lentangizda chiqadi.",
+    "unfollowed": "#{{tag}} kuzatilmaydi",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring.",
+    "clear": "Tozalash"
+  },
   "keywordFilters": {
     "title": "Ovozi o'chirilgan so'zlar",
     "description": "Bu so'zlar bor post va izohlarni yashiring yoki ogohlantirish ortiga yig'ing. Bu ro'yxatni faqat siz ko'rasiz.",

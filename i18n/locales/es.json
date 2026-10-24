@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apps conectadas",
+    "connectedDescription": "Apps de Mastodon en las que iniciaste sesión con esta cuenta. Quita una para cerrar su sesión.",
+    "connectedEmpty": "Todavía no hay apps conectadas.",
+    "lastUsed": "Último uso {{date}}",
+    "remove": "Quitar",
+    "removed": "App quitada",
+    "failed": "No funcionó. Inténtalo de nuevo."
+  },
+  "fediverse": {
+    "title": "Fediverso",
+    "description": "La gente de Mastodon y otras apps del fediverso puede encontrarte y seguirte en esta dirección. Tus nuevas publicaciones públicas les llegan allí.",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "privateNote": "Las cuentas privadas no se muestran en el fediverso.",
+    "noUsername": "Elige un nombre de usuario para tener una dirección en el fediverso."
+  },
+  "profileFields": {
+    "title": "Campos del perfil",
+    "description": "Hasta cuatro líneas extra en tu perfil, como un sitio web o tus pronombres.",
+    "label": "Etiqueta",
+    "content": "Contenido",
+    "save": "Guardar campos",
+    "saved": "Campos del perfil guardados",
+    "failed": "No se guardó. Inténtalo de nuevo.",
+    "verified": "Enlace verificado",
+    "verifyHint": "Para verificar un enlace, añade esto a esa página y vuelve a guardar: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrar notificaciones de",
+    "description": "Elige qué pasa cuando alguien fuera de tu círculo interactúa contigo. Las notificaciones filtradas esperan en Filtradas, sin contador ni aviso push.",
+    "notFollowing": "Personas que no sigues",
+    "notFollowers": "Personas que no te siguen",
+    "newAccounts": "Cuentas nuevas (menos de 30 días)",
+    "accept": "Avisarme",
+    "filter": "Filtrar",
+    "drop": "Ocultar del todo",
+    "filteredTitle": "Notificaciones filtradas",
+    "filteredEmpty": "No se ha filtrado nada.",
+    "failed": "No se guardó. Inténtalo de nuevo."
+  },
+  "followedTags": {
+    "follow": "Seguir #{{tag}}",
+    "following": "Siguiendo",
+    "unfollow": "Dejar de seguir #{{tag}}",
+    "followed": "Ahora sigues #{{tag}}. Sus publicaciones aparecerán en tu feed de Siguiendo.",
+    "unfollowed": "Dejaste de seguir #{{tag}}",
+    "failed": "No se guardó. Inténtalo de nuevo.",
+    "clear": "Borrar"
+  },
   "keywordFilters": {
     "title": "Palabras silenciadas",
     "description": "Oculta publicaciones y comentarios que contengan estas palabras, o pliégalos tras un aviso. Solo tú ves esta lista.",

@@ -1,4 +1,5 @@
 import MessageSearch from "../components/DM/MessageSearch";
+import MessageSurface from "../components/DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useDraftState } from "../hooks/useDraftState";
 import React, {
@@ -1793,6 +1794,9 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               composerKeyboard.onLayout();
             }}
           >
+            {/* Solid theme backing: the list scrolls under this bar, so without
+                it message text shows straight through the composer. */}
+            <MessageSurface />
             {showLockedState ? null : voiceRecorder.isRecording ? (
               <VoiceNoteRecordingOverlay recorder={voiceRecorder} />
             ) : dmDisabled ? (

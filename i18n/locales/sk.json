@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Pripojené aplikácie",
+    "connectedDescription": "Aplikácie pre Mastodon, do ktorých ste sa prihlásili týmto účtom. Odstránením aplikácie sa z nej odhlásite.",
+    "connectedEmpty": "Zatiaľ nie sú pripojené žiadne aplikácie.",
+    "lastUsed": "Naposledy použité {{date}}",
+    "remove": "Odstrániť",
+    "removed": "Aplikácia odstránená",
+    "failed": "Nepodarilo sa. Skúste to znova."
+  },
+  "fediverse": {
+    "title": "Fediverzum",
+    "description": "Ľudia na Mastodone a v ďalších aplikáciách fediverza vás na tejto adrese nájdu a môžu vás sledovať. Vaše nové verejné príspevky sa k nim dostanú tam.",
+    "copy": "Kopírovať",
+    "copied": "Skopírované",
+    "privateNote": "Súkromné účty sa vo fediverze nezobrazujú.",
+    "noUsername": "Zvoľte si používateľské meno, aby ste získali adresu vo fediverze."
+  },
+  "profileFields": {
+    "title": "Polia profilu",
+    "description": "Až štyri riadky navyše na vašom profile, napríklad web alebo vaše zámená.",
+    "label": "Označenie",
+    "content": "Obsah",
+    "save": "Uložiť polia",
+    "saved": "Polia profilu uložené",
+    "failed": "Neuložilo sa. Skúste to znova.",
+    "verified": "Overený odkaz",
+    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrovať upozornenia od",
+    "description": "Vyberte, čo sa stane, keď s vami bude komunikovať niekto mimo vášho okruhu. Filtrované upozornenia čakajú v časti Filtrované, bez odznaku a bez push upozornenia.",
+    "notFollowing": "Ľudí, ktorých nesledujete",
+    "notFollowers": "Ľudí, ktorí nesledujú vás",
+    "newAccounts": "Nových účtov (mladších ako 30 dní)",
+    "accept": "Upozorniť ma",
+    "filter": "Filtrovať",
+    "drop": "Úplne skryť",
+    "filteredTitle": "Filtrované upozornenia",
+    "filteredEmpty": "Nič nebolo odfiltrované.",
+    "failed": "Neuložilo sa. Skúste to znova."
+  },
+  "followedTags": {
+    "follow": "Sledovať #{{tag}}",
+    "following": "Sledujete",
+    "unfollow": "Prestať sledovať #{{tag}}",
+    "followed": "Teraz sledujete #{{tag}}. Jeho príspevky sa zobrazia v kanáli Sledované.",
+    "unfollowed": "Prestali ste sledovať #{{tag}}",
+    "failed": "Neuložilo sa. Skúste to znova.",
+    "clear": "Vymazať"
+  },
   "keywordFilters": {
     "title": "Stlmené slová",
     "description": "Skryte príspevky a komentáre s týmito slovami alebo ich zbaľte za upozornenie. Tento zoznam vidíte len vy.",

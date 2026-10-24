@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Verbundeni Apps",
+    "connectedDescription": "Mastodon-Apps, wo du di mit dem Konto aagmäldet häsch. Entfern eini, zum si abzmälde.",
+    "connectedEmpty": "No kei Apps verbunde.",
+    "lastUsed": "Zletscht bruucht {{date}}",
+    "remove": "Entferne",
+    "removed": "App entfernt",
+    "failed": "Das hät nöd klappt. Probier's nomal."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Lüüt uf Mastodon und andere Fediverse-Apps chönd di under dere Adrässe finde und dir folge. Dini neue öffentliche Biiträg erreiched si det.",
+    "copy": "Kopiere",
+    "copied": "Kopiert",
+    "privateNote": "Privati Konte wärded im Fediverse nöd zeigt.",
+    "noUsername": "Wähl en Benutzername, zum e Fediverse-Adrässe übercho."
+  },
+  "profileFields": {
+    "title": "Profilfälder",
+    "description": "Bis zu vier zuesätzlichi Ziile i dim Profil, wie e Websiite oder dini Pronome.",
+    "label": "Bezeichnig",
+    "content": "Inhalt",
+    "save": "Fälder speichere",
+    "saved": "Profilfälder gspeicheret",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
+    "verified": "Bestätigte Link",
+    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Benachrichtigunge filtere vo",
+    "description": "Wähl, was passiert, wenn öpper usserhalb vo dim Umfeld mit dir interagiert. Gfilteredi Benachrichtigunge warted under „Gfilteret“, ohni Zähler und ohni Push.",
+    "notFollowing": "Lüüt, dene du nöd folgsch",
+    "notFollowers": "Lüüt, wo dir nöd folged",
+    "newAccounts": "Neui Konte (jünger als 30 Täg)",
+    "accept": "Benachrichtige",
+    "filter": "Filtere",
+    "drop": "Ganz usblände",
+    "filteredTitle": "Gfilteredi Benachrichtigunge",
+    "filteredEmpty": "Nüt isch gfilteret worde.",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} folge",
+    "following": "Folg ich",
+    "unfollow": "#{{tag}} nüme folge",
+    "followed": "Du folgsch jetzt #{{tag}}. Biiträg demit erschiined i dim Folge-Feed.",
+    "unfollowed": "Du folgsch #{{tag}} nüme",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
+    "clear": "Lösche"
+  },
   "keywordFilters": {
     "title": "Stummgschalteti Wörter",
     "description": "Biiträg und Kommentär mit dene Wörter usblände oder hinter ere Warnig iiklappe. Nur du gsehsch die Lischte.",

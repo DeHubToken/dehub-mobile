@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplicații conectate",
+    "connectedDescription": "Aplicațiile Mastodon în care te-ai conectat cu acest cont. Elimină una ca să o deconectezi.",
+    "connectedEmpty": "Nicio aplicație conectată încă.",
+    "lastUsed": "Folosită ultima dată {{date}}",
+    "remove": "Elimină",
+    "removed": "Aplicație eliminată",
+    "failed": "N-a mers. Încearcă din nou."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Oamenii de pe Mastodon și din alte aplicații fediverse te pot găsi și urmări la această adresă. Postările tale publice noi ajung la ei acolo.",
+    "copy": "Copiază",
+    "copied": "Copiat",
+    "privateNote": "Conturile private nu apar în fediverse.",
+    "noUsername": "Alege un nume de utilizator ca să ai o adresă fediverse."
+  },
+  "profileFields": {
+    "title": "Câmpuri de profil",
+    "description": "Până la patru rânduri în plus pe profilul tău, cum ar fi un site web sau pronumele tale.",
+    "label": "Etichetă",
+    "content": "Conținut",
+    "save": "Salvează câmpurile",
+    "saved": "Câmpurile de profil au fost salvate",
+    "failed": "Nu s-a salvat. Încearcă din nou.",
+    "verified": "Link verificat",
+    "verifyHint": "Ca să verifici un link, adaugă asta pe acea pagină, apoi salvează din nou: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrează notificările de la",
+    "description": "Alege ce se întâmplă când cineva din afara cercului tău interacționează cu tine. Notificările filtrate așteaptă la Filtrate, fără insignă și fără notificare push.",
+    "notFollowing": "Persoane pe care nu le urmărești",
+    "notFollowers": "Persoane care nu te urmăresc",
+    "newAccounts": "Conturi noi (sub 30 de zile)",
+    "accept": "Anunță-mă",
+    "filter": "Filtrează",
+    "drop": "Ascunde complet",
+    "filteredTitle": "Notificări filtrate",
+    "filteredEmpty": "Nu s-a filtrat nimic.",
+    "failed": "Nu s-a salvat. Încearcă din nou."
+  },
+  "followedTags": {
+    "follow": "Urmărește #{{tag}}",
+    "following": "Urmărești",
+    "unfollow": "Nu mai urmări #{{tag}}",
+    "followed": "Acum urmărești #{{tag}}. Postările lui vor apărea în fluxul Urmăriți.",
+    "unfollowed": "Nu mai urmărești #{{tag}}",
+    "failed": "Nu s-a salvat. Încearcă din nou.",
+    "clear": "Șterge"
+  },
   "keywordFilters": {
     "title": "Cuvinte ascunse",
     "description": "Ascunde postările și comentariile care conțin aceste cuvinte sau pliază-le în spatele unui avertisment. Doar tu vezi această listă.",

@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Mga nakakonektang app",
+    "connectedDescription": "Mga Mastodon app na pinag-sign in-an mo gamit ang account na ito. Alisin ang isa para i-sign out ito.",
+    "connectedEmpty": "Wala pang nakakonektang app.",
+    "lastUsed": "Huling ginamit {{date}}",
+    "remove": "Alisin",
+    "removed": "Naalis ang app",
+    "failed": "Hindi gumana. Subukan ulit."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Puwede kang hanapin at i-follow ng mga tao sa Mastodon at iba pang fediverse app sa address na ito. Doon din aabot sa kanila ang mga bago mong pampublikong post.",
+    "copy": "Kopyahin",
+    "copied": "Nakopya",
+    "privateNote": "Hindi ipinapakita sa fediverse ang mga private account.",
+    "noUsername": "Pumili ng username para magkaroon ng fediverse address."
+  },
+  "profileFields": {
+    "title": "Mga field ng profile",
+    "description": "Hanggang apat na dagdag na linya sa profile mo, gaya ng website o ng iyong pronouns.",
+    "label": "Label",
+    "content": "Nilalaman",
+    "save": "I-save ang mga field",
+    "saved": "Na-save ang mga field ng profile",
+    "failed": "Hindi na-save. Subukan ulit.",
+    "verified": "Na-verify na link",
+    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "I-filter ang mga notification mula sa",
+    "description": "Piliin kung ano ang mangyayari kapag may taong labas sa iyong grupo na nakipag-ugnayan sa iyo. Naghihintay ang mga na-filter na notification sa Na-filter, walang badge at walang push.",
+    "notFollowing": "Mga taong hindi mo fina-follow",
+    "notFollowers": "Mga taong hindi ka fina-follow",
+    "newAccounts": "Mga bagong account (wala pang 30 araw)",
+    "accept": "Abisuhan ako",
+    "filter": "I-filter",
+    "drop": "Itago nang buo",
+    "filteredTitle": "Mga na-filter na notification",
+    "filteredEmpty": "Wala pang na-filter.",
+    "failed": "Hindi na-save. Subukan ulit."
+  },
+  "followedTags": {
+    "follow": "I-follow ang #{{tag}}",
+    "following": "Fina-follow",
+    "unfollow": "I-unfollow ang #{{tag}}",
+    "followed": "Fina-follow mo na ang #{{tag}}. Lalabas ang mga post nito sa Following feed mo.",
+    "unfollowed": "Na-unfollow ang #{{tag}}",
+    "failed": "Hindi na-save. Subukan ulit.",
+    "clear": "I-clear"
+  },
   "keywordFilters": {
     "title": "Mga naka-mute na salita",
     "description": "Itago ang mga post at komento na may ganitong mga salita, o itupi sila sa likod ng babala. Ikaw lang ang nakakakita ng listahang ito.",

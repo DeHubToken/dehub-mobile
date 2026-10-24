@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Verbundene Apps",
+    "connectedDescription": "Mastodon-Apps, bei denen du dich mit diesem Konto angemeldet hast. Entferne eine, um sie abzumelden.",
+    "connectedEmpty": "Noch keine Apps verbunden.",
+    "lastUsed": "Zuletzt verwendet {{date}}",
+    "remove": "Entfernen",
+    "removed": "App entfernt",
+    "failed": "Das hat nicht geklappt. Versuch es noch einmal."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Leute auf Mastodon und in anderen Fediverse-Apps können dich unter dieser Adresse finden und dir folgen. Deine neuen öffentlichen Beiträge erreichen sie dort.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "privateNote": "Private Konten werden im Fediverse nicht angezeigt.",
+    "noUsername": "Wähle einen Benutzernamen, um eine Fediverse-Adresse zu bekommen."
+  },
+  "profileFields": {
+    "title": "Profilfelder",
+    "description": "Bis zu vier zusätzliche Zeilen in deinem Profil, etwa eine Website oder deine Pronomen.",
+    "label": "Bezeichnung",
+    "content": "Inhalt",
+    "save": "Felder speichern",
+    "saved": "Profilfelder gespeichert",
+    "failed": "Das wurde nicht gespeichert. Versuch es noch einmal.",
+    "verified": "Bestätigter Link",
+    "verifyHint": "Um einen Link zu bestätigen, füge das auf der Seite ein und speichere erneut: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Benachrichtigungen filtern von",
+    "description": "Wähle, was passiert, wenn jemand außerhalb deines Umfelds mit dir interagiert. Gefilterte Benachrichtigungen warten unter „Gefiltert“, ohne Zähler und ohne Push.",
+    "notFollowing": "Personen, denen du nicht folgst",
+    "notFollowers": "Personen, die dir nicht folgen",
+    "newAccounts": "Neue Konten (jünger als 30 Tage)",
+    "accept": "Benachrichtigen",
+    "filter": "Filtern",
+    "drop": "Ganz ausblenden",
+    "filteredTitle": "Gefilterte Benachrichtigungen",
+    "filteredEmpty": "Nichts wurde gefiltert.",
+    "failed": "Das wurde nicht gespeichert. Versuch es noch einmal."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} folgen",
+    "following": "Folge ich",
+    "unfollow": "#{{tag}} entfolgen",
+    "followed": "Du folgst jetzt #{{tag}}. Beiträge damit erscheinen in deinem Folge-ich-Feed.",
+    "unfollowed": "Du folgst #{{tag}} nicht mehr",
+    "failed": "Das wurde nicht gespeichert. Versuch es noch einmal.",
+    "clear": "Löschen"
+  },
   "keywordFilters": {
     "title": "Stummgeschaltete Wörter",
     "description": "Beiträge und Kommentare mit diesen Wörtern ausblenden oder hinter einer Warnung einklappen. Nur du siehst diese Liste.",

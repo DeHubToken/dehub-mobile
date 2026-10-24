@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikacionet e lidhura",
+    "connectedDescription": "Aplikacionet Mastodon ku ke hyrë me këtë llogari. Hiq një për ta nxjerrë.",
+    "connectedEmpty": "Ende nuk ka aplikacione të lidhura.",
+    "lastUsed": "Përdorur së fundi {{date}}",
+    "remove": "Hiq",
+    "removed": "Aplikacioni u hoq",
+    "failed": "Nuk funksionoi. Provo sërish."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Njerëzit në Mastodon dhe aplikacione të tjera fediverse mund të të gjejnë dhe të ndjekin në këtë adresë. Postimet e tua të reja publike u arrijnë atje.",
+    "copy": "Kopjo",
+    "copied": "U kopjua",
+    "privateNote": "Llogaritë private nuk shfaqen në fediverse.",
+    "noUsername": "Zgjidh një emër përdoruesi për të marrë një adresë fediverse."
+  },
+  "profileFields": {
+    "title": "Fushat e profilit",
+    "description": "Deri në katër rreshta shtesë në profilin tënd, si një faqe interneti ose përemrat e tu.",
+    "label": "Etiketa",
+    "content": "Përmbajtja",
+    "save": "Ruaj fushat",
+    "saved": "Fushat e profilit u ruajtën",
+    "failed": "Nuk u ruajt. Provo përsëri.",
+    "verified": "Lidhje e verifikuar",
+    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtro njoftimet nga",
+    "description": "Zgjidh çfarë ndodh kur dikush jashtë rrethit tënd ndërvepron me ty. Njoftimet e filtruara presin te Të filtruara, pa distinktiv dhe pa njoftim push.",
+    "notFollowing": "Njerëz që nuk i ndjek",
+    "notFollowers": "Njerëz që nuk të ndjekin",
+    "newAccounts": "Llogari të reja (nën 30 ditë)",
+    "accept": "Më njofto",
+    "filter": "Filtro",
+    "drop": "Fshih plotësisht",
+    "filteredTitle": "Njoftime të filtruara",
+    "filteredEmpty": "Asgjë nuk është filtruar.",
+    "failed": "Nuk u ruajt. Provo përsëri."
+  },
+  "followedTags": {
+    "follow": "Ndiq #{{tag}}",
+    "following": "E ndjek",
+    "unfollow": "Mos e ndiq më #{{tag}}",
+    "followed": "Tani e ndjek #{{tag}}. Postimet e tij do të shfaqen te prurja Të ndjekurit.",
+    "unfollowed": "Nuk e ndjek më #{{tag}}",
+    "failed": "Nuk u ruajt. Provo përsëri.",
+    "clear": "Pastro"
+  },
   "keywordFilters": {
     "title": "Fjalë të heshtura",
     "description": "Fshih postimet dhe komentet që përmbajnë këto fjalë, ose palosi pas një paralajmërimi. Vetëm ti e sheh këtë listë.",

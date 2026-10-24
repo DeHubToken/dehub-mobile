@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "已連接嘅 app",
+    "connectedDescription": "你用呢個帳戶登入過嘅 Mastodon app。移除一個就會將佢登出。",
+    "connectedEmpty": "仲未連接任何 app。",
+    "lastUsed": "上次用 {{date}}",
+    "remove": "移除",
+    "removed": "已移除 app",
+    "failed": "唔得。再試過。"
+  },
+  "fediverse": {
+    "title": "聯邦宇宙",
+    "description": "Mastodon 同其他聯邦宇宙 app 上嘅人可以用呢個地址搵到你同追蹤你。你新嘅公開帖子會喺嗰度送到佢哋。",
+    "copy": "複製",
+    "copied": "已複製",
+    "privateNote": "私人帳戶唔會喺聯邦宇宙顯示。",
+    "noUsername": "揀個用戶名就會有聯邦宇宙地址。"
+  },
+  "profileFields": {
+    "title": "個人檔案欄位",
+    "description": "喺個人檔案加最多四行，例如網站或者你嘅代名詞。",
+    "label": "標籤",
+    "content": "內容",
+    "save": "儲存欄位",
+    "saved": "已儲存個人檔案欄位",
+    "failed": "儲存唔到，請再試吓。",
+    "verified": "已驗證連結",
+    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "過濾以下來源嘅通知",
+    "description": "揀選圈子以外嘅人同你互動嘅時候會點。被過濾嘅通知會留喺「已過濾」，唔會有角標，亦唔會推送。",
+    "notFollowing": "你冇追蹤嘅人",
+    "notFollowers": "冇追蹤你嘅人",
+    "newAccounts": "新帳戶（唔夠 30 日）",
+    "accept": "通知我",
+    "filter": "過濾",
+    "drop": "完全隱藏",
+    "filteredTitle": "已過濾嘅通知",
+    "filteredEmpty": "冇嘢被過濾。",
+    "failed": "儲存唔到，請再試吓。"
+  },
+  "followedTags": {
+    "follow": "追蹤 #{{tag}}",
+    "following": "追蹤緊",
+    "unfollow": "取消追蹤 #{{tag}}",
+    "followed": "而家追蹤緊 #{{tag}}，相關帖子會喺你嘅追蹤動態出現。",
+    "unfollowed": "已取消追蹤 #{{tag}}",
+    "failed": "儲存唔到，請再試吓。",
+    "clear": "清除"
+  },
   "keywordFilters": {
     "title": "靜音字詞",
     "description": "隱藏包含呢啲字詞嘅帖子同留言，或者摺埋喺提示後面。呢個清單淨係你睇到。",

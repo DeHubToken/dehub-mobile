@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "T'inkisqa appkuna",
+    "connectedDescription": "Kay yupaywan yaykusqayki Mastodon appkuna. Lluqsinaykipaq hukta qichuy.",
+    "connectedEmpty": "Manaraqmi mayqan app t'inkisqachu.",
+    "lastUsed": "Qhipa kutipi llamk'achisqa {{date}}",
+    "remove": "Qichuy",
+    "removed": "App qichusqa",
+    "failed": "Manam atikurqanchu. Yapamanta llamk'ay."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon nisqapi, huk fediverse app nisqakunapipas runakunaqa kay tiyana sutiwan tarisunkiku, qatisunkikutaq. Musuq llapanpaq qillqaykikuna chaypi paykunaman chayan.",
+    "copy": "Qillqay",
+    "copied": "Qillqasqa",
+    "privateNote": "Sapan yupaykunaqa manam fediverse nisqapi rikukunchu.",
+    "noUsername": "Fediverse tiyana suti kananpaq ruraq sutiyki akllay."
+  },
+  "profileFields": {
+    "title": "Riqsichikuy t'aqakuna",
+    "description": "Riqsichikuyniykipi tawa yapasqa siqikama, web nisqa utaq sutiq rantinkunapas.",
+    "label": "Sutichay",
+    "content": "Ukhu",
+    "save": "T'aqakunata waqaychay",
+    "saved": "Riqsichikuy t'aqakuna waqaychasqa",
+    "failed": "Manam waqaychakurqanchu. Watiqmanta ruray.",
+    "verified": "Chiqaqchasqa t'inki",
+    "verifyHint": "T'inkita chiqaqchanaykipaq, kayta chay p'anqaman yapay, hinaspa watiqmanta waqaychay: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Willakuykunata suysuy",
+    "description": "Akllay ima kananta, muyuyki hawanmanta pipas qamwan rimanakuptin. Suysusqa willakuykunaqa \"Suysusqa\" nisqapi suyanku, mana unanchayniyuq mana tanqayniyuq.",
+    "notFollowing": "Mana qatisqayki runakuna",
+    "notFollowers": "Mana qatisuqniyki runakuna",
+    "newAccounts": "Musuq yupaykuna (30 p'unchawmanta pisi)",
+    "accept": "Willaway",
+    "filter": "Suysuy",
+    "drop": "Tukuyta pakay",
+    "filteredTitle": "Suysusqa willakuykuna",
+    "filteredEmpty": "Manam imapas suysusqachu.",
+    "failed": "Manam waqaychakurqanchu. Watiqmanta ruray."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} qatiy",
+    "following": "Qatichkanki",
+    "unfollow": "#{{tag}} qatiyta saqiy",
+    "followed": "Kunanqa #{{tag}} qatichkanki. Qillqankuna qatisqayki mikhuypi rikhurinqa.",
+    "unfollowed": "#{{tag}} qatiyta saqirqanki",
+    "failed": "Manam waqaychakurqanchu. Watiqmanta ruray.",
+    "clear": "Pichay"
+  },
   "keywordFilters": {
     "title": "Upallachisqa simikuna",
     "description": "Kay simikunayuq qillqakunata, rimaykunatapas pakay, utaq willakuypa qhipanpi pillunchay. Qamllam kay sutisuyuta rikunki.",

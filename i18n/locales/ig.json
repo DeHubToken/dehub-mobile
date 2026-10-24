@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ngwa ejikọrọ",
+    "connectedDescription": "Ngwa Mastodon ị banyere na ya site n'akaụntụ a. Wepụ otu iji wepụ ya.",
+    "connectedEmpty": "Enweghị ngwa ejikọrọ ugbu a.",
+    "lastUsed": "Ejiri ya mgbe ikpeazụ {{date}}",
+    "remove": "Wepụ",
+    "removed": "E wepụla ngwa ahụ",
+    "failed": "Nke ahụ arụghị ọrụ. Nwaa ọzọ."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ndị nọ na Mastodon na ngwa fediverse ndị ọzọ nwere ike ịchọta gị ma soro gị na adreesị a. Ihe ọhụrụ i bipụtara n'ihu ọha na-erute ha n'ebe ahụ.",
+    "copy": "Detuo",
+    "copied": "E detuola",
+    "privateNote": "A naghị egosi akaụntụ nzuzo na fediverse.",
+    "noUsername": "Họrọ aha njirimara iji nweta adreesị fediverse."
+  },
+  "profileFields": {
+    "title": "Mpaghara profaịlụ",
+    "description": "Ruo ahịrị anọ ọzọ na profaịlụ gị, dị ka weebụsaịtị ma ọ bụ nnọchiaha gị.",
+    "label": "Aha",
+    "content": "Ọdịnaya",
+    "save": "Chekwaa mpaghara",
+    "saved": "Echekwala mpaghara profaịlụ",
+    "failed": "Edebeghị ya. Nwaa ọzọ.",
+    "verified": "Njikọ akwadoro",
+    "verifyHint": "Iji kwado njikọ, tinye nke a na ibe ahụ, wee chekwaa ọzọ: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Zachaa ọkwa sitere n'aka",
+    "description": "Họrọ ihe ga-eme mgbe onye nọ n'èzí okirikiri gị na gị na-emekọrịta ihe. Ọkwa ezachara na-echere n'okpuru \"Ezachara\", na-enweghị akara ma ọ bụ mkpali.",
+    "notFollowing": "Ndị ị na-esoghị",
+    "notFollowers": "Ndị na-esoghị gị",
+    "newAccounts": "Akaụntụ ọhụrụ (erughị ụbọchị 30)",
+    "accept": "Gwa m",
+    "filter": "Zachaa",
+    "drop": "Zoo kpamkpam",
+    "filteredTitle": "Ọkwa ezachara",
+    "filteredEmpty": "Ọ dịghị ihe ezachara.",
+    "failed": "Edebeghị ya. Nwaa ọzọ."
+  },
+  "followedTags": {
+    "follow": "Soro #{{tag}}",
+    "following": "Ị na-eso",
+    "unfollow": "Kwụsị iso #{{tag}}",
+    "followed": "Ị na-eso #{{tag}} ugbu a. Ihe e bipụtara ya ga-apụta na ndepụta Ndị ị na-eso.",
+    "unfollowed": "Ị kwụsịrị iso #{{tag}}",
+    "failed": "Edebeghị ya. Nwaa ọzọ.",
+    "clear": "Hichapụ"
+  },
   "keywordFilters": {
     "title": "Okwu a gbachiri nkịtị",
     "description": "Zoo ihe e bipụtara na nkọwa nwere okwu ndị a, ma ọ bụ tụkọọ ha n'azụ ịdọ aka ná ntị. Ọ bụ naanị gị na-ahụ ndepụta a.",

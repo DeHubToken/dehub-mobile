@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Rindranasa mifandray",
+    "connectedDescription": "Rindranasa Mastodon nidiranao tamin'ity kaonty ity. Esory ny iray mba hivoahana aminy.",
+    "connectedEmpty": "Mbola tsy misy rindranasa mifandray.",
+    "lastUsed": "Nampiasaina farany {{date}}",
+    "remove": "Esory",
+    "removed": "Voaesotra ny rindranasa",
+    "failed": "Tsy nety izany. Andramo indray."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ny olona ao amin'ny Mastodon sy ireo rindranasa fediverse hafa dia afaka mahita sy manaraka anao amin'ity adiresy ity. Tonga any aminy ireo lahatsoratrao vaovao ho an'ny daholobe.",
+    "copy": "Adikao",
+    "copied": "Voadika",
+    "privateNote": "Tsy aseho ao amin'ny fediverse ny kaonty tsy miankina.",
+    "noUsername": "Misafidiana anarana mpampiasa mba hahazoana adiresy fediverse."
+  },
+  "profileFields": {
+    "title": "Saha ao amin'ny mombamomba",
+    "description": "Andalana efatra fanampiny ao amin'ny mombamombanao, toy ny tranonkala na ny mpisolo anaranao.",
+    "label": "Marika",
+    "content": "Votoaty",
+    "save": "Tehirizo ny saha",
+    "saved": "Voatahiry ny sahan'ny mombamomba",
+    "failed": "Tsy voatahiry. Andramo indray.",
+    "verified": "Rohy voamarina",
+    "verifyHint": "Mba hanamarinana rohy, ampio ity amin'io pejy io, dia tehirizo indray: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Sivano ny fampandrenesana avy amin'ny",
+    "description": "Safidio izay hitranga rehefa misy olona ivelan'ny faribolanao mifandray aminao. Miandry ao amin'ny \"Voasivana\" ireo fampandrenesana voasivana, tsy misy marika na fampandrenesana tampoka.",
+    "notFollowing": "Olona tsy arahinao",
+    "notFollowers": "Olona tsy manaraka anao",
+    "newAccounts": "Kaonty vaovao (latsaky ny 30 andro)",
+    "accept": "Ampahafantaro aho",
+    "filter": "Sivano",
+    "drop": "Afeno tanteraka",
+    "filteredTitle": "Fampandrenesana voasivana",
+    "filteredEmpty": "Tsy misy voasivana.",
+    "failed": "Tsy voatahiry. Andramo indray."
+  },
+  "followedTags": {
+    "follow": "Araho #{{tag}}",
+    "following": "Manaraka",
+    "unfollow": "Aza manaraka #{{tag}} intsony",
+    "followed": "Manaraka #{{tag}} ianao izao. Hiseho ao amin'ny lahatsoratra arahinao ireo lahatsorany.",
+    "unfollowed": "Tsy manaraka #{{tag}} intsony ianao",
+    "failed": "Tsy voatahiry. Andramo indray.",
+    "clear": "Fafao"
+  },
   "keywordFilters": {
     "title": "Teny nampanginina",
     "description": "Afeno ny lahatsoratra sy fanehoan-kevitra misy ireo teny ireo, na aforony ao ambadiky ny fampitandremana. Ianao ihany no mahita ity lisitra ity.",

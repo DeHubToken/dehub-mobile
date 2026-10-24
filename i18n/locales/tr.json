@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Bağlı uygulamalar",
+    "connectedDescription": "Bu hesapla giriş yaptığın Mastodon uygulamaları. Oturumunu kapatmak için birini kaldır.",
+    "connectedEmpty": "Henüz bağlı uygulama yok.",
+    "lastUsed": "Son kullanım {{date}}",
+    "remove": "Kaldır",
+    "removed": "Uygulama kaldırıldı",
+    "failed": "Olmadı. Tekrar dene."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon ve diğer fediverse uygulamalarındaki kişiler seni bu adreste bulup takip edebilir. Yeni herkese açık gönderilerin onlara orada ulaşır.",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "privateNote": "Gizli hesaplar fediverse'te gösterilmez.",
+    "noUsername": "Fediverse adresi almak için bir kullanıcı adı seç."
+  },
+  "profileFields": {
+    "title": "Profil alanları",
+    "description": "Profiline dört satıra kadar ek bilgi ekle; örneğin bir web sitesi ya da zamirlerin.",
+    "label": "Etiket",
+    "content": "İçerik",
+    "save": "Alanları kaydet",
+    "saved": "Profil alanları kaydedildi",
+    "failed": "Kaydedilmedi. Tekrar dene.",
+    "verified": "Doğrulanmış bağlantı",
+    "verifyHint": "Bir bağlantıyı doğrulamak için bunu o sayfaya ekle, sonra yeniden kaydet: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Bildirimleri filtrele",
+    "description": "Çevren dışından biri seninle etkileşime girdiğinde ne olacağını seç. Filtrelenen bildirimler rozet ve anlık bildirim olmadan Filtrelenenler altında bekler.",
+    "notFollowing": "Takip etmediğin kişiler",
+    "notFollowers": "Seni takip etmeyen kişiler",
+    "newAccounts": "Yeni hesaplar (30 günden yeni)",
+    "accept": "Bana bildir",
+    "filter": "Filtrele",
+    "drop": "Tamamen gizle",
+    "filteredTitle": "Filtrelenen bildirimler",
+    "filteredEmpty": "Hiçbir şey filtrelenmedi.",
+    "failed": "Kaydedilmedi. Tekrar dene."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} takip et",
+    "following": "Takip ediliyor",
+    "unfollow": "#{{tag}} takibi bırak",
+    "followed": "Artık #{{tag}} takip ediyorsun. Gönderileri Takip Edilenler akışında görünecek.",
+    "unfollowed": "#{{tag}} takibi bırakıldı",
+    "failed": "Kaydedilmedi. Tekrar dene.",
+    "clear": "Temizle"
+  },
   "keywordFilters": {
     "title": "Sessize alınan kelimeler",
     "description": "Bu kelimeleri içeren gönderileri ve yorumları gizle ya da bir uyarının arkasına katla. Bu listeyi yalnızca sen görürsün.",

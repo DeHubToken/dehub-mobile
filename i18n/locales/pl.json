@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Połączone aplikacje",
+    "connectedDescription": "Aplikacje Mastodon, w których zalogowano się tym kontem. Usuń jedną, aby ją wylogować.",
+    "connectedEmpty": "Nie ma jeszcze połączonych aplikacji.",
+    "lastUsed": "Ostatnio używana {{date}}",
+    "remove": "Usuń",
+    "removed": "Aplikacja usunięta",
+    "failed": "Nie udało się. Spróbuj ponownie."
+  },
+  "fediverse": {
+    "title": "Fediwersum",
+    "description": "Osoby na Mastodonie i w innych aplikacjach fediwersum mogą cię znaleźć i obserwować pod tym adresem. Twoje nowe publiczne posty docierają do nich tam.",
+    "copy": "Kopiuj",
+    "copied": "Skopiowano",
+    "privateNote": "Konta prywatne nie są widoczne w fediwersum.",
+    "noUsername": "Wybierz nazwę użytkownika, aby dostać adres w fediwersum."
+  },
+  "profileFields": {
+    "title": "Pola profilu",
+    "description": "Do czterech dodatkowych wierszy w profilu, np. strona internetowa lub twoje zaimki.",
+    "label": "Etykieta",
+    "content": "Treść",
+    "save": "Zapisz pola",
+    "saved": "Zapisano pola profilu",
+    "failed": "Nie zapisano. Spróbuj ponownie.",
+    "verified": "Zweryfikowany link",
+    "verifyHint": "Aby zweryfikować link, dodaj to na tamtej stronie i zapisz ponownie: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtruj powiadomienia od",
+    "description": "Wybierz, co się dzieje, gdy ktoś spoza twojego kręgu wchodzi z tobą w interakcję. Odfiltrowane powiadomienia czekają w sekcji Odfiltrowane, bez plakietki i bez powiadomienia push.",
+    "notFollowing": "Osób, których nie obserwujesz",
+    "notFollowers": "Osób, które cię nie obserwują",
+    "newAccounts": "Nowych kont (poniżej 30 dni)",
+    "accept": "Powiadamiaj mnie",
+    "filter": "Filtruj",
+    "drop": "Ukryj całkowicie",
+    "filteredTitle": "Odfiltrowane powiadomienia",
+    "filteredEmpty": "Nic nie zostało odfiltrowane.",
+    "failed": "Nie zapisano. Spróbuj ponownie."
+  },
+  "followedTags": {
+    "follow": "Obserwuj #{{tag}}",
+    "following": "Obserwujesz",
+    "unfollow": "Przestań obserwować #{{tag}}",
+    "followed": "Obserwujesz teraz #{{tag}}. Posty z nim pojawią się w twoim kanale Obserwowane.",
+    "unfollowed": "Przestałeś obserwować #{{tag}}",
+    "failed": "Nie zapisano. Spróbuj ponownie.",
+    "clear": "Wyczyść"
+  },
   "keywordFilters": {
     "title": "Wyciszone słowa",
     "description": "Ukrywaj posty i komentarze zawierające te słowa albo zwijaj je za ostrzeżeniem. Tę listę widzisz tylko ty.",

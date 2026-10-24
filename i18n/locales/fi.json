@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Yhdistetyt sovellukset",
+    "connectedDescription": "Mastodon-sovellukset, joihin olet kirjautunut tällä tilillä. Poista sovellus kirjautuaksesi siitä ulos.",
+    "connectedEmpty": "Ei vielä yhdistettyjä sovelluksia.",
+    "lastUsed": "Viimeksi käytetty {{date}}",
+    "remove": "Poista",
+    "removed": "Sovellus poistettu",
+    "failed": "Se ei onnistunut. Yritä uudelleen."
+  },
+  "fediverse": {
+    "title": "Fediversumi",
+    "description": "Mastodonin ja muiden fediversumin sovellusten käyttäjät voivat löytää ja seurata sinua tästä osoitteesta. Uudet julkiset julkaisusi tavoittavat heidät siellä.",
+    "copy": "Kopioi",
+    "copied": "Kopioitu",
+    "privateNote": "Yksityisiä tilejä ei näytetä fediversumissa.",
+    "noUsername": "Valitse käyttäjänimi saadaksesi fediversumiosoitteen."
+  },
+  "profileFields": {
+    "title": "Profiilikentät",
+    "description": "Enintään neljä lisäriviä profiiliisi, kuten verkkosivusto tai pronominisi.",
+    "label": "Nimi",
+    "content": "Sisältö",
+    "save": "Tallenna kentät",
+    "saved": "Profiilikentät tallennettu",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
+    "verified": "Vahvistettu linkki",
+    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Suodata ilmoitukset",
+    "description": "Valitse, mitä tapahtuu, kun joku piirisi ulkopuolelta on vuorovaikutuksessa kanssasi. Suodatetut ilmoitukset odottavat kohdassa Suodatetut ilman merkkiä ja push-ilmoitusta.",
+    "notFollowing": "Ihmisiltä, joita et seuraa",
+    "notFollowers": "Ihmisiltä, jotka eivät seuraa sinua",
+    "newAccounts": "Uusilta tileiltä (alle 30 päivää)",
+    "accept": "Ilmoita minulle",
+    "filter": "Suodata",
+    "drop": "Piilota kokonaan",
+    "filteredTitle": "Suodatetut ilmoitukset",
+    "filteredEmpty": "Mitään ei ole suodatettu.",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen."
+  },
+  "followedTags": {
+    "follow": "Seuraa #{{tag}}",
+    "following": "Seuraat",
+    "unfollow": "Lopeta #{{tag}} seuraaminen",
+    "followed": "Seuraat nyt tunnistetta #{{tag}}. Sen julkaisut näkyvät Seuratut-syötteessäsi.",
+    "unfollowed": "Lopetit tunnisteen #{{tag}} seuraamisen",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
+    "clear": "Tyhjennä"
+  },
   "keywordFilters": {
     "title": "Mykistetyt sanat",
     "description": "Piilota julkaisut ja kommentit, joissa on näitä sanoja, tai taita ne varoituksen taakse. Vain sinä näet tämän listan.",

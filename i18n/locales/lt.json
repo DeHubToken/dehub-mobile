@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Prijungtos programėlės",
+    "connectedDescription": "Mastodon programėlės, į kurias prisijungėte su šia paskyra. Pašalinkite vieną, kad iš jos atsijungtumėte.",
+    "connectedEmpty": "Kol kas nėra prijungtų programėlių.",
+    "lastUsed": "Paskutinį kartą naudota {{date}}",
+    "remove": "Pašalinti",
+    "removed": "Programėlė pašalinta",
+    "failed": "Nepavyko. Bandykite dar kartą."
+  },
+  "fediverse": {
+    "title": "Fedivisata",
+    "description": "Žmonės Mastodon ir kitose fedivisatos programėlėse gali jus rasti ir sekti šiuo adresu. Nauji jūsų vieši įrašai juos ten pasiekia.",
+    "copy": "Kopijuoti",
+    "copied": "Nukopijuota",
+    "privateNote": "Privačios paskyros fedivisatoje nerodomos.",
+    "noUsername": "Pasirinkite vartotojo vardą, kad gautumėte fedivisatos adresą."
+  },
+  "profileFields": {
+    "title": "Profilio laukai",
+    "description": "Iki keturių papildomų eilučių jūsų profilyje, pvz., svetainė ar jūsų įvardžiai.",
+    "label": "Etiketė",
+    "content": "Turinys",
+    "save": "Išsaugoti laukus",
+    "saved": "Profilio laukai išsaugoti",
+    "failed": "Neišsaugota. Bandykite dar kartą.",
+    "verified": "Patvirtinta nuoroda",
+    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtruoti pranešimus iš",
+    "description": "Pasirinkite, kas nutinka, kai su jumis bendrauja kas nors ne iš jūsų rato. Išfiltruoti pranešimai laukia skiltyje „Išfiltruoti“ be ženklelio ir be iššokančio pranešimo.",
+    "notFollowing": "Žmonių, kurių nesekate",
+    "notFollowers": "Žmonių, kurie neseka jūsų",
+    "newAccounts": "Naujų paskyrų (jaunesnių nei 30 dienų)",
+    "accept": "Pranešti man",
+    "filter": "Filtruoti",
+    "drop": "Visiškai slėpti",
+    "filteredTitle": "Išfiltruoti pranešimai",
+    "filteredEmpty": "Niekas neišfiltruota.",
+    "failed": "Neišsaugota. Bandykite dar kartą."
+  },
+  "followedTags": {
+    "follow": "Sekti #{{tag}}",
+    "following": "Sekate",
+    "unfollow": "Nebesekti #{{tag}}",
+    "followed": "Dabar sekate #{{tag}}. Jo įrašai bus rodomi jūsų Sekamų sraute.",
+    "unfollowed": "Nebesekate #{{tag}}",
+    "failed": "Neišsaugota. Bandykite dar kartą.",
+    "clear": "Išvalyti"
+  },
   "keywordFilters": {
     "title": "Nutildyti žodžiai",
     "description": "Slėpkite įrašus ir komentarus su šiais žodžiais arba suskleiskite juos už įspėjimo. Šį sąrašą matote tik jūs.",

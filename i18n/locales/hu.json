@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Csatlakoztatott alkalmazások",
+    "connectedDescription": "Mastodon-alkalmazások, amelyekbe ezzel a fiókkal jelentkeztél be. Távolíts el egyet a kijelentkeztetéshez.",
+    "connectedEmpty": "Még nincs csatlakoztatott alkalmazás.",
+    "lastUsed": "Utoljára használva: {{date}}",
+    "remove": "Eltávolítás",
+    "removed": "Alkalmazás eltávolítva",
+    "failed": "Nem sikerült. Próbáld újra."
+  },
+  "fediverse": {
+    "title": "Födiverzum",
+    "description": "A Mastodonon és más födiverzum-alkalmazásokban lévők ezen a címen megtalálhatnak és követhetnek. Az új nyilvános bejegyzéseid ott érik el őket.",
+    "copy": "Másolás",
+    "copied": "Másolva",
+    "privateNote": "A privát fiókok nem jelennek meg a födiverzumban.",
+    "noUsername": "Válassz felhasználónevet, hogy födiverzum-címed legyen."
+  },
+  "profileFields": {
+    "title": "Profilmezők",
+    "description": "Legfeljebb négy extra sor a profilodon, például weboldal vagy a névmásaid.",
+    "label": "Címke",
+    "content": "Tartalom",
+    "save": "Mezők mentése",
+    "saved": "Profilmezők mentve",
+    "failed": "Nem sikerült menteni. Próbáld újra.",
+    "verified": "Ellenőrzött hivatkozás",
+    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Értesítések szűrése tőlük",
+    "description": "Válaszd ki, mi történjen, ha valaki a körödön kívülről lép kapcsolatba veled. A szűrt értesítések a Szűrt alatt várnak, jelvény és push nélkül.",
+    "notFollowing": "Akiket nem követsz",
+    "notFollowers": "Akik nem követnek téged",
+    "newAccounts": "Új fiókok (30 napnál fiatalabbak)",
+    "accept": "Értesíts",
+    "filter": "Szűrés",
+    "drop": "Teljes elrejtés",
+    "filteredTitle": "Szűrt értesítések",
+    "filteredEmpty": "Semmi sincs kiszűrve.",
+    "failed": "Nem sikerült menteni. Próbáld újra."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} követése",
+    "following": "Követed",
+    "unfollow": "#{{tag}} követésének leállítása",
+    "followed": "Mostantól követed: #{{tag}}. A bejegyzései a Követettek hírfolyamodban jelennek meg.",
+    "unfollowed": "Már nem követed: #{{tag}}",
+    "failed": "Nem sikerült menteni. Próbáld újra.",
+    "clear": "Törlés"
+  },
   "keywordFilters": {
     "title": "Némított szavak",
     "description": "Rejtsd el az ezeket a szavakat tartalmazó bejegyzéseket és hozzászólásokat, vagy hajtsd őket egy figyelmeztetés mögé. Ezt a listát csak te látod.",

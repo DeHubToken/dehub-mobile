@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ama-app axhunyiwe",
+    "connectedDescription": "Ama-app e-Mastodon ongene kuwo ngale akhawunti. Susa eyodwa ukuze uyiphume.",
+    "connectedEmpty": "Awekho ama-app axhunyiwe okwamanje.",
+    "lastUsed": "Igcine ukusetshenziswa {{date}}",
+    "remove": "Susa",
+    "removed": "I-app isusiwe",
+    "failed": "Akusebenzanga. Zama futhi."
+  },
+  "fediverse": {
+    "title": "I-Fediverse",
+    "description": "Abantu abaku-Mastodon nakwamanye ama-app e-fediverse bangakuthola futhi bakulandele kuleli kheli. Okuthunyelwe kwakho okusha komphakathi kubafinyelela lapho.",
+    "copy": "Kopisha",
+    "copied": "Kukopishiwe",
+    "privateNote": "Ama-akhawunti ayimfihlo awaboniswa ku-fediverse.",
+    "noUsername": "Khetha igama lomsebenzisi ukuze uthole ikheli le-fediverse."
+  },
+  "profileFields": {
+    "title": "Izinkambu zephrofayela",
+    "description": "Kufika emigqeni emine eyengeziwe kuphrofayela yakho, njengewebhusayithi noma izabizwana zakho.",
+    "label": "Ilebula",
+    "content": "Okuqukethwe",
+    "save": "Londoloza izinkambu",
+    "saved": "Izinkambu zephrofayela zilondoloziwe",
+    "failed": "Akulondolozwanga. Zama futhi.",
+    "verified": "Isixhumanisi esiqinisekisiwe",
+    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Hlunga izaziso ezivela ku-",
+    "description": "Khetha okwenzekayo uma othile ongaphandle kwendilinga yakho exhumana nawe. Izaziso ezihlungiwe zilinda ngaphansi kokuthi \"Kuhlungiwe\", ngaphandle kwebheji noma isaziso esiphushwayo.",
+    "notFollowing": "Abantu ongabalandeli",
+    "notFollowers": "Abantu abangakulandeli",
+    "newAccounts": "Ama-akhawunti amasha (angaphansi kwezinsuku ezingu-30)",
+    "accept": "Ngazise",
+    "filter": "Hlunga",
+    "drop": "Fihla ngokuphelele",
+    "filteredTitle": "Izaziso ezihlungiwe",
+    "filteredEmpty": "Akukho okuhlungiwe.",
+    "failed": "Akulondolozwanga. Zama futhi."
+  },
+  "followedTags": {
+    "follow": "Landela i-#{{tag}}",
+    "following": "Uyalandela",
+    "unfollow": "Yeka ukulandela i-#{{tag}}",
+    "followed": "Manje uyalandela i-#{{tag}}. Okuthunyelwe kwayo kuzovela kokuphakelayo kwakho Okulandelayo.",
+    "unfollowed": "Uyekile ukulandela i-#{{tag}}",
+    "failed": "Akulondolozwanga. Zama futhi.",
+    "clear": "Sula"
+  },
   "keywordFilters": {
     "title": "Amagama athuliswe",
     "description": "Fihla okuthunyelwe nemibono okuqukethe lawa magama, noma kugoqe ngemuva kwesexwayiso. Nguwe kuphela obona lolu hlu.",

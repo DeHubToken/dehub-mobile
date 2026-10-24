@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apps-ka ku xiran",
+    "connectedDescription": "Apps-ka Mastodon ee aad ku gashay akoonkan. Ka saar mid si aad uga baxdo.",
+    "connectedEmpty": "Weli ma jiraan apps ku xiran.",
+    "lastUsed": "Markii ugu dambeysay la isticmaalay {{date}}",
+    "remove": "Ka saar",
+    "removed": "App-ka waa la saaray",
+    "failed": "Ma shaqayn. Isku day mar kale."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Dadka ku jira Mastodon iyo apps-ka kale ee fediverse waxay kugu heli karaan oo ku raaci karaan cinwaankan. Qoraalladaada cusub ee guud halkaas ayay ku gaaraan.",
+    "copy": "Koobbi",
+    "copied": "Waa la koobiyeeyay",
+    "privateNote": "Akoonnada gaarka ah laguma muujiyo fediverse.",
+    "noUsername": "Dooro magac isticmaale si aad u hesho cinwaan fediverse."
+  },
+  "profileFields": {
+    "title": "Meelaha astaanta",
+    "description": "Ilaa afar sadar oo dheeraad ah oo astaantaada ku jira, sida bog internet ama magac-u-yaalladaada.",
+    "label": "Calaamad",
+    "content": "Nuxurka",
+    "save": "Kaydi meelaha",
+    "saved": "Meelaha astaanta waa la kaydiyay",
+    "failed": "Lama kaydin. Isku day mar kale.",
+    "verified": "Xiriir la xaqiijiyay",
+    "verifyHint": "Si aad u xaqiijiso xiriir, kan ku dar boggaas, kadibna mar kale kaydi: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Ka sifee ogeysiisyada",
+    "description": "Dooro waxa dhacaya marka qof ka baxsan goobaabintaada uu kula macaamilo. Ogeysiisyada la sifeeyay waxay sugaan \"La sifeeyay\" hoostiisa, calaamad iyo riixid la'aan.",
+    "notFollowing": "Dadka aadan raacin",
+    "notFollowers": "Dadka aan ku raacin",
+    "newAccounts": "Akoonnada cusub (ka yar 30 maalmood)",
+    "accept": "I ogeysii",
+    "filter": "Sifee",
+    "drop": "Gebi ahaanba qari",
+    "filteredTitle": "Ogeysiisyada la sifeeyay",
+    "filteredEmpty": "Waxba lama sifeyn.",
+    "failed": "Lama kaydin. Isku day mar kale."
+  },
+  "followedTags": {
+    "follow": "Raac #{{tag}}",
+    "following": "Waad raacaysaa",
+    "unfollow": "Jooji raacitaanka #{{tag}}",
+    "followed": "Hadda waxaad raacaysaa #{{tag}}. Qoraalladiisa waxay ka soo muuqan doonaan quudinta aad raacdo.",
+    "unfollowed": "Waad joojisay raacitaanka #{{tag}}",
+    "failed": "Lama kaydin. Isku day mar kale.",
+    "clear": "Nadiifi"
+  },
   "keywordFilters": {
     "title": "Erayada la aamusiyay",
     "description": "Qari qoraallada iyo faallooyinka ay ku jiraan erayadan, ama ku laab digniin gadaasheed. Adiga keliya ayaa arka liiskan.",

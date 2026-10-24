@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Appiiwwan walqabatan",
+    "connectedDescription": "Appiiwwan Mastodon herrega kanaan itti seente. Ba'uuf tokko balleessi.",
+    "connectedEmpty": "Ammallee appiin walqabate hin jiru.",
+    "lastUsed": "Yeroo dhumaaf kan fayyadame {{date}}",
+    "remove": "Balleessi",
+    "removed": "Appiin balleeffame",
+    "failed": "Hin milkoofne. Irra deebi'ii yaali."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Namoonni Mastodon fi appiiwwan fediverse biroo irra jiran teessoo kanaan si argatanii si hordofuu danda'u. Maxxansaaleen kee haaraan uummataa achitti isaan ga'u.",
+    "copy": "Garagalchi",
+    "copied": "Garagalfame",
+    "privateNote": "Herregni dhuunfaa fediverse irratti hin mul'atu.",
+    "noUsername": "Teessoo fediverse argachuuf maqaa fayyadamaa filadhu."
+  },
+  "profileFields": {
+    "title": "Dirreewwan piroofaayilii",
+    "description": "Hanga sararoota dabalataa afurii piroofaayilii kee irratti, kan akka marsariitii ykn bakka bu'aa maqaa kee.",
+    "label": "Mallattoo",
+    "content": "Qabiyyee",
+    "save": "Dirreewwan olkaa'i",
+    "saved": "Dirreewwan piroofaayilii olkaa'aman",
+    "failed": "Hin olkaa'amne. Irra deebi'ii yaali.",
+    "verified": "Liinkii mirkanaa'e",
+    "verifyHint": "Liinkii mirkaneessuuf, kana fuula sana irratti dabali, achiis irra deebi'ii olkaa'i: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Beeksisa irraa calali",
+    "description": "Yeroo namni geengoo kee alaa si wajjin walqunnamu maaltu akka ta'u filadhu. Beeksisni calalame mallattoo fi dhiibbaa malee jalatti \"Calalame\" eegu.",
+    "notFollowing": "Namoota ati hin hordofne",
+    "notFollowers": "Namoota si hin hordofne",
+    "newAccounts": "Herrega haaraa (guyyaa 30 gadi)",
+    "accept": "Natti himi",
+    "filter": "Calali",
+    "drop": "Guutummaan dhoksi",
+    "filteredTitle": "Beeksisa calalaman",
+    "filteredEmpty": "Wanti calalame hin jiru.",
+    "failed": "Hin olkaa'amne. Irra deebi'ii yaali."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} hordofi",
+    "following": "Hordofaa jirta",
+    "unfollow": "#{{tag}} hordofuu dhiisi",
+    "followed": "Amma #{{tag}} hordofaa jirta. Maxxansaaleen isaa fayyaa hordoftu keessatti mul'atu.",
+    "unfollowed": "#{{tag}} hordofuu dhiifte",
+    "failed": "Hin olkaa'amne. Irra deebi'ii yaali.",
+    "clear": "Qulqulleessi"
+  },
   "keywordFilters": {
     "title": "Jechoota callisiifaman",
     "description": "Maxxansaalee fi yaada jechoota kana qaban dhoksi, ykn akeekkachiisa duuba isaan maruu. Tarree kana kan argitu ati qofa.",

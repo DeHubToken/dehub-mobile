@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Povezane aplikacije",
+    "connectedDescription": "Aplikacije za Mastodon u koje si se prijavio ovim računom. Ukloni jednu da je odjaviš.",
+    "connectedEmpty": "Još nema povezanih aplikacija.",
+    "lastUsed": "Zadnje korišteno {{date}}",
+    "remove": "Ukloni",
+    "removed": "Aplikacija uklonjena",
+    "failed": "Nije uspjelo. Pokušaj ponovno."
+  },
+  "fediverse": {
+    "title": "Fediverzum",
+    "description": "Ljudi na Mastodonu i u drugim aplikacijama fediverzuma mogu te pronaći i pratiti na ovoj adresi. Tvoje nove javne objave tamo stižu do njih.",
+    "copy": "Kopiraj",
+    "copied": "Kopirano",
+    "privateNote": "Privatni računi ne prikazuju se u fediverzumu.",
+    "noUsername": "Odaberi korisničko ime da dobiješ adresu u fediverzumu."
+  },
+  "profileFields": {
+    "title": "Polja profila",
+    "description": "Do četiri dodatna retka na tvom profilu, poput web-stranice ili tvojih zamjenica.",
+    "label": "Oznaka",
+    "content": "Sadržaj",
+    "save": "Spremi polja",
+    "saved": "Polja profila spremljena",
+    "failed": "Nije spremljeno. Pokušaj ponovno.",
+    "verified": "Potvrđena poveznica",
+    "verifyHint": "Za potvrdu poveznice dodaj ovo na tu stranicu pa ponovno spremi: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtriraj obavijesti od",
+    "description": "Odaberi što se događa kad netko izvan tvog kruga stupi u interakciju s tobom. Filtrirane obavijesti čekaju pod Filtrirano, bez oznake i bez push obavijesti.",
+    "notFollowing": "Ljudi koje ne pratiš",
+    "notFollowers": "Ljudi koji te ne prate",
+    "newAccounts": "Novi računi (mlađi od 30 dana)",
+    "accept": "Obavijesti me",
+    "filter": "Filtriraj",
+    "drop": "Potpuno sakrij",
+    "filteredTitle": "Filtrirane obavijesti",
+    "filteredEmpty": "Ništa nije filtrirano.",
+    "failed": "Nije spremljeno. Pokušaj ponovno."
+  },
+  "followedTags": {
+    "follow": "Prati #{{tag}}",
+    "following": "Pratiš",
+    "unfollow": "Prestani pratiti #{{tag}}",
+    "followed": "Sada pratiš #{{tag}}. Njegove objave pojavit će se u tvom feedu Praćeno.",
+    "unfollowed": "Prestao si pratiti #{{tag}}",
+    "failed": "Nije spremljeno. Pokušaj ponovno.",
+    "clear": "Očisti"
+  },
   "keywordFilters": {
     "title": "Utišane riječi",
     "description": "Sakrij objave i komentare s ovim riječima ili ih presavij iza upozorenja. Samo ti vidiš ovaj popis.",

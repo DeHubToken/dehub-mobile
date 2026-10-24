@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apli minnu sirilen don",
+    "connectedDescription": "Mastodon apli minnu i donna u la ni nin jatebila ye. Kelen bɔ walasa ka bɔ a la.",
+    "connectedEmpty": "Apli si ma siri fɔlɔ.",
+    "lastUsed": "Laban baarakɛ {{date}}",
+    "remove": "A bɔ",
+    "removed": "Apli bɔra",
+    "failed": "A ma se. A lajɛ tugun."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mɔgɔ minnu bɛ Mastodon ni fediverse apli wɛrɛw kan, olu bɛ se ka i sɔrɔ ka i tugu nin adiresi la. I ka post foroba kuraw bɛ se u ma yen.",
+    "copy": "A kopi",
+    "copied": "A kopila",
+    "privateNote": "Jatebila gundolaw tɛ jira fediverse kan.",
+    "noUsername": "Baarakɛlaw tɔgɔ dɔ sugandi walasa ka fediverse adiresi sɔrɔ."
+  },
+  "profileFields": {
+    "title": "Porofili yɔrɔw",
+    "description": "Sira naani fo ka fara i ka porofili kan, i n'a fɔ siti walima i ka tɔgɔnɔnaw.",
+    "label": "Tɔgɔ",
+    "content": "Kɔnɔkow",
+    "save": "Yɔrɔw mara",
+    "saved": "Porofili yɔrɔw marala",
+    "failed": "A ma mara. A lajɛ tugun.",
+    "verified": "Siri lajɛlen",
+    "verifyHint": "Ka siri lajɛ, nin fara o siti kan, o kɔ a mara tugun: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Kunnafoniw sɛgɛsɛgɛ ka bɔ",
+    "description": "A sugandi min bɛ kɛ ni mɔgɔ dɔ min tɛ i ka mɔgɔw cɛ ye ka baara kɛ i fɛ. Kunnafoni sɛgɛsɛgɛlenw bɛ makɔnɔ \"Sɛgɛsɛgɛlenw\" kɔnɔ, taamasiyɛn ni pusi tɛ.",
+    "notFollowing": "Mɔgɔ minnu tɛ i ka tugubaga ye",
+    "notFollowers": "Mɔgɔ minnu tɛ i tugu",
+    "newAccounts": "Jatebila kuraw (tile 30 kɔnɔ)",
+    "accept": "A fɔ n ye",
+    "filter": "A sɛgɛsɛgɛ",
+    "drop": "A dogo pewu",
+    "filteredTitle": "Kunnafoni sɛgɛsɛgɛlenw",
+    "filteredEmpty": "Foyi ma sɛgɛsɛgɛ.",
+    "failed": "A ma mara. A lajɛ tugun."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} tugu",
+    "following": "I b'a tugu",
+    "unfollow": "#{{tag}} tugu dabila",
+    "followed": "I bɛ #{{tag}} tugu sisan. A ka postw bɛna bɔ i ka tugulikɛ kɔnɔ.",
+    "unfollowed": "I ye #{{tag}} tugu dabila",
+    "failed": "A ma mara. A lajɛ tugun.",
+    "clear": "A jɔsi"
+  },
   "keywordFilters": {
     "title": "Kuma minnu dagbɛlen",
     "description": "I ka post ni jaabi minnu bɛ nin kumaw kɔnɔ dogo, walima k'u biri lasɔmini kɔfɛ. E dɔrɔn de bɛ nin lisi ye.",

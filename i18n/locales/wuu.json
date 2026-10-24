@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "已连接个应用",
+    "connectedDescription": "侬用搿只账号登录过个 Mastodon 应用。移除一只就会拿伊退出登录。",
+    "connectedEmpty": "还呒没连接任何应用。",
+    "lastUsed": "上趟用过 {{date}}",
+    "remove": "移除",
+    "removed": "应用已经移除",
+    "failed": "勿成功。再试一趟。"
+  },
+  "fediverse": {
+    "title": "联邦宇宙",
+    "description": "Mastodon 搭其他联邦宇宙应用浪个人好通过搿只地址寻着侬、关注侬。侬新个公开帖子会勒伊面送到伊拉。",
+    "copy": "复制",
+    "copied": "复制好了",
+    "privateNote": "私密账号勿会出现勒联邦宇宙里。",
+    "noUsername": "选一只用户名，好拿到联邦宇宙地址。"
+  },
+  "profileFields": {
+    "title": "个人资料字段",
+    "description": "勒个人资料里最多加四行，譬如网站或者侬个代词。",
+    "label": "标签",
+    "content": "内容",
+    "save": "保存字段",
+    "saved": "个人资料字段保存好了",
+    "failed": "呒没保存好，请再试一趟。",
+    "verified": "验证过个链接",
+    "verifyHint": "要验证链接，请拿搿段代码加到伊只页面，再保存一趟：{{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "过滤以下来源个通知",
+    "description": "选择圈子外头个人搭侬互动辰光会哪能。过滤脱个通知会摆勒“已过滤”里，呒没角标，也勿推送。",
+    "notFollowing": "侬呒没关注个人",
+    "notFollowers": "呒没关注侬个人",
+    "newAccounts": "新账号（勿满 30 日）",
+    "accept": "通知我",
+    "filter": "过滤",
+    "drop": "全部隐藏",
+    "filteredTitle": "已过滤个通知",
+    "filteredEmpty": "呒没过滤脱啥。",
+    "failed": "呒没保存好，请再试一趟。"
+  },
+  "followedTags": {
+    "follow": "关注 #{{tag}}",
+    "following": "已经关注",
+    "unfollow": "取消关注 #{{tag}}",
+    "followed": "已经关注 #{{tag}}，相关帖子会出现勒侬个关注动态里。",
+    "unfollowed": "已经取消关注 #{{tag}}",
+    "failed": "呒没保存好，请再试一趟。",
+    "clear": "清脱"
+  },
   "keywordFilters": {
     "title": "屏蔽词",
     "description": "隐藏包含搿眼词个帖子搭评论，或者拿伊拉折叠勒提示后头。只有侬看得到搿张列表。",

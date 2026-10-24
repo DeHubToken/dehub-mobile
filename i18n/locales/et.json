@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ühendatud rakendused",
+    "connectedDescription": "Mastodoni rakendused, kuhu oled selle kontoga sisse loginud. Eemalda mõni, et sellest välja logida.",
+    "connectedEmpty": "Ühendatud rakendusi veel pole.",
+    "lastUsed": "Viimati kasutatud {{date}}",
+    "remove": "Eemalda",
+    "removed": "Rakendus eemaldatud",
+    "failed": "See ei õnnestunud. Proovi uuesti."
+  },
+  "fediverse": {
+    "title": "Födiversum",
+    "description": "Mastodoni ja teiste födiversumi rakenduste inimesed leiavad sind sellelt aadressilt ja saavad sind jälgida. Sinu uued avalikud postitused jõuavad neini seal.",
+    "copy": "Kopeeri",
+    "copied": "Kopeeritud",
+    "privateNote": "Privaatkontosid födiversumis ei näidata.",
+    "noUsername": "Vali kasutajanimi, et saada födiversumi aadress."
+  },
+  "profileFields": {
+    "title": "Profiiliväljad",
+    "description": "Kuni neli lisarida sinu profiilil, näiteks veebisait või sinu asesõnad.",
+    "label": "Silt",
+    "content": "Sisu",
+    "save": "Salvesta väljad",
+    "saved": "Profiiliväljad salvestatud",
+    "failed": "Ei salvestunud. Proovi uuesti.",
+    "verified": "Kinnitatud link",
+    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtreeri teavitusi",
+    "description": "Vali, mis juhtub, kui keegi väljastpoolt sinu ringi sinuga suhtleb. Filtreeritud teavitused ootavad jaotises Filtreeritud, ilma märgi ja tõuketeateta.",
+    "notFollowing": "Inimestelt, keda sa ei jälgi",
+    "notFollowers": "Inimestelt, kes sind ei jälgi",
+    "newAccounts": "Uutelt kontodelt (alla 30 päeva)",
+    "accept": "Teavita mind",
+    "filter": "Filtreeri",
+    "drop": "Peida täielikult",
+    "filteredTitle": "Filtreeritud teavitused",
+    "filteredEmpty": "Midagi pole filtreeritud.",
+    "failed": "Ei salvestunud. Proovi uuesti."
+  },
+  "followedTags": {
+    "follow": "Jälgi #{{tag}}",
+    "following": "Jälgid",
+    "unfollow": "Lõpeta #{{tag}} jälgimine",
+    "followed": "Jälgid nüüd #{{tag}}. Selle postitused ilmuvad sinu Jälgitavate voos.",
+    "unfollowed": "Lõpetasid #{{tag}} jälgimise",
+    "failed": "Ei salvestunud. Proovi uuesti.",
+    "clear": "Tühjenda"
+  },
   "keywordFilters": {
     "title": "Vaigistatud sõnad",
     "description": "Peida neid sõnu sisaldavad postitused ja kommentaarid või voldi need hoiatuse taha. Seda loendit näed ainult sina.",

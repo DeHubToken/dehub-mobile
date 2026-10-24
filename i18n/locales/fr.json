@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Applis connectées",
+    "connectedDescription": "Les applis Mastodon auxquelles vous vous êtes connecté avec ce compte. Retirez-en une pour la déconnecter.",
+    "connectedEmpty": "Aucune appli connectée pour l'instant.",
+    "lastUsed": "Dernière utilisation {{date}}",
+    "remove": "Retirer",
+    "removed": "Appli retirée",
+    "failed": "Ça n'a pas marché. Réessayez."
+  },
+  "fediverse": {
+    "title": "Fédivers",
+    "description": "Les personnes sur Mastodon et les autres applis du fédivers peuvent vous trouver et vous suivre à cette adresse. Vos nouvelles publications publiques les y rejoignent.",
+    "copy": "Copier",
+    "copied": "Copié",
+    "privateNote": "Les comptes privés ne sont pas visibles dans le fédivers.",
+    "noUsername": "Choisissez un nom d'utilisateur pour obtenir une adresse fédivers."
+  },
+  "profileFields": {
+    "title": "Champs du profil",
+    "description": "Jusqu'à quatre lignes en plus sur votre profil, comme un site web ou vos pronoms.",
+    "label": "Libellé",
+    "content": "Contenu",
+    "save": "Enregistrer les champs",
+    "saved": "Champs du profil enregistrés",
+    "failed": "Ça n'a pas été enregistré. Réessayez.",
+    "verified": "Lien vérifié",
+    "verifyHint": "Pour vérifier un lien, ajoutez ceci à cette page, puis enregistrez à nouveau : {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrer les notifications de",
+    "description": "Choisissez ce qui se passe quand quelqu'un hors de votre cercle interagit avec vous. Les notifications filtrées attendent dans Filtrées, sans badge ni notification push.",
+    "notFollowing": "Personnes que vous ne suivez pas",
+    "notFollowers": "Personnes qui ne vous suivent pas",
+    "newAccounts": "Nouveaux comptes (moins de 30 jours)",
+    "accept": "Me notifier",
+    "filter": "Filtrer",
+    "drop": "Masquer complètement",
+    "filteredTitle": "Notifications filtrées",
+    "filteredEmpty": "Rien n'a été filtré.",
+    "failed": "Ça n'a pas été enregistré. Réessayez."
+  },
+  "followedTags": {
+    "follow": "Suivre #{{tag}}",
+    "following": "Suivi",
+    "unfollow": "Ne plus suivre #{{tag}}",
+    "followed": "Vous suivez maintenant #{{tag}}. Ses publications apparaîtront dans votre fil Abonnements.",
+    "unfollowed": "Vous ne suivez plus #{{tag}}",
+    "failed": "Ça n'a pas été enregistré. Réessayez.",
+    "clear": "Effacer"
+  },
   "keywordFilters": {
     "title": "Mots masqués",
     "description": "Masquez les publications et commentaires qui contiennent ces mots, ou repliez-les derrière un avertissement. Vous seul voyez cette liste.",

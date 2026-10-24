@@ -15,6 +15,7 @@ import { TabBarHideProvider } from "../../context/TabBarHideContext";
 import StandaloneTabBar from "../../navigation/StandaloneTabBar";
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
 import { FrostedBackground } from "../ui/FrostedBackdrop";
+import ImageViewerModal from "../common/ImageViewerModal";
 
 interface UserProfileBottomSheetProps {
   visible: boolean;
@@ -70,6 +71,8 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     isBlocked,
     blockLoading,
     handleOpenImage,
+    viewerImages,
+    closeImage,
     handleShare,
     handleMessage,
   } = useUserProfileData(visible, usernameOrAddress);
@@ -179,6 +182,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           onUnfollow={handleUnfollow}
           isCancelRequest={isFollowRequestPending}
         />
+        <ImageViewerModal images={viewerImages} onClose={closeImage} />
       </View>
       </SwipeBackBoundary>
     );
@@ -256,6 +260,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
         onUnfollow={handleUnfollow}
         isCancelRequest={isFollowRequestPending}
       />
+      <ImageViewerModal images={viewerImages} onClose={closeImage} />
       </FrostedBackground>
     </ProfileSurface>
   );

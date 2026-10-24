@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ứng dụng đã kết nối",
+    "connectedDescription": "Các ứng dụng Mastodon bạn đã đăng nhập bằng tài khoản này. Gỡ một ứng dụng để đăng xuất khỏi nó.",
+    "connectedEmpty": "Chưa có ứng dụng nào được kết nối.",
+    "lastUsed": "Dùng lần cuối {{date}}",
+    "remove": "Gỡ",
+    "removed": "Đã gỡ ứng dụng",
+    "failed": "Không được. Hãy thử lại."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mọi người trên Mastodon và các ứng dụng fediverse khác có thể tìm và theo dõi bạn ở địa chỉ này. Bài đăng công khai mới của bạn sẽ đến với họ ở đó.",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép",
+    "privateNote": "Tài khoản riêng tư không hiển thị trên fediverse.",
+    "noUsername": "Hãy chọn tên người dùng để có địa chỉ fediverse."
+  },
+  "profileFields": {
+    "title": "Trường hồ sơ",
+    "description": "Tối đa bốn dòng thêm trên hồ sơ của bạn, như trang web hoặc đại từ nhân xưng.",
+    "label": "Nhãn",
+    "content": "Nội dung",
+    "save": "Lưu các trường",
+    "saved": "Đã lưu các trường hồ sơ",
+    "failed": "Chưa lưu được. Hãy thử lại.",
+    "verified": "Liên kết đã xác minh",
+    "verifyHint": "Để xác minh liên kết, hãy thêm đoạn này vào trang đó rồi lưu lại: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Lọc thông báo từ",
+    "description": "Chọn điều sẽ xảy ra khi ai đó ngoài vòng của bạn tương tác với bạn. Thông báo đã lọc nằm trong mục Đã lọc, không có huy hiệu và không đẩy thông báo.",
+    "notFollowing": "Người bạn không theo dõi",
+    "notFollowers": "Người không theo dõi bạn",
+    "newAccounts": "Tài khoản mới (dưới 30 ngày)",
+    "accept": "Báo cho tôi",
+    "filter": "Lọc",
+    "drop": "Ẩn hoàn toàn",
+    "filteredTitle": "Thông báo đã lọc",
+    "filteredEmpty": "Chưa có gì bị lọc.",
+    "failed": "Chưa lưu được. Hãy thử lại."
+  },
+  "followedTags": {
+    "follow": "Theo dõi #{{tag}}",
+    "following": "Đang theo dõi",
+    "unfollow": "Bỏ theo dõi #{{tag}}",
+    "followed": "Bạn đang theo dõi #{{tag}}. Bài đăng của thẻ này sẽ hiện trong bảng tin Đang theo dõi.",
+    "unfollowed": "Đã bỏ theo dõi #{{tag}}",
+    "failed": "Chưa lưu được. Hãy thử lại.",
+    "clear": "Xóa"
+  },
   "keywordFilters": {
     "title": "Từ đã tắt tiếng",
     "description": "Ẩn bài đăng và bình luận chứa những từ này, hoặc gập chúng sau một cảnh báo. Chỉ bạn thấy danh sách này.",

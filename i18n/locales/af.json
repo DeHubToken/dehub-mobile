@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Gekoppelde toepe",
+    "connectedDescription": "Mastodon-toepe waarby jy met hierdie rekening aangemeld het. Verwyder een om dit af te meld.",
+    "connectedEmpty": "Nog geen toepe gekoppel nie.",
+    "lastUsed": "Laas gebruik {{date}}",
+    "remove": "Verwyder",
+    "removed": "Toep verwyder",
+    "failed": "Dit het nie gewerk nie. Probeer weer."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mense op Mastodon en ander fediverse-toepassings kan jou by hierdie adres vind en volg. Jou nuwe openbare plasings bereik hulle daar.",
+    "copy": "Kopieer",
+    "copied": "Gekopieer",
+    "privateNote": "Privaat rekeninge word nie op die fediverse gewys nie.",
+    "noUsername": "Kies 'n gebruikersnaam om 'n fediverse-adres te kry."
+  },
+  "profileFields": {
+    "title": "Profielvelde",
+    "description": "Tot vier ekstra reëls op jou profiel, soos 'n webwerf of jou voornaamwoorde.",
+    "label": "Etiket",
+    "content": "Inhoud",
+    "save": "Stoor velde",
+    "saved": "Profielvelde gestoor",
+    "failed": "Dit is nie gestoor nie. Probeer weer.",
+    "verified": "Geverifieerde skakel",
+    "verifyHint": "Om 'n skakel te verifieer, voeg dit by daardie bladsy en stoor weer: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filter kennisgewings van",
+    "description": "Kies wat gebeur wanneer iemand buite jou kring met jou in wisselwerking tree. Gefiltreerde kennisgewings wag onder Gefiltreer, sonder 'n kenteken of 'n stootkennisgewing.",
+    "notFollowing": "Mense wat jy nie volg nie",
+    "notFollowers": "Mense wat jou nie volg nie",
+    "newAccounts": "Nuwe rekeninge (jonger as 30 dae)",
+    "accept": "Laat my weet",
+    "filter": "Filtreer",
+    "drop": "Versteek heeltemal",
+    "filteredTitle": "Gefiltreerde kennisgewings",
+    "filteredEmpty": "Niks is gefiltreer nie.",
+    "failed": "Dit is nie gestoor nie. Probeer weer."
+  },
+  "followedTags": {
+    "follow": "Volg #{{tag}}",
+    "following": "Volg tans",
+    "unfollow": "Ontvolg #{{tag}}",
+    "followed": "Jy volg nou #{{tag}}. Sy plasings sal in jou Volg-voer wys.",
+    "unfollowed": "#{{tag}} ontvolg",
+    "failed": "Dit is nie gestoor nie. Probeer weer.",
+    "clear": "Maak skoon"
+  },
   "keywordFilters": {
     "title": "Gedempte woorde",
     "description": "Versteek plasings en kommentaar wat hierdie woorde bevat, of vou hulle agter 'n waarskuwing. Net jy sien hierdie lys.",

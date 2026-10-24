@@ -1,4 +1,54 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "연결된 앱",
+    "connectedDescription": "이 계정으로 로그인한 마스토돈 앱이에요. 앱을 삭제하면 로그아웃돼요.",
+    "connectedEmpty": "아직 연결된 앱이 없어요.",
+    "lastUsed": "마지막 사용 {{date}}",
+    "remove": "삭제",
+    "removed": "앱을 삭제했어요",
+    "failed": "잘 안 됐어요. 다시 시도하세요."
+  },
+  "fediverse": {
+    "title": "연합우주",
+    "description": "마스토돈 등 연합우주 앱 사용자가 이 주소로 나를 찾아 팔로우할 수 있어요. 새 공개 게시물은 그곳에도 전해져요.",
+    "copy": "복사",
+    "copied": "복사했어요",
+    "privateNote": "비공개 계정은 연합우주에 표시되지 않아요.",
+    "noUsername": "연합우주 주소를 받으려면 사용자 이름을 정하세요."
+  },
+  "profileFields": {
+    "title": "프로필 항목",
+    "description": "프로필에 웹사이트나 대명사 같은 줄을 최대 4개까지 추가해요.",
+    "label": "라벨",
+    "content": "내용",
+    "save": "항목 저장",
+    "saved": "프로필 항목을 저장했어요",
+    "failed": "저장하지 못했어요. 다시 시도해 주세요.",
+    "verified": "인증된 링크",
+    "verifyHint": "링크를 인증하려면 그 페이지에 이걸 넣고 다시 저장하세요: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "알림 필터 대상",
+    "description": "내 주변 사람이 아닌 누군가가 반응했을 때 어떻게 할지 고르세요. 필터된 알림은 배지나 푸시 없이 '필터됨'에 보관돼요.",
+    "notFollowing": "내가 팔로우하지 않는 사람",
+    "notFollowers": "나를 팔로우하지 않는 사람",
+    "newAccounts": "새 계정(30일 미만)",
+    "accept": "알림 받기",
+    "filter": "필터",
+    "drop": "완전히 숨기기",
+    "filteredTitle": "필터된 알림",
+    "filteredEmpty": "필터된 알림이 없어요.",
+    "failed": "저장하지 못했어요. 다시 시도해 주세요."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} 팔로우",
+    "following": "팔로우 중",
+    "unfollow": "#{{tag}} 팔로우 취소",
+    "followed": "이제 #{{tag}}을(를) 팔로우해요. 관련 게시물이 팔로잉 피드에 표시돼요.",
+    "unfollowed": "#{{tag}} 팔로우를 취소했어요",
+    "failed": "저장하지 못했어요. 다시 시도해 주세요.",
+    "clear": "지우기"
+  },
   "keywordFilters": {
     "title": "뮤트한 단어",
     "description": "이 단어가 들어간 게시물과 댓글을 숨기거나 경고 뒤로 접어 둡니다. 이 목록은 나만 볼 수 있어요.",

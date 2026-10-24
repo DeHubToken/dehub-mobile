@@ -1683,7 +1683,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           borderTopColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.06)",
           // Opaque: the comment list scrolls underneath this bar, and the
           // translucent fill put scrolled text behind the input.
-          backgroundColor: theme === 'glass' ? (skin?.centre.backgroundColor || '#102d32') : "#0C0C0E",
+          // Glass uses its opaque page tone: the skin's centre colour is a 14%
+          // white wash with no blur behind it here.
+          backgroundColor: theme === 'glass' ? (skin?.page || '#102d32') : "#0C0C0E",
           marginBottom: inputLift,
         }}
       >
