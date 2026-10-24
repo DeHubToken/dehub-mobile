@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Native-stack's ordinary page entrance; the source page stays underneath. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="true"
+    android:interpolator="@android:interpolator/decelerate_cubic"
+    android:duration="220">
+    <alpha android:fromAlpha="0" android:toAlpha="1" />
+    <scale android:fromXScale="0.94" android:toXScale="1"
+        android:fromYScale="0.94" android:toYScale="1"
+        android:pivotX="50%" android:pivotY="50%" />
+    <!-- Before API 32, translation dimensions support fractions, not dp. -->
+    <translate android:fromYDelta="2%" android:toYDelta="0" />
+</set>
