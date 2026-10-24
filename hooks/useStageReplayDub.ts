@@ -6,7 +6,9 @@ import type { TranscriptSegment } from './useTranscript';
 import { getStageRecordingPlayer, getStagePlaybackState, pauseStageRecording, useStagePlayback } from '../libs/stage-playback';
 
 /** Dubbed replay uses the recording's transport, including seeks and lock-screen pauses. */
-export function useStageReplayDub(stageId: string | undefined, transcriptId: string | null, language: string | null, segments: TranscriptSegment[] | null) {
+export function useStageReplayDub(stageId: string | undefined, transcriptId: string | null, language: string | null, segments: TranscriptSegment[] | null, onWait?: () => void) {
+  const waitHandler = useRef(onWait);
+  waitHandler.current = onWait;
   const playback = useStagePlayback();
   const cached = useCachedVideoDub(transcriptId, language, !!language && !!segments?.length);
   const [voice, setVoice] = useState<string | null | undefined>(null);
@@ -51,7 +53,7 @@ export function useStageReplayDub(stageId: string | undefined, transcriptId: str
     const audio = dub.current;
     const current = getStagePlaybackState();
     const playing = !current.paused && !current.loading;
-    if (!ready && playing) pauseStageRecording();
+    if (!ready && playing) { waitHandler.current?.(); pauseStageRecording(); }
     original.volume = ready ? 0 : 1;
     const t = original.currentTime || current.position;
     if (url && audio) {
