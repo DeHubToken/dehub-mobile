@@ -1730,7 +1730,6 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               status={e2eeStatus}
               busy={e2eeRetrying}
               peerName={peerLabel}
-              peerAvatarUri={peerAvatarUri}
               onUnlock={retryEncryption}
             />
           ) : initialLoading && messageList.length === 0 ? (
