@@ -37,12 +37,18 @@ jest.mock('react-native-safe-area-context', () => ({
 
 it('slides Android profiles inside the activity window and handles the back button', () => {
   const close = jest.fn();
+  const opened = jest.fn();
   let tree!: ReturnType<typeof create>;
-  act(() => { tree = create(<ProfileSurface visible onClose={close}>profile</ProfileSurface>); });
+  act(() => { tree = create(<ProfileSurface visible onClose={close} onOpenComplete={opened}>profile</ProfileSurface>); });
   expect(tree.root.findAllByType('NativeModal' as any)).toHaveLength(0);
   const surface = tree.root.findByType('AnimatedView' as any);
   expect(surface.props.style[1]).toMatchObject({ top: -24, bottom: -16 });
   expect(surface.props.pointerEvents).toBe('auto');
+  expect(opened).not.toHaveBeenCalled();
+  act(() => { finishSlide[finishSlide.length - 1](false); });
+  expect(opened).not.toHaveBeenCalled();
+  act(() => { finishSlide[finishSlide.length - 1](true); });
+  expect(opened).toHaveBeenCalledTimes(1);
   act(() => { backListeners[backListeners.length - 1](); });
   expect(close).toHaveBeenCalledTimes(1);
 
