@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
 import type { AppStackParamList } from "./types";
@@ -63,6 +64,9 @@ function AppNavigatorContent() {
         screenLayout={withScreenBoundary}
         screenOptions={{
           headerShown: false,
+          // A short native fade/lift keeps posts and ordinary pages connected
+          // to their source, independent of the active theme or JS workload.
+          animation: Platform.OS === 'android' ? 'fade_from_bottom' : 'default',
           // An options object, but react-native-screens is compiled from
           // source with the app's JSX runtime and hands this to a View, so
           // System Light's colour pass DOES see it: a plain white turned into

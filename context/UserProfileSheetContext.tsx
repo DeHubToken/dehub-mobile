@@ -28,6 +28,8 @@ const UserProfilePresentationContext = createContext<PresentationCtxValue | unde
 export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { theme } = useAppTheme();
   const [visible, setVisible] = useState(false);
+  const [openComplete, setOpenComplete] = useState(false);
+  const handleOpenComplete = useCallback(() => setOpenComplete(true), []);
   const [identifier, setIdentifier] = useState<string | null>(null);
   const [options, setOptions] = useState<{ initialHeightPct?: number; source?: string } | null>(null);
   const [presentation, setPresentation] = useState<ProfilePresentation>('modal');
@@ -57,6 +59,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   }, []);
   
   const hideUserProfile = useCallback(() => {
+    setOpenComplete(false);
     setVisible(false);
     // Delay clearing identifier/options until the close animation finishes to prevent flicker
     if (clearTimerRef.current) {
@@ -108,9 +111,11 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     return () => setProfileDeepLinkHandler(null);
   }, [showUserProfile]);
 
-  // Keep the previous page mounted for Back, but only the root theme scene
-  // should show through the profile's clear page wrappers during its lifetime.
-  const covered = Platform.OS === 'android' && identifier !== null && presentation === 'modal';
+  // Keep the previous page behind both animations. Removing it before the
+  // incoming page fills the window exposed the theme canvas as a flash; Back
+  // also needs its native layout restored before the outgoing page moves.
+  const covered = Platform.OS === 'android' && visible && openComplete && presentation === 'modal';
+  const blocked = identifier !== null && presentation === 'modal';
 
   return (
     <UserProfileSheetContext.Provider value={contextValue}>
@@ -121,9 +126,9 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
             {/* Remove the covered native render tree: opacity alone still
                 prepares its image textures on every profile scroll frame. */}
             <View style={{ flex: 1, display: covered ? 'none' : 'flex' }}
-              pointerEvents={covered ? 'none' : 'auto'}
-              accessibilityElementsHidden={covered}
-              importantForAccessibility={covered ? 'no-hide-descendants' : 'auto'}>
+              pointerEvents={blocked ? 'none' : 'auto'}
+              accessibilityElementsHidden={blocked}
+              importantForAccessibility={blocked ? 'no-hide-descendants' : 'auto'}>
             {children}
             </View>
           </FeedPlaybackActiveContext.Provider>
@@ -131,6 +136,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
           visible={visible && presentation === 'modal'}
           usernameOrAddress={identifier}
           onClose={hideUserProfile}
+          onOpenComplete={handleOpenComplete}
           initialHeightPct={options?.initialHeightPct}
         />
         </UserProfilePresentationContext.Provider>
