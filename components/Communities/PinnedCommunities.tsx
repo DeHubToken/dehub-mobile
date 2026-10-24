@@ -116,6 +116,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
       {remaining.map((community) => (
         <TouchableOpacity
           key={community.pinId}
+          className={community.banner_url ? 'dark-surface' : undefined}
           style={[styles.pinCard, isMinimal && minimalRow]}
           activeOpacity={0.8}
           onPress={() => openCommunity(community.slug)}
