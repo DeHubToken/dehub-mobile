@@ -181,7 +181,7 @@ const StoreForm: React.FC<{
                 {bannerUrl ? (
                   <Image source={storageImageSource(bannerUrl, windowWidth)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
-                <View style={styles.pickOverlay}>
+                <View className="dark-surface" style={styles.pickOverlay}>
                   {uploading === "banner" ? (
                     <ActivityIndicator color="#FFFFFF" />
                   ) : (
@@ -203,7 +203,7 @@ const StoreForm: React.FC<{
                 {avatarUrl ? (
                   <Image source={storageImageSource(avatarUrl, 64)} style={StyleSheet.absoluteFill} contentFit="cover" />
                 ) : null}
-                <View style={styles.pickOverlay}>
+                <View className="dark-surface" style={styles.pickOverlay}>
                   {uploading === "avatar" ? (
                     <ActivityIndicator color="#FFFFFF" size="small" />
                   ) : (
@@ -805,7 +805,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
     >
       <PageSection>
       {/* Store header */}
-      <View style={styles.storeHeader}>
+      <View className={activeStore?.banner_url ? 'dark-surface' : undefined} style={[styles.storeHeader, !!activeStore?.banner_url && { backgroundColor: '#0b0b0d' }]}>
         {!!activeStore?.banner_url && (
           <Image
             source={storageImageSource(activeStore.banner_url, windowWidth)}
