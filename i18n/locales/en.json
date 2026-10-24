@@ -8947,7 +8947,8 @@
       "valueFormat": "Value format",
       "valueIntervals": "Value-axis intervals",
       "xAxisMode": "Horizontal data type",
-      "xIntervals": "Horizontal-axis intervals"
+      "xIntervals": "Horizontal-axis intervals",
+      "hierarchySample": "Europe,France,35"
     },
     "clipboard": {
       "cut": "Cut layers",
@@ -9055,7 +9056,11 @@
       "selectionPreview": "Selected data preview",
       "separator": "File separator",
       "skipEmpty": "Skip empty data rows",
-      "use": "Use selected data"
+      "use": "Use selected data",
+      "sampleCategory": "Category",
+      "sampleNorth": "North",
+      "sampleSouth": "South",
+      "sampleValue": "Value"
     },
     "dataVisual": {
       "accent": "Accent",
