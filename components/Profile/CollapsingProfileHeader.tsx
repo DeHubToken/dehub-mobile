@@ -69,7 +69,8 @@ export default function CollapsingProfileHeader({ scrollY, actionsBottom, tabsPi
       <Animated.View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.surface, surfaceVisibility]}>
         <NavPillSurface />
       </Animated.View>
-      <View pointerEvents="box-none" style={styles.backInset}>
+      <View className={collapsed ? undefined : 'dark-surface'} pointerEvents="box-none" style={styles.backInset}>
+        {!collapsed && canGoBack && <View pointerEvents="none" style={styles.coverBackScrim} />}
         <ScreenHeader overlay plainBack title="" canGoBack={canGoBack} onBackPress={onBackPress} />
       </View>
       <View pointerEvents="box-none" style={[styles.content, !canGoBack && { paddingLeft: 20 }]}>
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
   surface: { position: 'absolute', top: 4, bottom: 4, left: 8, right: 8, borderRadius: 16, overflow: 'hidden' },
   highlight: { position: 'absolute', top: 0, left: 12, right: 12, height: 1, backgroundColor: 'rgba(255,255,255,0.3)' },
   backInset: { position: 'absolute', top: 2, left: 2, right: 0, height: 56 },
+  coverBackScrim: { position: 'absolute', top: 10, left: 10, width: 36, height: 36, borderRadius: 18, backgroundColor: 'rgba(0,0,0,0.45)' },
   content: { height: PROFILE_BAR_HEIGHT, paddingLeft: 60, paddingRight: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
