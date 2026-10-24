@@ -2985,7 +2985,9 @@
     "visibilityUpdated": "Ukubonakala kubuyekezwe",
     "visibilityFailed": "Akuphumelelanga ukubuyekeza ukubonakala",
     "forSale": "Kudayiswa",
-    "yourFractions": "Ubambe {{count}} wezingxenye {{total}}"
+    "yourFractions": "Ubambe {{count}} wezingxenye {{total}}",
+    "unavailable": "Ayitholakali",
+    "ownersUnavailable": "Abanikazi bamanje abakwazi ukufundwa njengamanje."
   },
   "profileOptions": {
     "copyRssFeed": "Kopisha isixhumanisi sokuphakelayo kwe-RSS",
@@ -5045,7 +5047,9 @@
     "noPast": "Ayikho imicimbi edlule",
     "noUpcoming": "Ayikho imicimbi ezayo",
     "interestedCount": "{{count}} bayathakazelisa",
-    "loadFailed": "Ayikwazanga ukulayisha imicimbi"
+    "loadFailed": "Ayikwazanga ukulayisha imicimbi",
+    "deleteConfirmTitle": "Susa lo mcimbi?",
+    "deleteConfirmBody": "Lokhu kususa umcimbi, uhlu lwawo lwezivakashi kanye nengxoxo yawo yawo wonke umuntu. Ayikwazi ukuhlehliswa."
   },
   "stats": {
     "chart": {

@@ -2972,7 +2972,9 @@
     "visibilityUpdated": "Uonekano umesasishwa",
     "visibilityFailed": "Uonekano haukuweza kusasishwa",
     "forSale": "Inauzwa",
-    "yourFractions": "Unamiliki {{count}} kati ya {{total}} sehemu"
+    "yourFractions": "Unamiliki {{count}} kati ya {{total}} sehemu",
+    "unavailable": "Haipatikani",
+    "ownersUnavailable": "Hali ya sasa ya maliki wao siyo yaweza kufikiriwa."
   },
   "profileOptions": {
     "copyRssFeed": "Nakili kiungo cha mlisho wa RSS",
@@ -5032,9 +5034,16 @@
     "noPast": "Hakuna matukio yaliyopita",
     "noUpcoming": "Hakuna matukio yajayo",
     "interestedCount": "{{count}} wana hamu",
-    "loadFailed": "Imeshindwa kupakia matukio"
+    "loadFailed": "Imeshindwa kupakia matukio",
+    "deleteConfirmTitle": "Ungependa kufuta tukio hili?",
+    "deleteConfirmBody": "Hii huondoa tukio, orodha yake ya wageni na gumzo lake kwa kila mtu. Haiwezi kutenguliwa."
   },
-  "stats": {"chart": {"daily": "Wageni kwa siku", "dailyHint": "wageni wa kipekee kwa siku", "empty": "Bado hakuna data kwa kipindi hiki"},
+  "stats": {
+    "chart": {
+      "daily": "Wageni kwa siku",
+      "dailyHint": "wageni wa kipekee kwa siku",
+      "empty": "Bado hakuna data kwa kipindi hiki"
+    },
     "definitions": {
       "visitorsTerm": "Wageni"
     },

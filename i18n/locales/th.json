@@ -2994,7 +2994,8 @@
     "visibilityUpdated": "อัปเดตการมองเห็นแล้ว",
     "visibilityFailed": "ไม่สามารถอัปเดตการมองเห็นได้",
     "forSale": "สำหรับขาย",
-    "yourFractions": "คุณถือ {{count}} ใน {{total}} ส่วน"
+    "yourFractions": "คุณถือ {{count}} ใน {{total}} ส่วน",
+    "ownersUnavailable": "ปัจจุบันเจ้าของไม่สามารถอ่านได้ในขณะนี้"
   },
   "profileOptions": {
     "copyRssFeed": "คัดลอกลิงก์ฟีด RSS",
@@ -5049,9 +5050,16 @@
     "noPast": "ไม่มีกิจกรรมที่ผ่านมา",
     "noUpcoming": "ไม่มีกิจกรรมที่กำลังจะมาถึง",
     "interestedCount": "{{count}} คนสนใจ",
-    "loadFailed": "โหลดกิจกรรมไม่สำเร็จ"
+    "loadFailed": "โหลดกิจกรรมไม่สำเร็จ",
+    "deleteConfirmTitle": "ลบกิจกรรมนี้ใช่ไหม?",
+    "deleteConfirmBody": "การดำเนินการนี้จะลบกิจกรรมรายชื่อผู้เข้าร่วมและแชทสำหรับทุกคนไม่สามารถยกเลิกได้"
   },
-  "stats": {"chart": {"daily": "ผู้เข้าชมต่อวัน", "dailyHint": "ผู้เข้าชมไม่ซ้ำต่อวัน", "empty": "ยังไม่มีข้อมูลสำหรับช่วงนี้"},
+  "stats": {
+    "chart": {
+      "daily": "ผู้เข้าชมต่อวัน",
+      "dailyHint": "ผู้เข้าชมไม่ซ้ำต่อวัน",
+      "empty": "ยังไม่มีข้อมูลสำหรับช่วงนี้"
+    },
     "definitions": {
       "visitorsTerm": "ผู้เข้าชม"
     },

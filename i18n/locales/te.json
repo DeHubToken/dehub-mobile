@@ -2964,7 +2964,9 @@
     "visibilityUpdated": "దృశ్యమానత నవీకరించబడింది",
     "visibilityFailed": "దృశ్యమానతను నవీకరించలేకపోయాము",
     "forSale": "అమ్మకానికి",
-    "yourFractions": "మీరు {{total}} భిన్నాలలో {{count}} ను కలిగి ఉన్నారు"
+    "yourFractions": "మీరు {{total}} భిన్నాలలో {{count}} ను కలిగి ఉన్నారు",
+    "unavailable": "అందుబాటులో లేదు",
+    "ownersUnavailable": "ప్రస్తుత యజమానులను ప్రస్తుతం చదవలేరు."
   },
   "profileOptions": {
     "copyRssFeed": "RSS ఫీడ్ లింక్ కాపీ చేయండి",
@@ -5019,7 +5021,9 @@
     "noPast": "గత ఈవెంట్లు లేవు",
     "noUpcoming": "రాబోయే ఈవెంట్లు లేవు",
     "interestedCount": "{{count}} మందికి ఆసక్తి",
-    "loadFailed": "ఈవెంట్లను లోడ్ చేయలేకపోయాము"
+    "loadFailed": "ఈవెంట్లను లోడ్ చేయలేకపోయాము",
+    "deleteConfirmTitle": "ఈ సంఘటనను తొలగించండి?",
+    "deleteConfirmBody": "ఇది ఈవెంట్, దాని అతిథి జాబితా మరియు ప్రతి ఒక్కరి కోసం దాని చాట్ ‌ ను తొలగిస్తుంది. ఇది రద్దు చేయబడదు."
   },
   "stats": {
     "chart": {

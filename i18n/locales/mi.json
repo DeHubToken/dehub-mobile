@@ -2954,7 +2954,9 @@
     "visibilityUpdated": "Whakahoutia te tirohanga",
     "visibilityFailed": "Kaore e taea te whakahou i te tirohanga",
     "forSale": "Mo te hoko",
-    "yourFractions": "Kei a koe {{count}} o {{total}} ngā hautau"
+    "yourFractions": "Kei a koe {{count}} o {{total}} ngā hautau",
+    "unavailable": "E wātea ana",
+    "ownersUnavailable": "Kaore e taea e nga rangatira o naianei te panui i tenei wa."
   },
   "profileOptions": {
     "copyRssFeed": "Tāruatia te hono whāngai RSS",
@@ -5012,7 +5014,9 @@
     "noPast": "Kāore he huihuinga o mua",
     "noUpcoming": "Kāore he huihuinga kei te heke mai",
     "interestedCount": "{{count}} e hiahia ana",
-    "loadFailed": "Kāore i taea te uta i ngā huihuinga"
+    "loadFailed": "Kāore i taea te uta i ngā huihuinga",
+    "deleteConfirmTitle": "Ka whakakorea e koe tenei huihuinga?",
+    "deleteConfirmBody": "Ka tangohia e tenei te huihuinga, tona raarangi manuhiri me tona korerorero mo te katoa. Kaore e taea te whakakore."
   },
   "stats": {
     "chart": {

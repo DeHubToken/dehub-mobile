@@ -2971,7 +2971,9 @@
     "visibilityUpdated": "Synlighet oppdatert",
     "visibilityFailed": "Kunne ikke oppdatere synlighet",
     "forSale": "Til salgs",
-    "yourFractions": "Du eier {{count}} av {{total}} brøkdeler"
+    "yourFractions": "Du eier {{count}} av {{total}} brøkdeler",
+    "unavailable": "Utilgjengelig",
+    "ownersUnavailable": "De nåværende eierne kan ikke leses akkurat nå."
   },
   "profileOptions": {
     "copyRssFeed": "Kopier lenke til RSS-feed",
@@ -5031,9 +5033,16 @@
     "noPast": "Ingen tidligere arrangementer",
     "noUpcoming": "Ingen kommende arrangementer",
     "interestedCount": "{{count}} interesserte",
-    "loadFailed": "Kunne ikke laste arrangementer"
+    "loadFailed": "Kunne ikke laste arrangementer",
+    "deleteConfirmTitle": "Slette denne hendelsen?",
+    "deleteConfirmBody": "Dette fjerner arrangementet, gjestelisten og chatten for alle. Det kan ikke angres."
   },
-  "stats": {"chart": {"daily": "Besøkende per dag", "dailyHint": "unike besøkende per dag", "empty": "Ingen data for denne perioden ennå"},
+  "stats": {
+    "chart": {
+      "daily": "Besøkende per dag",
+      "dailyHint": "unike besøkende per dag",
+      "empty": "Ingen data for denne perioden ennå"
+    },
     "definitions": {
       "visitorsTerm": "Besøkende"
     },

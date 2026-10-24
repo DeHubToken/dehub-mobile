@@ -2954,7 +2954,9 @@
     "visibilityUpdated": "Muuqashada waa la cusbooneysiiyay",
     "visibilityFailed": "Ma awoodin in la cusbooneysiiyo muuqaalka",
     "forSale": "Iib ah",
-    "yourFractions": "Waxaad haysataa {{count}} qaybood oo ka mid ah {{total}} qaybood"
+    "yourFractions": "Waxaad haysataa {{count}} qaybood oo ka mid ah {{total}} qaybood",
+    "unavailable": "Lagu wada ah",
+    "ownersUnavailable": "Maamulayaasha hadda jira lama aqrin karo hadda."
   },
   "profileOptions": {
     "copyRssFeed": "Koobi xiriirka quudinta RSS",
@@ -5012,7 +5014,9 @@
     "noPast": "Ma jiraan munaasabado hore",
     "noUpcoming": "Ma jiraan munaasabado soo socda",
     "interestedCount": "{{count}} ayaa xiiseynaya",
-    "loadFailed": "Lama soo rarin karin munaasabadaha"
+    "loadFailed": "Lama soo rarin karin munaasabadaha",
+    "deleteConfirmTitle": "Ka tirtir dhacdadan?",
+    "deleteConfirmBody": "Tani waxay meesha ka saaraysaa dhacdada, liiska martida iyo wada sheekaysiga qof walba. Ma noqon karo mid la tirtiri karo."
   },
   "stats": {
     "chart": {

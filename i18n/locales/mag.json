@@ -2962,7 +2962,9 @@
     "visibilityUpdated": "विजिबिलिटी अपडेट भईल",
     "visibilityFailed": "विजिबिलिटी अपडेट नाहीं हो पsवल",
     "forSale": "बिक्री खातिर",
-    "yourFractions": "तs {{count}} फ्रैक्शन में से {{total}} फ्रैक्शन के मालिक हई"
+    "yourFractions": "तs {{count}} फ्रैक्शन में से {{total}} फ्रैक्शन के मालिक हई",
+    "unavailable": "उपस्थिति, परिणामों की अनुपस्थिति,",
+    "ownersUnavailable": "ठहर, पत्र अभियो तैयार नयँ हइ ।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS फीड लिंक कॉपी करीं",
@@ -5018,7 +5020,9 @@
     "noPast": "कोनो बीतल कार्यक्रम नै",
     "noUpcoming": "कोनो आबय वाला कार्यक्रम नै",
     "interestedCount": "{{count}} के रुचि",
-    "loadFailed": "कार्यक्रम लोड नै भेल"
+    "loadFailed": "कार्यक्रम लोड नै भेल",
+    "deleteConfirmTitle": "ई घटना के मिटा देल जाय?",
+    "deleteConfirmBody": "ई घटना, ओकर अतिथि सूची आउ ओकर चैट के सबके लेल हटाबई छई । 2 मई के बाद, उन्हें जीवित नहीं छोड़ा जा सकता है ।"
   },
   "stats": {
     "chart": {

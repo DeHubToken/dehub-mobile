@@ -2973,7 +2973,9 @@
     "visibilityUpdated": "Widoczność zaktualizowana",
     "visibilityFailed": "Nie można zaktualizować widoczności",
     "forSale": "Na sprzedaż",
-    "yourFractions": "Posiadasz {{count}} z {{total}} ułamków"
+    "yourFractions": "Posiadasz {{count}} z {{total}} ułamków",
+    "unavailable": "Niedostępne",
+    "ownersUnavailable": "Obecnych właścicieli nie można teraz odczytać."
   },
   "profileOptions": {
     "copyRssFeed": "Kopiuj link do kanału RSS",
@@ -5033,9 +5035,16 @@
     "noPast": "Brak minionych wydarzeń",
     "noUpcoming": "Brak nadchodzących wydarzeń",
     "interestedCount": "{{count}} zainteresowanych",
-    "loadFailed": "Nie udało się wczytać wydarzeń"
+    "loadFailed": "Nie udało się wczytać wydarzeń",
+    "deleteConfirmTitle": "Usunąć to wydarzenie?",
+    "deleteConfirmBody": "Spowoduje to usunięcie wydarzenia, listy gości i czatu dla wszystkich. Tego nie da się cofnąć."
   },
-  "stats": {"chart": {"daily": "Odwiedzający dziennie", "dailyHint": "unikalni odwiedzający dziennie", "empty": "Brak danych dla tego okresu"},
+  "stats": {
+    "chart": {
+      "daily": "Odwiedzający dziennie",
+      "dailyHint": "unikalni odwiedzający dziennie",
+      "empty": "Brak danych dla tego okresu"
+    },
     "definitions": {
       "visitorsTerm": "Odwiedzający"
     },

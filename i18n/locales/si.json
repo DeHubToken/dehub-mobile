@@ -2955,7 +2955,9 @@
     "visibilityUpdated": "පෙනුම යාවත්කාලීන කරන ලදී",
     "visibilityFailed": "පෙනුම යාවත්කාලීන කිරීමට නොහැකි විය",
     "forSale": "විකිණීමට ඇත",
-    "yourFractions": "ඔබ {{total}} භාග වලින් {{count}} ක් සතුව ඇත"
+    "yourFractions": "ඔබ {{total}} භාග වලින් {{count}} ක් සතුව ඇත",
+    "unavailable": "ලබා ගත නොහැක",
+    "ownersUnavailable": "දැන් ඉන්න හාමුදුරුවන්ට කියවන්න බෑ."
   },
   "profileOptions": {
     "copyRssFeed": "RSS සංග්‍රහ සබැඳිය පිටපත් කරන්න",
@@ -5009,7 +5011,9 @@
     "noPast": "පසුගිය උත්සව නැත",
     "noUpcoming": "ඉදිරි උත්සව නැත",
     "interestedCount": "{{count}} දෙනෙක් උනන්දුයි",
-    "loadFailed": "උත්සව පූරණය කළ නොහැකි විය"
+    "loadFailed": "උත්සව පූරණය කළ නොහැකි විය",
+    "deleteConfirmTitle": "මෙම සිදුවීම මකන්නද?",
+    "deleteConfirmBody": "මෙය උත්සවය, එහි අමුත්තන්ගේ ලැයිස්තුව සහ සෑම කෙනෙකුටම එහි චැට් ඉවත් කරයි. ඒක අහෝසි කරන්න බෑ."
   },
   "stats": {
     "chart": {

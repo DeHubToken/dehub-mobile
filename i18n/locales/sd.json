@@ -2953,7 +2953,9 @@
     "visibilityUpdated": "ظاهريت اپڊيٽ ڪئي وئي",
     "visibilityFailed": "ظاهريت اپڊيٽ نه ٿي سگهي",
     "forSale": "وڪري لاءِ",
-    "yourFractions": "توهان {{total}} حصن مان {{count}} حصا رکو ٿا"
+    "yourFractions": "توهان {{total}} حصن مان {{count}} حصا رکو ٿا",
+    "unavailable": "غير موجود",
+    "ownersUnavailable": "موجوده مالڪن کي في الحال پڙهي نه ٿو سگهجي."
   },
   "profileOptions": {
     "copyRssFeed": "RSS فيڊ لنڪ ڪاپي ڪريو",
@@ -5011,7 +5013,9 @@
     "noPast": "ڪا به گذريل تقريب ناهي",
     "noUpcoming": "ڪا به ايندڙ تقريب ناهي",
     "interestedCount": "{{count}} کي دلچسپي آهي",
-    "loadFailed": "تقريبون لوڊ نه ٿي سگهيون"
+    "loadFailed": "تقريبون لوڊ نه ٿي سگهيون",
+    "deleteConfirmTitle": "ھي واقعو ڊليٽ ڪريو ؟",
+    "deleteConfirmBody": "هي واقعي کي ختم ڪري ٿو، ان جي مهمانن جي فهرست ۽ هر ڪنهن لاءِ ان جي چيٽ. ان کي رد نه ٿو ڪري سگھجي."
   },
   "stats": {
     "chart": {

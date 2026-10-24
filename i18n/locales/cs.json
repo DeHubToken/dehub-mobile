@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "Viditelnost aktualizována",
     "visibilityFailed": "Nepodařilo se aktualizovat viditelnost",
     "forSale": "Na prodej",
-    "yourFractions": "Vlastníte {{count}} zlomků z {{total}}"
+    "yourFractions": "Vlastníte {{count}} zlomků z {{total}}",
+    "unavailable": "Nedostupné",
+    "ownersUnavailable": "Aktuální vlastníci se zatím nedají přečíst."
   },
   "profileOptions": {
     "copyRssFeed": "Kopírovat odkaz na RSS kanál",
@@ -5034,9 +5036,16 @@
     "noPast": "Žádné minulé akce",
     "noUpcoming": "Žádné nadcházející akce",
     "interestedCount": "{{count}} má zájem",
-    "loadFailed": "Akce se nepodařilo načíst"
+    "loadFailed": "Akce se nepodařilo načíst",
+    "deleteConfirmTitle": "Smazat tuto událost?",
+    "deleteConfirmBody": "Tím se odstraní událost, seznam hostů a chat pro všechny. Nelze ji vrátit zpět."
   },
-  "stats": {"chart": {"daily": "Návštěvníci za den", "dailyHint": "unikátní návštěvníci za den", "empty": "Pro toto období zatím nejsou data"},
+  "stats": {
+    "chart": {
+      "daily": "Návštěvníci za den",
+      "dailyHint": "unikátní návštěvníci za den",
+      "empty": "Pro toto období zatím nejsou data"
+    },
     "definitions": {
       "visitorsTerm": "Návštěvníci"
     },

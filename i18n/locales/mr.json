@@ -2966,7 +2966,9 @@
     "visibilityUpdated": "दृश्यमानता अद्यतनित केली",
     "visibilityFailed": "दृश्यमानता अद्यतनित करू शकलो नाही",
     "forSale": "विक्रीसाठी",
-    "yourFractions": "तुम्ही {{total}} पैकी {{count}} फ्रॅक्शन्स धारण करता"
+    "yourFractions": "तुम्ही {{total}} पैकी {{count}} फ्रॅक्शन्स धारण करता",
+    "unavailable": "उपलब्ध नाही",
+    "ownersUnavailable": "आताच्या लेखकांना वाचता येत नाही."
   },
   "profileOptions": {
     "copyRssFeed": "RSS फीड लिंक कॉपी करा",
@@ -5019,7 +5021,9 @@
     "noPast": "मागील कार्यक्रम नाहीत",
     "noUpcoming": "आगामी कार्यक्रम नाहीत",
     "interestedCount": "{{count}} जणांना स्वारस्य",
-    "loadFailed": "कार्यक्रम लोड करता आले नाहीत"
+    "loadFailed": "कार्यक्रम लोड करता आले नाहीत",
+    "deleteConfirmTitle": "हा कार्यक्रम हटवायचा?",
+    "deleteConfirmBody": "यामुळे इव्हेंट, त्याची अतिथी यादी आणि प्रत्येकासाठी गप्पा काढून टाकल्या जातात. तो पूर्ववत करता येत नाही."
   },
   "stats": {
     "chart": {

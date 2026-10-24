@@ -3066,7 +3066,8 @@
     "visibilityUpdated": "Visibility update অইছে",
     "visibilityFailed": "Visibility update করা যায় নি",
     "forSale": "বিক্রির লাই",
-    "yourFractions": "তুই {{total}} fraction-এর {{count}} টা ধরস"
+    "yourFractions": "তুই {{total}} fraction-এর {{count}} টা ধরস",
+    "ownersUnavailable": "আমার কাছে এখন এই মালিকদের তথ্য পড়া যাচ্ছে না।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS ফিড লিংক কপি গরো",
@@ -5121,7 +5122,8 @@
     "noPast": "কোনো আগর ইভেন্ট নাই",
     "noUpcoming": "কোনো আগামী ইভেন্ট নাই",
     "interestedCount": "{{count}} জন আগ্রহী",
-    "loadFailed": "ইভেন্ট লোড গরা ন যায়"
+    "loadFailed": "ইভেন্ট লোড গরা ন যায়",
+    "deleteConfirmBody": "এটা ইভেন্টটিকে, এর গেস্ট লিস্ট আর সবার জন্য এর চ্যাটটিকে মুছে ফেলে। এটা ফিরিয়ে আনা যাবে না।"
   },
   "stats": {
     "chart": {

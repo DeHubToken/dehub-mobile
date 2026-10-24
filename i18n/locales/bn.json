@@ -2970,7 +2970,9 @@
     "visibilityUpdated": "দৃশ্যমানতা আপডেট করা হয়েছে",
     "visibilityFailed": "দৃশ্যমানতা আপডেট করা যায়নি",
     "forSale": "বিক্রয়ের জন্য",
-    "yourFractions": "আপনি {{total}} ভগ্নাংশের {{count}} অংশ ধারণ করেন"
+    "yourFractions": "আপনি {{total}} ভগ্নাংশের {{count}} অংশ ধারণ করেন",
+    "unavailable": "অনুপলব্ধ",
+    "ownersUnavailable": "বর্তমান মালিকদের এই মুহূর্তে পড়া যাবে না ।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS ফিড লিংক কপি করুন",
@@ -5027,9 +5029,16 @@
     "noPast": "কোনো অতীত ইভেন্ট নেই",
     "noUpcoming": "কোনো আসন্ন ইভেন্ট নেই",
     "interestedCount": "{{count}} জন আগ্রহী",
-    "loadFailed": "ইভেন্ট লোড করা যায়নি"
+    "loadFailed": "ইভেন্ট লোড করা যায়নি",
+    "deleteConfirmTitle": "এই ইভেন্টটি মুছবেন?",
+    "deleteConfirmBody": "এটি ইভেন্ট, এর অতিথি তালিকা এবং সবার জন্য এর চ্যাট সরিয়ে দেয় । এটি পূর্বাবস্থায় ফেরানো যাবে না ।"
   },
-  "stats": {"chart": {"daily": "দৈনিক দর্শক", "dailyHint": "দৈনিক অনন্য দর্শক", "empty": "এই সময়ের জন্য এখনও কোনো তথ্য নেই"},
+  "stats": {
+    "chart": {
+      "daily": "দৈনিক দর্শক",
+      "dailyHint": "দৈনিক অনন্য দর্শক",
+      "empty": "এই সময়ের জন্য এখনও কোনো তথ্য নেই"
+    },
     "definitions": {
       "visitorsTerm": "দর্শক"
     },

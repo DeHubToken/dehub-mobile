@@ -2993,7 +2993,9 @@
     "visibilityUpdated": "Sichtbarkeit aktualisiert",
     "visibilityFailed": "Sichtbarkeit konnt nöd aktualisiert werde",
     "forSale": "Zum Verchauf",
-    "yourFractions": "Du hesch {{count}} vo {{total}} Bruchteile"
+    "yourFractions": "Du hesch {{count}} vo {{total}} Bruchteile",
+    "unavailable": "Unverfügbar",
+    "ownersUnavailable": "Aktuell kann auf die Besitzer:innen nicht zugegriffen werden."
   },
   "profileOptions": {
     "copyRssFeed": "RSS-Feed-Link kopiere",
@@ -5051,7 +5053,8 @@
     "noPast": "Kei vergangeni Events",
     "noUpcoming": "Kei kommendi Events",
     "interestedCount": "{{count}} interessiert",
-    "loadFailed": "D Events hend nid chönne glade werde"
+    "loadFailed": "D Events hend nid chönne glade werde",
+    "deleteConfirmBody": "Dës löscht d’Event, d’Gästeliste und d’Chat für alle. Es kann net rückgängig gemacht werden."
   },
   "stats": {
     "chart": {

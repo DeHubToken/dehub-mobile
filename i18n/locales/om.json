@@ -2967,7 +2967,9 @@
     "visibilityUpdated": "Mul'achuu haaromfame",
     "visibilityFailed": "Mul'achuu haaromsuu hin dandeenye",
     "forSale": "Gurgurtaaf",
-    "yourFractions": "Firaakshinii {{total}} {{count}} qabatta"
+    "yourFractions": "Firaakshinii {{total}} {{count}} qabatta",
+    "unavailable": "Hin argamne",
+    "ownersUnavailable": "Abbootiin qabeenyaa amma jiran yeroo ammaa kana dubbifamuu hin danda'an."
   },
   "profileOptions": {
     "copyRssFeed": "Liinkii RSS feed waraabi",
@@ -5025,7 +5027,9 @@
     "noPast": "Taateewwan darban hin jiran",
     "noUpcoming": "Taateewwan dhufan hin jiran",
     "interestedCount": "{{count}} fedhii qabu",
-    "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
+    "loadFailed": "Taateewwan fe'uun hin dandaʼamne",
+    "deleteConfirmTitle": "Taatee kana haquu?",
+    "deleteConfirmBody": "Kunis taatee, tarree keessummoota isaa fi chat isaa hundaaf ni haqa. Deebi'uu hin danda'u."
   },
   "stats": {
     "chart": {

@@ -2959,7 +2959,9 @@
     "visibilityUpdated": "દૃશ્યતા અપડેટ થઈ",
     "visibilityFailed": "દૃશ્યતા અપડેટ કરી શકાઈ નથી",
     "forSale": "વેચાણ માટે",
-    "yourFractions": "તમે {{total}} ફ્રેક્શનમાંથી {{count}} ધરાવો છો"
+    "yourFractions": "તમે {{total}} ફ્રેક્શનમાંથી {{count}} ધરાવો છો",
+    "unavailable": "અનુપલબ્ધ",
+    "ownersUnavailable": "આ વર્તમાન માલિકો હાલમાં વાંચી શકાતી નથી."
   },
   "profileOptions": {
     "copyRssFeed": "RSS ફીડ લિંક કૉપિ કરો",
@@ -5014,7 +5016,9 @@
     "noPast": "કોઈ ભૂતકાળના કાર્યક્રમો નથી",
     "noUpcoming": "કોઈ આગામી કાર્યક્રમો નથી",
     "interestedCount": "{{count}} ને રસ છે",
-    "loadFailed": "કાર્યક્રમો લોડ થઈ શક્યા નહીં"
+    "loadFailed": "કાર્યક્રમો લોડ થઈ શક્યા નહીં",
+    "deleteConfirmTitle": "આ ઇવેન્ટ કાઢી નાખો?",
+    "deleteConfirmBody": "આ ઇવેન્ટ, તેની ગેસ્ટ લિસ્ટ અને દરેક માટે તેની ચેટને દૂર કરે છે. તે પૂર્વવત્ કરી શકાતું નથી."
   },
   "stats": {
     "chart": {

@@ -2972,7 +2972,9 @@
     "visibilityUpdated": "可见性已更新",
     "visibilityFailed": "无法更新可见性",
     "forSale": "待售",
-    "yourFractions": "您持有 {{total}} 份中的 {{count}} 份"
+    "yourFractions": "您持有 {{total}} 份中的 {{count}} 份",
+    "unavailable": "不可订",
+    "ownersUnavailable": "目前无法读取当前所有者。"
   },
   "profileOptions": {
     "copyRssFeed": "复制 RSS 订阅链接",
@@ -5074,9 +5076,16 @@
     "noPast": "没有往期活动",
     "noUpcoming": "没有即将举行的活动",
     "interestedCount": "{{count}} 人感兴趣",
-    "loadFailed": "无法加载活动"
+    "loadFailed": "无法加载活动",
+    "deleteConfirmTitle": "删除此活动？",
+    "deleteConfirmBody": "这将删除事件、其访客列表和每个人的聊天。此操作无法撤消。"
   },
-  "stats": {"chart": {"daily": "每日访客", "dailyHint": "每日独立访客", "empty": "此时间范围暂无数据"},
+  "stats": {
+    "chart": {
+      "daily": "每日访客",
+      "dailyHint": "每日独立访客",
+      "empty": "此时间范围暂无数据"
+    },
     "definitions": {
       "visitorsTerm": "访客"
     },

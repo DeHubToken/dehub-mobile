@@ -2960,7 +2960,8 @@
     "visibilityUpdated": "تم تحديث الرؤية",
     "visibilityFailed": "ما قدرنا نحدث الرؤية",
     "forSale": "للبيع",
-    "yourFractions": "معاك {{count}} من {{total}} كسور"
+    "yourFractions": "معاك {{count}} من {{total}} كسور",
+    "ownersUnavailable": "المالكين الحاليين مش ممكن يقرووا دلوقتي"
   },
   "profileOptions": {
     "copyRssFeed": "نسخ رابط خلاصة RSS",
@@ -5016,7 +5017,9 @@
     "noPast": "ما في فعاليات سابقة",
     "noUpcoming": "ما في فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "ما قدرنا نحمّل الفعاليات"
+    "loadFailed": "ما قدرنا نحمّل الفعاليات",
+    "deleteConfirmTitle": "حطّ هذا الحدث؟",
+    "deleteConfirmBody": "هذي بتحذف الحدث و قائمة الضيوف و الدردشة فيه لكل الناس. مش ممكن ترجعشه."
   },
   "stats": {
     "chart": {

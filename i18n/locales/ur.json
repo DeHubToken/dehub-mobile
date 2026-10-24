@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "مرئیت اپ ڈیٹ ہو گئی",
     "visibilityFailed": "مرئیت اپ ڈیٹ نہیں ہو سکی",
     "forSale": "فروخت کے لیے",
-    "yourFractions": "آپ {{total}} فریکشنز میں سے {{count}} فریکشنز رکھتے ہیں"
+    "yourFractions": "آپ {{total}} فریکشنز میں سے {{count}} فریکشنز رکھتے ہیں",
+    "unavailable": "موجود نہیں",
+    "ownersUnavailable": "موجودہ مالکان کو ابھی پڑھا نہیں جا سکتا ۔"
   },
   "profileOptions": {
     "copyRssFeed": "RSS فیڈ لنک کاپی کریں",
@@ -5031,9 +5033,16 @@
     "noPast": "کوئی گزشتہ ایونٹ نہیں",
     "noUpcoming": "کوئی آنے والا ایونٹ نہیں",
     "interestedCount": "{{count}} کو دلچسپی ہے",
-    "loadFailed": "ایونٹس لوڈ نہیں ہو سکے"
+    "loadFailed": "ایونٹس لوڈ نہیں ہو سکے",
+    "deleteConfirmTitle": "کیا یہ ایونٹ حذف کرنا ہے؟",
+    "deleteConfirmBody": "اس سے ایونٹ، اس کی مہمانوں کی فہرست اور ہر ایک کے لیے اس کی چیٹ ہٹ جاتی ہے ۔ اسے کالعدم نہیں کیا جا سکتا ۔"
   },
-  "stats": {"chart": {"daily": "یومیہ زائرین", "dailyHint": "یومیہ منفرد زائرین", "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"},
+  "stats": {
+    "chart": {
+      "daily": "یومیہ زائرین",
+      "dailyHint": "یومیہ منفرد زائرین",
+      "empty": "اس مدت کے لیے ابھی کوئی ڈیٹا نہیں"
+    },
     "definitions": {
       "visitorsTerm": "زائرین"
     },

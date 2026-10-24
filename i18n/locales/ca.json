@@ -2971,7 +2971,9 @@
     "visibilityUpdated": "Visibilitat actualitzada",
     "visibilityFailed": "No s'ha pogut actualitzar la visibilitat",
     "forSale": "A la venda",
-    "yourFractions": "Tens {{count}} de {{total}} fraccions"
+    "yourFractions": "Tens {{count}} de {{total}} fraccions",
+    "unavailable": "No disponible",
+    "ownersUnavailable": "Ara mateix no es pot llegir els propietaris actuals."
   },
   "profileOptions": {
     "copyRssFeed": "Copia l'enllaç del canal RSS",
@@ -5031,9 +5033,16 @@
     "noPast": "Cap esdeveniment passat",
     "noUpcoming": "Cap esdeveniment pròxim",
     "interestedCount": "{{count}} interessats",
-    "loadFailed": "No s'han pogut carregar els esdeveniments"
+    "loadFailed": "No s'han pogut carregar els esdeveniments",
+    "deleteConfirmTitle": "Vols eliminar aquest esdeveniment?",
+    "deleteConfirmBody": "Això elimina l'esdeveniment, la llista de convidats i el xat per a tothom. No es pot desfer."
   },
-  "stats": {"chart": {"daily": "Visitants per dia", "dailyHint": "visitants únics per dia", "empty": "Encara no hi ha dades per a aquest període"},
+  "stats": {
+    "chart": {
+      "daily": "Visitants per dia",
+      "dailyHint": "visitants únics per dia",
+      "empty": "Encara no hi ha dades per a aquest període"
+    },
     "definitions": {
       "visitorsTerm": "Visitants"
     },

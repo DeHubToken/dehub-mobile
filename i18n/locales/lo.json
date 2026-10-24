@@ -2941,7 +2941,9 @@
     "visibilityUpdated": "ໄດ້​ອັບ​ເດດ​ການ​ເບິ່ງ​ເຫັນ",
     "visibilityFailed": "ບໍ່​ສາ​ມາດ​ອັບ​ເດດ​ການ​ເບິ່ງ​ເຫັນ",
     "forSale": "ຂາຍ",
-    "yourFractions": "ເຈົ້າຖື {{count}} ຂອງ {{total}} ສ່ວນຮຸ້ນ"
+    "yourFractions": "ເຈົ້າຖື {{count}} ຂອງ {{total}} ສ່ວນຮຸ້ນ",
+    "unavailable": "ບໍ່ສາມາດໃຊ້ໄດ້",
+    "ownersUnavailable": "ເຈົ້າຂອງປະຈຸບັນບໍ່ສາມາດອ່ານໄດ້ໃນເວລານີ້."
   },
   "profileOptions": {
     "copyRssFeed": "ຄັດລອກລິ້ງ RSS feed",
@@ -4995,7 +4997,9 @@
     "noPast": "ບໍ່ມີກິດຈະກຳທີ່ຜ່ານມາ",
     "noUpcoming": "ບໍ່ມີກິດຈະກຳທີ່ຈະມາເຖິງ",
     "interestedCount": "{{count}} ສົນໃຈ",
-    "loadFailed": "ບໍ່ສາມາດໂຫຼດກິດຈະກຳໄດ້"
+    "loadFailed": "ບໍ່ສາມາດໂຫຼດກິດຈະກຳໄດ້",
+    "deleteConfirmTitle": "ລຶບເຫດການນີ້ບໍ?",
+    "deleteConfirmBody": "ມັນ ກໍາ ຈັດເຫດການ, ລາຍຊື່ແຂກແລະສົນທະນາ ສໍາ ລັບທຸກຄົນ. ມັນບໍ່ສາມາດຖືກລົບລ້າງໄດ້."
   },
   "stats": {
     "chart": {

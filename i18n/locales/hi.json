@@ -2979,7 +2979,9 @@
     "visibilityUpdated": "दृश्यता अपडेट की गई",
     "visibilityFailed": "दृश्यता अपडेट नहीं हो सकी",
     "forSale": "बिक्री के लिए",
-    "yourFractions": "आप {{total}} अंशों में से {{count}} अंश रखते हैं"
+    "yourFractions": "आप {{total}} अंशों में से {{count}} अंश रखते हैं",
+    "unavailable": "उपलब्ध नहीं है",
+    "ownersUnavailable": "मौजूदा मालिकों को अभी पढ़ा नहीं जा सकता।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS फ़ीड लिंक कॉपी करें",
@@ -5088,9 +5090,16 @@
     "noPast": "कोई पिछला कार्यक्रम नहीं",
     "noUpcoming": "कोई आगामी कार्यक्रम नहीं",
     "interestedCount": "{{count}} को रुचि है",
-    "loadFailed": "कार्यक्रम लोड नहीं हो सके"
+    "loadFailed": "कार्यक्रम लोड नहीं हो सके",
+    "deleteConfirmTitle": "इस इवेंट को मिटाएँ?",
+    "deleteConfirmBody": "यह इवेंट, इसकी मेहमानों की लिस्ट और सभी के लिए इसकी चैट को हटा देता है। इसे पूर्ववत नहीं किया जा सकता।"
   },
-  "stats": {"chart": {"daily": "प्रतिदिन आगंतुक", "dailyHint": "प्रतिदिन अद्वितीय आगंतुक", "empty": "इस अवधि के लिए अभी कोई डेटा नहीं"},
+  "stats": {
+    "chart": {
+      "daily": "प्रतिदिन आगंतुक",
+      "dailyHint": "प्रतिदिन अद्वितीय आगंतुक",
+      "empty": "इस अवधि के लिए अभी कोई डेटा नहीं"
+    },
     "definitions": {
       "visitorsTerm": "आगंतुक"
     },

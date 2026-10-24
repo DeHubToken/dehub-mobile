@@ -3071,7 +3071,9 @@
     "visibilityUpdated": "Viditeľnosť aktualizovaná",
     "visibilityFailed": "Nepodarilo sa aktualizovať viditeľnosť",
     "forSale": "Na predaj",
-    "yourFractions": "Vlastníte {{count}} z {{total}} zlomkov"
+    "yourFractions": "Vlastníte {{count}} z {{total}} zlomkov",
+    "unavailable": "Nedostupné",
+    "ownersUnavailable": "Aktuálnych vlastníkov momentálne nie je možné prečítať."
   },
   "profileOptions": {
     "copyRssFeed": "Kopírovať odkaz na RSS kanál",
@@ -5131,7 +5133,9 @@
     "noPast": "Žiadne minulé podujatia",
     "noUpcoming": "Žiadne nadchádzajúce podujatia",
     "interestedCount": "{{count}} má záujem",
-    "loadFailed": "Podujatia sa nepodarilo načítať"
+    "loadFailed": "Podujatia sa nepodarilo načítať",
+    "deleteConfirmTitle": "Odstrániť túto udalosť?",
+    "deleteConfirmBody": "Tým sa odstráni udalosť, jej zoznam hostí a chat pre všetkých. Nedá sa vrátiť späť."
   },
   "stats": {
     "chart": {

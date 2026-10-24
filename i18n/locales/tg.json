@@ -2940,7 +2940,8 @@
     "visibilityUpdated": "Намоёнӣ навсозӣ шуд",
     "visibilityFailed": "Намоёнӣ навсозӣ карда нашуд",
     "forSale": "Барои фурӯш",
-    "yourFractions": "Шумо {{count}} қисм аз {{total}} қисмро доред"
+    "yourFractions": "Шумо {{count}} қисм аз {{total}} қисмро доред",
+    "unavailable": "Дастнорас"
   },
   "profileOptions": {
     "copyRssFeed": "Нусхабардории пайванди тасмаи RSS",
@@ -4983,7 +4984,8 @@
     "noPast": "Чорабиниҳои гузашта нестанд",
     "noUpcoming": "Чорабиниҳои оянда нестанд",
     "interestedCount": "{{count}} шавқманд",
-    "loadFailed": "Чорабиниҳо бор нашуданд"
+    "loadFailed": "Чорабиниҳо бор нашуданд",
+    "deleteConfirmBody": "Ito ay tanggalin ang kaganapan, listahan ng mga bisita at ang chat para sa lahat. Онро барҳам додан мумкин нест."
   },
   "stats": {
     "chart": {

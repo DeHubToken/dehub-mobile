@@ -2971,7 +2971,9 @@
     "visibilityUpdated": "Näkyvyys päivitetty",
     "visibilityFailed": "Näkyvyyttä ei voitu päivittää",
     "forSale": "Myynnissä",
-    "yourFractions": "Sinulla on {{count}} / {{total}} murto-osasta"
+    "yourFractions": "Sinulla on {{count}} / {{total}} murto-osasta",
+    "unavailable": "Ei saatavilla",
+    "ownersUnavailable": "Nykyisiä omistajia ei voi lukea juuri nyt."
   },
   "profileOptions": {
     "copyRssFeed": "Kopioi RSS-syötteen linkki",
@@ -5031,9 +5033,16 @@
     "noPast": "Ei menneitä tapahtumia",
     "noUpcoming": "Ei tulevia tapahtumia",
     "interestedCount": "{{count}} kiinnostunutta",
-    "loadFailed": "Tapahtumia ei voitu ladata"
+    "loadFailed": "Tapahtumia ei voitu ladata",
+    "deleteConfirmTitle": "Poistetaanko tämä tapahtuma?",
+    "deleteConfirmBody": "Tämä poistaa tapahtuman, sen vieraslistan ja chatin kaikilta. Sitä ei voi kumota."
   },
-  "stats": {"chart": {"daily": "Kävijöitä päivässä", "dailyHint": "yksilöllisiä kävijöitä päivässä", "empty": "Tälle jaksolle ei ole vielä tietoja"},
+  "stats": {
+    "chart": {
+      "daily": "Kävijöitä päivässä",
+      "dailyHint": "yksilöllisiä kävijöitä päivässä",
+      "empty": "Tälle jaksolle ei ole vielä tietoja"
+    },
     "definitions": {
       "visitorsTerm": "Kävijät"
     },

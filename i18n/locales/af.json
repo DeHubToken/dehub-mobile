@@ -2996,7 +2996,9 @@
     "visibilityUpdated": "Sigbaarheid opgedateer",
     "visibilityFailed": "Kon sigbaarheid nie opdateer nie",
     "forSale": "Te koop",
-    "yourFractions": "Jy hou {{count}} van {{total}} breukdele"
+    "yourFractions": "Jy hou {{count}} van {{total}} breukdele",
+    "unavailable": "Onbeskikbaar",
+    "ownersUnavailable": "Die huidige eienaars kan nie nou gelees word nie."
   },
   "profileOptions": {
     "copyRssFeed": "Kopieer RSS-voerskakel",
@@ -5056,7 +5058,9 @@
     "noPast": "Geen vorige geleenthede nie",
     "noUpcoming": "Geen komende geleenthede nie",
     "interestedCount": "{{count}} belangstellend",
-    "loadFailed": "Kon nie geleenthede laai nie"
+    "loadFailed": "Kon nie geleenthede laai nie",
+    "deleteConfirmTitle": "Skrap hierdie okkasie?",
+    "deleteConfirmBody": "Dit verwyder die geleentheid, sy gaste lys en sy chat vir almal. Dit kan nie ongedaan gemaak word nie."
   },
   "stats": {
     "chart": {

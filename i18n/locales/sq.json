@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "Të drejtat e publikimit u përditësuan",
     "visibilityFailed": "Nuk u arrit të përditësoheshin të drejtat e publikimit",
     "forSale": "Në shitje",
-    "yourFractions": "Ju zotëroni {{count}} nga {{total}} fraksione"
+    "yourFractions": "Ju zotëroni {{count}} nga {{total}} fraksione",
+    "unavailable": "E padisponueshme",
+    "ownersUnavailable": "Pronarët aktualë nuk mund të lexohen tani."
   },
   "profileOptions": {
     "copyRssFeed": "Kopjo lidhjen e burimit RSS",
@@ -5023,7 +5025,9 @@
     "noPast": "Asnjë ngjarje e kaluar",
     "noUpcoming": "Asnjë ngjarje e ardhshme",
     "interestedCount": "{{count}} të interesuar",
-    "loadFailed": "Ngjarjet nuk u ngarkuan dot"
+    "loadFailed": "Ngjarjet nuk u ngarkuan dot",
+    "deleteConfirmTitle": "Dëshiron ta fshish këtë event?",
+    "deleteConfirmBody": "Kjo e fshinë ngjarjen, listën e gjestëve dhe mesazhet e saj për të gjithë. Nuk mund të kthehet më pas."
   },
   "stats": {
     "chart": {

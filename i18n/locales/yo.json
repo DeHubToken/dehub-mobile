@@ -2954,7 +2954,9 @@
     "visibilityUpdated": "A ti mu hihan pọ si",
     "visibilityFailed": "Ko le mu hihan pọ si",
     "forSale": "Fun tita",
-    "yourFractions": "O ni {{count}} ninu {{total}} awọn ipin"
+    "yourFractions": "O ni {{count}} ninu {{total}} awọn ipin",
+    "unavailable": "Kò sí",
+    "ownersUnavailable": "Àwọn onílé tí ó wà nísinsìnyí kò lè kà á báyìí."
   },
   "profileOptions": {
     "copyRssFeed": "Daakọ ọna asopọ RSS feed",
@@ -5013,7 +5015,9 @@
     "noPast": "Kò sí ìṣẹ̀lẹ̀ tí ó ti kọjá",
     "noUpcoming": "Kò sí ìṣẹ̀lẹ̀ tó ń bọ̀",
     "interestedCount": "{{count}} nífẹ̀ẹ́ sí",
-    "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé"
+    "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé",
+    "deleteConfirmTitle": "Pa ìṣẹ̀lẹ̀ yìí rẹ́?",
+    "deleteConfirmBody": "Èyí mú ìṣẹ̀lẹ̀ náà kúrò, àtòjọ àwọn àlejò rẹ̀ àti ìjíròrò rẹ̀ fún gbogbo ènìyàn. A kò lè mú un kúrò."
   },
   "stats": {
     "chart": {

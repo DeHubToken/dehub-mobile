@@ -2962,7 +2962,8 @@
     "visibilityUpdated": "تم تحديث الرؤية",
     "visibilityFailed": "تعذر تحديث الرؤية",
     "forSale": "للبيع",
-    "yourFractions": "تمتلك {{count}} من {{total}} كسور"
+    "yourFractions": "تمتلك {{count}} من {{total}} كسور",
+    "ownersUnavailable": "الملاكين الحاليين مش ممكن يقرووا دلوقتي"
   },
   "profileOptions": {
     "copyRssFeed": "نسخ رابط خلاصة RSS",
@@ -5016,7 +5017,9 @@
     "noPast": "ماكو فعاليات سابقة",
     "noUpcoming": "ماكو فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "ما گدرنا نحمّل الفعاليات"
+    "loadFailed": "ما گدرنا نحمّل الفعاليات",
+    "deleteConfirmTitle": "حذف هذا الحدث؟",
+    "deleteConfirmBody": "هذا يزيل الحدث و قائمة الضيوف و المحادثة من أجل الجميع. لا يمكن التراجع عن ذلك."
   },
   "stats": {
     "chart": {

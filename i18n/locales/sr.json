@@ -2966,7 +2966,9 @@
     "visibilityUpdated": "Видљивост ажурирана",
     "visibilityFailed": "Видљивост није могла да се ажурира",
     "forSale": "На продају",
-    "yourFractions": "Поседујете {{count}} од {{total}} удела"
+    "yourFractions": "Поседујете {{count}} од {{total}} удела",
+    "unavailable": "Није доступно",
+    "ownersUnavailable": "Тренутни власници тренутно не могу да се прочитају."
   },
   "profileOptions": {
     "copyRssFeed": "Копирај линк RSS фида",
@@ -4995,7 +4997,9 @@
     "noPast": "Нема прошлих догађаја",
     "noUpcoming": "Нема надолазећих догађаја",
     "interestedCount": "{{count}} заинтересовано",
-    "loadFailed": "Учитавање догађаја није успело"
+    "loadFailed": "Учитавање догађаја није успело",
+    "deleteConfirmTitle": "Желите ли да избришете овај догађај?",
+    "deleteConfirmBody": "Ово уклања догађај, листу гостију и ћаскање за све. Не може се опозвати."
   },
   "stats": {
     "chart": {

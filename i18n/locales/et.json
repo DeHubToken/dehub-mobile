@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "Nähtavust värskendati",
     "visibilityFailed": "Nähtavust ei õnnestunud värskendada",
     "forSale": "Müüdud",
-    "yourFractions": "Teil on {{count}} murdosast {{total}}"
+    "yourFractions": "Teil on {{count}} murdosast {{total}}",
+    "unavailable": "Pole saadaval",
+    "ownersUnavailable": "Praeguseid omanikke ei saa praegu lugeda."
   },
   "profileOptions": {
     "copyRssFeed": "Kopeeri RSS-voo link",
@@ -5023,7 +5025,9 @@
     "noPast": "Möödunud üritusi pole",
     "noUpcoming": "Tulevasi üritusi pole",
     "interestedCount": "{{count}} huvitatud",
-    "loadFailed": "Üritusi ei õnnestunud laadida"
+    "loadFailed": "Üritusi ei õnnestunud laadida",
+    "deleteConfirmTitle": "Kas kustutada see sündmus?",
+    "deleteConfirmBody": "See, et see poistab sündmuse, selle külaliste nimekirja ja kõneala kõigilt. See ei saa tagasi võtta."
   },
   "stats": {
     "chart": {

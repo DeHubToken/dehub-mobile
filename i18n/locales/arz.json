@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "تم تحديث الرؤية",
     "visibilityFailed": "تعذر تحديث الرؤية",
     "forSale": "للبيع",
-    "yourFractions": "أنت تمتلك {{count}} من {{total}} كسور"
+    "yourFractions": "أنت تمتلك {{count}} من {{total}} كسور",
+    "unavailable": "غير متاح",
+    "ownersUnavailable": "لا يمكن قراءة المالكين الحاليين في الوقت الحالي."
   },
   "profileOptions": {
     "copyRssFeed": "نسخ رابط خلاصة RSS",
@@ -5019,7 +5021,9 @@
     "noPast": "مفيش فعاليات فاتت",
     "noUpcoming": "مفيش فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "مقدرناش نحمّل الفعاليات"
+    "loadFailed": "مقدرناش نحمّل الفعاليات",
+    "deleteConfirmTitle": "هل تريد حذف هذا الحدث ؟",
+    "deleteConfirmBody": "يؤدي هذا إلى إزالة الحدث وقائمة الضيوف والدردشة للجميع. لا يمكن التراجع عنه."
   },
   "stats": {
     "chart": {

@@ -3018,7 +3018,9 @@
     "visibilityUpdated": "Na-update ang visibility",
     "visibilityFailed": "Hindi ma-update ang visibility",
     "forSale": "For sale",
-    "yourFractions": "Hawak mo ang {{count}} ng {{total}} na bahagi"
+    "yourFractions": "Hawak mo ang {{count}} ng {{total}} na bahagi",
+    "unavailable": "Hindi available",
+    "ownersUnavailable": "Hindi mabasa ang mga current owners ngayon."
   },
   "profileOptions": {
     "copyRssFeed": "Kopyahin ang link ng RSS feed",
@@ -5078,9 +5080,16 @@
     "noPast": "Walang nakaraang event",
     "noUpcoming": "Walang paparating na event",
     "interestedCount": "{{count}} ang interesado",
-    "loadFailed": "Hindi ma-load ang mga event"
+    "loadFailed": "Hindi ma-load ang mga event",
+    "deleteConfirmTitle": "Tanggalin ang kaganapang ito?",
+    "deleteConfirmBody": "Inaalis nito ang kaganapan, ang listahan ng bisita at ang chat nito para sa lahat. Hindi ito maaaring i - undo."
   },
-  "stats": {"chart": {"daily": "Mga bisita kada araw", "dailyHint": "mga natatanging bisita kada araw", "empty": "Wala pang datos para sa panahong ito"},
+  "stats": {
+    "chart": {
+      "daily": "Mga bisita kada araw",
+      "dailyHint": "mga natatanging bisita kada araw",
+      "empty": "Wala pang datos para sa panahong ito"
+    },
     "definitions": {
       "visitorsTerm": "Mga bisita"
     },

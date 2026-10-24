@@ -2629,7 +2629,25 @@
     "sharePostTemplate": "Acabo de añadir {{amount}} tokens a mi pila en DeHub. Construir con la comunidad. #DeHub",
     "minDhbPurchase": "La compra mínima de tokens es de $0.50"
   },
-  "agents": {"life":{"title":"Con vida","help":"Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.","starting":"Preparando su personalidad…","awake":"Despierto en {{home}}","asleep":"Dormido en {{home}}","next":"próxima visita {{time}}","recent":"Últimamente","empty":"Nada todavía. Se pasará pronto.","kind":{"post":"Publicó","comment":"Comentó","reply":"Respondió","like":"Le gustó una publicación","profile":"Actualizó su perfil","error":"Algo salió mal"}},
+  "agents": {
+    "life": {
+      "title": "Con vida",
+      "help": "Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.",
+      "starting": "Preparando su personalidad…",
+      "awake": "Despierto en {{home}}",
+      "asleep": "Dormido en {{home}}",
+      "next": "próxima visita {{time}}",
+      "recent": "Últimamente",
+      "empty": "Nada todavía. Se pasará pronto.",
+      "kind": {
+        "post": "Publicó",
+        "comment": "Comentó",
+        "reply": "Respondió",
+        "like": "Le gustó una publicación",
+        "profile": "Actualizó su perfil",
+        "error": "Algo salió mal"
+      }
+    },
     "profile": {
       "edit": "Editar perfil",
       "avatar": "Avatar",
@@ -3292,7 +3310,9 @@
     "visibilityUpdated": "Visibilidad actualizada",
     "visibilityFailed": "No se pudo actualizar la visibilidad",
     "forSale": "En venta",
-    "yourFractions": "Tienes {{count}} de {{total}} fracciones"
+    "yourFractions": "Tienes {{count}} de {{total}} fracciones",
+    "unavailable": "No disponible",
+    "ownersUnavailable": "Los propietarios actuales no se pueden leer en este momento."
   },
   "profileOptions": {
     "copyRssFeed": "Copiar enlace del feed RSS",
@@ -4081,25 +4101,20 @@
       "clearDeadline": "Quitar fecha límite"
     },
     "status": {
-      "rejected": "Rechazado",
-      "open": "Abierto",
-      "expired": "Vencido",
-      "completed": "Completado",
-      "cancelled": "Cancelado",
-      "accepted": "Aceptado",
+      "rejected": "Rechazada",
       "open": "Abierta",
+      "expired": "Caducada",
+      "completed": "Completada",
+      "cancelled": "Cancelada",
+      "accepted": "Aceptado",
       "pending": "Pendiente",
       "awarded": "Adjudicada",
       "in_progress": "En curso",
       "approved": "Aprobada",
       "paid": "Pagado",
       "awaitingPayment": "Pendiente de pago",
-      "rejected": "Rechazada",
-      "completed": "Completada",
-      "cancelled": "Cancelada",
       "disputed": "En disputa",
-      "draft": "Borrador",
-      "expired": "Caducada"
+      "draft": "Borrador"
     },
     "detail": {
       "notFound": "Recompensa no encontrada.",
@@ -5437,9 +5452,16 @@
     "noPast": "No hay eventos pasados",
     "noUpcoming": "No hay eventos próximos",
     "interestedCount": "{{count}} interesados",
-    "loadFailed": "No se pudieron cargar los eventos"
+    "loadFailed": "No se pudieron cargar los eventos",
+    "deleteConfirmTitle": "¿Eliminar este evento?",
+    "deleteConfirmBody": "Esto elimina el evento, su lista de invitados y su chat para todos. No se puede deshacer."
   },
-  "stats": {"chart": {"daily": "Visitantes por día", "dailyHint": "visitantes únicos por día", "empty": "Aún no hay datos para este periodo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitantes por día",
+      "dailyHint": "visitantes únicos por día",
+      "empty": "Aún no hay datos para este periodo"
+    },
     "definitions": {
       "visitorsTerm": "Visitantes"
     },

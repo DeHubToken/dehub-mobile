@@ -3328,7 +3328,9 @@
     "visibilityUpdated": "Видимість оновлено",
     "visibilityFailed": "Не вдалося оновити видимість",
     "forSale": "На продаж",
-    "yourFractions": "Ви володієте {{count}} з {{total}} часток"
+    "yourFractions": "Ви володієте {{count}} з {{total}} часток",
+    "unavailable": "Недоступно",
+    "ownersUnavailable": "Поточні власники зараз не можуть бути прочитані."
   },
   "profileOptions": {
     "copyRssFeed": "Копіювати посилання на RSS-стрічку",
@@ -5388,9 +5390,16 @@
     "noPast": "Минулих подій немає",
     "noUpcoming": "Майбутніх подій немає",
     "interestedCount": "{{count}} зацікавлені",
-    "loadFailed": "Не вдалося завантажити події"
+    "loadFailed": "Не вдалося завантажити події",
+    "deleteConfirmTitle": "Видалити цей захід?",
+    "deleteConfirmBody": "Це видалить подію, список гостей і чат для всіх. Це неможливо скасувати."
   },
-  "stats": {"chart": {"daily": "Відвідувачі за день", "dailyHint": "унікальні відвідувачі за день", "empty": "Поки немає даних за цей період"},
+  "stats": {
+    "chart": {
+      "daily": "Відвідувачі за день",
+      "dailyHint": "унікальні відвідувачі за день",
+      "empty": "Поки немає даних за цей період"
+    },
     "definitions": {
       "visitorsTerm": "Відвідувачі"
     },

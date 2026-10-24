@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "Görünürlük yeniləndi",
     "visibilityFailed": "Görünürlük yenilənə bilmədi",
     "forSale": "Satılır",
-    "yourFractions": "Siz {{count}} fraksiyadan {{total}} -nə sahibsiniz"
+    "yourFractions": "Siz {{count}} fraksiyadan {{total}} -nə sahibsiniz",
+    "unavailable": "Bu məhsul hazırda əldə edilmir.",
+    "ownersUnavailable": "Hazırda mövcud sahibləri oxumaq mümkün deyil."
   },
   "profileOptions": {
     "copyRssFeed": "RSS lent linkini kopyala",
@@ -5021,7 +5023,9 @@
     "noPast": "Keçmiş tədbir yoxdur",
     "noUpcoming": "Yaxınlaşan tədbir yoxdur",
     "interestedCount": "{{count}} maraqlanır",
-    "loadFailed": "Tədbirlər yüklənmədi"
+    "loadFailed": "Tədbirlər yüklənmədi",
+    "deleteConfirmTitle": "Bu tədbir silinsin?",
+    "deleteConfirmBody": "Bu, tədbiri, onun qonaq siyahısını və söhbətini hər kəs üçün silir. Geri qaytarmaq mümkün deyil."
   },
   "stats": {
     "chart": {

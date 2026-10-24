@@ -2962,7 +2962,9 @@
     "visibilityUpdated": "الرؤية اتحدثت",
     "visibilityFailed": "ما قدرتش أحدث الرؤية",
     "forSale": "للبيع",
-    "yourFractions": "معاك {{count}} من {{total}} كسور"
+    "yourFractions": "معاك {{count}} من {{total}} كسور",
+    "unavailable": "لا متوفر",
+    "ownersUnavailable": "لا يمكن قراءة المالكين الحاليين في الوقت الحالي."
   },
   "profileOptions": {
     "copyRssFeed": "نسخ رابط خلاصة RSS",
@@ -4979,7 +4981,9 @@
     "noPast": "مفيش فعاليات فاتت",
     "noUpcoming": "مفيش فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "ما قدرناش نحمّل الفعاليات"
+    "loadFailed": "ما قدرناش نحمّل الفعاليات",
+    "deleteConfirmTitle": "حذف هذا الحدث؟",
+    "deleteConfirmBody": "هذاً يزيل الحدث و قائمة الضيوف و المحادثة من الجميع. لا يمكن التراجع عنها."
   },
   "stats": {
     "chart": {

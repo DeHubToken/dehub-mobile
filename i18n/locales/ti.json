@@ -2942,7 +2942,9 @@
     "visibilityUpdated": "ዝርኣይነት ተሓድሳ",
     "visibilityFailed": "ዝርኣይነት ከተሓድስ ኣይከኣለን",
     "forSale": "ኣብ ሽያጭ",
-    "yourFractions": "ንሕና {{count}} ካብ {{total}} ክፋላት ንሕዞ"
+    "yourFractions": "ንሕና {{count}} ካብ {{total}} ክፋላት ንሕዞ",
+    "unavailable": "ኣይተረኽበን ።",
+    "ownersUnavailable": "እቶም ናይ ሕጂ ባለቤታት ኣብዚ እዋን እዚ ክነበብዎ ኣይክእሉን እዮም ።"
   },
   "profileOptions": {
     "copyRssFeed": "ናይ RSS ፊድ መላግቦ ቅዳሕ",
@@ -4992,7 +4994,9 @@
     "noPast": "ዝሓለፉ ዝግጅታት የለዉን",
     "noUpcoming": "ዝመጽኡ ዝግጅታት የለዉን",
     "interestedCount": "{{count}} ተገዳስነት ኣለዎም",
-    "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን"
+    "loadFailed": "ዝግጅታት ክጽዓኑ ኣይከኣሉን",
+    "deleteConfirmTitle": "ነዚ ፍጻመ እዚ ትሰርሖዶ ፧",
+    "deleteConfirmBody": "እዚ ነቲ ፍጻመ ፡ ዝርዝር ኣጋይሽኡን ዝርርብኡን ንኹሉ የጥፍኦ ። ክጠፍእ ኣይክእልን እዩ ።"
   },
   "stats": {
     "chart": {

@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "Vidljivost ažurirana",
     "visibilityFailed": "Nije moguće ažurirati vidljivost",
     "forSale": "Na prodaju",
-    "yourFractions": "Posjedujete {{count}} od {{total}} udjela"
+    "yourFractions": "Posjedujete {{count}} od {{total}} udjela",
+    "unavailable": "Nije dostupno",
+    "ownersUnavailable": "Trenutačni vlasnici trenutačno se ne mogu pročitati."
   },
   "profileOptions": {
     "copyRssFeed": "Kopiraj poveznicu RSS feeda",
@@ -5023,7 +5025,9 @@
     "noPast": "Nema prošlih događaja",
     "noUpcoming": "Nema nadolazećih događaja",
     "interestedCount": "{{count}} zainteresirano",
-    "loadFailed": "Učitavanje događaja nije uspjelo"
+    "loadFailed": "Učitavanje događaja nije uspjelo",
+    "deleteConfirmTitle": "Želite li izbrisati ovaj događaj?",
+    "deleteConfirmBody": "Time se događaj, popis gostiju i chat uklanjaju za sve sudionike. Ne može se poništiti."
   },
   "stats": {
     "chart": {

@@ -2973,7 +2973,9 @@
     "visibilityUpdated": "Visibilitas diperbarui",
     "visibilityFailed": "Tidak dapat memperbarui visibilitas",
     "forSale": "Dijual",
-    "yourFractions": "Anda memegang {{count}} dari {{total}} pecahan"
+    "yourFractions": "Anda memegang {{count}} dari {{total}} pecahan",
+    "unavailable": "Tidak tersedia",
+    "ownersUnavailable": "Pemilik saat ini tidak dapat dibaca saat ini."
   },
   "profileOptions": {
     "copyRssFeed": "Salin tautan feed RSS",
@@ -5082,9 +5084,16 @@
     "noPast": "Tidak ada acara lampau",
     "noUpcoming": "Tidak ada acara mendatang",
     "interestedCount": "{{count}} tertarik",
-    "loadFailed": "Tidak dapat memuat acara"
+    "loadFailed": "Tidak dapat memuat acara",
+    "deleteConfirmTitle": "Hapus acara ini?",
+    "deleteConfirmBody": "Ini akan menghapus acara, daftar tamunya, dan obrolan untuk semua orang. Itu tidak bisa dibatalkan."
   },
-  "stats": {"chart": {"daily": "Pengunjung per hari", "dailyHint": "pengunjung unik per hari", "empty": "Belum ada data untuk rentang ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pengunjung per hari",
+      "dailyHint": "pengunjung unik per hari",
+      "empty": "Belum ada data untuk rentang ini"
+    },
     "definitions": {
       "visitorsTerm": "Pengunjung"
     },

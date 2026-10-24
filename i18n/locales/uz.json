@@ -2981,7 +2981,9 @@
     "visibilityUpdated": "Ko'rinish yangilandi",
     "visibilityFailed": "Ko'rinishni yangilab bo'lmadi",
     "forSale": "Sotuvda",
-    "yourFractions": "Siz {{total}} ulushning {{count}} ulushiga egasiz"
+    "yourFractions": "Siz {{total}} ulushning {{count}} ulushiga egasiz",
+    "unavailable": "Mavjud emas",
+    "ownersUnavailable": "Hozirgi egalarini hozir o'qib bo'lmaydi."
   },
   "profileOptions": {
     "copyRssFeed": "RSS lenta havolasini nusxalash",
@@ -5041,7 +5043,9 @@
     "noPast": "O‘tgan tadbirlar yo‘q",
     "noUpcoming": "Kelgusi tadbirlar yo‘q",
     "interestedCount": "{{count}} kishi qiziqadi",
-    "loadFailed": "Tadbirlarni yuklab bo‘lmadi"
+    "loadFailed": "Tadbirlarni yuklab bo‘lmadi",
+    "deleteConfirmTitle": "Bu tadbir oʻchirib tashlansinmi?",
+    "deleteConfirmBody": "Bu tadbirni, undagi mehmonlar ro'yxatini va chatni hamma uchun olib tashlaydi. Buni bekor qilib bo'lmaydi."
   },
   "stats": {
     "chart": {

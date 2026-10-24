@@ -2962,7 +2962,8 @@
     "visibilityUpdated": "وِزِبلِٹی اَپ ڈیٹ تھی ڳئی",
     "visibilityFailed": "وِزِبلِٹی اَپ ڈیٹ نہ تھی سَکّی",
     "forSale": "وِک ڳئی",
-    "yourFractions": "تُساں {{count}} دے {{total}} فریکشنز رَکّھدے پئے او"
+    "yourFractions": "تُساں {{count}} دے {{total}} فریکشنز رَکّھدے پئے او",
+    "ownersUnavailable": "اِک نِھاں اِس وقت مالِکِں کو پِڑھا جاسکتا ہے۔"
   },
   "profileOptions": {
     "copyRssFeed": "RSS فیڈ لنک کاپی کرو",
@@ -5006,7 +5007,9 @@
     "noPast": "کوئی لنگھی تقریب کائنی",
     "noUpcoming": "کوئی آوݨ آلی تقریب کائنی",
     "interestedCount": "{{count}} کوں دلچسپی ہے",
-    "loadFailed": "تقریباں لوڈ نہ تھی سڳیاں"
+    "loadFailed": "تقریباں لوڈ نہ تھی سڳیاں",
+    "deleteConfirmTitle": "کیا اِس ایونٹ کو مٹا دیں؟",
+    "deleteConfirmBody": "یہ ایونٹ، اس کا گیسٹ لسٹ اور اس کا چٹ کو سب کے لئے ہٹا دیتا ہے۔ یہ واپس نہیں کیا جا سکتا۔"
   },
   "stats": {
     "chart": {

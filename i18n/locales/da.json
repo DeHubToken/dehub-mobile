@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "Synlighed opdateret",
     "visibilityFailed": "Kunne ikke opdatere synlighed",
     "forSale": "Til salg",
-    "yourFractions": "Du ejer {{count}} af {{total}} brøker"
+    "yourFractions": "Du ejer {{count}} af {{total}} brøker",
+    "unavailable": "Ikke tilgængelig",
+    "ownersUnavailable": "De nuværende ejere kan ikke læses lige nu."
   },
   "profileOptions": {
     "copyRssFeed": "Kopiér link til RSS-feed",
@@ -5035,9 +5037,16 @@
     "noPast": "Ingen tidligere arrangementer",
     "noUpcoming": "Ingen kommende arrangementer",
     "interestedCount": "{{count}} interesserede",
-    "loadFailed": "Kunne ikke indlæse arrangementer"
+    "loadFailed": "Kunne ikke indlæse arrangementer",
+    "deleteConfirmTitle": "Vil du slette denne begivenhed?",
+    "deleteConfirmBody": "Dette fjerner begivenheden, dens gæsteliste og dens chat for alle. Det kan ikke fortrydes."
   },
-  "stats": {"chart": {"daily": "Besøgende pr. dag", "dailyHint": "unikke besøgende pr. dag", "empty": "Endnu ingen data for denne periode"},
+  "stats": {
+    "chart": {
+      "daily": "Besøgende pr. dag",
+      "dailyHint": "unikke besøgende pr. dag",
+      "empty": "Endnu ingen data for denne periode"
+    },
     "definitions": {
       "visitorsTerm": "Besøgende"
     },

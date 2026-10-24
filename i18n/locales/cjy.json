@@ -2955,7 +2955,8 @@
     "visibilityUpdated": "可见性已更新",
     "visibilityFailed": "无法更新可见性",
     "forSale": "待售",
-    "yourFractions": "您持有 {{count}} / {{total}} 份份额"
+    "yourFractions": "您持有 {{count}} / {{total}} 份份额",
+    "ownersUnavailable": "当前无法读取所有者信息。"
   },
   "profileOptions": {
     "copyRssFeed": "复制 RSS 订阅链接",
@@ -5009,7 +5010,9 @@
     "noPast": "没有往期活动",
     "noUpcoming": "没有即将举行的活动",
     "interestedCount": "{{count}} 人感兴趣",
-    "loadFailed": "无法加载活动"
+    "loadFailed": "无法加载活动",
+    "deleteConfirmTitle": "删除此事件？",
+    "deleteConfirmBody": "这个操作将删除该活动、其参与者名单和所有聊天记录，且无法撤销。"
   },
   "stats": {
     "chart": {

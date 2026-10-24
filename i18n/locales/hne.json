@@ -2954,7 +2954,9 @@
     "visibilityUpdated": "दृश्यता अपडेट हुई",
     "visibilityFailed": "दृश्यता अपडेट नहीं हो सकी",
     "forSale": "बिक्री के लिए",
-    "yourFractions": "आप {{count}} में से {{total}} अंश रखते हैं"
+    "yourFractions": "आप {{count}} में से {{total}} अंश रखते हैं",
+    "unavailable": "अनुपलब्ध",
+    "ownersUnavailable": "वर्तमान मालिकमन ल अभी पढ़ना नी मिल सकय ।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS फीड लिंक कॉपी करव",
@@ -5007,7 +5009,9 @@
     "noPast": "कोनो बीते कारजकरम नइ हे",
     "noUpcoming": "कोनो आवइया कारजकरम नइ हे",
     "interestedCount": "{{count}} के रुचि हे",
-    "loadFailed": "कारजकरम लोड नइ होइस"
+    "loadFailed": "कारजकरम लोड नइ होइस",
+    "deleteConfirmTitle": "का आप मन ए कार्यक्रम ल मिटाय हव?",
+    "deleteConfirmBody": "यो इवेंट, तिनकी मेहमान सूची र तिनकी चॅट सबको लागि हटावत हुयो। यो पलटावत नाही होसकत।"
   },
   "stats": {
     "chart": {

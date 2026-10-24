@@ -2977,7 +2977,9 @@
     "visibilityUpdated": "Nohavaozina ny fahitana",
     "visibilityFailed": "Tsy nahavita nanavao ny fahitana",
     "forSale": "Hividy",
-    "yourFractions": "Mitazona {{count}} amin'ny ampahany {{total}} ianao"
+    "yourFractions": "Mitazona {{count}} amin'ny ampahany {{total}} ianao",
+    "unavailable": "Tsy misy",
+    "ownersUnavailable": "Amin'izao fotoana izao dia tsy azo vakiana ny tompon'ny toerana."
   },
   "profileOptions": {
     "copyRssFeed": "Adikao ny rohy RSS feed",
@@ -5036,7 +5038,9 @@
     "noPast": "Tsy misy hetsika lasa",
     "noUpcoming": "Tsy misy hetsika ho avy",
     "interestedCount": "{{count}} liana",
-    "loadFailed": "Tsy voaraikitra ny hetsika"
+    "loadFailed": "Tsy voaraikitra ny hetsika",
+    "deleteConfirmTitle": "Hofafana ity hetsika ity?",
+    "deleteConfirmBody": "Izany dia manala ny hetsika, ny lisitry ny vahiny sy ny firesahana amin'ny olona rehetra. Voavaha io taratasin-tadidy io."
   },
   "stats": {
     "chart": {

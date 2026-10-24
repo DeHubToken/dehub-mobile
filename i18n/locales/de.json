@@ -3033,7 +3033,9 @@
     "visibilityUpdated": "Sichtbarkeit aktualisiert",
     "visibilityFailed": "Sichtbarkeit konnte nicht aktualisiert werden",
     "forSale": "Zu verkaufen",
-    "yourFractions": "Sie halten {{count}} von {{total}} Bruchteilen"
+    "yourFractions": "Sie halten {{count}} von {{total}} Bruchteilen",
+    "unavailable": "Nicht verfügbar",
+    "ownersUnavailable": "Die aktuellen Eigentümer können im Moment nicht gelesen werden."
   },
   "profileOptions": {
     "copyRssFeed": "RSS-Feed-Link kopieren",
@@ -5144,9 +5146,16 @@
     "noPast": "Keine vergangenen Events",
     "noUpcoming": "Keine kommenden Events",
     "interestedCount": "{{count}} interessiert",
-    "loadFailed": "Events konnten nicht geladen werden"
+    "loadFailed": "Events konnten nicht geladen werden",
+    "deleteConfirmTitle": "Dieses Ereignis löschen?",
+    "deleteConfirmBody": "Dadurch werden das Ereignis, seine Gästeliste und sein Chat für alle entfernt. Es kann nicht rückgängig gemacht werden."
   },
-  "stats": {"chart": {"daily": "Besucher pro Tag", "dailyHint": "eindeutige Besucher pro Tag", "empty": "Noch keine Daten für diesen Zeitraum"},
+  "stats": {
+    "chart": {
+      "daily": "Besucher pro Tag",
+      "dailyHint": "eindeutige Besucher pro Tag",
+      "empty": "Noch keine Daten für diesen Zeitraum"
+    },
     "definitions": {
       "visitorsTerm": "Besucher"
     },

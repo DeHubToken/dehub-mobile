@@ -2953,7 +2953,9 @@
     "visibilityUpdated": "An sabunta ganuwa",
     "visibilityFailed": "An kasa sabunta ganuwa",
     "forSale": "Don siyarwa",
-    "yourFractions": "Kuna rike da {{count}} na {{total}} rabo"
+    "yourFractions": "Kuna rike da {{count}} na {{total}} rabo",
+    "unavailable": "Ba a samu ba",
+    "ownersUnavailable": "Ba za a iya karanta masu mallakar yanzu ba a yanzu."
   },
   "profileOptions": {
     "copyRssFeed": "Kwafi hanyar haɗin ciyarwar RSS",
@@ -5011,7 +5013,9 @@
     "noPast": "Babu abubuwan da suka gabata",
     "noUpcoming": "Babu abubuwan da ke tafe",
     "interestedCount": "{{count}} suna sha'awa",
-    "loadFailed": "An kasa loda abubuwan"
+    "loadFailed": "An kasa loda abubuwan",
+    "deleteConfirmTitle": "Share wannan taron?",
+    "deleteConfirmBody": "Wannan yana kawar da taron, jerin baƙi da tattaunawarsa ga kowa da kowa. Ba za a iya cire shi ba."
   },
   "stats": {
     "chart": {

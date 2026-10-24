@@ -2971,7 +2971,9 @@
     "visibilityUpdated": "הנראות עודכנה",
     "visibilityFailed": "לא ניתן לעדכן את הנראות",
     "forSale": "למכירה",
-    "yourFractions": "אתה מחזיק {{count}} מתוך {{total}} חלקים"
+    "yourFractions": "אתה מחזיק {{count}} מתוך {{total}} חלקים",
+    "unavailable": "לא זמין",
+    "ownersUnavailable": "אי אפשר לקרוא את הבעלים הנוכחיים כרגע."
   },
   "profileOptions": {
     "copyRssFeed": "העתק קישור לפיד RSS",
@@ -5026,9 +5028,16 @@
     "noPast": "אין אירועים קודמים",
     "noUpcoming": "אין אירועים קרובים",
     "interestedCount": "{{count}} מעוניינים",
-    "loadFailed": "טעינת האירועים נכשלה"
+    "loadFailed": "טעינת האירועים נכשלה",
+    "deleteConfirmTitle": "מחק את האירוע הזה?",
+    "deleteConfirmBody": "פעולה זו מסירה את האירוע, את רשימת האורחים שלו ואת הצ'אט שלו לכולם. לא ניתן לבטל את הפעולה."
   },
-  "stats": {"chart": {"daily": "מבקרים ליום", "dailyHint": "מבקרים ייחודיים ליום", "empty": "אין עדיין נתונים לטווח הזה"},
+  "stats": {
+    "chart": {
+      "daily": "מבקרים ליום",
+      "dailyHint": "מבקרים ייחודיים ליום",
+      "empty": "אין עדיין נתונים לטווח הזה"
+    },
     "definitions": {
       "visitorsTerm": "מבקרים"
     },

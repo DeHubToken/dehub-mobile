@@ -2981,7 +2981,9 @@
     "visibilityUpdated": "የሚታይነት ተዘምኗል",
     "visibilityFailed": "የሚታይነት ማዘመን አልተቻለም",
     "forSale": "ለሽያጭ",
-    "yourFractions": "የ {{total}} ክፍልፋዮች {{count}} ያላችሁት እርስዎ ነዎት"
+    "yourFractions": "የ {{total}} ክፍልፋዮች {{count}} ያላችሁት እርስዎ ነዎት",
+    "unavailable": "አይገኝም",
+    "ownersUnavailable": "አሁን ያሉት ባለአክሲዮኖች አሁን ሊነበቡ አይችሉም ።"
   },
   "profileOptions": {
     "copyRssFeed": "የRSS ምግብ አገናኝ ቅዳ",
@@ -5034,7 +5036,9 @@
     "noPast": "ያለፉ ዝግጅቶች የሉም",
     "noUpcoming": "ቀጣይ ዝግጅቶች የሉም",
     "interestedCount": "{{count}} ፍላጎት አላቸው",
-    "loadFailed": "ዝግጅቶችን መጫን አልተቻለም"
+    "loadFailed": "ዝግጅቶችን መጫን አልተቻለም",
+    "deleteConfirmTitle": "ይህን ክስተት ሰርዝ?",
+    "deleteConfirmBody": "ይህ ዝግጅቱን ፣ የእንግዳ ዝርዝሩን እና ለሁሉም ሰው ውይይቱን ያስወግዳል ። ሊወገድ አይችልም ።"
   },
   "stats": {
     "chart": {

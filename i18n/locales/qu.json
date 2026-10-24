@@ -2985,7 +2985,9 @@
     "visibilityUpdated": "Riqch'iyqa allinneqta kachkan",
     "visibilityFailed": "Riqch'iytaqa mana allinneqta kachkanchu",
     "forSale": "Rantiypaq",
-    "yourFractions": "Kamachiykuna {{count}} pakakunamanta {{total}} pakakunamanta hap'ishanki"
+    "yourFractions": "Kamachiykuna {{count}} pakakunamanta {{total}} pakakunamanta hap'ishanki",
+    "unavailable": "Mana tarikuq",
+    "ownersUnavailable": "Kunan dueñokunataqa manam kunanpachaqa ñawinchayta atikunmanchu."
   },
   "profileOptions": {
     "copyRssFeed": "RSS feed tinkiyta copiay",
@@ -5045,7 +5047,8 @@
     "noPast": "Mana ñawpa ruwaykuna",
     "noUpcoming": "Mana hamuq ruwaykuna",
     "interestedCount": "{{count}} munanku",
-    "loadFailed": "Ruwaykunata mana chaqnayta atikunchu"
+    "loadFailed": "Ruwaykunata mana chaqnayta atikunchu",
+    "deleteConfirmBody": "Kayqa ruwayta, invitado listanta chaymanta llapa runapaq rimanakuyninta hurqun. Manan kutichiyta atikunmanchu."
   },
   "stats": {
     "chart": {

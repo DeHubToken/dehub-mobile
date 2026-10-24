@@ -2971,7 +2971,9 @@
     "visibilityUpdated": "Vizibilitate actualizată",
     "visibilityFailed": "Nu s-a putut actualiza vizibilitatea",
     "forSale": "De vânzare",
-    "yourFractions": "Deții {{count}} din {{total}} fracțiuni"
+    "yourFractions": "Deții {{count}} din {{total}} fracțiuni",
+    "unavailable": "Indisponibil",
+    "ownersUnavailable": "Proprietarii actuali nu pot fi citiți chiar acum."
   },
   "profileOptions": {
     "copyRssFeed": "Copiază linkul fluxului RSS",
@@ -5031,9 +5033,16 @@
     "noPast": "Niciun eveniment trecut",
     "noUpcoming": "Niciun eveniment viitor",
     "interestedCount": "{{count}} interesați",
-    "loadFailed": "Evenimentele nu au putut fi încărcate"
+    "loadFailed": "Evenimentele nu au putut fi încărcate",
+    "deleteConfirmTitle": "Ștergeți acest eveniment?",
+    "deleteConfirmBody": "Acest lucru elimină evenimentul, lista de invitați și chat-ul pentru toată lumea. Nu poate fi anulată."
   },
-  "stats": {"chart": {"daily": "Vizitatori pe zi", "dailyHint": "vizitatori unici pe zi", "empty": "Încă nu există date pentru acest interval"},
+  "stats": {
+    "chart": {
+      "daily": "Vizitatori pe zi",
+      "dailyHint": "vizitatori unici pe zi",
+      "empty": "Încă nu există date pentru acest interval"
+    },
     "definitions": {
       "visitorsTerm": "Vizitatori"
     },

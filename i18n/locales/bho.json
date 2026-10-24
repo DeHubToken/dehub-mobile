@@ -2962,7 +2962,9 @@
     "visibilityUpdated": "दृश्यता अपडेट की गई",
     "visibilityFailed": "दृश्यता अपडेट नहीं हो सकी",
     "forSale": "बिक्री के लिए",
-    "yourFractions": "आप {{total}} अंशों में से {{count}} अंश रखते हैं"
+    "yourFractions": "आप {{total}} अंशों में से {{count}} अंश रखते हैं",
+    "unavailable": "समुचित रूप से निष्क्रिय",
+    "ownersUnavailable": "फिलहाल पढ़े लिखे के मन नइखे करत ।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS फ़ीड लिंक कॉपी करीं",
@@ -5013,7 +5015,8 @@
     "noPast": "कवनो बीतल कार्यक्रम नइखे",
     "noUpcoming": "कवनो आवे वाला कार्यक्रम नइखे",
     "interestedCount": "{{count}} के रुचि बा",
-    "loadFailed": "कार्यक्रम लोड ना हो पावल"
+    "loadFailed": "कार्यक्रम लोड ना हो पावल",
+    "deleteConfirmBody": "इ घटना, ओकर मेहमानन क सूची अउर सब लोगन क बरे ओकर चैट हटाइ देत ह । ठुकरा ना सकें ।"
   },
   "stats": {
     "chart": {

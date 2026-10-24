@@ -2976,7 +2976,9 @@
     "visibilityUpdated": "Көріну жаңартылды",
     "visibilityFailed": "Көрінуді жаңарту мүмкін болмады",
     "forSale": "Сатылымда",
-    "yourFractions": "Сізде {{count}} бөлшектің {{total}} бөлігі бар"
+    "yourFractions": "Сізде {{count}} бөлшектің {{total}} бөлігі бар",
+    "unavailable": "Қолжетімсіз",
+    "ownersUnavailable": "Алдын ала қате болған: қазіргі иелерді оқуға болады емес."
   },
   "profileOptions": {
     "copyRssFeed": "RSS арнасының сілтемесін көшіру",
@@ -5032,7 +5034,9 @@
     "noPast": "Өткен іс-шаралар жоқ",
     "noUpcoming": "Алдағы іс-шаралар жоқ",
     "interestedCount": "{{count}} қызығады",
-    "loadFailed": "Іс-шараларды жүктеу мүмкін болмады"
+    "loadFailed": "Іс-шараларды жүктеу мүмкін болмады",
+    "deleteConfirmTitle": "Бұл оқиғаны жою керек пе?",
+    "deleteConfirmBody": "Бұл әрекетті, оның қонақ тізімін және барлық адамдар үшін чатін жойып жіберді. Ол қайталанбайды."
   },
   "stats": {
     "chart": {

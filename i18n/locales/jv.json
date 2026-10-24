@@ -2954,7 +2954,9 @@
     "visibilityUpdated": "Visibilitas dianyari",
     "visibilityFailed": "Ora bisa nganyari visibilitas",
     "forSale": "Didol",
-    "yourFractions": "Sampeyan nyekel {{count}} saka {{total}} pecahan"
+    "yourFractions": "Sampeyan nyekel {{count}} saka {{total}} pecahan",
+    "unavailable": "Tidak ada",
+    "ownersUnavailable": "Gwé ngarani kanggo orawe pike pisan ing ngendi."
   },
   "profileOptions": {
     "copyRssFeed": "Salin pranala feed RSS",
@@ -5013,7 +5015,9 @@
     "noPast": "Ora ana acara kepungkur",
     "noUpcoming": "Ora ana acara sabanjure",
     "interestedCount": "{{count}} kepéngin",
-    "loadFailed": "Ora bisa ngemot acara"
+    "loadFailed": "Ora bisa ngemot acara",
+    "deleteConfirmTitle": "Kang nganggo delete event ini?",
+    "deleteConfirmBody": "Nganti event, daen daen list tamu, dan chatnya kanggo semuanya. Gak bisa diembok."
   },
   "stats": {
     "chart": {

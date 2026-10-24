@@ -2955,7 +2955,9 @@
     "visibilityUpdated": "Dîtbarî hate nûkirin",
     "visibilityFailed": "Dîtbarî nehate nûkirin",
     "forSale": "Ji bo firotinê",
-    "yourFractions": "{{count}} ji {{total}} parçeyan di destê te de ne"
+    "yourFractions": "{{count}} ji {{total}} parçeyan di destê te de ne",
+    "unavailable": "Ne berdest e",
+    "ownersUnavailable": "Li serê malikên mezin ên îro nehatiye xwendin."
   },
   "profileOptions": {
     "copyRssFeed": "بەستەری فیدی RSS کۆپی بکە",
@@ -4989,7 +4991,9 @@
     "noPast": "Bûyerên borî tune",
     "noUpcoming": "Bûyerên pêş tune",
     "interestedCount": "{{count}} eleqedar in",
-    "loadFailed": "Bûyer nehatin barkirin"
+    "loadFailed": "Bûyer nehatin barkirin",
+    "deleteConfirmTitle": "Vê bûyerê jê bibe? Gelo were jêbirin?",
+    "deleteConfirmBody": "Ev çalakî, lîsteya mêvanên wê û sohbeta wê ji bo her kesî radike. Ev nikare were vegerandin."
   },
   "stats": {
     "chart": {

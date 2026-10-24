@@ -2985,7 +2985,9 @@
     "visibilityUpdated": "Đã cập nhật chế độ hiển thị",
     "visibilityFailed": "Không thể cập nhật chế độ hiển thị",
     "forSale": "Đang bán",
-    "yourFractions": "Bạn nắm giữ {{count}}/{{total}} phần sở hữu"
+    "yourFractions": "Bạn nắm giữ {{count}}/{{total}} phần sở hữu",
+    "unavailable": "Không còn trống",
+    "ownersUnavailable": "Các chủ sở hữu hiện tại không thể đọc được ngay bây giờ."
   },
   "profileOptions": {
     "copyRssFeed": "Sao chép liên kết nguồn cấp RSS",
@@ -5045,9 +5047,16 @@
     "noPast": "Không có sự kiện đã qua",
     "noUpcoming": "Không có sự kiện sắp tới",
     "interestedCount": "{{count}} quan tâm",
-    "loadFailed": "Không tải được sự kiện"
+    "loadFailed": "Không tải được sự kiện",
+    "deleteConfirmTitle": "Xóa sự kiện này?",
+    "deleteConfirmBody": "Thao tác này sẽ xóa sự kiện, danh sách khách mời và cuộc trò chuyện cho tất cả mọi người. Không thể hoàn tác."
   },
-  "stats": {"chart": {"daily": "Khách truy cập mỗi ngày", "dailyHint": "khách truy cập duy nhất mỗi ngày", "empty": "Chưa có dữ liệu cho khoảng thời gian này"},
+  "stats": {
+    "chart": {
+      "daily": "Khách truy cập mỗi ngày",
+      "dailyHint": "khách truy cập duy nhất mỗi ngày",
+      "empty": "Chưa có dữ liệu cho khoảng thời gian này"
+    },
     "definitions": {
       "visitorsTerm": "Khách truy cập"
     },

@@ -5012,7 +5012,9 @@
     "noPast": "ما في فعاليات سابقة",
     "noUpcoming": "ما في فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "ما قدرنا نحمّل الفعاليات"
+    "loadFailed": "ما قدرنا نحمّل الفعاليات",
+    "deleteConfirmTitle": "حطّ هذا الحدث؟",
+    "deleteConfirmBody": "ياكلف الحدث و قائمة الضيوف و الدردشة معاه من كل حد. ما بيشوفش عودهش."
   },
   "stats": {
     "chart": {

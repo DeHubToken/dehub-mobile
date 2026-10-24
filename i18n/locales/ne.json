@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "दृश्यता अपडेट गरियो",
     "visibilityFailed": "दृश्यता अपडेट गर्न सकिएन",
     "forSale": "बिक्रीको लागि",
-    "yourFractions": "तपाईंले {{total}} अंशहरूको {{count}} अंशहरू राख्नुभएको छ"
+    "yourFractions": "तपाईंले {{total}} अंशहरूको {{count}} अंशहरू राख्नुभएको छ",
+    "unavailable": "उपलब्ध छैन",
+    "ownersUnavailable": "हालका मालिकहरू अहिले पढ्न सकिँदैन ।"
   },
   "profileOptions": {
     "copyRssFeed": "RSS फिड लिङ्क कपि गर्नुहोस्",
@@ -5030,7 +5032,9 @@
     "noPast": "विगतका कार्यक्रम छैनन्",
     "noUpcoming": "आउँदा कार्यक्रम छैनन्",
     "interestedCount": "{{count}} जना इच्छुक",
-    "loadFailed": "कार्यक्रम लोड गर्न सकिएन"
+    "loadFailed": "कार्यक्रम लोड गर्न सकिएन",
+    "deleteConfirmTitle": "यो कार्यक्रम मेटाउने हो?",
+    "deleteConfirmBody": "यसले कार्यक्रम, यसको पाहुना सूची र सबैको लागि यसको च्याट हटाउँछ । यसलाई पूर्ववत गर्न सकिँदैन ।"
   },
   "stats": {
     "chart": {

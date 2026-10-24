@@ -2962,7 +2962,8 @@
     "visibilityUpdated": "تم تحديث الرؤية",
     "visibilityFailed": "تعذر تحديث الرؤية",
     "forSale": "للبيع",
-    "yourFractions": "تمتلك {{count}} من {{total}} كسور"
+    "yourFractions": "تمتلك {{count}} من {{total}} كسور",
+    "ownersUnavailable": "الملاكين الحاليين مش ممكن تقرا دلوقتي."
   },
   "profileOptions": {
     "copyRssFeed": "نسخ رابط خلاصة RSS",
@@ -5002,7 +5003,8 @@
     "noPast": "ما فيه فعاليات سابقة",
     "noUpcoming": "ما فيه فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "ما قدرنا نحمّل الفعاليات"
+    "loadFailed": "ما قدرنا نحمّل الفعاليات",
+    "deleteConfirmBody": "هذو يزلو الحفل وجميع ضيوفو وديالكاتو وياكلو لكل واحد. مايشوفو عاودو."
   },
   "stats": {
     "chart": {

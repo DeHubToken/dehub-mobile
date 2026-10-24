@@ -2945,7 +2945,9 @@
     "visibilityUpdated": "Obulamusi bwa visibility bwalungisibwa",
     "visibilityFailed": "Tewali kulungisa visibility",
     "forSale": "Kigulibwa",
-    "yourFractions": "Oteekamu {{count}} ku bitundu {{total}}"
+    "yourFractions": "Oteekamu {{count}} ku bitundu {{total}}",
+    "unavailable": "O tɛ se ka kɛ",
+    "ownersUnavailable": "Mɔgɔ minw be kalan kɛra sisan, olu tɛ se ka kalan kɛ sisan."
   },
   "profileOptions": {
     "copyRssFeed": "RSS feed lien kopi",
@@ -4993,7 +4995,9 @@
     "noPast": "Ko tɛmɛnenw si tɛ yen",
     "noUpcoming": "Ko nataw si tɛ yen",
     "interestedCount": "{{count}} b'a fɛ",
-    "loadFailed": "Kow ma se ka doni"
+    "loadFailed": "Kow ma se ka doni",
+    "deleteConfirmTitle": "Yala i b'a fɛ k'o koo ɲɛnabɔ wa?",
+    "deleteConfirmBody": "O b'a to mɔgɔ si tɛ se ka baro kɛ n'a ye. O kɔ, u tɛ se ka to nii na."
   },
   "stats": {
     "chart": {

@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "공개 설정 업데이트됨",
     "visibilityFailed": "공개 설정을 업데이트할 수 없습니다",
     "forSale": "판매 중",
-    "yourFractions": "{{total}}개 프랙션 중 {{count}}개를 보유하고 있습니다"
+    "yourFractions": "{{total}}개 프랙션 중 {{count}}개를 보유하고 있습니다",
+    "unavailable": "사용 불가",
+    "ownersUnavailable": "현재 소유자를 읽을 수 없습니다."
   },
   "profileOptions": {
     "copyRssFeed": "RSS 피드 링크 복사",
@@ -5084,9 +5086,16 @@
     "noPast": "지난 행사가 없습니다",
     "noUpcoming": "예정된 행사가 없습니다",
     "interestedCount": "{{count}}명 관심 있음",
-    "loadFailed": "행사를 불러오지 못했습니다"
+    "loadFailed": "행사를 불러오지 못했습니다",
+    "deleteConfirmTitle": "이 이벤트를 삭제하시겠습니까?",
+    "deleteConfirmBody": "이렇게 하면 이벤트, 게스트 목록 및 모든 사람을 위한 채팅이 삭제됩니다. 되돌릴 수 없습니다."
   },
-  "stats": {"chart": {"daily": "일별 방문자", "dailyHint": "일별 순 방문자", "empty": "이 기간의 데이터가 아직 없습니다"},
+  "stats": {
+    "chart": {
+      "daily": "일별 방문자",
+      "dailyHint": "일별 순 방문자",
+      "empty": "이 기간의 데이터가 아직 없습니다"
+    },
     "definitions": {
       "visitorsTerm": "방문자"
     },

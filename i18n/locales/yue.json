@@ -2961,7 +2961,9 @@
     "visibilityUpdated": "可見性已更新",
     "visibilityFailed": "無法更新可見性",
     "forSale": "出售中",
-    "yourFractions": "您持有 {{count}} 個 {{total}} 分數中的"
+    "yourFractions": "您持有 {{count}} 個 {{total}} 分數中的",
+    "unavailable": "唔可以用",
+    "ownersUnavailable": "而家睇唔到而家嘅擁有者。"
   },
   "profileOptions": {
     "copyRssFeed": "複製 RSS 訂閱連結",
@@ -5016,7 +5018,9 @@
     "noPast": "冇往期活動",
     "noUpcoming": "冇即將舉行嘅活動",
     "interestedCount": "{{count}} 人感興趣",
-    "loadFailed": "無法載入活動"
+    "loadFailed": "無法載入活動",
+    "deleteConfirmTitle": "刪除呢個活動？",
+    "deleteConfirmBody": "呢個操作會移除活動、佢嘅嘉賓名單同埋所有人嘅即時通訊。呢個係復原唔到嘅。"
   },
   "stats": {
     "chart": {

@@ -3001,7 +3001,9 @@
     "visibilityUpdated": "قابلیت مشاهده به‌روز شد",
     "visibilityFailed": "قابلیت مشاهده به‌روز نشد",
     "forSale": "برای فروش",
-    "yourFractions": "شما {{count}} از {{total}} کسری را در اختیار دارید"
+    "yourFractions": "شما {{count}} از {{total}} کسری را در اختیار دارید",
+    "unavailable": "موجود نیست",
+    "ownersUnavailable": "صاحبان فعلی را الان نمی‌شود خواند."
   },
   "profileOptions": {
     "copyRssFeed": "کپی لینک خوراک RSS",
@@ -5058,9 +5060,16 @@
     "noPast": "رویداد گذشته‌ای نیست",
     "noUpcoming": "رویداد پیش‌رویی نیست",
     "interestedCount": "{{count}} نفر علاقه‌مند",
-    "loadFailed": "بارگذاری رویدادها ممکن نشد"
+    "loadFailed": "بارگذاری رویدادها ممکن نشد",
+    "deleteConfirmTitle": "این رویداد حذف شود؟",
+    "deleteConfirmBody": "این کار رویداد، فهرست مهمانان و چت مربوط به آن را برای همه حذف می‌کند. این عملیات قابل بازگشت نیست."
   },
-  "stats": {"chart": {"daily": "بازدیدکنندگان در روز", "dailyHint": "بازدیدکنندگان یکتا در روز", "empty": "هنوز داده‌ای برای این بازه نیست"},
+  "stats": {
+    "chart": {
+      "daily": "بازدیدکنندگان در روز",
+      "dailyHint": "بازدیدکنندگان یکتا در روز",
+      "empty": "هنوز داده‌ای برای این بازه نیست"
+    },
     "definitions": {
       "visitorsTerm": "بازدیدکنندگان"
     },

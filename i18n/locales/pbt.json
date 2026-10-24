@@ -2945,7 +2945,8 @@
     "visibilityUpdated": "د لیدلو وړتیا تازه شوه",
     "visibilityFailed": "د لیدلو وړتیا تازه نه شوه",
     "forSale": "د خرڅلاو لپاره",
-    "yourFractions": "تاسو د {{total}} برخو څخه {{count}} لري"
+    "yourFractions": "تاسو د {{total}} برخو څخه {{count}} لري",
+    "ownersUnavailable": "په اوس وخت کې لوستونکي نه شي لوستلای."
   },
   "profileOptions": {
     "copyRssFeed": "د RSS فیډ لینک کاپي کړئ",
@@ -5002,7 +5003,9 @@
     "noPast": "هیڅ تېرې پیښې نشته",
     "noUpcoming": "هیڅ راتلونکې پیښه نشته",
     "interestedCount": "{{count}} لیوالتیا لري",
-    "loadFailed": "پیښې بار نشوې"
+    "loadFailed": "پیښې بار نشوې",
+    "deleteConfirmTitle": "ایا تاسو د دې پیښې په اړه اوریدلي یاست ؟",
+    "deleteConfirmBody": "دا د پیښې، د هغې میلمنو لیست او د هرچا لپاره د هغې چیٹ لرې کوي. دا له مینځه وړل کیدی نشي."
   },
   "stats": {
     "chart": {

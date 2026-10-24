@@ -2939,7 +2939,8 @@
     "tipsOnPost": "Tip dem for dis post",
     "notFound": "We no see di post",
     "visibilityFailed": "E no fit change who fit see",
-    "yourFractions": "You get {{count}} for {{total}} fraction dem"
+    "yourFractions": "You get {{count}} for {{total}} fraction dem",
+    "ownersUnavailable": "E current owner no dey fit read a go now."
   },
   "profileOptions": {
     "copyRssFeed": "Copy RSS feed link",
@@ -4970,7 +4971,8 @@
     "noPast": "No event weh e don pass",
     "noUpcoming": "No event weh e di come",
     "interestedCount": "{{count}} dey interested",
-    "loadFailed": "We no fit load di events"
+    "loadFailed": "We no fit load di events",
+    "deleteConfirmBody": "Wetin you dey do, dis remove event, all dem guest, and chat for everybody. No go undo again."
   },
   "stats": {
     "chart": {

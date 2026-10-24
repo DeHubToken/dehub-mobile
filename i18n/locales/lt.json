@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "Matomumas atnaujintas",
     "visibilityFailed": "Nepavyko atnaujinti matomumo",
     "forSale": "Parduodama",
-    "yourFractions": "Jums priklauso {{count}} iš {{total}} dalių"
+    "yourFractions": "Jums priklauso {{count}} iš {{total}} dalių",
+    "unavailable": "Neprieinama",
+    "ownersUnavailable": "Dabartiniai savininkai šiuo metu negali būti skaitomi."
   },
   "profileOptions": {
     "copyRssFeed": "Kopijuoti RSS srauto nuorodą",
@@ -5023,7 +5025,9 @@
     "noPast": "Praėjusių renginių nėra",
     "noUpcoming": "Artėjančių renginių nėra",
     "interestedCount": "{{count}} domisi",
-    "loadFailed": "Nepavyko įkelti renginių"
+    "loadFailed": "Nepavyko įkelti renginių",
+    "deleteConfirmTitle": "Ištrinti šį įvykį?",
+    "deleteConfirmBody": "Tai pašalina įvykį, jo svečių sąrašą ir pokalbį visiems. Tai negali būti anuliuota."
   },
   "stats": {
     "chart": {

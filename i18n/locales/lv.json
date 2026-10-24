@@ -2963,7 +2963,9 @@
     "visibilityUpdated": "Redzamība atjaunināta",
     "visibilityFailed": "Nevarēja atjaunināt redzamību",
     "forSale": "Pārdošanā",
-    "yourFractions": "Jums pieder {{count}} no {{total}} daļām"
+    "yourFractions": "Jums pieder {{count}} no {{total}} daļām",
+    "unavailable": "Nav pieejams",
+    "ownersUnavailable": "Pašreizējie īpašnieki nav lasāmi šajā brīdī."
   },
   "profileOptions": {
     "copyRssFeed": "Kopēt RSS plūsmas saiti",
@@ -5023,7 +5025,9 @@
     "noPast": "Nav pagājušu pasākumu",
     "noUpcoming": "Nav gaidāmu pasākumu",
     "interestedCount": "{{count}} ieinteresēti",
-    "loadFailed": "Neizdevās ielādēt pasākumus"
+    "loadFailed": "Neizdevās ielādēt pasākumus",
+    "deleteConfirmTitle": "Izdzēst šo notiku?",
+    "deleteConfirmBody": "Tādējādi pasākums, tā viesu saraksts un tērzēšana tiek noņemta visiem. To nevar atsaukt."
   },
   "stats": {
     "chart": {

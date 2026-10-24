@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "Synlighet uppdaterad",
     "visibilityFailed": "Kunde inte uppdatera synlighet",
     "forSale": "Till salu",
-    "yourFractions": "Du äger {{count}} av {{total}} fraktioner"
+    "yourFractions": "Du äger {{count}} av {{total}} fraktioner",
+    "unavailable": "Tillgänglighet saknas",
+    "ownersUnavailable": "De nuvarande ägarna kan inte läsas just nu."
   },
   "profileOptions": {
     "copyRssFeed": "Kopiera länk till RSS-flöde",
@@ -5035,9 +5037,16 @@
     "noPast": "Inga tidigare evenemang",
     "noUpcoming": "Inga kommande evenemang",
     "interestedCount": "{{count}} intresserade",
-    "loadFailed": "Det gick inte att läsa in evenemang"
+    "loadFailed": "Det gick inte att läsa in evenemang",
+    "deleteConfirmTitle": "Ta bort detta evenemang?",
+    "deleteConfirmBody": "Det här tar bort händelsen, dess gästlista och dess chatt för alla. Det går inte att ångra."
   },
-  "stats": {"chart": {"daily": "Besökare per dag", "dailyHint": "unika besökare per dag", "empty": "Ingen data för den här perioden ännu"},
+  "stats": {
+    "chart": {
+      "daily": "Besökare per dag",
+      "dailyHint": "unika besökare per dag",
+      "empty": "Ingen data för den här perioden ännu"
+    },
     "definitions": {
       "visitorsTerm": "Besökare"
     },

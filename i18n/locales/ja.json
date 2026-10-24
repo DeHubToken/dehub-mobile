@@ -2969,7 +2969,9 @@
     "visibilityUpdated": "公開設定が更新されました",
     "visibilityFailed": "可視性を更新できませんでした",
     "forSale": "販売中",
-    "yourFractions": "{{total}}フラクション中{{count}}を保有しています"
+    "yourFractions": "{{total}}フラクション中{{count}}を保有しています",
+    "unavailable": "利用できません",
+    "ownersUnavailable": "現在の所有者は現在読み取れません。"
   },
   "profileOptions": {
     "copyRssFeed": "RSSフィードのリンクをコピー",
@@ -5073,9 +5075,16 @@
     "noPast": "過去のイベントはありません",
     "noUpcoming": "今後のイベントはありません",
     "interestedCount": "{{count}}人が興味あり",
-    "loadFailed": "イベントを読み込めませんでした"
+    "loadFailed": "イベントを読み込めませんでした",
+    "deleteConfirmTitle": "このイベントを削除しますか？",
+    "deleteConfirmBody": "これにより、イベント、ゲストリスト、全員のチャットが削除されます。元に戻すことはできません。"
   },
-  "stats": {"chart": {"daily": "1 日あたりの訪問者", "dailyHint": "1 日あたりのユニーク訪問者", "empty": "この期間のデータはまだありません"},
+  "stats": {
+    "chart": {
+      "daily": "1 日あたりの訪問者",
+      "dailyHint": "1 日あたりのユニーク訪問者",
+      "empty": "この期間のデータはまだありません"
+    },
     "definitions": {
       "visitorsTerm": "訪問者"
     },

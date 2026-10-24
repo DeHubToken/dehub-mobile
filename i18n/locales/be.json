@@ -2971,7 +2971,9 @@
     "visibilityUpdated": "Бачнасць абноўлена",
     "visibilityFailed": "Немагчыма абнавіць бачнасць",
     "forSale": "Продаж",
-    "yourFractions": "Вы трымаеце {{count}} з {{total}} фракцыі"
+    "yourFractions": "Вы трымаеце {{count}} з {{total}} фракцыі",
+    "unavailable": "Недаступны",
+    "ownersUnavailable": "Цяперашнія ўладальнікі не могуць прачытаць зараз."
   },
   "profileOptions": {
     "copyRssFeed": "Капіяваць спасылку на RSS-стужку",
@@ -5023,7 +5025,9 @@
     "noPast": "Няма мінулых падзей",
     "noUpcoming": "Няма будучых падзей",
     "interestedCount": "{{count}} зацікаўлены",
-    "loadFailed": "Не ўдалося загрузіць падзеі"
+    "loadFailed": "Не ўдалося загрузіць падзеі",
+    "deleteConfirmTitle": "Выдаліць гэтую падзею?",
+    "deleteConfirmBody": "Гэта выдаляе падзею, яе спіс гасцей і чат для ўсіх. Гэта немагчыма адмяніць."
   },
   "stats": {
     "chart": {

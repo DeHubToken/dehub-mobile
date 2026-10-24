@@ -2952,7 +2952,9 @@
     "visibilityUpdated": "Görünme täzelendi",
     "visibilityFailed": "Görünme täzelenip bilinmedi",
     "forSale": "Satylyşda",
-    "yourFractions": "Paýnamalaryň {{total}}-siniň {{count}}-sini özüňizde saklaýarsyňyz"
+    "yourFractions": "Paýnamalaryň {{total}}-siniň {{count}}-sini özüňizde saklaýarsyňyz",
+    "unavailable": "Ähli zat ýok",
+    "ownersUnavailable": "Häzirki mugallymlar ony okap bilmeýärler."
   },
   "profileOptions": {
     "copyRssFeed": "RSS lenta baglanyşygyny göçür",
@@ -5011,7 +5013,9 @@
     "noPast": "Geçmiş çäreler ýok",
     "noUpcoming": "Geljek çäreler ýok",
     "interestedCount": "{{count}} gyzyklanýar",
-    "loadFailed": "Çäreler ýüklenip bilmedi"
+    "loadFailed": "Çäreler ýüklenip bilmedi",
+    "deleteConfirmTitle": "Bu waka nireden geçdi?",
+    "deleteConfirmBody": "Bu waka, onuň myhmanlary we gürrüňini hemmelere aýyrýar. Bu äsgermezlik edilmez."
   },
   "stats": {
     "chart": {

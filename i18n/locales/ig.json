@@ -2954,7 +2954,9 @@
     "visibilityUpdated": "Ngosi emelitere",
     "visibilityFailed": "Agaghị emelitenwu ngosi",
     "forSale": "N 'ihi na ire",
-    "yourFractions": "I jide {{count}} nke {{total}} fractions"
+    "yourFractions": "I jide {{count}} nke {{total}} fractions",
+    "unavailable": "Agaghị adị",
+    "ownersUnavailable": "Enweghị ike ịgụ ndị nwe ya ugbu a ugbu a."
   },
   "profileOptions": {
     "copyRssFeed": "Detụọ njikọ feed RSS",
@@ -5012,7 +5014,9 @@
     "noPast": "Enweghị mmemme gara aga",
     "noUpcoming": "Enweghị mmemme na-abịa",
     "interestedCount": "{{count}} nwere mmasị",
-    "loadFailed": "Enweghị ike ibubata mmemme"
+    "loadFailed": "Enweghị ike ibubata mmemme",
+    "deleteConfirmTitle": "Hichaa mmemme a?",
+    "deleteConfirmBody": "Nke a na-ewepụ ihe omume ahụ, ndepụta ndị ọbịa ya na nkata ya maka mmadụ niile. Agaghị emezigharị ya."
   },
   "stats": {
     "chart": {

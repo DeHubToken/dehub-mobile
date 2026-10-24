@@ -2975,7 +2975,9 @@
     "visibilityUpdated": "Láthatóság frissítve",
     "visibilityFailed": "Nem sikerült frissíteni a láthatóságot",
     "forSale": "Eladó",
-    "yourFractions": "{{count}} törtrész a(z) {{total}} törtrészből a birtokodban van"
+    "yourFractions": "{{count}} törtrész a(z) {{total}} törtrészből a birtokodban van",
+    "unavailable": "Nem érhető el",
+    "ownersUnavailable": "A jelenlegi tulajdonosok jelenleg nem olvashatók."
   },
   "profileOptions": {
     "copyRssFeed": "RSS-hírcsatorna linkjének másolása",
@@ -5035,9 +5037,16 @@
     "noPast": "Nincsenek korábbi események",
     "noUpcoming": "Nincsenek közelgő események",
     "interestedCount": "{{count}} érdeklődik",
-    "loadFailed": "Az események betöltése sikertelen"
+    "loadFailed": "Az események betöltése sikertelen",
+    "deleteConfirmTitle": "Törli ezt az eseményt?",
+    "deleteConfirmBody": "Ez eltávolítja az eseményt, a vendéglistát és a csevegést mindenki számára. Nem lehet visszavonni."
   },
-  "stats": {"chart": {"daily": "Látogatók naponta", "dailyHint": "egyedi látogatók naponta", "empty": "Ehhez az időszakhoz még nincs adat"},
+  "stats": {
+    "chart": {
+      "daily": "Látogatók naponta",
+      "dailyHint": "egyedi látogatók naponta",
+      "empty": "Ehhez az időszakhoz még nincs adat"
+    },
     "definitions": {
       "visitorsTerm": "Látogatók"
     },

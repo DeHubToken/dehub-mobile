@@ -2966,7 +2966,9 @@
     "visibilityUpdated": "ਦਿਖਣਯੋਗਤਾ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ",
     "visibilityFailed": "ਦਿਖਣਯੋਗਤਾ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ",
     "forSale": "ਵਿਕਰੀ ਲਈ",
-    "yourFractions": "ਤੁਸੀਂ {{count}}{{total}} ਫਰੈਕਸ਼ਨਾਂ ਨੂੰ ਫੜਦੇ ਹੋ"
+    "yourFractions": "ਤੁਸੀਂ {{count}}{{total}} ਫਰੈਕਸ਼ਨਾਂ ਨੂੰ ਫੜਦੇ ਹੋ",
+    "unavailable": "ਅਪਲੱਬਧ",
+    "ownersUnavailable": "ਮੌਜੂਦਾ ਮਾਲਕਾਂ ਨੂੰ ਇਸ ਸਮੇਂ ਨਹੀਂ ਪੜ੍ਹਿਆ ਜਾ ਸਕਦਾ."
   },
   "profileOptions": {
     "copyRssFeed": "RSS ਫੀਡ ਲਿੰਕ ਕਾਪੀ ਕਰੋ",
@@ -5022,7 +5024,9 @@
     "noPast": "ਕੋਈ ਪਿਛਲਾ ਸਮਾਗਮ ਨਹੀਂ",
     "noUpcoming": "ਕੋਈ ਆਉਣ ਵਾਲਾ ਸਮਾਗਮ ਨਹੀਂ",
     "interestedCount": "{{count}} ਨੂੰ ਦਿਲਚਸਪੀ ਹੈ",
-    "loadFailed": "ਸਮਾਗਮ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ"
+    "loadFailed": "ਸਮਾਗਮ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ",
+    "deleteConfirmTitle": "ਕੀ ਇਹ ਇਵੈਂਟ ਮਿਟਾਉਣਾ ਹੈ?",
+    "deleteConfirmBody": "ਇਹ ਘਟਨਾ ਨੂੰ ਹਟਾ ਦਿੰਦਾ ਹੈ, ਇਸ ਦੇ ਮਹਿਮਾਨ ਸੂਚੀ ਅਤੇ ਹਰ ਕਿਸੇ ਲਈ ਇਸ ਦੇ ਚੈਟ. ਇਸ ਨੂੰ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ।"
   },
   "stats": {
     "chart": {

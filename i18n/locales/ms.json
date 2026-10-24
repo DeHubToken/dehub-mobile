@@ -3229,7 +3229,9 @@
     "visibilityUpdated": "Keterlihatan dikemas kini",
     "visibilityFailed": "Gagal mengemas kini keterlihatan",
     "forSale": "Untuk dijual",
-    "yourFractions": "Anda memegang {{count}} daripada {{total}} pecahan"
+    "yourFractions": "Anda memegang {{count}} daripada {{total}} pecahan",
+    "unavailable": "Tidak tersedia",
+    "ownersUnavailable": "Pemilik semasa tidak boleh dibaca sekarang."
   },
   "profileOptions": {
     "copyRssFeed": "Salin pautan suapan RSS",
@@ -5289,9 +5291,16 @@
     "noPast": "Tiada acara lepas",
     "noUpcoming": "Tiada acara akan datang",
     "interestedCount": "{{count}} berminat",
-    "loadFailed": "Tidak dapat memuatkan acara"
+    "loadFailed": "Tidak dapat memuatkan acara",
+    "deleteConfirmTitle": "Hapuskan acara ini?",
+    "deleteConfirmBody": "Ini membuang acara, senarai tetamu dan sembangnya untuk semua orang. Ia tidak boleh dibatalkan."
   },
-  "stats": {"chart": {"daily": "Pelawat sehari", "dailyHint": "pelawat unik sehari", "empty": "Belum ada data untuk tempoh ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pelawat sehari",
+      "dailyHint": "pelawat unik sehari",
+      "empty": "Belum ada data untuk tempoh ini"
+    },
     "definitions": {
       "visitorsTerm": "Pelawat"
     },
