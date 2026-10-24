@@ -19,7 +19,8 @@ import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../conte
 import Slider from "@react-native-community/slider";
 import { GlassHold } from "./GlassHold";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from '../../context/ThemeContext';
+import { useAppTheme, useThemeRootStyle } from '../../context/ThemeContext';
+import GlassModal from "../ui/GlassModal";
 import { storage } from '../../libs/storage';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getCachedHue, setHueState } from "../../libs/audioHueState";
@@ -293,6 +294,9 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
 });
 
 const pickerStyles = StyleSheet.create({
+  studioChip: { height: 32, paddingHorizontal: 10, borderRadius: 999, alignItems: "center", justifyContent: "center" },
+  studioLabel: { color: "#fff", fontSize: 12, fontWeight: "500" },
+  studioMore: { height: 30, flexDirection: "row", alignItems: "center", gap: 3, paddingLeft: 11, paddingRight: 8, borderRadius: 999, borderWidth: StyleSheet.hairlineWidth, borderColor: "rgba(255,255,255,.3)", opacity: 0.85 },
   beam: {
     position: "absolute",
     bottom: 2,
@@ -306,6 +310,43 @@ const pickerStyles = StyleSheet.create({
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 0 },
   },
+});
+
+/* ─── Studio card style picker ──────────────────────────────── */
+// System/Glass card: a few quick picks, everything else behind More (same as web).
+const QUICK_STYLES: VisualizerStyle[] = ["bars", "waveform", "circular"];
+
+const StudioStylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const rootStyle = useThemeRootStyle();
+  // The playing style always shows, taking the last quick slot when it isn't one.
+  const quick = QUICK_STYLES.includes(activeStyle) ? QUICK_STYLES : [...QUICK_STYLES.slice(0, -1), activeStyle];
+  const label = (v: VisualizerStyle) => VISUALIZER_STYLES.find((s) => s.value === v)?.label ?? v;
+  const chip = (v: VisualizerStyle, onPress: () => void, flex?: boolean) => {
+    const isActive = v === activeStyle;
+    return (
+      <Pressable key={v} onPress={onPress} accessibilityRole="button" accessibilityState={{ selected: isActive }} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }}
+        style={[pickerStyles.studioChip, flex && { width: "33.33%" }, { opacity: isActive ? 1 : 0.6 }]}>
+        {isActive && <View pointerEvents="none" style={pickerStyles.beam} />}
+        <Text numberOfLines={1} style={pickerStyles.studioLabel}>{label(v)}</Text>
+      </Pressable>
+    );
+  };
+  return (
+    <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
+      {quick.map((v) => chip(v, () => onStyleChange(v)))}
+      <Pressable onPress={() => setOpen(true)} accessibilityRole="button" style={pickerStyles.studioMore}>
+        <Text style={pickerStyles.studioLabel}>{t("feedCard.moreShare")}</Text>
+        <Icon name="ChevronUp" size={12} color="rgba(255,255,255,.7)" />
+      </Pressable>
+      <GlassModal surface="theme" visible={open} onClose={() => setOpen(false)} presentation="bottom" scrollable maxHeight="60%" blurIntensity={30}>
+        <View style={[{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 12, paddingTop: 12, paddingBottom: 16 }, rootStyle]}>
+          {VISUALIZER_STYLES.map((s) => chip(s.value, () => { onStyleChange(s.value); setOpen(false); }, true))}
+        </View>
+      </GlassModal>
+    </View>
+  );
 });
 
 /* ─── Color Hue Slider ──────────────────────────────────────── */
@@ -1238,7 +1279,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
             <TouchableOpacity accessibilityRole="button" accessibilityLabel="+10 s" onPress={() => handleSeek(shownDuration ? (shownTime + 10) / shownDuration : 0)} style={[styles.glassControl, compactGlass && { width: 28, height: 28 }]}><Text style={styles.glassSkip}>+10</Text></TouchableOpacity>
           </View>
         </View>
-        <View style={{ paddingTop: 12 }}><StylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
+        <View style={{ paddingTop: 12 }}><StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} /></View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingTop: 12 }}>
           <HueSlider hue={hue} onHueChange={handleHueChange} flex={0.85} />
           <View style={{ flex: 2, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
