@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplicații conectate",
+    "connectedDescription": "Aplicațiile Mastodon în care te-ai conectat cu acest cont. Elimină una ca să o deconectezi.",
+    "connectedEmpty": "Nicio aplicație conectată încă.",
+    "lastUsed": "Folosită ultima dată {{date}}",
+    "remove": "Elimină",
+    "removed": "Aplicație eliminată",
+    "failed": "N-a mers. Încearcă din nou."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Oamenii de pe Mastodon și din alte aplicații fediverse te pot găsi și urmări la această adresă. Postările tale publice noi ajung la ei acolo.",

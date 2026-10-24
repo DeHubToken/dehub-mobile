@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "已连接个应用",
+    "connectedDescription": "侬用搿只账号登录过个 Mastodon 应用。移除一只就会拿伊退出登录。",
+    "connectedEmpty": "还呒没连接任何应用。",
+    "lastUsed": "上趟用过 {{date}}",
+    "remove": "移除",
+    "removed": "应用已经移除",
+    "failed": "勿成功。再试一趟。"
+  },
   "fediverse": {
     "title": "联邦宇宙",
     "description": "Mastodon 搭其他联邦宇宙应用浪个人好通过搿只地址寻着侬、关注侬。侬新个公开帖子会勒伊面送到伊拉。",

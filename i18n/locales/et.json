@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ühendatud rakendused",
+    "connectedDescription": "Mastodoni rakendused, kuhu oled selle kontoga sisse loginud. Eemalda mõni, et sellest välja logida.",
+    "connectedEmpty": "Ühendatud rakendusi veel pole.",
+    "lastUsed": "Viimati kasutatud {{date}}",
+    "remove": "Eemalda",
+    "removed": "Rakendus eemaldatud",
+    "failed": "See ei õnnestunud. Proovi uuesti."
+  },
   "fediverse": {
     "title": "Födiversum",
     "description": "Mastodoni ja teiste födiversumi rakenduste inimesed leiavad sind sellelt aadressilt ja saavad sind jälgida. Sinu uued avalikud postitused jõuavad neini seal.",

@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Prijungtos programėlės",
+    "connectedDescription": "Mastodon programėlės, į kurias prisijungėte su šia paskyra. Pašalinkite vieną, kad iš jos atsijungtumėte.",
+    "connectedEmpty": "Kol kas nėra prijungtų programėlių.",
+    "lastUsed": "Paskutinį kartą naudota {{date}}",
+    "remove": "Pašalinti",
+    "removed": "Programėlė pašalinta",
+    "failed": "Nepavyko. Bandykite dar kartą."
+  },
   "fediverse": {
     "title": "Fedivisata",
     "description": "Žmonės Mastodon ir kitose fedivisatos programėlėse gali jus rasti ir sekti šiuo adresu. Nauji jūsų vieši įrašai juos ten pasiekia.",

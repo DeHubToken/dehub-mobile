@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "ዝተራኸቡ ኣፕታት",
+    "connectedDescription": "በዚ ሕሳብ ዝኣቶኹምሎም ኣፕታት Mastodon። ንምውጻእ ሓደ ኣልግሱ።",
+    "connectedEmpty": "ክሳብ ሕጂ ዝተራኸበ ኣፕ የለን።",
+    "lastUsed": "ናይ መወዳእታ ኣጠቓቕማ {{date}}",
+    "remove": "ኣልግስ",
+    "removed": "እቲ ኣፕ ተኣልዩ",
+    "failed": "ኣይሰለጠን። እንደገና ፈትኑ።"
+  },
   "fediverse": {
     "title": "ፌዲቨርስ",
     "description": "ኣብ ማስቶዶንን ካልኦት ኣፕታት ፌዲቨርስን ዘለዉ ሰባት በዚ ኣድራሻ ክረኽቡኹምን ክኽተሉኹምን ይኽእሉ። ሓደስቲ ህዝባዊ ጽሑፋትኩም ኣብኡ ይበጽሕዎም።",

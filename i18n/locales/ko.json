@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "연결된 앱",
+    "connectedDescription": "이 계정으로 로그인한 마스토돈 앱이에요. 앱을 삭제하면 로그아웃돼요.",
+    "connectedEmpty": "아직 연결된 앱이 없어요.",
+    "lastUsed": "마지막 사용 {{date}}",
+    "remove": "삭제",
+    "removed": "앱을 삭제했어요",
+    "failed": "잘 안 됐어요. 다시 시도하세요."
+  },
   "fediverse": {
     "title": "연합우주",
     "description": "마스토돈 등 연합우주 앱 사용자가 이 주소로 나를 찾아 팔로우할 수 있어요. 새 공개 게시물은 그곳에도 전해져요.",

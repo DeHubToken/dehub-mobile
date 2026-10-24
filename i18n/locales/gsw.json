@@ -1,4 +1,13 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Verbundeni Apps",
+    "connectedDescription": "Mastodon-Apps, wo du di mit dem Konto aagmäldet häsch. Entfern eini, zum si abzmälde.",
+    "connectedEmpty": "No kei Apps verbunde.",
+    "lastUsed": "Zletscht bruucht {{date}}",
+    "remove": "Entferne",
+    "removed": "App entfernt",
+    "failed": "Das hät nöd klappt. Probier's nomal."
+  },
   "fediverse": {
     "title": "Fediverse",
     "description": "Lüüt uf Mastodon und andere Fediverse-Apps chönd di under dere Adrässe finde und dir folge. Dini neue öffentliche Biiträg erreiched si det.",
