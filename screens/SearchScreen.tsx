@@ -77,6 +77,7 @@ import { promptFeedEvents } from "../libs/eventBus";
 import { ScreenNames } from "../navigation/ScreenNames";
 import TrendingTopicsList from "../components/common/TrendingTopicsList";
 import { useAppTheme } from "../context/ThemeContext";
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../hooks/useSearchFieldMaterial';
 import {
   MINIMAL_HAIRLINE,
   MINIMAL_TAB_LINE,
@@ -219,6 +220,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
   const { isMinimal, skin } = useAppTheme();
+  const searchField = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
   // The header floats over the KeyboardAvoidingView rather than sitting above
   // it, so the view starts at the top of the screen and the only chrome above
@@ -1142,28 +1144,27 @@ const SearchScreen: React.FC = () => {
         <View className="bg-theme-neutrals-900">
           {/* pt-3: the search box sat flush against the title island above. */}
           <View className="px-4 pt-3 pb-2">
-            {/* Minimal: still reads as an input, but by a 1px outline on
-                black rather than a filled slab. */}
             <View
-              className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2"
-              style={isMinimal ? styles.minimalInput : skin?.material === 'glass' ? skin.card : undefined}
+              className="flex-row items-center rounded-xl px-3 py-2"
+              style={searchField.surface}
             >
               <Icon name="Search" size={18} color="#9CA3AF" />
               <TextInput
                 ref={inputRef}
                 className="flex-1 text-white px-2 py-1"
-                style={skin?.material === 'glass' ? { backgroundColor: 'transparent', borderWidth: 0 } : undefined}
+                style={SEARCH_INPUT_CLEAR}
                 placeholder={t("search.searchDehub")}
                 placeholderTextColor="#9CA3AF"
                 value={searchQuery}
                 onChangeText={setSearchQuery}
                 onSubmitEditing={handleSearch}
                 onFocus={() => {
+                  searchField.onFocus();
                   setInputFocused(true);
                   // Nothing to type into if the header has slid away.
                   showHeader();
                 }}
-                onBlur={() => setInputFocused(false)}
+                onBlur={() => { searchField.onBlur(); setInputFocused(false); }}
                 returnKeyType="search"
                 autoCapitalize="none"
                 autoCorrect={false}

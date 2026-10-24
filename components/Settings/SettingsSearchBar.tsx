@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import Icon from '../ui/Icon';
 import { useAppTheme } from '../../context/ThemeContext';
 import { searchSettings, type SettingsSearchHit } from '../../libs/settings-search';
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 
 const TAB_KEYS: Record<string, string> = {
   profile: 'settings.profile',
@@ -36,6 +37,7 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
 }) => {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
+  const searchField = useSearchFieldMaterial();
   const [query, setQuery] = useSurfaceDraft("components/Settings/SettingsSearchBar.tsx:query", '');
 
   const results = useMemo(() => searchSettings(query, t), [query, t]);
@@ -49,11 +51,13 @@ const SettingsSearchBar: React.FC<{ onSelect: (hit: SettingsSearchHit) => void }
 
   return (
     <View className="mb-4">
-      <View className="h-10 flex-row items-center bg-white/5 border border-white/10 rounded-xl px-3" style={skin?.material === 'glass' ? skin.card : undefined}>
+      <View className="h-10 flex-row items-center rounded-xl px-3" style={searchField.surface}>
         <Icon name="Search" size={16} color="#8B8D90" />
         <TextInput
           className="flex-1 text-white py-0 px-2 text-sm"
-          style={skin?.material === 'glass' ? { backgroundColor: 'transparent', borderWidth: 0 } : undefined}
+          style={SEARCH_INPUT_CLEAR}
+          onFocus={searchField.onFocus}
+          onBlur={searchField.onBlur}
           placeholder={t('settings.searchPlaceholder', 'Search settings')}
           placeholderTextColor="#8B8D90"
           value={query}

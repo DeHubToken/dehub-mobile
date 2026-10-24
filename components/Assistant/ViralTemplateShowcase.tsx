@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import { FlatList, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -15,6 +16,7 @@ function Preview({ effect, width }: { effect: ViralTemplate; width: number }) {
 
 export default function ViralTemplateShowcase({ onPick, compact = false }: { onPick: (effect: ViralTemplate) => void; compact?: boolean }) {
   const { t } = useTranslation();
+  const searchField = useSearchFieldMaterial();
   const { width } = useWindowDimensions();
   const [library, setLibrary] = useState(false);
   const [preview, setPreview] = useState<ViralTemplate | null>(null);
@@ -62,8 +64,8 @@ export default function ViralTemplateShowcase({ onPick, compact = false }: { onP
           <Text className="mt-4 text-sm text-white/60">{t(preview.motionSeconds ? 'viralTemplates.motionReady' : 'viralTemplates.ready', { name: preview.displayName ?? preview.name })}</Text>
           {useButton(preview)}
         </ScrollView> : <>
-          <TextInput value={query} onChangeText={setQuery} placeholder={t('viralTemplates.search')} accessibilityLabel={t('viralTemplates.search')}
-            placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl border border-white/20 px-4 text-white" />
+          <TextInput value={query} onChangeText={setQuery} onFocus={searchField.onFocus} onBlur={searchField.onBlur} style={searchField.surface} placeholder={t('viralTemplates.search')} accessibilityLabel={t('viralTemplates.search')}
+            placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl px-4 text-white" />
           <View><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, padding: 16 }}>{categories.map(item => <Pressable key={item} accessibilityRole="button"
             accessibilityState={{ selected: category === item }} onPress={() => setCategory(item)} className={`min-h-11 justify-center rounded-full px-4 ${category === item ? 'bg-white' : 'border border-white/20'}`}>
             <Text style={{ color: category === item ? '#09090b' : '#d4d4d8' }}>{t(`viralTemplates.${item}`)}</Text>
