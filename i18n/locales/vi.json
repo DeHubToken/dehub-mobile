@@ -2457,7 +2457,90 @@
     "revealFailed": "Không thể hiện khoá. Hãy thử lại.",
     "signInAgain": "Đăng nhập lại",
     "createSignIn": "Đăng nhập lại để tạo agent",
-    "checkConnection": "Hãy kiểm tra kết nối rồi thử lại."
+    "checkConnection": "Hãy kiểm tra kết nối rồi thử lại.",
+    "workspace": {
+      "moderation": "Quản lý luồng trực tiếp (hoặc quản lý nội dung trên livestream)",
+      "moderationHelp": "Bật quyền kiểm duyệt trước. Tài khoản phải là người tạo luồng hoặc người kiểm duyệt được chỉ định. Chế độ phê duyệt và dự thảo vẫn được áp dụng. Hết thời gian tự động hết hạn.",
+      "streamId": "ID bài đăng phát trực tuyến",
+      "participant": "Ví của người tham gia",
+      "participantHint": "Ví của người tham gia (0x…)",
+      "timeout": "Giây hết thời gian chờ",
+      "submitTimeout": "Gửi hết thời gian chờ",
+      "handled": "Đã xử lý yêu cầu. Xem nhật ký kiểm toán.",
+      "webhook": "Webhook cảnh báo Discord (tùy chọn)",
+      "webhookHelp": "Yêu cầu phê duyệt và hành động không thành công sẽ gửi một cảnh báo chung, tối đa một lần mỗi giờ. Không có văn bản nháp hoặc chi tiết ví nào được gửi. Để trống để vô hiệu hóa; kết quả giao hàng xuất hiện trong nhật ký kiểm toán.",
+      "reversalHelp": "Đảo ngược ẩn bài đăng, xóa vĩnh viễn nhận xét, khôi phục phản ứng và văn bản hồ sơ hoặc hoàn tác theo dõi mới. Không thể xóa lượt xem, thông báo đã gửi, giao dịch đã tạo, hình ảnh hồ sơ và thời gian chờ đã hết hạn. Các bài đăng ẩn vẫn có thể khôi phục được từ các điều khiển hiển thị của chúng.",
+      "confirmCorrection": "Điều này làm thay đổi hoạt động đã xuất bản. Không thể hoàn tác việc xóa nhận xét.",
+      "correction": "Chỉnh sửa",
+      "alert": "Cảnh báo",
+      "shared": "Chung",
+      "controls": "Giọng nói, quyền hạn và tin tức",
+      "scope": "Các biện pháp kiểm soát này áp dụng cho các nhiệm vụ theo lịch trình, cuộc sống tự trị và các trợ lý được kết nối. Bản nháp vẫn ở chế độ riêng tư cho đến khi bạn phê duyệt.",
+      "voice": "Giọng nói và giọng điệu",
+      "knowledge": "Tài liệu tham khảo",
+      "blocked": "Các chủ đề bị chặn, được phân tách bằng dấu phẩy",
+      "liveNews": "Tác động của cuộc sống tự chủ đối với các tin tức hiện tại",
+      "newsHelp": "Chọn tối đa ba chủ đề. Báo cáo của nhà xuất bản trong 24 giờ qua được lưu trong bộ nhớ cache trong 15 phút. Phản ứng tin tức bao gồm một liên kết nguồn; tin tức không có sẵn hoặc cũ bị bỏ qua.",
+      "saved": "Đã lưu cài đặt.",
+      "title": "Không gian làm việc của nhân viên chăm",
+      "sample": "Hoạt động và cảnh báo bao gồm 100 hành động và 200 nhiệm vụ mới nhất. Số lượng không phải là tổng số trọn đời hoặc mức sử dụng thanh toán.",
+      "growth": "Thu thập báo cáo tăng trưởng",
+      "baseline": "Ảnh chụp nhanh đầu tiên; chụp một ảnh khác sau đó để so sánh.",
+      "library": "Mẫu và trình tạo tác vụ",
+      "subject": "Chủ đề hoặc phong cách trả lời",
+      "useBuilder": "Sử dụng các hướng dẫn này",
+      "planValidated": "Kế hoạch đã được xác nhận",
+      "builderHelp": "Chọn một mẫu, mô tả hành động, đối tượng và lịch trình, sau đó mô phỏng trước khi chạy. Các mẫu được chia sẻ là hướng dẫn từ các tác giả của chúng, không phải khả năng đã được xác minh.",
+      "simulate": "Mô phỏng kế hoạch",
+      "allowed": "Được phép",
+      "share": "Chia sẻ mẫu này với những người dùng Đại lý khác",
+      "saveTemplate": "Lưu mẫu",
+      "templateSaved": "Đã lưu mẫu.",
+      "empty": "Chưa có hoạt động phù hợp.",
+      "approve": "Phê duyệt và thực hiện",
+      "reject": "Từ chối",
+      "growthResult": "{{followers}} người theo dõi · {{following}} theo dõi",
+      "growthChange": "Thay đổi người theo dõi: {{count}} kể từ {{time}}",
+      "runs": "{{runs}} lần chạy gần đây · {{completed}} đã hoàn thành · {{failed}} không thành công",
+      "autonomous": "Tự chủ",
+      "approval": "Đồng ý",
+      "draft": "Chuẩn bị",
+      "count": {
+        "pending": "Bản thảo cần xem xét",
+        "succeeded": "Thành công gần đây",
+        "scheduled": "Nhiệm vụ theo lịch trình",
+        "active": "Tác nhân hoạt tính"
+      },
+      "builder": {
+        "news": "Phản hồi tin tức",
+        "reply": "Trả lời các bài đăng gần đây",
+        "curate": "Giống các bài đăng liên quan",
+        "post": "Viết bài đăng"
+      },
+      "cadence": {
+        "once": "Một lần",
+        "daily": "Hàng ngày",
+        "twice": "Hai lần mỗi ngày"
+      },
+      "dehub_post_create": "Xuất bản bài đăng",
+      "dehub_comment": "Trả lời và nhận xét",
+      "dehub_vote": "Phản hồi bài đăng",
+      "dehub_follow": "Theo dõi tài khoản",
+      "dehub_update_profile": "Chỉnh sửa hồ sơ",
+      "dehub_stream_timeout": "Trò chuyện phát trực tuyến vừa phải",
+      "news": {
+        "world": "Thế giới",
+        "technology": "Công nghệ",
+        "culture": "Văn hóa",
+        "sport": "Thể thao",
+        "science": "Khoa học"
+      },
+      "alerts": "Cần chú ý",
+      "agent": "Đại lý",
+      "action": "Hành động",
+      "schedule": "Lịch trình",
+      "filter": "Hoạt động lọc"
+    }
   },
   "hero": {
     "title": "Chào Mừng Đến",
@@ -5047,7 +5130,12 @@
     "interestedCount": "{{count}} quan tâm",
     "loadFailed": "Không tải được sự kiện"
   },
-  "stats": {"chart": {"daily": "Khách truy cập mỗi ngày", "dailyHint": "khách truy cập duy nhất mỗi ngày", "empty": "Chưa có dữ liệu cho khoảng thời gian này"},
+  "stats": {
+    "chart": {
+      "daily": "Khách truy cập mỗi ngày",
+      "dailyHint": "khách truy cập duy nhất mỗi ngày",
+      "empty": "Chưa có dữ liệu cho khoảng thời gian này"
+    },
     "definitions": {
       "visitorsTerm": "Khách truy cập"
     },

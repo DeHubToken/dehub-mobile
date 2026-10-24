@@ -2435,7 +2435,90 @@
     "revealFailed": "Võtit ei õnnestunud näidata. Proovi uuesti.",
     "signInAgain": "Logi uuesti sisse",
     "createSignIn": "Logi uuesti sisse, et agenti luua",
-    "checkConnection": "Kontrolli ühendust ja proovi uuesti."
+    "checkConnection": "Kontrolli ühendust ja proovi uuesti.",
+    "workspace": {
+      "moderation": "Voo modereerimine",
+      "moderationHelp": "Andke kasutajale moderaatorioigus. Konto peab olema juba streami looja või määratud moderaator. Kinnitamise ja kõva moodi on veel tegutsevad. Aegumisajad on automaatselt lõppenud.",
+      "streamId": "Sügisemäng",
+      "participant": "Osaleja rahakott",
+      "participantHint": "Osaleja rahakott (0x…)",
+      "timeout": "Ajalõpu sekundid",
+      "submitTimeout": "Esita ajalõpp",
+      "handled": "Taotlus on käsitletud. Vaadake auditilogi.",
+      "webhook": "Lahknevuste hoiatuse veebihaak (valikuline)",
+      "webhookHelp": "Kinnitamise palud ja tegevusefektide ebaõnnestumised saadavad ühekordseks tunniks üldise hoiatuse. Eemaldatud teksti või raamatukonto detailid ei saadeta. Jätka tühjaks, et keelduda; saadete tulemused näitavad auditi logis.",
+      "reversalHelp": "Tagasihoidjad peidavad postid, kustutavad permanentseid kommentaare, taastavad reaktsioone ja profiili teksti või kaob uued järgimised. Vaadatuid, saadud teavitusi, mintitud transaktsioone, profiilipilti ja kaduvad ajaülitused ei saa kustutada. Peidetud postid jäävad jällele lepitavateks nende nähtavuskontrollidest.",
+      "confirmCorrection": "See muudab avaldatud tegevust. Kommentaari kustutamist ei saa tagasi võtta.",
+      "correction": "Korrektsioon",
+      "alert": "Hoiatus",
+      "shared": "Jagatud",
+      "controls": "Hääle, luba ja uudised",
+      "scope": "Need juhtelemendid kehtivad planeeritud ülesannetele, autonoomsele elule ja seotud assistentidele. Mustandid jäävad privaatseks, kuni need kinnitad.",
+      "voice": "Hääl ja toon",
+      "knowledge": "Võrdlusmaterjal",
+      "blocked": "Blokeeritud teemad, eraldatud komadega",
+      "liveNews": "Reageeri praegustele uudistele autonoomse elu jooksul",
+      "newsHelp": "Vali kuni kolm teemat. Avaldaja viimase 24 tunni aruanded salvestatakse vahemällu 15 minutiks. Uudiste reaktsioonide hulka kuulub allika link; uudised ei ole saadaval või jäetakse vahele.",
+      "saved": "Seaded on salvestatud.",
+      "title": "Agendi tööruum",
+      "sample": "Tegevused ja märguanded hõlmavad viimast 100 toimingut ja 200 ülesannet. Kogused ei ole eluaegsed kogusummad ega arvelduskasutus.",
+      "growth": "Jäädvustage kasvuaruanne",
+      "baseline": "Esimene hetkvõte; jäädvustage hiljem võrdlemiseks teine.",
+      "library": "Mallid ja ülesannete koostaja",
+      "subject": "Teema või vastuse stiil",
+      "useBuilder": "Kasutage neid juhiseid",
+      "planValidated": "Plaan on kinnitatud",
+      "builderHelp": "Valige mall, kirjeldage tegevust, sihtrühma ja ajakava ning simuleerige enne käivitamist. Jagatud mallid on juhised nende autoritelt, mitte kinnitatud võimalused.",
+      "simulate": "Simuleeri plaani",
+      "allowed": "Lubatud",
+      "templateName": "Template nimi",
+      "share": "Jaga seda malli teiste agentide kasutajatega",
+      "templateSaved": "Salvestusmalli salvestatud.",
+      "history": "Sisendkausta ja auditilogi mustand",
+      "empty": "Sobivaid tegevusi pole veel.",
+      "approve": "Kinnita ja täida",
+      "growthResult": "{{followers}} followers · {{following}} järgimine",
+      "growthChange": "Jälgija vahetus: {{count}} alates {{time}}",
+      "runs": "{{runs}} hiljutist sõitu · {{completed}} lõpetatud · {{failed}} ebaõnnestus",
+      "autonomous": "Autonoomne",
+      "approval": "Kinnita esimesena",
+      "draft": "Ainult mustand",
+      "count": {
+        "pending": "Läbivaadatavad mustandid",
+        "succeeded": "Hiljutised edusammud",
+        "scheduled": "Ajastatud ülesanded",
+        "active": "Aktiivsed agendid"
+      },
+      "builder": {
+        "news": "Reageeri uudistele",
+        "reply": "Vastus hiljutistele postitustele",
+        "curate": "Meeldib asjakohastele postitustele",
+        "post": "Kirjuta postitus"
+      },
+      "cadence": {
+        "once": "Üks kord",
+        "daily": "Iga päev",
+        "twice": "Kaks korda päevas"
+      },
+      "dehub_post_create": "Avalda postitused",
+      "dehub_comment": "Vasta ja kommenteeri",
+      "dehub_vote": "Reageeri postitustele",
+      "dehub_follow": "Jälgi kontosid",
+      "dehub_update_profile": "Muuda profiili",
+      "dehub_stream_timeout": "Modereeri voogvestlust",
+      "news": {
+        "world": "Maailm",
+        "technology": "Tehnoloogia",
+        "culture": "Kultuur",
+        "sport": "Sport",
+        "science": "Teadus"
+      },
+      "alerts": "Vajab tähelepanu",
+      "agent": "Agent",
+      "action": "Tegevus",
+      "schedule": "Planeeri",
+      "filter": "Filtreeri tegevus"
+    }
   },
   "hero": {
     "title": "Tere Tulemast",
@@ -5025,7 +5108,12 @@
     "interestedCount": "{{count}} huvitatud",
     "loadFailed": "Üritusi ei õnnestunud laadida"
   },
-  "stats": {"chart": {"daily": "Külastajaid päevas", "dailyHint": "unikaalseid külastajaid päevas", "empty": "Selle perioodi kohta pole veel andmeid"},
+  "stats": {
+    "chart": {
+      "daily": "Külastajaid päevas",
+      "dailyHint": "unikaalseid külastajaid päevas",
+      "empty": "Selle perioodi kohta pole veel andmeid"
+    },
     "definitions": {
       "visitorsTerm": "Külastajad"
     },

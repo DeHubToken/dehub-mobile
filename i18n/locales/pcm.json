@@ -2406,7 +2406,78 @@
     "revealFailed": "We no fit show di key. Try again.",
     "signInAgain": "Sign in again",
     "createSignIn": "Sign in again make you fit create agent",
-    "checkConnection": "Check your network, den try am again."
+    "checkConnection": "Check your network, den try am again.",
+    "workspace": {
+      "moderation": "Stream moderation",
+      "moderationHelp": "Enable moderation permission first. Dem account must be da stream owner or someone dem assign as moderator. Approval and draft mode still dey apply. Timeout dey expire by demself.",
+      "streamId": "Stream post ID",
+      "participant": "Participant wallet",
+      "participantHint": "Participant wallet (0x…)",
+      "timeout": "Timeout seconds",
+      "submitTimeout": "Submit timeout",
+      "webhook": "Discord alert webhook (optional)",
+      "webhookHelp": "Approval requests wey fail or no go happen send one generic alert, no more than once per hour. No draft text or wallet details go come. Leave blank if you no want it; how it go reach people go show in audit log.",
+      "confirmCorrection": "Dis change de published activity. Delete comment no go come back again.",
+      "correction": "Correction",
+      "alert": "Alert",
+      "shared": "Shared",
+      "scope": "Dis controls fit for schedule work, automatic life and connect assistant. Drafts stay private until you say \"okay\" to dem.",
+      "knowledge": "Reference material",
+      "blocked": "Blocked topics, separated by commas",
+      "newsHelp": "Choose up to three topic. Publisher report from last 24 hour dey cache for 15 minute. News reaction include source link; news wey no dey available or stale, we skip am.",
+      "saved": "Settings saved.",
+      "title": "Agent workspace",
+      "growth": "Capture growth report",
+      "baseline": "Snapshots don't dey make sense. Capture another one later, we go compare am.",
+      "useBuilder": "Use these instructions",
+      "planValidated": "Plan validated",
+      "simulate": "Simulate plan",
+      "allowed": "Allowed",
+      "templateName": "Template name",
+      "saveTemplate": "Save template",
+      "templateSaved": "Template saved.",
+      "reject": "Reject",
+      "growthResult": "{{followers}} followers · {{following}} following",
+      "growthChange": "Follower change: {{count}} since {{time}}",
+      "runs": "{{runs}} recent runs · {{completed}} completed · {{failed}} failed",
+      "autonomous": "Autonomous",
+      "approval": "Approve first",
+      "draft": "Draft only",
+      "count": {
+        "pending": "Drafts to review",
+        "succeeded": "Recent successes",
+        "scheduled": "Scheduled tasks",
+        "active": "Active agents"
+      },
+      "builder": {
+        "news": "React to news",
+        "curate": "Like relevant posts",
+        "post": "Write a post"
+      },
+      "cadence": {
+        "once": "Once",
+        "daily": "Daily",
+        "twice": "Twice daily"
+      },
+      "dehub_post_create": "Publish posts",
+      "dehub_comment": "Waka and comment",
+      "dehub_vote": "Re-act to post",
+      "dehub_follow": "Follow account",
+      "dehub_update_profile": "Edit profile",
+      "dehub_stream_timeout": "Moderate stream chat",
+      "news": {
+        "world": "Worl",
+        "technology": "Teknoloji",
+        "culture": "Kulture",
+        "sport": "Sport",
+        "science": "Sainse"
+      },
+      "alerts": "Need attention",
+      "agent": "Agent",
+      "action": "Action",
+      "schedule": "Schedule",
+      "filter": "Filtu aktivity"
+    }
   },
   "hero": {
     "title": "Welcome To",
@@ -4917,7 +4988,12 @@
     "interestedCount": "{{count}} dey interested",
     "loadFailed": "We no fit load di events"
   },
-  "stats": {"chart": {"daily": "Visitors per day", "dailyHint": "unique visitors per day", "empty": "No data for dis period yet"},
+  "stats": {
+    "chart": {
+      "daily": "Visitors per day",
+      "dailyHint": "unique visitors per day",
+      "empty": "No data for dis period yet"
+    },
     "definitions": {
       "visitorsTerm": "Visitors"
     },

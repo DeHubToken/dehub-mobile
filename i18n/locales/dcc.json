@@ -2434,7 +2434,87 @@
     "revealFailed": "کلید نئیں دکھا سکے۔ پھر سے کوشش کرو۔",
     "signInAgain": "پھر سے سائن ان کرو",
     "createSignIn": "ایجنٹ بنانے کو پھر سے سائن ان کرو",
-    "checkConnection": "اپنا کنکشن دیکھو اور پھر سے کوشش کرو۔"
+    "checkConnection": "اپنا کنکشن دیکھو اور پھر سے کوشش کرو۔",
+    "workspace": {
+      "moderation": "ہدایات moderation",
+      "moderationHelp": "پہلے moderation کی اجازت کو فعال کریں۔ اس کے لیے اکاؤنٹ کو ضروری ہے کہ وہ سٹریم کا بنانے والا ہو یا ایک مقرر کردہ مڈیئیٹر ہو۔ Approve اور Draft modes اب بھی لागوں۔ Timeouts خودکار طور پر ختم ہوجاتے ہیں۔",
+      "streamId": "سٹریم پوسٹ آئی ڈی",
+      "participant": "مشارکہ کارٹ والٹ",
+      "participantHint": "مشارکہ کارٹ والٹ (0x…)",
+      "timeout": "Timeout سیکنڈ",
+      "submitTimeout": "ٹائم آؤٹ",
+      "handled": "مہم جوئی کی درخواست کی گئی ہے۔ دیکھیں آڈٹ لوگ۔",
+      "webhook": "ڈسکورڈ الارٹ ویب ہوکی (اختیاری)",
+      "webhookHelp": "Approve کی درخواستیں اور ایکشن کی ناکامیاں ایک گھنٹے میں سے زیادہ ایک بار ایک الارٹ بھیجتی ہیں۔ Draft text یا والٹ ڈیٹیلز نہیں بھیجیں گے۔ خالی چھوڑنا تو disable کرے گا۔ delivery results آڈٹ لوگ میں نظر آئیں گے۔",
+      "reversalHelp": "Reversals پوسٹ کو ڈھک جاتے ہیں، دائمہ طور پر comments کو مٹا دیتے ہیں، reactions اور profile text کو بحال کرتے ہیں، یا new follows کو واپس لاتے ہیں۔ Views، delivered notifications، minted transactions، profile images اور expired timeouts کو نہیں مٹایا جا سکتا۔ Hidden posts recoverable ہیں۔",
+      "confirmCorrection": "یہ published activity کو بدل دیتا ہے۔ Comment deletion کو واپس نہیں کیا جا سکتا۔",
+      "correction": "تصحیح",
+      "alert": "الارٹ",
+      "shared": "شارہ",
+      "controls": "Voice، permissions اور news",
+      "scope": "یہ کنٹرولز scheduled tasks، autonomous life اور connected assistants پر لگتے ہیں۔ Drafts private رہتے ہیں جب تک آپ انہیں Approve نہیں کرتے۔",
+      "voice": "Voice اور tone",
+      "knowledge": "مصادر",
+      "blocked": "Block کئے گئے موضوعات، کمے ہوئے کے ساتھ",
+      "liveNews": "React current news کے دوران autonomous life",
+      "newsHelp": "تین موضوعات تک چنیں۔ Publisher reports last 24 hours کے ہیں۔ 15 منٹ کے لئے cached ہوتے ہیں۔ News reactions میں source link ہوتا ہے۔ unavailable یا stale news skip ہوتا ہے۔",
+      "saved": "Settings saved ہوگئے ہیں۔",
+      "title": "اِجنٹ ورک شاپ",
+      "sample": "Activity اور alerts latest 100 actions اور 200 tasks پر لگتے ہیں۔ Counts lifetime totals یا billing usage نہیں ہیں۔",
+      "growth": "رپورٹ گروہت",
+      "baseline": "First snapshot؛ capture اور دوسرا بعد میں بھیجے۔",
+      "library": "Templates اور task builder",
+      "subject": "Topic یا reply style",
+      "useBuilder": "یہ instructions کا استعمال کریں",
+      "planValidated": "پلان کو تصدیق کیا گیا",
+      "builderHelp": "ایک ٹیمپلیٹ منتخب کریں، عمل کی وضاحت کریں، سامعین اور شیڈول، پھر سائمن کریں۔ شئیرڈ ٹیمپلیٹس ان کے مصنفین سے ہیں، نہیں وریفائیڈ کی صلاحیتوں کے",
+      "simulate": "سائمن کرنے کے لئے پلان",
+      "allowed": "ممنوع",
+      "templateName": "ٹیمپلیٹ کا نام",
+      "share": "دوسرے ایجنٹس کے صارفین کے ساتھ یہ ٹیمپلیٹ شیئر کریں",
+      "saveTemplate": "ٹیمپلیٹ محفوظ کر لیں",
+      "templateSaved": "ٹیمپلیٹ محفوظ ہو گیا",
+      "history": "ڈرافٹ انبوکس اور انکوائزٹ لوگ",
+      "empty": "اب تک کوئی مطابقت نہیں ہے",
+      "approve": "معتمد اور عمل کریں",
+      "reject": "منع کر دیں",
+      "growthResult": "{{followers}} فالوورز · {{following}} فالو کر رہے ہیں",
+      "growthChange": "فالوورز کا تبدیلی: {{count}} سے {{time}}",
+      "runs": "{{runs}} حالیہ چلاوٹیں · {{completed}} مکمل ہوئیں · {{failed}} ناکام",
+      "autonomous": "آٹومنومس",
+      "approval": "پہلا معتمد",
+      "draft": "ڈرافٹ ہی",
+      "count": {
+        "pending": "ڈرافٹس کو ریویو کریں",
+        "succeeded": "ہمیشہ کامیابیاں",
+        "scheduled": "منظم ہونے والے کام",
+        "active": "فعال ایجنٹس"
+      },
+      "builder": {
+        "news": "خبروں پر ردعمل",
+        "reply": "ہمیشہ کے لئے جواب دیں",
+        "curate": "مطابقت رکھنے والے پوسٹس",
+        "post": "پوسٹ لکھیں"
+      },
+      "cadence": {
+        "once": "ایک بار",
+        "daily": "روزانہ",
+        "twice": "دو بار روزانہ"
+      },
+      "dehub_post_create": "پوسٹ شائع کریں",
+      "news": {
+        "world": "دنیا",
+        "technology": "ٹیکنالوجی",
+        "culture": "تہذیب",
+        "sport": "کھیل",
+        "science": "علم"
+      },
+      "alerts": "مہتواں کی ضرورت ہے",
+      "agent": "اِجینٹ",
+      "action": "عمل",
+      "schedule": "تاریخ",
+      "filter": "فیلٹر اکیویٹی"
+    }
   },
   "hero": {
     "title": "ہماری دنیا میں",
@@ -4981,7 +5061,12 @@
     "interestedCount": "{{count}} کو دلچسپی ہے",
     "loadFailed": "ایونٹس لوڈ نئیں ہو سکے"
   },
-  "stats": {"chart": {"daily": "روزانہ آنے والے", "dailyHint": "روزانہ الگ الگ آنے والے", "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"},
+  "stats": {
+    "chart": {
+      "daily": "روزانہ آنے والے",
+      "dailyHint": "روزانہ الگ الگ آنے والے",
+      "empty": "اس ونڈو کو ابھی تک ڈیٹا نکو"
+    },
     "definitions": {
       "visitorsTerm": "آنے والے"
     },

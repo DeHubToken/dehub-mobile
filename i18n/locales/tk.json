@@ -2426,7 +2426,90 @@
     "revealFailed": "Açary görkezip bolmady. Täzeden synanyşyň.",
     "signInAgain": "Täzeden giriň",
     "createSignIn": "Agent döretmek üçin täzeden giriň",
-    "checkConnection": "Baglanyşygyňyzy barlaň we täzeden synanyşyň."
+    "checkConnection": "Baglanyşygyňyzy barlaň we täzeden synanyşyň.",
+    "workspace": {
+      "moderation": "Akymy moderirlemek",
+      "moderationHelp": "Ilki bilen moderirleme rugsadyny işjeňleşdiriň. Hasap eýýäm akymy dörediji ýa-da bellenen moderator bolmaly. Tassyklama we garalama düzgünleri henizem güýjünde galýar. Wagt çäklendirmeleri awtomatiki ýagdaýda tamamlanýar.",
+      "streamId": "Akym ýazgysynyň ID-si",
+      "participant": "Gatnaşyjynyň gapjygynyň salgysy",
+      "participantHint": "Gatnaşyjynyň gapjygynyň salgysy (0x…)",
+      "timeout": "Wagt çäklendirmesiniň sekunt sany",
+      "submitTimeout": "Wagt çäklendirmesini ibermek",
+      "handled": "Sorag ýerine ýetirildi. Barlag žurnalyna serediň.",
+      "webhook": "Discord duýduryş webhuky (meýletin)",
+      "webhookHelp": "Tassyklama soraglary we ýerine ýetirilmän galan hereketler barada umumy duýduryş sagatda iň köp bir gezek iberilýär. Gara lama tekstleri ýa-da gapjyk jikme-jiklikleri iberilmeýär. Öçürmek üçin boş goýuň; gowşuryş netijeleri barlag žurnalynda görkezilýär.",
+      "reversalHelp": "Yza gaýtarmalar ýazgylary gizleýär, teswirleri hemişelik pozýar, reaksiýalary we profil tekstini dikeldýär ýa-da täze yzarlamalary yzyna alýar. Görüşler, iberilen bildirişler, öndürilen amallar, profil suratlary we möhleti dolan wagt çäklendirmeleri pozulyp bilinmez. Gizlenen ýazgylar görünýänlik sazlamalaryndan dikeldilip bilner.",
+      "confirmCorrection": "Bu çap edilen işjeňligi üýtgedýär. Teswiri pozmak yzyna gaýtarylyp bilinmez.",
+      "correction": "Düzetme",
+      "alert": "Duýduryş",
+      "shared": "Paýlaşyldy",
+      "controls": "Ses, rugsatlar we täzelikler",
+      "scope": "Bu dolandyryşlar meýilleşdirilen tabşyryklara, awtonom durmuşa we birikdirilen kömekçilere degişlidir. Gara lamalar siz olary tassyklaýançaňyz hususy bolup galýar.",
+      "voice": "Ses we äheň",
+      "knowledge": "Çeşme materialy",
+      "blocked": "Ütülip goýlan temalar, otur bilen bölünen",
+      "liveNews": "Awtonom durmuş wagtynda häzirki täzeliklere reaksiýa bildiriň",
+      "newsHelp": "Üç temany saýlaň. Soňky 24 sagadyň neşirýat hasabatlary 15 minutlap keşlenýär. Täzelik reaksiýalary çeşmäniň baglanyşygyny öz içine alýar; elýeterli däl ýa-da könelen täzelikler geçilip gidilýär.",
+      "saved": "Sazlamalar ýatda saklandy.",
+      "title": "Agentiň iş giňişligi",
+      "sample": "Işjeňlik we duýduryşlar iň soňky 100 hereketi we 200 tabşyrygy öz içine alýar. Sanlar ömürlik jemi ýa-da töleg ulanylyşy däl.",
+      "growth": "Ösüş hasabatyny düşüriň",
+      "baseline": "Ilkinji düşürilen pursat; deňeşdirmek üçin soňra ýene birini düşüriň.",
+      "library": "Şablonlar we tabşyryk gurujy",
+      "subject": "Tema ýa-da jogap stili",
+      "useBuilder": "Bu görkezmeleri ulanyň",
+      "planValidated": "Täzeleşdirilen plan",
+      "builderHelp": "Bir nusga saýlaň, hereketini, diňleýjileri we wagtyny beýan ediň, soňra ylgaň. Paylaşylýan şablonlar öz mugallymlarynyň görkezmeleri, tassyklanmadyk ukyplar.",
+      "simulate": "Plany nusgalamak",
+      "allowed": "Ruhlandyryjy",
+      "templateName": "Şablon ady",
+      "share": "Bu şablony başga ulanýanlar bilen paýlaş",
+      "saveTemplate": "Şablony Gaýd Et",
+      "templateSaved": "Şablon halas boldy.",
+      "history": "Kalkülýotaryň kalkülýotary we kalkulatory",
+      "empty": "Häzirlikçe hiç hili hereket ýok.",
+      "approve": "Öwrenmek we ýerine ýetirmek",
+      "reject": "Rad et",
+      "growthChange": "{{count}}since {{time}}",
+      "autonomous": "Awtonom",
+      "approval": "Öňürti kabul ediň",
+      "draft": "Diňe bir nusga",
+      "count": {
+        "pending": "Seretmek üçin teklipler",
+        "succeeded": "Soňky üstünlikler",
+        "scheduled": "Ýönekeý işler",
+        "active": "Işgärler"
+      },
+      "builder": {
+        "news": "Habarlara jogap beriň",
+        "reply": "Soňky habarlara jogap bermek",
+        "curate": "Mümkin ýerler",
+        "post": "Bir poçta iber"
+      },
+      "cadence": {
+        "once": "Bir gezek",
+        "daily": "Gündelik",
+        "twice": "Günde iki gezek"
+      },
+      "dehub_post_create": "Postlary çap etmek",
+      "dehub_comment": "Jawaplar we pikirler",
+      "dehub_vote": "Postlara jogap beriň",
+      "dehub_follow": "Saýlamalara eýer",
+      "dehub_update_profile": "Profilini Editle",
+      "dehub_stream_timeout": "Çat akymy",
+      "news": {
+        "world": "Dünýä",
+        "technology": "Tehnologiýa",
+        "culture": "Mädäniýet",
+        "sport": "Sport",
+        "science": "Elmi"
+      },
+      "alerts": "Diňe ünsli bolmak",
+      "agent": "Agent",
+      "action": "Harakat",
+      "schedule": "Gün tertibi",
+      "filter": "Süzgüç işlemi"
+    }
   },
   "hero": {
     "title": "Dünýämize",
@@ -5013,7 +5096,12 @@
     "interestedCount": "{{count}} gyzyklanýar",
     "loadFailed": "Çäreler ýüklenip bilmedi"
   },
-  "stats": {"chart": {"daily": "Gün başyna myhmanlar", "dailyHint": "gün başyna täkrarsyz myhmanlar", "empty": "Bu wagt aralygy üçin heniz maglumat ýok"},
+  "stats": {
+    "chart": {
+      "daily": "Gün başyna myhmanlar",
+      "dailyHint": "gün başyna täkrarsyz myhmanlar",
+      "empty": "Bu wagt aralygy üçin heniz maglumat ýok"
+    },
     "definitions": {
       "visitorsTerm": "Myhmanlar"
     },

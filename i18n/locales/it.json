@@ -2451,7 +2451,92 @@
     "revealFailed": "Impossibile mostrare la chiave. Riprova.",
     "signInAgain": "Accedi di nuovo",
     "createSignIn": "Accedi di nuovo per creare un agente",
-    "checkConnection": "Controlla la connessione e riprova."
+    "checkConnection": "Controlla la connessione e riprova.",
+    "workspace": {
+      "moderation": "Moderazione dello stream",
+      "moderationHelp": "Attiva prima la permessione di moderazione. Il conto deve già essere il creatore dello stream o un moderatore assegnato. Le modalità di approvazione e bozza rimangono valide. I timeout scadono automaticamente.",
+      "streamId": "ID post dello stream",
+      "participant": "Portafoglio del partecipante",
+      "participantHint": "Portafoglio del partecipante (0x…)",
+      "timeout": "Secondi di timeout",
+      "submitTimeout": "Invia timeout",
+      "handled": "Timeout gestito. Consulta il registro delle operazioni di audit.",
+      "webhook": "Webhook di avviso Discord (opzionale)",
+      "webhookHelp": "Le richieste di approvazione e i fallimenti delle azioni inviano un avviso generico, al massimo una volta all'ora. Non vengono inviati il testo in bozza o i dettagli del portafoglio. Lascia vuoto per disabilitare; i risultati di consegna appaiono nel registro delle operazioni di audit.",
+      "reversalHelp": "Le revoche nascondono i post, cancellano definitivamente i commenti, ripristinano le reazioni e il testo del profilo, o annullano i nuovi seguaci. Le visualizzazioni, le notifiche consegnate, le transazioni mintate, le immagini del profilo e i timeout scaduti non possono essere cancellati. I post nascosti rimangono recuperabili dai loro controlli di visibilità.",
+      "confirmCorrection": "Questo modifica l'attività pubblicata. La cancellazione dei commenti non può essere annullata.",
+      "correction": "Correzione",
+      "alert": "Avviso",
+      "shared": "Condiviso",
+      "controls": "Voce, permessi e notizie",
+      "scope": "Questi controlli si applicano alle attività programmate, alla vita autonoma e agli assistenti connessi. Le bozze rimangono private fino all'approvazione.",
+      "voice": "Voce e tono",
+      "knowledge": "Materiale di riferimento",
+      "blocked": "Argomenti bloccati, separati da virgole",
+      "liveNews": "Reagisci alle notizie attuali durante la vita autonoma",
+      "newsHelp": "Scegli fino a tre argomenti. I report del publisher degli ultimi 24 ore sono memorizzati nella cache per 15 minuti. Le reazioni alle notizie includono un link alla fonte; le notizie non disponibili o obsolete vengono saltate.",
+      "saved": "Impostazioni salvate.",
+      "title": "Spazio di lavoro dell'agente",
+      "sample": "Attività e avvisi coprono le ultime 100 azioni e 200 attività. I conteggi non sono totali a vita o utilizzo fatturato.",
+      "growth": "Cattura rapporto di crescita",
+      "baseline": "Prima istantanea; cattura un'altra più tardi per confrontare.",
+      "library": "Modelli e costruttore di attività",
+      "subject": "Stile argomento o risposta",
+      "useBuilder": "Usa queste istruzioni",
+      "planValidated": "Piano validato",
+      "builderHelp": "Scegli una template, descrivi l’azione, il pubblico e il calendario, poi simula prima di eseguire. Le template condivise sono istruzioni degli autori, non capacità verificate.",
+      "simulate": "Simula il piano",
+      "allowed": "Consentito",
+      "templateName": "Nome template",
+      "share": "Condividi questa template con altri utenti di Agents",
+      "saveTemplate": "Salva template",
+      "templateSaved": "Template salvata.",
+      "history": "Cassetta postale bozza e registro audit",
+      "empty": "Nessuna attività corrispondente ancora.",
+      "approve": "Approva ed esegui",
+      "reject": "Rifiuta",
+      "growthResult": "{{followers}} follower · {{following}} seguendo",
+      "growthChange": "Modifica follower: {{count}} da {{time}}",
+      "runs": "{{runs}} esecuzioni recenti · {{completed}} completate · {{failed}} fallite",
+      "autonomous": "Autonomo",
+      "approval": "Approva prima",
+      "draft": "Bozza solo",
+      "count": {
+        "pending": "Bozze da revisionare",
+        "succeeded": "Successi recenti",
+        "scheduled": "Compiti programmati",
+        "active": "Agenti attivi"
+      },
+      "builder": {
+        "news": "Rispondi alle notizie",
+        "reply": "Rispondi ai post recenti",
+        "curate": "Mi piace ai post rilevanti",
+        "post": "Scrivi un post"
+      },
+      "cadence": {
+        "once": "Una volta",
+        "daily": "Ogni giorno",
+        "twice": "Due volte al giorno"
+      },
+      "dehub_post_create": "Pubblica i post",
+      "dehub_comment": "Rispondi e commenta",
+      "dehub_vote": "Reagisci ai post",
+      "dehub_follow": "Segui gli account",
+      "dehub_update_profile": "Modifica profilo",
+      "dehub_stream_timeout": "Chat in streaming moderata",
+      "news": {
+        "world": "Mondo",
+        "technology": "Tecnologia",
+        "culture": "Cultura",
+        "sport": "Sport",
+        "science": "Scienze"
+      },
+      "alerts": "Richiede attenzione",
+      "agent": "Agente",
+      "action": "Azione",
+      "schedule": "Programma",
+      "filter": "Filtra attività"
+    }
   },
   "hero": {
     "title": "Benvenuti Nel",
@@ -5092,7 +5177,12 @@
     "interestedCount": "{{count}} interessati",
     "loadFailed": "Impossibile caricare gli eventi"
   },
-  "stats": {"chart": {"daily": "Visitatori al giorno", "dailyHint": "visitatori unici al giorno", "empty": "Ancora nessun dato per questo intervallo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitatori al giorno",
+      "dailyHint": "visitatori unici al giorno",
+      "empty": "Ancora nessun dato per questo intervallo"
+    },
     "definitions": {
       "visitorsTerm": "Visitatori"
     },

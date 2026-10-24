@@ -2426,7 +2426,92 @@
     "revealFailed": "ئاچقۇچنى كۆرسەتكىلى بولمىدى. قايتا سىناڭ.",
     "signInAgain": "قايتا كىرىش",
     "createSignIn": "ۋاكالەتچى قۇرۇش ئۈچۈن قايتا كىرىڭ",
-    "checkConnection": "ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ."
+    "checkConnection": "ئۇلىنىشىڭىزنى تەكشۈرۈپ قايتا سىناڭ.",
+    "workspace": {
+      "moderation": "Stream moderatsiyasi",
+      "moderationHelp": "Moderatsiya ruhsati qulay qilish uchun birinchi bo'lishi kerak. Hisob qilinadigan hisob mustaqil moderator yoki stream yaratuvchi bo'lishi kerak. Ruxsat berish va chizma rejimlari hali ham qo'llaniladi. Vaqti o'tib ketadi avtomatik ravishda.",
+      "streamId": "Stream post ID",
+      "participant": "Ishtirokchi hisob",
+      "participantHint": "Ishtirokchi hisob (0x…)",
+      "timeout": "Vaqti o'tish (sekund)",
+      "submitTimeout": "Submit vaqti o'tishi",
+      "handled": "Talab qabul qilindi. Ko'rish logini ko'ring.",
+      "webhook": "Discord alerter webhook (majburiy emas)",
+      "webhookHelp": "Ruxsat so'rovlar va harakat muvaffaqiyatsizligi uchun umumiy alerter yuboriladi, bir soat ichida bir marta. Chizma matni yoki hisob ma'lumotlari yuborilmaydi. Bo'sh qoldirish uchun qoldirish. Natijalar ko'rish logida ko'ring.",
+      "reversalHelp": "Qaytarishlar yashirilgan postlarni yashiradi, permanent ravishda komentlarni o'chiradi, yangi kuyovlarni tiklaydi yoki yangi kuyovlarni qaytaradi. Ko'rishlar, yetkazilgan xabarlarni, mint qilingan transactionlar, profil rasmlari va o'tib ketgan vaqtlar o'chirib bo'lmaydi. Yashirilgan postlar ularning ko'rinishini boshqarish qoidalari orqali qayta topiladi.",
+      "confirmCorrection": "Bu nashr qilishni o'zgartiradi. Komentlarni o'chirish qaytarib bo'lmaydi.",
+      "correction": "Tasdiqlash",
+      "alert": "Ushbu",
+      "shared": "Ovoz, ruhsatlar va yangiliklar",
+      "controls": "Bu nazoratlar o'z-o'zini boshqaruvchi hayot va bog'langan yordamchilar uchun rejalashtirilgan vazifalariga ham tegishli.",
+      "scope": "Chizma qoladi",
+      "voice": "Ovoz va ton",
+      "knowledge": "Murojaat materiallari",
+      "blocked": "Blokirovka mavzulari, bo'shliqlar bilan ajratilgan",
+      "liveNews": "O'z-o'zini boshqaruvchi hayot davomida yangiliklarga javob berish",
+      "newsHelp": "Ikkita mavzu tanlang. Yangiliklar uchun so'rovlar 24 soatlik yangiliklar hisobotidan 15 daqiqa davom etadi. Yangiliklar reaksiyasi manba linkini o'z ichiga oladi; mavjud emas yoki qadimgi yangiliklar qoldiriladi.",
+      "saved": "Tasdiqlashlar saqlangan.",
+      "title": "Agent ish joyi",
+      "sample": "Faollik va alerterlar oxirgi 100 harakat va 200 vazifalarni qamrab oladi. Hisoblar umumiy hisob yoki hisoblash foydalanish emas.",
+      "growth": "O'sish hisobotini qayd etish",
+      "baseline": "Birinchi qayd etish; keyinroq solishtirish uchun qaytadan qayd etish.",
+      "library": "Shablonlar va vazifa quruvchi",
+      "subject": "Mavzu yoki javob uslub",
+      "useBuilder": "Bu qo'llanmaga muvofiq ishlash",
+      "planValidated": "Planni tasdiqlanmighan",
+      "builderHelp": "Shablon tanlaw, harakatni taswirlaw, auditoriya va vaqitni ayirlap, ishga kirgizishdan oldin simulyatsiya qilyap. Ulashgan shablonlar mualliflarining buyruqlari, tasdiqlanmagan qobiliyat emas.",
+      "simulate": "Planni simulyatsiya qilyap",
+      "allowed": "Ruxsat etilgandir",
+      "templateName": "Shablon nomi",
+      "share": "Bu shablonni boshqa Agent foydalanuvchilar bilan ulash",
+      "saveTemplate": "Shablonni saqlap qoldur",
+      "templateSaved": "Shablon saqlanmighan.",
+      "history": "Qayta yozish qutisi va audit jurnalini",
+      "empty": "Hozircha mos kelmaydigan faollik yo'q.",
+      "approve": "Tasdiqlap ishga kirit",
+      "reject": "Rad et",
+      "growthResult": "{{followers}} izlovchisi · {{following}} izlashchisi",
+      "growthChange": "Izlovchisi o'zgarishi: {{count}}dan {{time}}gacha",
+      "runs": "{{runs}} so'nggi ishlar · {{completed}} yakunlangan · {{failed}} muvaffaqiyatsiz",
+      "autonomous": "O'z-o'zini boshqaruv",
+      "approval": "Birinchi tasdiqlash",
+      "draft": "Qayta yozish faqat",
+      "count": {
+        "pending": "Qayta yozishlarni tekshirish",
+        "succeeded": "So'nggi muvaffaqiyatlar",
+        "scheduled": "Rejalashtirilgan vazifalar",
+        "active": "Faol agentlar"
+      },
+      "builder": {
+        "news": "Xabarlarni reaksiyalash",
+        "reply": "So'nggi postlarga javob berish",
+        "curate": "Mos keladigan postlarni yoqish",
+        "post": "Post yozish"
+      },
+      "cadence": {
+        "once": "Bir marta",
+        "daily": "Kunlik",
+        "twice": "Kuniga ikki marta"
+      },
+      "dehub_post_create": "Postlarni nashr etish",
+      "dehub_comment": "جاۋاب قايتۇرۇش ۋە ئىنكاس قايتۇرۇش",
+      "dehub_vote": "يازمىلارغا ئىنكاس قايتۇرۇش",
+      "dehub_follow": "ھېساباتقا ئەگىشىش",
+      "dehub_update_profile": "پروفىلنى تەھرىرلەش",
+      "dehub_stream_timeout": "ئوتتۇرا دەرىجىلىك ئېقىم پاراڭلىشىش پروگراممىسى",
+      "news": {
+        "world": "دۇنيا",
+        "technology": "تېخنىكا",
+        "culture": "Culture",
+        "sport": "Sport",
+        "science": "ئىلىم"
+      },
+      "alerts": "دىققەتكە مۇھتاج",
+      "agent": "ۋاكالەتچى",
+      "action": "ھەرىكەت",
+      "schedule": "ۋاقىت جەدۋىلى",
+      "filter": "ھەرىكەتنى سۈزگۈچ"
+    }
   },
   "hero": {
     "title": "دۇنيامىزغا",
@@ -5015,7 +5100,12 @@
     "interestedCount": "{{count}} كىشى قىزىقىدۇ",
     "loadFailed": "پائالىيەتلەرنى يۈكلىگىلى بولمىدى"
   },
-  "stats": {"chart": {"daily": "كۈنلۈك زىيارەتچى", "dailyHint": "كۈنلۈك تەكرارسىز زىيارەتچى", "empty": "بۇ مەزگىل ئۈچۈن تېخى سانلىق مەلۇمات يوق"},
+  "stats": {
+    "chart": {
+      "daily": "كۈنلۈك زىيارەتچى",
+      "dailyHint": "كۈنلۈك تەكرارسىز زىيارەتچى",
+      "empty": "بۇ مەزگىل ئۈچۈن تېخى سانلىق مەلۇمات يوق"
+    },
     "definitions": {
       "visitorsTerm": "زىيارەتچىلەر"
     },
