@@ -3,42 +3,30 @@ import { Animated, Easing, Image, StyleSheet, Text, View, useWindowDimensions } 
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { VideoView, useVideoPlayer } from "expo-video";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import { useReducedMotion } from "react-native-reanimated";
 import { KeepDarkScope } from "../../libs/jsx/tone";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { loginClipLanes } from "../../libs/login-clip-lanes";
+import { LOGIN_CLIPS as CLIPS } from "./login-clip-assets";
 
 /**
  * The top half of the sign-in screen: two lanes of short clips drifting past
- * in opposite directions (the feed already running), then the headline. One
- * clip is the AI restyle and says so; the rest are ordinary creator posts.
- * Mirrors dehubweb's LoginShortsStack (phone sheet).
+ * in opposite directions, then the headline. Shares the selected clip
+ * catalogue and shuffled lane order with the web drawer.
  *
- * The clips ship with the app (assets/login-stack, credits in dehubweb's
- * public/login-stack/CREDITS.txt), so the sign-in screen never waits on the
+ * The clips ship with the app (sources in assets/login-stack/SOURCES.txt),
+ * so the sign-in screen never waits on the
  * network and can never show a feed post.
  *
  * Colours: the tiles sit in KeepDarkScope and are written in their final
  * colours; the headline is written dark (white) and System Light flips it to
  * ink like every other screen.
  */
-const CLIPS = {
-  restyle: { video: require("../../assets/login-stack/restyle.mp4"), poster: require("../../assets/login-stack/restyle.jpg") },
-  concert: { video: require("../../assets/login-stack/concert.mp4"), poster: require("../../assets/login-stack/concert.jpg") },
-  street: { video: require("../../assets/login-stack/street.mp4"), poster: require("../../assets/login-stack/street.jpg") },
-  bass: { video: require("../../assets/login-stack/bass.mp4"), poster: require("../../assets/login-stack/bass.jpg") },
-  skate: { video: require("../../assets/login-stack/skate.mp4"), poster: require("../../assets/login-stack/skate.jpg") },
-  friends: { video: require("../../assets/login-stack/friends.mp4"), poster: require("../../assets/login-stack/friends.jpg") },
-  drums: { video: require("../../assets/login-stack/drums.mp4"), poster: require("../../assets/login-stack/drums.jpg") },
-  vlog: { video: require("../../assets/login-stack/vlog.mp4"), poster: require("../../assets/login-stack/vlog.jpg") },
-};
 type ClipName = keyof typeof CLIPS;
 
-const LANE_A: ClipName[] = ["restyle", "concert", "street", "bass"];
-const LANE_B: ClipName[] = ["skate", "friends", "drums", "vlog"];
 const GAP = 8;
 const SIDE = 10;
 /** One trip through a lane's four clips, as on web. */
@@ -76,13 +64,12 @@ function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
  * back to the start lands on the same picture. Only tiles inside the window
  * play, so at most three decode per lane.
  */
-function Lane({ clips, down, tileW, height, still, restyleLabel, line }: {
+function Lane({ clips, down, tileW, height, still, line }: {
   clips: ClipName[];
   down?: boolean;
   tileW: number;
   height: number;
   still: boolean;
-  restyleLabel: string;
   line: string;
 }) {
   const tileH = (tileW * 16) / 9;
@@ -128,12 +115,6 @@ function Lane({ clips, down, tileW, height, still, restyleLabel, line }: {
       {tiles.map((name, i) => (
         <View key={i} style={[styles.tile, { width: tileW, height: tileH, borderColor: line }]}>
           <Clip name={name} playing={!still && visible[i]} />
-          {name === "restyle" && (
-            <View style={styles.ai}>
-              <Ionicons name="sparkles" size={11} color="#FFFFFF" />
-              <Text style={styles.aiText}>{restyleLabel}</Text>
-            </View>
-          )}
         </View>
       ))}
     </Animated.View>
@@ -145,6 +126,7 @@ export default function LoginShortsStack({ viewportHeight }: { viewportHeight?: 
   const { theme, isLight, colors } = useAppTheme();
   const plain = theme === "system" || theme === "minimal";
   const still = !!useReducedMotion();
+  const [lanes] = useState(() => loginClipLanes(Object.keys(CLIPS) as ClipName[]));
   const { width, height: screenH } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
@@ -159,7 +141,6 @@ export default function LoginShortsStack({ viewportHeight }: { viewportHeight?: 
   // Budget against the actual scroll frame, reserving room for the form.
   const availableHeight = viewportHeight ?? screenH - insets.top - insets.bottom;
   const lanesH = Math.round(Math.min(480, Math.max(220, availableHeight - 400)));
-  const restyleLabel = t("loginStack.aiRestyle", "AI restyle");
 
   return (
     <View style={styles.root}>
@@ -177,21 +158,11 @@ export default function LoginShortsStack({ viewportHeight }: { viewportHeight?: 
           importantForAccessibility="no-hide-descendants"
         >
           <View style={[styles.lanes, { height: lanesH }]}>
-            <Lane clips={LANE_A} tileW={tileW} height={lanesH} still={still} restyleLabel={restyleLabel} line={line} />
-            <Lane clips={LANE_B} down tileW={tileW} height={lanesH} still={still} restyleLabel={restyleLabel} line={line} />
+            <Lane clips={lanes.first} tileW={tileW} height={lanesH} still={still} line={line} />
+            <Lane clips={lanes.second} down tileW={tileW} height={lanesH} still={still} line={line} />
           </View>
         </MaskedView>
       </KeepDarkScope>
-      {/* The faint shade behind the logo, top-left only; Explore carries its
-          own glass. Near-black, not black: System Light keeps pure-black
-          scrims but turns this into a white haze. */}
-      <LinearGradient
-        pointerEvents="none"
-        colors={["rgba(4,4,4,0.32)", "rgba(4,4,4,0)"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0.75, y: 0.75 }}
-        style={styles.corner}
-      />
       <View style={styles.headline}>
         <Text style={styles.headlineText} accessibilityRole="header">
           {t("loginStack.headlineTop", "You will own everything")}
