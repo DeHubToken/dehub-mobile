@@ -111,6 +111,7 @@ import { useImageTranslation } from "../../hooks/useImageTranslation";
 import { useKeyedState } from "../../hooks/useItemState";
 import { useMediaAspect } from "../../hooks/useMediaAspect";
 import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
+import { isTabletPortraitFeed } from "../../libs/tablet-portrait-feed";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { seedViewerStats } from "../../libs/viewers.util";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -364,7 +365,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const { isSignedIn } = useAuthState();
   // Live window width, so split-screen and unfolding resize the card instead
   // of keeping the width the app started with.
-  const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const IMAGE_WIDTH = imageWidthFor(SCREEN_WIDTH);
   const SINGLE_IMAGE_WIDTH = singleImageWidthFor(SCREEN_WIDTH);
 
@@ -479,6 +480,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     const next = Math.max(0, Math.round((SCREEN_WIDTH - listWidth) / 2));
     if (Math.abs(next - minimalGutter) > 1) setMinimalGutter(next);
   }, [minimalGutter, SCREEN_WIDTH]);
+  const [tabletColumnWidth, setTabletColumnWidth] = useState(0);
+  const handleFeedLayout = useCallback((e: LayoutChangeEvent) => {
+    if (SCREEN_WIDTH >= 768 && SCREEN_WIDTH <= 1366) setTabletColumnWidth(e.nativeEvent.layout.width);
+    if (isMinimal && !immersive && !flat) handleMinimalLayout(e);
+  }, [SCREEN_WIDTH, isMinimal, immersive, flat, handleMinimalLayout]);
 
   const [replacementImages, setReplacementImages] = useState<{ tokenId: string; imageUrls: string[] } | null>(null);
   // Only the owner can replace a post's images, so only the owner's own card
@@ -1375,6 +1381,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       contentType === "live" ||
       (contentType === "image" && hasImages));
   const overlayTitle = (isTranslated ? translatedTexts.title : localTitle) || "";
+  const tabletCandidate = isTabletPortraitFeed(SCREEN_WIDTH, tabletColumnWidth, tabletColumnWidth < SCREEN_WIDTH - 40)
+    && isVideo && !fullContent && !immersive && !flat && !stageProp && !localArticleBody;
+  const tabletAspect = useMediaAspect(tabletCandidate ? thumbnail : null, tabletCandidate ? tokenId : undefined);
+  const tabletPortrait = tabletCandidate && tabletAspect < 1 && !!postVideoUrl
+    && !isActuallyGated && !matureGate.isGated && !contentWarning.hidden;
+  const tabletVideoWidth = tabletPortrait ? Math.min((tabletColumnWidth - 24) * 0.44, SCREEN_HEIGHT * 0.65 * tabletAspect) : undefined;
   // Video and live carry the author and buttons over the picture; a photo
   // gets a plain header row above it instead, and nothing over it.
   const measuredFirstVideoAspect = useMediaAspect(cinematicMedia && topChromeInset > 0 && isVideo ? thumbnail : null, tokenId);
@@ -1673,6 +1685,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     <FeedScrubContext.Provider value={stage ? null : scrubBoundary.controller}>
     <FeedVideoPlayer
       thumbnail={thumbnail}
+      inlineWidth={tabletVideoWidth}
       postPage={fullContent}
       onBack={postVideo && !retainFeedNav ? onBack : undefined}
       videoUrl={isActuallyGated ? undefined : (postVideoUrl || undefined)}
@@ -2180,6 +2193,62 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     </>
   );
 
+  if (tabletPortrait) {
+    return (
+      <GestureDetector gesture={scrubBoundary.gesture}>
+        <Pressable
+          testID="tablet-portrait-feed-card"
+          onLayout={e => setTabletColumnWidth(e.nativeEvent.layout.width)}
+          onPress={disablePress ? undefined : handleCardPress}
+          disabled={disablePress}
+          style={isMinimal || cinematicFeed ? {
+            padding: 12, marginVertical: 6,
+            borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: MINIMAL_HAIRLINE,
+          } : skin ? [skin.card, { padding: 12, marginVertical: 6 }] : {
+            borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)', borderRadius: FEED_BENTO_RADIUS,
+            backgroundColor: theme === 'system' ? 'transparent' : 'rgba(255,255,255,0.03)',
+            padding: 12, marginVertical: 6,
+          }}
+        >
+          {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]} /> : null}
+          {showRepostLabel && <View className="flex-row items-center gap-1.5 mb-2"><Icon name="Repeat2" size={14} color="#9CA3AF" /><Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text></View>}
+          {!!(item as any).__boosted && <TouchableOpacity onPress={() => navigation.navigate(ScreenNames.SuperPowers)} className="flex-row items-center gap-1.5 mb-2"><Icon name="Zap" size={14} color="#9CA3AF" /><Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">{t("work.boosted")}</Text></TouchableOpacity>}
+          <FeedCardHeader
+            avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
+            badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
+            onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
+            isHidden={isHidden}
+          />
+          <View style={{ flexDirection: 'row', gap: 24, alignItems: 'stretch', marginTop: 8 }}>
+            <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <PostTapSurface resetKey={postKey} onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
+                <FeedCaption resetKey={postKey} title={overlayTitle || undefined} description={displayCaption || undefined}
+                  variant="portrait" maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
+                  onCategoryPress={onCategorySelect} onCashtagPress={setActiveCashtag} />
+              </PostTapSurface>
+              {hasSoundtrack && !soundtrackOnMedia && <View className="mt-2"><SoundtrackBadge key={postKey} title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} isVisible={isVisible} /></View>}
+              {(item as any).isQuotePost && <QuotedPostEmbed key={postKey} quotedPost={(item as any).quotedPost} quotedTokenId={(item as any).quotedTokenId} revoked={(item as any).quoteRevoked} quoteTokenId={tokenId ?? undefined} />}
+              <DehubLinkCards links={dehubLinks} />
+              <LinkPreviewCard key={postKey} text={captionText} />
+              <AssetRefCards refs={assetRefs} />
+              {tokenId != null && !(item as any).isQuotePost && <PollCard key={postKey} tokenId={Number(tokenId)} pollOwnerAddress={minterAddress} />}
+              <ShopBoard key={postKey} tokenId={tokenId} links={localShopLinks ?? (item as any).shopLinks} listingCount={localShopListingCount ?? (item as any).shopListingCount} />
+              <View style={{ marginTop: 'auto', paddingTop: 16 }}>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
+                  <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+                  {showTranslate && <TranslateButton isTranslated={isTranslated} isLoading={translating} detectedLanguage={translationSourceLang} onTranslate={handleTranslate} onShowOriginal={handleShowOriginal} inline />}
+                </View>
+                {actionBar}
+              </View>
+            </View>
+          </View>
+          {sheets}
+        </Pressable>
+      </GestureDetector>
+    );
+  }
+
   if (stage) {
     const stageMedia = immersive && !matureGate.isGated;
     const reportAnchor = (e: LayoutChangeEvent) => {
@@ -2448,7 +2517,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         // No bento: the post steps out over the list's side padding so its
         // media spans the screen, and posts are split by a hairline across
         // the whole width with 12pt of room either side of it.
-        onLayout={handleMinimalLayout}
+        onLayout={handleFeedLayout}
         // Media starts under the capsule; a leading text card clears it.
         style={[styles.cinematicPost, { marginHorizontal: -minimalGutter }, chromeInset ? { paddingTop: textTopInset } : null, hideDivider ? { borderBottomWidth: 0 } : null]}
       >
@@ -2664,7 +2733,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // at all. The card steps out over the list's side padding to span the
       // screen, posts are split by one full-width hairline, and media bleeds
       // past the text inset to both edges.
-      onLayout={isMinimal && !immersive && !flat ? handleMinimalLayout : undefined}
+      onLayout={handleFeedLayout}
       style={immersive ? {
         paddingHorizontal: IMMERSIVE_INSET,
         paddingBottom: 12,

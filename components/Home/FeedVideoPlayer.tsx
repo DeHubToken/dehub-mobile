@@ -136,6 +136,8 @@ const pipSupported = () => {
 
 interface FeedVideoPlayerProps {
   thumbnail: string;
+  /** Measured portrait column on a wide tablet feed; poster and player share it. */
+  inlineWidth?: number;
   /** Post page uses the available width while keeping the inline height cap. */
   postPage?: boolean;
   /** Post-page Back uses the same glyph and tap area as Volume. */
@@ -265,6 +267,7 @@ const LOVE_BLOOM = [
 
 const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   thumbnail,
+  inlineWidth,
   postPage = false,
   onBack,
   videoUrl,
@@ -575,7 +578,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const feedPreview = !postPage && !!onOpenViewer && !isContentGated;
   const bareControls = !feedPreview;
   const splitControls = !hideControls && !isContentGated && !feedPreview;
-  const frameWidth = mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls);
+  const frameWidth = inlineWidth ?? mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls);
   const stripHeight = controlStripHeight(frameWidth);
   const compactStrip = splitControls && frameWidth < 320;
   const stripOpacity = useRef(new Animated.Value(1)).current;
@@ -1303,9 +1306,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       style={[
         styles.container,
         {
-          height: mediaBoxHeight(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls), mediaAspect, postPage, splitControls),
-          // Keep the picture and its transport strip aligned to the full width.
-          width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls),
+          height: inlineWidth ? inlineWidth / mediaAspect : mediaBoxHeight(windowSize, frameWidth, mediaAspect, postPage, splitControls),
+          // Tablet portrait columns supply their width; other frames stay full width.
+          width: frameWidth,
           maxWidth: "100%",
           alignSelf: "flex-start",
         },
@@ -2102,8 +2105,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction"> & { feedPreview?: boolean; active?: boolean; children?: React.ReactNode }> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, children }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction" | "inlineWidth"> & { feedPreview?: boolean; active?: boolean; children?: React.ReactNode }> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, children, inlineWidth }) => {
     const { t } = useTranslation();
     const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
     const posterAspect = getMeasuredMediaAspect(thumbnail);
@@ -2123,8 +2126,8 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         style={[
           styles.container,
           {
-            height: mediaBoxHeight(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls), mediaAspect, postPage, splitControls),
-            width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls),
+            height: inlineWidth ? inlineWidth / mediaAspect : mediaBoxHeight(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls), mediaAspect, postPage, splitControls),
+            width: inlineWidth ?? mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls),
             maxWidth: "100%",
             alignSelf: "flex-start",
           },
@@ -2256,6 +2259,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   // for a frame every time a scrolling card mounted or unmounted a player.
   return (
     <FeedVideoPoster
+      inlineWidth={props.inlineWidth}
       tokenId={props.tokenId}
       isVisible={props.isVisible}
       thumbnail={props.thumbnail}

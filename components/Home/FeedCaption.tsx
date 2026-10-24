@@ -16,6 +16,7 @@ import { expandEmojiTokens } from "../common/EmojiText";
 import { getActiveTheme } from "../../theme/colors";
 import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 import { useRecyclingState } from "../../hooks/useCellState";
+import { tabletPortraitTitleSize } from "../../libs/tablet-portrait-feed";
 
 type Segment =
   | { type: "text"; value: string }
@@ -105,7 +106,7 @@ interface FeedCaptionProps {
    * of text, two lines at most, nothing to expand.
    * `large`: the body of a text-only post, set bigger since it is the post.
    */
-  variant?: "default" | "media" | "large";
+  variant?: "default" | "media" | "large" | "portrait";
 }
 
 // Measured "see more" verdicts, keyed on the caption content. The verdict
@@ -286,15 +287,16 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   }
 
   const large = variant === "large";
+  const portraitSize = variant === "portrait" ? tabletPortraitTitleSize(displayTitle || "", 16.8) : null;
 
   return (
-    <View className="mt-2">
+    <View className={variant === "portrait" ? undefined : "mt-2"}>
       {/* Titles label the media; they should sit with the caption rather than
           compete with it as a headline. */}
       {hasTitle && (
         <Text
           className="text-theme-neutrals-100"
-          style={[large ? LARGE_TEXT : { fontSize: 16.8, lineHeight: 23.1 }, mono]}
+          style={[portraitSize ? { fontSize: portraitSize, lineHeight: portraitSize * 1.35, fontWeight: portraitSize > 16.8 ? "600" : "400", marginBottom: 8 } : large ? LARGE_TEXT : { fontSize: 16.8, lineHeight: 23.1 }, mono]}
           numberOfLines={fullContent ? undefined : 2}
           ellipsizeMode="tail"
         >
