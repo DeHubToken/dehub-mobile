@@ -42,6 +42,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { DhbCoin } from "../components/common/DhbCoin";
 import TranscriptSection from "../components/Post/TranscriptSection";
+import { setPostStartTime } from "../libs/post-start-time";
 import { Image } from "expo-image";
 import { getTokenHolders } from "../libs/token-holders";
 
@@ -495,7 +496,16 @@ export default function PostInfoScreen() {
           </Section>
         )}
 
-        {!!post.videoUrl && <TranscriptSection tokenId={post.tokenId} />}
+        {!!post.videoUrl && (
+          <TranscriptSection
+            tokenId={post.tokenId}
+            onSeek={(seconds) => {
+              // This screen has no player: open the post at that moment.
+              setPostStartTime(post.tokenId, Math.floor(seconds));
+              navigation.push(ScreenNames.FeedDetail, { tokenId: String(post.tokenId) });
+            }}
+          />
+        )}
 
         {categories.length > 0 && (
           <Section title={t("postInfo.categories")}>

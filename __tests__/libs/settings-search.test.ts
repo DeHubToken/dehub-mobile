@@ -85,7 +85,7 @@ describe('searchSettings', () => {
   it('puts the closest label first', () => {
     expect(top('language')?.anchor).toBe('language');
     expect(top('quiet')?.anchor).toBe('quiet-hours');
-    expect(top('storage')?.anchor).toBe('message-storage');
+    expect(top('free dm')?.anchor).toBe('free-dm-access');
   });
 
   it('finds settings by what people call them, not what we called them', () => {
