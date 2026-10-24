@@ -14,6 +14,7 @@ import {
 import SmartImage from "../common/SmartImage";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import { useAppTheme } from "../../context/ThemeContext";
 import LiveChatAttachSheet from "./LiveChatAttachSheet";
 import EmojiSheet from "../Upload/EmojiSheet";
 import MentionSuggestions from "../common/MentionSuggestions";
@@ -91,6 +92,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
+  const { isLight } = useAppTheme();
+  const composerIconColor = isLight ? '#3f3f46' : '#A1A1AA';
+  const composerActiveColor = isLight ? '#242428' : '#F4F4F5';
   const [text, setText] = useDraftState(editingMessage ? `public:edit:${editingMessage._id}` : "public:composer", editingMessage?.content ?? "");
   const [attachOpen, setAttachOpen] = useState(false);
   const [emojiSheetOpen, setEmojiSheetOpen] = useState(false);
@@ -317,7 +321,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             <SmartImage source={{ uri: attachmentUri }} recyclingKey={attachmentUri} style={{ width: 64, height: 64 }} contentFit="cover" />
             {attachmentBusy && (
               <View className="absolute inset-0 items-center justify-center dark-surface bg-black/50">
-                <ActivityIndicator size="small" color="#F4F4F5" />
+                <ActivityIndicator size="small" color={composerActiveColor} />
               </View>
             )}
             <TouchableOpacity
@@ -335,7 +339,7 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
 
       {uploadingVoice ? (
         <View className="flex-row items-center justify-center py-4 bg-theme-neutrals-800 rounded-xl mx-2 my-1.5">
-          <ActivityIndicator size="small" color="#F4F4F5" />
+          <ActivityIndicator size="small" color={composerActiveColor} />
           <Text className="text-white/70 text-sm ml-2">{t("liveChat.uploadingVoice")}</Text>
         </View>
       ) : recorder.isRecording ? (
@@ -385,9 +389,9 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             </View>
           )}
 
-          <TouchableOpacity onPress={handlePickGif} disabled={disabled} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.attachGif")}><Icon name="Smile" size={20} color="#A1A1AA" /></TouchableOpacity>
-          <TouchableOpacity onPress={handlePickImage} disabled={disabled || attachmentBusy} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.attachPhoto")}><Icon name="Image" size={20} color="#A1A1AA" /></TouchableOpacity>
-          <TouchableOpacity onPress={handleStartRecording} disabled={disabled} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.recordVoice")}><Icon name="Mic" size={20} color="#A1A1AA" /></TouchableOpacity>
+          <TouchableOpacity onPress={handlePickGif} disabled={disabled} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.attachGif")}><Icon name="Smile" size={20} color={composerIconColor} /></TouchableOpacity>
+          <TouchableOpacity onPress={handlePickImage} disabled={disabled || attachmentBusy} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.attachPhoto")}><Icon name="Image" size={20} color={composerIconColor} /></TouchableOpacity>
+          <TouchableOpacity onPress={handleStartRecording} disabled={disabled} style={CONTROL_BOX} className="items-center justify-center" accessibilityRole="button" accessibilityLabel={t("liveChat.recordVoice")}><Icon name="Mic" size={20} color={composerIconColor} /></TouchableOpacity>
           <TouchableOpacity
             onPress={handleEnhance}
             className="items-center justify-center"
@@ -400,12 +404,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
             accessibilityState={{ disabled: !text.trim() || enhancing }}
           >
             {enhancing ? (
-              <ActivityIndicator size={18} color="#F4F4F5" />
+              <ActivityIndicator size={18} color={composerActiveColor} />
             ) : (
               <Icon
                 name="Sparkles"
                 size={22}
-                color={text.trim() ? "#F4F4F5" : "#52525B"}
+                color={text.trim() ? composerActiveColor : "#52525B"}
               />
             )}
           </TouchableOpacity>
@@ -423,12 +427,12 @@ const LiveChatInput: React.FC<LiveChatInputProps> = ({
               }}
             >
               {attachmentBusy ? (
-                <ActivityIndicator size={18} color="#F4F4F5" />
+                <ActivityIndicator size={18} color={composerActiveColor} />
               ) : (
                 <Icon
                   name="Send"
                   size={22}
-                  color={canSubmit && !disabled && !cooldown && !isOverLimit ? "#F4F4F5" : "#52525B"}
+                  color={canSubmit && !disabled && !cooldown && !isOverLimit ? composerActiveColor : "#52525B"}
                 />
               )}
             </TouchableOpacity>
