@@ -1,12 +1,39 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { galleryIndex, rememberGalleryIndex, subscribeGallery } from '../../libs/media-presentation';
-import { warmFeedImage } from '../common/SmartImage';
+import { measureImageAspect, warmFeedImage } from '../common/SmartImage';
 import { useDataSaver } from '../../hooks/useDataSaver';
-import { ScrollView, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { ScrollView, View, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { knownImageAspect, rememberImageAspect } from '../../hooks/useImageAspect';
+import { FEED_BENTO_RADIUS, fitFeedImageWithin } from '../../libs/feed-image-layout';
+import { useAppTheme } from '../../context/ThemeContext';
+import { useFeedBleed } from './feedBleed';
 import ContainedFeedImage from './ContainedFeedImage';
 import PostTapSurface from './PostTapSurface';
 
 type Frame = { x: number; width: number };
+
+/**
+ * Every photo's shape, measured up front. A photo that is not drawn yet used
+ * to hold the 4:3 guess, and the strip took the height of that guess: a post
+ * of wide screenshots showed a 300px empty band under its first photo.
+ */
+function useGalleryAspects(images: string[]) {
+  const [measured, setMeasured] = useState<Record<string, number>>({});
+  useEffect(() => {
+    let live = true;
+    images.forEach(uri => {
+      if (knownImageAspect(uri)) return;
+      // An unmeasurable photo sizes itself when it loads.
+      void measureImageAspect(uri).then(ratio => {
+        if (!ratio) return;
+        rememberImageAspect(uri, ratio);
+        if (live) setMeasured(previous => ({ ...previous, [uri]: ratio }));
+      });
+    });
+    return () => { live = false; };
+  }, [images]);
+  return images.map(uri => measured[uri] ?? knownImageAspect(uri));
+}
 
 /** Keep slide geometry mounted while drawing only the horizontal viewport. */
 function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false, postId, descriptions }: {
@@ -31,6 +58,22 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   const viewport = useRef({ x: 0, width: fallbackWidth });
   const [visible, setVisible] = useState<number[]>([0, 1]);
   const { liteMode } = useDataSaver();
+  const { height: screenHeight } = useWindowDimensions();
+  const { isMinimal } = useAppTheme();
+  const edgeToEdge = isMinimal || !!useFeedBleed();
+  const aspects = useGalleryAspects(images);
+  // The strip is as tall as its tallest photo. Shorter photos sit centred in a
+  // thin frame of that height, so the space around them reads as the post's
+  // photo area rather than a gap. Photos not measured yet borrow the tallest
+  // known shape, so they never stretch the strip on a guess.
+  const framed = !postPage && images.length > 1;
+  const tallestAspect = useMemo(() => {
+    const known = aspects.filter((ratio): ratio is number => !!ratio && Number.isFinite(ratio));
+    return known.length ? Math.min(...known) : undefined;
+  }, [aspects]);
+  const frameHeight = framed && tallestAspect
+    ? fitFeedImageWithin(width || fallbackWidth, tallestAspect, screenHeight * 0.55).height
+    : undefined;
   useEffect(() => {
     if (active && !liteMode) {
       const next = images[Math.min(Math.max(...visible) + 1, images.length - 1)];
@@ -73,7 +116,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
     rememberGalleryIndex(galleryKey, nearest);
     updateVisible();
   }, [updateVisible, galleryKey]);
-  return (
+  const strip = (
     <ScrollView
       testID="feed-image-gallery"
       ref={scrollRef}
@@ -97,7 +140,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
             if (index === galleryIndex(galleryKey)) restore();
             updateVisible();
           }}
-          style={{ marginRight: index === images.length - 1 ? 0 : 8 }}
+          style={{ marginRight: index === images.length - 1 ? 0 : 8, height: frameHeight, justifyContent: 'center' }}
         >
           <PostTapSurface onPress={() => onImagePress(index)} onReaction={onReaction}>
             <ContainedFeedImage
@@ -110,11 +153,27 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
               postPage={postPage}
               fallbackWidth={fallbackWidth}
               priority={prioritizeMedia && index === 0 ? 'high' : 'normal'}
+              aspect={aspects[index] ?? (framed ? tallestAspect : undefined)}
             />
           </PostTapSurface>
         </View>
       ))}
     </ScrollView>
+  );
+  if (!framed) return strip;
+  return (
+    <View
+      testID="feed-image-gallery-frame"
+      style={{
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.16)',
+        borderRadius: edgeToEdge ? 0 : FEED_BENTO_RADIUS,
+        backgroundColor: 'rgba(255,255,255,0.03)',
+        overflow: 'hidden',
+      }}
+    >
+      {strip}
+    </View>
   );
 }
 
