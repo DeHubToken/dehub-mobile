@@ -314,7 +314,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
   return (
     <View style={[styles.root, transparent && { backgroundColor: "transparent" }]}>
       <View style={styles.header}>
-        <Icon name="MessageSquare" size={13} color="#A1A1AA" />
+        <Icon name="MessageEnvelope" size={13} color="#A1A1AA" />
         <Text style={styles.headerText}>{labels?.title ?? t("tv.liveChat")}</Text>
       </View>
 
@@ -348,7 +348,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
           }}
           ListEmptyComponent={
             <View style={styles.center}>
-              <Icon name="MessageSquare" size={26} color="#3F3F46" />
+              <Icon name="MessageEnvelope" size={26} color="#3F3F46" />
               <Text style={styles.dim}>{labels?.empty ?? t("tv.noMessages")}</Text>
             </View>
           }

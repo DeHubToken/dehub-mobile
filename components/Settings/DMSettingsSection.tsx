@@ -235,7 +235,7 @@ const DMSettingsSection: React.FC = () => {
         <View className="px-4 py-2 flex-row items-center justify-between">
           <View className="flex-row items-center flex-1 pr-3">
             <View className="mr-3 w-5 h-5 items-center justify-center">
-              <Icon name="MessageSquare" size={20} color="#8B8D90" />
+              <Icon name="MessageEnvelope" size={20} color="#8B8D90" />
             </View>
             <View className="flex-1">
               <Text className="text-white text-base leading-5 font-medium">{t("settings.dmEnableLabel")}</Text>

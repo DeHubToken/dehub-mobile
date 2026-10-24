@@ -1,3 +1,4 @@
+import Icon from "../ui/Icon";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
@@ -412,7 +413,7 @@ const NewDMModal: React.FC<NewDMModalProps> = ({
             </View>
           ) : !suggestions.length ? (
             <View className="py-10 items-center">
-              <Ionicons name="chatbubble-ellipses-outline" size={40} color="#4B5563" />
+              <Icon name="MessageEnvelope" size={40} color="#4B5563" />
               <Text className="text-theme-neutrals-400 text-[13px] mt-3 text-center px-4">
                 {t("dm.searchHint")}
               </Text>

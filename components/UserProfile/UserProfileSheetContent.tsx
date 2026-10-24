@@ -461,7 +461,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
             className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
           >
             <View className="w-5 h-5 items-center justify-center mr-3">
-              <Icon name="MessageSquare" size={18} color="#fff" />
+              <Icon name="MessageEnvelope" size={18} color="#fff" />
             </View>
             <View className="flex-1">
               <Text className="text-white text-[15px] font-medium">{t("profileOptions.message")}</Text>
