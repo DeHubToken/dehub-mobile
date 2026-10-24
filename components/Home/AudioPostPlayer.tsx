@@ -15,12 +15,14 @@ import {
   LayoutChangeEvent,
   Animated as NativeAnimated,
   type ViewStyle,
+  Platform,
 } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
 import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../context/PagerGestureContext";
 import Slider from "@react-native-community/slider";
 import { GlassHold } from "./GlassHold";
+import { KeepDark } from '../../libs/jsx/tone';
 import { VolumeTrack } from "./VolumeSoundCue";
 import { useTranslation } from "react-i18next";
 import { useAppTheme, useThemeRootStyle } from '../../context/ThemeContext';
@@ -321,25 +323,29 @@ const pickerStyles = StyleSheet.create({
 });
 
 /** Height of the studio animation strip that runs on under the deck (web: audio-studio.css). */
-const STUDIO_BLEED = 40;
+const STUDIO_BLEED = 44;
+const STUDIO_ANIMATION_CLEARANCE = 12;
 
 /* Studio card frame, copied from web's audio-studio.css. Edges are inset
    shadows (one even ring plus a soft top rim light), never per-side border
    colours: Android draws those as a ring that is half bright, half dim. */
-type StudioMaterial = "system" | "glass";
-const STUDIO_EDGE = { system: "rgba(255,255,255,.2)", glass: "rgba(215,255,255,.3)" } as const;
-const STUDIO_INK = { system: "#f3f5f6", glass: "#efffff" } as const;
+type StudioMaterial = "system" | "glass" | "light";
+const STUDIO_EDGE = { system: "rgba(255,255,255,.2)", glass: "rgba(215,255,255,.3)", light: "rgba(20,30,40,.14)" } as const;
+const STUDIO_INK = { system: "#f3f5f6", glass: "#efffff", light: "#172129" } as const;
 const STUDIO_CARD_FILL = {
   system: { colors: ["#16191c", "#08090b", "#08090b"], locations: [0, .6, 1] },
   glass: { colors: ["rgba(210,255,255,.09)", "rgba(2,24,30,.23)"], locations: [0, 1] },
+  light: { colors: ["#ffffff", "#e7ebef"], locations: [0, 1] },
 } as const;
 const STUDIO_CARD_RIM = {
   system: "inset 0px 1px 0px rgba(255,255,255,.24), inset 0px 0px 0px 1px rgba(255,255,255,.1)",
   glass: "inset 0px 1px 1px rgba(255,255,255,.5), inset 0px 0px 0px 1px rgba(215,255,255,.3)",
+  light: "inset 0px 1px 0px #ffffff, inset 0px 0px 0px 1px rgba(20,30,40,.14)",
 } as const;
 const STUDIO_DECK_RIM = {
   system: "inset 0px 1px 0px rgba(255,255,255,.094), inset 0px -1px 0px rgba(255,255,255,.078)",
   glass: `inset 0px 1px 0px ${STUDIO_EDGE.glass}, inset 0px -1px 0px ${STUDIO_EDGE.glass}`,
+  light: "inset 0px 1px 0px rgba(255,255,255,.6), inset 0px -1px 0px rgba(20,30,40,.09)",
 } as const;
 const STUDIO_CARD_RADIUS = 24;
 const STUDIO_MOTION_RADIUS = 22;
@@ -414,13 +420,17 @@ const StudioHueSlider = memo(({ hue, onHueChange }: { hue: number; onHueChange: 
 /** Round transport button: a dark lens with a lit top rim (web [data-audio-studio-transport] button). */
 const StudioButton = ({ size, play, material, style, children, ...rest }: React.ComponentProps<typeof TouchableOpacity> & { size: number; play?: boolean; material: StudioMaterial }) => {
   const radius = size / 2;
-  const lens = play
+  const lens = material === 'light'
+    ? play
+      ? { colors: ["#39434c", "#101820"] as const, locations: [0, 1] as const, rim: "inset 0px 1px 1px rgba(255,255,255,.25)", drop: "0px 3px 12px rgba(20,30,40,.15)" }
+      : { colors: ["rgba(255,255,255,.6)", "rgba(183,195,206,.25)"] as const, locations: [0, 1] as const, rim: "inset 0px 1px 1px #ffffff, inset 0px 0px 0px 1px rgba(20,30,40,.12)", drop: undefined }
+    : play
     ? material === "glass"
       ? { colors: ["rgba(225,255,255,.21)", "rgba(164,236,236,.03)"] as const, locations: [0, 1] as const, rim: "inset 0px 1px 1px rgba(255,255,255,.88), inset 0px 0px 0px 1px rgba(215,255,255,.4)", drop: "0px 3px 12px rgba(0,0,0,.19)" }
       : { colors: ["#f0f2f3", "#a7acb1", "#d9dce0"] as const, locations: [0, .48, 1] as const, rim: "inset 0px 1px 1px #ffffff", drop: "0px 3px 12px rgba(0,0,0,.53)" }
     : { colors: ["rgba(255,255,255,.055)", "rgba(0,0,0,.33)"] as const, locations: [0, 1] as const, rim: "inset 0px 1px 1px rgba(255,255,255,.21), inset 0px 0px 0px 1px rgba(255,255,255,.125)", drop: undefined };
   return (
-    <TouchableOpacity {...rest} style={[{ width: size, height: size, borderRadius: radius, alignItems: "center", justifyContent: "center" }, lens.drop ? { boxShadow: lens.drop } : null, style]}>
+    <TouchableOpacity {...rest} className="dark-surface" style={[{ width: size, height: size, borderRadius: radius, alignItems: "center", justifyContent: "center" }, lens.drop ? { boxShadow: lens.drop } : null, style]}>
       <LinearGradient pointerEvents="none" colors={lens.colors} locations={lens.locations} start={{ x: 0.2, y: 0 }} end={{ x: 0.8, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: radius }]} />
       <View pointerEvents="none" style={{ alignItems: "center", justifyContent: "center" }}>{children}</View>
       <StudioRim shadow={lens.rim} shape={{ borderRadius: radius }} />
@@ -437,7 +447,7 @@ const STYLE_PAGE = 9;
 const StylePreviewTile = memo(({ style, label, active, live, hue, position, onPress }: { style: VisualizerStyle; label: string; active: boolean; live: boolean; hue: number; position: SharedValue<number>; onPress: () => void }) => (
   <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected: active }}
     style={[pickerStyles.previewTile, active && { backgroundColor: "rgba(255,255,255,.06)" }, { opacity: active ? 1 : .6 }]}>
-    <View pointerEvents="none" style={pickerStyles.previewWindow}>
+    <View className="dark-surface" pointerEvents="none" style={pickerStyles.previewWindow}>
       <AudioVisualizer style={style} seed={`style-preview-${style}`} isPlaying={live} hue={hue} position={position} height={44} />
     </View>
     <Text numberOfLines={1} style={[pickerStyles.studioLabel, { textAlign: "center", marginTop: 4 }]}>{label}</Text>
@@ -445,7 +455,7 @@ const StylePreviewTile = memo(({ style, label, active, live, hue, position, onPr
   </Pressable>
 ));
 
-const StudioStylePicker: React.FC<StylePickerProps & { hue: number }> = memo(({ style: activeStyle, onStyleChange, hue }) => {
+const StudioStylePicker: React.FC<StylePickerProps & { hue: number; ink: string; light: boolean }> = memo(({ style: activeStyle, onStyleChange, hue, ink, light }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState(STYLE_PAGE);
@@ -460,11 +470,12 @@ const StudioStylePicker: React.FC<StylePickerProps & { hue: number }> = memo(({ 
   const pick = (v: VisualizerStyle) => { onStyleChange(v); setOpen(false); };
   return (
     <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <Pressable onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel={t("poster.style")} hitSlop={{ top: 6, bottom: 6 }} style={pickerStyles.studioPill}>
-        <Text numberOfLines={1} style={pickerStyles.studioLabel}>{label(activeStyle)}</Text>
-        <Icon name="ChevronDown" size={13} color="rgba(255,255,255,.7)" />
+      <Pressable className="dark-surface" onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel={t("poster.style")} hitSlop={{ top: 6, bottom: 6 }} style={[pickerStyles.studioPill, light && { backgroundColor: 'rgba(20,30,40,.035)', boxShadow: 'inset 0px 1px 0px #ffffff, inset 0px 0px 0px 1px rgba(20,30,40,.14)' }]}>
+        <Text numberOfLines={1} style={[pickerStyles.studioLabel, { color: ink }]}>{label(activeStyle)}</Text>
+        <Icon name="ChevronDown" size={13} color={ink} />
       </Pressable>
       <GlassModal surface="theme" visible={open} onClose={() => setOpen(false)} presentation="bottom" maxHeight="70%" blurIntensity={30}>
+        <KeepDark.Provider value={false}>
         <View style={[{ paddingHorizontal: 12, paddingTop: 12 }, rootStyle]}>
           <Text style={[pickerStyles.studioLabel, { fontSize: 14, fontWeight: "600", paddingHorizontal: 8, paddingBottom: 8 }]}>{t("poster.style")}</Text>
           {/* A page at a time: the next nine load as the list nears its end. */}
@@ -487,6 +498,7 @@ const StudioStylePicker: React.FC<StylePickerProps & { hue: number }> = memo(({ 
             )}
           />
         </View>
+        </KeepDark.Provider>
       </GlassModal>
     </View>
   );
@@ -587,7 +599,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 }) => {
   const { t } = useTranslation();
   const { theme, skin, accent, isLight } = useAppTheme();
-  const studio = theme === 'glass' || (theme === 'system' && !isLight);
+  const studio = theme === 'glass' || theme === 'system';
   /** Lyrics over the animation, toggled beside the pop-out button. */
   const [showLyrics, setShowLyrics] = useState(false);
   const insets = useSafeAreaInsets();
@@ -1396,11 +1408,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     const height = mode === "inline" ? inlineHeight : fullHeight;
     // Fullscreen is the animation alone, so the studio card only draws inline.
     if (studio && mode === "inline") {
-      const material: StudioMaterial = theme === 'glass' ? 'glass' : 'system';
+      const material: StudioMaterial = isLight ? 'light' : theme === 'glass' ? 'glass' : 'system';
       const ink = STUDIO_INK[material];
       const fill = STUDIO_CARD_FILL[material];
-      const skipSize = compactGlass ? 30 : 36;
-      const playSize = Math.round(Math.max(40, Math.min(54, glassWidth * .1)));
+      const skipSize = compactGlass ? 32 : 36;
+      const playSize = Math.round(Math.max(44, Math.min(54, glassWidth * .1)));
+      const animationHeight = studioVizHeight - STUDIO_ANIMATION_CLEARANCE;
       const deckShape = { borderBottomLeftRadius: STUDIO_DECK_RADIUS, borderBottomRightRadius: STUDIO_DECK_RADIUS };
       const skipGlyph = (name: 'RotateCcw' | 'RotateCw') => <>
         <Icon name={name} size={19} color={ink} strokeWidth={2} />
@@ -1409,7 +1422,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       const optionGlyph = (name: React.ComponentProps<typeof Icon>['name']) => <Icon name={name} size={16} color={ink} strokeWidth={2} />;
       const motionShape = { borderTopLeftRadius: STUDIO_MOTION_RADIUS, borderTopRightRadius: STUDIO_MOTION_RADIUS };
       return (
-      <View style={[styles.glassWindow, { padding: 10, borderRadius: STUDIO_CARD_RADIUS }, material === 'glass' && { boxShadow: '0px 16px 32px -24px rgba(0,0,0,.6)' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
+      <View className="dark-surface" style={[styles.glassWindow, { padding: 10, borderRadius: STUDIO_CARD_RADIUS }, material === 'glass' && { boxShadow: '0px 16px 32px -24px rgba(0,0,0,.6)' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <LinearGradient pointerEvents="none" colors={fill.colors} locations={fill.locations} start={{ x: 0.15, y: 0 }} end={{ x: 0.85, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: STUDIO_CARD_RADIUS }]} />
         <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 14 }]}>
         {artworkUrl && !artworkUrl.split('?')[0].endsWith('/placeholder.svg') && <View style={{ borderRadius: 10, boxShadow: '0px 2px 8px rgba(0,0,0,.27)' }}><Image source={{ uri: artworkUrl }} style={{ width: 54, height: 54, borderRadius: 10 }} /></View>}
@@ -1419,28 +1432,28 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         </View>
         <View style={[motionShape, { height: studioVizHeight + STUDIO_BLEED, overflow: 'hidden', backgroundColor: material === 'glass' ? 'rgba(2,20,26,.18)' : '#030405', marginTop: 16, marginBottom: -STUDIO_BLEED }]}>
-          {renderVisualizer(studioVizHeight)}
+          {renderVisualizer(animationHeight)}
           {/* The animation stands on the deck's top line; under the deck a
               mirrored, faded copy bleeds its colour into the frosted glass. */}
-          <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: studioVizHeight, height: STUDIO_BLEED, overflow: 'hidden' }}>
-            <View style={{ height: studioVizHeight, opacity: .4, transform: [{ scaleY: -1 }] }}>
-              <AudioVisualizer style={vizStyle} seed={seed} isPlaying={shownPlaying} hue={hue} position={position} height={studioVizHeight} />
+          <View pointerEvents="none" style={[{ position: 'absolute', left: 0, right: 0, top: animationHeight, height: STUDIO_BLEED + STUDIO_ANIMATION_CLEARANCE, overflow: 'hidden' }, Platform.OS === 'android' && Platform.Version >= 31 && { filter: [{ blur: 6 }] }]}>
+            <View style={{ height: animationHeight, opacity: .55, transform: [{ scaleY: -1 }] }}>
+              <AudioVisualizer style={vizStyle} seed={seed} isPlaying={shownPlaying} hue={hue} position={position} height={animationHeight} />
             </View>
             {/* Frost: a pale haze at the line that melts into the deck. */}
-            <LinearGradient colors={material === 'glass' ? ['rgba(220,255,255,.1)', 'rgba(0,20,24,.75)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={material === 'light' ? ['rgba(245,248,250,.1)', 'rgba(233,238,243,.75)'] : material === 'glass' ? ['rgba(220,255,255,.05)', 'rgba(0,20,24,.35)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
           </View>
           {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} top={8} bottom={48} />}
           <StudioRim shadow={`inset 0px 1px 0px ${STUDIO_EDGE[material]}`} shape={motionShape} />
         </View>
-        <View style={[styles.glassDeck, deckShape, { paddingTop: glassWaveHeight + 22 }, compactGlass && { paddingBottom: 8 }]}>
-          <LinearGradient pointerEvents="none" colors={material === 'glass' ? ['rgba(220,255,255,.03)', 'rgba(0,20,24,.3)', 'rgba(0,20,24,.7)'] : ['rgba(20,24,28,.12)', 'rgba(13,16,19,.6)', 'rgba(9,11,13,.95)', '#060709']} locations={material === 'glass' ? [0, .35, 1] : [0, .3, .62, 1]} style={[StyleSheet.absoluteFill, deckShape]} />
+        <View style={[styles.glassDeck, deckShape, { paddingTop: glassWaveHeight + 28 }, compactGlass && { paddingBottom: 8 }]}>
+          <LinearGradient pointerEvents="none" colors={material === 'light' ? ['rgba(245,248,250,.12)', 'rgba(238,243,247,.72)', 'rgba(233,238,243,.95)'] : material === 'glass' ? ['rgba(210,255,255,.05)', 'rgba(2,24,30,.2)', 'rgba(2,24,30,.32)'] : ['rgba(20,24,28,.12)', 'rgba(13,16,19,.6)', 'rgba(9,11,13,.95)', '#060709']} locations={material === 'system' ? [0, .3, .62, 1] : material === 'glass' ? [0, .4, 1] : [0, .35, 1]} style={[StyleSheet.absoluteFill, deckShape]} />
           <View style={{ position: 'absolute', top: 3, left: 16, right: 16 }}><StudioWave seed={seed} position={position} height={glassWaveHeight} ink={ink} /></View>
           <View style={{ position: 'absolute', top: glassWaveHeight + 8, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownTime)}</Text><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownDuration)}</Text></View>
           <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="transparent" style={{ height: glassWaveHeight + 4 }} /></PagerSafe></View>
           <View style={[styles.glassTransport, { gap: Math.round(Math.max(22, Math.min(48, glassWidth * .07))) }, compactGlass && { gap: 14 }]}>
             <StudioButton material={material} size={skipSize} accessibilityRole="button" accessibilityLabel="−10 s" onPress={() => handleSeek(shownDuration ? (shownTime - 10) / shownDuration : 0)}>{skipGlyph('RotateCcw')}</StudioButton>
             <StudioButton material={material} size={playSize} play accessibilityRole="button" accessibilityLabel={shownPlaying ? t('audioPost.pause') : t('audioPost.play')} onPress={handlePlayPause}>
-              {shownLoading ? <Icon name="Loader" size={20} color={material === 'glass' ? ink : '#101214'} strokeWidth={2} /> : <StudioPlayGlyph playing={shownPlaying} color={material === 'glass' ? ink : '#101214'} />}
+              {shownLoading ? <Icon name="Loader" size={20} color={material === 'light' ? '#ffffff' : material === 'glass' ? ink : '#101214'} strokeWidth={2} /> : <StudioPlayGlyph playing={shownPlaying} color={material === 'light' ? '#ffffff' : material === 'glass' ? ink : '#101214'} />}
             </StudioButton>
             <StudioButton material={material} size={skipSize} accessibilityRole="button" accessibilityLabel="+10 s" onPress={() => handleSeek(shownDuration ? (shownTime + 10) / shownDuration : 0)}>{skipGlyph('RotateCw')}</StudioButton>
           </View>
@@ -1449,14 +1462,14 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         {/* Options like web: style picks, then lyrics, pop out, sound and
             fullscreen, wrapping; the colour and volume sliders share a row. */}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 14, paddingTop: 14, paddingHorizontal: 4 }}>
-          <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} hue={hue} />
+          <StudioStylePicker style={vizStyle} onStyleChange={handleStyleChange} hue={hue} ink={ink} light={material === 'light'} />
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.lyrics')} accessibilityState={{ selected: showLyrics }} onPress={() => setShowLyrics(v => !v)} style={[styles.studioOption, { marginLeft: 'auto', opacity: showLyrics ? 1 : .7 }, showLyrics && { backgroundColor: 'rgba(255,255,255,.14)' }]}>{optionGlyph('MicVocal')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('audioPost.popOut')} onPress={handlePopOut} style={styles.studioOption}>{optionGlyph('PictureInPicture2')}</TouchableOpacity>
             <TouchableOpacity accessibilityRole="button" accessibilityLabel={isEffectivelyMuted ? t('common.unmute') : t('common.mute')} onPress={handleToggleMute} style={styles.studioOption}>{optionGlyph(isEffectivelyMuted ? 'VolumeX' : 'Volume2')}</TouchableOpacity>
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.studioOption}>{optionGlyph(isFullscreen ? 'Minimize' : 'Maximize')}</TouchableOpacity>
           <View style={{ flexBasis: '100%', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <StudioHueSlider hue={hue} onHueChange={handleHueChange} />
-            <GlassHold style={{ flex: 1, height: 36, justifyContent: 'center' }}><VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor="#dce4e7" trackColor="rgba(255,255,255,.2)" /><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="#efffff" style={{ width: '100%', height: 36 }} /></PagerSafe></GlassHold>
+            <GlassHold style={{ flex: 1, height: 36, justifyContent: 'center' }}><VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor={material === 'light' ? '#394955' : '#dce4e7'} trackColor={material === 'light' ? 'rgba(20,30,40,.15)' : 'rgba(255,255,255,.2)'} /><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor={material === 'light' ? '#394955' : '#efffff'} style={{ width: '100%', height: 36 }} /></PagerSafe></GlassHold>
           </View>
         </View>
       </View>
@@ -1491,6 +1504,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         statusBarTranslucent
       >
         <View
+          className="dark-surface"
           style={[
             styles.fullscreenRoot,
             {
