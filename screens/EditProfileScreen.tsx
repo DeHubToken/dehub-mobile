@@ -357,7 +357,9 @@ const EditProfileScreen = () => {
       if (fieldsChanged) {
         const saved = await saveProfileFields(
           fieldRows.filter((r) => r.name.trim() || r.value.trim()).map(({ name, value }) => ({ name, value })),
-        );
+        ).catch(() => {
+          throw new Error(t("profileFields.failed"));
+        });
         setFieldRows(padFieldRows(saved));
         await patchUser?.({ profileFields: saved } as any);
       }
