@@ -15,6 +15,7 @@ import {
   LayoutChangeEvent,
   Animated as NativeAnimated,
   type ViewStyle,
+  Platform,
 } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useScrubGesture } from "../../hooks/useScrubGesture";
@@ -322,7 +323,8 @@ const pickerStyles = StyleSheet.create({
 });
 
 /** Height of the studio animation strip that runs on under the deck (web: audio-studio.css). */
-const STUDIO_BLEED = 40;
+const STUDIO_BLEED = 44;
+const STUDIO_ANIMATION_CLEARANCE = 12;
 
 /* Studio card frame, copied from web's audio-studio.css. Edges are inset
    shadows (one even ring plus a soft top rim light), never per-side border
@@ -1409,8 +1411,9 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       const material: StudioMaterial = isLight ? 'light' : theme === 'glass' ? 'glass' : 'system';
       const ink = STUDIO_INK[material];
       const fill = STUDIO_CARD_FILL[material];
-      const skipSize = compactGlass ? 30 : 36;
-      const playSize = Math.round(Math.max(40, Math.min(54, glassWidth * .1)));
+      const skipSize = compactGlass ? 32 : 36;
+      const playSize = Math.round(Math.max(44, Math.min(54, glassWidth * .1)));
+      const animationHeight = studioVizHeight - STUDIO_ANIMATION_CLEARANCE;
       const deckShape = { borderBottomLeftRadius: STUDIO_DECK_RADIUS, borderBottomRightRadius: STUDIO_DECK_RADIUS };
       const skipGlyph = (name: 'RotateCcw' | 'RotateCw') => <>
         <Icon name={name} size={19} color={ink} strokeWidth={2} />
@@ -1429,12 +1432,12 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         </View>
         </View>
         <View style={[motionShape, { height: studioVizHeight + STUDIO_BLEED, overflow: 'hidden', backgroundColor: material === 'glass' ? 'rgba(2,20,26,.18)' : '#030405', marginTop: 16, marginBottom: -STUDIO_BLEED }]}>
-          {renderVisualizer(studioVizHeight)}
+          {renderVisualizer(animationHeight)}
           {/* The animation stands on the deck's top line; under the deck a
               mirrored, faded copy bleeds its colour into the frosted glass. */}
-          <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: studioVizHeight, height: STUDIO_BLEED, overflow: 'hidden' }}>
-            <View style={{ height: studioVizHeight, opacity: .4, transform: [{ scaleY: -1 }] }}>
-              <AudioVisualizer style={vizStyle} seed={seed} isPlaying={shownPlaying} hue={hue} position={position} height={studioVizHeight} />
+          <View pointerEvents="none" style={[{ position: 'absolute', left: 0, right: 0, top: animationHeight, height: STUDIO_BLEED + STUDIO_ANIMATION_CLEARANCE, overflow: 'hidden' }, Platform.OS === 'android' && Platform.Version >= 31 && { filter: [{ blur: 6 }] }]}>
+            <View style={{ height: animationHeight, opacity: .55, transform: [{ scaleY: -1 }] }}>
+              <AudioVisualizer style={vizStyle} seed={seed} isPlaying={shownPlaying} hue={hue} position={position} height={animationHeight} />
             </View>
             {/* Frost: a pale haze at the line that melts into the deck. */}
             <LinearGradient colors={material === 'light' ? ['rgba(245,248,250,.1)', 'rgba(233,238,243,.75)'] : material === 'glass' ? ['rgba(220,255,255,.1)', 'rgba(0,20,24,.75)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
@@ -1442,7 +1445,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} top={8} bottom={48} />}
           <StudioRim shadow={`inset 0px 1px 0px ${STUDIO_EDGE[material]}`} shape={motionShape} />
         </View>
-        <View style={[styles.glassDeck, deckShape, { paddingTop: glassWaveHeight + 22 }, compactGlass && { paddingBottom: 8 }]}>
+        <View style={[styles.glassDeck, deckShape, { paddingTop: glassWaveHeight + 28 }, compactGlass && { paddingBottom: 8 }]}>
           <LinearGradient pointerEvents="none" colors={material === 'light' ? ['rgba(245,248,250,.12)', 'rgba(238,243,247,.72)', 'rgba(233,238,243,.95)'] : material === 'glass' ? ['rgba(220,255,255,.03)', 'rgba(0,20,24,.3)', 'rgba(0,20,24,.7)'] : ['rgba(20,24,28,.12)', 'rgba(13,16,19,.6)', 'rgba(9,11,13,.95)', '#060709']} locations={material === 'system' ? [0, .3, .62, 1] : [0, .35, 1]} style={[StyleSheet.absoluteFill, deckShape]} />
           <View style={{ position: 'absolute', top: 3, left: 16, right: 16 }}><StudioWave seed={seed} position={position} height={glassWaveHeight} ink={ink} /></View>
           <View style={{ position: 'absolute', top: glassWaveHeight + 8, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownTime)}</Text><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownDuration)}</Text></View>
