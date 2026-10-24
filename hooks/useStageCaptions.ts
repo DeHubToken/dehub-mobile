@@ -19,6 +19,7 @@
  */
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import i18n from "i18next";
 import { supabase } from "../services/supabase";
 
 export const CAPTION_EVENT = "caption";
@@ -60,7 +61,15 @@ export interface StageCaptionLine {
 const SHOW_KEY = "dehub.stage.captions.show";
 const LANG_KEY = "dehub.stage.captions.lang";
 let show = true;
-let language: string | null = null;
+const validLanguage = (value: string | null | undefined): value is string =>
+  !!value && CAPTION_LANGUAGES.some((option) => option.code === value);
+const uiLanguage = () => {
+  const code = (i18n.language || "").split(/[-_]/)[0].toLowerCase();
+  return validLanguage(code) ? code : null;
+};
+let pickedLanguage: string | null | undefined;
+let language: string | null = uiLanguage();
+let showPicked = false;
 const subs = new Set<() => void>();
 const emit = () => subs.forEach((cb) => cb());
 const subscribe = (cb: () => void) => {
@@ -71,22 +80,37 @@ const subscribe = (cb: () => void) => {
 };
 AsyncStorage.multiGet([SHOW_KEY, LANG_KEY])
   .then(([[, s], [, l]]) => {
-    if (s !== null) show = s === "1";
-    if (l && CAPTION_LANGUAGES.some((x) => x.code === l)) language = l;
+    // A choice made while storage is loading wins over the old saved value.
+    if (!showPicked && s !== null) show = s === "1";
+    if (pickedLanguage === undefined) {
+      pickedLanguage = l === SOURCE_LANGUAGE ? null : validLanguage(l) ? l : undefined;
+      language = pickedLanguage === undefined ? uiLanguage() : pickedLanguage;
+    }
     emit();
   })
   .catch(() => {});
 
+i18n.on?.("languageChanged", () => {
+  if (pickedLanguage !== undefined) return;
+  const next = uiLanguage();
+  if (next === language) return;
+  language = next;
+  emit();
+});
+
 export const useShowCaptions = () => useSyncExternalStore(subscribe, () => show);
 export const useCaptionLanguage = () => useSyncExternalStore(subscribe, () => language);
 export function setShowCaptions(value: boolean) {
+  showPicked = true;
   show = value;
   AsyncStorage.setItem(SHOW_KEY, value ? "1" : "0").catch(() => {});
   emit();
 }
 export function setCaptionLanguage(value: string | null) {
+  if (value !== null && !validLanguage(value)) return;
+  pickedLanguage = value;
   language = value;
-  (value ? AsyncStorage.setItem(LANG_KEY, value) : AsyncStorage.removeItem(LANG_KEY)).catch(() => {});
+  AsyncStorage.setItem(LANG_KEY, value ?? SOURCE_LANGUAGE).catch(() => {});
   emit();
 }
 

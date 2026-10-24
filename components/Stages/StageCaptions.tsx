@@ -38,7 +38,7 @@ const StageCaptions: React.FC<{ spaceId: string; speakerWallets: string[] }> = (
 
   return (
     <View style={{ paddingHorizontal: 12, paddingTop: 8, borderTopWidth: 1, borderTopColor: "rgba(255,255,255,0.06)" }}>
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 8 }}>
         <TouchableOpacity
           onPress={() => setShowCaptions(!show)}
           hitSlop={6}
@@ -47,6 +47,7 @@ const StageCaptions: React.FC<{ spaceId: string; speakerWallets: string[] }> = (
           accessibilityLabel={t("stages.showSubtitles")}
           style={{
             flexDirection: "row",
+            flexShrink: 1,
             alignItems: "center",
             gap: 6,
             paddingHorizontal: 10,
@@ -58,12 +59,12 @@ const StageCaptions: React.FC<{ spaceId: string; speakerWallets: string[] }> = (
           }}
         >
           <Icon name="Captions" size={15} color={show ? "#09090B" : "rgba(255,255,255,0.7)"} />
-          <Text style={{ color: show ? "#09090B" : "rgba(255,255,255,0.7)", fontSize: 12, fontWeight: "600" }} numberOfLines={1}>
+          <Text style={{ color: show ? "#09090B" : "rgba(255,255,255,0.7)", fontSize: 12, fontWeight: "600", flexShrink: 1 }} numberOfLines={1}>
             {active && show ? t("stages.subtitlesIn", { language: active.name }) : t("stages.subtitles")}
           </Text>
         </TouchableOpacity>
         {show && (
-          <View style={{ marginLeft: "auto", width: 150 }}>
+          <View style={{ marginLeft: "auto", width: 150, maxWidth: "100%" }}>
             <Dropdown
               options={options}
               value={language ?? AS_SPOKEN}
@@ -74,11 +75,11 @@ const StageCaptions: React.FC<{ spaceId: string; speakerWallets: string[] }> = (
         )}
       </View>
       {show && lines.length > 0 && (
-        <View style={{ paddingVertical: 8, gap: 4 }} accessibilityLiveRegion="polite">
+        <View style={{ paddingVertical: 8, gap: 4, maxHeight: 144, overflow: "hidden" }} accessibilityLiveRegion="polite">
           {lines.map((line) => {
             const text = (language && line.translations?.[language]) || line.text;
             return (
-              <Text key={line.id} style={{ color: line.final ? "#FFFFFF" : "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 20 }}>
+              <Text key={line.id} numberOfLines={2} style={{ color: line.final ? "#FFFFFF" : "rgba(255,255,255,0.7)", fontSize: 14, lineHeight: 20 }}>
                 <Text style={{ fontWeight: "700", color: "rgba(255,255,255,0.6)" }}>{line.name || t("stages.roleStageSpeaker")}: </Text>
                 {text}
               </Text>
