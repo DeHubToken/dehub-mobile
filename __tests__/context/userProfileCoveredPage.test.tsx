@@ -7,7 +7,7 @@ jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' } }))
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: 'hazy' }) }));
 jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => {
   const React = require('react');
-  const element = React.createElement;
+  const element = require('react').createElement;
   return function Profile(props: { visible: boolean }) {
     const [commentsOpen, setCommentsOpen] = React.useState(false);
     const { useUserProfilePresentation } = require('../../context/UserProfileSheetContext');
