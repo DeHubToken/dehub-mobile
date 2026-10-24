@@ -1,3 +1,4 @@
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from "../hooks/useSearchFieldMaterial";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
@@ -336,6 +337,7 @@ const FollowListScreen: React.FC = () => {
     initialTab === "requests" && !(isOwner && isPrivateForTab) ? "followers" : initialTab as TabKey
   );
   const [searchQuery, setSearchQuery] = useSurfaceDraft("screens/FollowListScreen.tsx:searchQuery", "");
+  const searchMaterial = useSearchFieldMaterial();
   const [sortOption, setSortOption] = useState<SortOption>("recent");
   const [showSortPicker, setShowSortPicker] = useState(false);
 
@@ -1126,7 +1128,7 @@ const FollowListScreen: React.FC = () => {
         <>
           {/* Search and Sort Row */}
           <View className="px-4 py-3 flex-row items-center gap-3">
-            <View className="flex-1 flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-4 h-10">
+            <View className="flex-1 flex-row items-center bg-theme-neutrals-800/60 rounded-xl px-4 h-10" style={searchMaterial.surface}>
               <Ionicons name="search" size={18} color="#A1A1AA" />
               <TextInput
                 value={searchQuery}
@@ -1138,7 +1140,9 @@ const FollowListScreen: React.FC = () => {
                 onSubmitEditing={dismissKeyboard}
                 autoCorrect={false}
                 autoCapitalize="none"
-                style={FIELD_TEXT}
+                  style={[FIELD_TEXT, SEARCH_INPUT_CLEAR]}
+                  onFocus={searchMaterial.onFocus}
+                  onBlur={searchMaterial.onBlur}
               />
               {searchQuery.length > 0 && (
                 <TouchableOpacity
