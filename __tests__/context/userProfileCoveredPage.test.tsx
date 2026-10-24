@@ -1,11 +1,23 @@
 import React from 'react';
 import { act, create } from 'react-test-renderer';
-import { UserProfileSheetProvider, useUserProfileSheet } from '../../context/UserProfileSheetContext';
+import { UserProfileSheetProvider, useUserProfileSheet, useUserProfilePresentation } from '../../context/UserProfileSheetContext';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' } }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: 'hazy' }) }));
-jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => 'Profile');
+jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => {
+  const React = require('react');
+  return function Profile(props: { visible: boolean }) {
+    const [commentsOpen, setCommentsOpen] = React.useState(false);
+    const { useUserProfilePresentation } = require('../../context/UserProfileSheetContext');
+    function Comments() {
+      const state = useUserProfilePresentation();
+      return React.createElement('Comments', { identifier: state.profileIdentifier });
+    }
+    return React.createElement('Profile', { ...props, openComments: () => setCommentsOpen(true) },
+      commentsOpen ? React.createElement(Comments) : null);
+  };
+});
 jest.mock('../../components/UserProfile/ProfileSurface', () => ({ PROFILE_CLOSE_MS: 180 }));
 jest.mock('../../libs/deeplink.events', () => ({ setProfileDeepLinkHandler: jest.fn() }));
 jest.mock('../../libs/visualActivity', () => ({ FeedPlaybackActiveContext: require('react').createContext(true) }));
@@ -36,4 +48,20 @@ it('hides the previous page through the profile close animation without unmounti
   expect(unmounted).not.toHaveBeenCalled();
   act(() => tree.unmount());
   jest.useRealTimers();
+});
+
+it('keeps profile presentation available when a profile post opens comments', () => {
+  let profile!: ReturnType<typeof useUserProfileSheet>;
+  function Page() {
+    profile = useUserProfileSheet();
+    useUserProfilePresentation();
+    return null;
+  }
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });
+  act(() => profile.showUserProfile('member'));
+  act(() => tree.root.findByType('Profile' as any).props.openComments());
+  expect(tree.root.findByType('Comments' as any).props.identifier).toBe('member');
+  expect(tree.root.findByType('Profile' as any).props.visible).toBe(true);
+  act(() => tree.unmount());
 });
