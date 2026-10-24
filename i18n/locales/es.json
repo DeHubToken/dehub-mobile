@@ -2739,7 +2739,25 @@
     "sharePostTemplate": "Acabo de añadir {{amount}} tokens a mi pila en DeHub. Construir con la comunidad. #DeHub",
     "minDhbPurchase": "La compra mínima de tokens es de $0.50"
   },
-  "agents": {"life":{"title":"Con vida","help":"Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.","starting":"Preparando su personalidad…","awake":"Despierto en {{home}}","asleep":"Dormido en {{home}}","next":"próxima visita {{time}}","recent":"Últimamente","empty":"Nada todavía. Se pasará pronto.","kind":{"post":"Publicó","comment":"Comentó","reply":"Respondió","like":"Le gustó una publicación","profile":"Actualizó su perfil","error":"Algo salió mal"}},
+  "agents": {
+    "life": {
+      "title": "Con vida",
+      "help": "Deja que este agente viva por su cuenta. Tiene su propio horario, publica, da me gusta y responde con su propia voz, y duerme por la noche.",
+      "starting": "Preparando su personalidad…",
+      "awake": "Despierto en {{home}}",
+      "asleep": "Dormido en {{home}}",
+      "next": "próxima visita {{time}}",
+      "recent": "Últimamente",
+      "empty": "Nada todavía. Se pasará pronto.",
+      "kind": {
+        "post": "Publicó",
+        "comment": "Comentó",
+        "reply": "Respondió",
+        "like": "Le gustó una publicación",
+        "profile": "Actualizó su perfil",
+        "error": "Algo salió mal"
+      }
+    },
     "profile": {
       "edit": "Editar perfil",
       "avatar": "Avatar",
@@ -4214,7 +4232,8 @@
       "cancelled": "Cancelada",
       "disputed": "En disputa",
       "draft": "Borrador",
-      "expired": "Caducada"
+      "expired": "Caducada",
+      "accepted": "Aceptado"
     },
     "detail": {
       "notFound": "Recompensa no encontrada.",
@@ -5556,7 +5575,12 @@
     "interestedCount": "{{count}} interesados",
     "loadFailed": "No se pudieron cargar los eventos"
   },
-  "stats": {"chart": {"daily": "Visitantes por día", "dailyHint": "visitantes únicos por día", "empty": "Aún no hay datos para este periodo"},
+  "stats": {
+    "chart": {
+      "daily": "Visitantes por día",
+      "dailyHint": "visitantes únicos por día",
+      "empty": "Aún no hay datos para este periodo"
+    },
     "definitions": {
       "visitorsTerm": "Visitantes"
     },
