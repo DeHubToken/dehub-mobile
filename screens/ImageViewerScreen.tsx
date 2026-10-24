@@ -270,10 +270,13 @@ const ZoomableImage = memo(
   },
 );
 
-const ImageViewerScreen = () => {
+/**
+ * The viewer itself, for surfaces that cannot push a screen. A profile on
+ * Android sits above the navigator, which it hides, so ImageViewer pushed from
+ * there opens out of sight; those surfaces render this in a Modal instead.
+ */
+export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => void }) => {
   const { t } = useTranslation();
-  const route = useRoute<any>();
-  const navigation = useNavigation<any>();
   const insets = useSafeAreaInsets();
   const { width: SCREEN_W, height: SCREEN_H } = useWindowDimensions();
 
@@ -286,7 +289,7 @@ const ImageViewerScreen = () => {
     allowDownload,
     soundtrack,
     galleryKey,
-  } = (route?.params as any) || {};
+  } = params || {};
 
   const startIndex = paramInitialIndex ?? paramIndex ?? 0;
 
@@ -366,9 +369,7 @@ const ImageViewerScreen = () => {
     }
   }, [images, isSaving]);
 
-  const closeViewer = useCallback(() => {
-    if (navigation.canGoBack()) navigation.goBack();
-  }, [navigation]);
+  const closeViewer = onClose;
 
   useEffect(() => {
     const sub = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -662,5 +663,14 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.5)",
   },
 });
+
+const ImageViewerScreen = () => {
+  const route = useRoute<any>();
+  const navigation = useNavigation<any>();
+  const close = useCallback(() => {
+    if (navigation.canGoBack()) navigation.goBack();
+  }, [navigation]);
+  return <ImageViewer params={route?.params} onClose={close} />;
+};
 
 export default ImageViewerScreen;
