@@ -59,6 +59,8 @@ export interface AIChatMessage {
   toolRequestId?: string;
   toolAppId?: string;
   toolType?: string;
+  /** Creator library id the server archived this result under, so the app skips its own copy. */
+  libraryId?: string;
   /** Set on a failed turn so the bubble can offer a retry. */
   isError?: boolean;
   /**
@@ -371,6 +373,8 @@ export interface AIVideoResponse {
   /** Which backend holds this prediction; must be handed back when polling. */
   provider?: string;
   falAppId?: string;
+  /** Set once the server has archived the finished render to the creator library. */
+  libraryId?: string;
   error?: string;
 }
 
@@ -616,6 +620,8 @@ export interface AiToolResponse {
   modelUrl?: string;
   /** Whisper transcript. */
   text?: string;
+  /** Set once the server has archived the result to the creator library. */
+  libraryId?: string;
   error?: string;
 }
 
