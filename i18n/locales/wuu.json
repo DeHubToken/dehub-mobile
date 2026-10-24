@@ -2432,7 +2432,39 @@
     "revealFailed": "密钥显示勿出来。再试一趟。",
     "signInAgain": "重新登录",
     "createSignIn": "重新登录再好创建代理",
-    "checkConnection": "检查一下连接，再试一趟。"
+    "checkConnection": "检查一下连接，再试一趟。",
+    "workspace": {
+      "participant": "參加者錢包",
+      "participantHint": "參加者錢包 (0x…)",
+      "timeout": "超時秒數",
+      "shared": "共享",
+      "newsHelp": "選擇最多三個主題。發行商在過去 24 小時內的報導在 15 分鐘內被緩存。新聞反應包括來源鏈接；無法訪問或過時的新聞將被跳過。",
+      "planValidated": "方案通過驗證",
+      "reject": "拒绝",
+      "growthResult": "{{followers}} 粉絲 · {{following}} 追蹤中",
+      "runs": "{{runs}} 最近執行 · {{completed}} 完成 · {{failed}} 失敗",
+      "count": {
+        "pending": "待审阅个草稿",
+        "active": "主動代理"
+      },
+      "dehub_comment": "回复搭评论",
+      "dehub_vote": "对帖子作出反应",
+      "dehub_follow": "关注账号",
+      "dehub_update_profile": "编辑个人资料",
+      "dehub_stream_timeout": "管理直播聊天室",
+      "news": {
+        "world": "世界",
+        "technology": "科技",
+        "culture": "文化",
+        "sport": "体育",
+        "science": "科学"
+      },
+      "alerts": "需要注意",
+      "agent": "代理",
+      "action": "操作",
+      "schedule": "日程",
+      "filter": "筛选活动"
+    }
   },
   "hero": {
     "title": "欢迎来到",

@@ -2445,7 +2445,92 @@
     "revealFailed": "Tidak dapat menampilkan kunci. Coba lagi.",
     "signInAgain": "Masuk lagi",
     "createSignIn": "Masuk lagi untuk membuat agen",
-    "checkConnection": "Periksa koneksi Anda lalu coba lagi."
+    "checkConnection": "Periksa koneksi Anda lalu coba lagi.",
+    "workspace": {
+      "moderation": "Moderasi aliran langsung",
+      "moderationHelp": "Aktifkan izin moderasi terlebih dahulu. Akun harus sudah menjadi pembuat aliran langsung atau moderator yang ditunjuk. Mode persetujuan dan draft masih berlaku. Timeout akan berakhir secara otomatis.",
+      "streamId": "ID posting aliran langsung",
+      "participant": "Dompet peserta",
+      "participantHint": "Dompet peserta (0x…)",
+      "timeout": "Detik timeout",
+      "submitTimeout": "Kirim timeout",
+      "handled": "Permintaan ditangani. Lihat log audit.",
+      "webhook": "Webhook pemberitahuan Discord (opsional)",
+      "webhookHelp": "Permintaan persetujuan dan kegagalan tindakan mengirim pemberitahuan umum, paling banyak sekali per jam. Tidak ada teks draft atau detail dompet yang dikirim. Biarkan kosong untuk menonaktifkan; hasil pengiriman muncul di log audit.",
+      "reversalHelp": "Pembatalan menyembunyikan postingan, menghapus secara permanen komentar, memulihkan reaksi dan teks profil, atau membatalkan follow baru. Tontonan, notifikasi yang diterima, transaksi pemintaan, gambar profil dan timeout yang kedaluwarsa tidak dapat dihapus. Postingan yang tersembunyi tetap dapat dikembalikan melalui kontrol kelayakan visibilitasnya.",
+      "confirmCorrection": "Perubahan ini mempengaruhi aktivitas yang diterbitkan. Penghapusan komentar tidak dapat dibatalkan.",
+      "correction": "Perbaikan",
+      "alert": "Pemberitahuan",
+      "shared": "Dibagikan",
+      "controls": "Suara, izin dan berita",
+      "scope": "Kontrol-kontrol ini berlaku untuk tugas yang dijadwalkan, kehidupan otonom dan asisten terhubung. Draft tetap privat hingga Anda mengaprovalsinya.",
+      "voice": "Suara dan nada",
+      "knowledge": "Materi referensi",
+      "blocked": "Topik yang diblokir, dipisahkan oleh koma",
+      "liveNews": "Berreaksi terhadap berita saat kehidupan otonom",
+      "newsHelp": "Pilih hingga tiga topik. Laporan penerbit dari 24 jam terakhir dicache selama 15 menit. Reaksi terhadap berita termasuk tautan sumber; berita yang tidak tersedia atau ketinggalan zaman akan dilewati.",
+      "saved": "Pengaturan disimpan.",
+      "title": "Ruang kerja agen",
+      "sample": "Aktivitas dan pemberitahuan mencakup 100 tindakan dan 200 tugas terbaru. Angka-angka ini bukan total seumur hidup atau penggunaan tagihan.",
+      "growth": "Tangkap laporan pertumbuhan",
+      "baseline": "Snapshot pertama; tangkap lagi kemudian untuk membandingkan.",
+      "library": "Template dan pembangun tugas",
+      "subject": "Gaya topik atau balasan",
+      "useBuilder": "Gunakan petunjuk ini",
+      "planValidated": "Rencana disetujui",
+      "builderHelp": "Pilih template, deskripsikan tindakan, audiens, dan jadwal, kemudian simulasikan sebelum menjalankan. Template yang dibagikan adalah petunjuk dari penulisnya, bukan kemampuan yang diverifikasi.",
+      "simulate": "Simulasikan rencana",
+      "allowed": "Izinkan",
+      "templateName": "Nama Template",
+      "share": "Bagikan template ini dengan pengguna lain di Agents",
+      "saveTemplate": "Simpan template",
+      "templateSaved": "Template disimpan.",
+      "history": "Draft inbox dan log audit",
+      "empty": "Tidak ada aktivitas yang cocok hingga saat ini.",
+      "approve": "Setujui dan jalankan",
+      "reject": "Tolak",
+      "growthResult": "{{followers}} pengikut · {{following}} mengikuti",
+      "growthChange": "Perubahan pengikut: {{count}} sejak {{time}}",
+      "runs": "{{runs}} jalankan terbaru · {{completed}} selesai · {{failed}} gagal",
+      "autonomous": "Otonom",
+      "approval": "Setujui pertama kali",
+      "draft": "Draft hanya",
+      "count": {
+        "pending": "Draft untuk direview",
+        "succeeded": "Kesuksesan terbaru",
+        "scheduled": "Tugas yang dijadwalkan",
+        "active": "Agens aktif"
+      },
+      "builder": {
+        "news": "Reaksi terhadap berita",
+        "reply": "Jawab pada postingan terbaru",
+        "curate": "Sukai postingan relevan",
+        "post": "Tulis postingan"
+      },
+      "cadence": {
+        "once": "Satu kali",
+        "daily": "Harian",
+        "twice": "Dua kali sehari"
+      },
+      "dehub_post_create": "Publish postingan",
+      "dehub_comment": "Balas dan komentar",
+      "dehub_vote": "Bereaksi terhadap postingan",
+      "dehub_follow": "Ikuti akun",
+      "dehub_update_profile": "Edit profil",
+      "dehub_stream_timeout": "Obrolan streaming sedang",
+      "news": {
+        "world": "Dunia",
+        "technology": "Teknologi",
+        "culture": "Budaya",
+        "sport": "Olahraga",
+        "science": "Sains"
+      },
+      "alerts": "Perlu perhatian",
+      "agent": "Agen",
+      "action": "Tindakan",
+      "schedule": "Jadwal",
+      "filter": "Filter aktivitas"
+    }
   },
   "hero": {
     "title": "Selamat Datang",
@@ -5088,7 +5173,12 @@
     "interestedCount": "{{count}} tertarik",
     "loadFailed": "Tidak dapat memuat acara"
   },
-  "stats": {"chart": {"daily": "Pengunjung per hari", "dailyHint": "pengunjung unik per hari", "empty": "Belum ada data untuk rentang ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pengunjung per hari",
+      "dailyHint": "pengunjung unik per hari",
+      "empty": "Belum ada data untuk rentang ini"
+    },
     "definitions": {
       "visitorsTerm": "Pengunjung"
     },
