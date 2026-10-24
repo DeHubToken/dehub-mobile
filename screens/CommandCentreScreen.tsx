@@ -297,7 +297,7 @@ export default function CommandCentreScreen() {
   });
 
   // Same maths as web's IncomeChart: filter by range, total per source, then
-  // percentages. Subs / ad revenue / bounties have no source yet — 0, as on web.
+  // percentages, over tips and pay-per-view sales.
   const { slices, totalEarned } = useMemo(() => {
     const start = rangeStart(incomeRange);
     const inRange = (d: string) => !start || new Date(d) >= start;
@@ -313,9 +313,6 @@ export default function CommandCentreScreen() {
 
     const totals: Record<string, number> = {
       tips: Math.round(tipsTotal * 100) / 100,
-      subs: 0,
-      adRevenue: 0,
-      bounties: 0,
       ppv: Math.round(ppvTotal * 100) / 100,
     };
     const total = Object.values(totals).reduce((a, b) => a + b, 0);

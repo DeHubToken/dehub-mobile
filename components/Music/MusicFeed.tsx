@@ -49,7 +49,6 @@ import AudioPostPlayer from "../Home/ProtectedAudioPostPlayer";
 import MusicVideoCard from "./MusicVideoCard";
 import RadioStationCard from "./RadioStationCard";
 import { FEED_SIDE } from "../Home/feedLayout";
-import SectionHeader from "./SectionHeader";
 import StagesChart from "./StagesChart";
 import ChartShelf from "./ChartShelf";
 import RadioStage from "./RadioStage";
@@ -75,22 +74,21 @@ import { useTranslation } from "react-i18next";
 
 const AnimatedFlatList = Animated.FlatList as unknown as typeof FlatList;
 
-type MusicSubTab = "all" | "tracks" | "videos" | "podcasts" | "radio" | "stages";
+type MusicSubTab = "all" | "tracks" | "videos" | "radio" | "stages";
 
-// Same six, in web's order, so the tab you reach for is where you left it.
+// Same five, in web's order, so the tab you reach for is where you left it.
 // Labels are i18n keys, resolved at render time.
 const SUB_TABS: { value: MusicSubTab; label: string; icon: IconName }[] = [
   { value: "all", label: "music.all", icon: "Music" },
   { value: "tracks", label: "music.tracks", icon: "Disc3" },
   { value: "videos", label: "music.videos", icon: "Play" },
-  { value: "podcasts", label: "music.podcasts", icon: "MicVocal" },
   { value: "radio", label: "music.radio", icon: "Radio" },
   { value: "stages", label: "nav.stages", icon: "Mic" },
 ];
 
 /** Shelves rendered under All, in web's order. */
-type Shelf = "videos" | "radio" | "audio" | "stages" | "tracks" | "podcasts";
-const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages", "tracks", "podcasts"];
+type Shelf = "videos" | "radio" | "audio" | "stages";
+const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages"];
 
 const CAROUSEL_PAGE_SIZE = 12;
 // Rows the music video chart shows before "See all".
@@ -122,17 +120,6 @@ const GuardedRow: React.FC<{ children: React.ReactElement }> = ({ children }) =>
   const scrollGuard = useHorizontalScrollGuard();
   return scrollGuard ? <GestureDetector gesture={scrollGuard}>{children}</GestureDetector> : children;
 };
-
-const EmptyShelf: React.FC<{ icon: IconName; title: string; note: string }> = ({
-  icon,
-  title,
-  note,
-}) => (
-  <View style={styles.section}>
-    <SectionHeader icon={icon} title={title} />
-    <Text style={styles.shelfNote}>{note}</Text>
-  </View>
-);
 
 // ── The tab ─────────────────────────────────────────────────────────────────
 
@@ -330,10 +317,6 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           );
         case "stages":
           return <StagesChart />;
-        case "tracks":
-          return <EmptyShelf icon="Disc3" title={t("music.tracks")} note={t("music.noTracks")} />;
-        case "podcasts":
-          return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
     [curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, videoChart, loadingVideoChart, videoChartSort, t],
@@ -370,6 +353,14 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           data: ["stages"] as any[],
           keyExtractor: () => "stages",
           renderItem: () => <StagesChart />,
+        };
+      // Tracks is the audio chart on its own. The key matches All's audio
+      // shelf, so the selected track plays when it is on screen.
+      case "tracks":
+        return {
+          data: ["audio"] as any[],
+          keyExtractor: () => "shelf-audio",
+          renderItem: () => renderShelf("audio"),
         };
       default:
         return { data: [] as any[], keyExtractor: (_: any, i: number) => String(i), renderItem: () => null };
@@ -470,17 +461,6 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   );
 
   const listEmpty = useMemo(() => {
-    if (tab === "tracks" || tab === "podcasts") {
-      return (
-        <View style={styles.empty}>
-          <Icon name={tab === "tracks" ? "Disc3" : "MicVocal"} size={26} color="rgba(255,255,255,0.3)" />
-          <Text style={styles.emptyTitle}>{tab === "tracks" ? t("music.noTracks") : t("music.noPodcasts")}</Text>
-          <Text style={styles.emptyNote}>
-            {t("music.emptyNote")}
-          </Text>
-        </View>
-      );
-    }
     if (tab === "radio") {
       if (loadingStations) return <ActivityIndicator style={styles.loader} color="#FFFFFF" />;
       return (
@@ -661,9 +641,6 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
 const styles = StyleSheet.create({
   listContent: {
     paddingBottom: TAB_BAR_CONTENT_INSET,
-  },
-  section: {
-    marginBottom: 20,
   },
   shelfNote: {
     color: "rgba(255,255,255,0.4)",

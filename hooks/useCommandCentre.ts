@@ -22,12 +22,13 @@ const log = createLogger("useCommandCentre");
 
 export type IncomeRange = "1h" | "1d" | "1w" | "1m" | "Max";
 
-/** Matches web's SOURCE_CONFIG — same keys, labels and colours. */
+/**
+ * Matches web's SOURCE_CONFIG: the two sources with a dated record per
+ * payment. Subscriptions, ad revenue and bounties have no per-payment history
+ * to bucket by period, so they are left out rather than drawn as zero.
+ */
 export const INCOME_SOURCES = [
   { key: "tips", label: "Tips", color: "#F4F4F5" },
-  { key: "subs", label: "Subs", color: "#F4F4F5" },
-  { key: "adRevenue", label: "Ad Revenue", color: "#D4D4D8" },
-  { key: "bounties", label: "Bounties", color: "#D4D4D8" },
   { key: "ppv", label: "PPV Sales", color: "#D4D4D8" },
 ] as const;
 
