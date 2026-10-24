@@ -987,7 +987,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       } catch (e) {
         console.error("[CommentSection] media post error", e);
         updateCommentCount(String(tokenId), -1);
-        setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
+        setFlatComments((prev) => prev.filter((c) => c.id !== tempId).map(c => ({
+          ...c, replyIds: c.replyIds?.filter(id => id !== tempId),
+        })));
         // Keep the attachment and reply available for retry.
         toastError(t("comments.sendMediaFailed"));
       } finally {
@@ -1122,7 +1124,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         } else {
           // Revert optimistic comment
           updateCommentCount(String(tokenId), -1);
-          setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
+          setFlatComments((prev) => prev.filter((c) => c.id !== tempId).map(c => ({
+            ...c, replyIds: c.replyIds?.filter(id => id !== tempId),
+          })));
           // And put the message back in the box. It was cleared the moment
           // Post was tapped, so a refusal used to destroy what was written —
           // the one moment losing it hurts most. The draft store follows the
