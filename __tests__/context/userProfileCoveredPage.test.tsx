@@ -13,14 +13,21 @@ jest.mock('../../libs/visualActivity', () => ({ FeedPlaybackActiveContext: requi
 // Keep rendered components outside the hoisted factory: NativeWind rewrites
 // createElement references to a module import that Jest cannot hoist with it.
 const profileSurface = jest.requireMock('../../components/UserProfile/UserProfileBottomSheet');
+const CommentsHost = 'Comments' as unknown as React.ComponentType<{ identifier: string | null }>;
+const ProfileHost = 'Profile' as unknown as React.ComponentType<{
+  visible: boolean;
+  openComments: () => void;
+  children?: React.ReactNode;
+}>;
 function Comments() {
   const state = useUserProfilePresentation();
-  return React.createElement('Comments', { identifier: state.profileIdentifier });
+  return <CommentsHost identifier={state.profileIdentifier} />;
 }
 profileSurface.mockImplementation(function Profile(props: { visible: boolean }) {
   const [commentsOpen, setCommentsOpen] = React.useState(false);
-  return React.createElement('Profile', { ...props, openComments: () => setCommentsOpen(true) },
-    commentsOpen ? <Comments /> : null);
+  return <ProfileHost {...props} openComments={() => setCommentsOpen(true)}>
+    {commentsOpen ? <Comments /> : null}
+  </ProfileHost>;
 });
 
 it('hides the previous page through the profile close animation without unmounting it', () => {
