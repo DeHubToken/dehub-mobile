@@ -1,3 +1,4 @@
+import { useCommentCount } from '../libs/comment-count-store';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
@@ -1036,7 +1037,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     trackLinkCopy(tokenId, userAddress, linkCopyCount);
   }, [tokenId, trackLinkCopy, userAddress, linkCopyCount]);
 
-  const commentCount = item.commentCount || 0;
+  const commentCount = useCommentCount(tokenId, item.commentCount ?? 0);
   const tipCount = (item as any).totalTips || (item as any).tips || 0;
   // Signed-out viewers are already folded into totalViews by the API.
   const views = resolveViewCount(item);

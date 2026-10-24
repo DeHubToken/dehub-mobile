@@ -1,3 +1,4 @@
+import { updateCommentCount } from '../../libs/comment-count-store';
 import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
@@ -930,6 +931,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       }
 
       const savedMedia = mediaAttachment;
+      updateCommentCount(String(tokenId), 1);
 
       try {
         let newId: number | undefined;
@@ -984,6 +986,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         }
       } catch (e) {
         console.error("[CommentSection] media post error", e);
+        updateCommentCount(String(tokenId), -1);
         setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
         // Keep the attachment and reply available for retry.
         toastError(t("comments.sendMediaFailed"));
@@ -1074,6 +1077,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
 
           const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
+          updateCommentCount(String(tokenId), 1);
           // Post to server
           const res = await postComment({
             streamTokenId: tokenId,
@@ -1117,6 +1121,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           await loadComments(true);
         } else {
           // Revert optimistic comment
+          updateCommentCount(String(tokenId), -1);
           setFlatComments((prev) => prev.filter((c) => c.id !== tempId));
           // And put the message back in the box. It was cleared the moment
           // Post was tapped, so a refusal used to destroy what was written —
@@ -1348,6 +1353,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   }, [contextComment]);
 
   const deleteNow = useCallback(async (commentId: number) => {
+    const index = flatComments.findIndex(c => c.id === commentId);
+    let end = index + 1;
+    while (index >= 0 && end < flatComments.length && flatComments[end].depth > flatComments[index].depth) end++;
+    const removed = index >= 0 ? end - index : 1;
+    updateCommentCount(String(tokenId), -removed);
     // Optimistic removal: remove the comment and all its descendants (depth > comment's depth)
     setFlatComments((prev) => {
       const idx = prev.findIndex((c) => c.id === commentId);
@@ -1363,11 +1373,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       await deleteComment({ commentId });
     } catch (e) {
       console.error('Failed to delete comment:', e);
+      updateCommentCount(String(tokenId), removed);
       toastError(t('toasts.failed_to_delete_comment'));
       // Revert by reloading
       await loadComments(true);
     }
-  }, [loadComments]);
+  }, [loadComments, flatComments, tokenId]);
 
   // Context menu action: delete. Asks first — it is permanent, and the server
   // takes every reply under the comment with it, other people's included, so

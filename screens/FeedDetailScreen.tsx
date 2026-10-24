@@ -1,3 +1,4 @@
+import { useCommentCount, updateCommentCount } from '../libs/comment-count-store';
 import ThemePanel from '../components/ui/ThemePanel';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 import { useKeyboardSwap } from "../hooks/useKeyboardSwap";
@@ -171,6 +172,7 @@ function FeedDetailContent() {
   // The ad and the more-posts list under the comments are up to seven more
   // feed cards; mounting them in the first render held the push back.
   const transitionSettled = useTransitionSettled();
+  const displayCommentCount = useCommentCount(tokenId, item?.commentCount ?? 0);
   const [comments, setComments] = useState<ThreadedComment[]>([]);
   // Whatever was left unsent last time, restored whole: the text and the reply
   // it was aimed at. Backing out of this screen is the commonest way to lose a
@@ -820,16 +822,17 @@ function FeedDetailContent() {
     });
     // The count goes down by every row that went, not by one: deleting a
     // comment with four replies left the post saying four comments too many.
-    setItem((prev) => prev ? { ...prev, commentCount: Math.max(0, (prev.commentCount ?? 0) - Math.max(1, removed)) } : prev);
+    updateCommentCount(String(tokenId), -Math.max(1, removed));
     try {
       await deleteComment({ commentId });
     } catch (e) {
       console.error('[FeedDetailScreen] deleteComment error', e);
+      updateCommentCount(String(tokenId), Math.max(1, removed));
       toastError(t("toasts.failed_to_delete_comment"));
       // Revert by reloading
       await fetchData();
     }
-  }, [comments, fetchData]);
+  }, [comments, fetchData, tokenId]);
 
   // Asks first — permanent, and it takes every reply under the comment with
   // it, other people's included.
@@ -1171,6 +1174,7 @@ function FeedDetailContent() {
       // Optimistic insert
       const replyTarget = replyTo;
       setComments((prev) => insertThreaded(prev, optimistic, replyTarget));
+      updateCommentCount(String(tId), 1);
 
       const savedMedia = mediaAttachment;
 
@@ -1198,6 +1202,7 @@ function FeedDetailContent() {
         }
       } catch (e) {
         console.error("[FeedDetailScreen] media post error", e);
+        updateCommentCount(String(tId), -1);
         setComments((prev) => prev.filter((c) => c.id !== tempId));
         toastError(t("comments.sendMediaFailed"));
       } finally {
@@ -1265,6 +1270,7 @@ function FeedDetailContent() {
         
         const replyTarget = replyTo;
         setComments((prev) => insertThreaded(prev, tempComment, replyTarget));
+        updateCommentCount(String(tokenId), 1);
 
 
         
@@ -1284,15 +1290,10 @@ function FeedDetailContent() {
           }
           if (newId != null) {
             setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
-            // The server bumps the post's comment count for replies too, so
-            // count every post here — deleting already decrements either way.
-            setItem((prev) => prev ? {
-              ...prev,
-              commentCount: Math.max(0, (prev.commentCount ?? 0) + 1)
-            } : prev);
           }
         } catch (e) {
           setComments((prev) => prev.filter((c) => c.id !== tempId));
+          updateCommentCount(String(tokenId), -1);
           console.error("[FeedDetailScreen] postComment error", e);
           // The comment vanished from the thread with nothing said at all
           // before this. A refusal from the server explains itself — comments
@@ -1476,7 +1477,7 @@ function FeedDetailContent() {
         <View onLayout={handleTabRowLayout}>
           {stage ? (
             <CommentsStageHeader
-              count={item?.commentCount ?? comments.length}
+              count={displayCommentCount}
               sort={commentSort}
               onSortChange={setCommentSort}
               searchOpen={commentSearchOpen}
