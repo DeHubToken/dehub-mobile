@@ -20,6 +20,7 @@ import ImageViewerModal from "../common/ImageViewerModal";
 interface UserProfileBottomSheetProps {
   visible: boolean;
   onClose: () => void;
+  onOpenComplete?: () => void;
   usernameOrAddress?: string | null;
   /** Retained for call-site compatibility; profiles no longer open collapsed. */
   initialHeightPct?: number;
@@ -34,6 +35,7 @@ interface UserProfileBottomSheetProps {
 const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
   visible,
   onClose,
+  onOpenComplete,
   usernameOrAddress,
   embedded = false,
 }) => {
@@ -210,6 +212,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     <ProfileSurface
       visible={visible}
       onClose={onClose}
+      onOpenComplete={onOpenComplete}
     >
       <FrostedBackground>
       <GestureHandlerRootView style={{ flex: 1 }}>

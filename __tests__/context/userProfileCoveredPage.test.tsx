@@ -23,7 +23,7 @@ jest.mock('../../components/UserProfile/ProfileSurface', () => ({ PROFILE_CLOSE_
 jest.mock('../../libs/deeplink.events', () => ({ setProfileDeepLinkHandler: jest.fn() }));
 jest.mock('../../libs/visualActivity', () => ({ FeedPlaybackActiveContext: require('react').createContext(true) }));
 
-it('hides the previous page through the profile close animation without unmounting it', () => {
+it('keeps the previous page behind profile transitions without unmounting it', () => {
   jest.useFakeTimers();
   const mounted = jest.fn();
   const unmounted = jest.fn();
@@ -37,16 +37,25 @@ it('hides the previous page through the profile close animation without unmounti
   act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });
   const coveredPage = () => tree.root.findAllByType('View' as any).find(view => view.props.pointerEvents !== undefined)!;
   act(() => profile.showUserProfile('member'));
+  expect(coveredPage().props.style.display).toBe('flex');
+  expect(coveredPage().props.pointerEvents).toBe('none');
+  act(() => tree.root.findByType('Profile' as any).props.onOpenComplete());
   expect(coveredPage().props.style.display).toBe('none');
   expect(coveredPage().props.pointerEvents).toBe('none');
   expect(coveredPage().props.importantForAccessibility).toBe('no-hide-descendants');
   act(() => profile.hideUserProfile());
-  expect(coveredPage().props.style.display).toBe('none');
+  expect(coveredPage().props.style.display).toBe('flex');
+  expect(coveredPage().props.pointerEvents).toBe('none');
   act(() => jest.advanceTimersByTime(180));
   expect(coveredPage().props.style.display).toBe('flex');
   expect(coveredPage().props.pointerEvents).toBe('auto');
   expect(mounted).toHaveBeenCalledTimes(1);
   expect(unmounted).not.toHaveBeenCalled();
+  // A second opening must retain the page until the new animation finishes.
+  act(() => profile.showUserProfile('another-member'));
+  expect(coveredPage().props.style.display).toBe('flex');
+  act(() => tree.root.findByType('Profile' as any).props.onOpenComplete());
+  expect(coveredPage().props.style.display).toBe('none');
   act(() => tree.unmount());
   jest.useRealTimers();
 });
