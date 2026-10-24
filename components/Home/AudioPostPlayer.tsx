@@ -599,7 +599,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
 }) => {
   const { t } = useTranslation();
   const { theme, skin, accent, isLight } = useAppTheme();
-  const studio = theme === 'glass' || theme === 'system';
+  const studio = theme === 'system' || !!skin;
   /** Lyrics over the animation, toggled beside the pop-out button. */
   const [showLyrics, setShowLyrics] = useState(false);
   const insets = useSafeAreaInsets();
