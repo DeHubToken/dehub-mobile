@@ -99,7 +99,6 @@ const StoreForm: React.FC<{
   const [avatarUrl, setAvatarUrl] = useState(existing?.avatar_url ?? "");
   const [bannerUrl, setBannerUrl] = useState(existing?.banner_url ?? "");
   const { width: windowWidth } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
   const [uploading, setUploading] = useState<"avatar" | "banner" | null>(null);
 
   // Re-seed when the sheet opens for a different store
