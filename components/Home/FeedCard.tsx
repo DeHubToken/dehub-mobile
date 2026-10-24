@@ -1654,16 +1654,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         onImagePress={handleImagePress}
         onReaction={handleVideoTapReaction}
         postPage={immersive}
+        scrollGesture={scrollGuard}
       />
     );
 
     return (
       <View className={edgeMedia ? undefined : "mt-2"}>
-        {/* Inside Home's swipe pager, paging through this gallery has to win
-            over the page turn — without the guard the pager's pan clears its
-            threshold first and cancels the gallery scroll mid-drag. Elsewhere
-            (profile, search) the hook returns null and this renders bare. */}
-        {scrollGuard ? <GestureDetector gesture={scrollGuard}>{gallery}</GestureDetector> : gallery}
+        {/* Inside Home's swipe pager the gallery wraps its own ScrollView in
+            the scroll guard, so paging through photos wins over the page turn.
+            Elsewhere (profile, search) the hook returns null. */}
+        {gallery}
       </View>
     );
   };
