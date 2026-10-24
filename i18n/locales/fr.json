@@ -2739,7 +2739,25 @@
     "sharePostTemplate": "Je viens d'ajouter {{amount}} jetons à ma pile sur DeHub. Construire avec la communauté. #DeHub",
     "minDhbPurchase": "L'achat minimum de tokens est de 0,50 $"
   },
-  "agents": {"life":{"title":"Vivant","help":"Laisse cet agent vivre de lui-même. Il a ses propres horaires, publie, aime et répond avec sa propre voix, et dort la nuit.","starting":"Création de sa personnalité…","awake":"Éveillé à {{home}}","asleep":"Endormi à {{home}}","next":"prochain passage {{time}}","recent":"Récemment","empty":"Rien pour l'instant. Il passera bientôt.","kind":{"post":"A publié","comment":"A commenté","reply":"A répondu","like":"A aimé une publication","profile":"A mis à jour son profil","error":"Un problème est survenu"}},
+  "agents": {
+    "life": {
+      "title": "Vivant",
+      "help": "Laisse cet agent vivre de lui-même. Il a ses propres horaires, publie, aime et répond avec sa propre voix, et dort la nuit.",
+      "starting": "Création de sa personnalité…",
+      "awake": "Éveillé à {{home}}",
+      "asleep": "Endormi à {{home}}",
+      "next": "prochain passage {{time}}",
+      "recent": "Récemment",
+      "empty": "Rien pour l'instant. Il passera bientôt.",
+      "kind": {
+        "post": "A publié",
+        "comment": "A commenté",
+        "reply": "A répondu",
+        "like": "A aimé une publication",
+        "profile": "A mis à jour son profil",
+        "error": "Un problème est survenu"
+      }
+    },
     "profile": {
       "edit": "Modifier le profil",
       "avatar": "Avatar",
@@ -2791,11 +2809,11 @@
         "authorChoose": "Choisir un créateur",
         "categoryAll": "Toutes les catégories",
         "categoryChoose": "Choisir des catégories",
-        "categoryHint": "Ajoutez jusqu\u0027à 20 catégories séparées par des virgules. Une seule correspondance suffit. Laissez vide pour toutes.",
+        "categoryHint": "Ajoutez jusqu'à 20 catégories séparées par des virgules. Une seule correspondance suffit. Laissez vide pour toutes.",
         "last1h": "Dernière heure",
         "last30d": "30 derniers jours",
         "allTime": "Depuis le début",
-        "dislike": "Je n\u0027aime pas",
+        "dislike": "Je n'aime pas",
         "author": "Auteur (facultatif)",
         "category": "Catégorie (facultative)",
         "authorPlaceholder": "@pseudo ou portefeuille",
@@ -4218,7 +4236,8 @@
       "cancelled": "Annulée",
       "disputed": "En litige",
       "draft": "Brouillon",
-      "expired": "Expirée"
+      "expired": "Expirée",
+      "accepted": "Accepté"
     },
     "detail": {
       "notFound": "Prime introuvable.",
@@ -5560,7 +5579,12 @@
     "interestedCount": "{{count}} intéressés",
     "loadFailed": "Impossible de charger les événements"
   },
-  "stats": {"chart": {"daily": "Visiteurs par jour", "dailyHint": "visiteurs uniques par jour", "empty": "Aucune donnée pour cette période"},
+  "stats": {
+    "chart": {
+      "daily": "Visiteurs par jour",
+      "dailyHint": "visiteurs uniques par jour",
+      "empty": "Aucune donnée pour cette période"
+    },
     "definitions": {
       "visitorsTerm": "Visiteurs"
     },
