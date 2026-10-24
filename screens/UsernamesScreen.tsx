@@ -1,4 +1,5 @@
 import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../hooks/useSearchFieldMaterial';
 import BadgeArtwork from "../components/common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../libs/misc";
 /**
@@ -171,6 +172,7 @@ function asUsernamesTab(value: unknown): UsernamesTab | null {
 }
 
 export default function UsernamesScreen() {
+  const searchMaterial = useSearchFieldMaterial();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
@@ -283,14 +285,16 @@ export default function UsernamesScreen() {
 
       {tab === "browse" ? (
         <>
-          <View style={styles.searchWrap}>
+          <View style={[styles.searchWrap, searchMaterial.surface]}>
             <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
               onChangeText={setSearch}
               placeholder={t("usernames.searchPlaceholder")}
               placeholderTextColor="#8B8D90"
-              style={styles.searchInput}
+              style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+              onFocus={searchMaterial.onFocus}
+              onBlur={searchMaterial.onBlur}
               autoCapitalize="none"
               autoCorrect={false}
               spellCheck={false}
