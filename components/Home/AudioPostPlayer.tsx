@@ -1504,6 +1504,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         statusBarTranslucent
       >
         <View
+          className="dark-surface"
           style={[
             styles.fullscreenRoot,
             {
