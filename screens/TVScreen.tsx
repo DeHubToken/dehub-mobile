@@ -1,3 +1,4 @@
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from "../hooks/useSearchFieldMaterial";
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { usePersistentVideoPlayer } from '../hooks/usePersistentVideoPlayer';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
@@ -239,6 +240,7 @@ export default function TVScreen() {
 
   const [country, setCountry] = useState("all");
   const [search, setSearch] = useSurfaceDraft("screens/TVScreen.tsx:search", "");
+  const searchMaterial = useSearchFieldMaterial();
   const [debounced, setDebounced] = useState("");
   const [playing, setPlaying] = useState<TVChannel | null>(null);
 
@@ -285,14 +287,16 @@ export default function TVScreen() {
         }
       />
 
-      <View style={[styles.searchWrap, skin?.material === 'glass' && skin.card]}>
+      <View style={[styles.searchWrap, skin?.material === 'glass' && skin.card, searchMaterial.surface]}>
         <Icon name="Search" size={15} color={theme.colors.neutrals[400]} />
         <TextInput
           value={search}
           onChangeText={setSearch}
           placeholder={t("tv.searchPlaceholder")}
           placeholderTextColor={theme.colors.neutrals[500]}
-          style={[styles.searchInput, skin?.material === 'glass' && { backgroundColor: 'transparent', borderWidth: 0 }]}
+          style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+          onFocus={searchMaterial.onFocus}
+          onBlur={searchMaterial.onBlur}
           returnKeyType="search"
         />
         {search.length > 0 && (
