@@ -167,7 +167,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD, marginRight: 1.6 }}
           >
-            <Icon name="Rocket" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            <Icon name="Zap" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
           </Pressable>
         )}
         {onMenuPress && (

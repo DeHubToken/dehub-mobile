@@ -50,7 +50,7 @@ const EXTRA_PERKS: Perk[] = [
   { icon: "Eye", key: "profileInsights" },
   { icon: "Heart", key: "followerInsights" },
   { icon: "Lock", key: "sneakPeeks" },
-  { icon: "Rocket", key: "boost" },
+  { icon: "Zap", key: "boost" },
   { icon: "MessageSquare", key: "assistantMsgs" },
   { icon: "Image", key: "aiImages" },
   { icon: "Video", key: "aiVideo" },
@@ -64,7 +64,7 @@ const FAMILY_PERKS: Perk[] = [
 
 const XL_PERKS: Perk[] = [
   { icon: "Users", key: "twentySeats" },
-  { icon: "Rocket", key: "maxBoosts" },
+  { icon: "Zap", key: "maxBoosts" },
   { icon: "Infinity", key: "skyHighAi" },
   { icon: "Lock", key: "unlimitedPeeks" },
   { icon: "Palette", key: "allThemes" },
