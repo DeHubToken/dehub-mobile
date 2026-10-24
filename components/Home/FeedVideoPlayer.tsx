@@ -84,6 +84,7 @@ import CaptionOverlay from "../VideoPlayerCore/CaptionOverlay";
 import { PLAYER_CONSTANTS } from "../VideoPlayerCore/utils";
 import { getSubtitlesEnabled } from "../../libs/subtitlePrefs";
 import { movedBeyondMediaTapSlop } from "../../libs/media-gesture";
+import { takePostStartTime } from "../../libs/post-start-time";
 import {
   continuesTapGesture,
   TAP_GESTURE_WINDOW_MS,
@@ -643,6 +644,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   });
   // Where to pick up once a renewed URL has loaded.
   const resumeAtRef = useRef(0);
+  // A chapter tapped on the post info page opens the post at that moment.
+  const [chapterStart] = useState(() => (postPage ? takePostStartTime(tokenId) : 0));
+  useEffect(() => {
+    if (!(chapterStart > 0) || !player) return;
+    if (player.status === "readyToPlay" && player.duration > 0) player.currentTime = Math.min(chapterStart, player.duration);
+    else resumeAtRef.current = chapterStart;
+  }, [player, chapterStart]);
   useEffect(() => {
     if (playbackPhase === 'failed') {
       pendingPlayRef.current = false;
