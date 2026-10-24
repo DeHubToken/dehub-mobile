@@ -1,14 +1,13 @@
-import { useTranslation as _useCopy } from 'react-i18next';
 import React, {
   useState,
   useCallback,
   useEffect,
   useRef,
 } from "react";
-import { View, Text, Image, ScrollView, type TextStyle } from "react-native";
+import { View, Text, ScrollView, type TextStyle } from "react-native";
 import { toastError, toastInfo } from "../../libs";
 import { Trans, useTranslation } from "react-i18next";
-import { AuthButton, AuthErrorNotice, authColors, authText } from "../../components/auth/AuthControls";
+import { AuthErrorNotice, authColors, authText } from "../../components/auth/AuthControls";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState, useAuthActions } from "../../context/AuthContext";
 import { ScreenNames } from "../../navigation/ScreenNames";
@@ -81,7 +80,6 @@ interface SignInScreenProps {
 }
 
 const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
-  const { t: _copy } = _useCopy();
   // The keyboard offset is the chrome above the KeyboardAvoidingView, which
   // here is the status-bar inset alone. A literal 64 over-lifted the form by
   // up to 44pt on SE/8-class iPhones and iPads.
@@ -123,8 +121,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     });
   }, [authStep, walletSetupRequest, currentProvider]);
 
-  const { isFirstTimeUser, provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
-  const { skipAuth, signInWithWallet, signInWithSupabaseSession } = useAuthActions();
+  const { provisionalUser, isLoading: authLoading, needsUsername, isSignedIn } = useAuthState();
+  const { signInWithWallet, signInWithSupabaseSession } = useAuthActions();
   const { isWalletLoading, isSignupBlocked, handleWalletConnect } = useWalletAuth();
 
   // Track if we've already handled navigation for this sign-in attempt
@@ -751,22 +749,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     handlePhoneSubmit(pendingPhone);
   }, [pendingPhone, handlePhoneSubmit]);
 
-  const handleSkipOrClose = useCallback(async () => {
-    if (isFirstTimeUser) {
-      await skipAuth();
-    }
-    if (!isMountedRef.current) return;
-    // Opened as the in-app sheet (the App stack, whose first route is Root):
-    // just close it so the page underneath survives. The Auth-stack SignIn
-    // shown at launch has no Root route and still resets into the app.
-    const inAppSheet = navigation.getState()?.routeNames?.includes(ScreenNames.Root);
-    if (inAppSheet && navigation.canGoBack()) {
-      navigation.goBack();
-      return;
-    }
-    navigateToApp();
-  }, [isFirstTimeUser, skipAuth, navigateToApp, navigation]);
-
   const isLoading = authLoading || isLocalLoading || isWalletLoading;
   const showLoader = isLoading && !needsUsername;;
   return (
@@ -801,39 +783,8 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           contentContainerStyle={{ flexGrow: 1 }}
           className="px-6"
         >
-          {/* Header: logo left, "Explore first" right (the old bottom
-              "Explore without signing in" button, moved up). */}
-          {/* Logo and Explore sit 16pt from the top and the sides (the
-              scroll view pads 24, so the row reaches 8 past it). */}
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 16, marginBottom: 12, marginHorizontal: -8, minHeight: 44, zIndex: 2, elevation: 2 }}>
-            <Image
-              source={require("../../assets/login-stack/mark.png")}
-              style={{ width: 25, height: 32, tintColor: "#FFFFFF" }}
-              resizeMode="contain"
-              accessibilityIgnoresInvertColors
-              accessibilityLabel={t("auth.welcomeToDehub")}
-            />
-            {!needsUsername && (
-              <AuthButton
-                variant="glass"
-                size="compact"
-                label={t("loginStack.exploreFirst", "Explore first")}
-                onPress={handleSkipOrClose}
-                disabled={isLoading}
-                // It sits over moving clips, so it needs a backing of its own.
-                // Near-black so System Light turns it white (pure black stays).
-                style={{ backgroundColor: "rgba(4,4,4,0.7)" }}
-                accessibilityLabel={
-                  isFirstTimeUser ? _copy("copy.488017ad5c75", { defaultValue: "Explore DeHub without signing in" }) : _copy("copy.61d2a857dd18", { defaultValue: "Continue exploring DeHub" })
-                }
-              />
-            )}
-          </View>
-
           {authStep === "main" ? (
-            // Pulled up under the header (16 + 44 + 12) so the clips run to the
-            // top of the screen.
-            <View style={{ marginTop: -72, marginBottom: 24 }}>
+            <View style={{ marginBottom: 24 }}>
               <LoginShortsStack viewportHeight={loginViewportHeight} />
             </View>
           ) : null}
