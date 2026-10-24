@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../hooks/useSearchFieldMaterial';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   View,
@@ -32,6 +33,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 type SortMode = "top" | "new" | "hot";
 
 const CommunitiesScreen: React.FC = () => {
+  const searchMaterial = useSearchFieldMaterial();
   const { t } = useTranslation();
   const { headerProps, listProps, refreshOffset } = useCollapsibleScreen();
   const navigation = useNavigation<any>();
@@ -156,7 +158,7 @@ const CommunitiesScreen: React.FC = () => {
 
   const headerControls = (
     <View>
-      <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 mb-3">
+      <View className="flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 mb-3" style={searchMaterial.surface}>
         <Icon name="Search" size={18} color="#A1A1AA" />
         <TextInput
           className="flex-1 text-white py-3 px-2 text-sm"
@@ -164,6 +166,9 @@ const CommunitiesScreen: React.FC = () => {
           placeholderTextColor="#8B8D90"
           value={search}
           onChangeText={setSearch}
+          style={SEARCH_INPUT_CLEAR}
+          onFocus={searchMaterial.onFocus}
+          onBlur={searchMaterial.onBlur}
         />
       </View>
 
