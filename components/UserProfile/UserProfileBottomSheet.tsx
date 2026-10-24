@@ -41,7 +41,25 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const collapse = useProfileCollapse(visible ? usernameOrAddress : null);
+  // Still showing while it slides away: the provider clears the identifier
+  // once the close has finished, so the page keeps its content (and scroll)
+  // on the way out instead of swapping to a skeleton mid-slide.
+  const showing = visible || !!usernameOrAddress;
+  const collapse = useProfileCollapse(showing ? usernameOrAddress : null);
+
+  // The tap's own commit mounts only the light skeleton, so the slide starts
+  // on the next frame; the full profile mounts a frame later, while the slide
+  // runs on the UI thread. Embedded profiles have no slide to protect.
+  const [contentReady, setContentReady] = useState(embedded);
+  useEffect(() => {
+    if (embedded) return;
+    if (!showing) {
+      setContentReady(false);
+      return;
+    }
+    const frame = requestAnimationFrame(() => setContentReady(true));
+    return () => cancelAnimationFrame(frame);
+  }, [embedded, showing]);
 
   // Shared profile data and actions for both embedded and standalone pages.
   const {
@@ -75,7 +93,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
     closeImage,
     handleShare,
     handleMessage,
-  } = useUserProfileData(visible, usernameOrAddress);
+  } = useUserProfileData(showing, usernameOrAddress);
 
 
   const handleEditProfile = useCallback(() => {
@@ -208,7 +226,7 @@ const UserProfileBottomSheet: React.FC<UserProfileBottomSheetProps> = ({
           <View style={{ flex: 1 }}>
           <UserProfileSheetContent
             collapse={collapse}
-            loading={loading}
+            loading={loading || !contentReady}
             data={data}
             error={error}
             onRetry={retry}

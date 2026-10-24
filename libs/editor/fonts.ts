@@ -1,34 +1,8 @@
-/**
- * Fonts offered by the mobile editor: a short pick from the web editor's
- * Google Fonts catalogue (dehubweb src/lib/editor/googleFonts.ts), with the
- * same family names, weights and CSS fallbacks so text set here looks the same
- * on the web and the other way round.
- */
-export interface EditorFont {
-  family: string;
-  category: "sans-serif" | "serif" | "display" | "handwriting" | "monospace";
-  weights: number[];
-}
+/** Font loading uses the shared catalogue so saved text keeps its supported weights on either device. */
+import { GOOGLE_FONTS, type GoogleFont } from "./fontCatalogue";
+export type EditorFont = GoogleFont;
+export const EDITOR_FONTS: EditorFont[] = GOOGLE_FONTS;
 
-export const EDITOR_FONTS: EditorFont[] = [
-  { family: "Inter", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },
-  { family: "Montserrat", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },
-  { family: "Poppins", category: "sans-serif", weights: [300, 400, 500, 600, 700, 800, 900] },
-  { family: "Space Grotesk", category: "sans-serif", weights: [300, 400, 500, 600, 700] },
-  { family: "Playfair Display", category: "serif", weights: [400, 500, 600, 700, 800, 900] },
-  { family: "Merriweather", category: "serif", weights: [300, 400, 700, 900] },
-  { family: "Bebas Neue", category: "display", weights: [400] },
-  { family: "Oswald", category: "display", weights: [300, 400, 500, 600, 700] },
-  { family: "Anton", category: "display", weights: [400] },
-  { family: "Abril Fatface", category: "display", weights: [400] },
-  { family: "Dancing Script", category: "handwriting", weights: [400, 500, 600, 700] },
-  { family: "Pacifico", category: "handwriting", weights: [400] },
-  { family: "Caveat", category: "handwriting", weights: [400, 500, 600, 700] },
-  { family: "Permanent Marker", category: "handwriting", weights: [400] },
-  { family: "Archivo", category: "sans-serif", weights: [400, 500, 600, 700, 800, 900] },
-  { family: "Roboto Mono", category: "monospace", weights: [300, 400, 500, 600, 700] },
-  { family: "Space Mono", category: "monospace", weights: [400, 700] },
-];
 
 /** First family in a CSS font-family value, unquoted. Same as the web's primaryFamily. */
 export function primaryFamily(css: string): string {

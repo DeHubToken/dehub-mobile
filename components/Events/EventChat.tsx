@@ -206,7 +206,7 @@ export default function EventChat({ eventId }: { eventId: string }) {
           <Text style={[styles.faint, { flex: 1 }]} numberOfLines={1}>
             {editingId
               ? t("events.edit")
-              : `${t("events.reply")} · ${replyTo?.display_name || replyTo?.username || "User"}`}
+              : `${t("events.reply")} · ${replyTo?.display_name || replyTo?.username || t("liveChat.user")}`}
           </Text>
           <Pressable
             hitSlop={8}

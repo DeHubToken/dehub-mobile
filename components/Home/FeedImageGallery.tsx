@@ -7,6 +7,7 @@ import { knownImageAspect, rememberImageAspect } from '../../hooks/useImageAspec
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from '../../libs/feed-image-layout';
 import { useAppTheme } from '../../context/ThemeContext';
 import { useFeedBleed } from './feedBleed';
+import { GestureDetector, type NativeGesture } from 'react-native-gesture-handler';
 import ContainedFeedImage from './ContainedFeedImage';
 import PostTapSurface from './PostTapSurface';
 
@@ -36,7 +37,13 @@ function useGalleryAspects(images: string[]) {
 }
 
 /** Keep slide geometry mounted while drawing only the horizontal viewport. */
-function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false, postId, descriptions }: {
+function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false, postId, descriptions, scrollGesture }: {
+  /**
+   * Inside Home's swipe pager: the native gesture that lets paging through the
+   * photos win over the page turn. It must sit on the ScrollView itself; on
+   * the frame around it the pager took every sideways swipe.
+   */
+  scrollGesture?: NativeGesture | null;
   postId?: string;
   /** Alt text per image, by position. */
   descriptions?: string[];
@@ -62,9 +69,8 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
   const { isMinimal } = useAppTheme();
   const edgeToEdge = isMinimal || !!useFeedBleed();
   const aspects = useGalleryAspects(images);
-  // The strip is as tall as its tallest photo. Shorter photos sit centred in a
-  // thin frame of that height, so the space around them reads as the post's
-  // photo area rather than a gap. Photos not measured yet borrow the tallest
+  // The strip is as tall as its tallest photo, in a thin frame. Shorter
+  // photos are cropped to fill it, so no post shows blank space inside. Photos not measured yet borrow the tallest
   // known shape, so they never stretch the strip on a guess.
   const framed = !postPage && images.length > 1;
   const tallestAspect = useMemo(() => {
@@ -116,7 +122,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
     rememberGalleryIndex(galleryKey, nearest);
     updateVisible();
   }, [updateVisible, galleryKey]);
-  const strip = (
+  const scroller = (
     <ScrollView
       testID="feed-image-gallery"
       ref={scrollRef}
@@ -154,12 +160,14 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
               fallbackWidth={fallbackWidth}
               priority={prioritizeMedia && index === 0 ? 'high' : 'normal'}
               aspect={aspects[index] ?? (framed ? tallestAspect : undefined)}
+              fillHeight={frameHeight}
             />
           </PostTapSurface>
         </View>
       ))}
     </ScrollView>
   );
+  const strip = scrollGesture ? <GestureDetector gesture={scrollGesture}>{scroller}</GestureDetector> : scroller;
   if (!framed) return strip;
   return (
     <View

@@ -1,6 +1,18 @@
+import { validTextListStyle } from "./textList";
+import { validShapeGeometry } from "./shapeGeometry";
+import { validPageNumberFormat } from "./pageNumbering";
+import { VECTOR_SYMBOLS } from "./vectorSymbols";
+import { MEDIA_FRAMES, type MediaFrame } from "./mediaFrames";
+import { validConnector } from "./connectors";
+import { validPhotoTone } from "./photoTone";
+import { validBrandStyles } from "./brandStyles";
+import { normaliseDesignLink } from "./designLinks";
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { videoMatteMediaIds, validVideoMatte } from "./videoMatte";
 import type { ProjectSnapshot } from "./types";
+import { validDataVisuals } from "./dataVisuals";
+import { validGradientFill } from "./gradientFill";
+import { validQrGraphic } from "./qrGraphic";
 
 export class CloudProjectConflict extends Error {}
 /** A live edit that needs recovery. The class marks it, because the message is translated. */
@@ -53,6 +65,10 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
   if (typeof s.id !== "string" || !UUID.test(s.id) || typeof s.title !== "string" || s.title.length > 200 || !object(s.settings)
     || !positive(s.settings.width, 16384) || !positive(s.settings.height, 16384) || !positive(s.settings.fps, 16384)
     || !Array.isArray(s.tracks) || s.tracks.length > 200 || !Array.isArray(s.clips) || s.clips.length > 10000 || value.media.length > 2000) fail();
+  if (!validBrandStyles(s.settings.brandStyles)) fail();
+  if (Array.isArray(s.settings.pageDetails) && s.settings.pageDetails.some(detail => object(detail) && detail.section !== undefined && (typeof detail.section !== "string" || detail.section.length > 80))) fail();
+  if (object(s.settings.guides) && s.settings.guides.unit !== undefined && !["px", "in", "cm", "mm"].includes(String(s.settings.guides.unit))) fail();
+  if (s.settings.printDpi !== undefined && (typeof s.settings.printDpi !== "number" || !Number.isInteger(s.settings.printDpi) || s.settings.printDpi < 72 || s.settings.printDpi > 600)) fail();
   const tracks = new Set<string>(), media = new Map<string, CloudProjectMedia>(), clips = new Set<string>();
   for (const track of s.tracks) {
     if (!object(track) || typeof track.id !== "string" || !track.id || tracks.has(track.id) || !["video", "audio", "text"].includes(String(track.kind))) fail();
@@ -71,6 +87,7 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
       || !["video", "audio", "image", "text", "shape"].includes(String(clip.kind)) || !positive(clip.duration, 86400)) fail();
     for (const key of ["start", "trimIn"]) if (typeof clip[key] !== "number" || !Number.isFinite(clip[key]) || (clip[key] as number) < 0 || (clip[key] as number) > 86400) fail();
     if (["video", "audio", "image"].includes(String(clip.kind))) {
+      if (clip.frame !== undefined && !MEDIA_FRAMES.includes(clip.frame as MediaFrame)) fail();
       const source = media.get(String(clip.mediaId));
       if (!source || !compatible(String(clip.kind), source.kind)) fail();
       if (clip.kind === "video" && clip.videoMatte) {
@@ -83,6 +100,36 @@ export function parseCloudProjectDocument(value: unknown, wallet: string): Cloud
         }
       }
     }
+    if (clip.kind === "shape" && clip.symbol !== undefined && (typeof clip.symbol !== "string" || !VECTOR_SYMBOLS.some(symbol => symbol.id === clip.symbol) || clip.shape !== "rect" || clip.connector !== undefined || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined || clip.photoFrame)) fail();
+    if (clip.kind === "shape" && (!validConnector(clip.connector) || (clip.connector !== undefined && (clip.shape !== "line" || clip.chart !== undefined || clip.table !== undefined || clip.qr !== undefined)))) fail();
+    if (clip.kind === "shape") {
+      if (!validShapeGeometry(clip.geometry)) fail();
+      if (clip.pathSmoothing !== undefined && (typeof clip.pathSmoothing !== "number" || !Number.isFinite(clip.pathSmoothing) || clip.pathSmoothing < 0 || clip.pathSmoothing > 1)) fail();
+      if (clip.closedPath !== undefined && typeof clip.closedPath !== "boolean") fail();
+      if (clip.strokeCap !== undefined && !["round", "butt", "square"].includes(String(clip.strokeCap))) fail();
+      if (clip.strokeJoin !== undefined && !["round", "bevel", "miter"].includes(String(clip.strokeJoin))) fail();
+    }
+    if (clip.kind === "shape" && !validDataVisuals({ chart: clip.chart, table: clip.table })) fail();
+    if ((clip.kind === "shape" || clip.kind === "text") && !validGradientFill(clip.gradient)) fail();
+    if (clip.kind === "shape" && (!validQrGraphic(clip.qr) || (clip.qr !== undefined && (clip.chart !== undefined || clip.table !== undefined)))) fail();
+    if (clip.isPageBackground !== undefined && (typeof clip.isPageBackground !== "boolean" || (clip.kind !== "shape" && clip.kind !== "image"))) fail();
+    if (clip.groupId !== undefined && (typeof clip.groupId !== "string" || !clip.groupId || clip.groupId.length > 128)) fail();
+    if (clip.href !== undefined && (typeof clip.href !== "string" || !normaliseDesignLink(clip.href))) fail();
+    if (clip.kind === "text" && object(clip.background) && clip.background.perLine !== undefined && typeof clip.background.perLine !== "boolean") fail();
+    if (clip.pageNumber !== undefined && (clip.kind !== "text" || !validPageNumberFormat(clip.pageNumber))) fail();
+    if (clip.fillOpacity !== undefined && (!["text", "shape"].includes(String(clip.kind)) || typeof clip.fillOpacity !== "number" || !Number.isFinite(clip.fillOpacity) || clip.fillOpacity < 0 || clip.fillOpacity > 1)) fail();
+    for (const paint of [clip.stroke, clip.border]) if (object(paint) && paint.opacity !== undefined && (typeof paint.opacity !== "number" || !Number.isFinite(paint.opacity) || paint.opacity < 0 || paint.opacity > 1)) fail();
+    for (const paint of [clip.stroke, clip.border]) if (object(paint) && paint.dashOffset !== undefined && (typeof paint.dashOffset !== "number" || !Number.isFinite(paint.dashOffset) || Math.abs(paint.dashOffset) > 1000000)) fail();
+    if (clip.paragraphSpacing !== undefined && (clip.kind !== "text" || typeof clip.paragraphSpacing !== "number" || !Number.isFinite(clip.paragraphSpacing) || clip.paragraphSpacing < 0 || clip.paragraphSpacing > 300)) fail();
+    if (clip.balance !== undefined && (clip.kind !== "text" || typeof clip.balance !== "boolean")) fail();
+    if (clip.direction !== undefined && (clip.kind !== "text" || !["auto", "ltr", "rtl"].includes(String(clip.direction)))) fail();
+    if (clip.listStyle !== undefined && (clip.kind !== "text" || !validTextListStyle(clip.listStyle))) fail();
+    if (clip.label !== undefined && (typeof clip.label !== "string" || clip.label.length > 80)) fail();
+    if (clip.kind === "text" && clip.echo !== undefined && (!Array.isArray(clip.echo) || clip.echo.length > 3 || clip.echo.some(layer =>
+      !object(layer) || typeof layer.colour !== "string" || !/^#[\da-f]{6}$/i.test(layer.colour) ||
+      typeof layer.x !== "number" || Math.abs(layer.x) > 100 || typeof layer.y !== "number" || Math.abs(layer.y) > 100 ||
+      typeof layer.opacity !== "number" || layer.opacity < 0 || layer.opacity > 1))) fail();
+    if ((clip.kind === "image" || clip.kind === "video") && clip.effects !== undefined && (!object(clip.effects) || !validPhotoTone(clip.effects as import("./photoTone").PhotoTone))) fail();
     clips.add(clip.id);
   }
   return JSON.parse(JSON.stringify(value)) as CloudProjectDocument;

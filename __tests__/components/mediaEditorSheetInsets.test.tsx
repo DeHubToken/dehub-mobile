@@ -139,7 +139,7 @@ describe('media editor screen insets', () => {
 
   it('lifts the text and rename prompt on Android too', () => {
     expect(editor).not.toContain('Platform.OS === "ios" ? "padding" : undefined');
-    expect(editor).toContain('<KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">');
+    expect(editor).toMatch(/<KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black\/70 px-6(?: [^"]+)?">/);
   });
 });
 
