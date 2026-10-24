@@ -2,6 +2,7 @@
  * Video transcript on the post info page, matching dehubweb's
  * post-info/TranscriptSection: collapsed by default, then the overview,
  * chapters, a search across the lines, and copy/share of the full text.
+ * A chapter or a line's timestamp opens the post at that moment (onSeek).
  * Viewer corrections stay web-only for now.
  */
 import React, { useMemo, useState } from "react";
@@ -24,7 +25,7 @@ function plainText(segments: TranscriptSegment[]) {
   return segments.map((s) => `[${formatTimestamp(s.start)}] ${s.text.trim()}`).join("\n");
 }
 
-export default function TranscriptSection({ tokenId }: { tokenId: number | string }) {
+export default function TranscriptSection({ tokenId, onSeek }: { tokenId: number | string; onSeek?: (seconds: number) => void }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -163,10 +164,16 @@ export default function TranscriptSection({ tokenId }: { tokenId: number | strin
                     <Text style={styles.faint}>{t("copy.7adf0298ab5e", { defaultValue: " Chapters" }).trim()}</Text>
                   </View>
                   {chapters.map((c, i) => (
-                    <View key={i} style={styles.line}>
+                    <Pressable
+                      key={i}
+                      style={styles.line}
+                      onPress={onSeek ? () => onSeek(c.start) : undefined}
+                      disabled={!onSeek}
+                      accessibilityRole={onSeek ? "button" : undefined}
+                    >
                       <Text style={styles.stamp}>{formatTimestamp(c.start)}</Text>
                       <Text style={styles.lineText}>{c.title}</Text>
-                    </View>
+                    </Pressable>
                   ))}
                 </View>
               )}
@@ -185,7 +192,7 @@ export default function TranscriptSection({ tokenId }: { tokenId: number | strin
               ) : (
                 <View style={{ gap: 8 }}>
                   {filtered.slice(0, 400).map(({ segment: s, index }) => (
-                    <Pressable key={index} style={styles.line} onLongPress={() => copyLine(s)}>
+                    <Pressable key={index} style={styles.line} onPress={onSeek ? () => onSeek(s.start) : undefined} onLongPress={() => copyLine(s)}>
                       <Text style={styles.stamp}>{formatTimestamp(s.start)}</Text>
                       <Text style={styles.lineText}>{s.text.trim()}</Text>
                     </Pressable>
