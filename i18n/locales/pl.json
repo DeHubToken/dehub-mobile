@@ -3635,7 +3635,7 @@
     "edit": "Edytuj",
     "deleteRequestTitle": "Usunąć to zgłoszenie?",
     "deleteRequestDescription": "Tego nie da się cofnąć.",
-    "attachmentTooLarge": "Każdy plik musi mieć poniżej 20 MB",
+    "attachmentTooLarge": "Każdy plik musi mieć poniżej 50 MB",
     "deleteCommentA11y": "Usuń komentarz",
     "sendCommentA11y": "Wyślij komentarz",
     "requestOptions": "Opcje żądania"
@@ -4656,7 +4656,7 @@
     "noActiveNow": "Obecnie brak aktywnych propozycji",
     "subtitle": "Głosuj nad propozycjami, które kształtują platformę",
     "loadFailed": "Nie udało się wczytać propozycji",
-    "forLabel": "Dla",
+    "forLabel": "Za",
     "againstLabel": "Przeciw",
     "discussion": {
       "title": "Dyskusja",

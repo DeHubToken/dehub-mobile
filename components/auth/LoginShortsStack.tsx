@@ -151,7 +151,9 @@ export default function LoginShortsStack() {
   // The screen pads 24 each side; the lanes sit 10 from the edges.
   const lanesW = width - SIDE * 2;
   const tileW = (lanesW - GAP) / 2;
-  const lanesH = Math.round(Math.min(460, Math.max(300, screenH - 400)));
+  // The lanes start under the floating header (SignInScreen pulls them up),
+  // so they get its height back.
+  const lanesH = Math.round(Math.min(530, Math.max(360, screenH - 330)));
   const restyleLabel = t("loginStack.aiRestyle", "AI restyle");
 
   return (
@@ -161,8 +163,8 @@ export default function LoginShortsStack() {
           style={{ width: lanesW, height: lanesH, marginHorizontal: SIDE - 24 }}
           maskElement={
             <LinearGradient
-              colors={["transparent", "#000", "#000", "transparent"]}
-              locations={[0, 0.1, 0.52, 0.9]}
+              colors={["#000", "#000", "transparent"]}
+              locations={[0, 0.58, 0.92]}
               style={StyleSheet.absoluteFill}
             />
           }
@@ -175,6 +177,16 @@ export default function LoginShortsStack() {
           </View>
         </MaskedView>
       </KeepDarkScope>
+      {/* The faint shade behind the logo, top-left only; Explore carries its
+          own glass. Near-black, not black: System Light keeps pure-black
+          scrims but turns this into a white haze. */}
+      <LinearGradient
+        pointerEvents="none"
+        colors={["rgba(4,4,4,0.32)", "rgba(4,4,4,0)"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.75, y: 0.75 }}
+        style={styles.corner}
+      />
       <Text style={[styles.headline, { color: "#FFFFFF" }]} accessibilityRole="header">
         {t("loginStack.headlineTop", "You will own everything")}
         {"\n"}
@@ -186,6 +198,7 @@ export default function LoginShortsStack() {
 
 const styles = StyleSheet.create({
   root: { alignItems: "stretch" },
+  corner: { position: "absolute", left: -24, top: 0, width: 220, height: 170 },
   lanes: { flexDirection: "row", gap: GAP, overflow: "hidden" },
   tile: { borderRadius: 18, borderWidth: 1, overflow: "hidden", backgroundColor: "#111" },
   ai: {
@@ -204,5 +217,5 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.25)",
   },
   aiText: { color: "#FFFFFF", fontSize: 10, fontWeight: "800", letterSpacing: 0.2 },
-  headline: { marginTop: -64, textAlign: "left", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
+  headline: { marginTop: -64, textAlign: "center", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
 });

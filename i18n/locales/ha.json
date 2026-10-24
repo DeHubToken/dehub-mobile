@@ -4529,7 +4529,7 @@
     "edit": "Gyara",
     "deleteRequestTitle": "A goge wannan buƙatar?",
     "deleteRequestDescription": "Ba za a iya juyar da wannan ba.",
-    "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 20MB",
+    "attachmentTooLarge": "Kowane fayil ya zama ƙasa da 50MB",
     "deleteCommentA11y": "Share sharhi",
     "sendCommentA11y": "Aika da sharhi",
     "requestOptions": "Neman zaɓuɓɓuka"
@@ -5623,8 +5623,8 @@
     "noActiveNow": "Babu shawarwari masu aiki a yanzu",
     "subtitle": "Ka kada kuri'a kan shawarwarin da ke tsara dandamalin",
     "loadFailed": "An kasa loda shawarwari",
-    "forLabel": "domin",
-    "againstLabel": "A kan",
+    "forLabel": "Goyon baya",
+    "againstLabel": "Adawa",
     "discussion": {
       "title": "Tattaunawa",
       "intro": "Tambayi tambayoyi masu biyowa ko tattauna shawarwarin kafin ka kada kuri'a.",

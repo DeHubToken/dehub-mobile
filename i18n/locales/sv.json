@@ -3633,7 +3633,7 @@
     "edit": "Redigera",
     "deleteRequestTitle": "Radera den här förfrågan?",
     "deleteRequestDescription": "Det här går inte att ångra.",
-    "attachmentTooLarge": "Varje fil måste vara under 20 MB",
+    "attachmentTooLarge": "Varje fil måste vara under 50 MB",
     "deleteCommentA11y": "Ta bort kommentar",
     "sendCommentA11y": "Sádde kommeantta",
     "requestOptions": "Alternativ för förfrågan"
@@ -4659,7 +4659,7 @@
     "subtitle": "Rösta om förslag som formar plattformen",
     "loadFailed": "Det gick inte att läsa in förslagen",
     "forLabel": "För",
-    "againstLabel": "Antal röster emot:",
+    "againstLabel": "Emot",
     "discussion": {
       "title": "Diskussion",
       "intro": "Ställ följdfrågor eller diskutera förslaget innan du röstar.",

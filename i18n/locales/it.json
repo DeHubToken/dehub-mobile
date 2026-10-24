@@ -3635,7 +3635,7 @@
     "edit": "Modifica",
     "deleteRequestTitle": "Eliminare questa richiesta?",
     "deleteRequestDescription": "Non si può annullare.",
-    "attachmentTooLarge": "Ogni file deve essere sotto i 20 MB",
+    "attachmentTooLarge": "Ogni file deve essere sotto i 50 MB",
     "deleteCommentA11y": "Elimina il commento",
     "sendCommentA11y": "Invia commento",
     "requestOptions": "Opzioni richiesta"
@@ -4675,7 +4675,7 @@
     },
     "holdTokensToVote": "Tieni i token DeHub per votare",
     "mustHoldTokens": "Devi possedere token DeHub per votare le proposte di governance.",
-    "forLabel": "Per"
+    "forLabel": "A favore"
   },
   "sidebar": {
     "talkOfTheTown": "Di cosa si parla",

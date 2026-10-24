@@ -4439,7 +4439,7 @@
     "edit": "Таҳрир кардан",
     "deleteRequestTitle": "Ин дархост нест карда шавад?",
     "deleteRequestDescription": "Инро баргардонидан мумкин нест.",
-    "attachmentTooLarge": "Ҳар як файл бояд аз 20MB камтар бошад",
+    "attachmentTooLarge": "Ҳар як файл бояд аз 50MB камтар бошад",
     "deleteCommentA11y": "Нест кардани шарҳ",
     "sendCommentA11y": "Фиристодани шарҳ",
     "requestOptions": "Имконоти дархост"
@@ -5523,8 +5523,8 @@
     "noActiveNow": "Ҳоло пешниҳодҳои фаъол нестанд",
     "subtitle": "Ба пешниҳодҳое, ки платформаро ташаккул медиҳанд, овоз диҳед",
     "loadFailed": "Пешниҳодҳо бор нашуданд",
-    "forLabel": "Барои...",
-    "againstLabel": "Бар зидди",
+    "forLabel": "Тарафдор",
+    "againstLabel": "Муқобил",
     "discussion": {
       "title": "Баҳс",
       "intro": "Саволҳои пайгириро пурсед ё пеш аз овоздиҳӣ муҳокима кунед.",

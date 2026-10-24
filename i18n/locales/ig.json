@@ -4556,7 +4556,7 @@
     "edit": "Dezie",
     "deleteRequestTitle": "Hichapụ arịrịọ a?",
     "deleteRequestDescription": "Enweghị ike ịkagbu nke a.",
-    "attachmentTooLarge": "Faịlụ ọ bụla ga-abụ ihe na-erughị 20MB",
+    "attachmentTooLarge": "Faịlụ ọ bụla ga-abụ ihe na-erughị 50MB",
     "deleteCommentA11y": "Hichaa nkọwa",
     "sendCommentA11y": "Ziga nkọwa",
     "requestOptions": "Arịrịọ nhọrọ"
@@ -5648,7 +5648,7 @@
     "noActiveNow": "Enweghị atụmatụ na-arụ ọrụ ugbu a",
     "subtitle": "Tụọ vootu na atụmatụ na-akpụzi ikpo okwu ahụ",
     "loadFailed": "Enweghị ike ibudata atụmatụ",
-    "forLabel": "Maka",
+    "forLabel": "Kwado",
     "againstLabel": "Megide",
     "discussion": {
       "title": "Mkparịta ụka",

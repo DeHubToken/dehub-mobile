@@ -2252,7 +2252,7 @@
     "edit": "Editar",
     "deleteRequestTitle": "¿Eliminar esta solicitud?",
     "deleteRequestDescription": "No se puede deshacer.",
-    "attachmentTooLarge": "Cada archivo debe pesar menos de 20 MB",
+    "attachmentTooLarge": "Cada archivo debe pesar menos de 50 MB",
     "deleteCommentA11y": "Eliminar comentario",
     "sendCommentA11y": "Enviar comentario",
     "requestOptions": "Opciones de solicitud"
@@ -3250,7 +3250,7 @@
     "noActiveNow": "Ahora mismo no hay propuestas activas",
     "subtitle": "Vota las propuestas que dan forma a la plataforma",
     "loadFailed": "No se pudieron cargar las propuestas",
-    "forLabel": "Por",
+    "forLabel": "A favor",
     "againstLabel": "En contra",
     "discussion": {
       "title": "Discusión",

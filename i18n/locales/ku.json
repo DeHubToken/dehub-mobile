@@ -4583,7 +4583,7 @@
     "edit": "Biguherîne",
     "deleteRequestTitle": "Ev daxwaz were jêbirin?",
     "deleteRequestDescription": "Ev nayê vegerandin.",
-    "attachmentTooLarge": "Divê her dosye ji 20MB kêmtir be",
+    "attachmentTooLarge": "Divê her dosye ji 50MB kêmtir be",
     "deleteCommentA11y": "Şîroveyê jê bibe",
     "sendCommentA11y": "Şîrove bişîne",
     "requestOptions": "Vebijarkên daxwazê"
@@ -5684,8 +5684,8 @@
     "noActiveNow": "Niha pêşniyarên çalak tune",
     "subtitle": "Li ser pêşniyarên ku platformê şekil didin deng bide",
     "loadFailed": "Pêşniyar nehatin barkirin",
-    "againstLabel": "Dijî",
-    "forLabel": "Bo",
+    "againstLabel": "Dijber",
+    "forLabel": "Alîgir",
     "discussion": {
       "title": "Nîqaş",
       "intro": "Berî dengdanê pirsên dûvre bipirsin an jî li ser pêşniyarê nîqaş bikin.",

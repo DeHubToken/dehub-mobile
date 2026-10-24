@@ -4636,7 +4636,7 @@
     "edit": "Wysig",
     "deleteRequestTitle": "Vee hierdie versoek uit?",
     "deleteRequestDescription": "Dit kan nie ongedaan gemaak word nie.",
-    "attachmentTooLarge": "Elke lêer moet kleiner as 20MB wees",
+    "attachmentTooLarge": "Elke lêer moet kleiner as 50MB wees",
     "deleteCommentA11y": "Skrap kommentaar",
     "sendCommentA11y": "Stuur kommentaar",
     "requestOptions": "Versoek opsies"
@@ -5744,8 +5744,8 @@
     "noActiveNow": "Geen aktiewe voorstelle op die oomblik nie",
     "subtitle": "Stem oor voorstelle wat die platform vorm",
     "loadFailed": "Kon nie voorstelle laai nie",
-    "forLabel": "vir",
-    "againstLabel": "teen",
+    "forLabel": "Vir",
+    "againstLabel": "Teen",
     "discussion": {
       "title": "Bespreking",
       "intro": "Stel opvolgvrae of bespreek die voorstel voordat u stem.",

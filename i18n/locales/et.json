@@ -4610,7 +4610,7 @@
     "edit": "Muuda",
     "deleteRequestTitle": "Kas kustutada see taotlus?",
     "deleteRequestDescription": "Seda ei saa tagasi võtta.",
-    "attachmentTooLarge": "Iga fail peab olema alla 20 MB",
+    "attachmentTooLarge": "Iga fail peab olema alla 50 MB",
     "deleteCommentA11y": "Kustuta kommentaar",
     "sendCommentA11y": "Saada kommentaar",
     "requestOptions": "Tellimuse valikud"
@@ -5712,8 +5712,8 @@
     "noActiveNow": "Praegu pole aktiivseid ettepanekuid",
     "subtitle": "Hääleta ettepanekute üle, mis kujundavad platvormi",
     "loadFailed": "Ettepanekuid ei õnnestunud laadida",
-    "forLabel": "Kasutamine",
-    "againstLabel": "vastu",
+    "forLabel": "Poolt",
+    "againstLabel": "Vastu",
     "discussion": {
       "title": "Arutelu",
       "intro": "Esita enne hääletamist täiendavaid küsimusi või aruta ettepanekut.",

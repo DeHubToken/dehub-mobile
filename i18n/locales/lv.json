@@ -4609,7 +4609,7 @@
     "edit": "Rediģēt",
     "deleteRequestTitle": "Vai dzēst šo pieprasījumu?",
     "deleteRequestDescription": "To nevar atsaukt.",
-    "attachmentTooLarge": "Katram failam jābūt mazākam par 20 MB",
+    "attachmentTooLarge": "Katram failam jābūt mazākam par 50 MB",
     "deleteCommentA11y": "Dzēst Komentāru",
     "sendCommentA11y": "Nosūtīt komentāru",
     "requestOptions": "Pieprasījuma iespējas"
@@ -5711,8 +5711,8 @@
     "noActiveNow": "Šobrīd nav aktīvu priekšlikumu",
     "subtitle": "Balso par priekšlikumiem, kas veido platformu",
     "loadFailed": "Neizdevās ielādēt priekšlikumus",
-    "forLabel": "Paredzēts",
-    "againstLabel": "Balsis “pret”",
+    "forLabel": "Par",
+    "againstLabel": "Pret",
     "discussion": {
       "title": "Diskusija",
       "intro": "Pirms balsošanas uzdodiet papildu jautājumus vai apspriediet priekšlikumu.",

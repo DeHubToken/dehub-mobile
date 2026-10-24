@@ -3680,7 +3680,7 @@
     "edit": "Bearbeiten",
     "deleteRequestTitle": "Diese Anfrage löschen?",
     "deleteRequestDescription": "Das lässt sich nicht rückgängig machen.",
-    "attachmentTooLarge": "Jede Datei muss unter 20 MB sein",
+    "attachmentTooLarge": "Jede Datei muss unter 50 MB sein",
     "deleteCommentA11y": "Kommentar löschen",
     "sendCommentA11y": "Kommentar senden",
     "requestOptions": "Anforderungsoptionen"
@@ -4694,8 +4694,8 @@
     "noActiveNow": "Derzeit keine aktiven Vorschläge",
     "subtitle": "Stimme über Vorschläge ab, die die Plattform prägen",
     "loadFailed": "Vorschläge konnten nicht geladen werden",
-    "forLabel": "Für",
-    "againstLabel": "Gegen",
+    "forLabel": "Dafür",
+    "againstLabel": "Dagegen",
     "discussion": {
       "title": "Diskussion",
       "intro": "Stellen Sie Folgefragen oder besprechen Sie den Vorschlag, bevor Sie abstimmen.",

@@ -2252,7 +2252,7 @@
     "edit": "تعديل",
     "deleteRequestTitle": "حذف هذا الطلب؟",
     "deleteRequestDescription": "لا يمكن التراجع عن هذا.",
-    "attachmentTooLarge": "يجب أن يكون كل ملف أقل من 20 ميغابايت",
+    "attachmentTooLarge": "يجب أن يكون كل ملف أقل من 50 ميغابايت",
     "deleteCommentA11y": "احذف التعليق",
     "sendCommentA11y": "ارسل التعليق",
     "requestOptions": "خيارات الطلب"
@@ -3258,8 +3258,8 @@
     "noActiveNow": "لا توجد مقترحات نشطة حاليًا",
     "subtitle": "صوّت على المقترحات التي تشكّل المنصة",
     "loadFailed": "تعذّر تحميل المقترحات",
-    "forLabel": "من أجل",
-    "againstLabel": "ضد",
+    "forLabel": "مؤيد",
+    "againstLabel": "معارض",
     "discussion": {
       "title": "المناقشة",
       "intro": "اطرح أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",
