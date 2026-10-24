@@ -136,10 +136,10 @@ export function useSubmitProposalComment() {
       /** The comment being replied to, or nothing for a new thread. */
       parentId?: string | null;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("governance.discussion.signInToComment"));
       const addr = wallet.toLowerCase();
       const headers = await dehubAuthHeaders(addr);
-      if (!headers['x-dehub-token']) throw new Error('Not authenticated');
+      if (!headers['x-dehub-token']) throw new Error(_copy("governance.discussion.signInToComment"));
 
       const { data, error } = await withWalletHeader(
         supabase
@@ -181,7 +181,7 @@ export function useDeleteProposalComment() {
 
   return useMutation({
     mutationFn: async ({ commentId }: { commentId: string; proposalId: string }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("governance.discussion.signInToComment"));
       const addr = wallet.toLowerCase();
       const { error } = await withWalletHeader(
         supabase.from("governance_comments").delete().eq("id", commentId),
@@ -223,7 +223,7 @@ export function useVoteOnProposal() {
 
   return useMutation({
     mutationFn: async ({ proposalId, voteType }: { proposalId: string; voteType: 1 | -1 }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(t("governance.discussion.signInToComment"));
       return castVote(proposalId, voteType, wallet);
     },
     onSuccess: (result, { proposalId, voteType }) => {

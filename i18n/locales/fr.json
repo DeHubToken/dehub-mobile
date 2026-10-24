@@ -2272,7 +2272,6 @@
     "mostListened": "Les plus écoutées",
     "recentStages": "Récentes",
     "noStages": "Aucun Stage ici pour l’instant",
-    "listening": "à l’écoute",
     "mostLiked": "Les plus aimés",
     "mostRecent": "Les plus récents",
     "chartOrder": "Ordre du classement audio",
@@ -2286,7 +2285,7 @@
     "trendingWeek": "Tendances de la semaine",
     "newest": "Nouveautés",
     "videoChartOrder": "Ordre du classement des clips",
-    "viewsCount": "{{views}} vues"
+    "viewsCount_other": "{{views}} vues"
   },
   "notFound": {
     "title": "Page non trouvée",
@@ -3028,6 +3027,14 @@
     "legal": "Les tirages au sort sont promotionnels et ouverts aux titulaires de compte DeHub âgés de 18 ans ou plus, sans effet lorsque la loi locale les interdit. Le personnel de DeHub, les entrepreneurs et leurs ménages ne sont pas admissibles. Les prix ne sont pas échangeables contre de l'argent sauf indication contraire, et l'annonce de chaque tirage porte toutes ses conditions."
   },
   "dao": {
+    "status": {
+      "rejected": "Rejeté",
+      "open": "Ouvrir",
+      "expired": "Expiré",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "accepted": "Accepté"
+    },
     "votingPowerNote": "Le vote dure 7 jours. Le pouvoir de vote est la contribution cumulée en jetons de chaque contributeur à l'ouverture de cette proposition. Au moins 10 % doivent participer et Accepter doit l'emporter sur Refuser.",
     "votingClosed": "Vote clos",
     "voteWithdrawn": "Vote retiré",
@@ -4084,12 +4091,6 @@
       "clearDeadline": "Effacer l'échéance"
     },
     "status": {
-      "rejected": "Rejeté",
-      "open": "Ouvrir",
-      "expired": "Expiré",
-      "completed": "Terminé",
-      "cancelled": "Annulé",
-      "accepted": "Accepté",
       "open": "Ouverte",
       "pending": "En attente",
       "awarded": "Attribuée",
