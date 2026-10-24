@@ -2904,6 +2904,8 @@
     "tabSearch": "Chọọ"
   },
   "postInfo": {
+    "ownersUnavailable": "Enweghị ike ịgụ ndị nwe ya ugbu a.",
+    "unavailable": "Agaghị adị",
     "title": "Ozi banyere mbipụta",
     "tokenId": "Token ID",
     "mintedOn": "Emepụtara",
@@ -4951,6 +4953,8 @@
     "displayNameHint": "Aha ọha gị na profaịlụ gị. Ọ bụ nhọrọ — hapụ ya oghere ka e jiri aha onye ọrụ gị."
   },
   "events": {
+    "deleteConfirmBody": "Nke a na-ewepụ ihe omume ahụ, ndepụta ndị ọbịa ya na nkata ya maka mmadụ niile. Agaghị emezigharị ya.",
+    "deleteConfirmTitle": "Hichaa mmemme a?",
     "youreApproved": "Ị na-mma",
     "youAreCreator": "Ị bụ onye okike",
     "typeMessage": "Pịnye ozi...",

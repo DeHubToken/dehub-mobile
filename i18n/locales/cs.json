@@ -2925,6 +2925,8 @@
     "tabSearch": "Hledat"
   },
   "postInfo": {
+    "ownersUnavailable": "Aktuální vlastníci se zatím nedají přečíst.",
+    "unavailable": "Nedostupné",
     "title": "Informace o příspěvku",
     "tokenId": "ID tokenu",
     "mintedOn": "Vytvořeno",
@@ -4973,6 +4975,8 @@
     "displayNameHint": "Vaše veřejné jméno v profilu. Nepovinné — když ho necháte prázdné, použije se vaše uživatelské jméno."
   },
   "events": {
+    "deleteConfirmBody": "Tím se odstraní událost, seznam hostů a chat pro všechny. Nelze ji vrátit zpět.",
+    "deleteConfirmTitle": "Smazat tuto událost?",
     "youreApproved": "Jsi schválen/a",
     "youAreCreator": "Jsi tvůrce",
     "typeMessage": "Napište zprávu...",

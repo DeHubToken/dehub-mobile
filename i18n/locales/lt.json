@@ -2913,6 +2913,8 @@
     "tabSearch": "Paieška"
   },
   "postInfo": {
+    "ownersUnavailable": "Dabartiniai savininkai šiuo metu negali būti skaitomi.",
+    "unavailable": "Neprieinama",
     "title": "Įrašo informacija",
     "tokenId": "Žetono ID",
     "mintedOn": "Sukurta",
@@ -4962,6 +4964,8 @@
     "displayNameHint": "Jūsų viešas vardas profilyje. Neprivaloma — palikite tuščią, kad būtų naudojamas jūsų naudotojo vardas."
   },
   "events": {
+    "deleteConfirmBody": "Tai pašalina įvykį, jo svečių sąrašą ir pokalbį visiems. Tai negali būti anuliuota.",
+    "deleteConfirmTitle": "Ištrinti šį įvykį?",
     "youreApproved": "Jums leista",
     "youAreCreator": "Jūs esate kūrėjas",
     "typeMessage": "Rašykite žinutę...",

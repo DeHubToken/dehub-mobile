@@ -2892,6 +2892,8 @@
     "tabSearch": "ድለ"
   },
   "postInfo": {
+    "ownersUnavailable": "እቶም ናይ ሕጂ ባለቤታት ኣብዚ እዋን እዚ ክነበብዎ ኣይክእሉን እዮም ።",
+    "unavailable": "ኣይተረኽበን ።",
     "title": "ሓበሬታ ጽሑፍ",
     "tokenId": "ቶከን ID",
     "mintedOn": "ተፈጢሩ",
@@ -4931,6 +4933,8 @@
     "displayNameHint": "ኣብ መለለዪኻ ዝረአ ህዝባዊ ስምካ። ግዴታ ኣይኮነን — ባዶ እንተ ገዲፍካዮ ስም ተጠቃሚኻ ክንጥቀም ኢና።"
   },
   "events": {
+    "deleteConfirmBody": "እዚ ነቲ ፍጻመ ፡ ዝርዝር ኣጋይሽኡን ዝርርብኡን ንኹሉ የጥፍኦ ። ክጠፍእ ኣይክእልን እዩ ።",
+    "deleteConfirmTitle": "ነዚ ፍጻመ እዚ ትሰርሖዶ ፧",
     "youreApproved": "ተቐቢልካ ኢኻ",
     "youAreCreator": "ንስኻ ፈጣሪ ኢኻ",
     "typeMessage": "መልእኽቲ ጽሓፍ...",

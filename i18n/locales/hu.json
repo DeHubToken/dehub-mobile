@@ -2925,6 +2925,8 @@
     "tabSearch": "Keresés"
   },
   "postInfo": {
+    "ownersUnavailable": "A jelenlegi tulajdonosok jelenleg nem olvashatók.",
+    "unavailable": "Nem érhető el",
     "title": "Bejegyzés infó",
     "tokenId": "Token azonosító",
     "mintedOn": "Létrehozva",
@@ -4974,6 +4976,8 @@
     "displayNameHint": "Nyilvános neved a profilodon. Nem kötelező — hagyd üresen, ha a felhasználónevedet szeretnéd használni."
   },
   "events": {
+    "deleteConfirmBody": "Ez eltávolítja az eseményt, a vendéglistát és a csevegést mindenki számára. Nem lehet visszavonni.",
+    "deleteConfirmTitle": "Törli ezt az eseményt?",
     "youreApproved": "Ön jóváhagyott",
     "youAreCreator": "Ön az esemény szervezője",
     "typeMessage": "Írj egy üzenetet...",

@@ -2911,6 +2911,8 @@
     "tabSearch": "搜尋"
   },
   "postInfo": {
+    "ownersUnavailable": "而家睇唔到而家嘅擁有者。",
+    "unavailable": "唔可以用",
     "title": "帖子資訊",
     "tokenId": "代幣ID",
     "mintedOn": "鑄造於",
@@ -4955,6 +4957,8 @@
     "displayNameHint": "喺你個人檔案顯示嘅公開名稱。可以唔填——留空就會用你嘅用戶名。"
   },
   "events": {
+    "deleteConfirmBody": "呢個操作會移除活動、佢嘅嘉賓名單同埋所有人嘅即時通訊。呢個係復原唔到嘅。",
+    "deleteConfirmTitle": "刪除呢個活動？",
     "youreApproved": "你已獲批准",
     "youAreCreator": "你是創建者",
     "typeMessage": "輸入訊息...",

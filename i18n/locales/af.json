@@ -2946,6 +2946,8 @@
     "tabSearch": "Soek"
   },
   "postInfo": {
+    "ownersUnavailable": "Die huidige eienaars kan nie nou gelees word nie.",
+    "unavailable": "Onbeskikbaar",
     "title": "Plaas inligting",
     "tokenId": "Tekens-ID",
     "mintedOn": "Gemunt op",
@@ -4995,6 +4997,8 @@
     "displayNameHint": "Jou openbare naam op jou profiel. Opsioneel — laat dit leeg om jou gebruikernaam te gebruik."
   },
   "events": {
+    "deleteConfirmBody": "Dit verwyder die geleentheid, sy gaste lys en sy chat vir almal. Dit kan nie ongedaan gemaak word nie.",
+    "deleteConfirmTitle": "Skrap hierdie okkasie?",
     "youreApproved": "Jy is goedgekeur",
     "youAreCreator": "Jy is die skepper",
     "typeMessage": "Tik 'n boodskap...",

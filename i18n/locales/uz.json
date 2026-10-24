@@ -2931,6 +2931,8 @@
     "tabSearch": "Qidirish"
   },
   "postInfo": {
+    "ownersUnavailable": "Hozirgi egalarini hozir oʻqib boʻlmaydi.",
+    "unavailable": "Mavjud emas",
     "title": "Post ma'lumoti",
     "tokenId": "Token identifikatori",
     "mintedOn": "Yaratilgan",
@@ -4980,6 +4982,8 @@
     "displayNameHint": "Profilingizdagi ommaviy ismingiz. Ixtiyoriy — bo‘sh qoldirsangiz, foydalanuvchi nomingiz ishlatiladi."
   },
   "events": {
+    "deleteConfirmBody": "Bu tadbirni, undagi mehmonlar roʻyxatini va chatni hamma uchun olib tashlaydi. Buni bekor qilib boʻlmaydi.",
+    "deleteConfirmTitle": "Bu tadbir oʻchirib tashlansinmi?",
     "youreApproved": "Siz roʻyxatdan oʻtishga ruxsat berildi",
     "youAreCreator": "Siz yaratuvchi siz",
     "typeMessage": "Message yozing...",
