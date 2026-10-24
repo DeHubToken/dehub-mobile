@@ -1,4 +1,31 @@
 {
+  "dehubLinks": {
+    "kind": {
+      "app": "app",
+      "bounty": "recompensa",
+      "community": "comunidad",
+      "communityInvite": "invitación a la comunidad",
+      "event": "evento",
+      "film": "title",
+      "link": "enlace",
+      "listing": "artículo",
+      "post": "post",
+      "profile": "perfil",
+      "proposal": "propuesta",
+      "stage": "etapa",
+      "store": "tienda"
+    }
+  },
+  "stageCover": {
+    "admitOne": "ADMITIR UNO",
+    "live": "en directo",
+    "minutes": "{{minutes}} min",
+    "onAir": "EN EL AIRE",
+    "recorded": "REGISTRADO",
+    "replay": "reproducir",
+    "stage": "etapa",
+    "upcoming": "próximo"
+  },
   "agents.workspace.moderation": "Moderación del chat en directo",
   "agents.workspace.moderationHelp": "Activa primero el permiso de moderación. La cuenta debe ser el creador de la transmisión o un moderador asignado. Los modos de aprobación y borrador siguen vigentes. Las suspensiones caducan automáticamente.",
   "agents.workspace.streamId": "ID de la publicación en directo",
@@ -555,6 +582,8 @@
     "postCount_other": "{{count}} publicaciones"
   },
   "settings": {
+    "glass": "Glassy",
+    "shortsSaveFailed": "Error al guardar la preferencia de pantalones cortos",
     "showDislikesDesc": "Cualquiera puede abrir la pestaña «No me gusta» de tu perfil. Si está desactivado, solo tú puedes verla.",
     "showDislikes": "Mostrar mis «no me gusta» a todos",
     "shortsEnabledDesc": "Mostrar la pestaña de Shorts feed y los carruseles de Shorts en Inicio.",
@@ -739,7 +768,6 @@
     "immersive": "Inmersivo",
     "minimal": "Minimalista",
     "cosmic": "Cosmic Pixels",
-    "glass": "Glass",
     "hazy": "Noches Brumosas",
     "swarms": "Enjambres",
     "lavalamp": "Lámpara de lava",
@@ -2310,6 +2338,9 @@
     "tryAgain": "Intentar de nuevo"
   },
   "music": {
+    "listeningCount_one": "{{count}} escuchando",
+    "listeningCount_other": "{{count}} escuchando",
+    "viewsCount_one": "{{views}} ver",
     "all": "Todo",
     "tracks": "Pistas",
     "videos": "Vídeos",
@@ -2353,7 +2384,6 @@
     "mostListened": "Más escuchados",
     "recentStages": "Recientes",
     "noStages": "Aún no hay Stages aquí",
-    "listening": "escuchando",
     "mostLiked": "Con más me gusta",
     "mostRecent": "Más recientes",
     "chartOrder": "Orden de la lista de audio",
@@ -2367,7 +2397,7 @@
     "trendingWeek": "Tendencia esta semana",
     "newest": "Más nuevos",
     "videoChartOrder": "Orden de la lista de videos musicales",
-    "viewsCount": "{{views}} vistas"
+    "viewsCount_other": "{{views}} vistas"
   },
   "notFound": {
     "title": "Página no encontrada",
@@ -3105,6 +3135,14 @@
     "legal": "Los sorteos son promocionales y están abiertos a los titulares de cuentas de DeHub mayores de 18 años, nulos donde la ley local los prohíba. El personal de DeHub, los contratistas y sus hogares no son elegibles. Los premios no son canjeables por dinero en efectivo a menos que se indique lo contrario, y el anuncio de cada sorteo lleva sus términos completos."
   },
   "dao": {
+    "status": {
+      "rejected": "Rechazado",
+      "open": "Abierto",
+      "expired": "Vencido",
+      "completed": "Completado",
+      "cancelled": "Cancelado",
+      "accepted": "Aceptado"
+    },
     "votingPowerNote": "La votación dura 7 días. El poder de voto es la contribución acumulada de tokens de cada contribuyente cuando se abre esta propuesta. Al menos el 10% debe participar y Aceptar debe superar Rechazar.",
     "votingClosed": "Votación cerrada",
     "voteWithdrawn": "Voto retirado",
@@ -3152,6 +3190,7 @@
     "pooledTotal": "{{amount}} tokens en pool"
   },
   "governance": {
+    "badgeHoldersOnly": "Solo portadores de insignias",
     "title": "Gobernanza",
     "proposalCount": "{{count}} propuesta enviada",
     "proposalCount_other": "{{count}} propuestas enviadas",
@@ -4163,12 +4202,6 @@
       "clearDeadline": "Quitar fecha límite"
     },
     "status": {
-      "rejected": "Rechazado",
-      "open": "Abierto",
-      "expired": "Vencido",
-      "completed": "Completado",
-      "cancelled": "Cancelado",
-      "accepted": "Aceptado",
       "open": "Abierta",
       "pending": "Pendiente",
       "awarded": "Adjudicada",
@@ -11562,6 +11595,13 @@
     "watch": "Ver un anuncio para apoyar a este creador"
   },
   "copy": {
+    "1aa7b1c1d5fb": "¡Gracias!",
+    "20d4214b9d4b": "Ver solicitudes enviadas",
+    "2971f9103f78": "Gracias por ayudar a mejorar DeHub: algo que pediste ya está disponible:",
+    "8f3dc69e83c4": "¡Tus comentarios han sido enviados!",
+    "905392fbed15": "Gracias por ayudar a mejorar DeHub: {{value1}} las cosas que pediste ya están disponibles:",
+    "bdd4f5015e96": "Cerrar notificación de solicitud enviada",
+    "da4c7c208cf4": "Échale un vistazo",
     "085cd98e8e2e": " Copiar enlace",
     "c184b8c9592f": "Eso tiene que ser una página en dehub.io.",
     "9b44fb81d89e": "Página de destino",

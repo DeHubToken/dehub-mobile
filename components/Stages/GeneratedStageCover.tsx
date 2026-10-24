@@ -23,6 +23,7 @@ import { Platform, StyleSheet, Text, View, type LayoutChangeEvent, type StylePro
 import Svg, { Circle, Defs, Ellipse, G, Line, Path, Pattern, RadialGradient, Rect, Stop } from "react-native-svg";
 import { buildStageCover, stageCoverTitleScale, type StageCoverSource } from "../../libs/stage-cover";
 import { appLocale } from "../../libs/date.util";
+import { useTranslation } from "react-i18next";
 
 export interface GeneratedStageCoverProps {
   stage: StageCoverSource;
@@ -51,13 +52,14 @@ function DehubMark({ size }: { size: number }) {
 }
 
 const GeneratedStageCover: React.FC<GeneratedStageCoverProps> = ({ stage, style }) => {
+  const { t } = useTranslation();
   const [uid] = useState(() => `gsc${++idCounter}`);
   const [width, setWidth] = useState(0);
   const m = useMemo(
-    () => buildStageCover(stage, appLocale()),
+    () => buildStageCover(stage, t, appLocale()),
     // Only the fields the poster reads.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [stage.id, stage.title, stage.host_username, stage.host_wallet_address, stage.scheduled_at, stage.started_at, stage.created_at, stage.ended_at, stage.status],
+    [stage.id, stage.title, stage.host_username, stage.host_wallet_address, stage.scheduled_at, stage.started_at, stage.created_at, stage.ended_at, stage.status, t],
   );
 
   const onLayout = (e: LayoutChangeEvent) => {
@@ -144,7 +146,7 @@ const GeneratedStageCover: React.FC<GeneratedStageCoverProps> = ({ stage, style 
                 <DehubMark size={1.9 * u} />
                 <Text style={[styles.pillText, { fontSize: 1.7 * u, letterSpacing: 0.37 * u }]}>DEHUB</Text>
               </View>
-              <Text style={[styles.tag, { fontSize: 1.35 * u }]}>{'// type = "stage"'}</Text>
+              <Text style={[styles.tag, { fontSize: 1.35 * u }]}>{`// type = "${t("stageCover.stage")}"`}</Text>
             </View>
           )}
 
