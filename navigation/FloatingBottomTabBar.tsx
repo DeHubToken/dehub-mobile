@@ -328,11 +328,11 @@ const NavButton = memo<{
             : undefined,
         ]}
       >
-        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <View><Icon
+        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={22} color={iconColor} /> : <View><Icon
           name={icon}
-          size={routeName === ScreenNames.DM ? 24 : routeName === ScreenNames.Home ? 22 : 20}
+          size={icon === "House" || icon === "MessageEnvelope" || icon === "Search" ? 22 : 20}
           color={iconColor}
-          strokeWidth={isActive ? 2 : 1.75}
+          strokeWidth={icon === "House" || icon === "MessageEnvelope" || icon === "Search" || isActive ? 2 : 1.75}
         /></View>}
       {badgeCount > 0 && (
         <View style={[styles.badge, { backgroundColor: routeName === ScreenNames.DM ? "#ef4444" : colors.accent }]} pointerEvents="none">
