@@ -3,8 +3,9 @@
 Light and System Light use the soft-pearl treatment for desktop side panels
 at widths of 1024px and above in dehubweb:
 
-- Cool-grey rail (`#f3f4f5`) with pale cards (`#fbfbfc`) and a white edge.
-- Search and panel cards share a 20px corner radius.
+- Pale cards (`#fbfbfc`) stand on the page without an outer rail fill,
+  border or shadow.
+- Panel cards use 20px corners; the shorter search field uses 12px corners.
 - Panels have equal 16px top and side padding.
 - Icon tabs share the available width, with 44px height and 8px gaps.
 - Selected tabs have a white surface and a restrained shadow.
@@ -14,3 +15,8 @@ at widths of 1024px and above in dehubweb:
 The native phone app has no desktop side-panel rail. Its navigation and
 phone feed retain their existing layout. These dimensions describe desktop
 chrome, rather than a change to native global spacing or theme colours.
+
+The native public-chat image picker already sits beside the audio recorder.
+Its image, GIF and microphone controls use dark ink in System Light and retain
+their existing neutral colour in other themes. Web sidebar uploads follow the
+same public-chat image restrictions and preview-before-send behaviour.
