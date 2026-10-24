@@ -1,4 +1,31 @@
 {
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "en direct",
+    "minutes": "{{minutes}} min",
+    "onAir": "À l'antenne",
+    "recorded": "ENRÉGISTRÉ",
+    "replay": "replay",
+    "stage": "scène",
+    "upcoming": "à venir"
+  },
+  "dehubLinks": {
+    "kind": {
+      "app": "application",
+      "bounty": "prime",
+      "community": "communauté",
+      "communityInvite": "invitation de la communauté",
+      "event": "événement",
+      "film": "titre",
+      "link": "lien",
+      "listing": "article",
+      "post": "post",
+      "profile": "profil",
+      "proposal": "proposition",
+      "stage": "étape",
+      "store": "magasin"
+    }
+  },
   "agents.workspace.moderation": "Modération du direct",
   "agents.workspace.moderationHelp": "Activez d’abord l’autorisation de modération. Le compte doit être le créateur du direct ou un modérateur désigné. Les modes brouillon et approbation restent applicables. Les exclusions temporaires expirent automatiquement.",
   "agents.workspace.streamId": "Identifiant de la publication du direct",
@@ -555,6 +582,8 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "shortsSaveFailed": "Échec de l'enregistrement des préférences Shorts",
+    "glass": "Glassy",
     "showDislikesDesc": "Tout le monde peut ouvrir l'onglet « Je n'aime pas » de votre profil. Désactivé, vous seul pouvez le voir.",
     "showDislikes": "Montrer mes « je n'aime pas » à tout le monde",
     "shortsEnabledDesc": "Affichez l’onglet du fil Shorts et les carrousels Shorts sur l’accueil.",
@@ -2304,6 +2333,9 @@
     "tryAgain": "Réessayer"
   },
   "music": {
+    "listeningCount_one": "{{count}} en écoute",
+    "listeningCount_other": "{{count}} en écoute",
+    "viewsCount_one": "{{views}} vue",
     "all": "Tout",
     "tracks": "Pistes",
     "videos": "Vidéos",
@@ -3157,6 +3189,7 @@
     "pooledTotal": "{{amount}} jetons mis en commun"
   },
   "governance": {
+    "badgeHoldersOnly": "Porte-badges uniquement",
     "title": "Gouvernance",
     "proposalCount": "{{count}} proposition soumise",
     "proposalCount_other": "{{count}} propositions soumises",
@@ -10366,6 +10399,13 @@
     "watch": "Regarder une publicité pour soutenir ce créateur"
   },
   "copy": {
+    "1aa7b1c1d5fb": "Merci !",
+    "20d4214b9d4b": "Voir les demandes expédiées",
+    "2971f9103f78": "Merci d'avoir aidé à améliorer DeHub — quelque chose que vous avez demandé est maintenant en ligne :",
+    "8f3dc69e83c4": "Votre retour expédié !",
+    "905392fbed15": "Merci d'avoir aidé à améliorer DeHub — {{value1}} choses que vous avez demandées sont maintenant en ligne :",
+    "bdd4f5015e96": "Fermer la notification de demande expédiée",
+    "da4c7c208cf4": "Vérifiez cela",
     "085cd98e8e2e": " Copier le lien",
     "c184b8c9592f": "Cela doit être une page sur dehub.io.",
     "9b44fb81d89e": "Page de destination",

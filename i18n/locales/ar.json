@@ -1,4 +1,30 @@
 {
+  "stageCover": {
+    "admitOne": "اعترف بواحد",
+    "live": "مباشر",
+    "minutes": "{{minutes}} دقيقة",
+    "onAir": "على الهواء",
+    "recorded": "مسجل",
+    "replay": "إعادة التشغيل",
+    "stage": "المرحلة",
+    "upcoming": "قادم"
+  },
+  "dehubLinks": {
+    "kind": {
+      "app": "التطبيق",
+      "bounty": "مكافأة",
+      "community": "المجتمع",
+      "communityInvite": "دعوة المجتمع",
+      "event": "الحدث",
+      "film": "العنوان",
+      "listing": "البند",
+      "post": "نشر",
+      "profile": "الملف الشخصي",
+      "proposal": "اقتراح",
+      "stage": "المرحلة",
+      "store": "المتجر"
+    }
+  },
   "agents.workspace.moderation": "إدارة الدردشة المباشرة",
   "agents.workspace.moderationHelp": "فعّل إذن الإدارة أولاً. يجب أن يكون الحساب منشئ البث أو مشرفاً معيّناً فيه. تظل أوضاع الموافقة والمسودة سارية. تنتهي القيود المؤقتة تلقائياً.",
   "agents.workspace.streamId": "معرّف منشور البث",
@@ -555,6 +581,8 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "shortsSaveFailed": "تعذر حفظ تفضيلات السراويل القصيرة",
+    "glass": "زجاجي",
     "showDislikesDesc": "يمكن لأي شخص فتح تبويب «عدم الإعجاب» في ملفك الشخصي. عند إيقاف هذا الخيار، تراه أنت فقط.",
     "showDislikes": "أظهر عدم إعجاباتي للجميع",
     "shortsEnabledDesc": "إظهار تبويب خلاصة Shorts ودوارات Shorts على الصفحة الرئيسية.",
@@ -2308,6 +2336,9 @@
     "encryptionSetupFailed": "فشل إعداد التشفير. يرجى المحاولة مرة أخرى."
   },
   "music": {
+    "listeningCount_one": "{{count}} يستمع",
+    "listeningCount_other": "{{count}} يستمع",
+    "viewsCount_one": "عرض {{views}}",
     "all": "الكل",
     "tracks": "مقاطع",
     "videos": "فيديوهات",
@@ -3161,6 +3192,7 @@
     "pooledTotal": "{{amount}} رمز مجمعة"
   },
   "governance": {
+    "badgeHoldersOnly": "حاملي الشارات فقط",
     "title": "الحوكمة",
     "proposalCount": "{{count}} مقترح مقدم",
     "proposalCount_other": "{{count}} مقترحات مقدمة",
@@ -10355,6 +10387,13 @@
     "update": "حدّث الآن"
   },
   "copy": {
+    "1aa7b1c1d5fb": "شكرًا!",
+    "20d4214b9d4b": "عرض الطلبات المشحونة",
+    "2971f9103f78": "نشكرك على المساعدة في تحسين DeHub — شيء طلبته متوفر الآن:",
+    "8f3dc69e83c4": "تم شحن ملاحظاتك!",
+    "905392fbed15": "نشكرك على المساعدة في جعل DeHub أفضل — {{value1}} الأشياء التي طلبتها متوفرة الآن:",
+    "bdd4f5015e96": "إغلاق إشعار الطلب المشحون",
+    "da4c7c208cf4": "ألقِ نظرة عليها",
     "085cd98e8e2e": " نسخ الرابط",
     "c184b8c9592f": "يجب أن تكون هذه صفحة على dehub.io.",
     "9b44fb81d89e": "صفحة الوجهة",

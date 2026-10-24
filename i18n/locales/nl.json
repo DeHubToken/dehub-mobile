@@ -1,4 +1,31 @@
 {
+  "stageCover": {
+    "admitOne": "GEEF ER EEN TOE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "GEREGISTREERD",
+    "replay": "opnieuw afspelen",
+    "stage": "fase",
+    "upcoming": "aankomend"
+  },
+  "dehubLinks": {
+    "kind": {
+      "app": "app",
+      "bounty": "premie",
+      "community": "community",
+      "communityInvite": "community-uitnodiging",
+      "event": "evenement",
+      "film": "titel",
+      "link": "link",
+      "listing": "artikel",
+      "post": "post",
+      "profile": "profiel",
+      "proposal": "voorstel",
+      "stage": "fase",
+      "store": "winkel"
+    }
+  },
   "agents.workspace.moderation": "Moderatie van livechat",
   "agents.workspace.moderationHelp": "Schakel eerst de moderatietoestemming in. Het account moet de maker van de stream of een aangewezen moderator zijn. Goedkeurings- en conceptmodi blijven gelden. Tijdelijke uitsluitingen verlopen automatisch.",
   "agents.workspace.streamId": "Bericht-ID van de stream",
@@ -555,6 +582,8 @@
     "postCount_other": "{{count}} berichten"
   },
   "settings": {
+    "shortsSaveFailed": "Kan Shorts-voorkeur niet opslaan",
+    "glass": "Glasachtig",
     "showDislikesDesc": "Iedereen kan het tabblad Dislikes op je profiel openen. Staat dit uit, dan zie alleen jij het.",
     "showDislikes": "Mijn dislikes aan iedereen tonen",
     "shortsEnabledDesc": "Toon het tabblad Shorts-feed en Shorts-carousels op Home.",
@@ -2494,6 +2523,9 @@
     "encryptionSetupFailed": "Versleutelingsinstelling mislukt. Probeer het opnieuw."
   },
   "music": {
+    "listeningCount_one": "{{count}} luisteren",
+    "listeningCount_other": "{{count}} luisteren",
+    "viewsCount_one": "{{views}} view",
     "all": "Alles",
     "tracks": "Nummers",
     "videos": "Video's",
@@ -3343,6 +3375,7 @@
     "pooledTotal": "{{amount}} tokens gepoold"
   },
   "governance": {
+    "badgeHoldersOnly": "Alleen badgehouders",
     "title": "Bestuur",
     "proposalCount": "{{count}} voorstel ingediend",
     "proposalCount_other": "{{count}} voorstellen ingediend",
@@ -10601,6 +10634,13 @@
     "update": "Nu bijwerken"
   },
   "copy": {
+    "1aa7b1c1d5fb": "Bedankt!",
+    "20d4214b9d4b": "Verzonden aanvragen bekijken",
+    "2971f9103f78": "Bedankt voor je hulp om DeHub beter te maken — iets waar je om hebt gevraagd is nu live:",
+    "8f3dc69e83c4": "Je feedback is verzonden!",
+    "905392fbed15": "Bedankt voor je hulp om DeHub beter te maken — {{value1}} dingen waar je om hebt gevraagd zijn nu live:",
+    "bdd4f5015e96": "Verzonden aanvraagmelding sluiten",
+    "da4c7c208cf4": "Bekijk het hier",
     "085cd98e8e2e": " Link kopiëren",
     "c184b8c9592f": "Dat moet een pagina zijn op dehub.io.",
     "9b44fb81d89e": "Bestemmingspagina",

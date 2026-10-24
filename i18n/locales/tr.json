@@ -1,4 +1,31 @@
 {
+  "stageCover": {
+    "admitOne": "BİRİNİ KABUL ET",
+    "live": "canlı",
+    "minutes": "{{minutes}} dk",
+    "onAir": "YAYINDA",
+    "recorded": "KAYDEDİLDİ",
+    "replay": "yeniden oynat",
+    "stage": "aşama",
+    "upcoming": "yaklaşan"
+  },
+  "dehubLinks": {
+    "kind": {
+      "app": "uygulama",
+      "bounty": "ödül",
+      "community": "topluluk",
+      "communityInvite": "topluluk daveti",
+      "event": "etkinlik",
+      "film": "başlık",
+      "link": "link",
+      "listing": "ürün",
+      "post": "gönderi",
+      "profile": "profil",
+      "proposal": "teklif",
+      "stage": "aşama",
+      "store": "mağaza"
+    }
+  },
   "agents.workspace.moderation": "Canlı sohbet moderasyonu",
   "agents.workspace.moderationHelp": "Önce moderasyon iznini etkinleştirin. Hesap, yayının sahibi veya atanmış bir moderatör olmalıdır. Onay ve taslak modları geçerliliğini korur. Geçici kısıtlamalar otomatik olarak sona erer.",
   "agents.workspace.streamId": "Yayın gönderisi kimliği",
@@ -555,6 +582,8 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "shortsSaveFailed": "Kısa devre tercihi kaydedilemedi",
+    "glass": "Camsı",
     "showDislikesDesc": "Herkes profilindeki Beğenilmeyenler sekmesini açabilir. Bu kapalıyken yalnızca sen görebilirsin.",
     "showDislikes": "Beğenmediklerimi herkese göster",
     "shortsEnabledDesc": "Kısa videolar (Shorts) sekmesini ve Anasayfadaki Shorts karuselini göster.",
@@ -2304,6 +2333,9 @@
     "encryptionSetupFailed": "Şifreleme ayarı başarısız oldu. Lütfen tekrar deneyin."
   },
   "music": {
+    "listeningCount_one": "{{count}} dinleme",
+    "listeningCount_other": "{{count}} dinleme",
+    "viewsCount_one": "{{views}} görüntüleme",
     "all": "Tümü",
     "tracks": "Parçalar",
     "videos": "Videolar",
@@ -3153,6 +3185,7 @@
     "pooledTotal": "{{amount}} token havuzlandı"
   },
   "governance": {
+    "badgeHoldersOnly": "Sadece rozet tutucular",
     "title": "Yönetişim",
     "proposalCount": "{{count}} öneri gönderildi",
     "proposalCount_other": "{{count}} öneri gönderildi",
@@ -10347,6 +10380,13 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "1aa7b1c1d5fb": "Teşekkürler!",
+    "20d4214b9d4b": "Gönderilen talepleri görüntüle",
+    "2971f9103f78": "DeHub'ı daha iyi hale getirmeye yardımcı olduğunuz için teşekkürler. İstediğiniz bir şey artık yayında:",
+    "8f3dc69e83c4": "Geri bildiriminiz gönderildi!",
+    "905392fbed15": "DeHub'ı daha iyi hale getirmeye yardımcı olduğunuz için teşekkürler — {{value1}} istediğiniz şeyler artık yayında:",
+    "bdd4f5015e96": "Gönderilen istek bildirimini kapat",
+    "da4c7c208cf4": "Göz atın",
     "085cd98e8e2e": " Bağlantıyı kopyala",
     "c184b8c9592f": "Bu dehub.io'da bir sayfa olmalı.",
     "9b44fb81d89e": "Hedef sayfa",
