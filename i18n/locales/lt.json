@@ -4610,7 +4610,7 @@
     "edit": "Redaguoti",
     "deleteRequestTitle": "Ištrinti šį pageidavimą?",
     "deleteRequestDescription": "To atšaukti nepavyks.",
-    "attachmentTooLarge": "Kiekvienas failas turi būti mažesnis nei 20 MB",
+    "attachmentTooLarge": "Kiekvienas failas turi būti mažesnis nei 50 MB",
     "deleteCommentA11y": "Ištrinti Komentarą",
     "sendCommentA11y": "Siųsti komentarą",
     "requestOptions": "Prašymo parinktys"
@@ -5712,8 +5712,8 @@
     "noActiveNow": "Šiuo metu aktyvių pasiūlymų nėra",
     "subtitle": "Balsuokite už pasiūlymus, formuojančius platformą",
     "loadFailed": "Nepavyko įkelti pasiūlymų",
-    "forLabel": "„Durų",
-    "againstLabel": "„Prieš\"_____",
+    "forLabel": "Už",
+    "againstLabel": "Prieš",
     "discussion": {
       "title": "Diskusija",
       "intro": "Prieš balsuodami užduokite papildomų klausimų arba aptarkite pasiūlymą.",

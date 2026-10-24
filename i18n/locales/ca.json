@@ -3633,7 +3633,7 @@
     "edit": "Edita",
     "deleteRequestTitle": "Vols suprimir aquesta sol·licitud?",
     "deleteRequestDescription": "Això no es pot desfer.",
-    "attachmentTooLarge": "Cada fitxer ha de pesar menys de 20 MB",
+    "attachmentTooLarge": "Cada fitxer ha de pesar menys de 50 MB",
     "deleteCommentA11y": "Suprimeix el comentari",
     "sendCommentA11y": "Enviar comentari",
     "requestOptions": "Opcions de sol·licitud"
@@ -4654,8 +4654,8 @@
     "noActiveNow": "Ara mateix no hi ha propostes actives",
     "subtitle": "Vota les propostes que donen forma a la plataforma",
     "loadFailed": "No s'han pogut carregar les propostes",
-    "forLabel": "Per",
-    "againstLabel": "contra",
+    "forLabel": "A favor",
+    "againstLabel": "En contra",
     "discussion": {
       "title": "Discussió",
       "intro": "Fes preguntes de seguiment o discuteix la proposta abans de votar.",

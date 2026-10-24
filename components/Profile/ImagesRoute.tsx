@@ -7,6 +7,7 @@ import { getUnifiedFeed, type FeedRange, type FeedSortBy, type UnifiedFeedItem }
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
+import { isTabListFresh, readTabList, writeTabList } from "../../libs/tab-list-cache";
 
 interface ImagesRouteProps {
   /** Channel toolbar state, threaded to the API rather than applied on screen. */
@@ -37,12 +38,14 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
   isLocked,
 }) => {
   const { t } = useTranslation();
-  const [images, setImages] = useState<UnifiedFeedItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const cacheKey = JSON.stringify(["images", address, sortBy, sortOrder, search, category, range, isPPV, hasBounty, isLocked]);
+  const [cached] = useState(() => readTabList<UnifiedFeedItem>(cacheKey));
+  const [images, setImages] = useState<UnifiedFeedItem[]>(() => cached?.items ?? []);
+  const [loading, setLoading] = useState(() => !cached);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const pageRef = useRef(1);
-  const endRef = useRef(false);
+  const pageRef = useRef(cached?.page ?? 1);
+  const endRef = useRef(cached?.end ?? false);
   const navigation = useNavigation<any>();
 
   const fetchImages = useCallback(async (page: number) => {
@@ -79,12 +82,28 @@ const ImagesRoute: React.FC<ImagesRouteProps> = ({
 
   const load = useCallback(() => {
     if (!address) return;
-    setLoading(true);
+    // Back on this tab a moment after leaving it: show what it had, as it was.
+    const hit = readTabList<UnifiedFeedItem>(cacheKey);
+    if (hit && isTabListFresh(hit)) {
+      setImages(hit.items);
+      pageRef.current = hit.page;
+      endRef.current = hit.end;
+      setLoading(false);
+      return;
+    }
+    // An older copy stays on screen while page one refreshes underneath it.
+    if (!hit) setLoading(true);
     setError(null);
     pageRef.current = 1;
     endRef.current = false;
     fetchImages(1).finally(() => setLoading(false));
+    // cacheKey is derived from the same inputs as fetchImages.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address, fetchImages]);
+
+  useEffect(() => {
+    if (!loading && images.length > 0) writeTabList(cacheKey, images, pageRef.current, endRef.current);
+  }, [cacheKey, images, loading]);
 
   useEffect(() => {
     load();

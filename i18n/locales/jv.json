@@ -4532,7 +4532,7 @@
     "edit": "Owahi",
     "deleteRequestTitle": "Busak panjaluk iki?",
     "deleteRequestDescription": "Iki ora bisa dibatalake.",
-    "attachmentTooLarge": "Saben berkas kudu kurang saka 20MB",
+    "attachmentTooLarge": "Saben berkas kudu kurang saka 50MB",
     "deleteCommentA11y": "Busak komentar",
     "sendCommentA11y": "Kirim komentar",
     "requestOptions": "Pilihan panjaluk"
@@ -5612,8 +5612,8 @@
     "noActiveNow": "Ora ana usulan aktif saiki",
     "subtitle": "Menehi swara kanggo usulan sing mbentuk platform",
     "loadFailed": "Ora bisa mbukak usulan",
-    "forLabel": "Kanggo",
-    "againstLabel": "Nalika",
+    "forLabel": "Setuju",
+    "againstLabel": "Nolak",
     "discussion": {
       "title": "Dhiskusi",
       "intro": "Ajokna pitakonan susulan utawa rembugen usulané sadurungé milih.",

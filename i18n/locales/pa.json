@@ -4603,7 +4603,7 @@
     "edit": "ਸੋਧੋ",
     "deleteRequestTitle": "ਇਹ ਬੇਨਤੀ ਮਿਟਾਉਣੀ ਹੈ?",
     "deleteRequestDescription": "ਇਹ ਵਾਪਸ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।",
-    "attachmentTooLarge": "ਹਰ ਫਾਈਲ 20MB ਤੋਂ ਘੱਟ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ",
+    "attachmentTooLarge": "ਹਰ ਫਾਈਲ 50MB ਤੋਂ ਘੱਟ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ",
     "deleteCommentA11y": "ਟਿੱਪਣੀ ਮਿਟਾਓ",
     "sendCommentA11y": "ਟਿੱਪਣੀ ਭੇਜੋ",
     "requestOptions": "ਬੇਨਤੀ ਵਿਕਲਪ"
@@ -5707,8 +5707,8 @@
     "noActiveNow": "ਹੁਣ ਕੋਈ ਸਰਗਰਮ ਪ੍ਰਸਤਾਵ ਨਹੀਂ",
     "subtitle": "ਉਹਨਾਂ ਪ੍ਰਸਤਾਵਾਂ 'ਤੇ ਵੋਟ ਕਰੋ ਜੋ ਪਲੇਟਫਾਰਮ ਨੂੰ ਘੜਦੇ ਹਨ",
     "loadFailed": "ਪ੍ਰਸਤਾਵ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ",
-    "forLabel": "ਲਈ",
-    "againstLabel": "ਖਿਲਾਫ਼",
+    "forLabel": "ਹੱਕ ਵਿੱਚ",
+    "againstLabel": "ਵਿਰੋਧ ਵਿੱਚ",
     "discussion": {
       "title": "ਵਿਚਾਰ-ਵਟਾਂਦਰੇ",
       "intro": "ਵੋਟ ਪਾਉਣ ਤੋਂ ਪਹਿਲਾਂ ਫਾਲੋ-ਅਪ ਪ੍ਰਸ਼ਨ ਪੁੱਛੋ ਜਾਂ ਪ੍ਰਸਤਾਵ 'ਤੇ ਵਿਚਾਰ ਕਰੋ.",

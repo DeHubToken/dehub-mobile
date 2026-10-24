@@ -4605,7 +4605,7 @@
     "edit": "Խմբագրել",
     "deleteRequestTitle": "Ջնջե՞լ այս հայտը։",
     "deleteRequestDescription": "Սա հնարավոր չէ հետ շրջել։",
-    "attachmentTooLarge": "Յուրաքանչյուր ֆայլ պետք է լինի 20ՄԲ-ից փոքր",
+    "attachmentTooLarge": "Յուրաքանչյուր ֆայլ պետք է լինի 50ՄԲ-ից փոքր",
     "deleteCommentA11y": "Ջնջել մեկնաբանությունը",
     "sendCommentA11y": "Ուղարկել Մեկնաբանություն",
     "requestOptions": "Հայտի տարբերակներ"
@@ -5705,8 +5705,8 @@
     "noActiveNow": "Այս պահին ակտիվ առաջարկներ չկան",
     "subtitle": "Քվեարկեք հարթակը ձևավորող առաջարկների համար",
     "loadFailed": "Չհաջողվեց բեռնել առաջարկները",
-    "forLabel": "կողմ",
-    "againstLabel": "դեմ",
+    "forLabel": "Կողմ",
+    "againstLabel": "Դեմ",
     "discussion": {
       "title": "Քննարկում",
       "intro": "Քվեարկելուց առաջ տվեք հետագա հարցեր կամ քննարկեք առաջարկը:",

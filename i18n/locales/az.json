@@ -4606,7 +4606,7 @@
     "edit": "Redaktə et",
     "deleteRequestTitle": "Bu sorğu silinsin?",
     "deleteRequestDescription": "Bunu geri qaytarmaq olmaz.",
-    "attachmentTooLarge": "Hər fayl 20 MB-dan kiçik olmalıdır",
+    "attachmentTooLarge": "Hər fayl 50 MB-dan kiçik olmalıdır",
     "deleteCommentA11y": "Şərhinizi silin",
     "sendCommentA11y": "Göndər",
     "requestOptions": "Seçimlər üçün sorğu göndər"
@@ -5706,8 +5706,8 @@
     "noActiveNow": "Hazırda aktiv təklif yoxdur",
     "subtitle": "Platformanı formalaşdıran təkliflərə səs ver",
     "loadFailed": "Təkliflər yüklənmədi",
-    "forLabel": "Elan Növü",
-    "againstLabel": "Qarşı",
+    "forLabel": "Lehinə",
+    "againstLabel": "Əleyhinə",
     "discussion": {
       "title": "Müzakirə",
       "intro": "Səs verməzdən əvvəl ard-arda suallar verin və ya təklifi müzakirə edin.",

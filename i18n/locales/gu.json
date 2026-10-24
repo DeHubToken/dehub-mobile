@@ -4572,7 +4572,7 @@
     "edit": "સંપાદિત કરો",
     "deleteRequestTitle": "આ વિનંતી કાઢી નાખવી?",
     "deleteRequestDescription": "આ પાછું લઈ શકાશે નહીં.",
-    "attachmentTooLarge": "દરેક ફાઇલ 20MB થી ઓછી હોવી જોઈએ",
+    "attachmentTooLarge": "દરેક ફાઇલ 50MB થી ઓછી હોવી જોઈએ",
     "deleteCommentA11y": "ટિપ્પણી કાઢી નાખો",
     "sendCommentA11y": "ટિપ્પણી મોકલો",
     "requestOptions": "વિનંતી વિકલ્પો"
@@ -5668,8 +5668,8 @@
     "noActiveNow": "અત્યારે કોઈ સક્રિય દરખાસ્ત નથી",
     "subtitle": "પ્લેટફોર્મને ઘડતી દરખાસ્તો પર મત આપો",
     "loadFailed": "દરખાસ્તો લોડ થઈ શકી નહીં",
-    "forLabel": "માટે",
-    "againstLabel": "વિરુદ્ધ",
+    "forLabel": "તરફેણમાં",
+    "againstLabel": "વિરોધમાં",
     "discussion": {
       "title": "ચર્ચા",
       "intro": "તમે મત આપો તે પહેલાં ફોલો-અપ પ્રશ્નો પૂછો અથવા દરખાસ્તની ચર્ચા કરો.",

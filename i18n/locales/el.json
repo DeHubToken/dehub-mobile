@@ -4563,7 +4563,7 @@
     "edit": "Επεξεργασία",
     "deleteRequestTitle": "Διαγραφή αυτού του αιτήματος;",
     "deleteRequestDescription": "Αυτό δεν αναιρείται.",
-    "attachmentTooLarge": "Κάθε αρχείο πρέπει να είναι κάτω από 20MB",
+    "attachmentTooLarge": "Κάθε αρχείο πρέπει να είναι κάτω από 50MB",
     "deleteCommentA11y": "Διαγραφή σχολίου",
     "sendCommentA11y": "Αποστολή σχολίου",
     "requestOptions": "Επιλογές αιτήματος"
@@ -5661,7 +5661,7 @@
     "noActiveNow": "Δεν υπάρχουν ενεργές προτάσεις αυτή τη στιγμή",
     "subtitle": "Ψήφισε προτάσεις που διαμορφώνουν την πλατφόρμα",
     "loadFailed": "Δεν ήταν δυνατή η φόρτωση των προτάσεων",
-    "forLabel": "Για",
+    "forLabel": "Υπέρ",
     "againstLabel": "Κατά",
     "discussion": {
       "title": "Συζήτηση",

@@ -4580,7 +4580,7 @@
     "edit": "កែសម្រួល",
     "deleteRequestTitle": "លុបសំណើនេះ?",
     "deleteRequestDescription": "មិនអាចត្រឡប់វិញបានទេ។",
-    "attachmentTooLarge": "ឯកសារនីមួយៗត្រូវតែតិចជាង 20MB",
+    "attachmentTooLarge": "ឯកសារនីមួយៗត្រូវតែតិចជាង 50MB",
     "deleteCommentA11y": "លុបមតិយោបល់",
     "sendCommentA11y": "ផ្ញើមតិ",
     "requestOptions": "ជម្រើសស្នើសុំ"
@@ -5671,8 +5671,8 @@
     "noActiveNow": "មិនមានសំណើសកម្មនៅពេលនេះទេ",
     "subtitle": "បោះឆ្នោតលើសំណើដែលរៀបចំវេទិកា",
     "loadFailed": "មិនអាចផ្ទុកសំណើបានទេ",
-    "forLabel": "សម្រាប់",
-    "againstLabel": "ទល់នឹង",
+    "forLabel": "គាំទ្រ",
+    "againstLabel": "ប្រឆាំង",
     "discussion": {
       "title": "ការពិភាក្សា",
       "intro": "វា ក៏ ជា ការ ប្រឹក្សា ដែរ ដើម្បី ពិភាក្សា មុន ពេល បោះឆ្នោត ។",

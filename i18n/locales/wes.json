@@ -4459,7 +4459,7 @@
     "edit": "Chenj",
     "deleteRequestTitle": "Yu wan delet dis request?",
     "deleteRequestDescription": "Yu no fit undo dis wan.",
-    "attachmentTooLarge": "Eni file mos dei anda 20MB",
+    "attachmentTooLarge": "Eni file mos dei anda 50MB",
     "deleteCommentA11y": "Delete comment",
     "sendCommentA11y": "Send comment",
     "requestOptions": "Request options"
@@ -5529,8 +5529,8 @@
     "noActiveNow": "No active proposal dey now",
     "subtitle": "Vote for proposals wey dey shape di platform",
     "loadFailed": "We no fit load di proposals",
-    "forLabel": "Gri",
-    "againstLabel": "Againist",
+    "forLabel": "For",
+    "againstLabel": "Against",
     "discussion": {
       "title": "Tok-tok",
       "reply": "Reply",
