@@ -3,6 +3,7 @@ import { View, Text, Pressable, TextInput, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useSearchFieldMaterial } from "../../hooks/useSearchFieldMaterial";
 import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE, MINIMAL_TAB_TEXT, MINIMAL_TAB_TEXT_ACTIVE } from "../../theme/minimal";
 
 export type CommentSort = "recent" | "oldest" | "liked";
@@ -50,6 +51,7 @@ function CommentTabRowComponent({
 }: CommentTabRowProps) {
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
+  const searchMaterial = useSearchFieldMaterial();
   const idle = isMinimal ? MINIMAL_TAB_TEXT : "#6F7174";
   const active = isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : "#F9FBFF";
   const tabs: { key: string; icon: React.ComponentProps<typeof Icon>["name"]; label: string; on: boolean; onPress: () => void }[] = [
@@ -97,7 +99,9 @@ function CommentTabRowComponent({
             placeholderTextColor="#6F7174"
             autoFocus
             returnKeyType="search"
-            style={[tabStyles.search, isMinimal && tabStyles.minimalSearch]}
+            style={[tabStyles.search, isMinimal && tabStyles.minimalSearch, searchMaterial.surface]}
+            onFocus={searchMaterial.onFocus}
+            onBlur={searchMaterial.onBlur}
           />
         </View>
       )}
