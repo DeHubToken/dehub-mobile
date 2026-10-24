@@ -68,6 +68,7 @@ import SearchAccountCard from "../components/Search/SearchAccountCard";
 import SearchAccountChip from "../components/Search/SearchAccountChip";
 import FeedCardSkeleton from "../components/Feed/FeedCardSkeleton";
 import NewMembersRail from "../components/common/NewMembersRail";
+import SuggestedAccountsSection from "../components/Home/SuggestedAccountsSection";
 import type { FollowState } from "../components/Search/SearchAccountChip";
 import { useUser } from "../context/AuthContext";
 import { useUserProfilePresentation } from '../context/UserProfileSheetContext';
@@ -183,6 +184,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
   description: item.description,
   imageUrl: item.imageUrl,
   videoUrl: item.videoUrl,
+  hlsUrl: item.hlsUrl,
   videoDuration: item.videoDuration,
   thumbnailUrl: item.thumbnailUrl || item.imageUrl,
   imageUrls: item.imageUrls,
@@ -1080,6 +1082,9 @@ const SearchScreen: React.FC = () => {
             find other people, and a welcome is worth less the longer it waits.
             Renders nothing when nobody joined recently. The wrapper reports
             where the rail landed for the Live Stats deep link above. */}
+        {/* People to follow, as cover cards: the same row the home feed
+            carries. Renders nothing until suggestions arrive. */}
+        <SuggestedAccountsSection surface="explore" />
         <View onLayout={(e) => { newMembersLayout.current = e.nativeEvent.layout; }}>
           <NewMembersRail />
         </View>

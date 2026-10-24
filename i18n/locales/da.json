@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Forbundne apps",
+    "connectedDescription": "Mastodon-apps, du har logget ind i med denne konto. Fjern en for at logge den ud.",
+    "connectedEmpty": "Ingen forbundne apps endnu.",
+    "lastUsed": "Sidst brugt {{date}}",
+    "remove": "Fjern",
+    "removed": "App fjernet",
+    "failed": "Det virkede ikke. Prøv igen."
+  },
+  "fediverse": {
+    "title": "Fediverset",
+    "description": "Folk på Mastodon og andre fediverse-apps kan finde og følge dig på denne adresse. Dine nye offentlige opslag når dem der.",
+    "copy": "Kopiér",
+    "copied": "Kopieret",
+    "privateNote": "Private konti vises ikke på fediverset.",
+    "noUsername": "Vælg et brugernavn for at få en fediverse-adresse."
+  },
+  "profileFields": {
+    "title": "Profilfelter",
+    "description": "Op til fire ekstra linjer på din profil, fx et website eller dine pronomener.",
+    "label": "Etiket",
+    "content": "Indhold",
+    "save": "Gem felter",
+    "saved": "Profilfelter gemt",
+    "failed": "Det blev ikke gemt. Prøv igen.",
+    "verified": "Bekræftet link",
+    "verifyHint": "For at bekræfte et link skal du tilføje dette på den side og gemme igen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrér notifikationer fra",
+    "description": "Vælg, hvad der sker, når nogen uden for din kreds interagerer med dig. Filtrerede notifikationer venter under Filtreret uden badge og uden push.",
+    "notFollowing": "Folk, du ikke følger",
+    "notFollowers": "Folk, der ikke følger dig",
+    "newAccounts": "Nye konti (under 30 dage)",
+    "accept": "Giv mig besked",
+    "filter": "Filtrér",
+    "drop": "Skjul helt",
+    "filteredTitle": "Filtrerede notifikationer",
+    "filteredEmpty": "Intet er blevet filtreret.",
+    "failed": "Det blev ikke gemt. Prøv igen."
+  },
+  "followedTags": {
+    "follow": "Følg #{{tag}}",
+    "following": "Følger",
+    "unfollow": "Stop med at følge #{{tag}}",
+    "followed": "Du følger nu #{{tag}}. Opslag med det vises i dit Følger-feed.",
+    "unfollowed": "Du følger ikke længere #{{tag}}",
+    "failed": "Det blev ikke gemt. Prøv igen.",
+    "clear": "Ryd"
+  },
+  "keywordFilters": {
+    "title": "Skjulte ord",
+    "description": "Skjul opslag og kommentarer, der indeholder disse ord, eller fold dem sammen bag en advarsel. Kun du kan se listen.",
+    "placeholder": "Ord eller sætning",
+    "add": "Skjul",
+    "added": "Skjult: {{phrase}}",
+    "wholeWord": "Kun hele ord",
+    "whenMatches": "Når et opslag matcher",
+    "warn": "Vis en advarsel",
+    "hide": "Skjul det",
+    "howLong": "Hvor længe",
+    "forever": "Indtil jeg fjerner det",
+    "duration1h": "I 1 time",
+    "duration1d": "I 1 dag",
+    "duration7d": "I 7 dage",
+    "duration30d": "I 30 dage",
+    "where": "Hvor",
+    "home": "Hjem",
+    "public": "Udforsk og søg",
+    "profile": "Profiler",
+    "thread": "Samtaler",
+    "notifications": "Notifikationer",
+    "empty": "Du har ikke skjult nogen ord.",
+    "remove": "Vis igen",
+    "until": "Indtil {{date}}",
+    "filtered": "Filtreret: {{phrase}}",
+    "showAnyway": "Vis alligevel",
+    "failed": "Det blev ikke gemt. Prøv igen."
+  },
+  "postVisibility": {
+    "label": "Hvem kan se dette",
+    "public": "Alle",
+    "followers": "Kun følgere",
+    "direct": "Kun nævnte personer",
+    "noRepost": "Kun offentlige opslag kan deles igen",
+    "directHint": "Kun de personer, du nævner med @, kan se dette opslag",
+    "needsMention": "Nævn mindst én person med @ for kun at dele med nævnte personer"
+  },
+  "replyPolicy": {
+    "label": "Hvem kan svare",
+    "public": "Alle",
+    "followers": "Dine følgere",
+    "following": "Folk du følger",
+    "mentioned": "Kun nævnte",
+    "noticeFollowers": "Kun forfatterens følgere kan svare",
+    "noticeFollowing": "Kun folk, forfatteren følger, kan svare",
+    "noticeMentioned": "Kun folk, der nævnes i opslaget, kan svare",
+    "refused": "Forfatteren har begrænset, hvem der kan svare på dette opslag"
+  },
+  "quotePolicy": {
+    "label": "Hvem kan citere",
+    "public": "Alle",
+    "followers": "Følgere",
+    "nobody": "Kun mig",
+    "off": "Forfatteren har slået citater fra",
+    "removed": "Forfatteren har fjernet sit opslag fra dette citat",
+    "remove": "Fjern",
+    "removedToast": "Dit opslag er fjernet fra dette citat",
+    "removeFailed": "Dit opslag kunne ikke fjernes fra citatet",
+    "refused": "Forfatteren tillader ikke, at du citerer dette opslag"
+  },
+  "contentWarning": {
+    "label": "Indholdsadvarsel",
+    "placeholder": "Skriv din advarsel her",
+    "add": "Tilføj indholdsadvarsel",
+    "remove": "Fjern indholdsadvarsel",
+    "show": "Vis opslag"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Tilføj en beskrivelse",
+    "edit": "Rediger beskrivelse",
+    "titleImage": "Beskriv dette billede",
+    "titleVideo": "Beskriv denne video",
+    "help": "Til folk, der ikke kan se det. Skærmlæsere læser det højt.",
+    "placeholder": "Hvad viser det? Medtag eventuel tekst i det.",
+    "show": "Vis beskrivelse",
+    "saved": "Beskrivelse gemt",
+    "saveFailed": "Beskrivelsen kunne ikke gemmes"
+  },
   "liveRecap": {
     "title": "Stream opsummering",
     "justEnded": "Opsummering af din stream",
@@ -219,6 +349,8 @@
     "postCount_other": "{{count}} opslag"
   },
   "settings": {
+    "showDislikesDesc": "Alle kan åbne fanen Dislikes på din profil. Når dette er slået fra, kan kun du se den.",
+    "showDislikes": "Vis mine dislikes for alle",
     "postingChain": "Blockchain til opslag",
     "showOnline": "Vis, når jeg er online",
     "showOnlineDesc": "Personer, du sender en besked til, ser en grøn prik ved siden af dit navn, mens du bruger DeHub",
@@ -334,6 +466,11 @@
     "showAsNewMemberDesc": "Lader andre medlemmer se, at du lige er kommet til, så de kan byde dig velkommen. Slutter automatisk 30 dage efter, du meldte dig til.",
     "postVisibility": "Opslagssynlighed",
     "defaultPostVisibility": "Standard opslagssynlighed",
+    "defaultFeed": "Standardfeed",
+    "defaultFeedDesc": "Vælg hvilket feed der åbner, hver gang du åbner DeHub",
+    "feedToggles": "Nulstil feedfiltre",
+    "feedTogglesDesc": "Filtre du slår til i et feed, forbliver dine standarder, indtil du nulstiller dem",
+    "feedTogglesCleared": "Feedfiltre nulstillet",
     "defaultProfileTab": "Standardfane på profilen",
     "defaultProfileTabDesc": "Vælg, hvilken fane besøgende ser først på din profil",
     "defaultPostVisibilityDesc": "Gælder for alle nuværende og fremtidige opslag",
@@ -862,6 +999,7 @@
     "themeColorBrandFailed": "Kunne ikke læse farver fra dit profilbillede"
   },
   "common": {
+    "refresh": "Opdater",
     "mute": "Slå lyd fra",
     "unmute": "Slå lyd til",
     "fullscreen": "Fuld skærm",
@@ -975,6 +1113,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Indlejr",
+    "copyEmbedCode": "Kopiér indlejringskode",
+    "embedCodeCopied": "Indlejringskode kopieret",
     "options": "Valgmuligheder",
     "sendTip": "Send drikkepenge",
     "queue": "Kø",
@@ -1925,6 +2066,12 @@
     "returnHome": "Tilbage til forsiden"
   },
   "profile": {
+    "dislikesPrivateDesc": "Denne konto holder sine dislikes for sig selv.",
+    "dislikesPrivateTitle": "Dislikes er private",
+    "dislikesEmptyOther": "Intet endnu.",
+    "dislikesEmptyOwn": "Opslag, du disliker, forsvinder fra dine feeds og vises her. Fortryd et dislike for at få opslaget tilbage.",
+    "dislikesEmptyTitle": "Ingen dislikes endnu",
+    "tabDislikes": "Dislikes",
     "replyThread": {
       "postUnavailable": "Dette opslag er ikke tilgængeligt",
       "commentUnavailable": "Denne kommentar er ikke længere tilgængelig"
@@ -2831,6 +2978,8 @@
     "yourFractions": "Du ejer {{count}} af {{total}} brøker"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiér link til RSS-feed",
+    "copyRssFeedHint": "Følg disse opslag i en hvilken som helst feedlæser",
     "copyProfileUrl": "Kopiér profil-URL",
     "copyUsername": "Kopiér brugernavn",
     "copyAddress": "Kopiér adresse",
@@ -4154,6 +4303,7 @@
     "noVoice": "Din enhed har ingen stemme til dette sprog."
   },
   "stages": {
+    "previewFailed": "Kunne ikke afspille forhåndsvisning i lydrummet",
     "allStages": "Alle lydrum",
     "addToCalendar": "Tilføj til kalender",
     "nowPlaying": "Afspilles nu",
@@ -4526,6 +4676,7 @@
     "anyBadgeHolder": "Alle badge-indehavere får Superkræfter. Køb DeHub-tokens for at låse op for et badge — staking er ikke påkrævet."
   },
   "follow": {
+    "noResults": "Ingen resultater fundet",
     "followers": "Følgere",
     "following": "Følger",
     "requests": "Anmodninger",
@@ -4609,7 +4760,10 @@
     "play": "Spil",
     "pause": "Sæt på pause",
     "listens_one": "{{count}} lyt",
-    "listens_other": "{{count}} listens"
+    "listens_other": "{{count}} listens",
+    "lyrics": "Sangtekst",
+    "lyricsLoading": "Finder sangtekst…",
+    "lyricsNone": "Ingen sangtekst fundet"
   },
   "transfer": {
     "arcTitle": "Send USDC på Arc",
@@ -5535,6 +5689,8 @@
     "creatorEarnsDirect": "Abonnenter betaler i DeHub-tokens. Din andel lander i din tegnebog, så snart vedkommende abonnerer, minus platformsgebyret for dit badgeniveau."
   },
   "live": {
+    "bigEvent": "Stort event",
+    "bigEventHint": "Til store publikummer: seerne ser cirka 20 sekunder forsinket, men med færre afbrydelser.",
     "notSet": "Ikke angivet",
     "liveChat": "Livechat",
     "pickDate": "Vælg dato",
@@ -7150,6 +7306,7 @@
       "delete": "Slet"
     },
     "export": {
+      "cancel": "Annuller",
       "scope": "Download interval",
       "downloadTimeline": "Hele tidslinjen",
       "downloadSelection": "Udvalgte videoklip ({{count}})",
@@ -7429,6 +7586,7 @@
     }
   },
   "creator": {
+    "sending": "Sender",
     "navStudio": "Studiolejlighed",
     "editor": "Editor",
     "untitled": "Uden titel",
@@ -7992,6 +8150,7 @@
     "transferIncomplete": "Tokenoverførslen blev ikke gennemført. Du vil blive spurgt igen før dit næste betalte opslag."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Søg efter emoji",
     "noEmoji": "Ingen emoji fundet",
     "searchResults": "Søgeresultater",
@@ -9652,5 +9811,15 @@
     "youAreBanned": "Du kan ikke chatte i denne kreatørs streams",
     "youAreTimedOut": "Du er udløbet et øjeblik",
     "title": "Moderat"
+  },
+  "loginStack": {
+    "tip": "Giv DHB-drikkepenge",
+    "headlineTop": "Du kommer til at eje alt",
+    "headlineAccent": "og være glad.",
+    "orContinueWith": "eller fortsæt med",
+    "phone": "Telefon",
+    "fingerprint": "Fingeraftryk",
+    "exploreFirst": "Udforsk først",
+    "codeNote": "Vi sender dig en kode på e-mail, ingen adgangskode."
   }
 }

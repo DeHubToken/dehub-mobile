@@ -88,6 +88,7 @@ import CoachSuggestions from "./CoachSuggestions";
 import { AI_STYLE_OPTIONS } from "../../config/ai-styles.constants";
 import { enhanceText } from "../../services/ai.service";
 import CommonGroundSheet from "./CommonGroundSheet";
+import KeywordFilterGate from "../Home/KeywordFilterGate";
 
 // Extended comment type for flat list with reply info
 interface FlatComment extends Comment {
@@ -109,6 +110,8 @@ interface CommentSectionProps {
    *  the list alone — disabling hides no history, the server simply refuses new
    *  comments (requestCommentFunc), so this is presentation not enforcement. */
   commentsDisabled?: boolean;
+  /** Who may reply, when replies are on; said above the composer. */
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
   /**
    * The post is published for children, so its thread is a Kids Mode room:
    * only a Kids Mode session may write in it. Presentation only — the server
@@ -190,6 +193,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   highlightCommentId,
   contentType = "video",
   commentsDisabled = false,
+  replyPolicy,
   forKids = false,
   postCreator,
   onDirtyChange,
@@ -222,7 +226,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // text and the reply it was aimed at — read once so the two can't disagree.
   const commentDraftScope = commentDraftKey(user?.walletAddress || user?.address, tokenId);
   const [restoredDraft] = useState(() => loadCommentDraft(commentDraftScope));
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, theme, skin } = useAppTheme();
   const [editingComment, setEditingComment] = useState<Comment | null>(null);
   const [inputText, setInputText] = useDraftState(editingComment ? `comment:${tokenId}:edit:${editingComment.id}` : `comment:${tokenId}:text`, editingComment?.content ?? restoredDraft?.text ?? "");
   const growingInput = useGrowingTextInput(inputText);
@@ -1469,6 +1473,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     const itemNumId = Number(item.id);
     const meta = threadMeta.get(itemNumId);
     return (
+      // The viewer's muted words, under Conversations — see KeywordFilterGate.
+      <KeywordFilterGate
+        texts={[item.content]}
+        own={!!userAddress && !!item.address && item.address.toLowerCase() === userAddress.toLowerCase()}
+        context="thread"
+      >
       <View style={{ position: "relative" }}>
         {/* Thread line. Replies are not indented — they sit flush with their
             parent and this line through the avatars carries the relationship,
@@ -1513,6 +1523,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           loadingReplies={meta?.toggleRootId != null && !!loadingRepliesMap[meta.toggleRootId]}
         />
       </View>
+      </KeywordFilterGate>
     );
   }, [
     threadMeta,
@@ -1672,7 +1683,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           borderTopColor: isMinimal ? MINIMAL_HAIRLINE : "rgba(255,255,255,0.06)",
           // Opaque: the comment list scrolls underneath this bar, and the
           // translucent fill put scrolled text behind the input.
-          backgroundColor: "#0C0C0E",
+          // Glass uses its opaque page tone: the skin's centre colour is a 14%
+          // white wash with no blur behind it here.
+          backgroundColor: theme === 'glass' ? (skin?.page || '#102d32') : "#0C0C0E",
           marginBottom: inputLift,
         }}
       >
@@ -1697,6 +1710,27 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             >
               <Icon name="X" size={16} color="#6F7174" />
             </Pressable>
+          </View>
+        )}
+
+        {/* Who may reply, when the author narrowed it. Said up front, so a
+            refused reply is never the first anybody hears of it. */}
+        {!!replyPolicy && replyPolicy !== "public" && !isOwnThread && !commentsDisabled && !kidsOnlyThread && !accountBanned && (
+          <View
+            className="flex-row items-start"
+            style={{ gap: 8, paddingHorizontal: COMPOSER.gutter, paddingTop: 10 }}
+            testID="reply-policy-banner"
+          >
+            <View style={{ marginTop: 1 }}>
+              <Icon name="MessageCircle" size={14} color="#A1A1AA" />
+            </View>
+            <Text style={{ flex: 1, fontSize: 12, color: "#A1A1AA" }}>
+              {replyPolicy === "followers"
+                ? t("replyPolicy.noticeFollowers")
+                : replyPolicy === "following"
+                  ? t("replyPolicy.noticeFollowing")
+                  : t("replyPolicy.noticeMentioned")}
+            </Text>
           </View>
         )}
 

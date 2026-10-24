@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikacionet e lidhura",
+    "connectedDescription": "Aplikacionet Mastodon ku ke hyrë me këtë llogari. Hiq një për ta nxjerrë.",
+    "connectedEmpty": "Ende nuk ka aplikacione të lidhura.",
+    "lastUsed": "Përdorur së fundi {{date}}",
+    "remove": "Hiq",
+    "removed": "Aplikacioni u hoq",
+    "failed": "Nuk funksionoi. Provo sërish."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Njerëzit në Mastodon dhe aplikacione të tjera fediverse mund të të gjejnë dhe të ndjekin në këtë adresë. Postimet e tua të reja publike u arrijnë atje.",
+    "copy": "Kopjo",
+    "copied": "U kopjua",
+    "privateNote": "Llogaritë private nuk shfaqen në fediverse.",
+    "noUsername": "Zgjidh një emër përdoruesi për të marrë një adresë fediverse."
+  },
+  "profileFields": {
+    "title": "Fushat e profilit",
+    "description": "Deri në katër rreshta shtesë në profilin tënd, si një faqe interneti ose përemrat e tu.",
+    "label": "Etiketa",
+    "content": "Përmbajtja",
+    "save": "Ruaj fushat",
+    "saved": "Fushat e profilit u ruajtën",
+    "failed": "Nuk u ruajt. Provo përsëri.",
+    "verified": "Lidhje e verifikuar",
+    "verifyHint": "Për të verifikuar një lidhje, shto këtë në atë faqe, pastaj ruaje përsëri: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtro njoftimet nga",
+    "description": "Zgjidh çfarë ndodh kur dikush jashtë rrethit tënd ndërvepron me ty. Njoftimet e filtruara presin te Të filtruara, pa distinktiv dhe pa njoftim push.",
+    "notFollowing": "Njerëz që nuk i ndjek",
+    "notFollowers": "Njerëz që nuk të ndjekin",
+    "newAccounts": "Llogari të reja (nën 30 ditë)",
+    "accept": "Më njofto",
+    "filter": "Filtro",
+    "drop": "Fshih plotësisht",
+    "filteredTitle": "Njoftime të filtruara",
+    "filteredEmpty": "Asgjë nuk është filtruar.",
+    "failed": "Nuk u ruajt. Provo përsëri."
+  },
+  "followedTags": {
+    "follow": "Ndiq #{{tag}}",
+    "following": "E ndjek",
+    "unfollow": "Mos e ndiq më #{{tag}}",
+    "followed": "Tani e ndjek #{{tag}}. Postimet e tij do të shfaqen te prurja Të ndjekurit.",
+    "unfollowed": "Nuk e ndjek më #{{tag}}",
+    "failed": "Nuk u ruajt. Provo përsëri.",
+    "clear": "Pastro"
+  },
+  "keywordFilters": {
+    "title": "Fjalë të heshtura",
+    "description": "Fshih postimet dhe komentet që përmbajnë këto fjalë, ose palosi pas një paralajmërimi. Vetëm ti e sheh këtë listë.",
+    "placeholder": "Fjalë ose frazë",
+    "add": "Hesht",
+    "added": "U hesht: {{phrase}}",
+    "wholeWord": "Vetëm fjala e plotë",
+    "whenMatches": "Kur një postim përputhet",
+    "warn": "Shfaq një paralajmërim",
+    "hide": "Fshihe",
+    "howLong": "Për sa kohë",
+    "forever": "Derisa ta heq",
+    "duration1h": "Për 1 orë",
+    "duration1d": "Për 1 ditë",
+    "duration7d": "Për 7 ditë",
+    "duration30d": "Për 30 ditë",
+    "where": "Ku",
+    "home": "Kreu",
+    "public": "Eksploro dhe kërko",
+    "profile": "Profilet",
+    "thread": "Bisedat",
+    "notifications": "Njoftimet",
+    "empty": "Nuk ke heshtur asnjë fjalë.",
+    "remove": "Hiq heshtjen",
+    "until": "Deri më {{date}}",
+    "filtered": "U filtrua: {{phrase}}",
+    "showAnyway": "Shfaqe gjithsesi",
+    "failed": "Nuk u ruajt. Provo përsëri."
+  },
+  "postVisibility": {
+    "label": "Kush mund ta shohë këtë",
+    "public": "Të gjithë",
+    "followers": "Vetëm ndjekësit",
+    "direct": "Vetëm personat e përmendur",
+    "noRepost": "Vetëm postimet publike mund të ripostohen",
+    "directHint": "Vetëm personat që përmend me @ do ta shohin këtë postim",
+    "needsMention": "Përmend të paktën një person me @ për të postuar vetëm për të përmendurit"
+  },
+  "replyPolicy": {
+    "label": "Kush mund të përgjigjet",
+    "public": "Kushdo",
+    "followers": "Ndjekësit e tu",
+    "following": "Njerëzit që ndjek",
+    "mentioned": "Vetëm të përmendurit",
+    "noticeFollowers": "Vetëm ndjekësit e autorit mund të përgjigjen",
+    "noticeFollowing": "Vetëm njerëzit që ndjek autori mund të përgjigjen",
+    "noticeMentioned": "Vetëm të përmendurit në postim mund të përgjigjen",
+    "refused": "Autori ka kufizuar se kush mund t'i përgjigjet këtij postimi"
+  },
+  "quotePolicy": {
+    "label": "Kush mund të citojë",
+    "public": "Kushdo",
+    "followers": "Ndjekësit",
+    "nobody": "Vetëm unë",
+    "off": "Autori i ka çaktivizuar citimet",
+    "removed": "Autori e hoqi postimin e tij nga ky citim",
+    "remove": "Hiq",
+    "removedToast": "Postimi yt u hoq nga ky citim",
+    "removeFailed": "Postimi yt nuk mund të hiqej nga citimi",
+    "refused": "Autori nuk të lejon ta citosh këtë postim"
+  },
+  "contentWarning": {
+    "label": "Paralajërim për përmbajtjen",
+    "placeholder": "Shkruaj paralajërimin këtu",
+    "add": "Shto paralajërim për përmbajtjen",
+    "remove": "Hiq paralajërimin për përmbajtjen",
+    "show": "Shfaq postimin"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Shto një përshkrim",
+    "edit": "Ndrysho përshkrimin",
+    "titleImage": "Përshkruaj këtë imazh",
+    "titleVideo": "Përshkruaj këtë video",
+    "help": "Për njerëzit që nuk mund ta shohin. Lexuesit e ekranit e lexojnë me zë.",
+    "placeholder": "Çfarë tregon? Përfshi çdo tekst që ka.",
+    "show": "Shfaq përshkrimin",
+    "saved": "Përshkrimi u ruajt",
+    "saveFailed": "Përshkrimi nuk mund të ruhej"
+  },
   "liveRecap": {
     "title": "Përmbledhje e rrjedhës",
     "justEnded": "Përmbledhja jote e rrjedhës",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Lejon anëtarët e tjerë të shohin se sapo je bashkuar që të të mirëpresin. Përfundon automatikisht 30 ditë pas regjistrimit.",
     "postVisibility": "Dukshmëria e Postimeve",
     "defaultPostVisibility": "Dukshmëria e Parazgjedhur e Postimeve",
+    "defaultFeed": "Furnizimi i parazgjedhur",
+    "defaultFeedDesc": "Zgjidh cili furnizim hapet sa herë që hap DeHub",
+    "feedToggles": "Rivendos filtrat e furnizimit",
+    "feedTogglesDesc": "Filtrat që aktivizon në një furnizim mbeten të parazgjedhurit e tu derisa t'i rivendosësh",
+    "feedTogglesCleared": "Filtrat e furnizimit u rivendosën",
     "defaultProfileTab": "Skeda e parazgjedhur e profilit",
     "defaultProfileTabDesc": "Zgjidh cilën skedë shohin të parën vizitorët në profilin tënd",
     "defaultPostVisibilityDesc": "Zbatohet për të gjitha postimet aktuale dhe të ardhshme",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Nuk u lexuan dot ngjyrat nga fotoja jote e profilit"
   },
   "common": {
+    "refresh": "Rifresko",
     "mute": "Hiq zërin",
     "unmute": "Aktivizo zërin",
     "fullscreen": "Ekran i plotë",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} tokena"
   },
   "postOptions": {
+    "embed": "Ngulit",
+    "copyEmbedCode": "Kopjo kodin e ngulitjes",
+    "embedCodeCopied": "Kodi i ngulitjes u kopjua",
     "options": "Opsionet",
     "sendTip": "Dërgo Bakshish",
     "queue": "Radhë",
@@ -2827,6 +2966,8 @@
     "yourFractions": "Ju zotëroni {{count}} nga {{total}} fraksione"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopjo lidhjen e burimit RSS",
+    "copyRssFeedHint": "Ndiqi këto postime në çdo lexues burimesh",
     "copyProfileUrl": "Kopjo URL-në e profilit",
     "copyUsername": "Kopjo emrin e përdoruesit",
     "copyAddress": "Kopjo adresën",
@@ -4150,6 +4291,7 @@
     "noVoice": "Pajisja juaj nuk ka zë për këtë gjuhë."
   },
   "stages": {
+    "previewFailed": "Nuk mund të luajti parashikimin në skenë.",
     "allStages": "Të gjitha dhomat audio",
     "addToCalendar": "Shtoni në kalendar",
     "nowPlaying": "Tani në lojë",
@@ -4522,6 +4664,7 @@
     "anyBadgeHolder": "Çdo mbajtës i emblemës merr SuperFuqi. Bleni DeHub token për të zhbllokuar një emblemë — staking nuk kërkohet."
   },
   "follow": {
+    "noResults": "Nuk u gjetën rezultate",
     "followers": "Njerëz që të ndjekin",
     "following": "Njerëz që ndjek",
     "requests": "Kërkesa",
@@ -4605,7 +4748,10 @@
     "play": "Luaj",
     "pause": "Ndalo",
     "listens_one": "{{count}} dëgjo",
-    "listens_other": "{{count}} listens"
+    "listens_other": "{{count}} listens",
+    "lyrics": "Teksti i këngës",
+    "lyricsLoading": "Po kërkojmë tekstin…",
+    "lyricsNone": "Nuk u gjet tekst"
   },
   "transfer": {
     "arcTitle": "Dërgo USDC në Arc",
@@ -5531,6 +5677,8 @@
     "creatorEarnsDirect": "Abonentët paguajnë në tokenët DeHub. Pjesa jote vendoset në portofolin tënd në momentin që ata regjistrohen, minus tarifën e platformës për nivelin e distinktivit tënd."
   },
   "live": {
+    "bigEvent": "Ngjarje e madhe",
+    "bigEventHint": "Për audienca të mëdha: shikuesit e shohin me rreth 20 sekonda vonesë, me më pak ndërprerje.",
     "notSet": "I pacaktuar",
     "liveChat": "Bisedë live",
     "pickDate": "Zgjidh datën",
@@ -7145,6 +7293,7 @@
       "delete": "Fshi"
     },
     "export": {
+      "cancel": "Anulo",
       "scope": "Gama e shkarkimeve",
       "downloadTimeline": "I gjithë afati kohor",
       "downloadSelection": "Videoklipe të zgjedhura ({{count}})",
@@ -7424,6 +7573,7 @@
     }
   },
   "creator": {
+    "sending": "Transmetohet",
     "navStudio": "Studio",
     "editor": "Redaktori",
     "untitled": "Pa titull",
@@ -7990,6 +8140,7 @@
     "transferIncomplete": "Transferimi i shenjës nuk përfundoi. Do të pyetesh përsëri para postimit tënd të ardhshëm të paguar."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Kërko emoji",
     "noEmoji": "Nuk u gjet asnjë emoji",
     "searchResults": "Rezultatet e kërkimit",

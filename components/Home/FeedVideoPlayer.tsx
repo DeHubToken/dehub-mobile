@@ -38,6 +38,7 @@ import { VideoScrubZone, VideoScrubButton, VIDEO_CONTROL_STRIP_HEIGHT } from "./
 import { ACTIVE_FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import { flushVideoPlayIntent } from "../../libs/video-start";
 import { usePlaybackRecovery } from "../../hooks/usePlaybackRecovery";
+import { markHlsFailed } from "../../libs/hls-fallback";
 import { createLogger } from "../../libs/logger";
 import {
   getPlaybackRateFor,
@@ -138,6 +139,10 @@ interface FeedVideoPlayerProps {
   /** Post-page Back uses the same glyph and tap area as Volume. */
   onBack?: () => void;
   videoUrl: string | undefined;
+  /** The post's MP4. videoUrl is the HLS ladder when the post has one, and a
+   *  manifest has no moov box to read rotation from and is not a file to
+   *  download. Falls back to videoUrl when absent. */
+  mp4Url?: string;
   /** Absent (older posts) or 'done' renders normally. 'pending'/'on' shows a
    *  processing spinner instead of attempting playback; 'failed' shows an
    *  error state — in both cases videoUrl points at a file that was never
@@ -148,6 +153,11 @@ interface FeedVideoPlayerProps {
   isOwner?: boolean;
   duration?: string;
   tokenId: string | number | undefined;
+  /**
+   * Playback failed for good. A gated post's signed URL may have lapsed; the
+   * card fetches a fresh one and the player resumes where it stopped.
+   */
+  onPlaybackFailed?: () => void;
   isContentGated: boolean;
   isPPVLocked: boolean;
   isHoldingsLocked: boolean;
@@ -179,6 +189,8 @@ interface FeedVideoPlayerProps {
   creator?: string | null;
   creatorUsername?: string;
   downloadTitle?: string;
+  /** The post's seek-preview sheet as the API sends it; the fullscreen player shows it while scrubbing. */
+  storyboard?: unknown;
   hideControls?: boolean;
   /** Mounted by a tap on the poster that stood in for this card: start at once. */
   startOnMount?: boolean;
@@ -252,10 +264,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   postPage = false,
   onBack,
   videoUrl,
+  mp4Url,
   transcodingStatus,
   isOwner,
   duration,
   tokenId,
+  onPlaybackFailed,
   isContentGated,
   isPPVLocked,
   isHoldingsLocked,
@@ -280,6 +294,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   creator,
   creatorUsername,
   downloadTitle,
+  storyboard,
   hideControls = false,
   startOnMount = false,
   autoplaySettled = false,
@@ -626,14 +641,24 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       (isVisible || isPictureInPicturePlayer(player)) && canStartVideo(player) &&
       !videoSession.userPaused && (!autoStartRef.current || getAppPrefs().autoplay),
   });
+  // Where to pick up once a renewed URL has loaded.
+  const resumeAtRef = useRef(0);
   useEffect(() => {
     if (playbackPhase === 'failed') {
       pendingPlayRef.current = false;
       isPlayingRef.current = false;
       setIsPlaying(false);
       endStarting();
+      // A ladder that will not play is not a broken post. Retiring it hands
+      // this card the MP4 (getPlaybackUrl), and the wrapper mounts a fresh
+      // player for it. A no-op for anything that is not a ladder.
+      markHlsFailed(videoUrl);
+      if (onPlaybackFailed) {
+        resumeAtRef.current = currentTimeRef.current;
+        onPlaybackFailed();
+      }
     }
-  }, [playbackPhase, endStarting]);
+  }, [playbackPhase, endStarting, onPlaybackFailed, videoUrl]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || (isPictureInPicturePlayer(playerRef.current) && !visualActivity.isCallBusy())) return;
     playbackAllowedRef.current = false;
@@ -705,11 +730,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     const take = (size?: { width: number; height: number } | null) => {
       if (!size || !(size.width > 0) || !(size.height > 0) || !ownsPlayerRef.current()) return;
       const ratio = size.width / size.height;
-      if (Platform.OS !== 'web' && videoUrl && posterAspect && (ratio < 1) !== (posterAspect < 1)) {
+      const fileUrl = mp4Url ?? videoUrl;
+      if (Platform.OS !== 'web' && fileUrl && posterAspect && (ratio < 1) !== (posterAspect < 1)) {
         // Hold the measured poster shape until the display matrix resolves;
         // the encoded landscape size must not widen a rotated portrait clip.
         commit(posterAspect);
-        void videoQuarterTurn(videoUrl).then(rotated => commit(rotated === null ? posterAspect : rotated ? 1 / ratio : ratio));
+        void videoQuarterTurn(fileUrl).then(rotated => commit(rotated === null ? posterAspect : rotated ? 1 / ratio : ratio));
       } else {
         commit(ratio);
       }
@@ -719,7 +745,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     try { subs.push(player.addListener("videoTrackChange", ({ videoTrack }: any) => take(videoTrack?.size))); } catch {}
     try { subs.push(player.addListener("sourceLoad", ({ availableVideoTracks }: any) => take(availableVideoTracks?.[0]?.size))); } catch {}
     return () => { cancelled = true; subs.forEach((sub) => { try { sub.remove(); } catch {} }); };
-  }, [player, tokenId, posterAspect, videoUrl]);
+  }, [player, tokenId, posterAspect, videoUrl, mp4Url]);
 
   useEffect(() => {
     if (!player) return;
@@ -746,6 +772,9 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
           if (status === "readyToPlay") {
             setVideoReady(true);
             if (player.duration > 0) setVideoDuration(player.duration);
+            const resumeAt = resumeAtRef.current;
+            resumeAtRef.current = 0;
+            if (resumeAt > 0 && resumeAt < player.duration) player.currentTime = resumeAt;
             // The deferred source has arrived; honour the intent that
             // attached it.
             flushPendingPlay(true);
@@ -1121,10 +1150,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     const muted = isMuted;
     preparePostMediaNavigation(videoUrl);
     navigation.navigate(ScreenNames.FullscreenVideo as never, {
-      videoUrl, startTime: time, isMuted: muted, thumbnail,
-      tokenId, isSignedIn, creatorUsername, downloadTitle,
+      videoUrl, downloadUrl: mp4Url, startTime: time, isMuted: muted, thumbnail,
+      tokenId, isSignedIn, creatorUsername, downloadTitle, storyboard,
     } as never);
-  }, [isMuted, videoUrl, thumbnail, tokenId, isSignedIn, stopPlayback, navigation, creatorUsername, downloadTitle]);
+  }, [isMuted, videoUrl, mp4Url, thumbnail, tokenId, isSignedIn, stopPlayback, navigation, creatorUsername, downloadTitle, storyboard]);
 
   // Video posts: the player's buttons are bare icons with a soft shadow,
   // mute in the top corner, with subtitles, speed, loop and picture in picture
@@ -2176,9 +2205,13 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
   // Keyed on the post, so the player, its view recorder, speed and progress
   // are never carried onto another one. It is only mounted for about two cards
   // at a time, so a fresh one per post costs nothing while scrolling.
+  // The HLS ladder and the MP4 get separate instances as well: once a failed
+  // ladder is retired the MP4 starts on a fresh one, and a tap carries over
+  // through startOnMount. Swapping the source in place stops playback.
+  const onLadder = videoUrl !== props.mp4Url;
   return mountPlayer ? (
     <FeedVideoPlayerActive
-      key={postKey}
+      key={onLadder ? `${postKey}:hls` : postKey}
       {...props}
       transcodingStatus={transcodingStatus}
       isVisible={visible}

@@ -72,6 +72,9 @@ import MentionSuggestions from "../components/common/MentionSuggestions";
 import AssetSuggestions from "../components/common/AssetSuggestions";
 import { useAssetPicker } from "../hooks/useAssetPicker";
 import CategoryDrawer from "../components/Upload/CategoryDrawer";
+import AltTextSheet, { AltTextPill } from "../components/Upload/AltTextSheet";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { CONTENT_WARNING_MAX } from "../components/Home/ContentWarningGate";
 import CommunityDrawer from "../components/Upload/CommunityDrawer";
 import { getUserCommunities } from "../services/communities.service";
 import type { Community } from "../types/community";
@@ -119,7 +122,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { POST_TITLE_MAX, splitTitleFromText } from "../libs/post-title-split";
 import { BASE_POST_TEXT_CHARS, formatCharCount, postTextLimit } from "../libs/post-text-limit";
 import { haptic } from "../libs/haptics";
-import { useAppTheme } from "../context/ThemeContext";
+import { useAppTheme, useThemeRootStyle } from "../context/ThemeContext";
 import LinkPreviewCard from "../components/common/LinkPreviewCard";
 import { minimalFlat } from "../theme/minimal";
 import { uploadLocalFileToBucket, fileExtension, contentTypeForExtension } from "../libs/storage-upload";
@@ -210,12 +213,22 @@ const MAX_AUDIO_DURATION_MS = 60_000; // 60 seconds
 const AUDIO_MIME_TYPES = ["audio/mpeg", "audio/wav", "audio/aac", "audio/ogg", "audio/x-m4a", "audio/mp4", "audio/webm"];
 const CATEGORIES_MIN = 0;
 const CATEGORIES_MAX = 5;
+/** Closing with more words than this saves the post to Drafts without asking. */
+const AUTO_DRAFT_MIN_WORDS = 3;
 type PickedAsset = ImagePicker.ImagePickerAsset & {
   /** The picture a filter is drawn over, so filtering again never stacks on the last filter. */
   editBaseUri?: string;
   filter?: FilterSettings;
   filterPresetId?: string;
+  /** Alt text: what the picture or video shows, for people who cannot see it. */
+  description?: string;
 };
+
+/** Alt text in upload order: the video, or each photo by position. */
+function mediaDescriptionsOf(video: PickedAsset | null, images: PickedAsset[]): string[] | undefined {
+  if (video) return video.description ? [video.description] : undefined;
+  return images.some(img => img.description) ? images.map(img => img.description || "") : undefined;
+}
 
 const isGifAsset = (a: PickedAsset) =>
   a.mimeType === "image/gif" || /.gif$/i.test((a.fileName || a.uri || "").split("?")[0]);
@@ -269,39 +282,6 @@ export default function UploadScreen() {
   // the readiness check. Read the latest wallet when focus/preference changes.
   const postingWalletRef = useRef({ activeChainId, switchChain });
   postingWalletRef.current = { activeChainId, switchChain };
-  useFocusEffect(useCallback(() => {
-    let cancelled = false;
-    setPostChainId(undefined);
-    const prepareChain = async () => {
-      if (isSolanaChain(preferredChainId)) {
-        const addr = await getSolanaAddress();
-        if (cancelled) return;
-        if (!addr) {
-          toastError(t("upload.solanaUnavailable"));
-          return;
-        }
-        const status = await getSolanaMintStatus().catch(() => null);
-        if (cancelled) return;
-        if (status?.mintingEnabled === false) {
-          toastError(status.message || t("upload.solanaTempUnavailable"));
-          return;
-        }
-        setSolanaAddress(addr);
-      } else {
-        setSolanaAddress(null);
-        const wallet = postingWalletRef.current;
-        if (preferredChainId !== wallet.activeChainId) await wallet.switchChain(preferredChainId);
-      }
-      if (!cancelled) setPostChainId(preferredChainId);
-    };
-    void prepareChain().catch(() => {
-      if (!cancelled) toastError(_copy("copy.f0ed7becd58e", { defaultValue: "Could not switch to your posting chain. Choose a chain in Settings and try again." }));
-    });
-    return () => { cancelled = true; };
-  }, [preferredChainId, _copy]));
-  const postingChainReady = !isSwitchingChain && postChainId === preferredChainId && (
-    isSolanaChain(preferredChainId) ? !!solanaAddress : activeChainId === preferredChainId
-  );
   const titleRef = useRef<TextInput>(null);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
@@ -361,6 +341,15 @@ export default function UploadScreen() {
   const [userCommunities, setUserCommunities] = useState<Community[]>([]);
   const [pickedImages, setPickedImages] = useState<PickedAsset[]>([]);
   const [imageEdit, setImageEdit] = useState<{ index: number; mode: ImageEditMode } | null>(null);
+  const [altEditor, setAltEditor] = useState<{ kind: "image" | "video"; index: number } | null>(null);
+  // The content warning being written: null is "none", "" is "toggled on, still empty".
+  const [contentWarning, setContentWarning] = useState<string | null>(null);
+  // Who may quote the post. Anyone, unless the creator narrows it.
+  const [quotePolicy, setQuotePolicy] = useState<"public" | "followers" | "nobody">("public");
+  // Who may reply. Anyone, unless the creator narrows it.
+  const [replyPolicy, setReplyPolicy] = useState<"public" | "followers" | "following" | "mentioned">("public");
+  // Who may see the post. Everyone, unless the creator narrows it; fixed once posted.
+  const [visibility, setVisibility] = useState<"public" | "followers" | "direct">("public");
   const [photoGridWidth, setPhotoGridWidth] = useState(0);
   const [draggedPhoto, setDraggedPhoto] = useState<{ index: number; x: number; y: number } | null>(null);
   const movePhoto = useCallback((from: number, to: number) => {
@@ -427,6 +416,9 @@ export default function UploadScreen() {
   const [pollIsMultiple, setPollIsMultiple] = useDraftState(draftScope + ":pollIsMultiple", false);
 
   const [showSaveDraftModal, setShowSaveDraftModal] = useState(false);
+  // The draft popups draw in their own window, outside the screen's theme
+  // colours, so System Light printed white text on the light panel.
+  const draftModalTheme = useThemeRootStyle();
   const [showDiscardModal, setShowDiscardModal] = useState(false);
   const [showPlanForm, setShowPlanForm] = useState(false);
   const [isEnhancing, setIsEnhancing] = useState(false);
@@ -540,6 +532,47 @@ export default function UploadScreen() {
   // post that never goes on-chain.
   const mintRequired = monetization.bountyEnabled;
   const effectiveShouldMint = shouldMint || mintRequired;
+  const needsPostingWallet = !isQuoteMode && !isStageMode && effectiveShouldMint;
+  useFocusEffect(useCallback(() => {
+    let cancelled = false;
+    setPostChainId(undefined);
+    // A quote or an off-chain post is authenticated by the account session.
+    // Merely opening that composer must not unlock or switch a wallet.
+    if (!needsPostingWallet) {
+      setSolanaAddress(null);
+      setPostChainId(preferredChainId);
+      return () => { cancelled = true; };
+    }
+    const prepareChain = async () => {
+      if (isSolanaChain(preferredChainId)) {
+        const addr = await getSolanaAddress();
+        if (cancelled) return;
+        if (!addr) {
+          toastError(t("upload.solanaUnavailable"));
+          return;
+        }
+        const status = await getSolanaMintStatus().catch(() => null);
+        if (cancelled) return;
+        if (status?.mintingEnabled === false) {
+          toastError(status.message || t("upload.solanaTempUnavailable"));
+          return;
+        }
+        setSolanaAddress(addr);
+      } else {
+        setSolanaAddress(null);
+        const wallet = postingWalletRef.current;
+        if (preferredChainId !== wallet.activeChainId) await wallet.switchChain(preferredChainId);
+      }
+      if (!cancelled) setPostChainId(preferredChainId);
+    };
+    void prepareChain().catch(() => {
+      if (!cancelled) toastError(_copy("copy.f0ed7becd58e", { defaultValue: "Could not switch to your posting chain. Choose a chain in Settings and try again." }));
+    });
+    return () => { cancelled = true; };
+  }, [preferredChainId, needsPostingWallet, _copy]));
+  const postingChainReady = !needsPostingWallet || !isSwitchingChain && postChainId === preferredChainId && (
+    isSolanaChain(preferredChainId) ? !!solanaAddress : activeChainId === preferredChainId
+  );
 
   /** What the mint costs. Only sponsored sessions are charged, so only they ask. */
   useEffect(() => {
@@ -892,14 +925,28 @@ export default function UploadScreen() {
     [bodyText, titleText, categories, pickedImages, pickedVideo, pickedAudio, liveThumbnailUri, isLiveMode, pollEnabled],
   );
 
+  // A post being written with more than three words is saved to Drafts on
+  // close instead of asking; shorter content still gets the keep-or-discard
+  // prompt. Quotes and live setups always ask — a quote loses its target
+  // outside this screen, and a broadcast is not a draft.
+  const autoDraftOnClose = useMemo(() => {
+    if (isQuoteMode || isLiveMode || isStageMode) return false;
+    const words = `${titleText} ${articleMode ? articleBody.replace(/<[^>]*>/g, " ") : bodyText}`
+      .split(/\s+/).filter(Boolean).length;
+    return words > AUTO_DRAFT_MIN_WORDS;
+  }, [isQuoteMode, isLiveMode, isStageMode, titleText, articleMode, articleBody, bodyText]);
+  const autoDraftRef = useRef<() => void>(() => {});
+
   /** Close handler – placed before useUploadPost; isUploading guard is in the X button's disabled prop */
   const handleClose = useCallback(() => {
-    if (formHasContent) {
+    if (autoDraftOnClose) {
+      autoDraftRef.current();
+    } else if (formHasContent) {
       setShowDiscardModal(true);
     } else {
       nav.goBack();
     }
-  }, [nav, formHasContent]);
+  }, [nav, formHasContent, autoDraftOnClose]);
 
   /**
    * Runs the body copy through the shared `enhance-text` edge function — the
@@ -1038,6 +1085,10 @@ export default function UploadScreen() {
         toastInfo(t("upload.uploadInProgressStay"));
         return true;
       }
+      if (autoDraftOnClose) {
+        autoDraftRef.current();
+        return true;
+      }
       if (formHasContent) {
         setShowDiscardModal(true);
         return true;
@@ -1045,7 +1096,7 @@ export default function UploadScreen() {
       return false; // let default back happen
     });
     return () => sub.remove();
-  }, [formHasContent, activeIsUploading]);
+  }, [formHasContent, activeIsUploading, autoDraftOnClose]);
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [confirmText, setConfirmText] = useState("");
@@ -1105,9 +1156,17 @@ export default function UploadScreen() {
       forKids: isForKids ? true : undefined,
       shopLinks: shopLinks.length ? shopLinks : undefined,
       shopListingIds,
-      crossPostAccountIds: articleMode ? [] : [...crossPostState.selected],
+      // Never for a followers-only or direct post: another network would
+      // publish it to everyone there.
+      crossPostAccountIds: articleMode || visibility !== "public" ? [] : [...crossPostState.selected],
+      mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      spoilerText: contentWarning?.trim() || undefined,
+      quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
+      replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
+      // A livestream is always public.
+      visibility: visibility !== "public" && !isLiveMode ? visibility : undefined,
     };
-  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds]);
+  }, [bodyText, titleText, showTitle, articleMode, articleBody, articleImageUri, socialImageUri, categories, pickedImages, pickedVideo, pickedAudio, thumbnailUri, coverUri, monetization, attachedSound, pollIsValid, pollQuestion, pollOptions, pollDurationHours, pollIsMultiple, scheduledDate, effectivePostChainId, solanaAddress, shouldMint, isMature, isForKids, shopLinks, shopListingIds, contentWarning, quotePolicy, replyPolicy, visibility, isLiveMode]);
 
   const handleTogglePoll = useCallback(() => {
     if (pollEnabled) {
@@ -1126,6 +1185,10 @@ export default function UploadScreen() {
         // Entering live mode: clear media
         setPickedVideo(null);
         setPickedImages([]);
+        setContentWarning(null);
+        setQuotePolicy("public");
+        setReplyPolicy("public");
+        setVisibility("public");
         setPickedAudio(null);
         setThumbnailUri(null);
         setCoverUri(null);
@@ -1222,7 +1285,14 @@ export default function UploadScreen() {
   const submitPost = useCallback(async () => {
     let payload = getPayload();
 
-    if (isSolanaChain(payload.postChainId)) {
+    // A post for mentioned people only needs somebody mentioned. The server
+    // refuses one without (VISIBILITY_NEEDS_MENTION); say so before uploading.
+    if (payload.visibility === "direct" && !/@[a-zA-Z0-9_]{1,30}\b/.test(payload.description || "")) {
+      toastError(t("postVisibility.needsMention"));
+      return false;
+    }
+
+    if (payload.shouldMint !== false && isSolanaChain(payload.postChainId)) {
       const addr = payload.solanaAddress ?? (await getSolanaAddress().catch(() => null));
       if (!addr) {
         toastError(t("upload.solanaUnavailable"));
@@ -1350,6 +1420,10 @@ export default function UploadScreen() {
       coverUri,
       thumbnailUri,
       quotedTokenId: Number(quotedTokenId),
+      mediaDescriptions: mediaDescriptionsOf(pickedVideo, pickedImages),
+      spoilerText: contentWarning?.trim() || undefined,
+      quotePolicy: quotePolicy !== "public" ? quotePolicy : undefined,
+      replyPolicy: replyPolicy !== "public" ? replyPolicy : undefined,
     });
     if (!ok) return false;
     // Held through the navigation for the same reason as submitPost above.
@@ -1360,7 +1434,7 @@ export default function UploadScreen() {
     return true;
   }, [
     quotedTokenId, categories, pickedVideo, bodyText, titleText,
-    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome,
+    captureActiveDraft, coverUri, thumbnailUri, pickedImages, pickedAudio, enqueueQuoteJob, navigateHome, contentWarning, quotePolicy, replyPolicy,
     consumeRestoredDraft, releaseSubmit,
   ]);
 
@@ -1406,6 +1480,10 @@ export default function UploadScreen() {
         setIsStageMode(false);
         setLiveThumbnailUri(null);
         setPickedImages([]);
+        setContentWarning(null);
+        setQuotePolicy("public");
+        setReplyPolicy("public");
+        setVisibility("public");
         setPickedVideo(null);
         setThumbnailUri(null);
         consumeRestoredDraft();
@@ -1524,6 +1602,19 @@ export default function UploadScreen() {
     consumeRestoredDraft();
     nav.goBack();
   }, [saveDraft, buildDraftData, nav, consumeRestoredDraft]);
+
+  // Saved quietly with a toast; if the save fails the screen stays open with
+  // the text intact so nothing is lost.
+  autoDraftRef.current = () => {
+    if (submittingRef.current) return;
+    saveDraft(buildDraftData())
+      .then(() => {
+        consumeRestoredDraft();
+        toastSuccess(t("toasts.draft_saved"));
+        nav.goBack();
+      })
+      .catch(() => setShowDiscardModal(true));
+  };
 
   /** "Discard" from discard warning modal */
   const handleDiscard = useCallback(() => {
@@ -2311,11 +2402,14 @@ export default function UploadScreen() {
                 </TouchableOpacity>
               )}
 
+              {/* Not for a followers-only or direct post — see getPayload. */}
+              {visibility === "public" && (
               <CrossPostButton
                 open={crossPostOpen}
                 onToggle={() => setCrossPostOpen((v) => !v)}
                 onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })}
               />
+              )}
 
               {!activeIsUploading && (
                 <TouchableOpacity
@@ -2329,11 +2423,11 @@ export default function UploadScreen() {
                   <Icon name="Save" size={16} color="#fff" />
                   {drafts.length > 0 && (
                     <View
-                      className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
-                      style={{ top: -4, right: -4 }}
+                      className="absolute h-4 rounded-full bg-white items-center justify-center"
+                      style={{ top: -4, right: -4, minWidth: 16, paddingHorizontal: 3 }}
                     >
                       <Text className="text-black font-bold" style={{ fontSize: 10 }}>
-                        {drafts.length}
+                        {drafts.length > 9 ? "9+" : drafts.length}
                       </Text>
                     </View>
                   )}
@@ -2375,12 +2469,28 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {crossPostOpen && (
+          {crossPostOpen && visibility === "public" && (
             <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
           )}
 
           <View className="mt-3">
             {isLiveMode && React.createElement(require("../components/Upload/ScheduledLivestreams").default, { address: authUser?.walletAddress || authUser?.address || "" })}
+            {/* Content warning: shown instead of the post until a viewer opens it. */}
+            {!isLiveMode && contentWarning !== null && (
+              <View className="mb-2 flex-row items-center rounded-xl border border-amber-400/30 bg-amber-400/10 px-3 py-2">
+                <Ionicons name="warning-outline" size={16} color="#FCD34D" />
+                <TextInput
+                  value={contentWarning}
+                  onChangeText={setContentWarning}
+                  placeholder={t("contentWarning.placeholder")}
+                  placeholderTextColor="rgba(255,255,255,0.5)"
+                  maxLength={CONTENT_WARNING_MAX}
+                  autoFocus
+                  accessibilityLabel={t("contentWarning.label")}
+                  className="flex-1 ml-2 text-white text-sm"
+                />
+              </View>
+            )}
             {showTitleInput && !articleMode && (
               <TextInput
                 ref={titleRef}
@@ -2570,6 +2680,11 @@ export default function UploadScreen() {
                           contentFit="cover"
                         />
                       </TouchableOpacity>
+                      <AltTextPill
+                        hasText={!!img.description}
+                        onPress={() => setAltEditor({ kind: "image", index: idx })}
+                        className="absolute top-2 left-2"
+                      />
                       <TouchableOpacity
                         onPress={() => handleRemoveImage(idx)}
                         className="absolute top-2 right-2 w-7 h-7 rounded-lg items-center justify-center dark-surface bg-black/70"
@@ -2656,6 +2771,11 @@ export default function UploadScreen() {
                   style={{ width: "100%", height: 220, backgroundColor: "#111" }}
                   contentFit="contain"
                   nativeControls={false}
+                />
+                <AltTextPill
+                  hasText={!!pickedVideo.description}
+                  onPress={() => setAltEditor({ kind: "video", index: 0 })}
+                  className="absolute bottom-2 left-12 z-20"
                 />
                 {attachedSound && (
                   <View className="absolute top-2 left-2 dark-surface bg-black/70 rounded-lg px-3 py-1.5 flex-row items-center z-20">
@@ -3206,6 +3326,86 @@ export default function UploadScreen() {
                 creator reach on a post they believe is fine, so it sits past
                 the options they came to set rather than second, under the
                 thumb, where a stray tap goes unnoticed. */}
+              {/* Who may see the post — everyone, followers, or only the
+                  people it mentions. First, because it decides the rows
+                  below it: a post nobody else can see cannot be quoted. */}
+              {!isLiveMode && !isQuoteMode && (
+              <View className="py-3">
+                <View className="flex-row items-center">
+                  <Icon name="Eye" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("postVisibility.label")}</Text>
+                </View>
+                <View className="flex-row flex-wrap mt-2 ml-7">
+                  {(["public", "followers", "direct"] as const).map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      onPress={() => setVisibility(option)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: visibility === option }}
+                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${visibility === option ? "bg-white" : "bg-white/10"}`}
+                    >
+                      <Text className={`text-xs ${visibility === option ? "text-black font-semibold" : "text-white"}`}>
+                        {t(`postVisibility.${option}`)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+                {visibility === "direct" && (
+                  <Text className="text-theme-neutrals-400 text-xs mt-1 ml-7">{t("postVisibility.directHint")}</Text>
+                )}
+              </View>
+              )}
+
+              {/* Who may quote the post — anyone, followers, or only the creator. */}
+              {!isLiveMode && visibility === "public" && (
+              <View className="flex-row items-center justify-between py-3">
+                <View className="flex-row items-center flex-1 mr-3">
+                  <Icon name="Quote" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("quotePolicy.label")}</Text>
+                </View>
+                <View className="flex-row">
+                  {(["public", "followers", "nobody"] as const).map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      onPress={() => setQuotePolicy(option)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: quotePolicy === option }}
+                      className={`ml-1 rounded-lg px-2 py-1 ${quotePolicy === option ? "bg-white" : "bg-white/10"}`}
+                    >
+                      <Text className={`text-xs ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                        {t(`quotePolicy.${option}`)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
+              )}
+
+              {/* Who may reply — four options, so they wrap under the label. */}
+              {!isLiveMode && (
+              <View className="py-3">
+                <View className="flex-row items-center">
+                  <Icon name="Reply" size={18} color="#fff" />
+                  <Text className="text-white text-sm ml-3">{t("replyPolicy.label")}</Text>
+                </View>
+                <View className="flex-row flex-wrap mt-2 ml-7">
+                  {(["public", "followers", "following", "mentioned"] as const).map((option) => (
+                    <TouchableOpacity
+                      key={option}
+                      onPress={() => setReplyPolicy(option)}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: replyPolicy === option }}
+                      className={`mr-1 mb-1 rounded-lg px-2 py-1 ${replyPolicy === option ? "bg-white" : "bg-white/10"}`}
+                    >
+                      <Text className={`text-xs ${replyPolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                        {t(`replyPolicy.${option}`)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </View>
+              )}
+
               {MATURE_CONTENT_ENABLED && (
               <View className="flex-row items-center justify-between py-3">
                 <View className="flex-row items-center flex-1 mr-3">
@@ -3404,6 +3604,22 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
+          {/* Content warning — a live stream opens straight to the stream, so it has none. */}
+          {!isLiveMode && (
+            <TouchableOpacity
+              onPress={() => setContentWarning(prev => (prev === null ? "" : null))}
+              activeOpacity={0.7}
+              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+              style={{ backgroundColor: contentWarning !== null ? "rgba(255,255,255,0.2)" : "transparent" }}
+              accessibilityRole="button"
+              accessibilityState={{ selected: contentWarning !== null }}
+              accessibilityLabel={contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}
+            >
+              <Ionicons name="warning-outline" size={20} color="#fff" />
+            </TouchableOpacity>
+          )}
+
           {/* Emoji — always available, as on web */}
           <TouchableOpacity
             onPress={() => setShowEmojiSheet(true)}
@@ -3533,7 +3749,7 @@ export default function UploadScreen() {
         maxHeight="40%"
         blurIntensity={30}
       >
-        <View className="p-5">
+        <View className="p-5" style={draftModalTheme}>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t("drafts.saveTitle")}
           </Text>
@@ -3734,7 +3950,7 @@ export default function UploadScreen() {
         blurIntensity={30}
         dismissible={false}
       >
-        <View className="p-5">
+        <View className="p-5" style={draftModalTheme}>
           <Text className="text-white text-lg font-bold text-center mb-2">
             {t("upload.discardPostTitle")}
           </Text>
@@ -3819,6 +4035,25 @@ export default function UploadScreen() {
           />
         );
       })()}
+
+      {altEditor && (
+        <AltTextSheet
+          visible
+          onClose={() => setAltEditor(null)}
+          kind={altEditor.kind}
+          previewUri={altEditor.kind === "image" ? pickedImages[altEditor.index]?.uri : undefined}
+          initial={altEditor.kind === "image" ? pickedImages[altEditor.index]?.description : pickedVideo?.description}
+          onSave={(text) => {
+            const description = text || undefined;
+            if (altEditor.kind === "video") {
+              setPickedVideo(prev => (prev ? { ...prev, description } : prev));
+            } else {
+              const index = altEditor.index;
+              setPickedImages(prev => prev.map((img, i) => (i === index ? { ...img, description } : img)));
+            }
+          }}
+        />
+      )}
     </View>
   );
 }

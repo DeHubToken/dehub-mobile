@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikasi sing kasambung",
+    "connectedDescription": "Aplikasi Mastodon sing sampeyan lebuni nganggo akun iki. Busak salah siji kanggo metu saka kono.",
+    "connectedEmpty": "Durung ana aplikasi sing kasambung.",
+    "lastUsed": "Pungkasan dienggo {{date}}",
+    "remove": "Busak",
+    "removed": "Aplikasi wis dibusak",
+    "failed": "Ora kasil. Coba maneh."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Wong ing Mastodon lan aplikasi fediverse liyane bisa nemokake lan ngetut sampeyan ing alamat iki. Kiriman umum anyar sampeyan tekan dheweke ing kana.",
+    "copy": "Salin",
+    "copied": "Wis disalin",
+    "privateNote": "Akun pribadi ora ditampilake ing fediverse.",
+    "noUsername": "Pilih jeneng pangguna supaya duwe alamat fediverse."
+  },
+  "profileFields": {
+    "title": "Kolom profil",
+    "description": "Nganti papat baris tambahan ing profil sampeyan, kayata situs web utawa tembung ganti sampeyan.",
+    "label": "Label",
+    "content": "Isi",
+    "save": "Simpen kolom",
+    "saved": "Kolom profil kesimpen",
+    "failed": "Ora kesimpen. Coba maneh.",
+    "verified": "Pranala sing diverifikasi",
+    "verifyHint": "Kanggo verifikasi pranala, tambahake iki ing kaca kasebut, banjur simpen maneh: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Saring kabar saka",
+    "description": "Pilih apa sing kedadeyan nalika wong ing njaba bunderanmu sesambungan karo sampeyan. Kabar sing disaring ngenteni ing Disaring, tanpa lencana lan tanpa push.",
+    "notFollowing": "Wong sing ora sampeyan tut",
+    "notFollowers": "Wong sing ora ngetut sampeyan",
+    "newAccounts": "Akun anyar (kurang saka 30 dina)",
+    "accept": "Kabari aku",
+    "filter": "Saring",
+    "drop": "Delikake babar pisan",
+    "filteredTitle": "Kabar sing disaring",
+    "filteredEmpty": "Durung ana sing disaring.",
+    "failed": "Ora kesimpen. Coba maneh."
+  },
+  "followedTags": {
+    "follow": "Tut #{{tag}}",
+    "following": "Ngetut",
+    "unfollow": "Mandheg ngetut #{{tag}}",
+    "followed": "Saiki sampeyan ngetut #{{tag}}. Kirimané bakal katon ing feed Sing dituti.",
+    "unfollowed": "Wis mandheg ngetut #{{tag}}",
+    "failed": "Ora kesimpen. Coba maneh.",
+    "clear": "Busak"
+  },
+  "keywordFilters": {
+    "title": "Tembung sing dibisokake",
+    "description": "Delikake kiriman lan komentar sing ngemot tembung-tembung iki, utawa lempit ing mburi pènget. Mung sampeyan sing ndeleng dhaptar iki.",
+    "placeholder": "Tembung utawa frasa",
+    "add": "Bisokake",
+    "added": "Dibisokake: {{phrase}}",
+    "wholeWord": "Mung tembung wutuh",
+    "whenMatches": "Nalika kiriman cocog",
+    "warn": "Tampilake pènget",
+    "hide": "Delikake",
+    "howLong": "Suwene pira",
+    "forever": "Nganti tak busak",
+    "duration1h": "Suwene 1 jam",
+    "duration1d": "Suwene 1 dina",
+    "duration7d": "Suwene 7 dina",
+    "duration30d": "Suwene 30 dina",
+    "where": "Ing ngendi",
+    "home": "Ngarep",
+    "public": "Jelajah lan golek",
+    "profile": "Profil",
+    "thread": "Obrolan",
+    "notifications": "Kabar",
+    "empty": "Sampeyan durung mbisokake tembung apa wae.",
+    "remove": "Batalake bisu",
+    "until": "Nganti {{date}}",
+    "filtered": "Disaring: {{phrase}}",
+    "showAnyway": "Tetep tampilake",
+    "failed": "Ora kesimpen. Coba maneh."
+  },
+  "postVisibility": {
+    "label": "Sapa sing bisa ndeleng iki",
+    "public": "Kabeh wong",
+    "followers": "Mung pandherek",
+    "direct": "Mung wong sing disebut",
+    "noRepost": "Mung kiriman umum sing bisa dikirim ulang",
+    "directHint": "Mung wong sing kokdebut nganggo @ sing bakal ndeleng kiriman iki",
+    "needsMention": "Sebutna paling ora siji wong nganggo @ kanggo ngirim mung marang wong sing disebut"
+  },
+  "replyPolicy": {
+    "label": "Sapa sing bisa mbales",
+    "public": "Sapa wae",
+    "followers": "Pengikutmu",
+    "following": "Wong sing koktindakake",
+    "mentioned": "Mung sing disebut",
+    "noticeFollowers": "Mung pengikut penulis sing bisa mbales",
+    "noticeFollowing": "Mung wong sing ditindakake penulis sing bisa mbales",
+    "noticeMentioned": "Mung wong sing disebut ing kiriman sing bisa mbales",
+    "refused": "Penulis mbatesi sapa sing bisa mbales kiriman iki"
+  },
+  "quotePolicy": {
+    "label": "Sapa sing bisa ngutip",
+    "public": "Sapa wae",
+    "followers": "Pengikut",
+    "nobody": "Mung aku",
+    "off": "Penulis mateni kutipan",
+    "removed": "Penulis mbusak kirimane saka kutipan iki",
+    "remove": "Busak",
+    "removedToast": "Kirimanmu wis dibusak saka kutipan iki",
+    "removeFailed": "Ora bisa mbusak kirimanmu saka kutipan",
+    "refused": "Penulis ora ngidini kowe ngutip kiriman iki"
+  },
+  "contentWarning": {
+    "label": "Pènget isi",
+    "placeholder": "Tulisen pènget ing kéné",
+    "add": "Tambahake pènget isi",
+    "remove": "Busak pènget isi",
+    "show": "Tampilake kiriman"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Tambahake katrangan",
+    "edit": "Owahi katrangan",
+    "titleImage": "Terangna gambar iki",
+    "titleVideo": "Terangna video iki",
+    "help": "Kanggo wong sing ora bisa ndeleng. Pamaca layar maca kanthi banter.",
+    "placeholder": "Apa sing ditampilake? Tulisen uga teks sing ana ing kono.",
+    "show": "Tampilake katrangan",
+    "saved": "Katrangan wis disimpen",
+    "saveFailed": "Ora bisa nyimpen katrangan"
+  },
   "liveRecap": {
     "title": "Rekap streaming",
     "shareText": "Saya baru saja streaming \"{{title}}\" di DeHub: {{duration}} live, {{peak}} menonton di puncak dan {{followers}} pengikut baru.",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Ngidini anggota liya ndeleng sampeyan lagi wae gabung supaya bisa nyambut sampeyan. Rampung otomatis 30 dina sawise sampeyan ndhaftar.",
     "postVisibility": "Visibilitas Kiriman",
     "defaultPostVisibility": "Visibilitas Kiriman Default",
+    "defaultFeed": "Feed gawan",
+    "defaultFeedDesc": "Pilih feed sing dibukak saben sampeyan mbukak DeHub",
+    "feedToggles": "Reset saringan feed",
+    "feedTogglesDesc": "Saringan sing sampeyan uripake ing feed tetep dadi gawan nganti sampeyan reset",
+    "feedTogglesCleared": "Saringan feed wis direset",
     "defaultProfileTab": "Tab profil gawan",
     "defaultProfileTabDesc": "Pilih tab endi sing dideleng dhisik dening tamu ing profilmu",
     "defaultPostVisibilityDesc": "Ditrapake kanggo kabeh kiriman saiki lan mangsa ngarep",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Ora bisa maca warna saka foto profilmu"
   },
   "common": {
+    "refresh": "Segarke",
     "mute": "Bisu",
     "unmute": "Uripake swara",
     "fullscreen": "Layar kebak",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Lebokake",
+    "copyEmbedCode": "Salin kode lebokan",
+    "embedCodeCopied": "Kode lebokan wis disalin",
     "options": "Opsi",
     "sendTip": "Kirim Hadiah",
     "queue": "Antrian",
@@ -2818,6 +2957,8 @@
     "yourFractions": "Sampeyan nyekel {{count}} saka {{total}} pecahan"
   },
   "profileOptions": {
+    "copyRssFeed": "Salin pranala feed RSS",
+    "copyRssFeedHint": "Tindakake kiriman iki ing pamaca feed apa wae",
     "copyProfileUrl": "Salin URL profil",
     "copyUsername": "Salin jeneng pangguna",
     "copyAddress": "Salin alamat",
@@ -4141,6 +4282,7 @@
     "noVoice": "Piranti sampeyan ora duwe swara kanggo basa iki."
   },
   "stages": {
+    "previewFailed": "Gak bisa mainin preview di stage",
     "allStages": "Kabeh ruang swara",
     "addToCalendar": "Tambah ke kalender",
     "onTheRadio": "Di radio",
@@ -4512,6 +4654,7 @@
     "anyBadgeHolder": "Sembarang pemegang lencana entuk SuperPowers. Tuku token DeHub kanggo mbukak kunci lencana — staking ora perlu."
   },
   "follow": {
+    "noResults": "Ora ana asil sing ditemokake",
     "followers": "Ngetutake",
     "following": "Ngetutake",
     "requests": "Panyuwunan",
@@ -4595,7 +4738,10 @@
     "play": "Mainake",
     "listens_one": "{{count}} ngrungokake",
     "listens_other": "{{count}} ngrungokake",
-    "pause": "Jeda"
+    "pause": "Jeda",
+    "lyrics": "Lirik",
+    "lyricsLoading": "Nggoleki lirik…",
+    "lyricsNone": "Lirik ora ketemu"
   },
   "transfer": {
     "arcTitle": "Kirim USDC ing Arc",
@@ -5521,6 +5667,8 @@
     "creatorEarnsDirect": "Pelanggan mbayar nganggo token DeHub. Bagianmu mlebu ing dompetmu nalika dheweke langganan, dikurangi biaya platform kanggo tingkatan lencana."
   },
   "live": {
+    "bigEvent": "Acara gedhe",
+    "bigEventHint": "Kanggo penonton akèh: penonton nonton kira-kira 20 detik telat, kanthi gangguan luwih sithik.",
     "notSet": "Durung disetel",
     "liveChat": "Obrolan langsung",
     "pickDate": "Pilih tanggal",
@@ -7127,6 +7275,7 @@
       "delete": "Busak"
     },
     "export": {
+      "cancel": "Batal",
       "scope": "Unduh rentang",
       "downloadTimeline": "Seluruh garis wektu",
       "downloadSelection": "Klip video sing dipilih ({{count}})",
@@ -7406,6 +7555,7 @@
     }
   },
   "creator": {
+    "sending": "Sedane dikirim.",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Tanpa irah-irahan",
@@ -7967,6 +8117,7 @@
     "transferIncomplete": "Transfer token boten kasil. Panjenengan badhe dipun takeni malih sakderengipun kiriman panjenengan ingkang mbayar salajengipun."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Goleki emoji",
     "noEmoji": "Emoji ora ketemu",
     "searchResults": "Asil telusuran",

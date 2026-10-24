@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "連携中のアプリ",
+    "connectedDescription": "このアカウントでログインした Mastodon アプリです。削除するとそのアプリからログアウトします。",
+    "connectedEmpty": "連携中のアプリはまだありません。",
+    "lastUsed": "最終使用 {{date}}",
+    "remove": "削除",
+    "removed": "アプリを削除しました",
+    "failed": "うまくいきませんでした。もう一度お試しください。"
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon などの Fediverse アプリの人は、このアドレスであなたを見つけてフォローできます。新しい公開投稿はそこにも届きます。",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "privateNote": "非公開アカウントは Fediverse に表示されません。",
+    "noUsername": "Fediverse のアドレスを持つにはユーザー名を設定してください。"
+  },
+  "profileFields": {
+    "title": "プロフィール項目",
+    "description": "ウェブサイトや代名詞など、プロフィールに最大4行まで追加できます。",
+    "label": "ラベル",
+    "content": "内容",
+    "save": "項目を保存",
+    "saved": "プロフィール項目を保存しました",
+    "failed": "保存できませんでした。もう一度お試しください。",
+    "verified": "認証済みリンク",
+    "verifyHint": "リンクを認証するには、そのページにこれを追加してからもう一度保存してください：{{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "通知をフィルターする相手",
+    "description": "あなたの身近な人以外から反応があったときの扱いを選べます。フィルターされた通知は「フィルター済み」に入り、バッジやプッシュ通知は出ません。",
+    "notFollowing": "フォローしていない人",
+    "notFollowers": "フォローされていない人",
+    "newAccounts": "新しいアカウント（30日未満）",
+    "accept": "通知する",
+    "filter": "フィルター",
+    "drop": "完全に非表示",
+    "filteredTitle": "フィルターされた通知",
+    "filteredEmpty": "フィルターされた通知はありません。",
+    "failed": "保存できませんでした。もう一度お試しください。"
+  },
+  "followedTags": {
+    "follow": "#{{tag}} をフォロー",
+    "following": "フォロー中",
+    "unfollow": "#{{tag}} のフォローを解除",
+    "followed": "#{{tag}} をフォローしました。関連する投稿がフォロー中フィードに表示されます。",
+    "unfollowed": "#{{tag}} のフォローを解除しました",
+    "failed": "保存できませんでした。もう一度お試しください。",
+    "clear": "クリア"
+  },
+  "keywordFilters": {
+    "title": "ミュートワード",
+    "description": "これらの語句を含む投稿やコメントを非表示にするか、警告の後ろに折りたたみます。このリストはあなただけに表示されます。",
+    "placeholder": "語句",
+    "add": "ミュート",
+    "added": "ミュートしました：{{phrase}}",
+    "wholeWord": "単語全体に一致",
+    "whenMatches": "投稿が一致したとき",
+    "warn": "警告を表示",
+    "hide": "非表示にする",
+    "howLong": "期間",
+    "forever": "削除するまで",
+    "duration1h": "1時間",
+    "duration1d": "1日",
+    "duration7d": "7日間",
+    "duration30d": "30日間",
+    "where": "適用先",
+    "home": "ホーム",
+    "public": "探索と検索",
+    "profile": "プロフィール",
+    "thread": "会話",
+    "notifications": "通知",
+    "empty": "ミュートしている語句はありません。",
+    "remove": "ミュート解除",
+    "until": "{{date}}まで",
+    "filtered": "フィルター済み：{{phrase}}",
+    "showAnyway": "表示する",
+    "failed": "保存できませんでした。もう一度お試しください。"
+  },
+  "postVisibility": {
+    "label": "公開範囲",
+    "public": "全員",
+    "followers": "フォロワーのみ",
+    "direct": "メンションした人のみ",
+    "noRepost": "リポストできるのは公開投稿のみです",
+    "directHint": "@でメンションした人だけがこの投稿を見られます",
+    "needsMention": "メンションした人のみに投稿するには、@で1人以上メンションしてください"
+  },
+  "replyPolicy": {
+    "label": "返信できる人",
+    "public": "全員",
+    "followers": "あなたのフォロワー",
+    "following": "あなたがフォローしている人",
+    "mentioned": "メンションした人のみ",
+    "noticeFollowers": "投稿者のフォロワーのみ返信できます",
+    "noticeFollowing": "投稿者がフォローしている人のみ返信できます",
+    "noticeMentioned": "投稿でメンションされた人のみ返信できます",
+    "refused": "投稿者はこの投稿に返信できる人を制限しています"
+  },
+  "quotePolicy": {
+    "label": "引用できる人",
+    "public": "全員",
+    "followers": "フォロワー",
+    "nobody": "自分のみ",
+    "off": "投稿者は引用をオフにしています",
+    "removed": "投稿者がこの引用から投稿を削除しました",
+    "remove": "削除",
+    "removedToast": "この引用からあなたの投稿を削除しました",
+    "removeFailed": "引用からあなたの投稿を削除できませんでした",
+    "refused": "投稿者はあなたがこの投稿を引用することを許可していません"
+  },
+  "contentWarning": {
+    "label": "閲覧注意",
+    "placeholder": "ここに注意書きを入力",
+    "add": "閲覧注意を追加",
+    "remove": "閲覧注意を削除",
+    "show": "投稿を表示"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "説明を追加",
+    "edit": "説明を編集",
+    "titleImage": "この画像を説明",
+    "titleVideo": "この動画を説明",
+    "help": "見ることができない人のために。スクリーンリーダーが読み上げます。",
+    "placeholder": "何が写っていますか？含まれている文字も書いてください。",
+    "show": "説明を表示",
+    "saved": "説明を保存しました",
+    "saveFailed": "説明を保存できませんでした"
+  },
   "liveRecap": {
     "title": "ストリームのまとめ",
     "justEnded": "ストリームのまとめ",
@@ -219,6 +349,8 @@
     "postCount_other": "{{count}} 件の投稿"
   },
   "settings": {
+    "showDislikesDesc": "誰でもプロフィールの「よくないね」タブを開けます。オフのときは自分だけが見られます。",
+    "showDislikes": "自分の「よくないね」を全員に表示",
     "postingChain": "投稿用ブロックチェーン",
     "showOnline": "オンライン中に表示する",
     "showOnlineDesc": "DeHubを使用している間、メッセージを送る相手に名前の横に緑色の点が表示されます",
@@ -334,6 +466,11 @@
     "showAsNewMemberDesc": "参加したばかりであることを他のメンバーに見せて歓迎してもらえます。登録から 30 日後に自動で終了します。",
     "postVisibility": "投稿の公開範囲",
     "defaultPostVisibility": "デフォルトの公開範囲",
+    "defaultFeed": "デフォルトのフィード",
+    "defaultFeedDesc": "DeHubを開くたびに表示するフィードを選択",
+    "feedToggles": "フィードのフィルターをリセット",
+    "feedTogglesDesc": "フィードでオンにしたフィルターは、リセットするまでデフォルトとして残ります",
+    "feedTogglesCleared": "フィードのフィルターをリセットしました",
     "defaultProfileTab": "既定のプロフィールタブ",
     "defaultProfileTabDesc": "訪問者がプロフィールで最初に見るタブを選びます",
     "defaultPostVisibilityDesc": "すべての現在および将来の投稿に適用",
@@ -861,6 +998,7 @@
     "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
   },
   "common": {
+    "refresh": "更新",
     "mute": "ミュート",
     "unmute": "ミュート解除",
     "fullscreen": "全画面",
@@ -976,6 +1114,9 @@
     "tokenAmount": "{{amount}} トークン"
   },
   "postOptions": {
+    "embed": "埋め込み",
+    "copyEmbedCode": "埋め込みコードをコピー",
+    "embedCodeCopied": "埋め込みコードをコピーしました",
     "options": "オプション",
     "sendTip": "チップを送る",
     "queue": "キュー",
@@ -1925,6 +2066,12 @@
     "returnHome": "ホームに戻る"
   },
   "profile": {
+    "dislikesPrivateDesc": "このアカウントは「よくないね」を公開していません。",
+    "dislikesPrivateTitle": "「よくないね」は非公開です",
+    "dislikesEmptyOther": "まだ何もありません。",
+    "dislikesEmptyOwn": "「よくないね」した投稿はフィードから消え、ここに表示されます。取り消すと投稿が戻ります。",
+    "dislikesEmptyTitle": "まだ「よくないね」はありません",
+    "tabDislikes": "よくないね",
     "replyThread": {
       "postUnavailable": "この投稿は利用できません",
       "commentUnavailable": "このコメントはもう利用できません"
@@ -2825,6 +2972,8 @@
     "yourFractions": "{{total}}フラクション中{{count}}を保有しています"
   },
   "profileOptions": {
+    "copyRssFeed": "RSSフィードのリンクをコピー",
+    "copyRssFeedHint": "お好きなフィードリーダーでこれらの投稿をフォロー",
     "copyProfileUrl": "プロフィールURLをコピー",
     "copyUsername": "ユーザー名をコピー",
     "copyAddress": "アドレスをコピー",
@@ -4193,6 +4342,7 @@
     "filedOn": "{{date}} に作成"
   },
   "stages": {
+    "previewFailed": "音声ルームでプレビューを再生できませんでした",
     "allStages": "すべての音声ルーム",
     "addToCalendar": "カレンダーに追加",
     "nowPlaying": "現在再生中",
@@ -4564,6 +4714,7 @@
     "anyBadgeHolder": "バッジ所有者は誰でもスーパーパワーを取得できます。バッジをアンロックするためにDeHubトークンを購入してください。ステーキングは必要ありません。"
   },
   "follow": {
+    "noResults": "結果が見つかりませんでした",
     "followers": "フォロワー",
     "following": "フォロー中",
     "requests": "リクエスト",
@@ -4647,7 +4798,10 @@
     "play": "再生",
     "pause": "一時停止",
     "listens_one": "{{count}}回再生",
-    "listens_other": "{{count}}回再生"
+    "listens_other": "{{count}}回再生",
+    "lyrics": "歌詞",
+    "lyricsLoading": "歌詞を取得中…",
+    "lyricsNone": "歌詞が見つかりません"
   },
   "transfer": {
     "arcTitle": "ArcでUSDCを送金",
@@ -5607,6 +5761,8 @@
     "creatorEarnsDirect": "加入者はDeHubトークンで支払います。購読した瞬間にシェアがウォレットに表示されますが、バッジランクのプラットフォーム手数料は差し引かれます。"
   },
   "live": {
+    "bigEvent": "大規模イベント",
+    "bigEventHint": "大勢の視聴者向け：約20秒遅れで再生されますが、途切れにくくなります。",
     "notSet": "未設定",
     "liveChat": "ライブチャット",
     "pickDate": "日付を選択",
@@ -7236,6 +7392,7 @@
       "delete": "削除"
     },
     "export": {
+      "cancel": "キャンセル",
       "scope": "ダウンロード範囲",
       "downloadTimeline": "タイムライン全体",
       "downloadSelection": "選択したビデオクリップ({{count}})",
@@ -7606,6 +7763,7 @@
     }
   },
   "creator": {
+    "sending": "送信中",
     "navStudio": "スタジオ",
     "editor": "エディター",
     "untitled": "タイトルなし",
@@ -8120,6 +8278,7 @@
     "transferIncomplete": "トークンの転送が完了しませんでした。次の有料投稿の前にもう一度質問されます。"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "絵文字を検索",
     "noEmoji": "絵文字が見つかりません",
     "searchResults": "検索結果",
@@ -9745,5 +9904,15 @@
     "youAreBanned": "このクリエイターのストリームではチャットできません",
     "youAreTimedOut": "しばらくタイムアウトしました",
     "title": "普通"
+  },
+  "loginStack": {
+    "tip": "DHBでチップ",
+    "headlineTop": "すべてを所有して",
+    "headlineAccent": "幸せになろう。",
+    "orContinueWith": "または次で続ける",
+    "phone": "電話",
+    "fingerprint": "指紋",
+    "exploreFirst": "先に見てみる",
+    "codeNote": "メールでコードを送ります。パスワードは不要です。"
   }
 }

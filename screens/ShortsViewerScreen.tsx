@@ -1,9 +1,11 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
+import { fetchVideoAccess, isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../libs/video-access";
 import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
 import { postMediaIsTransferring } from '../libs/post-media-session';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
+import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -103,6 +105,7 @@ import { appliedEngagementWeight } from "../libs/engagement-weight";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
+  getPlaybackUrl,
   getShortsThumbnailUrl,
   resolveThumbnail,
   DEFAULT_BANNER_SENTINEL,
@@ -165,6 +168,7 @@ import { blockQuickActions } from "../libs/quickActions";
 import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import { resolveViewCount } from "../libs/numbers.util";
 import { useTranslation as useCopy } from "react-i18next";
+import { hideDislikedPost, restoreDislikedPost } from "../libs/disliked-posts-store";
 
 
 
@@ -219,6 +223,12 @@ const RESTORE_ZONE_BOTTOM = 0.85;
 // A tap outside it hides or shows the buttons instead.
 const PAUSE_ZONE_START = 1 / 3;
 const PAUSE_ZONE_END = 2 / 3;
+// Swipe back (Android): a drag that starts this close to the left edge and
+// runs right leaves the viewer, as web's EDGE_SWIPE_ZONE_PX.
+const EDGE_BACK_ZONE = 32;
+const EDGE_BACK_CLAIM = 16;
+const EDGE_BACK_DISTANCE = 64;
+const EDGE_BACK_VELOCITY = 650;
 
 /**
  * How long a short plays untouched before the chrome clears itself.
@@ -361,7 +371,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
   // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
   const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
-  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
+  // A gated short's file is private: an entitled viewer plays a signed URL,
+  // anyone else is refused one and keeps the poster.
+  const viewer = useUser();
+  const signedShort = !photoMedia && videoNeedsAccess(item);
+  const shortAccess = useVideoAccess(tokenId, signedShort, viewer?.walletAddress || viewer?.address);
+  // Otherwise the same string FeedCard plays, so a card opened into the
+  // viewer keeps its player: the HLS ladder when the post has one, else the MP4.
+  const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
+  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : playbackUrl) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     // Shorts pause when the app is left; only a PiP window keeps them going.
     p.staysActiveInBackground = false;
@@ -457,6 +475,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const isOwnShort = !!(
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
+  // Only a public post can be reposted, quoted or embedded — see FeedCard.
+  const isPublicShort = !(item as any).visibility || (item as any).visibility === "public";
 
   // Shared overlay — every surface showing this post reads the same numbers.
   const engagementKey = engagementKeyOf(item);
@@ -622,6 +642,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     component: 'ShortsViewer', postId: tokenId,
     allowed: () => ownsPlayerRef.current() && (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
   });
+  // A lapsed signature fails like a broken file; fetch a fresh one.
+  const refetchShortAccess = shortAccess.refetch;
+  useEffect(() => {
+    if (playbackPhase === 'failed' && shortAccess.data?.private && isVideoAccessExpiring(shortAccess.data)) void refetchShortAccess();
+  }, [playbackPhase, shortAccess.data, refetchShortAccess]);
+  // A ladder that will not play is retired for the session. videoUrl then
+  // resolves to the MP4, and the isActive effect below starts its player.
+  useEffect(() => {
+    if (playbackPhase === 'failed') markHlsFailed(videoUrl);
+  }, [playbackPhase, videoUrl]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(player)) return;
     recovery.stop();
@@ -875,8 +905,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       };
 
       applyEngagement(engagementKey, countsAt(voteWeight));
+      // A disliked short leaves this viewer's feeds; undoing it brings it back.
+      if (nextNegative && !wasNegative) hideDislikedPost(tokenId);
+      else if (wasNegative && !nextNegative) restoreDislikedPost(tokenId);
 
       const rollback = () => {
+        if (nextNegative && !wasNegative) restoreDislikedPost(tokenId);
+        else if (wasNegative && !nextNegative) hideDislikedPost(tokenId);
         // Restore only the fields this handler owns, so a concurrent save or
         // repost that succeeded is not undone.
         revertEngagement(engagementKey, {
@@ -1279,9 +1314,46 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
    * third taps before the Like/Love ladder could see them. Both recognizers
    * fail at the same 10px boundary used by feed cards, leaving the pager alone.
    */
+  const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
+
+  /**
+   * The strip the top buttons sit in, which the video must not take touches in
+   * while they are showing.
+   *
+   * Gesture-handler hit-tests a view's real bounds, but the buttons' 44pt
+   * reach comes from RN hitSlop, which only the JS responder honours. A tap
+   * on the edge of Back therefore reached this screen's Tap as well, and when
+   * a native gesture activates it cancels the JS responder: the Pressable
+   * never saw its press, and the tap hid the buttons instead of going back.
+   */
+  const insets = useSafeAreaInsets();
+  const topChromeBand = insets.top + EDGE + CHROME_SIZE + CHROME_HIT_SLOP.bottom + 4;
+
+  /**
+   * Swipe back from the left edge. iOS already has the stack's own edge swipe;
+   * Android only has the system gesture, which button-navigation phones lack.
+   * Sideways travel only: a vertical move fails it at once and the pager keeps
+   * the flick, and it never claims a tap. One per detector, since a gesture
+   * object can only be attached once.
+   */
+  const makeEdgeBack = useCallback(() => Gesture.Pan()
+    .enabled(Platform.OS === "android" && isActive && !showComments && !screenshotMode)
+    .hitSlop({ left: 0, width: EDGE_BACK_ZONE })
+    .activeOffsetX(EDGE_BACK_CLAIM)
+    .failOffsetX(-EDGE_BACK_CLAIM)
+    .failOffsetY([-EDGE_BACK_CLAIM, EDGE_BACK_CLAIM])
+    .runOnJS(true)
+    .onEnd((event, success) => {
+      if (success && (event.translationX >= EDGE_BACK_DISTANCE || event.velocityX >= EDGE_BACK_VELOCITY)) {
+        navigation.goBack();
+      }
+    }), [isActive, showComments, screenshotMode, navigation]);
+
   const screenGesture = useMemo(() => {
+    const mediaHitSlop = { top: chromeVisible ? -topChromeBand : 0 };
     const tap = Gesture.Tap()
       .maxDistance(MEDIA_TAP_SLOP_PX)
+      .hitSlop(mediaHitSlop)
       .simultaneousWithExternalGesture(pagerGesture)
       .runOnJS(true)
       .onEnd((event, success) => {
@@ -1290,14 +1362,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     const hold = Gesture.LongPress()
       .minDuration(400)
       .maxDistance(MEDIA_TAP_SLOP_PX)
+      .hitSlop(mediaHitSlop)
       .simultaneousWithExternalGesture(pagerGesture)
       .runOnJS(true)
       .onStart((event) => handleLongPressIn(event.x))
       .onFinalize(() => handleLongPressOut());
-    return Gesture.Race(restorePan, hold, tap);
-  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, restorePan]);
+    return Gesture.Race(makeEdgeBack(), restorePan, hold, tap);
+  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, restorePan, makeEdgeBack, chromeVisible, topChromeBand]);
 
-  const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
+  const bottomStackGesture = useMemo(() => Gesture.Race(makeEdgeBack(), hidePan), [makeEdgeBack, hidePan]);
 
   // Swiping to another short brings the chrome back with it, so a cleared
   // frame never carries over to the next one.
@@ -1583,7 +1656,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
             The trade is explicit: these pixels can start the swipe or fall
             through to the video, not both. Web makes the same one. */}
-        <GestureDetector gesture={hidePan}>
+        <GestureDetector gesture={bottomStackGesture}>
           <View onLayout={(e) => { overlayHeight.value = e.nativeEvent.layout.height; }} style={styles.bottomStack}>
             <View style={styles.captionBlock}>
               <Pressable onPress={handleUserPress} style={styles.creatorRow}>
@@ -1751,7 +1824,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onRepost={() => handleRepost(true)}
           onUndoRepost={() => handleRepost(false)}
           onQuote={handleQuote}
+          canQuote={isPublicShort && ((item as any).quotePolicy !== "nobody" || isOwnShort)}
+          canRepost={isPublicShort}
           onCopyLink={handleCopyLink}
+          embedTokenId={isPublicShort ? tokenId : undefined}
         />
       )}
 
@@ -1764,6 +1840,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
+          replyPolicy={(item as any).replyPolicy}
           forKids={!!(item as any).forKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />
@@ -2390,7 +2467,12 @@ const ShortsViewerScreen = () => {
           onDownloadVideo={activeItem.postType === "short" && !activeItem.imageUrls?.length &&
             (isOwnerOfActive || activeItem.isUnlocked || (!activeItem.streamInfo?.isPayPerView && !isHoldGated(activeItem.streamInfo?.isLockContent, activeItem.streamInfo?.lockContentAmount))) &&
             !(activeItem as { contentRating?: string }).contentRating?.includes("mature")
-            ? () => { const url = getVideoUrl(activeTokenId); if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername }); }
+            ? () => { void (async () => {
+                // A gated short's file is private; download it through a signed URL.
+                const url = !videoNeedsAccess(activeItem) ? getVideoUrl(activeTokenId)
+                  : activeTokenId != null ? (await fetchVideoAccess(activeTokenId).catch(() => null))?.url : undefined;
+                if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername });
+              })(); }
             : undefined}
           onToggleSave={handleToggleSave}
           onFollowChange={handleFollowChange}

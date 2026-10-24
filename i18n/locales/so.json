@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apps-ka ku xiran",
+    "connectedDescription": "Apps-ka Mastodon ee aad ku gashay akoonkan. Ka saar mid si aad uga baxdo.",
+    "connectedEmpty": "Weli ma jiraan apps ku xiran.",
+    "lastUsed": "Markii ugu dambeysay la isticmaalay {{date}}",
+    "remove": "Ka saar",
+    "removed": "App-ka waa la saaray",
+    "failed": "Ma shaqayn. Isku day mar kale."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Dadka ku jira Mastodon iyo apps-ka kale ee fediverse waxay kugu heli karaan oo ku raaci karaan cinwaankan. Qoraalladaada cusub ee guud halkaas ayay ku gaaraan.",
+    "copy": "Koobbi",
+    "copied": "Waa la koobiyeeyay",
+    "privateNote": "Akoonnada gaarka ah laguma muujiyo fediverse.",
+    "noUsername": "Dooro magac isticmaale si aad u hesho cinwaan fediverse."
+  },
+  "profileFields": {
+    "title": "Meelaha astaanta",
+    "description": "Ilaa afar sadar oo dheeraad ah oo astaantaada ku jira, sida bog internet ama magac-u-yaalladaada.",
+    "label": "Calaamad",
+    "content": "Nuxurka",
+    "save": "Kaydi meelaha",
+    "saved": "Meelaha astaanta waa la kaydiyay",
+    "failed": "Lama kaydin. Isku day mar kale.",
+    "verified": "Xiriir la xaqiijiyay",
+    "verifyHint": "Si aad u xaqiijiso xiriir, kan ku dar boggaas, kadibna mar kale kaydi: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Ka sifee ogeysiisyada",
+    "description": "Dooro waxa dhacaya marka qof ka baxsan goobaabintaada uu kula macaamilo. Ogeysiisyada la sifeeyay waxay sugaan \"La sifeeyay\" hoostiisa, calaamad iyo riixid la'aan.",
+    "notFollowing": "Dadka aadan raacin",
+    "notFollowers": "Dadka aan ku raacin",
+    "newAccounts": "Akoonnada cusub (ka yar 30 maalmood)",
+    "accept": "I ogeysii",
+    "filter": "Sifee",
+    "drop": "Gebi ahaanba qari",
+    "filteredTitle": "Ogeysiisyada la sifeeyay",
+    "filteredEmpty": "Waxba lama sifeyn.",
+    "failed": "Lama kaydin. Isku day mar kale."
+  },
+  "followedTags": {
+    "follow": "Raac #{{tag}}",
+    "following": "Waad raacaysaa",
+    "unfollow": "Jooji raacitaanka #{{tag}}",
+    "followed": "Hadda waxaad raacaysaa #{{tag}}. Qoraalladiisa waxay ka soo muuqan doonaan quudinta aad raacdo.",
+    "unfollowed": "Waad joojisay raacitaanka #{{tag}}",
+    "failed": "Lama kaydin. Isku day mar kale.",
+    "clear": "Nadiifi"
+  },
+  "keywordFilters": {
+    "title": "Erayada la aamusiyay",
+    "description": "Qari qoraallada iyo faallooyinka ay ku jiraan erayadan, ama ku laab digniin gadaasheed. Adiga keliya ayaa arka liiskan.",
+    "placeholder": "Eray ama weedh",
+    "add": "Aamusi",
+    "added": "La aamusiyay: {{phrase}}",
+    "wholeWord": "Eray dhammaystiran oo keliya",
+    "whenMatches": "Marka qoraal uu u dhigmo",
+    "warn": "Tus digniin",
+    "hide": "Qari",
+    "howLong": "Muddo intee le'eg",
+    "forever": "Ilaa aan ka saaro",
+    "duration1h": "Muddo 1 saac ah",
+    "duration1d": "Muddo 1 maalin ah",
+    "duration7d": "Muddo 7 maalmood ah",
+    "duration30d": "Muddo 30 maalmood ah",
+    "where": "Xagee",
+    "home": "Hoyga",
+    "public": "Sahan iyo raadin",
+    "profile": "Astaamaha",
+    "thread": "Wada sheekaysiyada",
+    "notifications": "Ogeysiisyada",
+    "empty": "Wax eray ah ma aadan aamusin.",
+    "remove": "Ka qaad aamusinta",
+    "until": "Ilaa {{date}}",
+    "filtered": "La sifeeyay: {{phrase}}",
+    "showAnyway": "Tus si kastaba",
+    "failed": "Lama kaydin. Isku day mar kale."
+  },
+  "postVisibility": {
+    "label": "Yaa arki kara tan",
+    "public": "Qof walba",
+    "followers": "Kaliya kuwa ku raaca",
+    "direct": "Kaliya dadka la xusay",
+    "noRepost": "Kaliya qoraallada guud ayaa dib loo daabici karaa",
+    "directHint": "Kaliya dadka aad @ ku xusto ayaa arki doona qoraalkan",
+    "needsMention": "Ku xus ugu yaraan hal qof @ si aad ugu daabacdo dadka la xusay oo kaliya"
+  },
+  "replyPolicy": {
+    "label": "Yaa jawaabi kara",
+    "public": "Qof kasta",
+    "followers": "Kuwa ku raaca",
+    "following": "Dadka aad raacdo",
+    "mentioned": "Kuwa la xusay keliya",
+    "noticeFollowers": "Kuwa raaca qoraaga keliya ayaa jawaabi kara",
+    "noticeFollowing": "Dadka uu qoraagu raaco keliya ayaa jawaabi kara",
+    "noticeMentioned": "Dadka lagu xusay qoraalka keliya ayaa jawaabi kara",
+    "refused": "Qoraagu wuxuu xaddiday cidda ka jawaabi karta qoraalkan"
+  },
+  "quotePolicy": {
+    "label": "Yaa soo xigan kara",
+    "public": "Qof kasta",
+    "followers": "Kuwa ku raaca",
+    "nobody": "Aniga keliya",
+    "off": "Qoraagu wuu damiyay soo xigashada",
+    "removed": "Qoraagu wuxuu qoraalkiisa ka saaray soo xigashadan",
+    "remove": "Ka saar",
+    "removedToast": "Qoraalkaaga waa laga saaray soo xigashadan",
+    "removeFailed": "Lama saari karin qoraalkaaga soo xigashada",
+    "refused": "Qoraagu kuma oggola inaad soo xigato qoraalkan"
+  },
+  "contentWarning": {
+    "label": "Digniinta waxa ku jira",
+    "placeholder": "Halkan ku qor digniintaada",
+    "add": "Ku dar digniinta waxa ku jira",
+    "remove": "Ka saar digniinta waxa ku jira",
+    "show": "Muuji qoraalka"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Ku dar sharraxaad",
+    "edit": "Wax ka beddel sharraxaadda",
+    "titleImage": "Sharax sawirkan",
+    "titleVideo": "Sharax muuqaalkan",
+    "help": "Dadka aan arki karin. Akhristayaasha shaashaddu kor ayay u akhriyaan.",
+    "placeholder": "Maxay muujinaysaa? Ku dar qoraal kasta oo ku jira.",
+    "show": "Muuji sharraxaadda",
+    "saved": "Sharraxaadda waa la keydiyay",
+    "saveFailed": "Lama keydin karin sharraxaadda"
+  },
   "liveRecap": {
     "title": "Dib-u-cusboonaysiinta qulqulka",
     "justEnded": "Dib u soo celi durdurkaaga",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Waxay u oggolaanaysaa xubnaha kale inay arkaan inaad hadda ku biirtay si ay kuugu soo dhoweeyaan. Si toos ah ayay u dhammaanaysaa 30 maalmood kadib markaad isdiiwaangelisay.",
     "postVisibility": "Muuqaalka Qoraalka",
     "defaultPostVisibility": "Muuqaalka Qoraalka ee Caadiga ah",
+    "defaultFeed": "Feed-ka caadiga ah",
+    "defaultFeedDesc": "Dooro feed-ka furmaya mar kasta oo aad furto DeHub",
+    "feedToggles": "Dib u deji shaandhooyinka feed-ka",
+    "feedTogglesDesc": "Shaandhooyinka aad ka shiddo feed-ka waxay ahaanayaan kuwa caadiga ah ilaa aad dib u dejiso",
+    "feedTogglesCleared": "Shaandhooyinka feed-ka dib ayaa loo dejiyay",
     "defaultProfileTab": "Tabka profilka caadiga ah",
     "defaultProfileTabDesc": "Dooro tabka ay booqdayaashu marka hore arkaan profilkaaga",
     "defaultPostVisibilityDesc": "Wuxuu ku dhaqmaa dhammaan qoraallada hadda jira iyo kuwa mustaqbalka",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Lagama akhrin karin midabada sawirka profilkaaga"
   },
   "common": {
+    "refresh": "Dib u cusboonaysii",
     "mute": "Aamusi",
     "unmute": "Codka fur",
     "fullscreen": "Shaashad buuxda",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Ku dhex rid",
+    "copyEmbedCode": "Koobi koodka ku dhex ridista",
+    "embedCodeCopied": "Koodka ku dhex ridista waa la koobiyay",
     "options": "Ikhtiyaarada",
     "sendTip": "Dir Bakhshiish",
     "queue": "Safka",
@@ -2818,6 +2957,8 @@
     "yourFractions": "Waxaad haysataa {{count}} qaybood oo ka mid ah {{total}} qaybood"
   },
   "profileOptions": {
+    "copyRssFeed": "Koobi xiriirka quudinta RSS",
+    "copyRssFeedHint": "Ku raac qoraalladan akhriste kasta oo quudin ah",
     "copyProfileUrl": "Koobi URL-ka profile-ka",
     "copyUsername": "Koobi magaca isticmaalaha",
     "copyAddress": "Koobi cinwaanka",
@@ -4141,6 +4282,7 @@
     "noVoice": "Qalabkaagu ma laha cod luqaddan."
   },
   "stages": {
+    "previewFailed": "Ma ciyaari karo horudhaca marxaladda",
     "allStages": "Dhammaan qolalka codka",
     "addToCalendar": "Ku dar kalandarka",
     "nowPlaying": "Hadda ciyaaraya",
@@ -4512,6 +4654,7 @@
     "anyBadgeHolder": "Qof kasta oo haysta astaan wuxuu helayaa SuperPowers. Iibso DeHub token-kaaga si aad u furto astaan — ma aha lagama maarmaan in la keydiyo."
   },
   "follow": {
+    "noResults": "Ma helin wax natiijo ah",
     "followers": "Taageerayaal",
     "following": "Kuwa la raacayo",
     "requests": "Codsi",
@@ -4595,7 +4738,10 @@
     "play": "Ciyaar",
     "pause": "Jooji",
     "listens_one": "{{count}} dhageyso",
-    "listens_other": "{{count}} dhagaystayaasha"
+    "listens_other": "{{count}} dhagaystayaasha",
+    "lyrics": "Erayada heesta",
+    "lyricsLoading": "Waxaa la raadinayaa erayada…",
+    "lyricsNone": "Erayo lama helin"
   },
   "transfer": {
     "arcTitle": "Dir USDC ee Arc",
@@ -5520,6 +5666,8 @@
     "creatorEarnsDirect": "Macaamiisha waxay bixiyaan calaamadaha DeHub. Dhulalka saamigaaga ee boorsadaada marka ay isdiiwaangeliyaan, ka yar qiimaha boosteejada ee heerka calaamaddaada."
   },
   "live": {
+    "bigEvent": "Dhacdo weyn",
+    "bigEventHint": "Daawadayaal badan: daawadayaashu waxay daawadaan qiyaastii 20 ilbiriqsi dib, iyadoo kala go'yadu ay yar yihiin.",
     "notSet": "Lama dejin",
     "liveChat": "Sheeko toos ah",
     "pickDate": "Dooro taariikhda",
@@ -7124,6 +7272,7 @@
       "delete": "Tirtir"
     },
     "export": {
+      "cancel": "Ka noqo",
       "scope": "Soo dejisan kala duwan",
       "downloadTimeline": "Jadwalka waqtiga oo dhan",
       "downloadSelection": "Muuqaallada fiidiyowga ee la xushay ({{count}})",
@@ -7403,6 +7552,7 @@
     }
   },
   "creator": {
+    "sending": "Dirista",
     "navStudio": "Istuudiyo",
     "editor": "Tafatire",
     "untitled": "Aan cinwaan lahayn",
@@ -7965,6 +8115,7 @@
     "transferIncomplete": "Wareejinta calaamadda ma aysan dhammaystirin. Waxaa mar kale la weydiin doonaa ka hor inta aan la bixin boostadaada soo socota."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Raadi emoji",
     "noEmoji": "Emoji lama helin",
     "searchResults": "Natiijooyinka raadinta",

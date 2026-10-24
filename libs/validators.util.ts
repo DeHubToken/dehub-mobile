@@ -72,6 +72,7 @@ export interface NFTMetadataLike {
   createdAt?: string | number | Date;
   streamInfo?: StreamInfoShape;
   videoUrl?: string; // direct URL for free streams
+  hlsUrl?: string; // HLS master playlist key, public posts only
   /** Server-provided: true when the authenticated user is the content creator */
   isOwner?: boolean;
   /** Server-provided: true when the authenticated user has already unlocked PPV */

@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "التطبيقات المتصلة",
+    "connectedDescription": "تطبيقات Mastodon التي سجّلت الدخول إليها بهذا الحساب. أزل أحدها لتسجيل الخروج منه.",
+    "connectedEmpty": "لا توجد تطبيقات متصلة بعد.",
+    "lastUsed": "آخر استخدام {{date}}",
+    "remove": "إزالة",
+    "removed": "تمت إزالة التطبيق",
+    "failed": "لم ينجح ذلك. حاول مرة أخرى."
+  },
+  "fediverse": {
+    "title": "الفيديفيرس",
+    "description": "يمكن للأشخاص على ماستودون وتطبيقات الفيديفيرس الأخرى العثور عليك ومتابعتك على هذا العنوان. تصلهم منشوراتك العامة الجديدة هناك.",
+    "copy": "نسخ",
+    "copied": "تم النسخ",
+    "privateNote": "لا تظهر الحسابات الخاصة على الفيديفيرس.",
+    "noUsername": "اختر اسم مستخدم للحصول على عنوان في الفيديفيرس."
+  },
+  "profileFields": {
+    "title": "حقول الملف الشخصي",
+    "description": "حتى أربعة أسطر إضافية في ملفك، مثل موقع ويب أو ضمائرك.",
+    "label": "التسمية",
+    "content": "المحتوى",
+    "save": "حفظ الحقول",
+    "saved": "تم حفظ حقول الملف الشخصي",
+    "failed": "لم يتم الحفظ. حاول مرة أخرى.",
+    "verified": "رابط موثّق",
+    "verifyHint": "لتوثيق رابط، أضف هذا إلى تلك الصفحة ثم احفظ مرة أخرى: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "تصفية الإشعارات من",
+    "description": "اختر ما يحدث عندما يتفاعل معك شخص من خارج دائرتك. تنتظر الإشعارات المصفّاة تحت \"المصفّاة\" بلا شارة ولا تنبيه فوري.",
+    "notFollowing": "أشخاص لا تتابعهم",
+    "notFollowers": "أشخاص لا يتابعونك",
+    "newAccounts": "حسابات جديدة (أقل من 30 يومًا)",
+    "accept": "أعلمني",
+    "filter": "تصفية",
+    "drop": "إخفاء تمامًا",
+    "filteredTitle": "الإشعارات المصفّاة",
+    "filteredEmpty": "لم تتم تصفية أي شيء.",
+    "failed": "لم يتم الحفظ. حاول مرة أخرى."
+  },
+  "followedTags": {
+    "follow": "متابعة #{{tag}}",
+    "following": "تتابعه",
+    "unfollow": "إلغاء متابعة #{{tag}}",
+    "followed": "أنت تتابع #{{tag}} الآن. ستظهر منشوراته في خلاصة المتابَعين.",
+    "unfollowed": "ألغيت متابعة #{{tag}}",
+    "failed": "لم يتم الحفظ. حاول مرة أخرى.",
+    "clear": "مسح"
+  },
+  "keywordFilters": {
+    "title": "الكلمات المكتومة",
+    "description": "أخفِ المنشورات والتعليقات التي تحتوي على هذه الكلمات، أو اطوِها خلف تحذير. أنت وحدك ترى هذه القائمة.",
+    "placeholder": "كلمة أو عبارة",
+    "add": "كتم",
+    "added": "تم الكتم: {{phrase}}",
+    "wholeWord": "الكلمة كاملة فقط",
+    "whenMatches": "عندما يطابق منشور",
+    "warn": "إظهار تحذير",
+    "hide": "إخفاؤه",
+    "howLong": "المدة",
+    "forever": "حتى أزيلها",
+    "duration1h": "لمدة ساعة",
+    "duration1d": "لمدة يوم",
+    "duration7d": "لمدة 7 أيام",
+    "duration30d": "لمدة 30 يومًا",
+    "where": "أين",
+    "home": "الرئيسية",
+    "public": "الاستكشاف والبحث",
+    "profile": "الملفات الشخصية",
+    "thread": "المحادثات",
+    "notifications": "الإشعارات",
+    "empty": "لم تكتم أي كلمات.",
+    "remove": "إلغاء الكتم",
+    "until": "حتى {{date}}",
+    "filtered": "تمت التصفية: {{phrase}}",
+    "showAnyway": "إظهار على أي حال",
+    "failed": "لم يتم الحفظ. حاول مرة أخرى."
+  },
+  "postVisibility": {
+    "label": "من يمكنه رؤية هذا",
+    "public": "الجميع",
+    "followers": "المتابعون فقط",
+    "direct": "الأشخاص المذكورون فقط",
+    "noRepost": "يمكن إعادة نشر المنشورات العامة فقط",
+    "directHint": "لن يرى هذا المنشور إلا الأشخاص الذين تذكرهم بـ@",
+    "needsMention": "اذكر شخصًا واحدًا على الأقل بـ@ للنشر للمذكورين فقط"
+  },
+  "replyPolicy": {
+    "label": "من يمكنه الرد",
+    "public": "أي شخص",
+    "followers": "متابعوك",
+    "following": "من تتابعهم",
+    "mentioned": "المذكورون فقط",
+    "noticeFollowers": "يمكن لمتابعي صاحب المنشور فقط الرد",
+    "noticeFollowing": "يمكن لمن يتابعهم صاحب المنشور فقط الرد",
+    "noticeMentioned": "يمكن للمذكورين في المنشور فقط الرد",
+    "refused": "قيّد صاحب المنشور من يمكنه الرد على هذا المنشور"
+  },
+  "quotePolicy": {
+    "label": "من يمكنه الاقتباس",
+    "public": "أي شخص",
+    "followers": "المتابعون",
+    "nobody": "أنا فقط",
+    "off": "أوقف صاحب المنشور الاقتباس",
+    "removed": "أزال صاحب المنشور منشوره من هذا الاقتباس",
+    "remove": "إزالة",
+    "removedToast": "تمت إزالة منشورك من هذا الاقتباس",
+    "removeFailed": "تعذّرت إزالة منشورك من الاقتباس",
+    "refused": "لا يسمح لك صاحب المنشور باقتباس هذا المنشور"
+  },
+  "contentWarning": {
+    "label": "تحذير المحتوى",
+    "placeholder": "اكتب التحذير هنا",
+    "add": "إضافة تحذير محتوى",
+    "remove": "إزالة تحذير المحتوى",
+    "show": "عرض المنشور"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "أضف وصفًا",
+    "edit": "عدّل الوصف",
+    "titleImage": "صِف هذه الصورة",
+    "titleVideo": "صِف هذا الفيديو",
+    "help": "للأشخاص الذين لا يستطيعون رؤيته. تقرؤه قارئات الشاشة بصوت عالٍ.",
+    "placeholder": "ماذا يُظهر؟ اذكر أي نص يحتويه.",
+    "show": "اعرض الوصف",
+    "saved": "تم حفظ الوصف",
+    "saveFailed": "تعذّر حفظ الوصف"
+  },
   "agents.life.compose": "انشر باسم هذا الوكيل",
   "agents.life.daily": "منشورات اليوم: {{posts}} · الهدف اليومي: {{target}}",
   "agents.life.editComment": "تعديل التعليق",
@@ -350,6 +480,8 @@
     "postCount_other": "{{count}} منشورات"
   },
   "settings": {
+    "showDislikesDesc": "يمكن لأي شخص فتح تبويب «عدم الإعجاب» في ملفك الشخصي. عند إيقاف هذا الخيار، تراه أنت فقط.",
+    "showDislikes": "أظهر عدم إعجاباتي للجميع",
     "shortsEnabledDesc": "إظهار تبويب خلاصة Shorts ودوارات Shorts على الصفحة الرئيسية.",
     "shortsEnabled": "مقاطع قصيرة",
     "postingChain": "شبكة النشر",
@@ -467,6 +599,11 @@
     "showAsNewMemberDesc": "يتيح للأعضاء الآخرين رؤية أنك انضممت للتو كي يرحبوا بك. ينتهي تلقائيًا بعد 30 يومًا من التسجيل.",
     "postVisibility": "ظهور المنشورات",
     "defaultPostVisibility": "الظهور الافتراضي",
+    "defaultFeed": "الخلاصة الافتراضية",
+    "defaultFeedDesc": "اختر الخلاصة التي تفتح في كل مرة تفتح فيها DeHub",
+    "feedToggles": "إعادة ضبط فلاتر الخلاصة",
+    "feedTogglesDesc": "الفلاتر التي تفعّلها في أي خلاصة تبقى مفعّلة كإعداداتك الافتراضية حتى تعيد ضبطها",
+    "feedTogglesCleared": "تمت إعادة ضبط فلاتر الخلاصة",
     "defaultProfileTab": "تبويب الملف الشخصي الافتراضي",
     "defaultProfileTabDesc": "اختر التبويب الذي يراه الزوار أولًا في ملفك الشخصي",
     "defaultPostVisibilityDesc": "ينطبق على جميع المنشورات الحالية والمستقبلية",
@@ -995,6 +1132,7 @@
     "themeColorBrandFailed": "تعذّرت قراءة الألوان من صورتك الشخصية"
   },
   "common": {
+    "refresh": "تحديث",
     "mute": "كتم الصوت",
     "unmute": "إلغاء كتم الصوت",
     "fullscreen": "ملء الشاشة",
@@ -1110,6 +1248,9 @@
     "tokenAmount": "{{amount}} رموز"
   },
   "postOptions": {
+    "embed": "تضمين",
+    "copyEmbedCode": "نسخ رمز التضمين",
+    "embedCodeCopied": "تم نسخ رمز التضمين",
     "skippableSectionsDesc": "حدّد الرعايات والمقدمات أو صوّت عليها",
     "skippableSections": "أقسام قابلة للتخطي",
     "options": "خيارات",
@@ -2074,6 +2215,17 @@
     "encryptionOff": "التشفير غير مفعّل على هذا الجهاز",
     "encryptionTurnOn": "تفعيل",
     "cannotDecrypt": "رسالة مشفّرة — لا يمكن فتحها على هذا الجهاز",
+    "lockedTitle": "افتح القفل لقراءة رسائلك",
+    "lockedBody": "محادثتك مع {{name}} مشفّرة من طرف إلى طرف. افتح قفل محفظتك على هذا الجهاز لفتحها.",
+    "lockedUnlock": "فتح قفل المحفظة",
+    "lockedTryAgain": "حاول مرة أخرى",
+    "lockedPrivate": "أنت وحدك من يستطيع قراءتها",
+    "undecryptableRun_one": "لا يمكن فتح {{count}} رسالة على هذا الجهاز",
+    "undecryptableRun_other": "لا يمكن فتح {{count}} رسائل على هذا الجهاز",
+    "undecryptableRun_zero": "لا يمكن فتح {{count}} رسائل على هذا الجهاز",
+    "undecryptableRun_two": "لا يمكن فتح {{count}} رسائل على هذا الجهاز",
+    "undecryptableRun_few": "لا يمكن فتح {{count}} رسائل على هذا الجهاز",
+    "undecryptableRun_many": "لا يمكن فتح {{count}} رسائل على هذا الجهاز",
     "title": "الرسائل",
     "searchConversations": "بحث في المحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
@@ -2115,13 +2267,43 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "mostPlayed": "الأكثر تشغيلًا",
+    "radioPicks": "اختياراتنا",
+    "mostVoted": "الأكثر تصويتًا",
+    "trending": "الرائج",
+    "stagesLive": "مباشر الآن",
+    "upcoming": "القادمة",
+    "mostListened": "الأكثر استماعًا",
+    "recentStages": "الأحدث",
+    "noStages": "لا توجد مسارح هنا بعد",
+    "listening": "يستمعون",
+    "mostLiked": "الأكثر إعجابًا",
+    "mostRecent": "الأحدث",
+    "chartOrder": "ترتيب المقاطع الصوتية",
+    "quality": "الجودة",
+    "votes": "الأصوات",
+    "plays": "مرات الاستماع",
+    "liveRadio": "راديو مباشر",
+    "listenLive": "استمع مباشرة",
+    "nextStation": "المحطة التالية",
+    "mostViewed": "الأكثر مشاهدة",
+    "trendingWeek": "الرائج هذا الأسبوع",
+    "newest": "الأحدث",
+    "videoChartOrder": "ترتيب قائمة الفيديوهات الموسيقية",
+    "viewsCount": "{{views}} مشاهدة"
   },
   "notFound": {
     "title": "الصفحة غير موجودة",
     "returnHome": "العودة للرئيسية"
   },
   "profile": {
+    "dislikesPrivateDesc": "هذا الحساب يحتفظ بعدم إعجاباته لنفسه.",
+    "dislikesPrivateTitle": "عدم الإعجاب خاص",
+    "dislikesEmptyOther": "لا يوجد شيء لم يعجبه بعد.",
+    "dislikesEmptyOwn": "المنشورات التي لا تعجبك تختفي من خلاصاتك وتظهر هنا. ألغِ عدم الإعجاب لإعادة المنشور.",
+    "dislikesEmptyTitle": "لا توجد منشورات لم تعجبك بعد",
+    "tabDislikes": "عدم الإعجاب",
     "replyThread": {
       "postUnavailable": "هذا المنشور غير متاح",
       "commentUnavailable": "لم يعد هذا التعليق متاحًا"
@@ -3121,6 +3303,8 @@
     "yourFractions": "تمتلك {{count}} من كسور {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "نسخ رابط خلاصة RSS",
+    "copyRssFeedHint": "تابع هذه المنشورات في أي قارئ خلاصات",
     "copyProfileUrl": "نسخ رابط الملف الشخصي",
     "copyUsername": "نسخ اسم المستخدم",
     "copyAddress": "نسخ العنوان",
@@ -4528,6 +4712,7 @@
     "filedOn": "فُتحت في {{date}}"
   },
   "stages": {
+    "previewFailed": "تعذّر تشغيل المعاينة في الغرفة الصوتية",
     "allStages": "كل الغرف الصوتية",
     "addToCalendar": "إضافة إلى التقويم",
     "nowPlaying": "يُشغَّل الآن",
@@ -4900,6 +5085,7 @@
     "anyBadgeHolder": "يحصل أي حامل شارة على قوى خارقة. اشترِ رموز DeHub لفتح شارة — لا يلزم التخزين."
   },
   "follow": {
+    "noResults": "لم يتم العثور على نتائج",
     "followers": "المتابعون",
     "following": "المتابعة",
     "requests": "طلبات",
@@ -4983,7 +5169,11 @@
     "play": "تشغيل",
     "pause": "إيقاف مؤقت",
     "listens_one": "{{count}} استماع",
-    "listens_other": "{{count}} استماع"
+    "listens_other": "{{count}} استماع",
+    "visualizerColour": "لون المؤثرات البصرية",
+    "lyrics": "كلمات الأغنية",
+    "lyricsLoading": "جارٍ جلب الكلمات…",
+    "lyricsNone": "لا توجد كلمات"
   },
   "transfer": {
     "arcTitle": "إرسال USDC على Arc",
@@ -6010,6 +6200,8 @@
     "creatorEarnsDirect": "يدفع المشتركون بعملات DeHub. تصل حصتك إلى محفظتك في اللحظة التي يشتركون فيها، مخصومًا منها رسوم المنصة لمستوى شارتك."
   },
   "live": {
+    "bigEvent": "حدث كبير",
+    "bigEventHint": "للجماهير الكبيرة: يشاهد المتابعون البث متأخرًا بنحو 20 ثانية مع انقطاعات أقل.",
     "notSet": "غير محدّد",
     "liveChat": "دردشة مباشرة",
     "pickDate": "اختر التاريخ",
@@ -6604,7 +6796,8 @@
     "pipUnavailable": "صورة داخل صورة غير متاحة. تحقق من أنها مسموح بها لـ DeHub في إعدادات جهازك.",
     "noVideo": "لا يوجد فيديو",
     "rotate": "تدوير",
-    "yourDhbBalance": "رصيد رموزك: {{amount}}"
+    "yourDhbBalance": "رصيد رموزك: {{amount}}",
+    "volume": "مستوى الصوت"
   },
   "liveViewer": {
     "loadingStream": "جارٍ تحميل البث...",
@@ -7677,6 +7870,7 @@
       "delete": "حذف"
     },
     "export": {
+      "cancel": "إلغاء",
       "scope": "نطاق التنزيل",
       "downloadTimeline": "الجدول الزمني الكامل",
       "downloadSelection": "مقاطع الفيديو المحددة ({{count}})",
@@ -8064,6 +8258,7 @@
     }
   },
   "creator": {
+    "sending": "جارٍ الإرسال",
     "navStudio": "استوديو",
     "editor": "المحرّر",
     "untitled": "بلا عنوان",
@@ -8851,6 +9046,7 @@
     "transferIncomplete": "لم يكتمل نقل الرمز المميز. سيتم سؤالك مرة أخرى قبل مشاركتك المدفوعة التالية."
   },
   "emojiPicker": {
+    "tabGif": "غيغ",
     "searchEmoji": "ابحث عن إيموجي",
     "noEmoji": "لم يتم العثور على إيموجي",
     "searchResults": "نتائج البحث",
@@ -10850,6 +11046,8 @@
     "9bf75671f22f": "سرعة التشغيل {{value1}}",
     "50e7258dccec": "{{value1}} تتم المشاركة",
     "fef6a1a97127": "يتبعه {{value1}}",
+    "036cfd952896": "اقتراحات للمتابعة",
+    "0c820caf16c0": "لا توجد نبذة بعد",
     "46785e0aacc9": "إلغاء الحظر {{value1}}",
     "8d3f3e35915d": "حظر {{value1}}",
     "ba85bf0351d5": "إرجاع {{value1}} ثانية",
@@ -11435,5 +11633,15 @@
     "youAreBanned": "لا يمكنك التحدث في تدفقات هذا المبدع",
     "youAreTimedOut": "أنت محظور مؤقتًا لوهلة",
     "title": "تعديل"
+  },
+  "loginStack": {
+    "tip": "ادعم بـ DHB",
+    "headlineTop": "ستملك كل شيء",
+    "headlineAccent": "وستكون سعيدًا.",
+    "orContinueWith": "أو تابع باستخدام",
+    "phone": "الهاتف",
+    "fingerprint": "البصمة",
+    "exploreFirst": "استكشف أولًا",
+    "codeNote": "نرسل لك رمزًا عبر البريد الإلكتروني، دون كلمة مرور."
   }
 }

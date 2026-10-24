@@ -177,6 +177,7 @@ export function nftToReplyPost(nft: Record<string, any>, tokenId: number): UserR
     thumbnailUrl: nft.thumbnailUrl ?? nft.thumbnail_url,
     thumbnail_url: nft.thumbnail_url ?? nft.thumbnailUrl,
     videoUrl: nft.videoUrl,
+    hlsUrl: nft.hlsUrl,
     postType: nft.postType ?? nft.media_type,
     createdAt: nft.createdAt,
     minter: nft.minter,

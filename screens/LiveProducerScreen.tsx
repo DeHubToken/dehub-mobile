@@ -43,7 +43,7 @@ import { LivestreamEvents, StreamActivityType } from "../services/enums/livestre
 import { toastSuccess, toastError, toastInfo } from "../libs/toast";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { createViewCountUpdater, seedViewerStats } from "../libs/viewers.util";
-import { updateStreamSettings, getIngestUrl } from "../services/live.service";
+import { updateStreamSettings, getIngestUrl, fallbackToLivepeer } from "../services/live.service";
 import { deletePost } from "../services/nft.service";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { useTranslation } from "react-i18next";
@@ -790,6 +790,32 @@ const LiveProducerScreen: React.FC = () => {
     setPublisherConnected(true);
   }, [setPublisherConnected, refetchStream]);
 
+  // Set when the self-hosted ingest could not carry this broadcast and the
+  // stream was moved onto Livepeer before it aired. It outranks the key and
+  // provider the screen loaded with until the refetched entity agrees.
+  const [ingestOverride, setIngestOverride] = useState<{
+    streamKey: string;
+    playbackId?: string | null;
+    provider?: string | null;
+  } | null>(null);
+
+  const handleSelfHostedUnreachable = useCallback(async () => {
+    const sid = streamId || (streamEntity as any)?._id;
+    if (!sid) return null;
+    console.log("[LiveProducer] self-hosted ingest unreachable; moving stream to Livepeer");
+    const moved = await fallbackToLivepeer(String(sid));
+    if (!moved?.streamKey) return null;
+    setIngestOverride({
+      streamKey: moved.streamKey,
+      playbackId: moved.playbackId,
+      provider: moved.provider,
+    });
+    // Viewers and the producer's own UI read the stream entity; bring it up
+    // to the new provider and playbackId.
+    refetchStream();
+    return moved;
+  }, [streamId, streamEntity, refetchStream]);
+
   const handlePublisherError = useCallback(
     (err: any) => {
       console.log("[LiveProducer] WebRTCPublisher error escalated:", err);
@@ -1221,9 +1247,10 @@ const LiveProducerScreen: React.FC = () => {
             </View>
           ) : mountPublisher ? (
             <WebRTCPublisher
-              streamKey={streamKey || streamKeyValue || ""}
-              playbackId={streamEntity?.playbackId}
-              provider={(streamEntity as any)?.provider}
+              streamKey={ingestOverride?.streamKey || streamKey || streamKeyValue || ""}
+              playbackId={ingestOverride ? ingestOverride.playbackId : streamEntity?.playbackId}
+              provider={ingestOverride ? ingestOverride.provider : (streamEntity as any)?.provider}
+              onSelfHostedUnreachable={handleSelfHostedUnreachable}
               active={
                 (stage === "starting" || stage === "live") && !externalMode
               }

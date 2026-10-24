@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "ዝተራኸቡ ኣፕታት",
+    "connectedDescription": "በዚ ሕሳብ ዝኣቶኹምሎም ኣፕታት Mastodon። ንምውጻእ ሓደ ኣልግሱ።",
+    "connectedEmpty": "ክሳብ ሕጂ ዝተራኸበ ኣፕ የለን።",
+    "lastUsed": "ናይ መወዳእታ ኣጠቓቕማ {{date}}",
+    "remove": "ኣልግስ",
+    "removed": "እቲ ኣፕ ተኣልዩ",
+    "failed": "ኣይሰለጠን። እንደገና ፈትኑ።"
+  },
+  "fediverse": {
+    "title": "ፌዲቨርስ",
+    "description": "ኣብ ማስቶዶንን ካልኦት ኣፕታት ፌዲቨርስን ዘለዉ ሰባት በዚ ኣድራሻ ክረኽቡኹምን ክኽተሉኹምን ይኽእሉ። ሓደስቲ ህዝባዊ ጽሑፋትኩም ኣብኡ ይበጽሕዎም።",
+    "copy": "ቅዳሕ",
+    "copied": "ተቐዲሑ",
+    "privateNote": "ብሕታዊ ሕሳባት ኣብ ፌዲቨርስ ኣይረኣዩን።",
+    "noUsername": "ኣድራሻ ፌዲቨርስ ንምርካብ ስም ተጠቃሚ ምረጹ።"
+  },
+  "profileFields": {
+    "title": "መዳያታት መግለጺ",
+    "description": "ኣብ መግለጺኹም ክሳብ ኣርባዕተ ተወሰኽቲ መስመራት፣ ከም መርበብ ሓበሬታ ወይ ተውላጥ ስምኹም።",
+    "label": "ምልክት",
+    "content": "ትሕዝቶ",
+    "save": "መዳያታት ዓቅብ",
+    "saved": "መዳያታት መግለጺ ተዓቂቦም",
+    "failed": "ኣይተዓቀበን። እንደገና ፈትኑ።",
+    "verified": "ዝተረጋገጸ ኣገናኝ",
+    "verifyHint": "ኣገናኝ ንምርግጋጽ እዚ ናብቲ ገጽ ወስኹ፣ ድሕሪኡ እንደገና ዓቅቡ፦ {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "ምልክታት ካብዚኦም ኣጻሪ",
+    "description": "ካብ ክቢኹም ወጻኢ ዝኾነ ሰብ ምሳኹም ክራኸብ ከሎ እንታይ ከም ዝኸውን ምረጹ። ዝተጻረዩ ምልክታት ብዘይ ምልክትን ብዘይ ፑሽን ኣብ «ዝተጻረዩ» ይጽበዩ።",
+    "notFollowing": "ዘይትኽተልዎም ሰባት",
+    "notFollowers": "ዘይኽተሉኹም ሰባት",
+    "newAccounts": "ሓደስቲ ሕሳባት (ትሕቲ 30 መዓልቲ)",
+    "accept": "ኣፍልጠኒ",
+    "filter": "ኣጻሪ",
+    "drop": "ምሉእ ብምሉእ ሕባእ",
+    "filteredTitle": "ዝተጻረዩ ምልክታት",
+    "filteredEmpty": "ዝተጻረየ የለን።",
+    "failed": "ኣይተዓቀበን። እንደገና ፈትኑ።"
+  },
+  "followedTags": {
+    "follow": "#{{tag}} ተኸተል",
+    "following": "ትኽተሎ ኣለኻ",
+    "unfollow": "#{{tag}} ምኽታል ኣቋርጽ",
+    "followed": "ሕጂ #{{tag}} ትኽተሎ ኣለኻ። ጽሑፋቱ ኣብ ዝኽተልካዮም ምግቢ ክረኣዩ እዮም።",
+    "unfollowed": "#{{tag}} ምኽታል ኣቋሪጽካ",
+    "failed": "ኣይተዓቀበን። እንደገና ፈትኑ።",
+    "clear": "ኣጽሪ"
+  },
+  "keywordFilters": {
+    "title": "ዝተዓብሱ ቃላት",
+    "description": "እዞም ቃላት ዘለዎም ጽሑፋትን ርእይቶታትን ሕብኡ፣ ወይ ኣብ ድሕሪ መጠንቀቕታ ዕጸፍዎም። ነዚ ዝርዝር ዝርእዮ ንስኹም ጥራይ ኢኹም።",
+    "placeholder": "ቃል ወይ ሓረግ",
+    "add": "ዕብስ",
+    "added": "ተዓቢሱ፦ {{phrase}}",
+    "wholeWord": "ምሉእ ቃል ጥራይ",
+    "whenMatches": "ጽሑፍ ምስ ዝሰማማዕ",
+    "warn": "መጠንቀቕታ ኣርኢ",
+    "hide": "ሕባእ",
+    "howLong": "ክሳብ ክንደይ",
+    "forever": "ክሳብ ዘውጽኦ",
+    "duration1h": "ን1 ሰዓት",
+    "duration1d": "ን1 መዓልቲ",
+    "duration7d": "ን7 መዓልቲ",
+    "duration30d": "ን30 መዓልቲ",
+    "where": "ኣበይ",
+    "home": "መበገሲ",
+    "public": "ዳህስስን ድለን",
+    "profile": "መግለጺታት",
+    "thread": "ዝርርባት",
+    "notifications": "ምልክታት",
+    "empty": "ዝኾነ ቃል ኣይዓበስኩምን።",
+    "remove": "ዕብስ ኣልዕል",
+    "until": "ክሳብ {{date}}",
+    "filtered": "ተጻሪዩ፦ {{phrase}}",
+    "showAnyway": "ብዝኾነ ኣርኢ",
+    "failed": "ኣይተዓቀበን። እንደገና ፈትኑ።"
+  },
+  "postVisibility": {
+    "label": "እዚ መን ክርእዮ ይኽእል",
+    "public": "ኩሉ ሰብ",
+    "followers": "ሰዓብቲ ጥራይ",
+    "direct": "ዝተጠቕሱ ሰባት ጥራይ",
+    "noRepost": "ዳግማይ ክልጠፉ ዝኽእሉ ህዝባዊ ጽሑፋት ጥራይ እዮም",
+    "directHint": "ነዚ ጽሑፍ ዝርእዩዎ ብ@ ዝጠቐስካዮም ሰባት ጥራይ እዮም",
+    "needsMention": "ንዝተጠቕሱ ጥራይ ንምልጣፍ እንተወሓደ ሓደ ሰብ ብ@ ጥቀስ"
+  },
+  "replyPolicy": {
+    "label": "መን ክምልስ ይኽእል",
+    "public": "ዝኾነ ሰብ",
+    "followers": "ተኸተልትኻ",
+    "following": "ትኽተሎም ሰባት",
+    "mentioned": "ዝተጠቕሱ ጥራይ",
+    "noticeFollowers": "ተኸተልቲ ደራሲ ጥራይ ክምልሱ ይኽእሉ",
+    "noticeFollowing": "ደራሲ ዝኽተሎም ሰባት ጥራይ ክምልሱ ይኽእሉ",
+    "noticeMentioned": "ኣብቲ ጽሑፍ ዝተጠቕሱ ጥራይ ክምልሱ ይኽእሉ",
+    "refused": "ደራሲ ነዚ ጽሑፍ መን ክምልስ ከም ዝኽእል ደሪቱ"
+  },
+  "quotePolicy": {
+    "label": "መን ክጠቅስ ይኽእል",
+    "public": "ዝኾነ ሰብ",
+    "followers": "ተኸተልቲ",
+    "nobody": "ኣነ ጥራይ",
+    "off": "ደራሲ ምጥቃስ ኣጥፊኡ ኣሎ",
+    "removed": "ደራሲ ጽሑፉ ካብዚ ጥቕሲ ኣልጊሱ",
+    "remove": "ኣልግስ",
+    "removedToast": "ጽሑፍካ ካብዚ ጥቕሲ ተኣልዩ",
+    "removeFailed": "ጽሑፍካ ካብ ጥቕሲ ክእለ ኣይተኻእለን",
+    "refused": "ደራሲ ነዚ ጽሑፍ ክትጠቕሶ ኣይፈቕደልካን"
+  },
+  "contentWarning": {
+    "label": "ናይ ትሕዝቶ መጠንቀቕታ",
+    "placeholder": "መጠንቀቕታኻ ኣብዚ ጽሓፍ",
+    "add": "ናይ ትሕዝቶ መጠንቀቕታ ወስኽ",
+    "remove": "ናይ ትሕዝቶ መጠንቀቕታ ኣልግስ",
+    "show": "ጽሑፍ ኣርኢ"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "መግለጺ ወስኽ",
+    "edit": "መግለጺ ኣመሓይሽ",
+    "titleImage": "ነዚ ስእሊ ግለጾ",
+    "titleVideo": "ነዚ ቪድዮ ግለጾ",
+    "help": "ንዘይርእዩ ሰባት። ኣንበብቲ ስክሪን ብዓው ኢሎም የንብብዎ።",
+    "placeholder": "እንታይ የርኢ? ኣብኡ ዘሎ ዝኾነ ጽሑፍ እውን ኣእቱ።",
+    "show": "መግለጺ ኣርኢ",
+    "saved": "መግለጺ ተዓቂቡ",
+    "saveFailed": "መግለጺ ክዕቀብ ኣይተኻእለን"
+  },
   "liveRecap": {
     "shareText": "ኣብ DeHub \"{{title}}\" ፈኒወ: {{duration}} ብቐጥታ፣ ብዝበዝሐ {{peak}} ተዓዘብቲ ከምኡውን {{followers}} ሓደሽቲ ሰዓብቲ።",
     "title": "ናይ ዥረት ዳግመ-ምግቢ",
@@ -330,6 +460,11 @@
     "showAsNewMemberDesc": "ካልኦት ኣባላት ሓድሽ ምጽንባርካ ርእዮም ክቕበሉኻ የኽእሎም። ድሕሪ ምዝገባ ኣብ 30 መዓልታት ባዕሉ ይውዳእ።",
     "postVisibility": "ምርኣይ ጽሑፍ",
     "defaultPostVisibility": "ነባሪ ምርኣይ ጽሑፍ",
+    "defaultFeed": "ናይ ቀደም ፊድ",
+    "defaultFeedDesc": "DeHub ኣብ ዝኸፈትካሉ ግዜ ኩሉ ኣየናይ ፊድ ከምዝኽፈት ምረጽ",
+    "feedToggles": "ናይ ፊድ መጻረዪታት ዳግም ኣቐምጥ",
+    "feedTogglesDesc": "ኣብ ፊድ ዘበራኽዎም መጻረዪታት ክሳብ ዳግም ተቐምጦም ናይ ቀደም ኮይኖም ይጸንሑ",
+    "feedTogglesCleared": "ናይ ፊድ መጻረዪታት ዳግም ተቐሚጦም",
     "defaultProfileTab": "ቀዋሚ ናይ መለለዪ ታብ",
     "defaultProfileTabDesc": "በጻሕቲ ኣብ መለለዪኻ ቀዳማይ እትርእዮም ታብ ምረጽ",
     "defaultPostVisibilityDesc": "ንኹሎም ህሉዋትን መጻእትን ጽሑፋት ይምልከት",
@@ -854,6 +989,7 @@
     "themeColorBrandFailed": "ካብ ስእሊ መለለይኻ ሕብርታት ከንብብ ኣይከኣለን"
   },
   "common": {
+    "refresh": "ተሐድሶ",
     "mute": "ድምጺ ኣጥፍእ",
     "unmute": "ድምጺ ኣብርህ",
     "fullscreen": "ምሉእ ስክሪን",
@@ -967,6 +1103,9 @@
     "tokenAmount": "{{amount}} ቶክንስ"
   },
   "postOptions": {
+    "embed": "ኣእቱ",
+    "copyEmbedCode": "ናይ ምእታው ኮድ ቅዳሕ",
+    "embedCodeCopied": "ናይ ምእታው ኮድ ተቐዲሑ",
     "options": "ምርጫታት",
     "sendTip": "ሽልማት ስደድ",
     "queue": "ሪጋ",
@@ -2806,6 +2945,8 @@
     "yourFractions": "ንሕና {{count}} ካብ {{total}} ክፋላት ንሕዞ"
   },
   "profileOptions": {
+    "copyRssFeed": "ናይ RSS ፊድ መላግቦ ቅዳሕ",
+    "copyRssFeedHint": "ነዞም ጽሑፋት ኣብ ዝኾነ ኣንባቢ ፊድ ተኸታተሎም",
     "copyProfileUrl": "ናይ ፕሮፋይል URL ቅዳሕ",
     "copyUsername": "ናይ ተጠቃሚ ስም ቅዳሕ",
     "copyAddress": "ኣድራሻ ቅዳሕ",
@@ -4121,6 +4262,7 @@
     "noVoice": "መሳርሒኻ ነዚ ቋንቋ ዝኸውን ድምጺ የብሉን።"
   },
   "stages": {
+    "previewFailed": "ኣብ መድረኽ ቅድመ ምርኣይ ክጻወት ኣይከኣለን ።",
     "allStages": "ኩሎም ናይ ድምጺ ክፍልታት",
     "addToCalendar": "ናብ ኣቆጣጠር ኣክል",
     "nowPlaying": "ሕጂ ድማ ክጻወት እየ ።",
@@ -4493,6 +4635,7 @@
     "anyBadgeHolder": "ሓደገኛ  \"badge holder\"  \"SuperPowers\"  ይረኽብ።  DeHub  ቶክን  ብምዕያይ  \"badge\"  ክፈትሑ —  ምዕያይ  ኣይድለይን።"
   },
   "follow": {
+    "noResults": "ኣይተረኽበን",
     "followers": "ተኸታተልቲ",
     "following": "ምኽታል",
     "requests": "ሕቶታት",
@@ -4576,7 +4719,10 @@
     "play": "ተጻወት",
     "pause": "ዕረፍቲ",
     "listens_one": "{{count}} ስማዕ",
-    "listens_other": "{{count}} ይሰምዕ"
+    "listens_other": "{{count}} ይሰምዕ",
+    "lyrics": "ግጥሚ",
+    "lyricsLoading": "ግጥሚ ይድለ ኣሎ…",
+    "lyricsNone": "ግጥሚ ኣይተረኽበን"
   },
   "transfer": {
     "arcTitle": "USDC ኣብ Arc ስደድ",
@@ -4640,7 +4786,7 @@
     "kindAudio": "ድምፂ",
     "kindImage": "ስእልታት",
     "reviewTitle": "ቅድሚ ምእታዉ ገምግም",
-    "reviewSubtitle": "ካብ {{source}} ፡ ከም {{kind}}} ። ነቲ ኦሪጅናል ንምዕቃብ ፡ ነቲ ኣርእስቲ ባዶ ግበር ።",
+    "reviewSubtitle": "ካብ {{source}} ፡ ከም {{kind}} ። ነቲ ኦሪጅናል ንምዕቃብ ፡ ነቲ ኣርእስቲ ባዶ ግበር ።",
     "reviewName": "ኣርእስቲ",
     "reviewNamePlaceholder": "ነቲ ናይ መጀመርታ ኣርእስቲ ንምሕላው ባዶ ግበር",
     "reviewDescription": "መግለጺ",
@@ -5500,6 +5646,8 @@
     "creatorEarnsDirect": "እቶም ተመዝጋቢታት ኣብ DeHub ምልክታት ይኽፈሉ እዮም ። እቲ ናይ ባጅ ደረጃኻ ናይ መድረኽ ክፍሊት ዝሕተተሉ እዋን ፡ ኣብ ቦርሳኻ ዘሎ መሬትካ ።"
   },
   "live": {
+    "bigEvent": "ዓቢ ኩነት",
+    "bigEventHint": "ንብዙሓት ተዓዘብቲ፦ ተዓዘብቲ ብ20 ካልኢት ዝኣክል ደንጕዮም ይርእዩ፣ ምቍራጽ ግን ይውሕድ።",
     "notSet": "ኣይተቐመጠን",
     "liveChat": "ቀጥታ ዕላል",
     "pickDate": "ዕለት ምረጽ",
@@ -7104,6 +7252,7 @@
       "delete": "ሰርዝ"
     },
     "export": {
+      "cancel": "ኣቋርጽ",
       "scope": "ስፍሓት ኣውጽእ",
       "downloadTimeline": "ምሉእ ግዜ",
       "downloadSelection": "ዝተመረጹ ቪድዮታት ({{count}})",
@@ -7381,6 +7530,7 @@
     }
   },
   "creator": {
+    "sending": "ልኢኽካ",
     "navStudio": "ስቱድዮ",
     "editor": "ኣርታዒ",
     "untitled": "ኣርእስቲ ዘይብሉ",
@@ -7943,6 +8093,7 @@
     "paidForPost": "{{amount}} tokens ንዚኣዚ  ጽሑፍ ተኸፊሉ።"
   },
   "emojiPicker": {
+    "tabGif": "ግሪፍ",
     "searchEmoji": "ኢሞጂ ድለ",
     "noEmoji": "ኢሞጂ ኣይተረኽበን",
     "searchResults": "ውጽኢት ምድላይ",

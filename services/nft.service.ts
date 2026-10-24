@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import i18n from "i18next";
 import { normalizeCategoryList } from "../libs/strings.util";
 import { streamInfoKeys } from "../config/constants";
 import type { PostReaction } from "../libs/reactions";
@@ -388,6 +389,10 @@ export interface PostCommentResponse { result?: any; [k: string]: any }
  */
 function assertCommentAccepted(response: any, fallback = 'Could not post comment'): void {
   if (response && typeof response === 'object' && response.result === false) {
+    // The author's reply controls refused this account
+    // (dehub-stream-backend src/reaction/reply-policy) — said in the reader's
+    // language rather than the server's English sentence.
+    if (response.code === 'REPLY_NOT_ALLOWED') throw new Error(i18n.t('replyPolicy.refused'));
     throw new Error(response.error || fallback);
   }
 }
@@ -1169,6 +1174,14 @@ export async function getShopLinkAllowance(): Promise<ShopLinkAllowance> {
 export interface EditPostInput {
   name?: string;
   description?: string;
+  /** Replace the post's alt text, one per piece of media in display order. `[]` clears it. */
+  mediaDescriptions?: string[];
+  /** Replace the content warning. `''` takes it off. */
+  spoilerText?: string;
+  /** Who may quote it from now on. Quotes already made stay. */
+  quotePolicy?: 'public' | 'followers' | 'nobody';
+  /** Who may reply from now on. Replies already made stay. */
+  replyPolicy?: 'public' | 'followers' | 'following' | 'mentioned';
   articleBody?: string;
   category?: string[];
   /** true turns replies off. Existing comments stay readable — only new ones
@@ -1216,6 +1229,14 @@ export async function editPost(tokenId: number | string, input: EditPostInput): 
     console.error('[NFTService] editPost error', e);
     throw e;
   }
+}
+
+/**
+ * Take your post back out of somebody else's quote. Only the quoted post's
+ * author may; the quote stays up and its embed of your post reads as removed.
+ */
+export async function revokeQuote(quoteTokenId: number | string): Promise<{ result: boolean }> {
+  return apiClient.post<{ result: boolean }>(`/quotes/${encodeURIComponent(String(quoteTokenId))}/revoke`, {}, { isAuthRequired: true });
 }
 
 export function getPostImageAllowance(tokenId: number | string) {

@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Verbundeni Apps",
+    "connectedDescription": "Mastodon-Apps, wo du di mit dem Konto aagmäldet häsch. Entfern eini, zum si abzmälde.",
+    "connectedEmpty": "No kei Apps verbunde.",
+    "lastUsed": "Zletscht bruucht {{date}}",
+    "remove": "Entferne",
+    "removed": "App entfernt",
+    "failed": "Das hät nöd klappt. Probier's nomal."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Lüüt uf Mastodon und andere Fediverse-Apps chönd di under dere Adrässe finde und dir folge. Dini neue öffentliche Biiträg erreiched si det.",
+    "copy": "Kopiere",
+    "copied": "Kopiert",
+    "privateNote": "Privati Konte wärded im Fediverse nöd zeigt.",
+    "noUsername": "Wähl en Benutzername, zum e Fediverse-Adrässe übercho."
+  },
+  "profileFields": {
+    "title": "Profilfälder",
+    "description": "Bis zu vier zuesätzlichi Ziile i dim Profil, wie e Websiite oder dini Pronome.",
+    "label": "Bezeichnig",
+    "content": "Inhalt",
+    "save": "Fälder speichere",
+    "saved": "Profilfälder gspeicheret",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
+    "verified": "Bestätigte Link",
+    "verifyHint": "Zum en Link bestätige, füeg das uf dere Siite ii und speicher nomal: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Benachrichtigunge filtere vo",
+    "description": "Wähl, was passiert, wenn öpper usserhalb vo dim Umfeld mit dir interagiert. Gfilteredi Benachrichtigunge warted under „Gfilteret“, ohni Zähler und ohni Push.",
+    "notFollowing": "Lüüt, dene du nöd folgsch",
+    "notFollowers": "Lüüt, wo dir nöd folged",
+    "newAccounts": "Neui Konte (jünger als 30 Täg)",
+    "accept": "Benachrichtige",
+    "filter": "Filtere",
+    "drop": "Ganz usblände",
+    "filteredTitle": "Gfilteredi Benachrichtigunge",
+    "filteredEmpty": "Nüt isch gfilteret worde.",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} folge",
+    "following": "Folg ich",
+    "unfollow": "#{{tag}} nüme folge",
+    "followed": "Du folgsch jetzt #{{tag}}. Biiträg demit erschiined i dim Folge-Feed.",
+    "unfollowed": "Du folgsch #{{tag}} nüme",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal.",
+    "clear": "Lösche"
+  },
+  "keywordFilters": {
+    "title": "Stummgschalteti Wörter",
+    "description": "Biiträg und Kommentär mit dene Wörter usblände oder hinter ere Warnig iiklappe. Nur du gsehsch die Lischte.",
+    "placeholder": "Wort oder Usdruck",
+    "add": "Stummschalte",
+    "added": "Stummgschaltet: {{phrase}}",
+    "wholeWord": "Nur ganzes Wort",
+    "whenMatches": "Wenn en Biitrag passt",
+    "warn": "Warnig zeige",
+    "hide": "Usblände",
+    "howLong": "Wie lang",
+    "forever": "Bis ich's entfern",
+    "duration1h": "Für 1 Stund",
+    "duration1d": "Für 1 Tag",
+    "duration7d": "Für 7 Täg",
+    "duration30d": "Für 30 Täg",
+    "where": "Wo",
+    "home": "Startsiite",
+    "public": "Entdecke und Sueche",
+    "profile": "Profil",
+    "thread": "Gspröch",
+    "notifications": "Benachrichtigunge",
+    "empty": "Du häsch kei Wörter stummgschaltet.",
+    "remove": "Ufhebe",
+    "until": "Bis {{date}}",
+    "filtered": "Gfilteret: {{phrase}}",
+    "showAnyway": "Trotzdem zeige",
+    "failed": "Das isch nöd gspeicheret worde. Probier's nomal."
+  },
+  "postVisibility": {
+    "label": "Wer darf das gseh",
+    "public": "Alli",
+    "followers": "Nur Follower",
+    "direct": "Nur erwähnti Lüüt",
+    "noRepost": "Nur öffentlichi Biiträg chönd wiitergeh wärde",
+    "directHint": "Nur d Lüüt, wo du mit @ erwähnsch, gsehnd dä Biitrag",
+    "needsMention": "Erwähn mindestens ei Person mit @, zum nur für erwähnti Lüüt poste"
+  },
+  "replyPolicy": {
+    "label": "Wer darf antworte",
+    "public": "Alli",
+    "followers": "Dini Follower",
+    "following": "Lüüt, wo du ne folgsch",
+    "mentioned": "Nur Erwähnti",
+    "noticeFollowers": "Nur Follower vom Autor chönd antworte",
+    "noticeFollowing": "Nur Lüüt, wo de Autor ne folgt, chönd antworte",
+    "noticeMentioned": "Nur im Biitrag erwähnti Lüüt chönd antworte",
+    "refused": "De Autor het iigschränkt, wer uf dä Biitrag antworte darf"
+  },
+  "quotePolicy": {
+    "label": "Wer darf zitiere",
+    "public": "Alli",
+    "followers": "Follower",
+    "nobody": "Nur ich",
+    "off": "De Autor het Zitat abgstellt",
+    "removed": "De Autor het sin Biitrag us dem Zitat entfernt",
+    "remove": "Entferne",
+    "removedToast": "Din Biitrag isch us dem Zitat entfernt worde",
+    "removeFailed": "Din Biitrag het nöd chöne us em Zitat entfernt werde",
+    "refused": "De Autor erlaubt dir nöd, dä Biitrag z zitiere"
+  },
+  "contentWarning": {
+    "label": "Inhaltswarnig",
+    "placeholder": "Schriib dini Warnig da",
+    "add": "Inhaltswarnig hinzuefüege",
+    "remove": "Inhaltswarnig entferne",
+    "show": "Biitrag aazeige"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Beschriibig hinzuefüege",
+    "edit": "Beschriibig bearbeite",
+    "titleImage": "Beschriib das Bild",
+    "titleVideo": "Beschriib das Video",
+    "help": "Für Lüüt, wo s nöd chönd gseh. Screenreader läsed s luut vor.",
+    "placeholder": "Was zeigt s? Schriib au de Text drin uf.",
+    "show": "Beschriibig aazeige",
+    "saved": "Beschriibig gspeicheret",
+    "saveFailed": "D Beschriibig het nöd chöne gspeicheret werde"
+  },
   "liveRecap": {
     "share": "Anteil",
     "shareText": "Ich habe gerade \"{{title}}\" auf DeHub gestreamt: {{duration}} live, {{peak}} auf dem Gipfel und {{followers}} neue Follower.",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Loht anderi Mitglieder gseh, dass du grad bytrete bisch, so dass si di chönd willkomme heisse. Endet automatisch 30 Täg noch de Aamäldig.",
     "postVisibility": "Bitrags-Sichtbarkeit",
     "defaultPostVisibility": "Standard Bitrags-Sichtbarkeit",
+    "defaultFeed": "Standard-Feed",
+    "defaultFeedDesc": "Wähle, welcher Feed sich bei jedem Öffnen von DeHub zeigt",
+    "feedToggles": "Feed-Filter zurücksetzen",
+    "feedTogglesDesc": "Filter, die du in einem Feed einschaltest, bleiben deine Standards, bis du sie zurücksetzt",
+    "feedTogglesCleared": "Feed-Filter zurückgesetzt",
     "defaultProfileTab": "Standard-Profiltab",
     "defaultProfileTabDesc": "Wähl, wele Tab Bsucher zersch uf dim Profil gseh",
     "defaultPostVisibilityDesc": "Gilt für alli aktuelli und zukünftigi Biträg",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde"
   },
   "common": {
+    "refresh": "Aktualisiere",
     "mute": "Stumm schalte",
     "unmute": "Ton iischalte",
     "fullscreen": "Vollbild",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} Tokens"
   },
   "postOptions": {
+    "embed": "Iibette",
+    "copyEmbedCode": "Iibettigscode kopiere",
+    "embedCodeCopied": "Iibettigscode kopiert",
     "options": "Optione",
     "sendTip": "Trinkgäld schicke",
     "queue": "Warteschlange",
@@ -2857,6 +2996,8 @@
     "yourFractions": "Du hesch {{count}} vo {{total}} Bruchteile"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-Feed-Link kopiere",
+    "copyRssFeedHint": "Folg dene Biiträg i jedem Feedreader",
     "copyProfileUrl": "Profil-URL kopiere",
     "copyUsername": "Benutzername kopiere",
     "copyAddress": "Adrässe kopiere",
@@ -4179,6 +4320,7 @@
     "noVoice": "Dis Grät het kei Stimm für die Sprach."
   },
   "stages": {
+    "previewFailed": "Vorschau konnte nicht auf der Bühne abgespielt werden",
     "allStages": "Alli Audio-Rüüm",
     "addToCalendar": "Zum Kalender hinzufügen",
     "nowPlaying": "Jetzt läuft",
@@ -4551,6 +4693,7 @@
     "anyBadgeHolder": "Alli Badge-Halter erhalted SuperPowers. Chauf DeHub-Tokens, zum en Badge freizschalte — Staking isch nöd nötig."
   },
   "follow": {
+    "noResults": "Keini Resultat gfunde",
     "followers": "Follower",
     "following": "Folgend",
     "requests": "Uufdrägs",
@@ -4634,7 +4777,10 @@
     "play": "Spiele",
     "pause": "Pausiere",
     "listens_one": "{{count}} höre",
-    "listens_other": "{{count}} höört"
+    "listens_other": "{{count}} höört",
+    "lyrics": "Songtext",
+    "lyricsLoading": "Songtext wird gsuecht…",
+    "lyricsNone": "Kei Songtext gfunde"
   },
   "transfer": {
     "arcTitle": "USDC uf Arc schicke",
@@ -5559,6 +5705,8 @@
     "creatorEarnsDirect": "Abonnente zahled mit DeHub Tokens. Din Anteil landet i dim Wallet, grad wenn sie abonniered, abzüglich de Plattformgebühr für din Badge-Tier."
   },
   "live": {
+    "bigEvent": "Grosse Event",
+    "bigEventHint": "Für es grosses Publikum: d Zuschauer gsehnd öppe 20 Sekunde verzögeret, defür mit weniger Unterbrüch.",
     "notSet": "Nöd festgleit",
     "liveChat": "Live-Chat",
     "pickDate": "Datum uswähle",
@@ -7173,6 +7321,7 @@
       "delete": "Lösche"
     },
     "export": {
+      "cancel": "Abbreche",
       "scope": "Download‑Bereich",
       "downloadTimeline": "Ganzä Zytlini",
       "downloadSelection": "Usgwählte Video‑Clips ({{count}})",
@@ -7452,6 +7601,7 @@
     }
   },
   "creator": {
+    "sending": "Wird gesendet",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Ohni Titel",
@@ -8012,6 +8162,7 @@
     "transferIncomplete": "Dr Token-Transfer isch nöd fertig worde. Du wirsch nomal gfrogt, bevor din nächst bezahlte Post chunt."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji sueche",
     "noEmoji": "Kei Emoji gfunde",
     "searchResults": "Suechresultat",

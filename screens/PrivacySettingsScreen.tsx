@@ -36,6 +36,7 @@ import {
 import { getAvatarUrl } from '../libs/misc';
 import { ScreenNames } from '../navigation/ScreenNames';
 import BlockedAccountsModal from '../components/Settings/BlockedAccountsModal';
+import KeywordFiltersModal from '../components/Settings/KeywordFiltersModal';
 import { getAiScrapingPreference, type AiScrapingPreference } from '../libs/ai-scraping';
 import { getShowOnline } from '../libs/online-presence';
 import GeoBlockingSection from '../components/Settings/GeoBlockingSection';
@@ -50,6 +51,7 @@ import { toastInfo } from '../libs';
 import { useNewMemberSelf } from '../hooks/useNewMembers';
 import AndroidBiometricUnlockRow from '../components/Settings/AndroidBiometricUnlockRow';
 import { DEFAULT_PROFILE_TAB, PROFILE_DEFAULT_TAB_OPTIONS, parseDefaultProfileTab, type ProfileDefaultTab } from '../libs/profile-default-tab';
+import { DISLIKES_VISIBILITY_KEY, dislikesArePublic } from '../libs/disliked-posts-store';
 
 const logger = createLogger('PrivacySettings');
 
@@ -108,6 +110,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const [defaultProfileTab, setDefaultProfileTab] = useState<ProfileDefaultTab>(DEFAULT_PROFILE_TAB);
   const [aiScraping, setAiScraping] = useState<AiScrapingPreference>('allow');
   const [showOnline, setShowOnline] = useState(false);
+  const [showDislikes, setShowDislikes] = useState(false);
 
   const [showPublicModal, setShowPublicModal] = useState(false);
   const [publicModalBusy, setPublicModalBusy] = useState(false);
@@ -129,6 +132,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
 
   // Blocked accounts (web keeps this on the Privacy tab — `BlockedUsersSection`)
   const [blockedModalVisible, setBlockedModalVisible] = useState(false);
+  const [mutedWordsVisible, setMutedWordsVisible] = useState(false);
   const blockedCount = ((user as any)?.blocklist?.blocked?.length || 0) as number;
 
   /**
@@ -168,11 +172,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       'public') as PostVisibility),
     aiScraping: getAiScrapingPreference(customs),
     showOnline: getShowOnline(customs),
+    showDislikes: dislikesArePublic(customs),
     defaultProfileTab: parseDefaultProfileTab(customs.defaultProfileTab),
   }), [user, customs]);
 
   const userKey = useMemo(() => {
-    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}|${customs.showOnline}|${customs.defaultProfileTab}`;
+    return `${(user as any)?.hideFollowers}|${(user as any)?.isPrivate}|${(user as any)?.hideBadgeAndBalance}|${customs.followVisibility}|${customs.defaultPostVisibility}|${(user as any)?.hideFollowerCounts}|${(user as any)?.showFollowersFollowing}|${(user as any)?.defaultPostVisibility}|${customs.aiScraping}|${customs.showOnline}|${customs.defaultProfileTab}|${customs[DISLIKES_VISIBILITY_KEY]}`;
   }, [user, customs]);
 
   useEffect(() => {
@@ -184,6 +189,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
     setDefaultPostVisibility(initial.defaultPostVisibility);
     setAiScraping(initial.aiScraping);
     setShowOnline(initial.showOnline);
+    setShowDislikes(initial.showDislikes);
     setDefaultProfileTab(initial.defaultProfileTab);
     if (user) setLoading(false);
   }, [userKey, saving]);
@@ -237,6 +243,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
       setDefaultPostVisibility(initial.defaultPostVisibility);
       setAiScraping(initial.aiScraping);
       setShowOnline(initial.showOnline);
+      setShowDislikes(initial.showDislikes);
       setDefaultProfileTab(initial.defaultProfileTab);
     } finally {
       setSaving(false);
@@ -295,6 +302,12 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
   const handleToggleShowOnline = useCallback((value: boolean) => {
     setShowOnline(value);
     saveSetting({}, { showOnline: value ? 'on' : 'off' });
+  }, [saveSetting]);
+
+  // Same customs key and values as web: 'public' | 'private' (absent = private).
+  const handleToggleShowDislikes = useCallback((value: boolean) => {
+    setShowDislikes(value);
+    saveSetting({}, { [DISLIKES_VISIBILITY_KEY]: value ? 'public' : 'private' });
   }, [saveSetting]);
 
   const pendingCount = (user as any)?.pendingFollowRequests || 0;
@@ -460,6 +473,22 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                     </View>
                   </View>
                   <CustomSwitch value={showOnline} onValueChange={handleToggleShowOnline} disabled={saving} />
+                </View>
+              </SettingsAnchor>
+              <SettingsAnchor id="show-dislikes">
+                <View className="px-4 py-2 flex-row items-center justify-between">
+                  <View className="flex-row items-center flex-1 pr-3">
+                    <View className="mr-3 w-5 h-5 items-center justify-center">
+                      <Icon name="ThumbsDown" size={20} color="#8B8D90" />
+                    </View>
+                    <View className="flex-1">
+                      <Text className="text-white text-base leading-5 font-medium">{t('settings.showDislikes')}</Text>
+                      <Text className="text-theme-neutrals-500 text-sm leading-5 mt-0.5">
+                        {t('settings.showDislikesDesc')}
+                      </Text>
+                    </View>
+                  </View>
+                  <CustomSwitch value={showDislikes} onValueChange={handleToggleShowDislikes} disabled={saving} />
                 </View>
               </SettingsAnchor>
 
@@ -711,6 +740,13 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
             description={blockedCount > 0 ? _copy("copy.fbd1210fffc5", { defaultValue: "{{value1}} blocked", value1: blockedCount }) : t('settings.noneBlocked')}
             onPress={() => setBlockedModalVisible(true)}
           />
+          <Divider />
+          <SettingsLinkRow
+            icon="Funnel"
+            label={t('keywordFilters.title')}
+            description={t('keywordFilters.description')}
+            onPress={() => setMutedWordsVisible(true)}
+          />
         </SettingsSection>
 
         {/* Your data — web's Extract Data row. */}
@@ -734,6 +770,8 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
         visible={blockedModalVisible}
         onClose={() => setBlockedModalVisible(false)}
       />
+
+      <KeywordFiltersModal visible={mutedWordsVisible} onClose={() => setMutedWordsVisible(false)} />
 
       {/* Go Public confirmation modal */}
       <GlassModal

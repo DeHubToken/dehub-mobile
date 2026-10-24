@@ -22,6 +22,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { ARCADE_GAMES, type ArcadeGame } from "../config/arcade-games";
 import { WEBSITE_LINK } from "../config/links";
 import { colors } from "../theme/colors";
+import { useAppTheme } from '../context/ThemeContext';
 
 const GameCard = ({
   game,
@@ -33,15 +34,18 @@ const GameCard = ({
   onPress: (slug: string) => void;
   onPlayOnline?: () => void;
   playOnlineLabel?: string;
-}) => (
+}) => {
+  const { theme } = useAppTheme();
+  const glass = theme === 'glass';
+  return (
   <PageSection flush>
   <Pressable
     accessibilityRole="button"
     accessibilityLabel={game.title}
     onPress={() => onPress(game.slug)}
-    style={({ pressed }) => [pressed && styles.cardPressed]}
+    style={({ pressed }) => [glass && { padding: 10 }, pressed && styles.cardPressed]}
   >
-    <View style={styles.artWrap}>
+    <View style={[styles.artWrap, glass && { borderRadius: 18, overflow: 'hidden', backgroundColor: 'rgba(0,16,23,.3)' }]}>
       <Image
         source={game.brand ?? { uri: game.art }}
         accessibilityLabel={game.brand ? game.title : game.artAlt}
@@ -63,9 +67,9 @@ const GameCard = ({
 
     <View style={styles.cardBody}>
       <Text style={styles.description}>{game.description}</Text>
-      <View style={styles.playButton}>
-        <Icon name="Play" size={13} color={colors.accentForeground} />
-        <Text style={styles.playLabel}>{game.action}</Text>
+      <View style={[styles.playButton, glass && { backgroundColor: 'rgba(220,255,255,.07)', borderWidth: 1, borderColor: 'rgba(220,255,255,.22)', borderRadius: 14 }]}>
+        <Icon name="Play" size={13} color={glass ? '#efffff' : colors.accentForeground} />
+        <Text style={[styles.playLabel, glass && { color: '#efffff' }]}>{game.action}</Text>
       </View>
       {onPlayOnline ? (
         <Pressable
@@ -81,6 +85,7 @@ const GameCard = ({
   </Pressable>
   </PageSection>
 );
+};
 
 const ArcadeScreen = () => {
   const navigation = useNavigation<any>();

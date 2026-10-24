@@ -23,6 +23,7 @@ export function createVisualActivity() {
     subscribe: (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; },
     isVisualActive: () => foreground && focused && settled && !callCovered,
     isForeground: () => foreground && focused,
+    isAppForeground: () => foreground,
     isCallBusy: () => callBusy,
     // Native sheets move Android window focus without hiding their owning feed.
     isFeedSurfaceActive: () => foreground && !callBusy,

@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Apps connectades",
+    "connectedDescription": "Apps de Mastodon on has iniciat la sessió amb aquest compte. Treu-ne una per tancar-hi la sessió.",
+    "connectedEmpty": "Encara no hi ha cap app connectada.",
+    "lastUsed": "Últim ús {{date}}",
+    "remove": "Treu",
+    "removed": "App treta",
+    "failed": "No ha funcionat. Torna-ho a provar."
+  },
+  "fediverse": {
+    "title": "Fedivers",
+    "description": "La gent de Mastodon i d'altres apps del fedivers et pot trobar i seguir en aquesta adreça. Les teves noves publicacions públiques els arriben allà.",
+    "copy": "Copia",
+    "copied": "Copiat",
+    "privateNote": "Els comptes privats no es mostren al fedivers.",
+    "noUsername": "Tria un nom d'usuari per tenir una adreça al fedivers."
+  },
+  "profileFields": {
+    "title": "Camps del perfil",
+    "description": "Fins a quatre línies més al teu perfil, com un lloc web o els teus pronoms.",
+    "label": "Etiqueta",
+    "content": "Contingut",
+    "save": "Desa els camps",
+    "saved": "S'han desat els camps del perfil",
+    "failed": "No s'ha desat. Torna-ho a provar.",
+    "verified": "Enllaç verificat",
+    "verifyHint": "Per verificar un enllaç, afegeix això a aquella pàgina i desa de nou: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtra les notificacions de",
+    "description": "Tria què passa quan algú de fora del teu cercle interactua amb tu. Les notificacions filtrades esperen a Filtrades, sense indicador ni avís push.",
+    "notFollowing": "Gent que no segueixes",
+    "notFollowers": "Gent que no et segueix",
+    "newAccounts": "Comptes nous (menys de 30 dies)",
+    "accept": "Avisa'm",
+    "filter": "Filtra",
+    "drop": "Amaga del tot",
+    "filteredTitle": "Notificacions filtrades",
+    "filteredEmpty": "No s'ha filtrat res.",
+    "failed": "No s'ha desat. Torna-ho a provar."
+  },
+  "followedTags": {
+    "follow": "Segueix #{{tag}}",
+    "following": "Seguint",
+    "unfollow": "Deixa de seguir #{{tag}}",
+    "followed": "Ara segueixes #{{tag}}. Les seves publicacions sortiran al teu feed de Seguint.",
+    "unfollowed": "Has deixat de seguir #{{tag}}",
+    "failed": "No s'ha desat. Torna-ho a provar.",
+    "clear": "Esborra"
+  },
+  "keywordFilters": {
+    "title": "Paraules silenciades",
+    "description": "Amaga les publicacions i els comentaris que continguin aquestes paraules, o plega'ls darrere d'un avís. Només tu veus aquesta llista.",
+    "placeholder": "Paraula o frase",
+    "add": "Silencia",
+    "added": "Silenciat: {{phrase}}",
+    "wholeWord": "Només la paraula sencera",
+    "whenMatches": "Quan una publicació coincideix",
+    "warn": "Mostra un avís",
+    "hide": "Amaga-la",
+    "howLong": "Quant de temps",
+    "forever": "Fins que la tregui",
+    "duration1h": "Durant 1 hora",
+    "duration1d": "Durant 1 dia",
+    "duration7d": "Durant 7 dies",
+    "duration30d": "Durant 30 dies",
+    "where": "On",
+    "home": "Inici",
+    "public": "Explora i cerca",
+    "profile": "Perfils",
+    "thread": "Converses",
+    "notifications": "Notificacions",
+    "empty": "No has silenciat cap paraula.",
+    "remove": "Deixa de silenciar",
+    "until": "Fins al {{date}}",
+    "filtered": "Filtrat: {{phrase}}",
+    "showAnyway": "Mostra igualment",
+    "failed": "No s'ha desat. Torna-ho a provar."
+  },
+  "postVisibility": {
+    "label": "Qui pot veure això",
+    "public": "Tothom",
+    "followers": "Només seguidors",
+    "direct": "Només persones esmentades",
+    "noRepost": "Només es poden republicar les publicacions públiques",
+    "directHint": "Només les persones que esmentis amb @ veuran aquesta publicació",
+    "needsMention": "Esmenta almenys una persona amb @ per publicar només per a les persones esmentades"
+  },
+  "replyPolicy": {
+    "label": "Qui pot respondre",
+    "public": "Qualsevol",
+    "followers": "Els teus seguidors",
+    "following": "Gent que segueixes",
+    "mentioned": "Només mencionats",
+    "noticeFollowers": "Només els seguidors de l'autor poden respondre",
+    "noticeFollowing": "Només la gent que segueix l'autor pot respondre",
+    "noticeMentioned": "Només la gent mencionada a la publicació pot respondre",
+    "refused": "L'autor ha limitat qui pot respondre a aquesta publicació"
+  },
+  "quotePolicy": {
+    "label": "Qui pot citar",
+    "public": "Qualsevol",
+    "followers": "Seguidors",
+    "nobody": "Només jo",
+    "off": "L'autor ha desactivat les cites",
+    "removed": "L'autor ha retirat la seva publicació d'aquesta cita",
+    "remove": "Treu",
+    "removedToast": "La teva publicació s'ha retirat d'aquesta cita",
+    "removeFailed": "No s'ha pogut retirar la teva publicació de la cita",
+    "refused": "L'autor no et permet citar aquesta publicació"
+  },
+  "contentWarning": {
+    "label": "Avís de contingut",
+    "placeholder": "Escriu l'avís aquí",
+    "add": "Afegeix un avís de contingut",
+    "remove": "Treu l'avís de contingut",
+    "show": "Mostra la publicació"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Afegeix una descripció",
+    "edit": "Edita la descripció",
+    "titleImage": "Descriu aquesta imatge",
+    "titleVideo": "Descriu aquest vídeo",
+    "help": "Per a les persones que no la poden veure. Els lectors de pantalla la llegeixen en veu alta.",
+    "placeholder": "Què mostra? Inclou qualsevol text que hi aparegui.",
+    "show": "Mostra la descripció",
+    "saved": "Descripció desada",
+    "saveFailed": "No s'ha pogut desar la descripció"
+  },
   "liveRecap": {
     "title": "Resum de la transmissió",
     "justEnded": "Resum de la teva transmissió",
@@ -219,6 +349,8 @@
     "postCount_other": "{{count}} publicacions"
   },
   "settings": {
+    "showDislikesDesc": "Qualsevol pot obrir la pestanya «No m'agrada» del teu perfil. Si està desactivat, només tu la pots veure.",
+    "showDislikes": "Mostra a tothom els meus «no m'agrada»",
     "postingChain": "Cadena de blocs de les publicacions",
     "showOnline": "Mostra quan estic en línia",
     "showOnlineDesc": "Les persones a les quals enviïs missatges veuen un punt verd al costat del teu nom mentre utilitzes DeHub",
@@ -334,6 +466,11 @@
     "showAsNewMemberDesc": "Permet que altres membres vegin que acabes d'arribar per donar-te la benvinguda. Acaba automàticament 30 dies després de registrar-te.",
     "postVisibility": "Visibilitat de publicacions",
     "defaultPostVisibility": "Visibilitat per defecte",
+    "defaultFeed": "Feed predeterminat",
+    "defaultFeedDesc": "Tria quin feed s'obre cada vegada que obres DeHub",
+    "feedToggles": "Restableix els filtres del feed",
+    "feedTogglesDesc": "Els filtres que activis en un feed es mantenen com a predeterminats fins que els restableixis",
+    "feedTogglesCleared": "Filtres del feed restablerts",
     "defaultProfileTab": "Pestanya de perfil per defecte",
     "defaultProfileTabDesc": "Tria quina pestanya veuen primer els visitants al teu perfil",
     "defaultPostVisibilityDesc": "S'aplica a totes les publicacions actuals i futures",
@@ -862,6 +999,7 @@
     "themeColorBrandFailed": "No s'han pogut llegir els colors de la teva foto de perfil"
   },
   "common": {
+    "refresh": "Actualitzar",
     "mute": "Silencia",
     "unmute": "Activa el so",
     "fullscreen": "Pantalla completa",
@@ -975,6 +1113,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Insereix",
+    "copyEmbedCode": "Copia el codi d'inserció",
+    "embedCodeCopied": "Codi d'inserció copiat",
     "options": "Opcions",
     "sendTip": "Enviar propina",
     "queue": "Cua",
@@ -1925,6 +2066,12 @@
     "returnHome": "Tornar a l'inici"
   },
   "profile": {
+    "dislikesPrivateDesc": "Aquest compte es guarda els seus «no m'agrada».",
+    "dislikesPrivateTitle": "Els «no m'agrada» són privats",
+    "dislikesEmptyOther": "Encara res.",
+    "dislikesEmptyOwn": "Les publicacions que no t'agraden surten dels teus feeds i apareixen aquí. Desfés el «no m'agrada» per recuperar la publicació.",
+    "dislikesEmptyTitle": "Encara cap «no m'agrada»",
+    "tabDislikes": "No m'agrada",
     "replyThread": {
       "postUnavailable": "Aquesta publicació no està disponible",
       "commentUnavailable": "Aquest comentari ja no està disponible"
@@ -2827,6 +2974,8 @@
     "yourFractions": "Tens {{count}} de {{total}} fraccions"
   },
   "profileOptions": {
+    "copyRssFeed": "Copia l'enllaç del canal RSS",
+    "copyRssFeedHint": "Segueix aquestes publicacions en qualsevol lector de canals",
     "copyProfileUrl": "Copia l'URL del perfil",
     "copyUsername": "Copia el nom d'usuari",
     "copyAddress": "Copia l'adreça",
@@ -4150,6 +4299,7 @@
     "noVoice": "El teu dispositiu no té cap veu per a aquest idioma."
   },
   "stages": {
+    "previewFailed": "No s'ha pogut reproduir la vista prèvia a la sala d'àudio",
     "allStages": "Totes les sales d'àudio",
     "addToCalendar": "Afegeix al calendari",
     "nowPlaying": "Reproduint-se ara",
@@ -4522,6 +4672,7 @@
     "anyBadgeHolder": "Qualsevol posseïdor d'insígnia obté Superpoders. Compra tokens DeHub per desbloquejar una insígnia: no cal fer staking."
   },
   "follow": {
+    "noResults": "No s'han trobat resultats",
     "followers": "Seguidors",
     "following": "Seguint",
     "requests": "Sol·licituds",
@@ -4605,7 +4756,10 @@
     "play": "Jugar",
     "pause": "Pausa",
     "listens_one": "{{count}} escolta",
-    "listens_other": "{{count}} escolta"
+    "listens_other": "{{count}} escolta",
+    "lyrics": "Lletra",
+    "lyricsLoading": "Cercant la lletra…",
+    "lyricsNone": "No s'ha trobat la lletra"
   },
   "transfer": {
     "arcTitle": "Envia USDC a Arc",
@@ -5531,6 +5685,8 @@
     "creatorEarnsDirect": "Els subscriptors paguen amb fitxes DeHub. La teva participació arribarà a la teva cartera en el moment en què es subscriguin, menys la tarifa de la plataforma per al teu nivell d'distintiu."
   },
   "live": {
+    "bigEvent": "Gran esdeveniment",
+    "bigEventHint": "Per a grans audiències: els espectadors ho veuen uns 20 segons endarrere, amb menys interrupcions.",
     "notSet": "Sense definir",
     "liveChat": "Xat en directe",
     "pickDate": "Tria la data",
@@ -7146,6 +7302,7 @@
       "delete": "Elimina"
     },
     "export": {
+      "cancel": "Cancel·la",
       "scope": "Interval de descàrregues",
       "downloadTimeline": "Cronologia sencera",
       "downloadSelection": "Clips de vídeo seleccionats ({{count}})",
@@ -7425,6 +7582,7 @@
     }
   },
   "creator": {
+    "sending": "Enviant",
     "navStudio": "Estudi",
     "editor": "Editor",
     "untitled": "Sense títol",
@@ -7991,6 +8149,7 @@
     "transferIncomplete": "La transferència del token no s'ha completat. Se't demanarà de nou abans de la teva propera publicació de pagament."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Cerca emojis",
     "noEmoji": "No s'han trobat emojis",
     "searchResults": "Resultats de la cerca",
@@ -9652,5 +9811,15 @@
     "youAreBanned": "No pots xatejar en els streams d'aquest creador",
     "youAreTimedOut": "Estàs desconnegit per un moment",
     "title": "Modera"
+  },
+  "loginStack": {
+    "tip": "Propina en DHB",
+    "headlineTop": "Ho tindràs tot",
+    "headlineAccent": "i seràs feliç.",
+    "orContinueWith": "o continua amb",
+    "phone": "Telèfon",
+    "fingerprint": "Empremta",
+    "exploreFirst": "Explora primer",
+    "codeNote": "T'enviem un codi per correu, sense contrasenya."
   }
 }

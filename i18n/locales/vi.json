@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ứng dụng đã kết nối",
+    "connectedDescription": "Các ứng dụng Mastodon bạn đã đăng nhập bằng tài khoản này. Gỡ một ứng dụng để đăng xuất khỏi nó.",
+    "connectedEmpty": "Chưa có ứng dụng nào được kết nối.",
+    "lastUsed": "Dùng lần cuối {{date}}",
+    "remove": "Gỡ",
+    "removed": "Đã gỡ ứng dụng",
+    "failed": "Không được. Hãy thử lại."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mọi người trên Mastodon và các ứng dụng fediverse khác có thể tìm và theo dõi bạn ở địa chỉ này. Bài đăng công khai mới của bạn sẽ đến với họ ở đó.",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép",
+    "privateNote": "Tài khoản riêng tư không hiển thị trên fediverse.",
+    "noUsername": "Hãy chọn tên người dùng để có địa chỉ fediverse."
+  },
+  "profileFields": {
+    "title": "Trường hồ sơ",
+    "description": "Tối đa bốn dòng thêm trên hồ sơ của bạn, như trang web hoặc đại từ nhân xưng.",
+    "label": "Nhãn",
+    "content": "Nội dung",
+    "save": "Lưu các trường",
+    "saved": "Đã lưu các trường hồ sơ",
+    "failed": "Chưa lưu được. Hãy thử lại.",
+    "verified": "Liên kết đã xác minh",
+    "verifyHint": "Để xác minh liên kết, hãy thêm đoạn này vào trang đó rồi lưu lại: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Lọc thông báo từ",
+    "description": "Chọn điều sẽ xảy ra khi ai đó ngoài vòng của bạn tương tác với bạn. Thông báo đã lọc nằm trong mục Đã lọc, không có huy hiệu và không đẩy thông báo.",
+    "notFollowing": "Người bạn không theo dõi",
+    "notFollowers": "Người không theo dõi bạn",
+    "newAccounts": "Tài khoản mới (dưới 30 ngày)",
+    "accept": "Báo cho tôi",
+    "filter": "Lọc",
+    "drop": "Ẩn hoàn toàn",
+    "filteredTitle": "Thông báo đã lọc",
+    "filteredEmpty": "Chưa có gì bị lọc.",
+    "failed": "Chưa lưu được. Hãy thử lại."
+  },
+  "followedTags": {
+    "follow": "Theo dõi #{{tag}}",
+    "following": "Đang theo dõi",
+    "unfollow": "Bỏ theo dõi #{{tag}}",
+    "followed": "Bạn đang theo dõi #{{tag}}. Bài đăng của thẻ này sẽ hiện trong bảng tin Đang theo dõi.",
+    "unfollowed": "Đã bỏ theo dõi #{{tag}}",
+    "failed": "Chưa lưu được. Hãy thử lại.",
+    "clear": "Xóa"
+  },
+  "keywordFilters": {
+    "title": "Từ đã tắt tiếng",
+    "description": "Ẩn bài đăng và bình luận chứa những từ này, hoặc gập chúng sau một cảnh báo. Chỉ bạn thấy danh sách này.",
+    "placeholder": "Từ hoặc cụm từ",
+    "add": "Tắt tiếng",
+    "added": "Đã tắt tiếng: {{phrase}}",
+    "wholeWord": "Chỉ nguyên từ",
+    "whenMatches": "Khi bài đăng khớp",
+    "warn": "Hiện cảnh báo",
+    "hide": "Ẩn đi",
+    "howLong": "Trong bao lâu",
+    "forever": "Cho đến khi tôi xóa",
+    "duration1h": "Trong 1 giờ",
+    "duration1d": "Trong 1 ngày",
+    "duration7d": "Trong 7 ngày",
+    "duration30d": "Trong 30 ngày",
+    "where": "Ở đâu",
+    "home": "Trang chủ",
+    "public": "Khám phá và tìm kiếm",
+    "profile": "Hồ sơ",
+    "thread": "Cuộc trò chuyện",
+    "notifications": "Thông báo",
+    "empty": "Bạn chưa tắt tiếng từ nào.",
+    "remove": "Bật tiếng",
+    "until": "Đến {{date}}",
+    "filtered": "Đã lọc: {{phrase}}",
+    "showAnyway": "Vẫn hiện",
+    "failed": "Chưa lưu được. Hãy thử lại."
+  },
+  "postVisibility": {
+    "label": "Ai có thể xem",
+    "public": "Mọi người",
+    "followers": "Chỉ người theo dõi",
+    "direct": "Chỉ người được nhắc đến",
+    "noRepost": "Chỉ bài đăng công khai mới đăng lại được",
+    "directHint": "Chỉ những người bạn nhắc đến bằng @ mới thấy bài đăng này",
+    "needsMention": "Nhắc đến ít nhất một người bằng @ để chỉ đăng cho những người được nhắc đến"
+  },
+  "replyPolicy": {
+    "label": "Ai có thể trả lời",
+    "public": "Mọi người",
+    "followers": "Người theo dõi bạn",
+    "following": "Người bạn theo dõi",
+    "mentioned": "Chỉ người được nhắc đến",
+    "noticeFollowers": "Chỉ người theo dõi tác giả mới có thể trả lời",
+    "noticeFollowing": "Chỉ người được tác giả theo dõi mới có thể trả lời",
+    "noticeMentioned": "Chỉ người được nhắc đến trong bài mới có thể trả lời",
+    "refused": "Tác giả đã giới hạn người có thể trả lời bài đăng này"
+  },
+  "quotePolicy": {
+    "label": "Ai có thể trích dẫn",
+    "public": "Mọi người",
+    "followers": "Người theo dõi",
+    "nobody": "Chỉ mình tôi",
+    "off": "Tác giả đã tắt trích dẫn",
+    "removed": "Tác giả đã gỡ bài đăng của họ khỏi trích dẫn này",
+    "remove": "Gỡ",
+    "removedToast": "Bài đăng của bạn đã được gỡ khỏi trích dẫn này",
+    "removeFailed": "Không thể gỡ bài đăng của bạn khỏi trích dẫn",
+    "refused": "Tác giả không cho phép bạn trích dẫn bài đăng này"
+  },
+  "contentWarning": {
+    "label": "Cảnh báo nội dung",
+    "placeholder": "Viết cảnh báo của bạn ở đây",
+    "add": "Thêm cảnh báo nội dung",
+    "remove": "Xóa cảnh báo nội dung",
+    "show": "Hiện bài đăng"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Thêm mô tả",
+    "edit": "Sửa mô tả",
+    "titleImage": "Mô tả hình ảnh này",
+    "titleVideo": "Mô tả video này",
+    "help": "Dành cho người không thể nhìn thấy. Trình đọc màn hình sẽ đọc to nội dung này.",
+    "placeholder": "Nó hiển thị gì? Ghi cả chữ có trong đó.",
+    "show": "Hiện mô tả",
+    "saved": "Đã lưu mô tả",
+    "saveFailed": "Không thể lưu mô tả"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} thắng",
     "title": "Tóm tắt luồng",
@@ -219,6 +349,8 @@
     "postCount_other": "{{count}} bài đăng"
   },
   "settings": {
+    "showDislikesDesc": "Ai cũng có thể mở tab Không thích trên hồ sơ của bạn. Khi tắt, chỉ bạn xem được.",
+    "showDislikes": "Hiển thị lượt không thích của tôi cho mọi người",
     "postingChain": "Chuỗi khối đăng bài",
     "showOnline": "Hiển thị khi tôi trực tuyến",
     "showOnlineDesc": "Những người bạn nhắn tin thấy một dấu chấm màu xanh lá cây bên cạnh tên của bạn trong khi bạn đang sử dụng DeHub",
@@ -334,6 +466,11 @@
     "showAsNewMemberDesc": "Cho các thành viên khác thấy bạn vừa tham gia để họ chào đón bạn. Tự kết thúc sau 30 ngày kể từ khi đăng ký.",
     "postVisibility": "Chế độ hiển thị bài viết",
     "defaultPostVisibility": "Chế độ hiển thị mặc định",
+    "defaultFeed": "Bảng tin mặc định",
+    "defaultFeedDesc": "Chọn bảng tin mở ra mỗi khi bạn mở DeHub",
+    "feedToggles": "Đặt lại bộ lọc bảng tin",
+    "feedTogglesDesc": "Bộ lọc bạn bật trong bảng tin sẽ là mặc định cho đến khi bạn đặt lại",
+    "feedTogglesCleared": "Đã đặt lại bộ lọc bảng tin",
     "defaultProfileTab": "Tab hồ sơ mặc định",
     "defaultProfileTabDesc": "Chọn tab mà khách xem đầu tiên trên hồ sơ của bạn",
     "defaultPostVisibilityDesc": "Áp dụng cho mọi bài viết hiện tại và sau này",
@@ -861,6 +998,7 @@
     "themeColorBrandFailed": "Không đọc được màu từ ảnh đại diện của bạn"
   },
   "common": {
+    "refresh": "Làm mới",
     "mute": "Tắt tiếng",
     "unmute": "Bật tiếng",
     "fullscreen": "Toàn màn hình",
@@ -989,6 +1127,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Nhúng",
+    "copyEmbedCode": "Sao chép mã nhúng",
+    "embedCodeCopied": "Đã sao chép mã nhúng",
     "options": "Tuỳ chọn",
     "sendTip": "Gửi tiền thưởng",
     "queue": "Hàng chờ",
@@ -1939,6 +2080,12 @@
     "returnHome": "Trở về Trang chủ"
   },
   "profile": {
+    "dislikesPrivateDesc": "Tài khoản này giữ kín lượt không thích.",
+    "dislikesPrivateTitle": "Lượt không thích là riêng tư",
+    "dislikesEmptyOther": "Chưa có gì.",
+    "dislikesEmptyOwn": "Bài bạn không thích sẽ rời khỏi bảng tin và hiện ở đây. Hủy không thích để đưa bài trở lại.",
+    "dislikesEmptyTitle": "Chưa có lượt không thích",
+    "tabDislikes": "Không thích",
     "replyThread": {
       "postUnavailable": "Bài đăng này không khả dụng",
       "commentUnavailable": "Bình luận này không còn khả dụng"
@@ -2841,6 +2988,8 @@
     "yourFractions": "Bạn nắm giữ {{count}}/{{total}} phần sở hữu"
   },
   "profileOptions": {
+    "copyRssFeed": "Sao chép liên kết nguồn cấp RSS",
+    "copyRssFeedHint": "Theo dõi các bài đăng này trên bất kỳ trình đọc nguồn cấp nào",
     "copyProfileUrl": "Sao chép URL hồ sơ",
     "copyUsername": "Sao chép tên người dùng",
     "copyAddress": "Sao chép địa chỉ",
@@ -4164,6 +4313,7 @@
     "noVoice": "Thiết bị của bạn không có giọng đọc cho ngôn ngữ này."
   },
   "stages": {
+    "previewFailed": "Không thể phát bản nghe thử trong phòng âm thanh",
     "allStages": "Tất cả phòng âm thanh",
     "addToCalendar": "Thêm vào lịch",
     "nowPlaying": "Đang phát",
@@ -4536,6 +4686,7 @@
     "anyBadgeHolder": "Bất kỳ người giữ huy hiệu nào cũng nhận được Siêu năng lực. Mua token DeHub để mở khóa huy hiệu — không yêu cầu đặt cọc."
   },
   "follow": {
+    "noResults": "Không tìm thấy kết quả nào",
     "followers": "Người theo dõi",
     "following": "Đang theo dõi",
     "requests": "Yêu cầu",
@@ -4619,7 +4770,10 @@
     "play": "Phát",
     "pause": "Tạm dừng",
     "listens_one": "{{count}} lượt nghe",
-    "listens_other": "{{count}} lượt nghe"
+    "listens_other": "{{count}} lượt nghe",
+    "lyrics": "Lời bài hát",
+    "lyricsLoading": "Đang tìm lời bài hát…",
+    "lyricsNone": "Không tìm thấy lời"
   },
   "transfer": {
     "arcTitle": "Gửi USDC trên Arc",
@@ -5579,6 +5733,8 @@
     "creatorEarnsDirect": "Người đăng ký thanh toán bằng mã thông báo DeHub. Cổ phần của bạn nằm trong ví của bạn ngay khi họ đăng ký, trừ đi phí nền tảng cho cấp độ huy hiệu của bạn."
   },
   "live": {
+    "bigEvent": "Sự kiện lớn",
+    "bigEventHint": "Dành cho lượng người xem lớn: người xem sẽ xem chậm khoảng 20 giây nhưng ít bị gián đoạn hơn.",
     "notSet": "Chưa đặt",
     "liveChat": "Trò chuyện trực tiếp",
     "pickDate": "Chọn ngày",
@@ -7268,6 +7424,7 @@
       "delete": "Xóa"
     },
     "export": {
+      "cancel": "Hủy",
       "scope": "Phạm vi tải xuống",
       "downloadTimeline": "Toàn bộ dòng thời gian",
       "downloadSelection": "Các video clip đã chọn ({{count}})",
@@ -7547,6 +7704,7 @@
     }
   },
   "creator": {
+    "sending": "Đang gửi",
     "navStudio": "Studio",
     "editor": "Biên tập viên",
     "untitled": "Không có tiêu đề",
@@ -8113,6 +8271,7 @@
     "transferIncomplete": "Việc chuyển mã thông báo chưa hoàn tất. Bạn sẽ được hỏi lại trước bài đăng trả phí tiếp theo."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Tìm emoji",
     "noEmoji": "Không tìm thấy emoji",
     "searchResults": "Kết quả tìm kiếm",
@@ -9743,5 +9902,15 @@
     "youAreBanned": "Bạn không thể chat trong các stream của người tạo nội dung này.",
     "youAreTimedOut": "Bạn đang bị time out một lúc.",
     "title": "Quản lý"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Bạn sẽ sở hữu mọi thứ",
+    "headlineAccent": "và hạnh phúc.",
+    "orContinueWith": "hoặc tiếp tục với",
+    "phone": "Điện thoại",
+    "fingerprint": "Vân tay",
+    "exploreFirst": "Khám phá trước",
+    "codeNote": "Chúng tôi gửi mã qua email, không cần mật khẩu."
   }
 }

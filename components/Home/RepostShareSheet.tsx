@@ -8,6 +8,9 @@ import Icon from "../ui/Icon";
 import type { IconName } from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { useAppTheme } from "../../context/ThemeContext";
+import { copyToClipboard } from "../../libs/clipboard.utils";
+import { toastSuccess } from "../../libs/toast";
+import { postEmbedCode } from "../../libs/embed-code";
 
 const TEXT = "#F4F4F5";
 const MUTED = "#9A9AA2";
@@ -25,6 +28,10 @@ export interface RepostShareSheetProps {
   onRepost: () => void;
   onUndoRepost: () => void;
   onQuote: () => void;
+  /** False when the author lets nobody else quote this post: the tile stays, disabled, saying so. */
+  canQuote?: boolean;
+  /** False for a followers-only or direct post: the Repost tile stays, disabled, saying why. */
+  canRepost?: boolean;
   onCopyLink: () => void;
   /** The post's public link, for the share targets. */
   shareUrl: string;
@@ -35,6 +42,8 @@ export interface RepostShareSheetProps {
   /** Omit both to leave out the who-quoted / who-reposted lists (a governance proposal has none). */
   onViewQuotes?: () => void;
   onViewReposts?: () => void;
+  /** The post to offer embed code for; omit to leave the Embed target out. */
+  embedTokenId?: string | number;
 }
 
 /** Share targets that take a link in their URL; each falls back to its web page. */
@@ -74,6 +83,8 @@ function RepostShareSheetComponent({
   onRepost,
   onUndoRepost,
   onQuote,
+  canQuote = true,
+  canRepost = true,
   onCopyLink,
   shareUrl,
   shareText,
@@ -81,6 +92,7 @@ function RepostShareSheetComponent({
   repostCount,
   onViewQuotes,
   onViewReposts,
+  embedTokenId,
 }: RepostShareSheetProps) {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
@@ -117,27 +129,31 @@ function RepostShareSheetComponent({
               else onRepost();
               onClose();
             }}
+            disabled={!isReposted && !canRepost}
             accessibilityRole="button"
+            accessibilityState={{ disabled: !isReposted && !canRepost }}
             accessibilityLabel={isReposted ? t("feedCard.undoRepost") : t("feedCard.repost")}
-            style={[styles.bigTile, { borderRadius: radius }]}
+            style={[styles.bigTile, { borderRadius: radius }, !isReposted && !canRepost && { opacity: 0.45 }]}
           >
             <View style={styles.tileHead}>
               <Icon name="Repeat2" size={20} color={TEXT} strokeWidth={isReposted ? 2.6 : 2} />
               <Text style={styles.tileTitle}>{isReposted ? t("feedCard.undoRepost") : t("feedCard.repost")}</Text>
             </View>
-            <Text style={styles.tileHint}>{t("feedCard.repostHint")}</Text>
+            <Text style={styles.tileHint}>{isReposted || canRepost ? t("feedCard.repostHint") : t("postVisibility.noRepost")}</Text>
           </Pressable>
           <Pressable
             onPress={() => later(onQuote)}
+            disabled={!canQuote}
             accessibilityRole="button"
+            accessibilityState={{ disabled: !canQuote }}
             accessibilityLabel={t("transcript.quote")}
-            style={[styles.bigTile, { borderRadius: radius }]}
+            style={[styles.bigTile, { borderRadius: radius }, !canQuote && { opacity: 0.45 }]}
           >
             <View style={styles.tileHead}>
               <Icon name="Quote" size={20} color={TEXT} />
               <Text style={styles.tileTitle}>{t("transcript.quote")}</Text>
             </View>
-            <Text style={styles.tileHint}>{t("feedCard.quoteHint")}</Text>
+            <Text style={styles.tileHint}>{canQuote ? t("feedCard.quoteHint") : canRepost ? t("quotePolicy.off") : t("postVisibility.noRepost")}</Text>
           </Pressable>
         </View>
 
@@ -155,6 +171,19 @@ function RepostShareSheetComponent({
           <ShareTarget glyph="𝕏" label={BRAND_X} radius={radius} onPress={() => openTarget("x")} />
           <ShareTarget icon="Send" label={t("careers.telegram")} radius={radius} onPress={() => openTarget("telegram")} />
           <ShareTarget icon="MessageCircle" label={BRAND_WHATSAPP} radius={radius} onPress={() => openTarget("whatsapp")} />
+          {embedTokenId != null && (
+            <ShareTarget
+              glyph="</>"
+              label={t("postOptions.embed")}
+              radius={radius}
+              onPress={() => {
+                copyToClipboard(postEmbedCode(embedTokenId));
+                toastSuccess(t("postOptions.embedCodeCopied"));
+                track("share", { kind: "post", channel: "embed", has_ref: false });
+                onClose();
+              }}
+            />
+          )}
           <ShareTarget icon="Ellipsis" label={t("feedCard.moreShare")} radius={radius} onPress={nativeShare} />
         </View>
 
