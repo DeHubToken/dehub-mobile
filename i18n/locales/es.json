@@ -2347,7 +2347,6 @@
     "mostListened": "Más escuchados",
     "recentStages": "Recientes",
     "noStages": "Aún no hay Stages aquí",
-    "listening": "escuchando",
     "mostLiked": "Con más me gusta",
     "mostRecent": "Más recientes",
     "chartOrder": "Orden de la lista de audio",
@@ -2361,7 +2360,7 @@
     "trendingWeek": "Tendencia esta semana",
     "newest": "Más nuevos",
     "videoChartOrder": "Orden de la lista de videos musicales",
-    "viewsCount": "{{views}} vistas"
+    "viewsCount_other": "{{views}} vistas"
   },
   "notFound": {
     "title": "Página no encontrada",
@@ -3099,6 +3098,14 @@
     "legal": "Los sorteos son promocionales y están abiertos a los titulares de cuentas de DeHub mayores de 18 años, nulos donde la ley local los prohíba. El personal de DeHub, los contratistas y sus hogares no son elegibles. Los premios no son canjeables por dinero en efectivo a menos que se indique lo contrario, y el anuncio de cada sorteo lleva sus términos completos."
   },
   "dao": {
+    "status": {
+      "rejected": "Rechazado",
+      "open": "Abierto",
+      "expired": "Vencido",
+      "completed": "Completado",
+      "cancelled": "Cancelado",
+      "accepted": "Aceptado"
+    },
     "votingPowerNote": "La votación dura 7 días. El poder de voto es la contribución acumulada de tokens de cada contribuyente cuando se abre esta propuesta. Al menos el 10% debe participar y Aceptar debe superar Rechazar.",
     "votingClosed": "Votación cerrada",
     "voteWithdrawn": "Voto retirado",
@@ -4157,12 +4164,6 @@
       "clearDeadline": "Quitar fecha límite"
     },
     "status": {
-      "rejected": "Rechazado",
-      "open": "Abierto",
-      "expired": "Vencido",
-      "completed": "Completado",
-      "cancelled": "Cancelado",
-      "accepted": "Aceptado",
       "open": "Abierta",
       "pending": "Pendiente",
       "awarded": "Adjudicada",

@@ -2347,7 +2347,6 @@
     "mostListened": "En çok dinlenen",
     "recentStages": "Son",
     "noStages": "Burada henüz Stage yok",
-    "listening": "dinliyor",
     "mostLiked": "En çok beğenilenler",
     "mostRecent": "En yeniler",
     "chartOrder": "Ses sıralaması",
@@ -2361,7 +2360,7 @@
     "trendingWeek": "Bu hafta trend",
     "newest": "En yeni",
     "videoChartOrder": "Müzik video listesi sıralaması",
-    "viewsCount": "{{views}} görüntülenme"
+    "viewsCount_other": "{{views}} görüntülenme"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
@@ -3099,6 +3098,14 @@
     "legal": "Ödül çekilişleri promosyon niteliğindedir ve 18 yaş ve üstü DeHub hesap sahiplerine açıktır, yerel yasaların yasakladığı yerlerde geçersizdir. DeHub personeli, yükleniciler ve hane halkı uygun değildir. Belirtilmedikçe ödüller nakde çevrilemez ve her çekilişin kendi duyurusu tam şartlarını taşır."
   },
   "dao": {
+    "status": {
+      "rejected": "Reddedildi",
+      "open": "Açık",
+      "expired": "Süresi doldu",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal edildi",
+      "accepted": "Kabul edildi"
+    },
     "votingPowerNote": "Oylama 7 gün sürer. Oylama gücü, bu teklif açıldığında her katılımcının kümülatif jeton katkısıdır. En az %10 katılmalı ve Kabul, Reddi yenmelidir.",
     "votingClosed": "Oylama kapandı",
     "voteWithdrawn": "Oy geri çekildi",
@@ -4157,12 +4164,6 @@
       "clearDeadline": "Son tarihi temizle"
     },
     "status": {
-      "rejected": "Reddedildi",
-      "open": "Açık",
-      "expired": "Süresi doldu",
-      "completed": "Tamamlandı",
-      "cancelled": "İptal edildi",
-      "accepted": "Kabul edildi",
       "open": "Açık",
       "pending": "Bekliyor",
       "awarded": "Atandı",

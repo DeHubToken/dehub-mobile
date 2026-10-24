@@ -121,7 +121,7 @@ const StagesChart: React.FC = () => {
 
   const subtitle = (space: RankedStage) => {
     const host = space.host_username ? `@${space.host_username}` : String(space.host_wallet_address || "").slice(0, 6);
-    if (sort === "live") return [host, `${Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0))} ${t("music.listening", { defaultValue: "listening" })}`].join(" · ");
+    if (sort === "live") return [host, t("music.listeningCount", { count: Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0)) })].join(" · ");
     if (sort === "upcoming") return [host, formatStageDate(space.scheduled_at)].filter(Boolean).join(" · ");
     if (sort === "listened" && space.total_listens) return [host, t("audioPost.listens", { count: space.total_listens })].join(" · ");
     return [host, formatStageDate(space.ended_at)].filter(Boolean).join(" · ");

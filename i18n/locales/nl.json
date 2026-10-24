@@ -2537,7 +2537,6 @@
     "mostListened": "Meest beluisterd",
     "recentStages": "Recent",
     "noStages": "Hier zijn nog geen Stages",
-    "listening": "luisteren",
     "mostLiked": "Meest geliket",
     "mostRecent": "Meest recent",
     "chartOrder": "Volgorde van de audiolijst",
@@ -2551,7 +2550,7 @@
     "trendingWeek": "Trending deze week",
     "newest": "Nieuwste",
     "videoChartOrder": "Volgorde van de muziekvideolijst",
-    "viewsCount": "{{views}} weergaven"
+    "viewsCount_other": "{{views}} weergaven"
   },
   "notFound": {
     "title": "Pagina niet gevonden",
@@ -3289,6 +3288,14 @@
     "legal": "Prijstrekkingen zijn promotioneel en staan open voor DeHub-accounthouders van 18 jaar of ouder, nietig waar de lokale wetgeving dit verbiedt. DeHub-medewerkers, aannemers en hun huishoudens komen niet in aanmerking. Prijzen zijn niet inwisselbaar voor contant geld, tenzij vermeld, en de eigen aankondiging van elke trekking draagt zijn volledige voorwaarden."
   },
   "dao": {
+    "status": {
+      "rejected": "Afgewezen",
+      "open": "Open",
+      "expired": "Verlopen",
+      "completed": "Voltooid",
+      "cancelled": "Geannuleerd",
+      "accepted": "Geaccepteerd"
+    },
     "votingPowerNote": "Stemmen duurt 7 dagen. Stemkracht is de cumulatieve tokenbijdrage van elke bijdrager wanneer dit voorstel wordt geopend. Minimaal 10% moet deelnemen en Accepteren moet Wijs af verslaan.",
     "votingClosed": "Stemming gesloten",
     "voteWithdrawn": "Stemming ingetrokken",
@@ -4347,12 +4354,6 @@
       "clearDeadline": "Deadline wissen"
     },
     "status": {
-      "rejected": "Afgewezen",
-      "open": "Open",
-      "expired": "Verlopen",
-      "completed": "Voltooid",
-      "cancelled": "Geannuleerd",
-      "accepted": "Geaccepteerd",
       "open": "Open",
       "pending": "In behandeling",
       "awarded": "Toegewezen",
