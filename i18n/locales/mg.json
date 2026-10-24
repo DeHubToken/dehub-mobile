@@ -2927,6 +2927,8 @@
     "tabSearch": "Fikarohana"
   },
   "postInfo": {
+    "ownersUnavailable": "Amin'izao fotoana izao dia tsy azo vakiana ny tompon'ny toerana.",
+    "unavailable": "Tsy misy",
     "title": "Fampahalalana momba ny lahatsoratra",
     "tokenId": "Token ID",
     "mintedOn": "Noforonina",
@@ -4976,6 +4978,8 @@
     "displayNameHint": "Ny anaranao ampahibemaso miseho amin'ny mombamomba anao. Tsy voatery — avelao ho banga mba hampiasana ny anaram-pikambanao."
   },
   "events": {
+    "deleteConfirmBody": "Izany dia manala ny hetsika, ny lisitry ny vahiny ary ny resaka momba azy ho an'ny rehetra. Tsy azo averina izany.",
+    "deleteConfirmTitle": "Hofafana ity hetsika ity?",
     "youreApproved": "Anao no ankatoavina",
     "youAreCreator": "Ianao no mpanamboatra ny tatoazy.",
     "typeMessage": "Manorata hafatra...",

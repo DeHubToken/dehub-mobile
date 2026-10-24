@@ -2923,6 +2923,8 @@
     "tabSearch": "Cari"
   },
   "postInfo": {
+    "ownersUnavailable": "Pemilik saat ini tidak dapat dibaca saat ini.",
+    "unavailable": "Tidak tersedia",
     "title": "Info Postingan",
     "tokenId": "ID token",
     "mintedOn": "Dicetak pada",
@@ -5021,6 +5023,8 @@
     "displayNameHint": "Nama publik di profilmu. Opsional — kosongkan saja untuk memakai nama penggunamu."
   },
   "events": {
+    "deleteConfirmBody": "Ini akan menghapus acara, daftar tamunya, dan obrolan untuk semua orang. Itu tidak bisa dibatalkan.",
+    "deleteConfirmTitle": "Hapus acara ini?",
     "youreApproved": "Anda sudah disetujui",
     "youAreCreator": "Anda pembuatnya",
     "typeMessage": "Tulis pesan...",

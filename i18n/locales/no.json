@@ -2921,6 +2921,8 @@
     "tabSearch": "Søk"
   },
   "postInfo": {
+    "ownersUnavailable": "De nåværende eierne kan ikke leses akkurat nå.",
+    "unavailable": "Utilgjengelig",
     "title": "Innleggsinformasjon",
     "tokenId": "Token-ID",
     "mintedOn": "Opprettet",
@@ -4970,6 +4972,8 @@
     "displayNameHint": "Det offentlige navnet ditt som vises på profilen. Valgfritt — la feltet stå tomt for å bruke brukernavnet ditt."
   },
   "events": {
+    "deleteConfirmBody": "Dette fjerner arrangementet, gjestelisten og chatten for alle. Det kan ikke angres.",
+    "deleteConfirmTitle": "Slette denne hendelsen?",
     "youreApproved": "Du er godkjent",
     "youAreCreator": "Du er skaperen",
     "typeMessage": "Skriv en melding...",

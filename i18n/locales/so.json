@@ -2904,6 +2904,8 @@
     "tabSearch": "Raadi"
   },
   "postInfo": {
+    "ownersUnavailable": "Milkiilayaasha hadda jira hadda lama akhriyi karo.",
+    "unavailable": "Lama heli karo",
     "title": "Macluumaadka qoraalka",
     "tokenId": "Token ID",
     "mintedOn": "La sameeyey",
@@ -4952,6 +4954,8 @@
     "displayNameHint": "Magacaaga dadweynaha ee boggaaga. Waa ikhtiyaari — haddii aad bannaan ka tagto, waxaa la isticmaalayaa magaca isticmaalahaaga."
   },
   "events": {
+    "deleteConfirmBody": "Tani waxay meesha ka saaraysaa dhacdada, liiska martida iyo wada sheekaysiga qof walba. Lagama noqon karo.",
+    "deleteConfirmTitle": "Ka tirtir dhacdadan?",
     "youreApproved": "Waa laguu ogolaaday.",
     "youAreCreator": "Waxaad tahay abuuraha",
     "typeMessage": "Ku qor fariin...",

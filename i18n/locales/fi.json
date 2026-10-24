@@ -2921,6 +2921,8 @@
     "tabSearch": "Haku"
   },
   "postInfo": {
+    "ownersUnavailable": "Nykyisiä omistajia ei voi lukea juuri nyt.",
+    "unavailable": "Ei saatavilla",
     "title": "Julkaisun tiedot",
     "tokenId": "Token-ID",
     "mintedOn": "Luotu",
@@ -4970,6 +4972,8 @@
     "displayNameHint": "Julkinen nimesi profiilissasi. Valinnainen — jätä tyhjäksi, niin käytetään käyttäjätunnustasi."
   },
   "events": {
+    "deleteConfirmBody": "Tämä poistaa tapahtuman, sen vieraslistan ja chatin kaikilta. Sitä ei voi kumota.",
+    "deleteConfirmTitle": "Poistetaanko tämä tapahtuma?",
     "youreApproved": "Sinut on hyväksytty",
     "youAreCreator": "Olet luoja",
     "typeMessage": "Kirjoita viesti...",

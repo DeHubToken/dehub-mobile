@@ -2923,6 +2923,8 @@
     "tabSearch": "Szukaj"
   },
   "postInfo": {
+    "ownersUnavailable": "Obecnych właścicieli nie można teraz odczytać.",
+    "unavailable": "Niedostępne",
     "title": "Informacje o poście",
     "tokenId": "Identyfikator tokena",
     "mintedOn": "Wytworzony",
@@ -4972,6 +4974,8 @@
     "displayNameHint": "Twoja publiczna nazwa widoczna w profilu. Opcjonalnie — zostaw puste, aby używać nazwy użytkownika."
   },
   "events": {
+    "deleteConfirmBody": "Spowoduje to usunięcie wydarzenia, listy gości i czatu dla wszystkich. Tego nie da się cofnąć.",
+    "deleteConfirmTitle": "Usunąć to wydarzenie?",
     "youreApproved": "Jesteś zatwierdzony",
     "youAreCreator": "Jesteś twórcą",
     "typeMessage": "Wpisz wiadomość...",

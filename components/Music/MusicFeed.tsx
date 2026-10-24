@@ -618,10 +618,13 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
   const audioUrl = rawAudioUrl ? getAudioUrl(rawAudioUrl) : undefined;
   const glass = (theme === 'glass' || theme === 'system') && !!audioUrl && tokenId != null;
   const streamInfo = (nft as any).streamInfo;
-  // Paid and gated tracks are private on the CDN; fetch a signed link first.
+  // Paid, gated and followers-only or direct tracks are private on the CDN;
+  // fetch a signed link first.
   const requiresAccess = !!streamInfo?.isPayPerView
     || isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount)
-    || !!(nft as any).plansDetails?.length;
+    || !!(nft as any).plansDetails?.length
+    || (nft as any).visibility === "followers"
+    || (nft as any).visibility === "direct";
   const title = nft.name || (nft as any).title || "Untitled";
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";

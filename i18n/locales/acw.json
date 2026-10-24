@@ -2910,6 +2910,8 @@
     "tabSearch": "بحث"
   },
   "postInfo": {
+    "ownersUnavailable": "ما نقدر نقرا الملاك الحاليين الحين.",
+    "unavailable": "مو متوفر",
     "title": "معلومات المنشور",
     "tokenId": "رقم التوكن",
     "mintedOn": "انسك بتاريخ",
@@ -4955,6 +4957,8 @@
     "displayNameHint": "اسمك العلني اللي يظهر في ملفك. اختياري — خليه فاضي ونستخدم اسم المستخدم حقك."
   },
   "events": {
+    "deleteConfirmBody": "هذا يحذف الفعالية وقائمة ضيوفها ومحادثتها عند الكل. وما تقدر ترجعها.",
+    "deleteConfirmTitle": "تبغى تحذف هذي الفعالية؟",
     "youreApproved": "انت موافق",
     "youAreCreator": "انت الصانع",
     "typeMessage": "اكتب رساله...",

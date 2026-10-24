@@ -2968,6 +2968,8 @@
     "tabSearch": "Maghanap"
   },
   "postInfo": {
+    "ownersUnavailable": "Hindi mabasa ang mga current owners ngayon.",
+    "unavailable": "Hindi available",
     "title": "Instagram",
     "tokenId": "Token ID",
     "mintedOn": "Na-mint Noong",
@@ -5017,6 +5019,8 @@
     "displayNameHint": "Ang pampublikong pangalan mo sa profile. Opsyonal — iwanang blangko para gamitin ang username mo."
   },
   "events": {
+    "deleteConfirmBody": "Inaalis nito ang kaganapan, ang listahan ng bisita at ang chat nito para sa lahat. Hindi ito maaaring i-undo.",
+    "deleteConfirmTitle": "Tanggalin ang kaganapang ito?",
     "youreApproved": "Aprubado ka na",
     "youAreCreator": "Ikaw ang creator",
     "typeMessage": "Mag-type ng mensahe...",

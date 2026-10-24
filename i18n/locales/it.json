@@ -2929,6 +2929,8 @@
     "tabSearch": "Cerca"
   },
   "postInfo": {
+    "ownersUnavailable": "Al momento non è possibile leggere gli attuali proprietari.",
+    "unavailable": "Non disponibile",
     "title": "Info Post",
     "tokenId": "ID token",
     "mintedOn": "Coniato il",
@@ -5029,6 +5031,8 @@
     "displayNameHint": "Il tuo nome pubblico sul profilo. Facoltativo: lascialo vuoto per usare il tuo nome utente."
   },
   "events": {
+    "deleteConfirmBody": "Questo rimuove l'evento, la sua lista degli ospiti e la sua chat per tutti. Non può essere annullato.",
+    "deleteConfirmTitle": "Eliminare questo evento?",
     "youreApproved": "Sei approvato",
     "youAreCreator": "Sei il creatore",
     "typeMessage": "Scrivi un messaggio...",

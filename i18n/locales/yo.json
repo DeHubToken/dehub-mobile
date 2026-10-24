@@ -2904,6 +2904,8 @@
     "tabSearch": "Wá"
   },
   "postInfo": {
+    "ownersUnavailable": "Àwọn onílé tí ó wà nísinsìnyí kò lè kà á báyìí.",
+    "unavailable": "Kò sí",
     "title": "Ìwífún nípa àkọsílẹ̀",
     "tokenId": "Token ID",
     "mintedOn": "Ti ṣẹ̀dá",
@@ -4953,6 +4955,8 @@
     "displayNameHint": "Orúkọ gbogbogbò rẹ lórí profáìlì rẹ. Kò pọn dandan — tí o bá fi sílẹ̀ ní òfo, a máa lo orúkọ oníṣàmúlò rẹ."
   },
   "events": {
+    "deleteConfirmBody": "Èyí mú ìṣẹ̀lẹ̀ náà kúrò, àtòjọ àwọn àlejò rẹ̀ àti ìjíròrò rẹ̀ fún gbogbo ènìyàn. A kò lè mú un kúrò.",
+    "deleteConfirmTitle": "Pa ìṣẹ̀lẹ̀ yìí rẹ́?",
     "youreApproved": "A fọwọsi ọ",
     "youAreCreator": "Ìwọ ni olùṣẹ̀dá",
     "typeMessage": "Tẹ àtẹ̀jíṣẹ́ kan...",
