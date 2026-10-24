@@ -4548,7 +4548,7 @@
     "edit": "Yɛlɛma",
     "deleteRequestTitle": "Nin ɲinini jɔsi wa?",
     "deleteRequestDescription": "Nin tɛ se ka segin.",
-    "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 20MB ye",
+    "attachmentTooLarge": "Dosiye kelen-kelen ka kan ka dɔgɔya ni 50MB ye",
     "deleteCommentA11y": "Ka kuma dɔ bɔ",
     "sendCommentA11y": "Ka kuma dɔ ci",
     "requestOptions": "Ɲiningaliw"
@@ -5635,8 +5635,8 @@
     "noActiveNow": "Laɲini baarala si tɛ yen sisan",
     "subtitle": "Kalata laɲiniw kan minnu bɛ plateforme labɛn",
     "loadFailed": "Laɲiniw ma se ka lajɛ",
-    "forLabel": "Mun na do?",
-    "againstLabel": "O kama, a ka ɲi ka",
+    "forLabel": "Sɔn",
+    "againstLabel": "Ban",
     "discussion": {
       "title": "Ɲiningaliw",
       "intro": "A ka fisa fana ka baro kɛ n'i ma vote.",

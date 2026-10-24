@@ -4601,7 +4601,7 @@
     "edit": "ترمیم",
     "deleteRequestTitle": "یہ درخواست حذف کریں؟",
     "deleteRequestDescription": "یہ واپس نہیں ہو سکتا۔",
-    "attachmentTooLarge": "ہر فائل 20MB سے کم ہونی چاہیے",
+    "attachmentTooLarge": "ہر فائل 50MB سے کم ہونی چاہیے",
     "deleteCommentA11y": "تبصرہ حذف کریں",
     "sendCommentA11y": "تبصرہ بھیجیں",
     "requestOptions": "آپشنز کی درخواست کریں"
@@ -5706,8 +5706,8 @@
     "noActiveNow": "ابھی کوئی فعال تجویز نہیں",
     "subtitle": "ان تجاویز پر ووٹ دیں جو پلیٹ فارم کو شکل دیتی ہیں",
     "loadFailed": "تجاویز لوڈ نہیں ہو سکیں",
-    "forLabel": "مثال کے طور پر،",
-    "againstLabel": "خلاف:",
+    "forLabel": "حق میں",
+    "againstLabel": "خلاف",
     "discussion": {
       "title": "تبادلہ خیال",
       "intro": "ووٹ دینے سے پہلے فالو اپ سوالات پوچھیں یا تجویز پر تبادلہ خیال کریں ۔",

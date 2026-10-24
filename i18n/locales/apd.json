@@ -4373,7 +4373,7 @@
     "edit": "عدّل",
     "deleteRequestTitle": "تمسح الطلب دا؟",
     "deleteRequestDescription": "دا ما بيرجع.",
-    "attachmentTooLarge": "كل ملف لازم يكون أقل من 20MB",
+    "attachmentTooLarge": "كل ملف لازم يكون أقل من 50MB",
     "deleteCommentA11y": "امسح التعليق",
     "sendCommentA11y": "أرسل تعليق",
     "requestOptions": "خيارات الطلب"
@@ -5443,8 +5443,8 @@
     "noActiveNow": "مافي مقترحات نشطة هسي",
     "subtitle": "صوّت على المقترحات البتشكل المنصة",
     "loadFailed": "ما قدرنا نحمّل المقترحات",
-    "forLabel": "لـ",
-    "againstLabel": "ضد",
+    "forLabel": "مؤيد",
+    "againstLabel": "معارض",
     "discussion": {
       "title": "مناقشة",
       "intro": "اسأل أسئلة متابعة أو ناقش الاقتراح قبل أن تصوت.",

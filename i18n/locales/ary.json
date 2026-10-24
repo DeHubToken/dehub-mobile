@@ -4584,7 +4584,7 @@
     "edit": "عدّل",
     "deleteRequestTitle": "تمسح هاد الطلب؟",
     "deleteRequestDescription": "هادشي ماكيرجعش لور.",
-    "attachmentTooLarge": "كل ملف خاصو يكون أقل من 20MB",
+    "attachmentTooLarge": "كل ملف خاصو يكون أقل من 50MB",
     "deleteCommentA11y": "احذف التعليق",
     "sendCommentA11y": "ارسل التعليق",
     "requestOptions": "خيارات الطلب"
@@ -5685,8 +5685,8 @@
     "noActiveNow": "ما كايناش مقترحات نشيطة دابا",
     "subtitle": "صوت على المقترحات لي كتشكل المنصة",
     "loadFailed": "ما قدرناش نحملو المقترحات",
-    "forLabel": "من أجل",
-    "againstLabel": "ضد",
+    "forLabel": "مؤيد",
+    "againstLabel": "معارض",
     "discussion": {
       "title": "المناقشة",
       "intro": "اطرح أسئلة متابعة أو ناقش الاقتراح قبل التصويت.",

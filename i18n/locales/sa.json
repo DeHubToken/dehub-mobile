@@ -4523,7 +4523,7 @@
     "edit": "सम्पादयतु",
     "deleteRequestTitle": "एतां प्रार्थनां लुम्पतु?",
     "deleteRequestDescription": "एतत् प्रत्यावर्तयितुं न शक्यते।",
-    "attachmentTooLarge": "प्रत्येकं संचिका 20MB इत्यस्मात् न्यूना भवेत्",
+    "attachmentTooLarge": "प्रत्येकं संचिका 50MB इत्यस्मात् न्यूना भवेत्",
     "deleteCommentA11y": "टिप्पणी मिटाएँ",
     "sendCommentA11y": "टिप्पणी प्रेष्यताम्",
     "requestOptions": "निवेदनीयानि विकल्पानि"
@@ -5613,8 +5613,8 @@
     "noActiveNow": "सम्प्रति सक्रियप्रस्तावाः न सन्ति",
     "subtitle": "मञ्चं निर्मापयन्तः प्रस्तावाः तेषु मतं ददातु",
     "loadFailed": "प्रस्तावान् आरोपयितुं न शक्यते",
-    "forLabel": "यतः",
-    "againstLabel": "विरुद्धम्",
+    "forLabel": "पक्षे",
+    "againstLabel": "विपक्षे",
     "discussion": {
       "title": "चर्चा",
       "intro": "सभापति महोदया: आप भाषण दीजिए, आप भाषण दीजिए ।",

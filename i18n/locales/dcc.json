@@ -4395,7 +4395,7 @@
     "edit": "ترمیم کرو",
     "deleteRequestTitle": "یہ درخواست مٹانا کیا؟",
     "deleteRequestDescription": "یہ واپس نکو ہوتا۔",
-    "attachmentTooLarge": "ہر فائل 20MB سے کم ہونا مانگتا",
+    "attachmentTooLarge": "ہر فائل 50MB سے کم ہونا مانگتا",
     "deleteCommentA11y": "تبصرہ حذف کریں",
     "sendCommentA11y": "تبصرہ بھیجیں",
     "requestOptions": "آپشنز کی درخواست کریں"
@@ -5476,8 +5476,8 @@
     "noActiveNow": "ابھی کوئی فعال تجویز نئیں",
     "subtitle": "ان تجاویز پر ووٹ دو جو پلیٹ فارم بناتی ہیں",
     "loadFailed": "تجاویز لوڈ نئیں ہو سکیں",
-    "forLabel": "مثال کے طور پر،",
-    "againstLabel": "خلاف:",
+    "forLabel": "حق میں",
+    "againstLabel": "خلاف",
     "discussion": {
       "title": "تبادلہ خیال",
       "intro": "ووٹ دینے سے پہلے فالو اپ سوالات پوچھیں یا تجویز پر تبادلہ خیال کریں ۔",

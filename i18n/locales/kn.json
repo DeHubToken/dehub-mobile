@@ -4583,7 +4583,7 @@
     "edit": "ಸಂಪಾದಿಸಿ",
     "deleteRequestTitle": "ಈ ವಿನಂತಿಯನ್ನು ಅಳಿಸುವುದೇ?",
     "deleteRequestDescription": "ಇದನ್ನು ಹಿಂತಿರುಗಿಸಲಾಗದು.",
-    "attachmentTooLarge": "ಪ್ರತಿ ಫೈಲ್ 20MB ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
+    "attachmentTooLarge": "ಪ್ರತಿ ಫೈಲ್ 50MB ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು",
     "deleteCommentA11y": "ಕಾಮೆಂಟ್ ಅಳಿಸಿ",
     "sendCommentA11y": "ಕಾಮೆಂಟ್ ಕಳುಹಿಸಿ",
     "requestOptions": "ವಿನಂತಿಯ ಆಯ್ಕೆಗಳು"
@@ -5684,7 +5684,7 @@
     "noActiveNow": "ಸದ್ಯಕ್ಕೆ ಸಕ್ರಿಯ ಪ್ರಸ್ತಾಪಗಳಿಲ್ಲ",
     "subtitle": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ರೂಪಿಸುವ ಪ್ರಸ್ತಾಪಗಳಿಗೆ ಮತ ಹಾಕಿ",
     "loadFailed": "ಪ್ರಸ್ತಾಪಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ",
-    "forLabel": "ಗೆ",
+    "forLabel": "ಪರವಾಗಿ",
     "againstLabel": "ವಿರುದ್ಧ",
     "discussion": {
       "title": "ಚರ್ಚೆ",

@@ -4584,7 +4584,7 @@
     "edit": "Wax ka beddel",
     "deleteRequestTitle": "Ma tirtiraysaa codsigan?",
     "deleteRequestDescription": "Tan dib looma celin karo.",
-    "attachmentTooLarge": "Fayl kastaa waa inuu ka yar yahay 20MB",
+    "attachmentTooLarge": "Fayl kastaa waa inuu ka yar yahay 50MB",
     "deleteCommentA11y": "Tirtir faallo",
     "sendCommentA11y": "Dir faallo",
     "requestOptions": "Fursadaha codsiga"
@@ -5677,8 +5677,8 @@
     "noActiveNow": "Hadda ma jiraan soo jeedin firfircoon",
     "subtitle": "U codee soo jeedinta qaabaynaysa goobta",
     "loadFailed": "Lama soo rari karin soo jeedinta",
-    "forLabel": "Wixii ...",
-    "againstLabel": "Ka soo horjeeda",
+    "forLabel": "Taageero",
+    "againstLabel": "Diidmo",
     "discussion": {
       "title": "Wadahadalka",
       "intro": "Weydii su 'aalaha la socda ama kala hadal soo jeedinta ka hor intaadan codeyn.",

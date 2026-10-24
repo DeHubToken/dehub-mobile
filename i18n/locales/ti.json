@@ -4571,7 +4571,7 @@
     "edit": "ኣርትዕ",
     "deleteRequestTitle": "እዚ ሕቶ ይሰረዝ?",
     "deleteRequestDescription": "እዚ ክምለስ ኣይክእልን።",
-    "attachmentTooLarge": "ነፍሲ ወከፍ ፋይል ትሕቲ 20MB ክኸውን ኣለዎ",
+    "attachmentTooLarge": "ነፍሲ ወከፍ ፋይል ትሕቲ 50MB ክኸውን ኣለዎ",
     "deleteCommentA11y": "ርእይቶ ሰርዝ",
     "sendCommentA11y": "ርእይቶ ልኣኽ",
     "requestOptions": "ኣማራጺታት ሕተታ"
@@ -5671,7 +5671,7 @@
     "noActiveNow": "ሕጂ ንጡፍ እማመ የለን",
     "subtitle": "ነቶም መድረኽ ዝቐርጹ እማመታት ድምጺ ሃብ",
     "loadFailed": "እማመታት ክጽዓኑ ኣይከኣሉን",
-    "forLabel": "ን",
+    "forLabel": "ደገፍ",
     "discussion": {
       "title": "ዘተ",
       "intro": "ቅድሚ ምምራጽካ ተኸታታሊ ሕቶታት ሕተቶ ወይ ነቲ ሓሳብ ተዘራረብ ።",
@@ -5688,7 +5688,7 @@
       "showMoreReplies": "{{count}} ዝያዳ መልሲታት ኣርእዮ",
       "showMoreReplies_one": "{{count}} ዝያዳ መልሲ ኣርእዮ"
     },
-    "againstLabel": "ኣንጻር",
+    "againstLabel": "ተቓውሞ",
     "holdTokensToVote": "DeHub ቶክን ሓዝ ንምምራጽ",
     "mustHoldTokens": "ንሓሳባት ምምሕዳር ንምምራጽ DeHub ቶክን ክትሕዝ ኣሎካ።"
   },

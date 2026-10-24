@@ -4572,7 +4572,7 @@
     "edit": "Üýtget",
     "deleteRequestTitle": "Bu haýyş pozulsynmy?",
     "deleteRequestDescription": "Muny yzyna gaýtaryp bolmaýar.",
-    "attachmentTooLarge": "Her faýl 20MB-dan az bolmaly",
+    "attachmentTooLarge": "Her faýl 50MB-dan az bolmaly",
     "deleteCommentA11y": "Komentary Sil",
     "sendCommentA11y": "Komentary iber",
     "requestOptions": "Çykyş saýlamalary talap et"
@@ -5665,8 +5665,8 @@
     "noActiveNow": "Häzir işjeň teklip ýok",
     "subtitle": "Platformany emele getirýän tekliplere ses beriň",
     "loadFailed": "Teklipler ýüklenip bilmedi",
-    "forLabel": "Üçin",
-    "againstLabel": "Garşylyk",
+    "forLabel": "Tarapdar",
+    "againstLabel": "Garşy",
     "discussion": {
       "title": "Dawalaşmak",
       "intro": "Siz seslenmezden öň, indiki soraglary beriň ýa-da teklibi gürrüň beriň.",
