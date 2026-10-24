@@ -2252,7 +2252,7 @@
     "edit": "Modifier",
     "deleteRequestTitle": "Supprimer cette demande ?",
     "deleteRequestDescription": "Action irréversible.",
-    "attachmentTooLarge": "Chaque fichier doit faire moins de 20 Mo",
+    "attachmentTooLarge": "Chaque fichier doit faire moins de 50 Mo",
     "deleteCommentA11y": "Supprimer le commentaire",
     "sendCommentA11y": "Envoyez un commentaire",
     "requestOptions": "Options de la demande"

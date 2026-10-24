@@ -4611,7 +4611,7 @@
     "edit": "Уреди",
     "deleteRequestTitle": "Обрисати овај захтев?",
     "deleteRequestDescription": "Ово се не може поништити.",
-    "attachmentTooLarge": "Свака датотека мора бити мања од 20 MB",
+    "attachmentTooLarge": "Свака датотека мора бити мања од 50 MB",
     "deleteCommentA11y": "Избриши коментар",
     "sendCommentA11y": "Пошаљи коментар",
     "requestOptions": "Опције захтева"
@@ -5717,7 +5717,7 @@
     "noActiveNow": "Тренутно нема активних предлога",
     "subtitle": "Гласај о предлозима који обликују платформу",
     "loadFailed": "Учитавање предлога није успело",
-    "againstLabel": "Против:",
+    "againstLabel": "Против",
     "discussion": {
       "signInToComment": "Пријавите се да бисте се придружили дискусији",
       "empty": "Још нема питања. Започните дискусију.",

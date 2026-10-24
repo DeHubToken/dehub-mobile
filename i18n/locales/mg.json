@@ -4626,7 +4626,7 @@
     "edit": "Hanova",
     "deleteRequestTitle": "Hofafana ity fangatahana ity?",
     "deleteRequestDescription": "Tsy azo averina intsony ity.",
-    "attachmentTooLarge": "Tsy maintsy latsaky ny 20MB ny rakitra tsirairay",
+    "attachmentTooLarge": "Tsy maintsy latsaky ny 50MB ny rakitra tsirairay",
     "deleteCommentA11y": "Fafao ilay fanamarihana",
     "sendCommentA11y": "Handefa fanehoan-kevitra",
     "requestOptions": "Safidin'ny Fangatahana"
@@ -5725,7 +5725,7 @@
     "noActiveNow": "Tsy misy tolo-kevitra mavitrika amin'izao",
     "subtitle": "Mifidiana tolo-kevitra izay mamolavola ny sehatra",
     "loadFailed": "Tsy voaloatra ny tolo-kevitra",
-    "forLabel": "Ny",
+    "forLabel": "Manohana",
     "againstLabel": "Manohitra",
     "discussion": {
       "title": "Fifanakalozan-kevitra",

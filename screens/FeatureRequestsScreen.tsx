@@ -665,7 +665,7 @@ const PromptComposer: React.FC<{
         if (size !== null && size > MAX_FEATURE_ATTACHMENT_BYTES) continue;
         accepted.push({ uri: asset.uri, mimeType: asset.mimeType, fileName: asset.fileName });
       }
-      if (accepted.length < assets.length) toastWarning(t("features.attachmentTooLarge", "Each file must be under 20MB"));
+      if (accepted.length < assets.length) toastWarning(t("features.attachmentTooLarge", "Each file must be under 50MB"));
       setAttachments(prev => [...prev, ...accepted].slice(0, MAX_FEATURE_ATTACHMENTS));
     });
   }, [attachments.length, submitting, t]);

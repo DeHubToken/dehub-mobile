@@ -4577,7 +4577,7 @@
     "edit": "Өңдеу",
     "deleteRequestTitle": "Бұл сұрау жойылсын ба?",
     "deleteRequestDescription": "Мұны қайтару мүмкін емес.",
-    "attachmentTooLarge": "Әр файл 20 МБ-тан кем болуы керек",
+    "attachmentTooLarge": "Әр файл 50 МБ-тан кем болуы керек",
     "deleteCommentA11y": "Пікірді жою",
     "sendCommentA11y": "Пікір жіберу",
     "requestOptions": "Сұрау параметрлері"
@@ -5674,8 +5674,8 @@
     "noActiveNow": "Қазір белсенді ұсыныстар жоқ",
     "subtitle": "Платформаны қалыптастыратын ұсыныстарға дауыс беріңіз",
     "loadFailed": "Ұсыныстарды жүктеу мүмкін болмады",
-    "forLabel": "Реле сияқты",
-    "againstLabel": "- қарсы -\t:",
+    "forLabel": "Жақтап",
+    "againstLabel": "Қарсы",
     "discussion": {
       "title": "Талқылау",
       "intro": "Дауыс беруден бұрын келесі сұрақтар қойыңыз немесе ұсынысты талқылаңыз.",

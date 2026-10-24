@@ -4604,7 +4604,7 @@
     "edit": "Whakatika",
     "deleteRequestTitle": "Mukua tēnei tono?",
     "deleteRequestDescription": "Kāore e taea te whakakore i tēnei.",
-    "attachmentTooLarge": "Me iti iho i te 20MB ia kōnae",
+    "attachmentTooLarge": "Me iti iho i te 50MB ia kōnae",
     "deleteCommentA11y": "Whakakorea ngā kōrero",
     "sendCommentA11y": "Tukuna mai he korero",
     "requestOptions": "Kōwhiringa tono"
@@ -5700,8 +5700,8 @@
     "noActiveNow": "Kāore he marohi hohe i tēnei wā",
     "subtitle": "Pōti i ngā marohi e hanga ana i te papatono",
     "loadFailed": "Kāore i taea te uta i ngā marohi",
-    "forLabel": "ataahua te ra",
-    "againstLabel": "Ki te whawhai",
+    "forLabel": "Tautoko",
+    "againstLabel": "Whakahē",
     "discussion": {
       "title": "Kōrerorero",
       "intro": "Pātai i ngā pātai whai muri, kōrero rānei i te kaupapa i mua i te pōti.",

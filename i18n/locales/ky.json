@@ -4552,7 +4552,7 @@
     "edit": "Түзөтүү",
     "deleteRequestTitle": "Бул суроо-талап өчүрүлсүнбү?",
     "deleteRequestDescription": "Муну кайтарууга болбойт.",
-    "attachmentTooLarge": "Ар бир файл 20 МБ'дан кичине болушу керек",
+    "attachmentTooLarge": "Ар бир файл 50 МБ'дан кичине болушу керек",
     "deleteCommentA11y": "Комментарийди өчүрүү",
     "sendCommentA11y": "Комментарий жөнөтүү",
     "requestOptions": "Параметрлерди суроо"
@@ -5650,7 +5650,7 @@
     "noActiveNow": "Учурда активдүү сунуштар жок",
     "subtitle": "Платформаны калыптандырган сунуштарга добуш бериңиз",
     "loadFailed": "Сунуштарды жүктөө мүмкүн болбоду",
-    "forLabel": "Анткени ...",
+    "forLabel": "Жактап",
     "againstLabel": "Каршы",
     "discussion": {
       "title": "Талкуулоо",

@@ -4572,7 +4572,7 @@
     "edit": "עריכה",
     "deleteRequestTitle": "למחוק את הבקשה הזו?",
     "deleteRequestDescription": "אי אפשר לבטל את זה.",
-    "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-20MB",
+    "attachmentTooLarge": "כל קובץ חייב להיות מתחת ל-50MB",
     "deleteCommentA11y": "מחק הערה",
     "sendCommentA11y": "שלח תגובה",
     "requestOptions": "אפשרויות בקשה"
@@ -5677,8 +5677,8 @@
     "noActiveNow": "אין הצעות פעילות כרגע",
     "subtitle": "הצבע על הצעות שמעצבות את הפלטפורמה",
     "loadFailed": "טעינת ההצעות נכשלה",
-    "forLabel": "עבור",
-    "againstLabel": "מול",
+    "forLabel": "בעד",
+    "againstLabel": "נגד",
     "discussion": {
       "title": "דיון",
       "intro": "שאלו שאלות המשך או דנו בהצעה לפני שתצביעו.",

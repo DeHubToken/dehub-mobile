@@ -2215,7 +2215,7 @@
     "edit": "Edit",
     "deleteRequestTitle": "Delete this request?",
     "deleteRequestDescription": "This can't be undone.",
-    "attachmentTooLarge": "Each file must be under 20MB",
+    "attachmentTooLarge": "Each file must be under 50MB",
     "deleteCommentA11y": "Delete comment",
     "sendCommentA11y": "Send comment",
     "requestOptions": "Request options"

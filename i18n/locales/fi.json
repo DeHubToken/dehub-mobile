@@ -3633,7 +3633,7 @@
     "edit": "Muokkaa",
     "deleteRequestTitle": "Poistetaanko tämä pyyntö?",
     "deleteRequestDescription": "Tätä ei voi perua.",
-    "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 20 Mt",
+    "attachmentTooLarge": "Jokaisen tiedoston on oltava alle 50 Mt",
     "deleteCommentA11y": "Poista kommentti",
     "sendCommentA11y": "Lähetä kommentti",
     "requestOptions": "Pyyntövaihtoehdot"
@@ -4653,7 +4653,7 @@
     "noActiveNow": "Ei aktiivisia ehdotuksia juuri nyt",
     "subtitle": "Äänestä ehdotuksista, jotka muovaavat alustaa",
     "loadFailed": "Ehdotuksia ei voitu ladata",
-    "forLabel": "Tietoa",
+    "forLabel": "Puolesta",
     "againstLabel": "Vastaan",
     "discussion": {
       "title": "Keskustelu",
