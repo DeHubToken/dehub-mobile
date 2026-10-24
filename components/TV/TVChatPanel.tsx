@@ -38,6 +38,8 @@ import { useRoomChat, type ChatRoom, type TvChatMessage } from "../../hooks/useT
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import EmojiSheet from "../Upload/EmojiSheet";
 import { InlineEmoji, expandEmojiTokens } from "../common/EmojiText";
+import { useTranslation as useTextTranslation } from "../../hooks/useTranslation";
+import TranslateButton from "../ui/TranslateButton";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -63,6 +65,7 @@ const ChatRow: React.FC<{
 }> = ({ message, myAddress, onReply, onDelete, canModerate, onToggleReaction, onMoreReactions, onOpenProfile }) => {
   const { t } = useTranslation();
   const [showPicker, setShowPicker] = useState(false);
+  const translation = useTextTranslation({ content: message.content || "" }, null, "chat", true, message.id);
 
   const isMe = message.wallet_address?.toLowerCase() === myAddress;
   const displayName =
@@ -115,7 +118,18 @@ const ChatRow: React.FC<{
         )}
 
         {!!message.content && (
-          <Text className="text-white/70 text-[13px] leading-5">{expandEmojiTokens(message.content, { fontSize: 13 })}</Text>
+          <View>
+            <Text className="text-white/70 text-[13px] leading-5">{expandEmojiTokens(translation.isTranslated ? translation.translatedTexts.content || message.content : message.content, { fontSize: 13 })}</Text>
+            {translation.shouldShow && (
+              <TranslateButton
+                isTranslated={translation.isTranslated}
+                isLoading={translation.isLoading}
+                detectedLanguage={translation.sourceLang}
+                onTranslate={translation.handleTranslate}
+                onShowOriginal={translation.handleShowOriginal}
+              />
+            )}
+          </View>
         )}
 
         {reactionEntries.length > 0 && (
@@ -324,6 +338,7 @@ const TVChatPanel: React.FC<TVChatPanelProps> = ({
         </View>
       ) : (
         <FlatList
+          style={{ flex: 1, minHeight: 0 }}
           ref={listRef}
           data={messages}
           keyExtractor={(m) => m.id}
@@ -466,6 +481,7 @@ const styles = StyleSheet.create({
 
   pickerRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     alignItems: "center",
     gap: 2,
     marginTop: 6,
