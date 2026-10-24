@@ -3716,7 +3716,14 @@
     "title": "Missatges",
     "searchConversations": "Cercar converses...",
     "failedToLoad": "Error en carregar converses",
-    "tryAgain": "Tornar a provar"
+    "tryAgain": "Tornar a provar",
+    "lockedTitle": "Desbloqueja per llegir els missatges",
+    "lockedBody": "El teu xat amb {{name}} està xifrat de punta a punta. Desbloqueja la teva cartera en aquest dispositiu per obrir-la.",
+    "lockedUnlock": "Desbloqueja la cartera",
+    "lockedTryAgain": "Torna-ho a provar",
+    "lockedPrivate": "Només tu pots llegir-los",
+    "undecryptableRun_one": "No es pot obrir el missatge {{count}} en aquest dispositiu",
+    "undecryptableRun_other": "Els missatges {{count}} no es poden obrir en aquest dispositiu"
   },
   "music": {
     "chartOrder": "Ordre del gràfic d'àudio",

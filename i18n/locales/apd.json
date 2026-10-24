@@ -4456,7 +4456,14 @@
     "title": "الرسايل",
     "searchConversations": "ابحث في المحادثات...",
     "failedToLoad": "ما قدرنا نحمّل المحادثات",
-    "tryAgain": "حاول تاني"
+    "tryAgain": "حاول تاني",
+    "lockedTitle": "افتح عشان تقرأ رسائلك",
+    "lockedBody": "الدردشة مع {{name}} مشفرة من الطرف للطرف. افتح محفظتك على الجهاز ده عشان تفتحها.",
+    "lockedUnlock": "افتح المحفظة",
+    "lockedTryAgain": "حاول تاني",
+    "lockedPrivate": "بس إنت اللي تقدر تقراها",
+    "undecryptableRun_one": "ما ممكن تفتح رسالة {{count}} على الجهاز ده",
+    "undecryptableRun_other": "ما ممكن تفتح رسائل {{count}} على الجهاز ده"
   },
   "music": {
     "chartOrder": "ترتيب شارت الأغاني",

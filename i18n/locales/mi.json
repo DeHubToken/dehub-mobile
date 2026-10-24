@@ -4687,7 +4687,14 @@
     "title": "Karere",
     "searchConversations": "Rapu kōrerorero...",
     "failedToLoad": "Kāore i taea te uta kōrerorero",
-    "tryAgain": "Ngana anō"
+    "tryAgain": "Ngana anō",
+    "lockedTitle": "Whakatuwherahia ki te pānui i ō karere",
+    "lockedBody": "Ko to korerorero me {{name}} kua whakamunatia ki te mutunga. Whakatuwherahia to putea i runga i tenei taputapu hei whakatuwhera.",
+    "lockedUnlock": "Whakatuwherahia te putea",
+    "lockedTryAgain": "Whakamātauria ano",
+    "lockedPrivate": "Ka taea e koe anake te pānui i te reira",
+    "undecryptableRun_one": "{{count}} karere e kore e taea te whakatuwhera i runga i tenei pūrere",
+    "undecryptableRun_other": "{{count}} karere e kore e taea te whakatuwhera i runga i tenei pūrere"
   },
   "music": {
     "likeStation": "Ka rite ki te te teihana",

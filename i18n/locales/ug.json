@@ -4674,7 +4674,14 @@
     "title": "ئۇچۇرلار",
     "searchConversations": "سۆھبەتلەرنى ئىزدەش...",
     "failedToLoad": "سۆھبەتلەرنى يۈكلەش مەغلۇب بولدى",
-    "tryAgain": "قايتا سىناش"
+    "tryAgain": "قايتا سىناش",
+    "lockedTitle": "ئۇچۇرلىرىڭىزنى ئوقۇش ئۈچۈن قۇلۇپنى ئېچىڭ",
+    "lockedBody": "{{name}} بىلەن سۆھبىتىڭىز ئاخىرلاشتى. ئۇنى ئېچىش ئۈچۈن، يانچۇقىڭىزنى بۇ ئۈسكۈنىگە تاقاپ قويۇڭ.",
+    "lockedUnlock": "قۇلۇپنى ئاچ",
+    "lockedTryAgain": "قايتا سىناڭ",
+    "lockedPrivate": "ئۇلارنى پەقەت سەنلا ئوقۇيالايسەن",
+    "undecryptableRun_one": "{{count}} message بۇ ئۈسكۈنىدە ئېچىلمايدۇ",
+    "undecryptableRun_other": "{{count}} ئۇچۇرلار بۇ ئۈسكۈنىدە ئېچىلمايدۇ"
   },
   "music": {
     "likeStation": "ئىستانسىنى ياقتۇرۇش",

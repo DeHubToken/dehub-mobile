@@ -4693,7 +4693,14 @@
     "title": "Žinutės",
     "searchConversations": "Ieškoti pokalbių...",
     "failedToLoad": "Nepavyko įkelti pokalbių",
-    "tryAgain": "Bandyti dar kartą"
+    "tryAgain": "Bandyti dar kartą",
+    "lockedTitle": "Atrakinkite, kad galėtumėte skaityti savo žinutes",
+    "lockedBody": "Jūsų pokalbis su {{name}} yra ištisai užšifruotas. Atrakinkite piniginę šiame įrenginyje, kad ją atidarytumėte.",
+    "lockedUnlock": "Atrakinti piniginę",
+    "lockedTryAgain": "Bandyti dar kartą",
+    "lockedPrivate": "Tik jūs galite juos perskaityti",
+    "undecryptableRun_one": "{{count}} žinutės negalima atidaryti šiame įrenginyje",
+    "undecryptableRun_other": "{{count}} žinučių negalima atidaryti šiame įrenginyje"
   },
   "music": {
     "chartOrder": "Garso diagramų tvarka",

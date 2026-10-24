@@ -4520,7 +4520,14 @@
     "title": "الرسائل",
     "searchConversations": "ابحث بالمحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
-    "tryAgain": "حاول مرة ثانية"
+    "tryAgain": "حاول مرة ثانية",
+    "lockedTitle": "افتح عشان تقرأ رسائلك",
+    "lockedBody": "دردشتك مع {{name}} مشفرة من الطرف للطرف. افتح محفظتك على هذا الجهاز عشان تفتحها.",
+    "lockedUnlock": "افتح المحفظة",
+    "lockedTryAgain": "جرّب مرة ثانية",
+    "lockedPrivate": "بس إنت تقدر تقرأها",
+    "undecryptableRun_one": "ما يقدر يفتح رسالة {{count}} على هذا الجهاز",
+    "undecryptableRun_other": "ما يقدر يفتح رسائل {{count}} على هذا الجهاز"
   },
   "music": {
     "chartOrder": "ترتيب شارت الصوت",

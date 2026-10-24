@@ -4648,7 +4648,11 @@
     "title": "پیغامونه",
     "searchConversations": "خبرې اترې ولټوئ...",
     "failedToLoad": "خبرې اترې نشي لوډ کیدلی",
-    "tryAgain": "بیا هڅه وکړئ"
+    "tryAgain": "بیا هڅه وکړئ",
+    "lockedTitle": "د خپلو پيغامونو د لوستلو لپاره دلته کليک وکړئ",
+    "lockedUnlock": "د بسته بندۍ بکس خلاص کړئ",
+    "lockedTryAgain": "یو ځل بیا هڅه وکړئ",
+    "lockedPrivate": "یوازې تاسو کولی شئ لوستل شئ"
   },
   "music": {
     "likeStation": "سټېشن خوښ کړئ",

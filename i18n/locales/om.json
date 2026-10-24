@@ -4690,7 +4690,14 @@
     "title": "Ergaawwan",
     "searchConversations": "Haasawa barbaadi...",
     "failedToLoad": "Haasawa fe'uun hin milkoofne",
-    "tryAgain": "Irra deebi'ii yaali"
+    "tryAgain": "Irra deebi'ii yaali",
+    "lockedTitle": "Ergaa keessan dubbisuuf unlock banaa",
+    "lockedBody": "Chaat keessan {{name}} waliin dhuma irraa gara dhumaatti icciitii ta'ee jira. Meeshaa kana irratti boorsaa keessan banaa banaa.",
+    "lockedUnlock": "Wallet banaa",
+    "lockedTryAgain": "Ammas yaalaa",
+    "lockedPrivate": "Isaan dubbisuu kan dandeessu si qofa",
+    "undecryptableRun_one": "Ergaan {{count}} meeshaa kana irratti banamuu hin danda'u",
+    "undecryptableRun_other": "Ergaawwan {{count}} meeshaa kana irratti banamuu hin danda'an"
   },
   "music": {
     "likeStation": "Like station",

@@ -4719,7 +4719,14 @@
     "title": "Boodskappe",
     "searchConversations": "Soek gesprekke...",
     "failedToLoad": "Kon nie gesprekke laai nie",
-    "tryAgain": "Probeer weer"
+    "tryAgain": "Probeer weer",
+    "lockedTitle": "Ontsluit om jou boodskappe te lees",
+    "lockedBody": "Jou klets met {{name}} is end-tot-end geïnkripteer. Ontsluit jou beursie op hierdie toestel om dit oop te maak.",
+    "lockedUnlock": "Ontsluit beursie",
+    "lockedTryAgain": "Probeer weer",
+    "lockedPrivate": "Net jy kan hulle lees",
+    "undecryptableRun_one": "{{count}} boodskap kan nie op hierdie toestel oopgemaak word nie",
+    "undecryptableRun_other": "{{count}} boodskappe kan nie op hierdie toestel oopgemaak word nie"
   },
   "music": {
     "chartOrder": "Oudio-grafiek volgorde",

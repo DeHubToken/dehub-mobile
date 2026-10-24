@@ -4693,7 +4693,14 @@
     "title": "Sõnumid",
     "searchConversations": "Otsi vestlusi...",
     "failedToLoad": "Vestluste laadimine ebaõnnestus",
-    "tryAgain": "Proovi uuesti"
+    "tryAgain": "Proovi uuesti",
+    "lockedTitle": "Sõnumite lugemiseks ava lukustus",
+    "lockedBody": "Sinu vestlus kasutajaga {{name}} on läbivalt krüpteeritud. Selle avamiseks ava oma rahakott selles seadmes.",
+    "lockedUnlock": "Ava rahakott",
+    "lockedTryAgain": "Proovi uuesti",
+    "lockedPrivate": "Ainult sina saad neid lugeda",
+    "undecryptableRun_one": "{{count}} sõnumit ei saa selles seadmes avada",
+    "undecryptableRun_other": "{{count}} sõnumit ei saa selles seadmes avada"
   },
   "music": {
     "chartOrder": "Helikaardi järjekord",

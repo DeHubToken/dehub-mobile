@@ -4655,7 +4655,14 @@
     "title": "Habarlar",
     "searchConversations": "Söhbetleri gözle...",
     "failedToLoad": "Söhbetleri ýüklemek başa barmady",
-    "tryAgain": "Gaýtadan synanyş"
+    "tryAgain": "Gaýtadan synanyş",
+    "lockedTitle": "Men seniň habarlaryňy okamagy ýüregime düwdüm",
+    "lockedBody": "{{name}} bilen gürrüňdeşligiňsoňundan soňuna çenli şifrelenýär. Bu äpişgede açmak üçin çuwallaryňyzy açyň.",
+    "lockedUnlock": "Cüzdany Aç",
+    "lockedTryAgain": "Gaýtalaň",
+    "lockedPrivate": "Sen olary okap bilersiň",
+    "undecryptableRun_one": "{{count}} Bu esbapda habar açylmaýar",
+    "undecryptableRun_other": "{{count}} Bu esbapda habarlar açylmaýar"
   },
   "music": {
     "likeStation": "Stansiýany haladyň",
