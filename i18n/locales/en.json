@@ -702,7 +702,7 @@
     "immersive": "Immersive",
     "minimal": "Minimal",
     "cosmic": "Cosmic Pixels",
-    "glass": "Glass",
+    "glass": "Glassy",
     "hazy": "Hazy Nights",
     "swarms": "Swarms",
     "lavalamp": "Lava Lamp",
@@ -3110,6 +3110,7 @@
     "power": "power"
   },
   "governance": {
+    "badgeHoldersOnly": "Badge holders only",
     "title": "Governance",
     "proposalCount": "{{count}} proposal submitted",
     "proposalCount_other": "{{count}} proposals submitted",
@@ -11670,5 +11671,22 @@
     "fingerprint": "Fingerprint",
     "exploreFirst": "Explore first",
     "codeNote": "We email you a code, no password needed."
+  },
+  "dehubLinks": {
+    "kind": {
+      "post": "post",
+      "profile": "profile",
+      "community": "community",
+      "communityInvite": "community invite",
+      "store": "store",
+      "listing": "item",
+      "event": "event",
+      "stage": "stage",
+      "film": "title",
+      "bounty": "bounty",
+      "app": "app",
+      "proposal": "proposal",
+      "link": "link"
+    }
   }
 }

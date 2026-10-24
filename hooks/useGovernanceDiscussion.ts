@@ -165,7 +165,7 @@ export function useSubmitProposalComment() {
     },
     onError: (error) => {
       if (error.message === 'Badge holders only') {
-        toastError('Badge holders only');
+        toastError(_copy('governance.badgeHoldersOnly'));
         return;
       }
       log.error("Post comment failed:", error);
