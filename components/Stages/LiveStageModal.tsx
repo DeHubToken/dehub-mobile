@@ -663,7 +663,8 @@ const LiveStageModal: React.FC = () => {
         )}
 
         <ScrollView
-          style={{ flex: 1 }}
+          style={{ flex: 1, minHeight: 0 }}
+          keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ paddingHorizontal: 12, paddingTop: 20, paddingBottom: 20 }}
           showsVerticalScrollIndicator={false}
         >
@@ -764,38 +765,12 @@ const LiveStageModal: React.FC = () => {
               )}
             </>
           )}
-        </ScrollView>
 
         {/* Live subtitles, right above the chat and controls as on web. */}
         <StageCaptions
           spaceId={currentSpace.id}
           speakerWallets={[currentSpace.host_wallet_address, ...speakers.map(p => p.wallet_address)]}
         />
-
-        {/* The audience's own channel, as on web: a listener can say something
-            without asking for the mic. Same table as web's StageChat, so
-            messages cross both ways. A fixed share of the screen so the
-            speakers above keep their place as the conversation runs on; the
-            keyboard squeezes the speaker list, not the chat. */}
-        <View
-          style={{
-            height: Math.max(180, Math.round(windowHeight * 0.28)),
-            borderTopWidth: 1,
-            borderTopColor: "rgba(255,255,255,0.06)",
-          }}
-        >
-          <TVChatPanel
-            channelId={currentSpace.id}
-            room={{
-              table: "stage_chat_messages",
-              column: "space_id",
-              id: currentSpace.id,
-              hostWallet: currentSpace.host_wallet_address,
-            }}
-            onClosePlayer={closeModal}
-            transparent
-          />
-        </View>
 
         {/* Reactions slider — fade masks on both edges hint that it scrolls,
             since a flat row of circles otherwise reads as a fixed toolbar
@@ -996,6 +971,32 @@ const LiveStageModal: React.FC = () => {
             </View>
           </View>
         )}
+
+        </ScrollView>
+
+        {/* Keep the chat composer above the room controls while the speaker
+            tools scroll. It may shrink with the keyboard, but stays reachable. */}
+        <View
+          style={{
+            flex: 1,
+            minHeight: 96,
+            maxHeight: Math.max(108, Math.round(windowHeight * 0.28)),
+            borderTopWidth: 1,
+            borderTopColor: "rgba(255,255,255,0.06)",
+          }}
+        >
+          <TVChatPanel
+            channelId={currentSpace.id}
+            room={{
+              table: "stage_chat_messages",
+              column: "space_id",
+              id: currentSpace.id,
+              hostWallet: currentSpace.host_wallet_address,
+            }}
+            onClosePlayer={closeModal}
+            transparent
+          />
+        </View>
 
         {/* Controls. Wraps so a long guest sign-in label drops above Leave
             instead of pushing both buttons off the screen edges. */}
