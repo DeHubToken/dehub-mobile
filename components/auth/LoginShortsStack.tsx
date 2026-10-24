@@ -9,6 +9,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import { useReducedMotion } from "react-native-reanimated";
 import { KeepDarkScope } from "../../libs/jsx/tone";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 /**
  * The top half of the sign-in screen: two lanes of short clips drifting past
@@ -60,6 +61,8 @@ function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
         player={player}
         style={StyleSheet.absoluteFill}
         contentFit="cover"
+        // Android SurfaceView bypasses the mask and paints over the headline.
+        surfaceType="textureView"
         nativeControls={false}
         allowsPictureInPicture={false}
         fullscreenOptions={{ enable: false }}
@@ -143,9 +146,10 @@ export default function LoginShortsStack() {
   const plain = theme === "system" || theme === "minimal";
   const still = !!useReducedMotion();
   const { width, height: screenH } = useWindowDimensions();
+  const insets = useSafeAreaInsets();
 
   // Headline accent, written dark (System Light inverts the grey to ink).
-  const accent = theme === "hazy" ? "#C9A7FF" : plain ? "rgba(255,255,255,0.55)" : colors.accent;
+  const accent = theme === "hazy" ? "#C9A7FF" : plain ? "#FFFFFF" : colors.accent;
   const line = isLight ? "rgba(11,11,13,0.08)" : theme === "osaka" ? "rgba(80,200,255,0.4)" : "rgba(255,255,255,0.10)";
 
   // The screen pads 24 each side; the lanes sit 10 from the edges.
@@ -153,7 +157,8 @@ export default function LoginShortsStack() {
   const tileW = (lanesW - GAP) / 2;
   // The lanes start under the floating header (SignInScreen pulls them up),
   // so they get its height back.
-  const lanesH = Math.round(Math.min(530, Math.max(360, screenH - 330)));
+  // Reserve the same 400pt form budget as web, including the provider row.
+  const lanesH = Math.round(Math.min(480, Math.max(260, screenH - insets.top - insets.bottom - 400)));
   const restyleLabel = t("loginStack.aiRestyle", "AI restyle");
 
   return (
@@ -187,11 +192,16 @@ export default function LoginShortsStack() {
         end={{ x: 0.75, y: 0.75 }}
         style={styles.corner}
       />
-      <Text style={[styles.headline, { color: "#FFFFFF" }]} accessibilityRole="header">
-        {t("loginStack.headlineTop", "You will own everything")}
-        {"\n"}
-        <Text style={{ color: accent }}>{t("loginStack.headlineAccent", "and be happy.")}</Text>
-      </Text>
+      <View style={styles.headline}>
+        <Text style={styles.headlineText} accessibilityRole="header">
+          {t("loginStack.headlineTop", "You will own everything")}
+        </Text>
+        <View style={{ opacity: plain ? 0.6 : 1 }}>
+          <Text style={[styles.headlineText, { color: accent }]}>
+            {t("loginStack.headlineAccent", "and be happy.")}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -217,5 +227,6 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,0.25)",
   },
   aiText: { color: "#FFFFFF", fontSize: 10, fontWeight: "800", letterSpacing: 0.2 },
-  headline: { marginTop: -64, textAlign: "center", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
+  headline: { marginTop: -64 },
+  headlineText: { color: "#FFFFFF", textAlign: "center", fontSize: 30, lineHeight: 32, fontWeight: "900", letterSpacing: -0.6 },
 });
