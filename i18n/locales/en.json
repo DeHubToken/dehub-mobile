@@ -1,4 +1,31 @@
 {
+  "dehubLinks": {
+    "kind": {
+      "app": "app",
+      "bounty": "bounty",
+      "community": "community",
+      "communityInvite": "community invite",
+      "event": "event",
+      "film": "title",
+      "link": "link",
+      "listing": "item",
+      "post": "post",
+      "profile": "profile",
+      "proposal": "proposal",
+      "stage": "stage",
+      "store": "store"
+    }
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "live",
+    "minutes": "{{minutes}} min",
+    "onAir": "ON AIR",
+    "recorded": "RECORDED",
+    "replay": "replay",
+    "stage": "stage",
+    "upcoming": "upcoming"
+  },
   "agents.workspace.moderation": "Stream moderation",
   "agents.workspace.moderationHelp": "Enable moderation permission first. The account must already be the stream creator or an assigned moderator. Approval and draft modes still apply. Timeouts expire automatically.",
   "agents.workspace.streamId": "Stream post ID",
@@ -518,6 +545,7 @@
     "postCount_other": "{{count}} posts"
   },
   "settings": {
+    "shortsSaveFailed": "Failed to save Shorts preference",
     "shortsEnabledDesc": "Show the Shorts feed tab and Shorts carousels on Home.",
     "shortsEnabled": "Shorts",
     "postingChain": "Posting chain",
@@ -702,7 +730,7 @@
     "immersive": "Immersive",
     "minimal": "Minimal",
     "cosmic": "Cosmic Pixels",
-    "glass": "Glass",
+    "glass": "Glassy",
     "hazy": "Hazy Nights",
     "swarms": "Swarms",
     "lavalamp": "Lava Lamp",
@@ -2273,6 +2301,10 @@
     "tryAgain": "Try Again"
   },
   "music": {
+    "listeningCount_one": "{{count}} listening",
+    "listeningCount_other": "{{count}} listening",
+    "viewsCount_one": "{{views}} view",
+    "viewsCount_other": "{{views}} views",
     "all": "All",
     "tracks": "Tracks",
     "videos": "Videos",
@@ -2316,7 +2348,6 @@
     "mostListened": "Most listened",
     "recentStages": "Recent",
     "noStages": "No stages here yet",
-    "listening": "listening",
     "mostLiked": "Most liked",
     "mostRecent": "Most recent",
     "chartOrder": "Audio chart order",
@@ -2329,8 +2360,7 @@
     "mostViewed": "Most viewed",
     "trendingWeek": "Trending this week",
     "newest": "Newest",
-    "videoChartOrder": "Music video chart order",
-    "viewsCount": "{{views}} views"
+    "videoChartOrder": "Music video chart order"
   },
   "notFound": {
     "title": "Page Not Found",
@@ -3068,6 +3098,14 @@
     "legal": "Prize draws are promotional and open to DeHub account holders aged 18 or over, void where local law prohibits them. DeHub staff, contractors and their households are not eligible. Prizes are not exchangeable for cash unless stated, and each draw's own announcement carries its full terms."
   },
   "dao": {
+    "status": {
+      "rejected": "Rejected",
+      "open": "Open",
+      "expired": "Expired",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "accepted": "Accepted"
+    },
     "votingPowerNote": "Voting lasts 7 days. Voting power is each contributor’s cumulative token contribution when this proposal opens. At least 10% must participate and Accept must beat Reject.",
     "votingClosed": "Voting closed",
     "voteWithdrawn": "Vote withdrawn",
@@ -3115,6 +3153,7 @@
     "power": "power"
   },
   "governance": {
+    "badgeHoldersOnly": "Badge holders only",
     "title": "Governance",
     "proposalCount": "{{count}} proposal submitted",
     "proposalCount_other": "{{count}} proposals submitted",
@@ -4127,12 +4166,6 @@
       "clearDeadline": "Clear deadline"
     },
     "status": {
-      "rejected": "Rejected",
-      "open": "Open",
-      "expired": "Expired",
-      "completed": "Completed",
-      "cancelled": "Cancelled",
-      "accepted": "Accepted",
       "open": "Open",
       "pending": "Pending",
       "awarded": "Awarded",
@@ -11921,6 +11954,13 @@
     "watch": "Watch an ad to support this creator"
   },
   "copy": {
+    "1aa7b1c1d5fb": "Thanks!",
+    "20d4214b9d4b": "View shipped requests",
+    "2971f9103f78": "Thanks for helping make DeHub better — something you asked for is now live:",
+    "8f3dc69e83c4": "Your feedback shipped!",
+    "905392fbed15": "Thanks for helping make DeHub better — {{value1}} things you asked for are now live:",
+    "bdd4f5015e96": "Close shipped request notification",
+    "da4c7c208cf4": "Check it out",
     "085cd98e8e2e": " Copy link",
     "c184b8c9592f": "That has to be a page on dehub.io.",
     "9b44fb81d89e": "Destination page",

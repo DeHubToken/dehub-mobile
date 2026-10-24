@@ -85,11 +85,9 @@ export default function ShippedFeatureNotice() {
           {_copy("copy.8f3dc69e83c4", { defaultValue: "Your feedback shipped!" })}
         </Text>
         <Text className="text-zinc-400 text-sm leading-5 mb-4">
-          {_copy("copy.1164d7bbddd1", { defaultValue: "Thanks for helping make DeHub better — " })}
           {isPlural
-            ? _copy("copy.b96359f1f31b", { defaultValue: "{{value1}} things you asked for are", value1: items.length })
-            : _copy("copy.622c73f8d79f", { defaultValue: "something you asked for is" })}
-          {_copy("copy.3b8d0bc452b6", { defaultValue: " now live:" })}
+            ? _copy("copy.905392fbed15", { defaultValue: "Thanks for helping make DeHub better — {{value1}} things you asked for are now live:", value1: items.length })
+            : _copy("copy.2971f9103f78", { defaultValue: "Thanks for helping make DeHub better — something you asked for is now live:" })}
         </Text>
 
         <ScrollView style={{ maxHeight: 192 }} contentContainerStyle={{ gap: 8 }} className="mb-5">
