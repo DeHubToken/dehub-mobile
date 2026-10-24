@@ -303,7 +303,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
         </View>
       </TouchableOpacity>
 
-      <View style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
+      <View className={featuredCommunity?.banner_url ? 'dark-surface' : undefined} style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
           <Avatar

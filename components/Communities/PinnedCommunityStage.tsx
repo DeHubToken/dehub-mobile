@@ -8,14 +8,16 @@ import type { Community } from "../../types/community";
 import { storageImageSource } from "../../libs/cdnImage";
 import { useAppTheme } from "../../context/ThemeContext";
 import Icon from "../ui/Icon";
+import { KeepDarkScope } from '../../libs/jsx/tone';
 
 /** Paint only the details area; leave the overlapping avatar outside the clip. */
 export function PinnedCommunityWash({ community }: { community?: Community | null }) {
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, isLight } = useAppTheme();
   const [height, setHeight] = useState(0);
   if (!community?.banner_url) return null;
   return (
-    <View renderToHardwareTextureAndroid pointerEvents="none" style={styles.wash} onLayout={(event) => setHeight(event.nativeEvent.layout.height)} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <KeepDarkScope>
+    <View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.wash, isLight && styles.artBase]} onLayout={(event) => setHeight(event.nativeEvent.layout.height)} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
     <MaskedView style={StyleSheet.absoluteFillObject} maskElement={<LinearGradient colors={['#000', '#000', 'transparent']} locations={[0, Math.max(0, 1 - 80 / Math.max(height, 80)), 1]} style={StyleSheet.absoluteFillObject} />}>
       <Image
         source={storageImageSource(community.banner_url, 480)}
@@ -25,6 +27,7 @@ export function PinnedCommunityWash({ community }: { community?: Community | nul
       />
     </MaskedView>
     </View>
+    </KeepDarkScope>
   );
 }
 
@@ -35,7 +38,7 @@ export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
 }) {
   const { t } = useTranslation();
   return (
-    <View style={styles.strip}>
+    <View className="dark-surface" style={styles.strip}>
       <TouchableOpacity onPress={onOpen} style={styles.community} accessibilityRole="button" activeOpacity={0.8}>
         <View style={styles.avatar}>
           {community.avatar_url ? (
@@ -67,8 +70,10 @@ export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
 /** The static community art fades up behind the details instead of ending at a seam. */
 export function PinnedCommunityDissolve({ community }: { community: Community }) {
   const { width } = useWindowDimensions();
+  const { isLight } = useAppTheme();
   return (
-    <View renderToHardwareTextureAndroid pointerEvents="none" style={styles.dissolve} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <KeepDarkScope>
+    <View renderToHardwareTextureAndroid pointerEvents="none" style={[styles.dissolve, isLight && styles.artBase]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
       <MaskedView style={StyleSheet.absoluteFillObject} maskElement={<LinearGradient colors={['transparent', '#000']} locations={[0, 0.9]} style={StyleSheet.absoluteFillObject} />}>
         <Image source={storageImageSource(community.banner_url, 480)} blurRadius={24} style={[StyleSheet.absoluteFillObject, { opacity: 0.62 }]} contentFit="cover" contentPosition={{ left: '50%', top: '60%' }} />
       </MaskedView>
@@ -77,10 +82,12 @@ export function PinnedCommunityDissolve({ community }: { community: Community })
         <LinearGradient colors={['rgba(6,4,18,0.86)', 'rgba(6,4,18,0.5)', 'rgba(6,4,18,0.12)']} locations={[0, 0.45, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFillObject} />
       </MaskedView>
     </View>
+    </KeepDarkScope>
   );
 }
 
 const styles = StyleSheet.create({
+  artBase: { backgroundColor: '#0b0b0d' },
   wash: { ...StyleSheet.absoluteFillObject, overflow: "hidden" },
   washImage: { position: "absolute", top: -64, bottom: -64, left: -64, right: -64 },
   dissolve: { position: 'absolute', bottom: 0, left: 0, right: 0, height: 178, overflow: 'hidden' },

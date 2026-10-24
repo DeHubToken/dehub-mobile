@@ -324,7 +324,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
       </TouchableOpacity>
 
       {/* Content */}
-      <View style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
+      <View className={featuredCommunity?.banner_url ? 'dark-surface' : undefined} style={{ paddingHorizontal: cinematicPhone ? 16 : 20, paddingBottom: featuredCommunity ? 16 : undefined }}>
         <PinnedCommunityWash community={featuredCommunity} />
         {/* Avatar overlapping cover + actions on the right */}
         <View className="flex-row items-start justify-between" style={{ marginTop: -44 }}>
