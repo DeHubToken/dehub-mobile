@@ -133,7 +133,7 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
       { key: "notifications", icon: "Bell", label: t("settings.notifications") },
       { key: "privacy", icon: "Shield", label: t("settings.privacy") },
       { key: "content", icon: "Eye", label: t("settings.content") },
-      { key: "messages", icon: "MessageSquare", label: t("settings.messages") },
+      { key: "messages", icon: "MessageEnvelope", label: t("settings.messages") },
       { key: "assets", icon: "Wallet", label: t("settings.assets") },
       { key: "multipost", icon: "Share2", label: t("multiPost.tab") },
       { key: "support", icon: "LifeBuoy", label: t("settings.support") },

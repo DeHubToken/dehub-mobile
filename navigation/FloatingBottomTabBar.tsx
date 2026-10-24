@@ -67,7 +67,7 @@ interface TabDef {
 
 const TABS: TabDef[] = [
   { name: ScreenNames.Home, icon: "House", labelKey: "nav.home" },
-  { name: ScreenNames.DM, icon: "MessageSquare", labelKey: "nav.messages" },
+  { name: ScreenNames.DM, icon: "MessageEnvelope", labelKey: "nav.messages" },
   { name: ScreenNames.UploadTab, icon: "Plus", labelKey: "nav.create", isCenter: true },
   { name: ScreenNames.AIChat, icon: "Sparkles", labelKey: "nav.assistant" },
   { name: ScreenNames.Explore, icon: "Search", labelKey: "nav.explore" },
@@ -331,7 +331,7 @@ const NavButton = memo<{
             : undefined,
         ]}
       >
-        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <View style={routeName === ScreenNames.DM ? { transform: [{ scaleX: 1.15 }] } : undefined}><Icon
+        {routeName === ScreenNames.AIChat ? <AssistantNavIcon size={20} color={iconColor} /> : <View><Icon
           name={icon}
           size={routeName === ScreenNames.DM ? 24 : routeName === ScreenNames.Home ? 22 : 20}
           color={iconColor}

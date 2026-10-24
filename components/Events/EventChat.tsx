@@ -86,7 +86,7 @@ export default function EventChat({ eventId }: { eventId: string }) {
   return (
     <View style={styles.wrap}>
       <View style={styles.head}>
-        <Icon name="MessageSquare" size={14} color="rgba(255,255,255,0.6)" />
+        <Icon name="MessageEnvelope" size={14} color="rgba(255,255,255,0.6)" />
         <Text style={styles.headText}>{t("copy.460b3a7da007", { defaultValue: "Chat" })}</Text>
         {messages.length > 0 && <Text style={styles.faint}>· {messages.length}</Text>}
       </View>

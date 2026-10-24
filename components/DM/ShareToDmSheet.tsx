@@ -1,3 +1,4 @@
+import Icon from "../ui/Icon";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../../libs/misc";
@@ -185,7 +186,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
 
         {conversations.length === 0 ? (
           <View className="items-center py-10 px-6">
-            <Ionicons name="chatbubbles-outline" size={40} color="#4B5563" />
+            <Icon name="MessageEnvelope" size={40} color="#4B5563" />
             <Text className="text-theme-neutrals-500 text-sm text-center mt-3">
               {t("dm.noConversationsYet")}{"\n"}{t("dm.startDmToShare")}
             </Text>

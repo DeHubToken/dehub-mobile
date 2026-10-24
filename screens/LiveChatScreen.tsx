@@ -809,7 +809,7 @@ const LiveChatScreen: React.FC = () => {
           </>
         ) : (
           <>
-            <Icon name="MessageCircle" size={48} color="rgba(255,255,255,0.1)" />
+            <Icon name="MessageEnvelope" size={48} color="rgba(255,255,255,0.1)" />
             <Text className="text-white/60 text-sm mt-3">{t("publicChat.noMessages")}</Text>
             <Text className="text-white/60 text-xs mt-1">{t("publicChat.beFirst")}</Text>
           </>
