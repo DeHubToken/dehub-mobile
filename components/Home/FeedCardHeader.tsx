@@ -1,5 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
-import React, { memo, useRef } from "react";
+import React, { memo, useCallback, useRef } from "react";
 import { View, Text, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
@@ -9,6 +9,7 @@ import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 import { useLiveTarget } from "../../hooks/useIsUserLive";
 import { openLiveTarget } from "../../libs/openLiveTarget";
+import { prefetchUserProfile } from "../../hooks/useUserProfileData";
 
 const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
@@ -59,10 +60,14 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   // still open the profile.
   const liveTarget = useLiveTarget(address, username);
   const live = !!liveTarget;
+  // Start fetching the profile as the finger lands, so it is usually in hand
+  // by the time the tap is released and the page slides in.
+  const warmProfile = useCallback(() => prefetchUserProfile(username || address), [username, address]);
   return (
     <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
       <Pressable
         onPress={liveTarget ? () => openLiveTarget(liveTarget) : onUserPress}
+        onPressIn={liveTarget || !onUserPress ? undefined : warmProfile}
         style={{ flexShrink: 0 }}
         hitSlop={IDENTITY_HIT_SLOP}
       >
@@ -83,6 +88,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       <View style={{ flex: 1, minWidth: 0, marginRight: 8, alignItems: "flex-start" }}>
         <Pressable
           onPress={onUserPress}
+          onPressIn={onUserPress ? warmProfile : undefined}
           hitSlop={IDENTITY_HIT_SLOP}
           style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT, maxWidth: "100%" }}
         >
@@ -135,7 +141,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           )}
         </Pressable>
         {username ? (
-          <Pressable onPress={onUserPress} hitSlop={IDENTITY_HIT_SLOP} style={{ maxWidth: "100%" }}>
+          <Pressable onPress={onUserPress} onPressIn={onUserPress ? warmProfile : undefined} hitSlop={IDENTITY_HIT_SLOP} style={{ maxWidth: "100%" }}>
             <Text
               style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 16, includeFontPadding: false }}
               numberOfLines={1}
