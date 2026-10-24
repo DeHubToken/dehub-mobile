@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import FrostedPill from '../../components/ui/FrostedPill';
+import { setFeedScrolling, __resetScrollActivityForTests } from '../../libs/scrollActivity';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
@@ -23,8 +24,8 @@ let mockLight = false;
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: mockLight }) }));
 
 let tree: ReactTestRenderer;
-beforeEach(() => { mockSurfaceActive = true; });
-afterEach(() => { act(() => tree?.unmount()); });
+beforeEach(() => { mockSurfaceActive = true; __resetScrollActivityForTests(); });
+afterEach(() => { act(() => tree?.unmount()); __resetScrollActivityForTests(); });
 
 it('samples the supplied target using the Android 12+ path', () => {
   mockSupported = true;
@@ -76,6 +77,26 @@ it('System Light draws the pale frost, with no flipped highlight band', () => {
     act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
     expect(tree.root.findAllByType('LinearGradient' as any)).toHaveLength(0);
     expect(tree.root.findByType('BlurView' as any).props.tint).toBe('light');
+  } finally {
+    mockLight = false;
+  }
+});
+
+it.each([false, true])('pauses feed capture during motion and restores it on settle (light=%s)', light => {
+  mockSupported = true;
+  mockTarget = { current: {} };
+  mockLight = light;
+  try {
+    act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+    expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(1);
+    act(() => setFeedScrolling(true));
+    expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
+    const fallback = light ? '#F4F4F7' : '#18181B';
+    expect(tree.root.findAllByType('View' as any).some(view => view.props.style?.[1]?.backgroundColor === fallback)).toBe(true);
+    act(() => setFeedScrolling(true));
+    expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(0);
+    act(() => setFeedScrolling(false));
+    expect(tree.root.findAllByType('BlurView' as any)).toHaveLength(1);
   } finally {
     mockLight = false;
   }

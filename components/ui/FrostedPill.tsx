@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useSyncExternalStore } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
@@ -7,6 +7,15 @@ import { androidFrostSupported, useFrostedSource } from "./FrostedBackdrop";
 import { useFeedSurfaceActive } from "../../libs/visualActivity";
 import { useAppTheme } from "../../context/ThemeContext";
 import { KeepDarkScope } from "../../libs/jsx/tone";
+import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../../libs/scrollActivity";
+
+const androidScrollSnapshot = () => Platform.OS === "android" && isFeedScrolling();
+const subscribeAndroidScroll = (notify: () => void) => {
+  if (Platform.OS !== "android") return () => {};
+  const start = subscribeFeedScrollStart(notify);
+  const settle = subscribeFeedSettled(notify);
+  return () => { start(); settle(); };
+};
 
 /**
  * System Light's pill depth, as on web (system-light.css "Top bar v2"): a soft
@@ -22,9 +31,12 @@ export default function FrostedPill({ tint, borderRadius, bordered = true }: { t
   const target = useFrostedSource();
   const surfaceActive = useFeedSurfaceActive();
   const { isLight } = useAppTheme();
+  const scrolling = useSyncExternalStore(subscribeAndroidScroll, androidScrollSnapshot, androidScrollSnapshot);
   if (Platform.OS === "ios") return <IosGlassPill tint={tint} borderRadius={borderRadius} bordered={bordered} />;
   // Opacity on a covered page does not stop native blur target sampling.
-  const blur = androidFrostSupported && !!target && surfaceActive;
+  // Each Android blur consumer redraws the full feed-sized target. Keep the
+  // existing material while it moves; resume sampling only after it settles.
+  const blur = androidFrostSupported && !!target && surfaceActive && !scrolling;
   if (isLight) {
     // Written in light colours on purpose and kept out of the colour pass: the
     // dark material turned around came out grey, with its top highlight
