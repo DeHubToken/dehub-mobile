@@ -9787,5 +9787,15 @@
     "failed": "Ew nexebitî. Dîsa biceribîne.",
     "youAreBanned": "Tu nikarî di weşanên vê afirîner de sohbet bikî",
     "title": "Navînî"
+  },
+  "loginStack": {
+    "aiRestyle": "Şêwaza nû bi AI",
+    "headlineTop": "Tu dê xwediyê her tiştî bî",
+    "headlineAccent": "û kêfxweş bibin.",
+    "orContinueWith": "an jî berdewam bike bi",
+    "phone": "Telefon",
+    "fingerprint": "Şopa tilî",
+    "exploreFirst": "Pêşî keşif bike",
+    "codeNote": "Em kodê bi e-nameyê ji we re dişînin, şîfre ne hewce ye."
   }
 }

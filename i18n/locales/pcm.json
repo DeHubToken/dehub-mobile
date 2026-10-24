@@ -9505,5 +9505,13 @@
     "failed": "Na dey go wrong. Try again.",
     "youAreBanned": "Wahala! You no go chat inside dis creator's stream.",
     "title": "Moderate"
+  },
+  "loginStack": {
+    "aiRestyle": "AI restyle",
+    "headlineAccent": "and be happy.",
+    "orContinueWith": "or continue with",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Explore first"
   }
 }

@@ -9900,5 +9900,15 @@
     "youAreBanned": "Awukwazi ukuxoxa ekusakazweni kwalo msunguli",
     "youAreTimedOut": "Uphelelwe isikhathi okwesikhashana",
     "title": "Okulinganiselwe"
+  },
+  "loginStack": {
+    "aiRestyle": "Isitayela esisha se-AI",
+    "headlineTop": "Uzoba nakho konke",
+    "headlineAccent": "futhi ujabule.",
+    "orContinueWith": "noma qhubeka no-",
+    "phone": "Ucingo",
+    "fingerprint": "Uphawu lomunwe",
+    "exploreFirst": "Hlola kuqala",
+    "codeNote": "Sikuthumelela ikhodi nge-imeyili, ayikho iphasiwedi edingekayo."
   }
 }

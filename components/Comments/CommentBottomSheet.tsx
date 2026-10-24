@@ -270,7 +270,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
           {/* Opaque by design: the sheet opens over playing video, and a
               translucent body let the frame bleed through every row of text.
               The blur/frost layers died with the translucency. */}
-          <View style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.centre.backgroundColor || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
+          <View style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
 
           {/* The handle and the tab row both start the swipe down — the 24dp
               handle alone was too thin a target. */}

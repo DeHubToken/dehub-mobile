@@ -9946,5 +9946,15 @@
     "youAreBanned": "Siz bu ijodkorning strimlarida chatlasha olmaysiz",
     "youAreTimedOut": "Siz bir zumga vaqtingiz tugadi",
     "title": "O'rtacha"
+  },
+  "loginStack": {
+    "aiRestyle": "AI yangi uslub",
+    "headlineTop": "Siz hamma narsaga egalik qilasiz",
+    "headlineAccent": "va baxtli bo'ling.",
+    "orContinueWith": "yoki davom eting",
+    "phone": "Telefon",
+    "fingerprint": "Barmoq izi",
+    "exploreFirst": "Avval o'rganing",
+    "codeNote": "Sizga elektron pochta orqali kod yuboramiz, parol kerak emas."
   }
 }

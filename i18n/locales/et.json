@@ -9890,5 +9890,15 @@
     "youAreBanned": "Saad saadikejuhtide voogudes kirjutada.",
     "youAreTimedOut": "Sa oled hetkel aeg katkestatud.",
     "title": "Modereerida"
+  },
+  "loginStack": {
+    "aiRestyle": "AI-ümberstiil",
+    "headlineTop": "Kõik kuulub sulle",
+    "headlineAccent": "ja olla õnnelik.",
+    "orContinueWith": "või jätkake",
+    "phone": "Telefon",
+    "fingerprint": "Sõrmejälg",
+    "exploreFirst": "Esmalt uuri",
+    "codeNote": "Saadame sulle e-kirjaga koodi, parooli pole vaja."
   }
 }

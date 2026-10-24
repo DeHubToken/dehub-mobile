@@ -62,8 +62,14 @@ export const MAX_CHUNK_BYTES = 16 * 1024 * 1024;
 const TARGET_CHUNK_MS = 8_000;
 const REQUEST_TIMEOUT_MS = 30_000;
 const MAX_RETRY_MS = 30_000;
-/** Give up once nothing has got through for this long; the server drops a session after an hour idle. */
-const GIVE_UP_AFTER_MS = 50 * 60_000;
+/**
+ * Give up once nothing has got through for this long. The post job waits on
+ * this upload, so it is long enough to ride out a dropped connection, not an
+ * hour: past it the post sends the file itself.
+ */
+const GIVE_UP_AFTER_MS = 10 * 60_000;
+/** Consecutive 5xx answers before handing over to the single-request upload. */
+const MAX_SERVER_ERRORS = 4;
 /** A session that cannot even be opened this many times means the endpoint is unreachable, not the network. */
 const CREATE_ATTEMPTS = 3;
 
@@ -77,6 +83,8 @@ interface Reply {
 class TransientError extends Error {}
 /** The token was refreshed after a 401: send again straight away. */
 class RetryNowError extends TransientError {}
+/** The server answered, with a 5xx. Retried, but only a few times in a row. */
+class ServerError extends TransientError {}
 /** The server no longer knows the session (expired after an hour idle): start a new one. */
 class SessionGoneError extends Error {}
 class CancelledError extends Error {
@@ -245,6 +253,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
   let createFailures = 0;
   let restarts = 0;
   let authRetries = 0;
+  let serverErrors = 0;
   let lastProgressAt = Date.now();
   let reported = -1;
 
@@ -306,7 +315,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       throw new RetryNowError("retry with the new token");
     }
     if (reply.status === 404 || reply.status === 405) throw new ResumableUnsupportedError(`HTTP ${reply.status}`);
-    if (reply.status >= 500 && reply.status !== 507) throw new TransientError(`HTTP ${reply.status}`);
+    if (reply.status >= 500 && reply.status !== 507) throw new ServerError(`HTTP ${reply.status}`);
     throw errorFrom(reply);
   };
 
@@ -317,7 +326,8 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       throw new RetryNowError("retry with the new token");
     }
     if (reply.status === 404) throw new SessionGoneError();
-    if (reply.status === 409 || reply.status >= 500 || reply.status === 0) throw new TransientError(`HTTP ${reply.status}`);
+    if (reply.status >= 500) throw new ServerError(`HTTP ${reply.status}`);
+    if (reply.status === 409 || reply.status === 0) throw new TransientError(`HTTP ${reply.status}`);
     throw errorFrom(reply);
   };
 
@@ -440,6 +450,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       chunk = nextChunkSize(chunk, offset - start, Date.now() - startedAt);
       failures = 0;
       authRetries = 0;
+      serverErrors = 0;
       lastProgressAt = Date.now();
       report(offset);
     } catch (err) {
@@ -464,6 +475,12 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       if (!(err instanceof TransientError)) {
         if (!(err instanceof ResumableUnsupportedError)) cancel();
         throw err;
+      }
+      if (err instanceof ServerError && ++serverErrors >= MAX_SERVER_ERRORS) {
+        // The old upload failed fast and fell back; a server that keeps
+        // erroring should not hold the post for the whole retry window.
+        cancel();
+        throw new ResumableUnsupportedError("server keeps failing");
       }
       failures++;
       resync = true;

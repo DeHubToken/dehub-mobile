@@ -9805,5 +9805,15 @@
     "youAreBanned": "I ka tɛ sɛbɛn cɛ ni creator ye stream la",
     "youAreTimedOut": "I be bɔ waati dɔ la",
     "title": "Ka kɛ mɔgɔ majiginin ye"
+  },
+  "loginStack": {
+    "aiRestyle": "AI restyle",
+    "headlineTop": "I bena fɛɛn bɛɛ sɔrɔ",
+    "headlineAccent": "aw ka to ka n'a ye.",
+    "orContinueWith": "o kɔ, an ka taga ɲɛ",
+    "phone": "Foun foun fé",
+    "fingerprint": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
+    "exploreFirst": "Kɔrɔbɔli fɔlɔ",
+    "codeNote": "An b'i weele ka na an ka site web kan, an mako t'a la i ka kumaɲɔgɔnya kɛ n'i ye."
   }
 }

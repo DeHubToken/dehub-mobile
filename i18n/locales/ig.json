@@ -9857,5 +9857,15 @@
     "youAreBanned": "Ị nweghị ike ịkparịta ụka n 'ime iyi ndị na-emepụta ihe a",
     "youAreTimedOut": "A chụpụla gị n 'oge obere oge.",
     "title": "Agafeghị oke"
+  },
+  "loginStack": {
+    "aiRestyle": "Ụdị ọhụrụ AI",
+    "headlineTop": "Ị ga-nwe ihe niile",
+    "headlineAccent": "na enwe obi ụtọ.",
+    "orContinueWith": "ma ọ bụ gaa n 'ihu na",
+    "phone": "Ekwentị",
+    "fingerprint": "Mkpịsị aka",
+    "exploreFirst": "Inyocha mbụ",
+    "codeNote": "Anyị na-ezitere gị koodu, ọ dịghị paswọọdụ achọrọ."
   }
 }

@@ -9856,5 +9856,15 @@
     "youAreBanned": "Kuma karto hadal ku hadal hadalkaan abuuraha",
     "youAreTimedOut": "Waxaa joojiyey daqiiqad yar",
     "title": "Dhig"
+  },
+  "loginStack": {
+    "aiRestyle": "Qaab cusub AI",
+    "headlineTop": "Wax walba waad iska lahaan doontaa",
+    "headlineAccent": "farxadna u noqo.",
+    "orContinueWith": "ama sii wad",
+    "phone": "Taleefanka",
+    "fingerprint": "Sawirka faraha",
+    "exploreFirst": "Baadh marka hore",
+    "codeNote": "Waxaan kuu soo dirnaa emayl koodh, ma jiro erayga sirta ah ee loo baahan yahay."
   }
 }

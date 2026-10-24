@@ -9791,5 +9791,15 @@
     "failed": "पुनरपि एकवारं प्रयत्नं कुर्मः_= Let us try once more (फिर से एकबार",
     "youAreTimedOut": "तुमकहां हो भोले क्षणों",
     "title": "मध्यमम्"
+  },
+  "loginStack": {
+    "aiRestyle": "AI पुनःशैली",
+    "headlineTop": "त्वं तु सर्वस्वं",
+    "headlineAccent": "एवं सुखी भव ।",
+    "orContinueWith": "अथवा नित्यं",
+    "phone": "दूरभाषः",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "अन्वेषणं प्रथमं",
+    "codeNote": "- भवतः/भवत्याः कूटशब्दः आवश्यकः नास्ति ।"
   }
 }

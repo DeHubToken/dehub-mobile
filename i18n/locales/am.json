@@ -9883,5 +9883,15 @@
     "youAreBanned": "በዚህ ፈጣሪ ጅረቶች ውስጥ መወያየት አይችሉም",
     "youAreTimedOut": "ለትንሽ ጊዜ ተዘጋጅተሃል",
     "title": "መካከለኛ"
+  },
+  "loginStack": {
+    "aiRestyle": "በAI እንደገና ቅጥ",
+    "headlineTop": "ሁሉንም ነገር ትይዛለህ",
+    "headlineAccent": "ደስተኛም ሁኑ ።",
+    "orContinueWith": "ወይም ጋር መቀጠል",
+    "phone": "ስልክ",
+    "fingerprint": "የጣት አሻራ",
+    "exploreFirst": "በመጀመሪያ ያስሱ",
+    "codeNote": "ኮድ እንልክልዎታለን ፣ ምንም የይለፍ ቃል አያስፈልግም ።"
   }
 }

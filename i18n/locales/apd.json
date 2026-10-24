@@ -9748,5 +9748,15 @@
     "youAreTimedOut": "أنت محظور مؤقتًا لوهلة",
     "title": "تعديل",
     "failed": "لما عملش. حاول تاني."
+  },
+  "loginStack": {
+    "aiRestyle": "إعادة تصميم بالذكاء الاصطناعي",
+    "headlineTop": "هتملك كل حاجة",
+    "headlineAccent": "وتكون مبسوط.",
+    "orContinueWith": "أو استمر مع",
+    "phone": "هاتف",
+    "fingerprint": "بصمة الإصبع",
+    "exploreFirst": "استكشف أولاً",
+    "codeNote": "نرسل لك كود عبر الإيميل، ما فيش كلمة سر مطلوبة."
   }
 }
