@@ -406,13 +406,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     requestAnimationFrame(() => listRef.current?.scrollToEnd({ animated: true }));
   }, []);
 
-  const lastCountRef = useRef(0);
+  // Counted from the old tail, not the length: the list is capped at 200, so
+  // once it is full every new message pushes an old one out and the length
+  // stops moving. Old tail gone (a full refetch) counts nothing, like web.
+  const lastIdRef = useRef<string | null>(null);
+  const lastMessageId = messages[messages.length - 1]?.id ?? null;
   useEffect(() => {
-    const count = messages.length;
-    const added = count - lastCountRef.current;
-    lastCountRef.current = count;
-    if (added > 0 && !atBottomRef.current) setUnseen((n) => n + added);
-  }, [messages.length]);
+    const prev = lastIdRef.current;
+    lastIdRef.current = lastMessageId;
+    if (!prev || prev === lastMessageId || atBottomRef.current) return;
+    const at = messages.findIndex((m) => m.id === prev);
+    const added = at === -1 ? 0 : messages.length - 1 - at;
+    if (added > 0) setUnseen((n) => n + added);
+    // Only a new tail is a new message; `messages` is read, not watched.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastMessageId]);
 
   const jumpToLatest = useCallback(() => {
     atBottomRef.current = true;

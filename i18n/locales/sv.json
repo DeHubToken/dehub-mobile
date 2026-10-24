@@ -3010,6 +3010,8 @@
     "tabSearch": "Sök"
   },
   "postInfo": {
+    "ownersUnavailable": "De nuvarande ägarna kan inte läsas just nu.",
+    "unavailable": "Inte tillgänglig",
     "title": "Inläggsinfo",
     "tokenId": "Token-ID",
     "mintedOn": "Präglad den",
@@ -5059,6 +5061,8 @@
     "displayNameHint": "Ditt offentliga namn på profilen. Valfritt — lämna tomt för att använda ditt användarnamn."
   },
   "events": {
+    "deleteConfirmBody": "Det här tar bort händelsen, dess gästlista och dess chatt för alla. Det går inte att ångra.",
+    "deleteConfirmTitle": "Ta bort detta evenemang?",
     "youreApproved": "Du är godkänd",
     "youAreCreator": "Du är skaparen",
     "typeMessage": "Skriv ett meddelande...",

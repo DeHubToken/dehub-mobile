@@ -1876,7 +1876,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               // reset of its progress, duration, style, mute, lock-screen
               // claim, pending seek and recorded listen one by one.
               <AudioPostPlayer
-                requiresAccess={!!isPayPerView || isLocked || !!(item as any).plansDetails?.length}
+                requiresAccess={!!isPayPerView || isLocked || !!(item as any).plansDetails?.length || item.visibility === "followers" || item.visibility === "direct"}
                 key={postKey}
                 audioUrl={getAudioUrl(item.audioUrl!)}
                 duration={item.audioDuration || 0}

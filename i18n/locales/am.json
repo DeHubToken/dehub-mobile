@@ -3016,6 +3016,8 @@
     "tabSearch": "ፍለጋ"
   },
   "postInfo": {
+    "ownersUnavailable": "አሁን ያሉት ባለአክሲዮኖች አሁን ሊነበቡ አይችሉም ።",
+    "unavailable": "አይገኝም",
     "title": "የልጥፍ መረጃ",
     "tokenId": "ቶከን ID",
     "mintedOn": "የተፈጠረበት",
@@ -5058,6 +5060,8 @@
     "displayNameHint": "በመገለጫዎ ላይ የሚታየው ይፋዊ ስምዎ። አማራጭ ነው — የተጠቃሚ ስምዎን ለመጠቀም ባዶ ይተዉት።"
   },
   "events": {
+    "deleteConfirmBody": "ይህ ዝግጅቱን ፣ የእንግዳ ዝርዝሩን እና ለሁሉም ሰው ውይይቱን ያስወግዳል ። ሊወገድ አይችልም ።",
+    "deleteConfirmTitle": "ይህን ክስተት ሰርዝ?",
     "youreApproved": "ተፈቅዶላችኋል",
     "youAreCreator": "አንተ ፈጣሪ ነህ",
     "typeMessage": "መልዕክት ይጻፉ...",

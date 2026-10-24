@@ -2995,6 +2995,8 @@
     "tabSearch": "Kërko"
   },
   "postInfo": {
+    "ownersUnavailable": "Pronarët aktualë nuk mund të lexohen tani.",
+    "unavailable": "E padisponueshme",
     "title": "Informacione për postimin",
     "tokenId": "ID e tokenit",
     "mintedOn": "Krijuar më",
@@ -5044,6 +5046,8 @@
     "displayNameHint": "Emri yt publik në profil. Opsional — lëre bosh dhe do të përdoret emri yt i përdoruesit."
   },
   "events": {
+    "deleteConfirmBody": "Kjo fshin ngjarjen, listën e të ftuarve dhe bisedën e saj për të gjithë. Nuk mund të zhbëhet.",
+    "deleteConfirmTitle": "Dëshiron ta fshish këtë ngjarje?",
     "youreApproved": "U miratove",
     "youAreCreator": "Ti je krijuesi",
     "typeMessage": "Shkruani një mesazh...",

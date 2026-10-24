@@ -2997,6 +2997,8 @@
     "tabSearch": "Axtarış"
   },
   "postInfo": {
+    "ownersUnavailable": "Hazırda mövcud sahibləri oxumaq mümkün deyil.",
+    "unavailable": "Əlçatan deyil",
     "title": "Paylaşım məlumatı",
     "tokenId": "Token ID",
     "mintedOn": "Yaradılıb",
@@ -5046,6 +5048,8 @@
     "displayNameHint": "Profilində görünən ictimai adın. İstəyə bağlıdır — istifadəçi adını işlətmək üçün boş burax."
   },
   "events": {
+    "deleteConfirmBody": "Bu, tədbiri, onun qonaq siyahısını və söhbətini hər kəs üçün silir. Geri qaytarmaq mümkün deyil.",
+    "deleteConfirmTitle": "Bu tədbir silinsin?",
     "youreApproved": "Siz təsdiq olunmusunuz",
     "youAreCreator": "Siz yaradıcısınız",
     "typeMessage": "Mesaj yazın...",

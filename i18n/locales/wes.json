@@ -2961,6 +2961,8 @@
     "tabSearch": "Find"
   },
   "postInfo": {
+    "ownersUnavailable": "E current owner no dey fit read a go now.",
+    "unavailable": "E no dey",
     "title": "Post Info",
     "tokenId": "Token ID",
     "mintedOn": "Dem create am",
@@ -4988,6 +4990,8 @@
     "displayNameHint": "Your public nem for your profile. You no must put am — leave am empty and we go use your username."
   },
   "events": {
+    "deleteConfirmBody": "Dis one go remove di event, ihn guest list and ihn chat for everybody. You no fit undo am.",
+    "deleteConfirmTitle": "You want delete dis event?",
     "youreApproved": "You're approved",
     "typeMessage": "Type a message...",
     "startTime": "Start Time",

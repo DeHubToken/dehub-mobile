@@ -3007,6 +3007,8 @@
     "tabSearch": "Tafuta"
   },
   "postInfo": {
+    "ownersUnavailable": "Wamiliki wa sasa hawawezi kusomwa kwa sasa.",
+    "unavailable": "Haipatikani",
     "title": "Taarifa ya chapisho",
     "tokenId": "Token ID",
     "mintedOn": "Iliundwa",
@@ -5056,6 +5058,8 @@
     "displayNameHint": "Jina lako la umma kwenye wasifu wako. Si lazima — ukiliacha wazi, tutatumia jina lako la mtumiaji."
   },
   "events": {
+    "deleteConfirmBody": "Hii huondoa tukio, orodha yake ya wageni na gumzo lake kwa kila mtu. Haiwezi kutenguliwa.",
+    "deleteConfirmTitle": "Ungependa kufuta tukio hili?",
     "youreApproved": "Umeidhinishwa",
     "youAreCreator": "Wewe ni muundaji",
     "typeMessage": "Andika ujumbe...",

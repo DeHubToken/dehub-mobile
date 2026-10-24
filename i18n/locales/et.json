@@ -2996,6 +2996,8 @@
     "tabSearch": "Otsi"
   },
   "postInfo": {
+    "ownersUnavailable": "Praeguseid omanikke ei saa praegu lugeda.",
+    "unavailable": "Pole saadaval",
     "title": "Postituse info",
     "tokenId": "Tokeni ID",
     "mintedOn": "Loodud",
@@ -5045,6 +5047,8 @@
     "displayNameHint": "Sinu avalik nimi profiilil. Valikuline — jäta tühjaks, et kasutada oma kasutajanime."
   },
   "events": {
+    "deleteConfirmBody": "See eemaldab sündmuse, selle külaliste nimekirja ja vestluse kõigi jaoks. Seda ei saa tagasi võtta.",
+    "deleteConfirmTitle": "Kas kustutada see sündmus?",
     "youreApproved": "Olete heaks kiidetud",
     "youAreCreator": "Olete looja",
     "typeMessage": "Kirjuta sõnum...",

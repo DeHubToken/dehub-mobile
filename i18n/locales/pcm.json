@@ -2946,6 +2946,8 @@
     "tabSearch": "Find Am"
   },
   "postInfo": {
+    "unavailable": "E no dey available",
+    "ownersUnavailable": "We no fit read who own am right now.",
     "title": "Post Info",
     "tokenId": "Token ID",
     "mintedOn": "Dem create am",
@@ -4937,6 +4939,8 @@
     "displayNameHint": "Your public name wey dey show for your profile. E no by force — leave am empty and we go use your username."
   },
   "events": {
+    "deleteConfirmTitle": "You wan delete dis event?",
+    "deleteConfirmBody": "E go remove di event, im guest list and im chat for everybody. You no fit undo am.",
     "youreApproved": "You're approved",
     "typeMessage": "Type a message...",
     "startTime": "Start Time",

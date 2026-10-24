@@ -3028,6 +3028,8 @@
     "tabSearch": "Sueche"
   },
   "postInfo": {
+    "ownersUnavailable": "Di aktuelle Bsitzer chönd grad nöd glääse wärde.",
+    "unavailable": "Nöd verfüegbar",
     "title": "Biitragsinformation",
     "tokenId": "Token-ID",
     "mintedOn": "Erstellt am",
@@ -5076,6 +5078,8 @@
     "displayNameHint": "Din öffentliche Name im Profil. Freiwillig — lahn s Fäld leer, denn wird din Benutzername bruucht."
   },
   "events": {
+    "deleteConfirmBody": "Das löscht dä Aalass, sini Gäschteliischte und sin Chat für alli. Das cha nöd rückgängig gmacht wärde.",
+    "deleteConfirmTitle": "Dä Aalass lösche?",
     "youreApproved": "Du bist zugelassen",
     "youAreCreator": "Du bist der Ersteller",
     "typeMessage": "Schreib eine Nachricht...",

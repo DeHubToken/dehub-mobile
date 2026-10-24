@@ -3010,6 +3010,8 @@
     "tabSearch": "Søg"
   },
   "postInfo": {
+    "ownersUnavailable": "De nuværende ejere kan ikke læses lige nu.",
+    "unavailable": "Ikke tilgængelig",
     "title": "Opslags-info",
     "tokenId": "Token-ID",
     "mintedOn": "Oprettet den",
@@ -5059,6 +5061,8 @@
     "displayNameHint": "Dit offentlige navn på din profil. Valgfrit — lad feltet stå tomt for at bruge dit brugernavn."
   },
   "events": {
+    "deleteConfirmBody": "Dette fjerner begivenheden, dens gæsteliste og dens chat for alle. Det kan ikke fortrydes.",
+    "deleteConfirmTitle": "Vil du slette denne begivenhed?",
     "youreApproved": "Du er godkendt",
     "youAreCreator": "Du er skaberen",
     "typeMessage": "Skriv en besked...",
