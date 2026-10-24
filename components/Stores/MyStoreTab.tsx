@@ -805,7 +805,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
     >
       <PageSection>
       {/* Store header */}
-      <View style={styles.storeHeader}>
+      <View className={activeStore?.banner_url ? 'dark-surface' : undefined} style={[styles.storeHeader, !!activeStore?.banner_url && { backgroundColor: '#0b0b0d' }]}>
         {!!activeStore?.banner_url && (
           <Image
             source={storageImageSource(activeStore.banner_url, windowWidth)}
