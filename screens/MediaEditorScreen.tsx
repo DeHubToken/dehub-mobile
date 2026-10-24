@@ -1,3 +1,17 @@
+import { clipFontFamilies } from "../libs/editor/graphicFonts";
+import { documentImageProfile, documentImageScale, type DocumentImageProfile } from "../libs/editor/documentImageProfile";
+import { applyRehearsedPageDurations } from "../libs/editor/presentationRehearsal";
+import { imageJpegQuality } from "../libs/editor/imageExportOptions";
+import { exportPresentationNotes } from "../libs/editor/exportPresentationNotes";
+import { designPageSections } from "../libs/editor/pageDetails";
+import { exportPresentation } from "../libs/editor/exportPresentation";
+import { cancelDesignColourPick } from "../libs/editor/designColourPicker";
+import { duplicateDesignPageSelection } from "../libs/editor/designClone";
+import { registerDesignPagePreview } from "../libs/editor/designPagePreviews";
+import { DEFAULT_PEN, type PenSettings } from "../libs/editor/freehand";
+import { renameDesignLayer } from "../libs/editor/designLayerNames";
+import { normaliseBrandStyles } from "../libs/editor/brandStyles";
+import type { DesignPdfLink } from "../libs/editor/designLinks";
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
@@ -8,6 +22,8 @@ import { useEditorProjectDraft } from "../libs/editor/useEditorProjectDraft";
 import { projectReviewSnapshotKey } from "../libs/editor/cloudProjectReview";
 import { completeEditorRecovery, discardEditorRecovery, lastRecoveryProject, readEditorRecovery, writeEditorRecovery } from '../libs/editor/draftRecovery';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
+import { useTextDraftHistory } from "../libs/editor/useTextDraftHistory";
+import { changeSelectedTextCase, type TextCase } from "../libs/editor/textCase";
 /**
  * Photo and video editor: layered designs of pictures, text and shapes, and
  * videos with sound on a timeline.
@@ -17,7 +33,7 @@ import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
  * design shows the frame at STILL_TIME; once the timeline is open (it opens
  * by itself when a video or sound is added) the page shows the playhead.
  */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useLayoutEffect, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   BackHandler,
@@ -42,6 +58,8 @@ import { GIF_CONTENT_LIMIT, gifPlan } from "../libs/editor/gif";
 import ExportSheet from "../components/editor/ExportSheet";
 import AssemblyMediaPreview from "../components/editor/AssemblyMediaPreview";
 import { exportPageArchive } from "../libs/editor/exportPageArchive";
+import { exportPdf } from "../libs/editor/exportPdf";
+import { replaceDesignMedia } from "../libs/editor/replaceMedia";
 import { pageExportFrames, type PageExportScope } from "../libs/editor/pageExports";
 import { saveGif } from "../libs/editor/saveGif";
 import { exportBaseName, exportFilename } from "../libs/editor/exportName";
@@ -97,7 +115,9 @@ import Timeline from "../components/editor/Timeline";
 import StockPanel from "../components/editor/StockPanel";
 import RecordingPanel from "../components/editor/RecordingPanel";
 import ScenesPanel from "../components/editor/ScenesPanel";
-import { appendPage, getPages, pageAt, removePage } from "../libs/editor/pages";
+import DesignTools from "../components/editor/DesignTools";
+import PresentationView from "../components/editor/PresentationView";
+import { appendPage, getPages, pageAt, removePage, reorderPage, setPageDuration } from "../libs/editor/pages";
 import SubtitleFilesPanel from "../components/editor/SubtitleFilesPanel";
 import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
 import { applyCaptionText } from "../libs/editor/captionText";
@@ -143,7 +163,6 @@ import {
   addText,
   layerList,
   arrangeClip,
-  duplicateClip,
   getClip,
   newProject,
   removeClip,
@@ -352,7 +371,7 @@ type Tool =
   | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion";
 
 interface ToolButton {
-  id: Tool | "photo" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
+  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
   icon: IconName;
   label: string;
 }
@@ -372,6 +391,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const h = useProjectHistory(recovered ?? initial, snapshot => writeEditorRecovery(recoveryScope, { ...snapshot, updatedAt: Date.now() }));
   const project = h.project;
   const canvasRef = useRef<EditorCanvasHandle>(null);
+  useLayoutEffect(() => {
+    if (!project) return;
+    return registerDesignPagePreview(project.id, async (snapshot, at, maxEdge) => {
+      const canvas = canvasRef.current; if (!canvas) throw new Error("The design canvas is not ready");
+      return canvas.exportImage("jpeg", 0.75, at, false, undefined, true, maxEdge, snapshot);
+    });
+  }, [project?.id]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [tool, setTool] = useState<Tool | null>(null);
   // Record mode (web editorUiStore recordMotion): placement edits with the
@@ -380,6 +406,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const [missing, setMissing] = useState(false);
   const drafts = useEditorProjectDraft({ rendered: project, current: h.latest, holdEdits: h.holdEdits, commit: h.commit });
   const [exportOpen, setExportOpen] = useState(false);
+  const [presentation, setPresentation] = useState<{ project: ProjectSnapshot; time: number } | null>(null);
+  useEffect(() => setPresentation(null), [project?.id]);
   const [cloudOpen, setCloudOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [captionProgress, setCaptionProgress] = useState<CaptionProgress | null>(null);
@@ -387,7 +415,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   const audioController = useRef<AbortController | null>(null);
   useEffect(() => () => audioController.current?.abort(), []);
   // Freehand pen; while set, one finger draws on the page.
-  const [pen, setPen] = useState<{ color: string; width: number } | null>(null);
+  const [pen, setPen] = useState<PenSettings | null>(null);
+  const [lastPen, setLastPen] = useState<PenSettings>({ ...DEFAULT_PEN });
   // AI chat and brand kit.
   const [chatOpen, setChatOpen] = useState(false);
   const [generatorWindow, setGeneratorWindow] = useState<'closed' | 'open' | 'minimized'>('closed');
@@ -570,8 +599,8 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     else h.commit(next);
   };
 
-  const addPhoto = async () => {
-    if (!project) return;
+  const addPhoto = async (replaceId?: string) => {
+    if (!project || (replaceId && getClip(project, replaceId)?.locked)) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
     if (!task) return;
     try {
@@ -582,6 +611,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         const a = res.assets[0];
         const meta = await importPicture({ uri: a.uri, width: a.width, height: a.height, mimeType: a.mimeType, fileName: a.fileName });
         if (!task.isCurrent()) return;
+        if (replaceId) {
+          const target = project.clips.find(c => c.id === replaceId);
+          const previous = target && "mediaId" in target ? await getMedia(target.mediaId) : null;
+          if (!task.isCurrent()) return;
+          const next = replaceDesignMedia(project, replaceId, meta, previous);
+          if (next !== project) { h.commit(next); select(replaceId); }
+          return;
+        }
         const { project: next, clipId } = addImage(project, meta.id);
         h.commit(atPlayhead(next, clipId));
         select(clipId);
@@ -602,15 +639,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     return updateClip(p, clipId, { start: page.start, duration: page.end - page.start });
   };
 
-  const addVideos = async () => {
-    if (!project) return;
+  const addVideos = async (replaceId?: string) => {
+    if (!project || (replaceId && getClip(project, replaceId)?.locked)) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest() === project);
     if (!task) return;
     try {
       const res = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ["videos"],
-        allowsMultipleSelection: true,
-        selectionLimit: 20,
+        allowsMultipleSelection: !replaceId,
+        selectionLimit: replaceId ? 1 : 20,
         orderedSelection: true,
         quality: 1,
         // iPhone HEVC and slow-mo come back as plain H.264 the canvas can decode.
@@ -633,6 +670,13 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
               duration: a.duration ? a.duration / 1000 : null,
             });
             if (!task.isCurrent()) return;
+            if (replaceId) {
+              const target = project.clips.find(c => c.id === replaceId);
+              const previous = target && "mediaId" in target ? await getMedia(target.mediaId) : null;
+              if (!task.isCurrent()) return;
+              next = replaceDesignMedia(project, replaceId, meta, previous); lastId = replaceId;
+              break;
+            }
             // The first video of a new design sets the page shape.
             if (!next.clips.length && meta.width && meta.height) next = setAspect(next, nearestAspect(meta.width / meta.height));
             const r = addClip(next, { id: meta.id, kind: "video", duration: meta.duration ?? 0 }, project.settings.pages?.length ? time : 0);
@@ -1061,6 +1105,16 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (!project) return;
     if (id === "ai") { setChatOpen(true); return; }
     if (id === "photo") { void addPhoto(); return; }
+    if (id === "replacePhoto" && selectedId) { void addPhoto(selectedId); return; }
+    if (id === "replaceVideo" && selectedId) { void addVideos(selectedId); return; }
+    if (id === "replaceMedia" && selectedId) {
+      Alert.alert(t("editor.media.replace", { defaultValue: "Replace selected layer" }), undefined, [
+        { text: t("editor.media.photo", { defaultValue: "Photo" }), onPress: () => { void addPhoto(selectedId); } },
+        { text: t("editor.media.video", { defaultValue: "Video" }), onPress: () => { void addVideos(selectedId); } },
+        { text: t("common.cancel", { defaultValue: "Cancel" }), style: "cancel" },
+      ]);
+      return;
+    }
     if (id === "video") { void addVideos(); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
@@ -1070,12 +1124,19 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
-      const r = kind === "video" || kind === "audio" ? duplicateInTime(project, selectedId) : duplicateClip(project, selectedId);
-      if (r) { h.commit(r.project); select(r.clipId); }
+      try {
+        if (!getClip(project, selectedId)?.groupId && (kind === "video" || kind === "audio")) {
+          const result = duplicateInTime(project, selectedId); if (result) { h.commit(result.project); select(result.clipId); }
+        } else {
+          const latest = h.latest(); if (!latest || latest.id !== project.id) return;
+          const result = duplicateDesignPageSelection(latest, [selectedId], canvasTime, () => newId(10));
+          if (result) { setPlaying(false); h.commit(result.project); select(result.ids[0] ?? null); }
+        }
+      } catch (error) { Alert.alert(t("editor.menu.duplicate"), error instanceof Error ? error.message : String(error)); }
       return;
     }
     if (id === "delete" && selectedId) {
-      h.commit(getClip(project, selectedId)?.kind === "video" ? deleteAndClose(project, selectedId) : removeClip(project, selectedId));
+      h.commit(!getClip(project, selectedId)?.groupId && getClip(project, selectedId)?.kind === "video" ? deleteAndClose(project, selectedId) : removeClip(project, selectedId));
       select(null);
       return;
     }
@@ -1122,6 +1183,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (selected.kind === "video") {
       return [
+        { id: "replaceMedia", icon: "Image", label: t("editor.media.replace", { defaultValue: "Replace selected layer" }) },
         { id: "removeBg", icon: "Scissors", label: t(selected.videoMatte ? "editor.videoMatte.restore" : "editor.bgRemove.action") },
         { id: "shots", icon: "Scissors", label: t("editor.shots.detect") },
         { id: "highlights", icon: "Sparkles", label: t("editor.highlights.title") },
@@ -1155,6 +1217,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     ];
     if (selected.kind === "shape") {
       return [
+        ...(selected.photoFrame ? [{ id: "replaceMedia" as const, icon: "Image" as IconName, label: t("editor.media.replace", { defaultValue: "Replace selected layer" }) }] : []),
         { id: "shapeStyle", icon: "Palette", label: t("editor.shape.style") },
         ...common,
       ];
@@ -1171,6 +1234,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       ];
     }
     return [
+      { id: "replaceMedia", icon: "Image", label: t("editor.media.replace", { defaultValue: "Replace selected layer" }) },
       { id: "removeBg", icon: "Scissors", label: t("editor.bgRemove.action") },
       { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
       { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },
@@ -1242,7 +1306,23 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }} />;
     if (tool === "scenes") {
       const pages = getPages(project.settings, project.clips);
-      return <ScenesPanel pages={pages} current={pageAt(pages, canvasTime).index}
+      return <ScenesPanel details={project.settings.pageDetails} pages={pages} current={pageAt(pages, canvasTime).index}
+        onDuration={(index, duration) => {
+          const current = h.latest();
+          if (!current || current.id !== project.id) return;
+          const page = setPageDuration(current.settings, current.clips, index, duration, () => newId(10));
+          if (!page) return;
+          h.commit({ ...current, settings: page.settings, clips: page.clips });
+          setTime(page.start); setPlaying(false); setSelectedId(null);
+        }}
+        onMove={(from, to) => {
+          const current = h.latest();
+          if (!current || current.id !== project.id) return;
+          const page = reorderPage(current.settings, current.clips, from, to, () => newId(10));
+          if (!page) return;
+          h.commit({ ...current, settings: page.settings, clips: page.clips });
+          setTime(page.start); setPlaying(false); setSelectedId(null);
+        }}
         onPick={start => { setPlaying(false); setTime(start); setSelectedId(null); }}
         onAdd={duplicate => {
           const page = appendPage(project.settings, project.clips, canvasTime, duplicate, () => newId(10));
@@ -1269,12 +1349,15 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         />
       );
     }
-    if (tool === "draw") return <DrawPanel pen={pen} onChange={setPen} />;
+    if (tool === "draw") return <DrawPanel pen={pen} lastPen={lastPen} onChange={value => { setPlaying(false); setPen(value); if (value) setLastPen({ ...value, dash: value.dash ? [...value.dash] : undefined }); }} />;
     if (tool === "brand") {
       const designColors = project.clips.flatMap((c) => (c.kind === "text" ? [c.color] : c.kind === "shape" && c.fill ? [c.fill] : []));
       return (
         <BrandPanel
           kit={brand}
+          onSaveStyles={() => { const latest = h.latest(); if (latest?.id === project.id) { h.commit({ ...latest, settings: { ...latest.settings, brandStyles: normaliseBrandStyles(brand) } }); toastSuccess(t("editor.brand.stylesSaved", { defaultValue: "Brand styles saved with this design" })); } }}
+          onLoadStyles={project.settings.brandStyles ? () => updateBrand({ ...brand, ...normaliseBrandStyles(project.settings.brandStyles!) }) : undefined}
+
           designColors={[project.settings.background, ...designColors]}
           palette={SWATCHES}
           fonts={EDITOR_FONTS.map((f) => ({ family: f.family, css: fontCssOf(f) }))}
@@ -1300,6 +1383,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     if (tool === "layers") {
       return (
         <LayersPanel
+          onRename={(id, value) => { const latest = h.latest(); if (latest?.id === project.id) { const next = renameDesignLayer(latest, id, value); if (next !== latest) h.commit(next); } }}
           layers={layerList(project)}
           selectedId={selectedId}
           onSelect={(id) => { setSelectedId(id); }}
@@ -1384,7 +1468,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     }
     if (tool === "filters") return <FiltersPanel clip={selected} {...panelProps} />;
     if (tool === "adjust") return <AdjustPanel clip={selected} {...panelProps} onAutoEnhance={selected.kind === "image" ? () => { void autoEnhance(); } : undefined} />;
-    if (tool === "crop") return <CropPanel clip={selected} {...panelProps} />;
+    if (tool === "crop") return <CropPanel clip={selected} page={project.settings} {...panelProps} />;
     if (tool === "corners") return <CornersPanel clip={selected} {...panelProps} />;
     if (tool === "fit") return <FitPanel clip={selected} {...panelProps} />;
     return null;
@@ -1393,7 +1477,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
   // Web fonts the page needs, picked the way the web picks them.
   const fontCss = useMemo(() => {
     const set = new Set<string>();
-    project?.clips.forEach((c) => { if (c.kind === "text") { const href = fontStylesheet(c.fontFamily); if (href) set.add(href); } });
+    clipFontFamilies(project?.clips ?? []).forEach(family => { const href = fontStylesheet(family); if (href) set.add(href); });
     return [...set];
   }, [project]);
 
@@ -1443,6 +1527,34 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       if (archive) await FileSystem.deleteAsync(archive, { idempotent: true }).catch(() => {});
       if (downloadController.current === ctl) downloadController.current = null;
       setClipDownloadLabel(""); setRendering(null);
+    }
+  };
+
+  const downloadNotes = async (scope: PageExportScope) => {
+    const latest = h.latest(); if (!project || !latest || latest.id !== project.id || busy || rendering !== null) return;
+    setPlaying(false); setBusy(true);
+    try { await exportPresentationNotes(latest, canvasTime, scope); setExportOpen(false); }
+    catch (error) { toastError(error instanceof Error ? error.message : t("editor.app.exportFailed")); }
+    finally { setBusy(false); }
+  };
+  const downloadDocument = async (format: "pdf" | "pptx", scope: PageExportScope, cropMarks = false, bookmarks = true, imageProfile: DocumentImageProfile = "standard") => {
+    const current = h.latest();
+    const canvas = canvasRef.current;
+    if (!current || !canvas || rendering !== null || h.isEditing()) return;
+    const lease = h.holdEdits(projectReviewSnapshotKey(current));
+    if (!lease) return;
+    const ctl = new AbortController(); downloadController.current = ctl;
+    setPlaying(false); setExportOpen(false); setRendering(0);
+    try {
+      const capture = async (time: number) => { let links: DesignPdfLink[] = []; const profile = documentImageProfile(imageProfile), scale = documentImageScale(current.settings.width, current.settings.height, 1, imageProfile); const dataUrl = await canvas.exportImage("jpeg", profile.quality, time, false, value => { links = value; }, true, profile.maxEdge); return { dataUrl, links, width: Math.max(1, Math.round(current.settings.width * scale)), height: Math.max(1, Math.round(current.settings.height * scale)) }; };
+      if (format === "pptx") await exportPresentation(current, canvasTime, scope, capture, ctl.signal, setRendering);
+      else await exportPdf(current, canvasTime, scope, capture, ctl.signal, setRendering, cropMarks, bookmarks);
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed"));
+    } finally {
+      lease.release();
+      if (downloadController.current === ctl) downloadController.current = null;
+      setRendering(null);
     }
   };
 
@@ -1501,16 +1613,18 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     } finally { setRendering(null); }
   };
 
-  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current") => {
+  const exportDesign = async (format: "png" | "jpeg", target: "photos" | "post", scope: PageExportScope = "current", transparent = false, filenamePattern = "", jpegQuality = 0.92) => {
     if (!project || !canvasRef.current || busy || rendering !== null) return;
     if (!project.clips.length && !project.settings.pages?.length) { toastError(t("editor.export.empty")); return; }
-    if (scope === "all" && getPages(project.settings, project.clips).length > 1 && target === "photos") {
+    let frames: ReturnType<typeof pageExportFrames>;
+    try { frames = pageExportFrames(project, canvasTime, scope, format === "jpeg" ? "jpg" : "png", filenamePattern); } catch (error) { toastError(error instanceof Error ? error.message : t("editor.app.exportFailed")); return; }
+    if (frames.length > 1 && target === "photos") {
       const ctl = new AbortController(); downloadController.current = ctl;
       const canvas = canvasRef.current;
       setPlaying(false); setExportOpen(false); setRendering(0);
       try {
-        await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at), ctl.signal,
-          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); });
+        await exportPageArchive(project, canvasTime, format, (f, q, at) => canvas.exportImage(f, q, at, transparent, undefined, true), ctl.signal,
+          (fraction, current, total) => { setRendering(fraction); setClipDownloadLabel(t("editor.pages.exporting", { current, total })); }, scope, filenamePattern, imageJpegQuality(jpegQuality));
       } catch (error) { if ((error as Error).name !== "AbortError") toastError(t("editor.app.exportFailed")); }
       finally { if (downloadController.current === ctl) downloadController.current = null; setClipDownloadLabel(""); setRendering(null); }
       return;
@@ -1521,9 +1635,9 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         const { status } = await MediaLibrary.requestPermissionsAsync();
         if (status !== "granted") { toastError(t("editor.app.photosPermission")); return; }
       }
-      const frame = pageExportFrames(project, canvasTime, "current", format === "jpeg" ? "jpg" : "png")[0];
-      const dataUrl = await canvasRef.current!.exportImage(format, 0.92, frame.time);
-      const uri = await writeExport(dataUrl, format, project.title);
+      const frame = frames[0];
+      const dataUrl = await canvasRef.current!.exportImage(format, imageJpegQuality(jpegQuality), frame.time, transparent, undefined, getPages(project.settings, project.clips).length > 1);
+      const uri = await writeExport(dataUrl, format, frame.filename.slice(0, -4));
       setExportOpen(false);
       if (target === "photos") {
         await MediaLibrary.saveToLibraryAsync(uri);
@@ -1593,6 +1707,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         </Pressable>
       </View>
 
+      <DesignTools onPageChange={time => { setPlaying(false); setTime(time); setSelectedId(null); setPen(null); setTool(null); }} onEditContent={id => { const clip = h.latest()?.clips.find(clip => clip.id === id); if (!clip || clip.locked) return; setPlaying(false); setPen(null); select(id); if (clip.kind === "text") drafts.openText(id); else setTool(clip.kind === "shape" ? "shapeStyle" : "crop"); }} onPresent={rendering !== null || mediaLoading > 0 ? undefined : () => { h.settle(); setPlaying(false); setPen(null); setTool(null); const latest = h.latest(); if (latest) { cancelDesignColourPick(); setPresentation({ project: latest, time: canvasTime }); } }} boxes={() => canvasRef.current?.layoutBoxes() ?? []} recording={recording} key={project.id} holdEdits={() => { const latest = h.latest(); return latest ? h.holdEdits(projectReviewSnapshotKey(latest)) : null; }} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
+      {presentation && presentation.project.id === project.id && <PresentationView project={presentation.project} time={presentation.time} onApplyTimings={entries => { const latest = h.latest(); if (!latest || latest.id !== presentation.project.id || projectReviewSnapshotKey(latest) !== projectReviewSnapshotKey(presentation.project)) throw new Error("The design changed during this presentation. Reopen it before applying timings"); const result = applyRehearsedPageDurations(latest, entries, canvasTime, () => newId(10)); if (result.project !== latest) h.commit(result.project); setTime(result.time); setPresentation(null); }} onPage={setTime} onClose={() => setPresentation(null)} renderPage={async at => {
+        const canvas = canvasRef.current;
+        if (!canvas) return Promise.reject(new Error("The canvas is not ready"));
+        let links: DesignPdfLink[] = [];
+        const dataUrl = await canvas.exportImage("jpeg", 0.9, at, false, value => { links = value; }, true, 2048, presentation.project);
+        return { dataUrl, links };
+      }} />}
       <LiveProjectSession projectId={project.id} editor={cloudDraftHistoryEditor(h)} />
       {missing && (
         <Text className="text-amber-300 text-xs px-4 pb-2">{t("editor.app.missingMedia")}</Text>
@@ -1625,10 +1747,12 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
           onGestureEnd={h.settle}
           recording={recording}
           onEditText={id => { drafts.openText(id); }}
+          cropping={tool === "crop"}
+          onEditCrop={id => { setSelectedId(id); setTool("crop"); setPen(null); setPlaying(false); }}
           onMissingMedia={(ids) => setMissing(ids.length > 0)}
           pen={pen}
-          onStroke={(pts) => {
-            const r = addStroke(project, pts, pen ?? { color: "#ffffff", width: 12 });
+          onStroke={(pts, at, brush) => {
+            const r = addStroke(project, pts, brush ?? pen ?? DEFAULT_PEN, at ?? canvasTime);
             if (r) h.commit(r.project);
           }}
         />
@@ -1828,10 +1952,14 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
         video={isVideoProject(project) ? { duration: duration + BRAND_OUTRO_DURATION, fps: project.settings.fps } : null}
         busy={busy || rendering !== null}
         onCancel={() => setExportOpen(false)}
+        sections={designPageSections(project)}
         pageCount={getPages(project.settings, project.clips).length}
         onExport={exportDesign}
         onExportVideo={(q, target, scope) => { void exportVideo(q, target, scope); }}
         onExportGif={scope => { void exportGif(scope); }}
+          onExportPdf={(scope, marks, bookmarks, quality) => { void downloadDocument("pdf", scope, marks, bookmarks, quality); }}
+          onExportNotes={scope => { void downloadNotes(scope); }}
+          onExportPresentation={(scope, quality) => { void downloadDocument("pptx", scope, false, true, quality); }}
       />
     </View>
   );
@@ -1866,27 +1994,52 @@ function TextPrompt(props: {
 }) {
   const { t } = useTranslation();
   const [value, setValue] = useDraftState(props.draftScope, props.initial);
+  const accountScope = useAccountDraftKey(props.draftScope);
+  const history = useTextDraftHistory(`${accountScope}:${props.visible}`, value, setValue);
+  const inputRef = useRef<TextInput>(null);
+  const selection = useRef({ start: 0, end: 0 });
+  useEffect(() => { selection.current = { start: 0, end: 0 }; }, [accountScope, props.visible]);
+  const applyCase = (mode: TextCase) => {
+    const next = changeSelectedTextCase(value, selection.current, mode);
+    history.change(next.value); selection.current = next.selection;
+    requestAnimationFrame(() => { inputRef.current?.focus(); inputRef.current?.setNativeProps({ selection: next.selection }); });
+  };
   useEffect(() => { if (props.visible) setValue.initialize(props.initial); }, [props.visible, props.initial, setValue]);
   return (
     <Modal visible={props.visible} transparent animationType="fade" onRequestClose={props.onCancel}>
-      <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6">
-        <ThemePanel solid className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ gap: 12 }}>
+      <KeyboardAvoidingView behavior="padding" className="flex-1 justify-center bg-black/70 px-6 py-4">
+        <ThemePanel solid className="rounded-2xl bg-theme-neutrals-800 p-4" style={{ flexShrink: 1, maxHeight: "100%" }}>
+          <ScrollView keyboardShouldPersistTaps="handled" style={{ flexShrink: 1 }} contentContainerStyle={{ gap: 12 }}>
           <Text className="text-white text-base font-semibold">{props.title}</Text>
           <TextInput
+            ref={inputRef}
             value={value}
-            onChangeText={setValue}
+            onChangeText={history.change}
+            onSelectionChange={event => { selection.current = event.nativeEvent.selection; }}
             autoFocus
             multiline={props.multiline}
+            scrollEnabled={!!props.multiline}
             placeholder={props.placeholder}
             placeholderTextColor="#6b7280"
             selectTextOnFocus
+            returnKeyType={props.multiline ? "default" : "done"}
+            onSubmitEditing={props.multiline ? undefined : () => { if (props.onDone(value)) setValue.complete(value, value); }}
             className="rounded-xl bg-black/40 text-white px-3 py-3"
-            style={{ minHeight: props.multiline ? 96 : undefined, textAlignVertical: props.multiline ? "top" : "center" }}
+            style={{ minHeight: props.multiline ? 96 : undefined, maxHeight: props.multiline ? 240 : undefined, textAlignVertical: props.multiline ? "top" : "center" }}
           />
+          {props.multiline && <View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["upper", "lower", "title"] as const).map(mode => <Pressable key={mode} accessibilityRole="button" onPress={() => applyCase(mode)} className="rounded-lg border border-white/20 px-3 py-2"><Text className="text-white text-xs">{t(`editor.text.case.${mode}`, { defaultValue: ({ upper: "UPPERCASE", lower: "lowercase", title: "Title Case" })[mode] })}</Text></Pressable>)}</View>}
+          <View className="flex-row items-center justify-between" style={{ gap: 8 }}>
+            <View className="flex-row" style={{ gap: 8 }}>
+              <Pressable accessibilityRole="button" accessibilityLabel={t("editor.undo", { defaultValue: "Undo text change" })} disabled={!history.canUndo} onPress={history.undo} className="rounded-lg border border-white/20 px-3 py-2" style={{ opacity: history.canUndo ? 1 : 0.35 }}><Text className="text-white text-xs">{t("common.undo", { defaultValue: "Undo" })}</Text></Pressable>
+              <Pressable accessibilityRole="button" accessibilityLabel={t("editor.redo", { defaultValue: "Redo text change" })} disabled={!history.canRedo} onPress={history.redo} className="rounded-lg border border-white/20 px-3 py-2" style={{ opacity: history.canRedo ? 1 : 0.35 }}><Text className="text-white text-xs">{t("common.redo", { defaultValue: "Redo" })}</Text></Pressable>
+            </View>
+            <Text className="text-theme-neutrals-300 text-xs">{t("editor.text.characterCount", { defaultValue: "{{count}} characters", count: Array.from(value).length })}</Text>
+          </View>
           <View className="flex-row justify-end" style={{ gap: 8 }}>
             <Chip label={t("common.cancel")} onPress={props.onCancel} />
             <Chip label={t("common.done")} active onPress={() => { if (props.onDone(value)) setValue.complete(value, value); }} />
           </View>
+          </ScrollView>
         </ThemePanel>
       </KeyboardAvoidingView>
     </Modal>
