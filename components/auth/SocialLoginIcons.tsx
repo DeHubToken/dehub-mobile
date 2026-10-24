@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { Pressable, StyleSheet, Text, View, ActivityIndicator, Keyboard } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import ImportWalletModal from "./ImportWalletModal";
-import { AuthButton, authColors, AUTH_DISABLED_OPACITY } from "./AuthControls";
+import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_CONTROL_HEIGHT, AUTH_RADIUS } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
@@ -79,7 +79,7 @@ interface OptionDiscProps {
   renderIcon: (color: string, size: number) => React.ReactNode;
 }
 
-/** A 48pt round button with its label underneath (the stack layout's "or continue with" row). */
+/** A form-height provider button with its label underneath. */
 const OptionDisc: React.FC<OptionDiscProps> = ({ label, onPress, disabled, loading, active, renderIcon }) => (
   <Pressable
     onPress={onPress}
@@ -113,7 +113,6 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   passkeyError,
   passkeySuggestCreate,
   onEmailSubmit,
-  onEmailPasswordSubmit,
   onPhoneSubmit,
   onConnectWallet,
   busyProvider,
@@ -124,24 +123,50 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   const { t } = useTranslation();
   const passkeyReady = !!onPasskeySignIn && !!onPasskeySignUp && isPasskeyLoginAvailable();
 
-  // Stack layout: which round button has its flow open under the row.
+  // The selected method replaces the email form above the provider row.
   const [openFlow, setOpenFlow] = useState<"phone" | "passkey" | "wallet" | null>(null);
-  const toggleFlow = (flow: "phone" | "passkey" | "wallet") => setOpenFlow((f) => (f === flow ? null : flow));
+  const toggleFlow = (flow: "phone" | "passkey" | "wallet") => {
+    if (flow !== "phone" || openFlow === flow) Keyboard.dismiss();
+    setOpenFlow((f) => (f === flow ? null : flow));
+  };
   const [importVisible, setImportVisible] = useState(false);
 
   if (layout === "stack") {
     return (
       <View style={{ width: "100%", gap: 18 }}>
-        <EmailLoginFlow
+        <View style={{ minHeight: 124, gap: 8 }}>
+        {openFlow !== null && (
+          <AuthTextButton
+            label={t("loginModal.continueEmail")}
+            tone="muted"
+            onPress={() => { Keyboard.dismiss(); setOpenFlow(null); }}
+            disabled={disabled}
+          />
+        )}
+        {openFlow === null && <EmailLoginFlow
           startOpen
           onSubmit={(_provider, email) => {
             if (email) onEmailSubmit(email);
           }}
-          onPasswordSubmit={onEmailPasswordSubmit}
           loading={busyProvider === "email"}
           disabled={disabled}
           onExpand={onFieldExpand}
-        />
+        />}
+        {openFlow === "phone" && (
+          <PhoneLoginFlow startOpen onSubmit={onPhoneSubmit} loading={busyProvider === "phone"} disabled={disabled} onExpand={onFieldExpand} />
+        )}
+        {openFlow === "wallet" && (
+          <View style={{ gap: 10 }}>
+            {onConnectWallet && isWalletConnectAvailable && (
+              <AuthButton icon="wallet" label={t("loginModal.connectWallet", "Connect Wallet")} onPress={onConnectWallet} disabled={disabled} loading={busyProvider === "wallet"} />
+            )}
+            <AuthButton icon="key" label={t("auth.importWallet", "Import Wallet")} onPress={() => setImportVisible(true)} disabled={disabled} />
+          </View>
+        )}
+        {openFlow === "passkey" && passkeyReady && (
+          <PasskeyLoginFlow startOpen compact onSignIn={onPasskeySignIn!} onSignUp={onPasskeySignUp!} busy={busyProvider === "passkey-signin" ? "signin" : busyProvider === "passkey-signup" ? "signup" : null} disabled={disabled} error={passkeyError} suggestCreate={passkeySuggestCreate} />
+        )}
+        </View>
 
         <View style={styles.divider}>
           <View style={styles.rule} />
@@ -174,7 +199,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           />
           {passkeyReady && (
             <OptionDisc
-              label={t("loginStack.fingerprint", "Fingerprint")}
+              label={t("loginStack.fingerprint", "Bio")}
               onPress={() => toggleFlow("passkey")}
               disabled={disabled}
               loading={busyProvider === "passkey-signin" || busyProvider === "passkey-signup"}
@@ -203,45 +228,6 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           />
         </View>
 
-        {openFlow === "phone" && (
-          <PhoneLoginFlow
-            startOpen
-            onSubmit={onPhoneSubmit}
-            loading={busyProvider === "phone"}
-            disabled={disabled}
-            onExpand={onFieldExpand}
-          />
-        )}
-        {openFlow === "wallet" && (
-          <View style={{ gap: 10 }}>
-            {onConnectWallet && isWalletConnectAvailable && (
-              <AuthButton
-                icon="wallet"
-                label={t("loginModal.connectWallet", "Connect Wallet")}
-                onPress={onConnectWallet}
-                disabled={disabled}
-                loading={busyProvider === "wallet"}
-              />
-            )}
-            <AuthButton
-              icon="key"
-              label={t("auth.importWallet", "Import Wallet")}
-              onPress={() => setImportVisible(true)}
-              disabled={disabled}
-            />
-          </View>
-        )}
-        {openFlow === "passkey" && passkeyReady && (
-          <PasskeyLoginFlow
-            startOpen
-            onSignIn={onPasskeySignIn!}
-            onSignUp={onPasskeySignUp!}
-            busy={busyProvider === "passkey-signin" ? "signin" : busyProvider === "passkey-signup" ? "signup" : null}
-            disabled={disabled}
-            error={passkeyError}
-            suggestCreate={passkeySuggestCreate}
-          />
-        )}
         <ImportWalletModal visible={importVisible} onClose={() => setImportVisible(false)} />
       </View>
     );
@@ -253,7 +239,6 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
         onSubmit={(_provider, email) => {
           if (email) onEmailSubmit(email);
         }}
-        onPasswordSubmit={onEmailPasswordSubmit}
         loading={busyProvider === "email"}
         disabled={disabled}
         onExpand={onFieldExpand}
@@ -332,12 +317,12 @@ const styles = StyleSheet.create({
   divider: { flexDirection: "row", alignItems: "center", gap: 12 },
   rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: authColors.hairline },
   dividerText: { color: authColors.subtle, fontSize: 12, fontWeight: "500" },
-  row: { flexDirection: "row", justifyContent: "space-evenly" },
+  row: { flexDirection: "row", gap: 8 },
   option: { flex: 1, alignItems: "center", gap: 6, minWidth: 0 },
   disc: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: "100%",
+    height: AUTH_CONTROL_HEIGHT,
+    borderRadius: AUTH_RADIUS,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: authColors.surface,

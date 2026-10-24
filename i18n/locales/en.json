@@ -2941,9 +2941,9 @@
     "password": "Password",
     "usePasswordInstead": "Use a password instead",
     "useCodeInstead": "Email me a code instead",
-    "continuePasskey": "Continue with fingerprint",
+    "continuePasskey": "Continue with Bio",
     "passkeyIntro": "Your fingerprint or face is your account. Nothing to remember, nothing to type.",
-    "passkeySignIn": "Sign in with fingerprint",
+    "passkeySignIn": "Sign in with Bio",
     "passkeyCreate": "Create a new account",
     "passkeyUnsupported": "This device can't sign in with a fingerprint or face. Use another option.",
     "passkeyNotLinked": "No account is linked to that fingerprint yet. Create a new account instead.",
@@ -14396,7 +14396,7 @@
     "headlineAccent": "and be happy.",
     "orContinueWith": "or continue with",
     "phone": "Phone",
-    "fingerprint": "Fingerprint",
+    "fingerprint": "Bio",
     "exploreFirst": "Explore first",
     "codeNote": "We email you a code, no password needed."
   }
