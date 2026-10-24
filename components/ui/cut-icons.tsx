@@ -9,6 +9,9 @@ const CutHome = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...
 const CutSearch = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M23 13.5A9.5 9.5 0 1 1 4 13.5A9.5 9.5 0 1 1 23 13.5Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M20.6358 22.3328L27.1515 28.8485L27.8642 28.1358Q28.8485 27.1515 27.8642 26.1672L21.3485 19.6515L20.6358 20.3642Q19.6515 21.3485 20.6358 22.3328Z" fill={color} fillRule="evenodd" /></Svg>
 );
+const CutMessageEnvelope = ({ size = 24, color = "currentColor", strokeWidth, fill, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M2.8 5.8 H21 Q29.2 5.8 29.2 14 V26.2 H11 Q2.8 26.2 2.8 18 Z M7.6 8.2 H21 Q23.4 8.2 24.7 9.15 L16 15.8 Z M5.2 9.4 L16 18.8 L26.8 11 V23.8 H11 Q5.2 23.8 5.2 18 Z" fill={color} fillRule="evenodd" /></Svg>
+);
 const CutMessages = ({ size = 24, color = "currentColor", strokeWidth = 2, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M5 6H21Q27 6 27 12V26L20 21H11Q5 21 5 15Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round"/><Path d="M11.4570 11.5250H21.3000V10.8320Q21.3000 9.8750 20.3430 9.8750H10.5000V10.5680Q10.5000 11.5250 11.4570 11.5250Z" fill={color} fillRule="evenodd"/><Path d="M11.4570 14.6250H18.2000V13.9320Q18.2000 12.9750 17.2430 12.9750H10.5000V13.6680Q10.5000 14.6250 11.4570 14.6250Z" fill={color} fillRule="evenodd"/><Path d="M11.4570 17.7250H21.3000V17.0320Q21.3000 16.0750 20.3430 16.0750H10.5000V16.7680Q10.5000 17.7250 11.4570 17.7250Z" fill={color} fillRule="evenodd"/></Svg>
 );
@@ -442,6 +445,7 @@ export const cutIcons = {
   Home: CutHome,
   House: CutHome,
   Search: CutSearch,
+  MessageEnvelope: CutMessageEnvelope,
   MessageSquare: CutMessages,
   MessageCircle: CutMessages,
   MessageSquareText: CutMessages,
@@ -589,6 +593,7 @@ export { CutShorts as Film };
 export { CutNewmembers as Star };
 export { CutGrowing as SquareUserRound };
 export { CutChat as MessagesSquare };
+export { CutMessageEnvelope as MessageEnvelope };
 export { CutPrompt as Wand };
 export { CutPrompt as Wand2 };
 export { CutSuperPowers as Zap };

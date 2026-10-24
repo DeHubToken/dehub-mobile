@@ -328,7 +328,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
                 >
                   {glassLayers}
                   <View style={s.glassBtnContent}>
-                    <Icon name="MessageSquare" size={16} color="#fff" />
+                    <Icon name="MessageEnvelope" size={16} color="#fff" />
                   </View>
                 </TouchableOpacity>
               )}
