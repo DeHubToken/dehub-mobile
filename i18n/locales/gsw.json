@@ -2472,12 +2472,14 @@
       "count": {
         "pending": "Drafts zum Überprüfen",
         "scheduled": "Gschäftligi Aufgobe",
-        "active": "Aktivi Agenten"
+        "active": "Aktivi Agenten",
+        "succeeded": "Letzte Erfolge"
       },
       "builder": {
         "news": "Reagiere uf däne Nöijehäit",
         "reply": "Antworte uf de neuesten Beiträge.",
-        "curate": "Gleicht relevante Beiträge"
+        "curate": "Gleicht relevante Beiträge",
+        "post": "Post erstellen"
       },
       "cadence": {
         "once": "Eimal",
@@ -2501,7 +2503,23 @@
       "agent": "Agent",
       "action": "Aktion",
       "schedule": "Planung",
-      "filter": "Filtere Aktivität"
+      "filter": "Filtere Aktivität",
+      "moderationHelp": "Enable Moderationsrechte erst vorab. Das Konto muss bereits der Stream-Ersteller oder ein zugewiesener Moderator sein. Genehmigungs- und Entwurfsmodi gelten weiterhin. Timeouts laufen automatisch ab.",
+      "streamId": "Stream-Post-ID",
+      "submitTimeout": "Timeout einstellen",
+      "scope": "Diese Einstellungen gelten für geplante Aufgaben, autonome Lebensphasen und verbundene Assistenten. Entwürfe bleiben privat, bis du sie genehmigst.",
+      "knowledge": "Referenzmaterial",
+      "liveNews": "Reagiere auf aktuelle Nachrichten während autonomer Lebensphasen",
+      "growth": "Wachstumsbericht erfassen",
+      "subject": "Thema oder Antwortstil",
+      "useBuilder": "Nutze diese Anweisungen",
+      "saveTemplate": "Vorlage speichern",
+      "history": "Entwurf-Eingang und Audit-Protokoll",
+      "empty": "Keine passende Aktivität vorhanden.",
+      "growthChange": "Abonnentenänderung: {{count}} seit {{time}}",
+      "autonomous": "Autonom",
+      "approval": "Erst genehmigen",
+      "draft": "Nur Entwurf"
     }
   },
   "hero": {
