@@ -140,7 +140,7 @@ function Lane({ clips, down, tileW, height, still, restyleLabel, line }: {
   );
 }
 
-export default function LoginShortsStack() {
+export default function LoginShortsStack({ viewportHeight }: { viewportHeight?: number }) {
   const { t } = useTranslation();
   const { theme, isLight, colors } = useAppTheme();
   const plain = theme === "system" || theme === "minimal";
@@ -155,10 +155,10 @@ export default function LoginShortsStack() {
   // The screen pads 24 each side; the lanes sit 10 from the edges.
   const lanesW = width - SIDE * 2;
   const tileW = (lanesW - GAP) / 2;
-  // The lanes start under the floating header (SignInScreen pulls them up),
-  // so they get its height back.
-  // Reserve the same 400pt form budget as web, including the provider row.
-  const lanesH = Math.round(Math.min(480, Math.max(260, screenH - insets.top - insets.bottom - 400)));
+  // Native navigation can give the sheet less space than the window reports.
+  // Budget against the actual scroll frame, reserving room for the form.
+  const availableHeight = viewportHeight ?? screenH - insets.top - insets.bottom;
+  const lanesH = Math.round(Math.min(480, Math.max(220, availableHeight - 400)));
   const restyleLabel = t("loginStack.aiRestyle", "AI restyle");
 
   return (
