@@ -5,7 +5,9 @@ import {
   getImageUrlApiSimple, getAudioUrl, getBadgeName, getBadgeUrl,
   resolveBadgeBalance, getDefaultBanner, resolveBadgeUsername, getBadgeUrlFor,
   getBadgeOpticalStyle, badgeImageFor, getWalletAvatarUrl, storedAvatarSources,
+  getPlaybackUrl,
 } from '../../libs/misc';
+import { markHlsFailed } from '../../libs/hls-fallback';
 
 jest.mock('../../config/env', () => ({
   __esModule: true,
@@ -237,6 +239,35 @@ describe('libs/misc', () => {
     it('returns undefined for empty string', () => {
       expect(getVideoUrl('')).toBeUndefined();
       expect(getVideoUrl('   ')).toBeUndefined();
+    });
+  });
+
+  describe('getPlaybackUrl', () => {
+    it('plays the HLS ladder from the CDN when the post has one', () => {
+      expect(getPlaybackUrl({ tokenId: 6888, hlsUrl: 'videos/6888/hls/lq3k9x/master.m3u8' }))
+        .toBe('https://cdn.test.dehub.io/videos/6888/hls/lq3k9x/master.m3u8');
+      expect(getPlaybackUrl({ tokenId: '6888', hlsUrl: '/videos/6888/hls/lq3k9x/master.m3u8' }))
+        .toBe('https://cdn.test.dehub.io/videos/6888/hls/lq3k9x/master.m3u8');
+    });
+
+    it('passes an absolute HLS URL through untouched', () => {
+      const url = 'https://media.example.com/videos/7/hls/a1/master.m3u8';
+      expect(getPlaybackUrl({ tokenId: 7, hlsUrl: url })).toBe(url);
+    });
+
+    it('plays the MP4 when there is no ladder', () => {
+      expect(getPlaybackUrl({ tokenId: 42 })).toBe('https://cdn.test.dehub.io/videos/42.mp4');
+      expect(getPlaybackUrl({ tokenId: '42', hlsUrl: '' })).toBe('https://cdn.test.dehub.io/videos/42.mp4');
+      expect(getPlaybackUrl({ tokenId: 42, hlsUrl: null })).toBe('https://cdn.test.dehub.io/videos/42.mp4');
+      expect(getPlaybackUrl({ tokenId: 42, hlsUrl: 'videos/42/poster.jpg' })).toBe('https://cdn.test.dehub.io/videos/42.mp4');
+      expect(getPlaybackUrl(undefined)).toBeUndefined();
+    });
+
+    it('plays the MP4 once the ladder has failed this session', () => {
+      const post = { tokenId: 900, hlsUrl: 'videos/900/hls/zz/master.m3u8' };
+      expect(getPlaybackUrl(post)).toBe('https://cdn.test.dehub.io/videos/900/hls/zz/master.m3u8');
+      markHlsFailed('https://cdn.test.dehub.io/videos/900/hls/zz/master.m3u8');
+      expect(getPlaybackUrl(post)).toBe('https://cdn.test.dehub.io/videos/900.mp4');
     });
   });
 

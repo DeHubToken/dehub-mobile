@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Prijungtos programėlės",
+    "connectedDescription": "Mastodon programėlės, į kurias prisijungėte su šia paskyra. Pašalinkite vieną, kad iš jos atsijungtumėte.",
+    "connectedEmpty": "Kol kas nėra prijungtų programėlių.",
+    "lastUsed": "Paskutinį kartą naudota {{date}}",
+    "remove": "Pašalinti",
+    "removed": "Programėlė pašalinta",
+    "failed": "Nepavyko. Bandykite dar kartą."
+  },
+  "fediverse": {
+    "title": "Fedivisata",
+    "description": "Žmonės Mastodon ir kitose fedivisatos programėlėse gali jus rasti ir sekti šiuo adresu. Nauji jūsų vieši įrašai juos ten pasiekia.",
+    "copy": "Kopijuoti",
+    "copied": "Nukopijuota",
+    "privateNote": "Privačios paskyros fedivisatoje nerodomos.",
+    "noUsername": "Pasirinkite vartotojo vardą, kad gautumėte fedivisatos adresą."
+  },
+  "profileFields": {
+    "title": "Profilio laukai",
+    "description": "Iki keturių papildomų eilučių jūsų profilyje, pvz., svetainė ar jūsų įvardžiai.",
+    "label": "Etiketė",
+    "content": "Turinys",
+    "save": "Išsaugoti laukus",
+    "saved": "Profilio laukai išsaugoti",
+    "failed": "Neišsaugota. Bandykite dar kartą.",
+    "verified": "Patvirtinta nuoroda",
+    "verifyHint": "Norėdami patvirtinti nuorodą, pridėkite tai tame puslapyje ir išsaugokite dar kartą: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtruoti pranešimus iš",
+    "description": "Pasirinkite, kas nutinka, kai su jumis bendrauja kas nors ne iš jūsų rato. Išfiltruoti pranešimai laukia skiltyje „Išfiltruoti“ be ženklelio ir be iššokančio pranešimo.",
+    "notFollowing": "Žmonių, kurių nesekate",
+    "notFollowers": "Žmonių, kurie neseka jūsų",
+    "newAccounts": "Naujų paskyrų (jaunesnių nei 30 dienų)",
+    "accept": "Pranešti man",
+    "filter": "Filtruoti",
+    "drop": "Visiškai slėpti",
+    "filteredTitle": "Išfiltruoti pranešimai",
+    "filteredEmpty": "Niekas neišfiltruota.",
+    "failed": "Neišsaugota. Bandykite dar kartą."
+  },
+  "followedTags": {
+    "follow": "Sekti #{{tag}}",
+    "following": "Sekate",
+    "unfollow": "Nebesekti #{{tag}}",
+    "followed": "Dabar sekate #{{tag}}. Jo įrašai bus rodomi jūsų Sekamų sraute.",
+    "unfollowed": "Nebesekate #{{tag}}",
+    "failed": "Neišsaugota. Bandykite dar kartą.",
+    "clear": "Išvalyti"
+  },
+  "keywordFilters": {
+    "title": "Nutildyti žodžiai",
+    "description": "Slėpkite įrašus ir komentarus su šiais žodžiais arba suskleiskite juos už įspėjimo. Šį sąrašą matote tik jūs.",
+    "placeholder": "Žodis ar frazė",
+    "add": "Nutildyti",
+    "added": "Nutildyta: {{phrase}}",
+    "wholeWord": "Tik visas žodis",
+    "whenMatches": "Kai įrašas atitinka",
+    "warn": "Rodyti įspėjimą",
+    "hide": "Slėpti",
+    "howLong": "Kiek laiko",
+    "forever": "Kol pašalinsiu",
+    "duration1h": "1 valandai",
+    "duration1d": "1 dienai",
+    "duration7d": "7 dienoms",
+    "duration30d": "30 dienų",
+    "where": "Kur",
+    "home": "Pradžia",
+    "public": "Naršyti ir ieškoti",
+    "profile": "Profiliai",
+    "thread": "Pokalbiai",
+    "notifications": "Pranešimai",
+    "empty": "Nenutildėte nė vieno žodžio.",
+    "remove": "Atšaukti nutildymą",
+    "until": "Iki {{date}}",
+    "filtered": "Išfiltruota: {{phrase}}",
+    "showAnyway": "Vis tiek rodyti",
+    "failed": "Neišsaugota. Bandykite dar kartą."
+  },
+  "postVisibility": {
+    "label": "Kas gali tai matyti",
+    "public": "Visi",
+    "followers": "Tik sekėjai",
+    "direct": "Tik paminėti žmonės",
+    "noRepost": "Pakartotinai skelbti galima tik viešus įrašus",
+    "directHint": "Šį įrašą matys tik žmonės, kuriuos paminėsite su @",
+    "needsMention": "Paminėkite bent vieną žmogų su @, kad paskelbtumėte tik paminėtiesiems"
+  },
+  "replyPolicy": {
+    "label": "Kas gali atsakyti",
+    "public": "Bet kas",
+    "followers": "Jūsų sekėjai",
+    "following": "Žmonės, kuriuos sekate",
+    "mentioned": "Tik paminėti",
+    "noticeFollowers": "Atsakyti gali tik autoriaus sekėjai",
+    "noticeFollowing": "Atsakyti gali tik žmonės, kuriuos seka autorius",
+    "noticeMentioned": "Atsakyti gali tik įraše paminėti žmonės",
+    "refused": "Autorius apribojo, kas gali atsakyti į šį įrašą"
+  },
+  "quotePolicy": {
+    "label": "Kas gali cituoti",
+    "public": "Bet kas",
+    "followers": "Sekėjai",
+    "nobody": "Tik aš",
+    "off": "Autorius išjungė citavimą",
+    "removed": "Autorius pašalino savo įrašą iš šios citatos",
+    "remove": "Pašalinti",
+    "removedToast": "Jūsų įrašas pašalintas iš šios citatos",
+    "removeFailed": "Nepavyko pašalinti jūsų įrašo iš citatos",
+    "refused": "Autorius neleidžia jums cituoti šio įrašo"
+  },
+  "contentWarning": {
+    "label": "Įspėjimas dėl turinio",
+    "placeholder": "Įspėjimą parašykite čia",
+    "add": "Pridėti įspėjimą dėl turinio",
+    "remove": "Pašalinti įspėjimą dėl turinio",
+    "show": "Rodyti įrašą"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Pridėti aprašymą",
+    "edit": "Redaguoti aprašymą",
+    "titleImage": "Aprašykite šį vaizdą",
+    "titleVideo": "Aprašykite šį vaizdo įrašą",
+    "help": "Žmonėms, kurie jo nemato. Ekrano skaitytuvai jį perskaito garsiai.",
+    "placeholder": "Ką jis rodo? Įtraukite ir jame esantį tekstą.",
+    "show": "Rodyti aprašymą",
+    "saved": "Aprašymas išsaugotas",
+    "saveFailed": "Nepavyko išsaugoti aprašymo"
+  },
   "liveRecap": {
     "title": "Srauto apibendrinimas",
     "justEnded": "Srauto apibendrinimas",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Leidžia kitiems nariams matyti, kad ką tik prisijungėte, kad galėtų pasveikinti. Automatiškai baigiasi praėjus 30 dienų po registracijos.",
     "postVisibility": "Įrašų matomumas",
     "defaultPostVisibility": "Numatytasis matomumas",
+    "defaultFeed": "Numatytasis srautas",
+    "defaultFeedDesc": "Pasirinkite, kuris srautas atsidarys kaskart atidarius DeHub",
+    "feedToggles": "Atkurti srauto filtrus",
+    "feedTogglesDesc": "Sraute įjungti filtrai lieka numatytieji, kol jų neatkursite",
+    "feedTogglesCleared": "Srauto filtrai atkurti",
     "defaultProfileTab": "Numatytoji profilio kortelė",
     "defaultProfileTabDesc": "Pasirinkite, kurią kortelę lankytojai jūsų profilyje mato pirmiausia",
     "defaultPostVisibilityDesc": "Taikoma visiems esamiems ir būsimiems įrašams",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Nepavyko nuskaityti spalvų iš jūsų profilio nuotraukos"
   },
   "common": {
+    "refresh": "Atnaujinti",
     "mute": "Nutildyti",
     "unmute": "Įjungti garsą",
     "fullscreen": "Visas ekranas",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} ženklų"
   },
   "postOptions": {
+    "embed": "Įterpti",
+    "copyEmbedCode": "Kopijuoti įterpimo kodą",
+    "embedCodeCopied": "Įterpimo kodas nukopijuotas",
     "options": "Parinktys",
     "sendTip": "Siųsti arbatpinigius",
     "queue": "Eilė",
@@ -2827,6 +2966,8 @@
     "yourFractions": "Jums priklauso {{count}} iš {{total}} dalių"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopijuoti RSS srauto nuorodą",
+    "copyRssFeedHint": "Sekite šiuos įrašus bet kurioje srautų skaityklėje",
     "copyProfileUrl": "Kopijuoti profilio URL",
     "copyUsername": "Kopijuoti vartotojo vardą",
     "copyAddress": "Kopijuoti adresą",
@@ -4150,6 +4291,7 @@
     "noVoice": "Jūsų įrenginyje nėra balso šiai kalbai."
   },
   "stages": {
+    "previewFailed": "Nepavyko paleisti peržiūros garso kambaryje",
     "allStages": "Visi garso kambariai",
     "addToCalendar": "Pridėti į kalendorių",
     "nowPlaying": "Dabar groja",
@@ -4522,6 +4664,7 @@
     "anyBadgeHolder": "Bet kuris ženklelio turėtojas gauna Supergalias. Pirkite „DeHub“ žetonus, kad atrakintumėte ženklelį – statymas nereikalingas."
   },
   "follow": {
+    "noResults": "Rezultatų nerasta",
     "followers": "Sekėjai",
     "following": "Sekami",
     "requests": "Užklausos",
@@ -4605,7 +4748,10 @@
     "play": "Paleisti",
     "pause": "Pristabdyti",
     "listens_one": "{{count}} klausytis",
-    "listens_other": "{{count}} klauso"
+    "listens_other": "{{count}} klauso",
+    "lyrics": "Žodžiai",
+    "lyricsLoading": "Ieškome žodžių…",
+    "lyricsNone": "Žodžių nerasta"
   },
   "transfer": {
     "arcTitle": "Siųsti USDC Arc tinkle",
@@ -5531,6 +5677,8 @@
     "creatorEarnsDirect": "Prenumeratoriai moka DeHub žetonais. Kai tik užsiprenumeruosi, tavo dalis atsidurs tavo piniginėje, atėmus platformos mokestį už tavo ženklelio lygį."
   },
   "live": {
+    "bigEvent": "Didelis renginys",
+    "bigEventHint": "Didelei auditorijai: žiūrovai mato maždaug 20 sekundžių vėliau, bet su mažiau trikdžių.",
     "notSet": "Nenustatyta",
     "liveChat": "Tiesioginis pokalbis",
     "pickDate": "Pasirinkti datą",
@@ -7145,6 +7293,7 @@
       "delete": "Ištrinti"
     },
     "export": {
+      "cancel": "Atšaukti",
       "scope": "Atsisiuntimo diapazonas",
       "downloadTimeline": "Visa laiko juosta",
       "downloadSelection": "Pasirinkti vaizdo įrašai ({{count}})",
@@ -7424,6 +7573,7 @@
     }
   },
   "creator": {
+    "sending": "Siunčiama",
     "navStudio": "Studija",
     "editor": "Redaktorius",
     "untitled": "Pavadinimas nenurodytas",
@@ -7990,6 +8140,7 @@
     "transferIncomplete": "Atpažinimo ženklo perdavimas nebaigtas. Jūsų bus paprašyta dar kartą prieš kitą mokamą įrašą."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Ieškoti jaustukų",
     "noEmoji": "Jaustukų nerasta",
     "searchResults": "Paieškos rezultatai",

@@ -28,7 +28,6 @@ describe("Work form keyboard offset", () => {
   const forms = [
     "screens/WorkPostScreen.tsx",
     "screens/WorkEditScreen.tsx",
-    "screens/WorkJobDetailScreen.tsx",
     "screens/WorkDisputesScreen.tsx",
   ];
 

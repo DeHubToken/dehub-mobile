@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Pievienotās lietotnes",
+    "connectedDescription": "Mastodon lietotnes, kurās esi pierakstījies ar šo kontu. Noņem kādu, lai no tās izrakstītos.",
+    "connectedEmpty": "Vēl nav pievienotu lietotņu.",
+    "lastUsed": "Pēdējoreiz izmantota {{date}}",
+    "remove": "Noņemt",
+    "removed": "Lietotne noņemta",
+    "failed": "Neizdevās. Mēģini vēlreiz."
+  },
+  "fediverse": {
+    "title": "Fediverss",
+    "description": "Cilvēki Mastodon un citās fediversa lietotnēs var tevi atrast un sekot tev šajā adresē. Tavi jaunie publiskie ieraksti tur viņus sasniedz.",
+    "copy": "Kopēt",
+    "copied": "Nokopēts",
+    "privateNote": "Privātie konti fediversā netiek rādīti.",
+    "noUsername": "Izvēlies lietotājvārdu, lai iegūtu fediversa adresi."
+  },
+  "profileFields": {
+    "title": "Profila lauki",
+    "description": "Līdz četrām papildu rindām tavā profilā, piemēram, vietne vai tavi vietniekvārdi.",
+    "label": "Nosaukums",
+    "content": "Saturs",
+    "save": "Saglabāt laukus",
+    "saved": "Profila lauki saglabāti",
+    "failed": "Netika saglabāts. Mēģini vēlreiz.",
+    "verified": "Apstiprināta saite",
+    "verifyHint": "Lai apstiprinātu saiti, pievieno šo tajā lapā un saglabā vēlreiz: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrēt paziņojumus no",
+    "description": "Izvēlies, kas notiek, kad kāds ārpus tava loka ar tevi mijiedarbojas. Filtrētie paziņojumi gaida sadaļā Filtrētie, bez nozīmītes un bez push paziņojuma.",
+    "notFollowing": "Cilvēkiem, kuriem tu neseko",
+    "notFollowers": "Cilvēkiem, kuri tev neseko",
+    "newAccounts": "Jauniem kontiem (jaunākiem par 30 dienām)",
+    "accept": "Paziņot man",
+    "filter": "Filtrēt",
+    "drop": "Pilnībā paslēpt",
+    "filteredTitle": "Filtrētie paziņojumi",
+    "filteredEmpty": "Nekas nav filtrēts.",
+    "failed": "Netika saglabāts. Mēģini vēlreiz."
+  },
+  "followedTags": {
+    "follow": "Sekot #{{tag}}",
+    "following": "Seko",
+    "unfollow": "Pārtraukt sekot #{{tag}}",
+    "followed": "Tagad tu seko #{{tag}}. Tā ieraksti parādīsies tavā Sekotie plūsmā.",
+    "unfollowed": "Tu vairs neseko #{{tag}}",
+    "failed": "Netika saglabāts. Mēģini vēlreiz.",
+    "clear": "Notīrīt"
+  },
+  "keywordFilters": {
+    "title": "Apklusinātie vārdi",
+    "description": "Paslēp ierakstus un komentārus ar šiem vārdiem vai saloki tos aiz brīdinājuma. Šo sarakstu redzi tikai tu.",
+    "placeholder": "Vārds vai frāze",
+    "add": "Apklusināt",
+    "added": "Apklusināts: {{phrase}}",
+    "wholeWord": "Tikai viss vārds",
+    "whenMatches": "Kad ieraksts atbilst",
+    "warn": "Rādīt brīdinājumu",
+    "hide": "Paslēpt",
+    "howLong": "Cik ilgi",
+    "forever": "Kamēr to noņemšu",
+    "duration1h": "Uz 1 stundu",
+    "duration1d": "Uz 1 dienu",
+    "duration7d": "Uz 7 dienām",
+    "duration30d": "Uz 30 dienām",
+    "where": "Kur",
+    "home": "Sākums",
+    "public": "Izpētīt un meklēt",
+    "profile": "Profili",
+    "thread": "Sarunas",
+    "notifications": "Paziņojumi",
+    "empty": "Tu neesi apklusinājis nevienu vārdu.",
+    "remove": "Atcelt apklusināšanu",
+    "until": "Līdz {{date}}",
+    "filtered": "Filtrēts: {{phrase}}",
+    "showAnyway": "Tomēr rādīt",
+    "failed": "Netika saglabāts. Mēģini vēlreiz."
+  },
+  "postVisibility": {
+    "label": "Kas to var redzēt",
+    "public": "Visi",
+    "followers": "Tikai sekotāji",
+    "direct": "Tikai pieminētie",
+    "noRepost": "Atkārtoti publicēt var tikai publiskas ziņas",
+    "directHint": "Šo ziņu redzēs tikai cilvēki, kurus pieminēsi ar @",
+    "needsMention": "Piemini ar @ vismaz vienu cilvēku, lai publicētu tikai pieminētajiem"
+  },
+  "replyPolicy": {
+    "label": "Kas var atbildēt",
+    "public": "Jebkurš",
+    "followers": "Jūsu sekotāji",
+    "following": "Cilvēki, kuriem sekojat",
+    "mentioned": "Tikai pieminētie",
+    "noticeFollowers": "Atbildēt var tikai autora sekotāji",
+    "noticeFollowing": "Atbildēt var tikai cilvēki, kuriem seko autors",
+    "noticeMentioned": "Atbildēt var tikai ziņā pieminētie",
+    "refused": "Autors ir ierobežojis, kas var atbildēt uz šo ziņu"
+  },
+  "quotePolicy": {
+    "label": "Kas var citēt",
+    "public": "Jebkurš",
+    "followers": "Sekotāji",
+    "nobody": "Tikai es",
+    "off": "Autors ir izslēdzis citēšanu",
+    "removed": "Autors noņēma savu ziņu no šī citāta",
+    "remove": "Noņemt",
+    "removedToast": "Jūsu ziņa noņemta no šī citāta",
+    "removeFailed": "Neizdevās noņemt jūsu ziņu no citāta",
+    "refused": "Autors neļauj jums citēt šo ziņu"
+  },
+  "contentWarning": {
+    "label": "Satura brīdinājums",
+    "placeholder": "Uzrakstiet savu brīdinājumu šeit",
+    "add": "Pievienot satura brīdinājumu",
+    "remove": "Noņemt satura brīdinājumu",
+    "show": "Rādīt ziņu"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Pievienot aprakstu",
+    "edit": "Rediģēt aprakstu",
+    "titleImage": "Aprakstiet šo attēlu",
+    "titleVideo": "Aprakstiet šo video",
+    "help": "Cilvēkiem, kuri to nevar redzēt. Ekrāna lasītāji to nolasa skaļi.",
+    "placeholder": "Ko tas rāda? Iekļaujiet arī tajā esošo tekstu.",
+    "show": "Rādīt aprakstu",
+    "saved": "Apraksts saglabāts",
+    "saveFailed": "Neizdevās saglabāt aprakstu"
+  },
   "liveRecap": {
     "title": "Straumes kopsavilkums",
     "justEnded": "Jūsu straumes kopsavilkums",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Ļauj citiem dalībniekiem redzēt, ka tikko pievienojies, lai viņi varētu tevi sveikt. Automātiski beidzas 30 dienas pēc reģistrēšanās.",
     "postVisibility": "Ierakstu redzamība",
     "defaultPostVisibility": "Noklusējuma redzamība",
+    "defaultFeed": "Noklusējuma plūsma",
+    "defaultFeedDesc": "Izvēlieties, kura plūsma atveras katru reizi, kad atverat DeHub",
+    "feedToggles": "Atiestatīt plūsmas filtrus",
+    "feedTogglesDesc": "Plūsmā ieslēgtie filtri paliek kā jūsu noklusējums, līdz tos atiestatāt",
+    "feedTogglesCleared": "Plūsmas filtri atiestatīti",
     "defaultProfileTab": "Noklusējuma profila cilne",
     "defaultProfileTabDesc": "Izvēlieties, kuru cilni apmeklētāji jūsu profilā redz vispirms",
     "defaultPostVisibilityDesc": "Attiecas uz visiem esošajiem un nākotnes ierakstiem",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Neizdevās nolasīt krāsas no jūsu profila attēla"
   },
   "common": {
+    "refresh": "Atsvaidzināt",
     "mute": "Izslēgt skaņu",
     "unmute": "Ieslēgt skaņu",
     "fullscreen": "Pilnekrāns",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} žetoni"
   },
   "postOptions": {
+    "embed": "Iegult",
+    "copyEmbedCode": "Kopēt iegulšanas kodu",
+    "embedCodeCopied": "Iegulšanas kods nokopēts",
     "options": "Opcijas",
     "sendTip": "Sūtīt dzeramnaudu",
     "queue": "Rinda",
@@ -2827,6 +2966,8 @@
     "yourFractions": "Jums pieder {{count}} no {{total}} daļām"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopēt RSS plūsmas saiti",
+    "copyRssFeedHint": "Sekojiet šīm ziņām jebkurā plūsmu lasītājā",
     "copyProfileUrl": "Kopēt profila URL",
     "copyUsername": "Kopēt lietotājvārdu",
     "copyAddress": "Kopēt adresi",
@@ -4150,6 +4291,7 @@
     "noVoice": "Jūsu ierīcē nav balss šai valodai."
   },
   "stages": {
+    "previewFailed": "Neizdevās atskaņot priekšskatījumu audio istabā",
     "allStages": "Visas audio istabas",
     "addToCalendar": "Pievienot kalendāram",
     "nowPlaying": "Tagad atskaņo",
@@ -4522,6 +4664,7 @@
     "anyBadgeHolder": "Jebkurš nozīmītes turētājs saņem SuperSpējas. Pērciet DeHub marķierus, lai atbloķētu nozīmīti — likšana nav nepieciešama."
   },
   "follow": {
+    "noResults": "Rezultāti nav atrasti",
     "followers": "Sekotāji",
     "following": "Sekot",
     "requests": "Pieprasījumi",
@@ -4605,7 +4748,10 @@
     "play": "Atskaņot",
     "pause": "Apturēt",
     "listens_one": "{{count}} klausīties",
-    "listens_other": "{{count}} klausās"
+    "listens_other": "{{count}} klausās",
+    "lyrics": "Dziesmas vārdi",
+    "lyricsLoading": "Meklējam vārdus…",
+    "lyricsNone": "Vārdi nav atrasti"
   },
   "transfer": {
     "arcTitle": "Sūtīt USDC Arc tīklā",
@@ -5531,6 +5677,8 @@
     "creatorEarnsDirect": "Abonenti maksā DeHub žetonos. Abonēšanas brīdī jūsu daļa nonāk jūsu makā, atskaitot platformas nodevu par jūsu nozīmītes līmeni."
   },
   "live": {
+    "bigEvent": "Liels pasākums",
+    "bigEventHint": "Lielai auditorijai: skatītāji skatās ar aptuveni 20 sekunžu aizkavi, bet ar mazāk pārtraukumiem.",
     "notSet": "Nav iestatīts",
     "liveChat": "Tiešraides tērzēšana",
     "pickDate": "Izvēlieties datumu",
@@ -7145,6 +7293,7 @@
       "delete": "Dzēst"
     },
     "export": {
+      "cancel": "Atcelt",
       "scope": "Lejupielādes diapazons",
       "downloadTimeline": "Visa laika skala",
       "downloadSelection": "Atlasītie videoklipi ({{count}})",
@@ -7424,6 +7573,7 @@
     }
   },
   "creator": {
+    "sending": "Sūta",
     "navStudio": "Studija",
     "editor": "Redaktors",
     "untitled": "Nenodēvēts",
@@ -7990,6 +8140,7 @@
     "transferIncomplete": "Pilnvaras pārsūtīšana netika pabeigta. Jums tiks jautāts vēlreiz pirms nākamā apmaksātā ieraksta."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Meklēt emocijzīmes",
     "noEmoji": "Emocijzīmes nav atrastas",
     "searchResults": "Meklēšanas rezultāti",

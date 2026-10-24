@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ama-app axhunyiwe",
+    "connectedDescription": "Ama-app e-Mastodon ongene kuwo ngale akhawunti. Susa eyodwa ukuze uyiphume.",
+    "connectedEmpty": "Awekho ama-app axhunyiwe okwamanje.",
+    "lastUsed": "Igcine ukusetshenziswa {{date}}",
+    "remove": "Susa",
+    "removed": "I-app isusiwe",
+    "failed": "Akusebenzanga. Zama futhi."
+  },
+  "fediverse": {
+    "title": "I-Fediverse",
+    "description": "Abantu abaku-Mastodon nakwamanye ama-app e-fediverse bangakuthola futhi bakulandele kuleli kheli. Okuthunyelwe kwakho okusha komphakathi kubafinyelela lapho.",
+    "copy": "Kopisha",
+    "copied": "Kukopishiwe",
+    "privateNote": "Ama-akhawunti ayimfihlo awaboniswa ku-fediverse.",
+    "noUsername": "Khetha igama lomsebenzisi ukuze uthole ikheli le-fediverse."
+  },
+  "profileFields": {
+    "title": "Izinkambu zephrofayela",
+    "description": "Kufika emigqeni emine eyengeziwe kuphrofayela yakho, njengewebhusayithi noma izabizwana zakho.",
+    "label": "Ilebula",
+    "content": "Okuqukethwe",
+    "save": "Londoloza izinkambu",
+    "saved": "Izinkambu zephrofayela zilondoloziwe",
+    "failed": "Akulondolozwanga. Zama futhi.",
+    "verified": "Isixhumanisi esiqinisekisiwe",
+    "verifyHint": "Ukuze uqinisekise isixhumanisi, engeza lokhu kulelo khasi, bese uphinda ulondoloze: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Hlunga izaziso ezivela ku-",
+    "description": "Khetha okwenzekayo uma othile ongaphandle kwendilinga yakho exhumana nawe. Izaziso ezihlungiwe zilinda ngaphansi kokuthi \"Kuhlungiwe\", ngaphandle kwebheji noma isaziso esiphushwayo.",
+    "notFollowing": "Abantu ongabalandeli",
+    "notFollowers": "Abantu abangakulandeli",
+    "newAccounts": "Ama-akhawunti amasha (angaphansi kwezinsuku ezingu-30)",
+    "accept": "Ngazise",
+    "filter": "Hlunga",
+    "drop": "Fihla ngokuphelele",
+    "filteredTitle": "Izaziso ezihlungiwe",
+    "filteredEmpty": "Akukho okuhlungiwe.",
+    "failed": "Akulondolozwanga. Zama futhi."
+  },
+  "followedTags": {
+    "follow": "Landela i-#{{tag}}",
+    "following": "Uyalandela",
+    "unfollow": "Yeka ukulandela i-#{{tag}}",
+    "followed": "Manje uyalandela i-#{{tag}}. Okuthunyelwe kwayo kuzovela kokuphakelayo kwakho Okulandelayo.",
+    "unfollowed": "Uyekile ukulandela i-#{{tag}}",
+    "failed": "Akulondolozwanga. Zama futhi.",
+    "clear": "Sula"
+  },
+  "keywordFilters": {
+    "title": "Amagama athuliswe",
+    "description": "Fihla okuthunyelwe nemibono okuqukethe lawa magama, noma kugoqe ngemuva kwesexwayiso. Nguwe kuphela obona lolu hlu.",
+    "placeholder": "Igama noma umusho",
+    "add": "Thulisa",
+    "added": "Kuthuliswe: {{phrase}}",
+    "wholeWord": "Igama eliphelele kuphela",
+    "whenMatches": "Uma okuthunyelwe kufana",
+    "warn": "Bonisa isexwayiso",
+    "hide": "Kufihle",
+    "howLong": "Isikhathi esingakanani",
+    "forever": "Ngize ngikususe",
+    "duration1h": "Ihora elingu-1",
+    "duration1d": "Usuku olu-1",
+    "duration7d": "Izinsuku ezi-7",
+    "duration30d": "Izinsuku ezingu-30",
+    "where": "Kuphi",
+    "home": "Ikhaya",
+    "public": "Hlola futhi usesha",
+    "profile": "Amaphrofayela",
+    "thread": "Izingxoxo",
+    "notifications": "Izaziso",
+    "empty": "Awukathulisi lutho.",
+    "remove": "Susa ukuthulisa",
+    "until": "Kuze kube ngu-{{date}}",
+    "filtered": "Kuhlungiwe: {{phrase}}",
+    "showAnyway": "Bonisa noma kunjalo",
+    "failed": "Akulondolozwanga. Zama futhi."
+  },
+  "postVisibility": {
+    "label": "Ubani ongakubona lokhu",
+    "public": "Wonke umuntu",
+    "followers": "Abalandeli kuphela",
+    "direct": "Abantu abashiwoyo kuphela",
+    "noRepost": "Okuthunyelwe komphakathi kuphela okungaphinda kuthunyelwe",
+    "directHint": "Abantu obabiza nge-@ kuphela abazobona lokhu okuthunyelwe",
+    "needsMention": "Shono okungenani umuntu oyedwa nge-@ ukuze uthumele kubantu abashiwoyo kuphela"
+  },
+  "replyPolicy": {
+    "label": "Ubani ongaphendula",
+    "public": "Noma ubani",
+    "followers": "Abalandeli bakho",
+    "following": "Abantu obalandelayo",
+    "mentioned": "Abashiwoyo kuphela",
+    "noticeFollowers": "Abalandeli bombhali kuphela abangaphendula",
+    "noticeFollowing": "Abantu umbhali abalandelayo kuphela abangaphendula",
+    "noticeMentioned": "Abashiwoyo kokuthunyelwe kuphela abangaphendula",
+    "refused": "Umbhali ukhawulele ukuthi ubani ongaphendula kulokhu okuthunyelwe"
+  },
+  "quotePolicy": {
+    "label": "Ubani ongacaphuna",
+    "public": "Noma ubani",
+    "followers": "Abalandeli",
+    "nobody": "Mina kuphela",
+    "off": "Umbhali uvale ukucaphuna",
+    "removed": "Umbhali ususe okuthunyelwe kwakhe kulesi sicaphuno",
+    "remove": "Susa",
+    "removedToast": "Okuthunyelwe kwakho kususiwe kulesi sicaphuno",
+    "removeFailed": "Ayikwazanga ukususa okuthunyelwe kwakho esicaphunweni",
+    "refused": "Umbhali akakuvumeli ukuthi ucaphune lokhu okuthunyelwe"
+  },
+  "contentWarning": {
+    "label": "Isexwayiso sokuqukethwe",
+    "placeholder": "Bhala isexwayiso sakho lapha",
+    "add": "Engeza isexwayiso sokuqukethwe",
+    "remove": "Susa isexwayiso sokuqukethwe",
+    "show": "Bonisa okuthunyelwe"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Engeza incazelo",
+    "edit": "Hlela incazelo",
+    "titleImage": "Chaza lesi sithombe",
+    "titleVideo": "Chaza le vidiyo",
+    "help": "Kubantu abangakwazi ukuyibona. Abafundi besikrini bayifunda ngokuzwakalayo.",
+    "placeholder": "Ibonisani? Faka noma imuphi umbhalo okuyo.",
+    "show": "Bonisa incazelo",
+    "saved": "Incazelo igciniwe",
+    "saveFailed": "Ayikwazanga ukugcina incazelo"
+  },
   "liveRecap": {
     "title": "Ukudlala kabusha kokusakaza",
     "justEnded": "Ukubuyekezwa kokusakaza kwakho",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Kuvumela amanye amalungu abone ukuthi usanda kujoyina ukuze akwamukele. Kuphela ngokuzenzakalela ezinsukwini ezingu-30 ngemva kokubhalisa.",
     "postVisibility": "Ukubonakala Kokuthunyelwe",
     "defaultPostVisibility": "Ukubonakala Kokuthunyelwe Okuzenzakalelayo",
+    "defaultFeed": "Okuphakelayo okuzenzakalelayo",
+    "defaultFeedDesc": "Khetha ukuthi yikuphi okuphakelayo okuvuleka njalo uma uvula i-DeHub",
+    "feedToggles": "Setha kabusha izihlungi zokuphakelayo",
+    "feedTogglesDesc": "Izihlungi ozivulayo kokuphakelayo zihlala zingezakho ezizenzakalelayo uze uzisethe kabusha",
+    "feedTogglesCleared": "Izihlungi zokuphakelayo zisethwe kabusha",
     "defaultProfileTab": "Ithebhu yephrofayela ezenzakalelayo",
     "defaultProfileTabDesc": "Khetha ukuthi iyiphi ithebhu izivakashi ezizoyibona kuqala kuphrofayela yakho",
     "defaultPostVisibilityDesc": "Kusebenza kukho konke okuthunyelwe kwamanje nokwesikhathi esizayo",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Ayikwazanga ukufunda imibala esithombeni sakho sephrofayela"
   },
   "common": {
+    "refresh": "Vuselela",
     "mute": "Thulisa",
     "unmute": "Vula umsindo",
     "fullscreen": "Isikrini esigcwele",
@@ -975,6 +1111,9 @@
     "tokenAmount": "Amathokheni angu-{{amount}}"
   },
   "postOptions": {
+    "embed": "Shumeka",
+    "copyEmbedCode": "Kopisha ikhodi yokushumeka",
+    "embedCodeCopied": "Ikhodi yokushumeka ikopishiwe",
     "options": "Izinketho",
     "sendTip": "Thumela Ithiphu",
     "queue": "Umugqa",
@@ -2849,6 +2988,8 @@
     "yourFractions": "Ubambe {{count}} wezingxenye {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopisha isixhumanisi sokuphakelayo kwe-RSS",
+    "copyRssFeedHint": "Landela lokhu okuthunyelwe kunoma yisiphi isifundi sokuphakelayo",
     "copyProfileUrl": "Kopisha i-URL yephrofayela",
     "copyUsername": "Kopisha igama lomsebenzisi",
     "copyAddress": "Kopisha ikheli",
@@ -4172,6 +4313,7 @@
     "noVoice": "Idivayisi yakho ayinalo izwi lalolu limi."
   },
   "stages": {
+    "previewFailed": "Ayikwazanga ukudlala ukubuka kuqala esiteji",
     "allStages": "Wonke amagumbi omsindo",
     "addToCalendar": "Faka ekhalendeni",
     "nowPlaying": "Manje iyadlala",
@@ -4544,6 +4686,7 @@
     "anyBadgeHolder": "Wonke umnikazi webheji uyawathola ama-SuperPowers. Thenga amathokheni e-DeHub ukuze uvule ibheji — ukubeka akudingekile."
   },
   "follow": {
+    "noResults": "Azikho iziphumo ezitholakele",
     "followers": "Ababukeli",
     "following": "Okulandelayo",
     "requests": "Izicelo",
@@ -4627,7 +4770,10 @@
     "play": "Dlala",
     "pause": "Misa okwesikhashana",
     "listens_one": "{{count}} lalela",
-    "listens_other": "{{count}} uyalalela"
+    "listens_other": "{{count}} uyalalela",
+    "lyrics": "Amazwi engoma",
+    "lyricsLoading": "Kufunwa amazwi…",
+    "lyricsNone": "Awekho amazwi atholakele"
   },
   "transfer": {
     "arcTitle": "Thumela i-USDC ku-Arc",
@@ -5553,6 +5699,8 @@
     "creatorEarnsDirect": "Ababhalisile bakhokha ngamathokheni e-DeHub. Izabelo zakho zihlala esikhwameni sakho semali lapho zibhalisa, nciphisa inani lepulatifomu lebanga lakho lebheji."
   },
   "live": {
+    "bigEvent": "Umcimbi omkhulu",
+    "bigEventHint": "Ezilalelini ezinkulu: ababukeli babuka bephuze cishe imizuzwana engama-20, kodwa kuphazamiseka kancane.",
     "notSet": "Akuzange kusethwe",
     "liveChat": "Ingxoxo ebukhoma",
     "pickDate": "Khetha usuku",
@@ -7158,6 +7306,7 @@
       "delete": "Susa"
     },
     "export": {
+      "cancel": "Khansela",
       "scope": "Dawuniloda ububanzi",
       "downloadTimeline": "Isikhathi esiphelele",
       "downloadSelection": "Iziqeshana zevidiyo ezikhethiwe ({{count}})",
@@ -7437,6 +7586,7 @@
     }
   },
   "creator": {
+    "sending": "Iyathumela",
     "navStudio": "Isitudiyo",
     "editor": "Umhleli",
     "untitled": "Akunasihloko",
@@ -8002,6 +8152,7 @@
     "transferIncomplete": "Ukudluliselwa kwethokheni akuzange kuqedwe. Uzocelwa futhi ngaphambi kwephosti yakho elandelayo ekhokhelwayo."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Sesha ama-emoji",
     "noEmoji": "Awekho ama-emoji atholakele",
     "searchResults": "Imiphumela yosesho",

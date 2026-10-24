@@ -9,8 +9,10 @@ import PostTapSurface from './PostTapSurface';
 type Frame = { x: number; width: number };
 
 /** Keep slide geometry mounted while drawing only the horizontal viewport. */
-function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false, postId }: {
+function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedia, onLayout, onImagePress, onReaction, postPage = false, postId, descriptions }: {
   postId?: string;
+  /** Alt text per image, by position. */
+  descriptions?: string[];
   images: string[];
   width: number;
   fallbackWidth: number;
@@ -102,6 +104,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
               active={active && visible.includes(index)}
               drawBitmap={visible.includes(index)}
               uri={uri}
+              description={descriptions?.[index]}
               width={width}
               compact
               postPage={postPage}

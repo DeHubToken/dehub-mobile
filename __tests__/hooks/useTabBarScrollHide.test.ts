@@ -70,8 +70,8 @@ describe("profile pages carry the home nav", () => {
     const tabs = read("components/Profile/ProfileTabs.tsx");
     // Every tab gets a handler: the UI-thread one on the Reanimated lists, the
     // plain one where a plain ScrollView or FlatList can render.
-    expect(tabs.match(/listHeader=\{listHeader\} onScroll=\{(onScroll|workletScroll)\}/g)).toHaveLength(10);
-    expect(tabs.match(/onScroll=\{workletScroll\}/g)).toHaveLength(8);
+    expect(tabs.match(/listHeader=\{listHeader\} onScroll=\{(onScroll|workletScroll)\}/g)).toHaveLength(11);
+    expect(tabs.match(/onScroll=\{workletScroll\}/g)).toHaveLength(9);
     expect(tabs).toContain("driveProfile(event.contentOffset.y)");
     expect(tabs).toContain("drive(y)");
     expect(tabs).toContain("profileScrollY.value = y");

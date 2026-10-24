@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ulangan ilovalar",
+    "connectedDescription": "Bu akkaunt bilan kirgan Mastodon ilovalaringiz. Chiqish uchun birini olib tashlang.",
+    "connectedEmpty": "Hali ulangan ilova yoʻq.",
+    "lastUsed": "Oxirgi marta ishlatilgan {{date}}",
+    "remove": "Olib tashlash",
+    "removed": "Ilova olib tashlandi",
+    "failed": "Boʻlmadi. Qayta urinib koʻring."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon va boshqa fediverse ilovalaridagi odamlar sizni shu manzil orqali topib, kuzata oladi. Yangi ommaviy postlaringiz u yerda ularga yetib boradi.",
+    "copy": "Nusxalash",
+    "copied": "Nusxalandi",
+    "privateNote": "Shaxsiy akkauntlar fediverse'da ko'rsatilmaydi.",
+    "noUsername": "Fediverse manzilini olish uchun foydalanuvchi nomini tanlang."
+  },
+  "profileFields": {
+    "title": "Profil maydonlari",
+    "description": "Profilingizda to'rttagacha qo'shimcha qator, masalan veb-sayt yoki olmoshlaringiz.",
+    "label": "Yorliq",
+    "content": "Mazmun",
+    "save": "Maydonlarni saqlash",
+    "saved": "Profil maydonlari saqlandi",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring.",
+    "verified": "Tasdiqlangan havola",
+    "verifyHint": "Havolani tasdiqlash uchun buni o'sha sahifaga qo'shing, so'ng qayta saqlang: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Bildirishnomalarni filtrlash",
+    "description": "Doirangizdan tashqaridagi kimdir siz bilan muloqot qilganda nima bo'lishini tanlang. Filtrlangan bildirishnomalar belgi va push'siz «Filtrlangan» bo'limida kutadi.",
+    "notFollowing": "Siz kuzatmaydigan odamlar",
+    "notFollowers": "Sizni kuzatmaydigan odamlar",
+    "newAccounts": "Yangi akkauntlar (30 kundan kam)",
+    "accept": "Menga xabar bering",
+    "filter": "Filtrlash",
+    "drop": "To'liq yashirish",
+    "filteredTitle": "Filtrlangan bildirishnomalar",
+    "filteredEmpty": "Hech narsa filtrlanmagan.",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} ni kuzatish",
+    "following": "Kuzatyapsiz",
+    "unfollow": "#{{tag}} ni kuzatishni to'xtatish",
+    "followed": "Endi #{{tag}} ni kuzatyapsiz. Uning postlari Kuzatuvlar lentangizda chiqadi.",
+    "unfollowed": "#{{tag}} kuzatilmaydi",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring.",
+    "clear": "Tozalash"
+  },
+  "keywordFilters": {
+    "title": "Ovozi o'chirilgan so'zlar",
+    "description": "Bu so'zlar bor post va izohlarni yashiring yoki ogohlantirish ortiga yig'ing. Bu ro'yxatni faqat siz ko'rasiz.",
+    "placeholder": "So'z yoki ibora",
+    "add": "Ovozini o'chirish",
+    "added": "Ovozi o'chirildi: {{phrase}}",
+    "wholeWord": "Faqat to'liq so'z",
+    "whenMatches": "Post mos kelganda",
+    "warn": "Ogohlantirish ko'rsatish",
+    "hide": "Yashirish",
+    "howLong": "Qancha muddat",
+    "forever": "Men o'chirgunimcha",
+    "duration1h": "1 soatga",
+    "duration1d": "1 kunga",
+    "duration7d": "7 kunga",
+    "duration30d": "30 kunga",
+    "where": "Qayerda",
+    "home": "Bosh sahifa",
+    "public": "Kashf etish va qidirish",
+    "profile": "Profillar",
+    "thread": "Suhbatlar",
+    "notifications": "Bildirishnomalar",
+    "empty": "Siz hech qanday so'z ovozini o'chirmagansiz.",
+    "remove": "Ovozini yoqish",
+    "until": "{{date}} gacha",
+    "filtered": "Filtrlandi: {{phrase}}",
+    "showAnyway": "Baribir ko'rsatish",
+    "failed": "Saqlanmadi. Qayta urinib ko'ring."
+  },
+  "postVisibility": {
+    "label": "Buni kim ko'ra oladi",
+    "public": "Hamma",
+    "followers": "Faqat obunachilar",
+    "direct": "Faqat tilga olinganlar",
+    "noRepost": "Faqat ommaviy postlarni qayta joylash mumkin",
+    "directHint": "Bu postni faqat siz @ bilan tilga olgan odamlar ko'radi",
+    "needsMention": "Faqat tilga olinganlarga joylash uchun kamida bir kishini @ bilan tilga oling"
+  },
+  "replyPolicy": {
+    "label": "Kim javob bera oladi",
+    "public": "Har kim",
+    "followers": "Obunachilaringiz",
+    "following": "Siz kuzatadigan odamlar",
+    "mentioned": "Faqat eslatilganlar",
+    "noticeFollowers": "Faqat muallifning obunachilari javob bera oladi",
+    "noticeFollowing": "Faqat muallif kuzatadigan odamlar javob bera oladi",
+    "noticeMentioned": "Faqat postda eslatilganlar javob bera oladi",
+    "refused": "Muallif bu postga kim javob bera olishini cheklagan"
+  },
+  "quotePolicy": {
+    "label": "Kim iqtibos keltira oladi",
+    "public": "Har kim",
+    "followers": "Obunachilar",
+    "nobody": "Faqat men",
+    "off": "Muallif iqtibos keltirishni oʻchirib qoʻygan",
+    "removed": "Muallif postini bu iqtibosdan olib tashladi",
+    "remove": "Olib tashlash",
+    "removedToast": "Postingiz bu iqtibosdan olib tashlandi",
+    "removeFailed": "Postingizni iqtibosdan olib tashlab boʻlmadi",
+    "refused": "Muallif bu postdan iqtibos keltirishingizga ruxsat bermaydi"
+  },
+  "contentWarning": {
+    "label": "Kontent haqida ogohlantirish",
+    "placeholder": "Ogohlantirishingizni shu yerga yozing",
+    "add": "Kontent haqida ogohlantirish qoʻshish",
+    "remove": "Kontent haqidagi ogohlantirishni olib tashlash",
+    "show": "Postni koʻrsatish"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Tavsif qoʻshish",
+    "edit": "Tavsifni tahrirlash",
+    "titleImage": "Bu rasmni tavsiflang",
+    "titleVideo": "Bu videoni tavsiflang",
+    "help": "Uni koʻra olmaydigan odamlar uchun. Ekran oʻquvchilari uni ovoz chiqarib oʻqiydi.",
+    "placeholder": "Unda nima koʻrsatilgan? Undagi har qanday matnni ham yozing.",
+    "show": "Tavsifni koʻrsatish",
+    "saved": "Tavsif saqlandi",
+    "saveFailed": "Tavsifni saqlab boʻlmadi"
+  },
   "liveRecap": {
     "title": "Strim xulosasi",
     "justEnded": "Strimingiz xulosasi",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Boshqa a'zolar endigina qo'shilganingizni ko'rib, sizni kutib olishlariga imkon beradi. Ro'yxatdan o'tganingizdan 30 kun keyin avtomatik tugaydi.",
     "postVisibility": "Post koʻrinishi",
     "defaultPostVisibility": "Standart post koʻrinishi",
+    "defaultFeed": "Standart lenta",
+    "defaultFeedDesc": "DeHub'ni har ochganingizda qaysi lenta ochilishini tanlang",
+    "feedToggles": "Lenta filtrlarini tiklash",
+    "feedTogglesDesc": "Lentada yoqqan filtrlaringiz tiklamaguningizcha standart bo'lib qoladi",
+    "feedTogglesCleared": "Lenta filtrlari tiklandi",
     "defaultProfileTab": "Standart profil varag'i",
     "defaultProfileTabDesc": "Tashrif buyuruvchilar profilingizda birinchi qaysi varaqni ko'rishini tanlang",
     "defaultPostVisibilityDesc": "Barcha joriy va kelgusi postlarga qoʻllaniladi",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Profil rasmingizdan ranglarni o'qib bo'lmadi"
   },
   "common": {
+    "refresh": "Yangilash",
     "mute": "Ovozni o‘chirish",
     "unmute": "Ovozni yoqish",
     "fullscreen": "To‘liq ekran",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Joylashtirish",
+    "copyEmbedCode": "Joylashtirish kodini nusxalash",
+    "embedCodeCopied": "Joylashtirish kodi nusxalandi",
     "options": "Parametrlar",
     "sendTip": "Tip yuborish",
     "queue": "Navbat",
@@ -2845,6 +2984,8 @@
     "yourFractions": "Siz {{total}} ulushning {{count}} ulushiga egasiz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS lenta havolasini nusxalash",
+    "copyRssFeedHint": "Bu postlarni istalgan lenta oʻquvchisida kuzating",
     "copyProfileUrl": "Profil URL nusxalash",
     "copyUsername": "Foydalanuvchi nomini nusxalash",
     "copyAddress": "Manzilni nusxalash",
@@ -4168,6 +4309,7 @@
     "noVoice": "Qurilmangizda bu til uchun ovoz yo‘q."
   },
   "stages": {
+    "previewFailed": "Oʻynash mumkin emas edi: sahna oldida eshittirish mumkin emas edi",
     "allStages": "Barcha audio xonalar",
     "addToCalendar": "Kalendarga qoʻshing",
     "nowPlaying": "Hozir oʻynayotgan",
@@ -4540,6 +4682,7 @@
     "anyBadgeHolder": "Har qanday rozetka egasi SuperQobiliyatlarni oladi. Rozetkani ochish uchun DeHub tokenlarini sotib oling — stavka qilish shart emas."
   },
   "follow": {
+    "noResults": "Natijalar topilmadi",
     "followers": "Obunachilar",
     "following": "Obunalar",
     "requests": "So'rovlar",
@@ -4623,7 +4766,10 @@
     "pause": "Pausekeyboard label",
     "listens_other": "{{count}} tinglaydi",
     "untitled": "Audio joylanma",
-    "listens_one": "{{count}} tinglang"
+    "listens_one": "{{count}} tinglang",
+    "lyrics": "Qoʻshiq matni",
+    "lyricsLoading": "Matn qidirilmoqda…",
+    "lyricsNone": "Matn topilmadi"
   },
   "transfer": {
     "arcTitle": "Arc tarmog‘ida USDC yuborish",
@@ -5549,6 +5695,8 @@
     "creatorEarnsDirect": "Obunachilar DeHub tokenlarida to'lov qilishadi. Ular obuna bo'lgan zahoti sizning ulushingiz hamyoningizga tushadi, nishon darajangiz uchun platforma to'lovi chegiriladi."
   },
   "live": {
+    "bigEvent": "Katta tadbir",
+    "bigEventHint": "Katta auditoriya uchun: tomoshabinlar taxminan 20 soniya kechikish bilan, lekin kamroq uzilishlar bilan tomosha qiladi.",
     "notSet": "Belgilanmagan",
     "liveChat": "Jonli chat",
     "pickDate": "Sanani tanlang",
@@ -7200,6 +7348,7 @@
       "delete": "Oʻchirish"
     },
     "export": {
+      "cancel": "Bekor qilish",
       "scope": "Yuklab olish diapazoni",
       "downloadTimeline": "Butun vaqt jadvali",
       "downloadSelection": "Tanlangan videokliplar ({{count}})",
@@ -7479,6 +7628,7 @@
     }
   },
   "creator": {
+    "sending": "Yuborishda",
     "navStudio": "Studiya",
     "editor": "Muharrir",
     "untitled": "Nomsiz",
@@ -8045,6 +8195,7 @@
     "transferIncomplete": "Token oʻtkazmasi yakunlanmadi. Keyingi pullik postingizdan oldin sizdan yana soʻraladi."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji qidirish",
     "noEmoji": "Emoji topilmadi",
     "searchResults": "Qidiruv natijalari",

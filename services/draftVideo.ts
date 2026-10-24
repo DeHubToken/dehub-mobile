@@ -1,6 +1,7 @@
 import { proxy } from "valtio";
 import { apiClient } from "../libs";
 import { xhrUploadFormData, type XhrUploadError } from "../libs/xhr-upload";
+import { ResumableUnsupportedError, resumableUploadFile } from "../libs/resumable-upload";
 import { onSocketEvent } from "../libs/socket-events";
 import { toastError } from "../libs/toast";
 
@@ -100,6 +101,38 @@ function watch(key: string, draftId: string) {
   };
 }
 
+/**
+ * Send the file in resumable chunks, so a dropped connection, a trip to the
+ * background or a token refresh carries on from the last chunk the server
+ * holds. A file that cannot be read in ranges, or an API without the
+ * endpoint, gets the single multipart request it always did.
+ */
+async function sendDraftFile(
+  media: { uri: string; name: string; mimeType: string },
+  postType: "video" | "short",
+  abortRef: { current: boolean },
+  onProgress: (fraction: number) => void,
+): Promise<any> {
+  try {
+    return await resumableUploadFile<any>({
+      endpoint: "/draft_video/resumable",
+      uri: media.uri,
+      name: media.name,
+      mimeType: media.mimeType,
+      metadata: { postType },
+      abortRef,
+      onProgress,
+    });
+  } catch (e) {
+    if (!(e instanceof ResumableUnsupportedError)) throw e;
+  }
+  const fd = new FormData();
+  fd.append("postType", postType);
+  // @ts-ignore RN FormData file shape
+  fd.append("file", { uri: media.uri, name: media.name, type: media.mimeType } as any);
+  return xhrUploadFormData<any>({ endpoint: "/draft_video", formData: fd, abortRef, onProgress });
+}
+
 /** Start uploading a just-attached video. Returns the handle the composer and the post use. */
 export function startDraftVideo(
   media: { uri: string; name: string; mimeType: string },
@@ -116,19 +149,10 @@ export function startDraftVideo(
   const abortRef = { current: false };
 
   const uploaded = (async (): Promise<string | null> => {
-    const fd = new FormData();
-    fd.append("postType", postType);
-    // @ts-ignore RN FormData file shape
-    fd.append("file", { uri: media.uri, name: media.name, type: media.mimeType } as any);
     try {
-      const res = await xhrUploadFormData<any>({
-        endpoint: "/draft_video",
-        formData: fd,
-        abortRef,
-        onProgress: (frac) => {
-          const d = draft(key);
-          if (d && frac > d.uploadProgress) d.uploadProgress = frac;
-        },
+      const res = await sendDraftFile(media, postType, abortRef, (frac) => {
+        const d = draft(key);
+        if (d && frac > d.uploadProgress) d.uploadProgress = frac;
       });
       const draftId = res?.draftId ? String(res.draftId) : "";
       const d = draft(key);

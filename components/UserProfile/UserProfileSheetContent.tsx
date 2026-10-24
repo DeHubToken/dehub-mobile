@@ -24,6 +24,7 @@ import { withShareRef } from "../../libs/shareRef";
 import { useCreatorPlans } from "../../hooks/useCreatorPlans";
 import type { UserProfileLoadError } from "../../hooks/useUserProfileData";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
+import { dislikesArePublic } from '../../libs/disliked-posts-store';
 
 const FallbackAvatar = require("../../assets/default-avatar.png");
 
@@ -217,6 +218,15 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
     setShowProfileMenu(false);
   }, [profileData]);
 
+  // dehub.io/<handle>.rss, served by the web worker. A private account has
+  // none, so the row is not offered there.
+  const handleMenuCopyRssFeed = useCallback(() => {
+    const slug = profileData?.username || profileData?.address;
+    if (!slug) return;
+    copyToClipboard(`https://dehub.io/${encodeURIComponent(slug)}.rss`);
+    setShowProfileMenu(false);
+  }, [profileData]);
+
   const ProfileHeader = useMemo(() => {
     if (!profileData) return null;
     const rawDmSettings = (data as any)?.dmSettings ?? (data as any)?.dmSetting;
@@ -250,6 +260,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           followsYou={followsYou}
           isPrivate={isPrivate}
           bio={data?.aboutMe}
+          profileFields={(data as any)?.profileFields}
           bioLanguage={(data as any)?.detectedLanguage}
           isFollowing={isFollowing}
           isFollowRequestPending={isFollowRequestPending}
@@ -429,6 +440,7 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
         blockedYou={blockedYou}
         pendingTab={pendingTab}
         defaultTab={getDefaultProfileTab(data)}
+        showDislikesTab={dislikesArePublic((data as any)?.customs)}
         onPendingTabConsumed={handlePendingTabConsumed}
         backToTopBottom={backToTopBottom}
       />
@@ -533,6 +545,28 @@ const UserProfileSheetContent: React.FC<UserProfileSheetContentProps> = ({
           </TouchableOpacity>
 
           <View className="mx-5 my-1 h-px bg-white/10" />
+
+          {!isPrivate && (
+            <>
+              <TouchableOpacity
+                onPress={handleMenuCopyRssFeed}
+                activeOpacity={0.7}
+                className="mx-3 flex-row items-center rounded-xl px-3 py-3.5 active:bg-white/10"
+              >
+                <View className="w-5 h-5 items-center justify-center mr-3">
+                  <Ionicons name="logo-rss" size={18} color="#fff" />
+                </View>
+                <View className="flex-1">
+                  <Text className="text-white text-[15px] font-medium">{t("profileOptions.copyRssFeed")}</Text>
+                  <Text className="text-theme-neutrals-500 text-xs mt-0.5">
+                    {t("profileOptions.copyRssFeedHint")}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+
+              <View className="mx-5 my-1 h-px bg-white/10" />
+            </>
+          )}
 
           {followsYou && (
             <>

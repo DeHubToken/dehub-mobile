@@ -1,7 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Platform } from "react-native";
 import {
   liveProviderOf,
   hlsUrlFor,
+  isBigEvent,
   whipEndpointFor,
   whepEndpointFor,
   edgeWhipEndpointFor,
@@ -45,10 +47,43 @@ describe("hlsUrlFor", () => {
     );
   });
 
-  it("builds the self-hosted ladder for mediamtx streams", () => {
-    expect(hlsUrlFor({ provider: "mediamtx", playbackId: "abc123" })).toBe(
-      "https://live.dehub.io/abc123/index.m3u8"
-    );
+  describe("for mediamtx streams", () => {
+    const os = Platform.OS;
+    afterEach(() => {
+      (Platform as any).OS = os;
+    });
+
+    it("keeps the Opus ladder on Android, which decodes it", () => {
+      (Platform as any).OS = "android";
+      expect(hlsUrlFor({ provider: "mediamtx", playbackId: "abc123" })).toBe(
+        "https://live.dehub.io/abc123/index.m3u8"
+      );
+    });
+
+    // AVPlayer cannot play Opus in HLS at any layer; the server makes an AAC
+    // copy on demand for exactly this.
+    it("takes the AAC copy on iOS", () => {
+      (Platform as any).OS = "ios";
+      expect(hlsUrlFor({ provider: "mediamtx", playbackId: "abc123" })).toBe(
+        "https://live.dehub.io/abc123-aac/index.m3u8"
+      );
+    });
+
+    it("never sends a Livepeer stream to the AAC copy", () => {
+      (Platform as any).OS = "ios";
+      expect(hlsUrlFor({ playbackId: "abc123" })).toBe(
+        "https://livepeercdn.studio/hls/abc123/index.m3u8"
+      );
+    });
+  });
+});
+
+describe("isBigEvent", () => {
+  it("is true only for an explicit event latency mode", () => {
+    expect(isBigEvent({ settings: { latencyMode: "event" } })).toBe(true);
+    expect(isBigEvent({ settings: { latencyMode: "normal" } })).toBe(false);
+    expect(isBigEvent({ settings: {} })).toBe(false);
+    expect(isBigEvent(null)).toBe(false);
   });
 });
 

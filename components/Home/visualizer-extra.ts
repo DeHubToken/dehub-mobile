@@ -674,7 +674,11 @@ const P: Record<ExtraStyle, Painter> = {
   },
   /* 7 Rings */
   rain(c, w, h, F, C, S) {
-    const r: { x: number; y: number; r: number; m: number }[] = (S.r ||= []), dt = dtOf(F);
+    const r: { x: number; y: number; r: number; m: number }[] = (S.r ||= [
+      { x: w * .27, y: h * .62, r: 18, m: 58 },
+      { x: w * .65, y: h * .4, r: 30, m: 72 },
+      { x: w * .82, y: h * .78, r: 10, m: 42 },
+    ]), dt = dtOf(F);
     const spawn = (big: boolean) => { const y = h * (0.25 + Math.random() * 0.7); r.push({ x: Math.random() * w, y, r: 1, m: (big ? 60 : 26) * (0.4 + y / h) }); };
     if (dt > 0) { if (F.beatHit) spawn(true); if (F.hatHit && Math.random() < 0.5) spawn(false); if (Math.random() < dt * 3 * (0.2 + F.level)) spawn(F.bass > 0.4); }
     c.lineWidth = 1.5;

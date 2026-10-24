@@ -8,6 +8,7 @@ import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useFeedBleed } from "./feedBleed";
+import AltTextBadge from "./AltTextBadge";
 
 interface ContainedFeedImageProps {
   uri: string;
@@ -21,6 +22,8 @@ interface ContainedFeedImageProps {
   drawBitmap?: boolean;
   /** Post page: square corners, centred, and as tall as the post page video
    *  may be: 80% of the screen, or a full-width 9:16 frame if that is taller. */
+  /** The creator's alt text: the screen reader label, and an ALT badge for everybody else. */
+  description?: string;
   postPage?: boolean;
 }
 
@@ -41,6 +44,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   active = true,
   drawBitmap = true,
   postPage = false,
+  description,
 }) => {
   const { t } = useTranslation();
   const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
@@ -111,8 +115,11 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           priority={priority}
           autoplay={animate}
           onLoad={event => { onLoad(event); setResult({ uri, status: 'loaded' }); }}
+          accessible={!!description}
+          accessibilityLabel={description || undefined}
           onError={() => setResult({ uri, status: 'failed' })}
         />}
+        {drawBitmap && <AltTextBadge text={description} />}
         {drawBitmap && status === 'loading' && <View pointerEvents="none" style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color="#888" /></View>}
         {drawBitmap && status === 'failed' && <View style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}>
           <Pressable accessibilityRole="button" accessibilityLabel={t('common.retry')}

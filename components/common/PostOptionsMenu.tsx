@@ -91,6 +91,12 @@ export interface PostOptionsMenuProps {
   currentContentRating?: string;
   /** Whether this post is published for children — the Kids Mode allowlist. */
   currentForKids?: boolean;
+  /** The post's content warning, for the edit sheet. */
+  currentSpoilerText?: string;
+  /** Who may quote the post, for the edit sheet. */
+  currentQuotePolicy?: "public" | "followers" | "nobody";
+  /** Who may reply to the post, for the edit sheet. */
+  currentReplyPolicy?: "public" | "followers" | "following" | "mentioned";
   /** Called after a successful follow/unfollow to update parent state */
   onFollowChange?: (following: boolean, pending?: boolean) => void;
   /** Called after visibility toggle to update parent state */
@@ -225,6 +231,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   currentShopLinks,
   currentContentRating,
   currentForKids,
+  currentSpoilerText,
+  currentQuotePolicy,
+  currentReplyPolicy,
   onFollowChange,
   onVisibilityChange,
   onEditSuccess,
@@ -825,6 +834,9 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
         initialShopLinks={currentShopLinks}
         initialContentRating={currentContentRating}
         initialForKids={currentForKids}
+        initialSpoilerText={currentSpoilerText}
+        initialQuotePolicy={currentQuotePolicy}
+        initialReplyPolicy={currentReplyPolicy}
         canReplaceVideo={canReplaceVideo}
         alwaysShowTitle={isAudio}
         onSuccess={handleEditDone}

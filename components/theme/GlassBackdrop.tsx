@@ -1,24 +1,27 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, StyleSheet, View } from 'react-native';
-import Svg, { Defs, LinearGradient as SvgGradient, Stop, Path } from 'react-native-svg';
+import Svg, { Defs, LinearGradient as SvgGradient, Stop, Path, Filter, FeGaussianBlur } from 'react-native-svg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useAppTheme } from '../../context/ThemeContext';
 import { visualActivity } from '../../libs/visualActivity';
 import { isThemeBackdropVisible, subscribeThemeBackdrop } from '../../libs/themeBackdrop';
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from '../../libs/scrollActivity';
+import { optionalSkia } from '../../libs/skia';
+
+const LightField = optionalSkia(() => (require('./GlassLightField') as typeof import('./GlassLightField')).default);
 
 const ribbons = [
-  'M-240 910C160 160 500 1240 920 520S1420-80 1850 180L1810 225C1430-15 1290 920 890 600S210 300-200 960Z',
-  'M-150 110C390 750 540-160 1060 240S1490 1080 1810 680L1840 730C1440 1210 1370 630 1010 330S340 860-190 145Z',
-  'M160-230C950 120 80 690 760 1000L710 1080C-70 790 820 130 120-170Z',
-  'M1130-200C500 240 1710 470 1120 1120L1190 1170C1810 510 680 220 1200-170Z',
+  'M-220 1220C160 520 550 1050 940 460S1420-160 1850-80',
+  'M-200 80C240 100 340 450 820 510S1310 390 1800 650',
+  'M-200 1200C400 1100 820 800 1200 660S1600 630 1800 680',
 ];
 function LightRibbons({ color }: { color: string }) {
   return <Svg width="100%" height="100%" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none">
-    <Defs><SvgGradient id="crystalFace" x1="0" y1="0" x2="1" y2="1">
-      <Stop stopColor="#efffff" stopOpacity={.02} /><Stop offset=".24" stopColor="#efffff" stopOpacity={.2} /><Stop offset=".28" stopColor="#fff" stopOpacity={.55} /><Stop offset=".31" stopColor={color} stopOpacity={.04} /><Stop offset=".65" stopColor={color} stopOpacity={.16} /><Stop offset=".92" stopColor="#fff" stopOpacity={.3} /><Stop offset="1" stopColor="#fff" stopOpacity={.04} />
-    </SvgGradient></Defs>
-    {ribbons.map((d, i) => <Path key={i} d={d} fill="url(#crystalFace)" stroke="#eaffff" strokeOpacity={.3} strokeWidth={1.2} />)}
+    <Defs><SvgGradient id="crystalFace" x1="0" y1="0" x2=".75" y2="1">
+      <Stop stopColor={color} stopOpacity={0} /><Stop offset=".18" stopColor={color} stopOpacity={.03} /><Stop offset=".37" stopColor={color} stopOpacity={.14} /><Stop offset=".48" stopColor="#b8f5ff" stopOpacity={.27} /><Stop offset=".53" stopColor="#e2fbff" stopOpacity={.36} /><Stop offset=".57" stopColor={color} stopOpacity={.18} /><Stop offset=".72" stopColor={color} stopOpacity={.05} /><Stop offset="1" stopColor={color} stopOpacity={0} />
+    </SvgGradient><Filter id="crystalSoft" x="-50%" y="-50%" width="200%" height="200%"><FeGaussianBlur stdDeviation="14" /></Filter></Defs>
+    {ribbons.map((d, i) => <Path key={i} d={d} stroke={color} strokeWidth={i === 2 ? 72 : 125} strokeOpacity={i === 2 ? .17 : .28} strokeLinecap="round" filter="url(#crystalSoft)" />)}
+    {ribbons.slice(0, 2).map((d, i) => <Path key={`crest-${i}`} d={d} stroke="url(#crystalFace)" strokeWidth={46} strokeOpacity={.7} strokeLinecap="round" filter="url(#crystalSoft)" />)}
   </Svg>;
 }
 /** Native vector light ribbons shared by every screen. */
@@ -52,14 +55,14 @@ function GlassBackdrop() {
   }, [progress, reduced]);
   const tint = (alpha: number) => `rgba(${accent.join(',')},${alpha})`;
   return <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[StyleSheet.absoluteFill, { backgroundColor: skin?.page ?? '#06151b', overflow: 'hidden' }]}>
-    <LinearGradient colors={[tint(.12), 'transparent', tint(.04)]} style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[tint(.28), 'transparent', tint(.09)]} start={{ x: 1, y: 0 }} end={{ x: .1, y: 1 }} style={StyleSheet.absoluteFill} />
     <Animated.View style={[styles.light, { transform: [
       { translateX: progress.interpolate({ inputRange: [0, 1], outputRange: [-24, 32] }) },
       { translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [-16, 36] }) },
       { rotate: progress.interpolate({ inputRange: [0, 1], outputRange: ['-3deg', '3deg'] }) },
       { scale: 1.1 },
     ] }]}>
-      <LightRibbons color={`rgb(${accent.map(c => Math.round(c * .65 + 255 * .35)).join(',')})`} />
+      {LightField ? <LightField accent={accent} /> : <LightRibbons color={`rgb(${accent.join(',')})`} />}
     </Animated.View>
 </View>;
 }

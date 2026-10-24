@@ -23,16 +23,15 @@ import {
 import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
 import { DeHubLoader } from "../DeHubLoader";
 import { feedRenderBudget } from "../../libs/feed-render-budget";
-import Animated, { FadeIn, FadeOut, useAnimatedStyle, type SharedValue } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import EmptyFeedState from "./EmptyFeedState";
 import FeedCard, { resolveContentType } from "./FeedCard";
 import FeedCardSkeleton from "../Feed/FeedCardSkeleton";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Icon from "../ui/Icon";
-import { ISLAND_CAPSULE_GAP, ISLAND_BAR_HEIGHT } from "./IslandTopBar";
 import { useTranslation } from "react-i18next";
 import useNewPostsSignal, { feedRowId } from "../../hooks/useNewPostsSignal";
-import NewPostsBead from "./NewPostsBead";
+import { setNewPostsBead } from "../../libs/new-posts-bead";
 import { useAuthState } from "../../context/AuthContext";
 import {
   getUnifiedFeed,
@@ -52,6 +51,8 @@ import {
 import { feedEvents } from "../../libs/eventBus";
 import { capFeedByAuthorAllowance } from "../../libs/postQuota";
 import { isPostDeletedSync, useDeletedPostsVersion, warmDeletedPosts } from "../../libs/deleted-posts-store";
+import { isDislikeGoneSync, useDislikedPostsVersion } from "../../libs/disliked-posts-store";
+import { DislikeVanish } from "./DislikeVanish";
 import { flattenFeedPages, nextFeedPage } from "../../libs/feed-pages";
 import { setFeedScrolling } from "../../libs/scrollActivity";
 import {
@@ -100,13 +101,6 @@ interface InfiniteVideoFeedProps {
    * author and buttons move down).
    */
   firstRowInset?: number;
-  /**
-   * The collapsing header's translateY. The "new posts" pill sits just under
-   * the header and rides this so it follows the header off-screen instead of
-   * floating mid-feed once the header has slid away.
-   */
-  headerTranslateY?: SharedValue<number> | null;
-  islandChrome?: boolean;
   hideNewPosts?: boolean;
   onEndReachedAll?: () => void;
   /** Reanimated worklet scroll handler — when provided, scroll events stay on the UI thread. */
@@ -276,6 +270,7 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
 }) {
   const { isVisible, isAutoplay } = useRowVisibility(store, item.__listKey);
   return (
+    <DislikeVanish key={item.__listKey} tokenId={(item as any).tokenId ?? (item as any).id}>
     <FeedCard
       item={item}
       onCategorySelect={onCategorySelect}
@@ -290,6 +285,7 @@ const VisibleFeedCard = memo(function VisibleFeedCard({
       topChromeInset={topChromeInset}
       hideDivider={hideDivider}
     />
+    </DislikeVanish>
   );
 });
 
@@ -302,8 +298,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   headerComponent,
   headerInset = 0,
   firstRowInset = 0,
-  headerTranslateY = null,
-  islandChrome = false,
   hideNewPosts = false,
   onEndReachedAll,
   scrollHandler,
@@ -380,7 +374,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // `headerInset`, which keeps this spacer off-screen whenever it is gone.
   const topSpacerStyle = useMemo(() => ({ height: headerInset }), [headerInset]);
   // How far down anything pinned to the top of the list (the refresh mark,
-  // the new-posts pill, the skeleton) has to sit to clear the header.
+  // the skeleton) has to sit to clear the header.
   const chromeInset = headerInset + firstRowInset;
   const skeletonSpacerStyle = useMemo(() => ({ height: appTheme === "system" && !skin && firstRowInset ? headerInset : chromeInset }), [appTheme, skin, firstRowInset, headerInset, chromeInset]);
   // Whether the header row drew anything, so the room under floating chrome
@@ -593,13 +587,15 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // itself, and under FlashList that lasts until its cell is handed another
   // post: the deleted post then came back further down the scroll.
   const deletedVersion = useDeletedPostsVersion();
+  // Same for a post the viewer disliked, once its card has folded away.
+  const dislikedVersion = useDislikedPostsVersion();
 
   // Pages repeat rows across the offset boundary; flattenFeedPages keeps the
   // first copy and drops tombstoned posts (see libs/feed-pages.ts).
   const rawItems = useMemo<FeedItem[]>(
-    () => flattenFeedPages<FeedItem>(data?.pages ?? [], isPostDeletedSync),
+    () => flattenFeedPages<FeedItem>(data?.pages ?? [], (id) => isPostDeletedSync(id) || isDislikeGoneSync(id)),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data, tombstonesReady, deletedVersion],
+    [data, tombstonesReady, deletedVersion, dislikedVersion],
   );
 
   // Videos already played, dropped only when the reader asked for that in
@@ -1061,7 +1057,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const isRenderable = useCallback(
     (row: any) => {
       const id = row?.tokenId ?? row?.id ?? row?.stream?.tokenId;
-      if (id != null && isPostDeletedSync(id)) return false;
+      if (id != null && (isPostDeletedSync(id) || isDislikeGoneSync(id))) return false;
       if (row?.postType === "live" && liveStreams.complete) {
         return id != null && liveStreams.byToken.has(String(id));
       }
@@ -1268,11 +1264,18 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     onScrollBegin?.();
   }, [onScrollBegin]);
 
-  // Follow the collapsing header (see the headerTranslateY prop). Declared
-  // before the early returns below so the hook order never changes.
-  const newPostsPillStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: headerTranslateY ? headerTranslateY.value : 0 }],
-  }));
+  // HomeScreen draws the bead over the header, joined to the pill.
+  const beadOwner = useRef(Symbol("new-posts-bead")).current;
+  const beadPressRef = useRef(showNewPosts);
+  beadPressRef.current = showNewPosts;
+  const beadVisible = active && !refreshing && !hideNewPosts && newPostCount > 0;
+  const beadLabel = _copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount });
+  useEffect(() => {
+    setNewPostsBead(beadOwner, beadVisible
+      ? { count: newPostCount, authors: newPostAuthors, label: beadLabel, onPress: () => beadPressRef.current() }
+      : null);
+  }, [beadOwner, beadVisible, newPostCount, newPostAuthors, beadLabel]);
+  useEffect(() => () => setNewPostsBead(beadOwner, null), [beadOwner]);
 
   // Both guards count ORGANIC rows. A live boost is one item in the list, so
   // measuring `feedItems` let a boost mask a completely failed feed — the
@@ -1313,26 +1316,6 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Keyed apart from the skeleton and error views, so a list that mounts
     // off screen gets a view of its own and its first layout is reported.
     <View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onLayout={handleListLayout}>
-      {active && !refreshing && !hideNewPosts && newPostCount > 0 && (
-        <Animated.View
-          pointerEvents="box-none"
-          entering={FadeIn.duration(160)}
-          exiting={FadeOut.duration(120)}
-          style={[
-            // Just under the pill's bottom edge, overlapping it by a point.
-            { position: "absolute", top: islandChrome ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP - 1 : chromeInset - 1, left: 0, right: 0, alignItems: "center", zIndex: 20 },
-            newPostsPillStyle,
-          ]}
-        >
-          <NewPostsBead
-            count={newPostCount}
-            authors={newPostAuthors}
-            islandChrome={islandChrome}
-            onPress={showNewPosts}
-            label={_copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount })}
-          />
-        </Animated.View>
-      )}
       <AnimatedFlashList
         ref={listRef}
         showsVerticalScrollIndicator={false}

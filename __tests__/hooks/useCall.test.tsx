@@ -3,15 +3,18 @@ import { act, cleanup, renderHook } from '@testing-library/react-native';
 jest.mock('react-native-css-interop', () => ({ createInteropElement: require('react').createElement }));
 const mockInsert = jest.fn(); const mockToken = jest.fn(); const mockUpdate = jest.fn();
 const mockCreate = jest.fn();
+const mockWalletSession = jest.fn(); const mockPush = jest.fn();
 const mockCheck = jest.fn(); const mockCallPing = jest.fn(); const mockSubscription = jest.fn();
 let mockWallet = 'alice';
 jest.mock('../../context/AuthContext', () => ({ useAuth: () => ({ user: { walletAddress: mockWallet } }) }));
 jest.mock('../../config/agora.config', () => ({ AGORA_APP_ID: 'app' }));
 jest.mock('../../libs/logger', () => ({ createLogger: () => ({ warn: jest.fn(), error: jest.fn() }) }));
-jest.mock('../../libs/api.client', () => ({ apiClient: { post: () => Promise.resolve() } }));
+jest.mock('../../libs/api.client', () => ({ apiClient: { post: (...args: unknown[]) => mockPush(...args) } }));
+jest.mock('../../libs/wallet-session', () => ({ ensureWalletSession: (...args: unknown[]) => mockWalletSession(...args) }));
 jest.mock('../../libs/audioFocus', () => ({ revokeAudioFocus: jest.fn() }));
 jest.mock('../../libs/feedVideoFocus', () => ({ revokeAllFeedVideo: jest.fn() }));
 jest.mock('../../services/supabase', () => ({
+  walletScopedClient: () => jest.requireMock('../../services/supabase').supabase,
   fetchAgoraToken: (...args: unknown[]) => mockToken(...args),
   supabase: {
     from: () => ({
@@ -43,6 +46,7 @@ let engine: Record<string, jest.Mock>;
 beforeEach(() => {
   jest.useFakeTimers(); jest.clearAllMocks();
   mockWallet = 'alice'; mockCheck.mockResolvedValue({ data: null });
+  mockWalletSession.mockResolvedValue({token:'signed-caller-session'}); mockPush.mockResolvedValue({success:true});
   Object.defineProperty(AppState, 'currentState', { configurable: true, writable: true, value: 'active' });
   engine = Object.fromEntries(['initialize', 'registerEventHandler', 'unregisterEventHandler', 'setChannelProfile', 'setClientRole', 'enableAudio', 'enableLocalAudio', 'muteLocalAudioStream', 'setDefaultAudioRouteToSpeakerphone', 'setEnableSpeakerphone', 'enableVideo', 'enableLocalVideo', 'startPreview', 'stopPreview', 'muteLocalVideoStream', 'joinChannel', 'leaveChannel', 'release', 'switchCamera'].map(name => [name, jest.fn(() => 0)]));
   engine.registerEventHandler.mockImplementation(h => { handler = h; });
@@ -51,6 +55,21 @@ beforeEach(() => {
   mockToken.mockResolvedValue({ token: 'token', uid: 1 }); mockUpdate.mockResolvedValue({ error: null });
 });
 afterEach(() => { cleanup(); visualActivity.setCall(false, false); jest.clearAllTimers(); jest.useRealTimers(); });
+
+it('attaches the caller credential to push delivery', async () => {
+  const { result } = renderHook(useCall);
+  await act(async () => { await result.current.startCall('bob'); });
+  expect(mockWalletSession).toHaveBeenCalledWith('alice');
+  expect(mockPush).toHaveBeenCalledWith('/push/call-ring', {sessionId:session.id, walletSession:'signed-caller-session'}, {isAuthRequired:true});
+});
+
+it('does not send an unsigned push or block audio when the session is unavailable', async () => {
+  mockWalletSession.mockResolvedValue(null);
+  const { result } = renderHook(useCall);
+  await act(async () => { await result.current.startCall('bob'); });
+  expect(mockPush).not.toHaveBeenCalled();
+  expect(engine.joinChannel).toHaveBeenCalled();
+});
 
 it('shares startup, subscription and fallback checks and recovers a ring arriving during the query', async () => {
   const initial = deferred<{ data: null }>();

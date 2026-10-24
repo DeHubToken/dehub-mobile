@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Aplikasi terhubung",
+    "connectedDescription": "Aplikasi Mastodon yang kamu masuki dengan akun ini. Hapus salah satu untuk mengeluarkannya.",
+    "connectedEmpty": "Belum ada aplikasi yang terhubung.",
+    "lastUsed": "Terakhir dipakai {{date}}",
+    "remove": "Hapus",
+    "removed": "Aplikasi dihapus",
+    "failed": "Tidak berhasil. Coba lagi."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Orang di Mastodon dan aplikasi fediverse lain bisa menemukan dan mengikutimu di alamat ini. Postingan publik barumu sampai ke mereka di sana.",
+    "copy": "Salin",
+    "copied": "Tersalin",
+    "privateNote": "Akun privat tidak ditampilkan di fediverse.",
+    "noUsername": "Pilih nama pengguna untuk mendapatkan alamat fediverse."
+  },
+  "profileFields": {
+    "title": "Kolom profil",
+    "description": "Hingga empat baris tambahan di profilmu, seperti situs web atau kata gantimu.",
+    "label": "Label",
+    "content": "Isi",
+    "save": "Simpan kolom",
+    "saved": "Kolom profil tersimpan",
+    "failed": "Tidak tersimpan. Coba lagi.",
+    "verified": "Tautan terverifikasi",
+    "verifyHint": "Untuk memverifikasi tautan, tambahkan ini ke halaman itu, lalu simpan lagi: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Saring notifikasi dari",
+    "description": "Pilih apa yang terjadi saat seseorang di luar lingkaranmu berinteraksi denganmu. Notifikasi yang disaring menunggu di Disaring, tanpa lencana dan tanpa push.",
+    "notFollowing": "Orang yang tidak kamu ikuti",
+    "notFollowers": "Orang yang tidak mengikutimu",
+    "newAccounts": "Akun baru (kurang dari 30 hari)",
+    "accept": "Beri tahu saya",
+    "filter": "Saring",
+    "drop": "Sembunyikan sepenuhnya",
+    "filteredTitle": "Notifikasi yang disaring",
+    "filteredEmpty": "Belum ada yang disaring.",
+    "failed": "Tidak tersimpan. Coba lagi."
+  },
+  "followedTags": {
+    "follow": "Ikuti #{{tag}}",
+    "following": "Mengikuti",
+    "unfollow": "Berhenti mengikuti #{{tag}}",
+    "followed": "Kamu sekarang mengikuti #{{tag}}. Postingannya akan muncul di feed Mengikuti.",
+    "unfollowed": "Berhenti mengikuti #{{tag}}",
+    "failed": "Tidak tersimpan. Coba lagi.",
+    "clear": "Hapus"
+  },
+  "keywordFilters": {
+    "title": "Kata yang dibisukan",
+    "description": "Sembunyikan postingan dan komentar yang memuat kata-kata ini, atau lipat di balik peringatan. Hanya kamu yang melihat daftar ini.",
+    "placeholder": "Kata atau frasa",
+    "add": "Bisukan",
+    "added": "Dibisukan: {{phrase}}",
+    "wholeWord": "Hanya kata utuh",
+    "whenMatches": "Saat postingan cocok",
+    "warn": "Tampilkan peringatan",
+    "hide": "Sembunyikan",
+    "howLong": "Berapa lama",
+    "forever": "Sampai saya hapus",
+    "duration1h": "Selama 1 jam",
+    "duration1d": "Selama 1 hari",
+    "duration7d": "Selama 7 hari",
+    "duration30d": "Selama 30 hari",
+    "where": "Di mana",
+    "home": "Beranda",
+    "public": "Jelajahi dan cari",
+    "profile": "Profil",
+    "thread": "Percakapan",
+    "notifications": "Notifikasi",
+    "empty": "Kamu belum membisukan kata apa pun.",
+    "remove": "Batalkan bisu",
+    "until": "Sampai {{date}}",
+    "filtered": "Difilter: {{phrase}}",
+    "showAnyway": "Tetap tampilkan",
+    "failed": "Tidak tersimpan. Coba lagi."
+  },
+  "postVisibility": {
+    "label": "Siapa yang bisa melihat ini",
+    "public": "Semua orang",
+    "followers": "Hanya pengikut",
+    "direct": "Hanya orang yang disebut",
+    "noRepost": "Hanya postingan publik yang bisa diposting ulang",
+    "directHint": "Hanya orang yang kamu sebut dengan @ yang akan melihat postingan ini",
+    "needsMention": "Sebut setidaknya satu orang dengan @ untuk memposting hanya ke orang yang disebut"
+  },
+  "replyPolicy": {
+    "label": "Siapa yang bisa membalas",
+    "public": "Siapa saja",
+    "followers": "Pengikut Anda",
+    "following": "Orang yang Anda ikuti",
+    "mentioned": "Hanya yang disebut",
+    "noticeFollowers": "Hanya pengikut penulis yang bisa membalas",
+    "noticeFollowing": "Hanya orang yang diikuti penulis yang bisa membalas",
+    "noticeMentioned": "Hanya orang yang disebut di postingan yang bisa membalas",
+    "refused": "Penulis membatasi siapa yang bisa membalas postingan ini"
+  },
+  "quotePolicy": {
+    "label": "Siapa yang bisa mengutip",
+    "public": "Siapa saja",
+    "followers": "Pengikut",
+    "nobody": "Hanya saya",
+    "off": "Penulis menonaktifkan kutipan",
+    "removed": "Penulis menghapus postingannya dari kutipan ini",
+    "remove": "Hapus",
+    "removedToast": "Postingan Anda dihapus dari kutipan ini",
+    "removeFailed": "Tidak dapat menghapus postingan Anda dari kutipan",
+    "refused": "Penulis tidak mengizinkan Anda mengutip postingan ini"
+  },
+  "contentWarning": {
+    "label": "Peringatan konten",
+    "placeholder": "Tulis peringatan Anda di sini",
+    "add": "Tambahkan peringatan konten",
+    "remove": "Hapus peringatan konten",
+    "show": "Tampilkan postingan"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Tambahkan deskripsi",
+    "edit": "Edit deskripsi",
+    "titleImage": "Jelaskan gambar ini",
+    "titleVideo": "Jelaskan video ini",
+    "help": "Untuk orang yang tidak bisa melihatnya. Pembaca layar membacakannya dengan keras.",
+    "placeholder": "Apa yang ditampilkan? Sertakan teks apa pun di dalamnya.",
+    "show": "Tampilkan deskripsi",
+    "saved": "Deskripsi disimpan",
+    "saveFailed": "Tidak dapat menyimpan deskripsi"
+  },
   "liveRecap": {
     "title": "Rekap streaming",
     "justEnded": "Rekap streaming Anda",
@@ -219,6 +349,8 @@
     "postCount_other": "{{count}} postingan"
   },
   "settings": {
+    "showDislikesDesc": "Siapa pun bisa membuka tab Tidak Suka di profilmu. Jika nonaktif, hanya kamu yang bisa melihatnya.",
+    "showDislikes": "Tampilkan tidak sukaku ke semua orang",
     "postingChain": "Blockchain postingan",
     "showOnline": "Tampilkan saat saya online",
     "showOnlineDesc": "Orang yang Anda kirimi pesan melihat titik hijau di samping nama Anda saat Anda menggunakan DeHub",
@@ -334,6 +466,11 @@
     "showAsNewMemberDesc": "Membuat anggota lain melihat Anda baru bergabung sehingga bisa menyambut. Berakhir otomatis 30 hari setelah Anda mendaftar.",
     "postVisibility": "Visibilitas Postingan",
     "defaultPostVisibility": "Visibilitas Default",
+    "defaultFeed": "Feed default",
+    "defaultFeedDesc": "Pilih feed yang terbuka setiap kali kamu membuka DeHub",
+    "feedToggles": "Atur ulang filter feed",
+    "feedTogglesDesc": "Filter yang kamu aktifkan di feed tetap menjadi default sampai kamu mengatur ulang",
+    "feedTogglesCleared": "Filter feed diatur ulang",
     "defaultProfileTab": "Tab profil bawaan",
     "defaultProfileTabDesc": "Pilih tab mana yang pertama dilihat pengunjung di profil Anda",
     "defaultPostVisibilityDesc": "Berlaku untuk semua postingan saat ini dan yang akan datang",
@@ -862,6 +999,7 @@
     "themeColorBrandFailed": "Tidak bisa membaca warna dari foto profil Anda"
   },
   "common": {
+    "refresh": "Segarkan",
     "mute": "Bisukan",
     "unmute": "Bunyikan",
     "fullscreen": "Layar penuh",
@@ -977,6 +1115,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Sematkan",
+    "copyEmbedCode": "Salin kode sematan",
+    "embedCodeCopied": "Kode sematan disalin",
     "options": "Opsi",
     "sendTip": "Kirim Tip",
     "queue": "Antrian",
@@ -1927,6 +2068,12 @@
     "returnHome": "Kembali ke Beranda"
   },
   "profile": {
+    "dislikesPrivateDesc": "Akun ini menyimpan tidak sukanya sendiri.",
+    "dislikesPrivateTitle": "Tidak suka bersifat pribadi",
+    "dislikesEmptyOther": "Belum ada yang tidak disukai.",
+    "dislikesEmptyOwn": "Postingan yang tidak kamu sukai hilang dari feed-mu dan muncul di sini. Batalkan tidak suka untuk mengembalikan postingan.",
+    "dislikesEmptyTitle": "Belum ada tidak suka",
+    "tabDislikes": "Tidak Suka",
     "replyThread": {
       "postUnavailable": "Postingan ini tidak tersedia",
       "commentUnavailable": "Komentar ini tidak lagi tersedia"
@@ -2829,6 +2976,8 @@
     "yourFractions": "Anda memegang {{count}} dari {{total}} pecahan"
   },
   "profileOptions": {
+    "copyRssFeed": "Salin tautan feed RSS",
+    "copyRssFeedHint": "Ikuti postingan ini di pembaca feed mana pun",
     "copyProfileUrl": "Salin URL profil",
     "copyUsername": "Salin nama pengguna",
     "copyAddress": "Salin alamat",
@@ -4201,6 +4350,7 @@
     "filedOn": "Dikirim {{date}}"
   },
   "stages": {
+    "previewFailed": "Tidak bisa memutar pratinjau di ruang audio",
     "allStages": "Semua ruang audio",
     "addToCalendar": "Tambahkan ke kalender",
     "nowPlaying": "Sedang diputar",
@@ -4573,6 +4723,7 @@
     "anyBadgeHolder": "Pemegang lencana mana pun mendapatkan SuperPowers. Beli token DeHub untuk membuka lencana — staking tidak diperlukan."
   },
   "follow": {
+    "noResults": "Tidak ada hasil yang ditemukan",
     "followers": "Pengikut",
     "following": "Mengikuti",
     "requests": "Permintaan",
@@ -4656,7 +4807,10 @@
     "play": "Putar",
     "pause": "Jeda",
     "listens_one": "{{count}} kali didengar",
-    "listens_other": "{{count}} kali didengar"
+    "listens_other": "{{count}} kali didengar",
+    "lyrics": "Lirik",
+    "lyricsLoading": "Mencari lirik…",
+    "lyricsNone": "Lirik tidak ditemukan"
   },
   "transfer": {
     "arcTitle": "Kirim USDC di Arc",
@@ -5615,6 +5769,8 @@
     "creatorEarnsDirect": "Pelanggan membayar dalam token DeHub. Bagian Anda masuk ke dompet Anda saat mereka berlangganan, dikurangi biaya platform untuk tingkatan lencana Anda."
   },
   "live": {
+    "bigEvent": "Acara besar",
+    "bigEventHint": "Untuk penonton besar: penonton menonton sekitar 20 detik tertinggal, dengan lebih sedikit gangguan.",
     "notSet": "Belum diatur",
     "liveChat": "Obrolan langsung",
     "pickDate": "Pilih tanggal",
@@ -7229,6 +7385,7 @@
       "delete": "Hapus"
     },
     "export": {
+      "cancel": "Batal",
       "scope": "Rentang unduhan",
       "downloadTimeline": "Seluruh linimasa",
       "downloadSelection": "Klip video yang dipilih ({{count}})",
@@ -7508,6 +7665,7 @@
     }
   },
   "creator": {
+    "sending": "Mengirim",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Tanpa judul",
@@ -8024,6 +8182,7 @@
     "transferIncomplete": "Transfer token tidak selesai. Anda akan ditanya lagi sebelum postingan berbayar berikutnya."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Cari emoji",
     "noEmoji": "Emoji tidak ditemukan",
     "searchResults": "Hasil pencarian",
@@ -9654,5 +9813,15 @@
     "youAreBanned": "Anda tidak bisa berobrol di stream kreator ini",
     "youAreTimedOut": "Anda sedang waktu habis sejenak",
     "title": "Moderasi"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Kamu akan memiliki segalanya",
+    "headlineAccent": "dan bahagia.",
+    "orContinueWith": "atau lanjut dengan",
+    "phone": "Telepon",
+    "fingerprint": "Sidik jari",
+    "exploreFirst": "Jelajahi dulu",
+    "codeNote": "Kami kirim kode lewat email, tanpa kata sandi."
   }
 }

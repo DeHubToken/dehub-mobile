@@ -6,9 +6,9 @@ import { useSyncExternalStore } from "react";
 
 export function CallDuration({ fallback }: { fallback: string }) {
   const { callStartedAt } = useCall();
-  // The call owns the screen, so its clock ignores call coverage but still
-  // sleeps while a system call or another app owns the foreground.
-  const foreground = useSyncExternalStore(visualActivity.subscribe, visualActivity.isForeground, () => true);
+  // Android's call Modal takes focus from the activity without backgrounding
+  // the app. Keep its clock running, but sleep when the app is inactive.
+  const foreground = useSyncExternalStore(visualActivity.subscribe, visualActivity.isAppForeground, () => true);
   const [, tick] = useState(0);
   useEffect(() => {
     if (callStartedAt == null || !foreground) return;

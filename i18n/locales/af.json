@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Gekoppelde toepe",
+    "connectedDescription": "Mastodon-toepe waarby jy met hierdie rekening aangemeld het. Verwyder een om dit af te meld.",
+    "connectedEmpty": "Nog geen toepe gekoppel nie.",
+    "lastUsed": "Laas gebruik {{date}}",
+    "remove": "Verwyder",
+    "removed": "Toep verwyder",
+    "failed": "Dit het nie gewerk nie. Probeer weer."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mense op Mastodon en ander fediverse-toepassings kan jou by hierdie adres vind en volg. Jou nuwe openbare plasings bereik hulle daar.",
+    "copy": "Kopieer",
+    "copied": "Gekopieer",
+    "privateNote": "Privaat rekeninge word nie op die fediverse gewys nie.",
+    "noUsername": "Kies 'n gebruikersnaam om 'n fediverse-adres te kry."
+  },
+  "profileFields": {
+    "title": "Profielvelde",
+    "description": "Tot vier ekstra reëls op jou profiel, soos 'n webwerf of jou voornaamwoorde.",
+    "label": "Etiket",
+    "content": "Inhoud",
+    "save": "Stoor velde",
+    "saved": "Profielvelde gestoor",
+    "failed": "Dit is nie gestoor nie. Probeer weer.",
+    "verified": "Geverifieerde skakel",
+    "verifyHint": "Om 'n skakel te verifieer, voeg dit by daardie bladsy en stoor weer: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filter kennisgewings van",
+    "description": "Kies wat gebeur wanneer iemand buite jou kring met jou in wisselwerking tree. Gefiltreerde kennisgewings wag onder Gefiltreer, sonder 'n kenteken of 'n stootkennisgewing.",
+    "notFollowing": "Mense wat jy nie volg nie",
+    "notFollowers": "Mense wat jou nie volg nie",
+    "newAccounts": "Nuwe rekeninge (jonger as 30 dae)",
+    "accept": "Laat my weet",
+    "filter": "Filtreer",
+    "drop": "Versteek heeltemal",
+    "filteredTitle": "Gefiltreerde kennisgewings",
+    "filteredEmpty": "Niks is gefiltreer nie.",
+    "failed": "Dit is nie gestoor nie. Probeer weer."
+  },
+  "followedTags": {
+    "follow": "Volg #{{tag}}",
+    "following": "Volg tans",
+    "unfollow": "Ontvolg #{{tag}}",
+    "followed": "Jy volg nou #{{tag}}. Sy plasings sal in jou Volg-voer wys.",
+    "unfollowed": "#{{tag}} ontvolg",
+    "failed": "Dit is nie gestoor nie. Probeer weer.",
+    "clear": "Maak skoon"
+  },
+  "keywordFilters": {
+    "title": "Gedempte woorde",
+    "description": "Versteek plasings en kommentaar wat hierdie woorde bevat, of vou hulle agter 'n waarskuwing. Net jy sien hierdie lys.",
+    "placeholder": "Woord of frase",
+    "add": "Demp",
+    "added": "Gedemp: {{phrase}}",
+    "wholeWord": "Net die hele woord",
+    "whenMatches": "Wanneer 'n plasing ooreenstem",
+    "warn": "Wys 'n waarskuwing",
+    "hide": "Versteek dit",
+    "howLong": "Hoe lank",
+    "forever": "Totdat ek dit verwyder",
+    "duration1h": "Vir 1 uur",
+    "duration1d": "Vir 1 dag",
+    "duration7d": "Vir 7 dae",
+    "duration30d": "Vir 30 dae",
+    "where": "Waar",
+    "home": "Tuis",
+    "public": "Verken en soek",
+    "profile": "Profiele",
+    "thread": "Gesprekke",
+    "notifications": "Kennisgewings",
+    "empty": "Jy het nog geen woorde gedemp nie.",
+    "remove": "Ontdemp",
+    "until": "Tot {{date}}",
+    "filtered": "Gefiltreer: {{phrase}}",
+    "showAnyway": "Wys tog",
+    "failed": "Dit is nie gestoor nie. Probeer weer."
+  },
+  "postVisibility": {
+    "label": "Wie kan dit sien",
+    "public": "Almal",
+    "followers": "Net volgers",
+    "direct": "Net genoemde mense",
+    "noRepost": "Net openbare plasings kan herplaas word",
+    "directHint": "Net die mense wat jy met @ noem, sal hierdie plasing sien",
+    "needsMention": "Noem ten minste een persoon met @ om net aan genoemde mense te plaas"
+  },
+  "replyPolicy": {
+    "label": "Wie kan antwoord",
+    "public": "Enigiemand",
+    "followers": "Jou volgers",
+    "following": "Mense wat jy volg",
+    "mentioned": "Net genoemdes",
+    "noticeFollowers": "Net die outeur se volgers kan antwoord",
+    "noticeFollowing": "Net mense wat die outeur volg, kan antwoord",
+    "noticeMentioned": "Net mense wat in die plasing genoem word, kan antwoord",
+    "refused": "Die outeur het beperk wie op hierdie plasing kan antwoord"
+  },
+  "quotePolicy": {
+    "label": "Wie kan aanhaal",
+    "public": "Enigiemand",
+    "followers": "Volgers",
+    "nobody": "Net ek",
+    "off": "Die outeur het aanhalings afgeskakel",
+    "removed": "Die outeur het hul plasing uit hierdie aanhaling verwyder",
+    "remove": "Verwyder",
+    "removedToast": "Jou plasing is uit hierdie aanhaling verwyder",
+    "removeFailed": "Kon nie jou plasing uit die aanhaling verwyder nie",
+    "refused": "Die outeur laat jou nie toe om hierdie plasing aan te haal nie"
+  },
+  "contentWarning": {
+    "label": "Inhoudwaarskuwing",
+    "placeholder": "Skryf jou waarskuwing hier",
+    "add": "Voeg inhoudwaarskuwing by",
+    "remove": "Verwyder inhoudwaarskuwing",
+    "show": "Wys plasing"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Voeg 'n beskrywing by",
+    "edit": "Wysig beskrywing",
+    "titleImage": "Beskryf hierdie prent",
+    "titleVideo": "Beskryf hierdie video",
+    "help": "Vir mense wat dit nie kan sien nie. Skermlesers lees dit hardop voor.",
+    "placeholder": "Wat wys dit? Sluit enige teks daarin in.",
+    "show": "Wys beskrywing",
+    "saved": "Beskrywing gestoor",
+    "saveFailed": "Kon nie die beskrywing stoor nie"
+  },
   "liveRecap": {
     "title": "Stroom oorskakeling",
     "justEnded": "Jou stroomherhaling",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Laat ander lede sien dat jy pas aangesluit het sodat hulle jou kan verwelkom. Eindig outomaties 30 dae ná jy geregistreer het.",
     "postVisibility": "Pos Sigbaarheid",
     "defaultPostVisibility": "Verstek Pos Sigbaarheid",
+    "defaultFeed": "Verstek-voer",
+    "defaultFeedDesc": "Kies watter voer oopmaak elke keer as jy DeHub oopmaak",
+    "feedToggles": "Stel voerfilters terug",
+    "feedTogglesDesc": "Filters wat jy in 'n voer aanskakel, bly jou verstek totdat jy dit terugstel",
+    "feedTogglesCleared": "Voerfilters teruggestel",
     "defaultProfileTab": "Verstek profieloortjie",
     "defaultProfileTabDesc": "Kies watter oortjie besoekers eerste op jou profiel sien",
     "defaultPostVisibilityDesc": "Geldig vir alle huidige en toekomstige poste",
@@ -863,6 +998,7 @@
     "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie"
   },
   "common": {
+    "refresh": "Verfris",
     "mute": "Demp",
     "unmute": "Ontdemp",
     "fullscreen": "Volskerm",
@@ -976,6 +1112,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Inbed",
+    "copyEmbedCode": "Kopieer inbedkode",
+    "embedCodeCopied": "Inbedkode gekopieer",
     "options": "Opsies",
     "sendTip": "Stuur Wenner",
     "queue": "Ry",
@@ -2860,6 +2999,8 @@
     "yourFractions": "Jy hou {{count}} van {{total}} breukdele"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopieer RSS-voerskakel",
+    "copyRssFeedHint": "Volg hierdie plasings in enige voerleser",
     "copyProfileUrl": "Kopieer profiel-URL",
     "copyUsername": "Kopieer gebruikersnaam",
     "copyAddress": "Kopieer adres",
@@ -4183,6 +4324,7 @@
     "noVoice": "Jou toestel het geen stem vir hierdie taal nie."
   },
   "stages": {
+    "previewFailed": "Kon nie voorskou in die oudiokamer speel nie",
     "allStages": "Alle oudiokamers",
     "addToCalendar": "Voeg by kalender",
     "nowPlaying": "Speel nou",
@@ -4555,6 +4697,7 @@
     "anyBadgeHolder": "Enige kentekenhouer kry SuperPowers. Koop DeHub-tokens om 'n kenteken te ontsluit — staking is nie nodig nie."
   },
   "follow": {
+    "noResults": "Geen resultate gevind nie",
     "followers": "Volgelinge",
     "following": "Volg",
     "requests": "Versoeke",
@@ -4638,7 +4781,10 @@
     "play": "Speel",
     "pause": "Pouseer",
     "listens_one": "{{count}} luister",
-    "listens_other": "{{count}} luisteraars"
+    "listens_other": "{{count}} luisteraars",
+    "lyrics": "Lirieke",
+    "lyricsLoading": "Soek lirieke…",
+    "lyricsNone": "Geen lirieke gevind nie"
   },
   "transfer": {
     "arcTitle": "Stuur USDC op Arc",
@@ -5564,6 +5710,8 @@
     "creatorEarnsDirect": "Intekenare betaal in DeHub-tokens. Jou aandeel land in jou beursie die oomblik dat hulle inteken, minder die platformfooi vir jou wapenvlak."
   },
   "live": {
+    "bigEvent": "Groot geleentheid",
+    "bigEventHint": "Vir groot gehore: kykers kyk sowat 20 sekondes agter, met minder onderbrekings.",
     "notSet": "Nie gestel nie",
     "liveChat": "Regstreekse klets",
     "pickDate": "Kies datum",
@@ -7271,6 +7419,7 @@
       "delete": "Skrap"
     },
     "export": {
+      "cancel": "Kanselleer",
       "scope": "Laai reeks af",
       "downloadTimeline": "Hele tydlyn",
       "downloadSelection": "Geselekteerde video-knipsels ({{count}})",
@@ -7550,6 +7699,7 @@
     }
   },
   "creator": {
+    "sending": "Stuur",
     "navStudio": "Studio",
     "editor": "Redigeerder",
     "untitled": "Naamloos",
@@ -8116,6 +8266,7 @@
     "transferIncomplete": "Die token-oordrag het nie voltooi nie. U sal weer gevra word voor u volgende betaalde pos."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Soek emoji",
     "noEmoji": "Geen emoji gevind nie",
     "searchResults": "Soekresultate",

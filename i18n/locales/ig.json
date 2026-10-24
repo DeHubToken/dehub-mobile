@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ngwa ejikọrọ",
+    "connectedDescription": "Ngwa Mastodon ị banyere na ya site n'akaụntụ a. Wepụ otu iji wepụ ya.",
+    "connectedEmpty": "Enweghị ngwa ejikọrọ ugbu a.",
+    "lastUsed": "Ejiri ya mgbe ikpeazụ {{date}}",
+    "remove": "Wepụ",
+    "removed": "E wepụla ngwa ahụ",
+    "failed": "Nke ahụ arụghị ọrụ. Nwaa ọzọ."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ndị nọ na Mastodon na ngwa fediverse ndị ọzọ nwere ike ịchọta gị ma soro gị na adreesị a. Ihe ọhụrụ i bipụtara n'ihu ọha na-erute ha n'ebe ahụ.",
+    "copy": "Detuo",
+    "copied": "E detuola",
+    "privateNote": "A naghị egosi akaụntụ nzuzo na fediverse.",
+    "noUsername": "Họrọ aha njirimara iji nweta adreesị fediverse."
+  },
+  "profileFields": {
+    "title": "Mpaghara profaịlụ",
+    "description": "Ruo ahịrị anọ ọzọ na profaịlụ gị, dị ka weebụsaịtị ma ọ bụ nnọchiaha gị.",
+    "label": "Aha",
+    "content": "Ọdịnaya",
+    "save": "Chekwaa mpaghara",
+    "saved": "Echekwala mpaghara profaịlụ",
+    "failed": "Edebeghị ya. Nwaa ọzọ.",
+    "verified": "Njikọ akwadoro",
+    "verifyHint": "Iji kwado njikọ, tinye nke a na ibe ahụ, wee chekwaa ọzọ: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Zachaa ọkwa sitere n'aka",
+    "description": "Họrọ ihe ga-eme mgbe onye nọ n'èzí okirikiri gị na gị na-emekọrịta ihe. Ọkwa ezachara na-echere n'okpuru \"Ezachara\", na-enweghị akara ma ọ bụ mkpali.",
+    "notFollowing": "Ndị ị na-esoghị",
+    "notFollowers": "Ndị na-esoghị gị",
+    "newAccounts": "Akaụntụ ọhụrụ (erughị ụbọchị 30)",
+    "accept": "Gwa m",
+    "filter": "Zachaa",
+    "drop": "Zoo kpamkpam",
+    "filteredTitle": "Ọkwa ezachara",
+    "filteredEmpty": "Ọ dịghị ihe ezachara.",
+    "failed": "Edebeghị ya. Nwaa ọzọ."
+  },
+  "followedTags": {
+    "follow": "Soro #{{tag}}",
+    "following": "Ị na-eso",
+    "unfollow": "Kwụsị iso #{{tag}}",
+    "followed": "Ị na-eso #{{tag}} ugbu a. Ihe e bipụtara ya ga-apụta na ndepụta Ndị ị na-eso.",
+    "unfollowed": "Ị kwụsịrị iso #{{tag}}",
+    "failed": "Edebeghị ya. Nwaa ọzọ.",
+    "clear": "Hichapụ"
+  },
+  "keywordFilters": {
+    "title": "Okwu a gbachiri nkịtị",
+    "description": "Zoo ihe e bipụtara na nkọwa nwere okwu ndị a, ma ọ bụ tụkọọ ha n'azụ ịdọ aka ná ntị. Ọ bụ naanị gị na-ahụ ndepụta a.",
+    "placeholder": "Okwu ma ọ bụ ahịrịokwu",
+    "add": "Gbachie",
+    "added": "Agbachiri: {{phrase}}",
+    "wholeWord": "Naanị okwu zuru ezu",
+    "whenMatches": "Mgbe ihe e bipụtara dabara",
+    "warn": "Gosi ịdọ aka ná ntị",
+    "hide": "Zoo ya",
+    "howLong": "Ruo ogologo oge ole",
+    "forever": "Ruo mgbe m wepụrụ ya",
+    "duration1h": "Maka awa 1",
+    "duration1d": "Maka ụbọchị 1",
+    "duration7d": "Maka ụbọchị 7",
+    "duration30d": "Maka ụbọchị 30",
+    "where": "Ebee",
+    "home": "Ụlọ",
+    "public": "Nyochaa ma chọọ",
+    "profile": "Profaịlụ",
+    "thread": "Mkparịta ụka",
+    "notifications": "Ọkwa",
+    "empty": "Ị gbachibeghị okwu ọ bụla.",
+    "remove": "Kwụsị igbachi",
+    "until": "Ruo {{date}}",
+    "filtered": "Ezachara: {{phrase}}",
+    "showAnyway": "Gosi ya n'agbanyeghị",
+    "failed": "Edebeghị ya. Nwaa ọzọ."
+  },
+  "postVisibility": {
+    "label": "Onye nwere ike ịhụ nke a",
+    "public": "Onye ọ bụla",
+    "followers": "Ndị na-eso naanị",
+    "direct": "Ndị a kpọtụrụ aha naanị",
+    "noRepost": "Ọ bụ naanị ihe e bipụtara n'ihu ọha ka a ga-ebipụtaghachi",
+    "directHint": "Ọ bụ naanị ndị ị kpọtụrụ aha site na @ ga-ahụ ihe a e bipụtara",
+    "needsMention": "Kpọtụrụ ma ọ dịkarịa ala otu onye aha site na @ iji bipụta nye naanị ndị a kpọtụrụ aha"
+  },
+  "replyPolicy": {
+    "label": "Onye nwere ike ịza",
+    "public": "Onye ọ bụla",
+    "followers": "Ndị na-eso gị",
+    "following": "Ndị ị na-eso",
+    "mentioned": "Naanị ndị a kpọrọ aha",
+    "noticeFollowers": "Naanị ndị na-eso onye dere ya nwere ike ịza",
+    "noticeFollowing": "Naanị ndị onye dere ya na-eso nwere ike ịza",
+    "noticeMentioned": "Naanị ndị a kpọrọ aha n'ozi ahụ nwere ike ịza",
+    "refused": "Onye dere ya ebelatala ndị nwere ike ịza ozi a"
+  },
+  "quotePolicy": {
+    "label": "Onye nwere ike ịkọ",
+    "public": "Onye ọ bụla",
+    "followers": "Ndị na-eso",
+    "nobody": "Naanị m",
+    "off": "Onye dere ya gbanyụrụ ịkọ",
+    "removed": "Onye dere ya wepụrụ ozi ya na nkọwa a",
+    "remove": "Wepụ",
+    "removedToast": "Ewepụla ozi gị na nkọwa a",
+    "removeFailed": "Enweghị ike iwepụ ozi gị na nkọwa ahụ",
+    "refused": "Onye dere ya anaghị ekwe ka ị kọọ ozi a"
+  },
+  "contentWarning": {
+    "label": "Ịdọ aka ná ntị maka ọdịnaya",
+    "placeholder": "Dee ịdọ aka ná ntị gị ebe a",
+    "add": "Tinye ịdọ aka ná ntị maka ọdịnaya",
+    "remove": "Wepụ ịdọ aka ná ntị maka ọdịnaya",
+    "show": "Gosi ozi"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Tinye nkọwa",
+    "edit": "Dezie nkọwa",
+    "titleImage": "Kọwaa foto a",
+    "titleVideo": "Kọwaa vidiyo a",
+    "help": "Maka ndị na-enweghị ike ịhụ ya. Ndị na-agụ ihuenyo na-agụpụta ya n'olu dara ụda.",
+    "placeholder": "Gịnị ka ọ na-egosi? Tinye ederede ọ bụla dị n'ime ya.",
+    "show": "Gosi nkọwa",
+    "saved": "Echekwala nkọwa",
+    "saveFailed": "Enweghị ike ịchekwa nkọwa ahụ"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} meriri",
     "title": "Nchịkọta mgbasa ozi",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Ọ na-eme ka ndị otu ndị ọzọ hụ na ị ka sonyere ka ha nabata gị. Ọ na-akwụsị n'onwe ya ụbọchị 30 mgbe ị debanyere aha.",
     "postVisibility": "Ịhụ ozi",
     "defaultPostVisibility": "Ịhụ ozi ndabara",
+    "defaultFeed": "Feed ndabara",
+    "defaultFeedDesc": "Họrọ feed ga-emeghe oge ọ bụla ị meghere DeHub",
+    "feedToggles": "Tọgharịa nzacha feed",
+    "feedTogglesDesc": "Nzacha ị gbanyere na feed ga-anọgide dị ka ndabara gị ruo mgbe ị tọgharịrị ha",
+    "feedTogglesCleared": "Etọgharịala nzacha feed",
     "defaultProfileTab": "Tab profaịlụ ndabara",
     "defaultProfileTabDesc": "Họrọ tab ndị ọbịa na-ahụ na mbụ na profaịlụ gị",
     "defaultPostVisibilityDesc": "Ọ na-emetụta ozi niile ugbu a na nke ọdịnihu",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị"
   },
   "common": {
+    "refresh": "Mee ka ọ dị ọhụrụ",
     "mute": "Mechie ụda",
     "unmute": "Mepee ụda",
     "fullscreen": "Ihuenyo zuru ezu",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Tinye n'ime",
+    "copyEmbedCode": "Detụọ koodu ntinye",
+    "embedCodeCopied": "Edepụtala koodu ntinye",
     "options": "Nhọrọ",
     "sendTip": "Ziga Onyinye",
     "queue": "Ahịrị",
@@ -2818,6 +2957,8 @@
     "yourFractions": "I jide {{count}} nke {{total}} fractions"
   },
   "profileOptions": {
+    "copyRssFeed": "Detụọ njikọ feed RSS",
+    "copyRssFeedHint": "Soro ozi ndị a n'ihe ọgụgụ feed ọ bụla",
     "copyProfileUrl": "Detụọ URL profaịlụ",
     "copyUsername": "Detụọ aha onye ọrụ",
     "copyAddress": "Detụọ adreesị",
@@ -4139,6 +4280,7 @@
     "noVoice": "Ngwaọrụ gị enweghị olu maka asụsụ a."
   },
   "stages": {
+    "previewFailed": "Agaghị enwenwu ike igosi nhụchalụ n 'usoroiheomume",
     "allStages": "Ọnụ ụlọ olu niile",
     "addToCalendar": "Tinye na kalenda",
     "nowPlaying": "Ugbu a na-akpọ",
@@ -4511,6 +4653,7 @@
     "anyBadgeHolder": "Onye ọ bụla nwere akara ngosi na-enweta SuperPowers. Zụta DeHub tokens iji mepee akara ngosi — itinye ego adịghị mkpa."
   },
   "follow": {
+    "noResults": "Enweghị nsonaazụ achọtara",
     "followers": "Ndị na-eso ụzọ",
     "following": "Ndị na-eso",
     "requests": "Ngwa",
@@ -4594,7 +4737,10 @@
     "listens_one": "{{count}} gee ntị",
     "listens_other": "{{count}} na-ege ntị",
     "cornerPlayer": "Nkpọghachi egwu post",
-    "untitled": "Post egwu"
+    "untitled": "Post egwu",
+    "lyrics": "Okwu abụ",
+    "lyricsLoading": "Na-achọ okwu abụ…",
+    "lyricsNone": "Ahụghị okwu abụ"
   },
   "transfer": {
     "arcTitle": "Zipu USDC na Arc",
@@ -5520,6 +5666,8 @@
     "creatorEarnsDirect": "Ndị debanyere aha na-akwụ ụgwọ na akara ngosi DeHub. Gị òkè ala gị obere akpa mgbe ha debanyere aha, obere n 'elu ikpo okwu ego maka gị baajị tier."
   },
   "live": {
+    "bigEvent": "Nnukwu mmemme",
+    "bigEventHint": "Maka ọtụtụ ndị na-ekiri: ndị na-ekiri ga-ahụ ya ihe dị ka sekọnd 20 azụ, na nkwụsị ole na ole.",
     "notSet": "Edobeghị",
     "liveChat": "Nkata ndụ",
     "pickDate": "Họrọ ụbọchị",
@@ -7125,6 +7273,7 @@
       "delete": "Hichaa"
     },
     "export": {
+      "cancel": "Kagbuo",
       "scope": "Download nso",
       "downloadTimeline": "Usoroiheomume niile",
       "downloadSelection": "Vidio ndị a họọrọ ({{count}})",
@@ -7404,6 +7553,7 @@
     }
   },
   "creator": {
+    "sending": "Na-eziga",
     "navStudio": "Stụdiyo",
     "editor": "Ndezi",
     "untitled": "Enweghị aha",
@@ -7960,6 +8110,7 @@
     "notEnoughTokens": "{{subject}} na-eri {{amount}} token ma ị nwere {{held}}."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Chọọ emoji",
     "noEmoji": "Ahụghị emoji ọ bụla",
     "searchResults": "Nsonaazụ nchọcha",

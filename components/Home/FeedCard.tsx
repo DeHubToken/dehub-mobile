@@ -6,6 +6,7 @@ import { createLogger } from "../../libs/logger";
 import { useIsWatchedVideo } from "../../hooks/useWatchedVideos";
 import { isStreamLive } from '../../libs/live-status';
 import { isHoldGated } from "../../libs/content-gate";
+import { isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../../libs/video-access";
 import React, { memo, useCallback, useRef, useState, useMemo, useEffect } from "react";
 import {
   View,
@@ -30,6 +31,7 @@ import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
 import MatureContentGate, { useMatureGate } from "./MatureContentGate";
+import ContentWarningGate, { useContentWarning } from "./ContentWarningGate";
 import AudioPostPlayer from "./ProtectedAudioPostPlayer";
 import FeedVideoPlayer from "./FeedVideoPlayer";
 import { rememberGalleryIndex } from "../../libs/media-presentation";
@@ -76,7 +78,8 @@ import { liveReactionType } from "../../libs/live-reaction-flow";
 import { LivestreamEvents } from "../../services/enums/livestream.enum";
 import { cdnImage } from "../../libs/cdnImage";
 import { FEED_BENTO_RADIUS } from "../../libs/feed-image-layout";
-import { hlsUrlFor, liveThumbnailFor } from "../../libs/live-ingest";
+import { hlsUrlFor, isBigEvent, liveThumbnailFor } from "../../libs/live-ingest";
+import { markBigEventLive } from "../../libs/sharedLivePlayer";
 import { extractReplayUrl, replayDurationSec } from "../../libs/live-replay";
 import GlassTipSheet from "../Tip/GlassTipSheet";
 import PPVSheet from "../PPV/PPVSheet";
@@ -118,7 +121,8 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import PollCard from "../DM/PollCard";
 // Direct module imports, not the `libs` barrel — it `export *`s the axios
 // client and auth utils into every card module.
-import { getAvatarUrl, getBadgeUrlFor, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getVideoUrl, getShortsThumbnailUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getVideoUrl, getPlaybackUrl, getShortsThumbnailUrl, resolveThumbnail, DEFAULT_BANNER_SENTINEL } from "../../libs/misc";
+import { useHlsFallback } from "../../libs/hls-fallback";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { toastError, toastSuccess } from "../../libs/toast";
 import { copyToClipboard } from "../../libs/clipboard.utils";
@@ -152,6 +156,8 @@ import env from "../../config/env";
 import type { UnifiedFeedItem } from "../../services/feed.unified.service";
 import type { AIPostContext } from "../../services/ai.service";
 import HoldGateSheet from "../common/HoldGateSheet";
+import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
+import KeywordFilterGate from "./KeywordFilterGate";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -195,6 +201,9 @@ type PostEdits = {
   shopLinks?: ShopLink[];
   shopListingCount?: number;
   hidden?: boolean;
+  spoilerText?: string;
+  quotePolicy?: "public" | "followers" | "nobody";
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
 };
 const NO_EDITS: PostEdits = {};
 // One shared empty list, so a post with no categories keeps FeedCaption's memo.
@@ -289,8 +298,18 @@ const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
 // The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
 const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
 
-/** Clock + time, then the post kind's icon + count. A fragment, so the row adds no wrapper views. */
-function PostMetaItems({ timeAgo, icon, count }: { timeAgo?: string; icon: IconName; count: string }) {
+/**
+ * Clock + time, then the post kind's icon + count, then who may see it when
+ * that is narrower than everyone. A fragment, so the row adds no wrapper views.
+ */
+function PostMetaItems({ timeAgo, icon, count, visibility }: {
+  timeAgo?: string;
+  icon: IconName;
+  count: string;
+  visibility?: string;
+}) {
+  const { t } = useCopy();
+  const restricted = visibility === "followers" || visibility === "direct";
   return (
     <>
       {timeAgo ? (
@@ -301,6 +320,14 @@ function PostMetaItems({ timeAgo, icon, count }: { timeAgo?: string; icon: IconN
       ) : null}
       <Icon name={icon} size={13} color="#6F7174" />
       <Text style={META_LABEL}>{count}</Text>
+      {restricted ? (
+        <>
+          <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color="#6F7174" />
+          <Text style={META_LABEL} testID="post-visibility-label">
+            {visibility === "direct" ? t("postVisibility.direct") : t("postVisibility.followers")}
+          </Text>
+        </>
+      ) : null}
     </>
   );
 }
@@ -358,6 +385,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const stream = (item as any).stream;
   const streamInfo = (item as any).streamInfo || stream?.streamInfo;
   const tokenId = item.tokenId ?? (item as any).id ?? stream?.tokenId;
+  // The HLS ladder when the post has one, else the MP4. The player and every
+  // hand-off to the shorts viewer or post page key the native player on this
+  // exact string (via postVideoUrl below). Downloads use postFileUrl: they
+  // need the file.
+  const videoPlaybackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
   const isWatchedVideo = useIsWatchedVideo(contentType === "video" || contentType === "short" ? tokenId : undefined);
   // Which post this card is showing. Everything the card remembers about a
   // post (open sheets, edits, a deletion) is held against this, so none of it
@@ -430,6 +462,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isOwnerPost = !!(item as any).isOwner || (
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
+  // A followers-only or direct post cannot be reposted, quoted, embedded or
+  // sent in a message — each would hand it to people it was not written for.
+  const isPublicPost = !item.visibility || item.visibility === "public";
 
   const { isMinimal, skin, theme } = useAppTheme();
   const articleUi = useMemo(() => articleLook(theme), [theme]);
@@ -616,10 +651,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // HLS ladder for the in-card preview. Derived from the playbackId the same
   // way the post page does it — `playbackUrl` off the API is usually absent
   // for a self-hosted stream.
-  const livePreviewUrl = useMemo(
-    () => (isLive ? hlsUrlFor(stream as any) : null),
-    [isLive, stream],
-  );
+  const livePreviewUrl = useMemo(() => {
+    if (!isLive) return null;
+    const url = hlsUrlFor(stream as any);
+    // The card often builds the shared player the viewer later takes over, so
+    // a big event's deep buffer has to be known here, before it exists.
+    markBigEventLive(url, isBigEvent(stream as any));
+    return url;
+  }, [isLive, stream]);
 
   // A finished stream leaves a plain mp4 replay on the CDN once its capture
   // reports ready, and the HLS ladder above is dead the moment ingest stops.
@@ -702,6 +741,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isActuallyLockedPPV = isServerLockedPPV && !ppvUnlocked;
   const isActuallyComboLocked = isActuallyLockedPPV && isActuallyLockedHoldings;
   const isActuallyGated = isActuallyLockedPPV || isActuallyLockedHoldings || isActuallySubGated;
+  // A gated post's file is private: once the viewer is through the gate it
+  // plays from a signed URL the API hands out. A locked viewer never asks.
+  const requiresVideoAccess = isVideo && !isLive && videoNeedsAccess(item as any);
+  const videoAccess = useVideoAccess(tokenId, requiresVideoAccess && !isActuallyGated, userAddress);
+  // What the player loads: the signed file for a gated post, otherwise the
+  // HLS ladder when the post has one. postFileUrl is always a real file, for
+  // the download and the rotation probe.
+  const postFileUrl = requiresVideoAccess ? videoAccess.data?.url : getVideoUrl(tokenId);
+  const postVideoUrl = requiresVideoAccess ? videoAccess.data?.url : videoPlaybackUrl;
+  const refetchVideoAccess = videoAccess.refetch;
+  const onVideoPlaybackFailed = useCallback(() => {
+    if (videoAccess.data?.private && isVideoAccessExpiring(videoAccess.data)) void refetchVideoAccess();
+  }, [videoAccess.data, refetchVideoAccess]);
   const soundtrackOnMedia = hasSoundtrack && !isActuallyGated && hasImages
     && contentType !== "live" && contentType !== "short" && contentType !== "video" && contentType !== "audio";
   // The owner's edits from the options menu, laid over the post's own fields
@@ -722,6 +774,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // pay-per-view, and the creator's own post is warned about too — the warning
   // is for whoever is holding the phone.
   const matureGate = useMatureGate(localContentRating, postKey);
+  const contentWarning = useContentWarning(edits.spoilerText ?? item.spoilerText, postKey);
   const isHidden = edits.hidden ?? !!(item as any).isHidden;
   const [follow, setFollow] = useKeyedState<{ following: boolean; pending: boolean } | null>(followKey, null);
   const isFollowingCreator = follow ? follow.following : !!(item as any).isFollowing;
@@ -817,7 +870,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
-    preparePostMediaNavigation(getVideoUrl(tokenId));
+    if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
     if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     onBeforeNavigate?.();
@@ -845,7 +898,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isShort, isOwnerPost, item, tokenId,
+    disablePress, isLive, isShort, isOwnerPost, item, tokenId, postVideoUrl,
     accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
   ]);
 
@@ -957,11 +1010,16 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // Publish to the shared overlay; the sync effect above pushes it into
       // this card and every other mounted card for the same post.
       applyEngagement(engagementKey, countsAt(voteWeight));
+      // A dislike takes the post out of this viewer's feeds; undoing it brings it back.
+      if (nextNegative && !wasNegative) hideDislikedPost(tokenId);
+      else if (wasNegative && !nextNegative) restoreDislikedPost(tokenId);
 
       const rollback = (error?: unknown) => {
         // Session invalidation already cleared account-specific overlays.
         // Restoring the old vote here would paint the signed-out feed with it.
         if (error instanceof SessionExpiredError) return;
+        if (nextNegative && !wasNegative) restoreDislikedPost(tokenId);
+        else if (wasNegative && !nextNegative) hideDislikedPost(tokenId);
         // Restore only the fields this handler owns, so a concurrent save or
         // repost that succeeded is not undone.
         revertEngagement(engagementKey, {
@@ -1573,6 +1631,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <ContainedFeedImage
             active={isVisible}
             uri={galleryImages[0]}
+            description={item.mediaDescriptions?.[0]}
             width={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             fallbackWidth={isMinimal || edgeMedia ? SCREEN_WIDTH : SINGLE_IMAGE_WIDTH}
             priority={prioritizeMedia ? "high" : "normal"}
@@ -1586,6 +1645,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         postId={String(tokenId)}
         key={galleryImages.join('|')}
         images={galleryImages}
+        descriptions={item.mediaDescriptions}
         width={itemWidth}
         fallbackWidth={IMAGE_WIDTH}
         active={isVisible}
@@ -1614,8 +1674,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       thumbnail={thumbnail}
       postPage={fullContent}
       onBack={postVideo && !retainFeedNav ? onBack : undefined}
-      videoUrl={isActuallyGated ? undefined : (getVideoUrl(tokenId) || undefined)}
+      videoUrl={isActuallyGated ? undefined : (postVideoUrl || undefined)}
+      mp4Url={isActuallyGated ? undefined : (postFileUrl || undefined)}
+      onPlaybackFailed={requiresVideoAccess ? onVideoPlaybackFailed : undefined}
       transcodingStatus={item.transcodingStatus}
+      storyboard={isActuallyGated ? undefined : item.storyboard}
       isOwner={!!isOwnerPost}
       duration={duration}
       tokenId={tokenId}
@@ -1640,7 +1703,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       onPress={handleCardPress}
       onOpenViewer={() => {
         if (isActuallyGated || tokenId == null) return;
-        preparePostMediaNavigation(getVideoUrl(tokenId));
+        if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
         onBeforeNavigate?.();
         hideUserProfile();
         navigation.navigate(ScreenNames.ShortsViewer, {
@@ -1822,7 +1885,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 isSignedIn={isSignedIn}
                 title={title}
                 artist={displayName}
-                artworkUrl={avatar || undefined}
+                artworkUrl={item.imageUrl || item.thumbnailUrl ? getImageUrl(item.imageUrl || item.thumbnailUrl || '', IMAGE_WIDTH) : undefined}
                 topLeftAction={isBounty ? (
                   <TouchableOpacity
                     accessibilityLabel={t("drawers.bountyTitle")}
@@ -1918,6 +1981,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={localCommentsDisabled}
+          replyPolicy={edits.replyPolicy ?? item.replyPolicy}
           forKids={localForKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />
@@ -2015,6 +2079,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentShopLinks={localShopLinks ?? (item as any).shopLinks}
           currentContentRating={localContentRating}
           currentForKids={localForKids}
+          currentSpoilerText={edits.spoilerText ?? item.spoilerText}
+          currentQuotePolicy={edits.quotePolicy ?? item.quotePolicy}
+          currentReplyPolicy={edits.replyPolicy ?? item.replyPolicy}
           hideReportContent={isLive}
           hideEdit={isLive}
           isAudio={isAudioPost}
@@ -2038,7 +2105,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onTranslatePress={handleTranslate}
           onTranslateImagePress={hasImages ? handleTranslateImage : undefined}
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
-            ? () => { const url = getVideoUrl(tokenId); if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
+            ? () => { const url = postFileUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
           canMarkSegments={isVideo && !isLive && !isActuallyGated}
@@ -2083,9 +2150,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onRepost={handleConfirmRepost}
           onUndoRepost={handleUndoRepost}
           onQuote={handleQuotePress}
+          canQuote={isPublicPost && ((edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost)}
+          canRepost={isPublicPost}
           onCopyLink={handleCopyLink}
-          onSendToDm={isSignedIn ? () => setShowShareToDm(true) : undefined}
+          onSendToDm={isSignedIn && isPublicPost ? () => setShowShareToDm(true) : undefined}
           onShareAsImage={handleSharePress}
+          embedTokenId={isPublicPost ? tokenId : undefined}
         />
       )}
 
@@ -2140,7 +2210,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onFollow={handleStageFollow}
           onMore={handleOpenOptions}
         />
-        {matureGate.isGated ? (
+        {contentWarning.hidden ? (
+          <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+        ) : matureGate.isGated ? (
           <MatureContentGate onReveal={matureGate.reveal} />
         ) : (
           <>
@@ -2196,6 +2268,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 key={postKey}
                 quotedPost={(item as any).quotedPost}
                 quotedTokenId={(item as any).quotedTokenId}
+                revoked={(item as any).quoteRevoked}
+                quoteTokenId={tokenId ?? undefined}
               />
             )}
             <DehubLinkCards links={dehubLinks} />
@@ -2215,7 +2289,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} />
+          <PostMetaItems timeAgo={timeAgo} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -2259,6 +2333,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onRepost={handleConfirmRepost}
             onUndoRepost={handleUndoRepost}
             onQuote={handleQuotePress}
+            canQuote={isPublicPost && ((edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost)}
+            canRepost={isPublicPost}
             onCopyLink={handleCopyLink}
             shareUrl={shareUrl}
             shareText={localTitle || undefined}
@@ -2266,6 +2342,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             repostCount={Math.max(0, repostCount - stageQuotes)}
             onViewQuotes={() => openRepostQuoteList("quotes")}
             onViewReposts={() => openRepostQuoteList("reposts")}
+            embedTokenId={isPublicPost ? tokenId : undefined}
           />
         )}
       </View>
@@ -2273,13 +2350,15 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }
 
   if (cinematicFeed) {
-    const embeds = matureGate.isGated ? null : (
+    const embeds = (matureGate.isGated || contentWarning.hidden) ? null : (
       <>
         {(item as any).isQuotePost && (
           <QuotedPostEmbed
             key={postKey}
             quotedPost={(item as any).quotedPost}
             quotedTokenId={(item as any).quotedTokenId}
+            revoked={(item as any).quoteRevoked}
+            quoteTokenId={tokenId ?? undefined}
           />
         )}
         <DehubLinkCards links={dehubLinks} />
@@ -2453,7 +2532,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               }
               isHidden={isHidden}
             />
-            {matureGate.isGated ? (
+            {contentWarning.hidden ? (
+              <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+            ) : matureGate.isGated ? (
               // In place of the media, so edge to edge like the media.
               <View style={{ marginHorizontal: -CINEMATIC_TEXT_INSET }}>
                 <MatureContentGate onReveal={matureGate.reveal} edgeToEdge />
@@ -2552,7 +2633,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} />
+            <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
             {translateButton}
           </View>
         )}
@@ -2687,7 +2768,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           hiding only the media would warn about nothing. The header above and
           the timestamp/action bar below stay live, so a post can be reported
           or opened without being read first. */}
-      {matureGate.isGated ? (
+      {contentWarning.hidden ? (
+        <ContentWarningGate text={contentWarning.text} onReveal={contentWarning.reveal} />
+      ) : matureGate.isGated ? (
         <MatureContentGate onReveal={matureGate.reveal} />
       ) : (
         <>
@@ -2754,6 +2837,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           key={postKey}
           quotedPost={(item as any).quotedPost}
           quotedTokenId={(item as any).quotedTokenId}
+          revoked={(item as any).quoteRevoked}
+          quoteTokenId={tokenId ?? undefined}
         />
       )}
 
@@ -2799,6 +2884,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             by an order of magnitude. */}
         <PostMetaItems
           timeAgo={timeAgo}
+          visibility={item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}
         />
@@ -2876,9 +2962,16 @@ const hideCard = () => null;
  * made the whole feed unusable.
  */
 const FeedCard = memo(function GuardedFeedCard(props: FeedCardProps) {
+  const item = props.item as any;
   return (
     <ErrorBoundary scope="feed-card" renderFallback={hideCard}>
-      <FeedCardComponent {...props} />
+      {/* The viewer's muted words — see KeywordFilterGate. */}
+      <KeywordFilterGate
+        texts={[item?.name, item?.description, item?.articleBody, item?.spoilerText, ...(item?.mediaDescriptions ?? [])]}
+        authorAddress={item?.minter || item?.owner}
+      >
+        <FeedCardComponent {...props} />
+      </KeywordFilterGate>
     </ErrorBoundary>
   );
 });

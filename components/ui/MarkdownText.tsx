@@ -18,6 +18,7 @@ import React, { memo, useCallback } from 'react';
 import { Linking, StyleSheet, Text, TextStyle, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { toastSuccess } from '../../libs/toast';
+import { inAppDehubUrl } from '../../libs/in-app-dehub-url';
 
 interface MarkdownTextProps {
   content: string;
@@ -45,7 +46,7 @@ function trimUrl(url: string): { url: string; trailing: string } {
 const MarkdownText: React.FC<MarkdownTextProps> = ({ content, style, color = '#F9FBFF', accent }) => {
   const { t: _copy } = _useCopy();
   const openUrl = useCallback((url: string) => {
-    Linking.openURL(url).catch(() => {
+    Linking.openURL(inAppDehubUrl(url) ?? url).catch(() => {
       // A malformed link from a model is not worth an error toast.
     });
   }, []);

@@ -4,7 +4,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo } from '../libs/pictureInPicture';
-import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -19,6 +19,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { VideoView } from "expo-video";
 import { usePostVideoPlayer } from "../hooks/usePostVideoPlayer";
+import { hasHlsFailed, markHlsFailed, useHlsFallback } from "../libs/hls-fallback";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
 import { FULLSCREEN_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import {
@@ -52,6 +53,8 @@ import { isBrainrotSwipe } from "../libs/brainrotFeed";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { getIsLooping, useMediaLooping } from '../libs/video-preferences';
+import { toStoryboard } from '../libs/storyboard';
+import StoryboardPreview from '../components/VideoPlayerCore/StoryboardPreview';
 
 const DISMISS_THRESHOLD = 150;
 const CONTROLS_TIMEOUT = PLAYER_CONSTANTS.HIDE_CONTROLS_DELAY;
@@ -70,7 +73,8 @@ const FullscreenVideoScreen = () => {
   const navigation = useNavigation<any>();
 
   const {
-    videoUrl,
+    videoUrl: handedUrl,
+    downloadUrl,
     startTime = 0,
     isMuted: initialMuted = false,
     thumbnail,
@@ -78,7 +82,17 @@ const FullscreenVideoScreen = () => {
     isSignedIn = false,
     creatorUsername,
     downloadTitle,
+    storyboard: rawStoryboard,
   } = (route?.params as any) || {};
+  const storyboard = useMemo(() => toStoryboard(rawStoryboard), [rawStoryboard]);
+  /** The storyboard tile shows while a finger is dragging the timeline. */
+  const [isScrubbing, setIsScrubbing] = useState(false);
+  const [trackWidth, setTrackWidth] = useState(0);
+  // The feed hands over its own source, the HLS ladder when the post has one,
+  // so the player carries straight over. downloadUrl is the MP4: what the
+  // download saves, and what plays here if the ladder fails.
+  const videoUrl: string | undefined = useHlsFallback(() =>
+    downloadUrl && hasHlsFailed(handedUrl) ? downloadUrl : handedUrl);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(() => getCachedMuted());
@@ -194,6 +208,9 @@ const FullscreenVideoScreen = () => {
         if (!ownsPlayer()) return;
         setIsBuffering(status === "loading");
         if (status === "readyToPlay" && player.duration > 0) setVideoDuration(player.duration);
+        // Nothing here retries, so a ladder that errors is retired at once and
+        // the MP4 gets a fresh player (and the card behind follows it).
+        if (status === "error") markHlsFailed(videoUrl);
       }));
     } catch {}
     try {
@@ -209,7 +226,7 @@ const FullscreenVideoScreen = () => {
       }));
     } catch {}
     return () => { subs.forEach((s) => { try { s.remove(); } catch {} }); };
-  }, [player, ownsPlayer]);
+  }, [player, ownsPlayer, videoUrl]);
 
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -359,10 +376,14 @@ const FullscreenVideoScreen = () => {
     .activeOffsetX([-6, 6])
     .failOffsetY([-15, 15])
     .onStart((e) => {
+      runOnJS(setIsScrubbing)(true);
       runOnJS(handleSeek)(e.x);
     })
     .onUpdate((e) => {
       runOnJS(handleSeek)(e.x);
+    })
+    .onFinalize(() => {
+      runOnJS(setIsScrubbing)(false);
     });
 
   const animContainer = useAnimatedStyle(() => ({
@@ -417,7 +438,10 @@ const FullscreenVideoScreen = () => {
           <Animated.View style={styles.bottomSeek}>
             <Pressable style={styles.progressTrackPress}
               onPress={event => handleSeek(event.nativeEvent.locationX)}
-              onLayout={event => { progressTrackWidthRef.current = event.nativeEvent.layout.width; }}
+              onLayout={event => {
+                progressTrackWidthRef.current = event.nativeEvent.layout.width;
+                setTrackWidth(event.nativeEvent.layout.width);
+              }}
               accessibilityRole="adjustable" accessibilityLabel={t('player.videoProgress', { percent: Math.round(progressPercent) })}
               accessibilityHint={t('player.tapToSeek')}>
               <View style={styles.bottomLine}><View style={[styles.progressFill, { width: `${progressPercent}%` }]} /></View>
@@ -438,9 +462,9 @@ const FullscreenVideoScreen = () => {
           </View>
           <View style={styles.splitGroup}>
             <PictureInPictureButton videoRef={videoViewRef} plain />
-            {videoUrl && <Pressable style={styles.plainButton} accessibilityRole="button"
+            {!!(downloadUrl ?? videoUrl) && <Pressable style={styles.plainButton} accessibilityRole="button"
               accessibilityLabel={t('postOptions.download')}
-              onPress={() => { player.pause(); void downloadVideo({ url: videoUrl, title: downloadTitle || 'video', username: creatorUsername }); }}>
+              onPress={() => { player.pause(); void downloadVideo({ url: downloadUrl ?? videoUrl, title: downloadTitle || 'video', username: creatorUsername }); }}>
               <MediaControlIcon name="Download" plain />
             </Pressable>}
             <Pressable onPress={handleToggleRotation} style={styles.plainButton}
@@ -450,6 +474,16 @@ const FullscreenVideoScreen = () => {
           </View>
         </View>
       </View>
+
+      {/* A sibling of the strip rather than its child, so Android cannot clip it. */}
+      <StoryboardPreview
+        storyboard={storyboard}
+        fraction={videoDuration > 0 ? currentTime / videoDuration : 0}
+        duration={videoDuration}
+        trackWidth={trackWidth}
+        visible={isScrubbing}
+        bottom={VIDEO_CONTROL_STRIP_HEIGHT + 8}
+      />
 
       {isBuffering && (
         <View style={styles.bufferingOverlay} pointerEvents="none">

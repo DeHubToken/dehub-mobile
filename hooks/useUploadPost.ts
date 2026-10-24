@@ -99,6 +99,16 @@ export type UploadPayload = {
    * after the mint returns a tokenId — there is nothing to attach to before.
    */
   shopListingIds?: string[];
+  /** Alt text in upload order: the video, or each photo by position. */
+  mediaDescriptions?: string[];
+  /** Content warning: the post opens collapsed behind this one line. */
+  spoilerText?: string;
+  /** Who may quote it. Absent means anyone. */
+  quotePolicy?: "followers" | "nobody";
+  /** Who may reply. Absent means anyone. */
+  replyPolicy?: "followers" | "following" | "mentioned";
+  /** Who may see it. Absent means everyone; fixed once posted. */
+  visibility?: "followers" | "direct";
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
 };
@@ -198,7 +208,7 @@ export function useUploadPost() {
       const postingOnSolana = isSolanaChain(p.postChainId);
 
       // Solana posts sign a partial tx with the embedded ed25519 wallet — no EVM gas.
-      if (!postingOnSolana && authMethod === "local" && ethBalance <= 0) {
+      if ((p.shouldMint !== false || p.monetization.bountyEnabled) && !postingOnSolana && authMethod === "local" && ethBalance <= 0) {
         // Local wallets on a chain with Safe/Pimlico support (Base, BNB) are gasless --
         // no ETH needed regardless of balance. Only chains without an AA setup still
         // fall back to a plain EOA transaction, which does need ETH for gas.
@@ -317,6 +327,11 @@ export function useUploadPost() {
         shopLinks: p.shopLinks,
         shopListingIds: p.shopListingIds,
         crossPostAccountIds: p.crossPostAccountIds,
+        mediaDescriptions: p.mediaDescriptions,
+        spoilerText: p.spoilerText,
+        quotePolicy: p.quotePolicy,
+        replyPolicy: p.replyPolicy,
+        visibility: p.visibility,
       };
 
       const isBounty = p.monetization.bountyEnabled;
@@ -334,7 +349,7 @@ export function useUploadPost() {
 
       // Solana post (#41): mints on Solana via the user's base58 wallet as `minter`.
       // The EVM `address` (auth/owner identity) is kept in walletAddress.
-      const postingOnSolana = isSolanaChain(p.postChainId);
+      const postingOnSolana = (p.shouldMint !== false || isBounty) && isSolanaChain(p.postChainId);
       const isSolanaPost = postingOnSolana && !!p.solanaAddress;
 
       if (postingOnSolana && !p.solanaAddress) {
@@ -394,6 +409,10 @@ export function useUploadPost() {
       coverUri: string | null;
       thumbnailUri: string | null;
       quotedTokenId: number;
+      mediaDescriptions?: string[];
+      spoilerText?: string;
+      quotePolicy?: "followers" | "nobody";
+      replyPolicy?: "followers" | "following" | "mentioned";
     }): boolean => {
       const mode = p.pickedVideo ? "video" : p.pickedAudio ? "audio" : p.pickedImages.length > 0 ? "images" : "text";
       const postType = mode === "video" ? "video" : mode === "audio" ? "feed-audio" : mode === "images" ? "feed-images" : "feed-simple";
@@ -439,11 +458,18 @@ export function useUploadPost() {
           audio,
           thumbnailUri: thumb,
           streamInfoJson: "{}",
+          mediaDescriptions: p.mediaDescriptions,
+          spoilerText: p.spoilerText,
+          quotePolicy: p.quotePolicy,
+          replyPolicy: p.replyPolicy,
         },
         chainId: activeChainId,
         walletAddress: addr,
         isBounty: false,
         isQuote: true,
+        // Quote mode offers no mint switch. Never request a wallet signature
+        // merely to publish the authenticated quote.
+        mintOptOut: true,
         quotedTokenId: p.quotedTokenId,
       };
 

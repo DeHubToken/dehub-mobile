@@ -14,8 +14,6 @@ const read = (path: string) => readFileSync(resolve(__dirname, "../..", path), "
 const SCREENS = [
   "screens/CareersScreen.tsx",
   "screens/CreatorsScreen.tsx",
-  "screens/GovernanceProposalScreen.tsx",
-  "screens/ListingDetailScreen.tsx",
   "screens/EditProfileScreen.tsx",
 ];
 

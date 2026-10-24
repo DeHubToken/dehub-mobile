@@ -24,6 +24,9 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
  */
 
 import { isVisibleInMusic } from "./music-curation";
+import { fetchMusicVideoChart, MUSIC_VIDEO_CHART_SORTS, type MusicVideoChartSort } from "./music-video-chart";
+import { secondsToHMMSS } from "../../libs/date.util";
+import { formatCompactNumber, resolveViewCount } from "../../libs/numbers.util";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -43,11 +46,13 @@ import { useInfiniteQuery, useQuery, useQueryClient } from "@tanstack/react-quer
 import Icon, { type IconName } from "../ui/Icon";
 import CompactVideoCard from "../Home/CompactVideoCard";
 import AudioPostPlayer from "../Home/ProtectedAudioPostPlayer";
-import MusicVideoCard, { MUSIC_CARD_WIDTH } from "./MusicVideoCard";
+import MusicVideoCard from "./MusicVideoCard";
 import RadioStationCard from "./RadioStationCard";
 import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
-import StagesCarousel from "./StagesCarousel";
+import StagesChart from "./StagesChart";
+import ChartShelf from "./ChartShelf";
+import RadioStage from "./RadioStage";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
 import { useAppTheme } from '../../context/ThemeContext';
@@ -55,6 +60,8 @@ import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
 import {
   RADIO_GENRES,
   getCuratedCarouselStations,
+  getPrimaryTags,
+  getTopStations,
   getStationsByGenre,
   searchStations,
   type RadioGenreId,
@@ -62,7 +69,7 @@ import {
 } from "../../libs/radio-browser";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import { TAB_BAR_CONTENT_INSET } from "../../navigation/tabBarLayout";
-import { getAudioUrl, getAvatarUrl } from "../../libs/misc";
+import { getAudioUrl, getImageUrl } from "../../libs/misc";
 import { isHoldGated } from "../../libs/content-gate";
 import { useTranslation } from "react-i18next";
 
@@ -86,6 +93,7 @@ type Shelf = "videos" | "radio" | "audio" | "stages" | "tracks" | "podcasts";
 const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages", "tracks", "podcasts"];
 
 const CAROUSEL_PAGE_SIZE = 12;
+// Rows the music video chart shows before "See all".
 const VIDEOS_PAGE_SIZE = 10;
 
 export interface MusicFeedHandle {
@@ -105,36 +113,6 @@ export interface MusicFeedProps {
 
 // ── Shelves ─────────────────────────────────────────────────────────────────
 
-const HorizontalShelf: React.FC<{
-  data: any[];
-  keyFor: (item: any, index: number) => string;
-  render: (item: any) => React.ReactElement;
-  itemWidth: number;
-}> = ({ data, keyFor, render, itemWidth }) => {
-  // Blocks Home's page-turn gesture while this shelf is scrolling, so a
-  // sideways drag here moves the shelf instead of switching feed tabs.
-  const scrollGuard = useHorizontalScrollGuard();
-  const list = (
-    <FlatList
-      data={data}
-      keyExtractor={keyFor}
-      renderItem={({ item }) => render(item)}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      nestedScrollEnabled
-      initialNumToRender={3}
-      windowSize={3}
-      contentContainerStyle={styles.shelfContent}
-      getItemLayout={(_, index) => ({
-        length: itemWidth + 12,
-        offset: (itemWidth + 12) * index,
-        index,
-      })}
-    />
-  );
-  return scrollGuard ? <GestureDetector gesture={scrollGuard}>{list}</GestureDetector> : list;
-};
-
 /**
  * Wraps a horizontally-scrolling child so it blocks Home's page-turn gesture
  * while it is scrolling. Same job HorizontalShelf does for itself, for the
@@ -144,17 +122,6 @@ const GuardedRow: React.FC<{ children: React.ReactElement }> = ({ children }) =>
   const scrollGuard = useHorizontalScrollGuard();
   return scrollGuard ? <GestureDetector gesture={scrollGuard}>{children}</GestureDetector> : children;
 };
-
-const ShelfSkeleton: React.FC<{ width: number; height: number }> = ({ width, height }) => (
-  // Explicitly a row: shelfContent is a FlatList contentContainerStyle, which
-  // the horizontal list lays out sideways for itself. A plain View would stack
-  // these three down the page.
-  <View style={[styles.shelfContent, styles.skeletonRow]}>
-    {[0, 1, 2].map((i) => (
-      <View key={i} style={[styles.skeleton, { width, height }]} />
-    ))}
-  </View>
-);
 
 const EmptyShelf: React.FC<{ icon: IconName; title: string; note: string }> = ({
   icon,
@@ -191,6 +158,8 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   }, [feedRef]);
 
   const [tab, setTab] = useState<MusicSubTab>("all");
+  const [chartSort, setChartSort] = useState<'trending' | 'popular' | 'new'>('trending');
+  const [videoChartSort, setVideoChartSort] = useState<MusicVideoChartSort>('views');
   const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
   const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 10, minimumViewTime: 150 }).current;
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ key: string }> }) => {
@@ -206,14 +175,13 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
   // ── Data ──────────────────────────────────────────────────────────────────
 
-  const { data: carouselVideos = [], isLoading: loadingCarouselVideos } = useQuery({
-    queryKey: ["music-videos-carousel", address],
+  const { data: audioUploads = [], isLoading: loadingAudio } = useQuery({
+    queryKey: ["music-audio-uploads", address, chartSort],
     queryFn: async () => {
       const res = await getNFTs({
-        category: "Music",
-        postType: "video",
+        postType: "feed-audio",
         unit: CAROUSEL_PAGE_SIZE,
-        sortMode: "popular",
+        sortMode: chartSort,
         address,
       });
       return (res.result || []).filter(isVisibleInMusic);
@@ -221,17 +189,10 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
     staleTime: 5 * 60_000,
   });
 
-  const { data: audioUploads = [], isLoading: loadingAudio } = useQuery({
-    queryKey: ["music-audio-uploads", address],
-    queryFn: async () => {
-      const res = await getNFTs({
-        postType: "feed-audio",
-        unit: CAROUSEL_PAGE_SIZE,
-        sortMode: "new",
-        address,
-      });
-      return (res.result || []).filter(isVisibleInMusic);
-    },
+  // Music video charts, ranked on the server (same orders as web).
+  const { data: videoChart = [], isLoading: loadingVideoChart } = useQuery({
+    queryKey: ["music-video-chart", address, videoChartSort],
+    queryFn: async () => (await fetchMusicVideoChart(videoChartSort, address)).filter(isVisibleInMusic),
     staleTime: 5 * 60_000,
   });
 
@@ -311,70 +272,71 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
       switch (shelf) {
         case "videos":
           return (
-            <View style={styles.section}>
-              <SectionHeader
-                icon="Play"
-                title={t("music.musicVideos")}
-                onSeeAll={carouselVideos.length ? () => setTab("videos") : undefined}
-              />
-              {loadingCarouselVideos ? (
-                <ShelfSkeleton width={MUSIC_CARD_WIDTH} height={168} />
-              ) : carouselVideos.length === 0 ? (
-                <Text style={styles.shelfNote}>{t("music.noMusicVideos")}</Text>
-              ) : (
-                <HorizontalShelf
-                  data={carouselVideos}
-                  itemWidth={MUSIC_CARD_WIDTH}
-                  keyFor={(item: GetNFTsResult, i) => String(item.tokenId ?? item.id ?? i)}
-                  render={(item: GetNFTsResult) => <MusicVideoCard nft={item} />}
-                />
-              )}
-            </View>
+            <ChartShelf
+              icon="Play"
+              title={t("music.musicVideos")}
+              count={videoChart.length}
+              sorts={MUSIC_VIDEO_CHART_SORTS.map(option => ({ value: option.value, label: t(option.key, { defaultValue: option.fallback }) }))}
+              sort={videoChartSort}
+              onSort={setVideoChartSort}
+              rows={videoChart.map((item, index) => {
+                const creator = (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "";
+                const views = resolveViewCount(item);
+                const rawThumb = (item as any).thumbnail || item.thumbnailUrl || item.imageUrl || "";
+                return {
+                  id: String(item.tokenId ?? item.id ?? index),
+                  title: item.name || (item as any).title || "",
+                  subtitle: [creator, views ? t("music.viewsCount", { defaultValue: "{{views}} views", views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
+                  thumb: rawThumb ? getImageUrl(rawThumb, 160) : undefined,
+                  badge: secondsToHMMSS(item.videoDuration) || undefined,
+                };
+              })}
+              loading={loadingVideoChart}
+              emptyText={t("music.noMusicVideos")}
+              thumbs="wide"
+              renderSelected={id => {
+                const item = videoChart.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
+                return item ? <MusicVideoCard nft={item} wide /> : null;
+              }}
+            />
           );
         case "radio":
-          return (
-            <View style={styles.section}>
-              <SectionHeader
-                icon="Radio"
-                title={t("music.radioStations")}
-                onSeeAll={() => setTab("radio")}
-              />
-              {curatedStations.length === 0 ? (
-                <ShelfSkeleton width={260} height={76} />
-              ) : (
-                <HorizontalShelf
-                  data={curatedStations}
-                  itemWidth={260}
-                  keyFor={(item: RadioStation) => item.stationuuid}
-                  render={(item: RadioStation) => (
-                    <RadioStationCard station={item} variant="card" />
-                  )}
-                />
-              )}
-            </View>
-          );
+          return <RadioChart curated={curatedStations} />;
         case "audio":
           return (
-            <View style={styles.section}>
-              <SectionHeader icon="Disc3" title={t("music.audioUploads")} count={audioUploads.length} />
-              {loadingAudio ? (
-                <ShelfSkeleton width={280} height={124} />
-              ) : audioUploads.length === 0 ? (
-                <Text style={styles.shelfNote}>{t("music.noAudioUploads")}</Text>
-              ) : (
-                <AudioUploadsShelf items={audioUploads} isVisible={active && visibleIds.has('shelf-audio')} />
-              )}
-            </View>
+            <ChartShelf
+              icon="Disc3"
+              title={t("music.audioUploads")}
+              count={audioUploads.length}
+              sorts={[
+                { value: "trending", label: t("music.mostPlayed", { defaultValue: "Most played" }) },
+                { value: "popular", label: t("music.mostLiked", { defaultValue: "Most liked" }) },
+                { value: "new", label: t("music.mostRecent", { defaultValue: "Most recent" }) },
+              ]}
+              sort={chartSort}
+              onSort={setChartSort}
+              rows={audioUploads.map((item, index) => ({
+                id: String(item.tokenId ?? item.id ?? index),
+                title: item.name || (item as any).title || "",
+                subtitle: (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "",
+              }))}
+              loading={loadingAudio}
+              emptyText={t("music.noAudioUploads")}
+              renderSelected={id => {
+                const item = audioUploads.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
+                return item ? <AudioUploadCard nft={item} isVisible={active && visibleIds.has("shelf-audio")} desk /> : null;
+              }}
+            />
           );
         case "stages":
-          return <StagesCarousel />;
+          return <StagesChart />;
         case "tracks":
           return <EmptyShelf icon="Disc3" title={t("music.tracks")} note={t("music.noTracks")} />;
         case "podcasts":
           return <EmptyShelf icon="MicVocal" title={t("music.podcasts")} note={t("music.noPodcasts")} />;
       }
     },
-    [carouselVideos, loadingCarouselVideos, curatedStations, audioUploads, loadingAudio, active, visibleIds, t],
+    [curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, videoChart, loadingVideoChart, videoChartSort, t],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -407,7 +369,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
         return {
           data: ["stages"] as any[],
           keyExtractor: () => "stages",
-          renderItem: () => <StagesCarousel />,
+          renderItem: () => <StagesChart />,
         };
       default:
         return { data: [] as any[], keyExtractor: (_: any, i: number) => String(i), renderItem: () => null };
@@ -590,31 +552,56 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
 const AUDIO_CARD_WIDTH = 280;
 
+type RadioChartSort = "picks" | "played" | "voted" | "trending";
+
 /**
- * The audio shelf owns its own list because its cards need to know which of
- * them is on screen. AudioPostPlayer downloads its track as soon as it is told
- * it is visible, so handing every rendered card a blanket `isVisible` would
- * pull half a dozen audio files down for a shelf nobody has touched. Only what
- * the shelf has actually settled on counts.
+ * Radio as a chart: our hand-picked stations, or radio-browser's top list
+ * ranked by plays, votes or how fast it is climbing. The picked station
+ * plays from its card.
  */
-const AudioUploadsShelf: React.FC<{ items: GetNFTsResult[]; isVisible: boolean }> = ({ items, isVisible: active }) => {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const selected = items.find(item => String(item.tokenId ?? item.id) === selectedId) || items[0];
-  if (selected) return <View style={{ paddingHorizontal: FEED_SIDE, gap: 16 }}>
-    <AudioUploadCard nft={selected} isVisible={active} desk />
-    <View style={{ gap: 2 }}>
-      {items.map((item, index) => {
-        const id = String(item.tokenId ?? item.id ?? index);
-        const current = String(selected.tokenId ?? selected.id) === id;
-        return <TouchableOpacity key={id} accessibilityRole="button" accessibilityState={{ selected: current }} onPress={() => setSelectedId(id)} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, paddingHorizontal: 10, borderRadius: 10, backgroundColor: current ? 'rgba(255,255,255,.06)' : 'transparent', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(255,255,255,.08)' }}>
-          <Text style={{ color: 'rgba(255,255,255,.4)', fontSize: 10 }}>{String(index + 1).padStart(2, '0')}</Text>
-          <View style={{ flex: 1, gap: 4 }}><Text numberOfLines={1} style={{ color: '#fff', fontSize: 13, fontWeight: '500' }}>{item.name || (item as any).title}</Text><Text style={{ color: 'rgba(255,255,255,.5)', fontSize: 10 }}>{(item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername}</Text></View>
-          <Icon name="Play" size={16} color="#fff" />
-        </TouchableOpacity>;
-      })}
-    </View>
-  </View>;
-  return null;
+const RadioChart: React.FC<{ curated: RadioStation[] }> = ({ curated }) => {
+  const { t } = useTranslation();
+  const [sort, setSort] = useState<RadioChartSort>("picks");
+  const { data: top = [], isLoading } = useQuery({
+    queryKey: ["radio-stations-top"],
+    queryFn: () => getTopStations(30),
+    enabled: sort !== "picks",
+    staleTime: 10 * 60_000,
+  });
+  const stations = useMemo(() => {
+    if (sort === "picks") return curated;
+    const field = sort === "played" ? "clickcount" : sort === "voted" ? "votes" : "clicktrend";
+    return [...top].sort((a, b) => (b[field] || 0) - (a[field] || 0)).slice(0, 20);
+  }, [sort, curated, top]);
+  return (
+    <ChartShelf
+      icon="Radio"
+      title={t("music.radioStations")}
+      sorts={[
+        { value: "picks", label: t("music.radioPicks", { defaultValue: "Our picks" }) },
+        { value: "played", label: t("music.mostPlayed", { defaultValue: "Most played" }) },
+        { value: "voted", label: t("music.mostVoted", { defaultValue: "Most voted" }) },
+        { value: "trending", label: t("music.trending", { defaultValue: "Trending" }) },
+      ]}
+      sort={sort}
+      onSort={setSort}
+      rows={stations.map(station => ({
+        id: station.stationuuid,
+        title: station.name.trim(),
+        subtitle: [station.countrycode, ...getPrimaryTags(station.tags)].filter(Boolean).join(" · "),
+        thumb: station.favicon || undefined,
+      }))}
+      loading={sort === "picks" ? curated.length === 0 : isLoading}
+      emptyText={t("music.noStationsAvailable", { defaultValue: "No stations available" })}
+      thumbs="square"
+      renderSelected={(id, { next }) => {
+        const index = stations.findIndex(item => item.stationuuid === id);
+        if (index < 0) return null;
+        const following = stations.length > 1 ? stations[(index + 1) % stations.length] : undefined;
+        return <RadioStage key={id} station={stations[index]} next={following} onNext={following ? next : undefined} />;
+      }}
+    />
+  );
 };
 
 const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?: boolean }> = ({
@@ -638,10 +625,6 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
   const title = nft.name || (nft as any).title || "Untitled";
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
-  const creatorAvatar = getAvatarUrl(
-    (nft as any).minterUser?.avatarImageUrl || (nft as any).minterAvatarUrl || "",
-    512,
-  );
 
   return (
     <View style={[styles.audioCard, glass && { backgroundColor: 'transparent', borderWidth: 0, padding: 0, borderRadius: 32 }, desk && { width: '100%' }]}>
@@ -662,7 +645,7 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
           isVisible={isVisible}
           title={title}
           artist={creator || undefined}
-          artworkUrl={creatorAvatar === "default-avatar" ? undefined : creatorAvatar}
+          artworkUrl={nft.imageUrl || nft.thumbnailUrl ? getImageUrl(nft.imageUrl || nft.thumbnailUrl || '', 512) : undefined}
           compact={!glass}
         />
       ) : (
@@ -679,22 +662,10 @@ const styles = StyleSheet.create({
   section: {
     marginBottom: 20,
   },
-  shelfContent: {
-    gap: 12,
-    paddingHorizontal: FEED_SIDE,
-  },
   shelfNote: {
     color: "rgba(255,255,255,0.4)",
     fontSize: 13,
     paddingHorizontal: FEED_SIDE,
-  },
-  skeleton: {
-    borderRadius: 14,
-    backgroundColor: "rgba(255,255,255,0.05)",
-  },
-  skeletonRow: {
-    flexDirection: "row",
-    overflow: "hidden",
   },
   rowWrap: {
     paddingHorizontal: FEED_SIDE,

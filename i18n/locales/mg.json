@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Rindranasa mifandray",
+    "connectedDescription": "Rindranasa Mastodon nidiranao tamin'ity kaonty ity. Esory ny iray mba hivoahana aminy.",
+    "connectedEmpty": "Mbola tsy misy rindranasa mifandray.",
+    "lastUsed": "Nampiasaina farany {{date}}",
+    "remove": "Esory",
+    "removed": "Voaesotra ny rindranasa",
+    "failed": "Tsy nety izany. Andramo indray."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ny olona ao amin'ny Mastodon sy ireo rindranasa fediverse hafa dia afaka mahita sy manaraka anao amin'ity adiresy ity. Tonga any aminy ireo lahatsoratrao vaovao ho an'ny daholobe.",
+    "copy": "Adikao",
+    "copied": "Voadika",
+    "privateNote": "Tsy aseho ao amin'ny fediverse ny kaonty tsy miankina.",
+    "noUsername": "Misafidiana anarana mpampiasa mba hahazoana adiresy fediverse."
+  },
+  "profileFields": {
+    "title": "Saha ao amin'ny mombamomba",
+    "description": "Andalana efatra fanampiny ao amin'ny mombamombanao, toy ny tranonkala na ny mpisolo anaranao.",
+    "label": "Marika",
+    "content": "Votoaty",
+    "save": "Tehirizo ny saha",
+    "saved": "Voatahiry ny sahan'ny mombamomba",
+    "failed": "Tsy voatahiry. Andramo indray.",
+    "verified": "Rohy voamarina",
+    "verifyHint": "Mba hanamarinana rohy, ampio ity amin'io pejy io, dia tehirizo indray: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Sivano ny fampandrenesana avy amin'ny",
+    "description": "Safidio izay hitranga rehefa misy olona ivelan'ny faribolanao mifandray aminao. Miandry ao amin'ny \"Voasivana\" ireo fampandrenesana voasivana, tsy misy marika na fampandrenesana tampoka.",
+    "notFollowing": "Olona tsy arahinao",
+    "notFollowers": "Olona tsy manaraka anao",
+    "newAccounts": "Kaonty vaovao (latsaky ny 30 andro)",
+    "accept": "Ampahafantaro aho",
+    "filter": "Sivano",
+    "drop": "Afeno tanteraka",
+    "filteredTitle": "Fampandrenesana voasivana",
+    "filteredEmpty": "Tsy misy voasivana.",
+    "failed": "Tsy voatahiry. Andramo indray."
+  },
+  "followedTags": {
+    "follow": "Araho #{{tag}}",
+    "following": "Manaraka",
+    "unfollow": "Aza manaraka #{{tag}} intsony",
+    "followed": "Manaraka #{{tag}} ianao izao. Hiseho ao amin'ny lahatsoratra arahinao ireo lahatsorany.",
+    "unfollowed": "Tsy manaraka #{{tag}} intsony ianao",
+    "failed": "Tsy voatahiry. Andramo indray.",
+    "clear": "Fafao"
+  },
+  "keywordFilters": {
+    "title": "Teny nampanginina",
+    "description": "Afeno ny lahatsoratra sy fanehoan-kevitra misy ireo teny ireo, na aforony ao ambadiky ny fampitandremana. Ianao ihany no mahita ity lisitra ity.",
+    "placeholder": "Teny na andian-teny",
+    "add": "Ampanginina",
+    "added": "Nampanginina: {{phrase}}",
+    "wholeWord": "Teny feno ihany",
+    "whenMatches": "Rehefa mifanaraka ny lahatsoratra",
+    "warn": "Asehoy fampitandremana",
+    "hide": "Afeno",
+    "howLong": "Mandritra ny ohatrinona",
+    "forever": "Mandra-panaisotro azy",
+    "duration1h": "Mandritra ny 1 ora",
+    "duration1d": "Mandritra ny 1 andro",
+    "duration7d": "Mandritra ny 7 andro",
+    "duration30d": "Mandritra ny 30 andro",
+    "where": "Aiza",
+    "home": "Fandraisana",
+    "public": "Hikaroka sy hijery",
+    "profile": "Mombamomba",
+    "thread": "Resaka",
+    "notifications": "Fampandrenesana",
+    "empty": "Tsy mbola nampangina teny ianao.",
+    "remove": "Esory ny fampanginana",
+    "until": "Hatramin'ny {{date}}",
+    "filtered": "Voasivana: {{phrase}}",
+    "showAnyway": "Asehoy ihany",
+    "failed": "Tsy voatahiry. Andramo indray."
+  },
+  "postVisibility": {
+    "label": "Iza no afaka mahita an'ity",
+    "public": "Ny rehetra",
+    "followers": "Mpanaraka ihany",
+    "direct": "Olona voatonona ihany",
+    "noRepost": "Ny lahatsoratra ho an'ny daholobe ihany no azo averina zaraina",
+    "directHint": "Ny olona tononinao amin'ny @ ihany no hahita ity lahatsoratra ity",
+    "needsMention": "Tonony amin'ny @ olona iray farafahakeliny raha hamoaka ho an'ny olona voatonona ihany"
+  },
+  "replyPolicy": {
+    "label": "Iza no afaka mamaly",
+    "public": "Na iza na iza",
+    "followers": "Ireo mpanaraka anao",
+    "following": "Ireo arahinao",
+    "mentioned": "Ireo voatonona ihany",
+    "noticeFollowers": "Ireo mpanaraka ny mpanoratra ihany no afaka mamaly",
+    "noticeFollowing": "Ireo arahin'ny mpanoratra ihany no afaka mamaly",
+    "noticeMentioned": "Ireo voatonona ao amin'ny lahatsoratra ihany no afaka mamaly",
+    "refused": "Noferan'ny mpanoratra izay afaka mamaly ity lahatsoratra ity"
+  },
+  "quotePolicy": {
+    "label": "Iza no afaka manonona",
+    "public": "Na iza na iza",
+    "followers": "Mpanaraka",
+    "nobody": "Izaho ihany",
+    "off": "Novonoin'ny mpanoratra ny fanononana",
+    "removed": "Nesorin'ny mpanoratra tamin'ity fanononana ity ny lahatsorany",
+    "remove": "Esory",
+    "removedToast": "Nesorina tamin'ity fanononana ity ny lahatsoratrao",
+    "removeFailed": "Tsy afaka nanala ny lahatsoratrao tamin'ny fanononana",
+    "refused": "Tsy mamela anao hanonona ity lahatsoratra ity ny mpanoratra"
+  },
+  "contentWarning": {
+    "label": "Fampitandremana momba ny votoaty",
+    "placeholder": "Soraty eto ny fampitandremanao",
+    "add": "Hanampy fampitandremana momba ny votoaty",
+    "remove": "Esory ny fampitandremana momba ny votoaty",
+    "show": "Asehoy ny lahatsoratra"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Hanampy famaritana",
+    "edit": "Hanova ny famaritana",
+    "titleImage": "Fariteo ity sary ity",
+    "titleVideo": "Fariteo ity horonantsary ity",
+    "help": "Ho an'ireo tsy mahita azy. Vakian'ny mpamaky efijery mafy izany.",
+    "placeholder": "Inona no asehony? Ampidiro koa izay soratra ao aminy.",
+    "show": "Asehoy ny famaritana",
+    "saved": "Voatahiry ny famaritana",
+    "saveFailed": "Tsy afaka nitahiry ny famaritana"
+  },
   "liveRecap": {
     "shareText": "Vao avy nandefa \"{{title}}\" tao amin'ny DeHub aho: {{duration}} mivantana, mpijery {{peak}} indrindra ary mpanaraka vaovao {{followers}}.",
     "title": "Avereno alefa",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Mamela ny mpikambana hafa hahita fa vao niditra ianao mba hahafahan'izy ireo mandray anao. Mifarana ho azy 30 andro aorian'ny fisoratana anarana.",
     "postVisibility": "Fahitana ny lahatsoratra",
     "defaultPostVisibility": "Fahitana voalohany",
+    "defaultFeed": "Feed mahazatra",
+    "defaultFeedDesc": "Safidio izay feed hisokatra isaky ny manokatra DeHub ianao",
+    "feedToggles": "Avereno ny sivana feed",
+    "feedTogglesDesc": "Ny sivana alefanao ao amin'ny feed dia mijanona ho mahazatra mandra-pamerinao azy",
+    "feedTogglesCleared": "Naverina ny sivana feed",
     "defaultProfileTab": "Vakizoro mombamomba mahazatra",
     "defaultProfileTabDesc": "Fidio hoe vakizoro inona no hitan'ny mpitsidika voalohany ao amin'ny mombamomba anao",
     "defaultPostVisibilityDesc": "Mihatra amin'ny lahatsoratra rehetra ankehitriny sy ho avy",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Tsy afaka namaky loko avy amin'ny sarinao"
   },
   "common": {
+    "refresh": "_Avereno zahana",
     "mute": "Hampangina",
     "unmute": "Hampandre feo",
     "fullscreen": "Efijery feno",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} marika"
   },
   "postOptions": {
+    "embed": "Ampidiro",
+    "copyEmbedCode": "Adikao ny kaody fampidirana",
+    "embedCodeCopied": "Voadika ny kaody fampidirana",
     "options": "Safidy",
     "sendTip": "Handefa fanomezana",
     "queue": "Filaharana",
@@ -2841,6 +2980,8 @@
     "yourFractions": "Mitazona {{count}} amin'ny ampahany {{total}} ianao"
   },
   "profileOptions": {
+    "copyRssFeed": "Adikao ny rohy RSS feed",
+    "copyRssFeedHint": "Araho ireo lahatsoratra ireo amin'izay mpamaky feed tianao",
     "copyProfileUrl": "Adikao ny URL profil",
     "copyUsername": "Adikao ny anarana mpampiasa",
     "copyAddress": "Adikao ny adiresy",
@@ -4164,6 +4305,7 @@
     "noVoice": "Tsy manana feo ho an'ity fiteny ity ny fitaovanao."
   },
   "stages": {
+    "previewFailed": "Tsy nety nalefa tao amin'ny efitrano feo ny santionany",
     "allStages": "Ireo efitrano feo rehetra",
     "addToCalendar": "Ampidiro ao amin'ny kalandrie",
     "nowPlaying": "Mandeha izao",
@@ -4536,6 +4678,7 @@
     "anyBadgeHolder": "Ny tompon'ny badge rehetra dia mahazo SuperPowers. Mividiana DeHub token mba hamahana ny badge — tsy takiana ny staking."
   },
   "follow": {
+    "noResults": "Tsy nisy vokatra hita",
     "followers": "Mpanaraka",
     "following": "Manaraka",
     "requests": "Fangatahana",
@@ -4619,7 +4762,10 @@
     "play": "Mamaky",
     "pause": "Miato",
     "listens_other": "{{count}} сонсens",
-    "listens_one": "{{count}} mihaino"
+    "listens_one": "{{count}} mihaino",
+    "lyrics": "Tononkira",
+    "lyricsLoading": "Mitady tononkira…",
+    "lyricsNone": "Tsy nahitana tononkira"
   },
   "transfer": {
     "arcTitle": "Alefaso ny USDC amin'ny Arc",
@@ -5544,6 +5690,8 @@
     "creatorEarnsDirect": "Ny mpandraharaha mandoa ao DeHub famantarana. Ny anjara tany ao amin'ny kitapom-batsy ny fotoana izy ireo misoratra anarana, tsy ny sehatra saran'ny noho ny badge Tier."
   },
   "live": {
+    "bigEvent": "Hetsika lehibe",
+    "bigEventHint": "Ho an'ny mpijery maro: mijery tara eo amin'ny 20 segondra eo ho eo ny mpijery, saingy vitsy kokoa ny fahatapahana.",
     "notSet": "Tsy voafaritra",
     "liveChat": "Resaka mivantana",
     "pickDate": "Mifidy daty",
@@ -7225,6 +7373,7 @@
       "delete": "Hamafa"
     },
     "export": {
+      "cancel": "Foanana",
       "scope": "Download isan-karazany",
       "downloadTimeline": "Manontolo ny fandaharam-potoana",
       "downloadSelection": "Sary mihetsika voafantina ({{count}})",
@@ -7504,6 +7653,7 @@
     }
   },
   "creator": {
+    "sending": "Mandefa...",
     "navStudio": "Studio",
     "editor": "Fanovana",
     "untitled": "Tsy misy lohateny",
@@ -8070,6 +8220,7 @@
     "transferIncomplete": "Tsy vita ilay mari-pamantarana. Noho izany dia hodinihina indray izany alohan'ny handoavanao ny taratasinao manaraka."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Hikaroka emoji",
     "noEmoji": "Tsy nahitana emoji",
     "searchResults": "Valin'ny fikarohana",

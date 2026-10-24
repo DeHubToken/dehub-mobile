@@ -17,8 +17,13 @@
  */
 
 import { useEffect, useMemo } from "react";
+import { Platform } from "react-native";
 import { createVideoPlayer, type VideoPlayer } from "expo-video";
-import { LIVE_BUFFER_OPTIONS } from "./videoBuffering";
+import {
+  EVENT_LIVE_BUFFER_OPTIONS,
+  EVENT_TARGET_OFFSET_FROM_LIVE_SEC,
+  LIVE_BUFFER_OPTIONS,
+} from "./videoBuffering";
 import { releaseAfterPictureInPicture } from './pictureInPicture';
 
 interface Entry {
@@ -29,6 +34,36 @@ interface Entry {
 
 const RELEASE_GRACE_MS = 1500;
 const entries = new Map<string, Entry>();
+
+/**
+ * Live URLs whose creator marked the broadcast a big event. Recorded by the
+ * surfaces that know the stream (the feed card and the viewer) and read when
+ * the player is built, so whichever of them creates the shared player gives it
+ * the deep buffer — and a player that already exists is retuned in place.
+ */
+const bigEventUrls = new Set<string>();
+
+function tuneForLatency(player: VideoPlayer, url: string) {
+  const event = bigEventUrls.has(url);
+  player.bufferOptions = event ? EVENT_LIVE_BUFFER_OPTIONS : LIVE_BUFFER_OPTIONS;
+  if (event && Platform.OS === "ios") {
+    try {
+      player.targetOffsetFromLive = EVENT_TARGET_OFFSET_FROM_LIVE_SEC;
+    } catch {
+      /* Older native module without the property — the buffer still applies. */
+    }
+  }
+}
+
+/** Mark (or unmark) a live URL as a big event before or after its player exists. */
+export function markBigEventLive(url: string | null | undefined, event: boolean): void {
+  if (!url) return;
+  if (event === bigEventUrls.has(url)) return;
+  if (event) bigEventUrls.add(url);
+  else bigEventUrls.delete(url);
+  const entry = entries.get(url);
+  if (entry) tuneForLatency(entry.player, url);
+}
 
 function scheduleRelease(url: string, entry: Entry) {
   clearTimeout(entry.timer);
@@ -48,7 +83,7 @@ function entryFor(url: string): Entry {
     const player = createVideoPlayer(url);
     player.loop = false;
     player.muted = true;
-    player.bufferOptions = LIVE_BUFFER_OPTIONS;
+    tuneForLatency(player, url);
     entry = { player, refs: 0 };
     entries.set(url, entry);
     // Nobody may claim it (the render that asked was thrown away); the grace

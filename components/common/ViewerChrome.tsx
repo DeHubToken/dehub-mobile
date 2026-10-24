@@ -14,6 +14,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useAppTheme } from "../../context/ThemeContext";
 
 export const ICON_COLOR = "#fff";
 /** Web's `text-white/70` on every count under an action row. */
@@ -102,7 +103,10 @@ export const ChromeFill: React.FC<{
   sheer?: boolean;
   glass?: boolean;
   top?: boolean;
-}> = ({ radius, sheer, glass, top }) => (
+}> = ({ radius, sheer, glass, top }) => {
+  const { theme } = useAppTheme();
+  const crystal = theme === "glass";
+  return (
   <View
     pointerEvents="none"
     style={[
@@ -115,7 +119,7 @@ export const ChromeFill: React.FC<{
       style={[
         StyleSheet.absoluteFill,
         {
-          backgroundColor: top
+          backgroundColor: crystal ? "rgba(3,34,40,0.65)" : top
             ? CHROME_FILL_TOP
             : glass
             ? CHROME_FILL_GLASS
@@ -125,18 +129,20 @@ export const ChromeFill: React.FC<{
         },
       ]}
     />
-    {top && <LinearGradient
+    {(top || crystal) && <LinearGradient
       pointerEvents="none"
-      colors={["rgba(255,255,255,0.10)", "rgba(255,255,255,0.02)"]}
+      colors={crystal ? ["rgba(225,255,255,0.16)", "rgba(225,255,255,0.02)"] : ["rgba(255,255,255,0.10)", "rgba(255,255,255,0.02)"]}
       style={StyleSheet.absoluteFill}
     />}
-    {top && <View pointerEvents="none" style={[StyleSheet.absoluteFill, {
+    {(top || crystal) && <View pointerEvents="none" style={[StyleSheet.absoluteFill, {
       borderRadius: radius ?? CHROME_RADIUS,
       borderWidth: 1,
-      borderColor: "rgba(255,255,255,0.32)",
+      borderColor: crystal ? "rgba(225,255,255,0.22)" : "rgba(255,255,255,0.32)",
+      borderTopColor: crystal ? "rgba(240,255,255,0.48)" : "rgba(255,255,255,0.32)",
     }]} />}
   </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   fill: {

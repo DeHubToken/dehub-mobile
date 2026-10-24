@@ -4,6 +4,15 @@ import { Linking } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import { supportedNetworks } from "../config/web3.constants";
 import { normalizeSocialUrl } from './social-links';
+import { inAppDehubUrl } from './in-app-dehub-url';
+
+/** Open a DeHub link on its app screen. True when it was handled. */
+function openDehubLinkInApp(url: string): boolean {
+  const inApp = inAppDehubUrl(url);
+  if (!inApp) return false;
+  Linking.openURL(inApp).catch((e) => console.warn('[openDehubLinkInApp] failed', e));
+  return true;
+}
 
 /**
  * Normalize a raw social input (username or partial/full link) into a full https URL for a given host.
@@ -49,6 +58,7 @@ export async function openExternalLink(rawUrl?: string) {
     let url = rawUrl.trim();
     if (url === '#' || url.length < 2) return;
     if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+    if (openDehubLinkInApp(url)) return;
     // Encode any spaces that slipped through
     url = withDeHubLanguage(url.replace(/\s/g, '%20'), i18n.language || 'en');
     if (/^https?:\/\//i.test(url)) {
@@ -68,6 +78,7 @@ export async function openInApp(rawUrl?: string) {
   try {
     let url = rawUrl.trim();
     if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+    if (openDehubLinkInApp(url)) return;
     url = withDeHubLanguage(url.replace(/\s/g, '%20'), i18n.language || 'en');
     try {
       await WebBrowser.openBrowserAsync(url, {

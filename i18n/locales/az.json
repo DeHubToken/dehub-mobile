@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Qoşulmuş tətbiqlər",
+    "connectedDescription": "Bu hesabla daxil olduğunuz Mastodon tətbiqləri. Çıxış etmək üçün birini silin.",
+    "connectedEmpty": "Hələ qoşulmuş tətbiq yoxdur.",
+    "lastUsed": "Son istifadə {{date}}",
+    "remove": "Sil",
+    "removed": "Tətbiq silindi",
+    "failed": "Alınmadı. Yenidən cəhd edin."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon və digər fediverse tətbiqlərindəki insanlar sizi bu ünvanda tapıb izləyə bilər. Yeni açıq paylaşımlarınız onlara orada çatır.",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "privateNote": "Şəxsi hesablar fediverse-də göstərilmir.",
+    "noUsername": "Fediverse ünvanı almaq üçün istifadəçi adı seçin."
+  },
+  "profileFields": {
+    "title": "Profil sahələri",
+    "description": "Profilinizdə dörd əlavə sətrə qədər, məsələn veb sayt və ya əvəzlikləriniz.",
+    "label": "Etiket",
+    "content": "Məzmun",
+    "save": "Sahələri yadda saxla",
+    "saved": "Profil sahələri yadda saxlanıldı",
+    "failed": "Yadda saxlanılmadı. Yenidən cəhd edin.",
+    "verified": "Təsdiqlənmiş link",
+    "verifyHint": "Linki təsdiqləmək üçün bunu həmin səhifəyə əlavə edin, sonra yenidən yadda saxlayın: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Bildirişləri süz",
+    "description": "Çevrənizdən kənar biri sizinlə əlaqə qurduqda nə baş verəcəyini seçin. Süzülmüş bildirişlər nişan və push olmadan \"Süzülənlər\" bölməsində gözləyir.",
+    "notFollowing": "İzləmədiyiniz insanlar",
+    "notFollowers": "Sizi izləməyən insanlar",
+    "newAccounts": "Yeni hesablar (30 gündən az)",
+    "accept": "Mənə bildir",
+    "filter": "Süz",
+    "drop": "Tam gizlət",
+    "filteredTitle": "Süzülmüş bildirişlər",
+    "filteredEmpty": "Heç nə süzülməyib.",
+    "failed": "Yadda saxlanılmadı. Yenidən cəhd edin."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} izlə",
+    "following": "İzləyirsiniz",
+    "unfollow": "#{{tag}} izləməni dayandır",
+    "followed": "İndi #{{tag}} izləyirsiniz. Onun paylaşımları İzlədikləriniz lentində görünəcək.",
+    "unfollowed": "#{{tag}} izlənmir",
+    "failed": "Yadda saxlanılmadı. Yenidən cəhd edin.",
+    "clear": "Təmizlə"
+  },
+  "keywordFilters": {
+    "title": "Səssiz sözlər",
+    "description": "Bu sözlər olan paylaşımları və şərhləri gizlədin və ya xəbərdarlığın arxasına qatlayın. Bu siyahını yalnız siz görürsünüz.",
+    "placeholder": "Söz və ya ifadə",
+    "add": "Səssizləşdir",
+    "added": "Səssizləşdirildi: {{phrase}}",
+    "wholeWord": "Yalnız tam söz",
+    "whenMatches": "Paylaşım uyğun gələndə",
+    "warn": "Xəbərdarlıq göstər",
+    "hide": "Gizlət",
+    "howLong": "Nə qədər",
+    "forever": "Silənə qədər",
+    "duration1h": "1 saatlıq",
+    "duration1d": "1 günlük",
+    "duration7d": "7 günlük",
+    "duration30d": "30 günlük",
+    "where": "Harada",
+    "home": "Əsas səhifə",
+    "public": "Kəşf və axtarış",
+    "profile": "Profillər",
+    "thread": "Söhbətlər",
+    "notifications": "Bildirişlər",
+    "empty": "Heç bir sözü səssizləşdirməmisiniz.",
+    "remove": "Səssizdən çıxar",
+    "until": "{{date}} tarixinə qədər",
+    "filtered": "Süzüldü: {{phrase}}",
+    "showAnyway": "Yenə də göstər",
+    "failed": "Yadda saxlanılmadı. Yenidən cəhd edin."
+  },
+  "postVisibility": {
+    "label": "Bunu kim görə bilər",
+    "public": "Hamı",
+    "followers": "Yalnız izləyicilər",
+    "direct": "Yalnız qeyd olunanlar",
+    "noRepost": "Yalnız açıq paylaşımlar yenidən paylaşıla bilər",
+    "directHint": "Bu paylaşımı yalnız @ ilə qeyd etdiyiniz insanlar görəcək",
+    "needsMention": "Yalnız qeyd olunanlara paylaşmaq üçün ən azı bir nəfəri @ ilə qeyd edin"
+  },
+  "replyPolicy": {
+    "label": "Kim cavab verə bilər",
+    "public": "Hər kəs",
+    "followers": "İzləyiciləriniz",
+    "following": "İzlədiyiniz insanlar",
+    "mentioned": "Yalnız qeyd olunanlar",
+    "noticeFollowers": "Yalnız müəllifin izləyiciləri cavab verə bilər",
+    "noticeFollowing": "Yalnız müəllifin izlədiyi insanlar cavab verə bilər",
+    "noticeMentioned": "Yalnız paylaşımda qeyd olunanlar cavab verə bilər",
+    "refused": "Müəllif bu paylaşıma kimin cavab verə biləcəyini məhdudlaşdırıb"
+  },
+  "quotePolicy": {
+    "label": "Kim sitat gətirə bilər",
+    "public": "Hər kəs",
+    "followers": "İzləyicilər",
+    "nobody": "Yalnız mən",
+    "off": "Müəllif sitat gətirməni bağlayıb",
+    "removed": "Müəllif paylaşımını bu sitatdan çıxarıb",
+    "remove": "Çıxar",
+    "removedToast": "Paylaşımınız bu sitatdan çıxarıldı",
+    "removeFailed": "Paylaşımınızı sitatdan çıxarmaq mümkün olmadı",
+    "refused": "Müəllif bu paylaşımdan sitat gətirməyinizə icazə vermir"
+  },
+  "contentWarning": {
+    "label": "Məzmun xəbərdarlığı",
+    "placeholder": "Xəbərdarlığınızı buraya yazın",
+    "add": "Məzmun xəbərdarlığı əlavə et",
+    "remove": "Məzmun xəbərdarlığını sil",
+    "show": "Paylaşımı göstər"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Təsvir əlavə et",
+    "edit": "Təsviri redaktə et",
+    "titleImage": "Bu şəkli təsvir edin",
+    "titleVideo": "Bu videonu təsvir edin",
+    "help": "Onu görə bilməyən insanlar üçün. Ekran oxuyucuları onu səsli oxuyur.",
+    "placeholder": "Nəyi göstərir? İçindəki istənilən mətni də yazın.",
+    "show": "Təsviri göstər",
+    "saved": "Təsvir saxlanıldı",
+    "saveFailed": "Təsviri saxlamaq mümkün olmadı"
+  },
   "liveRecap": {
     "title": "Axının xülasəsi",
     "justEnded": "Axınının xülasəsi",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Digər üzvlərin yeni qoşulduğunu görüb səni qarşılamasına imkan verir. Qeydiyyatdan 30 gün sonra avtomatik bitir.",
     "postVisibility": "Paylaşım Görünürlüyü",
     "defaultPostVisibility": "Standart Paylaşım Görünürlüyü",
+    "defaultFeed": "Defolt lent",
+    "defaultFeedDesc": "DeHub-u hər açanda hansı lentin açılacağını seçin",
+    "feedToggles": "Lent filtrlərini sıfırla",
+    "feedTogglesDesc": "Lentdə yandırdığınız filtrlər sıfırlayana qədər defoltunuz olaraq qalır",
+    "feedTogglesCleared": "Lent filtrləri sıfırlandı",
     "defaultProfileTab": "Standart profil vərəqi",
     "defaultProfileTabDesc": "Ziyarətçilərin profilinizdə ilk hansı vərəqi görəcəyini seçin",
     "defaultPostVisibilityDesc": "Bütün mövcud və gələcək paylaşımlara tətbiq olunur",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Profil şəklinizdən rənglər oxuna bilmədi"
   },
   "common": {
+    "refresh": "Yenilə",
     "mute": "Səssiz et",
     "unmute": "Səsi aç",
     "fullscreen": "Tam ekran",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Yerləşdir",
+    "copyEmbedCode": "Yerləşdirmə kodunu kopyala",
+    "embedCodeCopied": "Yerləşdirmə kodu kopyalandı",
     "options": "Seçimlər",
     "sendTip": "Bəxşiş Göndər",
     "queue": "Növbə",
@@ -2827,6 +2966,8 @@
     "yourFractions": "Siz {{count}} fraksiyadan {{total}} -nə sahibsiniz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS lent linkini kopyala",
+    "copyRssFeedHint": "Bu paylaşımları istənilən lent oxuyucusunda izləyin",
     "copyProfileUrl": "Profil URL-ni kopyala",
     "copyUsername": "İstifadəçi adını kopyala",
     "copyAddress": "Ünvanı kopyala",
@@ -4150,6 +4291,7 @@
     "noVoice": "Cihazınızda bu dil üçün səs yoxdur."
   },
   "stages": {
+    "previewFailed": "Önizləməni səsli otaqda oynatmaq olmadı",
     "allStages": "Bütün səsli otaqlar",
     "addToCalendar": "Təqvimə əlavə edin",
     "nowPlaying": "İndi oynatılır",
@@ -4522,6 +4664,7 @@
     "anyBadgeHolder": "Hər hansı bir rozet sahibi SuperGüclər əldə edir. Rozet açmaq üçün DeHub tokenləri alın — steykinq tələb olunmur."
   },
   "follow": {
+    "noResults": "Nəticə tapılmadı",
     "followers": "Təqibçilər",
     "following": "Təqib etdiklərim",
     "requests": "Xahişlər",
@@ -4605,7 +4748,10 @@
     "listens_other": "{{count}} dinləyir",
     "closeCornerPlayer": "Künc oyunçusunu bağlayın",
     "creator": "DeHub yaradıcısı",
-    "play": "Oxut"
+    "play": "Oxut",
+    "lyrics": "Mahnı sözləri",
+    "lyricsLoading": "Sözlər axtarılır…",
+    "lyricsNone": "Söz tapılmadı"
   },
   "transfer": {
     "arcTitle": "Arc-da USDC göndər",
@@ -5529,6 +5675,8 @@
     "creatorEarnsDirect": "Abunəçilər DeHub tokenlərində ödəniş edirlər. Pay torpaqlarınız abunə olduqları an cüzdanınızda olur, nişan səviyyəniz üçün platforma haqqını azaldın."
   },
   "live": {
+    "bigEvent": "Böyük tədbir",
+    "bigEventHint": "Böyük auditoriya üçün: izləyicilər yayımı təxminən 20 saniyə gecikmə ilə, daha az fasilə ilə izləyir.",
     "notSet": "Təyin edilməyib",
     "liveChat": "Canlı söhbət",
     "pickDate": "Tarix seç",
@@ -7143,6 +7291,7 @@
       "delete": "Sil"
     },
     "export": {
+      "cancel": "Ləğv et",
       "scope": "Endirmə diap",
       "downloadTimeline": "Bütün vaxt qrafiki",
       "downloadSelection": "Seçilmiş video kliplər ({{count}})",
@@ -7422,6 +7571,7 @@
     }
   },
   "creator": {
+    "sending": "Göndərilir",
     "navStudio": "Studiya",
     "editor": "Redaktor",
     "untitled": "Başlıqsız",
@@ -7987,6 +8137,7 @@
     "transferIncomplete": "Mötədil köçürmə tamamlanmadı. Növbəti ödənişli yazıdan əvvəl sizdən yenidən soruşulacaq."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji axtar",
     "noEmoji": "Emoji tapılmadı",
     "searchResults": "Axtarış nəticələri",

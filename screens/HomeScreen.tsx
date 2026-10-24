@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
   withTiming,
   Easing,
   type SharedValue,
@@ -26,13 +27,17 @@ import CinematicMusic from "../components/Music/CinematicMusic";
 import CinematicLive from "../components/Home/CinematicLive";
 import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
-import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
+import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT, ISLAND_CAPSULE_GAP } from "../components/Home/IslandTopBar";
+import NewPostsBead, { BEAD_JOIN, BEAD_HEIGHT } from "../components/Home/NewPostsBead";
+import { useNewPostsBead } from "../libs/new-posts-bead";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
 import FeedFilterPanel, { FeedFilters, PostTypeOption, FEED_FILTER_MAX_HEIGHT } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
 import { storage } from "../libs/storage";
+import { feedDefaultsEvents, getAppFeedToggles, getDefaultFeedTab, setAppFeedToggles } from "../libs/feed-defaults";
+import { useFeedDefaultsSync } from "../hooks/useFeedDefaultsSync";
 import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useAppPrefs } from "../hooks/useAppPrefs";
@@ -65,6 +70,7 @@ import { useAppTheme } from "../context/ThemeContext";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
+import FollowTagBar from "../components/Home/FollowTagBar";
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -129,10 +135,33 @@ const PAGE_ANIM = { duration: 260, easing: Easing.bezier(0.22, 1, 0.36, 1) } as 
 // How far past the first/last tab a drag is allowed to pull, as a fraction of
 // the real distance — the give is what tells you there is nothing beyond.
 const EDGE_RESISTANCE = 0.28;
+/** Travel before a drag is judged a page turn or a feed scroll, in points. */
+const PAGE_TURN_DECIDE_PX = 14;
+/**
+ * A page turn must be at least this many times more sideways than vertical.
+ * A thumb's upward flick starts with a sideways drift; with plain 14pt offsets
+ * that drift reached the X threshold first and flipped the tab mid-scroll.
+ */
+const PAGE_TURN_RATIO = 2;
 // Seconds of flick velocity folded into the release position, so a fast short
 // swipe turns the page instead of snapping back. Waiting for half a screen of
 // travel is precisely what read as slow.
 const VELOCITY_PROJECTION = 0.12;
+
+/**
+ * The filters Home opens with: the viewer's default tab (Settings > Appearance)
+ * and the toggles they left on (libs/feed-defaults), else the stock defaults.
+ */
+const savedFilters = (): FeedFilters => {
+  const saved = getAppFeedToggles();
+  return {
+    ...DEFAULT_FILTERS,
+    postType: getDefaultFeedTab(),
+    ...(saved.sortBy ? { sortBy: saved.sortBy as FeedFilters["sortBy"] } : null),
+    ...(saved.dateRange !== undefined ? { dateRange: saved.dateRange as FeedFilters["dateRange"] } : null),
+    ...(saved.contentAccess ? { contentAccess: saved.contentAccess as FeedFilters["contentAccess"] } : null),
+  };
+};
 
 /**
  * Pager slot for a post type. Filter-panel-only types ("feed-simple") have no
@@ -156,11 +185,27 @@ type ImageFeedRequest = {
   token: number;
 };
 
+/** The bead drops out from under the pill, and tucks back in. */
+const beadEnter = () => {
+  "worklet";
+  return {
+    initialValues: { transform: [{ translateY: -(BEAD_JOIN + BEAD_HEIGHT) }] },
+    animations: { transform: [{ translateY: withSpring(0, { damping: 17, stiffness: 240, mass: 0.8 }) }] },
+  };
+};
+const beadExit = () => {
+  "worklet";
+  return {
+    initialValues: { transform: [{ translateY: 0 }] },
+    animations: { transform: [{ translateY: withTiming(-(BEAD_JOIN + BEAD_HEIGHT), { duration: 160, easing: Easing.in(Easing.quad) }) }] },
+  };
+};
+
 export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [imageFeed, setImageFeed] = useState<ImageFeedRequest | null>(null);
   const imageFeedToken = useRef(0);
-  const [filters, setFilters] = useState<FeedFilters>(DEFAULT_FILTERS);
+  const [filters, setFilters] = useState<FeedFilters>(savedFilters);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
   const { width: pageWidth, height: pageHeight } = useWindowDimensions();
   const isFocused = useIsFocused();
@@ -201,10 +246,11 @@ export default function HomeScreen() {
     if (!isFocused && feedProfileVisible) hideUserProfile();
   }, [feedProfileVisible, hideUserProfile, isFocused]);
 
-  // Load persisted category on mount (MMKV is sync — no async race)
+  // Load persisted category on mount (MMKV is sync — no async race). The
+  // account's saved toggles win over this device's last category.
   useEffect(() => {
     try {
-      const val = storage.getString(CATEGORY_STORAGE_KEY);
+      const val = getAppFeedToggles().category ?? storage.getString(CATEGORY_STORAGE_KEY);
       if (val) setSelectedCategory(val);
     } catch {}
   }, []);
@@ -357,6 +403,7 @@ export default function HomeScreen() {
   // another, which is why the highlight moved while the feed below sat still.
   const progress = useSharedValue(activeIndex);
   const dragStart = useSharedValue(activeIndex);
+  const pagerTouch = useSharedValue({ x: 0, y: 0, decided: false });
   // Index the gesture has already animated to, so the sync effect below doesn't
   // restart the same animation a frame later.
   const animatedToRef = useRef(activeIndex);
@@ -453,9 +500,28 @@ export default function HomeScreen() {
       Gesture.Pan()
         // Horizontal intent only: a vertical drag belongs to the feed's own
         // scroll view and must never be stolen by the pager.
-        .activeOffsetX([-14, 14])
-        .failOffsetY([-14, 14])
+        // Decided by angle, not by which axis crosses 14pt first: only a
+        // clearly sideways drag turns the page.
+        .manualActivation(true)
+        .maxPointers(1)
         .withRef(pagerGestureRef)
+        .onTouchesDown((event, manager) => {
+          const point = event.allTouches[0];
+          if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+          pagerTouch.value = { x: point.absoluteX, y: point.absoluteY, decided: false };
+        })
+        .onTouchesMove((event, manager) => {
+          const origin = pagerTouch.value;
+          if (origin.decided) return;
+          const point = event.allTouches[0];
+          if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
+          const dx = Math.abs(point.absoluteX - origin.x);
+          const dy = Math.abs(point.absoluteY - origin.y);
+          if (Math.max(dx, dy) < PAGE_TURN_DECIDE_PX) return;
+          pagerTouch.value = { ...origin, decided: true };
+          if (dx >= dy * PAGE_TURN_RATIO) manager.activate();
+          else manager.fail();
+        })
         .onStart(() => {
           cancelAnimation(progress);
           dragStart.value = progress.value;
@@ -485,7 +551,7 @@ export default function HomeScreen() {
           progress.value = withTiming(target, PAGE_ANIM);
           if (target !== from) runOnJS(commitIndex)(target);
         }),
-    [pageWidth, commitIndex, progress, dragStart, showHeader, LAST_INDEX],
+    [pageWidth, commitIndex, progress, dragStart, pagerTouch, showHeader, LAST_INDEX],
   );
   const homeGestures = useMemo(() => Gesture.Race(pagerGesture, homePull.gesture), [pagerGesture, homePull.gesture]);
 
@@ -499,6 +565,7 @@ export default function HomeScreen() {
   const navPillBottom = useSharedValue(0);
   const [pillTopInHeader, setPillTopInHeader] = useState(0);
   const [navOverlap, setNavOverlap] = useState(38);
+  const [pillBottom, setPillBottom] = useState(0);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
     setNavOverlap(e.nativeEvent.layout.height - NAV_PILL_TOP_INSET);
     setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 4);
@@ -508,6 +575,7 @@ export default function HomeScreen() {
     navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + NAV_PILL_RADIUS;
     // Minimal's tab bar sits flush; the pill themes keep 2pt under the pill.
     navPillBottom.value = e.nativeEvent.layout.y + e.nativeEvent.layout.height - (theme === 'minimal' ? 0 : 2);
+    setPillBottom(navPillBottom.value);
   }, [navPillTop, navPillBottom, theme]);
   const clipOn = glassNav && !island;
   const feedClipStyle = useAnimatedStyle(() => ({
@@ -528,6 +596,11 @@ export default function HomeScreen() {
   const postFeedInset = island ? 0 : headerHeight;
   const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
   const showNavPill = !island || feedProfileVisible || !!imageFeed;
+  const newPostsBead = useNewPostsBead();
+  // The pill's bottom edge, which the bead hangs from.
+  const beadTop = (island ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP : pillBottom) - BEAD_JOIN;
+  const showBead = isFocused && !filterPanelVisible && !feedProfileVisible && !imageFeed
+    && !(island && islandMenuOpen);
   // A scroll that hides the capsule puts its menu away too (a touch on the
   // feed already does, through handleScrollBegin).
   useAnimatedReaction(
@@ -674,6 +747,21 @@ export default function HomeScreen() {
     setFilterPanelVisible(false);
   }, [beginFilterTransition]);
 
+  // One hashtag picked — where a tapped #tag lands: offer to follow it above
+  // the feed (FollowTagBar). Otherwise the header is just the stages bar.
+  const feedHeader = useMemo(
+    () =>
+      selectedCategory ? (
+        <>
+          <FollowTagBar tag={selectedCategory} onClear={() => handleCategorySelect("All")} />
+          {LIVE_STAGES_HEADER}
+        </>
+      ) : (
+        LIVE_STAGES_HEADER
+      ),
+    [selectedCategory, handleCategorySelect],
+  );
+
   const handleRefresh = useCallback(() => {
     showHeader();
     refreshShuffleSeed();
@@ -767,6 +855,39 @@ export default function HomeScreen() {
   );
 
   useEffect(() => homeTabEvents.setVisibleTab(activeTabKey), [activeTabKey]);
+
+  // Toggles the viewer sets stay as their defaults until they reset them.
+  // Post type is the tab, not a toggle; the default tab is its own setting.
+  const categoryLoadedRef = useRef(false);
+  useEffect(() => {
+    // The first pass runs before the persisted category is read back.
+    if (!categoryLoadedRef.current) { categoryLoadedRef.current = true; return; }
+    setAppFeedToggles({
+      sortBy: filters.sortBy,
+      dateRange: filters.dateRange,
+      contentAccess: filters.contentAccess,
+      category: selectedCategory,
+    });
+  }, [filters.sortBy, filters.dateRange, filters.contentAccess, selectedCategory]);
+
+  // Saved toggles changed elsewhere (reset in Settings, or the account's
+  // arriving on sign-in): put the feed on them.
+  const applySavedToggles = useCallback(() => {
+    const saved = getAppFeedToggles();
+    const next = savedFilters();
+    setFilters((prev) => {
+      const same =
+        prev.sortBy === next.sortBy &&
+        prev.dateRange === next.dateRange &&
+        prev.contentAccess.length === next.contentAccess.length &&
+        prev.contentAccess.every((a) => next.contentAccess.includes(a));
+      return same ? prev : { ...prev, sortBy: next.sortBy, dateRange: next.dateRange, contentAccess: next.contentAccess };
+    });
+    setSelectedCategory(saved.category);
+    try { storage.set(CATEGORY_STORAGE_KEY, saved.category ?? ""); } catch {}
+  }, []);
+  useEffect(() => feedDefaultsEvents.subscribe(applySavedToggles), [applySavedToggles]);
+  useFeedDefaultsSync(applySavedToggles);
 
   useEffect(() => {
     let mounted = true;
@@ -886,8 +1007,6 @@ export default function HomeScreen() {
         pageSize={20}
         headerInset={postFeedInset}
         firstRowInset={postFeedFirstRowInset}
-        headerTranslateY={headerTranslateY}
-        islandChrome={island}
         hideNewPosts={islandMenuOpen}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
@@ -900,7 +1019,7 @@ export default function HomeScreen() {
         // "live" are somebody asking for one format, and a boosted text post
         // arriving at the top of those reads as a bug rather than as a boost.
         showBoostSlot={feedType === "all"}
-        headerComponent={LIVE_STAGES_HEADER}
+        headerComponent={feedHeader}
       />
     );
   };
@@ -1055,6 +1174,28 @@ export default function HomeScreen() {
         />
       ) : null}
 
+      {/* Over the header, not inside the feed: the bead covers the pill's
+          bottom rim where it joins, so the two are one shape with no seam.
+          Its window starts at the join, so it slides out from under the pill. */}
+      {island || pillBottom > 0 ? (
+        <Animated.View
+          pointerEvents="box-none"
+          style={[styles.beadHost, { top: beadTop, height: BEAD_JOIN + BEAD_HEIGHT + 8 }, headerAnimatedStyle]}
+        >
+          {showBead && newPostsBead ? (
+            <Animated.View entering={beadEnter} exiting={beadExit}>
+              <NewPostsBead
+                count={newPostsBead.count}
+                authors={newPostsBead.authors}
+                islandChrome={island}
+                onPress={newPostsBead.onPress}
+                label={newPostsBead.label}
+              />
+            </Animated.View>
+          ) : null}
+        </Animated.View>
+      ) : null}
+
       {/* A sibling keeps the drawer below the pill and its complete touch
           area inside its parent without changing the measured feed inset. */}
       {theme === 'system' ? (
@@ -1125,6 +1266,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     flexDirection: "row",
+  },
+  beadHost: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    overflow: "hidden",
+    zIndex: 11,
   },
   headerClip: {
     position: "absolute",

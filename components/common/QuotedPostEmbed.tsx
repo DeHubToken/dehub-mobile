@@ -9,7 +9,9 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { getAvatarUrl, getImageUrl, getImageUrlApiSimple, buildFeedImageUrls, getAudioUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
-import { getNFT } from "../../services/nft.service";
+import { getNFT, revokeQuote } from "../../services/nft.service";
+import { useAuth } from "../../context/AuthContext";
+import { toastError, toastSuccess } from "../../libs/toast";
 import FeedCardHeader from "../Home/FeedCardHeader";
 import AudioPostPlayer from "../Home/AudioPostPlayer";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -25,6 +27,14 @@ interface QuotedPostEmbedProps {
   quotedPost?: any;
   /** Token ID of the quoted post (fallback when quotedPost is null) */
   quotedTokenId?: number | string | null;
+  /**
+   * The quoted author took their post back out of this quote. The API stops
+   * sending it inline, so without this the fallback fetch below would put it
+   * straight back.
+   */
+  revoked?: boolean;
+  /** The quote this embed sits in. Given, the quoted author sees Remove. */
+  quoteTokenId?: number | string;
 }
 
 const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
@@ -46,8 +56,13 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
     const [isFetching, setIsFetching] = useState(false);
     const [fetchFailed, setFetchFailed] = useState(false);
 
+    const { user } = useAuth();
+    const [removed, setRemoved] = useState(false);
+    const [removing, setRemoving] = useState(false);
+    const isRemoved = !!props.revoked || removed;
+
     const inlinePost = props.quotedPost;
-    const needsFetch = !inlinePost && !fetchedPost && !fetchFailed;
+    const needsFetch = !isRemoved && !inlinePost && !fetchedPost && !fetchFailed;
     const fetchTokenId = props.quotedTokenId ?? undefined;
 
     useEffect(() => {
@@ -83,6 +98,36 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
       hideUserProfile();
       navigation.navigate(ScreenNames.PostResolver, { tokenId: String(targetTokenId) });
     }, [navigation, quotedPost, quotedTokenId, hideUserProfile]);
+
+    const viewer = (user?.address || user?.walletAddress || "").toLowerCase();
+    const isQuotedAuthor =
+      !!viewer && !!props.quoteTokenId &&
+      (quotedPost?.minter || quotedPost?.minterUser?.address || "").toLowerCase() === viewer;
+
+    const handleRemove = useCallback(async () => {
+      if (!props.quoteTokenId || removing) return;
+      setRemoving(true);
+      try {
+        await revokeQuote(props.quoteTokenId);
+        setRemoved(true);
+        toastSuccess(t("quotePolicy.removedToast"));
+      } catch {
+        toastError(t("quotePolicy.removeFailed"));
+      } finally {
+        setRemoving(false);
+      }
+    }, [props.quoteTokenId, removing, t]);
+
+    if (isRemoved) {
+      return (
+        <View
+          className={isMinimal ? `${MINIMAL_QUOTE_CLASS} py-1` : "mt-3 rounded-xl border border-theme-neutrals-800 bg-theme-neutrals-800/30 p-3"}
+          style={isMinimal ? MINIMAL_QUOTE_STYLE : skin?.material === 'glass' ? skin.card : undefined}
+        >
+          <Text className="text-theme-neutrals-500 text-sm">{t("quotePolicy.removed")}</Text>
+        </View>
+      );
+    }
 
     if (!isAvailable && isFetching) {
       return (
@@ -217,6 +262,18 @@ const QuotedPostEmbed: React.FC<QuotedPostEmbedProps> = memo(
             <Text className="text-theme-neutrals-300 text-sm leading-5" numberOfLines={3}>
               {truncatedText}
             </Text>
+          )}
+
+          {isQuotedAuthor && (
+            <TouchableOpacity
+              onPress={handleRemove}
+              disabled={removing}
+              accessibilityRole="button"
+              className="self-start mt-2 rounded-full border border-white/15 px-3 py-1"
+              style={{ opacity: removing ? 0.5 : 1 }}
+            >
+              <Text className="text-theme-neutrals-300 text-xs">{t("quotePolicy.remove")}</Text>
+            </TouchableOpacity>
           )}
         </View>
       </TouchableOpacity>
