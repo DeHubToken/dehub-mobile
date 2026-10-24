@@ -6,6 +6,7 @@ import { tokenRefreshManager } from '../libs/token-refresh';
 import { requiresImageGeneration, requiresVideoGeneration } from './ai-intent';
 import type { CreatorStudioSettings } from '../libs/creatorStudio';
 import { translateCopy as _translateCopy } from '../i18n/copy';
+import { isImageProviderUnavailable } from '../libs/image-provider-error';
 
 const log = createLogger('ai.service');
 
@@ -346,6 +347,10 @@ export interface AIImageResponse {
   error?: string;
   safetyBlocked?: boolean;
   clearHistory?: boolean;
+  provider?: string;
+  model?: string;
+  requestedModel?: string;
+  fallbackUsed?: boolean;
 }
 
 export type AIVideoModel = string;
@@ -423,6 +428,12 @@ async function edgeFetch<T>(
   if (!res.ok) {
     const err = data as AIErrorResponse;
     log.error(`${functionName} failed (${res.status}) after ${tTotal}ms:`, err.error);
+    if (isImageProviderUnavailable(err.error, err.code)) {
+      throw new AIServiceError(
+        _translateCopy('assistant.errorGeneric', { defaultValue: 'Sorry, I encountered an error. Please try again.' }),
+        503, 'IMAGE_PROVIDER_UNAVAILABLE',
+      );
+    }
     throw new AIServiceError(
       err.error || _translateCopy("copy.a2bdedd473a3", { defaultValue: "AI request failed ({{value1}})", value1: res.status }),
       res.status,
@@ -436,6 +447,12 @@ async function edgeFetch<T>(
     );
   }
 
+  if (isImageProviderUnavailable(data?.error, data?.code)) {
+    throw new AIServiceError(
+      _translateCopy('assistant.errorGeneric', { defaultValue: 'Sorry, I encountered an error. Please try again.' }),
+      503, 'IMAGE_PROVIDER_UNAVAILABLE',
+    );
+  }
   return data as T;
 }
 
