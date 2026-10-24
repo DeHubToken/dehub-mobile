@@ -16,6 +16,7 @@ type Props = {
   placeholder?: string;
   searchable?: boolean;
   disabled?: boolean;
+  compact?: boolean;
 };
 
 const Dropdown: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const Dropdown: React.FC<Props> = ({
   placeholder,
   searchable = false,
   disabled = false,
+  compact = false,
 }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
@@ -56,7 +58,7 @@ const Dropdown: React.FC<Props> = ({
           disabled ? "opacity-60" : ""
         }`}
       >
-        <Text className={selected ? "text-white" : "text-theme-neutrals-400"}>
+        <Text numberOfLines={compact ? 1 : undefined} style={compact ? { flex: 1, minWidth: 0, fontSize: 13 } : undefined} className={selected ? "text-white" : "text-theme-neutrals-400"}>
           {selected ? selected.label : placeholder ?? t("common.select")}
         </Text>
         <Ionicons name="chevron-down" size={16} color={colors.neutrals[400]} />
