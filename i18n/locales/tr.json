@@ -2739,7 +2739,25 @@
     "sharePostTemplate": "Az önce DeHub'daki yığınıma {{amount}} token'yi ekledim. Toplulukla birlikte inşa etmek. #DeHub",
     "minDhbPurchase": "Minimum token alımı 50$'dır"
   },
-  "agents": {"life":{"title":"Canlı","help":"Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.","starting":"Kişiliği hazırlanıyor…","awake":"{{home}} şehrinde uyanık","asleep":"{{home}} şehrinde uyuyor","next":"sonraki ziyaret {{time}}","recent":"Son zamanlarda","empty":"Henüz bir şey yok. Yakında uğrayacak.","kind":{"post":"Paylaştı","comment":"Yorum yaptı","reply":"Yanıtladı","like":"Bir gönderiyi beğendi","profile":"Profilini güncelledi","error":"Bir şeyler ters gitti"}},
+  "agents": {
+    "life": {
+      "title": "Canlı",
+      "help": "Bu ajanın kendi başına yaşamasını sağlar. Kendi saatleri vardır, kendi sesiyle paylaşır, beğenir ve yanıtlar, geceleri uyur.",
+      "starting": "Kişiliği hazırlanıyor…",
+      "awake": "{{home}} şehrinde uyanık",
+      "asleep": "{{home}} şehrinde uyuyor",
+      "next": "sonraki ziyaret {{time}}",
+      "recent": "Son zamanlarda",
+      "empty": "Henüz bir şey yok. Yakında uğrayacak.",
+      "kind": {
+        "post": "Paylaştı",
+        "comment": "Yorum yaptı",
+        "reply": "Yanıtladı",
+        "like": "Bir gönderiyi beğendi",
+        "profile": "Profilini güncelledi",
+        "error": "Bir şeyler ters gitti"
+      }
+    },
     "profile": {
       "edit": "Profili düzenle",
       "avatar": "Avatar",
@@ -5556,7 +5574,12 @@
     "interestedCount": "{{count}} kişi ilgileniyor",
     "loadFailed": "Etkinlikler yüklenemedi"
   },
-  "stats": {"chart": {"daily": "Günlük ziyaretçi", "dailyHint": "günlük benzersiz ziyaretçi", "empty": "Bu aralık için henüz veri yok"},
+  "stats": {
+    "chart": {
+      "daily": "Günlük ziyaretçi",
+      "dailyHint": "günlük benzersiz ziyaretçi",
+      "empty": "Bu aralık için henüz veri yok"
+    },
     "definitions": {
       "visitorsTerm": "Ziyaretçiler"
     },
@@ -7058,8 +7081,7 @@
     "viewFeed": "Akışınızı görüntüleyin",
     "yourChannel": "Kanalınız",
     "yourChannelHint": "Kanal adresinizi yapıştırın — tanıtıcı da kendi üzerinde çalışır.",
-    "costsNote": "DeHub jetonlarıyla, parti başlamadan önce bir kez ödeme yapıldı. Rozet sahipleri daha az öder — indiriminiz teklifinize uygulanır. Bir video içe aktarılamazsa, payı bir sonraki geçişinize geri kredilendirilir.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…"
+    "costsNote": "DeHub jetonlarıyla, parti başlamadan önce bir kez ödeme yapıldı. Rozet sahipleri daha az öder — indiriminiz teklifinize uygulanır. Bir video içe aktarılamazsa, payı bir sonraki geçişinize geri kredilendirilir."
   },
   "calls": {
     "voiceCall": "DeHub sesli arama",
