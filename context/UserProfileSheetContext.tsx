@@ -127,13 +127,13 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
             {children}
             </View>
           </FeedPlaybackActiveContext.Provider>
-        </UserProfilePresentationContext.Provider>
         <UserProfileBottomSheet
           visible={visible && presentation === 'modal'}
           usernameOrAddress={identifier}
           onClose={hideUserProfile}
           initialHeightPct={options?.initialHeightPct}
         />
+        </UserProfilePresentationContext.Provider>
       </View>
     </UserProfileSheetContext.Provider>
   );
