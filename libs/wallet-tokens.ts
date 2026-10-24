@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ethers } from 'ethers';
 import { NETWORK_URLS } from '../config/web3.constants';
 import { getSolanaRpcUrl, SOLANA_MAINNET_CHAIN_ID, SOLANA_SPL_TOKENS } from '../config/solana.constants';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface WalletToken {
   address: string;
@@ -96,7 +97,7 @@ export async function readWalletTokenMetadata(address: string, chainId: number):
     const decimals = result?.value?.decimals;
     if (!Number.isInteger(decimals) || decimals < 0 || decimals > 36) throw new Error('Invalid token precision');
     const known = SOLANA_SPL_TOKENS.find(token => token.address === address);
-    return { address, chainId, decimals, symbol: known?.symbol || `${address.slice(0, 4)}…${address.slice(-4)}`, name: known?.name || 'Solana token' };
+    return { address, chainId, decimals, symbol: known?.symbol || `${address.slice(0, 4)}…${address.slice(-4)}`, name: known?.name || _translateCopy('copy.c547d6c4070c', { defaultValue: 'Solana token' }) };
   }
   if (!ethers.utils.isAddress(address)) throw new Error('Invalid contract address');
   const [name, symbol, precision] = await Promise.all(['name', 'symbol', 'decimals'].map(async method => {
@@ -156,7 +157,7 @@ async function readSolanaTokens(owner: string, custom: TokenMetadata[]): Promise
       }
       const meta = custom.find(token => token.address === info.mint) || SOLANA_SPL_TOKENS.find(token => token.address === info.mint);
       tokens.push({ address: info.mint, chainId: 101, symbol: meta?.symbol || `${info.mint.slice(0, 4)}…${info.mint.slice(-4)}`,
-        name: meta?.name || 'Solana token', decimals: info.tokenAmount.decimals, isCustom: !meta || custom.includes(meta as TokenMetadata),
+        name: meta?.name || _translateCopy('copy.c547d6c4070c', { defaultValue: 'Solana token' }), decimals: info.tokenAmount.decimals, isCustom: !meta || custom.includes(meta as TokenMetadata),
         balance: ethers.utils.formatUnits(raw, info.tokenAmount.decimals) });
     }
   }

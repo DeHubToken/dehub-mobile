@@ -148,8 +148,8 @@ function PostStageActionBarComponent({
   const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
   const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
   const likeA11y = myReaction
-    ? `${reactionMeta(myReaction).label} — hold to change your reaction`
-    : `${reactionMeta(leadReaction ?? "like").label} — hold to react`;
+    ? t("copy.a3156ed263d2", { defaultValue: "{{value1}} — hold to change your reaction", value1: reactionMeta(myReaction).label })
+    : t("copy.12b91b0ac5dd", { defaultValue: "{{value1}} — hold to react", value1: reactionMeta(leadReaction ?? "like").label });
 
   return (
     <View style={styles.row} testID="post-stage-bar">

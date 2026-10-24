@@ -9,6 +9,7 @@
  */
 
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation as _useCopy } from 'react-i18next';
 import * as ethersImport from 'ethers';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useWeb3Provider, useERC20Contract } from './use-web3';
@@ -61,6 +62,7 @@ export interface DaoContributeState {
 }
 
 export function useContributeToDao(enabled: boolean): DaoContributeState {
+  const { t: _copy } = _useCopy();
   const { account, chainId } = useWeb3Provider();
   const dhbAddress = chainId ? DHB_ADDRESSESS[chainId] : undefined;
   const tokenContract = useERC20Contract(dhbAddress);
@@ -70,7 +72,7 @@ export function useContributeToDao(enabled: boolean): DaoContributeState {
 
   const supported = !!chainId && DAO_CONTRIBUTION_CHAINS.includes(chainId);
   const chainName = chainId ? DAO_CHAIN_META[chainId]?.name ?? null : null;
-  const unsupportedChain = supported ? null : 'Base or BNB';
+  const unsupportedChain = supported ? null : _copy("copy.3d3ac705e6cb", { defaultValue: "Base or BNB" });
 
   const refreshBalance = useCallback(async () => {
     if (!tokenContract || !account || !supported || !enabled) {
@@ -92,12 +94,12 @@ export function useContributeToDao(enabled: boolean): DaoContributeState {
 
   const mutation = useMutation({
     mutationFn: async (amountDhb: number) => {
-      if (!supported || !chainId) throw new Error(`Switch to Base or BNB to contribute.`);
-      if (!tokenContract || !account) throw new Error('Connect your wallet to contribute.');
+      if (!supported || !chainId) throw new Error(_copy("copy.68454a287f60", { defaultValue: "Switch to Base or BNB to contribute." }));
+      if (!tokenContract || !account) throw new Error(_copy("copy.d01631705235", { defaultValue: "Connect your wallet to contribute." }));
       const amount = Math.floor(amountDhb);
-      if (!Number.isFinite(amount) || amount <= 0) throw new Error('Nothing to send.');
+      if (!Number.isFinite(amount) || amount <= 0) throw new Error(_copy("copy.8270c30be332", { defaultValue: "Nothing to send." }));
       if (walletDhb > 0 && amount > walletDhb) {
-        throw new Error(`Not enough DHB. You hold ${Math.floor(walletDhb).toLocaleString()}.`);
+        throw new Error(_copy("copy.4de6a6dfbfe9", { defaultValue: "Not enough DHB. You hold {{value1}}.", value1: Math.floor(walletDhb).toLocaleString() }));
       }
       const ethers = (ethersImport as any).ethers || ethersImport;
       const amountWei = ethers.utils.parseUnits(String(amount), 18);
@@ -108,7 +110,7 @@ export function useContributeToDao(enabled: boolean): DaoContributeState {
       if (!hash) {
         // Nothing reached the network, so waiting here is still honest.
         const receipt = await tx.wait(1);
-        if (receipt?.status !== 1) throw new Error('The transfer did not go through. Nothing was sent.');
+        if (receipt?.status !== 1) throw new Error(_copy("copy.2a259aba6f3f", { defaultValue: "The transfer did not go through. Nothing was sent." }));
         return { txHash: String(receipt.transactionHash || ''), chainId, confirmed: Promise.resolve(true) };
       }
 

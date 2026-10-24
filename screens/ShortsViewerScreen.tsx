@@ -429,7 +429,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     item.minterDisplayName ||
     username ||
     (minterAddress ? `${minterAddress.slice(0, 6)}…${minterAddress.slice(-4)}` : "") ||
-    "Unknown";
+    t("copy.b764cdc0eab7", { defaultValue: "Unknown" });
   // The title carries the caption in practice: UploadScreen puts the composer
   // body into `name` and leaves `description` empty unless the author fills in
   // a separate one, so almost every live short has text here and nothing in
@@ -998,7 +998,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       });
       const rollback = () => {
         revertEngagement(engagementKey, { isReposted: wasReposted, repostCount: prevCount });
-        toastError(next ? "Failed to repost" : "Failed to remove repost");
+        toastError(next ? t("copy.7527dc6722fc", { defaultValue: "Failed to repost" }) : t("copy.06f3a3e5ca20", { defaultValue: "Failed to remove repost" }));
       };
       toggleRepost(Number(tokenId))
         .then((res) => {
@@ -1014,7 +1014,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         })
         .catch(rollback);
     });
-  }, [tokenId, reposted, repostCount, engagementKey, requireAuth]);
+  }, [tokenId, reposted, repostCount, engagementKey, requireAuth, t]);
 
   const handleQuote = useCallback(() => {
     requireAuth(() => {
@@ -2150,11 +2150,11 @@ const ShortsViewerScreen = () => {
             rollback();
             return;
           }
-          toastSuccess(wasSaved ? "Removed from saved" : "Saved");
+          toastSuccess(wasSaved ? t("copy.d92d932c8687", { defaultValue: "Removed from saved" }) : t("copy.b5c120b316c2", { defaultValue: "Saved" }));
         })
         .catch(rollback);
     });
-  }, [activeItem, activeTokenId, activeEngagement.isSaved, userAddress, requireAuth]);
+  }, [activeItem, activeTokenId, activeEngagement.isSaved, userAddress, requireAuth, t]);
 
   const handleFollowChange = useCallback((following: boolean) => {
     if (!activeMinter) return;

@@ -4,6 +4,7 @@
 // address on both clients. Ported against ethers v5 (this app's installed
 // version) rather than v6's HDNodeWallet API the web client uses.
 import { ethers } from "ethers";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 export const ETH_PATH = "m/44'/60'/0'/0/0";
 
@@ -63,7 +64,7 @@ export function deriveFromSecret(rawSecret: string): DerivedWallet {
 
   const mnemonic = normalizePhrase(trimmed);
   if (!isValidMnemonic(mnemonic)) {
-    throw new Error("Invalid recovery phrase");
+    throw new Error(_translateCopy("copy.7be954e729be", { defaultValue: "Invalid recovery phrase" }));
   }
   const wallet = ethers.Wallet.fromMnemonic(mnemonic, ETH_PATH);
   return { secret: mnemonic, ethAddress: wallet.address, ethPrivateKey: wallet.privateKey };
@@ -99,5 +100,5 @@ export function privateKeyFromImportSecret(input: string): string {
   if (kind === "phrase" && isValidMnemonic(input)) {
     return deriveFromSecret(input).ethPrivateKey;
   }
-  throw new Error("Invalid recovery phrase or private key");
+  throw new Error(_translateCopy("copy.9a9a17963756", { defaultValue: "Invalid recovery phrase or private key" }));
 }

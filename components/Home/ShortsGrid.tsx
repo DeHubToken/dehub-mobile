@@ -171,7 +171,7 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
 
   const shuffleSeed = data?.pages?.[0]?.shuffleSeed;
   const endReached = hasNextPage === false;
-  const error = queryError ? (queryError as Error).message || "Failed to load" : null;
+  const error = queryError ? (queryError as Error).message || t("copy.3d2301d732a7", { defaultValue: "Failed to load" }) : null;
 
   const loadMore = useCallback(() => {
     if (initialLoading || loadingMore || refreshing || !hasNextPage) return;

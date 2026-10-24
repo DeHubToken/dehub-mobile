@@ -337,15 +337,15 @@ const ArcadeGameScreen = () => {
             `window.dispatchEvent(new MessageEvent('message',{data:${JSON.stringify({source:'trenchstar-host',key:d.key,...payload})},source:window,origin:location.origin})); true;`,
           );
           const token = await getAuthToken();
-          if (!token) { reply({error:'Sign in to DeHub to sync desks, join rooms and compete.'}); return; }
+          if (!token) { reply({error:t("copy.2f147e9971d6", { defaultValue: "Sign in to DeHub to sync desks, join rooms and compete." })}); return; }
           try {
             const response = await fetch(`${env.SUPABASE_URL}/functions/v1/trenchstar`, {
               method:'POST', headers:{'Content-Type':'application/json','x-dehub-token':token},
               body:JSON.stringify(d.body), signal:AbortSignal.timeout(20000),
             });
             const data = await response.json();
-            reply(response.ok && !data.error ? {data} : {error:data.error || 'Could not connect. Please retry.'});
-          } catch { reply({error:'Connection interrupted. Please retry.'}); }
+            reply(response.ok && !data.error ? {data} : {error:data.error || t("copy.d97728568f6d", { defaultValue: "Could not connect. Please retry." })});
+          } catch { reply({error:t("copy.f42ceacc6bc8", { defaultValue: "Connection interrupted. Please retry." })}); }
           return;
         }
         if (game?.socialPresence && d.source === 'gods-eye-view') {

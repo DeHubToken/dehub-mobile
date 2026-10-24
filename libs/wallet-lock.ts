@@ -101,7 +101,23 @@ export function closeWalletUnlockPrompt(): void {
  * recognises it after aa.write re-wraps it into a plain Error.
  */
 export function setWalletUnlockRefusal(message: string | null): void {
-  refusal = message;
+  refusal = message ? rememberWalletLockedMessage(message) : message;
+}
+
+/**
+ * Every lock message produced so far, in whatever language it was shown. A
+ * translated message no longer carries the English "wallet is locked", so a
+ * re-wrapped plain Error is recognised by its exact text instead.
+ */
+const lockedMessages = new Set<string>();
+
+export function rememberWalletLockedMessage(message: string): string {
+  if (message.trim()) lockedMessages.add(message.trim());
+  return message;
+}
+
+export function isKnownWalletLockedMessage(message: string): boolean {
+  return lockedMessages.has(message.trim());
 }
 
 export function takeWalletUnlockRefusal(): string | null {
@@ -120,7 +136,7 @@ export const WALLET_LOCKED_DEFAULT_MESSAGE = "Your wallet is locked. Unlock it t
 
 export class WalletLockedError extends Error {
   constructor(message = WALLET_LOCKED_DEFAULT_MESSAGE) {
-    super(message);
+    super(rememberWalletLockedMessage(message));
     this.name = "WalletLockedError";
   }
 }

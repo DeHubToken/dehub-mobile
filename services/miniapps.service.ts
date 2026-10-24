@@ -8,6 +8,7 @@
  */
 import { supabase } from "./supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface MiniAppListing {
   id: string;
@@ -64,7 +65,7 @@ export async function mintMiniAppToken(
   });
   const body = await res.json().catch(() => ({}));
   if (!res.ok || typeof body?.token !== "string") {
-    throw Object.assign(new Error(body?.error || "Sign-in failed."), { code: res.status === 401 ? "signin" : "failed" });
+    throw Object.assign(new Error(body?.error || _translateCopy("copy.451132c8190e", { defaultValue: "Sign-in failed." })), { code: res.status === 401 ? "signin" : "failed" });
   }
   return { token: body.token, expiresAt: Number(body.expiresAt) };
 }
@@ -85,7 +86,7 @@ async function userCall<T>(sessionToken: string, functionsBase: string, body: Re
     body: JSON.stringify(body),
   });
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw Object.assign(new Error(data?.error || "The request failed."), { code: "failed" });
+  if (!res.ok) throw Object.assign(new Error(data?.error || _translateCopy("copy.db4fb44737e7", { defaultValue: "The request failed." })), { code: "failed" });
   return data as T;
 }
 

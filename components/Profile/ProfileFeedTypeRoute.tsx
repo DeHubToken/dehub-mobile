@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useTranslation as _useCopy } from "react-i18next";
 import { View, type NativeSyntheticEvent, type NativeScrollEvent } from "react-native";
 import InfiniteFeed, { type InfiniteFeedRenderItemInfo } from "../Feed/InfiniteFeed";
 import FeedCard from "../Home/FeedCard";
@@ -37,10 +38,11 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   onScroll,
   listHeader,
   emptyKind = "songs",
-  emptyTitle = "No audio yet",
-  emptySubtitle = "Audio tracks will appear here",
+  emptyTitle,
+  emptySubtitle,
   onBeforeNavigate,
 }) => {
+  const { t: _copy } = _useCopy();
   const { isSignedIn } = useAuthState();
   const cinematicPhone = useCinematicPhone();
   const cinematic = cinematicPhone && !!listHeader;
@@ -99,8 +101,8 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
         emptyComponent={(
           <ProfileEmptyState
             kind={emptyKind}
-            title={emptyTitle}
-            subtitle={emptySubtitle}
+            title={emptyTitle ?? _copy("copy.f9a83d6ac749", { defaultValue: "No audio yet" })}
+            subtitle={emptySubtitle ?? _copy("copy.0ff0f3e32eca", { defaultValue: "Audio tracks will appear here" })}
           />
         )}
         // isVisible must be forwarded or FeedCard falls back to its own

@@ -28,6 +28,7 @@ import { getAuthMethod } from "../libs/auth.utils";
 import { ERC20Abi } from "../config/abis";
 import { ChainId, DHB_ADDRESSESS } from "../config/constants";
 import { settlePostCharge } from "./post-quota.service";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /** Chains a posting charge can be paid and confirmed on. Anything else is unsettleable. */
 export const QUOTA_CHAIN_IDS: number[] = [ChainId.BASE_MAINNET, ChainId.BSC_MAINNET];
@@ -88,14 +89,14 @@ export async function payPostQuota(
   // What the shortfall message calls the thing being paid for. Defaults to a
   // post because that is every existing caller; "Migrate all" passes its own,
   // since telling someone a batch of 300 videos is "this post" is nonsense.
-  subjectLabel = "This post",
+  subjectLabel = _translateCopy("copy.6b8b2992d430", { defaultValue: "This post" }),
 ): Promise<QuotaPaymentResult> {
   const amount = Math.ceil(amountDhb);
-  if (!Number.isFinite(amount) || amount <= 0) throw new Error("Nothing to pay.");
-  if (!treasury) throw new Error("No payment address configured.");
+  if (!Number.isFinite(amount) || amount <= 0) throw new Error(_translateCopy("copy.99c7a77baaf9", { defaultValue: "Nothing to pay." }));
+  if (!treasury) throw new Error(_translateCopy("copy.7d5825cf909d", { defaultValue: "No payment address configured." }));
 
   const { address } = await getAuthMethod();
-  if (!address) throw new Error("Sign in to pay for this post.");
+  if (!address) throw new Error(_translateCopy("copy.8b6d7b59cd4a", { defaultValue: "Sign in to pay for this post." }));
 
   const amountWei = ethers.utils.parseUnits(String(amount), 18);
 
@@ -150,12 +151,12 @@ export async function payPostQuota(
   // throwing, so ignoring the receipt would report a failed transfer as paid.
   const receipt = await tx.wait(1);
   if (receipt && receipt.status !== undefined && receipt.status !== 1) {
-    throw new Error("The DHB transfer did not go through. Nothing has been charged.");
+    throw new Error(_translateCopy("copy.f22b5983f90d", { defaultValue: "The DHB transfer did not go through. Nothing has been charged." }));
   }
 
   const txHash: string | undefined = receipt?.transactionHash || receipt?.hash || tx.hash;
   if (!txHash) {
-    throw new Error("The transfer went through but its hash is unknown — contact support.");
+    throw new Error(_translateCopy("copy.19193d550a1f", { defaultValue: "The transfer went through but its hash is unknown — contact support." }));
   }
 
   return { txHash, chainId: payable.chainId };

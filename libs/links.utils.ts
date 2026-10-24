@@ -5,6 +5,7 @@ import * as WebBrowser from "expo-web-browser";
 import { supportedNetworks } from "../config/web3.constants";
 import { normalizeSocialUrl } from './social-links';
 import { inAppDehubUrl } from './in-app-dehub-url';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /** Open a DeHub link on its app screen. True when it was handled. */
 function openDehubLinkInApp(url: string): boolean {
@@ -122,7 +123,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?facebook\.com\/[A-Za-z0-9\.]{3,}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid facebook.com profile/page URL or handle" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.eeb22fa8250a", { defaultValue: "Enter a valid facebook.com profile/page URL or handle" }) };
   },
   instagram(urlOrHandle: string) {
     const v = trimInput(urlOrHandle);
@@ -131,7 +132,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?instagram\.com\/[A-Za-z0-9._]{1,30}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid instagram.com username or handle" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.fcf6c0caef78", { defaultValue: "Enter a valid instagram.com username or handle" }) };
   },
   twitter(urlOrHandle: string) {
     const v = trimInput(urlOrHandle);
@@ -140,7 +141,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?(x\.com|twitter\.com)\/[A-Za-z0-9_]{1,15}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid x.com/twitter.com username or handle" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.8a97e490255b", { defaultValue: "Enter a valid x.com/twitter.com username or handle" }) };
   },
   discord(urlOrCode: string) {
     const v = trimInput(urlOrCode);
@@ -153,7 +154,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?discord\.(gg|com)\/(invite\/)?[A-Za-z0-9-]{2,}|^https?:\/\/discord\.com\/users\/[0-9]+$/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid discord.gg invite or discord.com/users link" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.b584d48db4f3", { defaultValue: "Enter a valid discord.gg invite or discord.com/users link" }) };
   },
   tiktok(urlOrHandle: string) {
     const v = trimInput(urlOrHandle);
@@ -163,7 +164,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?tiktok\.com\/@[A-Za-z0-9_.]{1,24}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid TikTok username or profile URL" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.bbcf8a431fb3", { defaultValue: "Enter a valid TikTok username or profile URL" }) };
   },
   youtube(urlOrHandle: string) {
     const v = trimInput(urlOrHandle);
@@ -172,7 +173,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/(channel\/|c\/|@)?[A-Za-z0-9_-]{1,}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid YouTube channel URL or handle" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.06cbf3db335f", { defaultValue: "Enter a valid YouTube channel URL or handle" }) };
   },
   telegram(urlOrHandle: string) {
     const v = trimInput(urlOrHandle);
@@ -181,7 +182,7 @@ const validators = {
     const re = /^https?:\/\/(www\.)?(t\.me|telegram\.me)\/[A-Za-z0-9_]{3,32}(?:\/?|$)/i;
     return re.test(normalized)
       ? { valid: true, normalized }
-      : { valid: false, normalized: v, reason: "Enter a valid Telegram username or t.me link" };
+      : { valid: false, normalized: v, reason: _translateCopy("copy.ef1c9dfc5e83", { defaultValue: "Enter a valid Telegram username or t.me link" }) };
   },
 } as const;
 

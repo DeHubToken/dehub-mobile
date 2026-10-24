@@ -345,7 +345,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     [data],
   );
   const endReached = hasNextPage === false;
-  const error = queryError ? (queryError as Error).message || "Failed to load" : null;
+  const error = queryError ? (queryError as Error).message || t("copy.3d2301d732a7", { defaultValue: "Failed to load" }) : null;
 
   const loadMore = useCallback(() => {
     if (initialLoading || loadingMore || refreshing || !hasNextPage) return;

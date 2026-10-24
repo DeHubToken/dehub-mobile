@@ -19,6 +19,7 @@ import { withWalletHeader } from './supabase-wallet-client';
 import { contentTypeForExtension, fileExtension, uploadLocalFileToBucket } from './storage-upload';
 import { NATIVE, evmProvider, quoteSwap, runSwap, sendEvmTx, type SwapCall } from './dex-evm-swap';
 import { readWithTimeout } from './dex-read-timeout';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export type PoolChain = 'base' | 'ethereum' | 'robinhood' | 'solana';
 export const POOL_CHAINS: PoolChain[] = ['base', 'ethereum', 'robinhood', 'solana'];
@@ -110,7 +111,7 @@ export async function getPool(chain: PoolChain, tokenAddress: string): Promise<D
 /** Unwrap the server's own refusal instead of supabase-js's "non-2xx status code". */
 async function callPoolFunction<T>(body: Record<string, unknown>, walletAddress: string | null): Promise<T> {
   const headers = walletAddress ? await dehubAuthHeaders(walletAddress) : {};
-  if (walletAddress && !headers['x-dehub-token']) throw new Error('Sign in again to open a pool.');
+  if (walletAddress && !headers['x-dehub-token']) throw new Error(_translateCopy('copy.3dd40606a7c5', { defaultValue: 'Sign in again to open a pool.' }));
   const { data, error } = await supabase.functions.invoke('dex-pool-create', { body, ...(Object.keys(headers).length ? { headers } : {}) });
   if (error) {
     const context = (error as { context?: Response }).context;
@@ -139,7 +140,7 @@ export function isAcceptedPoolImage(image: PickedImage): boolean {
 }
 
 export async function uploadPoolImage(image: PickedImage): Promise<string> {
-  if (!isAcceptedPoolImage(image)) throw new Error('Choose a PNG, JPG, WebP or GIF of 5 MB or less.');
+  if (!isAcceptedPoolImage(image)) throw new Error(_translateCopy('copy.eccadd137f2c', { defaultValue: 'Choose a PNG, JPG, WebP or GIF of 5 MB or less.' }));
   const ext = fileExtension(image, 'png').replace('jpeg', 'jpg');
   return uploadLocalFileToBucket({
     bucket: 'community-media', path: `dex-pools/${Crypto.randomUUID()}.${ext}`, uri: image.uri,
@@ -209,13 +210,13 @@ export async function planFee(asset: FeeAsset, feeDhb: number, assetUsd: number,
   const dhbUnits = feeDhbUnits(feeDhb);
   if (asset.symbol === 'DHB') {
     const balance = await readWithTimeout(new ethers.Contract(DHB_BASE, ERC20, evmProvider(ChainId.BASE_MAINNET)).balanceOf(walletAddress) as Promise<ethers.BigNumber>, 'DHB balance');
-    if (BigInt(balance.toString()) < dhbUnits) throw new Error(`Not enough DHB on Base: ${ethers.utils.formatUnits(dhbUnits.toString(), 18)} needed`);
+    if (BigInt(balance.toString()) < dhbUnits) throw new Error(_translateCopy('copy.296fa7255dc3', { defaultValue: 'Not enough DHB on Base: {{value1}} needed', value1: ethers.utils.formatUnits(dhbUnits.toString(), 18) }));
     return { asset, feeDhb: dhbUnits, swap: null };
   }
-  if (!(assetUsd > 0)) throw new Error(`No ${asset.symbol} price is available right now`);
+  if (!(assetUsd > 0)) throw new Error(_translateCopy('copy.d7de421562cb', { defaultValue: 'No {{value1}} price is available right now', value1: asset.symbol }));
   const swapIn = BigInt(ethers.utils.parseUnits((POOL_FEE_USD * SWAP_HEADROOM / assetUsd).toFixed(asset.decimals === 6 ? 6 : 12), asset.decimals).toString());
   const swap = await quoteSwap({ chainId: ChainId.BASE_MAINNET, tokenIn: asset.address, tokenOut: DHB_BASE, amountIn: swapIn, recipient: walletAddress, slippageBps: 100 });
-  if (swap.minAmountOut < dhbUnits) throw new Error(`That ${asset.symbol} does not swap into enough DHB right now`);
+  if (swap.minAmountOut < dhbUnits) throw new Error(_translateCopy('copy.2d34f6196636', { defaultValue: 'That {{value1}} does not swap into enough DHB right now', value1: asset.symbol }));
   return { asset, feeDhb: dhbUnits, swap };
 }
 

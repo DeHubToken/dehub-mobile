@@ -21,6 +21,7 @@ import * as Clipboard from 'expo-clipboard';
 import { Asset } from 'expo-asset';
 import { toastError, toastSuccess } from './toast';
 import { createLogger } from './logger';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const log = createLogger('assistantMedia');
 
@@ -118,15 +119,15 @@ export async function saveToLibrary(uri: string, kind: 'image' | 'video'): Promi
   try {
     const { status } = await MediaLibrary.requestPermissionsAsync();
     if (status !== 'granted') {
-      toastError('Allow photo library access to save this');
+      toastError(_translateCopy('copy.89cff0ebd55b', { defaultValue: 'Allow photo library access to save this' }));
       return;
     }
     const local = await materialise(uri, kind);
     await MediaLibrary.saveToLibraryAsync(local);
-    toastSuccess(kind === 'video' ? 'Video saved' : 'Image saved');
+    toastSuccess(kind === 'video' ? _translateCopy('copy.55ee4da247b0', { defaultValue: 'Video saved' }) : _translateCopy('copy.5bd9e016e866', { defaultValue: 'Image saved' }));
   } catch (err) {
     log.error('save failed:', err);
-    toastError(kind === 'video' ? 'Failed to save video' : 'Failed to save image');
+    toastError(kind === 'video' ? _translateCopy('copy.350564d8416e', { defaultValue: 'Failed to save video' }) : _translateCopy('copy.e6255632a5bb', { defaultValue: 'Failed to save image' }));
   }
 }
 
@@ -197,10 +198,10 @@ export async function copyImage(uri: string): Promise<void> {
     }
     if (!base64) throw new Error('Nothing to copy');
     await Clipboard.setImageAsync(base64);
-    toastSuccess('Image copied');
+    toastSuccess(_translateCopy('copy.d2f93ee383fa', { defaultValue: 'Image copied' }));
   } catch (err) {
     log.error('copy failed:', err);
-    toastError('Could not copy that image');
+    toastError(_translateCopy('copy.0aafbcacc295', { defaultValue: 'Could not copy that image' }));
   }
 }
 

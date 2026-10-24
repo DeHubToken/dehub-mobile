@@ -84,7 +84,7 @@ export function useCreateUsernameOffer() {
     mutationFn: usernameOffersService.create,
     onSuccess: (offer) => {
       invalidateMarket(qc);
-      toastSuccess(`Offer sent for @${offer.username}`);
+      toastSuccess(_copy("copy.66c7c36376a3", { defaultValue: "Offer sent for @{{value1}}", value1: offer.username }));
     },
     onError: (err) => toastError(err, _copy("copy.40a8c684df9d", { defaultValue: "Could not make that offer" })),
   });
@@ -101,7 +101,7 @@ export function useAcceptUsernameOffer() {
       invalidateMarket(qc);
       // Said as a next step rather than as a completion: the owner still holds
       // the handle, and will until the buyer actually pays for it.
-      toastSuccess(`Offer accepted — @${offer.username} is held for them until they pay`);
+      toastSuccess(_copy("copy.6d5c9edde482", { defaultValue: "Offer accepted — @{{value1}} is held for them until they pay", value1: offer.username }));
     },
     onError: (err) => toastError(err, _copy("copy.655546c00fb5", { defaultValue: "Could not accept that offer" })),
   });
