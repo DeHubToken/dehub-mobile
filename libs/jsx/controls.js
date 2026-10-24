@@ -108,6 +108,8 @@ function paintChildren(children) {
 
 function controlProps(props) {
   if (!material || !props || (typeof props.onPress !== 'function' && props.accessibilityRole !== 'button')) return props;
+  // Picture controls own their dark fill as well as their white labels.
+  if (typeof props.className === 'string' && /(?:^|\s)dark-surface(?=\s|$)/.test(props.className)) return props;
   // Empty colour swatches and aspect-ratio preview tiles carry content colours.
   const restingStyle = typeof props.style === 'function'
     ? props.style({ pressed: false, hovered: false, focused: false }) : props.style;
