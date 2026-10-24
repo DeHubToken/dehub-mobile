@@ -2513,7 +2513,11 @@
       "agent": "اِجینٹ",
       "action": "عمل",
       "schedule": "تاریخ",
-      "filter": "فیلٹر اکیویٹی"
+      "filter": "فیلٹر اکیویٹی",
+      "dehub_vote": "پوسٹوں کا رد عمل دیں",
+      "dehub_follow": "اکاؤنٹس کو فالو کریں",
+      "dehub_update_profile": "پروفائل ایڈیٹ کریں",
+      "dehub_stream_timeout": "سٹریم چٹ کا میڈریٹ کریں"
     }
   },
   "hero": {

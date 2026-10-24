@@ -2506,7 +2506,16 @@
       "agent": "代理",
       "action": "行动",
       "schedule": "日程",
-      "filter": "筛选活动"
+      "filter": "筛选活动",
+      "streamId": "流程帖 ID",
+      "webhook": "Discord 警报网钩（可选）",
+      "correction": "修正",
+      "shared": "共享",
+      "voice": "语气与语调",
+      "knowledge": "参考资料",
+      "liveNews": "在自主生活期间回应当前新闻",
+      "subject": "主题或回复风格",
+      "useBuilder": "使用这些说明"
     }
   },
   "hero": {
