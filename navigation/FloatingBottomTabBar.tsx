@@ -272,8 +272,7 @@ const NavButton = memo<{
       >
         <KeepDarkScope>
           <View pointerEvents="none" style={[styles.centerIconWrap, styles.centerInk]}>
-            <View style={[styles.createStroke, { width: 20, height: 2, backgroundColor: "#FFFFFF" }]} />
-            <View style={[styles.createStroke, { width: 2, height: 20, backgroundColor: "#FFFFFF" }]} />
+            <Icon name="Plus" size={28} color="#FFFFFF" />
           </View>
         </KeepDarkScope>
       </NativeAnimatedPressable>
@@ -299,9 +298,7 @@ const NavButton = memo<{
             skin && skin.centre,
           ]}
         >
-          {/* Native strokes stay visible without an elevated blur surface or deferred SVG mount. */}
-          <View style={[styles.createStroke, { width: 20, height: 2, backgroundColor: glyphColor }]} />
-          <View style={[styles.createStroke, { width: 2, height: 20, backgroundColor: glyphColor }]} />
+          <Icon name="Plus" size={28} color={glyphColor} />
         </View>
       </NativeAnimatedPressable>
     );
@@ -758,10 +755,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#0B0B0D",
     borderColor: "transparent",
     boxShadow: "0px 2px 8px rgba(0,0,0,0.18)",
-  },
-  createStroke: {
-    position: "absolute",
-    borderRadius: 1,
   },
   activeGlow: {
     // Web: drop-shadow only on the active icon — inactive tabs stay flat/dim.
