@@ -3718,7 +3718,14 @@
     "title": "Mensagens",
     "searchConversations": "Buscar conversas...",
     "failedToLoad": "Falha ao carregar conversas",
-    "tryAgain": "Tentar novamente"
+    "tryAgain": "Tentar novamente",
+    "lockedTitle": "Desbloqueie para ler as suas mensagens",
+    "lockedBody": "O seu chat com {{name}} está encriptado de ponta a ponta. Desbloqueie a sua carteira neste dispositivo para abri-la.",
+    "lockedUnlock": "Desbloquear carteira",
+    "lockedTryAgain": "Tentar novamente",
+    "lockedPrivate": "Só tu os podes ler",
+    "undecryptableRun_one": "A mensagem {{count}} não pode ser aberta neste dispositivo",
+    "undecryptableRun_other": "As mensagens {{count}} não podem ser abertas neste dispositivo"
   },
   "music": {
     "chartOrder": "Ordem do gráfico de áudio",

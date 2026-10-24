@@ -4758,7 +4758,14 @@
     "send": "Odoslať",
     "online": "Online",
     "offline": "Offline",
-    "lastSeen": "Naposledy videný"
+    "lastSeen": "Naposledy videný",
+    "lockedTitle": "Odomknite a prečítajte si svoje správy",
+    "lockedBody": "Váš chat s používateľom {{name}} je šifrovaný počas celého spojenia. Odomkni peňaženku v tomto zariadení a otvor ju.",
+    "lockedUnlock": "Odomknúť peňaženku",
+    "lockedTryAgain": "Skúsiť znova",
+    "lockedPrivate": "Iba vy si ich môžete prečítať",
+    "undecryptableRun_one": "Správu {{count}} nie je možné otvoriť v tomto zariadení",
+    "undecryptableRun_other": "Správy {{count}} nie je možné otvoriť v tomto zariadení"
   },
   "music": {
     "chartOrder": "Poradie v zvukovom grafe",

@@ -4690,7 +4690,14 @@
     "title": "Poruke",
     "searchConversations": "Pretraži razgovore...",
     "failedToLoad": "Učitavanje razgovora nije uspjelo",
-    "tryAgain": "Pokušaj ponovo"
+    "tryAgain": "Pokušaj ponovo",
+    "lockedTitle": "Otključajte kako biste pročitali poruke",
+    "lockedBody": "Vaš chat s korisnikom {{name}} šifriran je s kraja na kraj. Otključajte novčanik na ovom uređaju da biste ga otvorili.",
+    "lockedUnlock": "Otključaj novčanik",
+    "lockedTryAgain": "Pokušajte ponovno",
+    "lockedPrivate": "Samo ih vi možete pročitati",
+    "undecryptableRun_one": "Poruka {{count}} ne može se otvoriti na ovom uređaju",
+    "undecryptableRun_other": "Poruke ({{count}}) ne mogu se otvoriti na ovom uređaju"
   },
   "music": {
     "chartOrder": "Redoslijed audio grafikona",

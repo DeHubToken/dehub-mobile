@@ -4484,7 +4484,14 @@
     "title": "الرسائل",
     "searchConversations": "ابحث في المحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
-    "tryAgain": "حاول مرة ثانية"
+    "tryAgain": "حاول مرة ثانية",
+    "lockedTitle": "افتح عشان تقرأ رسائلك",
+    "lockedBody": "دردشتك مع {{name}} مشفرة من الطرف للطرف. افتح محفظتك على هالجهاز عشان تفتحها.",
+    "lockedUnlock": "افتح المحفظة",
+    "lockedTryAgain": "جرّب مرة ثانية",
+    "lockedPrivate": "بس إنت تقدر تقراها",
+    "undecryptableRun_one": "ما يمديك تفتح رسالة {{count}} على هالجهاز",
+    "undecryptableRun_other": "ما يمديك تفتح رسائل {{count}} على هالجهاز"
   },
   "music": {
     "chartOrder": "ترتيب شارت الموسيقى",

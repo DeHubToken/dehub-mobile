@@ -4655,7 +4655,14 @@
     "title": "સંદેશાઓ",
     "searchConversations": "વાતચીત શોધો...",
     "failedToLoad": "વાતચીત લોડ કરી શકાઈ નહીં",
-    "tryAgain": "ફરી પ્રયાસ કરો"
+    "tryAgain": "ફરી પ્રયાસ કરો",
+    "lockedTitle": "તમારા સંદેશાઓ વાંચવા માટે અનલૉક કરો",
+    "lockedBody": "{{name}} સાથેની તમારી ચેટ એન્ડ-ટુ-એન્ડ એન્ક્રિપ્ટેડ છે. તેને ખોલવા માટે આ ઉપકરણ પર તમારા વૉલેટને અનલૉક કરો.",
+    "lockedUnlock": "વૉલેટ અનલૉક કરો",
+    "lockedTryAgain": "ફરીથી પ્રયાસ કરો",
+    "lockedPrivate": "ફક્ત તમે જ તેમને વાંચી શકો છો",
+    "undecryptableRun_one": "{{count}} સંદેશ આ ઉપકરણ પર ખોલી શકાતો નથી",
+    "undecryptableRun_other": "{{count}} સંદેશાઓ આ ઉપકરણ પર ખોલી શકાતા નથી"
   },
   "music": {
     "chartOrder": "ઑડિઓ ચાર્ટ ક્રમ",

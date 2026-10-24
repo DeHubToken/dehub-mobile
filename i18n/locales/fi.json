@@ -3716,7 +3716,14 @@
     "title": "Viestit",
     "searchConversations": "Etsi keskusteluista...",
     "failedToLoad": "Keskustelujen lataus epäonnistui",
-    "tryAgain": "Yritä uudelleen"
+    "tryAgain": "Yritä uudelleen",
+    "lockedTitle": "Avaa lukitus lukeaksesi viestisi",
+    "lockedBody": "Keskustelusi käyttäjän {{name}} kanssa on täysin salattu. Avaa lompakkosi tällä laitteella avataksesi sen.",
+    "lockedUnlock": "Avaa lompakko",
+    "lockedTryAgain": "Yritä uudelleen",
+    "lockedPrivate": "Vain sinä voit lukea ne",
+    "undecryptableRun_one": "{{count}} viestiä ei voi avata tällä laitteella",
+    "undecryptableRun_other": "{{count}} viestiä ei voi avata tällä laitteella"
   },
   "music": {
     "chartOrder": "Audiokaavion järjestys",

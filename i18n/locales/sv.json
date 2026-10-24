@@ -3716,7 +3716,14 @@
     "title": "Meddelanden",
     "searchConversations": "Sök konversationer...",
     "failedToLoad": "Kunde inte ladda konversationer",
-    "tryAgain": "Försök igen"
+    "tryAgain": "Försök igen",
+    "lockedTitle": "Lås upp för att läsa dina meddelanden",
+    "lockedBody": "Din chatt med {{name}} är end-to-end-krypterad. Lås upp din plånbok på den här enheten för att öppna den.",
+    "lockedUnlock": "Lås upp plånboken",
+    "lockedTryAgain": "Försök igen",
+    "lockedPrivate": "Bara du kan läsa dem",
+    "undecryptableRun_one": "Meddelandet {{count}} kan inte öppnas på den här enheten",
+    "undecryptableRun_other": "{{count}} -meddelanden kan inte öppnas på den här enheten"
   },
   "music": {
     "chartOrder": "Ljuddiagramordning",

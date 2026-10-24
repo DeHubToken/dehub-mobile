@@ -4632,7 +4632,14 @@
     "title": "Nochrichtä",
     "searchConversations": "Gespräch sueche...",
     "failedToLoad": "Gespräch lade fehlgschlage",
-    "tryAgain": "Nomol probiere"
+    "tryAgain": "Nomol probiere",
+    "lockedTitle": "Entsperre, um dini Nachrichtä z läse",
+    "lockedBody": "Dini Chat mit {{name}} isch End-zu-End verschlüsslet. Entsperr dis Wallet uf däm Gerät, zum's öffne.",
+    "lockedUnlock": "Wallet entsperre",
+    "lockedTryAgain": "Nochmal probiere",
+    "lockedPrivate": "Nur du chasch sie läse",
+    "undecryptableRun_one": "{{count}} Nachricht cha uf däm Gerät nöd g'öffnet werde",
+    "undecryptableRun_other": "{{count}} Nachrichtä chöi uf däm Gerät nöd g'öffnet werde"
   },
   "music": {
     "chartOrder": "Wiedergabeliste Musikcharts",

@@ -4692,7 +4692,14 @@
     "title": "Ziņojumi",
     "searchConversations": "Meklēt sarunas...",
     "failedToLoad": "Sarunu ielāde neizdevās",
-    "tryAgain": "Mēģināt vēlreiz"
+    "tryAgain": "Mēģināt vēlreiz",
+    "lockedTitle": "Atbloķējiet, lai lasītu ziņojumus",
+    "lockedBody": "Jūsu tērzēšana ar {{name}} ir pilnībā šifrēta. Atbloķējiet maku šajā ierīcē, lai to atvērtu.",
+    "lockedUnlock": "Atbloķēt maku",
+    "lockedTryAgain": "Mēģināt vēlreiz",
+    "lockedPrivate": "Tikai jūs varat tos izlasīt",
+    "undecryptableRun_one": "{{count}} ziņojumu nevar atvērt šajā ierīcē",
+    "undecryptableRun_other": "{{count}} ziņojumus šajā ierīcē nevar atvērt"
   },
   "music": {
     "chartOrder": "Audio diagrammu secība",

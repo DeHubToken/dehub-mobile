@@ -4691,7 +4691,14 @@
     "title": "Mesazhet",
     "searchConversations": "Kërko bisedat...",
     "failedToLoad": "Dështoi ngarkimi i bisedave",
-    "tryAgain": "Provo Përsëri"
+    "tryAgain": "Provo Përsëri",
+    "lockedTitle": "Zhbllokohu për të lexuar mesazhet e tua",
+    "lockedBody": "Biseda jote me {{name}} është e koduar nga skaji në skaj. Zhblloko portofolin në këtë pajisje për ta hapur atë.",
+    "lockedUnlock": "Zhblloko portofolin",
+    "lockedTryAgain": "Provo përsëri",
+    "lockedPrivate": "Vetëm ti mund t 'i lexosh",
+    "undecryptableRun_one": "{{count}} mesazhi nuk mund të hapet në këtë pajisje",
+    "undecryptableRun_other": "{{count}} mesazhet nuk mund të hapen në këtë pajisje"
   },
   "music": {
     "chartOrder": "Rendi i grafikut audio",

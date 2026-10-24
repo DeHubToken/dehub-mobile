@@ -4655,7 +4655,14 @@
     "title": "הודעות",
     "searchConversations": "חפש שיחות...",
     "failedToLoad": "טעינת השיחות נכשלה",
-    "tryAgain": "נסה שוב"
+    "tryAgain": "נסה שוב",
+    "lockedTitle": "בטל את הנעילה כדי לקרוא את ההודעות שלך",
+    "lockedBody": "הצ'אט שלכם עם {{name}} מוצפן מקצה לקצה. פתח את הארנק במכשיר זה כדי לפתוח אותו.",
+    "lockedUnlock": "שחרור נעילת הארנק",
+    "lockedTryAgain": "ניסיון חוזר",
+    "lockedPrivate": "רק אתם יכולים לקרוא אותם",
+    "undecryptableRun_one": "לא ניתן לפתוח את ההודעה {{count}} במכשיר זה",
+    "undecryptableRun_other": "לא ניתן לפתוח הודעות {{count}} במכשיר זה"
   },
   "music": {
     "chartOrder": "סדר תרשים שמע",

@@ -3972,7 +3972,14 @@
     "title": "Mesej",
     "searchConversations": "Cari perbualan...",
     "failedToLoad": "Gagal memuatkan perbualan",
-    "tryAgain": "Cuba Lagi"
+    "tryAgain": "Cuba Lagi",
+    "lockedTitle": "Buka kunci untuk membaca mesej anda",
+    "lockedBody": "Sembang anda dengan {{name}} disulitkan hujung ke hujung. Buka kunci dompet anda pada peranti ini untuk membukanya.",
+    "lockedUnlock": "Buka kunci dompet",
+    "lockedTryAgain": "Cuba lagi",
+    "lockedPrivate": "Hanya anda yang boleh membacanya",
+    "undecryptableRun_one": "Mesej {{count}} tidak boleh dibuka pada peranti ini",
+    "undecryptableRun_other": "Mesej {{count}} tidak boleh dibuka pada peranti ini"
   },
   "music": {
     "chartOrder": "Susunan carta audio",
