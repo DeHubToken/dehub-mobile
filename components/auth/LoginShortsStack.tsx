@@ -121,7 +121,7 @@ function Lane({ clips, down, tileW, height, still, line }: {
   );
 }
 
-export default function LoginShortsStack({ viewportHeight }: { viewportHeight?: number }) {
+export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 }: { viewportHeight?: number; reservedHeight?: number }) {
   const { t } = useTranslation();
   const { theme, isLight, colors } = useAppTheme();
   const plain = theme === "system" || theme === "minimal";
@@ -140,7 +140,7 @@ export default function LoginShortsStack({ viewportHeight }: { viewportHeight?: 
   // Native navigation can give the sheet less space than the window reports.
   // Budget against the actual scroll frame, reserving room for the form.
   const availableHeight = viewportHeight ?? screenH - insets.top - insets.bottom;
-  const lanesH = Math.round(Math.min(520, Math.max(220, availableHeight - 360)));
+  const lanesH = Math.round(Math.min(520, Math.max(160, availableHeight - reservedHeight)));
 
   return (
     <View style={styles.root}>
