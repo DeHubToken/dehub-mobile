@@ -1440,7 +1440,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               <AudioVisualizer style={vizStyle} seed={seed} isPlaying={shownPlaying} hue={hue} position={position} height={animationHeight} />
             </View>
             {/* Frost: a pale haze at the line that melts into the deck. */}
-            <LinearGradient colors={material === 'light' ? ['rgba(245,248,250,.1)', 'rgba(233,238,243,.75)'] : material === 'glass' ? ['rgba(220,255,255,.05)', 'rgba(0,20,24,.35)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={material === 'light' ? ['rgba(245,248,250,.1)', '#e9eef3'] : material === 'glass' ? ['rgba(220,255,255,.05)', 'rgba(0,20,24,.35)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
           </View>
           {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} top={8} bottom={48} />}
           <StudioRim shadow={`inset 0px 1px 0px ${STUDIO_EDGE[material]}`} shape={motionShape} />
