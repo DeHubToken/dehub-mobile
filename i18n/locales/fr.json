@@ -1,4 +1,31 @@
 {
+  "dehubLinks": {
+    "kind": {
+      "app": "application",
+      "bounty": "prime",
+      "community": "communauté",
+      "communityInvite": "invitation de la communauté",
+      "event": "événement",
+      "film": "titre",
+      "link": "lien",
+      "listing": "article",
+      "post": "post",
+      "profile": "profil",
+      "proposal": "proposition",
+      "stage": "étape",
+      "store": "magasin"
+    }
+  },
+  "stageCover": {
+    "admitOne": "ADMIT ONE",
+    "live": "en direct",
+    "minutes": "{{minutes}} min",
+    "onAir": "À l'antenne",
+    "recorded": "ENRÉGISTRÉ",
+    "replay": "replay",
+    "stage": "scène",
+    "upcoming": "à venir"
+  },
   "agents.workspace.moderation": "Modération du direct",
   "agents.workspace.moderationHelp": "Activez d’abord l’autorisation de modération. Le compte doit être le créateur du direct ou un modérateur désigné. Les modes brouillon et approbation restent applicables. Les exclusions temporaires expirent automatiquement.",
   "agents.workspace.streamId": "Identifiant de la publication du direct",
@@ -555,6 +582,8 @@
     "postCount_other": "{{count}} publications"
   },
   "settings": {
+    "glass": "Glassy",
+    "shortsSaveFailed": "Échec de l'enregistrement des préférences Shorts",
     "showDislikesDesc": "Tout le monde peut ouvrir l'onglet « Je n'aime pas » de votre profil. Désactivé, vous seul pouvez le voir.",
     "showDislikes": "Montrer mes « je n'aime pas » à tout le monde",
     "shortsEnabledDesc": "Affichez l’onglet du fil Shorts et les carrousels Shorts sur l’accueil.",
@@ -739,7 +768,6 @@
     "immersive": "Immersif",
     "minimal": "Minimal",
     "cosmic": "Cosmic Pixels",
-    "glass": "Glass",
     "hazy": "Nuits Brumeuses",
     "swarms": "Essaims",
     "lavalamp": "Lampe à lave",
@@ -2310,6 +2338,9 @@
     "tryAgain": "Réessayer"
   },
   "music": {
+    "listeningCount_one": "{{count}} en écoute",
+    "listeningCount_other": "{{count}} en écoute",
+    "viewsCount_one": "{{views}} vue",
     "all": "Tout",
     "tracks": "Pistes",
     "videos": "Vidéos",
@@ -2353,7 +2384,6 @@
     "mostListened": "Les plus écoutées",
     "recentStages": "Récentes",
     "noStages": "Aucun Stage ici pour l’instant",
-    "listening": "à l’écoute",
     "mostLiked": "Les plus aimés",
     "mostRecent": "Les plus récents",
     "chartOrder": "Ordre du classement audio",
@@ -2367,7 +2397,7 @@
     "trendingWeek": "Tendances de la semaine",
     "newest": "Nouveautés",
     "videoChartOrder": "Ordre du classement des clips",
-    "viewsCount": "{{views}} vues"
+    "viewsCount_other": "{{views}} vues"
   },
   "notFound": {
     "title": "Page non trouvée",
@@ -3109,6 +3139,14 @@
     "legal": "Les tirages au sort sont promotionnels et ouverts aux titulaires de compte DeHub âgés de 18 ans ou plus, sans effet lorsque la loi locale les interdit. Le personnel de DeHub, les entrepreneurs et leurs ménages ne sont pas admissibles. Les prix ne sont pas échangeables contre de l'argent sauf indication contraire, et l'annonce de chaque tirage porte toutes ses conditions."
   },
   "dao": {
+    "status": {
+      "rejected": "Rejeté",
+      "open": "Ouvrir",
+      "expired": "Expiré",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "accepted": "Accepté"
+    },
     "votingPowerNote": "Le vote dure 7 jours. Le pouvoir de vote est la contribution cumulée en jetons de chaque contributeur à l'ouverture de cette proposition. Au moins 10 % doivent participer et Accepter doit l'emporter sur Refuser.",
     "votingClosed": "Vote clos",
     "voteWithdrawn": "Vote retiré",
@@ -3156,6 +3194,7 @@
     "pooledTotal": "{{amount}} jetons mis en commun"
   },
   "governance": {
+    "badgeHoldersOnly": "Porte-badges uniquement",
     "title": "Gouvernance",
     "proposalCount": "{{count}} proposition soumise",
     "proposalCount_other": "{{count}} propositions soumises",
@@ -4167,12 +4206,6 @@
       "clearDeadline": "Effacer l'échéance"
     },
     "status": {
-      "rejected": "Rejeté",
-      "open": "Ouvrir",
-      "expired": "Expiré",
-      "completed": "Terminé",
-      "cancelled": "Annulé",
-      "accepted": "Accepté",
       "open": "Ouverte",
       "pending": "En attente",
       "awarded": "Attribuée",
@@ -11566,6 +11599,13 @@
     "watch": "Regarder une publicité pour soutenir ce créateur"
   },
   "copy": {
+    "1aa7b1c1d5fb": "Merci !",
+    "20d4214b9d4b": "Voir les demandes expédiées",
+    "2971f9103f78": "Merci d'avoir aidé à améliorer DeHub — quelque chose que vous avez demandé est maintenant en ligne :",
+    "8f3dc69e83c4": "Votre retour expédié !",
+    "905392fbed15": "Merci d'avoir aidé à améliorer DeHub — {{value1}} choses que vous avez demandées sont maintenant en ligne :",
+    "bdd4f5015e96": "Fermer la notification de demande expédiée",
+    "da4c7c208cf4": "Vérifiez cela",
     "085cd98e8e2e": " Copier le lien",
     "c184b8c9592f": "Cela doit être une page sur dehub.io.",
     "9b44fb81d89e": "Page de destination",

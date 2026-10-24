@@ -1,4 +1,31 @@
 {
+  "dehubLinks": {
+    "kind": {
+      "app": "uygulama",
+      "bounty": "ödül",
+      "community": "topluluk",
+      "communityInvite": "topluluk daveti",
+      "event": "etkinlik",
+      "film": "başlık",
+      "link": "link",
+      "listing": "ürün",
+      "post": "gönderi",
+      "profile": "profil",
+      "proposal": "teklif",
+      "stage": "aşama",
+      "store": "mağaza"
+    }
+  },
+  "stageCover": {
+    "admitOne": "BİRİNİ KABUL ET",
+    "live": "canlı",
+    "minutes": "{{minutes}} dk",
+    "onAir": "YAYINDA",
+    "recorded": "KAYDEDİLDİ",
+    "replay": "yeniden oynat",
+    "stage": "aşama",
+    "upcoming": "yaklaşan"
+  },
   "agents.workspace.moderation": "Canlı sohbet moderasyonu",
   "agents.workspace.moderationHelp": "Önce moderasyon iznini etkinleştirin. Hesap, yayının sahibi veya atanmış bir moderatör olmalıdır. Onay ve taslak modları geçerliliğini korur. Geçici kısıtlamalar otomatik olarak sona erer.",
   "agents.workspace.streamId": "Yayın gönderisi kimliği",
@@ -555,6 +582,8 @@
     "postCount_other": "{{count}} gönderi"
   },
   "settings": {
+    "glass": "Camsı",
+    "shortsSaveFailed": "Kısa devre tercihi kaydedilemedi",
     "showDislikesDesc": "Herkes profilindeki Beğenilmeyenler sekmesini açabilir. Bu kapalıyken yalnızca sen görebilirsin.",
     "showDislikes": "Beğenmediklerimi herkese göster",
     "shortsEnabledDesc": "Kısa videolar (Shorts) sekmesini ve Anasayfadaki Shorts karuselini göster.",
@@ -739,7 +768,6 @@
     "immersive": "Göğüsleyici",
     "minimal": "Minimum",
     "cosmic": "Cosmic Pixels",
-    "glass": "Glass",
     "hazy": "Puslu Geceler",
     "swarms": "Sürüler",
     "lavalamp": "Lav Lambası",
@@ -2310,6 +2338,9 @@
     "encryptionSetupFailed": "Şifreleme ayarı başarısız oldu. Lütfen tekrar deneyin."
   },
   "music": {
+    "listeningCount_one": "{{count}} dinleme",
+    "listeningCount_other": "{{count}} dinleme",
+    "viewsCount_one": "{{views}} görüntüleme",
     "all": "Tümü",
     "tracks": "Parçalar",
     "videos": "Videolar",
@@ -2353,7 +2384,6 @@
     "mostListened": "En çok dinlenen",
     "recentStages": "Son",
     "noStages": "Burada henüz Stage yok",
-    "listening": "dinliyor",
     "mostLiked": "En çok beğenilenler",
     "mostRecent": "En yeniler",
     "chartOrder": "Ses sıralaması",
@@ -2367,7 +2397,7 @@
     "trendingWeek": "Bu hafta trend",
     "newest": "En yeni",
     "videoChartOrder": "Müzik video listesi sıralaması",
-    "viewsCount": "{{views}} görüntülenme"
+    "viewsCount_other": "{{views}} görüntülenme"
   },
   "notFound": {
     "title": "Sayfa Bulunamadı",
@@ -3105,6 +3135,14 @@
     "legal": "Ödül çekilişleri promosyon niteliğindedir ve 18 yaş ve üstü DeHub hesap sahiplerine açıktır, yerel yasaların yasakladığı yerlerde geçersizdir. DeHub personeli, yükleniciler ve hane halkı uygun değildir. Belirtilmedikçe ödüller nakde çevrilemez ve her çekilişin kendi duyurusu tam şartlarını taşır."
   },
   "dao": {
+    "status": {
+      "rejected": "Reddedildi",
+      "open": "Açık",
+      "expired": "Süresi doldu",
+      "completed": "Tamamlandı",
+      "cancelled": "İptal edildi",
+      "accepted": "Kabul edildi"
+    },
     "votingPowerNote": "Oylama 7 gün sürer. Oylama gücü, bu teklif açıldığında her katılımcının kümülatif jeton katkısıdır. En az %10 katılmalı ve Kabul, Reddi yenmelidir.",
     "votingClosed": "Oylama kapandı",
     "voteWithdrawn": "Oy geri çekildi",
@@ -3152,6 +3190,7 @@
     "pooledTotal": "{{amount}} token havuzlandı"
   },
   "governance": {
+    "badgeHoldersOnly": "Sadece rozet tutucular",
     "title": "Yönetişim",
     "proposalCount": "{{count}} öneri gönderildi",
     "proposalCount_other": "{{count}} öneri gönderildi",
@@ -4163,12 +4202,6 @@
       "clearDeadline": "Son tarihi temizle"
     },
     "status": {
-      "rejected": "Reddedildi",
-      "open": "Açık",
-      "expired": "Süresi doldu",
-      "completed": "Tamamlandı",
-      "cancelled": "İptal edildi",
-      "accepted": "Kabul edildi",
       "open": "Açık",
       "pending": "Bekliyor",
       "awarded": "Atandı",
@@ -11547,6 +11580,13 @@
     "update": "Şimdi güncelle"
   },
   "copy": {
+    "1aa7b1c1d5fb": "Teşekkürler!",
+    "20d4214b9d4b": "Gönderilen talepleri görüntüle",
+    "2971f9103f78": "DeHub'ı daha iyi hale getirmeye yardımcı olduğunuz için teşekkürler. İstediğiniz bir şey artık yayında:",
+    "8f3dc69e83c4": "Geri bildiriminiz gönderildi!",
+    "905392fbed15": "DeHub'ı daha iyi hale getirmeye yardımcı olduğunuz için teşekkürler — {{value1}} istediğiniz şeyler artık yayında:",
+    "bdd4f5015e96": "Gönderilen istek bildirimini kapat",
+    "da4c7c208cf4": "Göz atın",
     "085cd98e8e2e": " Bağlantıyı kopyala",
     "c184b8c9592f": "Bu dehub.io'da bir sayfa olmalı.",
     "9b44fb81d89e": "Hedef sayfa",
