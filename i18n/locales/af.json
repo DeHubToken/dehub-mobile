@@ -160,7 +160,8 @@
     "f6f4688ff23d": "Stuur",
     "fc036ea0e9f0": "Skakel na 'n spesifieke bladsy",
     "fef6a1a97127": "Gevolg deur {{value1}}",
-    "ff701a069af2": "Bevestig & Ontsluit"
+    "ff701a069af2": "Bevestig & Ontsluit",
+    "90cdcff9db62": "Verwerp"
   },
   "dehubLinks": {
     "kind": {
@@ -1183,7 +1184,8 @@
     "themeColorBrand": "Handelsmerk",
     "themeColorBrandDesc": "Gebruik die kleure van jou profielfoto",
     "themeColorBrandNoAvatar": "Voeg 'n profielfoto by om handelsmerkkleure te gebruik",
-    "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie"
+    "themeColorBrandFailed": "Kon nie kleure uit jou profielfoto lees nie",
+    "showDislikesDesc": "Enigiemand kan die afkeure-oortjie op jou profiel oopmaak. As dit af is, kan jy dit net sien."
   },
   "common": {
     "refresh": "Verfris",
@@ -2665,7 +2667,9 @@
       "postText": "Plaas teks",
       "queueHelp": "Publiseer jou presiese teks. Gedeelde 20-minuut-posgaping is van toepassing. Geen ontginning nie.",
       "queuePost": "Wagtou plasing",
-      "viewPost": "Besigtig plasing"
+      "viewPost": "Besigtig plasing",
+      "unlike": "In teenstelling met",
+      "unliked": "Hou nie van nie"
     },
     "tasks": {
       "preparing": "Voorbereiding taak...",
@@ -2683,8 +2687,10 @@
         "dislike": "Hou Nie Van",
         "filterHelp": "Laat filters leeg vir alle plasings. As beide opgestel is, moet albei ooreenstem. Bestaande reaksies word bewaar; die keuse van die teenoorgestelde reaksie verander dit.",
         "last1h": "Laaste uur",
-        "last30d": "Laaste 30 dae"
-      }
+        "last30d": "Laaste 30 dae",
+        "allTime": "Alle tye"
+      },
+      "run": "Hardloop vinnig"
     },
     "title": "AI Agente",
     "connectToManage": "Koppel om AI Agente te bestuur",

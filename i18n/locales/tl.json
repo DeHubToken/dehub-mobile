@@ -158,7 +158,10 @@
     "f6f4688ff23d": "Ipadala",
     "fc036ea0e9f0": "Mag - link sa isang tukoy na pahina",
     "fef6a1a97127": "Sinundan ng {{value1}}",
-    "ff701a069af2": "Pangalaga at Pagsasabit"
+    "ff701a069af2": "Pangalaga at Pagsasabit",
+    "ae4410aa9943": "I - paste ang anumang pahina ng DeHub — isang seksyon ng docs, isang bounty, ang iyong profile. Iniuugnay pa rin ng link sa ibaba ang pagbisita sa iyo, pagkatapos ay dadalhin sila nang diretso doon.",
+    "d12860c21e78": "Nakopya na ang link",
+    "99ca327a47b5": "Pangunahing graphic para sa {{value1}}"
   },
   "dehubLinks": {
     "kind": {
@@ -172,7 +175,9 @@
       "profile": "Profile",
       "proposal": "panukala",
       "stage": "entablado",
-      "store": "magasin"
+      "store": "magasin",
+      "communityInvite": "imbitasyon sa komunidad",
+      "listing": "item"
     }
   },
   "postGate": {
@@ -2680,7 +2685,9 @@
       "postText": "Email *",
       "queueHelp": "Ipinapalabas ang iyong eksaktong teksto. Nakatutok na 20-minuto na pagkakalipat ng post ay nakatutok. Wala pang pagmimina.",
       "queuePost": "Email *",
-      "unliked": "Hindi nagustuhan"
+      "unliked": "Hindi nagustuhan",
+      "viewPost": "Tingnan ang post",
+      "unlike": "Hindi tulad ng"
     },
     "tasks": {
       "preparing": "Inihahanda ang gawain...",

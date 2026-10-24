@@ -6,7 +6,8 @@
     "recorded": "已录制",
     "replay": "回放",
     "stage": "舞台",
-    "upcoming": "即将上线"
+    "upcoming": "即将上线",
+    "admitOne": "承认一"
   },
   "copy": {
     "1aa7b1c1d5fb": "谢谢！",
@@ -156,7 +157,11 @@
     "f6f4688ff23d": "发送",
     "fc036ea0e9f0": "链接到一个特定页面",
     "fef6a1a97127": "由 {{value1}} 跟随",
-    "ff701a069af2": "验证与解锁"
+    "ff701a069af2": "验证与解锁",
+    "085cd98e8e2e": "复制链接",
+    "0e9161011702": "刷新",
+    "f6ec7f0c995b": "可视化",
+    "b8e082c979d9": "创建投票"
   },
   "dehubLinks": {
     "kind": {
@@ -1177,7 +1182,8 @@
     "themeColorBrand": "品牌",
     "themeColorBrandDesc": "用你嘞头像颜色",
     "themeColorBrandNoAvatar": "添个头像才能用品牌色",
-    "themeColorBrandFailed": "打你嘞头像读不出颜色"
+    "themeColorBrandFailed": "打你嘞头像读不出颜色",
+    "showDislikes": "显示我不喜欢的内容给每个人"
   },
   "common": {
     "refresh": "刷新",
@@ -1374,7 +1380,8 @@
     "giftBoost": "赠送一次助推",
     "giftBoostDesc": "把你的一次助推花在这个帖子上",
     "askAi": "问AI",
-    "aiOverview": "AI 概览"
+    "aiOverview": "AI 概览",
+    "skippableSections": "跳过部分内容"
   },
   "filters": {
     "sort": "排序",
@@ -2210,7 +2217,8 @@
     "title": "消息",
     "searchConversations": "搜索对话...",
     "failedToLoad": "加载对话失败",
-    "tryAgain": "再试一下"
+    "tryAgain": "再试一下",
+    "lockedTryAgain": "再试一次"
   },
   "music": {
     "listeningCount_one": "{{count}} 正在听歌",
@@ -2625,7 +2633,10 @@
       "queuePost": "队列帖子",
       "unlike": "不一样",
       "unliked": "不喜欢",
-      "viewPost": "查看帖子"
+      "viewPost": "查看帖子",
+      "editComment": "编辑评论",
+      "postText": "帖子文本",
+      "more": "显示更多活动"
     },
     "tasks": {
       "preparing": "准备任务…",
@@ -6565,7 +6576,10 @@
     "segmentLabel": {
       "filler": "填充内容",
       "outro": "谢幕",
-      "sponsor": "赞助商"
+      "sponsor": "赞助商",
+      "interaction": "点赞 & 订阅",
+      "selfpromo": "自我推广",
+      "intro": "介绍"
     },
     "volume": "音量级别",
     "openSettings": "打开设置",

@@ -159,7 +159,9 @@
     "f6f4688ff23d": "보내기",
     "fc036ea0e9f0": "특정 페이지로의 링크",
     "fef6a1a97127": "{{value1}}에 의해 따라가기",
-    "ff701a069af2": "인증 및 잠금 해제"
+    "ff701a069af2": "인증 및 잠금 해제",
+    "7a9f7d429145": "이벤트 생성",
+    "a3b7dbe57071": "귀하의 예치금"
   },
   "dehubLinks": {
     "kind": {
@@ -2635,7 +2637,8 @@
       "queueHelp": "정확한 텍스트를 게시합니다. 공유된 20분 포스트 간격이 적용됩니다. 주조하지 않습니다.",
       "unlike": "좋아요 취소",
       "unliked": "좋아하지 않음",
-      "viewPost": "포스트 보기"
+      "viewPost": "포스트 보기",
+      "queuePost": "대기열 게시물"
     },
     "tasks": {
       "preparing": "작업 준비 중...",
@@ -4962,7 +4965,6 @@
     "pinMessage": "PIN 메시지",
     "unpinMessage": "메시지 고정 해제",
     "jumpToLatest": "최신 메시지로 이동",
-    "attachGif": "GIF",
     "modBadge": "운영자",
     "ban": "차단",
     "banConfirm": "{{name}} 님을 차단하시겠습니까?",

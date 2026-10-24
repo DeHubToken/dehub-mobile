@@ -5,7 +5,9 @@
     "minutes": "{{minutes}} min",
     "recorded": "E dekọrọ",
     "replay": "ntughari",
-    "stage": "ogbo"
+    "stage": "ogbo",
+    "onAir": "ON AIR",
+    "upcoming": "ọbịbịa"
   },
   "copy": {
     "1aa7b1c1d5fb": "Daalụ!",
@@ -147,7 +149,18 @@
     "f4db1e48476f": "Ọgwụgwụ",
     "f6f4688ff23d": "Ziga",
     "fc036ea0e9f0": "Banye n 'ihuakwụkwọ a kapịrị ọnụ",
-    "ff701a069af2": "Nyochaa & Ị kpọghee ekwt"
+    "ff701a069af2": "Nyochaa & Ị kpọghee ekwt",
+    "9b44fb81d89e": "Ebe ihuakwụkwọ",
+    "2eef6c9af0ae": "Na-enweta nhota...",
+    "85249a6f8dd5": "Get Quote",
+    "ac4d49f28b40": "Gbanwee {{value1}} {{value2}}",
+    "6627a8114830": "Zụta {{value1}} {{value2}}",
+    "c772e8fc6314": "Token Swap",
+    "f6ec7f0c995b": "Visualization",
+    "f42e0f66017d": "Enweghị ozi ma",
+    "f3c6dcdb78a4": "Naanị ndị nyere aka weghaara mgbe e mepere atụmatụ a nwere ike ịtụ vootu.",
+    "c4c2179c3053": "Arọ gị:",
+    "a3b7dbe57071": "Your Nkwụnye ego"
   },
   "dehubLinks": {
     "kind": {
@@ -1169,7 +1182,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Jiri agba foto profaịlụ gị",
     "themeColorBrandNoAvatar": "Tinye foto profaịlụ iji jiri agba Brand",
-    "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị"
+    "themeColorBrandFailed": "Enweghị ike ịgụta agba site na foto profaịlụ gị",
+    "glass": "Glassy"
   },
   "common": {
     "refresh": "Mee ka ọ dị ọhụrụ",
@@ -2205,7 +2219,9 @@
     "title": "Ozi",
     "searchConversations": "Chọọ mkparịta ụka...",
     "failedToLoad": "Enweghị ike ibudata mkparịta ụka",
-    "tryAgain": "Nwaa Ọzọ"
+    "tryAgain": "Nwaa Ọzọ",
+    "encryptionSetupFailed": "Ntọala nzuzo adaala. Biko nwaa ọzọ.",
+    "undecryptableRun_one": "{{count}} enweghị ike imepe ozi na ngwaọrụ a"
   },
   "music": {
     "listeningCount_one": "{{count}} na-ege ntị",
@@ -2346,7 +2362,8 @@
     "tabVideos": "Videos",
     "tabAudio": "Audio",
     "tabLive": "Live",
-    "tabPinned": "Pinned"
+    "tabPinned": "Pinned",
+    "dislikesEmptyOther": "Ọ dịghị ihe na-adịghị amasị ma."
   },
   "tv": {
     "title": "TV",
@@ -2613,7 +2630,9 @@
       "queueHelp": "Ebipụta gị kpọmkwem ederede. Ekekọrịta 20-nkeji post ọdịiche na-emetụta. Ọ dịghị minting.",
       "queuePost": "Ahịrịkpa post",
       "unlike": "N 'adịghị ka",
-      "unliked": "Enweghị mmasị"
+      "unliked": "Enweghị mmasị",
+      "postText": "Wepụ ngwe",
+      "viewPost": "View post"
     },
     "tasks": {
       "run": "Bido ngwa ngwa",
@@ -2631,8 +2650,10 @@
         "dislike": "Enweghị mmasị",
         "filterHelp": "Hapụ nzacha n 'efu maka ọkwa niile. Mgbe e debere ha abụọ, ha abụọ ga-adaba. A na-echekwa mmeghachi omume dị ugbu a; ịhọrọ mmeghachi omume dị iche na-agbanwe ya.",
         "last1h": "Oge awa ikpeazụ",
-        "last30d": "Ikpeazụ 30 ụbọchị"
-      }
+        "last30d": "Ikpeazụ 30 ụbọchị",
+        "authorChoose": "Họrọ onye mmepụta"
+      },
+      "preparing": "Na-akwadebe ọrụ..."
     },
     "title": "Ndị Ọrụ AI",
     "connectToManage": "Jikọọ iji Jikwaa Ndị Ọrụ AI",
@@ -6550,7 +6571,11 @@
   "player": {
     "segmentLabel": {
       "interaction": "Dị ka & ịdenye aha",
-      "selfpromo": "Nkwado onwe onye"
+      "selfpromo": "Nkwado onwe onye",
+      "filler": "Filler",
+      "outro": "Outro",
+      "intro": "Intro",
+      "sponsor": "Nkwado"
     },
     "volume": "Ọkwa ụda",
     "openSettings": "Mepee ntọala",

@@ -159,7 +159,9 @@
     "f6f4688ff23d": "Tukua",
     "fc036ea0e9f0": "Hono ki tētahi whārangi motuhake",
     "fef6a1a97127": "I whai mai a {{value1}}",
-    "ff701a069af2": "Whakamātauria & Whakatuwherahia"
+    "ff701a069af2": "Whakamātauria & Whakatuwherahia",
+    "02b24c18771c": "Whakamāramatanga",
+    "3aefdd5f5915": "Kei te tuwhera te ihirangi! 🎉"
   },
   "dehubLinks": {
     "kind": {
@@ -1175,7 +1177,10 @@
     "themeColorBrand": "Waitohu",
     "themeColorBrandDesc": "Whakamahia ngā tae o tō whakaahua kōtaha",
     "themeColorBrandNoAvatar": "Tāpirihia he whakaahua kōtaha kia whakamahi ai i ngā tae Waitohu",
-    "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha"
+    "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha",
+    "shortsEnabled": "Shorts",
+    "showDislikes": "Whakaatu i toku kino ki te katoa",
+    "glass": "Glassy"
   },
   "common": {
     "refresh": "Whakahou",
@@ -1371,7 +1376,9 @@
     "giftBoost": "Koha he whakapiki",
     "giftBoostDesc": "Whakapaua tētahi o āu ki tēnei pou",
     "askAi": "Pātai ki te AI",
-    "aiOverview": "Te tirohanga whānui o te AI"
+    "aiOverview": "Te tirohanga whānui o te AI",
+    "skippableSectionsDesc": "Ko te tohu, ko te pooti ranei mo te kaitautoko e panui ana me te intros",
+    "skippableSections": "Ngā wāhanga Skippable"
   },
   "filters": {
     "sort": "Raupapa",
@@ -2210,7 +2217,8 @@
     "title": "Karere",
     "searchConversations": "Rapu kōrerorero...",
     "failedToLoad": "Kāore i taea te uta kōrerorero",
-    "tryAgain": "Ngana anō"
+    "tryAgain": "Ngana anō",
+    "lockedTitle": "Whakatuwherahia ki te pānui i ō karere"
   },
   "music": {
     "listeningCount_one": "{{count}} whakarongo",
@@ -2619,7 +2627,8 @@
       "queuePost": "Tuhinga o mua",
       "unlike": "Kāore i rite",
       "unliked": "Kaore i pai",
-      "viewPost": "Tirohia te pou"
+      "viewPost": "Tirohia te pou",
+      "less": "Whakaatu iti ake"
     },
     "tasks": {
       "preparing": "Te whakarite i te mahi...",
@@ -2637,8 +2646,10 @@
         "categoryPlaceholder": "Ingoa o te kāwai",
         "dislike": "Kaore e pai ki a koe",
         "filterHelp": "Waiho nga taatari kore mo nga pou katoa. A, no te whakaturia e rua, kia ōrite e rua. Ka mau tonu nga urupare o mua; ka huri te urupare rereke.",
-        "last30d": "30 nga ra whakamutunga"
-      }
+        "last30d": "30 nga ra whakamutunga",
+        "last1h": "Haora whakamutunga"
+      },
+      "runSwarm": "Run swarm"
     },
     "title": "Kaihautū MI",
     "connectToManage": "Takiuru ki te whakahaere kaihautū MI",
@@ -3645,7 +3656,8 @@
     "lockedEarlyFee": "Kua raka tae noa ki te {{date}}. Ko te tangohanga inaianei ka whakahoki 88% — he 12% te utu, tata ki te {{fee}} tohu. Patohia ano kia whakaae.",
     "unstakeSent": "Iririhia {{amount}} tohu! TX: {{hash}}…",
     "tokensUnit": "tohu",
-    "tokenAmount": "{{amount}} tohu"
+    "tokenAmount": "{{amount}} tohu",
+    "foundNewDeposits": "Kitea {{count}} putunga hou i runga i te rīpene"
   },
   "communities": {
     "title": "Ngā Hapori",

@@ -2,7 +2,12 @@
   "stageCover": {
     "minutes": "{{minutes}} مين",
     "onAir": "علي الهواء",
-    "recorded": "مُسجّل"
+    "recorded": "مُسجّل",
+    "admitOne": "حسناً",
+    "live": "يعيش",
+    "replay": "إعادة اللعب",
+    "stage": "المرحلة",
+    "upcoming": "الجديدة قريباً"
   },
   "copy": {
     "008ad4d946bb": "سيظهر هنا أحداث المجتمع.",
@@ -1140,7 +1145,8 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "ضيف صورة بروفايل عشان تستخدم ألوان البراند",
-    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك",
+    "shortsEnabledDesc": "عرض تبويب فيديوهات قصيرة و كراتيل فيديوهات قصيرة على الصفحة الرئيسية."
   },
   "common": {
     "refresh": "تحديث",
@@ -2175,7 +2181,9 @@
     "title": "الرسائل",
     "searchConversations": "ابحث بالمحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
-    "tryAgain": "حاول مرة تانية"
+    "tryAgain": "حاول مرة تانية",
+    "lockedUnlock": "فتح المحفظة",
+    "lockedTryAgain": "حاول مرة أخرى"
   },
   "music": {
     "listeningCount_one": "{{count}} بتسمعش؟",
@@ -2220,7 +2228,21 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "viewsCount_other": "{{views}} المشاهدات",
+    "mostPlayed": "الأكثر تشغيلًا",
+    "radioPicks": "اختياراتنا",
+    "mostVoted": "الأكثر تصويتًا",
+    "trending": "التrending",
+    "stagesLive": "يعيش الآن",
+    "upcoming": "قريباً",
+    "mostListened": "الأكثر سماعًا",
+    "recentStages": "الأحدث",
+    "mostLiked": "الأكثر إعجابًا",
+    "mostRecent": "الأحدث",
+    "chartOrder": "ترتيب الرسم البياني الصوتي",
+    "votes": "التصويت",
+    "liveRadio": "الراديو الحية"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -2565,7 +2587,15 @@
       "less": "ما هقولك؟",
       "more": "أظهر المزيد من النشاط",
       "postQueued": "الرسالة مرفقة بالصف. اترصدها في المهام فوق.",
-      "queueHelp": "نشر نصك بالضبط. فاصل 20 دقيقة بين النشر. لا يوجد \"minting\"."
+      "queueHelp": "نشر نصك بالضبط. فاصل 20 دقيقة بين النشر. لا يوجد \"minting\".",
+      "compose": "نشر كذلك",
+      "editComment": "تعديل التعليق",
+      "imageUrl": "URL الصورة (optional)",
+      "postText": "نص التعليق",
+      "queuePost": "أضف إلى قائمة الانتظار",
+      "viewPost": "عرض المنشور",
+      "unlike": "لا يعجبني",
+      "unliked": "لا يعجبني"
     },
     "tasks": {
       "preparing": "بصير عمل الكوز...",

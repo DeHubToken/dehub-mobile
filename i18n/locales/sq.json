@@ -156,7 +156,10 @@
     "f6f4688ff23d": "Dërgo",
     "fc036ea0e9f0": "Lidhje me një faqe specifike",
     "fef6a1a97127": "Pasuar nga {{value1}}",
-    "ff701a069af2": "Verifikoni dhe Lironi"
+    "ff701a069af2": "Verifikoni dhe Lironi",
+    "f4b06ef6d3c8": "Për të",
+    "f6ec7f0c995b": "Vizualizimi",
+    "78de1ed22dcb": "End {{value1}}"
   },
   "dehubLinks": {
     "kind": {
@@ -2634,7 +2637,8 @@
       "queuePost": "Pjesë e renditjes",
       "unlike": "Ndryshe",
       "unliked": "Nuk pëlqehet",
-      "viewPost": "Shfaq postimin"
+      "viewPost": "Shfaq postimin",
+      "postQueued": "Postimi në radhë. Gjurmo në Detyrat e mësipërme."
     },
     "tasks": {
       "preparing": "Preparoj detyrë…",

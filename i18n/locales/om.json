@@ -158,7 +158,10 @@
     "f6f4688ff23d": "Erguu",
     "fc036ea0e9f0": "Fuula adda ta'e tokkoof liinkii godhi",
     "fef6a1a97127": "Kan hordofu {{value1}}",
-    "ff701a069af2": "Mirkaneessi & Qulqulleessi"
+    "ff701a069af2": "Mirkaneessi & Qulqulleessi",
+    "1cbd9e713d93": "Yaada dhiheessaa",
+    "07070fb32c93": "Dhiyeessii bitachuu",
+    "a7b7e36d6fdf": "Baasiin Keessan"
   },
   "dehubLinks": {
     "kind": {
@@ -2373,7 +2376,8 @@
     "tabVideos": "Viidiyoo",
     "tabAudio": "Sagalee",
     "tabLive": "Aduu",
-    "tabPinned": "Qabame"
+    "tabPinned": "Qabame",
+    "dislikesPrivateDesc": "Akkaawuntiin kun waan jibbisiisu ofuma isaatti eega."
   },
   "tv": {
     "title": "TV",
@@ -2658,7 +2662,11 @@
         "categoryPlaceholder": "Maqaa gosa sirrii",
         "filterHelp": "Maxxansa hundaaf filter duwwaa dhiisi. Yeroo lamaan isaanii saagaman, lamaan isaanii walsimsiisuu qabu. Walnyaatinsi jiran ni eegamu; deebii faallaa filachuun ni jijjiira.",
         "last1h": "Sa'aatii dhumaa",
-        "last30d": "Guyyoota 30 darban"
+        "last30d": "Guyyoota 30 darban",
+        "authorAll": "Uumtoota hunda",
+        "dislike": "Dislike gochuu",
+        "category": "Ramaddii (dirqama) .",
+        "authorPlaceholder": "@maqaa fayyadamaa ykn boorsaa"
       }
     },
     "title": "Eejentii AI",
@@ -3103,7 +3111,10 @@
     "sentDesc": "Tokkeenota {{amount}} guyyaa {{chain}} irratti maatiiwwanitti ergameera. Qoodiinsi kee sa’aatii ispoortiiwwan erga galmaa’anii booda jijjiramuu danda’a.",
     "sendAnyWallet": "Namni kamiyyuu tokkeenota DeHub as irraa gara wallet ykn exchange irraa erguu danda’a. Base fi BNB irratti ergiinsi qooda kee irratti dhiibbaa qaba.",
     "yourContribution": "Tokkeenota {{amount}} dabalaman",
-    "pooledTotal": "Tokkeenota {{amount}} walitti makaman"
+    "pooledTotal": "Tokkeenota {{amount}} walitti makaman",
+    "votingClosed": "Sagalee kennuu cufameera",
+    "voteWithdrawn": "Sagaleen ofirraa baafame",
+    "acceptedAwaitingPayment": "Fudhatama · kaffaltii eegaa jira"
   },
   "governance": {
     "badgeHoldersOnly": "Warra baajii qaban qofa",

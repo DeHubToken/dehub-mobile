@@ -157,7 +157,10 @@
     "f6f4688ff23d": "යවන්න",
     "fc036ea0e9f0": "විශේෂිත පිටුවකට සබැඳිය",
     "fef6a1a97127": "විසින් අනුගමනය {{value1}}",
-    "ff701a069af2": "සත්‍යාපනය කර අගුළු හරින්න"
+    "ff701a069af2": "සත්‍යාපනය කර අගුළු හරින්න",
+    "24df132b16d3": "මාරු කරමින් පවතී...",
+    "0e9161011702": "නැවුම් කරන්න",
+    "ac4d49f28b40": "{{value1}} {{value2}} මාරු කරන්න"
   },
   "dehubLinks": {
     "kind": {
@@ -2222,7 +2225,9 @@
     "title": "පණිවිඩ",
     "searchConversations": "සංවාද සොයන්න...",
     "failedToLoad": "සංවාද පූරණය අසාර්ථකයි",
-    "tryAgain": "නැවත උත්සාහ කරන්න"
+    "tryAgain": "නැවත උත්සාහ කරන්න",
+    "undecryptableRun_one": "{{count}} පණිවිඩය මෙම උපාංගයේ විවෘත කළ නොහැක",
+    "undecryptableRun_other": "{{count}} පණිවිඩ මෙම උපාංගයේ විවෘත කළ නොහැක"
   },
   "music": {
     "listeningCount_one": "{{count}} අහගෙන ඉන්න",
@@ -2276,7 +2281,8 @@
     "tryAnotherGenre": "වෙනත් ප්‍රභේදයක් උත්සාහ කරන්න.",
     "pauseStation": "නාලිකාව විරාම කරන්න",
     "resumeStation": "නාලිකාව නැවත ආරම්භ කරන්න",
-    "stopRadio": "ගුවන් විදුලිය නවත්වන්න"
+    "stopRadio": "ගුවන් විදුලිය නවත්වන්න",
+    "viewsCount_one": "{{views}} දර්ශනය"
   },
   "notFound": {
     "title": "පිටුව හමු නොවීය",
@@ -3094,7 +3100,9 @@
     "sentDesc": "{{amount}} ටෝකන {{chain}} දිනැති භාණ්ඩාගාරයට යවන ලදී. බ්ලොක් දර්ශකගත වූ පසු ඔබේ කොටස යාවත්කාලීන වේ.",
     "sendAnyWallet": "කිසිවෙකුට ඕනෑම පසුම්බියකින් හෝ හුවමාරුවකින් මෙහි DeHub ටෝකන යැවිය හැකිය. Base සහ BNB හි මාරු කිරීම් ඔබේ කොටසට ගණන් ගනී.",
     "yourContribution": "{{amount}} ටෝකන දායක වී ඇත",
-    "pooledTotal": "{{amount}} ටෝකන එකතු කර ඇත"
+    "pooledTotal": "{{amount}} ටෝකන එකතු කර ඇත",
+    "voteWithdrawn": "ඡන්දය ඉල්ලා අස්කර ගන්නා ලදී",
+    "voteFailed": "ඡන්දය සටහන් කර ගැනීමට නොහැකි විය"
   },
   "governance": {
     "badgeHoldersOnly": "ලාංඡන දරන්නන් පමණි",
@@ -3653,7 +3661,8 @@
     "lockedEarlyFee": "{{date}} දක්වා අගුලු දමා ඇත. දැන් අස්සන් කිරීමෙන් 88% ලැබේ — 12% ගාස්තුවක්, ආසන්න වශයෙන් {{fee}} ටෝකන. පිළිගැනීමට නැවත තට්ටු කරන්න.",
     "unstakeSent": "{{amount}} ටෝකන ඉවත් කරන ලදී! TX: {{hash}}…",
     "tokensUnit": "ටෝකන",
-    "tokenAmount": "{{amount}} ටෝකන"
+    "tokenAmount": "{{amount}} ටෝකන",
+    "foundNewDeposits": "ඔන්-චේන් හි නව තැන්පතු {{count}} ක් හමු විය"
   },
   "communities": {
     "title": "ප් ‍ රජාවන්",

@@ -155,7 +155,12 @@
     "f6f4688ff23d": "Aika",
     "fc036ea0e9f0": "Mahada zuwa takamaiman shafi",
     "fef6a1a97127": "Bi da {{value1}}",
-    "ff701a069af2": "Tabbatar & Buše"
+    "ff701a069af2": "Tabbatar & Buše",
+    "a3b7dbe57071": "Ajiyayyen Ku",
+    "2d240e231566": "An kasa daidaita adibas",
+    "14c5558a8cd9": "Babu karfinsu na transcript",
+    "6662a5411155": "Rubuta shi yanzu",
+    "58db9997b230": "Wannan sashe ba daidai ba ne"
   },
   "dehubLinks": {
     "kind": {
@@ -168,7 +173,10 @@
       "profile": "bayanin martaba",
       "proposal": "shawarwari",
       "stage": "mataki",
-      "store": "shagon"
+      "store": "shagon",
+      "post": "post",
+      "community": "al'umma",
+      "app": "app"
     }
   },
   "postGate": {
@@ -2208,7 +2216,10 @@
     "title": "Saƙonni",
     "searchConversations": "Bincika tattaunawa...",
     "failedToLoad": "Ba a iya ɗora tattaunawa ba",
-    "tryAgain": "Sake gwadawa"
+    "tryAgain": "Sake gwadawa",
+    "lockedTitle": "Buše don karanta saƙonninku",
+    "lockedBody": "Tattaunawar ku tare da {{name}} an ɓoye ƙarshen zuwa ƙarshe. Buɗe walat ɗinku akan wannan na'urar don buɗe shi.",
+    "lockedUnlock": "Buše walat"
   },
   "music": {
     "listeningCount_one": "{{count}} sauraron",
@@ -2618,7 +2629,8 @@
       "queuePost": "Que post",
       "unlike": "Ba kamar",
       "unliked": "Ba a yarda da shi ba",
-      "viewPost": "Duba post"
+      "viewPost": "Duba post",
+      "postText": "Post rubutu"
     },
     "tasks": {
       "preparing": "Shirya aiki...",
@@ -2636,7 +2648,9 @@
         "categoryPlaceholder": "Daidai category sunan",
         "dislike": "Rashin son",
         "filterHelp": "Bar tace komai ga duk posts. Lokacin da aka saita duka biyu, dole ne duka biyu su dace. An kiyaye halayen da ke akwai; zabar akasin haka yana canza shi.",
-        "last30d": "Kwanaki 30 da suka gabata"
+        "last30d": "Kwanaki 30 da suka gabata",
+        "last1h": "Sa'a ta ƙarshe",
+        "authorPlaceholder": "@username ko walat"
       }
     },
     "title": "Wakilan AI",
@@ -3082,7 +3096,8 @@
     "sentDesc": "An aika {{amount}} tokens zuwa baitulmali a ranar {{chain}}. Rabin rabonka zai sabunta da zarar an yi rijistar block.",
     "sendAnyWallet": "Kowa na iya aika DeHub tokens anan daga kowace walat ko musayar kudi. Canja wuri akan Base da BNB suna lissafawa zuwa rabonka.",
     "yourContribution": "{{amount}} tokens da aka bayar",
-    "pooledTotal": "{{amount}} tokens da aka tara"
+    "pooledTotal": "{{amount}} tokens da aka tara",
+    "voteWithdrawn": "An janye jefa kuri'a"
   },
   "governance": {
     "title": "Mulki",
@@ -3145,7 +3160,8 @@
       "authorChip": "Mawallafi mai gabatarwa"
     },
     "holdTokensToVote": "Rike DeHub tokens don kada kuri'a",
-    "mustHoldTokens": "Dole ne ka rike DeHub tokens don kada kuri'a kan shawarwarin gudanarwa."
+    "mustHoldTokens": "Dole ne ka rike DeHub tokens don kada kuri'a kan shawarwarin gudanarwa.",
+    "badgeHoldersOnly": "Masu riƙe da kaya kawai"
   },
   "sidebar": {
     "talkOfTheTown": "Labarin gari",

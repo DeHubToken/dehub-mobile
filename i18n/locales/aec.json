@@ -5,7 +5,9 @@
     "recorded": "مُسجّل",
     "replay": "إعادة عرض",
     "stage": "المرحلة",
-    "upcoming": "القادمة"
+    "upcoming": "القادمة",
+    "admitOne": "تذكرة دخول واحدة",
+    "live": "مباشر"
   },
   "copy": {
     "20d4214b9d4b": "مشاهدة طلبات الشحن",
@@ -122,7 +124,21 @@
     "f6ec7f0c995b": "عرض مرئي",
     "f6f4688ff23d": "إرسال",
     "fc036ea0e9f0": "رابط لصفحة محددة",
-    "fef6a1a97127": "تتبع من طرف {{value1}}"
+    "fef6a1a97127": "تتبع من طرف {{value1}}",
+    "58db9997b230": "هذا القسم خطأ",
+    "dc469bffc7c0": "هذا القسم صحيح",
+    "77f3aefe8b8b": "حذف علامة المارك",
+    "2f41333ad013": "· {{value1}} مخالف",
+    "72915d37182e": "موافق",
+    "e5f6facf9cbe": "لا يوجد علامات على هذا الفيديو بعد",
+    "155f816c0407": "إرسال",
+    "5218ce9ed7ab": "إرسال {{value1}} – {{value2}}",
+    "78de1ed22dcb": "نهاية {{value1}}",
+    "5e2495b60820": "بداية {{value1}}",
+    "30f4d96b8d72": "المقاطع القابلة للخطأ",
+    "68f5b97c66d9": "عود إلى الشبكة",
+    "57702fa51a5e": "مفصولات الريديت",
+    "66b8e077d85f": "فشل في إرسال الرسالة"
   },
   "dehubLinks": {
     "kind": {
@@ -1142,7 +1158,10 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "ضيف صورة بروفايل عشان تستخدم ألوان البراند",
-    "themeColorBrandFailed": "مقدرناش نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "مقدرناش نقرا الألوان من صورة بروفايلك",
+    "shortsEnabledDesc": "عرض تبويب خلاصة الفيديوهات القصيرة (Shorts) وعناصر عرضها في الصفحة الرئيسية.",
+    "showDislikes": "عرض إعجاباتك التي ألغيتها للجميع",
+    "glass": "زجاجي"
   },
   "common": {
     "refresh": "تحديث",
@@ -1337,7 +1356,9 @@
     "mintPostDesc": "انشر هذا المنشور على السلسلة",
     "giftBoost": "اهدي دفعة",
     "giftBoostDesc": "اصرف وحدة من مالتك على هذا المنشور",
-    "askAi": "اسأل الذكاء الاصطناعي"
+    "askAi": "اسأل الذكاء الاصطناعي",
+    "skippableSectionsDesc": "ضع علامة أو صوّت على فقرات الرعاية والمقدمات",
+    "skippableSections": "أقسام قابلة للتخطي"
   },
   "filters": {
     "sort": "رتّب",
@@ -2170,7 +2191,14 @@
     "title": "الرسايل",
     "searchConversations": "دوّر في المحادثات...",
     "failedToLoad": "فشل تحميل المحادثات",
-    "tryAgain": "جرّب تاني"
+    "tryAgain": "جرّب تاني",
+    "encryptionTurningOn": "في انتظار محفظتك لتشغيل التشفير...",
+    "lockedTitle": "افتح القفل لقراءة رسائلك",
+    "lockedBody": "محادثتك مع {{name}} مشفرة من الطرف إلى الطرف. افتح قفل محفظتك على هذا الجهاز لفتحها.",
+    "lockedUnlock": "فتح قفل المحفظة",
+    "lockedTryAgain": "حاول مجدداً",
+    "lockedPrivate": "أنت فقط من يستطيع قراءتها",
+    "undecryptableRun_other": "رسائل {{count}} لا يمكن فتحها على هذا الجهاز"
   },
   "music": {
     "listeningCount_one": "{{count}} مستمع",
@@ -2211,7 +2239,13 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "mostPlayed": "الأكثر تشغيلاً",
+    "radioPicks": "اختياراتنا",
+    "mostVoted": "الأكثر تصويتاً",
+    "trending": "رائج",
+    "stagesLive": "مباشر الآن",
+    "upcoming": "القادم"
   },
   "notFound": {
     "title": "الصفحة مش موجودة",
@@ -2552,7 +2586,17 @@
     "life": {
       "daily": "بوستات اليوم: {{posts}} · هدفه اليومي: {{target}}",
       "postQueued": "الرسالة مرفقة فى الانتظار. اتتبعها فى \"الواجبات\" فوق.",
-      "viewPost": "شوف المنشور"
+      "viewPost": "شوف المنشور",
+      "compose": "انشر بصفتك هذا الوكيل",
+      "editComment": "تعديل التعليق",
+      "imageUrl": "رابط الصورة (اختياري)",
+      "postText": "نص المنشور",
+      "queueHelp": "ينشر نصك كما هو. تطبق فترة انتظار 20 دقيقة بين المنشورات. لا يوجد سك (minting).",
+      "queuePost": "جدولة المنشور",
+      "unlike": "إلغاء الإعجاب",
+      "unliked": "تم إلغاء الإعجاب",
+      "less": "عرض أقل",
+      "more": "عرض المزيد من النشاط"
     },
     "tasks": {
       "preparing": "بِتْعْتَدّ...",
@@ -2969,7 +3013,10 @@
     "sentDesc": "تم إرسال {{amount}} رموز للخزينة يوم {{chain}}. حصتك بتتحدث بعد ما البلوك يتفهرس.",
     "sendAnyWallet": "أي حد يقدر يبعت رموز DeHub هنا من أي محفظة أو بورصة. التحويلات على Base و BNB بتتحسب ضمن حصتك.",
     "yourContribution": "{{amount}} رموز مساهمة",
-    "pooledTotal": "{{amount}} رموز في المجمع"
+    "pooledTotal": "{{amount}} رموز في المجمع",
+    "voteRecorded": "تسجيل صوتك سجل",
+    "voteFailed": "لم يستطع تسجيل صوتك",
+    "paymentUnderReview": "الدفع تحت المراجعة"
   },
   "governance": {
     "title": "الحوكمة",
@@ -3032,7 +3079,8 @@
       "authorChip": "صاحب الاقتراح"
     },
     "holdTokensToVote": "احتفظ برموز DeHub للتصويت",
-    "mustHoldTokens": "لازم تحتفظ برموز DeHub عشان تصوت على مقترحات الحوكمة."
+    "mustHoldTokens": "لازم تحتفظ برموز DeHub عشان تصوت على مقترحات الحوكمة.",
+    "badgeHoldersOnly": "للمتقدمين فقط"
   },
   "sidebar": {
     "talkOfTheTown": "حديث البلد",
@@ -3528,7 +3576,8 @@
     "lockedEarlyFee": "مقفل لحد {{date}}. السحب دلوقتي بيرجع 88% — رسوم 12%، حوالي {{fee}} رموز. اضغط تاني عشان توافق.",
     "unstakeSent": "تم سحب {{amount}} توكن! TX: {{hash}}…",
     "tokensUnit": "توكن",
-    "tokenAmount": "{{amount}} توكن"
+    "tokenAmount": "{{amount}} توكن",
+    "foundNewDeposits": "وجدت {{count}} ترسيلات جديدة على السلسلة"
   },
   "communities": {
     "title": "المجتمعات",
@@ -3635,7 +3684,8 @@
       "copied": "تم نسخ الرسالة",
       "copyText": "انسخ النص",
       "mutedUntil": "تم كتمك حتى {{date}}",
-      "slowMode": "وضع بطيء: رسالة كل {{interval}}"
+      "slowMode": "وضع بطيء: رسالة كل {{interval}}",
+      "jumpToLatest": "الانتقال إلى الأخير"
     },
     "manage": {
       "dismissAdminTitle": "رفض المشرف",
@@ -4979,7 +5029,8 @@
     "listens_other": "{{count}} يستمع",
     "lyrics": "كلمات الأغنية",
     "lyricsLoading": "جارٍ جلب الكلمات…",
-    "lyricsNone": "لا توجد كلمات"
+    "lyricsNone": "لا توجد كلمات",
+    "visualizerColour": "لون المرئ"
   },
   "transfer": {
     "arcTitle": "إرسال USDC على Arc",
@@ -5221,7 +5272,30 @@
     "noPast": "مفيش فعاليات فاتت",
     "noUpcoming": "مفيش فعاليات جاية",
     "interestedCount": "{{count}} مهتم",
-    "loadFailed": "ما قدرناش نحمّل الفعاليات"
+    "loadFailed": "ما قدرناش نحمّل الفعاليات",
+    "youreApproved": "تم الموافقة عليك",
+    "youAreCreator": "أنت الخالق",
+    "typeMessage": "اكتب رسالة...",
+    "startTime": "وقت البدء",
+    "saveChanges": "حفظ التغييرات",
+    "requestPendingReview": "طلبك تحت المراجعة - سيقوم الخالق بمراجعته",
+    "requestPending": "الطلب تحت المراجعة",
+    "requestDenied": "رفض الطلب",
+    "requestAccessToAttend": "طلب الوصول لحضور الحدث",
+    "requestAccessForChat": "طلب الوصول لمشاهدة الدردشة والإجابة",
+    "requestAccess": "طلب الوصول",
+    "reply": "رد",
+    "privateEventHint": "الضيوف يجب أن يطلبوا حضورهم",
+    "privateEvent": "حدث خاص",
+    "private": "خاص",
+    "pickDate": "اختر التاريخ",
+    "pending": "تحت المراجعة",
+    "payToJoin": "دفع للاشتراك",
+    "payFeeForChat": "دفع رسوم الدخول للوصول للدردشة والإجابة",
+    "optional": "اختياري",
+    "noOneYet": "لا أحد بعد",
+    "needApproval": "تحتاج للموافقة ليتم الإجابة",
+    "logInToChat": "تسجيل الدخول للدردشة"
   },
   "stats": {
     "chart": {

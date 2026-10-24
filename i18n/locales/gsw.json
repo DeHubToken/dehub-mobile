@@ -1183,7 +1183,8 @@
     "themeColorBrand": "Brand",
     "themeColorBrandDesc": "Bruuch d'Farbe vo dim Profilbild",
     "themeColorBrandNoAvatar": "Füeg es Profilbild dezue, zum d'Brand-Farbe z'bruuche",
-    "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde"
+    "themeColorBrandFailed": "D'Farbe vo dim Profilbild hend nid chöne gläse wärde",
+    "shortsEnabledDesc": "Zeig den Shorts-Feed-Tab und die Shorts-Carousels auf der Startseite."
   },
   "common": {
     "refresh": "Aktualisiere",
@@ -2219,7 +2220,9 @@
     "title": "Nochrichtä",
     "searchConversations": "Gespräch sueche...",
     "failedToLoad": "Gespräch lade fehlgschlage",
-    "tryAgain": "Nomol probiere"
+    "tryAgain": "Nomol probiere",
+    "lockedTryAgain": "Versuche es nochmals",
+    "undecryptableRun_one": "{{count}} Nachricht kann auf diesem Gerät nicht geöffnet werden"
   },
   "music": {
     "listeningCount_one": "{{count}} hört zu",
@@ -2633,7 +2636,10 @@
       "queueHelp": "Veröffentlicht eure exakten Texte. Gilt 20-Minuten-Post-Lücke. Kein Minting.",
       "unlike": "Ungleich",
       "unliked": "Unliked",
-      "viewPost": "Schau dir den Post an."
+      "viewPost": "Schau dir den Post an.",
+      "postText": "Poste Text",
+      "queuePost": "Warte auf Post",
+      "less": "Zeig weniger"
     },
     "tasks": {
       "preparing": "Aufgabe vorbereiten…",

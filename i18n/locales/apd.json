@@ -4,7 +4,10 @@
     "live": "حَيّ",
     "recorded": "سجل",
     "replay": "إعادة اللعب",
-    "stage": "ستيج"
+    "stage": "ستيج",
+    "minutes": "{{minutes}} مين",
+    "onAir": "في الهواء",
+    "upcoming": "المقبل"
   },
   "copy": {
     "1aa7b1c1d5fb": "شكرا",
@@ -110,7 +113,8 @@
     }
   },
   "postGate": {
-    "holdShortUnknown": "لسه {{symbol}} مش فاضلة. هدا البوست بيحتاج {{needed}}."
+    "holdShortUnknown": "لسه {{symbol}} مش فاضلة. هدا البوست بيحتاج {{needed}}.",
+    "holdShort": "تحتضن {{held}} {{symbol}}. تحتاج {{needed}} إلى هذا المشاركة."
   },
   "mastodonApps": {
     "connectedTitle": "التطبيقات المتصلة",
@@ -1109,7 +1113,10 @@
     "themeColorBrand": "البراند",
     "themeColorBrandDesc": "استخدم ألوان صورة بروفايلك",
     "themeColorBrandNoAvatar": "زيد صورة بروفايل عشان تستخدم ألوان البراند",
-    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك"
+    "themeColorBrandFailed": "ما قدرنا نقرا الألوان من صورة بروفايلك",
+    "shortsEnabledDesc": "اظهر تبويب فيديوهات القصيرة و الكاروسيل على الصفحة الرئيسية.",
+    "showDislikes": "اظهر من لا يحبها لجميع الأشخاص",
+    "glass": "الزجاجي"
   },
   "common": {
     "refresh": "تحديث",
@@ -1304,7 +1311,9 @@
     "mintPostDesc": "انشر هذا المنشور على السلسلة",
     "giftBoost": "اهدي دفعة",
     "giftBoostDesc": "اصرف وحدة من مالتك على هذا المنشور",
-    "askAi": "اسأل الذكاء الاصطناعي"
+    "askAi": "اسأل الذكاء الاصطناعي",
+    "skippableSectionsDesc": "تعيين أو التصويت على القراءات والمناقشات المعلن عنها",
+    "skippableSections": "الsections القابلة للغاء"
   },
   "filters": {
     "sort": "رتّب",
@@ -2139,7 +2148,12 @@
     "title": "الرسايل",
     "searchConversations": "ابحث في المحادثات...",
     "failedToLoad": "ما قدرنا نحمّل المحادثات",
-    "tryAgain": "حاول تاني"
+    "tryAgain": "حاول تاني",
+    "encryptionTurningOn": "في انتظار تفعيل حقيقتك لتشفيرها...",
+    "lockedTitle": "فتحها لقراءة رسائلك",
+    "lockedUnlock": "فتح الحقيقت",
+    "lockedTryAgain": "حاول مرة أخرى",
+    "lockedPrivate": "فقط لك يمكنك قراءتها"
   },
   "music": {
     "viewsCount_one": "{{views}} شوف",
@@ -2199,7 +2213,9 @@
     "likeStation": "أعجبني المحطة",
     "unlikeStation": "إلغاء الإعجاب بالمحطة",
     "shareStation": "مشاركة المحطة",
-    "listeningTo": "أستمع إلى {{name}} على DeHub"
+    "listeningTo": "أستمع إلى {{name}} على DeHub",
+    "listeningCount_one": "{{count}} يسمع",
+    "listeningCount_other": "{{count}} يسمع"
   },
   "notFound": {
     "title": "الصفحة ما موجودة",
@@ -2285,7 +2301,8 @@
     "tabVideos": "فيديوهات",
     "tabAudio": "الصوت",
     "tabLive": "حَيّ",
-    "tabPinned": "المرفق"
+    "tabPinned": "المرفق",
+    "dislikesPrivateDesc": "هذا الحساب يحتفظ بمن لا يحبها لنفسه."
   },
   "tv": {
     "title": "التلفزيون",
@@ -2548,7 +2565,13 @@
       "queueHelp": "يَشْتَرِكُ نَصّكَ الدَّقِيقُ. فَرْقُ 20 دَقِيقَةً بَيْنَ النَشْرَاتِ. لَا يُصْحَحُ.",
       "queuePost": "جدولة المنشور",
       "unlike": "لما يخلّص",
-      "viewPost": "شوف البوست"
+      "viewPost": "شوف البوست",
+      "editComment": "تعديل التعليق",
+      "imageUrl": "URL الصورة (optional)",
+      "postText": "نص المشاركة",
+      "unliked": "لا يحبها",
+      "less": "اظهر أقل",
+      "more": "اظهر المزيد من النشاط"
     },
     "tasks": {
       "runSwarm": "تحرك السورم",
@@ -2559,8 +2582,16 @@
         "categoryAll": "كل التصنيفات",
         "filterHelp": "تخلى عن كل الفلاتر في كل مايكتبش، لما كلتاه بتكون معيّنة، كلتاه لازم تتطابقوا. ردود الفعل القديمه بتحافظ على حالتها، لو اخترت رد فعل معاكس، بيغيرها.",
         "last1h": "ساعة ماضيه",
-        "last30d": "الثلاثين يوم ماضين"
-      }
+        "last30d": "الثلاثين يوم ماضين",
+        "authorChoose": "اختر المبدع",
+        "categoryChoose": "اختر الفئات",
+        "categoryHint": "أضف أي أسماء الفئات مفصولة بفاصلة، حتى 20. يمكن أن يتناسب أي مشاركة مع الفئات المحددة. تركها فارغة لجميع الفئات.",
+        "allTime": "الزمن الكامل",
+        "dislike": "لا يحبها",
+        "categoryPlaceholder": "اسم التصنيف الدقيق"
+      },
+      "preparing": "تحضير المهمة...",
+      "run": "تشغيل المهمة"
     },
     "title": "وكلاء AI",
     "connectToManage": "اتصل لإدارة وكلاء AI",

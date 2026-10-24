@@ -92,17 +92,47 @@
     "f0ed7becd58e": "無法切換到你的發文鏈結。請在設定中選擇一個鏈結再試一次。",
     "f4db1e48476f": "結束",
     "fef6a1a97127": "随后 {{value1}}",
-    "ff701a069af2": "驗證與解鎖"
+    "ff701a069af2": "驗證與解鎖",
+    "c184b8c9592f": "這個要是 dehub.io 的一頁。",
+    "ae4410aa9943": "貼任何 DeHub 的頁面 — 文件、獎勵、你的個人資料。下面的連結還是會記錄你的訪問，然後直接帶他們去那裡。",
+    "df0fe9e00d35": "再試一次",
+    "794c8cef5f67": "无法加载DAO提案。",
+    "700f18a93687": "提供价值",
+    "69013bafaace": "贡献者在决定什么？",
+    "61cbb6454002": "打开提案",
+    "554f86eedd6d": "DAO提案",
+    "52c6b1284570": "要求DAO发送资产",
+    "4c6c7de71386": "支付证明已提交给手动DAO验证",
+    "4be2a5e0d00a": "无保证金。如果接受，您有72小时内转移支付手动DAO验证。",
+    "3d08de9152fe": "向DAO提出",
+    "37bd766fa812": "任何人都可以提出。贡献者接受或拒绝他们的记录贡献权重。",
+    "1f5440e72187": "尚无提案",
+    "1cbd9e713d93": "提出",
+    "5ae4bb109db7": "尚无笔记",
+    "ba3bbbe10d8b": "加载中…",
+    "036cfd952896": "谁要关注",
+    "0c820caf16c0": "尚无简介"
   },
   "dehubLinks": {
     "kind": {
       "listing": "項目",
       "stage": "舞台",
-      "store": "店家"
+      "store": "店家",
+      "post": "帖子",
+      "profile": "资料",
+      "community": "社区",
+      "communityInvite": "社区邀请",
+      "event": "活动",
+      "film": "标题",
+      "bounty": "赏金",
+      "app": "应用",
+      "proposal": "提案",
+      "link": "链接"
     }
   },
   "postGate": {
-    "holdShort": "你手上拿著{{held}} {{symbol}}。這篇貼文需要{{needed}}。"
+    "holdShort": "你手上拿著{{held}} {{symbol}}。這篇貼文需要{{needed}}。",
+    "holdShortUnknown": "{{symbol}}還不夠。這發文需{{needed}}。"
   },
   "mastodonApps": {
     "connectedTitle": "已连接的应用",
@@ -1098,7 +1128,11 @@
     "themeColorBrand": "品牌",
     "themeColorBrandDesc": "用汝头像其色",
     "themeColorBrandNoAvatar": "加头像正会用品牌色",
-    "themeColorBrandFailed": "对汝头像读无着色"
+    "themeColorBrandFailed": "对汝头像读无着色",
+    "shortsEnabledDesc": "顯示Shorts首頁標籤及Shorts畫廊",
+    "showDislikes": "顯示我的不喜歡給所有人",
+    "showDislikesDesc": "任何人都能開啟你個人資料的「不喜歡」標籤。關閉此功能後，只有你能看到。",
+    "glass": "玻璃狀"
   },
   "common": {
     "refresh": "刷新",
@@ -1293,7 +1327,9 @@
     "mintPostDesc": "把这个帖子发布到链上",
     "giftBoost": "赠送一次助推",
     "giftBoostDesc": "把你的一次助推花在这个帖子上",
-    "askAi": "问AI"
+    "askAi": "问AI",
+    "skippableSectionsDesc": "標記或投票贊助閱讀及開場白",
+    "skippableSections": "可跳過的段落"
   },
   "filters": {
     "sort": "排序",
@@ -2124,7 +2160,14 @@
     "title": "消息",
     "searchConversations": "搜索对话...",
     "failedToLoad": "加载对话失败",
-    "tryAgain": "再试一下"
+    "tryAgain": "再试一下",
+    "encryptionTurningOn": "等你的錢包啟動加密…",
+    "encryptionSetupFailed": "加密設定失敗。請再試一次。",
+    "lockedTitle": "解鎖閱讀訊息",
+    "lockedBody": "你與{{name}}的對話是端對端加密的。解鎖此裝置的錢包以開啟它。",
+    "lockedUnlock": "解鎖錢包",
+    "lockedTryAgain": "再試一次",
+    "lockedPrivate": "只有你能閱讀它們"
   },
   "music": {
     "listeningCount_one": "{{count}} 聽",
@@ -2530,7 +2573,19 @@
   },
   "agents": {
     "life": {
-      "queuePost": "排队贴文"
+      "queuePost": "排队贴文",
+      "compose": "以此代理發文",
+      "daily": "今日發文：{{posts}} · 日目標：{{target}}",
+      "editComment": "編輯評論",
+      "imageUrl": "圖片網址（選填）",
+      "postQueued": "發文排隊中。可在上方任務中追蹤。",
+      "postText": "發文內容",
+      "queueHelp": "發布你的原文。共享20分鐘發文間隔。無鑄造。",
+      "viewPost": "查看發文",
+      "unlike": "不喜歡",
+      "unliked": "已不喜歡",
+      "less": "隱藏更少",
+      "more": "顯示更多活動"
     },
     "tasks": {
       "preparing": "準備任務…",

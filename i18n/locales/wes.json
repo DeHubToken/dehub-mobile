@@ -2234,8 +2234,7 @@
     "nothingHereYet": "Nothing here yet.",
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
-    "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "shareStation": "Share station"
   },
   "notFound": {
     "title": "Page No Dey",

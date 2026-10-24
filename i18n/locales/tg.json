@@ -6,7 +6,8 @@
     "recorded": "Сабтшуда",
     "replay": "аз нав бозӣ кардан",
     "stage": "марҳила",
-    "upcoming": "оянда"
+    "upcoming": "оянда",
+    "live": "зинда"
   },
   "copy": {
     "1aa7b1c1d5fb": "Ташаккур!",
@@ -123,7 +124,9 @@
     "f4db1e48476f": "Анҷом",
     "f6ec7f0c995b": "Визуализатсия",
     "f6f4688ff23d": "Фиристодан",
-    "ff701a069af2": "& Кушодани қулф"
+    "ff701a069af2": "& Кушодани қулф",
+    "8f3dc69e83c4": "Фикру мулоҳизаи шумо фиристода шуд!",
+    "ae4410aa9943": "Ҳар саҳифаи DeHub-ро нусхабардорӣ кунед — бахши ҳуҷҷатҳо, мукофот, профили худ. Пайванди зер то ҳол боздидро ба шумо нисбат медиҳад ва сипас онҳоро мустақиман ба он ҷо мебарад."
   },
   "dehubLinks": {
     "kind": {
@@ -2176,7 +2179,8 @@
     "title": "Паёмҳо",
     "searchConversations": "Ҷустуҷӯи суҳбатҳо...",
     "failedToLoad": "Боркунии суҳбатҳо ноком шуд",
-    "tryAgain": "Дубора кӯшиш"
+    "tryAgain": "Дубора кӯшиш",
+    "undecryptableRun_other": "{{count}} паёмҳоро дар ин дастгоҳ кушодан ғайриимкон аст"
   },
   "music": {
     "chartOrder": "Тартиби диаграммаи аудиоӣ",
@@ -2223,7 +2227,15 @@
     "tryAnotherGenre": "Кӯшиш кунед дигар жанр.",
     "pauseStation": "Таваққуф кардани истгоҳ",
     "resumeStation": "Давом додани истгоҳ",
-    "stopRadio": "Манъ кардани радио"
+    "stopRadio": "Манъ кардани радио",
+    "listeningCount_one": "{{count}} гӯш кардан",
+    "listeningCount_other": "{{count}} гӯш кардан",
+    "viewsCount_one": "{{views}} дидан",
+    "viewsCount_other": "{{views}} диданҳо",
+    "shareStation": "Мубодилаи истгоҳ",
+    "listeningTo": "Гӯш кардани {{name}} дар DeHub",
+    "radioPicks": "Интихоби мо",
+    "stagesLive": "Ҳоло зинда"
   },
   "notFound": {
     "title": "Саҳифа ёфт нашуд",
@@ -5257,20 +5269,14 @@
     "youAreCreator": "Шумо эҷодкор ҳастед",
     "startTime": "Вақти оғоз",
     "startDate": "Санаи оғоз *",
-    "saveChanges": "I-save ang Mga Pag",
     "requestWasDenied": "Дархости шумо рад карда шуд",
-    "requestSent": "QShortcut",
     "requestPendingReview": "Дархости шумо интизор аст — эҷодкунанда онро баррасӣ мекунад",
-    "requestPending": "QShortcut",
     "requestDenied": "Дархост рад карда шуд",
-    "requestAccessToAttend": "QShortcut",
     "requestAccessForChat": "Дархости дастрасӣ барои дидани чат ва RSVP",
     "requestAccess": "Дархости дастрасӣ",
     "reply": "Ҷавоб",
-    "privateEventHint": "Ang mga bisita ay dapat nangangailangan up",
     "privateEvent": "Ҳодисаи шахсӣ",
     "private": "Махфӣ",
-    "pickDate": "Pumili ng petsa",
     "pending": "Дар ҳоли интизорӣ",
     "payToJoin": "Пардохт барои ҳамроҳ шудан",
     "payFeeToJoin": "Пардохти ҳаққи воридшавӣ барои ҳамроҳ шудан ба ин чорабинӣ",
@@ -5278,13 +5284,10 @@
     "optional": "Интихобӣ",
     "noOneYet": "Ҳеҷ кас ҳанӯз",
     "needApproval": "Шумо бояд ба RSVP тасдиқ карда шавед",
-    "logInToChat": "Mag-log in upang chat",
-    "locationPlaceholder": "Magdagdag ng lugar o link",
     "location": "Ҷойгиршавӣ",
     "interestedWithCount": "Рағбатнок ({{count}})",
     "guests": "Меҳмонон",
     "goingWithCount": "Рафтан ({{count}})",
-    "eventNamePlaceholder": "Magbigay ng pangalan sa iyong kagan",
     "eventName": "Номи ҳодиса *",
     "entryFeeCoins_other": "{{count}} Coins entry fee",
     "endTime": "Вақти анҷом",
@@ -5292,15 +5295,11 @@
     "editEvent": "I-edit ang Kagan",
     "edit": "Таҳрир",
     "details": "Тафсилот",
-    "descriptionPlaceholder": "Mga tao ang kaganapan na ito...",
     "description": "Тавсиф",
-    "delete": "Tanggalin",
-    "createEvent": "Lumikha ng Kagan",
     "coverImage": "Кушодани Тасвир",
     "chargeEntryFee": "Пардохти ҳаққи вуруд",
     "cancel": "Бекор кардан",
     "amount": "Миқдор",
-    "addCoverPhoto": "Magdagdag ng photo ng cover",
     "mine": "Азони ман",
     "subtitle": "Чорабиниҳои ҷамоатро кашф кунед ва иштироки худро тасдиқ кунед",
     "going": "Меравам",
@@ -5312,7 +5311,22 @@
     "noPast": "Чорабиниҳои гузашта нестанд",
     "noUpcoming": "Чорабиниҳои оянда нестанд",
     "interestedCount": "{{count}} шавқманд",
-    "loadFailed": "Чорабиниҳо бор нашуданд"
+    "loadFailed": "Чорабиниҳо бор нашуданд",
+    "typeMessage": "Паём нависед...",
+    "saveChanges": "Захира кардани тағйирот",
+    "requestSent": "Дархост ба созандаи чорабинӣ фиристода шуд",
+    "requestPending": "Дархост дар ҳоли баррасӣ",
+    "requestAccessToAttend": "Барои иштирок дархост кунед",
+    "privateEventHint": "Меҳмонон бояд барои иштирок дархост кунанд",
+    "pickDate": "Санаро интихоб кунед",
+    "logInToChat": "Барои чат ворид шавед",
+    "locationPlaceholder": "Ҷой ё пайванд илова кунед",
+    "eventNamePlaceholder": "Ба чорабинии худ ном диҳед",
+    "entryFeeCoins_one": "{{count}} ҳаққи вуруд бо танга",
+    "descriptionPlaceholder": "Дар бораи ин чорабинӣ ба одамон нақл кунед...",
+    "delete": "Нест кардан",
+    "createEvent": "Эҷоди чорабинӣ",
+    "addCoverPhoto": "Акси муқова илова кунед"
   },
   "stats": {
     "chart": {
@@ -6276,7 +6290,9 @@
     "translatedFrom": "Тарҷумашуда аз {{lang}}",
     "originalText": "Матни аслӣ",
     "repostHint": "Фавран, ба пайравони худ",
-    "moreShare": "Бештар"
+    "moreShare": "Бештар",
+    "repostAndShare": "Бознашр ва мубодила",
+    "quoteHint": "Суханони худро илова кунед"
   },
   "dm": {
     "online": "Онлайн",

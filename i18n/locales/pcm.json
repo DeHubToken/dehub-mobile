@@ -103,7 +103,29 @@
     "f6ec7f0c995b": "Visualization",
     "f6f4688ff23d": "Send",
     "fef6a1a97127": "Followed by {{value1}}",
-    "ff701a069af2": "Verify & Unlock"
+    "ff701a069af2": "Verify & Unlock",
+    "3aefdd5f5915": "Content unlocked! 🎉",
+    "6e929effed4e": "Writing overview…",
+    "14c5558a8cd9": "No transcript matches",
+    "a54084383e3c": "matches",
+    "7adf0298ab5e": "Chapters",
+    "2baeddfdc699": "Search transcript…",
+    "d0bd6ec267f9": "Text",
+    "dea0ff385abf": "Copy",
+    "55de39f882a3": "Try again",
+    "9fddb94edef5": "Transcription failed:",
+    "6662a5411155": "Write it now",
+    "5ae4bb109db7": "No transcript yet",
+    "ba3bbbe10d8b": "Loading…",
+    "ee871105e875": "writing",
+    "2f41333ad013": "· {{value1}} disagree",
+    "72915d37182e": "agree",
+    "e5f6facf9cbe": "Nothin dey mark dis video yet",
+    "155f816c0407": "Submit",
+    "5218ce9ed7ab": "Submit {{value1}} – {{value2}}",
+    "b5f85f952b0b": "Mark am sponsor read or intro, every body go skip am, but if you no skip, you go follow am. Video go run — tap Start wen am begin and End wen am stop.",
+    "f0ed7becd58e": "No fit change to your posting chain. Choose one chain for Settings and try again.",
+    "488017ad5c75": "Explore DeHub without sign in"
   },
   "dehubLinks": {
     "kind": {
@@ -118,7 +140,8 @@
       "profile": "profile",
       "proposal": "Proposal",
       "stage": "stage",
-      "store": "store"
+      "store": "store",
+      "app": "app"
     }
   },
   "postGate": {
@@ -2186,8 +2209,7 @@
     "nothingHereYet": "Nothing here yet.",
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
-    "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "shareStation": "Share station"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -9730,6 +9752,8 @@
     "orContinueWith": "or continue with",
     "phone": "Phone",
     "fingerprint": "Fingerprint",
-    "exploreFirst": "Explore first"
+    "exploreFirst": "Explore first",
+    "headlineTop": "You go own everyting",
+    "codeNote": "We go email you code, no need password."
   }
 }

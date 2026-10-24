@@ -159,7 +159,9 @@
     "f6f4688ff23d": "Lähetä",
     "fc036ea0e9f0": "Link tietyn sivun kohdalle",
     "fef6a1a97127": "Seuraa {{value1}}",
-    "ff701a069af2": "Tarkista & Avaa"
+    "ff701a069af2": "Tarkista & Avaa",
+    "0e9161011702": "Päivitä",
+    "f6ec7f0c995b": "Visualisointi"
   },
   "dehubLinks": {
     "kind": {
@@ -1181,7 +1183,8 @@
     "themeColorBrand": "Brändi",
     "themeColorBrandDesc": "Käytä profiilikuvasi värejä",
     "themeColorBrandNoAvatar": "Lisää profiilikuva käyttääksesi brändivärejä",
-    "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä"
+    "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä",
+    "shortsEnabledDesc": "Näytä Shorts-syötteen välilehti ja Shorts-karusellit etusivulla."
   },
   "common": {
     "refresh": "Päivitä",
@@ -2635,7 +2638,9 @@
       "queueHelp": "Julkaisee tarkan tekstisi. Jaettu 20 minuutin jälkeinen aukko on voimassa. Ei lyömistä.",
       "queuePost": "Jonojulkaisu",
       "unlike": "Toisin kuin",
-      "viewPost": "Näytä julkaisu"
+      "viewPost": "Näytä julkaisu",
+      "compose": "Julkaise tämän edustajan nimellä",
+      "unliked": "Ei pidetty"
     },
     "tasks": {
       "preparing": "Valmistellaan tehtävää...",

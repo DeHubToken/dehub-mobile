@@ -2273,7 +2273,10 @@
     "tryAnotherGenre": "Başga bir görnüşi synap görüň.",
     "pauseStation": "Stansiýa dynç alyň",
     "resumeStation": "Garawul diňi we Garawul diňi",
-    "stopRadio": "Radiony goýuň"
+    "stopRadio": "Radiony goýuň",
+    "listeningCount_one": "{{count}} din",
+    "listeningCount_other": "{{count}} din",
+    "listeningTo": "Dinlerini dinlemek {{name}}-da"
   },
   "notFound": {
     "title": "Sahypa tapylmady",
@@ -2648,7 +2651,8 @@
         "dislike": "Gowy görme",
         "filterHelp": "Ähli postlar üçin filtrleri boş goýuň. Olaryň ikisi-de bir-birlerine meňzeş bolanda, ikisi-de bir-birlerine meňzeş bolmaly. Häzirki reaksiýalar goralýar; garşy reaksiýalary saýlamak ony üýtgedýär.",
         "last1h": "Soňgyň soň",
-        "last30d": "Bu günki geçen hepde"
+        "last30d": "Bu günki geçen hepde",
+        "categoryPlaceholder": "Exact kategoriň ady"
       }
     },
     "title": "Emeli aň agentleri",
@@ -3091,7 +3095,8 @@
     "sentDesc": "{{amount}} token {{chain}}-da hazynalara iberildi. Blokuň indekslenmegi bilen paýyňyz täzelener.",
     "sendAnyWallet": "Her kim islendik gutardygdan ýa-da biržadan DeHub tokenlerini şu ýere iberip biler. Base we BNB-däki geçirimler paýyňyza hasaplanar.",
     "yourContribution": "{{amount}} token goşant goşdy",
-    "pooledTotal": "{{amount}} token birleşdirildi"
+    "pooledTotal": "{{amount}} token birleşdirildi",
+    "voteRecorded": "Söwüň ýazylan"
   },
   "governance": {
     "badgeHoldersOnly": "Diňe belge eýeleri",
@@ -3759,7 +3764,8 @@
       "copied": "Kopyalan habar",
       "copyText": "Metini nusgala",
       "mutedUntil": "Siz {{date}} çenli üýtgedildiňiz",
-      "slowMode": "Slow mode: her bir habar{{interval}}"
+      "slowMode": "Slow mode: her bir habar{{interval}}",
+      "jumpToLatest": "Soňky ýazyna geç"
     },
     "manage": {
       "dismissAdminTitle": "Ýolbaşçylyk maslahaty",

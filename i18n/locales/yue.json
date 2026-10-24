@@ -159,7 +159,9 @@
     "f6ec7f0c995b": "可視化",
     "f6f4688ff23d": "寄送",
     "fef6a1a97127": "由 {{value1}} 跟隨",
-    "ff701a069af2": "驗證及解鎖"
+    "ff701a069af2": "驗證及解鎖",
+    "fc036ea0e9f0": "連結去特定頁面",
+    "da8e926af644": "編輯唔到訊息"
   },
   "dehubLinks": {
     "kind": {
@@ -6581,7 +6583,11 @@
   "player": {
     "segmentLabel": {
       "filler": "填充劑",
-      "sponsor": "贊助商"
+      "sponsor": "贊助商",
+      "interaction": "讚好同訂閱",
+      "selfpromo": "自我宣傳",
+      "outro": "外傳",
+      "intro": "介紹"
     },
     "volume": "音量水平",
     "openSettings": "打開設定",
