@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
   withTiming,
   Easing,
   type SharedValue,
@@ -26,7 +27,9 @@ import CinematicMusic from "../components/Music/CinematicMusic";
 import CinematicLive from "../components/Home/CinematicLive";
 import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
-import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT } from "../components/Home/IslandTopBar";
+import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT, ISLAND_CAPSULE_GAP } from "../components/Home/IslandTopBar";
+import NewPostsBead, { BEAD_JOIN, BEAD_HEIGHT } from "../components/Home/NewPostsBead";
+import { useNewPostsBead } from "../libs/new-posts-bead";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
 import { useTabBarHide } from "../context/TabBarHideContext";
@@ -180,6 +183,22 @@ type ImageFeedRequest = {
   index: number;
   /** Remount key, so re-opening always starts a fresh sheet at the new post. */
   token: number;
+};
+
+/** The bead drops out from under the pill, and tucks back in. */
+const beadEnter = () => {
+  "worklet";
+  return {
+    initialValues: { transform: [{ translateY: -(BEAD_JOIN + BEAD_HEIGHT) }] },
+    animations: { transform: [{ translateY: withSpring(0, { damping: 17, stiffness: 240, mass: 0.8 }) }] },
+  };
+};
+const beadExit = () => {
+  "worklet";
+  return {
+    initialValues: { transform: [{ translateY: 0 }] },
+    animations: { transform: [{ translateY: withTiming(-(BEAD_JOIN + BEAD_HEIGHT), { duration: 160, easing: Easing.in(Easing.quad) }) }] },
+  };
 };
 
 export default function HomeScreen() {
@@ -546,6 +565,7 @@ export default function HomeScreen() {
   const navPillBottom = useSharedValue(0);
   const [pillTopInHeader, setPillTopInHeader] = useState(0);
   const [navOverlap, setNavOverlap] = useState(38);
+  const [pillBottom, setPillBottom] = useState(0);
   const onNavLayout = useCallback((e: LayoutChangeEvent) => {
     setNavOverlap(e.nativeEvent.layout.height - NAV_PILL_TOP_INSET);
     setPillTopInHeader(e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + 4);
@@ -555,6 +575,7 @@ export default function HomeScreen() {
     navPillTop.value = e.nativeEvent.layout.y + NAV_PILL_TOP_INSET + NAV_PILL_RADIUS;
     // Minimal's tab bar sits flush; the pill themes keep 2pt under the pill.
     navPillBottom.value = e.nativeEvent.layout.y + e.nativeEvent.layout.height - (theme === 'minimal' ? 0 : 2);
+    setPillBottom(navPillBottom.value);
   }, [navPillTop, navPillBottom, theme]);
   const clipOn = glassNav && !island;
   const feedClipStyle = useAnimatedStyle(() => ({
@@ -575,6 +596,11 @@ export default function HomeScreen() {
   const postFeedInset = island ? 0 : headerHeight;
   const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
   const showNavPill = !island || feedProfileVisible || !!imageFeed;
+  const newPostsBead = useNewPostsBead();
+  // The pill's bottom edge, which the bead hangs from.
+  const beadTop = (island ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP : pillBottom) - BEAD_JOIN;
+  const showBead = isFocused && !filterPanelVisible && !feedProfileVisible && !imageFeed
+    && !(island && islandMenuOpen);
   // A scroll that hides the capsule puts its menu away too (a touch on the
   // feed already does, through handleScrollBegin).
   useAnimatedReaction(
@@ -981,8 +1007,6 @@ export default function HomeScreen() {
         pageSize={20}
         headerInset={postFeedInset}
         firstRowInset={postFeedFirstRowInset}
-        headerTranslateY={headerTranslateY}
-        islandChrome={island}
         hideNewPosts={islandMenuOpen}
         onRefresh={handleRefresh}
         onScrollBegin={handleScrollBegin}
@@ -1150,6 +1174,28 @@ export default function HomeScreen() {
         />
       ) : null}
 
+      {/* Over the header, not inside the feed: the bead covers the pill's
+          bottom rim where it joins, so the two are one shape with no seam.
+          Its window starts at the join, so it slides out from under the pill. */}
+      {island || pillBottom > 0 ? (
+        <Animated.View
+          pointerEvents="box-none"
+          style={[styles.beadHost, { top: beadTop, height: BEAD_JOIN + BEAD_HEIGHT + 8 }, headerAnimatedStyle]}
+        >
+          {showBead && newPostsBead ? (
+            <Animated.View entering={beadEnter} exiting={beadExit}>
+              <NewPostsBead
+                count={newPostsBead.count}
+                authors={newPostsBead.authors}
+                islandChrome={island}
+                onPress={newPostsBead.onPress}
+                label={newPostsBead.label}
+              />
+            </Animated.View>
+          ) : null}
+        </Animated.View>
+      ) : null}
+
       {/* A sibling keeps the drawer below the pill and its complete touch
           area inside its parent without changing the measured feed inset. */}
       {theme === 'system' ? (
@@ -1220,6 +1266,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     flexDirection: "row",
+  },
+  beadHost: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    alignItems: "center",
+    overflow: "hidden",
+    zIndex: 11,
   },
   headerClip: {
     position: "absolute",
