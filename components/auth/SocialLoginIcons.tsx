@@ -93,7 +93,7 @@ const OptionDisc: React.FC<OptionDiscProps> = ({ label, onPress, disabled, loadi
     <View style={[styles.disc, active && styles.discActive]}>
       {loading ? <ActivityIndicator size="small" color={authColors.label} /> : renderIcon(authColors.label, 22)}
     </View>
-    <Text style={styles.optionLabel} numberOfLines={1}>{label}</Text>
+    <Text style={styles.optionLabel} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{label}</Text>
   </Pressable>
 );
 
@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
   rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: authColors.hairline },
   dividerText: { color: authColors.subtle, fontSize: 12, fontWeight: "500" },
   row: { flexDirection: "row", justifyContent: "space-evenly" },
-  option: { alignItems: "center", gap: 6, minWidth: 56 },
+  option: { flex: 1, alignItems: "center", gap: 6, minWidth: 0 },
   disc: {
     width: 48,
     height: 48,
