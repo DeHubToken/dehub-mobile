@@ -1,4 +1,5 @@
 import { apiClient } from "../libs";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
  * MoonPay card on-ramp
@@ -58,12 +59,12 @@ export async function createMoonPayBuyUrl(req: MoonPayBuyRequest): Promise<strin
       },
       { isAuthRequired: true },
     );
-    if (!res?.url) throw new Error("Could not start the card purchase.");
+    if (!res?.url) throw new Error(_translateCopy("copy.ac199bc6baf1", { defaultValue: "Could not start the card purchase." }));
     return res.url;
   } catch (error: any) {
-    const msg = String(error?.message || "Could not start the card purchase.");
-    if (/503/.test(msg)) throw new Error("Card purchases are unavailable right now.");
-    if (/401/.test(msg)) throw new Error("Please log in to continue.");
+    const msg = String(error?.message || _translateCopy("copy.ac199bc6baf1", { defaultValue: "Could not start the card purchase." }));
+    if (/503/.test(msg)) throw new Error(_translateCopy("copy.d33e59a4df3c", { defaultValue: "Card purchases are unavailable right now." }));
+    if (/401/.test(msg)) throw new Error(_translateCopy("copy.86bd2dc0947d", { defaultValue: "Please log in to continue." }));
     throw new Error(msg);
   }
 }

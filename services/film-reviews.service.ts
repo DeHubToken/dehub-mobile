@@ -8,6 +8,7 @@
 import env from '../config/env';
 import { getAuthToken } from '../libs/auth.utils';
 import type { ObjectType } from './justwatch.service';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const FN_URL = `${env.SUPABASE_URL}/functions/v1/film-reviews`;
 
@@ -35,7 +36,7 @@ export interface FilmReviewsResponse {
 /** The function is not deployed yet: the same pre-launch state the catalogue has. */
 export class FilmReviewsUnavailableError extends Error {
   constructor() {
-    super('Film reviews are not available yet');
+    super(_translateCopy("copy.a58930922cc9", { defaultValue: "Film reviews are not available yet" }));
     this.name = 'FilmReviewsUnavailableError';
   }
 }
@@ -62,7 +63,7 @@ async function reach(input: string, init?: RequestInit): Promise<Response> {
 
 export async function fetchFilmReviews(justwatchId: string, objectType: ObjectType): Promise<FilmReviewsResponse> {
   const res = await reach(target(justwatchId, objectType), { headers: anonHeaders() });
-  if (!res.ok) throw new Error(`Could not load reviews (${res.status})`);
+  if (!res.ok) throw new Error(_translateCopy("copy.ef2ff88728b2", { defaultValue: "Could not load reviews ({{value1}})", value1: res.status }));
   return res.json();
 }
 
@@ -92,7 +93,7 @@ export async function saveFilmReview(input: SaveFilmReviewInput): Promise<FilmRe
     }),
   });
   const data = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(data?.error ?? `Could not save your review (${res.status})`);
+  if (!res.ok) throw new Error(data?.error ?? _translateCopy("copy.9f77374a745f", { defaultValue: "Could not save your review ({{value1}})", value1: res.status }));
   return data.review as FilmReview;
 }
 
@@ -105,6 +106,6 @@ export async function deleteFilmReview(justwatchId: string, objectType: ObjectTy
   });
   if (!res.ok) {
     const data = await res.json().catch(() => null);
-    throw new Error(data?.error ?? `Could not remove your review (${res.status})`);
+    throw new Error(data?.error ?? _translateCopy("copy.5e0aa872e5d0", { defaultValue: "Could not remove your review ({{value1}})", value1: res.status }));
   }
 }

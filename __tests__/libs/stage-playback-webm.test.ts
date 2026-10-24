@@ -8,7 +8,10 @@ const mockPlayer = {
   addListener: jest.fn(), seekTo: jest.fn(), shouldCorrectPitch: false,
 };
 jest.mock('expo-audio', () => ({ createAudioPlayer: () => mockPlayer }));
-jest.mock('i18next', () => ({ __esModule: true, default: { t: (_k: string, o?: { defaultValue?: string }) => o?.defaultValue ?? '' } }));
+jest.mock('i18next', () => {
+  const t = (_k: string, o?: { defaultValue?: string; [name: string]: unknown }) => (o?.defaultValue ?? '').replace(/{{(\w+)}}/g, (m: string, n: string) => String(o?.[n] ?? m));
+  return { __esModule: true, t, default: { t } };
+});
 jest.mock('../../libs/audioSession', () => ({ configureForBackgroundPlayback: jest.fn(async () => {}) }));
 jest.mock('../../libs/lockScreen', () => ({ claimLockScreen: jest.fn(), releaseLockScreen: jest.fn() }));
 jest.mock('../../libs/storage', () => ({ storage: { getString: () => undefined, set: jest.fn() } }));

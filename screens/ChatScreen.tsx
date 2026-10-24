@@ -395,8 +395,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   }, [currentConvId, conversations, target, targetAddress, userId, address]);
 
   const peerLabel = useMemo(
-    () => peer.displayName || peer.username || truncateAddress(peer.address) || "user",
-    [peer],
+    () => peer.displayName || peer.username || truncateAddress(peer.address) || t("copy.04f8996da763", { defaultValue: "user" }),
+    [peer, t],
   );
 
   /*
@@ -417,7 +417,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     route?.params?.title ||
     peer.displayName ||
     peer.username ||
-    (peer.address ? truncateAddress(peer.address) : "Chat");
+    (peer.address ? truncateAddress(peer.address) : t("copy.460b3a7da007", { defaultValue: "Chat" }));
 
   // Build the combined list: optimistic + store (newest first for inverted FlatList)
   const messageList = useMemo(() => {
@@ -633,18 +633,18 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const computeBlockDmState = useCallback(
     (acct: any): { disabled: boolean; reason: string | null } => {
       if (!!(acct?.youBlocked) && !!(acct?.blockedYou))
-        return { disabled: true, reason: "You've blocked this user and they've blocked you." };
+        return { disabled: true, reason: t("copy.45156cf98a89", { defaultValue: "You've blocked this user and they've blocked you." }) };
       if (!!(acct?.blockedYou))
-        return { disabled: true, reason: "This user has blocked you." };
+        return { disabled: true, reason: t("copy.b4bfeb07748c", { defaultValue: "This user has blocked you." }) };
       if (!!(acct?.youBlocked))
-        return { disabled: true, reason: "You've blocked this user." };
+        return { disabled: true, reason: t("copy.f2835d753fbd", { defaultValue: "You've blocked this user." }) };
       if (!!(acct?.isBlocked))
-        return { disabled: true, reason: "Messaging is restricted due to a block." };
+        return { disabled: true, reason: t("copy.4472e19f9ab5", { defaultValue: "Messaging is restricted due to a block." }) };
       if (Boolean(acct?.blocklist?.adminBlocked))
-        return { disabled: true, reason: "This account has been blocked." };
+        return { disabled: true, reason: t("copy.2ed9f7fcdb50", { defaultValue: "This account has been blocked." }) };
       return { disabled: false, reason: null };
     },
-    [],
+    [t],
   );
 
 
@@ -678,12 +678,14 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           const disables = acct.dmSettings?.disables || [];
           if (disables.includes("ALL")) {
             setDmDisabled(true);
-            setDmReason("This account has disabled all DMs");
-            dmActions.setPeerPolicy(addr, { disabled: true, reason: "This account has disabled all DMs", status: "ALL" });
+            const allReason = t("copy.9e2050d824cc", { defaultValue: "This account has disabled all DMs" });
+            setDmReason(allReason);
+            dmActions.setPeerPolicy(addr, { disabled: true, reason: allReason, status: "ALL" });
           } else if (disables.includes("NEW_DM") && !currentConvId) {
             setDmDisabled(true);
-            setDmReason("This account doesn't accept new DMs");
-            dmActions.setPeerPolicy(addr, { disabled: true, reason: "This account doesn't accept new DMs", status: "NEW_DM" });
+            const newDmReason = t("copy.76b4bb23be6b", { defaultValue: "This account doesn't accept new DMs" });
+            setDmReason(newDmReason);
+            dmActions.setPeerPolicy(addr, { disabled: true, reason: newDmReason, status: "NEW_DM" });
           } else {
             setDmDisabled(false);
             setDmReason(null);
@@ -698,8 +700,8 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
             if (!cancelled && !followResult.isFollowing) {
               setDmDisabled(true);
               const reason = followResult.isFollowRequestPending
-                ? "This is a private account. Your follow request is pending."
-                : "This is a private account. Follow them to send messages.";
+                ? t("copy.b87034ff2ad5", { defaultValue: "This is a private account. Your follow request is pending." })
+                : t("copy.ced9ac0e20ad", { defaultValue: "This is a private account. Follow them to send messages." });
               setDmReason(reason);
             }
           } catch {
@@ -741,7 +743,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       }
     })();
     return () => { cancelled = true; };
-  }, [peer.address, currentConvId, computeBlockDmState]);
+  }, [peer.address, currentConvId, computeBlockDmState, t]);
 
 
   useEffect(() => {
@@ -918,7 +920,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     // Error
     unsubs.push(
       ws.on(DMSocketEvent.Error, (err: any) => {
-        const msg: string = err?.msg || "Message failed";
+        const msg: string = err?.msg || t("copy.2fb0459cd6fb", { defaultValue: "Message failed" });
         if (/disturb|dnd|can't receive|disabled/i.test(msg)) {
           setDmDisabled(true);
           setDmReason(msg);
@@ -935,7 +937,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     );
 
     return () => unsubs.forEach((u) => { try { u(); } catch {} });
-  }, [ws, currentConvId, userId, settlePendingEdit]);
+  }, [ws, currentConvId, userId, settlePendingEdit, t]);
 
   // Auto-clear typing after 5s silence
   useEffect(() => {
@@ -1115,7 +1117,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       // Allow tip-only sends (no text content) — dispatched as standalone tip
       if (!content && tipAmount <= 0) return false;
       if (dmDisabled) {
-        toastWarning(dmReason || "Can't send messages right now");
+        toastWarning(dmReason || t("copy.e77db1187f46", { defaultValue: "Can't send messages right now" }));
         return false;
       }
       if (!editingMessage && planBlocks(content ? "text" : "tip", tipAmount)) return false;
@@ -1177,7 +1179,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setTipAmount(0);
       return true;
     },
-    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks, setReplyTo],
+    [dmDisabled, dmReason, dmFee, editingMessage, currentConvId, userId, address, peer.address, ensureConversation, ws, scrollToBottom, replyTo, tipAmount, dispatchStandaloneTip, settlePendingEdit, planBlocks, setReplyTo, t],
   );
 
   // The Builder lander hands its request over as `autoSendText`: sent once,
@@ -1196,7 +1198,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const onSendGif = useCallback(
     async (gifUrl: string, caption?: string) => {
       if (!gifUrl || dmDisabled) {
-        toastWarning(dmReason || "Can't send right now");
+        toastWarning(dmReason || t("copy.dae38d549299", { defaultValue: "Can't send right now" }));
         return false;
       }
       if (planBlocks("gif", tipAmount)) return false;
@@ -1218,13 +1220,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setTipAmount(0);
       return true;
     },
-    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo],
+    [dmDisabled, dmReason, dmFee, currentConvId, userId, address, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo, t],
   );
 
   const onSendMedia = useCallback(
     async (attachment: ChatMediaAttachment, caption?: string) => {
       if (!attachment.uri || !user || dmDisabled) {
-        toastWarning(dmReason || "Can't send right now");
+        toastWarning(dmReason || t("copy.dae38d549299", { defaultValue: "Can't send right now" }));
         return false;
       }
       if (planBlocks(attachment.type === "video" ? "video" : "image", tipAmount)) return false;
@@ -1253,7 +1255,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       setTipAmount(0);
       return true;
     },
-    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo],
+    [user, address, dmDisabled, dmReason, dmFee, currentConvId, userId, scrollToBottom, replyTo, tipAmount, planBlocks, setReplyTo, t],
   );
 
   const handleVoiceComplete = useCallback(
@@ -1514,7 +1516,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
     try {
       if (confirmMode === "block") {
         setDmDisabled(true);
-        setDmReason("You've blocked this user.");
+        setDmReason(t("copy.f2835d753fbd", { defaultValue: "You've blocked this user." }));
         await blockUser(addr, "Blocked from chat");
         setTarget((prev: any) => prev ? { ...prev, youBlocked: true } : prev);
         toastSuccess(t("postOptions.blockedUser", { name: peerLabel }));
@@ -1529,12 +1531,12 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
       const rollback = computeBlockDmState(target);
       setDmDisabled(rollback.disabled);
       setDmReason(rollback.reason);
-      toastError(e, confirmMode === "block" ? "Failed to block" : "Failed to unblock");
+      toastError(e, confirmMode === "block" ? t("copy.4fe0d0facd1a", { defaultValue: "Failed to block" }) : t("copy.576a5b77b7f1", { defaultValue: "Failed to unblock" }));
     } finally {
       setBlockLoading(false);
       setConfirmVisible(false);
     }
-  }, [peer.address, confirmMode, peerLabel, target, computeBlockDmState]);
+  }, [peer.address, confirmMode, peerLabel, target, computeBlockDmState, t]);
 
 
   const peerAvatarUri = useMemo(() => {

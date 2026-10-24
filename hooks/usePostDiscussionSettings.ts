@@ -8,6 +8,7 @@
  * cannot be trusted on its own.
  */
 import { useCallback } from "react";
+import { useTranslation as _useCopy } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
@@ -57,6 +58,7 @@ export function usePostDiscussionSettings(
 
 /** Creator-side write. The row is keyed on the wallet doing the writing. */
 export function useSetCommonGround(tokenId: string | number | null | undefined) {
+  const { t: _copy } = _useCopy();
   const user = useUser();
   const walletAddress = user?.address || user?.walletAddress || null;
   const queryClient = useQueryClient();
@@ -64,8 +66,8 @@ export function useSetCommonGround(tokenId: string | number | null | undefined) 
 
   return useMutation({
     mutationFn: async (on: boolean) => {
-      if (id === null) throw new Error("No post to save settings for");
-      if (!walletAddress) throw new Error("Connect a wallet to change this");
+      if (id === null) throw new Error(_copy("copy.5e91bd0e0b95", { defaultValue: "No post to save settings for" }));
+      if (!walletAddress) throw new Error(_copy("copy.8b3ca201a335", { defaultValue: "Connect a wallet to change this" }));
       const addr = walletAddress.toLowerCase();
       const { error } = await withWalletHeader(
         supabase

@@ -112,9 +112,9 @@ const VideoArea: React.FC<VideoAreaProps> = ({
   const requiredChainLabel = useMemo(() => {
     if (!ppvChainIds.length) return "";
     const toLabel = (id: number) =>
-      id === ChainId.BASE_MAINNET ? "Base" : id === ChainId.BSC_MAINNET ? "BSC" : `Chain ${id}`;
-    return ppvChainIds.map(toLabel).join(" or ");
-  }, [ppvChainIds]);
+      id === ChainId.BASE_MAINNET ? "Base" : id === ChainId.BSC_MAINNET ? "BSC" : t("copy.f68ce866a5b4", { defaultValue: "Chain {{value1}}", value1: id });
+    return ppvChainIds.map(toLabel).reduce((list, label) => t("copy.2e95cd47e935", { defaultValue: "{{value1}} or {{value2}}", value1: list, value2: label }));
+  }, [ppvChainIds, t]);
 
   // The active-chain switch lives on the Assets tab; Settings otherwise opens
   // on Profile.

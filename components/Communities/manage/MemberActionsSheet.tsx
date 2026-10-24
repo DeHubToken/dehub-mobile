@@ -33,8 +33,22 @@ import {
 } from "../../../libs/community-permissions";
 import { isMuted, shortWallet, useCommunityModeration, useWalletAddress } from "../../../hooks/useCommunityAdmin";
 import type { Community, CommunityMember } from "../../../types/community";
+import { translateCopy as _translateCopy } from "../../../i18n/copy";
 
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS = [
+  () => _translateCopy("copy.5c5db120cb11", { defaultValue: "Jan" }),
+  () => _translateCopy("copy.caf71b3f582d", { defaultValue: "Feb" }),
+  () => _translateCopy("copy.b4b7d3818dbf", { defaultValue: "Mar" }),
+  () => _translateCopy("copy.617531b4fec3", { defaultValue: "Apr" }),
+  () => _translateCopy("copy.8c78fe5b9936", { defaultValue: "May" }),
+  () => _translateCopy("copy.b27fd46ed1b6", { defaultValue: "Jun" }),
+  () => _translateCopy("copy.c43f56b9807e", { defaultValue: "Jul" }),
+  () => _translateCopy("copy.41e1d82aa990", { defaultValue: "Aug" }),
+  () => _translateCopy("copy.451e2b719061", { defaultValue: "Sep" }),
+  () => _translateCopy("copy.6877e8494c3a", { defaultValue: "Oct" }),
+  () => _translateCopy("copy.3e630d2964a0", { defaultValue: "Nov" }),
+  () => _translateCopy("copy.f2a0cfbcf191", { defaultValue: "Dec" }),
+];
 
 /** `Aug 4, 9:30 PM` — Intl is not dependable on older Hermes, so format by hand. */
 export function formatRestrictionDate(iso: string | null): string {
@@ -43,8 +57,8 @@ export function formatRestrictionDate(iso: string | null): string {
   if (Number.isNaN(d.getTime())) return "";
   const h = d.getHours();
   const m = d.getMinutes().toString().padStart(2, "0");
-  const ampm = h >= 12 ? "PM" : "AM";
-  return `${MONTHS[d.getMonth()]} ${d.getDate()}, ${h % 12 || 12}:${m} ${ampm}`;
+  const ampm = h >= 12 ? _translateCopy("copy.6b987654a411", { defaultValue: "PM" }) : _translateCopy("copy.c8f48a68649d", { defaultValue: "AM" });
+  return `${MONTHS[d.getMonth()]()} ${d.getDate()}, ${h % 12 || 12}:${m} ${ampm}`;
 }
 
 /**

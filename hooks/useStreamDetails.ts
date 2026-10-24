@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { AppState } from 'react-native';
 import { getLiveStream, getStreamKey, LiveStreamEntity } from '../services/live.service';
 import { streamRefreshInterval } from '../libs/live-status';
@@ -15,6 +16,7 @@ export interface UseStreamDetailsResult {
 }
 
 export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): UseStreamDetailsResult => {
+  const { t: _copy } = _useCopy();
   const [streamEntity, setStreamEntity] = useState<LiveStreamEntity | null>(null);
   const [streamLoading, setStreamLoading] = useState<boolean>(!!streamId);
   const [streamError, setStreamError] = useState<string | null>(null);
@@ -36,10 +38,10 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
       })
       .catch((e: any) => {
         if (requestGeneration !== generation.current) return;
-        setStreamError(e?.message || 'Failed to load stream');
+        setStreamError(e?.message || _copy("copy.9dca8ee026ff", { defaultValue: "Failed to load stream" }));
       })
       .finally(() => { if (requestGeneration === generation.current) setStreamLoading(false); });
-  }, [streamId]);
+  }, [streamId, _copy]);
 
   const fetchStreamKey = () => {
     if (!streamId || !fetchKey) return;
@@ -48,9 +50,9 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
     getStreamKey(streamId)
       .then((res: any) => {
         const key = res?.streamKey || res?.result?.streamKey || res?.data?.streamKey;
-        if (key) setStreamKeyValue(key); else setStreamKeyError('No key returned');
+        if (key) setStreamKeyValue(key); else setStreamKeyError(_copy("copy.4fda56391dfb", { defaultValue: "No key returned" }));
       })
-      .catch((e: any) => setStreamKeyError(e?.message || 'Failed to fetch key'))
+      .catch((e: any) => setStreamKeyError(e?.message || _copy("copy.cbda24306ce8", { defaultValue: "Failed to fetch key" })))
       .finally(() => setStreamKeyLoading(false));
   };
 

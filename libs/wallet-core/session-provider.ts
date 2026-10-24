@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
+
 type Provider = { request: (args: { method: string; params?: any[] }) => Promise<any> };
 
 /** Select by account identity, never by whichever provider happened to build. */
@@ -14,5 +16,5 @@ export async function selectSessionProvider<T extends Provider>(
       return smartProvider;
     }
   }
-  throw new Error('Your Smart Wallet is temporarily unavailable. Please try again. Nothing was sent.');
+  throw new Error(_translateCopy('copy.605643525f9f', { defaultValue: 'Your Smart Wallet is temporarily unavailable. Please try again. Nothing was sent.' }));
 }

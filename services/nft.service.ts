@@ -4,6 +4,7 @@ import { normalizeCategoryList } from "../libs/strings.util";
 import { streamInfoKeys } from "../config/constants";
 import type { PostReaction } from "../libs/reactions";
 import { xhrUploadFormData } from "../libs/xhr-upload";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface SearchParams {
   search?: string;
@@ -387,7 +388,7 @@ export interface PostCommentResponse { result?: any; [k: string]: any }
  * comment" at best. Every reason the server gives — comments turned off, over
  * 500 characters, a link the scanner will not allow — is worth more than that.
  */
-function assertCommentAccepted(response: any, fallback = 'Could not post comment'): void {
+function assertCommentAccepted(response: any, fallback = _translateCopy("copy.33eb41334d12", { defaultValue: "Could not post comment" })): void {
   if (response && typeof response === 'object' && response.result === false) {
     // The author's reply controls refused this account
     // (dehub-stream-backend src/reaction/reply-policy) — said in the reader's
@@ -1249,7 +1250,7 @@ export async function addPostImages(tokenId: number | string, images: ReplaceVid
   const response = await xhrUploadFormData<{ result: boolean; data: { imageUrls: string[] } }>({
     endpoint: `/nft/${encodeURIComponent(String(tokenId))}/images`, formData,
   });
-  if (!response.result || !Array.isArray(response.data?.imageUrls)) throw new Error('Could not add those images');
+  if (!response.result || !Array.isArray(response.data?.imageUrls)) throw new Error(_translateCopy("copy.0b6b539f3e91", { defaultValue: "Could not add those images" }));
   return response.data.imageUrls;
 }
 
@@ -1259,7 +1260,7 @@ export async function replacePostImage(tokenId: number | string, index: number, 
   const response = await xhrUploadFormData<{ result: boolean; data: { imageUrls: string[] } }>({
     endpoint: `/nft/${encodeURIComponent(String(tokenId))}/images/${index}`, formData,
   });
-  if (!response.result || !Array.isArray(response.data?.imageUrls)) throw new Error('Could not replace that image');
+  if (!response.result || !Array.isArray(response.data?.imageUrls)) throw new Error(_translateCopy("copy.4d8a0bff64c5", { defaultValue: "Could not replace that image" }));
   return response.data.imageUrls;
 }
 
@@ -1270,7 +1271,7 @@ export async function replaceVideoCover(tokenId: number | string, image: Replace
   const response = await xhrUploadFormData<{ result: boolean; data?: { imageUrl: string }; error?: string }>({
     endpoint: `/nft/${encodeURIComponent(String(tokenId))}/thumbnail`, formData,
   });
-  if (!response.result || !response.data?.imageUrl) throw new Error(response.error || 'Could not change the cover');
+  if (!response.result || !response.data?.imageUrl) throw new Error(response.error || _translateCopy("copy.787bcf985c06", { defaultValue: "Could not change the cover" }));
   return response.data.imageUrl;
 }
 

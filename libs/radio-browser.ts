@@ -19,6 +19,8 @@
  * @module libs/radio-browser
  */
 
+import { translateCopy as _translateCopy } from "../i18n/copy";
+
 const API_SERVERS = [
   "https://de1.api.radio-browser.info/json",
   "https://nl1.api.radio-browser.info/json",
@@ -46,21 +48,21 @@ export interface RadioStation {
 }
 
 export const RADIO_GENRES = [
-  { id: "top", label: "Top Stations", tag: "" },
+  { id: "top", get label() { return _translateCopy("copy.fecfbd745662", { defaultValue: "Top Stations" }); }, tag: "" },
   { id: "lofi", label: "Lo-Fi", tag: "lofi" },
-  { id: "pop", label: "Pop", tag: "pop" },
-  { id: "rock", label: "Rock", tag: "rock" },
+  { id: "pop", get label() { return _translateCopy("copy.4d616d53988e", { defaultValue: "Pop" }); }, tag: "pop" },
+  { id: "rock", get label() { return _translateCopy("copy.f302f0ea1db5", { defaultValue: "Rock" }); }, tag: "rock" },
   { id: "hiphop", label: "Hip-Hop", tag: "hip hop" },
-  { id: "electronic", label: "Electronic", tag: "electronic" },
-  { id: "jazz", label: "Jazz", tag: "jazz" },
-  { id: "classical", label: "Classical", tag: "classical" },
+  { id: "electronic", get label() { return _translateCopy("copy.a284c4f1684a", { defaultValue: "Electronic" }); }, tag: "electronic" },
+  { id: "jazz", get label() { return _translateCopy("copy.3e284681b695", { defaultValue: "Jazz" }); }, tag: "jazz" },
+  { id: "classical", get label() { return _translateCopy("copy.5550f80de667", { defaultValue: "Classical" }); }, tag: "classical" },
   { id: "rnb", label: "R&B", tag: "r&b" },
-  { id: "country", label: "Country", tag: "country" },
-  { id: "latin", label: "Latin", tag: "latin" },
-  { id: "reggae", label: "Reggae", tag: "reggae" },
-  { id: "news", label: "News", tag: "news" },
-  { id: "talk", label: "Talk", tag: "talk" },
-  { id: "chill", label: "Chill", tag: "chillout" },
+  { id: "country", get label() { return _translateCopy("copy.701d021d08c5", { defaultValue: "Country" }); }, tag: "country" },
+  { id: "latin", get label() { return _translateCopy("copy.2d38c456a2ec", { defaultValue: "Latin" }); }, tag: "latin" },
+  { id: "reggae", get label() { return _translateCopy("copy.c9608139ab38", { defaultValue: "Reggae" }); }, tag: "reggae" },
+  { id: "news", get label() { return _translateCopy("copy.69752f2313b2", { defaultValue: "News" }); }, tag: "news" },
+  { id: "talk", get label() { return _translateCopy("copy.449f5a775762", { defaultValue: "Talk" }); }, tag: "talk" },
+  { id: "chill", get label() { return _translateCopy("copy.106eb3ebbb80", { defaultValue: "Chill" }); }, tag: "chillout" },
 ] as const;
 
 export type RadioGenreId = (typeof RADIO_GENRES)[number]["id"];

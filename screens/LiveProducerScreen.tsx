@@ -50,6 +50,7 @@ import { useTranslation } from "react-i18next";
 import { useStreamerProgress } from "../hooks/useStreamerProgress";
 import { useGateToHome } from "../hooks/useGateToHome";
 import { appLocale } from "../libs/date.util";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 type RouteParams = {
   streamId?: string;
@@ -519,7 +520,7 @@ const LiveProducerScreen: React.FC = () => {
       if (data?.streamId && data.streamId !== streamId) return;
       addChatActivity({
         status: StreamActivityType.JOINED,
-        meta: { username: 'Visitor' },
+        meta: { username: _translateCopy("copy.cf9f5896322a", { defaultValue: "Visitor" }) },
       });
     });
     make(LivestreamEvents.LeaveStream, (data: any) => {
@@ -733,7 +734,7 @@ const LiveProducerScreen: React.FC = () => {
     addChatActivity({
       status: StreamActivityType.MESSAGE,
       address: (user as any)?.address,
-      meta: { username: (user as any)?.username || "You", content, tempId },
+      meta: { username: (user as any)?.username || t("copy.08b041935798", { defaultValue: "You" }), content, tempId },
       createdAt: Date.now(),
       optimistic: true,
     });
@@ -752,7 +753,7 @@ const LiveProducerScreen: React.FC = () => {
           (meta.content || message?.content) === content;
       },
     });
-  }, [stage, user, addChatActivity, socketEmitAuthed, socketOn, streamId, streamEntity]);
+  }, [stage, user, addChatActivity, socketEmitAuthed, socketOn, streamId, streamEntity, t]);
 
   const openEndConfirm = useCallback(() => {
     setShowEndConfirm(true);
@@ -819,14 +820,14 @@ const LiveProducerScreen: React.FC = () => {
   const handlePublisherError = useCallback(
     (err: any) => {
       console.log("[LiveProducer] WebRTCPublisher error escalated:", err);
-      publisherFailed?.(typeof err === "string" ? err : err?.message || "Publisher error");
+      publisherFailed?.(typeof err === "string" ? err : err?.message || t("copy.89661a0a6f9d", { defaultValue: "Publisher error" }));
       setPublisherConnected(false);
       setCameraOff(true);
       if (stage === "live" || stage === "starting") {
         end().catch(() => {});
       }
     },
-    [publisherFailed, setPublisherConnected, stage, end]
+    [publisherFailed, setPublisherConnected, stage, end, t]
   );
 
   // Only on demand: the URL is owner-only and nobody who stays on the camera

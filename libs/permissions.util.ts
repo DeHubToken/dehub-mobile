@@ -10,6 +10,7 @@ import {
 import { Platform } from "react-native";
 import * as Linking from "expo-linking";
 import { PermissionModal, type PermissionModalConfig } from "../components/ui/PermissionModal";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 export type PermissionEnsureResult = {
   granted: boolean;
@@ -37,40 +38,55 @@ const PERMISSION_COPY: Record<PermissionKind, PermissionCopyEntry> = {
   photos: {
     rationale: {
       icon: "images-outline",
-      title: "Allow Photo & Video Access",
-      message:
-        "DeHub needs access to your photo library so you can share images and videos in your posts, messages, and profile.",
+      get title() { return _translateCopy("copy.17327a8bbef2", { defaultValue: "Allow Photo & Video Access" }); },
+      get message() {
+        return _translateCopy("copy.c8a13ba198f8", { defaultValue: "DeHub needs access to your photo library so you can share images and videos in your posts, messages, and profile." });
+      },
     },
     denied: {
       icon: "images-outline",
-      title: "Photo Access Required",
-      message: `You've previously denied photo access. To share photos and videos, please enable it in ${Platform.OS === "ios" ? "Settings → DeHub → Photos" : "Settings → Apps → DeHub → Permissions"}.`,
+      get title() { return _translateCopy("copy.367fab14d80e", { defaultValue: "Photo Access Required" }); },
+      get message() {
+        return Platform.OS === "ios"
+          ? _translateCopy("copy.330a0c47b974", { defaultValue: "You've previously denied photo access. To share photos and videos, please enable it in Settings → DeHub → Photos." })
+          : _translateCopy("copy.726841a807ad", { defaultValue: "You've previously denied photo access. To share photos and videos, please enable it in Settings → Apps → DeHub → Permissions." });
+      },
     },
   },
   camera: {
     rationale: {
       icon: "camera-outline",
-      title: "Allow Camera Access",
-      message:
-        "DeHub needs camera access so you can stream live content to your audience.",
+      get title() { return _translateCopy("copy.accbfc31a313", { defaultValue: "Allow Camera Access" }); },
+      get message() {
+        return _translateCopy("copy.1abdcc39af0b", { defaultValue: "DeHub needs camera access so you can stream live content to your audience." });
+      },
     },
     denied: {
       icon: "camera-outline",
-      title: "Camera Access Required",
-      message: `Camera access was denied. Please enable it in ${Platform.OS === "ios" ? "Settings → DeHub → Camera" : "Settings → Apps → DeHub → Permissions"} to go live.`,
+      get title() { return _translateCopy("copy.579cddb816f2", { defaultValue: "Camera Access Required" }); },
+      get message() {
+        return Platform.OS === "ios"
+          ? _translateCopy("copy.1ce8f4323ac9", { defaultValue: "Camera access was denied. Please enable it in Settings → DeHub → Camera to go live." })
+          : _translateCopy("copy.de1f4a628d37", { defaultValue: "Camera access was denied. Please enable it in Settings → Apps → DeHub → Permissions to go live." });
+      },
     },
   },
   microphone: {
     rationale: {
       icon: "mic-outline",
-      title: "Allow Microphone Access",
-      message:
-        "DeHub needs microphone access for live streaming and voice notes.",
+      get title() { return _translateCopy("copy.9dbec93384a7", { defaultValue: "Allow Microphone Access" }); },
+      get message() {
+        return _translateCopy("copy.aff7721e2cff", { defaultValue: "DeHub needs microphone access for live streaming and voice notes." });
+      },
     },
     denied: {
       icon: "mic-outline",
-      title: "Microphone Access Required",
-      message: `Microphone access was denied. Please enable it in ${Platform.OS === "ios" ? "Settings → DeHub → Microphone" : "Settings → Apps → DeHub → Permissions"}.`,
+      get title() { return _translateCopy("copy.0b6a294eb3ca", { defaultValue: "Microphone Access Required" }); },
+      get message() {
+        return Platform.OS === "ios"
+          ? _translateCopy("copy.28f7beb11d62", { defaultValue: "Microphone access was denied. Please enable it in Settings → DeHub → Microphone." })
+          : _translateCopy("copy.aece76552fe8", { defaultValue: "Microphone access was denied. Please enable it in Settings → Apps → DeHub → Permissions." });
+      },
     },
   },
 };

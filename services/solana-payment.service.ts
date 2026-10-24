@@ -10,6 +10,7 @@ import { Buffer } from "buffer";
 import { getSolanaKeypair, getSolanaAddress } from "./solana.service";
 import { getSolanaRpcUrl, SOLANA_MAINNET_CHAIN_ID } from "../config/solana.constants";
 import { apiClient } from "../libs/api.client";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export type SolanaPaymentKind = "ppv" | "tip";
 
@@ -47,7 +48,7 @@ export async function sendSolanaPayment(params: {
   const payerWallet = await getSolanaAddress();
   if (!payerWallet) {
     throw new Error(
-      "Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it.",
+      _translateCopy("copy.ceae840b1f84", { defaultValue: "Solana wallet unavailable — this device does not hold your wallet key. Sign in again to restore it." }),
     );
   }
 
@@ -67,7 +68,7 @@ export async function sendSolanaPayment(params: {
   );
 
   if (!build?.transaction) {
-    throw new Error("Could not prepare the Solana payment. Please try again.");
+    throw new Error(_translateCopy("copy.92d19a8fe155", { defaultValue: "Could not prepare the Solana payment. Please try again." }));
   }
 
   // 2. Sign as payer + broadcast.
@@ -78,14 +79,14 @@ export async function sendSolanaPayment(params: {
   try {
     tx = Transaction.from(Buffer.from(build.transaction, "base64"));
   } catch {
-    throw new Error("Invalid payment transaction from server. Please try again.");
+    throw new Error(_translateCopy("copy.209d989eb7bf", { defaultValue: "Invalid payment transaction from server. Please try again." }));
   }
 
   try {
     tx.partialSign(keypair);
   } catch (err) {
     throw new Error(
-      err instanceof Error ? err.message : "Failed to sign Solana transaction",
+      err instanceof Error ? err.message : _translateCopy("copy.b397b6d54c82", { defaultValue: "Failed to sign Solana transaction" }),
     );
   }
 
@@ -98,12 +99,12 @@ export async function sendSolanaPayment(params: {
   } catch (err) {
     const msg = (err instanceof Error ? err.message : String(err)).toLowerCase();
     if (msg.includes("insufficient") || msg.includes("0x1")) {
-      throw new Error("Insufficient balance (token or SOL for fees).");
+      throw new Error(_translateCopy("copy.f2e9e8168f00", { defaultValue: "Insufficient balance (token or SOL for fees)." }));
     }
     if (msg.includes("blockhash") || msg.includes("expired") || msg.includes("timeout")) {
-      throw new Error("Solana transaction expired. Please try again.");
+      throw new Error(_translateCopy("copy.3e9abebf2d88", { defaultValue: "Solana transaction expired. Please try again." }));
     }
-    throw new Error(`Solana payment failed: ${err instanceof Error ? err.message : msg}`);
+    throw new Error(_translateCopy("copy.d3b5f68b4641", { defaultValue: "Solana payment failed: {{value1}}", value1: err instanceof Error ? err.message : msg }));
   }
 
   try {

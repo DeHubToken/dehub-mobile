@@ -1,8 +1,9 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { parseCloudDraftCheckpoint, type CloudDraftCheckpoint, type CloudDraftReceipt, type CloudDraftRequest, type CloudDraftWriter, type cloudProjectDraftApi } from "./cloudProjectDraft";
 import { parseCloudProjectDocument, type CloudProjectDocument } from "./cloudProjectFormat";
 import { projectReviewWallet } from "./cloudProjectReview";
 import { withCloudProjectTransfer } from "./cloudProjectTransfer";
-import { CloudProjectConflict } from "./cloudProjectFormat";
+import { CloudDraftRecovery, CloudProjectConflict } from "./cloudProjectFormat";
 import { sameCloudProjectEdit } from "./cloudProjectMerge";
 
 export interface CloudDraftScope { wallet: string; owner: string; projectId: string; localId: string }
@@ -27,7 +28,7 @@ const object = (value: unknown): value is Record<string, unknown> => !!value && 
 const id = (value: unknown): value is string => typeof value === "string" && UUID.test(value);
 const integer = (value: unknown, minimum: number, maximum = MAX_SEQUENCE - 1): value is number => typeof value === "number" && Number.isInteger(value) && value >= minimum && value <= maximum;
 const date = (value: unknown): value is string => typeof value === "string" && Number.isFinite(Date.parse(value));
-function fail(): never { throw new Error("Invalid or mismatched live draft outbox"); }
+function fail(): never { throw new Error(_translateCopy("copy.6a097773ac13", { defaultValue: "Invalid or mismatched live draft outbox" })); }
 function copy<T>(value: T): T {
   return JSON.parse(JSON.stringify(value, (_key, part) => {
     if (typeof part === "number" && !Number.isFinite(part)) fail();
@@ -106,7 +107,7 @@ export function cloudDraftOutbox(deps: CloudDraftOutboxDeps) {
     resolve: () => exclusive(async () => {
       const state = await read();
       if (!state?.pending) return null;
-      if (!deps.api.resolve) throw new Error("Live edit outcome recovery is unavailable. Your local draft was kept.");
+      if (!deps.api.resolve) throw new CloudDraftRecovery(_translateCopy("copy.3d15eadafc08", { defaultValue: "Live edit outcome recovery is unavailable. Your local draft was kept." }));
       const pending = copy(state.pending);
       guard(); const result: unknown = await deps.api.resolve(scope.owner, scope.projectId, pending); guard();
       if (!object(result)) fail();
@@ -121,7 +122,7 @@ export function cloudDraftOutbox(deps: CloudDraftOutboxDeps) {
     inspect: async () => { guard(); return read(); },
     register: () => exclusive(async () => {
       let state = await read();
-      if (state?.pending) throw new Error("A live edit is awaiting its receipt. Recover it before registering again.");
+      if (state?.pending) throw new CloudDraftRecovery(_translateCopy("copy.6ef46f0cf411", { defaultValue: "A live edit is awaiting its receipt. Recover it before registering again." }));
       if (!state) {
         state = { ...scope, version: 1, clientId: deps.uuid(), writer: null, pending: null, lastRequestId: null };
         await persist(state);
@@ -141,13 +142,13 @@ export function cloudDraftOutbox(deps: CloudDraftOutboxDeps) {
       if (captured.snapshot.id !== scope.projectId) fail();
       return exclusive(async (): Promise<CloudDraftDelivery> => {
         const state = await read();
-        if (!state?.writer) throw new Error("Register this project for live sharing before sending edits.");
+        if (!state?.writer) throw new Error(_translateCopy("copy.41301747b509", { defaultValue: "Register this project for live sharing before sending edits." }));
         if(accepted&&!state.pending&&(accepted.draftRevision!==state.writer.checkpoint.draftRevision||accepted.headRevision!==state.writer.checkpoint.headRevision
-          ||!sameCloudProjectEdit(accepted.document,state.writer.checkpoint.document)))throw new CloudProjectConflict("The live baseline changed before sending. Your local draft was kept.");
+          ||!sameCloudProjectEdit(accepted.document,state.writer.checkpoint.document)))throw new CloudProjectConflict(_translateCopy("copy.eee348005313", { defaultValue: "The live baseline changed before sending. Your local draft was kept." }));
         if (state.pending) return finish(state, true, contentKey(captured) === contentKey(state.pending.document));
         if (contentKey(captured) === contentKey(state.writer.checkpoint.document)) return copy({ checkpoint: state.writer.checkpoint, receipt: null, recovered: false, capturedSent: true });
-        if (Date.parse(state.writer.expiresAt) <= deps.now()) throw new Error("Live sharing expired. Your local edit was kept; join again.");
-        if (state.writer.nextSequence >= MAX_SEQUENCE || state.writer.checkpoint.draftRevision >= MAX_SEQUENCE - 1) throw new Error("Live draft sequence is exhausted. Your local edit was kept.");
+        if (Date.parse(state.writer.expiresAt) <= deps.now()) throw new CloudDraftRecovery(_translateCopy("copy.92f38b4ff7c2", { defaultValue: "Live sharing expired. Your local edit was kept; join again." }));
+        if (state.writer.nextSequence >= MAX_SEQUENCE || state.writer.checkpoint.draftRevision >= MAX_SEQUENCE - 1) throw new Error(_translateCopy("copy.744ce594467c", { defaultValue: "Live draft sequence is exhausted. Your local edit was kept." }));
         const requestId = deps.uuid(); if (!id(requestId) || requestId === state.lastRequestId) fail();
         state.pending = { writerId: state.writer.writerId, sequence: state.writer.nextSequence, document: captured,
           expectedRevision: state.writer.checkpoint.draftRevision, anchorRevision: state.writer.checkpoint.headRevision, requestId };

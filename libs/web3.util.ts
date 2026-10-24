@@ -3,10 +3,45 @@
 // Usage: parseTxError(error, 'approve') or parseTxError(error, 'send')
 // Falls back to generic context-based messages when no specific match.
 
-import { WALLET_LOCKED_DEFAULT_MESSAGE } from "./wallet-lock";
-import { userOperationErrorDetail, userOperationValidationMessage } from "./user-operation-error";
+import { WALLET_LOCKED_DEFAULT_MESSAGE, isKnownWalletLockedMessage, rememberWalletLockedMessage } from "./wallet-lock";
+import { USER_OPERATION_MESSAGES, userOperationErrorDetail, userOperationValidationMessage } from "./user-operation-error";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 export type TxContext = "approve" | "send" | string | undefined;
+
+/**
+ * The messages parseTxError gives back. aa.write re-wraps one in a plain Error
+ * and most callers parse that again, and every branch below matches English,
+ * so a translated message is first read back as the English it was made from.
+ */
+const TX_MESSAGES = {
+  approvalFailed: { key: "copy.8246891f0371", en: "Approval failed" },
+  transactionFailed: { key: "copy.a7ecf4641fb9", en: "Transaction failed" },
+  rejected: { key: "copy.23036aa9a9eb", en: "You rejected the transaction" },
+  gasFunds: { key: "copy.e57fd3ac03f5", en: "Insufficient funds for gas fees" },
+  tokenBalance: { key: "copy.d369bf9fe70c", en: "Insufficient token balance" },
+  allowance: { key: "copy.2fc210db2d7c", en: "Allowance too low — approval needed" },
+  gasEstimate: { key: "copy.54d3d84df2d4", en: "Gas estimation failed — try a different amount or try again" },
+  pendingTx: { key: "copy.fee5c3d3b67a", en: "There is a pending transaction — wait or speed it up in your wallet" },
+  nonce: { key: "copy.2b471a6c978f", en: "Network nonce mismatch — wait for pending transactions to confirm" },
+  tokenTransfer: { key: "copy.a61592726098", en: "Token transfer failed — check your DHB balance and approval" },
+  reverted: { key: "copy.f70adfce140c", en: "Transaction reverted" },
+  noSponsor: { key: "copy.53fc8b77b4d3", en: "No gas sponsor available — try again later or switch method" },
+  sponsorDown: { key: "copy.0b08410d33f7", en: "Gas sponsor service unavailable — try again later" },
+  paymaster: { key: "copy.8939094bb382", en: "Paymaster error — sponsorship unavailable" },
+} as const;
+
+const txMessage = (id: keyof typeof TX_MESSAGES): string =>
+  _translateCopy(TX_MESSAGES[id].key, { defaultValue: TX_MESSAGES[id].en });
+
+function asEnglish(text: string): string {
+  let out = text;
+  for (const { key, en } of [...Object.values(TX_MESSAGES), ...USER_OPERATION_MESSAGES]) {
+    const shown = _translateCopy(key, { defaultValue: en });
+    if (shown !== en && out.includes(shown)) out = out.split(shown).join(en);
+  }
+  return out;
+}
 
 /**
  * True when the only thing wrong is that the wallet needs unlocking — the
@@ -20,7 +55,7 @@ export function isWalletLockedError(err: any): boolean {
   if (!err) return false;
   if (err.name === "WalletLockedError") return true;
   const message = typeof err === "string" ? err : String(err?.message ?? "");
-  return message.toLowerCase().includes("wallet is locked");
+  return message.toLowerCase().includes("wallet is locked") || isKnownWalletLockedMessage(message);
 }
 
 /**
@@ -77,9 +112,9 @@ function decodeRevertReason(text: string): string {
 export function parseTxError(err: any, context: TxContext): string {
   if (err?.code === 'TRANSACTION_CONFIRMATION_PENDING') return err.message;
   if (!err)
-    return context === "approve" ? "Approval failed" : "Transaction failed";
+    return context === "approve" ? txMessage("approvalFailed") : txMessage("transactionFailed");
   const code = err.code || err.error?.code;
-  const raw = rawErrorText(err);
+  const raw = asEnglish(rawErrorText(err));
   const validationMessage = userOperationValidationMessage(userOperationErrorDetail(err));
   if (validationMessage) return validationMessage;
   // The decoded revert reason is appended so the branches below can match on
@@ -104,7 +139,7 @@ export function parseTxError(err: any, context: TxContext): string {
     ) {
       return err.message;
     }
-    return "Your wallet is locked — unlock it to continue";
+    return rememberWalletLockedMessage(_translateCopy("copy.d811b664fd99", { defaultValue: "Your wallet is locked — unlock it to continue" }));
   }
   // User rejection
   if (
@@ -112,25 +147,25 @@ export function parseTxError(err: any, context: TxContext): string {
     code === "ACTION_REJECTED" ||
     msg.includes("user rejected")
   )
-    return "You rejected the transaction";
+    return txMessage("rejected");
   // Insufficient native balance for gas
   if (
     msg.includes("insufficient funds for intrinsic transaction cost") ||
     msg.includes("insufficient funds for gas") ||
     msg.includes("insufficient funds")
   ) {
-    return "Insufficient funds for gas fees";
+    return txMessage("gasFunds");
   }
   // Token balance issues
   if (
     msg.includes("transfer amount exceeds balance") ||
     msg.includes("erc20: transfer amount exceeds balance")
   ) {
-    return "Insufficient token balance";
+    return txMessage("tokenBalance");
   }
   // Allowance / approval issues
   if (msg.includes("erc20") && msg.includes("insufficient allowance")) {
-    return "Allowance too low — approval needed";
+    return txMessage("allowance");
   }
   // Gas estimation / unpredictable gas
   if (
@@ -138,17 +173,17 @@ export function parseTxError(err: any, context: TxContext): string {
     msg.includes("gas required exceeds allowance") ||
     msg.includes("intrinsic gas too low")
   ) {
-    return "Gas estimation failed — try a different amount or try again";
+    return txMessage("gasEstimate");
   }
   // Replacement / nonce issues
   if (
     msg.includes("replacement transaction underpriced") ||
     msg.includes("replacement fee too low")
   ) {
-    return "There is a pending transaction — wait or speed it up in your wallet";
+    return txMessage("pendingTx");
   }
   if (msg.includes("nonce too low"))
-    return "Network nonce mismatch — wait for pending transactions to confirm";
+    return txMessage("nonce");
   // Revert with reason
   // STF — the DHB pull itself failed, and this MUST be tested before the
   // paymaster branch below.
@@ -170,7 +205,7 @@ export function parseTxError(err: any, context: TxContext): string {
     msg.includes("safetransfer") ||
     msg.includes("transfer_from_failed")
   ) {
-    return "Token transfer failed — check your DHB balance and approval";
+    return txMessage("tokenTransfer");
   }
   // Pimlico says "reverted during simulation with reason: 0x…" and ethers
   // v5 says "reverted with reason string", so matching the literal
@@ -182,21 +217,21 @@ export function parseTxError(err: any, context: TxContext): string {
       if (reason && reason.length < 80)
         return reason.charAt(0).toUpperCase() + reason.slice(1);
     }
-    return "Transaction reverted";
+    return txMessage("reverted");
   }
   // Paymaster / sponsorship issues (AA)
   // Guarded: a reverted userOp names the paymaster in its request body
   // without the paymaster being at fault.
   if ((msg.includes("paymaster") && !/revert/.test(msg)) || msg.includes("sponsor")) {
     if (msg.includes("insufficient") && msg.includes("balance")) {
-      return "No gas sponsor available — try again later or switch method";
+      return txMessage("noSponsor");
     }
     if (msg.includes("pm_getpaymasterdata") || msg.includes("pimlico")) {
-      return "Gas sponsor service unavailable — try again later";
+      return txMessage("sponsorDown");
     }
-    return "Paymaster error — sponsorship unavailable";
+    return txMessage("paymaster");
   }
-  return context === "approve" ? "Approval failed" : "Transaction failed";
+  return context === "approve" ? txMessage("approvalFailed") : txMessage("transactionFailed");
 }
 
 // Optional helper to wrap async write calls

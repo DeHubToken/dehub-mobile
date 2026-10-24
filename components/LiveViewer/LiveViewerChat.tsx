@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef } from "react";
 import { View, Text, FlatList, Pressable, TouchableOpacity } from "react-native";
@@ -97,7 +98,7 @@ const shortAddr = (addr?: string) =>
 
 /** Resolve the best display name from an activity's user ref or meta fallback. */
 const resolveDisplayName = (a: ChatActivity): string =>
-  a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || "user";
+  a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || _translateCopy("copy.04f8996da763", { defaultValue: "user" });
 
 /**
  * Resolve the best avatar from an activity, as something fetchable.

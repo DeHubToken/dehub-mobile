@@ -488,17 +488,17 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
     if (failed) {
       throw new Error(
-        "Couldn't reach your wallet record. Check your connection and try again — nothing has been changed."
+        t("copy.dd8476cbf099", { defaultValue: "Couldn't reach your wallet record. Check your connection and try again — nothing has been changed." })
       );
     }
     if (!wallet?.ethAddress) {
       throw new Error(
-        "There is no wallet on this account any more. Close this and sign in again."
+        t("copy.70a116672a2c", { defaultValue: "There is no wallet on this account any more. Close this and sign in again." })
       );
     }
     if (wallet.ethAddress.toLowerCase() !== address.toLowerCase()) {
       throw new Error(
-        "This account's wallet changed while this screen was open. Close this and sign in again — you may not need to start over."
+        t("copy.041dc898c488", { defaultValue: "This account's wallet changed while this screen was open. Close this and sign in again — you may not need to start over." })
       );
     }
     // A changed password backup may restore access on another device. An
@@ -507,7 +507,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
         (walletSetupRequest.mode === "web-passkey-sync" ||
          wallet.payload.ciphertext !== walletSetupRequest.payload.ciphertext)) {
       throw new Error(
-        "This wallet now has a password backup, so it can be unlocked. Close this and sign in again."
+        t("copy.539ee12b2254", { defaultValue: "This wallet now has a password backup, so it can be unlocked. Close this and sign in again." })
       );
     }
 
@@ -519,7 +519,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       supabaseUserId,
       replacing: { address: wallet.ethAddress, clearOtherSeedCopies: true },
     });
-  }, [walletSetupRequest]);
+  }, [walletSetupRequest, t]);
 
   // Native legacy-account recovery succeeded (see LegacyAccountWarningModal /
   // libs/legacy-web3auth.ts) — hand the recovered key to the same
@@ -771,7 +771,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   return (
     <SafeAreaView className="flex-1 bg-theme-background">
       {showLoader && (
-        <FullScreenLoader message="Signing you in…" />
+        <FullScreenLoader message={t("copy.afc99407f777", { defaultValue: "Signing you in…" })} />
       )}
 
       {/* "padding" on BOTH platforms, deliberately. The manifest still says

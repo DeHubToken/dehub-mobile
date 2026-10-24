@@ -64,16 +64,16 @@ const AndroidBiometricUnlockRow: React.FC = () => {
     setBusy(true);
     try {
       if (state?.hasDeviceKey) {
-        await requireDeviceOwner('Verify DeHub wallet unlock');
+        await requireDeviceOwner(_copy("copy.37b05565987b", { defaultValue: "Verify DeHub wallet unlock" }));
         rememberSuccessfulWalletUnlock();
         toastSuccess(_copy("copy.cf10c8a1758c", { defaultValue: "Biometric wallet unlock verified" }));
       } else {
-        const unlocked = await requestWalletUnlock('Set up biometric wallet unlock on this phone');
+        const unlocked = await requestWalletUnlock(_copy("copy.a697dfe7705e", { defaultValue: "Set up biometric wallet unlock on this phone" }));
         if (!unlocked) return;
         const hasDeviceKey = await hasPrivateKeyForAddress(address);
         if (!hasDeviceKey) {
           throw new Error(
-            'The wallet key is not available on this phone yet. Restore this wallet with an existing password, recovery phrase, or private key before enabling device unlock.',
+            _copy("copy.646e214f812b", { defaultValue: "The wallet key is not available on this phone yet. Restore this wallet with an existing password, recovery phrase, or private key before enabling device unlock." }),
           );
         }
         toastSuccess(_copy("copy.e6d650d57b03", { defaultValue: "Biometric wallet unlock is ready on this phone" }));
@@ -91,21 +91,21 @@ const AndroidBiometricUnlockRow: React.FC = () => {
   }, [address, busy, refresh, state, _copy]);
 
   const capability = state?.capability ?? EMPTY_CAPABILITY;
-  const platformName = Platform.OS === 'android' ? 'Android' : 'Phone';
+  const platformName = Platform.OS === 'android' ? 'Android' : _copy("copy.63dceb8800b2", { defaultValue: "Phone" });
   const value = busy
-    ? 'Checking…'
+    ? _copy("copy.ec963ffc911b", { defaultValue: "Checking…" })
     : !state
-      ? 'Checking…'
+      ? _copy("copy.ec963ffc911b", { defaultValue: "Checking…" })
       : !capability.usable
-        ? 'Device lock needed'
+        ? _copy("copy.d19d9442bb64", { defaultValue: "Device lock needed" })
         : state.hasDeviceKey
-          ? 'On'
-          : 'Set up';
+          ? _copy("copy.130011756125", { defaultValue: "On" })
+          : _copy("copy.4da10f1fbb17", { defaultValue: "Set up" });
   const description = !capability.usable
-    ? 'Add a fingerprint, face unlock, or screen lock to protect wallet actions.'
+    ? _copy("copy.2832651739ac", { defaultValue: "Add a fingerprint, face unlock, or screen lock to protect wallet actions." })
     : state?.hasDeviceKey
-      ? `${platformName} verifies your fingerprint, face, or device lock when the wallet signs. Web passkeys are separate.`
-      : 'Restore this wallet on this phone using an existing wallet password, recovery phrase, or private key. Then protect it with your phone’s device lock.';
+      ? _copy("copy.4f15aa404c07", { defaultValue: "{{value1}} verifies your fingerprint, face, or device lock when the wallet signs. Web passkeys are separate.", value1: platformName })
+      : _copy("copy.0841e1f9f1c6", { defaultValue: "Restore this wallet on this phone using an existing wallet password, recovery phrase, or private key. Then protect it with your phone’s device lock." });
 
   return (
     <SettingsLinkRow

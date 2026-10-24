@@ -607,10 +607,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
     () => ({
       title: resolvedTitle,
       artist: resolvedArtist,
-      albumTitle: "DeHub • Audio",
+      albumTitle: t("copy.a2caa0dc28fb", { defaultValue: "DeHub • Audio" }),
       artworkUrl: artworkUrl || undefined,
     }),
-    [resolvedTitle, resolvedArtist, artworkUrl],
+    [resolvedTitle, resolvedArtist, artworkUrl, t],
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const { session: audioSession, ownsPlayer, active: ownsAudio } = usePostAudioSession(audioUrl);

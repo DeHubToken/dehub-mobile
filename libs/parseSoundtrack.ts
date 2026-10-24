@@ -10,6 +10,8 @@ export interface ParsedSoundtrack {
   url: string;
 }
 
+import { translateCopy as _translateCopy } from "../i18n/copy";
+
 const CDN_BASE = "https://dehubcdn.ams3.cdn.digitaloceanspaces.com/";
 
 // Supports old format (4 fields) and new format (5 fields with audioPath)
@@ -24,7 +26,7 @@ export function parseSoundtrack(description?: string | null): ParsedSoundtrack |
   const decodeField = (value: string) => {
     try { return decodeURIComponent(value); } catch { return value; }
   };
-  const title = decodeField(match[2]) || "Sound";
+  const title = decodeField(match[2]) || _translateCopy("copy.46124e023603", { defaultValue: "Sound" });
   const creator = decodeField(match[3]) || "";
   const audioPath = match[4]?.trim();
   let url: URL;
