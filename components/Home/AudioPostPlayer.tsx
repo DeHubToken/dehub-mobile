@@ -1529,7 +1529,7 @@ const styles = StyleSheet.create({
   glassArtist: { fontSize: 11, opacity: .6, textAlign: 'left' },
   studioOption: { width: 26, height: 28, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
   glassDeck: { paddingHorizontal: 16, paddingTop: 22, paddingBottom: 12, overflow: 'visible' },
-  glassTime: { color: '#efffff', opacity: .65, fontSize: 8, fontVariant: ['tabular-nums'] },
+  glassTime: { color: '#efffff', opacity: .75, fontSize: 11, fontVariant: ['tabular-nums'] },
   glassTransport: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 16 },
   glassSkip: { position: 'absolute', fontSize: 8, fontWeight: '600' },
   card: {
