@@ -39,14 +39,15 @@ export function StageGlassSquare({ icon, label, onPress, plain, size = STAGE_SQU
   const radius = skin?.square ? 0 : STAGE_SQUARE_RADIUS;
   const ios = Platform.OS === "ios" && !plain;
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={onPress}
+      activeOpacity={0.7}
       hitSlop={6}
       accessibilityRole="button"
       accessibilityLabel={label}
-      style={({ pressed }) => [
+      style={[
         styles.square,
-        { width: size, height: size, borderRadius: radius, opacity: pressed ? 0.7 : 1 },
+        { width: size, height: size, borderRadius: radius },
         plain
           ? { backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.10)" }
           : ios
@@ -58,7 +59,7 @@ export function StageGlassSquare({ icon, label, onPress, plain, size = STAGE_SQU
       <View style={flip && I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}>
         <Icon name={icon} size={20} color="#FFFFFF" />
       </View>
-    </Pressable>
+    </TouchableOpacity>
   );
 }
 
