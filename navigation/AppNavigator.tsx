@@ -9,6 +9,7 @@ import { useAuthState } from "../context/AuthContext";
 import { DrawerProvider, useDrawer } from "../context/DrawerContext";
 import AppDrawer from "../components/Home/AppDrawer";
 import { useAppTheme } from "../context/ThemeContext";
+import { LIGHT_PAGE_FILL } from "../theme/colors";
 
 /**
  * Native stack, not @react-navigation/stack.
@@ -62,12 +63,15 @@ function AppNavigatorContent() {
         screenLayout={withScreenBoundary}
         screenOptions={{
           headerShown: false,
-          // An options object, not a JSX style prop, so the app-wide
-          // near-black pass (minimal's #000, a canvas theme's page colour)
-          // never sees it, and neither does System Light's colour pass; branch here. A canvas theme's live backdrop
-          // (ThemeBackdrop at the root) shows through every screen, as on web;
-          // each page's own fill is the veil over it.
-          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? 'transparent' : isLight ? '#FFFFFF' : '#010305' },
+          // An options object, but react-native-screens is compiled from
+          // source with the app's JSX runtime and hands this to a View, so
+          // System Light's colour pass DOES see it: a plain white turned into
+          // ink and every transparent page on iPhone (no Android blur layer
+          // over it) showed a black page under a white header. hsla() is the
+          // pass's own output format, which it never turns around. A canvas
+          // theme's live backdrop (ThemeBackdrop at the root) shows through
+          // every screen, as on web; each page's own fill is the veil over it.
+          contentStyle: { backgroundColor: isMinimal ? '#000' : skin ? 'transparent' : isLight ? LIGHT_PAGE_FILL : '#010305' },
           // A screen you have navigated away from keeps rendering otherwise —
           // this stack holds sixty-odd of them, so Home -> Profile -> Community
           // -> Post left four live at once, all re-rendering together on every

@@ -1,5 +1,5 @@
 import BadgeArtwork from "../common/BadgeArtwork";
-import React, { memo, useRef } from "react";
+import React, { memo, useCallback, useRef } from "react";
 import { View, Text, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
@@ -9,16 +9,21 @@ import { openBadgeShowcase, tierForBadgeImage } from "../../libs/badgeShowcase";
 import { useTranslation } from "react-i18next";
 import { useLiveTarget } from "../../hooks/useIsUserLive";
 import { openLiveTarget } from "../../libs/openLiveTarget";
+import { prefetchUserProfile } from "../../hooks/useUserProfileData";
 
 const ICON_MUTED = "#6F7174";
 // Cancel the buttons' padding so their artwork starts at the card's inset.
-const HEADER_ICON_SIZE = 22;
+const HEADER_ICON_SIZE = 20;
 const HEADER_ICON_PAD = 4;
-// The cut vertical dots fill x 14-18, y 4-28 of a 32-unit grid. Shift them
-// right and up by that spare room so they sit on the card's inset from both
-// the side and the top: the corner reads evenly padded, like the web bento.
-const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (14 / 32);
-const MENU_ICON_TOP_SPACE = HEADER_ICON_SIZE * (4 / 32);
+// How far the visible dots sit inside the card's content, from the top and
+// from the side alike: 18px from the bento's edge, matching web.
+const CORNER_INSET = 6;
+// The cut vertical dots fill x 14-18, y 4-28 of a 32-unit grid. Shift them by
+// that spare room, less the inset, so the corner reads evenly padded.
+const MENU_ICON_END_SPACE = HEADER_ICON_SIZE * (14 / 32) - CORNER_INSET;
+const CORNER_ICON_DROP = CORNER_INSET - HEADER_ICON_SIZE * (4 / 32);
+// Boost keeps 14px between its glyph box and the dots' (row gap 8, two pads).
+const BOOST_END_SPACE = 14 - 8 - 2 * HEADER_ICON_PAD - MENU_ICON_END_SPACE;
 const DISPLAY_NAME_FONT_SIZE = 16;
 const DISPLAY_NAME_LINE_HEIGHT = 20;
 const HOLDER_BADGE_SIZE = 16;
@@ -59,10 +64,14 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   // still open the profile.
   const liveTarget = useLiveTarget(address, username);
   const live = !!liveTarget;
+  // Start fetching the profile as the finger lands, so it is usually in hand
+  // by the time the tap is released and the page slides in.
+  const warmProfile = useCallback(() => prefetchUserProfile(username || address), [username, address]);
   return (
     <View className="flex-row items-start pb-2" style={{ minHeight: Math.max(avatarSize, username ? 36 : 20) + 8 }}>
       <Pressable
         onPress={liveTarget ? () => openLiveTarget(liveTarget) : onUserPress}
+        onPressIn={liveTarget || !onUserPress ? undefined : warmProfile}
         style={{ flexShrink: 0 }}
         hitSlop={IDENTITY_HIT_SLOP}
       >
@@ -83,6 +92,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
       <View style={{ flex: 1, minWidth: 0, marginRight: 8, alignItems: "flex-start" }}>
         <Pressable
           onPress={onUserPress}
+          onPressIn={onUserPress ? warmProfile : undefined}
           hitSlop={IDENTITY_HIT_SLOP}
           style={{ flexDirection: "row", alignItems: "center", minWidth: 0, height: DISPLAY_NAME_LINE_HEIGHT, maxWidth: "100%" }}
         >
@@ -135,7 +145,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
           )}
         </Pressable>
         {username ? (
-          <Pressable onPress={onUserPress} hitSlop={IDENTITY_HIT_SLOP} style={{ maxWidth: "100%" }}>
+          <Pressable onPress={onUserPress} onPressIn={onUserPress ? warmProfile : undefined} hitSlop={IDENTITY_HIT_SLOP} style={{ maxWidth: "100%" }}>
             <Text
               style={{ color: "#A6A9AC", fontSize: 14, lineHeight: 16, includeFontPadding: false }}
               numberOfLines={1}
@@ -165,9 +175,11 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             accessibilityRole="button"
             accessibilityLabel={t("feedCard.boostPost")}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-            style={{ padding: HEADER_ICON_PAD, marginRight: 1.6 }}
+            style={{ padding: HEADER_ICON_PAD, marginRight: BOOST_END_SPACE }}
           >
-            <Icon name="Rocket" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            <View style={{ top: CORNER_ICON_DROP }}>
+              <Icon name="Zap" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+            </View>
           </Pressable>
         )}
         {onMenuPress && (
@@ -178,7 +190,7 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD }}
           >
-            <View style={{ left: MENU_ICON_END_SPACE, top: -MENU_ICON_TOP_SPACE }}>
+            <View style={{ left: MENU_ICON_END_SPACE, top: CORNER_ICON_DROP }}>
               <Icon name="EllipsisVertical" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
             </View>
           </Pressable>

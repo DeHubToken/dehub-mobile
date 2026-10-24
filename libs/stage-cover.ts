@@ -15,6 +15,8 @@
  * Keep in sync with dehubweb/src/lib/stage-cover.ts.
  */
 
+import type { TFunction } from 'i18next';
+
 export interface StageCoverSource {
   id?: string | null;
   title?: string | null;
@@ -111,8 +113,8 @@ function minutesLong(stage: StageCoverSource): number {
   return Number.isFinite(ms) && ms > 0 ? Math.max(1, Math.round(ms / 60000)) : 0;
 }
 
-/** `locale` picks the language for the month and weekday; undefined = browser. */
-export function buildStageCover(stage: StageCoverSource, locale?: string): StageCoverModel {
+/** `t` words the ticket; `locale` picks the language for the month and weekday (undefined = browser). */
+export function buildStageCover(stage: StageCoverSource, t: TFunction, locale?: string): StageCoverModel {
   const seed = hash(stage.id || stage.title || 'dehub-stage');
   const next = rng(seed);
 
@@ -151,10 +153,10 @@ export function buildStageCover(stage: StageCoverSource, locale?: string): Stage
   const mins = minutesLong(stage);
   const statusTag =
     status === 'live'
-      ? '// status = "live"'
+      ? `// status = "${t('stageCover.live')}"`
       : status === 'replay'
-        ? mins ? `// replay = "${mins} min"` : '// status = "replay"'
-        : '// status = "upcoming"';
+        ? mins ? `// replay = "${t('stageCover.minutes', { minutes: mins })}"` : `// status = "${t('stageCover.replay')}"`
+        : `// status = "${t('stageCover.upcoming')}"`;
 
   return {
     streaks,
@@ -167,7 +169,7 @@ export function buildStageCover(stage: StageCoverSource, locale?: string): Stage
     host,
     status,
     statusTag,
-    stubLine: status === 'live' ? 'ON AIR' : status === 'replay' ? 'RECORDED' : 'ADMIT ONE',
+    stubLine: t(status === 'live' ? 'stageCover.onAir' : status === 'replay' ? 'stageCover.recorded' : 'stageCover.admitOne'),
   };
 }
 

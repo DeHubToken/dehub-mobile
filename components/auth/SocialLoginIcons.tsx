@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
+import ImportWalletModal from "./ImportWalletModal";
 import { AuthButton, authColors, AUTH_DISABLED_OPACITY } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isTelegramLoginAvailable } from "../../services/auth/supabaseAuth.service";
@@ -140,8 +141,9 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
   }, [onTelegram]);
 
   // Stack layout: which round button has its flow open under the row.
-  const [openFlow, setOpenFlow] = useState<"phone" | "passkey" | null>(null);
-  const toggleFlow = (flow: "phone" | "passkey") => setOpenFlow((f) => (f === flow ? null : flow));
+  const [openFlow, setOpenFlow] = useState<"phone" | "passkey" | "wallet" | null>(null);
+  const toggleFlow = (flow: "phone" | "passkey" | "wallet") => setOpenFlow((f) => (f === flow ? null : flow));
+  const [importVisible, setImportVisible] = useState(false);
 
   if (layout === "stack") {
     return (
@@ -196,6 +198,16 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
               renderIcon={(c, sz) => <Ionicons name="finger-print" color={c} size={sz} />}
             />
           )}
+          {/* One way in for every wallet: connect one or import a key, both
+              under this button. */}
+          <OptionDisc
+            label={t("nav.wallet", "Wallet")}
+            onPress={() => toggleFlow("wallet")}
+            disabled={disabled}
+            loading={busyProvider === "wallet"}
+            active={openFlow === "wallet"}
+            renderIcon={(c, sz) => <Ionicons name="wallet" color={c} size={sz - 2} />}
+          />
           {onTelegram && telegramReady && (
             <OptionDisc
               label={BRAND_NAMES.telegram}
@@ -216,6 +228,25 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
             onExpand={onFieldExpand}
           />
         )}
+        {openFlow === "wallet" && (
+          <View style={{ gap: 10 }}>
+            {onConnectWallet && isWalletConnectAvailable && (
+              <AuthButton
+                icon="wallet"
+                label={t("loginModal.connectWallet", "Connect Wallet")}
+                onPress={onConnectWallet}
+                disabled={disabled}
+                loading={busyProvider === "wallet"}
+              />
+            )}
+            <AuthButton
+              icon="key"
+              label={t("auth.importWallet", "Import Wallet")}
+              onPress={() => setImportVisible(true)}
+              disabled={disabled}
+            />
+          </View>
+        )}
         {openFlow === "passkey" && passkeyReady && (
           <PasskeyLoginFlow
             startOpen
@@ -227,6 +258,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
             suggestCreate={passkeySuggestCreate}
           />
         )}
+        <ImportWalletModal visible={importVisible} onClose={() => setImportVisible(false)} />
       </View>
     );
   }
@@ -316,7 +348,7 @@ const styles = StyleSheet.create({
   divider: { flexDirection: "row", alignItems: "center", gap: 12 },
   rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: authColors.hairline },
   dividerText: { color: authColors.subtle, fontSize: 12, fontWeight: "500" },
-  row: { flexDirection: "row", justifyContent: "center", gap: 24 },
+  row: { flexDirection: "row", justifyContent: "space-evenly" },
   option: { alignItems: "center", gap: 6, minWidth: 56 },
   disc: {
     width: 48,

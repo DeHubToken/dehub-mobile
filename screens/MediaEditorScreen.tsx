@@ -104,6 +104,7 @@ import {
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import GenerationWindow from "../components/editor/GenerationWindow";
+import { importGeneratedMedia, type GeneratedMediaSource } from "../libs/editor/importGeneratedMedia";
 import { assemblyRequest, type AssemblyPlan } from "../libs/editor/assembly";
 import { createAssemblyEdit } from "../libs/editor/applyAssembly";
 import { useAssembly } from "../libs/editor/useAssembly";
@@ -211,11 +212,13 @@ function MediaEditorForAccount() {
   const { t } = useTranslation();
   const route = useRoute<Route>();
   const [openId, setOpenId] = useState<string | null>(route.params?.projectId ?? null);
-  const [draft, setDraft] = useState<ProjectSnapshot | null>(null);
+  // Opened from a creator library card: start a new project holding that file.
+  const [importMedia, setImportMedia] = useState<GeneratedMediaSource | undefined>(route.params?.importMedia);
+  const [draft, setDraft] = useState<ProjectSnapshot | null>(() => importMedia ? newProject(importMedia.kind === "video" ? "16:9" : "9:16", importMedia.name || t("creator.untitled")) : null);
   const [pickVideo, setPickVideo] = useState(false);
 
   if (draft || openId) {
-    return <Workspace key={draft?.id ?? openId ?? ""} initial={draft} projectId={openId} pickVideo={pickVideo} onClose={() => { setDraft(null); setOpenId(null); setPickVideo(false); }} />;
+    return <Workspace key={draft?.id ?? openId ?? ""} initial={draft} projectId={openId} pickVideo={pickVideo} importMedia={importMedia} onClose={() => { setDraft(null); setOpenId(null); setPickVideo(false); setImportMedia(undefined); }} />;
   }
   return <Home onOpen={setOpenId} onCreate={setDraft} onNewVideo={() => { setPickVideo(true); setDraft(newProject("9:16", t("creator.untitled"))); }} />;
 }
@@ -377,7 +380,7 @@ interface ToolButton {
 }
 
 
-function Workspace({ initial, projectId, pickVideo, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; pickVideo?: boolean; onClose: () => void }) {
+function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { initial: ProjectSnapshot | null; projectId: string | null; pickVideo?: boolean; importMedia?: GeneratedMediaSource; onClose: () => void }) {
   const { t: _copy } = _useCopy();
   const user = useUser();
   const { t } = useTranslation();
@@ -1100,6 +1103,29 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
     void addVideos();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pickVideo, project]);
+
+  const addGenerated = (media: Awaited<ReturnType<typeof importGeneratedMedia>>) => {
+    const current = h.latest();
+    if (!current) return;
+    const next = media.kind === 'image' ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, canvasTime);
+    h.commit(next.project);
+    if (media.kind !== 'image') setTimelineOpen(true);
+    select(next.clipId);
+  };
+
+  // Started from a creator library card: bring that file onto the timeline.
+  const importedOnce = useRef(false);
+  const importAbort = useRef(new AbortController());
+  useEffect(() => () => importAbort.current.abort(), []);
+  useEffect(() => {
+    if (!importMedia || importedOnce.current || !project) return;
+    importedOnce.current = true;
+    const { signal } = importAbort.current;
+    importGeneratedMedia(importMedia, signal)
+      .then(media => { if (!signal.aborted) addGenerated(media); })
+      .catch(() => { if (!signal.aborted) toastError(t('common.somethingWentWrong')); });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [importMedia, project]);
 
   const onToolPress = (id: ToolButton["id"]) => {
     if (!project) return;
@@ -1934,14 +1960,7 @@ function Workspace({ initial, projectId, pickVideo, onClose }: { initial: Projec
       />
 
       <GenerationWindow key={user?.walletAddress || user?.address || 'guest'} state={generatorWindow} onState={setGeneratorWindow} draft={generatorDraft}
-        onAdd={media => {
-          const current = h.latest();
-          if (!current) return;
-          const next = media.kind === 'image' ? addImage(current, media.id) : addClip(current, { ...media, kind: media.kind, duration: media.duration ?? 5 }, canvasTime);
-          h.commit(next.project);
-          if (media.kind !== 'image') setTimelineOpen(true);
-          select(next.clipId);
-        }} />
+        onAdd={addGenerated} />
 
       <ExportSheet
         visible={exportOpen}

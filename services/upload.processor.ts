@@ -27,6 +27,7 @@ import { prepareWalletForQueuedMint } from "../libs/wallet-signing-preflight";
 import { getDraftVideo, releaseDraftVideo, waitForDraftVideo } from "./draftVideo";
 import { watchPostVideo } from "./post-video-watch";
 import { notePostPublished } from "../libs/review-prompt";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 // Abort tracking per-job
 const abortFlags: Record<string, { current: boolean }> = {};
@@ -85,7 +86,7 @@ async function uploadMintFormData(
     }
   }
 
-  throw lastError ?? new Error("Upload failed");
+  throw lastError ?? new Error(_translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
 }
 
 export function getAbortRef(jobId: string) {
@@ -335,7 +336,7 @@ async function processJob(job: UploadJob): Promise<void> {
       // error_msg/msg is often a one-line summary ("Failed to mint NFT") with
       // the actual cause only in the rest of the backend's response body.
       console.error(`[upload.processor] ${endpoint} returned an error`, result);
-      throw new Error(result?.error_msg || result?.msg || result?.message || "Upload failed");
+      throw new Error(result?.error_msg || result?.msg || result?.message || _translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
     }
 
     const createdTokenId = Number(result?.createdTokenId);
@@ -362,7 +363,7 @@ async function processJob(job: UploadJob): Promise<void> {
     // authorization and falls through to the normal branches below.
     if (result?.duplicate && result?.alreadyMinted) {
       if (!Number.isFinite(createdTokenId)) {
-        throw new Error("Upload succeeded but no token id came back");
+        throw new Error(_translateCopy("copy.0e52f330fb82", { defaultValue: "Upload succeeded but no token id came back" }));
       }
       mintParams = { createdTokenId, alreadyMinted: true } as MintParams;
       uploadActions.updateStage(job.id, "processing", mintParams);
@@ -374,7 +375,7 @@ async function processJob(job: UploadJob): Promise<void> {
     // post's.
     else if (result?.scheduled) {
       if (!Number.isFinite(createdTokenId)) {
-        throw new Error("Upload succeeded but no token id came back");
+        throw new Error(_translateCopy("copy.0e52f330fb82", { defaultValue: "Upload succeeded but no token id came back" }));
       }
       mintParams = { createdTokenId, scheduled: true, scheduledAt: result?.scheduledAt } as MintParams;
       uploadActions.updateStage(job.id, "processing", mintParams);
@@ -383,7 +384,7 @@ async function processJob(job: UploadJob): Promise<void> {
       // already in the feed, so there is no signature to validate — the mint
       // phase below is skipped and only the poll still has work to do.
       if (!Number.isFinite(createdTokenId)) {
-        throw new Error("Upload succeeded but no token id came back");
+        throw new Error(_translateCopy("copy.0e52f330fb82", { defaultValue: "Upload succeeded but no token id came back" }));
       }
       // Older quote endpoints still return a mint authorization even with
       // mintOptOut. Persist the off-chain choice so their expiry sweep cannot
@@ -399,8 +400,8 @@ async function processJob(job: UploadJob): Promise<void> {
         if (!isSolanaMint || !Number.isFinite(createdTokenId)) {
           throw new Error(
             result?.isSolana
-              ? "Solana mint data incomplete from server. Please try again."
-              : "Solana minting is not enabled on the server. Try an EVM chain.",
+              ? _translateCopy("copy.84b7e19c6085", { defaultValue: "Solana mint data incomplete from server. Please try again." })
+              : _translateCopy("copy.0dffdf8d227e", { defaultValue: "Solana minting is not enabled on the server. Try an EVM chain." }),
           );
         }
         mintParams = {
@@ -416,7 +417,7 @@ async function processJob(job: UploadJob): Promise<void> {
         const s = result?.s;
 
         if (!Number.isFinite(createdTokenId) || timestamp == null || v == null || !r || !s) {
-          throw new Error("Mint signature payload missing from server response");
+          throw new Error(_translateCopy("copy.7e94ef2e9800", { defaultValue: "Mint signature payload missing from server response" }));
         }
 
         mintParams = { createdTokenId, timestamp, v, r, s, uri: result?.uri };
@@ -449,7 +450,7 @@ async function processJob(job: UploadJob): Promise<void> {
         ({ failed }) => {
           if (failed > 0) {
             toastError(
-              `Your post is up, but ${failed} shop ${failed === 1 ? "item" : "items"} could not be attached. Add them from the post menu.`,
+              _translateCopy("copy.e7b56eb3dc12", { defaultValue: "Your post is up, but {{count}} shop items could not be attached. Add them from the post menu.", count: failed }),
             );
           }
         },
@@ -509,7 +510,7 @@ async function processJob(job: UploadJob): Promise<void> {
           const bountyToken = supportedTokens.find(
             (t) => t.symbol === job.bountyConfig!.tokenSymbol && t.chainId === job.chainId,
           );
-          if (!bountyToken) throw new Error("Unsupported bounty token for this chain");
+          if (!bountyToken) throw new Error(_translateCopy("copy.a01f7095a46d", { defaultValue: "Unsupported bounty token for this chain" }));
 
           tx = await mintWithBounty(
             controllerContract,
@@ -564,8 +565,8 @@ async function processJob(job: UploadJob): Promise<void> {
     if (outcome === "stalled") {
       console.warn("[upload.processor] mint did not finish in time — keeping the post off-chain");
       await keepPostOffChain(mintParams.createdTokenId);
-      toastSuccess("Posted, but not minted", {
-        description: "The mint did not go through. Your post is live — mint it any time from the post menu.",
+      toastSuccess(_translateCopy("copy.29cac0bde471", { defaultValue: "Posted, but not minted" }), {
+        description: _translateCopy("copy.e6c93b38fa24", { defaultValue: "The mint did not go through. Your post is live — mint it any time from the post menu." }),
       });
     }
   } // end of the mint phase
@@ -616,7 +617,7 @@ async function processJob(job: UploadJob): Promise<void> {
         // The DHB has left the wallet. Never offer a retry here — the transfer
         // is the part that cannot be repeated safely, and the hash is stashed
         // and re-sent on its own.
-        toastSuccess("Payment sent — still confirming", {
+        toastSuccess(_translateCopy("copy.9b032dc30cbb", { defaultValue: "Payment sent — still confirming" }), {
           description: i18n.t("postQuota.transferredConfirming"),
         });
       } else {
@@ -630,7 +631,7 @@ async function processJob(job: UploadJob): Promise<void> {
           null,
           i18n.t("postQuota.sentUnconfirmed"),
           {
-            description: `Quote this transaction to support: ${ref.slice(0, 10)}…${ref.slice(-8)}`,
+            description: _translateCopy("copy.a5784b46e3aa", { defaultValue: "Quote this transaction to support: {{value1}}…{{value2}}", value1: ref.slice(0, 10), value2: ref.slice(-8) }),
           },
         );
       }
@@ -638,7 +639,7 @@ async function processJob(job: UploadJob): Promise<void> {
       toastError(
         e,
         i18n.t("postQuota.transferIncomplete"),
-        { description: "This post is published but unpaid." },
+        { description: _translateCopy("copy.0d89be7fbc58", { defaultValue: "This post is published but unpaid." }) },
       );
     }
   }
@@ -666,13 +667,13 @@ async function processJob(job: UploadJob): Promise<void> {
   if (mintParams.scheduled) {
     // Nothing to refresh — the post stays invisible until the cron flips it.
     const when = mintParams.scheduledAt ? new Date(mintParams.scheduledAt).toLocaleString() : null;
-    toastSuccess("Post scheduled", {
-      description: when ? `It will publish ${when}.` : "It will publish at the scheduled time.",
+    toastSuccess(_translateCopy("copy.792678842e2f", { defaultValue: "Post scheduled" }), {
+      description: when ? _translateCopy("copy.b21f3ed78786", { defaultValue: "It will publish {{value1}}.", value1: when }) : _translateCopy("copy.94ff209d1e70", { defaultValue: "It will publish at the scheduled time." }),
     });
   } else {
     setTimeout(() => feedEvents.requestRefresh(), 3000);
-    toastSuccess("Post sent!", {
-      description: "Your post is being processed. It may take a moment to appear in your feed.",
+    toastSuccess(_translateCopy("copy.8a6efaa17e94", { defaultValue: "Post sent!" }), {
+      description: _translateCopy("copy.199206f8fb40", { defaultValue: "Your post is being processed. It may take a moment to appear in your feed." }),
     });
   }
 }
@@ -695,13 +696,13 @@ export function useUploadProcessor() {
       const isMintPhase = next.status === "minting";
       const raw = isMintPhase
         ? parseTxError(e, "send")
-        : (e?.message || "Upload failed");
+        : (e?.message || _translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
       // The quoted post's author does not let this account quote it
       // (dehub-stream-backend src/repost/quote-policy). Nothing to retry.
       const quoteRefused = typeof raw === "string" &&
         (raw.includes("can quote this post") || raw.includes("does not allow quotes"));
       const msg = quoteRefused ? i18n.t("quotePolicy.refused") : raw;
-      uploadActions.fail(next.id, typeof msg === "string" ? msg : "Upload failed");
+      uploadActions.fail(next.id, typeof msg === "string" ? msg : _translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
       toastError(msg);
     } finally {
       processingRef.current = false;

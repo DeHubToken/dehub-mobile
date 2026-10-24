@@ -16,6 +16,7 @@ import { Percent, Token } from '@uniswap/sdk-core';
 import { Pool, Position, V4PositionManager } from '@uniswap/v4-sdk';
 import { encodeSqrtRatioX96, TickMath } from '@uniswap/v3-sdk';
 import { readWithTimeout, type OrderStage } from './dex-read-timeout';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { evmProvider, sendEvmTx } from './dex-evm-swap';
 import type { BookPosition } from './dex-orderbook';
 import { POOL_CHAIN_INFO, type DexPool, type PoolChain } from './dex-pools';
@@ -94,14 +95,14 @@ function tickRange(m: EvmMarket, floor: number, ceiling: number): [number, numbe
   // Keep the actual range inside the stated price bounds.
   const lower = Math.ceil(Math.min(a, b)), upper = Math.floor(Math.max(a, b));
   if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) {
-    throw new Error('The selected price range is too narrow or outside Uniswap limits');
+    throw new Error(_translateCopy('copy.97df334a4cf1', { defaultValue: 'The selected price range is too narrow or outside Uniswap limits' }));
   }
   return [lower, upper];
 }
 
 function initialSqrtPrice(m: EvmMarket, usd: string): ReturnType<typeof encodeSqrtRatioX96> {
   const priceUnits = BigInt(ethers.utils.parseUnits(usd, PRICE_DECIMALS).toString());
-  if (priceUnits <= 0n) throw new Error('Enter a positive price');
+  if (priceUnits <= 0n) throw new Error(_translateCopy('copy.38506cde9f80', { defaultValue: 'Enter a positive price' }));
   const tokenOne = 10n ** BigInt(m.token.decimals) * 10n ** BigInt(PRICE_DECIMALS);
   const usdcFor = priceUnits * 10n ** BigInt(m.usdc.decimals);
   // sqrt(amount1 / amount0), in base units.
@@ -131,7 +132,7 @@ export async function quoteEvmOrder(m: EvmMarket, input: EvmOrderInput): Promise
   const amountIn = BigInt(ethers.utils.parseUnits(input.amount, deposit.decimals).toString());
   const floor = Number(input.minPrice), ceiling = Number(input.maxPrice);
   if (amountIn <= 0n || !(floor > 0) || !(ceiling > floor) || !priceString(input.minPrice) || !priceString(input.maxPrice)) {
-    throw new Error('Enter a valid amount and price range');
+    throw new Error(_translateCopy('copy.f0f02abf8ee2', { defaultValue: 'Enter a valid amount and price range' }));
   }
   const [tickLower, tickUpper] = tickRange(m, floor, ceiling);
   const state = await readPool(m);
@@ -144,8 +145,8 @@ export async function quoteEvmOrder(m: EvmMarket, input: EvmOrderInput): Promise
   const belowMarket = m.usdcIs0 ? currentTick <= tickLower : currentTick >= tickUpper;
   if (input.side === 'sell' ? !aboveMarket : !belowMarket) {
     throw new Error(input.side === 'sell'
-      ? `This range overlaps the pool price. Move it above the market to list ${m.token.symbol} alone.`
-      : 'This range overlaps the pool price. Move it below the market to list USDC alone.');
+      ? _translateCopy('copy.0fe1584296d9', { defaultValue: 'This range overlaps the pool price. Move it above the market to list {{value1}} alone.', value1: m.token.symbol })
+      : _translateCopy('copy.2ebb0f82beec', { defaultValue: 'This range overlaps the pool price. Move it below the market to list USDC alone.' }));
   }
   const pool = new Pool(m.token, m.usdc, FEE, TICK_SPACING, ZERO, sqrtPriceX96, willCreatePool ? '0' : state.liquidity.toString(), currentTick);
   const depositIs0 = deposit.sortsBefore(input.side === 'sell' ? m.usdc : m.token);
@@ -155,10 +156,10 @@ export async function quoteEvmOrder(m: EvmMarket, input: EvmOrderInput): Promise
     amount1: depositIs0 ? '0' : amountIn.toString(),
     useFullPrecision: true,
   });
-  if (position.liquidity.toString() === '0') throw new Error('Amount is too small for this range');
+  if (position.liquidity.toString() === '0') throw new Error(_translateCopy('copy.4dc5f1795260', { defaultValue: 'Amount is too small for this range' }));
   const { amount0, amount1 } = position.mintAmounts;
   const [used, other] = depositIs0 ? [amount0, amount1] : [amount1, amount0];
-  if (BigInt(other.toString()) !== 0n || BigInt(used.toString()) > amountIn) throw new Error('The position would require more tokens than requested');
+  if (BigInt(other.toString()) !== 0n || BigInt(used.toString()) > amountIn) throw new Error(_translateCopy('copy.f922f863a383', { defaultValue: 'The position would require more tokens than requested' }));
   const { calldata, value } = V4PositionManager.addCallParameters(position, {
     recipient: input.walletAddress, slippageTolerance: new Percent(0, 1),
     deadline: Math.floor(Date.now() / 1000) + 1200, hookData: '0x',
@@ -169,17 +170,17 @@ export async function quoteEvmOrder(m: EvmMarket, input: EvmOrderInput): Promise
 
 async function assertWallet(signingProvider: any, expected: string) {
   const [actual] = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet account');
-  if (actual?.toLowerCase() !== expected.toLowerCase()) throw new Error('Connect the wallet holding this balance');
+  if (actual?.toLowerCase() !== expected.toLowerCase()) throw new Error(_translateCopy('copy.f84697f9ab15', { defaultValue: 'Connect the wallet holding this balance' }));
 }
 
 async function ensureApproval(m: EvmMarket, input: EvmOrderInput, amount: bigint, signingProvider: any, progress: (stage: OrderStage) => void) {
-  if (amount > MAX_UINT160) throw new Error('Amount exceeds Permit2 limits');
+  if (amount > MAX_UINT160) throw new Error(_translateCopy('copy.9042c1f7b36e', { defaultValue: 'Amount exceeds Permit2 limits' }));
   const deposit = input.side === 'sell' ? m.token : m.usdc;
   const provider = poolProvider(m);
   const token = new ethers.Contract(deposit.address, ERC20, provider);
   progress('balance');
   const balance = BigInt((await readWithTimeout(token.balanceOf(input.walletAddress) as Promise<ethers.BigNumber>, 'Token balance')).toString());
-  if (balance < amount) throw new Error(`Insufficient ${deposit.symbol} on ${POOL_CHAIN_INFO[m.chain].name}`);
+  if (balance < amount) throw new Error(_translateCopy('copy.b45f6c4496f7', { defaultValue: 'Insufficient {{value1}} on {{value2}}', value1: deposit.symbol, value2: POOL_CHAIN_INFO[m.chain].name }));
   const allowance = BigInt((await readWithTimeout(token.allowance(input.walletAddress, PERMIT2) as Promise<ethers.BigNumber>, 'Token allowance')).toString());
   if (allowance < amount) {
     progress('tokenApproval');
@@ -211,7 +212,7 @@ export async function placeEvmOrder(m: EvmMarket, input: EvmOrderInput, signingP
   const receipt = await readWithTimeout(poolProvider(m).getTransactionReceipt(hash), 'Transaction receipt');
   const mint = receipt?.logs.find((log) => log.address.toLowerCase() === m.positionManager.toLowerCase() && log.topics[0] === TRANSFER_TOPIC &&
     log.topics[1] === `0x${'0'.repeat(64)}` && log.topics[2]?.toLowerCase() === `0x${input.walletAddress.slice(2).toLowerCase().padStart(64, '0')}`);
-  if (!mint?.topics[3]) throw new Error('Order placed but its position could not be identified yet. Refresh in a minute.');
+  if (!mint?.topics[3]) throw new Error(_translateCopy('copy.6b03092e3456', { defaultValue: 'Order placed but its position could not be identified yet. Refresh in a minute.' }));
   return { tokenId: BigInt(mint.topics[3]).toString(), txHash: hash };
 }
 
@@ -273,8 +274,8 @@ export async function readEvmOrders(m: EvmMarket, rows: { order_ref: string; sid
 
 export async function withdrawEvmOrder(m: EvmMarket, order: EvmOrder, walletAddress: string, signingProvider: any): Promise<string> {
   const fresh = await readEvmOrder(m, order.tokenId, order.side);
-  if (!fresh) throw new Error('This order has already been withdrawn');
-  if (fresh.owner.toLowerCase() !== walletAddress.toLowerCase()) throw new Error('Only the order owner can withdraw');
+  if (!fresh) throw new Error(_translateCopy('copy.ec7a209392d9', { defaultValue: 'This order has already been withdrawn' }));
+  if (fresh.owner.toLowerCase() !== walletAddress.toLowerCase()) throw new Error(_translateCopy('copy.bff349990f40', { defaultValue: 'Only the order owner can withdraw' }));
   await assertWallet(signingProvider, walletAddress);
   const state = await readPool(m);
   const pool = new Pool(m.token, m.usdc, FEE, TICK_SPACING, ZERO, state.sqrtPriceX96.toString(), state.liquidity.toString(), state.tick);

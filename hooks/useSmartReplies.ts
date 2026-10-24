@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation as _useCopy } from 'react-i18next';
 import {
   suggestReplies,
   type SmartReplySuggestion,
@@ -23,6 +24,7 @@ export type SmartReplyStatus = "idle" | "loading" | "ready" | "empty" | "error";
  * Mirrors dehubweb's src/hooks/use-smart-replies.ts.
  */
 export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
+  const { t: _copy } = _useCopy();
   const [status, setStatus] = useState<SmartReplyStatus>("idle");
   const [suggestions, setSuggestions] = useState<SmartReplySuggestion[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -70,7 +72,7 @@ export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
         // failed draft, not an empty thread, and the rail says so with the orb
         // live to press again.
         setSuggestions([]);
-        setError("Could not draft replies");
+        setError(_copy("copy.c242c60db16c", { defaultValue: "Could not draft replies" }));
         setStatus("error");
         return;
       }
@@ -79,12 +81,12 @@ export function useSmartReplies(thread: SmartReplyTurn[], peerName?: string) {
       setStatus("ready");
     } catch (e) {
       log.error("suggestReplies failed", e);
-      setError(e instanceof Error ? e.message : "Could not draft replies");
+      setError(e instanceof Error ? e.message : _copy("copy.c242c60db16c", { defaultValue: "Could not draft replies" }));
       setStatus("error");
     } finally {
       inFlight.current = false;
     }
-  }, [thread, peerName, tailKey]);
+  }, [thread, peerName, tailKey, _copy]);
 
   const reset = useCallback(() => {
     draftedFor.current = null;

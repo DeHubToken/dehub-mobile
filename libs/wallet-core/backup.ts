@@ -2,20 +2,21 @@ import { deriveFromSecret, isRawPrivateKey } from './derive';
 import { fetchWalletReliably, type StoredWallet } from './store';
 import { getPayloadKdf, type EncryptedPayload } from './crypto';
 import { hasBiometricWrapKey } from './biometric-unlock';
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 export type BackupSource =
   | { kind: 'none'; reason: 'unavailable' | 'other-device' }
   | { kind: 'password' | 'biometric'; wallet: StoredWallet & { payload: EncryptedPayload } };
 
 export class BackupMismatchError extends Error {
-  constructor() { super('Wallet backup does not match the active wallet'); }
+  constructor() { super(_translateCopy('copy.812eeae42bfe', { defaultValue: 'Wallet backup does not match the active wallet' })); }
 }
 
 /** A failed lookup says nothing about whether this wallet has a phrase. */
 export async function loadBackupSource(userId: string | null, privateKey: string): Promise<BackupSource> {
   if (!userId) return { kind: 'none', reason: 'unavailable' };
   const { wallet, failed } = await fetchWalletReliably(userId);
-  if (failed) throw new Error('Wallet backup lookup failed');
+  if (failed) throw new Error(_translateCopy('copy.587836d66925', { defaultValue: 'Wallet backup lookup failed' }));
   if (!wallet || wallet.ethAddress.toLowerCase() !== deriveFromSecret(privateKey).ethAddress.toLowerCase()) {
     return { kind: 'none', reason: 'unavailable' };
   }

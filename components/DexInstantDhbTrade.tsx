@@ -25,13 +25,18 @@ export default function DexInstantDhbTrade({ address, disabled, onDone, token }:
   const target = token?.address ?? DHB_BASE;
   const targetSymbol = token?.symbol ?? 'DHB';
   const [targetDecimals, setTargetDecimals] = useState(token?.decimals ?? 18);
+  // A cashtag token's decimals are read from the chain. Until they are, the 18
+  // above is a guess, and a 6-decimal token traded on it is off by 10^12 — so
+  // no balance or trade uses it until the real value is in.
+  const [decimalsKnown, setDecimalsKnown] = useState(!token || token.decimals != null);
+  const [decimalsTry, setDecimalsTry] = useState(0);
   useEffect(() => {
     if (!token || token.decimals != null) return;
     let live = true;
     (new ethers.Contract(token.address, ERC20, evmProvider(ChainId.BASE_MAINNET)).decimals() as Promise<number>)
-      .then((d) => { if (live) setTargetDecimals(Number(d)); }).catch(() => {});
+      .then((d) => { if (live) { setTargetDecimals(Number(d)); setDecimalsKnown(true); } }).catch(() => {});
     return () => { live = false; };
-  }, [token]);
+  }, [token, decimalsTry]);
   const { t } = useTranslation();
   const signer = useDexSigner();
   const [side, setSide] = useState<'buy' | 'sell' | null>(null);
@@ -57,7 +62,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone, token }:
 
   useEffect(() => {
     let live = true; setBalances(null);
-    if (!address || !side) return;
+    if (!address || !side || !decimalsKnown) return;
     const provider = evmProvider(ChainId.BASE_MAINNET);
     void Promise.all([
       new ethers.Contract(USDC, ERC20, provider).balanceOf(address) as Promise<ethers.BigNumber>,
@@ -67,7 +72,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone, token }:
       if (live) setBalances({ usdc: Number(ethers.utils.formatUnits(usdc, 6)), eth: Number(ethers.utils.formatUnits(eth, 18)), dhb: Number(ethers.utils.formatUnits(dhb, targetDecimals)) });
     }).catch(() => {});
     return () => { live = false; };
-  }, [address, side, revision, target, targetDecimals]);
+  }, [address, side, revision, target, targetDecimals, decimalsKnown]);
 
   const spend = side === 'sell' ? { symbol: targetSymbol, address: target, decimals: targetDecimals }
     : pay === 'ETH' ? { symbol: 'ETH', address: NATIVE, decimals: 18 } : { symbol: 'USDC', address: USDC, decimals: 6 };
@@ -76,6 +81,7 @@ export default function DexInstantDhbTrade({ address, disabled, onDone, token }:
   async function submit() {
     if (!address) { setError(t('dex.connectWallet')); return; }
     if (!side) return;
+    if (!decimalsKnown) { setError(t('dex.prepareFailed')); setDecimalsTry((n) => n + 1); return; }
     setBusy(true); setError('');
     try {
       const value = Number(amount);

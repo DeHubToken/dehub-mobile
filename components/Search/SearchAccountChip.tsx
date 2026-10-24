@@ -39,7 +39,7 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
     isFollowRequestPending: !!account.isFollowRequestPending,
   });
 
-  const username = account.username || account.address?.slice(0, 6) || "unknown";
+  const username = account.username || account.address?.slice(0, 6) || _copy("copy.b23a6a8439c0", { defaultValue: "unknown" });
   const displayName = account.displayName || username;
   const avatarSrc = getAvatarUrl(account.avatarImageUrl || "");
   const displayAvatar = avatarSrc && avatarSrc !== "default-avatar" ? avatarSrc : undefined;
@@ -59,9 +59,9 @@ const SearchAccountChip: FC<SearchAccountChipProps> = ({ account, onFollowChange
       if (next) onFollowChange?.(account.address, { isFollowing: next.isFollowing, isFollowRequestPending: !!next.isFollowRequestPending });
     } catch (e) {
       console.error("[SearchAccountChip] follow error", e);
-      reportActionError(e, "Couldn't update follow");
+      reportActionError(e, _copy("copy.fb6a282ca6d7", { defaultValue: "Couldn't update follow" }));
     }
-  }, [myAddress, account.address, isOwnAccount, followLoading, toggle, onFollowChange]);
+  }, [myAddress, account.address, isOwnAccount, followLoading, toggle, onFollowChange, _copy]);
 
   return (
     <TouchableOpacity

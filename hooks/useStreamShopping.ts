@@ -20,6 +20,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
 
 import { useEffect, useMemo, useRef } from "react";
 import i18n from "i18next";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
@@ -95,7 +96,7 @@ async function callFn<T>(
     } catch {
       // Body was not JSON — fall back to the transport message.
     }
-    throw new Error(detail || error.message || "Request failed");
+    throw new Error(detail || error.message || _translateCopy("copy.cfce761befa8", { defaultValue: "Request failed" }));
   }
   if ((data as { error?: string })?.error) {
     throw new Error((data as { error: string }).error);
@@ -277,7 +278,7 @@ export class PaidButUnconfirmedError extends Error {
 
   constructor(txHash: string, reason: string) {
     super(
-      `${reason}. Your payment went through — do not pay again. Reference: ${txHash}`,
+      _translateCopy("copy.02b7d8c44a67", { defaultValue: "{{value1}}. Your payment went through — do not pay again. Reference: {{value2}}", value1: reason, value2: txHash }),
     );
     this.name = "PaidButUnconfirmedError";
     this.txHash = txHash;
@@ -325,12 +326,12 @@ export function useLiveCheckout(
 
       const hash =
         paidTxHash || (await sendTransfer(quote.sellerAddress, quote.dhbAmount));
-      if (!hash) throw new Error("Transaction was not submitted");
+      if (!hash) throw new Error(_copy("copy.1f204df4182c", { defaultValue: "Transaction was not submitted" }));
 
       // The receipt can lag the wallet's response, so a 202 means "ask again",
       // not "failed". The payment is already on-chain here — giving up would
       // strand a real transfer with no order behind it.
-      let lastError = "Could not confirm the payment";
+      let lastError = _copy("copy.50c1bea5bfee", { defaultValue: "Could not confirm the payment" });
       for (let attempt = 0; attempt < 10; attempt++) {
         try {
           return await callFn<{ success: boolean; order: unknown; warning?: string }>(
@@ -364,7 +365,7 @@ export function useLiveCheckout(
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["stream-products", key] });
       queryClient.invalidateQueries({ queryKey: ["store-orders"] });
-      toastSuccess(data.warning || "Order placed");
+      toastSuccess(data.warning || _copy("copy.494c28566f1e", { defaultValue: "Order placed" }));
     },
     onError: (e: any) => {
       log.error("live purchase failed", e);

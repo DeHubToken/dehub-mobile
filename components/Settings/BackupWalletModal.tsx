@@ -235,7 +235,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
     try {
       if (!isLocal) {
         throw new Error(
-          "Private keys cannot be exported for smart accounts. Use an imported/local wallet."
+          t("copy.200c05f0c075", { defaultValue: "Private keys cannot be exported for smart accounts. Use an imported/local wallet." })
         );
       }
       await ensureProvider();
@@ -247,7 +247,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
         live = providerRef.current;
       }
       const ready = live.status === "ready" && live.provider;
-      if (!ready) throw new Error("Wallet provider is not ready");
+      if (!ready) throw new Error(t("copy.3081fecf5518", { defaultValue: "Wallet provider is not ready" }));
       const pk = await readPrivateKeyForExport(
         () => (live.provider as any)?.request?.({ method: "private_key" }),
         t("walletBackup.showWords"),
@@ -255,7 +255,7 @@ const BackupWalletModal: React.FC<BackupWalletModalProps> = ({
       );
       if (session !== sessionRef.current) return;
       if (!pk || typeof pk !== "string")
-        throw new Error("Could not retrieve private key");
+        throw new Error(t("copy.665bff952877", { defaultValue: "Could not retrieve private key" }));
       setPrivateKey(pk);
       setStep("reveal");
       void loadWords(pk);

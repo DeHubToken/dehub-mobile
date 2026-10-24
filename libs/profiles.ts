@@ -33,6 +33,7 @@ import { clearAllEngagement } from './engagementCache';
 import { clearLinkCopyFloors } from './link-copy-floors';
 import { clearUnlockedTokens } from './unlocked-tokens';
 import { queryClient } from '../config/queryClient';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import {
   getProfileAllowance,
   MAX_PROFILES_CEILING,
@@ -51,7 +52,7 @@ export class ProfileLimitReachedError extends Error {
   readonly allowance: ProfileAllowance;
 
   constructor(allowance: ProfileAllowance) {
-    super(`You can keep ${allowance.maxProfiles} profiles on this device`);
+    super(_translateCopy('copy.2c3583161a5f', { defaultValue: 'You can keep {{value1}} profiles on this device', value1: allowance.maxProfiles }));
     this.name = 'ProfileLimitReachedError';
     this.allowance = allowance;
   }

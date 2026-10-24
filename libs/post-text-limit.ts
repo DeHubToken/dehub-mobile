@@ -1,6 +1,6 @@
 /**
  * How long a post's text may be. The cap scales with the staking badge: 500
- * characters with no badge, rising in even steps to 3,000 for Megalodon. The
+ * characters with no badge, rising per tier to 2,000 for Megalodon. The
  * API is the authority (`textCharsPerPost` on the post-quota status) and
  * enforces it on publish and edit; an API that predates it means 500.
  *

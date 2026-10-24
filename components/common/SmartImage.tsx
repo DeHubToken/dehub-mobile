@@ -16,6 +16,21 @@ export function warmFeedImage(uri: string): void {
   }).catch(() => warmed.delete(uri));
 }
 
+/**
+ * A photo's shape (width / height) without drawing it: expo-image decodes it
+ * small, through the same cache that paints it. Undefined if it can't load.
+ */
+export function measureImageAspect(uri: string): Promise<number | undefined> {
+  if (typeof Image.loadAsync !== 'function') return Promise.resolve(undefined);
+  return Image.loadAsync(uri, { maxWidth: 64, maxHeight: 64 })
+    .then(ref => {
+      const { width, height } = ref;
+      ref.release();
+      return width && height ? width / height : undefined;
+    })
+    .catch(() => undefined);
+}
+
 type SmartImageProps = {
   source: ImageProps["source"];
   contentFit?: ImageContentFit;

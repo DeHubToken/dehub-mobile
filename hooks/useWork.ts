@@ -299,6 +299,7 @@ export function useMyWorkSubmissions(enabled = true) {
 
 
 export function useUpdateJob() {
+  const { t: _copy } = _useCopy();
   const wallet = useWallet();
   const qc = useQueryClient();
   return useMutation({
@@ -311,7 +312,7 @@ export function useUpdateJob() {
       deadline?: string | null;
       budget?: { currency: WorkCurrency; price_per_unit: number; max_units: number };
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const current=await workRow('work_jobs',params.id);
       const patch: Record<string, unknown> = {
@@ -389,7 +390,7 @@ export function useCreateJob() {
       max_units: number;
       deadline?: string;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const total = params.price_per_unit * params.max_units;
 
@@ -465,7 +466,7 @@ export function useApplyToJob() {
       cover_letter: string;
       proposed_amount?: number;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       const { data, error } = await withWalletHeader(
         supabase
@@ -506,7 +507,7 @@ export function useAwardApplicant() {
       application_id: string;
       worker_address: string;
     }) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       await escrow.action(params.job_id,'award',params.application_id,undefined,params.worker_address);
     },
     onSuccess: (_d, v) => {
@@ -558,7 +559,7 @@ export function useSubmitProof() {
       proof_text?: string;
       platform?: WorkPlatform;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const addr = wallet.toLowerCase();
       await escrow.register(params.job_id,params.proof_url);
       const { data, error } = await withWalletHeader(
@@ -592,6 +593,7 @@ export function useSubmitProof() {
 
 
 function useSettleWorkPayment() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const { chainId } = useWeb3Provider();
   const activeChain = Number(chainId) || ChainId.BASE_MAINNET;
@@ -602,26 +604,26 @@ function useSettleWorkPayment() {
     send: async intent => {
      const send = await prepareWorkPayment(async () => {
       const contract = intent.currency === 'USDC' ? usdcContract : dhbContract;
-      if (!contract) throw new Error('Switch to Base for USDC payouts, or Base/BNB for DHB payouts.');
+      if (!contract) throw new Error(_copy("copy.bae646a7db92", { defaultValue: "Switch to Base for USDC payouts, or Base/BNB for DHB payouts." }));
       const { data: job, error } = await supabase.from(TBL_JOBS).select('fund_tx_hash,onchain_job_id').eq('id', intent.job_id).single();
       if (error) throw error;
       if ((job as any).fund_tx_hash) {
         const config=await getWorkConfig();
         const sub=await workRow('work_submissions',submission);
-        if(!config.escrow_address) throw new Error('Escrow is unavailable');
+        if(!config.escrow_address) throw new Error(_copy("copy.d6abd06bb70c", { defaultValue: "Escrow is unavailable" }));
         return () => escrow.write(config.escrow_address,'approveSubmission',[(job as any).onchain_job_id,intent.worker_address,sub.approved_units,
           ethers.utils.sha256(ethers.utils.toUtf8Bytes(sub.proof_url.trim().toLowerCase())),ethers.utils.sha256(ethers.utils.toUtf8Bytes(intent.id))]);
       }
       const amount = ethers.utils.parseUnits(String(intent.amount), intent.currency === 'USDC' ? 6 : 18);
       const signer = await contract.signer.getAddress();
-      if(signer.toLowerCase()!==wallet.toLowerCase()) throw new Error('The signing wallet does not match your bounty account');
-      if (signer.toLowerCase() === intent.worker_address.toLowerCase()) throw new Error('Cannot pay your own wallet');
+      if(signer.toLowerCase()!==wallet.toLowerCase()) throw new Error(_copy("copy.04246863ce2d", { defaultValue: "The signing wallet does not match your bounty account" }));
+      if (signer.toLowerCase() === intent.worker_address.toLowerCase()) throw new Error(_copy("copy.afe7994918e2", { defaultValue: "Cannot pay your own wallet" }));
       const balance = await contract.balanceOf(signer);
-      if (balance.lt(amount)) throw new Error(`Not enough ${intent.currency} to cover this payout`);
+      if (balance.lt(amount)) throw new Error(_copy("copy.75590ff4a310", { defaultValue: "Not enough {{value1}} to cover this payout", value1: intent.currency }));
       return () => writeContractAA(contract, 'transfer', [intent.worker_address, amount], { context: 'bounty-payout' });
      });
       const sent = await send();
-      if(!sent.hash) throw new Error('Signing returned no transaction hash. Recover the transaction before retrying.');
+      if(!sent.hash) throw new Error(_copy("copy.641982031959", { defaultValue: "Signing returned no transaction hash. Recover the transaction before retrying." }));
       return { hash: sent.hash, wait: (confirmations: number) => sent.wait(confirmations) };
     },
     receipt: (intent, hash) => workReceipt(intent.id, hash, intent.chain_id),
@@ -647,7 +649,7 @@ export function useApproveSubmission() {
       evidence_url?: string;
       pay: boolean;
     }) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       await workRpc(wallet, 'work_approve', {
         p_submission: params.submission_id, p_views: params.views ?? null, p_evidence: params.evidence_url ?? null,
       });
@@ -657,7 +659,7 @@ export function useApproveSubmission() {
     onSuccess: (result, v) => {
       qc.invalidateQueries({ queryKey: ["work-subs", v.job_id] });
       qc.invalidateQueries({ queryKey: ["work-job"] });
-      toastSuccess(result.paid ? "Approved and paid" : result.pending ? "Payment submitted — confirmation pending" : "Approved — not paid yet");
+      toastSuccess(result.paid ? _copy("copy.7a755d6e296a", { defaultValue: "Approved and paid" }) : result.pending ? _copy("copy.918dd78b3f8b", { defaultValue: "Payment submitted — confirmation pending" }) : _copy("copy.94ee5aa18bc4", { defaultValue: "Approved — not paid yet" }));
     },
     onSettled: (_result, _error, variables) => {
       qc.invalidateQueries({ queryKey: ['work-subs', variables.job_id] });
@@ -685,7 +687,7 @@ export function usePaySubmission() {
       payout_amount: number;
       recovery_hash?: string;
     }) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       return settlePayment(wallet, params.submission_id, params.recovery_hash);
     },
     onSuccess: (_d, v) => {
@@ -711,7 +713,7 @@ export function useRejectSubmission() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (params: { submission_id: string; job_id: string; reason: string }) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const sub=await workRow('work_submissions',params.submission_id);
       await escrow.action(params.job_id,'reject',params.submission_id,params.reason,undefined,sub.proof_url);
     },
@@ -760,8 +762,8 @@ export function useLeaveReview() {
       rating: number;
       comment?: string;
     }) => {
-      if (!wallet) throw new Error("Not authenticated");
-      if (params.rating < 1 || params.rating > 5) throw new Error("Rating must be 1-5");
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
+      if (params.rating < 1 || params.rating > 5) throw new Error(_copy("copy.169deb4a3965", { defaultValue: "Rating must be 1-5" }));
       const addr = wallet.toLowerCase();
       const { error } = await withWalletHeader(
         supabase.from(TBL_REVIEWS).insert({
@@ -802,7 +804,7 @@ export function useOpenDispute() {
       reason: string;
       evidence_url?: string;
     }) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       await escrow.action(params.job_id,'dispute',params.job_id,params.reason);
     },
     onSuccess: () => {
@@ -848,6 +850,7 @@ export function useAdminDisputes(enabled = true) {
 
 
 export function useAdminResolveDispute() {
+  const { t: _copy } = _useCopy();
   const escrow = useWorkEscrow(useWallet());
   const wallet = useWallet();
   const qc = useQueryClient();
@@ -863,7 +866,7 @@ export function useAdminResolveDispute() {
       resolution_notes?: string;
       pay_worker?: boolean;
     }) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       const {data:subs,error}=await supabase.from(TBL_SUBS).select('*').eq('job_id',params.job_id).in('approval_status',['pending','approved']).order('created_at');
       if(error) throw error;
       const selected=(subs as any[])?.find(s=>s.worker_address===params.worker_address.toLowerCase());
@@ -892,7 +895,7 @@ export function useMarkComplete() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (jobId: string) => {
-      if (!wallet) throw new Error('Not authenticated');
+      if (!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
       await escrow.action(jobId,'complete',jobId,undefined);
     },
     onSuccess: () => {
@@ -911,18 +914,20 @@ export function useWorkConfig() {
  return useQuery({queryKey:['work-config'],queryFn:getWorkConfig,staleTime:60000});
 }
 export function usePublishJob() {
+ const { t: _copy } = _useCopy();
  const wallet=useWallet(); const qc=useQueryClient();
  return useMutation({mutationFn:async(jobId:string)=>{
-  if(!wallet) throw new Error('Not authenticated');
+  if(!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
   await workRpc(wallet,'work_publish',{p_job:jobId});
  },onSuccess:()=>{qc.invalidateQueries({queryKey:['work-job']});qc.invalidateQueries({queryKey:['work-my-posted']});qc.invalidateQueries({queryKey:['work-jobs-browse']});toastSuccess(i18n.t('work.integrity.posted'));},onError:(e:any)=>toastError(e,i18n.t('toasts.failed_to_create_post'))});
 }
 export function useFundJob() {
+ const { t: _copy } = _useCopy();
  const wallet=useWallet(); const escrow=useWorkEscrow(wallet); const qc=useQueryClient();
  return useMutation({mutationFn:async(params:{job_id:string;hash?:string;release?:boolean})=>{
-  if(!wallet) throw new Error('Not authenticated');
+  if(!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
   if(params.release) {
-   if(await AsyncStorage.getItem('work-funding:'+params.job_id)) throw new Error('A funding transaction is saved. Check it first.');
+   if(await AsyncStorage.getItem('work-funding:'+params.job_id)) throw new Error(_copy("copy.41a5c185e1ba", { defaultValue: "A funding transaction is saved. Check it first." }));
    await workRpc(wallet,'work_record_funding',{p_job:params.job_id,p_cancel:true}); return 'released';
   }
   return escrow.fund(params.job_id,params.hash);
@@ -930,13 +935,14 @@ export function useFundJob() {
  onSuccess:state=>toastSuccess(i18n.t('work.integrity.'+(state==='confirmed'?'published':state==='pending'?'fundingPending':'signatureReleased'))),onError:(e:any)=>toastError(e,i18n.t('toasts.failed_to_create_post'))});
 }
 export function useReleasePayment() {
+ const { t: _copy } = _useCopy();
  const wallet=useWallet(); const qc=useQueryClient();
  return useMutation({mutationFn:async(submission:string)=>{
-  if(!wallet) throw new Error('Not authenticated');
+  if(!wallet) throw new Error(_copy("copy.76d1efbeed2d", { defaultValue: "Not authenticated" }));
   const {data,error}=await supabase.from('work_payment_intents' as any).select('id').eq('submission_id',submission).eq('state','signing').single();
   if(error) throw error;
   const id=(data as any).id;
-  if(await AsyncStorage.getItem('work-payment:'+id)) throw new Error('A payment transaction is saved. Check it first.');
+  if(await AsyncStorage.getItem('work-payment:'+id)) throw new Error(_copy("copy.097f795fdba3", { defaultValue: "A payment transaction is saved. Check it first." }));
   await workRpc(wallet,'work_cancel_signature',{p_intent:id});
  },onSettled:()=>qc.invalidateQueries({queryKey:['work-subs']}),onError:(e:any)=>toastError(e,i18n.t('paywall.paymentFailed'))});
 }

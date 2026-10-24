@@ -53,11 +53,11 @@ const PROVIDER_LABELS: Record<string, string> = {
   apple: "Apple",
   twitter: "X (Twitter)",
   discord: "Discord",
-  email: "Email",
-  email_passwordless: "Email",
-  sms: "Phone (SMS)",
-  sms_passwordless: "Phone (SMS)",
-  phone: "Phone (SMS)",
+  get email() { return _translateCopy("copy.969ccbd3cf63", { defaultValue: "Email" }); },
+  get email_passwordless() { return _translateCopy("copy.969ccbd3cf63", { defaultValue: "Email" }); },
+  get sms() { return _translateCopy("copy.75d6c93885ba", { defaultValue: "Phone (SMS)" }); },
+  get sms_passwordless() { return _translateCopy("copy.75d6c93885ba", { defaultValue: "Phone (SMS)" }); },
+  get phone() { return _translateCopy("copy.75d6c93885ba", { defaultValue: "Phone (SMS)" }); },
 };
 
 function providerLabel(method?: string): string | null {

@@ -19,6 +19,7 @@
 
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const FN_URL = `${env.SUPABASE_URL}/functions/v1/video-segments`;
 
@@ -57,7 +58,7 @@ export interface VideoSegment {
 /** Thrown when the function is unreachable — the UI treats it as "no segments". */
 export class SegmentsUnavailableError extends Error {
   constructor() {
-    super("Video segments are not available yet");
+    super(_translateCopy("copy.86951eef2de8", { defaultValue: "Video segments are not available yet" }));
     this.name = "SegmentsUnavailableError";
   }
 }
@@ -83,7 +84,7 @@ export async function fetchVideoSegments(tokenId: string | number): Promise<Vide
   const res = await reach(`${FN_URL}?token_id=${encodeURIComponent(String(tokenId))}`, {
     headers: anonHeaders,
   });
-  if (!res.ok) throw new Error(`Could not load segments (${res.status})`);
+  if (!res.ok) throw new Error(_translateCopy("copy.ba94167247b5", { defaultValue: "Could not load segments ({{value1}})", value1: res.status }));
 
   const data = await res.json();
   // Numeric columns come back as strings over PostgREST, and the player does
@@ -97,7 +98,7 @@ export async function fetchVideoSegments(tokenId: string | number): Promise<Vide
 
 async function post(body: Record<string, unknown>): Promise<any> {
   const token = await getAuthToken();
-  if (!token) throw new Error("Sign in first.");
+  if (!token) throw new Error(_translateCopy("copy.1ba0ae88fee7", { defaultValue: "Sign in first." }));
 
   const res = await reach(FN_URL, {
     method: "POST",
@@ -106,7 +107,7 @@ async function post(body: Record<string, unknown>): Promise<any> {
   });
 
   const data = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(data?.error ?? `Request failed (${res.status})`);
+  if (!res.ok) throw new Error(data?.error ?? _translateCopy("copy.94dd9f908316", { defaultValue: "Request failed ({{value1}})", value1: res.status }));
   return data;
 }
 

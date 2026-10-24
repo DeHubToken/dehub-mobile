@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { localCopyOfCloudProject, parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectMedia } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 
@@ -17,15 +18,15 @@ export interface ProjectReviewDraft { body: string; atSeconds: number; revision:
 const uuidPattern = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
 export function projectReviewWallet(value: string): string {
   const wallet = value.trim().toLowerCase();
-  if (!/^0x[a-f0-9]{40}$/.test(wallet)) throw new Error("Enter a valid DeHub wallet address");
+  if (!/^0x[a-f0-9]{40}$/.test(wallet)) throw new Error(_translateCopy("copy.57e0b6c29ec3", { defaultValue: "Enter a valid DeHub wallet address" }));
   return wallet;
 }
 export function projectReviewDraft(draft: ProjectReviewDraft): ProjectReviewDraft {
   const body = draft.body.trim();
-  if (!body || Array.from(body).length > 2000) throw new Error("Comments must contain 1 to 2000 characters");
-  if (!Number.isSafeInteger(draft.revision) || draft.revision <= 0 || !Number.isFinite(draft.atSeconds) || draft.atSeconds < 0 || draft.atSeconds > 86400) throw new Error("Choose a valid saved version and comment time");
-  if (draft.parentId && !uuidPattern.test(draft.parentId)) throw new Error("Invalid comment thread");
-  if (draft.clipId != null && (!draft.clipId || draft.clipId.length > 200)) throw new Error("Invalid comment clip");
+  if (!body || Array.from(body).length > 2000) throw new Error(_translateCopy("copy.6cdd42ac8398", { defaultValue: "Comments must contain 1 to 2000 characters" }));
+  if (!Number.isSafeInteger(draft.revision) || draft.revision <= 0 || !Number.isFinite(draft.atSeconds) || draft.atSeconds < 0 || draft.atSeconds > 86400) throw new Error(_translateCopy("copy.a00bf54595b2", { defaultValue: "Choose a valid saved version and comment time" }));
+  if (draft.parentId && !uuidPattern.test(draft.parentId)) throw new Error(_translateCopy("copy.528aff65bd19", { defaultValue: "Invalid comment thread" }));
+  if (draft.clipId != null && (!draft.clipId || draft.clipId.length > 200)) throw new Error(_translateCopy("copy.1a1c8125e8b9", { defaultValue: "Invalid comment clip" }));
   return { ...draft, body, clipId: draft.clipId ?? null, parentId: draft.parentId ?? null,
     assigneeWallet: draft.assigneeWallet ? projectReviewWallet(draft.assigneeWallet) : null };
 }
@@ -34,7 +35,7 @@ export function projectReviewDraft(draft: ProjectReviewDraft): ProjectReviewDraf
 export function projectReviewCopy(document: CloudProjectDocument, owner: string, uuid: () => string, now = Date.now()): { snapshot: ProjectSnapshot; media: CloudProjectMedia[] } {
   const wallet = projectReviewWallet(owner), source = parseCloudProjectDocument(document, wallet);
   const used = new Set(source.media.map(media => media.id)); used.add(source.snapshot.id);
-  const nextId = () => { const id = uuid(); if (!uuidPattern.test(id) || used.has(id)) throw new Error("Review copy IDs must be unique"); used.add(id); return id; };
+  const nextId = () => { const id = uuid(); if (!uuidPattern.test(id) || used.has(id)) throw new Error(_translateCopy("copy.75b03e8682a9", { defaultValue: "Review copy IDs must be unique" })); used.add(id); return id; };
   const snapshot = localCopyOfCloudProject(source, wallet, nextId(), now);
   const ids = new Map<string, string>();
   const media = source.media.map(item => { const id = nextId(); ids.set(item.id, id); return { ...item, id }; });

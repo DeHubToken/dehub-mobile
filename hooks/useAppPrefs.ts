@@ -98,7 +98,9 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   dimLights: false,
   dimStrength: 50,
   buyBotHidden: false,
-  smartReplies: true,
+  // Off until the user turns it on in Settings > Messages. Only an explicit
+  // "true" (written by the switch) keeps it on.
+  smartReplies: false,
   coach: true,
   quietHoursEnabled: false,
   quietHoursStart: 22,

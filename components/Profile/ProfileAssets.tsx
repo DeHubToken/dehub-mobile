@@ -218,7 +218,7 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
                 ? "Base"
                 : isBNB
                 ? "BNB Chain"
-                : `Chain ${chainId ?? "N/A"}`;
+                : t("copy.f68ce866a5b4", { defaultValue: "Chain {{value1}}", value1: chainId ?? "N/A" });
               const gasSym = isBase ? "ETH" : isBNB ? "BNB" : "ETH";
               return t("assets.otherBalancesNote", {
                 network: netName,

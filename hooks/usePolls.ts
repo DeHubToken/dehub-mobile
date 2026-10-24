@@ -253,7 +253,7 @@ export function useCreatePoll() {
       toastSuccess(_copy("copy.05ea13855698", { defaultValue: "Poll created" }));
       return res.result;
     } catch (e: any) {
-      toastError(e?.message || "Failed to create poll");
+      toastError(e?.message || _copy("copy.c653104b4b35", { defaultValue: "Failed to create poll" }));
       throw e;
     } finally {
       setLoading(false);
@@ -276,7 +276,7 @@ export function useVoteOnPoll() {
         toastSuccess(_copy("copy.78c1c6f9aef3", { defaultValue: "Vote recorded" }));
         return res.result;
       } catch (e: any) {
-        toastError(e?.message || "Failed to vote");
+        toastError(e?.message || _copy("copy.b1ae867aaa75", { defaultValue: "Failed to vote" }));
         throw e;
       } finally {
         setLoading(false);
@@ -299,7 +299,7 @@ export function useRemovePollVote() {
       invalidatePoll(tokenId);
       toastSuccess(_copy("copy.fc26f8c718dd", { defaultValue: "Vote removed" }));
     } catch (e: any) {
-      toastError(e?.message || "Failed to remove vote");
+      toastError(e?.message || _copy("copy.d088f437ef49", { defaultValue: "Failed to remove vote" }));
       throw e;
     } finally {
       setLoading(false);
@@ -320,7 +320,7 @@ export function useClosePoll() {
       invalidatePoll(tokenId);
       toastSuccess(_copy("copy.6611b6805965", { defaultValue: "Poll closed" }));
     } catch (e: any) {
-      toastError(e?.message || "Failed to close poll");
+      toastError(e?.message || _copy("copy.bc3baadc3fc7", { defaultValue: "Failed to close poll" }));
       throw e;
     } finally {
       setLoading(false);

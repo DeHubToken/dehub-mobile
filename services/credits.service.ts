@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { apiClient } from "../libs/api.client";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
  * Subscription tokens: a dollar balance held by DeHub, shown as tokens at
@@ -38,7 +39,7 @@ export async function getSubscriptionCreditTopUpTarget(
     `/subscription-credits?chainId=${chainId}`,
   );
   if (!res?.topUp?.dhbToken || !res.topUp.treasuryAddress) {
-    throw new Error("Top-ups are not available right now. Try again shortly.");
+    throw new Error(_translateCopy("copy.3e8ec7933cc7", { defaultValue: "Top-ups are not available right now. Try again shortly." }));
   }
   return res.topUp;
 }

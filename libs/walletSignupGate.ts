@@ -10,6 +10,7 @@
  * Mirrors web's `WalletSignupBlockedError` handling in `AuthProvider`.
  */
 import { toastError } from './toast';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /** The API's code for a wallet signup turned away by the on-chain history gate. */
 export const WALLET_SIGNUP_BLOCKED_CODE = 'WALLET_SIGNUP_REQUIRES_HISTORY';
@@ -37,7 +38,7 @@ export function reportWalletSignupBlocked(error: unknown): boolean {
   // `null` as the error deliberately: toastError prefers the error's OWN text
   // for the headline, and the API's text is a paragraph. It belongs in the
   // description, under a headline short enough to read at a glance.
-  toastError(null, 'This wallet cannot open a new account', {
+  toastError(null, _translateCopy('copy.043e8d07a119', { defaultValue: 'This wallet cannot open a new account' }), {
     description: explanation,
     duration: 15000,
   });

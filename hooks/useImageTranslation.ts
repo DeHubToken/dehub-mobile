@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
+import { useTranslation as _useCopy } from 'react-i18next';
 import {
   translateImage as translateImageFn,
   type ImageTranslateResponse,
@@ -12,6 +13,7 @@ function cacheKey(imageUrl: string, lang: string): string {
 }
 
 export function useImageTranslation() {
+  const { t: _copy } = _useCopy();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<ImageTranslateResponse | null>(null);
@@ -47,12 +49,12 @@ export function useImageTranslation() {
       if (id === reqRef.current) setResult(res);
       return res;
     } catch (err) {
-      if (id === reqRef.current) setError(err instanceof Error ? err.message : 'Image translation failed');
+      if (id === reqRef.current) setError(err instanceof Error ? err.message : _copy("copy.f99f7b6a0421", { defaultValue: "Image translation failed" }));
       return null;
     } finally {
       if (id === reqRef.current) setIsLoading(false);
     }
-  }, []);
+  }, [_copy]);
 
   const clearResult = useCallback(() => {
     reqRef.current += 1;
