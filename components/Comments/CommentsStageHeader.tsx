@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useSearchFieldMaterial } from "../../hooks/useSearchFieldMaterial";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import { MONO_TEXT } from "../../theme/skins";
 import { COMMENT_SORTS, type CommentSort } from "./CommentTabRow";
@@ -36,6 +37,7 @@ interface Props {
 function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, query, onQueryChange, onToggleSearch }: Props) {
   const { t } = useTranslation();
   const { skin } = useAppTheme();
+  const searchMaterial = useSearchFieldMaterial();
   const radius = skin?.square ? 0 : 8;
   const mono = skin?.mono ? MONO_TEXT : null;
   return (
@@ -75,7 +77,9 @@ function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, q
             placeholderTextColor="#6F7174"
             autoFocus
             returnKeyType="search"
-            style={[styles.search, { borderRadius: skin?.square ? 0 : 12 }]}
+            style={[styles.search, { borderRadius: skin?.square ? 0 : 12 }, searchMaterial.surface]}
+            onFocus={searchMaterial.onFocus}
+            onBlur={searchMaterial.onBlur}
           />
         </View>
       )}

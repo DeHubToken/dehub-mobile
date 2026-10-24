@@ -1,3 +1,4 @@
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from "../hooks/useSearchFieldMaterial";
 import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
 import BadgeArtwork from "../components/common/BadgeArtwork";
 import { getBadgeHoverOpticalStyle } from "../libs/misc";
@@ -162,6 +163,7 @@ export default function AccountsScreen() {
   // A shared listing link (dehub.io/accounts?handle=x) lands here with the
   // handle already in the box, the same as web's ?handle= param.
   const [search, setSearch] = useSurfaceDraft("screens/AccountsScreen.tsx:search", () => String(route.params?.handle || ""));
+  const searchMaterial = useSearchFieldMaterial();
   const [band, setBand] = useState<string | null>(null);
   const [selected, setSelected] = useState<AccountListing | null>(null);
 
@@ -200,14 +202,16 @@ export default function AccountsScreen() {
 
       {tab === "browse" ? (
         <>
-          <View style={styles.searchWrap}>
+          <View style={[styles.searchWrap, searchMaterial.surface]}>
             <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
               onChangeText={setSearch}
               placeholder={t("accounts.searchPlaceholder")}
               placeholderTextColor="#8B8D90"
-              style={styles.searchInput}
+              style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+              onFocus={searchMaterial.onFocus}
+              onBlur={searchMaterial.onBlur}
               autoCapitalize="none"
               autoCorrect={false}
               spellCheck={false}
