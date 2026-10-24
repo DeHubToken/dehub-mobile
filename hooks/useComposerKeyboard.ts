@@ -1,6 +1,9 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Keyboard, Platform, View, useWindowDimensions, type KeyboardEvent } from "react-native";
-import { keyboardComposerLift } from "../libs/keyboard-composer";
+import type React from "react";
+import { useCallback, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Dimensions, Keyboard, Platform, StatusBar, View, useWindowDimensions, type KeyboardEvent } from "react-native";
+import { SafeAreaInsetsContext } from "react-native-safe-area-context";
+import { initialSafeAreaMetrics } from "../libs/initialSafeAreaMetrics";
+import { keyboardComposerLift, keyboardTopFromEvent } from "../libs/keyboard-composer";
 
 type ComposerKeyboardOptions = {
   /** Space left between the composer and the top of the keys. */
@@ -16,7 +19,33 @@ type ComposerKeyboardOptions = {
  * (a late resize, the nav bar changing height, the keys finishing their
  * slide), so measure again a few times after the first one.
  */
-const SETTLE_MS = [120, 350, 700];
+const SETTLE_MS = [120, 350, 700, 1000];
+const KEEP_MEASURING_MS = 400;
+
+/**
+ * Composers that lift themselves. KeyboardPanView leaves fields inside these
+ * alone: moving the screen as well would fight the composer's own lift.
+ */
+export const selfLiftingComposers = new Set<React.RefObject<View | null>>();
+
+/**
+ * Mark a composer whose screen lifts it some other way (the post page's
+ * keyboard lift, the Shorts split) so KeyboardPanView leaves it alone.
+ *
+ * iOS only. There the pan and the screen's own lift both answer the same
+ * keyboardWillShow, the pan measured the box before the lift landed, threw
+ * the whole screen up a keyboard's height and dropped it back a beat later.
+ * iOS sends that event again whenever the keyboard's frame changes while
+ * typing (the suggestion strip coming and going), so a reply box bobbed up
+ * and down as you typed. Android keeps the pan as its safety net.
+ */
+export function useSelfLiftingComposer(ref: React.RefObject<View | null>, enabled: boolean = true) {
+  useEffect(() => {
+    if (!enabled || Platform.OS !== "ios") return;
+    selfLiftingComposers.add(ref);
+    return () => { selfLiftingComposers.delete(ref); };
+  }, [ref, enabled]);
+}
 
 /**
  * Measure the composer itself and lift it until its bottom sits on the
@@ -39,6 +68,16 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   const settings = useRef({ gap, restingOffset });
   settings.current = { gap, restingOffset };
   const { width, height } = useWindowDimensions();
+  useEffect(() => {
+    if (!enabled) return;
+    selfLiftingComposers.add(ref);
+    return () => { selfLiftingComposers.delete(ref); };
+  }, [enabled]);
+  const insets = useContext(SafeAreaInsetsContext);
+  const navBar = useRef(0);
+  // The provider's inset can read 0 on some screens while the real nav bar is
+  // there; the launch-time inset is the nav bar's own height, so never use less.
+  navBar.current = Math.max(insets?.bottom ?? 0, initialSafeAreaMetrics.insets.bottom ?? 0);
   useLayoutEffect(() => {
     applied.current = state.visible ? state.lift : restingOffset;
   }, [state, restingOffset]);
@@ -60,7 +99,12 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
         applyFallback();
         return;
       }
-      const next = keyboardComposerLift(y + measuredHeight, appliedLift, top, settings.current.gap);
+      // Android's measureInWindow subtracts the visible display frame's top
+      // (the status bar) while the keyboard's top is in screen coordinates,
+      // so the box measured a status bar higher than it sat and stopped that
+      // far under the keys (34dp on a Galaxy S24+). Bring it to screen space.
+      const windowTop = Platform.OS === "android" ? StatusBar?.currentHeight ?? 0 : 0;
+      const next = keyboardComposerLift(y + windowTop + measuredHeight, appliedLift, top, settings.current.gap);
       setState((prev) =>
         prev.visible && Math.abs(next - prev.lift) < 1 ? prev : { visible: true, lift: next },
       );
@@ -68,19 +112,36 @@ export function useComposerKeyboard(viewportHeight: number = 0, options: Compose
   }, []);
 
   const clearTimers = () => {
-    timers.current.forEach(clearTimeout);
+    timers.current.forEach((timer) => {
+      clearTimeout(timer);
+      clearInterval(timer);
+    });
     timers.current = [];
   };
 
   useEffect(() => {
     if (!enabled) return;
+    const readTop = (coords: KeyboardEvent["endCoordinates"]) =>
+      keyboardTopFromEvent(coords, Platform.OS, Dimensions.get("screen")?.height ?? 0, navBar.current);
     const show = (event: KeyboardEvent) => {
-      keyboardTop.current = event.endCoordinates.screenY;
+      keyboardTop.current = readTop(event.endCoordinates);
       // Only used when the composer cannot be measured.
       fallback.current = Math.max(event.endCoordinates.height ?? 0, 0);
       measure();
       clearTimers();
       timers.current = SETTLE_MS.map((ms) => setTimeout(measure, ms));
+      if (Platform.OS === "android") {
+        // Samsung Keyboard changes height after it opens (its toolbar and
+        // suggestion strip come and go as you type) and Android sends no event
+        // for it, so the box sat half under the taller keys. Keep checking the
+        // keyboard's latest frame for as long as it is up.
+        const poll = setInterval(() => {
+          const latest = typeof Keyboard.metrics === "function" ? Keyboard.metrics() : undefined;
+          if (latest && keyboardTop.current != null) keyboardTop.current = readTop(latest);
+          measure();
+        }, KEEP_MEASURING_MS);
+        timers.current.push(poll as unknown as ReturnType<typeof setTimeout>);
+      }
     };
     const hide = () => {
       keyboardTop.current = null;
