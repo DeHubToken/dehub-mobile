@@ -52,6 +52,7 @@ import { canManageAgents } from '../libs/agent-access';
 import { AgentTasksPanel } from './AgentTasksPanel';
 import { AgentProfilePanel } from './AgentProfilePanel';
 import { AgentLifePanel } from './AgentLifePanel';
+import { AgentWorkspacePanel } from './AgentWorkspacePanel';
 import LiquidGlass from '../components/ui/LiquidGlass';
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
 
@@ -370,6 +371,7 @@ export default function AgentsScreen() {
           </Pressable>
         </View>
 
+        <AgentWorkspacePanel wallet={walletAddress} />
         <AgentTasksPanel wallet={walletAddress} agents={agents ?? []} />
         {agentAllowance && <Text style={styles.agentDesc}>{t("agents.capacity", { used: agents?.length ?? 0, limit: agentAllowance.limit, badge: agentAllowance.badge ?? t("agents.noBadge") })}</Text>}
         {isCreating ? (

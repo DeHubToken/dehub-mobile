@@ -2443,7 +2443,91 @@
     "revealFailed": "Nem sikerült megjeleníteni a kulcsot. Próbálja újra.",
     "signInAgain": "Újra bejelentkezés",
     "createSignIn": "Jelentkezzen be újra az ügynök létrehozásához",
-    "checkConnection": "Ellenőrizze a kapcsolatot, és próbálja újra."
+    "checkConnection": "Ellenőrizze a kapcsolatot, és próbálja újra.",
+    "workspace": {
+      "moderation": "Adatfolyam moderálása",
+      "moderationHelp": "Először engedélyezze a moderálási engedélyt. A fióknak már adatfolyam-készítőnek vagy hozzárendelt moderátornak kell lennie. A jóváhagyási és vázlati módok továbbra is érvényesek. Az időkorlátok automatikusan lejárnak.",
+      "streamId": "Bejegyzés azonosítójának streamelése",
+      "participant": "Résztvevő pénztárcája",
+      "participantHint": "Résztvevő pénztárcája (0x…)",
+      "timeout": "Időtúllépés másodpercben",
+      "submitTimeout": "Időtúllépés elküldése",
+      "handled": "Kérés kezelve. Lásd az ellenőrzési naplót.",
+      "webhook": "Discord-riasztás webhook (opcionális)",
+      "webhookHelp": "Engedélyezési kérések és akciók meghiúsulásai legfeljebb egy óránként generikus figyelmeztetést küldenek. A vázlatos szöveget és a pénztári adatait nem küldik. Üresen hagyva letiltható; a szállítási eredmények a felülvizsgálati naplóban jelennek meg.",
+      "reversalHelp": "A visszafordítások elrejtik a bejegyzéseket, véglegesen törlik a megjegyzéseket, visszaállítják a reakciókat és a profil szövegét, vagy visszavonják az új követéseket. A megtekintések, a kézbesített értesítések, a beváltott tranzakciók, a profilképek és a lejárt időtúllépések nem törölhetők. A rejtett bejegyzések továbbra is helyreállíthatók a láthatósági vezérlőikből.",
+      "confirmCorrection": "Ez megváltoztatja a közzétett tevékenységet. A megjegyzés törlése nem vonható vissza.",
+      "correction": "Hiba javítása",
+      "alert": "Riasztás",
+      "shared": "Megosztott",
+      "controls": "Hang, engedélyek és hírek",
+      "scope": "Ezek az ellenőrzések az ütemezett feladatokra, az önálló életre és a csatlakoztatott asszisztensekre vonatkoznak. A piszkozatok titkosak maradnak, amíg jóvá nem hagyod őket.",
+      "voice": "Hang és hang",
+      "knowledge": "Referenciaanyag",
+      "blocked": "Zárolt témák, vesszővel elválasztva",
+      "liveNews": "Reagálás az aktuális hírekre az önálló élet során",
+      "newsHelp": "Válassz ki legfeljebb három témát. Az elmúlt 24 órából származó közzétételi jelentéseket 15 percig tárolják gyorsítótárban. A hírreakciók forráshivatkozást tartalmaznak; a nem elérhető vagy elavult hírek kimaradnak.",
+      "saved": "Beállítások mentve.",
+      "title": "Ügyfélmunkaterület",
+      "sample": "A tevékenység és a riasztások a legutóbbi 100 tevékenységre és 200 feladatra terjednek ki. A számlálók nem az egész életen át tartó összesítések vagy számlázási használat.",
+      "growth": "Növekedési jelentés rögzítése",
+      "baseline": "Első pillanatkép; készítsen egy másikat később az összehasonlításhoz.",
+      "library": "Sablonok és feladatépítő",
+      "subject": "Téma vagy válasz stílus",
+      "planValidated": "Sikerült a tervezet validálása",
+      "builderHelp": "Válassz egy sablont, írj le egy cselekvést, a célcsoportot és az időtárgyat, majd szimuláld az előzetes futtatás előtt. Megosztott sablonok az íróik utasításai, nem hitelesített képességek.",
+      "simulate": "Szimulálj a tervezetet",
+      "allowed": "Engedélyezett",
+      "templateName": "Sablon neve",
+      "share": "Megoszd ezt a sablont más Userekkel",
+      "saveTemplate": "Mentés sablon",
+      "templateSaved": "Sablon mentve.",
+      "history": "Vázlatos bejövő és audit napló",
+      "empty": "Még nincs találat.",
+      "approve": "Engedélyezés és végrehajtás",
+      "reject": "Elutasítás",
+      "growthResult": "{{followers}} követő · {{following}} követ",
+      "growthChange": "Kötőváltozás: {{count}} óta {{time}}",
+      "runs": "{{runs}} legutóbbi futtatás · {{completed}} sikeresen végrehajtva · {{failed}} sikertelen",
+      "autonomous": "Autonóm",
+      "approval": "Engedélyezd az elsőt",
+      "draft": "Csak vázlat",
+      "count": {
+        "pending": "Vázlatok a megvizsgálásra",
+        "succeeded": "Legutóbbi sikeresek",
+        "scheduled": "Felsorolt feladatok",
+        "active": "Mozgékony ügynökök"
+      },
+      "builder": {
+        "news": "Reagálj a hírekre",
+        "reply": "Válaszolj a legutóbbi posztokra",
+        "curate": "Leklikkedj releváns posztokra",
+        "post": "Írj egy posztot"
+      },
+      "cadence": {
+        "once": "Egyszer",
+        "daily": "Naponta",
+        "twice": "Két alkalommal naponta"
+      },
+      "dehub_post_create": "Közzététel posztok",
+      "dehub_comment": "Válasz és megjegyzés",
+      "dehub_vote": "Reagálás a bejegyzésekre",
+      "dehub_follow": "Fiókok követése",
+      "dehub_update_profile": "Profil szerkesztése",
+      "dehub_stream_timeout": "Közepes méretű adatfolyam-csevegés",
+      "news": {
+        "world": "Világ",
+        "technology": "Technológia",
+        "culture": "Kultúra",
+        "sport": "Sport",
+        "science": "Tudomány"
+      },
+      "alerts": "Figyelmet igényel",
+      "agent": "Ügynök",
+      "action": "Művelet",
+      "schedule": "Ütemezés",
+      "filter": "Tevékenység szűrése"
+    }
   },
   "hero": {
     "title": "Üdvözöljük",
@@ -5041,7 +5125,12 @@
     "interestedCount": "{{count}} érdeklődik",
     "loadFailed": "Az események betöltése sikertelen"
   },
-  "stats": {"chart": {"daily": "Látogatók naponta", "dailyHint": "egyedi látogatók naponta", "empty": "Ehhez az időszakhoz még nincs adat"},
+  "stats": {
+    "chart": {
+      "daily": "Látogatók naponta",
+      "dailyHint": "egyedi látogatók naponta",
+      "empty": "Ehhez az időszakhoz még nincs adat"
+    },
     "definitions": {
       "visitorsTerm": "Látogatók"
     },

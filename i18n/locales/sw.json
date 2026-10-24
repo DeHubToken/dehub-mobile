@@ -2444,7 +2444,92 @@
     "revealFailed": "Imeshindwa kuonyesha ufunguo. Jaribu tena.",
     "signInAgain": "Ingia tena",
     "createSignIn": "Ingia tena ili kuunda wakala",
-    "checkConnection": "Angalia muunganisho wako kisha jaribu tena."
+    "checkConnection": "Angalia muunganisho wako kisha jaribu tena.",
+    "workspace": {
+      "moderation": "Kadirio la mkondo",
+      "moderationHelp": "Wezesha ruhusa ya kiasi kwanza. Akaunti lazima tayari iwe mtengenezaji wa mkondo au mpatanishi aliyepewa. Njia za idhini na rasimu bado zinatumika. Muda wa mwisho huisha kiotomatiki.",
+      "streamId": "Kitambulisho cha chapisho la mkondo",
+      "participant": "Pochi ya mshiriki",
+      "participantHint": "Pochi ya mshiriki (0x...)",
+      "timeout": "Muda wa kukoma sekunde",
+      "submitTimeout": "Wasilisha muda wa kumalizika",
+      "handled": "Ombi limeshughulikiwa. Angalia kumbukumbu ya ukaguzi.",
+      "webhook": "Arifa ya wavuti ya Discord (hiari)",
+      "webhookHelp": "Maombi ya idhini na kushindwa kwa hatua hutuma arifa ya jumla, mara moja kwa saa. Hakuna rasimu ya maandishi au maelezo ya mkoba yaliyotumwa. Acha tupu ili kuzima; matokeo ya usafirishaji yanaonekana kwenye logi ya ukaguzi.",
+      "reversalHelp": "Marekebisho huficha machapisho, kufuta kabisa maoni, kurejesha majibu na maandishi ya wasifu, au kutangua ufuataji mpya. Mionekano, arifa zilizowasilishwa, miamala iliyochapishwa, picha za wasifu na muda wa mwisho wa matumizi hauwezi kufutwa. Machapisho yaliyofichwa bado yanaweza kurejeshwa kutoka kwenye vidhibiti vyake vya kuonekana.",
+      "confirmCorrection": "Hii inabadilisha shughuli iliyochapishwa. Ufutaji wa maoni hauwezi kutenguliwa.",
+      "correction": "Marekebisho",
+      "alert": "Arifa",
+      "shared": "Ya pamoja",
+      "controls": "Sauti, ruhusa na habari",
+      "scope": "Udhibiti huu unatumika kwa kazi zilizoratibiwa, maisha ya kujitegemea na wasaidizi waliounganishwa. Rasimu zinabaki kuwa za faragha hadi utakapoziidhinisha.",
+      "voice": "Sauti na sauti",
+      "knowledge": "Nyenzo za marejeleo",
+      "blocked": "Mada zilizozuiwa, zilizotenganishwa na koma",
+      "liveNews": "Itikia habari za sasa wakati wa maisha ya kujitegemea",
+      "newsHelp": "Chagua hadi mada tatu. Ripoti za mchapishaji kutoka saa 24 zilizopita zimehifadhiwa kwa dakika 15. Miitikio ya habari inajumuisha kiunganishi cha chanzo; habari zisizopatikana au zilizopitwa na wakati zimerukwa.",
+      "saved": "Mipangilio imehifadhiwa.",
+      "title": "Sehemu ya kufanyia kazi ya wakala",
+      "sample": "Shughuli na arifa hushughulikia hatua 100 za hivi karibuni na kazi 200. Hesabu sio jumla ya maisha au matumizi ya malipo.",
+      "growth": "Nasa ripoti ya ukuaji",
+      "baseline": "Picha ya kwanza; piga picha nyingine baadaye ili kulinganisha.",
+      "library": "Violezo na mjenzi wa kazi",
+      "subject": "Mtindo wa mada au jibu",
+      "useBuilder": "Tumia maelekezo haya",
+      "planValidated": "Mpango umethibitishwa",
+      "builderHelp": "Chagua kiolezo, eleza hatua, hadhira na ratiba, kisha uige kabla ya kukimbia. Violezo vya pamoja ni maelekezo kutoka kwa waandishi wao, sio uwezo uliothibitishwa.",
+      "simulate": "Mpango wa kuiga",
+      "allowed": "Inaruhusiwa",
+      "templateName": "Jina la kiolezo",
+      "share": "Shiriki kiolezo hiki na watumiaji wengine wa Mawakala",
+      "saveTemplate": "Hifadhi kiolezo",
+      "templateSaved": "Kiolezo kimehifadhiwa.",
+      "history": "Rasimu ya kikasha na kumbukumbu ya ukaguzi",
+      "empty": "Hakuna shughuli inayolingana bado.",
+      "approve": "Idhinisha na utekeleze",
+      "reject": "Kataa",
+      "growthResult": "{{followers}} followers · {{following}} following",
+      "growthChange": "Mabadiliko ya mfuasi: {{count}} tangu {{time}}",
+      "runs": "{{runs}} shughuli za hivi karibuni · {{completed}} imekamilika · {{failed}} imeshindikana",
+      "autonomous": "Kujitegemea",
+      "approval": "Idhinisha kwanza",
+      "draft": "Rasimu pekee",
+      "count": {
+        "pending": "Rasimu za kutathmini",
+        "succeeded": "Mafanikio ya hivi karibuni",
+        "scheduled": "Kazi zilizoratibiwa",
+        "active": "Mawakala amilifu"
+      },
+      "builder": {
+        "news": "Zingatia habari",
+        "reply": "Jibu machapisho ya hivi karibuni",
+        "curate": "Penda machapisho yanayofaa",
+        "post": "Andika chapisho"
+      },
+      "cadence": {
+        "once": "Mara moja",
+        "daily": "Kila siku",
+        "twice": "Mara mbili kila siku"
+      },
+      "dehub_post_create": "Chapisha machapisho",
+      "dehub_comment": "Jibu na kutoa maoni",
+      "dehub_vote": "Itikia machapisho",
+      "dehub_follow": "Fuata akaunti",
+      "dehub_update_profile": "Hariri wasifu",
+      "dehub_stream_timeout": "Gumzo la wastani la mkondo",
+      "news": {
+        "world": "Ulimwengu",
+        "technology": "Teknolojia",
+        "culture": "Utamaduni",
+        "sport": "Michezo",
+        "science": "Sayansi"
+      },
+      "alerts": "Inahitaji uangalizi",
+      "agent": "Wakala",
+      "action": "Kitendo",
+      "schedule": "Ratibu",
+      "filter": "Chuja shughuli"
+    }
   },
   "hero": {
     "title": "Karibu Katika",
@@ -5038,7 +5123,12 @@
     "interestedCount": "{{count}} wana hamu",
     "loadFailed": "Imeshindwa kupakia matukio"
   },
-  "stats": {"chart": {"daily": "Wageni kwa siku", "dailyHint": "wageni wa kipekee kwa siku", "empty": "Bado hakuna data kwa kipindi hiki"},
+  "stats": {
+    "chart": {
+      "daily": "Wageni kwa siku",
+      "dailyHint": "wageni wa kipekee kwa siku",
+      "empty": "Bado hakuna data kwa kipindi hiki"
+    },
     "definitions": {
       "visitorsTerm": "Wageni"
     },

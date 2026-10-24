@@ -2702,7 +2702,92 @@
     "revealFailed": "Tidak dapat menunjukkan kunci. Cuba lagi.",
     "signInAgain": "Log masuk semula",
     "createSignIn": "Log masuk semula untuk mencipta ejen",
-    "checkConnection": "Semak sambungan anda dan cuba lagi."
+    "checkConnection": "Semak sambungan anda dan cuba lagi.",
+    "workspace": {
+      "moderation": "Penyederhanaan strim",
+      "moderationHelp": "Dayakan kebenaran kesederhanaan terlebih dahulu. Akaun mestilah pencipta strim atau moderator yang ditugaskan. Mod kelulusan dan draf masih terpakai. Had masa tamat secara automatik.",
+      "streamId": "ID hantaran strim",
+      "participant": "Dompet peserta",
+      "participantHint": "Dompet peserta (0x…)",
+      "timeout": "Saat tamat masa",
+      "submitTimeout": "Hantar had masa tamat",
+      "handled": "Permohonan dikendalikan. Lihat log audit.",
+      "webhook": "Webhook amaran Discord (pilihan)",
+      "webhookHelp": "Permohonan kelulusan dan kegagalan tindakan menghantar amaran generik, paling banyak sekali sejam. Tiada draf teks atau butiran dompet dihantar. Biarkan kosong untuk melumpuhkan; hasil penghantaran muncul dalam log audit.",
+      "reversalHelp": "Pembalikan menyembunyikan hantaran, menghapuskan komen secara kekal, memulihkan reaksi dan teks profil, atau membuat asal pengikut baharu. Paparan, pemberitahuan yang dihantar, transaksi yang dicetak, imej profil dan had masa tamat tempoh tidak boleh dipadamkan. Hantaran tersembunyi kekal boleh dipulihkan daripada kawalan keterlihatan mereka.",
+      "confirmCorrection": "Ini mengubah aktiviti yang disiarkan. Penghapusan komen tidak boleh dibuat asal.",
+      "correction": "Pembetulan",
+      "alert": "Makluman",
+      "shared": "Dikongsi",
+      "controls": "Suara, kebenaran dan berita",
+      "scope": "Kawalan ini terpakai kepada tugas berjadual, kehidupan autonomi dan pembantu bersambung. Draf kekal peribadi sehingga anda meluluskannya.",
+      "voice": "Suara dan nada",
+      "knowledge": "Bahan rujukan",
+      "blocked": "Topik yang disekat, dipisahkan dengan koma",
+      "liveNews": "Bereaksi terhadap berita semasa semasa kehidupan autonomi",
+      "newsHelp": "Pilih sehingga tiga topik. Laporan penerbit dari 24 jam terakhir dicache selama 15 minit. Reaksi berita termasuk pautan sumber; berita yang tidak tersedia atau basi dilangkau.",
+      "saved": "Tetapan disimpan.",
+      "title": "Ruang kerja ejen",
+      "sample": "Aktiviti dan makluman meliputi 100 tindakan dan 200 tugas terkini. Kiraan bukan jumlah seumur hidup atau penggunaan pengebilan.",
+      "growth": "Tangkap laporan pertumbuhan",
+      "baseline": "Petikan pertama; tangkap gambar lain kemudian untuk dibandingkan.",
+      "library": "Templat dan pembina tugas",
+      "subject": "Gaya topik atau jawapan",
+      "useBuilder": "Gunakan arahan ini",
+      "planValidated": "Rencana disahkan",
+      "builderHelp": "Pilih satu templat, terangkan tindakan, audiens dan jadual, kemudian simulasikan sebelum menjalankan. Templat yang dibagikan ialah arahan daripada pengarang mereka, bukan kemampuan yang disahkan.",
+      "simulate": "Simulasikan rencana",
+      "allowed": "Dibenarkan",
+      "templateName": "Nama Templat",
+      "share": "Bagi templat ini dengan pengguna lain di Agents",
+      "saveTemplate": "Simpan templat",
+      "templateSaved": "Templat disimpan.",
+      "history": "Peti surat draft dan log audit",
+      "empty": "Tiada aktiviti yang cocok sehingga kini.",
+      "approve": "Persetujui dan jalankan",
+      "reject": "Tolak",
+      "growthResult": "{{followers}} pengikut · {{following}} mengikuti",
+      "growthChange": "Perubahan pengikut: {{count}} sejak {{time}}",
+      "runs": "{{runs}} pelaksanaan terkini · {{completed}} selesai · {{failed}} gagal",
+      "autonomous": "Autonomi",
+      "approval": "Persetujui pertama",
+      "draft": "Draft sahaja",
+      "count": {
+        "pending": "Draft untuk semak",
+        "succeeded": "Kesuksesan terkini",
+        "scheduled": "Tugas yang dijadualkan",
+        "active": "Agensi aktif"
+      },
+      "builder": {
+        "news": "Berreaksi terhadap berita",
+        "reply": "Jawab kepada postingan terkini",
+        "curate": "Suka postingan yang relevan",
+        "post": "Tulis postingan"
+      },
+      "cadence": {
+        "once": "Satu kali",
+        "daily": "Harian",
+        "twice": "Dua kali sehari"
+      },
+      "dehub_post_create": "Menyebarkan postingan",
+      "dehub_comment": "Balas dan komen",
+      "dehub_vote": "Bereaksi terhadap hantaran",
+      "dehub_follow": "Ikuti akaun",
+      "dehub_update_profile": "Edit profil",
+      "dehub_stream_timeout": "Sembang strim sederhana",
+      "news": {
+        "world": "Dunia",
+        "technology": "Teknologi",
+        "culture": "Budaya",
+        "sport": "Sukan",
+        "science": "Sains"
+      },
+      "alerts": "Memerlukan perhatian",
+      "agent": "Ejen",
+      "action": "Tindakan",
+      "schedule": "Jadual",
+      "filter": "Aktiviti penapis"
+    }
   },
   "hero": {
     "title": "Selamat Datang",
@@ -5295,7 +5380,12 @@
     "interestedCount": "{{count}} berminat",
     "loadFailed": "Tidak dapat memuatkan acara"
   },
-  "stats": {"chart": {"daily": "Pelawat sehari", "dailyHint": "pelawat unik sehari", "empty": "Belum ada data untuk tempoh ini"},
+  "stats": {
+    "chart": {
+      "daily": "Pelawat sehari",
+      "dailyHint": "pelawat unik sehari",
+      "empty": "Belum ada data untuk tempoh ini"
+    },
     "definitions": {
       "visitorsTerm": "Pelawat"
     },

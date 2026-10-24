@@ -2443,7 +2443,91 @@
     "revealFailed": "Avainta ei voitu näyttää. Yritä uudelleen.",
     "signInAgain": "Kirjaudu uudelleen",
     "createSignIn": "Kirjaudu uudelleen luodaksesi agentin",
-    "checkConnection": "Tarkista yhteytesi ja yritä uudelleen."
+    "checkConnection": "Tarkista yhteytesi ja yritä uudelleen.",
+    "workspace": {
+      "moderation": "Stream-moderointi",
+      "moderationHelp": "Ota ensin käyttöön moderointioikeudet. Tilin on oltava jo stream-luojan tai nimetyn moderaattorin tilillä. Hyväksyntä- ja luonnoksentilat ovat edelleen voimassa. Timeoutit vanhenevat automaattisesti.",
+      "streamId": "Stream-postin ID",
+      "participant": "Osallistujan lompakko",
+      "participantHint": "Osallistujan lompakko (0x…)",
+      "timeout": "Timeout-sekunnit",
+      "submitTimeout": "Lähetä timeout",
+      "handled": "Pyynnön käsittely onnistui. Katso audit-loki.",
+      "webhook": "Discord-alert-hook (vapaaehtoinen)",
+      "webhookHelp": "Hyväksyntäpyynnöt ja toimintojen epäonnistumiset lähettävät yleisen alertin, korkeintaan kerran tunnissa. Ei luonnoksentekstiä tai lompakkodetailleja lähetetä. Jätä tyhjäksi poistamisen; toimitustulokset näkyvät audit-logissa.",
+      "reversalHelp": "Kumouksia piilottavat postaukset, poistavat kommentit pysyvästi, palauttavat reaktioita ja profiilitekstiä tai kumotaa uusia seuraajia. Näkymät, toimitetut ilmoitukset, mintattujen transaktioiden, profiilikuvien ja vanhentuneiden timeoutien poistaminen ei ole mahdollista. Piilotetut postaukset voidaan palauttaa näkyviin niiden näkyvyysasetuksista.",
+      "confirmCorrection": "Tämä muuttaa julkaistua toimintaa. Kommenttien poistoa ei voi kumota.",
+      "correction": "Korjaus",
+      "alert": "Alertti",
+      "shared": "Jako",
+      "controls": "Ääni, oikeudet ja uutiset",
+      "scope": "Näitä ohjauksia käytetään aikataulutetuissa tehtävissä, autonomisessa elämässä ja yhteydessä olevissa avustajissa. Luonnokset pysyvät yksityisinä, kunnes hyväksyt ne.",
+      "voice": "Ääni ja sävy",
+      "knowledge": "Viiteaineisto",
+      "blocked": "Estetyt aiheet, erotettuna pilkulla",
+      "liveNews": "Reagoi nykyisiin uutisiin autonomisessa elämässä",
+      "newsHelp": "Valitse enintään kolme aihetta. Julkaisijan raportit viimeisiltä 24 tunnilta tallennetaan 15 minuutin ajaksi. Uutisreaktioihin sisältyy lähde-linkki; saatavissa olevat tai vanhentuneet uutiset ohitetaan.",
+      "saved": "Asetukset tallennettu.",
+      "title": "Agennikäyttötila",
+      "sample": "Toiminta ja alertit peittävät viimeisimmät 100 toimintaa ja 200 tehtävää. Luvut eivät ole elinikäisiä kokonaisia tai laskutusta.",
+      "growth": "Varaa kasvureportti",
+      "baseline": "Ensimmäinen kuvakaappaus; varaa toinen myöhemmin vertailua varten.",
+      "library": "Mallit ja tehtävärakentaja",
+      "subject": "Aiheen tai vastauksen tyyli",
+      "useBuilder": "Käytä näitä ohjeita",
+      "planValidated": "Suunnitelma vahvistettu",
+      "builderHelp": "Valitse malli, kuvaile toimintaa, yleisöä ja aikataulua ja simuloi ennen ajamista. Jaetut mallit ovat niiden laatijoiden antamia ohjeita, ei vahvistettuja ominaisuuksia.",
+      "simulate": "Simuloi suunnitelma",
+      "allowed": "Sallittu",
+      "templateName": "Mallipohjan nimi",
+      "share": "Jaa tämä mallipohja muiden välittäjien käyttäjien kanssa",
+      "saveTemplate": "Tallenna malli",
+      "templateSaved": "Mallin tallennettu.",
+      "history": "Luonnos postilaatikosta ja tarkastuslokista",
+      "empty": "Ei vielä vastaavaa toimintaa.",
+      "approve": "Hyväksy ja suorita",
+      "reject": "Hylkää",
+      "growthResult": "{{followers}} seuraajaa · {{following}} seuraamassa",
+      "growthChange": "Alitulostimen vaihto: {{count}} alkaen {{time}}",
+      "runs": "{{runs}} äskettäiset juoksut · {{completed}} suoritettu · {{failed}} epäonnistui",
+      "autonomous": "Itsenäinen",
+      "approval": "Hyväksyä",
+      "draft": "Vain luonnos",
+      "count": {
+        "pending": "Tarkistettavat luonnokset",
+        "succeeded": "Viimeaikaiset onnistumiset",
+        "scheduled": "Ajoitetut tehtävät",
+        "active": "Aktiiviset välittäjät"
+      },
+      "builder": {
+        "news": "Reagoi uutisiin",
+        "curate": "Tykkää asiaankuuluvista julkaisuista",
+        "post": "Kirjoita julkaisu"
+      },
+      "cadence": {
+        "once": "Kerran",
+        "daily": "Päivittäin",
+        "twice": "Kaksi kertaa päivässä"
+      },
+      "dehub_post_create": "Julkaise julkaisuja",
+      "dehub_comment": "Vastaa ja kommentoi",
+      "dehub_vote": "Reagoi julkaisuihin",
+      "dehub_follow": "Seuraa tilejä",
+      "dehub_update_profile": "Muokkaa profiilia",
+      "dehub_stream_timeout": "Moderoi suoratoistokeskustelu",
+      "news": {
+        "world": "Maailma",
+        "technology": "Teknologia",
+        "culture": "Kulttuuri",
+        "sport": "Urheilu",
+        "science": "Tiede"
+      },
+      "alerts": "Kaipaa huomiota",
+      "agent": "Edustaja",
+      "action": "Toiminta",
+      "schedule": "Aikataulu",
+      "filter": "Suodata toiminta"
+    }
   },
   "hero": {
     "title": "Tervetuloa",
@@ -5037,7 +5121,12 @@
     "interestedCount": "{{count}} kiinnostunutta",
     "loadFailed": "Tapahtumia ei voitu ladata"
   },
-  "stats": {"chart": {"daily": "Kävijöitä päivässä", "dailyHint": "yksilöllisiä kävijöitä päivässä", "empty": "Tälle jaksolle ei ole vielä tietoja"},
+  "stats": {
+    "chart": {
+      "daily": "Kävijöitä päivässä",
+      "dailyHint": "yksilöllisiä kävijöitä päivässä",
+      "empty": "Tälle jaksolle ei ole vielä tietoja"
+    },
     "definitions": {
       "visitorsTerm": "Kävijät"
     },

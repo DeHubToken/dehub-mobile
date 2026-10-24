@@ -2505,7 +2505,92 @@
     "revealFailed": "Der Schlüssel konnte nicht angezeigt werden. Versuche es erneut.",
     "signInAgain": "Erneut anmelden",
     "createSignIn": "Melde dich erneut an, um einen Agenten zu erstellen",
-    "checkConnection": "Überprüfe deine Verbindung und versuche es erneut."
+    "checkConnection": "Überprüfe deine Verbindung und versuche es erneut.",
+    "workspace": {
+      "moderation": "Stream-Moderation",
+      "moderationHelp": "Erlaube zunächst die Moderationsberechtigung. Das Konto muss bereits der Stream-Ersteller oder ein zugewiesener Moderator sein. Genehmigungs- und Entwurfsmodi gelten weiterhin. Zeitüberschreitungen (Timeouts) enden automatisch.",
+      "streamId": "Stream-Post-ID",
+      "participant": "Teilnehmer-Wallet",
+      "participantHint": "Teilnehmer-Wallet (0x…)",
+      "timeout": "Timeout-Sekunden",
+      "submitTimeout": "Timeout einleiten",
+      "handled": "Anfrage bearbeitet. Siehe das Audit-Protokoll.",
+      "webhook": "Discord-Alarm-Webhook (optional)",
+      "webhookHelp": "Genehmigungsanfragen und fehlgeschlagene Aktionen senden eine generische Benachrichtigung, maximal einmal pro Stunde. Kein Entwurfstext oder Wallet-Details werden gesendet. Lass es leer, um es zu deaktivieren; Lieferergebnisse erscheinen im Audit-Protokoll.",
+      "reversalHelp": "Rückgänge verbergen Beiträge, löschen Kommentare dauerhaft, stellen Reaktionen und Profiltexte wieder her oder heben neue Follows auf. Ansichten, zugestellte Benachrichtigungen, gemintete Transaktionen, Profilbilder und abgelaufene Zeitüberschreitungen können nicht gelöscht werden. Verborgene Beiträge bleiben über ihre Sichtbarkeitssteuerungen wiederherstellbar.",
+      "confirmCorrection": "Das ändert die veröffentlichte Aktivität. Die Löschung von Kommentaren kann nicht rückgängig gemacht werden.",
+      "correction": "Korrektur",
+      "alert": "Alarm",
+      "shared": "Geteilt",
+      "controls": "Stimme, Berechtigungen und Nachrichten",
+      "scope": "Diese Steuerungen gelten für geplante Aufgaben, autonome Lebensführung und verbundene Assistenten. Entwürfe bleiben privat, bis du sie genehmigst.",
+      "voice": "Stimme und Ton",
+      "knowledge": "Referenzmaterial",
+      "blocked": "Gesperrte Themen, getrennt durch Kommas",
+      "liveNews": "Reagiere auf aktuelle Nachrichten während der autonomen Lebensführung",
+      "newsHelp": "Wähle bis zu drei Themen. Veröffentlichungsberichte der letzten 24 Stunden sind für 15 Minuten zwischengespeichert. Nachrichtenreaktionen enthalten einen Quellenlink; unzugängliche oder veraltete Nachrichten werden übersprungen.",
+      "saved": "Einstellungen gespeichert.",
+      "title": "Agenten-Arbeitsbereich",
+      "sample": "Aktivitäten und Alarme umfassen die letzten 100 Aktionen und 200 Aufgaben. Die Zählungen sind keine lebenslangen Gesamten oder Abrechnungsnutzungen.",
+      "growth": "Wachstumsbericht erfassen",
+      "baseline": "Erster Snapshot; erfasse einen späteren, um zu vergleichen.",
+      "library": "Vorlagen und Aufgabenbauer",
+      "subject": "Thema oder Antwortstil",
+      "useBuilder": "Nutze diese Anweisungen",
+      "planValidated": "Plan validiert",
+      "builderHelp": "Wähle ein Template, beschreibe die Aktion, das Publikum und den Zeitplan, dann simulieren Sie es, bevor Sie es ausführen. Geteilte Templates sind Anweisungen von ihren Autoren, keine verifizierten Fähigkeiten.",
+      "simulate": "Simuliere den Plan",
+      "allowed": "Erlaubt",
+      "templateName": "Name des Templates",
+      "share": "Teile dieses Template mit anderen Agenten-Nutzern",
+      "saveTemplate": "Template speichern",
+      "templateSaved": "Template gespeichert.",
+      "history": "Entwurf-Eingangspostfach und Protokoll",
+      "empty": "Keine passende Aktivität vorhanden.",
+      "approve": "Genehmigen und ausführen",
+      "reject": "Ablehnen",
+      "growthResult": "{{followers}} Follower · {{following}} folgend",
+      "growthChange": "Änderung der Follower: {{count}} seit {{time}}",
+      "runs": "{{runs}} kürzliche Ausführungen · {{completed}} abgeschlossen · {{failed}} gescheitert",
+      "autonomous": "Autonom",
+      "approval": "Erste Genehmigung",
+      "draft": "Nur Entwurf",
+      "count": {
+        "pending": "Entwürfe zur Überprüfung",
+        "succeeded": "Kürzliche Erfolge",
+        "scheduled": "Geplante Aufgaben",
+        "active": "Aktive Agenten"
+      },
+      "builder": {
+        "news": "Reagiere auf Nachrichten",
+        "reply": "Antworte auf aktuelle Beiträge",
+        "curate": "Gefällt mir bei relevanten Beiträgen",
+        "post": "Veröffentliche einen Beitrag"
+      },
+      "cadence": {
+        "once": "Einmal",
+        "daily": "Täglich",
+        "twice": "Zweimal täglich"
+      },
+      "dehub_post_create": "Veröffentlichen",
+      "dehub_comment": "Antworten und kommentieren",
+      "dehub_vote": "Auf Beiträge reagieren",
+      "dehub_follow": "Konten folgen",
+      "dehub_update_profile": "Profil bearbeiten",
+      "dehub_stream_timeout": "Moderierter Stream-Chat",
+      "news": {
+        "world": "Welt",
+        "technology": "Technologie",
+        "culture": "Kultur",
+        "sport": "Sport",
+        "science": "Wissenschaft"
+      },
+      "alerts": "Benötigt Aufmerksamkeit",
+      "agent": "Agent",
+      "action": "Aktion",
+      "schedule": "Zeitplan",
+      "filter": "Aktivität filtern"
+    }
   },
   "hero": {
     "title": "Willkommen In",
@@ -5150,7 +5235,12 @@
     "interestedCount": "{{count}} interessiert",
     "loadFailed": "Events konnten nicht geladen werden"
   },
-  "stats": {"chart": {"daily": "Besucher pro Tag", "dailyHint": "eindeutige Besucher pro Tag", "empty": "Noch keine Daten für diesen Zeitraum"},
+  "stats": {
+    "chart": {
+      "daily": "Besucher pro Tag",
+      "dailyHint": "eindeutige Besucher pro Tag",
+      "empty": "Noch keine Daten für diesen Zeitraum"
+    },
     "definitions": {
       "visitorsTerm": "Besucher"
     },

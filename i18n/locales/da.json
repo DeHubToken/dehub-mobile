@@ -2443,7 +2443,92 @@
     "revealFailed": "Nøglen kunne ikke vises. Prøv igen.",
     "signInAgain": "Log ind igen",
     "createSignIn": "Log ind igen for at oprette en agent",
-    "checkConnection": "Tjek din forbindelse, og prøv igen."
+    "checkConnection": "Tjek din forbindelse, og prøv igen.",
+    "workspace": {
+      "moderation": "Stream-moderation",
+      "moderationHelp": "Aktiver moderationsrettigheder først. Kontoen skal allerede være stream-opsætteren eller en tildelt moderator. Godkendelses- og udkaststilstande gælder stadig. Tidsovertrædelser udløber automatisk.",
+      "streamId": "Stream-post-ID",
+      "participant": "Deltagerens wallet",
+      "participantHint": "Deltagerens wallet (0x…)",
+      "timeout": "Tidsovertrædelse i sekunder",
+      "submitTimeout": "Indsend tidsovertrædelse",
+      "handled": "Forespørgsel håndteret. Se audit-loggen.",
+      "webhook": "Discord-alarm-webhook (valgfrit)",
+      "webhookHelp": "Godkendelsesforespørgsler og mislykkede handlinger sender en generisk alarm, højst én gang om timen. Der sendes ikke udkaststekst eller walletdetaljer. Lad være tomt for at deaktivere; leveringsresultater vises i audit-loggen.",
+      "reversalHelp": "Omvendelser skjuler poster, sletter kommentarer permanent, genopretter reaktioner og profiltekst, eller omgør nye følgere. Visninger, leverede notifikationer, myntede transaktioner, profilbilleder og udløbne tidsovertrædelser kan ikke slettes. Skjulte poster kan stadig genvindes fra deres synlighedskontroller.",
+      "confirmCorrection": "Dette ændrer den offentliggjorte aktivitet. Sletning af kommentarer kan ikke omgøres.",
+      "correction": "Korrektion",
+      "alert": "Alarm",
+      "shared": "Del",
+      "controls": "Stemme, rettigheder og nyheder",
+      "scope": "Disse kontroller gælder for planlagte opgaver, autonomt liv og forbundne assistenter. Udkast forbliver private, indtil du godkender dem.",
+      "voice": "Stemme og tone",
+      "knowledge": "Henvise til",
+      "blocked": "Blokerede emner, adskilt af kommaer",
+      "liveNews": "Reager på nuværende nyheder under autonomt liv",
+      "newsHelp": "Vælg op til tre emner. Udgiverrapporter fra de sidste 24 timer gemmes i 15 minutter. Nyhedsreaktioner inkluderer en kilde-link; utilgængelige eller forældede nyheder springes over.",
+      "saved": "Indstillinger gemt.",
+      "title": "Agent-arbejdsplads",
+      "sample": "Aktivitet og alarmer dækker de seneste 100 handlinger og 200 opgaver. Tal er ikke livstids-totals eller regningsbrug.",
+      "growth": "Fang vækstrapport",
+      "baseline": "Første snapshot; tag en anden senere for sammenligning.",
+      "library": "Skabeloner og opgavebygger",
+      "subject": "Emne- eller svarstil",
+      "useBuilder": "Brug disse instruktioner",
+      "planValidated": "Plan godkendt",
+      "builderHelp": "Vælg en skabelon, beskriv handlingen, målgruppen og tidsplanen, og simulér før du kører. Fælles skabeloner er instruktioner fra deres forfattere, ikke verifierede evner.",
+      "simulate": "Simuler plan",
+      "allowed": "Tilladt",
+      "templateName": "Skabelonnavn",
+      "share": "Del denne skabelon med andre Agents-brugere",
+      "saveTemplate": "Gem skabelon",
+      "templateSaved": "Skabelon gemt.",
+      "history": "Draft indbakke og auditlog",
+      "empty": "Ingen matchende aktivitet endnu.",
+      "approve": "Godkend og kør",
+      "reject": "Afvis",
+      "growthResult": "{{followers}} følgere · {{following}} følger",
+      "growthChange": "Ændring i følgere: {{count}} siden {{time}}",
+      "runs": "{{runs}} nylige kørsler · {{completed}} afsluttet · {{failed}} fejlet",
+      "autonomous": "Autonom",
+      "approval": "Godkend først",
+      "draft": "Draft kun",
+      "count": {
+        "pending": "Drafts til gennemgang",
+        "succeeded": "Nylige succeser",
+        "scheduled": "Planlagte opgaver",
+        "active": "Aktive agenter"
+      },
+      "builder": {
+        "news": "Reager på nyheder",
+        "reply": "Svar på nylige indlæg",
+        "curate": "Lignende indlæg",
+        "post": "Skriv et indlæg"
+      },
+      "cadence": {
+        "once": "Engang",
+        "daily": "Dagligt",
+        "twice": "To gange dagligt"
+      },
+      "dehub_post_create": "Publicer indlæg",
+      "dehub_comment": "Svar og kommenter",
+      "dehub_vote": "Reager på indlæg",
+      "dehub_follow": "Følg konti",
+      "dehub_update_profile": "Rediger profil",
+      "dehub_stream_timeout": "Moderat stream-chat",
+      "news": {
+        "world": "Verden",
+        "technology": "Teknologi",
+        "culture": "Kultur",
+        "sport": "Sport",
+        "science": "Videnskab"
+      },
+      "alerts": "Har brug for opmærksomhed",
+      "agent": "Agent",
+      "action": "Handling",
+      "schedule": "Tidsplan",
+      "filter": "Filtrer aktivitet"
+    }
   },
   "hero": {
     "title": "Velkommen Til",
@@ -5041,7 +5126,12 @@
     "interestedCount": "{{count}} interesserede",
     "loadFailed": "Kunne ikke indlæse arrangementer"
   },
-  "stats": {"chart": {"daily": "Besøgende pr. dag", "dailyHint": "unikke besøgende pr. dag", "empty": "Endnu ingen data for denne periode"},
+  "stats": {
+    "chart": {
+      "daily": "Besøgende pr. dag",
+      "dailyHint": "unikke besøgende pr. dag",
+      "empty": "Endnu ingen data for denne periode"
+    },
     "definitions": {
       "visitorsTerm": "Besøgende"
     },
