@@ -149,14 +149,14 @@ export default function StoreDetailScreen() {
         <View style={[styles.thumbWrap, { height: cardWidth }]}>
           <StoreThumbnail uri={img} width={cardWidth} />
           {!!item.external_url && (
-            <View style={styles.podPill}>
+            <View className="dark-surface" style={styles.podPill}>
               <Text style={styles.podText} numberOfLines={1}>
                 {podProviderLabel(item.pod_provider) ?? t("stores.podBadge")}
               </Text>
             </View>
           )}
           {item.stock_quantity === 0 && (
-            <View style={styles.soldOverlay}>
+            <View className="dark-surface" style={styles.soldOverlay}>
               <Text style={styles.soldText}>{t("stores.soldOut")}</Text>
             </View>
           )}
