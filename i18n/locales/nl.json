@@ -72,7 +72,7 @@
   "agents.workspace.alerts": "Aandacht nodig",
   "agents.workspace.agent": "Agent",
   "agents.workspace.action": "Actie",
-  "agents.workspace.cadence": "Planning",
+  "agents.workspace.schedule": "Planning",
   "agents.workspace.filter": "Activiteit filteren",
   "mastodonApps": {
     "connectedTitle": "Gekoppelde apps",

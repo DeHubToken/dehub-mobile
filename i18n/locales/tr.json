@@ -72,7 +72,7 @@
   "agents.workspace.alerts": "İlgilenilmesi gerekiyor",
   "agents.workspace.agent": "Ajan",
   "agents.workspace.action": "İşlem",
-  "agents.workspace.cadence": "Zamanlama",
+  "agents.workspace.schedule": "Zamanlama",
   "agents.workspace.filter": "Etkinliği filtrele",
   "mastodonApps": {
     "connectedTitle": "Bağlı uygulamalar",

@@ -72,7 +72,7 @@
   "agents.workspace.alerts": "يحتاج إلى انتباه",
   "agents.workspace.agent": "وكيل",
   "agents.workspace.action": "إجراء",
-  "agents.workspace.cadence": "الجدول الزمني",
+  "agents.workspace.schedule": "الجدول الزمني",
   "agents.workspace.filter": "تصفية النشاط",
   "mastodonApps": {
     "connectedTitle": "التطبيقات المتصلة",

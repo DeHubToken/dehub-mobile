@@ -72,7 +72,7 @@
   "agents.workspace.alerts": "Needs attention",
   "agents.workspace.agent": "Agent",
   "agents.workspace.action": "Action",
-  "agents.workspace.cadence": "Schedule",
+  "agents.workspace.schedule": "Schedule",
   "agents.workspace.filter": "Filter activity",
   "mastodonApps": {
     "connectedTitle": "Connected apps",
