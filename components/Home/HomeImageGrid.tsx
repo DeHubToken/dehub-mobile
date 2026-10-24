@@ -30,6 +30,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
+import { useFeedScrollLifecycle } from "../../hooks/useFeedScrollLifecycle";
 
 // Minimal: tiles sit on black while their image loads, and an empty tile or a
 // skeleton cell is a faint lift off black rather than a grey square.
@@ -289,6 +290,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
     visibilityStore.setLive(activeRef.current);
     onScrollEnd?.();
   }, [onScrollEnd, visibilityStore]);
+  const scrollLifecycle = useFeedScrollLifecycle(beginScroll, endScroll);
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
     visibilityStore.update(new Set(viewableItems.filter(v => v.isViewable).map(v => (v.item as GridRowData).key)), null);
   }).current;
@@ -473,10 +475,10 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
         onEndReached={loadMore}
         onEndReachedThreshold={2.5}
         onScroll={scrollHandler ?? handleScroll}
-        onScrollBeginDrag={beginScroll}
-        onScrollEndDrag={endScroll}
-        onMomentumScrollBegin={beginScroll}
-        onMomentumScrollEnd={endScroll}
+        onScrollBeginDrag={scrollLifecycle.begin}
+        onScrollEndDrag={scrollLifecycle.endDrag}
+        onMomentumScrollBegin={scrollLifecycle.begin}
+        onMomentumScrollEnd={scrollLifecycle.settle}
         onViewableItemsChanged={onViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
         // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
