@@ -90,9 +90,37 @@ export interface UnifiedFeedItem {
   socialImageUrl?: string;
   imageUrl?: string;
   imageUrls?: string[]; // For multi-image posts
+  /** Alt text, one per piece of media in display order (photos by position, a video first). */
+  mediaDescriptions?: string[];
+  /** Content warning: the post opens collapsed behind this one line. */
+  spoilerText?: string;
+  /** Who may quote it; absent means anyone. */
+  quotePolicy?: "public" | "followers" | "nobody";
+  /** A quote whose quoted author took their post back out of it. */
+  quoteRevoked?: boolean;
+  /** Who may reply; absent means anyone. */
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Who may see it; absent means everyone. */
+  visibility?: "public" | "followers" | "direct";
   thumbnailUrl?: string;
   videoUrl?: string;
+  /** Adaptive HLS master playlist, a bucket key like videoUrl. Only on public
+   *  posts with a rendition ready; play it through getPlaybackUrl. */
+  hlsUrl?: string;
   previewUrl?: string;
+  /**
+   * Seek-preview sprite sheet: `url` is a bucket key, `private` marks a paid
+   * post's sheet. Read it through libs/storyboard.
+   */
+  storyboard?: {
+    url: string;
+    spriteWidth: number;
+    spriteHeight: number;
+    spriteCount: number;
+    spriteDuration: number;
+    columns: number;
+    private?: boolean;
+  };
   
   // Type & Status
   postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short";

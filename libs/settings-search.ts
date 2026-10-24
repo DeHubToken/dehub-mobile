@@ -43,6 +43,8 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'profile-settings', label: 'Social Links', labelKey: 'settings.socialLinks', keywords: 'twitter x instagram tiktok youtube discord telegram' },
   { tab: 'profile', anchor: 'sign-in', label: 'Sign-in email', labelKey: 'settings.emailSignIn', keywords: 'email login log in sign in code password without wallet' },
   { tab: 'profile', anchor: 'ens',label: 'ENS name', labelKey: 'settings.ensHandle', keywords: 'ens domain eth alias verified handle' },
+  { tab: 'profile', anchor: 'fediverse', label: 'Fediverse', labelKey: 'fediverse.title', keywords: 'mastodon activitypub federation handle follow decentralised' },
+  { tab: 'profile', anchor: 'connected-apps', label: 'Connected apps', labelKey: 'mastodonApps.connectedTitle', keywords: 'mastodon ivory tusky elk ice cubes apps sign in signed in oauth revoke remove access' },
   { tab: 'profile', anchor: 'stream-key', label: 'Stream key', labelKey: 'settings.streamKey.section', keywords: 'obs encoder rtmp stream key ingest server xbox twitch aircast go live broadcast' },
   { tab: 'profile', anchor: 'twitch-mirror', label: 'Twitch mirroring', labelKey: 'twitchMirror.title', keywords: 'twitch mirror relay console xbox ps5 playstation aircast automatic stream broadcast' },
   { tab: 'profile', anchor: 'your-content', label: 'Your Content', labelKey: 'settings.yourContent', keywords: 'videos saved posts drafts library' },
@@ -54,6 +56,8 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'appearance', anchor: 'theme-color', label: 'Theme Color', labelKey: 'settings.themeColor', keywords: 'hue colour color accent brand rainbow tint' },
   { tab: 'appearance', anchor: 'dim-lights', label: 'Dim Lights', labelKey: 'settings.dimLights', keywords: 'brightness blue light night filter' },
   { tab: 'appearance', anchor: 'language', label: 'Language', labelKey: 'settings.language', keywords: 'translate locale english' },
+  { tab: 'appearance', anchor: 'default-feed', label: 'Default feed', labelKey: 'settings.defaultFeed', keywords: 'home shorts videos images music audio live open start tab layout' },
+  { tab: 'appearance', anchor: 'feed-toggles', label: 'Reset feed toggles', labelKey: 'settings.feedToggles', keywords: 'filters sort default remember clear' },
   { tab: 'appearance', anchor: 'media', label: 'Media', labelKey: 'settings.media', keywords: 'video images playback' },
   { tab: 'appearance', anchor: 'media', label: 'Auto-play', labelKey: 'settings.autoPlay', keywords: 'autoplay play automatically' },
   { tab: 'appearance', anchor: 'media', label: 'Start autoplay muted', labelKey: 'settings.autoPlayMuted', keywords: 'autoplay mute muted sound audio silent quiet volume' },
@@ -70,6 +74,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'notifications', anchor: 'chat', label: 'Chat', labelKey: 'settings.chatSection', keywords: 'buy bot messages' },
   { tab: 'notifications', anchor: 'chat', label: 'Public chat', labelKey: 'settings.publicChatAlerts', keywords: 'public chat room global alerts rate limit per hour raid spam' },
   { tab: 'notifications', anchor: 'quiet-hours', label: 'Quiet Hours', labelKey: 'settings.quietHours', keywords: 'silence mute schedule night' },
+  { tab: 'notifications', anchor: 'notification-filters', label: 'Filter notifications', labelKey: 'notificationFilters.title', keywords: 'filter strangers new accounts spam followers people you follow mute' },
 
   // Privacy
   { tab: 'privacy', anchor: 'account-visibility', label: 'Account Visibility', labelKey: 'settings.accountVisibility', keywords: 'private account lock approve requests' },
@@ -83,6 +88,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'privacy', anchor: 'account-security', label: 'Account Security', labelKey: 'settings.accountSecurity', keywords: 'two-factor 2fa mfa security tv sign in biometric fingerprint face id wallet unlock android passkey' },
   { tab: 'privacy', anchor: 'account-security', label: 'Active sessions', labelKey: 'settings.activeSessions', keywords: 'devices logged in revoke' },
   { tab: 'privacy', anchor: 'account-security', label: 'Blocked accounts', labelKey: 'settings.blockedAccounts', keywords: 'block unblock mute' },
+  { tab: 'privacy', anchor: 'account-security', label: 'Muted words', labelKey: 'keywordFilters.title', keywords: 'filter keyword word phrase hide spoiler mute' },
   { tab: 'privacy', anchor: 'your-data', label: 'Your Data', labelKey: 'settings.yourData', keywords: 'export download import gdpr' },
   { tab: 'privacy', anchor: 'geo-blocking', label: 'Geo-blocking', labelKey: 'settings.geoBlocking', keywords: 'country region restrict' },
 

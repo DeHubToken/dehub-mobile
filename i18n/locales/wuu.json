@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "已连接个应用",
+    "connectedDescription": "侬用搿只账号登录过个 Mastodon 应用。移除一只就会拿伊退出登录。",
+    "connectedEmpty": "还呒没连接任何应用。",
+    "lastUsed": "上趟用过 {{date}}",
+    "remove": "移除",
+    "removed": "应用已经移除",
+    "failed": "勿成功。再试一趟。"
+  },
+  "fediverse": {
+    "title": "联邦宇宙",
+    "description": "Mastodon 搭其他联邦宇宙应用浪个人好通过搿只地址寻着侬、关注侬。侬新个公开帖子会勒伊面送到伊拉。",
+    "copy": "复制",
+    "copied": "复制好了",
+    "privateNote": "私密账号勿会出现勒联邦宇宙里。",
+    "noUsername": "选一只用户名，好拿到联邦宇宙地址。"
+  },
+  "profileFields": {
+    "title": "个人资料字段",
+    "description": "勒个人资料里最多加四行，譬如网站或者侬个代词。",
+    "label": "标签",
+    "content": "内容",
+    "save": "保存字段",
+    "saved": "个人资料字段保存好了",
+    "failed": "呒没保存好，请再试一趟。",
+    "verified": "验证过个链接",
+    "verifyHint": "要验证链接，请拿搿段代码加到伊只页面，再保存一趟：{{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "过滤以下来源个通知",
+    "description": "选择圈子外头个人搭侬互动辰光会哪能。过滤脱个通知会摆勒“已过滤”里，呒没角标，也勿推送。",
+    "notFollowing": "侬呒没关注个人",
+    "notFollowers": "呒没关注侬个人",
+    "newAccounts": "新账号（勿满 30 日）",
+    "accept": "通知我",
+    "filter": "过滤",
+    "drop": "全部隐藏",
+    "filteredTitle": "已过滤个通知",
+    "filteredEmpty": "呒没过滤脱啥。",
+    "failed": "呒没保存好，请再试一趟。"
+  },
+  "followedTags": {
+    "follow": "关注 #{{tag}}",
+    "following": "已经关注",
+    "unfollow": "取消关注 #{{tag}}",
+    "followed": "已经关注 #{{tag}}，相关帖子会出现勒侬个关注动态里。",
+    "unfollowed": "已经取消关注 #{{tag}}",
+    "failed": "呒没保存好，请再试一趟。",
+    "clear": "清脱"
+  },
+  "keywordFilters": {
+    "title": "屏蔽词",
+    "description": "隐藏包含搿眼词个帖子搭评论，或者拿伊拉折叠勒提示后头。只有侬看得到搿张列表。",
+    "placeholder": "词或者短语",
+    "add": "屏蔽",
+    "added": "已经屏蔽：{{phrase}}",
+    "wholeWord": "只匹配完整个词",
+    "whenMatches": "帖子匹配个辰光",
+    "warn": "显示提示",
+    "hide": "隐藏",
+    "howLong": "多少辰光",
+    "forever": "一直到我删脱",
+    "duration1h": "1 个钟头",
+    "duration1d": "1 日",
+    "duration7d": "7 日",
+    "duration30d": "30 日",
+    "where": "勒啥地方",
+    "home": "首页",
+    "public": "探索搭搜索",
+    "profile": "个人主页",
+    "thread": "对话",
+    "notifications": "通知",
+    "empty": "侬还呒没屏蔽过啥个词。",
+    "remove": "取消屏蔽",
+    "until": "一直到 {{date}}",
+    "filtered": "已经过滤：{{phrase}}",
+    "showAnyway": "还是显示",
+    "failed": "呒没保存好，请再试一趟。"
+  },
+  "postVisibility": {
+    "label": "啥人好看到",
+    "public": "所有人",
+    "followers": "只有粉丝",
+    "direct": "只有被提到个人",
+    "noRepost": "只有公开个帖子好转发",
+    "directHint": "只有侬用 @ 提到个人好看到搿条帖子",
+    "needsMention": "至少用 @ 提到一个人，再好只发拨被提到个人"
+  },
+  "replyPolicy": {
+    "label": "啥人好回复",
+    "public": "随便啥人",
+    "followers": "侬个粉丝",
+    "following": "侬关注个人",
+    "mentioned": "只有被提到个人",
+    "noticeFollowers": "只有作者个粉丝好回复",
+    "noticeFollowing": "只有作者关注个人好回复",
+    "noticeMentioned": "只有帖子里提到个人好回复",
+    "refused": "作者限制了啥人好回复搿条帖子"
+  },
+  "quotePolicy": {
+    "label": "啥人好引用",
+    "public": "随便啥人",
+    "followers": "粉丝",
+    "nobody": "只有我",
+    "off": "作者关脱了引用",
+    "removed": "作者拿自家个帖子从搿条引用里拿脱了",
+    "remove": "拿脱",
+    "removedToast": "侬个帖子已经从搿条引用里拿脱了",
+    "removeFailed": "侬个帖子拿勿脱",
+    "refused": "作者勿让侬引用搿条帖子"
+  },
+  "contentWarning": {
+    "label": "内容警告",
+    "placeholder": "辣海搭写警告",
+    "add": "添加内容警告",
+    "remove": "拿脱内容警告",
+    "show": "显示帖子"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "添加描述",
+    "edit": "编辑描述",
+    "titleImage": "描述搿张图片",
+    "titleVideo": "描述搿只视频",
+    "help": "拨看勿见个人用。屏幕阅读器会读出来。",
+    "placeholder": "里向有点啥？图里个字也写上去。",
+    "show": "显示描述",
+    "saved": "描述已保存",
+    "saveFailed": "描述保存勿了"
+  },
   "liveRecap": {
     "title": "流程回顾",
     "justEnded": "你的直播回顾",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "让其他成员看得出侬刚刚加入，好欢迎侬。注册之后 30 日自家结束。",
     "postVisibility": "帖子可见度",
     "defaultPostVisibility": "默认帖子可见度",
+    "defaultFeed": "默认动态",
+    "defaultFeedDesc": "选择每次打开 DeHub 时显示的动态",
+    "feedToggles": "重置动态筛选",
+    "feedTogglesDesc": "你在动态中开启的筛选会保留为默认设置，直到你重置",
+    "feedTogglesCleared": "动态筛选已重置",
     "defaultProfileTab": "默认档案标签",
     "defaultProfileTabDesc": "拣访客勒侬个主页浪先看着啥个标签",
     "defaultPostVisibilityDesc": "适用于所有现有搭未来个帖子",
@@ -861,6 +996,7 @@
     "themeColorBrandFailed": "读勿出侬头像个颜色"
   },
   "common": {
+    "refresh": "刷新",
     "mute": "静音",
     "unmute": "取消静音",
     "fullscreen": "全屏",
@@ -974,6 +1110,9 @@
     "tokenAmount": "{{amount}} 个代币"
   },
   "postOptions": {
+    "embed": "嵌入",
+    "copyEmbedCode": "复制嵌入代码",
+    "embedCodeCopied": "嵌入代码已复制",
     "options": "选项",
     "sendTip": "送礼物",
     "queue": "排队",
@@ -2820,6 +2959,8 @@
     "yourFractions": "侬持有 {{count}} 分之 {{total}} 份额"
   },
   "profileOptions": {
+    "copyRssFeed": "复制 RSS 订阅链接",
+    "copyRssFeedHint": "随便啥阅读器里侪好关注搿眼帖子",
     "copyProfileUrl": "复制资料链接",
     "copyUsername": "复制用户名",
     "copyAddress": "复制地址",
@@ -4137,6 +4278,7 @@
     "noVoice": "侬个设备呒没迭种语言个语音。"
   },
   "stages": {
+    "previewFailed": "勒勒勿能勒台浪放",
     "allStages": "全部语音房",
     "addToCalendar": "加入日曆",
     "nowPlaying": "正在播放",
@@ -4508,6 +4650,7 @@
     "anyBadgeHolder": "任何徽章持有者都可以获得超级能力。购买 DeHub 代币以解锁徽章 — 无需质押。"
   },
   "follow": {
+    "noResults": "未找到结果",
     "followers": "关注者",
     "following": "关注中",
     "requests": "请求",
@@ -4591,7 +4734,10 @@
     "play": "播放",
     "pause": "暂停",
     "listens_one": "{{count}} 听",
-    "listens_other": "{{count}} 听"
+    "listens_other": "{{count}} 听",
+    "lyrics": "歌词",
+    "lyricsLoading": "正在获取歌词…",
+    "lyricsNone": "未找到歌词"
   },
   "transfer": {
     "arcTitle": "勒 Arc 上发送 USDC",
@@ -5515,6 +5661,8 @@
     "creatorEarnsDirect": "订户用DeHub代币支付。一旦他们订阅，您的份额就会立即进入您的钱包，减去您徽章级别的平台费用。"
   },
   "live": {
+    "bigEvent": "大型活动",
+    "bigEventHint": "适合大量观众：观众会延迟约 20 秒观看，卡顿更少。",
     "notSet": "未设置",
     "liveChat": "直播聊天",
     "pickDate": "选择日期",
@@ -7128,6 +7276,7 @@
       "delete": "删除"
     },
     "export": {
+      "cancel": "取消",
       "scope": "下载范围",
       "downloadTimeline": "整个时间线",
       "downloadSelection": "选中视频剪辑（{{count}}）",
@@ -7405,6 +7554,7 @@
     }
   },
   "creator": {
+    "sending": "正在傳送",
     "navStudio": "工作室",
     "editor": "编辑器",
     "untitled": "未命名",
@@ -7941,6 +8091,7 @@
     "transferIncomplete": "代币转账未完成。侬下一篇付费帖子之前会再问侬一次。"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "搜索表情",
     "noEmoji": "呒没寻着表情",
     "searchResults": "搜索结果",

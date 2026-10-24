@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Tilkoblede apper",
+    "connectedDescription": "Mastodon-apper du har logget inn i med denne kontoen. Fjern en for å logge den ut.",
+    "connectedEmpty": "Ingen tilkoblede apper ennå.",
+    "lastUsed": "Sist brukt {{date}}",
+    "remove": "Fjern",
+    "removed": "App fjernet",
+    "failed": "Det fungerte ikke. Prøv igjen."
+  },
+  "fediverse": {
+    "title": "Fødiverset",
+    "description": "Folk på Mastodon og andre fødivers-apper kan finne og følge deg på denne adressen. De nye offentlige innleggene dine når dem der.",
+    "copy": "Kopier",
+    "copied": "Kopiert",
+    "privateNote": "Private kontoer vises ikke i fødiverset.",
+    "noUsername": "Velg et brukernavn for å få en fødivers-adresse."
+  },
+  "profileFields": {
+    "title": "Profilfelt",
+    "description": "Opptil fire ekstra linjer på profilen din, for eksempel et nettsted eller pronomenene dine.",
+    "label": "Etikett",
+    "content": "Innhold",
+    "save": "Lagre felt",
+    "saved": "Profilfelt lagret",
+    "failed": "Det ble ikke lagret. Prøv igjen.",
+    "verified": "Bekreftet lenke",
+    "verifyHint": "For å bekrefte en lenke, legg dette til på den siden og lagre igjen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrer varsler fra",
+    "description": "Velg hva som skjer når noen utenfor kretsen din samhandler med deg. Filtrerte varsler venter under Filtrert, uten merke og uten push.",
+    "notFollowing": "Folk du ikke følger",
+    "notFollowers": "Folk som ikke følger deg",
+    "newAccounts": "Nye kontoer (under 30 dager)",
+    "accept": "Varsle meg",
+    "filter": "Filtrer",
+    "drop": "Skjul helt",
+    "filteredTitle": "Filtrerte varsler",
+    "filteredEmpty": "Ingenting er filtrert.",
+    "failed": "Det ble ikke lagret. Prøv igjen."
+  },
+  "followedTags": {
+    "follow": "Følg #{{tag}}",
+    "following": "Følger",
+    "unfollow": "Slutt å følge #{{tag}}",
+    "followed": "Du følger nå #{{tag}}. Innlegg med den vises i Følger-feeden din.",
+    "unfollowed": "Du følger ikke lenger #{{tag}}",
+    "failed": "Det ble ikke lagret. Prøv igjen.",
+    "clear": "Tøm"
+  },
+  "keywordFilters": {
+    "title": "Dempede ord",
+    "description": "Skjul innlegg og kommentarer som inneholder disse ordene, eller brett dem bak en advarsel. Bare du ser denne listen.",
+    "placeholder": "Ord eller uttrykk",
+    "add": "Demp",
+    "added": "Dempet: {{phrase}}",
+    "wholeWord": "Bare hele ord",
+    "whenMatches": "Når et innlegg samsvarer",
+    "warn": "Vis en advarsel",
+    "hide": "Skjul det",
+    "howLong": "Hvor lenge",
+    "forever": "Til jeg fjerner det",
+    "duration1h": "I 1 time",
+    "duration1d": "I 1 dag",
+    "duration7d": "I 7 dager",
+    "duration30d": "I 30 dager",
+    "where": "Hvor",
+    "home": "Hjem",
+    "public": "Utforsk og søk",
+    "profile": "Profiler",
+    "thread": "Samtaler",
+    "notifications": "Varsler",
+    "empty": "Du har ikke dempet noen ord.",
+    "remove": "Opphev demping",
+    "until": "Til {{date}}",
+    "filtered": "Filtrert: {{phrase}}",
+    "showAnyway": "Vis likevel",
+    "failed": "Det ble ikke lagret. Prøv igjen."
+  },
+  "postVisibility": {
+    "label": "Hvem kan se dette",
+    "public": "Alle",
+    "followers": "Bare følgere",
+    "direct": "Bare nevnte personer",
+    "noRepost": "Bare offentlige innlegg kan deles på nytt",
+    "directHint": "Bare personene du nevner med @, ser dette innlegget",
+    "needsMention": "Nevn minst én person med @ for å publisere bare til nevnte personer"
+  },
+  "replyPolicy": {
+    "label": "Hvem kan svare",
+    "public": "Alle",
+    "followers": "Følgerne dine",
+    "following": "Folk du følger",
+    "mentioned": "Bare nevnte",
+    "noticeFollowers": "Bare forfatterens følgere kan svare",
+    "noticeFollowing": "Bare folk forfatteren følger, kan svare",
+    "noticeMentioned": "Bare folk som nevnes i innlegget, kan svare",
+    "refused": "Forfatteren har begrenset hvem som kan svare på dette innlegget"
+  },
+  "quotePolicy": {
+    "label": "Hvem kan sitere",
+    "public": "Alle",
+    "followers": "Følgere",
+    "nobody": "Bare meg",
+    "off": "Forfatteren har skrudd av sitering",
+    "removed": "Forfatteren fjernet innlegget sitt fra dette sitatet",
+    "remove": "Fjern",
+    "removedToast": "Innlegget ditt ble fjernet fra dette sitatet",
+    "removeFailed": "Kunne ikke fjerne innlegget ditt fra sitatet",
+    "refused": "Forfatteren lar deg ikke sitere dette innlegget"
+  },
+  "contentWarning": {
+    "label": "Innholdsadvarsel",
+    "placeholder": "Skriv advarselen din her",
+    "add": "Legg til innholdsadvarsel",
+    "remove": "Fjern innholdsadvarsel",
+    "show": "Vis innlegg"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Legg til en beskrivelse",
+    "edit": "Rediger beskrivelse",
+    "titleImage": "Beskriv dette bildet",
+    "titleVideo": "Beskriv denne videoen",
+    "help": "For folk som ikke kan se det. Skjermlesere leser det høyt.",
+    "placeholder": "Hva viser det? Ta med eventuell tekst i det.",
+    "show": "Vis beskrivelse",
+    "saved": "Beskrivelse lagret",
+    "saveFailed": "Kunne ikke lagre beskrivelsen"
+  },
   "liveRecap": {
     "title": "Strømmeoppsummering",
     "justEnded": "Oppsummeringen av strømmen din",
@@ -336,6 +466,11 @@
     "showAsNewMemberDesc": "Lar andre medlemmer se at du nettopp kom, så de kan ønske deg velkommen. Slutter automatisk 30 dager etter at du registrerte deg.",
     "postVisibility": "Innleggssynlighet",
     "defaultPostVisibility": "Standard synlighet",
+    "defaultFeed": "Standardfeed",
+    "defaultFeedDesc": "Velg hvilken feed som åpnes hver gang du åpner DeHub",
+    "feedToggles": "Tilbakestill feedfiltre",
+    "feedTogglesDesc": "Filtre du slår på i en feed, forblir standardene dine til du tilbakestiller dem",
+    "feedTogglesCleared": "Feedfiltre tilbakestilt",
     "defaultProfileTab": "Standardfane på profilen",
     "defaultProfileTabDesc": "Velg hvilken fane besøkende ser først på profilen din",
     "defaultPostVisibilityDesc": "Gjelder alle nåværende og fremtidige innlegg",
@@ -864,6 +999,7 @@
     "themeColorBrandFailed": "Klarte ikke å lese farger fra profilbildet ditt"
   },
   "common": {
+    "refresh": "Oppdater",
     "mute": "Demp",
     "unmute": "Slå på lyd",
     "fullscreen": "Fullskjerm",
@@ -977,6 +1113,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Bygg inn",
+    "copyEmbedCode": "Kopier innbyggingskode",
+    "embedCodeCopied": "Innbyggingskode kopiert",
     "options": "Alternativer",
     "sendTip": "Send tips",
     "queue": "Kø",
@@ -2835,6 +2974,8 @@
     "yourFractions": "Du eier {{count}} av {{total}} brøkdeler"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopier lenke til RSS-feed",
+    "copyRssFeedHint": "Følg disse innleggene i en hvilken som helst feedleser",
     "copyProfileUrl": "Kopier profil-URL",
     "copyUsername": "Kopier brukernavn",
     "copyAddress": "Kopier adresse",
@@ -4158,6 +4299,7 @@
     "noVoice": "Enheten din har ingen stemme for dette språket."
   },
   "stages": {
+    "previewFailed": "Kunne ikke spille av forhåndsvisning på scenen",
     "allStages": "Alle lydrom",
     "addToCalendar": "Legg til i kalender",
     "nowPlaying": "Spiller nå",
@@ -4530,6 +4672,7 @@
     "anyBadgeHolder": "Alle merkeholdere får Superkrefter. Kjøp DeHub-tokens for å låse opp et merke — innsats er ikke nødvendig."
   },
   "follow": {
+    "noResults": "Ingen resultater funnet",
     "followers": "Følgere",
     "following": "Følger",
     "requests": "Forespørsler",
@@ -4613,7 +4756,10 @@
     "play": "Spill",
     "pause": "Pause",
     "listens_one": "{{count}} hør",
-    "listens_other": "{{count}} lytter"
+    "listens_other": "{{count}} lytter",
+    "lyrics": "Sangtekst",
+    "lyricsLoading": "Finner sangtekst…",
+    "lyricsNone": "Fant ingen sangtekst"
   },
   "transfer": {
     "arcTitle": "Send USDC på Arc",
@@ -5539,6 +5685,8 @@
     "creatorEarnsDirect": "Abonnenter betaler med DeHub-tokens. Andelen din havner i lommeboken din i det øyeblikket de abonnerer, minus plattformavgiften for badge-nivået ditt."
   },
   "live": {
+    "bigEvent": "Stort arrangement",
+    "bigEventHint": "For et stort publikum: seerne ser omtrent 20 sekunder forsinket, med færre avbrudd.",
     "notSet": "Ikke angitt",
     "liveChat": "Direktechat",
     "pickDate": "Velg dato",
@@ -7152,6 +7300,7 @@
       "delete": "Slett"
     },
     "export": {
+      "cancel": "Avbryt",
       "scope": "Nedlastingsområde",
       "downloadTimeline": "Hele tidslinjen",
       "downloadSelection": "Utvalgte videoklipp ({{count}})",
@@ -7431,6 +7580,7 @@
     }
   },
   "creator": {
+    "sending": "Sender",
     "navStudio": "Studio",
     "editor": "Redigering",
     "untitled": "Uten tittel",
@@ -7995,6 +8145,7 @@
     "transferIncomplete": "Tokenoverføringen ble ikke fullført. Du vil bli spurt på nytt før ditt neste betalte innlegg."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Søk etter emoji",
     "noEmoji": "Fant ingen emoji",
     "searchResults": "Søkeresultater",
@@ -9654,5 +9805,15 @@
     "youAreBanned": "Du kan ikke chatte i denne skaperens strømmer.",
     "youAreTimedOut": "Du er tidsutløpt i et øyeblikk.",
     "title": "Moderer"
+  },
+  "loginStack": {
+    "tip": "Gi DHB-tips",
+    "headlineTop": "Du kommer til å eie alt",
+    "headlineAccent": "og være lykkelig.",
+    "orContinueWith": "eller fortsett med",
+    "phone": "Telefon",
+    "fingerprint": "Fingeravtrykk",
+    "exploreFirst": "Utforsk først",
+    "codeNote": "Vi sender deg en kode på e-post, uten passord."
   }
 }

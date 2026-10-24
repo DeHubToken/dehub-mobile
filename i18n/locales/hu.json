@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Csatlakoztatott alkalmazások",
+    "connectedDescription": "Mastodon-alkalmazások, amelyekbe ezzel a fiókkal jelentkeztél be. Távolíts el egyet a kijelentkeztetéshez.",
+    "connectedEmpty": "Még nincs csatlakoztatott alkalmazás.",
+    "lastUsed": "Utoljára használva: {{date}}",
+    "remove": "Eltávolítás",
+    "removed": "Alkalmazás eltávolítva",
+    "failed": "Nem sikerült. Próbáld újra."
+  },
+  "fediverse": {
+    "title": "Födiverzum",
+    "description": "A Mastodonon és más födiverzum-alkalmazásokban lévők ezen a címen megtalálhatnak és követhetnek. Az új nyilvános bejegyzéseid ott érik el őket.",
+    "copy": "Másolás",
+    "copied": "Másolva",
+    "privateNote": "A privát fiókok nem jelennek meg a födiverzumban.",
+    "noUsername": "Válassz felhasználónevet, hogy födiverzum-címed legyen."
+  },
+  "profileFields": {
+    "title": "Profilmezők",
+    "description": "Legfeljebb négy extra sor a profilodon, például weboldal vagy a névmásaid.",
+    "label": "Címke",
+    "content": "Tartalom",
+    "save": "Mezők mentése",
+    "saved": "Profilmezők mentve",
+    "failed": "Nem sikerült menteni. Próbáld újra.",
+    "verified": "Ellenőrzött hivatkozás",
+    "verifyHint": "Egy hivatkozás ellenőrzéséhez add hozzá ezt az oldalhoz, majd ments újra: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Értesítések szűrése tőlük",
+    "description": "Válaszd ki, mi történjen, ha valaki a körödön kívülről lép kapcsolatba veled. A szűrt értesítések a Szűrt alatt várnak, jelvény és push nélkül.",
+    "notFollowing": "Akiket nem követsz",
+    "notFollowers": "Akik nem követnek téged",
+    "newAccounts": "Új fiókok (30 napnál fiatalabbak)",
+    "accept": "Értesíts",
+    "filter": "Szűrés",
+    "drop": "Teljes elrejtés",
+    "filteredTitle": "Szűrt értesítések",
+    "filteredEmpty": "Semmi sincs kiszűrve.",
+    "failed": "Nem sikerült menteni. Próbáld újra."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} követése",
+    "following": "Követed",
+    "unfollow": "#{{tag}} követésének leállítása",
+    "followed": "Mostantól követed: #{{tag}}. A bejegyzései a Követettek hírfolyamodban jelennek meg.",
+    "unfollowed": "Már nem követed: #{{tag}}",
+    "failed": "Nem sikerült menteni. Próbáld újra.",
+    "clear": "Törlés"
+  },
+  "keywordFilters": {
+    "title": "Némított szavak",
+    "description": "Rejtsd el az ezeket a szavakat tartalmazó bejegyzéseket és hozzászólásokat, vagy hajtsd őket egy figyelmeztetés mögé. Ezt a listát csak te látod.",
+    "placeholder": "Szó vagy kifejezés",
+    "add": "Némítás",
+    "added": "Némítva: {{phrase}}",
+    "wholeWord": "Csak teljes szó",
+    "whenMatches": "Ha egy bejegyzés egyezik",
+    "warn": "Figyelmeztetés mutatása",
+    "hide": "Elrejtés",
+    "howLong": "Meddig",
+    "forever": "Amíg el nem távolítom",
+    "duration1h": "1 órára",
+    "duration1d": "1 napra",
+    "duration7d": "7 napra",
+    "duration30d": "30 napra",
+    "where": "Hol",
+    "home": "Kezdőlap",
+    "public": "Felfedezés és keresés",
+    "profile": "Profilok",
+    "thread": "Beszélgetések",
+    "notifications": "Értesítések",
+    "empty": "Még nem némítottál szavakat.",
+    "remove": "Némítás feloldása",
+    "until": "{{date}}-ig",
+    "filtered": "Szűrve: {{phrase}}",
+    "showAnyway": "Megjelenítés mégis",
+    "failed": "Nem sikerült menteni. Próbáld újra."
+  },
+  "postVisibility": {
+    "label": "Ki láthatja ezt",
+    "public": "Mindenki",
+    "followers": "Csak követők",
+    "direct": "Csak az említettek",
+    "noRepost": "Csak nyilvános bejegyzések oszthatók meg újra",
+    "directHint": "Ezt a bejegyzést csak azok látják, akiket @-cal megemlítesz",
+    "needsMention": "Említs meg @-cal legalább egy személyt, hogy csak az említetteknek posztolj"
+  },
+  "replyPolicy": {
+    "label": "Ki válaszolhat",
+    "public": "Bárki",
+    "followers": "A követőid",
+    "following": "Akiket követsz",
+    "mentioned": "Csak az említettek",
+    "noticeFollowers": "Csak a szerző követői válaszolhatnak",
+    "noticeFollowing": "Csak azok válaszolhatnak, akiket a szerző követ",
+    "noticeMentioned": "Csak a bejegyzésben említettek válaszolhatnak",
+    "refused": "A szerző korlátozta, ki válaszolhat erre a bejegyzésre"
+  },
+  "quotePolicy": {
+    "label": "Ki idézheti",
+    "public": "Bárki",
+    "followers": "Követők",
+    "nobody": "Csak én",
+    "off": "A szerző kikapcsolta az idézést",
+    "removed": "A szerző eltávolította a bejegyzését ebből az idézetből",
+    "remove": "Eltávolítás",
+    "removedToast": "A bejegyzésed eltávolítva ebből az idézetből",
+    "removeFailed": "Nem sikerült eltávolítani a bejegyzésedet az idézetből",
+    "refused": "A szerző nem engedi, hogy idézd ezt a bejegyzést"
+  },
+  "contentWarning": {
+    "label": "Tartalmi figyelmeztetés",
+    "placeholder": "Írd ide a figyelmeztetést",
+    "add": "Tartalmi figyelmeztetés hozzáadása",
+    "remove": "Tartalmi figyelmeztetés eltávolítása",
+    "show": "Bejegyzés megjelenítése"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Leírás hozzáadása",
+    "edit": "Leírás szerkesztése",
+    "titleImage": "Írd le ezt a képet",
+    "titleVideo": "Írd le ezt a videót",
+    "help": "Azoknak, akik nem látják. A képernyőolvasók felolvassák.",
+    "placeholder": "Mit ábrázol? Írd le a rajta lévő szöveget is.",
+    "show": "Leírás megjelenítése",
+    "saved": "Leírás mentve",
+    "saveFailed": "Nem sikerült menteni a leírást"
+  },
   "liveRecap": {
     "title": "Adatfolyam-összefoglaló",
     "justEnded": "Adatfolyam-összefoglalód",
@@ -336,6 +466,11 @@
     "showAsNewMemberDesc": "Hagyja, hogy a többi tag lássa, most csatlakoztál, és köszönthessenek. A regisztráció után 30 nappal automatikusan lejár.",
     "postVisibility": "Bejegyzés láthatósága",
     "defaultPostVisibility": "Alapértelmezett láthatóság",
+    "defaultFeed": "Alapértelmezett hírfolyam",
+    "defaultFeedDesc": "Válaszd ki, melyik hírfolyam nyíljon meg a DeHub minden megnyitásakor",
+    "feedToggles": "Hírfolyam-szűrők visszaállítása",
+    "feedTogglesDesc": "A hírfolyamban bekapcsolt szűrők alapértelmezettek maradnak, amíg vissza nem állítod őket",
+    "feedTogglesCleared": "Hírfolyam-szűrők visszaállítva",
     "defaultProfileTab": "Alapértelmezett profillap",
     "defaultProfileTabDesc": "Válaszd ki, melyik lapot lássák először a látogatók a profilodon",
     "defaultPostVisibilityDesc": "Minden jelenlegi és jövőbeli bejegyzésre vonatkozik",
@@ -864,6 +999,7 @@
     "themeColorBrandFailed": "Nem sikerült színeket kiolvasni a profilképedből"
   },
   "common": {
+    "refresh": "Frissítés",
     "mute": "Némítás",
     "unmute": "Némítás feloldása",
     "fullscreen": "Teljes képernyő",
@@ -977,6 +1113,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Beágyazás",
+    "copyEmbedCode": "Beágyazási kód másolása",
+    "embedCodeCopied": "Beágyazási kód másolva",
     "options": "Lehetőségek",
     "sendTip": "Borravaló küldése",
     "queue": "Várólista",
@@ -2839,6 +2978,8 @@
     "yourFractions": "{{count}} törtrész a(z) {{total}} törtrészből a birtokodban van"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-hírcsatorna linkjének másolása",
+    "copyRssFeedHint": "Kövesd ezeket a bejegyzéseket bármelyik hírolvasóban",
     "copyProfileUrl": "Profil URL másolása",
     "copyUsername": "Felhasználónév másolása",
     "copyAddress": "Cím másolása",
@@ -4162,6 +4303,7 @@
     "noVoice": "Az eszközödön nincs hang ehhez a nyelvhez."
   },
   "stages": {
+    "previewFailed": "Nem sikerült lejátszani az előnézetet a hangszobában",
     "allStages": "Összes hangszoba",
     "addToCalendar": "Hozzáadás a naptárhoz",
     "nowPlaying": "Jelenleg lejátszás alatt",
@@ -4534,6 +4676,7 @@
     "anyBadgeHolder": "Minden jelvénytulajdonos megkapja a Szuperképességeket. Vásárolj DeHub tokeneket egy jelvény feloldásához – a staking nem szükséges."
   },
   "follow": {
+    "noResults": "Nincs találat",
     "followers": "Követők",
     "following": "Követés",
     "requests": "Kérések",
@@ -4617,7 +4760,10 @@
     "play": "Játék",
     "pause": "Szüneteltetés",
     "listens_one": "{{count}} figyelj",
-    "listens_other": "{{count}} figyel"
+    "listens_other": "{{count}} figyel",
+    "lyrics": "Dalszöveg",
+    "lyricsLoading": "Dalszöveg keresése…",
+    "lyricsNone": "Nincs dalszöveg"
   },
   "transfer": {
     "arcTitle": "USDC küldése Arc hálózaton",
@@ -5543,6 +5689,8 @@
     "creatorEarnsDirect": "Az előfizetők DeHub tokenekben fizetnek. A részvényed az előfizetés pillanatában a pénztárcádba kerül, levonva belőle a jelvényszinted platformdíját."
   },
   "live": {
+    "bigEvent": "Nagy esemény",
+    "bigEventHint": "Nagy közönségnek: a nézők nagyjából 20 másodperces késéssel, de kevesebb akadással látják.",
     "notSet": "Nincs beállítva",
     "liveChat": "Élő csevegés",
     "pickDate": "Dátum kiválasztása",
@@ -7157,6 +7305,7 @@
       "delete": "Törlés"
     },
     "export": {
+      "cancel": "Mégse",
       "scope": "Letöltési tartomány",
       "downloadTimeline": "Teljes idővonal",
       "downloadSelection": "Kiválasztott videoklipek ({{count}})",
@@ -7436,6 +7585,7 @@
     }
   },
   "creator": {
+    "sending": "Küldés",
     "navStudio": "Stúdió",
     "editor": "Szerkesztő",
     "untitled": "Névtelen",
@@ -8001,6 +8151,7 @@
     "transferIncomplete": "A tokenátutalás nem fejeződött be. A következő fizetős bejegyzésed előtt újra meg fogjuk kérdezni."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji keresése",
     "noEmoji": "Nincs találat emojira",
     "searchResults": "Keresési találatok",
@@ -9662,5 +9813,15 @@
     "youAreBanned": "Nem beszélhetsz ezen a kreatőr streamjein.",
     "youAreTimedOut": "Most ideiglenesen időzítés alatt vagy.",
     "title": "Moderál"
+  },
+  "loginStack": {
+    "tip": "DHB borravaló",
+    "headlineTop": "Mindened meglesz",
+    "headlineAccent": "és boldog leszel.",
+    "orContinueWith": "vagy folytasd ezzel",
+    "phone": "Telefon",
+    "fingerprint": "Ujjlenyomat",
+    "exploreFirst": "Előbb nézz körül",
+    "codeNote": "E-mailben küldünk egy kódot, jelszó nélkül."
   }
 }

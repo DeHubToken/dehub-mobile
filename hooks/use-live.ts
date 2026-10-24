@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getLivepeerStream } from "../services/livepeer.service";
+import { getIngestStatus } from "../services/livepeer.service";
 import { liveProviderOf } from "../libs/live-ingest";
 import { toastError } from "../libs/toast";
 import { LivestreamEvents } from "../services/enums/livestream.enum";
@@ -242,24 +242,22 @@ export const useLive = (opts?: UseLiveOptions) => {
       return;
     }
 
-    if (!opts?.livepeerId) return;
+    if (!streamId) return;
     if (livePollStartedRef.current) return;
     livePollStartedRef.current = true;
-    console.log("[useLive] live polling loop initiated", {
-      livepeerId: opts?.livepeerId,
-    });
+    console.log("[useLive] live polling loop initiated", { streamId });
     const POLL_MS = 3000;
     const startedAt = Date.now();
     const poll = async () => {
       if (stageRef.current !== "starting") return;
       try {
-        const info = await getLivepeerStream(opts.livepeerId!);
+        const info = await getIngestStatus(streamId);
         console.log("[useLive] live poll tick", {
           isActive: info?.isActive,
-          id: info?.id,
+          provider: info?.provider,
         });
         if (info?.isActive) {
-          console.log("[useLive] optimistic LIVE (Livepeer isActive true)");
+          console.log("[useLive] optimistic LIVE (ingest reports active)");
           setStage((s) => (s === "starting" ? "live" : s));
           return;
         }
@@ -283,38 +281,37 @@ export const useLive = (opts?: UseLiveOptions) => {
         livePollRef.current = null;
       }
     };
-  }, [stage, opts?.livepeerId, publisherConnected, isSelfHosted]);
+  }, [stage, streamId, publisherConnected, isSelfHosted]);
 
   // Optimistic polling for ENDED state while stage === 'ending'
   useEffect(() => {
-    if (stage !== "ending" || !opts?.livepeerId) return;
+    if (stage !== "ending" || !streamId) return;
     if (endPollStartedRef.current) return;
     endPollStartedRef.current = true;
-    console.log("[useLive] end polling loop initiated", {
-      livepeerId: opts?.livepeerId,
-    });
+    console.log("[useLive] end polling loop initiated", { streamId });
     const POLL_MS = 3000;
     const startedAt = Date.now();
     const poll = async () => {
       if (stageRef.current !== "ending") return;
       try {
-        const info = await getLivepeerStream(opts.livepeerId!);
+        const info = await getIngestStatus(streamId);
         console.log("[useLive] end poll tick", {
           isActive: info?.isActive,
-          id: info?.id,
+          provider: info?.provider,
         });
-        if (info && !info.isActive) {
-          console.log("[useLive] optimistic ENDED (Livepeer isActive false)");
+        // `isActive: null` means the provider could not be asked; only a
+        // definite "not publishing" (or a stream the provider no longer has)
+        // ends it early.
+        if (info && (info.isActive === false || info.gone)) {
+          console.log("[useLive] optimistic ENDED (ingest reports inactive)");
           setStage((s) => (s === "ending" ? "ended" : s));
           return;
         }
       } catch (e) {
-        const msg = (e as any)?.message || "";
-        console.log("[useLive] end polling error (ignored):", msg);
-        if (msg.includes("404")) {
-          console.log(
-            "[useLive] Livepeer returned 404 for stream; treating as ENDED"
-          );
+        const status = (e as any)?.status;
+        console.log("[useLive] end polling error (ignored):", (e as any)?.message || "");
+        if (status === 404) {
+          console.log("[useLive] stream is gone; treating as ENDED");
           setStage((s) => (s === "ending" ? "ended" : s));
           return;
         }
@@ -333,7 +330,7 @@ export const useLive = (opts?: UseLiveOptions) => {
         endPollRef.current = null;
       }
     };
-  }, [stage, opts?.livepeerId]);
+  }, [stage, streamId]);
 
   // Cleanup all timers on unmount
   useEffect(() => {

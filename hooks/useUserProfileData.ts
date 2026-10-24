@@ -520,19 +520,22 @@ export const useUserProfileData = (
     });
   }, [requireAuth, profileData, data, followsYou, _copy]);
 
+  // Shown in place rather than pushed as a screen: on Android the profile sits
+  // above the navigator and hides it, so a pushed viewer opened out of sight.
+  const [viewerImages, setViewerImages] = useState<string[] | null>(null);
   const handleOpenImage = useCallback(
     (type: "avatar" | "cover") => {
-      const imgUrl = type === "avatar" ? avatarUrl : coverUrl;
+      // The avatar row renders a 48pt copy; fullscreen wants the original.
+      const imgUrl = type === "avatar" ? getAvatarUrl(data?.avatarImageUrl, 0) : coverUrl;
       if (!imgUrl || imgUrl.startsWith("default")) return;
-      requestAnimationFrame(() => {
-        (navigation as any).navigate(ScreenNames.ImageViewer, {
-          images: [imgUrl],
-          initialIndex: 0,
-        });
-      });
+      setViewerImages([imgUrl]);
     },
-    [avatarUrl, coverUrl, navigation]
+    [data?.avatarImageUrl, coverUrl]
   );
+  const closeImage = useCallback(() => setViewerImages(null), []);
+  useEffect(() => {
+    if (!visible) setViewerImages(null);
+  }, [visible]);
 
   const handleShare = useCallback(async () => {
     const profileSlug = profileData?.username || profileData?.address;
@@ -683,6 +686,8 @@ export const useUserProfileData = (
     handleBlock,
     handleUnblock,
     handleOpenImage,
+    viewerImages,
+    closeImage,
     handleShare,
     handleMessage,
   };

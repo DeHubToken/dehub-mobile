@@ -220,12 +220,15 @@ export function useUploadLive() {
 
       if (addr) fd.append("address", addr);
 
-      // Stream settings (chat, minTip, schedule)
+      // Stream settings (chat, minTip, delivery mode)
       fd.append(
         "settings",
         JSON.stringify({
           enableChat: p.settings.enableChat,
           minTip: Number(p.settings.minTip) || 1000,
+          // A big event is delivered over HLS from behind the live edge
+          // rather than WebRTC; the API stores it as the stream's latency mode.
+          latencyMode: p.settings.bigEvent ? "event" : "normal",
         }),
       );
       fd.append("streamDelay", String(0));

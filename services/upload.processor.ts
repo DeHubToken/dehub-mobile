@@ -239,6 +239,31 @@ function rebuildFormData(job: UploadJob, draftVideoId: string | null = null): Fo
     fd.append("forKids", "true");
   }
 
+  // Alt text. Only sent when something was described.
+  if (payload.mediaDescriptions?.some(Boolean)) {
+    fd.append("mediaDescriptions", JSON.stringify(payload.mediaDescriptions));
+  }
+
+  // Content warning. Only sent when there is one.
+  if (payload.spoilerText?.trim()) {
+    fd.append("spoilerText", payload.spoilerText.trim());
+  }
+
+  // Who may quote it. Only sent when it is narrower than anyone.
+  if (payload.quotePolicy) {
+    fd.append("quotePolicy", payload.quotePolicy);
+  }
+
+  // Who may reply. Only sent when it is narrower than anyone.
+  if (payload.replyPolicy) {
+    fd.append("replyPolicy", payload.replyPolicy);
+  }
+
+  // Who may see it. Only sent when it is narrower than everyone.
+  if (payload.visibility) {
+    fd.append("visibility", payload.visibility);
+  }
+
   // The Shop board. Only sent when there is one — an empty array is a valid
   // "clear it" instruction on a post that has nothing to clear.
   if (payload.shopLinks?.length) {
@@ -668,9 +693,14 @@ export function useUploadProcessor() {
     } catch (e: any) {
       console.error("[upload.processor] job failed:", e);
       const isMintPhase = next.status === "minting";
-      const msg = isMintPhase
+      const raw = isMintPhase
         ? parseTxError(e, "send")
         : (e?.message || "Upload failed");
+      // The quoted post's author does not let this account quote it
+      // (dehub-stream-backend src/repost/quote-policy). Nothing to retry.
+      const quoteRefused = typeof raw === "string" &&
+        (raw.includes("can quote this post") || raw.includes("does not allow quotes"));
+      const msg = quoteRefused ? i18n.t("quotePolicy.refused") : raw;
       uploadActions.fail(next.id, typeof msg === "string" ? msg : "Upload failed");
       toastError(msg);
     } finally {

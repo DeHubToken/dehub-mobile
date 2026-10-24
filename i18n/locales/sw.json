@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Programu zilizounganishwa",
+    "connectedDescription": "Programu za Mastodon ulizoingia kwa akaunti hii. Ondoa moja ili uitoe.",
+    "connectedEmpty": "Bado hakuna programu zilizounganishwa.",
+    "lastUsed": "Ilitumika mwisho {{date}}",
+    "remove": "Ondoa",
+    "removed": "Programu imeondolewa",
+    "failed": "Haikufanikiwa. Jaribu tena."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Watu kwenye Mastodon na programu nyingine za fediverse wanaweza kukupata na kukufuata kwenye anwani hii. Machapisho yako mapya ya umma yanawafikia huko.",
+    "copy": "Nakili",
+    "copied": "Imenakiliwa",
+    "privateNote": "Akaunti za faragha hazionyeshwi kwenye fediverse.",
+    "noUsername": "Chagua jina la mtumiaji ili kupata anwani ya fediverse."
+  },
+  "profileFields": {
+    "title": "Sehemu za wasifu",
+    "description": "Hadi mistari minne ya ziada kwenye wasifu wako, kama tovuti au viwakilishi vyako.",
+    "label": "Lebo",
+    "content": "Maudhui",
+    "save": "Hifadhi sehemu",
+    "saved": "Sehemu za wasifu zimehifadhiwa",
+    "failed": "Haikuhifadhiwa. Jaribu tena.",
+    "verified": "Kiungo kilichothibitishwa",
+    "verifyHint": "Ili kuthibitisha kiungo, ongeza hiki kwenye ukurasa huo, kisha uhifadhi tena: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Chuja arifa kutoka kwa",
+    "description": "Chagua kinachotokea mtu aliye nje ya mduara wako anapoingiliana nawe. Arifa zilizochujwa husubiri chini ya Zilizochujwa, bila beji wala arifa ya kusukuma.",
+    "notFollowing": "Watu usiowafuata",
+    "notFollowers": "Watu wasiokufuata",
+    "newAccounts": "Akaunti mpya (chini ya siku 30)",
+    "accept": "Nijulishe",
+    "filter": "Chuja",
+    "drop": "Ficha kabisa",
+    "filteredTitle": "Arifa zilizochujwa",
+    "filteredEmpty": "Hakuna kilichochujwa.",
+    "failed": "Haikuhifadhiwa. Jaribu tena."
+  },
+  "followedTags": {
+    "follow": "Fuata #{{tag}}",
+    "following": "Unafuata",
+    "unfollow": "Acha kufuata #{{tag}}",
+    "followed": "Sasa unafuata #{{tag}}. Machapisho yake yataonekana kwenye mlisho wa Unaowafuata.",
+    "unfollowed": "Umeacha kufuata #{{tag}}",
+    "failed": "Haikuhifadhiwa. Jaribu tena.",
+    "clear": "Futa"
+  },
+  "keywordFilters": {
+    "title": "Maneno yaliyonyamazishwa",
+    "description": "Ficha machapisho na maoni yenye maneno haya, au yakunje nyuma ya onyo. Ni wewe tu unayeona orodha hii.",
+    "placeholder": "Neno au kifungu",
+    "add": "Nyamazisha",
+    "added": "Imenyamazishwa: {{phrase}}",
+    "wholeWord": "Neno zima tu",
+    "whenMatches": "Chapisho linapolingana",
+    "warn": "Onyesha onyo",
+    "hide": "Ficha",
+    "howLong": "Kwa muda gani",
+    "forever": "Hadi nitakapoliondoa",
+    "duration1h": "Kwa saa 1",
+    "duration1d": "Kwa siku 1",
+    "duration7d": "Kwa siku 7",
+    "duration30d": "Kwa siku 30",
+    "where": "Wapi",
+    "home": "Nyumbani",
+    "public": "Gundua na tafuta",
+    "profile": "Wasifu",
+    "thread": "Mazungumzo",
+    "notifications": "Arifa",
+    "empty": "Hujanyamazisha neno lolote.",
+    "remove": "Ondoa unyamazishaji",
+    "until": "Hadi {{date}}",
+    "filtered": "Imechujwa: {{phrase}}",
+    "showAnyway": "Onyesha hata hivyo",
+    "failed": "Haikuhifadhiwa. Jaribu tena."
+  },
+  "postVisibility": {
+    "label": "Nani anaweza kuona hii",
+    "public": "Kila mtu",
+    "followers": "Wafuasi pekee",
+    "direct": "Watu waliotajwa pekee",
+    "noRepost": "Machapisho ya umma pekee yanaweza kuchapishwa upya",
+    "directHint": "Watu utakaowataja kwa @ pekee ndio wataona chapisho hili",
+    "needsMention": "Mtaje angalau mtu mmoja kwa @ ili kuchapisha kwa watu waliotajwa pekee"
+  },
+  "replyPolicy": {
+    "label": "Nani anaweza kujibu",
+    "public": "Mtu yeyote",
+    "followers": "Wafuasi wako",
+    "following": "Watu unaowafuata",
+    "mentioned": "Waliotajwa tu",
+    "noticeFollowers": "Wafuasi wa mwandishi tu ndio wanaweza kujibu",
+    "noticeFollowing": "Watu anaowafuata mwandishi tu ndio wanaweza kujibu",
+    "noticeMentioned": "Watu waliotajwa kwenye chapisho tu ndio wanaweza kujibu",
+    "refused": "Mwandishi amedhibiti nani anaweza kujibu chapisho hili"
+  },
+  "quotePolicy": {
+    "label": "Nani anaweza kunukuu",
+    "public": "Mtu yeyote",
+    "followers": "Wafuasi",
+    "nobody": "Mimi tu",
+    "off": "Mwandishi amezima kunukuu",
+    "removed": "Mwandishi ameondoa chapisho lake kwenye nukuu hii",
+    "remove": "Ondoa",
+    "removedToast": "Chapisho lako limeondolewa kwenye nukuu hii",
+    "removeFailed": "Imeshindwa kuondoa chapisho lako kwenye nukuu",
+    "refused": "Mwandishi hakuruhusu kunukuu chapisho hili"
+  },
+  "contentWarning": {
+    "label": "Onyo la maudhui",
+    "placeholder": "Andika onyo lako hapa",
+    "add": "Ongeza onyo la maudhui",
+    "remove": "Ondoa onyo la maudhui",
+    "show": "Onyesha chapisho"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Ongeza maelezo",
+    "edit": "Hariri maelezo",
+    "titleImage": "Eleza picha hii",
+    "titleVideo": "Eleza video hii",
+    "help": "Kwa watu wasioweza kuiona. Visomaji skrini huisoma kwa sauti.",
+    "placeholder": "Inaonyesha nini? Jumuisha maandishi yoyote yaliyomo.",
+    "show": "Onyesha maelezo",
+    "saved": "Maelezo yamehifadhiwa",
+    "saveFailed": "Imeshindwa kuhifadhi maelezo"
+  },
   "liveRecap": {
     "title": "Muhtasari wa mkondo",
     "justEnded": "Muhtasari wa mkondo wako",
@@ -336,6 +466,11 @@
     "showAsNewMemberDesc": "Huwawezesha wanachama wengine kuona kwamba umejiunga hivi punde ili wakukaribishe. Huisha kiotomatiki siku 30 baada ya kujisajili.",
     "postVisibility": "Kuonekana kwa Machapisho",
     "defaultPostVisibility": "Kuonekana kwa Machapisho kwa Chaguo-msingi",
+    "defaultFeed": "Mlisho chaguo-msingi",
+    "defaultFeedDesc": "Chagua mlisho unaofunguka kila unapofungua DeHub",
+    "feedToggles": "Weka upya vichujio vya mlisho",
+    "feedTogglesDesc": "Vichujio unavyowasha kwenye mlisho hubaki kuwa chaguo-msingi lako hadi uviweke upya",
+    "feedTogglesCleared": "Vichujio vya mlisho vimewekwa upya",
     "defaultProfileTab": "Kichupo chaguo-msingi cha wasifu",
     "defaultProfileTabDesc": "Chagua kichupo ambacho wageni huona kwanza kwenye wasifu wako",
     "defaultPostVisibilityDesc": "Inatumika kwa machapisho yote ya sasa na ya baadaye",
@@ -864,6 +999,7 @@
     "themeColorBrandFailed": "Haikuweza kusoma rangi kutoka picha yako ya wasifu"
   },
   "common": {
+    "refresh": "Onyesha upya",
     "mute": "Nyamazisha",
     "unmute": "Washa sauti",
     "fullscreen": "Skrini nzima",
@@ -977,6 +1113,9 @@
     "tokenAmount": "{{amount}} tokeni"
   },
   "postOptions": {
+    "embed": "Pachika",
+    "copyEmbedCode": "Nakili msimbo wa kupachika",
+    "embedCodeCopied": "Msimbo wa kupachika umenakiliwa",
     "options": "Chaguzi",
     "sendTip": "Tuma Kidokezo",
     "queue": "Foleni",
@@ -2836,6 +2975,8 @@
     "yourFractions": "Unamiliki {{count}} kati ya {{total}} sehemu"
   },
   "profileOptions": {
+    "copyRssFeed": "Nakili kiungo cha mlisho wa RSS",
+    "copyRssFeedHint": "Fuatilia machapisho haya kwenye kisomaji chochote cha milisho",
     "copyProfileUrl": "Nakili URL ya wasifu",
     "copyUsername": "Nakili jina la mtumiaji",
     "copyAddress": "Nakili anwani",
@@ -4159,6 +4300,7 @@
     "noVoice": "Kifaa chako hakina sauti ya lugha hii."
   },
   "stages": {
+    "previewFailed": "Imeshindwa kucheza onyesho kwenye chumba cha sauti",
     "allStages": "Vyumba vyote vya sauti",
     "addToCalendar": "Ongeza kwenye kalenda",
     "nowPlaying": "Inacheza sasa",
@@ -4531,6 +4673,7 @@
     "anyBadgeHolder": "Mwenye beji yeyote hupata SuperPowers. Nunua tokeni za DeHub ili kufungua beji — kuweka rehani hakuhitajiki."
   },
   "follow": {
+    "noResults": "Hakuna matokeo yaliyopatikana",
     "followers": "Wafuasi",
     "following": "Wanaofuata",
     "requests": "Maombi",
@@ -4614,7 +4757,10 @@
     "play": "Cheza",
     "pause": "Sitisha",
     "listens_one": "{{count}} sikiliza",
-    "listens_other": "{{count}} anasikiliza"
+    "listens_other": "{{count}} anasikiliza",
+    "lyrics": "Maneno ya wimbo",
+    "lyricsLoading": "Inatafuta maneno…",
+    "lyricsNone": "Hakuna maneno yaliyopatikana"
   },
   "transfer": {
     "arcTitle": "Tuma USDC kwenye Arc",
@@ -5540,6 +5686,8 @@
     "creatorEarnsDirect": "Wasajili hulipa kwa ishara za DeHub. Gawio lako linatua kwenye mkoba wako pindi wanapojisajili, punguza ada ya tovuti ya kiwango cha beji yako."
   },
   "live": {
+    "bigEvent": "Tukio kubwa",
+    "bigEventHint": "Kwa hadhira kubwa: watazamaji hutazama nyuma kwa takriban sekunde 20, na kukatika kidogo.",
     "notSet": "Haijawekwa",
     "liveChat": "Gumzo la moja kwa moja",
     "pickDate": "Chagua tarehe",
@@ -7155,6 +7303,7 @@
       "delete": "Futa"
     },
     "export": {
+      "cancel": "Ghairisha",
       "scope": "Pakua masafa",
       "downloadTimeline": "Ratiba nzima ya wakati",
       "downloadSelection": "Klipu za video zilizochaguliwa ({{count}})",
@@ -7434,6 +7583,7 @@
     }
   },
   "creator": {
+    "sending": "Inatuma",
     "navStudio": "Studio",
     "editor": "Mhariri",
     "untitled": "Bila kichwa",
@@ -8000,6 +8150,7 @@
     "transferIncomplete": "Uhamisho wa tokeni haujakamilika. Utaulizwa tena kabla ya chapisho lako lijalo kulipwa."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Tafuta emoji",
     "noEmoji": "Hakuna emoji zilizopatikana",
     "searchResults": "Matokeo ya utafutaji",
@@ -9660,5 +9811,15 @@
     "youAreBanned": "Huwezi kupiga gumzo kwenye mikondo ya mtengenezaji huyu",
     "youAreTimedOut": "Umepitwa na wakati kwa muda",
     "title": "Kadiri"
+  },
+  "loginStack": {
+    "tip": "Tuza kwa DHB",
+    "headlineTop": "Utamiliki kila kitu",
+    "headlineAccent": "na utakuwa na furaha.",
+    "orContinueWith": "au endelea kwa",
+    "phone": "Simu",
+    "fingerprint": "Alama ya kidole",
+    "exploreFirst": "Gundua kwanza",
+    "codeNote": "Tunakutumia msimbo kwa barua pepe, bila nenosiri."
   }
 }

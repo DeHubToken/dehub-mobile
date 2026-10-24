@@ -16,6 +16,8 @@ interface PasskeyLoginFlowProps {
    * "create one" so the obvious next tap is the right one.
    */
   suggestCreate?: boolean;
+  /** Render the two choices already open (opened from the round Fingerprint button). */
+  startOpen?: boolean;
 }
 
 /**
@@ -34,9 +36,10 @@ const PasskeyLoginFlow: React.FC<PasskeyLoginFlowProps> = ({
   disabled,
   error,
   suggestCreate,
+  startOpen,
 }) => {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(!!startOpen);
 
   if (!open) {
     return (

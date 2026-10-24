@@ -4,7 +4,8 @@ import { View, Text, TouchableOpacity, ActivityIndicator, DeviceEventEmitter } f
 import SmartImage from './SmartImage';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system/legacy';
-import { getNFT, replacePostImage, addPostImages, getPostImageAllowance } from '../../services/nft.service';
+import { getNFT, replacePostImage, addPostImages, getPostImageAllowance, editPost } from '../../services/nft.service';
+import AltTextSheet, { AltTextPill } from '../Upload/AltTextSheet';
 import { ensureMediaLibraryPermission } from '../../libs/permissions.util';
 import { buildFeedImageUrls, toastError, toastSuccess } from '../../libs';
 import { MAX_IMAGE_UPLOAD_BYTES, MAX_REQUEST_IMAGE_BYTES } from '../../libs/post-image-allowance';
@@ -20,6 +21,8 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
   const [failed, setFailed] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [busyIndex, setBusyIndex] = useState<number | null>(null);
+  const [descriptions, setDescriptions] = useState<string[]>([]);
+  const [altIndex, setAltIndex] = useState<number | null>(null);
   useEffect(() => {
     let active = true;
     setLoading(true);
@@ -29,7 +32,10 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       if (active) setImageLimit(imageLimit);
     }).catch(() => { /* Replacement remains available if allowance cannot load. */ });
     getNFT(tokenId).then(({ result }) => {
-      if (active) setImages(result.postType === 'feed-images' && Array.isArray(result.imageUrls) ? result.imageUrls : []);
+      if (active) {
+        setImages(result.postType === 'feed-images' && Array.isArray(result.imageUrls) ? result.imageUrls : []);
+        setDescriptions(Array.isArray((result as any).mediaDescriptions) ? (result as any).mediaDescriptions : []);
+      }
     }).catch(() => { if (active) setFailed(true); })
       .finally(() => { if (active) setLoading(false); });
     return () => { active = false; };
@@ -95,6 +101,22 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
     }
   };
 
+  // Saves straight away, like replacing an image does: the whole list goes up,
+  // positions following the images.
+  const saveDescription = async (index: number, text: string) => {
+    const next = images.map((_, i) => (i === index ? text.trim() : descriptions[i] || ''));
+    while (next.length && !next[next.length - 1]) next.pop();
+    const previous = descriptions;
+    setDescriptions(next);
+    try {
+      await editPost(tokenId, { mediaDescriptions: next });
+      toastSuccess(t('altText.saved'));
+    } catch {
+      setDescriptions(previous);
+      toastError(t('altText.saveFailed'));
+    }
+  };
+
   if (loading) return <Text className="text-zinc-400 text-sm mb-4">{t('editPost.loadingImages')}</Text>;
   if (failed) return <TouchableOpacity onPress={() => setAttempt(value => value + 1)}><Text className="text-zinc-300 mb-4">{t('editPost.loadImagesFailed')}</Text></TouchableOpacity>;
   if (!images.length) return null;
@@ -110,13 +132,27 @@ export default function EditPostImages({ tokenId, disabled, onBusyChange }: {
       <Text className="text-white text-sm text-center">{busyIndex === -1 ? t('editPost.addingImages') : imageLimit !== null && images.length >= imageLimit ? t('editPost.imageLimitReached') : t('editPost.addImages')}</Text>
     </TouchableOpacity>
     <View className="flex-row flex-wrap gap-3">
-      {previews.map((uri, index) => <TouchableOpacity key={index} disabled={disabled || busyIndex !== null}
-        accessibilityRole="button" accessibilityLabel={t('editPost.replaceImageN', { n: index + 1 })}
-        onPress={() => void replace(index)} style={{ width: '46%', opacity: disabled || busyIndex !== null ? 0.5 : 1 }}
-        className="rounded-xl border border-white/10 overflow-hidden bg-white/5">
-        <SmartImage source={{ uri }} recyclingKey={uri} style={{ width: '100%', height: 112 }} contentFit="contain" />
-        {busyIndex === index ? <ActivityIndicator color="white" style={{ margin: 10 }} /> : <Text className="text-white text-sm text-center p-2">{t('editPost.replaceImageN', { n: index + 1 })}</Text>}
-      </TouchableOpacity>)}
+      {previews.map((uri, index) => <View key={index} style={{ width: '46%' }}>
+        <TouchableOpacity disabled={disabled || busyIndex !== null}
+          accessibilityRole="button" accessibilityLabel={t('editPost.replaceImageN', { n: index + 1 })}
+          onPress={() => void replace(index)} style={{ opacity: disabled || busyIndex !== null ? 0.5 : 1 }}
+          className="rounded-xl border border-white/10 overflow-hidden bg-white/5">
+          <SmartImage source={{ uri }} recyclingKey={uri} style={{ width: '100%', height: 112 }} contentFit="contain"
+            accessible={!!descriptions[index]} accessibilityLabel={descriptions[index] || undefined} />
+          {busyIndex === index ? <ActivityIndicator color="white" style={{ margin: 10 }} /> : <Text className="text-white text-sm text-center p-2">{t('editPost.replaceImageN', { n: index + 1 })}</Text>}
+        </TouchableOpacity>
+        <AltTextPill hasText={!!descriptions[index]} onPress={() => setAltIndex(index)} className="absolute top-2 right-2" />
+      </View>)}
     </View>
+    {altIndex !== null && (
+      <AltTextSheet
+        visible
+        onClose={() => setAltIndex(null)}
+        kind="image"
+        previewUri={previews[altIndex]}
+        initial={descriptions[altIndex]}
+        onSave={(text) => { void saveDescription(altIndex, text); }}
+      />
+    )}
   </View>;
 }

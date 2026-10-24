@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Anslutna appar",
+    "connectedDescription": "Mastodon-appar du har loggat in i med det här kontot. Ta bort en för att logga ut den.",
+    "connectedEmpty": "Inga anslutna appar än.",
+    "lastUsed": "Senast använd {{date}}",
+    "remove": "Ta bort",
+    "removed": "Appen togs bort",
+    "failed": "Det fungerade inte. Försök igen."
+  },
+  "fediverse": {
+    "title": "Fediversum",
+    "description": "Folk på Mastodon och andra fediversum-appar kan hitta och följa dig på den här adressen. Dina nya offentliga inlägg når dem där.",
+    "copy": "Kopiera",
+    "copied": "Kopierat",
+    "privateNote": "Privata konton visas inte i fediversum.",
+    "noUsername": "Välj ett användarnamn för att få en fediversum-adress."
+  },
+  "profileFields": {
+    "title": "Profilfält",
+    "description": "Upp till fyra extra rader på din profil, till exempel en webbplats eller dina pronomen.",
+    "label": "Etikett",
+    "content": "Innehåll",
+    "save": "Spara fält",
+    "saved": "Profilfälten sparades",
+    "failed": "Det sparades inte. Försök igen.",
+    "verified": "Verifierad länk",
+    "verifyHint": "För att verifiera en länk lägger du till det här på den sidan och sparar igen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrera aviseringar från",
+    "description": "Välj vad som händer när någon utanför din krets interagerar med dig. Filtrerade aviseringar väntar under Filtrerat, utan märke och utan push.",
+    "notFollowing": "Personer du inte följer",
+    "notFollowers": "Personer som inte följer dig",
+    "newAccounts": "Nya konton (under 30 dagar)",
+    "accept": "Meddela mig",
+    "filter": "Filtrera",
+    "drop": "Dölj helt",
+    "filteredTitle": "Filtrerade aviseringar",
+    "filteredEmpty": "Inget har filtrerats.",
+    "failed": "Det sparades inte. Försök igen."
+  },
+  "followedTags": {
+    "follow": "Följ #{{tag}}",
+    "following": "Följer",
+    "unfollow": "Sluta följa #{{tag}}",
+    "followed": "Du följer nu #{{tag}}. Inlägg med den visas i ditt Följer-flöde.",
+    "unfollowed": "Du följer inte längre #{{tag}}",
+    "failed": "Det sparades inte. Försök igen.",
+    "clear": "Rensa"
+  },
+  "keywordFilters": {
+    "title": "Tystade ord",
+    "description": "Dölj inlägg och kommentarer som innehåller de här orden, eller vik ihop dem bakom en varning. Bara du ser listan.",
+    "placeholder": "Ord eller fras",
+    "add": "Tysta",
+    "added": "Tystat: {{phrase}}",
+    "wholeWord": "Bara hela ord",
+    "whenMatches": "När ett inlägg matchar",
+    "warn": "Visa en varning",
+    "hide": "Dölj det",
+    "howLong": "Hur länge",
+    "forever": "Tills jag tar bort det",
+    "duration1h": "I 1 timme",
+    "duration1d": "I 1 dag",
+    "duration7d": "I 7 dagar",
+    "duration30d": "I 30 dagar",
+    "where": "Var",
+    "home": "Hem",
+    "public": "Utforska och sök",
+    "profile": "Profiler",
+    "thread": "Konversationer",
+    "notifications": "Aviseringar",
+    "empty": "Du har inte tystat några ord.",
+    "remove": "Sluta tysta",
+    "until": "Till {{date}}",
+    "filtered": "Filtrerat: {{phrase}}",
+    "showAnyway": "Visa ändå",
+    "failed": "Det sparades inte. Försök igen."
+  },
+  "postVisibility": {
+    "label": "Vem kan se det här",
+    "public": "Alla",
+    "followers": "Bara följare",
+    "direct": "Bara nämnda personer",
+    "noRepost": "Bara offentliga inlägg kan delas vidare",
+    "directHint": "Bara de personer du nämner med @ ser det här inlägget",
+    "needsMention": "Nämn minst en person med @ för att bara publicera för nämnda personer"
+  },
+  "replyPolicy": {
+    "label": "Vem kan svara",
+    "public": "Alla",
+    "followers": "Dina följare",
+    "following": "Personer du följer",
+    "mentioned": "Bara nämnda",
+    "noticeFollowers": "Bara skaparens följare kan svara",
+    "noticeFollowing": "Bara personer som skaparen följer kan svara",
+    "noticeMentioned": "Bara personer som nämns i inlägget kan svara",
+    "refused": "Skaparen har begränsat vem som kan svara på det här inlägget"
+  },
+  "quotePolicy": {
+    "label": "Vem kan citera",
+    "public": "Alla",
+    "followers": "Följare",
+    "nobody": "Bara jag",
+    "off": "Skaparen har stängt av citat",
+    "removed": "Skaparen har tagit bort sitt inlägg från det här citatet",
+    "remove": "Ta bort",
+    "removedToast": "Ditt inlägg togs bort från det här citatet",
+    "removeFailed": "Det gick inte att ta bort ditt inlägg från citatet",
+    "refused": "Skaparen låter dig inte citera det här inlägget"
+  },
+  "contentWarning": {
+    "label": "Innehållsvarning",
+    "placeholder": "Skriv din varning här",
+    "add": "Lägg till innehållsvarning",
+    "remove": "Ta bort innehållsvarning",
+    "show": "Visa inlägg"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Lägg till en beskrivning",
+    "edit": "Redigera beskrivning",
+    "titleImage": "Beskriv den här bilden",
+    "titleVideo": "Beskriv den här videon",
+    "help": "För personer som inte kan se den. Skärmläsare läser upp den.",
+    "placeholder": "Vad visar den? Ta med eventuell text i den.",
+    "show": "Visa beskrivning",
+    "saved": "Beskrivningen sparades",
+    "saveFailed": "Det gick inte att spara beskrivningen"
+  },
   "liveRecap": {
     "title": "Streamsammanfattning",
     "justEnded": "Sammanfattning av ditt flöde",
@@ -336,6 +466,11 @@
     "showAsNewMemberDesc": "Låter andra medlemmar se att du precis kommit hit så att de kan välkomna dig. Slutar automatiskt 30 dagar efter att du registrerade dig.",
     "postVisibility": "Inläggssynlighet",
     "defaultPostVisibility": "Standardsynlighet",
+    "defaultFeed": "Standardflöde",
+    "defaultFeedDesc": "Välj vilket flöde som öppnas varje gång du öppnar DeHub",
+    "feedToggles": "Återställ flödesfilter",
+    "feedTogglesDesc": "Filter du slår på i ett flöde förblir dina standarder tills du återställer dem",
+    "feedTogglesCleared": "Flödesfilter återställda",
     "defaultProfileTab": "Standardflik på profilen",
     "defaultProfileTabDesc": "Välj vilken flik besökare ser först på din profil",
     "defaultPostVisibilityDesc": "Gäller alla nuvarande och framtida inlägg",
@@ -864,6 +999,7 @@
     "themeColorBrandFailed": "Kunde inte läsa färger från din profilbild"
   },
   "common": {
+    "refresh": "Uppdatera",
     "mute": "Stäng av ljud",
     "unmute": "Slå på ljud",
     "fullscreen": "Helskärm",
@@ -977,6 +1113,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Bädda in",
+    "copyEmbedCode": "Kopiera inbäddningskod",
+    "embedCodeCopied": "Inbäddningskod kopierad",
     "options": "Alternativ",
     "sendTip": "Skicka dricks",
     "queue": "Kö",
@@ -2839,6 +2978,8 @@
     "yourFractions": "Du äger {{count}} av {{total}} fraktioner"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiera länk till RSS-flöde",
+    "copyRssFeedHint": "Följ de här inläggen i valfri flödesläsare",
     "copyProfileUrl": "Kopiera profil-URL",
     "copyUsername": "Kopiera användarnamn",
     "copyAddress": "Kopiera adress",
@@ -4162,6 +4303,7 @@
     "noVoice": "Din enhet har ingen röst för det här språket."
   },
   "stages": {
+    "previewFailed": "Kunde inte spela upp förhandsvisningen i ljudrummet",
     "allStages": "Alla ljudrum",
     "addToCalendar": "Lägg till i kalender",
     "nowPlaying": "Spelar nu",
@@ -4534,6 +4676,7 @@
     "anyBadgeHolder": "Alla märkesinnehavare får Superkrafter. Köp DeHub-tokens för att låsa upp ett märke — insats är inte nödvändigt."
   },
   "follow": {
+    "noResults": "Inga resultat hittades",
     "followers": "Följare",
     "following": "Följer",
     "requests": "Begäran",
@@ -4617,7 +4760,10 @@
     "play": "Spela",
     "pause": "Pausa",
     "listens_one": "{{count}} lyssna",
-    "listens_other": "{{count}} lyssnar"
+    "listens_other": "{{count}} lyssnar",
+    "lyrics": "Låttext",
+    "lyricsLoading": "Hämtar låttext…",
+    "lyricsNone": "Ingen låttext hittades"
   },
   "transfer": {
     "arcTitle": "Skicka USDC på Arc",
@@ -5543,6 +5689,8 @@
     "creatorEarnsDirect": "Prenumeranter betalar i DeHub-tokens. Din andel hamnar i din plånbok så fort de prenumererar, minus plattformsavgiften för din märkesnivå."
   },
   "live": {
+    "bigEvent": "Stort evenemang",
+    "bigEventHint": "För stor publik: tittarna ser sändningen cirka 20 sekunder fördröjd, med färre avbrott.",
     "notSet": "Inte angivet",
     "liveChat": "Livechatt",
     "pickDate": "Välj datum",
@@ -7157,6 +7305,7 @@
       "delete": "Radera"
     },
     "export": {
+      "cancel": "Avbryt",
       "scope": "Nedladdningsintervall",
       "downloadTimeline": "Hela tidslinjen",
       "downloadSelection": "Valda videoklipp ({{count}})",
@@ -7436,6 +7585,7 @@
     }
   },
   "creator": {
+    "sending": "Skickar",
     "navStudio": "Studio",
     "editor": "Redigerare",
     "untitled": "Namnlös",
@@ -8002,6 +8152,7 @@
     "transferIncomplete": "Tokenöverföringen slutfördes inte. Du kommer att bli ombedd igen innan ditt nästa betalda inlägg."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Sök emoji",
     "noEmoji": "Inga emoji hittades",
     "searchResults": "Sökresultat",
@@ -9663,5 +9814,15 @@
     "youAreBanned": "Du kan inte chatta i denna skaparens strömmar",
     "youAreTimedOut": "Du är tidsutrymmes för en stund",
     "title": "Moderera"
+  },
+  "loginStack": {
+    "tip": "Ge DHB-dricks",
+    "headlineTop": "Du kommer att äga allt",
+    "headlineAccent": "och vara lycklig.",
+    "orContinueWith": "eller fortsätt med",
+    "phone": "Telefon",
+    "fingerprint": "Fingeravtryck",
+    "exploreFirst": "Utforska först",
+    "codeNote": "Vi mejlar dig en kod, inget lösenord behövs."
   }
 }

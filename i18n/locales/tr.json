@@ -74,6 +74,136 @@
   "agents.workspace.action": "İşlem",
   "agents.workspace.cadence": "Zamanlama",
   "agents.workspace.filter": "Etkinliği filtrele",
+  "mastodonApps": {
+    "connectedTitle": "Bağlı uygulamalar",
+    "connectedDescription": "Bu hesapla giriş yaptığın Mastodon uygulamaları. Oturumunu kapatmak için birini kaldır.",
+    "connectedEmpty": "Henüz bağlı uygulama yok.",
+    "lastUsed": "Son kullanım {{date}}",
+    "remove": "Kaldır",
+    "removed": "Uygulama kaldırıldı",
+    "failed": "Olmadı. Tekrar dene."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mastodon ve diğer fediverse uygulamalarındaki kişiler seni bu adreste bulup takip edebilir. Yeni herkese açık gönderilerin onlara orada ulaşır.",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "privateNote": "Gizli hesaplar fediverse'te gösterilmez.",
+    "noUsername": "Fediverse adresi almak için bir kullanıcı adı seç."
+  },
+  "profileFields": {
+    "title": "Profil alanları",
+    "description": "Profiline dört satıra kadar ek bilgi ekle; örneğin bir web sitesi ya da zamirlerin.",
+    "label": "Etiket",
+    "content": "İçerik",
+    "save": "Alanları kaydet",
+    "saved": "Profil alanları kaydedildi",
+    "failed": "Kaydedilmedi. Tekrar dene.",
+    "verified": "Doğrulanmış bağlantı",
+    "verifyHint": "Bir bağlantıyı doğrulamak için bunu o sayfaya ekle, sonra yeniden kaydet: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Bildirimleri filtrele",
+    "description": "Çevren dışından biri seninle etkileşime girdiğinde ne olacağını seç. Filtrelenen bildirimler rozet ve anlık bildirim olmadan Filtrelenenler altında bekler.",
+    "notFollowing": "Takip etmediğin kişiler",
+    "notFollowers": "Seni takip etmeyen kişiler",
+    "newAccounts": "Yeni hesaplar (30 günden yeni)",
+    "accept": "Bana bildir",
+    "filter": "Filtrele",
+    "drop": "Tamamen gizle",
+    "filteredTitle": "Filtrelenen bildirimler",
+    "filteredEmpty": "Hiçbir şey filtrelenmedi.",
+    "failed": "Kaydedilmedi. Tekrar dene."
+  },
+  "followedTags": {
+    "follow": "#{{tag}} takip et",
+    "following": "Takip ediliyor",
+    "unfollow": "#{{tag}} takibi bırak",
+    "followed": "Artık #{{tag}} takip ediyorsun. Gönderileri Takip Edilenler akışında görünecek.",
+    "unfollowed": "#{{tag}} takibi bırakıldı",
+    "failed": "Kaydedilmedi. Tekrar dene.",
+    "clear": "Temizle"
+  },
+  "keywordFilters": {
+    "title": "Sessize alınan kelimeler",
+    "description": "Bu kelimeleri içeren gönderileri ve yorumları gizle ya da bir uyarının arkasına katla. Bu listeyi yalnızca sen görürsün.",
+    "placeholder": "Kelime veya ifade",
+    "add": "Sessize al",
+    "added": "Sessize alındı: {{phrase}}",
+    "wholeWord": "Yalnızca tam kelime",
+    "whenMatches": "Bir gönderi eşleştiğinde",
+    "warn": "Uyarı göster",
+    "hide": "Gizle",
+    "howLong": "Ne kadar süre",
+    "forever": "Ben kaldırana kadar",
+    "duration1h": "1 saat",
+    "duration1d": "1 gün",
+    "duration7d": "7 gün",
+    "duration30d": "30 gün",
+    "where": "Nerede",
+    "home": "Ana sayfa",
+    "public": "Keşfet ve ara",
+    "profile": "Profiller",
+    "thread": "Sohbetler",
+    "notifications": "Bildirimler",
+    "empty": "Hiç kelimeyi sessize almadın.",
+    "remove": "Sesi aç",
+    "until": "{{date}} tarihine kadar",
+    "filtered": "Filtrelendi: {{phrase}}",
+    "showAnyway": "Yine de göster",
+    "failed": "Kaydedilmedi. Tekrar dene."
+  },
+  "postVisibility": {
+    "label": "Bunu kimler görebilir",
+    "public": "Herkes",
+    "followers": "Yalnızca takipçiler",
+    "direct": "Yalnızca bahsedilenler",
+    "noRepost": "Yalnızca herkese açık gönderiler yeniden paylaşılabilir",
+    "directHint": "Bu gönderiyi yalnızca @ ile bahsettiğin kişiler görecek",
+    "needsMention": "Yalnızca bahsedilenlere göndermek için en az bir kişiden @ ile bahset"
+  },
+  "replyPolicy": {
+    "label": "Kimler yanıtlayabilir",
+    "public": "Herkes",
+    "followers": "Takipçilerin",
+    "following": "Takip ettiklerin",
+    "mentioned": "Yalnızca bahsedilenler",
+    "noticeFollowers": "Yalnızca yazarın takipçileri yanıtlayabilir",
+    "noticeFollowing": "Yalnızca yazarın takip ettiği kişiler yanıtlayabilir",
+    "noticeMentioned": "Yalnızca gönderide bahsedilen kişiler yanıtlayabilir",
+    "refused": "Yazar bu gönderiyi kimlerin yanıtlayabileceğini sınırladı"
+  },
+  "quotePolicy": {
+    "label": "Kimler alıntılayabilir",
+    "public": "Herkes",
+    "followers": "Takipçiler",
+    "nobody": "Yalnızca ben",
+    "off": "Yazar alıntılamayı kapattı",
+    "removed": "Yazar gönderisini bu alıntıdan kaldırdı",
+    "remove": "Kaldır",
+    "removedToast": "Gönderin bu alıntıdan kaldırıldı",
+    "removeFailed": "Gönderin alıntıdan kaldırılamadı",
+    "refused": "Yazar bu gönderiyi alıntılamana izin vermiyor"
+  },
+  "contentWarning": {
+    "label": "İçerik uyarısı",
+    "placeholder": "Uyarınızı buraya yazın",
+    "add": "İçerik uyarısı ekle",
+    "remove": "İçerik uyarısını kaldır",
+    "show": "Gönderiyi göster"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Açıklama ekle",
+    "edit": "Açıklamayı düzenle",
+    "titleImage": "Bu görseli açıklayın",
+    "titleVideo": "Bu videoyu açıklayın",
+    "help": "Onu göremeyen insanlar için. Ekran okuyucular onu sesli okur.",
+    "placeholder": "Ne gösteriyor? İçindeki herhangi bir metni de ekleyin.",
+    "show": "Açıklamayı göster",
+    "saved": "Açıklama kaydedildi",
+    "saveFailed": "Açıklama kaydedilemedi"
+  },
   "agents.life.compose": "Bu ajan olarak paylaş",
   "agents.life.daily": "Bugünkü gönderiler: {{posts}} · Günlük hedef: {{target}}",
   "agents.life.editComment": "Yorumu düzenle",
@@ -544,6 +674,11 @@
     "showAsNewMemberDesc": "Diğer üyelerin yeni katıldığınızı görüp sizi karşılamasını sağlar. Kaydolduktan 30 gün sonra otomatik olarak sona erer.",
     "postVisibility": "Gönderi Görünürlüğü",
     "defaultPostVisibility": "Varsayılan Görünürlük",
+    "defaultFeed": "Varsayılan akış",
+    "defaultFeedDesc": "DeHub'ı her açtığında hangi akışın açılacağını seç",
+    "feedToggles": "Akış filtrelerini sıfırla",
+    "feedTogglesDesc": "Bir akışta açtığın filtreler sen sıfırlayana kadar varsayılanın olarak kalır",
+    "feedTogglesCleared": "Akış filtreleri sıfırlandı",
     "defaultProfileTab": "Varsayılan profil sekmesi",
     "defaultProfileTabDesc": "Ziyaretçilerin profilinizde ilk hangi sekmeyi göreceğini seçin",
     "defaultPostVisibilityDesc": "Tüm mevcut ve gelecek gönderilere uygulanır",
@@ -1072,6 +1207,7 @@
     "themeColorBrandFailed": "Profil fotoğrafınızdan renkler okunamadı"
   },
   "common": {
+    "refresh": "Yenile",
     "mute": "Sesi kapat",
     "unmute": "Sesi aç",
     "fullscreen": "Tam ekran",
@@ -1187,6 +1323,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Yerleştir",
+    "copyEmbedCode": "Yerleştirme kodunu kopyala",
+    "embedCodeCopied": "Yerleştirme kodu kopyalandı",
     "skippableSectionsDesc": "Sponsor ve girişleri işaretle veya oyla",
     "skippableSections": "Atlanabilir bölümler",
     "options": "Seçenekler",
@@ -2151,6 +2290,13 @@
     "encryptionOff": "Bu cihazda şifreleme kapalı",
     "encryptionTurnOn": "Aç",
     "cannotDecrypt": "Şifreli mesaj — bu cihazda açılamıyor",
+    "lockedTitle": "Mesajlarını okumak için kilidi aç",
+    "lockedBody": "{{name}} ile sohbetin uçtan uca şifreli. Açmak için bu cihazda cüzdanının kilidini aç.",
+    "lockedUnlock": "Cüzdanın kilidini aç",
+    "lockedTryAgain": "Tekrar dene",
+    "lockedPrivate": "Bunları yalnızca sen okuyabilirsin",
+    "undecryptableRun_one": "{{count}} mesaj bu cihazda açılamıyor",
+    "undecryptableRun_other": "{{count}} mesaj bu cihazda açılamıyor",
     "title": "Mesajlar",
     "searchConversations": "Sohbetlerde ara...",
     "failedToLoad": "Sohbetler yüklenemedi",
@@ -2194,13 +2340,24 @@
     "shareStation": "İstasyonu paylaş",
     "listeningTo": "DeHub'da {{name}} dinliyorum",
     "mostPlayed": "En çok çalınanlar",
+    "radioPicks": "Seçtiklerimiz",
+    "mostVoted": "En çok oy alan",
+    "trending": "Trend",
+    "stagesLive": "Şu an canlı",
+    "upcoming": "Yaklaşan",
+    "mostListened": "En çok dinlenen",
+    "recentStages": "Son",
+    "noStages": "Burada henüz Stage yok",
+    "listening": "dinliyor",
     "mostLiked": "En çok beğenilenler",
     "mostRecent": "En yeniler",
     "chartOrder": "Ses sıralaması",
-    "chartKind": "Müzik listesi",
-    "chartAudio": "Ses",
-    "chartVideos": "Müzik videoları",
-    "videoCharts": "Müzik Video Listeleri",
+    "quality": "Kalite",
+    "votes": "Oylar",
+    "plays": "Dinlenme",
+    "liveRadio": "Canlı radyo",
+    "listenLive": "Canlı dinle",
+    "nextStation": "Sonraki istasyon",
     "mostViewed": "En çok izlenen",
     "trendingWeek": "Bu hafta trend",
     "newest": "En yeni",
@@ -3213,6 +3370,8 @@
     "yourFractions": "{{total}} kesrin {{count}} tanesine sahipsiniz"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS akışı bağlantısını kopyala",
+    "copyRssFeedHint": "Bu gönderileri herhangi bir akış okuyucuda takip edin",
     "copyProfileUrl": "Profil URL'sini kopyala",
     "copyUsername": "Kullanıcı adını kopyala",
     "copyAddress": "Adresi kopyala",
@@ -4620,6 +4779,7 @@
     "filedOn": "{{date}} tarihinde açıldı"
   },
   "stages": {
+    "previewFailed": "Önizleme sesli odada çalınamadı",
     "allStages": "Tüm sesli odalar",
     "addToCalendar": "Takvime ekle",
     "nowPlaying": "Şimdi çalıyor",
@@ -4992,6 +5152,7 @@
     "anyBadgeHolder": "Herhangi bir rozet sahibi Süper Güçler kazanır. Bir rozeti etkinleştirmek için DeHub jetonu satın alın — stake etmek gerekmez."
   },
   "follow": {
+    "noResults": "Sonuç bulunamadı",
     "followers": "Takipçiler",
     "following": "Takip Edilenler",
     "requests": "İstekler",
@@ -5076,7 +5237,10 @@
     "pause": "Duraklat",
     "listens_one": "{{count}} dinlenme",
     "listens_other": "{{count}} dinlenme",
-    "visualizerColour": "Görselleştirici rengi"
+    "visualizerColour": "Görselleştirici rengi",
+    "lyrics": "Şarkı sözleri",
+    "lyricsLoading": "Sözler aranıyor…",
+    "lyricsNone": "Söz bulunamadı"
   },
   "transfer": {
     "arcTitle": "Arc'ta USDC gönder",
@@ -6103,6 +6267,8 @@
     "creatorEarnsDirect": "Aboneler DeHub tokenleri ile ödeme yapar. Payınız, abone oldukları anda cüzdanınıza düşer ve rozet seviyenizin platform ücreti düşülür."
   },
   "live": {
+    "bigEvent": "Büyük etkinlik",
+    "bigEventHint": "Büyük kitleler için: izleyiciler yayını yaklaşık 20 saniye geriden, daha az kesintiyle izler.",
     "notSet": "Ayarlanmadı",
     "liveChat": "Canlı sohbet",
     "pickDate": "Tarih seç",
@@ -7771,6 +7937,7 @@
       "delete": "Sil"
     },
     "export": {
+      "cancel": "İptal",
       "scope": "İndirme aralığı",
       "downloadTimeline": "Tüm zaman çizelgesi",
       "downloadSelection": "Seçili video klipler ({{count}})",
@@ -8158,6 +8325,7 @@
     }
   },
   "creator": {
+    "sending": "Gönderiliyor",
     "navStudio": "Stüdyo",
     "editor": "Editör",
     "untitled": "Başlıksız",
@@ -8945,6 +9113,7 @@
     "transferIncomplete": "Token transferi tamamlanmadı. Bir sonraki ücretli gönderinizden önce tekrar sorulacaktır."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Emoji ara",
     "noEmoji": "Emoji bulunamadı",
     "searchResults": "Arama sonuçları",
@@ -10522,6 +10691,8 @@
     "9bf75671f22f": "Oynatma hızı {{value1}}",
     "50e7258dccec": "{{value1}} paylaşıyor",
     "fef6a1a97127": "Ardından {{value1}} geliyor",
+    "036cfd952896": "Kimi takip etmeli",
+    "0c820caf16c0": "Henüz biyografi yok",
     "46785e0aacc9": "{{value1}} engelini kaldır",
     "8d3f3e35915d": "{{value1}} engelle",
     "ba85bf0351d5": "{{value1}} saniye geri sar",
@@ -11529,5 +11700,15 @@
     "youAreBanned": "Bu yaratıcının canlı yayınlarında sohbete katılamazsın.",
     "youAreTimedOut": "Anlık olarak zaman aşımına uğradın.",
     "title": "Yönet"
+  },
+  "loginStack": {
+    "tip": "DHB bahşiş",
+    "headlineTop": "Her şeye sahip olacaksın",
+    "headlineAccent": "ve mutlu olacaksın.",
+    "orContinueWith": "veya şununla devam et",
+    "phone": "Telefon",
+    "fingerprint": "Parmak izi",
+    "exploreFirst": "Önce keşfet",
+    "codeNote": "E-postana bir kod göndeririz, şifre gerekmez."
   }
 }

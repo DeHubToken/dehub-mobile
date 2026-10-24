@@ -661,6 +661,40 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
           </View>
         </SettingsAnchor>
 
+        {/* Who may reach you at all — Mastodon's notification filters. The
+            server applies it as each notification is made (backend
+            notification-policy); filtered ones wait under Filtered on the
+            notifications screen. */}
+        <SettingsAnchor id="notification-filters">
+          <View className="mt-6">
+            <Text className="text-theme-neutrals-400 text-sm font-medium mb-1">{t('notificationFilters.title')}</Text>
+            <Text className="text-theme-neutrals-500 text-xs mb-2">{t('notificationFilters.description')}</Text>
+            {(['notFollowing', 'notFollowers', 'newAccounts'] as const).map((key) => (
+              <View key={key} className="py-2">
+                <Text className="text-white text-base mb-2">{t(`notificationFilters.${key}`)}</Text>
+                <View className="flex-row flex-wrap">
+                  {(['accept', 'filter', 'drop'] as const).map((value) => {
+                    const selected = (prefs.policy?.[key] ?? 'accept') === value;
+                    return (
+                      <TouchableOpacity
+                        key={value}
+                        onPress={() => updatePrefs({ policy: { ...(prefs.policy ?? {}), [key]: value } })}
+                        accessibilityRole="button"
+                        accessibilityState={{ selected }}
+                        className={`mr-2 mb-1 rounded-full px-3 py-1.5 ${selected ? 'bg-white' : 'bg-white/10'}`}
+                      >
+                        <Text className={`text-xs ${selected ? 'text-black font-semibold' : 'text-white'}`}>
+                          {t(`notificationFilters.${value}`)}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+            ))}
+          </View>
+        </SettingsAnchor>
+
         <View className="mt-6 p-4 bg-white/5 rounded-xl flex-row items-start">
           <Icon name="Info" size={16} color="#6b7280" />
           <Text className="text-theme-neutrals-500 text-xs ml-2 flex-1">

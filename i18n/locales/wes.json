@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Connected apps",
+    "connectedDescription": "Mastodon apps weh you don sign in with this account. Remove one make e sign out.",
+    "connectedEmpty": "No app don connect yet.",
+    "lastUsed": "Last use {{date}}",
+    "remove": "Remove",
+    "removed": "App don comot",
+    "failed": "E no work. Try again."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "People weh di for Mastodon and other fediverse apps fit find you and follow you for this address. Your new public posts go reach them there.",
+    "copy": "Copy",
+    "copied": "E don copy",
+    "privateNote": "Private accounts no di show for fediverse.",
+    "noUsername": "Choose username make you get fediverse address."
+  },
+  "profileFields": {
+    "title": "Profile fields",
+    "description": "Up to four extra lines for your profile, like website or your pronouns.",
+    "label": "Label",
+    "content": "Content",
+    "save": "Save fields",
+    "saved": "Profile fields don save",
+    "failed": "E no save. Try again.",
+    "verified": "Verified link",
+    "verifyHint": "For verify link, add this one for that page, then save again: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filter notifications from",
+    "description": "Choose wetin go happen when person weh no di your circle interact with you. Filtered notifications go wait under Filtered, no badge and no push.",
+    "notFollowing": "People weh you no follow",
+    "notFollowers": "People weh no follow you",
+    "newAccounts": "New accounts (under 30 days)",
+    "accept": "Tell me",
+    "filter": "Filter",
+    "drop": "Hide am finish",
+    "filteredTitle": "Filtered notifications",
+    "filteredEmpty": "Nothing don filter.",
+    "failed": "E no save. Try again."
+  },
+  "followedTags": {
+    "follow": "Follow #{{tag}}",
+    "following": "You di follow",
+    "unfollow": "Unfollow #{{tag}}",
+    "followed": "You don di follow #{{tag}}. Ihn posts go show for your Following feed.",
+    "unfollowed": "You don unfollow #{{tag}}",
+    "failed": "E no save. Try again.",
+    "clear": "Clear am"
+  },
+  "keywordFilters": {
+    "title": "Words weh you mute",
+    "description": "Hide posts and comments weh get these words, or fold them behind warning. Na only you di see this list.",
+    "placeholder": "Word or phrase",
+    "add": "Mute",
+    "added": "Don mute: {{phrase}}",
+    "wholeWord": "Only the full word",
+    "whenMatches": "When post match",
+    "warn": "Show warning",
+    "hide": "Hide am",
+    "howLong": "How long",
+    "forever": "Until I remove am",
+    "duration1h": "For 1 hour",
+    "duration1d": "For 1 day",
+    "duration7d": "For 7 days",
+    "duration30d": "For 30 days",
+    "where": "Where",
+    "home": "Home",
+    "public": "Explore and search",
+    "profile": "Profiles",
+    "thread": "Conversations",
+    "notifications": "Notifications",
+    "empty": "You never mute any word.",
+    "remove": "Unmute",
+    "until": "Until {{date}}",
+    "filtered": "Don filter: {{phrase}}",
+    "showAnyway": "Show am anyway",
+    "failed": "E no save. Try again."
+  },
+  "postVisibility": {
+    "label": "Who fit see this",
+    "public": "Everybody",
+    "followers": "Na only followers",
+    "direct": "Na only people weh you mention",
+    "noRepost": "Na only public post fit repost",
+    "directHint": "Na only the people weh you mention with @ go see this post",
+    "needsMention": "Mention at least one person with @ for post am for only people weh you mention"
+  },
+  "replyPolicy": {
+    "label": "Who fit reply",
+    "public": "Anybody",
+    "followers": "Your followers",
+    "following": "People weh you di follow",
+    "mentioned": "Na only people weh dem mention",
+    "noticeFollowers": "Na only the person yi followers fit reply",
+    "noticeFollowing": "Na only people weh the person di follow fit reply",
+    "noticeMentioned": "Na only people weh dem mention for the post fit reply",
+    "refused": "The person weh post am don limit who fit reply this post"
+  },
+  "quotePolicy": {
+    "label": "Who fit quote",
+    "public": "Anybody",
+    "followers": "Followers",
+    "nobody": "Na only me",
+    "off": "The person weh post am don off quote",
+    "removed": "The person weh post am don comot yi post from this quote",
+    "remove": "Comot am",
+    "removedToast": "Your post don comot from this quote",
+    "removeFailed": "We no fit comot your post from the quote",
+    "refused": "The person weh post am no gree make you quote this post"
+  },
+  "contentWarning": {
+    "label": "Content warning",
+    "placeholder": "Write your warning for here",
+    "add": "Add content warning",
+    "remove": "Comot content warning",
+    "show": "Show the post"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Add description",
+    "edit": "Change description",
+    "titleImage": "Describe this picture",
+    "titleVideo": "Describe this video",
+    "help": "For people weh no fit see am. Screen reader go read am loud.",
+    "placeholder": "Wetin e di show? Put any writing weh e get inside.",
+    "show": "Show description",
+    "saved": "Description don save",
+    "saveFailed": "We no fit save the description"
+  },
   "liveRecap": {
     "justEnded": "Your stream recap",
     "lastStream": "Your last stream",
@@ -329,6 +459,11 @@
     "showAsNewMemberDesc": "I di mek oda member dem si sei yu jos join so dat dem fit welkom yu. I di stop bai isef 30 dei afta yu register.",
     "postVisibility": "Hu fit si post",
     "defaultPostVisibility": "Hu fit si post fo nomal",
+    "defaultFeed": "Default feed",
+    "defaultFeedDesc": "Choose which feed go open every time wey you open DeHub",
+    "feedToggles": "Reset feed filters",
+    "feedTogglesDesc": "Filters wey you on for feed go stay as your default until you reset dem",
+    "feedTogglesCleared": "Feed filters don reset",
     "defaultProfileTab": "Default profile tab",
     "defaultProfileTabDesc": "Choose wich tab visitor dem go si fes fo yua profile",
     "defaultPostVisibilityDesc": "E dey apply for all current and future posts",
@@ -852,6 +987,7 @@
     "themeColorBrandFailed": "I no fit read color dem from yua profile picture"
   },
   "common": {
+    "refresh": "Refresh",
     "mute": "Off di sound",
     "unmute": "On di sound",
     "fullscreen": "Full screen",
@@ -961,6 +1097,9 @@
     "payViaBridgeDpay": "Move wey go Base, pay wey go DeHub Pay, token dey come afo about one minute"
   },
   "postOptions": {
+    "embed": "Embed",
+    "copyEmbedCode": "Copy embed code",
+    "embedCodeCopied": "Embed code don copy",
     "options": "Options",
     "sendTip": "Sen Tip",
     "queue": "Lain",
@@ -2803,6 +2942,8 @@
     "yourFractions": "You get {{count}} for {{total}} fraction dem"
   },
   "profileOptions": {
+    "copyRssFeed": "Copy RSS feed link",
+    "copyRssFeedHint": "Follow dis posts for any feed reader",
     "copyProfileUrl": "Copy URL fo profile",
     "copyUsername": "Copy username",
     "copyAddress": "Copy adres",
@@ -4121,6 +4262,7 @@
     "noVoice": "Ya phone no get voice for dis language."
   },
   "stages": {
+    "previewFailed": "We no fit play dat one for stage",
     "allStages": "All Audio room dem",
     "addToCalendar": "Add to calendar",
     "nowPlaying": "Now playing",
@@ -4492,6 +4634,7 @@
     "holdToUnlock": "Buy DeHub tokens to unlock a badj na im SuperPowers. Any bodi wey get badj, dem get am - staking no dey required."
   },
   "follow": {
+    "noResults": "No results found",
     "followers": "Follower dem",
     "following": "Following",
     "requests": "Requests",
@@ -5473,6 +5616,8 @@
     "creatorEarnsDirect": "Subscribers di pay with DeHub tokens. Your share go land for your wallet di moment dem subscribe, minus di platform fee for your badge level."
   },
   "live": {
+    "bigEvent": "Big event",
+    "bigEventHint": "For plenty pipul: viewers go di watch like 20 seconds behind, but e no go di cut plenty.",
     "notSet": "Dem never set am",
     "liveChat": "Live chat",
     "pickDate": "Pick date",
@@ -7073,6 +7218,7 @@
       "delete": "Delete"
     },
     "export": {
+      "cancel": "Cancel",
       "scope": "Di part for download",
       "downloadTimeline": "Di whole timeline",
       "downloadSelection": "Video clip dem wey you select ({{count}})",
@@ -7350,6 +7496,7 @@
     }
   },
   "creator": {
+    "sending": "Sending",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "No name",
@@ -7736,7 +7883,10 @@
     "listens_other": "{{count}} listen dem",
     "popOut": "Pop am out — continue to listen while you di browse",
     "closeCornerPlayer": "Klos di player fo kona",
-    "stopAndClose": "Stop am and close the player"
+    "stopAndClose": "Stop am and close the player",
+    "lyrics": "Song words",
+    "lyricsLoading": "We di find song words…",
+    "lyricsNone": "No song words"
   },
   "banned": {
     "reason": "Wai: {{reason}}",
@@ -7909,6 +8059,7 @@
     "dhbPending": "Token purchase confirm, but no dey show yet. Send again for now."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Find emoji",
     "noEmoji": "We no find any emoji",
     "searchResults": "Wetin we find",
