@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../hooks/useSearchFieldMaterial';
 /**
  * StoresScreen
  * ============
@@ -113,6 +114,7 @@ const ListingCard: React.FC<{ listing: StoreListing; width: number; onPress: () 
 
 export default function StoresScreen() {
   const { t } = useTranslation();
+  const searchMaterial = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const { width: screenW } = useWindowDimensions();
@@ -166,14 +168,16 @@ export default function StoresScreen() {
 
       {tab === "browse" ? (
         <>
-          <View style={styles.searchWrap}>
+          <View style={[styles.searchWrap, searchMaterial.surface]}>
             <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={search}
               onChangeText={setSearch}
               placeholder={t("stores.searchPlaceholder")}
               placeholderTextColor="#8B8D90"
-              style={styles.searchInput}
+              style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+              onFocus={searchMaterial.onFocus}
+              onBlur={searchMaterial.onBlur}
               returnKeyType="search"
             />
             {search.length > 0 && (
