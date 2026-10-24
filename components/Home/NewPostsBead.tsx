@@ -9,6 +9,7 @@ import { GRAIN, glassTint } from "../../theme/skins";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 import { getAvatarUrl } from "../../libs/misc";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 import type { NewPostAuthor } from "../../hooks/useNewPostsSignal";
 
 /** Match the feed nav's finish, including each skin's tint and texture. */
@@ -29,21 +30,31 @@ function NewPostsMaterial({ radius, islandChrome, brackets = false }: { radius: 
   );
 }
 
-const BEAD_SHOULDER = 8;
-const BEAD_HEIGHT = 28;
-const BEAD_CORNER = 12;
-const BEAD_FACE = 18;
-const BEAD_FACE_OVERLAP = 6;
+const BEAD_SHOULDER = 10;
+/** The tab's height below the pill. */
+export const BEAD_HEIGHT = 34;
+/** How far the bead reaches up over the pill's bottom edge. Its fill covers
+ *  the pill's rim there, so pill and bead read as one piece with no seam. */
+export const BEAD_JOIN = 2;
+const BEAD_CORNER = 14;
+const BEAD_FACE = 22;
+const BEAD_FACE_OVERLAP = 7;
+const TOTAL_HEIGHT = BEAD_JOIN + BEAD_HEIGHT;
 
-/** The bead's outline: concave shoulders off the bar's bottom edge, then a
- *  rounded tab. `open` leaves the top unstroked so it joins the bar's rim. */
+/** The bead's outline: a strip over the pill's bottom edge, concave shoulders
+ *  off it, then a rounded tab. `open` strokes only the shoulders and tab,
+ *  starting where the pill's own rim runs, so the two outlines are one line. */
 function beadPath(width: number, square: boolean, open = false) {
   const f = square ? 0 : BEAD_SHOULDER;
   const r = square ? 0 : BEAD_CORNER;
-  const tab = width - f * 2;
-  const top = open ? 0.5 : 0;
-  const bottom = open ? BEAD_HEIGHT - 0.5 : BEAD_HEIGHT;
-  return `M0,${top}Q${f},${top} ${f},${f}V${BEAD_HEIGHT - r}A${r},${r} 0 0 0 ${f + r},${bottom}H${f + tab - r}A${r},${r} 0 0 0 ${f + tab},${BEAD_HEIGHT - r}V${f}Q${f + tab},${top} ${width},${top}${open ? "" : "Z"}`;
+  const right = width - f;
+  const rim = BEAD_JOIN - 0.5;
+  const T = TOTAL_HEIGHT;
+  if (open) {
+    const b = T - 0.5;
+    return `M0,${rim}Q${f},${rim} ${f},${rim + f}V${T - r}A${r},${r} 0 0 0 ${f + r},${b}H${right - r}A${r},${r} 0 0 0 ${right},${T - r}V${rim + f}Q${right},${rim} ${width},${rim}`;
+  }
+  return `M0,0H${width}V${rim}Q${right},${rim} ${right},${rim + f}V${T - r}A${r},${r} 0 0 1 ${right - r},${T}H${f + r}A${r},${r} 0 0 1 ${f},${T - r}V${rim + f}Q${f},${rim} 0,${rim}Z`;
 }
 
 /** An rgba tint laid over the pill's #18181B base, as one opaque colour. */
@@ -57,8 +68,9 @@ function overPillBase(tint: string, lift = 0) {
 }
 
 /** "+N" with up to three faces, hanging off the bottom of the feed nav pill
- *  as part of it. Android paints it in the pill's solid colour; iOS masks the
- *  pill's own glass to the bead's shape. */
+ *  as part of it. Drawn over the pill (HomeScreen), reaching BEAD_JOIN up
+ *  over its bottom edge. Android paints it in the pill's solid colour; iOS
+ *  masks the pill's own glass to the bead's shape. */
 export default function NewPostsBead({ count, authors, islandChrome, onPress, label }: {
   count: number;
   authors: NewPostAuthor[];
@@ -66,45 +78,51 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
   onPress: () => void;
   label: string;
 }) {
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, isLight, skin } = useAppTheme();
   const square = !!(skin?.square || isMinimal);
+  const lightFrost = isLight && !skin && !isMinimal;
   const f = square ? 0 : BEAD_SHOULDER;
-  const [contentWidth, setContentWidth] = useState(56);
-  const width = f * 2 + contentWidth + 18;
+  const [contentWidth, setContentWidth] = useState(72);
+  const width = f * 2 + contentWidth + 24;
   const faces = authors.slice(0, 3);
-  const rim = isMinimal ? MINIMAL_TAB_LINE : String(skin?.barBorder?.borderColor ?? "rgba(255,255,255,0.22)");
+  const rim = lightFrost ? "rgba(11,11,13,0.10)"
+    : isMinimal ? MINIMAL_TAB_LINE
+    : skin ? String(skin.barBorder?.borderColor ?? "rgba(255,255,255,0.22)")
+    : islandChrome ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.22)";
+  // The system pill's rim is two hairlines wide (FrostedPill); match it.
+  const rimWidth = !skin && !isMinimal && !islandChrome && !lightFrost ? StyleSheet.hairlineWidth * 2 : 1;
   const tint = islandChrome
     ? glassTint(String(skin?.barFill.backgroundColor ?? "#18181B"), 0.22)
     : skin ? glassTint(String(skin.strip.backgroundColor), 0.22) : "rgba(20, 20, 24, 0.18)";
-  const solid = isMinimal ? "#000" : overPillBase(tint);
-  const ink = skin?.tabIconActive ?? "#FFFFFF";
-  return (
-    <View pointerEvents="box-none" style={{ width, height: BEAD_HEIGHT + 1 }}>
-      <Svg pointerEvents="none" width={width} height={BEAD_HEIGHT + 1} style={StyleSheet.absoluteFill}>
+  const solid = lightFrost ? "#F4F4F7" : isMinimal ? "#000" : overPillBase(tint);
+  const ink = lightFrost ? "#0B0B0D" : skin?.tabIconActive ?? "#FFFFFF";
+  const bead = (
+    <View pointerEvents="box-none" style={{ width, height: TOTAL_HEIGHT }}>
+      <Svg pointerEvents="none" width={width} height={TOTAL_HEIGHT} style={StyleSheet.absoluteFill}>
         <Path d={beadPath(width, square)} fill={solid} />
       </Svg>
       {Platform.OS === "ios" && !isMinimal ? (
         <MaskedView
           pointerEvents="none"
           style={StyleSheet.absoluteFill}
-          maskElement={<Svg width={width} height={BEAD_HEIGHT + 1}><Path d={beadPath(width, square)} fill="#000" /></Svg>}
+          maskElement={<Svg width={width} height={TOTAL_HEIGHT}><Path d={beadPath(width, square)} fill="#000" /></Svg>}
         >
           <NewPostsMaterial radius={0} islandChrome={islandChrome} />
         </MaskedView>
       ) : null}
-      <Svg pointerEvents="none" width={width} height={BEAD_HEIGHT + 1} style={StyleSheet.absoluteFill}>
-        <Path d={beadPath(width, square, true)} fill="none" stroke={rim} strokeWidth={1} />
+      <Svg pointerEvents="none" width={width} height={TOTAL_HEIGHT} style={StyleSheet.absoluteFill}>
+        <Path d={beadPath(width, square, true)} fill="none" stroke={rim} strokeWidth={rimWidth} strokeLinecap="round" />
       </Svg>
       <Pressable
         onPress={onPress}
         accessibilityRole="button"
         accessibilityLabel={label}
-        hitSlop={6}
-        style={{ position: "absolute", left: f, top: 0, width: width - f * 2, height: BEAD_HEIGHT, alignItems: "center", justifyContent: "center" }}
+        hitSlop={8}
+        style={({ pressed }) => ({ position: "absolute", left: f, top: BEAD_JOIN, width: width - f * 2, height: BEAD_HEIGHT, alignItems: "center", justifyContent: "center", opacity: pressed ? 0.7 : 1 })}
       >
         <View
           onLayout={(e) => setContentWidth(Math.ceil(e.nativeEvent.layout.width))}
-          style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+          style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
         >
           {faces.length > 0 ? (
             <View style={{ flexDirection: "row" }}>
@@ -112,7 +130,7 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
                 <View
                   key={author.address}
                   style={{
-                    width: BEAD_FACE, height: BEAD_FACE, borderRadius: 6, overflow: "hidden",
+                    width: BEAD_FACE, height: BEAD_FACE, borderRadius: square ? 0 : 7, overflow: "hidden",
                     marginLeft: i ? -BEAD_FACE_OVERLAP : 0, zIndex: 3 - i,
                     borderWidth: 1.5, borderColor: solid, backgroundColor: solid,
                     alignItems: "center", justifyContent: "center",
@@ -121,15 +139,18 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
                   {author.avatar ? (
                     <Image source={{ uri: getAvatarUrl(author.avatar, BEAD_FACE) }} style={{ width: "100%", height: "100%" }} />
                   ) : (
-                    <Text style={{ color: ink, fontSize: 9, fontWeight: "700" }}>{author.name.slice(0, 1).toUpperCase()}</Text>
+                    <Text style={{ color: ink, fontSize: 10, fontWeight: "700" }}>{author.name.slice(0, 1).toUpperCase()}</Text>
                   )}
                 </View>
               ))}
             </View>
           ) : null}
-          <Text style={{ color: ink, fontSize: 12, fontWeight: "700", fontVariant: ["tabular-nums"] }}>+{count}</Text>
+          <Text style={{ color: ink, fontSize: 14, fontWeight: "700", fontVariant: ["tabular-nums"] }}>+{count}</Text>
         </View>
       </Pressable>
     </View>
   );
+  // System Light's pill is pale frost written in light colours (FrostedPill);
+  // keep the bead's out of the colour pass so the two match exactly.
+  return lightFrost ? <KeepDarkScope>{bead}</KeepDarkScope> : bead;
 }
