@@ -1,6 +1,7 @@
 import ThemePanel from '../components/ui/ThemePanel';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../hooks/useSearchFieldMaterial';
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import type { GetNFTsResult } from "../services/nft.service";
 import { useTranslation } from "react-i18next";
@@ -75,6 +76,7 @@ const byNewest = (a: GetNFTsResult, b: GetNFTsResult) =>
   new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
 
 const SavedPostsScreen: React.FC = () => {
+  const searchMaterial = useSearchFieldMaterial();
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -462,14 +464,16 @@ const SavedPostsScreen: React.FC = () => {
 
       {activeTab === "all" ? (
         <View style={{ flex: 1 }}>
-          <View style={styles.savedSearchWrap}>
+          <View style={[styles.savedSearchWrap, searchMaterial.surface]}>
             <Icon name="Search" size={15} color="#808089" />
             <TextInput
               value={savedSearch}
               onChangeText={setSavedSearch}
               placeholder={t("bookmarks.searchPlaceholder")}
               placeholderTextColor="#8B8D90"
-              style={styles.savedSearchInput}
+              style={[styles.savedSearchInput, SEARCH_INPUT_CLEAR]}
+              onFocus={searchMaterial.onFocus}
+              onBlur={searchMaterial.onBlur}
               returnKeyType="search"
             />
             {savedSearch.length > 0 && (
