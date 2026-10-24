@@ -254,3 +254,11 @@ export function getActiveTheme(): AppThemeName {
 export const colors = new Proxy(systemColors, {
   get: (_target, property) => Reflect.get(palettes[activeTheme], property),
 }) as ThemeColors;
+
+/**
+ * System Light's white, for fills that reach a View through a library
+ * (navigator options) or are meant to stay white. Written as hsla() because
+ * that is the colour pass's own output (libs/jsx/tone.js), which it never
+ * turns around; a plain '#FFFFFF' there comes out as ink.
+ */
+export const LIGHT_PAGE_FILL = 'hsla(0,0%,100%,1)';
