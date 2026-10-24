@@ -447,7 +447,7 @@ const STYLE_PAGE = 9;
 const StylePreviewTile = memo(({ style, label, active, live, hue, position, onPress }: { style: VisualizerStyle; label: string; active: boolean; live: boolean; hue: number; position: SharedValue<number>; onPress: () => void }) => (
   <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected: active }}
     style={[pickerStyles.previewTile, active && { backgroundColor: "rgba(255,255,255,.06)" }, { opacity: active ? 1 : .6 }]}>
-    <View pointerEvents="none" style={pickerStyles.previewWindow}>
+    <View className="dark-surface" pointerEvents="none" style={pickerStyles.previewWindow}>
       <AudioVisualizer style={style} seed={`style-preview-${style}`} isPlaying={live} hue={hue} position={position} height={44} />
     </View>
     <Text numberOfLines={1} style={[pickerStyles.studioLabel, { textAlign: "center", marginTop: 4 }]}>{label}</Text>
