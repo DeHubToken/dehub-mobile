@@ -2895,6 +2895,8 @@
     "tabSearch": "Ɲini"
   },
   "postInfo": {
+    "ownersUnavailable": "Sisan, a tigiw tɛ se ka kalan.",
+    "unavailable": "A tɛ sɔrɔ",
     "title": "Post kunnafoni",
     "tokenId": "Token ID",
     "mintedOn": "Dabɔ",
@@ -4933,6 +4935,8 @@
     "displayNameHint": "I tɔgɔ min bɛ yira i ka profil kan. A tɛ wajibi ye — n'i y'a to lankolon, i ka baarakɛla tɔgɔ de bɛna ta."
   },
   "events": {
+    "deleteConfirmBody": "Nin bɛ ɲɔgɔnye ni a lajɛlibagaw ka tɔgɔlisi ani a baro bɔ mɔgɔ bɛɛ ye. A tɛ se ka segin kɔ.",
+    "deleteConfirmTitle": "I b'a fɛ ka nin ɲɔgɔnye in jɔsi wa?",
     "youreApproved": "You're approved",
     "youAreCreator": "I ye danbaga ye",
     "typeMessage": "A ye kuma dɔ fɔ...",

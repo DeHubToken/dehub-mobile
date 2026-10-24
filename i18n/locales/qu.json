@@ -2935,6 +2935,8 @@
     "tabSearch": "Maskay"
   },
   "postInfo": {
+    "ownersUnavailable": "Kunan dueñokunataqa manam kunanpachaqa ñawinchayta atikunmanchu.",
+    "unavailable": "Mana tarikuq",
     "title": "Post willay",
     "tokenId": "Token ID",
     "mintedOn": "Rurasqa",
@@ -4984,6 +4986,8 @@
     "displayNameHint": "Perfilniykipi rikuchikuq sutiyki. Munaspallam — ch'usaqta saqiptiykiqa runa sutiykitam llamkachisaqku."
   },
   "events": {
+    "deleteConfirmBody": "Kayqa ruwayta, invitado listanta chaymanta llapa runapaq rimanakuyninta hurqun. Manan kutichiyta atikunmanchu.",
+    "deleteConfirmTitle": "¿Kay ruwayta chinkachiyta munankichu?",
     "youreApproved": "Qamqa aprobasqam kanki",
     "youAreCreator": "Qanmi kanki kamaq",
     "typeMessage": "Huk willakuyta qillqay...",

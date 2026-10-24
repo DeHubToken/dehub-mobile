@@ -2983,6 +2983,8 @@
     "tabSearch": "Suchen"
   },
   "postInfo": {
+    "ownersUnavailable": "Die aktuellen Eigentümer können im Moment nicht gelesen werden.",
+    "unavailable": "Nicht verfügbar",
     "title": "Beitragsinfo",
     "tokenId": "Token-ID",
     "mintedOn": "Geprägt am",
@@ -5083,6 +5085,8 @@
     "displayNameHint": "Dein öffentlicher Name in deinem Profil. Optional — lass das Feld leer, um deinen Benutzernamen zu verwenden."
   },
   "events": {
+    "deleteConfirmBody": "Dadurch werden das Ereignis, seine Gästeliste und sein Chat für alle entfernt. Es kann nicht rückgängig gemacht werden.",
+    "deleteConfirmTitle": "Dieses Ereignis löschen?",
     "youreApproved": "Sie sind genehmigt",
     "youAreCreator": "Sie sind der Ersteller",
     "typeMessage": "Geben Sie eine Nachricht ein...",

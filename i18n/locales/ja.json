@@ -2919,6 +2919,8 @@
     "tabSearch": "検索"
   },
   "postInfo": {
+    "ownersUnavailable": "現在の所有者を今は読み取れません。",
+    "unavailable": "利用できません",
     "title": "投稿情報",
     "tokenId": "トークンID",
     "mintedOn": "ミント日",
@@ -5012,6 +5014,8 @@
     "displayNameHint": "プロフィールに表示される公開名です。任意です。空欄のままにするとユーザー名が使われます。"
   },
   "events": {
+    "deleteConfirmBody": "これにより、イベント、ゲストリスト、全員のチャットが削除されます。元に戻すことはできません。",
+    "deleteConfirmTitle": "このイベントを削除しますか？",
     "youreApproved": "承認されました",
     "youAreCreator": "あなたがクリエイターです",
     "typeMessage": "メッセージを入力...",

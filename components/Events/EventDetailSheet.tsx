@@ -9,7 +9,7 @@
  * manage events right, can edit or delete.
  */
 import React, { useMemo, useState } from "react";
-import { ActivityIndicator, Modal, Pressable, ScrollView, Share, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { ActivityIndicator, Alert, Modal, Pressable, ScrollView, Share, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -104,6 +104,7 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
     queryClient.invalidateQueries({ queryKey: ["event-rsvps", eventId] });
     queryClient.invalidateQueries({ queryKey: ["my-rsvps"] });
     queryClient.invalidateQueries({ queryKey: ["events"] });
+    queryClient.invalidateQueries({ queryKey: ["community-events"] });
   };
 
   const rsvpMutation = useMutation({
@@ -122,6 +123,7 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
     onSuccess: () => {
       toastSuccess(t("copy.5b7a1ac615bb", { defaultValue: "Event deleted" }));
       queryClient.invalidateQueries({ queryKey: ["events"] });
+      queryClient.invalidateQueries({ queryKey: ["community-events"] });
       onClose();
     },
     onError: (e) => toastError(e),
@@ -138,6 +140,10 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
   const isPending = status === "pending";
   const isDenied = status === "denied";
   const isPrivateBlocked = isPrivate && !isCreator && !isApproved;
+  // On a private event the guest's one RSVP row is also their approval, so
+  // Going/Interested must never rewrite or delete it: that used to drop an
+  // approved guest back to "request access" and lock them out of the chat.
+  const holdsPrivatePlace = isPrivate && !isCreator && isApproved;
   const canInteract = !isGated && !isPrivateBlocked;
 
   const needAuth = () => {
@@ -150,7 +156,15 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
     if (needAuth()) return;
     if (isGated) return toastInfo(t("events.payFeeToJoin"));
     if (isPrivateBlocked) return toastInfo(t("events.needApproval"));
+    if (holdsPrivatePlace) return toastInfo(t("events.youreApproved"));
     rsvpMutation.mutate(status === next ? "remove" : next);
+  };
+
+  const confirmDelete = () => {
+    Alert.alert(t("events.deleteConfirmTitle"), t("events.deleteConfirmBody"), [
+      { text: t("common.cancel"), style: "cancel" },
+      { text: t("events.delete"), style: "destructive", onPress: () => deleteMutation.mutate() },
+    ]);
   };
 
   const handleRequest = () => {
@@ -323,7 +337,7 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
 
             <View style={styles.rsvpRow}>
               {(["going", "interested"] as const).map((k) => {
-                const active = status === k;
+                const active = holdsPrivatePlace ? k === "going" : status === k;
                 return (
                   <Pressable
                     key={k}
@@ -430,7 +444,7 @@ export default function EventDetailSheet({ event, visible, onClose }: Props) {
                       <Text style={styles.meta}>{t("events.edit")}</Text>
                     </Pressable>
                   )}
-                  <Pressable style={styles.footerBtn} disabled={deleteMutation.isPending} onPress={() => deleteMutation.mutate()}>
+                  <Pressable style={styles.footerBtn} disabled={deleteMutation.isPending} onPress={confirmDelete}>
                     {deleteMutation.isPending ? (
                       <ActivityIndicator size="small" color="#F87171" />
                     ) : (

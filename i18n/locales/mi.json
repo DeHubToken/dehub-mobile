@@ -2904,6 +2904,8 @@
     "tabSearch": "Rapu"
   },
   "postInfo": {
+    "ownersUnavailable": "Kāore e taea te pānui i ngā rangatira o nāianei i tēnei wā.",
+    "unavailable": "Kāore e wātea",
     "title": "Mōhiohio pou",
     "tokenId": "Tohu ID",
     "mintedOn": "I hangaia",
@@ -4952,6 +4954,8 @@
     "displayNameHint": "Tō ingoa tūmatanui e whakaatuhia ana i tō kōtaha. Kāore e herea — waiho kia wātea, ā, ka whakamahia tō ingoa kaiwhakamahi."
   },
   "events": {
+    "deleteConfirmBody": "Ka tangohia e tenei te huihuinga, tona raarangi manuhiri me tona korerorero mo te katoa. Kaore e taea te whakakore.",
+    "deleteConfirmTitle": "Ka whakakorea e koe tenei huihuinga?",
     "youreApproved": "Kua whakaaetia koe",
     "youAreCreator": "Ko koe te Kaihanga",
     "typeMessage": "Tuhia he karere...",
