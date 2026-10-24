@@ -385,10 +385,10 @@ export const StageTranscriptSheet: React.FC<Props> = ({ space, visible, onClose 
   // Waiting for the lookup to finish keeps this from firing before we know
   // whether a translation already exists.
   useEffect(() => {
-    if (language !== "original" && !translation && !isTranslationLoading) {
+    if (visible && language !== "original" && !translation && !isTranslationLoading) {
       triggerTranslation();
     }
-  }, [language, translation, isTranslationLoading, triggerTranslation]);
+  }, [visible, language, translation, isTranslationLoading, triggerTranslation]);
 
   // Auto-transcribe legacy or missing transcripts
   useEffect(() => {
