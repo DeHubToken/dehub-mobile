@@ -2020,7 +2020,14 @@
     "title": "پیغام",
     "searchConversations": "گل بات ڳولو...",
     "failedToLoad": "گل بات لوڈ کائنی ہوئیاں",
-    "tryAgain": "ولا کوشش کرو"
+    "tryAgain": "ولا کوشش کرو",
+    "lockedTitle": "اپنے پیغامات پڑھن لئی ان لاک کرو",
+    "lockedBody": "تُہاڈا چیٹ {{name}} نال اینڈ ٹو اینڈ انکرپٹڈ اے۔ ایہ ڈیوائس تے اپنا والٹ ان لاک کرو تاکہ ایہ کھل سکے۔",
+    "lockedUnlock": "والٹ ان لاک کرو",
+    "lockedTryAgain": "دوبارہ کوشش کرو",
+    "lockedPrivate": "صرف تُسی ایہ پڑھ سکدے او",
+    "undecryptableRun_one": "{{count}} دا پیغام ایہ ڈیوائس تے نہیں کھولیا جا سکدا",
+    "undecryptableRun_other": "{{count}} دے پیغامات ایہ ڈیوائس تے نہیں کھولے جا سکدے"
   },
   "music": {
     "all": "سارے",
@@ -5008,7 +5015,12 @@
     "interestedCount": "{{count}} کوں دلچسپی ہے",
     "loadFailed": "تقریباں لوڈ نہ تھی سڳیاں"
   },
-  "stats": {"chart": {"daily": "ہر ݙین٘ہ آوݨ آلے", "dailyHint": "ہر ݙین٘ہ الگ الگ آوݨ آلے", "empty": "ایں ویلے کیتے اڄݨ تائیں ڈیٹا کائنی"},
+  "stats": {
+    "chart": {
+      "daily": "ہر ݙین٘ہ آوݨ آلے",
+      "dailyHint": "ہر ݙین٘ہ الگ الگ آوݨ آلے",
+      "empty": "ایں ویلے کیتے اڄݨ تائیں ڈیٹا کائنی"
+    },
     "definitions": {
       "visitorsTerm": "آوݨ آلے"
     },

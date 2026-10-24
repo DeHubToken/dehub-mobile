@@ -2023,7 +2023,14 @@
     "title": "メッセージ",
     "searchConversations": "会話を検索...",
     "failedToLoad": "会話の読み込みに失敗",
-    "tryAgain": "再試行"
+    "tryAgain": "再試行",
+    "lockedTitle": "ロックを解除してメッセージを読む",
+    "lockedBody": "{{name}}さんとのチャットはエンドツーエンドで暗号化されています。 このデバイスでウォレットのロックを解除して開きます。",
+    "lockedUnlock": "ウォレットのロックを解除する",
+    "lockedTryAgain": "もう一度お試しください",
+    "lockedPrivate": "あなただけが読むことができます",
+    "undecryptableRun_one": "このデバイスでは{{count}}メッセージを開くことができません",
+    "undecryptableRun_other": "このデバイスでは{{count}}件のメッセージを開くことができません"
   },
   "music": {
     "all": "すべて",
@@ -5075,7 +5082,12 @@
     "interestedCount": "{{count}}人が興味あり",
     "loadFailed": "イベントを読み込めませんでした"
   },
-  "stats": {"chart": {"daily": "1 日あたりの訪問者", "dailyHint": "1 日あたりのユニーク訪問者", "empty": "この期間のデータはまだありません"},
+  "stats": {
+    "chart": {
+      "daily": "1 日あたりの訪問者",
+      "dailyHint": "1 日あたりのユニーク訪問者",
+      "empty": "この期間のデータはまだありません"
+    },
     "definitions": {
       "visitorsTerm": "訪問者"
     },

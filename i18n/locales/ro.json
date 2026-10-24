@@ -2023,7 +2023,14 @@
     "title": "Mesaje",
     "searchConversations": "Caută conversații...",
     "failedToLoad": "Încărcarea conversațiilor a eșuat",
-    "tryAgain": "Încearcă din nou"
+    "tryAgain": "Încearcă din nou",
+    "lockedTitle": "Deblochează pentru a-ți citi mesajele",
+    "lockedBody": "Chatul tău cu {{name}} este criptat integral. Deblochează-ți portofelul pe acest dispozitiv pentru a-l deschide.",
+    "lockedUnlock": "Deblochează portofelul",
+    "lockedTryAgain": "Încearcă din nou",
+    "lockedPrivate": "Numai tu le poți citi",
+    "undecryptableRun_one": "Mesajul {{count}} nu poate fi deschis pe acest dispozitiv",
+    "undecryptableRun_other": "Mesajele {{count}} nu pot fi deschise pe acest dispozitiv"
   },
   "music": {
     "all": "Toate",
@@ -5033,7 +5040,12 @@
     "interestedCount": "{{count}} interesați",
     "loadFailed": "Evenimentele nu au putut fi încărcate"
   },
-  "stats": {"chart": {"daily": "Vizitatori pe zi", "dailyHint": "vizitatori unici pe zi", "empty": "Încă nu există date pentru acest interval"},
+  "stats": {
+    "chart": {
+      "daily": "Vizitatori pe zi",
+      "dailyHint": "vizitatori unici pe zi",
+      "empty": "Încă nu există date pentru acest interval"
+    },
     "definitions": {
       "visitorsTerm": "Vizitatori"
     },

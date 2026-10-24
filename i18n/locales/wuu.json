@@ -2019,7 +2019,14 @@
     "title": "消息",
     "searchConversations": "搜索对话...",
     "failedToLoad": "加载对话失败",
-    "tryAgain": "再试过"
+    "tryAgain": "再试过",
+    "lockedTitle": "解锁来阅读侬个消息",
+    "lockedBody": "侬同 {{name}} 嘅聊天是端到端加密个。喺此设备上解锁侬个钱包来打开伊。",
+    "lockedUnlock": "解锁钱包",
+    "lockedTryAgain": "再试一次",
+    "lockedPrivate": "只侬能阅读伊拉",
+    "undecryptableRun_one": "{{count}} 条消息无法在此设备上打开",
+    "undecryptableRun_other": "{{count}} 条消息无法在此设备上打开"
   },
   "music": {
     "all": "全部",
@@ -5009,7 +5016,12 @@
     "interestedCount": "{{count}} 人感兴趣",
     "loadFailed": "无法加载活动"
   },
-  "stats": {"chart": {"daily": "每日访客", "dailyHint": "每日独立访客", "empty": "搿段辰光还呒没数据"},
+  "stats": {
+    "chart": {
+      "daily": "每日访客",
+      "dailyHint": "每日独立访客",
+      "empty": "搿段辰光还呒没数据"
+    },
     "definitions": {
       "visitorsTerm": "访客"
     },

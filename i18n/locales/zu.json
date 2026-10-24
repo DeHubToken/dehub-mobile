@@ -2022,7 +2022,14 @@
     "title": "Layezo",
     "searchConversations": "Sesha izingxoxo...",
     "failedToLoad": "Kuhlulekile ukulayisha izingxoxo",
-    "tryAgain": "Zama futhi"
+    "tryAgain": "Zama futhi",
+    "lockedTitle": "Vula ukuze ufunde imilayezo yakho",
+    "lockedBody": "Ingxoxo yakho no- {{name}} ibethelwe ekupheleni kokuphela. Vula isikhwama sakho kule divayisi ukuze usivule.",
+    "lockedUnlock": "Vula isikhwama semali",
+    "lockedTryAgain": "Zama futhi",
+    "lockedPrivate": "Nguwe kuphela ongazifunda",
+    "undecryptableRun_one": "{{count}} umyalezo awukwazi ukuvulwa kule divayisi",
+    "undecryptableRun_other": "{{count}} imiyalezo ayikwazi ukuvulwa kule divayisi"
   },
   "music": {
     "all": "Konke",
@@ -5047,7 +5054,12 @@
     "interestedCount": "{{count}} bayathakazelisa",
     "loadFailed": "Ayikwazanga ukulayisha imicimbi"
   },
-  "stats": {"chart": {"daily": "Izivakashi ngosuku", "dailyHint": "izivakashi ezihlukile ngosuku", "empty": "Ayikho idatha yale nkathi okwamanje"},
+  "stats": {
+    "chart": {
+      "daily": "Izivakashi ngosuku",
+      "dailyHint": "izivakashi ezihlukile ngosuku",
+      "empty": "Ayikho idatha yale nkathi okwamanje"
+    },
     "definitions": {
       "visitorsTerm": "Izivakashi"
     },

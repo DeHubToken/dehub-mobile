@@ -2070,7 +2070,14 @@
     "title": "Mga Mensahe",
     "searchConversations": "Maghanap ng mga pag - uusap...",
     "failedToLoad": "Nabigong i - load ang mga pag - uusap",
-    "tryAgain": "Subukan Ulit"
+    "tryAgain": "Subukan Ulit",
+    "lockedTitle": "I - unlock para basahin ang iyong mga mensahe",
+    "lockedBody": "Naka - encrypt ang iyong chat sa {{name}}. I - unlock ang iyong wallet sa device na ito para buksan ito.",
+    "lockedUnlock": "I - unlock ang wallet",
+    "lockedTryAgain": "Subukan muli",
+    "lockedPrivate": "Ikaw lang ang makakabasa ng mga ito",
+    "undecryptableRun_one": "Hindi mabuksan sa device na ito ang {{count}} message",
+    "undecryptableRun_other": "Hindi mabubuksan sa device na ito ang {{count}} mensahe"
   },
   "music": {
     "all": "Lahat",
@@ -5080,7 +5087,12 @@
     "interestedCount": "{{count}} ang interesado",
     "loadFailed": "Hindi ma-load ang mga event"
   },
-  "stats": {"chart": {"daily": "Mga bisita kada araw", "dailyHint": "mga natatanging bisita kada araw", "empty": "Wala pang datos para sa panahong ito"},
+  "stats": {
+    "chart": {
+      "daily": "Mga bisita kada araw",
+      "dailyHint": "mga natatanging bisita kada araw",
+      "empty": "Wala pang datos para sa panahong ito"
+    },
     "definitions": {
       "visitorsTerm": "Mga bisita"
     },

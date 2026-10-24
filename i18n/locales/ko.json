@@ -2023,7 +2023,14 @@
     "title": "메시지",
     "searchConversations": "대화 검색...",
     "failedToLoad": "대화 로드 실패",
-    "tryAgain": "다시 시도"
+    "tryAgain": "다시 시도",
+    "lockedTitle": "메시지를 확인하려면 잠금을 해제하세요.",
+    "lockedBody": "{{name}} 님과의 채팅은 엔드 투 엔드 암호화되어 있습니다. 이 기기에서 지갑을 잠금 해제하여 여세요.",
+    "lockedUnlock": "지갑 잠금 해제",
+    "lockedTryAgain": "다시 시도하기",
+    "lockedPrivate": "나만 읽을 수 있습니다",
+    "undecryptableRun_one": "{{count}} 메시지를 이 장치에서 열 수 없습니다",
+    "undecryptableRun_other": "{{count}} 메시지를 이 장치에서 열 수 없습니다"
   },
   "music": {
     "all": "전체",
@@ -5086,7 +5093,12 @@
     "interestedCount": "{{count}}명 관심 있음",
     "loadFailed": "행사를 불러오지 못했습니다"
   },
-  "stats": {"chart": {"daily": "일별 방문자", "dailyHint": "일별 순 방문자", "empty": "이 기간의 데이터가 아직 없습니다"},
+  "stats": {
+    "chart": {
+      "daily": "일별 방문자",
+      "dailyHint": "일별 순 방문자",
+      "empty": "이 기간의 데이터가 아직 없습니다"
+    },
     "definitions": {
       "visitorsTerm": "방문자"
     },

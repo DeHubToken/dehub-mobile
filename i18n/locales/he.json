@@ -2020,7 +2020,14 @@
     "title": "הודעות",
     "searchConversations": "חפש שיחות...",
     "failedToLoad": "טעינת השיחות נכשלה",
-    "tryAgain": "נסה שוב"
+    "tryAgain": "נסה שוב",
+    "lockedTitle": "בטל את הנעילה כדי לקרוא את ההודעות שלך",
+    "lockedBody": "הצ'אט שלכם עם {{name}} מוצפן מקצה לקצה. פתח את הארנק במכשיר זה כדי לפתוח אותו.",
+    "lockedUnlock": "שחרור נעילת הארנק",
+    "lockedTryAgain": "ניסיון חוזר",
+    "lockedPrivate": "רק אתם יכולים לקרוא אותם",
+    "undecryptableRun_one": "לא ניתן לפתוח את ההודעה {{count}} במכשיר זה",
+    "undecryptableRun_other": "לא ניתן לפתוח הודעות {{count}} במכשיר זה"
   },
   "music": {
     "all": "הכל",
@@ -5028,7 +5035,12 @@
     "interestedCount": "{{count}} מעוניינים",
     "loadFailed": "טעינת האירועים נכשלה"
   },
-  "stats": {"chart": {"daily": "מבקרים ליום", "dailyHint": "מבקרים ייחודיים ליום", "empty": "אין עדיין נתונים לטווח הזה"},
+  "stats": {
+    "chart": {
+      "daily": "מבקרים ליום",
+      "dailyHint": "מבקרים ייחודיים ליום",
+      "empty": "אין עדיין נתונים לטווח הזה"
+    },
     "definitions": {
       "visitorsTerm": "מבקרים"
     },

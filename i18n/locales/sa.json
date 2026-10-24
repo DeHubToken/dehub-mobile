@@ -2016,7 +2016,13 @@
     "title": "सन्देशाः",
     "searchConversations": "सम्भाषणानि अन्विष्यतु...",
     "failedToLoad": "सम्भाषणानि लोडयितुं विफलम्",
-    "tryAgain": "पुनः प्रयतताम्"
+    "tryAgain": "पुनः प्रयतताम्",
+    "lockedTitle": "तुम्हारे संदेशे पढ़कर",
+    "lockedUnlock": "अनलॉक बटुआ",
+    "lockedTryAgain": "पुनः प्रयच्छतु",
+    "lockedPrivate": "तत्र केवलं पठनीयम्",
+    "undecryptableRun_one": "{{count}} सन्देशः यो यन्त्रमा खोल्न सकिदैन",
+    "undecryptableRun_other": "{{count}} संदेशे इस उपकरण पर खोले नहीं जा सकते"
   },
   "music": {
     "all": "सर्वम्",
@@ -4995,7 +5001,12 @@
     "interestedCount": "{{count}} रुचिं धारयन्ति",
     "loadFailed": "कार्यक्रमाः लोड् कर्तुं न शक्यन्ते"
   },
-  "stats": {"chart": {"daily": "प्रतिदिनं दर्शकाः", "dailyHint": "प्रतिदिनं अद्वितीयदर्शकाः", "empty": "अस्मै कालावधये अद्यापि दत्तांशाः न सन्ति"},
+  "stats": {
+    "chart": {
+      "daily": "प्रतिदिनं दर्शकाः",
+      "dailyHint": "प्रतिदिनं अद्वितीयदर्शकाः",
+      "empty": "अस्मै कालावधये अद्यापि दत्तांशाः न सन्ति"
+    },
     "definitions": {
       "visitorsTerm": "दर्शकाः"
     },

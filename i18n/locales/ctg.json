@@ -2096,7 +2096,14 @@
     "send": "পাডাও",
     "online": "অনলাইন",
     "offline": "অফলাইন",
-    "lastSeen": "শেষ দেখা"
+    "lastSeen": "শেষ দেখা",
+    "lockedTitle": "আপনার মেসেজ গুলা পড়ার লাইগা আনলক করো",
+    "lockedBody": "আপনার চ্যাট {{name}} রে এন্ড-টু-এন্ড এনক্রিপ্টেড। এই ডিভাইসে আপনার ওয়ালেট আনলক করো যাতে খুলে যায়।",
+    "lockedUnlock": "ওয়ালেট আনলক করো",
+    "lockedTryAgain": "আবার চেষ্টা করো",
+    "lockedPrivate": "শুধু তুমি ইহা পড়তে পারবা",
+    "undecryptableRun_one": "{{count}} মেসেজ এই ডিভাইসে খুলতে পারবে না",
+    "undecryptableRun_other": "{{count}} মেসেজ গুলা এই ডিভাইসে খুলতে পারবে না"
   },
   "music": {
     "all": "সব",
@@ -5123,7 +5130,12 @@
     "interestedCount": "{{count}} জন আগ্রহী",
     "loadFailed": "ইভেন্ট লোড গরা ন যায়"
   },
-  "stats": {"chart": {"daily": "প্রতিদিন ভিজিটর", "dailyHint": "প্রতিদিন ইউনিক ভিজিটর", "empty": "এই সময়র লাই এহনো তথ্য নাই"},
+  "stats": {
+    "chart": {
+      "daily": "প্রতিদিন ভিজিটর",
+      "dailyHint": "প্রতিদিন ইউনিক ভিজিটর",
+      "empty": "এই সময়র লাই এহনো তথ্য নাই"
+    },
     "definitions": {
       "visitorsTerm": "ভিজিটর"
     },
