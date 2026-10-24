@@ -12,6 +12,9 @@ jest.mock('../../hooks/useImageAspect', () => ({
   knownImageAspect: (uri: string) => aspects[uri],
   rememberImageAspect: (uri: string, ratio: number) => { aspects[uri] = ratio; },
 }));
+jest.mock('react-native-gesture-handler', () => ({
+  GestureDetector: ({ children }: { children: unknown }) => require('react').createElement('GestureDetector', null, children),
+}));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isMinimal: false }) }));
 jest.mock('../../components/Home/feedBleed', () => ({ useFeedBleed: () => null }));
 jest.mock('../../hooks/useDataSaver', () => ({ useDataSaver: () => ({ liteMode: false }) }));
@@ -22,8 +25,8 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('../../components/Home/ContainedFeedImage', () => ({
   __esModule: true,
-  default: ({ uri, drawBitmap, aspect }: { uri: string; drawBitmap: boolean; aspect?: number }) => drawBitmap
-    ? require('react').createElement(require('react-native').View, { testID: uri, aspect }) : null,
+  default: ({ uri, drawBitmap, aspect, fillHeight }: { uri: string; drawBitmap: boolean; aspect?: number; fillHeight?: number }) => drawBitmap
+    ? require('react').createElement(require('react-native').View, { testID: uri, aspect, fillHeight }) : null,
 }));
 
 it('releases distant gallery pictures, retains every slide, and reloads pictures on scroll-back', () => {
@@ -69,4 +72,18 @@ it('keeps a single photo and the post page unframed', () => {
   const page = render(<FeedImageGallery images={['a', 'b']} width={300} fallbackWidth={300} postPage
     active prioritizeMedia={false} onLayout={jest.fn()} onImagePress={jest.fn()} onReaction={jest.fn()} />);
   expect(page.queryByTestId('feed-image-gallery-frame')).toBeNull();
+});
+
+it('puts the pager scroll guard on the ScrollView itself, inside the frame', () => {
+  const screen = render(<FeedImageGallery images={['a', 'b']} width={300} fallbackWidth={300} scrollGesture={{} as any}
+    active prioritizeMedia={false} onLayout={jest.fn()} onImagePress={jest.fn()} onReaction={jest.fn()} />);
+  const scroller = screen.getByTestId('feed-image-gallery');
+  expect(scroller.parent?.type).toBe('GestureDetector');
+});
+
+it('stretches shorter photos to fill the frame', async () => {
+  const screen = render(<FeedImageGallery images={['a', 'c']} width={300} fallbackWidth={300}
+    active prioritizeMedia={false} onLayout={jest.fn()} onImagePress={jest.fn()} onReaction={jest.fn()} />);
+  await new Promise(resolve => setTimeout(resolve, 0));
+  expect(screen.getByTestId('a').props.fillHeight).toBeCloseTo(300 / 2.1);
 });
