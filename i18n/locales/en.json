@@ -11583,7 +11583,7 @@
     "8456b09b5e76": "Remove account {{value1}}"
   },
   "loginStack": {
-    "tip": "Tip DHB",
+    "aiRestyle": "AI restyle",
     "headlineTop": "You will own everything",
     "headlineAccent": "and be happy.",
     "orContinueWith": "or continue with",
