@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useContext, useRef, useState, useMem
 import { Platform, View } from 'react-native';
 import { FeedPlaybackActiveContext } from '../libs/visualActivity';
 import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomSheet';
+import { PROFILE_CLOSE_MS } from '../components/UserProfile/ProfileSurface';
 import { setProfileDeepLinkHandler } from '../libs/deeplink.events';
 import { useAppTheme } from './ThemeContext';
 import {
@@ -32,7 +33,9 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const [presentation, setPresentation] = useState<ProfilePresentation>('modal');
   const feedProfileHostActiveRef = useRef(false);
   const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const CLOSE_CLEAR_DELAY_MS = 300; // Match react-native-modal animation timing
+  // The covered page comes back the moment the profile has slid away: the old
+  // 300ms matched a slower JS-driven slide and left Back waiting on nothing.
+  const CLOSE_CLEAR_DELAY_MS = PROFILE_CLOSE_MS;
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
     if (clearTimerRef.current) {
