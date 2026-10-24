@@ -55,3 +55,11 @@ it('flips inline greys, except inside a dark surface', () => {
   act(() => { tree = create(React.createElement(darkType, darkProps)); });
   expect(tree.root.findByType(Text as any).props.style).toEqual({ color: '#fff' });
 });
+
+it('keeps LIGHT_PAGE_FILL white, where a plain white fill turns to ink', () => {
+  const { LIGHT_PAGE_FILL } = jest.requireActual('../../theme/colors');
+  // Navigator options reach a View through react-native-screens' source, so
+  // the pass sees them: '#FFFFFF' there painted iPhone pages black.
+  expect(toneColor('#FFFFFF', true)).toBe('hsla(0,0%,4.3%,1)');
+  expect(toneColor(LIGHT_PAGE_FILL, true)).toBe(LIGHT_PAGE_FILL);
+});

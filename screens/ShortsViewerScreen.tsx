@@ -74,6 +74,7 @@ import { VideoView, useVideoPlayer } from "expo-video";
 import { shortsPhotoMedia } from "../libs/shortsPhotos";
 import { ShortsPhotoPager } from "../components/Post/ShortsPhotoPager";
 import { useAppTheme } from "../context/ThemeContext";
+import { LIGHT_PAGE_FILL } from "../theme/colors";
 import { useSettledVideoSource } from "../hooks/useSettledVideoSource";
 import { useSettledPagerIndex } from "../hooks/useSettledPagerIndex";
 import PictureInPictureButton from "../components/common/PictureInPictureButton";
@@ -370,7 +371,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const tokenId = item.tokenId ?? item.id;
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
   // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
-  const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
+  const photoBackdrop = useAppTheme().isLight ? LIGHT_PAGE_FILL : "#000";
   // A gated short's file is private: an entitled viewer plays a signed URL,
   // anyone else is refused one and keeps the poster.
   const viewer = useUser();
