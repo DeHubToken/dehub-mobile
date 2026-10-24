@@ -3,7 +3,7 @@ import { View, TextInput } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { theme } from "../../theme";
 import { useTranslation } from "react-i18next";
-import { useAppTheme } from '../../context/ThemeContext';
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 
 interface Props {
   value: string;
@@ -16,18 +16,19 @@ interface Props {
 
 const LeaderboardSearchBar: React.FC<Props> = ({ value, onChangeText, onFocus }) => {
   const { t } = useTranslation();
-  const { skin } = useAppTheme();
+  const searchField = useSearchFieldMaterial();
   return (
-    <View className="mx-4 mt-3 mb-2 flex-row items-center bg-theme-neutrals-800 rounded-xl px-3 py-2.5" style={skin?.material === 'glass' ? skin.card : undefined}>
+    <View className="mx-4 mt-3 mb-2 flex-row items-center rounded-xl px-3 py-2.5" style={searchField.surface}>
       <Ionicons name="search" size={16} color={theme.colors.neutrals[400]} style={{ marginRight: 8 }} />
       <TextInput
         value={value}
         onChangeText={onChangeText}
-        onFocus={onFocus}
+        onFocus={() => { searchField.onFocus(); onFocus?.(); }}
+        onBlur={searchField.onBlur}
         placeholder={t("leaderboard.searchUsers")}
         placeholderTextColor={theme.colors.neutrals[400]}
         className="flex-1 text-white text-sm p-0"
-        style={skin?.material === 'glass' ? { backgroundColor: 'transparent', borderWidth: 0 } : undefined}
+        style={SEARCH_INPUT_CLEAR}
         autoCapitalize="none"
         autoCorrect={false}
         returnKeyType="search"

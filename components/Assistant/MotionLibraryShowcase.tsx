@@ -7,6 +7,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
 import '../../i18n/registerMotionLibrary';
 import SmartImage from '../common/SmartImage';
+import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import { loadFeaturedMotionClips, loadMotionCatalog, searchMotionClips, type MotionClip } from '../../libs/motionLibrary';
 
 function Player({ clip, width }: { clip: MotionClip; width: number }) {
@@ -45,6 +46,7 @@ function Player({ clip, width }: { clip: MotionClip; width: number }) {
 
 export default function MotionLibraryShowcase({ onPick, onMaboroshi, compact = false }: { onPick: (clip: MotionClip, workflow: 'swap' | 'motion') => void; onMaboroshi?: (clip: MotionClip) => void; compact?: boolean }) {
   const { t } = useTranslation();
+  const searchField = useSearchFieldMaterial();
   const { width } = useWindowDimensions();
   const [clips, setClips] = useState<MotionClip[]>([]);
   const [total, setTotal] = useState(0);
@@ -89,7 +91,7 @@ export default function MotionLibraryShowcase({ onPick, onMaboroshi, compact = f
       <SafeAreaView style={{ flex: 1, backgroundColor: '#111214' }}>
         <View className="flex-row items-center justify-between px-4 py-2"><Text className="flex-1 text-xl font-bold text-white" numberOfLines={2}>{preview?.name ?? t('motionLibrary.title')}</Text><Pressable accessibilityRole="button" accessibilityLabel={t('common.close')} onPress={() => { setLibrary(false); setPreview(null); }} className="h-12 w-12 items-center justify-center"><Ionicons name="close" color="white" size={24} /></Pressable></View>
         {preview ? <ScrollView contentContainerStyle={{ padding: 16 }}><Player key={preview.id} clip={preview} width={width - 32} />{actions(preview, true)}<Pressable accessibilityRole="button" onPress={() => { setPreview(null); setLibrary(true); }} className="min-h-11 justify-center"><Text className="text-white underline">{t('motionLibrary.back')}</Text></Pressable></ScrollView> : <>
-          <TextInput value={query} onChangeText={setQuery} placeholder={t('motionLibrary.search')} accessibilityLabel={t('motionLibrary.search')} placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl border border-white/20 px-4 text-white" />
+          <TextInput value={query} onChangeText={setQuery} onFocus={searchField.onFocus} onBlur={searchField.onBlur} style={searchField.surface} placeholder={t('motionLibrary.search')} accessibilityLabel={t('motionLibrary.search')} placeholderTextColor="#a1a1aa" className="mx-4 my-2 min-h-12 rounded-xl px-4 text-white" />
           <View><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 8, padding: 16 }}>{categories.map(item => <Pressable key={item} accessibilityRole="button" accessibilityState={{ selected: category === item }} onPress={() => setCategory(item)} className={`min-h-11 justify-center rounded-full px-4 ${item === category ? 'bg-white' : 'border border-white/20'}`}><Text style={{ color: category === item ? '#09090b' : '#d4d4d8' }}>{t(`motionLibrary.category${item}`)}</Text></Pressable>)}</ScrollView></View>
           <Text className="px-4 pb-3 text-sm text-white/60">{t('motionLibrary.results', { count: results.length })}</Text>
           <FlatList data={results} numColumns={2} keyExtractor={clip => clip.id} initialNumToRender={12} maxToRenderPerBatch={12} windowSize={5} contentContainerStyle={{ padding: 16, gap: 24 }} columnWrapperStyle={{ gap: 12 }}
