@@ -1440,13 +1440,13 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
               <AudioVisualizer style={vizStyle} seed={seed} isPlaying={shownPlaying} hue={hue} position={position} height={animationHeight} />
             </View>
             {/* Frost: a pale haze at the line that melts into the deck. */}
-            <LinearGradient colors={material === 'light' ? ['rgba(245,248,250,.1)', 'rgba(233,238,243,.75)'] : material === 'glass' ? ['rgba(220,255,255,.1)', 'rgba(0,20,24,.75)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
+            <LinearGradient colors={material === 'light' ? ['rgba(245,248,250,.1)', 'rgba(233,238,243,.75)'] : material === 'glass' ? ['rgba(220,255,255,.05)', 'rgba(0,20,24,.35)'] : ['rgba(255,255,255,.07)', 'rgba(11,13,16,.9)']} style={StyleSheet.absoluteFill} />
           </View>
           {showLyrics && <AudioLyrics tokenId={seed} currentTime={shownTime} top={8} bottom={48} />}
           <StudioRim shadow={`inset 0px 1px 0px ${STUDIO_EDGE[material]}`} shape={motionShape} />
         </View>
         <View style={[styles.glassDeck, deckShape, { paddingTop: glassWaveHeight + 28 }, compactGlass && { paddingBottom: 8 }]}>
-          <LinearGradient pointerEvents="none" colors={material === 'light' ? ['rgba(245,248,250,.12)', 'rgba(238,243,247,.72)', 'rgba(233,238,243,.95)'] : material === 'glass' ? ['rgba(220,255,255,.03)', 'rgba(0,20,24,.3)', 'rgba(0,20,24,.7)'] : ['rgba(20,24,28,.12)', 'rgba(13,16,19,.6)', 'rgba(9,11,13,.95)', '#060709']} locations={material === 'system' ? [0, .3, .62, 1] : [0, .35, 1]} style={[StyleSheet.absoluteFill, deckShape]} />
+          <LinearGradient pointerEvents="none" colors={material === 'light' ? ['rgba(245,248,250,.12)', 'rgba(238,243,247,.72)', 'rgba(233,238,243,.95)'] : material === 'glass' ? ['rgba(210,255,255,.05)', 'rgba(2,24,30,.2)', 'rgba(2,24,30,.32)'] : ['rgba(20,24,28,.12)', 'rgba(13,16,19,.6)', 'rgba(9,11,13,.95)', '#060709']} locations={material === 'system' ? [0, .3, .62, 1] : material === 'glass' ? [0, .4, 1] : [0, .35, 1]} style={[StyleSheet.absoluteFill, deckShape]} />
           <View style={{ position: 'absolute', top: 3, left: 16, right: 16 }}><StudioWave seed={seed} position={position} height={glassWaveHeight} ink={ink} /></View>
           <View style={{ position: 'absolute', top: glassWaveHeight + 8, left: 16, right: 16, flexDirection: 'row', justifyContent: 'space-between' }}><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownTime)}</Text><Text style={[styles.glassTime, { color: ink }]}>{fmtDuration(shownDuration)}</Text></View>
           <View style={{ position: 'absolute', top: 0, left: 16, right: 16 }}><PagerSafe><Slider minimumValue={0} maximumValue={1} value={shownProgress} accessibilityLabel={t('player.progress')} onSlidingStart={handleScrubStart} onValueChange={handleBottomScrub} onSlidingComplete={handleBottomSeek} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="transparent" style={{ height: glassWaveHeight + 4 }} /></PagerSafe></View>
