@@ -11,7 +11,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
  * since React Native has no File object.
  */
 import { appLocale } from "../../libs/date.util";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { POD_PROVIDERS, detectPodProvider, parsePodUrl, type PodProvider } from "../../libs/pod-providers";
 import {
   View,
@@ -25,6 +25,7 @@ import {
   KeyboardAvoidingView,
   Switch,
   Alert,
+  Platform,
   useWindowDimensions,
 } from "react-native";
 import { DeHubLoader } from "../DeHubLoader";
@@ -34,6 +35,7 @@ import * as ImagePicker from "expo-image-picker";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import Icon from "../ui/Icon";
+import GlassModal from "../ui/GlassModal";
 import Avatar from "../common/Avatar";
 import { runWithPermissions } from "../../libs/permissions.util";
 import { toastError, toastSuccess } from "../../libs/toast";
@@ -681,22 +683,30 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
     [t, updateListing],
   );
 
-  const listingMenu = useCallback(
-    (l: StoreListing) => {
-      Alert.alert(l.title, undefined, [
-        {
-          text: t("stores.edit"),
-          onPress: () => {
-            setEditingListing(l);
-            setListingFormOpen(true);
-          },
-        },
-        { text: t("stores.archive"), onPress: () => archive(l.id) },
-        { text: t("stores.markSold"), onPress: () => markSold(l.id) },
-        { text: t("common.cancel"), style: "cancel" },
-      ]);
+  // A sheet, not an Alert: Android shows at most three Alert buttons, so the
+  // fourth (and with it the way to dismiss) never appeared there.
+  const [menuListing, setMenuListing] = useState<StoreListing | null>(null);
+  const pendingEdit = useRef<StoreListing | null>(null);
+  const listingMenu = useCallback((l: StoreListing) => setMenuListing(l), []);
+  const openPendingEdit = useCallback(() => {
+    const l = pendingEdit.current;
+    pendingEdit.current = null;
+    if (!l) return;
+    setEditingListing(l);
+    setListingFormOpen(true);
+  }, []);
+  const runListingAction = useCallback(
+    (action: "edit" | "archive" | "sold") => {
+      const l = menuListing;
+      setMenuListing(null);
+      if (!l) return;
+      if (action === "archive") return archive(l.id);
+      if (action === "sold") return markSold(l.id);
+      pendingEdit.current = l;
+      // iOS cannot present the form until the sheet has finished dismissing.
+      if (Platform.OS !== "ios") setTimeout(openPendingEdit, 220);
     },
-    [archive, markSold, t],
+    [archive, markSold, menuListing, openPendingEdit],
   );
 
   const advanceOrder = useCallback(
@@ -972,6 +982,38 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
           }}
         />
       )}
+      <GlassModal
+        visible={!!menuListing}
+        onClose={() => setMenuListing(null)}
+        onDismiss={openPendingEdit}
+        presentation="bottom"
+      >
+        <View style={styles.menuSheet}>
+          <Text style={styles.menuTitle} numberOfLines={2}>
+            {menuListing?.title}
+          </Text>
+          {(
+            [
+              { action: "edit", icon: "Pencil", label: t("stores.edit") },
+              { action: "archive", icon: "Archive", label: t("stores.archive") },
+              { action: "sold", icon: "CircleCheck", label: t("stores.markSold") },
+            ] as const
+          ).map((item) => (
+            <Pressable
+              key={item.action}
+              style={styles.menuRow}
+              onPress={() => runListingAction(item.action)}
+              accessibilityRole="button"
+            >
+              <Icon name={item.icon} size={17} color="#D4D4D8" />
+              <Text style={styles.menuText}>{item.label}</Text>
+            </Pressable>
+          ))}
+          <Pressable style={[styles.menuRow, styles.menuCancel]} onPress={() => setMenuListing(null)} accessibilityRole="button">
+            <Text style={[styles.menuText, styles.menuCancelText]}>{t("common.cancel")}</Text>
+          </Pressable>
+        </View>
+      </GlassModal>
     </ScrollView>
   );
 };
@@ -1023,6 +1065,18 @@ const styles = StyleSheet.create({
   },
   rowTitle: { color: "#FFFFFF", fontSize: 13.5, fontWeight: "600" },
   rowMeta: { color: "#A1A1AA", fontSize: 12, marginTop: 3, textTransform: "capitalize" },
+
+  menuSheet: { paddingHorizontal: 18, paddingTop: 16, paddingBottom: 8 },
+  menuTitle: { color: "#FFFFFF", fontSize: 15, fontWeight: "700", marginBottom: 6 },
+  menuRow: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 13 },
+  menuText: { color: "#FFFFFF", fontSize: 15, fontWeight: "500" },
+  menuCancel: {
+    justifyContent: "center",
+    marginTop: 4,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: "rgba(255,255,255,0.10)",
+  },
+  menuCancelText: { color: "#A1A1AA" },
 
   backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
