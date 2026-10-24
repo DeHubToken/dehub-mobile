@@ -73,6 +73,7 @@ import { useVoiceRecorder, VoiceNoteRecordingOverlay } from "../Comments/VoiceNo
 import type { VoiceNoteResult } from "../Comments/VoiceNoteRecorder";
 import { uploadLiveChatImage } from "../../services/livechat.service";
 import { toastError } from "../../libs/toast";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
 const MAX_LEN = 500;
@@ -83,30 +84,30 @@ const FLASH_MS = 1500;
 const ALERT_DELAY_MS = 250;
 
 const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
+  () => _translateCopy("copy.5c5db120cb11", { defaultValue: "Jan" }),
+  () => _translateCopy("copy.caf71b3f582d", { defaultValue: "Feb" }),
+  () => _translateCopy("copy.b4b7d3818dbf", { defaultValue: "Mar" }),
+  () => _translateCopy("copy.617531b4fec3", { defaultValue: "Apr" }),
+  () => _translateCopy("copy.8c78fe5b9936", { defaultValue: "May" }),
+  () => _translateCopy("copy.b27fd46ed1b6", { defaultValue: "Jun" }),
+  () => _translateCopy("copy.c43f56b9807e", { defaultValue: "Jul" }),
+  () => _translateCopy("copy.41e1d82aa990", { defaultValue: "Aug" }),
+  () => _translateCopy("copy.451e2b719061", { defaultValue: "Sep" }),
+  () => _translateCopy("copy.6877e8494c3a", { defaultValue: "Oct" }),
+  () => _translateCopy("copy.3e630d2964a0", { defaultValue: "Nov" }),
+  () => _translateCopy("copy.f2a0cfbcf191", { defaultValue: "Dec" }),
 ];
 
 const formatClock = (date: Date): string => {
   const h = date.getHours();
   const m = date.getMinutes().toString().padStart(2, "0");
-  const ampm = h >= 12 ? "PM" : "AM";
+  const ampm = h >= 12 ? _translateCopy("copy.6b987654a411", { defaultValue: "PM" }) : _translateCopy("copy.c8f48a68649d", { defaultValue: "AM" });
   return `${h % 12 || 12}:${m} ${ampm}`;
 };
 
 /** `4 Aug, 9:05 PM` — built by hand so it does not depend on Intl being present. */
 const formatWhen = (date: Date): string =>
-  `${date.getDate()} ${MONTHS[date.getMonth()]}, ${formatClock(date)}`;
+  `${date.getDate()} ${MONTHS[date.getMonth()]()}, ${formatClock(date)}`;
 
 const humaniseInterval = (seconds: number): string => {
   if (seconds < 60) return `${seconds}s`;
@@ -406,13 +407,21 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     requestAnimationFrame(() => listRef.current?.scrollToEnd({ animated: true }));
   }, []);
 
-  const lastCountRef = useRef(0);
+  // Counted from the old tail, not the length: the list is capped at 200, so
+  // once it is full every new message pushes an old one out and the length
+  // stops moving. Old tail gone (a full refetch) counts nothing, like web.
+  const lastIdRef = useRef<string | null>(null);
+  const lastMessageId = messages[messages.length - 1]?.id ?? null;
   useEffect(() => {
-    const count = messages.length;
-    const added = count - lastCountRef.current;
-    lastCountRef.current = count;
-    if (added > 0 && !atBottomRef.current) setUnseen((n) => n + added);
-  }, [messages.length]);
+    const prev = lastIdRef.current;
+    lastIdRef.current = lastMessageId;
+    if (!prev || prev === lastMessageId || atBottomRef.current) return;
+    const at = messages.findIndex((m) => m.id === prev);
+    const added = at === -1 ? 0 : messages.length - 1 - at;
+    if (added > 0) setUnseen((n) => n + added);
+    // Only a new tail is a new message; `messages` is read, not watched.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastMessageId]);
 
   const jumpToLatest = useCallback(() => {
     atBottomRef.current = true;

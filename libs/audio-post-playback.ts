@@ -31,6 +31,7 @@ import { releaseAudioFocus, requestAudioFocus } from "./audioFocus";
 import { configureForBackgroundPlayback } from "./audioSession";
 import { claimLockScreen, releaseLockScreen, type LockScreenTrack } from "./lockScreen";
 import { createLogger } from "./logger";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 import { stopActivePreview } from "./previewRegistry";
 
 const log = createLogger("audio-post-playback");
@@ -119,7 +120,7 @@ function lockScreenTrack(track: AudioPostTrack): LockScreenTrack {
   return {
     title: track.title,
     artist: track.artist,
-    albumTitle: "DeHub • Audio",
+    albumTitle: _translateCopy("copy.a2caa0dc28fb", { defaultValue: "DeHub • Audio" }),
     artworkUrl: track.artworkUrl || undefined,
   };
 }

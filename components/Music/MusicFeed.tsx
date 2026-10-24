@@ -286,7 +286,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                 return {
                   id: String(item.tokenId ?? item.id ?? index),
                   title: item.name || (item as any).title || "",
-                  subtitle: [creator, views ? t("music.viewsCount", { defaultValue: "{{views}} views", views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
+                  subtitle: [creator, views ? t("music.viewsCount", { count: views, views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
                   thumb: rawThumb ? getImageUrl(rawThumb, 160) : undefined,
                   badge: secondsToHMMSS(item.videoDuration) || undefined,
                 };
@@ -618,11 +618,14 @@ const AudioUploadCard: React.FC<{ nft: GetNFTsResult; isVisible: boolean; desk?:
   const audioUrl = rawAudioUrl ? getAudioUrl(rawAudioUrl) : undefined;
   const glass = (theme === 'glass' || theme === 'system') && !!audioUrl && tokenId != null;
   const streamInfo = (nft as any).streamInfo;
-  // Paid and gated tracks are private on the CDN; fetch a signed link first.
+  // Paid, gated and followers-only or direct tracks are private on the CDN;
+  // fetch a signed link first.
   const requiresAccess = !!streamInfo?.isPayPerView
     || isHoldGated(streamInfo?.isLockContent, streamInfo?.lockAmount ?? streamInfo?.lockContentAmount)
-    || !!(nft as any).plansDetails?.length;
-  const title = nft.name || (nft as any).title || "Untitled";
+    || !!(nft as any).plansDetails?.length
+    || (nft as any).visibility === "followers"
+    || (nft as any).visibility === "direct";
+  const title = nft.name || (nft as any).title || t("copy.f59ab8d1331b", { defaultValue: "Untitled" });
   const creator =
     (nft as any).minterDisplayName || (nft as any).minterUsername || (nft as any).mintername || "";
 

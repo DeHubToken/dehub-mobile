@@ -1,8 +1,20 @@
+import { balancedTextParagraph } from "./balancedTextWrap";
+import { resolvedTextDirection, type TextDirection } from "./textDirection";
+import { wrapTextParagraph } from "./textParagraphWrap";
+import { formatTextList, type TextListStyle } from "./textList";
+import { curvedTextLayout } from "./curvedText";
 export interface MeasuredTextStyle {
+  balance?: boolean;
+  direction?: TextDirection;
   text: string;
   uppercase?: boolean;
+  curve?: number;
+  echo?: Array<{ x: number; y: number }>;
+  list?: "none" | "bullet" | "number";
+  listStyle?: TextListStyle;
   fontSize: number;
   lineHeight?: number;
+  paragraphSpacing?: number;
   letterSpacing?: number;
   x: number;
   y: number;
@@ -18,7 +30,8 @@ export function measuredTextLayout(
   text: MeasuredTextStyle, W: number, H: number,
   measure: (line: string, size: number, spacing: number) => number,
 ) {
-  const raw = text.uppercase ? text.text.toUpperCase() : text.text;
+  const source = text.uppercase ? text.text.toUpperCase() : text.text;
+  const raw = formatTextList(source, text.list, text.listStyle), rtl = resolvedTextDirection(source, text.direction) === "rtl";
   const requested = Math.max(0.1, text.fontSize / 1080 * H);
   const wrapping = Number.isFinite(text.maxWidth) && text.maxWidth! > 0;
   const fitting = wrapping && Number.isFinite(text.maxHeight) && text.maxHeight! > 0;
@@ -31,35 +44,30 @@ export function measuredTextLayout(
     const scale = size / requested;
     const spacing = (text.letterSpacing ?? 0) / 1080 * H * scale;
     const padding = text.background ? text.background.padding / 1080 * H * scale : size * 0.2;
-    const pad = Math.max(0, padding, (text.stroke?.width ?? 0) / 1080 * H * scale / 2);
+    const echoPad = Math.max(0, ...(text.echo ?? []).slice(0, 3).map(layer => Math.max(Math.abs(layer.x), Math.abs(layer.y)) / 1080 * H * scale));
+    const pad = Math.max(0, padding, echoPad, (text.stroke?.width ?? 0) / 1080 * H * scale / 2);
     const available = Math.max(0.1, widthLimit - pad * 2);
-    const lines: string[] = [];
+    const lines: string[] = [], offsets: number[] = [], paragraphStarts: number[] = [];
     const width = (line: string) => measure(line, size, spacing);
     raw.replace(/\r\n?/g, "\n").split("\n").forEach(paragraph => {
-      if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); return; }
-      let line = "";
-      paragraph.trim().split(/\s+/).forEach(word => {
-        const candidate = line ? line + " " + word : word;
-        if (width(candidate) <= available) { line = candidate; return; }
-        if (line) { lines.push(line); line = ""; }
-        if (width(word) <= available) { line = word; return; }
-        const Segmenter = (Intl as unknown as { Segmenter?: new (locale?: string, options?: { granularity: string }) => { segment(value: string): Iterable<{ segment: string }> } }).Segmenter;
-        const parts = Segmenter ? Array.from(new Segmenter(undefined, { granularity: "grapheme" }).segment(word), part => part.segment) : Array.from(word);
-        parts.forEach(part => {
-          if (line && width(line + part) > available) { lines.push(line); line = ""; }
-          line += part;
-        });
-      });
-      lines.push(line);
+      paragraphStarts.push(lines.length);
+      if (!wrapping || width(paragraph) <= available) { lines.push(paragraph); offsets.push(0); return; }
+      const wrapped = text.balance && (!text.list || text.list === "none") ? balancedTextParagraph(paragraph, available, width) : wrapTextParagraph(paragraph, available, width, (text.list === "bullet" || text.list === "number") && (text.align === "left" || rtl && text.align === "right") && Math.abs(text.curve ?? 0) < 0.01);
+      lines.push(...wrapped.lines); offsets.push(...wrapped.offsets.map(offset => rtl && text.align === "right" ? -offset : offset));
     });
     const widths = lines.map(width);
     const lh = size * (text.lineHeight ?? 1.2);
-    const maxW = Math.max(0.1, ...widths);
-    return { size, scale, spacing, lh, lines, widths, maxW, pad };
+    const paragraphGap = Math.max(0, Math.min(300, text.paragraphSpacing ?? 0)) / 1080 * H * scale, starts = new Set(paragraphStarts.slice(1));
+    let extraGap = 0;
+    const lineY = lines.map((_, index) => { if (starts.has(index)) extraGap += paragraphGap; return index * lh + extraGap; });
+    const height = lines.length * lh + extraGap;
+    const maxW = Math.max(0.1, ...widths.map((value, index) => value + Math.abs(offsets[index])));
+    const curve = curvedTextLayout(lines, size, lh, text.curve ?? 0, width, lineY);
+    return { size, scale, spacing, lh, height, lineY, lines, offsets, widths, maxW, pad, curve };
   }
 
-  const fits = (value: ReturnType<typeof layout>) => value.maxW + value.pad * 2 <= widthLimit + 0.01
-    && value.lines.length * value.lh + value.pad * 2 <= heightLimit + 0.01;
+  const fits = (value: ReturnType<typeof layout>) => (value.curve?.width ?? value.maxW) + value.pad * 2 <= widthLimit + 0.01
+    && (value.curve?.height ?? value.height) + value.pad * 2 <= heightLimit + 0.01;
   let result = layout(requested);
   if (!fitting || fits(result)) return result;
   let low = 0.01, high = requested;

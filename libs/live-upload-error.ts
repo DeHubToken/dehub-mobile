@@ -14,6 +14,7 @@
  * navigator, an auth context and a web3 provider to reach it.
  */
 import { parseTxError } from "./web3.util";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 export type LiveUploadStage =
   | "idle"
@@ -37,5 +38,5 @@ export function liveUploadErrorMessage(
 ): string {
   return MINT_STAGES.includes(stage)
     ? parseTxError(error, "send")
-    : error?.message || "Livestream creation failed";
+    : error?.message || _translateCopy("copy.7dc4153dfb59", { defaultValue: "Livestream creation failed" });
 }

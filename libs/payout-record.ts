@@ -15,6 +15,7 @@
  */
 
 import i18n from "i18next";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 /** Thrown when the money moved but the row recording it would not save. */
 export class PaidButUnrecordedError extends Error {
@@ -101,5 +102,5 @@ export async function persistPayout(
   }
 
   if (txHash) throw new PaidButUnrecordedError(txHash);
-  throw last instanceof Error ? last : new Error(String((last as any)?.message || last || "Could not save the payout"));
+  throw last instanceof Error ? last : new Error(String((last as any)?.message || last || _translateCopy("copy.ba83a5ada19b", { defaultValue: "Could not save the payout" })));
 }

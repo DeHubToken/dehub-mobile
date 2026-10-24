@@ -78,11 +78,11 @@ const NewMembersRail: FC = () => {
           isFollowRequestPending: response.status === "pending",
       });
     } catch (err) {
-      reportActionError(err, "Couldn't follow this member");
+      reportActionError(err, t("copy.a78d6408b3da", { defaultValue: "Couldn't follow this member" }));
     } finally {
       setLoadingAddress(null);
     }
-  }, [queryClient, setLoadingAddress]);
+  }, [queryClient, setLoadingAddress, t]);
 
   const handleFollow = useCallback(
     (member: NewMember) => {

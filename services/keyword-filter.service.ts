@@ -1,4 +1,5 @@
 import { apiClient } from '../libs/api.client';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
  * Keyword filters — a viewer's private list of words and phrases
@@ -31,7 +32,7 @@ export interface KeywordFilterInput {
 }
 
 function unwrap<T>(response: any): T {
-  if (response && response.status === false) throw new Error(response.error || 'Request failed');
+  if (response && response.status === false) throw new Error(response.error || _translateCopy("copy.cfce761befa8", { defaultValue: "Request failed" }));
   return (response?.result ?? response) as T;
 }
 

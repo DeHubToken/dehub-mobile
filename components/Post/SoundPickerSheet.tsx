@@ -46,10 +46,11 @@ const resolveAudioUrl = (audioUrl?: string | null, tokenId?: string | number): s
   return `${CDN_BASE}/feed-audio/${tokenId}-audio.mp3`;
 };
 
-const resolveTrackTitle = (item: UnifiedFeedItem): string => {
+// The picked title goes into the post's soundtrack tag, so only the list row shows a translated fallback.
+const resolveTrackTitle = (item: UnifiedFeedItem, untitled = "Untitled"): string => {
   if (item.name && item.name.trim()) return item.name.trim();
-  if (item.description) return item.description.split("\n")[0].trim() || "Untitled";
-  return "Untitled";
+  if (item.description) return item.description.split("\n")[0].trim() || untitled;
+  return untitled;
 };
 
 const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, currentSound }) => {
@@ -280,7 +281,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
           />
           <View style={styles.trackInfo}>
             <Text style={styles.trackTitle} numberOfLines={1}>
-              {resolveTrackTitle(item)}
+              {resolveTrackTitle(item, t("copy.f59ab8d1331b", { defaultValue: "Untitled" }))}
             </Text>
             <Text style={styles.trackCreator} numberOfLines={1}>
               {item.minterDisplayName || item.minterUsername || item.minter || t("settings.unknown")}

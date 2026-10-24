@@ -25,6 +25,7 @@ import { canonicalTierName } from '../libs/misc';
 
 import { apiClient } from '../libs/api.client';
 import { getAuthToken } from '../libs/auth.utils';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /** Keys are stable and stored on bookings; renaming one is a migration. */
 export type SuperPowerKey =
@@ -621,11 +622,11 @@ export function spendablePowers(
       targeting: TARGETING[p.key] ?? 'none',
       enabled: !!p.unlocked && left(p.key) > 0,
       blockedReason: !p.unlocked
-        ? `Unlocks at ${p.tier}`
+        ? _translateCopy("copy.b7d596163a60", { defaultValue: "Unlocks at {{value1}}", value1: p.tier })
         : left(p.key) < 1
           ? SIGNALS.includes(p.key)
-            ? 'No Signal Flares left this cycle'
-            : 'No boosts left this cycle'
+            ? _translateCopy("copy.c97d91cc6850", { defaultValue: "No Signal Flares left this cycle" })
+            : _translateCopy("copy.06929641f3ed", { defaultValue: "No boosts left this cycle" })
           : '',
     }));
 }

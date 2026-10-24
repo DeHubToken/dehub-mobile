@@ -9,6 +9,8 @@
  * in step: an extension added here but not on the server is rejected on upload.
  */
 
+import { translateCopy as _translateCopy } from "../i18n/copy";
+
 /** Extensions the backend accepts, in the order they appear in its table. */
 export const ALLOWED_ATTACHMENT_EXTENSIONS = [
   ".pdf", ".doc", ".docx", ".odt", ".rtf", ".txt", ".md",
@@ -160,15 +162,15 @@ export interface AttachmentValidationResult {
  */
 export function validateAttachment(file: PickedAttachment): AttachmentValidationResult {
   if (!isAllowedAttachment(file.name)) {
-    return { ok: false, error: `"${file.name}" isn't a supported file type.` };
+    return { ok: false, error: _translateCopy("copy.c6e54a2ced80", { defaultValue: "\"{{value1}}\" isn't a supported file type.", value1: file.name }) };
   }
   if (!file.size) {
-    return { ok: false, error: `"${file.name}" is empty.` };
+    return { ok: false, error: _translateCopy("copy.5b48de2ed0c6", { defaultValue: "\"{{value1}}\" is empty.", value1: file.name }) };
   }
   if (file.size > MAX_ATTACHMENT_SIZE) {
     return {
       ok: false,
-      error: `"${file.name}" is over the ${formatAttachmentSize(MAX_ATTACHMENT_SIZE)} limit.`,
+      error: _translateCopy("copy.dcc6fd585985", { defaultValue: "\"{{value1}}\" is over the {{value2}} limit.", value1: file.name, value2: formatAttachmentSize(MAX_ATTACHMENT_SIZE) }),
     };
   }
   return { ok: true };

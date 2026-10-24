@@ -134,7 +134,8 @@ describe('post media presentation', () => {
     const video = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
     expect(containedImage).toContain('postPageMaxHeightFor(screenHeight),');
-    expect(containedImage).toContain('contentFit="contain"');
+    // Whole photo, never cropped, except a shorter photo filling a framed gallery.
+    expect(containedImage).toContain('contentFit={fills ? "cover" : "contain"}');
     expect(containedImage).toContain('alignItems: "flex-start"');
     expect(containedImage).toContain('screenHeight * 0.55');
     expect(video).toContain('const INLINE_MAX_SCREEN = 0.55;');

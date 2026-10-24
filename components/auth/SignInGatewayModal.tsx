@@ -389,24 +389,24 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
     const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
     if (failed) {
       throw new Error(
-        "Couldn't reach your wallet record. Check your connection and try again — nothing has been changed."
+        t("copy.dd8476cbf099", { defaultValue: "Couldn't reach your wallet record. Check your connection and try again — nothing has been changed." })
       );
     }
     if (!wallet?.ethAddress) {
       throw new Error(
-        "There is no wallet on this account any more. Close this and sign in again."
+        t("copy.70a116672a2c", { defaultValue: "There is no wallet on this account any more. Close this and sign in again." })
       );
     }
     if (wallet.ethAddress.toLowerCase() !== address.toLowerCase()) {
       throw new Error(
-        "This account's wallet changed while this screen was open. Close this and sign in again — you may not need to start over."
+        t("copy.041dc898c488", { defaultValue: "This account's wallet changed while this screen was open. Close this and sign in again — you may not need to start over." })
       );
     }
     if (wallet.payload && getPayloadKdf(wallet.payload) !== "hkdf" &&
         (walletSetupRequest.mode === "web-passkey-sync" ||
          wallet.payload.ciphertext !== walletSetupRequest.payload.ciphertext)) {
       throw new Error(
-        "This wallet now has a password backup, so it can be unlocked. Close this and sign in again."
+        t("copy.539ee12b2254", { defaultValue: "This wallet now has a password backup, so it can be unlocked. Close this and sign in again." })
       );
     }
 
@@ -416,7 +416,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       supabaseUserId,
       replacing: { address: wallet.ethAddress, clearOtherSeedCopies: true },
     });
-  }, [walletSetupRequest]);
+  }, [walletSetupRequest, t]);
 
   // Native legacy-account recovery succeeded (see LegacyAccountWarningModal /
   // libs/legacy-web3auth.ts) — hand the recovered key to the same
@@ -454,12 +454,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       console.error("[SignInGatewayModal] Google login error", e);
-      setInlineError(e?.message || "Login failed. Please retry.");
+      setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
     }
-  }, [runProvisionAndSignIn]);
+  }, [runProvisionAndSignIn, t]);
 
   const handleAppleLogin = useCallback(async () => {
     setIsLocalLoading(true);
@@ -470,12 +470,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       console.error("[SignInGatewayModal] Apple login error", e);
-      setInlineError(e?.message || "Login failed. Please retry.");
+      setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
     }
-  }, [runProvisionAndSignIn]);
+  }, [runProvisionAndSignIn, t]);
 
   const handlePasskey = useCallback(async (mode: "signin" | "signup") => {
     setIsLocalLoading(true);
@@ -518,13 +518,13 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       // Closing Telegram's consent screen is a choice, not a failure — do not
       // put a red notice under the sheet for it.
       if (!/cancelled/i.test(e?.message || "")) {
-        setInlineError(e?.message || "Login failed. Please retry.");
+        setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
       }
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
     }
-  }, [runProvisionAndSignIn]);
+  }, [runProvisionAndSignIn, t]);
 
   const handleEmailSubmit = useCallback(async (email: string) => {
     setIsLocalLoading(true);
@@ -536,12 +536,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       setAuthStep("email-code");
     } catch (e: any) {
       console.error("[SignInGatewayModal] Email OTP send error", e);
-      setInlineError(e?.message || "Could not send code. Please retry.");
+      setInlineError(e?.message || t("copy.82abafabe468", { defaultValue: "Could not send code. Please retry." }));
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
     }
-  }, []);
+  }, [t]);
 
   const handleEmailCodeSubmit = useCallback(
     async (code: string) => {
@@ -552,12 +552,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         console.error("[SignInGatewayModal] Email code verify error", e);
-        setInlineError(e?.message || "Invalid code. Please retry.");
+        setInlineError(e?.message || t("copy.ddb60ecfdcd2", { defaultValue: "Invalid code. Please retry." }));
       } finally {
         setIsLocalLoading(false);
       }
     },
-    [pendingEmail, runProvisionAndSignIn]
+    [pendingEmail, runProvisionAndSignIn, t]
   );
 
   /**
@@ -574,13 +574,13 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         console.error("[SignInGatewayModal] Email password login error", e);
-        setInlineError(e?.message || "Invalid email or password.");
+        setInlineError(e?.message || t("copy.db2a02d8dacc", { defaultValue: "Invalid email or password." }));
       } finally {
         setIsLocalLoading(false);
         setCurrentProvider("");
       }
     },
-    [runProvisionAndSignIn]
+    [runProvisionAndSignIn, t]
   );
 
   const handleResendEmailCode = useCallback(() => {
@@ -597,12 +597,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       setAuthStep("phone-code");
     } catch (e: any) {
       console.error("[SignInGatewayModal] Phone OTP send error", e);
-      setInlineError(e?.message || "Could not send code. Please retry.");
+      setInlineError(e?.message || t("copy.82abafabe468", { defaultValue: "Could not send code. Please retry." }));
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
     }
-  }, []);
+  }, [t]);
 
   const handlePhoneCodeSubmit = useCallback(
     async (code: string) => {
@@ -613,12 +613,12 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
         await runProvisionAndSignIn(supabaseUserId);
       } catch (e: any) {
         console.error("[SignInGatewayModal] Phone code verify error", e);
-        setInlineError(e?.message || "Invalid code. Please retry.");
+        setInlineError(e?.message || t("copy.ddb60ecfdcd2", { defaultValue: "Invalid code. Please retry." }));
       } finally {
         setIsLocalLoading(false);
       }
     },
-    [pendingPhone, runProvisionAndSignIn]
+    [pendingPhone, runProvisionAndSignIn, t]
   );
 
   const handleResendPhoneCode = useCallback(() => {
@@ -654,7 +654,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       ) : (
       <View style={{ flexShrink: 1 }}>
         {isBusy && (
-          <FullScreenLoader message="Signing you in…" />
+          <FullScreenLoader message={t("copy.afc99407f777", { defaultValue: "Signing you in…" })} />
         )}
         <ScrollView
           {...scrollViewProps}

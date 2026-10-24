@@ -6,6 +6,7 @@ import { tokenRefreshManager } from './token-refresh';
 import { getDeviceHeaders } from './device';
 import { isKidsModeLocked } from './kids-mode-lock';
 import { createLogger } from './logger';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const sessionLog = createLogger('SessionRequest');
 
@@ -36,7 +37,7 @@ const DEFAULT_TIMEOUT_MS = 20_000;
 export class SessionExpiredError extends Error {
   readonly status = 401;
   constructor() {
-    super('Authentication required');
+    super(_translateCopy('copy.0fcfb12dfad0', { defaultValue: 'Authentication required' }));
     this.name = 'SessionExpiredError';
   }
 }
@@ -58,7 +59,7 @@ export class RequestTimeoutError extends Error {
     // contain identifiers or other values that should not be copied into a
     // toast, screenshot, or support message.
     const target = url.split(/[?#]/, 1)[0].replace(/^https?:\/\//i, '');
-    super(`Request to ${target} timed out after ${ms}ms`);
+    super(_translateCopy('copy.108491144a8d', { defaultValue: 'Request to {{value1}} timed out after {{value2}}ms', value1: target, value2: ms }));
     this.name = 'RequestTimeoutError';
     this.url = url;
   }
@@ -277,7 +278,7 @@ export const apiClient = {
               // Preserve the final response: a rate limit or server failure
               // after refreshing credentials is not another auth failure.
               const retryData = await retryResponse.json().catch(() => ({}));
-              throw Object.assign(new Error(retryData?.message || retryData?.error || 'API request failed'), {
+              throw Object.assign(new Error(retryData?.message || retryData?.error || _translateCopy('copy.bdf55b6dc188', { defaultValue: 'API request failed' })), {
                 status: retryResponse.status,
                 ...(retryData?.code ? { code: retryData.code } : {}),
               });
@@ -286,14 +287,14 @@ export const apiClient = {
           }
           // Refresh failed or retry failed — throw original 401
           throw await getAuthToken()
-            ? Object.assign(new Error('Authentication required'), { status: 401 })
+            ? Object.assign(new Error(_translateCopy('copy.0fcfb12dfad0', { defaultValue: 'Authentication required' })), { status: 401 })
             : new SessionExpiredError();
         }
 
         // Prefer API provided message
-        const message = data?.message || data?.error || (typeof data === 'string' ? data : undefined) || 'API request failed';
+        const message = data?.message || data?.error || (typeof data === 'string' ? data : undefined) || _translateCopy('copy.bdf55b6dc188', { defaultValue: 'API request failed' });
         // Add hint if we got HTML
-        const htmlHint = rawBody && rawBody.trim().startsWith('<') ? ' (Received HTML instead of JSON - check endpoint URL / server / proxy / CORS)' : '';
+        const htmlHint = rawBody && rawBody.trim().startsWith('<') ? ` ${_translateCopy('copy.843aa2e9103e', { defaultValue: '(Received HTML instead of JSON - check endpoint URL / server / proxy / CORS)' })}` : '';
         // Attach status/code so callers that need to branch on the specific
         // failure (e.g. 409 WALLET_NOT_LINKED) don't have to re-parse the message.
         const err: any = new Error(message + htmlHint);

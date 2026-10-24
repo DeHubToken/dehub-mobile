@@ -16,7 +16,7 @@ jest.mock('react-native', () => ({
   Linking: { openURL: jest.fn(() => Promise.resolve()) },
   Share: { share: jest.fn(() => Promise.resolve()) },
 }));
-jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string; [name: string]: unknown }) => (options?.defaultValue ?? key).replace(/{{(\w+)}}/g, (token, name) => String(options?.[name] ?? token)) }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/GlassModal', () => ({ __esModule: true, default: ({ children }: any) => children }));
 jest.mock('../../components/Home/ReactionPicker', () => 'ReactionPicker');

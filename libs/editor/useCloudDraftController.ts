@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { useEffect, useRef, useState } from "react";
 import { cloudDraftController, type CloudDraftEditor, type CloudDraftControllerState } from "./cloudDraftController";
 import type { cloudProjectSession } from "./cloudProjectSession";
@@ -12,7 +13,7 @@ export function useCloudDraftController(address:string|null|undefined,localId:st
   useEffect(()=>{
     mounted.current=true;
     setState({mode:null,status:"idle",error:""});setCopyError("");
-    const check=()=>{if(!mounted.current||scope.current.wallet!==wallet||scope.current.localId!==localId)throw new Error("Live project account changed");};
+    const check=()=>{if(!mounted.current||scope.current.wallet!==wallet||scope.current.localId!==localId)throw new Error(_translateCopy("copy.0eb77c65ee78", { defaultValue: "Live project account changed" }));};
     if(/^0x[a-f0-9]{40}$/.test(wallet))controller.current=cloudDraftController(wallet,localId,factory(wallet,check).session,
       {scope:()=>scope.current.editor.scope?.(),current:()=>scope.current.editor.current(),isEditing:()=>scope.current.editor.isEditing(),subscribe:run=>scope.current.editor.subscribe(run),receive:(snapshot,key)=>scope.current.editor.receive(snapshot,key)},
       {check,update:value=>{if(mounted.current&&scope.current.wallet===wallet&&scope.current.localId===localId)setState(value);}});
@@ -31,8 +32,8 @@ export function useCloudDraftController(address:string|null|undefined,localId:st
       controller.current?.stop();setCopyError("");
       const source=scope.current.editor.current();if(!source)return;
       const editorScope=scope.current.editor.scope?.();
-      const check=()=>{if(!mounted.current||scope.current.wallet!==wallet||scope.current.localId!==localId||scope.current.editor.scope?.()!==editorScope)throw new Error("Live project account changed");};
+      const check=()=>{if(!mounted.current||scope.current.wallet!==wallet||scope.current.localId!==localId||scope.current.editor.scope?.()!==editorScope)throw new Error(_translateCopy("copy.0eb77c65ee78", { defaultValue: "Live project account changed" }));};
       try{await factory(wallet,check).session.saveLiveProjectCopy(source,check);check();return true;}
-      catch(cause){if(mounted.current&&scope.current.wallet===wallet&&scope.current.localId===localId&&scope.current.editor.scope?.()===editorScope)setCopyError(cause instanceof Error?cause.message:"Could not save the personal copy. Your draft was kept.");return false;}
+      catch(cause){if(mounted.current&&scope.current.wallet===wallet&&scope.current.localId===localId&&scope.current.editor.scope?.()===editorScope)setCopyError(cause instanceof Error?cause.message:_translateCopy("copy.f9022a41ed87", { defaultValue: "Could not save the personal copy. Your draft was kept." }));return false;}
     }};
 }

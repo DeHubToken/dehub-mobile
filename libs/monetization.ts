@@ -18,6 +18,7 @@ import { supportedTokens, streamInfoKeys } from "../config/constants";
 import { isSolanaChain, findSolanaToken } from "../config/solana.constants";
 import type { MonetizationState } from "../components/Upload/MonetizationPanel";
 import { DIRECT_TIP_TOKENS } from "./direct-tip-tokens";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const isStableSymbol = (s?: string) => s === "USDC" || s === "USDT";
 
@@ -34,33 +35,33 @@ export function validateMonetization(
   postChainId?: number,
 ): string | null {
   if (m.ppvEnabled && !parsePositiveNumber(m.ppvData.price)) {
-    return "PPV price must be a valid positive number.";
+    return _translateCopy("copy.e883739208ae", { defaultValue: "PPV price must be a valid positive number." });
   }
   // Never quietly reprice 5 USDC as 5 DHB after a chain switch.
   if (
     m.ppvEnabled && postChainId && !isSolanaChain(postChainId) && isStableSymbol(m.ppvData.tokenSymbol) &&
     !DIRECT_TIP_TOKENS.some((tk) => tk.chainId === postChainId && tk.symbol === m.ppvData.tokenSymbol)
   ) {
-    return `${m.ppvData.tokenSymbol} pay-per-view is only available on Base and BNB Chain.`;
+    return _translateCopy("copy.92a99b217835", { defaultValue: "{{value1}} pay-per-view is only available on Base and BNB Chain.", value1: m.ppvData.tokenSymbol });
   }
   if (m.bountyEnabled) {
     if (!parsePositiveNumber(m.bountyData.viewers)) {
-      return "Bounty: viewers to reward must be a valid positive number.";
+      return _translateCopy("copy.58529cbb11f9", { defaultValue: "Bounty: viewers to reward must be a valid positive number." });
     }
     if (!parsePositiveNumber(m.bountyData.commenters)) {
-      return "Bounty: commenters to reward must be a valid positive number.";
+      return _translateCopy("copy.9bcdd5f7c2a7", { defaultValue: "Bounty: commenters to reward must be a valid positive number." });
     }
     if (!parsePositiveNumber(m.bountyData.rewardPerPerson)) {
-      return "Bounty: reward per person must be a valid positive number.";
+      return _translateCopy("copy.5780d87b77f8", { defaultValue: "Bounty: reward per person must be a valid positive number." });
     }
   }
   if (m.tokenGatedEnabled) {
     if (!parsePositiveNumber(m.tokenGateData.minAmount)) {
-      return "Token Gated: minimum token amount must be a valid positive number.";
+      return _translateCopy("copy.55863f701a6d", { defaultValue: "Token Gated: minimum token amount must be a valid positive number." });
     }
     const addr = m.tokenGateData.contractAddress?.trim();
     if (addr && !isSolanaChain(postChainId) && !/^0x[0-9a-fA-F]{40}$/.test(addr)) {
-      return "Token Gated: enter a valid token contract address.";
+      return _translateCopy("copy.fc971a2ae350", { defaultValue: "Token Gated: enter a valid token contract address." });
     }
   }
   return null;

@@ -19,6 +19,7 @@ import * as Linking from "expo-linking";
 import Web3Auth, { AUTH_CONNECTION, WEB3AUTH_NETWORK } from "@web3auth/react-native-sdk";
 import { supabase } from "../services/supabase";
 import { createLogger } from "./logger";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const log = createLogger("LegacyWeb3Auth");
 
@@ -146,7 +147,7 @@ export async function startLegacyMigration(
     log.info("startLegacyMigration:connectTo:ok", { provider, hasConnection: !!connection });
 
     if (!connection) {
-      throw new Error("Could not retrieve your old wallet key. Please try again.");
+      throw new Error(_translateCopy("copy.c7b7e6c88a41", { defaultValue: "Could not retrieve your old wallet key. Please try again." }));
     }
 
     // getFinalPrivKey() is intentionally not part of the public TS surface
@@ -156,7 +157,7 @@ export async function startLegacyMigration(
     // key populated by the connectTo() call above; no extra network hop.
     const rawKey: string | undefined = (instance as any).getFinalPrivKey?.();
     if (!rawKey) {
-      throw new Error("Could not retrieve your old wallet key. Please try again.");
+      throw new Error(_translateCopy("copy.c7b7e6c88a41", { defaultValue: "Could not retrieve your old wallet key. Please try again." }));
     }
     log.info("startLegacyMigration:ok", { provider });
     return rawKey.startsWith("0x") ? rawKey : `0x${rawKey}`;
@@ -164,7 +165,7 @@ export async function startLegacyMigration(
     log.error("startLegacyMigration:error", { provider, message: e?.message, stack: e?.stack });
     // eslint-disable-next-line no-console
     console.error("[legacy-web3auth] startLegacyMigration failed", e);
-    throw e instanceof Error ? e : new Error("Could not retrieve your old wallet key. Please try again.");
+    throw e instanceof Error ? e : new Error(_translateCopy("copy.c7b7e6c88a41", { defaultValue: "Could not retrieve your old wallet key. Please try again." }));
   } finally {
     await cleanupLegacySession(instance);
   }

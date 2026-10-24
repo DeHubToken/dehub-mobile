@@ -5,6 +5,7 @@ import { getAuthToken } from '../libs/auth.utils';
 import { tokenRefreshManager } from '../libs/token-refresh';
 import { requiresImageGeneration, requiresVideoGeneration } from './ai-intent';
 import type { CreatorStudioSettings } from '../libs/creatorStudio';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const log = createLogger('ai.service');
 
@@ -58,6 +59,8 @@ export interface AIChatMessage {
   toolRequestId?: string;
   toolAppId?: string;
   toolType?: string;
+  /** Creator library id the server archived this result under, so the app skips its own copy. */
+  libraryId?: string;
   /** Set on a failed turn so the bubble can offer a retry. */
   isError?: boolean;
   /**
@@ -370,6 +373,8 @@ export interface AIVideoResponse {
   /** Which backend holds this prediction; must be handed back when polling. */
   provider?: string;
   falAppId?: string;
+  /** Set once the server has archived the finished render to the creator library. */
+  libraryId?: string;
   error?: string;
 }
 
@@ -419,7 +424,7 @@ async function edgeFetch<T>(
     const err = data as AIErrorResponse;
     log.error(`${functionName} failed (${res.status}) after ${tTotal}ms:`, err.error);
     throw new AIServiceError(
-      err.error || `AI request failed (${res.status})`,
+      err.error || _translateCopy("copy.a2bdedd473a3", { defaultValue: "AI request failed ({{value1}})", value1: res.status }),
       res.status,
       // The payment guard answers `code`, the older functions answer
       // `errorCode`. Read both, or a 402 arrives as an unlabelled failure and
@@ -615,6 +620,8 @@ export interface AiToolResponse {
   modelUrl?: string;
   /** Whisper transcript. */
   text?: string;
+  /** Set once the server has archived the result to the creator library. */
+  libraryId?: string;
   error?: string;
 }
 
@@ -857,7 +864,7 @@ export function streamAIChat(
       finish(() =>
         onError(
           new AIServiceError(
-            parsed?.error || `AI request failed (${xhr.status})`,
+            parsed?.error || _translateCopy("copy.a2bdedd473a3", { defaultValue: "AI request failed ({{value1}})", value1: xhr.status }),
             xhr.status,
             parsed?.errorCode || parsed?.code || inferErrorCode(xhr.status),
             parsed?.safetyBlocked,
@@ -919,11 +926,11 @@ export function streamAIChat(
   };
 
   xhr.onerror = () => {
-    finish(() => onError(new AIServiceError('Network error talking to the assistant', 0)));
+    finish(() => onError(new AIServiceError(_translateCopy("copy.3f64cf58aa44", { defaultValue: "Network error talking to the assistant" }), 0)));
   };
 
   xhr.ontimeout = () => {
-    finish(() => onError(new AIServiceError('The assistant took too long to answer', 0, 'TIMEOUT')));
+    finish(() => onError(new AIServiceError(_translateCopy("copy.264b16cff6be", { defaultValue: "The assistant took too long to answer" }), 0, 'TIMEOUT')));
   };
 
   xhr.send(
@@ -1044,31 +1051,31 @@ USER REQUEST: ${userRequest}`;
  * what lets a newly added backend tool read sensibly with no client release.
  */
 const TOOL_LABELS: Record<string, string> = {
-  lookup_user: 'Looking up that profile',
-  user_posts: 'Reading their posts',
-  search: 'Searching DeHub',
-  get_feed: 'Checking the feed',
-  get_post: 'Opening that post',
-  get_followers: 'Checking followers',
-  get_leaderboard: 'Checking the leaderboard',
-  get_live_streams: 'Checking who is live',
-  get_platform_stats: 'Checking platform stats',
-  get_chat_history: 'Reading recent chat',
-  get_top_categories: 'Checking trending categories',
-  my_wallet: 'Checking your wallet',
-  my_earnings: 'Adding up your earnings',
-  my_stats: 'Checking your stats',
-  my_notifications: 'Checking your notifications',
-  my_library: 'Checking your library',
-  my_settings: 'Checking your settings',
-  my_engagement_history: 'Checking who you engage with',
-  web_search: 'Searching the web',
+  get lookup_user() { return _translateCopy("copy.f159c06178be", { defaultValue: "Looking up that profile" }); },
+  get user_posts() { return _translateCopy("copy.5cc6ab9e7e37", { defaultValue: "Reading their posts" }); },
+  get search() { return _translateCopy("copy.4af83339a6f1", { defaultValue: "Searching DeHub" }); },
+  get get_feed() { return _translateCopy("copy.38e888a3984e", { defaultValue: "Checking the feed" }); },
+  get get_post() { return _translateCopy("copy.7a075dd38cf7", { defaultValue: "Opening that post" }); },
+  get get_followers() { return _translateCopy("copy.44612f2b9571", { defaultValue: "Checking followers" }); },
+  get get_leaderboard() { return _translateCopy("copy.985497b3df2b", { defaultValue: "Checking the leaderboard" }); },
+  get get_live_streams() { return _translateCopy("copy.7029fea5b78f", { defaultValue: "Checking who is live" }); },
+  get get_platform_stats() { return _translateCopy("copy.a01190768ce6", { defaultValue: "Checking platform stats" }); },
+  get get_chat_history() { return _translateCopy("copy.fd3b0226be07", { defaultValue: "Reading recent chat" }); },
+  get get_top_categories() { return _translateCopy("copy.a775fbb0a832", { defaultValue: "Checking trending categories" }); },
+  get my_wallet() { return _translateCopy("copy.6c9f1bd00a37", { defaultValue: "Checking your wallet" }); },
+  get my_earnings() { return _translateCopy("copy.bfdf678e86b0", { defaultValue: "Adding up your earnings" }); },
+  get my_stats() { return _translateCopy("copy.221173c89094", { defaultValue: "Checking your stats" }); },
+  get my_notifications() { return _translateCopy("copy.90f7144eff9c", { defaultValue: "Checking your notifications" }); },
+  get my_library() { return _translateCopy("copy.eef1c394932f", { defaultValue: "Checking your library" }); },
+  get my_settings() { return _translateCopy("copy.6f60d3260ac2", { defaultValue: "Checking your settings" }); },
+  get my_engagement_history() { return _translateCopy("copy.32476cbf27ea", { defaultValue: "Checking who you engage with" }); },
+  get web_search() { return _translateCopy("copy.87d2f3386f90", { defaultValue: "Searching the web" }); },
 };
 
 export function describeTools(tools: string[]): string {
   if (!tools.length) return '';
-  const label = TOOL_LABELS[tools[0]] || `Running ${tools[0].replace(/_/g, ' ')}`;
-  return tools.length > 1 ? `${label} (+${tools.length - 1} more)…` : `${label}…`;
+  const label = TOOL_LABELS[tools[0]] || _translateCopy("copy.5cd951f76ade", { defaultValue: "Running {{value1}}", value1: tools[0].replace(/_/g, ' ') });
+  return tools.length > 1 ? _translateCopy("copy.53d8ffae4a58", { defaultValue: "{{value1}} (+{{value2}} more)…", value1: label, value2: tools.length - 1 }) : `${label}…`;
 }
 
 export async function getDHBPrice(): Promise<number> {

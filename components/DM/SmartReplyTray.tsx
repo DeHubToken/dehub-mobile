@@ -114,9 +114,9 @@ const SmartReplyTrayComponent: React.FC<SmartReplyTrayProps> = ({
   // again. A dead band and a working one must never be confusable.
   const notice =
     status === "empty"
-      ? "Nothing to draft from yet — send a message to get started."
+      ? _copy("copy.11e44bb305b1", { defaultValue: "Nothing to draft from yet — send a message to get started." })
       : status === "error"
-        ? error || "Could not draft replies"
+        ? error || _copy("copy.c242c60db16c", { defaultValue: "Could not draft replies" })
         : null;
 
   // Always exactly two slots. The drafter can come back with one usable

@@ -1,0 +1,9 @@
+import React, { useState } from "react";
+import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { matchesTextEffect, TEXT_EFFECTS, TEXT_EFFECT_NAMES, type TextEffect } from "../../libs/editor/textEffects";
+import type { TextClip } from "../../libs/editor/types";
+export default function SelectedTextEffectsControls({ clips, disabled, onApply }: { clips: TextClip[]; disabled: boolean; onApply: (operation: { kind: "effect"; value: TextEffect }) => void }) {
+  const { t } = useTranslation(), [open, setOpen] = useState(false);
+  return <View className="rounded-lg border border-white/10 p-3" style={{ gap: 8 }}><Pressable accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen(!open)} className="min-h-[40px] justify-center"><Text className="text-xs font-semibold text-white/75">{t("editor.textSelection.effects", { defaultValue: "Text effects for selection" })} {open ? "−" : "+"}</Text></Pressable>{open && <><View className="flex-row flex-wrap" style={{ gap: 6 }}>{TEXT_EFFECTS.map(effect => { const active = clips.length > 0 && clips.every(clip => matchesTextEffect(clip, effect)); return <Pressable accessibilityRole="button" accessibilityState={{ selected: active, disabled }} disabled={disabled} key={effect} onPress={() => onApply({ kind: "effect", value: effect })} style={{ opacity: disabled ? 0.35 : 1 }} className={`min-h-[40px] justify-center rounded-lg border px-3 ${active ? "border-cyan-300 bg-cyan-300/10" : "border-white/20"}`}><Text className="text-xs text-white/75">{t(`editor.textEffects.${effect}`, { defaultValue: TEXT_EFFECT_NAMES[effect] })}</Text></Pressable>; })}</View><Text className="text-[10px] text-white/45">{t("editor.textSelection.effectsHint", { defaultValue: "Replaces shadow, outline, echo and label background while keeping fonts, wording, colour and placement." })}</Text></>}</View>;
+}

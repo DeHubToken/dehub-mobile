@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import type { CreatorTemplate } from './creatorTemplates';
 
 export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
@@ -9,6 +10,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Portrait",
         "template":  "Portrait of {subject}, medium format film, shallow depth of field",
         "sample":  "a beekeeper in a sunlit orchard",
+        get displaySample() { return _translateCopy("copy.29011f1a044d", { defaultValue: "a beekeeper in a sunlit orchard" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "4:5"
     },
@@ -20,6 +22,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Design",
         "template":  "Isometric cutaway of {subject}, warm tungsten light, matte clay render",
         "sample":  "a tiny recording studio",
+        get displaySample() { return _translateCopy("copy.7dddf40a4cf7", { defaultValue: "a tiny recording studio" }); },
         "model":  "gemini-3.1-flash-image",
         "aspect":  "1:1"
     },
@@ -31,6 +34,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Commercial",
         "template":  "Editorial still life: {subject}, hard noon shadows",
         "sample":  "brutalist concrete vases with wild poppies",
+        get displaySample() { return _translateCopy("copy.7f64b773feb3", { defaultValue: "brutalist concrete vases with wild poppies" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "4:5"
     },
@@ -42,6 +46,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Film",
         "template":  "{subject}, sodium lamps, reflections in every puddle, 35mm",
         "sample":  "Rain-slick alley at midnight",
+        get displaySample() { return _translateCopy("copy.089aefa5104e", { defaultValue: "Rain-slick alley at midnight" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "16:9"
     },
@@ -53,6 +58,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Portrait",
         "template":  "Studio portrait of {subject}, single softbox, black backdrop",
         "sample":  "an elderly luthier holding a half-built violin",
+        get displaySample() { return _translateCopy("copy.c97f38aaf1f4", { defaultValue: "an elderly luthier holding a half-built violin" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "4:5"
     },
@@ -64,6 +70,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Abstract",
         "template":  "Aerial top-down of {subject}, pink and ochre geometry, midday clarity",
         "sample":  "salt evaporation ponds",
+        get displaySample() { return _translateCopy("copy.5d51a0510603", { defaultValue: "salt evaporation ponds" }); },
         "model":  "gemini-3.1-flash-image",
         "aspect":  "16:9"
     },
@@ -75,6 +82,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Design",
         "template":  "Cutaway illustration of {subject}, blueprint lines on warm paper",
         "sample":  "a mechanical watch movement",
+        get displaySample() { return _translateCopy("copy.d1921054d40b", { defaultValue: "a mechanical watch movement" }); },
         "model":  "gemini-3.1-flash-image",
         "aspect":  "1:1"
     },
@@ -86,6 +94,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Film",
         "template":  "{subject}, overcast light, large format detail",
         "sample":  "Overgrown modernist house reclaimed by ferns",
+        get displaySample() { return _translateCopy("copy.c46d35c14eac", { defaultValue: "Overgrown modernist house reclaimed by ferns" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "16:9"
     },
@@ -97,6 +106,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Commercial",
         "template":  "{subject}, rim light, steam caught mid-curl",
         "sample":  "Matte ceramic espresso cup on wet slate",
+        get displaySample() { return _translateCopy("copy.6b01afa5a8df", { defaultValue: "Matte ceramic espresso cup on wet slate" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "1:1"
     },
@@ -108,6 +118,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Design",
         "template":  "{subject}, wood paneling and orange wool, low winter sun through glass",
         "sample":  "1970s ski lodge interior",
+        get displaySample() { return _translateCopy("copy.bc8f7dc4cb07", { defaultValue: "1970s ski lodge interior" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "16:9"
     },
@@ -119,6 +130,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Commercial",
         "template":  "{subject}, window light, muted palette, close crop",
         "sample":  "Hands kneading dough on floured marble",
+        get displaySample() { return _translateCopy("copy.cb8e55fc4fba", { defaultValue: "Hands kneading dough on floured marble" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "4:5"
     },
@@ -130,6 +142,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Film",
         "template":  "{subject}, long exposure, star trails over a white dome",
         "sample":  "Desert observatory at blue hour",
+        get displaySample() { return _translateCopy("copy.170bc5320e5c", { defaultValue: "Desert observatory at blue hour" }); },
         "model":  "gemini-3-pro-image",
         "aspect":  "16:9"
     },
@@ -141,6 +154,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Slow aerial dolly over {subject}, volumetric light through the canopy",
         "sample":  "fog-covered pine forest at dawn",
+        get displaySample() { return _translateCopy("copy.542f42713acd", { defaultValue: "fog-covered pine forest at dawn" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -152,6 +166,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Effects",
         "template":  "Macro shot of {subject}, backlit, ultra slow motion, black backdrop",
         "sample":  "ink blooming in water",
+        get displaySample() { return _translateCopy("copy.fdb7cf100e3b", { defaultValue: "ink blooming in water" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -163,6 +178,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Handheld tracking shot through {subject}, rain on lenses, shallow focus",
         "sample":  "a neon market at night",
+        get displaySample() { return _translateCopy("copy.e3a858334624", { defaultValue: "a neon market at night" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -174,6 +190,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Film",
         "template":  "Locked-off shot of {subject}, one customer, rain outside, sign flickering",
         "sample":  "a diner at 3am",
+        get displaySample() { return _translateCopy("copy.9efc22a58d66", { defaultValue: "a diner at 3am" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -185,6 +202,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Slow push-in on {subject}, north-facing window light",
         "sample":  "a sculptor\u0027s hands shaping wet clay",
+        get displaySample() { return _translateCopy("copy.3238ef47ed5c", { defaultValue: "a sculptor's hands shaping wet clay" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -196,6 +214,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Drone orbit around {subject}, grey sea, spray hitting the lens",
         "sample":  "a lighthouse in heavy swell",
+        get displaySample() { return _translateCopy("copy.f1c682d2deb1", { defaultValue: "a lighthouse in heavy swell" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -207,6 +226,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Timelapse of cloud shadows sweeping {subject}, golden hour into dusk",
         "sample":  "a canyon rim",
+        get displaySample() { return _translateCopy("copy.b0acf5908de7", { defaultValue: "a canyon rim" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -218,6 +238,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Steadicam walk through {subject}, dust in shafts of light, slow reveal",
         "sample":  "an empty greenhouse",
+        get displaySample() { return _translateCopy("copy.fdcf67479826", { defaultValue: "an empty greenhouse" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -229,6 +250,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Whip pan from {subject}, tungsten glow, heavy motion blur",
         "sample":  "a spinning record to a dancer mid-turn",
+        get displaySample() { return _translateCopy("copy.6856da098a40", { defaultValue: "a spinning record to a dancer mid-turn" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -240,6 +262,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Film",
         "template":  "Underwater shot of {subject}, bubbles, sunlight refracting",
         "sample":  "a swimmer breaking the surface",
+        get displaySample() { return _translateCopy("copy.d233994e3713", { defaultValue: "a swimmer breaking the surface" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -251,6 +274,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Film",
         "template":  "Static wide of {subject}, lit windows, long lens compression",
         "sample":  "a train crossing a viaduct at dusk",
+        get displaySample() { return _translateCopy("copy.494e806e0800", { defaultValue: "a train crossing a viaduct at dusk" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     },
@@ -262,6 +286,7 @@ export const OPEN_STUDIO_PRESETS: CreatorTemplate[] = [
         "group":  "Camera",
         "template":  "Slow tilt down {subject}, overcast city light",
         "sample":  "a glass tower facade to a busy crosswalk",
+        get displaySample() { return _translateCopy("copy.d61494c9f385", { defaultValue: "a glass tower facade to a busy crosswalk" }); },
         "model":  "kling-2.5-turbo",
         "aspect":  "16:9"
     }

@@ -36,6 +36,7 @@ import {
 import { setupAAProvider } from "./wallet-core/smart-account";
 import { getPreferredChainId } from "./auth.utils";
 import { ChainId } from "../config/constants";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const log = createLogger("identity-wallet");
 
@@ -276,7 +277,7 @@ export async function resolveEvmWalletForIdentity(
  * the ordinary login never gets here.
  */
 export async function releaseWalletKeyForSignIn(address: string): Promise<string | null> {
-  return recoverLocalWalletKey(address, 'Sign in to DeHub');
+  return recoverLocalWalletKey(address, _translateCopy('copy.caf0f2aff3b3', { defaultValue: 'Sign in to DeHub' }));
 }
 
 /** Supabase-stored wallet address when resolution already knows one. */
@@ -323,7 +324,7 @@ export async function finishPasskeyUnlock(
   await assertWalletAddress(derived.ethAddress, address);
   const current = await fetchWalletReliably(supabaseUserId);
   if (current.failed || current.wallet?.ethAddress.toLowerCase() !== address.toLowerCase()) {
-    throw new Error('Your wallet changed or could not be checked. Close this screen and try again.');
+    throw new Error(_translateCopy('copy.40345a8f538e', { defaultValue: 'Your wallet changed or could not be checked. Close this screen and try again.' }));
   }
   await upsertLocalAccount({ address: derived.ethAddress, privateKey: derived.ethPrivateKey,
     ...(!isRawPrivateKey(secret) ? { recoveryPhrase: secret } : {}) });
@@ -336,7 +337,7 @@ export async function finishBiometricUnlock(
   address: string,
   payload: EncryptedPayload,
 ): Promise<{ address: string; privateKey: string }> {
-  const survivingKey = await recoverLocalWalletKey(address, 'Unlock your DeHub wallet');
+  const survivingKey = await recoverLocalWalletKey(address, _translateCopy('copy.69ee84e7ca69', { defaultValue: 'Unlock your DeHub wallet' }));
   if (survivingKey) {
     const derived = deriveFromSecret(survivingKey);
     await finishWalletUnlock(supabaseUserId, address, survivingKey);
@@ -694,7 +695,7 @@ export async function switchActiveWalletForIdentity(
         derived: `${derived.ethAddress.slice(0, 6)}...${derived.ethAddress.slice(-4)}`,
       });
       throw new Error(
-        "That recovery belongs to a different wallet than this DeHub profile. Nothing was changed."
+        _translateCopy("copy.ef25f1775919", { defaultValue: "That recovery belongs to a different wallet than this DeHub profile. Nothing was changed." })
       );
     }
   }

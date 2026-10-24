@@ -16,6 +16,7 @@ import type {
   CommunityRight,
   MemberRight,
 } from "../types/community";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 export const ADMIN_RIGHTS: { key: AdminRight; labelKey: string; hintKey: string }[] = [
   { key: "change_info", labelKey: "changeInfo", hintKey: "changeInfoHint" },
@@ -210,48 +211,48 @@ export const ADMIN_LOG_VERBS: Record<string, string> = {
   invite_used: "invited",
 };
 
-const RIGHT_LABELS: Record<string, string> = {
-  change_info: "change community info",
-  delete_messages: "delete messages",
-  restrict_members: "ban users",
-  invite_users: "invite users via link",
-  pin_messages: "pin messages",
-  manage_events: "manage events",
-  add_admins: "add new admins",
-  remain_anonymous: "remain anonymous",
-  send_messages: "send messages",
-  send_media: "send media",
-  embed_links: "embed links",
-  add_members: "add members",
-  create_events: "create events",
+const PERMISSION_DENIED_COPY: Record<string, string> = {
+  get change_info() { return _translateCopy("copy.a03a692d724f", { defaultValue: "You do not have permission to change community info" }); },
+  get delete_messages() { return _translateCopy("copy.fe7e45703caf", { defaultValue: "You do not have permission to delete messages" }); },
+  get restrict_members() { return _translateCopy("copy.76ae16eb8065", { defaultValue: "You do not have permission to ban users" }); },
+  get invite_users() { return _translateCopy("copy.d835fb6c743c", { defaultValue: "You do not have permission to invite users via link" }); },
+  get pin_messages() { return _translateCopy("copy.7813733a02b3", { defaultValue: "You do not have permission to pin messages" }); },
+  get manage_events() { return _translateCopy("copy.002286513398", { defaultValue: "You do not have permission to manage events" }); },
+  get add_admins() { return _translateCopy("copy.045c8cd3aa81", { defaultValue: "You do not have permission to add new admins" }); },
+  get remain_anonymous() { return _translateCopy("copy.b31ff2d0eb1a", { defaultValue: "You do not have permission to remain anonymous" }); },
+  get send_messages() { return _translateCopy("copy.26073cdcaa76", { defaultValue: "You do not have permission to send messages" }); },
+  get send_media() { return _translateCopy("copy.deeab29dde62", { defaultValue: "You do not have permission to send media" }); },
+  get embed_links() { return _translateCopy("copy.90c724915b1b", { defaultValue: "You do not have permission to embed links" }); },
+  get add_members() { return _translateCopy("copy.b05480861091", { defaultValue: "You do not have permission to add members" }); },
+  get create_events() { return _translateCopy("copy.6741361174ce", { defaultValue: "You do not have permission to create events" }); },
 };
 
 const ERROR_COPY: Record<string, string> = {
-  not_authenticated: "Connect your wallet first",
-  cannot_moderate_yourself: "You cannot do that to yourself",
-  cannot_moderate_the_owner: "The owner cannot be moderated",
-  only_the_owner_can_moderate_an_admin: "Only the owner can moderate another admin",
-  only_the_owner_can_transfer_ownership: "Only the owner can transfer ownership",
-  only_the_owner_can_delete_a_community: "Only the owner can delete this community",
-  new_owner_must_be_an_active_member: "Pick an active member to hand the community to",
-  member_not_found: "That member is no longer here",
-  member_is_not_active: "That member is not active",
-  member_is_not_banned: "That member is not banned",
-  no_pending_request: "That request is no longer pending",
-  message_not_found: "That message is already gone",
-  role_must_be_admin_or_member: "Unsupported role",
-  already_the_owner: "They already own this community",
-  membership_updates_require_rpc: "That change is no longer allowed directly",
-  cannot_join_on_behalf_of_another_wallet: "You can only join with your own wallet",
-  cannot_post_as_another_wallet: "You can only post as yourself",
-  cannot_edit_another_members_message: "You can only edit your own messages",
-  you_cannot_post_in_this_community: "You do not have permission to post here",
-  you_cannot_send_media_in_this_community: "You do not have permission to send media here",
-  you_are_banned_from_this_community: "You are banned from this community",
-  invite_not_found: "That invite link does not exist",
-  invite_revoked: "That invite link was revoked",
-  invite_expired: "That invite link has expired",
-  invite_exhausted: "That invite link has reached its limit",
+  get not_authenticated() { return _translateCopy("copy.d4eb6104ebd9", { defaultValue: "Connect your wallet first" }); },
+  get cannot_moderate_yourself() { return _translateCopy("copy.018c5aecd6c3", { defaultValue: "You cannot do that to yourself" }); },
+  get cannot_moderate_the_owner() { return _translateCopy("copy.04fcef5b5b26", { defaultValue: "The owner cannot be moderated" }); },
+  get only_the_owner_can_moderate_an_admin() { return _translateCopy("copy.c0cafd3f4fda", { defaultValue: "Only the owner can moderate another admin" }); },
+  get only_the_owner_can_transfer_ownership() { return _translateCopy("copy.2264da39007c", { defaultValue: "Only the owner can transfer ownership" }); },
+  get only_the_owner_can_delete_a_community() { return _translateCopy("copy.82226ff838ca", { defaultValue: "Only the owner can delete this community" }); },
+  get new_owner_must_be_an_active_member() { return _translateCopy("copy.f0c575ccd7be", { defaultValue: "Pick an active member to hand the community to" }); },
+  get member_not_found() { return _translateCopy("copy.8202e88f9b4a", { defaultValue: "That member is no longer here" }); },
+  get member_is_not_active() { return _translateCopy("copy.55d25bbc9a7c", { defaultValue: "That member is not active" }); },
+  get member_is_not_banned() { return _translateCopy("copy.cbb2315229e5", { defaultValue: "That member is not banned" }); },
+  get no_pending_request() { return _translateCopy("copy.9db7738dd45c", { defaultValue: "That request is no longer pending" }); },
+  get message_not_found() { return _translateCopy("copy.9a064ac60abe", { defaultValue: "That message is already gone" }); },
+  get role_must_be_admin_or_member() { return _translateCopy("copy.5e2c9b601cf1", { defaultValue: "Unsupported role" }); },
+  get already_the_owner() { return _translateCopy("copy.c833a76e8f1a", { defaultValue: "They already own this community" }); },
+  get membership_updates_require_rpc() { return _translateCopy("copy.68024bd2022b", { defaultValue: "That change is no longer allowed directly" }); },
+  get cannot_join_on_behalf_of_another_wallet() { return _translateCopy("copy.07fac032f756", { defaultValue: "You can only join with your own wallet" }); },
+  get cannot_post_as_another_wallet() { return _translateCopy("copy.e490c5f0bcb9", { defaultValue: "You can only post as yourself" }); },
+  get cannot_edit_another_members_message() { return _translateCopy("copy.50164dfe3302", { defaultValue: "You can only edit your own messages" }); },
+  get you_cannot_post_in_this_community() { return _translateCopy("copy.fa864aef958f", { defaultValue: "You do not have permission to post here" }); },
+  get you_cannot_send_media_in_this_community() { return _translateCopy("copy.462380995d63", { defaultValue: "You do not have permission to send media here" }); },
+  get you_are_banned_from_this_community() { return _translateCopy("copy.46ffd9568a13", { defaultValue: "You are banned from this community" }); },
+  get invite_not_found() { return _translateCopy("copy.bf38732f4aad", { defaultValue: "That invite link does not exist" }); },
+  get invite_revoked() { return _translateCopy("copy.1957c0d6df16", { defaultValue: "That invite link was revoked" }); },
+  get invite_expired() { return _translateCopy("copy.817a32289f0a", { defaultValue: "That invite link has expired" }); },
+  get invite_exhausted() { return _translateCopy("copy.b064bd1adffd", { defaultValue: "That invite link has reached its limit" }); },
 };
 
 /** Turns a raised Postgres condition into something worth showing a human. */
@@ -261,16 +262,15 @@ export function communityErrorMessage(error: unknown, fallback: string): string 
 
   const permission = raw.match(/permission_denied:(\w+)/);
   if (permission) {
-    const label = RIGHT_LABELS[permission[1]] ?? permission[1].replace(/_/g, " ");
-    return `You do not have permission to ${label}`;
+    return PERMISSION_DENIED_COPY[permission[1]] ?? _translateCopy("copy.7b2d32bd2e67", { defaultValue: "You do not have permission to {{value1}}", value1: permission[1].replace(/_/g, " ") });
   }
 
   const slow = raw.match(/slow_mode_active:(\d+)/);
   if (slow) {
     const seconds = Number(slow[1]);
     return seconds >= 60
-      ? `Slow mode is on — one message every ${Math.round(seconds / 60)} min`
-      : `Slow mode is on — one message every ${seconds}s`;
+      ? _translateCopy("copy.014892720459", { defaultValue: "Slow mode is on — one message every {{value1}} min", value1: Math.round(seconds / 60) })
+      : _translateCopy("copy.52c789c095cf", { defaultValue: "Slow mode is on — one message every {{value1}}s", value1: seconds });
   }
 
   for (const [code, copy] of Object.entries(ERROR_COPY)) {

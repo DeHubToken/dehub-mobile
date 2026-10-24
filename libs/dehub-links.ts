@@ -18,9 +18,11 @@
  *    query string still resolves to the thing it pointed at.
  */
 
+import i18n from 'i18next';
 import env from '../config/env';
 import { isEnsHandle } from './ens-handle';
 import { RESERVED_LINK_SEGMENTS } from './reserved-usernames';
+import { cutFromText } from './cut-from-text';
 
 export type DehubLinkKind =
   | 'post'
@@ -350,14 +352,7 @@ export function stripDehubLinkMatches(
   matches: DehubLinkMatch[],
 ): string {
   if (!text) return text ?? '';
-  let out = text;
-  for (const match of matches) {
-    out = out.split(match.raw).join('');
-  }
-  return out
-    .replace(/[ \t]{2,}/g, ' ')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+  return cutFromText(text, matches.map(match => match.raw));
 }
 
 /** Remove every DeHub entity URL from text for display. */
@@ -368,21 +363,7 @@ export function stripDehubLinks(text?: string | null): string {
 
 /** Human label for a link kind — used by share sheets and fallback chips. */
 export function dehubLinkLabel(kind: DehubLinkKind): string {
-  switch (kind) {
-    case 'post': return 'post';
-    case 'profile': return 'profile';
-    case 'community': return 'community';
-    case 'communityInvite': return 'community invite';
-    case 'store': return 'store';
-    case 'listing': return 'item';
-    case 'event': return 'event';
-    case 'stage': return 'stage';
-    case 'bounty': return 'bounty';
-    case 'app': return 'app';
-    case 'film': return 'title';
-    case 'proposal': return 'proposal';
-    default: return 'link';
-  }
+  return i18n.t(`dehubLinks.kind.${kind}`, { defaultValue: i18n.t('dehubLinks.kind.link') });
 }
 
 /** Share origin — the same host the web app builds links on. */
