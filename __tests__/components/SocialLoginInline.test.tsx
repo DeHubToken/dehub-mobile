@@ -15,7 +15,7 @@ jest.mock('react-native', () => {
 jest.mock('../../components/auth/AuthControls', () => {
   const { createElement: element } = require('react');
   const Button = ({ label, onPress }: any) => element('View', { accessible: true, accessibilityRole: 'button', accessibilityLabel: label, onPress }, element('Text', null, label));
-  return { AuthButton: Button, AuthTextButton: Button, authColors: { label: '#fff' }, AUTH_DISABLED_OPACITY: 0.45 };
+  return { AuthButton: Button, AuthTextButton: Button, authColors: { label: '#fff' }, AUTH_DISABLED_OPACITY: 0.45, AUTH_CONTROL_HEIGHT: 56, AUTH_RADIUS: 12 };
 });
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Icon');

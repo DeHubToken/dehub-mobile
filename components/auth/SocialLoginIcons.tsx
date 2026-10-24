@@ -7,7 +7,7 @@ import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import ImportWalletModal from "./ImportWalletModal";
-import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY } from "./AuthControls";
+import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_CONTROL_HEIGHT, AUTH_RADIUS } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
@@ -79,7 +79,7 @@ interface OptionDiscProps {
   renderIcon: (color: string, size: number) => React.ReactNode;
 }
 
-/** A 48pt round button with its label underneath (the stack layout's "or continue with" row). */
+/** A form-height provider button with its label underneath. */
 const OptionDisc: React.FC<OptionDiscProps> = ({ label, onPress, disabled, loading, active, renderIcon }) => (
   <Pressable
     onPress={onPress}
@@ -199,7 +199,7 @@ export const SocialLoginIcons: React.FC<SocialLoginIconsProps> = ({
           />
           {passkeyReady && (
             <OptionDisc
-              label={t("loginStack.fingerprint", "Fingerprint")}
+              label={t("loginStack.fingerprint", "Bio")}
               onPress={() => toggleFlow("passkey")}
               disabled={disabled}
               loading={busyProvider === "passkey-signin" || busyProvider === "passkey-signup"}
@@ -317,12 +317,12 @@ const styles = StyleSheet.create({
   divider: { flexDirection: "row", alignItems: "center", gap: 12 },
   rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: authColors.hairline },
   dividerText: { color: authColors.subtle, fontSize: 12, fontWeight: "500" },
-  row: { flexDirection: "row", justifyContent: "space-evenly" },
+  row: { flexDirection: "row", gap: 8 },
   option: { flex: 1, alignItems: "center", gap: 6, minWidth: 0 },
   disc: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
+    width: "100%",
+    height: AUTH_CONTROL_HEIGHT,
+    borderRadius: AUTH_RADIUS,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: authColors.surface,
