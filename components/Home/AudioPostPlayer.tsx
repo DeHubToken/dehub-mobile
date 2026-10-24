@@ -296,9 +296,9 @@ const StylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onSt
 });
 
 const pickerStyles = StyleSheet.create({
-  studioChip: { height: 28, paddingHorizontal: 10, borderRadius: 999, alignItems: "center", justifyContent: "center" },
-  studioLabel: { color: "#fff", fontSize: 11, fontWeight: "500" },
-  studioMore: { height: 28, flexDirection: "row", alignItems: "center", gap: 3, paddingLeft: 10, paddingRight: 8, borderRadius: 999, boxShadow: "inset 0px 0px 0px 1px rgba(255,255,255,.2)", opacity: 0.85 },
+  studioChip: { height: 36, paddingHorizontal: 6, borderRadius: 10, alignItems: "center", justifyContent: "center" },
+  studioLabel: { color: "#fff", fontSize: 12, fontWeight: "500" },
+  studioPill: { height: 30, flexDirection: "row", alignItems: "center", gap: 5, paddingLeft: 12, paddingRight: 9, borderRadius: 10, boxShadow: "inset 0px 1px 0px rgba(255,255,255,.12), inset 0px 0px 0px 1px rgba(255,255,255,.2)", backgroundColor: "rgba(255,255,255,.07)" },
   beam: {
     position: "absolute",
     bottom: 2,
@@ -371,36 +371,33 @@ const StudioButton = ({ size, play, material, style, children, ...rest }: React.
 };
 
 /* ─── Studio card style picker ──────────────────────────────── */
-// System/Glass card: a few quick picks, everything else behind More (same as web).
-const QUICK_STYLES: VisualizerStyle[] = ["bars", "waveform", "circular"];
-
+// System/Glass card: one pill naming the playing style; tap opens every style in a drawer (same as web).
 const StudioStylePicker: React.FC<StylePickerProps> = memo(({ style: activeStyle, onStyleChange }) => {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const rootStyle = useThemeRootStyle();
-  // The playing style always shows, taking the last quick slot when it isn't one.
-  const quick = QUICK_STYLES.includes(activeStyle) ? QUICK_STYLES : [...QUICK_STYLES.slice(0, -1), activeStyle];
   const label = (v: VisualizerStyle) => VISUALIZER_STYLES.find((s) => s.value === v)?.label ?? v;
-  const chip = (v: VisualizerStyle, onPress: () => void, flex?: boolean) => {
-    const isActive = v === activeStyle;
-    return (
-      <Pressable key={v} onPress={onPress} accessibilityRole="button" accessibilityState={{ selected: isActive }} hitSlop={{ top: 6, bottom: 6, left: 2, right: 2 }}
-        style={[pickerStyles.studioChip, flex && { width: "33.33%" }, { opacity: isActive ? 1 : 0.6 }]}>
-        {isActive && <View pointerEvents="none" style={pickerStyles.beam} />}
-        <Text numberOfLines={1} style={pickerStyles.studioLabel}>{label(v)}</Text>
-      </Pressable>
-    );
-  };
   return (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-      {quick.map((v) => chip(v, () => onStyleChange(v)))}
-      <Pressable onPress={() => setOpen(true)} accessibilityRole="button" style={pickerStyles.studioMore}>
-        <Text style={pickerStyles.studioLabel}>{t("feedCard.moreShare")}</Text>
-        <Icon name="ChevronUp" size={12} color="rgba(255,255,255,.7)" />
+    <View style={{ flexDirection: "row", alignItems: "center" }}>
+      <Pressable onPress={() => setOpen(true)} accessibilityRole="button" accessibilityLabel={t("poster.style")} hitSlop={{ top: 6, bottom: 6 }} style={pickerStyles.studioPill}>
+        <Text numberOfLines={1} style={pickerStyles.studioLabel}>{label(activeStyle)}</Text>
+        <Icon name="ChevronDown" size={13} color="rgba(255,255,255,.7)" />
       </Pressable>
       <GlassModal surface="theme" visible={open} onClose={() => setOpen(false)} presentation="bottom" scrollable maxHeight="60%" blurIntensity={30}>
-        <View style={[{ flexDirection: "row", flexWrap: "wrap", paddingHorizontal: 12, paddingTop: 12, paddingBottom: 16 }, rootStyle]}>
-          {VISUALIZER_STYLES.map((s) => chip(s.value, () => { onStyleChange(s.value); setOpen(false); }, true))}
+        <View style={[{ paddingHorizontal: 12, paddingTop: 12, paddingBottom: 16 }, rootStyle]}>
+          <Text style={[pickerStyles.studioLabel, { fontSize: 14, fontWeight: "600", paddingHorizontal: 8, paddingBottom: 8 }]}>{t("poster.style")}</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            {VISUALIZER_STYLES.map((s) => {
+              const isActive = s.value === activeStyle;
+              return (
+                <Pressable key={s.value} onPress={() => { onStyleChange(s.value); setOpen(false); }} accessibilityRole="button" accessibilityState={{ selected: isActive }}
+                  style={[pickerStyles.studioChip, { width: "33.33%", opacity: isActive ? 1 : 0.6 }]}>
+                  {isActive && <View pointerEvents="none" style={pickerStyles.beam} />}
+                  <Text numberOfLines={1} style={pickerStyles.studioLabel}>{s.label}</Text>
+                </Pressable>
+              );
+            })}
+          </View>
         </View>
       </GlassModal>
     </View>
