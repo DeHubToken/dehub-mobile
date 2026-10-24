@@ -21,6 +21,7 @@
 import env from '../config/env';
 import { isEnsHandle } from './ens-handle';
 import { RESERVED_LINK_SEGMENTS } from './reserved-usernames';
+import { cutFromText } from './cut-from-text';
 
 export type DehubLinkKind =
   | 'post'
@@ -350,14 +351,7 @@ export function stripDehubLinkMatches(
   matches: DehubLinkMatch[],
 ): string {
   if (!text) return text ?? '';
-  let out = text;
-  for (const match of matches) {
-    out = out.split(match.raw).join('');
-  }
-  return out
-    .replace(/[ \t]{2,}/g, ' ')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+  return cutFromText(text, matches.map(match => match.raw));
 }
 
 /** Remove every DeHub entity URL from text for display. */

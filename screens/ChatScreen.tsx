@@ -1793,9 +1793,10 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               composerKeyboard.onLayout();
             }}
           >
-            {/* Solid theme backing: the list scrolls under this bar, so without
-                it message text shows straight through the composer. */}
-            <MessageSurface />
+            {/* Solid page colour, no frost: phone web's composer is the plain
+                page with a hairline on top. Still opaque, since the list
+                scrolls under this bar. */}
+            <MessageSurface material={false} />
             {showLockedState ? null : voiceRecorder.isRecording ? (
               <VoiceNoteRecordingOverlay recorder={voiceRecorder} />
             ) : dmDisabled ? (

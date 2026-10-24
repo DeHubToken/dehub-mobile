@@ -2443,7 +2443,92 @@
     "revealFailed": "No s'ha pogut mostrar la clau. Torna-ho a provar.",
     "signInAgain": "Torna a iniciar sessió",
     "createSignIn": "Torna a iniciar sessió per crear un agent",
-    "checkConnection": "Comprova la connexió i torna-ho a provar."
+    "checkConnection": "Comprova la connexió i torna-ho a provar.",
+    "workspace": {
+      "moderation": "Moderació de streams",
+      "moderationHelp": "Activa primer la permís de moderació. La compte ha de ser ja el creador del stream o un moderador assignat. Els modes d'aprovació i esborrany encara s'apliquen. Els temps de suspensió caduquen automàticament.",
+      "streamId": "ID de publicació del stream",
+      "participant": "Butxaca del participant",
+      "participantHint": "Butxaca del participant (0x…)",
+      "timeout": "Segons de suspensió",
+      "submitTimeout": "Enviar suspensió",
+      "handled": "Solicitud gestionada. Consulta el registre d'auditoria.",
+      "webhook": "Webhook d'alerta de Discord (opcional)",
+      "webhookHelp": "Les sol·licituds d'aprovació i els fracassos d'acció envien una alerta genèrica, com a màxim una per hora. No s'envien text d'esborrany ni detalls de la butxaca. Deixa buit per desactivar; els resultats d'entrega apareixen al registre d'auditoria.",
+      "reversalHelp": "Les inversions amaguen publicacions, esborren permanentment comentaris, restableixen reaccions i text del perfil, o desfan seguidors nous. Les visualitzacions, notificacions entregades, transaccions mintades, imatges del perfil i temps de suspensió expirats no es poden esborrar. Les publicacions amagades romanen recuperables des dels controls de visibilitat.",
+      "confirmCorrection": "Això canvia l'activitat publicada. La supressió de comentaris no es pot desfer.",
+      "correction": "Correcció",
+      "alert": "Alertar",
+      "shared": "Compartit",
+      "controls": "Veus, permisos i notícies",
+      "scope": "Aquests controls s'apliquen a tasques programades, vida autònoma i assistents connectats. Els esborranys romanen privats fins que els aproveu.",
+      "voice": "Veus i ton",
+      "knowledge": "Material de referència",
+      "blocked": "Temes bloquejats, separats per comes",
+      "liveNews": "Reaccionar davant les notícies actuals durant la vida autònoma",
+      "newsHelp": "Triar fins a tres temes. Els informes del publicador dels últims 24 hores es cachegen durant 15 minuts. Les reaccions a les notícies inclouen un enllaç de font; les notícies indisponibles o obsoletes es salten.",
+      "saved": "Configuracions guardades.",
+      "title": "Espai de treball de l'agent",
+      "sample": "L'activitat i les alertes cobren les últimes 100 accions i 200 tasques. Les quantitats no són totals de vida ni ús de facturació.",
+      "growth": "Capturar informe de creixement",
+      "baseline": "Primera instantània; captura'n una altra més tard per comparar.",
+      "library": "Plantilles i constructor de tasques",
+      "subject": "Estil de tema o resposta",
+      "useBuilder": "Utilitza aquestes instruccions",
+      "planValidated": "Plànat validat",
+      "builderHelp": "Selecciona un model, descriu l'acció, el públic i l'agenda, i després simula abans d'executar. Els models compartits són instruccions dels seus autors, no capacitats verificades.",
+      "simulate": "Simula el pla",
+      "allowed": "Permès",
+      "templateName": "Nom del model",
+      "share": "Comparteix aquest model amb altres usuaris d'Agents",
+      "saveTemplate": "Desa el model",
+      "templateSaved": "Model desat.",
+      "history": "Bústia de borradores i registre d'auditoria",
+      "empty": "Encara no hi ha activitat coincidint.",
+      "approve": "Aprovar i executar",
+      "reject": "Rebutjar",
+      "growthResult": "{{followers}} seguidors · {{following}} seguint",
+      "growthChange": "Canvi de seguidors: {{count}} des de {{time}}",
+      "runs": "{{runs}} execucions recents · {{completed}} completades · {{failed}} fallades",
+      "autonomous": "Autònom",
+      "approval": "Aprovar primer",
+      "draft": "Borrador només",
+      "count": {
+        "pending": "Borradors per revisar",
+        "succeeded": "Èxits recents",
+        "scheduled": "Tasques programades",
+        "active": "Agents actius"
+      },
+      "builder": {
+        "news": "Respondre a notícies",
+        "reply": "Respondre a publicacions recents",
+        "curate": "M'agrada publicacions rellevants",
+        "post": "Escriu una publicació"
+      },
+      "cadence": {
+        "once": "Una vegada",
+        "daily": "Diàriament",
+        "twice": "Dues vegades al dia"
+      },
+      "dehub_post_create": "Publicar publicacions",
+      "dehub_comment": "Respon i comenta",
+      "dehub_vote": "Reacciona a les publicacions",
+      "dehub_follow": "Segueix els comptes",
+      "dehub_update_profile": "Modifica el perfil",
+      "dehub_stream_timeout": "Xat de flux moderat",
+      "news": {
+        "world": "Món",
+        "technology": "Tecnologia",
+        "culture": "Cultura",
+        "sport": "Esport",
+        "science": "Ciències"
+      },
+      "alerts": "Necessita atenció",
+      "agent": "Agent",
+      "action": "Acció",
+      "schedule": "Programa",
+      "filter": "Filtra l'activitat"
+    }
   },
   "hero": {
     "title": "Benvinguts Al",
@@ -2921,6 +3006,8 @@
     "tabSearch": "Cerca"
   },
   "postInfo": {
+    "ownersUnavailable": "Ara mateix no es pot llegir els propietaris actuals.",
+    "unavailable": "No disponible",
     "title": "Informació de la publicació",
     "tokenId": "ID del token",
     "mintedOn": "Creat el",
@@ -4970,6 +5057,8 @@
     "displayNameHint": "El teu nom públic al perfil. Opcional: deixa'l en blanc per fer servir el teu nom d'usuari."
   },
   "events": {
+    "deleteConfirmBody": "Això elimina l'esdeveniment, la llista de convidats i el xat per a tothom. No es pot desfer.",
+    "deleteConfirmTitle": "Vols eliminar aquest esdeveniment?",
     "youreApproved": "Estàs aprovat",
     "youAreCreator": "Ets el creador",
     "typeMessage": "Escriu un missatge...",
@@ -5033,7 +5122,12 @@
     "interestedCount": "{{count}} interessats",
     "loadFailed": "No s'han pogut carregar els esdeveniments"
   },
-  "stats": {"chart": {"daily": "Visitants per dia", "dailyHint": "visitants únics per dia", "empty": "Encara no hi ha dades per a aquest període"},
+  "stats": {
+    "chart": {
+      "daily": "Visitants per dia",
+      "dailyHint": "visitants únics per dia",
+      "empty": "Encara no hi ha dades per a aquest període"
+    },
     "definitions": {
       "visitorsTerm": "Visitants"
     },

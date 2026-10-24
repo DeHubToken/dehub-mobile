@@ -13,6 +13,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MONO_TEXT } from "../../theme/skins";
 import { useLiveTarget } from "../../hooks/useIsUserLive";
 import { openLiveTarget } from "../../libs/openLiveTarget";
+import { prefetchUserProfile } from "../../hooks/useUserProfileData";
 
 /** Glass squares: rounded rectangles, never circles. */
 export const STAGE_SQUARE = 40;
@@ -103,7 +104,7 @@ export const PostStageActions = memo(function PostStageActions({ onMore, onBoost
   if (!onMore && !onBoost) return null;
   return (
     <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 4, marginTop: 8 }} testID="post-panel-actions">
-      {onBoost ? <StageGlassSquare icon="Rocket" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
+      {onBoost ? <StageGlassSquare icon="Zap" label={t("feedCard.boostPost")} onPress={onBoost} plain size={32} /> : null}
       {onMore ? <StageGlassSquare icon="Ellipsis" label={t("player.moreOptions")} onPress={onMore} plain size={32} /> : null}
     </View>
   );
@@ -153,7 +154,7 @@ export const PostStageCreator = memo(function PostStageCreator({
   const followed = following || pending;
   return (
     <View style={styles.creator} testID="post-stage-creator">
-      <Pressable onPress={onUserPress} hitSlop={6} style={styles.identity} accessibilityRole="button" accessibilityLabel={displayName}>
+      <Pressable onPress={onUserPress} onPressIn={() => prefetchUserProfile(username || address)} hitSlop={6} style={styles.identity} accessibilityRole="button" accessibilityLabel={displayName}>
         <Avatar
           uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
           size={40}

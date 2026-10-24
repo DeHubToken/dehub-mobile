@@ -188,8 +188,9 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
     openCategoryFeed(tag);
   }, []);
 
-  // Strip soundtrack tag from description before display
-  const cleanDescription = useMemo(() => stripSoundtrackTag(description), [description]);
+  // Strip soundtrack tag from description before display. Windows line breaks
+  // (\r\n, from text pasted on a PC) become plain ones; nothing else changes.
+  const cleanDescription = useMemo(() => stripSoundtrackTag(description).replace(/\r\n?/g, "\n"), [description]);
   const displayTitle = title?.trim() && cleanDescription.trim().startsWith(title.trim()) ? "" : title;
 
   // Parse links in title & description
