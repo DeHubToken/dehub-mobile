@@ -1,4 +1,5 @@
 import { useCommentCount, updateCommentCount } from '../libs/comment-count-store';
+import { deliverReply, replyIdOf } from '../libs/reply-delivery';
 import ThemePanel from '../components/ui/ThemePanel';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 import { useKeyboardSwap } from "../hooks/useKeyboardSwap";
@@ -1174,11 +1175,13 @@ function FeedDetailContent() {
       // Optimistic insert
       const replyTarget = replyTo;
       setComments((prev) => insertThreaded(prev, optimistic, replyTarget));
-      updateCommentCount(String(tId), 1);
 
       const savedMedia = mediaAttachment;
 
-      try {
+      await deliverReply({
+        tokenId: tId, tempId,
+        onStart: () => setMediaPosting(true),
+        request: async () => {
         let newId: number | undefined;
         if (savedMedia.type === "image") {
           const fileName = getFileName(savedMedia.uri, "comment_image.jpg");
@@ -1194,20 +1197,21 @@ function FeedDetailContent() {
           const res = await postAudioComment({ streamTokenId: tId, fileUri: savedMedia.uri, fileName, mimeType, commentId: replyToId });
           newId = res?.commentId;
         }
-        if (newId == null) throw new Error(t("comments.sendMediaFailed"));
+        return { commentId: newId };
+        },
+        onSuccess: ({ commentId: newId }) => {
         if (newId != null) {
           setMediaAttachment(current => current === savedMedia ? null : current);
           setReplyTo.complete(replyTarget, null);
           setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId! } : c)));
         }
-      } catch (e) {
+        },
+        onFailure: e => {
         console.error("[FeedDetailScreen] media post error", e);
-        updateCommentCount(String(tId), -1);
-        setComments((prev) => prev.filter((c) => c.id !== tempId));
         toastError(t("comments.sendMediaFailed"));
-      } finally {
-        setMediaPosting(false);
-      }
+        },
+        onSettled: () => setMediaPosting(false),
+      });
     });
   }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded, t, setReplyTo]);
 
@@ -1252,7 +1256,7 @@ function FeedDetailContent() {
           return;
         }
 
-        const tempId = Date.now();
+        const tempId = -Date.now();
         const tempComment: Comment = {
           id: tempId,
           content: text,
@@ -1270,18 +1274,19 @@ function FeedDetailContent() {
         
         const replyTarget = replyTo;
         setComments((prev) => insertThreaded(prev, tempComment, replyTarget));
-        updateCommentCount(String(tokenId), 1);
 
 
         
-        try {
-          const res = await postComment({
+        await deliverReply({
+          tokenId, tempId,
+          onStart: () => setPosting(true),
+          request: () => postComment({
             streamTokenId: tokenId,
             content: text,
             commentId: replyTarget?.id,
-          });
-          const newId = res?.result?.id ?? (res as any)?.id ?? undefined;
-          if (newId == null) throw new Error(t("toasts.failed_to_post_comment"));
+          }),
+          onSuccess: res => {
+          const newId = replyIdOf(res);
           if (setInputText.complete(inputText, "")) {
             if (draftKey) clearCommentDraft(draftKey);
             setReplyTo.complete(replyTarget, null);
@@ -1289,17 +1294,18 @@ function FeedDetailContent() {
             Keyboard.dismiss();
           }
           if (newId != null) {
-            setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
+            setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: Number(newId) } : c)));
           }
-        } catch (e) {
-          setComments((prev) => prev.filter((c) => c.id !== tempId));
-          updateCommentCount(String(tokenId), -1);
+          },
+          onFailure: e => {
           console.error("[FeedDetailScreen] postComment error", e);
           // The comment vanished from the thread with nothing said at all
           // before this. A refusal from the server explains itself — comments
           // turned off, too long, a link that cannot be posted — so say it.
           toastError(e instanceof Error && e.message ? e.message : t("toasts.failed_to_post_comment"));
-        }
+          },
+          onSettled: () => setPosting(false),
+        });
       } finally {
         setPosting(false);
       }

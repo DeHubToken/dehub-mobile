@@ -1,4 +1,5 @@
 import { updateCommentCount } from '../../libs/comment-count-store';
+import { deliverReply } from '../../libs/reply-delivery';
 import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
@@ -931,9 +932,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       }
 
       const savedMedia = mediaAttachment;
-      updateCommentCount(String(tokenId), 1);
-
-      try {
+      await deliverReply({
+        tokenId, tempId,
+        onStart: () => {
+          setMediaPosting(true);
+          setFlatComments(prev => prev.map(c => Number(c.id) === replyToId ? {
+            ...c, replyIds: [...new Set([...(c.replyIds ?? []), tempId])],
+          } : c));
+        },
+        request: async () => {
         let newId: number | undefined;
 
         if (savedMedia.type === "image") {
@@ -967,6 +974,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           newId = res?.commentId;
         }
 
+        return { commentId: newId };
+        },
+        onSuccess: ({ commentId: newId }) => {
         // Reconcile temp ID with real ID
         setMediaAttachment(current => current === savedMedia ? null : current);
         setReplyingTo(current => current?.id === replyingTo?.id ? null : current);
@@ -984,17 +994,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             })
           );
         }
-      } catch (e) {
+        },
+        onFailure: e => {
         console.error("[CommentSection] media post error", e);
-        updateCommentCount(String(tokenId), -1);
-        setFlatComments((prev) => prev.filter((c) => c.id !== tempId).map(c => ({
-          ...c, replyIds: c.replyIds?.filter(id => id !== tempId),
-        })));
+        setFlatComments(prev => prev.map(c => ({ ...c, replyIds: c.replyIds?.filter(id => id !== tempId) })));
         // Keep the attachment and reply available for retry.
         toastError(t("comments.sendMediaFailed"));
-      } finally {
-        setMediaPosting(false);
-      }
+        },
+        onSettled: () => setMediaPosting(false),
+      });
     });
   }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyingTo, user, userAddress]);
 
@@ -1079,16 +1087,23 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           }
 
           const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
-          updateCommentCount(String(tokenId), 1);
           // Post to server
-          const res = await postComment({
+          await deliverReply({
+            tokenId, tempId,
+            onStart: () => {
+              setPosting(true);
+              setFlatComments(prev => prev.map(c => Number(c.id) === replyToId ? {
+                ...c, replyIds: [...new Set([...(c.replyIds ?? []), tempId])],
+              } : c));
+            },
+            request: () => postComment({
             streamTokenId: tokenId,
             content: text,
             commentId: replyToId,
-          });
-
+            }),
+            onSuccess: res => {
           if (loadCommentDraft(commentDraftScope)?.text === inputText) clearCommentDraft(commentDraftScope);
-          setReplyingTo(null);
+          setReplyingTo(current => current?.id === replyingTo?.id ? null : current);
           setInputText.complete(inputText, "");
           mentions.reset();
           Keyboard.dismiss();
@@ -1114,6 +1129,13 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           // The bot has to call the model before its comment exists, so the
           // thread needs to keep looking for it rather than assume it is there.
           if (mentionsAssistant(text)) armAssistantReply();
+            },
+            onFailure: e => {
+              setFlatComments(prev => prev.map(c => ({ ...c, replyIds: c.replyIds?.filter(id => id !== tempId) })));
+              toastError(e instanceof Error ? e.message : t("toasts.failed_to_post_comment"));
+            },
+            onSettled: () => setPosting(false),
+          });
         }
       } catch (e) {
         console.error("Failed to post/edit comment:", e);
@@ -1122,11 +1144,6 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           // Revert edit - reload comments
           await loadComments(true);
         } else {
-          // Revert optimistic comment
-          updateCommentCount(String(tokenId), -1);
-          setFlatComments((prev) => prev.filter((c) => c.id !== tempId).map(c => ({
-            ...c, replyIds: c.replyIds?.filter(id => id !== tempId),
-          })));
           // And put the message back in the box. It was cleared the moment
           // Post was tapped, so a refusal used to destroy what was written —
           // the one moment losing it hurts most. The draft store follows the

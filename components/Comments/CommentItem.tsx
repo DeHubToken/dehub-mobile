@@ -1,4 +1,5 @@
 import { COMMENT_ICON_SIZE } from '../Home/feed-icon-size';
+import { useReplyDelivery } from '../../libs/reply-delivery';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, Pressable, ActivityIndicator, type AccessibilityActionEvent } from "react-native";
@@ -174,6 +175,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   postCreator,
 }) => {
   const { t } = useCopy();
+  const delivery = useReplyDelivery(tokenId, comment.id);
+  const locallyPosted = delivery?.status === 'posted';
+  const isPending = comment.id < 0 || delivery?.status === 'sending' || delivery?.status === 'failed';
   const { showUserProfile } = useUserProfileSheet();
   const { isMinimal } = useAppTheme();
   const currentUser = useUser();
@@ -222,7 +226,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
-  const highlightOpacity = useSharedValue(highlighted ? 1 : 0);
+  const highlightOpacity = useSharedValue(highlighted || locallyPosted ? 1 : 0);
 
   const likeAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: likeScale.value }],
@@ -233,15 +237,19 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 6 * highlightOpacity.value,
   }));
+  const highlightSurfaceStyle = useAnimatedStyle(() => ({
+    backgroundColor: `rgba(148,163,184,${highlightOpacity.value * 0.12})`,
+    borderRadius: 10,
+  }));
 
   React.useEffect(() => {
-    if (highlighted) {
+    if (highlighted || locallyPosted) {
       highlightOpacity.value = 1;
       highlightOpacity.value = withTiming(0, { duration: 1600 });
     } else {
       highlightOpacity.value = withTiming(0, { duration: 200 });
     }
-  }, [highlighted, highlightOpacity]);
+  }, [highlighted, locallyPosted, highlightOpacity]);
 
   const user = comment.user;
   const displayName = user?.displayName || user?.username || t("settings.unknown");
@@ -466,11 +474,12 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   );
 
   const handleReplyPress = useCallback(() => {
+    if (isPending) return;
     onReply?.(comment);
-  }, [comment, onReply]);
+  }, [comment, onReply, isPending]);
 
   const handleLongPress = useCallback(() => {
-    if (!onLongPress) return;
+    if (!onLongPress || isPending) return;
     containerRef.current?.measureInWindow((x, y, width, height) => {
       onLongPress(comment, { x, y, width, height }, {
         liked,
@@ -479,7 +488,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         isReply,
       });
     });
-  }, [onLongPress, comment, liked, isOwnComment, isReply]);
+  }, [onLongPress, comment, liked, isOwnComment, isReply, isPending]);
 
   const handleSharePress = useCallback(async () => {
     try {
@@ -576,17 +585,18 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       delayLongPress={300}
       // Read as one sentence rather than every chip, count and icon in the row
       // run together; the controls inside are the actions below.
-      accessibilityRole={onReply ? "button" : undefined}
+      accessible={!isPending}
+      accessibilityRole={!isPending && onReply ? "button" : undefined}
       accessibilityLabel={t("comments.rowA11yLabel", {
         name: displayName,
         time: timeAgo,
         text: assetFreeContent || "",
       })}
       accessibilityHint={onReply ? t("comments.rowA11yHint") : undefined}
-      accessibilityActions={a11yActions}
+      accessibilityActions={isPending ? [] : a11yActions}
       onAccessibilityAction={handleAccessibilityAction}
     >
-      <View ref={containerRef} style={{ flexDirection: "row", paddingVertical: 10 }}>
+      <Animated.View ref={containerRef} style={[{ flexDirection: "row", paddingVertical: 10 }, highlightSurfaceStyle]}>
         <Pressable onPress={handleUserPress}>
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -710,6 +720,19 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             )}
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
+          {delivery && (
+            <View accessibilityLiveRegion="polite" style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 6, paddingVertical: 2 }}>
+              {delivery.status === 'sending' && <ActivityIndicator size="small" color="#8B8D90" />}
+              <Text style={{ fontSize: 12, color: "#8B8D90", flexShrink: 1 }}>
+                {delivery.status === 'sending' ? t('dm.sending') : delivery.status === 'posted' ? t('toasts.comment_posted') : delivery.error || t('toasts.failed_to_post_comment')}
+              </Text>
+              {delivery.status === 'failed' && (
+                <Pressable accessibilityRole="button" accessibilityLabel={t('common.retry')} onPress={() => { void delivery.retry?.(); }} style={{ minHeight: 44, minWidth: 44, justifyContent: "center" }}>
+                  <Text style={{ fontSize: 13, color: ICON_ACTIVE, textDecorationLine: "underline" }}>{t('common.retry')}</Text>
+                </Pressable>
+              )}
+            </View>
+          )}
 
           {assetFreeContent ? (
             <Animated.Text style={[{ fontSize: 16, color: "#C2C4C7", marginTop: 3, lineHeight: 22 }, highlightAnimStyle]}>
@@ -776,7 +799,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             </View>
           ) : null}
 
-          <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
+          {!isPending && <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
             {/* Hold this thumb for the tray of every reaction — the faces,
                 a divider, then 👎; there is no separate thumbs-down. The
                 wrapper is the tray's positioning context. No tray on your own
@@ -912,6 +935,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             )}
           </View>
 
+          }
           {/* The thread's own control, on the last reply that is on screen.
               A collapsed thread shows one reply and hides the rest behind it. */}
           {showRepliesToggle && (
@@ -936,7 +960,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             </Pressable>
           )}
         </View>
-      </View>
+      </Animated.View>
     </Pressable>
   );
 };
