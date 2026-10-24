@@ -1,20 +1,22 @@
-import { keyboardComposerLift } from '../../libs/keyboard-composer';
+import { keyboardComposerLift, keyboardTopFromEvent } from '../../libs/keyboard-composer';
 
-describe('keyboard composer positioning', () => {
-  it('moves an unresized composer above the keyboard with eight points of spacing', () => {
-    expect(keyboardComposerLift(774, 0, 500)).toBe(282);
+describe('keyboardTopFromEvent', () => {
+  it('trusts the height when screenY sits below the real keys (Galaxy S24+)', () => {
+    // 1080x2340 at density 450: screen 832dp, nav bar 20dp, keys start at 592dp
+    // while screenY claimed 612dp.
+    expect(keyboardTopFromEvent({ screenY: 612, height: 220 }, 'android', 832, 20)).toBe(592);
   });
 
-  it('removes the extra padding after Android already resized the container', () => {
-    expect(keyboardComposerLift(474, 0, 500)).toBe(-18);
+  it('keeps screenY when it is already the higher reading', () => {
+    expect(keyboardTopFromEvent({ screenY: 480, height: 300 }, 'android', 800, 0)).toBe(480);
   });
 
-  it('keeps the same position when measured again after applying the lift', () => {
-    expect(keyboardComposerLift(492, 282, 500)).toBe(282);
-    expect(keyboardComposerLift(492, -18, 500)).toBe(-18);
+  it('leaves iOS and events without a height alone', () => {
+    expect(keyboardTopFromEvent({ screenY: 500, height: 300 }, 'ios', 800, 34)).toBe(500);
+    expect(keyboardTopFromEvent({ screenY: 500 }, 'android', 800, 0)).toBe(500);
   });
 
-  it('undoes a prior lift when the parent subsequently resizes', () => {
-    expect(keyboardComposerLift(192, 282, 500)).toBe(-18);
+  it('lifts a composer by how far it sits past the keys plus the gap', () => {
+    expect(keyboardComposerLift(800, 0, 592, 8)).toBe(216);
   });
 });

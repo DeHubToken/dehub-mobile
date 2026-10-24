@@ -665,6 +665,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             videoUrl: res.videoUrl,
             isVideoGenerating: false,
             videoPredictionId: undefined,
+            ...(res.libraryId ? { libraryId: res.libraryId } : {}),
           });
           toastSuccess(t('toasts.video_generated'));
         } else if (res.status === 'failed') {
@@ -842,6 +843,7 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
             ...(res.audioUrl ? { audioUrl: res.audioUrl } : {}),
             ...(res.imageUrl ? { imageUrl: res.imageUrl } : {}),
             ...(res.modelUrl ? { modelUrl: res.modelUrl } : {}),
+            ...(res.libraryId ? { libraryId: res.libraryId } : {}),
           });
           toastSuccess(t('aiChat.toolCompleted', { name: toolModel?.name || t('aiChat.aiTool') }));
         } else if (res.status === 'failed') {
@@ -1696,6 +1698,11 @@ function AIChatScreenInner({ studio = false }: { studio?: boolean }) {
       const saveKey = `${walletAddress}:${id}`;
       if (librarySaves.current.has(saveKey)) continue;
       librarySaves.current.add(saveKey);
+      // The server already archived this render; a second copy would list it twice.
+      if (message.libraryId) {
+        void queryClient.invalidateQueries({ queryKey: ['creator-library', walletAddress] });
+        continue;
+      }
       const creator = request.creatorSettings;
       const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
         posterUrl: message.modelUrl ? message.imageUrl : undefined,

@@ -2,9 +2,13 @@ import { act, renderHook } from '@testing-library/react-native';
 import { Keyboard, Platform } from 'react-native';
 import { useComposerKeyboard } from '../../hooks/useComposerKeyboard';
 
+jest.mock('react-native-safe-area-context', () => ({
+  SafeAreaInsetsContext: require('react').createContext(null),
+}));
 jest.mock('react-native', () => ({
   Platform: { OS: 'android' },
   Keyboard: { addListener: jest.fn() },
+  Dimensions: { get: () => ({ width: 360, height: 800 }) },
   useWindowDimensions: () => ({ width: 360, height: 800 }),
   StyleSheet: { flatten: (style: any) => style },
 }));
