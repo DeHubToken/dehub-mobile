@@ -19,6 +19,7 @@ import { Passkey } from "react-native-passkey";
 import { supabase } from "../supabase";
 import { createLogger } from "../../libs/logger";
 import { beginAuthTrace } from '../../libs/auth-trace';
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 const log = createLogger("passkey-auth");
 
@@ -54,7 +55,7 @@ async function call<T>(body: Record<string, unknown>): Promise<T> {
   });
   if (error) {
     log.warn("invoke:error", error.message);
-    throw new PasskeyLoginError(error.message || "Passkey sign-in failed. Please try again.");
+    throw new PasskeyLoginError(error.message || _translateCopy("copy.42bb80d16005", { defaultValue: "Passkey sign-in failed. Please try again." }));
   }
   if (data?.error) {
     log.warn("server:error", data.error, data.code);
@@ -73,7 +74,7 @@ function isCancel(e: unknown): boolean {
 async function adoptSession(session: { access_token?: string; refresh_token?: string } | undefined): Promise<string> {
   if (!session?.access_token || !session?.refresh_token) {
     log.warn("missing-session");
-    throw new Error("Passkey sign-in failed. Please try again.");
+    throw new Error(_translateCopy("copy.42bb80d16005", { defaultValue: "Passkey sign-in failed. Please try again." }));
   }
   const { data, error } = await supabase.auth.setSession({
     access_token: session.access_token,
@@ -82,7 +83,7 @@ async function adoptSession(session: { access_token?: string; refresh_token?: st
   const userId = data?.session?.user?.id;
   if (error || !userId) {
     log.warn("setSession:error", error?.message);
-    throw new Error(error?.message || "Passkey sign-in failed. Please try again.");
+    throw new Error(error?.message || _translateCopy("copy.42bb80d16005", { defaultValue: "Passkey sign-in failed. Please try again." }));
   }
   return userId;
 }
@@ -103,7 +104,7 @@ export async function signUpWithPasskey(): Promise<string> {
   } catch (e) {
     if (isCancel(e)) throw new PasskeyCancelledError();
     log.warn("create:error", e);
-    throw new Error("Could not create a passkey on this device.");
+    throw new Error(_translateCopy("copy.a1e758501d2a", { defaultValue: "Could not create a passkey on this device." }));
   }
   const result = await call<{ session?: { access_token?: string; refresh_token?: string } }>({
     action: "register-verify",
@@ -128,7 +129,7 @@ export async function signInWithPasskey(): Promise<string> {
   } catch (e) {
     if (isCancel(e)) throw new PasskeyCancelledError();
     log.warn("get:error", e);
-    throw new Error("Could not use a passkey on this device.");
+    throw new Error(_translateCopy("copy.a592edc9c912", { defaultValue: "Could not use a passkey on this device." }));
   }
   const result = await call<{ session?: { access_token?: string; refresh_token?: string } }>({
     action: "login-verify",

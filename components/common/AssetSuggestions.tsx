@@ -50,8 +50,8 @@ const AssetSuggestionsComponent: React.FC<AssetSuggestionsProps> = ({
       const positive = change == null ? true : change >= 0;
       const badge =
         item.assetClass === "stock"
-          ? item.exchange || "Stock"
-          : item.chainId || "Crypto";
+          ? item.exchange || t("copy.d5cade7ef319", { defaultValue: "Stock" })
+          : item.chainId || t("copy.df12b8f89b61", { defaultValue: "Crypto" });
 
       return (
         <TouchableOpacity
@@ -109,7 +109,7 @@ const AssetSuggestionsComponent: React.FC<AssetSuggestionsProps> = ({
         </TouchableOpacity>
       );
     },
-    [onSelect],
+    [onSelect, t],
   );
 
   if (!visible) return null;

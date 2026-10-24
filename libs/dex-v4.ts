@@ -9,6 +9,7 @@ import { encodeSqrtRatioX96, TickMath } from '@uniswap/v3-sdk';
 import { ChainId } from '../config/constants';
 import { DHB_TOKEN_ADDRESSES } from '../config/web3.constants';
 import { readWithTimeout, type OrderStage } from './dex-read-timeout';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export function dexReceipt(chainId: DexChainId, hash: string) {
   return readReceiptFromProviders(dexProvider(chainId).providerConfigs.map(config => config.provider), hash);
@@ -177,7 +178,7 @@ export async function detectDhbChain(address: string): Promise<{
     readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BSC_MAINNET].dhb, ERC20, dexProvider(ChainId.BSC_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'BNB balance'),
   ]);
   if (baseRead.status === 'rejected' && bnbRead.status === 'rejected') {
-    throw new Error('Could not read DHB balances on Base or BNB Chain');
+    throw new Error(_translateCopy('copy.2095b6344189', { defaultValue: 'Could not read DHB balances on Base or BNB Chain' }));
   }
   const base = baseRead.status === 'fulfilled' ? baseRead.value : ethers.constants.Zero;
   const bnb = bnbRead.status === 'fulfilled' ? bnbRead.value : ethers.constants.Zero;
@@ -195,7 +196,7 @@ export async function detectUsdcChain(address: string): Promise<{ chainId: DexCh
     readWithTimeout(new ethers.Contract(DEX_CHAINS[ChainId.BSC_MAINNET].usdc, ERC20, dexProvider(ChainId.BSC_MAINNET)).balanceOf(address) as Promise<ethers.BigNumber>, 'BNB balance'),
   ]);
   if (baseRead.status === 'rejected' && bnbRead.status === 'rejected') {
-    throw new Error('Could not read USDC balances on Base or BNB Chain');
+    throw new Error(_translateCopy('copy.625c98988ff1', { defaultValue: 'Could not read USDC balances on Base or BNB Chain' }));
   }
   const base = baseRead.status === 'fulfilled' ? baseRead.value : ethers.constants.Zero;
   const bnb = bnbRead.status === 'fulfilled' ? bnbRead.value : ethers.constants.Zero;
@@ -214,14 +215,14 @@ function ticks(chainId: DexChainId, floor: number, ceiling: number): [number, nu
   const lower = Math.ceil(Math.log(lowerRaw) / Math.log(1.0001) / SPACING) * SPACING;
   const upper = Math.floor(Math.log(upperRaw) / Math.log(1.0001) / SPACING) * SPACING;
   if (lower < TickMath.MIN_TICK || upper > TickMath.MAX_TICK || lower >= upper) {
-    throw new Error('The selected price range is too narrow or outside Uniswap limits');
+    throw new Error(_translateCopy('copy.97df334a4cf1', { defaultValue: 'The selected price range is too narrow or outside Uniswap limits' }));
   }
   return [lower, upper];
 }
 
 function initialSqrt(chainId: DexChainId, floor: string): ReturnType<typeof encodeSqrtRatioX96> {
   const floorUnits = BigInt(ethers.utils.parseUnits(floor, 8).toString());
-  if (floorUnits <= 0n) throw new Error('Enter a positive minimum price');
+  if (floorUnits <= 0n) throw new Error(_translateCopy('copy.30c92b6b4ca8', { defaultValue: 'Enter a positive minimum price' }));
   return chainId === ChainId.BASE_MAINNET
     ? encodeSqrtRatioX96((10n ** 20n).toString(), floorUnits.toString())
     : encodeSqrtRatioX96(floorUnits.toString(), (10n ** 8n).toString());
@@ -236,7 +237,7 @@ export async function quoteSell(input: SellInput) {
   if (amountWei <= 0n || !Number.isFinite(floor) || !Number.isFinite(ceiling) ||
       floor <= 0 || ceiling <= floor || !/^\d+(?:\.\d{1,8})?$/.test(input.minPrice) ||
       !/^\d+(?:\.\d{1,8})?$/.test(input.maxPrice)) {
-    throw new Error('Enter a valid amount and price range (up to 8 decimal places)');
+    throw new Error(_translateCopy('copy.600a38deff07', { defaultValue: 'Enter a valid amount and price range (up to 8 decimal places)' }));
   }
   const [tickLower, tickUpper] = ticks(input.chainId, floor, ceiling);
   const dhb = new Token(input.chainId, cfg.dhb, 18, 'DHB');
@@ -254,8 +255,8 @@ export async function quoteSell(input: SellInput) {
     ? input.chainId === ChainId.BASE_MAINNET ? currentTick >= tickUpper : currentTick <= tickLower
     : input.chainId === ChainId.BASE_MAINNET ? currentTick <= tickLower : currentTick >= tickUpper;
   if (!oneSided) throw new Error(input.side === 'sell'
-    ? 'This range overlaps the pool price. Move it above the market price to list DHB alone.'
-    : 'This range overlaps the pool price. Move it below the market price to list USDC alone.');
+    ? _translateCopy('copy.703b991a88fd', { defaultValue: 'This range overlaps the pool price. Move it above the market price to list DHB alone.' })
+    : _translateCopy('copy.94601846122e', { defaultValue: 'This range overlaps the pool price. Move it below the market price to list USDC alone.' }));
   const pool = new Pool(dhb, usdc, FEE, SPACING, ethers.constants.AddressZero,
     sqrt, createPool ? '0' : liquidity.toString(), currentTick);
   const position = Position.fromAmounts({
@@ -264,7 +265,7 @@ export async function quoteSell(input: SellInput) {
     amount1: (input.side === 'sell') === (input.chainId === ChainId.BASE_MAINNET) ? amountWei.toString() : '0',
     useFullPrecision: true,
   });
-  if (position.liquidity.toString() === '0') throw new Error('Amount is too small for this range');
+  if (position.liquidity.toString() === '0') throw new Error(_translateCopy('copy.4dc5f1795260', { defaultValue: 'Amount is too small for this range' }));
   const requested = input.side === 'sell'
     ? input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount1 : position.mintAmounts.amount0
     : input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount0 : position.mintAmounts.amount1;
@@ -272,7 +273,7 @@ export async function quoteSell(input: SellInput) {
     ? input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount0 : position.mintAmounts.amount1
     : input.chainId === ChainId.BASE_MAINNET ? position.mintAmounts.amount1 : position.mintAmounts.amount0;
   if (BigInt(other.toString()) !== 0n || BigInt(requested.toString()) > amountWei) {
-    throw new Error('The position would require more tokens than requested');
+    throw new Error(_translateCopy('copy.f922f863a383', { defaultValue: 'The position would require more tokens than requested' }));
   }
   const call = V4PositionManager.addCallParameters(position, {
     recipient: input.walletAddress,
@@ -287,7 +288,7 @@ export async function quoteSell(input: SellInput) {
 export async function sendTx(signingProvider: any, chainId: DexChainId, from: string, to: string, data: string, value = '0x0', submitted?: (hash: string) => void) {
   const actualChain = await readWithTimeout(signingProvider.request({ method: 'eth_chainId' }) as Promise<string>, 'Wallet network');
   const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet address');
-  if (Number(BigInt(actualChain)) !== chainId || accounts[0]?.toLowerCase() !== from.toLowerCase()) throw new Error('Wallet account or network changed. Review the order again.');
+  if (Number(BigInt(actualChain)) !== chainId || accounts[0]?.toLowerCase() !== from.toLowerCase()) throw new Error(_translateCopy('copy.2306c682204b', { defaultValue: 'Wallet account or network changed. Review the order again.' }));
   const hash = await signingProvider.request({
     method: 'eth_sendTransaction', params: [{ from, to, data, value }],
   }) as string;
@@ -295,26 +296,26 @@ export async function sendTx(signingProvider: any, chainId: DexChainId, from: st
   const receipt = await readReceiptFromProviders(dexProvider(chainId).providerConfigs.map(config => ({
     getTransactionReceipt: (txHash: string) => config.provider.waitForTransaction(txHash, 1, 60_000),
   })), hash);
-  if (!receipt) throw new Error('Transaction was not confirmed yet');
-  if (receipt.status !== 1) throw Object.assign(new Error('Transaction reverted. No changes were confirmed.'), { code: 'DEX_REVERTED' });
+  if (!receipt) throw new Error(_translateCopy('copy.62c6e4f9d883', { defaultValue: 'Transaction was not confirmed yet' }));
+  if (receipt.status !== 1) throw Object.assign(new Error(_translateCopy('copy.ae8d723d4d6e', { defaultValue: 'Transaction reverted. No changes were confirmed.' })), { code: 'DEX_REVERTED' });
   return receipt;
 }
 
 export async function mintSell(input: SellInput, signingProvider: any, progress: (stage: OrderStage) => void = () => {}, submitted?: (hash: string) => void): Promise<{ tokenId: string; txHash: string }> {
   const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet account');
   if (!accounts[0] || accounts[0].toLowerCase() !== input.walletAddress.toLowerCase()) {
-    throw new Error('The signing wallet does not match this DHB address');
+    throw new Error(_translateCopy('copy.50dd27affcc8', { defaultValue: 'The signing wallet does not match this DHB address' }));
   }
   progress('quote');
   let quote = await quoteSell(input);
-  if (quote.amountWei > MAX_UINT160) throw new Error('Amount exceeds Permit2 limits');
+  if (quote.amountWei > MAX_UINT160) throw new Error(_translateCopy('copy.9042c1f7b36e', { defaultValue: 'Amount exceeds Permit2 limits' }));
   const cfg = DEX_CHAINS[input.chainId];
   const provider = dexProvider(input.chainId);
   const tokenAddress = input.side === 'sell' ? cfg.dhb : cfg.usdc;
   const token = new ethers.Contract(tokenAddress, ERC20, provider);
   progress('balance');
   const balance = await readWithTimeout(token.balanceOf(input.walletAddress) as Promise<ethers.BigNumber>, 'Token balance');
-  if (BigInt(balance.toString()) < quote.amountWei) throw new Error('Insufficient token balance');
+  if (BigInt(balance.toString()) < quote.amountWei) throw new Error(_translateCopy('copy.d369bf9fe70c', { defaultValue: 'Insufficient token balance' }));
   const allowance = await readWithTimeout(token.allowance(input.walletAddress, PERMIT2) as Promise<ethers.BigNumber>, 'Token allowance');
   if (BigInt(allowance.toString()) < quote.amountWei) {
     progress('tokenApproval');
@@ -338,8 +339,8 @@ export async function mintSell(input: SellInput, signingProvider: any, progress:
 export async function recoverMint(input: SellInput, hash: string): Promise<{ tokenId: string; txHash: string }> {
   const cfg = DEX_CHAINS[input.chainId];
   const receipt = await readWithTimeout(dexReceipt(input.chainId, hash), 'Transaction receipt');
-  if (!receipt) throw new Error('Transaction submitted. Confirmation is not available yet.');
-  if (receipt.status !== 1) throw Object.assign(new Error('The position transaction reverted. No position was created.'), { code: 'DEX_REVERTED' });
+  if (!receipt) throw new Error(_translateCopy('copy.b5e1ff6c53ba', { defaultValue: 'Transaction submitted. Confirmation is not available yet.' }));
+  if (receipt.status !== 1) throw Object.assign(new Error(_translateCopy('copy.bc9ab4939838', { defaultValue: 'The position transaction reverted. No position was created.' })), { code: 'DEX_REVERTED' });
   const transferTopic = ethers.utils.id('Transfer(address,address,uint256)');
   const mintLog = receipt.logs.find((log: ethers.providers.Log) =>
     log.address.toLowerCase() === cfg.manager.toLowerCase() &&
@@ -347,22 +348,22 @@ export async function recoverMint(input: SellInput, hash: string): Promise<{ tok
     log.topics[1] === `0x${'0'.repeat(64)}` &&
     log.topics[2]?.toLowerCase() === `0x${input.walletAddress.slice(2).toLowerCase().padStart(64, '0')}`,
   );
-  if (!mintLog?.topics[3]) throw new Error('Position minted but its NFT could not be identified');
+  if (!mintLog?.topics[3]) throw new Error(_translateCopy('copy.c212b0313c5d', { defaultValue: 'Position minted but its NFT could not be identified' }));
   return { tokenId: BigInt(mintLog.topics[3]).toString(), txHash: receipt.transactionHash };
 }
 
 export async function withdrawSell(position: VerifiedPosition, walletAddress: string, signingProvider: any) {
   const fresh = await readWithTimeout(verifyPosition(position), 'Position refresh');
-  if (!fresh) throw new Error('This position has already been withdrawn or is unavailable');
+  if (!fresh) throw new Error(_translateCopy('copy.63ce18ea5d1a', { defaultValue: 'This position has already been withdrawn or is unavailable' }));
   position = fresh;
   if (position.owner.toLowerCase() !== walletAddress.toLowerCase()) {
-    throw new Error('Only the current position owner can withdraw');
+    throw new Error(_translateCopy('copy.6a6d12191ed6', { defaultValue: 'Only the current position owner can withdraw' }));
   }
   const chainId = position.chain_id as DexChainId;
   const cfg = DEX_CHAINS[chainId];
   const accounts = await readWithTimeout(signingProvider.request({ method: 'eth_accounts' }) as Promise<string[]>, 'Wallet account');
   if (accounts[0]?.toLowerCase() !== walletAddress.toLowerCase()) {
-    throw new Error('Connect the wallet that owns this position');
+    throw new Error(_translateCopy('copy.f74fac0bec11', { defaultValue: 'Connect the wallet that owns this position' }));
   }
   const dhb = new Token(chainId, cfg.dhb, 18, 'DHB');
   const usdc = new Token(chainId, cfg.usdc, cfg.usdcDecimals, 'USDC');

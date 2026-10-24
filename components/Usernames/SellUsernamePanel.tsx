@@ -299,7 +299,7 @@ const SellUsernamePanel: React.FC<Props> = ({
               <SaleRow key={s.id} sale={s} label={t("usernames.bought")} />
             ))}
             {history.map((l) => (
-              <HistoryRow key={l.id} listing={l} soldLabel={t("usernames.sold")} />
+              <HistoryRow key={l.id} listing={l} soldLabel={t("usernames.sold")} withdrawnLabel={t("copy.00c0b03fcfa2", { defaultValue: "Withdrawn" })} />
             ))}
           </View>
           </PageSection>
@@ -322,9 +322,10 @@ const SaleRow: React.FC<{ sale: UsernameSale; label: string }> = ({ sale, label 
   </View>
 );
 
-const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string }> = ({
+const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string; withdrawnLabel: string }> = ({
   listing,
   soldLabel,
+  withdrawnLabel,
 }) => (
   <View style={styles.row}>
     <View style={styles.rowMain}>
@@ -333,7 +334,7 @@ const HistoryRow: React.FC<{ listing: MyUsernameListing; soldLabel: string }> = 
         {listing.username}
       </Text>
       <Text style={styles.rowSub} numberOfLines={1}>
-        {listing.status === "cancelled" ? listing.cancelReason || "Withdrawn" : soldLabel}
+        {listing.status === "cancelled" ? listing.cancelReason || withdrawnLabel : soldLabel}
       </Text>
     </View>
     <Text style={styles.rowPriceMuted}>${listing.priceUsd.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{"\n"}<DhbCoin /> {listing.priceDhb.toLocaleString(appLocale())}</Text>

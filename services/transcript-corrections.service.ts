@@ -21,6 +21,7 @@
 
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const FN_URL = `${env.SUPABASE_URL}/functions/v1/transcript-corrections`;
 
@@ -40,7 +41,7 @@ export interface TranscriptCorrection {
 /** Thrown when the function is unreachable — the UI treats it as "no fixes". */
 export class CorrectionsUnavailableError extends Error {
   constructor() {
-    super("Transcript corrections are not available yet");
+    super(_translateCopy("copy.17b27345b01d", { defaultValue: "Transcript corrections are not available yet" }));
     this.name = "CorrectionsUnavailableError";
   }
 }
@@ -67,7 +68,7 @@ export async function fetchTranscriptCorrections(
   const res = await reach(`${FN_URL}?transcript_id=${encodeURIComponent(transcriptId)}`, {
     headers: anonHeaders,
   });
-  if (!res.ok) throw new Error(`Could not load corrections (${res.status})`);
+  if (!res.ok) throw new Error(_translateCopy("copy.dcfa41feec1d", { defaultValue: "Could not load corrections ({{value1}})", value1: res.status }));
 
   const data = await res.json();
   return (data?.corrections ?? []) as TranscriptCorrection[];
@@ -75,7 +76,7 @@ export async function fetchTranscriptCorrections(
 
 async function post(body: Record<string, unknown>): Promise<any> {
   const token = await getAuthToken();
-  if (!token) throw new Error("Sign in first.");
+  if (!token) throw new Error(_translateCopy("copy.1ba0ae88fee7", { defaultValue: "Sign in first." }));
 
   const res = await reach(FN_URL, {
     method: "POST",
@@ -84,7 +85,7 @@ async function post(body: Record<string, unknown>): Promise<any> {
   });
 
   const data = await res.json().catch(() => null);
-  if (!res.ok) throw new Error(data?.error ?? `Request failed (${res.status})`);
+  if (!res.ok) throw new Error(data?.error ?? _translateCopy("copy.94dd9f908316", { defaultValue: "Request failed ({{value1}})", value1: res.status }));
   return data;
 }
 

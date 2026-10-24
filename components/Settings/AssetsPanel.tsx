@@ -98,7 +98,7 @@ const AssetsPanel: React.FC<{ navigation: any }> = ({ navigation }) => {
       ? 'Base'
       : chainId === ChainId.BSC_MAINNET
         ? 'BNB'
-        : `Chain ${chainId ?? 'N/A'}`;
+        : t("copy.f68ce866a5b4", { defaultValue: "Chain {{value1}}", value1: chainId ?? 'N/A' });
 
   /**
    * The wallet is payable on two address spaces, so this row asks which one

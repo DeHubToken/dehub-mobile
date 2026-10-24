@@ -12,6 +12,7 @@
  */
 
 import { apiClient } from '../libs/api.client';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface KidsModeStatus {
   enabled: boolean;
@@ -46,7 +47,7 @@ export const KidsModeService = {
       const response = await apiClient.post('/kids-mode/enable', { pin });
       return response?.result ?? { enabled: true };
     } catch (error: any) {
-      throw new Error(messageFrom(error, 'Could not turn Kids Mode on.'));
+      throw new Error(messageFrom(error, _translateCopy("copy.8632ad37f19b", { defaultValue: "Could not turn Kids Mode on." })));
     }
   },
 
@@ -61,7 +62,7 @@ export const KidsModeService = {
       const response = await apiClient.post('/kids-mode/disable', { pin });
       return response?.result ?? { enabled: false };
     } catch (error: any) {
-      throw new Error(messageFrom(error, 'That PIN is not right.'));
+      throw new Error(messageFrom(error, _translateCopy("copy.8209668bd0c1", { defaultValue: "That PIN is not right." })));
     }
   },
 };

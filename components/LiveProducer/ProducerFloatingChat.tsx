@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { useDraftState } from '../../hooks/useDraftState';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
@@ -53,7 +54,7 @@ const shortAddr = (addr?: string): string =>
 
 /** Resolve display name from user ref or meta fallback. */
 const resolveDisplayName = (a: ProducerChatActivity): string =>
-  a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || "user";
+  a.user?.displayName || a.user?.username || a.meta?.username || shortAddr(a.user?.address || a.address) || _translateCopy("copy.04f8996da763", { defaultValue: "user" });
 
 /** Resolve the avatar from user ref or meta fallback, re-based onto the CDN. */
 const resolveAvatarUrl = (a: ProducerChatActivity): string =>

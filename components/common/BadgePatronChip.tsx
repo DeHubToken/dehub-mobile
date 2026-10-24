@@ -46,7 +46,7 @@ const BadgePatronChip: FC<BadgePatronChipProps> = ({ lookupId }) => {
   if (!data?.grantor) return null;
 
   const handle = data.grantor.username || data.grantor.displayName || null;
-  const who = handle ? `@${handle}` : "another holder";
+  const who = handle ? `@${handle}` : _copy("copy.cc93556c65ad", { defaultValue: "another holder" });
   const source = badgeImageFor(data.tier);
 
   return (

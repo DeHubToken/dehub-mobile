@@ -16,6 +16,7 @@ import { ethers } from 'ethers';
 import { getSolanaRpcUrl } from '../config/solana.constants';
 import { getSolanaAddress, getSolanaKeypair } from '../services/solana.service';
 import { readWithTimeout } from './dex-read-timeout';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const JUP = 'https://lite-api.jup.ag';
 export const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
@@ -28,7 +29,7 @@ const SOL_RESERVE = 0.01;
 /** The Solana address that trades for the signed-in DeHub wallet. */
 export async function solanaTrader(): Promise<string> {
   const address = await getSolanaAddress();
-  if (!address) throw new Error('Solana wallet unavailable. Sign in again to trade on Solana.');
+  if (!address) throw new Error(_translateCopy('copy.a332320bc5c5', { defaultValue: 'Solana wallet unavailable. Sign in again to trade on Solana.' }));
   return address;
 }
 
@@ -38,7 +39,7 @@ async function rpc<T>(method: string, params: unknown[]): Promise<T> {
     body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }),
   }), 'Solana RPC', 15000);
   const json = await res.json();
-  if (json.error) throw new Error(json.error.message || 'Solana RPC error');
+  if (json.error) throw new Error(json.error.message || _translateCopy('copy.31e502c18552', { defaultValue: 'Solana RPC error' }));
   return json.result as T;
 }
 
@@ -56,7 +57,7 @@ async function jup<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await readWithTimeout(fetch(`${JUP}${path}`, { ...init, headers: init?.body ? { 'content-type': 'application/json' } : undefined }), 'Jupiter', 20000);
   const json = await res.json().catch(() => null) as (T & { error?: string; message?: string; code?: number }) | null;
   if (!res.ok || !json || json.error || (typeof json.code === 'number' && json.code !== 0)) {
-    throw new Error(json?.error || json?.message || 'Jupiter could not route this right now');
+    throw new Error(json?.error || json?.message || _translateCopy('copy.6f60546eb1e6', { defaultValue: 'Jupiter could not route this right now' }));
   }
   return json;
 }
@@ -71,11 +72,11 @@ async function confirm(signature: string) {
   for (let i = 0; i < 40; i++) {
     const { value } = await rpc<{ value: ({ err: unknown; confirmationStatus?: string } | null)[] }>('getSignatureStatuses', [[signature]]);
     const status = value[0];
-    if (status?.err) throw new Error('The transaction failed on chain. Nothing was spent beyond the network fee.');
+    if (status?.err) throw new Error(_translateCopy('copy.bd48f30cb05e', { defaultValue: 'The transaction failed on chain. Nothing was spent beyond the network fee.' }));
     if (status && (status.confirmationStatus === 'confirmed' || status.confirmationStatus === 'finalized')) return;
     await new Promise((resolve) => setTimeout(resolve, 1500));
   }
-  throw new Error('The transaction was sent but has not confirmed yet. Check your wallet before retrying.');
+  throw new Error(_translateCopy('copy.95db6862cfec', { defaultValue: 'The transaction was sent but has not confirmed yet. Check your wallet before retrying.' }));
 }
 
 // ── Instant swaps ─────────────────────────────────────────────────────────
@@ -92,7 +93,7 @@ export interface SolanaQuote {
 }
 
 export async function quoteSolanaSwap(inputMint: string, outputMint: string, amount: bigint, slippageBps = 100): Promise<SolanaQuote> {
-  if (amount <= 0n) throw new Error('Enter an amount');
+  if (amount <= 0n) throw new Error(_translateCopy('copy.d8a7700e1f88', { defaultValue: 'Enter an amount' }));
   const params = `inputMint=${inputMint}&outputMint=${outputMint}&amount=${amount.toString()}&slippageBps=${slippageBps}`;
   const raw = await jup<Record<string, unknown> & { inAmount: string; outAmount: string; otherAmountThreshold: string; priceImpactPct?: string; swapUsdValue?: string }>(`/swap/v1/quote?${params}`);
   return {
@@ -106,7 +107,7 @@ export async function runSolanaSwap(quote: SolanaQuote, trader: string): Promise
     method: 'POST',
     body: JSON.stringify({ quoteResponse: quote.raw, userPublicKey: trader, dynamicComputeUnitLimit: true, prioritizationFeeLamports: 'auto', wrapAndUnwrapSol: true }),
   });
-  if (built.simulationError) throw new Error('This swap would fail right now. Try a smaller amount.');
+  if (built.simulationError) throw new Error(_translateCopy('copy.737ab9187095', { defaultValue: 'This swap would fail right now. Try a smaller amount.' }));
   const { signature, serialized } = await sign(built.swapTransaction);
   await rpc<string>('sendTransaction', [serialized, { encoding: 'base64', skipPreflight: true, maxRetries: 3 }]);
   await confirm(signature);
@@ -120,13 +121,13 @@ export interface SolanaOrderInput { trader: string; side: 'buy' | 'sell'; tokenM
 /** Place a limit order: sells ask USDC for the token, buys offer USDC for it. Returns the order account and signature. */
 export async function placeSolanaOrder(input: SolanaOrderInput): Promise<{ order: string; signature: string }> {
   const usd = input.side === 'sell' ? input.amount * input.price : input.amount;
-  if (!(input.price > 0) || !(input.amount > 0)) throw new Error('Enter a valid amount and price');
-  if (usd < MIN_ORDER_USD) throw new Error(`Solana limit orders must be worth at least $${MIN_ORDER_USD}`);
+  if (!(input.price > 0) || !(input.amount > 0)) throw new Error(_translateCopy('copy.d1216f3e7406', { defaultValue: 'Enter a valid amount and price' }));
+  if (usd < MIN_ORDER_USD) throw new Error(_translateCopy('copy.2f15c7d9c60c', { defaultValue: 'Solana limit orders must be worth at least ${{value1}}', value1: MIN_ORDER_USD }));
   const units = (value: number, decimals: number) => BigInt(Math.floor(value * 10 ** Math.min(decimals, 9))) * 10n ** BigInt(Math.max(0, decimals - 9));
   const [inputMint, outputMint, making, taking] = input.side === 'sell'
     ? [input.tokenMint, USDC_MINT, units(input.amount, input.tokenDecimals), units(usd, 6)]
     : [USDC_MINT, input.tokenMint, units(input.amount, 6), units(input.amount / input.price, input.tokenDecimals)];
-  if (making <= 0n || taking <= 0n) throw new Error('Amount is too small');
+  if (making <= 0n || taking <= 0n) throw new Error(_translateCopy('copy.8be3ab2e32d0', { defaultValue: 'Amount is too small' }));
   const created = await jup<{ order: string; transaction: string; requestId: string }>('/trigger/v1/createOrder', {
     method: 'POST',
     body: JSON.stringify({ inputMint, outputMint, maker: input.trader, payer: input.trader, computeUnitPrice: 'auto', wrapAndUnwrapSol: true,

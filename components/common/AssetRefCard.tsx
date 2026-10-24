@@ -18,6 +18,7 @@
 
 import { appLocale } from '../../libs/date.util';
 import React, { memo, useCallback, useState } from 'react';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
@@ -156,6 +157,7 @@ const AddressChip: React.FC<{ address: string }> = ({ address }) => {
 // ── Card ────────────────────────────────────────────────────────────────────
 
 const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
+  const { t: _copy } = _useCopy();
   const [sheetOpen, setSheetOpen] = useState(false);
   // `isPending` gates the chart, not `series.length`: an asset whose series is
   // still in flight and one that will never have a series both arrive as an
@@ -185,9 +187,9 @@ const ResolvedCard: React.FC<{ asset: ResolvedAsset }> = ({ asset }) => {
   } else {
     if (asset.chainId) meta.push(asset.chainId.toUpperCase());
     const cap = formatCompact(asset.marketCap);
-    if (cap) meta.push(`MC ${cap}`);
+    if (cap) meta.push(_copy("copy.f9c8b16a4071", { defaultValue: "MC {{value1}}", value1: cap }));
     const vol = formatCompact(asset.volume24h);
-    if (vol) meta.push(`Vol ${vol}`);
+    if (vol) meta.push(_copy("copy.62c8b95e8e5e", { defaultValue: "Vol {{value1}}", value1: vol }));
   }
 
   return (

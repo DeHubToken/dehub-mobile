@@ -1,6 +1,7 @@
 import { apiClient } from "../libs/api.client";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /* ─── Types ─────────────────────────────────────────────────── */
 
@@ -237,7 +238,7 @@ export async function uploadLiveChatImage(
   walletAddress: string,
 ): Promise<{ url: string }> {
   const token = await getAuthToken();
-  if (!token) throw new Error("Not signed in");
+  if (!token) throw new Error(_translateCopy("copy.491fc91cd76e", { defaultValue: "Not signed in" }));
 
   const form = new FormData();
   form.append("file", { uri: fileUri, name: fileName, type: mimeType } as any);
@@ -255,7 +256,7 @@ export async function uploadLiveChatImage(
 
   const data = await res.json().catch(() => null);
   if (!res.ok || !data?.ok || !data?.url) {
-    throw new Error(data?.error || "Upload failed");
+    throw new Error(data?.error || _translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
   }
   return { url: data.url as string };
 }

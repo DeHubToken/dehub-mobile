@@ -136,7 +136,7 @@ export default function BoostSheet({
       {
         onSuccess: booking => {
           if (chosen === "signal_flare" || chosen === "harpoon") {
-            const label = chosen === "harpoon" ? "Harpoon" : "Signal Flare";
+            const label = chosen === "harpoon" ? t("copy.58d9fe00d99c", { defaultValue: "Harpoon" }) : t("copy.6cbfc163d979", { defaultValue: "Signal Flare" });
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
               loading: t("superpowers.countingNotifications"),
               success: recipients =>

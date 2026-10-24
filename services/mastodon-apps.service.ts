@@ -1,4 +1,5 @@
 import { apiClient } from '../libs/api.client';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
  * Mastodon apps (Ivory, Tusky, Elk…) this account signed in to through
@@ -15,7 +16,7 @@ export interface ConnectedApp {
 }
 
 function unwrap<T>(response: any): T {
-  if (response && response.status === false) throw new Error(response.error || 'Request failed');
+  if (response && response.status === false) throw new Error(response.error || _translateCopy("copy.cfce761befa8", { defaultValue: "Request failed" }));
   return (response?.result ?? response) as T;
 }
 

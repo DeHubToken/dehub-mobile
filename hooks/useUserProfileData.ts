@@ -423,7 +423,7 @@ export const useUserProfileData = (
             return { followings: Math.max(0, currentCount - 1) };
           });
         }
-        reportActionError(e, "Failed to follow user");
+        reportActionError(e, _copy("copy.f5a7643bdaac", { defaultValue: "Failed to follow user" }));
       }
     });
   }, [
@@ -434,6 +434,7 @@ export const useUserProfileData = (
     profileData,
     data,
     patchUser,
+    _copy,
   ]);
 
   const handleUnfollow = useCallback(() => {
@@ -474,7 +475,7 @@ export const useUserProfileData = (
           });
         }
       } catch (e) {
-        toastError(wasPending ? "Failed to cancel request" : "Failed to unfollow user");
+        toastError(wasPending ? _copy("copy.00b3a926f704", { defaultValue: "Failed to cancel request" }) : _copy("copy.c8450665a9ad", { defaultValue: "Failed to unfollow user" }));
       } finally {
         setFollowLoading(false);
       }
@@ -488,6 +489,7 @@ export const useUserProfileData = (
     profileData,
     data,
     patchUser,
+    _copy,
   ]);
 
   const handleRemoveFollower = useCallback(() => {
@@ -541,9 +543,9 @@ export const useUserProfileData = (
     const profileSlug = profileData?.username || profileData?.address;
     if (!profileSlug) return;
     const url = `${WEBSITE_LINK}/@${profileSlug}`;
-    const message = `Check out this dehub profile ${url}`;
+    const message = _copy("copy.24ccaa3af430", { defaultValue: "Check out this dehub profile {{value1}}", value1: url });
     await shareProfile(url, message);
-  }, [profileData?.username, profileData?.address]);
+  }, [profileData?.username, profileData?.address, _copy]);
 
   const handleMessage = useCallback(
     (onClose: () => void) => {

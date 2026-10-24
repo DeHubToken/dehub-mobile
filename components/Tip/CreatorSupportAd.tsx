@@ -6,14 +6,15 @@ import { dehubAuthHeaders } from '../../services/ai.service';
 import { useSilenceOnRelease } from '../../hooks/useSilenceOnRelease';
 import { useTranslation } from 'react-i18next';
 import { shouldSendSupportProgress, supportedWatchDelta } from '../../libs/support-watch';
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 interface SupportAd { supportSessionId: string; mediaUrl: string; headline: string; advertiser: string; creatorShareUsd: number }
 
 async function invoke(name: string, body: object, wallet: string) {
   const headers = await dehubAuthHeaders(wallet);
-  if (!headers['x-dehub-token']) throw new Error('Sign in to support a creator.');
+  if (!headers['x-dehub-token']) throw new Error(_translateCopy("copy.d42931f214e0", { defaultValue: "Sign in to support a creator." }));
   const { data, error } = await supabase.functions.invoke(name, { body, headers });
-  if (error || data?.error) throw new Error(data?.error || 'Creator support is unavailable. Please retry.');
+  if (error || data?.error) throw new Error(data?.error || _translateCopy("copy.dad2b39d6702", { defaultValue: "Creator support is unavailable. Please retry." }));
   return data;
 }
 

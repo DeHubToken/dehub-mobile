@@ -157,7 +157,7 @@ export function useTranslation(
       inFlightRef.current = true;
       if (!silent) setIsLoading(true);
 
-      const toastId = silent ? null : toastLoading('Translating...');
+      const toastId = silent ? null : toastLoading(_copy("copy.f21771ab7856", { defaultValue: "Translating..." }));
       try {
         // "und" is the backend saying it could not tell, not a language. Passed
         // through it becomes a `und|tr` language pair at the provider, which

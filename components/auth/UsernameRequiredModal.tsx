@@ -106,7 +106,7 @@ export const UsernameRequiredForm: React.FC<Props> = ({ visible, provisionalUser
       toastSuccess(_copy("copy.c9a2d61de5a7", { defaultValue: "Username set" }));
       onComplete(finalUser);
     } catch (e: any) {
-      setError(e?.message || 'Failed to set username');
+      setError(e?.message || _copy("copy.5ee871244ed8", { defaultValue: "Failed to set username" }));
     } finally {
       setSubmitting(false);
     }

@@ -205,7 +205,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({
       const result = await response.json();
 
       if (!response.ok || result.error) {
-        throw new Error(result.message || "Failed to submit review");
+        throw new Error(result.message || t("copy.31696badc2ca", { defaultValue: "Failed to submit review" }));
       }
 
       console.log("Feedback submitted successfully:", result);
