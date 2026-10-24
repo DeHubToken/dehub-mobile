@@ -5,6 +5,7 @@ import env from "../config/env";
 import { getAuthToken } from "./auth.utils";
 import { tokenRefreshManager } from "./token-refresh";
 import { formatUploadErrorMessage, type XhrUploadError } from "./xhr-upload";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 /**
  * Chunked, resumable uploads — the node-uploadx protocol PeerTube uses.
@@ -194,7 +195,7 @@ function errorFrom(reply: Reply): XhrUploadError {
   } catch {
     /* not JSON */
   }
-  const err: XhrUploadError = new Error(formatUploadErrorMessage(body, `Upload failed (${reply.status})`));
+  const err: XhrUploadError = new Error(formatUploadErrorMessage(body, _translateCopy("copy.c5fcf1849ea8", { defaultValue: "Upload failed ({{value1}})", value1: reply.status })));
   err.status = reply.status;
   if (typeof body?.code === "string") err.code = body.code;
   return err;
@@ -265,7 +266,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
     }
   };
 
-  const signedOut = (): XhrUploadError => Object.assign(new Error("Session expired. Please sign in again."), { status: 401 });
+  const signedOut = (): XhrUploadError => Object.assign(new Error(_translateCopy("copy.94f5e55e39ef", { defaultValue: "Session expired. Please sign in again." })), { status: 401 });
 
   /** A 401 means the token lapsed mid-upload: refresh and go on, or stop if the session is gone. */
   const reauthenticate = async () => {
@@ -460,7 +461,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       }
       if (err instanceof SessionGoneError) {
         // Expired (an hour in the background) or swept: start again from byte zero.
-        if (++restarts > 2) throw new Error("Upload failed — please check your connection and try again");
+        if (++restarts > 2) throw new Error(_translateCopy("copy.580bfac1001b", { defaultValue: "Upload failed — please check your connection and try again" }));
         sessionUrl = null;
         offset = 0;
         resync = false;
@@ -487,7 +488,7 @@ export async function resumableUploadFile<T = any>(opts: ResumableUploadOptions)
       chunk = Math.max(MIN_CHUNK_BYTES, Math.floor(chunk / 2 / MIN_CHUNK_BYTES) * MIN_CHUNK_BYTES);
       if (Date.now() - lastProgressAt > GIVE_UP_AFTER_MS) {
         cancel();
-        throw new Error("Upload failed — please check your connection and try again");
+        throw new Error(_translateCopy("copy.580bfac1001b", { defaultValue: "Upload failed — please check your connection and try again" }));
       }
       await waitToRetry(failures, retryBaseMs, abortRef).catch((cancelled) => {
         cancel();

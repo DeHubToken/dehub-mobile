@@ -68,7 +68,7 @@ const UserRow: React.FC<{
 }> = ({ user, trailing, onPress }) => {
   const { t } = useTranslation();
   const avatarUrl = getAvatarUrl(user.avatarUrl || "");
-  const displayName = user.displayName || user.username || user.address?.slice(0, 10) || "Unknown";
+  const displayName = user.displayName || user.username || user.address?.slice(0, 10) || t("copy.b764cdc0eab7", { defaultValue: "Unknown" });
   const badgeImg = getBadgeUrlFor(user);
 
   return (

@@ -47,6 +47,7 @@ import { claimLockScreen, releaseLockScreen } from "./lockScreen";
 import { createLogger } from "./logger";
 import { storage } from "./storage";
 import { toastError, toastInfo } from "./toast";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 import { supabase } from "../services/supabase";
 
 const log = createLogger("stage-playback");
@@ -57,7 +58,7 @@ const LOCK_SCREEN_ID = "stage-recording";
 /** What the OS shows for the recording that is loaded. */
 function stageTrack() {
   return {
-    title: state.title || "Stage recording",
+    title: state.title || _translateCopy("copy.31d03cbfa55b", { defaultValue: "Stage recording" }),
     artist: i18n.t("nav.stages", { defaultValue: "Stages" }),
   };
 }
@@ -440,7 +441,7 @@ async function waitForPlayableCopy(stageId: string, timeoutMs = 90_000): Promise
 }
 
 function couldNotPlay(e: unknown) {
-  toastError(e, "That recording could not be played");
+  toastError(e, _translateCopy("copy.49bbcbf7a97b", { defaultValue: "That recording could not be played" }));
 }
 
 /**
@@ -450,7 +451,7 @@ function couldNotPlay(e: unknown) {
  */
 export function playStageRecording(space: StagePlayable, seekRatio?: number) {
   if (!space.recording_url) {
-    toastInfo("Recording not available for this stage");
+    toastInfo(_translateCopy("copy.5f630944e9be", { defaultValue: "Recording not available for this stage" }));
     return;
   }
 
@@ -479,7 +480,7 @@ export function playStageRecording(space: StagePlayable, seekRatio?: number) {
 
   publish({
     spaceId: space.id,
-    title: space.title || "Stage recording",
+    title: space.title || _translateCopy("copy.31d03cbfa55b", { defaultValue: "Stage recording" }),
     loading: true,
     paused: false,
     progress: 0,

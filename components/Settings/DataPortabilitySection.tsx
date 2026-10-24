@@ -112,19 +112,20 @@ const DataPortabilitySection: React.FC = () => {
       const plan = await planImport(data, address);
 
       const from = data.account.username || data.account.address.slice(0, 10);
-      const when = data.exportedAt ? `, exported ${data.exportedAt.slice(0, 10)}` : '';
       Alert.alert(
         t('settings.importReview', 'Apply this import?'),
         [
-          `From ${from}${when}.`,
-          `· Follow ${plan.toFollow.length} accounts${
-            plan.alreadyFollowing > 0 ? ` (${plan.alreadyFollowing} already followed)` : ''
-          }`,
-          `· Block ${plan.toBlock.length} accounts`,
-          `· Create ${plan.foldersToCreate.length} bookmark folders, fill ${plan.foldersToFill}`,
-          '· Restore your playback settings',
+          data.exportedAt
+            ? t("copy.e786eb1d199b", { defaultValue: "From {{value1}}, exported {{value2}}.", value1: from, value2: data.exportedAt.slice(0, 10) })
+            : t("copy.daf5ba7e61b7", { defaultValue: "From {{value1}}.", value1: from }),
+          plan.alreadyFollowing > 0
+            ? t("copy.c32141e018f4", { defaultValue: "· Follow {{count}} accounts ({{value1}} already followed)", count: plan.toFollow.length, value1: plan.alreadyFollowing })
+            : t("copy.d02388019092", { defaultValue: "· Follow {{count}} accounts", count: plan.toFollow.length }),
+          t("copy.cf61a2d34d02", { defaultValue: "· Block {{count}} accounts", count: plan.toBlock.length }),
+          t("copy.aea5cab3f160", { defaultValue: "· Create {{count}} bookmark folders, fill {{value1}}", count: plan.foldersToCreate.length, value1: plan.foldersToFill }),
+          t("copy.ee3f2683c6a0", { defaultValue: "· Restore your playback settings" }),
           '',
-          'Following and blocking happen as you, on this account. Nothing is removed.',
+          t("copy.c3ad9fa615e4", { defaultValue: "Following and blocking happen as you, on this account. Nothing is removed." }),
         ].join('\n'),
         [
           { text: t('common.cancel', 'Cancel'), style: 'cancel' },

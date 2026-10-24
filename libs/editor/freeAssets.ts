@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import env from "../../config/env";
 import type { MediaProvenance } from "./storage";
 
@@ -143,14 +144,14 @@ async function searchOpenverse(options: SearchFreeAssetsOptions): Promise<FreeAs
     if (!downloadUrl || !landingUrl) return [];
     const licenseCode = String(row.license || "").toUpperCase();
     const version = String(row.license_version || "");
-    const license = licenseCode === "PDM" ? "Public domain" : `${licenseCode}${version ? ` ${version}` : ""}`;
-    const creator = plainText(row.creator) || "Unknown creator";
+    const license = licenseCode === "PDM" ? _translateCopy("copy.8c3ff64bb211", { defaultValue: "Public domain" }) : `${licenseCode}${version ? ` ${version}` : ""}`;
+    const creator = plainText(row.creator) || _translateCopy("copy.70ab9a0182ab", { defaultValue: "Unknown creator" });
     const kind = options.kind;
     const asset: FreeAsset = {
       id: `openverse:${String(row.id)}`,
       source: "Openverse",
       kind,
-      title: plainText(row.title) || "Untitled",
+      title: plainText(row.title) || _translateCopy("copy.f59ab8d1331b", { defaultValue: "Untitled" }),
       creator,
       creatorUrl: String(row.creator_url || "") || undefined,
       thumbnailUrl: String(row.thumbnail || (kind === "audio" ? "" : downloadUrl)),
@@ -164,7 +165,7 @@ async function searchOpenverse(options: SearchFreeAssetsOptions): Promise<FreeAs
       license,
       licenseUrl: String(row.license_url || "") || undefined,
       attributionRequired: !["CC0", "PDM"].includes(licenseCode),
-      attributionText: `${plainText(row.title) || "Untitled"} by ${creator}, ${license}, via Openverse`,
+      attributionText: _translateCopy("copy.796bc4637d53", { defaultValue: "{{value1}} by {{value2}}, {{value3}}, via Openverse", value1: plainText(row.title) || _translateCopy("copy.f59ab8d1331b", { defaultValue: "Untitled" }), value2: creator, value3: license }),
     };
     return orientationMatches(asset, options.orientation || "all") ? [asset] : [];
   });
@@ -211,9 +212,9 @@ async function searchWikimedia(options: SearchFreeAssetsOptions): Promise<FreeAs
     if ((options.kind === "video" || options.kind === "animation") && (mimeType !== "video/webm" || duration > 180 || size > 250 * 1024 * 1024)) return [];
     if (options.kind === "gif" && size > 50 * 1024 * 1024) return [];
     if (options.kind === "audio" && duration > 600) return [];
-    const title = plainText(meta.ObjectName?.value) || titleFromFile(String(pageRow.title || "Untitled"));
-    const creator = plainText(meta.Artist?.value) || "Wikimedia Commons contributor";
-    const license = plainText(meta.LicenseShortName?.value) || plainText(meta.UsageTerms?.value) || "Free licence";
+    const title = plainText(meta.ObjectName?.value) || titleFromFile(String(pageRow.title || _translateCopy("copy.f59ab8d1331b", { defaultValue: "Untitled" })));
+    const creator = plainText(meta.Artist?.value) || _translateCopy("copy.5febd9da3810", { defaultValue: "Wikimedia Commons contributor" });
+    const license = plainText(meta.LicenseShortName?.value) || plainText(meta.UsageTerms?.value) || _translateCopy("copy.2c0a938bef35", { defaultValue: "Free licence" });
     const asset: FreeAsset = {
       id: `wikimedia:${String(pageRow.pageid)}`,
       source: "Wikimedia Commons",
@@ -231,7 +232,7 @@ async function searchWikimedia(options: SearchFreeAssetsOptions): Promise<FreeAs
       license,
       licenseUrl: plainText(meta.LicenseUrl?.value) || undefined,
       attributionRequired: String(meta.AttributionRequired?.value).toLowerCase() === "true",
-      attributionText: `${title} by ${creator}, ${license}, via Wikimedia Commons`,
+      attributionText: _translateCopy("copy.1310f058678b", { defaultValue: "{{value1}} by {{value2}}, {{value3}}, via Wikimedia Commons", value1: title, value2: creator, value3: license }),
     };
     return orientationMatches(asset, options.orientation || "all") ? [asset] : [];
   });

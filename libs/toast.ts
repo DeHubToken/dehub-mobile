@@ -2,12 +2,13 @@
 import React from 'react';
 import { toast } from 'sonner-native';
 import GlassToast, { GlassToastProps } from '../components/ui/GlassToast';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 // Normalize unknown error shapes to a string message
 function extractMessage(err: unknown): string {
-  if (!err) return 'Unknown error';
+  if (!err) return _translateCopy('copy.27c2ccd962c2', { defaultValue: 'Unknown error' });
   if (typeof err === 'string') return err;
-  if (err instanceof Error) return err.message || 'Error';
+  if (err instanceof Error) return err.message || _translateCopy('copy.54a0e8c17ebb', { defaultValue: 'Error' });
   // API error objects
   if (typeof err === 'object' && err !== null && 'message' in err) {
     return String(err.message);
@@ -15,7 +16,7 @@ function extractMessage(err: unknown): string {
   try { 
     return JSON.stringify(err); 
   } catch { 
-    return 'Unexpected error'; 
+    return _translateCopy('copy.d24c41ae530a', { defaultValue: 'Unexpected error' }); 
   }
 }
 
@@ -73,7 +74,7 @@ export const toastSuccess = (message: string, options?: ToastOptions) => {
 // Error toast with better error handling
 export const toastError = (
   error: unknown, 
-  fallback = 'Something went wrong', 
+  fallback = _translateCopy('copy.ab827e3fe17d', { defaultValue: 'Something went wrong' }), 
   options?: ToastOptions
 ) => {
   const message =

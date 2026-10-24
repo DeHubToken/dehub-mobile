@@ -32,6 +32,7 @@ import { configureForBackgroundPlayback } from "./audioSession";
 import { claimLockScreen, releaseLockScreen } from "./lockScreen";
 import { createLogger } from "./logger";
 import { toastError } from "./toast";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 import { registerStationClick, type RadioStation } from "./radio-browser";
 
 const log = createLogger("radio-player");
@@ -150,7 +151,7 @@ export function stopRadio() {
 export function playRadioStation(station: RadioStation) {
   const url = station.url_resolved || station.url;
   if (!url) {
-    toastError(null, "That station has no stream to play");
+    toastError(null, _translateCopy("copy.b47c545f76a1", { defaultValue: "That station has no stream to play" }));
     return;
   }
 
@@ -166,7 +167,7 @@ export function playRadioStation(station: RadioStation) {
   loadTimeout = setTimeout(() => {
     loadTimeout = null;
     if (state.station?.stationuuid !== station.stationuuid || !state.isLoading) return;
-    toastError(null, `${station.name} is not responding`);
+    toastError(null, _translateCopy("copy.df4c6fc6e1eb", { defaultValue: "{{value1}} is not responding", value1: station.name }));
     stopRadio();
   }, LOAD_TIMEOUT_MS);
 
@@ -181,7 +182,7 @@ export function playRadioStation(station: RadioStation) {
       claimLockScreen(LOCK_SCREEN_ID, p, stationTrack(station));
     } catch (e) {
       log.error("Could not start the station", e);
-      toastError(e, "That station could not be played");
+      toastError(e, _translateCopy("copy.4e9d49565a75", { defaultValue: "That station could not be played" }));
       stopRadio();
     }
   })();

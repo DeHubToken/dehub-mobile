@@ -401,11 +401,11 @@ const UserReplyCardComponent: React.FC<UserReplyCardProps> = ({
       const shareUrl = item.tokenId
         ? `${WEBSITE_LINK}/app/post/${item.tokenId}?c=${item.id}`
         : WEBSITE_LINK;
-      await shareWithRef({ message: `Check this out: ${shareUrl}`, url: shareUrl }, undefined, "comment");
+      await shareWithRef({ message: t("copy.08a0e069dc15", { defaultValue: "Check this out: {{value1}}", value1: shareUrl }), url: shareUrl }, undefined, "comment");
     } catch (e) {
       console.error("Share error:", e);
     }
-  }, [item.tokenId, item.id]);
+  }, [item.tokenId, item.id, t]);
 
   const handleLike = useCallback(async () => {
     if (isLiking) return;

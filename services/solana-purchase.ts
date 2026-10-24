@@ -4,14 +4,15 @@ import { getSolanaKeypair } from './solana.service';
 import { getSolanaRpcUrl } from '../config/solana.constants';
 import { apiClient } from '../libs/api.client';
 import type { Purchase } from '../libs/crypto-purchase';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export async function sendSolanaPurchase(receipt: Purchase): Promise<string> {
   const keypair = await getSolanaKeypair();
-  if (keypair.publicKey.toBase58() !== receipt.refundTo) throw new Error('Connected Solana wallet does not match this purchase.');
-  if (receipt.expiresAt * 1000 <= Date.now()) throw new Error('This payment quote expired.');
+  if (keypair.publicKey.toBase58() !== receipt.refundTo) throw new Error(_translateCopy("copy.05b14d0d3e63", { defaultValue: "Connected Solana wallet does not match this purchase." }));
+  if (receipt.expiresAt * 1000 <= Date.now()) throw new Error(_translateCopy("copy.d85407c02446", { defaultValue: "This payment quote expired." }));
   const build = await apiClient.post<{ transaction: string }>('/dpay/crypto/direct/transaction', { id: receipt.id }, { isAuthRequired: true });
   const tx = Transaction.from(Buffer.from(build.transaction, 'base64'));
-  if (tx.feePayer?.toBase58() !== receipt.refundTo) throw new Error('Invalid payment wallet.');
+  if (tx.feePayer?.toBase58() !== receipt.refundTo) throw new Error(_translateCopy("copy.3c171ed76bc5", { defaultValue: "Invalid payment wallet." }));
   tx.partialSign(keypair);
   return new Connection(getSolanaRpcUrl(), 'confirmed').sendRawTransaction(tx.serialize(), { skipPreflight: false, preflightCommitment: 'confirmed' });
 }

@@ -1,3 +1,5 @@
+import { translateCopy as _translateCopy } from '../i18n/copy';
+
 export const CANDLE_INTERVALS = ['1m', '5m', '15m', '30m', '1h'] as const;
 export type CandleInterval = typeof CANDLE_INTERVALS[number];
 export interface Candle { time: number; open: number; high: number; low: number; close: number; observedAt: number }
@@ -17,7 +19,7 @@ export const isDehubPool = (position: { chain_id: number; poolFee: number; tickS
 /** Do not display an older aggregate snapshot while the pool-scoped feed is unavailable. */
 export function parseDehubMarket<Position>(data: unknown): SharedMarket<Position> {
   const market = parseSharedMarket<Position>(data);
-  if (market.marketScope !== 'base-dhb-usdc-0-1') throw new Error('DeHub pool snapshot is not available');
+  if (market.marketScope !== 'base-dhb-usdc-0-1') throw new Error(_translateCopy('copy.7569d3c2d268', { defaultValue: 'DeHub pool snapshot is not available' }));
   return market;
 }
 export function parseSharedMarket<Position>(data: unknown): SharedMarket<Position> {
@@ -33,7 +35,7 @@ export function parseSharedMarket<Position>(data: unknown): SharedMarket<Positio
       !CANDLE_INTERVALS.every((interval) => Array.isArray(value.candles?.[interval]) &&
         value.candles[interval].every((c) => [c.time,c.open,c.high,c.low,c.close,c.observedAt].every(Number.isFinite) &&
           c.low > 0 && c.low <= Math.min(c.open,c.close) && c.high >= Math.max(c.open,c.close)))) {
-    throw new Error('Shared market snapshot is not available');
+    throw new Error(_translateCopy('copy.c281e40ec31f', { defaultValue: 'Shared market snapshot is not available' }));
   }
   return value;
 }

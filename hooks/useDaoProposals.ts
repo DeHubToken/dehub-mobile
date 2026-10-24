@@ -5,6 +5,7 @@
  * `dao-proposals` edge function.
  */
 import { useEffect } from "react";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import { dehubAuthHeaders } from "../services/ai.service";
@@ -89,7 +90,7 @@ async function callDao<T>(wallet: string | null, body: Record<string, unknown>):
     } catch {
       // Not JSON; use the SDK message.
     }
-    throw new Error(detail || error.message || "DAO request failed");
+    throw new Error(detail || error.message || _translateCopy("copy.146be30badd2", { defaultValue: "DAO request failed" }));
   }
   if ((data as { error?: string })?.error) throw new Error((data as { error: string }).error);
   return data as T;

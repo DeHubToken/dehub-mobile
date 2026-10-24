@@ -1,4 +1,6 @@
 /** Public, read-only prediction previews. Keep in sync with mobile libs/predictions.ts. */
+import { translateCopy as _translateCopy } from '../i18n/copy';
+
 export type PredictionProvider = 'polymarket' | 'manifold';
 export type PredictionStatus = 'open' | 'closed' | 'resolved';
 export interface PredictionLink {
@@ -118,7 +120,7 @@ export function normalizePrediction(link: PredictionLink, value: unknown, now = 
   if (!cancelled && data.outcomeType === 'BINARY') {
     const p = data.resolution === 'YES' ? 1 : data.resolution === 'NO' ? 0
       : data.isResolved === true ? probability(data.resolutionProbability) : probability(data.probability);
-    if (p !== null) outcomes = [{ label: 'Yes', probability: p }, { label: 'No', probability: 1 - p }];
+    if (p !== null) outcomes = [{ label: _translateCopy('copy.85a39ab345d6', { defaultValue: 'Yes' }), probability: p }, { label: _translateCopy('copy.1ea442a134b2', { defaultValue: 'No' }), probability: 1 - p }];
   } else if (!cancelled && data.outcomeType === 'MULTIPLE_CHOICE' && data.isResolved !== true) {
     outcomes = array(data.answers).flatMap(value => {
       const answer = record(value);

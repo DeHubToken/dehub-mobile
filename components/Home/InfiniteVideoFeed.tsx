@@ -892,7 +892,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const drawDistance = Math.round((screenHeight * (renderBudget.windowSize - 1)) / 4);
 
   const endReached = hasNextPage === false;
-  const error = queryError ? (queryError as Error).message || "Failed to load" : null;
+  const error = queryError ? (queryError as Error).message || t("copy.3d2301d732a7", { defaultValue: "Failed to load" }) : null;
 
   // The rows the list is handed (see rowsForList).
   const rows = rowsForList(listRowsRef.current, listData, active, laidOut);

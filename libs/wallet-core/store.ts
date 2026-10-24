@@ -11,6 +11,7 @@ import { supabase } from "../../services/supabase";
 import { createLogger } from '../logger';
 import type { EncryptedPayload } from "./crypto";
 import { getPayloadKdf } from "./crypto";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 const log = createLogger('WalletStore');
 
@@ -73,7 +74,7 @@ export async function fetchWallet(userId: string): Promise<StoredWallet | null> 
   if (sessionUid !== userId) {
     // RLS returns zero rows for another identity, not an error. That must
     // remain a failed lookup, never evidence that this wallet does not exist.
-    throw new Error("Wallet session does not match this account. Sign in with your original login method.");
+    throw new Error(_translateCopy("copy.eb291c2b778e", { defaultValue: "Wallet session does not match this account. Sign in with your original login method." }));
   }
 
   const { data, error } = await db()
@@ -84,7 +85,7 @@ export async function fetchWallet(userId: string): Promise<StoredWallet | null> 
   if (error) {
     // eslint-disable-next-line no-console
     console.error("[fetchWallet] Supabase error:", error.message, { userId: `${userId.slice(0, 8)}...` });
-    throw new Error(error.message || "Failed to load wallet");
+    throw new Error(error.message || _translateCopy("copy.79ec4b16de03", { defaultValue: "Failed to load wallet" }));
   }
   const wallet = parseWalletRow(data as Record<string, unknown> | null);
   if (wallet && !wallet.payload) {
@@ -285,7 +286,7 @@ export async function saveWallet(
   });
   if (error) {
     log.trace?.('wallet-save-error', { reason: error.message, code: error.code });
-    throw new Error(error.message || "Failed to save wallet");
+    throw new Error(error.message || _translateCopy("copy.78b02b1a598a", { defaultValue: "Failed to save wallet" }));
   }
   log.trace?.('wallet-saved');
 }

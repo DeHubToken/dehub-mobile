@@ -1,3 +1,4 @@
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 import { equal, mergeEntityValues, type EntityMergeConflict } from "./entityMerge";
 import { videoMatteMediaIds } from "./videoMatte";
 import { parseCloudProjectDocument, type CloudProjectDocument } from "./cloudProjectFormat";
@@ -10,7 +11,7 @@ export const sameCloudProjectEdit = (a: CloudProjectDocument, b: CloudProjectDoc
 /** Combine independent changes by stable entity ID; conflicting edits stay explicit. */
 export function mergeCloudProjectEdits(base: CloudProjectDocument, local: CloudProjectDocument, remote: CloudProjectDocument, owner: string): CloudProjectMergeResult {
   for (const doc of [base, local, remote]) parseCloudProjectDocument(doc, owner);
-  if (base.snapshot.id !== local.snapshot.id || base.snapshot.id !== remote.snapshot.id) throw new Error("Shared project changed during merge");
+  if (base.snapshot.id !== local.snapshot.id || base.snapshot.id !== remote.snapshot.id) throw new Error(_translateCopy("copy.efd5754d1b91", { defaultValue: "Shared project changed during merge" }));
   const result = mergeEntityValues(documentWithoutTime(base), documentWithoutTime(local), documentWithoutTime(remote));
   const conflicts: CloudProjectMergeConflict[] = result.conflicts;
   const conflict = (path: string[], kind: CloudProjectMergeConflict["kind"]) => { conflicts.push({ path, kind }); };

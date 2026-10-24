@@ -53,11 +53,11 @@ function getDeviceLabel(session: Session, t: TFunction): string {
   return t('sessions.webBrowser');
 }
 
-function getSubtitle(session: Session): string {
+function getSubtitle(session: Session, t: TFunction): string {
   const parts: string[] = [];
   if (session.platform === 'ios') parts.push('iOS');
   else if (session.platform === 'android') parts.push('Android');
-  else parts.push('Web');
+  else parts.push(t("copy.2975104784a4", { defaultValue: "Web" }));
   if (session.osVersion) parts[0] += ` ${session.osVersion}`;
   if (session.appVersion) parts.push(`DeHub ${session.appVersion}`);
   return parts.join(' · ');
@@ -108,7 +108,7 @@ const SessionCard = React.memo<{
               )}
             </View>
             <Text className="text-theme-neutrals-500 text-xs mt-0.5">
-              {getSubtitle(session)}
+              {getSubtitle(session, t)}
             </Text>
           </View>
           {!session.current && (

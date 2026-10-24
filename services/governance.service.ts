@@ -9,6 +9,7 @@
  */
 import { supabase } from "./supabase";
 import { dehubAuthHeaders } from "./ai.service";
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export type GovernanceStatus = "open" | "completed" | "passed" | "rejected";
 export type GovernanceTab = "active" | "passed" | "rejected";
@@ -146,7 +147,7 @@ export async function castVote(proposalId: string, voteType: 1 | -1, wallet: str
     } catch {
       // Not JSON; fall through to the generic message.
     }
-    throw new VoteError(payload?.error || error.message || "Request failed", payload?.code);
+    throw new VoteError(payload?.error || error.message || _translateCopy("copy.cfce761befa8", { defaultValue: "Request failed" }), payload?.code);
   }
   if ((data as { error?: string })?.error) throw new Error((data as { error: string }).error);
   return data as VoteResult;

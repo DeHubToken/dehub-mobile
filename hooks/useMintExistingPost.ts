@@ -34,7 +34,7 @@ export function useMintExistingPost() {
         const bountyToken = supportedTokens.find(t => t.chainId === chainId && t.symbol === info?.addBountyTokenSymbol);
         if (hasBounty && (!bountyToken || !(amount > 0) || !Number.isFinite(amount) ||
           !Number.isInteger(viewers) || viewers < 0 || !Number.isInteger(commenters) || commenters < 0 || viewers + commenters === 0)) {
-          throw new Error("Invalid bounty terms. Funding cannot be skipped.");
+          throw new Error(_copy("copy.038a8e5ff421", { defaultValue: "Invalid bounty terms. Funding cannot be skipped." }));
         }
         // Only sponsored sessions are charged, so only they price it.
         const { method } = await getAuthMethod().catch(() => ({ method: null as null }));
@@ -44,7 +44,7 @@ export function useMintExistingPost() {
         // clear message rather than a reverted transaction.
         if (fee?.chargeable && fee.amount > 0 && !fee.isNative) {
           if (await isShortOfMintFee(fee, chainId)) {
-            toastError(`Minting costs ${fee.amount} ${fee.symbol} — top up and try again.`);
+            toastError(_copy("copy.d30dc251d1dc", { defaultValue: "Minting costs {{value1}} {{value2}} — top up and try again.", value1: fee.amount, value2: fee.symbol }));
             return false;
           }
         }
@@ -55,7 +55,7 @@ export function useMintExistingPost() {
         const r = (sig as any)?.r;
         const s = (sig as any)?.s;
         if (timestamp == null || v == null || !r || !s) {
-          throw new Error("Mint signature payload missing from server response");
+          throw new Error(_copy("copy.7e94ef2e9800", { defaultValue: "Mint signature payload missing from server response" }));
         }
 
         const { collectionContract, controllerContract } = await getContractsForMint(chainId);
@@ -81,7 +81,7 @@ export function useMintExistingPost() {
         return true;
       } catch (e: any) {
         console.error("[useMintExistingPost] failed", e);
-        toastError(e?.message || "Could not mint this post");
+        toastError(e?.message || _copy("copy.af3e311c0946", { defaultValue: "Could not mint this post" }));
         return false;
       } finally {
         setIsMinting(false);

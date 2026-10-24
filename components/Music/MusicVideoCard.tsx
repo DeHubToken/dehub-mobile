@@ -13,6 +13,7 @@ import React, { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Image } from "expo-image";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation as _useCopy } from "react-i18next";
 
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
@@ -26,6 +27,7 @@ import { useAppTheme } from '../../context/ThemeContext';
 export const MUSIC_CARD_WIDTH = 240;
 
 const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft, wide = false }) => {
+  const { t: _copy } = _useCopy();
   const { theme, skin } = useAppTheme();
   const navigation = useNavigation<any>();
   const { showUserProfile } = useUserProfileSheet();
@@ -36,7 +38,7 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft,
     (nft as any).minterDisplayName ||
     (nft as any).minterUsername ||
     (nft as any).mintername ||
-    "Anonymous";
+    _copy("copy.e7a8aa2df7e5", { defaultValue: "Anonymous" });
   const handle = (nft as any).minterUsername || (nft as any).mintername || (nft as any).minter;
   const rawThumb = (nft as any).thumbnail || nft.thumbnailUrl || nft.imageUrl || "";
   // A chart's picked video spans the feed, so it asks for a bigger image.

@@ -95,7 +95,7 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
   const [uploadingCover, setUploadingCover] = useState(false);
   const [localCoverUri, setLocalCoverUri] = useState<string | null>(null);
 
-  const displayName = user?.displayName || "Unknown";
+  const displayName = user?.displayName || t("copy.b764cdc0eab7", { defaultValue: "Unknown" });
   const username = user?.username || user?.address || "";
   const address = user?.walletAddress || user?.address || "";
   // An alias, not a rename — `username` above is untouched by it, and every
@@ -176,9 +176,9 @@ const ProfileHeader = ({ featuredCommunity, onIdentityBottom, onActionsBottom }:
     const profileSlug = username || address;
     if (!profileSlug) return;
     const url = ShareLinks.profile(profileSlug);
-    const message = `Check out my dehub profile ${url}`;
+    const message = t("copy.d70477ce3733", { defaultValue: "Check out my dehub profile {{value1}}", value1: url });
     await shareProfile(url, message);
-  }, [username, address]);
+  }, [username, address, t]);
 
   // In place, as on other people's profiles, rather than a pushed screen.
   const [viewerImages, setViewerImages] = useState<string[] | null>(null);

@@ -28,6 +28,7 @@
  */
 
 import { apiClient } from '../libs/api.client';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export interface EnsPreview {
   /** Canonical, ENSIP-15 normalised form — not necessarily what was typed. */
@@ -84,7 +85,7 @@ function unwrap<T>(res: Envelope<T>): T {
   // `status` is absent on some success payloads and explicitly false on a
   // handled failure; only the second is an error.
   if (res && res.status === false) {
-    throw new EnsApiError(res.error || 'Something went wrong', res.code);
+    throw new EnsApiError(res.error || _translateCopy("copy.ab827e3fe17d", { defaultValue: "Something went wrong" }), res.code);
   }
   return res?.result as T;
 }

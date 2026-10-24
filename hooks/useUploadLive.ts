@@ -112,12 +112,12 @@ export function useUploadLive() {
   const validate = useCallback((p: LiveUploadPayload): LiveValidationResult => {
     const title = p.title.trim();
     if (title.length < 1) {
-      return { valid: false, error: "Title is required for livestreams." };
+      return { valid: false, error: _copy("copy.4ac29e43f631", { defaultValue: "Title is required for livestreams." }) };
     }
 
     // Thumbnail required
     if (!p.thumbnailUri && !p.coverUri) {
-      return { valid: false, error: "A thumbnail is required for livestreams." };
+      return { valid: false, error: _copy("copy.21026705cfc3", { defaultValue: "A thumbnail is required for livestreams." }) };
     }
 
     // Schedule validation
@@ -126,7 +126,7 @@ export function useUploadLive() {
       if (diff < 30 * 60 * 1000) {
         return {
           valid: false,
-          error: "Scheduled time must be at least 30 minutes from now.",
+          error: _copy("copy.ce5fe088f7b8", { defaultValue: "Scheduled time must be at least 30 minutes from now." }),
         };
       }
     }
@@ -136,32 +136,32 @@ export function useUploadLive() {
     if (monetizationError) return { valid: false, error: monetizationError };
 
     return { valid: true };
-  }, []);
+  }, [_copy]);
 
   const buildConfirmText = useCallback(
     (p: LiveUploadPayload): string => {
       const lines: string[] = [];
       lines.push(
         p.shouldMint || p.monetization.bountyEnabled
-          ? "This livestream will be minted on-chain. Please make sure everything is correct before proceeding."
-          : "This livestream will be published off-chain — no wallet, no gas. Please make sure everything is correct before proceeding.",
+          ? _copy("copy.61149180f885", { defaultValue: "This livestream will be minted on-chain. Please make sure everything is correct before proceeding." })
+          : _copy("copy.eff5d3de4d84", { defaultValue: "This livestream will be published off-chain — no wallet, no gas. Please make sure everything is correct before proceeding." }),
       );
 
       if (p.settings.scheduleEnabled && p.settings.scheduledDate) {
         lines.push("");
         lines.push(
-          `Scheduled for: ${p.settings.scheduledDate.toLocaleString()}`,
+          _copy("copy.aad1aa46b597", { defaultValue: "Scheduled for: {{value1}}", value1: p.settings.scheduledDate.toLocaleString() }),
         );
       }
 
       if (!p.settings.enableChat) {
         lines.push("");
-        lines.push("Chat is disabled for this stream.");
+        lines.push(_copy("copy.6ba28cc9fdee", { defaultValue: "Chat is disabled for this stream." }));
       }
 
       return lines.join("\n");
     },
-    [],
+    [_copy],
   );
 
   const buildFormData = useCallback(
@@ -274,14 +274,14 @@ export function useUploadLive() {
         const result: any = (res as any)?.data ?? res;
 
         if (result?.error) {
-          throw new Error(result?.error_msg || result?.msg || "Upload failed");
+          throw new Error(result?.error_msg || result?.msg || _copy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
         }
 
         const createdTokenId = result?.createdTokenId;
         if (createdTokenId != null) mintedTokenId = createdTokenId;
 
         if (createdTokenId == null) {
-          throw new Error("Mint payload missing a token id");
+          throw new Error(_copy("copy.4c502df8f80e", { defaultValue: "Mint payload missing a token id" }));
         }
 
         /**
@@ -300,7 +300,7 @@ export function useUploadLive() {
             ({ failed }) => {
               if (failed > 0) {
                 toastError(
-                  `${failed} shop ${failed === 1 ? "item" : "items"} could not be attached — add them from the shop panel.`,
+                  _copy("copy.0fdce7c55021", { count: failed, defaultValue_one: "{{count}} shop item could not be attached — add them from the shop panel.", defaultValue: "{{count}} shop items could not be attached — add them from the shop panel." }),
                 );
               }
             },
@@ -323,11 +323,11 @@ export function useUploadLive() {
           const s = result?.s;
 
           if (timestamp == null || v == null || !r || !s) {
-            throw new Error("Mint signature payload missing");
+            throw new Error(_copy("copy.a58fc5eaa457", { defaultValue: "Mint signature payload missing" }));
           }
 
           if (!streamCollectionContract) {
-            throw new Error("Wallet not ready to mint");
+            throw new Error(_copy("copy.ca4678935672", { defaultValue: "Wallet not ready to mint" }));
           }
 
           goToStage("awaiting-wallet");
@@ -349,14 +349,14 @@ export function useUploadLive() {
         const stream = result?.stream;
 
         if (!stream?._id) {
-          throw new Error("Stream entity missing from mint response");
+          throw new Error(_copy("copy.5bd0770707fe", { defaultValue: "Stream entity missing from mint response" }));
         }
 
         goToStage("done");
         toastSuccess(_copy("copy.836bd8cc6ad9", { defaultValue: "Livestream created!" }), {
           description: p.settings.scheduleEnabled
-            ? "Your scheduled livestream is set."
-            : "Navigating to your live producer…",
+            ? _copy("copy.d5497abbc82b", { defaultValue: "Your scheduled livestream is set." })
+            : _copy("copy.e02daafa0105", { defaultValue: "Navigating to your live producer…" }),
         });
 
         setIsUploading(false);

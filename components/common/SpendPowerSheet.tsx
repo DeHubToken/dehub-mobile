@@ -230,7 +230,7 @@ export default function SpendPowerSheet({ power, address, onClose }: SpendPowerS
       {
         onSuccess: (booking: any) => {
           if (power.key === "signal_flare" || power.key === "harpoon") {
-            const label = power.key === "harpoon" ? "Harpoon" : "Signal Flare";
+            const label = power.key === "harpoon" ? t("copy.58d9fe00d99c", { defaultValue: "Harpoon" }) : t("copy.6cbfc163d979", { defaultValue: "Signal Flare" });
             void toastPromise(waitForSignalFlareReceipt(booking.id), {
               loading: t("superpowers.countingNotifications"),
               success: recipients =>
