@@ -49,6 +49,20 @@ function StoreBanner({ uri, width }: { uri: string; width: number }) {
   );
 }
 
+function StoreThumbnail({ uri, width }: { uri: string | null; width: number }) {
+  const [failedUri, setFailedUri] = useState<string | null>(null);
+  return (
+    <>
+      <View style={styles.thumbFallback}>
+        <Icon name="Package" size={24} color="#3F3F46" />
+      </View>
+      {!!uri && failedUri !== uri && (
+        <Image source={storageImageSource(uri, width)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} onError={() => setFailedUri(uri)} />
+      )}
+    </>
+  );
+}
+
 function money(n: number): string {
   const v = Number(n) || 0;
   return `$${v.toLocaleString(appLocale(), { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -133,13 +147,7 @@ export default function StoreDetailScreen() {
         }
       >
         <View style={[styles.thumbWrap, { height: cardWidth }]}>
-          {img ? (
-            <Image source={storageImageSource(img, cardWidth)} style={StyleSheet.absoluteFill} contentFit="cover" transition={200} />
-          ) : (
-            <View style={styles.thumbFallback}>
-              <Icon name="Package" size={24} color="#3F3F46" />
-            </View>
-          )}
+          <StoreThumbnail uri={img} width={cardWidth} />
           {!!item.external_url && (
             <View style={styles.podPill}>
               <Text style={styles.podText} numberOfLines={1}>
