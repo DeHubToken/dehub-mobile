@@ -2429,7 +2429,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             hitSlop={6}
             className="flex-row items-center gap-1.5"
           >
-            <Icon name="Rocket" size={14} color="#9CA3AF" />
+            <Icon name="Zap" size={14} color="#9CA3AF" />
             <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
               {t("work.boosted")}
             </Text>
@@ -2491,7 +2491,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               <View pointerEvents="box-none" style={chipAtBottom ? styles.cinematicBareButtons : styles.cinematicButtons}>
                 {isHidden && <CinematicIconButton icon="EyeOff" label={t("settings.hiddenOption")} bare={chipAtBottom} />}
                 {isOwnerPost && isSignedIn && tokenId != null && (firstVideoHeaderBelow || (contentType !== "video" && contentType !== "short")) && (
-                  <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare={chipAtBottom} />
+                  <CinematicIconButton icon="Zap" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare={chipAtBottom} />
                 )}
                 {mediaTools && mediaTools.length > 0 && (
                   <CinematicIconButton
@@ -2588,7 +2588,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             // inset from the edge like the text is on the left.
             <View style={[styles.captionOptions, { width: undefined, flexDirection: "row", alignItems: "center" }]}>
               {(contentType === "video" || contentType === "short") && isOwnerPost && isSignedIn && tokenId != null && (
-                <CinematicIconButton icon="Rocket" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare />
+                <CinematicIconButton icon="Zap" label={t("feedCard.boostPost")} onPress={handleBoostPress} bare />
               )}
               <Pressable onPress={handleOpenOptions} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("player.moreOptions")} style={{ width: 32, height: 32, alignItems: "center", justifyContent: "center" }}>
                 <View style={{ left: 20 * (10 / 24) }}>
@@ -2729,7 +2729,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             hitSlop={6}
             className="flex-row items-center gap-1.5"
           >
-            <Icon name="Rocket" size={14} color="#9CA3AF" />
+            <Icon name="Zap" size={14} color="#9CA3AF" />
             <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
               {t("work.boosted")}
             </Text>
