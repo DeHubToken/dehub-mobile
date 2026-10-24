@@ -1,5 +1,6 @@
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { Trans, useTranslation } from "react-i18next";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -51,7 +52,7 @@ interface PlanCardProps {
 }
 
 function formatAmount(value: number | undefined, maximumFractionDigits = 4): string {
-  if (value === undefined || value === null || Number.isNaN(value)) return "Unavailable";
+  if (value === undefined || value === null || Number.isNaN(value)) return _translateCopy("copy.ca1844969742", { defaultValue: "Unavailable" });
   return value.toLocaleString(undefined, { maximumFractionDigits });
 }
 
@@ -89,7 +90,7 @@ const PlanCard: React.FC<PlanCardProps> = ({ plan, isOwner, isSubscribed, onEdit
     setPinning(true);
     try {
       const updated = await updatePlan(plan.id, { isPinned: !pinned });
-      if (!updated || updated.isPinned !== !pinned) throw new Error('Plan pin was not saved');
+      if (!updated || updated.isPinned !== !pinned) throw new Error(t("copy.d3f74b46d00a", { defaultValue: "Plan pin was not saved" }));
       setSavedPinned(updated.isPinned);
       onPlanChange?.(updated);
       await queryClient.invalidateQueries({ queryKey: ['cc-creator-plans'] });

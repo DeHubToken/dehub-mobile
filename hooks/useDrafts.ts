@@ -22,6 +22,7 @@
  * the OS, but text, categories, and monetisation settings will always survive.
  */
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation as _useCopy } from 'react-i18next';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { supabase } from "../services/supabase";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
@@ -65,6 +66,17 @@ export interface Draft {
   scheduledDate?: string | null;
   isMature?: boolean;
   isForKids?: boolean;
+  /**
+   * Who may see, quote and reply, and the content warning. Absent on drafts
+   * saved before these existed — a draft without them must not reopen public.
+   */
+  visibility?: "public" | "followers" | "direct";
+  contentWarning?: string | null;
+  quotePolicy?: "public" | "followers" | "nobody";
+  replyPolicy?: "public" | "followers" | "following" | "mentioned";
+  /** Alt text per image, in `imageUris` order, and for the video. */
+  imageAlts?: (string | null)[];
+  videoAlt?: string | null;
   createdAt: number; // epoch ms
   /** Row id in post_drafts, once this draft has reached the server. */
   remoteId?: string;
@@ -139,6 +151,10 @@ const fromRow = (row: any): Draft => ({
   scheduledDate: row.metadata?.payload?.scheduledDate ?? null,
   isMature: row.metadata?.payload?.isMature ?? false,
   isForKids: row.metadata?.payload?.isForKids ?? false,
+  visibility: row.metadata?.payload?.visibility,
+  contentWarning: row.metadata?.payload?.contentWarning,
+  quotePolicy: row.metadata?.payload?.quotePolicy,
+  replyPolicy: row.metadata?.payload?.replyPolicy,
   createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now(),
   remoteId: row.id,
 });
@@ -203,6 +219,10 @@ const pushRemote = async (draft: Draft, address?: string): Promise<string | null
               scheduledDate: draft.scheduledDate ?? null,
               isMature: draft.isMature ?? false,
               isForKids: draft.isForKids ?? false,
+              visibility: draft.visibility ?? "public",
+              contentWarning: draft.contentWarning ?? null,
+              quotePolicy: draft.quotePolicy ?? "public",
+              replyPolicy: draft.replyPolicy ?? "public",
             },
             source: "mobile",
           },
@@ -241,6 +261,7 @@ export async function consumePublishedDraft(id: string, address: string): Promis
 }
 
 export function useDrafts(address?: string) {
+  const { t: _copy } = _useCopy();
   const [drafts, setDrafts] = useState<Draft[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -290,10 +311,10 @@ export function useDrafts(address?: string) {
         setDrafts(withRemote);
         await writeDrafts(withRemote, address);
       }
-      if (!savedLocally && !remoteId) throw new Error("Could not save this draft. Your text is still in the composer.");
+      if (!savedLocally && !remoteId) throw new Error(_copy("copy.028afecc47a4", { defaultValue: "Could not save this draft. Your text is still in the composer." }));
       return id;
     },
-    [drafts, address],
+    [drafts, address, _copy],
   );
 
   /** Delete a draft by id */

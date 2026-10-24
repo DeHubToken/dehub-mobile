@@ -25,6 +25,7 @@ import {
 import { encryptStringWithKeyMaterial, decryptStringWithKeyMaterial, type EncryptedPayload } from "./crypto";
 import { createLogger } from "../logger";
 import { readWalletStorage, writeWalletStorage, WalletStorageError } from './secure-storage';
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 const log = createLogger("wallet-core/biometric-unlock");
 
@@ -114,10 +115,10 @@ export async function unlockWithBiometrics(
   const raw = await readWalletStorage(WRAP_KEY_PREFIX + addr);
   if (!raw) {
     log.error("biometric-key-missing-at-unlock", { reason: "no-local-wrap-key" });
-    throw new BiometricUnavailableError("No biometric-protected wallet is stored on this device.");
+    throw new BiometricUnavailableError(_translateCopy("copy.3dc3874e681c", { defaultValue: "No biometric-protected wallet is stored on this device." }));
   }
   try {
-    await requireDeviceOwner("Unlock your DeHub wallet");
+    await requireDeviceOwner(_translateCopy("copy.69ee84e7ca69", { defaultValue: "Unlock your DeHub wallet" }));
   } catch (error) {
     if (!(error instanceof BiometricRejectedError)) {
       log.error("biometric-verification-unavailable", { errorName: error instanceof Error ? error.name : "unknown" });

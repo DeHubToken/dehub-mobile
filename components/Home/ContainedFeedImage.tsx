@@ -25,6 +25,10 @@ interface ContainedFeedImageProps {
   /** The creator's alt text: the screen reader label, and an ALT badge for everybody else. */
   description?: string;
   postPage?: boolean;
+  /** The shape a gallery already measured, used until this image loads its own. */
+  aspect?: number;
+  /** A framed gallery's height: a shorter photo is cropped to fill it, full width. */
+  fillHeight?: number;
 }
 
 /**
@@ -45,6 +49,8 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   drawBitmap = true,
   postPage = false,
   description,
+  aspect,
+  fillHeight,
 }) => {
   const { t } = useTranslation();
   const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
@@ -53,7 +59,9 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
-  const { ratio: measuredAspect, measured, onLoad } = useImageAspect(uri);
+  const { ratio: ownAspect, measured: ownMeasured, onLoad } = useImageAspect(uri);
+  const measured = ownMeasured ?? aspect ?? null;
+  const measuredAspect = measured ?? ownAspect;
   // Pass the real shape as `measured` so a frame held at the placeholder shape
   // while the card scrolled in is corrected once the photo loads; without it
   // the 4:3 guess stuck and the photo sat inside it with panels around it.
@@ -64,7 +72,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const edgeToEdge = isMinimal || bleed;
   const [measuredWidth, setMeasuredWidth] = useState(fallbackWidth);
   const availableWidth = width ?? measuredWidth;
-  const dimensions = useMemo(
+  const fitted = useMemo(
     () => fitFeedImageWithin(
           availableWidth,
           aspectRatio,
@@ -72,6 +80,8 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         ),
     [availableWidth, aspectRatio, screenHeight],
   );
+  const fills = !!fillHeight && fitted.height < fillHeight - 1;
+  const dimensions = fills ? { width: availableWidth, height: fillHeight } : fitted;
 
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
     if (width !== undefined) return;
@@ -108,7 +118,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
         {drawBitmap && <SmartImage
           key={`${uri}:${attempt}`}
           source={source}
-          contentFit="contain"
+          contentFit={fills ? "cover" : "contain"}
           cachePolicy="memory-disk"
           style={{ width: "100%", height: "100%" }}
           recyclingKey={uri}

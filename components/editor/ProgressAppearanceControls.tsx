@@ -1,0 +1,9 @@
+import React from "react";
+import { Switch, Text, View } from "react-native";
+import Slider from "@react-native-community/slider";
+import { useTranslation } from "react-i18next";
+import type { ChartData } from "../../libs/editor/dataVisuals";
+export default function ProgressAppearanceControls({ kind, value, onChange }: { kind: ChartData["kind"]; value: Partial<ChartData>; onChange: (value: Partial<ChartData>) => void }) {
+  const { t } = useTranslation(), thickness = value.progressThickness ?? (kind === "progress-ring" ? 0.06 : kind === "radial-progress" ? 0.24 : kind === "progress-dial" ? 0.12 : 0.22);
+  return <View className="rounded-lg border border-white/10 p-3" style={{ gap: 12 }}><Text className="text-xs text-white/65">{t("editor.charts.progressThickness", { defaultValue: "Progress thickness" })}: {Math.round(thickness * 100)}%</Text><Slider minimumValue={4} maximumValue={50} step={1} value={Math.round(thickness * 100)} onValueChange={amount => onChange({ ...value, progressThickness: amount / 100 })} accessibilityLabel={t("editor.charts.progressThickness", { defaultValue: "Progress thickness" })} minimumTrackTintColor="#ffffff" maximumTrackTintColor="#444444" thumbTintColor="#ffffff" /><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={value.progressRounded !== false} onValueChange={progressRounded => onChange({ ...value, progressRounded })} accessibilityLabel={t("editor.charts.progressRounded", { defaultValue: "Rounded endpoints" })} /><Text className="text-xs text-white/65">{t("editor.charts.progressRounded", { defaultValue: "Rounded endpoints" })}</Text></View><Text className="text-[10px] text-white/45">{t("editor.charts.progressColours", { defaultValue: "The first palette colour fills progress; the second shows the remaining track. Show values controls the percentage label. These charts use the first source value only." })}</Text></View>;
+}

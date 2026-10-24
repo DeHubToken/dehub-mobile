@@ -1,0 +1,10 @@
+import React, { useState } from "react";
+import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { useBrandPresets } from "../../libs/editor/useBrandPresets";
+import SavePalettePreset from "./SavePalettePreset";
+export default function MockupBrandPalettes({ colours, onChange }: { colours: string[]; onChange: (colours: string[]) => void }) {
+  const { t } = useTranslation(), library = useBrandPresets(), [open, setOpen] = useState(false);
+  const palettes = library.presets.filter(preset => preset.styles.colors.length > 0);
+  return <View className="rounded-lg border border-white/10 p-3" style={{ gap: 8 }}><Pressable accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen(!open)} className="min-h-[40px] justify-center"><Text className="text-xs font-medium text-white/75">{t("editor.mockups.palettes", { defaultValue: "Saved frame palettes" })} {open ? "−" : "+"}</Text></Pressable>{open && <View style={{ gap: 12 }}><View className="flex-row flex-wrap" style={{ gap: 8 }}>{palettes.map(preset => <Pressable key={preset.id} accessibilityRole="button" onPress={() => onChange([...preset.styles.colors])} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ gap: 4 }}><View className="flex-row overflow-hidden rounded">{preset.styles.colors.slice(0, 3).map((colour, index) => <View key={index} style={{ width: 12, height: 14, backgroundColor: colour }} />)}</View><Text className="text-xs text-white/75">{preset.name}</Text></Pressable>)}</View>{!palettes.length && <Text className="text-xs text-white/45">{t("editor.mockups.noPalettes", { defaultValue: "Save a palette in Brand styles to use it here." })}</Text>}<Text className="text-[10px] text-white/45">{t("editor.mockups.paletteHint", { defaultValue: "The first three colours set frame material, details and screen background. Missing colours keep their current values. Save palette stores these frame colours in Brand styles." })}</Text><SavePalettePreset colours={[...new Set(colours)]} /></View>}</View>;
+}

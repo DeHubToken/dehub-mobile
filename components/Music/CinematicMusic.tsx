@@ -31,6 +31,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 import Icon from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
@@ -361,7 +362,7 @@ function toTrack(nft: GetNFTsResult): Track | null {
     id: String(tokenId),
     thumbnail: rawThumb ? getImageUrl(rawThumb, THUMB) : "",
     title: nft.name || any.title || String(any.description || "").split("\n")[0] || "",
-    channel: any.minterDisplayName || any.minterUsername || any.mintername || "Anonymous",
+    channel: any.minterDisplayName || any.minterUsername || any.mintername || _translateCopy("copy.e7a8aa2df7e5", { defaultValue: "Anonymous" }),
     views: Number(any.views ?? any.totalViews ?? 0) || 0,
     duration: duration && duration !== "00:00" && duration !== "0:00" ? duration : undefined,
   };

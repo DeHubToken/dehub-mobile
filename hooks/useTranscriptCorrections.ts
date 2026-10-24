@@ -112,14 +112,14 @@ export function useCorrectionActions(transcriptId: string | null) {
       invalidate();
       toastSuccess(_copy("copy.b3d0998cd00a", { defaultValue: "Thanks — one more viewer agreeing puts it live" }));
     },
-    onError: (error: Error) => toastError(error.message || "Could not save that correction"),
+    onError: (error: Error) => toastError(error.message || _copy("copy.cd45d03a85c3", { defaultValue: "Could not save that correction" })),
   });
 
   const vote = useMutation({
     mutationFn: ({ correctionId, value }: { correctionId: string; value: 1 | -1 | 0 }) =>
       voteTranscriptCorrection(correctionId, value),
     onSuccess: invalidate,
-    onError: (error: Error) => toastError(error.message || "Could not record your vote"),
+    onError: (error: Error) => toastError(error.message || _copy("copy.0f7bb833f7ae", { defaultValue: "Could not record your vote" })),
   });
 
   const remove = useMutation({
@@ -128,7 +128,7 @@ export function useCorrectionActions(transcriptId: string | null) {
       invalidate();
       toastSuccess(_copy("copy.4118fb4fed0e", { defaultValue: "Removed" }));
     },
-    onError: (error: Error) => toastError(error.message || "Could not remove that"),
+    onError: (error: Error) => toastError(error.message || _copy("copy.e4cd198e255b", { defaultValue: "Could not remove that" })),
   });
 
   return { submit, vote, remove };

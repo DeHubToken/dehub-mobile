@@ -1241,18 +1241,18 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
     if (isPPVLocked) {
       icons.push({ name: "Ticket", size: 24 });
-      lines.push(`Unlock for ${formatCompactNumber(ppvAmount)} ${ppvCurrency}`);
+      lines.push(t("copy.f298ff07e69b", { defaultValue: "Unlock for {{value1}} {{value2}}", value1: formatCompactNumber(ppvAmount), value2: ppvCurrency }));
     }
     if (isHoldingsLocked) {
       icons.push({ name: "Lock", size: 24 });
-      lines.push(`Must hold ${formatCompactNumber(lockAmount)} ${lockCurrency}`);
+      lines.push(t("copy.0aefe964b37e", { defaultValue: "Must hold {{value1}} {{value2}}", value1: formatCompactNumber(lockAmount), value2: lockCurrency }));
     }
     if (isBountyLocked) {
       icons.push({ name: "Gift", size: 24 });
       lines.push(
         bountyAmount > 0
-          ? `${formatCompactNumber(bountyAmount)} ${bountyCurrency} bounty`
-          : "Earn rewards by engaging",
+          ? t("copy.217ab5b17ca4", { defaultValue: "{{value1}} {{value2}} bounty", value1: formatCompactNumber(bountyAmount), value2: bountyCurrency })
+          : t("copy.a3f2c40a6812", { defaultValue: "Earn rewards by engaging" }),
       );
     }
 

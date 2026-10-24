@@ -11,6 +11,7 @@ import {
   getStoredSupabaseUserId,
 } from "./auth.utils";
 import { createLogger } from "./logger";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 import { advanceAuthTrace, beginAuthTrace, readAuthTrace } from './auth-trace';
 import {
   resolveEvmWalletForIdentity,
@@ -174,7 +175,7 @@ export async function provisionAndSignIn(
     log.error("provision:unhandled-error", e);
     // eslint-disable-next-line no-console
     console.error("[provision] unhandled error", e);
-    const msg = e instanceof Error ? e.message : "Sign-in failed. Please try again.";
+    const msg = e instanceof Error ? e.message : _translateCopy("copy.d067d2d39ef1", { defaultValue: "Sign-in failed. Please try again." });
     return { kind: "error", message: msg };
   }
 }
@@ -185,7 +186,7 @@ async function provisionAndSignInInner(
 ): Promise<ProvisionOutcome> {
   if (!supabaseUserId || typeof supabaseUserId !== "string") {
     log.error("provision:invalid-supabase-user-id", { supabaseUserId });
-    return { kind: "error", message: "Google sign-in did not return a valid session. Please try again." };
+    return { kind: "error", message: _translateCopy("copy.da607aea6b21", { defaultValue: "Google sign-in did not return a valid session. Please try again." }) };
   }
 
   await ensureSessionMatchesSupabaseIdentity(supabaseUserId);
@@ -194,7 +195,7 @@ async function provisionAndSignInInner(
   const [preferred, accessToken] = await Promise.all([
     getPreferredChainId(), deps.getSupabaseAccessToken(),
   ]);
-  if (!accessToken) return { kind: "error", message: "Your sign-in session expired. Please sign in again." };
+  if (!accessToken) return { kind: "error", message: _translateCopy("copy.de1ad7135e96", { defaultValue: "Your sign-in session expired. Please sign in again." }) };
 
   // Profile access is decided by the server's verified identity link, before
   // looking at wallet storage. Never release a key merely to enter the app.
@@ -217,7 +218,7 @@ async function provisionAndSignInInner(
       pendingReplacement = !!await getPendingWalletReplacement(supabaseUserId, lookup.wallet.ethAddress);
     }
     if (!pendingReplacement) {
-      return { kind: "error", message: "Could not finish signing in to your profile. Please try again." };
+      return { kind: "error", message: _translateCopy("copy.62dafb71c505", { defaultValue: "Could not finish signing in to your profile. Please try again." }) };
     }
   }
 
@@ -256,7 +257,7 @@ async function provisionAndSignInInner(
       log.warn("provision:resume-unfinished-signup", { mode: "ready" });
       const privateKey = await releaseWalletKeyForSignIn(resolution.address);
       if (!privateKey) {
-        return { kind: "error", message: "Unlock your wallet to finish signing up." };
+        return { kind: "error", message: _translateCopy("copy.79b08da3d3f9", { defaultValue: "Unlock your wallet to finish signing up." }) };
       }
       try {
         await deps.provisionSolanaAddressForWallet(resolution.address, privateKey);
@@ -271,18 +272,18 @@ async function provisionAndSignInInner(
       return { kind: "signed-in" };
     }
     default:
-      return { kind: "error", message: "Could not check your wallet. Please try again." };
+      return { kind: "error", message: _translateCopy("copy.0cc561cff5de", { defaultValue: "Could not check your wallet. Please try again." }) };
   }
   const { wallet, failed } = await fetchWalletReliably(supabaseUserId);
   if (failed || wallet) {
-    return { kind: "error", message: "Could not finish signing in to your profile. Please try again." };
+    return { kind: "error", message: _translateCopy("copy.62dafb71c505", { defaultValue: "Could not finish signing in to your profile. Please try again." }) };
   }
   const legacyHint = await checkLegacyAccount();
   if (legacyHint.exists === true && legacyHint.accounts?.length) {
     return { kind: "legacy-warning", supabaseUserId, accounts: legacyHint.accounts };
   }
   if (legacyHint.exists !== false) {
-    return { kind: "error", message: "Could not check your existing profile. Please try again." };
+    return { kind: "error", message: _translateCopy("copy.d871a1830da9", { defaultValue: "Could not check your existing profile. Please try again." }) };
   }
   // "Migrate account" with no earlier account behind it keeps the sheet: the
   // sign-in screen says no old account was found, and a silent new account

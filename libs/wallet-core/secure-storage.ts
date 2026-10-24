@@ -1,11 +1,12 @@
 import * as SecureStore from 'expo-secure-store';
 import { createLogger } from '../logger';
+import { translateCopy as _translateCopy } from '../../i18n/copy';
 
 const log = createLogger('wallet-storage');
 
 export class WalletStorageError extends Error {
   constructor() {
-    super('Your phone could not read or save the wallet securely. Try again without reinstalling the app or clearing its data.');
+    super(_translateCopy('copy.40b93447f633', { defaultValue: 'Your phone could not read or save the wallet securely. Try again without reinstalling the app or clearing its data.' }));
     this.name = 'WalletStorageError';
   }
 }

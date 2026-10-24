@@ -24,6 +24,7 @@
  */
 
 import i18n from 'i18next';
+import { useTranslation as _useCopy } from 'react-i18next';
 import { apiClient } from '../libs/api.client';
 import { useCallback, useEffect, useState } from 'react';
 import * as ethersImport from 'ethers';
@@ -101,6 +102,7 @@ export function useFreeImages(enabled: boolean) {
  * changes. `enabled` exists so a closed paywall does not quote.
  */
 export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
+  const { t: _copy } = _useCopy();
   const [priceDhb, setPriceDhb] = useState(0);
   const [priceUsd, setPriceUsd] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -129,7 +131,7 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
       })
       .catch((err) => {
         if (cancelled) return;
-        setError(err instanceof Error ? err.message : 'Could not price this run');
+        setError(err instanceof Error ? err.message : _copy("copy.c5f61bfe1310", { defaultValue: "Could not price this run" }));
       })
       .finally(() => {
         if (!cancelled) setIsLoading(false);
@@ -140,7 +142,7 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
     // `key` collapses every price-moving field; `request` itself is a new
     // object each render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key, enabled]);
+  }, [key, enabled, _copy]);
 
   return { priceDhb, priceUsd, isLoading, error };
 }
@@ -174,6 +176,7 @@ export interface JobPaymentState {
  * verifier will never find.
  */
 export function useJobPayment(enabled = true): JobPaymentState {
+  const { t: _copy } = _useCopy();
   const { account, chainId } = useWeb3Provider();
   const dhbAddress = chainId ? DHB_ADDRESSESS[chainId] : undefined;
   const tokenContract = useERC20Contract(dhbAddress);
@@ -185,7 +188,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
   const supported = !!chainId && PAYMENT_CHAIN_IDS.includes(chainId);
   const unsupportedChain = supported
     ? null
-    : `Switch to ${CHAIN_LABELS[ChainId.BASE_MAINNET]} or ${CHAIN_LABELS[ChainId.BSC_MAINNET]} to pay for this run.`;
+    : _copy("copy.90a99eafd3e9", { defaultValue: "Switch to {{value1}} or {{value2}} to pay for this run.", value1: CHAIN_LABELS[ChainId.BASE_MAINNET], value2: CHAIN_LABELS[ChainId.BSC_MAINNET] });
 
   const refresh = useCallback(async () => {
     if (!account || !enabled) {
@@ -223,8 +226,8 @@ export function useJobPayment(enabled = true): JobPaymentState {
 
   const payForJob = useCallback(
     async (priceDhb: number): Promise<string> => {
-      if (!account) throw new Error('Connect your wallet to pay for a generation.');
-      if (!Number.isFinite(priceDhb) || priceDhb <= 0) throw new Error('Nothing to pay.');
+      if (!account) throw new Error(_copy("copy.63001ea22ed0", { defaultValue: "Connect your wallet to pay for a generation." }));
+      if (!Number.isFinite(priceDhb) || priceDhb <= 0) throw new Error(_copy("copy.99c7a77baaf9", { defaultValue: "Nothing to pay." }));
       await apiClient.fetch('/auth/verify');
 
       // Subscription tokens pay first when they cover the job: no signature,
@@ -233,8 +236,8 @@ export function useJobPayment(enabled = true): JobPaymentState {
       // through to paying with DHB as before.
       if (await creditsCover(priceDhb, account)) return CREDITS_PAYMENT;
 
-      if (!supported) throw new Error(unsupportedChain || 'Unsupported chain.');
-      if (!tokenContract) throw new Error('Connect your wallet to pay for a generation.');
+      if (!supported) throw new Error(unsupportedChain || _copy("copy.f094d53f47f0", { defaultValue: "Unsupported chain." }));
+      if (!tokenContract) throw new Error(_copy("copy.63001ea22ed0", { defaultValue: "Connect your wallet to pay for a generation." }));
 
       // Money already sent for a job that never ran is spent before asking for
       // more. The server is the record — not this device — so a payment
@@ -290,12 +293,12 @@ export function useJobPayment(enabled = true): JobPaymentState {
       }
 
       if (receipt && receipt.status !== undefined && receipt.status !== 1) {
-        throw new Error('The token transfer did not go through. Nothing has been charged.');
+        throw new Error(_copy("copy.eee969c82647", { defaultValue: "The token transfer did not go through. Nothing has been charged." }));
       }
       const txHash: string = String(
         receipt?.transactionHash || receipt?.hash || submittedHash,
       ).toLowerCase();
-      if (!txHash) throw new Error('The transfer went through but its hash is unknown — contact support.');
+      if (!txHash) throw new Error(_copy("copy.19193d550a1f", { defaultValue: "The transfer went through but its hash is unknown — contact support." }));
 
       // The receipt is the point of no return: from here the money is the
       // payer's to spend even if the generation never runs. Never fatal — the
@@ -309,7 +312,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
       refresh();
       return txHash;
     },
-    [supported, unsupportedChain, tokenContract, account, refresh],
+    [supported, unsupportedChain, tokenContract, account, refresh, _copy],
   );
 
   return { walletDhb, creditsUsd, isLoading, unsupportedChain, payForJob, refresh };

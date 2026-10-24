@@ -273,7 +273,7 @@ const SearchScreen: React.FC = () => {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [filters, setFilters] = useState<FeedFilters>(DEFAULT_SEARCH_FILTERS);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [categories, setCategories] = useState<string[]>(["All"]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   // Result buckets
   const [accounts, setAccounts] = useState<SearchAccountResult[]>([]);
@@ -348,7 +348,8 @@ const SearchScreen: React.FC = () => {
     (async () => {
       const list = await getCategoriesCached();
       if (mounted && list?.length) {
-        setCategories(["All", ...list.filter((c) => c && c.toLowerCase() !== "all")]);
+        // The filter panel draws its own translated "All" pill; an "All" entry here showed a second, English one.
+        setCategories(list.filter((c) => c && c.toLowerCase() !== "all"));
       }
     })();
     return () => { mounted = false; };
@@ -1218,7 +1219,7 @@ const SearchScreen: React.FC = () => {
               filters={filters}
               onFiltersChange={setFilters}
               categories={categories}
-              selectedCategory={selectedCategory}
+              selectedCategory={selectedCategory === "All" ? undefined : selectedCategory}
               onCategoryPress={setSelectedCategory}
               onResetFilters={handleResetFilters}
               hidePostType

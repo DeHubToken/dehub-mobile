@@ -13,6 +13,7 @@ import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { setAppPref, useAppPrefs } from "./useAppPrefs";
 import { toastError } from "../libs/toast";
+import i18n from "i18next";
 
 function useWallet(): string | null {
   const user = useUser() as any;
@@ -70,7 +71,7 @@ export function useShortsEnabled() {
         if (error) throw error;
       } catch {
         setAppPref("shorts", previous);
-        toastError("Failed to save Shorts preference");
+        toastError(i18n.t("settings.shortsSaveFailed"));
       } finally {
         setSaving(false);
       }

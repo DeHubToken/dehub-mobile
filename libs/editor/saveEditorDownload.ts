@@ -3,16 +3,16 @@ import * as FileSystem from "expo-file-system/legacy";
 import { exportFilename } from "./exportName";
 import { ZIP_DOWNLOAD_LIMIT } from "./zipArchive";
 
-export async function saveEditorDownload(uri: string, title: string, ext: string, mime: string, signal?: AbortSignal): Promise<void> {
+export async function saveEditorDownload(uri: string, title: string, ext: string, mime: string, signal?: AbortSignal, onSaved?: () => void): Promise<void> {
   const abort = () => { if (signal?.aborted) { const error = new Error("Download cancelled"); error.name = "AbortError"; throw error; } };
   abort();
-  if (Platform.OS !== "android") { await Share.share({ url: uri }); return; }
+  if (Platform.OS !== "android") { const result = await Share.share({ url: uri }); if (result.action === Share.sharedAction) onSaved?.(); return; }
   const permission = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
   abort();
   if (!permission.granted) return;
   const info = await FileSystem.getInfoAsync(uri);
   const limit = ext === "gif" ? 100 * 1024 * 1024 : ZIP_DOWNLOAD_LIMIT;
-  if (!info.exists || info.isDirectory || !info.size || info.size > limit || !/^(gif|mp4|webm|zip)$/.test(ext)) throw new Error("Download file unavailable");
+  if (!info.exists || info.isDirectory || !info.size || info.size > limit || !/^(gif|mp4|webm|zip|pdf|pptx|csv|json|txt|svg|vcf)$/.test(ext)) throw new Error("Download file unavailable");
   const name = exportFilename(title, ext);
   const destination = await FileSystem.StorageAccessFramework.createFileAsync(permission.directoryUri, name, mime);
   try {
@@ -23,6 +23,6 @@ export async function saveEditorDownload(uri: string, title: string, ext: string
       abort();
       await FileSystem.writeAsStringAsync(destination, base64, { encoding: FileSystem.EncodingType.Base64, append: position > 0 });
     }
-    abort();
+    abort(); onSaved?.();
   } catch (error) { await FileSystem.deleteAsync(destination, { idempotent: true }).catch(() => {}); throw error; }
 }

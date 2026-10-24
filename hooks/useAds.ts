@@ -1,5 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { canonicalTierName } from '../libs/misc';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 /**
  * POVR ads data layer
  * ===================
@@ -149,7 +150,13 @@ export const POVR_TIERS: PovrTierInfo[] = [
   { name: "Megalodon", min: 50_000_000, cpmUsd: 25_000 },
 ];
 
-export const NO_BADGE_TIER = { name: "none", label: "No Badge", cpmUsd: 10 };
+export const NO_BADGE_TIER = {
+  name: "none",
+  get label() {
+    return _translateCopy("copy.6883cefe9094", { defaultValue: "No Badge" });
+  },
+  cpmUsd: 10,
+};
 
 export function tierLabel(name: string): string {
   return name === "none" ? NO_BADGE_TIER.label : canonicalTierName(name);
@@ -217,7 +224,7 @@ export function useEnsureAdAccount() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (fields?: { company_name?: string; website?: string }) => {
-      if (!wallet) throw new Error("Connect a wallet first");
+      if (!wallet) throw new Error(_copy("copy.9af4aa875c03", { defaultValue: "Connect a wallet first" }));
       // Insert-ignore first: a merge-duplicates upsert would try to UPDATE
       // wallet_address, which clients hold no column grant for.
       const { error: insErr } = await withWalletHeader(
@@ -267,7 +274,7 @@ export function useCreateCampaign() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (draft: CampaignDraft): Promise<AdCampaign> => {
-      if (!wallet) throw new Error("Connect a wallet first");
+      if (!wallet) throw new Error(_copy("copy.9af4aa875c03", { defaultValue: "Connect a wallet first" }));
       const { data, error } = await withWalletHeader(
         supabase
           .from("ad_campaigns")
@@ -414,7 +421,7 @@ export function useTopUpCredit() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (txHash: string) => {
-      if (!wallet) throw new Error("Connect a wallet first");
+      if (!wallet) throw new Error(_copy("copy.9af4aa875c03", { defaultValue: "Connect a wallet first" }));
       const { data, error } = await supabase.functions.invoke("ads-topup", {
         body: { txHash },
         headers: { "x-wallet-address": wallet },

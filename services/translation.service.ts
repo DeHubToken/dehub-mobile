@@ -3,6 +3,7 @@ import { createLogger } from '../libs/logger';
 import i18n from '../i18n';
 import { storage } from '../libs/storage';
 import { supabase } from './supabase';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 const log = createLogger('translation.service');
 
@@ -324,7 +325,7 @@ export async function translateImage(
 
   if (error) {
     log.error('translate-image failed:', error);
-    throw new TranslationServiceError(error.message || 'Image translation failed', 500);
+    throw new TranslationServiceError(error.message || _translateCopy("copy.f99f7b6a0421", { defaultValue: "Image translation failed" }), 500);
   }
 
   if (data?.error) {

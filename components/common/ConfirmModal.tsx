@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation as _useCopy } from "react-i18next";
 import { Text, View, TouchableOpacity, ActivityIndicator } from "react-native";
 import GlassModal from "../ui/GlassModal";
 
@@ -31,13 +32,14 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   visible,
   title,
   description,
-  confirmText = "Confirm",
-  cancelText = "Cancel",
+  confirmText,
+  cancelText,
   onConfirm,
   onCancel,
   loading,
   confirmKind = "primary",
 }) => {
+  const { t: _copy } = _useCopy();
   return (
     <GlassModal visible={visible} onClose={onCancel} presentation="center" backdropScope="panel">
       <View className="px-5 py-5">
@@ -51,7 +53,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             onPress={onCancel}
             disabled={!!loading}
           >
-            <Text className="text-theme-neutrals-100 text-sm">{cancelText}</Text>
+            <Text className="text-theme-neutrals-100 text-sm">{cancelText ?? _copy("copy.19766ed6ccb2", { defaultValue: "Cancel" })}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             className={`${kindBg[confirmKind]} px-4 py-2 rounded-xl active:opacity-80`}
@@ -62,7 +64,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
               <ActivityIndicator color={kindContent[confirmKind]} />
             ) : (
               <Text className="text-sm font-semibold" style={{ color: kindContent[confirmKind] }}>
-                {confirmText}
+                {confirmText ?? _copy("copy.eebdd24a77d9", { defaultValue: "Confirm" })}
               </Text>
             )}
           </TouchableOpacity>

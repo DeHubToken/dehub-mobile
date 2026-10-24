@@ -248,29 +248,30 @@ export function useBuyUsername() {
   const buy = useMutation({
     mutationFn: async (quote: UsernameQuote) => {
       if (!quote.quoteId || Date.parse(quote.expiresAt) < Date.now() + 30_000) {
-        throw new Error('Refresh the checkout price before paying.');
+        throw new Error(_copy("copy.afeb474eaf8c", { defaultValue: "Refresh the checkout price before paying." }));
       }
       if (!canPayHere) {
-        throw new Error('Switch to Base or BNB Chain in Settings to buy a handle.');
+        throw new Error(_copy("copy.613d346e145b", { defaultValue: "Switch to Base or BNB Chain in Settings to buy a handle." }));
       }
-      if (!tokenContract) throw new Error('Your wallet is not ready yet — try again in a moment.');
+      if (!tokenContract) throw new Error(_copy("copy.652a874aec99", { defaultValue: "Your wallet is not ready yet — try again in a moment." }));
       if (!quote.chains.some((c) => c.chainId === activeChainId)) {
-        throw new Error('DHB cannot be sent on this network.');
+        throw new Error(_copy("copy.d37ad7829165", { defaultValue: "DHB cannot be sent on this network." }));
       }
 
       const amountWei = ethers.utils.parseUnits(String(quote.priceDhb), 18);
 
       // Fail before signing if the balance cannot cover it, the same preflight
       // the transfer sheet runs — an opaque on-chain revert is a bad payment UX.
+      const shortfallMessage = _copy("copy.4607c2cf1754", { defaultValue: "You need {{value1}} DHB to buy this handle.", value1: quote.priceDhb.toLocaleString('en-US') });
       try {
         const signerAddr = await tokenContract.signer?.getAddress?.();
         const bal = await tokenContract.balanceOf(signerAddr);
         if (bal && bal.lt(amountWei)) {
-          throw new Error(`You need ${quote.priceDhb.toLocaleString('en-US')} DHB to buy this handle.`);
+          throw new Error(shortfallMessage);
         }
       } catch (err: any) {
         // Only a real shortfall stops the flow; an unreadable balance is advisory.
-        if (String(err?.message || '').startsWith('You need')) throw err;
+        if (String(err?.message || '') === shortfallMessage) throw err;
       }
 
       setStage('paying');
@@ -290,7 +291,7 @@ export function useBuyUsername() {
           // Fall through — with no hash there is nothing to claim against.
         }
       }
-      if (!txHash) throw new Error('The payment was not submitted.');
+      if (!txHash) throw new Error(_copy("copy.f819def8e607", { defaultValue: "The payment was not submitted." }));
 
       // Past this line the buyer has paid. Giving up would strand a real
       // transfer with no handle behind it, so the loop runs to the end and then
@@ -309,13 +310,13 @@ export function useBuyUsername() {
           // A refusal from the server is final — underpaid, wrong chain, sold
           // to somebody else. Only a missing receipt is worth waiting on.
           log.warn('claim attempt failed', err?.message);
-          throw new Error(`${err?.message || 'Could not confirm the payment'} (transaction ${txHash})`);
+          throw new Error(_copy("copy.7df7a5aaeb96", { defaultValue: "{{value1}} (transaction {{value2}})", value1: err?.message || _copy("copy.50c1bea5bfee", { defaultValue: "Could not confirm the payment" }), value2: txHash }));
         }
         await new Promise((resolve) => setTimeout(resolve, CLAIM_INTERVAL_MS));
       }
 
       throw new Error(
-        `Your payment went through but the handle is still confirming. Reopen this listing in a minute to finish claiming it (transaction ${txHash}).`,
+        _copy("copy.84e927fbd5fe", { defaultValue: "Your payment went through but the handle is still confirming. Reopen this listing in a minute to finish claiming it (transaction {{value1}}).", value1: txHash }),
       );
     },
     onSuccess: async (result) => {

@@ -1,4 +1,5 @@
 import { useTranslation as _useCopy } from 'react-i18next';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 /**
  * Account marketplace data layer
  * ==============================
@@ -120,7 +121,7 @@ export function useCreateAccountListing() {
     onSuccess: (result) => {
       qc.invalidateQueries({ queryKey: ['account-market-mine'] });
       qc.invalidateQueries({ queryKey: ['account-market-browse'] });
-      toastSuccess(`@${result.username} is on the market`);
+      toastSuccess(_copy("copy.134ed133424c", { defaultValue: "@{{value1}} is on the market", value1: result.username }));
     },
     onError: (err) => toastError(err, _copy("copy.c7d6eda2cce9", { defaultValue: "Could not create that listing" })),
   });
@@ -156,14 +157,14 @@ async function runClaimLoop(input: {
   chainId: number;
   receiveAddress?: string;
 }): Promise<Extract<AccountClaimResult, { pending: false }>> {
-  let lastError = 'Could not confirm the payment';
+  let lastError = _translateCopy("copy.50c1bea5bfee", { defaultValue: "Could not confirm the payment" });
   let resumeBudget = CLAIM_RESUME_ATTEMPTS;
 
   for (let attempt = 0; attempt < CLAIM_ATTEMPTS + CLAIM_RESUME_ATTEMPTS; attempt++) {
     try {
       const result = await accountMarketService.claim(input);
       if (result.pending === false) return result;
-      lastError = 'The payment is still confirming on-chain';
+      lastError = _translateCopy("copy.b59f0a649761", { defaultValue: "The payment is still confirming on-chain" });
     } catch (err: any) {
       // 409: the payment landed but the account transfer was interrupted.
       // Retrying the claim resumes the transfer server-side, so this is a
@@ -171,20 +172,20 @@ async function runClaimLoop(input: {
       // status as `err.status`.
       if (err?.status === 409 && resumeBudget > 0) {
         resumeBudget--;
-        lastError = 'The transfer was interrupted and is being resumed';
+        lastError = _translateCopy("copy.a664800e5f5a", { defaultValue: "The transfer was interrupted and is being resumed" });
         log.warn('claim hit 409, retrying to resume', err?.message);
       } else {
         // Any other refusal is final — underpaid, wrong chain, sold to
         // somebody else, or a 409 that would not clear.
         log.warn('claim attempt failed', err?.message);
-        throw new Error(`${err?.message || lastError} (transaction ${input.txHash})`);
+        throw new Error(_translateCopy("copy.7df7a5aaeb96", { defaultValue: "{{value1}} (transaction {{value2}})", value1: err?.message || lastError, value2: input.txHash }));
       }
     }
     await new Promise((resolve) => setTimeout(resolve, CLAIM_INTERVAL_MS));
   }
 
   throw new Error(
-    `${lastError}. Your payment went through — reopen this listing in a minute to finish claiming it (transaction ${input.txHash}).`,
+    _translateCopy("copy.662d445e61e0", { defaultValue: "{{value1}}. Your payment went through — reopen this listing in a minute to finish claiming it (transaction {{value2}}).", value1: lastError, value2: input.txHash }),
   );
 }
 
@@ -235,26 +236,27 @@ export function useBuyAccount() {
       receiveAddress?: string;
     }) => {
       if (!canPayHere) {
-        throw new Error('Switch to Base or BNB Chain in Settings to buy an account.');
+        throw new Error(_copy("copy.01865a3dfdca", { defaultValue: "Switch to Base or BNB Chain in Settings to buy an account." }));
       }
-      if (!tokenContract) throw new Error('Your wallet is not ready yet — try again in a moment.');
+      if (!tokenContract) throw new Error(_copy("copy.652a874aec99", { defaultValue: "Your wallet is not ready yet — try again in a moment." }));
       if (!quote.chains.some((c) => c.chainId === activeChainId)) {
-        throw new Error('DHB cannot be sent on this network.');
+        throw new Error(_copy("copy.d37ad7829165", { defaultValue: "DHB cannot be sent on this network." }));
       }
 
       const amountWei = ethers.utils.parseUnits(String(quote.priceDhb), 18);
 
       // Fail before signing if the balance cannot cover it, the same preflight
       // the transfer sheet runs — an opaque on-chain revert is a bad payment UX.
+      const shortfallMessage = _copy("copy.3eff4d981d60", { defaultValue: "You need {{value1}} DHB to buy this account.", value1: quote.priceDhb.toLocaleString('en-US') });
       try {
         const signerAddr = await tokenContract.signer?.getAddress?.();
         const bal = await tokenContract.balanceOf(signerAddr);
         if (bal && bal.lt(amountWei)) {
-          throw new Error(`You need ${quote.priceDhb.toLocaleString('en-US')} DHB to buy this account.`);
+          throw new Error(shortfallMessage);
         }
       } catch (err: any) {
         // Only a real shortfall stops the flow; an unreadable balance is advisory.
-        if (String(err?.message || '').startsWith('You need')) throw err;
+        if (String(err?.message || '') === shortfallMessage) throw err;
       }
 
       setStage('paying');
@@ -274,7 +276,7 @@ export function useBuyAccount() {
           // Fall through — with no hash there is nothing to claim against.
         }
       }
-      if (!txHash) throw new Error('The payment was not submitted.');
+      if (!txHash) throw new Error(_copy("copy.f819def8e607", { defaultValue: "The payment was not submitted." }));
 
       // Past this line the buyer has paid. Giving up would strand a real
       // transfer with no account behind it, so the loop runs to the end and
@@ -290,7 +292,7 @@ export function useBuyAccount() {
     onSuccess: async (result) => {
       setStage('idle');
 
-      toastSuccess(`@${result.username} is yours — delivered to ${shortAddress(result.receiveAddress)}`);
+      toastSuccess(_copy("copy.c98b19605efc", { defaultValue: "@{{value1}} is yours — delivered to {{value2}}", value1: result.username, value2: shortAddress(result.receiveAddress) }));
 
       // If delivery went to the wallet signed in here, this session's identity
       // just changed wholesale — refresh it and drop every profile-shaped
@@ -332,7 +334,7 @@ export function useResumeAccountClaim() {
     mutationFn: (input: { listingId: string; txHash: string; chainId: number; receiveAddress?: string }) =>
       runClaimLoop(input),
     onSuccess: (result) => {
-      toastSuccess(`@${result.username} delivered to ${shortAddress(result.receiveAddress)}`);
+      toastSuccess(_copy("copy.397a647c19dd", { defaultValue: "@{{value1}} delivered to {{value2}}", value1: result.username, value2: shortAddress(result.receiveAddress) }));
       qc.invalidateQueries({ queryKey: ['account-market-mine'] });
       qc.invalidateQueries({ queryKey: ['account-market-browse'] });
     },

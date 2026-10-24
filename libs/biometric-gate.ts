@@ -17,12 +17,13 @@
 // wallets.local.ts for the opt-in upgrade path.
 import * as LocalAuthentication from "expo-local-authentication";
 import { createLogger } from "./logger";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const log = createLogger("biometric-gate");
 
 /** No biometric hardware, or nothing enrolled, or no device passcode set. */
 export class BiometricUnavailableError extends Error {
-  constructor(message = "This device has no screen lock or biometrics set up.") {
+  constructor(message = _translateCopy("copy.a4b20535c6fc", { defaultValue: "This device has no screen lock or biometrics set up." })) {
     super(message);
     this.name = "BiometricUnavailableError";
   }
@@ -110,7 +111,7 @@ export type VerificationOutcome = "verified" | "unenforceable";
 export async function requireDeviceOwner(purpose: string): Promise<VerificationOutcome> {
   const capability = await getBiometricCapability();
   if (capability.unavailable) {
-    throw new BiometricUnavailableError("Couldn't check device verification. Try again without reinstalling the app or clearing its data.");
+    throw new BiometricUnavailableError(_translateCopy("copy.61d6f6d7bb5e", { defaultValue: "Couldn't check device verification. Try again without reinstalling the app or clearing its data." }));
   }
   if (!capability.usable) {
     log.warn("authenticate:unenforceable — device has no lock to check against", capability);
@@ -124,13 +125,13 @@ export async function requireDeviceOwner(purpose: string): Promise<VerificationO
       // Let iOS fall through to the passcode sheet rather than dead-ending
       // someone whose face/finger will not read.
       disableDeviceFallback: false,
-      cancelLabel: "Cancel",
+      cancelLabel: _translateCopy("copy.19766ed6ccb2", { defaultValue: "Cancel" }),
       requireConfirmation: false,
     });
   } catch (e) {
     // A throw here is the platform refusing to present the prompt at all.
     log.error("authenticate:unavailable", { errorName: e instanceof Error ? e.name : "unknown" });
-    throw new BiometricUnavailableError("Couldn't start device verification.");
+    throw new BiometricUnavailableError(_translateCopy("copy.0dc8cbe49b8b", { defaultValue: "Couldn't start device verification." }));
   }
 
   if (!result.success) {

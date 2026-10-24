@@ -21,6 +21,7 @@ import { writeBatchAA } from './aa.write';
 import { dexProvider } from './dex-rpc';
 import { DEX_CHAINS, mintSell, quoteSell, recoverMint, sendTx, type DexChainId, type SellInput } from './dex-v4';
 import { readWithTimeout, type OrderStage } from './dex-read-timeout';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 export const FUNDING_CHAIN = ChainId.BASE_MAINNET;
 const USDC = DEX_CHAINS[ChainId.BASE_MAINNET].usdc;
@@ -110,9 +111,9 @@ export interface FundingQuote { asset: FundingAsset; usdcAmount: bigint; amountI
 
 /** Price the swap that lands exactly `usdcAmount` USDC from `asset`; the cheapest fee tier wins. */
 export async function quoteFunding(asset: FundingAsset, usdcAmount: bigint): Promise<FundingQuote> {
-  if (usdcAmount <= 0n) throw new Error('Enter an amount to spend');
+  if (usdcAmount <= 0n) throw new Error(_translateCopy('copy.971c27fc7a12', { defaultValue: 'Enter an amount to spend' }));
   if (asset.symbol === 'USDC') {
-    if (asset.balance < usdcAmount) throw new Error('Insufficient USDC on Base');
+    if (asset.balance < usdcAmount) throw new Error(_translateCopy('copy.936ab77133ed', { defaultValue: 'Insufficient USDC on Base' }));
     return { asset, usdcAmount, amountIn: 0n, maxAmountIn: 0n, feeTier: null };
   }
   const tokenIn = asset.symbol === 'ETH' ? WETH : asset.address;
@@ -125,9 +126,9 @@ export async function quoteFunding(asset: FundingAsset, usdcAmount: bigint): Pro
     } catch { return null; }
   }));
   const best = quotes.filter((q): q is { amountIn: bigint; fee: number } => q !== null).sort((a, b) => (a.amountIn < b.amountIn ? -1 : 1))[0];
-  if (!best) throw new Error(`No ${asset.symbol} → USDC route is available on Base right now`);
+  if (!best) throw new Error(_translateCopy('copy.043c788827c7', { defaultValue: 'No {{value1}} → USDC route is available on Base right now', value1: asset.symbol }));
   const maxAmountIn = best.amountIn + best.amountIn * SLIPPAGE_BPS / 10000n;
-  if (maxAmountIn > asset.balance) throw new Error(`Not enough ${asset.symbol} on Base to cover this order after slippage`);
+  if (maxAmountIn > asset.balance) throw new Error(_translateCopy('copy.757bcf3b6e5a', { defaultValue: 'Not enough {{value1}} on Base to cover this order after slippage', value1: asset.symbol }));
   return { asset, usdcAmount, amountIn: best.amountIn, maxAmountIn, feeTier: best.fee };
 }
 
@@ -153,7 +154,7 @@ async function fundAndMintBatched(order: FundedOrder, signingProvider: any, prog
   const cfg = DEX_CHAINS[ChainId.BASE_MAINNET];
   progress('quote');
   const position = await quoteSell(input);
-  if (position.amountWei > quote.usdcAmount) throw new Error('The position would require more USDC than the swap delivers');
+  if (position.amountWei > quote.usdcAmount) throw new Error(_translateCopy('copy.4d1b8116e93e', { defaultValue: 'The position would require more USDC than the swap delivers' }));
   const expires = Math.floor(Date.now() / 1000) + 86400;
   const calls: { to: string; data: `0x${string}`; value?: ethers.BigNumber }[] = [];
   if (quote.asset.symbol !== 'USDC') {
@@ -203,7 +204,7 @@ async function fundAndMintSequential(order: FundedOrder, signingProvider: any, p
   }
   if (quote.asset.symbol !== 'USDC') {
     const balance = await waitForUsdc(input.walletAddress, quote.usdcAmount);
-    if (balance < quote.usdcAmount) throw new Error('The swap confirmed but the USDC has not shown up yet. Resume in a moment.');
+    if (balance < quote.usdcAmount) throw new Error(_translateCopy('copy.f53509ca2768', { defaultValue: 'The swap confirmed but the USDC has not shown up yet. Resume in a moment.' }));
   }
   return mintSell(input, signingProvider, progress, submitted);
 }

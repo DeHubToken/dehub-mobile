@@ -19,6 +19,7 @@ import type { User } from "../context/AuthContext";
 import { streamInfoKeys } from "../config/constants";
 import { isHoldGated, isSubscriberGated } from "./content-gate";
 import { isDhbHoldingsGate, ownedDhbHoldings } from "./holdings-gate";
+import { translateCopy as _translateCopy } from "../i18n/copy";
 
 export interface UserBalanceEntry {
   chainId: number;
@@ -293,6 +294,25 @@ export const getTotalBountyAmount = (
   return amt * (viewers + comments);
 };
 
+/** The whole "<field> for <feature> is invalid!" sentence for each field a mint checks. */
+const INVALID_MINT_FIELD: Record<"lock" | "ppv" | "bounty", Record<string, () => string>> = {
+  lock: {
+    Amount: () => _translateCopy("copy.c6dcf35092e7", { defaultValue: "Amount for lock content is invalid!" }),
+    Network: () => _translateCopy("copy.dcfcfab9aa05", { defaultValue: "Network for lock content is invalid!" }),
+    Token: () => _translateCopy("copy.963ad3568bb8", { defaultValue: "Token for lock content is invalid!" }),
+  },
+  ppv: {
+    Amount: () => _translateCopy("copy.e22cf9374727", { defaultValue: "Amount for pay per view is invalid!" }),
+    Network: () => _translateCopy("copy.e7acf4bc1b06", { defaultValue: "Network for pay per view is invalid!" }),
+    Token: () => _translateCopy("copy.d4eb6fda8fe3", { defaultValue: "Token for pay per view is invalid!" }),
+  },
+  bounty: {
+    Amount: () => _translateCopy("copy.50b673fa43b4", { defaultValue: "Amount for bounty is invalid!" }),
+    Network: () => _translateCopy("copy.2e1a46a3919a", { defaultValue: "Network for bounty is invalid!" }),
+    Token: () => _translateCopy("copy.e6bae7d28e51", { defaultValue: "Token for bounty is invalid!" }),
+  },
+};
+
 export const isValidDataForMinting = (
   title: string,
   description: string,
@@ -302,8 +322,8 @@ export const isValidDataForMinting = (
 ) => {
   const t = String(title || "").trim();
   const d = String(description || "").trim();
-  if (t.length < 3) return { isError: true, error: "Title is too short" };
-  if (d.length < 3) return { isError: true, error: "Description is too short" };
+  if (t.length < 3) return { isError: true, error: _translateCopy("copy.4d2d2ab0ce1c", { defaultValue: "Title is too short" }) };
+  if (d.length < 3) return { isError: true, error: _translateCopy("copy.3988c2907917", { defaultValue: "Description is too short" }) };
 
   if (streamInfo[streamInfoKeys.isLockContent]) {
     let errorKey = "";
@@ -314,13 +334,13 @@ export const isValidDataForMinting = (
     if (errorKey)
       return {
         isError: true,
-        error: `${errorKey} for lock content is invalid!`,
+        error: INVALID_MINT_FIELD.lock[errorKey](),
         errorKey: streamInfoKeys.lockContentAmount,
       };
     if (amount < lockAmountMin)
       return {
         isError: true,
-        error: "Amount for lock content is too small!",
+        error: _translateCopy("copy.7b1032268e7d", { defaultValue: "Amount for lock content is too small!" }),
         errorKey: streamInfoKeys.lockContentAmount,
       };
   }
@@ -334,7 +354,7 @@ export const isValidDataForMinting = (
     if (errorKey)
       return {
         isError: true,
-        error: `${errorKey} for pay per view is invalid!`,
+        error: INVALID_MINT_FIELD.ppv[errorKey](),
         errorKey: streamInfoKeys.payPerViewAmount,
       };
   }
@@ -348,7 +368,7 @@ export const isValidDataForMinting = (
     if (errorKey)
       return {
         isError: true,
-        error: `${errorKey} for bounty is invalid!`,
+        error: INVALID_MINT_FIELD.bounty[errorKey](),
         errorKey: streamInfoKeys.addBountyAmount,
       };
 
@@ -361,7 +381,7 @@ export const isValidDataForMinting = (
     if (!addBountyToken) {
       return {
         isError: true,
-        error: "Token or Chain is not selected!",
+        error: _translateCopy("copy.a92e3fdb9b95", { defaultValue: "Token or Chain is not selected!" }),
         errorKey: streamInfoKeys.addBountyTokenSymbol,
       };
     }
@@ -369,7 +389,7 @@ export const isValidDataForMinting = (
     if (!addBountyTotalAmount || addBountyTotalAmount < bountyAmountMin) {
       return {
         isError: true,
-        error: "You need to input correct bounty amount!",
+        error: _translateCopy("copy.96f1ccf71438", { defaultValue: "You need to input correct bounty amount!" }),
         errorKey: addBountyToken.symbol,
       };
     }
@@ -382,7 +402,7 @@ export const isValidDataForMinting = (
     if (bountyTokenBalance < addBountyTotalAmount) {
       return {
         isError: true,
-        error: `You need to have enough token balance to add bounty!\n You balance is ${bountyTokenBalance} ${addBountyToken.symbol}`,
+        error: _translateCopy("copy.739990f19e2d", { defaultValue: "You need to have enough token balance to add bounty! Your balance is {{value1}} {{value2}}", value1: bountyTokenBalance, value2: addBountyToken.symbol }),
         errorKey: addBountyToken.symbol,
       };
     }

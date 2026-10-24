@@ -8,6 +8,7 @@ import { tokenRefreshManager } from '../libs/token-refresh';
 import { createLogger } from '../libs/logger';
 import { DMSocketEvent, DMSocketEventSet } from '../services/enums/dm-socket-events.enum';
 import { bindSocketEvents } from '../libs/socket-events';
+import { translateCopy as _translateCopy } from '../i18n/copy';
 
 /**
  * Connection state. Changes on every connect and disconnect of either
@@ -309,7 +310,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const emit = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
     const target = isDmEvent(event) ? dmClientRef.current : clientRef.current;
     if (event === DMSocketEvent.SendMessage && !target) {
-      throw new Error("Not connected to chat. Check your connection and try again.");
+      throw new Error(_translateCopy("copy.d2de8a1bb283", { defaultValue: "Not connected to chat. Check your connection and try again." }));
     }
     target?.emit(event, payload, ack);
   }, [isDmEvent]);

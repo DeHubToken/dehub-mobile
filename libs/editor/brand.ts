@@ -6,7 +6,7 @@
  * background (3:1), shapes take brand colours in turn.
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { updateClip } from "./project";
+import { applyBrandStyles } from "./brandStyles";
 import type { ProjectSnapshot } from "./types";
 
 export interface BrandKit {
@@ -49,47 +49,7 @@ export function hasBrand(kit: BrandKit | null): boolean {
   return !!kit && (kit.colors.length > 0 || !!kit.headingFont || !!kit.bodyFont || !!kit.logoMediaId);
 }
 
-function luminance(hex: string): number {
-  const h = hex.replace("#", "");
-  const full = h.length === 3 ? h.split("").map((c) => c + c).join("") : h.slice(0, 6);
-  const n = parseInt(full, 16);
-  if (Number.isNaN(n)) return 0.5;
-  const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
-    const s = v / 255;
-    return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
-}
-
-function contrast(a: string, b: string): number {
-  const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p);
-  return (x + 0.05) / (y + 0.05);
-}
-
 /** Restyle the whole design with the kit. Pure: returns a new snapshot. */
 export function applyBrand(p: ProjectSnapshot, kit: BrandKit): ProjectSnapshot {
-  const bg = p.settings.background;
-  const readable = kit.colors.filter((c) => contrast(c, bg) >= 3);
-  const fallbackText = luminance(bg) > 0.4 ? "#111111" : "#ffffff";
-  let out = p;
-  let shapeIdx = 0;
-  let textIdx = 0;
-  for (const c of p.clips) {
-    if (c.kind === "text") {
-      const heading = c.fontSize >= 100;
-      const font = heading ? kit.headingFont ?? kit.bodyFont : kit.bodyFont ?? kit.headingFont;
-      const color = readable.length ? readable[textIdx++ % readable.length] : kit.colors.length ? fallbackText : undefined;
-      const patch: Record<string, unknown> = {};
-      if (font) patch.fontFamily = font;
-      if (color) patch.color = color;
-      if (Object.keys(patch).length) out = updateClip(out, c.id, patch);
-    } else if (c.kind === "shape" && kit.colors.length) {
-      const color = kit.colors[shapeIdx++ % kit.colors.length];
-      const patch: Record<string, unknown> = {};
-      if (c.fill) patch.fill = color;
-      if (c.stroke) patch.stroke = { ...c.stroke, color };
-      if (Object.keys(patch).length) out = updateClip(out, c.id, patch);
-    }
-  }
-  return out;
+  return applyBrandStyles(p, kit);
 }

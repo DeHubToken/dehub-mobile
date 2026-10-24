@@ -121,7 +121,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const [isPending, setIsPending] = useState(false);
   const [followLoading, setFollowLoading] = useState(false);
 
-  const username = account.username || account.address?.slice(0, 6) || "unknown";
+  const username = account.username || account.address?.slice(0, 6) || _copy("copy.b23a6a8439c0", { defaultValue: "unknown" });
   const displayName = account.displayName || username;
   const avatarSrc = getAvatarUrl(account.avatarImageUrl || "");
   const displayAvatar =
@@ -139,7 +139,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
   const reasonLine = useMemo(() => {
     if (mutuals.length) {
       const names = mutuals
-        .map((c) => c.displayName || c.username || "someone")
+        .map((c) => c.displayName || c.username || _copy("copy.2a59d59e3809", { defaultValue: "someone" }))
         .join(", ");
       return _copy("copy.fef6a1a97127", { defaultValue: "Followed by {{value1}}", value1: names });
     }
@@ -196,11 +196,11 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         isFollowing: false,
         isFollowRequestPending: false,
       });
-      reportActionError(e, "Couldn't follow this account");
+      reportActionError(e, _copy("copy.71d4aa07bfe1", { defaultValue: "Couldn't follow this account" }));
     } finally {
       setFollowLoading(false);
     }
-  }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
+  }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange, _copy]);
 
   const done = isFollowing || isPending;
   const followLabel = isPending

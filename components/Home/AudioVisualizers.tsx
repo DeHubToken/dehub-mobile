@@ -643,15 +643,25 @@ const WebBar: React.FC<WebBarProps> = memo(({ index, clock, drive, level, maxH, 
 
 const WebBarsVisualizer: React.FC<BandProps> = memo(({ seed, isPlaying, hue, height, onLayout }) => {
   const { width, handleLayout } = useBandWidth(onLayout);
-  // Web's gamma: a linear map would leave everything but the loud middle on the floor.
-  const levels = useMemo(() => generateBars(seed, WEB_BAR_COUNT).map((v) => Math.pow(Math.min(1, v), 0.72)), [seed]);
+  // Web's paused frame (idleFrequencyData + drawBars): the track shape over a
+  // 128-bin spectrum tilted down to the treble, the bars reading its lower
+  // 62%, then web's gamma.
+  const levels = useMemo(() => {
+    const peaks = generateBars(seed, 100);
+    return Array.from({ length: WEB_BAR_COUNT }, (_, i) => {
+      const bin = Math.floor((i / WEB_BAR_COUNT) * 128 * 0.62);
+      const peak = peaks[Math.floor((bin / 128) * peaks.length)] ?? 0;
+      const tilt = 1 - (bin / 128) * 0.75;
+      return Math.pow(Math.min(1, peak * 0.7 * tilt), 0.72);
+    });
+  }, [seed]);
   const clock = useClock(isPlaying, 2400);
   const drive = useDrive(isPlaying);
   const gap = Math.max(1, (width / WEB_BAR_COUNT) * 0.22);
   const barWidth = Math.max(1, (width - gap * (WEB_BAR_COUNT - 1)) / WEB_BAR_COUNT);
   const maxH = height * 0.88;
-  const color = tint(hue, 74, 1);
-  const capColor = tint(hue, 88, 0.85);
+  const color = tint(hue, 100, 1);
+  const capColor = tint(hue, 100, 0.85);
 
   return (
     <View onLayout={handleLayout} style={{ height, overflow: "hidden" }}>
@@ -669,10 +679,11 @@ const WebBarsVisualizer: React.FC<BandProps> = memo(({ seed, isPlaying, hue, hei
           capColor={capColor}
         />
       ))}
-      {/* Web's ramp: bright at the tips, half strength at the roots. */}
+      {/* Web's ramp over the bar field: full white at the top of the field,
+          85% at 84 lightness halfway down, half-strength grey at the roots. */}
       <LinearGradient
         pointerEvents="none"
-        colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.12)", "rgba(0,0,0,0.5)"]}
+        colors={["rgba(3,4,5,0)", "rgba(3,4,5,0.29)", "rgba(3,4,5,0.66)"]}
         locations={[0, 0.55, 1]}
         style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: maxH }}
       />

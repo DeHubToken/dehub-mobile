@@ -23,6 +23,11 @@ function cacheAspectRatio(uri: string, ratio: number) {
   aspectRatioCache.set(uri, ratio);
 }
 
+/** A photo's remembered shape (width / height), if it was ever loaded. */
+export const knownImageAspect = (uri: string): number | undefined => aspectRatioCache.get(uri);
+/** Remember a shape measured outside the image itself (a gallery measuring ahead). */
+export const rememberImageAspect = (uri: string, ratio: number) => cacheAspectRatio(uri, ratio);
+
 /** Reuse expo-image's load result instead of fetching each image again through Fresco. */
 export function useImageAspect(uri: string) {
   const currentUri = useRef(uri);
