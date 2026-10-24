@@ -92,6 +92,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [passkeyError, setPasskeyError] = useState<string | null>(null);
   const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
+  const [loginViewportHeight, setLoginViewportHeight] = useState<number>();
   // Email/Phone expand a field mid-stack and autoFocus it; without this the
   // keyboard opens over the field that was just revealed.
   const { scrollViewProps, scrollIntoView } = useScrollFieldIntoView();
@@ -793,6 +794,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       >
         <ScrollView
           {...scrollViewProps}
+          onLayout={(event) => {
+            scrollViewProps.onLayout(event);
+            setLoginViewportHeight(event.nativeEvent.layout.height);
+          }}
           contentContainerStyle={{ flexGrow: 1 }}
           className="px-6"
         >
@@ -829,7 +834,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             // Pulled up under the header (16 + 44 + 12) so the clips run to the
             // top of the screen.
             <View style={{ marginTop: -72, marginBottom: 24 }}>
-              <LoginShortsStack />
+              <LoginShortsStack viewportHeight={loginViewportHeight} />
             </View>
           ) : null}
 
