@@ -42,6 +42,7 @@ import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useDMContext } from "../context/DMContext";
 import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../hooks/useSearchFieldMaterial';
 import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
 import { themeIconUrl } from '../theme/icons';
 
@@ -50,6 +51,7 @@ const SEPARATOR = { height: 1, backgroundColor: "rgba(255,255,255,0.07)" } as co
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
   const { skin, theme } = useAppTheme();
+  const searchField = useSearchFieldMaterial();
   const navigation = useNavigation<any>();
   const user = useUser();
   const publicUnread = usePublicChatUnreadCount();
@@ -435,11 +437,11 @@ const DirectMessagesInner: React.FC = () => {
             </>
           }
         >
-          <View className="flex-row items-center" style={{ height: 36, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.06)" }}>
+          <View className="flex-row items-center" style={[{ height: 36, borderRadius: 8 }, searchField.surface]}>
             <View className="pl-3 pr-2"><Icon name="Search" size={16} color="#71717A" /></View>
             <TextInput value={query} onChangeText={setQuery}
               placeholder={t("messages.searchConversations")} placeholderTextColor="#71717A"
-              className="flex-1 text-white text-sm" returnKeyType="search" style={FIELD_TEXT} />
+              className="flex-1 text-white text-sm" returnKeyType="search" style={[FIELD_TEXT, SEARCH_INPUT_CLEAR]} onFocus={searchField.onFocus} onBlur={searchField.onBlur} />
           </View>
         </ScreenHeader>
 

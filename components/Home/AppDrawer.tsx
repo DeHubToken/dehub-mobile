@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import React, { useCallback, useEffect, useMemo, useState, memo } from "react";
 import {
@@ -281,6 +282,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const messagesUnread = useTotalUnreadMessagesCount(myUserId) + usePublicChatUnreadCount();
   const { t } = useTranslation();
   const appTheme = useAppTheme();
+  const searchField = useSearchFieldMaterial();
   const themeName: string = appTheme.theme ?? (appTheme.isMinimal ? "minimal" : "system");
   const skin = appTheme.skin ?? null;
   const androidGlass = Platform.OS === "android";
@@ -591,14 +593,16 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
             {/* Menu search. Filters the tiles below; anything that is not a
                 page is one tap away via the hand-off, which runs the query on
                 the Explore tab. */}
-            <View style={[styles.searchWrap, square && styles.square]}>
+            <View style={[styles.searchWrap, square && styles.square, searchField.surface]}>
               <Icon name="Search" size={16} color="#808089" />
               <TextInput
                 value={menuQuery}
                 onChangeText={setMenuQuery}
                 placeholder={t("sidebar.searchMenu")}
                 placeholderTextColor="#808089"
-                style={styles.searchInput}
+                style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+                onFocus={searchField.onFocus}
+                onBlur={searchField.onBlur}
                 returnKeyType="search"
                 onSubmitEditing={runFullSearch}
                 autoCorrect={false}
