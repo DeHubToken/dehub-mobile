@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ühendatud rakendused",
+    "connectedDescription": "Mastodoni rakendused, kuhu oled selle kontoga sisse loginud. Eemalda mõni, et sellest välja logida.",
+    "connectedEmpty": "Ühendatud rakendusi veel pole.",
+    "lastUsed": "Viimati kasutatud {{date}}",
+    "remove": "Eemalda",
+    "removed": "Rakendus eemaldatud",
+    "failed": "See ei õnnestunud. Proovi uuesti."
+  },
+  "fediverse": {
+    "title": "Födiversum",
+    "description": "Mastodoni ja teiste födiversumi rakenduste inimesed leiavad sind sellelt aadressilt ja saavad sind jälgida. Sinu uued avalikud postitused jõuavad neini seal.",
+    "copy": "Kopeeri",
+    "copied": "Kopeeritud",
+    "privateNote": "Privaatkontosid födiversumis ei näidata.",
+    "noUsername": "Vali kasutajanimi, et saada födiversumi aadress."
+  },
+  "profileFields": {
+    "title": "Profiiliväljad",
+    "description": "Kuni neli lisarida sinu profiilil, näiteks veebisait või sinu asesõnad.",
+    "label": "Silt",
+    "content": "Sisu",
+    "save": "Salvesta väljad",
+    "saved": "Profiiliväljad salvestatud",
+    "failed": "Ei salvestunud. Proovi uuesti.",
+    "verified": "Kinnitatud link",
+    "verifyHint": "Lingi kinnitamiseks lisa see sellele lehele ja salvesta uuesti: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtreeri teavitusi",
+    "description": "Vali, mis juhtub, kui keegi väljastpoolt sinu ringi sinuga suhtleb. Filtreeritud teavitused ootavad jaotises Filtreeritud, ilma märgi ja tõuketeateta.",
+    "notFollowing": "Inimestelt, keda sa ei jälgi",
+    "notFollowers": "Inimestelt, kes sind ei jälgi",
+    "newAccounts": "Uutelt kontodelt (alla 30 päeva)",
+    "accept": "Teavita mind",
+    "filter": "Filtreeri",
+    "drop": "Peida täielikult",
+    "filteredTitle": "Filtreeritud teavitused",
+    "filteredEmpty": "Midagi pole filtreeritud.",
+    "failed": "Ei salvestunud. Proovi uuesti."
+  },
+  "followedTags": {
+    "follow": "Jälgi #{{tag}}",
+    "following": "Jälgid",
+    "unfollow": "Lõpeta #{{tag}} jälgimine",
+    "followed": "Jälgid nüüd #{{tag}}. Selle postitused ilmuvad sinu Jälgitavate voos.",
+    "unfollowed": "Lõpetasid #{{tag}} jälgimise",
+    "failed": "Ei salvestunud. Proovi uuesti.",
+    "clear": "Tühjenda"
+  },
+  "keywordFilters": {
+    "title": "Vaigistatud sõnad",
+    "description": "Peida neid sõnu sisaldavad postitused ja kommentaarid või voldi need hoiatuse taha. Seda loendit näed ainult sina.",
+    "placeholder": "Sõna või fraas",
+    "add": "Vaigista",
+    "added": "Vaigistatud: {{phrase}}",
+    "wholeWord": "Ainult terve sõna",
+    "whenMatches": "Kui postitus sobib",
+    "warn": "Näita hoiatust",
+    "hide": "Peida",
+    "howLong": "Kui kauaks",
+    "forever": "Kuni ma selle eemaldan",
+    "duration1h": "1 tunniks",
+    "duration1d": "1 päevaks",
+    "duration7d": "7 päevaks",
+    "duration30d": "30 päevaks",
+    "where": "Kus",
+    "home": "Avaleht",
+    "public": "Avasta ja otsi",
+    "profile": "Profiilid",
+    "thread": "Vestlused",
+    "notifications": "Teavitused",
+    "empty": "Sa pole ühtegi sõna vaigistanud.",
+    "remove": "Tühista vaigistus",
+    "until": "Kuni {{date}}",
+    "filtered": "Filtreeritud: {{phrase}}",
+    "showAnyway": "Näita ikkagi",
+    "failed": "Ei salvestunud. Proovi uuesti."
+  },
+  "postVisibility": {
+    "label": "Kes seda näha saab",
+    "public": "Kõik",
+    "followers": "Ainult jälgijad",
+    "direct": "Ainult mainitud inimesed",
+    "noRepost": "Uuesti jagada saab ainult avalikke postitusi",
+    "directHint": "Seda postitust näevad ainult need, keda mainid @-iga",
+    "needsMention": "Maini @-iga vähemalt ühte inimest, et postitada ainult mainitutele"
+  },
+  "replyPolicy": {
+    "label": "Kes saab vastata",
+    "public": "Igaüks",
+    "followers": "Sinu jälgijad",
+    "following": "Inimesed, keda jälgid",
+    "mentioned": "Ainult mainitud",
+    "noticeFollowers": "Vastata saavad ainult autori jälgijad",
+    "noticeFollowing": "Vastata saavad ainult inimesed, keda autor jälgib",
+    "noticeMentioned": "Vastata saavad ainult postituses mainitud inimesed",
+    "refused": "Autor piiras, kes saab sellele postitusele vastata"
+  },
+  "quotePolicy": {
+    "label": "Kes saab tsiteerida",
+    "public": "Igaüks",
+    "followers": "Jälgijad",
+    "nobody": "Ainult mina",
+    "off": "Autor lülitas tsiteerimise välja",
+    "removed": "Autor eemaldas oma postituse sellest tsitaadist",
+    "remove": "Eemalda",
+    "removedToast": "Sinu postitus eemaldati sellest tsitaadist",
+    "removeFailed": "Sinu postitust ei õnnestunud tsitaadist eemaldada",
+    "refused": "Autor ei luba sul seda postitust tsiteerida"
+  },
+  "contentWarning": {
+    "label": "Sisuhoiatus",
+    "placeholder": "Kirjuta oma hoiatus siia",
+    "add": "Lisa sisuhoiatus",
+    "remove": "Eemalda sisuhoiatus",
+    "show": "Näita postitust"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Lisa kirjeldus",
+    "edit": "Muuda kirjeldust",
+    "titleImage": "Kirjelda seda pilti",
+    "titleVideo": "Kirjelda seda videot",
+    "help": "Inimestele, kes seda ei näe. Ekraanilugejad loevad selle ette.",
+    "placeholder": "Mida see näitab? Lisa ka selles olev tekst.",
+    "show": "Näita kirjeldust",
+    "saved": "Kirjeldus salvestatud",
+    "saveFailed": "Kirjeldust ei õnnestunud salvestada"
+  },
   "liveRecap": {
     "title": "Voo kokkuvõte",
     "justEnded": "Sinu voo kokkuvõte",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Laseb teistel liikmetel näha, et sa just liitusid, et nad saaksid sind tervitada. Lõpeb automaatselt 30 päeva pärast registreerimist.",
     "postVisibility": "Postituste nähtavus",
     "defaultPostVisibility": "Vaikimisi nähtavus",
+    "defaultFeed": "Vaikevoog",
+    "defaultFeedDesc": "Vali, milline voog avaneb iga kord, kui DeHubi avad",
+    "feedToggles": "Lähtesta voo filtrid",
+    "feedTogglesDesc": "Voos sisse lülitatud filtrid jäävad sinu vaikeväärtusteks, kuni need lähtestad",
+    "feedTogglesCleared": "Voo filtrid lähtestatud",
     "defaultProfileTab": "Profiili vaikevahekaart",
     "defaultProfileTabDesc": "Vali, millist vahekaarti külastajad sinu profiilil esimesena näevad",
     "defaultPostVisibilityDesc": "Kehtib kõigile olemasolevatele ja tulevastele postitustele",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Sinu profiilipildilt ei õnnestunud värve lugeda"
   },
   "common": {
+    "refresh": "Värskenda",
     "mute": "Vaigista",
     "unmute": "Lülita heli sisse",
     "fullscreen": "Täisekraan",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} märki"
   },
   "postOptions": {
+    "embed": "Manusta",
+    "copyEmbedCode": "Kopeeri manustamiskood",
+    "embedCodeCopied": "Manustamiskood kopeeritud",
     "options": "Valikud",
     "sendTip": "Saada jootraha",
     "queue": "Järjekord",
@@ -2827,6 +2966,8 @@
     "yourFractions": "Teil on {{count}} murdosast {{total}}"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopeeri RSS-voo link",
+    "copyRssFeedHint": "Jälgi neid postitusi mis tahes voolugejas",
     "copyProfileUrl": "Kopeeri profiili URL",
     "copyUsername": "Kopeeri kasutajanimi",
     "copyAddress": "Kopeeri aadress",
@@ -4150,6 +4291,7 @@
     "noVoice": "Sinu seadmel pole selle keele jaoks häält."
   },
   "stages": {
+    "previewFailed": "Eelvaadet ei saanud helitoas esitada",
     "allStages": "Kõik helitoad",
     "addToCalendar": "Lisa kalendrisse",
     "nowPlaying": "Nüüd mängitakse",
@@ -4522,6 +4664,7 @@
     "anyBadgeHolder": "Iga märgi omanik saab SuperPowers. Ostke DeHubi märke, et avada märgi – panustamine pole vajalik."
   },
   "follow": {
+    "noResults": "Tulemusi ei leitud",
     "followers": "Jälgijad",
     "following": "Jälgin",
     "requests": "Taotlused",
@@ -4605,7 +4748,10 @@
     "play": "Esita",
     "pause": "Peata",
     "listens_one": "{{count}} kuula",
-    "listens_other": "{{count}} kuulab"
+    "listens_other": "{{count}} kuulab",
+    "lyrics": "Laulusõnad",
+    "lyricsLoading": "Otsin laulusõnu…",
+    "lyricsNone": "Laulusõnu ei leitud"
   },
   "transfer": {
     "arcTitle": "Saada USDC Arc-võrgus",
@@ -5531,6 +5677,8 @@
     "creatorEarnsDirect": "Tellijad maksavad DeHubi žetoonides. Sinu osa jõuab Sinu rahakotti kohe, kui nad tellimuse tellivad, millest on maha arvatud platvormi tasu Sinu erimärgi taseme eest."
   },
   "live": {
+    "bigEvent": "Suursündmus",
+    "bigEventHint": "Suurele publikule: vaatajad näevad umbes 20-sekundilise viivitusega, kuid vähemate katkestustega.",
     "notSet": "Määramata",
     "liveChat": "Otsevestlus",
     "pickDate": "Vali kuupäev",
@@ -7145,6 +7293,7 @@
       "delete": "Kustuta"
     },
     "export": {
+      "cancel": "Tühista",
       "scope": "Allalaadimisvahemik",
       "downloadTimeline": "Kogu ajajoon",
       "downloadSelection": "Valitud videoklipid ({{count}})",
@@ -7424,6 +7573,7 @@
     }
   },
   "creator": {
+    "sending": "Saatmine",
     "navStudio": "Stuudio",
     "editor": "Redaktor",
     "untitled": "Pealkirjata",
@@ -7990,6 +8140,7 @@
     "transferIncomplete": "Loa edastamist ei viidud lõpule. Enne järgmist tasulist postitust küsitakse sinult uuesti."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Otsi emojit",
     "noEmoji": "Emojisid ei leitud",
     "searchResults": "Otsingutulemused",

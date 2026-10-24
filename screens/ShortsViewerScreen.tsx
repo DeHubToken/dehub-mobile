@@ -1,9 +1,11 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 import { isHoldGated } from "../libs/content-gate";
+import { fetchVideoAccess, isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../libs/video-access";
 import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
 import { postMediaIsTransferring } from '../libs/post-media-session';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
+import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -103,6 +105,7 @@ import { appliedEngagementWeight } from "../libs/engagement-weight";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import {
   getVideoUrl,
+  getPlaybackUrl,
   getShortsThumbnailUrl,
   resolveThumbnail,
   DEFAULT_BANNER_SENTINEL,
@@ -368,7 +371,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
   // Photo slides sit on a plain theme backdrop: white in System Light, black otherwise.
   const photoBackdrop = useAppTheme().isLight ? "#fff" : "#000";
-  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : getVideoUrl(tokenId) || undefined;
+  // A gated short's file is private: an entitled viewer plays a signed URL,
+  // anyone else is refused one and keeps the poster.
+  const viewer = useUser();
+  const signedShort = !photoMedia && videoNeedsAccess(item);
+  const shortAccess = useVideoAccess(tokenId, signedShort, viewer?.walletAddress || viewer?.address);
+  // Otherwise the same string FeedCard plays, so a card opened into the
+  // viewer keeps its player: the HLS ladder when the post has one, else the MP4.
+  const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
+  const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : playbackUrl) || undefined;
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     // Shorts pause when the app is left; only a PiP window keeps them going.
     p.staysActiveInBackground = false;
@@ -464,6 +475,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const isOwnShort = !!(
     userAddress && minterAddress && userAddress.toLowerCase() === minterAddress.toLowerCase()
   );
+  // Only a public post can be reposted, quoted or embedded — see FeedCard.
+  const isPublicShort = !(item as any).visibility || (item as any).visibility === "public";
 
   // Shared overlay — every surface showing this post reads the same numbers.
   const engagementKey = engagementKeyOf(item);
@@ -629,6 +642,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     component: 'ShortsViewer', postId: tokenId,
     allowed: () => ownsPlayerRef.current() && (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
   });
+  // A lapsed signature fails like a broken file; fetch a fresh one.
+  const refetchShortAccess = shortAccess.refetch;
+  useEffect(() => {
+    if (playbackPhase === 'failed' && shortAccess.data?.private && isVideoAccessExpiring(shortAccess.data)) void refetchShortAccess();
+  }, [playbackPhase, shortAccess.data, refetchShortAccess]);
+  // A ladder that will not play is retired for the session. videoUrl then
+  // resolves to the MP4, and the isActive effect below starts its player.
+  useEffect(() => {
+    if (playbackPhase === 'failed') markHlsFailed(videoUrl);
+  }, [playbackPhase, videoUrl]);
   const stopPlayback = useCallback(() => {
     if (!ownsPlayerRef.current() || postMediaIsTransferring(videoSession) || isPictureInPicturePlayer(player)) return;
     recovery.stop();
@@ -1801,7 +1824,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onRepost={() => handleRepost(true)}
           onUndoRepost={() => handleRepost(false)}
           onQuote={handleQuote}
+          canQuote={isPublicShort && ((item as any).quotePolicy !== "nobody" || isOwnShort)}
+          canRepost={isPublicShort}
           onCopyLink={handleCopyLink}
+          embedTokenId={isPublicShort ? tokenId : undefined}
         />
       )}
 
@@ -1814,6 +1840,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           onClose={() => setShowComments(false)}
           tokenId={tokenId}
           commentsDisabled={!!(item as any).commentsDisabled}
+          replyPolicy={(item as any).replyPolicy}
           forKids={!!(item as any).forKids}
           postCreator={{ address: minterAddress, displayName, username }}
         />
@@ -2440,7 +2467,12 @@ const ShortsViewerScreen = () => {
           onDownloadVideo={activeItem.postType === "short" && !activeItem.imageUrls?.length &&
             (isOwnerOfActive || activeItem.isUnlocked || (!activeItem.streamInfo?.isPayPerView && !isHoldGated(activeItem.streamInfo?.isLockContent, activeItem.streamInfo?.lockContentAmount))) &&
             !(activeItem as { contentRating?: string }).contentRating?.includes("mature")
-            ? () => { const url = getVideoUrl(activeTokenId); if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername }); }
+            ? () => { void (async () => {
+                // A gated short's file is private; download it through a signed URL.
+                const url = !videoNeedsAccess(activeItem) ? getVideoUrl(activeTokenId)
+                  : activeTokenId != null ? (await fetchVideoAccess(activeTokenId).catch(() => null))?.url : undefined;
+                if (url) void downloadVideo({ url, title: activeItem.name || activeItem.title || "video", username: activeUsername });
+              })(); }
             : undefined}
           onToggleSave={handleToggleSave}
           onFollowChange={handleFollowChange}

@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Pripojené aplikácie",
+    "connectedDescription": "Aplikácie pre Mastodon, do ktorých ste sa prihlásili týmto účtom. Odstránením aplikácie sa z nej odhlásite.",
+    "connectedEmpty": "Zatiaľ nie sú pripojené žiadne aplikácie.",
+    "lastUsed": "Naposledy použité {{date}}",
+    "remove": "Odstrániť",
+    "removed": "Aplikácia odstránená",
+    "failed": "Nepodarilo sa. Skúste to znova."
+  },
+  "fediverse": {
+    "title": "Fediverzum",
+    "description": "Ľudia na Mastodone a v ďalších aplikáciách fediverza vás na tejto adrese nájdu a môžu vás sledovať. Vaše nové verejné príspevky sa k nim dostanú tam.",
+    "copy": "Kopírovať",
+    "copied": "Skopírované",
+    "privateNote": "Súkromné účty sa vo fediverze nezobrazujú.",
+    "noUsername": "Zvoľte si používateľské meno, aby ste získali adresu vo fediverze."
+  },
+  "profileFields": {
+    "title": "Polia profilu",
+    "description": "Až štyri riadky navyše na vašom profile, napríklad web alebo vaše zámená.",
+    "label": "Označenie",
+    "content": "Obsah",
+    "save": "Uložiť polia",
+    "saved": "Polia profilu uložené",
+    "failed": "Neuložilo sa. Skúste to znova.",
+    "verified": "Overený odkaz",
+    "verifyHint": "Ak chcete overiť odkaz, pridajte toto na tú stránku a uložte znova: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtrovať upozornenia od",
+    "description": "Vyberte, čo sa stane, keď s vami bude komunikovať niekto mimo vášho okruhu. Filtrované upozornenia čakajú v časti Filtrované, bez odznaku a bez push upozornenia.",
+    "notFollowing": "Ľudí, ktorých nesledujete",
+    "notFollowers": "Ľudí, ktorí nesledujú vás",
+    "newAccounts": "Nových účtov (mladších ako 30 dní)",
+    "accept": "Upozorniť ma",
+    "filter": "Filtrovať",
+    "drop": "Úplne skryť",
+    "filteredTitle": "Filtrované upozornenia",
+    "filteredEmpty": "Nič nebolo odfiltrované.",
+    "failed": "Neuložilo sa. Skúste to znova."
+  },
+  "followedTags": {
+    "follow": "Sledovať #{{tag}}",
+    "following": "Sledujete",
+    "unfollow": "Prestať sledovať #{{tag}}",
+    "followed": "Teraz sledujete #{{tag}}. Jeho príspevky sa zobrazia v kanáli Sledované.",
+    "unfollowed": "Prestali ste sledovať #{{tag}}",
+    "failed": "Neuložilo sa. Skúste to znova.",
+    "clear": "Vymazať"
+  },
+  "keywordFilters": {
+    "title": "Stlmené slová",
+    "description": "Skryte príspevky a komentáre s týmito slovami alebo ich zbaľte za upozornenie. Tento zoznam vidíte len vy.",
+    "placeholder": "Slovo alebo fráza",
+    "add": "Stlmiť",
+    "added": "Stlmené: {{phrase}}",
+    "wholeWord": "Len celé slovo",
+    "whenMatches": "Keď príspevok zodpovedá",
+    "warn": "Zobraziť upozornenie",
+    "hide": "Skryť",
+    "howLong": "Ako dlho",
+    "forever": "Kým to neodstránim",
+    "duration1h": "Na 1 hodinu",
+    "duration1d": "Na 1 deň",
+    "duration7d": "Na 7 dní",
+    "duration30d": "Na 30 dní",
+    "where": "Kde",
+    "home": "Domov",
+    "public": "Preskúmať a hľadať",
+    "profile": "Profily",
+    "thread": "Konverzácie",
+    "notifications": "Upozornenia",
+    "empty": "Nestlmili ste žiadne slová.",
+    "remove": "Zrušiť stlmenie",
+    "until": "Do {{date}}",
+    "filtered": "Odfiltrované: {{phrase}}",
+    "showAnyway": "Aj tak zobraziť",
+    "failed": "Neuložilo sa. Skúste to znova."
+  },
+  "postVisibility": {
+    "label": "Kto to môže vidieť",
+    "public": "Všetci",
+    "followers": "Len sledovatelia",
+    "direct": "Len spomenutí ľudia",
+    "noRepost": "Znova zdieľať možno len verejné príspevky",
+    "directHint": "Tento príspevok uvidia len ľudia, ktorých spomeniete cez @",
+    "needsMention": "Spomeňte cez @ aspoň jedného človeka, aby ste publikovali len pre spomenutých"
+  },
+  "replyPolicy": {
+    "label": "Kto môže odpovedať",
+    "public": "Ktokoľvek",
+    "followers": "Vaši sledovatelia",
+    "following": "Ľudia, ktorých sledujete",
+    "mentioned": "Iba spomenutí",
+    "noticeFollowers": "Odpovedať môžu iba sledovatelia autora",
+    "noticeFollowing": "Odpovedať môžu iba ľudia, ktorých autor sleduje",
+    "noticeMentioned": "Odpovedať môžu iba ľudia spomenutí v príspevku",
+    "refused": "Autor obmedzil, kto môže odpovedať na tento príspevok"
+  },
+  "quotePolicy": {
+    "label": "Kto môže citovať",
+    "public": "Ktokoľvek",
+    "followers": "Sledovatelia",
+    "nobody": "Iba ja",
+    "off": "Autor vypol citovanie",
+    "removed": "Autor odstránil svoj príspevok z tejto citácie",
+    "remove": "Odstrániť",
+    "removedToast": "Váš príspevok bol odstránený z tejto citácie",
+    "removeFailed": "Váš príspevok sa nepodarilo odstrániť z citácie",
+    "refused": "Autor vám nedovoľuje citovať tento príspevok"
+  },
+  "contentWarning": {
+    "label": "Upozornenie na obsah",
+    "placeholder": "Sem napíšte upozornenie",
+    "add": "Pridať upozornenie na obsah",
+    "remove": "Odstrániť upozornenie na obsah",
+    "show": "Zobraziť príspevok"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Pridať popis",
+    "edit": "Upraviť popis",
+    "titleImage": "Opíšte tento obrázok",
+    "titleVideo": "Opíšte toto video",
+    "help": "Pre ľudí, ktorí ho nevidia. Čítačky obrazovky ho prečítajú nahlas.",
+    "placeholder": "Čo zobrazuje? Uveďte aj text, ktorý obsahuje.",
+    "show": "Zobraziť popis",
+    "saved": "Popis uložený",
+    "saveFailed": "Popis sa nepodarilo uložiť"
+  },
   "liveRecap": {
     "title": "Rekapitulácia streamu",
     "justEnded": "Rekapitulácia vášho streamu",
@@ -338,6 +468,11 @@
     "showAsNewMemberDesc": "Ostatní členovia uvidia, že si práve pribudol, a môžu ťa privítať. Automaticky sa skončí 30 dní po registrácii.",
     "postVisibility": "Viditeľnosť príspevkov",
     "defaultPostVisibility": "Predvolená viditeľnosť",
+    "defaultFeed": "Predvolený kanál",
+    "defaultFeedDesc": "Vyberte, ktorý kanál sa otvorí vždy, keď otvoríte DeHub",
+    "feedToggles": "Obnoviť filtre kanála",
+    "feedTogglesDesc": "Filtre, ktoré v kanáli zapnete, zostanú predvolené, kým ich neobnovíte",
+    "feedTogglesCleared": "Filtre kanála obnovené",
     "defaultProfileTab": "Predvolená karta profilu",
     "defaultProfileTabDesc": "Vyber, ktorú kartu uvidia návštevníci na tvojom profile ako prvú",
     "defaultPostVisibilityDesc": "Platí pre všetky aktuálne a budúce príspevky",
@@ -866,6 +1001,7 @@
     "themeColorBrandFailed": "Nepodarilo sa načítať farby z tvojej profilovej fotky"
   },
   "common": {
+    "refresh": "Obnoviť",
     "mute": "Stlmiť",
     "unmute": "Zapnúť zvuk",
     "fullscreen": "Celá obrazovka",
@@ -997,6 +1133,9 @@
     "tokenAmount": "{{amount}} tokenov"
   },
   "postOptions": {
+    "embed": "Vložiť",
+    "copyEmbedCode": "Kopírovať kód na vloženie",
+    "embedCodeCopied": "Kód na vloženie skopírovaný",
     "options": "Možnosti",
     "sendTip": "Poslať prepitné",
     "queue": "Fronta",
@@ -2935,6 +3074,8 @@
     "yourFractions": "Vlastníte {{count}} z {{total}} zlomkov"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopírovať odkaz na RSS kanál",
+    "copyRssFeedHint": "Sledujte tieto príspevky v ľubovoľnej čítačke kanálov",
     "copyProfileUrl": "Kopírovať URL profilu",
     "copyUsername": "Kopírovať meno používateľa",
     "copyAddress": "Kopírovať adresu",
@@ -4258,6 +4399,7 @@
     "noVoice": "Vaše zariadenie nemá hlas pre tento jazyk."
   },
   "stages": {
+    "previewFailed": "Nepodarilo sa prehrať ukážku na pódiu",
     "allStages": "Všetky audio miestnosti",
     "addToCalendar": "Pridať do kalendára",
     "nowPlaying": "Hralo sa",
@@ -4630,6 +4772,7 @@
     "anyBadgeHolder": "Každý držiteľ odznaku dostane SuperSchopnosti. Kúpte si tokeny DeHub, aby ste odomkli odznak — stakovanie nie je potrebné."
   },
   "follow": {
+    "noResults": "Nenašli sa žiadne výsledky",
     "followers": "Sledujúci",
     "following": "Sledujem",
     "requests": "Žiadosti",
@@ -4713,7 +4856,10 @@
     "play": "Prehrať",
     "pause": "Pozastaviť",
     "listens_one": "{{count}} počúvajte",
-    "listens_other": "{{count}} počúva"
+    "listens_other": "{{count}} počúva",
+    "lyrics": "Text piesne",
+    "lyricsLoading": "Hľadáme text…",
+    "lyricsNone": "Text sa nenašiel"
   },
   "transfer": {
     "arcTitle": "Odoslať USDC v sieti Arc",
@@ -5639,6 +5785,8 @@
     "creatorEarnsDirect": "Predplatitelia platia v žetónoch DeHub. Váš podiel sa dostane do peňaženky v okamihu, keď sa prihlásia na odber, po odpočítaní poplatku za platformu pre vašu úroveň odznaku."
   },
   "live": {
+    "bigEvent": "Veľká udalosť",
+    "bigEventHint": "Pre veľké publikum: diváci sledujú približne s 20-sekundovým oneskorením, ale s menej výpadkami.",
     "notSet": "Nenastavené",
     "liveChat": "Živý chat",
     "pickDate": "Vybrať dátum",
@@ -7311,6 +7459,7 @@
       "delete": "Odstrániť"
     },
     "export": {
+      "cancel": "Zrušiť",
       "scope": "Rozsah sťahovania",
       "downloadTimeline": "Celá časová os",
       "downloadSelection": "Vybrané videoklipy ({{count}})",
@@ -7590,6 +7739,7 @@
     }
   },
   "creator": {
+    "sending": "Odosielam...",
     "navStudio": "Štúdio",
     "editor": "Editor",
     "untitled": "Bez názvu",
@@ -8156,6 +8306,7 @@
     "transferIncomplete": "Prenos tokenu sa nedokončil. Pred ďalším zaplateným príspevkom vás znova požiadame."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Hľadať emoji",
     "noEmoji": "Nenašli sa žiadne emoji",
     "searchResults": "Výsledky vyhľadávania",

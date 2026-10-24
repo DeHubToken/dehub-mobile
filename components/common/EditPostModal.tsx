@@ -36,6 +36,7 @@ import { useKeyboard } from "../../hooks/useKeyboard";
 import { useMentions } from "../../hooks/useMentions";
 import EditPostImages from './EditPostImages';
 import EditPostCover from './EditPostCover';
+import { CONTENT_WARNING_MAX } from '../Home/ContentWarningGate';
 import { useTranslation } from "react-i18next";
 
 interface EditPostModalProps {
@@ -53,6 +54,12 @@ interface EditPostModalProps {
   initialContentRating?: string;
   /** Whether this post is published for children — the Kids Mode allowlist. */
   initialForKids?: boolean;
+  /** The post's content warning, if it has one. */
+  initialSpoilerText?: string;
+  /** Who may quote the post; absent means anyone. */
+  initialQuotePolicy?: "public" | "followers" | "nobody";
+  /** Who may reply to the post; absent means anyone. */
+  initialReplyPolicy?: "public" | "followers" | "following" | "mentioned";
   /** Offer the "replace the file" row — creator, video post, not live. */
   canReplaceVideo?: boolean;
   /** Offer the title even when the post has none — audio tracks can be named later. */
@@ -65,6 +72,9 @@ interface EditPostModalProps {
     commentsDisabled?: boolean;
     contentRating?: string;
     forKids?: boolean;
+    spoilerText?: string;
+    quotePolicy?: "public" | "followers" | "nobody";
+    replyPolicy?: "public" | "followers" | "following" | "mentioned";
     shopLinks?: ShopLink[];
     shopListingCount?: number;
   }) => void;
@@ -82,6 +92,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   initialShopLinks,
   initialContentRating,
   initialForKids,
+  initialSpoilerText = "",
+  initialQuotePolicy = "public",
+  initialReplyPolicy = "public",
   canReplaceVideo = false,
   alwaysShowTitle = false,
   onSuccess,
@@ -90,6 +103,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
   const [commentsDisabled, setCommentsDisabled] = useState(initialCommentsDisabled);
   const [isMature, setIsMature] = useState(initialContentRating === "mature");
   const [isForKids, setIsForKids] = useState(initialForKids === true);
+  const [spoilerText, setSpoilerText] = useState(initialSpoilerText);
+  const [quotePolicy, setQuotePolicy] = useState(initialQuotePolicy);
+  const [replyPolicy, setReplyPolicy] = useState(initialReplyPolicy);
   const [shopLinks, setShopLinks] = useDraftState<ShopLink[]>(`post:edit:${tokenId}` + ":shopLinks", initialShopLinks ?? []);
   const [shopSheetVisible, setShopSheetVisible] = useState(false);
   /**
@@ -290,6 +306,15 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
       }
       // The API stores nothing for a safe post, so an unrated one arrives as
       // undefined — compare against the rating it means, not the field.
+      if (spoilerText.trim() !== initialSpoilerText.trim()) {
+        payload.spoilerText = spoilerText.trim();
+      }
+      if (quotePolicy !== initialQuotePolicy) {
+        payload.quotePolicy = quotePolicy;
+      }
+      if (replyPolicy !== initialReplyPolicy) {
+        payload.replyPolicy = replyPolicy;
+      }
       const nextRating = isMature ? "mature" : "safe";
       if (nextRating !== (initialContentRating ?? "safe")) {
         payload.contentRating = nextRating;
@@ -346,6 +371,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
         category: payload.category,
         commentsDisabled: payload.commentsDisabled,
         contentRating: payload.contentRating,
+        spoilerText: payload.spoilerText,
+        quotePolicy: payload.quotePolicy,
+        replyPolicy: payload.replyPolicy,
         shopLinks: payload.shopLinks,
         shopListingCount: payload.shopListingCount as number | undefined,
       });
@@ -381,6 +409,12 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     initialShopLinks,
     initialContentRating,
     initialForKids,
+    initialSpoilerText,
+    spoilerText,
+    initialQuotePolicy,
+    quotePolicy,
+    initialReplyPolicy,
+    replyPolicy,
     onSuccess,
     onClose, setArticleBody, setDescription, setSelectedCategories, setShopLinks, setTitle]);
 
@@ -389,6 +423,9 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
     description.trim() !== initialDescription ||
     (initialArticleBody !== undefined && articleBody.trim() !== initialArticleBody) ||
     commentsDisabled !== initialCommentsDisabled ||
+    spoilerText.trim() !== initialSpoilerText.trim() ||
+    quotePolicy !== initialQuotePolicy ||
+    replyPolicy !== initialReplyPolicy ||
     commonGroundChanged ||
     (isMature ? "mature" : "safe") !== (initialContentRating ?? "safe") ||
     isForKids !== (initialForKids === true) ||
@@ -463,6 +500,59 @@ const EditPostModalComponent: React.FC<EditPostModalProps> = ({
             </Text>
           </>
         ) : null}
+
+        {/* Content warning — the post opens collapsed behind it. Empty takes it off. */}
+        <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+          {t("contentWarning.label")}
+        </Text>
+        <TextInput
+          value={spoilerText}
+          onChangeText={setSpoilerText}
+          maxLength={CONTENT_WARNING_MAX}
+          placeholder={t("contentWarning.placeholder")}
+          placeholderTextColor="#8B8D90"
+          className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm mb-3"
+        />
+
+        {/* Who may quote it from now on. Quotes already made stay. */}
+        <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+          {t("quotePolicy.label")}
+        </Text>
+        <View className="flex-row mb-3">
+          {(["public", "followers", "nobody"] as const).map((option) => (
+            <TouchableOpacity
+              key={option}
+              onPress={() => setQuotePolicy(option)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: quotePolicy === option }}
+              className={`mr-2 rounded-xl px-3 py-2 ${quotePolicy === option ? "bg-white" : "bg-white/5 border border-white/10"}`}
+            >
+              <Text className={`text-sm ${quotePolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                {t(`quotePolicy.${option}`)}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* Who may reply from now on. Replies already made stay. */}
+        <Text className="text-theme-neutrals-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+          {t("replyPolicy.label")}
+        </Text>
+        <View className="flex-row flex-wrap mb-3">
+          {(["public", "followers", "following", "mentioned"] as const).map((option) => (
+            <TouchableOpacity
+              key={option}
+              onPress={() => setReplyPolicy(option)}
+              accessibilityRole="button"
+              accessibilityState={{ selected: replyPolicy === option }}
+              className={`mr-2 mb-2 rounded-xl px-3 py-2 ${replyPolicy === option ? "bg-white" : "bg-white/5 border border-white/10"}`}
+            >
+              <Text className={`text-sm ${replyPolicy === option ? "text-black font-semibold" : "text-white"}`}>
+                {t(`replyPolicy.${option}`)}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
         {/* Description — only shown if the post has a description */}
         {initialArticleBody !== undefined && <View className="mb-3">

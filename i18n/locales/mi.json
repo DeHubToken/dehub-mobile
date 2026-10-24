@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Ngā taupānga hono",
+    "connectedDescription": "Ngā taupānga Mastodon i takiuru koe mā tēnei pūkete. Tangohia tētahi kia takiputa ai.",
+    "connectedEmpty": "Kāore anō he taupānga kia hono.",
+    "lastUsed": "Whakamahia whakamutunga {{date}}",
+    "remove": "Tangohia",
+    "removed": "Kua tangohia te taupānga",
+    "failed": "Kāore i tutuki. Ngana anō."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Ka taea e te tāngata kei Mastodon me ētahi atu taupānga fediverse te kite me te whai i a koe i tēnei wāhitau. Ka tae ō pānui tūmatanui hou ki a rātou ki reira.",
+    "copy": "Tārua",
+    "copied": "Kua tāruatia",
+    "privateNote": "Kāore ngā pūkete tūmataiti e whakaaturia ki te fediverse.",
+    "noUsername": "Kōwhiria he ingoa kaiwhakamahi kia whiwhi wāhitau fediverse."
+  },
+  "profileFields": {
+    "title": "Ngā āpure kōtaha",
+    "description": "Tae atu ki ngā rārangi tāpiri e whā i tō kōtaha, pērā i tētahi paetukutuku, ō tūpou rānei.",
+    "label": "Tapanga",
+    "content": "Ihirangi",
+    "save": "Tiakina ngā āpure",
+    "saved": "Kua tiakina ngā āpure kōtaha",
+    "failed": "Kāore i tiakina. Whakamātauria anō.",
+    "verified": "Hono kua manatokona",
+    "verifyHint": "Hei manatoko i tētahi hono, tāpirihia tēnei ki taua whārangi, ka tiaki anō: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Tātari pānui mai i",
+    "description": "Kōwhiria te mea ka puta ina whakawhitiwhiti tētahi i waho o tō porowhita ki a koe. Ka tatari ngā pānui kua tātarihia ki raro i \"Kua tātarihia\", kāore he tohu, kāore he pānui pana.",
+    "notFollowing": "Ngā tāngata kāore koe e whai ana",
+    "notFollowers": "Ngā tāngata kāore e whai ana i a koe",
+    "newAccounts": "Ngā pūkete hou (iti iho i te 30 rā)",
+    "accept": "Whakamōhio mai",
+    "filter": "Tātari",
+    "drop": "Hunaia katoatia",
+    "filteredTitle": "Ngā pānui kua tātarihia",
+    "filteredEmpty": "Kāore anō kia tātarihia tētahi mea.",
+    "failed": "Kāore i tiakina. Whakamātauria anō."
+  },
+  "followedTags": {
+    "follow": "Whai i #{{tag}}",
+    "following": "E whai ana",
+    "unfollow": "Kaua e whai i #{{tag}}",
+    "followed": "Kei te whai koe i #{{tag}} ināianei. Ka puta ōna pānui ki tō whāngai Ka whāia.",
+    "unfollowed": "Kua mutu tō whai i #{{tag}}",
+    "failed": "Kāore i tiakina. Whakamātauria anō.",
+    "clear": "Ūkui"
+  },
+  "keywordFilters": {
+    "title": "Ngā kupu kua whakaroaina",
+    "description": "Hunaia ngā pānui me ngā tākupu kei roto ēnei kupu, kōpakihia rānei ki muri i tētahi whakatūpato. Ko koe anake e kite i tēnei rārangi.",
+    "placeholder": "Kupu, kīanga rānei",
+    "add": "Whakarongo-kore",
+    "added": "Kua whakarongo-koretia: {{phrase}}",
+    "wholeWord": "Te kupu katoa anake",
+    "whenMatches": "Ina ōrite tētahi pānui",
+    "warn": "Whakaaturia he whakatūpato",
+    "hide": "Hunaia",
+    "howLong": "Mō te roa",
+    "forever": "Kia tangohia rā anō e au",
+    "duration1h": "Mō te 1 hāora",
+    "duration1d": "Mō te 1 rā",
+    "duration7d": "Mō ngā rā 7",
+    "duration30d": "Mō ngā rā 30",
+    "where": "Kei hea",
+    "home": "Kāinga",
+    "public": "Tūhura me te rapu",
+    "profile": "Ngā kōtaha",
+    "thread": "Ngā kōrerorero",
+    "notifications": "Ngā pānui",
+    "empty": "Kāore anō koe kia whakarongo-kore i tētahi kupu.",
+    "remove": "Whakahoki",
+    "until": "Tae noa ki {{date}}",
+    "filtered": "Kua tātarihia: {{phrase}}",
+    "showAnyway": "Whakaaturia ahakoa",
+    "failed": "Kāore i tiakina. Whakamātauria anō."
+  },
+  "postVisibility": {
+    "label": "Ko wai ka kite i tēnei",
+    "public": "Te katoa",
+    "followers": "Ngā kaiwhai anake",
+    "direct": "Te hunga i whakahuatia anake",
+    "noRepost": "Ko ngā pānui tūmatanui anake ka taea te tuku anō",
+    "directHint": "Ko te hunga anake ka whakahuatia e koe ki te @ ka kite i tēnei pānui",
+    "needsMention": "Whakahuatia kia kotahi te tangata ki te @ hei tuku ki te hunga i whakahuatia anake"
+  },
+  "replyPolicy": {
+    "label": "Ko wai ka āhei ki te whakautu",
+    "public": "Te katoa",
+    "followers": "Ō kaiwhai",
+    "following": "Te hunga e whaia ana e koe",
+    "mentioned": "Te hunga i whakahuatia anake",
+    "noticeFollowers": "Ko ngā kaiwhai anake o te kaituhi ka āhei ki te whakautu",
+    "noticeFollowing": "Ko te hunga e whaia ana e te kaituhi anake ka āhei ki te whakautu",
+    "noticeMentioned": "Ko te hunga i whakahuatia i te pānui anake ka āhei ki te whakautu",
+    "refused": "Kua whakawhāitihia e te kaituhi te hunga ka āhei ki te whakautu"
+  },
+  "quotePolicy": {
+    "label": "Ko wai ka āhei ki te whakahua",
+    "public": "Te katoa",
+    "followers": "Ngā kaiwhai",
+    "nobody": "Ko au anake",
+    "off": "Kua whakawetohia e te kaituhi te whakahua",
+    "removed": "Kua tangohia e te kaituhi tana pānui i tēnei whakahua",
+    "remove": "Tango",
+    "removedToast": "Kua tangohia tō pānui i tēnei whakahua",
+    "removeFailed": "Kāore i taea te tango i tō pānui i te whakahua",
+    "refused": "Kāore te kaituhi e whakaae kia whakahuatia e koe tēnei pānui"
+  },
+  "contentWarning": {
+    "label": "Whakatūpato ihirangi",
+    "placeholder": "Tuhia tō whakatūpato ki konei",
+    "add": "Tāpiritia he whakatūpato ihirangi",
+    "remove": "Tangohia te whakatūpato ihirangi",
+    "show": "Whakaatu i te pānui"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Tāpiritia he whakaahuatanga",
+    "edit": "Whakatika i te whakaahuatanga",
+    "titleImage": "Whakaahuatia tēnei pikitia",
+    "titleVideo": "Whakaahuatia tēnei ataata",
+    "help": "Mō te hunga kāore e kite. Ka pānuitia e ngā pūpānui mata ki te reo.",
+    "placeholder": "He aha e whakaaturia ana? Whakaurua anō ngā kupu kei roto.",
+    "show": "Whakaatu i te whakaahuatanga",
+    "saved": "Kua tiakina te whakaahuatanga",
+    "saveFailed": "Kāore i taea te tiaki i te whakaahuatanga"
+  },
   "liveRecap": {
     "justEnded": "Te whakarāpopototanga o tō pāho",
     "title": "Te whakahoutanga o te awa",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Ka taea e ētahi atu mema te kite kua uru hou mai koe kia mihi ai rātou ki a koe. Ka mutu aunoa i te 30 rā i muri i tō rēhitatanga.",
     "postVisibility": "Kitea o ngā pānui",
     "defaultPostVisibility": "Kitea taunoa",
+    "defaultFeed": "Whāngai taunoa",
+    "defaultFeedDesc": "Kōwhiria te whāngai ka tuwhera i ia wā ka huaki koe i a DeHub",
+    "feedToggles": "Tautuhi anō ngā tātari whāngai",
+    "feedTogglesDesc": "Ka noho ngā tātari ka whakakāhia e koe hei taunoa mōu kia tautuhi anō rā anō",
+    "feedTogglesCleared": "Kua tautuhia anōtia ngā tātari whāngai",
     "defaultProfileTab": "Ripa kōtaha taunoa",
     "defaultProfileTabDesc": "Tīpakohia ko tēhea ripa ka kite tuatahi ngā manuhiri i tō kōtaha",
     "defaultPostVisibilityDesc": "Ka pā ki ngā pānui katoa o nāianei me ngā mea hou",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Kāore i taea te pānui i ngā tae mai i tō whakaahua kōtaha"
   },
   "common": {
+    "refresh": "Whakahou",
     "mute": "Whakangū",
     "unmute": "Whakaora oro",
     "fullscreen": "Mata katoa",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} tohu"
   },
   "postOptions": {
+    "embed": "Tāmau",
+    "copyEmbedCode": "Tāruatia te waehere tāmau",
+    "embedCodeCopied": "Kua tāruatia te waehere tāmau",
     "options": "Kōwhiringa",
     "sendTip": "Tukuna koha",
     "queue": "Rārangi",
@@ -2818,6 +2957,8 @@
     "yourFractions": "Kei a koe {{count}} o {{total}} ngā hautau"
   },
   "profileOptions": {
+    "copyRssFeed": "Tāruatia te hono whāngai RSS",
+    "copyRssFeedHint": "Whaia ēnei pānui i tētahi kaipānui whāngai",
     "copyProfileUrl": "Tārua URL kōnae",
     "copyUsername": "Tārua ingoa kaiwhakamahi",
     "copyAddress": "Tārua wāhitau",
@@ -4140,6 +4281,7 @@
     "noVoice": "Kāore he reo i tō pūrere mō tēnei reo."
   },
   "stages": {
+    "previewFailed": "E kore e taea e ahau te tākaro i te tirohanga i runga i te atamira",
     "allStages": "Ngā rūma ororongo katoa",
     "addToCalendar": "Tāpirihia ki te maramataka",
     "nowPlaying": "I tenei wa ka takaro ahau",
@@ -4512,6 +4654,7 @@
     "anyBadgeHolder": "Ka whiwhi ngā kaipupuri tohu katoa i ngā SuperPowers. Hokona ngā tohu DeHub kia iriti ai koe i tētahi tohu — kāore e hiahiatia te tāpiri."
   },
   "follow": {
+    "noResults": "Kāore he hua i kitea",
     "followers": "Ngā Kaiwhai",
     "following": "E whai ana",
     "requests": "Ngā Tono",
@@ -4595,7 +4738,10 @@
     "listens_one": "{{count}} whakarongo",
     "listens_other": "{{count}} whakarongo",
     "play": "Tākoro",
-    "pause": "Waihokeyboard label"
+    "pause": "Waihokeyboard label",
+    "lyrics": "Kupu waiata",
+    "lyricsLoading": "E rapu ana i ngā kupu…",
+    "lyricsNone": "Kāore he kupu i kitea"
   },
   "transfer": {
     "arcTitle": "Tukua he USDC ki Arc",
@@ -4663,7 +4809,7 @@
     "kindImage": "Whakaahua",
     "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "Arotake i mua i te tuku",
-    "reviewSubtitle": "Mai i te {{puna}}, rite {{kind}}}. Whakatika i nga mea katoa e hiahia ana koe — waiho te taitara kore ki te pupuri i te taketake.",
+    "reviewSubtitle": "Mai i te {{source}}, rite {{kind}}. Whakatika i nga mea katoa e hiahia ana koe — waiho te taitara kore ki te pupuri i te taketake.",
     "reviewName": "Ingoa",
     "reviewNamePlaceholder": "Waiho noa ki te pupuri i te taitara taketake",
     "reviewDescription": "Whakaahuatanga",
@@ -5520,6 +5666,8 @@
     "creatorEarnsDirect": "Ka utua e nga kaiohauru nga tohu DeHub. Ko to koutou wahi whenua i roto i to koutou putea i te wa e rēhita ratou, iti iho i te utu papa mo to koutou taumata badge."
   },
   "live": {
+    "bigEvent": "Takunetanga nui",
+    "bigEventHint": "Mō te hunga mātakitaki tini: ka mātakitaki rātou i muri tata ki te 20 hēkona, he iti iho ngā haukotinga.",
     "notSet": "Kāore i tautuhia",
     "liveChat": "Kōrerorero ora",
     "pickDate": "Kōwhiria te rā",
@@ -7126,6 +7274,7 @@
       "delete": "Mukua"
     },
     "export": {
+      "cancel": "Whakakore",
       "scope": "Tikiake whānuitanga",
       "downloadTimeline": "He raupapa wā katoa",
       "downloadSelection": "Ngā ataata i tīpakohia ({{count}})",
@@ -7405,6 +7554,7 @@
     }
   },
   "creator": {
+    "sending": "Te tuku",
     "navStudio": "Taiwhanga",
     "editor": "Etita",
     "untitled": "Kāore he taitara",
@@ -7970,6 +8120,7 @@
     "transferIncomplete": "Kaore i oti te whakawhiti tohu. Ka ui koe ano i mua i to koutou pou utu e whai ake nei."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Rapua he emoji",
     "noEmoji": "Kāore he emoji i kitea",
     "searchResults": "Ngā hua rapu",

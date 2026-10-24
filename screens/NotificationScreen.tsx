@@ -455,6 +455,64 @@ const ACTION_HIT_SLOP = { top: 4, bottom: 4, left: 10, right: 10 };
 const MARK_HIT_SLOP = { ...ACTION_HIT_SLOP, top: 10 };
 const CLEAR_HIT_SLOP = { ...ACTION_HIT_SLOP, bottom: 10 };
 
+/**
+ * What the reader's notification filters held back (Settings → Notifications
+ * → Filter notifications from). Collapsed until opened, and only fetched then,
+ * so a reader without filters pays nothing for it. Rows draw exactly like the
+ * main list's.
+ */
+function FilteredNotificationsSection({
+  renderRow,
+}: {
+  renderRow: (info: { item: NotificationItem }) => React.ReactElement;
+}) {
+  const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+  const [items, setItems] = useState<NotificationItem[] | null>(null);
+
+  useEffect(() => {
+    if (!open || items) return;
+    let live = true;
+    getNotifications({ unreadOnly: false, filtered: true, page: 1, limit: 30 })
+      .then((res: any) => {
+        if (live) setItems(res?.data?.result || res?.result || []);
+      })
+      .catch(() => {
+        if (live) setItems([]);
+      });
+    return () => {
+      live = false;
+    };
+  }, [open, items]);
+
+  return (
+    <View className="mt-2 border-t border-white/5" testID="filtered-notifications">
+      <TouchableOpacity
+        onPress={() => setOpen((v) => !v)}
+        accessibilityRole="button"
+        accessibilityState={{ expanded: open }}
+        className="flex-row items-center justify-between px-4 py-4"
+      >
+        <View className="flex-row items-center">
+          <Icon name="Funnel" size={16} color="#8B8D90" />
+          <Text className="ml-2 text-theme-neutrals-400 text-sm">{t("notificationFilters.filteredTitle")}</Text>
+        </View>
+        <Icon name={open ? "ChevronUp" : "ChevronDown"} size={16} color="#8B8D90" />
+      </TouchableOpacity>
+      {open &&
+        (items === null ? (
+          <View className="py-4 items-center">
+            <ActivityIndicator size="small" color="#F4F4F5" />
+          </View>
+        ) : items.length === 0 ? (
+          <Text className="px-4 pb-4 text-theme-neutrals-500 text-sm">{t("notificationFilters.filteredEmpty")}</Text>
+        ) : (
+          items.map((item) => <View key={item._id}>{renderRow({ item })}</View>)
+        ))}
+    </View>
+  );
+}
+
 interface NotificationRowProps {
   item: NotificationItem;
   onPress: (item: NotificationItem) => void;
@@ -1709,14 +1767,16 @@ const NotificationScreen = () => {
   );
 
   // Footer for load more
-  const ListFooter = useMemo(() => {
-    if (!loadingMore) return null;
-    return (
-      <View className="py-6 items-center">
-        <ActivityIndicator size="small" color="#F4F4F5" />
-      </View>
-    );
-  }, [loadingMore]);
+  const ListFooter = useMemo(() => (
+    <>
+      {loadingMore ? (
+        <View className="py-6 items-center">
+          <ActivityIndicator size="small" color="#F4F4F5" />
+        </View>
+      ) : null}
+      {walletAddress ? <FilteredNotificationsSection renderRow={renderItem} /> : null}
+    </>
+  ), [loadingMore, renderItem, walletAddress]);
 
   // Minimal: the empty-state icon sits bare on black, no tile behind it.
   const emptyIconTile = isMinimal

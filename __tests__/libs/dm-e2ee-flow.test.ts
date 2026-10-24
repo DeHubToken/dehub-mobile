@@ -1,3 +1,4 @@
+import { apiClient } from "../../libs/api.client";
 // The whole client flow against the real key manager, with the network, the
 // signing provider and the keychain stubbed: two users set up identities from
 // signatures, publish keys, seal messages to each other and open them; a peer
@@ -77,11 +78,13 @@ import {
   unloadIdentity,
 } from "../../libs/dm-e2ee/keys";
 import {
+  decryptText,
   deriveIdentityFromSignature,
   deriveSessionKey,
   encryptText,
   encryptionSignMessage,
   isEncryptedContent,
+  toBase64,
 } from "../../libs/dm-e2ee/crypto";
 
 const A = "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
@@ -91,6 +94,7 @@ const C = "0xcccccccccccccccccccccccccccccccccccccccc";
 async function wipeKeychain() {
   for (const a of [A, B, C]) {
     await SecureStore.deleteItemAsync?.("dehub_dm_e2ee_" + a.replace(/[^a-z0-9]/g, ""));
+    for (const peer of [A, B, C]) await SecureStore.deleteItemAsync?.(`dehub_dm_peers_${a}_${peer}`);
   }
 }
 
@@ -242,4 +246,70 @@ describe("dm-e2ee client flow", () => {
     await setupIdentity(A);
     expect(getIdentity()!.publicKey).toBe(pubA);
   });
+  it('refreshes a stale peer key and still reads old history after reload', async () => {
+    await become(B);
+    await become(A);
+    const oldMessage = (await encryptForPeer(B, 'old history'))!;
+    const mine = deriveIdentityFromSignature(awaitSignature(A));
+    const rotated = deriveIdentityFromSignature('0x' + '47'.repeat(65));
+    mockRegistry.set(B, toBase64(rotated.publicKey));
+    const incoming = encryptText('new history', deriveSessionKey(rotated.privateKey, mine.publicKey, B, A));
+    jest.mocked(apiClient.get).mockClear();
+    expect(await Promise.all(Array.from({ length: 10 }, () => decryptFromPeer(B, incoming)))).toEqual(Array(10).fill('new history'));
+    expect(jest.mocked(apiClient.get).mock.calls.filter(([endpoint]) => endpoint === `/dm/e2ee-key/${B}`).length).toBe(1);
+    expect(await decryptFromPeer(B, oldMessage)).toBe('old history');
+    unloadIdentity();
+    await loadIdentity(A);
+    expect(await decryptFromPeer(B, oldMessage)).toBe('old history');
+    expect(await Promise.all(Array.from({ length: 10 }, () => decryptFromPeer(B, incoming)))).toEqual(Array(10).fill('new history'));
+    // The same current session must encrypt to the refreshed key.
+    const reply = (await encryptForPeer(B, 'reply'))!;
+    expect(decryptText(reply, deriveSessionKey(rotated.privateKey, mine.publicKey, B, A))).toBe('reply');
+  });
+
+  it('preserves an existing identity before replacement and opens its history after reload', async () => {
+    await become(B);
+    unloadIdentity();
+    const old = deriveIdentityFromSignature('0x' + '38'.repeat(65));
+    const oldRecord = { v: 1, priv: toBase64(old.privateKey), pub: toBase64(old.publicKey) };
+    await SecureStore.setItemAsync("dehub_dm_e2ee_" + A, JSON.stringify(oldRecord));
+    const peer = deriveIdentityFromSignature(awaitSignature(B));
+    const history = encryptText('before migration', deriveSessionKey(peer.privateKey, old.publicKey, B, A));
+    mockCaller = A;
+    await setupIdentity(A);
+    const stored = JSON.parse((await SecureStore.getItemAsync("dehub_dm_e2ee_" + A))!);
+    expect(stored.previous).toContainEqual({ priv: oldRecord.priv, pub: oldRecord.pub });
+    unloadIdentity();
+    await loadIdentity(A);
+    expect(await decryptFromPeer(B, history)).toBe('before migration');
+    expect(mockRegistry.get(A)).toBe(getIdentity()!.publicKey);
+  });
+
+  it('does not replace or publish over an unreadable stored identity', async () => {
+    const oldRecord = { v: 1, priv: 'damaged', pub: 'damaged' };
+    await SecureStore.setItemAsync("dehub_dm_e2ee_" + A, JSON.stringify(oldRecord));
+    mockCaller = A;
+    await expect(setupIdentity(A)).rejects.toThrow('preserved');
+    expect(JSON.parse((await SecureStore.getItemAsync("dehub_dm_e2ee_" + A))!)).toEqual(oldRecord);
+    expect(mockRegistry.has(A)).toBe(false);
+    expect(getIdentity()).toBeNull();
+  });
+
+  it('keeps the identity and published key when replacement cannot be saved', async () => {
+    await become(A);
+    const before = await SecureStore.getItemAsync("dehub_dm_e2ee_" + A);
+    const publicKey = getIdentity()!.publicKey;
+    const save = jest.spyOn(SecureStore, 'setItemAsync').mockRejectedValueOnce(new Error('Storage full'));
+    try {
+      await expect(setupIdentity(A)).rejects.toThrow('Storage full');
+      expect(await SecureStore.getItemAsync("dehub_dm_e2ee_" + A)).toBe(before);
+      expect(getIdentity()!.publicKey).toBe(publicKey);
+      expect(mockRegistry.get(A)).toBe(publicKey);
+    } finally { save.mockRestore(); }
+  });
+
 });
+
+function awaitSignature(address: string): string {
+  return '0x' + Buffer.from(`${address}:${encryptionSignMessage(address)}`).toString('hex').padEnd(130, '0').slice(0, 130);
+}

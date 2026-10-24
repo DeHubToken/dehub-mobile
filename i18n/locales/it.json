@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "App collegate",
+    "connectedDescription": "App Mastodon a cui hai effettuato l'accesso con questo account. Rimuovine una per scollegarla.",
+    "connectedEmpty": "Ancora nessuna app collegata.",
+    "lastUsed": "Ultimo utilizzo {{date}}",
+    "remove": "Rimuovi",
+    "removed": "App rimossa",
+    "failed": "Non ha funzionato. Riprova."
+  },
+  "fediverse": {
+    "title": "Fediverso",
+    "description": "Le persone su Mastodon e su altre app del fediverso possono trovarti e seguirti a questo indirizzo. I tuoi nuovi post pubblici le raggiungono lì.",
+    "copy": "Copia",
+    "copied": "Copiato",
+    "privateNote": "Gli account privati non sono mostrati nel fediverso.",
+    "noUsername": "Scegli un nome utente per avere un indirizzo nel fediverso."
+  },
+  "profileFields": {
+    "title": "Campi del profilo",
+    "description": "Fino a quattro righe in più sul tuo profilo, come un sito web o i tuoi pronomi.",
+    "label": "Etichetta",
+    "content": "Contenuto",
+    "save": "Salva campi",
+    "saved": "Campi del profilo salvati",
+    "failed": "Non è stato salvato. Riprova.",
+    "verified": "Link verificato",
+    "verifyHint": "Per verificare un link, aggiungi questo a quella pagina e salva di nuovo: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtra le notifiche da",
+    "description": "Scegli cosa succede quando qualcuno fuori dalla tua cerchia interagisce con te. Le notifiche filtrate restano in Filtrate, senza badge né notifica push.",
+    "notFollowing": "Persone che non segui",
+    "notFollowers": "Persone che non ti seguono",
+    "newAccounts": "Account nuovi (meno di 30 giorni)",
+    "accept": "Avvisami",
+    "filter": "Filtra",
+    "drop": "Nascondi del tutto",
+    "filteredTitle": "Notifiche filtrate",
+    "filteredEmpty": "Non è stato filtrato nulla.",
+    "failed": "Non è stato salvato. Riprova."
+  },
+  "followedTags": {
+    "follow": "Segui #{{tag}}",
+    "following": "Segui già",
+    "unfollow": "Smetti di seguire #{{tag}}",
+    "followed": "Ora segui #{{tag}}. I suoi post compariranno nel feed Seguiti.",
+    "unfollowed": "Non segui più #{{tag}}",
+    "failed": "Non è stato salvato. Riprova.",
+    "clear": "Cancella"
+  },
+  "keywordFilters": {
+    "title": "Parole silenziate",
+    "description": "Nascondi i post e i commenti che contengono queste parole, o ripiegali dietro un avviso. Solo tu vedi questo elenco.",
+    "placeholder": "Parola o frase",
+    "add": "Silenzia",
+    "added": "Silenziata: {{phrase}}",
+    "wholeWord": "Solo parola intera",
+    "whenMatches": "Quando un post corrisponde",
+    "warn": "Mostra un avviso",
+    "hide": "Nascondilo",
+    "howLong": "Per quanto tempo",
+    "forever": "Finché non la rimuovo",
+    "duration1h": "Per 1 ora",
+    "duration1d": "Per 1 giorno",
+    "duration7d": "Per 7 giorni",
+    "duration30d": "Per 30 giorni",
+    "where": "Dove",
+    "home": "Home",
+    "public": "Esplora e cerca",
+    "profile": "Profili",
+    "thread": "Conversazioni",
+    "notifications": "Notifiche",
+    "empty": "Non hai silenziato nessuna parola.",
+    "remove": "Riattiva",
+    "until": "Fino al {{date}}",
+    "filtered": "Filtrato: {{phrase}}",
+    "showAnyway": "Mostra comunque",
+    "failed": "Non è stato salvato. Riprova."
+  },
+  "postVisibility": {
+    "label": "Chi può vederlo",
+    "public": "Tutti",
+    "followers": "Solo follower",
+    "direct": "Solo persone menzionate",
+    "noRepost": "Solo i post pubblici possono essere ripubblicati",
+    "directHint": "Solo le persone che menzioni con @ vedranno questo post",
+    "needsMention": "Menziona almeno una persona con @ per pubblicare solo per le persone menzionate"
+  },
+  "replyPolicy": {
+    "label": "Chi può rispondere",
+    "public": "Chiunque",
+    "followers": "I tuoi follower",
+    "following": "Persone che segui",
+    "mentioned": "Solo menzionati",
+    "noticeFollowers": "Solo i follower dell'autore possono rispondere",
+    "noticeFollowing": "Solo le persone seguite dall'autore possono rispondere",
+    "noticeMentioned": "Solo le persone menzionate nel post possono rispondere",
+    "refused": "L'autore ha limitato chi può rispondere a questo post"
+  },
+  "quotePolicy": {
+    "label": "Chi può citare",
+    "public": "Chiunque",
+    "followers": "Follower",
+    "nobody": "Solo io",
+    "off": "L'autore ha disattivato le citazioni",
+    "removed": "L'autore ha rimosso il suo post da questa citazione",
+    "remove": "Rimuovi",
+    "removedToast": "Il tuo post è stato rimosso da questa citazione",
+    "removeFailed": "Impossibile rimuovere il tuo post dalla citazione",
+    "refused": "L'autore non ti permette di citare questo post"
+  },
+  "contentWarning": {
+    "label": "Avviso sui contenuti",
+    "placeholder": "Scrivi qui il tuo avviso",
+    "add": "Aggiungi avviso sui contenuti",
+    "remove": "Rimuovi avviso sui contenuti",
+    "show": "Mostra post"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Aggiungi una descrizione",
+    "edit": "Modifica descrizione",
+    "titleImage": "Descrivi questa immagine",
+    "titleVideo": "Descrivi questo video",
+    "help": "Per chi non può vederla. Gli screen reader la leggono ad alta voce.",
+    "placeholder": "Cosa mostra? Includi l'eventuale testo presente.",
+    "show": "Mostra descrizione",
+    "saved": "Descrizione salvata",
+    "saveFailed": "Impossibile salvare la descrizione"
+  },
   "postGate": {
     "holdShortUnknown": "Non hai ancora abbastanza {{symbol}}. Questo post richiede {{needed}}.",
     "holdShort": "Hai {{held}} {{symbol}}. Questo post richiede {{needed}}."
@@ -340,6 +470,11 @@
     "showAsNewMemberDesc": "Fa vedere agli altri membri che sei appena arrivato, così possono darti il benvenuto. Finisce automaticamente 30 giorni dopo l'iscrizione.",
     "postVisibility": "Visibilità post",
     "defaultPostVisibility": "Visibilità predefinita",
+    "defaultFeed": "Feed predefinito",
+    "defaultFeedDesc": "Scegli quale feed si apre ogni volta che apri DeHub",
+    "feedToggles": "Reimposta i filtri del feed",
+    "feedTogglesDesc": "I filtri che attivi in un feed restano predefiniti finché non li reimposti",
+    "feedTogglesCleared": "Filtri del feed reimpostati",
     "defaultProfileTab": "Scheda profilo predefinita",
     "defaultProfileTabDesc": "Scegli quale scheda vedono per prima i visitatori sul tuo profilo",
     "defaultPostVisibilityDesc": "Si applica a tutti i post attuali e futuri",
@@ -868,6 +1003,7 @@
     "themeColorBrandFailed": "Non è stato possibile leggere i colori della tua foto profilo"
   },
   "common": {
+    "refresh": "Aggiorna",
     "mute": "Disattiva audio",
     "unmute": "Attiva audio",
     "fullscreen": "Schermo intero",
@@ -983,6 +1119,9 @@
     "tokenAmount": "{{amount}} token"
   },
   "postOptions": {
+    "embed": "Incorpora",
+    "copyEmbedCode": "Copia codice di incorporamento",
+    "embedCodeCopied": "Codice di incorporamento copiato",
     "skippableSectionsDesc": "Segna o vota sponsor e intro",
     "skippableSections": "Sezioni saltabili",
     "options": "Opzioni",
@@ -2843,6 +2982,8 @@
     "yourFractions": "Detieni {{count}} di {{total}} frazioni"
   },
   "profileOptions": {
+    "copyRssFeed": "Copia link del feed RSS",
+    "copyRssFeedHint": "Segui questi post in qualsiasi lettore di feed",
     "copyProfileUrl": "Copia URL profilo",
     "copyUsername": "Copia nome utente",
     "copyAddress": "Copia indirizzo",
@@ -4217,6 +4358,7 @@
     "filedOn": "Aperto il {{date}}"
   },
   "stages": {
+    "previewFailed": "Impossibile riprodurre l'anteprima nella stanza audio",
     "allStages": "Tutte le stanze audio",
     "addToCalendar": "Aggiungi al calendario",
     "nowPlaying": "In riproduzione",
@@ -4589,6 +4731,7 @@
     "anyBadgeHolder": "Ogni possessore di badge ottiene Superpoteri. Acquista token DeHub per sbloccare un badge: lo staking non è richiesto."
   },
   "follow": {
+    "noResults": "Nessun risultato trovato",
     "followers": "Follower",
     "following": "Following",
     "requests": "Richieste",
@@ -4672,7 +4815,10 @@
     "play": "Riproduci",
     "pause": "Pausa",
     "listens_one": "{{count}} ascolto",
-    "listens_other": "{{count}} ascolti"
+    "listens_other": "{{count}} ascolti",
+    "lyrics": "Testo",
+    "lyricsLoading": "Cerco il testo…",
+    "lyricsNone": "Nessun testo trovato"
   },
   "transfer": {
     "arcTitle": "Invia USDC su Arc",
@@ -5639,6 +5785,8 @@
     "creatorEarnsDirect": "Gli abbonati pagano in token DeHub. La tua quota arriva nel tuo portafoglio nel momento in cui si iscrivono, meno la commissione della piattaforma per il tuo livello di badge."
   },
   "live": {
+    "bigEvent": "Grande evento",
+    "bigEventHint": "Per un grande pubblico: gli spettatori guardano con circa 20 secondi di ritardo, con meno interruzioni.",
     "notSet": "Non impostato",
     "liveChat": "Chat dal vivo",
     "pickDate": "Scegli la data",
@@ -7281,6 +7429,7 @@
       "delete": "Elimina"
     },
     "export": {
+      "cancel": "Annulla",
       "scope": "Intervallo di download",
       "downloadTimeline": "Intera sequenza temporale",
       "downloadSelection": "Video selezionati ({{count}})",
@@ -7571,6 +7720,7 @@
     }
   },
   "creator": {
+    "sending": "Invio in corso",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Senza titolo",
@@ -8087,6 +8237,7 @@
     "transferIncomplete": "Il trasferimento del token non è stato completato. Ti verrà chiesto di nuovo prima del tuo prossimo post a pagamento."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Cerca emoji",
     "noEmoji": "Nessuna emoji trovata",
     "searchResults": "Risultati della ricerca",
@@ -9715,5 +9866,15 @@
     "youAreBanned": "Non puoi chattare negli stream di questo creatore",
     "youAreTimedOut": "Sei temporaneamente bloccato",
     "title": "Modera"
+  },
+  "loginStack": {
+    "tip": "Mancia in DHB",
+    "headlineTop": "Possiederai tutto",
+    "headlineAccent": "e sarai felice.",
+    "orContinueWith": "oppure continua con",
+    "phone": "Telefono",
+    "fingerprint": "Impronta",
+    "exploreFirst": "Esplora prima",
+    "codeNote": "Ti inviamo un codice via email, senza password."
   }
 }

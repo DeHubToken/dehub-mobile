@@ -6,7 +6,6 @@ export const ALCHEMY_API_KEY = 'test-alchemy-key';
 export const WEB3AUTH_CLIENT_ID = 'test-web3auth-client-id';
 export const APP_ORIGIN = 'https://test.dehub.io';
 export const WEBSOCKET_URL = 'wss://ws.test.dehub.io';
-export const LIVEPEER_API_KEY = 'test-livepeer-key';
 export const DEBUG = 'false';
 export const AUTH_PROVIDER = 'web3auth';
 export const TENOR_API_KEY = 'test-tenor-key';

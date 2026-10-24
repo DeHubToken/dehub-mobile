@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "已連接嘅 app",
+    "connectedDescription": "你用呢個帳戶登入過嘅 Mastodon app。移除一個就會將佢登出。",
+    "connectedEmpty": "仲未連接任何 app。",
+    "lastUsed": "上次用 {{date}}",
+    "remove": "移除",
+    "removed": "已移除 app",
+    "failed": "唔得。再試過。"
+  },
+  "fediverse": {
+    "title": "聯邦宇宙",
+    "description": "Mastodon 同其他聯邦宇宙 app 上嘅人可以用呢個地址搵到你同追蹤你。你新嘅公開帖子會喺嗰度送到佢哋。",
+    "copy": "複製",
+    "copied": "已複製",
+    "privateNote": "私人帳戶唔會喺聯邦宇宙顯示。",
+    "noUsername": "揀個用戶名就會有聯邦宇宙地址。"
+  },
+  "profileFields": {
+    "title": "個人檔案欄位",
+    "description": "喺個人檔案加最多四行，例如網站或者你嘅代名詞。",
+    "label": "標籤",
+    "content": "內容",
+    "save": "儲存欄位",
+    "saved": "已儲存個人檔案欄位",
+    "failed": "儲存唔到，請再試吓。",
+    "verified": "已驗證連結",
+    "verifyHint": "要驗證連結，請將呢段加入嗰個頁面，然後再儲存一次：{{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "過濾以下來源嘅通知",
+    "description": "揀選圈子以外嘅人同你互動嘅時候會點。被過濾嘅通知會留喺「已過濾」，唔會有角標，亦唔會推送。",
+    "notFollowing": "你冇追蹤嘅人",
+    "notFollowers": "冇追蹤你嘅人",
+    "newAccounts": "新帳戶（唔夠 30 日）",
+    "accept": "通知我",
+    "filter": "過濾",
+    "drop": "完全隱藏",
+    "filteredTitle": "已過濾嘅通知",
+    "filteredEmpty": "冇嘢被過濾。",
+    "failed": "儲存唔到，請再試吓。"
+  },
+  "followedTags": {
+    "follow": "追蹤 #{{tag}}",
+    "following": "追蹤緊",
+    "unfollow": "取消追蹤 #{{tag}}",
+    "followed": "而家追蹤緊 #{{tag}}，相關帖子會喺你嘅追蹤動態出現。",
+    "unfollowed": "已取消追蹤 #{{tag}}",
+    "failed": "儲存唔到，請再試吓。",
+    "clear": "清除"
+  },
+  "keywordFilters": {
+    "title": "靜音字詞",
+    "description": "隱藏包含呢啲字詞嘅帖子同留言，或者摺埋喺提示後面。呢個清單淨係你睇到。",
+    "placeholder": "字詞或者短語",
+    "add": "靜音",
+    "added": "已靜音：{{phrase}}",
+    "wholeWord": "只限完整字詞",
+    "whenMatches": "帖子符合嘅時候",
+    "warn": "顯示提示",
+    "hide": "隱藏",
+    "howLong": "幾耐",
+    "forever": "直到我刪除",
+    "duration1h": "1 個鐘",
+    "duration1d": "1 日",
+    "duration7d": "7 日",
+    "duration30d": "30 日",
+    "where": "喺邊度",
+    "home": "主頁",
+    "public": "探索同搜尋",
+    "profile": "個人檔案",
+    "thread": "對話",
+    "notifications": "通知",
+    "empty": "你未有靜音任何字詞。",
+    "remove": "取消靜音",
+    "until": "直到 {{date}}",
+    "filtered": "已過濾：{{phrase}}",
+    "showAnyway": "照樣顯示",
+    "failed": "儲存唔到，請再試吓。"
+  },
+  "postVisibility": {
+    "label": "邊個可以睇到",
+    "public": "所有人",
+    "followers": "只限追蹤者",
+    "direct": "只限被提及嘅人",
+    "noRepost": "只有公開帖子可以轉發",
+    "directHint": "只有你用 @ 提及嘅人先會睇到呢個帖子",
+    "needsMention": "用 @ 提及至少一個人，先可以只發俾被提及嘅人"
+  },
+  "replyPolicy": {
+    "label": "邊個可以回覆",
+    "public": "任何人",
+    "followers": "你嘅追蹤者",
+    "following": "你追蹤嘅人",
+    "mentioned": "淨係被提及嘅人",
+    "noticeFollowers": "淨係作者嘅追蹤者可以回覆",
+    "noticeFollowing": "淨係作者追蹤嘅人可以回覆",
+    "noticeMentioned": "淨係帖子入面提及嘅人可以回覆",
+    "refused": "作者限制咗邊個可以回覆呢個帖子"
+  },
+  "quotePolicy": {
+    "label": "邊個可以引用",
+    "public": "任何人",
+    "followers": "追蹤者",
+    "nobody": "淨係我",
+    "off": "作者已經閂咗引用",
+    "removed": "作者已經將自己嘅帖子由呢個引用移走",
+    "remove": "移走",
+    "removedToast": "你嘅帖子已經由呢個引用移走",
+    "removeFailed": "移唔走你嘅帖子",
+    "refused": "作者唔俾你引用呢個帖子"
+  },
+  "contentWarning": {
+    "label": "內容警告",
+    "placeholder": "喺度寫你嘅警告",
+    "add": "加入內容警告",
+    "remove": "移除內容警告",
+    "show": "顯示帖子"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "加入描述",
+    "edit": "編輯描述",
+    "titleImage": "描述呢張圖片",
+    "titleVideo": "描述呢條片",
+    "help": "畀睇唔到嘅人用。螢幕閱讀器會讀出嚟。",
+    "placeholder": "入面有啲咩？圖入面嘅字都寫埋。",
+    "show": "顯示描述",
+    "saved": "已儲存描述",
+    "saveFailed": "儲存唔到描述"
+  },
   "liveRecap": {
     "title": "串流總結",
     "justEnded": "你嘅串流總結",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "等其他成員睇到你啱啱加入，可以歡迎你。註冊之後 30 日自動結束。",
     "postVisibility": "帖文可見度",
     "defaultPostVisibility": "預設帖文可見度",
+    "defaultFeed": "預設動態",
+    "defaultFeedDesc": "揀選每次打開 DeHub 時顯示嘅動態",
+    "feedToggles": "重設動態篩選",
+    "feedTogglesDesc": "你喺動態開咗嘅篩選會保留做預設，直到你重設為止",
+    "feedTogglesCleared": "動態篩選已重設",
     "defaultProfileTab": "預設檔案分頁",
     "defaultProfileTabDesc": "揀訪客喺你檔案上最先睇到邊個分頁",
     "defaultPostVisibilityDesc": "適用於所有現有同未來嘅帖文",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "讀唔到你頭像嘅顏色"
   },
   "common": {
+    "refresh": "刷新",
     "mute": "靜音",
     "unmute": "取消靜音",
     "fullscreen": "全螢幕",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} 個代幣"
   },
   "postOptions": {
+    "embed": "嵌入",
+    "copyEmbedCode": "複製嵌入代碼",
+    "embedCodeCopied": "已複製嵌入代碼",
     "options": "選項",
     "sendTip": "送禮物",
     "queue": "排隊",
@@ -2825,6 +2964,8 @@
     "yourFractions": "您持有 {{count}} 個 {{total}} 分數中的"
   },
   "profileOptions": {
+    "copyRssFeed": "複製 RSS 訂閱連結",
+    "copyRssFeedHint": "喺任何閱讀器都可以追蹤呢啲帖子",
     "copyProfileUrl": "複製個人資料連結",
     "copyUsername": "複製用戶名",
     "copyAddress": "複製地址",
@@ -4144,6 +4285,7 @@
     "noVoice": "你部機冇呢種語言嘅語音。"
   },
   "stages": {
+    "previewFailed": "喺台上播放唔到預覽",
     "allStages": "所有語音房",
     "addToCalendar": "加入日曆",
     "nowPlaying": "正在播放",
@@ -4515,6 +4657,7 @@
     "anyBadgeHolder": "任何徽章持有者都可以獲得超級能力。購買 DeHub 代幣以解鎖徽章 — 無需質押。"
   },
   "follow": {
+    "noResults": "找不到結果",
     "followers": "追隨者",
     "following": "正在追蹤",
     "requests": "請求",
@@ -4598,7 +4741,10 @@
     "play": "玩",
     "pause": "暫停",
     "listens_one": "{{count}} 聽",
-    "listens_other": "{{count}} 聽緊"
+    "listens_other": "{{count}} 聽緊",
+    "lyrics": "歌詞",
+    "lyricsLoading": "搵緊歌詞…",
+    "lyricsNone": "搵唔到歌詞"
   },
   "transfer": {
     "arcTitle": "喺 Arc 傳送 USDC",
@@ -4664,7 +4810,7 @@
     "kindVideo": "影片",
     "kindAudio": "音頻",
     "kindImage": "圖片",
-    "tileSourceKind": "{{ 來源 } } · {{ 種類 } }",
+    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "喺發佈之前睇吓",
     "reviewSubtitle": "由 {{source}} ，作為 {{kind}} 。編輯任何你鍾意嘅內容 — 將標題留空，以保留原始內容。",
     "reviewName": "標題:",
@@ -5524,6 +5670,8 @@
     "creatorEarnsDirect": "訂閱者用 DeHub 代幣付款。當佢哋訂閱嗰陣，你嘅份額就會喺你嘅銀包入面，減去你嘅徽章層嘅平台費用。"
   },
   "live": {
+    "bigEvent": "大型活動",
+    "bigEventHint": "啱大量觀眾：觀眾會遲大約 20 秒睇，但冇咁易斷。",
     "notSet": "未設定",
     "liveChat": "直播聊天",
     "pickDate": "選擇日期",
@@ -7136,6 +7284,7 @@
       "delete": "刪除"
     },
     "export": {
+      "cancel": "取消",
       "scope": "下載範圍",
       "downloadTimeline": "成個時間線",
       "downloadSelection": "所選影片片段（ {{count}} ）",
@@ -7413,6 +7562,7 @@
     }
   },
   "creator": {
+    "sending": "正在傳送",
     "navStudio": "工作室",
     "editor": "編輯器",
     "untitled": "未命名",
@@ -7978,6 +8128,7 @@
     "transferIncomplete": "代幣轉移未完成。喺你下一個付費帖子之前，我哋會再問你一次。"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "搜尋表情符號",
     "noEmoji": "搵唔到表情符號",
     "searchResults": "搜尋結果",

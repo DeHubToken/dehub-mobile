@@ -16,6 +16,11 @@ interface EmailLoginFlowProps {
   disabled?: boolean;
   /** See PhoneLoginFlow — lets the host screen scroll this clear of the keyboard. */
   onExpand?: (node: View | null) => void;
+  /**
+   * Render the field already open (the email-first sign-in layout). It does
+   * not grab focus on mount, so the keyboard stays down until the person taps.
+   */
+  startOpen?: boolean;
 }
 
 const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
@@ -24,10 +29,11 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   loading,
   disabled,
   onExpand,
+  startOpen,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
-  const [showInput, setShowInput] = useState(false);
+  const [showInput, setShowInput] = useState(!!startOpen);
   const [usePassword, setUsePassword] = useState(false);
   const [email, setEmail] = useSurfaceDraft("components/auth/EmailLoginFlow.tsx:email", "");
   const [password, setPassword] = useState("");
@@ -35,12 +41,12 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   const passwordRef = useRef<TextInput>(null);
   const containerRef = useRef<View>(null);
 
-  // Focus input when it appears
+  // Focus input when it appears (not when it was open from the start)
   useEffect(() => {
-    if (showInput && inputRef.current) {
+    if (showInput && !startOpen && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [showInput]);
+  }, [showInput, startOpen]);
 
   useEffect(() => {
     if (usePassword && passwordRef.current) {
@@ -92,7 +98,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         autoComplete="email"
         autoCapitalize="none"
         autoCorrect={false}
-        autoFocus
+        autoFocus={!startOpen}
         returnKeyType={usePassword ? "next" : "go"}
         onSubmitEditing={usePassword ? () => passwordRef.current?.focus() : handleSubmit}
       />
@@ -117,7 +123,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
       )}
       <AuthButton
         variant="primary"
-        label={usePassword ? t("loginModal.signIn") : t("loginModal.sendCode")}
+        label={usePassword ? t("loginModal.signIn") : startOpen ? t("loginModal.continueEmail") : t("loginModal.sendCode")}
         onPress={handleSubmit}
         disabled={!isValid || disabled}
         loading={loading}

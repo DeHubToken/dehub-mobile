@@ -37,6 +37,12 @@ export type LiveSettingsState = {
    * not shown in the settings panel — the menu is where the choice is made.
    */
   useEncoder: boolean;
+  /**
+   * Deliver over HLS from about twenty seconds behind live instead of WebRTC,
+   * for a broadcast expected to draw a crowd. Optional so a draft saved before
+   * it existed restores as a normal broadcast.
+   */
+  bigEvent?: boolean;
 };
 
 export const INITIAL_LIVE_SETTINGS: LiveSettingsState = {
@@ -45,6 +51,7 @@ export const INITIAL_LIVE_SETTINGS: LiveSettingsState = {
   scheduledDate: null,
   minTip: "1000",
   useEncoder: false,
+  bigEvent: false,
 };
 
 type LiveSettingsPanelProps = {
@@ -107,6 +114,13 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
   const handleChatToggle = useCallback(
     (val: boolean) => {
       onChange({ ...state, enableChat: val });
+    },
+    [state, onChange],
+  );
+
+  const handleBigEventToggle = useCallback(
+    (val: boolean) => {
+      onChange({ ...state, bigEvent: val });
     },
     [state, onChange],
   );
@@ -207,6 +221,22 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
         <CustomSwitch
           value={state.enableChat}
           onValueChange={handleChatToggle}
+        />
+      </View>
+
+      <View className="flex-row items-center justify-between py-3">
+        <View className="flex-row items-center flex-1 pr-3">
+          <Ionicons name="people-outline" size={20} color="#fff" />
+          <View className="ml-3 flex-1">
+            <Text className="text-white text-sm">{t("live.bigEvent")}</Text>
+            <Text className="text-theme-neutrals-400 text-xs mt-0.5">
+              {t("live.bigEventHint")}
+            </Text>
+          </View>
+        </View>
+        <CustomSwitch
+          value={!!state.bigEvent}
+          onValueChange={handleBigEventToggle}
         />
       </View>
 

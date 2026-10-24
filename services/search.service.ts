@@ -52,6 +52,8 @@ export interface SearchContentResult {
   description?: string;
   imageUrl?: string;
   videoUrl?: string;
+  /** HLS master playlist key; see UnifiedFeedItem.hlsUrl. */
+  hlsUrl?: string;
   videoDuration?: number;
   postType?: 'video' | 'live' | 'feed-simple' | 'feed-images' | 'feed-audio';
   audioUrl?: string;

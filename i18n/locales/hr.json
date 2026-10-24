@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Povezane aplikacije",
+    "connectedDescription": "Aplikacije za Mastodon u koje si se prijavio ovim računom. Ukloni jednu da je odjaviš.",
+    "connectedEmpty": "Još nema povezanih aplikacija.",
+    "lastUsed": "Zadnje korišteno {{date}}",
+    "remove": "Ukloni",
+    "removed": "Aplikacija uklonjena",
+    "failed": "Nije uspjelo. Pokušaj ponovno."
+  },
+  "fediverse": {
+    "title": "Fediverzum",
+    "description": "Ljudi na Mastodonu i u drugim aplikacijama fediverzuma mogu te pronaći i pratiti na ovoj adresi. Tvoje nove javne objave tamo stižu do njih.",
+    "copy": "Kopiraj",
+    "copied": "Kopirano",
+    "privateNote": "Privatni računi ne prikazuju se u fediverzumu.",
+    "noUsername": "Odaberi korisničko ime da dobiješ adresu u fediverzumu."
+  },
+  "profileFields": {
+    "title": "Polja profila",
+    "description": "Do četiri dodatna retka na tvom profilu, poput web-stranice ili tvojih zamjenica.",
+    "label": "Oznaka",
+    "content": "Sadržaj",
+    "save": "Spremi polja",
+    "saved": "Polja profila spremljena",
+    "failed": "Nije spremljeno. Pokušaj ponovno.",
+    "verified": "Potvrđena poveznica",
+    "verifyHint": "Za potvrdu poveznice dodaj ovo na tu stranicu pa ponovno spremi: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Filtriraj obavijesti od",
+    "description": "Odaberi što se događa kad netko izvan tvog kruga stupi u interakciju s tobom. Filtrirane obavijesti čekaju pod Filtrirano, bez oznake i bez push obavijesti.",
+    "notFollowing": "Ljudi koje ne pratiš",
+    "notFollowers": "Ljudi koji te ne prate",
+    "newAccounts": "Novi računi (mlađi od 30 dana)",
+    "accept": "Obavijesti me",
+    "filter": "Filtriraj",
+    "drop": "Potpuno sakrij",
+    "filteredTitle": "Filtrirane obavijesti",
+    "filteredEmpty": "Ništa nije filtrirano.",
+    "failed": "Nije spremljeno. Pokušaj ponovno."
+  },
+  "followedTags": {
+    "follow": "Prati #{{tag}}",
+    "following": "Pratiš",
+    "unfollow": "Prestani pratiti #{{tag}}",
+    "followed": "Sada pratiš #{{tag}}. Njegove objave pojavit će se u tvom feedu Praćeno.",
+    "unfollowed": "Prestao si pratiti #{{tag}}",
+    "failed": "Nije spremljeno. Pokušaj ponovno.",
+    "clear": "Očisti"
+  },
+  "keywordFilters": {
+    "title": "Utišane riječi",
+    "description": "Sakrij objave i komentare s ovim riječima ili ih presavij iza upozorenja. Samo ti vidiš ovaj popis.",
+    "placeholder": "Riječ ili izraz",
+    "add": "Utišaj",
+    "added": "Utišano: {{phrase}}",
+    "wholeWord": "Samo cijela riječ",
+    "whenMatches": "Kad se objava podudara",
+    "warn": "Prikaži upozorenje",
+    "hide": "Sakrij",
+    "howLong": "Koliko dugo",
+    "forever": "Dok je ne uklonim",
+    "duration1h": "Na 1 sat",
+    "duration1d": "Na 1 dan",
+    "duration7d": "Na 7 dana",
+    "duration30d": "Na 30 dana",
+    "where": "Gdje",
+    "home": "Početna",
+    "public": "Istraži i pretraži",
+    "profile": "Profili",
+    "thread": "Razgovori",
+    "notifications": "Obavijesti",
+    "empty": "Nisi utišao nijednu riječ.",
+    "remove": "Poništi utišavanje",
+    "until": "Do {{date}}",
+    "filtered": "Filtrirano: {{phrase}}",
+    "showAnyway": "Ipak prikaži",
+    "failed": "Nije spremljeno. Pokušaj ponovno."
+  },
+  "postVisibility": {
+    "label": "Tko ovo može vidjeti",
+    "public": "Svi",
+    "followers": "Samo pratitelji",
+    "direct": "Samo spomenute osobe",
+    "noRepost": "Ponovno se mogu objaviti samo javne objave",
+    "directHint": "Samo osobe koje spomenete s @ vidjet će ovu objavu",
+    "needsMention": "Spomenite barem jednu osobu s @ da biste objavili samo za spomenute"
+  },
+  "replyPolicy": {
+    "label": "Tko može odgovoriti",
+    "public": "Bilo tko",
+    "followers": "Vaši pratitelji",
+    "following": "Ljudi koje pratite",
+    "mentioned": "Samo spomenuti",
+    "noticeFollowers": "Odgovoriti mogu samo pratitelji autora",
+    "noticeFollowing": "Odgovoriti mogu samo ljudi koje autor prati",
+    "noticeMentioned": "Odgovoriti mogu samo ljudi spomenuti u objavi",
+    "refused": "Autor je ograničio tko može odgovoriti na ovu objavu"
+  },
+  "quotePolicy": {
+    "label": "Tko može citirati",
+    "public": "Bilo tko",
+    "followers": "Pratitelji",
+    "nobody": "Samo ja",
+    "off": "Autor je isključio citiranje",
+    "removed": "Autor je uklonio svoju objavu iz ovog citata",
+    "remove": "Ukloni",
+    "removedToast": "Vaša objava uklonjena je iz ovog citata",
+    "removeFailed": "Vašu objavu nije moguće ukloniti iz citata",
+    "refused": "Autor vam ne dopušta citiranje ove objave"
+  },
+  "contentWarning": {
+    "label": "Upozorenje o sadržaju",
+    "placeholder": "Ovdje napišite upozorenje",
+    "add": "Dodaj upozorenje o sadržaju",
+    "remove": "Ukloni upozorenje o sadržaju",
+    "show": "Prikaži objavu"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Dodaj opis",
+    "edit": "Uredi opis",
+    "titleImage": "Opišite ovu sliku",
+    "titleVideo": "Opišite ovaj videozapis",
+    "help": "Za ljude koji je ne mogu vidjeti. Čitači zaslona čitaju ga naglas.",
+    "placeholder": "Što prikazuje? Uključite i tekst koji sadrži.",
+    "show": "Prikaži opis",
+    "saved": "Opis je spremljen",
+    "saveFailed": "Opis nije moguće spremiti"
+  },
   "liveRecap": {
     "pollWinner": "{{option}} je pobijedio",
     "title": "Rekapitulacija streama",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "Omogućuje drugim članovima da vide da si tek stigao kako bi te mogli pozdraviti. Automatski završava 30 dana nakon registracije.",
     "postVisibility": "Vidljivost objava",
     "defaultPostVisibility": "Zadana vidljivost objava",
+    "defaultFeed": "Zadani feed",
+    "defaultFeedDesc": "Odaberite koji se feed otvara svaki put kad otvorite DeHub",
+    "feedToggles": "Poništi filtre feeda",
+    "feedTogglesDesc": "Filtri koje uključite u feedu ostaju vaši zadani dok ih ne poništite",
+    "feedTogglesCleared": "Filtri feeda poništeni",
     "defaultProfileTab": "Zadana kartica profila",
     "defaultProfileTabDesc": "Odaberite koju karticu posjetitelji prvo vide na vašem profilu",
     "defaultPostVisibilityDesc": "Primjenjuje se na sve trenutne i buduće objave",
@@ -862,6 +997,7 @@
     "themeColorBrandFailed": "Nije bilo moguće očitati boje s vaše profilne slike"
   },
   "common": {
+    "refresh": "Osvježi",
     "mute": "Isključi zvuk",
     "unmute": "Uključi zvuk",
     "fullscreen": "Cijeli zaslon",
@@ -975,6 +1111,9 @@
     "tokenAmount": "{{amount}} tokena"
   },
   "postOptions": {
+    "embed": "Ugradi",
+    "copyEmbedCode": "Kopiraj kod za ugradnju",
+    "embedCodeCopied": "Kod za ugradnju kopiran",
     "options": "Mogućnosti",
     "sendTip": "Pošalji napojnicu",
     "queue": "Red čekanja",
@@ -2827,6 +2966,8 @@
     "yourFractions": "Posjedujete {{count}} od {{total}} udjela"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopiraj poveznicu RSS feeda",
+    "copyRssFeedHint": "Pratite ove objave u bilo kojem čitaču feedova",
     "copyProfileUrl": "Kopiraj URL profila",
     "copyUsername": "Kopiraj korisničko ime",
     "copyAddress": "Kopiraj adresu",
@@ -4150,6 +4291,7 @@
     "noVoice": "Vaš uređaj nema glas za ovaj jezik."
   },
   "stages": {
+    "previewFailed": "Nije moguće reproducirati pregled u audio sobi",
     "allStages": "Sve audio sobe",
     "addToCalendar": "Dodajte u kalendar",
     "nowPlaying": "Sada se reproducira",
@@ -4522,6 +4664,7 @@
     "anyBadgeHolder": "Svaki vlasnik bedža dobiva Supermoći. Kupite DeHub tokene kako biste otključali bedž — staking nije potreban."
   },
   "follow": {
+    "noResults": "Nema rezultata",
     "followers": "Pratitelji",
     "following": "Prati",
     "requests": "Zahtjevi",
@@ -4605,7 +4748,10 @@
     "play": "Pokreni",
     "pause": "Pauziraj",
     "listens_one": "{{count}} slušaj",
-    "listens_other": "{{count}} sluša"
+    "listens_other": "{{count}} sluša",
+    "lyrics": "Tekst pjesme",
+    "lyricsLoading": "Tražimo tekst…",
+    "lyricsNone": "Tekst nije pronađen"
   },
   "transfer": {
     "arcTitle": "Pošalji USDC na mreži Arc",
@@ -5531,6 +5677,8 @@
     "creatorEarnsDirect": "Pretplatnici plaćaju u DeHub žetonima. Tvoja dionica završava u novčaniku čim se pretplati, umanjena za naknadu za platformu za tvoju razinu značke."
   },
   "live": {
+    "bigEvent": "Veliki događaj",
+    "bigEventHint": "Za veliku publiku: gledatelji gledaju s kašnjenjem od oko 20 sekundi, uz manje prekida.",
     "notSet": "Nije postavljeno",
     "liveChat": "Chat uživo",
     "pickDate": "Odaberi datum",
@@ -7146,6 +7294,7 @@
       "delete": "Izbriši"
     },
     "export": {
+      "cancel": "Otkaži",
       "scope": "Preuzmi raspon",
       "downloadTimeline": "Cijeli vremenski okvir",
       "downloadSelection": "Odabrani video isječci ({{count}})",
@@ -7425,6 +7574,7 @@
     }
   },
   "creator": {
+    "sending": "Slanje",
     "navStudio": "Studio",
     "editor": "Uređivač",
     "untitled": "Bez naslova",
@@ -7991,6 +8141,7 @@
     "transferIncomplete": "Prijenos tokena nije dovršen. Ponovno ćemo te pitati prije sljedeće plaćene objave."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Pretraži emoji",
     "noEmoji": "Nema pronađenih emojija",
     "searchResults": "Rezultati pretraživanja",

@@ -11,7 +11,7 @@
  *    (`TAB_ORDER` in screens/HomeScreen.tsx), so hiding one is a pager change,
  *    not a settings change.
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Slider from '@react-native-community/slider';
@@ -22,8 +22,18 @@ import {
   SettingsSection,
   SettingsLinkRow,
   SettingsToggleRow,
+  SettingsOptionModal,
   Divider,
 } from './SettingsPrimitives';
+import {
+  FEED_TAB_ORDER,
+  feedDefaultsEvents,
+  getDefaultFeedTab,
+  hasFeedToggles,
+  resetFeedToggles,
+  setDefaultFeedTab,
+  type AppFeedTab,
+} from '../../libs/feed-defaults';
 import ThemePicker from './ThemePicker';
 import ThemeColorPicker from './ThemeColorPicker';
 import { hasThemeColor } from '../../theme/themeColor';
@@ -37,6 +47,7 @@ import {
 } from '../../libs/video-preferences';
 import i18nInstance, { SUPPORTED_LANGUAGES } from '../../i18n';
 import { useAppTheme } from '../../context/ThemeContext';
+import { toastSuccess } from '../../libs/toast';
 
 const AppearancePanel: React.FC = () => {
   const { t } = useTranslation();
@@ -73,6 +84,23 @@ const AppearancePanel: React.FC = () => {
       ],
     );
   };
+
+  // Default feed + saved toggles (libs/feed-defaults), shared with web.
+  const [defaultFeed, setDefaultFeed] = useState<AppFeedTab>(() => getDefaultFeedTab());
+  const [feedModalVisible, setFeedModalVisible] = useState(false);
+  const [savedToggles, setSavedToggles] = useState(() => hasFeedToggles());
+  useEffect(() => feedDefaultsEvents.subscribe(() => {
+    setSavedToggles(hasFeedToggles());
+    setDefaultFeed(getDefaultFeedTab());
+  }), []);
+  const feedLabel = (tab: AppFeedTab) => ({
+    all: t('feed.home', 'Home'),
+    short: t('feed.shorts', 'Shorts'),
+    'feed-images': t('feed.images', 'Images'),
+    video: t('feed.videos', 'Videos'),
+    'feed-audio': t('feed.music', 'Music'),
+    live: t('feed.live', 'Live'),
+  })[tab];
 
   const languageName =
     SUPPORTED_LANGUAGES.find((l) => l.code === currentLang)?.nativeName ?? 'English';
@@ -141,6 +169,32 @@ const AppearancePanel: React.FC = () => {
             setLanguageModalVisible(true);
           }}
         />
+      </SettingsSection>
+
+      {/* Web's Layout rows: which feed a launch opens on, and a way back
+          from the filter toggles that stay on as defaults. */}
+      <SettingsSection label={t('settings.layout', 'Layout')} icon="LayoutGrid" anchor="default-feed">
+        <SettingsLinkRow
+          icon="House"
+          label={t('settings.defaultFeed', 'Default feed')}
+          description={t('settings.defaultFeedDesc', 'Choose which feed opens every time you open DeHub')}
+          value={feedLabel(defaultFeed)}
+          onPress={() => setFeedModalVisible(true)}
+        />
+        <Divider />
+        <SettingsAnchor id="feed-toggles">
+          <SettingsLinkRow
+            icon="Filter"
+            label={t('settings.feedToggles', 'Reset feed toggles')}
+            description={t('settings.feedTogglesDesc', 'Filters you turn on in a feed stay on as your defaults until you reset them')}
+            value={savedToggles ? t('settings.reset', 'Reset') : undefined}
+            disabled={!savedToggles}
+            onPress={() => {
+              resetFeedToggles();
+              toastSuccess(t('settings.feedTogglesCleared', 'Feed toggles reset'));
+            }}
+          />
+        </SettingsAnchor>
       </SettingsSection>
 
       <SettingsSection label={t('settings.media')} icon="Play" anchor="media">
@@ -228,6 +282,19 @@ const AppearancePanel: React.FC = () => {
           onPress={resetChannelSpeeds}
         />
       </SettingsSection>
+
+      <SettingsOptionModal
+        visible={feedModalVisible}
+        onClose={() => setFeedModalVisible(false)}
+        title={t('settings.defaultFeed', 'Default feed')}
+        value={defaultFeed}
+        options={FEED_TAB_ORDER.map((tab) => ({ value: tab, label: feedLabel(tab) }))}
+        onSelect={(value) => {
+          setDefaultFeed(value as AppFeedTab);
+          setDefaultFeedTab(value as AppFeedTab);
+        }}
+        maxHeight="70%"
+      />
 
       <LanguageSelectModal
         visible={languageModalVisible}

@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "የተገናኙ መተግበሪያዎች",
+    "connectedDescription": "በዚህ መለያ የገቡባቸው የMastodon መተግበሪያዎች። ለማስወጣት አንዱን ያስወግዱ።",
+    "connectedEmpty": "እስካሁን የተገናኘ መተግበሪያ የለም።",
+    "lastUsed": "ለመጨረሻ ጊዜ የተጠቀሙት {{date}}",
+    "remove": "አስወግድ",
+    "removed": "መተግበሪያው ተወግዷል",
+    "failed": "አልሰራም። እንደገና ይሞክሩ።"
+  },
+  "fediverse": {
+    "title": "ፌዲቨርስ",
+    "description": "በማስቶዶን እና በሌሎች የፌዲቨርስ መተግበሪያዎች ያሉ ሰዎች በዚህ አድራሻ ሊያገኙዎትና ሊከተሉዎት ይችላሉ። አዲሶቹ ይፋዊ ልጥፎችዎ እዚያ ይደርሷቸዋል።",
+    "copy": "ቅዳ",
+    "copied": "ተቀድቷል",
+    "privateNote": "የግል መለያዎች በፌዲቨርስ ላይ አይታዩም።",
+    "noUsername": "የፌዲቨርስ አድራሻ ለማግኘት የተጠቃሚ ስም ይምረጡ።"
+  },
+  "profileFields": {
+    "title": "የመገለጫ መስኮች",
+    "description": "በመገለጫዎ ላይ እስከ አራት ተጨማሪ መስመሮች፣ ለምሳሌ ድረ-ገጽ ወይም ተውላጠ ስሞችዎ።",
+    "label": "መለያ",
+    "content": "ይዘት",
+    "save": "መስኮችን አስቀምጥ",
+    "saved": "የመገለጫ መስኮች ተቀምጠዋል",
+    "failed": "አልተቀመጠም። እንደገና ይሞክሩ።",
+    "verified": "የተረጋገጠ አገናኝ",
+    "verifyHint": "አገናኝን ለማረጋገጥ ይህን በዚያ ገጽ ላይ ያክሉ፣ ከዚያ እንደገና ያስቀምጡ፦ {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "ማሳወቂያዎችን አጣራ ከ",
+    "description": "ከክበብዎ ውጪ ያለ ሰው ከእርስዎ ጋር ሲገናኝ ምን እንደሚሆን ይምረጡ። የተጣሩ ማሳወቂያዎች ያለ ምልክትና ያለ ግፊት ማሳወቂያ በ«የተጣሩ» ስር ይጠብቃሉ።",
+    "notFollowing": "የማይከተሏቸው ሰዎች",
+    "notFollowers": "የማይከተሉዎ ሰዎች",
+    "newAccounts": "አዲስ መለያዎች (ከ30 ቀን በታች)",
+    "accept": "አሳውቀኝ",
+    "filter": "አጣራ",
+    "drop": "ሙሉ በሙሉ ደብቅ",
+    "filteredTitle": "የተጣሩ ማሳወቂያዎች",
+    "filteredEmpty": "ምንም አልተጣራም።",
+    "failed": "አልተቀመጠም። እንደገና ይሞክሩ።"
+  },
+  "followedTags": {
+    "follow": "#{{tag}}ን ተከተል",
+    "following": "እየተከተሉ ነው",
+    "unfollow": "#{{tag}}ን አትከተል",
+    "followed": "አሁን #{{tag}}ን እየተከተሉ ነው። ልጥፎቹ በሚከተሏቸው ምግብ ውስጥ ይታያሉ።",
+    "unfollowed": "#{{tag}}ን መከተል አቁመዋል",
+    "failed": "አልተቀመጠም። እንደገና ይሞክሩ።",
+    "clear": "አጽዳ"
+  },
+  "keywordFilters": {
+    "title": "የተዘጉ ቃላት",
+    "description": "እነዚህን ቃላት የያዙ ልጥፎችንና አስተያየቶችን ደብቅ ወይም ከማስጠንቀቂያ ጀርባ አጥፋቸው። ይህን ዝርዝር የሚያዩት እርስዎ ብቻ ነዎት።",
+    "placeholder": "ቃል ወይም ሐረግ",
+    "add": "ዝጋ",
+    "added": "ተዘግቷል፦ {{phrase}}",
+    "wholeWord": "ሙሉ ቃል ብቻ",
+    "whenMatches": "ልጥፍ ሲዛመድ",
+    "warn": "ማስጠንቀቂያ አሳይ",
+    "hide": "ደብቀው",
+    "howLong": "ለምን ያህል ጊዜ",
+    "forever": "እስካስወግደው ድረስ",
+    "duration1h": "ለ1 ሰዓት",
+    "duration1d": "ለ1 ቀን",
+    "duration7d": "ለ7 ቀናት",
+    "duration30d": "ለ30 ቀናት",
+    "where": "የት",
+    "home": "መነሻ",
+    "public": "ያስሱ እና ይፈልጉ",
+    "profile": "መገለጫዎች",
+    "thread": "ውይይቶች",
+    "notifications": "ማሳወቂያዎች",
+    "empty": "ምንም ቃል አልዘጉም።",
+    "remove": "ክፈት",
+    "until": "እስከ {{date}}",
+    "filtered": "ተጣርቷል፦ {{phrase}}",
+    "showAnyway": "ለማንኛውም አሳይ",
+    "failed": "አልተቀመጠም። እንደገና ይሞክሩ።"
+  },
+  "postVisibility": {
+    "label": "ይህን ማን ማየት ይችላል",
+    "public": "ሁሉም",
+    "followers": "ተከታዮች ብቻ",
+    "direct": "የተጠቀሱ ሰዎች ብቻ",
+    "noRepost": "እንደገና ሊለጠፉ የሚችሉት ይፋዊ ልጥፎች ብቻ ናቸው",
+    "directHint": "ይህን ልጥፍ የሚያዩት በ@ የጠቀሷቸው ሰዎች ብቻ ናቸው",
+    "needsMention": "ለተጠቀሱ ሰዎች ብቻ ለመለጠፍ ቢያንስ አንድ ሰው በ@ ይጥቀሱ"
+  },
+  "replyPolicy": {
+    "label": "ማን መልስ መስጠት ይችላል",
+    "public": "ማንኛውም ሰው",
+    "followers": "የእርስዎ ተከታዮች",
+    "following": "የሚከተሏቸው ሰዎች",
+    "mentioned": "የተጠቀሱ ብቻ",
+    "noticeFollowers": "የደራሲው ተከታዮች ብቻ መልስ መስጠት ይችላሉ",
+    "noticeFollowing": "ደራሲው የሚከተላቸው ሰዎች ብቻ መልስ መስጠት ይችላሉ",
+    "noticeMentioned": "በልጥፉ የተጠቀሱ ሰዎች ብቻ መልስ መስጠት ይችላሉ",
+    "refused": "ደራሲው በዚህ ልጥፍ ላይ ማን መልስ መስጠት እንደሚችል ገድቧል"
+  },
+  "quotePolicy": {
+    "label": "ማን መጥቀስ ይችላል",
+    "public": "ማንኛውም ሰው",
+    "followers": "ተከታዮች",
+    "nobody": "እኔ ብቻ",
+    "off": "ደራሲው መጥቀስን አጥፍቷል",
+    "removed": "ደራሲው ልጥፋቸውን ከዚህ ጥቅስ አስወግደዋል",
+    "remove": "አስወግድ",
+    "removedToast": "ልጥፍዎ ከዚህ ጥቅስ ተወግዷል",
+    "removeFailed": "ልጥፍዎን ከጥቅሱ ማስወገድ አልተቻለም",
+    "refused": "ደራሲው ይህን ልጥፍ እንዲጠቅሱ አይፈቅድልዎትም"
+  },
+  "contentWarning": {
+    "label": "የይዘት ማስጠንቀቂያ",
+    "placeholder": "ማስጠንቀቂያዎን እዚህ ይጻፉ",
+    "add": "የይዘት ማስጠንቀቂያ ያክሉ",
+    "remove": "የይዘት ማስጠንቀቂያን ያስወግዱ",
+    "show": "ልጥፉን አሳይ"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "መግለጫ ያክሉ",
+    "edit": "መግለጫን ያርትዑ",
+    "titleImage": "ይህን ምስል ይግለጹ",
+    "titleVideo": "ይህን ቪዲዮ ይግለጹ",
+    "help": "ማየት ለማይችሉ ሰዎች። የማያ ገጽ አንባቢዎች ጮክ ብለው ያነቡታል።",
+    "placeholder": "ምን ያሳያል? በውስጡ ያለውን ማንኛውንም ጽሑፍ ያካትቱ።",
+    "show": "መግለጫውን አሳይ",
+    "saved": "መግለጫው ተቀምጧል",
+    "saveFailed": "መግለጫውን ማስቀመጥ አልተቻለም"
+  },
   "liveRecap": {
     "title": "ዥረት ዳግም አስጀምር",
     "justEnded": "የእርስዎ ዥረት recap",
@@ -334,6 +464,11 @@
     "showAsNewMemberDesc": "ሌሎች አባላት አሁን እንደተቀላቀሉ አይተው እንኳን ደህና መጡ እንዲሉዎት ያስችላል። ከተመዘገቡ ከ30 ቀናት በኋላ በራስ-ሰር ያበቃል።",
     "postVisibility": "የልጥፍ ታይነት",
     "defaultPostVisibility": "ነባሪ የልጥፍ ታይነት",
+    "defaultFeed": "ነባሪ ፊድ",
+    "defaultFeedDesc": "DeHubን በከፈቱ ቁጥር የትኛው ፊድ እንደሚከፈት ይምረጡ",
+    "feedToggles": "የፊድ ማጣሪያዎችን ዳግም አስጀምር",
+    "feedTogglesDesc": "በፊድ ውስጥ ያበሩዋቸው ማጣሪያዎች ዳግም እስኪያስጀምሩ ድረስ ነባሪዎ ሆነው ይቆያሉ",
+    "feedTogglesCleared": "የፊድ ማጣሪያዎች ዳግም ተጀምረዋል",
     "defaultProfileTab": "ነባሪ የመገለጫ ትር",
     "defaultProfileTabDesc": "ጎብኚዎች በመገለጫዎ ላይ መጀመሪያ የሚያዩትን ትር ይምረጡ",
     "defaultPostVisibilityDesc": "ለሁሉም ያሉና ለወደፊት ልጥፎች ይተገበራል",
@@ -861,6 +996,7 @@
     "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
   },
   "common": {
+    "refresh": "አድስ",
     "mute": "ድምፅ አጥፋ",
     "unmute": "ድምፅ አብራ",
     "fullscreen": "ሙሉ ማያ",
@@ -974,6 +1110,9 @@
     "tokenAmount": "{{amount}} ቶከኖች"
   },
   "postOptions": {
+    "embed": "አካትት",
+    "copyEmbedCode": "የማካተቻ ኮድ ቅዳ",
+    "embedCodeCopied": "የማካተቻ ኮድ ተቀድቷል",
     "options": "አማራጮች",
     "sendTip": "ጥቆማ ላክ",
     "queue": "ወረፋ",
@@ -2845,6 +2984,8 @@
     "yourFractions": "የ {{total}} ክፍልፋዮች {{count}} ያላችሁት እርስዎ ነዎት"
   },
   "profileOptions": {
+    "copyRssFeed": "የRSS ምግብ አገናኝ ቅዳ",
+    "copyRssFeedHint": "እነዚህን ልጥፎች በማንኛውም የምግብ አንባቢ ይከታተሉ",
     "copyProfileUrl": "የመገለጫ URL ቅዳ",
     "copyUsername": "የተጠቃሚ ስም ቅዳ",
     "copyAddress": "አድራሻ ቅዳ",
@@ -4164,6 +4305,7 @@
     "noVoice": "መሣሪያዎ ለዚህ ቋንቋ ድምፅ የለውም።"
   },
   "stages": {
+    "previewFailed": "በመድረክ ላይ ቅድመ እይታን መጫወት አልተቻለም",
     "allStages": "ሁሉም የድምፅ ክፍሎች",
     "addToCalendar": "ወደ የቀን መቁጠሪያ ያክሉ",
     "nowPlaying": "አሁን በመጫወት ላይ",
@@ -4535,6 +4677,7 @@
     "anyBadgeHolder": "ማንኛውም ባጅ ባለቤት የሱፐር ሃይሎችን ያገኛል። ባጅ ለመክፈት የDeHub ቶከኖችን ይግዙ — መንከባከብ አያስፈልግም።"
   },
   "follow": {
+    "noResults": "ምንም ውጤት አልተገኘም",
     "followers": "ተከታዮች",
     "following": "የሚከተሉ",
     "requests": "ጥያቄዎች",
@@ -4618,7 +4761,10 @@
     "play": "አጫውት",
     "pause": "እረፍት",
     "listens_one": "{{count}} ያዳምጡ",
-    "listens_other": "{{count}} ያዳምጡ"
+    "listens_other": "{{count}} ያዳምጡ",
+    "lyrics": "የዘፈን ግጥም",
+    "lyricsLoading": "ግጥም በመፈለግ ላይ…",
+    "lyricsNone": "ምንም ግጥም አልተገኘም"
   },
   "transfer": {
     "arcTitle": "USDC በArc ላይ ላክ",
@@ -4675,7 +4821,7 @@
     "kindAudio": "ኦዲዮ",
     "kindImage": "ሙዚቃ",
     "reviewTitle": "ከመለጠፍዎ በፊት ይገምግሙ",
-    "reviewSubtitle": "ከ {{source}} ፣ እንደ {{kind}}} ። የሚወዱትን ማንኛውንም ነገር ያርትዑ — የመጀመሪያውን ለማቆየት ርዕሱን ባዶ ይተው ።",
+    "reviewSubtitle": "ከ {{source}} ፣ እንደ {{kind}} ። የሚወዱትን ማንኛውንም ነገር ያርትዑ — የመጀመሪያውን ለማቆየት ርዕሱን ባዶ ይተው ።",
     "reviewName": "ርዕስ",
     "reviewNamePlaceholder": "የመጀመሪያውን ርዕስ ለማቆየት ባዶ ይተው",
     "reviewDescription": "መግለጫ",
@@ -5542,6 +5688,8 @@
     "creatorEarnsDirect": "ተመዝጋቢዎች በ DeHub ምልክቶች ውስጥ ይከፍላሉ ። የእርስዎ ድርሻ መሬቶች በኪስ ቦርሳዎ ውስጥ በሚመዘገቡበት ቅጽበት ፣ ለባጅ ደረጃዎ የመድረክ ክፍያ ያነሰ ።"
   },
   "live": {
+    "bigEvent": "ትልቅ ዝግጅት",
+    "bigEventHint": "ለብዙ ተመልካቾች፦ ተመልካቾች ወደ 20 ሰከንድ ያህል ዘግይተው ይመለከታሉ፣ መቆራረጡም ያነሰ ነው።",
     "notSet": "አልተቀናበረም",
     "liveChat": "የቀጥታ ውይይት",
     "pickDate": "ቀን ይምረጡ",
@@ -7145,6 +7293,7 @@
       "delete": "ሰርዝ"
     },
     "export": {
+      "cancel": "ሰርዝ",
       "scope": "ክልል አውርድ",
       "downloadTimeline": "ሙሉ የጊዜ መስመር",
       "downloadSelection": "የተመረጡ የቪዲዮ ክሊፖች ({{count}})",
@@ -7422,6 +7571,7 @@
     }
   },
   "creator": {
+    "sending": "መላክ",
     "navStudio": "ስቱዲዮ",
     "editor": "አርታዒ",
     "untitled": "ርዕስ የሌለው",
@@ -7986,6 +8136,7 @@
     "transferIncomplete": "የቶክ ማስተላለፊያ አልተጠናቀቀም ። ከሚቀጥለው የሚከፈልበት ልኡክ ጽሁፍዎ በፊት እንደገና ይጠየቃሉ ።"
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "ኢሞጂ ፈልግ",
     "noEmoji": "ምንም ኢሞጂ አልተገኘም",
     "searchResults": "የፍለጋ ውጤቶች",

@@ -74,6 +74,136 @@
   "agents.workspace.action": "Actie",
   "agents.workspace.cadence": "Planning",
   "agents.workspace.filter": "Activiteit filteren",
+  "mastodonApps": {
+    "connectedTitle": "Gekoppelde apps",
+    "connectedDescription": "Mastodon-apps waarin je met dit account bent ingelogd. Verwijder er een om hem uit te loggen.",
+    "connectedEmpty": "Nog geen gekoppelde apps.",
+    "lastUsed": "Laatst gebruikt {{date}}",
+    "remove": "Verwijderen",
+    "removed": "App verwijderd",
+    "failed": "Dat lukte niet. Probeer het opnieuw."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Mensen op Mastodon en andere fediverse-apps kunnen je op dit adres vinden en volgen. Je nieuwe openbare berichten bereiken ze daar.",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd",
+    "privateNote": "Privéaccounts worden niet in de fediverse getoond.",
+    "noUsername": "Kies een gebruikersnaam om een fediverse-adres te krijgen."
+  },
+  "profileFields": {
+    "title": "Profielvelden",
+    "description": "Tot vier extra regels op je profiel, zoals een website of je voornaamwoorden.",
+    "label": "Label",
+    "content": "Inhoud",
+    "save": "Velden opslaan",
+    "saved": "Profielvelden opgeslagen",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
+    "verified": "Geverifieerde link",
+    "verifyHint": "Om een link te verifiëren, voeg je dit toe aan die pagina en sla je opnieuw op: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Meldingen filteren van",
+    "description": "Kies wat er gebeurt als iemand buiten je kring met je communiceert. Gefilterde meldingen wachten onder Gefilterd, zonder badge en zonder pushmelding.",
+    "notFollowing": "Mensen die je niet volgt",
+    "notFollowers": "Mensen die jou niet volgen",
+    "newAccounts": "Nieuwe accounts (jonger dan 30 dagen)",
+    "accept": "Laat het me weten",
+    "filter": "Filteren",
+    "drop": "Helemaal verbergen",
+    "filteredTitle": "Gefilterde meldingen",
+    "filteredEmpty": "Er is niets gefilterd.",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw."
+  },
+  "followedTags": {
+    "follow": "Volg #{{tag}}",
+    "following": "Volgend",
+    "unfollow": "Ontvolg #{{tag}}",
+    "followed": "Je volgt nu #{{tag}}. Berichten ermee verschijnen in je Volgend-feed.",
+    "unfollowed": "Je volgt #{{tag}} niet meer",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw.",
+    "clear": "Wissen"
+  },
+  "keywordFilters": {
+    "title": "Gedempte woorden",
+    "description": "Verberg berichten en reacties met deze woorden, of vouw ze in achter een waarschuwing. Alleen jij ziet deze lijst.",
+    "placeholder": "Woord of zin",
+    "add": "Dempen",
+    "added": "Gedempt: {{phrase}}",
+    "wholeWord": "Alleen hele woord",
+    "whenMatches": "Als een bericht overeenkomt",
+    "warn": "Waarschuwing tonen",
+    "hide": "Verbergen",
+    "howLong": "Hoe lang",
+    "forever": "Tot ik het verwijder",
+    "duration1h": "1 uur",
+    "duration1d": "1 dag",
+    "duration7d": "7 dagen",
+    "duration30d": "30 dagen",
+    "where": "Waar",
+    "home": "Home",
+    "public": "Verkennen en zoeken",
+    "profile": "Profielen",
+    "thread": "Gesprekken",
+    "notifications": "Meldingen",
+    "empty": "Je hebt nog geen woorden gedempt.",
+    "remove": "Dempen opheffen",
+    "until": "Tot {{date}}",
+    "filtered": "Gefilterd: {{phrase}}",
+    "showAnyway": "Toch tonen",
+    "failed": "Dat is niet opgeslagen. Probeer het opnieuw."
+  },
+  "postVisibility": {
+    "label": "Wie kan dit zien",
+    "public": "Iedereen",
+    "followers": "Alleen volgers",
+    "direct": "Alleen genoemde personen",
+    "noRepost": "Alleen openbare berichten kunnen opnieuw worden geplaatst",
+    "directHint": "Alleen de mensen die je met @ noemt, zien dit bericht",
+    "needsMention": "Noem minstens één persoon met @ om alleen voor genoemde personen te plaatsen"
+  },
+  "replyPolicy": {
+    "label": "Wie kan reageren",
+    "public": "Iedereen",
+    "followers": "Je volgers",
+    "following": "Mensen die je volgt",
+    "mentioned": "Alleen genoemden",
+    "noticeFollowers": "Alleen volgers van de auteur kunnen reageren",
+    "noticeFollowing": "Alleen mensen die de auteur volgt kunnen reageren",
+    "noticeMentioned": "Alleen mensen die in het bericht genoemd worden kunnen reageren",
+    "refused": "De auteur heeft beperkt wie op dit bericht kan reageren"
+  },
+  "quotePolicy": {
+    "label": "Wie kan citeren",
+    "public": "Iedereen",
+    "followers": "Volgers",
+    "nobody": "Alleen ik",
+    "off": "De auteur heeft citeren uitgezet",
+    "removed": "De auteur heeft het bericht uit dit citaat gehaald",
+    "remove": "Verwijderen",
+    "removedToast": "Je bericht is uit dit citaat gehaald",
+    "removeFailed": "Kan je bericht niet uit het citaat halen",
+    "refused": "De auteur laat je dit bericht niet citeren"
+  },
+  "contentWarning": {
+    "label": "Inhoudswaarschuwing",
+    "placeholder": "Schrijf hier je waarschuwing",
+    "add": "Inhoudswaarschuwing toevoegen",
+    "remove": "Inhoudswaarschuwing verwijderen",
+    "show": "Bericht tonen"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Beschrijving toevoegen",
+    "edit": "Beschrijving bewerken",
+    "titleImage": "Beschrijf deze afbeelding",
+    "titleVideo": "Beschrijf deze video",
+    "help": "Voor mensen die het niet kunnen zien. Schermlezers lezen het voor.",
+    "placeholder": "Wat is er te zien? Neem ook eventuele tekst erin over.",
+    "show": "Beschrijving tonen",
+    "saved": "Beschrijving opgeslagen",
+    "saveFailed": "Kan de beschrijving niet opslaan"
+  },
   "agents.life.compose": "Plaatsen als deze agent",
   "agents.life.daily": "Berichten vandaag: {{posts}} · Dagdoel: {{target}}",
   "agents.life.editComment": "Reactie bewerken",
@@ -544,6 +674,11 @@
     "showAsNewMemberDesc": "Laat andere leden zien dat je er net bij bent, zodat ze je kunnen verwelkomen. Stopt automatisch 30 dagen na je aanmelding.",
     "postVisibility": "Berichtzichtbaarheid",
     "defaultPostVisibility": "Standaard berichtzichtbaarheid",
+    "defaultFeed": "Standaardfeed",
+    "defaultFeedDesc": "Kies welke feed opent elke keer dat je DeHub opent",
+    "feedToggles": "Feedfilters resetten",
+    "feedTogglesDesc": "Filters die je in een feed aanzet, blijven je standaard tot je ze reset",
+    "feedTogglesCleared": "Feedfilters gereset",
     "defaultProfileTab": "Standaard profieltabblad",
     "defaultProfileTabDesc": "Kies welk tabblad bezoekers als eerste zien op je profiel",
     "defaultPostVisibilityDesc": "Geldt voor alle huidige en toekomstige berichten",
@@ -1072,6 +1207,7 @@
     "themeColorBrandFailed": "Kon de kleuren van je profielfoto niet lezen"
   },
   "common": {
+    "refresh": "Vernieuwen",
     "mute": "Dempen",
     "unmute": "Dempen opheffen",
     "fullscreen": "Volledig scherm",
@@ -1377,6 +1513,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "Insluiten",
+    "copyEmbedCode": "Insluitcode kopiëren",
+    "embedCodeCopied": "Insluitcode gekopieerd",
     "skippableSectionsDesc": "Markeer of stem op sponsors en intro’s",
     "skippableSections": "Overslaanbare delen",
     "options": "Opties",
@@ -2341,6 +2480,13 @@
     "encryptionOff": "Versleuteling staat uit op dit apparaat",
     "encryptionTurnOn": "Inschakelen",
     "cannotDecrypt": "Versleuteld bericht — kan niet worden geopend op dit apparaat",
+    "lockedTitle": "Ontgrendel om je berichten te lezen",
+    "lockedBody": "Je chat met {{name}} is end-to-end versleuteld. Ontgrendel je wallet op dit apparaat om hem te openen.",
+    "lockedUnlock": "Wallet ontgrendelen",
+    "lockedTryAgain": "Opnieuw proberen",
+    "lockedPrivate": "Alleen jij kunt ze lezen",
+    "undecryptableRun_one": "{{count}} bericht kan niet worden geopend op dit apparaat",
+    "undecryptableRun_other": "{{count}} berichten kunnen niet worden geopend op dit apparaat",
     "title": "Berichten",
     "searchConversations": "Gesprekken zoeken...",
     "failedToLoad": "Gesprekken laden mislukt",
@@ -2384,13 +2530,24 @@
     "shareStation": "Zender delen",
     "listeningTo": "Ik luister naar {{name}} op DeHub",
     "mostPlayed": "Meest afgespeeld",
+    "radioPicks": "Onze keuze",
+    "mostVoted": "Meeste stemmen",
+    "trending": "Trending",
+    "stagesLive": "Nu live",
+    "upcoming": "Binnenkort",
+    "mostListened": "Meest beluisterd",
+    "recentStages": "Recent",
+    "noStages": "Hier zijn nog geen Stages",
+    "listening": "luisteren",
     "mostLiked": "Meest geliket",
     "mostRecent": "Meest recent",
     "chartOrder": "Volgorde van de audiolijst",
-    "chartKind": "Muzieklijst",
-    "chartAudio": "Audio",
-    "chartVideos": "Muziekvideo's",
-    "videoCharts": "Muziekvideo-hitlijsten",
+    "quality": "Kwaliteit",
+    "votes": "Stemmen",
+    "plays": "Keer beluisterd",
+    "liveRadio": "Live radio",
+    "listenLive": "Live luisteren",
+    "nextStation": "Volgende zender",
     "mostViewed": "Meest bekeken",
     "trendingWeek": "Trending deze week",
     "newest": "Nieuwste",
@@ -3403,6 +3560,8 @@
     "yourFractions": "Je bezit {{count}} van {{total}} fracties"
   },
   "profileOptions": {
+    "copyRssFeed": "RSS-feedlink kopiëren",
+    "copyRssFeedHint": "Volg deze berichten in elke feedlezer",
     "copyProfileUrl": "Profiel-URL kopiëren",
     "copyUsername": "Gebruikersnaam kopiëren",
     "copyAddress": "Adres kopiëren",
@@ -4761,6 +4920,7 @@
     "noVoice": "Je apparaat heeft geen stem voor deze taal."
   },
   "stages": {
+    "previewFailed": "Kon voorbeeld niet afspelen in de audioruimte",
     "allStages": "Alle audioruimtes",
     "addToCalendar": "Toevoegen aan agenda",
     "nowPlaying": "Nu aan het spelen",
@@ -5133,6 +5293,7 @@
     "anyBadgeHolder": "Elke badgehouder krijgt SuperPowers. Koop DeHub-tokens om een badge te ontgrendelen — staken is niet vereist."
   },
   "follow": {
+    "noResults": "Geen resultaten gevonden",
     "followers": "Volgers",
     "following": "Volgend",
     "requests": "Verzoeken",
@@ -5217,7 +5378,10 @@
     "pause": "Pauzeren",
     "listens_one": "{{count}} keer beluisterd",
     "listens_other": "{{count}} keer beluisterd",
-    "visualizerColour": "Kleur van de visualisatie"
+    "visualizerColour": "Kleur van de visualisatie",
+    "lyrics": "Songtekst",
+    "lyricsLoading": "Songtekst zoeken…",
+    "lyricsNone": "Geen songtekst gevonden"
   },
   "transfer": {
     "arcTitle": "USDC versturen op Arc",
@@ -6244,6 +6408,8 @@
     "creatorEarnsDirect": "Abonnees betalen in DeHub-tokens. Je aandeel komt in je portemonnee terecht op het moment dat ze zich abonneren, minus de platformkosten voor je badge-niveau."
   },
   "live": {
+    "bigEvent": "Groot evenement",
+    "bigEventHint": "Voor een groot publiek: kijkers zien het ongeveer 20 seconden later, met minder onderbrekingen.",
     "notSet": "Niet ingesteld",
     "liveChat": "Livechat",
     "pickDate": "Datum kiezen",
@@ -7976,6 +8142,7 @@
       "delete": "Verwijderen"
     },
     "export": {
+      "cancel": "Annuleren",
       "scope": "Downloadbereik",
       "downloadTimeline": "Hele tijdlijn",
       "downloadSelection": "Geselecteerde videoclips ({{count}})",
@@ -8363,6 +8530,7 @@
     }
   },
   "creator": {
+    "sending": "Verzenden",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Naamloos",
@@ -9199,6 +9367,7 @@
     "transferIncomplete": "De tokenoverdracht is niet voltooid. Je wordt opnieuw gevraagd voordat je je volgende betaalde post plaatst."
   },
   "emojiPicker": {
+    "tabGif": "Gif",
     "searchEmoji": "Emoji zoeken",
     "noEmoji": "Geen emoji gevonden",
     "searchResults": "Zoekresultaten",
@@ -11197,6 +11366,8 @@
     "9bf75671f22f": "Afspeel snelheid {{value1}}",
     "50e7258dccec": "{{value1}} deelt",
     "fef6a1a97127": "Gevolgd door {{value1}}",
+    "036cfd952896": "Wie volgen",
+    "0c820caf16c0": "Nog geen bio",
     "46785e0aacc9": "Deblokkeer {{value1}}",
     "8d3f3e35915d": "Blok {{value1}}",
     "ba85bf0351d5": "Terugspoelen {{value1}} seconden",
@@ -11783,5 +11954,15 @@
     "youAreBanned": "Je kunt niet chatten in de streams van deze creator.",
     "youAreTimedOut": "Je bent even tijdelijk uitgeschakeld.",
     "title": "Modereer"
+  },
+  "loginStack": {
+    "tip": "Fooi in DHB",
+    "headlineTop": "Je zult alles bezitten",
+    "headlineAccent": "en gelukkig zijn.",
+    "orContinueWith": "of ga verder met",
+    "phone": "Telefoon",
+    "fingerprint": "Vingerafdruk",
+    "exploreFirst": "Eerst rondkijken",
+    "codeNote": "We mailen je een code, geen wachtwoord nodig."
   }
 }

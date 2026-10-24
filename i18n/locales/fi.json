@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Yhdistetyt sovellukset",
+    "connectedDescription": "Mastodon-sovellukset, joihin olet kirjautunut tällä tilillä. Poista sovellus kirjautuaksesi siitä ulos.",
+    "connectedEmpty": "Ei vielä yhdistettyjä sovelluksia.",
+    "lastUsed": "Viimeksi käytetty {{date}}",
+    "remove": "Poista",
+    "removed": "Sovellus poistettu",
+    "failed": "Se ei onnistunut. Yritä uudelleen."
+  },
+  "fediverse": {
+    "title": "Fediversumi",
+    "description": "Mastodonin ja muiden fediversumin sovellusten käyttäjät voivat löytää ja seurata sinua tästä osoitteesta. Uudet julkiset julkaisusi tavoittavat heidät siellä.",
+    "copy": "Kopioi",
+    "copied": "Kopioitu",
+    "privateNote": "Yksityisiä tilejä ei näytetä fediversumissa.",
+    "noUsername": "Valitse käyttäjänimi saadaksesi fediversumiosoitteen."
+  },
+  "profileFields": {
+    "title": "Profiilikentät",
+    "description": "Enintään neljä lisäriviä profiiliisi, kuten verkkosivusto tai pronominisi.",
+    "label": "Nimi",
+    "content": "Sisältö",
+    "save": "Tallenna kentät",
+    "saved": "Profiilikentät tallennettu",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
+    "verified": "Vahvistettu linkki",
+    "verifyHint": "Vahvista linkki lisäämällä tämä sille sivulle ja tallentamalla uudelleen: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "Suodata ilmoitukset",
+    "description": "Valitse, mitä tapahtuu, kun joku piirisi ulkopuolelta on vuorovaikutuksessa kanssasi. Suodatetut ilmoitukset odottavat kohdassa Suodatetut ilman merkkiä ja push-ilmoitusta.",
+    "notFollowing": "Ihmisiltä, joita et seuraa",
+    "notFollowers": "Ihmisiltä, jotka eivät seuraa sinua",
+    "newAccounts": "Uusilta tileiltä (alle 30 päivää)",
+    "accept": "Ilmoita minulle",
+    "filter": "Suodata",
+    "drop": "Piilota kokonaan",
+    "filteredTitle": "Suodatetut ilmoitukset",
+    "filteredEmpty": "Mitään ei ole suodatettu.",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen."
+  },
+  "followedTags": {
+    "follow": "Seuraa #{{tag}}",
+    "following": "Seuraat",
+    "unfollow": "Lopeta #{{tag}} seuraaminen",
+    "followed": "Seuraat nyt tunnistetta #{{tag}}. Sen julkaisut näkyvät Seuratut-syötteessäsi.",
+    "unfollowed": "Lopetit tunnisteen #{{tag}} seuraamisen",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen.",
+    "clear": "Tyhjennä"
+  },
+  "keywordFilters": {
+    "title": "Mykistetyt sanat",
+    "description": "Piilota julkaisut ja kommentit, joissa on näitä sanoja, tai taita ne varoituksen taakse. Vain sinä näet tämän listan.",
+    "placeholder": "Sana tai lause",
+    "add": "Mykistä",
+    "added": "Mykistetty: {{phrase}}",
+    "wholeWord": "Vain koko sana",
+    "whenMatches": "Kun julkaisu osuu",
+    "warn": "Näytä varoitus",
+    "hide": "Piilota",
+    "howLong": "Kuinka pitkäksi aikaa",
+    "forever": "Kunnes poistan sen",
+    "duration1h": "1 tunniksi",
+    "duration1d": "1 päiväksi",
+    "duration7d": "7 päiväksi",
+    "duration30d": "30 päiväksi",
+    "where": "Missä",
+    "home": "Koti",
+    "public": "Tutki ja hae",
+    "profile": "Profiilit",
+    "thread": "Keskustelut",
+    "notifications": "Ilmoitukset",
+    "empty": "Et ole mykistänyt yhtään sanaa.",
+    "remove": "Poista mykistys",
+    "until": "{{date}} asti",
+    "filtered": "Suodatettu: {{phrase}}",
+    "showAnyway": "Näytä silti",
+    "failed": "Tallennus ei onnistunut. Yritä uudelleen."
+  },
+  "postVisibility": {
+    "label": "Kuka voi nähdä tämän",
+    "public": "Kaikki",
+    "followers": "Vain seuraajat",
+    "direct": "Vain mainitut henkilöt",
+    "noRepost": "Vain julkisia julkaisuja voi jakaa uudelleen",
+    "directHint": "Vain @-merkillä mainitsemasi henkilöt näkevät tämän julkaisun",
+    "needsMention": "Mainitse vähintään yksi henkilö @-merkillä, jotta voit julkaista vain mainituille"
+  },
+  "replyPolicy": {
+    "label": "Kuka voi vastata",
+    "public": "Kuka tahansa",
+    "followers": "Seuraajasi",
+    "following": "Seuraamasi ihmiset",
+    "mentioned": "Vain mainitut",
+    "noticeFollowers": "Vain tekijän seuraajat voivat vastata",
+    "noticeFollowing": "Vain tekijän seuraamat ihmiset voivat vastata",
+    "noticeMentioned": "Vain julkaisussa mainitut voivat vastata",
+    "refused": "Tekijä on rajannut, kuka voi vastata tähän julkaisuun"
+  },
+  "quotePolicy": {
+    "label": "Kuka voi lainata",
+    "public": "Kuka tahansa",
+    "followers": "Seuraajat",
+    "nobody": "Vain minä",
+    "off": "Tekijä on poistanut lainaukset käytöstä",
+    "removed": "Tekijä poisti julkaisunsa tästä lainauksesta",
+    "remove": "Poista",
+    "removedToast": "Julkaisusi poistettiin tästä lainauksesta",
+    "removeFailed": "Julkaisuasi ei voitu poistaa lainauksesta",
+    "refused": "Tekijä ei salli sinun lainata tätä julkaisua"
+  },
+  "contentWarning": {
+    "label": "Sisältövaroitus",
+    "placeholder": "Kirjoita varoitus tähän",
+    "add": "Lisää sisältövaroitus",
+    "remove": "Poista sisältövaroitus",
+    "show": "Näytä julkaisu"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Lisää kuvaus",
+    "edit": "Muokkaa kuvausta",
+    "titleImage": "Kuvaile tämä kuva",
+    "titleVideo": "Kuvaile tämä video",
+    "help": "Ihmisille, jotka eivät näe sitä. Ruudunlukijat lukevat sen ääneen.",
+    "placeholder": "Mitä siinä näkyy? Kirjoita myös siinä oleva teksti.",
+    "show": "Näytä kuvaus",
+    "saved": "Kuvaus tallennettu",
+    "saveFailed": "Kuvausta ei voitu tallentaa"
+  },
   "liveRecap": {
     "title": "Virran yhteenveto",
     "justEnded": "Suoratoistosi yhteenveto",
@@ -336,6 +466,11 @@
     "showAsNewMemberDesc": "Antaa muiden jäsenten nähdä, että liityit juuri, jotta he voivat toivottaa sinut tervetulleeksi. Päättyy automaattisesti 30 päivää rekisteröitymisen jälkeen.",
     "postVisibility": "Julkaisun näkyvyys",
     "defaultPostVisibility": "Oletusnäkyvyys",
+    "defaultFeed": "Oletussyöte",
+    "defaultFeedDesc": "Valitse, mikä syöte avautuu aina kun avaat DeHubin",
+    "feedToggles": "Nollaa syötteen suodattimet",
+    "feedTogglesDesc": "Syötteessä päälle kytkemäsi suodattimet pysyvät oletuksinasi, kunnes nollaat ne",
+    "feedTogglesCleared": "Syötteen suodattimet nollattu",
     "defaultProfileTab": "Profiilin oletusvälilehti",
     "defaultProfileTabDesc": "Valitse, minkä välilehden kävijät näkevät ensin profiilissasi",
     "defaultPostVisibilityDesc": "Koskee kaikkia nykyisiä ja tulevia julkaisuja",
@@ -864,6 +999,7 @@
     "themeColorBrandFailed": "Profiilikuvastasi ei saatu luettua värejä"
   },
   "common": {
+    "refresh": "Päivitä",
     "mute": "Mykistä",
     "unmute": "Poista mykistys",
     "fullscreen": "Koko näyttö",
@@ -977,6 +1113,9 @@
     "tokenAmount": "{{amount}} tokenia"
   },
   "postOptions": {
+    "embed": "Upota",
+    "copyEmbedCode": "Kopioi upotuskoodi",
+    "embedCodeCopied": "Upotuskoodi kopioitu",
     "options": "Vaihtoehdot",
     "sendTip": "Lähetä tippi",
     "queue": "Jono",
@@ -2835,6 +2974,8 @@
     "yourFractions": "Sinulla on {{count}} / {{total}} murto-osasta"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopioi RSS-syötteen linkki",
+    "copyRssFeedHint": "Seuraa näitä julkaisuja millä tahansa syötteenlukijalla",
     "copyProfileUrl": "Kopioi profiilin URL",
     "copyUsername": "Kopioi käyttäjänimi",
     "copyAddress": "Kopioi osoite",
@@ -4158,6 +4299,7 @@
     "noVoice": "Laitteessasi ei ole ääntä tälle kielelle."
   },
   "stages": {
+    "previewFailed": "Esikatselua ei voitu toistaa äänihuoneessa",
     "allStages": "Kaikki äänihuoneet",
     "addToCalendar": "Lisää kalenteriin",
     "nowPlaying": "Nyt soi",
@@ -4530,6 +4672,7 @@
     "anyBadgeHolder": "Kaikki merkin haltijat saavat Supervoimat. Osta DeHub-tokeneita avataksesi merkin — panostaminen ei ole pakollista."
   },
   "follow": {
+    "noResults": "Ei tuloksia",
     "followers": "Seuraajat",
     "following": "Seurataan",
     "requests": "Pyynnöt",
@@ -4613,7 +4756,10 @@
     "play": "Toista",
     "pause": "Keskeytä",
     "listens_one": "{{count}} kuuntele",
-    "listens_other": "{{count}} kuuntelee"
+    "listens_other": "{{count}} kuuntelee",
+    "lyrics": "Sanat",
+    "lyricsLoading": "Haetaan sanoja…",
+    "lyricsNone": "Sanoja ei löytynyt"
   },
   "transfer": {
     "arcTitle": "Lähetä USDC Arc-verkossa",
@@ -5539,6 +5685,8 @@
     "creatorEarnsDirect": "Tilaajat maksavat DeHub-poletteina. Osuutesi siirtyy lompakkoosi heti, kun he tilaavat sen, vähennettynä erikoismerkkitasostasi perittävällä alustamaksulla."
   },
   "live": {
+    "bigEvent": "Suurtapahtuma",
+    "bigEventHint": "Suurelle yleisölle: katsojat näkevät lähetyksen noin 20 sekuntia jäljessä, mutta vähemmillä katkoksilla.",
     "notSet": "Ei asetettu",
     "liveChat": "Live-keskustelu",
     "pickDate": "Valitse päivä",
@@ -7153,6 +7301,7 @@
       "delete": "Poista"
     },
     "export": {
+      "cancel": "Peruuta",
       "scope": "Latausalue",
       "downloadTimeline": "Koko aikajana",
       "downloadSelection": "Valitut videoleikkeet ({{count}})",
@@ -7432,6 +7581,7 @@
     }
   },
   "creator": {
+    "sending": "Lähetetään",
     "navStudio": "Studio",
     "editor": "Editori",
     "untitled": "Nimetön",
@@ -7998,6 +8148,7 @@
     "transferIncomplete": "Tunnuksen siirtoa ei suoritettu loppuun. Sinulta kysytään uudelleen ennen seuraavaa maksullista julkaisuasi."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Hae emojeja",
     "noEmoji": "Emojeja ei löytynyt",
     "searchResults": "Hakutulokset",
@@ -9659,5 +9810,15 @@
     "youAreBanned": "Et voi chattailla tässä luovan suoratoiston aikana",
     "youAreTimedOut": "Olet hetkellisesti aika ulos",
     "title": "Moderoi"
+  },
+  "loginStack": {
+    "tip": "Anna DHB-tippi",
+    "headlineTop": "Omistat kaiken",
+    "headlineAccent": "ja olet onnellinen.",
+    "orContinueWith": "tai jatka käyttäen",
+    "phone": "Puhelin",
+    "fingerprint": "Sormenjälki",
+    "exploreFirst": "Tutustu ensin",
+    "codeNote": "Lähetämme sinulle koodin sähköpostilla, ilman salasanaa."
   }
 }

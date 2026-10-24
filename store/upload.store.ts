@@ -73,6 +73,16 @@ export interface SerializedUploadPayload {
   shopListingIds?: string[];
   /** Connected external accounts to cross-post to once the post is up. */
   crossPostAccountIds?: string[];
+  /** Alt text in upload order: the video, or each photo by position. */
+  mediaDescriptions?: string[];
+  /** Content warning: the post opens collapsed behind this one line. */
+  spoilerText?: string;
+  /** Who may quote it. Absent means anyone. */
+  quotePolicy?: "followers" | "nobody";
+  /** Who may reply. Absent means anyone. */
+  replyPolicy?: "followers" | "following" | "mentioned";
+  /** Who may see it. Absent means everyone. */
+  visibility?: "followers" | "direct";
 }
 
 export interface MintParams {

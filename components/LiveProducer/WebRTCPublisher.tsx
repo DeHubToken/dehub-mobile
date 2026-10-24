@@ -68,6 +68,18 @@ export interface WebRTCPublisherProps {
   onConnected?: () => void;
   onError?: (e: any) => void;
   onStats?: (s: PublishStats) => void;
+  /**
+   * Called once, when every route to the self-hosted ingest has failed before
+   * a single byte of media flowed. Resolves with the same stream re-provisioned
+   * on Livepeer (or null to give up); the publisher republishes there without
+   * the creator doing anything. Before this the creator saw an error and had
+   * to start over from the composer.
+   */
+  onSelfHostedUnreachable?: () => Promise<{
+    streamKey: string;
+    playbackId?: string | null;
+    provider?: string | null;
+  } | null>;
   debug?: boolean;
   // New: configurable grace before escalating disconnects (ms)
   disconnectGraceMs?: number;
@@ -136,6 +148,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   onConnected,
   onError,
   onStats,
+  onSelfHostedUnreachable,
   debug = false,
   disconnectGraceMs,
 }) => {
@@ -173,6 +186,34 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   useEffect(() => { onConnectedRef.current = onConnected; }, [onConnected]);
   useEffect(() => { onErrorRef.current = onError; }, [onError]);
   useEffect(() => { onStatsRef.current = onStats; }, [onStats]);
+  const onSelfHostedUnreachableRef = useRef(onSelfHostedUnreachable);
+  onSelfHostedUnreachableRef.current = onSelfHostedUnreachable;
+
+  // What this broadcast publishes with. Read at connect time through a ref, so
+  // a stream entity that loads after the last render cannot leave a start on
+  // stale provider or playbackId values. After a Livepeer fallback it holds
+  // the re-provisioned stream until the screen's own props catch up; a
+  // different stream key arriving from the screen means a different broadcast
+  // and drops the fallback.
+  const propsCredsRef = useRef({ streamKey, playbackId, provider });
+  propsCredsRef.current = { streamKey, playbackId, provider };
+  const fallbackCredsRef = useRef<{
+    fromKey: string;
+    streamKey: string;
+    playbackId?: string | null;
+    provider?: string | null;
+  } | null>(null);
+  const livepeerFallbackUsedRef = useRef(false);
+  const streamKeyIs = (key: string) => propsCredsRef.current.streamKey === key;
+  const currentCreds = () => {
+    const fb = fallbackCredsRef.current;
+    if (fb && (streamKeyIs(fb.fromKey) || streamKeyIs(fb.streamKey))) return fb;
+    if (fb) {
+      fallbackCredsRef.current = null;
+      livepeerFallbackUsedRef.current = false;
+    }
+    return propsCredsRef.current;
+  };
 
   const [localURL, setLocalURL] = useState<string | null>(null);
   const [localReady, setLocalReady] = useState(false);
@@ -335,6 +376,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
     // Each start call gets a unique generation; only the latest is allowed to complete.
     const myGen = (pcGenerationRef.current = pcGenerationRef.current + 1);
     const run = async () => {
+      // This attempt's stream, read now rather than from the closure: the
+      // stream entity can land after the last render, and a Livepeer fallback
+      // replaces all three mid-broadcast.
+      const { streamKey, playbackId, provider } = currentCreds();
       // Per attempt: the failure handler has to tell "media never started"
       // from "media was flowing and stopped" for THIS connection, and a
       // recovery starts a second one behind it.
@@ -351,6 +396,33 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       if (!forceRelayRef.current) mediaRetryUsedRef.current = false;
 
       /**
+       * The last word on a self-hosted start that never carried media: ask for
+       * the same stream on Livepeer and publish there, once per broadcast.
+       * Anything else — a Livepeer stream, a broadcast that was already
+       * flowing, a fallback that is refused — escalates as before.
+       */
+      const failOrFallBack = async (err: any) => {
+        const ask = onSelfHostedUnreachableRef.current;
+        if (provider === "mediamtx" && !sawConnected && !livepeerFallbackUsedRef.current && ask) {
+          livepeerFallbackUsedRef.current = true;
+          try {
+            const next = await ask();
+            if (next?.streamKey && next.provider !== "mediamtx") {
+              fallbackCredsRef.current = { fromKey: streamKey, ...next };
+              forceRelayRef.current = false;
+              dbg('self-hosted ingest unreachable; republishing on Livepeer');
+              stopPeer();
+              startPeerRef.current();
+              return;
+            }
+          } catch (fallbackErr) {
+            dbe('Livepeer fallback failed', fallbackErr);
+          }
+        }
+        onErrorRef.current?.(err);
+      };
+
+      /**
        * Put the broadcast back up over the edge and a TURN relay, leaving the
        * camera and microphone exactly where they are — only the peer
        * connection is rebuilt, so the creator sees "Connecting…" again rather
@@ -359,10 +431,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
       const restartOverRelay = async () => {
         const turn = await fetchTurnServers();
         if (!turn.length) {
-          // No relay deployed: the marker left above is all this attempt can
-          // give, and it is enough — the next mint goes to Livepeer.
+          // No relay deployed: this stream moves to Livepeer instead, and the
+          // marker left above sends the next mint there directly.
           dbg('media failed with no relay to fall back to');
-          onErrorRef.current?.(new Error("Peer failed"));
+          void failOrFallBack(new Error("Peer failed"));
           return;
         }
         dbg('media leg dead on the direct path; restarting over the relay');
@@ -522,7 +594,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
                 return;
               }
             }
-            onErrorRef.current?.(new Error("Peer failed"));
+            void failOrFallBack(new Error("Peer failed"));
           }
           if (state === "disconnected") {
             setConnected(false);
@@ -621,7 +693,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           if (myGen !== pcGenerationRef.current) return;
           if (!pcRef.current || pcRef.current.connectionState !== "connected") {
             setReconnecting(false);
-            onErrorRef.current?.(new Error("Negotiation timeout"));
+            void failOrFallBack(new Error("Negotiation timeout"));
           }
         }, graceMs);
 
@@ -669,7 +741,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
           void restartOverRelay();
           return;
         }
-        onErrorRef.current?.(e);
+        void failOrFallBack(e);
       }
     };
     run();

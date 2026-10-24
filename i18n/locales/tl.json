@@ -1,4 +1,134 @@
 {
+  "mastodonApps": {
+    "connectedTitle": "Mga nakakonektang app",
+    "connectedDescription": "Mga Mastodon app na pinag-sign in-an mo gamit ang account na ito. Alisin ang isa para i-sign out ito.",
+    "connectedEmpty": "Wala pang nakakonektang app.",
+    "lastUsed": "Huling ginamit {{date}}",
+    "remove": "Alisin",
+    "removed": "Naalis ang app",
+    "failed": "Hindi gumana. Subukan ulit."
+  },
+  "fediverse": {
+    "title": "Fediverse",
+    "description": "Puwede kang hanapin at i-follow ng mga tao sa Mastodon at iba pang fediverse app sa address na ito. Doon din aabot sa kanila ang mga bago mong pampublikong post.",
+    "copy": "Kopyahin",
+    "copied": "Nakopya",
+    "privateNote": "Hindi ipinapakita sa fediverse ang mga private account.",
+    "noUsername": "Pumili ng username para magkaroon ng fediverse address."
+  },
+  "profileFields": {
+    "title": "Mga field ng profile",
+    "description": "Hanggang apat na dagdag na linya sa profile mo, gaya ng website o ng iyong pronouns.",
+    "label": "Label",
+    "content": "Nilalaman",
+    "save": "I-save ang mga field",
+    "saved": "Na-save ang mga field ng profile",
+    "failed": "Hindi na-save. Subukan ulit.",
+    "verified": "Na-verify na link",
+    "verifyHint": "Para ma-verify ang link, idagdag ito sa page na iyon, saka i-save ulit: {{snippet}}"
+  },
+  "notificationFilters": {
+    "title": "I-filter ang mga notification mula sa",
+    "description": "Piliin kung ano ang mangyayari kapag may taong labas sa iyong grupo na nakipag-ugnayan sa iyo. Naghihintay ang mga na-filter na notification sa Na-filter, walang badge at walang push.",
+    "notFollowing": "Mga taong hindi mo fina-follow",
+    "notFollowers": "Mga taong hindi ka fina-follow",
+    "newAccounts": "Mga bagong account (wala pang 30 araw)",
+    "accept": "Abisuhan ako",
+    "filter": "I-filter",
+    "drop": "Itago nang buo",
+    "filteredTitle": "Mga na-filter na notification",
+    "filteredEmpty": "Wala pang na-filter.",
+    "failed": "Hindi na-save. Subukan ulit."
+  },
+  "followedTags": {
+    "follow": "I-follow ang #{{tag}}",
+    "following": "Fina-follow",
+    "unfollow": "I-unfollow ang #{{tag}}",
+    "followed": "Fina-follow mo na ang #{{tag}}. Lalabas ang mga post nito sa Following feed mo.",
+    "unfollowed": "Na-unfollow ang #{{tag}}",
+    "failed": "Hindi na-save. Subukan ulit.",
+    "clear": "I-clear"
+  },
+  "keywordFilters": {
+    "title": "Mga naka-mute na salita",
+    "description": "Itago ang mga post at komento na may ganitong mga salita, o itupi sila sa likod ng babala. Ikaw lang ang nakakakita ng listahang ito.",
+    "placeholder": "Salita o parirala",
+    "add": "I-mute",
+    "added": "Na-mute: {{phrase}}",
+    "wholeWord": "Buong salita lang",
+    "whenMatches": "Kapag tumugma ang post",
+    "warn": "Magpakita ng babala",
+    "hide": "Itago",
+    "howLong": "Gaano katagal",
+    "forever": "Hanggang alisin ko",
+    "duration1h": "Sa loob ng 1 oras",
+    "duration1d": "Sa loob ng 1 araw",
+    "duration7d": "Sa loob ng 7 araw",
+    "duration30d": "Sa loob ng 30 araw",
+    "where": "Saan",
+    "home": "Home",
+    "public": "Mag-explore at maghanap",
+    "profile": "Mga profile",
+    "thread": "Mga usapan",
+    "notifications": "Mga notification",
+    "empty": "Wala ka pang na-mute na salita.",
+    "remove": "I-unmute",
+    "until": "Hanggang {{date}}",
+    "filtered": "Na-filter: {{phrase}}",
+    "showAnyway": "Ipakita pa rin",
+    "failed": "Hindi na-save. Subukan ulit."
+  },
+  "postVisibility": {
+    "label": "Sino ang makakakita nito",
+    "public": "Lahat",
+    "followers": "Mga follower lang",
+    "direct": "Mga binanggit lang",
+    "noRepost": "Mga pampublikong post lang ang puwedeng i-repost",
+    "directHint": "Ang mga taong babanggitin mo gamit ang @ lang ang makakakita ng post na ito",
+    "needsMention": "Bumanggit ng kahit isang tao gamit ang @ para mag-post sa mga binanggit lang"
+  },
+  "replyPolicy": {
+    "label": "Sino ang puwedeng sumagot",
+    "public": "Kahit sino",
+    "followers": "Iyong mga tagasunod",
+    "following": "Mga taong sinusundan mo",
+    "mentioned": "Mga nabanggit lang",
+    "noticeFollowers": "Mga tagasunod lang ng may-akda ang puwedeng sumagot",
+    "noticeFollowing": "Mga sinusundan lang ng may-akda ang puwedeng sumagot",
+    "noticeMentioned": "Mga nabanggit lang sa post ang puwedeng sumagot",
+    "refused": "Nilimitahan ng may-akda kung sino ang puwedeng sumagot sa post na ito"
+  },
+  "quotePolicy": {
+    "label": "Sino ang puwedeng mag-quote",
+    "public": "Kahit sino",
+    "followers": "Mga tagasunod",
+    "nobody": "Ako lang",
+    "off": "Pinatay ng may-akda ang pag-quote",
+    "removed": "Inalis ng may-akda ang kanilang post sa quote na ito",
+    "remove": "Alisin",
+    "removedToast": "Inalis ang iyong post sa quote na ito",
+    "removeFailed": "Hindi maalis ang iyong post sa quote",
+    "refused": "Hindi ka pinapayagan ng may-akda na i-quote ang post na ito"
+  },
+  "contentWarning": {
+    "label": "Babala sa nilalaman",
+    "placeholder": "Isulat dito ang iyong babala",
+    "add": "Magdagdag ng babala sa nilalaman",
+    "remove": "Alisin ang babala sa nilalaman",
+    "show": "Ipakita ang post"
+  },
+  "altText": {
+    "badge": "ALT",
+    "add": "Magdagdag ng paglalarawan",
+    "edit": "I-edit ang paglalarawan",
+    "titleImage": "Ilarawan ang larawang ito",
+    "titleVideo": "Ilarawan ang video na ito",
+    "help": "Para sa mga taong hindi ito nakikita. Binabasa ito nang malakas ng mga screen reader.",
+    "placeholder": "Ano ang ipinapakita nito? Isama ang anumang teksto rito.",
+    "show": "Ipakita ang paglalarawan",
+    "saved": "Na-save ang paglalarawan",
+    "saveFailed": "Hindi ma-save ang paglalarawan"
+  },
   "liveRecap": {
     "pollWinner": "Nanalo ang {{option}}",
     "title": "I - recap ang stream",
@@ -336,6 +466,11 @@
     "showAsNewMemberDesc": "Ipinapakita sa ibang miyembro na kasasali mo lang para mabati ka nila. Awtomatikong nagtatapos 30 araw pagkatapos mong mag-sign up.",
     "postVisibility": "Pagiging Nakikita ng Post",
     "defaultPostVisibility": "Default na Pagiging Nakikita ng Post",
+    "defaultFeed": "Default na feed",
+    "defaultFeedDesc": "Piliin kung aling feed ang bubukas tuwing bubuksan mo ang DeHub",
+    "feedToggles": "I-reset ang mga filter ng feed",
+    "feedTogglesDesc": "Ang mga filter na binuksan mo sa feed ay mananatiling default hanggang i-reset mo",
+    "feedTogglesCleared": "Na-reset ang mga filter ng feed",
     "defaultProfileTab": "Default na tab ng profile",
     "defaultProfileTabDesc": "Piliin kung aling tab ang unang makikita ng mga bisita sa profile mo",
     "defaultPostVisibilityDesc": "Nalalapat sa lahat ng kasalukuyan at hinaharap na mga post",
@@ -864,6 +999,7 @@
     "themeColorBrandFailed": "Hindi mabasa ang mga kulay mula sa profile picture mo"
   },
   "common": {
+    "refresh": "I-refresh",
     "mute": "I-mute",
     "unmute": "I-unmute",
     "fullscreen": "Fullscreen",
@@ -1019,6 +1155,9 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "postOptions": {
+    "embed": "I-embed",
+    "copyEmbedCode": "Kopyahin ang embed code",
+    "embedCodeCopied": "Nakopya ang embed code",
     "options": "Mga Opsyon",
     "sendTip": "Magpadala ng Tip",
     "queue": "Queue",
@@ -2882,6 +3021,8 @@
     "yourFractions": "Hawak mo ang {{count}} ng {{total}} na bahagi"
   },
   "profileOptions": {
+    "copyRssFeed": "Kopyahin ang link ng RSS feed",
+    "copyRssFeedHint": "Sundan ang mga post na ito sa anumang feed reader",
     "copyProfileUrl": "Kopyahin ang URL ng profile",
     "copyUsername": "Kopyahin ang username",
     "copyAddress": "Kopyahin ang address",
@@ -4205,6 +4346,7 @@
     "noVoice": "Walang boses ang iyong device para sa wikang ito."
   },
   "stages": {
+    "previewFailed": "Hindi ma-play ang preview sa audio room",
     "allStages": "Lahat ng audio room",
     "addToCalendar": "Idagdag sa kalendaryo",
     "nowPlaying": "Kasalukuyang tumutugtog",
@@ -4577,6 +4719,7 @@
     "anyBadgeHolder": "Anumang may-ari ng badge ay makakakuha ng SuperPowers. Bumili ng DeHub token upang ma-unlock ang isang badge — hindi kinakailangan ang staking."
   },
   "follow": {
+    "noResults": "Walang nahanap na resulta",
     "followers": "Mga Tagasubaybay",
     "following": "Sinusundan",
     "requests": "Mga Kahilingan",
@@ -4660,7 +4803,10 @@
     "play": "Maglaro",
     "pause": "I - pause",
     "listens_one": "{{count}} pakinggan",
-    "listens_other": "{{count}} listens"
+    "listens_other": "{{count}} listens",
+    "lyrics": "Liriko",
+    "lyricsLoading": "Hinahanap ang liriko…",
+    "lyricsNone": "Walang nakitang liriko"
   },
   "transfer": {
     "arcTitle": "Magpadala ng USDC sa Arc",
@@ -5585,6 +5731,8 @@
     "creatorEarnsDirect": "Nagbabayad ang mga subscriber sa mga token ng DeHub. Ang iyong share ay nasa iyong wallet sa sandaling mag - subscribe sila, mas mababa ang bayarin sa platform para sa iyong badge tier."
   },
   "live": {
+    "bigEvent": "Malaking event",
+    "bigEventHint": "Para sa malalaking audience: mga 20 segundong huli ang panonood ng mga manonood, pero mas kaunti ang pagkaputol.",
     "notSet": "Hindi nakatakda",
     "liveChat": "Live chat",
     "pickDate": "Pumili ng petsa",
@@ -7334,6 +7482,7 @@
       "delete": "Tanggalin"
     },
     "export": {
+      "cancel": "Kanselahin",
       "scope": "I - download ang range",
       "downloadTimeline": "Buong timeline",
       "downloadSelection": "Mga napiling video clip ({{count}})",
@@ -7613,6 +7762,7 @@
     }
   },
   "creator": {
+    "sending": "Nagpapadala",
     "navStudio": "Studio",
     "editor": "Editor",
     "untitled": "Walang pamagat",
@@ -8179,6 +8329,7 @@
     "transferIncomplete": "Hindi nakumpleto ang token transfer. Hihilingin sa iyo muli bago ang iyong susunod na bayad na post."
   },
   "emojiPicker": {
+    "tabGif": "GIF",
     "searchEmoji": "Maghanap ng emoji",
     "noEmoji": "Walang nahanap na emoji",
     "searchResults": "Mga resulta ng paghahanap",
@@ -9840,5 +9991,15 @@
     "youAreBanned": "Hindi ka maaaring makipag - chat sa mga stream ng tagalikha na ito",
     "youAreTimedOut": "Naka - time out ka nang ilang sandali",
     "title": "Katamtaman"
+  },
+  "loginStack": {
+    "tip": "Mag-tip ng DHB",
+    "headlineTop": "Mapapasaiyo ang lahat",
+    "headlineAccent": "at magiging masaya ka.",
+    "orContinueWith": "o magpatuloy gamit ang",
+    "phone": "Telepono",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Mag-explore muna",
+    "codeNote": "Magpapadala kami ng code sa email, walang password."
   }
 }
