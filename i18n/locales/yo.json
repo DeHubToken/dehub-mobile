@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} nífẹ̀ẹ́ sí",
     "loadFailed": "Kò lè gbé àwọn ìṣẹ̀lẹ̀ wọlé"
   },
-  "stats": {"chart": {"daily": "Àwọn àlejò lójúmọ́", "dailyHint": "àwọn àlejò aláìlẹ́gbẹ́ lójúmọ́", "empty": "Kò sí data fún àkókò yìí síbẹ̀"},
+  "stats": {
+    "chart": {
+      "daily": "Àwọn àlejò lójúmọ́",
+      "dailyHint": "àwọn àlejò aláìlẹ́gbẹ́ lójúmọ́",
+      "empty": "Kò sí data fún àkókò yìí síbẹ̀"
+    },
     "definitions": {
       "visitorsTerm": "Àwọn àlejò"
     },
@@ -9777,5 +9782,15 @@
     "youAreBanned": "Ìwọ kò lè sọ̀rọ̀ nínú awọn ìkọkọ ti olùkọ́ yìí",
     "youAreTimedOut": "Ìwọ ti duro fun àkókò díẹ̀",
     "title": "Ṣàkóso"
+  },
+  "loginStack": {
+    "aiRestyle": "Ara tuntun AI",
+    "headlineTop": "O máa ní gbogbo nǹkan",
+    "headlineAccent": "kí o sì máa yọ̀.",
+    "orContinueWith": "tabi tẹsiwaju pẹlu",
+    "phone": "Foonu",
+    "fingerprint": "Àtẹ ìka",
+    "exploreFirst": "Ṣawari ni akọkọ",
+    "codeNote": "A fi kọ̀m̀pútà ránṣẹ́ sí ọ, kò nílò ọ̀rọ̀ ìgbaniwọlé."
   }
 }

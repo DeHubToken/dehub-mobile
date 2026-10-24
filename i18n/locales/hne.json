@@ -5009,7 +5009,12 @@
     "interestedCount": "{{count}} के रुचि हे",
     "loadFailed": "कारजकरम लोड नइ होइस"
   },
-  "stats": {"chart": {"daily": "रोज के आगंतुक", "dailyHint": "रोज के अनोखा आगंतुक", "empty": "ये अवधि बर अभी तक डेटा नइ हे"},
+  "stats": {
+    "chart": {
+      "daily": "रोज के आगंतुक",
+      "dailyHint": "रोज के अनोखा आगंतुक",
+      "empty": "ये अवधि बर अभी तक डेटा नइ हे"
+    },
     "definitions": {
       "visitorsTerm": "आगंतुक"
     },
@@ -9816,5 +9821,15 @@
     "youAreBanned": "आप ए रचनाकार के धारा म चैट नी कर सकत हव",
     "youAreTimedOut": "तुमन एक पल बर बाहर रहिथव",
     "title": "मध्यम"
+  },
+  "loginStack": {
+    "aiRestyle": "AI रीस्टाइल",
+    "headlineTop": "तोर बर सबकुछ मिलही",
+    "headlineAccent": "मन्न देखे से तू खुश हो या ना हो ।",
+    "orContinueWith": "या जारी रख",
+    "phone": "फोन",
+    "fingerprint": "फिंगरप्रिंट",
+    "exploreFirst": "पहिली खोजव",
+    "codeNote": "हमन तोला एक कोड भेजथन, कोनो पासवर्ड के जरूरत नइए ।"
   }
 }

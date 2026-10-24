@@ -5004,7 +5004,12 @@
     "interestedCount": "{{count}} لیوالتیا لري",
     "loadFailed": "پیښې بار نشوې"
   },
-  "stats": {"chart": {"daily": "ورځنی لیدونکي", "dailyHint": "ورځنی ځانګړي لیدونکي", "empty": "د دې مودې لپاره معلومات نشته"},
+  "stats": {
+    "chart": {
+      "daily": "ورځنی لیدونکي",
+      "dailyHint": "ورځنی ځانګړي لیدونکي",
+      "empty": "د دې مودې لپاره معلومات نشته"
+    },
     "definitions": {
       "visitorsTerm": "لیدونکي"
     },
@@ -9756,5 +9761,15 @@
     "youAreBanned": "تاسو نه شي کولای په دې ويب سايټ کې خبرې اترې وکړي",
     "youAreTimedOut": "تاسو د یوې شیبې لپاره پریښودل شوي یاست",
     "title": "په اعتدال کې"
+  },
+  "loginStack": {
+    "aiRestyle": "د AI نوی سټایل",
+    "headlineTop": "مي خواهي همه چيز داشته باشي",
+    "headlineAccent": "او خوشحاله اوسئ.",
+    "orContinueWith": "او یا هم دوام ورکړئ",
+    "phone": "ټیلیفوني خبرې",
+    "fingerprint": "د ګوتې نښه",
+    "exploreFirst": "لومړی وپلټئ",
+    "codeNote": "موږ تاسو ته یو کوډ لیږو، هیڅ پټنوم ته اړتیا نشته."
   }
 }

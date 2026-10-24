@@ -5015,7 +5015,12 @@
     "interestedCount": "{{count}} kepéngin",
     "loadFailed": "Ora bisa ngemot acara"
   },
-  "stats": {"chart": {"daily": "Tamu saben dina", "dailyHint": "tamu unik saben dina", "empty": "Durung ana data kanggo periode iki"},
+  "stats": {
+    "chart": {
+      "daily": "Tamu saben dina",
+      "dailyHint": "tamu unik saben dina",
+      "empty": "Durung ana data kanggo periode iki"
+    },
     "definitions": {
       "visitorsTerm": "Tamu"
     },
@@ -9771,5 +9776,15 @@
     "youAreBanned": "Gak bisa ngechat di stream kreator ini",
     "youAreTimedOut": "Waktu habis sebentar",
     "title": "Moderate"
+  },
+  "loginStack": {
+    "aiRestyle": "Gaya anyar AI",
+    "headlineTop": "Sampeyan bakal nduweni kabeh",
+    "headlineAccent": "lan bakal seneng.",
+    "orContinueWith": "utawa terusake karo",
+    "phone": "Telepon",
+    "fingerprint": "Sidik jari",
+    "exploreFirst": "Jelajahi dhisik",
+    "codeNote": "Kita ngirim kode menyang email sampeyan, ora perlu sandhi."
   }
 }

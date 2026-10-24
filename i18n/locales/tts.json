@@ -5017,7 +5017,12 @@
     "interestedCount": "{{count}} คนสนใจ",
     "loadFailed": "โหลดกิจกรรมบ่สำเร็จ"
   },
-  "stats": {"chart": {"daily": "ผู้เยี่ยมซมต่อมื้อ", "dailyHint": "ผู้เยี่ยมซมไม่ซ้ำต่อมื้อ", "empty": "ยังบ่มีข้อมูลสำหรับซ่วงนี้เทื่อ"},
+  "stats": {
+    "chart": {
+      "daily": "ผู้เยี่ยมซมต่อมื้อ",
+      "dailyHint": "ผู้เยี่ยมซมไม่ซ้ำต่อมื้อ",
+      "empty": "ยังบ่มีข้อมูลสำหรับซ่วงนี้เทื่อ"
+    },
     "definitions": {
       "visitorsTerm": "ผู้เยี่ยมซม"
     },
@@ -9748,5 +9753,15 @@
     "youAreBanned": "คุณไม่สามารถสนทนาในสตรีมของผู้สร้างนี้ได้",
     "youAreTimedOut": "คุณถูกเวลาปิดชั่วคราวชั่วคราวหน่อย",
     "title": "ดูแล"
+  },
+  "loginStack": {
+    "aiRestyle": "รีสไตล์ด้วย AI",
+    "headlineTop": "เจ้า สิเป็นเจ้าของทุกอย่าง",
+    "headlineAccent": "แล้วกะสุขใจ",
+    "orContinueWith": "หรือเฮ็ดต่อกับ",
+    "phone": "Phone",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Explore first",
+    "codeNote": "เฮาส่งอีเมลโค้ดให้เจ้า บ่ต้องใช้พาสเวิร์ด."
   }
 }

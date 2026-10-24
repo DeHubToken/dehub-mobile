@@ -5133,7 +5133,12 @@
     "interestedCount": "{{count}} má záujem",
     "loadFailed": "Podujatia sa nepodarilo načítať"
   },
-  "stats": {"chart": {"daily": "Návštevníci za deň", "dailyHint": "jedineční návštevníci za deň", "empty": "Pre toto obdobie zatiaľ nie sú údaje"},
+  "stats": {
+    "chart": {
+      "daily": "Návštevníci za deň",
+      "dailyHint": "jedineční návštevníci za deň",
+      "empty": "Pre toto obdobie zatiaľ nie sú údaje"
+    },
     "definitions": {
       "visitorsTerm": "Návštevníci"
     },
@@ -9968,5 +9973,15 @@
     "youAreBanned": "Nemôžete sa v tomto tvorcu chatovať",
     "youAreTimedOut": "Súčasne ste časovo vylučovaní",
     "title": "Moderuj"
+  },
+  "loginStack": {
+    "aiRestyle": "AI restyl",
+    "headlineTop": "Všetko ti bude patriť",
+    "headlineAccent": "a buďte šťastní.",
+    "orContinueWith": "alebo pokračujte",
+    "phone": "Telefón",
+    "fingerprint": "Odtlačok prsta",
+    "exploreFirst": "Najprv preskúmajte",
+    "codeNote": "Pošleme vám e-mail s kódom, nie je potrebné žiadne heslo."
   }
 }
