@@ -5013,7 +5013,12 @@
     "interestedCount": "{{count}} gyzyklanýar",
     "loadFailed": "Çäreler ýüklenip bilmedi"
   },
-  "stats": {"chart": {"daily": "Gün başyna myhmanlar", "dailyHint": "gün başyna täkrarsyz myhmanlar", "empty": "Bu wagt aralygy üçin heniz maglumat ýok"},
+  "stats": {
+    "chart": {
+      "daily": "Gün başyna myhmanlar",
+      "dailyHint": "gün başyna täkrarsyz myhmanlar",
+      "empty": "Bu wagt aralygy üçin heniz maglumat ýok"
+    },
     "definitions": {
       "visitorsTerm": "Myhmanlar"
     },
@@ -9768,5 +9773,15 @@
     "youAreBanned": "Siz bu ýaradanyň akmalary bilen gürrüňdeş bolup bilmersiňiz",
     "youAreTimedOut": "Men bir wagtlap ýykylaryn",
     "title": "Moderat"
+  },
+  "loginStack": {
+    "tip": "Tip DHB",
+    "headlineTop": "Sen meniň üçin ähli zadyňy alarsyň",
+    "headlineAccent": "goý, şatlanyň.",
+    "orContinueWith": "ýa-da dowam ediň",
+    "phone": "Telefon",
+    "fingerprint": "Fingerprint",
+    "exploreFirst": "Öňürti barlaň",
+    "codeNote": "Biz size kody iberýäris, hiç hili parol gerek däl."
   }
 }

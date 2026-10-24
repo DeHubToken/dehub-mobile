@@ -5027,7 +5027,12 @@
     "interestedCount": "{{count}} fedhii qabu",
     "loadFailed": "Taateewwan fe'uun hin dandaʼamne"
   },
-  "stats": {"chart": {"daily": "Guyyaatti daawwattoota", "dailyHint": "guyyaatti daawwattoota adda ta'an", "empty": "Yeroo kanaaf deetaan ammatti hin jiru"},
+  "stats": {
+    "chart": {
+      "daily": "Guyyaatti daawwattoota",
+      "dailyHint": "guyyaatti daawwattoota adda ta'an",
+      "empty": "Yeroo kanaaf deetaan ammatti hin jiru"
+    },
     "definitions": {
       "visitorsTerm": "Daawwattoota"
     },
@@ -9829,5 +9834,15 @@
     "youAreBanned": "Stream uumaa kanaa keessatti chat gochuu hin dandeessan",
     "youAreTimedOut": "Yeroo muraasaaf yeroon siif darbe",
     "title": "Giddugaleessa"
+  },
+  "loginStack": {
+    "tip": "Gorsa DHB",
+    "headlineTop": "Waan hundumaa ni qabaatta",
+    "headlineAccent": "akkasumas gammadaa.",
+    "orContinueWith": "ykn itti fufa",
+    "phone": "Bilbila",
+    "fingerprint": "Ashaaraa qubaa",
+    "exploreFirst": "Dursa qoradhu",
+    "codeNote": "Koodii email siif goona, jecha icciitii hin barbaachisu."
   }
 }

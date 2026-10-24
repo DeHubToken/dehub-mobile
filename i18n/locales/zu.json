@@ -5047,7 +5047,12 @@
     "interestedCount": "{{count}} bayathakazelisa",
     "loadFailed": "Ayikwazanga ukulayisha imicimbi"
   },
-  "stats": {"chart": {"daily": "Izivakashi ngosuku", "dailyHint": "izivakashi ezihlukile ngosuku", "empty": "Ayikho idatha yale nkathi okwamanje"},
+  "stats": {
+    "chart": {
+      "daily": "Izivakashi ngosuku",
+      "dailyHint": "izivakashi ezihlukile ngosuku",
+      "empty": "Ayikho idatha yale nkathi okwamanje"
+    },
     "definitions": {
       "visitorsTerm": "Izivakashi"
     },
@@ -9813,5 +9818,15 @@
     "youAreBanned": "Awukwazi ukuxoxa ekusakazweni kwalo msunguli",
     "youAreTimedOut": "Uphelelwe isikhathi okwesikhashana",
     "title": "Okulinganiselwe"
+  },
+  "loginStack": {
+    "tip": "Icebiso le-DHB",
+    "headlineTop": "Uzoba nakho konke",
+    "headlineAccent": "futhi ujabule.",
+    "orContinueWith": "noma qhubeka no-",
+    "phone": "Ucingo",
+    "fingerprint": "Uphawu lomunwe",
+    "exploreFirst": "Hlola kuqala",
+    "codeNote": "Sikuthumelela ikhodi nge-imeyili, ayikho iphasiwedi edingekayo."
   }
 }

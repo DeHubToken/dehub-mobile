@@ -5047,7 +5047,12 @@
     "interestedCount": "{{count}} مهتمين",
     "loadFailed": "ما قدرناش نحملو الأنشطة"
   },
-  "stats": {"chart": {"daily": "الزوار فاليوم", "dailyHint": "زوار فريدين فاليوم", "empty": "مازال ما كاينين حتى معطيات لهاد الفترة"},
+  "stats": {
+    "chart": {
+      "daily": "الزوار فاليوم",
+      "dailyHint": "زوار فريدين فاليوم",
+      "empty": "مازال ما كاينين حتى معطيات لهاد الفترة"
+    },
     "definitions": {
       "visitorsTerm": "الزوار"
     },
@@ -9820,5 +9825,15 @@
     "youAreBanned": "لا يمكنك الدردشة في تدفقات منشئ المحتوى هذا",
     "youAreTimedOut": "انتهت مهلتك للحظة",
     "title": "متوسط"
+  },
+  "loginStack": {
+    "tip": "نصيحة DHB",
+    "headlineTop": "سوف تمتلك كل شيء",
+    "headlineAccent": "وتكون سعيدا.",
+    "orContinueWith": "أو الاستمرار مع",
+    "phone": "الهاتف",
+    "fingerprint": "بصمة الإصبع",
+    "exploreFirst": "الاستكشاف أولاً",
+    "codeNote": "نرسل إليك رمزًا بالبريد الإلكتروني، دون الحاجة إلى كلمة مرور."
   }
 }
