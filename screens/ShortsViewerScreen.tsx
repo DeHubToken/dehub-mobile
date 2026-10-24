@@ -2391,8 +2391,8 @@ const ShortsViewerScreen = () => {
           pointerEvents="none"
         />
 
-        <View style={[styles.topBar, { paddingTop: mediaInsets.top + EDGE }]} pointerEvents="box-none">
-          <Pressable onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
+        <View className="dark-surface" style={[styles.topBar, { paddingTop: mediaInsets.top + EDGE }]} pointerEvents="box-none">
+          <Pressable className="dark-surface" onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
             <ChromeFill top />
             {/* The cut Back arrow at the 20pt every other glyph on this row
                 uses, starting with picture-in-picture. */}
@@ -2403,6 +2403,7 @@ const ShortsViewerScreen = () => {
             {items[activeIndex]?.postType !== "feed-images" && <PictureInPictureButton videoRef={activeVideoRef} size={CHROME_SIZE} />}
             <Pressable
               onPress={handleCycleSpeed}
+              className="dark-surface"
               hitSlop={CHROME_HIT_SLOP}
               style={[styles.topButton, styles.speedButton]}
               accessibilityLabel={t("player.playbackSpeed")}
@@ -2438,6 +2439,7 @@ const ShortsViewerScreen = () => {
 
             <Pressable
               onPress={() => setShowOptionsMenu(true)}
+              className="dark-surface"
               style={styles.topButton}
               hitSlop={CHROME_HIT_SLOP}
               accessibilityLabel={t("player.moreOptions")}

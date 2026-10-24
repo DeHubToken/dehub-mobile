@@ -127,6 +127,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
                 justifyContent: "center",
               }}
               pointerEvents="none"
+              className="dark-surface"
             >
               <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700", lineHeight: 12, textAlign: "center" }}>
                 {unreadCount > 99 ? "99+" : unreadCount}

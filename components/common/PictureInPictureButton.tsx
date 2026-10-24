@@ -18,6 +18,7 @@ export default function PictureInPictureButton({ videoRef, plain = false, size =
 
   return (
     <Pressable
+      className="dark-surface"
       accessibilityRole="button"
       accessibilityLabel={t('player.pictureInPicture')}
       hitSlop={8}
