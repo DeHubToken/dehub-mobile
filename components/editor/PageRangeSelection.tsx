@@ -1,0 +1,13 @@
+import React, { useState } from "react";
+import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import { DesignDraftInput as TextInput } from "./DesignDraftInput";
+import { parsePageSelection } from "../../libs/editor/pageExports";
+export default function PageRangeSelection({ count, selected, onChange }: { count: number; selected: readonly number[]; onChange: (indexes: number[]) => void }) {
+  const { t } = useTranslation(), [open, setOpen] = useState(false), [range, setRange] = useState(""), [error, setError] = useState("");
+  const apply = (action: "replace" | "add" | "remove") => {
+    try { const parsed = parsePageSelection(range.replace(/[–—]/g, "-"), count), picked = new Set(parsed); onChange(action === "replace" ? parsed : action === "add" ? [...new Set([...selected, ...parsed])].sort((a, b) => a - b) : selected.filter(index => !picked.has(index))); setError(""); }
+    catch (reason) { setError(reason instanceof Error ? reason.message : "Enter valid page numbers"); }
+  };
+  return <View className="rounded-lg border border-white/10 p-3" style={{ gap: 8 }}><Pressable accessibilityRole="button" accessibilityState={{ expanded: open }} onPress={() => setOpen(value => !value)} className="min-h-[40px] justify-center"><Text className="text-xs font-semibold text-white/75">{t("editor.pages.selectNumbers", { defaultValue: "Select page numbers" })}</Text></Pressable>{open && <><TextInput value={range} maxLength={2000} onChangeText={setRange} accessibilityLabel={t("editor.pages.selectionRange", { defaultValue: "Page numbers and ranges" })} placeholder="1,3-8" placeholderTextColor="#888888" autoCorrect={false} autoCapitalize="none" keyboardType="numbers-and-punctuation" returnKeyType="go" onSubmitEditing={() => apply("replace")} className="min-h-[40px] rounded-lg border border-white/20 px-3 text-xs text-white" /><View className="flex-row flex-wrap" style={{ gap: 8 }}>{(["replace", "add", "remove"] as const).map(action => <Pressable key={action} accessibilityRole="button" disabled={!range.trim()} onPress={() => apply(action)} className="min-h-[40px] justify-center rounded-lg border border-white/20 px-3" style={{ opacity: range.trim() ? 1 : 0.35 }}><Text className="text-xs text-white/75">{t(`editor.pages.rangeAction.${action}`, { defaultValue: ({ replace: "Select pages", add: "Add to selection", remove: "Remove from selection" })[action] })}</Text></Pressable>)}</View><Text className="text-xs text-white/45">{t("editor.pages.rangeHint", { defaultValue: "Use page numbers separated by commas, or ranges such as 3-8." })}</Text>{error && <Text accessibilityRole="alert" className="text-xs text-red-300">{error}</Text>}</>}</View>;
+}

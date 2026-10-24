@@ -14,6 +14,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   ToastAndroid,
+  LayoutChangeEvent,
 } from "react-native";
 import SmartImage from "../components/common/SmartImage";
 import SoundtrackBadge from "../components/Post/SoundtrackBadge";
@@ -47,7 +48,13 @@ const normalizeImageUri = (item: any): string => {
 };
 
 /**
- * Zoomable image — double-tap to zoom, pinch-to-zoom, pan when zoomed.
+ * Zoomable image — double-tap to zoom, pinch-to-zoom, pan when zoomed, and a
+ * single tap (once a double tap is ruled out) hands off to `onTap`.
+ *
+ * `width`/`height` are the viewer's measured box, not the window: on Android
+ * the window can be taller than what the viewer actually gets (a Modal stops
+ * above the navigation bar), and a page sized to the window hangs off the
+ * bottom with the lower part of the picture cut off.
  *
  * `uri` is the picture as it was uploaded and `preview` the sized copy the
  * feed already has decoded. The preview is shown underneath until the original
@@ -59,15 +66,18 @@ const ZoomableImage = memo(
   ({
     uri,
     preview,
+    width: SCREEN_W,
+    height: SCREEN_H,
     onZoomChange,
+    onTap,
   }: {
     uri: string;
     preview?: string;
+    width: number;
+    height: number;
     onZoomChange?: (zoomed: boolean) => void;
+    onTap?: () => void;
   }) => {
-    // Live size: the zoom maths centre on the window as it is now, not as it
-    // was at app start (split-screen, folds).
-    const { width: SCREEN_W, height: SCREEN_H } = useWindowDimensions();
     const [loaded, setLoaded] = useState(false);
     const showPreview = !loaded && !!preview && preview !== uri;
     const scale = useSharedValue(1);
@@ -204,7 +214,16 @@ const ZoomableImage = memo(
         );
       });
 
-    const composed = Gesture.Simultaneous(pinch, doubleTap, pan);
+    // ── Single tap: show/hide the viewer's buttons. Waits for the double tap
+    // to fail, so a zoom never flashes the buttons first.
+    const singleTap = Gesture.Tap()
+      .numberOfTaps(1)
+      .maxDuration(250)
+      .onEnd((_e, success) => {
+        if (success && onTap) runOnJS(onTap)();
+      });
+
+    const composed = Gesture.Simultaneous(pinch, Gesture.Exclusive(doubleTap, singleTap), pan);
 
     const animStyle = useAnimatedStyle(() => ({
       transform: [
@@ -278,7 +297,19 @@ const ZoomableImage = memo(
 export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => void }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { width: SCREEN_W, height: SCREEN_H } = useWindowDimensions();
+  const win = useWindowDimensions();
+  // Pages are sized to the box the viewer really got, measured, so a viewer
+  // shorter than the window (a Modal above the nav bar) never crops the
+  // bottom of the picture. The window is only the first guess.
+  const [box, setBox] = useState<{ width: number; height: number } | null>(null);
+  const SCREEN_W = box?.width ?? win.width;
+  const SCREEN_H = box?.height ?? win.height;
+  const onRootLayout = useCallback((e: LayoutChangeEvent) => {
+    const { width, height } = e.nativeEvent.layout;
+    if (width > 0 && height > 0) {
+      setBox((prev) => (prev && prev.width === width && prev.height === height ? prev : { width, height }));
+    }
+  }, []);
 
   const {
     imageUrl,
@@ -324,7 +355,17 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
   const opacity = useSharedValue(1);
   const isDismissing = useRef(false);
   const [isZoomed, setIsZoomed] = useState(false);
+  const isZoomedRef = useRef(false);
   const [isSaving, setIsSaving] = useState(false);
+  // One tap hides the buttons for a clean look at the picture; zooming in
+  // hides them by itself, and they come back at 1x.
+  const [chromeHidden, setChromeHidden] = useState(false);
+  const chromeOpacity = useSharedValue(1);
+  useEffect(() => {
+    chromeOpacity.value = withTiming(chromeHidden ? 0 : 1, { duration: 180 });
+  }, [chromeHidden, chromeOpacity]);
+  const chromeStyle = useAnimatedStyle(() => ({ opacity: chromeOpacity.value }));
+  const toggleChrome = useCallback(() => setChromeHidden((h) => !h), []);
 
   const handleDownload = useCallback(async () => {
     const uri = images[indexRef.current];
@@ -428,6 +469,8 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
       indexRef.current = clamped;
       setCurrentIndex(clamped);
       if (galleryKey) rememberGalleryIndex(galleryKey, clamped);
+      if (isZoomedRef.current) setChromeHidden(false);
+      isZoomedRef.current = false;
       setIsZoomed(false);
     },
     [images.length, SCREEN_W],
@@ -453,6 +496,8 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
   );
 
   const handleZoomChange = useCallback((zoomed: boolean) => {
+    if (zoomed !== isZoomedRef.current) setChromeHidden(zoomed);
+    isZoomedRef.current = zoomed;
     setIsZoomed(zoomed);
   }, []);
 
@@ -461,10 +506,13 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
       <ZoomableImage
         uri={item}
         preview={previews[index]}
+        width={SCREEN_W}
+        height={SCREEN_H}
         onZoomChange={handleZoomChange}
+        onTap={toggleChrome}
       />
     ),
-    [handleZoomChange, previews],
+    [handleZoomChange, toggleChrome, previews, SCREEN_W, SCREEN_H],
   );
 
   const keyExtractor = useCallback((_: string, i: number) => `img-${i}`, []);
@@ -472,7 +520,7 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
   const showDots = images.length > 1;
 
   return (
-    <View style={styles.root}>
+    <View style={styles.root} onLayout={onRootLayout}>
       <StatusBar barStyle="light-content" backgroundColor="#000" />
       <Animated.View
         style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }, animatedBg]}
@@ -501,9 +549,9 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
       </GestureDetector>
 
       {/* ── Top bar ─────────────────────────────────────────────────── */}
-      <View
-        style={[styles.topBar, { top: insets.top + 8 }]}
-        pointerEvents="box-none"
+      <Animated.View
+        style={[styles.topBar, { top: insets.top + 8 }, chromeStyle]}
+        pointerEvents={chromeHidden ? "none" : "box-none"}
       >
         {/* Close — left (matches FullscreenVideoScreen) */}
         <TouchableOpacity
@@ -551,18 +599,21 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
             </TouchableOpacity>
           )}
         </View>
-      </View>
+      </Animated.View>
 
       {/* ── Dot indicators ──────────────────────────────────────────── */}
       {soundtrack?.url && (
-        <View style={{ position: "absolute", top: insets.top + 72, left: 16, right: 16 }}>
+        <Animated.View
+          style={[{ position: "absolute", top: insets.top + 72, left: 16, right: 16 }, chromeStyle]}
+          pointerEvents={chromeHidden ? "none" : "auto"}
+        >
           <SoundtrackBadge title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} />
-        </View>
+        </Animated.View>
       )}
       {showDots && (
-        <View
-          style={[styles.dotsRow, { bottom: insets.bottom + 20 }]}
-          pointerEvents="box-none"
+        <Animated.View
+          style={[styles.dotsRow, { bottom: insets.bottom + 20 }, chromeStyle]}
+          pointerEvents={chromeHidden ? "none" : "box-none"}
         >
           {images.map((_, idx) => (
             <Pressable
@@ -580,7 +631,7 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
               />
             </Pressable>
           ))}
-        </View>
+        </Animated.View>
       )}
     </View>
   );

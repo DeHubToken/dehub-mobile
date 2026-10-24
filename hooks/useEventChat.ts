@@ -68,12 +68,12 @@ export function useEventChat(eventId: string | undefined, walletAddress: string 
           ...msg,
           reply_to: {
             id: parent.id,
-            content: parent.content || (parent.message_type === "gif" ? "GIF" : "Media"),
-            sender_name: parent.display_name || parent.username || "User",
+            content: parent.content || (parent.message_type === "gif" ? t("emojiPicker.tabGif") : t("communities.chatPanel.mediaMessage")),
+            sender_name: parent.display_name || parent.username || t("liveChat.user"),
           },
         };
       }),
-    [raw],
+    [raw, t],
   );
 
   useEffect(() => {

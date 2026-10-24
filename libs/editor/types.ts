@@ -32,7 +32,14 @@ export interface Transition {
 }
 
 interface BaseClip {
+  isPageBackground?: boolean;
   id: string;
+  /** Persistent selection group; members retain independent content and styling. */
+  groupId?: string;
+  /** Optional user-assigned layer name, separate from visible text and source filenames. */
+  label?: string;
+  /** Click destination retained by PDF exports. */
+  href?: string;
   trackId: string;
   start: number; // timeline seconds where clip starts
   duration: number; // length on timeline (s)
@@ -131,6 +138,13 @@ export interface ClipCrop {
 
 
 export interface ClipEffects {
+  sharpen?: number;
+  grain?: number;
+  vibrance?: number;
+  highlights?: number;
+  shadows?: number;
+  fade?: number;
+  duotone?: import("./photoTone").PhotoTone["duotone"];
   /** 0..2, 1 = neutral */
   brightness?: number;
   /** 0..2, 1 = neutral */
@@ -165,7 +179,14 @@ export type ClipAnimationKind =
   | "zoom-out"
   | "pop"
   | "rise"
-  | "blur";
+  | "blur"
+  | "spin"
+  | "bounce"
+  | "wipe-left"
+  | "wipe-right"
+  | "wipe-up"
+  | "wipe-down"
+  | "typewriter";
 
 export interface ClipAnimation {
   kind: ClipAnimationKind;
@@ -203,9 +224,13 @@ export interface MediaClip extends BaseClip {
   crop?: ClipCrop | null;
   /** Corner radius in px relative to 1080p. */
   radius?: number;
+  /** Clip the media into an editable frame while preserving its original source. */
+  frame?: import("./mediaFrames").MediaFrame;
+  border?: TextStroke | null;
 }
 
 export interface TextBackground {
+  perLine?: boolean;
   /** Hex colour. */
   color: string;
   /** 0..1 opacity of the background fill. */
@@ -217,13 +242,25 @@ export interface TextBackground {
 }
 
 export interface TextStroke {
+  /** Offset along the dash pattern, relative to a 1080p canvas. */
+  dashOffset?: number;
+  /** Paint opacity, independent of layer transparency. */
+  opacity?: number;
   color: string;
+  /** Dash lengths in pixels relative to 1080p. Absent is a solid line. */
+  dash?: number[];
   /** Stroke width in px relative to 1080p. */
   width: number;
 }
 
 export interface TextClip extends BaseClip {
+  balance?: boolean;
+  direction?: import("./textDirection").TextDirection;
+  listStyle?: import("./textList").TextListStyle;
+  fillOpacity?: number;
+  pageNumber?: import("./pageNumbering").PageNumberFormat;
   kind: "text";
+  gradient?: import("./gradientFill").GradientFill | null;
   text: string;
   fontFamily: string;
   fontSize: number; // px relative to canvas height
@@ -240,31 +277,54 @@ export interface TextClip extends BaseClip {
   italic?: boolean;
   uppercase?: boolean;
   underline?: boolean;
+  strikethrough?: boolean;
+  /** Text arc amount, from -100 to 100. Zero preserves straight text. */
+  curve?: number;
+  hollow?: boolean;
+  echo?: Array<{ colour: string; x: number; y: number; opacity: number }>;
+  list?: "none" | "bullet" | "number";
   /** Extra space between letters, in px relative to 1080p. */
   letterSpacing?: number;
   /** Line height as a multiple of font size. Default 1.2. */
   lineHeight?: number;
+  /** Extra space after explicit paragraph breaks, relative to 1080p. */
+  paragraphSpacing?: number;
   /** Optional wrapping box as fractions of the page. Absent keeps manual line breaks. */
   maxWidth?: number;
   /** Fit wrapped text inside this height, keeping the requested font as an upper bound. */
   maxHeight?: number;
 }
 
-export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow"] as const;
+export const SHAPE_KINDS = ["rect", "ellipse", "triangle", "star", "heart", "hexagon", "line", "arrow", "diamond", "pentagon", "octagon", "polygon", "parallelogram", "trapezoid", "chevron", "cross", "speech-bubble"] as const;
 /** "path" is a freehand drawing; it is not offered in the shapes grid. */
 export type ShapeKindAll = (typeof SHAPE_KINDS)[number] | "path";
 export type ShapeKind = (typeof SHAPE_KINDS)[number];
 
 /** A vector shape. Size is a fraction of the page, before transform.scale. */
 export interface ShapeClip extends BaseClip {
+  fillOpacity?: number;
+  geometry?: import("./shapeGeometry").ShapeGeometryOptions;
   kind: "shape";
+  gradient?: import("./gradientFill").GradientFill | null;
   shape: ShapeKindAll;
+  symbol?: string;
+  connector?: import("./connectors").ConnectorStyle;
+  /** An empty photo-grid cell, replaced in place when a picture is chosen. */
+  photoFrame?: boolean;
+  /** Data-backed graphics remain editable after insertion and across devices. */
+  chart?: import("./dataVisuals").ChartData;
+  table?: import("./dataVisuals").TableData;
+  qr?: import("./qrGraphic").QrGraphic;
   /**
    * Freehand stroke for shape "path": points in the layer's own box, each
    * coordinate -0.5..0.5 of its width/height, so the drawing scales, stretches
    * and rotates with the layer like any other shape.
    */
   points?: [number, number][];
+  pathSmoothing?: number;
+  closedPath?: boolean;
+  strokeCap?: "round" | "butt" | "square";
+  strokeJoin?: "round" | "bevel" | "miter";
   /** Width and height as fractions of the page width and height. */
   w: number;
   h: number;
@@ -281,11 +341,15 @@ export type Clip = MediaClip | TextClip | ShapeClip;
 export type AspectPreset = "16:9" | "9:16" | "1:1" | "4:5" | "custom";
 
 export interface ProjectSettings {
+  /** Physical page sizing for PDF downloads. */
+  printDpi?: number;
   width: number;
   height: number;
   fps: number;
   background: string; // hex
   aspectPreset: AspectPreset;
+  /** Nonprinting layout guides, stored as fractions so resizing preserves their positions. */
+  guides?: { vertical: number[]; horizontal: number[]; margin?: number; visible?: boolean; snap?: boolean; rulers?: boolean; spacing?: boolean; unit?: "px" | "in" | "cm" | "mm" };
   /**
    * Start times (seconds) of each page, ascending, first is 0. Absent means a
    * single page. A page runs until the next page starts; the last one until
@@ -294,6 +358,12 @@ export interface ProjectSettings {
    * are its scenes.
    */
   pages?: number[];
+  /** Explicit end of the last page, including blank time and short still pages. */
+  pageEnd?: number;
+  /** Portable brand colours and fonts; logos retain their existing media ownership. */
+  brandStyles?: import("./brandStyles").BrandStyles;
+  /** Page names and presenter notes, indexed by page order. */
+  pageDetails?: import("./pageDetails").PageDetails[];
 }
 
 export interface ProjectSnapshot {

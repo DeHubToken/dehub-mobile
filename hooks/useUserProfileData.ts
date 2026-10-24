@@ -97,6 +97,39 @@ const pruneCache = () => {
   }
 };
 
+/**
+ * One account_info request per account at a time. A press-in prefetch and the
+ * profile's own load (a moment later, on release) share the same request, so
+ * the profile usually opens with its answer already on the way or in hand.
+ */
+const inflight = new Map<string, Promise<any>>();
+const fetchAccount = (who: string) => {
+  const key = who.toLowerCase();
+  const pending = inflight.get(key);
+  if (pending) return pending;
+  const request = getAccount(who).finally(() => inflight.delete(key));
+  inflight.set(key, request);
+  return request;
+};
+
+/**
+ * Warm the profile cache on press-in, before the tap is released. Skips a
+ * fresh entry; a failure is swallowed here and retried by the profile itself.
+ */
+export const prefetchUserProfile = (who?: string | null) => {
+  const id = (who || '').replace(/^@/, '');
+  if (!id) return;
+  const key = id.toLowerCase();
+  const cached = profileCache.get(key);
+  if (cached && Date.now() - cached.ts < PROFILE_CACHE_TTL) return;
+  fetchAccount(id).then((res: any) => {
+    const payload = res?.data?.result || res?.result || res;
+    if (!payload || isEmptyProfileShell(payload)) return;
+    profileCache.set(key, { data: payload, ts: Date.now() });
+    pruneCache();
+  }).catch(() => {});
+};
+
 export const useUserProfileData = (
   visible: boolean,
   usernameOrAddress?: string | null
@@ -149,7 +182,10 @@ export const useUserProfileData = (
       const cached = profileCache.get(key);
       const isCacheFresh = cached && Date.now() - cached.ts < PROFILE_CACHE_TTL;
 
-      if (isCacheFresh && cached) {
+      // Any cached copy goes on screen straight away, fresh or not, and the
+      // request below quietly brings it up to date. Waiting on the network
+      // for a profile we have already seen is what made opening one feel slow.
+      if (cached) {
         if (isMountedRef.current && lastRequestedRef.current === who) {
           setData(cached.data);
           setLoading(false);
@@ -176,14 +212,14 @@ export const useUserProfileData = (
           }
         }
       } else {
-        if (!cached) {
-          setLoading(true);
-        }
+        // Nothing known yet: never leave the previous person on screen.
+        setData(null);
+        setLoading(true);
       }
 
       try {
         // Auth token is sent automatically — backend uses it for relationship info
-        const res: any = await getAccount(who);
+        const res: any = await fetchAccount(who);
         const payload = res?.data?.result || res?.result || res;
 
         if (
@@ -192,7 +228,8 @@ export const useUserProfileData = (
           lastRequestedRef.current === who
         ) {
           setLoading(false);
-          // A fresh cached profile already on screen stays there.
+          // A fresh cached profile already on screen stays there; a stale one
+          // gives way to the server's answer that nobody is there.
           if (!isCacheFresh) {
             setData(null);
             setError("notFound");
@@ -237,10 +274,10 @@ export const useUserProfileData = (
         console.warn("[useUserProfileData] load error", e);
         if (isMountedRef.current && lastRequestedRef.current === who) {
           setLoading(false);
-          // A failed background refresh keeps a fresh cached profile on screen.
+          // A failed background refresh keeps a cached profile on screen.
           // Otherwise drop whatever was showing (it may be the previous
           // person) so the sheet can say what went wrong.
-          if (!isCacheFresh) {
+          if (!cached) {
             setData(null);
             setError((e as any)?.status === 404 ? "notFound" : "failed");
           }

@@ -1,0 +1,17 @@
+import React from "react";
+import { Pressable, Switch, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import type { ChartData } from "../../libs/editor/dataVisuals";
+import { CHART_POINT_SHAPES, CHART_LINE_PATTERNS } from "../../libs/editor/chartMarks";
+type MarkStyle = Pick<ChartData, "pointShape" | "linePattern" | "seriesPatterns" | "scatterLines">;
+export default function ChartMarkerControls({ value, kind, multiple, onChange }: { value: MarkStyle; kind: ChartData["kind"]; multiple: boolean; onChange: (value: MarkStyle) => void }) {
+  const { t } = useTranslation();
+  if (!["line", "area", "scatter", "dot", "lollipop", "radar"].includes(kind)) return null;
+  const lines = kind !== "dot" && (kind !== "scatter" || value.scatterLines), varied = multiple && !!value.seriesPatterns;
+  return <View className="border-t border-white/10 pt-3" style={{ gap: 8 }}>
+    {kind !== "radar" && <><Text className="text-xs text-white/65">{t("editor.charts.pointShape", { defaultValue: "Point shape" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{CHART_POINT_SHAPES.map(shape => <Pressable key={shape} accessibilityRole="button" disabled={varied} accessibilityState={{ disabled: varied, selected: (value.pointShape ?? "circle") === shape }} onPress={() => onChange({ ...value, pointShape: shape })} style={{ opacity: varied ? 0.35 : 1 }} className={`min-h-[40px] justify-center rounded-lg border px-3 ${(value.pointShape ?? "circle") === shape ? "border-white bg-white/10" : "border-white/20"}`}><Text className="text-xs text-white/75">{t(`editor.charts.pointShape.${shape}`, { defaultValue: ({ circle: "Circle", square: "Square", diamond: "Diamond", triangle: "Triangle", cross: "Cross" })[shape] })}</Text></Pressable>)}</View></>}
+    {lines && <><Text className="text-xs text-white/65">{t("editor.charts.linePattern", { defaultValue: "Line pattern" })}</Text><View className="flex-row flex-wrap" style={{ gap: 8 }}>{CHART_LINE_PATTERNS.map(pattern => <Pressable key={pattern} accessibilityRole="button" disabled={varied} accessibilityState={{ disabled: varied, selected: (value.linePattern ?? "solid") === pattern }} onPress={() => onChange({ ...value, linePattern: pattern })} style={{ opacity: varied ? 0.35 : 1 }} className={`min-h-[40px] justify-center rounded-lg border px-3 ${(value.linePattern ?? "solid") === pattern ? "border-white bg-white/10" : "border-white/20"}`}><Text className="text-xs text-white/75">{t(`editor.charts.linePattern.${pattern}`, { defaultValue: ({ solid: "Solid", dashed: "Dashed", dotted: "Dotted", "dash-dot": "Dash and dot" })[pattern] })}</Text></Pressable>)}</View></>}
+    {multiple && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={!!value.seriesPatterns} onValueChange={seriesPatterns => onChange({ ...value, seriesPatterns })} accessibilityLabel={t("editor.charts.seriesPatterns", { defaultValue: "Vary shapes and patterns by series" })} /><Text className="flex-1 text-xs text-white/65">{t("editor.charts.seriesPatterns", { defaultValue: "Vary shapes and patterns by series" })}</Text></View>}
+    <Text className="text-[10px] text-white/45">{t("editor.charts.markerHint", { defaultValue: "Shapes and line patterns provide another way to distinguish series. Legend keys follow the plot. Point size zero hides markers; bubble sizes keep their circular area scale." })}</Text>
+  </View>;
+}

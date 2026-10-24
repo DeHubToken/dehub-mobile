@@ -286,7 +286,7 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
                 return {
                   id: String(item.tokenId ?? item.id ?? index),
                   title: item.name || (item as any).title || "",
-                  subtitle: [creator, views ? t("music.viewsCount", { defaultValue: "{{views}} views", views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
+                  subtitle: [creator, views ? t("music.viewsCount", { count: views, views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
                   thumb: rawThumb ? getImageUrl(rawThumb, 160) : undefined,
                   badge: secondsToHMMSS(item.videoDuration) || undefined,
                 };
