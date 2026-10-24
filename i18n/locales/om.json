@@ -3002,6 +3002,8 @@
     "tabSearch": "Barbaadi"
   },
   "postInfo": {
+    "ownersUnavailable": "Abbootiin qabeenyaa amma jiran yeroo ammaa kana dubbifamuu hin danda'an.",
+    "unavailable": "Hin argamne",
     "title": "Odeeffannoo maxxansaa",
     "tokenId": "ID Lakkofsa",
     "mintedOn": "Uumame",
@@ -5050,6 +5052,8 @@
     "displayNameHint": "Maqaa kee uummataa kan piroofaayilii kee irratti mul'atu. Dirqama miti — maqaa fayyadamaa kee akka fayyadamnuuf duwwaa dhiisi."
   },
   "events": {
+    "deleteConfirmBody": "Kunis taatee, tarree keessummoota isaa fi chat isaa hundaaf ni haqa. Deebi'uu hin danda'u.",
+    "deleteConfirmTitle": "Taatee kana haquu?",
     "youreApproved": "Ati raggaasifteetta",
     "youAreCreator": "Ati uumaadha",
     "typeMessage": "Ergaa barreessi...",

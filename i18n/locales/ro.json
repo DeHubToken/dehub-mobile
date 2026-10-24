@@ -3006,6 +3006,8 @@
     "tabSearch": "Căutare"
   },
   "postInfo": {
+    "ownersUnavailable": "Proprietarii actuali nu pot fi citiți chiar acum.",
+    "unavailable": "Indisponibil",
     "title": "Postare informații",
     "tokenId": "ID jeton",
     "mintedOn": "Redactat la data de",
@@ -5055,6 +5057,8 @@
     "displayNameHint": "Numele tău public afișat pe profil. Opțional — lasă câmpul gol ca să se folosească numele de utilizator."
   },
   "events": {
+    "deleteConfirmBody": "Acest lucru elimină evenimentul, lista de invitați și chat-ul pentru toată lumea. Acțiunea nu poate fi anulată.",
+    "deleteConfirmTitle": "Ștergeți acest eveniment?",
     "youreApproved": "Ești aprobat",
     "youAreCreator": "Ești creatorul",
     "typeMessage": "Tastează un mesaj...",

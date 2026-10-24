@@ -2998,6 +2998,8 @@
     "tabSearch": "Pretraži"
   },
   "postInfo": {
+    "ownersUnavailable": "Trenutačni vlasnici trenutačno se ne mogu pročitati.",
+    "unavailable": "Nije dostupno",
     "title": "Informacije o objavi",
     "tokenId": "ID tokena",
     "mintedOn": "Kreirano",
@@ -5047,6 +5049,8 @@
     "displayNameHint": "Tvoje javno ime na profilu. Nije obavezno — ostavi prazno i koristit će se tvoje korisničko ime."
   },
   "events": {
+    "deleteConfirmBody": "Time se događaj, popis gostiju i chat uklanjaju za sve sudionike. Ne može se poništiti.",
+    "deleteConfirmTitle": "Želite li izbrisati ovaj događaj?",
     "youreApproved": "Odobren si",
     "youAreCreator": "Ti si kreator",
     "typeMessage": "Upiši poruku...",

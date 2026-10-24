@@ -3321,6 +3321,8 @@
     "tabSearch": "Rechercher"
   },
   "postInfo": {
+    "ownersUnavailable": "Les propriétaires actuels ne peuvent pas être lus pour le moment.",
+    "unavailable": "Non disponible",
     "title": "Info du Post",
     "tokenId": "Identifiant du jeton",
     "mintedOn": "Créé le",
@@ -5455,6 +5457,8 @@
     "displayNameHint": "Votre nom public sur votre profil. Facultatif — laissez-le vide pour utiliser votre nom d'utilisateur."
   },
   "events": {
+    "deleteConfirmBody": "Cela supprime l'événement, sa liste d'invités et son chat pour tout le monde. Cette action est irréversible.",
+    "deleteConfirmTitle": "Supprimer cet événement ?",
     "youreApproved": "Vous êtes approuvé",
     "youAreCreator": "Vous êtes le créateur",
     "typeMessage": "Tapez un message...",

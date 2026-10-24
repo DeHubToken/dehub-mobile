@@ -2987,6 +2987,8 @@
     "tabSearch": "Bincika"
   },
   "postInfo": {
+    "ownersUnavailable": "Ba za a iya karanta masu mallakar yanzu ba a yanzu.",
+    "unavailable": "Ba a samu ba",
     "title": "Bayanan bugu",
     "tokenId": "ID na Token",
     "mintedOn": "An ƙirƙira",
@@ -5034,6 +5036,8 @@
     "displayNameHint": "Sunanka na jama'a a bayananka. Ba dole ba ne — ka bar shi a wofi don a yi amfani da sunan mai amfani naka."
   },
   "events": {
+    "deleteConfirmBody": "Wannan yana kawar da taron, jerin baƙi da tattaunawarsa ga kowa da kowa. Ba za a iya cire shi ba.",
+    "deleteConfirmTitle": "Share wannan taron?",
     "youreApproved": "An yarda da ku",
     "youAreCreator": "Kai ne mahalicci",
     "typeMessage": "Rubuta sako...",

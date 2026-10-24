@@ -2938,6 +2938,8 @@
     "tabSearch": "搜索"
   },
   "postInfo": {
+    "unavailable": "用勿來",
+    "ownersUnavailable": "現在讀勿出當前個所有者。",
     "title": "帖子信息",
     "tokenId": "代币ID",
     "mintedOn": "铸造于",
@@ -4979,6 +4981,8 @@
     "displayNameHint": "显示辣侬个人资料上个公开名称。可以勿填——空了就用侬个用户名。"
   },
   "events": {
+    "deleteConfirmTitle": "刪脫搿個活動？",
+    "deleteConfirmBody": "搿樣會對所有人刪脫活動、來賓名單搭聊天，呒沒辦法撤銷。",
     "youreApproved": "您已獲批准",
     "youAreCreator": "您是創建者",
     "typeMessage": "輸入訊息...",

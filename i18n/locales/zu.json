@@ -3017,6 +3017,8 @@
     "tabSearch": "Sesha"
   },
   "postInfo": {
+    "ownersUnavailable": "Abanikazi bamanje abakwazi ukufundwa njengamanje.",
+    "unavailable": "Ayitholakali",
     "title": "Ulwazi Lokuthunyelwe",
     "tokenId": "I-ID yethokheni",
     "mintedOn": "Kwadalwa",
@@ -5066,6 +5068,8 @@
     "displayNameHint": "Igama lakho lomphakathi kuphrofayela yakho. Akuphoqelekile — lishiye lingenalutho ukuze kusetshenziswe igama lakho lomsebenzisi."
   },
   "events": {
+    "deleteConfirmBody": "Lokhu kususa umcimbi, uhlu lwawo lwezivakashi kanye nengxoxo yawo yawo wonke umuntu. Ayikwazi ukuhlehliswa.",
+    "deleteConfirmTitle": "Susa lo mcimbi?",
     "youreApproved": "Uvunyelwe",
     "youAreCreator": "Ungumsunguli",
     "typeMessage": "Thayipha umyalezo...",

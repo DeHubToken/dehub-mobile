@@ -3018,6 +3018,8 @@
     "tabSearch": "Buscar"
   },
   "postInfo": {
+    "ownersUnavailable": "Os proprietários atuais não podem ser lidos no momento.",
+    "unavailable": "Indisponível",
     "title": "Info do Post",
     "tokenId": "ID do token",
     "mintedOn": "Cunhado em",
@@ -5118,6 +5120,8 @@
     "displayNameHint": "Seu nome público exibido no perfil. Opcional — deixe em branco para usar seu nome de usuário."
   },
   "events": {
+    "deleteConfirmBody": "Isso remove o evento, a lista de convidados e o chat para todos. Não pode ser desfeito.",
+    "deleteConfirmTitle": "Eliminar este evento?",
     "youreApproved": "Você foi aprovado",
     "youAreCreator": "Você é o criador",
     "typeMessage": "Digite uma mensagem...",

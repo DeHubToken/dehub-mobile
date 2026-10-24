@@ -2985,6 +2985,8 @@
     "tabSearch": "Gözle"
   },
   "postInfo": {
+    "ownersUnavailable": "Häzirki eýelerini häzir okap bolanok.",
+    "unavailable": "Elýeterli däl",
     "title": "Ýazgy maglumaty",
     "tokenId": "Token ID",
     "mintedOn": "Döredilen",
@@ -5034,6 +5036,8 @@
     "displayNameHint": "Profiliňizdäki köpçülik adyňyz. Hökmany däl — boş goýsaňyz, ulanyjy adyňyz ulanylar."
   },
   "events": {
+    "deleteConfirmBody": "Bu çäräni, onuň myhman sanawyny we söhbetdeşligini hemmeler üçin aýyrýar. Muny yzyna gaýtaryp bolmaýar.",
+    "deleteConfirmTitle": "Bu çäräni pozmalymy?",
     "youreApproved": "Sen razylaşdyň",
     "youAreCreator": "Sen Ýaradyjysyň",
     "typeMessage": "Bir habar beriň...",

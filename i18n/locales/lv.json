@@ -2998,6 +2998,8 @@
     "tabSearch": "Meklēt"
   },
   "postInfo": {
+    "ownersUnavailable": "Pašreizējie īpašnieki nav lasāmi šajā brīdī.",
+    "unavailable": "Nav pieejams",
     "title": "Ieraksta informācija",
     "tokenId": "Žetona ID",
     "mintedOn": "Izveidots",
@@ -5047,6 +5049,8 @@
     "displayNameHint": "Tavs publiskais vārds profilā. Nav obligāts — atstāj tukšu, lai izmantotu savu lietotājvārdu."
   },
   "events": {
+    "deleteConfirmBody": "Tādējādi pasākums, tā viesu saraksts un tērzēšana tiek noņemta visiem. To nevar atsaukt.",
+    "deleteConfirmTitle": "Dzēst šo pasākumu?",
     "youreApproved": "Jums ir atļauja",
     "youAreCreator": "Jūs esat veidotājs",
     "typeMessage": "Rakstiet ziņojumu...",

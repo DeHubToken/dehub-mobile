@@ -2990,6 +2990,8 @@
     "tabSearch": "Lêgerîn"
   },
   "postInfo": {
+    "unavailable": "بەردەست نییە",
+    "ownersUnavailable": "ئێستا ناتوانرێت خاوەنە ئێستاییەکان بخوێنرێنەوە.",
     "title": "Agahiya postê",
     "tokenId": "Nasnameya Tokenê",
     "mintedOn": "Hatiye çêkirin",
@@ -5031,6 +5033,8 @@
     "displayNameHint": "Navê te yê giştî li ser profîla te. Ne mecbûrî ye — vala bihêle da ku navê te yê bikarhêner were bikaranîn."
   },
   "events": {
+    "deleteConfirmTitle": "ئەم ڕووداوە بسڕیتەوە؟",
+    "deleteConfirmBody": "ئەمە ڕووداوەکە و لیستی میوانەکانی و چاتەکەی بۆ هەمووان دەسڕێتەوە. ناتوانرێت پاشگەز بکرێتەوە.",
     "youreApproved": "تۆ پەسەندکراویت",
     "youAreCreator": "تۆ دروستکەریت",
     "typeMessage": "نامەیەک بنووسە...",

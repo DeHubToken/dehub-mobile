@@ -2972,6 +2972,8 @@
     "tabSearch": "بحث"
   },
   "postInfo": {
+    "unavailable": "مش متوفر",
+    "ownersUnavailable": "ما منقدر نقرأ المالكين الحاليين هلأ.",
     "title": "معلومات المنشور",
     "tokenId": "رقم التوكن",
     "mintedOn": "انسك بتاريخ",
@@ -5014,6 +5016,8 @@
     "displayNameHint": "اسمك العلني يلي بيظهر بملفك. اختياري — خليه فاضي ومنستخدم اسم المستخدم تبعك."
   },
   "events": {
+    "deleteConfirmBody": "هيك بتنحذف الفعالية وقائمة ضيوفها ودردشتها عند الكل. وما في رجعة.",
+    "deleteConfirmTitle": "بدك تحذف هالفعالية؟",
     "youreApproved": "قبلت",
     "youAreCreator": "انت الصانع",
     "typeMessage": "اكتب رسالتك...",

@@ -3507,6 +3507,8 @@
     "tabSearch": "Zoeken"
   },
   "postInfo": {
+    "ownersUnavailable": "De huidige eigenaren kunnen nu niet worden gelezen.",
+    "unavailable": "Niet beschikbaar",
     "title": "Berichtinfo",
     "tokenId": "Token-ID",
     "mintedOn": "Gemint op",
@@ -5592,6 +5594,8 @@
     "displayNameHint": "Je openbare naam die op je profiel staat. Optioneel — laat leeg om je gebruikersnaam te gebruiken."
   },
   "events": {
+    "deleteConfirmBody": "Dit verwijdert het evenement, de gastenlijst en de chat voor iedereen. Het kan niet ongedaan worden gemaakt.",
+    "deleteConfirmTitle": "Dit evenement verwijderen?",
     "youreApproved": "Je bent goedgekeurd",
     "youAreCreator": "Je bent de maker",
     "typeMessage": "Typ een bericht...",

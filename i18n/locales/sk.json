@@ -3106,6 +3106,8 @@
     "tabSearch": "Hľadať"
   },
   "postInfo": {
+    "ownersUnavailable": "Aktuálnych vlastníkov momentálne nie je možné prečítať.",
+    "unavailable": "Nedostupné",
     "title": "Informácie o príspevku",
     "tokenId": "ID tokenu",
     "mintedOn": "Vytvorené",
@@ -5155,6 +5157,8 @@
     "displayNameHint": "Vaše verejné meno v profile. Nepovinné — ak ho necháte prázdne, použije sa vaše používateľské meno."
   },
   "events": {
+    "deleteConfirmBody": "Tým sa odstráni udalosť, jej zoznam hostí a chat pre všetkých. Nedá sa vrátiť späť.",
+    "deleteConfirmTitle": "Odstrániť túto udalosť?",
     "youreApproved": "Bolo schválené",
     "youAreCreator": "Vy ste tvorca",
     "typeMessage": "Napíšte správu...",

@@ -2990,6 +2990,8 @@
     "tabSearch": "搜索"
   },
   "postInfo": {
+    "ownersUnavailable": "当前无法读取所有者信息。",
+    "unavailable": "不可用",
     "title": "帖子信息",
     "tokenId": "代币ID",
     "mintedOn": "铸造于",
@@ -5033,6 +5035,8 @@
     "displayNameHint": "显示在你个人资料上的公开名称。可选——留空则使用你的用户名。"
   },
   "events": {
+    "deleteConfirmBody": "这个操作将删除该活动、其参与者名单和所有聊天记录，且无法撤销。",
+    "deleteConfirmTitle": "删除此事件？",
     "youreApproved": "已批准",
     "youAreCreator": "您是创建者",
     "typeMessage": "输入消息...",

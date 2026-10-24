@@ -2958,6 +2958,8 @@
     "tabSearch": "کھوجو"
   },
   "postInfo": {
+    "unavailable": "उपलब्ध नखे",
+    "ownersUnavailable": "अभी मौजूदा मालिक मनके पढ़ल नी जाय सकेला।",
     "title": "پوسٹ کی معلومات",
     "tokenId": "ٹوکن ID",
     "mintedOn": "بنایا گیا",
@@ -5004,6 +5006,8 @@
     "displayNameHint": "تہار پروفائل پر تہار عام نام۔ ضروری نہیں — خالی چھوڑ دو تو تہار یوزرنیم استعمال ہوئی۔"
   },
   "events": {
+    "deleteConfirmTitle": "ई इवेंट के मिटाय देबा?",
+    "deleteConfirmBody": "ई इवेंट, एकर मेहमान सूची आउर एकर चैट सब कर ले हटाय देई। एके वापस नी करल जाय सकेला।",
     "youAreCreator": "Tu es le créateur",
     "typeMessage": "پیام بنویسید...",
     "startTime": "زمان شروع",

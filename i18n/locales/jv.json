@@ -2982,6 +2982,8 @@
     "tabSearch": "Goleki"
   },
   "postInfo": {
+    "unavailable": "Ora kasedhiya",
+    "ownersUnavailable": "Pamilik saiki durung bisa diwaca.",
     "title": "Info Postingan",
     "tokenId": "Token ID",
     "mintedOn": "Digawe",
@@ -5030,6 +5032,8 @@
     "displayNameHint": "Jeneng umummu ing profil. Ora wajib — kosongna wae yen arep nganggo jeneng panggunamu."
   },
   "events": {
+    "deleteConfirmBody": "Iki bakal mbusak acara, dhaptar tamu, lan obrolane kanggo kabeh wong. Iki ora bisa dibatalake.",
+    "deleteConfirmTitle": "Busak acara iki?",
     "youreApproved": "Anda diizinkan",
     "youAreCreator": "Anda adalah pembuat acara",
     "typeMessage": "Ketik pesan...",
