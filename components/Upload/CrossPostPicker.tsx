@@ -23,6 +23,11 @@ function useCrossPostAccounts() {
   return { hidden, accounts, selected, credits: status.data?.credits ?? 0 };
 }
 
+export function useCrossPostAccountCount() {
+  const { hidden, accounts, selected } = useCrossPostAccounts();
+  return hidden ? 0 : accounts.filter(account => selected.includes(account.id)).length;
+}
+
 /**
  * The one control for posting to other platforms, sitting in the composer's
  * icon row. With nothing connected it goes straight to setup; otherwise it
