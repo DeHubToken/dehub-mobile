@@ -401,7 +401,9 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.ShortsViewer}
-          getComponent={() => deferredScreen('../screens/ShortsViewerScreen#default', () => require("../screens/ShortsViewerScreen").default)}
+          // The viewer already has the tapped clip and poster. Paint that seed
+          // during entry instead of replacing loaded media with a route shell.
+          getComponent={() => require("../screens/ShortsViewerScreen").default}
         />
         {/* The image feed is a drawer, not a page: it slides up under the
             screen you opened it from and leaves it visible above. The card
