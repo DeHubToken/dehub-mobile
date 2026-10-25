@@ -13,7 +13,7 @@
       "enforceContrast": false
     },
     "splash": {
-      "image": "./assets/AppIcons/playstore.png",
+      "image": "./assets/startup-blank.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -291,7 +291,7 @@
     "description": "DeHub is an open source, user owned and censorship resistant social media protocol giving you all the features incumbents refused to.",
     "jsEngine": "hermes",
     "plugins": [
-      "expo-splash-screen",
+      ["expo-splash-screen", { "image": "./assets/startup-blank.png", "imageWidth": 1, "backgroundColor": "#000000" }],
       "expo-secure-store",
       "./libs/reown.queries.js",
       "./libs/android.pointer-tagging.js",
