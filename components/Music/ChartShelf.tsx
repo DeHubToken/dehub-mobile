@@ -13,7 +13,9 @@ import SkeletonBlock from '../Feed/SkeletonBlock';
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useTranslation } from 'react-i18next';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../hooks/useSearchFieldMaterial';
 import { GestureDetector } from "react-native-gesture-handler";
 import { Image } from "expo-image";
 
@@ -62,14 +64,19 @@ function ChartShelf<S extends string>({
   /** `next` moves the pick one down the chart, wrapping at the end. */
   renderSelected: (id: string, controls: { next: () => void }) => React.ReactNode;
 }) {
+  const { t } = useTranslation();
+  const [search, setSearch] = useState('');
+  const searchMaterial = useSearchFieldMaterial();
+  const query = search.trim().toLocaleLowerCase();
+  const matchingRows = rows.filter(row => !query || `${row.title} ${row.subtitle ?? ''}`.toLocaleLowerCase().includes(query));
   const scrollGuard = useHorizontalScrollGuard();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const listRef = useRef<ScrollView>(null);
-  const selected = rows.find(row => row.id === selectedId) || rows[0];
-  const selectedIndex = selected ? rows.indexOf(selected) : -1;
+  const selected = matchingRows.find(row => row.id === selectedId) || matchingRows[0];
+  const selectedIndex = selected ? matchingRows.indexOf(selected) : -1;
   const sortName = sorts.find(option => option.value === sort)?.label;
   const next = () => {
-    if (rows.length > 1) setSelectedId(rows[(selectedIndex + 1) % rows.length].id);
+    if (matchingRows.length > 1) setSelectedId(matchingRows[(selectedIndex + 1) % matchingRows.length].id);
   };
 
   // A new order starts at its number one, scrolled back to the top.
@@ -102,6 +109,20 @@ function ChartShelf<S extends string>({
   return (
     <View style={styles.section}>
       <SectionHeader icon={icon} title={title} count={count} />
+      <View style={[{ marginHorizontal: FEED_SIDE, marginBottom: 12, padding: 12, borderRadius: 12 }, searchMaterial.surface]}>
+        <TextInput
+          value={search}
+          onChangeText={setSearch}
+          accessibilityLabel={`${t('common.search', { defaultValue: 'Search' })}: ${title}`}
+          placeholder={t('common.search', { defaultValue: 'Search' })}
+          placeholderTextColor="#8B8D90"
+          className="text-theme-neutrals-100"
+          style={SEARCH_INPUT_CLEAR}
+          onFocus={searchMaterial.onFocus}
+          onBlur={searchMaterial.onBlur}
+          returnKeyType="search"
+        />
+      </View>
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{chips}</GestureDetector> : chips}
       {loading ? (
         <View style={styles.body}>
@@ -109,17 +130,18 @@ function ChartShelf<S extends string>({
           {[0, 1, 2].map(i => <SkeletonBlock key={i} style={styles.skeletonRow} />)}
         </View>
       ) : !selected ? (
-        <Text style={styles.empty}>{emptyText}</Text>
+        <Text style={styles.empty}>{query ? t('common.noResults', { defaultValue: 'No results found' }) : emptyText}</Text>
       ) : (
         <View style={styles.body}>
           <View style={{ gap: 8 }}>
             <View style={styles.rankChip}>
-              <Text style={styles.rankChipText}>#{selectedIndex + 1}{sortName ? ` · ${sortName}` : ""}</Text>
+              <Text style={styles.rankChipText}>#{rows.indexOf(selected) + 1}{sortName ? ` · ${sortName}` : ""}</Text>
             </View>
             {renderSelected(selected.id, { next })}
           </View>
           <ScrollView ref={listRef} nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.list} contentContainerStyle={{ gap: 2 }}>
-            {rows.map((row, index) => {
+            {matchingRows.map(row => {
+              const index = rows.indexOf(row);
               const current = row.id === selected.id;
               return (
                 <TouchableOpacity
