@@ -7,7 +7,7 @@ import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import ImportWalletModal from "./ImportWalletModal";
-import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_CONTROL_HEIGHT, AUTH_RADIUS } from "./AuthControls";
+import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_RADIUS } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
@@ -79,7 +79,7 @@ interface OptionDiscProps {
   renderIcon: (color: string, size: number) => React.ReactNode;
 }
 
-/** A form-height provider button with its label underneath. */
+/** A square provider button with its label underneath. */
 const OptionDisc: React.FC<OptionDiscProps> = ({ label, onPress, disabled, loading, active, renderIcon }) => (
   <TouchableOpacity
     onPress={onPress}
@@ -322,7 +322,8 @@ const styles = StyleSheet.create({
   option: { flex: 1, alignItems: "center", gap: 6, minWidth: 0 },
   disc: {
     width: "100%",
-    height: AUTH_CONTROL_HEIGHT,
+    maxWidth: 48,
+    aspectRatio: 1,
     borderRadius: AUTH_RADIUS,
     alignItems: "center",
     justifyContent: "center",
