@@ -76,15 +76,15 @@ export function PageTabs<T extends string>({
   onChange,
   size = "md",
   style,
-  afterFirstTab,
+  beforeTabs,
 }: {
   tabs: PageTab<NoInfer<T>>[];
   value: T;
   onChange: (id: NoInfer<T>) => void;
   size?: "sm" | "md";
   style?: StyleProp<ViewStyle>;
-  /** Adjacent controls on the same row, immediately after the first tab. */
-  afterFirstTab?: React.ReactNode;
+  /** Leading controls on the same row, before the category tabs. */
+  beforeTabs?: React.ReactNode;
 }) {
   const c = useKitColors();
   const inHeader = React.useContext(PageHeaderContext);
@@ -97,7 +97,8 @@ export function PageTabs<T extends string>({
       contentContainerStyle={[styles.tabsRow, style as object, inHeader ? { paddingHorizontal: 0, paddingVertical: 0, paddingTop: 0, paddingBottom: 0 } : undefined]}
       accessibilityRole="tablist"
     >
-      {tabs.map((tab, index) => {
+      {beforeTabs}
+      {tabs.map((tab) => {
         const active = tab.id === value;
         return (
           <React.Fragment key={tab.id}>
@@ -129,7 +130,6 @@ export function PageTabs<T extends string>({
                 ) : null}
               </View>
             </Pressable>
-            {index === 0 ? afterFirstTab : null}
           </React.Fragment>
         );
       })}
