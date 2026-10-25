@@ -112,7 +112,7 @@ import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
-import CrossPostPicker, { CrossPostButton } from "../components/Upload/CrossPostPicker";
+import CrossPostPicker, { CrossPostButton, useCrossPostAccountCount } from "../components/Upload/CrossPostPicker";
 import { crossPostState } from "../libs/crosspost-store";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
@@ -375,6 +375,8 @@ export default function UploadScreen() {
   const [audioMeterBars, setAudioMeterBars] = useState<number[]>([]);
   const audioMeterBarsRef = useRef<number[]>([]);
   const [showAudioMenu, setShowAudioMenu] = useState(false);
+  const [showPostOptions, setShowPostOptions] = useState(false);
+  const selectedCrossPostCount = useCrossPostAccountCount();
   const audioPreviewRef = useRef<AudioPlayer | null>(null);
   const audioPreviewListenerRef = useRef<{ remove: () => void } | null>(null);
   const [isAudioPreviewPlaying, setIsAudioPreviewPlaying] = useState(false);
@@ -404,6 +406,7 @@ export default function UploadScreen() {
 
   const [isLiveMode, setIsLiveMode] = useState(!!route.params?.live);
   const [isStageMode, setIsStageMode] = useState(false);
+  const crossPostCount = visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode ? selectedCrossPostCount : 0;
   const [showLiveOptions, setShowLiveOptions] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
@@ -2416,15 +2419,6 @@ export default function UploadScreen() {
                 </TouchableOpacity>
               )}
 
-              {/* Not for a followers-only or direct post — see getPayload. */}
-              {visibility === "public" && (
-              <CrossPostButton
-                open={crossPostOpen}
-                onToggle={() => setCrossPostOpen((v) => !v)}
-                onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })}
-              />
-              )}
-
               {!activeIsUploading && (
                 <TouchableOpacity
                   onPress={formHasContent ? handleDraftButton : () => nav.navigate(ScreenNames.Drafts)}
@@ -2483,7 +2477,7 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {crossPostOpen && visibility === "public" && (
+          {crossPostOpen && visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && (
             <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
           )}
 
@@ -3602,35 +3596,23 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {showPollButton && (
-            <TouchableOpacity
-              onPress={handleTogglePoll}
-              activeOpacity={0.7}
-              className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
-              hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-              style={{
-                backgroundColor: pollEnabled ? "rgba(255,255,255,0.2)" : "transparent",
-              }}
-              accessibilityRole="button"
-              accessibilityLabel={t("upload.addPoll")}
-            >
-              <Icon name="ChartBarBig" size={20} color="#fff" />
-            </TouchableOpacity>
-          )}
-
-          {/* Content warning — a live stream opens straight to the stream, so it has none. */}
           {!isLiveMode && (
             <TouchableOpacity
-              onPress={() => setContentWarning(prev => (prev === null ? "" : null))}
+              onPress={() => { setShowAudioMenu(false); setShowPostOptions(true); }}
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
               hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-              style={{ backgroundColor: contentWarning !== null ? "rgba(255,255,255,0.2)" : "transparent" }}
+              style={{ backgroundColor: pollEnabled || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
               accessibilityRole="button"
-              accessibilityState={{ selected: contentWarning !== null }}
-              accessibilityLabel={contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}
+              accessibilityLabel={t("player.moreOptions")}
+              accessibilityState={{ expanded: showPostOptions }}
             >
-              <Ionicons name="warning-outline" size={20} color="#fff" />
+              <Icon name="Ellipsis" size={20} color="#fff" />
+              {crossPostCount > 0 && (
+                <View className="absolute h-4 min-w-4 rounded-full bg-white items-center justify-center px-1" style={{ top: -2, right: -2 }}>
+                  <Text className="text-black font-bold" style={{ fontSize: 10 }}>{crossPostCount}</Text>
+                </View>
+              )}
             </TouchableOpacity>
           )}
 
@@ -3718,6 +3700,46 @@ export default function UploadScreen() {
         </View>
 
       </View>
+
+      <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
+        <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
+          <Text className="text-white text-base font-semibold mb-2">{t("player.moreOptions")}</Text>
+          {showPollButton && (
+            <TouchableOpacity
+              onPress={() => { setShowPostOptions(false); handleTogglePoll(); }}
+              accessibilityRole="button"
+              accessibilityState={{ selected: pollEnabled }}
+              className="flex-row items-center px-4 py-3 rounded-xl"
+              style={{ backgroundColor: pollEnabled ? "rgba(255,255,255,0.15)" : "transparent" }}
+            >
+              <Icon name="ChartBarBig" size={20} color="#fff" />
+              <Text className="flex-1 ml-3 text-white text-sm">{t("upload.addPoll")}</Text>
+              {pollEnabled && <Icon name="Check" size={18} color="#fff" />}
+            </TouchableOpacity>
+          )}
+          {!isLiveMode && (
+            <TouchableOpacity
+              onPress={() => { setShowPostOptions(false); setContentWarning(prev => prev === null ? "" : null); }}
+              accessibilityRole="button"
+              accessibilityState={{ selected: contentWarning !== null }}
+              className="flex-row items-center px-4 py-3 rounded-xl"
+              style={{ backgroundColor: contentWarning !== null ? "rgba(255,255,255,0.15)" : "transparent" }}
+            >
+              <Ionicons name="warning-outline" size={20} color="#fff" />
+              <Text className="flex-1 ml-3 text-white text-sm">{contentWarning !== null ? t("contentWarning.remove") : t("contentWarning.add")}</Text>
+              {contentWarning !== null && <Icon name="Check" size={18} color="#fff" />}
+            </TouchableOpacity>
+          )}
+          {visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && (
+            <CrossPostButton
+              menuItem
+              open={crossPostOpen}
+              onToggle={() => { setShowPostOptions(false); setCrossPostOpen(v => !v); }}
+              onManage={() => { setShowPostOptions(false); nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" }); }}
+            />
+          )}
+        </View>
+      </GlassModal>
 
       <CategoryDrawer
         visible={categoryOpen}
