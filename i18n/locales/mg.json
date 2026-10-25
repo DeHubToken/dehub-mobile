@@ -10669,7 +10669,8 @@
       "resetNames": "Hamerina ny anarana",
       "search": "Hitady sosona",
       "searchOverlap": "Hitady sosona mifanindry",
-      "startAt": "Manomboka amin'ny"
+      "startAt": "Manomboka amin'ny",
+      "applyNames": "Ampiharo ireo anarana"
     },
     "rail": {
       "elements": "Singa",
@@ -10982,7 +10983,7 @@
       "first": "Avy amin'ny andalana",
       "firstMatchingRecord": "Topazo maso ny firaketana mifandraika voalohany",
       "formatPlaceholder": "Manomana mpamaritra data iray",
-      "generate": "Generate {{count}} pages",
+      "generate": "Mamorona pejy {{count}}",
       "generatedToken": "Ny placeholder to copy",
       "hint": "Ampiasao ho modely io pejy io ankehitriny. Mampifandray ny soratra sy ny QR sosona mba spreadsheet tsanganana, na asio andry anarana ao anatin'ny hantsana avo roa heny ao anatin'ny andinin-teny. Ny laharan-tariby voafantina tsirairay dia mamorona pejy vaovao; mijanona eo amin'ny toerana ny voalohany.",
       "import": "Import CSV na TSV",
@@ -11410,7 +11411,7 @@
       "insert": "Hampiditra singantaharo",
       "inserted": "Nampidirina {{name}}",
       "keepProportions": "Tazony ny anjaran'ilay loharano rehefa ampidirina",
-      "layerCount": "{{count}} layers",
+      "layerCount": "Sosona {{count}}",
       "name": "Anaran'ilay singantaharo",
       "proportionHint": "Mifanaraka tsara amin'ny pejy loharanom-baovao ato amin'ity pejy ity, mitazona ny fametrahana ny asakanto mifandraika amin'izany. Ajanony ny fampiasana ny fandaminana mifandraika amin'ity pejy ity. Ireo singantaharo efa zokinjokiny tsy misy loharano dia mitazona ny fandaminana misy azy ireo.",
       "redoLibrary": "Fanovana ny tahirim-boky reo",

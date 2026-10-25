@@ -11205,7 +11205,7 @@
       "filePreview": "Prezentați primele rânduri ale fișierului",
       "ready": "{{rows}} rânduri de date și {{columns}} coloane sunt gata",
       "blankNumbers": "Tratați celulele numerice goale ca zero",
-      "file": "Import {{name}}",
+      "file": "Importă {{name}}",
       "header": "Primul rând de fișiere conține titluri",
       "keepSeriesName": "Păstrați un titlu de serie cu o coloană de valori",
       "numberFormat": "Semnul de punctuație al numărului sursă",

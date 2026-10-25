@@ -11350,7 +11350,8 @@
       "previous": "Iepriekšējie fonti",
       "replaceDesign": "Aizstāt fontu visā šajā dizainā",
       "search": "Meklēt fontus",
-      "target": "Aizstājošais fonts"
+      "target": "Aizstājošais fonts",
+      "source": "Aizstājamais fonts"
     },
     "frames": {
       "title": "Foto rāmīte"
@@ -11375,7 +11376,9 @@
       "stop": "Stop {{number}} {{position}}%",
       "styleFileHint": "Pārnes gradienta krāsas, pozīcijas, caurspīdīgumu, leņķi un radiālos iestatījumus starp ierīcēm. Importēšana ielādē melnrakstu; izmantojiet to, lai atjauninātu mākslas darbu.",
       "styleLoaded": "Stila ielādēts draftā",
-      "svgHint": "Eksportē šo gradientu lapašā, iekļaujot stopa pozīcijas un caurspīdību. To var lietot atsevišķi dizaina veidošanai."
+      "svgHint": "Eksportē šo gradientu lapašā, iekļaujot stopa pozīcijas un caurspīdību. To var lietot atsevišķi dizaina veidošanai.",
+      "brandPalettes": "Saglabātās paletes un gradienta krāsas",
+      "styleFiles": "Pārsūtīt gradientu stilus"
     },
     "graphicDraftHistory": {
       "local": "Grafikas drafts",
@@ -11457,11 +11460,13 @@
       "openPage": "Doties uz lapu {{number}}",
       "remove": "Noņemt saiti",
       "targetPage": "Galamērķa lapa",
-      "title": "Saite"
+      "title": "Saite",
+      "destination": "Saite uz galamērķi"
     },
     "media": {
       "photo": "Bilde",
-      "replace": "Aizstāt atlasīto slāni"
+      "replace": "Aizstāt atlasīto slāni",
+      "video": "Video"
     },
     "mediaSelection": {
       "applyFilter": "Lietot filtru atlasei",
@@ -11475,7 +11480,9 @@
       "removeBorder": "Noņemt apmali",
       "resetColours": "Atiestatīt krāsu pielāgojumus",
       "setBorder": "Iestatīt apmali",
-      "title": "Atlasīto fotoattēlu un videoklipu stils ({{count}})"
+      "title": "Atlasīto fotoattēlu un videoklipu stils ({{count}})",
+      "borderOpacity": "Apmaļu necaurredzamība procentos",
+      "setRadius": "Iestatīt stūra rādiusu"
     },
     "mockups": {
       "preview": "Pārskats uz izmēļiem",
