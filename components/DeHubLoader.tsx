@@ -28,7 +28,8 @@ interface DeHubLoaderProps {
 export const DeHubLoader = ({ size = 64, style }: DeHubLoaderProps) => (
   <Image
     source={SOURCE}
-    style={[{ width: size, height: size }, style]}
+    style={[{ width: size, height: size, minWidth: size, minHeight: size, flexShrink: 0, aspectRatio: 1 }, style]}
+    tintColor="#FFFFFF"
     contentFit="contain"
     // The mark loops forever by design; caching it keeps a re-mount from
     // flashing an empty box on the first frame.

@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * ChartShelf — one chart on the Music feed
  * ========================================
@@ -104,8 +105,8 @@ function ChartShelf<S extends string>({
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{chips}</GestureDetector> : chips}
       {loading ? (
         <View style={styles.body}>
-          <View style={styles.skeletonHero} />
-          {[0, 1, 2].map(i => <View key={i} style={styles.skeletonRow} />)}
+          <SkeletonBlock style={styles.skeletonHero} />
+          {[0, 1, 2].map(i => <SkeletonBlock key={i} style={styles.skeletonRow} />)}
         </View>
       ) : !selected ? (
         <Text style={styles.empty}>{emptyText}</Text>

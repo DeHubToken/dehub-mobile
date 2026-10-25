@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 import React from 'react';
 import { View } from 'react-native';
 
@@ -9,20 +10,20 @@ const LeaderboardSkeleton: React.FC = () => (
       <View key={i} className="flex-row items-center px-4 py-3.5">
         {/* Rank */}
         <View className="w-9 items-center justify-center">
-          <View className="w-6 h-6 bg-theme-neutrals-800 rounded animate-pulse" />
+          <SkeletonBlock className="w-6 h-6 rounded animate-pulse" />
         </View>
         {/* Avatar + Name. The rank medallion above stays round — that is a
             badge, not an avatar — but this one stands in for Avatar, whose
             radius is size * 0.16, i.e. 6px at 40. */}
         <View className="flex-1 flex-row items-center ml-2">
-          <View className="w-10 h-10 bg-theme-neutrals-800 rounded-md mr-3 animate-pulse" />
+          <SkeletonBlock className="w-10 h-10 rounded-md mr-3 animate-pulse" />
           <View className="flex-1">
-            <View className="h-3.5 w-24 bg-theme-neutrals-800 rounded animate-pulse" />
-            <View className="h-3 w-16 bg-theme-neutrals-800 rounded mt-1.5 animate-pulse" />
+            <SkeletonBlock className="h-3.5 w-24 rounded animate-pulse" />
+            <SkeletonBlock className="h-3 w-16 rounded mt-1.5 animate-pulse" />
           </View>
         </View>
         {/* Metric */}
-        <View className="h-4 w-20 bg-theme-neutrals-800 rounded ml-2 animate-pulse" />
+        <SkeletonBlock className="h-4 w-20 rounded ml-2 animate-pulse" />
       </View>
     ))}
   </View>

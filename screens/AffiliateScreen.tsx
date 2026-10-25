@@ -1,3 +1,4 @@
+import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft, draftIdentity } from '../hooks/useSurfaceDraft';
 /**
@@ -110,7 +111,7 @@ const StatCard: React.FC<{
         <Text style={styles.statLabel}>{label}</Text>
       </View>
       {value === null ? (
-        <View style={styles.statSkeleton} />
+        <SkeletonBlock style={styles.statSkeleton} />
       ) : (
         <Text style={styles.statValue} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
           {value}
@@ -560,7 +561,7 @@ export default function AffiliateScreen() {
           </Text>
 
           {loading ? (
-            <View style={styles.linkSkeleton} />
+            <SkeletonBlock style={styles.linkSkeleton} />
           ) : stats?.code ? (
             <>
               <Pressable

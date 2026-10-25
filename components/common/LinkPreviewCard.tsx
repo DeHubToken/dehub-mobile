@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * Outside Link Preview
  * ====================
@@ -104,7 +105,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   }, [url]);
 
   if (!url) return null;
-  if (loading) return <View style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
+  if (loading) return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
   if (!preview) return null;
   if (preview.rich) return <RichLinkCard preview={{ ...preview, rich: preview.rich }} style={style} />;
 

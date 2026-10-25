@@ -1,3 +1,4 @@
+import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import { useCommentCount, updateCommentCount } from '../libs/comment-count-store';
 import { deliverReply, replyIdOf } from '../libs/reply-delivery';
 import ThemePanel from '../components/ui/ThemePanel';
@@ -1423,19 +1424,19 @@ function FeedDetailContent() {
         <View className="px-4 pt-4">
           {/* Minimal inline skeleton — just header + content placeholder */}
           <View className="flex-row items-center">
-            <View className="w-9 h-9 rounded-md bg-theme-neutrals-800" />
+            <SkeletonBlock className="w-9 h-9 rounded-md " />
             <View className="ml-3 flex-1">
-              <View className="w-24 h-3.5 bg-theme-neutrals-800 rounded" />
-              <View className="w-16 h-2.5 bg-theme-neutrals-800 rounded mt-1.5" />
+              <SkeletonBlock className="w-24 h-3.5 rounded" />
+              <SkeletonBlock className="w-16 h-2.5 rounded mt-1.5" />
             </View>
           </View>
           {/* Minimal: the media block bleeds past the inset to both screen edges. */}
-          <View
-            className="mt-3 h-48 bg-theme-neutrals-800 rounded-xl"
+          <SkeletonBlock
+            className="mt-3 h-48 rounded-xl"
             style={isMinimal ? { marginHorizontal: -MINIMAL_INSET, backgroundColor: "rgba(255,255,255,0.04)" } : undefined}
           />
-          <View className="mt-3 w-3/4 h-3.5 bg-theme-neutrals-800 rounded" />
-          <View className="mt-2 w-1/2 h-3 bg-theme-neutrals-800 rounded" />
+          <SkeletonBlock className="mt-3 w-3/4 h-3.5 rounded" />
+          <SkeletonBlock className="mt-2 w-1/2 h-3 rounded" />
         </View>
       ) : privateError ? (
         <View className="items-center justify-center px-6 py-16">
