@@ -82,6 +82,13 @@ function BottomTabNavigator() {
           name={ScreenNames.Explore}
           getComponent={() => require("../screens/SearchScreen").default}
         />
+        {/* Your own profile, opened from the bar. Not one of the bar's buttons
+            (the bar draws its own list), but a tab so it stays loaded: going
+            back to it is instant instead of a fresh page that refetches. */}
+        <Tab.Screen
+          name={ScreenNames.ProfileTab}
+          getComponent={() => require("../screens/ProfileScreen").default}
+        />
     </Tab.Navigator>
   );
 }
