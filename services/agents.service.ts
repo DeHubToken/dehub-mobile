@@ -109,7 +109,7 @@ export async function deleteAgent(agentId: string, walletAddress: string): Promi
 
 export interface AgentTask {
   id: string; agent_id: string; prompt: string; status: string;
-  swarm_id: string | null; swarm_index: number | null; swarm_size: number | null;
+  swarm_id: string | null; swarm_index: number | null; swarm_size: number | null; swarm_mode?: 'shared' | 'each';
   plan: { summary: string; interval_minutes: number | null };
   completed_actions: number; next_run_at: string; needs_review: boolean; message: string | null;
 }
