@@ -52,6 +52,7 @@
     "title": "Jūsų scenos. Kitas jūsų asmuo."
   },
   "maintenance": {
+    "title": "Šiek tiek darbo.\nGeresnis DeHub.",
     "brand": "DeHub",
     "checkFailed": "Nepavyko patikrinti užimtumo. Bandykite dar kartą.",
     "checking": "Tikrinama...",
@@ -128,6 +129,10 @@
     "useNamed": "Naudoti {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Japonų)",
+    "7a4ebea4b617": "Pristabdyti {{value1}}",
+    "8fe1a08e1a39": "Atsisiųsti {{value1}}",
+    "468415f0e112": "Ag",
     "32bb1a843217": "Įkviesti vartotojus per nuorodą",
     "0039cdece89a": "💎 Tokenų Stiprinimas (Pagrindinis)",
     "0090dc269d25": "Italiano (italų)",
@@ -5143,6 +5148,7 @@
       "viewPost": "Peržiūrėti įrašą"
     },
     "tasks": {
+      "examples": "Skelbk įrašą kartą per dieną apie: nepriklausomą muziką\nStilius: smalsus, glaustas ir pokalbio tono\nPažymėk „Patinka“ iki 2 naujausių įrašų per dieną apie: muziką, gyvus koncertus, vinilą",
       "eachHelp": "Kiekvienas pasirinktas atstovas atlieka visą užduotį.",
       "eachMode": "Kiekvienas atstovas",
       "pacing": {

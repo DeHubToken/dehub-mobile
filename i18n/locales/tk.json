@@ -1,5 +1,6 @@
 {
   "accountConnect": {
+    "generatePrompt": "Maňa DeHub-yň surat modellerini görkez we portreti döretmezden öň onuň bahasyny aýt.",
     "account": "Halk tarapyndan seretmek üçin hiç hili hasabat gerek däl. DeHub hesabyňyzy öz profilyňyzy dolandyrmak we içerik ýaratmak ýa-da çap etmek üçin baglaň.",
     "allow": "Baglanmaga rugsat beriň",
     "body": "Profilini dolandyrmak, postlary çap etmek we gürrüňdeşlikden içerik döretmek üçin, öz hasabyňy bagla. Çözüm 24 sagat içinde jogap berer. Siz her wagt aýrylyşyp bilersiňiz.",
@@ -36,6 +37,8 @@
     "watch": "Bunyadyna bu yaratıcı üçün reklamdan keçe bol!"
   },
   "maboroshiShowcase": {
+    "clay": "Gilden keşp",
+    "next": "Indiki görnüşler",
     "anime": "Anime häkimi.",
     "browse": "Ähli 180 görnüşleri barlaň",
     "choose": "{{name}}synanyň",
@@ -49,6 +52,7 @@
     "title": "Seniň sahnanyň. başga sen."
   },
   "maintenance": {
+    "title": "Biraz iş.\nHas gowy DeHub.",
     "brand": "DeHub",
     "checkFailed": "Biz barlygy barlap bilmedik. Gaýtalaň",
     "checking": "Təftiş ediliyor...",
@@ -78,6 +82,7 @@
     "title": "Sahipçilik seçenekleri"
   },
   "twitchMirror": {
+    "retry": "Aýnalamany gaýtadan synanyş",
     "auto": "Meniň Twitch akmalarymy avtomatik aýna",
     "connect": "Twitch-i bagla",
     "consent": "Men diňe bir kanala goşulmak isleýärin. DeHub-a öz serişdelerini ýaýratmaga we gaýtalamalary saklamaga rugsat berýär.",
@@ -95,6 +100,7 @@
     "waiting": "Indiki tutulyş üçin taýýarlyk gör"
   },
   "viralTemplates": {
+    "browse": "Ähli {{count}} şablona göz aýla",
     "all": "Ehli",
     "back": "Şablonlara dolanmak",
     "characters": "Karakterler",
@@ -123,6 +129,8 @@
     "useNamed": "{{name}}ullan"
   },
   "copy": {
+    "50e7258dccec": "@{{value1}} paýlaşýar",
+    "6da707c478f8": "日本語 (ýapon dili)",
     "04d02a85c7b9": "Siz diňe özüňize görünýän içgiler bilen meşgullanýarsyňyz. Özge ýerler başga ulanýanlardan we jemagat iýmitinden gizlenýär.",
     "084d8c213a85": "Rate {{value1}} of 5",
     "16840520f59c": "Liberal",
@@ -3659,6 +3667,7 @@
     "remove": "Aýyr"
   },
   "tip": {
+    "payDirect": "{{chain}} ulgamynda {{symbol}} bilen göni {{name}} ugradylýar. Çalyşyk ýok.",
     "payDirectNoName": "{{symbol}}on{{chain}}. No swap.",
     "title": "Sowgat ibermek",
     "toCreator": "{{name}}-a sowgat ibermek",
@@ -4302,6 +4311,12 @@
   },
   "notifications": {
     "custom": {
+      "featureComment": "{{name}} siziň funksiýa haýyşyňyza teswir ýazdy",
+      "featureMention": "{{name}} sizi funksiýa haýyşynda agzady",
+      "featureReplyNamed": "{{name}} size “{{title}}” barada jogap berdi",
+      "governanceComment": "{{name}} siziň teklibiňize teswir ýazdy",
+      "governanceVote": "{{name}} siziň teklibiňize ses berdi",
+      "governanceVoteNamed": "{{name}} siziň “{{title}}” teklibiňize ses berdi",
       "featureReply": "{{name}} teswiryňize jogap berdi",
       "bountyApplied": "{{name}} siziň baýragyňyza ýüz tutdy",
       "bountyAppliedNamed": "{{name}} siziň “{{title}}” baýragyňyza ýüz tutdy",
@@ -5133,6 +5148,10 @@
       "viewPost": "Posty Gör"
     },
     "tasks": {
+      "examples": "Günde bir gezek şu barada ýazgy goý: garaşsyz aýdym-saz\nStil: bilesigeliji, gysga we söhbetdeşlik äheňinde\nGünde iň köp 2 sany täze ýazgyny hala, mowzuklary: aýdym-saz, janly konsertler, winil plastinkalar",
+      "instructions": "Agent görkezmeleri",
+      "meta": "@{{agent}} · {{status}} · Işlenen: {{total}}",
+      "resumeSwarm": "Topary dowam etdir",
       "eachHelp": "Her bir saýlanan wekili doly işi ýerine ýetirýär.",
       "eachMode": "Her bir agenta",
       "pacing": {
@@ -5536,6 +5555,7 @@
     "namePlaceholder": "Aýgül Orazowa"
   },
   "raffle": {
+    "faq4A": "Netije çap edilenden soň on dört günüň içinde. Token baýraklary ýeňijiniň Base ulgamyndaky DeHub gapjygyna geçirilýär. Fiziki baýraklar topar bilen göni ylalaşylýar, kanuny taýdan iberip bilýän ýerlerimizde eltip bermegiň tölegini biz töleýäris.",
     "title": "Baýrak çekilişleri",
     "eyebrow": "Jemgyýetçilik baýrak çekilişleri",
     "heroTitle": "Her çekiliş, blok-zynnajyga ýerleşdirilen.",
@@ -5611,6 +5631,7 @@
     "faq5A": "Bäzi DeHub hesabýna sahip, 18 ýaşdan böýük, oýnýýýn yasaýlaýan yerde yaýan her kesi. DeHub işçileri, kontraktorlar ve onlarýn aileleri elverişsizdir, oýnýýýn yerel yasa qoymagan yerlerdege boþdur."
   },
   "dao": {
+    "switchChain": "Goşant goşmak üçin gapjygyňyzy {{chains}} ulgamyna geçiriň.",
     "acceptedAwaitingPayment": "Öýlenmek = Öýlenmek",
     "paymentUnderReview": "Seretilen töleg",
     "status": {
@@ -6241,6 +6262,7 @@
       "unavailable": "Bu makala ýok."
     },
     "followerInvites": {
+      "summary": "Iberildi: {{sent}} · Geçildi: {{skipped}} · Çaty barla: {{review}} · Şowsuz: {{failed}}",
       "clear": "Aç",
       "detail": "Her toparda 50 adam saýlaň. Ödülýän ýa-da ýapylýan DM-ler ýitirilýär. Çat ýene-de synamagyň öň ýanynda tassyklanmadyk habarlar üçin barlaň.",
       "empty": "Bu sahypadaky hiç bir şägirdi ýok.",
@@ -8030,6 +8052,7 @@
       "tooltipPerDay": "{{revenue}} / {{costs}} günde"
     },
     "taxSplit": {
+      "sharedDetail": "{{wallets}} gapjyk tarapyndan {{claims}} talap",
       "burnedDetail": "{{tokens}} DeHub {{n}} satyn almalarynda ýakyldy",
       "teamDetail": "{{gross}} geldi; {{passed}} onuň saklawçylara geçirildi",
       "burned": "Alýp, ýagýp atýldy.",

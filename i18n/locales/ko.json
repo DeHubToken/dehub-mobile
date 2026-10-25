@@ -22,6 +22,8 @@
     "what": "공개 게시물과 프로필을 살펴보세요. OAuth 계정 연결을 통해 프로필과 개인 정보를 관리하고, 게시물과 댓글을 게시하고, 사람을 팔로우하고, 알림을 읽고, 북마크를 저장하고, 이미지, 비디오, 오디오 및 3D 자산을 생성할 수 있습니다. Generation은 DeHub의 기존 결제 규칙을 사용합니다."
   },
   "creatorSupport": {
+    "receipt": "크리에이터의 광고 수익에 ${{amount}}가 추가되었습니다. 토큰 정산은 대기 중입니다.",
+    "revenue": "내 광고 수익 · ${{amount}}",
     "campaignDescription": "30초 시청을 통해 시청자가 크리에이터를 지원할 수 있습니다. 웹 광고 포털에 업로드된 30초 이상의 승인된 동영상이 필요합니다.",
     "campaignLabel": "크리에이터 지원 광고",
     "close": "광고 닫기",
@@ -50,6 +52,7 @@
     "title": "당신의 장면. 다른 너."
   },
   "maintenance": {
+    "title": "잠시 손보는 중.\n더 나은 DeHub를 위해.",
     "brand": "디허브",
     "checkFailed": "접근할 수 없습니다. 다시 시도해 주세요.",
     "checking": "확인 중...",
@@ -126,6 +129,23 @@
     "useNamed": "{{name}} 을 (를) 사용하세요"
   },
   "copy": {
+    "1c1f651829b5": "유료 시청(PPV)",
+    "ea81bf0fd464": "Русский (러시아어)",
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "2f51108189d2": "PPV: ",
+    "3d1d43659027": " / USD",
+    "450683b66da4": " SRT / VTT",
+    "53e6cdc30765": "you@example.com",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "b4c9a289323b": "user@example.com",
+    "bd9e3879bc60": "PPV",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "0954e92b6ff1": "@ 다음에 사용자 이름을 입력하여 포스트나 댓글에 다른 사용자를 태그하세요. 상대방에게 알림이 전송됩니다.",
     "11b8712670ff": "인도네시아어",
     "3010b02a4030": "사용자가 말하고, 듣고, 손을 들어 대화에 참여할 수 있는 라이브 오디오 룸입니다.",
@@ -2730,6 +2750,7 @@
     "stillCounting": "아직 유효합니다. 선물은 확인하는 데 1분 정도 걸릴 수 있습니다."
   },
   "articles": {
+    "wordCount_one": "{{count}}단어",
     "edit": "편집",
     "articleImage": "기사 이미지",
     "socialImage": "소셜 공유 이미지",
@@ -4290,6 +4311,7 @@
   },
   "notifications": {
     "custom": {
+      "repostedPosts": "{{name}}님이 회원님의 게시물 {{count}}개를 리포스트했습니다",
       "bountyApplied": "{{name}}은 보너리에 지원했습니다",
       "bountyAppliedNamed": "{{name}}은 보너리 \"{{title}}\"에 지원했습니다",
       "bountyReply": "{{name}}은 보너리에 답변했습니다",
@@ -5126,9 +5148,11 @@
       "viewPost": "포스트 보기"
     },
     "tasks": {
+      "examples": "하루 한 번 게시할 주제: 인디 음악\n스타일: 호기심 많고 간결하며 대화하듯\n하루 최대 2개의 최근 게시물에 좋아요를 누를 주제: 음악, 라이브 공연, LP",
       "eachHelp": "선택된 각 상담원은 전체 작업을 수행합니다.",
       "eachMode": "각 상담원",
       "pacing": {
+        "hours": "{{count}}시간에 걸쳐",
         "help": "Sentient OFF 상태에서 자동으로 시작됩니다. 페이싱은 고정된 게시물 창에서 하나의 좋아요 또는 싫어요 동작을 지원합니다. 각 상담원은 매칭되는 모든 게시물에 한 번에 한 번씩 반응합니다. 첫 번째 턴이 지금 시작됩니다. 서비스 제한은 완료 시간을 연장할 수 있습니다.",
         "independent": "메시지가 표시된 작업은 Sentient 모드와 독립적으로 실행됩니다. 좋아요를 요청해도 자율 게시가 켜지지 않습니다.",
         "label": "행동해야 할 때",
@@ -8034,6 +8058,7 @@
   },
   "stats": {
     "money": {
+      "estimatedOperationsNote": "운영 비용은 모델링된 월별 추세를 따르며, 2021년 11월 $100,000로 정점을 찍은 뒤 감소합니다. 기록된 청구서는 중복 계산 없이 포함됩니다. 이는 추정치이며 청구서 원장이 아닙니다.",
       "chartDaily": "일별 수익 및 비용",
       "chartMonthly": "일별, 월간 평균 수익 및 비용",
       "conversionTerm": "가격",

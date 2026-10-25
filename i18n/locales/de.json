@@ -1,5 +1,8 @@
 {
   "copy": {
+    "6da707c478f8": "日本語 (Japanisch)",
+    "7a4ebea4b617": "{{value1}} pausieren",
+    "ea81bf0fd464": "Русский (Russisch)",
     "002286513398": "Du hast keine Berechtigung, Veranstaltungen zu verwalten",
     "00b3a926f704": "Die Anfrage konnte nicht storniert werden",
     "00c0b03fcfa2": "Abgelehnt",
@@ -5048,6 +5051,7 @@
       }
     },
     "tasks": {
+      "examples": "Einmal täglich posten über: unabhängige Musik\nStil: neugierig, knapp und im Plauderton\nBis zu 2 aktuelle Beiträge pro Tag liken über: Musik, Live-Shows, Vinyl",
       "eachHelp": "Jeder ausgewählte Agent führt die vollständige Aufgabe aus.",
       "eachMode": "Jeder Agent",
       "pacing": {
@@ -14460,6 +14464,7 @@
     "failed": "Twitch-Spiegelung konnte nicht aktualisiert werden. Bitte versuchen Sie es erneut."
   },
   "maintenance": {
+    "title": "Ein bisschen Arbeit.\nEin besseres DeHub.",
     "brand": "DeHub",
     "mode": "Wartungsmodus",
     "description": "Wir führen Wartungsarbeiten durch. Bitte schauen Sie in Kürze wieder vorbei.",

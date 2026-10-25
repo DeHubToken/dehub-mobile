@@ -52,6 +52,7 @@
     "title": "Sinun kohtaamasi. Eroon sinästä."
   },
   "maintenance": {
+    "title": "Vähän työtä.\nParempi DeHub.",
     "brand": "DeHub",
     "checkFailed": "Emme pystyneet tarkistamaan varattavuutta. Yritä uudelleen.",
     "checking": "Tarkistetaan...",
@@ -128,6 +129,8 @@
     "useNamed": "Käytä {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (japani)",
+    "ea81bf0fd464": "Русский (venäjä)",
     "0039cdece89a": "💎 Token-pankki (perusta)",
     "0090dc269d25": "Italiano (Italia)",
     "00c90f4b707a": "SRT / VTT",
@@ -3664,6 +3667,7 @@
     "remove": "Poista"
   },
   "tip": {
+    "payDirect": "Lähetetty suoraan käyttäjälle {{name}}: {{symbol}} verkossa {{chain}}. Ei vaihtoa.",
     "payDirectNoName": "Lähetetty suoraan tekijälle {{symbol}} klo{{chain}}. Ei vaihtoa.",
     "title": "Lähetä vinkki",
     "toCreator": "Vinkki käyttäjälle {{name}}",
@@ -4307,6 +4311,7 @@
   },
   "notifications": {
     "custom": {
+      "governanceComment": "{{name}} kommentoi ehdotustasi",
       "bountyApplied": "{{name}} sovelsi hakemuksensa bountylle",
       "bountyAppliedNamed": "{{name}} sovelsi hakemuksensa bountyla “{{title}}”",
       "bountyReply": "{{name}} vastasi bountyla",
@@ -5143,6 +5148,7 @@
       "viewPost": "Näytä julkaisu"
     },
     "tasks": {
+      "examples": "Julkaise kerran päivässä aiheesta: itsenäinen musiikki\nTyyli: utelias, tiivis ja keskusteleva\nTykkää enintään 2 tuoreesta julkaisusta päivässä aiheista: musiikki, livekeikat, vinyyli",
       "eachHelp": "Jokainen valittu edustaja suorittaa koko tehtävän.",
       "eachMode": "Jokainen asiamies",
       "pacing": {

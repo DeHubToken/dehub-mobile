@@ -129,6 +129,9 @@
     "useNamed": "Použijte {{name}}"
   },
   "copy": {
+    "23ad0f440f48": "Pořadí v žebříčku",
+    "6da707c478f8": "日本語 (japonština)",
+    "ea81bf0fd464": "Русский (ruština)",
     "942087cc2d41": "Znovu pokusit",
     "0039cdece89a": "💎 Staking tokenů (základní)",
     "0090dc269d25": "Italiano (Italian)",
@@ -5145,6 +5148,7 @@
       "viewPost": "Zobrazit příspěvek"
     },
     "tasks": {
+      "examples": "Publikuj jednou denně o: nezávislé hudbě\nStyl: zvídavý, stručný a konverzační\nDej like až 2 nedávným příspěvkům denně o: hudbě, živých koncertech, vinylu",
       "eachHelp": "Každý vybraný agent provede celý úkol.",
       "eachMode": "Každý zástupce",
       "pacing": {
@@ -9406,6 +9410,7 @@
     "discordOptional": "Discord (volitelné)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@jmeno, tiktok.com/@jmeno, vimeo.com/jmeno…",
     "clearAll": "Vymazat vše",
     "costsIntro": "Každé video je levnější než to předchozí — sazba klesá s rostoucí dávkou, takže cena níže je to, co stojí tolik videí dohromady.",
     "costsIntroShort": "Každé video je levnější než to předchozí — sazba klesá s rostoucí dávkou. Přesná cena se zobrazí před platbou.",
