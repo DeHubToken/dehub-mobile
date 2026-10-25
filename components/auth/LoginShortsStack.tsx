@@ -121,7 +121,7 @@ function Lane({ clips, down, tileW, height, still, line }: {
   );
 }
 
-export default function LoginShortsStack({ viewportHeight, reservedHeight = 360, fill = false }: { viewportHeight?: number; reservedHeight?: number; fill?: boolean }) {
+export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 }: { viewportHeight?: number; reservedHeight?: number }) {
   const { t } = useTranslation();
   const { theme, isLight, colors } = useAppTheme();
   const plain = theme === "system" || theme === "minimal";
@@ -129,7 +129,6 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
   const [lanes] = useState(() => loginClipLanes(Object.keys(CLIPS) as ClipName[]));
   const { width, height: screenH } = useWindowDimensions();
   const insets = useSafeAreaInsets();
-  const [measuredLanesHeight, setMeasuredLanesHeight] = useState(160);
 
   // Headline accent, written dark (System Light inverts the grey to ink).
   const accent = theme === "hazy" ? "#C9A7FF" : plain ? "#FFFFFF" : colors.accent;
@@ -143,14 +142,13 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
   // Native navigation can give the sheet less space than the window reports.
   // Budget against the actual scroll frame, reserving room for the form.
   const availableHeight = viewportHeight ?? screenH - insets.top - insets.bottom;
-  const lanesH = fill ? measuredLanesHeight : Math.round(Math.max(160, availableHeight - reservedHeight));
+  const lanesH = Math.floor(Math.max(160, availableHeight - reservedHeight));
 
   return (
-    <View style={[styles.root, fill && { flex: 1 }]}>
+    <View style={styles.root}>
       <KeepDarkScope>
         <MaskedView
-          style={[{ width: lanesW, marginHorizontal: SIDE - 24 }, fill ? { flex: 1, minHeight: 160 } : { height: lanesH }]}
-          onLayout={fill ? (event) => setMeasuredLanesHeight(Math.round(event.nativeEvent.layout.height)) : undefined}
+          style={{ width: lanesW, marginHorizontal: SIDE - 24, height: lanesH }}
           maskElement={
             <LinearGradient
               colors={["#000", "#000", "transparent"]}
