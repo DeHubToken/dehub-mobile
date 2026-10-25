@@ -108,7 +108,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
         {distribution === 'each' && <>
           <Text style={styles.text}>{t('agents.tasks.pacing.label', { defaultValue: 'When to act' })}</Text>
           <View style={styles.row}>{[0, 60, 360, 720, 1440].map(minutes => <Pressable key={minutes} accessibilityRole="button" accessibilityState={{ selected: spreadMinutes === minutes }} disabled={create.isPending}
-            onPress={() => { setSpreadMinutes(minutes); changed(); }} style={[styles.chip, spreadMinutes === minutes && styles.selected]}>
+            onPress={() => { setSpreadMinutes(minutes); if (minutes > 0) { setWindowMode(true); setWindowActions(['like']); if (preset === 'today' || preset === 'next7d') setPreset('last24h'); } changed(); }} style={[styles.chip, spreadMinutes === minutes && styles.selected]}>
             <Text style={styles.text}>{minutes === 0 ? t('agents.tasks.pacing.now', { defaultValue: 'Immediately' }) : t('agents.tasks.pacing.hours', { defaultValue: 'Over {{count}} hours', count: minutes / 60 })}</Text>
           </Pressable>)}</View>
           <Text style={styles.muted}>{t('agents.tasks.pacing.help', { defaultValue: 'Starts automatically with Sentient off. Pacing supports one like or dislike action on a fixed post window: each agent reacts to every matching post, one turn at a time. The first turn starts now; service limits can extend the finish time.' })}</Text>
@@ -140,7 +140,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
         </View>)}
         <Text style={styles.muted}>{t('agents.tasks.window.filterHelp')}</Text>
         <Text style={styles.text}>{t('agents.tasks.window.actions')}</Text>
-        <View style={styles.row}>{WINDOW_ACTIONS.map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: windowActions.includes(value) }} disabled={create.isPending}
+        <View style={styles.row}>{WINDOW_ACTIONS.map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: windowActions.includes(value) }} disabled={create.isPending || (swarm && distribution === 'each' && spreadMinutes > 0 && (value === 'view' || value === 'reply'))}
           onPress={() => { setWindowActions(list => toggleWindowAction(list, value)); changed(); }}
           style={[styles.chip, windowActions.includes(value) && styles.selected]}><Text style={styles.text}>{t(`agents.tasks.window.${value}`)}</Text></Pressable>)}</View>
         {windowActions.includes('reply') && <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.window.replyStyle')} value={replyStyle} editable={!create.isPending} multiline maxLength={500}
