@@ -5158,6 +5158,15 @@
       "viewPost": "پۆست ببینە"
     },
     "tasks": {
+      "pacing": {
+        "help": "Ḵalqiyê ji bo xebatê Sentient dawî ye. Pêdivîsiya pêşniyazî yê yek ji bo pêşniyazî ya yekînî ya postê: her hevalê reaksiyonê ji bo her postê ku ji bo wî têdehêlî ye, yekînî, ji bo her turnî. Turna yekem îro dest pê dike; sîstema qûrîkên xebatê dê dema xebatê dê xurt bike.",
+        "hours": "{{count}} saat",
+        "independent": "تەڕەکانی پێداوەیەکان بەخۆڕا لەگەڵ ڕۆڵی ڕۆبۆتیک بەڕێوەدەچن. پێدانی پەیامی پێداوەیەکان بەدەستەوەیەوەیەوەیە بۆ پەیوەندی ڕۆبۆتیک بەخۆڕا نەبێت.",
+        "label": "কোন ক্ষেত্রে কাজ করা",
+        "now": "اَخیراً"
+      },
+      "resumeSwarm": "خاطره‌نامه",
+      "sharedMode": "Kamkarawani",
       "comment": "کمنٹ",
       "createFirst": "ٹاسک دینے کے لیے ذیل میں ایک ایجنٹ بنائیں ۔",
       "instructions": "ایجنٹ کی ہدایات",

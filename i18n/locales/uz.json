@@ -64,6 +64,7 @@
     "retry": "Qayta urinib ko'ring"
   },
   "quickActions": {
+    "screenshot": "Skrinshot ko'rinishi",
     "attachScreenshot": "Skrinshotni biriktiring",
     "capturing": "Ushbu sahifa yozib olinmoqda…",
     "deviceNotice": "Sahifa, qurilma, mavjud bo'lganda model va ilova yoki brauzer tafsilotlari avtomatik ravishda qo'shiladi.",
@@ -81,6 +82,8 @@
     "title": "Sahifa parametrlari"
   },
   "twitchMirror": {
+    "disabled": "Avtomatik ko'chirish o'chirilgan",
+    "open": "DeHub-da tomosha qiling",
     "auto": "Twitch oqimlarimni avtomatik ravishda aks ettirish",
     "connect": "Twitch-ni ulang",
     "consent": "Faqat o'zingizga tegishli kanalni ulang. Aks ettirishni yoqish DeHubga sizning eshittirishlaringizni uzatish va mavjud yozib olish ruxsatnomangiz doirasida qayta ijro etish imkonini beradi.",
@@ -126,6 +129,16 @@
     "useNamed": "{{name}} dan foydalaning"
   },
   "copy": {
+    "084d8c213a85": "{{value1}} dan 5 ni baholang",
+    "0954e92b6ff1": "Post yoki sharhda boshqa foydalanuvchini @dan keyin ularning foydalanuvchi nomini yozib belgilang. Ular bildirishnoma oladi.",
+    "565339bc4d33": "OK",
+    "773e51beddb6": "Noto'g'ri yoki zararli kontentni ko'rib chiqish uchun belgilang. Hisobotlar hamjamiyatni xavfsiz saqlashga yordam beradi.",
+    "80557bda57d2": "Video Post",
+    "9f68c44b21cf": "Ko'ring {{value1}}",
+    "b500b2068ac7": "Xususiyat so'rovini o'chirishda xato",
+    "ba85bf0351d5": "{{value1}} soniyani orqaga qaytaring",
+    "db455cae992e": "Xususiyat so'rovini yangilashda xato",
+    "f082eb679e6b": "To'lang {{value1}} {{value2}}",
     "31696badc2ca": "Sikursiz taqdim etishga urinish",
     "3838a4d8cb8c": "Choychaqalar",
     "6611b6805965": "So'rovnoma yopildi",
@@ -4536,6 +4549,7 @@
     "global": "Dunyo"
   },
   "features": {
+    "promptAttachment": "Ilova {{number}}",
     "promptAttach": "Rasm yubor",
     "promptDetails": "Ixtiyoriy tafsilotlar",
     "promptDevice": "Qurilma va operatsion tizim (xatoliklar uchun)",
@@ -5113,11 +5127,14 @@
     "capacity": "{{used}} dan {{limit}} agentlar · {{badge}}",
     "noBadge": "Nishon yo'q",
     "profile": {
+      "avatar": "Avatar",
+      "banner": "Banner",
       "edit": "Profilni tahrirlash",
       "imageHelp": "JPG, PNG, WebP yoki GIF, har biri 5 MB gacha.",
       "saved": "Profil saqlandi."
     },
     "life": {
+      "awake": "Uyg'on {{home}}",
       "asleep": "{{home}} da uxlab yotgan",
       "empty": "Hali hech narsa yo'q. Tez orada tekshirib ko'radi.",
       "help": "Bu agentga mustaqil yashashga ruxsat bering. U o'z ish vaqtini, postlarini, layklarini va javoblarini o'z ovozida saqlaydi va kechalari uxlaydi.",
@@ -5148,6 +5165,17 @@
       "viewPost": "Postni ko'rish"
     },
     "tasks": {
+      "eachHelp": "Har bir tanlangan agent to'liq vazifani bajaradi.",
+      "eachMode": "Har bir agent",
+      "pacing": {
+        "help": "Sentient o'chirilgan holda avtomatik ravishda boshlanadi. Pacing bir fixed post oynasida bitta like yoki dislike harakatini qo'llab-quvvatlaydi: har bir agent har bir mos keladigan postga bitta navbatda javob beradi. Birinchi navbat hozir boshlanadi; xizmat chegaralari tugatish vaqtini uzaytirib yuborishi mumkin.",
+        "hours": "{{count}} soat davomida",
+        "independent": "Talab qilingan vazifalar Sentient rejimdan mustaqil ravishda ishlaydi. Like so'rash avtonomik postingni yoqmaydi.",
+        "label": "Qachon harakat qilish kerak",
+        "now": "Darhol"
+      },
+      "resumeSwarm": "Swarmni davom ettiring",
+      "sharedMode": "Umumiy ish",
       "cancelSwarm": "Swarmni bekor qilish",
       "clearSelection": "Tanlanganlarni tozalash",
       "distribution": "Taqsimot",
@@ -6592,7 +6620,7 @@
       "checkPayment": "Check payment",
       "clipVerify": "Tasdiqlashdan oldin kliplar sonini tekshiring. Har bir 1000 ta ko‘rish bitta birlik oladi.",
       "decisionOnly": "Ishchi mukofoti e'lon qiluvchining qarzini qayd etadi. E'lon qiluvchi to'g'ridan-to'g'ri to'laydi va qaror mukofot yozuvida qoladi.",
-      "deployEscrow": "Deploy and activate escrow",
+      "deployEscrow": "Escrow-ni joylashtiring va faollashtiring",
       "deploying": "Checking escrow deployment",
       "deployNotice": "Sinovdan o'tgan Base eskrousini egasi, to'lov oluvchisi va quyida ko'rsatilgan qo'llab-quvvatlanadigan tokenlar bilan joylashtiring. Tasdiqlashdan oldin hamyoningizda benzin narxi ko'rsatiladi.",
       "draftFunding": "Sizning qoralamangiz saqlandi. Nashr qilish to'liq byudjetni Base escrow da qulflaydi. Ishchilar tasdiqlangan summalarning 95% ni oladilar; platforma to'lovi 5% ni tashkil qiladi.",
@@ -12002,6 +12030,8 @@
     }
   },
   "creator": {
+    "presetOpenTowerTiltName": "Minora egilishi",
+    "studioPrompt": "Nima yaratmoqchi ekanligingizni tavsiflang…",
     "editInTimeline": "Taymlaynda tahrirlash",
     "presetExtraArchitectureLightChangeHint": "Yumshoq bulutlar mos yozuvlar sahnasida yorug'likni o'zgartiradi",
     "presetExtraArchitectureLightChangeName": "Arxitektura yorug'ligining o'zgarishi",

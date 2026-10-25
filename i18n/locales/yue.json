@@ -126,6 +126,18 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "1a00975a0ac1": "@ 頻道",
+    "1aa9573705bf": "留言讚好",
+    "3010b02a4030": "一個即時音訊室，用戶可以喺嗰度講嘢、聽同埋舉手加入對話。",
+    "94a6a84d8cbc": "索爾斯坎",
+    "a9805864ceb9": "包含一張或者多張圖片嘅帖子。圖像會以 NFT 嘅形式儲存喺鏈上面，並且有獨特嘅令牌 ID 。",
+    "b4c9a289323b": "用戶 @ 例子 . com",
+    "b602b7029be6": "Pt",
+    "bb9a702dd998": "後勤管理",
+    "bf4151fc970f": "工作管理仲裁器",
+    "c6db0784ded4": "🥽 V/AR 配置文件中心",
+    "e17602050e02": "社交媒體我哋",
+    "fdd9e13d471c": "修改你建立嘅帖子嘅標題或者描述。只有原始創作者先可以編輯佢哋嘅帖子。",
     "15ef844f362f": "代幣ID",
     "5190ff487713": "質押",
     "a4d1abed0b2b": "管理員",
@@ -5119,6 +5131,17 @@
       "viewPost": "睇吓帖子"
     },
     "tasks": {
+      "eachHelp": "每個選定嘅代理都會執行全部任務。",
+      "eachMode": "每個代理",
+      "pacing": {
+        "help": "喺閂咗「感知」嗰陣自動啟動。步伐支援喺固定嘅帖子窗口上面做一個鍾意或者唔鍾意嘅動作：每個代理都會對每個匹配嘅帖子作出反應，一次過轉一轉。第一轉由而家開始；服務限制可以延長完成時間。",
+        "hours": "超過 {{count}} 個鐘",
+        "independent": "提示任務可以獨立喺 Sentient 模式下執行。要求讚好唔會開啟自主發佈。",
+        "label": "幾時行動",
+        "now": "即刻"
+      },
+      "resumeSwarm": "恢復成群",
+      "sharedMode": "共享工作",
       "cancelSwarm": "取消蜂擁",
       "clearSelection": "清除選擇",
       "distribution": "分派出去",
@@ -10148,6 +10171,9 @@
     },
     "videoTemplates": {
       "copy": {
+        "answer": "呢個係答案",
+        "before": "之前",
+        "yourTurn": "輪到你喇",
         "bePart": "係你嘅一部分",
         "secondPick": "你嘅第二選擇",
         "after": "之後",
@@ -10201,6 +10227,7 @@
       "heading": "影片入門",
       "hint": "揀一個格式，編輯字詞，同埋加入你自己嘅片段。",
       "names": {
+        "mythFact": "神話同事實",
         "announcement": "公佈",
         "beforeAfter": "之前同之後",
         "countdown": "倒數",
@@ -10783,6 +10810,9 @@
       }
     },
     "live": {
+      "personalCopy": "儲存個人副本",
+      "receiving": "接收緊即時編輯",
+      "sharing": "分享緊即時編輯",
       "paused": "即時編輯暫停咗",
       "privateHint": "單單存在就唔會分享任何編輯。分享編輯即時上載新來源私下。儲存到雲端會保留永久版本。",
       "retryRecovery": "重試復原",
@@ -11913,6 +11943,7 @@
     }
   },
   "creator": {
+    "presetOpenForestAerialName": "森林空中",
     "presetExtraMacroFocusSweepName": "宏觀焦距掃描",
     "presetMerchMockupName": "商品樣板",
     "editInTimeline": "在時間軸上編輯",

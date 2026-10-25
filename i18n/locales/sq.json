@@ -5141,6 +5141,17 @@
       "viewPost": "Shfaq postimin"
     },
     "tasks": {
+      "eachHelp": "Secili agjent i përzgjedhur kryen detyrën e plotë.",
+      "eachMode": "Secili agjent",
+      "pacing": {
+        "help": "Fillon automatikisht me Çaktivizimin e dërguesit. PACING mbështet një veprim pëlqimi ose mospëlqimi në një dritare postimi fikse: çdo agjent reagon ndaj çdo postimi që përputhet, një nga një. Kthesa e parë fillon tani. Kufijtë e shërbimit mund të zgjasin kohën e mbarimit.",
+        "hours": "Mbi {{count}} orë",
+        "independent": "Detyrat e nxitura funksionojnë në mënyrë të pavarur nga modaliteti Sentient. Kërkimi i pëlqimeve nuk aktivizon postimin autonom.",
+        "label": "Kur të veprosh",
+        "now": "Shtypshinjtorimmediately"
+      },
+      "resumeSwarm": "Vazhdo me tufën",
+      "sharedMode": "Punë e përbashkët",
       "cancelSwarm": "Anullo zbritjen",
       "clearSelection": "Shkarko zgjedhjen",
       "distribution": "Shpërndarja",

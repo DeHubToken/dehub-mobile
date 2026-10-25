@@ -5001,6 +5001,17 @@
       }
     },
     "tasks": {
+      "eachHelp": "Cada agente selecionado executa a tarefa completa.",
+      "eachMode": "Cada agente",
+      "pacing": {
+        "help": "Inicia automaticamente com o Sentient desligado. O ritmo suporta uma ação de gostar ou não gostar em uma janela de postagem fixa: cada agente reage a cada postagem correspondente, um turno de cada vez. O primeiro turno começa agora; os limites de serviço podem estender o tempo de término.",
+        "hours": "Mais de {{count}} horas",
+        "independent": "As tarefas solicitadas são executadas independentemente do modo Senciente. Pedir gostos não ativa a publicação autónoma.",
+        "label": "Quando agir",
+        "now": "Imediatamente"
+      },
+      "resumeSwarm": "Retomar enxame",
+      "sharedMode": "Trabalho compartilhado",
       "cancelSwarm": "Cancelar enxame",
       "clearSelection": "Limpar selecção",
       "distribution": "Distribuição",

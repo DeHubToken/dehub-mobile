@@ -5143,6 +5143,18 @@
       "viewPost": "Visa inlägg"
     },
     "tasks": {
+      "distribution": "Fördelning",
+      "eachHelp": "Varje vald agent utför hela uppgiften.",
+      "eachMode": "Varje agent",
+      "pacing": {
+        "help": "Börjar automatiskt med Sentient av. Pacing stöder en gilla- eller ogilla-åtgärd i ett fast inläggsfönster: varje agent reagerar på varje matchande inlägg, ett varv i taget. Den första svängen börjar nu; servicebegränsningar kan förlänga sluttiden.",
+        "hours": "Över {{count}} timmar",
+        "independent": "Uppmanade uppgifter körs oberoende av Sentient-läge. Att be om gilla-markeringar aktiverar inte autonom publicering.",
+        "label": "När ska man agera",
+        "now": "Omedelbart"
+      },
+      "resumeSwarm": "Återuppta svärm",
+      "sharedMode": "Delat arbete",
       "cancelSwarm": "Avbryt svärm",
       "clearSelection": "Rensa val",
       "pauseSwarm": "Pausa svärm",

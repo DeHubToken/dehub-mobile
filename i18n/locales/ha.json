@@ -119,6 +119,34 @@
     "use": "Yi amfani da wannan samfurin"
   },
   "copy": {
+    "00c90f4b707a": "SRT / VTT",
+    "02693d5af964": "Radial",
+    "12a5fb358f94": "ANTIFA",
+    "3c1c1229f7a3": "Mint Transaction",
+    "4256e512fcfb": "Chad",
+    "450683b66da4": "SRT / VTT",
+    "468415f0e112": "Ag",
+    "46c403a10f6b": "Scouse",
+    "50a45e647dbb": "REC",
+    "5441d9dc54f6": "🌉 Token Bridge",
+    "6300ef800bb8": "Never",
+    "6818215dba2d": "💳 Fiat On-Ramp",
+    "6ee5630c9dde": "🧩 Fractions",
+    "6ff9754d0ec3": "Cost ({{value1}} × ${{value2}})",
+    "7ee9e63278f0": "Ba zaka ci gaba da transfer",
+    "87bbe879c7a5": "avatar",
+    "8c7ed2d9be59": "banner",
+    "90fade6fb78e": "Mirror",
+    "98e7859fecd0": "Image Post",
+    "9945e1ba014d": "Ba zaka kawo update campaign",
+    "a731a58c4cf3": "Twitch",
+    "af4707aebdfa": "OpenAI $",
+    "b21e3238c470": "E2E Encryption",
+    "b602b7029be6": "Pt",
+    "b62c681738d1": "Cu",
+    "c86fdb55e2fa": "Audio Space",
+    "d577cb7ddd24": "E-Girl",
+    "f4eab5052f27": "Pin Post",
     "0ad1b06f64f2": "Mataimakin AI",
     "0cce4de1bf95": "Hash na Ma'amala (Transaction Hash)",
     "0dbd9ab3c07a": "Walat & Toko",
@@ -5097,6 +5125,16 @@
       "viewPost": "Duba post"
     },
     "tasks": {
+      "eachHelp": "Kowane wakili da aka zaɓa yana aiwatar da cikakken aikin.",
+      "eachMode": "Kowane wakili",
+      "pacing": {
+        "help": "Yana farawa ta atomatik tare da Sentient kashe. Pacing goyon bayan daya kamar ko ƙi mataki a kan wani tsayayyen post taga: kowane wakili amsa ga kowane matching post, daya juya a lokaci. Juyawa na farko yana farawa yanzu; iyakokin sabis na iya tsawaita lokacin ƙarewa.",
+        "hours": "Sama da {{count}} awanni",
+        "label": "Lokacin da za a yi aiki",
+        "now": "Nan da nan"
+      },
+      "resumeSwarm": "Sake farawa swarm",
+      "sharedMode": "Aikin da aka raba",
       "cancelSwarm": "Gwada kawo kawo",
       "clearSelection": "A bayyane zabi",
       "distribution": "Rarraba",
@@ -11911,6 +11949,7 @@
     }
   },
   "creator": {
+    "presetExtraStitchedFeltName": "Stitched felt",
     "presetExtraCityTramPassHint": "Tram mai haske ya ketare wani yanayi na maraice mai natsuwa",
     "presetExtraPortraitBreathName": "Numfashin hoto",
     "presetExtraWoodcutLandscapeName": "Hoton shimfidar wuri na katako",
@@ -12176,6 +12215,7 @@
     "studioOpenModel": "Bude samfurin 3D",
     "studioPrompt": "Bayyana abin da kuke son ƙirƙirar...",
     "studioTexture": {
+      "standard": "Standard texture",
       "HD": "HD rubutu",
       "none": "Babu texture"
     },

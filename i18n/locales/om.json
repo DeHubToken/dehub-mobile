@@ -127,6 +127,19 @@
     "useNamed": "{{name}} fayyadamaa."
   },
   "copy": {
+    "0913f7bb109b": "fayyadamaa kana",
+    "1aa9573705bf": "Comment like godhaa",
+    "25d36bfae913": "Hanga ammaatti live streams hin jiru",
+    "3d1d43659027": "/ USD",
+    "716ad8641567": "Kuusaa haaromsuu hin dandeenye",
+    "8fe1a08e1a39": "{{value1}} irraa buufadhaa.",
+    "9839f82c0b29": "Liqiin dabalameera",
+    "b8af57e311aa": "Gaaffiin amala haaromfame!",
+    "c749c07a8785": "Meeshaa sana balleessuu hin dandeenye",
+    "c88d5b51caf0": "Qubbee harkaa (Dislike) .",
+    "c9a2d61de5a7": "Maqaa fayyadamaa saagi",
+    "dbc6e9280cb5": "Bittaa PPV",
+    "f5057642d43e": "{{value1}} baayoomeetirii banaa",
     "0d79ff168b4a": "· gulaalame",
     "35e0d0360a0a": "JIRAA",
     "6611b6805965": "Afaan cufame",
@@ -5144,6 +5157,17 @@
       "viewPost": "Maxxansa ilaali"
     },
     "tasks": {
+      "eachHelp": "Tokkoon tokkoon bakka bu'aa filatame hojii guutuu raawwata.",
+      "eachMode": "Tokkoon tokkoon ergamaa",
+      "pacing": {
+        "help": "Sentient cufamee ofumaan jalqaba. Saffisni gocha jaallachuu ykn jaallachuu dhabuu tokko foddaa maxxansa dhaabbataa irratti deeggara: tokkoon tokkoon bakka bu'aan maxxansa walsimsiisu hundaaf deebii kenna, yeroo tokkotti dabaree tokko. Dabareen jalqabaa amma jalqaba; daangaa tajaajilaa yeroo xumuraa dheeressuu danda’a.",
+        "hours": "Sa'aatii {{count}} oliif",
+        "independent": "Hojiiwwan gaafataman haalata Sentient irraa walaba ta'anii hojjetu. Like gaafachuun of danda'ee maxxansuu hin onne.",
+        "label": "Yoom akka socho'u",
+        "now": "Yerosuma"
+      },
+      "resumeSwarm": "Swarm irra deebi'ii jalqabi",
+      "sharedMode": "Hojii waliinii",
       "cancelSwarm": "Swarm haqi",
       "clearSelection": "Filannoo haqi",
       "distribution": "Qooddama",
@@ -11994,6 +12018,11 @@
     }
   },
   "creator": {
+    "presetAnimateStillName": "Animate a Still",
+    "presetFlatIllustrationName": "Fakkeenya Diriiraa",
+    "presetOpenDoughCloseupName": "Daakuu dhiyeenya",
+    "presetOpenTowerTiltHint": "Suuta gara gadiitti gara magaalaa duumessa qabdutti garagalchuu",
+    "presetPixelArtName": "Pixel Art",
     "editInTimeline": "Sarara yeroo keessatti gulaali",
     "presetExtraArchitectureLightChangeHint": "Duumessi suuta jedhu ifa bakka kenname tokko irratti jijjiira",
     "presetExtraArchitectureLightChangeName": "Jijjiirama ifa ijaarsa gamoo",
