@@ -1,3 +1,5 @@
+import { useCommentCount, updateCommentCount } from '../libs/comment-count-store';
+import { deliverReply, replyIdOf } from '../libs/reply-delivery';
 import ThemePanel from '../components/ui/ThemePanel';
 import { useAccountDraftKey, useDraftState } from "../hooks/useDraftState";
 import { useKeyboardSwap } from "../hooks/useKeyboardSwap";
@@ -171,6 +173,7 @@ function FeedDetailContent() {
   // The ad and the more-posts list under the comments are up to seven more
   // feed cards; mounting them in the first render held the push back.
   const transitionSettled = useTransitionSettled();
+  const displayCommentCount = useCommentCount(tokenId, item?.commentCount ?? 0);
   const [comments, setComments] = useState<ThreadedComment[]>([]);
   // Whatever was left unsent last time, restored whole: the text and the reply
   // it was aimed at. Backing out of this screen is the commonest way to lose a
@@ -820,16 +823,17 @@ function FeedDetailContent() {
     });
     // The count goes down by every row that went, not by one: deleting a
     // comment with four replies left the post saying four comments too many.
-    setItem((prev) => prev ? { ...prev, commentCount: Math.max(0, (prev.commentCount ?? 0) - Math.max(1, removed)) } : prev);
+    updateCommentCount(String(tokenId), -Math.max(1, removed));
     try {
       await deleteComment({ commentId });
     } catch (e) {
       console.error('[FeedDetailScreen] deleteComment error', e);
+      updateCommentCount(String(tokenId), Math.max(1, removed));
       toastError(t("toasts.failed_to_delete_comment"));
       // Revert by reloading
       await fetchData();
     }
-  }, [comments, fetchData]);
+  }, [comments, fetchData, tokenId]);
 
   // Asks first — permanent, and it takes every reply under the comment with
   // it, other people's included.
@@ -1174,7 +1178,10 @@ function FeedDetailContent() {
 
       const savedMedia = mediaAttachment;
 
-      try {
+      await deliverReply({
+        tokenId: tId, tempId,
+        onStart: () => setMediaPosting(true),
+        request: async () => {
         let newId: number | undefined;
         if (savedMedia.type === "image") {
           const fileName = getFileName(savedMedia.uri, "comment_image.jpg");
@@ -1190,19 +1197,21 @@ function FeedDetailContent() {
           const res = await postAudioComment({ streamTokenId: tId, fileUri: savedMedia.uri, fileName, mimeType, commentId: replyToId });
           newId = res?.commentId;
         }
-        if (newId == null) throw new Error(t("comments.sendMediaFailed"));
+        return { commentId: newId };
+        },
+        onSuccess: ({ commentId: newId }) => {
         if (newId != null) {
           setMediaAttachment(current => current === savedMedia ? null : current);
           setReplyTo.complete(replyTarget, null);
           setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId! } : c)));
         }
-      } catch (e) {
+        },
+        onFailure: e => {
         console.error("[FeedDetailScreen] media post error", e);
-        setComments((prev) => prev.filter((c) => c.id !== tempId));
         toastError(t("comments.sendMediaFailed"));
-      } finally {
-        setMediaPosting(false);
-      }
+        },
+        onSettled: () => setMediaPosting(false),
+      });
     });
   }, [mediaAttachment, mediaPosting, requireAuth, tokenId, replyTo, user, insertThreaded, t, setReplyTo]);
 
@@ -1247,7 +1256,7 @@ function FeedDetailContent() {
           return;
         }
 
-        const tempId = Date.now();
+        const tempId = -Date.now();
         const tempComment: Comment = {
           id: tempId,
           content: text,
@@ -1268,14 +1277,16 @@ function FeedDetailContent() {
 
 
         
-        try {
-          const res = await postComment({
+        await deliverReply({
+          tokenId, tempId,
+          onStart: () => setPosting(true),
+          request: () => postComment({
             streamTokenId: tokenId,
             content: text,
             commentId: replyTarget?.id,
-          });
-          const newId = res?.result?.id ?? (res as any)?.id ?? undefined;
-          if (newId == null) throw new Error(t("toasts.failed_to_post_comment"));
+          }),
+          onSuccess: res => {
+          const newId = replyIdOf(res);
           if (setInputText.complete(inputText, "")) {
             if (draftKey) clearCommentDraft(draftKey);
             setReplyTo.complete(replyTarget, null);
@@ -1283,22 +1294,18 @@ function FeedDetailContent() {
             Keyboard.dismiss();
           }
           if (newId != null) {
-            setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: newId } : c)));
-            // The server bumps the post's comment count for replies too, so
-            // count every post here — deleting already decrements either way.
-            setItem((prev) => prev ? {
-              ...prev,
-              commentCount: Math.max(0, (prev.commentCount ?? 0) + 1)
-            } : prev);
+            setComments((prev) => prev.map((c) => (c.id === tempId ? { ...c, id: Number(newId) } : c)));
           }
-        } catch (e) {
-          setComments((prev) => prev.filter((c) => c.id !== tempId));
+          },
+          onFailure: e => {
           console.error("[FeedDetailScreen] postComment error", e);
           // The comment vanished from the thread with nothing said at all
           // before this. A refusal from the server explains itself — comments
           // turned off, too long, a link that cannot be posted — so say it.
           toastError(e instanceof Error && e.message ? e.message : t("toasts.failed_to_post_comment"));
-        }
+          },
+          onSettled: () => setPosting(false),
+        });
       } finally {
         setPosting(false);
       }
@@ -1476,7 +1483,7 @@ function FeedDetailContent() {
         <View onLayout={handleTabRowLayout}>
           {stage ? (
             <CommentsStageHeader
-              count={item?.commentCount ?? comments.length}
+              count={displayCommentCount}
               sort={commentSort}
               onSortChange={setCommentSort}
               searchOpen={commentSearchOpen}

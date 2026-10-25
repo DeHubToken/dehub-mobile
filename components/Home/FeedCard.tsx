@@ -1,3 +1,4 @@
+import { useCommentCount } from '../../libs/comment-count-store';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useVideoDownload } from "../../context/VideoDownloadContext";
 import { watchedLabel } from "../../i18n/watched-label";
@@ -441,9 +442,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const isLive = contentType === "live";
   // Keep the API's zero authoritative. Falling through on zero can revive a
   // stale stream count and make the card disagree with the opened thread.
-  const commentCount = isLive
+  const commentCount = useCommentCount(item.tokenId ?? item.id ?? stream?.tokenId, isLive
     ? Math.max(item.commentCount ?? stream?.commentCount ?? 0, (item as any).liveChatCount ?? 0)
-    : (item.commentCount ?? (item as any).comments ?? stream?.commentCount ?? 0);
+    : (item.commentCount ?? (item as any).comments ?? stream?.commentCount ?? 0));
   // The canonical count, for EVERY post type — the API already folds the
   // signed-out and badge-weighted halves into totalViews and the web card
   // renders exactly this number. The old `|| peakViewers || stream.totalViews`

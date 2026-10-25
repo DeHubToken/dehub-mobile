@@ -1,3 +1,4 @@
+import { useCommentCount } from '../../libs/comment-count-store';
 import { useTranslation as _useCopy } from 'react-i18next';
 import BadgeArtwork from "../common/BadgeArtwork";
 import { isHoldGated, isSubscriberGated } from "../../libs/content-gate";
@@ -116,7 +117,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   // figure, not a view count, so they are not a fallback for one: peakViewers
   // is a high-water mark and the stream's totalViews counts reconnects.
   const views = resolveViewCount(nft);
-  const commentCount = (nft as any).commentCount ?? 0;
+  const commentCount = useCommentCount(tokenId, (nft as any).commentCount ?? 0);
   const createdAt =
     nft.createdAt || (nft as any).stream?.createdAt || new Date().toISOString();
   const isPayPerView = streamInfo?.isPayPerView;
