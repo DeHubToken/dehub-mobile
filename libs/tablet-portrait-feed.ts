@@ -8,5 +8,5 @@ export function tabletPortraitTitleSize(title: string, normalSize = 17): number 
   const text = title.trim().replace(/\s+/g, ' ');
   const length = Array.from(text).length;
   if (!length || /\r|\n/.test(title) || text.split(' ').some(word => Array.from(word).length > 24)) return normalSize;
-  return Math.round(Math.max(normalSize, 26 - Math.max(0, length - 32) * (26 - normalSize) / 64) * 10) / 10;
+  return Math.round(Math.max(normalSize, 26 - Math.max(0, length - 32) * (26 - normalSize) / 32) * 10) / 10;
 }
