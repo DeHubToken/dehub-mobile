@@ -97,8 +97,6 @@ import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { isPostHiddenByStorefront } from "../../libs/storefront-content";
 import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
-import RepostShareSheet from "./RepostShareSheet";
-import PostStageActionBar from "./PostStageActionBar";
 import { PostStageActions, PostStageChrome, PostStageCreator } from "./PostStage";
 import { clearPostStage, patchPostStage } from "../../libs/postStage";
 import { followUser, unfollowUser } from "../../services/user.service";
@@ -1448,23 +1446,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   // --- Post page "Stage" (phones) ---
   const stage = stageProp && (immersive || flat);
-  const [showRepostSheet, setShowRepostSheet] = useKeyedState(postKey, false);
   // A live post's in-page player, paused from the pinned mini player.
   const [livePaused, setLivePaused] = useKeyedState(postKey, false);
-  const handleOpenRepostSheet = useCallback(() => {
-    if (tokenId == null) return;
-    setShowRepostSheet(true);
-  }, [tokenId, setShowRepostSheet]);
-  const openRepostQuoteList = useCallback((initialTab: "reposts" | "quotes") => {
-    if (tokenId == null) return;
-    hideUserProfile();
-    navigation.navigate(ScreenNames.RepostQuoteList as never, {
-      tokenId,
-      initialTab,
-      repostCount: (item as any).reposts ?? 0,
-      quoteCount: (item as any).quotes ?? 0,
-    } as never);
-  }, [navigation, tokenId, item, hideUserProfile]);
   const handleStageFollow = useCallback(() => {
     requireAuth?.(async () => {
       const viewer = userAddress.toLowerCase();
@@ -2372,49 +2355,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           )}
         </View>
         {postVideo && <PostStageActions onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
-        <PostStageActionBar
-          liked={liked}
-          disliked={disliked}
-          saved={saved}
-          reposted={reposted}
-          likeCount={likeCount}
-          dislikeCount={dislikeCount}
-          commentCount={commentCount}
-          repostCount={repostCount}
-          onLike={handleLikePress}
-          onReact={handleReaction}
-          myReaction={myReaction}
-          reactionCounts={reactionCounts}
-          onShowReactionInfo={isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined}
-          onComment={handleCommentPress}
-          onRepost={handleOpenRepostSheet}
-          onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
-          onSave={handleSavePress}
-          tokenId={tokenId}
-          viewerAddress={userAddress}
-          isVisible={isVisible}
-        />
+        {actionBar}
         {sheets}
-        {showRepostSheet && tokenId != null && (
-          <RepostShareSheet
-            visible={showRepostSheet}
-            onClose={() => setShowRepostSheet(false)}
-            isReposted={reposted}
-            onRepost={handleConfirmRepost}
-            onUndoRepost={handleUndoRepost}
-            onQuote={handleQuotePress}
-            canQuote={isPublicPost && ((edits.quotePolicy ?? item.quotePolicy) !== "nobody" || !!isOwnerPost)}
-            canRepost={isPublicPost}
-            onCopyLink={handleCopyLink}
-            shareUrl={shareUrl}
-            shareText={localTitle || undefined}
-            quoteCount={stageQuotes}
-            repostCount={Math.max(0, repostCount - stageQuotes)}
-            onViewQuotes={() => openRepostQuoteList("quotes")}
-            onViewReposts={() => openRepostQuoteList("reposts")}
-            embedTokenId={isPublicPost ? tokenId : undefined}
-          />
-        )}
       </View>
     );
   }
