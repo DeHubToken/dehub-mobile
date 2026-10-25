@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import ElectricLogo from "../common/ElectricLogo";
 import Avatar from "../common/Avatar";
 import Icon, { type IconName } from "../ui/Icon";
+import NotificationBell from "../common/NotificationBell";
 import NavPillSurface, { NAV_PILL_RADIUS, NAV_PILL_SHADOW } from "../ui/NavPillSurface";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useUser, useAuthState, useAuthActions } from "../../context/AuthContext";
@@ -47,15 +48,6 @@ const RADIUS = 15;
 /** The avatar, and the rows of the feed menu. */
 const AVATAR_RADIUS = 8;
 const AVATAR_SIZE = 28;
-
-function UnreadBadge({ count }: { count: number }) {
-  if (count <= 0) return null;
-  return (
-    <View className="dark-surface" pointerEvents="none" style={styles.badge}>
-      <Text style={styles.badgeText}>{count > 99 ? "99+" : count}</Text>
-    </View>
-  );
-}
 
 /**
  * The system theme's home top bar: one centred capsule floating over the feed
@@ -141,8 +133,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={26} color="#FFFFFF" strokeWidth={1.9} />
-              <UnreadBadge count={unread} />
+              <NotificationBell unread={unread} color="#FFFFFF" active={!menuOpen} />
             </Pressable>
           </View>
         </View>
@@ -262,18 +253,4 @@ const styles = StyleSheet.create({
   menuRowOn: { backgroundColor: "rgba(255,255,255,0.15)" },
   menuLabel: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "600" },
   menuDivider: { height: 1, marginVertical: 4, marginHorizontal: 8, backgroundColor: "rgba(255,255,255,0.15)" },
-  // Off the glyph's top right corner (the glyph is 26.9pt in a 28pt box).
-  badge: {
-    position: "absolute",
-    top: 0,
-    right: -3,
-    minWidth: 16,
-    height: 16,
-    paddingHorizontal: 3,
-    backgroundColor: "#ef4444",
-    borderRadius: 6,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  badgeText: { color: "#fff", fontSize: 9, fontWeight: "700", lineHeight: 11, textAlign: "center" },
 });
