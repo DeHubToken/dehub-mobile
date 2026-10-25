@@ -107,6 +107,8 @@ interface FeedCaptionProps {
    * `large`: the body of a text-only post, set bigger since it is the post.
    */
   variant?: "default" | "media" | "large" | "portrait";
+  /** Smaller headline cap when the portrait card fits a wide phone. */
+  compactPortrait?: boolean;
 }
 
 // Measured "see more" verdicts, keyed on the caption content. The verdict
@@ -133,6 +135,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   flagged = false,
   resetKey,
   variant = "default",
+  compactPortrait = false,
 }) => {
   const { t: _copy } = _useCopy();
   const verdictKey = `${maxLines}|${description ?? ""}`;
@@ -287,7 +290,7 @@ const FeedCaptionComponent: React.FC<FeedCaptionProps> = ({
   }
 
   const large = variant === "large";
-  const portraitSize = variant === "portrait" ? tabletPortraitTitleSize(displayTitle || "", 16.8) : null;
+  const portraitSize = variant === "portrait" ? Math.min(compactPortrait ? 22 : 26, tabletPortraitTitleSize(displayTitle || "", 16.8)) : null;
 
   return (
     <View className={variant === "portrait" ? undefined : "mt-2"}>
