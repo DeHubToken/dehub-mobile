@@ -107,3 +107,13 @@ it('returns a failed first-frame handoff to the source without pausing or dispos
   expect(onCancel).toHaveBeenCalledTimes(1);
   expect(onReady).not.toHaveBeenCalled();
 });
+
+it('closes a mini-only lease exactly once without a duplicate pause', () => {
+  const { input, player, release } = source();
+  openInAppVideoMini(input);
+  release();
+  closeInAppVideoMini();
+  closeInAppVideoMini();
+  expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(getInAppVideoMini()).toBeNull();
+});
