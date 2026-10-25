@@ -1,5 +1,9 @@
 {
   "accountConnect": {
+    "allow": "Idini sambungan",
+    "generatePrompt": "Tuduhna model gambar DeHub lan wenehi taksiran rega kanggo potret sadurunge nggawe.",
+    "manage": "Atur sambungan akun",
+    "profilePrompt": "Ganti bio DeHub-ku dadi: Kreator mandiri sing nggawe film lan musik.",
     "deny": "Batal",
     "account": "Piyambaké wédané wédané ora kudu akun. Nambahaké akun DeHub karo profilmu lan buat utawa ngetokaké konten.",
     "body": "Koneksikan akunmu guna ngatur profil, ngeluarin postingan, dan ngawini konten dari obrolan. Koneksi bakal habis dalam 24 jam. Kamu bisa ngapus koneksi kapan aja.",
@@ -48,6 +52,8 @@
     "title": "Skenario mu. You yang beda."
   },
   "maintenance": {
+    "community": "Komunitas dhisik. Tansah.",
+    "title": "Sithik pegawean.\nDeHub sing luwih apik.",
     "brand": "DeHub",
     "checkFailed": "Gak bisa cek ketersediaan. Silakan coba lagi.",
     "checking": "Kanggo ngerti",
@@ -76,6 +82,9 @@
     "title": "Opsi halaman"
   },
   "twitchMirror": {
+    "error": "Mirroring perlu dipriksa",
+    "refresh": "Anyari status",
+    "retry": "Jajal mirroring maneh",
     "auto": "Kanggo ngarani ngarani stream Twitch kanggo ngarani otomatis",
     "connect": "Koneksi Twitch",
     "consent": "Ngubengi channel ingkang kawontenan. Nalika ngubengi mirroring, DeHub dipungkasi kanggo nglayani siaran lan ngasihaké replays ingkang ana ing papan panggung rekaman ingkang ana.",
@@ -91,6 +100,7 @@
     "waiting": "Sedya nganti broadcast Twitchmu kanggo ngantenan."
   },
   "viralTemplates": {
+    "preview": "Puter pratinjau {{name}}",
     "all": "Semua",
     "back": "Kembali ke template",
     "browse": "Browsi kanggo semuwa template {{count}}",
@@ -119,6 +129,17 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "084d8c213a85": "Wenehi biji {{value1}} saka 5",
+    "10d878fbdf00": "العربية (Basa Arab)",
+    "41fb2caed82f": "Lencana {{value1}} iki dipinjamke dening {{value2}}",
+    "8456b09b5e76": "Busak akun {{value1}}",
+    "91e1d9085ab8": "Kowe Bakal Nduwe Kabeh,",
+    "994cd605b028": "Lan Bakal Bungah",
+    "ba85bf0351d5": "Mundur {{value1}} detik",
+    "c0bc2a34abff": "Kanggo Kabeh Wong",
+    "e4ee35029d20": "Maju {{value1}} detik",
+    "f2646a4f3723": "Aplikasine",
+    "fab2abfce453": "हिन्दी (Basa Hindi)",
     "3325c2b56f2b": "Au",
     "468415f0e112": "Ag",
     "1655cc1b5278": "Sosial login diusulkan. Alat iki kanggo nambahaké akun ingkang wis ana saking",
@@ -4511,6 +4532,10 @@
     "global": "Global"
   },
   "features": {
+    "promptAttach": "Lampirake gambar",
+    "promptDrop": "Tempel utawa selehake gambar ing kene",
+    "promptMediaLimit": "Nganti {{max}} lampiran.",
+    "promptNew": "Usulan anyar",
     "promptAttachment": "Attachment {{number}}",
     "promptDetails": "Saben siji",
     "promptDevice": "Sajeroning Sajeroning",
@@ -5079,6 +5104,7 @@
     "minDhbPurchase": "Pembelian token minimal yaiku $0.50"
   },
   "agents": {
+    "agentDisplayNamePlaceholder": "Carane agen iki katon ing DeHub",
     "agentDisplayName": "Jeneng tampilan",
     "agentUsername": "Jeneng Pangguna",
     "capacity": "{{used}} ngoko {{limit}} wong · {{badge}}",
@@ -5122,10 +5148,12 @@
       "viewPost": "Deleng kiriman"
     },
     "tasks": {
+      "examples": "Posting sepisan saben dina babagan: musik independen\nGaya: kepengin ngerti, ringkes lan kaya ngobrol\nSenengi nganti 2 postingan anyar saben dina babagan: musik, pertunjukan langsung, piringan ireng",
       "distribution": "Pambagéan",
       "eachHelp": "Agèn- agèn sing dipilih nggih melakoni tugas pambekting.",
       "eachMode": "Agèn",
       "pacing": {
+        "hours": "Sajrone {{count}} jam",
         "help": "Miyosakenan wis kacanggah. Pacing ngrembaka karo Sentient. Pacing ngandharaken aksi siji utawa durung siji ing njaba jendhèl pos: setiap agent reaksi marang setiap posan sing cocok, siji turn karo turn. Turn pertama wis wiwit; batasan layanan bisa nambahaken waktunyane kanggo pungkasan.",
         "independent": "Tugas-tugas diprogram berjalan mandiri saking Sentient mode. Nalika nuntut siji kangen, ora ngaktifkeun posting otonom.",
         "label": "Wonten ing wektu apa?",
@@ -5175,6 +5203,9 @@
       "run": "Jalankan prompt",
       "runSwarm": "Jalankan swarm",
       "window": {
+        "mode": "Jinis tugas",
+        "next7d": "7 dina sabanjure",
+        "replyStyle": "Nada wangsulan sing dikarepake",
         "title": "Saben kiriman ing sawijining periode wektu",
         "today": "Dina Iki",
         "write": "Tulis instruksi",
@@ -7974,6 +8005,7 @@
   },
   "stats": {
     "money": {
+      "netHint": "pangasilan dikurangi wragad",
       "chartDaily": "Revenue lan biaya per dina",
       "chartMonthly": "Revenue lan biaya per dina, rata-rata saben bulan",
       "coveredHint": "biaya dibayar dening revenue",

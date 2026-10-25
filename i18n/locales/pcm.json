@@ -1,5 +1,18 @@
 {
   "accountConnect": {
+    "account": "You no need account to browse wetin dey public. Link your DeHub account make you fit manage your profile, create and publish content.",
+    "body": "Link your account make you fit manage your profile, publish posts and create content from chat. Connection go expire inside 24 hours. You fit disconnect anytime.",
+    "generate": "Generate media with your credits, payments wey don confirm or free images wey you qualify for",
+    "generatePrompt": "Show me DeHub image models and tell me di price for one portrait before you generate am.",
+    "intro": "Browse DeHub inside ChatGPT, or link your own account make you fit update your profile, publish posts and use Creator Studio. Add https://dehub.io/mcp as OAuth connector to control your account.",
+    "libraryPrompt": "Show me di latest assets wey dey my DeHub Creator library.",
+    "profile": "Change your profile, pictures and privacy settings",
+    "profilePrompt": "Change my DeHub bio to: Independent creator wey dey make films and music.",
+    "read": "See your account, posts, notifications and wetin dey your Creator library",
+    "social": "Publish post and comment, follow people and keep bookmarks",
+    "step": "To control your account, add https://dehub.io/mcp as OAuth connector, sign in to DeHub and check di permissions well before you allow access.",
+    "title": "Connect di DeHub account wey be your own",
+    "what": "Browse posts and profiles wey dey public. If you connect your account with OAuth, you fit manage your profile and privacy, publish posts and comments, follow people, read notifications, save bookmarks and generate images, video, audio and 3D assets. Generation dey follow di payment rules wey DeHub already get.",
     "allow": "Allow connection",
     "deny": "Cancel am",
     "disconnect": "Disconnect",
@@ -9,6 +22,10 @@
     "signIn": "Sign in to DeHub"
   },
   "creatorSupport": {
+    "explanation": "Watch for 30 seconds. Di sponsor dey pay di creator revenue share; you no go pay anything.",
+    "noAds": "No sponsor video dey now. You fit still send token tip.",
+    "receipt": "${{amount}} don enter di creator ad revenue. Token settlement still dey wait.",
+    "revenue": "Your ad money · ${{amount}}",
     "campaignDescription": "Make pipo watch 30 seconds. Need video wey get approval, wey be 30 seconds, upload am for web advertising portal.",
     "campaignLabel": "Creator support ads",
     "close": "Close ad",
@@ -20,6 +37,9 @@
     "watch": "Watach ad to support dis creator"
   },
   "maboroshiShowcase": {
+    "inspiration": "Na inspiration for di look. Upload your own character reference wey match.",
+    "intro": "180 character looks, from soft plush reach liquid chrome.",
+    "title": "Na your scene. Na different you.",
     "anime": "Anime hero",
     "browse": "Wetin you mean by \"Explore all 180 looks\"? Na which kind thing be dat?",
     "choose": "Try {{name}}",
@@ -32,6 +52,7 @@
     "previous": "Previous looks"
   },
   "maintenance": {
+    "checkFailed": "We no fit check if e dey available. Abeg try again.",
     "brand": "DeHub",
     "mode": "Maintenance mode",
     "retry": "Try am again",
@@ -43,6 +64,10 @@
     "title": "Wok small. Better DeHub."
   },
   "quickActions": {
+    "capturing": "We dey capture dis page…",
+    "failed": "Something no work well. Your message don save; abeg try again.",
+    "hint": "Hold anywhere wey no already get hold action to open dis options.",
+    "noScreenshot": "Automatic screenshot no dey available. You fit still send your report.",
     "attachScreenshot": "Attach a screenshot",
     "deviceNotice": "Paji, imoti, model wen dey available, na im app or browser details go dey include.",
     "logout": "Comot",
@@ -57,6 +82,11 @@
     "title": "Page options"
   },
   "twitchMirror": {
+    "disabled": "Automatic mirroring dey off",
+    "failed": "We no fit update Twitch mirroring. Abeg try again.",
+    "intro": "Stream for Twitch like you dey do before. Your broadcast fit show for DeHub by imself, no extra streaming tools.",
+    "starting": "We dey connect di live video",
+    "waiting": "E don ready for your next Twitch broadcast",
     "auto": "Automatically mirror my Twitch streams",
     "connect": "Connect Twitch",
     "consent": "Connect only a channel you own. Turn on mirroring so DeHub can send your broadcast and save replay for you under your recording limit.",
@@ -70,6 +100,16 @@
     "unavailable": "Twitch mirroring no go come yet."
   },
   "viralTemplates": {
+    "browse": "Check all {{count}} templates",
+    "chooseFirst": "Choose effect before you generate.",
+    "intro": "Watch one example. Pick effect or character. Add your photo and make am your own.",
+    "motion": "Copy dis movement",
+    "motionReady": "You don select {{name}}. Add your photo make e do di movement for dis clip.",
+    "ready": "You don select {{name}}. Add one photo to make 5-second video. Di framing go follow your photo.",
+    "search": "Search di effects, characters and dances wey dey",
+    "source": "Example videos come from",
+    "title": "Find di next tin wey go make you blow.",
+    "use": "Use dis template",
     "all": "All",
     "characters": "Characters",
     "dance": "Dance",
@@ -89,6 +129,126 @@
     "featured": "Back to featured"
   },
   "copy": {
+    "00d9b35a823e": "Start to make money sharp sharp, nobody go ever pursue you comot for platform, keep reach 99% of di revenue and create free, no censorship or platform manipulation.",
+    "03bbf31aa251": "🎬 Video Editor wey dey inside Browser",
+    "04b744fc1d6b": "Text wey sharp pass, realism and editing with reference image",
+    "04d02a85c7b9": "Na only you fit see dis content. Private posts dey hide from other users and from di public feed.",
+    "0c08345acca1": "Broadcast wey dey happen live. Viewers fit watch, comment, and tip di streamer. Streams dey use low-latency HLS technology.",
+    "0dc33a06c7ba": "Video wey get sound and transition from start frame to end frame",
+    "0f2a22d8a443": "Real SVG logos and icons",
+    "0f709815ab86": "Detailed scenes wey no cost much, for formats wey common",
+    "10d878fbdf00": "العربية (Arabic language)",
+    "13e8618e9f6a": "Change one token to another one direct inside di app. Swaps dey happen on-chain through decentralized exchanges.",
+    "1429fb35f906": "AI upscaling wey dey add detail",
+    "14623206ad2e": "People wey get di post fit change di title, description, and categories from di post options menu.",
+    "1655cc1b5278": "We recommend social logins. Dis tool na for importing accounts wey don already dey from",
+    "1710a2af3842": "Post wey get video inside. You fit set videos to public, private, or pay-per-view (PPV).",
+    "1e9c1d7b0942": "Scenes wey get feeling and dey follow di prompt well",
+    "2292284a6664": "Illustration wey get feeling, painting, and looks wey dey try new tins",
+    "2405f38579b8": "E go open di blockchain explorer (BaseScan) make you see di on-chain transaction details for one post or transfer.",
+    "2695e9e3ae52": "Comot post from di feed forever. Di on-chain record go still dey but di content no go show again.",
+    "27bc6d558ce4": "Order no fit record",
+    "291f54d83723": "Styles wey fit do many things and creative drafts wey easy to use",
+    "29e67c672ae2": "Di special on-chain ID wey dem give post when dem mint am as NFT.",
+    "2a9b77a23505": "Illustration wey get detail and compositions wey dey follow wetin you talk",
+    "2dd2411a19a1": "Fast generation for concept sketches wey no cost much",
+    "30f959f34501": "한국어 (Korean language)",
+    "31696badc2ca": "Review no fit submit",
+    "3356505b6f4d": "Full songs wey get lyrics & vocals",
+    "3892dc9387d3": "Put di code wey we send to",
+    "3b76196efd42": "Di blockchain transaction hash from when dem mint di post. Open am for block explorer make you confirm di on-chain record.",
+    "3d717322f7c9": " and you dey hold ",
+    "3fc66b2fab15": "720p previews wey no cost much, with sound wey come with am",
+    "3ff441f1f484": " from di people wey dey follow you",
+    "42a23857a049": "Plenty detail for photography and illustration",
+    "4618cde0f562": "Full sampling for visual compositions wey you plan well",
+    "4df4ce91fa85": "中文 (Chinese language)",
+    "51ecd50df62f": "E dey follow di prompt well, with motion wey get feeling and sound",
+    "56196e073a9a": "AI chat assistant wey fit answer questions, generate images, create videos, and help you with di platform features.",
+    "56acc0370df9": "Manage wetin you like for your account, language, privacy settings, and how e go look.",
+    "57383cdc46dd": " from di anonymous badge ",
+    "5747ee6203bf": "Google video generation wey di sound dey match",
+    "58428b4e8630": "Fast 1080p video wey get sound, reach 20 seconds",
+    "5bf941d509e0": "Images wey resemble real photo and text wey correct",
+    "621b82d1da33": "Fine fine detail and image edits wey you fit control",
+    "62707c181b12": "Biometric wallet unlock no fit set up",
+    "65f9597a741f": "For pay-per-view posts wey be your own, di live ribbon dey show how many viewers don buy access.",
+    "674c9031cb7a": "Text and diagrams wey pass di rest",
+    "6da707c478f8": "日本語 (Japanese language)",
+    "6f6cd0967266": "Layouts wey full well, text for many languages, and edits wey correct well",
+    "7082d395b8d2": "After e don translate, tap dis one make e go back to di original language of di content.",
+    "716ad8641567": "Store no fit update",
+    "773e51beddb6": "Flag content wey no correct or wey fit harm people make dem review am. Reports dey help keep di community safe.",
+    "77af58cd3096": " go reply for chat",
+    "7bd95b4a1993": "Fast visual exploration wey cost less",
+    "7c058e0ece4e": "First set up fingerprint, face unlock, or screen lock for your phone settings.",
+    "7f05ce754d0e": "Drafts wey dey come almost one time, for di lowest price for here",
+    "811ec3714ad8": "you need am for bounty",
+    "81631a8fce75": "Chess wey get army behind every piece. Three rigged civilisations dey march, strike and fall across marble board for four battlegrounds, with three engine strengths.",
+    "843991d1d9b3": "Review no fit post",
+    "846ebd41bcef": "E dey show sey you no like or you no agree with one post. Hold di thumbs up and pick 👎, di last reaction for di tray. Dis feedback dey help make content recommendations better.",
+    "869506b2aea3": "Alerts for likes, comments, tips, follows, and other activity wey concern your account.",
+    "877e1e86bf2a": "Content wey na only users wey don subscribe to di creator channel fit see.",
+    "8912e65bf642": "Drag make you change di position of photo {{value1}} out of {{value2}}",
+    "8a82c9465004": "Typography, graphic design, and layouts wey get detail",
+    "8ae18739e3f7": "Send Signal Flare give {{value1}} people",
+    "8e4b97ca7c6e": "Send Signal Flare give everybody",
+    "8e831aaaa051": "Google top model, e look real well well, with audio",
+    "8f7918a80c26": "Steps and guidance wey you fit adjust make you control am well",
+    "91e1d9085ab8": "You Go Own Everything,",
+    "9cc9f71c23f2": "Explore live spatial-intelligence globe and, if you like, put one version of yourself wey no too exact on purpose among di DeHub community.",
+    "9e9fa15a8dfa": "Di green or red arrow wey dey near leaderboard entry dey show how much user balance don change inside di time wey you select (1 day, 1 week, etc.).",
+    "9ec39f767fbb": "Stream don start.",
+    "a395ff857683": "Long takes, motion wey dey flow well, and sound wey come with am",
+    "a44e2be74d7d": "Create and join subjects from reference images",
+    "a61d44ba33d5": "Di mama of all arenas. Trade like time traveller with plenty screens. Enjoy live feeds from Binance, Dexscreener or anything wey you want, from videos to browser tabs and everything for middle.",
+    "a6a88965826a": "Di Fractions tab for profile dey list di posts wey dat account co-own and how many fractions e get for each one. Your own tab na di same view of everything wey you hold.",
+    "a6d3c826b831": "Fast images wey get detail and editing wey correct",
+    "aa2c45a2661e": "Kling motion wey fast pass, with sound wey match",
+    "ae644a180614": "Long prompts, text for many languages, and edits wey no go change who person be",
+    "b19b2e83cbb1": "Motion wey get style and wey lean to anime",
+    "b2903210a539": "Dat item no fit add",
+    "b2f1d1d5d653": "Motion wey get style, with audio wey come with am and clips wey long pass",
+    "b5893515b61f": "Di strongest typography for poster",
+    "b83e2b791732": "E don enter di stream",
+    "b9bc1ba02125": "Illustration and layout wey reach brand level",
+    "ba5680fcdd10": "Swap characters, products or scenery enter your clip with up to four images",
+    "ba9cdea7f89a": "People wey get post fit hide am from public feeds (and show am again) from di post options menu. Di owner go still fit see post wey dem hide, with Hidden chip for am.",
+    "bf1c04008038": "Illustration and photo detail wey balance well",
+    "bffcf3708842": "You go collect about",
+    "c5bf66554c8f": "Listing no fit create",
+    "c68ce1242bc4": "Motion wey be like film and audio wey match",
+    "c739f99ee6ec": "Typography wey sharp pass, with image editing",
+    "c75004c6a69c": "E dey translate post text, bios, and comments to di language wey you like. Di app dey detect your language by imself or you fit set am yourself for Settings.",
+    "ca3f58203ed3": "Video and sound wey come from text, images, or start and end frames",
+    "cc65f4a45ebf": "Characters dey stay di same, with audio wey match",
+    "cde41cf4a6f7": "Motion wey natural, audio wey come with am, and output wey reach 4K",
+    "ceae840b1f84": "Solana wallet no dey available — dis device no get your wallet key. Sign in again make e come back.",
+    "d099aa79934a": "Explore without sign in",
+    "da90edc91f4a": "E go open di comment section wey you fit reply post, join discussions, and yarn with other users.",
+    "dd4cbcccd151": "Store no fit create",
+    "ddea42290677": "Vote against governance proposal or feature request. E dey help show sey di community no gree.",
+    "de7f043f74a0": "Find new content and users. Browse by category: videos, images, live streams, and plenty more.",
+    "dfc22c6b07ab": "Share post for outside with link, or copy di post URL to your clipboard make you send am give other people.",
+    "e17602050e02": "Di Social Media Wey We",
+    "e1c71a6e23fc": "Network no fit switch",
+    "e36c6ed4c9a7": "Trading — listings, offers, sales — dey happen for di web app for dehub.io, for each post Post Info page. Trades wey don complete go show for di Fractions tab here.",
+    "e3be5bc43d91": "Pin post for top of your profile make visitors see am first.",
+    "e6d650d57b03": "Biometric wallet unlock don ready for dis phone",
+    "e7e2f2dbd536": "Video and audio wey reach 2160p",
+    "ea5e0b780f7b": "Motion wey dey flow and e dey follow prompt well well, no audio",
+    "ecf645d305d8": "Base model wey get detail for scenes wey complex",
+    "ef16819dcd3e": "Dispute don open — admin go review am",
+    "f304ae0e5df9": "Grok video wey cheap, with sound wey come with am",
+    "f3749b3c1a06": "Dispute no fit open",
+    "f8d6b01ecf54": "Save post for your bookmarks for later. See all di posts wey you save for Bookmarks page for di sidebar.",
+    "f9f4ff9b77f5": "Stream don end.",
+    "fab2abfce453": "हिन्दी (Hindi language)",
+    "fab618372ef2": "Fast music, e good well for instrumentals",
+    "faf1dcdc4029": "H3 Max wey fast pass, for iterations wey no cost much, with sound",
+    "fc6ec390be63": "Di cheapest all-rounder wey strong",
+    "fc7b39afbd53": "Seedream generation and editing wey no cost much",
+    "fdd9e13d471c": "Change di title or description of post wey you create. Na only di original creator fit edit dia posts.",
     "0459220de3f8": "Expressive, high-contrast, bold",
     "04b765747018": "Wireframe",
     "4aa5e5cd4d31": "Night Drive",
@@ -2590,6 +2750,11 @@
     "pollWinner": "{{option}} won"
   },
   "articles": {
+    "bodyPlaceholder": "Tell your story. Select text and use di bar for top for headings, bold, quotes and lists.",
+    "coverHint": "E dey sit for top of your article and na di picture wey people go see when dem share am",
+    "needBody_one": "{{count}} character still remain",
+    "needBody_other": "{{count}} characters still remain",
+    "noCoverShare": "Cover never dey. Links go show without picture.",
     "articleImage": "Article foto",
     "socialImage": "Foto for share",
     "removeImage": "Comot di foto",
@@ -2741,6 +2906,7 @@
     "tapShareForLink": "Tap share make you get your link"
   },
   "feed": {
+    "newPosts_one": "{{count}} new post don land",
     "home": "Home",
     "videos": "Video Dem",
     "images": "Foto Dem",
@@ -2780,6 +2946,14 @@
     "nothingTrending": "Nothing dey trend for this window yet."
   },
   "settings": {
+    "badgeDelegationEarn": "Stake DeHub tokens to earn badge, and e go come with one slot for every tier wey you climb.",
+    "badgeDelegationNoBadge": "Delegation slots dey come with staking badge. Stake DeHub tokens to earn one.",
+    "channelSpeedCount": "{{count}} channel(s) dey play for dem own speed.",
+    "smsDialogIntro": "To send text dey cost money, so dis channel dey run on credit wey you go top up with DeHub tokens.",
+    "smsNeedDhb": "You need {{dhb}} tokens before you fit unlock text notifications.",
+    "smsNotificationsDescReady": "E dey go {{phone}} — {{dhb}} tokens for each one, about {{count}} remain",
+    "smsNotificationsLocked": "Unlock am with {{dhb}} tokens (${{usd}}) credit",
+    "smsTopUp": "Add {{dhb}} tokens",
     "glass": "Glass",
     "shortsEnabled": "Shorts",
     "shortsEnabledDesc": "Show Shorts feed tab and Shorts carousel for Home.",
@@ -3493,6 +3667,11 @@
     "remove": "Comot am"
   },
   "tip": {
+    "payViaBridgeDpay": "E don move go Base and pay to DeHub Pay, tokens go land in about one minute",
+    "payViaDpay": "E don pay to DeHub Pay, tokens go land in about 30s",
+    "payViaSwap": "E don swap to DeHub tokens for Uniswap",
+    "stageDelivering": "DeHub Pay dey send your tokens…",
+    "stageSwap": "We dey buy DeHub tokens for Uniswap…",
     "payDirect": "Wen dey send am straight to {{name}} for {{symbol}} on {{chain}}. No swap.",
     "payDirectNoName": "Wen dey send am straight to de creator for {{symbol}} on {{chain}}. No swap.",
     "title": "Send tip",
@@ -3831,6 +4010,7 @@
     "online": "{{count}} dey online"
   },
   "aiChat": {
+    "outOfCredit": "Your AI credit don finish. Top up with DeHub tokens make you continue.",
     "title": "Assistant",
     "welcomePost": "I fit see dis {{type}}. {{context}}\n\nWetin you wan know about am?",
     "welcomeGeneral": "Hello! I be your assistant. Ask me anything - I dey here to help with questions, ideas, or just gist.",
@@ -3862,6 +4042,8 @@
     "requestFailed": "AI request no work"
   },
   "commandCentre": {
+    "txPurchased": "You buy {{amount}} tokens",
+    "txTransfer": "{{amount}} tokens transfer",
     "title": "Command Center",
     "mobileSubtitle": "Your wallet, your money and your reach for one place",
     "balance": "Balance",
@@ -4009,6 +4191,7 @@
     "txTipReceived": "{{name}} don pay {{amount}} tokunbo"
   },
   "wallet": {
+    "solanaSendUnavailable": "You never fit send for Solana for now",
     "connectUnavailable": "Connect Wallet no dey for dis version — use your recovery phrase bring am back instead.",
     "connectedWrongWallet": "Dat wallet na {{connected}}, no be {{address}}. Nothing change.",
     "restoreWrongWallet": "Dat one dey open another wallet, no be {{address}}. Nothing change.",
@@ -4129,6 +4312,31 @@
   },
   "notifications": {
     "custom": {
+      "bountyApplied": "{{name}} don apply for your bounty",
+      "bountyAppliedNamed": "{{name}} don apply for your bounty “{{title}}”",
+      "bountyReply": "{{name}} don reply your bounty",
+      "bountyReplyNamed": "{{name}} don reply your bounty “{{title}}”",
+      "bountySubmitted": "{{name}} don submit work for your bounty",
+      "bountySubmittedNamed": "{{name}} don submit work for your bounty “{{title}}”",
+      "commentMention": "{{name}} don mention you for comment",
+      "featureComment": "{{name}} don comment for your feature request",
+      "featureCommentNamed": "{{name}} don comment for your feature request “{{title}}”",
+      "featureLike": "{{name}} don like your feature request",
+      "featureLikeNamed": "{{name}} don like your feature request “{{title}}”",
+      "featureMention": "{{name}} don mention you for one feature request",
+      "featureMentionNamed": "{{name}} don mention you for “{{title}}”",
+      "featureReplyNamed": "{{name}} don reply you for “{{title}}”",
+      "fractionOffer": "{{name}} don make offer for your fractions",
+      "fractionOfferAccepted": "{{name}} don accept your fraction offer",
+      "fractionOfferRejected": "{{name}} no accept your fraction offer",
+      "fractionPurchased": "{{name}} don buy fractions of your post",
+      "governanceComment": "{{name}} don comment for your proposal",
+      "governanceVote": "{{name}} don vote for your proposal",
+      "governanceVoteNamed": "{{name}} don vote for your proposal “{{title}}”",
+      "repostedPosts": "{{name}} don repost {{count}} of your posts",
+      "sentNotification": "{{name}} don send you notification",
+      "stageLiveNamed": "{{name}} stage “{{title}}” don start live — tap make you listen",
+      "stageReminder": "One stage wey you set reminder for go soon start",
       "featureReply": "{{name}} reply your comment",
       "followRequest": "{{name}} wan follow you",
       "governanceCommentNamed": "{{name}} don comment on proposal \"{{title}}\"",
@@ -4223,6 +4431,7 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "leaderboard": {
+    "addedToLeaderboard": "We don add you! Balance: {{balance}} tokens",
     "title": "Leaderboard",
     "subtitle": "E dey auto-update every 5 minutes",
     "holdings": "Holdings",
@@ -4262,6 +4471,7 @@
     "provisional": "e never sure"
   },
   "explorePage": {
+    "resultsFor": "Wetin we find for \"{{query}}\"",
     "searchPlaceholder": "Find people, post or content...",
     "filters": "Filters",
     "clearAll": "Clear everything",
@@ -4323,6 +4533,9 @@
     "global": "Global"
   },
   "features": {
+    "promptDevice": "Your device & OS (if na bug)",
+    "promptHeading": "Wetin we go build next?",
+    "promptMediaError": "Choose images or videos wey no pass 20MB each.",
     "promptDrop": "Wen yu wan post pikin, yu go click \"Paste image\" or \"Drop image\" wey dey top of screen.",
     "promptAttach": "Attach images",
     "promptAttachment": "Attachment {{number}}",
@@ -4410,6 +4623,7 @@
     "requestOptions": "Request options"
   },
   "auth": {
+    "importSecretPlaceholder": "12 or 24 words, or di private key",
     "loginRequired": "Login dey required",
     "walletImported": "Wallet don import",
     "importWallet": "Import wallet",
@@ -4555,6 +4769,8 @@
     "returnHome": "Go back Home"
   },
   "profile": {
+    "offerSubmitted": "Your offer of {{amount}} tokens for {{handle}} don go",
+    "searchThisChannel": "Search inside dis channel",
     "dislikesEmptyOther": "Nothing disliked yet.",
     "dislikesEmptyOwn": "Post you no like, go dey for your feed, come show for here. Use \"undo dislike\" for bring back post.",
     "dislikesEmptyTitle": "No dislikes yet",
@@ -4787,6 +5003,7 @@
     "loadFailed": "E no fit load market data"
   },
   "ads": {
+    "topUpExplanation": "Your tokens go move on-chain enter di DeHub ads treasury, then dem go add am to your balance after independent on-chain check don confirm am.",
     "subtitle": "Reach DeHub holders based on dia badge tier",
     "tabs": {
       "overview": "Overview",
@@ -4854,6 +5071,7 @@
     "insufficientBalance": "Tokenu don dey low, top-up no dey reach."
   },
   "buyCoins": {
+    "minDhbPurchase": "Di smallest token wey you fit buy na $0.50",
     "title": "Buy Coins",
     "network": "Network",
     "token": "Token",
@@ -4887,15 +5105,21 @@
     "sharePostTemplate": "I just add {{amount}} tokens to my stack for DeHub. We dey build with the community. #DeHub"
   },
   "agents": {
+    "agentDisplayNamePlaceholder": "How dis agent go show for DeHub",
+    "capacity": "{{used}} out of {{limit}} agents · {{badge}}",
     "connectToManage": "Connect to manage AI agents",
     "agentDisplayName": "Display name",
     "agentUsername": "Username",
     "noBadge": "No badge",
     "profile": {
+      "avatar": "Profile picture",
+      "banner": "Cover picture",
+      "imageHelp": "JPG, PNG, WebP or GIF, each one no pass 5 MB.",
       "saved": "Profile save wey",
       "edit": "Chop profile"
     },
     "life": {
+      "starting": "E dey set up im character…",
       "asleep": "Asleep in {{home}}",
       "awake": "Awake in {{home}}",
       "empty": "Wetin dey yet. Go check again soon.",
@@ -4926,10 +5150,24 @@
       "viewPost": "See post"
     },
     "tasks": {
+      "cancelSwarm": "Cancel di swarm",
+      "clearSelection": "Clear wetin you select",
+      "createFirst": "Create agent for down here make you fit give am work.",
+      "examples": "Post one time every day about: independent music\nStyle: curious, short and e dey yarn like friend\nLike up to 2 new posts every day about: music, live shows, vinyl",
+      "limits": "One post every day and up to 3 likes wey make sense for each task. All agents dey share one 20-minute gap between posts. Photos dey use captions wey don check; videos need cover image. Posts no go pass 500 characters. No gas unless you dey mint; writing fit use credits.",
+      "list": "Di tasks",
+      "loading": "Tasks dey load…",
+      "mode": "Mode for di task",
+      "oneAgent": "Just one agent",
+      "pauseSwarm": "Pause di swarm",
+      "refresh": "Load again",
+      "swarmMember": "Swarm agent {{index}} out of {{total}}",
       "distribution": "Distribution",
       "eachHelp": "Agent don perform full task.",
       "eachMode": "Each agent",
       "pacing": {
+        "help": "E go start by imself with Sentient off. Pacing dey support only one like or dislike action for one fixed post window: each agent go react to every post wey match, one turn at a time. Di first turn dey start now; service limits fit push di finish time go front.",
+        "hours": "Inside {{count}} hours",
         "independent": "Tasweiru na imo nke a na-egbuo na Sentient mode. Iji ya n'aka na like na-ebu ya pụta n'ihu.",
         "label": "Wen yu go act.",
         "now": "Sunny day."
@@ -4967,6 +5205,7 @@
       "run": "Run!",
       "runSwarm": "Run swarm",
       "window": {
+        "invalid": "Pick start time wey dey before di end, and di end no go pass 31 days from now.",
         "title": "Every post wey dey inside one time period",
         "actions": "Actions",
         "custom": "Your own",
@@ -5210,6 +5449,7 @@
     "signInToSee": "Sign in make you see the flows wey dey your account."
   },
   "loginModal": {
+    "continueGoogle": "Use Google continue",
     "continueApple": "Use Apple continue",
     "title": "Enter",
     "continueEmail": "Continue with your Email",
@@ -5392,6 +5632,9 @@
     "legal": "Prize draws na for promotion, and na only DeHub account holders wey don reach 18 fit enter; e no valid where local law no allow am. DeHub staff, contractors and their household no fit enter. You no fit change prizes to cash unless dem talk am, and the announcement for each draw carry im full terms."
   },
   "dao": {
+    "contributeIntro": "Send DeHub tokens from your wallet go di treasury. Every token wey you add dey increase your share of di pool, and your share na di weight wey your vote go carry when di DAO dey decide how dem go spend am.",
+    "sendAnyWallet": "Anybody fit send DeHub tokens here from any wallet or exchange. Transfers for Base and BNB dey count for your share.",
+    "youHold": "You dey hold {{amount}} tokens",
     "acceptedAwaitingPayment": "Accepted · awaiting payment",
     "offerToBuyTokens": "Make offer to buy DeHub tokens",
     "paymentUnderReview": "Payment under review",
@@ -5526,6 +5769,7 @@
     "searchDehubFor": "Search \"{{query}}\" for DeHub"
   },
   "comments": {
+    "editPlaceholder": "Change your comment...",
     "reportComment": "Report comment",
     "showAll": "Show all di comment dem",
     "discardTitle": "You wan trowey your comment?",
@@ -5902,6 +6146,13 @@
     "dhb_token_not_configured": "Token no dey configute for {{chain}}."
   },
   "staking": {
+    "dhbOnBase": "DeHub tokens for Base",
+    "foundNewStake": "We see {{amount}} tokens. Your deposit don dey up to date.",
+    "onlyThisMuchStaked": "Na only {{amount}} tokens you deposit.",
+    "orSendDirectly": "Or send DeHub tokens straight to di deposit address for Base:",
+    "stakeOnBaseDesc": "Deposit DeHub tokens for Base to earn protocol rewards.",
+    "unstakeFromBnbDesc": "Withdraw from di BNB Chain contract. Tokens wey dey di Base pool never get withdrawal contract.",
+    "withdrawableOnBnb": "Wetin you fit withdraw: {{amount}} tokens for BNB Chain",
     "pendingRetired": "E no fit dey pending on network wey for now. Tracking clear; check your wallet activity before you dey deposit again.",
     "foundNewDeposits": "We see {{count}} new deposit on-chain",
     "title": "Staking",
@@ -5998,7 +6249,12 @@
     "lockedEarlyFee": "Wen u tap again, e go lock till {{date}}. Withdraw now go cost 88% — 12% fee, about {{fee}} tokens. Tap again to accept."
   },
   "communities": {
+    "privateHint": "Dem must approve new members before dem fit join.",
     "existingPost": {
+      "added": "Post don enter di community",
+      "hint": "E go keep di original post, likes and views.",
+      "placeholder": "DeHub post link or di post ID",
+      "signIn": "Sign in again make you fit manage community posts.",
       "more": "Load more posts join",
       "remove": "Comot am from di community",
       "add": "Add existing post",
@@ -6008,6 +6264,8 @@
       "unavailable": "Dis post no dey available."
     },
     "followerInvites": {
+      "detail": "Pick reach 50 followers for each batch. We go skip DMs wey dem pay for or wey dem close. Check di chat for sends wey never confirm before you try again.",
+      "error": "Invitations no fit send. Check your connection and your sign-in, then try again.",
       "clear": "Clear am",
       "empty": "No body dey follow dis page.",
       "next": "Di next one",
@@ -6126,6 +6384,12 @@
       "slowMode": "Slow mode: one message for every {{interval}}"
     },
     "manage": {
+      "inviteShareMessage": "Join dis community for DeHub",
+      "noAdmins": "No administrator dey yet. Promote one member make e help you moderate.",
+      "noInvites": "No invite link dey yet. Create one make you invite people direct.",
+      "rightsSummary": "{{granted}} out of {{total}} rights",
+      "searchTruncated": "Na di first {{limit}} we dey show — continue to type make e narrow down.",
+      "slowModeOnHint": "Members fit send one message every {{label}}. Dis rule no touch admins.",
       "dismissAdminTitle": "Comot am as admin",
       "cancel": "Cancel am",
       "dismissAdmin": "Comot am as admin",
@@ -6235,6 +6499,11 @@
       "noMemberMatches": "No member dey match dat address.",
       "noPlainMembers": "Every body don dey be admin for here.",
       "danger": {
+        "deleteBody": "{{name}} and everything wey dey inside go comot forever: every member, every message, every event and every invite link. You no fit undo am.",
+        "deleteHint": "Every member, message, event and invite link go comot forever. No way to go back.",
+        "deleteTitle": "You wan delete dis community?",
+        "noCandidates": "No other active member dey wey you fit hand dis community give.",
+        "transferBody": "{{name}} go become di owner of dis community. You go come down to admin wey get every right, and you no fit undo am.",
         "transferTitle": "Transfer ownership?",
         "transferConfirm": "Transfer",
         "deleteConfirm": "Delete.",
@@ -6275,6 +6544,10 @@
       "defaultPermissionsHint": "Wetin everybody fit do here unless admin say make you no dey do am.",
       "slowModeTitle": "Slow mode",
       "log": {
+        "empty": "Nothing dey here yet. Moderation actions go show as dem dey happen.",
+        "forMinutes": "for {{value}} minutes",
+        "restricted": "Na only moderators fit see di moderation log.",
+        "showMore": "See more ({{value}})",
         "justNow": "just now",
         "minutesAgo": "{{value}}m ago",
         "hoursAgo": "{{value}}h ago",
@@ -6303,6 +6576,7 @@
     "muted": "E don mute",
     "publicHint": "Anybody fit join for instant.",
     "invite": {
+      "revoked": "Dem don cancel dis invite link.",
       "joinFailed": "Na wahala, dem no allow am join.",
       "expired": "Invite link don expire.",
       "exhausted": "Invite link don land reach am limit of members.",
@@ -6312,6 +6586,7 @@
     }
   },
   "work": {
+    "connectTitle": "Make you connect your wallet",
     "stepOf": "Step {{step}} out of {{total}}",
     "integrity": {
       "totalBudget": "Total budget",
@@ -6536,6 +6811,7 @@
     "subtitle": "Post am for bounty or go hunt am. Paid for am for DeHub tokens or USDC."
   },
   "usernames": {
+    "payingOn": "You dey pay with DeHub tokens for {{chain}}",
     "subtitle": "Handles wey dem dey sell, price dey for USD",
     "browse": "Look around",
     "sell": "Sell",
@@ -6728,6 +7004,8 @@
     "noActiveListings": "Dis store no get active listing",
     "storeNotFound": "We no see di store",
     "detail": {
+      "buyFor": "Buy am for {{amount}} tokens",
+      "confirmBody": "You go pay {{amount}} tokens (about {{usd}}) for Base, straight to di seller wallet. You no fit reverse dis one.",
       "listing": "Listing",
       "unavailable": "Dis listing no dey available again",
       "physical": "Physical",
@@ -6786,6 +7064,8 @@
     "listingOptions": "Wetin you fit do with di listing"
   },
   "accounts": {
+    "payingOn": "You dey pay with DeHub tokens for {{chain}}",
+    "walletStays": "Your wallet no dey sell: tokens, di badge balance wey you stake and di collectibles wey you mint go still dey with your keys.",
     "browse": "Look around",
     "sell": "Sell",
     "searchPlaceholder": "Search handle...",
@@ -6851,6 +7131,12 @@
     "priceRange": "Wia {{min}} na {{max}}."
   },
   "screens": {
+    "glossaryDhbTokenDesc": "DHB na di ticker symbol for DeHub tokens, di native utility token of DeHub. People dey use am for tipping, pay-per-view content, governance voting, and staking.",
+    "glossaryGovernanceDesc": "Submit and vote on proposals wey dey shape di platform. Your voting power depend on how many DeHub tokens you hold.",
+    "glossaryLeaderboardDesc": "We dey rank users by total DeHub token balance (wallet + staked across all chains). Rankings dey update from time to time and dey track 1-day and 1-week changes. You fit also sort by tips wey dem send, tips wey dem receive, followers, likes, or subscribers.",
+    "glossaryStakingDesc": "Lock your DeHub tokens to earn rewards as time dey go. Tokens wey you stake go also give you more voting power for governance.",
+    "glossaryTipDesc": "Send DeHub tokens straight to content creator as reward for dem content. We dey record tips on-chain.",
+    "glossaryWalletDesc": "Your on-chain wallet wey dey hold your DeHub tokens and other crypto assets. E connect through Web3Auth so you fit enter am easy.",
     "drafts": "Drafts",
     "editProfile": "Edit Profile",
     "likedPosts": "Posts Wey You Like",
@@ -7275,6 +7561,7 @@
     "failed": "We no fit switch account. Abeg check di private key and try again."
   },
   "superpowers": {
+    "spendFor": "{{power}} wey go last {{minutes}} minutes",
     "anyBadgeHolder": "Anybody dey hold badge go get SuperPowers. Buy DeHub tokens to unlock badge — no need stake.",
     "holdToUnlock": "Buy DeHub tokens to unlock badge and SuperPowers. Anybody dey hold badge go get dem — no need stake.",
     "noPostsFound": "No post dey.",
@@ -7538,6 +7825,8 @@
     "noEarningsDesc": "Tips and PPV sales go show here"
   },
   "earningsVs": {
+    "footnote": "Di competitor figures na estimates from industry ranges wey dem publish, no be payouts wey we measure — real RPM dey change well well based on niche, di country of di audience and watch time, so edit each rate make e match wetin you dey really earn. Di DeHub figure na your real tip income wey we convert with di live token price, and e no include subscriptions, PPV and store sales. We add di views from your latest 100 posts.",
+    "yourRpm": "Di RPM wey you get for DeHub",
     "title": "Compared to other platforms",
     "subtitle": "Your real DeHub earnings against wetin di same views for don pay for another place.",
     "earnedOnDehub": "Wetin you earn for DeHub",
@@ -7701,6 +7990,7 @@
   },
   "stats": {
     "money": {
+      "inEmpty": "No money never enter for dis period",
       "estimatedOperations": "Estimated operations",
       "definitionsSubtitle": "Every line, wey dem dey read from, and wey dem no include",
       "dhbMarket": "DHB wey dey ${{price}} for dis time.",
@@ -7747,6 +8037,10 @@
       "unavailable": "{{sources}} no fit reach, so dem fit leave out all total above no fit guess dem."
     },
     "taxSplit": {
+      "burnedDetail": "{{tokens}} DeHub don burn for {{n}} buybacks",
+      "footnote": "Na only di operating funds wey we keep dey count as revenue for top. We dey record buybacks and shared rewards separately. You fit check every amount and original currency for di ledger.",
+      "intro": "Revenue from before don fund operations, token buybacks and rewards for holders and stakers. Di amounts dey show for dollars, for di value wey dem get for each payment date. Open each part to see im original currencies and every transaction.",
+      "shared": "Wetin we pay holders and stakers",
       "see": "See every line",
       "burned": "Buy back and burn",
       "open": "Wata see every line wey get {{part}}",
@@ -7832,6 +8126,7 @@
     "legacyViewA11y": "See di old wallet for Solscan"
   },
   "bridge": {
+    "insufficient": "Tokens no reach for {{chain}}.",
     "from": "From",
     "to": "To",
     "recent": "Di bridges wey you do recently",
@@ -7938,6 +8233,7 @@
     "createdNotAdded": "Folder don create, but di post no enter"
   },
   "ppv": {
+    "notEnoughToken": "You need {{amount}} {{symbol}} to unlock dis one. Na {{held}} you get.",
     "switchTo": "Dis post dey pay for by {{chain}}. Go change to {{chain}} inside Settings, then try again.",
     "title": "Pay-Per-View content",
     "unlockPrice": "Unlock price",
@@ -8106,6 +8402,8 @@
     "fixPlaceholder": "Wetin e suppose talk"
   },
   "upload": {
+    "quotaShortfall": "Dis post go cost {{cost}} tokens and na {{held}} you get.",
+    "shopAllowanceUsed": "You don use {{allowance}} of {{allowance}}. Stake more DeHub tokens for higher badge and another slot.",
     "solanaUnavailable": "Solana wallet no dey available — dis device no get your wallet key. Sign in again make e come back.",
     "solanaTempUnavailable": "Posting for Solana no dey work for now. Try Base or BNB instead.",
     "enterTextFirst": "Type sometin first",
@@ -8327,6 +8625,7 @@
     }
   },
   "monetization": {
+    "paymentsStable": "Buyers dey pay for {{symbol}}, and e go straight to you",
     "tokenGated": "Token gated",
     "invalidToken": "Enta correct token contract address",
     "createPlanAction": "Create subscription plan",
@@ -8345,6 +8644,8 @@
     "paymentsBase": "Paiment dey for DeHub tokens for Base chain."
   },
   "subscriptions": {
+    "createFirstPlan": "Make Your First Plan",
+    "legacyMigrationNote": "If you save, dis old plan wey dem price for tokens go move to dollar pricing for di pre-listing rate.",
     "switchFailed": "E no fit switch di subscription network",
     "connectWallet": "Connect your wallet before you fit subscribe",
     "notBuyable": "You no fit buy dis plan. Tell di creator make e create am again",
@@ -8588,6 +8889,7 @@
     "transfersPausedError": "Token transfers don dey pause for now, so dis purchase go fail. Try again wen trading resume."
   },
   "dpay": {
+    "topUpSubtitle": "Buy DeHub tokens with card and collect free gas wey you fit use sharp sharp",
     "success": "E work",
     "stripeStatus": "Stripe status",
     "tokenSendStatus": "Token send status",
@@ -8721,6 +9023,9 @@
     "viewReposts": "View reposts"
   },
   "dm": {
+    "prefsIntro": "Control who fit message you and collect fee for each message for DeHub tokens.",
+    "tipBelowFee": "Tip must reach at least {{amount}} tokens (message fee)",
+    "tippedYouAmount": "Don tip you {{amount}}",
     "online": "Online",
     "attachFailed": "We no fit attach dat file.",
     "removeAttachment": "Comot attachment",
@@ -8926,6 +9231,7 @@
     "coverFailed": "Cover no fit change"
   },
   "player": {
+    "yourDhbBalance": "How much token you get: {{amount}}",
     "segmentLabel": {
       "filler": "Na filler.",
       "interaction": "Like & subscribe",
@@ -9078,6 +9384,7 @@
     "discordOptional": "Discord (you no must put am)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@yourname, tiktok.com/@yourname, vimeo.com/yourname…",
     "clearAll": "Clear everything",
     "costsTitle": "Wetin e go cost",
     "creditApplied": "credit don apply",
@@ -9174,6 +9481,7 @@
     "startVideo": "Start video call now"
   },
   "badgeAscension": {
+    "holdNote": "Once badge don unlock, e be your own as long as you still hold your tokens. Di number of tokens wey you need to unlock new badge fit change as token price dey change.",
     "lines": {
       "lobster": "Continue to dey swim",
       "octopus": "Eight hand, inside every pot",
@@ -9266,6 +9574,7 @@
     "missingCountryCode": "Check di country code — numbers wey you copy from Contacts dey miss am plenty times."
   },
   "legacy": {
+    "emailFor": "Email wey belong to @{{name}}",
     "chooseAccount": "Pick di account wey you wan recover",
     "recoverYourAccount": "Collect your account back",
     "foundMany": "We find {{count}} old DeHub profiles wey connect to dis sign-in. Before dem link login methods together, different sign-ins fit create separate profiles.",
@@ -9296,6 +9605,7 @@
     "matchedWithBalance": "Matched, {{balance}} tokens"
   },
   "liveGift": {
+    "buyHint": "Buy tokens and come back to your gift. Your amount and message go still dey ready.",
     "buyTokens": "Buy tokens",
     "backToGift": "Go back to di gift",
     "pickTier": "Pick one celebration",
@@ -9365,6 +9675,10 @@
     "cameraReconnecting": "Welcome back — your camera dey reconnect"
   },
   "nearBuy": {
+    "confirmationTime": "Network confirmations and token delivery dey add time. Dis na estimate, no be countdown.",
+    "description": "Choose di token wey you go use pay. Collect DeHub tokens for your wallet.",
+    "destination": "Where di tokens dey go for Base: {{address}}",
+    "detail_gasPending": "Your token transfer don confirm. Di separate ETH gas transfer still dey wait or e dey try again.",
     "otherCurrencies": "Oda currencies",
     "search": "Find token, network or contract",
     "onChain": "on {{chain}}",
@@ -9449,6 +9763,7 @@
     "directTiming": "Wen payment confirm, tokens go dey deliver."
   },
   "dex": {
+    "buyWithBnbNote": "BNB Chain trading don close. You get BNB? Use am buy DeHub tokens for Base.",
     "lowestPrice": "Price wey low pass · USD",
     "lpDhb": "LP · tokens",
     "lpUsd": "LP · USD",
@@ -9708,6 +10023,7 @@
         "body": "Choose name wey people go recognise and add profile picture, so your posts go look like say na you post dem."
       },
       "wallet": {
+        "title": "See your wallet and wetin DeHub tokens be",
         "body": "Wallet you dey exist and hold DeHub token. Take look at wetin dey inside am and where am come from."
       },
       "feed": {
@@ -9735,27 +10051,35 @@
       "thanks": "Thank you, e help."
     },
     "setup": {
+      "stepOf": "Step {{current}} out of {{total}}",
       "continue": "Continue",
       "skip": "Skip",
       "back": "Go back",
       "language": {
+        "fromPhone": "Di language wey your phone dey use",
+        "subtitle": "We pick di one wey your phone dey use. Tap another one to switch.",
         "title": "Pick ya language"
       },
       "theme": {
+        "title": "Pick how you wan make e look",
         "subtitle": "Tap one theme make you try am. You fit change am anytime for Settings."
       },
       "audience": {
+        "subtitle": "We go set up your feed make e match. You fit change am later for Settings.",
         "title": "Who's using DeHub?",
         "recommended": "Recommended",
         "setPin": "Set a PIN",
         "confirmAdult": "I'm 18 or over",
         "kids": {
+          "body": "Only posts wey dem make for children. One big person go set PIN to comot from Kids Mode.",
           "title": "Kids"
         },
         "everyone": {
+          "body": "Di full app. Mature posts go still dey hide.",
           "title": "Everybody"
         },
         "mature": {
+          "body": "Show posts wey dem mark as mature too. Only choose dis one if you don reach 18 or pass.",
           "title": "Mature 18+"
         }
       }
@@ -9825,6 +10149,8 @@
   },
   "editor": {
     "assembly": {
+      "matchLimit": "Pick reach 10 clips or photos. Videos must dey between one second and 10 minutes long.",
+      "noMatch": "We no see any scene wey match. Try another topic or selection.",
       "matchConsent": "Wepa clips and fotos don match your prompt.",
       "matchDuration": "Video don short pass am, shorten duration or choose more media.",
       "matchFailed": "Scene matching no dey available. Your selected clips and timings don dey remain unchanged. You fit review dem manually.",
@@ -9832,18 +10158,43 @@
       "reviewManually": "Review clips manually."
     },
     "sharedTimeline": {
+      "protectedUndo": "Old local edits dey cover shared changes. Undo go keep di shared changes safe.",
       "hint": "Wen yor save changes, dem dey apply for now. Local edits don dey keep, na Undo don dey ready.",
       "receive": "Gbam, receive changes.",
       "received": "Wahala don happen, receive version {{revision}}.",
       "upToDate": "Already up to date."
     },
     "videoMatte": {
+      "hint": "E dey run for dis device. First trim am reach {{seconds}} source seconds or less; di first run go download di model.",
       "cancel": "Cancel am",
       "frames": "Removing background · {{completed}} / {{total}} frames",
       "restore": "Restore background"
     },
     "videoTemplates": {
       "copy": {
+        "threeSteps": "Make am for three steps",
+        "tipHint": "Add di detail wey go make am useful.",
+        "tipOne": "Your first advice",
+        "tipThree": "Your third advice",
+        "tipTwo": "Your second advice",
+        "topFive": "Di top five",
+        "turnHint": "Show di moment wey tins change.",
+        "afterHint": "Show wetin come out.",
+        "announcementHint": "Add di name, date or detail.",
+        "answer": "Di answer na dis",
+        "beforeHint": "Show where you start from.",
+        "checkResult": "Check wetin come out",
+        "difference": "See di difference",
+        "fifthPick": "Di fifth one wey you pick",
+        "fourthPick": "Di fourth one wey you pick",
+        "mainStep": "Do di main step",
+        "myth": "Di popular myth",
+        "mythHint": "Write di belief wey you wan challenge.",
+        "newFavourite": "Meet di new one wey you go love pass",
+        "pickHint": "Talk why dis pick deserve im place.",
+        "productHint": "Show one reason wey go make person love am.",
+        "question": "Di big question wey you get",
+        "saveHint": "Give viewers reason to save dis one.",
         "after": "After",
         "announcement": "Na big announcement be dis!",
         "answerHint": "Explain it for me like I no dey school, one clear sentence.",
@@ -9878,6 +10229,7 @@
       "heading": "Video starters",
       "hint": "Wetin you wan do? You wan choose format, edit word, and add your own clips? Na so you dey think?",
       "names": {
+        "mythFact": "Na lie or na true",
         "announcement": "Announcement",
         "beforeAfter": "Befor and afta.",
         "countdown": "Countdown",
@@ -9891,6 +10243,14 @@
       "useFormat": "Use {{aspect}} video format"
     },
     "highlights": {
+      "changed": "Di source project don change. Find highlights again.",
+      "chatFound": "We find {{count}} moments. Preview dem, fine-tune di selection, then create separate edit.",
+      "created": "Highlight edit don save. Di original project still dey.",
+      "limit": "Use reach 10 minutes of source speech. You must first split transcript wey long well well and no get break.",
+      "none": "We no find any talk moment wey useful. Try another topic or video.",
+      "privacy": "Video go stay for your device. Na here we go transcribe di speech; we go send di transcript text for highlight ranking. Check every moment before you create separate edit.",
+      "reviewPlaceholder": "Keep only di backup tips, or comot moment 2…",
+      "reviewResult": "You don select {{count}} out of {{total}} moments. Check dem before you create di edit.",
       "captionHint": "Na only tori wey dey inside caption go dey consider.",
       "chatCaptionsMissing": "Video no get caption. Ask again make we transcribe am.",
       "chatExit": "Back to editing",
@@ -9997,6 +10357,7 @@
       "visibilityHint": "Page wey hide still dey editable and dem still dey for download."
     },
     "captions": {
+      "replaceCount": "Replace am for {{total}} captions",
       "captionText": "Caption text (caption text)",
       "emptyText": "Empty caption (empty caption)",
       "findText": "Find in captions (search caption)",
@@ -10455,6 +10816,7 @@
       }
     },
     "live": {
+      "privateHint": "Presence alone no dey share any edit. Share edits live dey upload new sources privately. Save to cloud dey keep version wey go last forever.",
       "paused": "Live edits paused",
       "personalCopy": "Waka copy personal.",
       "receiveEdits": "Receive live edits",
@@ -11589,6 +11951,105 @@
     }
   },
   "creator": {
+    "presetAdBulletsHint": "Product with three short points wey show im benefit",
+    "presetAdHeadlineHint": "Big claim, product dey front and centre",
+    "presetAdUsVsThemHint": "Comparison side by side with di competitor",
+    "presetCinematicStillHint": "Framing and colour grade like film still",
+    "presetCrashZoomHint": "Fast zoom-in for dramatic moment",
+    "presetEarthZoomOutHint": "Pull back from di subject reach space",
+    "presetEarthZoomOutName": "Zoom Out from Earth",
+    "presetExtraArchitectureLightChangeHint": "Soft clouds dey change di light for reference scene",
+    "presetExtraArcticExpeditionHint": "Big cold place and small human silhouette",
+    "presetExtraBakeryWindowHint": "Golden pastry detail for morning light",
+    "presetExtraBotanicalPlateHint": "Fine study of plant with specimen details",
+    "presetExtraBottlePourHint": "One slow pour wey di liquid dey flow like real",
+    "presetExtraCanWrapHint": "Brand design wey wrap round drink can",
+    "presetExtraCeramicGlazePourHint": "Thick glaze dey flow over ceramic shape wey bend",
+    "presetExtraCeramicPedestalHint": "Sculpture objects and quiet soft light",
+    "presetExtraCityTramPassHint": "Tram wey light dey cross calm evening frame",
+    "presetExtraCosmeticBoxHint": "Carton and bottle wey dey together as one brand system",
+    "presetExtraCosmeticFloatingHint": "Clean beauty arrangement wey dey hang for air",
+    "presetExtraCrystalGrowthHint": "Crystal shapes wey get faces dey grow from one steady point",
+    "presetExtraCyanotypeStudyHint": "White plant silhouettes for blue background",
+    "presetExtraDeskSatisfyingHint": "One neat placement wey you see from top",
+    "presetExtraDoorwayRevealHint": "Dark doorway dey open enter bright scene",
+    "presetExtraDrinkSplashRingHint": "Liquid crown wey freeze round drink",
+    "presetExtraDuotonePortraitHint": "Graphic photo print wey get two colours",
+    "presetExtraEmbroideredPatchHint": "Thread wey thick and fabric border wey dem stitch",
+    "presetExtraEventFlyerHint": "Event title wey clear and bold main image",
+    "presetExtraFoodFinishHint": "One garnish land on top food wey don ready",
+    "presetExtraFoodOverheadHint": "Table wey get plenty colour, arranged from top",
+    "presetExtraGelLightBeautyHint": "Amber and violet studio light",
+    "presetExtraGentleDutchRollHint": "Small controlled roll dey add tension to scene wey no dey move",
+    "presetExtraIllustrationParallaxHint": "Small depth from illustration wey you supply",
+    "presetExtraIsometricMapHint": "Small neighbourhood wey you fit read well",
+    "presetExtraLandscapeBreezeHint": "Leaves dey move small small for photo wey you supply",
+    "presetExtraLayeredPaperHint": "Depth of cut paper with soft shadows",
+    "presetExtraLightPaintHint": "Line wey dey shine dey draw one simple shape",
+    "presetExtraLinenStillLifeHint": "Quiet product styling inside natural fabric",
+    "presetExtraLinocutSceneHint": "Black marks wey dem carve for warm paper",
+    "presetExtraLiquidMetalHint": "Chrome shapes wey dey flow with clean reflections",
+    "presetExtraMacroFocusSweepHint": "Focus dey move across fine details",
+    "presetExtraMossMicroWorldHint": "Small small natural things for macro scale",
+    "presetExtraNoirHotelHint": "Black and white hallway frame wey get tension",
+    "presetExtraOrigamiBuildingHint": "Buildings of folded paper with sharp folds",
+    "presetExtraOutfitDetailWalkHint": "Close shot of waka wey show natural fabric",
+    "presetExtraOverShoulderFollowHint": "Close follow from behind shoulder through real place",
+    "presetExtraOverheadQuarterTurnHint": "Slow quarter-turn from top round one layout",
+    "presetExtraPaperUnfoldHint": "Folded paper dey open become sculpted subject",
+    "presetExtraPerfumeDunesHint": "Warm sand and shadow of sculpted bottle",
+    "presetExtraPetSmallMotionHint": "Eye blink and ear movement for pet portrait",
+    "presetExtraPlaylistCoverHint": "One image wey get mood with simple writing",
+    "presetExtraPodcastCoverHint": "Square artwork wey you fit read even when e small",
+    "presetExtraPortalIrisHint": "Round opening dey show another place",
+    "presetExtraPortraitBreathHint": "Small breathing dey make reference portrait move",
+    "presetExtraPrismShadowsHint": "Rainbow light and simple geometry",
+    "presetExtraProductLightSweepHint": "Soft light wey dey move across reference product",
+    "presetExtraQuietLoopSceneHint": "Small motion wey dey repeat for calm place",
+    "presetExtraRackFocusHint": "Focus dey shift from front go di subject",
+    "presetExtraRainyProductHint": "Water drops and dramatic light from side",
+    "presetExtraReflectionSlideHint": "Camera move dey show subject and im reflection",
+    "presetExtraRibbonWrapHint": "One ribbon wey dey flow dey wrap round di subject",
+    "presetExtraRisoPrintHint": "Two inks, paper grain and layers wey no too align",
+    "presetExtraScreenprintPosterHint": "Strong shapes and three flat ink colours",
+    "presetExtraShoeLacePullHint": "One lace pull wey dem do on purpose, for close-up",
+    "presetExtraSilentFilmFrameHint": "Old-school black and white and stage-like framing",
+    "presetExtraSneakerDetailHint": "Fabric, stitching and di texture of di sole",
+    "presetExtraStainedGlassHint": "Coloured glass wey dey shine and lead lines",
+    "presetExtraStitchedFeltHint": "Soft fabric shapes and stitching wey you fit see",
+    "presetExtraStreetFlashHint": "Direct flash and city energy wey natural",
+    "presetExtraSunsetRimPortraitHint": "Warm light dey outline hair and shoulders",
+    "presetExtraTravelPostcardHint": "Destination wey dey call you, with printed texture",
+    "presetExtraVerticalStoryHint": "Space for one short announcement and image",
+    "presetExtraVinylSleeveHint": "Album artwork wey di record dey show small",
+    "presetExtraWindowRainPortraitHint": "Rain drops for window and quiet reflection",
+    "presetExtraWoodcutLandscapeHint": "Landscape wey get layers inside carved tonal bands",
+    "presetLevitateHint": "Subject dey float slowly comot from ground",
+    "presetLogoMarkHint": "Simple, bold logo for plain background",
+    "presetMerchMockupHint": "Your design for T-shirt, hoodie or cap",
+    "presetOpenCanyonTimelapseHint": "Cloud shadows from golden hour reach evening",
+    "presetOpenCraftsmanPortraitHint": "Portrait with one softbox for black backdrop",
+    "presetOpenDoughCloseupHint": "Hands wey window light dey shine on, with soft colours",
+    "presetOpenEspressoSteamHint": "Ceramic product detail with steam wey dey curl and light for edge",
+    "presetOpenLighthouseOrbitHint": "Drone dey go round with grey waves and sea spray",
+    "presetOpenMarketTrackingHint": "Neon street shot wey dem hold for hand, with rain for di lens",
+    "presetOpenMidnightAlleyHint": "Sodium lamps and 35mm reflections wey wet",
+    "presetOpenPoppyStillLifeHint": "Editorial objects with hard shadows from noon sun",
+    "presetOpenRecordingStudioHint": "Isometric clay cutaway wey get tungsten light",
+    "presetOpenSaltPondsHint": "Pink and ochre geometry wey you see from top",
+    "presetOpenSkiLodgeHint": "Wood, orange wool and winter sun wey dey low",
+    "presetOpenTowerTiltHint": "Slow tilt go down enter city wey cloud cover",
+    "presetOpenViaductTrainHint": "Wide shot wey no move, with windows wey light and long-lens depth",
+    "presetOpenWatchBlueprintHint": "Technical cutaway for warm paper",
+    "presetPlaceholder": "{{name}}: describe di subject, for example \"{{sample}}\"",
+    "presetPosterTypeHint": "Layout with big writing wey you fit read",
+    "presetSetAblazeHint": "Fire catch and swallow di subject",
+    "presetSocialCarouselHint": "One slide of post wey you fit swipe",
+    "presetVhsGlitchHint": "Old tape distortion and colour wey dey bleed",
+    "presetWhipPanHint": "Fast blurred pan enter di reveal",
+    "studioNeedsImage": "Attach reference image for dis model or preset.",
+    "studioWelcome": "Pick medium and model, add prompt or select preset, then create. Check di price before you generate. Your results go save for here.",
+    "toolMaboroshiDesc": "Change characters and objects, check di draft, then export with your original soundtrack.",
     "editInTimeline": "Edit in timeline",
     "presetExtraGlassCausticsHint": "Sunlight bends through clear glass",
     "presetExtraGlassCausticsName": "Glass caustics",
@@ -11951,6 +12412,11 @@
     "referenceComposeHint": "Bring characters, objects and settings from multiple images into one composition."
   },
   "fractions": {
+    "buyForTotal": "Buy {{quantity}}, e go cost {{total}}",
+    "listedToast_one": "You don list {{count}} fraction, {{price}} tokens for each one",
+    "listedToast_other": "You don list {{count}} fractions, {{price}} tokens for each one",
+    "offerSubmitted_one": "Your offer don go for {{count}} fraction, {{price}} tokens for each one",
+    "offerSubmitted_other": "Your offer don go for {{count}} fractions, {{price}} tokens for each one",
     "title": "Fraction dem",
     "perUpload": "1000 for every upload",
     "tabBrowse": "Look around",
@@ -12271,6 +12737,10 @@
     "clicksRow_other": "{{clicks}} clicks · {{unique}} different people"
   },
   "easyTrade": {
+    "aiBuyOnly": "Easy trade na to sell tokens. If you wan buy tokens, open Exchange.",
+    "doneList": "Don list {{amount}} tokens for ${{price}}",
+    "easyHint": "Sell your DeHub tokens with small taps. We go pick di best way to fill am.",
+    "marketRateHint": "Sell now for about ${{price}} each token, around {{usdc}} USDC for total.",
     "chooseTitle": "How you wan trade?",
     "easyTitle": "Easy trade",
     "exchangeTitle": "Exchange",
@@ -12316,6 +12786,8 @@
     "aiNeedAmount": "Wetin you wan sell?"
   },
   "tipFunding": {
+    "noRoute": "No Uniswap route to DeHub tokens for dis token now",
+    "unlockWallet": "Unlock your wallet to pay with dis token",
     "lowLiquidity": "Uniswap no get enough liquidity for payment wey big reach this right now",
     "dpayNoAmount": "DeHub Pay no return any payment amount",
     "noBridgeRoute": "No cross-chain route dey right now",
@@ -12390,22 +12862,34 @@
   "guide": {
     "sections": {
       "getting-started": {
+        "intro": "Five ways dey to enter DeHub and none of dem need make you don get wallet before: Google, Apple, code wey we send to your email, code wey we send by SMS, or wallet wey you already get wey you connect. Everything except di wallet way go create non-custodial wallet for you for background — na you hold di keys, and DeHub dey pay di gas so you fit post, tip and collect without you buy any native token at all.",
         "title": "Getting Started",
         "steps": {
+          "1": "Visit dehub.io — di home feed na di front page, so you fit look around before you sign in.",
+          "2": "Click 'Sign In'. You go see Google and Apple, fields for email address or phone number, and 'Connect Wallet' if you don get wallet before.",
+          "5": "Pick username. Na wetin people go see, and e be your dehub.io/<username> profile link too.",
+          "6": "You don enter. Check di feed, set up your profile, and start to post.",
           "3": "Wen yu use Google or Apple, complete provider's flow. Wen yu use email or SMS, enter code wey dey arrive.",
           "4": "Wallet don create and secure for you wen you sign-in for the first time. When you connect your own wallet, you go need just one sign to prove your address."
         },
         "tips": {
+          "1": "Social, email and SMS sign-ins no dey pay gas at all — DeHub dey pay am. Connected wallets dey pay dem own ETH or BNB.",
+          "3": "You fit keep plenty accounts for one device and switch between dem for Settings → Profile.",
           "2": "Come back to yor legacy DeHub account? Sign in wit yor email or phone number wey use am before, migration go find am for yor."
         }
       },
       "home-feed": {
+        "intro": "Di home feed na where you go see posts from people wey you follow and content wey dey trend. E get tabs for different content types and different ways to sort.",
         "title": "Home Feed",
         "tips": {
+          "2": "Di 'Home' tab dey show all content types mix together.",
           "1": "Grid view na good fit for browse image quickly.",
           "3": "Live tab shows currently active live streams."
         },
         "steps": {
+          "2": "Use di tabs for top to filter by content type: Home (everything), Videos, Images, Shorts, Music, or Live streams.",
+          "4": "Use di filter/sort button (top-right of di feed) to change how e dey sort: Hot, New, or Top.",
+          "5": "Pull am down to refresh di feed for phone.",
           "1": "Go find /app - dis na your home feed.",
           "3": "Swip left/right for mobile, see more option.",
           "6": "Kpochap down to load more post wey dey come up automatically (infinite scroll).",
@@ -12415,10 +12899,18 @@
       "creating-posts": {
         "title": "Creating Posts",
         "tips": {
+          "2": "You fit quote-post: click di repost icon for any post and choose 'Quote'.",
+          "3": "Categories (hashtags) dey show for di 'Talk of the Town' leaderboard.",
           "1": "Posts support markdown-style formatting."
         },
         "intro": "Post am, share foto, video, voice note, GIF, and more. Use hashtag, cashtag, and mention to increase reach.",
         "steps": {
+          "3": "To add image or video, click di media icon and choose file.",
+          "4": "To record voice note, click di microphone icon.",
+          "5": "To add GIF, click di GIF icon and search for one.",
+          "6": "Use #hashtags to put your post for category (like #crypto, #defi).",
+          "7": "Use $cashtags to talk about tokens (like $DHB, $ETH).",
+          "8": "Use @mentions to tag other users (like @username).",
           "1": "Klik di 'Post' button for inside sidebar (desktop) or + button (mobile).",
           "2": "Wen you type your text for me, I go translate am to Nigerian Pidgin.",
           "9": "Klik 'Post' don publish. Your post don show for feed immediately."
@@ -12428,6 +12920,9 @@
         "title": "Explore & Search",
         "intro": "Dey discover new kontent and pipo wey dey use di platform through explore paje and powerful search functionality.",
         "steps": {
+          "1": "Go /app/explore from di sidebar.",
+          "2": "Use di search bar for top to search for users, posts, or content.",
+          "4": "Check di topics and categories wey dey trend for di explore page.",
           "3": "Wetin you dey look for?",
           "5": "Klik on topik wey dey trend to see all post wey relate.",
           "6": "Klik on a user for visit am for dia profile."
@@ -12438,9 +12933,15 @@
         }
       },
       "profile": {
+        "tips": {
+          "1": "Your username na only you get am, and e dey show for your profile URL (dehub.io/@username).",
+          "2": "Privacy settings dey let you control who fit see how many followers you get."
+        },
         "title": "Profile",
         "intro": "Your profile dey show your posts, followers, wey dem dey follow you, and your wallet information.",
         "steps": {
+          "2": "Click 'Edit Profile' make you update your display name, bio, and avatar.",
+          "5": "Check your own posts, media, and content wey you like through di profile tabs.",
           "1": "Klik your poto or 'Profile' for view your profile.",
           "3": "Upload poto by click am for edit mode.",
           "4": "Wata followers you get, and wata pipo you dey follow.",
@@ -12452,6 +12953,7 @@
         "title": "Message Dem",
         "intro": "Send pesin message to oda user for platform.",
         "steps": {
+          "5": "See your old conversations for di messages list.",
           "1": "Klik 'Messages' for inside sidebar to open messaging paje.",
           "2": "Klik di compose button to start new konversayshon.",
           "3": "Gbona for user wey you want to message, enter username.",
@@ -12464,8 +12966,13 @@
         }
       },
       "ai-assistant": {
+        "intro": "Chat with di AI assistant wey dey inside DeHub make e help you, give you information, and do creative work with you.",
         "title": "AI Helper",
         "steps": {
+          "1": "Click 'Assistant' for di sidebar to open di AI chat.",
+          "3": "Di AI fit help you with crypto information, questions about di platform, and general knowledge.",
+          "4": "Start new conversation: click di new chat button.",
+          "5": "See your old conversations for di sidebar of di assistant page.",
           "2": "Wetin you wan me translate?",
           "6": "Wetin you wan do?"
         },
@@ -12479,48 +12986,73 @@
         "title": "Notification Dem",
         "intro": "Stay up to date witim likes, comments, tips, follows, and anoda tins wey dey happen for your content.",
         "steps": {
+          "4": "Notifications dey include: new followers, votes for post, comments, tips, and mentions.",
           "1": "Klik bell icon or 'Notifications' for sidebar.",
           "2": "Wata notifications wata wata.",
           "3": "Klik on notifishun to navigate to di related kontent.",
           "5": "Notifications wey no dey read, dem dey highlighted — dem mark as read wen dem dey view."
         },
         "tips": {
+          "2": "Tip notifications dey show how many tokens you receive.",
           "1": "Notification badge dey show number of unread notifications."
         }
       },
       "wallet": {
+        "intro": "See your DeHub token balances across plenty chains, check staking deposits, and manage your assets.",
+        "tips": {
+          "1": "Balances dey update by demself, but you fit force refresh anytime.",
+          "2": "Di wallet dey show both liquid (wey you fit use) and staked balances."
+        },
         "title": "Wallet",
         "steps": {
+          "3": "See di breakdown for each chain: Ethereum, Base, BNB Chain, and others.",
+          "4": "Check your staking deposits and di rewards wey you get.",
+          "5": "Click 'Refresh Scan' make your balances update from di on-chain data.",
+          "6": "Copy your wallet address make you fit receive tokens from other people.",
           "1": "Klik 'Wallet' for inside sidebar to open wallet paja.",
           "2": "Wata balance of token you get for all blockchain wey support."
         }
       },
       "staking": {
+        "intro": "Stake your DeHub tokens to earn rewards and increase your voting power for governance.",
         "title": "Staking",
         "steps": {
+          "1": "Go di 'Staking' page from di sidebar.",
+          "2": "Put how many tokens you wan stake.",
+          "5": "See how much you don stake and any rewards wey dey wait.",
+          "6": "To unstake, put di amount and confirm di unstaking transaction.",
           "3": "Choose chain wey you dey want stake.",
           "4": "Confirm transaction for your wallet (wallet outside) or e dey auto-execute (when you use your social media account to login)."
         },
         "tips": {
+          "1": "Staking dey increase your vote weight for governance proposals.",
           "2": "Sosial-login users no need gas to stake — e no dey need gas.",
           "3": "You fit go stake for multiple chain simultaneously."
         }
       },
       "leaderboard": {
+        "intro": "See who dey top! Di leaderboard dey rank users by balance, how much dem spend every day, and topics wey dey trend.",
         "title": "Oga Table",
         "steps": {
+          "1": "Go di 'Leaderboard' page from di sidebar.",
+          "2": "Switch between di tabs: Balance, Daily Spent, and Talk of the Town.",
+          "6": "Click any user to visit dem profile.",
           "3": "Balance tab ranks users by their total token holdings.",
           "4": "Daily Spent tab show who dey dey active for tip for last 24 hours.",
           "5": "Talk of di Town dey show am for top most-discussed topics/categories.",
           "7": "Leaderboard dey update periodically for inside day."
         },
         "tips": {
+          "2": "Talk of the Town dey track one-word categories from hashtags.",
           "1": "Daily rankings reset every 24 hours."
         }
       },
       "command-centre": {
+        "intro": "Dashboard wey dey show your main numbers and wetin dey happen for di platform, all for one look.",
         "title": "Command Centre",
         "steps": {
+          "2": "See your profile summary, including how many posts, followers, and engagement you get.",
+          "3": "See wetin you don do recently and di topics wey dey trend.",
           "1": "Klik 'Command Centre' for inside sidebar.",
           "4": "Wata quick link don dey available for features wey you dey use often."
         },
@@ -12529,6 +13061,7 @@
         }
       },
       "governance": {
+        "intro": "Join hand for how di platform dey run: create proposals and vote on community decisions.",
         "title": "Rul Dem",
         "tips": {
           "1": "Power of voting be determine by number of tokens you dey stake.",
@@ -12536,6 +13069,10 @@
           "3": "Proposals go through stages: Active → Passed/Rejected."
         },
         "steps": {
+          "1": "Go 'Governance' from di sidebar.",
+          "3": "Click any proposal to read im full description and discussion.",
+          "4": "Vote on proposals with di thumbs up/down buttons — how heavy your vote be depend on how many DeHub tokens you don stake.",
+          "6": "Submit your own proposal: click di 'Create Proposal' button.",
           "2": "Browse active proposals wey people submit.",
           "5": "Leav comment for proposals to discuss with community."
         }
@@ -12544,15 +13081,18 @@
         "title": "Bookmark Dem",
         "intro": "Save post wey you dey read for your bookmark, so you fit access am later.",
         "steps": {
+          "1": "Click di bookmark icon for any post to save am.",
           "2": "Go navigate to 'Bookmarks' for sidebar to see all save post.",
           "3": "Klik on am for di bookmarked post to view am full.",
           "4": "Torop ame remove bookmark by click am again."
         },
         "tips": {
+          "2": "No limit dey for how many posts you fit bookmark.",
           "1": "You go save post, na only you go see am."
         }
       },
       "settings": {
+        "intro": "Arrange your DeHub experience how you like am with language, privacy, and display preferences.",
         "title": "Setins",
         "steps": {
           "1": "Klik 'Settings' for inside sidebar.",
@@ -12567,8 +13107,13 @@
         }
       },
       "reactions-and-safety": {
+        "intro": "Nine reactions dey behind di like button, plus some controls to decide wetin you go see and who fit reach you.",
         "title": "Reactions, Muting & Mature Content",
         "steps": {
+          "1": "Hold di thumbs-up for any post to open di reaction tray: like, love, respect, hot, lol, sad, cry, dislike and poo.",
+          "2": "Di seven good ones dey count for di post like total; dislike and poo dey count against am.",
+          "3": "Your reaction weight depend on your staking badge, so badge holder reaction dey move di count pass one vote.",
+          "6": "To see mature posts everywhere, on 'Show mature content' for Settings.",
           "4": "Tap am for post header, mute author, dem go drop out of your feed for good.",
           "5": "Kreator dem mark dia own post wey dem dey say na mature, wetin dem dey write, naa go dey off public home feed."
         },
@@ -12582,57 +13127,93 @@
         "title": "Stages (Live Audio Rooms)",
         "intro": "Stages na audio room wey dey build inside DeHub. Host go open room, bring speaker up, and anyone fit join listen from Stages page or shared link.",
         "steps": {
+          "3": "Start your own from di same page — you fit go live straight from di browser, no OBS, no stream key.",
+          "4": "As host, bring speakers come stage, mute dem or remove dem, share your screen, and control di soundboard.",
+          "5": "Listeners dey send live reactions and dey talk for di room chat without dem come stage.",
           "1": "Open 'Stages' for see wetin dey live now and wetin dey schedule.",
           "2": "Tap live stage join listener, or set reminder for scheduled one, and get notify wen e start.",
           "6": "Every stage record, and di recording play back afta from di card wey am dey."
         },
         "tips": {
+          "1": "Live subtitles dey caption every speaker and translate am into any language wey you dey read for.",
+          "3": "Hosts fit put radio station on air or play dem own music clips between conversations.",
           "2": "Live dubbing go speak am for the room, loud pass, for host own voice, wey dem clone, dem charge am by minute for DeHub tokens.",
           "4": "Mini-player dey keep room dey go for corner while you browse rest of app."
         }
       },
       "communities": {
+        "intro": "Communities na spaces wey members dey run, with dem own feed, members and activity. Events dey add programmes wey get time on top of dem.",
         "title": "Communities & Events",
         "steps": {
+          "2": "Join with one tap. New activity go show as unread badge for di navigation.",
+          "3": "Post, discuss, run polls and send tip inside di community own feed.",
+          "4": "Community owners dey control dem own space and fit give other people admin power.",
+          "5": "Open 'Events' for programmes wey dem don schedule, with full page for each event wey you fit follow live.",
           "1": "Goto \"Communities\" for sidebar, browse public ones."
         },
         "tips": {
+          "1": "Community chat dey support @mentions and @here, so one post fit reach everybody for di room.",
           "2": "Invite link dey give you power to bring pipo straight into community."
         }
       },
       "arcade": {
+        "intro": "Five games dey play inside DeHub for one browser tab — you no need install anything, you no need buy anything.",
+        "tips": {
+          "1": "Two of dem dey hide inside di appearance themes — set di app to War to see Claude of Duty, or Jungle to see Jungle Trail.",
+          "2": "Every game get im own share card, so if you post link to any of dem, e go show well anywhere you post am."
+        },
         "title": "Arcade",
         "steps": {
+          "1": "Open 'Arcade' for di sidebar.",
+          "3": "Play am for di tab. King's Gambit and Street Slayer dey keep leaderboard.",
           "2": "Wey you go choose game? Na King's Gambit, Claude of Duty, Jungle Trail, Street Slayer or Chartopia?",
           "4": "Chartopia dey run for VR headset through WebXR."
         }
       },
       "bounties-stores": {
+        "intro": "Two ways dey to make money from di platform: post bounty or claim one, or open store make you sell give your audience.",
         "title": "Bounties & Stores",
         "steps": {
+          "1": "Open 'Bounties' to see open work, and filter am by category or currency.",
+          "3": "Post your own bounty with short brief and reward for DeHub tokens or USDC. Di reward go enter escrow di moment you post am.",
+          "4": "Open 'Stores' to set up your store wey get im own page, branding and listings.",
           "2": "Klaim one, do am, and submit am, anyone fit be hunter, no application dey.",
           "5": "Pota wey go sell for money, go dey for DeHub token, na wallet wey go dey inside app go dey handle na money, no need for any outside payment system."
         },
         "tips": {
+          "1": "Bounties dey arranged into Social Media, Clipping and Contracts.",
+          "3": "Creators dey use bounties grow community — shares, clips and reactions na all correct tasks.",
           "2": "Dispute flow settle wahala wey dey come from delivery, so escrow always resolve fairly."
         }
       },
       "creator-studio": {
+        "intro": "Creator Studio dey make images, video, music, voice and 3D models from prompt, and e go pass dem give editor — including full multi-track video editor wey dey run for browser.",
         "title": "Creator Studio & Editor",
         "steps": {
+          "4": "Arrange wetin come out for di Canva-style editor, or open di video editor for real timeline wey get cutting, layering and export.",
           "1": "Wetin you wan create for Creator Studio?",
           "2": "Server go show you price before e start work, so you see wetin you go pay before you pay am.",
           "3": "Render de render dey continue for shared queue while you dey browse am.",
           "5": "Wetin you dey look for?"
         },
         "tips": {
+          "2": "You go pay for generation with DeHub tokens from your wallet — you go sign one transfer for each job, and we go show you di price before you pay.",
           "1": "Librari of free asset stock dey sit alongside Studio, for anything you no wan generate.",
           "3": "Pipo wey dey use am plenty, dem fit take Ultra, Team or Scale plan, wey go send allowance for token for wallet dem dey every month."
         }
       },
       "buying-dhb": {
+        "intro": "Buy DeHub tokens straight inside di app with di swap wey dey inside am.",
+        "tips": {
+          "1": "Higher slippage tolerance = e go likely go through, but di price fit worse.",
+          "2": "Always check di exchange rate before you confirm.",
+          "3": "You fit set your own slippage for di settings panel."
+        },
         "title": "Buying Tokens",
         "steps": {
+          "1": "Go di 'Buy' page from di sidebar.",
+          "5": "Click di settings gear icon to change slippage tolerance (default na 1%).",
+          "6": "Confirm di swap transaction.",
           "2": "Swap token.",
           "3": "Wey you want spend money or how many tokunbo you want receive?",
           "4": "Wetin you dey review? Exchange rate and output wey dey estimate?",
@@ -12648,13 +13229,21 @@
         },
         "intro": "Waka your DeHub tokens for different blockchain wey support through cross-chain bridge.",
         "steps": {
+          "1": "Go di 'Bridge' page from di sidebar.",
+          "3": "Choose di destination chain (where you wan send dem go).",
+          "4": "Put how many tokens you wan bridge.",
+          "5": "Check di bridge fee and how long e fit take before e reach.",
+          "6": "Confirm di bridge transaction.",
           "2": "Wetin you mean by \"source chain\"?",
           "7": "Di team go send di tokens for di destination chain, usually inside 1-5 working days."
         }
       },
       "music-tv": {
+        "intro": "Enjoy media content straight inside DeHub — stream music and watch live TV channels.",
         "title": "Music & TV",
         "steps": {
+          "1": "Go 'Music' from di sidebar to check and play music posts.",
+          "2": "Go 'TV' to enter live TV channels.",
           "3": "Browse chanel by kategory or kontri.",
           "4": "Klik on one channel to begin watch am.",
           "5": "Tor do am, use player controls to adjust volume and play back.",
@@ -12666,9 +13255,18 @@
         }
       },
       "post-info": {
+        "steps": {
+          "1": "Tap di 'ⓘ' icon for any post to open im Post Info page.",
+          "2": "For top you go see di Token ID (di unique on-chain ID) and di transaction hash — click di hash to see am for di block explorer.",
+          "3": "Under am, engagement stats dey show total likes, dislikes, views, comments, and tips wey di post receive.",
+          "4": "Di Holders section dey show progress bar of how many of di 1,000 fractions di creator still get, plus list of everybody wey hold fraction with dem balances and percentages.",
+          "5": "If di post na pay-per-view (PPV), you go see di price, currency, and how many users don buy access.",
+          "6": "Post owners fit change visibility (Public, Unlisted, or Private) and edit di title/description straight from dis page."
+        },
         "title": "Post Info & Fractions",
         "intro": "Post wey get minted na NFT wey dey split into 1,000 pieces. Post Info page show data wey dey on-chain, stats of engagement, breakdown of ownership, and give you chance to trade pieces of any post — on post wey no get minted, e go offer to mint instead.",
         "tips": {
+          "2": "Di transaction hash dey link to BaseScan or BscScan, depending on di chain.",
           "1": "Oga don create new post, e start with am hold all 1,000 fractions (100% ownership).",
           "3": "Post wey no dey list no go show for feed, but you fit still access am through link direct."
         }
@@ -12677,21 +13275,31 @@
         "title": "Trading Fractions",
         "intro": "Trading of fraction wey dey involve browse listings, make offer, list your own — dey happen for web app at dehub.io, for each post's Post Info page.",
         "steps": {
+          "1": "Open dehub.io for browser and sign in with di same account.",
+          "2": "Open di post Post Info page and switch to im Marketplace tab.",
+          "3": "Check listings, make offer for your own price, or list fractions wey you hold.",
           "4": "Wen trade complete, change go show for your Fractions tab for mobile."
         },
         "tips": {
+          "3": "As creator, if you sell fractions, your fans fit co-own your content.",
           "1": "Wen yu dey own fraction of a post, na share of dat on-chain NFT yu dey hold.",
           "2": "Check am for post holder wey dey online market place before buy am."
         }
       },
       "minting-posts": {
+        "intro": "Minting no be by force. Post go publish off-chain di moment you send am — no wallet, no signature, no gas — and you fit mint am as NFT anytime you want, either as you dey write am or later from di post itself.",
         "title": "Minting Posts (Creating NFTs)",
         "steps": {
+          "3": "Leave 'Mint post' off to publish off-chain, or on am to mint as you dey publish.",
+          "5": "To mint later, open di post 'ⓘ' info page and use di Mint action there.",
+          "6": "Once e don mint, di post go get Token ID and transaction hash wey you fit check on-chain, and you go hold all di 1,000 fractions of am.",
           "1": "Klik di 'Post' button for inside sidebar (desktop) or + button (mobile).",
           "2": "Wetin you wan write?",
           "4": "Publishing no dey wait for chain: post go feed don, whether you like am or no."
         },
         "tips": {
+          "1": "Social, email and SMS sign-ins no dey pay any gas — DeHub dey pay di minting fees.",
+          "2": "People wey dey use external wallet need ETH for Base or BNB for BNB Chain for gas.",
           "3": "Minting na wetin dey make post dey tradeable and dey carry royalty. Unminted post still dey earn tips and views.",
           "4": "Record on-chain na permanent, even if post don dey deleted from feed."
         }
@@ -12700,25 +13308,41 @@
         "title": "Word Meaning",
         "intro": "Glossari ya Crypto na Terminology ya Platform wey go help you navigate Web3.",
         "steps": {
+          "2": "Check di terms from A to Z or use search to find di particular term wey you want.",
+          "3": "Click any term to see im full meaning and explanation.",
+          "4": "Di terms cover crypto tins, DeFi words, and DeHub own features.",
           "1": "Goto 'Glossary' from sidebar."
         },
         "tips": {
+          "1": "E good well well for people wey just dey start crypto and Web3.",
           "2": "Glossary dey always dey update with new terms."
         }
       },
       "interacting-with-posts": {
+        "title": "Wetin You Fit Do with Posts",
         "intro": "Engage wit am by voting, comment, tip, bookmark, share, and translate.",
         "steps": {
+          "2": "Click di comment icon to open di comment section and drop reply.",
+          "3": "Click di gem/tip icon to send tip for DeHub tokens to di person wey make di post.",
+          "4": "Click di bookmark icon to save post for later.",
+          "5": "Click di share icon to copy di post link or share am outside.",
+          "6": "Click di translate button (globe icon) for any post to translate di text to your language.",
+          "8": "Click any post to open am for full-screen single-post view.",
           "1": "Upvote or downvote post wey you like or no like using arrow icon wey dey left side of post.",
           "7": "Pikin, use 'Translate Image' button don lande AI-translated version of text for image post."
         },
         "tips": {
+          "1": "Tips dey go straight to di creator wallet for DeHub tokens.",
+          "2": "You fit set tip amount with di quick-select buttons or put your own amount.",
           "3": "Bookmarked posts dey fit see for sidebar page of bookmarks."
         }
       },
       "posting-allowance": {
+        "intro": "To post dey free every day up to one allowance wey dey grow with your staking badge. Everybody dey start with ten text posts and one gigabyte of video, images and audio every day. If you pass any of dem, you go pay for di rest of dat day with DeHub tokens — only for di part wey pass.",
         "title": "Na 1000 naira be your daily posting allowance.",
         "steps": {
+          "5": "Den you go approve one transfer for dat post only, and e go settle for whichever one between Base and BNB Chain wey get enough DeHub tokens.",
+          "6": "Both pools dey reset for midnight UTC.",
           "1": "Wen yu dey post as normal, for inside allowance, noting dey charge yu and noting dey ask yu.",
           "2": "Text post na separate pool, so one day wey you dey upload video, all ten text post go still dey free.",
           "3": "Wen post go pass, app go price am first and check if your wallet fit cover am before e go upload.",
@@ -12734,6 +13358,8 @@
     }
   },
   "creatorPacks": {
+    "addFromLink": "Add am from link",
+    "browseCreate": "Find packs or create new one",
     "title": "Packs",
     "subtitle": "Custom emoji, sticker and GIF wey badge holders make. Add any pack to your picker and use am for chat, comment and reaction.",
     "tabStickers": "Stickers",
@@ -13072,6 +13698,8 @@
     "mockTradeNote": "Practice trade — no on-chain transaction. Phase 1."
   },
   "premium": {
+    "adFreeDetail": "No promoted post, no upgrade banner at all",
+    "allThemesLabel": "All di themes + early access",
     "bestValue": "Best value",
     "introducing": "Introducing DeHub Premium",
     "heroLineOne": "Less noise.",
@@ -13162,6 +13790,7 @@
     "checkoutUnavailable": "Checkout no dey available now. Abeg try again later."
   },
   "pricing": {
+    "earlyAccess": "You go first use di advanced AI features",
     "perSeatMonthly": "for each seat/month",
     "plansForEveryWorkflow": "Plans for every kain work",
     "findTheRightFit": "From one person reach big company teams, find di one wey fit you",
@@ -13223,6 +13852,7 @@
     "seePremiumPlans": "See Premium plans"
   },
   "connect": {
+    "chatgptAddSources": "Pick Add sources, then Connect more.",
     "title": "Connect DeHub to your AI helper",
     "subtitle": "Make ChatGPT or Claude fit enter DeHub — to look posts, read comment gist, search and check profile — just paste di URL wey dey down here inside your helper connector settings.",
     "serverUrl": "MCP server URL",
@@ -13308,17 +13938,21 @@
       "dev": "Developer preview"
     },
     "host": {
+      "badUrl": "Dat address no fit open as mini app. E must start with https://, or e be localhost address for developer mode.",
       "close": "Close di app",
       "backToStore": "Go back to Apps",
       "notFound": "Dis app no dey in DeHub App Store, or dem remove it for now.",
       "readyTimeout": "Dis app no call \"dehub.ready()\" for wey, for dat reason, splash screen go hide after 8 seconds."
     },
     "signIn": {
+      "body": "Dis app go get your DeHub wallet address and one sign-in token wey only work for dis app. E no go get access to your wallet, your money or your DeHub account.",
       "title": "Sign in to {{name}}?",
       "cancel": "No be now",
       "confirm": "Sign in"
     },
     "store": {
+      "removed": "E don comot. E no go notify you again.",
+      "rising": "New ones wey dey rise",
       "title": "Apps",
       "intro": "Mini apps wey people build for DeHub. Dem open inside DeHub, you no need to sign in again, and every app show its real website address.",
       "buildCta": "Build an app",
@@ -13351,11 +13985,13 @@
       "music": "Music"
     },
     "pay": {
+      "sent": "You don pay {{amount}} tokens to {{name}}.",
       "title": "Pay {{name}}?",
       "body": "tokens go direct to app's wallet, {{wallet}}. Payment no go reverse.",
       "confirm": "Pay {{amount}} tokens"
     },
     "add": {
+      "body": "E go show under Your apps and e fit send you notifications. You fit remove am anytime from di Apps page.",
       "title": "Add {{name}}?",
       "confirm": "Add app"
     }
@@ -13392,6 +14028,9 @@
     "communist": "Communist"
   },
   "postQuota": {
+    "notEnoughTokens": "{{subject}} go cost {{amount}} tokens and na {{held}} you get.",
+    "paidForPost": "You don pay {{amount}} tokens for dis post",
+    "transferIncomplete": "Di token transfer no complete. We go ask you again before your next post wey you go pay for.",
     "transferredConfirming": "Wetin you dey transfer, we go confirm payment shortly.",
     "sentUnconfirmed": "Wetin you send no dey confirm, no pay again."
   },
@@ -13402,6 +14041,21 @@
     "update": "Update now"
   },
   "walletBackup": {
+    "backupDescription": "Save your recovery phrase or private key so you fit bring back your wallet.",
+    "checkWrong": "No be dat one. Look word #{{n}} again.",
+    "noPhrase": "Dem save dis wallet with private key, so DeHub no get recovery phrase to show. Back up dis key so you fit bring back di same wallet.",
+    "offerBody": "12 words wey go bring your wallet back if you lose your phone or forget your password. E go take 30 seconds.",
+    "offerTitle": "You wan back up your wallet?",
+    "phraseLoadFailed": "We no fit load your recovery phrase. Try again to check for am, or open DeHub for di device wey you first use.",
+    "phraseMismatch": "Dis backup belong to another wallet. Sign in with your first login to see di correct backup.",
+    "phraseOtherDevice": "Open DeHub for di device wey you first use secure dis wallet to see im recovery phrase. You fit also back up your private key here.",
+    "phraseUnavailable": "Di recovery phrase no dey available from dis sign-in. Use your first login or device to check for am. You fit still back up your private key.",
+    "reminderBody": "Back up your wallet — 12 words wey go bring am back if you lose your phone.",
+    "rowDesc": "Check di 12 words or private key wey you get",
+    "skipForNow": "Leave am for now",
+    "warnNeverAsk": "DeHub no go ever ask you for dem.",
+    "warnOwns": "Anybody wey get dis words, na dem own your wallet.",
+    "warnPaper": "Write dem for paper, no be for screenshot or notes app.",
     "keyWarning": "Na anyone wey get dis key go fit control your wallet. Save am for safe place and never share am.",
     "title": "Back up wallet",
     "backedUpOn": "Backed up {{date}}",
@@ -13425,6 +14079,11 @@
     "notNow": "No be now"
   },
   "liveOverlay": {
+    "newFollower": "New follower don land: {{name}}",
+    "newSubscriber": "New subscriber don land: {{name}}",
+    "shared": "{{name}} don share di stream",
+    "subscribedTo": "{{name}} don subscribe to {{plan}}",
+    "tipped": "{{name}} don send gift",
     "followersUnit": "followers",
     "someone": "Somebody",
     "wheelLanded": "{{name}} spun: {{result}}",
@@ -13453,6 +14112,15 @@
     "tipJar": "Gift jar"
   },
   "liveStudio": {
+    "intro": "Everything wey you add here go show on top your streams for every viewer for di DeHub app — whether you go live from your phone, di browser, capture card or encoder.",
+    "limit": "You don reach di limit of 40 widgets.",
+    "loadFailed": "We no fit load your widgets. Go back and try again.",
+    "saveFailed": "We no fit save. Check your connection and try again.",
+    "saved": "E don save. Your stream go show di new layout sharp sharp.",
+    "selectHint": "Select widget to change am.",
+    "settingsLinkBody": "Tip alerts, goals and more on top your streams, wey you go set up for Live Studio.",
+    "settingsLinkTitle": "Alerts and widget dem",
+    "subtitle": "Alerts and widget dem for your streams",
     "controls": {
       "title": "Quick controls",
       "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
@@ -13517,6 +14185,19 @@
       "tip_jar": "Gift jar"
     },
     "hints": {
+      "chat_box": "E dey show your broadcast chat messages for screen",
+      "event_feed": "Di latest gifts, followers, subscribers and people wey dey share your broadcast",
+      "follow_alert": "E dey show every new follower",
+      "frame": "Border wey go round your stream",
+      "goal_bar": "E dey track tips or followers as dem dey go reach target",
+      "reaction_counter": "E dey count every reaction wey your broadcast get",
+      "share_alert": "E dey show when person share your stream",
+      "stream_timer": "E dey show how long you don dey broadcast",
+      "subscribe_alert": "E dey show every new subscriber",
+      "text": "One line of text or lower third",
+      "ticker": "One line of your own text wey dey scroll pass for screen",
+      "top_supporters": "Di people wey tip you pass for dis stream",
+      "viewer_count": "How many people dey watch",
       "streamer_level": "Your streamer level and weekly streak, from your profile",
       "tip_jar": "A jar that fills up as paid gifts come in",
       "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
@@ -13528,6 +14209,8 @@
       "join_alert": "Welcomes each viewer as they arrive"
     },
     "fields": {
+      "confirmedOnly": "Only when di payment don confirm",
+      "showMessage": "Show di tip message",
       "showStreak": "Show the weekly streak",
       "style": "Style",
       "celebration": "Celebration",
@@ -13561,6 +14244,19 @@
       "fast": "Fast"
     },
     "obs": {
+      "inApp": "Inside di DeHub app",
+      "inAppHint": "Every viewer app go draw dem on top your stream. E dey work from your phone, di browser, capture card or OBS, and e no go cost you anything.",
+      "notConnected": "OBS never connect",
+      "rotate": "Make new link",
+      "rotateConfirm": "Make new link? Di old one go stop to work sharp sharp, so you go need paste di new one inside OBS.",
+      "rotated": "New link don ready. Paste am inside OBS.",
+      "showIn": "Show your widget dem",
+      "step1": "For OBS, add Browser source and paste dis link.",
+      "step2": "Set di width to 1920 and di height to 1080, or 1080 by 1920 for vertical stream.",
+      "step3": "After update, right-click di source and choose Refresh cache of current page.",
+      "switchToVideo": "Show dem inside my video instead",
+      "title": "Use am with OBS",
+      "warnNoObs": "No OBS overlay dey connected now. Until you add di browser source, viewers no go see your widgets.",
       "connected": "OBS connected",
       "inVideo": "In my video (OBS)",
       "inVideoHint": "OBS dey burn am for your picture, so e dey for your replays and anywhere wey dem dey watch your stream.",

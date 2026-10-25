@@ -52,6 +52,7 @@
     "title": "Scene Anda. Versi Anda yang berbeda."
   },
   "maintenance": {
+    "title": "Sedikit perbaikan.\nDeHub yang lebih baik.",
     "brand": "DeHub",
     "checkFailed": "Kami tidak dapat memeriksa ketersediaan. Silakan coba lagi.",
     "checking": "Mengecek...",
@@ -128,6 +129,10 @@
     "useNamed": "Gunakan {{name}}"
   },
   "copy": {
+    "4df4ce91fa85": "中文 (Tionghoa)",
+    "6da707c478f8": "日本語 (Jepang)",
+    "ea81bf0fd464": "Русский (Rusia)",
+    "f0052e2e699b": "King's Gambit",
     "0039cdece89a": "💎 Staking Token (Dasar)",
     "0090dc269d25": "Italiano (Italia)",
     "00c90f4b707a": "SRT / VTT",
@@ -5143,6 +5148,7 @@
       "viewPost": "Lihat postingan"
     },
     "tasks": {
+      "examples": "Posting sekali sehari tentang: musik independen\nGaya: penuh rasa ingin tahu, ringkas, dan santai\nSukai hingga 2 postingan terbaru per hari tentang: musik, pertunjukan live, piringan hitam",
       "eachHelp": "Setiap agen yang dipilih melakukan tugas penuh.",
       "eachMode": "Setiap agen",
       "pacing": {
@@ -12057,6 +12063,7 @@
     }
   },
   "creator": {
+    "presetAnimeStillName": "Cuplikan Anime",
     "editInTimeline": "Edit di timeline",
     "presetExtraArchitectureLightChangeHint": "Awan lembut mengubah cahaya pada adegan referensi",
     "presetExtraArchitectureLightChangeName": "Perubahan Arsitektur Cahaya",

@@ -52,6 +52,7 @@
     "previous": "Muuqaal hore"
   },
   "maintenance": {
+    "title": "Shaqo yar.\nDeHub ka wanaagsan.",
     "brand": "DeHub",
     "checkFailed": "Ma hubin karno helitaanka. Fadlan isku day mar kale.",
     "checking": "Hubinta...",
@@ -63,6 +64,7 @@
     "retry": "Isku day mar kale"
   },
   "quickActions": {
+    "screenshot": "Horu-eegis sawir-shaashadeed",
     "logout": "Ka bax",
     "attachScreenshot": "Ku lifaaq shaashad",
     "capturing": "Qabashada boggan...",
@@ -80,6 +82,7 @@
     "title": "Bogga ikhtiyaarrada"
   },
   "twitchMirror": {
+    "intro": "Sida caadiga ah ugu tabin Twitch. Baahintaadu si toos ah ayay uga soo muuqan kartaa DeHub, iyada oo aan loo baahnayn qalab baahin oo dheeri ah.",
     "auto": "Muraayad si otomaatig ah durdurradayda Twitch",
     "connect": "Isku xir Twitch",
     "consent": "Ku xir kaliya kanaal aad leedahay. Awood u yeelashada muraayadaha waxay u oggolaaneysaa DeHub inay dib u soo celiso baahiyahaaga oo ay keydiso jawaabaha hoos yimaada gunnadaada diiwaangelinta hadda jirta.",
@@ -97,6 +100,7 @@
     "waiting": "Diyaar u ah baahintaada soo socota ee Twitch"
   },
   "viralTemplates": {
+    "browse": "Eeg dhammaan {{count}} qaab",
     "ready": "{{name}} la xushay. Ku dar hal sawir si aad u abuurto muuqaal 5-ilbiriqsi ah. Qaabeyntu waxay raacaysaa sawirkaaga.",
     "results": "{{count}} qaababka",
     "all": "Dhammaan",
@@ -125,6 +129,8 @@
     "useNamed": "Isticmaal {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Jabbaan)",
+    "ea81bf0fd464": "Русский (Ruush)",
     "362058144c4a": "xAI flagship $$$",
     "4118fb4fed0e": "La saaray",
     "5d788f95f78a": "Ranking Delta (▲▼)",
@@ -5104,15 +5110,19 @@
     "capacity": "{{used}} ka {{limit}} wuxuu ku yaal {{badge}}",
     "noBadge": "Calaamad la 'aan",
     "profile": {
+      "avatar": "Sawirka astaanta",
+      "saved": "Bogga shakhsiga waa la kaydiyay.",
       "banner": "Calan",
       "edit": "Wax ka bedel astaanta",
       "imageHelp": "JPG, PNG, WebP ama GIF, ilaa 5 MB midkiiba."
     },
     "life": {
+      "awake": "Ku soo jeeda {{home}}",
       "asleep": "Ku dhaafin{{home}}",
       "empty": "Waxba weli ma jiraan. goor dhow ayay hubin doontaa.",
       "help": "U ogolow wakiilkan inuu keligiis noolaado. Waxay ilaalisaa saacadaha u gaarka ah, boostada, jecel iyo jawaabaha codkeeda, waxayna seexataa habeenkii.",
       "kind": {
+        "reply": "Ka jawaabay",
         "comment": "Faallo laga bixiyay",
         "error": "Waxbaa qaldamay",
         "like": "Aad baan u jeclaystay boostada",
@@ -5138,9 +5148,12 @@
       "viewPost": "Eeg qoraalka"
     },
     "tasks": {
+      "examples": "Daabac hal mar maalintii oo ku saabsan: muusig madax-bannaan\nQaabka: xiiso leh, kooban oo sheeko-wadaag ah\nJeclee ilaa 2 qoraal oo dhowaan la dhigay maalintii oo ku saabsan: muusig, bandhigyo toos ah, vinyl",
+      "title": "Hawl u qoondee wakiil",
       "eachHelp": "Wakiil kasta oo la xushay wuxuu fuliyaa hawsha oo dhan.",
       "eachMode": "Wakiil kasta",
       "pacing": {
+        "label": "Goorma la dhaqaaqayo",
         "help": "Si otomaatig ah u bilaw Sentient off. Pacing taageertaa mid ka mid ah sida ama aan jeclayn ficil on daaqad post go 'an: wakiil kasta ka falceliyo post kasta oo la mid ah, mid ka mid ah soo jeestay waqti. Wareegga koowaad wuxuu bilaabmaa hadda; Xadka adeegga ayaa kordhin kara waqtiga kama dambaysta ah.",
         "hours": "In ka badan {{count}} saacadaha",
         "independent": "Hawlaha la dhiirrigeliyay waxay u shaqeeyaan si madaxbannaan habka dareenka. Weydiinta kuwa jecel ma leexdo boostada ismaamulka ah.",
@@ -6249,6 +6262,7 @@
       "unavailable": "Qoraalkan lama heli karo."
     },
     "followerInvites": {
+      "title": "Casuun kuwa ku raaca",
       "clear": "Cadee",
       "detail": "Dooro ilaa 50 taageerayaal halkii dufcaddii. DM-yada la bixiyo ama la xiro waa la jeexjeexay. Hubi sheekada dirista aan la xaqiijin ka hor intaadan isku dayin mar kale.",
       "empty": "Ma jiro kuwa raacsan boggan.",
@@ -9392,6 +9406,7 @@
     "discordOptional": "Discord (ikhtiyaari)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@adiga, tiktok.com/@adiga, vimeo.com/adiga…",
     "clearAll": "Nadiifi",
     "costsIntro": "Muuqaal kasta waa ka raxali yahay kan hore — hantida waxaa hoos u dhaca markii koobka kordhaa, sidaas darteed qiimaha hoos yaal waa intaas oo muuqaalo ah oo guud ahaan.",
     "costsIntroShort": "Muuqaal kasta waa ka raxali yahay kan hore — hantida waxaa hoos u dhaca markii koobka kordhaa. Qiimaha saxda ah waxaa lagu tusaa kahor intaad bixisid.",
@@ -10239,6 +10254,7 @@
       "heading": "Bilowga Fiidiyowga",
       "hint": "Dooro qaab, wax ka beddel ereyada, oo ku dar fiidiyowyada kuu gaar ah.",
       "names": {
+        "quote": "Muuqaal xigasho",
         "announcement": "Ogeysiis",
         "beforeAfter": "Ka hor iyo ka dib",
         "countdown": "Xisaabinta",
@@ -11960,6 +11976,10 @@
     }
   },
   "creator": {
+    "presetExtraDrinkSplashRingName": "Giraanta biyo-firidhka",
+    "presetExtraFreckleBeautyName": "Dhibcaha maqaarka oo dhow",
+    "presetExtraSunsetRimPortraitHint": "Iftiin diiran ayaa ku wareegsan timaha iyo garbaha",
+    "presetExtraSunsetRimPortraitName": "Cirifka qorrax-dhaca",
     "presetExtraCityTramPassHint": "Tram Liit wuxuu ka gudbaa qaab deggan oo fiidkii ah",
     "presetExtraCityTramPassName": "Maraakiibta taraamka ee magaalada",
     "presetExtraFabricBreezeHint": "Dharka khafiifka ah ayaa kor u qaadaya oo degaya agagaarka badeecad",

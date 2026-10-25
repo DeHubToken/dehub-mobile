@@ -22,6 +22,7 @@
     "what": "Posti ani profil minnu bɛ kɛnɛ kan, olu kalan. Ni OAuth kɔnti sirili bɛ, i bɛ se ka i ka profil ani siraba mara, ka posti ani kɔmentɛri kɛ, ka mɔgɔw tugu, ka notifikasɔnw kalan, ka bukmarkw mara ani ka imaji, videwo, odiyo ani 3D fɛnw kɛ. Kɛli bɛ DeHub ka sɔrɔ kɛli sariya kɔrɔw kɛ."
   },
   "creatorSupport": {
+    "receipt": "${{amount}} farala dabɔbaga ka reklamu sɔrɔ kan. Tokɛn sarali bɛ makɔnɔni na.",
     "campaignDescription": "A to mɔgɔ minw be filɛli kɛ, olu ka dɛmɛ don u ka danfɛnw na miniti 30 kɔnɔ. O kama, a ka ɲi ka videwo dɔ bila sen kan min be se ka kɛ sekɔnti 30 ye.",
     "campaignLabel": "Ka dɛmɛ don piblisitew la",
     "close": "O kɔ, a ye n' ka soow lɔ",
@@ -51,6 +52,8 @@
     "title": "I ka yiri. I yɛrɛ kura."
   },
   "maintenance": {
+    "description": "An bɛ labɛnni baara la. Hakɛto, i ka segin sɔɔni.",
+    "title": "Baara dɔɔni.\nDeHub ka fisa.",
     "checkFailed": "An tun tɛ se k'a filɛ a be se ka kɛ cogo min na. N'i b'a fɛ ka dɔ fara a kan, i ka segi k'a ɲini.",
     "retry": "A lajɛ kokura",
     "brand": "O ye kooba ye.",
@@ -126,6 +129,20 @@
     "useNamed": "Fɛɛrɛ kɛ ni {{name}} ye"
   },
   "copy": {
+    "02eeddf22117": "Sara si ma dafa. Ni i labɛnna, sanni kura daminɛ.",
+    "228d0ab63711": "Ja minnu bɛ i n'a fɔ yɛrɛ ja, ani ja-tɛmɛni kɔlɔsilenw",
+    "291f54d83723": "Cogoya suguya caman ani dabɔli fɔlɔw minnu ka nɔgɔn",
+    "3d717322f7c9": " ani i ka hakɛ ye ",
+    "4618cde0f562": "Sɛgɛsɛgɛli dafalen, ja labɛnni sinsinnenw kama",
+    "6da707c478f8": "日本語 (Zapɔnkan)",
+    "7685965ff100": "Ja labɛnni teliya la kosɛbɛ ani bisigili sɔngɔ dɔgɔmanw",
+    "81631a8fce75": "Ɛsɛki, kɛlɛbolo bɛ kɔrɔ kelen-kelen bɛɛ kɔ. Siya saba minnu labɛnnen don bɛ taama, ka gosili kɛ ani ka bin marbre wolo kan kɛlɛyɔrɔ naani kɔnɔ, motɛri fanga suguya saba la.",
+    "8e4b97ca7c6e": "Taamasiyɛn-tasuma ci bɛɛ ma",
+    "96b3207d2940": "Taama i yɛrɛ ɲɛ fɛ tu belebele kɔnɔ min dabɔra porogaramu fɛ — falenfɛn waa kɛmɛ, waati cogoya ani tile ni su taama, olu bɛɛ bɛ falen i ka masini kan i sera tuma min.",
+    "aa2c45a2661e": "Kling lamaga teliyalen ni mankan bɛnnen ye",
+    "b3de46c00525": "Labɛnni min bɛ ko cogoya faamu ani cogoya yɛlɛmani",
+    "f944da196058": "Ja labɛnni kɔrɔfɔlenw ani ɲɛgɛn ɲɛminɛni tilennen",
+    "fab2abfce453": "हिन्दी (Endikan)",
     "08c66888e11d": "Warmer, higher register",
     "0f709815ab86": "Sènèkɛ jɛkulu cɛ fɛnɛ kɔrɔ",
     "1e8777bc4d46": "Studio-grade PBR, exports FBX/OBJ/USDZ",
@@ -2929,6 +2946,7 @@
     "postCount_other": "post {{count}}"
   },
   "settings": {
+    "onChainPublicWarning": "Blockchain kan transaksiyɔnw bɛ jɛya bɛɛ ye. Tokɛn wala bonya wari cili bɛ se ka i ka wari-bɔrɔ adresi jira, hali transaksiyɔn minnu kɛra sani wari hakɛ dogoli cogoya ka daminɛ.",
     "smsNotificationsDescReady": "Lasigilen {{phone}} ma — {{dhb}} tokens kelen-kelen, {{count}} bɛ tɔ",
     "smsTopUp": "Tokens {{dhb}} kura",
     "glass": "Gɛlɛya",
@@ -3649,6 +3667,7 @@
     "remove": "Ka bɔ"
   },
   "tip": {
+    "payDirect": "A cira {{name}} ma tilennen {{symbol}} la {{chain}} kan. Falen si tɛ.",
     "payDirectNoName": "A ci ka taga danbaga fɛ {{symbol}} on {{chain}}.",
     "title": "Bonya ci",
     "toCreator": "Kɔrɔbɔ {{name}}",
@@ -5098,6 +5117,7 @@
       "saved": "Mɔgɔ minw tun ye mɔgɔ dɔw ye, olu tun ye mɔgɔ dɔw ye"
     },
     "life": {
+      "next": "lajɛli nata {{time}}",
       "asleep": "I be sinɔgɔra{{home}}",
       "awake": "A bɛ ɲɛna {{home}}",
       "empty": "O tɛ bari an na.",
@@ -5128,9 +5148,11 @@
       "viewPost": "A filɛ, a ye min fɔ"
     },
     "tasks": {
+      "examples": "Posti kelen kɛ tile o tile, kuma: fɔli yɛrɛmahɔrɔnyalen\nCogoya: ɲininkali, kuma surun ani baro cogo la\nDiyanye jira posti kura 2 la ka se tile o tile, kuma: fɔli, ɲɛnajɛw kɛnɛ kan, vinili",
       "eachHelp": "Nka, mɔgɔ o mɔgɔ be dɛmɛ don, a bena a yɛrɛ sago kɛ.",
       "eachMode": "Kɔɔŋɔ",
       "pacing": {
+        "hours": "Lɛrɛ {{count}} kɔnɔ",
         "help": "A daminɛ na, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun be se ka mɔgɔ dɔ faga. O la, a be se ka kɛ ko a be baara kɛ ni mɔgɔ dɔ ye min be baara kɛ ni mɔgɔ dɔ ye. O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ ka baara kɛ ni baara kɛcogo ɲuman ye.",
         "independent": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye. O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka sɛbɛri kɛ a yɛrɛ ma.",
         "label": "Tuma min na a ka ɲi ka baara kɛ",
@@ -5533,6 +5555,7 @@
     "namePlaceholder": "Awa Traoré"
   },
   "raffle": {
+    "findLiveDraw": "Tonbola ɲɛfɛ ɲini i ka kibaruyaw kɔnɔ",
     "title": "Prize draws",
     "eyebrow": "Community prize draws",
     "heroTitle": "O la, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
@@ -6122,6 +6145,8 @@
     "dhb_found_on_both_chains": "O kɔ, a ye n' ka soow bɛɛ datugu."
   },
   "staking": {
+    "lockedEarlyFee": "A datugulen don fo {{date}}. Ni i y'a bɔ sisan, 88% bɛ segin — sara 12%, tokɛn {{fee}} cogoya. A digi tugun ka sɔn.",
+    "pendingRetired": "Nin bilali tɛ makɔnɔni na rezo kan tugun. Tugu-kɔ-lajɛ jɔsira; i ka wari-bɔrɔ baaraw lajɛ sani i ka bilali kɛ tugun.",
     "foundNewDeposits": "Bilali kura {{count}} sɔrɔla blockchain kan",
     "title": "Bilali",
     "subtitle": "Wari bila ka tɔnɔ tilayɔrɔ, sara dɔgɔmanw, superpowers ani fɛn wɛrɛw sɔrɔ!",
@@ -6512,6 +6537,7 @@
       "defaultPermissionsHint": "Mɔgɔ bɛɛ be se ka mun lo kɛ yan n'a ma fɔ ko a tɛ se ka koo dɔ kɛ min bɛnnin tɛ?",
       "slowModeTitle": "Modɛli min be yɛlɛma dɔɔni dɔɔni",
       "log": {
+        "forMinutes": "miniti {{value}} kama",
         "justNow": "sisan yɛrɛ",
         "minutesAgo": "{{value}} m ka kan ka kɛ",
         "hoursAgo": "{{value}}h ago",
@@ -6784,6 +6810,7 @@
     "resolveFailed": "Sɔsɔli ma se ka ɲɛnabɔ"
   },
   "usernames": {
+    "priceRange": "Tokɛn {{min}} ni {{max}} cɛ.",
     "subtitle": "Tɔgɔw minnu bɛ feere, sɔngɔ bɛ USD la",
     "browse": "Filɛ",
     "sell": "Feere",
@@ -7036,6 +7063,8 @@
     "listingOptions": "Options de liste"
   },
   "accounts": {
+    "assurance": "Kɔnti bɛ yɛlɛma dɔrɔn ni DeHub ye i ka tokɛn cili kalan blockchain kan. Ni cili tigɛra, i ka sara bɛ to sɛbɛnnen feereli in kan, ani ni i y'a lajɛ tugun, a bɛ taa a ɲɛ — i tɛna to a cɛ la abada.",
+    "priceRange": "Tokɛn {{min}} ni {{max}} cɛ.",
     "browse": "Filɛ",
     "sell": "Feere",
     "searchPlaceholder": "Tɔgɔ dɔ ɲini...",
@@ -7101,6 +7130,8 @@
     "walletStays": "I ka wari man kan ka feere: tagamasiyɛnw, tagamasiyɛnw, ani wari min be sɔrɔ i ka wari la, o be to i ka konnigɛw fɛ."
   },
   "screens": {
+    "glossaryWalletDesc": "I ka wari-bɔrɔ blockchain kan, min bɛ i ka DeHub tokɛnw ni kripto nafolo wɛrɛw mara. A bɛ siri Web3Auth fɛ walasa a donni ka nɔgɔya.",
+    "walletSubtitle": "I ka DeHub tokɛnw ɲɛminɛ",
     "drafts": "Sɛbɛnw",
     "editProfile": "Profil yɛlɛma",
     "likedPosts": "Sɛbɛn diyaninw",
@@ -7974,6 +8005,8 @@
   },
   "stats": {
     "money": {
+      "costs": "Musakaw",
+      "reinvestmentGroup": "Wari seginni baara la",
       "dhbMarket": "DHB tun bɛ {{price}} la nin kalanni in na.",
       "profitSharedHint": "{{usd}} sarali holders ani stakers ma · {{from}}–{{to}}",
       "chartDaily": "O kama, a ka ɲi ka wari caaman sɔrɔ.",
@@ -8108,6 +8141,7 @@
     "legacyViewA11y": "Wari maralan kɔrɔ lajɛ Solscan kan"
   },
   "bridge": {
+    "noMatches": "Cili si ma bɛn. Adresi wɛrɛ wala transaksiyɔn hash wɛrɛ lajɛ.",
     "from": "Ka bɔ",
     "to": "Ka taa",
     "recent": "I ka tɛmɛli kɔsawalenw",
@@ -8137,6 +8171,7 @@
     "signInToBridge": "I ka siginiden bila ka taga i ka balansi filɛ ani ka DeHub ka tagamasiyɛnw yɛlɛma BNB ka jɔrɔkɔ ni BNB ka jɔrɔkɔ cɛ."
   },
   "banned": {
+    "body": "I bɛ se ka don hali bi, ka i ka kibaruyaw kalan, ka i ka cikanw da wuli ani ka fɛn bɛɛ ye i ka kɔnti kan. I tɛ se ka posti kɛ, ka hakilina sɛbɛn, ka i ka miiri jira, ka tugu mɔgɔ kɔ wala ka cikanw ci.",
     "title": "I ka wari man kan ka kɛ",
     "line": "U dɔw tɛna se ka kuma, wala lasɔmini ci aw ma, wala k'a filɛ u ye min sɛbɛ.",
     "deleteAccount": "Ka kunnafoniw ni kunnafoniw bɔ",
@@ -11941,6 +11976,14 @@
     }
   },
   "creator": {
+    "presetEarthZoomOutHint": "Kɔsegin ka bɔ fɛn in na fo ka se sankolo yɔrɔjan na",
+    "presetExtraGentleDutchRollHint": "Kamera munumununi kɔlɔsilen bɛ jɔrɔ fara ja sabalilen kan",
+    "presetExtraLinocutSceneHint": "Taamasiyɛn finman sɔgɔlenw papiye ɲɛ funteni kan",
+    "presetOpenRecordWhipPanHint": "Kamera lamaga teliyalen tungsitɛni yeelen na, ja dibilen kosɛbɛ lamaga fɛ",
+    "presetProductTurnHint": "Feerefɛn munumununi segin-segin",
+    "studioMissingJob": "Dabɔli ma baara taamasiyɛn si segin. Hakɛto, a lajɛ tugun.",
+    "studioNeedsImage": "Ja ɲɛsinnen dɔ fara modɛli in wala labɛnni in kan.",
+    "studioPrompt": "I b'a fɛ ka min dabɔ, o ɲɛfɔ…",
     "presetExtraAthleteFreezeName": "Athlete freeze",
     "presetExtraDrinkSplashRingName": "Splash ring",
     "presetExtraEmbroideredPatchName": "Embroidered patch",
@@ -12696,6 +12739,7 @@
     "clicksRow_other": "{{clicks}} digiliw · {{unique}} kelen-kelen"
   },
   "easyTrade": {
+    "available": "Tokɛn {{amount}} bɛ i bolo Base kan",
     "doneList": "Add {{amount}} tokens at ${{price}}",
     "chooseTitle": "I b'a fɛ ka jago kɛ cogo jumɛn?",
     "easyTitle": "Jago nɔgɔman",
@@ -12744,6 +12788,7 @@
     "aiNeedAmount": "I b'a fɛ ka mun lo feere?"
   },
   "tipFunding": {
+    "noRoute": "Uniswap sira si tɛ sisan ka nin tokɛn falen ka kɛ DeHub tokɛnw ye",
     "lowLiquidity": "Sisan, wari ma ca Uniswap kan ka sarali bonba nin ɲɔgɔn kɛ",
     "dpayNoAmount": "DeHub Pay ma sarali hakɛ di",
     "noBridgeRoute": "Sisan, cross-chain sira si tɛ yen",
@@ -12761,6 +12806,7 @@
     "dhbPending": "O la, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun ye mɔgɔ dɔ ye. O kɔ, i ka segi ka na."
   },
   "postQuota": {
+    "notEnoughTokens": "{{subject}} sɔngɔ ye tokɛn {{amount}} ye, tokɛn {{held}} bɛ i bolo.",
     "paidForPost": "{{amount}}tokens for this post",
     "sentUnconfirmed": "I ka tagamasiyɛnw cira, nka an ma se k'i ka wari di i ma. O kama, ne tɛ se k'a sara tugun.",
     "transferIncomplete": "Aw ye to ka miiri, ko sariya sɛbɛbaga ma labɛn. U bena i ɲininga tugun sanni i ka baara nata ka kɛ.",
@@ -13447,6 +13493,7 @@
     "platformNotes": "YouTube mako be videwo la. Instagram, TikTok, Pinterest ani Snapchat mako be foto wala videwo la. I ka Instagram ka kan ka kɛ i ka jagoyɔrɔ wala i ka danbaga ka kunnafoni ye. TikTok ka sitew be bɔ kɛnɛ kan ni kumaden dɔw ye, u be mɔgɔ weele ka na u ka sitew la ani u be mɔgɔ weele ka na u ka sitew la."
   },
   "builder": {
+    "example1": "Pomodoro waati jateminɛn, tile o tile ɲɔgɔnkɔtugu bɛ min na",
     "stakeForAllowance": "I ka DeHub jɛtɔn kɛ stake la walasa ka i ka don o don jɔyɔrɔ ka bon",
     "preview": "Fɔlɔ filɛli",
     "openInBrowser": "A dabɔ ɲinini yɔrɔ la",

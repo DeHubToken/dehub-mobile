@@ -52,6 +52,7 @@
     "title": "Dit scene. En anden dig selv."
   },
   "maintenance": {
+    "title": "Lidt arbejde.\nEt bedre DeHub.",
     "brand": "DeHub",
     "checkFailed": "Vi kunne ikke kontrollere ledigheden. Prøv igen.",
     "checking": "Tjekker...",
@@ -128,6 +129,9 @@
     "useNamed": "Brug {{name}}"
   },
   "copy": {
+    "03bbf31aa251": "🎬 Videoredigering i browseren",
+    "6da707c478f8": "日本語 (japansk)",
+    "ea81bf0fd464": "Русский (russisk)",
     "0039cdece89a": "💎 Token Staking (Base)",
     "0090dc269d25": "Italiensk (Italiano)",
     "00c90f4b707a": "SRT/VTT",
@@ -5144,6 +5148,7 @@
       "viewPost": "Se indlæg"
     },
     "tasks": {
+      "examples": "Del et opslag én gang om dagen om: uafhængig musik\nStil: nysgerrig, kortfattet og uformel\nSynes godt om op til 2 nye opslag om dagen om: musik, livekoncerter, vinyl",
       "eachHelp": "Hver valgt agent udfører hele opgaven.",
       "eachMode": "Hver agent",
       "pacing": {
@@ -11975,6 +11980,9 @@
     }
   },
   "creator": {
+    "presetAnimeStillName": "Anime-stillbillede",
+    "presetClay3dName": "Lerrendering",
+    "presetGroupBrand": "Varemærke",
     "editInTimeline": "Redigér i tidslinje",
     "presetExtraArchitectureLightChangeHint": "Bløde skyer ændrer lys på et referenceramme",
     "presetExtraArchitectureLightChangeName": "Arkitektur lysændring",
@@ -14207,6 +14215,7 @@
       "tip_jar": "En krukke, der fyldes op, når betalte gaver kommer ind"
     },
     "fields": {
+      "solid": "Ensfarvet",
       "style": "Stil",
       "celebration": "Festlighed",
       "banner": "Bannere",

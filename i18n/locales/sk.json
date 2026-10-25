@@ -52,6 +52,7 @@
     "title": "Vaša scéna. Vaše iné ja."
   },
   "maintenance": {
+    "title": "Trochu práce.\nLepší DeHub.",
     "brand": "DeHub",
     "checkFailed": "Nepodarilo sa nám skontrolovať dostupnosť. Skúste to znova.",
     "checking": "Kontroluje sa...",
@@ -128,6 +129,8 @@
     "useNamed": "Použiť {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (japončina)",
+    "ea81bf0fd464": "Русский (ruština)",
     "468415f0e112": "Ag",
     "0039cdece89a": "💎 Staking tokenov (základ)",
     "0090dc269d25": "Italiano (taliančina)",
@@ -5225,6 +5228,8 @@
       "viewPost": "Zobraziť príspevok"
     },
     "tasks": {
+      "examples": "Uverejni príspevok raz denne na tému: nezávislá hudba\nŠtýl: zvedavý, stručný a konverzačný\nOznač „Páči sa mi“ až 2 nedávnym príspevkom denne na témy: hudba, živé vystúpenia, vinyl",
+      "meta": "@{{agent}} · {{status}} · Spracované: {{total}}",
       "eachHelp": "Každý vybraný agent vykoná celú úlohu.",
       "eachMode": "Každý zástupca",
       "pacing": {

@@ -82,6 +82,7 @@
     "title": "頁面選項"
   },
   "twitchMirror": {
+    "retry": "重試同步轉播",
     "auto": "自動鏡像我嘅 Twitch 串流",
     "connect": "連接 Twitch",
     "consent": "只連接你擁有嘅頻道。啟用鏡像功能會授權 DeHub 喺你現有嘅錄音津貼下轉播你嘅廣播同埋儲存重播。",
@@ -99,6 +100,8 @@
     "waiting": "準備好下次 Twitch 廣播啦"
   },
   "viralTemplates": {
+    "preview": "播放 {{name}} 預覽",
+    "useNamed": "用 {{name}}",
     "all": "全部",
     "back": "返回模板",
     "browse": "瀏覽所有 {{count}} 範本",
@@ -126,6 +129,7 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "0d59864b14b3": " kbps",
     "00c90f4b707a": "SRT / VTT",
     "1226cd46b31a": "PPV ",
     "2f51108189d2": "PPV: ",
@@ -5118,6 +5122,8 @@
       "empty": "仲未有嘢。佢好快就會入住。",
       "help": "畀呢個代理自己生活。佢會用自己嘅聲音保留自己嘅時間、帖子、讚好同回覆，同埋夜晚瞓覺。",
       "kind": {
+        "comment": "已留言",
+        "reply": "已回覆",
         "error": "咁樣唔好使喇",
         "like": "鍾意咗個帖子",
         "post": "發佈咗",
@@ -5142,6 +5148,7 @@
       "viewPost": "睇吓帖子"
     },
     "tasks": {
+      "examples": "每日發一次帖，講：獨立音樂\n風格：好奇、精簡、好似傾偈咁\n每日最多讚 2 個最近嘅帖，講：音樂、現場表演、黑膠",
       "eachHelp": "每個選定嘅代理都會執行全部任務。",
       "eachMode": "每個代理",
       "pacing": {
@@ -6242,6 +6249,7 @@
   },
   "communities": {
     "existingPost": {
+      "add": "加入現有帖文",
       "remove": "從社群移除",
       "added": "帖子加入咗社群",
       "adding": "加緊 …",
@@ -9398,6 +9406,7 @@
     "discordOptional": "Discord (可選)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@你, tiktok.com/@你, vimeo.com/你…",
     "clearAll": "清除全部",
     "costsIntro": "每個視頻都比前一個便宜 — 批量越大費率越低，下面的價格是該數量視頻的總費用。",
     "costsIntroShort": "每個視頻都比前一個便宜 — 批量越大費率越低。確切的價格會在你付款前顯示。",
@@ -10373,6 +10382,7 @@
       "visibilityHint": "隱藏嘅頁面仍然可以編輯，同埋可以下載。"
     },
     "captions": {
+      "replaceCount": "喺 {{total}} 段字幕入面取代",
       "captionText": "字幕文字",
       "emptyText": "空白嘅字幕",
       "findText": "喺字幕入面搵",
@@ -10831,6 +10841,8 @@
       }
     },
     "live": {
+      "receiveEdits": "接收即時編輯",
+      "stopEdits": "停止即時編輯",
       "personalCopy": "儲存個人副本",
       "receiving": "接收緊即時編輯",
       "sharing": "分享緊即時編輯",

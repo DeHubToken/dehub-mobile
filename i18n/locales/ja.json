@@ -1,5 +1,8 @@
 {
   "copy": {
+    "748d190d59af": "📱 Apple の App Store",
+    "ea81bf0fd464": "Русский (ロシア語)",
+    "f05c0acaa8fa": "ユーザー名#0000",
     "00c90f4b707a": "SRT / VTT",
     "1226cd46b31a": "PPV ",
     "1a00975a0ac1": "@channel",
@@ -5004,6 +5007,8 @@
       }
     },
     "tasks": {
+      "examples": "1日1回投稿するテーマ: インディーズ音楽\nスタイル: 好奇心旺盛で簡潔、会話調\n1日最大2件の最近の投稿に「いいね」するテーマ: 音楽、ライブ、レコード",
+      "next": "次回の実行: {{time}}",
       "eachHelp": "選択された各エージェントは、完全なタスクを実行します。",
       "eachMode": "各エージェント",
       "pacing": {
@@ -6224,6 +6229,7 @@
       "slowMode": "スローモード：{{interval}}ごとに1件のメッセージ"
     },
     "manage": {
+      "inviteLimit": "上限 {{n}}",
       "reasonCounter": "{{len}}/200",
       "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "管理者を閉じる",
@@ -13514,6 +13520,7 @@
     "statusUnregistered": "登録されていません"
   },
   "launchpad": {
+    "graduatesAtValue": "時価総額 $42,000",
     "twitter": "X/Twitter",
     "ago": "{{age}} 前",
     "amountIn": "{{symbol}}単位の金額",
@@ -14400,6 +14407,7 @@
     "failed": "Twitchミラーリングを更新できませんでした。もう一度お試しください。"
   },
   "maintenance": {
+    "title": "ちょっとしたメンテナンス。\nもっと良い DeHub へ。",
     "brand": "デハブ",
     "mode": "メンテナンスモード",
     "description": "メンテナンスを行っています。しばらくしてから再度ご確認ください。",

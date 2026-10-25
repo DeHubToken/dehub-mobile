@@ -52,6 +52,7 @@
     "title": "Deine Szene. Ein anderes Ich."
   },
   "maintenance": {
+    "title": "Es bitzeli Arbet.\nEs bessers DeHub.",
     "retry": "Nomal probiere",
     "brand": "DeHub",
     "checkFailed": "Wir händen kenne d Verfüebarkeit überprüft. Bitte probiere es erneut.",
@@ -128,6 +129,7 @@
     "useNamed": "Use {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Japanisch)",
     "10d878fbdf00": "Arabisch (Arabisch)",
     "1710a2af3842": "Ein Beitrag, der ein Video enthält. Videos können auf öffentlich, privat oder pay-per-view (PPV) gesetzt werden.",
     "23ad0f440f48": "Rangliste",
@@ -5146,6 +5148,7 @@
       "viewPost": "Schau dir den Post an."
     },
     "tasks": {
+      "examples": "Eimal am Tag poschte über: unabhängigi Musig\nStil: gwundrig, churz und im Plauderton\nBis zu 2 aktuelli Biiträg am Tag like über: Musig, Live-Shows, Vinyl",
       "eachHelp": "Jede ausgewählte Agentin erledigt die volle Aufgabe.",
       "eachMode": "Jede Agent",
       "pacing": {

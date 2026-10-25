@@ -129,6 +129,7 @@
     "useNamed": "Bruk {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (japansk)",
     "86f8a694159b": "Styring",
     "a4245a3c4f56": "Tips",
     "0039cdece89a": "💎 Token Staking (Grunnleggende)",
@@ -9598,6 +9599,7 @@
     "missingCountryCode": "Sjekk landskoden — numre kopiert fra Kontakter mangler den ofte."
   },
   "legacy": {
+    "providerForUser": "Bruk {{provider}} for @{{name}}",
     "chooseAccount": "Velg en konto å gjenopprette",
     "recoverYourAccount": "Gjenopprett kontoen din",
     "foundMany": "Vi fant {{count}} eldre DeHub-profiler knyttet til denne innloggingen. Før innloggingsmetodene ble koblet sammen, kunne hver metode opprette en egen profil.",

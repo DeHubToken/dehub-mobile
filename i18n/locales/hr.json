@@ -22,6 +22,7 @@
     "what": "Pretresi javne objave i profile. Uz povezan račun OAuth-a, upravljaj s profilom i privatnošću, objavljuj objave i komentare, praći ljude, čitaj obavijesti, čuvaj omiljene i generiraj slike, video, audio i 3D resurse. Generacija koristi postojeće pravila plaćanja DeHub-a."
   },
   "creatorSupport": {
+    "revenue": "Vaš prihod od oglasa · ${{amount}}",
     "campaignDescription": "Omogući gledateljima da podržavaju kreatore tako što će gledati 30 sekundi. Potreban je odobreni videozapis u trajanju od najmanje 30 sekundi koji se prenosi na internetski portal za oglašavanje.",
     "campaignLabel": "Oglasi za podršku kreatorima",
     "close": "Zatvori oglas",
@@ -51,6 +52,7 @@
     "title": "Vaša scene. Drugačiji vi."
   },
   "maintenance": {
+    "title": "Malo rada.\nBolji DeHub.",
     "brand": "DeHub",
     "checkFailed": "Nemo smo mogli provjeriti dostupnost. Molimo pokušajte ponovno.",
     "checking": "Provjera u tijeku...",
@@ -127,6 +129,10 @@
     "useNamed": "Koristi {{name}}"
   },
   "copy": {
+    "30f959f34501": "한국어 (korejski)",
+    "6da707c478f8": "日本語 (japanski)",
+    "bb9a702dd998": "Upravljanje objavama",
+    "ea81bf0fd464": "Русский (ruski)",
     "468415f0e112": "Ag",
     "41fb2caed82f": "Ovo {{value1}} odličje posudili su {{value2}}",
     "0039cdece89a": "💎 Staking tokena (Base)",
@@ -5142,6 +5148,7 @@
       "viewPost": "Prikaži objavu"
     },
     "tasks": {
+      "examples": "Objavi jednom dnevno o: nezavisnoj glazbi\nStil: znatiželjan, sažet i razgovoran\nLajkaj do 2 nedavne objave dnevno o: glazbi, nastupima uživo, vinilu",
       "eachHelp": "Svaki odabrani agent obavlja cijeli zadatak.",
       "eachMode": "Svaki agent",
       "pacing": {
@@ -10183,6 +10190,7 @@
       "upToDate": "Već ste ažurani."
     },
     "videoMatte": {
+      "restore": "Vrati pozadinu",
       "cancel": "Odustani",
       "frames": "Uklanjanje pozadine · {{completed}} / {{total}} okvira",
       "hint": "Pokreće se na ovom uređaju. Prvo skratite na {{seconds}} izvornih sekundi ili manje; pri prvom pokretanju preuzima se model."

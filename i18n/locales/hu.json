@@ -52,6 +52,7 @@
     "title": "A jelenet. Egy másik te."
   },
   "maintenance": {
+    "title": "Egy kis munka.\nEgy jobb DeHub.",
     "brand": "DeHub",
     "checkFailed": "Nem tudtuk ellenőrizni az elérhetőséget. Próbálkozz újra.",
     "checking": "Ellenőrzés...",
@@ -128,6 +129,14 @@
     "useNamed": "{{name}} használata"
   },
   "copy": {
+    "6da707c478f8": "日本語 (japán)",
+    "6fbd766b1a71": "Fordítás",
+    "762add13d2dd": "További lehetőségek (⋯)",
+    "878af03d5968": "⌚ Luxushirdetés",
+    "c88d5b51caf0": "Hüvelykujj lefelé (Nem tetszik)",
+    "e3bb40bf97be": "Fordítás gomb",
+    "ea81bf0fd464": "Русский (orosz)",
+    "f5f8313a3e8f": "Eredeti megjelenítése",
     "942087cc2d41": "Újra",
     "b5893515b61f": "A legerősebb tipográfia egy poszteren",
     "0039cdece89a": "💎 Token támogatás (alap)",
@@ -5139,6 +5148,7 @@
       "viewPost": "Lásd a posztot."
     },
     "tasks": {
+      "examples": "Posztolj naponta egyszer erről: független zene\nStílus: kíváncsi, tömör és beszélgetős\nLájkolj naponta legfeljebb 2 friss posztot erről: zene, élő koncertek, bakelit",
       "eachHelp": "Minden kiválasztott ügynök elvégzi a teljes feladatot.",
       "eachMode": "Minden ügynök",
       "pacing": {
@@ -9400,6 +9410,7 @@
     "discordOptional": "Discord (opcionális)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@neved, tiktok.com/@neved, vimeo.com/neved…",
     "clearAll": "Töröl mindent",
     "costsIntro": "Minden videó olcsóbb, mint az előző — az ár csökken, ahogy nő a köteg, így az alábbi ár az adott mennyiség teljes költsége.",
     "costsIntroShort": "Minden videó olcsóbb, mint az előző — az ár csökken, ahogy nő a köteg. A pontos ár a fizetés előtt látható.",
@@ -11969,6 +11980,7 @@
     }
   },
   "creator": {
+    "presetAnimeStillName": "Anime állókép",
     "editInTimeline": "Idővonalon szerkeszt",
     "presetExtraArchitectureLightChangeHint": "Puha felhők változó fénye egy referencia szcenén",
     "presetExtraArchitectureLightChangeName": "Építészeti fényváltozás",
