@@ -20,6 +20,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  TextInput,
   View,
   useWindowDimensions,
   type ListRenderItemInfo,
@@ -36,7 +37,9 @@ import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 import Icon from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
-import StagesCarousel from "./StagesCarousel";
+import StagesChart from "./StagesChart";
+import { useDebouncedValue } from '../../hooks/useDebouncedValue';
+import { useSearchFieldMaterial, SEARCH_INPUT_CLEAR } from '../../hooks/useSearchFieldMaterial';
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
@@ -45,6 +48,7 @@ import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
 import {
   getCuratedCarouselStations,
   getPrimaryTags,
+  searchStations,
   type RadioStation,
 } from "../../libs/radio-browser";
 import { toggleRadioStation, useRadioPlayer } from "../../libs/radio-player";
@@ -419,6 +423,17 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
   const heroHeight = Math.min(Math.round(width * 1.18), HERO_MAX);
   const listRef = useRef<FlatList<any> | null>(null);
   const [chip, setChip] = useState<Chip>("top");
+  const [searches, setSearches] = useState<Partial<Record<Chip, string>>>({});
+  const search = searches[chip] ?? '';
+  const query = search.trim().toLocaleLowerCase();
+  const searchMaterial = useSearchFieldMaterial();
+  const radioQuery = useDebouncedValue(chip === 'radio' ? search.trim() : '', 300);
+  const { data: radioMatches = [], isLoading: searchingRadio } = useQuery({
+    queryKey: ['radio-search', radioQuery],
+    queryFn: () => searchStations(radioQuery, 50),
+    enabled: chip === 'radio' && !!radioQuery,
+    staleTime: 60_000,
+  });
   const { user } = useAuth();
   const address = user?.walletAddress || user?.address || undefined;
   const { station: currentStation, isPlaying } = useRadioPlayer();
@@ -477,10 +492,10 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
 
   const list = chip === "top" ? top : chip === "new" ? fresh : null;
   const rows: Row[] = useMemo(() => {
-    if (list) return list.isLoading ? [] : list.items.map((track) => ({ kind: "track" as const, track }));
-    if (chip === "radio") return radioStations.map((station) => ({ kind: "station" as const, station }));
+    if (list) return list.isLoading ? [] : list.items.filter(track => !query || `${track.title} ${track.channel}`.toLocaleLowerCase().includes(query)).map((track) => ({ kind: "track" as const, track }));
+    if (chip === "radio") return (radioQuery ? radioMatches : radioStations).map((station) => ({ kind: "station" as const, station }));
     return [];
-  }, [list, chip, radioStations]);
+  }, [list, chip, radioStations, query, radioQuery, radioMatches]);
 
   const sectionTitle =
     chip === "top" ? t("music.top50") : chip === "new" ? t("music.newReleases") : chip === "radio" ? t("music.radioStations") : "";
@@ -493,6 +508,14 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
         <View style={[styles.hero, { height: heroHeight, backgroundColor: "#18181B" }]} />
       )}
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{chipRow}</GestureDetector> : chipRow}
+      {chip !== 'stages' && (
+        <View style={[{ marginHorizontal: 14, marginVertical: 12, padding: 12, borderRadius: 12 }, searchMaterial.surface]}>
+          <TextInput value={search} onChangeText={value => setSearches(previous => ({ ...previous, [chip]: value }))}
+            placeholder={t('common.search', { defaultValue: 'Search' })} accessibilityLabel={t('common.search', { defaultValue: 'Search' })}
+            placeholderTextColor="#8B8D90" className="text-theme-neutrals-100" style={SEARCH_INPUT_CLEAR}
+            onFocus={searchMaterial.onFocus} onBlur={searchMaterial.onBlur} returnKeyType="search" />
+        </View>
+      )}
       {chip !== "stages" ? (
         <>
           <SectionTitle
@@ -504,7 +527,7 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
         </>
       ) : (
         <View style={{ paddingTop: 20 }}>
-          <StagesCarousel />
+          <StagesChart />
         </View>
       )}
     </View>
@@ -543,10 +566,10 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
   );
 
   const empty =
-    chip === "stages" ? null : (list?.isLoading || (chip === "radio" && radioStations.length === 0)) ? (
+    chip === "stages" ? null : (list?.isLoading || (chip === "radio" && searchingRadio)) ? (
       <ChartSkeleton />
     ) : (
-      <Text style={styles.empty}>{t("music.nothingHereYet")}</Text>
+      <Text style={styles.empty}>{query ? t('common.noResults', { defaultValue: 'No results found' }) : t("music.nothingHereYet")}</Text>
     );
 
   const queryClient = useQueryClient();

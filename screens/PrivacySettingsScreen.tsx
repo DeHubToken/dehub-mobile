@@ -435,7 +435,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                     <Icon name="Lock" size={20} color="#8B8D90" />
                   </View>
                   <View className="flex-1">
-                    <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-white'}`}>
+                    <Text className={`text-sm font-medium ${saving ? 'text-theme-neutrals-500' : 'text-theme-neutrals-100'}`}>
                       {t('settings.privateAccount')}
                     </Text>
                     <Text className={`text-xs mt-0.5 ${saving ? 'text-theme-neutrals-600' : 'text-theme-neutrals-500'}`}>
@@ -443,7 +443,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
                     </Text>
                   </View>
                 </View>
-                <CustomSwitch value={isPrivate} onValueChange={handleTogglePrivate} disabled={saving} />
+                <CustomSwitch value={isPrivate} onValueChange={handleTogglePrivate} disabled={saving} accessibilityLabel={t('settings.privateAccount')} />
               </View>
               <View className="px-4 py-2 flex-row items-center justify-between">
                 <View className="flex-row items-center flex-1 pr-3">
