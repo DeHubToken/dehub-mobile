@@ -29,6 +29,7 @@ import FeedFilterPanel, {
 } from "../components/Home/FeedFilterPanel";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../navigation/postVideoViewerParams';
+import { useWarmVideoViewer } from '../navigation/useWarmVideoViewer';
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
 import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
@@ -470,6 +471,7 @@ const FeedScreen = () => {
 
   // ── Grid rows (memoised) ───────────────────────────────────
   const gridRows = useMemo(() => buildGridRows(feedData.length), [feedData.length]);
+  useWarmVideoViewer(isGridView && feedData.some(item => canOpenPostVideoViewer(item as any)));
 
   // ── Grid ↔ Feed sync ──────────────────────────────────────
   const handleGridItemPress = useCallback((index: number) => {

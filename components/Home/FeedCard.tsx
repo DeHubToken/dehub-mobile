@@ -42,6 +42,7 @@ import { warmCommentThread } from "../Comments/CommentSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -876,6 +877,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const closeHoldGate = useCallback(() => setShowHoldGate(false), []);
 
   const videoViewerReady = canOpenPostVideoViewer(item as any, isActuallyGated || matureGate.isGated || contentWarning.hidden);
+  useWarmVideoViewer(isVisible && isVideo && videoViewerReady);
   const handleVideoViewerPress = useCallback(() => {
     if (!videoViewerReady || tokenId == null || scrubBoundary.claimed.value) return;
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
