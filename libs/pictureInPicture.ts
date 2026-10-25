@@ -1,6 +1,7 @@
 import type { VideoPlayer } from 'expo-video';
 
 let activePlayer: VideoPlayer | null = null;
+let inAppPlayer: VideoPlayer | null = null;
 const listeners = new Set<() => void>();
 const pendingRelease = new Map<VideoPlayer, Set<() => void>>();
 
@@ -32,5 +33,11 @@ export function releaseAfterPictureInPicture(player: VideoPlayer, release: () =>
 }
 
 export function canStartVideo(player: unknown): boolean {
-  return !activePlayer || player === activePlayer;
+  const floating = activePlayer ?? inAppPlayer;
+  return !floating || player === floating;
+}
+
+/** In-app minimization is distinct from the operating system's PiP window. */
+export function setInAppVideoPlayer(player: VideoPlayer | null): void {
+  inAppPlayer = player;
 }
