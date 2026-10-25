@@ -92,9 +92,9 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
         <ElectricLogo refreshing={refreshing} pullDistance={pullDistance} onPress={isSignedIn ? onLogoPress : onMenuPress}
           label={isSignedIn ? "DeHub" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
-          source={require("../assets/web-icons/dehub-logo-center.png")}
+          source={require("../assets/web-icons/dehub-island-logo.png")}
           style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
-          width={31.5} height={27} tint={colors.foreground} />
+          width={42} height={36} tint={colors.foreground} />
       </View>
 
       {/* Notifications — right. Signed-in only; the centred mark does not move
