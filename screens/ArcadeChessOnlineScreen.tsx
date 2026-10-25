@@ -1,3 +1,4 @@
+import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import ThemePanel from '../components/ui/ThemePanel';
 /**
  * ArcadeChessOnlineScreen
@@ -321,7 +322,7 @@ const ChessLadder = ({ wallet }: { wallet: string | null }) => {
       </View>
       <Text style={styles.ladderBlurb}>{t("arcade.kingsGambitBoardBlurb")}</Text>
       {isLoading ? (
-        [0, 1, 2].map((i) => <View key={i} style={styles.ladderSkeleton} />)
+        [0, 1, 2].map((i) => <SkeletonBlock key={i} style={styles.ladderSkeleton} />)
       ) : rows.length === 0 ? (
         <ThemePanel style={styles.ladderEmpty}>
           <Text style={styles.ladderEmptyText}>{t("arcade.kingsGambitBoardEmpty")}</Text>
