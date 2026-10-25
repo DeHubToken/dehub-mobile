@@ -322,10 +322,6 @@ const REVEAL_FADE_MS = 220;
 // A shell that mounts but never reports ready (deep-link edge case, a thrown
 // navigator, a layout pass that never lands) must not hold the curtain forever.
 const REVEAL_FAILSAFE_MS = 5000;
-// A first launch keeps the logo animation up at least this long from boot, so
-// a new user sees it play before the setup instead of a flicker of it.
-// Once per process: switching to System Light during the setup remounts the
-// tree, and that must not replay the intro.
 // Long enough that a slow network boot is not reported as a stall.
 const BOOT_STALL_MS = 15000;
 
