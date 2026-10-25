@@ -9,6 +9,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useFeedBleed } from "./feedBleed";
 import AltTextBadge from "./AltTextBadge";
+import { forgetPresentedImage, rememberPresentedImage, wasImagePresented } from '../../libs/media-presentation';
 
 interface ContainedFeedImageProps {
   uri: string;
@@ -55,7 +56,7 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const { t } = useTranslation();
   const [result, setResult] = useState<{ uri: string; status: 'loaded' | 'failed' }>();
   const [attempt, setAttempt] = useState(0);
-  const status = result?.uri === uri ? result.status : 'loading';
+  const status = result?.uri === uri ? result.status : wasImagePresented(uri) ? 'loaded' : 'loading';
   const { height: screenHeight } = useWindowDimensions();
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
@@ -124,10 +125,10 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
           recyclingKey={uri}
           priority={priority}
           autoplay={animate}
-          onLoad={event => { onLoad(event); setResult({ uri, status: 'loaded' }); }}
+          onLoad={event => { rememberPresentedImage(uri); onLoad(event); setResult({ uri, status: 'loaded' }); }}
           accessible={!!description}
           accessibilityLabel={description || undefined}
-          onError={() => setResult({ uri, status: 'failed' })}
+          onError={() => { forgetPresentedImage(uri); setResult({ uri, status: 'failed' }); }}
         />}
         {drawBitmap && <AltTextBadge text={description} />}
         {drawBitmap && status === 'loading' && <View pointerEvents="none" style={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center' }}><ActivityIndicator color="#888" /></View>}

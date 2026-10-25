@@ -16,6 +16,7 @@ import StandaloneTabBar from "../../navigation/StandaloneTabBar";
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
 import { FrostedBackground } from "../ui/FrostedBackdrop";
 import ImageViewerModal from "../common/ImageViewerModal";
+import RouteLoadingShell from '../../navigation/RouteLoadingShell';
 
 const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
   visible,
@@ -103,6 +104,13 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
     );
   }, [navigation, profileData, data, onClose]);
 
+  // Keep one quiet shell through the data request; no second fake profile.
+  if (!data && (loading || !error)) {
+    return <SwipeBackBoundary onBack={onClose} enabled={visible}>
+      <RouteLoadingShell onBack={onClose} />
+    </SwipeBackBoundary>;
+  }
+
   const profileBar = (
     <CollapsingProfileHeader
       {...collapse}
@@ -126,7 +134,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
       <View className="flex-1 bg-theme-neutrals-900">
         <UserProfileSheetContent
           collapse={collapse}
-          loading={loading}
+          loading={loading && !data}
           data={data}
           error={error}
           onRetry={retry}
@@ -194,7 +202,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
           <View style={{ flex: 1 }}>
           <UserProfileSheetContent
             collapse={collapse}
-            loading={loading}
+            loading={loading && !data}
             data={data}
             error={error}
             onRetry={retry}

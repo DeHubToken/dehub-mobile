@@ -31,17 +31,28 @@ beforeEach(() => {
 });
 afterEach(() => jest.useRealTimers());
 
-function page() {
+function page(immediate = false) {
   function Content() {
     const ready = useTransitionSettled();
     return require('react').createElement('Page', { ready });
   }
   const load = jest.fn(() => Content);
-  const Screen = deferredScreen(`test-${key++}`, load);
+  const Screen = deferredScreen(`test-${key++}`, load, { immediateWhen: () => immediate });
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<Screen route={mockRoute} />); });
   return { load, Screen, tree };
 }
+
+it('paints cached content on entry while keeping expensive extras behind transition readiness', () => {
+  const { load, tree } = page(true);
+  expect(load).toHaveBeenCalledTimes(1);
+  expect(tree.root.findAllByType('LoadingShell' as any)).toHaveLength(0);
+  expect(tree.root.findByType('Page' as any).props.ready).toBe(false);
+  act(() => { for (const listener of mockListeners) listener({ data: { closing: false } }); });
+  expect(tree.root.findByType('Page' as any).props.ready).toBe(true);
+  expect(load).toHaveBeenCalledTimes(1);
+  act(() => tree.unmount());
+});
 
 it('commits the shell before requiring content, then mounts after the entrance without a second wait', () => {
   const { load, tree } = page();
