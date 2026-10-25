@@ -64,6 +64,7 @@ it('restores the existing decoder without pausing it when the new route draws', 
   openInAppVideoMini(input);
   release();
   const mini = getInAppVideoMini()!;
+  inAppMiniReady(mini);
   expect(restoreInAppVideoMini(mini)).toBe(true);
   expect(restoreInAppVideoMini(mini)).toBe(false);
   const restoredToken = {};
@@ -109,11 +110,18 @@ it('returns a failed first-frame handoff to the source without pausing or dispos
 });
 
 it('closes a mini-only lease exactly once without a duplicate pause', () => {
-  const { input, player, release } = source();
+  const { input, player, release, session } = source();
   openInAppVideoMini(input);
   release();
   closeInAppVideoMini();
   closeInAppVideoMini();
   expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(session.userPaused).toBe(true);
   expect(getInAppVideoMini()).toBeNull();
+});
+
+it('does not restore before the first hosted frame completes its source handoff', () => {
+  const { input } = source();
+  openInAppVideoMini(input);
+  expect(restoreInAppVideoMini(getInAppVideoMini()!)).toBe(false);
 });

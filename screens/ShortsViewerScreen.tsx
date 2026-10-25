@@ -713,13 +713,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       return false;
     }
     try {
+      videoSession.userPaused = false;
       recovery.start();
       setIsPlaying(true);
       return true;
     } catch {
       return false;
     }
-  }, [player, stopPlayback, recovery, videoUrl]);
+  }, [player, stopPlayback, recovery, videoUrl, videoSession]);
 
   useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
     if (recovery.wanted && !pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
@@ -892,6 +893,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   togglePlayPauseRef.current = () => {
     if (!player || longPressActiveRef.current) return;
     if (isPlayingRef.current) {
+      videoSession.userPaused = true;
       recovery.stop();
       player.pause();
       setIsPlaying(false);
