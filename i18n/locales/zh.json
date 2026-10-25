@@ -1,5 +1,9 @@
 {
   "copy": {
+    "2d9c014a222d": "最大值",
+    "93100fc44c0a": "@用户名",
+    "94e2d0eda8c8": "🎮 最后一名幸存者 TGE",
+    "ba118bf7fc9c": "英语",
     "002286513398": "您没有权限管理事件",
     "00b3a926f704": "取消请求失败",
     "00c0b03fcfa2": "已撤回",
@@ -4978,6 +4982,11 @@
       }
     },
     "tasks": {
+      "cancelSwarm": "取消群组",
+      "clearSelection": "清除选择",
+      "distribution": "分配",
+      "pauseSwarm": "暂停群组",
+      "selectAll": "全选",
       "preparing": "正在准备任务…",
       "run": "运行提示",
       "runSwarm": "运行Swarm",
@@ -9312,6 +9321,7 @@
     "discordOptional": "Discord（可选）"
   },
   "migrate": {
+    "placeholder": "youtube.com/ @ you、tiktok.com/ @ you、vimeo.com/you…",
     "clearAll": "清除全部",
     "costsIntro": "每个视频都比前一个便宜——批量越大费率越低，下面的价格是该数量视频的总费用。",
     "costsIntroShort": "每个视频都比前一个便宜——批量越大费率越低。确切的价格在您付款前显示。",
@@ -10148,6 +10158,8 @@
       "hint": "处理剪辑长达10分钟。 降噪效果最好，背景噪音稳定。"
     },
     "pages": {
+      "batchNameHint": "使用每个页面最大的可见标题的第一行。现有的页面名称除非您选择替换它们，否则保持不变。",
+      "batchNames": "生成页面名称",
       "add": "添加页面",
       "duplicate": "复制页面",
       "delete": "删除页面",
@@ -12664,7 +12676,7 @@
     "transferIncomplete": "令牌传输未完成。在下一篇付费帖子之前，系统会再次询问您。"
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "GIF动图",
     "searchEmoji": "搜索表情",
     "noEmoji": "未找到表情",
     "searchResults": "搜索结果",
@@ -13222,6 +13234,7 @@
     "subtitle": "徽章持有者制作的自定义表情、贴纸和 GIF。将任何表情包添加到您的选择器中，并在聊天、评论和反应中使用。",
     "tabStickers": "贴纸",
     "tab": {
+      "gif": "GIF",
       "emoji": "表情",
       "sticker": "贴纸"
     },
@@ -13245,6 +13258,7 @@
     "tierTable": "每个徽章等级包含的内容",
     "tierTableHint": "表情包是按种类计算的。其他列显示每个表情包可容纳的物品数量。如果您的等级下降，您的表情包将保留，但您无法添加超过新限制的物品。",
     "col": {
+      "gifs": "GIF",
       "tier": "等级",
       "packs": "表情包",
       "emoji": "表情",
@@ -14382,6 +14396,7 @@
     "motionReady": "已选择{{name}}。添加您的照片以执行此剪辑中的动作。"
   },
   "maboroshiShowcase": {
+    "choose": "尝试 {{name}}",
     "title": "你的场景。不一样的你。",
     "intro": "180个角色的造型，从柔软的毛绒到液体镀铬。",
     "inspiration": "寻找灵感。上传您自己的匹配角色参考。",

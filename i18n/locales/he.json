@@ -126,6 +126,13 @@
     "useNamed": "שימוש ב -{{name}}"
   },
   "copy": {
+    "46c403a10f6b": "סקאוס",
+    "7209e5080253": "🎥 יצירת וידאו AI",
+    "93100fc44c0a": "@שם_משתמש",
+    "a4d1abed0b2b": "מוד",
+    "d577cb7ddd24": "אי-גירל",
+    "f461766bfa0f": "אח קטן",
+    "fea1030abae5": "🖼️ יצירת תמונות AI",
     "002286513398": "אין לך הרשאות לנהל אירועים",
     "00b3a926f704": "ביטול הבקשה נכשל",
     "00c0b03fcfa2": "משיכה",
@@ -1834,7 +1841,7 @@
     "5441d9dc54f6": "🌉 גשר טוקנים",
     "55656b5e434f": "סגור חיפוש",
     "56196e073a9a": "עוזר שיחה המבוסס על AI שיכול לענות על שאלות, ליצור תמונות, ליצור וידאו ולעזור בתכונות הפלטפורמה.",
-    "565339bc4d33": "OK",
+    "565339bc4d33": "אישור",
     "56acc0370df9": "נהל את העדפות החשבון שלך, השפה, הגדרות הפרטיות והמערכת.",
     "56dc2b3bb2e5": "הטרדה או בריונות",
     "57383cdc46dd": "מגן אנונימי",
@@ -3257,7 +3264,7 @@
     "notifAnnouncementsDesc": "חדשות פלטפורמה ועדכוני תכונות",
     "quietHoursPauseDesc": "השהה התראות דחיפה בשעות מוגדרות",
     "quietHoursFrom": "מ",
-    "quietHoursTo": "To",
+    "quietHoursTo": "לכבוד",
     "quietHoursSilencedNote": "התראות דחיפה יושבתו בשעות אלו.",
     "notifInApp": "בתוך האפליקציה",
     "notifPush": "דחיפה",
@@ -3559,6 +3566,7 @@
     "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך"
   },
   "common": {
+    "remove": "הסר",
     "refresh": "רענן",
     "mute": "השתק",
     "unmute": "בטל השתקה",
@@ -4517,7 +4525,7 @@
     "requests": "בקשות",
     "shipped": "נשלח",
     "all": "הכל",
-    "uiUx": "UI/UX",
+    "uiUx": "עיצוב משתמש/עיצוב חוויית משתמש",
     "performance": "ביצועים",
     "newFeature": "תכונה חדשה",
     "bugFix": "תיקון באג",
@@ -5104,6 +5112,11 @@
       "viewPost": "הצגת הפוסט"
     },
     "tasks": {
+      "cancelSwarm": "ביטול שרצת",
+      "clearSelection": "מחיקת הבחירה",
+      "distribution": "חלוקה",
+      "pauseSwarm": "הפסקת השרצת",
+      "selectAll": "בחירה בכל הנכסים",
       "action": "פעולה",
       "activity": "פעילות אחרונה",
       "comment": "תגובה",
@@ -5142,6 +5155,7 @@
       "run": "הפעל בקשה",
       "runSwarm": "הפעל נחיל",
       "window": {
+        "reply": "השב",
         "actions": "פעולות",
         "custom": "התאמה אישית",
         "from": "מאת",
@@ -9342,6 +9356,7 @@
     "discordOptional": "Discord (אופציונלי)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you...",
     "clearAll": "ניקוי הכול",
     "costsIntro": "כל וידאו זול יותר מהקודם — השיעור יורד ככל שהקבוצה גדלה, כך שהמחיר למטה הוא מה שכל כמות כזו עולה בסך הכל.",
     "costsIntroShort": "כל וידאו זול יותר מהקודם — השיעור יורד ככל שהקבוצה גדלה. המחיר המדויק מוצג לפני שאתה משלם.",
@@ -10131,6 +10146,7 @@
       "restore": "חזר את הרקע"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}שניות",
       "copy": {
         "after": "אחרי",
         "afterHint": "הצג את התוצאה.",
@@ -10291,7 +10307,7 @@
       "duration": "משך הדף",
       "durationBatchHint": "הרחבה מחזיקה עדיין בגרפיקה שמגיעה לסוף הדף. קיצור קטעי גוזמים; דפים מאוחרים יותר משתנים. המדיה שומרת על מהירות ההשמעה שלה.",
       "durationsUpdated": "תזמון מעודכן בדפי {{count}}",
-      "go": "Go",
+      "go": "לך",
       "hiddenBadge": "מוסתר במצגת",
       "hidePresentation": "הסתרה במצגת",
       "jump": "מעבר לדף",
@@ -11907,6 +11923,7 @@
     }
   },
   "creator": {
+    "presetExtraMossMicroWorldName": "עולם פטריות",
     "editInTimeline": "עריכה בזמן",
     "presetClay3dName": "חומר טון",
     "presetExtraArchitectureLightChangeHint": "עננים רכים משנים אור בסצנה התייחסות",
@@ -12331,7 +12348,7 @@
     "doorImageNote": "תמונות, פוסטרים ועריכות",
     "doorVideoNote": "קליפים מטקסט או מתמונה",
     "doorAudioNote": "כלי קול בחינם",
-    "door3d": "3D",
+    "door3d": "תלת מימד",
     "door3dNote": "מודלים מהנחיה או מתמונה",
     "doorAgentsNote": "צ׳אט בחינם",
     "editorNote": "ערוך על ציר זמן",
@@ -12742,7 +12759,7 @@
     "transferIncomplete": "העברת האסימון לא הושלמה. תישאל שוב לפני הפוסט הבא שלך בתשלום."
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "יצירת GIF",
     "searchEmoji": "חיפוש אימוג'י",
     "noEmoji": "לא נמצאו אימוג'י",
     "searchResults": "תוצאות חיפוש",

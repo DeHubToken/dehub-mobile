@@ -1,5 +1,6 @@
 {
   "accountConnect": {
+    "generate": "用你嘅積分，確認嘅付款或合資格嘅免費圖像生成媒體",
     "account": "公開瀏覽唔需要帳戶。連結你嘅 DeHub 帳戶嚟管理你嘅個人檔案同埋建立或者發佈內容。",
     "allow": "允許連線",
     "body": "連結你嘅帳戶嚟管理你嘅個人檔案、發佈文章同埋喺即時通訊度建立內容。連線會喺24小時內到期。你可以隨時斷開連線。",
@@ -51,6 +52,7 @@
     "title": "您的場景。一個不同的你。"
   },
   "maintenance": {
+    "title": "少少工作。&#10;一個更好嘅 DeHub 。",
     "brand": "去中心",
     "checkFailed": "我哋查唔到有冇位。唔該再試多次。",
     "checking": "檢查中...",
@@ -62,6 +64,7 @@
     "retry": "再試多次"
   },
   "quickActions": {
+    "send": "發送錯誤報告",
     "attachScreenshot": "附上螢幕截圖",
     "capturing": "捕捉緊呢個頁面 …",
     "deviceNotice": "系統會自動包括頁面、裝置、型號同埋應用程式或者瀏覽器詳情。",
@@ -123,6 +126,11 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "15ef844f362f": "代幣ID",
+    "5190ff487713": "質押",
+    "a4d1abed0b2b": "管理員",
+    "bc7b4fda29f9": "投票",
+    "f4697afb34f4": "按餘額、寄送的點數、收到的點數、追蹤者等排名的用戶。定期更新。",
     "002286513398": "你沒有權限管理活動",
     "00b3a926f704": "取消請求失敗",
     "00c0b03fcfa2": "已提款",
@@ -4276,6 +4284,7 @@
   },
   "notifications": {
     "custom": {
+      "stageLiveNamed": "{{name}} 嘅階段 “{{title}}” 係直播緊 — 點擊聽聽",
       "bountyApplied": "{{name}} 應用咗喺你嘅獎勵度",
       "bountyAppliedNamed": "{{name}} 應用咗喺你嘅獎勵上面「 {{title}} 」",
       "bountyReply": "{{name}} 回覆咗你嘅賞金",
@@ -4496,6 +4505,7 @@
     "global": "全球"
   },
   "features": {
+    "promptSubtitle": "用提示建構 DeHub",
     "promptAttach": "附上圖片",
     "promptAttachment": "附件 {{number}}",
     "promptDetails": "可選嘅詳情",
@@ -4524,7 +4534,7 @@
     "requests": "請求",
     "shipped": "已推出",
     "all": "全部",
-    "uiUx": "UI/UX",
+    "uiUx": "用戶介面 / 用戶體驗",
     "performance": "效能",
     "newFeature": "新功能",
     "bugFix": "修復錯誤",
@@ -5109,6 +5119,11 @@
       "viewPost": "睇吓帖子"
     },
     "tasks": {
+      "cancelSwarm": "取消蜂擁",
+      "clearSelection": "清除選擇",
+      "distribution": "分派出去",
+      "pauseSwarm": "暫停蜂擁",
+      "selectAll": "揀晒",
       "action": "行動",
       "activity": "最近嘅活動",
       "comment": "評論",
@@ -6191,6 +6206,7 @@
   },
   "communities": {
     "existingPost": {
+      "remove": "從社群移除",
       "added": "帖子加入咗社群",
       "adding": "加緊 …",
       "failed": "唔該更新社區文章，試吓再次。",
@@ -6565,7 +6581,7 @@
       "verifiedViews": "驗證咗嘅觀看次數",
       "viewsAccepted": "{{count}} 已驗證瀏覽 · {{units}} × 1，000次瀏覽",
       "viewSource": "睇數來源",
-      "viewSourceUrl": "View count source URL"
+      "viewSourceUrl": "瀏覽次數來源 URL"
     },
     "title": "賞金",
     "bounty": "賞金",
@@ -10132,6 +10148,8 @@
     },
     "videoTemplates": {
       "copy": {
+        "bePart": "係你嘅一部分",
+        "secondPick": "你嘅第二選擇",
         "after": "之後",
         "afterHint": "結果",
         "announcement": "你嘅大公告",
@@ -10196,6 +10214,8 @@
       "useFormat": "使用 {{aspect}} 影片格式"
     },
     "highlights": {
+      "created": "高亮編輯已經儲存。原始項目保留。",
+      "limit": "使用來源語音不超過 10 分鐘。一個非常長的連續轉錄必須先分割。",
       "captionHint": "只有現有 Caption 覆蓋的對話才會被考慮。",
       "changed": "源項目改咗。再次搵亮點。",
       "chatCaptionsMissing": "這個影片目前沒有 Caption。再問一次但不使用「使用現有 Caption」來為它進行轉錄。",
@@ -11893,6 +11913,8 @@
     }
   },
   "creator": {
+    "presetExtraMacroFocusSweepName": "宏觀焦距掃描",
+    "presetMerchMockupName": "商品樣板",
     "editInTimeline": "在時間軸上編輯",
     "presetExtraArchitectureLightChangeHint": "柔和的雲彩改變參考場景的光線",
     "presetExtraArchitectureLightChangeName": "建築光線變化",
@@ -12727,7 +12749,7 @@
     "transferIncomplete": "代幣轉移未完成。喺你下一個付費帖子之前，我哋會再問你一次。"
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "GIF動圖",
     "searchEmoji": "搜尋表情符號",
     "noEmoji": "搵唔到表情符號",
     "searchResults": "搜尋結果",
@@ -13285,6 +13307,7 @@
     "subtitle": "自訂表情符號、貼圖和 GIF，由徽章持有者製作。將任何 pack 加入你的選擇器，並在聊天、留言和反應中使用。",
     "tabStickers": "貼圖",
     "tab": {
+      "gif": "GIF",
       "emoji": "表情符號",
       "sticker": "貼圖"
     },
@@ -13308,6 +13331,7 @@
     "tierTable": "每個徽章階級可獲得的內容",
     "tierTableHint": "Pack 是每種計算的。其他欄位顯示每個 pack 可容納的項目數量。如果你的階級下降，你的 pack 會保留，但你無法新增超過新限制的項目。",
     "col": {
+      "gifs": "GIF",
       "tier": "階級",
       "packs": "包",
       "emoji": "表情符號",

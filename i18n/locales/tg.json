@@ -57,6 +57,7 @@
     "retry": "Бори дигар кӯшиш кунед"
   },
   "quickActions": {
+    "question": "Ano ang malawak sa pahina na ito?",
     "attachScreenshot": "Добавить скриншот",
     "deviceNotice": "Саҳифа, дастгоҳ, модел ҳангоми дастрас будан ва тафсилоти барнома ё браузер ба таври худкор дохил карда мешаванд.",
     "hint": "Барои кушодани ин параметрҳо дар ягон ҷо нигоҳ доред.",
@@ -88,6 +89,9 @@
     "waiting": "Барои пахши навбатии Twitch-и шумо омода аст"
   },
   "viralTemplates": {
+    "all": "Ҳама",
+    "more": "Бештар нишон диҳед",
+    "products": "Mahsulotlar",
     "characters": "Аломатҳо",
     "chooseFirst": "Выберите эффекты представления.",
     "close": "Закрыть шаблон",
@@ -104,6 +108,33 @@
     "useNamed": "Использовать {{name}}"
   },
   "copy": {
+    "04f8996da763": "корбар",
+    "052ec74b513d": "Ҳуқуқҳои маро вайрон мекунад",
+    "12a5fb358f94": "АНТИФА",
+    "12b91b0ac5dd": "Сурат {{value1}}",
+    "1445799c033a": "Matuto nang higit pa",
+    "16840520f59c": "Либерал",
+    "31b471215872": "Ҷадвали пешсаф",
+    "32bb1a843217": "Истифодабарандагонро тавассути истинод даъват кунед",
+    "4256e512fcfb": "Чад",
+    "4a9b1d39db85": "Интишори кор ноком шуд",
+    "6e0921c6c48a": "QShortcut",
+    "843991d1d9b3": "Гузоштани барраси ноком шуд",
+    "87bbe879c7a5": "аватар",
+    "8ae18739e3f7": "Сигнали оташфишон ба {{value1}} одамон",
+    "8c13f73ba145": "Сварм (Swarm)",
+    "93100fc44c0a": "@номикорбар",
+    "9e480ba758b3": "Неокон",
+    "a52ace420f21": "Ҳама",
+    "a80811cf6889": "Постҳо",
+    "b3ec56659c25": "Муваффақият надорист иваз кунад",
+    "b979cda45ed2": "QShortcut",
+    "c9a9639463c2": "Видеоҳо",
+    "d577cb7ddd24": "И-гёрл",
+    "de88c121a82a": "Премиум",
+    "e139251e4f5b": "Нест кардани нашр",
+    "e1cf4fb834a7": "Оғози шабакаи умумӣ",
+    "e3e81d3d76cf": "🪙 Истифодаи токен",
     "002286513398": "Шумо иҷозати идора кардани чорабиниҳоро надоред",
     "00b3a926f704": "Бекор кардани дархост ноком шуд",
     "00c0b03fcfa2": "Бозпас гирифта шуд",
@@ -1787,7 +1818,7 @@
     "520cf6869b44": "Муайянкунандаи беназир барои ҳама гуна транзаксия дар занҷир. Онро кушоед, то тафсилоти пурраи транзаксияро дар блокчейн-эксплорер бубинед.",
     "530cac08f6b4": "Ғарби ваҳшӣ",
     "5386ea5db81c": "Мутавозин",
-    "565339bc4d33": "OK",
+    "565339bc4d33": "Хуб",
     "56dc2b3bb2e5": "Таҳқир ё таҳқир",
     "57383cdc46dd": "аз нишони номаълум",
     "5745acb8ad07": "Маърака эҷод шуд",
@@ -3134,7 +3165,7 @@
     "notifAnnouncementsDesc": "Хабарҳо ва навсозиҳои хусусиятҳои платформа",
     "quietHoursPauseDesc": "Хомӯш кардани огоҳиҳои push дар соатҳои муқарраршуда",
     "quietHoursFrom": "Аз",
-    "quietHoursTo": "To",
+    "quietHoursTo": "Ба",
     "quietHoursSilencedNote": "Огоҳиҳои push дар ин соатҳо хомӯш карда мешаванд.",
     "notifInApp": "Дар барнома",
     "notifPush": "Пуш",
@@ -3435,6 +3466,7 @@
     "themeColorBrandFailed": "Хондани рангҳо аз сурати профили шумо имконнопазир буд"
   },
   "common": {
+    "apply": "Ilapat",
     "refresh": "Навсозӣ",
     "mute": "Хомӯш кардани садо",
     "unmute": "Фаъол кардани садо",
@@ -3553,6 +3585,7 @@
     "tokenAmount": "{{amount}} токенӣ"
   },
   "postOptions": {
+    "aiOverview": "Pangkalahatang-ideya",
     "skippableSections": "Қисматҳои қобили гузариш",
     "skippableSectionsDesc": "Нишонагузорӣ ё овоздиҳӣ дар бораи хониши сарпараст ва муқаддимаҳо",
     "embed": "Ҷойгир кардан",
@@ -4143,6 +4176,7 @@
   },
   "notifications": {
     "custom": {
+      "featureReply": "{{name}} ба шарҳи шумо ҷавоб дод",
       "bountyApplied": "{{name}} ба ҷоизаи шумо муроҷиат кард",
       "bountyAppliedNamed": "{{name}} ба ҷоизаи шумо “{{title}}” муроҷиат кард",
       "bountyReply": "{{name}} ба ҷоизаи шумо ҷавоб дод",
@@ -4529,6 +4563,7 @@
     "lockedPrivate": "Танҳо шумо метавонед онҳоро хонед"
   },
   "music": {
+    "playAll": "Ҳамаро навохтан",
     "likeStation": "Монанди истгоҳ",
     "listen": "Рӯйхатҳо",
     "nothingHereYet": "Ҳеҷ чиз дар ин ҷо ҳанӯз.",
@@ -4972,6 +5007,13 @@
       "viewPost": "Намоиши интишор"
     },
     "tasks": {
+      "cancelSwarm": "Бекор кардани сварм",
+      "clearSelection": "Тоза кардани интихоб",
+      "distribution": "Тақсимот",
+      "pauseSwarm": "Таваққуфи сварм",
+      "selectAll": "Pumili ng lahat",
+      "swarm": "Сварм (Swarm)",
+      "viewPost": "Намоиши интишор",
       "action": "Амал",
       "activity": "Фаъолияти охирин",
       "comment": "Шарҳ",
@@ -6043,6 +6085,8 @@
   },
   "communities": {
     "existingPost": {
+      "more": "Бештар постҳоро бор кунед",
+      "remove": "Аз ҷамъият хориҷ кунед",
       "adding": "Илова кардан...",
       "hint": "Нигоҳ доштани пости аслӣ, лайкҳо ва намоишҳо.",
       "placeholder": "Истиноди почтаи DeHub ё ID-и почта"
@@ -6353,6 +6397,7 @@
     "privateHint": "Kailangang magpapahintulutan ang mga bagong Аъзо upang",
     "publicHint": "Ҳар кас метавонад фавран ба он ҳамроҳ шавад.",
     "invite": {
+      "requestToJoin": "Дархости ҳамроҳ шудан",
       "joinFailed": "Пайвастшавӣ қатъ шуд"
     }
   },
@@ -9935,6 +9980,11 @@
     "savePrompt": "Ин постро ҳамчун сиёҳнавис нигоҳ доред, то баъдтар анҷом дода нашр кунед?"
   },
   "editor": {
+    "clipboard": {
+      "cut": "Layers-action",
+      "empty": "Layers-action",
+      "skipped": "{{count}}info: whatsthis"
+    },
     "assembly": {
       "matchConsent": "Клипҳо ва аксҳоро бо дархости ман мувофиқ кунед",
       "matchDuration": "Наворҳои мувофиқ аз видеои дархостшуда кӯтоҳтаранд. Давомнокиро кӯтоҳ кунед ё медиаи бештар интихоб кунед.",
@@ -10085,6 +10135,21 @@
       "hint": "Kasosyo ang mga clip upang 10 minuto. Коҳиши садои беҳтарин бо садои заминаи устувор кор мекунад."
     },
     "pages": {
+      "allPdf": "Hammashina {{count}} sahifalar bir PDF faylida",
+      "allPptx": "Hammashina {{count}} sahifalar bir prezentatsiyada",
+      "batchNameHint": "Har bir sahifaning eng katta koʻrinadigan rubrikasining birinchi qatorini ishlatish. Qadimgi sahifa nomlari saqlanadi, agar siz uni almashtirmasangiz.",
+      "durationBatchHint": "Uzaytirish holda chizmalar sahifaning oxirigacha saqlanadi. Qisaytirish chizmalarni kesib tashlaydi; keyingi sahifalar oʻzgacha siljib turadi. Media oʻynash tezligini saqlab qoladi.",
+      "durationsUpdated": "{{count}} sahifalarning yangilangan vaqtlamasi",
+      "go": "Boshga",
+      "hiddenBadge": "Prezentatsiyada yashirin",
+      "hidePresentation": "Prezentatsiyada yashirish",
+      "namedFromHeadings": "{{count}} nomlangan sahifalar. {{missing}} sahifada rubrika yoʻq edi.",
+      "noResults": "Mos sahifalar yoʻq",
+      "rangeHint": "Sahifa raqamlarini virgul bilan ajratib yozing yoki masalan 3-8 kabi diapazonlarni ishlatishingiz mumkin.",
+      "search": "Maghanap ng pahina ayon sa numero o pangalan",
+      "selectNumbers": "Sahifalar sonini tanlang",
+      "showPresentation": "Prezentatsiyada ko'rsatish",
+      "transferHint": "Eng ko'p 50 sahifaga kopirovka qiling yoki bir joyga ko'chiring. Guruhlar va joylashuvlar tanlovga muvofiq bo'ladi. Ko'chirish faqat bu sahifaga ta'sir qiladi; boshqa ko'rinishlar saqlanadi. Manzil tashrif buyurish uchun vaqtli qatlamlarga mos kelishi kerak.",
       "add": "Илова кардани саҳифа",
       "duplicate": "Нусхабардории саҳифа",
       "delete": "Нест кардани саҳифа",
@@ -10254,6 +10319,11 @@
       "delete": "Нест кардан"
     },
     "export": {
+      "cropMarkHint": "Nagdagdag ng mga pagtutukoy na mark sa labas ng artwork. Ang naka-save na resolution ng pag-print ay nagtatakda ng laki",
+      "documentImageHint": "Higit pang detalye ay nagtatakbo ng mas malaking mga larawan sa pahina. Lumikha ng mas maliit na mga file ang mga sukat ng imahe at kalidad ng JPE Ang laki ng pahina at mga link ay naka-save.",
+      "noSections": "Walang mga tugma na seksyon",
+      "notesTextHint": "Nag-download ng mga sernavê ng seksyon, orihinal na mga numero ng pahina, pangalan ng pahina, at mga tala sa pagtatanghal bil",
+      "pageOrderHint": "Ang mga pahina ay sundin ang order na ipinasok. Gamitin ang 3,1-2 upang magsimula sa pahina 3, o 5-1 upang muli ang isang saklaw. Ipinapakita ang mga muling numero ng pahina sa isang beses.",
       "cancel": "Бекор кардан",
       "scope": "Қисми боргирӣ",
       "downloadTimeline": "Ҷадвали пурраи вақт",
@@ -10300,6 +10370,13 @@
       "width": "Андозаи қалам {{value}}"
     },
     "layers": {
+      "applyNames": "Ilapat ang mga pangalan",
+      "name": "Nom qavati",
+      "noOverlapMatches": "Layers-action",
+      "overlapHint": "Layers-action layers-action",
+      "overlapping": "Layers-action",
+      "search": "Layers-action",
+      "searchOverlap": "Layers-action",
       "empty": "Дар ин нуқтаи пахш ҳоло дар саҳифа чизе нест.",
       "hide": "Пинҳон кардан",
       "lock": "Қулф кардан",
@@ -10575,10 +10652,12 @@
       "error": "Ҷаласаи мустақим дастрас нест. Ворид шавед ва ин лоиҳаро дар абр захира кунед ё даъватномаи таҳрири худро тафтиш кунед."
     },
     "backgrounds": {
+      "applyAll": "Stayllardan foydalaning",
       "hint": "Kopyahin ang larawan, gradient, o solid na background ng pahina na ito. Заминаҳои қулфшуда бетағйир мемонанд.",
       "updated": "Нав карда шуд {{count}}info: whatsthis"
     },
     "brush": {
+      "closed": "Chizilgan oxirlarini to'ldiring",
       "capLabel": "Охири яра",
       "convertHint": "Name Мавқеъ, андоза, гардиш, тарҳ, таъсир, гурӯҳбандӣ ва вақт нигоҳ дошта мешаванд. Тасвирҳои кушод ба хатҳо табдил меёбанд. Бекор кардани роҳчаи кашидашуда.",
       "joinLabel": "Кунҷҳои яра",
@@ -10589,6 +10668,16 @@
       "suggestedShape": "Пешниҳодшуда: {{shape}}"
     },
     "bulk": {
+      "copyPhotoName": "Kopyahin ang pangalan ng larawan: {{name}}",
+      "copyToken": "Kopyahin ang placeholder",
+      "emptyText": "Layers-action",
+      "exportConnections": "I-export ang kasalukuyang mga",
+      "pagePreviewAlt": "{{record}}info:whatsthis",
+      "pagePreviewBusy": "Pag-update ng pangkalahatang-ideya ng pahina",
+      "pagePreviewHint": "Ipinapakita ang record na ito sa kasalukuyang teksto, QR at pangalan-photo na mga koneksyon. Ang preview ay hindi nagdagdag ng mga pahina sa iyong design.",
+      "previousLayers": "Layers-action",
+      "title": "Lumikha ng Bulk",
+      "tokenHint": "I-paste ang placeholder sa tekstong template o nilalaman ng QR at piliin ang Paggamit ng placeholder sa teksto para sa layer na iyon. Ang pag-format ng mga halaga ng spreadsheet na hindi nagbabago. Ang mga numeric format ay nangangailangan ng mga parehong numero; 25 mga format bilang 25% sa porsyento na mode.",
       "allRecords": "Ҳамаи сабтҳо дар диапазон",
       "applyMatches": "Пайвастшавии мувофиқро истифода баред",
       "blankField": "Холӣ",
@@ -10650,6 +10739,28 @@
       "trimToken": "Фосилаҳо пеш аз форматбандӣ"
     },
     "charts": {
+      "applyDateBounds": "Ilapat ang mga limitasyon ng petsa",
+      "applyImportedStyle": "Татбиқи услуб ба лоиҳа",
+      "applyReference": "Ilapat ang layunin na linya",
+      "areaMode": "Name",
+      "bubbleYColumn": "Mga halaga ng Y mula sa",
+      "donutTotalHint": "Ang kabuuang ay nagmuha ng mga porsyento at gumagamit ng napiling format ng hal",
+      "filterCase": "Мутобиқати дақиқи регистр",
+      "filterCounts": "Намоиши {{shown}} аз {{total}} сатри манбаъ",
+      "filterHint": "То се шарти фаъол бояд ҳама мувофиқат кунанд. Филтркунӣ диаграммаи намоиш додашуда ва содироти графикиро тағйир медиҳад, дар ҳоле ки ҳар як сатри манбаъ нигоҳ дошта мешавад. Агар силсилаи номбаршуда хориҷ ё номаш иваз карда шавад, филтрҳои он нодида гирифта мешаванд. Графикаҳои пешравӣ арзиши аввалини манбаи худро нигоҳ медоранд.",
+      "filterLabelSummary": "Нишони {{operator}} {{text}}",
+      "filterRowsSummary": "Сатрҳои манбаъ {{first}}–{{last}}",
+      "findStarter": "Ҷустуҷӯи оғозкунандаи диаграмма",
+      "referenceHint": "Kapag kinakailangan ang layunin ang halagang saklaw. Ang mga layunin na pinagsasama ng porsyento ay gumagamit ng mga porsyento; gumagamit ng",
+      "removeReference": "Alisin ang layunin",
+      "sameCategoryColour": "Gamitin para sa lahat ng mga kategor",
+      "sampleDataSize": "{{rows}} rows {{series}} columns numeric",
+      "searchTypes": "Mga uri ng chart sa paghah",
+      "skipHierarchyHeader": "Гузаронидани сатри аввал",
+      "skipObservationHeader": "Гузаронидани сатри аввал",
+      "starterHint": "Як оғозкунанда намуди диаграмма, маълумот ва форматкунии ин лоиҳаро иваз мекунад. Канваси ҷории шумо танҳо вақте тағйир меёбад, ки шумо графикро навсозӣ ё ворид кунед.",
+      "starters": "Оғоз аз маълумоти намунавӣ",
+      "styleKeepsData": "Услубҳо намуди диаграмма, маълумот, формати рақам, ҳудуди миқёс ва матни марказии шуморо нигоҳ медоранд.",
       "areaModeHint": "Ноҳияҳои часпида ва мутаносибан ҳар як силсила ҳамчун бандро нишон медиҳанд. Streamgraphs марказ маҷмӯи атрофи сифр ва пинҳон ҳадафи истинод. Ang layouts na ito ay kinakailangan ng hindi negativ na mga halaga ng mapagkukunan. Ang porsyento na pagpapakita ng mga halaga ng orihinal sa data; maaaring maglagay ng mga patlang sa pamamagitan ng mga",
       "axesSection": "Меҳварҳо ва миқёс",
       "benchmarkHint": "Пур кардани ҳадафи собит аз ҳамаи арзишҳои манбаи ҷорӣ. Ilapat ang layunin na linya upang gamitin ito; muli ang pagkakalkula pagkatapos ng pag-edit ng",
@@ -10751,6 +10862,8 @@
       "rowFilters": "Сатрҳо барои намоиш",
       "sampleColours": "Палитраи намуна ва ранги матнро истифода баред",
       "scale": {
+        "apply": "Ilapat ang mga saklaw",
+        "hint": "Mga limitasyon ang awtomatikong saklaw upang maibahagi ang mga nauugnay na chart. Mga halaga sa labas ng mga limitasyon na ito ay nakikita.",
         "auto": "Худкор",
         "reset": "Миқёсбандии худкор",
         "upper": "Ҳудуди болоӣ"
@@ -10788,10 +10901,15 @@
       "hierarchySample": "Аврупо,Фаронса,35"
     },
     "colourPicker": {
+      "pick": "Pumili mula sa canvas",
       "cancel": "Бекор кардани интихобкунандаи рангҳо",
       "ink": "Ранги матнро аз канвас интихоб кунед"
     },
     "compositions": {
+      "eyebrow": "Constellation name (optional)",
+      "insertSelected": "Ipasok ang napiling kombinasyon",
+      "limit": "Ang kombinasyon na ito ay higit sa lahat ng layunin o laki ng laki",
+      "sampleSubtitle": "Ҳикояи шумо аз ин ҷо оғоз мешавад.",
       "accent": "Ранги задаи задаи тез",
       "brandFonts": "Истифодаи ҷуфти ҳуруфҳои захирашуда",
       "colour": "Ранги матн",
@@ -10819,6 +10937,9 @@
       "width": "Вазни сатр"
     },
     "crop": {
+      "applyRatio": "Татбиқи таносуб",
+      "pageRatio": "Мутобиқат бо таносуби саҳифа",
+      "precisionHint": "Таносубҳо буришро ҳангоми нигоҳ доштани минтақаи намоиш додашуда тағйир медиҳанд. Мавқеъҳои фокус равзанаи мавҷудаи буришро байни кунҷҳои дастраси он, аз ҷумла тасвирҳои чаппашуда, ҳаракат медиҳанд.",
       "applyFocus": "Татбиқ кардани фокуси дақиқ",
       "focusHint": "Гузаронидани тирезаи зироат ҳангоми нигоҳ доштани андозаи он.",
       "focusPoint": "Фокус {{x}}%, {{y}}%",
@@ -10831,6 +10952,9 @@
       "swapRatio": "Васеъӣ ва баландии мубодила"
     },
     "dataCells": {
+      "actionCount": "{{changed}} аз {{selected}} ҳуҷайраҳои интихобшуда тағйир дода шуд",
+      "go": "Рафтан",
+      "pasted": "{{rows}} сатр ва {{columns}} сутун гузошта шуд",
       "actionRange": "Диапазони ячейкаҳо (холӣ барои ҳамаи ячейкаҳо)",
       "applyPaste": "Гузоштан ба ячейкаҳо",
       "cleanNumbers": "Табдил додани рақамҳои форматшуда",
@@ -10857,6 +10981,8 @@
       "formulasAsText": "Формулаҳоро ҳамчун матн муносибат кунед"
     },
     "dataImport": {
+      "file": "Ворид кардани {{name}}",
+      "ready": "{{rows}} сатри маълумот ва {{columns}} сутун омодаанд",
       "blankNumbers": "Санҷидани ячейкаҳои рақамии холӣ ҳамчун сифр",
       "dimensions": "Файл дорои {{rows}} сатрҳо ва {{columns}} columns",
       "filePreview": "Пешнамоиши сатрҳои аввали файл",
@@ -10925,6 +11051,7 @@
       "vectorHint": "Ин графикаро дар заминаи шаффоф содир мекунад. Матн қобили таҳрир боқӣ мемонад ва дар сурати мавҷуд будан, шрифти интихобшударо истифода мебарад."
     },
     "designTools": {
+      "replaceWith": "Иваз кардан бо",
       "applySize": "Татбиқи андоза",
       "backInsert": "Бозгашт ба воридкунӣ",
       "changeAll": "Тағйири ҳама",
@@ -10957,6 +11084,13 @@
       "vertical": "Тарҳбандии амудӣ"
     },
     "document": {
+      "applyNumbers": "Татбиқи рақамҳои саҳифа",
+      "numberPreview": "Пешнамоиши рақами саҳифа",
+      "numbersApplied": "Рақамҳои саҳифаҳо татбиқ шуданд",
+      "numbersRemoved": "Рақамҳои саҳифаҳои кушодашуда нест карда шуданд",
+      "removeNumbers": "Рақамҳои саҳифаҳоро нест кунед",
+      "repeat": "Нусхабардории интихоб ба саҳифаҳои дигар",
+      "repeatScopeHint": "Рақамҳои саҳифаҳои ҳуҷҷатро истифода мебарад. Саҳифаи ҷорӣ ҳамеша истисно карда мешавад.",
       "numberHint": "Magdagdag ng ma-edit na mga numero ng pahina. Nag-update ng mga numero kapag nagdagdagdag, duplicated, tanggalin, o muli ang mga pahina. Рақамҳои қулфшуда бетағйир мемонанд.",
       "position": "Ҷойгиршавӣ",
       "prefix": "Пешванд",
@@ -11071,6 +11205,10 @@
       "ungroup": "Ҷудо кардани гурӯҳ"
     },
     "guides": {
+      "hint": "Барои илова кардани хати роҳнамо аз хаткаш кашед. Барои ҷобаҷо кардани хатҳои роҳнамо \"Таҳрири хатҳои роҳнамо\"-ро интихоб кунед ё онҳоро аз саҳифа берун кашед, то нест шаванд. Хатҳои роҳнамо ва ҳошияҳо ба файлҳои зеркашидашуда дохил карда намешаванд.",
+      "resolution": "Бар асоси {{dpi}} пиксел дар як дюйм",
+      "snap": "Ҷобаҷокунӣ ба хатҳои роҳнамо",
+      "thirds": "Сеякҳо",
       "add": "Илова кардани хати роҳнамо",
       "applyGrid": "Ба кор даровардани шабака",
       "centre": "Марказ",
@@ -11089,15 +11227,18 @@
       "visible": "Нишон додани роҳнамо"
     },
     "help": {
+      "noResults": "Кӯмаки мувофиқ ёфт нашуд. Номи асбоб ё амалеро ба мисли paste, crop ё group санҷед.",
       "openTool": "Асбоби Кушодан",
       "searchMobile": "Ҷустуҷӯи имову ишораҳо ва кӯмаки муҳаррир",
       "title": "Роҳнамои муҳаррир"
     },
     "layout": {
+      "columns": "Сутунҳои тӯр (0 = худкор)",
       "gap": "Фосилаи шабака дар пикселҳо",
       "positionGroups": "Ҷойгиршавӣ ва гурӯҳҳо"
     },
     "links": {
+      "apply": "Татбиқи пайванд",
       "contactBuilder": "Сохтани почтаи электронӣ, телефон ё алоқаи SMS",
       "copied": "Нусхабардории макони истинод",
       "copyDestination": "Ҷои таъиноти нусхабардорӣ",
@@ -11183,6 +11324,8 @@
       "width": "Паҳнои марз: {{value}}"
     },
     "pageAnimation": {
+      "apply": "Татбиқи аниматсия",
+      "updated": "{{count}} қабат навсозӣ шуд",
       "duration": "Давомнокӣ дар сонияҳо",
       "hint": "Ilapat ang pinasok na entry o exit na gumagamit sa isang pahina o pagpili. Табақаҳои пӯшида ва пинҳон бетағйир мемонанд. Тасвирҳо ва PDF-ҳо то ҳол корҳои пурраи санъатро содирот мекунанд.",
       "noChange": "Табақаҳои таҳриршаванда лозим нестанд",
@@ -11191,6 +11334,12 @@
       "typewriterHint": "Mga uri ng teksto; iba pang mga layers ay mabababa. Мӯҳрҳо дар доираи вақти ҳар як қабат мувофиқанд."
     },
     "pageManager": {
+      "endDestination": "Барои ба охир гузаронидан аз {{number}} истифода баред.",
+      "locked": "Қабатҳои қулфшударо дар бар мегирад",
+      "openPage": "Кушодани саҳифаи {{number}}",
+      "search": "Ҷустуҷӯи саҳифаҳо аз рӯи ном, рақам ё сарлавҳа",
+      "selectMatches": "Интихоби саҳифаҳои мувофиқ",
+      "selected": "{{count}} саҳифа интихоб шуд",
       "clear": "Пок кардани интихоб",
       "destination": "Пеш аз саҳифа",
       "moveHere": "Ҳаракат кардани Интихобот",
@@ -11219,6 +11368,8 @@
       "unavailable": "Аксро иваз кардан ғайриимкон буд. Заминаҳои қулфшуда ва маҳдудияти қабатҳои тарҳро тафтиш кунед."
     },
     "photoLooks": {
+      "styleFiles": "Ilipat ang larawan",
+      "title": "I-save ang larawan na mga pagtingin",
       "applied": "Намуди захирашуда татбиқ шуд",
       "apply": "Татбиқи намуди захирашуда",
       "applyImportedStyle": "Татбиқи намуди воридшуда",
@@ -11242,10 +11393,18 @@
       "strength": "Қувваи Duotone"
     },
     "photos": {
+      "arrange": "Ҷойи аксҳоро иваз кунед",
+      "arrangeHint": "Чорчӯбаҳо, мавқеъҳо, услубҳо ва гурӯҳҳо дар ҷои худ мемонанд. Нуқтаҳои марказии аксҳо аз манбаъҳои худ пайравӣ мекунанд. Заминаҳо ва аксҳое, ки якчанд саҳифаро фаро мегиранд, истисно карда мешаванд.",
+      "needFrames": "Барои иваз кардани ҷойи аксҳо, ҳадди ақал ду акси кушодаро дар ин саҳифа илова кунед.",
+      "rotate": "Тартиби аксҳоро гардонед",
+      "shuffle": "Аксҳоро омехта кунед",
+      "swap": "Аксҳоро иваз кунед",
       "number": "Сурат {{number}}",
       "second": "Фотоэффектҳои дуюм"
     },
     "present": {
+      "findPage": "Саҳифаро аз рӯи ном ё рақам пайдо кунед",
+      "goToPage": "Рафтан",
       "allHidden": "Ҳамаи саҳифаҳо пинҳон шудаанд. Ipakita ang unang pahina para sa pagtatanghal na ito",
       "blackout": "Барчаспҳои",
       "browsePages": "Саҳифаҳо",
@@ -11289,6 +11448,14 @@
       "whiteScreen": "Экрани сафед"
     },
     "qr": {
+      "calendarAllDay": "Araw na kaganapan",
+      "copyContent": "Kopyahin ang nilalaman ng QR",
+      "downloadCalendar": "Kaganapan ng kalendaryo (.ics)",
+      "downloadCalendarHint": "I-save ang parehong kaganapan bilang isang importable na file ng kalendaryo",
+      "downloadContact": "I-download ang contact (.vcf)",
+      "downloadContactHint": "I-save ang parehong mga detalye ng contact bilang file para sa iyong address book.",
+      "noBrandPalettes": "I-save ang isang color palette sa mga style ng Brand upang gamitin ito dito.",
+      "useDetails": "Gamitin ang mga detalye na it",
       "background": "Замина",
       "brandPaletteHint": "Интихоби пешзаминаи торик ва заминаи рӯшноӣ аз палитра, бо истифода аз сиёҳ ё сафед, вақте ки контрасти бештар лозим аст. Нигоҳ доштани рангҳои QR- и ҷорӣ. Мундариҷаи рамзгузошта бетағйир мемонад.",
       "brandPalettes": "Паллетаҳои захирашуда ва рангҳои QR",
@@ -11552,6 +11719,8 @@
     },
     "undo": "Бекор кардани тағйири матн",
     "vectorSelection": {
+      "applyOutline": "Танзими контур",
+      "svgScopeHint": "Содироти то 100 қабати интихобшудаи шакл, расм, рамз ва пайвасткунак дар ҷойгиршавии ҳозираи калидии онҳо. \"Нигоҳ доштани андозаҳои саҳифа\" мавқеи онҳоро дар саҳифа ҳифз мекунад; \"Мутобиқсозӣ\" онҳоро дар ҳудуди қабаташон бурида мегирад. Матн, аксҳо ва графикаи додаҳо содироти махсуси худро истифода мебаранд.",
       "applyFill": "Танзими пуркунӣ",
       "downloadSvg": "Боргирии векторҳои интихобшуда ҳамчун SVG",
       "exportOptions": "Зеркашӣ кардани санъати векторӣ",
@@ -11567,6 +11736,9 @@
       "width": "Паҳнои контур"
     },
     "viewport": {
+      "pan": "Ҷобаҷогузории канвас",
+      "zoomIn": "Калон кардани канвас",
+      "zoomOut": "Хурд кардани канвас",
       "fit": "Ғунҷоиш",
       "selection": "Интихоб"
     }
@@ -13369,6 +13541,7 @@
     "checkoutUnavailable": "Пардохт ҳоло дастрас нест. Лутфан баъдтар дубора кӯшиш кунед."
   },
   "pricing": {
+    "sso": "DSO",
     "perSeatMonthly": "дар як ҷой / моҳ",
     "plansForEveryWorkflow": "Нақшаҳо барои ҳар як ҷараёни кор",
     "findTheRightFit": "Аз инфиродӣ то дастаҳои корхона, мувофиқи мувофиқро пайдо кунед",
