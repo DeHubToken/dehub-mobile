@@ -18,6 +18,8 @@ import { findMotionClip, type MotionClip } from '../libs/motionLibrary';
 import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, maboroshiStageLabel, type MaboroshiPaymentRequest } from '../libs/maboroshi-payment';
 import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
+import { isMaboroshiDelivery, maboroshiAssetId, type MaboroshiDelivery } from '../libs/maboroshi-delivery';
+import { saveCreatorAsset, listCreatorAssets } from '../services/creator.service';
 
 export default function MaboroshiScreen() {
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Maboroshi | ScreenNames.CreatorRemake>>();
@@ -32,6 +34,10 @@ export default function MaboroshiScreen() {
   const activeWallet = useRef(wallet);
   activeWallet.current = wallet;
   const downloading = useRef(false);
+  const delivering = useRef(false);
+  const [deliveryStatus, setDeliveryStatus] = useState('');
+  const [savedAssetId, setSavedAssetId] = useState('');
+  useEffect(() => { setDeliveryStatus(''); setSavedAssetId(''); }, [wallet]);
   const [failed, setFailed] = useState(false);
   const [saving, setSaving] = useState(false);
   const [selectedClip, setSelectedClip] = useState<MotionClip | null>(null);
@@ -102,10 +108,58 @@ export default function MaboroshiScreen() {
     }
   }, [t]);
 
+  const saveResult = async (input: MaboroshiDelivery) => {
+    if (delivering.current || !wallet || input.wallet !== wallet) return;
+    delivering.current = true;
+    setSaving(true);
+    const reply = (error?: string) => {
+      const data = JSON.stringify({ requestId: input.requestId, error });
+      if (activeWallet.current === input.wallet) web.current?.injectJavaScript(`document.dispatchEvent(new CustomEvent('maboroshi:native-save-result',{detail:${data}}));true;`);
+    };
+    try {
+      const id = await maboroshiAssetId(input);
+      if (activeWallet.current !== input.wallet) return;
+      await saveCreatorAsset({ id, kind: 'video', prompt: 'Remake video', resolvedPrompt: '', model: 'remake',
+        modelName: 'Remake', aspect: '16:9', url: input.url, createdAt: input.createdAt }, input.wallet);
+      if (activeWallet.current !== input.wallet) return;
+      setDeliveryStatus(`${t('common.done')} · ${t('creator.referenceLibrary')}`);
+      setSavedAssetId(id);
+      reply();
+    } catch {
+      if (activeWallet.current === input.wallet) {
+        setDeliveryStatus(`${t('common.somethingWentWrong')} · ${t('common.retry')}`);
+        reply('Could not save. Your project is retained; try again.');
+      }
+    } finally { delivering.current = false; setSaving(false); }
+  };
+
+  const editSavedVideo = async () => {
+    if (!savedAssetId || delivering.current) return;
+    delivering.current = true; setSaving(true);
+    const owner = wallet;
+    try {
+      let offset: number | null = 0;
+      while (offset !== null) {
+        const page = await listCreatorAssets(offset);
+        if (activeWallet.current !== owner) return;
+        const asset = page.jobs.find(item => item.id === savedAssetId && item.kind === 'video');
+        if (asset?.url) {
+          nav.navigate(ScreenNames.MediaEditor, { importMedia: { url: asset.url, kind: 'video', name: asset.prompt } });
+          return;
+        }
+        offset = page.nextOffset;
+      }
+      throw new Error('Saved output unavailable');
+    } catch { if (activeWallet.current === owner) setDeliveryStatus(`${t('common.somethingWentWrong')} · ${t('common.retry')}`); }
+    finally { delivering.current = false; setSaving(false); }
+  };
+
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <ScreenHeader title={studioName} />
       <MotionLibraryShowcase compact onPick={clip => setSelectedClip(clip)} />
+      {!!deliveryStatus && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.Creator)} className="px-4 py-3"><Text accessibilityLiveRegion="polite" className="text-theme-neutrals-100">{deliveryStatus} {t('creator.referenceLibrary')}</Text></Pressable>}
+      {!!savedAssetId && <Pressable accessibilityRole="button" disabled={saving} onPress={() => void editSavedVideo()} className="px-4 py-3"><Text className="text-theme-neutrals-100">{t('creator.editInTimeline')}</Text></Pressable>}
       {saving && <View accessibilityLiveRegion="polite" className="flex-row items-center gap-2 px-4 py-2"><ActivityIndicator /><Text className="text-theme-neutrals-100">{t('common.saving')}</Text></View>}
       {!wallet && <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.SignIn)} className="m-4 rounded-xl bg-theme-neutrals-100 p-4"><Text className="text-center font-bold text-theme-neutrals-900">{t('common.signIn')}</Text></Pressable>}
       {failed && <Pressable accessibilityRole="button" onPress={() => { setFailed(false); web.current?.reload(); }} className="m-4 p-4"><Text className="text-center text-theme-neutrals-100">{t('common.retry', 'Try again')}</Text></Pressable>}
@@ -126,6 +180,7 @@ export default function MaboroshiScreen() {
             const data = JSON.parse(event.nativeEvent.data);
             if (data.type === 'maboroshi:ready') void session();
             if (isMaboroshiPaymentRequest(data)) void pay(data);
+            if (isMaboroshiDelivery(data)) void saveResult(data);
             if (data.type === 'maboroshi:download' && typeof data.url === 'string') void download(data.url);
           } catch { /* Ignore messages outside the studio protocol. */ }
         }} />
