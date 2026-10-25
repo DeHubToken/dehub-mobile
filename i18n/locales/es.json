@@ -9602,6 +9602,123 @@
     }
   },
   "creator": {
+    "cinema":  {
+                   "title":  "Dirección cinematográfica",
+                   "hint":  "Define el estilo visual de tu próxima imagen o vídeo. Los resultados varían según el modelo.",
+                   "none":  "Sin indicación",
+                   "reset":  "Borrar indicaciones",
+                   "close":  "Cerrar",
+                   "camera":  {
+                                  "label":  "Estilo de cámara",
+                                  "0":  "Cine digital",
+                                  "1":  "Película de 35 mm",
+                                  "2":  "Película de 16 mm",
+                                  "3":  "Gran formato",
+                                  "4":  "Videocámara antigua"
+                              },
+                   "lens":  {
+                                "label":  "Estilo de objetivo",
+                                "0":  "Esférico",
+                                "1":  "Anamórfico",
+                                "2":  "Óptica antigua suave",
+                                "3":  "Macro",
+                                "4":  "Descentrable"
+                            },
+                   "focalLength":  {
+                                       "label":  "Distancia focal",
+                                       "0":  "18 mm angular",
+                                       "1":  "24 mm angular",
+                                       "2":  "35 mm natural",
+                                       "3":  "50 mm estándar",
+                                       "4":  "85 mm retrato",
+                                       "5":  "135 mm teleobjetivo"
+                                   },
+                   "aperture":  {
+                                    "label":  "Profundidad de campo",
+                                    "0":  "f/1.4 muy reducida",
+                                    "1":  "f/2.8 reducida",
+                                    "2":  "f/5.6 moderada",
+                                    "3":  "f/11 enfoque profundo"
+                                },
+                   "movement":  {
+                                    "label":  "Movimiento de cámara",
+                                    "0":  "Trípode fijo",
+                                    "1":  "Acercamiento lento",
+                                    "2":  "Alejamiento lento",
+                                    "3":  "Travelling lateral",
+                                    "4":  "Órbita alrededor del sujeto",
+                                    "5":  "Cámara en mano",
+                                    "6":  "Ascenso de grúa",
+                                    "7":  "Paneo lento"
+                                },
+                   "lighting":  {
+                                    "label":  "Iluminación",
+                                    "0":  "Luz diurna suave",
+                                    "1":  "Hora dorada",
+                                    "2":  "Claroscuro tenue",
+                                    "3":  "Estudio luminoso",
+                                    "4":  "Luces de neón en escena",
+                                    "5":  "Silueta a contraluz",
+                                    "6":  "Luz difusa nublada"
+                                },
+                   "tempo":  {
+                                 "label":  "Ritmo del plano",
+                                 "0":  "Plano secuencia continuo",
+                                 "1":  "Acción tranquila y pausada",
+                                 "2":  "Acción dinámica y enérgica",
+                                 "3":  "Acción caótica y frenética"
+                             },
+                   "era":  {
+                               "label":  "Época",
+                               "0":  "Años 1920",
+                               "1":  "Años 1950",
+                               "2":  "Años 1960",
+                               "3":  "Años 1970",
+                               "4":  "Años 1980",
+                               "5":  "Años 1990",
+                               "6":  "Actualidad",
+                               "7":  "Futuro cercano"
+                           },
+                   "genre":  {
+                                 "label":  "Género",
+                                 "0":  "Documental",
+                                 "1":  "Drama",
+                                 "2":  "Cine negro",
+                                 "3":  "Ciencia ficción",
+                                 "4":  "Fantasía",
+                                 "5":  "Comedia romántica",
+                                 "6":  "Suspense",
+                                 "7":  "Wéstern"
+                             },
+                   "performance":  {
+                                       "label":  "Interpretación",
+                                       "0":  "Alegre",
+                                       "1":  "Melancólica",
+                                       "2":  "Ansiosa",
+                                       "3":  "Segura",
+                                       "4":  "Asombrada",
+                                       "5":  "Contenida",
+                                       "6":  "Juguetona"
+                                   },
+                   "palette":  {
+                                   "label":  "Paleta de colores",
+                                   "0":  "Ámbar cálido",
+                                   "1":  "Azul frío",
+                                   "2":  "Tonos tierra apagados",
+                                   "3":  "Pastel",
+                                   "4":  "Monocromo de alto contraste",
+                                   "5":  "Colores primarios saturados"
+                               }
+               },
+    "batchPaymentHelp":  "Cada imagen enviada se cobra por separado. Si un lote se detiene, los DHB no utilizados de ese pago se reutilizan automáticamente para una generación posterior que puedan cubrir.",
+    "invalidSeed":  "La semilla debe ser un número entero entre 0 y 2147483647.",
+    "batchCount":  "Imágenes",
+    "endFrame":  "Fotograma final",
+    "endFrameHelp":  "Añade una imagen inicial con el botón de adjuntar.",
+    "seed":  "Semilla (opcional, 0–2147483647)",
+    "negativePrompt":  "Indicaciones negativas (opcional)",
+    "endFrameNeedsStart":  "Adjunta una imagen inicial antes de seleccionar el fotograma final.",
+    "batchStopped":  "El lote se detuvo tras {{submitted}} de {{quantity}} envíos. No se enviaron {{remaining}}. Las imágenes completadas están guardadas.",
     "sending": "Enviando",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",
