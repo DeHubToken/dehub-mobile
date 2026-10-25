@@ -1,3 +1,5 @@
+import { isHoldGated } from '../libs/content-gate';
+
 /** Keep every video entry on the same seeded viewer/continuation contract. */
 export function postVideoViewerParams<T>(item: T, tokenId: string | number, initialThumbnail?: string) {
   return {
@@ -7,7 +9,6 @@ export function postVideoViewerParams<T>(item: T, tokenId: string | number, init
     feedParams: { brainrot: true, fromId: String(tokenId) },
   };
 }
-import { isHoldGated } from '../libs/content-gate';
 
 /** Restricted/unready posts keep the existing detail page's gates and retry UI. */
 export function canOpenPostVideoViewer(post: {
@@ -25,4 +26,3 @@ export function canOpenPostVideoViewer(post: {
   if (post.plansDetails?.length || info.isPayPerView || isHoldGated(info.isLockContent, info.lockAmount ?? info.lockContentAmount)) return false;
   return !['pending', 'on', 'failed'].includes(post.transcodingStatus ?? '');
 }
-
