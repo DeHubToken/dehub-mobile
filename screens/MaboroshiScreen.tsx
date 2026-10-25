@@ -18,7 +18,7 @@ import { findMotionClip, type MotionClip } from '../libs/motionLibrary';
 import { completeMaboroshiPayment, getMaboroshiQuote, isMaboroshiPaymentRequest, maboroshiStageLabel, type MaboroshiPaymentRequest } from '../libs/maboroshi-payment';
 import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
-import { isMaboroshiDelivery, maboroshiAssetId, type MaboroshiDelivery } from '../libs/maboroshi-delivery';
+import { isMaboroshiDelivery, maboroshiAssetId, maboroshiAspect, type MaboroshiDelivery } from '../libs/maboroshi-delivery';
 import { saveCreatorAsset, listCreatorAssets } from '../services/creator.service';
 
 export default function MaboroshiScreen() {
@@ -120,7 +120,7 @@ export default function MaboroshiScreen() {
       const id = await maboroshiAssetId(input);
       if (activeWallet.current !== input.wallet) return;
       await saveCreatorAsset({ id, kind: 'video', prompt: 'Remake video', resolvedPrompt: '', model: 'remake',
-        modelName: 'Remake', aspect: '16:9', url: input.url, createdAt: input.createdAt }, input.wallet);
+        modelName: 'Remake', aspect: maboroshiAspect(input), url: input.url, createdAt: input.createdAt }, input.wallet);
       if (activeWallet.current !== input.wallet) return;
       setDeliveryStatus(`${t('common.done')} · ${t('creator.referenceLibrary')}`);
       setSavedAssetId(id);
