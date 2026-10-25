@@ -76,12 +76,15 @@ export function PageTabs<T extends string>({
   onChange,
   size = "md",
   style,
+  beforeTabs,
 }: {
   tabs: PageTab<NoInfer<T>>[];
   value: T;
   onChange: (id: NoInfer<T>) => void;
   size?: "sm" | "md";
   style?: StyleProp<ViewStyle>;
+  /** Leading controls on the same row, before the category tabs. */
+  beforeTabs?: React.ReactNode;
 }) {
   const c = useKitColors();
   const inHeader = React.useContext(PageHeaderContext);
@@ -94,39 +97,40 @@ export function PageTabs<T extends string>({
       contentContainerStyle={[styles.tabsRow, style as object, inHeader ? { paddingHorizontal: 0, paddingVertical: 0, paddingTop: 0, paddingBottom: 0 } : undefined]}
       accessibilityRole="tablist"
     >
+      {beforeTabs}
       {tabs.map((tab) => {
         const active = tab.id === value;
         return (
-          // The fill sits on an inner view: the theme control paint
-          // (libs/jsx/controls.js) repaints neutral fills on pressables.
-          <Pressable
-            key={tab.id}
-            onPress={() => onChange(tab.id)}
-            accessibilityRole="tab"
-            accessibilityState={{ selected: active }}
-            style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
-          >
-            <View
-              style={[
-                styles.chip,
-                {
-                  height,
-                  paddingHorizontal: size === "sm" ? 10 : 13,
-                  backgroundColor: active ? c.activeBg : c.chipBg,
-                  borderWidth: c.isMinimal && !active ? 1 : 0,
-                  borderColor: c.hairline,
-                },
-              ]}
+          <React.Fragment key={tab.id}>
+            {/* The inner view keeps theme material separate from the pressable. */}
+            <Pressable
+              onPress={() => onChange(tab.id)}
+              accessibilityRole="tab"
+              accessibilityState={{ selected: active }}
+              style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
             >
-              {typeof tab.icon === "string" ? <ThemeIcon icon={tab.icon} size={16} /> : tab.icon ?? null}
-              <Text style={[styles.chipLabel, { fontSize: size === "sm" ? 12 : 13, color: active ? c.activeInk : c.chipInk }]}>
-                {tab.label}
-              </Text>
-              {typeof tab.count === "number" ? (
-                <Text style={[styles.chipLabel, { opacity: 0.6, fontSize: 12, color: active ? c.activeInk : c.chipInk }]}>{tab.count}</Text>
-              ) : null}
-            </View>
-          </Pressable>
+              <View
+                style={[
+                  styles.chip,
+                  {
+                    height,
+                    paddingHorizontal: size === "sm" ? 10 : 13,
+                    backgroundColor: active ? c.activeBg : c.chipBg,
+                    borderWidth: c.isMinimal && !active ? 1 : 0,
+                    borderColor: c.hairline,
+                  },
+                ]}
+              >
+                {typeof tab.icon === "string" ? <ThemeIcon icon={tab.icon} size={16} /> : tab.icon ?? null}
+                <Text style={[styles.chipLabel, { fontSize: size === "sm" ? 12 : 13, color: active ? c.activeInk : c.chipInk }]}>
+                  {tab.label}
+                </Text>
+                {typeof tab.count === "number" ? (
+                  <Text style={[styles.chipLabel, { opacity: 0.6, fontSize: 12, color: active ? c.activeInk : c.chipInk }]}>{tab.count}</Text>
+                ) : null}
+              </View>
+            </Pressable>
+          </React.Fragment>
         );
       })}
     </ScrollView>

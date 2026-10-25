@@ -218,11 +218,12 @@ interface TypeTabsProps {
   onSelect: (filter: NotificationTypeFilter) => void;
   counts: Record<NotificationTypeFilter, number>;
   activityCounts: Record<NotificationTypeFilter, number>;
+  actions?: React.ReactNode;
 }
 
 // Icon-only page-kit chips with the unread count beside the icon, as web's
 // notifications strip draws them. The tab name is the chip's accessibility label.
-const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts }) => {
+const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts, actions }) => {
   const { t } = useTranslation();
   const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: unknown };
   const flatPage = useFlatPage();
@@ -240,6 +241,7 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
   return (
     <View>
       <PageTabs
+        beforeTabs={actions}
         value={selected}
         onChange={onSelect}
         style={{ paddingBottom: 10 }}
@@ -961,7 +963,7 @@ let lastPainted: {
 
 const NotificationScreen = () => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, pageColors } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { patchUser } = useAuthActions();
   const user = useUser();
@@ -1829,7 +1831,29 @@ const NotificationScreen = () => {
       <ScreenHeader
         icon="notifications"
         title={t("notifications.title")}
-        rightContent={
+        rightContent={tabCounts.all > 0 ? (
+          <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
+            {tabCounts.all}
+          </Text>
+        ) : undefined}
+        tabs={
+          <TypeTabs
+            selected={selectedFilter}
+            onSelect={handleFilterChange}
+            counts={tabCounts}
+            activityCounts={tabActivityCounts}
+            actions={
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
+                accessibilityRole="button"
+                accessibilityLabel={t('notifications.settings')}
+                className="items-center justify-center bg-theme-neutrals-800"
+                style={{ width: 34, height: 34, borderRadius: 10 }}
+                hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+              >
+                <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
+              </TouchableOpacity>
           <TouchableOpacity
             onPress={handleMarkAllRead}
             disabled={!hasUnread}
@@ -1837,18 +1861,13 @@ const NotificationScreen = () => {
             accessibilityLabel={t('notifications.markAllRead')}
             accessibilityState={{ disabled: !hasUnread }}
             className="items-center justify-center bg-theme-neutrals-800"
-            style={{ width: 36, height: 36, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
+            hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
           >
-            <Icon name="CheckCheck" size={18} color="#F4F4F5" />
+            <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
           </TouchableOpacity>
-        }
-        tabs={
-          <TypeTabs
-            selected={selectedFilter}
-            onSelect={handleFilterChange}
-            counts={tabCounts}
-            activityCounts={tabActivityCounts}
+            </View>
+            }
           />
         }
       />
