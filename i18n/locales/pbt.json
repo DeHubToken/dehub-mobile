@@ -124,6 +124,14 @@
     "use": "دا ټیمپلیټ وکاروئ"
   },
   "copy": {
+    "1226cd46b31a": "PPV ",
+    "419f1a83fab2": "yourname.eth",
+    "50a45e647dbb": "REC",
+    "53e6cdc30765": "you@example.com",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "b4c9a289323b": "user@example.com",
+    "bd9e3879bc60": "PPV",
     "a4282e4b2298": "of",
     "12b91b0ac5dd": "{{value1}} — د عکس العمل ښودلو لپاره یې ونیسئ",
     "41fb2caed82f": "دا {{value1}} بیج د {{value2}} لخوا په پور ورکړل شوی و",
@@ -3764,6 +3772,7 @@
     "aiOverview": "د عمومي لید لید"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "ترتیب",
     "category": "کټګوري",
     "searchCategories": "کټګوري ولټوئ...",
@@ -4149,6 +4158,7 @@
     "transferDhb": "ټوکنونه لیږدئ"
   },
   "wallet": {
+    "evmAddressLabel": "EVM",
     "solanaSendUnavailable": "په سولانا کې لیږل لا تر اوسه شتون نلري",
     "connectUnavailable": "د بټوې نښلول په دې نسخه کې شتون نلري — د بیا ترلاسه کولو جملې سره یې بیرته راولئ.",
     "connectedWrongWallet": "هغه بټوه {{connected}} ده، نه {{address}}. هیڅ شی بدل نه شو.",
@@ -4428,6 +4438,7 @@
     "provisional": "لنډمهاله"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "خلک، پوسټونه، یا منځپانګه ولټوئ...",
     "filters": "فلترونه",
     "clearAll": "ټول پاک کړئ",
@@ -6333,6 +6344,7 @@
       "slowMode": "ورو ورو حالت: هر {{interval}} یو پیغام"
     },
     "manage": {
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "د اداري فساد له منځه وړل",
       "cancel": "لغوه کول",
       "dismissAdmin": "د اداري فساد له منځه وړل",
@@ -7772,6 +7784,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24س",
     "filter7d": "7و",
     "filter30d": "30و",
@@ -10358,6 +10371,7 @@
       "failed": "د دې کلیپ لپاره سرلیکونه جوړ نه شول."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "نوی ډیزاین",
       "yourDesigns": "ستاسو ډیزاینونه",
       "noDesigns": "هغه ډیزاینونه چې تاسو یې جوړوئ په دې تلیفون کې خوندي کیږي او دلته ښکاري.",
@@ -10699,6 +10713,7 @@
       "pause": "ځنډول"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "ویډیو",
       "sound": "غږ",
       "shape": "شکل",
@@ -10743,6 +10758,7 @@
       "tooLarge": "دا فایل د ایډیټر لپاره ډېر لوی دی. حد 400 MB دی."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "حرکت",
       "hint": "کلیدي چوکاټونه یوه طبقه د وخت په اوږدو کې خوځوي. دلته یو ور زیات کړئ، د غږولو نښه وخوځوئ، طبقه بدله کړئ، او دا به د هغوی ترمنځ په نرمۍ تېریږي.",
       "outside": "د کلیدي چوکاټونو د زیاتولو یا بدلولو لپاره د غږولو نښه دې طبقې ته یوسئ.",

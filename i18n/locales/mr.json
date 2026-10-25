@@ -128,6 +128,20 @@
     "useNamed": "{{name}} वापरा"
   },
   "copy": {
+    "468415f0e112": "Ag",
+    "53e6cdc30765": "you@example.com",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "af4707aebdfa": "OpenAI $",
+    "b4c9a289323b": "user@example.com",
+    "b62c681738d1": "Cu",
+    "bf640b85d499": "dehub.io · ",
+    "c40c747ee79e": "HUD",
+    "ca7842e53ac8": "dehub.io",
+    "e63ffac3f5e5": "PEPE",
     "1a00975a0ac1": "@चॅनेल",
     "201333ac71bc": "लिस्ट आइटम",
     "26c4675bcba1": "नवीन प्रतिसाद तयार करा",
@@ -5740,6 +5754,7 @@
     "searchDehubFor": "DeHub वर \"{{query}}\" शोधा"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "टिप्पणी नोंदवा",
     "reportCommentTitle": "या टिप्पणीची तक्रार करा",
     "reportCommentDescription": "या टिप्पणीत काय चूक आहे ते आम्हाला सांगा आणि आमचे नियंत्रक त्याचे पुनरावलोकन करतील.",
@@ -6353,6 +6368,8 @@
       "slowMode": "स्लो मोड: प्रत्येक {{interval}} एक संदेश"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "inviteLimit": "लिमिट {{n}}",
       "dismissAdminTitle": "प्रशासक डिसमिस करा",
       "cancel": "रद्द करा",
@@ -6901,6 +6918,7 @@
     "priceRange": "{{min}} आणि {{max}} टोकन दरम्यान."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "संपादित करा",
     "listingUpdated": "सूची अद्यतनित!",
     "saveListing": "बदल सेव्ह करा",
@@ -7720,6 +7738,7 @@
     "insufficientOnChain": "या टोकनसाठी चेनवर अपुरी शिल्लक"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "व्हिडिओ आयात करा",
     "subtitle": "आपल्या मालकीच्या व्हिडिओचा लिंक पेस्ट करा आणि आम्ही ते आपल्या प्रोफाइलवर पोस्ट म्हणून प्रकाशित करू. जितके चाहिजे तितके क्यू करा — ते पार्श्वभूमीमध्ये एकामागून एक चालतात.",
     "placeholder": "व्हिडिओ लिंक पेस्ट करा",
@@ -10160,6 +10179,7 @@
       "restore": "पार्श्वभूमी पुनर्संचयित करा"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "after": "नंतर",
         "afterHint": "परिणाम दाखवा.",
@@ -10371,6 +10391,7 @@
       "failed": "या क्लिपसाठी कॅप्शन तयार करता आले नाहीत."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "नवीन डिझाइन",
       "yourDesigns": "तुमची डिझाइन्स",
       "noDesigns": "तुम्ही बनवलेली डिझाइन्स या फोनवर सेव्ह होतात आणि इथे दिसतात.",
@@ -10712,6 +10733,7 @@
       "pause": "थांबवा"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "व्हिडिओ",
       "sound": "आवाज",
       "shape": "आकार",
@@ -10756,6 +10778,7 @@
       "tooLarge": "ही फाइल एडिटरसाठी खूप मोठी आहे. मर्यादा 400 MB आहे."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "गती",
       "hint": "कीफ्रेम्स एखाद्या लेयरला वेळेनुसार हलवतात. इथे एक जोडा, प्लेहेड सरकवा, लेयर बदला, आणि तो त्यांच्या दरम्यान सहज सरकेल.",
       "outside": "कीफ्रेम जोडण्यासाठी किंवा बदलण्यासाठी प्लेहेड या लेयरवर न्या.",

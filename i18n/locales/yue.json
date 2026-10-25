@@ -126,6 +126,17 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "2f51108189d2": "PPV: ",
+    "450683b66da4": " SRT / VTT",
+    "50a45e647dbb": "REC",
+    "5b560f273940": "🛰️ DePIN",
+    "713d24d02e26": "XXXX-XXXX",
+    "8d6f0c73fbaf": "RTMP:",
+    "bd4ef74463ac": "BUSD",
+    "bf640b85d499": "dehub.io · ",
+    "e63ffac3f5e5": "PEPE",
     "1a00975a0ac1": "@ 頻道",
     "1aa9573705bf": "留言讚好",
     "3010b02a4030": "一個即時音訊室，用戶可以喺嗰度講嘢、聽同埋舉手加入對話。",
@@ -5467,6 +5478,7 @@
     "passkeyBackupHint": "你嘅帳戶儲存在呢部裝置嘅密碼匙度。喺大部分手機上，佢會同你嘅 Google 或 Apple 帳戶同步，你仲可以喺設定度加入密碼備份。"
   },
   "careers": {
+    "instagram": "Instagram",
     "title": "加入DeHub",
     "subtitle": "加入建設去中心化社交媒體未來嘅團隊",
     "intro": "我哋搵緊有熱情嘅人加入下一波社交媒體浪潮，將創作者同社區放喺首位。所有職位都係完全遠程、彈性工時。",
@@ -5749,6 +5761,7 @@
     "searchDehubFor": "喺 DeHub 搜尋「{{query}}」"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "舉報留言",
     "reportCommentTitle": "舉報此留言",
     "reportCommentDescription": "請告訴我們此留言有何問題，我們的管理員將會審查。",
@@ -6361,6 +6374,8 @@
       "slowMode": "慢速模式：每個 {{interval}} 一個訊息"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "解僱管理員",
       "cancel": "取消",
       "dismissAdmin": "解僱管理員",
@@ -6909,6 +6924,7 @@
     "priceRange": "介於 {{min}} 和 {{max}} 個代幣之間。"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "修改",
     "listingUpdated": "樓盤更新咗！",
     "saveListing": "儲存變更",
@@ -7215,6 +7231,7 @@
     "kingsGambitBoardEmpty": "仲未有網上對局完成。開個挑戰啦。"
   },
   "videoLooks": {
+    "vhs": "VHS",
     "button": "鏡頭效果",
     "title": "效果",
     "hint": "喺條片離開呢部裝置之前套用 — 觀眾睇到嘅同你喺度睇到嘅一模一樣。",
@@ -10170,6 +10187,7 @@
       "restore": "還原背景"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "answer": "呢個係答案",
         "before": "之前",
@@ -10382,6 +10400,7 @@
       "failed": "呢段片整唔到字幕。"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "新設計",
       "yourDesigns": "你嘅設計",
       "noDesigns": "你整嘅設計會儲存喺呢部手機，並喺度顯示。",
@@ -10723,6 +10742,7 @@
       "pause": "暫停"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "影片",
       "sound": "聲音",
       "shape": "形狀",
@@ -10767,6 +10787,7 @@
       "tooLarge": "呢個檔案對編輯器嚟講太大喇，上限係 400 MB。"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "動態",
       "hint": "關鍵影格令圖層隨時間移動。喺呢度加一個，移動播放頭，改吓個圖層，佢就會喺關鍵影格之間順滑過渡。",
       "outside": "將播放頭移到呢個圖層上面，就可以新增或者修改關鍵影格。",

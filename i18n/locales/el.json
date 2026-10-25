@@ -128,6 +128,28 @@
     "useNamed": "Χρήση {{name}}"
   },
   "copy": {
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "12a5fb358f94": "ANTIFA",
+    "1a00975a0ac1": "@channel",
+    "2f51108189d2": "PPV: ",
+    "3d1d43659027": " / USD",
+    "419f1a83fab2": "yourname.eth",
+    "450683b66da4": " SRT / VTT",
+    "53e6cdc30765": "you@example.com",
+    "5b560f273940": "🛰️ DePIN",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "af4707aebdfa": "OpenAI $",
+    "b4c9a289323b": "user@example.com",
+    "bd4ef74463ac": "BUSD",
+    "bd9e3879bc60": "PPV",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
+    "f223faa96f22": "Apple",
     "93100fc44c0a": "@όνομα_χρήστη",
     "b62c681738d1": "Κύριοι",
     "b7f4d98f98d5": "Σημαία",
@@ -2900,6 +2922,7 @@
     "postCount_other": "{{count}} αναρτήσεις"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "Γυαλιστερός",
     "shortsEnabled": "Σορτς",
     "shortsEnabledDesc": "Εμφάνιση της καρτέλας Shorts και των καρουσέλ Shorts στο Home.",
@@ -3757,6 +3780,7 @@
     "aiOverview": "Επισκόπηση AI"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "Ταξινόμηση",
     "category": "Κατηγορία",
     "searchCategories": "Αναζήτηση κατηγοριών...",
@@ -4422,6 +4446,7 @@
     "provisional": "προσωρινό"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "Αναζήτηση ατόμων, δημοσιεύσεων ή περιεχομένου...",
     "filters": "Φίλτρα",
     "clearAll": "Εκκαθάριση όλων",
@@ -5746,6 +5771,7 @@
     "searchDehubFor": "Αναζήτηση «{{query}}» στο DeHub"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "Αναφορά σχολίου",
     "reportCommentTitle": "Αναφορά αυτού του σχολίου",
     "reportCommentDescription": "Πείτε μας τι δεν πάει καλά με αυτό το σχόλιο και οι συντονιστές μας θα το ελέγξουν.",
@@ -6359,6 +6385,8 @@
       "slowMode": "Αργή λειτουργία: ένα μήνυμα κάθε {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "Απόρριψη διαχειριστή",
       "cancel": "Ακύρωση",
       "dismissAdmin": "Απόρριψη διαχειριστή",
@@ -6907,6 +6935,7 @@
     "priceRange": "Μεταξύ {{min}} και {{max}} tokens."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "Επεξεργασία",
     "listingUpdated": "Η καταχώρηση ενημερώθηκε!",
     "saveListing": "Αποθήκευση Αλλαγών",
@@ -7726,6 +7755,7 @@
     "insufficientOnChain": "Ανεπαρκές υπόλοιπο on-chain για αυτό το token"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "Εισαγωγή ενός βίντεο",
     "subtitle": "Επικολλήστε έναν σύνδεσμο σε ένα βίντεο που ήδη κατέχετε και θα το δημοσιεύσουμε ως ανάρτηση στο προφίλ σας. Βάλτε στην ουρά όσα θέλετε — εκτελούνται το ένα μετά το άλλο στο παρασκήνιο.",
     "placeholder": "Επικολλήστε έναν σύνδεσμο βίντεο",
@@ -7794,6 +7824,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24ω",
     "filter7d": "7η",
     "filter30d": "30η",
@@ -10167,6 +10198,7 @@
       "restore": "Επαναφορά φόντου"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "after": "Μετά",
         "afterHint": "Εμφάνιση αποτελέσματος.",
@@ -10380,6 +10412,7 @@
       "failed": "Δεν ήταν δυνατή η δημιουργία υπότιτλων για αυτό το κλιπ."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "Νέο σχέδιο",
       "yourDesigns": "Τα σχέδιά σας",
       "noDesigns": "Τα σχέδια που δημιουργείτε αποθηκεύονται σε αυτό το τηλέφωνο και εμφανίζονται εδώ.",
@@ -10721,6 +10754,7 @@
       "pause": "Παύση"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "Βίντεο",
       "sound": "Ήχος",
       "shape": "Σχήμα",
@@ -10765,6 +10799,7 @@
       "tooLarge": "Αυτό το αρχείο είναι πολύ μεγάλο για τον επεξεργαστή. Το όριο είναι 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "Κίνηση",
       "hint": "Τα καρέ-κλειδιά κάνουν ένα επίπεδο να κινείται στον χρόνο. Προσθέστε ένα εδώ, μετακινήστε την κεφαλή αναπαραγωγής, αλλάξτε το επίπεδο και θα γλιστρήσει ανάμεσά τους.",
       "outside": "Μετακινήστε την κεφαλή αναπαραγωγής πάνω από αυτό το επίπεδο για να προσθέσετε ή να αλλάξετε καρέ-κλειδιά.",
@@ -13766,6 +13801,7 @@
     "checkoutUnavailable": "Η αναχώρηση δεν είναι διαθέσιμη αυτήν τη στιγμή. Δοκιμάστε ξανά αργότερα."
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "ανά θέση/μήνα",
     "plansForEveryWorkflow": "Σχέδια για κάθε ροή εργασίας",
     "findTheRightFit": "Από άτομα έως ομάδες επιχειρήσεων, βρείτε το κατάλληλο",
@@ -13971,6 +14007,7 @@
     }
   },
   "aiStyles": {
+    "antifa": "ANTIFA",
     "normal": "Κανονικό",
     "old-english": "Παλαιά Αγγλικά",
     "cockney": "Κόκνεϊ",

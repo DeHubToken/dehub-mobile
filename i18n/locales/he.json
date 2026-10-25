@@ -52,6 +52,7 @@
     "title": "הסצנה שלך. אתה בדמות אחרת."
   },
   "maintenance": {
+    "brand": "DeHub",
     "checkFailed": "לא הצלחנו לבדוק את הזמינות. צריך לנסות שוב.",
     "community": "הקהילה קודמת לכל. תמיד.",
     "description": "אנחנו מבצעים תחזוקה. כדאי לבדוק שוב בקרוב.",
@@ -126,6 +127,26 @@
     "useNamed": "שימוש ב -{{name}}"
   },
   "copy": {
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "1f185710f28a": "DeHub v",
+    "2f51108189d2": "PPV: ",
+    "419f1a83fab2": "yourname.eth",
+    "450683b66da4": " SRT / VTT",
+    "53e6cdc30765": "you@example.com",
+    "5b560f273940": "🛰️ DePIN",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "af4707aebdfa": "OpenAI $",
+    "b4c9a289323b": "user@example.com",
+    "bd4ef74463ac": "BUSD",
+    "bd9e3879bc60": "PPV",
+    "bf4151fc970f": "WORK_ADMIN_ARBITERS",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "b602b7029be6": "Pt",
     "b62c681738d1": "Cu",
     "46c403a10f6b": "סקאוס",
@@ -3773,6 +3794,7 @@
     "aiOverview": "סקירה כללית על בינה מלאכותית"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "מיון",
     "category": "קטגוריה",
     "searchCategories": "חפש קטגוריות...",
@@ -4158,6 +4180,7 @@
     "transferDhb": "העברת אסימונים"
   },
   "wallet": {
+    "evmAddressLabel": "EVM",
     "solanaSendUnavailable": "שליחה ב - Solana עדיין לא זמינה",
     "connectUnavailable": "חיבור ארנק אינו זמין בגרסה זו — שחזרו באמצעות ביטוי השחזור במקום זאת.",
     "connectedWrongWallet": "הארנק הזה הוא {{connected}}, לא {{address}}. שום דבר לא השתנה.",
@@ -4437,6 +4460,7 @@
     "provisional": "זמני"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "חפש אנשים, פוסטים או תוכן...",
     "filters": "מסננים",
     "clearAll": "נקה הכל",
@@ -5737,6 +5761,7 @@
     "searchDehubFor": "חיפוש \"{{query}}\" ב-DeHub"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "דווח על תגובה",
     "reportCommentTitle": "דיווח על תגובה זו",
     "reportCommentDescription": "ספרו לנו מה לא בסדר בתגובה הזו והמנהלים שלנו יבדקו אותה.",
@@ -6350,6 +6375,8 @@
       "slowMode": "מצב איטי: הודעה אחת בכל {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "סגירת מנהל המערכת",
       "cancel": "ביטול",
       "dismissAdmin": "סגירת מנהל המערכת",
@@ -6898,6 +6925,7 @@
     "priceRange": "בין {{min}} ל-{{max}} אסימונים."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "עריכה",
     "listingUpdated": "הרשימה עודכנה!",
     "saveListing": "שמור שינויים",
@@ -7717,6 +7745,7 @@
     "insufficientOnChain": "יתרה לא מספיקה בשרשרת עבור טוקן זה"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "ייבוא סרטון",
     "subtitle": "הדבק קישור לסרטון שכבר בבעלותך והוא יפורסם כפוסט בפרופיל שלך. הקטר כמה שתרצה — הם רצים אחד אחרי השני ברקע.",
     "placeholder": "הדבק קישור לסרטון",
@@ -7785,6 +7814,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24ש",
     "filter7d": "7י",
     "filter30d": "30י",
@@ -10373,6 +10403,7 @@
       "failed": "לא ניתן ליצור כתוביות לקליפ הזה."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "עיצוב חדש",
       "yourDesigns": "העיצובים שלך",
       "noDesigns": "העיצובים שתיצור נשמרים בטלפון הזה ומופיעים כאן.",
@@ -10714,6 +10745,7 @@
       "pause": "השהה"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "וידאו",
       "sound": "צליל",
       "shape": "צורה",
@@ -10758,6 +10790,7 @@
       "tooLarge": "הקובץ גדול מדי עבור העורך. המגבלה היא 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "תנועה",
       "hint": "פריימים מרכזיים גורמים לשכבה לזוז לאורך זמן. הוסיפו אחד כאן, הזיזו את ראש ההפעלה, שנו את השכבה, והיא תחליק ביניהם.",
       "outside": "הזיזו את ראש ההפעלה מעל השכבה הזו כדי להוסיף או לשנות פריימים מרכזיים.",
@@ -13475,6 +13508,7 @@
     "step3Body": "כל אחד יכול לפתוח את הקישור. השב בצ'אט כדי לשנות משהו."
   },
   "depin": {
+    "title": "DePin",
     "becomeANode": "הפוך לצומת",
     "ctaBody": "שחזור המקור, מדיה מוצפנת ומוגנת ועבודה מאומתת קודמים לתגמולים של צומת ציבורי.",
     "ctaTitle": "הפעל רק כאשר הכשל בטוח.",
@@ -13757,6 +13791,7 @@
     "checkoutUnavailable": "הצ'ק - אאוט לא זמין כרגע. יש לנסות שוב מאוחר יותר."
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "לכל מושב/חודש",
     "plansForEveryWorkflow": "תוכניות לכל זרימת עבודה",
     "findTheRightFit": "מאנשים בודדים ועד לצוותי enterprise, מצא את ההתאמה הנכונה",

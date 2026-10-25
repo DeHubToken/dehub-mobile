@@ -128,6 +128,9 @@
     "use": "इस टेम्पलेट का उपयोग करें"
   },
   "copy": {
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "b4c9a289323b": "user@example.com",
     "01acc2c0f94b": "खाता {{value1}} का उपयोग करें",
     "06271baf4953": "जानकारी",
     "084d8c213a85": "{{value1}} की दर 5 में से",
@@ -10188,6 +10191,7 @@
       "restore": "बैकग्राउंड हल करें"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "useFormat": "{{aspect}} वीडियो फॉर्मेट का उपयोग करें",
       "copy": {
         "fourthPick": "आपका चौथा चुनाव",

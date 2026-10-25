@@ -128,6 +128,23 @@
     "useNamed": "Выкарыстаць {{name}}"
   },
   "copy": {
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1f185710f28a": "DeHub v",
+    "2f51108189d2": "PPV: ",
+    "3d1d43659027": " / USD",
+    "419f1a83fab2": "yourname.eth",
+    "53e6cdc30765": "you@example.com",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "af4707aebdfa": "OpenAI $",
+    "b4c9a289323b": "user@example.com",
+    "bf4151fc970f": "WORK_ADMIN_ARBITERS",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "1a00975a0ac1": "@канал",
     "7dda1098a2d0": "Выключыць прапанаваныя адказы",
     "89c9b65356e3": "Х (Твітэр)",
@@ -2925,6 +2942,7 @@
     "postCount_other": "{{count}} паведамленні"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "Глаз",
     "shortsEnabled": "Шорты",
     "shortsEnabledDesc": "Показаць таб пашуку Shorts і карусель Shorts на Галоўнай.",
@@ -4993,6 +5011,7 @@
     "loadFailed": "Не ўдалося загрузіць рынкавыя даныя"
   },
   "ads": {
+    "ecpm": "eCPM",
     "subtitle": "Дасягайце ўладальнікаў DeHub паводле ўзроўню значка",
     "tabs": {
       "overview": "Агляд",
@@ -5474,6 +5493,7 @@
     "passkeyBackupHint": "Ваш уліковы запіс знаходзіцца ў ключы доступу гэтай прылады. На большасці тэлефонаў ён сінхранізуецца з вашым уліковым запісам Google або Apple, і вы можаце дадаць рэзервовую копію пароля ў Наладах."
   },
   "careers": {
+    "linkedin": "LinkedIn",
     "xTwitter": "Х (Твітэр)",
     "title": "Кар'ера ў DeHub",
     "subtitle": "Далучайцеся да каманды, якая будуе будучыню дэцэнтралізаваных сацыяльных сетак",
@@ -5756,6 +5776,7 @@
     "searchDehubFor": "Шукаць «{{query}}» у DeHub"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "Паведаміць пра каментар",
     "reportCommentTitle": "Паведаміць пра гэты каментар",
     "reportCommentDescription": "Скажыце нам, што не так з гэтым каментаром, і нашы мадэратары перагледзяць яго.",
@@ -6369,6 +6390,8 @@
       "slowMode": "Павольны рэжым: па адным паведамленні кожны {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "Адхіліць адміністратара",
       "cancel": "Скасаваць",
       "dismissAdmin": "Адхіліць адміністратара",
@@ -6917,6 +6940,7 @@
     "priceRange": "Паміж {{min}} і {{max}} токенамі."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "Рэдагаваць",
     "listingUpdated": "Аб'ява абноўлена!",
     "saveListing": "Захаваць змены",
@@ -7736,6 +7760,7 @@
     "insufficientOnChain": "Недастаткова сродкаў у сетцы для гэтага токена"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "Імпартаваць відэа",
     "subtitle": "Вставце спасылку на відэа, якое вы ўжо маеце, і мы апублікуем яго як пост на вашым профілі. Пастаўце ў чаргу столькі, колькі хочаце — яны будуць запускацца адзін за адным у фоне.",
     "placeholder": "Вставце спасылку на відэа",
@@ -10204,6 +10229,7 @@
       "restore": "Вярнуць фон"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "after": "Пасля",
         "afterHint": "Паказай вынік.",
@@ -10417,6 +10443,7 @@
       "failed": "Не ўдалося стварыць субтытры для гэтага кліпа."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "Новы дызайн",
       "yourDesigns": "Вашы дызайны",
       "noDesigns": "Дызайны, якія вы ствараеце, захоўваюцца на гэтым тэлефоне і з'яўляюцца тут.",
@@ -10758,6 +10785,7 @@
       "pause": "Паўза"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "Відэа",
       "sound": "Гук",
       "shape": "Фігура",
@@ -10802,6 +10830,7 @@
       "tooLarge": "Гэты файл завялікі для рэдактара. Ліміт — 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "Рух",
       "hint": "Ключавыя кадры прымушаюць пласт рухацца ў часе. Дадайце кадр тут, перамясціце паказальнік прайгравання, змяніце пласт — і ён плаўна пяройдзе паміж кадрамі.",
       "outside": "Перамясціце паказальнік прайгравання на гэты пласт, каб дадаць або змяніць ключавыя кадры.",
@@ -13802,6 +13831,7 @@
     "checkoutUnavailable": "Афармленне замовы недаступна на дадзены момант. Паўтарыце спробу пазней."
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "за месца/мес",
     "plansForEveryWorkflow": "Планы для кожнага рабочага працэса",
     "findTheRightFit": "Ад асобных лічаў да камандаў прадпрыемства, знайдзіце адпаведны варыянт",
