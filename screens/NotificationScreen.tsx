@@ -1,3 +1,4 @@
+import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -1744,10 +1745,10 @@ const NotificationScreen = () => {
       >
         {/* Avatar with badge overlay */}
         <View className="relative">
-          <View className="w-11 h-11 rounded-md bg-theme-neutrals-800" />
+          <SkeletonBlock className="w-11 h-11 rounded-md " />
           {/* Type badge */}
-          <View
-            className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-theme-neutrals-700"
+          <SkeletonBlock
+            className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full "
             style={{ borderWidth: 2, borderColor: '#010305' }}
           />
         </View>
@@ -1755,11 +1756,11 @@ const NotificationScreen = () => {
         {/* Content */}
         <View className="flex-1 ml-3">
           {/* Main text lines */}
-          <View className="w-full h-4 bg-theme-neutrals-800 rounded" />
-          <View className="w-4/5 h-4 bg-theme-neutrals-800 rounded mt-1.5" />
-          <View className="w-2/3 h-4 bg-theme-neutrals-800 rounded mt-1.5" />
+          <SkeletonBlock className="w-full h-4 rounded" />
+          <SkeletonBlock className="w-4/5 h-4 rounded mt-1.5" />
+          <SkeletonBlock className="w-2/3 h-4 rounded mt-1.5" />
           {/* Timestamp */}
-          <View className="w-16 h-3 bg-theme-neutrals-800 rounded mt-2" />
+          <SkeletonBlock className="w-16 h-3 rounded mt-2" />
         </View>
       </View>
     ),
