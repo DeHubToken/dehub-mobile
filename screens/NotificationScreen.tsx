@@ -241,7 +241,7 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
   return (
     <View>
       <PageTabs
-        afterFirstTab={actions}
+        beforeTabs={actions}
         value={selected}
         onChange={onSelect}
         style={{ paddingBottom: 10 }}
