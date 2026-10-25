@@ -144,7 +144,7 @@ export default function MaboroshiScreen() {
         if (activeWallet.current !== owner) return;
         const asset = page.jobs.find(item => item.id === savedAssetId && item.kind === 'video');
         if (asset?.url) {
-          nav.navigate(ScreenNames.MediaEditor, { importMedia: { url: asset.url, kind: 'video', name: asset.prompt } });
+          nav.push(ScreenNames.MediaEditor, { importMedia: { url: asset.url, kind: 'video', name: asset.prompt } });
           return;
         }
         offset = page.nextOffset;
