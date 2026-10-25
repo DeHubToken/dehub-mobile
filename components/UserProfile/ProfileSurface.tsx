@@ -16,7 +16,7 @@ export default function ProfileSurface({ visible, onClose, onOpenComplete, child
 }) {
   if (Platform.OS !== "android") {
     return (
-      <Modal visible={visible} animationType="slide" onRequestClose={onClose}
+      <Modal visible={visible} animationType="slide" onRequestClose={onClose} onShow={onOpenComplete}
         presentationStyle="fullScreen" statusBarTranslucent>
         {children}
       </Modal>

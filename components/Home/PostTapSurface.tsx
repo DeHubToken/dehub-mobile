@@ -3,11 +3,13 @@ import { Pressable, Text, View, type GestureResponderEvent, type StyleProp, type
 import { isInTapReactionCenter, TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
 
 /** Only central taps wait for a reaction; the rest of the post opens immediately. */
-function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPressIntent, accessibilityLabel }: {
+function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPressIntent, accessibilityLabel, immediatePress = false }: {
   children: React.ReactNode;
   onPress?: () => void;
   onPressIntent?: () => void;
   accessibilityLabel?: string;
+  /** Navigating captions open on the first tap; media retain multi-tap reactions. */
+  immediatePress?: boolean;
   onReaction: (reaction: "like" | "love") => void;
   style?: StyleProp<ViewStyle>;
   /** Which post this is, for a list that reuses one card for another. */
@@ -69,6 +71,12 @@ function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPres
         event.stopPropagation();
         checkTravel(event);
         if (moved.current) return;
+        if (immediatePress && callbacks.current.onPress) {
+          reset();
+          onPressIntent?.();
+          callbacks.current.onPress();
+          return;
+        }
         const { pageX, pageY, locationX, locationY } = event.nativeEvent;
         const currentGeneration = generation.current;
         const finishTap = (central: boolean) => {

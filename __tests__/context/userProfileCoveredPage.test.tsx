@@ -1,10 +1,12 @@
 import React from 'react';
 import { act, create } from 'react-test-renderer';
 import { UserProfileSheetProvider, useUserProfileSheet, useUserProfilePresentation } from '../../context/UserProfileSheetContext';
+import { FeedPlaybackActiveContext } from '../../libs/visualActivity';
 
 jest.mock('dehub-jsx/jsx-runtime', () => require('react/jsx-runtime'));
 jest.mock('react-native', () => ({ View: 'View', Platform: { OS: 'android' } }));
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ theme: 'hazy' }) }));
+jest.mock('../../hooks/useUserProfileData', () => ({ prefetchUserProfile: jest.fn() }));
 jest.mock('../../components/UserProfile/UserProfileBottomSheet', () => {
   const React = require('react');
   const element = require('react').createElement;
@@ -31,22 +33,26 @@ it('keeps the previous page behind profile transitions without unmounting it', (
   function Page() {
     profile = useUserProfileSheet();
     React.useEffect(() => { mounted(); return unmounted; }, []);
-    return 'underlying page';
+    return React.createElement('UnderlyingPage', { active: React.useContext(FeedPlaybackActiveContext) });
   }
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });
   const coveredPage = () => tree.root.findAllByType('View' as any).find(view => view.props.pointerEvents !== undefined)!;
   act(() => profile.showUserProfile('member'));
+  expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(true);
   expect(coveredPage().props.style.display).toBe('flex');
   expect(coveredPage().props.pointerEvents).toBe('none');
   act(() => tree.root.findByType('Profile' as any).props.onOpenComplete());
+  expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(false);
   expect(coveredPage().props.style.display).toBe('none');
   expect(coveredPage().props.pointerEvents).toBe('none');
   expect(coveredPage().props.importantForAccessibility).toBe('no-hide-descendants');
   act(() => profile.hideUserProfile());
+  expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(false);
   expect(coveredPage().props.style.display).toBe('flex');
   expect(coveredPage().props.pointerEvents).toBe('none');
   act(() => jest.advanceTimersByTime(180));
+  expect(tree.root.findByType('UnderlyingPage' as any).props.active).toBe(true);
   expect(coveredPage().props.style.display).toBe('flex');
   expect(coveredPage().props.pointerEvents).toBe('auto');
   expect(mounted).toHaveBeenCalledTimes(1);
