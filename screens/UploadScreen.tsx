@@ -114,6 +114,7 @@ import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import CrossPostPicker, { CrossPostButton } from "../components/Upload/CrossPostPicker";
 import { crossPostState } from "../libs/crosspost-store";
+import { useSnapshot } from "valtio";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
 import type { EnhanceMode } from "../services/ai.service";
@@ -376,6 +377,7 @@ export default function UploadScreen() {
   const audioMeterBarsRef = useRef<number[]>([]);
   const [showAudioMenu, setShowAudioMenu] = useState(false);
   const [showPostOptions, setShowPostOptions] = useState(false);
+  const { selected: crossPostSelection } = useSnapshot(crossPostState);
   const audioPreviewRef = useRef<AudioPlayer | null>(null);
   const audioPreviewListenerRef = useRef<{ remove: () => void } | null>(null);
   const [isAudioPreviewPlaying, setIsAudioPreviewPlaying] = useState(false);
@@ -405,6 +407,7 @@ export default function UploadScreen() {
 
   const [isLiveMode, setIsLiveMode] = useState(!!route.params?.live);
   const [isStageMode, setIsStageMode] = useState(false);
+  const crossPostCount = visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode ? crossPostSelection.length : 0;
   const [showLiveOptions, setShowLiveOptions] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
@@ -3600,12 +3603,17 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
               hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-              style={{ backgroundColor: pollEnabled || contentWarning !== null || crossPostOpen ? "rgba(255,255,255,0.2)" : "transparent" }}
+              style={{ backgroundColor: pollEnabled || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
               accessibilityRole="button"
               accessibilityLabel={t("upload.postOptions", { defaultValue: "Post options" })}
               accessibilityState={{ expanded: showPostOptions }}
             >
               <Icon name="Ellipsis" size={20} color="#fff" />
+              {crossPostCount > 0 && (
+                <View className="absolute h-4 min-w-4 rounded-full bg-white items-center justify-center px-1" style={{ top: -2, right: -2 }}>
+                  <Text className="text-black font-bold" style={{ fontSize: 10 }}>{crossPostCount}</Text>
+                </View>
+              )}
             </TouchableOpacity>
           )}
 
