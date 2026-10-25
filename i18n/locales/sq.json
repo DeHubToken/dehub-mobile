@@ -11313,7 +11313,7 @@
       "find": "Gjej elementët e ruajtur",
       "hint": "Ruaj deri në 20 zgjedhje teksti dhe vektori të ripërdorshme për këtë llogari në këtë pajisje. Grupet, formatimi dhe vendosja relative e faqes mbahen. Fotografitë dhe videot qëndrojnë në dizajnet e tyre origjinale.",
       "insert": "Vendos elementin",
-      "inserted": "Inserted {{name}}",
+      "inserted": "U fut {{name}}",
       "keepProportions": "Mbani proporcionet e burimit gjatë futjes",
       "layerCount": "{{count}} lagje",
       "name": "Emri i elementit",
@@ -11879,7 +11879,8 @@
       "unmergeRange": "Shkëput {{range}}",
       "vertical": "Drejtvendosja vertikale",
       "weightsHint": "Madhësitë janë relative. Një vlerë prej 2 përdor dy herë më shumë hapësirë se 1; tabela mban madhësinë e saj të përgjithshme.",
-      "wrap": "Mbështillni tekstin e qelizës"
+      "wrap": "Mbështillni tekstin e qelizës",
+      "summary": "Shto një rresht përmbledhës"
     },
     "text": {
       "backgroundPerLine": "Përshtat sfondin për çdo rresht",

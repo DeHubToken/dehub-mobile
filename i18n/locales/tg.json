@@ -10353,7 +10353,9 @@
       "pptx": "Тақдимоти PowerPoint",
       "pptxHint": "Ang bawat pahina ay nagawang isang imahe ng slide, na may mga pagtatanghal at mga Таҳрир кардани матн ва унсурҳои инфиродӣ дар тарҳи аслӣ.",
       "section": "Қисмати номбаршуда",
-      "transparent": "Заминаи шаффоф"
+      "transparent": "Заминаи шаффоф",
+      "cropMarks": "Аломатҳои буридашуда ва ҳашияҳои чопӣ",
+      "findSection": "Бахшро ёбед"
     },
     "adjust": {
       "auto": "Беҳсозии худкор",
@@ -10390,7 +10392,8 @@
       "namingHint": "Aҳолиаш 80 нафар аст. Гурӯҳҳо ба аъзоёни намоёнашон густариш меёбанд; қабатҳои қулфшуда номҳои худро нигоҳ медоранд.",
       "rename": "Иваз кардани ном",
       "resetNames": "Бозсозии номҳо",
-      "startAt": "Оғоз кардан дар"
+      "startAt": "Оғоз кардан дар",
+      "lockedSkipped": "{{count}} қафли қафл нигоҳ дошта шудаанд"
     },
     "rail": {
       "elements": "Унсурҳо",
@@ -10654,7 +10657,8 @@
     "backgrounds": {
       "applyAll": "Stayllardan foydalaning",
       "hint": "Kopyahin ang larawan, gradient, o solid na background ng pahina na ito. Заминаҳои қулфшуда бетағйир мемонанд.",
-      "updated": "Нав карда шуд {{count}}info: whatsthis"
+      "updated": "Нав карда шуд {{count}}info: whatsthis",
+      "skipped": "{{count}} саҳифаҳои қуфл сохта шудаанд"
     },
     "brush": {
       "closed": "Chizilgan oxirlarini to'ldiring",
@@ -10665,7 +10669,8 @@
       "pointHint": "Оддикунонӣ инҳирофҳои хурдро нисбати қуттии расм тоза мекунад. Нақшаҳои пӯшида ҳадди аққал се нуқтаро нигоҳ медоранд. Name",
       "points": "Нуқтаҳои кашидан ({{count}})",
       "smoothing": "Ҳамворкунӣ",
-      "suggestedShape": "Пешниҳодшуда: {{shape}}"
+      "suggestedShape": "Пешниҳодшуда: {{shape}}",
+      "convertShape": "Расмро дар шакл тартиб диҳед"
     },
     "bulk": {
       "copyPhotoName": "Kopyahin ang pangalan ng larawan: {{name}}",
@@ -10736,7 +10741,9 @@
       "tokenCurrency": "Асъор",
       "tokenDecimals": "Ҷойҳои даҳӣ",
       "tokenLocale": "Ҷойгиршавии рақам",
-      "trimToken": "Фосилаҳо пеш аз форматбандӣ"
+      "trimToken": "Фосилаҳо пеш аз форматбандӣ",
+      "applyConnectionFile": "Пайвастҳои мувофиқро татбиқ кунед",
+      "connectionsLoaded": "Пайвастҳои мувофиқ бор шудаанд"
     },
     "charts": {
       "applyDateBounds": "Ilapat ang mga limitasyon ng petsa",
@@ -10866,7 +10873,8 @@
         "hint": "Mga limitasyon ang awtomatikong saklaw upang maibahagi ang mga nauugnay na chart. Mga halaga sa labas ng mga limitasyon na ito ay nakikita.",
         "auto": "Худкор",
         "reset": "Миқёсбандии худкор",
-        "upper": "Ҳудуди болоӣ"
+        "upper": "Ҳудуди болоӣ",
+        "lower": "Ҳудуди поён"
       },
       "scatterHint": "Координатҳои пароканда дар сутунҳои боқимонда координатҳои рақамии X ва Y- ро истифода мебаранд. Якчанд силсила ин координатҳои X- ро тақсим мекунанд. Pumili ng mga petsa at UTC na oras sa Axes at sukat para sa isang alapsed-time na horizontal na axis.",
       "scatterLines": "Пайваст кардани нуқтаҳои пароканда",
@@ -10898,12 +10906,15 @@
       "valueIntervals": "Фосилаҳои арзиши меҳвар",
       "xAxisMode": "Навъи маълумоти уфуқӣ",
       "xIntervals": "Фосилаи меҳвари уфуқӣ",
-      "hierarchySample": "Аврупо,Фаронса,35"
+      "hierarchySample": "Аврупо,Фаронса,35",
+      "racePosterHint": "Кадри статикӣ пешнамоиши SVG ва пешнамоиши хомакиро идора мекунад. Аниматсияро хомӯш кунед, то ин кадр дар хати вақт низ собит монад. Содироти растрӣ ва видеоии аниматсионӣ вақти нишондиҳандаи пахшро истифода мебаранд. Ҳамаи кадрҳо як миқёси ҳадди аксари собит доранд."
     },
     "colourPicker": {
       "pick": "Pumili mula sa canvas",
       "cancel": "Бекор кардани интихобкунандаи рангҳо",
-      "ink": "Ранги матнро аз канвас интихоб кунед"
+      "ink": "Ранги матнро аз канвас интихоб кунед",
+      "accent": "Акценти ранг аз канвас интихоб кунед",
+      "canvasHint": "Ба ранги саҳифа зарбаи ангушт занед"
     },
     "compositions": {
       "eyebrow": "Constellation name (optional)",
@@ -10926,7 +10937,8 @@
       "sampleEyebrow": "Дурнамои нав",
       "sampleTitle": "Сохтани чизи фаромӯшнашаванда",
       "subtitle": "Матни пуштибонӣ",
-      "title": "Омезиши матн"
+      "title": "Омезиши матн",
+      "brandFontHint": "Шрифтҳои сарлавҳа ва матни нигоҳдоштаро ба комбинасияи нав татбиқ мекунад. Рангҳои матн ва акценти аз рӯи контролҳои дар боло истифода мебаранд; карҳои мавҷуда дар ҷойи худ мемонанд."
     },
     "connectors": {
       "bend": "Ҷойгиршавӣ",
@@ -10949,7 +10961,8 @@
       "precision": "Таносуби фармоишӣ ва фокуси дақиқ",
       "ratioHeight": "Баландии таносуб",
       "ratioWidth": "Бари таносуб",
-      "swapRatio": "Васеъӣ ва баландии мубодила"
+      "swapRatio": "Васеъӣ ва баландии мубодила",
+      "touchHint": "Барои ҷойгиркунии дубора кашед · барои зум қисм кунед"
     },
     "dataCells": {
       "actionCount": "{{changed}} аз {{selected}} ҳуҷайраҳои интихобшуда тағйир дода шуд",
@@ -11224,7 +11237,8 @@
       "rulers": "Нишон додани ҳокимон",
       "smartSpacing": "Фосилагузории баробар",
       "title": "Роҳнамоҳо ва маржаҳо",
-      "visible": "Нишон додани роҳнамо"
+      "visible": "Нишон додани роҳнамо",
+      "dragOntoPage": "Барои илова кардани роҳнамо ба саҳифа кашед"
     },
     "help": {
       "noResults": "Кӯмаки мувофиқ ёфт нашуд. Номи асбоб ё амалеро ба мисли paste, crop ё group санҷед.",
@@ -11311,7 +11325,8 @@
       "hint": "Ҳар як қабати интихобшуда дар мавқеи мавҷудаи худ ҳамон кунҷро мегирад. Даври нисбии зер интихобро якҷоя мегардонад.",
       "setAngle": "Танзими ҳар як қабат",
       "title": "Танзими самти қабат",
-      "unflip": "Нест кардани флипҳо"
+      "unflip": "Нест кардани флипҳо",
+      "upright": "Рост"
     },
     "outline": {
       "applyPattern": "Татбиқ кардани намуна",
@@ -11390,7 +11405,8 @@
     },
     "photoTone": {
       "original": "Рангҳои аслӣ",
-      "strength": "Қувваи Duotone"
+      "strength": "Қувваи Duotone",
+      "duotone": "Дуотон"
     },
     "photos": {
       "arrange": "Ҷойи аксҳоро иваз кунед",
@@ -11400,7 +11416,9 @@
       "shuffle": "Аксҳоро омехта кунед",
       "swap": "Аксҳоро иваз кунед",
       "number": "Сурат {{number}}",
-      "second": "Фотоэффектҳои дуюм"
+      "second": "Фотоэффектҳои дуюм",
+      "first": "Чаҳорчӯби аксҳои аввал",
+      "preparing": "Омода кардани андозаҳои акс…"
     },
     "present": {
       "findPage": "Саҳифаро аз рӯи ном ё рақам пайдо кунед",
@@ -11445,7 +11463,8 @@
       "undoMark": "Бекор кардани нишона",
       "upNext": "Навбатӣ",
       "usePageTiming": "Истифодаи давомнокии саҳифаҳо",
-      "whiteScreen": "Экрани сафед"
+      "whiteScreen": "Экрани сафед",
+      "loading": "Бор кардани саҳифа"
     },
     "qr": {
       "calendarAllDay": "Araw na kaganapan",

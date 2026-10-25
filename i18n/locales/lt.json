@@ -10932,7 +10932,9 @@
       "tokenDecimals": "Dešimtainiai skaičiai",
       "tokenHint": "Įklijuokite vietos rezervavimo ženklą į šablono tekstą arba QR turinį ir pasirinkite Naudoti vietos rezervavimo ženklus to sluoksnio tekste. Lapų skaičiuoklės reikšmių formatavimas nepakeistas. Skaitmeniniams formatams reikia paprastų skaičių; 25 formatams reikia 25% procentų režimu.",
       "tokenLocale": "Lokalės numeris",
-      "trimToken": "Prieš formatuojant apkarpykite tarpus"
+      "trimToken": "Prieš formatuojant apkarpykite tarpus",
+      "generatedToken": "Formatuotas vietos rezervavimo ženklas, kurį reikia kopijuoti",
+      "last": "Į eilę"
     },
     "charts": {
       "applyDateBounds": "Nustatykite datų ribas",
@@ -11092,7 +11094,11 @@
       "valueIntervals": "Reikšmės ašies intervalai",
       "xAxisMode": "Horizontalusis duomenų tipas",
       "xIntervals": "Horizontaliosios ašies intervalai",
-      "hierarchySample": "Europa,Prancūzija, 35"
+      "hierarchySample": "Europa,Prancūzija, 35",
+      "bubbleExample": "Pakeisti juodraštį burbulo pavyzdžiu",
+      "filterText": "Atitinkantis etiketės tekstas",
+      "raceExample": "Pakeisti juodraštį reitingo pavyzdžiu",
+      "removeReference": "Pašalinti tikslą"
     },
     "clipboard": {
       "cut": "Pjovimo sluoksniai",
@@ -11344,7 +11350,8 @@
       "previous": "Ankstesni šriftai",
       "replaceDesign": "Pakeisti šio dizaino šriftą",
       "source": "Šriftas, kurį reikia pakeisti",
-      "target": "Pakaitinis šriftas"
+      "target": "Pakaitinis šriftas",
+      "search": "Ieškoti šriftų"
     },
     "frames": {
       "title": "Fotografijos rėmas"

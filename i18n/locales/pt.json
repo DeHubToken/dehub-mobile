@@ -11456,7 +11456,7 @@
     "notes": {
       "changed": "Esta página foi alterada. Reabra as Notas antes de guardar.",
       "hint": "Os nomes e notas são salvos com este design. Eles não aparecem em exports de imagem, vídeo ou PDF.",
-      "name": "Page name",
+      "name": "Nome da página",
       "presenter": "Notas do apresentador",
       "save": "Salve notas da página",
       "saved": "Notas da página salvas",

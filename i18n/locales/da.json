@@ -10975,7 +10975,7 @@
       "dateLocale": "Lokal dato",
       "decimals": "Decimaler",
       "defaultTextSize": "Standard tekststørrelse",
-      "donutHole": "Donut hole",
+      "donutHole": "Donuthul",
       "donutLabel": "Donut center etiket",
       "donutLabelOptional": "Valgfri midteretiket",
       "donutTotal": "Vis total i centrum",
@@ -11452,7 +11452,7 @@
       "positionGroups": "Position og grupper"
     },
     "links": {
-      "destination": "Link destination",
+      "destination": "Linkmål",
       "apply": "Tilføj link",
       "contactBuilder": "Byg email, telefon eller SMS-link",
       "copied": "Linkdestination kopieret",

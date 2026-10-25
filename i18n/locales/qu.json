@@ -10958,7 +10958,9 @@
       "tokenDecimals": "Chunkayuq chikukuna",
       "tokenHint": "Plantilla qillqaman utaq QR contenidoman churanata k'askachiy chaymanta chay capapaq qillqapi tiyachiqkunata llamk'achiyta akllay. Formato ruwayqa yupay raphi chanikunata mana tikrasqa saqin. Yupay formatokunaqa llañu yupaykunatam munan; 25 formatokuna 25% hina pachakmanta hukninpi.",
       "tokenLocale": "Número runa simi",
-      "trimToken": "Manaraq formato ruwachkaspa espaciokunata kuchuy"
+      "trimToken": "Manaraq formato ruwachkaspa espaciokunata kuchuy",
+      "nextRow": "Qatiqnin fila",
+      "title": "Bulk nisqa paqarichiy"
     },
     "charts": {
       "applyDateBounds": "Fechapa linderonkunata churay",
@@ -11081,9 +11083,9 @@
         "apply": "Escalapa linderonkunata churay",
         "auto": "Kikinmanta",
         "hint": "Limites nisqakuna kikinmanta escalata mast'arinku chaymanta tupaq tablakuna huk rangota rakinakunkuman. Chay linderos hawapi kaq valores nisqakunaqa rikukuqllapunim kachkan.",
-        "lower": "Lower bound",
+        "lower": "Uray saywa",
         "reset": "Kikinmanta escala",
-        "upper": "Upper bound"
+        "upper": "Hanay saywa"
       },
       "scatterHint": "Ch’iqichiy siq’ikunaqa ñawpaq sapaqpi yupay X coordenadas nisqakunatam llamk’achinku, puchuq sapaqchasqakunapitaq Y chanikunata. Achka seriekunam chay X coordenadas nisqakunata rakinakunku. P'unchawkuna chaymanta UTC pachakuna Ejes kaqpi akllay chaymanta huk pasasqa pacha eje horizontal kaqpaq escala.",
       "scatterLines": "Chiqisqa puntokunata t’inkina",
@@ -11121,7 +11123,8 @@
       "valueIntervals": "Valor-eje intervalokuna",
       "xAxisMode": "Horizontal willay laya",
       "xIntervals": "Horizontal-eje intervalokuna",
-      "hierarchySample": "Europa,Francia,35"
+      "hierarchySample": "Europa,Francia,35",
+      "sameCategoryColour": "Tukuy categoría nisqapaq llamk’achiy"
     },
     "clipboard": {
       "cut": "Qulluy qatukuna",
@@ -11488,7 +11491,8 @@
     },
     "media": {
       "photo": "Foto",
-      "replace": "Akllasqa qatata tikray"
+      "replace": "Akllasqa qatata tikray",
+      "video": "Video"
     },
     "mediaSelection": {
       "applyFilter": "Akllanapaq filtrota churay",
@@ -11553,7 +11557,8 @@
       "dashLengths": "Dash y gap nisqa largokuna",
       "dashOffset": "Desplazamiento de tablero",
       "pattern": "Chiru patrón",
-      "width": "Frontera ancho: {{value}}"
+      "width": "Frontera ancho: {{value}}",
+      "border": "Foto frontera"
     },
     "pageAnimation": {
       "apply": "Animacionta churay",
@@ -11680,7 +11685,8 @@
       "title": "Kunan p’anqakunata",
       "undoMark": "Deshacer marca",
       "usePageTiming": "P’anqap unayniyuq kayninta llamk’achiy",
-      "whiteScreen": "Yuraq pantalla"
+      "whiteScreen": "Yuraq pantalla",
+      "upNext": "Qatiqnin"
     },
     "qr": {
       "background": "Qipanchasqa",
@@ -11943,7 +11949,8 @@
       "regular": "Sapa kuti qillqasqa",
       "setColour": "Color nisqa churay",
       "size": "Qillqap sayaynin",
-      "title": "Akllasqa qillqata formato ({{count}})"
+      "title": "Akllasqa qillqata formato ({{count}})",
+      "setSize": "Tamaño churay"
     },
     "tools": {
       "noResults": "Mana tupaq yanapakuykuna. Aswan pisi maskhayta kallpachakuy.",
