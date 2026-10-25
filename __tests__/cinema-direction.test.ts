@@ -1,6 +1,17 @@
 import { appendCinemaDirection, normalizeCinemaDirection } from '../libs/cinemaDirection';
 
 describe('cinema direction', () => {
+  it('replaces prior direction on result reuse and removes it when cleared', () => {
+    const first = appendCinemaDirection('A train arriving', { era: '1980s' }, 'video');
+    expect(appendCinemaDirection(first, { era: '1980s' }, 'video')).toBe(first);
+    const revised = appendCinemaDirection(first, { era: '1950s' }, 'video');
+    expect(revised).toContain('Era: 1950s.');
+    expect(revised).not.toContain('1980s');
+    expect(appendCinemaDirection(first, {}, 'video')).toBe('A train arriving');
+    expect(appendCinemaDirection(first, { era: '1950s' }, 'audio')).toBe('A train arriving');
+    const prose = 'A scene\n\nCreative direction (visual guidance):\nKeep this handwritten note';
+    expect(appendCinemaDirection(prose, {}, 'video')).toBe(prose);
+  });
   it('keeps neutral requests byte-for-byte and never changes audio or 3D prompts', () => {
     expect(appendCinemaDirection('  brief  ', {}, 'video')).toBe('  brief  ');
     for (const mode of ['audio', '3d']) {

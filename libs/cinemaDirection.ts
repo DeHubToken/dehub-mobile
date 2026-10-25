@@ -34,10 +34,17 @@ export function normalizeCinemaDirection(value: unknown): CinemaDirection {
 }
 
 export function appendCinemaDirection(prompt: string, value: unknown, mode: string): string {
+  const marker = '\n\nCreative direction (visual guidance):\n';
+  const previous = prompt.lastIndexOf(marker);
+  if (previous >= 0) {
+    const tail = prompt.slice(previous + marker.length).split('\n');
+    const knownLines = new Set(CINEMA_DIRECTION_FIELDS.flatMap((field) => field.options.map((option) => `${field.label}: ${option}.`)));
+    if (tail.length > 0 && tail.every((line) => knownLines.has(line))) prompt = prompt.slice(0, previous);
+  }
   if (mode !== 'image' && mode !== 'video') return prompt;
   const direction = normalizeCinemaDirection(value);
   const lines = CINEMA_DIRECTION_FIELDS
     .filter((field) => (!field.videoOnly || mode === 'video') && direction[field.id])
     .map((field) => `${field.label}: ${direction[field.id]}.`);
-  return lines.length ? `${prompt.trim()}\n\nCreative direction (visual guidance):\n${lines.join('\n')}` : prompt;
+  return lines.length ? `${prompt.trim()}${marker}${lines.join('\n')}` : prompt;
 }
