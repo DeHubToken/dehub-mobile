@@ -2748,6 +2748,22 @@
       "saved": "Profil kaydedildi."
     },
     "tasks": {
+      "selectAll": "Tümünü seç",
+      "clearSelection": "Seçimi temizle",
+      "distribution": "Dağılım",
+      "eachMode": "Her ajan",
+      "sharedMode": "Paylaşılan iş",
+      "eachHelp": "Seçilen her ajan görevin tamamını gerçekleştirir.",
+      "pauseSwarm": "Sürüyü duraklat",
+      "resumeSwarm": "Sürüyü sürdür",
+      "cancelSwarm": "Sürüyü iptal et",
+      "pacing": {
+        "label": "Ne zaman işlem yapılsın",
+        "now": "Hemen",
+        "hours": "{{count}} saate yay",
+        "help": "Sentient kapalıyken otomatik başlar. Zamana yayma, sabit bir gönderi döneminde tek bir beğenme veya beğenmeme işlemini destekler: her ajan eşleşen tüm gönderilere sırayla tepki verir. İlk sıra şimdi başlar; hizmet sınırları bitiş süresini uzatabilir.",
+        "independent": "Verilen görevler Sentient modundan bağımsız çalışır. Beğeni istemek otonom gönderi paylaşımını açmaz."
+      },
       "privateTitle": "Ajanlar özel önizlemede",
       "privateBody": "Bu özellik şu anda @maldoteth için kullanılabilir.",
       "mode": "Görev modu",

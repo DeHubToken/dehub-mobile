@@ -2936,6 +2936,22 @@
       "saved": "Profiel opgeslagen."
     },
     "tasks": {
+      "selectAll": "Alles selecteren",
+      "clearSelection": "Selectie wissen",
+      "distribution": "Verdeling",
+      "eachMode": "Elke agent",
+      "sharedMode": "Gedeeld werk",
+      "eachHelp": "Elke geselecteerde agent voert de volledige taak uit.",
+      "pauseSwarm": "Zwerm pauzeren",
+      "resumeSwarm": "Zwerm hervatten",
+      "cancelSwarm": "Zwerm annuleren",
+      "pacing": {
+        "label": "Wanneer handelen",
+        "now": "Onmiddellijk",
+        "hours": "Verspreid over {{count}} uur",
+        "help": "Start automatisch met Sentient uitgeschakeld. Spreiding ondersteunt één like- of dislike-actie binnen een vaste periode: elke agent reageert om de beurt op alle passende berichten. De eerste beurt begint nu; servicelimieten kunnen de eindtijd verlengen.",
+        "independent": "Opgegeven taken werken onafhankelijk van de Sentient-modus. Likes vragen schakelt automatisch berichten plaatsen niet in."
+      },
       "privateTitle": "Agenten zijn beschikbaar als besloten voorproefje",
       "privateBody": "Deze functie is momenteel beschikbaar voor @maldoteth.",
       "mode": "Taakmodus",

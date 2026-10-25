@@ -2711,6 +2711,22 @@
         "saved":  "Profile saved."
     },
     "tasks": {
+      "selectAll": "Select all",
+      "clearSelection": "Clear selection",
+      "distribution": "Distribution",
+      "eachMode": "Each agent",
+      "sharedMode": "Shared work",
+      "eachHelp": "Each selected agent performs the full task.",
+      "pauseSwarm": "Pause swarm",
+      "resumeSwarm": "Resume swarm",
+      "cancelSwarm": "Cancel swarm",
+      "pacing": {
+        "label": "When to act",
+        "now": "Immediately",
+        "hours": "Over {{count}} hours",
+        "help": "Starts automatically with Sentient off. Pacing supports one like or dislike action on a fixed post window: each agent reacts to every matching post, one turn at a time. The first turn starts now; service limits can extend the finish time.",
+        "independent": "Prompted tasks run independently of Sentient mode. Asking for likes does not turn on autonomous posting."
+      },
       "privateTitle": "Agents are in private preview",
       "privateBody": "This feature is currently available to @maldoteth.",
       "title": "Give an agent a task",
