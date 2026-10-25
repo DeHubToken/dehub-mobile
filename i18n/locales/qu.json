@@ -10951,7 +10951,9 @@
       "tokenDecimals": "Chunkayuq chikukuna",
       "tokenHint": "Plantilla qillqaman utaq QR contenidoman churanata k'askachiy chaymanta chay capapaq qillqapi tiyachiqkunata llamk'achiyta akllay. Formato ruwayqa yupay raphi chanikunata mana tikrasqa saqin. Yupay formatokunaqa llañu yupaykunatam munan; 25 formatokuna 25% hina pachakmanta hukninpi.",
       "tokenLocale": "Número runa simi",
-      "trimToken": "Manaraq formato ruwachkaspa espaciokunata kuchuy"
+      "trimToken": "Manaraq formato ruwachkaspa espaciokunata kuchuy",
+      "nextRow": "Qatiqnin fila",
+      "title": "Bulk nisqa paqarichiy"
     },
     "charts": {
       "applyDateBounds": "Fechapa linderonkunata churay",
@@ -11114,7 +11116,8 @@
       "valueIntervals": "Value-axis intervals",
       "xAxisMode": "Horizontal willay laya",
       "xIntervals": "Horizontal-axis intervals",
-      "hierarchySample": "Europa,Francia,35"
+      "hierarchySample": "Europa,Francia,35",
+      "sameCategoryColour": "Tukuy categoría nisqapaq llamk’achiy"
     },
     "clipboard": {
       "cut": "Qulluy qatukuna",
@@ -11481,7 +11484,8 @@
     },
     "media": {
       "photo": "Foto",
-      "replace": "Akllasqa qatata tikray"
+      "replace": "Akllasqa qatata tikray",
+      "video": "Video"
     },
     "mediaSelection": {
       "applyFilter": "Akllanapaq filtrota churay",
@@ -11546,7 +11550,8 @@
       "dashLengths": "Dash y gap nisqa largokuna",
       "dashOffset": "Desplazamiento de tablero",
       "pattern": "Chiru patrón",
-      "width": "Frontera ancho: {{value}}"
+      "width": "Frontera ancho: {{value}}",
+      "border": "Foto frontera"
     },
     "pageAnimation": {
       "apply": "Animacionta churay",
@@ -11673,7 +11678,8 @@
       "title": "Kunan p’anqakunata",
       "undoMark": "Deshacer marca",
       "usePageTiming": "P’anqap unayniyuq kayninta llamk’achiy",
-      "whiteScreen": "Yuraq pantalla"
+      "whiteScreen": "Yuraq pantalla",
+      "upNext": "Up next"
     },
     "qr": {
       "background": "Qipanchasqa",
@@ -11897,7 +11903,8 @@
       "unmergeRange": "{{range}} k’utuy",
       "vertical": "Waqta k’uyuy",
       "weightsHint": "Sayaykunaqa kikinmanta kachkan. 2 valorniyuqqa 1 valorniyuqmanta iskay kuti aswan hatunmi; tablaqa kikin sayayninpi kachkan.",
-      "wrap": "Cell qillqata k’uyuy"
+      "wrap": "Cell qillqata k’uyuy",
+      "scaleApplied": "Coloreado {{count}} yupay celdakuna"
     },
     "text": {
       "backgroundPerLine": "Sapa siqiman qhipa rikch’ayta ch’askiy",
@@ -11935,7 +11942,8 @@
       "regular": "Sapa kuti qillqasqa",
       "setColour": "Color nisqa churay",
       "size": "Qillqap sayaynin",
-      "title": "Akllasqa qillqata formato ({{count}})"
+      "title": "Akllasqa qillqata formato ({{count}})",
+      "setSize": "Tamaño churay"
     },
     "tools": {
       "noResults": "Mana tupaq yanapakuykuna. Aswan pisi maskhayta kallpachakuy.",

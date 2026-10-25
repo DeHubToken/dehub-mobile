@@ -3622,7 +3622,8 @@
     "apply": "Tinye",
     "next": "Ọzọ",
     "previous": "Nke gara aga",
-    "redo": "Megharịa"
+    "redo": "Megharịa",
+    "remove": "Wepu"
   },
   "tip": {
     "payDirect": "Zitere ozugbo na {{name}} na {{symbol}} on {{chain}}. Enweghị mgbanwe.",
@@ -10581,7 +10582,8 @@
       "replacePreset": "Dochie ya na nke ugbu a",
       "saveNewPreset": "Chekwaa ọfụụ",
       "saveStyles": "Zọpụta ekwekọghị na imewe",
-      "usePreset": "Jiri ụdịdị ndị ahụ"
+      "usePreset": "Jiri ụdịdị ndị ahụ",
+      "stylesSaved": "Ụdị Brand echekwara na imewe a"
     },
     "templates": {
       "announcement": {
@@ -10997,7 +10999,23 @@
       "valueIntervals": "Uru-axis etiti oge",
       "xAxisMode": "Ụdị data kwụ ọtọ",
       "xIntervals": "Oge dị n'akụkụ kwụ ọtọ",
-      "hierarchySample": "Europe,France, 35"
+      "hierarchySample": "Europe,France, 35",
+      "defaultTextSize": "Ukwu ederede ndabere",
+      "donutHole": "Donut hole",
+      "filterFirst": "Usoro mbu",
+      "filterHint": "Ihe omume atọ na-arụ ọrụ karịa ga-adị otu. Ịchọ ihe na-agbanwe ihe ngosi na eserese mwepụ ebe o na-echekwa ahịrị isi mmalite niile. Ịchọ ihe usoro a kpọrọ aha na-agbanyụ agbanyụ ma ọ bụrụ na usoro ahụ ewepụrụ ma ọ bụ gbanwee aha ya. Eserese ọganihu na-echekwa uru isi mmalite ha.",
+      "filterKind": "Ọnọdụ ịchọ ihe",
+      "filterRowsSummary": "Ahịrị isi mmalite {{first}}–{{last}}",
+      "filterTotal": "Nchịkọta gafere usoro",
+      "lineStyle": "Ụdị ahịrị",
+      "noPictogramIcons": "Ọnụ ọnụ ọ bụla adịghị akpọ ọrụ maka ọchụchụ a.",
+      "noStarters": "Ọnụ ọnụ ọ bụla adịghị akpọ ọrụ maka mmalite a.",
+      "orderBy": "Usoro ụdị site na",
+      "pieValueMode": "Ụkọ uru na akwụkwọ ọkọ",
+      "seriesStructure": "Jikwa usoro data",
+      "seriesTotal": "Nchịkọta gafere usoro",
+      "styleFiles": "Bufee ụdị ihe ngosi",
+      "valueFormat": "Ụdị uru"
     },
     "clipboard": {
       "cut": "Bee akwa",
@@ -11053,7 +11071,11 @@
       "precisionHint": "Ratios na-agbanwe ihe ọkụkụ ma na-echekwa mpaghara egosipụtara. Ọnọdụ na-elekwasị anya na-akpali windo ihe ọkụkụ dị ugbu a n 'etiti ọnụ ya dịnụ, gụnyere onyonyo a tụgharịrị atụgharị.",
       "ratioWidth": "Ratio obosara",
       "swapRatio": "Swap obosara na elu",
-      "touchHint": "Dọrọ ka iweghachi n'ọnọdụ · pịa ka iwelie nha"
+      "touchHint": "Dọrọ ka iweghachi n'ọnọdụ · pịa ka iwelie nha",
+      "applyFocus": "Tinye uche ziri ezi",
+      "focusHint": "Kwagharị windo ịchọ ihe ebe o na-echekwa nha ya.",
+      "focusPoint": "Uche {{x}}%, {{y}}%",
+      "ratioHeight": "Oke ịtụ"
     },
     "dataCells": {
       "actionCount": "Agbanwere {{changed}} nke {{selected}} mkpụrụ ndụ ahọpụtara",
@@ -11078,7 +11100,8 @@
       "redoAction": "Megharịa omume data",
       "startCell": "Malite na sel",
       "undoAction": "Wepụ omume data",
-      "valueHint": "Dezie sel ahụ dum ebe a, gụnyere nkwụsị ahịrị. A na-echekwa ụkpụrụ dị ka ederede; a naghị agbakọ usoro mgbakọ."
+      "valueHint": "Dezie sel ahụ dum ebe a, gụnyere nkwụsị ahịrị. A na-echekwa ụkpụrụ dị ka ederede; a naghị agbakọ usoro mgbakọ.",
+      "cleanNumbers": "Gbanwee ọnụ ọnụ akọwapụtara"
     },
     "dataExport": {
       "formulasAsText": "Were usoro mgbakọ dị ka ederede"
@@ -11102,7 +11125,9 @@
       "skipEmpty": "Wepụ ahịrị data efu",
       "use": "Jiri data a họọrọ",
       "sampleCategory": "Udi",
-      "sampleValue": "Uru"
+      "sampleValue": "Uru",
+      "sampleNorth": "Ugwu",
+      "sampleSouth": "Ndịda"
     },
     "dataVisual": {
       "addColumn": "Tinye kọlụm",
@@ -11147,7 +11172,9 @@
       "textColour": "Ngwe",
       "title": "Chaatị dị iche iche na tebụl",
       "values": "Gosi valiu",
-      "vectorHint": "Na-ebupụ eserese a na nzụlite doro anya. Ederede na-anọgide na ndozi ma jiri ihumkpụrụedemede a họọrọ ebe ọ dị."
+      "vectorHint": "Na-ebupụ eserese a na nzụlite doro anya. Ederede na-anọgide na ndozi ma jiri ihumkpụrụedemede a họọrọ ebe ọ dị.",
+      "accent": "Accent",
+      "expandData": "Gbasaa onye nnọchi ederede"
     },
     "designTools": {
       "applySize": "Bido ụhara",
@@ -11164,7 +11191,9 @@
       "pasteStyle": "Tapawa ụdị",
       "replaceAll": "Dochie ihe niile",
       "replaceWith": "Jiri dochie anya",
-      "replacement": "Agba ngbanwe"
+      "replacement": "Agba ngbanwe",
+      "backInsert": "Laghachi na Tinye",
+      "resize": "Gbanwee nha"
     },
     "diagrams": {
       "insert": "Tinye esereese",
@@ -11174,7 +11203,11 @@
       "previewHint": "Nlele na-eji agba ibe akwụkwọ ahụ eme ihe na-enweghị ihe osise ọzọ. Fanye eserese ahụ ka ịgbakwunye oyi akwa ndị nwere ike idezi.",
       "previewNeedsData": "Mezue agba ma jiri akara ọnụ ruo mkpụrụedemede 120 iji hụchalụ.",
       "previewUpdating": "Na-emelite nhụchalụ eserese...",
-      "title": "Editable esereese mmalite"
+      "title": "Editable esereese mmalite",
+      "edgeLabels": "Akara njikọ, otu n'otu ahịrị (nhọpụta)",
+      "editHint": "Ọ bụla node na ederede ya na-etolite otu ìgwè. Connector labels na-ejikọ na lainụ ha. Lainụ na-adị iche iche dị ka editable connectors; gbanwee ọnọdụ ha mgbe ị gbanwere nodes. Blank labels na-eji starter text. Diagram ahụ na-ejupụta oge nke ihu ihu ugbu a ma nwere ike ịchekwa na ụlọ akwụkwọ gị nke ihe ndị a na-eji ọzọ.",
+      "previewUnavailable": "Canvas preview adịghị. Draft ahụ na-adị editable.",
+      "vertical": "Vertical layout"
     },
     "document": {
       "numberPreview": "Ngosi ọnụọgụgụ ihuakwụkwọ",
@@ -11192,7 +11225,11 @@
       "skipCover": "Zoo na ihuakwụkwọ mbụ",
       "start": "Bido na",
       "title": "Page nọmba na ugboro ugboro ọcha",
-      "total": "Gosi ngụkọta ihuakwụkwọ niile"
+      "total": "Gosi ngụkọta ihuakwụkwọ niile",
+      "applyNumbers": "Tinye ọnụ ọgụgụ ihu",
+      "numberHint": "Tinye editable page numbers. Ọnụ ọgụgụ na-emegharia mgbe a na-agbakwunye, na-adupliketi, na-ahapụ, ma ọ bụ na-ahazi ihu. Locked numbers na-adị otu.",
+      "repeatScopeHint": "Na-eji ọnụ ọgụgụ ihu nke akwụkwọ. Ihu ugbu a na-adịghị mma.",
+      "suffix": "Suffix"
     },
     "elements": {
       "find": "Chọta elementị echekwara",
@@ -11205,7 +11242,11 @@
       "rename": "Kpọgharia aha",
       "saveSelection": "Chekwaa ihenhọrọ",
       "selectionLibrary": "Chekwaa ma ọ bụ jigharịa ihenhọrọ ndị ahụ a họọrọ",
-      "title": "Chekwaa elementị ndị ahụ"
+      "title": "Chekwaa elementị ndị ahụ",
+      "layerCount": "{{count}} layers",
+      "name": "Element name",
+      "replaceSelection": "Gbanwee na ọpụpụ",
+      "undoLibrary": "Undo library change"
     },
     "fills": {
       "apply": "Tinye jupụta",
@@ -11215,7 +11256,9 @@
       "lockedBackground": "Ị kpọghee ihuakwụkwọ tupu ị dochie ya.",
       "resetBackground": "Ndesịta ihuakwụkwọ n 'okirikiri",
       "solid": "Weghachi siri ike jupụta",
-      "solidBackground": "Jiri ụcha mbụ dịka okpuru ihuakwụkwọ"
+      "solidBackground": "Jiri ụcha mbụ dịka okpuru ihuakwụkwọ",
+      "angle": "Angle",
+      "background": "Jiri dị ka ihu ihu nzụkọ"
     },
     "fonts": {
       "count": "{{count}} mkpụrụedemede achọtara. Chọọ iji mechie ndepụta ahụ.",
@@ -11223,7 +11266,9 @@
       "next": "Isi mmalite ndị ọzọ",
       "previous": "Ihumkpụrụedemede ndị gara aga",
       "source": "Ihumkpụrụedemede iji dochie",
-      "target": "Ihumkpụrụedemede ngbanwe"
+      "target": "Ihumkpụrụedemede ngbanwe",
+      "replaceDesign": "Gbanwee font n'ụdị ọzọ n'ụdị ihe ọmụmụ a",
+      "search": "Search fonts"
     },
     "frames": {
       "title": "Okpokoro foto"
@@ -11249,18 +11294,21 @@
       "styleFileHint": "Nyefee gradient agba, ọnọdụ, nghọta, n 'akuku na radial ntọala n' etiti ngwaọrụ. Bubata ihe osise ahụ; tinye ya n 'ọrụ iji melite ọrụ nka.",
       "styleFiles": "Nyefee ụdị gradient",
       "styleLoaded": "Style kwajuru n 'ime draft",
-      "svgHint": "Na-ebupụ gradient a n 'ogo ihuakwụkwọ, tinyere ọnọdụ nkwụsị na nghọta. Tinye ya n' ọrụ iche iche iji ya mee ihe."
+      "svgHint": "Na-ebupụ gradient a n 'ogo ihuakwụkwọ, tinyere ọnọdụ nkwụsị na nghọta. Tinye ya n' ọrụ iche iche iji ya mee ihe.",
+      "opacity": "Opacity"
     },
     "graphicDraftHistory": {
       "local": "Ederede eserese",
-      "undo": "Wepụ ngbanwe Draft"
+      "undo": "Wepụ ngbanwe Draft",
+      "redo": "Redo draft change"
     },
     "grids": {
       "frame": "Okpokoro foto",
       "mobileHint": "Tinye a foto okirikiri nhọrọ ukwuu. Kpatụ a etiti ma họrọ Dochie họrọ oyi akwa jupụta ya na a foto ma ọ bụ video.",
       "rounding": "Nkuku gburugburu",
       "spacing": "Itinye ohere na pikselụ",
-      "title": "Foto grid"
+      "title": "Foto grid",
+      "insert": "Insert photo grid"
     },
     "groups": {
       "applyRotation": "Tụgharịa ihenhọrọ",
@@ -11278,7 +11326,9 @@
       "scalePercent": "Họrọ n 'inyogo site na pasent",
       "selectMatches": "Họrọ n 'ígwé nke dabara adaba",
       "smaller": "Obere",
-      "ungroup": "Ungroup"
+      "ungroup": "Ungroup",
+      "applyOpacity": "Tinye na ọpụpụ ndị ahọpụtara",
+      "matchReference": "Reference size"
     },
     "guides": {
       "add": "Tinye nduzi",
@@ -11299,7 +11349,9 @@
       "snap": "Snap ka ndị nduzi",
       "thirds": "Nke atọ",
       "title": "Nduzi na n 'akụkụ",
-      "visible": "Gosi nduzi"
+      "visible": "Gosi nduzi",
+      "releaseOutside": "Release iji wepụ onye ọkwa a",
+      "replaceExisting": "Gbanwee ndị ọkwa dị adị"
     },
     "help": {
       "noResults": "Enweghị enyemaka dabara adaba. Gbalịa aha ngwaọrụ ma ọ bụ ihe dịka mado, ihe ọkụkụ, ma ọ bụ otu.",
@@ -11323,10 +11375,15 @@
       "openFailed": "Agaghị enwenwu ike imepe ụzọ njikọ a",
       "openPage": "Gaa na peeji nke {{number}}",
       "remove": "Wepụ njikọ",
-      "title": "Banye"
+      "title": "Banye",
+      "destination": "Link destination",
+      "multiSelection": "Links maka ọrụ ndị ahọpụtara",
+      "targetPage": "Destination page"
     },
     "media": {
-      "replace": "Dochie nsomebefaịlụ a họọrọ"
+      "replace": "Dochie nsomebefaịlụ a họọrọ",
+      "photo": "Photo",
+      "video": "Video"
     },
     "mediaSelection": {
       "applyFilter": "Megharịa nzacha na nhọrọ",
@@ -11341,7 +11398,8 @@
       "removeBorder": "Wepụ ókèala",
       "setBorder": "Debe ókèala",
       "setRadius": "Setịpụrụ akuku okirikiri",
-      "title": "Ụdị foto na vidiyo a họọrọ ({{count}})"
+      "title": "Ụdị foto na vidiyo a họọrọ ({{count}})",
+      "resetColours": "Reset colour adjustments"
     },
     "mockups": {
       "caption": "Address ma ọ bụ foto caption (nhọrọ)",
@@ -11388,7 +11446,8 @@
       "colour": "Ụcha ókèala",
       "customPattern": "Omenala ụkpụrụ",
       "dashLengths": "Dash na ọdịiche ogologo",
-      "pattern": "Line ụkpụrụ"
+      "pattern": "Line ụkpụrụ",
+      "dashOffset": "Dash offset"
     },
     "pageAnimation": {
       "title": "Megharịa ibe",

@@ -10102,7 +10102,17 @@
       "selectionRange": "পৃষ্ঠাসংখ্যা এবং পরিসর",
       "showPresentation": "Show in presentation",
       "transferHint": "کپی تا ۵۰ صفحه، یا به یک صفحه منتقل کنید. گروه‌ها و جایگذاری‌ها به انتخاب بستگی دارند. انتقال فقط این صفحه را تحت تأثیر قرار می‌دهد؛ دیگر حضورها حفظ می‌شوند. مقصد باید با لایه‌های زمان‌دار سازگار باشد.",
-      "transferLayers": "चयनित परतन के पन्ना पर ले जाएँ या कॉपी करें"
+      "transferLayers": "चयनित परतन के पन्ना पर ले जाएँ या कॉपी करें",
+      "allNotes": "{{count}} sayfa hepsini bir not defteri dosyasına",
+      "allPdf": "{{count}} sayfa hepsini bir PDF'ye",
+      "allPptx": "{{count}} sayfa hepsini bir sunumda",
+      "durationBatchHint": "Sürüklemeler hala sanatın sayfanın sonuna kadar uzanıyor. Kısaltmalar keser; daha sonraki sayfalar kaydırılır. Medya oynatma hızını korur.",
+      "durationsUpdated": "Güncellenmiş zaman {{count}} sayfada",
+      "layerDestinations": "Hedef sayfa numaraları veya aralığı",
+      "namedFromHeadings": "Adlandırılmış {{count}} sayfalar. {{missing}} sayfalar başlık yoktu.",
+      "rangeHint": "Sayfa numaralarını virgülle ayırın veya 3-8 gibi bir aralığı kullanın.",
+      "search": "Sayfa numarası veya adıyla bul",
+      "visibilityHint": "Gizli sayfalar düzenlenebilir ve indirme için kullanılabilir kalır."
     },
     "captions": {
       "captionText": "Kapüşon metni",
@@ -10276,7 +10286,12 @@
       "pdf": "PDF document",
       "pptx": "PowerPoint presentation",
       "section": "Named section",
-      "transparent": "Transparent background"
+      "transparent": "Transparent background",
+      "cropMarkHint": "Dışarıdan kesme işaretleri ekler. Kaydedilen baskı çözünürlüğü tamamlanan sayfa boyutunu belirler.",
+      "cropMarks": "Kesme işaretleri ve baskı kenarları",
+      "jpegQualityHint": "Daha düşük kalite genellikle daha küçük dosyalar üretir. Pixel boyutları aynı kalır; ayrıntılı sanat eserleri kompresyonda gösterilebilir.",
+      "notesTextHint": "İndirme bölüm başlıkları, orijinal sayfa numaraları, sayfa adları ve sunum notlarını metin dosyası olarak alır.",
+      "pptxHint": "Her sayfa bir slayt görüntüsü olur, sunum notları ve bağlantılar ile. Orijinal tasarımda bireysel metin ve öğeleri düzenle."
     },
     "adjust": {
       "auto": "آٹو بہتر کرو",
@@ -10594,7 +10609,9 @@
       "pointHint": "بساطت کردن، تغییرات کوچک نسبت به کادر نقاشی را حذف می‌کند. نقاشی‌های بسته حداقل سه نقطه را حفظ می‌کنند. صاف کردن و سبک خط همچنان اعمال می‌شوند؛ لغو، نقاط اصلی را بازمی‌گرداند.",
       "points": "Drawing points ({{count}})",
       "smoothing": "Smoothing",
-      "suggestedShape": "Suggested: {{shape}}"
+      "suggestedShape": "Suggested: {{shape}}",
+      "convertHint": "Düzenli şekliyle box içinde bulunan yolunu değiştirir. Pozisyon, boyut, döndürme, hat, efektler, gruplama ve zamanlama korunur. Açık çizimler hatlara dönüştürülür. Geri alma çizilen yolu geri getirir.",
+      "convertShape": "Düzenli şekle dönüştür"
     },
     "bulk": {
       "applyConnectionFile": "Apply matching connections",
@@ -10635,7 +10652,31 @@
       "tokenCopyError": "assistant",
       "tokenCurrency": "মুদ্রা",
       "tokenDecimals": "ڕەڕەڵەیی سەدەڕەڵە",
-      "trimToken": "Jagah ke kam karu formatting se aage"
+      "trimToken": "Jagah ke kam karu formatting se aage",
+      "allRecords": "Tüm kayıtlar aralığı",
+      "data": "Tablo verileri sütun başlıkları ile",
+      "exportData": "Tablo verileri dışa aktar",
+      "filterColumn": "Sütun göre kayıtları filtrele",
+      "first": "Satırdan",
+      "firstMatchingRecord": "İlk eşleşen kaydı önizle",
+      "formatPlaceholder": "Bir veri yerine bir biçimlendirme yap",
+      "generatedToken": "Bir biçimlendirilmiş yerine kopyala",
+      "importConnections": "Bağlantı dosyasını ithal et",
+      "keepTemplatePhoto": "Temel fotoğraf koru",
+      "last": "Satıra",
+      "layerLinks": "Sütunlardan katman bağlantılar",
+      "layerPhotos": "Sütunlardan fotoğraflar",
+      "matchCount": "{{count}} connections ready; {{ambiguous}} ambiguous layers skipped",
+      "matchNames": "Connect matching layer names",
+      "nextRow": "Next row",
+      "pagePreview": "Preview populated page",
+      "pagePreviewBusy": "Updating populated page preview…",
+      "photoNames": "Available source photo names ({{count}})",
+      "placeholderColumn": "Spreadsheet column",
+      "preview": "Preview data row",
+      "previousLayers": "Previous layers",
+      "previousRow": "Previous row",
+      "tokenLocale": "Number locale"
     },
     "charts": {
       "areaModeHint": "بندهای تشکیل‌شده و مساحت‌های متناسب هر سری را به صورت نوار نشان می‌دهند. گراف‌های جریان مرکز مجموع را حول صفر قرار می‌دهند و هدف مرجع را پنهان می‌کنند. این طرح‌ها نیاز به مقادیر منبع غیرمنفی دارند. نمایش متناسب شمارش‌های اصلی داده‌ها را حفظ می‌کند؛ مساحت‌های متداخل می‌توانند شامل مقادیر منفی باشند.",
@@ -10693,7 +10734,37 @@
       "treemapExample": "Draft ke badle hierarchy example lagao",
       "valueIntervals": "قیمتی-محور فاصله‌ها",
       "xAxisMode": "داده‌های افقی (دیتایپ افقی)",
-      "hierarchySample": "Europe,France,35"
+      "hierarchySample": "Europe,France,35",
+      "applyDateBounds": "Apply date bounds",
+      "applyReference": "Apply target line",
+      "areaMode": "Area chart layout",
+      "binCounts": "Export histogram bin counts",
+      "categoryCase": "Category ke hisab se match karu",
+      "importStyle": "Import style file",
+      "labelAngle": "Category label angle",
+      "linePattern": "Line pattern",
+      "lineStyle": "Line style",
+      "numberLocale": "Number locale",
+      "numberSection": "Number display",
+      "observations": "Numeric observations",
+      "orderBy": "Order categories by",
+      "pasteObservations": "Paste raw observations",
+      "percentStack": "100% stacked",
+      "pictogramSettings": "Pictogram symbols",
+      "pointLabelMode": "Point value labels",
+      "pointShape": "Point shape",
+      "progressColours": "पहिला पैलेट करंग प्रोग्रेस के भरेला; दूसरा बाचल ट्रैक के देखाएला। शो वैल्यूज परसेंटेज लेबल के कंट्रोल करेला। ई चार्ट मन खाली पहिला सोर्स वैल्यू के इस्तेमाल करेला।",
+      "progressRounded": "Rounded endpoints",
+      "progressThickness": "Progress thickness",
+      "raceHint": "Use multiple-series data with categories in the first column. The following two to six columns are successive frames; their names appear as frame captions. Values must be nonnegative. Categories keep their colours as rankings change. Playback spans the graphic's timeline duration.",
+      "raceSettings": "Ranking animation",
+      "radarRings": "Radar grid rings",
+      "removeReference": "Target ke hatao",
+      "useCategorySummary": "Kısaltma",
+      "useHierarchy": "Kategori sütunları kullan",
+      "useObservations": "Görünüm observations",
+      "valueFormat": "Değer formatı",
+      "xIntervals": "Yatay aralıklar"
     },
     "clipboard": {
       "cut": "ڕێژەیەکانی کەمکردنەوە",
@@ -10701,7 +10772,11 @@
       "skipped": "{{count}} bu sahypa bu sahifağa uyğun gelmedi."
     },
     "colourPicker": {
-      "cancel": "Colour picker ke cancel karu"
+      "cancel": "Colour picker ke cancel karu",
+      "accent": "Kanvas'tan vurgu seç",
+      "canvasHint": "Sayfa üzerinde bir renk tıkla",
+      "ink": "Kanvas'tan metin rengini seç",
+      "pick": "Kanvas'tan seç"
     },
     "compositions": {
       "brandFonts": "Ekta saved font pairing ke use karu",
@@ -10709,7 +10784,23 @@
       "layoutFonts": "assistant",
       "preview": "پیش‌نگاه ترکیبات منتخب شده",
       "previewHint": "پیش‌نگاه رنگ صفحه بدون سایر آثار هنری. ترکیب انتخاب‌شده را برای افزودن لایه‌های قابل ویرایش وارد کنید.",
-      "previewUnavailable": "کانیواس پریویو در دسترس نیست. نثر شما هنوز قابل ویرایش است."
+      "previewUnavailable": "کانیواس پریویو در دسترس نیست. نثر شما هنوز قابل ویرایش است.",
+      "accent": "Vurgu rengi",
+      "brandFontHint": "Kaydedilen başlık ve metin fontlarını yeni kombinasyona uygular. Metin ve vurgu renkleri üst kontrol panellerinden kullanılır; var olan sanat eserleri yerlerinde kalır.",
+      "colour": "Metin rengi",
+      "eyebrow": "Bıyık",
+      "heading": "Başlık",
+      "layoutFontsActive": "Her düzen, orijinal font eşleştirmesini kullanır.",
+      "limit": "Bu kombinasyon tasarım katman veya boyut limitlerini aşar.",
+      "noSavedFonts": "Bir başlık veya metin fontunu Brand stillerine kaydetmek için buradan kullanın.",
+      "previewAlt": "Kısaltma yazı tipi görünüm önizlemesi",
+      "previewNeedsData": "Bir başlık ve tam renkleri girerek bu kombinasyonu önizlemeye bakın.",
+      "previewUpdating": "Önizleme güncelleniyor…",
+      "sampleEyebrow": "Yeni bir bakış açısı",
+      "sampleSubtitle": "Hikayenizin burada başlıyor.",
+      "sampleTitle": "Hatırlanmaya değer bir şey yaratın",
+      "subtitle": "Destekleyici metin",
+      "title": "Metin kombinasyonları"
     },
     "connectors": {
       "bend": "پوزیشن بەند",
@@ -10722,7 +10813,18 @@
     "crop": {
       "focusY": "بُعدِ نَظَرِ عمودی (٪)",
       "original": "Original",
-      "touchHint": "کەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەش"
+      "touchHint": "کەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەشەوەنەکەرەکەش",
+      "applyFocus": "Düzenli odak",
+      "applyRatio": "Oran uygula",
+      "focusHint": "Kırpmalı pencereyi boyutunu koruyarak hareket ettir.",
+      "focusPoint": "Odak {{x}}%, {{y}}%",
+      "focusX": "Yatay odak (%)",
+      "pageRatio": "Kıymetli Sayfa Oranı",
+      "precision": "Özel oran ve tam odak",
+      "precisionHint": "Oranlar görüntülenen alanı koruyarak kesim değiştirir. Odaklar varolan kesim penceresini mevcut kenarlardan, ters görüntüler dahil, hareket ettirir.",
+      "ratioHeight": "Oran Yüksekliği",
+      "ratioWidth": "Oran Genişliği",
+      "swapRatio": "Genişlik ve Yükseklik değiştir"
     },
     "dataCells": {
       "actionCount": "{{changed}} {{selected}} seçilen hücreleri değiştirildi.",
@@ -10738,7 +10840,16 @@
       "previousCell": "Previous cell",
       "redoAction": "Redo data action",
       "startCell": "Start at cell",
-      "undoAction": "Undo data action"
+      "undoAction": "Undo data action",
+      "cleanNumbers": "Formatlanmış sayıları dönüştür",
+      "clearRange": "Aralık temizle",
+      "numberCleanupHint": "Sayı temizleme desteklenen para işaretlerini ve gruplama ayıracılarını kaldırır ve muhasebe negatiflerini dönüştürür. Yüzdelikler yüzdesi olarak kalır: 25% 25'e dönüşür. Tanınmayan metin değişmeden kalır. Eylemler kaynağını düzenlerken hücre pozisyonlarına bağlı olarak tablo biçimini tutar.",
+      "numberInputFormat": "Kaynak metin içinde sayı işaretleri",
+      "pasteHint": "Bir spreadsheets, CSV veya TSV'den satırları yapıştır. Onlar seçilen hücreye başlayan bir dikdörtgen aralığı değiştirir; etrafındaki veriler korunur.",
+      "pasteRange": "Bir hücre aralığı yapıştır",
+      "pasted": "{{rows}} satır ve {{columns}} sütun pastelenmiştir",
+      "rangeActions": "Doldur, temizle ve temizle bir aralığı",
+      "valueHint": "Burada tam bir hücreyi düzenleyin, včetně satır atlama karakterleri. Değerler metin olarak depolanır; formüller hesaplanmaz."
     },
     "dataExport": {
       "formulasAsText": "Treat formulas as text"
@@ -10759,7 +10870,12 @@
       "sampleCategory": "Category",
       "sampleNorth": "شمال",
       "sampleSouth": "جنوب",
-      "sampleValue": "ارزش"
+      "sampleValue": "ارزش",
+      "keepSeriesName": "Bir sütun başlığı ile kal",
+      "selectionPreview": "Seçilen veri önizlemesi",
+      "separator": "Dosya ayırıcı",
+      "skipEmpty": "Boş veri satırlarını atla",
+      "use": "Seçilen verileri kullan"
     },
     "dataVisual": {
       "addColumn": "Column jora karu",
@@ -10786,7 +10902,27 @@
       "singleSeriesViewHint": "ڕێزمانی بۆ زنجیرەی یەکەم دەردەخەمێنێت، زنجیرەیەکانی تر لە مۆڵەتی سەرچاوەیە.",
       "stacked": "Stack series",
       "table": "Jadval",
-      "title": "چارت‌ها و جدول‌ها"
+      "title": "چارت‌ها و جدول‌ها",
+      "accent": "Üstün",
+      "addRow": "Satır ekle",
+      "captionHint": "Başlık ve açıklama grafik içinde görünür ve grafik üzerinde ve altında yer ayırır. Vektör exportu için SVG açıklamaları görünür metni eşlik eder; diğer export formatları görünür metni tutar. Ana bulgu ve ilgili değerleri alternatif metinde açıklamaya ekleyin.",
+      "expandData": "Veri düzenleyicisini genişlet",
+      "findFont": "Grafik yazılarını arayın",
+      "fixSource": "Kaynak verileri bu girişi düzeltmek için kullanın.",
+      "invalidColour": "Bir altı haneli hex renk girin",
+      "multipleSeries": "Çoklu veri serileri",
+      "previewNeedsData": "Gerekli verileri ve renkleri girin ve grafik önizlemesini görüntüleyin.",
+      "previewUpdating": "प्रिव्यु अपडेट हो रहा है…",
+      "previousRows": "पिछली पंक्तियाँ",
+      "removeRow": "पंक्ति हटाएँ {{row}}",
+      "tableStyle": {
+        "borderWidth": "ग्रिड चौड़ाई",
+        "stripeColour": "वैकल्पिक पंक्ति रंग",
+        "stripes": "वैकल्पिक कोशिकाएँ"
+      },
+      "textColour": "पाठ",
+      "values": "मान दिखाएँ",
+      "vectorHint": "इस ग्राफिक को पारदर्शी पृष्ठभूमि पर निर्यात करता है। पाठ संपादन योग्य रहता है और उपलब्ध होने पर चयनित फ़ॉन्ट का उपयोग करता है।"
     },
     "designTools": {
       "copyStyle": "কপি স্টাইল",
@@ -10795,14 +10931,31 @@
       "insert": "ڕێسەکان",
       "matches": "{{count}} لایه‌های متنی یافت شد",
       "replaceWith": "assistant",
-      "replacement": "رنگ عوض کردن"
+      "replacement": "رنگ عوض کردن",
+      "applySize": "आकार लागू करें",
+      "backInsert": "सम्मिलित करने के लिए वापस जाएँ",
+      "changeAll": "सभी बदलें",
+      "closePanel": "पैनल बंद करें",
+      "colourHint": "इस डिज़ाइन में प्रतिस्थापित करने के लिए एक रंग चुनें। लॉक की गई परतें संरक्षित रहती हैं।",
+      "colours": "दस्तावेज़ रंग",
+      "matchCase": "केस मिलाएँ",
+      "pasteStyle": "शैली चिपकाएँ",
+      "replaceAll": "सभी को बदलें",
+      "resize": "आकार बदलें"
     },
     "diagrams": {
       "edgeLabels": "Konektor etiketeleri, birer satırda (isteğe bağlı)",
       "editHint": "প্রতিটি নোড এবং এর টেক্সট একটি গ্রুপ গঠন করে। কনেক্টর লেবেল তাদের লাইনের সাথে গ্রুপ করা হয়। লাইনগুলি স্বতন্ত্র সম্পাদনযোগ্য কনেক্টর হিসাবে থাকে; নোডগুলি স্থানান্তর করার পরে তাদের পুনরায় অবস্থান করুন। ডায়াগ্রামটি বর্তমান পৃষ্ঠার সময়কাল দ্বারা পূর্ণ হয় এবং আপনার পুনঃব্যবহারযোগ্য উপাদান লাইব্রেরিতে সঞ্চিত হতে পারে।",
       "previewHint": "پریویو رنگ صفحه را بدون هنر دیگر نمایش می‌دهد. برای افزودن لایه‌های قابل ویرایش، تصویر را داخل کنید.",
       "previewNeedsData": "کامپلیٹ رنگوں کا استعمال کریں اور نود لبلز کو 120 کاراکٹر تک محدود رکھیں پیش نظر کے لیے۔",
-      "previewUnavailable": "کانیاس نما ناپیدا است. draft هنوز ویرایش‌پذیر است."
+      "previewUnavailable": "کانیاس نما ناپیدا است. draft هنوز ویرایش‌پذیر است.",
+      "insert": "आरेख सम्मिलित करें",
+      "labels": "नोड लेबल, प्रति पंक्ति एक",
+      "preview": "आरेख पूर्वावलोकन",
+      "previewAlt": "ड्राफ्ट आरेख लेआउट",
+      "previewUpdating": "आरेख पूर्वावलोकन अपडेट हो रहा है…",
+      "title": "संपादन योग्य आरेख स्टार्टर",
+      "vertical": "ऊर्ध्वाधर लेआउट"
     },
     "document": {
       "numberHint": "Editable page numbers joda karu. Page man jokhne add, duplicate, delete ya reorder karal jae, number man badal jae. Locked number man nai badle.",
@@ -10818,16 +10971,42 @@
       "start": "शुरू करा",
       "suffix": "सफिक्स",
       "title": "পৃষ্ঠাসংখ্যা এবং পুনরাবৃত্ত উপাদান",
-      "total": "پەڕەکان بەشێوەیەکی گشتی"
+      "total": "پەڕەکان بەشێوەیەکی گشتی",
+      "applyNumbers": "पृष्ठ संख्याएँ लागू करें",
+      "numbersApplied": "पृष्ठ संख्याएँ लागू की गईं",
+      "repeatScopeHint": "दस्तावेज़ पृष्ठ संख्याओं का उपयोग करता है। वर्तमान पृष्ठ हमेशा बाहर रखा जाता है।",
+      "repeated": "चयनित तत्व चुने गए पृष्ठों पर कॉपी किए गए",
+      "size": "পাঠ্য আকার",
+      "skipCover": "প্রথম পৃষ্ঠে লুকান"
     },
     "elements": {
       "find": "ڕۆڵەکانی گەڕاوەکان",
       "inserted": "Inserted {{name}}",
       "keepProportions": "I'm ready to translate. What is the text to be translated to Sadri?",
-      "layerCount": "{{count}} لایه‌ها"
+      "layerCount": "{{count}} لایه‌ها",
+      "hint": "এই ডিভাইসে এই অ্যাকাউন্টের জন্য এই পৃষ্ঠায় 20 টি পুনর্ব্যবহারযোগ্য পাঠ্য এবং ভেক্টর নির্বাচন সংরক্ষণ করুন। গ্রুপ, ফর্ম্যাটিং, এবং সম্পর্কিত পৃষ্ঠার অবস্থান বজায় রাখা হয়। ছবি এবং ভিডিও তাদের মূল ডিজাইনে থাকে।",
+      "insert": "ইনসার্ট এলিমেন্ট",
+      "name": "এলিমেন্ট নাম",
+      "proportionHint": "উৎস পৃষ্ঠার অনুপাতে এই পৃষ্ঠায় এটি ফিট করে, কার্টুনের অনুপাতিক অবস্থান বজায় রেখে। এটি বন্ধ করুন এই পৃষ্ঠার অনুপাতিক লেয়াউট ব্যবহার করতে।",
+      "redoLibrary": "পুরাতন লাইব্রেরি পরিবর্তন",
+      "rename": "নাম পরিবর্তন করুন",
+      "replaceSelection": "প্রতিস্থাপন করুন",
+      "saveSelection": "সেলেক্ট করা এলিমেন্ট সংরক্ষণ করুন",
+      "selectionLibrary": "সেভ বা রিয়ুজ সেলেক্ট করা এলিমেন্ট",
+      "title": "সেভ করা এলিমেন্ট",
+      "undoLibrary": "পুরাতন লাইব্রেরি পরিবর্তন বাতিল করুন"
     },
     "fills": {
-      "solidBackground": "पहिला रंग के पेज बैकग्राउंड बनावा"
+      "solidBackground": "पहिला रंग के पेज बैकग्राउंड बनावा",
+      "angle": "কোণ",
+      "apply": "পূরণ প্রয়োগ করুন",
+      "applySolid": "প্রথম রঙ হিসেবে সমস্ত পূরণ প্রয়োগ করুন",
+      "background": "এই পৃষ্ঠের পটভূমি হিসেবে ব্যবহার করুন",
+      "heading": "ফিল্স এবং পটভূমি",
+      "hint": "সেলেক্ট করা পাঠ্য বা আকারের জন্য একটি গ্রেডিয়েন্ট প্রয়োগ করুন, বা এই পৃষ্ঠের পিছনে এটি যোগ করুন।",
+      "lockedBackground": "পৃষ্ঠের পটভূমি অবশ্যই খুলে রাখুন প্রতিস্থাপন করতে।",
+      "resetBackground": "পৃষ্ঠের পটভূমি পুনরুদ্ধার করুন",
+      "solid": "সমস্ত পূরণ পুনরুদ্ধার করুন"
     },
     "fonts": {
       "count": "{{count}} गो फॉन्ट मिलल। लिस्ट के छोट करे ले सर्च करा।",
@@ -10862,7 +11041,9 @@
       "spread": "स्प्रेड",
       "stop": "स्टॉप {{number}}, {{position}}% पर",
       "styleFileHint": "डिवाइस के बीच ग्रेडिएंट रंग, पोजीशन, ट्रांसपेरेंसी, एंगल और रेडियल सेटिंग के ट्रांसफर करेला। इंपोर्ट ड्राफ्ट के लोड करेला; आर्टवर्क अपडेट करे खातिर एकरा के लागू करा।",
-      "styleFiles": "ग्रेडिएंट स्टाइल ट्रांसफर करा"
+      "styleFiles": "ग्रेडिएंट स्टाइल ट्रांसफर करा",
+      "styleLoaded": "ড্রাফটে লোড করা স্টাইল",
+      "svgHint": "এই গ্রেডিয়েন্ট পৃষ্ঠের আকারে এক্সপোর্ট করুন, স্টপ অবস্থান এবং অপসারণতার সাথে সহ। এটি পৃষ্ঠের আকারে পৃথকভাবে প্রয়োগ করুন এটি ডিজাইনে ব্যবহার করতে।"
     },
     "graphicDraftHistory": {
       "local": "Graphic draft",
@@ -10874,7 +11055,8 @@
       "insert": "Insert photo grid",
       "rounding": "Corner rounding",
       "spacing": "Spacing in pixels",
-      "title": "Photo grids"
+      "title": "Photo grids",
+      "mobileHint": "একটি ছবি লেয়াউট ইনসার্ট করুন। একটি ফ্রেম ট্যাপ করুন এবং প্রতিস্থাপন করা লেয়ার দিয়ে এটি পূরণ করতে চয়ন করুন বা ছবি বা ভিডিও দিয়ে।"
     },
     "groups": {
       "applyRotation": "Rotate selection",
@@ -10891,7 +11073,10 @@
       "scalePercent": "Scale selection by percentage",
       "selectMatches": "Select matching layers",
       "smaller": "Smaller",
-      "ungroup": "Ungroup"
+      "ungroup": "Ungroup",
+      "applyOpacity": "প্রয়োগ করুন সেলেক্ট করা লেয়ার",
+      "findLayers": "সেলেক্ট করা লেয়ার খুঁজুন",
+      "rotateBy": "{{degrees}}° ঘূর্ণায়মান"
     },
     "guides": {
       "add": "Add guide",
@@ -10902,30 +11087,62 @@
       "gridPreview": "गाइड ग्रिड प्रिव्यू",
       "margin": "مارجین",
       "smartSpacing": "Ḱḳḳ ḳḳḳ ḳḳḳ",
-      "thirds": "Tɛ́ɛ́s"
+      "thirds": "Tɛ́ɛ́s",
+      "clear": "মুছুন",
+      "gridTitle": "লেয়াউট গ্রিড",
+      "hint": "रूलर से ड्रैग करके गाइड जोड़ें। गाइड को मूव करने के लिए एडिट गाइड्स चुनें, या पेज से ड्रैग करके हटाएँ। गाइड और मार्जिन डाउनलोड में शामिल नहीं हैं।",
+      "position": "प्रतिशत के रूप में पोजीशन",
+      "releaseOutside": "इस गाइड को हटाने के लिए रिलीज़ करें",
+      "replaceExisting": "मौजूदा गाइड्स को बदलें",
+      "resolution": "{{dpi}} पिक्सेल प्रति इंच पर आधारित",
+      "rulerUnits": "रूलर यूनिट्स",
+      "rulers": "रूलर दिखाएँ",
+      "snap": "गाइड्स पर स्नैप करें",
+      "title": "गाइड और मार्जिन",
+      "visible": "गाइड दिखाएँ"
     },
     "help": {
       "noResults": "assistant",
       "openTool": "قورۆ",
-      "searchMobile": "ڕێزەکانی سەرچاوە و پەیوەندیکردن بە پێشکەشکەر"
+      "searchMobile": "ڕێزەکانی سەرچاوە و پەیوەندیکردن بە پێشکەشکەر",
+      "title": "एडिटर गाइड"
     },
     "layout": {
       "columns": "ग्रिड कॉलम (0 = ऑटो)",
-      "gap": "گپ شبکه در پیکسل‌ها"
+      "gap": "گپ شبکه در پیکسل‌ها",
+      "positionGroups": "पोजीशन और ग्रुप्स"
     },
     "links": {
       "copyDestination": "مەرگین",
       "copyFailed": "لینک کپی ناشدنی است",
       "destination": "لینک مقصد",
       "mixed": "مۆلەکانی چۆنەوەی چەمکەکان ھەڵدەبژێنن.",
-      "title": "Link"
+      "title": "Link",
+      "apply": "लिंक लागू करें",
+      "contactBuilder": "ईमेल, फोन या SMS लिंक बनाएं",
+      "copied": "लिंक डेस्टिनेशन कॉपी किया गया",
+      "hint": "PDF डाउनलोड वेब, ईमेल, फोन, SMS और पेज लिंक को संरक्षित करते हैं। कॉन्टैक्ट-लिंक हैंडलिंग दर्शक और डिवाइस पर निर्भर करती है। आंतरिक लिंक सक्रिय रखने के लिए डेस्टिनेशन पेज एक्सपोर्ट करें।",
+      "multiSelection": "चयनित आर्टवर्क के लिए लिंक",
+      "openFailed": "इस लिंक को खोल नहीं सका",
+      "openPage": "पेज {{number}} पर जाएँ",
+      "remove": "लिंक हटाएँ",
+      "targetPage": "डेस्टिनेशन पेज"
     },
     "mediaSelection": {
       "filter": "رنگ‌گیری برای انتخاب",
       "filterHint": "رنگ و ابهام تصاویر و ویدئوهای انتخاب شده را با یک ویرایش تغییر دهید. کادریابی، قاب، مرزها و زمان در جای خود باقی می‌مانند.",
       "filterStrength": "قوت",
       "setRadius": "कोना कर गोलाई सेट करब",
-      "title": "فوتو و ویدئوها را با سبک انتخابی ({{count}})"
+      "title": "فوتو و ویدئوها را با سبک انتخابی ({{count}})",
+      "applyFilter": "चयन पर फ़िल्टर लागू करें",
+      "borderColour": "बॉर्डर रंग",
+      "borderOpacity": "बॉर्डर अपारदर्शिता प्रतिशत",
+      "borderWidth": "बॉर्डर चौड़ाई",
+      "radius": "कोर्नर रेडियस",
+      "radiusHint": "कोर्नर राउंडिंग आयताकार मीडिया फ्रेम पर लागू होता है।",
+      "removeBorder": "Border हटाओ",
+      "resetColours": "रंग समायोजन रीसेट करो",
+      "setBorder": "Border सेट करो"
     },
     "mockups": {
       "caption": "ঠিকানা বা ছবির মুখপাত্র (বিকল্প)",
@@ -10963,12 +11180,19 @@
       "angle": "Absolute angle",
       "hint": "Har chunal layer ke okar existing position par same angle milela. Niche ke relative rotation selection ke ek saath ghumaela.",
       "setAngle": "Sab layer set kara",
-      "title": "Layer orientation set kara"
+      "title": "Layer orientation set kara",
+      "unflip": "Flips हटाओ",
+      "upright": "सीधा करो"
     },
     "outline": {
       "border": "په‌تو",
       "customPattern": "अपन हिसाब कर पैटर्न",
-      "width": "{{value}}"
+      "width": "{{value}}",
+      "applyPattern": "Pattern लागू करो",
+      "colour": "Border रंग",
+      "dashLengths": "Dash और gap लंबाई",
+      "dashOffset": "Dash offset",
+      "pattern": "Line pattern"
     },
     "pageAnimation": {
       "duration": "دورانیه دەکات",
@@ -10977,7 +11201,8 @@
       "none": "None",
       "title": "ئەم پەڕەیە بە ئەنیمەیشن دەبێت",
       "typewriterHint": "ڕێژەی تایبەت بۆ ڕێکخستنەوەی وێنەکان لە ڕێگەی کۆڕەڵەیەکدا بەڕێژەیەکدا دەکرێت.",
-      "updated": "ڕێکخستنەوەی {{count}} لەسەرچاوە"
+      "updated": "ڕێکخستنەوەی {{count}} لەسەرچاوە",
+      "apply": "Animation लागू करो"
     },
     "pageManager": {
       "destination": "Page se aage badho",
@@ -10987,18 +11212,27 @@
       "previewFailed": "ئەم پیشنشرەکان لە ڕووداوە. لاپەڕەکان بەڵام دەتوانرێن بەخۆوە بۆکەوت.",
       "refreshPreviews": "Preview ke refresh karu",
       "search": "دۆزەخەم لەپەڕەکان بەناوی، ژمارەیەکی، یان سەرەتاش",
-      "selected": "{{count}} sayfa seçildi"
+      "selected": "{{count}} sayfa seçildi",
+      "clear": "Selection साफ करो",
+      "endDestination": "अंत तक जाने के लिए {{number}} का उपयोग करो।",
+      "open": "खोलो",
+      "selectMatches": "मेल खाने वाले पृष्ठ चुनो",
+      "showPreviews": "पृष्ठ पूर्वावलोकन दिखाओ",
+      "title": "पृष्ठ प्रबंधित करो"
     },
     "paint": {
       "borderOpacity": "بُردَر اُپَاسیتی: {{value}}%",
-      "fillOpacity": "فیل آفتابیتی: {{value}}٪"
+      "fillOpacity": "فیل آفتابیتی: {{value}}٪",
+      "strokeOpacity": "Outline opacity: {{value}}%"
     },
     "palette": {
       "extractionHint": "Sampelê jüdêrê cêrêyê, çend fîlman. Çend swatchînê wekî rengê nû wekî rengê dawî bikşîne, ango paletê ji bo rengên ku bi şîrovekirinê têne kirin, bikşîne.",
       "presetLimit": "ڤەڵوڵی ڕێکخراوەیییەکانی تۆڵەبەرەکەیت ھەڵەوە.",
       "presetName": "رنگ‌نامه",
       "savePreset": "پالتە",
-      "useColour": "{{colour}}"
+      "useColour": "{{colour}}",
+      "applyDesign": "Design में palette लागू करो",
+      "chooseTarget": "Swatch के रूप में प्रतिस्थापन के लिए पहले एक document रंग चुनो।"
     },
     "photoBackground": {
       "mobileHint": "एकेटा फोटो चुनू जेटा के ई पन्ना कर पाछे लगाल जा सके। बैकग्राउंड के दुई बेर टिपू जेटा से ओकर फ्रेम बदलल जा सके, या फिर ओकरा के एगो अलग लेयर बना के हटाए सकत हउ।",
@@ -11008,18 +11242,37 @@
       "saveCurrent": "قۇرالما توغرۇشلار",
       "saved": "کتابخانه عکس-نگار این دستگاه به روز شده است",
       "search": "ڕۆڵی سەرچاوەکان",
-      "strength": "قەدەغە"
+      "strength": "قەدەغە",
+      "applied": "Saved look लागू किया गया",
+      "apply": "Saved look लागू करो",
+      "applyImportedStyle": "Imported look लागू करो",
+      "batchHint": "{{count}} चुने गए photos और videos में एक edit में लागू करो। Saving पहली चुनी गई layer के समायोजन का उपयोग करता है।",
+      "exportStyle": "Current look Export करो",
+      "hint": "इस device पर account के अनुसार सहेजा गया। Look लागू करने से रंग, blur और detail समायोजन बदल जाते हैं। Crop, frame, borders और timing जगह पर रहते हैं। Look लागू करने के लिए एक look file import करो, फिर इसे अपनी library में सहेजो।",
+      "importStyle": "Look file import करो",
+      "memoryOnly": "इस session के लिए उपलब्ध; device storage इसे सहेज नहीं सका",
+      "name": "Look name",
+      "remove": "Saved look हटाओ",
+      "styleFiles": "Transfer photo looks",
+      "styleLoaded": "Imported look applied",
+      "title": "Saved photo looks"
     },
     "photoTone": {
       "original": "رنگہا",
-      "strength": "ڈیوٹون سٹرنٹھ"
+      "strength": "ڈیوٹون سٹرنٹھ",
+      "duotone": "Duotone"
     },
     "photos": {
       "arrange": "فوتوहरू पुनःसंगठित गर्न",
       "arrangeHint": "ڕێڕەویەکان، ڕووناکبەرەکان، ڕەنگدانەوەکان، و گروپەکان لە جێگای خۆیان دەمێننەوە. ڕێگەیەکانی وێنەکان بە پەیڕەوی سەرچاوەکانیان دەگۆڕن. ڕێگەیەکانی پەڕگەیەکی بەرھەمھێنانی بەشەکان لە پەڕگەیەکی بەرھەمھێنانی بەشەکان دەمێننەوە.",
       "first": "প্রথম ছবি ফ্রেম",
       "needFrames": "ڕۆڵی بۆماوەیەک لەم ڕووناکبەرەوەیە کە پەڕەیەکە بەڕێوەبەن.",
-      "second": "دوم فریم عکس"
+      "second": "دوم فریم عکس",
+      "number": "Photo {{number}}",
+      "preparing": "Preparing photo dimensions…",
+      "rotate": "Rotate photo order",
+      "shuffle": "Shuffle photos",
+      "swap": "Swap photos"
     },
     "present": {
       "browsePages": "پەڕەکان",
@@ -11048,7 +11301,20 @@
       "title": "سایته‌ئون",
       "undoMark": "ڤەرگەڵی کردن",
       "upNext": "আগামী পর্ব",
-      "whiteScreen": "بازار سفید"
+      "whiteScreen": "بازار سفید",
+      "blackout": "Blackout",
+      "inkColour": "Ink colour {{colour}}",
+      "loading": "Loading page",
+      "loop": "Loop presentation",
+      "next": "Next",
+      "nextLoading": "Preparing next-page preview…",
+      "nextPreviewAlt": "Upcoming page: {{title}}",
+      "notesCopied": "Notes copied",
+      "notesLarger": "Increase notes text size",
+      "notesScrollSpeed": "Scroll speed",
+      "notesSmaller": "Decrease notes text size",
+      "retry": "Retry page",
+      "usePageTiming": "Use page durations"
     },
     "qr": {
       "background": "Background",
@@ -11089,14 +11355,25 @@
       "gapsFitted": "گاپ‌ها به اندازهٔ حاشیه‌های صفحه تطبیق داده شده‌اند. شبکه را برای اعمال آن ایجاد کنید.",
       "groupCopies": "گروه هر کاشی کپی شده را تشکیل دهید",
       "groupCopiesHint": "گروه‌های تمام لایه‌های کپی‌شده در هر تایل را جمع‌آوری می‌کند. انتخاب اصلی گروه‌های خود را حفظ می‌کند.",
-      "layout": "ग्रिड लेआउट"
+      "layout": "ग्रिड लेआउट",
+      "apply": "Create repeated grid",
+      "created": "Created {{count}} अतिरिक्त प्रतिलिपि",
+      "fitGaps": "पृष्ठ मार्जिन के भीतर अंतराल फिट करें",
+      "multiSelection": "चयनित कलाकृति को एक टाइल के रूप में दोहराएं",
+      "staggerHint": "स्टैगर्ड लेआउट हर दूसरी पंक्ति या स्तंभ को आधे सेल द्वारा स्थानांतरित करते हैं, इसके अंतराल सहित। मूल स्थान पर रहता है।",
+      "title": "ग्रिड में चयन दोहराएं"
     },
     "resize": {
       "changed": "بِهَذِهِ التَّغْيِيرَاتِ فِي التَّصْمِيمِ، يُنْصَحُ بِتَطْبِيقِ الأَحْجَامِ مَرَّةً أُخْرَى.",
       "dpi": "پیکسل در اینچ",
       "lockAspect": "ڕێژەی پێوانی بەستە",
       "printHint": "چاپی کردن رزولوشن اندازه فیزیکی صفحه را در دانلود های پی دی اف تنظیم می کند. اندازه گیری های موجود با کanvas مقیاس می گیرند.",
-      "range": "Hər iki tərəf 64-8,192 pikselə qədər qərarlaşmalıdır. Çap nəşrərinin qədərliyi 72-600 olmalıdır."
+      "range": "Hər iki tərəf 64-8,192 pikselə qədər qərarlaşmalıdır. Çap nəşrərinin qədərliyi 72-600 olmalıdır.",
+      "content": "कलाकृति आकार बदलते समय",
+      "height": "ऊंचाई",
+      "preparing": "कलाकृति आयाम तैयार कर रहे हैं…",
+      "swap": "आयाम स्वैप करें",
+      "width": "चौड़ाई"
     },
     "selection": {
       "boundHint": "ڕێژەی لەسەر چەمکەکانی ڕۆتەیشن بەڕێژەیە. بەرھەمھێنانی ڕێژەیەکەی دەبێتەوە، ڕێژەیەکەی ڕێژەیەکەییە، ڕێژەیەکەی لە ڕێژەیەکەیییەکانی ڕۆتەیشن دەست پێدەکات.",
@@ -11105,7 +11382,9 @@
       "precise": "مقدار دقیق و موقعیت",
       "readBounds": "سورەکانی پێشکەشکردن",
       "sameHint": "ڕێکخستنی لەیەکەم لەیەکەی ھەڵبژێردراوە لە ڕووی ئەم ڕوویەدا. گروپەکان بەیەکەوە مایە; لەڕووی ناڕەزایەوە، لەڕووی پەڕەوە و گروپە ناڕەزایەوە مایە.",
-      "waitForBounds": "باز بگذار تا لایه‌های انتخاب‌شده روی کانون نمایش ظاهر شوند."
+      "waitForBounds": "باز بگذار تا لایه‌های انتخاب‌شده روی کانون نمایش ظاهر شوند.",
+      "allPage": "पृष्ठ पर सभी चुनें",
+      "clear": "चयन साफ़ करें"
     },
     "stroke": {
       "ends": "لینڈ",
@@ -11120,7 +11399,9 @@
       "name": "لەیەر ناو",
       "preview": "پەڕەی ڤێکتۆر",
       "title": "ڤۆڵیڵی SVG بۆ بەڕێوەبردن بەڕێوەدەبرێت",
-      "weight": "لین وەرچە"
+      "weight": "لین وەرچە",
+      "data": "SVG मार्कअप या पथ डेटा (d)",
+      "hint": "पथ d डेटा या पथ, आयत, वृत्त, दीर्घवृत्त, रेखाएं और बहुभुज के साथ बुनियादी SVG मार्कअप पेस्ट करें। स्थानांतरण, रेखा, घन, द्विघात, चिकनी और चाप आदेश समर्थित हैं। SVG मैट्रिक्स, अनुवाद, स्केल, घुमाएं और तिरछा रूपांतरण अपनी ज्यामिति बनाए रखते हैं। ज्यामिति आपके चुने हुए रंग का उपयोग करती है; मूल पेंट, स्ट्रोक और व्यूपोर्ट मार्जिन आयात नहीं किए जाते हैं। वक्र नमूना चित्र बिंदु बन जाते हैं। Z के साथ एक पथ बंद करें इसे भरने के लिए। अलग बंद SVG तत्वों को एक साथ भरा जा सकता है। कई भाग समूहबद्ध संपादन योग्य परतें बन जाते हैं; यौगिक छेद असमर्थित हैं।"
     },
     "symbols": {
       "colour": "Colour",
@@ -11130,7 +11411,8 @@
       "previous": "Previous symbols",
       "search": "Search vector symbols",
       "title": "Vector symbols",
-      "weight": "Line weight"
+      "weight": "Line weight",
+      "vectorDownloadHint": "चुने हुए रंग और लाइन वजन के साथ पारदर्शी पृष्ठभूमि पर लाइब्रेरी प्रतीक को निर्यात करता है।"
     },
     "tables": {
       "allColumns": "All columns",
@@ -11218,7 +11500,9 @@
       "unmergeAll": "بەڕێژە",
       "unmergeRange": "Unmerge {{range}}",
       "vertical": "ڕوونپێوانی لەگەڵ بەرزی",
-      "weightsHint": "ڕێژەکان بە پێچەوانەیەوەن. ڕێژەی 2 لە ڕێژەی 1 دوو جار زۆرتر بەکار دێت، بەڵام بەڕێژەیەکی گشتییەکەی ھەیە."
+      "weightsHint": "ڕێژەکان بە پێچەوانەیەوەن. ڕێژەی 2 لە ڕێژەی 1 دوو جار زۆرتر بەکار دێت، بەڵام بەڕێژەیەکی گشتییەکەی ھەیە.",
+      "applyImportedStyle": "ड्राफ्ट पर शैली लागू करें",
+      "applyScale": "{{range}} पर स्केल लागू करें"
     },
     "text": {
       "backgroundPerLine": "हर एक लाइन के मुताबिक बैकग्राउंड सेट कर।",
@@ -11273,6 +11557,29 @@
     "viewport": {
       "fit": "Fít",
       "pan": "پان کینوس"
+    },
+    "media": {
+      "photo": "फोटो",
+      "replace": "चयनित लेयर बदलें",
+      "video": "वीडियो"
+    },
+    "redo": "Redo text change",
+    "sections": {
+      "assign": "अनुभाग लागू करें",
+      "clear": "अनुभाग साफ़ करें",
+      "hint": "अनुभाग पृष्ठों को पुनः क्रमित या कॉपी करते समय उनके साथ यात्रा करते हैं। उन्हें पृष्ठ खोज, प्रस्तुति ब्राउज़िंग, और {section} छवि फ़ाइलनाम पैटर्न में खोजें।",
+      "name": "अनुभाग का नाम",
+      "select": "अनुभाग पृष्ठ चुनें",
+      "selected": "चयनित {{count}} अनुभाग पृष्ठ",
+      "title": "चयनित पृष्ठों को अनुभागों में व्यवस्थित करें"
+    },
+    "selectionShadows": {
+      "apply": "छाया लागू करें",
+      "colour": "छाया रंग",
+      "hint": "एक संपादन में चयनित अग्रभूमि कलाकृति पर लागू होता है। धुंधलापन और ऑफसेट संपादक के 1080p संदर्भ पैमाने का उपयोग करते हैं।",
+      "mixed": "चयनित परतों की छाया अलग है।",
+      "remove": "छाया हटाएं",
+      "title": "चयन के लिए छाया ({{count}})"
     }
   },
   "creator": {

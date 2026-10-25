@@ -3634,7 +3634,8 @@
     "apply": "Codso",
     "next": "Xiga",
     "previous": "Hore",
-    "redo": "Dib u samee"
+    "redo": "Dib u samee",
+    "remove": "Tirtir"
   },
   "tip": {
     "payDirectNoName": "Si toos ah ugu soo diray abuuraha {{symbol}} on {{chain}}. No swap.",
@@ -10883,7 +10884,9 @@
       "tokenDecimals": "Meelaha jajabka tobanlaha",
       "tokenHint": "Ku dheji meel-hayaha qoraalka qaab-dhismeedka ama nuxurka QR oo dooro Isticmaal meel-hayeyaasha qoraalka ee lakabkaas. Qaabayntu waxay ka tagtaa qiimaha xaashida xogta iyada oo aan waxba laga beddelin. Qaababka lambarku waxay u baahan yihiin lambarro cad; 25 wuxuu u qaabaysan yahay 25% qaabka boqolleyda.",
       "tokenLocale": "Deegaanka lambarka",
-      "trimToken": "Ka jar meelaha bannaan ka hor inta aan la qaabayn"
+      "trimToken": "Ka jar meelaha bannaan ka hor inta aan la qaabayn",
+      "filterColumn": "Sharraxda riidka kooxda",
+      "generate": "Samee {{count}} bogag"
     },
     "charts": {
       "applyDateBounds": "Codso xadka taariikhda",
@@ -11043,7 +11046,11 @@
       "valueIntervals": "Dhexdhexaadinta qiimaha-axis",
       "xAxisMode": "Daboolaha Soo Dhacdo",
       "xIntervals": "Majiraasha xagga wadada",
-      "hierarchySample": "Yurub,Faransiiska, 35"
+      "hierarchySample": "Yurub,Faransiiska, 35",
+      "markerHint": "Qaababka iyo xariiqyada qaab-dhismeedka waxay bixiyaan hab kale oo kala sooca taxanaha. Fataxyada astaamaha waxay raacaan jaantada. Cabbirka nuqulka zero waxay qarsiyaan calaamadaha; cabbirka bubble-yada waxay hayaan qaybinta wareegga.",
+      "noPictogramIcons": "Calaamadaha kuma jiraan raadinta.",
+      "pointShape": "Qaab nuqulka",
+      "seriesPatterns": "Kala sooca qaababka iyo qaab-dhismeedka kooxda"
     },
     "clipboard": {
       "cut": "Ku dhex dhacdo kuwaas",
@@ -11153,7 +11160,9 @@
       "use": "Isticmaal xogta la doortay",
       "sampleCategory": "Qeybta",
       "sampleNorth": "Waqooyi",
-      "sampleSouth": "Koonfurta"
+      "sampleSouth": "Koonfurta",
+      "separator": "Kala-soocida faylka",
+      "sampleValue": "Qiime"
     },
     "dataVisual": {
       "accent": "Lahjad",
@@ -11196,7 +11205,11 @@
       "textColour": "Qoraal",
       "title": "Jaantusyada iyo jadwalka",
       "values": "Muuji qiyamka",
-      "vectorHint": "Wuxuu u dhoofiyaa garaafkan asalka hufan. Qoraalku wuu sii ahaanayaa mid la bedeli karo wuxuuna isticmaalaa farta la doortay meeshii ay suurtagal tahay."
+      "vectorHint": "Wuxuu u dhoofiyaa garaafkan asalka hufan. Qoraalku wuu sii ahaanayaa mid la bedeli karo wuxuuna isticmaalaa farta la doortay meeshii ay suurtagal tahay.",
+      "invalidColour": "Isticmaal midab hex lix-digit",
+      "keepDraft": "Dhamaystir wax-ku-iiditaanka",
+      "nextRows": "Riidka xiga",
+      "previewHint": "Muuqaalka draf ee bogga midabka. Samee sawirka si aad u kaydiiso isbedelladahan."
     },
     "designTools": {
       "applySize": "Codso cabbirka",
@@ -11250,7 +11263,8 @@
       "skipCover": "Qari bogga koowaad",
       "start": "Ka bilow",
       "title": "Lambarada bogga iyo walxaha soo noqnoqda",
-      "total": "Muuji bogagga guud"
+      "total": "Muuji bogagga guud",
+      "suffix": "Dhaafinta"
     },
     "elements": {
       "insert": "Geli element",
@@ -11263,7 +11277,11 @@
       "saveSelection": "Keydso xulashada",
       "selectionLibrary": "Keydso ama dib u isticmaal walxaha la doortay",
       "title": "Waxyaabaha la keydiyay",
-      "undoLibrary": "Isbedelka Maktabadda Undo"
+      "undoLibrary": "Isbedelka Maktabadda Undo",
+      "find": "Raadi elements la kaydiyay",
+      "hint": "Kaydi ilaa 20 oo qof-isticmaal ah oo qof iyo vector-ka ah ee la isticmaali karo ee akoonkaaga ee qaybta. Kooxaha, qaab-dhismeedka, iyo meesha bogga ee walaaca waxaa la hayaa. Sawirrada iyo fiidyoha waxay joogaan naqshadeeda asalka ah.",
+      "layerCount": "{{count}} lakabka",
+      "rename": "Bedel magaca"
     },
     "fills": {
       "angle": "Koonfur",
@@ -11274,7 +11292,8 @@
       "hint": "Codso gradient in qoraalka ama qaababka la doortay, ama ku dar ka dambeeya boggan.",
       "resetBackground": "Dib u deji asalka bogga",
       "solid": "Dib u soo celi buuxinta adag",
-      "solidBackground": "Isticmaal midabka koowaad sida asalka bogga"
+      "solidBackground": "Isticmaal midabka koowaad sida asalka bogga",
+      "lockedBackground": "Fur dhabar bogga kahor inta aad beddesho."
     },
     "fonts": {
       "graphicCoverage": "Waxaa ka mid ah lakabyada qoraalka, jaantusyada iyo miisaska. Silsiladaha qufulka ah waxay ilaaliyaan astaamahooda.",
@@ -11283,7 +11302,8 @@
       "replaceDesign": "Beddel font oo dhan naqshaddan",
       "search": "Foomamka raadinta",
       "source": "Foonka dhacdo",
-      "target": "Fonka Soo Gaar Ah"
+      "target": "Fonka Soo Gaar Ah",
+      "count": "{{count}} fonka la helay. Raadi si aad u yareysid liiska."
     },
     "frames": {
       "title": "Sawirka sawirka"
@@ -11306,7 +11326,11 @@
       "styleFileHint": "Transfers midabada gradient, jagooyinka, daahfurnaanta, xagasha iyo goobaha radial u dhexeeya qalabka. Soo dejiso culeyska qoraalka; codso si aad u cusbooneysiiso farshaxanka.",
       "styleFiles": "Ku wareeji qaababka gradient",
       "styleLoaded": "Qaabka ayaa lagu shubay qabyo-qoraalka",
-      "svgHint": "Wuxuu dhoofiyaa midabkan kala guurka ah iyadoo loo eegayo cabbirka bogga, oo ay ku jiraan boosaska joogsiga iyo hufnaanta. Si gaar ah u mari si aad ugu isticmaasho naqshadda."
+      "svgHint": "Wuxuu dhoofiyaa midabkan kala guurka ah iyadoo loo eegayo cabbirka bogga, oo ay ku jiraan boosaska joogsiga iyo hufnaanta. Si gaar ah u mari si aad ugu isticmaasho naqshadda.",
+      "colour": "Midab joojin",
+      "invalid": "Isticmaal midabka hex lix-digit oo buuxa ee mid kasta oo joojin.",
+      "position": "Meesha",
+      "preview": "Muuqaalka gradient"
     },
     "graphicDraftHistory": {
       "local": "Qabyo-qoraalka garaafyada",
@@ -11809,7 +11833,11 @@
       "unmergeRange": "Ka fur isku-darka {{range}}",
       "vertical": "Isku-habaynta toosan",
       "weightsHint": "Cabbirradu waa qaraabo. Qiimaha 2 wuxuu isticmaalaa laba jeer meel ka badan 1; miisku wuxuu hayaa cabbirkiisa guud.",
-      "wrap": "Duub qoraalka unugga"
+      "wrap": "Duub qoraalka unugga",
+      "mergeRange": "Isku dar salxadaha",
+      "rawNumbers": "Tus tirada adag",
+      "sampleDataSize": "{{rows}} riidka · {{series}} kooxda",
+      "scaleCentred": "Dhexda qaybinta zero"
     },
     "text": {
       "backgroundPerLine": "Ku habee asalka xariiq kasta",

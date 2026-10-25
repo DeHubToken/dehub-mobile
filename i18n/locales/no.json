@@ -10925,7 +10925,10 @@
       "tokenCurrency": "Valuta",
       "tokenDecimals": "Desimaler",
       "tokenHint": "Lim inn plassholderen i malteksten eller QR-innholdet, og velg Bruk plassholdere i tekst for det laget. Formatering lar regnearksverdiene være uendret. Numeriske formater krever vanlige tall; 25 formater som 25 % i prosentmodus.",
-      "tokenLocale": "Nummerlokalitet"
+      "tokenLocale": "Nummerlokalitet",
+      "placeholders": "Bruk plassholdere i tekst",
+      "previousLayers": "Tidligere lag",
+      "trimToken": "Fjern mellomrom før formatering"
     },
     "charts": {
       "applyDateBounds": "Bruk datogrenser",
@@ -11087,7 +11090,9 @@
       "valueIntervals": "Verdi-akse-intervaller",
       "xAxisMode": "Horisontal datatype",
       "xIntervals": "Intervaller på x-aksen",
-      "hierarchySample": "Europa, Frankrike, 35"
+      "hierarchySample": "Europa, Frankrike, 35",
+      "pictogramLegend": "Forklaringsverdier",
+      "pointShape": "Punktform"
     },
     "clipboard": {
       "cut": "Kutt lag",
@@ -11198,7 +11203,8 @@
       "sampleCategory": "Kategori",
       "sampleNorth": "Nord",
       "sampleSouth": "Sør",
-      "sampleValue": "Verdi"
+      "sampleValue": "Verdi",
+      "file": "Importer {{name}}"
     },
     "dataVisual": {
       "accent": "Tegnsnitt",
@@ -11277,7 +11283,8 @@
       "previewUnavailable": "Forhåndsvisningen av lerretet er ikke tilgjengelig. Utkastet kan fortsatt redigeres.",
       "previewUpdating": "Oppdaterer diagramvinduet…",
       "title": "Redigerbare diagramstartere",
-      "vertical": "Vertikal layout"
+      "vertical": "Vertikal layout",
+      "insert": "Sett inn diagram"
     },
     "document": {
       "applyNumbers": "Bruk sidetall",
@@ -11420,7 +11427,8 @@
       "smartSpacing": "Fest lik avstand",
       "snap": "Fest til hjelpelinjer",
       "thirds": "Tredjedeler",
-      "title": "Hjelpelinjer og marger"
+      "title": "Hjelpelinjer og marger",
+      "visible": "Vis guider"
     },
     "help": {
       "noResults": "Ingen samsvarende hjelp. Prøv et verktøynavn eller en handling som lim inn, beskjær eller grupper.",
@@ -11467,7 +11475,8 @@
       "removeBorder": "Fjern kantlinje",
       "resetColours": "Tilbakestill fargejusteringer",
       "setRadius": "Angi hjørneradius",
-      "title": "Velg stil for utvalgte bilder og videoer ({{count}})"
+      "title": "Velg stil for utvalgte bilder og videoer ({{count}})",
+      "setBorder": "Angi kantlinje"
     },
     "mockups": {
       "caption": "Adresse eller bildetekst (valgfritt)",
@@ -11869,7 +11878,8 @@
       "unmergeRange": "Utslå {{range}}",
       "vertical": "Vertikal utlining",
       "weightsHint": "Størrelser er relative. En verdi på 2 bruker dobbelt så mye plass som 1; tabellen beholder sin totale størrelse.",
-      "wrap": "Bryt tekst i celler"
+      "wrap": "Bryt tekst i celler",
+      "fontSizePercent": "Tekststørrelse (%)"
     },
     "text": {
       "backgroundPerLine": "Pass bakgrunn til hver linje",

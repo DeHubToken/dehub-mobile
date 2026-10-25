@@ -10925,7 +10925,8 @@
       "tokenDecimals": "Decimāldaļas",
       "tokenHint": "Ielīmējiet vietturi veidnes tekstā vai QR saturā un izvēlieties Izmantot vietturus šī slāņa tekstā. Formatējot izklājlapas vērtības, tās netiek mainītas. Skaitļu formātiem ir nepieciešami vienkārši skaitļi; 25 formāti ir 25% procentu režīmā.",
       "tokenLocale": "Numura lokalizācija",
-      "trimToken": "Pirms formatēšanas apgrieziet atstarpes"
+      "trimToken": "Pirms formatēšanas apgrieziet atstarpes",
+      "placeholderColumn": "Izklājlapas kolonna"
     },
     "charts": {
       "applyDateBounds": "Piemērot datumu ierobežojumus",
@@ -11086,7 +11087,10 @@
       "valueIntervals": "Vērtību ass intervāli",
       "xAxisMode": "Horizontāls datu tips",
       "xIntervals": "Intervāli horizontālās asses",
-      "hierarchySample": "Eiropa,Francija,35"
+      "hierarchySample": "Eiropa,Francija,35",
+      "applyReference": "Lietot mērķa rindu",
+      "missingFilterSeries": "Filtri {{filters}} atsaucas uz trūkstošām vai neskaidrām sērijām un pašlaik tiek ignorēti.",
+      "pasteObservations": "Ielīmēt neapstrādātus novērojumus"
     },
     "clipboard": {
       "cut": "Sekciju iedalījums",
@@ -11170,7 +11174,9 @@
       "redoAction": "Atjaunot datu darbību",
       "startCell": "Sākt ar šūnu",
       "undoAction": "Atsaukt datu darbību",
-      "valueHint": "Rediģēt visu šo šūnu, iekļaujot rindas pārtraukumus. Vērtības glabājas kā teksts; formulu neizskaitīs."
+      "valueHint": "Rediģēt visu šo šūnu, iekļaujot rindas pārtraukumus. Vērtības glabājas kā teksts; formulu neizskaitīs.",
+      "numberInputFormat": "Ciparu pieturzīmes avotā",
+      "previousCell": "Iepriekšējā šūna"
     },
     "dataExport": {
       "formulasAsText": "Uzskatīt formulas par tekstu"
@@ -11195,7 +11201,8 @@
       "sampleCategory": "Kategorija",
       "sampleNorth": "Ziemeļi",
       "sampleSouth": "Dienvidi",
-      "sampleValue": "Vērtība"
+      "sampleValue": "Vērtība",
+      "numberFormat": "Avota numura pieturzīmes"
     },
     "dataVisual": {
       "accent": "Akcents",
@@ -11260,7 +11267,8 @@
       "replaceAll": "Aizstāt visu",
       "replaceWith": "Aizstāt ar",
       "replacement": "Aizstājoša krāsa",
-      "resize": "Mainīt izmēru"
+      "resize": "Mainīt izmēru",
+      "findReplace": "Atrast un aizstāt"
     },
     "diagrams": {
       "edgeLabels": "Savienotāju uzlīmes, viena katrā līnijā (pēc izvēles)",
@@ -11295,7 +11303,8 @@
       "start": "Sākt no",
       "suffix": "Sufikss",
       "title": "Lappušu numuri un atkārtoti elementi",
-      "total": "Rādīt kopējo lapu skaitu"
+      "total": "Rādīt kopējo lapu skaitu",
+      "applyNumbers": "Lietot lappušu numurus"
     },
     "elements": {
       "find": "Atrast saglabātos elementus",
@@ -11333,7 +11342,8 @@
       "previous": "Iepriekšējie fonti",
       "replaceDesign": "Aizstāt fontu visā šajā dizainā",
       "search": "Meklēt fontus",
-      "target": "Aizstājošais fonts"
+      "target": "Aizstājošais fonts",
+      "source": "Aizstājamais fonts"
     },
     "frames": {
       "title": "Foto rāmīte"
@@ -11358,7 +11368,9 @@
       "stop": "Stop {{number}} {{position}}%",
       "styleFileHint": "Pārnes gradienta krāsas, pozīcijas, caurspīdīgumu, leņķi un radiālos iestatījumus starp ierīcēm. Importēšana ielādē melnrakstu; izmantojiet to, lai atjauninātu mākslas darbu.",
       "styleLoaded": "Stila ielādēts draftā",
-      "svgHint": "Eksportē šo gradientu lapašā, iekļaujot stopa pozīcijas un caurspīdību. To var lietot atsevišķi dizaina veidošanai."
+      "svgHint": "Eksportē šo gradientu lapašā, iekļaujot stopa pozīcijas un caurspīdību. To var lietot atsevišķi dizaina veidošanai.",
+      "brandPalettes": "Saglabātās paletes un gradienta krāsas",
+      "styleFiles": "Pārsūtīt gradientu stilus"
     },
     "graphicDraftHistory": {
       "local": "Grafikas drafts",
@@ -11440,11 +11452,13 @@
       "openPage": "Doties uz lapu {{number}}",
       "remove": "Noņemt saiti",
       "targetPage": "Galamērķa lapa",
-      "title": "Saite"
+      "title": "Saite",
+      "destination": "Saite uz galamērķi"
     },
     "media": {
       "photo": "Bilde",
-      "replace": "Aizstāt atlasīto slāni"
+      "replace": "Aizstāt atlasīto slāni",
+      "video": "Video"
     },
     "mediaSelection": {
       "applyFilter": "Lietot filtru atlasei",
@@ -11458,7 +11472,9 @@
       "removeBorder": "Noņemt apmali",
       "resetColours": "Atiestatīt krāsu pielāgojumus",
       "setBorder": "Iestatīt apmali",
-      "title": "Atlasīto fotoattēlu un videoklipu stils ({{count}})"
+      "title": "Atlasīto fotoattēlu un videoklipu stils ({{count}})",
+      "borderOpacity": "Apmaļu necaurredzamība procentos",
+      "setRadius": "Iestatīt stūra rādiusu"
     },
     "mockups": {
       "preview": "Pārskats uz izmēļiem",

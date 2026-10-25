@@ -10855,7 +10855,14 @@
       "tokenCurrency": "Währung",
       "tokenDecimals": "Zehntelstellen",
       "tokenHint": "Formatiere Werte in deinem Text, indem du Platzhalter in Text einsetzt. Für diese Ebene wählst du \"Platzhalter in Text verwenden\". Die Formatierung bleibt bei Tabelle-Werten unverändert. Zahlenformate erfordern normale Zahlen; 25 wird als 25% in der Prozentsatz-Modus dargestellt.",
-      "trimToken": "Ich hätti en Idee, dass es besser wäre, wenn wir e chliini Gruppe hätten, wo wir uns austausche, was wir für e chliini Projäkt gschafft händ."
+      "trimToken": "Ich hätti en Idee, dass es besser wäre, wenn wir e chliini Gruppe hätten, wo wir uns austausche, was wir für e chliini Projäkt gschafft händ.",
+      "connectionsLoaded": "Matching connections loaded",
+      "copyPhotoName": "Copy photo name: {{name}}",
+      "photoNameCopied": "Copied {{name}}",
+      "preview": "Preview data row",
+      "previousLayers": "Previous layers",
+      "previousRow": "Previous row",
+      "tokenLocale": "Number locale"
     },
     "charts": {
       "numberLocale": "Zahlformat",
@@ -10998,7 +11005,19 @@
       "valueIntervals": "Wertachsen-Intervalls",
       "xAxisMode": "Horizontale Datentypen",
       "xIntervals": "Abstände auf der Horizontalachse",
-      "hierarchySample": "Europe,Frankreich,35"
+      "hierarchySample": "Europe,Frankreich,35",
+      "applyReference": "Apply target line",
+      "areaMode": "Area chart layout",
+      "compact": "Compact numbers",
+      "dateFormat": "Date label format",
+      "dateLocale": "Date locale",
+      "defaultTextSize": "Default text size",
+      "donutLabelOptional": "Optional centre label",
+      "exportStyle": "Export current style",
+      "filterCase": "Match case exactly",
+      "importStyle": "Import style file",
+      "labelEvery": "Label every",
+      "labelWrap": "Wrap category labels"
     },
     "clipboard": {
       "cut": "Schneiden von Schichten",
@@ -11106,7 +11125,8 @@
       "sampleCategory": "Kategorie",
       "sampleNorth": "Nord",
       "sampleSouth": "Süd",
-      "sampleValue": "Wert"
+      "sampleValue": "Wert",
+      "pastedName": "pasted spreadsheet"
     },
     "dataVisual": {
       "accent": "Umlaute",

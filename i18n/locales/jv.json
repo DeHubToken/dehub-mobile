@@ -10403,7 +10403,16 @@
       "pageBookmarks": "Panggonan buku tumpang",
       "pageOrderHint": "Kaca-kaca kudu urut sesuai urutane. Gunakake 3,1-2 kanggo ngawali kaca 3, utawa 5-1 kanggo ngabalikaké urutan kaca 5-1. Kaca-kaca kang wis diurutake kudu nganakake urutane.",
       "pptxHint": "Klo tipe halaman lan jadi satu gambar slide, lan dadi dhuwur presenter notes lan URL. Edit teks lan elemen lanjaran sing dadi dhuwur lan dinawisahake.",
-      "transparent": "Gambar latar belakang transparan"
+      "transparent": "Gambar latar belakang transparan",
+      "cropMarks": "Tandha potong lan pinggir print",
+      "documentImageQuality": "Rincian gambar kaca",
+      "filenameHint": "Kosongake kanggo jeneng baku. Gunakake {title}, {name}, {section}, {page}, utawa {page:3}. Tambahake awalan minangka teks biasa. Jeneng duplikat nampa akhiran nomer kaca.",
+      "filenamePattern": "Pola jeneng berkas kaca",
+      "notesText": "Cathetan presenter (.txt)",
+      "notesTextHint": "Ngundhuh rubrik bagean, nomer kaca asli, jeneng kaca, lan cathetan presenter minangka berkas teks.",
+      "pdf": "Dokumen PDF",
+      "pptx": "Presentasi PowerPoint",
+      "section": "Bagean jeneng"
     },
     "adjust": {
       "auto": "Paningkatan otomatis",
@@ -10786,7 +10795,16 @@
       "tokenDecimals": "Angka desimal",
       "tokenHint": "Pastekan placeholder ini ke teks template atau konten QR, lananti pilihlah *Use placeholders in text* untuk lapisan itu. Formatasi ngawur nganggo nilai spreadsheet ga ngawur. Format angka butuh angka mungil; 25 di mode persen ditulis 25%.",
       "tokenLocale": "Nomor lokale",
-      "trimToken": "Pangkas spasi sadurunge format"
+      "trimToken": "Pangkas spasi sadurunge format",
+      "layerPhotos": "Foto saka kolom",
+      "matchCount": "{{count}} sambungan siap; {{ambiguous}} lapisan ambiguo dilewati",
+      "matchHint": "Cocog jeneng lengkap nalika nglirwakake huruf gedhe, spasi berulang, tanda hubung lan garis bawah. Sambungan valid sing ana lan placeholder teks dijaga. Cocog ambiguo tetep ora sambung. Sambungan foto nggunakake pencarian foto jeneng sing ana.",
+      "nextRow": "Baris sabanjure",
+      "pagePreview": "Pratinjau kaca sing isine",
+      "photoNames": "Jeneng foto sumber sing kasedhiya ({{count}})",
+      "placeholderFormat": "Format teks utawa nomer",
+      "placeholders": "Gunakake placeholder ing teks",
+      "tokenCopied": "Placeholder disalin"
     },
     "charts": {
       "applyDateBounds": "Kasih batang tanggal",
@@ -10881,7 +10899,9 @@
         "apply": "Kasih batas skala",
         "auto": "Automatis",
         "hint": "Bounds ngembangake skala otomatis supaya grafik sing gegandhengan bisa nuduhake rentang sing padha. Nilai ing njaba watesan kasebut tetep katon.",
-        "upper": "Batas Atas"
+        "upper": "Batas Atas",
+        "lower": "Batasi bawah",
+        "reset": "Skala otomatis"
       },
       "scatterHint": "Gambar *scatter plot* ngunake koordinat numerik X di kolom pertama lan nilai Y di kolom-kolom sisa. Banyak seri ngerti koordinat X tu. Pilih *Dates* lan *UTC times* di *Axes* lan skala buat sumbu horizontal waktu yang lalulintas.",
       "scatterLines": "Koneksin titik-titik ngelangit",
@@ -10907,7 +10927,48 @@
       "useHierarchy": "Kanggo nganggo kolom kategori",
       "valueIntervals": "Ngalakéka wiwitan ing ngisor-ngisor wiwitan",
       "xAxisMode": "Horizontal data type",
-      "hierarchySample": "Europe,Pransya,35"
+      "hierarchySample": "Europe,Pransya,35",
+      "binCounts": "Ekspor jumlah bin histogram",
+      "brandPalettes": "Palet sing disimpen lan warna grafik",
+      "bubbleHint": "Gunakake koordinat X numerik ing kolom pisanan. Ing mode multi-seri, pilih kolom Y lan ukuran ing ngisor; baku nggunakake seri pisanan kanggo Y lan seri kapindho kanggo ukuran. Area proporsional karo ukuran; ukuran nol didhelikake. Tanpa seri ukuran, gelembung padha. Seri tambahan tetep ing data sumber. Label nilai nuduhake Y / ukuran. Sumbu lan skala bisa nggunakake tanggal lan wektu UTC kanggo X.",
+      "bubbleSizeColumn": "Ukuran gelembung saka",
+      "categoryReducer": "Ringkesake saben seri karo",
+      "compact": "Nomer kompak",
+      "dateAxisHint": "Gunakake tanggal ISO (2026-01-31) utawa cap wektu UTC (2026-01-31T14:30Z) ing kolom data pisanan. Posisi nggambarake wektu sing lumaku, kalebu celah. Label tanggal lan wektu nggunakake UTC ing saben piranti. Batas nambah skala nalika njaga kabeh data katon.",
+      "dateFormat": "Format label tanggal",
+      "donutLabelOptional": "Label pusat opsional",
+      "donutTotal": "Nuduhake total ing pusat",
+      "exportDisplayedRows": "Ekspor baris sing ditampilake",
+      "findPictogramIcon": "Golek ikon piktogram",
+      "findStarter": "Ngandhika chart awal",
+      "importStyle": "Ngimpor gaya file",
+      "labelEvery": "Tandha label saka",
+      "missingFilterSeries": "Filter {{filters}} ora ana utawi ambigu lan saiki dianggo.",
+      "noBrandPalettes": "Simpen warna palet ing Brand styles kanggo nggunakaké ing sini.",
+      "orderBy": "Urutaké kategori saka",
+      "pasteObservations": "Pungkasané raw observation",
+      "percentStack": "100% stacked",
+      "pictogramSettings": "Simbol piktogram",
+      "pieValueHint": "Nggelar nilai kanggo nampilaké format iki. Bagian-bagian kang positif nggunakaké sisi-sisi; total tengah tetep nggunakaké format nilai.",
+      "pointShape": "Wujud titik",
+      "progressRounded": "Pungkasané bulat",
+      "raceExample": "Ganti conto nganggo conto ranking",
+      "raceSettings": "Animasi ranking",
+      "radarRings": "Garis radar",
+      "referenceLabel": "Tandha label (opsional)",
+      "removeReference": "Anggepake ora",
+      "searchTypes": "Cari tipe chart",
+      "seriesStructureHint": "Nilai lan warna ngikuti sèri. Sèri anyar mulai saka 0. Ganti jeneng sèri ing baris pisanan grid data.",
+      "showAxisValues": "Tandha skala",
+      "skipHierarchyHeader": "Luputaken baris pisanan",
+      "skipObservationHeader": "Luputaken baris pisanan",
+      "sliceSection": "Penampilan slice",
+      "starters": "Saka data conto",
+      "symbolGap": "Tebalan simbol",
+      "textSize": "Sizé teks chart",
+      "useObservations": "Gunakaké observation",
+      "valueFormat": "Format nilai",
+      "xIntervals": "Siji wates horizontal"
     },
     "clipboard": {
       "cut": "Kutih lapisan",
@@ -10916,7 +10977,10 @@
     },
     "colourPicker": {
       "cancel": "Kanggo nganggo warna picker",
-      "pick": "Pilih saka kanvas"
+      "pick": "Pilih saka kanvas",
+      "accent": "Pilih aksara saka canvas",
+      "canvasHint": "Tuku warna saka wates",
+      "ink": "Pilih warna teks saka canvas"
     },
     "compositions": {
       "accent": "Warna aksara",
@@ -10937,14 +11001,18 @@
       "sampleSubtitle": "Kisahmu dimulai sini.",
       "sampleTitle": "Gawea soko sing bakal tansah kelingan",
       "subtitle": "Tèks panyengkuyung",
-      "title": "Kombinasi teks"
+      "title": "Kombinasi teks",
+      "brandFonts": "Gunakake pasangan aksara sing wis disimpen",
+      "heading": "Judhul",
+      "noSavedFonts": "Simpen aksara judhul utawa aksara badan ing Brand styles kanggo nggunakake ing sini."
     },
     "connectors": {
       "bend": "Bendung ngisor",
       "colour": "Garawé warna",
       "hint": "Gésék, ngésék, ngulik, atau ngelukukin konektor di kanvas. Pilihnya lagi guna ngatur rute dan titik-titik ujungnya.",
       "preview": "Konektor pratinjungan",
-      "title": "Garis dan sambungan"
+      "title": "Garis dan sambungan",
+      "width": "Bobot garis"
     },
     "crop": {
       "pageRatio": "Sesuaikan rasio halaman",
@@ -10958,7 +11026,9 @@
       "ratioHeight": "Rasio tinggi",
       "ratioWidth": "Rasio lebar",
       "swapRatio": "Tukeneke lebar dhuwur dhuwur lebar",
-      "touchHint": "Seret kanggo mindhah posisi · cubit kanggo zoom"
+      "touchHint": "Seret kanggo mindhah posisi · cubit kanggo zoom",
+      "applyFocus": "Tetepake fokus akurat",
+      "focusX": "Fokus horizontal (%)"
     },
     "dataCells": {
       "applyPaste": "Tempel ke dalam sel",
@@ -11083,7 +11153,11 @@
       "previewHint": "Pratinjau pakai warna halaman tanpa karya seni lain. Masukkan diagram untuk tambah lapisan yang bisa diedit.",
       "previewUnavailable": "Pratinjau kanvas tidak tersedia. Draft tetap bisa diedit.",
       "previewUpdating": "Gwéyé ngisorake diagram préwéwé…",
-      "vertical": "Tata letak vertikal"
+      "vertical": "Tata letak vertikal",
+      "preview": "Pregelisikan diagram",
+      "previewAlt": "Tata letak diagram draft",
+      "previewNeedsData": "Gunakake warna lan gunakake label node nganti 120 karakter kanggo ngliwati.",
+      "title": "Pembuka diagram sing bisa diubah"
     },
     "document": {
       "applyNumbers": "Pasang nomer kaca",
@@ -11101,7 +11175,11 @@
       "repeated": "Elemen sing dipilih wis disalin menyang kaca sing dipilih",
       "size": "Géngéngan tulisan",
       "suffix": "Sufiks",
-      "title": "Nomer kaca lan unsur-unsur sing dibaleni"
+      "title": "Nomer kaca lan unsur-unsur sing dibaleni",
+      "removeNumbers": "Tutup nomor halaman",
+      "skipCover": "Tutup ing halaman pisanan",
+      "start": "Mimiti saka",
+      "total": "Tampilake jumlah halaman"
     },
     "elements": {
       "find": "Kanggo ngelmuh urip-urip yén udah disimpen",
@@ -11117,7 +11195,8 @@
       "saveSelection": "Kanggo ngelakuin seleksi, ngelakuin salinan dhuwur.",
       "selectionLibrary": "Kanggo simpan atawa nganggo ulang ngisor-ngisor yén dipilih",
       "title": "Sanggawe ing ngisor-ngisor",
-      "undoLibrary": "Ganti perubahaan di library"
+      "undoLibrary": "Ganti perubahaan di library",
+      "rename": "Ganti nama"
     },
     "fills": {
       "angle": "Sudut",
@@ -11128,7 +11207,8 @@
       "lockedBackground": "Gunungin latar belakang halaman dulu sebelum diganti.",
       "resetBackground": "Kembalike background halaman",
       "solid": "Kembalikan isi padat yang kokoh",
-      "solidBackground": "Kanggo ngarani warna kanggo ngisor halaman, ngarani warna kanggo ngisor halaman."
+      "solidBackground": "Kanggo ngarani warna kanggo ngisor halaman, ngarani warna kanggo ngisor halaman.",
+      "hint": "Tetepake gradasi kanggo teks utawa bentuk sing dipilih, utawa tambahake ing wates iki."
     },
     "fonts": {
       "count": "{{count}} font ingkang dadi. Cari lan kanggo ngurangi daepe.",
@@ -11136,7 +11216,9 @@
       "previous": "Font sadurunge",
       "replaceDesign": "Kanggo nganti font ngendi-ngendi di desain ini.",
       "search": "Kecari font",
-      "source": "Font kanggo ngganti"
+      "source": "Font kanggo ngganti",
+      "next": "Font selanjutnya",
+      "target": "Font pengganti"
     },
     "gradients": {
       "add": "Tambah stop",
@@ -11154,7 +11236,13 @@
       "styleFileHint": "Kang ngarani warna gradien, posisi, transparansi, sudut, dan pengaturan radial antar perangkat. Import ngarani draft; guna kané ngawangi ngarani karya seni.",
       "styleFiles": "Tranfer gaya gradient",
       "styleLoaded": "Gaya udah dimasukin ke draft",
-      "svgHint": "Ngasilaké gradient iki ingkang ngembang ing ukuran page, ingkang ngemot posisi stop lan transparansi. Gunakaké ingkang béda-béda supaya bisa digunakaké ing desain."
+      "svgHint": "Ngasilaké gradient iki ingkang ngembang ing ukuran page, ingkang ngemot posisi stop lan transparansi. Gunakaké ingkang béda-béda supaya bisa digunakaké ing desain.",
+      "brandPalettes": "Palet sing wis disimpen lan warna gradasi",
+      "importStyle": "Impor file gaya",
+      "noBrandPalettes": "Simpen palet sing setidaknya duwa warna ing Brand styles kanggo nggunakake ing sini.",
+      "preview": "Pregelisikan gradasi",
+      "remove": "Tutup stop",
+      "reverse": "Balik"
     },
     "graphicDraftHistory": {
       "local": "Rancangan Grafis",
@@ -11166,7 +11254,8 @@
       "mobileHint": "Ngisi layout foto. Tap frame lan pilih ganti layer sing isiné karo foto utawa video.",
       "rounding": "Kelurusan sisi sudut",
       "spacing": "Kedhaan di pixel",
-      "title": "Gedhog foto"
+      "title": "Gedhog foto",
+      "frame": "Fram foto"
     },
     "groups": {
       "applyOpacity": "Kanggo ngelmukeke nglawane lan nglawane yén dipilih",
@@ -11720,6 +11809,9 @@
       "zoomOut": "Zoomin out kanvas",
       "fit": "Fit",
       "pan": "Pan canvas"
+    },
+    "frames": {
+      "title": "Fram foto"
     }
   },
   "creator": {

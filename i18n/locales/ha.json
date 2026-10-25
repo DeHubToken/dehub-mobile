@@ -10261,7 +10261,9 @@
       "selectNumbers": "Kuɗa shafuka",
       "selectionRange": "Lambobin shafi da jeri",
       "showPresentation": "Nuna a cikin gabatarwa",
-      "visibilityHint": "Shafukan da aka ɓoye suna ci gaba da editable kuma suna kasancewa don saukewa."
+      "visibilityHint": "Shafukan da aka ɓoye suna ci gaba da editable kuma suna kasancewa don saukewa.",
+      "transferHint": "Kwafi zuwa shafuka har 50, ko motsa zuwa daya. Ƙungiyoyi da sanya suna bin zaɓi. Motsi yana shafar wannan shafuka kawai; sauran bayyananniyar ƙungiyoyi ana kiyaye su. Gida dole ya dace da sarƙoƙon lokaci.",
+      "transferLayers": "Motsa ko kwafi zaɓaɓɓun sarƙoƙon zuwa shafuka"
     },
     "captions": {
       "captionText": "Rubutun taken",
@@ -10823,7 +10825,16 @@
       "tokenDecimals": "Wuraren Decimal",
       "tokenHint": "Manna mai saka wuri a cikin rubutun samfuri ko abun ciki na QR kuma zaɓi Yi amfani da masu sanya wuri a cikin rubutu don wannan Layer. Formatting ganye spreadsheet dabi'u ba canza. Lissafi Formats bukatar bayyanannu lambobi; 25 Formats kamar yadda 25% a cikin kashi yanayin.",
       "tokenLocale": "Lambar gida",
-      "trimToken": "Trim sarari kafin tsarawa"
+      "trimToken": "Trim sarari kafin tsarawa",
+      "firstMatchingRecord": "Dubbara farkon rikodin da ya dace",
+      "importConnections": "Shigo da fayil haɗin gida",
+      "keepTemplateLink": "Kiyaye haɗin gida na tsarin",
+      "matchHint": "Yana daidaita cikakken sunaye yayin watsi da haruffa masu girma-girma, maimaita sarari, alamar raba da alamar gida. Haɗin gida masu inganci da wuraren ajiyar rubutu ana kiyaye su. Haɗin gida masu rikitarwa suna jiya ba a haɗa su. Haɗin gida na hotuna suna amfani da neman hotuna mai suna da aka samu.",
+      "matchNames": "Haɗa sunaye na sarƙoƙon da suka dace",
+      "pageFieldsHint": "Waɗannan ginshikin zasu iya samar da shafuka ko da ba a haɗa su da sarƙoƙon rubutu. Bakin shaɓi masu fantsam da sassan suna share waɗannan filayen; sauran aikin zane yana bin tsarin.",
+      "placeholderFormat": "Nau'in rubutu ko lambar",
+      "rows": "jerin bayanai",
+      "tokenCopied": "An kwafi ajiyar rubutu"
     },
     "charts": {
       "applyDateBounds": "Aiwatar da iyakokin kwanan wata",
@@ -10980,7 +10991,14 @@
       "valueIntervals": "Value-axis tsaka-tsaki",
       "xAxisMode": "Nau'in bayanan kwance",
       "xIntervals": "Horizontal-axis tsaka-tsaki",
-      "hierarchySample": "Turai,Faransa, 35"
+      "hierarchySample": "Turai,Faransa, 35",
+      "applyImportedStyle": "Aiwatar da salo ga daftarin ƙira",
+      "dateLocale": "Gida na lokaci",
+      "donutLabelOptional": "Alamar tsakiya ta zaɓi",
+      "filterHint": "Har zuwa abubuwa uku masu aiki dole su dace duka. Tacewa ta banbanta yana canja nuni da zane-zane yayin ajiye kowane jeri na tushe. Tacewa ta jerin da aka sanya ana watse ta idan jerin ya kashe ko aka sake suna. Zane-zane na ci gaba suna kiyaye ƙimar farko ta tushe.",
+      "filterLabelSummary": "Alamar {{operator}} {{text}}",
+      "treemapHint": "Amfani da hanyoyin allon jiya kamar Turai / Faransa da Turai / Jamus. Har zuwa matakan shida ana goyan. Dole ne ƙimomi su kasance mara kyau, tare da aƙalla ƙima ɗaya mai kyau. Ƙimomi na sifili ana ɓoye su. Hanya ba za ta iya zama ƙungiya da jiya ba. Jerin farko yana samar da ƙimomi; sauran jerin tushe ana kiyaye su.",
+      "useObservations": "Amfani da lura"
     },
     "clipboard": {
       "cut": "Yanke yadudduka",
@@ -11014,7 +11032,9 @@
       "sampleSubtitle": "Labarinku ya fara a nan.",
       "sampleTitle": "Yi wani abu wanda ba a iya mantawa da shi ba",
       "subtitle": "Rubutun tallafi",
-      "title": "Haɗin rubutu"
+      "title": "Haɗin rubutu",
+      "brandFonts": "Amfani da haɗin gida na ajiyar harafin",
+      "previewHint": "Dubbara akan launi na shafuka, ba tare da sauran aikin zane ba. Saka zaɓaɓɓun haɗin gida don ƙara sarƙoƙon da za a iya gyara."
     },
     "connectors": {
       "bend": "Matsayin lankwasa",
@@ -11089,7 +11109,8 @@
       "sampleCategory": "Kategorien",
       "sampleNorth": "Arewa",
       "sampleSouth": "Kudancin Kudu",
-      "sampleValue": "Darajar"
+      "sampleValue": "Darajar",
+      "previewLimit": "Dubbara yana nuni da jeri shida farko da aka zaɓa, tare da kowane taken. Duk jeri da aka zaɓa za a shigo da su."
     },
     "dataVisual": {
       "accent": "Lahani",
@@ -11129,12 +11150,14 @@
       "stacked": "Stack jerin",
       "tableStyle": {
         "borderWidth": "Grid nisa",
-        "stripeColour": "Alternating jere launi"
+        "stripeColour": "Alternating jere launi",
+        "stripes": "Sel masu juyawa"
       },
       "textColour": "Rubutun rubutu",
       "title": "Charts da tebur",
       "values": "Nuna dabi'u",
-      "vectorHint": "Fitarwa wannan zane-zane a kan bayyane. Text zauna editable da kuma amfani da zaba font inda akwai."
+      "vectorHint": "Fitarwa wannan zane-zane a kan bayyane. Text zauna editable da kuma amfani da zaba font inda akwai.",
+      "table": "Tebur"
     },
     "designTools": {
       "applySize": "Aiwatar size",
@@ -11152,7 +11175,8 @@
       "replaceAll": "Sauya duk",
       "replaceWith": "Sauya tare da",
       "replacement": "Sauya launi",
-      "resize": "Maimaitawa"
+      "resize": "Maimaitawa",
+      "insert": "Saka"
     },
     "diagrams": {
       "edgeLabels": "Alamar mahaɗi, ɗaya ta kowane layi (zaɓi)",
@@ -11183,7 +11207,12 @@
       "start": "Fara daga",
       "suffix": "Sufiks",
       "title": "Lambobin shafi da maimaita abubuwa",
-      "total": "Nuna jimlar shafuka"
+      "total": "Nuna jimlar shafuka",
+      "position": "Matsayi",
+      "prefix": "Gaba",
+      "removeNumbers": "Cire lambar shafuka",
+      "repeatHint": "Zaɓi taken, gida, logo, ko hotun da ya tsaya don kwafar shi zuwa matsayi ɗaya akan shafuka da aka zaɓa. Kowane kwafi yana jiya ba a iya gyara shi.",
+      "skipCover": "Ɓoye akan shafukan farko"
     },
     "elements": {
       "hint": "Ajiye har zuwa 20 reusable rubutu da vector zažužžukan ga wannan lissafi a kan wannan na'urar. Ƙungiyoyi, tsarawa, da sanya shafi na zumunta ana kiyaye su. Hotuna da bidiyo suna kasancewa a cikin ƙirar su na asali.",
@@ -11197,7 +11226,10 @@
       "saveSelection": "Ajiye zabi",
       "selectionLibrary": "Ajiye ko sake amfani da abubuwan da aka zaɓa",
       "title": "Abubuwan da aka adana",
-      "undoLibrary": "Undo library change"
+      "undoLibrary": "Undo library change",
+      "find": "Nemo abubuwan da aka ajiye",
+      "inserted": "Saita {{name}}",
+      "name": "Sunan Abin"
     },
     "fills": {
       "angle": "Madaidaiciya matsayin cewa.",
@@ -11241,11 +11273,17 @@
       "styleFileHint": "Transfers gradient launuka, matsayi, nuna gaskiya, kusurwa da radial saituna tsakanin na'urorin. Shigo da kaya daftarin aiki; amfani da shi don sabunta zane-zane.",
       "styleFiles": "Canja wurin gradient styles",
       "styleLoaded": "Salon da aka ɗora a cikin rubutun",
-      "svgHint": "Fitarwa wannan gradient a girman shafi, ciki har da tsayawa matsayi da kuma nuna gaskiya. Aiwatar da shi daban don amfani da shi a cikin zane."
+      "svgHint": "Fitarwa wannan gradient a girman shafi, ciki har da tsayawa matsayi da kuma nuna gaskiya. Aiwatar da shi daban don amfani da shi a cikin zane.",
+      "applyImportedStyle": "Aiwatar da style zuwa draft",
+      "colour": "Tsayin launi",
+      "downloadSvg": "Saukar gradient a matsayin SVG",
+      "opacity": "Haske",
+      "position": "Matsayi"
     },
     "graphicDraftHistory": {
       "local": "Rubutun hoto",
-      "redo": "Redo draft change"
+      "redo": "Redo draft change",
+      "undo": "Maye draft change"
     },
     "grids": {
       "frame": "Hoto firam",
@@ -11269,7 +11307,11 @@
       "rotationDegrees": "Zaben juyawa ta digiri",
       "scalePercent": "Sikeli zabi da kashi",
       "selectMatches": "Zaɓi yadudduka masu dacewa",
-      "smaller": "Ƙananan"
+      "smaller": "Ƙananan",
+      "group": "Rukuni",
+      "layerOpacity": "Layer haske",
+      "rotateBy": "Juyawa {{degrees}}°",
+      "ungroup": "Cire rukuni"
     },
     "guides": {
       "gridTitle": "Tsarin grid",
@@ -11289,7 +11331,10 @@
       "snap": "Snap zuwa jagora",
       "thirds": "Na uku",
       "title": "Jagora da margins",
-      "visible": "Nuna jagororin"
+      "visible": "Nuna jagororin",
+      "centre": "Tsakiya",
+      "margin": "Margin",
+      "rulerUnits": "Ruler units"
     },
     "help": {
       "noResults": "Babu wani m taimako. Gwada wani kayan aiki sunan ko wani aiki kamar paste, amfanin gona, ko rukuni.",
@@ -11299,7 +11344,8 @@
     },
     "layout": {
       "gap": "Grid rata a cikin pixels",
-      "positionGroups": "Matsayi da ƙungiyoyi"
+      "positionGroups": "Matsayi da ƙungiyoyi",
+      "columns": "Grid columns (0 = auto)"
     },
     "links": {
       "apply": "Aiwatar da mahada",
@@ -11314,11 +11360,13 @@
       "openPage": "Je zuwa shafi {{number}}",
       "remove": "Cire mahada",
       "targetPage": "Shafin makoma",
-      "title": "Haɗin haɗi"
+      "title": "Haɗin haɗi",
+      "contactBuilder": "Gina email, phone ko SMS link"
     },
     "media": {
       "photo": "Hoto",
-      "replace": "Sauya zaɓaɓɓen Layer"
+      "replace": "Sauya zaɓaɓɓen Layer",
+      "video": "Video"
     },
     "mediaSelection": {
       "applyFilter": "Aiwatar da tace zuwa zabi",
@@ -11331,7 +11379,10 @@
       "resetColours": "Sake saita gyare-gyare na launi",
       "setBorder": "Saita iyaka",
       "setRadius": "Sanya radius na kusurwa",
-      "title": "Yi wa hotuna da bidiyo da aka zaba kwalliya ({{count}})"
+      "title": "Yi wa hotuna da bidiyo da aka zaba kwalliya ({{count}})",
+      "borderWidth": "Border width",
+      "filterHint": "Maye launi da blur adjustments akan zaɓaɓɓun hotuna da videos a cikin edit guda. Crop, frames, borders da timing suna tsaye a wuri.",
+      "radius": "Corner radius"
     },
     "mockups": {
       "caption": "Adireshin ko hoto caption (zaɓi)",
@@ -11350,14 +11401,20 @@
       "resetPlacement": "Sake saita sanyawa",
       "rotation": "Mockup juyawa",
       "size": "Girman a cikin shafi",
-      "title": "Na'ura da buga mockups"
+      "title": "Na'ura da buga mockups",
+      "emptyScreen": "Zaɓi hotun da ba a kulle ba don cika mockup, ko saka bakin allon da ba a cika ba kuma maye shi daga gida.",
+      "fitHint": "Fill screen crops zuwa frame. Fit photo yana kiyaye zaɓaɓɓun hoton crop na yanzu kuma yana nuna bakin allon a kewaye.",
+      "preview": "Preview mockup",
+      "usePhoto": "Cika tare da kwafi na zaɓaɓɓun hoton"
     },
     "notes": {
       "changed": "Wannan shafin ya canza. Sake buɗe Bayanan kula kafin adanawa.",
       "hint": "Sunaye da bayanin kula suna adana tare da wannan zane. Ba su bayyana a cikin hoto, bidiyo, ko fitarwa na PDF ba.",
       "presenter": "Bayani mai gabatarwa",
       "save": "Ajiye bayanan shafi",
-      "title": "Bayanan kula shafi"
+      "title": "Bayanan kula shafi",
+      "name": "Sunan shafi",
+      "saved": "Page notes saved"
     },
     "orientation": {
       "angle": "Cikakken kusurwa",
@@ -11536,7 +11593,8 @@
       "smsHint": "Yana buɗe daftarin saƙo akan na'urorin da aka tallafa. Tallafin mai karɓa da saƙon da aka riga aka cika ya dogara da ƙa'idar.",
       "title": "Lambar QR",
       "useDetails": "Yi amfani da waɗannan bayanan",
-      "vectorHint": "Fitarwa da yanzu QR takardar tare da launukansa da kuma shiru yankin a matsayin scalable vector artwork."
+      "vectorHint": "Fitarwa da yanzu QR takardar tare da launukansa da kuma shiru yankin a matsayin scalable vector artwork.",
+      "wifiContentHint": "Abin QR da aka samar ya ƙunshi kalmar siri ta hanyar sadarwa."
     },
     "redo": "Redo sauye-sauyen rubutu",
     "repeat": {
@@ -11571,7 +11629,8 @@
       "hint": "Sassan suna tafiya tare da shafuka lokacin da aka gyara ko kwafa. Nemo su a cikin binciken shafi, binciken gabatarwa, da {section} image filename alamu.",
       "select": "Zaɓi shafukan sashe",
       "selected": "Zabi {{count}} sashe shafukan",
-      "title": "Shirya shafukan da aka zaɓa a cikin sassan"
+      "title": "Shirya shafukan da aka zaɓa a cikin sassan",
+      "name": "Sunan sashe"
     },
     "selection": {
       "boundHint": "Auna daga iyakokin zaɓin juyawa. Resizing ci gaba da girma; matsayi yana farawa a saman kusurwar hagu na shafi.",
@@ -11579,7 +11638,10 @@
       "mixedStyles": "Zaɓaɓɓun yadudduka suna da nau'o 'in gauraye. Aiwatar da ƙima yana saita shi a kan kowane Layer mai dacewa.",
       "readBounds": "Karanta ma'auni na yanzu",
       "sameHint": "Match da farko zaba Layer a kan wannan shafi. Ƙungiyoyi suna kasancewa tare; ɓoyayyun yadudduka, bango, da ƙungiyoyi masu kulle suna tsallakewa.",
-      "waitForBounds": "Jira yadudduka da aka zaɓa don bayyana a kan gwangwani."
+      "waitForBounds": "Jira yadudduka da aka zaɓa don bayyana a kan gwangwani.",
+      "allPage": "Zaɓi duka a shafi",
+      "count": "{{count}} zaba",
+      "precise": "Daidai size da matsayi"
     },
     "selectionShadows": {
       "apply": "Aiwatar da inuwa",
@@ -11603,7 +11665,8 @@
       "name": "Sunan Layer",
       "preview": "Kamfanin Path na Vector",
       "title": "Shigo da editable SVG geometry",
-      "weight": "Layin nauyi"
+      "weight": "Layin nauyi",
+      "data": "SVG markup ko bayanan hanya (d)"
     },
     "symbols": {
       "colour": "Launi",
@@ -11614,7 +11677,8 @@
       "search": "Bincika alamomin vector",
       "title": "Alamomin Vector",
       "vectorDownloadHint": "Fitarwa alamar ɗakin karatu tare da launi da nauyin layin da aka zaɓa a kan bayyane.",
-      "weight": "Layin nauyi"
+      "weight": "Layin nauyi",
+      "next": "Alamomin gaba"
     },
     "tables": {
       "cellRegular": "Na yau da kullum",
@@ -11716,7 +11780,12 @@
       "unmergeRange": "Rashin {{range}}",
       "vertical": "A tsaye daidaitawa",
       "weightsHint": "Girman suna da dangi. ƙimar 2 tana amfani da sau biyu kamar 1; teburin yana riƙe da girmansa gaba ɗaya.",
-      "wrap": "Rubutun tantanin halitta"
+      "wrap": "Rubutun tantanin halitta",
+      "applyImportedStyle": "Aiwatar da salo don tsarawa",
+      "ascending": "Sort A–Z / 0–9",
+      "brandPalettes": "Ajiye header launuka da tebur palette",
+      "cellAppearance": "Cell bayyanar",
+      "cellBold": "Bold"
     },
     "text": {
       "listStart": "Fara lissafi a",

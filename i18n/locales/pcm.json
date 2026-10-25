@@ -10435,7 +10435,8 @@
       "tokenCurrency": "Currency",
       "tokenDecimals": "Decimal places",
       "tokenLocale": "Number locale",
-      "trimToken": "Trim spaces before formatting"
+      "trimToken": "Trim spaces before formatting",
+      "placeholders": "Use placeholders for inside di text"
     },
     "charts": {
       "applyDateBounds": "Apply date bounds",
@@ -10934,10 +10935,21 @@
       "remove": "Remove saved look",
       "saveCurrent": "Save current adjustments",
       "search": "Search saved looks",
-      "strength": "Saved look strength"
+      "strength": "Saved look strength",
+      "styleFiles": "Transfer photo looks",
+      "styleLoaded": "Imported look applied",
+      "title": "Saved photo looks"
     },
     "photos": {
-      "arrangeHint": "Frame, position, styling, and group stay wey dey fit. Photo focal point follow source. Background and photo wey cross page dey out."
+      "arrangeHint": "Frame, position, styling, and group stay wey dey fit. Photo focal point follow source. Background and photo wey cross page dey out.",
+      "arrange": "Rearrange photos",
+      "first": "First photo frame",
+      "number": "Photo {{number}}",
+      "preparing": "Preparing photo dimensions…",
+      "rotate": "Rotate photo order",
+      "second": "Second photo frame",
+      "shuffle": "Shuffle photos",
+      "swap": "Swap photos"
     },
     "present": {
       "browsePages": "Pages",
@@ -10967,7 +10979,16 @@
       "undoMark": "Undo mark",
       "upNext": "Up next",
       "usePageTiming": "Use page durations",
-      "whiteScreen": "White screen"
+      "whiteScreen": "White screen",
+      "blackout": "Blackout",
+      "clearMarks": "Clear marks",
+      "clockValue": "Presentation timer {{time}}",
+      "closeNotes": "Close notes",
+      "goToPage": "Go",
+      "inkColour": "Ink colour {{colour}}",
+      "loading": "Loading page",
+      "loop": "Loop presentation",
+      "next": "Next"
     },
     "qr": {
       "background": "Background",
@@ -11022,25 +11043,43 @@
       "hint": "Wen you move or copy sections, dem go follow page. Find dem for page search, presentation browsing, and {section} image filename patterns.",
       "name": "Section name",
       "select": "Select section pages",
-      "title": "Arrange di pages wey you select put for inside sections"
+      "title": "Arrange di pages wey you select put for inside sections",
+      "selected": "Selected {{count}} section pages"
     },
     "selection": {
-      "sameHint": "Match de first select layer wey dey on dis page. Group dey stay together; hidden layer, background, and lock group no go be select."
+      "sameHint": "Match de first select layer wey dey on dis page. Group dey stay together; hidden layer, background, and lock group no go be select.",
+      "clear": "Clear selection",
+      "count": "{{count}} selected",
+      "readBounds": "Read current measurements"
     },
     "selectionShadows": {
       "apply": "Put shadow",
       "colour": "Shadow colour",
       "hint": "Fit for selected front picture in one edit. Blur and move use editor’s 1080p standard size.",
-      "mixed": "Wetin you dey select na layer wey shadow dem different."
+      "mixed": "Wetin you dey select na layer wey shadow dem different.",
+      "remove": "Remove shadows"
     },
     "svgPath": {
       "insert": "Put geometry wey person fit edit",
-      "name": "Layer name"
+      "name": "Layer name",
+      "chooseFile": "Choose SVG file",
+      "colour": "Path colour",
+      "detail": "Curve detail",
+      "filled": "Filled closed geometry",
+      "preview": "Vector path preview",
+      "title": "Import editable SVG geometry",
+      "weight": "Line weight"
     },
     "symbols": {
       "noResults": "No match oga. Try different name or category again.",
       "previous": "Symbols wey don pass",
-      "vectorDownloadHint": "Export de library symbol wey you choose, na colour and line weight you dey pick, for transparent background."
+      "vectorDownloadHint": "Export de library symbol wey you choose, na colour and line weight you dey pick, for transparent background.",
+      "colour": "Colour",
+      "downloadSvg": "Download symbol as SVG",
+      "next": "Next symbols",
+      "search": "Search vector symbols",
+      "title": "Vector symbols",
+      "weight": "Line weight"
     },
     "tables": {
       "brandPaletteHint": "Use first save palette colour for header, fit border, subtle stripes, and auto black or white text. Body fill and custom cell style stay same. Save palette keep current table colour.",
@@ -11100,7 +11139,21 @@
       "unmergeRange": "Unmerge {{range}}",
       "vertical": "Vertical alignment",
       "weightsHint": "Size dey relative. A value like 2 dey take two times space like 1; table still keep same size.",
-      "wrap": "Wrap cell text"
+      "wrap": "Wrap cell text",
+      "allColumns": "All columns",
+      "appendSummary": "Append summary row",
+      "applyCellFill": "Apply fill",
+      "applyCellInk": "Apply text colour",
+      "applyCellTextSize": "Apply text size",
+      "ascending": "Sort A–Z / 0–9",
+      "cellAppearance": "Cell appearance",
+      "cellBold": "Bold",
+      "cellFill": "Cell fill colour",
+      "cellInk": "Cell text colour",
+      "cellItalic": "Italic",
+      "cellRegular": "Regular",
+      "cellSection": "Cell appearance",
+      "cellTextSize": "Selected cell text size"
     },
     "text": {
       "characterCount": "{{count}} characters",
@@ -11161,6 +11214,15 @@
       "pan": "Pan canvas",
       "selection": "Selection",
       "zoomIn": "Zoom canvas in"
+    },
+    "photoTone": {
+      "duotone": "Duotone",
+      "original": "Original colours",
+      "strength": "Duotone strength"
+    },
+    "stroke": {
+      "ends": "Line ends",
+      "joins": "Outline corners"
     }
   },
   "creator": {

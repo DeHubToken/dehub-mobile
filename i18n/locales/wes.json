@@ -10943,7 +10943,10 @@
       "matchCase": "Match case",
       "matches": "{{count}} text layers found",
       "pasteStyle": "Paste style",
-      "replaceWith": "I no understand wetin you dey talk."
+      "replaceWith": "I no understand wetin you dey talk.",
+      "replaceAll": "Replace all",
+      "replacement": "Replacement colour",
+      "resize": "Resize"
     },
     "diagrams": {
       "edgeLabels": "Konekte label, one pe line (optional)",
@@ -10955,7 +10958,9 @@
       "previewNeedsData": "Kolos na node laif blong ol get laif label up to 120 karakter.",
       "previewUnavailable": "Kanva ya papa no dey available. Draft dey editable.",
       "previewUpdating": "Diagram preview bi update.",
-      "vertical": "Vertical layout."
+      "vertical": "Vertical layout.",
+      "insert": "Insert diagram",
+      "title": "Editable diagram starters"
     },
     "document": {
       "applyNumbers": "I no understand wetin you mean by \"Apply page numbers\".",
@@ -10972,7 +10977,11 @@
       "start": "Sot na",
       "suffix": "Sufiks",
       "title": "Paja numba an na element we de repeat",
-      "total": "Show total paja"
+      "total": "Show total paja",
+      "numbersApplied": "Page numbers applied",
+      "position": "Position",
+      "prefix": "Prefix",
+      "removeNumbers": "Remove page numbers"
     },
     "elements": {
       "find": "Find element we de save",
@@ -11248,7 +11257,12 @@
       "arrangeHint": "Framz, posishon, stilizing, na grupz stap insait. Foto fokus poinz folo deir saiz. Bakgrondz na foto wey dey span wanod pajaz eksklud.",
       "first": "Fotofram papa!",
       "needFrames": "Muna waka foto bi two na foto bi page a, na waka re-arrange dem.",
-      "preparing": "Di prepare foto dimension..."
+      "preparing": "Di prepare foto dimension...",
+      "number": "Photo {{number}}",
+      "rotate": "Rotate photo order",
+      "second": "Second photo frame",
+      "shuffle": "Shuffle photos",
+      "swap": "Swap photos"
     },
     "present": {
       "allHidden": "All page wey dey hide. Showing first page for dis presentation.",
@@ -11287,7 +11301,11 @@
       "undoMark": "Undo mark",
       "upNext": "Up next",
       "usePageTiming": "Use page durations",
-      "whiteScreen": "White screen"
+      "whiteScreen": "White screen",
+      "blackout": "Blackout",
+      "inkColour": "Ink colour {{colour}}",
+      "loop": "Loop presentation",
+      "next": "Next"
     },
     "qr": {
       "background": "Background",

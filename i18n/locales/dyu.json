@@ -10255,7 +10255,12 @@
       "selectionRange": "Mɔgɔ minw be tɛmɛ o site web kan, olu ka teli ka tɛmɛ o site",
       "showPresentation": "Ɲiningali daminɛ",
       "transferHint": "I be se ka sɛbɛri kɛ a kan fɔɔ ka se a ɲɛɛ 50 ma, walima i be se ka sɛbɛri kɛ a kan. O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye. O la, a ka ɲi ka tɛmɛ fɛɛrɛ wɛrɛw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye. O la, a ka ɲi ka to ka taga yɔrɔ min na, a ka ɲi ka to ka taga yen.",
-      "transferLayers": "Ka tɛmɛ o kan, a ka ɲi ka tɛmɛ o kan ka tɛmɛ o kan."
+      "transferLayers": "Ka tɛmɛ o kan, a ka ɲi ka tɛmɛ o kan ka tɛmɛ o kan.",
+      "allNotes": "Jula fɛ {{count}} jikɔrɔ yɔrɔ kɔnɔ",
+      "durationsUpdated": "{{count}} jikɔrɔ kɔnɔ waati sɔrɔ",
+      "layerDestinations": "Jikɔrɔ nɔma walima jikɔrɔ nɔma kɔrɔ",
+      "search": "Jikɔrɔ nɔma walima tɔgɔ la gara",
+      "visibilityHint": "Jikɔrɔ kɔrɔ tɛ a fɔ ka sɔrɔ kɔ, a ka sɔrɔ kɔ ka jɔ downloads la."
     },
     "captions": {
       "captionText": "Kɔnɔko kɔnɔko",
@@ -10430,7 +10435,11 @@
       "pptx": "Ka ɲɛyirali dɔ di",
       "pptxHint": "O ɲɛɛ kelen kelen bɛɛ be kɛ ja kelen ye, a be kɛ ni kunnafoniw ye ani a be kɛ ni linkw ye. O la, a ka ɲi ka kɛ ni sɛbɛri ye min be se k'a dɛmɛ ka baara kɛ ni sɛbɛri ye.",
       "section": "Fɛɛn min be sɔrɔ o yɔrɔ la",
-      "transparent": "O kɔ, a ka ɲi ka kɛ ni fɛɛn dɔ ye min be"
+      "transparent": "O kɔ, a ka ɲi ka kɛ ni fɛɛn dɔ ye min be",
+      "documentImageHint": "Jikɔrɔ fɔ gɔ ka jikɔrɔ fɔ gɔ ka dɔ. Jikɔrɔ kɔrɔ kɔ ka jikɔrɔ fɔ kɔ ka sɔrɔ kɔ. Jikɔrɔ gɔ ani jɔ tɛ a fɔ ka sɔrɔ kɔ.",
+      "filenameHint": "Tɔgɔ kɔrɔ kɔ ka sɔrɔ kɔ. {title}, {name}, {section}, {page}, walima {page:3} gɛlɛya. Tɔgɔ kɔrɔ kɔ ka sɔrɔ kɔ tɛ kɔrɔ kɔnɔ. Tɔgɔ kɔrɔ kɔ ka jikɔrɔ nɔma kɔ ka sɔrɔ kɔ.",
+      "notesTextHint": "Downloads jikɔrɔ tɔgɔ, jikɔrɔ nɔma kɔrɔ, jikɔrɔ tɔgɔ, ani presenter fɛ tɛ kɔnɔ kɔrɔ kɔnɔ.",
+      "pageOrderHint": "Jikɔrɔ tɛ a fɔ ka sɔrɔ kɔ. 3,1-2 gɛlɛya jikɔrɔ 3 kɔnɔ, walima 5-1 ka jikɔrɔ kɔrɔ ka sɔrɔ kɔ. Jikɔrɔ nɔma kɔrɔ tɛ a fɔ ka sɔrɔ kɔ yɔrɔ kɔnɔ."
     },
     "adjust": {
       "auto": "A ɲɛ ka ɲɛ a yɛrɛ ma",
@@ -10467,7 +10476,8 @@
       "resetNames": "Mɔgɔ tɔgɔw",
       "search": "Lɛnkanw ɲini",
       "searchOverlap": "Aw ka kan ka yɔrɔ dɔw ɲini minw be se ka kɛ yɔrɔ dɔw ye",
-      "startAt": "A daminɛ na"
+      "startAt": "A daminɛ na",
+      "noOverlapMatches": "Jikɔrɔ kɔrɔ tɛ a fɔ ka sɔrɔ kɔ kɔnɔ"
     },
     "rail": {
       "elements": "Fɛnw",
@@ -10553,7 +10563,8 @@
       "saveNewPreset": "Ne ye mɔgɔ kura ye",
       "saveStyles": "O cogo la, a tun be se ka kɛ ko a tun be",
       "stylesSaved": "O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
-      "usePreset": "O cogo la, a ka ɲi ka kɛ"
+      "usePreset": "O cogo la, a ka ɲi ka kɛ",
+      "presetDeviceHint": "20 tɔgɔ palɛti ani font kɔrɔ, a ka sɔrɔ kɔ ka jɔ device kɔnɔ ni account kɔnɔ. Lɔgɔ tɛ a fɔ ka sɔrɔ kɔ brand kit kɔnɔ."
     },
     "templates": {
       "announcement": {
@@ -10816,7 +10827,12 @@
       "tokenDecimals": "Decimal point (desimal point)",
       "tokenHint": "N'i b'a fɛ ka yɔrɔ sɔrɔ, i ka kan ka yɔrɔ sɔrɔ yɔrɔ min na i be se ka yɔrɔ sɔrɔ. O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye. N'o tɛ, a ka ɲi ka kɛ ni mɔgɔ dɔ ye min be se ka mɔgɔ dɔ ka jatiminɛ kɛ.",
       "tokenLocale": "Yɔrɔ hakɛ",
-      "trimToken": "Ka kɔn ka sɛbɛri kɛ"
+      "trimToken": "Ka kɔn ka sɛbɛri kɛ",
+      "linksHint": "Jikɔrɔ kɔrɔ kɔ ka jɔ walima jɔ kɔrɔ kɔ ka sɔrɔ kɔ. Tɔgɔ kɔrɔ kɔ ka jɔ walima jɔ kɔrɔ kɔ ka sɔrɔ kɔ tɛ jɔ kɔ ka sɔrɔ kɔ. Jikɔrɔ kɔrɔ tɛ a fɔ ka sɔrɔ kɔ template jɔ kɔnɔ.",
+      "matchHint": "Tɔgɔ kɔrɔ kɔ ka jɔ walima jɔ kɔrɔ kɔ ka sɔrɔ kɔ tɛ jɔ kɔ ka sɔrɔ kɔ. Tɔgɔ kɔrɔ kɔ ka jɔ walima jɔ kɔrɔ kɔ ka sɔrɔ kɔ tɛ jɔ kɔ ka sɔrɔ kɔ. Jikɔrɔ kɔrɔ tɛ a fɔ ka sɔrɔ kɔ template jɔ kɔnɔ.",
+      "pagePreviewAlt": "Template jikɔrɔ data jikɔrɔ {{record}} kɔnɔ ka sɔrɔ kɔ",
+      "photoNames": "Jɔ fɔ tɔgɔ kɔrɔ ({{count}})",
+      "rows": "data jikɔrɔ"
     },
     "charts": {
       "applyDateBounds": "Dɔnkilila daan",
@@ -10970,11 +10986,22 @@
       "valueIntervals": "O ye ka mɔgɔ ka koo jati cogo nɔgɔman na.",
       "xAxisMode": "Horizontal data type",
       "xIntervals": "Horizontal-axis intervals",
-      "hierarchySample": "Itali,Faransi, saan 35"
+      "hierarchySample": "Itali,Faransi, saan 35",
+      "benchmarkHint": "Jikɔrɔ kɔrɔ kɔ ka jɔ walima jɔ kɔrɔ kɔ ka sɔrɔ kɔ. Target jikɔrɔ kɔ ka gɛlɛya ka gɛlɛya; data sɔrɔ kɔ ka jɔ.",
+      "brandPalettes": "Palɛti ani chart kɔrɔ kɔ ka sɔrɔ kɔ",
+      "filterCounts": "{{shown}} jikɔrɔ {{total}} kɔnɔ ka sɔrɔ kɔ",
+      "filterLabelSummary": "Tɔgɔ {{operator}} {{text}}",
+      "includeNumberFormat": "Nɔma fɔ ani jɔ kɔ ka sɔrɔ kɔ",
+      "raceAnimate": "Graphic timeline waati kɔnɔ ka sɔrɔ kɔ",
+      "rowFilters": "Jikɔrɔ ka sɔrɔ kɔ",
+      "sampleColours": "Palɛti fɔ ani tɛ kɔrɔ gɛlɛya",
+      "styleKeepsData": "Styles chart tɔgɔ, data, nɔma fɔ, scale kɔrɔ, ani centre tɛ ka sɔrɔ kɔ.",
+      "trimCategory": "Jikɔrɔ kɔrɔ ani sɔrɔ kɔ ka sɔrɔ kɔ"
     },
     "clipboard": {
       "cut": "Cut layers",
-      "empty": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan."
+      "empty": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan.",
+      "skipped": "{{count}} jikɔrɔ kɔnɔ tɛ a fɔ ka sɔrɔ kɔ"
     },
     "colourPicker": {
       "accent": "Kanpaɲi ka fɔta",
@@ -11012,7 +11039,8 @@
       "colour": "Ɲɛgɛnɛman",
       "preview": "Ɲɛjiracogo",
       "title": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
-      "width": "Fanga min be mɔgɔ la, o ye ka"
+      "width": "Fanga min be mɔgɔ la, o ye ka",
+      "hint": "Jikɔrɔ kɔ ka sɔrɔ kɔ, jikɔrɔ kɔ ka sɔrɔ kɔ, walima jikɔrɔ kɔ ka sɔrɔ kɔ canvas kɔnɔ. A gɛlɛya ka jikɔrɔ kɔ ka sɔrɔ kɔ ani jikɔrɔ kɔ ka sɔrɔ kɔ."
     },
     "crop": {
       "applyFocus": "Ka ɲɛsin mɔgɔ wɛrɛw ma",
@@ -11049,7 +11077,9 @@
       "redoAction": "Redo data action",
       "startCell": "Start at cell",
       "undoAction": "Undo data action",
-      "valueHint": "O yɔrɔ la, a be se ka kɛ ko a be se ka sinsin a ka selili bɛɛ kan, hali a be se ka sinsin a ka selili la. O la, a ka ɲi ka kɛ ni miiriya ye."
+      "valueHint": "O yɔrɔ la, a be se ka kɛ ko a be se ka sinsin a ka selili bɛɛ kan, hali a be se ka sinsin a ka selili la. O la, a ka ɲi ka kɛ ni miiriya ye.",
+      "actionCount": "{{changed}} jikɔrɔ {{selected}} jikɔrɔ kɔ ka sɔrɔ kɔ",
+      "actionRange": "Jikɔrɔ kɔrɔ (jikɔrɔ kɔrɔ kɔ ka sɔrɔ kɔ)"
     },
     "dataExport": {
       "formulasAsText": "Treat formulas as text"
@@ -11074,7 +11104,8 @@
       "use": "Ka kɔnɔna kɔrɔfɔw kɛ",
       "sampleCategory": "Yɔrɔ dɔw",
       "sampleNorth": "Ne be kɔgɔdugu ɲafan fɛ",
-      "sampleSouth": "Kɔgɔdugu ɲafan ka league"
+      "sampleSouth": "Kɔgɔdugu ɲafan ka league",
+      "sampleValue": "Value"
     },
     "dataVisual": {
       "accent": "Kɔrɔfɔ",
@@ -11201,7 +11232,9 @@
       "hint": "I be se ka sɛbɛri kɛ wala ka sɛbɛri kɛ cogo dɔ la min be se k'i dɛmɛ ka sɛbɛri kɛ.",
       "lockedBackground": "I ka ɲi ka tɛmɛ o kan ka sɔrɔ ka tɛmɛ o kan.",
       "resetBackground": "Ka ɲɛɛ yɛlɛma",
-      "solidBackground": "Use first colour as page background"
+      "solidBackground": "Use first colour as page background",
+      "applySolid": "Apply first colour as solid",
+      "solid": "Restore solid fill"
     },
     "fonts": {
       "count": "{{count}}fonts found. ka ɲinini kɛ ka jatiminɛ kɛ.",
@@ -11317,7 +11350,8 @@
       "openFailed": "Nka, n' tun tɛ se ka tɛmɛ o kan, n' tun tɛ se ka",
       "openPage": "Go to {{number}}",
       "remove": "Kumanbolo ka kan ka bɔ",
-      "title": "Link ni link ni"
+      "title": "Link ni link ni",
+      "targetPage": "Destination page"
     },
     "media": {
       "photo": "O ye foto ɲuman ye",
@@ -11359,7 +11393,8 @@
       "rotation": "Mockup ka wotoro",
       "size": "A be sɔrɔ a ka sɛbɛ kɔnɔ",
       "title": "Masiniw ni sɛbɛwModifier",
-      "usePhoto": "N'i ye foto dɔ ta, a to a ka kɛ i n'a fɔ a ye fɛɛn dɔ ta."
+      "usePhoto": "N'i ye foto dɔ ta, a to a ka kɛ i n'a fɔ a ye fɛɛn dɔ ta.",
+      "palettes": "Saved frame palettes"
     },
     "notes": {
       "changed": "I ka kan ka sɛbɛri kɛ ka sɔrɔ ka wari mara.",
@@ -11507,7 +11542,10 @@
       "title": "Sisan, an ka gafew lajɛ",
       "undoMark": "Mariki ka koo",
       "usePageTiming": "Ka tɛmɛ sanga ni wagati kan",
-      "whiteScreen": "Fanga min be mɔgɔ la, o ye ka"
+      "whiteScreen": "Fanga min be mɔgɔ la, o ye ka",
+      "clockValue": "Presentation timer {{time}}",
+      "nextPreviewAlt": "Upcoming page: {{title}}",
+      "upNext": "Up next"
     },
     "qr": {
       "background": "Background",
@@ -11552,7 +11590,8 @@
       "layout": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ",
       "multiSelection": "Ka segi ka baara kɛ i n'a fɔ mɔgɔ min be baara kɛ a yɛrɛ ye",
       "staggerHint": "O cogo kelen na, a be se ka kɛ ko a be se ka sinsin a ka sinsin kan. O kɔrɔ ko: \"Ala ye mɔgɔ min ci, o tigi ka kan ka kɛ mɔgɔ min ye\".",
-      "title": "Ka segi ka segi a kan"
+      "title": "Ka segi ka segi a kan",
+      "created": "Created {{count}} additional copies"
     },
     "resize": {
       "changed": "O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye. O kɔ, i ka segi k'o kɛ tugun.",
@@ -11563,7 +11602,8 @@
       "preparing": "Artikɛli kɛrɛbɛli kɛrɛbɛli kɛra...",
       "printHint": "O la, a ka ɲi ka sɛbɛri kɛ ka ɲɛ ani ka sɛbɛri kɛ ka ɲɛ. O la, a ka ɲi ka kɛ ni sumanikɛminan ye min be se ka kɛ ni sumanikɛminan ye.",
       "range": "O yɔrɔ kelen kelen bɛɛ ka kan ka kɛ pixel 64-8,192 ye. A ka kan ka kɛ 72-600 ye.",
-      "swap": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili."
+      "swap": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
+      "width": "Width"
     },
     "sections": {
       "assign": "Fanga min be sɔrɔ o la",
@@ -11729,7 +11769,8 @@
       "previous": "Ɲɛnamaya tɛmɛninw",
       "replaceFirst": "Ka koo fɔlɔw yɛlɛma",
       "replaceLayer": "Fanga be mɔgɔ minw na, olu ka kan ka kɛ mɔgɔ wɛrɛw ye.",
-      "tooLong": "O la, a tun be se ka kɛ ko mɔgɔ 100 000 lo tun be yen. O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye."
+      "tooLong": "O la, a tun be se ka kɛ ko mɔgɔ 100 000 lo tun be yen. O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+      "wholeWords": "Kuma fitininw"
     },
     "textSelection": {
       "applyBox": "Ka sɛbɛri kɛ ka ɲɛsin o ma",

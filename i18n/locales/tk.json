@@ -10871,7 +10871,8 @@
       "tokenDecimals": "Dezimlik derejesi",
       "tokenHint": "Ýerleşdirijini şablon tekstine ýa-da QR mazmunyna goýuň we şol gatlak üçin tekstde ýerleşdirijileri ulan-y saýlaň. Formatlamak elektron tablisadaky bahalary üýtgewsiz galdyrýar. Sanly formatlar üçin arassa sanlar gerek; göterim tertibinde 25 san 25% görnüşinde görkezilýär.",
       "tokenLocale": "NUMBER ÝERI",
-      "trimToken": "Formatlanmazdan öň boşluklary kes"
+      "trimToken": "Formatlanmazdan öň boşluklary kes",
+      "data": "Elektron tablisa maglumatlary sütün başlyklary bilen"
     },
     "charts": {
       "applyDateBounds": "Tarih çäklerini ulan",
@@ -11031,7 +11032,11 @@
       "valueIntervals": "Baha okunyň interwallary",
       "xAxisMode": "Gorizontal maglumat görnüşi",
       "xIntervals": "Gorizontal ok aralyklary",
-      "hierarchySample": "Ýeropa,Fransiýa, 35"
+      "hierarchySample": "Ýeropa,Fransiýa, 35",
+      "areaModeHint": "Toplandy we proporsional meydanlar her seriany lenta hökmünde görkezýär. Streamgraphlar jemi sany nolüň töweregine merkezleşdirýär we salgylanma maksadyny gizleýär. Bu düzüşler nolden az bolmayan çeşme bahalarynyň gerekli. Proporsional görkezme asyl sanlary maglumatlarda saklaýar; çaklaşan meydanlar otrisatel bahalary öz içine alyp biler.",
+      "bubbleHint": "Birinji sütünde sanly X koordinatalary ulanyň. Köp-serialy režimde aşakda Y we ölçeg sütünlerini saýlaň; adaty görnüşler Y üçin birinji seriany we ölçeg üçin ikinji seriany ulanýar. Meydanlar ölçege proporsional; nol ölçegler gizlenýär. Ölçeg seriasy bolmazdan, köpükler deňdir. Goşmaça serialar çeşme maglumatlarda galýar. Baha belgileri Y / ölçegi görkezýär. Oky we şkala X üçin seneleri we UTC waqytlaryny ulanyp biler.",
+      "categorySummaryCounts": "{{rows}} setirler {{categories}} kategoriýalara öwrülýär; {{repeated}} kategoriýalar gaýtalanýar",
+      "raceExample": "Taslagynyň ornuna reýting mysalyny ulanyň"
     },
     "clipboard": {
       "cut": "Gatlaklary kesmek",
@@ -11116,7 +11121,8 @@
       "redoAction": "Maglumat hereketini gaýd et",
       "startCell": "Öýjükden başla",
       "undoAction": "Maglumat hereketini gaýd et",
-      "valueHint": "Bu ýerde bütin öýjükleri, şol sanda hatlaryň kesilmegini düzediş ediň. Degerler metin hökmünde saklanýar; formulalar hasaplanmaýar."
+      "valueHint": "Bu ýerde bütin öýjükleri, şol sanda hatlaryň kesilmegini düzediş ediň. Degerler metin hökmünde saklanýar; formulalar hasaplanmaýar.",
+      "numberCleanupHint": "Sanly arassalaşdyryş goldanylýan pul belgilerini we toparlama bölüjilerini aýyrýar we hasaplandyryş otrisatellerini öwrüleýär. Foizler foiz nokatlary hökmünde galýar: 25% 25 bolup galýar. Tanamazlyk teksti üýtgemelisiz galýar. Hereketler çeşme öýjükleri redaktirleýär, tablisa formatlaşdyrylyşy öýjük pozisiýalaryna birikdirip saklap."
     },
     "dataExport": {
       "formulasAsText": "Formulalary metin hökmünde ulanmak"
@@ -11243,7 +11249,8 @@
       "start": "Başlangyç",
       "suffix": "Goşundy",
       "title": "Sahypa belgileri we gaýtalanýan elementler",
-      "total": "Jemi sahypalary görkez"
+      "total": "Jemi sahypalary görkez",
+      "prefix": "Prefix"
     },
     "elements": {
       "find": "Ýatda saklanan elementleri tap",
@@ -11281,7 +11288,8 @@
       "replaceDesign": "Bu düýşüň dowamynda bir kalamy üýtget",
       "search": "Fontlary gözle",
       "source": "Ýaryş Faýly",
-      "target": "Çykyş kalamy"
+      "target": "Çykyş kalamy",
+      "count": "{{count}} şriftler tapyldy. Sanawy daraltmak üçin gözle."
     },
     "frames": {
       "title": "Foto Çerçewi"
@@ -11306,7 +11314,9 @@
       "styleFileHint": "Gradient reňkleri, ýerleri, äşgärligi, açyklygy we radial guramalary gurallaryň arasynda geçirýär. Çykyşyňy import et; ony sanjy işlerine ulan.",
       "styleFiles": "Gradient şypalaryny geçir",
       "styleLoaded": "Stil çyzga ýüklenildi",
-      "svgHint": "Bu gradiýenti sahypa ölçeginde, duralga pozisiýalaryny we durylygy goşmak bilen eksport edýär. Ony dizaýnda ulanmak üçin aýratynlykda goşuň."
+      "svgHint": "Bu gradiýenti sahypa ölçeginde, duralga pozisiýalaryny we durylygy goşmak bilen eksport edýär. Ony dizaýnda ulanmak üçin aýratynlykda goşuň.",
+      "colour": "Togtap reňk",
+      "even": "Togtap nokatlary deň aralykda"
     },
     "graphicDraftHistory": {
       "local": "Grafiki çyzgy",
@@ -11361,7 +11371,8 @@
       "snap": "Ýolbaşçylyk maslahatynyň görkezmesine eýermek",
       "thirds": "Üçünji",
       "title": "Garawul diňi we Garawul diňi",
-      "visible": "Ýolbaşçylary görkez"
+      "visible": "Ýolbaşçylary görkez",
+      "resolution": "{{dpi}} piksel düymede esaslanýan"
     },
     "help": {
       "noResults": "Öňki ýaly kömek ýok. Esbap adyny ýa-da pasta, ösümlik ýa-da topar ýaly hereketini synap görüň.",
@@ -11484,7 +11495,8 @@
       "selectMatches": "Baglaşan sahypalary saýla",
       "selected": "{{count}} saýlanan sahypalar",
       "showPreviews": "Sahypa öň seredişlerini görkez",
-      "title": "Sahypalary Ýolbaşçylyk Et"
+      "title": "Sahypalary Ýolbaşçylyk Et",
+      "endDestination": "Soňuna geçmek üçin {{number}} ulanyň."
     },
     "paint": {
       "borderOpacity": "Çykgysyzlyk: {{value}}%",
@@ -11501,7 +11513,8 @@
       "useColour": "{{colour}}ullan"
     },
     "photoBackground": {
-      "unavailable": "Resim üýtgedilmedi. Garawul diňi we Garawul diňi"
+      "unavailable": "Resim üýtgedilmedi. Garawul diňi we Garawul diňi",
+      "mobileHint": "Bu sahypa arkasyna ulanyp boljak surat saýlaň. Fony täzeden çerçeweleşdirmek üçin iki gezek taksaň ýa-da ony hereketli layer hökmünde aýyryň."
     },
     "photoLooks": {
       "applied": "Garawul diňi",
@@ -11689,7 +11702,9 @@
       "insert": "Edit edilýän geometriýany gir",
       "preview": "Vektor ýoluny öňünden gör",
       "title": "Edit edilen SVG geometriýasyny girdir",
-      "weight": "Çizgi ağırlığı"
+      "weight": "Çizgi ağırlığı",
+      "data": "SVG markup ýa-da ýol maglumatlary (d)",
+      "name": "Layer ady"
     },
     "symbols": {
       "colour": "Rəng",
@@ -11742,7 +11757,8 @@
       "exportStyle": "Häzirki usuly eksport et",
       "find": {
         "hint": "Çykyş we arassalamak öýjük formatyny saklap, saýlanan aralygy ýa-da boş wagtda ähli öýjükleri ulanýar. Çykyşy ulanmak üçin grafikany täzelen; Undo ulanylýan düzedişini gaýtaryp berýär.",
-        "replaceAll": "Öňki öýjükleri üýtget"
+        "replaceAll": "Öňki öýjükleri üýtget",
+        "matches": "{{occurrences}} {{cells}} öýjüklerde gabat geldi"
       },
       "findReplace": "Tablo metnini tap we ýerine ýetir",
       "findStarter": "Bir saçak başynda",
@@ -11806,7 +11822,8 @@
       "unmergeAll": "Ähli zady aýyr",
       "vertical": "Döwşükli düzediş",
       "weightsHint": "2 -iň bir sany 1 -iň iki esse köp ýerini ulanýar; tabla öz ululygyny saklaýar.",
-      "wrap": "Öýjük metinini ýapyşdyr"
+      "wrap": "Öýjük metinini ýapyşdyr",
+      "replaceOverrides": "Adaty öýjük stillerini ulananda nolga çekmek"
     },
     "text": {
       "backgroundPerLine": "Her hatyň arkaýynlygy",

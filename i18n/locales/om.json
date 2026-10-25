@@ -10379,7 +10379,13 @@
       "showPresentation": "Dhiyeessii keessatti argisiisi",
       "transferHint": "Fuula 50 gahuu danda'uuf gophi, ykn tokkotti jijjiiri. Gareewwan fi bakka buusuun filannoo hordofu. Jijjiirrachuun fuula kana qofa miidha; mul'annoon biroo ni eegamu. Bakki gahuu isaa harka caalu yeroo qabamee jiraachuu qaba.",
       "transferLayers": "Harka caalu filatame fuulotaatti jijjiiri ykn gophi",
-      "visibilityHint": "Fuulonni dhokatan kan gulaalamuu danda'an ta'anii fi buufachuuf kan qophaa'an ta'anii itti fufu."
+      "visibilityHint": "Fuulonni dhokatan kan gulaalamuu danda'an ta'anii fi buufachuuf kan qophaa'an ta'anii itti fufu.",
+      "allNotes": "Fuulonni {{count}} hundi faayilii yaadannoo tokko keessatti",
+      "duration": "Turtii fuula",
+      "go": "Deemi",
+      "jump": "Gara fuulaatti deemaa",
+      "layerDestinations": "Lakkoofsota fuula galma ykn hangawwan",
+      "moveEarlier": "Fuula duraan sochoosi"
     },
     "captions": {
       "captionText": "Barreeffama mata duree",

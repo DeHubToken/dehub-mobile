@@ -10530,7 +10530,8 @@
       "saveNewPreset": "Nû tomar bike",
       "saveStyles": "Şêwazan bi sêwiranê biparêzin",
       "stylesSaved": "Şêwazên marqeyan bi vê sêwiranê hatine parastin",
-      "usePreset": "Şêwazan bi kar bîne"
+      "usePreset": "Şêwazan bi kar bîne",
+      "presetLibrary": "Şêwazên marqeyan ên tomarkirî"
     },
     "templates": {
       "announcement": {
@@ -10796,7 +10797,9 @@
       "tokenDecimals": "Cihên desîmal",
       "tokenHint": "Cihêgirê di nivîsa şablonê an naveroka QR de bicîh bike û \"Cihêgirê di nivîsê de ji bo wê qatê bikar bîne\" hilbijêre. Formatkirin nirxên tabloya hesaban bêguherîn dihêle. Formatên hejmarî hejmarên sade hewce dikin; formatên 25 wekî 25% di moda rêjeyê de.",
       "tokenLocale": "Herêmî ya hejmarê",
-      "trimToken": "Berî formatkirinê valahiyan jê bike"
+      "trimToken": "Berî formatkirinê valahiyan jê bike",
+      "title": "Bi girseyî biafirînin",
+      "tokenCurrency": "Diravcins"
     },
     "charts": {
       "applyDateBounds": "Sînorên dîrokê bicîh bîne",
@@ -10959,7 +10962,8 @@
       "valueIntervals": "Navberên nirx-eksenê",
       "xAxisMode": "Cureyê daneya horizontal",
       "xIntervals": "Dûmenên xwe li ser xîzê (dûmenên li ser xwezayê)",
-      "hierarchySample": "Ewropa, Fransa, 35"
+      "hierarchySample": "Ewropa, Fransa, 35",
+      "raceAnimate": "Li seranserê dirêjahiya rêza demê ya grafîkê anîmasyon bike"
     },
     "clipboard": {
       "cut": "Çend qatan bibire",
@@ -10994,7 +10998,8 @@
       "sampleSubtitle": "Çîroka te li vir dest pê dike.",
       "sampleTitle": "Tiştekî bîrnebar çêke",
       "subtitle": "دەقی پشتگیریکەر",
-      "title": "تێکەڵەی دەقەکان"
+      "title": "تێکەڵەی دەقەکان",
+      "previewUpdating": "Pêşdîtin tê nûvekirin…"
     },
     "connectors": {
       "bend": "شوێنی چەمانەوە",
@@ -11116,7 +11121,8 @@
       "textColour": "دەق",
       "title": "چارت و خشتەکان",
       "values": "نیشاندانی بەهاکان",
-      "vectorHint": "ئەم گرافیکە بە پاشبنەمایەکی شەفاف هەناردە دەکات. دەقەکە بە دەستکاریکراوی دەمێنێتەوە و فۆنتی هەڵبژێردراو بەکاردەهێنێت لەو شوێنانەی بەردەستە."
+      "vectorHint": "ئەم گرافیکە بە پاشبنەمایەکی شەفاف هەناردە دەکات. دەقەکە بە دەستکاریکراوی دەمێنێتەوە و فۆنتی هەڵبژێردراو بەکاردەهێنێت لەو شوێنانەی بەردەستە.",
+      "import": "CSV an TSV import bike"
     },
     "designTools": {
       "applySize": "جێبەجێکردنی قەبارە",
@@ -11319,7 +11325,8 @@
       "openPage": "Biçe rûpel {{number}}",
       "remove": "Girêdanê jê bibe",
       "targetPage": "Rûpela armanc",
-      "title": "Girêk"
+      "title": "Girêk",
+      "copyFailed": "Nekarî lînka cihê armancê kopî bike"
     },
     "media": {
       "photo": "Wêne",
@@ -11420,7 +11427,8 @@
     },
     "paint": {
       "fillOpacity": "Neşefafîya tijîkirinê: {{value}}%",
-      "strokeOpacity": "Neşefafîya xêzê: {{value}}%"
+      "strokeOpacity": "Neşefafîya xêzê: {{value}}%",
+      "borderOpacity": "Neşefafîya sînor: {{value}}%"
     },
     "palette": {
       "applyDesign": "Paletê li ser sêwiranê bicîh bîne",
@@ -11516,7 +11524,8 @@
       "undoMark": "Nîşana betalkirinê",
       "upNext": "Paşê",
       "usePageTiming": "Demjimêrên rûpelê bikar bînin",
-      "whiteScreen": "Ekrana spî"
+      "whiteScreen": "Ekrana spî",
+      "notesCopyFailed": "Notan nehat kopîkirin"
     },
     "qr": {
       "background": "پاشبنەما",

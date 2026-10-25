@@ -10388,7 +10388,9 @@
       "pptx": "PowerPoint 演示文稿",
       "pptxHint": "每页变成一张幻灯片图像，附带演示者备注和链接。编辑原始设计中的单个文本和元素。",
       "section": "命名部分",
-      "transparent": "透明背景"
+      "transparent": "透明背景",
+      "filenamePattern": "页面文件名模式",
+      "notesText": "演示笔记 (.txt)"
     },
     "adjust": {
       "auto": "自动增强",
@@ -10425,7 +10427,8 @@
       "resetNames": "重置名称",
       "search": "搜索图层",
       "searchOverlap": "搜索重叠图层",
-      "startAt": "从...开始"
+      "startAt": "从...开始",
+      "applyNames": "应用名称"
     },
     "rail": {
       "elements": "元素",
@@ -10941,7 +10944,8 @@
       "valueIntervals": "值轴间隔",
       "xAxisMode": "水平数据类型",
       "xIntervals": "水平轴间隔",
-      "hierarchySample": "欧洲，法国，35"
+      "hierarchySample": "欧洲，法国，35",
+      "plotSection": "文本大小和图表样式"
     },
     "clipboard": {
       "cut": "切割层",
@@ -11049,7 +11053,11 @@
       "sampleCategory": "类别",
       "sampleNorth": "北部",
       "sampleSouth": "南部",
-      "sampleValue": "价值"
+      "sampleValue": "价值",
+      "paste": "粘贴表格数据",
+      "pastedName": "粘贴的表格",
+      "selectionPreview": "选定的数据预览",
+      "use": "使用选定的数据"
     },
     "dataVisual": {
       "captionHint": "标题和字幕出现在图形内部，保留图形上方和下方的空间。SVG 描述伴随着向量导出；其他导出格式保留可见文本。描述主要发现和相关值的替代文本。",
@@ -11083,7 +11091,20 @@
       },
       "title": "图表和表格",
       "values": "显示值",
-      "vectorHint": "将此图形以透明背景导出。文本保持可编辑，并使用可用的选定字体。"
+      "vectorHint": "将此图形以透明背景导出。文本保持可编辑，并使用可用的选定字体。",
+      "accent": "音调",
+      "addColumn": "添加列",
+      "addRow": "添加行",
+      "captionControls": "标题、说明和 SVG 描述",
+      "expandData": "扩展数据编辑器",
+      "expandedData": "编辑图形数据",
+      "fixSource": "使用源数据修正此输入。",
+      "invalidColour": "使用六位十六进制颜色",
+      "preview": "预览图形",
+      "previewAlt": "草稿图表或表格预览",
+      "removeColumn": "删除最后一列",
+      "showLegend": "显示图例",
+      "textColour": "文本"
     },
     "designTools": {
       "backInsert": "回到原处",
@@ -11097,7 +11118,12 @@
       "replaceAll": "替换所有",
       "replaceWith": "替换为",
       "replacement": "替换颜色",
-      "resize": "调整大小"
+      "resize": "调整大小",
+      "applySize": "应用大小",
+      "changeAll": "更改所有",
+      "copyStyle": "复制样式",
+      "matches": "{{count}} 文本层次结构",
+      "pasteStyle": "粘贴样式"
     },
     "diagrams": {
       "edgeLabels": "连接器标签，一个标签一行（可选）",
@@ -11247,15 +11273,26 @@
       "releaseOutside": "释放以移除此指南",
       "resolution": "基于 {{dpi}} 像素每英寸",
       "smartSpacing": "快照等间距",
-      "snap": "快速对齐到参考线"
+      "snap": "快速对齐到参考线",
+      "applyGrid": "应用网格",
+      "centre": "居中",
+      "replaceExisting": "替换现有指南",
+      "rulerUnits": "尺寸单位",
+      "rulers": "第三方",
+      "thirds": "分割线",
+      "title": "指南和边距",
+      "visible": "显示指南"
     },
     "help": {
       "noResults": "没有匹配的帮助。尝试输入工具名称或操作，如“粘贴”、“裁剪”或“分组”。",
-      "searchMobile": "搜索手势和编辑器帮助"
+      "searchMobile": "搜索手势和编辑器帮助",
+      "openTool": "打开工具",
+      "title": "编辑指南"
     },
     "layout": {
       "gap": "网格间距（px）",
-      "positionGroups": "职位和群组"
+      "positionGroups": "职位和群组",
+      "columns": "网格列数（0 = 自动）"
     },
     "links": {
       "copied": "链接目标已复制",
@@ -11266,11 +11303,17 @@
       "mixed": "选择的艺术作品链接目标混杂，请统一设置同一链接目标。",
       "openFailed": "无法打开此链接",
       "openPage": "去到页面 {{number}}",
-      "targetPage": "目的页面"
+      "targetPage": "目的页面",
+      "apply": "应用链接",
+      "contactBuilder": "构建电子邮件、电话或短信链接",
+      "multiSelection": "选中艺术作品的链接",
+      "remove": "移除链接",
+      "title": "链接"
     },
     "media": {
       "photo": "照片",
-      "video": "视频"
+      "video": "视频",
+      "replace": "替换选中层"
     },
     "mediaSelection": {
       "borderColour": "边框颜色",
@@ -11283,7 +11326,10 @@
       "radiusHint": "角角处理适用于矩形媒体框。",
       "removeBorder": "去掉边框",
       "resetColours": "重置颜色调整",
-      "setRadius": "设置圆角半径"
+      "setRadius": "设置圆角半径",
+      "applyFilter": "应用滤镜到选择",
+      "setBorder": "设置边框",
+      "title": "样式选中照片和视频（{{count}}）"
     },
     "mockups": {
       "caption": "地址或照片说明（可选）",
@@ -11302,27 +11348,38 @@
       "resetPlacement": "重新设置位置",
       "rotation": "模拟旋转",
       "size": "页面尺寸",
-      "title": "设备和打印样板"
+      "title": "设备和打印样板",
+      "insert": "插入模板",
+      "preview": "预览模板",
+      "previewAlt": "草稿模板布局",
+      "usePhoto": "用选中照片填充"
     },
     "notes": {
       "changed": "本页面已更改。重新打开 Notes 之前保存。",
       "hint": "名称和备注会被保存在这个设计中，但不会出现在图片、视频或PDF导出中。",
       "name": "页面名称",
       "saved": "页面笔记已保存",
-      "title": "页面笔记"
+      "title": "页面笔记",
+      "presenter": "演示笔记",
+      "save": "保存页面笔记"
     },
     "orientation": {
       "angle": "绝对角度",
       "hint": "每个选中的层都接收相同的角度在其现有位置。 相对旋转下旋转选择。",
       "setAngle": "设置每一层",
       "title": "设置图层方向",
-      "upright": "直立的"
+      "upright": "直立的",
+      "unflip": "移除翻转"
     },
     "outline": {
       "border": "照片边框",
       "colour": "边框颜色",
       "pattern": "直线图案",
-      "width": "边框宽度：{{value}}"
+      "width": "边框宽度：{{value}}",
+      "applyPattern": "应用图案",
+      "customPattern": "自定义图案",
+      "dashLengths": "虚线和间隔长度",
+      "dashOffset": "虚线偏移"
     },
     "pageAnimation": {
       "duration": "时长（秒）",
@@ -11330,7 +11387,8 @@
       "noChange": "没有可编辑层需要更改",
       "title": "动画页面",
       "typewriterHint": "层级开启，其他层次淡出。每层的持续时间都在其自身的时间内。",
-      "updated": "更新了 {{count}} 层"
+      "updated": "更新了 {{count}} 层",
+      "apply": "应用动画"
     },
     "pageManager": {
       "clear": "清除选择",
@@ -11344,7 +11402,9 @@
       "selectMatches": "选择匹配的页面",
       "selected": "{{count}} 页已选中",
       "showPreviews": "显示页面预览",
-      "title": "管理页面"
+      "title": "管理页面",
+      "open": "打开",
+      "openPage": "打开页面 {{number}}"
     },
     "paint": {
       "borderOpacity": "边框透明度: {{value}}%",
