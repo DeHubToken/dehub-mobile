@@ -13,6 +13,7 @@ jest.mock('../../components/Profile/useProfileCollapse', () => ({ useProfileColl
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/UserProfile/UserProfileSheetContent', () => 'ProfileContent');
 jest.mock('../../components/UserProfile/ProfileSurface', () => 'ProfileSurface');
+jest.mock('../../navigation/RouteLoadingShell', () => 'LoadingShell');
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 jest.mock('../../components/ui/FrostedBackdrop', () => ({ FrostedBackground: 'FrostedBackground' }));
 jest.mock('../../components/UserProfile/UnfollowSheet', () => 'UnfollowSheet');
@@ -27,18 +28,24 @@ jest.mock('../../hooks/useUserProfileData', () => ({ useUserProfileData: () => m
 it.each([
   ['loading', { loading: true }],
   ['failed', { loading: false, error: new Error('Request failed') }],
-  ['loaded', { loading: false, profileData: { username: 'creator' } }],
+  ['loaded', { loading: false, data: {}, profileData: { username: 'creator' } }],
 ])('can leave an embedded %s profile without the Home header', (_label, state) => {
   mockProfileState = state;
   const close = jest.fn();
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<UserProfileBottomSheet embedded visible usernameOrAddress="creator" onClose={close} />); });
-  const header = tree.root.findByType('ScreenHeader' as any);
   const swipe = tree.root.findByType('SwipeBackBoundary' as any);
   expect(swipe.props.onBack).toBe(close);
   expect(swipe.props.enabled).toBe(true);
-  expect(header.props.canGoBack).toBe(true);
-  act(() => header.props.onBackPress());
+  if (_label === 'loading') {
+    const shell = tree.root.findByType('LoadingShell' as any);
+    expect(tree.root.findAllByType('ScreenHeader' as any)).toHaveLength(0);
+    act(() => shell.props.onBack());
+  } else {
+    const header = tree.root.findByType('ScreenHeader' as any);
+    expect(header.props.canGoBack).toBe(true);
+    act(() => header.props.onBackPress());
+  }
   expect(close).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
 });

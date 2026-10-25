@@ -35,6 +35,12 @@ export function peekPostDetailSeed<T>(tokenId: number | string | undefined): T |
   return (seeds.get(String(tokenId)) as T | undefined) ?? null;
 }
 
+/** Match the detail screen's route-ID precedence before choosing its first frame. */
+export function hasPostDetailSeed(params: any): boolean {
+  const id = params?.tokenId ?? params?.id ?? params?.postId ?? params?.videoId ?? params?.nft?.tokenId ?? params?.nft?.id;
+  return peekPostDetailSeed(id) !== null;
+}
+
 const warm = new Map<string, { at: number; promise: Promise<unknown> }>();
 
 /** Start `fetch` now unless a young request for the same key is already out. */

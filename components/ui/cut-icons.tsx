@@ -1,5 +1,6 @@
 import React from "react";
 import Svg, { Path, G, Defs, Mask, Rect, ClipPath, type SvgProps } from "react-native-svg";
+import { CUT_MORE_PATHS } from './cut-more-paths';
 type CutProps = Omit<SvgProps, "color"> & { size?: number; color?: string };
 
 // Shared 32-unit Cut artwork. Preserve explicit path fills and per-instance mask IDs.
@@ -160,7 +161,7 @@ const CutSort = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M6.3920 8.2000L23.0000 8.2000L23.0000 7.1920Q23.0000 5.8000 21.6080 5.8000L5.0000 5.8000L5.0000 6.8080Q5.0000 8.2000 6.3920 8.2000Z" fill={color} fillRule="evenodd" /><Path d="M6.3920 15.2000L17.0000 15.2000L17.0000 14.1920Q17.0000 12.8000 15.6080 12.8000L5.0000 12.8000L5.0000 13.8080Q5.0000 15.2000 6.3920 15.2000Z" fill={color} fillRule="evenodd" /><Path d="M6.3920 22.2000L11.0000 22.2000L11.0000 21.1920Q11.0000 19.8000 9.6080 19.8000L5.0000 19.8000L5.0000 20.8080Q5.0000 22.2000 6.3920 22.2000Z" fill={color} fillRule="evenodd" /><Path d="M23.8000 16.3920L23.8000 28.0000L24.8080 28.0000Q26.2000 28.0000 26.2000 26.6080L26.2000 15.0000L25.1920 15.0000Q23.8000 15.0000 23.8000 16.3920Z" fill={color} fillRule="evenodd" /><Path d="M21.1358 25.8328L25.0000 29.6971L29.8485 24.8485L29.1358 24.1358Q28.1515 23.1515 27.1672 24.1358L25.0000 26.3029L21.8485 23.1515L21.1358 23.8642Q20.1515 24.8485 21.1358 25.8328Z" fill={color} fillRule="evenodd" /></Svg>
 );
 const CutMore = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
-  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M4 14H5.8Q8 14 8 16.2V18H6.2Q4 18 4 15.8Z" fill={color} fillRule="evenodd" /><Path d="M14 14H15.8Q18 14 18 16.2V18H16.2Q14 18 14 15.8Z" fill={color} fillRule="evenodd" /><Path d="M24 14H25.8Q28 14 28 16.2V18H26.2Q24 18 24 15.8Z" fill={color} fillRule="evenodd" /></Svg>
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}>{CUT_MORE_PATHS.map(d => <Path key={d} d={d} fill={color} fillRule="evenodd" />)}</Svg>
 );
 const CutDelete = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M7 10H25V22Q25 28 19 28H7Z" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M5.3920 8.2000L28.0000 8.2000L28.0000 7.1920Q28.0000 5.8000 26.6080 5.8000L4.0000 5.8000L4.0000 6.8080Q4.0000 8.2000 5.3920 8.2000Z" fill={color} fillRule="evenodd" /><Path d="M12 7V3H17Q20 3 20 6V7" fill="none" stroke={color} strokeWidth={Number(strokeWidth) * 1.2} strokeLinejoin="round" /><Path d="M11.9500 14.2180L11.9500 23.0000L12.8320 23.0000Q14.0500 23.0000 14.0500 21.7820L14.0500 13.0000L13.1680 13.0000Q11.9500 13.0000 11.9500 14.2180Z" fill={color} fillRule="evenodd" /><Path d="M17.9500 14.2180L17.9500 23.0000L18.8320 23.0000Q20.0500 23.0000 20.0500 21.7820L20.0500 13.0000L19.1680 13.0000Q17.9500 13.0000 17.9500 14.2180Z" fill={color} fillRule="evenodd" /></Svg>

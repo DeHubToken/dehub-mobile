@@ -1,4 +1,5 @@
-import SkeletonBlock from '../components/Feed/SkeletonBlock';
+import NavigationLoadingDots from '../navigation/NavigationLoadingDots';
+import RouteLoadingShell from '../navigation/RouteLoadingShell';
 import { useCommentCount, updateCommentCount } from '../libs/comment-count-store';
 import { deliverReply, replyIdOf } from '../libs/reply-delivery';
 import ThemePanel from '../components/ui/ThemePanel';
@@ -31,7 +32,6 @@ import GlassTipSheet from "../components/Tip/GlassTipSheet";
 import ReportModal from "../components/common/ReportModal";
 import Avatar from "../components/common/Avatar";
 import MentionSuggestions from "../components/common/MentionSuggestions";
-import CommentsSkeleton from "../components/Feed/CommentsSkeleton";
 import Icon from "../components/ui/Icon";
 import { BannedAccountNotice } from "../components/common/BannedAccountNotice";
 import { useBannedAccount } from "../hooks/useBannedAccount";
@@ -56,7 +56,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import type { PostReaction } from "../libs/reactions";
 import PostDetailContinuation from "../components/Advertising/PostDetailContinuation";
 import { useAppTheme } from "../context/ThemeContext";
-import { MINIMAL_HAIRLINE, MINIMAL_INSET, MINIMAL_TAB_LINE } from "../theme/minimal";
+import { MINIMAL_HAIRLINE, MINIMAL_TAB_LINE } from "../theme/minimal";
 import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
@@ -131,7 +131,7 @@ export default function FeedDetailScreen() {
 
 function FeedDetailContent() {
   const { t } = useTranslation();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, isLight } = useAppTheme();
   const { width: windowWidth } = useWindowDimensions();
   const stageLayout = windowWidth < POST_STAGE_MAX_WIDTH;
   const route = useRoute<any>();
@@ -1420,24 +1420,6 @@ function FeedDetailContent() {
           flat
           onCommentPress={focusCommentInput}
         />
-      ) : loading ? (
-        <View className="px-4 pt-4">
-          {/* Minimal inline skeleton — just header + content placeholder */}
-          <View className="flex-row items-center">
-            <SkeletonBlock className="w-9 h-9 rounded-md " />
-            <View className="ml-3 flex-1">
-              <SkeletonBlock className="w-24 h-3.5 rounded" />
-              <SkeletonBlock className="w-16 h-2.5 rounded mt-1.5" />
-            </View>
-          </View>
-          {/* Minimal: the media block bleeds past the inset to both screen edges. */}
-          <SkeletonBlock
-            className="mt-3 h-48 rounded-xl"
-            style={isMinimal ? { marginHorizontal: -MINIMAL_INSET, backgroundColor: "rgba(255,255,255,0.04)" } : undefined}
-          />
-          <SkeletonBlock className="mt-3 w-3/4 h-3.5 rounded" />
-          <SkeletonBlock className="mt-2 w-1/2 h-3 rounded" />
-        </View>
       ) : privateError ? (
         <View className="items-center justify-center px-6 py-16">
           {/* Minimal: the icon alone, without the slab behind it. */}
@@ -1520,6 +1502,8 @@ function FeedDetailContent() {
     name: "\u0000",
   }).split("\u0000");
 
+  if (loading && !item) return <RouteLoadingShell onBack={handlePostBack} />;
+
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <PostFeedNav onBack={handlePostBack} />
@@ -1550,8 +1534,9 @@ function FeedDetailContent() {
         // finish the job rather than dropping the jump.
         onScrollToIndexFailed={handleScrollToIndexFailed}
         ListEmptyComponent={loading ? (
-          <View className="px-4 py-3">
-            <CommentsSkeleton />
+          <View accessibilityRole="progressbar" accessibilityLabel={t('common.loading')}
+            style={{ alignItems: 'center', paddingVertical: 24 }}>
+            <NavigationLoadingDots color={isLight && !skin && !isMinimal ? '#111111' : '#FFFFFF'} />
           </View>
         ) : !item ? null : loadError ? (
           // The post is up but its comments didn't come: say so, rather than

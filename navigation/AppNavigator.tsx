@@ -13,6 +13,7 @@ import AppDrawer from "../components/Home/AppDrawer";
 import { useAppTheme } from "../context/ThemeContext";
 import { LIGHT_PAGE_FILL } from "../theme/colors";
 import { deferredScreen } from "./deferredScreen";
+import { hasPostDetailSeed } from '../libs/navPrefetch';
 
 /**
  * Native stack, not @react-navigation/stack.
@@ -378,7 +379,8 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.FeedDetail}
-          getComponent={() => deferredScreen('../screens/FeedDetailScreen#default', () => require("../screens/FeedDetailScreen").default)}
+          getComponent={() => deferredScreen('../screens/FeedDetailScreen#default', () => require("../screens/FeedDetailScreen").default,
+            { immediateWhen: props => hasPostDetailSeed(props.route.params) })}
           // One route per post, so opening a post from a post pushes a page
           // instead of swapping the open one's params.
           getId={({ params }) => feedDetailRouteId(params)}
