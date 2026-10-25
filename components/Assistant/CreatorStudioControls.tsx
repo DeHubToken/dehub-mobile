@@ -8,6 +8,7 @@ import { VIDEO_MODELS } from '../../config/ai-models.constants';
 import * as ImagePicker from 'expo-image-picker';
 import { toastError } from '../../libs/toast';
 import { CinemaDirectionControls } from './CinemaDirectionControls';
+import CreatorMediaPreview from './CreatorMediaPreview';
 import { MODEL3D_MODELS } from '../../config/model3d-models.constants';
 import {
   CREATOR_MODE_KEYS, creatorAspects, creatorModels,
@@ -149,7 +150,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
       {(advanced?.supportsSeed || advanced?.supportsNegativePrompt || advanced?.supportsEndFrame) && <View className="mt-2 gap-2">
         {advanced.supportsEndFrame && <View className="flex-row flex-wrap items-center gap-2">
           {chip(t('creator.endFrame', { defaultValue: 'End frame' }), () => void pickEndFrame(), !!settings.endFrame)}
-          {!!settings.endFrame && <>{chip(t('common.delete'), () => onChange({ ...settings, endFrame: undefined }))}<Text className="text-xs text-theme-neutrals-400" numberOfLines={1}>{settings.endFrame.label}</Text></>}
+          {!!settings.endFrame && <><CreatorMediaPreview kind="image" url={settings.endFrame.uri} width={40} height={40} />{chip(t('common.delete'), () => onChange({ ...settings, endFrame: undefined }))}<Text className="max-w-[120px] text-xs text-theme-neutrals-400" numberOfLines={1}>{settings.endFrame.label}</Text></>}
           <Text className="text-xs text-theme-neutrals-400">{t('creator.endFrameHelp', { defaultValue: 'Add a start image with the attachment button.' })}</Text>
         </View>}
         {advanced.supportsSeed && <TextInput value={settings.seed ?? ''} onChangeText={seed => onChange({ ...settings, seed })}
