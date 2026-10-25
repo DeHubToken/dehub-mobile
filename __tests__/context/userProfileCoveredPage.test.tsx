@@ -33,7 +33,7 @@ it('keeps the previous page behind profile transitions without unmounting it', (
   function Page() {
     profile = useUserProfileSheet();
     React.useEffect(() => { mounted(); return unmounted; }, []);
-    return React.createElement('UnderlyingPage', { active: React.useContext(FeedPlaybackActiveContext) });
+    return require('react').createElement('UnderlyingPage', { active: React.useContext(FeedPlaybackActiveContext) });
   }
   let tree!: ReturnType<typeof create>;
   act(() => { tree = create(<UserProfileSheetProvider><Page /></UserProfileSheetProvider>); });

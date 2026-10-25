@@ -34,7 +34,7 @@ afterEach(() => jest.useRealTimers());
 function page() {
   function Content() {
     const ready = useTransitionSettled();
-    return React.createElement('Page', { ready });
+    return require('react').createElement('Page', { ready });
   }
   const load = jest.fn(() => Content);
   const Screen = deferredScreen(`test-${key++}`, load);
