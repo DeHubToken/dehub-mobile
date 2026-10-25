@@ -43,7 +43,7 @@ import {
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { localizedNotificationContent } from "../libs/notification-content";
 import { formatNotificationDate } from "../libs/date.util";
@@ -459,10 +459,10 @@ const MARK_HIT_SLOP = { ...ACTION_HIT_SLOP, top: 10 };
 const CLEAR_HIT_SLOP = { ...ACTION_HIT_SLOP, bottom: 10 };
 
 /**
- * What the reader's notification filters held back (Settings → Notifications
- * → Filter notifications from). Collapsed until opened, and only fetched then,
- * so a reader without filters pays nothing for it. Rows draw exactly like the
- * main list's.
+ * What the reader's notification filters held back. Reached only from
+ * Settings → Notifications → Filter notifications from, so readers who never
+ * use filters never see it on this screen. Rows draw exactly like the main
+ * list's.
  */
 function FilteredNotificationsSection({
   renderRow,
@@ -470,7 +470,7 @@ function FilteredNotificationsSection({
   renderRow: (info: { item: NotificationItem }) => React.ReactElement;
 }) {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [items, setItems] = useState<NotificationItem[] | null>(null);
 
   useEffect(() => {
@@ -971,6 +971,9 @@ const NotificationScreen = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const navigation = useNavigation<any>();
+  // Settings → Notifications opens this screen with `filtered` to show what
+  // the reader's filters held back; a plain open never shows that section.
+  const showFiltered = useRoute<any>().params?.filtered === true;
   const { on: onSocketEvent } = useWebSocketApi();
   const { showUserProfile } = useUserProfileSheet();
   
@@ -1777,9 +1780,9 @@ const NotificationScreen = () => {
           <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       ) : null}
-      {walletAddress ? <FilteredNotificationsSection renderRow={renderItem} /> : null}
+      {walletAddress && showFiltered ? <FilteredNotificationsSection renderRow={renderItem} /> : null}
     </>
-  ), [loadingMore, renderItem, walletAddress]);
+  ), [loadingMore, renderItem, walletAddress, showFiltered]);
 
   // Minimal: the empty-state icon sits bare on black, no tile behind it.
   const emptyIconTile = isMinimal

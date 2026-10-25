@@ -89,7 +89,7 @@ export type AppStackParamList = {
     accessInfo?: any;
   };
   [ScreenNames.Leaderboard]: undefined;
-  [ScreenNames.Notifications]: undefined;
+  [ScreenNames.Notifications]: { filtered?: boolean } | undefined;
   [ScreenNames.NotificationSettings]: undefined;
   [ScreenNames.Feed]: undefined;
   [ScreenNames.PostResolver]: {
