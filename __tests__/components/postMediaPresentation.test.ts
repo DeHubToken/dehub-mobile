@@ -129,7 +129,7 @@ describe('post media presentation', () => {
     expect(list).toContain('if (!answersTabPress || !isFocused || !active) return;');
   });
 
-  it('fits photo and video frames to their picture within 55% of the screen', () => {
+  it('contains photos and crops full-width videos within 55% of the screen', () => {
     const containedImage = readSource('components', 'Home', 'ContainedFeedImage.tsx');
     const video = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
 
@@ -140,10 +140,11 @@ describe('post media presentation', () => {
     expect(containedImage).toContain('screenHeight * 0.55');
     expect(video).toContain('const INLINE_MAX_SCREEN = 0.55;');
     expect(video).toContain('screenHeight * INLINE_MAX_SCREEN');
-    expect(video).toContain('win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)');
+    expect(video).toContain('return fullWidth;');
+    expect(video.match(/const cropMedia = true;/g)).toHaveLength(2);
     expect(video).toContain('width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls)');
     expect(video).toContain('alignSelf: "flex-start"');
-    // aspectRatio on the sized box makes Yoga widen a portrait clip to the card.
+    // Explicit dimensions keep the reserved transport strip inside the cap.
     expect(video).not.toMatch(/container: \{[^}]*aspectRatio/);
   });
 
