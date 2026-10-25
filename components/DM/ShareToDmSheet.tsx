@@ -183,8 +183,8 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
             onChangeText={setCaption}
             maxLength={500}
             multiline
-            accessibilityLabel={t("copy.0e4633fab693", { defaultValue: "Add a message (optional)" })}
-            placeholder={t("copy.0e4633fab693", { defaultValue: "Add a message (optional)" })}
+            accessibilityLabel={t("dm.addCaption")}
+            placeholder={t("dm.addCaption")}
             placeholderTextColor="#8B8D90"
             className="text-theme-neutrals-100 text-sm p-0 m-0"
           />
