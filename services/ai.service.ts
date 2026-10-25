@@ -318,6 +318,7 @@ export interface AIChatResponse {
 export type AIImageModel = string;
 
 export interface AIImageRequest {
+  clientJobId?: string;
   referenceImageUrls?: string[];
   prompt: string;
   aspectRatio?: string;
@@ -365,6 +366,7 @@ export interface AIVideoRequest {
   duration?: string;
   aspectRatio?: string;
   negativePrompt?: string;
+  endFrameUrl?: string;
   resolution?: string;
   seed?: number;
   /** Hash of the DHB transfer that paid for this job. */
