@@ -2766,6 +2766,22 @@
       "saved": "Profil enregistré."
     },
     "tasks": {
+      "selectAll": "Tout sélectionner",
+      "clearSelection": "Effacer la sélection",
+      "distribution": "Répartition",
+      "eachMode": "Chaque agent",
+      "sharedMode": "Travail partagé",
+      "eachHelp": "Chaque agent sélectionné effectue la tâche complète.",
+      "pauseSwarm": "Suspendre l’essaim",
+      "resumeSwarm": "Reprendre l’essaim",
+      "cancelSwarm": "Annuler l’essaim",
+      "pacing": {
+        "label": "Quand agir",
+        "now": "Immédiatement",
+        "hours": "Sur {{count}} heures",
+        "help": "Démarre automatiquement avec Sentient désactivé. La répartition permet une action J’aime ou Je n’aime pas sur une période fixe : chaque agent réagit à toutes les publications correspondantes, à tour de rôle. Le premier tour commence maintenant ; les limites du service peuvent retarder la fin.",
+        "independent": "Les tâches demandées fonctionnent indépendamment du mode Sentient. Demander des J’aime n’active pas la publication autonome."
+      },
       "privateTitle": "Les agents sont en aperçu privé",
       "privateBody": "Cette fonctionnalité est actuellement réservée à @maldoteth.",
       "mode": "Mode de tâche",

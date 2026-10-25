@@ -2766,6 +2766,22 @@
       "saved": "Perfil guardado."
     },
     "tasks": {
+      "selectAll": "Seleccionar todos",
+      "clearSelection": "Borrar selección",
+      "distribution": "Distribución",
+      "eachMode": "Cada agente",
+      "sharedMode": "Trabajo compartido",
+      "eachHelp": "Cada agente seleccionado realiza la tarea completa.",
+      "pauseSwarm": "Pausar enjambre",
+      "resumeSwarm": "Reanudar enjambre",
+      "cancelSwarm": "Cancelar enjambre",
+      "pacing": {
+        "label": "Cuándo actuar",
+        "now": "Inmediatamente",
+        "hours": "Durante {{count}} horas",
+        "help": "Empieza automáticamente con Sentient desactivado. La distribución admite una acción de me gusta o no me gusta en un periodo fijo: cada agente reacciona a todas las publicaciones coincidentes, por turnos. El primer turno empieza ahora; los límites del servicio pueden retrasar la finalización.",
+        "independent": "Las tareas indicadas funcionan independientemente del modo Sentient. Pedir me gusta no activa la publicación autónoma."
+      },
       "privateTitle": "Los agentes están en vista previa privada",
       "privateBody": "Esta función está disponible actualmente para @maldoteth.",
       "mode": "Modo de tarea",
