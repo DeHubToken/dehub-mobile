@@ -20,15 +20,8 @@ import {
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-  Easing,
-} from "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
+import Animated from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import Icon from "../components/ui/Icon";
 import FeedFilterPanel, { type FeedFilters } from "../components/Home/FeedFilterPanel";
 import { getCategoriesCached } from "../services/nft.service";
@@ -56,7 +49,8 @@ import {
 } from "../services/feed.unified.service";
 import { useIsFocused, useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from '@tanstack/react-query';
-import ScreenHeader, { SCREEN_HEADER_HEIGHT } from "../components/ScreenHeader";
+import ScreenHeader from "../components/ScreenHeader";
+import { PageTabs } from "../components/page/PageKit";
 import SwipeableRow from "../components/common/SwipeableRow";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
@@ -80,11 +74,7 @@ import { useAppTheme } from "../context/ThemeContext";
 import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from '../hooks/useSearchFieldMaterial';
 import {
   MINIMAL_HAIRLINE,
-  MINIMAL_TAB_LINE,
-  MINIMAL_TAB_TEXT,
-  MINIMAL_TAB_TEXT_ACTIVE,
   minimalRow,
-  minimalTab,
 } from "../theme/minimal";
 
 type TabKey = "all" | "accounts" | "posts" | "images" | "videos" | "voice" | "live";
@@ -122,8 +112,8 @@ const TABS: Tab[] = [
   { key: "accounts", labelKey: "screens.accounts", icon: "Users", searchType: "accounts" },
   { key: "posts", labelKey: "explore.posts", icon: "FileText", postType: "feed-simple" },
   { key: "images", labelKey: "explore.images", icon: "Image", postType: "feed-images" },
-  { key: "videos", labelKey: "explore.videos", icon: "Play", postType: "video" },
-  { key: "voice", labelKey: "search.tabVoice", icon: "Mic", postType: "feed-audio" },
+  { key: "videos", labelKey: "explore.videos", icon: "Video", postType: "video" },
+  { key: "voice", labelKey: "search.tabVoice", icon: "Play", postType: "feed-audio" },
   { key: "live", labelKey: "explore.live", icon: "Radio", postType: "live" },
 ];
 
@@ -138,9 +128,6 @@ const SEARCH_LOG_TYPE: Record<TabKey, SearchLogType> = {
   live: "livestreams",
 };
 
-const TAB_H = 36;
-const TAB_RADIUS = 12;
-const SLIDE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
 const PAGE_SIZE = 20;
 
 /** Tabs shown on the default explore screen (no accounts) */
@@ -219,7 +206,7 @@ const toFeedItem = (item: SearchContentResult): UnifiedFeedItem => ({
 
 const SearchScreen: React.FC = () => {
   const { t } = useTranslation();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal } = useAppTheme();
   const searchField = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
   // The header floats over the KeyboardAvoidingView rather than sitting above
@@ -227,23 +214,17 @@ const SearchScreen: React.FC = () => {
   // it is the inset the root SafeAreaView already spent.
   const keyboardOffset = useKeyboardOffset(0);
 
-  // Same collapsing chrome the home feed and the grid feed run: the header is
-  // positioned over the content, slides out on a scroll down and comes back on
-  // a scroll up. `headerHeight` is measured from its own layout, so every
-  // scrollable below pads itself by exactly the space it covers.
-  //
-  // Capped at the ScreenHeader, though: only the title bar leaves, and the
-  // search box and its tabs stay pinned to the top edge. Everything below here
-  // is search results, and a query you cannot edit without scrolling back to
-  // the top is the wrong trade — the same reason web's Explore pill stays put
-  // while the rest of its chrome slides away.
+  // The header is positioned over the content and measured from its own
+  // layout, so every scrollable below pads itself by exactly the space it
+  // covers. It stays pinned, like web's Explore island: the title, tabs and
+  // search box are one capsule, and part-way down a list of results is exactly
+  // when someone reaches back for the query.
   const {
     headerHeight,
-    headerAnimatedStyle,
     onHeaderLayout,
     scrollHandler,
     showHeader,
-  } = useCollapsibleHeader({ collapseHeight: SCREEN_HEADER_HEIGHT });
+  } = useCollapsibleHeader();
   // The app drawer's menu search hands off here when what was typed is not a
   // page — see AppDrawer's runFullSearch.
   const route = useRoute<{ key: string; name: string; params?: { q?: string; section?: "newMembers" } }>();
@@ -296,11 +277,6 @@ const SearchScreen: React.FC = () => {
   // Trending
   const [trendingVideos, setTrendingVideos] = useState<UnifiedFeedItem[]>([]);
   const [trendingLoading, setTrendingLoading] = useState(true);
-
-  // Glass pill indicator
-  const pillX = useSharedValue(0);
-  const pillW = useSharedValue(0);
-  const tabLayouts = useRef<Record<string, { x: number; width: number }>>({});
 
   // Refs
   const inputRef = useRef<TextInput>(null);
@@ -640,36 +616,12 @@ const SearchScreen: React.FC = () => {
       // The new tab opens at the top of its own list, so the header belongs
       // back on screen however the last one was left.
       showHeader();
-      // Animate glass pill
-      const layout = tabLayouts.current[tab];
-      if (layout) {
-        pillX.value = withTiming(layout.x, SLIDE_TIMING);
-        pillW.value = withTiming(layout.width, SLIDE_TIMING);
-      }
       if (hasSearched && searchQuery.trim()) {
         executeSearch(searchQuery, tab, 1);
       }
     },
     [activeTab, hasSearched, searchQuery, executeSearch, showHeader],
   );
-
-  const handleTabLayout = useCallback(
-    (key: TabKey, x: number, width: number) => {
-      tabLayouts.current[key] = { x, width };
-      if (key === activeTab) {
-        pillX.value = x;
-        pillW.value = width;
-      }
-    },
-    [activeTab],
-  );
-
-  const pillStyle = useAnimatedStyle(() => ({
-    position: "absolute" as const,
-    left: pillX.value,
-    width: pillW.value,
-    height: TAB_H,
-  }));
 
   const handleLoadMore = useCallback(() => {
     if (loadingMore) return;
@@ -1132,21 +1084,31 @@ const SearchScreen: React.FC = () => {
 
       {/* Declared after the content on purpose: it is positioned over the
           lists, and on Android sibling order decides what draws on top. */}
-      <Animated.View
-        style={[styles.header, headerAnimatedStyle]}
-        onLayout={onHeaderLayout}
-      >
-        <ScreenHeader icon="search" title={t("nav.explore")} canGoBack={false} />
-
-        {/* Carries its own opaque background — the two rows below the
-            ScreenHeader have none of their own, and the feed now scrolls
-            underneath them rather than below them. */}
-        <View className="bg-theme-neutrals-900">
-          {/* pt-3: the search box sat flush against the title island above. */}
-          <View className="px-4 pt-3 pb-2">
+      <View style={styles.header} onLayout={onHeaderLayout}>
+        {/* Web's Explore island: title, icon tabs, then the search box and its
+            filter square, all in one capsule that stays pinned while the
+            results scroll underneath. */}
+        <ScreenHeader
+          icon="search"
+          title={t("nav.explore")}
+          canGoBack={false}
+          tabs={
+            <PageTabs
+              iconOnly
+              value={activeTab}
+              onChange={handleTabChange}
+              tabs={(hasSearched ? TABS : EXPLORE_TABS).map((tab) => ({
+                id: tab.key,
+                label: t(tab.labelKey),
+                icon: (ink: string) => <Icon name={tab.icon} size={16} color={ink} />,
+              }))}
+            />
+          }
+        >
+          <View style={styles.searchRow}>
             <View
-              className="flex-row items-center rounded-xl px-3 py-2"
-              style={searchField.surface}
+              className="flex-1 flex-row items-center rounded-xl pl-3 pr-1"
+              style={[styles.searchField, searchField.surface]}
             >
               <Icon name="Search" size={18} color="#9CA3AF" />
               <TextInput
@@ -1161,7 +1123,6 @@ const SearchScreen: React.FC = () => {
                 onFocus={() => {
                   searchField.onFocus();
                   setInputFocused(true);
-                  // Nothing to type into if the header has slid away.
                   showHeader();
                 }}
                 onBlur={() => { searchField.onBlur(); setInputFocused(false); }}
@@ -1169,131 +1130,51 @@ const SearchScreen: React.FC = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
-              {searchQuery.length > 0 && (
+              {loading ? (
+                <ActivityIndicator size="small" color="#9CA3AF" style={styles.fieldAction} />
+              ) : searchQuery.length > 0 ? (
                 <TouchableOpacity
                   onPress={clearSearch}
                   accessibilityRole="button"
                   accessibilityLabel={t("sidebar.clearSearch")}
-                  hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                  className="w-6 h-6 rounded-lg bg-theme-neutrals-700 items-center justify-center mr-2"
+                  hitSlop={4}
+                  style={styles.fieldAction}
                 >
-                  <Icon name="X" size={14} color="#E5E7EB" />
+                  <Icon name="X" size={16} color="#71717A" />
                 </TouchableOpacity>
-              )}
+              ) : null}
+              {/* The filter toggle is a plain icon inside the field, the same
+                  quiet treatment as the messages search. */}
               <TouchableOpacity
                 accessibilityRole="button"
                 accessibilityLabel={filterPanelVisible ? t("search.closeFilterOptions") : t("search.openFilterOptions")}
+                accessibilityState={{ expanded: filterPanelVisible }}
                 onPress={() => setFilterPanelVisible((v) => !v)}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                className={`w-9 h-9 rounded-xl items-center justify-center mr-2 ${
-                  filterPanelVisible ? "bg-theme-neutrals-100" : "bg-theme-neutrals-700"
-                }`}
+                hitSlop={4}
+                style={styles.fieldAction}
               >
-                <Ionicons
-                  name={filterPanelVisible ? "close" : "options-outline"}
-                  size={18}
-                  color={filterPanelVisible ? "#111827" : "#E5E7EB"}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                className="w-9 h-9 rounded-xl bg-theme-neutrals-700 items-center justify-center"
-                onPress={handleSearch}
-                disabled={loading || !searchQuery.trim()}
-                accessibilityRole="button"
-                accessibilityLabel={t("common.search")}
-              >
-                {loading ? (
-                  <ActivityIndicator size="small" color="#E5E7EB" />
-                ) : (
-                  <Icon name="ArrowRight" size={18} color="#E5E7EB" />
-                )}
+                <Icon name="SlidersHorizontal" size={18} color={filterPanelVisible ? "#F4F4F5" : "#71717A"} />
               </TouchableOpacity>
             </View>
           </View>
 
           {/* Sort, category and date, applied to the results below. Post type
-              and content access stay hidden: the tab row underneath already
-              is the post type, and search results carry no access flags. */}
-          <View className="px-4">
-            <FeedFilterPanel
-              visible={filterPanelVisible}
-              filters={filters}
-              onFiltersChange={setFilters}
-              categories={categories}
-              selectedCategory={selectedCategory === "All" ? undefined : selectedCategory}
-              onCategoryPress={setSelectedCategory}
-              onResetFilters={handleResetFilters}
-              hidePostType
-              hideContentAccess
-              maxHeight={300}
-            />
-          </View>
-
-          {/* Minimal: a file-tab strip, edge to edge. The baseline is a view
-              under the ScrollView rather than a border on it — a ScrollView
-              clips its children, so the sliding tab could never reach down
-              over a border — and the tab's black fill paints over it. */}
-          <View className={isMinimal ? undefined : "px-4 py-2"}>
-            {isMinimal && <View style={styles.minimalBaseline} pointerEvents="none" />}
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              style={isMinimal ? undefined : { marginHorizontal: -16 }}
-              contentContainerStyle={{ position: "relative", gap: isMinimal ? 0 : 8, paddingHorizontal: isMinimal ? 0 : 16 }}
-            >
-              {isMinimal ? (
-                <Animated.View style={[styles.minimalIndicator, pillStyle]} />
-              ) : (
-              <Animated.View style={[styles.indicator, pillStyle]}>
-                <LinearGradient
-                  colors={["rgba(255,255,255,0.20)", "rgba(255,255,255,0.10)", "rgba(255,255,255,0.05)"]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={[StyleSheet.absoluteFill, { borderRadius: TAB_RADIUS }]}
-                />
-                <View style={styles.indicatorHighlight} />
-              </Animated.View>
-              )}
-
-              {(hasSearched ? TABS : EXPLORE_TABS).map((tab) => {
-                const isActive = activeTab === tab.key;
-                return (
-                  <TouchableOpacity
-                    key={tab.key}
-                    onPress={() => handleTabChange(tab.key)}
-                    onLayout={(e) => {
-                      const { x, width } = e.nativeEvent.layout;
-                      handleTabLayout(tab.key, x, width);
-                    }}
-                    style={[styles.tabBtn, !isActive && styles.tabBtnInactive, isMinimal && minimalTab]}
-                    activeOpacity={0.8}
-                  >
-                    <Icon
-                      name={tab.icon}
-                      size={14}
-                      color={
-                        isActive
-                          ? isMinimal ? MINIMAL_TAB_TEXT_ACTIVE : "#F9FBFF"
-                          : isMinimal ? MINIMAL_TAB_TEXT : "#A1A1AA"
-                      }
-                    />
-                    <Text
-                      style={[
-                        styles.tabLabel,
-                        isMinimal && styles.minimalTabLabel,
-                        isActive && styles.tabLabelActive,
-                        isMinimal && isActive && styles.minimalTabLabelActive,
-                      ]}
-                    >
-                      {t(tab.labelKey)}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
-          </View>
-        </View>
-      </Animated.View>
+              and content access stay hidden: the tab row above already is the
+              post type, and search results carry no access flags. */}
+          <FeedFilterPanel
+            visible={filterPanelVisible}
+            filters={filters}
+            onFiltersChange={setFilters}
+            categories={categories}
+            selectedCategory={selectedCategory === "All" ? undefined : selectedCategory}
+            onCategoryPress={setSelectedCategory}
+            onResetFilters={handleResetFilters}
+            hidePostType
+            hideContentAccess
+            maxHeight={300}
+          />
+        </ScreenHeader>
+      </View>
       <DeHubRefreshMark refreshing={refreshing} topInset={headerHeight} />
     </View>
   );
@@ -1309,42 +1190,9 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 10,
   },
-  indicator: {
-    overflow: "hidden",
-    borderRadius: TAB_RADIUS,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.30)",
-  },
-  indicatorHighlight: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.4)",
-    borderTopLeftRadius: TAB_RADIUS,
-    borderTopRightRadius: TAB_RADIUS,
-  },
-  tabBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    height: TAB_H,
-    paddingHorizontal: 16,
-    borderRadius: TAB_RADIUS,
-    gap: 6,
-  },
-  tabBtnInactive: {
-    backgroundColor: "#27272a",
-  },
-  tabLabel: {
-    fontSize: 13,
-    fontWeight: "600",
-    color: "#A1A1AA",
-  },
-  tabLabelActive: {
-    color: "#F9FBFF",
-  },
+  searchRow: { flexDirection: "row", alignItems: "center", gap: 8 },
+  searchField: { height: 48, borderRadius: 12 },
+  fieldAction: { width: 32, height: 32, alignItems: "center", justifyContent: "center" },
   minimalInput: {
     backgroundColor: "transparent",
     borderWidth: 1,
@@ -1354,30 +1202,6 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderWidth: 1,
     borderColor: MINIMAL_HAIRLINE,
-  },
-  minimalBaseline: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 1,
-    backgroundColor: MINIMAL_TAB_LINE,
-  },
-  // Spans the strip's full height, so its black fill covers the baseline
-  // under the active tab; outlined on three sides so it opens into the page.
-  minimalIndicator: {
-    top: 0,
-    backgroundColor: "#000",
-    borderTopWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: MINIMAL_TAB_LINE,
-  },
-  minimalTabLabel: {
-    color: MINIMAL_TAB_TEXT,
-  },
-  minimalTabLabelActive: {
-    color: MINIMAL_TAB_TEXT_ACTIVE,
   },
 });
 
