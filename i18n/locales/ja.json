@@ -1,5 +1,7 @@
 {
   "copy": {
+    "93100fc44c0a": "@ユーザー名",
+    "a4d1abed0b2b": "モデ",
     "002286513398": "イベントを管理する権限がありません",
     "00b3a926f704": "リクエストのキャンセルに失敗しました",
     "00c0b03fcfa2": "引き落とし済み",
@@ -177,7 +179,7 @@
     "1d82652c7cc6": "{{value1}} は成功しました。",
     "1e1f8f160342": "{{value1}} が完了しました。",
     "1e8d604ce95a": "Jean Phil - ウィンク",
-    "1ea442a134b2": "No",
+    "1ea442a134b2": "いいえ",
     "1ed8c7e56c94": "香港",
     "1ef142c8213e": "戦闘",
     "1f204df4182c": "取引は送信されませんでした",
@@ -1872,7 +1874,7 @@
     "64e3cb0e4960": "購入",
     "2ec1e2815946": "売却",
     "3838a4d8cb8c": "ヒント",
-    "565339bc4d33": "OK",
+    "565339bc4d33": "いいえ",
     "9ec39f767fbb": "ストリームが開始されました。",
     "f9f4ff9b77f5": "ストリームは終了しました。",
     "72231043bc18": "投稿",
@@ -3447,6 +3449,7 @@
     "themeColorBrandFailed": "プロフィール画像から色を読み取れませんでした"
   },
   "common": {
+    "remove": "削除",
     "refresh": "更新",
     "mute": "ミュート",
     "unmute": "ミュート解除",
@@ -3484,7 +3487,7 @@
     "copy": "コピー",
     "optionalSuffix": "（任意）",
     "yesterday": "昨日",
-    "ok": "OK",
+    "ok": "いいえ",
     "continue": "はい",
     "goesToHomeFeed": "ホームフィードに移動",
     "openMenu": "メニューを開く",
@@ -4915,6 +4918,7 @@
     "topUpExplanation": "あなたのトークンはオンチェーンでDeHub広告トレジャリーに転送され、その後、独立したオンチェーン検証後に残高がクレジットされます。"
   },
   "buyCoins": {
+    "cardBankDesc": "Visa、Mastercard、Apple Pay",
     "title": "コインを購入",
     "network": "ネットワーク",
     "token": "トークン",
@@ -4980,6 +4984,11 @@
       }
     },
     "tasks": {
+      "cancelSwarm": "スワームをキャンセル",
+      "clearSelection": "選択をクリア",
+      "distribution": "分配",
+      "pauseSwarm": "スワームの一時停止",
+      "selectAll": "すべて選択",
       "preparing": "タスクを準備しています…",
       "run": "プロンプトを実行",
       "runSwarm": "スワームを実行",
@@ -9314,6 +9323,7 @@
     "discordOptional": "Discord（任意）"
   },
   "migrate": {
+    "placeholder": "youtube.com/ @ you、tiktok.com/ @ you、vimeo.com/you…",
     "clearAll": "すべてクリア",
     "costsIntro": "すべてのビデオは前のものより安い — バッチが大きくなるにつれてレートが下がるため、以下の価格はそれだけの数のビデオの合計です。",
     "costsIntroShort": "すべてのビデオは前のものより安い — バッチが大きくなるにつれてレートが下がります。正確な価格はお支払い前に表示されます。",
@@ -10192,7 +10202,7 @@
       "transferHint": "グループと配置は選択に従う。移動はこのページのみに影響し、他の出現は維持される。目的地はタイムドライバーのレイヤーに収まる必要がある。",
       "transferLayers": "選択したレイヤーをページに移動またはコピーする",
       "visibilityHint": "非表示のページは編集可能でダウンロード用に残る。",
-      "go": "Go"
+      "go": "実行"
     },
     "captions": {
       "textPanel": "字幕を編集",
@@ -11090,7 +11100,7 @@
       "startCell": "セルから開始",
       "undoAction": "データ操作を元に戻す",
       "valueHint": "改行を含むセル全体をここで編集します。値はテキストとして保存されます。数式は計算されません。",
-      "go": "Go"
+      "go": "移動"
     },
     "dataExport": {
       "formulasAsText": "数式をテキストとして扱う"
@@ -12668,7 +12678,7 @@
     "transferIncomplete": "トークンの転送が完了しませんでした。次の有料投稿の前にもう一度質問されます。"
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "GIF画像",
     "searchEmoji": "絵文字を検索",
     "noEmoji": "絵文字が見つかりません",
     "searchResults": "検索結果",
@@ -13226,6 +13236,7 @@
     "subtitle": "バッジ保有者が作成したカスタム絵文字、ステッカー、GIF。パックをピッカーに追加して、チャット、コメント、リアクションで使用できます。",
     "tabStickers": "ステッカー",
     "tab": {
+      "gif": "GIF",
       "emoji": "絵文字",
       "sticker": "ステッカー"
     },
@@ -13249,6 +13260,7 @@
     "tierTable": "各バッジティアで利用できるもの",
     "tierTableHint": "パックは種類ごとにカウントされます。他の列は、1つのパックに収まるアイテム数を示します。ティアが下がった場合でも、パックは保持されますが、新しい制限を超えて追加することはできません。",
     "col": {
+      "gifs": "GIF",
       "tier": "ティア",
       "packs": "パック",
       "emoji": "絵文字",
@@ -13462,6 +13474,7 @@
     "statusUnregistered": "登録されていません"
   },
   "launchpad": {
+    "twitter": "X/Twitter",
     "ago": "{{age}} 前",
     "amountIn": "{{symbol}}単位の金額",
     "beTheFirst": "最初になってください。",

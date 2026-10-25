@@ -123,6 +123,7 @@
     "use": "ነዚ ቅጥዒ እዚ ተጠቐም"
   },
   "copy": {
+    "a3156ed263d2": "{{value1}} — ግብረ-መልስኻ ንምቕያር ጸቒጥካ ሓዝ",
     "002286513398": "ናይ ምምሕዳር ፍጻሜታት ፍቓድ የብልካን",
     "00b3a926f704": "ሕቶ ንምስራዝ ተሳኒዩ",
     "00c0b03fcfa2": "ተሰሪዙ",
@@ -3263,7 +3264,7 @@
     "notifAnnouncementsDesc": "ናይ መድረኽ ዜናታትን ባህሪን ዝዘመነ",
     "quietHoursPauseDesc": "ኣብ ዝተወሰነ ሰዓታት ናይ ምትኳር ኣፍልጦታት ደው በል",
     "quietHoursFrom": "ካብ",
-    "quietHoursTo": "To",
+    "quietHoursTo": "ናብ",
     "quietHoursSilencedNote": "ኣብዘን ሰዓታት እዚአን ናይ ምትኳር ኣፍልጦታት ክዓጽዉ እዮም ።",
     "notifInApp": "ኣብ ኣፕ",
     "notifPush": "ድፍኣዩ",
@@ -4001,6 +4002,7 @@
     "outOfCredit": "ካብ AI ጸረፍቲ ወፂኡ። ንምቕጻል ምስ DeHub ቶክን ጸረፍቲ ጸረፍቲ።"
   },
   "commandCentre": {
+    "tokenOnChainTo": "{{symbol}} ኣብ {{chain}} → {{dest}}",
     "title": "ማእከል ትእዛዝ",
     "mobileSubtitle": "ዋሌትካ፡ እቶትካን ብጽሒትካን ኣብ ሓደ ቦታ",
     "balance": "ሚዛን",
@@ -5103,6 +5105,11 @@
       "viewPost": "ልጥፊ ርአ"
     },
     "tasks": {
+      "cancelSwarm": "ስዋርም ሰርዝ",
+      "clearSelection": "ምርጫ ኣልግስ",
+      "distribution": "ምዝርጋሕ",
+      "pauseSwarm": "ስዋርም ኣቋርጽ",
+      "selectAll": "ንዅሉ ምረጽ",
       "action": "ተግባር",
       "activity": "ናይ ቀረባ ንጥፈታት",
       "comment": "ርእይቶ",
@@ -9334,6 +9341,7 @@
     "discordOptional": "ኣወዳድባ (ኣወዳድባ)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you...",
     "clearAll": "ንዅሉ ኣጽዲቕካ",
     "costsIntro": "ነፍሲ ወከፍ ቪድዮ ካብቲ ቅድሚኡ ዝነበረ ርሑቕ እዩ — እቲ ባች እናዓበየ ክኸይድ ከሎ እቲ መጠን ይንኪ ፣ ስለዚ እቲ ኣብ ታሕቲ ዘሎ ዋጋ እቲ ብዙሓት ቪድዮታት ብሓፈሻ ዝረኽብዎ እዩ ።",
     "costsIntroShort": "ነፍሲ ወከፍ ቪድዮ ካብቲ ቅድሚኡ ዝነበረ ርሑቕ እዩ — እቲ ባች እናዓበየ ምስ ከደ ፡ እቲ መጠን ይንኪ ። እቲ ልክዕ ዋጋ ቅድሚ ምኽፋልካ እዩ ዝግለጽ ።",
@@ -10523,7 +10531,7 @@
     "rail": {
       "elements": "ኣካላት",
       "layers": "ደርብታት",
-      "agent": "AI"
+      "agent": "አይ"
     },
     "blend": {
       "normal": "ንቡር",
@@ -13303,6 +13311,7 @@
     "tierTable": "ንዝኾነ ደረጃ እንታይ ይረኽብ",
     "tierTableHint": "ሓነጽቲ ንዝኾነ ዓይነት እዩ። ካልኦት ዓምድታት ድማ ንሓደ ሓነጽቲ ዝኣትዉ ነገራት እዮም። እንተኾይኑ ደረጃኻ እንተወሪዱ፣ ሓነጽትኻ ይጸንዓ ግን ክሳብ ሓዳስ ገደብ ኣይትኽእልን።",
     "col": {
+      "gifs": "GIF",
       "tier": "ደረጃ",
       "packs": "ሓነጽቲ",
       "emoji": "ብርቱዕ ስእሊ",
@@ -14179,6 +14188,7 @@
       "showStreak": "ሳምንታዊ ስክሪፕት ኣርኢ"
     },
     "obs": {
+      "rotated": "ሊንክ ሓድሽ ዘይተወሃቦ። ናብ OBS ኣቐምጥ።",
       "title": "ምስ OBS ተጠቐም",
       "connected": "OBS ተተሓሒዙ",
       "notConnected": "OBS ኣይተኣሳሰርን",

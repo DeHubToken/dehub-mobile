@@ -97,6 +97,7 @@
     "waiting": "다음 트위치 방송 준비 완료"
   },
   "viralTemplates": {
+    "more": "더 보기",
     "all": "전체",
     "back": "템플릿으로 돌아가기",
     "browse": "모든 {{count}} 템플릿 찾아보기",
@@ -125,6 +126,10 @@
     "useNamed": "{{name}} 을 (를) 사용하세요"
   },
   "copy": {
+    "762add13d2dd": "⋯ 더 많은 옵션",
+    "93100fc44c0a": "@사용자이름",
+    "cc54b50c5162": "게시물 편집",
+    "f5c9bd131486": "더 보기",
     "0039cdece89a": "💎 토큰 스테이킹 (Base)",
     "0090dc269d25": "Italiano (이탈리아어)",
     "00d9b35a823e": "즉시 수익을 창출하고, 플랫폼을 해체하지 않으며, 최대 99% 의 수익을 유지하고, 검열이나 플랫폼 조작으로부터 자유로워집니다.",
@@ -345,7 +350,7 @@
     "5441d9dc54f6": "🌉 토큰 브릿지",
     "55656b5e434f": "검색 닫기",
     "56196e073a9a": "AI-파워드 채팅 어시스턴트는 질문에 답변, 이미지 생성, 비디오 생성, 플랫폼 기능에 도움을 줄 수 있는 AI를 탑재한 채팅 어시스턴트입니다.",
-    "565339bc4d33": "OK",
+    "565339bc4d33": "확인",
     "56acc0370df9": "계정 기본 설정, 언어, 개인정보 설정 및 모양을 관리하세요.",
     "56dc2b3bb2e5": "괴롭힘 또는 괴롭힘",
     "57383cdc46dd": "익명 배지에서",
@@ -5077,6 +5082,7 @@
     "capacity": "{{limit}} 상담원 중 {{used}} 명 · {{badge}} 명",
     "noBadge": "배지 없음",
     "profile": {
+      "edit": "프로필 편집",
       "avatar": "아바타",
       "banner": "배너",
       "imageHelp": "JPG, PNG, WEBP 또는 GIF, 각각 최대 5MB.",
@@ -5114,6 +5120,12 @@
       "viewPost": "포스트 보기"
     },
     "tasks": {
+      "cancelSwarm": "스웜 취소",
+      "clearSelection": "선택 항목 지우기",
+      "distribution": "배분",
+      "pauseSwarm": "떼 일시 중지",
+      "selectAll": "모두 선택",
+      "title": "에이전트에게 작업을 할당",
       "action": "조치",
       "activity": "최근 활동",
       "comment": "의견",
@@ -6201,6 +6213,7 @@
   },
   "communities": {
     "existingPost": {
+      "placeholder": "DeHub 게시물 링크 또는 게시물 ID",
       "add": "게시물 추가",
       "added": "게시물이 커뮤니티에 추가됨",
       "adding": "추가 중...",
@@ -9509,7 +9522,7 @@
     "yourChannel": "내 채널",
     "yourChannelHint": "채널 주소를 붙여넣으세요. 채널 주소 자체의 핸들도 작동합니다.",
     "videoCountOne": "{{n}} 동영상",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
+    "placeholder": "youtube.com/ @ you, tiktok.com/ @ you, vimeo.com/you…",
     "costsNote": "DeHub 토큰으로 결제, 배치 시작 전에 한 번. 배지 보유자는 더 적게 지불합니다 — 할인율이 견적에 적용됩니다. 동영상을 가져올 수 없는 경우 해당 공유 금액은 다음 마이그레이션으로 크레딧됩니다."
   },
   "calls": {
@@ -10233,6 +10246,7 @@
       "restore": "배경 복원"
     },
     "videoTemplates": {
+      "duration": "{{seconds}} 초",
       "copy": {
         "after": "이후",
         "afterHint": "결과를 보여줍니다.",
@@ -12011,6 +12025,9 @@
     }
   },
   "creator": {
+    "presetExtraEmbroideredPatchName": "직물 패치 수선",
+    "presetExtraStepsInfographicName": "단계 인포그래픽",
+    "presetOpenCraftsmanPortraitName": "공예가 초상화",
     "editInTimeline": "타임라인에서 편집",
     "presetCraneRevealHint": "상승하는 것이 넓은 샷으로 열리는 것",
     "presetExtraArchitectureLightChangeHint": "하늘의 구름이 부드럽게 빛을 바꾸는 건축의 참조",

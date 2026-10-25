@@ -127,6 +127,7 @@
     "useNamed": "ይጠቀሙ {{name}}"
   },
   "copy": {
+    "bd9e3879bc60": "ፒፒቪ",
     "002286513398": "ክስተቶችን ለማስተዳደር ፈቃድ የለዎትም።",
     "00b3a926f704": "ጥያቄውን መሰረዝ አልተቻለም።",
     "00c0b03fcfa2": "ወጥቷል",
@@ -248,7 +249,7 @@
     "119cec414af5": "አልወደድኩትም",
     "11e44bb305b1": "እስካሁን ድረስ ምንም ነገር አይሰራም — ለመጀመር መልእክት ይላኩ ።",
     "126b956fa6fa": "የቀጥታ አርትዖቶችን ከመቀበልዎ በፊት ይህንን ፕሮጀክት ወደ ደመና ያስቀምጡ ።",
-    "130011756125": "On",
+    "130011756125": "በርቷል",
     "1310f058678b": "{{value1}} {{value2}}, {{value3}}, በ Wikimedia Commons በኩል",
     "134ed133424c": "{{value1}} በገበያ ላይ ነው",
     "135d78ac8f56": "ታሚል",
@@ -3279,7 +3280,7 @@
     "notifAnnouncementsDesc": "የመድረክ ዜና እና የባህሪ ዝመናዎች",
     "quietHoursPauseDesc": "በተወሰኑ ሰዓታት ውስጥ የግፋ ማሳወቂያዎችን ለአፍታ ያቁሙ",
     "quietHoursFrom": "ከ",
-    "quietHoursTo": "To",
+    "quietHoursTo": "ወደ",
     "quietHoursSilencedNote": "በእነዚህ ሰዓታት ውስጥ የግፋ ማሳወቂያዎች ይቆማሉ።",
     "notifInApp": "በመተግበሪያ ውስጥ",
     "notifPush": "ግፋ",
@@ -3580,6 +3581,7 @@
     "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
   },
   "common": {
+    "remove": "አስወግድ",
     "refresh": "አድስ",
     "mute": "ድምፅ አጥፋ",
     "unmute": "ድምፅ አብራ",
@@ -3784,6 +3786,7 @@
     "aiOverview": "የአይአይ አጠቃላይ እይታ"
   },
   "filters": {
+    "ppv": "ፒፒቪ",
     "sort": "ደርድር",
     "category": "ምድብ",
     "searchCategories": "ምድቦችን ፈልግ...",
@@ -4449,6 +4452,7 @@
     "provisional": "ጊዜያዊ"
   },
   "explorePage": {
+    "ppv": "ፒፒቪ",
     "searchPlaceholder": "ሰዎች፣ ልጥፎች ወይም ይዘት ፈልግ...",
     "filters": "ማጣሪያዎች",
     "clearAll": "ሁሉንም አጽዳ",
@@ -5126,6 +5130,12 @@
       "viewPost": "ልጥፍ ይመልከቱ"
     },
     "tasks": {
+      "cancelSwarm": "ስዋርምን ሰርዝ",
+      "clearSelection": "ምርጫን ያጽዱ",
+      "distribution": "ስርጭት",
+      "pauseSwarm": "ስዋርምን ለአፍታ አቁም",
+      "refresh": "አድስ",
+      "selectAll": "ሁሉንም ይምረጡ",
       "action": "እርምጃ",
       "activity": "የቅርብ ጊዜ እንቅስቃሴ",
       "comment": "አስተያየት",
@@ -12780,7 +12790,7 @@
     "transferIncomplete": "የቶክ ማስተላለፊያ አልተጠናቀቀም ። ከሚቀጥለው የሚከፈልበት ልኡክ ጽሁፍዎ በፊት እንደገና ይጠየቃሉ ።"
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "ጂአይኤፍ",
     "searchEmoji": "ኢሞጂ ፈልግ",
     "noEmoji": "ምንም ኢሞጂ አልተገኘም",
     "searchResults": "የፍለጋ ውጤቶች",
