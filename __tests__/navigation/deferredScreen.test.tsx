@@ -96,3 +96,15 @@ it('retains already-mounted content on blur instead of replacing it with a shell
   expect(load).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
 });
+
+it('does not restart the loading gate when a theme boundary remounts an already-open route', () => {
+  const { load, Screen, tree } = page();
+  act(() => jest.advanceTimersByTime(600));
+  act(() => tree.unmount());
+  let remounted!: ReturnType<typeof create>;
+  act(() => { remounted = create(<Screen route={mockRoute} />); });
+  expect(remounted.root.findAllByType('LoadingShell' as any)).toHaveLength(0);
+  expect(remounted.root.findByType('Page' as any).props.ready).toBe(true);
+  expect(load).toHaveBeenCalledTimes(1);
+  act(() => remounted.unmount());
+});
