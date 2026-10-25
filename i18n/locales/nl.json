@@ -9781,6 +9781,123 @@
     }
   },
   "creator": {
+    "cinema":  {
+                   "title":  "Filmregie",
+                   "hint":  "Bepaal de visuele stijl van je volgende afbeelding of video. De resultaten verschillen per model.",
+                   "none":  "Geen aanwijzing",
+                   "reset":  "Aanwijzingen wissen",
+                   "close":  "Sluiten",
+                   "camera":  {
+                                  "label":  "Cameralook",
+                                  "0":  "Digitale cinema",
+                                  "1":  "35mm-film",
+                                  "2":  "16mm-film",
+                                  "3":  "Grootformaat",
+                                  "4":  "Oude camcorder"
+                              },
+                   "lens":  {
+                                "label":  "Lenslook",
+                                "0":  "Sferisch",
+                                "1":  "Anamorf",
+                                "2":  "Zacht vintageglas",
+                                "3":  "Macro",
+                                "4":  "Tilt-shift"
+                            },
+                   "focalLength":  {
+                                       "label":  "Brandpuntsafstand",
+                                       "0":  "18 mm groothoek",
+                                       "1":  "24 mm groothoek",
+                                       "2":  "35 mm natuurlijk",
+                                       "3":  "50 mm standaard",
+                                       "4":  "85 mm portret",
+                                       "5":  "135 mm telelens"
+                                   },
+                   "aperture":  {
+                                    "label":  "Scherptediepte",
+                                    "0":  "f/1.4 zeer ondiep",
+                                    "1":  "f/2.8 ondiep",
+                                    "2":  "f/5.6 gemiddeld",
+                                    "3":  "f/11 grote scherptediepte"
+                                },
+                   "movement":  {
+                                    "label":  "Camerabeweging",
+                                    "0":  "Vast statief",
+                                    "1":  "Langzaam naar voren rijden",
+                                    "2":  "Langzaam achteruit rijden",
+                                    "3":  "Zijwaartse volgbeweging",
+                                    "4":  "Rond het onderwerp draaien",
+                                    "5":  "Camera uit de hand",
+                                    "6":  "Kraan omhoog",
+                                    "7":  "Langzame pan"
+                                },
+                   "lighting":  {
+                                    "label":  "Belichting",
+                                    "0":  "Zacht daglicht",
+                                    "1":  "Gouden uur",
+                                    "2":  "Donker clair-obscur",
+                                    "3":  "Heldere studio",
+                                    "4":  "Neonlicht in de scène",
+                                    "5":  "Silhouet met tegenlicht",
+                                    "6":  "Diffuus bewolkt licht"
+                                },
+                   "tempo":  {
+                                 "label":  "Shottempo",
+                                 "0":  "Eén doorlopend shot",
+                                 "1":  "Rustige, ongedwongen actie",
+                                 "2":  "Dynamische, energieke actie",
+                                 "3":  "Chaotische, hectische actie"
+                             },
+                   "era":  {
+                               "label":  "Tijdperk",
+                               "0":  "Jaren 1920",
+                               "1":  "Jaren 1950",
+                               "2":  "Jaren 1960",
+                               "3":  "Jaren 1970",
+                               "4":  "Jaren 1980",
+                               "5":  "Jaren 1990",
+                               "6":  "Heden",
+                               "7":  "Nabije toekomst"
+                           },
+                   "genre":  {
+                                 "label":  "Genre",
+                                 "0":  "Documentaire",
+                                 "1":  "Drama",
+                                 "2":  "Film noir",
+                                 "3":  "Sciencefiction",
+                                 "4":  "Fantasie",
+                                 "5":  "Romantische komedie",
+                                 "6":  "Thriller",
+                                 "7":  "Western"
+                             },
+                   "performance":  {
+                                       "label":  "Acteerspel",
+                                       "0":  "Vrolijk",
+                                       "1":  "Melancholisch",
+                                       "2":  "Angstig",
+                                       "3":  "Zelfverzekerd",
+                                       "4":  "Vol ontzag",
+                                       "5":  "Ingetogen",
+                                       "6":  "Speels"
+                                   },
+                   "palette":  {
+                                   "label":  "Kleurenpalet",
+                                   "0":  "Warm amber",
+                                   "1":  "Koel blauw",
+                                   "2":  "Gedempte aardetinten",
+                                   "3":  "Pastel",
+                                   "4":  "Monochroom met hoog contrast",
+                                   "5":  "Verzadigde primaire kleuren"
+                               }
+               },
+    "batchPaymentHelp":  "Elke ingediende afbeelding wordt apart berekend. Als een reeks stopt, worden ongebruikte DHB van die betaling automatisch hergebruikt voor een latere generatie die daarmee kan worden betaald.",
+    "invalidSeed":  "De seed moet een geheel getal van 0 tot en met 2147483647 zijn.",
+    "batchCount":  "Afbeeldingen",
+    "endFrame":  "Eindbeeld",
+    "endFrameHelp":  "Voeg een startafbeelding toe met de bijlageknop.",
+    "seed":  "Seed (optioneel, 0–2147483647)",
+    "negativePrompt":  "Negatieve prompt (optioneel)",
+    "endFrameNeedsStart":  "Voeg een startafbeelding toe voordat je een eindbeeld kiest.",
+    "batchStopped":  "De reeks stopte na {{submitted}} van {{quantity}} aanvragen. {{remaining}} zijn niet ingediend. Voltooide afbeeldingen zijn opgeslagen.",
     "sending": "Verzenden",
     "navStudio": "Studio",
     "editor": "Editor",

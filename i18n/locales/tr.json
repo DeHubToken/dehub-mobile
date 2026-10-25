@@ -9578,6 +9578,123 @@
     }
   },
   "creator": {
+    "cinema":  {
+                   "title":  "Sinematik yönlendirme",
+                   "hint":  "Sonraki görselinizin veya videonuzun görsel tarzını belirleyin. Sonuçlar modele göre değişir.",
+                   "none":  "Yönlendirme yok",
+                   "reset":  "Yönlendirmeleri temizle",
+                   "close":  "Kapat",
+                   "camera":  {
+                                  "label":  "Kamera görünümü",
+                                  "0":  "Dijital sinema",
+                                  "1":  "35 mm film",
+                                  "2":  "16 mm film",
+                                  "3":  "Büyük format",
+                                  "4":  "Eski video kamera"
+                              },
+                   "lens":  {
+                                "label":  "Lens görünümü",
+                                "0":  "Küresel",
+                                "1":  "Anamorfik",
+                                "2":  "Yumuşak eski optik",
+                                "3":  "Makro",
+                                "4":  "Eğme-kaydırma"
+                            },
+                   "focalLength":  {
+                                       "label":  "Odak uzaklığı",
+                                       "0":  "18 mm geniş açı",
+                                       "1":  "24 mm geniş açı",
+                                       "2":  "35 mm doğal",
+                                       "3":  "50 mm standart",
+                                       "4":  "85 mm portre",
+                                       "5":  "135 mm telefoto"
+                                   },
+                   "aperture":  {
+                                    "label":  "Alan derinliği",
+                                    "0":  "f/1.4 çok sığ",
+                                    "1":  "f/2.8 sığ",
+                                    "2":  "f/5.6 orta",
+                                    "3":  "f/11 derin netlik"
+                                },
+                   "movement":  {
+                                    "label":  "Kamera hareketi",
+                                    "0":  "Sabit tripod",
+                                    "1":  "Yavaş ileri kaydırma",
+                                    "2":  "Yavaş geri kaydırma",
+                                    "3":  "Yanal takip",
+                                    "4":  "Özne etrafında dönüş",
+                                    "5":  "Elde kamera",
+                                    "6":  "Vinçle yükseliş",
+                                    "7":  "Yavaş çevrinme"
+                                },
+                   "lighting":  {
+                                    "label":  "Aydınlatma",
+                                    "0":  "Yumuşak gün ışığı",
+                                    "1":  "Altın saat",
+                                    "2":  "Karanlık ışık-gölge",
+                                    "3":  "Parlak stüdyo",
+                                    "4":  "Sahnede neon ışıkları",
+                                    "5":  "Ters ışıkta siluet",
+                                    "6":  "Bulutlu dağınık ışık"
+                                },
+                   "tempo":  {
+                                 "label":  "Çekim temposu",
+                                 "0":  "Kesintisiz tek çekim",
+                                 "1":  "Sakin, ağır aksiyon",
+                                 "2":  "Dinamik, enerjik aksiyon",
+                                 "3":  "Kaotik, çılgın aksiyon"
+                             },
+                   "era":  {
+                               "label":  "Dönem",
+                               "0":  "1920’ler",
+                               "1":  "1950’ler",
+                               "2":  "1960’lar",
+                               "3":  "1970’ler",
+                               "4":  "1980’ler",
+                               "5":  "1990’lar",
+                               "6":  "Günümüz",
+                               "7":  "Yakın gelecek"
+                           },
+                   "genre":  {
+                                 "label":  "Tür",
+                                 "0":  "Belgesel",
+                                 "1":  "Dram",
+                                 "2":  "Kara film",
+                                 "3":  "Bilim kurgu",
+                                 "4":  "Fantastik",
+                                 "5":  "Romantik komedi",
+                                 "6":  "Gerilim",
+                                 "7":  "Vahşi Batı"
+                             },
+                   "performance":  {
+                                       "label":  "Oyunculuk",
+                                       "0":  "Neşeli",
+                                       "1":  "Melankolik",
+                                       "2":  "Kaygılı",
+                                       "3":  "Kendinden emin",
+                                       "4":  "Hayranlık duyan",
+                                       "5":  "Ölçülü",
+                                       "6":  "Oyuncu"
+                                   },
+                   "palette":  {
+                                   "label":  "Renk paleti",
+                                   "0":  "Sıcak kehribar",
+                                   "1":  "Soğuk mavi",
+                                   "2":  "Soluk toprak tonları",
+                                   "3":  "Pastel",
+                                   "4":  "Yüksek kontrastlı tek renk",
+                                   "5":  "Doygun ana renkler"
+                               }
+               },
+    "batchPaymentHelp":  "Gönderilen her görsel ayrı ücretlendirilir. Bir toplu işlem durursa, bu ödemeden kullanılmayan DHB, tutarın yettiği sonraki bir üretim için otomatik olarak yeniden kullanılır.",
+    "invalidSeed":  "Tohum değeri 0 ile 2147483647 arasında bir tam sayı olmalıdır.",
+    "batchCount":  "Görseller",
+    "endFrame":  "Son kare",
+    "endFrameHelp":  "Ek düğmesiyle bir başlangıç görseli ekleyin.",
+    "seed":  "Tohum (isteğe bağlı, 0–2147483647)",
+    "negativePrompt":  "Negatif istem (isteğe bağlı)",
+    "endFrameNeedsStart":  "Son kareyi seçmeden önce bir başlangıç görseli ekleyin.",
+    "batchStopped":  "Toplu işlem {{quantity}} gönderimin {{submitted}} tanesinden sonra durdu. {{remaining}} tanesi gönderilmedi. Tamamlanan görseller kaydedildi.",
     "sending": "Gönderiliyor",
     "navStudio": "Stüdyo",
     "editor": "Editör",
