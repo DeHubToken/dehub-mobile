@@ -2335,6 +2335,13 @@ const ShortsViewerScreen = () => {
     <View style={styles.container} onLayout={handleContainerLayout}>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
+      {/* Keep the tapped picture visible while native layout establishes the
+          pager's exact viewport. Its geometry still waits for measurement. */}
+      {!hasMeasuredViewport && initialThumbnail ? <Image
+        source={{ uri: initialThumbnail }} style={StyleSheet.absoluteFill}
+        contentFit="contain" transition={0} pointerEvents="none"
+      /> : null}
+
       {/* The Native gesture is what makes the pager nameable in a relation —
           see pagerGesture. It wraps the list without changing how it scrolls. */}
       {hasMeasuredViewport && <GestureDetector gesture={pagerGesture}>

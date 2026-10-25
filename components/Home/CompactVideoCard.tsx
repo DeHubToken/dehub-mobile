@@ -18,6 +18,9 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
+import { preparePostMediaNavigation } from '../../libs/post-media-session';
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
 import { getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
@@ -163,10 +166,16 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const hasThumbnail =
     typeof thumbnail === "string" && thumbnail.trim().length > 0;
   const accessInfo = useStreamAccessInfo(nft);
+  useWarmVideoViewer(!isLive && canOpenPostVideoViewer(nft));
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return;
     onBeforeNavigate?.();
     hideUserProfile();
+    if (!isLive && canOpenPostVideoViewer(nft)) {
+      preparePostMediaNavigation(playbackUrl);
+      navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumbnail));
+      return;
+    }
     // This card can be rendered inside the native profile sheet. Let that
     // dialog close before starting the next screen transition on Android.
     requestAnimationFrame(() => {
@@ -185,7 +194,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
         });
       }
     });
-  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile, onBeforeNavigate]);
+  }, [navigation, tokenId, isLive, nft, accessInfo, hideUserProfile, onBeforeNavigate, playbackUrl, thumbnail]);
   return (
     // Minimal: a row, not a bordered card — no margins, box or fill, the 16pt
     // inset, and one hairline under each row running the list's full width.
