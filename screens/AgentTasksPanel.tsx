@@ -23,6 +23,8 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const [prompt, setPrompt] = useSurfaceDraft('agent-task-prompt', '');
   const [chosen, setChosen] = useState('');
   const [swarm, setSwarm] = useState(false);
+  const [distribution, setDistribution] = useState<'each' | 'shared'>('each');
+  const [spreadMinutes, setSpreadMinutes] = useState(0);
   const [selected, setSelected] = useState<string[]>([]);
   const [requestId, setRequestId] = useState(randomUUID);
   const [historyId, setHistoryId] = useState<string | null>(null);
@@ -46,13 +48,14 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
     queryFn: () => agentTaskRequest<{ actions: AgentTaskAction[] }>(wallet, { operation: 'history', task_id: historyId }) });
   const refresh = () => { client.invalidateQueries({ queryKey: ['agent-tasks', wallet] }); client.invalidateQueries({ queryKey: ['agent-task-history', wallet] }); };
   const create = useMutation({ mutationFn: (text: string) => agentTaskRequest(wallet, { operation: swarm ? 'create_swarm' : 'create',
-    ...(swarm ? { agent_ids: swarmIds } : { agent_id: agentId }),
+    ...(swarm ? { agent_ids: swarmIds, swarm_mode: distribution, spread_minutes: distribution === 'each' ? spreadMinutes : 0 } : { agent_id: agentId }),
     prompt: text, request_id: requestId, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
     onSuccess: (_data, text) => { if (text === prompt) setPrompt.complete(prompt, ''); setRequestId(randomUUID()); refresh(); },
   });
   const changed = () => { setRequestId(randomUUID()); create.reset(); };
-  const control = useMutation({ mutationFn: ({ id, operation }: { id: string; operation: string }) => agentTaskRequest(wallet, { operation, task_id: id }), onSuccess: refresh });
+  const control = useMutation({ mutationFn: ({ id, operation, group }: { id: string; operation: string; group?: boolean }) => agentTaskRequest(wallet, { operation, ...(group ? { swarm_id: id } : { task_id: id }) }), onSuccess: refresh });
   const taskList = tasks.data?.tasks ?? [];
+  const swarmGroups = [...new Set(taskList.filter(task => task.swarm_id).map(task => task.swarm_id!))];
   const currentTasks = taskList.filter(task => !['completed', 'failed', 'cancelled'].includes(task.status));
   const pastTasks = taskList.filter(task => ['completed', 'failed', 'cancelled'].includes(task.status));
   const renderTask = (task: AgentTask) => <View key={task.id} style={styles.card}>
@@ -92,7 +95,25 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
       <View style={styles.row}>{active.map(agent => <Pressable key={agent.id} accessibilityRole="button" accessibilityState={{ selected: swarm ? selected.includes(agent.id) : agentId === agent.id }} disabled={create.isPending}
         onPress={() => { if (swarm) setSelected(ids => ids.includes(agent.id) ? ids.filter(id => id !== agent.id) : [...ids, agent.id]); else setChosen(agent.id); setRequestId(randomUUID()); create.reset(); }}
         style={[styles.chip, (swarm ? selected.includes(agent.id) : agent.id === agentId) && styles.selected]}><Text style={styles.text}>@{agent.name}</Text></Pressable>)}</View>
-      {swarm && <Text style={styles.muted}>{t('agents.tasks.swarmHelp')}</Text>}
+      {swarm && <>
+        <View style={styles.row}>
+          <KitButton variant="quiet" label={t('agents.tasks.selectAll', { defaultValue: 'Select all' })} disabled={create.isPending} onPress={() => { setSelected(active.map(agent => agent.id)); changed(); }} />
+          <KitButton variant="quiet" label={t('agents.tasks.clearSelection', { defaultValue: 'Clear selection' })} disabled={create.isPending} onPress={() => { setSelected([]); changed(); }} />
+        </View>
+        <View style={styles.row} accessibilityLabel={t('agents.tasks.distribution', { defaultValue: 'Distribution' })}>
+          {(['each', 'shared'] as const).map(mode => <KitButton key={mode} variant={distribution === mode ? 'primary' : 'quiet'} disabled={create.isPending}
+            label={t(`agents.tasks.${mode}Mode`, { defaultValue: mode === 'each' ? 'Each agent' : 'Shared work' })} onPress={() => { setDistribution(mode); changed(); }} />)}
+        </View>
+        <Text style={styles.muted}>{t(distribution === 'each' ? 'agents.tasks.eachHelp' : 'agents.tasks.swarmHelp', { defaultValue: distribution === 'each' ? 'Each selected agent performs the full task.' : 'Divide the work between selected agents.' })}</Text>
+        {distribution === 'each' && <>
+          <Text style={styles.text}>{t('agents.tasks.pacing.label', { defaultValue: 'When to act' })}</Text>
+          <View style={styles.row}>{[0, 60, 360, 720, 1440].map(minutes => <Pressable key={minutes} accessibilityRole="button" accessibilityState={{ selected: spreadMinutes === minutes }} disabled={create.isPending}
+            onPress={() => { setSpreadMinutes(minutes); if (minutes > 0) { setWindowMode(true); setWindowActions(['like']); if (preset === 'today' || preset === 'next7d') setPreset('last24h'); } changed(); }} style={[styles.chip, spreadMinutes === minutes && styles.selected]}>
+            <Text style={styles.text}>{minutes === 0 ? t('agents.tasks.pacing.now', { defaultValue: 'Immediately' }) : t('agents.tasks.pacing.hours', { defaultValue: 'Over {{count}} hours', count: minutes / 60 })}</Text>
+          </Pressable>)}</View>
+          <Text style={styles.muted}>{t('agents.tasks.pacing.help', { defaultValue: 'Starts automatically with Sentient off. Pacing supports one like or dislike action on a fixed post window: each agent reacts to every matching post, one turn at a time. The first turn starts now; service limits can extend the finish time.' })}</Text>
+        </>}
+      </>}
       <View style={styles.row} accessibilityLabel={t('agents.tasks.window.mode')}>
         <KitButton variant={windowMode ? 'quiet' : 'primary'} label={t('agents.tasks.window.write')} onPress={() => { setWindowMode(false); changed(); }} />
         <KitButton variant={windowMode ? 'primary' : 'quiet'} label={t('agents.tasks.window.title')} onPress={() => { setWindowMode(true); changed(); }} />
@@ -119,7 +140,7 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
         </View>)}
         <Text style={styles.muted}>{t('agents.tasks.window.filterHelp')}</Text>
         <Text style={styles.text}>{t('agents.tasks.window.actions')}</Text>
-        <View style={styles.row}>{WINDOW_ACTIONS.map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: windowActions.includes(value) }} disabled={create.isPending}
+        <View style={styles.row}>{WINDOW_ACTIONS.map(value => <Pressable key={value} accessibilityRole="button" accessibilityState={{ selected: windowActions.includes(value) }} disabled={create.isPending || (swarm && distribution === 'each' && spreadMinutes > 0 && (value === 'view' || value === 'reply'))}
           onPress={() => { setWindowActions(list => toggleWindowAction(list, value)); changed(); }}
           style={[styles.chip, windowActions.includes(value) && styles.selected]}><Text style={styles.text}>{t(`agents.tasks.window.${value}`)}</Text></Pressable>)}</View>
         {windowActions.includes('reply') && <LiquidGlass style={{ borderRadius: 12 }}><TextInput accessibilityLabel={t('agents.tasks.window.replyStyle')} value={replyStyle} editable={!create.isPending} multiline maxLength={500}
@@ -132,12 +153,28 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
       <Text style={styles.muted}>{t('agents.tasks.limits')}</Text>
     </> : <Text style={styles.muted}>{t('agents.tasks.createFirst')}</Text>}
     {create.error && <Text accessibilityRole="alert" style={styles.error}>{create.error.message}</Text>}
+    <Text style={styles.muted}>{t('agents.tasks.pacing.independent', { defaultValue: 'Prompted tasks run independently of Sentient mode. Asking for likes does not turn on autonomous posting.' })}</Text>
     {control.error && <Text accessibilityRole="alert" style={styles.error}>{control.error.message}</Text>}
     {create.isSuccess && <Text accessibilityRole="alert" style={styles.text}>{t('agents.tasks.queued')}</Text>}
     <View style={styles.row}><Text style={styles.title}>{t('agents.tasks.list')}</Text><KitButton variant="quiet" label={t('agents.tasks.refresh')} disabled={tasks.isFetching} onPress={refresh} /></View>
     {tasks.error && <Text accessibilityRole="alert" style={styles.error}>{tasks.error.message}</Text>}
     {tasks.isLoading && <Text style={styles.muted}>{t('agents.tasks.loading')}</Text>}
-    {currentTasks.map(renderTask)}
+    {swarmGroups.map(id => {
+      const members = taskList.filter(task => task.swarm_id === id);
+      const activeGroup = members.some(task => ['queued', 'running', 'paused', 'failed'].includes(task.status));
+      if (!activeGroup) return null;
+      return <View key={id} style={styles.card}>
+        <Text style={styles.title}>{t('agents.tasks.swarm')} · {members.length}</Text>
+        <Text style={styles.text}>{members[0].plan.summary}</Text>
+        <View style={styles.row}>
+          {members.some(task => ['queued', 'running'].includes(task.status)) && <KitButton variant="quiet" label={t('agents.tasks.pauseSwarm', { defaultValue: 'Pause swarm' })} disabled={control.isPending} onPress={() => control.mutate({ id, operation: 'pause', group: true })} />}
+          {members.some(task => ['paused', 'failed'].includes(task.status) && !task.needs_review) && <KitButton variant="quiet" label={t('agents.tasks.resumeSwarm', { defaultValue: 'Resume swarm' })} disabled={control.isPending} onPress={() => control.mutate({ id, operation: 'resume', group: true })} />}
+          <KitButton variant="quiet" label={t('agents.tasks.cancelSwarm', { defaultValue: 'Cancel swarm' })} disabled={control.isPending} onPress={() => control.mutate({ id, operation: 'cancel', group: true })} />
+        </View>
+        {members.filter(task => !['completed', 'failed', 'cancelled'].includes(task.status)).map(renderTask)}
+      </View>;
+    })}
+    {currentTasks.filter(task => !task.swarm_id).map(renderTask)}
     {pastTasks.length > 0 && <>
       <KitButton variant="quiet" label={`${t('agents.tasks.list')} · ${pastTasks.length}`} onPress={() => setShowPast(value => !value)} />
       {showPast && pastTasks.map(renderTask)}
