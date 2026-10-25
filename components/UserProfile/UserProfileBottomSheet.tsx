@@ -23,13 +23,15 @@ export default function UserProfileBottomSheet(props: UserProfileBottomSheetProp
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const visibleRef = useRef(visible);
   visibleRef.current = visible;
+  const completion = useRef({ usernameOrAddress, onOpenComplete });
+  completion.current = { usernameOrAddress, onOpenComplete };
   const complete = useCallback(() => {
     if (!visibleRef.current) return;
     if (timer.current) clearTimeout(timer.current);
     timer.current = null;
-    setReadyIdentifier(usernameOrAddress ?? null);
-    onOpenComplete?.();
-  }, [usernameOrAddress, onOpenComplete]);
+    setReadyIdentifier(completion.current.usernameOrAddress ?? null);
+    completion.current.onOpenComplete?.();
+  }, []);
   useEffect(() => {
     if (!usernameOrAddress) setReadyIdentifier(null);
     if (!visible || embedded) return;
