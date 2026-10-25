@@ -319,6 +319,7 @@ export type BottomTabParamList = {
   [ScreenNames.AIChat]: { initialPrompt?: string } | undefined;
   /** `section: "newMembers"` is the Live Stats heading's deep link to the rail. */
   [ScreenNames.Explore]: { section?: "newMembers" } | undefined;
+  [ScreenNames.ProfileTab]: undefined;
 };
 
 export type BottomTabScreenProps<T extends keyof BottomTabParamList> = CompositeScreenProps<
