@@ -3,7 +3,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { View, TextInput } from "react-native";
 import { useTranslation } from "react-i18next";
-import { AuthButton, AuthField } from "./AuthControls";
+import { AuthButton, AuthField, AuthErrorNotice } from "./AuthControls";
 
 interface EmailLoginFlowProps {
   onSubmit: (provider: string, email?: string) => void;
@@ -28,6 +28,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const [showInput, setShowInput] = useState(!!startOpen);
+  const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useSurfaceDraft("components/auth/EmailLoginFlow.tsx:email", "");
   const inputRef = useRef<TextInput>(null);
   const containerRef = useRef<View>(null);
@@ -39,12 +40,19 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
     }
   }, [showInput, startOpen]);
 
-  const emailValid = !!email && email.includes("@");
-  const isValid = emailValid;
-
   const handleSubmit = () => {
-    if (!isValid) return;
-    onSubmit("email_passwordless", email);
+    if (disabled || loading) return;
+    const value = email.trim();
+    if (!value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setEmailError(value
+        ? t("loginModal.invalidEmail", "Please enter a valid email address")
+        : t("loginModal.emailPlaceholder", "Please enter your email address"));
+      inputRef.current?.focus();
+      onExpand?.(containerRef.current);
+      return;
+    }
+    setEmailError("");
+    onSubmit("email_passwordless", value);
   };
 
   // On focus rather than on layout — see PhoneLoginFlow for why.
@@ -71,7 +79,7 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         ref={inputRef}
         onFocus={handleFocus}
         value={email}
-        onChangeText={setEmail}
+        onChangeText={(value) => { setEmail(value); if (emailError) setEmailError(""); }}
         placeholder={_copy("copy.b4c9a289323b", { defaultValue: "user@example.com" })}
         accessibilityLabel={t("loginModal.emailPlaceholder")}
         editable={!loading && !disabled}
@@ -85,11 +93,12 @@ const EmailLoginFlow: React.FC<EmailLoginFlowProps> = ({
         onSubmitEditing={handleSubmit}
         style={{ textAlign: "center" }}
       />
+      {emailError ? <AuthErrorNotice message={emailError} /> : null}
       <AuthButton
         variant="primary"
         label={startOpen ? t("loginModal.continueEmail") : t("loginModal.sendCode")}
         onPress={handleSubmit}
-        disabled={!isValid || disabled}
+        disabled={disabled}
         loading={loading}
         accessibilityLabel={
           t("loginModal.sendCode")

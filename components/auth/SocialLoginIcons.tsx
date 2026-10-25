@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, View, ActivityIndicator, Keyboard } from "react-native";
+import { TouchableOpacity, StyleSheet, Text, View, ActivityIndicator, Keyboard } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SvgXml } from "react-native-svg";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import EmailLoginFlow from "./EmailLoginFlow";
 import PhoneLoginFlow from "./PhoneLoginFlow";
 import PasskeyLoginFlow from "./PasskeyLoginFlow";
 import ImportWalletModal from "./ImportWalletModal";
-import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_CONTROL_HEIGHT, AUTH_RADIUS } from "./AuthControls";
+import { AuthButton, AuthTextButton, authColors, AUTH_DISABLED_OPACITY, AUTH_RADIUS } from "./AuthControls";
 import { isWalletConnectAvailable } from "../../config/reown.config";
 import { isPasskeyLoginAvailable } from "../../services/auth/passkeyAuth.service";
 
@@ -79,22 +79,23 @@ interface OptionDiscProps {
   renderIcon: (color: string, size: number) => React.ReactNode;
 }
 
-/** A form-height provider button with its label underneath. */
+/** A square provider button with its label underneath. */
 const OptionDisc: React.FC<OptionDiscProps> = ({ label, onPress, disabled, loading, active, renderIcon }) => (
-  <Pressable
+  <TouchableOpacity
     onPress={onPress}
     disabled={disabled || loading}
     accessibilityRole="button"
     accessibilityLabel={label}
     accessibilityState={{ disabled: !!disabled, busy: !!loading, expanded: active }}
     hitSlop={6}
-    style={({ pressed }) => [styles.option, (disabled && !loading) && { opacity: AUTH_DISABLED_OPACITY }, pressed && { opacity: 0.7 }]}
+    activeOpacity={0.7}
+    style={[styles.option, (disabled && !loading) && { opacity: AUTH_DISABLED_OPACITY }]}
   >
     <View style={[styles.disc, active && styles.discActive]}>
       {loading ? <ActivityIndicator size="small" color={authColors.label} /> : renderIcon(authColors.label, 22)}
     </View>
     <Text style={styles.optionLabel} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{label}</Text>
-  </Pressable>
+  </TouchableOpacity>
 );
 
 /**
@@ -317,11 +318,12 @@ const styles = StyleSheet.create({
   divider: { flexDirection: "row", alignItems: "center", gap: 12 },
   rule: { flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: authColors.hairline },
   dividerText: { color: authColors.subtle, fontSize: 12, fontWeight: "500" },
-  row: { flexDirection: "row", gap: 8 },
+  row: { width: "100%", flexDirection: "row", gap: 8 },
   option: { flex: 1, alignItems: "center", gap: 6, minWidth: 0 },
   disc: {
     width: "100%",
-    height: AUTH_CONTROL_HEIGHT,
+    maxWidth: 48,
+    aspectRatio: 1,
     borderRadius: AUTH_RADIUS,
     alignItems: "center",
     justifyContent: "center",

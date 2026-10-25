@@ -7,7 +7,7 @@ jest.mock('react-native', () => {
   const { createElement: element } = require('react');
   return {
     View: 'View', Text: 'Text', TextInput: 'TextInput', ScrollView: 'ScrollView', Switch: 'Switch', ActivityIndicator: 'ActivityIndicator',
-    Pressable: ({ children, style, ...props }: any) => element('View', { ...props, accessible: true, style: typeof style === 'function' ? style({ pressed: false }) : style }, children),
+    TouchableOpacity: ({ children, style, ...props }: any) => element('View', { ...props, accessible: true, style }, children),
     Keyboard: { dismiss: jest.fn() },
     StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: any) => Array.isArray(styles) ? Object.assign({}, ...styles) : styles },
   };
