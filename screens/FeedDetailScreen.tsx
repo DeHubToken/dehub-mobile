@@ -61,7 +61,7 @@ import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
 import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
-import { useStageBack } from "../components/Home/PostStage";
+import { PostStageBackIcon, useStageBack } from "../components/Home/PostStage";
 import FrostedPill from "../components/ui/FrostedPill";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
 
@@ -131,7 +131,9 @@ export default function FeedDetailScreen() {
 
 function FeedDetailContent() {
   const { t } = useTranslation();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, theme: themeName } = useAppTheme();
+  // Immersive draws its feed bar as one capsule; the logo bar is not there to keep.
+  const island = themeName === "immersive" && !skin;
   const { width: windowWidth } = useWindowDimensions();
   const stageLayout = windowWidth < POST_STAGE_MAX_WIDTH;
   const route = useRoute<any>();
@@ -256,6 +258,9 @@ function FeedDetailContent() {
 
   const inputRef = useRef<TextInput>(null);
   const keyboardSwap = useKeyboardSwap(inputRef);
+  // Phones: the docked composer stays away until Comment or Reply is pressed,
+  // and goes again when it is left empty.
+  const [composerAsked, setComposerAsked] = useState(false);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -284,6 +289,7 @@ function FeedDetailContent() {
 
   // Focus the comment input
   const focusCommentInput = useCallback(() => {
+    setComposerAsked(true);
     requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
@@ -630,6 +636,7 @@ function FeedDetailContent() {
         break;
       }
     }
+    setComposerAsked(true);
     requestAnimationFrame(() => inputRef.current?.focus());
   }, [comments, setReplyTo]);
 
@@ -1503,8 +1510,9 @@ function FeedDetailContent() {
   // to" with the name glued on after it only reads right in languages that put
   // the name last.
   // Stays up whenever the reader is mid-comment, wherever they have scrolled.
-  const hideComposer = pastComments && inputLift === 0 && !replyTo && !editingComment
-    && !mediaAttachment && !recorder.isRecording;
+  const hideComposer = (pastComments || (stage && !composerAsked && !inputText.trim()))
+    && inputLift === 0 && !replyTo && !editingComment
+    && !mediaAttachment && !recorder.isRecording && !emojiPickerVisible && !gifPickerVisible;
   useEffect(() => {
     Animated.timing(composerSlide, {
       toValue: hideComposer ? composerHeight + 8 : 0,
@@ -1522,7 +1530,10 @@ function FeedDetailContent() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <PostFeedNav onBack={handlePostBack} />
+      {/* Phones: image, video and audio posts drop the top bar for a small
+          back icon on the media; text posts keep the logo bar and the pill
+          where they were on the feed, Back in the pill's filter slot. */}
+      {stage && immersive ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
       <View style={{ flex: 1 }}>
       <FrostedContent>
       <FlatList
@@ -1604,6 +1615,7 @@ function FeedDetailContent() {
         </View>
       )}
       {stage && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
+      {stage && immersive && <PostStageBackIcon hidden={showMini} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (
@@ -1744,6 +1756,9 @@ function FeedDetailContent() {
                   onSelectionChange={mentions.handleSelectionChange}
                   onContentSizeChange={growingInput.onContentSizeChange}
                   scrollEnabled={growingInput.scrollEnabled}
+                  // Left empty, the phone composer puts itself away again. A
+                  // picker opening from it also blurs it, so wait for that.
+                  onBlur={() => setTimeout(() => setComposerAsked(asked => (asked && !inputRef.current?.isFocused() ? false : asked)), 300)}
                   placeholder={
                     editingComment
                       ? t("comments.editPlaceholder")
