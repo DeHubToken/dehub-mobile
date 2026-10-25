@@ -98,7 +98,6 @@ import { isPostHiddenByStorefront } from "../../libs/storefront-content";
 import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import RepostShareSheet from "./RepostShareSheet";
-import PostStageActionBar from "./PostStageActionBar";
 import { PostStageActions, PostStageChrome, PostStageCreator } from "./PostStage";
 import { clearPostStage, patchPostStage } from "../../libs/postStage";
 import { followUser, unfollowUser } from "../../services/user.service";
@@ -2372,28 +2371,36 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           )}
         </View>
         {postVideo && <PostStageActions onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
-        <PostStageActionBar
-          liked={liked}
-          disliked={disliked}
-          saved={saved}
-          reposted={reposted}
-          likeCount={likeCount}
-          dislikeCount={dislikeCount}
-          commentCount={commentCount}
-          repostCount={repostCount}
-          onLike={handleLikePress}
-          onReact={handleReaction}
-          myReaction={myReaction}
-          reactionCounts={reactionCounts}
-          onShowReactionInfo={isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined}
-          onComment={handleCommentPress}
-          onRepost={handleOpenRepostSheet}
-          onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
-          onSave={handleSavePress}
-          tokenId={tokenId}
-          viewerAddress={userAddress}
-          isVisible={isVisible}
-        />
+        {/* The feed's own row, not boxed tiles: the post page reads the same
+            as the card it was opened from. Share opens "Repost & share", which
+            also lists the quotes and reposts. */}
+        <View testID="post-stage-actions">
+          <FeedActionBar
+            liked={liked}
+            disliked={disliked}
+            saved={saved}
+            reposted={reposted}
+            likeCount={likeCount}
+            dislikeCount={dislikeCount}
+            commentCount={commentCount}
+            repostCount={repostCount}
+            shareCount={shareCount}
+            tipCount={totalTips}
+            onLike={handleLikePress}
+            onReact={handleReaction}
+            myReaction={myReaction}
+            reactionCounts={reactionCounts}
+            onComment={handleCommentPress}
+            onShare={handleOpenRepostSheet}
+            onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
+            tokenId={tokenId}
+            viewerAddress={userAddress}
+            onSave={handleSavePress}
+            onInfo={handleInfoPress}
+            onShowReactionInfo={isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined}
+            isVisible={isVisible}
+          />
+        </View>
         {sheets}
         {showRepostSheet && tokenId != null && (
           <RepostShareSheet
