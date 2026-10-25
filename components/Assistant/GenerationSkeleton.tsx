@@ -1,3 +1,5 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
+import { useAppTheme } from '../../context/ThemeContext';
 /**
  * The three "still working on it" placeholders.
  * ============================================
@@ -56,15 +58,19 @@ function useCreep(estimatedSeconds: number) {
   return progress;
 }
 
-const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => (
+const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
+  const s = useGenerationStyles();
+  return (
   <View style={s.track}>
     {/* A computed template literal widens to `string`, which RN's DimensionValue
         does not accept, so the percentage is asserted here. */}
     <View style={[s.fill, { width: `${progress}%` as `${number}%` }]} />
   </View>
-);
+  );
+};
 
 const Sheen: React.FC<{ width: number }> = ({ width }) => {
+  const s = useGenerationStyles();
   const progress = useShimmer();
   const style = useAnimatedStyle(() => ({
     transform: [{ translateX: -width + progress.value * width * 2 }],
@@ -80,6 +86,7 @@ const Sheen: React.FC<{ width: number }> = ({ width }) => {
  */
 export const ImageGenerationSkeleton: React.FC<{ size?: number }> = memo(({ size = 240 }) => {
   const { t } = useTranslation();
+  const s = useGenerationStyles();
   const [phase, setPhase] = useState<'spinner' | 'skeleton'>('spinner');
   const progress = useCreep(30);
 
@@ -114,6 +121,7 @@ export const ImageGenerationSkeleton: React.FC<{ size?: number }> = memo(({ size
 
 export const VideoGenerationSkeleton: React.FC<{ content: string }> = memo(({ content }) => {
   // A minute is the honest middle of the 1-3 minutes web quotes.
+  const s = useGenerationStyles();
   const progress = useCreep(90);
   return (
     <View style={s.block}>
@@ -138,6 +146,7 @@ export const AiToolProcessingSkeleton: React.FC<{
   content: string;
   estimatedSeconds?: number;
 }> = memo(({ content, estimatedSeconds = 60 }) => {
+  const s = useGenerationStyles();
   const progress = useCreep(estimatedSeconds);
   return (
     <View style={s.block}>
@@ -148,10 +157,10 @@ export const AiToolProcessingSkeleton: React.FC<{
       )}
       <View style={s.toolCard}>
         <View style={s.toolRow}>
-          <View style={s.toolPlay} />
+          <SkeletonBlock style={s.toolPlay} />
           <View style={s.toolLines}>
-            <View style={[s.toolLine, { width: '55%' }]} />
-            <View style={[s.toolLine, { width: '32%', marginTop: 6 }]} />
+            <SkeletonBlock style={[s.toolLine, { width: '55%' }]} />
+            <SkeletonBlock style={[s.toolLine, { width: '32%', marginTop: 6 }]} />
           </View>
         </View>
         <View style={{ marginTop: 12 }}>
@@ -164,7 +173,7 @@ export const AiToolProcessingSkeleton: React.FC<{
   );
 });
 
-const s = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   block: { width: '100%', gap: 8 },
   statusBubble: {
     backgroundColor: 'rgba(255,255,255,0.08)',
@@ -233,3 +242,14 @@ const s = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.07)',
   },
 });
+
+function useGenerationStyles() {
+  const { skin, colors } = useAppTheme();
+  const card = skin?.card ?? { backgroundColor: colors.card, borderColor: colors.border };
+  return {
+    ...baseStyles,
+    imageSkeleton: [baseStyles.imageSkeleton, card],
+    videoSkeleton: [baseStyles.videoSkeleton, card],
+    toolCard: [baseStyles.toolCard, card],
+  };
+}

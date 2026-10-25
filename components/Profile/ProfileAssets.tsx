@@ -1,4 +1,5 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
+import SkeletonBlock from '../Feed/SkeletonBlock';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { useCallback, useMemo, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
@@ -41,13 +42,13 @@ const ASSET_NAMES: Record<string, string> = {
 
 /** Shimmering placeholder shown while balances load for the first time. */
 const BalanceSkeleton: React.FC = () => (
-  <View className="w-16 h-5 rounded-md bg-theme-neutrals-700 overflow-hidden">
+  <SkeletonBlock className="w-16 h-5 rounded-md overflow-hidden">
     <Animated.View
       entering={FadeIn.duration(600)}
       exiting={FadeOut.duration(300)}
-      className="w-full h-full bg-theme-neutrals-600 opacity-40"
+      className="w-full h-full opacity-40"
     />
-  </View>
+  </SkeletonBlock>
 );
 
 const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {

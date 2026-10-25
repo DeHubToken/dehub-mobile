@@ -1,3 +1,4 @@
+import SkeletonBlock from '../components/Feed/SkeletonBlock';
 import React, { useCallback, useEffect, useMemo, useState, useRef, memo } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -207,23 +208,23 @@ const GridSkeleton: React.FC = () => {
       {[0, 1].map((p) => (
         <React.Fragment key={p}>
           <View style={styles.patternRow}>
-            <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
+            <SkeletonBlock style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
             <View style={styles.stackedColumn}>
-              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
             </View>
           </View>
           <View style={styles.patternRow}>
             <View style={styles.stackedColumn}>
-              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-              <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+              <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
             </View>
-            <View style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
+            <SkeletonBlock style={[styles.skeletonItem, { width: BIG_SIZE, height: BIG_SIZE }]} />
           </View>
           <View style={styles.equalRow}>
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
-            <View style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
+            <SkeletonBlock style={[styles.skeletonItem, { width: SMALL_SIZE, height: SMALL_SIZE }]} />
           </View>
         </React.Fragment>
       ))}

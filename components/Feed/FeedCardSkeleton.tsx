@@ -13,8 +13,8 @@ interface FeedCardSkeletonProps {
 }
 
 const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3, cinematic = false, topChromeInset = 0, edgeInset = 0 }) => {
-  const { theme, isMinimal, skin } = useAppTheme();
-  const edge = cinematic && theme === "system" && !skin;
+  const { theme, isLight, isMinimal, skin } = useAppTheme();
+  const edge = cinematic && (theme === "immersive" || isLight) && !skin;
   const inset = edge || isMinimal ? MINIMAL_INSET : 12;
   const shape = isMinimal || skin?.square ? 0 : FEED_BENTO_RADIUS;
   return (
@@ -47,7 +47,7 @@ const FeedCardSkeleton: React.FC<FeedCardSkeletonProps> = ({ count = 3, cinemati
           } : [skin?.card ?? {
             borderWidth: 1,
             borderColor: "rgba(255,255,255,0.12)",
-            backgroundColor: "rgba(255,255,255,0.03)",
+            backgroundColor: "transparent",
             borderRadius: FEED_BENTO_RADIUS,
           }, { padding: 12, marginVertical: 6 }]}>
             {firstMedia ? <>{picture}{header}</> : <>{header}{picture}</>}

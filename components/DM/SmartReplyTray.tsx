@@ -28,7 +28,6 @@ const CARD_BG_PRESSED = "rgba(255,255,255,0.10)";
 const CARD_BG_EMPTY = "rgba(255,255,255,0.03)";
 const CARD_BORDER = "rgba(255,255,255,0.10)";
 const CARD_BORDER_EMPTY = "rgba(255,255,255,0.07)";
-const SKELETON = "rgba(255,255,255,0.07)";
 
 /**
  * Three sizes, shared with dehubweb's SmartReplyRail.tsx: the orb, the socket
@@ -48,6 +47,9 @@ const PulseBlock: React.FC<{ width: DimensionValue; height: number; radius?: num
   height,
   radius = 4,
 }) => {
+  const { skin, accent, isMinimal } = useAppTheme();
+  const skeletonFill = isMinimal ? 'rgba(255,255,255,0.04)'
+    : skin ? `rgba(${accent.join(',')},0.09)` : 'rgba(255,255,255,0.08)';
   const p = useSharedValue(0);
   useEffect(() => {
     p.value = withRepeat(
@@ -61,7 +63,7 @@ const PulseBlock: React.FC<{ width: DimensionValue; height: number; radius?: num
   return (
     <Animated.View
       style={[
-        { width, height, borderRadius: radius, backgroundColor: SKELETON },
+        { width, height, borderRadius: radius, backgroundColor: skeletonFill },
         style,
       ]}
     />
