@@ -18,6 +18,7 @@ export interface PictureRect {
 
 /** The area `contain` actually paints a `videoW`×`videoH` frame into. */
 export function containedPicture(boxW: number, boxH: number, videoW: number, videoH: number): PictureRect {
+  'worklet';
   if (!(boxW > 0) || !(boxH > 0)) return { left: 0, top: 0, width: 0, height: 0 };
   // Before the first frame there is no intrinsic size; the box is the best
   // guess, and the layer redraws the moment the player reports one.
