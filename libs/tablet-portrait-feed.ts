@@ -1,6 +1,6 @@
-/** A tablet card needs room for the portrait player and a readable text column. */
+/** Wide phones and tablets need room for the player and a readable text column. */
 export function isTabletPortraitFeed(width: number, columnWidth: number, hasSidePanels: boolean): boolean {
-  return width >= 768 && width <= 1366 && columnWidth >= 680 && !hasSidePanels;
+  return width >= 560 && width <= 1366 && columnWidth >= 500 && !hasSidePanels;
 }
 
 /** Short titles earn a headline; long titles settle back to ordinary post type. */
