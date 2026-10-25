@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useContext, useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { RouteTransitionReadyContext } from '../context/RouteTransitionReadyContext';
 
 /**
  * False until this screen's push animation has finished.
@@ -11,10 +12,13 @@ import { useNavigation } from "@react-navigation/native";
  */
 export function useTransitionSettled(fallbackMs = 600): boolean {
   const navigation = useNavigation();
+  const route = useRoute();
+  const completedRoute = useContext(RouteTransitionReadyContext);
+  const inherited = completedRoute === route.key;
   const [settled, setSettled] = useState(false);
 
   useEffect(() => {
-    if (settled) return;
+    if (settled || inherited) return;
     const done = () => setSettled(true);
     const unsubscribe = (navigation as any).addListener("transitionEnd", (e: any) => {
       if (!e?.data?.closing) done();
@@ -24,7 +28,7 @@ export function useTransitionSettled(fallbackMs = 600): boolean {
       unsubscribe?.();
       clearTimeout(timer);
     };
-  }, [navigation, settled, fallbackMs]);
+  }, [navigation, settled, inherited, fallbackMs]);
 
-  return settled;
+  return inherited || settled;
 }

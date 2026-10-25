@@ -34,7 +34,7 @@ jest.mock("../../context/AuthContext", () => ({
 jest.mock("../../hooks/useDM", () => ({ useDM: () => ({ conversations: [] }) }));
 jest.mock("@react-navigation/native", () => ({ useNavigation: () => ({ navigate: jest.fn() }) }));
 
-import { useUserProfileData } from "../../hooks/useUserProfileData";
+import { prefetchUserProfile, useUserProfileData } from "../../hooks/useUserProfileData";
 
 const httpError = (status?: number) => Object.assign(new Error("request failed"), status ? { status } : {});
 const account = (username: string) => ({ result: { _id: `id-${username}`, address: `0x${username}`, username } });
@@ -48,6 +48,14 @@ describe("useUserProfileData load errors", () => {
 
   afterEach(() => {
     (console.warn as jest.Mock).mockRestore?.();
+  });
+
+  it("reuses a completed intent request when the full page mounts after its animation", async () => {
+    mockGetAccount.mockResolvedValue(account("warmed-profile"));
+    await act(async () => { prefetchUserProfile("warmed-profile"); await Promise.resolve(); });
+    const { result } = renderHook(() => useUserProfileData(true, "warmed-profile"));
+    await waitFor(() => expect(result.current.data?.username).toBe("warmed-profile"));
+    expect(mockGetAccount).toHaveBeenCalledTimes(1);
   });
 
   it("reports notFound for a 404 instead of leaving the skeleton up", async () => {

@@ -13,10 +13,10 @@ describe('text and image post gestures', () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
-  function setup() {
+  function setup(immediatePress = false) {
     const open = jest.fn();
     const react = jest.fn();
-    const view = render(<PostTapSurface onPress={open} onReaction={react}><Text>Post</Text></PostTapSurface>);
+    const view = render(<PostTapSurface immediatePress={immediatePress} onPress={open} onReaction={react}><Text>Post</Text></PostTapSurface>);
     const surface = view.UNSAFE_getByType(Pressable);
     fireEvent(surface, 'layout', { nativeEvent: { layout: { width: 200, height: 200, x: 0, y: 0 } } });
     const event = (x = 100, y = 100) => ({ nativeEvent: { pageX: x, pageY: y, locationX: x, locationY: y }, stopPropagation: jest.fn() });
@@ -30,6 +30,23 @@ describe('text and image post gestures', () => {
     act(() => jest.advanceTimersByTime(360));
     expect(s.open).toHaveBeenCalledTimes(1);
     expect(s.react).not.toHaveBeenCalled();
+  });
+
+  it('opens navigable captions on the first central tap without waiting for reaction arbitration', () => {
+    const s = setup(true);
+    s.tap();
+    expect(s.open).toHaveBeenCalledTimes(1);
+    expect(s.react).not.toHaveBeenCalled();
+    act(() => jest.advanceTimersByTime(1000));
+    expect(s.open).toHaveBeenCalledTimes(1);
+    expect(s.react).not.toHaveBeenCalled();
+  });
+
+  it('does not open an immediate caption after a scroll', () => {
+    const s = setup(true);
+    fireEvent(s.surface, 'touchStart', s.event());
+    fireEvent.press(s.surface, s.event(180));
+    expect(s.open).not.toHaveBeenCalled();
   });
 
   it('opens immediately outside the center without waiting for another tap', () => {
