@@ -18,7 +18,7 @@ import type { HomePullMotion } from '../../context/HomePullRefreshContext';
 
 // Use the same padded artwork and image box as the web capsule.
 const MARK = require("../../assets/web-icons/dehub-island-logo.png");
-const MARK_HEIGHT = 27.3;
+const MARK_HEIGHT = 27;
 export const ISLAND_CAPSULE_WIDTH = 147.5;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
@@ -141,7 +141,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
+              <Icon name="Bell" size={26} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
           </View>

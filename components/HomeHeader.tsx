@@ -1,7 +1,6 @@
 import React, { useCallback, memo } from "react";
-import { View, TouchableOpacity, Text, I18nManager, useWindowDimensions } from "react-native";
+import { View, TouchableOpacity, Text, I18nManager } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
-import { CINEMATIC_PHONE_MAX_WIDTH } from "../hooks/useCinematicPhone";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ElectricLogo from "./common/ElectricLogo";
 import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
@@ -26,8 +25,6 @@ interface HomeHeaderProps {
 
 const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBackPress, logoHint, pullDistance }) => {
   const refreshing = useFeedPillRefreshing();
-  const { width, height } = useWindowDimensions();
-  const phone = Math.min(width, height) <= CINEMATIC_PHONE_MAX_WIDTH;
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
@@ -75,7 +72,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           // Signed in this control is the user's own avatar, which is why the
           // label says what it does rather than what it looks like.
           accessibilityLabel={t("common.openMenu")}
-          className="w-8 h-8 items-center justify-center"
+          className="w-11 h-11 items-center justify-center"
         >
           <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
         </TouchableOpacity>}
@@ -96,8 +93,8 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           label={isSignedIn ? "DeHub" : t("common.openMenu")}
           hint={isSignedIn ? logoHint ?? t("common.scrollsFeedToTop") : undefined}
           source={require("../assets/web-icons/dehub-logo-center.png")}
-          style={{ transform: [{ translateY: phone ? 2.5 : 1.5 }, { scale: 1.15 }] }}
-          width={33} height={28} tint={colors.foreground} />
+          style={{ width: 44, height: 44, alignItems: "center", justifyContent: "center" }}
+          width={31.5} height={27} tint={colors.foreground} />
       </View>
 
       {/* Notifications — right. Signed-in only; the centred mark does not move
@@ -109,7 +106,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
-          className="w-9 h-9 items-center justify-center"
+          className="w-11 h-11 items-center justify-center"
         >
           <Icon name="Bell" size={26} color={colors.foreground} />
           {hasUnread && (
@@ -138,7 +135,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
       ) : (
         // Holds the right edge so the left control cannot drift into the
         // centre under justify-between when there is no bell.
-        <View className="w-9 h-9" />
+        <View className="w-11 h-11" />
       )}
     </View>
   );
