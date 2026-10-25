@@ -41,6 +41,7 @@ import { CommentBottomSheet } from "../Comments";
 import { warmCommentThread } from "../Comments/CommentSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
+import { postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -861,10 +862,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // parsed the date each time.
   const timeAgo = useMemo(() => formatShortTimeAgo(createdAt), [createdAt]);
   const warmPost = useCallback(() => {
-    if (disablePress || isLive || isShort || tokenId == null) return;
+    if (disablePress || isLive || isVideo || tokenId == null) return;
     seedPostDetail(tokenId, item);
     warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
-  }, [disablePress, isLive, isShort, tokenId, item]);
+  }, [disablePress, isLive, isVideo, tokenId, item]);
 
   // Hold-gated posts open the gate sheet, which can re-check balances.
   const [showHoldGate, setShowHoldGate] = useState(false);
@@ -874,9 +875,21 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [scrubBoundary]);
   const closeHoldGate = useCallback(() => setShowHoldGate(false), []);
 
+  const handleVideoViewerPress = useCallback(() => {
+    if (tokenId == null || scrubBoundary.claimed.value) return;
+    if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
+    onBeforeNavigate?.();
+    hideUserProfile();
+    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail));
+  }, [tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed]);
+
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
+    if (isVideo && !isLive) {
+      handleVideoViewerPress();
+      return;
+    }
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     if (item.audioUrl) preparePostMediaNavigation(getAudioUrl(item.audioUrl));
     if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
@@ -892,11 +905,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         streamId,
         tokenId,
       } as never);
-    } else if (isShort && tokenId != null) {
-      navigation.navigate(ScreenNames.ShortsViewer, {
-        initialIndex: 0,
-        initialItems: [item],
-      });
     } else if (tokenId != null) {
       // Hand the detail screen this card's post to paint at once, and start
       // its fetch now rather than after the new screen has rendered.
@@ -905,7 +913,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isShort, isOwnerPost, item, tokenId, postVideoUrl,
+    disablePress, isLive, isVideo, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
     accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
   ]);
 
@@ -1715,18 +1723,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       isAutoplayActive={isAutoplayActive}
       isSignedIn={isSignedIn}
       onPress={handleCardPress}
-      onOpenViewer={() => {
-        if (isActuallyGated || tokenId == null) return;
-        if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
-        onBeforeNavigate?.();
-        hideUserProfile();
-        navigation.navigate(ScreenNames.ShortsViewer, {
-          initialIndex: 0,
-          initialItems: [item],
-          initialThumbnail: thumbnail,
-          feedParams: { brainrot: true, fromId: String(tokenId) },
-        });
-      }}
+      onOpenViewer={isActuallyGated ? undefined : handleVideoViewerPress}
       onTapReaction={handleVideoTapReaction}
       onPPVPress={DIGITAL_PURCHASES_ENABLED ? handlePPVPress : undefined}
       onLockPress={openHoldGate}
@@ -2222,7 +2219,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch', marginTop: 8 }}>
             <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <PostTapSurface resetKey={postKey} onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
+              <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
                 <FeedCaption resetKey={postKey} title={overlayTitle || undefined} description={displayCaption || undefined}
                   variant="portrait" compactPortrait={SCREEN_WIDTH < 768} maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
                   onCategoryPress={onCategorySelect} onCashtagPress={setActiveCashtag} />

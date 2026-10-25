@@ -27,7 +27,8 @@ import CategorySelectorSkeleton from "../components/Home/CategorySelectorSkeleto
 import FeedFilterPanel, {
   FeedFilters,
 } from "../components/Home/FeedFilterPanel";
-import FeedCard from "../components/Home/FeedCard";
+import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
+import { postVideoViewerParams } from '../navigation/postVideoViewerParams';
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
 import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
@@ -476,7 +477,12 @@ const FeedScreen = () => {
     if (!item) return;
     const id = item.tokenId ?? item.id;
     if (id != null) {
-      navigation.navigate(ScreenNames.FeedDetail as any, { postId: String(id) });
+      const type = resolveContentType(item);
+      if (type === 'video' || type === 'short') {
+        navigation.navigate(ScreenNames.ShortsViewer as any, postVideoViewerParams(item, id));
+      } else {
+        navigation.navigate(ScreenNames.FeedDetail as any, { postId: String(id) });
+      }
     }
   }, [feedData, navigation]);
 
