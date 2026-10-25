@@ -128,6 +128,12 @@
     "useNamed": "{{name}} ਦੀ ਵਰਤੋਂ ਕਰੋ"
   },
   "copy": {
+    "1a00975a0ac1": "@channel",
+    "1f185710f28a": "DeHub v",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "b4c9a289323b": "user@example.com",
+    "ca7842e53ac8": "dehub.io",
     "0039cdece89a": "💎 ਟੋਕਨ ਸਟੈਕਿੰਗ (ਬੇਸ)",
     "0090dc269d25": "ਇਤਾਲਵੀਓ (ਇਤਾਲਵੀ)",
     "00c90f4b707a": "ਐਸਆਰਟੀ / ਵੀਟੀਟੀ",
@@ -5757,6 +5763,7 @@
     "searchDehubFor": "DeHub 'ਤੇ \"{{query}}\" ਖੋਜੋ"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "ਰਿਪੋਰਟ ਟਿੱਪਣੀ",
     "reportCommentTitle": "ਇਸ ਟਿੱਪਣੀ ਦੀ ਰਿਪੋਰਟ ਕਰੋ",
     "reportCommentDescription": "ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਇਸ ਟਿੱਪਣੀ ਵਿੱਚ ਕੀ ਗਲਤ ਹੈ ਅਤੇ ਸਾਡੇ ਸੰਚਾਲਕ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰਨਗੇ.",
@@ -6369,6 +6376,8 @@
       "slowMode": "ਹੌਲੀ ਮੋਡਃ ਇੱਕ ਸੁਨੇਹਾ ਹਰ {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "ਐਡਮਿਨ ਨੂੰ ਬਰਖਾਸਤ ਕਰੋ",
       "cancel": "ਰੱਦ ਕਰੋ",
       "dismissAdmin": "ਐਡਮਿਨ ਨੂੰ ਬਰਖਾਸਤ ਕਰੋ",
@@ -6917,6 +6926,7 @@
     "priceRange": "{{min}} ਅਤੇ {{max}} ਟੋਕਨਾਂ ਦੇ ਵਿਚਕਾਰ।"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "ਸੰਪਾਦਿਤ ਕਰੋ",
     "listingUpdated": "ਸੂਚੀ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ!",
     "saveListing": "ਤਬਦੀਲੀਆਂ ਸੰਭਾਲੋ",
@@ -7736,6 +7746,7 @@
     "insufficientOnChain": "ਇਸ ਟੋਕਨ ਲਈ ਚੇਨ 'ਤੇ ਬੈਲੇਂਸ ਕਾਫ਼ੀ ਨਹੀਂ"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "ਵੀਡੀਓ ਇਮਪੋਰਟ ਕਰੋ",
     "subtitle": "ਆਪਣੇ ਕੋਲ ਮੌਜੂਦ ਵੀਡੀਓ ਦਾ ਲਿੰਕ ਪੇਸਟ ਕਰੋ ਅਤੇ ਅਸੀਂ ਇਸਨੂੰ ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ 'ਤੇ ਪੋਸਟ ਕਰਾਂਗੇ। ਜਿੰਨੇ ਚਾਹੋ ਕਤਾਰ ਵਿੱਚ ਲਗਾਓ — ਉਹ ਪਿਛੋਕੜ ਵਿੱਚ ਇੱਕ ਦੂਜੇ ਤੋਂ ਬਾਅਦ ਚਲਦੇ ਹਨ।",
     "placeholder": "ਵੀਡੀਓ ਲਿੰਕ ਪੇਸਟ ਕਰੋ",
@@ -10393,6 +10404,7 @@
       "failed": "ਇਸ ਕਲਿੱਪ ਲਈ ਕੈਪਸ਼ਨ ਨਹੀਂ ਬਣਾਏ ਜਾ ਸਕੇ।"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "ਨਵਾਂ ਡਿਜ਼ਾਈਨ",
       "yourDesigns": "ਤੁਹਾਡੇ ਡਿਜ਼ਾਈਨ",
       "noDesigns": "ਤੁਹਾਡੇ ਬਣਾਏ ਡਿਜ਼ਾਈਨ ਇਸ ਫੋਨ 'ਤੇ ਸੇਵ ਹੁੰਦੇ ਹਨ ਅਤੇ ਇੱਥੇ ਦਿਖਾਈ ਦਿੰਦੇ ਹਨ।",
@@ -10734,6 +10746,7 @@
       "pause": "ਰੋਕੋ"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "ਵੀਡੀਓ",
       "sound": "ਆਵਾਜ਼",
       "shape": "ਆਕਾਰ",
@@ -10778,6 +10791,7 @@
       "tooLarge": "ਇਹ ਫ਼ਾਈਲ ਐਡੀਟਰ ਲਈ ਬਹੁਤ ਵੱਡੀ ਹੈ। ਸੀਮਾ 400 MB ਹੈ।"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "ਗਤੀ",
       "hint": "ਕੀਫ੍ਰੇਮ ਕਿਸੇ ਲੇਅਰ ਨੂੰ ਸਮੇਂ ਦੇ ਨਾਲ ਹਿਲਾਉਂਦੇ ਹਨ। ਇੱਥੇ ਇੱਕ ਜੋੜੋ, ਪਲੇਹੈੱਡ ਖਿਸਕਾਓ, ਲੇਅਰ ਬਦਲੋ, ਅਤੇ ਇਹ ਉਹਨਾਂ ਵਿਚਕਾਰ ਸਹਿਜਤਾ ਨਾਲ ਚੱਲੇਗੀ।",
       "outside": "ਕੀਫ੍ਰੇਮ ਜੋੜਨ ਜਾਂ ਬਦਲਣ ਲਈ ਪਲੇਹੈੱਡ ਨੂੰ ਇਸ ਲੇਅਰ ਉੱਤੇ ਲਿਆਓ।",

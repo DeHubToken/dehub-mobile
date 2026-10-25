@@ -52,6 +52,7 @@
     "title": "የእርስዎ ትዕይንት የተለየ እርስዎ."
   },
   "maintenance": {
+    "brand": "DeHub",
     "checkFailed": "ተገኝነትን ማረጋገጥ አልቻልንም ። እባክዎ እንደገና ይሞክሩ ።",
     "checking": "በመፈተሽ ላይ...",
     "community": "ማህበረሰብ በመጀመሪያ. ሁልጊዜ.",
@@ -127,6 +128,14 @@
     "useNamed": "ይጠቀሙ {{name}}"
   },
   "copy": {
+    "1226cd46b31a": "PPV ",
+    "2f51108189d2": "PPV: ",
+    "5b560f273940": "🛰️ DePIN",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "b4c9a289323b": "user@example.com",
+    "bf640b85d499": "dehub.io · ",
     "1a00975a0ac1": "@ሰርጥ",
     "50d8d34a787b": "🛍️ DeHub ሱቆች",
     "58e909c0f4cc": "ምስል አስቀምጥ",
@@ -2933,6 +2942,7 @@
     "postCount_other": "{{count}} ልጥፎች"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "ግላሲ",
     "shortsEnabled": "ጫማዎች",
     "shortsEnabledDesc": "በቤትዎ ላይ የጫማ ምግቦችን ትር እና የጫማዎችን ካሩሰል ያሳዩ ።",
@@ -6394,6 +6404,8 @@
       "slowMode": "ቀርፋፋ ሁነታ: አንድ መልዕክት እያንዳንዱ {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "አስተዳዳሪን ያጥፉ",
       "cancel": "ሰርዝ",
       "dismissAdmin": "አስተዳዳሪን ያጥፉ",
@@ -6942,6 +6954,7 @@
     "priceRange": "በ{{min}} እና {{max}} ቶከኖች መካከል ።"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "አርትዕ",
     "listingUpdated": "የዘመነ ዝርዝር!",
     "saveListing": "ለውጦችን አስቀምጥ",
@@ -7761,6 +7774,7 @@
     "insufficientOnChain": "ለዚህ ቶከን በቂ የቼይን ቀሪ ሂሳብ የለም"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "ownership": "ይህን ይዘት ይዤዋለሁ፣ ወይም በDeHub ላይ ለመታተም የመብት ባለቤቱ ፈቃድ አለብኝ።",
     "addToQueue": "ወደ ወረፋ ያክሉ",
     "queueIdle": "ምንም ሳይሰራ።",
@@ -10199,6 +10213,7 @@
       "restore": "ዳራውን እንደገና ያስጀምሩ"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "thirdPick": "የእርስዎ ሶስተኛ ምርጫ",
         "after": "በኋላ",
@@ -10410,6 +10425,7 @@
       "failed": "ለዚህ ክሊፕ የግርጌ ጽሑፎችን መፍጠር አልተቻለም።"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "አዲስ ንድፍ",
       "yourDesigns": "የእርስዎ ንድፎች",
       "noDesigns": "የሚሰሯቸው ንድፎች በዚህ ስልክ ላይ ይቀመጣሉ፤ እዚህም ይታያሉ።",
@@ -10751,6 +10767,7 @@
       "pause": "አቁም"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "ቪዲዮ",
       "sound": "ድምፅ",
       "shape": "ቅርጽ",
@@ -10795,6 +10812,7 @@
       "tooLarge": "ይህ ፋይል ለአርታኢው በጣም ትልቅ ነው። ገደቡ 400 MB ነው።"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "እንቅስቃሴ",
       "hint": "ቁልፍ ፍሬሞች ንብርብርን በጊዜ ሂደት ያንቀሳቅሳሉ። እዚህ አንድ ያክሉ፣ የማጫወቻ ራሱን ያንቀሳቅሱ፣ ንብርብሩን ይቀይሩ፣ በመካከላቸውም ያለችግር ይንሸራተታል።",
       "outside": "ቁልፍ ፍሬሞችን ለማከል ወይም ለመቀየር የማጫወቻ ራሱን በዚህ ንብርብር ላይ ያምጡ።",
@@ -13793,6 +13811,7 @@
     "checkoutUnavailable": "Checkout በአሁኑ ጊዜ አይገኝም። እባክዎ ቆየት ብለው እንደገና ይሞክሩ።"
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "በመቀመጫ በወር",
     "plansForEveryWorkflow": "ለእያንዳንዱ የስራ ፍሰት እቅዶች",
     "findTheRightFit": "ከግለሰቦች እስከ የድርጅት ቡድኖች፣ ትክክለኛውን ተስማሚ ያግኙ",

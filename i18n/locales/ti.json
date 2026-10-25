@@ -51,6 +51,7 @@
     "title": "እቲ ትዕይንትካ ፡ ንስኻ እተፈልየ ኢኻ ።"
   },
   "maintenance": {
+    "brand": "DeHub",
     "checkFailed": "እቲ ተኽእሎ ክረጋገጽ ኣይከኣለን ። በጃኻ ደጊምካ ፈትኖ ።",
     "checking": "ምምርማር...",
     "community": "አባይ አባይ.",
@@ -124,6 +125,12 @@
     "use": "ነዚ ቅጥዒ እዚ ተጠቐም"
   },
   "copy": {
+    "450683b66da4": " SRT / VTT",
+    "5b560f273940": "🛰️ DePIN",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "b4c9a289323b": "user@example.com",
+    "bd9e3879bc60": "PPV",
     "468415f0e112": "Ag",
     "6818215dba2d": "💳 ፊያት ላይ-ራምፕ",
     "6aad3f5a25b5": "ጠቅስ @{{value1}}",
@@ -2928,6 +2935,7 @@
     "postCount_other": "{{count}} ጽሑፋት"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "ጋሻዊ",
     "shortsEnabled": "ሓጸርቲ ቪድዮታት",
     "shortsEnabledDesc": "ኣብ መበገሲ ገጽ ናይ ሓጸርቲ ቪድዮታት መመገቢን መዞርን ኣርኢ።",
@@ -3780,6 +3788,7 @@
     "aiOverview": "ሓፈሻዊ ኣመለኻኽታ AI"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "ደርድር",
     "category": "ምድብ",
     "searchCategories": "ምድባት ድለ...",
@@ -4443,6 +4452,7 @@
     "provisional": "ግዝያዊ"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "ሰባት፣ ጽሑፋት፣ ወይ ትሕዝቶ ድለ...",
     "filters": "ፊልተራት",
     "clearAll": "ኩሉ ኣጽሪ",
@@ -5737,6 +5747,7 @@
     "searchDehubFor": "ኣብ DeHub \"{{query}}\" ድለ"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "ርእይቶታት ኣቕርብ",
     "reportCommentTitle": "ነዚ ርእይቶ እዚ ኣመልኪቱ",
     "reportCommentDescription": "ብዛዕባ እዚ ርእይቶ እዚ እንታይ ጌጋ ኸም ዘሎ ንገረና ፣ ኣማሓደርትና ድማ ነዚ ኺግምግሙ እዮም ።",
@@ -6350,6 +6361,8 @@
       "slowMode": "ቀስ ብቐስ ኣገባብ: ሓደ መልእኽቲ ኣብ ነፍሲ ወከፍ {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "ኣሰናዳኢ ኣሰናዳኢ ኣሰናበተ",
       "cancel": "ሰርዝ",
       "dismissAdmin": "ኣሰናዳኢ ኣሰናዳኢ ኣሰናበተ",
@@ -6898,6 +6911,7 @@
     "priceRange": "ኣብ መንጎ {{min}} ን {{max}} ቶከናት።"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "ኣዐሪ",
     "listingUpdated": "ዝሕደሮ ዝርዝር!",
     "saveListing": "ለውጢታት ኣድሕን",
@@ -7717,6 +7731,7 @@
     "insufficientOnChain": "ነዚ ቶከን ኣብ ቸይን ዘይኣኽል ተረፍ"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "ቪድዮ ኣምጽእ",
     "subtitle": "ነቲ ኣቐዲምካ ዘሎካ ቪድዮ ብምትእስሳር ፡ ከም ጽሑፍ ኣብ መገለጺኻ ክንሕተም ኢና ። ንስኻትኩምሲ ብሚልዮናት ዚቝጸሩ ሓዊ ኸም እትቃጸሉ",
     "placeholder": "ናይ ቪድዮ ሊንክ ጠውቑ",
@@ -7785,6 +7800,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24ሰ",
     "filter7d": "7መ",
     "filter30d": "30መ",
@@ -10157,6 +10173,7 @@
       "restore": "ዳሕረዋይ ዳሕረዋይ ምምላስ"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "after": "ድሕሪ",
         "afterHint": "ውጽኢቱ ኣርኢ።",
@@ -10369,6 +10386,7 @@
       "failed": "ነዚ ክሊፕ ንኡስ ጽሑፋት ክፍጠር ኣይተኻእለን።"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "ሓድሽ ንድፊ",
       "yourDesigns": "ንድፍታትካ",
       "noDesigns": "ዝሰራሕካዮም ንድፍታት ኣብዚ ስልኪ ይዕቀቡን ኣብዚ ይርኣዩን።",
@@ -10709,6 +10727,7 @@
       "pause": "ደው ኣብል"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "ቪድዮ",
       "sound": "ድምጺ",
       "shape": "ቅርጺ",
@@ -10753,6 +10772,7 @@
       "tooLarge": "እዚ ፋይል ንኣርታዒ ኣዝዩ ዓቢ እዩ። ደረቱ 400 MB እዩ።"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "ምንቅስቓስ",
       "hint": "መፍትሕ ፍሬማት ንሓደ ንብርብር ምስ ግዜ የንቀሳቕስዎ። ኣብዚ ሓደ ወስኹ፣ ርእሲ ምጽዋት ኣንቀሳቕሱ፣ ንብርብር ቀይሩ፣ ኣብ መንጎኦም ድማ ብልሙጽ ይሓልፍ።",
       "outside": "መፍትሕ ፍሬማት ንምውሳኽ ወይ ንምቕያር ርእሲ ምጽዋት ናብ ልዕሊ እዚ ንብርብር ኣምጽእዎ።",
@@ -13556,6 +13576,7 @@
     "heroBlurb": "ኣብ ሓላዊት፣ ትራንስኮዲንግን ምቅርራብን ናይ DeHub ሓበሬታ ንምሕጋዝ ብዘይጸገብካዮ ቦታ፣ ባንድዊድዝን ሓይሊ ኮምፒዩተርን ኣበርክት።"
   },
   "launchpad": {
+    "twitter": "X / Twitter",
     "feeBurn": "ናይ ሓዊ ምልክታት",
     "ago": "{{age}} ቅድሚ ሕጂ",
     "amountIn": "መጠን ኣብ {{symbol}}",
@@ -13745,6 +13766,7 @@
     "checkoutUnavailable": "ናይ ክፍሊት መደብ ሕጂ ኣይርከብን። ብቕጽሊ ድሕሪ ሓደ ጽዓት ፈትንዎ።"
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "ንሓደ መቐመጢ/ወርሒ",
     "plansForEveryWorkflow": "ነፍሲ ወከፍ መደብ ንነፍሲ ወከፍ ስራሕ",
     "findTheRightFit": "ካብ ግለ-ሰብ ክሳብ ጽርግያ ዝሰርሑ ሓይሊታት፣ እቲ ዝግባእ መሪጽካ",

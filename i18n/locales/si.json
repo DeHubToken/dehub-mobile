@@ -52,6 +52,7 @@
     "title": "ඔයාගේ දර්ශනය, ඔයාට වඩා වෙනස්."
   },
   "maintenance": {
+    "brand": "DeHub",
     "checkFailed": "අපට ලබා ගත හැකි බව පරීක් ‍ ෂා කළ නොහැකි විය. නැවත උත්සාහ කරන්න.",
     "checking": "පරීක් ‍ ෂා කරමින්...",
     "community": "සමාජය මුලින්ම. හැමවෙලේම.",
@@ -123,6 +124,27 @@
     "useNamed": "{{name}} භාවිතා කරන්න"
   },
   "copy": {
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "1f185710f28a": "DeHub v",
+    "2f51108189d2": "PPV: ",
+    "3d1d43659027": " / USD",
+    "419f1a83fab2": "yourname.eth",
+    "450683b66da4": " SRT / VTT",
+    "50a45e647dbb": "REC",
+    "53e6cdc30765": "you@example.com",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "a731a58c4cf3": "Twitch",
+    "b4c9a289323b": "user@example.com",
+    "bd4ef74463ac": "BUSD",
+    "bd9e3879bc60": "PPV",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "98f96a4d8578": "වේගවත් සහ නොමිලේ",
     "31fbef162594": "ඉදිරියට යන්න",
     "8939aea8419b": "ස්ටේක් කරන්න",
@@ -2901,6 +2923,7 @@
     "postCount_other": "{{count}} පළ කිරීම්"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "ග්ලැසියර",
     "shortsEnabled": "කොට කලිසම්",
     "shortsEnabledDesc": "නිවසේ කෙටි ආහාර ටැබය සහ කෙටි කැරොසල් පෙන්වන්න.",
@@ -3757,6 +3780,7 @@
     "aiOverview": "AI දළ විශ්ලේෂණය"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "වර්ග කරන්න",
     "category": "වර්ගය",
     "searchCategories": "ප්‍රවර්ග සොයන්න...",
@@ -4426,6 +4450,7 @@
     "provisional": "තාවකාලික"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "පුද්ගලයන්, පළකිරීම් හෝ අන්තර්ගතය සොයන්න...",
     "filters": "පෙරහන්",
     "clearAll": "සියල්ල හිස් කරන්න",
@@ -4957,6 +4982,7 @@
     "loadFailed": "වෙළඳපොළ දත්ත පූරණය කළ නොහැකි විය"
   },
   "ads": {
+    "ecpm": "eCPM",
     "subtitle": "ලාංඡන මට්ටම අනුව DeHub හිමිකරුවන් වෙත ළඟා වන්න",
     "tabs": {
       "overview": "දළ විශ්ලේෂණය",
@@ -5435,6 +5461,8 @@
     "passkeyBackupHint": "ඔබේ ගිණුම මෙම උපාංගයේ passkey තුළ පවතී. බොහෝ දුරකථන වලදී එය ඔබගේ Google හෝ Apple ගිණුම සමඟ සමමුහුර්ත වේ, සහ Settings හි මුරපද උපස්ථයක් එක් කළ හැක."
   },
   "careers": {
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
     "title": "DeHub හි රැකියා",
     "subtitle": "විමධ්‍යගත සමාජ මාධ්‍යයේ අනාගතය ගොඩනඟන කණ්ඩායමට එකතු වන්න",
     "intro": "අපි සමාජ මාධ්‍යවල ඊළඟ රැල්ලේ කොටස්කරුවන් වීමට කැමති දැඩි ආශාවක් ඇති පුද්ගලයන් සොයමින් සිටිමු — නිර්මාපකයින්ට සහ ප්‍රජාවන්ට ප්‍රමුඛත්වය දෙන එකක්. සියලුම තනතුරු සම්පූර්ණයෙන්ම දුරස්ථ වන අතර නම්‍යශීලී පැය ඇත.",
@@ -5716,6 +5744,7 @@
     "searchDehubFor": "DeHub හි \"{{query}}\" සොයන්න"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "අදහස වාර්තා කරන්න",
     "reportCommentTitle": "මෙම අදහස වාර්තා කරන්න",
     "reportCommentDescription": "මෙම ප් රකාශයේ ඇති වැරැද්ද කුමක්දැයි අපට කියන්න, අපගේ උපපරිපාලකයින් එය සමාලෝචනය කරනු ඇත.",
@@ -6327,6 +6356,8 @@
       "slowMode": "හෙමින් මාදිලිය: එක් පණිවුඩයක් සෑම {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "පරිපාලක ඉවත් කරන්න",
       "cancel": "අවලංගු කරන්න",
       "dismissAdmin": "පරිපාලක ඉවත් කරන්න",
@@ -6875,6 +6906,7 @@
     "priceRange": "{{min}} සහ {{max}} ටෝකන අතර."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "සංස්කරණය කරන්න",
     "listingUpdated": "ලැයිස්තුගත කිරීම යාවත්කාලීන කර ඇත!",
     "saveListing": "වෙනස්කම් සුරකින්න",
@@ -7181,6 +7213,7 @@
     "kingsGambitBoardEmpty": "තවම කිසිදු මාර්ගගත තරගයක් අවසන් වී නැත. අභියෝගයක් විවෘත කරන්න."
   },
   "videoLooks": {
+    "vhs": "VHS",
     "button": "කැමරා පෙනුම්",
     "title": "පෙනුම",
     "hint": "ඔබේ වීඩියෝව මෙම උපාංගයෙන් පිටවීමට පෙර යෙදේ — නරඹන්නන් ඔබ මෙහි දකින දෙයම හරියටම දකියි.",
@@ -7762,6 +7795,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24පැ",
     "filter7d": "7දි",
     "filter30d": "30දි",
@@ -10161,6 +10195,7 @@
       "hint": "මෙම උපකරණය මත ධාවනය කරන්න. {{seconds}} source seconds or less first; the first run downloads the model."
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "after": "පසු",
         "afterHint": "ප්‍රතිඵලය පෙන්වන්න.",
@@ -10373,6 +10408,7 @@
       "failed": "මෙම ක්ලිපය සඳහා උපසිරැසි සෑදිය නොහැකි විය."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "නව නිර්මාණය",
       "yourDesigns": "ඔබේ නිර්මාණ",
       "noDesigns": "ඔබ සාදන නිර්මාණ මෙම දුරකථනයේ සුරැකෙන අතර මෙහි පෙන්වයි.",
@@ -10714,6 +10750,7 @@
       "pause": "විරාම කරන්න"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "වීඩියෝ",
       "sound": "ශබ්දය",
       "shape": "හැඩය",
@@ -10758,6 +10795,7 @@
       "tooLarge": "එම ගොනුව සංස්කාරකයට ඉතා විශාලයි. සීමාව 400 MB වේ."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "චලනය",
       "hint": "කීෆ්‍රේම් මඟින් ස්තරයක් කාලයත් සමඟ චලනය කරයි. මෙහි එකක් එක් කර, ප්ලේහෙඩ් එක ගෙනයන්න, ස්තරය වෙනස් කරන්න; එය ඒවා අතර සුමටව ගමන් කරයි.",
       "outside": "කීෆ්‍රේම් එක් කිරීමට හෝ වෙනස් කිරීමට ප්ලේහෙඩ් එක මෙම ස්තරය මතට ගෙනෙන්න.",
@@ -13469,6 +13507,7 @@
     "step3Body": "ඕන කෙනෙකුට ලින්ක් එක දාන්න පුළුවන්. ඕනෑම දෙයක් වෙනස් කිරීමට චැට් තුළ පිළිතුරු දෙන්න."
   },
   "depin": {
+    "title": "DePin",
     "becomeANode": "නෝඩයක් බවට පත් වන්න",
     "ctaBody": "ප්‍රභව ફોલબેક, සංකේතනය කළ ආරක්ෂිත මාධ්‍ය සහ සත්‍යාපිත කාර්යය මහජන නෝඩ් ත්‍යාගවලට පෙර පැමිණේ.",
     "ctaTitle": "අසාර්ථක වීම ආරක්ෂිත වූ විට පමණක් දියත් කරන්න.",
@@ -13561,6 +13600,7 @@
     "statusUnregistered": "ලියාපදිංචි වී නැත"
   },
   "launchpad": {
+    "twitter": "X / Twitter",
     "ago": "{{age}} පෙර",
     "amountIn": "{{symbol}} හි ප් ‍ රමාණය",
     "bought": "මිලදී ගෙන ඇත",

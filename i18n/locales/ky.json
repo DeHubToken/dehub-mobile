@@ -128,6 +128,21 @@
     "useNamed": "Колдонуу {{name}}"
   },
   "copy": {
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "1f185710f28a": "DeHub v",
+    "2f51108189d2": "PPV: ",
+    "50a45e647dbb": "REC",
+    "53e6cdc30765": "you@example.com",
+    "5b560f273940": "🛰️ DePIN",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "b4c9a289323b": "user@example.com",
+    "bf4151fc970f": "WORK_ADMIN_ARBITERS",
+    "ca7842e53ac8": "dehub.io",
+    "f223faa96f22": "Apple",
     "468415f0e112": "Ag",
     "b602b7029be6": "Pt",
     "b62c681738d1": "Cu",
@@ -2913,6 +2928,7 @@
     "postCount_other": "{{count}} посттор"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "Бууранычтуу",
     "shortsEnabled": "Шорты",
     "shortsEnabledDesc": "Көрсөтүү Shorts азыктандыруу өтмөгүн жана Shorts карусель үй.",
@@ -5732,6 +5748,7 @@
     "searchDehubFor": "DeHub'тан «{{query}}» издөө"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "Отчеттун комментарийи",
     "reportCommentTitle": "Бул комментарийди билдирүү",
     "reportCommentDescription": "Бул комментарийде эмне туура эмес экендигин айтыңыз жана модераторлорубуз аны карап чыгышат.",
@@ -6345,6 +6362,8 @@
       "slowMode": "Жай режими: ар бир билдирүү {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "Иштен бошотуу админ",
       "cancel": "Жокко чыгаруу",
       "dismissAdmin": "Иштен бошотуу админ",
@@ -6893,6 +6912,7 @@
     "priceRange": "{{min}} жана {{max}} токендердин ортосунда."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "Оңдоо",
     "listingUpdated": "Тизме жаңыртылууда!",
     "saveListing": "Өзгөртүүлөрдү сактоо",
@@ -7712,6 +7732,7 @@
     "insufficientOnChain": "Бул токен үчүн чейиндеги баланс жетишсиз"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "Видеону импорттоо",
     "subtitle": "Сизде бар видеонун шилтемесин чаптап коюңуз жана биз аны профилиңизде пост катары жарыялайбыз. Канча болсо да кезегине коюңуз — алар фондо бири-бирин артынан иштейт.",
     "placeholder": "Видео шилтемесин чаптап коюңуз",
@@ -10366,6 +10387,7 @@
       "failed": "Бул клип үчүн субтитр түзүлгөн жок."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "Жаңы дизайн",
       "yourDesigns": "Сиздин дизайндар",
       "noDesigns": "Сиз түзгөн дизайндар ушул телефондо сакталып, ушул жерде көрүнөт.",
@@ -10707,6 +10729,7 @@
       "pause": "Тыным"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "Видео",
       "sound": "Үн",
       "shape": "Фигура",
@@ -10751,6 +10774,7 @@
       "tooLarge": "Бул файл редактор үчүн өтө чоң. Чеги — 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "Кыймыл",
       "hint": "Негизги кадрлар катмарды убакыт боюнча кыймылдатат. Бул жерге бирөөнү кошуңуз, ойнотуу көрсөткүчүн жылдырыңыз, катмарды өзгөртүңүз, ал алардын ортосунда жылмыш өтөт.",
       "outside": "Негизги кадр кошуу же өзгөртүү үчүн ойнотуу көрсөткүчүн ушул катмардын үстүнө алып барыңыз.",
@@ -13751,6 +13775,7 @@
     "checkoutUnavailable": "Checkout азыр жеткиликтүү эмес. Кийинчерээк аракет кылып көрүңүз."
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "орун/айына",
     "plansForEveryWorkflow": "Ар бир жумуш агымы үчүн пландар",
     "findTheRightFit": "Жеке адамдардан баштап ишкана командаларына чейин, туура келгенди табыңыз",
