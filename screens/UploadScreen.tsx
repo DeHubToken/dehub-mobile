@@ -2475,7 +2475,7 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {crossPostOpen && visibility === "public" && (
+          {crossPostOpen && visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode && (
             <CrossPostPicker onManage={() => nav.navigate(ScreenNames.AccountSettings, { initialTab: "multipost" })} />
           )}
 
@@ -3594,7 +3594,7 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {(showPollButton || !isLiveMode || (visibility === "public" && !articleMode && !isStageMode)) && (
+          {!isLiveMode && (
             <TouchableOpacity
               onPress={() => { setShowAudioMenu(false); setShowPostOptions(true); }}
               activeOpacity={0.7}
