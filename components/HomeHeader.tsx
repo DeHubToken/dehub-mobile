@@ -1,11 +1,11 @@
 import React, { useCallback, memo } from "react";
-import { View, TouchableOpacity, Text, I18nManager } from "react-native";
+import { View, TouchableOpacity, I18nManager } from "react-native";
 import type { SharedValue } from "react-native-reanimated";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ElectricLogo from "./common/ElectricLogo";
 import { useFeedPillRefreshing } from "../libs/feed-pill-refresh";
 import Avatar from "./common/Avatar";
-import Icon from "./ui/Icon";
+import NotificationBell from "./common/NotificationBell";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { ScreenNames } from "../navigation/ScreenNames";
@@ -108,29 +108,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
           className="w-11 h-11 items-center justify-center"
         >
-          <Icon name="Bell" size={26} color={colors.foreground} />
-          {hasUnread && (
-            <View
-              style={{
-                position: "absolute",
-                top: 0,
-                right: -4,
-                minWidth: 18,
-                height: 18,
-                paddingHorizontal: 4,
-                backgroundColor: "#ef4444",
-                borderRadius: 6,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              pointerEvents="none"
-              className="dark-surface"
-            >
-              <Text style={{ color: "#fff", fontSize: 10, fontWeight: "700", lineHeight: 12, textAlign: "center" }}>
-                {unreadCount > 99 ? "99+" : unreadCount}
-              </Text>
-            </View>
-          )}
+          <NotificationBell unread={unreadCount} color={colors.foreground} />
         </TouchableOpacity>
       ) : (
         // Holds the right edge so the left control cannot drift into the
