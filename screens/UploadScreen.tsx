@@ -112,9 +112,8 @@ import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
-import CrossPostPicker, { CrossPostButton } from "../components/Upload/CrossPostPicker";
+import CrossPostPicker, { CrossPostButton, useCrossPostAccountCount } from "../components/Upload/CrossPostPicker";
 import { crossPostState } from "../libs/crosspost-store";
-import { useSnapshot } from "valtio";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
 import { enhanceText } from "../services/ai.service";
 import type { EnhanceMode } from "../services/ai.service";
@@ -377,7 +376,7 @@ export default function UploadScreen() {
   const audioMeterBarsRef = useRef<number[]>([]);
   const [showAudioMenu, setShowAudioMenu] = useState(false);
   const [showPostOptions, setShowPostOptions] = useState(false);
-  const { selected: crossPostSelection } = useSnapshot(crossPostState);
+  const selectedCrossPostCount = useCrossPostAccountCount();
   const audioPreviewRef = useRef<AudioPlayer | null>(null);
   const audioPreviewListenerRef = useRef<{ remove: () => void } | null>(null);
   const [isAudioPreviewPlaying, setIsAudioPreviewPlaying] = useState(false);
@@ -407,7 +406,7 @@ export default function UploadScreen() {
 
   const [isLiveMode, setIsLiveMode] = useState(!!route.params?.live);
   const [isStageMode, setIsStageMode] = useState(false);
-  const crossPostCount = visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode ? crossPostSelection.length : 0;
+  const crossPostCount = visibility === "public" && !isLiveMode && !isStageMode && !articleMode && !isQuoteMode ? selectedCrossPostCount : 0;
   const [showLiveOptions, setShowLiveOptions] = useState(false);
   const [liveSettings, setLiveSettings] = useState<LiveSettingsState>(INITIAL_LIVE_SETTINGS);
   const [showLiveSettings, setShowLiveSettings] = useState(false);
