@@ -41,7 +41,7 @@ import { CommentBottomSheet } from "../Comments";
 import { warmCommentThread } from "../Comments/CommentSection";
 import { useQueryClient } from "@tanstack/react-query";
 import { seedPostDetail, warmRequest } from "../../libs/navPrefetch";
-import { postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import ReactionInfoSheet from "./ReactionInfoSheet";
 import PostOptionsMenu from "../common/PostOptionsMenu";
 import ImageTranslationSheet from "../common/ImageTranslationSheet";
@@ -875,18 +875,19 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [scrubBoundary]);
   const closeHoldGate = useCallback(() => setShowHoldGate(false), []);
 
+  const videoViewerReady = canOpenPostVideoViewer(item as any, isActuallyGated || matureGate.isGated || contentWarning.hidden);
   const handleVideoViewerPress = useCallback(() => {
-    if (tokenId == null || scrubBoundary.claimed.value) return;
+    if (!videoViewerReady || tokenId == null || scrubBoundary.claimed.value) return;
     if (postVideoUrl) preparePostMediaNavigation(postVideoUrl);
     onBeforeNavigate?.();
     hideUserProfile();
     navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(item, tokenId, thumbnail));
-  }, [tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed]);
+  }, [videoViewerReady, tokenId, postVideoUrl, onBeforeNavigate, hideUserProfile, navigation, item, thumbnail, scrubBoundary.claimed]);
 
   const handleCardPress = useCallback(() => {
     if (scrubBoundary.claimed.value) return;
     if (disablePress) return;
-    if (isVideo && !isLive) {
+    if (isVideo && !isLive && videoViewerReady) {
       handleVideoViewerPress();
       return;
     }
@@ -913,7 +914,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
-    disablePress, isLive, isVideo, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
+    disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
     accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
   ]);
 
@@ -1723,7 +1724,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       isAutoplayActive={isAutoplayActive}
       isSignedIn={isSignedIn}
       onPress={handleCardPress}
-      onOpenViewer={isActuallyGated ? undefined : handleVideoViewerPress}
+      onOpenViewer={videoViewerReady ? handleVideoViewerPress : undefined}
       onTapReaction={handleVideoTapReaction}
       onPPVPress={DIGITAL_PURCHASES_ENABLED ? handlePPVPress : undefined}
       onLockPress={openHoldGate}

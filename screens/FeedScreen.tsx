@@ -28,7 +28,7 @@ import FeedFilterPanel, {
   FeedFilters,
 } from "../components/Home/FeedFilterPanel";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
-import { postVideoViewerParams } from '../navigation/postVideoViewerParams';
+import { canOpenPostVideoViewer, postVideoViewerParams } from '../navigation/postVideoViewerParams';
 import FeedFilterLoader from "../components/Home/FeedFilterLoader";
 import { useFeedFilterTransition } from "../hooks/useFeedFilterTransition";
 import { useFeedCardVisibility } from "../hooks/useFeedCardVisibility";
@@ -478,7 +478,7 @@ const FeedScreen = () => {
     const id = item.tokenId ?? item.id;
     if (id != null) {
       const type = resolveContentType(item);
-      if (type === 'video' || type === 'short') {
+      if ((type === 'video' || type === 'short') && canOpenPostVideoViewer(item as any)) {
         navigation.navigate(ScreenNames.ShortsViewer as any, postVideoViewerParams(item, id));
       } else {
         navigation.navigate(ScreenNames.FeedDetail as any, { postId: String(id) });
