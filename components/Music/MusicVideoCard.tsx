@@ -3,8 +3,8 @@
  * =====================================================
  * The carousel counterpart of web's `InlineVideoCard`, minus the hover-to-play
  * video: on a phone there is no hover, and half a dozen autoplaying videos in a
- * horizontal shelf is a battery bill, not a feature. Tapping opens the post,
- * where the real player lives.
+ * horizontal shelf is a battery bill, not a feature. Tapping opens the seeded
+ * video viewer, where the real player lives.
  *
  * @module components/Music/MusicVideoCard
  */
@@ -18,6 +18,7 @@ import { useTranslation as _useCopy } from "react-i18next";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import { getAvatarUrl, getImageUrl } from "../../libs/misc";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -48,11 +49,8 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft,
 
   const openPost = useCallback(() => {
     if (tokenId == null) return;
-    navigation.navigate(ScreenNames.FeedDetail, {
-      tokenId: String(tokenId),
-      postId: String(tokenId),
-    });
-  }, [navigation, tokenId]);
+    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumb));
+  }, [navigation, tokenId, nft, thumb]);
 
   const openCreator = useCallback(() => {
     if (handle) showUserProfile(String(handle));
@@ -81,7 +79,7 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft,
           <Avatar uri={rawAvatar ? getAvatarUrl(rawAvatar, 32) : null} size={28} name={creator} />
         </TouchableOpacity>
         <View style={styles.metaText}>
-          <Text style={styles.title} numberOfLines={1}>
+          <Text style={styles.title} numberOfLines={1} onPress={openPost} accessibilityRole="button">
             {title}
           </Text>
           <Text style={styles.creator} numberOfLines={1}>
