@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next';
 import Icon, { type IconName } from '../ui/Icon';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
 import { VIDEO_MODELS } from '../../config/ai-models.constants';
+import * as ImagePicker from 'expo-image-picker';
+import { toastError } from '../../libs/toast';
+import { CinemaDirectionControls } from './CinemaDirectionControls';
 import { MODEL3D_MODELS } from '../../config/model3d-models.constants';
 import {
   CREATOR_MODE_KEYS, creatorAspects, creatorModels,
@@ -49,6 +52,16 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
     ...creatorModels(settings.mode),
   ];
   const selected = models.find((model) => model.id === settings.model);
+  const advanced = settings.mode === 'video' ? VIDEO_MODELS[settings.model] : undefined;
+  const pickEndFrame = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 1 });
+      if (result.canceled) return;
+      const asset = result.assets[0];
+      if ((asset.fileSize ?? 0) > 20 * 1024 * 1024) { toastError(t('stages.fileTooLarge', { max: 20 })); return; }
+      onChange({ ...settings, endFrame: { uri: asset.uri, label: asset.fileName ?? 'End frame', kind: 'image' } });
+    } catch { toastError(t('aiChat.couldNotReadImage')); }
+  };
   const options: { id: string; name: string; description?: string }[] = picker === 'model' ? models
     : picker === 'aspect' ? creatorAspects(settings).map((id) => ({ id, name: id }))
     : picker === 'resolution' ? (CREATOR_VIDEO_RULES[settings.model]?.resolutions ?? ['720p']).map((id) => ({ id, name: id }))
@@ -129,6 +142,26 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
       </View>
+      {settings.mode === 'image' && <View className="mt-2 flex-row items-center gap-2">
+        <Text className="text-xs text-theme-neutrals-400">{t('creator.batchCount', { defaultValue: 'Images' })}</Text>
+        {[1, 2, 3, 4].map(count => chip(String(count), () => onChange({ ...settings, imageBatch: count }), (settings.imageBatch ?? 1) === count))}
+      </View>}
+      {(advanced?.supportsSeed || advanced?.supportsNegativePrompt || advanced?.supportsEndFrame) && <View className="mt-2 gap-2">
+        {advanced.supportsEndFrame && <View className="flex-row flex-wrap items-center gap-2">
+          {chip(t('creator.endFrame', { defaultValue: 'End frame' }), () => void pickEndFrame(), !!settings.endFrame)}
+          {!!settings.endFrame && <>{chip(t('common.delete'), () => onChange({ ...settings, endFrame: undefined }))}<Text className="text-xs text-theme-neutrals-400" numberOfLines={1}>{settings.endFrame.label}</Text></>}
+          <Text className="text-xs text-theme-neutrals-400">{t('creator.endFrameHelp', { defaultValue: 'Add a start image with the attachment button.' })}</Text>
+        </View>}
+        {advanced.supportsSeed && <TextInput value={settings.seed ?? ''} onChangeText={seed => onChange({ ...settings, seed })}
+          keyboardType="number-pad" editable={!disabled} placeholder={t('creator.seed', { defaultValue: 'Seed (optional, 0–2147483647)' })}
+          accessibilityLabel={t('creator.seed', { defaultValue: 'Seed (optional, 0–2147483647)' })} placeholderTextColor="#71717A"
+          className="rounded-xl bg-theme-neutrals-800 px-3 py-2 text-theme-neutrals-100" />}
+        {advanced.supportsNegativePrompt && <TextInput value={settings.negativePrompt ?? ''} onChangeText={negativePrompt => onChange({ ...settings, negativePrompt })}
+          editable={!disabled} multiline maxLength={4000} placeholder={t('creator.negativePrompt', { defaultValue: 'Negative prompt (optional)' })}
+          accessibilityLabel={t('creator.negativePrompt', { defaultValue: 'Negative prompt (optional)' })} placeholderTextColor="#71717A"
+          className="rounded-xl bg-theme-neutrals-800 px-3 py-2 text-theme-neutrals-100" />}
+      </View>}
+      <CinemaDirectionControls value={settings.cinemaDirection ?? {}} onChange={cinemaDirection => onChange({ ...settings, cinemaDirection })} mode={settings.mode} disabled={disabled} />
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
         <View className="flex-1 justify-end bg-black/70">
           <Pressable className="flex-1" onPress={() => setPicker(null)} accessibilityLabel={t('common.close')} />

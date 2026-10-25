@@ -149,6 +149,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const {
     walletDhb,
     creditsUsd,
+    bankedDhb,
     isLoading: isWalletLoading,
     unsupportedChain: chainProblem,
     payForJob,
@@ -156,7 +157,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   // Subscription tokens pay without a transfer, so the connected chain only
   // matters when they fall short.
   const paidByCredits = creditsCoverPrice(creditsUsd, priceDhb);
-  const unsupportedChain = paidByCredits ? null : chainProblem;
+  const unsupportedChain = paidByCredits || bankedDhb >= priceDhb ? null : chainProblem;
 
   const costUsd = priceUsd;
   const unitCostUsd = quantity > 0 ? costUsd / quantity : 0;
@@ -421,6 +422,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             </View>
 
             {!!footnote && <Text style={s.footnote}>{footnote}</Text>}
+            {quoteKind === 'image' && quantity > 1 && <Text style={s.footnote}>{t('creator.batchPaymentHelp')}</Text>}
 
             {freeAvailable && (
               <Text style={s.footnote}>{t('paywall.freeImagesLeft', { count: freeImages.remaining })}</Text>

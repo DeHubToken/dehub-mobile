@@ -9937,6 +9937,15 @@
     }
   },
   "creator": {
+    "batchPaymentHelp": "Each submitted image is charged separately. If a batch stops, unused DHB from its payment is reused automatically for a later generation that it covers.",
+    "batchCount": "Images",
+    "endFrame": "End frame",
+    "endFrameHelp": "Add a start image with the attachment button.",
+    "seed": "Seed (optional, 0–2147483647)",
+    "negativePrompt": "Negative prompt (optional)",
+    "invalidSeed": "Seed must be a whole number from 0 to 2147483647.",
+    "endFrameNeedsStart": "Attach a start image before selecting an end frame.",
+    "batchStopped": "Batch stopped after {{submitted}} of {{quantity}} submissions. {{remaining}} were not submitted. Completed images are saved.",
     "cinema": {
         "title":  "Cinema direction",
         "hint":  "Guide the visual style of your next image or video. Results vary by model.",
