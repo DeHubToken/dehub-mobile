@@ -47,10 +47,11 @@ import { usePublicChatUnreadCount } from "../hooks/usePublicChatUnread";
 import { themeIconUrl } from '../theme/icons';
 
 const SEPARATOR = { height: 1, backgroundColor: "rgba(255,255,255,0.07)" } as const;
+const SEARCH_ACTION = { width: 28, height: 28, borderRadius: 6, alignItems: "center", justifyContent: "center" } as const;
 
 const DirectMessagesInner: React.FC = () => {
   const { t } = useTranslation();
-  const { skin, theme } = useAppTheme();
+  const { theme } = useAppTheme();
   const searchField = useSearchFieldMaterial();
   const navigation = useNavigation<any>();
   const user = useUser();
@@ -417,31 +418,29 @@ const DirectMessagesInner: React.FC = () => {
           icon="messages"
           title={t("messages.title")}
           canGoBack={false}
-          rightContent={
-            <>
-              <TouchableOpacity onPress={refreshContacts} disabled={!!contactsLoading}
-                style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)", alignItems: "center", justifyContent: "center", opacity: contactsLoading ? 0.5 : 1 }}
-                accessibilityRole="button" accessibilityLabel={t("dao.refresh")}>
-                <Icon name="RefreshCw" size={18} color={skin?.centreIcon ?? "#FFFFFF"} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={openNewDM}
-                style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)", alignItems: "center", justifyContent: "center" }}
-                accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
-                <Icon name="Plus" size={18} color={skin?.centreIcon ?? "#FFFFFF"} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={openSettings}
-                style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: "rgba(255,255,255,0.08)", alignItems: "center", justifyContent: "center" }}
-                accessibilityRole="button" accessibilityLabel={t("settings.title")}>
-                <Icon name="Settings" size={18} color={skin?.centreIcon ?? "#FFFFFF"} />
-              </TouchableOpacity>
-            </>
-          }
         >
           <View className="flex-row items-center" style={[{ height: 36, borderRadius: 8 }, searchField.surface]}>
             <View className="pl-3 pr-2"><Icon name="Search" size={16} color="#71717A" /></View>
             <TextInput value={query} onChangeText={setQuery}
               placeholder={t("messages.searchConversations")} placeholderTextColor="#71717A"
               className="flex-1 text-white text-sm" returnKeyType="search" style={[FIELD_TEXT, SEARCH_INPUT_CLEAR]} onFocus={searchField.onFocus} onBlur={searchField.onBlur} />
+            {/* Refresh, new message and settings sit quietly inside the search
+                field instead of as squares next to the title. */}
+            <View className="flex-row items-center pr-1">
+              <TouchableOpacity onPress={refreshContacts} disabled={!!contactsLoading}
+                style={[SEARCH_ACTION, { opacity: contactsLoading ? 0.5 : 1 }]} hitSlop={4}
+                accessibilityRole="button" accessibilityLabel={t("dao.refresh")}>
+                <Icon name="RefreshCw" size={16} color="#71717A" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={openNewDM} style={SEARCH_ACTION} hitSlop={4}
+                accessibilityRole="button" accessibilityLabel={t("dm.newDm")}>
+                <Icon name="Plus" size={16} color="#71717A" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={openSettings} style={SEARCH_ACTION} hitSlop={4}
+                accessibilityRole="button" accessibilityLabel={t("settings.title")}>
+                <Icon name="Settings" size={16} color="#71717A" />
+              </TouchableOpacity>
+            </View>
           </View>
         </ScreenHeader>
 
