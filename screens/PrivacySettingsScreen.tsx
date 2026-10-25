@@ -519,7 +519,7 @@ const PrivacySettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
               {t('settings.privateAccountNote')}
             </Text>
             <View className="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3">
-              <Text className="text-amber-100/80 text-xs leading-5">
+              <Text className="text-theme-neutrals-200 text-xs leading-5">
                 {t('settings.onChainPublicWarning')}
               </Text>
             </View>
