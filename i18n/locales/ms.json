@@ -5401,6 +5401,17 @@
       "viewPost": "Lihat hantaran"
     },
     "tasks": {
+      "eachHelp": "Setiap ejen yang dipilih melaksanakan tugas penuh.",
+      "eachMode": "Setiap ejen",
+      "pacing": {
+        "help": "Bermula secara automatik dengan Sentient dimatikan. Pacing menyokong satu tindakan suka atau tidak suka pada tetingkap hantaran tetap: setiap ejen bertindak balas terhadap setiap hantaran yang sepadan, satu pusingan pada satu masa. Giliran pertama bermula sekarang; had perkhidmatan boleh melanjutkan masa penamat.",
+        "hours": "Lebih {{count}} jam",
+        "independent": "Tugas segera dijalankan secara bebas daripada mod Sentient. Meminta suka tidak menghidupkan siaran autonomi.",
+        "label": "Bila perlu bertindak",
+        "now": "Segera"
+      },
+      "resumeSwarm": "Sambung kawanan",
+      "sharedMode": "Kerja yang dikongsi",
       "cancelSwarm": "Batalkan swarm",
       "clearSelection": "Kosongkan pilihan",
       "distribution": "Pengedaran",

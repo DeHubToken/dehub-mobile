@@ -5139,6 +5139,17 @@
       "viewPost": "Qillqasqata qaway"
     },
     "tasks": {
+      "eachHelp": "Sapa akllasqa agente hunt’asqa ruwayta ruwan.",
+      "eachMode": "Sapa agente",
+      "pacing": {
+        "help": "Kikinmanta qallarikun Sentient apagasqawan. Pacing huk munasqa utaq mana gustay ruwayta yanapan huk takyasqa post ventanapi: sapa agente sapa tupaq post kaqman reaccionan, huk kuti huk kutipi. Ñawpaq kaq turnoqa kunanmi qallarin; servicio límites nisqakunaqa tukukuy pachata mast’ariyta atin.",
+        "hours": "{{count}} horasmanta aswan",
+        "independent": "Tapusqa ruwanakuna Sentient modomanta sapalla purin. Me gustakuna mañakuyqa manan autonomo posting nisqataqa llank’achinchu.",
+        "label": "Hayk’aqmi imatapas ruwana",
+        "now": "Chayllapuni"
+      },
+      "resumeSwarm": "Wakmanta qallariy enjambre",
+      "sharedMode": "Kuskachasqa llamkay",
       "cancelSwarm": "Swarm-ta qichuy",
       "clearSelection": "Akllayta pichay",
       "distribution": "Taqmay",

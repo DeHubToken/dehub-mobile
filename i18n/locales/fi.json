@@ -5143,6 +5143,17 @@
       "viewPost": "Näytä julkaisu"
     },
     "tasks": {
+      "eachHelp": "Jokainen valittu edustaja suorittaa koko tehtävän.",
+      "eachMode": "Jokainen asiamies",
+      "pacing": {
+        "help": "Käynnistyy automaattisesti, kun Sentient on pois päältä. Tahdistus tukee yhtä samanlaista tai epämiellyttävää toimintoa kiinteässä julkaisuikkunassa: jokainen välittäjä reagoi jokaiseen vastaavaan julkaisuun vuoro kerrallaan. Ensimmäinen vuoro alkaa nyt; palvelurajoitukset voivat pidentää valmistumisaikaa.",
+        "hours": "Yli {{count}} tuntia",
+        "independent": "Kehotetut tehtävät suoritetaan aistimistilasta riippumatta. Tykkäysten pyytäminen ei kytke päälle itsenäistä julkaisemista.",
+        "label": "Milloin toimia",
+        "now": "Välittömästi"
+      },
+      "resumeSwarm": "Jatka parvea",
+      "sharedMode": "Jaettu työ",
       "cancelSwarm": "Peru lauma",
       "clearSelection": "Tyhjennä valinta",
       "distribution": "Jakelu",

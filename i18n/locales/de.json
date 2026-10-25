@@ -5048,6 +5048,17 @@
       }
     },
     "tasks": {
+      "eachHelp": "Jeder ausgewählte Agent führt die vollständige Aufgabe aus.",
+      "eachMode": "Jeder Agent",
+      "pacing": {
+        "help": "Startet automatisch mit Sentient aus. Pacing unterstützt eine Like- oder Dislike-Aktion auf einem festen Post-Fenster: Jeder Agent reagiert auf jeden passenden Post, eine Runde nach der anderen. Die erste Runde beginnt jetzt; Service-Limits können die Endzeit verlängern.",
+        "hours": "Über {{count}} Stunden",
+        "independent": "Aufgeforderte Tasks werden unabhängig vom Sentient-Modus ausgeführt. Wenn Sie nach Likes fragen, wird das autonome Posten nicht aktiviert.",
+        "label": "Wann zu handeln ist",
+        "now": "Sofort"
+      },
+      "resumeSwarm": "Schwarm fortsetzen",
+      "sharedMode": "Gemeinsame Arbeit",
       "cancelSwarm": "Schwarm abbrechen",
       "clearSelection": "Auswahl zurücksetzen",
       "distribution": "Verteilung",

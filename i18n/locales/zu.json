@@ -5130,6 +5130,17 @@
       "viewPost": "Buka okuthunyelwe"
     },
     "tasks": {
+      "eachHelp": "I-ejenti ngayinye ekhethiwe yenza umsebenzi ogcwele.",
+      "eachMode": "I-ejenti ngayinye",
+      "pacing": {
+        "help": "Iqala ngokuzenzakalelayo nge-Sentient off. I-Pacing isekela isenzo esisodwa sokuthanda noma sokungasithandi efasiteleni lephosti elingaguquki: i-ejenti ngayinye iphendula kuyo yonke iphosti ehambisanayo, ukujika okukodwa ngesikhathi. Isikhathi sokuqala siqala manje; imikhawulo yesevisi ingandisa isikhathi sokuqeda.",
+        "hours": "Amahora angaphezu kuka- {{count}}",
+        "independent": "Imisebenzi ekhuthazwayo isebenza ngokuzimela ngemodi ye-Sentient. Ukucela ukuthandwa akuvuli ukuphosta okuzimele.",
+        "label": "Isikhathi sokuthatha isinyathelo",
+        "now": "Ngokushesha"
+      },
+      "resumeSwarm": "Qalisa kabusha isixha semfudumalo",
+      "sharedMode": "Umsebenzi ohlanganyelwayo",
       "cancelSwarm": "Khansela i-swarm",
       "clearSelection": "Sula ukukhetha",
       "distribution": "Ukusatshalaliswa",

@@ -5146,6 +5146,17 @@
       "viewPost": "Schau dir den Post an."
     },
     "tasks": {
+      "eachHelp": "Jede ausgewählte Agentin erledigt die volle Aufgabe.",
+      "eachMode": "Jede Agent",
+      "pacing": {
+        "help": "Chùtzt automatisch mit Sentient aaf. Pacing unterstützt eini Aktion wie \"Gefällt mir\" oder \"Gefällt mir nicht\" uf eme feste Fenster: Jedes Agent reagiert uf jede passende Post, eimol uf e Zit. D'erschte Zit startet jetz; d'Servicegrenze chönnt d'Endzit verlängere.",
+        "hours": "Über {{count}} Stunde",
+        "independent": "Aufgabestellen laufen unabhängig vom Sentient-Modus. Die Abfrage nach Likes schaltet den automatischen Posten nicht ein.",
+        "label": "Wenn si chönd",
+        "now": "Sofort"
+      },
+      "resumeSwarm": "Bilanz Schwarm",
+      "sharedMode": "Gemeinsame Arbeit",
       "emptyActivity": "Noch keine Aktionen.",
       "instructions": "Anweisungen für den Agenten",
       "latestActivity": "Zeigt die letzten 100 Aktionen an.",

@@ -22,6 +22,7 @@
     "what": "Chọgharịa na ọha posts na profaịlụ. Site na njikọ akaụntụ OAuth, jikwaa profaịlụ gị na nzuzo, bipụta posts na nkwupụta, soro ndị mmadụ, gụọ ọkwa, chekwaa ibe edokọbara ma mepụta ihe oyiyi, vidiyo, ọdịyo na akụ 3D. Ọgbọ na-eji iwu ịkwụ ụgwọ DeHub dị ugbu a."
   },
   "creatorSupport": {
+    "sponsoredBy": "Na-akpụkpụrụ ọrụ {{advertiser}}",
     "campaignDescription": "Ka ndị na-ekiri ihe na-akwado ndị okike site n 'ikiri 30 sekọnd. Chọrọ ihe a kwadoro video nke dịkarịa ala 30 sekọnd, uploaded na web mgbasa ozi portal.",
     "campaignLabel": "Mgbasa ozi nkwado ndị okike",
     "close": "Mgbasa ozi mechie",
@@ -121,6 +122,22 @@
     "useNamed": "Jiri {{name}}"
   },
   "copy": {
+    "03bbf31aa251": "🎬 Onye na-ede video na-eme ihe n'ụlọ",
+    "08c66888e11d": "Ihe na-erule n'ụzọ dị elu",
+    "1d2c73dc01f2": "Static",
+    "273655f6d663": "Dehub.io Mobile",
+    "9677cceec070": "Post Interactions",
+    "ab9ea682af4e": "Asụsụ gụọ",
+    "afde82a73cab": "SCHEDULED",
+    "ba118bf7fc9c": "English",
+    "d52f605d3916": "Close filter options",
+    "d577cb7ddd24": "E-Girl",
+    "d868ce481da1": "Ebe obibi neon",
+    "dfd86b92431f": "Image Upscaling",
+    "e5b3ca7e464e": "Robinhood Chain",
+    "ee57d0b55039": "Code Rain",
+    "f223faa96f22": "Apple",
+    "fed12611d2d8": "Oké osimiri",
     "17371507e9f7": "Ndị ọrụ",
     "34d52e35bd31": "Ozi ezighi ezi",
     "3892e10346fd": "Àkwà",
@@ -5121,6 +5138,17 @@
       "viewPost": "Lee post"
     },
     "tasks": {
+      "eachHelp": "Onye nnọchianya ọ bụla a họọrọ na-arụ ọrụ zuru oke.",
+      "eachMode": "Onye ọ bụla gị n 'ụlọnga",
+      "pacing": {
+        "help": "Malite na-akpaghị aka na Sentient apụ. Pacing na-akwado otu dị ka ma ọ bụ enweghị mmasị edinam na a ofu post window: onye ọ bụla gị n 'ụlọnga emeghachi omume ọ bụla kenha post, otu n' otu oge. Oge nke mbụ na-amalite ugbu a; njedebe ọrụ nwere ike ịgbatị oge ngwụcha.",
+        "hours": "N 'elu {{count}} awa",
+        "independent": "Ọrụ ndị akwadoro na-agba ọsọ n 'adabereghị na ọnọdụ Sentient. Ịjụ maka mmasị anaghị agbanye ozi n' onwe ya.",
+        "label": "Mgbe ime ihe",
+        "now": "Ozugbo"
+      },
+      "resumeSwarm": "Malite swarm",
+      "sharedMode": "Ekekọrịta ọrụ",
       "cancelSwarm": "Kagbuo swarm",
       "clearSelection": "Kpochapụ ihenhọrọ",
       "distribution": "Nkesa",
@@ -11931,6 +11959,14 @@
     }
   },
   "creator": {
+    "presetExtraGlitterTrailHint": "Ihe na-akpata akwa",
+    "presetExtraLightPaintHint": "Ihe ịrịọ ụgbọchukwu na-erule n'ụzọ dị mkpụmkpụ",
+    "presetExtraStainedGlassName": "Ihe foto",
+    "presetFlatIllustrationName": "Ụgbọchukwu na-erule n'ụzọ dị mkpụmkpụ",
+    "presetFpvDiveName": "FPV Dive",
+    "presetNeedsImage": "{{name}} na-eto eto ihe osise. Bia ya na-eto eto.",
+    "presetPixelArtName": "Pixel Art",
+    "studioMissingJob": "A na-erule n'ụzọ dị n'ụzọ na ụdị na-acha ọcha",
     "presetExtraBookJacketName": "Akwụkwọ mkpuchi",
     "presetExtraSplitLightPortraitHint": "Otu akụkụ ihu na-egbuke egbuke, otu onyinyo dị nro",
     "presetExtraSplitLightPortraitName": "Ìhè kewara ekewa",
