@@ -52,6 +52,7 @@
     "title": "የእርስዎ ትዕይንት የተለየ እርስዎ."
   },
   "maintenance": {
+    "title": "ትንሽ ስራ።\nየተሻለ DeHub።",
     "brand": "DeHub",
     "checkFailed": "ተገኝነትን ማረጋገጥ አልቻልንም ። እባክዎ እንደገና ይሞክሩ ።",
     "checking": "በመፈተሽ ላይ...",
@@ -128,6 +129,9 @@
     "useNamed": "ይጠቀሙ {{name}}"
   },
   "copy": {
+    "1205929886b3": "👑 DeHub ኤክስትራ",
+    "6da707c478f8": "日本語 (ጃፓንኛ)",
+    "fb673c9c986e": "🧑‍💻 የDeHub ሽልማት ስራዎች",
     "1226cd46b31a": "PPV ",
     "2f51108189d2": "PPV: ",
     "5b560f273940": "🛰️ DePIN",
@@ -5144,6 +5148,9 @@
       "viewPost": "ልጥፍ ይመልከቱ"
     },
     "tasks": {
+      "examples": "በቀን አንድ ጊዜ ይለጥፉ ስለ፦ ኢንዲ ሙዚቃ\nዘይቤ፦ ጉጉት ያለው፣ አጭር እና ውይይታዊ\nበቀን እስከ 2 የቅርብ ጊዜ ልጥፎችን ይውደዱ ስለ፦ ሙዚቃ፣ የቀጥታ ትርኢቶች፣ ቪኒል",
+      "meta": "@{{agent}} · {{status}} · የተሰሩ፦ {{total}}",
+      "title": "ለኤጀንት ተግባር ይስጡ",
       "eachHelp": "እያንዳንዱ የተመረጠ ወኪል ሙሉውን ሥራ ያከናውናል ።",
       "eachMode": "እያንዳንዱ ወኪል",
       "pacing": {
@@ -6285,6 +6292,7 @@
       "unavailable": "ይህ ልኡክ ጽሁፍ አይገኝም ።"
     },
     "followerInvites": {
+      "selectAll": "ይህን ገጽ ይምረጡ",
       "clear": "አጽዳ",
       "detail": "በአንድ ባች እስከ 50 ተከታዮችን ይምረጡ ። የተከፈለ ወይም የተዘጉ ዲኤምዎች ተዘግተዋል ። እንደገና ከመሞከርዎ በፊት ያልተረጋገጡ ላኪዎች ውይይቱን ያረጋግጡ ።",
       "empty": "አይተማሪዎት ነዎት እየ አይነት ነዎት",
@@ -8027,6 +8035,9 @@
   },
   "stats": {
     "money": {
+      "title": "ገቢ እና ወጪዎች",
+      "tooltipPerDay": "በቀን {{revenue}} / {{costs}}",
+      "unavailable": "{{sources}} ማግኘት ስላልተቻለ ከመገመት ይልቅ ከላይ ካሉት ድምሮች ሁሉ ውጭ ተደርገዋል።",
       "chartDaily": "ገቢዎች እና ወጪዎች በቀን",
       "chartMonthly": "ገቢ እና ወጪዎች በቀን, ወርሃዊ አማካይ",
       "conversionTerm": "የተሰጠው ምንጭን ይስጥልን።",
@@ -9425,6 +9436,7 @@
     "discordOptional": "Discord (አማራጭ)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@ስምዎ, tiktok.com/@ስምዎ, vimeo.com/ስምዎ…",
     "clearAll": "ሁሉንም ያጥፉ",
     "costsIntro": "እያንዳንዱ ቪዲዮ ከዚህ በፊት ካለው የበለጠ ርካሽ ነው — ባች ሲያድግ ተመን ይወርዳል ፣ ስለሆነም ከዚህ በታች ያለው ዋጋ ብዙ ቪዲዮዎች ወደ አጠቃላይ የሚመጣው ነው ።",
     "costsIntroShort": "እያንዳንዱ ቪዲዮ ከእሱ በፊት ካለው የበለጠ ርካሽ ነው — ባች ሲያድግ ተመን ይወርዳል ። ከመክፈልዎ በፊት ትክክለኛው ዋጋ ይታያል ።",
@@ -10285,6 +10297,8 @@
       "useFormat": "ይጠቀሙ {{aspect}} የቪዲዮ ቅርጸት"
     },
     "highlights": {
+      "chatFound": "{{count}} አፍታዎች ተገኝተዋል። ቅድመ እይታቸውን ይመልከቱ፣ ምርጫውን ያስተካክሉ፣ ከዚያ የተለየ አርትዖት ይፍጠሩ።",
+      "projectTitle": "{{title}} — ዋና ዋና ክፍሎች",
       "captionHint": "በአሁኑ ጊዜ የሚሸፈነው ንግግር ብቻ ነው የሚወሰነው ።",
       "changed": "የመነሻ ፕሮጀክት ተቀይሯል ። እንደገና ድምቀቶችን ያግኙ ።",
       "chatCaptionsMissing": "ይህ ቪዲዮ የአሁኑ ካፒታሎች የለውም. እሱን ለመተርጎም 'የአሁኑን ካፕቶች ሳይጠቀሙ' እንደገና ይጠይቁ ።",
@@ -11991,6 +12005,9 @@
     }
   },
   "creator": {
+    "presetGroupAbstract": "ረቂቅ",
+    "presetOpenCanyonTimelapseName": "የሸለቆ ፈጣን ጊዜ ቀረጻ",
+    "presetThumbnailPunchName": "ጎልቶ የሚታይ ድንክዬ",
     "presetOpenRecordingStudioName": "የምዝገባ ስቱዲዮ",
     "editInTimeline": "በጊዜ መስመር ላይ ያርትዑ",
     "presetExtraArchitectureLightChangeHint": "ለስላሳ ደመናዎች በቀረበ ትዕይንት ላይ የብርሃን ለውጥ ሲያመጡ",

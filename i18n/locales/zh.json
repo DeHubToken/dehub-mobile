@@ -1,5 +1,13 @@
 {
   "copy": {
+    "0090dc269d25": "Italiano (意大利语)",
+    "10d878fbdf00": "العربية (阿拉伯语)",
+    "1205929886b3": "👑 DeHub Extra 会员",
+    "30f959f34501": "한국어 (韩语)",
+    "733df2f6bfd8": "摩尔纹",
+    "748d190d59af": "📱 苹果应用商店",
+    "94a6a84d8cbc": "Solscan",
+    "ca01201adaea": "🍎 苹果发布会",
     "00c90f4b707a": "SRT / VTT",
     "1a00975a0ac1": "@channel",
     "2f51108189d2": "PPV: ",
@@ -4999,6 +5007,7 @@
       }
     },
     "tasks": {
+      "examples": "每天发帖一次，主题：独立音乐\n风格：好奇、简洁、像聊天一样\n每天最多点赞 2 条近期帖子，主题：音乐、现场演出、黑胶唱片",
       "eachHelp": "每个选定的代理执行全部任务。",
       "eachMode": "每位客服代表",
       "pacing": {
@@ -13703,6 +13712,7 @@
     "checkoutUnavailable": "目前无法退房。 请稍后重试。"
   },
   "pricing": {
+    "groupSeedance20": "Seedance 2.0",
     "perSeatMonthly": "每席位每月",
     "plansForEveryWorkflow": "适配每种工作流的方案",
     "findTheRightFit": "从个人到企业团队，都能找到合适的方案",
@@ -14399,6 +14409,7 @@
     "failed": "无法更新Twitch镜像。请重试。"
   },
   "maintenance": {
+    "title": "小小维护。\n更好的 DeHub。",
     "brand": "德赫布",
     "mode": "维护模式",
     "description": "我们正在进行维护，稍后再回来。",

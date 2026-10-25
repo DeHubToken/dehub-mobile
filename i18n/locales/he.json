@@ -52,6 +52,8 @@
     "title": "הסצנה שלך. אתה בדמות אחרת."
   },
   "maintenance": {
+    "checking": "בודק...",
+    "title": "קצת עבודה.\nDeHub טוב יותר.",
     "brand": "DeHub",
     "checkFailed": "לא הצלחנו לבדוק את הזמינות. צריך לנסות שוב.",
     "community": "הקהילה קודמת לכל. תמיד.",
@@ -127,6 +129,14 @@
     "useNamed": "שימוש ב -{{name}}"
   },
   "copy": {
+    "0d59864b14b3": " kbps",
+    "1205929886b3": "👑 DeHub אקסטרה",
+    "4e857158a7e8": "אופ-ארט",
+    "6da707c478f8": "日本語 (יפנית)",
+    "8d771bfa99a9": "BNB Testnet",
+    "ca01201adaea": "🍎 בסגנון Apple Keynote",
+    "ea81bf0fd464": "Русский (רוסית)",
+    "fb673c9c986e": "🧑‍💻 משימות תגמול של DeHub",
     "00c90f4b707a": "SRT / VTT",
     "1226cd46b31a": "PPV ",
     "1a00975a0ac1": "@channel",
@@ -5138,6 +5148,7 @@
       "viewPost": "הצגת הפוסט"
     },
     "tasks": {
+      "examples": "לפרסם פעם ביום על: מוזיקה עצמאית\nסגנון: סקרן, תמציתי ושיחתי\nלעשות לייק לעד 2 פוסטים אחרונים ביום על: מוזיקה, הופעות חיות, ויניל",
       "eachHelp": "כל סוכן שנבחר מבצע את המשימה המלאה.",
       "eachMode": "כל נציג",
       "pacing": {
@@ -11969,6 +11980,7 @@
     }
   },
   "creator": {
+    "presetExtraScreenprintPosterHint": "צורות נועזות ושלושה צבעי דיו שטוחים",
     "presetExtraMossMicroWorldName": "עולם פטריות",
     "editInTimeline": "עריכה בזמן",
     "presetClay3dName": "חומר טון",

@@ -52,6 +52,7 @@
     "title": "Scene anda. Dari versi anda yang berbeda."
   },
   "maintenance": {
+    "title": "Sedikit kerja.\nDeHub yang lebih baik.",
     "brand": "DeHub",
     "checkFailed": "Kami tidak dapat menyemak ketersediaan. Sila cuba lagi.",
     "checking": "Sedang menyemak...",
@@ -128,6 +129,8 @@
     "useNamed": "Gunakan {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Jepun)",
+    "ea81bf0fd464": "Русский (Rusia)",
     "0039cdece89a": "💎 Menyimpan Token (Asas)",
     "0090dc269d25": "Bahasa Itali (Itali)",
     "00c90f4b707a": "SRT / VTT",
@@ -5401,6 +5404,7 @@
       "viewPost": "Lihat hantaran"
     },
     "tasks": {
+      "examples": "Siarkan sekali sehari tentang: muzik indie\nGaya: ingin tahu, ringkas dan santai\nSukai sehingga 2 siaran terkini sehari tentang: muzik, persembahan langsung, piring hitam",
       "eachHelp": "Setiap ejen yang dipilih melaksanakan tugas penuh.",
       "eachMode": "Setiap ejen",
       "pacing": {
@@ -6020,6 +6024,7 @@
     "searchDehubFor": "Cari \"{{query}}\" di DeHub"
   },
   "comments": {
+    "kidsOnlyThread": "Siaran ini untuk kanak-kanak. Hanya Mod Kanak-kanak boleh mengulas.",
     "reportComment": "Laporkan komen",
     "reportCommentTitle": "Laporkan komen ini",
     "reportCommentDescription": "Beritahu kami apa yang tidak kena dengan komen ini dan moderator kami akan menyemaknya.",
@@ -8675,6 +8680,8 @@
     "fixSubmit": "Cadangkan pembaikan"
   },
   "upload": {
+    "madeForKidsOffDesc": "Menunjukkan siaran ini kepada kanak-kanak yang menggunakan Mod Kanak-kanak dan mengeluarkannya daripada suapan biasa.",
+    "madeForKidsOnDesc": "Ditunjukkan kepada kanak-kanak dalam Mod Kanak-kanak dan tiada dalam suapan biasa. Hanya Mod Kanak-kanak boleh mengulas.",
     "solanaUnavailable": "Dompet Solana tidak tersedia — peranti ini tidak menyimpan kunci dompet anda. Log masuk semula untuk memulihkannya.",
     "solanaTempUnavailable": "Penyiaran di Solana tidak tersedia buat sementara. Cuba Base atau BNB.",
     "enterTextFirst": "Masukkan teks dahulu",

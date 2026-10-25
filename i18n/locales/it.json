@@ -52,6 +52,7 @@
     "title": "Il tuo scenario. Un diverso te stesso."
   },
   "maintenance": {
+    "title": "Un po' di lavoro.\nUn DeHub migliore.",
     "brand": "DeHub",
     "checkFailed": "Non siamo riusciti a verificare la disponibilità. Riprova.",
     "checking": "Controllo in corso...",
@@ -128,6 +129,8 @@
     "useNamed": "Usa {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Giapponese)",
+    "ea81bf0fd464": "Русский (Russo)",
     "468415f0e112": "Ag",
     "0039cdece89a": "💎 Staking di Token (Base)",
     "0090dc269d25": "Italiano (Italian)",
@@ -5145,6 +5148,7 @@
       "viewPost": "Visualizza post"
     },
     "tasks": {
+      "examples": "Pubblica un post al giorno su: musica indipendente\nStile: curioso, conciso e colloquiale\nMetti mi piace a massimo 2 post recenti al giorno su: musica, concerti, vinili",
       "eachHelp": "Ogni agente selezionato esegue l'attività completa.",
       "eachMode": "Ogni agente",
       "pacing": {
@@ -12059,6 +12063,7 @@
     }
   },
   "creator": {
+    "presetCrashZoomName": "Zoom improvviso",
     "editInTimeline": "Modifica in timeline",
     "presetExtraArchitectureLightChangeHint": "Nubi morbide cambio di luce su una scena di riferimento",
     "presetExtraArchitectureLightChangeName": "Architettura cambio di luce",

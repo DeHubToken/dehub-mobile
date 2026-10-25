@@ -52,6 +52,7 @@
     "title": "你的场景。一个不同的你。"
   },
   "maintenance": {
+    "title": "做点儿营生。\n更好的 DeHub。",
     "retry": "再试一下",
     "brand": "德赫布",
     "checkFailed": "我们无法检查可用性。请再试一次。",
@@ -128,6 +129,10 @@
     "use": "使用此模板"
   },
   "copy": {
+    "10d878fbdf00": "العربية (阿拉伯话)",
+    "30f959f34501": "한국어 (韩国话)",
+    "748d190d59af": "📱 苹果 App Store",
+    "94a6a84d8cbc": "Solscan",
     "1a00975a0ac1": "@channel",
     "2f51108189d2": "PPV: ",
     "713d24d02e26": "XXXX-XXXX",
@@ -5143,6 +5148,7 @@
       "viewPost": "查看帖子"
     },
     "tasks": {
+      "examples": "一天发一回帖子，说的是：独立音乐\n风格：好奇、简短、像拉话一样\n一天最多给 2 条最近的帖子点赞，说的是：音乐、现场演出、黑胶唱片",
       "eachHelp": "每个被选中的代理都完成了整个任务。",
       "eachMode": "每个代理",
       "pacing": {
@@ -13837,6 +13843,7 @@
     "checkoutUnavailable": "结账目前不可用。请稍后重试。"
   },
   "pricing": {
+    "groupSeedance20": "Seedance 2.0",
     "perSeatMonthly": "每席位/月",
     "plansForEveryWorkflow": "适合各种工作流程的套餐",
     "findTheRightFit": "从个人到企业团队，找到最适合您的选择",

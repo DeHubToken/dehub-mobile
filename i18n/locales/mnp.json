@@ -52,6 +52,7 @@
     "title": "你的場景。一個不一樣的你。"
   },
   "maintenance": {
+    "title": "小小维护一下。\n让 DeHub 更好。",
     "brand": "德赫布",
     "community": "始终以社区为先。",
     "mode": "维护模式",
@@ -128,6 +129,9 @@
     "title": "找你下一个爆红的时刻。"
   },
   "copy": {
+    "10d878fbdf00": "العربية (阿拉伯语)",
+    "733df2f6bfd8": "摩尔纹",
+    "94a6a84d8cbc": "Solscan",
     "1a00975a0ac1": "@channel",
     "2f51108189d2": "PPV: ",
     "713d24d02e26": "XXXX-XXXX",
@@ -5144,9 +5148,12 @@
       "viewPost": "查看發文"
     },
     "tasks": {
+      "examples": "每日发一条帖，主题：独立音乐\n风格：好奇、简洁、口语化\n每日最多赞 2 条近期帖子，主题：音乐、现场演出、黑胶",
+      "resumeSwarm": "恢复群组",
       "eachHelp": "每个选定的代理都完成了整个任务。",
       "eachMode": "每個代理",
       "pacing": {
+        "label": "几时行动",
         "help": "自動啟動。感知模式。每個固定窗口支持一次喜歡或不喜歡的動作：每個代理機器人都會對匹配的帖子進行反應，一個轉換一個轉換。第一個轉換開始了；服務限制可以延長結束時間。",
         "hours": "超過{{count}}小時",
         "independent": "独立任务与感知模式无关。要求点赞不会激活自动发布。",
@@ -13836,6 +13843,7 @@
     "checkoutUnavailable": "结账目前不可用。请稍后重试。"
   },
   "pricing": {
+    "groupSeedance20": "Seedance 2.0",
     "sso": "單一登入",
     "perSeatMonthly": "每席位/月",
     "plansForEveryWorkflow": "适合各种工作流程的套餐",

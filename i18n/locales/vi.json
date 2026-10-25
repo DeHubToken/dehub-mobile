@@ -52,6 +52,7 @@
     "title": "Scene của bạn. Một phiên bản khác của bạn."
   },
   "maintenance": {
+    "title": "Một chút bảo trì.\nMột DeHub tốt hơn.",
     "brand": "DeHub",
     "checkFailed": "Chúng tôi không thể kiểm tra tình trạng còn phòng. Vui lòng thử lại.",
     "checking": "Đang kiểm tra...",
@@ -128,6 +129,8 @@
     "useNamed": "Sử dụng {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Tiếng Nhật)",
+    "ea81bf0fd464": "Русский (Tiếng Nga)",
     "468415f0e112": "Ag",
     "b62c681738d1": "Cu",
     "8939aea8419b": "Đặt cược",
@@ -2943,6 +2946,7 @@
     "postCount_other": "{{count}} bài đăng"
   },
   "settings": {
+    "importPartial": "Không thể theo dõi {{count}} tài khoản — hãy chạy lại quá trình nhập để thử lại.",
     "glass": "Thủy tinh",
     "shortsEnabled": "Quần short",
     "shortsEnabledDesc": "Hiển thị tab nguồn cấp dữ liệu Quần short và băng chuyền Quần short trên Trang chủ.",
@@ -5155,6 +5159,7 @@
       "viewPost": "Xem bài đăng"
     },
     "tasks": {
+      "examples": "Đăng mỗi ngày một lần về: nhạc độc lập\nPhong cách: tò mò, ngắn gọn và gần gũi như trò chuyện\nThích tối đa 2 bài đăng gần đây mỗi ngày về: âm nhạc, buổi diễn trực tiếp, đĩa than",
       "eachHelp": "Mỗi đại lý được chọn thực hiện toàn bộ nhiệm vụ.",
       "eachMode": "Mỗi nhân viên chăm sóc khách",
       "pacing": {
@@ -9450,6 +9455,7 @@
     "discordOptional": "Discord (tùy chọn)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@ban, tiktok.com/@ban, vimeo.com/ban…",
     "clearAll": "Xóa tất cả",
     "costsIntro": "Mỗi video rẻ hơn video trước đó — tỷ giá giảm khi lô hàng tăng, vì vậy giá dưới đây là tổng chi phí cho số lượng đó.",
     "costsIntroShort": "Mỗi video rẻ hơn video trước đó — tỷ giá giảm khi lô hàng tăng. Giá chính xác được hiển thị trước khi bạn thanh toán.",

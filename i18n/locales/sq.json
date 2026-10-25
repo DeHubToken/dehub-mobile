@@ -52,6 +52,7 @@
     "title": "Scena jote. Një ti tjetër."
   },
   "maintenance": {
+    "title": "Pak punë.\nNjë DeHub më i mirë.",
     "brand": "DeHub",
     "checkFailed": "Nuk mundëm të kontrolluem disponueshmërinë. Pritni të provoni përsëri.",
     "checking": "Po kontrollojmë...",
@@ -128,6 +129,11 @@
     "useNamed": "Përdor {{name}}"
   },
   "copy": {
+    "30f959f34501": "한국어 (koreanisht)",
+    "51f926834f07": "Përmbajtje e dukshme për të gjithë. Çdokush mund t'i shohë, t'i pëlqejë dhe t'i komentojë postimet publike.",
+    "6da707c478f8": "日本語 (japonisht)",
+    "ea81bf0fd464": "Русский (rusisht)",
+    "f082eb679e6b": "Paguaj {{value1}} {{value2}}",
     "b62c681738d1": "Cu",
     "0039cdece89a": "💎 Stikimi i Tokeneve (Base)",
     "0090dc269d25": "Italiano (italisht)",
@@ -5142,6 +5148,7 @@
       "viewPost": "Shfaq postimin"
     },
     "tasks": {
+      "examples": "Posto një herë në ditë për: muzikë të pavarur\nStili: kureshtar, konciz dhe bisedor\nPëlqe deri në 2 postime të fundit në ditë për: muzikë, shfaqje të drejtpërdrejta, vinil",
       "eachHelp": "Secili agjent i përzgjedhur kryen detyrën e plotë.",
       "eachMode": "Secili agjent",
       "pacing": {
@@ -8248,6 +8255,7 @@
     "createdNotAdded": "Dosja u krijua, por postimi nuk u shtua"
   },
   "ppv": {
+    "notEnoughToken": "Të duhen {{amount}} {{symbol}} për ta zhbllokuar këtë. Ke {{held}}.",
     "switchTo": "Ky postim paguhet në {{chain}}. Kalo te {{chain}} te Cilësimet, pastaj provo përsëri.",
     "title": "Përmbajtje me pagesë për shikim",
     "unlockPrice": "Çmimi i shkyçjes",
@@ -10189,6 +10197,8 @@
     },
     "videoTemplates": {
       "copy": {
+        "answerHint": "Shpjegoje me një fjali të qartë.",
+        "saveHint": "Jepu shikuesve një arsye ta ruajnë këtë.",
         "after": "Pas",
         "afterHint": "Shfaq rezultatin.",
         "announcement": "Njoftimi yt i madh",

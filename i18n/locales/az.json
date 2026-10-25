@@ -37,6 +37,7 @@
     "watch": "Bu yaradıcıya dəstək olmaq üçün reklama baxın"
   },
   "maboroshiShowcase": {
+    "crochet": "Kroşe yoldaş",
     "anime": "Anime qəhrəmanı.",
     "browse": "180 görünüşün hamısını araşdırın",
     "choose": "{{name}} cəhd edin",
@@ -51,6 +52,7 @@
     "title": "Səhnəniz. Fərqli sizsiniz."
   },
   "maintenance": {
+    "title": "Bir az iş.\nDaha yaxşı DeHub.",
     "brand": "DeHub",
     "checkFailed": "Mövcudluğu yoxlaya bilmədik. Yenidən cəhd edin.",
     "checking": "Yoxlanılır...",
@@ -127,6 +129,12 @@
     "useNamed": "{{name}} istifadə edin"
   },
   "copy": {
+    "4df4ce91fa85": "中文 (Çin dili)",
+    "50e7258dccec": "@{{value1}} paylaşır",
+    "6da707c478f8": "日本語 (Yapon dili)",
+    "a17c49cfedad": "Paylaşım #{{value1}}",
+    "ea81bf0fd464": "Русский (Rus dili)",
+    "f082eb679e6b": "{{value1}} {{value2}} ödə",
     "98f96a4d8578": "Cəld və bərabər",
     "0039cdece89a": "💎 Token Steykinqi (Əsas)",
     "0090dc269d25": "İtalyan dili (İtalyan dili)",
@@ -5140,6 +5148,8 @@
       "viewPost": "Posta bax"
     },
     "tasks": {
+      "examples": "Gündə bir dəfə paylaş, mövzu: müstəqil musiqi\nÜslub: maraqlanan, yığcam və səmimi söhbət tərzində\nGündə 2-yə qədər son paylaşımı bəyən, mövzu: musiqi, canlı şoular, vinil",
+      "queued": "Tapşırıq növbəyə alındı",
       "eachHelp": "Hər bir seçilən agent tam vəzifəni yerinə yetirir.",
       "eachMode": "Hər bir agent",
       "pacing": {
@@ -8042,6 +8052,8 @@
       "unavailable": "{{sources}} ilə əlaqə saxlamaq mümkün olmadı, buna görə də onlar təxmin edilmək əvəzinə yuxarıdakı hər bir yekun rəqəmdən kənarda saxlanılıb."
     },
     "taxSplit": {
+      "open": "Bütün {{part}} sətirlərinə bax",
+      "teamDetail": "{{gross}} daxil oldu; bunun {{passed}} qədəri sahiblərə ötürüldü",
       "burned": "Arxaya çəkilib yandı",
       "burnedDetail": "{{tokens}}DeHub {{n}}buybacks-da yandı",
       "footnote": "Yalnız saxlanılmış əməliyyat vəsaitləri yuxarıda göstərilən gəlir sayılır. Alış və paylaşılan mükafatlar ayrıca qeyd olunur. Hər bir məbləğ və orijinal valyuta karnizdə yoxlanıla bilər.",
@@ -14069,6 +14081,7 @@
     "notNow": "İndi yox"
   },
   "liveOverlay": {
+    "subscribedTo": "{{name}} {{plan}} abunəliyinə qoşuldu",
     "wheelLanded": "{{name}}spun: {{result}}",
     "someone": "Kimsə",
     "newFollower": "Yeni izləyici: {{name}}",

@@ -1,5 +1,9 @@
 {
   "copy": {
+    "6da707c478f8": "日本語 (japonês)",
+    "d9bac180ccc1": "Chartopia",
+    "ea81bf0fd464": "Русский (russo)",
+    "f5057642d43e": "Desbloqueio biométrico ({{value1}})",
     "468415f0e112": "Ag",
     "b62c681738d1": "Cu",
     "762add13d2dd": "Mais Opções (⋯)",
@@ -5003,6 +5007,7 @@
       }
     },
     "tasks": {
+      "examples": "Publicar uma vez por dia sobre: música independente\nEstilo: curioso, conciso e descontraído\nCurtir até 2 publicações recentes por dia sobre: música, shows ao vivo, vinil",
       "eachHelp": "Cada agente selecionado executa a tarefa completa.",
       "eachMode": "Cada agente",
       "pacing": {
@@ -14404,6 +14409,7 @@
     "failed": "Não foi possível atualizar o espelhamento do Twitch. Tente novamente."
   },
   "maintenance": {
+    "title": "Um pouco de trabalho.\nUm DeHub melhor.",
     "brand": "DeHub",
     "mode": "Modo de manutenção",
     "description": "Estamos a fazer manutenção. Verifique novamente em breve.",

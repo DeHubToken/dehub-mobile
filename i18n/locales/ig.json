@@ -52,6 +52,7 @@
     "title": "Ọnọdụ gị. Ị dị iche."
   },
   "maintenance": {
+    "title": "Obere ọrụ.\nDeHub ka mma.",
     "brand": "DeHub",
     "checkFailed": "Anyị enweghị ike inyocha nnweta. Biko nwaa ọzọ.",
     "checking": "Na-achọpụta...",
@@ -99,6 +100,12 @@
     "waiting": "Njikere maka gị ọzọ Twitch agbasa ozi n 'ikuku"
   },
   "viralTemplates": {
+    "characters": "Ndị agwa",
+    "chooseFirst": "Họrọ mmetụta tupu ịmepụta.",
+    "featured": "Laghachi na ndị a họpụtara",
+    "preview": "Kpọọ nlele {{name}}",
+    "previewUnavailable": "Nlele adịghị",
+    "source": "Vidiyo ihe atụ sitere na",
     "all": "Ha niile",
     "back": "Laghachi na ndebiri",
     "browse": "Chọgharịa niile {{count}} ndebiri",
@@ -122,6 +129,7 @@
     "useNamed": "Jiri {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Asụsụ Japan)",
     "03bbf31aa251": "🎬 Onye na-ede video na-eme ihe n'ụlọ",
     "08c66888e11d": "Ihe na-erule n'ụzọ dị elu",
     "1d2c73dc01f2": "Static",
@@ -4524,6 +4532,8 @@
     "global": "Ụwa niile"
   },
   "features": {
+    "promptHeading": "Gịnị ka anyị ga-ewu ọzọ?",
+    "promptMediaLimit": "Ruo ihe mgbakwunye {{max}}.",
     "promptPageTitle": "Arịrịọ",
     "promptAttach": "Tinye inyogo",
     "promptAttachment": "Mgbakwụnye {{number}}",
@@ -5138,6 +5148,8 @@
       "viewPost": "Lee post"
     },
     "tasks": {
+      "examples": "Biputa otu post kwa ụbọchị gbasara: egwu ndị nọọrọ onwe ha\nỤdị: nwere mmasị ịmata, dị mkpirikpi ma dị ka mkparịta ụka\nMasị ruo post 2 ọhụrụ kwa ụbọchị gbasara: egwu, ihe ngosi egwu ndụ, efere vinyl",
+      "meta": "@{{agent}} · {{status}} · Emezuru: {{total}}",
       "eachHelp": "Onye nnọchianya ọ bụla a họọrọ na-arụ ọrụ zuru oke.",
       "eachMode": "Onye ọ bụla gị n 'ụlọnga",
       "pacing": {
@@ -6370,6 +6382,8 @@
       "slowMode": "Ọnọdụ nwayọ: otu ozi ọ bụla {{interval}}"
     },
     "manage": {
+      "inviteExpiresDays": "na-agwụ n'ime ụbọchị {{n}}",
+      "inviteExpiresHours": "na-agwụ n'ime awa {{n}}",
       "dismissAdminTitle": "Wepụ admin",
       "cancel": "Kagbuo",
       "dismissAdmin": "Wepụ admin",
@@ -8241,6 +8255,7 @@
     "createdNotAdded": "E mepụtara nchekwa, mana agbakwunyeghị post ahụ"
   },
   "ppv": {
+    "notEnoughToken": "Ị chọrọ {{amount}} {{symbol}} iji mepee nke a. Ị nwere {{held}}.",
     "switchTo": "A na-akwụ ụgwọ post a na {{chain}}. Banye na {{chain}} na Ntọala, wee nwaa ọzọ.",
     "title": "Ọdịnaya ịkwụ ụgwọ maka nlele",
     "unlockPrice": "Ọnụahịa imepe",
@@ -9391,6 +9406,7 @@
     "discordOptional": "Discord (nhọrọ)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@gị, tiktok.com/@gị, vimeo.com/gị…",
     "clearAll": "Hichapụ ihe niile",
     "costsIntro": "Vidio ọ bụla dị ọnụ ala karịa nke gara aga — ọnụ ahụ na-ebelata ka ìgwè na-eto, ya mere ọnụ ahụ n'okpuru bụ ihe vidio ọtụtụ ndị ahụ na-ebu n'ụkpụrụ.",
     "costsIntroShort": "Vidio ọ bụla dị ọnụ ala karịa nke gara aga — ọnụ ahụ na-ebelata ka ìgwè na-eto. Ọnụ ahụ ziri ezi egosipụtara tupu ị kwụọ.",
@@ -10252,6 +10268,7 @@
       "useFormat": "Jiri {{aspect}} ụdị vidio"
     },
     "highlights": {
+      "captionHint": "Naanị okwu dị n'ime ederede okwu (captions) dị ugbu a ka a ga-atụle.",
       "chatCaptionsMissing": "Vidio a enweghị okwu ọ bụla ugbu a. Jụọ ọzọ na-ejighị 'iji okwu ndị dị ugbu a' iji dee ya.",
       "chatFound": "Achọtala oge {{count}}. Lelee ha, dozie nhọrọ ahụ, wee mepụta ndezi dị iche.",
       "chatHint": "Na-enyocha ihe ndị pụtara ìhè. Pịnye ihe ị ga-edobe ma ọ bụ wepụ, ma ọ bụ laghachi na ndezi.",

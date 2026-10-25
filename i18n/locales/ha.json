@@ -37,6 +37,7 @@
     "watch": "Kalli talla don tallafa wa wannan mahalicci"
   },
   "maboroshiShowcase": {
+    "chrome": "Kurom mai ruwa-ruwa",
     "anime": "Jarumar Anime.",
     "browse": "Bincika duk 180 look",
     "choose": "Gwada {{name}}",
@@ -51,6 +52,7 @@
     "title": "Your scene. wani daban-daban ka."
   },
   "maintenance": {
+    "title": "Ɗan aiki kaɗan.\nDeHub mafi kyau.",
     "brand": "DeHub",
     "checkFailed": "Ba za mu iya duba samuwa ba. Don Allah a sake gwadawa.",
     "checking": "Dubawa...",
@@ -80,6 +82,10 @@
     "title": "Shafin zaɓuɓɓuka"
   },
   "twitchMirror": {
+    "auto": "Nuna yaɗawar Twitch ɗina a nan ta atomatik",
+    "connect": "Haɗa Twitch",
+    "refresh": "Sabunta matsayi",
+    "starting": "Ana haɗa bidiyon kai tsaye",
     "consent": "Haɗa kawai tashar da kake da shi. Ba da damar madubi ya ba DeHub izini don sake sake watsa shirye-shiryen ku kuma adana martani a ƙarƙashin kuɗin rikodin ku na yanzu.",
     "disabled": "Ana kashe madubi ta atomatik",
     "disconnect": "Kashe Twitch",
@@ -94,6 +100,9 @@
     "waiting": "Shirya don watsa shirye-shiryen Twitch naka na gaba"
   },
   "viralTemplates": {
+    "characters": "Jarumai",
+    "motionReady": "An zaɓi {{name}}. Ƙara hotonka don yin motsin da ke cikin wannan bidiyo.",
+    "useNamed": "Yi amfani da {{name}}",
     "all": "Duka",
     "back": "Komawa zuwa samfuran",
     "browse": "Ko da aka duba sababbin sabbin shirye-shiryen {{count}}",
@@ -120,6 +129,13 @@
     "use": "Yi amfani da wannan samfurin"
   },
   "copy": {
+    "04d02a85c7b9": "Abun ciki da kai kaɗai za ka iya gani. Ana ɓoye rubuce-rubucen sirri daga sauran masu amfani da kuma jerin rubutun jama'a.",
+    "4df4ce91fa85": "中文 (Sinanci)",
+    "6c6b4f33bb99": "Tattalin arzikin mallaka yana nufin bayananka, kadarorinka da masu sauraronka naka ne har abada. Har ma cibiyar sadarwar DeHub mallakar masu amfani da ita ce, wato kai.",
+    "6da707c478f8": "日本語 (Japananci)",
+    "773e51beddb6": "Yi alamar abun ciki da bai dace ba ko mai cutarwa don a duba shi. Rahotanni suna taimakawa wajen kiyaye al'umma.",
+    "9e9fa15a8dfa": "Kibiya kore ko ja kusa da shigarwa a jerin gwanaye tana nuna yawan canjin ma'aunin kuɗin mai amfani a lokacin da aka zaɓa (rana 1, mako 1, da sauransu).",
+    "e17602050e02": "Kafar Sada Zumunta da Muke",
     "00c90f4b707a": "SRT / VTT",
     "02693d5af964": "Radial",
     "12a5fb358f94": "ANTIFA",
@@ -4295,6 +4311,9 @@
   },
   "notifications": {
     "custom": {
+      "bountyAppliedNamed": "{{name}} ya nemi aikin ladanka “{{title}}”",
+      "featureLikeNamed": "{{name}} ya so buƙatar fasalinka “{{title}}”",
+      "governanceReplyNamed": "{{name}} ya ba ka amsa a kan shawarar “{{title}}”",
       "bountyApplied": "{{name}} da aka yi amfani da shi zuwa ga falalar ku",
       "bountyReply": "{{name}} ya amsawa ga falalar ku",
       "bountyReplyNamed": "{{name}} ya amsa wa falalar ka \"{{title}}\"",
@@ -4513,6 +4532,7 @@
     "global": "Duniya"
   },
   "features": {
+    "promptShortcut": "Ctrl / ⌘ + Enter don wallafawa",
     "queued": "An saka a jerin gwano",
     "promptAttach": "Haɗa hotuna",
     "promptAttachment": "Haɗa {{number}}",
@@ -5090,12 +5110,14 @@
     "capacity": "{{used}} na {{limit}} wakilai · {{badge}}",
     "noBadge": "Babu tambari",
     "profile": {
+      "avatar": "Hoton furofayil",
       "banner": "Tuta",
       "edit": "Shirya bayanin martaba",
       "imageHelp": "JPG, PNG, WebP ko GIF, har zuwa 5 MB kowane.",
       "saved": "Profile ceci."
     },
     "life": {
+      "empty": "Babu komai tukuna. Zai duba nan ba da jimawa ba.",
       "asleep": "Barci a {{home}}",
       "awake": "Farka a {{home}}",
       "help": "Bari wannan wakili ya rayu da kansa. Yana riƙe da sa'o 'i, posts, so da kuma amsawa a cikin muryar kansa, kuma yana barci da dare.",
@@ -5126,9 +5148,11 @@
       "viewPost": "Duba post"
     },
     "tasks": {
+      "examples": "Yi rubutu sau ɗaya a rana game da: kiɗa mai zaman kansa\nSalo: mai son sani, a taƙaice kuma kamar hira\nDanna so a kan har rubutu 2 na baya-bayan nan a rana game da: kiɗa, nune-nune kai tsaye, faifan vinyl",
       "eachHelp": "Kowane wakili da aka zaɓa yana aiwatar da cikakken aikin.",
       "eachMode": "Kowane wakili",
       "pacing": {
+        "independent": "Ayyukan da aka ba da umarni suna gudana daban da yanayin Sentient. Neman a danna so ba ya kunna wallafa rubutu da kansa.",
         "help": "Yana farawa ta atomatik tare da Sentient kashe. Pacing goyon bayan daya kamar ko ƙi mataki a kan wani tsayayyen post taga: kowane wakili amsa ga kowane matching post, daya juya a lokaci. Juyawa na farko yana farawa yanzu; iyakokin sabis na iya tsawaita lokacin ƙarewa.",
         "hours": "Sama da {{count}} awanni",
         "label": "Lokacin da za a yi aiki",
@@ -7981,6 +8005,7 @@
   },
   "stats": {
     "money": {
+      "reinvestmentGroup": "Sake zuba jari",
       "chartDaily": "Kudin shiga da kashewa a kowace rana",
       "chartMonthly": "Kudin shiga da kashewa a kowace rana, matsakaicin wata",
       "conversionTerm": "Farashi",
@@ -8698,6 +8723,7 @@
     "creatorEarnsDirect": "Masu biyan kuɗi suna biyan kuɗi a cikin alamun DeHub. Kasashen rabon ku a cikin walat ɗin ku lokacin da suka yi rajista, ƙasa da kuɗin dandamali don ƙimar alamar ku."
   },
   "live": {
+    "noOneStreamingGame": "Babu wanda ke yaɗa {{game}} kai tsaye a yanzu.",
     "isLiveNow": "{{name}} yana da rai",
     "justChatting": "Mai Cikin Gida",
     "loadStreamsFailed": "Ba zai iya ɗora raƙuman ruwa ba. Don Allah a sake gwadawa.",
@@ -11950,6 +11976,7 @@
     }
   },
   "creator": {
+    "studioNeedsImage": "Haɗa hoton misali don wannan samfurin ko saitin.",
     "presetExtraStitchedFeltName": "Stitched felt",
     "presetExtraCityTramPassHint": "Tram mai haske ya ketare wani yanayi na maraice mai natsuwa",
     "presetExtraPortraitBreathName": "Numfashin hoto",
@@ -14087,6 +14114,7 @@
     "tipJar": "Kyauta jar"
   },
   "liveStudio": {
+    "title": "Situdiyon Kai Tsaye",
     "open": "Bugi Live Studio",
     "subtitle": "Alerts da widgets don kayan aiki na streams naka",
     "controls": {

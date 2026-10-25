@@ -52,6 +52,7 @@
     "title": "Tō whakaaturanga. He koe kē atu."
   },
   "maintenance": {
+    "title": "He mahi iti.\nHe DeHub pai ake.",
     "brand": "Ko DeHub",
     "checkFailed": "Kaore e taea e matou te tirotiro i te waatea. Tena koa tamata ano.",
     "checking": "Tirohia...",
@@ -128,6 +129,11 @@
     "useNamed": "Whakamahia {{name}}"
   },
   "copy": {
+    "104272ba3fd3": "✍️ Rangitaki",
+    "41fb2caed82f": "Nā {{value2}} i tuku taurewa tēnei tohu {{value1}}",
+    "6da707c478f8": "日本語 (Reo Hapanihi)",
+    "79cea90fab21": "{{value1}}, {{value2}} kāore anō kia pānuitia",
+    "8912e65bf642": "Tōia kia raupapa anō te whakaahua {{value1}} o {{value2}}",
     "0459220de3f8": "Whakahuahua, taumatamarama-taumatamarama, taumata",
     "002286513398": "Kaore koe i te whakaaetanga ki te whakahaere i nga huihuinga",
     "00b3a926f704": "Kaore i taea te whakakore i te tono",
@@ -3661,6 +3667,7 @@
     "remove": "Tangohia"
   },
   "tip": {
+    "payDirect": "Ka tukuna tika ki a {{name}} i te {{symbol}} i runga i {{chain}}. Kāore he whakawhitinga.",
     "payDirectNoName": "Tukuna tika ki te kaihanga i {{symbol}} {{chain}}. Kaore he huringa.",
     "title": "Tukuna koha",
     "toCreator": "Koha ki a {{name}}",
@@ -4304,6 +4311,9 @@
   },
   "notifications": {
     "custom": {
+      "featureLikeNamed": "I pai a {{name}} ki tō tono āhuatanga “{{title}}”",
+      "featureMentionNamed": "I whakahua a {{name}} i a koe ki “{{title}}”",
+      "governanceVoteNamed": "I pōti a {{name}} ki tō marohi “{{title}}”",
       "bountyApplied": "I tono a {{name}} ki tō utu",
       "bountyAppliedNamed": "I tono a {{name}} ki tō utu “{{title}}”",
       "bountyReply": "I whakautu a {{name}} ki tō utu",
@@ -5138,6 +5148,8 @@
       "viewPost": "Tirohia te pou"
     },
     "tasks": {
+      "examples": "Tukuna he pānui kotahi ia rā mō: te puoro motuhake\nĀhua: pākiki, poto, ā, ā-kōrero\nTohua kia 2 pānui hou ia rā e pai ana koe, mō: te puoro, ngā whakaaturanga ora, ngā kōpae vinyl",
+      "meta": "@{{agent}} · {{status}} · Kua tukatukatia: {{total}}",
       "eachHelp": "Ko ia kaihoko kua tohua e mahi ana i te mahi katoa.",
       "eachMode": "Ko ia kaihoko",
       "pacing": {
@@ -7993,6 +8005,7 @@
   },
   "stats": {
     "money": {
+      "dhbMarket": "I te wā o tēnei pānuitanga, ko te utu o DHB he ${{price}}.",
       "chartDaily": "Nga utu me nga utu i ia ra",
       "chartMonthly": "Te utu me te utu i ia ra, te toharite o ia marama",
       "conversionTerm": "Ngā utu",
@@ -8006,6 +8019,7 @@
       "estimatedOperationsNote": "Ko ngā utu whakahaere e whai ana i tētahi ia ā-marama kua whakatauira, ka eke ki te $100,000 i te marama o Whiringa-ā-rangi 2021, ā, ka heke i muri iho. Kei roto ko ngā pire kua tuhia, me te kore e tatau rua. He whakatau tata tēnei, ehara i te pukapuka nama.",
       "grossBnbSharingNote": "Kei roto i te moni whiwhi ko te BNB i tiritiria ki ngā kaipupuri me ngā kaiwhakauru. I tohatohahia aua utu, kāore i puritia e DeHub.",
       "group": {
+        "infrastructure": "Tūmau Droplet",
         "aiTools": "Nga taputapu AI",
         "buys": "Ngā hoko i roto i te taupānga",
         "compute": "Rorohiko AI",

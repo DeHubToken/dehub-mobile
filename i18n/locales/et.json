@@ -52,6 +52,7 @@
     "title": "Sinu stseen. Teine sa teeb."
   },
   "maintenance": {
+    "title": "Veidi tööd.\nParem DeHub.",
     "brand": "DeHub",
     "checkFailed": "Me ei saanud saadavust kontrollida. Proovi uuesti.",
     "checking": "Kontrollimine...",
@@ -128,6 +129,8 @@
     "useNamed": "Kasuta {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (jaapani)",
+    "ea81bf0fd464": "Русский (vene)",
     "b62c681738d1": "Cu",
     "942087cc2d41": "Kustuta konversatsioon?",
     "0039cdece89a": "💎 Tokeni põhitoetamine",
@@ -5145,6 +5148,7 @@
       "viewPost": "Vaata postitust"
     },
     "tasks": {
+      "examples": "Postita kord päevas teemal: sõltumatu muusika\nStiil: uudishimulik, lühike ja vestluslik\nMärgi meeldivaks kuni 2 hiljutist postitust päevas teemal: muusika, live-kontserdid, vinüül",
       "eachHelp": "Iga valitud agent täidab kogu ülesande.",
       "eachMode": "Iga esindaja",
       "pacing": {
@@ -9402,6 +9406,7 @@
     "discordOptional": "Discord (valikuline)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@sina, tiktok.com/@sina, vimeo.com/sina…",
     "clearAll": "Kustuta kõik",
     "costsIntro": "Iga video on odavam kui eelmine — hind langeb partii suurenedes, seega allpool näidatud hind on selle koguse kogukulud.",
     "costsIntroShort": "Iga video on odavam kui eelmine — hind langeb partii suurenedes. Täpne hind kuvatakse enne maksmist.",
