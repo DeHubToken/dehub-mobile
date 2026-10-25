@@ -90,9 +90,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   const [passkeyError, setPasskeyError] = useState<string | null>(null);
   const [passkeySuggestCreate, setPasskeySuggestCreate] = useState(false);
   const [authStep, setAuthStep] = useState<"main" | "email-code" | "phone-code">("main");
-  const [loginViewportHeight, setLoginViewportHeight] = useState<number>();
-  const [loginFormHeight, setLoginFormHeight] = useState(244);
-  const [loginLegalHeight, setLoginLegalHeight] = useState(36);
   // Email/Phone expand a field mid-stack and autoFocus it; without this the
   // keyboard opens over the field that was just revealed.
   const { scrollViewProps, scrollIntoView } = useScrollFieldIntoView();
@@ -778,16 +775,12 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       >
         <ScrollView
           {...scrollViewProps}
-          onLayout={(event) => {
-            scrollViewProps.onLayout(event);
-            setLoginViewportHeight(event.nativeEvent.layout.height);
-          }}
           contentContainerStyle={{ flexGrow: 1 }}
           className="px-6"
         >
           {authStep === "main" ? (
-            <View style={{ marginBottom: 24 }}>
-              <LoginShortsStack viewportHeight={loginViewportHeight} reservedHeight={loginFormHeight + loginLegalHeight + 80} />
+            <View style={{ flexGrow: 1, flexBasis: 160, minHeight: 160, marginBottom: 24 }}>
+              <LoginShortsStack fill />
             </View>
           ) : null}
 
@@ -798,7 +791,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           {/* Sign-in options: Email, Phone, Google, Apple, and Connect Wallet
               are all live. */}
           {authStep === "main" ? (
-            <View onLayout={(event) => setLoginFormHeight(event.nativeEvent.layout.height)}>
+            <View>
             <SocialLoginIcons
               onGoogle={handleGoogleLogin}
               onApple={handleAppleLogin}
@@ -876,7 +869,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
 
           {/* Terms and Privacy */}
-          <View style={{ marginTop: 24 }} onLayout={(event) => setLoginLegalHeight(event.nativeEvent.layout.height)}>
+          <View style={{ paddingVertical: 24 }}>
             <Text style={[authText.caption, { textAlign: "center" }]}>
               {/* The links travel with the sentence so languages that reorder
                   the terms and the policy still read correctly. */}
@@ -903,10 +896,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             </Text>
           </View>
 
-          {/* Spacer */}
-          <View className="flex-1" />
-
-          <View style={{ height: 24 }} />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
