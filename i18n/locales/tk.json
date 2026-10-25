@@ -21,6 +21,7 @@
     "what": "Halkara postlary we profilleri barlaň. OAuth hasabat baglanyşygy bilen, profilyňyzy we gizlinligiňizi bejermek, postlary we pikirleri çap etmek, adamlary diňlemek, habarlamalary okamak, kitapçalary saklamak we suratlar, video, ses we 3D serişdelerini ýaratmak. Nesiller DeHub-yň häzirki töleg kadalaryny ulanýarlar."
   },
   "creatorSupport": {
+    "revenueDescription": "Reklamalardan we dörediji goldawyndan gelen girdeji, token şerti garaşýar.",
     "campaignDescription": "Görkeşleri görkeşçi tərəfindən 30 saniyə izləməyə kömək et. 30 saniyəlik və ya daha uzun müddətli video ilə təsdiq olunmuş video, web reklam portalına yüklənməlidir.",
     "campaignLabel": "Ýaradyjy goldaw reklamalary",
     "close": "Ady ýap",
@@ -122,6 +123,21 @@
     "useNamed": "{{name}}ullan"
   },
   "copy": {
+    "04d02a85c7b9": "Siz diňe özüňize görünýän içgiler bilen meşgullanýarsyňyz. Özge ýerler başga ulanýanlardan we jemagat iýmitinden gizlenýär.",
+    "084d8c213a85": "Rate {{value1}} of 5",
+    "16840520f59c": "Liberal",
+    "1e5304270961": "Wizual tolkunyň pleýeri bilen ses postu. Döredijiler musika, podkast ýa-da ses ýazgylaryny ýükläp bilerler.",
+    "3c1c1229f7a3": "Mint işlemi",
+    "3cb27ae0fbca": "Suraty köçür",
+    "6ff9754d0ec3": "Baýlyk ({{value1}} × ${{value2}})",
+    "79cea90fab21": "{{value1}}, {{value2}} unread",
+    "80557bda57d2": "Video Postu",
+    "8fe1a08e1a39": "{{value1}}indir",
+    "944ae402da39": "Bu hasap häzir habarlary kabul etmeýär.",
+    "98e7859fecd0": "Surat Postu",
+    "bae8448539c2": "Feminist",
+    "c9a2d61de5a7": "Ulanyjy ady kesgitlendi",
+    "e36c6ed4c9a7": "Ticaret — listler, teklipler, satyşlar — dehub.io web-de, her bir postyň Post Info sahypasynda bolýar. Täze işlemeler bu ýerde Fraksiýalar tabynda görkezilýär.",
     "12b91b0ac5dd": "{{value1}} — reaksiýa bermek ýýn hold edýär",
     "2047fba23d86": "Kapitalist",
     "88cbd2bd6f68": "Posty redaktirlemek, öçürmek ýa-da şikaýat etmek ýaly goşmaça hereketleri açýar.",
@@ -5117,6 +5133,16 @@
       "viewPost": "Posty Gör"
     },
     "tasks": {
+      "eachHelp": "Her bir saýlanan wekili doly işi ýerine ýetirýär.",
+      "eachMode": "Her bir agenta",
+      "pacing": {
+        "help": "Sententli ýok. Pacing ýüksüzlikni dowam edýär. Bir posta bir ýagdaýlyk we ýagdaýsizlik aksiyonyny destegleýär: her bir agent her bir üstünlikli posta ýagdaýlyk we ýagdaýsizlik aksiyonyna reaksiýa berýär, bir döwürden bir. Birinji döwür baslaýar; xidmet limitleri bitiren döwürü uzap bilýär.",
+        "hours": "{{count}}Saatyň üstünde",
+        "independent": "Çykyş işleri Sentent modundan garaşsyz geçirilýär. Likes soramak özbaşdak postlaşmaga öwrülmeýär.",
+        "label": "Biz haçan hereket etmeli",
+        "now": "Dessine"
+      },
+      "sharedMode": "Ortak iş",
       "cancelSwarm": "Swarmy ýatyryň",
       "clearSelection": "Saýlananlary arassala",
       "distribution": "Paýlama",
@@ -6568,7 +6594,7 @@
       "fundPublish": "Öwrenmek we çap etmek",
       "hashPlaceholder": "0x transaction hash",
       "legacyUnfunded": "Bazar ýok bolýan bónus. Ýerinegär işden çykarylan işleri ödényär.",
-      "paymentPending": "Payment is awaiting confirmation. Check its status before sending another transfer.",
+      "paymentPending": "Töleg tassyklamany garaşýar. Başga bir geçiriş ibermezden ozal onuň statusyny barlaň.",
       "published": "Öwrenilen we çap edilen kitaplar",
       "recoverTx": "Göderilgen transaktsiyanı barmaklaýar",
       "releaseConfirm": "Eger siz pul pul puluny ret etseňiz we hiç hili işlemä gatnaşmasaňyz, dowam ediň. Eger bir işlem iberilse, onuň hashyny gaýtaryp, onuň ýerine tassyklanmagyny barlaň.",
@@ -7957,6 +7983,9 @@
   },
   "stats": {
     "money": {
+      "net": "Net",
+      "profitSharedHint": "{{usd}} saklawçylara we stake edijilere tölenildi · {{from}}–{{to}}",
+      "unavailable": "{{sources}} gatnaşyp bolmady, şonuň üçin olar ýokardaky her jemi çykmak ýerine çykaryldy.",
       "chartDaily": "Garawul diňi we Garawul diňi",
       "chartMonthly": "Aýlyk töleginden sagatlyk hasabat kalkulatory",
       "conversionTerm": "Baýlar",
@@ -8001,6 +8030,8 @@
       "tooltipPerDay": "{{revenue}} / {{costs}} günde"
     },
     "taxSplit": {
+      "burnedDetail": "{{tokens}} DeHub {{n}} satyn almalarynda ýakyldy",
+      "teamDetail": "{{gross}} geldi; {{passed}} onuň saklawçylara geçirildi",
       "burned": "Alýp, ýagýp atýldy.",
       "footnote": "Öňki ýaly, diňe bir işleýş fondlary ýokarda agzalan gazanç hökmünde hasaplanýar. Satyn alyş we paýlanan sylaglar aýry- aýry ýazylýar. Her bir sany we asly valytsy kitapçada barlag geçirilýär.",
       "intro": "Tarixi gelir operasiýalar, token alýanlaryň we stakerler üçin baýlyklar. Mükemmeldikler her bir ödeneş ýerinde ýüksäk derecede dolandyrylýan dolara görä gösterilýär. Her bir bölegi açmak üçin ýeriniň ýanyna ýörite ýazgylaryna bakyň.",
@@ -8201,6 +8232,7 @@
     "createdNotAdded": "Bukja döredildi, ýöne paýlaşyk goşulmady"
   },
   "ppv": {
+    "notEnoughToken": "Muny açmak üçin {{amount}} {{symbol}} gerek. Siziň {{held}} bar.",
     "switchTo": "Bu makala {{chain}} adresindeýazylypdyr. Saýlamalarda {{chain}} -e geçiň, soňra ýene synanyň.",
     "title": "Her görkeziş üçin tölegli mazmun",
     "unlockPrice": "Açmak bahasy",
@@ -10141,6 +10173,7 @@
       "restore": "Arka planı qaytarma"
     },
     "videoTemplates": {
+      "format": "Video formaty",
       "copy": {
         "after": "Soňra",
         "afterHint": "Natyjeýaý gösterýňyz.",
@@ -11920,6 +11953,13 @@
     }
   },
   "creator": {
+    "presetExtraTopographicWavesHint": "Qatlama kontur çyzyklary aýlanma formalaryna öwrülýär",
+    "presetFlatIllustrationName": "Tekiz illýustrasiýa",
+    "presetGroupFilm": "Film",
+    "presetNeedsImage": "{{name}} birikdirilen surat gerek. Ilki biler birini birikdiriň.",
+    "presetOpenRecordingStudioHint": "Tungsten işygy bilen izometrik çal kesimi",
+    "presetOpenWatchBlueprintName": "Gözleg smueta",
+    "presetProductShowcaseHint": "Arassalaşdyrylan, polirlenilen önüm hero şutu",
     "presetExtraFabricBreezeName": "Matanyň şemaly",
     "presetExtraNeonPulseName": "Neon urgusy",
     "presetExtraPerfumeMistHint": "Yşyklandyrylan ýekeje sepgi ownuk damjalary görkezýär",
@@ -13546,6 +13586,7 @@
     "statusUnregistered": "Häzirlikçe bellik edilmedi"
   },
   "launchpad": {
+    "searchPlaceholder": "Tiker, at, dörediji gözläň",
     "feeBurn": "Sanawly mukdary ýakmak",
     "ago": "{{age}} ago",
     "amountIn": "{{symbol}}",
@@ -13979,6 +14020,7 @@
     "update": "Häzir täzele"
   },
   "walletBackup": {
+    "noPhrase": "Bu şahsy açar ulanyp saklandy, şonuň üçin DeHub-yň aç-açan sözleri ýok. Şol bir şahsy açary saklaň.",
     "backupDescription": "Saýlama jümlesini ýa-da öz açaryny saklaň, şonda siz pulyňyzy gaýtaryp bilersiňiz.",
     "keyWarning": "Bileň bu anahtar beriňde her kesiňiz sizniň puluňyzny kontrol ede biler. Güvenli yerde saklaýap, asla paylaşmayýn.",
     "phraseLoadFailed": "Siz öz gaýtargylama jümlesini tapyp bilmediňiz. Ony barlamak üçin gaýtalap görüň ýa-da DeHub-y öz esasy guralyňyzda açyň.",

@@ -119,6 +119,40 @@
     "useNamed": "{{name}}"
   },
   "copy": {
+    "1655cc1b5278": "Sosial login diusulkan. Alat iki kanggo nambahaké akun ingkang wis ana saking",
+    "16840520f59c": "Liberal",
+    "1c1f651829b5": "Bayar-Per-View (PPV)",
+    "1e5304270961": "Kiriman audio kanthi pamuter gelombang visual. Para kreator bisa ngunggah musik, podcast, utawa rekaman swara.",
+    "1ed44687a46a": "Tumpukan LED",
+    "23ad0f440f48": "Peringkat Leaderboard",
+    "29e67c672ae2": "Pengenal unik on-chain sing ditugasake nalika kiriman dimint minangka NFT.",
+    "2d9c014a222d": "MAX",
+    "3010b02a4030": "Ruang audio langsung ing mana pangguna bisa ngomong, ngrungokake, lan ngangkat tangan kanggo melu parikraman.",
+    "380d64545671": "Pasar Fraksi",
+    "3c1c1229f7a3": "Transaksi Mint",
+    "407d8f7e8ded": "Dipinjem dening",
+    "494f351679ab": "Toko dianyari!",
+    "50a45e647dbb": "REKAM",
+    "520cf6869b44": "Pengenal unik kanggo transaksi on-chain apa wae. Bukakake kanggo ndeleng rincian transaksi lengkap ing penjelajah blockchain.",
+    "5c3ce8d496e2": "OFFLINE",
+    "831df2f1931a": "kirim",
+    "875af21cd687": "Bunga Matahari",
+    "8d6f0c73fbaf": "RTMP:",
+    "8eb58739cb35": "Rincian Kiriman On-Chain",
+    "94a6a84d8cbc": "Solscan",
+    "adad75f48d49": "Downvote",
+    "afde82a73cab": "DIJADWAL",
+    "b0aa8a6c35b4": "seneng",
+    "b0dd0a526e86": "Tinjauan dikirim!",
+    "b9725da1e57f": "Terjemahan gagal. Coba maneh.",
+    "bc7b4fda29f9": "Upvote",
+    "bfd4303ae4e5": "Kiriman diterjemahake",
+    "c2e1e173fbc9": "Dhaftar digawe!",
+    "cab2644828bc": "kaya",
+    "ec9eff0f3f13": "Saranake fitur anyar lan voting ide komunitas. Panjalukan populer bakal diprioritasake kanggo pangembangan.",
+    "f0199bd77184": "Pangeling-eling disetel — sampeyan bakal diwartani nalika wiwit",
+    "f223faa96f22": "Apel",
+    "f4697afb34f4": "Peringkat pangguna paling dhuwur miturut keseimbangan, tips sing dikirim, tips sing ditampa, pengikut, lan liyane. Dianyari kanthi berkala.",
     "1445799c033a": "Pelajari lebih",
     "18fdd549b2ed": "Anyar",
     "1bac4007880b": "Tetenger",
@@ -5086,6 +5120,17 @@
       "viewPost": "Deleng kiriman"
     },
     "tasks": {
+      "distribution": "Pambagéan",
+      "eachHelp": "Agèn- agèn sing dipilih nggih melakoni tugas pambekting.",
+      "eachMode": "Agèn",
+      "pacing": {
+        "help": "Miyosakenan wis kacanggah. Pacing ngrembaka karo Sentient. Pacing ngandharaken aksi siji utawa durung siji ing njaba jendhèl pos: setiap agent reaksi marang setiap posan sing cocok, siji turn karo turn. Turn pertama wis wiwit; batasan layanan bisa nambahaken waktunyane kanggo pungkasan.",
+        "independent": "Tugas-tugas diprogram berjalan mandiri saking Sentient mode. Nalika nuntut siji kangen, ora ngaktifkeun posting otonom.",
+        "label": "Wonten ing wektu apa?",
+        "now": "Segera"
+      },
+      "resumeSwarm": "Résumé swara",
+      "sharedMode": "Kerja sambung",
       "activity": "Aktivitas anyar",
       "cancelSwarm": "Ngancurin swarm",
       "clearSelection": "Kosongin pilihan",
@@ -7927,6 +7972,10 @@
   },
   "stats": {
     "money": {
+      "chartDaily": "Revenue lan biaya per dina",
+      "chartMonthly": "Revenue lan biaya per dina, rata-rata saben bulan",
+      "coveredHint": "biaya dibayar dening revenue",
+      "dhbMarket": "DHB yaiku ${{price}} ing wacan iki.",
       "profitShared": "Laburan omzet",
       "conversionTerm": "Harga",
       "costs": "Kos-kosan",
@@ -8640,6 +8689,7 @@
     "creatorEarnsDirect": "Pelanggan mbayar nganggo token DeHub. Bagianmu mlebu ing dompetmu nalika dheweke langganan, dikurangi biaya platform kanggo tingkatan lencana."
   },
   "live": {
+    "streamCount_one": "{{count}} stream",
     "seeAllStreams": "Ngeliat semua streaming",
     "isLiveNow": "{{name}} gwelek ing ngisor",
     "justChatting": "Kudu ngajogine",
@@ -10117,6 +10167,10 @@
     },
     "videoTemplates": {
       "copy": {
+        "bestPick": "Nomer siji sampeyan",
+        "myth": "Mitos umum",
+        "nextHint": "Wenehi viewers siji langkah sabanjure sing prasaja.",
+        "questionHint": "Takon siji pitakon sing jelas.",
         "checkResult": "Ndapurnya hasil",
         "tipThree": "Tips ketiga",
         "tryOne": "Coba satu hari ini!",
@@ -10184,6 +10238,10 @@
       "useFormat": "Nggunakake format video {{aspect}}"
     },
     "highlights": {
+      "captionHint": "Mung pidato sing ditutup dening captions saiki sing bakal dianggep.",
+      "created": "Highlight edit disimpen. Proyek asli tetep dipertahanake.",
+      "projectTitle": "{{title}} — Highlights",
+      "undoSelection": "Undo selection",
       "changed": "Sumber proyek udah berubah. Cari highlight lagi.",
       "chatCaptionsMissing": "Kacang iki ora duwé subtittle saiki. Mèlu nanyong tanpa \"menggunakan subtittle saiki\" kanggo nulisake.",
       "chatExit": "Kembali marang editing",
@@ -10294,6 +10352,7 @@
       "visibilityHint": "Kaca sing didhelikake tetep bisa diedit lan kasedhiya kanggo diundhuh."
     },
     "captions": {
+      "reloadText": "Reload caption",
       "previousText": "Sebelumnya",
       "replaceCount": "Ganti di {{total}} caption",
       "saveText": "Simpan caption",
@@ -11883,6 +11942,7 @@
     }
   },
   "creator": {
+    "presetExtraVinylSleeveHint": "Album foto karo album rekaman sebagian dipameraké",
     "presetEarthZoomOutName": "Bumi Zoom Out",
     "presetExtraBusinessCardHint": "Identitas cetak bersih dengen stok yang bertekstur",
     "presetExtraEmbroideredPatchName": "Patch jahitan",
@@ -13949,6 +14009,7 @@
     "update": "Anyari saiki"
   },
   "walletBackup": {
+    "noPhrase": "Wallet iki disimpen nggunakake private key, mula DeHub ora duwe recovery phrase kanggo ditampilake. Backup key iki kanggo mulihake wallet sing padha.",
     "backupDescription": "Simpan kalimat pengamanan atau kunci swasta mu supadane bisa ngembalikeun dompet mu.",
     "keyWarning": "Kanggo ngerti, kanggo ngendriki wallet mo, simpenin di tempat aman lan jangan ngomongin kanggo orang lain.",
     "phraseLoadFailed": "Gak bisa ngeloadin kalimat kunci recovery mu. Coba ulang ngarani, atau buka DeHub di perangkat aslinya.",

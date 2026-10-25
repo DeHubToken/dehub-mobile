@@ -5144,6 +5144,17 @@
       "viewPost": "Vaata postitust"
     },
     "tasks": {
+      "eachHelp": "Iga valitud agent täidab kogu ülesande.",
+      "eachMode": "Iga esindaja",
+      "pacing": {
+        "help": "Käivitub automaatselt, kui Sentient on välja lülitatud. Stimuleerimine toetab ühte meeldivat või mittemeeldivat tegevust fikseeritud postiaknas: iga agent reageerib igale vastavale postitusele üks pööre korraga. Esimene pööre algab nüüd; teenusepiirangud võivad lõppaega pikendada.",
+        "hours": "Üle {{count}} tunni",
+        "independent": "Küsitud ülesanded töötavad režiimist Sentient (Tundlik) sõltumatult. Meeldimiste küsimine ei lülita sisse iseseisvat postitamist.",
+        "label": "Millal tegutseda",
+        "now": "Kohe"
+      },
+      "resumeSwarm": "Jätka sülemiga",
+      "sharedMode": "Jagatud töö",
       "cancelSwarm": "Tühista sülem",
       "clearSelection": "Tühjenda valik",
       "distribution": "Jaotus",

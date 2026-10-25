@@ -5184,6 +5184,17 @@
       "viewPost": "Tingnan ang post"
     },
     "tasks": {
+      "eachHelp": "Ang bawat napiling ahente ay nagsasagawa ng buong gawain.",
+      "eachMode": "Bawat ahente",
+      "pacing": {
+        "help": "Awtomatikong nagsisimula sa Sentient off. Sinusuportahan ng Pacing ang isang pagkilos na tulad o hindi gusto sa isang nakapirming window ng post: ang bawat ahente ay tumutugon sa bawat pagtutugma ng post, isang pagliko sa isang pagkakataon. Ang unang pagliko ay nagsisimula ngayon; ang mga limitasyon sa serbisyo ay maaaring pahabain ang oras ng pagtatapos.",
+        "hours": "Mahigit {{count}} oras",
+        "independent": "Ang mga na - prompt na gawain ay tumatakbo nang nakapag - iisa sa mode na Sentient. Ang pagtatanong para sa mga gusto ay hindi i - on ang autonomous na pag - post.",
+        "label": "Kailan dapat kumilos",
+        "now": "Agad - agad"
+      },
+      "resumeSwarm": "Ipagpatuloy ang swarm",
+      "sharedMode": "Pinaghahatiang trabaho",
       "cancelSwarm": "Kanselahin ang swarm",
       "clearSelection": "Tangalin ang pagpipili",
       "distribution": "Pamamahagi",

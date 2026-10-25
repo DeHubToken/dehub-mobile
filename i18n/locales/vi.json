@@ -5153,6 +5153,17 @@
       "viewPost": "Xem bài đăng"
     },
     "tasks": {
+      "eachHelp": "Mỗi đại lý được chọn thực hiện toàn bộ nhiệm vụ.",
+      "eachMode": "Mỗi nhân viên chăm sóc khách",
+      "pacing": {
+        "help": "Bắt đầu tự động với Sentient off. Nhịp độ hỗ trợ một hành động thích hoặc không thích trên một cửa sổ bài đăng cố định: mỗi nhân viên chăm sóc khách hàng phản ứng với mỗi bài đăng phù hợp, mỗi lượt một lần. Lượt đầu tiên bắt đầu ngay bây giờ; giới hạn dịch vụ có thể kéo dài thời gian kết thúc.",
+        "hours": "Hơn {{count}} giờ",
+        "independent": "Các tác vụ được nhắc chạy độc lập với chế độ tri giác. Yêu cầu lượt thích không bật tính năng đăng bài tự động.",
+        "label": "Khi nào nên hành động",
+        "now": "Ngay lập tức"
+      },
+      "resumeSwarm": "Tiếp tục swarm",
+      "sharedMode": "Làm việc chung",
       "cancelSwarm": "Hủy bầy",
       "clearSelection": "Xóa chọn lựa",
       "distribution": "Phân phối",

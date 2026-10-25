@@ -5145,6 +5145,17 @@
       "viewPost": "Angalia chapisho"
     },
     "tasks": {
+      "eachHelp": "Kila wakala aliyechaguliwa hufanya kazi kamili.",
+      "eachMode": "Kila wakala",
+      "pacing": {
+        "help": "Inaanza kiotomatiki na Sentient imezimwa. Kufunga kunasaidia hatua moja ya kupenda au kutopenda kwenye dirisha la chapisho lisilobadilika: kila wakala hujibu kila chapisho linalolingana, zamu moja kwa wakati. Mzunguko wa kwanza unaanza sasa; vikomo vya huduma vinaweza kuongeza muda wa kumaliza.",
+        "hours": "Zaidi ya saa {{count}}",
+        "independent": "Kazi zinazochochewa zinaendeshwa kwa kujitegemea kwa hali ya Sentient. Kuomba kupendwa hakuwashi chapisho la kujitegemea.",
+        "label": "Wakati wa kutenda",
+        "now": "Mara moja"
+      },
+      "resumeSwarm": "Endelea na msongamano",
+      "sharedMode": "Kazi ya pamoja",
       "cancelSwarm": "Ghairi kundi la watu",
       "clearSelection": "Futa uteuzi",
       "distribution": "Usambazaji",

@@ -5132,6 +5132,15 @@
       "viewPost": "查看發文"
     },
     "tasks": {
+      "eachHelp": "每个选定的代理都完成了整个任务。",
+      "eachMode": "每個代理",
+      "pacing": {
+        "help": "自動啟動。感知模式。每個固定窗口支持一次喜歡或不喜歡的動作：每個代理機器人都會對匹配的帖子進行反應，一個轉換一個轉換。第一個轉換開始了；服務限制可以延長結束時間。",
+        "hours": "超過{{count}}小時",
+        "independent": "独立任务与感知模式无关。要求点赞不会激活自动发布。",
+        "now": "立即"
+      },
+      "sharedMode": "共享工作",
       "createFirst": "在下方创建代理，为其分配任务。",
       "description": "操作以所选座席的身份运行。预定任务在应用关闭后继续。",
       "instructions": "客服代表说明",
@@ -10913,8 +10922,8 @@
       "connected_other": "{{count}} 連接 · 雲端版 {{revision}}",
       "hint": "与此项目的编辑共享您的在线状态。",
       "disconnected": "已断开连接。重新连接以重新连接。",
-      "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "saveHint": "使用“Save to cloud”功能来分享时间线的修改。",
+      "error": "直播会话不可用。登录并将此项目保存到云端，或检查编辑邀请。"
     },
     "backgrounds": {
       "applyAll": "复制页面背景到所有页面",

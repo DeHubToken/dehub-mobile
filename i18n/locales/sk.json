@@ -5224,6 +5224,17 @@
       "viewPost": "Zobraziť príspevok"
     },
     "tasks": {
+      "eachHelp": "Každý vybraný agent vykoná celú úlohu.",
+      "eachMode": "Každý zástupca",
+      "pacing": {
+        "help": "Spustí sa automaticky s vypnutým Sentientom. Stimulácia podporuje jednu akciu typu „páči sa mi“ alebo „nepáči sa mi“ na pevnom okne príspevku: každý agent reaguje na každý zodpovedajúci príspevok, jedno kolo po druhom. Začína sa prvé kolo; servisné limity môžu predĺžiť čas dokončenia.",
+        "hours": "Viac ako {{count}} hodín",
+        "independent": "Vyzvané úlohy sa spúšťajú nezávisle od režimu vnímania. Žiadanie o lajky nezapína autonómne zverejňovanie.",
+        "label": "Kedy konať",
+        "now": "Ihneď"
+      },
+      "resumeSwarm": "Obnoviť roj",
+      "sharedMode": "Spoločná práca",
       "cancelSwarm": "Zrušiť štvor",
       "clearSelection": "Vymazať výber",
       "distribution": "Distribúcia",

@@ -5143,6 +5143,17 @@
       "viewPost": "Zobacz post"
     },
     "tasks": {
+      "eachHelp": "Każdy wybrany agent wykonuje pełne zadanie.",
+      "eachMode": "Każdy agent",
+      "pacing": {
+        "help": "Uruchamia się automatycznie, gdy Sentient jest wyłączony. Chodzenie obsługuje jedną akcję podobną lub niechętną do stałego okna postu: każdy agent reaguje na każdy pasujący post, jedna tura po kolei. Pierwsza tura rozpoczyna się teraz; limity serwisowe mogą wydłużyć czas zakończenia.",
+        "hours": "Powyżej {{count}} godzin",
+        "independent": "Podpowiedziane zadania działają niezależnie od trybu Sentient. Proszenie o polubienia nie włącza autonomicznego publikowania.",
+        "label": "Kiedy działać",
+        "now": "Natychmiast"
+      },
+      "resumeSwarm": "Wznów rojenie",
+      "sharedMode": "Praca współdzielona",
       "cancelSwarm": "Anuluj szarżę",
       "clearSelection": "Wyczyść wybór",
       "distribution": "Dystrybucja",

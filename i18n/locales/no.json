@@ -5147,6 +5147,18 @@
       "viewPost": "Vis innlegg"
     },
     "tasks": {
+      "eachHelp": "Hver valgt agent utfører hele oppgaven.",
+      "eachMode": "Hver agent",
+      "pacing": {
+        "help": "Starter automatisk med Sentient av. Pacing støtter én liker- eller ikke-lik-handling i et fast innleggsvindu: hver agent reagerer på hvert matchende innlegg, én tur om gangen. Den første turen starter nå; tjenestegrenser kan forlenge sluttidspunktet.",
+        "hours": "Over {{count}} timer",
+        "independent": "Oppgaver som blir bedt om kjører uavhengig av Sentient-modus. Å be om likerklikk slår ikke på autonome innlegg.",
+        "label": "Når man skal handle",
+        "now": "Umiddelbart"
+      },
+      "pauseSwarm": "Pausesverm",
+      "resumeSwarm": "Gjenoppta svermen",
+      "sharedMode": "Delt arbeid",
       "cancelSwarm": "Avbryt swarm",
       "clearSelection": "Klart valg",
       "distribution": "Fordeling",
@@ -5190,6 +5202,7 @@
       "run": "Kjør ledeteksten",
       "runSwarm": "Løp sverm",
       "window": {
+        "replyStyle": "Hvordan svarene skal lyde",
         "actions": "Handlinger",
         "custom": "Skikk",
         "from": "Fra",

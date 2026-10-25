@@ -5140,6 +5140,17 @@
       "viewPost": "Posta bax"
     },
     "tasks": {
+      "eachHelp": "Hər bir seçilən agent tam vəzifəni yerinə yetirir.",
+      "eachMode": "Hər bir agent",
+      "pacing": {
+        "help": "Sentient ilə avtomatik olaraq başlayır. Pacing sabit post pəncərəsində bir hərəkəti bəyənir və ya bəyənmir: hər bir təmsilçi uyğun gələn hər bir posta eyni anda reaksiya verir. İlk növbə indi başlayır; xidmət limitləri bitmə vaxtını uzada bilər.",
+        "hours": "{{count}} saatdan çox",
+        "independent": "Təşviq edilmiş tapşırıqlar Sentient rejimindən asılı olmayaraq icra edilir. Bəyənmələr istəmək üçün avtonom poçt aktiv deyil.",
+        "label": "Nə vaxt hərəkət etməli",
+        "now": "Dərhal"
+      },
+      "resumeSwarm": "Tərpənməyə davam edin",
+      "sharedMode": "Şərikli iş",
       "cancelSwarm": "Sürünü ləğv et",
       "clearSelection": "Seçimi təmizlə",
       "distribution": "Paylanma",

@@ -5144,6 +5144,18 @@
       "viewPost": "Se indlæg"
     },
     "tasks": {
+      "eachHelp": "Hver valgt agent udfører hele opgaven.",
+      "eachMode": "Hver agent",
+      "pacing": {
+        "help": "Starter automatisk med Sentient fra. Pacing understøtter én handling, der kan lide eller ikke kan lide, i et fast opslagsvindue: Hver agent reagerer på hvert matchende opslag, én tur ad gangen. Den første tur starter nu; servicegrænser kan forlænge sluttiden.",
+        "hours": "Over {{count}}timer",
+        "independent": "Opfordrede opgaver kører uafhængigt af Sentient-tilstand. At bede om likes aktiverer ikke selvstændigt opslag.",
+        "label": "Hvornår skal man handle",
+        "now": "Straks"
+      },
+      "pauseSwarm": "Pause swarm",
+      "resumeSwarm": "Genoptag sværm",
+      "sharedMode": "Fælles arbejde",
       "cancelSwarm": "Annuller swarm",
       "clearSelection": "Ryd valg",
       "distribution": "Fordeling",

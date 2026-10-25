@@ -32,6 +32,8 @@
     "previous": "Previous looks"
   },
   "maintenance": {
+    "brand": "DeHub",
+    "mode": "Maintenance mode",
     "retry": "Try am again",
     "checking": "Na true?",
     "community": "Community first. Always.",
@@ -68,6 +70,17 @@
     "unavailable": "Twitch mirroring no go come yet."
   },
   "viralTemplates": {
+    "all": "All",
+    "characters": "Characters",
+    "dance": "Dance",
+    "effects": "Effects",
+    "preview": "Play {{name}} preview",
+    "previewUnavailable": "Preview unavailable",
+    "products": "Products",
+    "results": "{{count}} templates",
+    "seasonal": "Seasonal",
+    "sports": "Sports",
+    "useNamed": "Use {{name}}",
     "more": "Show more tins",
     "back": "Back to templates",
     "close": "Close templates",
@@ -76,6 +89,20 @@
     "featured": "Back to featured"
   },
   "copy": {
+    "0459220de3f8": "Expressive, high-contrast, bold",
+    "04b765747018": "Wireframe",
+    "4aa5e5cd4d31": "Night Drive",
+    "51d624360ae7": "Français (French)",
+    "94a9eac404c8": "Spam",
+    "9df89427a7c8": "Heartbeat",
+    "b785e11e822c": "Español (Spanish)",
+    "b8c339f21031": "ByteDance flagship — 30s takes, best prompt adherence",
+    "ba118bf7fc9c": "English",
+    "cd0a5a7df7be": "Deutsch (German)",
+    "da4e2f35bc9d": "Hateful behavior",
+    "de6f2ae9f71d": "Inappropriate profile",
+    "eb4b1b7d76ea": "Underage user",
+    "fecd0f90ada2": "Listing withdrawn",
     "12b91b0ac5dd": "{{value1}} — press am hold make you react",
     "27873a08f25d": "Feature request wey na send!",
     "4ae79158e4cd": "Post wey mint",
@@ -4899,6 +4926,16 @@
       "viewPost": "See post"
     },
     "tasks": {
+      "distribution": "Distribution",
+      "eachHelp": "Agent don perform full task.",
+      "eachMode": "Each agent",
+      "pacing": {
+        "independent": "Tasweiru na imo nke a na-egbuo na Sentient mode. Iji ya n'aka na like na-ebu ya pụta n'ihu.",
+        "label": "Wen yu go act.",
+        "now": "Sunny day."
+      },
+      "resumeSwarm": "Resume swarm na wetin you dey look for?",
+      "sharedMode": "Wok wey dem share together",
       "privateTitle": "Agent fit inside private preview",
       "selectAll": "Pick all",
       "skip": "Skip di action wey never confirm, then continue",
@@ -7664,6 +7701,7 @@
   },
   "stats": {
     "money": {
+      "estimatedOperations": "Estimated operations",
       "definitionsSubtitle": "Every line, wey dem dey read from, and wey dem no include",
       "dhbMarket": "DHB wey dey ${{price}} for dis time.",
       "profitSharedHint": "{{usd}} pay for holder and staker · {{from}}–{{to}}",
@@ -7709,6 +7747,7 @@
       "unavailable": "{{sources}} no fit reach, so dem fit leave out all total above no fit guess dem."
     },
     "taxSplit": {
+      "see": "See every line",
       "burned": "Buy back and burn",
       "open": "Wata see every line wey get {{part}}",
       "sharedDetail": "{{claims}} claim wey {{wallets}} wallets dey make",
@@ -11550,6 +11589,11 @@
     }
   },
   "creator": {
+    "editInTimeline": "Edit in timeline",
+    "presetExtraGlassCausticsHint": "Sunlight bends through clear glass",
+    "presetExtraGlassCausticsName": "Glass caustics",
+    "presetExtraRainyProductName": "Rainy product",
+    "toolMaboroshi": "Maboroshi",
     "presetExtraArchitectureLightChangeName": "Architecture light change",
     "presetExtraArcticExpeditionName": "Arctic expedition",
     "presetExtraAthleteFreezeHint": "Moment wey dey make you feel say na real sporting moment.",

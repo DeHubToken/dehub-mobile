@@ -1,5 +1,6 @@
 {
   "copy": {
+    "a52e8253b78b": "出色的及时遵守",
     "2d9c014a222d": "最大值",
     "93100fc44c0a": "@用户名",
     "94e2d0eda8c8": "🎮 最后一名幸存者 TGE",
@@ -4982,6 +4983,17 @@
       }
     },
     "tasks": {
+      "eachHelp": "每个选定的代理执行全部任务。",
+      "eachMode": "每位客服代表",
+      "pacing": {
+        "help": "在Sentient关闭的情况下自动启动。起搏支持固定帖子窗口上的一个喜欢或不喜欢动作：每个客服代表对每个匹配的帖子做出反应，一次一回合。第一回合现在开始；服务限制可以延长完成时间。",
+        "hours": "超过{{count}}小时",
+        "independent": "提示任务独立于Sentient模式运行。请求点赞不会开启自动发布功能。",
+        "label": "何时采取行动",
+        "now": "立即"
+      },
+      "resumeSwarm": "恢复SWARM",
+      "sharedMode": "共享工作",
       "cancelSwarm": "取消群组",
       "clearSelection": "清除选择",
       "distribution": "分配",

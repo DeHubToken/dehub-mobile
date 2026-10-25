@@ -5144,6 +5144,17 @@
       "viewPost": "Skatīt ziņu"
     },
     "tasks": {
+      "eachHelp": "Katrs atlasītais aģents veic pilnu uzdevumu.",
+      "eachMode": "Katrs aģents",
+      "pacing": {
+        "help": "Sākas automātiski ar izslēgtu jutīgumu. Kardiostimulēšana atbalsta vienu darbību, kas patīk vai nepatīk fiksētā ieraksta logā: katrs aģents reaģē uz katru atbilstošo ierakstu, pa vienam pagriezienam. Pirmais pagrieziens sākas tagad; pakalpojumu ierobežojumi var pagarināt finiša laiku.",
+        "hours": "Vairāk par {{count}} stundām",
+        "independent": "Piedāvātie uzdevumi tiek izpildīti neatkarīgi no jutīguma režīma. Lūdzot atzīmēt \"Patīk\", netiek ieslēgta autonoma publicēšana.",
+        "label": "Kad rīkoties",
+        "now": "Nekavējoties"
+      },
+      "resumeSwarm": "Atsākt spietu",
+      "sharedMode": "Kopīgs darbs",
       "cancelSwarm": "Atcelt spietu",
       "clearSelection": "Notīrīt atlasi",
       "distribution": "Sadalījums",

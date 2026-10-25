@@ -5138,6 +5138,17 @@
       "viewPost": "Tirohia te pou"
     },
     "tasks": {
+      "eachHelp": "Ko ia kaihoko kua tohua e mahi ana i te mahi katoa.",
+      "eachMode": "Ko ia kaihoko",
+      "pacing": {
+        "help": "Tīmata aunoa ki te Sentient Off. Ka tautoko a Pacing i tetahi mahi rite, kaore ranei e pai ki te matapihi pou tuuturu: ka urupare ia kaihoko ki nga pou e rite ana, ka huri i te wa kotahi. Ka tīmata te huringa tuatahi inaianei; ka taea e nga rohe ratonga te whakawhānui i te wa mutunga.",
+        "hours": "Neke atu i te {{count}} haora",
+        "independent": "Ko nga mahi whakatairanga e rere motuhake ana i te aratau Sentient. Ko te tono mo nga hiahia kaore e huri ki te tuku motuhake.",
+        "label": "I te wa e mahi ana",
+        "now": "I te wa tonu"
+      },
+      "resumeSwarm": "Whakahokia te Swarm",
+      "sharedMode": "Nga mahi e tohaina ana",
       "cancelSwarm": "Whakakorea te kāhui",
       "clearSelection": "Ūkui i te tīpakonga",
       "distribution": "Tohaina",
