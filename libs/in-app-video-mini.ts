@@ -54,7 +54,7 @@ export function inAppMiniReady(entry: InAppVideoMini) {
 }
 
 export function restoreInAppVideoMini(entry: InAppVideoMini) {
-  if (current !== entry || entry.restoring) return false;
+  if (current !== entry || entry.restoring || entry.onReady) return false;
   entry.restoring = true;
   notify();
   return true;
@@ -75,6 +75,7 @@ export function closeInAppVideoMini() {
   if (!entry) return;
   current = null;
   setInAppVideoPlayer(null);
+  entry.session.userPaused = true;
   // The final lease already pauses on release; another mounted card needs an
   // explicit pause because releasing one of several claims does not do that.
   if (entry.session.claims.some(token => token !== entry.token)) {

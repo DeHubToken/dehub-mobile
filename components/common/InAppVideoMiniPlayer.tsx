@@ -111,8 +111,8 @@ function MiniPlayer({ entry, bounds }: { entry: InAppVideoMini; bounds: MiniRect
       <View pointerEvents="box-none" style={styles.controls}>
         <Pressable accessibilityRole="button" accessibilityLabel={t(playing ? 'audioPost.pause' : 'audioPost.play')}
           onPress={() => {
-            if (entry.player.playing) stop();
-            else { requestAudioFocus(stop); entry.player.play(); }
+            if (entry.player.playing) { entry.session.userPaused = true; stop(); }
+            else { entry.session.userPaused = false; requestAudioFocus(stop); entry.player.play(); }
           }} style={styles.control}><Icon name={playing ? 'Pause' : 'Play'} size={18} color="#FFFFFF" /></Pressable>
         <Pressable accessibilityRole="button" accessibilityLabel={t('common.close')}
           onPress={closeInAppVideoMini} style={styles.control}><Icon name="X" size={18} color="#FFFFFF" /></Pressable>
