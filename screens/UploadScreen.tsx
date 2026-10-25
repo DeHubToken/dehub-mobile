@@ -3604,7 +3604,7 @@ export default function UploadScreen() {
               hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
               style={{ backgroundColor: pollEnabled || contentWarning !== null || crossPostCount > 0 ? "rgba(255,255,255,0.2)" : "transparent" }}
               accessibilityRole="button"
-              accessibilityLabel={t("upload.postOptions", { defaultValue: "Post options" })}
+              accessibilityLabel={t("player.moreOptions")}
               accessibilityState={{ expanded: showPostOptions }}
             >
               <Icon name="Ellipsis" size={20} color="#fff" />
@@ -3703,7 +3703,7 @@ export default function UploadScreen() {
 
       <GlassModal visible={showPostOptions} onClose={() => setShowPostOptions(false)} presentation="bottom" scrollable>
         <View className="px-4 pt-2 pb-4" style={{ gap: 8 }}>
-          <Text className="text-white text-base font-semibold mb-2">{t("upload.postOptions", { defaultValue: "Post options" })}</Text>
+          <Text className="text-white text-base font-semibold mb-2">{t("player.moreOptions")}</Text>
           {showPollButton && (
             <TouchableOpacity
               onPress={() => { setShowPostOptions(false); handleTogglePoll(); }}
