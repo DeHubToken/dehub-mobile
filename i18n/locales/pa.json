@@ -3286,7 +3286,7 @@
     "notifAnnouncementsDesc": "ਪਲੇਟਫਾਰਮ ਖ਼ਬਰਾਂ ਅਤੇ ਵਿਸ਼ੇਸ਼ਤਾ ਅਪਡੇਟ",
     "quietHoursPauseDesc": "ਨਿਰਧਾਰਤ ਘੰਟਿਆਂ ਦੌਰਾਨ ਪੁਸ਼ ਸੂਚਨਾਵਾਂ ਨੂੰ ਰੋਕੋ",
     "quietHoursFrom": "ਤੋਂ",
-    "quietHoursTo": "To",
+    "quietHoursTo": "ਵੱਲ",
     "quietHoursSilencedNote": "ਪੁਸ਼ ਸੂਚਨਾਵਾਂ ਇਹਨਾਂ ਘੰਟਿਆਂ ਦੌਰਾਨ ਚੁੱਪ ਕਰ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।",
     "notifInApp": "ਐਪ-ਵਿੱਚ",
     "notifPush": "ਪੁਸ਼",
@@ -5135,6 +5135,12 @@
       "viewPost": "ਪੋਸਟ ਵੇਖੋ"
     },
     "tasks": {
+      "cancelSwarm": "ਝੁੰਡ ਰੱਦ ਕਰੋ",
+      "clearSelection": "ਚੋਣ ਸਾਫ਼ ਕਰੋ",
+      "distribution": "ਵੰਡ",
+      "oneAgent": "ਇੱਕ ਏਜੰਟ",
+      "pauseSwarm": "ਝੁੰਡ ਰੋਕੋ",
+      "selectAll": "ਸਭ ਚੁਣੋ",
       "action": "ਕਾਰਵਾਈ",
       "activity": "ਹਾਲੀਆ ਗਤੀਵਿਧੀ",
       "comment": "ਟਿੱਪਣੀ",

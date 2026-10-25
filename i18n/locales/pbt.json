@@ -124,6 +124,13 @@
     "use": "دا ټیمپلیټ وکاروئ"
   },
   "copy": {
+    "12b91b0ac5dd": "{{value1}} — د عکس العمل ښودلو لپاره یې ونیسئ",
+    "41fb2caed82f": "دا {{value1}} بیج د {{value2}} لخوا په پور ورکړل شوی و",
+    "58e271dd9ad8": "ضمیمه {{value1}} لرې کړئ",
+    "8ae18739e3f7": "د {{value1}} کسانو لپاره د سیګنال فلیر (Signal Flare)",
+    "93100fc44c0a": "@کارننوم",
+    "a3156ed263d2": "{{value1}} — د خپل عکس العمل بدلولو لپاره یې ونیسئ",
+    "c553678c42d5": "اختیار {{value1}}",
     "002286513398": "تاسو د پیښو اداره کولو اجازه نلرئ",
     "00b3a926f704": "د غوښتنې لغوه کولو کې پاتې راغلی",
     "00c0b03fcfa2": "له دندې ګوښه شو",
@@ -3248,7 +3255,7 @@
     "notifAnnouncementsDesc": "د پلیټ فارم خبرونه او د ځانګړتیاو تازه معلومات",
     "quietHoursPauseDesc": "په ټاکل شوي ساعتونو کې د پش خبرتیاوې وځنډوئ",
     "quietHoursFrom": "له",
-    "quietHoursTo": "To",
+    "quietHoursTo": "د دې لپاره چې",
     "quietHoursSilencedNote": "پش خبرتیاوې به په دې ساعتونو کې خاموش شي.",
     "notifInApp": "په اپلیکیشن کې",
     "notifPush": "پش",
@@ -4510,7 +4517,7 @@
     "requests": "غوښتنې",
     "shipped": "لیږل شوي",
     "all": "ټول",
-    "uiUx": "UI/UX",
+    "uiUx": "د UI/UX په اړه",
     "performance": "فعالیت",
     "newFeature": "نوی فیچر",
     "bugFix": "بګ حل",
@@ -5097,6 +5104,11 @@
       "viewPost": "د ټاګ پوسټ وګورئ"
     },
     "tasks": {
+      "cancelSwarm": "Swarm (ډله) لغوه کول",
+      "clearSelection": "ټاکنه پاکه کړئ",
+      "distribution": "وېشنيزې وېشنيزې",
+      "pauseSwarm": "Swarm (ډله) ودرول",
+      "selectAll": "ټول غوره کړئ",
       "action": "کړنې",
       "activity": "وروستي فعالیتونه",
       "comment": "تبصره وکړئ",
@@ -6539,7 +6551,7 @@
       "escrowActive": "د سکریپټ فعالول فعال دي",
       "escrowFunded": "په کراچۍ کې مالي مرسته وشوه",
       "escrowSetup": "د ګمرکونو د بسته بندۍ د بسته بندۍ",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
+      "feeNotice": "کارګر د ۵٪ پلیټ فارم فیس وروسته {{net}} {{currency}} ترلاسه کوي. کارول شوې ناخالص بودیجه: {{gross}} {{currency}}.",
       "fundingPending": "د تادیې تایید، د تادیې تایید.",
       "fundPublish": "چاپ او خپرونې",
       "hashPlaceholder": "د HXHV د معاملې",
@@ -6552,8 +6564,8 @@
       "reviewWindow": "د ټاکلې نیټې او د درې ورځني بیاکتنې کړکۍ وروسته فنډونه وتړل شول. لومړی د هرې سپارښتنې بیاکتنه او بیاکتنه وکړئ.",
       "setupRequired": "د کیسوږه په خپرولو وړتیا لري. د ځانګړې کیسوږه د خپرولو وړتیا لري.",
       "signatureReleased": "د منظور پښتین نیول کېدل رد شوي دي",
-      "verifiedViews": "Verified view count",
-      "viewsAccepted": "{{count}} verified views · {{units}} × 1,000 views",
+      "verifiedViews": "څو ګډونوالو لیدنه",
+      "viewsAccepted": "{{count}} ګډونوالو لیدنه · {{units}} × 1,000 لیدنه",
       "viewSource": "د سرچينې په اړه ويډيو وګورئ",
       "viewSourceUrl": "ته وليږي تر څو د پوښتنې BROULL"
     },
@@ -7932,6 +7944,7 @@
   },
   "stats": {
     "money": {
+      "since": "د {{date}} له مهاله",
       "chartDaily": "د ورځې په اوږدو کې د عایداتو او لګښتونو په اړه معلومات",
       "chartMonthly": "د عایداتو او لګښتونو په ورځ کې، د میاشتنۍ اوسط",
       "conversionTerm": "قیمې",
@@ -10120,6 +10133,7 @@
       "restore": "شاليد بېرته راوړئ"
     },
     "videoTemplates": {
+      "duration": "{{seconds}} ثانیې",
       "copy": {
         "after": "له هغې وروسته",
         "afterHint": "د پایلو ښودنه وکړئ.",
@@ -10260,6 +10274,10 @@
       "working": "غږ پروسس کېږي... {{percent}}%"
     },
     "pages": {
+      "allPdf": "ټولې {{count}} پاڼې په یوه PDF کې",
+      "allPptx": "ټولې {{count}} پاڼې په یوه پریزنټشن کې",
+      "durationsUpdated": "په {{count}} پاڼو کې وخت تازه شو",
+      "namedFromHeadings": "د {{count}} پاڼو نومونه وټاکل شول. {{missing}} پاڼې سرلیک نه درلود.",
       "allNotes": "ټولې {{count}} پاڼې په یوه نوټ فایل کې",
       "search": "صفحه په شمېره یا نوم وښودلای شو",
       "add": "پاڼه اضافه کړئ",
@@ -10301,6 +10319,9 @@
       "visibilityHint": "پټ شوي پا pagesې د ترمیم وړ پاتې دي او د ډاونلوډ لپاره شتون لري."
     },
     "captions": {
+      "replaceCount": "په {{total}} سرلیکونو کې بدلول",
+      "translateCount": "د {{count}} سرلیکونو ژباړه",
+      "translationDone": "{{count}} سرلیکونه وژباړل شول",
       "captionText": "سرلیک متن",
       "emptyText": "ریکټ سرلیک",
       "findText": "سرلیکونو کې لټول",
@@ -10376,6 +10397,7 @@
       "bgRemoveFailed": "شالید لرې نه شو. بل انځور وازمویئ."
     },
     "filters": {
+      "strength": "د فلټر ځواک: {{value}}%",
       "none": "اصلي",
       "cinematic": "سینمایي",
       "warm": "ګرم",
@@ -10436,6 +10458,7 @@
       "delete": "له منځه یوسئ"
     },
     "export": {
+      "filenameHint": "د ډیفالټ نومونو لپاره خالي پریږدئ. له {title}، {name}، {section}، {page}، یا {page:3} څخه کار واخلئ. یو مختاړی د ساده متن په توګه اضافه کړئ. تکراري نومونه د پاڼې د شمیرې وروستاړی ترلاسه کوي.",
       "pageBookmarks": "صفحه نوم بکمارکونه",
       "cancel": "لغو کول",
       "scope": "د ډاونلوډ برخه",
@@ -10488,6 +10511,7 @@
       "width": "د قلم اندازه {{value}}"
     },
     "layers": {
+      "lockedSkipped": "{{count}} بند شوي پرتونه وساتل شول",
       "batchNames": "لېرې نوم وړاندې کړئ",
       "name": "لېر لېبل",
       "namePattern": "لېر لېبل پېټرن",
@@ -12306,7 +12330,7 @@
     "doorImageNote": "انځورونه، پوسټرونه او سمونونه",
     "doorVideoNote": "له متن یا عکس څخه کلیپونه",
     "doorAudioNote": "غږیز وسایل وړیا",
-    "door3d": "3D",
+    "door3d": "په نه په 3D",
     "door3dNote": "له لارښوونې یا عکس څخه ماډلونه",
     "doorAgentsNote": "چټ وړیا",
     "editorNote": "په مهال‌کرښه یې پرې کړئ",
