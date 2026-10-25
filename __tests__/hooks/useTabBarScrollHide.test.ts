@@ -79,7 +79,7 @@ describe("profile pages carry the home nav", () => {
 
   it("other people's profiles drive the bar, and the modal brings its own", () => {
     expect(read("components/UserProfile/UserProfileBottomContentTabs.tsx")).toContain("driveTabBar(y)");
-    expect(read("components/UserProfile/UserProfileBottomSheet.tsx")).toContain(
+    expect(read("components/UserProfile/UserProfilePageContent.tsx")).toContain(
       "<StandaloneTabBar onBeforeNavigate={onClose} />",
     );
   });

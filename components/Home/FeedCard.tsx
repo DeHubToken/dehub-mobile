@@ -2615,6 +2615,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 {soundtrackBadge}
                 <PostTapSurface
                   resetKey={postKey}
+                  immediatePress
                   onReaction={handleVideoTapReaction}
                   onPress={disablePress ? undefined : handleCardPress}
                 >
@@ -2672,6 +2673,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <>
               <PostTapSurface
                 resetKey={postKey}
+                immediatePress
                 onReaction={handleVideoTapReaction}
                 onPress={disablePress ? undefined : handleCardPress}
               >
@@ -2863,6 +2865,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           and the post did not open. */}
       <PostTapSurface
         resetKey={postKey}
+        immediatePress
         onPressIntent={warmPost}
         onReaction={handleVideoTapReaction}
         onPress={disablePress ? undefined : handleCardPress}

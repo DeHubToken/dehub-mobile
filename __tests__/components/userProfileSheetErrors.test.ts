@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 
 const read = (path: string) => readFileSync(resolve(__dirname, "../..", path), "utf8");
 
-const sheet = read("components/UserProfile/UserProfileBottomSheet.tsx");
+const sheet = read("components/UserProfile/UserProfilePageContent.tsx");
 const content = read("components/UserProfile/UserProfileSheetContent.tsx");
 const tabs = read("components/UserProfile/UserProfileBottomContentTabs.tsx");
 const grid = read("components/Profile/ProfileImageGrid.tsx");

@@ -26,6 +26,7 @@ import { maxStacked } from "../libs/validators.util";
 import { resolveCount } from "../libs/numbers.util";
 import { WEBSITE_LINK } from "../config";
 import { patchTipBadges, subscribeTipBadges } from '../libs/tip-badges';
+import { takeWarmRequest, warmRequest } from '../libs/navPrefetch';
 
 export interface RemoteUser {
   username?: string;
@@ -122,12 +123,15 @@ export const prefetchUserProfile = (who?: string | null) => {
   const key = id.toLowerCase();
   const cached = profileCache.get(key);
   if (cached && Date.now() - cached.ts < PROFILE_CACHE_TTL) return;
-  fetchAccount(id).then((res: any) => {
+  warmRequest(`profile:${key}`, async () => {
+    const res: any = await fetchAccount(id);
     const payload = res?.data?.result || res?.result || res;
-    if (!payload || isEmptyProfileShell(payload)) return;
-    profileCache.set(key, { data: payload, ts: Date.now() });
-    pruneCache();
-  }).catch(() => {});
+    if (payload && !isEmptyProfileShell(payload)) {
+      profileCache.set(key, { data: payload, ts: Date.now() });
+      pruneCache();
+    }
+    return res;
+  });
 };
 
 export const useUserProfileData = (
@@ -219,7 +223,7 @@ export const useUserProfileData = (
 
       try {
         // Auth token is sent automatically — backend uses it for relationship info
-        const res: any = await fetchAccount(who);
+        const res: any = await takeWarmRequest(`profile:${key}`, () => fetchAccount(who));
         const payload = res?.data?.result || res?.result || res;
 
         if (
