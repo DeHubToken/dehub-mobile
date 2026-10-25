@@ -2,13 +2,19 @@ import { isTabletPortraitFeed, tabletPortraitTitleSize } from '../../libs/tablet
 
 describe('tablet portrait feed', () => {
   it.each([
-    [767, 740, false, false],
+    [390, 348, false, false],
+    [559, 517, false, false],
+    [560, 518, false, true],
+    [617, 575, false, true],
+    [640, 598, false, true],
+    [767, 740, false, true],
     [768, 720, false, true],
     [834, 786, false, true],
     [1024, 976, false, true],
     [1366, 1318, false, true],
     [1367, 1319, false, false],
-    [834, 679, false, false],
+    [617, 499, false, false],
+    [617, 575, true, false],
     [1024, 720, true, false],
     [1194, 500, true, false],
   ])('gates viewport %s, column %s, panels %s', (width, column, panels, expected) => {

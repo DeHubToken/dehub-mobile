@@ -482,7 +482,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [minimalGutter, SCREEN_WIDTH]);
   const [tabletColumnWidth, setTabletColumnWidth] = useState(0);
   const handleFeedLayout = useCallback((e: LayoutChangeEvent) => {
-    if (SCREEN_WIDTH >= 768 && SCREEN_WIDTH <= 1366) setTabletColumnWidth(e.nativeEvent.layout.width);
+    if (SCREEN_WIDTH >= 560 && SCREEN_WIDTH <= 1366) setTabletColumnWidth(e.nativeEvent.layout.width);
     if (isMinimal && !immersive && !flat) handleMinimalLayout(e);
   }, [SCREEN_WIDTH, isMinimal, immersive, flat, handleMinimalLayout]);
 
@@ -2219,12 +2219,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
             isHidden={isHidden}
           />
-          <View style={{ flexDirection: 'row', gap: 24, alignItems: 'stretch', marginTop: 8 }}>
+          <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch', marginTop: 8 }}>
             <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
             <View style={{ flex: 1, minWidth: 0 }}>
               <PostTapSurface resetKey={postKey} onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
                 <FeedCaption resetKey={postKey} title={overlayTitle || undefined} description={displayCaption || undefined}
-                  variant="portrait" maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
+                  variant="portrait" compactPortrait={SCREEN_WIDTH < 768} maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
                   onCategoryPress={onCategorySelect} onCashtagPress={setActiveCashtag} />
               </PostTapSurface>
               {hasSoundtrack && !soundtrackOnMedia && <View className="mt-2"><SoundtrackBadge key={postKey} title={soundtrack.title} creator={soundtrack.creator} url={soundtrack.url} isVisible={isVisible} /></View>}
