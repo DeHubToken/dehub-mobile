@@ -1,13 +1,14 @@
 import React, { memo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from '../ui/Icon';
-import { useNavigation } from '@react-navigation/native';
-import { ScreenNames } from '../../navigation/ScreenNames';
-import type { AppStackNavigationProp } from '../../navigation/types';
 import { useTranslation } from 'react-i18next';
 
 import { ThemeIcon } from '../page/PageKit';
 import NavPillSurface from '../ui/NavPillSurface';
+
+// The buttons share the title row, so they are a touch under 40 to leave the
+// title room on a 360dp phone.
+const BUTTON_STYLE = { width: 34, height: 34, backgroundColor: 'rgba(255,255,255,0.08)' } as const;
 
 interface AssistantHeaderProps {
   onNewChat: () => void;
@@ -33,33 +34,31 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   hasMessages,
 }) => {
   const { t } = useTranslation();
-  const navigation = useNavigation<AppStackNavigationProp<ScreenNames.Creator>>();
   return (
     <View className="px-2 pt-2">
     <View style={{ paddingHorizontal: 12, paddingVertical: 10, borderRadius: 15 }}>
     <NavPillSurface borderRadius={15} />
-    <View className="flex-row items-center justify-between mb-2">
+    {/* One row, as on web: title left, the buttons right. The Creator
+        shortcut that used to sit here lives at the foot of Settings now. */}
+    <View className="flex-row items-center justify-between">
       <TouchableOpacity
         onPress={onNewChat}
         className="flex-row items-center"
+        style={{ flexShrink: 1, marginRight: 8 }}
         activeOpacity={0.7}
       >
         <ThemeIcon icon="assistant" size={32} />
-        <Text className="text-theme-neutrals-100 text-[17px] font-bold ml-2.5">
+        <Text numberOfLines={1} style={{ flexShrink: 1 }} className="text-theme-neutrals-100 text-[17px] font-bold ml-2.5">
           {t('assistant.title')}
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('assistant.creatorLibrary')} onPress={() => navigation.navigate(ScreenNames.Creator)} className="w-10 h-10 rounded-lg items-center justify-center">
-        <Icon name="Clapperboard" size={18} color="#A6A9AC" />
-      </TouchableOpacity>
-    </View>
-      <View className="flex-row items-center justify-end" style={{ gap: 6 }}>
+      <View className="flex-row items-center justify-end" style={{ gap: 4, flexShrink: 0 }}>
         {hasMessages && (
           <TouchableOpacity
             onPress={onNewChat}
-            className="w-10 h-10 rounded-lg items-center justify-center"
-            style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+            className="rounded-lg items-center justify-center"
+            style={BUTTON_STYLE}
             activeOpacity={0.7}
             hitSlop={4}
             accessibilityRole="button"
@@ -70,8 +69,8 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
         )}
         <TouchableOpacity
           onPress={onHistoryPress}
-          className="w-10 h-10 rounded-lg items-center justify-center"
-          style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+          className="rounded-lg items-center justify-center"
+          style={BUTTON_STYLE}
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
@@ -84,8 +83,8 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
             on a human, which is the reason people tap it. */}
         <TouchableOpacity
           onPress={onSupportPress}
-          className="w-10 h-10 rounded-lg items-center justify-center"
-          style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+          className="rounded-lg items-center justify-center"
+          style={BUTTON_STYLE}
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
@@ -115,8 +114,8 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
         </TouchableOpacity>
         <TouchableOpacity
           onPress={onSettingsPress}
-          className="w-10 h-10 rounded-lg items-center justify-center"
-          style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+          className="rounded-lg items-center justify-center"
+          style={BUTTON_STYLE}
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
@@ -127,8 +126,8 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
         {/* The personality button is its emoji, same as web's header. */}
         <TouchableOpacity
           onPress={onStylePress}
-          className="w-10 h-10 rounded-lg items-center justify-center"
-          style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+          className="rounded-lg items-center justify-center"
+          style={BUTTON_STYLE}
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
@@ -137,6 +136,7 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
           <Text style={{ fontSize: 17 }}>{styleEmoji}</Text>
         </TouchableOpacity>
       </View>
+    </View>
     </View>
     </View>
   );
