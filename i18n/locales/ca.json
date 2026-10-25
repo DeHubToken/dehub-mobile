@@ -5143,6 +5143,17 @@
       "viewPost": "Mostra l'entrada"
     },
     "tasks": {
+      "eachHelp": "Cada agent seleccionat realitza la tasca completa.",
+      "eachMode": "Cada agent",
+      "pacing": {
+        "help": "Comença automàticament amb Sentient desactivat. El ritme és compatible amb una acció que li agrada o no li agrada en una finestra de publicació fixa: cada agent reacciona a cada publicació coincident, un torn a la vegada. El primer torn comença ara; els límits de servei poden allargar l'hora de finalització.",
+        "hours": "Més de {{count}} hores",
+        "independent": "Les tasques indicades s'executen independentment del mode Sentient. Sol·licitar els \"m'agrada\" no activa la publicació autònoma.",
+        "label": "Quan actuar",
+        "now": "Immediatament"
+      },
+      "resumeSwarm": "Reprèn l'eixam",
+      "sharedMode": "Treball compartit",
       "cancelSwarm": "Cancel·lar colla",
       "clearSelection": "Esborrar selecció",
       "distribution": "Distribució",

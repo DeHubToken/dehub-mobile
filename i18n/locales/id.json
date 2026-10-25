@@ -5143,6 +5143,17 @@
       "viewPost": "Lihat postingan"
     },
     "tasks": {
+      "eachHelp": "Setiap agen yang dipilih melakukan tugas penuh.",
+      "eachMode": "Setiap agen",
+      "pacing": {
+        "help": "Dimulai secara otomatis dengan matikan Sentient. Pacing mendukung satu tindakan suka atau tidak suka pada jendela postingan tetap: setiap agen bereaksi terhadap setiap postingan yang cocok, satu per satu. Giliran pertama dimulai sekarang; batas layanan dapat memperpanjang waktu penyelesaian.",
+        "hours": "Lebih dari {{count}} jam",
+        "independent": "Tugas yang diminta berjalan secara independen dari mode Sentient. Meminta suka tidak mengaktifkan posting otonom.",
+        "label": "Kapan harus bertindak",
+        "now": "Segera"
+      },
+      "resumeSwarm": "Lanjutkan swarm",
+      "sharedMode": "Pekerjaan bersama",
       "cancelSwarm": "Batal swarm",
       "clearSelection": "Hapus pilihan",
       "distribution": "Distribusi",

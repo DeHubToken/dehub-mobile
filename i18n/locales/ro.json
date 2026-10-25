@@ -5140,6 +5140,17 @@
       "viewPost": "Afișează postarea"
     },
     "tasks": {
+      "eachHelp": "Fiecare agent selectat efectuează sarcina completă.",
+      "eachMode": "Fiecare agent",
+      "pacing": {
+        "help": "Începe automat cu Sentient dezactivat. Stimularea acceptă o acțiune de tip like sau dislike într-o fereastră fixă de postare: fiecare agent reacționează la fiecare postare potrivită, câte o tură pe rând. Primul viraj începe acum; limitele de serviciu pot prelungi timpul de finalizare.",
+        "hours": "Peste {{count}} ore",
+        "independent": "Sarcinile solicitate se execută independent de modul Sentient. Solicitarea de aprecieri nu activează postarea autonomă.",
+        "label": "Când să acționăm",
+        "now": "Imediat"
+      },
+      "resumeSwarm": "Reluare roi",
+      "sharedMode": "Muncă în comun",
       "cancelSwarm": "Anulați horda",
       "clearSelection": "Șterge selecția",
       "distribution": "Distribuție",

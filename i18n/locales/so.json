@@ -125,6 +125,14 @@
     "useNamed": "Isticmaal {{name}}"
   },
   "copy": {
+    "362058144c4a": "xAI flagship $$$",
+    "4118fb4fed0e": "La saaray",
+    "5d788f95f78a": "Ranking Delta (▲▼)",
+    "88f992e97439": "Ma awoodo in aan taas ka qaado hawada",
+    "94a9eac404c8": "Spam",
+    "aa2c45a2661e": "Dhaqdhaqaaqa degdegga ah ee Kling oo leh dhawaaq isku dhafan",
+    "d9bac180ccc1": "Chartopia",
+    "da4e2f35bc9d": "Habdhaqanka nacaybka ah",
     "059551570001": "Shaqsi la 'aan",
     "16d186a18037": "Rabshado",
     "4ae79158e4cd": "Qoraalka waa la daabacay",
@@ -5130,6 +5138,16 @@
       "viewPost": "Eeg qoraalka"
     },
     "tasks": {
+      "eachHelp": "Wakiil kasta oo la xushay wuxuu fuliyaa hawsha oo dhan.",
+      "eachMode": "Wakiil kasta",
+      "pacing": {
+        "help": "Si otomaatig ah u bilaw Sentient off. Pacing taageertaa mid ka mid ah sida ama aan jeclayn ficil on daaqad post go 'an: wakiil kasta ka falceliyo post kasta oo la mid ah, mid ka mid ah soo jeestay waqti. Wareegga koowaad wuxuu bilaabmaa hadda; Xadka adeegga ayaa kordhin kara waqtiga kama dambaysta ah.",
+        "hours": "In ka badan {{count}} saacadaha",
+        "independent": "Hawlaha la dhiirrigeliyay waxay u shaqeeyaan si madaxbannaan habka dareenka. Weydiinta kuwa jecel ma leexdo boostada ismaamulka ah.",
+        "now": "Isla markiiba"
+      },
+      "resumeSwarm": "Dib u bilow swarm",
+      "sharedMode": "Shaqada la wadaago",
       "cancelSwarm": "Jooji kooxda (swarm)",
       "clearSelection": "Nadiifi xulashada",
       "distribution": "Qaybinta",
@@ -11942,6 +11960,17 @@
     }
   },
   "creator": {
+    "presetExtraCityTramPassHint": "Tram Liit wuxuu ka gudbaa qaab deggan oo fiidkii ah",
+    "presetExtraCityTramPassName": "Maraakiibta taraamka ee magaalada",
+    "presetExtraFabricBreezeHint": "Dharka khafiifka ah ayaa kor u qaadaya oo degaya agagaarka badeecad",
+    "presetExtraFogLanternName": "Fog lantern",
+    "presetExtraFoodFinishName": "Dhammaystirka taabashada",
+    "presetExtraMossMicroWorldName": "Moss micro-world",
+    "presetExtraPrismShadowsName": "Prism shadows",
+    "presetExtraProductLightSweepName": "Nalalka badeecada",
+    "presetExtraShadowDanceName": "Shadow dance",
+    "presetExtraShoeLacePullName": "Laces tighten",
+    "studioMissingJob": "Jiilku ma uusan soo celin aqoonsi shaqo. Fadlan isku day mar kale.",
     "presetExtraGlassCausticsHint": "Iftiinka qorraxdu wuxuu ku leexdaa muraayad cad",
     "presetExtraPerfumeDunesHint": "Ciid diiran iyo hooska dhalada oo la xardhay",
     "presetExtraPerfumeDunesName": "Dunes cadar",

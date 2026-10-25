@@ -5159,6 +5159,17 @@
       "viewPost": "Hijery ny lahatsoratra"
     },
     "tasks": {
+      "eachHelp": "Ny mpandray anjara tsirairay dia manatanteraka ny asany amin'ny fomba feno.",
+      "eachMode": "Ny solontena tsirairay",
+      "pacing": {
+        "help": "Manomboka ho azy izany miaraka amin'ireo fepetra fanatsaràna. Pacing manohana ny iray tahaka na tsy tia asa amin'ny raikitra lahatsoratra varavarankely: isaky ny mpandraharaha reacts isaky ny mifandraika lahatsoratra, iray isaky ny fihodinana amin'ny fotoana. Ny dingana voalohany dia manomboka izao; Ny fetran'ny serivisy dia afaka manitatra ny fotoana farany.",
+        "hours": "Mpitondra {{count}} oratra",
+        "independent": "Ny asa haingana dia mihazakazaka tsy miankina amin'ny fomba Sentient. Ny fangatahana tiana dia tsy mihodina amin'ny famoahana lahatsoratra mahaleotena.",
+        "label": "Rahoviana no tokony hanao zavatra",
+        "now": "Avy hatrany"
+      },
+      "resumeSwarm": "Tohizo indray swarm",
+      "sharedMode": "Asa iombonana",
       "cancelSwarm": "Hanafoana ny vondrona",
       "clearSelection": "Hamafa ny safidy",
       "distribution": "Fizarana",

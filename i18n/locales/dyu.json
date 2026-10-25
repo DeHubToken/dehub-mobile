@@ -126,6 +126,26 @@
     "useNamed": "Fɛɛrɛ kɛ ni {{name}} ye"
   },
   "copy": {
+    "08c66888e11d": "Warmer, higher register",
+    "0f709815ab86": "Sènèkɛ jɛkulu cɛ fɛnɛ kɔrɔ",
+    "1e8777bc4d46": "Studio-grade PBR, exports FBX/OBJ/USDZ",
+    "1ed44687a46a": "LED Stack",
+    "24d07162713c": "Low-cost FLUX.2 previews",
+    "3010b02a4030": "Audio kɔrɔ kɔrɔ fɛ mɔgɔ tun ka kɔ, sɔgɔ, ani kɔ kɛ jɔ kɔrɔ kɔrɔ la.",
+    "6ff9754d0ec3": "Sɔrɔ ({{value1}} × ${{value2}})",
+    "875af21cd687": "Sunflower",
+    "8a82c9465004": "Labɛn, grafiki disɛni, ani sɛbɛn labɛnw",
+    "94a9eac404c8": "Spam",
+    "94e2d0eda8c8": "🎮 Last Chad Standing TGE",
+    "96e0787938ec": "Faara jɛkulu-mesh, ɲɛ iterasyon ma",
+    "a6a090dde0b5": "Jɛkulu sɔrɔ ani sɛbɛn jɛkulu",
+    "ae644a180614": "Labɛn jɛ, labɛn kɔrɔ, ani sɛbɛn sɔrɔ",
+    "b19a6f63eaf3": "see more",
+    "b48bbaa9ddf2": "Braid",
+    "b62c681738d1": "Cu",
+    "c739f99ee6ec": "Sɛbɛn labɛn ani jɛkulu sɔrɔ",
+    "c9a2d61de5a7": "Username set",
+    "fd3fdb5a65ea": "Follow Back",
     "12b91b0ac5dd": "{{value1}} — a digi ka mina walasa ka jaabi di",
     "24b6ed119d81": "O ye n' ka miiriya ye.",
     "26c4675bcba1": "Jaabi kura sɛbɛ",
@@ -5108,6 +5128,16 @@
       "viewPost": "A filɛ, a ye min fɔ"
     },
     "tasks": {
+      "eachHelp": "Nka, mɔgɔ o mɔgɔ be dɛmɛ don, a bena a yɛrɛ sago kɛ.",
+      "eachMode": "Kɔɔŋɔ",
+      "pacing": {
+        "help": "A daminɛ na, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun be se ka mɔgɔ dɔ faga. O la, a be se ka kɛ ko a be baara kɛ ni mɔgɔ dɔ ye min be baara kɛ ni mɔgɔ dɔ ye. O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ ka baara kɛ ni baara kɛcogo ɲuman ye.",
+        "independent": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye. O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka sɛbɛri kɛ a yɛrɛ ma.",
+        "label": "Tuma min na a ka ɲi ka baara kɛ",
+        "now": "O kɔ, a y'a daminɛ ka"
+      },
+      "resumeSwarm": "Resume swarm",
+      "sharedMode": "Gara jugu",
       "cancelSwarm": "Kala Lagaw Ya",
       "clearSelection": "K'a latigɛ ka ɲɛ",
       "description": "O la, a ka ɲi ka kɛ ni mɔgɔ dɔ ye min be baara kɛ ni mɔgɔ dɔ ye. O kama, a ka ɲi ka baara kɛ ni fɛɛrɛ dɔw ye minw be se k'a to a be se ka baara kɛ ni fɛɛrɛ wɛrɛw",
@@ -8190,6 +8220,7 @@
     "createdNotAdded": "Dosiye dilanna nka sɛbɛnni ma fara a kan"
   },
   "ppv": {
+    "notEnoughToken": "Ni a wuri {{amount}} {{symbol}} kasa ya hii. Unayo {{held}}.",
     "switchTo": "O barokun be sɔrɔ {{chain}} kan. Aw ye yɛlɛma ka kɛ {{chain}} ye Settings kɔnɔ, o kɔ, aw ye tugu k'a ɲini.",
     "title": "Kunnafoni min sarali bɛ kɛ ka lajɛ",
     "unlockPrice": "Dayɛlɛli sɔngɔ",
@@ -8530,6 +8561,7 @@
     "editFailed": "Impossible d'appliquer cette modification. Réessayez."
   },
   "bounty": {
+    "gasHint": "Hii itasababisha mabadiliko ya kifedha kwenye mstari wa kifedha. Gharama za gesi zinaweza kutokea.",
     "claimed": "A tara",
     "notEligible": "I tɛ se",
     "checking": "Sɛgɛsɛgɛli bɛ kɛ…",
@@ -8656,6 +8688,7 @@
     "creatorEarnsDirect": "Abonnew bɛ sara DeHub token na. U mana don tuma min na, i ka tila bɛ se i ka wariboro la, i ka badge hakɛ ka sara bɔlen a la."
   },
   "live": {
+    "streamCount_other": "{{count}} mifumo",
     "isLiveNow": "{{name}} ye live",
     "justChatting": "- ka kumaɲɔgɔnya kɛ",
     "loadStreamsFailed": "A tɛ se ka kɔrɔsiw lɔn. Aw ye a bɛn tugun.",
@@ -11908,6 +11941,12 @@
     }
   },
   "creator": {
+    "presetExtraAthleteFreezeName": "Athlete freeze",
+    "presetExtraDrinkSplashRingName": "Splash ring",
+    "presetExtraEmbroideredPatchName": "Embroidered patch",
+    "presetExtraNeonPulseName": "Neon pulse",
+    "presetExtraNoirHotelName": "Noir hotel",
+    "presetExtraSilentFilmFrameName": "Silent film frame",
     "presetExtraDrinkSplashRingHint": "Ji bɛ tɛmɛ kɔnɔ",
     "presetExtraDustReassemblyHint": "Fɛn fitiniw bɛ kɛ kelen ye, u bɛ kɛ fɛn kɔrɔ ye",
     "presetExtraOutfitDetailWalkName": "Fɛn min bɛ fari kan o kofɔli",
@@ -13957,6 +13996,7 @@
     "update": "Kuraya sisan"
   },
   "walletBackup": {
+    "checkPrompt": "Tafuta maneno #{{n}}",
     "keyWarning": "Mɔgɔ o mɔgɔ bɛ ni key in ye, o bɛ se ka i ka wallet mara. A mara yɔrɔ min bɛ kɛnɛya, ani kana a jira mɔgɔ si la.",
     "backupDescription": "I ka wari sɔrɔli kumaw wala i ka jɔnjɔnw mara walisa i ka se k'i ka wari sɔrɔli kɛ.",
     "noPhrase": "O wari tun kisira ni jɔnjɔn ye, o la, DeHub ma se ka kuma dɔ fɔ min be se k'a bali ka baara kɛ. O la, i bena se ka segi ka taga n'i ka wari ye.",

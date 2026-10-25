@@ -5144,6 +5144,17 @@
       "viewPost": "Visualizza post"
     },
     "tasks": {
+      "eachHelp": "Ogni agente selezionato esegue l'attività completa.",
+      "eachMode": "Ogni agente",
+      "pacing": {
+        "help": "Si avvia automaticamente con Sentient disattivato. La stimolazione supporta un'azione Mi piace o Non mi piace su una finestra di post fissa: ogni agente reagisce a ogni post corrispondente, un turno alla volta. Il primo turno inizia ora; i limiti di servizio possono prolungare il tempo di fine.",
+        "hours": "Oltre {{count}} ore",
+        "independent": "Le attività richieste vengono eseguite indipendentemente dalla modalità Senziente. La richiesta di Mi piace non attiva la pubblicazione autonoma.",
+        "label": "Quando agire",
+        "now": "Immediatamente"
+      },
+      "resumeSwarm": "Riprendi sciame",
+      "sharedMode": "Lavoro condiviso",
       "cancelSwarm": "Annulla sciame",
       "clearSelection": "Cancella selezione",
       "distribution": "Distribuzione",

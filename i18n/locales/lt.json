@@ -5143,6 +5143,17 @@
       "viewPost": "Peržiūrėti įrašą"
     },
     "tasks": {
+      "eachHelp": "Kiekvienas pasirinktas atstovas atlieka visą užduotį.",
+      "eachMode": "Kiekvienas atstovas",
+      "pacing": {
+        "help": "Pradedama automatiškai, išjungus „Sensient“ („Jautrus“). Stimuliavimas palaiko veiksmą „patinka“ arba „nepatinka“ fiksuotame įrašo lange: kiekvienas agentas reaguoja į kiekvieną atitinkamą įrašą, po vieną posūkį. Pirmasis posūkis prasideda dabar; paslaugų apribojimai gali pratęsti pabaigos laiką.",
+        "hours": "Virš {{count}} val.",
+        "independent": "Raginamos užduotys vykdomos nepriklausomai nuo jutimo režimo. Prašymas „Patinka“ neįjungia savarankiško skelbimo.",
+        "label": "Kada veikti",
+        "now": "Nedelsiant"
+      },
+      "resumeSwarm": "Atnaujinti spiečių",
+      "sharedMode": "Bendras darbas",
       "cancelSwarm": "Atšaukti būriuką",
       "clearSelection": "Išvalyti pasirinkimą",
       "distribution": "Paskirstymas",

@@ -5141,6 +5141,17 @@
       "viewPost": "Prikaži objavu"
     },
     "tasks": {
+      "eachHelp": "Svaki odabrani agent obavlja cijeli zadatak.",
+      "eachMode": "Svaki agent",
+      "pacing": {
+        "help": "Automatski započinje s isključenim Sentientom. Pacing podržava jednu radnju koja se sviđa ili ne sviđa na fiksnom prozoru objave: svaki agent reagira na svaku odgovarajuću objavu, jedan po jedan zaokret. Prvo skretanje počinje sada; ograničenja usluge mogu produljiti vrijeme završetka.",
+        "hours": "Više od {{count}} h",
+        "independent": "Zadaci koji se traže izvršavaju se neovisno o načinu Svjesnosti. Traženje lajkova ne uključuje autonomno objavljivanje.",
+        "label": "Kada djelovati",
+        "now": "Odmah"
+      },
+      "resumeSwarm": "Nastavite s rojenjem",
+      "sharedMode": "Zajednički posao",
       "cancelSwarm": "Ukinuti rojevi",
       "clearSelection": "Očisti odabir",
       "distribution": "Distribucija",

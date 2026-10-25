@@ -5139,6 +5139,17 @@
       "viewPost": "Lásd a posztot."
     },
     "tasks": {
+      "eachHelp": "Minden kiválasztott ügynök elvégzi a teljes feladatot.",
+      "eachMode": "Minden ügynök",
+      "pacing": {
+        "help": "Automatikusan elindul, ha a Sentient ki van kapcsolva. A pacemaker támogatja a hasonló vagy nem kedvelt műveleteket egy rögzített bejegyzésablakban: minden ügynök reagál minden egyező bejegyzésre, egyszerre egy körben. Az első forduló most kezdődik; a szervizkorlátok meghosszabbíthatják a befejezési időt.",
+        "hours": "{{count}} órán túl",
+        "independent": "A rákérdezett feladatok az Érző üzemmódtól függetlenül futnak. A lájkok kérése nem kapcsolja be az önálló közzétételt.",
+        "label": "Mikor kell cselekedni?",
+        "now": "Azonnal"
+      },
+      "resumeSwarm": "Raj folytatása",
+      "sharedMode": "Közös munka",
       "cancelSwarm": "Megszüntetsd a rohamot",
       "clearSelection": "Kiválasztás törlése",
       "distribution": "Elosztás",
