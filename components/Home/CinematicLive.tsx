@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * CinematicLive — the Live tab on phones in the System theme
  * ==========================================================
@@ -425,8 +426,8 @@ const CinematicLive: React.FC<CinematicLiveProps> = ({
     <View style={styles.gridSkeleton}>
       {Array.from({ length: 4 }).map((_, i) => (
         <View key={i} style={{ width: tileWidth }}>
-          <View style={[styles.tileMedia, styles.skeleton]} />
-          <View style={[styles.skeleton, { marginTop: 6, height: 12, width: "75%", borderRadius: 4 }]} />
+          <SkeletonBlock style={[styles.tileMedia, styles.skeleton]} />
+          <SkeletonBlock style={[styles.skeleton, { marginTop: 6, height: 12, width: "75%", borderRadius: 4 }]} />
         </View>
       ))}
     </View>

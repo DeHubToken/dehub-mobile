@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 import BadgeArtwork from "../common/BadgeArtwork";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -200,10 +201,10 @@ const AuthorHeader: React.FC<AuthorDisplay & { time?: string; onPress?: () => vo
 
 const ThreadSkeletonRow: React.FC = () => (
   <View className="flex-row items-center" style={{ paddingBottom: 14, opacity: 0.7 }}>
-    <View style={{ width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.08)" }} />
+    <SkeletonBlock style={{ width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.08)" }} />
     <View style={{ marginLeft: AVATAR_GAP, flex: 1 }}>
-      <View style={{ height: 10, width: 110, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.08)" }} />
-      <View style={{ height: 10, width: 170, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.06)", marginTop: 8 }} />
+      <SkeletonBlock style={{ height: 10, width: 110, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.08)" }} />
+      <SkeletonBlock style={{ height: 10, width: 170, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.06)", marginTop: 8 }} />
     </View>
   </View>
 );

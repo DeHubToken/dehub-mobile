@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * CinematicMusic — the Music tab on phones in the System theme
  * ============================================================
@@ -315,11 +316,11 @@ const ChartSkeleton: React.FC = () => (
   <View>
     {Array.from({ length: 6 }).map((_, i) => (
       <View key={i} style={styles.row}>
-        <View style={[styles.skeleton, { width: 22, height: 16 }]} />
-        <View style={[styles.skeleton, { width: THUMB, height: THUMB, borderRadius: 8 }]} />
+        <SkeletonBlock style={[styles.skeleton, { width: 22, height: 16 }]} />
+        <SkeletonBlock style={[styles.skeleton, { width: THUMB, height: THUMB, borderRadius: 8 }]} />
         <View style={{ flex: 1, gap: 6 }}>
-          <View style={[styles.skeleton, { width: "66%", height: 14 }]} />
-          <View style={[styles.skeleton, { width: "33%", height: 12 }]} />
+          <SkeletonBlock style={[styles.skeleton, { width: "66%", height: 14 }]} />
+          <SkeletonBlock style={[styles.skeleton, { width: "33%", height: 12 }]} />
         </View>
       </View>
     ))}
