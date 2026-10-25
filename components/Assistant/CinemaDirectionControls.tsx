@@ -25,7 +25,7 @@ export function CinemaDirectionControls({ value, onChange, mode, disabled }: Pro
         <Text className="font-semibold text-theme-neutrals-100">{text('title', 'Cinema direction')}</Text>
       </Pressable>
       {expanded && <>
-        <Text className="my-2 text-xs text-theme-neutrals-400">{text('hint', 'Optional prompt guidance. Results vary by model; these choices do not control physical cameras or edit footage. Standard generation pricing applies.')}</Text>
+        <Text className="my-2 text-xs text-theme-neutrals-400">{text('hint', 'Guide the visual style of your next image or video. Results vary by model.')}</Text>
         <View className="flex-row flex-wrap gap-2">
           {CINEMA_DIRECTION_FIELDS.filter((entry) => !entry.videoOnly || mode === 'video').map((entry) => {
             const index = entry.options.indexOf(direction[entry.id] ?? '');
