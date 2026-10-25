@@ -18,9 +18,14 @@ function useCrossPostAccounts() {
     enabled: !!wallet,
     staleTime: 60_000,
   });
-  const hidden = !wallet || status.isError;
-  const accounts = (status.data?.accounts ?? []).filter((a) => !a.pending);
-  return { hidden, accounts, selected, credits: status.data?.credits ?? 0 };
+  const hidden = !wallet;
+  const accounts = status.isError ? [] : (status.data?.accounts ?? []).filter((a) => !a.pending);
+  return { hidden, accounts, selected, failed: status.isError, credits: status.data?.credits ?? 0 };
+}
+
+export function useCrossPostAccountCount() {
+  const { hidden, accounts, selected } = useCrossPostAccounts();
+  return hidden ? 0 : accounts.filter(account => selected.includes(account.id)).length;
 }
 
 /**
@@ -28,13 +33,14 @@ function useCrossPostAccounts() {
  * icon row. With nothing connected it goes straight to setup; otherwise it
  * shows or hides the account list, and the badge counts accounts switched on.
  */
-export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; onManage: () => void }> = ({
+export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; onManage: () => void; menuItem?: boolean }> = ({
   open,
   onToggle,
   onManage,
+  menuItem = false,
 }) => {
   const { t } = useTranslation();
-  const { hidden, accounts, selected } = useCrossPostAccounts();
+  const { hidden, accounts, selected, failed } = useCrossPostAccounts();
   if (hidden) return null;
   const count = accounts.filter((a) => selected.includes(a.id)).length;
   const lit = open || count > 0;
@@ -43,7 +49,7 @@ export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; on
     <TouchableOpacity
       onPress={accounts.length ? onToggle : onManage}
       activeOpacity={0.7}
-      className="w-9 h-9 rounded-xl items-center justify-center border"
+      className={menuItem ? "flex-row items-center px-4 py-3 rounded-xl border" : "w-9 h-9 rounded-xl items-center justify-center border"}
       style={{
         backgroundColor: lit ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.1)",
         borderColor: lit ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)",
@@ -52,12 +58,14 @@ export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; on
       accessibilityRole="button"
       accessibilityState={{ expanded: open }}
       accessibilityLabel={accounts.length ? t("multiPost.alsoPostTo") : t("multiPost.setUp")}
+      accessibilityHint={failed ? t("multiPost.loadFailed") : undefined}
     >
       <Icon name="Share2" size={16} color="#fff" />
+      {menuItem && <Text className="flex-1 ml-3 text-white text-sm">{t("multiPost.title")}</Text>}
       {count > 0 && (
         <View
-          className="absolute w-4 h-4 rounded-full bg-white items-center justify-center"
-          style={{ top: -4, right: -4 }}
+          className={menuItem ? "w-5 h-5 rounded-full bg-white items-center justify-center" : "absolute w-4 h-4 rounded-full bg-white items-center justify-center"}
+          style={menuItem ? undefined : { top: -4, right: -4 }}
         >
           <Text className="text-black font-bold" style={{ fontSize: 10 }}>
             {count}
