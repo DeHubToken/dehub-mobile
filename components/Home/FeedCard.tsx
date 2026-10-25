@@ -2213,15 +2213,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]} /> : null}
           {showRepostLabel && <View className="flex-row items-center gap-1.5 mb-2"><Icon name="Repeat2" size={14} color="#9CA3AF" /><Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text></View>}
           {!!(item as any).__boosted && <TouchableOpacity onPress={() => navigation.navigate(ScreenNames.SuperPowers)} className="flex-row items-center gap-1.5 mb-2"><Icon name="Zap" size={14} color="#9CA3AF" /><Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">{t("work.boosted")}</Text></TouchableOpacity>}
-          <FeedCardHeader
-            avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
-            badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
-            onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
-            isHidden={isHidden}
-          />
-          <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch', marginTop: 8 }}>
-            <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
+          <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch' }}>
             <View style={{ flex: 1, minWidth: 0 }}>
+              <FeedCardHeader
+                avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
+                badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
+                onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
+                isHidden={isHidden}
+              />
               <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
                 <FeedCaption resetKey={postKey} title={overlayTitle || undefined} description={displayCaption || undefined}
                   variant="portrait" compactPortrait={SCREEN_WIDTH < 768} maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
@@ -2242,6 +2241,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 {actionBar}
               </View>
             </View>
+            <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
           </View>
           {sheets}
         </Pressable>
