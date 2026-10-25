@@ -869,7 +869,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
 
 
           {/* Terms and Privacy */}
-          <View style={{ marginTop: 24 }}>
+          <View style={{ paddingVertical: 24 }}>
             <Text style={[authText.caption, { textAlign: "center" }]}>
               {/* The links travel with the sentence so languages that reorder
                   the terms and the policy still read correctly. */}
@@ -896,7 +896,6 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
             </Text>
           </View>
 
-          <View style={{ height: 24 }} />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

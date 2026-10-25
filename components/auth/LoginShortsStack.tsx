@@ -13,7 +13,7 @@ import { loginClipLanes } from "../../libs/login-clip-lanes";
 import { LOGIN_CLIPS as CLIPS } from "./login-clip-assets";
 
 /**
- * The top half of the sign-in screen: two lanes of short clips drifting past
+ * The top half of the sign-in screen: two phone lanes, or three on wider screens, drifting past
  * in opposite directions, then the headline. Shares the selected clip
  * catalogue and shuffled lane order with the web drawer.
  *
@@ -137,7 +137,9 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
 
   // The screen pads 24 each side; the lanes sit 10 from the edges.
   const lanesW = width - SIDE * 2;
-  const tileW = (lanesW - GAP) / 2;
+  const selected = [...lanes.first, ...lanes.second];
+  const columns = width >= 768 ? [selected.slice(0, 3), selected.slice(3, 6), selected.slice(6)] : [lanes.first, lanes.second];
+  const tileW = (lanesW - GAP * (columns.length - 1)) / columns.length;
   // Native navigation can give the sheet less space than the window reports.
   // Budget against the actual scroll frame, reserving room for the form.
   const availableHeight = viewportHeight ?? screenH - insets.top - insets.bottom;
@@ -160,8 +162,7 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360,
           importantForAccessibility="no-hide-descendants"
         >
           <View style={[styles.lanes, { height: lanesH }]}>
-            <Lane clips={lanes.first} tileW={tileW} height={lanesH} still={still} line={line} />
-            <Lane clips={lanes.second} down tileW={tileW} height={lanesH} still={still} line={line} />
+            {columns.map((clips, index) => <Lane key={index} clips={clips} down={index % 2 === 1} tileW={tileW} height={lanesH} still={still} line={line} />)}
           </View>
         </MaskedView>
       </KeepDarkScope>
