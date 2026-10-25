@@ -544,7 +544,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
         <Animated.View
           style={[
             StyleSheet.absoluteFill,
-            { backgroundColor: pageColors.background, opacity: coverOpacity },
+            { backgroundColor: colors.background, opacity: coverOpacity },
           ]}
         >
           <SplashScreen />
