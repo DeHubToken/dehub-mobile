@@ -97,8 +97,8 @@ import {
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
 const playbackLog = createLogger("FeedVideoPlayer");
 
-/** Inline videos and their transport strip occupy at most 55% of the screen,
- *  a bit taller than X's long-form videos; feeds align them left. */
+/** Inline videos and their transport strip occupy at most 55% of the screen.
+ * Tall footage crops inside a full-width frame; fullscreen keeps the whole clip. */
 const INLINE_MAX_SCREEN = 0.55;
 const controlStripHeight = (width: number) => VIDEO_CONTROL_STRIP_HEIGHT + (width < 320 ? 32 : 0);
 const postPageMaxHeightFor = (screenHeight: number, _boxWidth: number) =>
@@ -112,15 +112,13 @@ const postPageMaxHeightFor = (screenHeight: number, _boxWidth: number) =>
 const mediaBoxWidth = (
   win: { width: number; height: number },
   isMinimal: boolean,
-  mediaAspect: number,
+  _mediaAspect: number,
   postPage = false,
-  strip = false,
+  _strip = false,
 ) => {
   // The post page runs its media edge to edge, whatever the theme.
   const fullWidth = isMinimal || postPage ? win.width : cardWidthFor(win.width);
-  const candidate = Math.min(fullWidth, Math.max(1, win.height * INLINE_MAX_SCREEN - (strip ? VIDEO_CONTROL_STRIP_HEIGHT : 0)) * mediaAspect);
-  const reserved = strip ? controlStripHeight(candidate) : 0;
-  return Math.min(fullWidth, Math.max(1, win.height * INLINE_MAX_SCREEN - reserved) * mediaAspect);
+  return fullWidth;
 };
 
 const mediaBoxHeight = (win: { width: number; height: number }, width: number, aspect: number, postPage: boolean, strip: boolean) =>
@@ -570,7 +568,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const edgeToEdge = isMinimal || postPage;
   const windowSize = useWindowDimensions();
   // The frame takes the clip's own shape, so the whole picture fills it.
-  const cropMedia = false;
+  const cropMedia = true;
   // Feed preview: the clip plays muted as it is, with only an unmute button
   // in the corner. A tap anywhere opens it in the Shorts viewer, which has the
   // full controls; the post page keeps its own player.
@@ -1306,7 +1304,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         styles.container,
         {
           height: mediaBoxHeight(windowSize, mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls), mediaAspect, postPage, splitControls),
-          // Shrink the frame with the picture instead of adding side bars.
+          // Keep the picture and its transport strip aligned to the full width.
           width: mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls),
           maxWidth: "100%",
           alignSelf: "flex-start",
@@ -2116,7 +2114,7 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
     const isMinimal = minimalTheme || !!bleed;
     const edgeToEdge = isMinimal || postPage;
     const windowSize = useWindowDimensions();
-    const cropMedia = false;
+    const cropMedia = true;
     const splitControls = !hideControls && !feedPreview;
     const stripHeight = controlStripHeight(mediaBoxWidth(windowSize, isMinimal, mediaAspect, postPage, splitControls));
     const mediaTap = useTapOnlyPress(() => onPress());
