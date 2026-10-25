@@ -5,6 +5,7 @@ import UserProfileBottomSheet from '../components/UserProfile/UserProfileBottomS
 import { PROFILE_CLOSE_MS } from '../components/UserProfile/ProfileSurface';
 import { setProfileDeepLinkHandler } from '../libs/deeplink.events';
 import { useAppTheme } from './ThemeContext';
+import { prefetchUserProfile } from '../hooks/useUserProfileData';
 import {
   resolveProfilePresentation,
   type ProfilePresentation,
@@ -40,6 +41,7 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
   const CLOSE_CLEAR_DELAY_MS = PROFILE_CLOSE_MS;
 
   const showUserProfile = useCallback((id: string, opts?: { initialHeightPct?: number; source?: string }) => {
+    prefetchUserProfile(id);
     if (clearTimerRef.current) {
       clearTimeout(clearTimerRef.current);
       clearTimerRef.current = null;
@@ -121,8 +123,10 @@ export const UserProfileSheetProvider: React.FC<{ children: React.ReactNode }> =
     <UserProfileSheetContext.Provider value={contextValue}>
       <View style={{ flex: 1 }}>
         <UserProfilePresentationContext.Provider value={presentationContextValue}>
-          {/* Keep covered feeds paused through the profile's closing animation. */}
-          <FeedPlaybackActiveContext.Provider value={identifier === null || presentation !== 'modal'}>
+          {/* Pause expensive feed consumers after the entrance, rather than
+              re-rendering every player before the shell's first frame. Keep
+              them paused through closing so Back can start immediately too. */}
+          <FeedPlaybackActiveContext.Provider value={identifier === null || presentation !== 'modal' || (visible && !openComplete)}>
             {/* Remove the covered native render tree: opacity alone still
                 prepares its image textures on every profile scroll frame. */}
             <View style={{ flex: 1, display: covered ? 'none' : 'flex' }}
