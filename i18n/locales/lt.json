@@ -5219,6 +5219,17 @@
         "filterHelp": "Palikite tuščius filtrus visiems įrašams. Kai abu nustatyti, abu turi sutapti. Išsaugomos esamos reakcijos; pasirinkus priešingą reakciją, ji pasikeičia.",
         "last1h": "Paskutinė valanda",
         "last30d": "Paskutinės 30 dienų"
+      },
+      "eachMode": "Kiekvienas atstovas",
+      "sharedMode": "Bendras darbas",
+      "eachHelp": "Kiekvienas pasirinktas atstovas atlieka visą užduotį.",
+      "resumeSwarm": "Atnaujinti spiečių",
+      "pacing": {
+        "label": "Kada veikti",
+        "now": "Nedelsiant",
+        "hours": "Virš {{count}} val.",
+        "help": "Pradedama automatiškai, išjungus „Sensient“ („Jautrus“). Stimuliavimas palaiko veiksmą „patinka“ arba „nepatinka“ fiksuotame įrašo lange: kiekvienas agentas reaguoja į kiekvieną atitinkamą įrašą, po vieną posūkį. Pirmasis posūkis prasideda dabar; paslaugų apribojimai gali pratęsti pabaigos laiką.",
+        "independent": "Raginamos užduotys vykdomos nepriklausomai nuo jutimo režimo. Prašymas „Patinka“ neįjungia savarankiško skelbimo."
       }
     },
     "title": "DI agentai",

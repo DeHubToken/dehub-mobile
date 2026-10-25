@@ -2506,7 +2506,41 @@
     "f6f4688ff23d": "Kirim",
     "fc036ea0e9f0": "Pranala menyang kaca tartamtu",
     "fef6a1a97127": "Kudu ngoko {{value1}}",
-    "ff701a069af2": "Verifikasi & Buka"
+    "ff701a069af2": "Verifikasi & Buka",
+    "8d6f0c73fbaf": "RTMP:",
+    "831df2f1931a": "kirim",
+    "50a45e647dbb": "REKAM",
+    "2d9c014a222d": "MAX",
+    "94a6a84d8cbc": "Solscan",
+    "1655cc1b5278": "Sosial login diusulkan. Alat iki kanggo nambahaké akun ingkang wis ana saking",
+    "407d8f7e8ded": "Dipinjem dening",
+    "cab2644828bc": "kaya",
+    "b0aa8a6c35b4": "seneng",
+    "f0199bd77184": "Pangeling-eling disetel — sampeyan bakal diwartani nalika wiwit",
+    "494f351679ab": "Toko dianyari!",
+    "c2e1e173fbc9": "Dhaftar digawe!",
+    "b0dd0a526e86": "Tinjauan dikirim!",
+    "b9725da1e57f": "Terjemahan gagal. Coba maneh.",
+    "bfd4303ae4e5": "Kiriman diterjemahake",
+    "5c3ce8d496e2": "OFFLINE",
+    "afde82a73cab": "DIJADWAL",
+    "1ed44687a46a": "Tumpukan LED",
+    "875af21cd687": "Bunga Matahari",
+    "f223faa96f22": "Apel",
+    "16840520f59c": "Liberal",
+    "1e5304270961": "Kiriman audio kanthi pamuter gelombang visual. Para kreator bisa ngunggah musik, podcast, utawa rekaman swara.",
+    "3010b02a4030": "Ruang audio langsung ing mana pangguna bisa ngomong, ngrungokake, lan ngangkat tangan kanggo melu parikraman.",
+    "1c1f651829b5": "Bayar-Per-View (PPV)",
+    "8eb58739cb35": "Rincian Kiriman On-Chain",
+    "3c1c1229f7a3": "Transaksi Mint",
+    "29e67c672ae2": "Pengenal unik on-chain sing ditugasake nalika kiriman dimint minangka NFT.",
+    "380d64545671": "Pasar Fraksi",
+    "520cf6869b44": "Pengenal unik kanggo transaksi on-chain apa wae. Bukakake kanggo ndeleng rincian transaksi lengkap ing penjelajah blockchain.",
+    "f4697afb34f4": "Peringkat pangguna paling dhuwur miturut keseimbangan, tips sing dikirim, tips sing ditampa, pengikut, lan liyane. Dianyari kanthi berkala.",
+    "ec9eff0f3f13": "Saranake fitur anyar lan voting ide komunitas. Panjalukan populer bakal diprioritasake kanggo pangembangan.",
+    "bc7b4fda29f9": "Upvote",
+    "adad75f48d49": "Downvote",
+    "23ad0f440f48": "Peringkat Leaderboard"
   },
   "dehubLinks": {
     "kind": {
@@ -5158,6 +5192,17 @@
         "filterHelp": "Kosongin filter-filter ingkang ingkang kalau mau semua post. Kalau keduanya diisi, keduanya harus cocok. Reaksi ingkang ada ngendi-endi; pilih reaksi lawan ngantiin.",
         "last1h": "Jam ingkang luyu",
         "last30d": "30 haru ingkang luyu"
+      },
+      "distribution": "Pambagéan",
+      "eachMode": "Agèn",
+      "sharedMode": "Kerja sambung",
+      "eachHelp": "Agèn- agèn sing dipilih nggih melakoni tugas pambekting.",
+      "resumeSwarm": "Résumé swara",
+      "pacing": {
+        "label": "Wonten ing wektu apa?",
+        "now": "Segera",
+        "help": "Miyosakenan wis kacanggah. Pacing ngrembaka karo Sentient. Pacing ngandharaken aksi siji utawa durung siji ing njaba jendhèl pos: setiap agent reaksi marang setiap posan sing cocok, siji turn karo turn. Turn pertama wis wiwit; batasan layanan bisa nambahaken waktunyane kanggo pungkasan.",
+        "independent": "Tugas-tugas diprogram berjalan mandiri saking Sentient mode. Nalika nuntut siji kangen, ora ngaktifkeun posting otonom."
       }
     },
     "title": "Agen AI",
@@ -7966,7 +8011,11 @@
       "today": "Kanggo ngisor ngarepone, Waktu Universal Koordinat (UTC).",
       "tooltipMonth": "{{month}} · {{days}} dina",
       "tooltipPerDay": "{{revenue}} / {{costs}} wanci",
-      "unavailable": "{{sources}} gak bisa dicapai, jadi ditinggalin di tiap total di atas aja gak dianggep-anggep."
+      "unavailable": "{{sources}} gak bisa dicapai, jadi ditinggalin di tiap total di atas aja gak dianggep-anggep.",
+      "coveredHint": "biaya dibayar dening revenue",
+      "chartMonthly": "Revenue lan biaya per dina, rata-rata saben bulan",
+      "chartDaily": "Revenue lan biaya per dina",
+      "dhbMarket": "DHB yaiku ${{price}} ing wacan iki."
     },
     "taxSplit": {
       "open": "Lihat setiap {{part}} bar",
@@ -8802,7 +8851,8 @@
     "preparingCamera": "Nyepakake kamera…",
     "reconnecting": "Nyambungake maneh…",
     "connecting": "Nyambungake…",
-    "shopPutOnAir": "Lebokake ing udhara"
+    "shopPutOnAir": "Lebokake ing udhara",
+    "streamCount_one": "{{count}} stream"
   },
   "liveShop": {
     "title": "Blanja saka siaran iki",
@@ -10163,7 +10213,11 @@
         "tryIt": "Cobi dinten punika",
         "turnHint": "Tuduhna wektu nalika samubarang owah.",
         "whatHappened": "Kajengé ingkang kawiwitan",
-        "yourQuote": "Matur nuwun, kawruh ingkang kudu dipunlampahaken."
+        "yourQuote": "Matur nuwun, kawruh ingkang kudu dipunlampahaken.",
+        "bestPick": "Nomer siji sampeyan",
+        "myth": "Mitos umum",
+        "questionHint": "Takon siji pitakon sing jelas.",
+        "nextHint": "Wenehi viewers siji langkah sabanjure sing prasaja."
       },
       "duration": "{{seconds}}",
       "format": "Format video",
@@ -10206,7 +10260,11 @@
       "title": "Pandhèngan",
       "useCaptions": "Kapten James T. Kirk lanangé ingkang misuwur saking kapal USS Enterprise NCC-1701.",
       "visual": "Sorotan visual",
-      "visualPrivacy": "Kirim pigura sing dipilih kanggo analisis visual."
+      "visualPrivacy": "Kirim pigura sing dipilih kanggo analisis visual.",
+      "captionHint": "Mung pidato sing ditutup dening captions saiki sing bakal dianggep.",
+      "created": "Highlight edit disimpen. Proyek asli tetep dipertahanake.",
+      "projectTitle": "{{title}} — Highlights",
+      "undoSelection": "Undo selection"
     },
     "review": {
       "title": "Priksa proyek",
@@ -10318,7 +10376,8 @@
       "hint": "Ngowahi omongan dadi teks sing pas wektune lan bisa diganti gayane. Mlaku ing piranti sampeyan: gratis lan pribadi. Nalika pisanan dienggo, model bakal diundhuh.",
       "done": "{{count}} teks ditambahake.",
       "noSpeech": "Ora ana omongan ing klip iki.",
-      "failed": "Ora bisa nggawe teks kanggo klip iki."
+      "failed": "Ora bisa nggawe teks kanggo klip iki.",
+      "reloadText": "Reload caption"
     },
     "app": {
       "newDesign": "Desain anyar",
@@ -10460,7 +10519,16 @@
       "pageBookmarks": "Panggonan buku tumpang",
       "pageOrderHint": "Kaca-kaca kudu urut sesuai urutane. Gunakake 3,1-2 kanggo ngawali kaca 3, utawa 5-1 kanggo ngabalikaké urutan kaca 5-1. Kaca-kaca kang wis diurutake kudu nganakake urutane.",
       "pptxHint": "Klo tipe halaman lan jadi satu gambar slide, lan dadi dhuwur presenter notes lan URL. Edit teks lan elemen lanjaran sing dadi dhuwur lan dinawisahake.",
-      "transparent": "Gambar latar belakang transparan"
+      "transparent": "Gambar latar belakang transparan",
+      "cropMarks": "Crop marks lan print margins",
+      "documentImageQuality": "Page image detail",
+      "filenameHint": "Kosongake kanggo jeneng default. Gunakake {title}, {name}, {section}, {page}, utawa {page:3}. Tambahake prefix minangka plain text. Jeneng duplikat nampa suffix nomer halaman.",
+      "filenamePattern": "Page filename pattern",
+      "notesText": "Presenter notes (.txt)",
+      "notesTextHint": "Downloads section headings, nomer halaman asli, jeneng halaman, lan presenter notes minangka file teks.",
+      "pdf": "PDF document",
+      "pptx": "PowerPoint presentation",
+      "section": "Named section"
     },
     "adjust": {
       "auto": "Paningkatan otomatis",
@@ -10844,7 +10912,13 @@
       "tokenDecimals": "Angka desimal",
       "tokenHint": "Pastekan placeholder ini ke teks template atau konten QR, lananti pilihlah *Use placeholders in text* untuk lapisan itu. Formatasi ngawur nganggo nilai spreadsheet ga ngawur. Format angka butuh angka mungil; 25 di mode persen ditulis 25%.",
       "tokenLocale": "Nomor lokale",
-      "trimToken": "Pangkas spasi sadurunge format"
+      "trimToken": "Pangkas spasi sadurunge format",
+      "layerPhotos": "Foto saka kolom",
+      "matchCount": "{{count}} connections ready; {{ambiguous}} ambiguous layers skipped",
+      "matchHint": "Matches jeneng lengkap nalika nglirwakake case, spasi berulang, hyphen lan underscore. Koneksi valid sing ana lan text placeholders tetep dipertahanake. Matches ambiguous tetep ora koneksi. Koneksi foto nggunakake named-photo lookup sing ana.",
+      "nextRow": "Next row",
+      "pagePreview": "Preview populated page",
+      "photoNames": "Available source photo names ({{count}})"
     },
     "charts": {
       "importStyle": "Impor file gaya",
@@ -11168,7 +11242,9 @@
       "previewHint": "Pratinjau pakai warna halaman tanpa karya seni lain. Masukkan diagram untuk tambah lapisan yang bisa diedit.",
       "previewUnavailable": "Pratinjau kanvas tidak tersedia. Draft tetap bisa diedit.",
       "previewUpdating": "Gwéyé ngisorake diagram préwéwé…",
-      "vertical": "Tata letak vertikal"
+      "vertical": "Tata letak vertikal",
+      "previewNeedsData": "Kasus warna lan ngandhut label ingkang sampun diatur nganti 120 karakter kanggo préview.",
+      "title": "Diagram ingkang bisa diédit"
     },
     "document": {
       "start": "Dimulih di",
@@ -11187,7 +11263,10 @@
       "repeated": "Elemen sing dipilih wis disalin menyang kaca sing dipilih",
       "size": "Géngéngan tulisan",
       "suffix": "Sufiks",
-      "title": "Nomer kaca lan unsur-unsur sing dibaleni"
+      "title": "Nomer kaca lan unsur-unsur sing dibaleni",
+      "removeNumbers": "Onggokaken nomer halaman",
+      "skipCover": "Tutup ing halaman kapisan",
+      "total": "Tampilan total halaman"
     },
     "elements": {
       "rename": "Ganti jeneng",
@@ -11224,7 +11303,9 @@
       "previous": "Font sadurunge",
       "replaceDesign": "Kanggo nganti font ngendi-ngendi di desain ini.",
       "search": "Kecari font",
-      "source": "Font kanggo ngganti"
+      "source": "Font kanggo ngganti",
+      "next": "Pilih font",
+      "target": "Font pengganti"
     },
     "gradients": {
       "importStyle": "Impor file gaya",
@@ -11243,7 +11324,12 @@
       "styleFileHint": "Kang ngarani warna gradien, posisi, transparansi, sudut, dan pengaturan radial antar perangkat. Import ngarani draft; guna kané ngawangi ngarani karya seni.",
       "styleFiles": "Tranfer gaya gradient",
       "styleLoaded": "Gaya udah dimasukin ke draft",
-      "svgHint": "Ngasilaké gradient iki ingkang ngembang ing ukuran page, ingkang ngemot posisi stop lan transparansi. Gunakaké ingkang béda-béda supaya bisa digunakaké ing desain."
+      "svgHint": "Ngasilaké gradient iki ingkang ngembang ing ukuran page, ingkang ngemot posisi stop lan transparansi. Gunakaké ingkang béda-béda supaya bisa digunakaké ing desain.",
+      "brandPalettes": "Palet warna lan gradasi ingkang disimpen",
+      "noBrandPalettes": "Simpen palet warna ingkang paling sedikit duwé loro warna ing gaya brand kanggo nggunakaké ing sini.",
+      "preview": "Préview gradasi",
+      "remove": "Tutup stop",
+      "reverse": "Balik"
     },
     "graphicDraftHistory": {
       "local": "Rancangan Grafis",
@@ -11255,7 +11341,8 @@
       "mobileHint": "Ngisi layout foto. Tap frame lan pilih ganti layer sing isiné karo foto utawa video.",
       "rounding": "Kelurusan sisi sudut",
       "spacing": "Kedhaan di pixel",
-      "title": "Gedhog foto"
+      "title": "Gedhog foto",
+      "frame": "Framing foto"
     },
     "groups": {
       "applyOpacity": "Kanggo ngelmukeke nglawane lan nglawane yén dipilih",
@@ -11271,7 +11358,11 @@
       "noMatches": "Gak ada lapisan yang cocok di halaman ini.",
       "scalePercent": "Pilih skala miturut persentase",
       "smaller": "Kecil-kecilan",
-      "ungroup": "Batalake golongan"
+      "ungroup": "Batalake golongan",
+      "applyRotation": "Rotasi seleksi",
+      "rotateBy": "Rotasi {{degrees}}°",
+      "rotationDegrees": "Rotasi seleksi ing derajat",
+      "selectMatches": "Pilih lapisan ingkang sesuai"
     },
     "guides": {
       "clear": "Busak",
@@ -11289,7 +11380,12 @@
       "smartSpacing": "Sapunéng watesan",
       "snap": "Ngisor wates",
       "thirds": "Ketiga",
-      "title": "Panduan lan Marginal"
+      "title": "Panduan lan Marginal",
+      "applyGrid": "Tetepaken grid",
+      "gridPreview": "Préview grid panduan",
+      "gridTitle": "Grid tata letak",
+      "resolution": "Berdasarkan {{dpi}} piksel per inci",
+      "rulers": "Tampilan rèng"
     },
     "help": {
       "noResults": "Ora ana saranan bantuan. Coba cari alat nama utawa aksi kaya \"paste\", \"crop\", utawa \"group\".",
@@ -11810,6 +11906,9 @@
       "zoomOut": "Zoomin out kanvas",
       "fit": "Pas",
       "pan": "Geser canvas"
+    },
+    "frames": {
+      "title": "Framing foto"
     }
   },
   "creator": {
@@ -12270,7 +12369,8 @@
     "referenceProductName": "Tempel produk sampeyan ing klip",
     "referenceProductHint": "Ganti produk utama lan njaga adegan asli.",
     "referenceComposeName": "Gabung gambar referensi",
-    "referenceComposeHint": "Bawa karakter, obyek lan setelan saka sawetara gambar menyang siji komposisi."
+    "referenceComposeHint": "Bawa karakter, obyek lan setelan saka sawetara gambar menyang siji komposisi.",
+    "presetExtraVinylSleeveHint": "Album foto karo album rekaman sebagian dipameraké"
   },
   "fractions": {
     "title": "Bagean",
@@ -13913,7 +14013,8 @@
     "showWords": "Tampilake tembung",
     "reminderBody": "Kembalikan dompetmu — 12 kata yang bisa ngembalikan dompetmu kalau lupa ponsel.",
     "backUp": "Balik",
-    "notNow": "Gwé nggoje."
+    "notNow": "Gwé nggoje.",
+    "noPhrase": "Wallet iki disimpen nggunakake private key, mula DeHub ora duwe recovery phrase kanggo ditampilake. Backup key iki kanggo mulihake wallet sing padha."
   },
   "liveOverlay": {
     "chatPreview": "Pesanan chat ditampilin gini",

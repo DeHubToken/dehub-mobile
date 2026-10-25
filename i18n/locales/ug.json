@@ -2549,7 +2549,15 @@
     "f6f4688ff23d": "ئەۋەتىش",
     "fc036ea0e9f0": "مەلۇم بىر بەتكە ئۇلىنىش",
     "fef6a1a97127": "ئەگەشكۈچى: {{value1}}",
-    "ff701a069af2": "Tekshirib och"
+    "ff701a069af2": "Tekshirib och",
+    "8fc6889d642b": "see less",
+    "6a5216300cb9": "Subtitles Off",
+    "bc7b4fda29f9": "Upvote",
+    "adad75f48d49": "Downvote",
+    "5f29db2f7ae5": "Staking Badges",
+    "23ad0f440f48": "Leaderboard Ranking",
+    "468415f0e112": "Ag",
+    "8d3f3e35915d": "BLOCK {{value1}}"
   },
   "dehubLinks": {
     "kind": {
@@ -4667,12 +4675,12 @@
   "messages": {
     "encryptionSetupFailed": "شىفىرلاش تەڭشىكى مەغلۇپ بولدى. قايتا سىناپ بېقىڭ.",
     "encryptionTurningOn": "ھەميانىڭىزنىڭ شىفىرلاشنى قوزغىتىشىنى كۈتۈۋاتىدۇ…",
-    "lockedBody": "{{name}} بىلەن بولغان پاراڭىڭىز ئاخىرقى نۇقتىدىن ئاخىرقى نۇقتىغىچە شىفىرلانغان. ئۇنى ئېچىش ئۈچۈن بۇ ئۈسكۈنىدىكى ھەميانىڭىزنىڭ قۇلۇپىنى ئېچىڭ.",
-    "lockedPrivate": "پەقەت سىزلا ئۇلارنى ئوقۇيالايسىز",
+    "lockedBody": "{{name}} بىلەن سۆھبىتىڭىز ئاخىرلاشتى. ئۇنى ئېچىش ئۈچۈن، يانچۇقىڭىزنى بۇ ئۈسكۈنىگە تاقاپ قويۇڭ.",
+    "lockedPrivate": "ئۇلارنى پەقەت سەنلا ئوقۇيالايسەن",
     "lockedTitle": "ئۇچۇرلىرىڭىزنى ئوقۇش ئۈچۈن قۇلۇپنى ئېچىڭ",
-    "lockedTryAgain": "قايتا سىناش",
-    "lockedUnlock": "ھەميان قۇلۇپىنى ئېچىش",
-    "undecryptableRun_one": "{{count}} ئۇچۇرنى بۇ ئۈسكۈنىدە ئاچقىلى بولمايدۇ",
+    "lockedTryAgain": "قايتا سىناڭ",
+    "lockedUnlock": "قۇلۇپنى ئاچ",
+    "undecryptableRun_one": "{{count}} message بۇ ئۈسكۈنىدە ئېچىلمايدۇ",
     "undecryptableRun_other": "{{count}} ئۇچۇرلار بۇ ئۈسكۈنىدە ئېچىلمايدۇ",
     "smartRepliesOff": "تەۋسىيە جاۋابلار ئېتىلدى",
     "smartRepliesOffWhere": "ئۇلارنى تەڭشەكلەر ← ئۇچۇرلار دىن قايتا ئېچىڭ.",
@@ -4685,14 +4693,7 @@
     "title": "ئۇچۇرلار",
     "searchConversations": "سۆھبەتلەرنى ئىزدەش...",
     "failedToLoad": "سۆھبەتلەرنى يۈكلەش مەغلۇب بولدى",
-    "tryAgain": "قايتا سىناش",
-    "lockedTitle": "ئۇچۇرلىرىڭىزنى ئوقۇش ئۈچۈن قۇلۇپنى ئېچىڭ",
-    "lockedBody": "{{name}} بىلەن سۆھبىتىڭىز ئاخىرلاشتى. ئۇنى ئېچىش ئۈچۈن، يانچۇقىڭىزنى بۇ ئۈسكۈنىگە تاقاپ قويۇڭ.",
-    "lockedUnlock": "قۇلۇپنى ئاچ",
-    "lockedTryAgain": "قايتا سىناڭ",
-    "lockedPrivate": "ئۇلارنى پەقەت سەنلا ئوقۇيالايسەن",
-    "undecryptableRun_one": "{{count}} message بۇ ئۈسكۈنىدە ئېچىلمايدۇ",
-    "undecryptableRun_other": "{{count}} ئۇچۇرلار بۇ ئۈسكۈنىدە ئېچىلمايدۇ"
+    "tryAgain": "قايتا سىناش"
   },
   "music": {
     "likeStation": "ئىستانسىنى ياقتۇرۇش",
@@ -5216,6 +5217,17 @@
         "filterHelp": "Bo'sh filterlar uchun barcha postlarni qabul qiling. Ikki ham qo'llanilsa, ikkalasi ham mos kelishi shart. Mavjud reaksiyalar saqlanib qoladi; qarama-qarshi reaksiya tanlanganda unga o'zgaradi.",
         "last1h": "Soatda bir",
         "last30d": "30 kun ichida"
+      },
+      "eachMode": "ھەربىر ۋاكالەتچى",
+      "sharedMode": "ئورتاق خىزمەت",
+      "eachHelp": "ھەر بىر تاللانغان ۋاكالەتچى پۈتۈن ۋەزىپىنى ئادا قىلىدۇ.",
+      "resumeSwarm": "Swarm نى قايتا باشلاش",
+      "pacing": {
+        "label": "ھەرىكەت قىلىش ۋاقتى",
+        "now": "دەرھال",
+        "hours": "ئۈستىدە {{count}} سائەت",
+        "help": "Sententent OFF بىلەن ئاپتوماتىك باشلىنىدۇ. Pacing مۇقىم پوچتا كۆزنىكىدە ئوخشاش ياكى ياقتۇرمايدىغان ھەرىكەتنى قوللايدۇ: ھەربىر ۋاكالەتچى ھەربىر پوچتاغا بىر قېتىمدىن جاۋاب بېرىدۇ. بىرىنچى نۆۋەت ھازىرلا باشلىنىدۇ، مۇلازىمەت چەكلىمىسى ئاخىرلىشىش ۋاقتىنى ئۇزارتالايدۇ.",
+        "independent": "تەلەپ قىلىنغان ۋەزىپىلەر Sententent ھالىتىدىن مۇستەقىل ئىجرا قىلىنىدۇ. ياقتۇرىدىغانلارنى سوراش ئاپتوماتىك يوللاشنى ئۆزگەرتمەيدۇ."
       }
     },
     "title": "سۈنئىي ئەقىل ۋاكالەتچىلىرى",
@@ -6572,7 +6584,6 @@
       "publish": "Publish bounty",
       "posted": "Bounty qoyildi",
       "draftReady": "Mavzu saqlangan. Chiqarishga tayyorlash.",
-      "ratingSummary": "{{rating}}/5 from {{count}} bounty reviews",
       "newReputation": "تېخى مۇكاپاتلىق تەجرىبە يوق",
       "reviewWorker": "Worker to review",
       "reviewHelp": "تەجرىبىلەر مۇكاپاتلىق ئوبرازغا تەسىر كۆرسىتىدۇ. قوبۇل قىلىنغان ياكى رەت قىلىنغان خىزمەتلەرنى ياكى مۇددىتى توشقاندىن كېيىن تاپشۇرۇلغان خىزمەتلەرنى، بۇنىڭ ئىچىدە ھەقسىز خىزمەتلەرنى تەكشۈرەلەيسىز.",
@@ -12400,7 +12411,12 @@
     "referenceProductName": "Mahsulotni video ichiga joylashtirish",
     "referenceProductHint": "Sahnani va fonni saqlab qolgan holda mahsulotni almashtirish",
     "referenceComposeName": "Eslatma rasimlarini birlashtirish",
-    "referenceComposeHint": "Bir nechta rasimdan xarakterlar, narsalar va joylarni birga birlashtirish"
+    "referenceComposeHint": "Bir nechta rasimdan xarakterlar, narsalar va joylarni birga birlashtirish",
+    "presetExtraEmbroideredPatchName": "Embroidered patch",
+    "presetExtraScifiCargoName": "Cargo Bay",
+    "presetExtraIridescentGlassName": "Iridescent Glass",
+    "presetAnimateStillName": "Animate A Still",
+    "presetDroneFlyoverName": "Drone Flyover"
   },
   "fractions": {
     "title": "ئۈلۈشلەر",

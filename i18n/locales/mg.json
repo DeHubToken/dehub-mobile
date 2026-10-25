@@ -5235,6 +5235,17 @@
         "filterHelp": "Avelao ho banga ny sivana raha ho an'ny lahatsoratra rehetra. Rehefa samy voafetra izy roa, dia tsy maintsy mifanaraka izy roa. Voatahiry ny fihetsika efa misy; ny fisafidianana ny fihetsika mifanohitra dia manova izany.",
         "last1h": "Ora farany",
         "last30d": "30 andro farany"
+      },
+      "eachMode": "Ny solontena tsirairay",
+      "sharedMode": "Asa iombonana",
+      "eachHelp": "Ny mpandray anjara tsirairay dia manatanteraka ny asany amin'ny fomba feno.",
+      "resumeSwarm": "Tohizo indray swarm",
+      "pacing": {
+        "label": "Rahoviana no tokony hanao zavatra",
+        "now": "Avy hatrany",
+        "hours": "Mpitondra {{count}} oratra",
+        "help": "Manomboka ho azy izany miaraka amin'ireo fepetra fanatsaràna. Pacing manohana ny iray tahaka na tsy tia asa amin'ny raikitra lahatsoratra varavarankely: isaky ny mpandraharaha reacts isaky ny mifandraika lahatsoratra, iray isaky ny fihodinana amin'ny fotoana. Ny dingana voalohany dia manomboka izao; Ny fetran'ny serivisy dia afaka manitatra ny fotoana farany.",
+        "independent": "Ny asa haingana dia mihazakazaka tsy miankina amin'ny fomba Sentient. Ny fangatahana tiana dia tsy mihodina amin'ny famoahana lahatsoratra mahaleotena."
       }
     },
     "title": "Agent AI",

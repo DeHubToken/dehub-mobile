@@ -5234,6 +5234,15 @@
         "filterHelp": "सभे पोस्ट खातिर फिल्टर खाली छोड़ द। जब दुनों सेट होखे, त दुनों के मिलल जरूरी बा। पुरान रिएक्शन सुरक्षित बा; उल्टा रिएक्शन चुने से ओकर बदलाव हो जाई।",
         "last1h": "पिछला घंटा",
         "last30d": "पिछला 30 दिन"
+      },
+      "sharedMode": "Kamkarawani",
+      "resumeSwarm": "خاطره‌نامه",
+      "pacing": {
+        "label": "কোন ক্ষেত্রে কাজ করা",
+        "now": "اَخیراً",
+        "hours": "{{count}} saat",
+        "help": "Ḵalqiyê ji bo xebatê Sentient dawî ye. Pêdivîsiya pêşniyazî yê yek ji bo pêşniyazî ya yekînî ya postê: her hevalê reaksiyonê ji bo her postê ku ji bo wî têdehêlî ye, yekînî, ji bo her turnî. Turna yekem îro dest pê dike; sîstema qûrîkên xebatê dê dema xebatê dê xurt bike.",
+        "independent": "تەڕەکانی پێداوەیەکان بەخۆڕا لەگەڵ ڕۆڵی ڕۆبۆتیک بەڕێوەدەچن. پێدانی پەیامی پێداوەیەکان بەدەستەوەیەوەیەوەیە بۆ پەیوەندی ڕۆبۆتیک بەخۆڕا نەبێت."
       }
     },
     "title": "AI ایجنٹ",
@@ -6585,13 +6594,10 @@
   "work": {
     "integrity": {
       "totalBudget": "کل بجٹ",
-      "reputationNotice": "Reputation backs this bounty. The poster pays accepted work directly; payment is recorded after the transfer confirms.",
       "payOnApproval": "Paid directly after approval",
       "publish": "Publish bounty",
       "posted": "Bounty published",
-      "draftReady": "Draft saved. Publish when ready.",
       "ratingSummary": "{{rating}}/5 از {{count}} بررسی جایزه‌ها",
-      "newReputation": "No bounty reviews yet",
       "reviewWorker": "Worker to review",
       "reviewHelp": "ڕێزنامەکان بەرپرسیارێکی بەرچاو لە ڕێزلێنانەوەی بۆنیەتە.",
       "disputesReputation": "ڕێچاوەیەکیان بکە و ڕیکۆڕی بۆستەرەکەی بۆ دۆزێنەوە. بەڕێژەی بۆستەرەکە بە ڕێزگاری بۆستەرەکە بەخێرەدەدات; پەیڕەوەکە لەسەر ڕیکۆڕی بۆستەرەکە مایە.",
@@ -6601,17 +6607,10 @@
       "checkPayment": "Check payment",
       "clipVerify": "پەڕەیەکەی بڕیار بۆ پێشنیارکردن بکە پێش ئەوەی ڕەزامەند بەیەک بکە. ھەر ڕۆژێک ڕێژەیەک لە پەڕەیەکەی بەدەست دەھێنرێت، لە ھەر ڕۆژێکدا ڕێژەیەک لە یەکەییەکان بەدەست دەھێنرێت.",
       "decisionOnly": "কর্মী পুরস্কার রেকর্ড করে যে পোস্টার কী বকেয়া করে। পোস্টার সরাসরি পরিশোধ করে, এবং বোন্টি রেকর্ডে সিদ্ধান্ত অবশিষ্ট থাকে।",
-      "deployEscrow": "Deploy and activate escrow",
       "deploying": "Checking escrow deployment",
-      "deployNotice": "Deploy the tested Base escrow with the owner, fee recipient and supported tokens shown below. Your wallet will show the gas cost before confirmation.",
-      "draftFunding": "Your draft is saved. Publishing locks the full budget in Base escrow. Workers receive 95% of approved amounts; the platform fee is 5%.",
-      "draftSaved": "Draft saved. Fund escrow to publish.",
       "escrowActive": "Escrow is active",
-      "escrowFunded": "Budget funded in escrow",
       "escrowSetup": "Bounty escrow setup",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
-      "fundPublish": "Fund and publish",
       "hashPlaceholder": "0x transaction hash",
       "legacyUnfunded": "بۆندییە نەبێت. پۆستەر کارەکەی پەیداکردەوە بەدەست دەدات.",
       "paymentPending": "پرداخت در انتظار تأیید است. قبل از ارسال انتقال دیگر، وضعیت آن را بررسی کنید.",
@@ -6620,7 +6619,6 @@
       "releaseConfirm": "إگەر پێشنیارەی چێکەکەی بۆ چاودێری بەدەست نەبێت و تێڕەخستنی چێکەکە نەبێت، لە ڕێگەیەکەوە بەردەست بێت.",
       "releaseSignature": "Release rejected signature",
       "reviewWindow": "پێشنیازەکان بۆ ڕێکخراوەیەک لە کاتی ڕێکخراوەکەی خاتمەپێشکەش دەکرێن و پێشنیازەکان لە دوای ڕێکخراوەکەی خاتمەپێشکەش دەکرێن.",
-      "setupRequired": "Escrow setup is required before publishing. Your draft stays saved.",
       "signatureReleased": "Rejected signature released",
       "verifiedViews": "Verified view count",
       "viewsAccepted": "{{count}} verified views · {{units}} × 1,000 views",
@@ -12928,12 +12926,12 @@
       "getting-started": {
         "title": "Getting Started",
         "steps": {
-          "2": "'سائن ان' پر کلک کریں۔ آپ کو Google اور Apple، ای میل ایڈریس یا فون نمبر کے لیے فیلڈز، اور موجودہ کے لیے 'Connect Wallet' نظر آئے گا۔",
-          "6": "آپ اندر ہیں۔ فیڈ کو دریافت کریں، اپنا پروفائل سیٹ کریں، اور پوسٹ کرنا شروع کریں۔",
           "1": "dehub.io पर जाएँ — होम फ़ीड फ्रंट पेज है, इसलिए आप साइन इन करने से पहले चारों ओर देख सकते हैं।",
+          "2": "'سائن ان' پر کلک کریں۔ آپ کو Google اور Apple، ای میل ایڈریس یا فون نمبر کے لیے فیلڈز، اور موجودہ کے لیے 'Connect Wallet' نظر آئے گا۔",
           "3": "Google या Apple के साथ, प्रदाता के प्रवाह को पूरा करें। ईमेल या SMS के साथ, आने वाले कोड को दर्ज करें।",
           "4": "یک کیف پول برای شما ایجاد و محافظت می‌شود در اولین ورود. متصل کردن کیف پول خود به جای آن، یک امضا برای اثبات آدرس به شما نیاز دارد.",
-          "5": "Ek username chun. Ee ke dekhela aur ee tumar dehub.io/<username> profile link ke kaam karela."
+          "5": "Ek username chun. Ee ke dekhela aur ee tumar dehub.io/<username> profile link ke kaam karela.",
+          "6": "آپ اندر ہیں۔ فیڈ کو دریافت کریں، اپنا پروفائل سیٹ کریں، اور پوسٹ کرنا شروع کریں۔"
         },
         "tips": {
           "1": "ساینسال، ایمیل و اس‌ام‌اس ساینسال‌ها هرگز هزینه گیس ندارند — دی‌هاب این را حمایت می‌کند. کیف پول‌های متصل خودشان ETH یا BNB خود را پرداخت می‌کنند.",

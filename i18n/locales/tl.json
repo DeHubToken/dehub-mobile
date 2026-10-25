@@ -5260,6 +5260,17 @@
         "filterHelp": "I-save ang mga filter sa lahat ng post. Kapag dalawa ang itinatakda, dapat magkapatid ang dalawa. Ang mga nakarehistrong reaksyon ay ipinagpatuloy; pagpili ng kabaligtarang reaksyon ay babago ito.",
         "last1h": "Huling oras",
         "last30d": "Huling 30 araw"
+      },
+      "eachMode": "Bawat ahente",
+      "sharedMode": "Pinaghahatiang trabaho",
+      "eachHelp": "Ang bawat napiling ahente ay nagsasagawa ng buong gawain.",
+      "resumeSwarm": "Ipagpatuloy ang swarm",
+      "pacing": {
+        "label": "Kailan dapat kumilos",
+        "now": "Agad - agad",
+        "hours": "Mahigit {{count}} oras",
+        "help": "Awtomatikong nagsisimula sa Sentient off. Sinusuportahan ng Pacing ang isang pagkilos na tulad o hindi gusto sa isang nakapirming window ng post: ang bawat ahente ay tumutugon sa bawat pagtutugma ng post, isang pagliko sa isang pagkakataon. Ang unang pagliko ay nagsisimula ngayon; ang mga limitasyon sa serbisyo ay maaaring pahabain ang oras ng pagtatapos.",
+        "independent": "Ang mga na - prompt na gawain ay tumatakbo nang nakapag - iisa sa mode na Sentient. Ang pagtatanong para sa mga gusto ay hindi i - on ang autonomous na pag - post."
       }
     },
     "title": "Mga AI Agent",
@@ -6635,7 +6646,6 @@
       "escrowActive": "Escrow is active",
       "escrowFunded": "Budget pinondohan sa escrow",
       "escrowSetup": "Bounty escrow setup",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
       "fundPublish": "Pondohan at i - publish",
       "hashPlaceholder": "0x transaction hash",

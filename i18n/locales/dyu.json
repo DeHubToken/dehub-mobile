@@ -2526,7 +2526,27 @@
     "f6f4688ff23d": "I ka kan ka min fɔ",
     "fc036ea0e9f0": "Ka ɲɛɛ dɔ ɲɛɛ tugu",
     "fef6a1a97127": "{{value1}} b'a tugu",
-    "ff701a069af2": "I be se ka mun lo kɛ walisa ka dɔ fara i ka baara kan?"
+    "ff701a069af2": "I be se ka mun lo kɛ walisa ka dɔ fara i ka baara kan?",
+    "b19a6f63eaf3": "see more",
+    "fd3fdb5a65ea": "Follow Back",
+    "c9a2d61de5a7": "Username set",
+    "94e2d0eda8c8": "🎮 Last Chad Standing TGE",
+    "1ed44687a46a": "LED Stack",
+    "b48bbaa9ddf2": "Braid",
+    "875af21cd687": "Sunflower",
+    "94a9eac404c8": "Spam",
+    "08c66888e11d": "Warmer, higher register",
+    "24d07162713c": "Low-cost FLUX.2 previews",
+    "0f709815ab86": "Sènèkɛ jɛkulu cɛ fɛnɛ kɔrɔ",
+    "a6a090dde0b5": "Jɛkulu sɔrɔ ani sɛbɛn jɛkulu",
+    "8a82c9465004": "Labɛn, grafiki disɛni, ani sɛbɛn labɛnw",
+    "c739f99ee6ec": "Sɛbɛn labɛn ani jɛkulu sɔrɔ",
+    "ae644a180614": "Labɛn jɛ, labɛn kɔrɔ, ani sɛbɛn sɔrɔ",
+    "96e0787938ec": "Faara jɛkulu-mesh, ɲɛ iterasyon ma",
+    "1e8777bc4d46": "Studio-grade PBR, exports FBX/OBJ/USDZ",
+    "3010b02a4030": "Audio kɔrɔ kɔrɔ fɛ mɔgɔ tun ka kɔ, sɔgɔ, ani kɔ kɛ jɔ kɔrɔ kɔrɔ la.",
+    "b62c681738d1": "Cu",
+    "6ff9754d0ec3": "Sɔrɔ ({{value1}} × ${{value2}})"
   },
   "dehubLinks": {
     "kind": {
@@ -5184,6 +5204,16 @@
         "filterHelp": "Aw ka filɛriw bila yɔrɔ bɛɛ la. O la, u fila bɛɛ ka kan ka kɛ kelen ye. O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
         "last1h": "Sanni dɔɔni, u ye lɛri kelen kɛ ka",
         "last30d": "Bi, dɔgɔkun tɛmɛnin kɔ, kalo tɛmɛnin kɔ, kalo"
+      },
+      "eachMode": "Kɔɔŋɔ",
+      "sharedMode": "Gara jugu",
+      "eachHelp": "Nka, mɔgɔ o mɔgɔ be dɛmɛ don, a bena a yɛrɛ sago kɛ.",
+      "resumeSwarm": "Resume swarm",
+      "pacing": {
+        "label": "Tuma min na a ka ɲi ka baara kɛ",
+        "now": "O kɔ, a y'a daminɛ ka",
+        "help": "A daminɛ na, a tun be se ka kɛ ko a tun ye mɔgɔ dɔ ye min tun be se ka mɔgɔ dɔ faga. O la, a be se ka kɛ ko a be baara kɛ ni mɔgɔ dɔ ye min be baara kɛ ni mɔgɔ dɔ ye. O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ ka baara kɛ ni baara kɛcogo ɲuman ye.",
+        "independent": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye. O tɛ se ka kɛ sababu ye mɔgɔ tɛ se ka sɛbɛri kɛ a yɛrɛ ma."
       }
     },
     "title": "AI Kɔrɔbɔ",
@@ -6545,7 +6575,6 @@
       "activateEscrow": "Activate deployed escrow",
       "checkFunding": "Check funding",
       "checkPayment": "Check payment",
-      "clipVerify": "Verify the clip count before approving. Each full 1,000 views earns one unit.",
       "decisionOnly": "A ka kan ka kɛ min ye, a ka kan ka kɛ min ye. O la, a ka ɲi ka wari caaman sɔrɔ.",
       "deployEscrow": "Ka taga ɲɛ ani ka taga ɲɛ",
       "deploying": "Checking escrow deployment",
@@ -6555,7 +6584,6 @@
       "escrowActive": "Escrow is active",
       "escrowFunded": "Bɛɛ be se ka wari min sɔrɔ, o be se ka kɛ wari ye",
       "escrowSetup": "Bounty escrow setup",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
       "fundPublish": "Kalan ni gafew",
       "hashPlaceholder": "0x transaction hash",
@@ -8215,7 +8243,8 @@
     "aboutToSpend": "I bɛ ka <accent>{{amount}} {{symbol}}</accent> bɔ walasa ka video nin da wuli.",
     "lowTopUp": "{{symbol}} ma ca i fɛ? An bɛna a fara a kan sani ka da wuli.",
     "otherChain": "Dis pɔs sɛtɛl dɔn anɔda cɛn, sɔ i nid DeHub tɔkɛns in yɔ walet dɛr.",
-    "payHint": "Pɛ nafitin in yɔ walet. I bikɔm DeHub tɔkɛns ɛn ʌnlɔk stret awɛ."
+    "payHint": "Pɛ nafitin in yɔ walet. I bikɔm DeHub tɔkɛns ɛn ʌnlɔk stret awɛ.",
+    "notEnoughToken": "Ni a wuri {{amount}} {{symbol}} kasa ya hii. Unayo {{held}}."
   },
   "walletSetup": {
     "tryBiometricsHint": "Nin kɛ ni i ye nin wari-mara labɛn nin telefɔni kan ani konnɛgɛ ka kan ka kɛ yan kaban",
@@ -8558,7 +8587,8 @@
     "switchFirst": "Sanni i ka ta, taga sara rezo kan",
     "missingSignature": "Sara tali bolonɔ tɛ yen",
     "txReverted": "Fɛnfeere seginna chain kan",
-    "detailsLabel": "Watch2Earn Bounty ka kunnafoniw"
+    "detailsLabel": "Watch2Earn Bounty ka kunnafoniw",
+    "gasHint": "Hii itasababisha mabadiliko ya kifedha kwenye mstari wa kifedha. Gharama za gesi zinaweza kutokea."
   },
   "poster": {
     "format": "Cogoya",
@@ -8818,7 +8848,8 @@
     "shopAddToStream": "Ka fara o kan, an ka ɲi ka to ka miiri o la",
     "shopAllAttached": "I ka soo kɔnɔ, fɛɛn o fɛɛn be baara kɛra, o be sɔrɔ o yɔrɔ la.",
     "shopNoListings": "O kama, a ma fɔ ko mɔgɔ si tɛna se ka sinsin o filimu la. I ka kan k'u bila ɛntɛrɛnɛti kan fɔlɔ.",
-    "shopEmpty": "N'i ye fɛɛn dɔ fara i ka soo kan, i be se k'o san n'i ma bɔ a la."
+    "shopEmpty": "N'i ye fɛɛn dɔ fara i ka soo kan, i be se k'o san n'i ma bɔ a la.",
+    "streamCount_other": "{{count}} mifumo"
   },
   "liveShop": {
     "title": "Sanni kɛ nin jɔnjɔn na",
@@ -10310,7 +10341,8 @@
       "selectionRange": "Mɔgɔ minw be tɛmɛ o site web kan, olu ka teli ka tɛmɛ o site",
       "showPresentation": "Ɲiningali daminɛ",
       "transferHint": "I be se ka sɛbɛri kɛ a kan fɔɔ ka se a ɲɛɛ 50 ma, walima i be se ka sɛbɛri kɛ a kan. O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye. O la, a ka ɲi ka tɛmɛ fɛɛrɛ wɛrɛw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye. O la, a ka ɲi ka to ka taga yɔrɔ min na, a ka ɲi ka to ka taga yen.",
-      "transferLayers": "Ka tɛmɛ o kan, a ka ɲi ka tɛmɛ o kan ka tɛmɛ o kan."
+      "transferLayers": "Ka tɛmɛ o kan, a ka ɲi ka tɛmɛ o kan ka tɛmɛ o kan.",
+      "visibilityHint": "Maeneo yaliyopigwa hatua bado yanabaki ya kurekebishwa na kuwa na uwezo wa kupatikana kwa kudownload."
     },
     "captions": {
       "captionText": "Kɔnɔko kɔnɔko",
@@ -10486,7 +10518,10 @@
       "pptx": "Ka ɲɛyirali dɔ di",
       "pptxHint": "O ɲɛɛ kelen kelen bɛɛ be kɛ ja kelen ye, a be kɛ ni kunnafoniw ye ani a be kɛ ni linkw ye. O la, a ka ɲi ka kɛ ni sɛbɛri ye min be se k'a dɛmɛ ka baara kɛ ni sɛbɛri ye.",
       "section": "Fɛɛn min be sɔrɔ o yɔrɔ la",
-      "transparent": "O kɔ, a ka ɲi ka kɛ ni fɛɛn dɔ ye min be"
+      "transparent": "O kɔ, a ka ɲi ka kɛ ni fɛɛn dɔ ye min be",
+      "filenameHint": "Ili kuacha jina la kawaida. Tumia {title}, {name}, {section}, {page}, au {page:3}. Ongeza kipengele kama maneno ya kawaida. Jina zilizoandikwa mara mbili linapata kipengele cha nambari ya picha.",
+      "notesTextHint": "Sehemu ya kudownload, kichwa cha sehemu, nambari asili ya picha, jina la picha, na maelezo ya mchakato kama file ya maandishi.",
+      "pageOrderHint": "Maeneo ya picha yanafuata mpangilio uliotolewa. Tumia 3,1-2 ili kuanza na picha ya 3, au 5-1 ili kubadilisha mpangilio."
     },
     "adjust": {
       "auto": "A ɲɛ ka ɲɛ a yɛrɛ ma",
@@ -10610,7 +10645,8 @@
       "saveNewPreset": "Ne ye mɔgɔ kura ye",
       "saveStyles": "O cogo la, a tun be se ka kɛ ko a tun be",
       "stylesSaved": "O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
-      "usePreset": "O cogo la, a ka ɲi ka kɛ"
+      "usePreset": "O cogo la, a ka ɲi ka kɛ",
+      "presetDeviceHint": "Maeneo ya rangi ya kawaida ya hadi 20, na maeneo ya fomu ya fomu, zilizogawanywa kwenye mifumo hii kwa kila mmoja. Logos zinabaki katika kitengo cha kibrau cha sasa."
     },
     "templates": {
       "announcement": {
@@ -10873,7 +10909,12 @@
       "tokenDecimals": "Decimal point (desimal point)",
       "tokenHint": "N'i b'a fɛ ka yɔrɔ sɔrɔ, i ka kan ka yɔrɔ sɔrɔ yɔrɔ min na i be se ka yɔrɔ sɔrɔ. O cogo kelen na, a ka ɲi ka kɛ ni miiriya ɲuman ye. N'o tɛ, a ka ɲi ka kɛ ni mɔgɔ dɔ ye min be se ka mɔgɔ dɔ ka jatiminɛ kɛ.",
       "tokenLocale": "Yɔrɔ hakɛ",
-      "trimToken": "Ka kɔn ka sɛbɛri kɛ"
+      "trimToken": "Ka kɔn ka sɛbɛri kɛ",
+      "linksHint": "Kila rekodi inaweza kubadilisha viwianishi tofauti kwenye maandishi, grafiki, picha, au video. Maadili yaliyopigwa hatua yanapunguza linki. Maeneo yaliyopigwa hatua yanabaki na linki zao za kifungo.",
+      "matchHint": "Masharti yanakidhi jina la kawaida linalofanana huku ikizingatia kesi, maeneo yaliyoandikwa mara mbili, maeneo ya kugusa, na maeneo ya kugusa. Masharti yanayokosekana ya kufanana bado hayanakiliwa. Uhusiano wa picha unatumia uhusiano wa picha iliyopo.",
+      "pagePreviewAlt": "Picha ya kufungwa ya tembelezi iliyopopulata na data ya rekodi {{record}}",
+      "photoNames": "Jina la picha zinazowezekana ({{count}})",
+      "rows": "Maeneo ya data"
     },
     "charts": {
       "brandPalettes": "O kɔ, a ye fɛɛn dɔ kɛ min tun be se ka kɛ a ka fani ye.",
@@ -11034,11 +11075,15 @@
       "valueIntervals": "O ye ka mɔgɔ ka koo jati cogo nɔgɔman na.",
       "xAxisMode": "An be se ka kunnafoniw sɔrɔ sanfɛ cogo di?",
       "xIntervals": "Fanga be yɔrɔ minw na, u be se ka kɛ yɔrɔjan.",
-      "hierarchySample": "Itali,Faransi, saan 35"
+      "hierarchySample": "Itali,Faransi, saan 35",
+      "benchmarkHint": "Inachukua kipengele kikuu kutoka kwa maadili yote ya sasa ya mifumo. Tumia safu ya lengo ili kufanya kazi na kurekebisha baada ya kurekebisha data.",
+      "rowFilters": "Maeneo ya kuonyesha",
+      "styleKeepsData": "Mawasiliano ya maeneo yanabaki na aina ya grafu, data, fomu ya nambari, mipaka ya kipeo, na maeneo ya kati ya maandishi."
     },
     "clipboard": {
       "cut": "Ka to ka to ka dumuni kɛ",
-      "empty": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan."
+      "empty": "I ka kan ka tɛmɛ o kan ka tɛmɛ o kan.",
+      "skipped": "{{count}} haikubaliani na picha hii"
     },
     "colourPicker": {
       "accent": "Kanpaɲi ka fɔta",
@@ -11076,7 +11121,8 @@
       "colour": "Ɲɛgɛnɛman",
       "preview": "Ɲɛjiracogo",
       "title": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
-      "width": "Fanga min be mɔgɔ la, o ye ka"
+      "width": "Fanga min be mɔgɔ la, o ye ka",
+      "hint": "Ongeza, ongeza, kuchukua upande, au kugusa kwenye kipengele kwenye kivuli. Chagua tena ili kurekebisha njia na sehemu zake za mwisho."
     },
     "crop": {
       "applyFocus": "Ka ɲɛsin mɔgɔ wɛrɛw ma",
@@ -11114,7 +11160,11 @@
       "redoAction": "Redo data action",
       "startCell": "Start at cell",
       "undoAction": "Undo data action",
-      "valueHint": "O yɔrɔ la, a be se ka kɛ ko a be se ka sinsin a ka selili bɛɛ kan, hali a be se ka sinsin a ka selili la. O la, a ka ɲi ka kɛ ni miiriya ye."
+      "valueHint": "O yɔrɔ la, a be se ka kɛ ko a be se ka sinsin a ka selili bɛɛ kan, hali a be se ka sinsin a ka selili la. O la, a ka ɲi ka kɛ ni miiriya ye.",
+      "actionCount": "{{changed}} ilibadilishwa kwa {{selected}} maeneo yaliyochaguliwa",
+      "actionRange": "Kipengele cha kipeo (sifuri kwa maeneo yote)",
+      "numberCleanupHint": "Uchakataji wa nambari unapunguza maadili ya kifedha yanayotumika na maeneo ya kugusa, na kubadilisha maadili ya kifedha ya kifedha. Asilimia zinabaki kama asilimia: 25% inakuwa 25. Maandishi yasiyofahamika bado yanasalia kama yalivyokuwa.",
+      "pasted": "Piga picha zilizopigwa hatua za {{rows}} safu na {{columns}} maeneo"
     },
     "dataExport": {
       "formulasAsText": "Treat formulas as text"
@@ -11258,7 +11308,8 @@
       "replaceSelection": "Ka tɛmɛ sugandili kan",
       "saveSelection": "Ka tɛmɛ sugandili kan",
       "title": "Fɛɛn minw be sɔrɔ o la",
-      "undoLibrary": "Bibulu kalansoModifier"
+      "undoLibrary": "Bibulu kalansoModifier",
+      "selectionLibrary": "Ongeza au utumie maeneo yaliyochaguliwa"
     },
     "fills": {
       "applySolid": "Aplicar primer color como sólido",
@@ -11306,7 +11357,8 @@
       "styleFileHint": "Fɛɛn minw be se ka kɛ fɛɛn ye, u be se ka kɛ fɛɛn ye min be se ka kɛ fɛɛn ye. O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
       "styleFiles": "Transfer gradient styles",
       "styleLoaded": "Sitiili don na draft kɔnɔ",
-      "svgHint": "A bɛ nin gradient bɔ a page girinya la, a bɛ stop positions ani transparency bɛɛ dɔn. A kɛ a kelen-kelen na walasa ka a kɛ design kɔnɔ."
+      "svgHint": "A bɛ nin gradient bɔ a page girinya la, a bɛ stop positions ani transparency bɛɛ dɔn. A kɛ a kelen-kelen na walasa ka a kɛ design kɔnɔ.",
+      "noBrandPalettes": "Ongeza rangi ya kawaida ya kufungwa na fomu ya fomu ya kufungwa kwenye Brand styles ili kutumia hapa."
     },
     "graphicDraftHistory": {
       "local": "Graphic draft",
@@ -11361,7 +11413,8 @@
       "snap": "Snap to guides",
       "thirds": "Thirds",
       "title": "Fangaw ni danfaraw",
-      "visible": "Show guides"
+      "visible": "Show guides",
+      "resolution": "Kulingana na {{dpi}} pixels kwa inchi"
     },
     "help": {
       "noResults": "O tɛ se k'i dɛmɛ. I be se ka baarakɛminan tɔgɔ dɔ ɲini wala ka koo dɔ kɛ i n'a fɔ paste, suman wala jɛnkulu dɔ.",
@@ -11387,7 +11440,8 @@
       "openFailed": "Nka, n' tun tɛ se ka tɛmɛ o kan, n' tun tɛ se ka",
       "openPage": "Go to {{number}}",
       "remove": "Kumanbolo ka kan ka bɔ",
-      "title": "Link ni link ni"
+      "title": "Link ni link ni",
+      "targetPage": "Sehemu ya picha"
     },
     "media": {
       "photo": "O ye foto ɲuman ye",
@@ -11407,7 +11461,8 @@
       "resetColours": "Farikolo ɲɛɛwModifier",
       "setBorder": "Fanga daan",
       "setRadius": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
-      "title": "O ye fotow ni videwow ye ({{count}})"
+      "title": "O ye fotow ni videwow ye ({{count}})",
+      "filterHint": "Hupunguza maadili ya rangi na maadili ya kufungwa kwenye picha na video zilizochaguliwa katika mabadiliko mmoja. Uchakataji, frames, mipaka, na muda unapopaswa kubaki kama vile."
     },
     "mockups": {
       "caption": "Ladili ni sariya labatocogo (manfa ye)",
@@ -11429,7 +11484,8 @@
       "rotation": "Mockup ka wotoro",
       "size": "A be sɔrɔ a ka sɛbɛ kɔnɔ",
       "title": "Masiniw ni sɛbɛwModifier",
-      "usePhoto": "N'i ye foto dɔ ta, a to a ka kɛ i n'a fɔ a ye fɛɛn dɔ ta."
+      "usePhoto": "N'i ye foto dɔ ta, a to a ka kɛ i n'a fɔ a ye fɛɛn dɔ ta.",
+      "palettes": "Mifumo ya kufungwa iliyosajiliwa"
     },
     "notes": {
       "changed": "I ka kan ka sɛbɛri kɛ ka sɔrɔ ka wari mara.",
@@ -11519,7 +11575,8 @@
       "strength": "A tun be i n'a fɔ a tun be fanga sɔrɔ cogo min na",
       "styleFiles": "A filɛ, a be cogo min na",
       "styleLoaded": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili",
-      "title": "A be komi a be fɛɛn min fɛ, a be o ye"
+      "title": "A be komi a be fɛɛn min fɛ, a be o ye",
+      "batchHint": "Tumia kwenye picha na video zilizochaguliwa zote {{count}} katika mabadiliko mmoja. Uchakataji unatumia maadili ya kwanza ya kufungwa ya kipengele cha kwanza."
     },
     "photoTone": {
       "duotone": "Duotone ka koo",
@@ -11579,7 +11636,10 @@
       "title": "Sisan, an ka gafew lajɛ",
       "undoMark": "Mariki ka koo",
       "usePageTiming": "Ka tɛmɛ sanga ni wagati kan",
-      "whiteScreen": "Fanga min be mɔgɔ la, o ye ka"
+      "whiteScreen": "Fanga min be mɔgɔ la, o ye ka",
+      "clockValue": "Presentation timer {{time}}",
+      "nextPreviewAlt": "Upcoming page: {{title}}",
+      "upNext": "Up next"
     },
     "qr": {
       "background": "Kɔfɛla",
@@ -11792,7 +11852,12 @@
       "unmergeAll": "I ka koo bɛɛ to yen",
       "vertical": "Jii be yɛlɛma cogo min na, o ye ka kɛɲɛ ni o ye.",
       "weightsHint": "O kɔrɔ ko, a ka ɲi ka kɛ ni fɛɛn min ye, a ka ɲi ka kɛ ni fɛɛn min ye.",
-      "wrap": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili."
+      "wrap": "Fanga min be mɔgɔ la, o ye ka mɔgɔ lafili.",
+      "cellStyleHint": "Enter a cell or range to override the table theme. Reset cells to restore the table's default appearance.",
+      "cellVertical": "Selected cell vertical alignment",
+      "cellsCleaned": "Updated {{count}} cells",
+      "stylesPasted": "Cell styles pasted",
+      "unmergeRange": "Unmerge {{range}}"
     },
     "text": {
       "backgroundPerLine": "Lini kelen kelen bɛɛ ka kan ka kɛ kelen ye",
@@ -12309,7 +12374,13 @@
     "referenceProductName": "Product jɔ clip la sɛbɛn",
     "referenceProductHint": "Featured product gara sɛbɛn ani original scene gara sɛbɛn",
     "referenceComposeName": "Reference fɛn jɔ kɔnɔ sɛbɛn",
-    "referenceComposeHint": "Characters, objects ani settings jɔ fɛn naani la kɔnɔ sɛbɛn composition kelen la"
+    "referenceComposeHint": "Characters, objects ani settings jɔ fɛn naani la kɔnɔ sɛbɛn composition kelen la",
+    "presetExtraDrinkSplashRingName": "Splash ring",
+    "presetExtraAthleteFreezeName": "Athlete freeze",
+    "presetExtraEmbroideredPatchName": "Embroidered patch",
+    "presetExtraNoirHotelName": "Noir hotel",
+    "presetExtraSilentFilmFrameName": "Silent film frame",
+    "presetExtraNeonPulseName": "Neon pulse"
   },
   "fractions": {
     "offerSubmitted_other": "N'a san fɛn kɛrɛnkɛrɛnnen {{count}} bɛɛ la {{price}} tokens kelen-kelen",
@@ -12792,8 +12863,8 @@
           "9": "I ka ɲi ka \"Siga\" tuguni kan ka sɛbɛri kɛ. I ka barokun be sɔrɔ gafe nin kɔnɔ joona joona."
         },
         "tips": {
-          "2": "I bɛ se ka repost kɛ ni \"Quote\" ye, ka repost ikoni dɔgɔni min bɛ post bɛɛ kan, ka \"Quote\" sugandi.",
           "1": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+          "2": "I bɛ se ka repost kɛ ni \"Quote\" ye, ka repost ikoni dɔgɔni min bɛ post bɛɛ kan, ka \"Quote\" sugandi.",
           "3": "O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye."
         }
       },
@@ -12934,13 +13005,13 @@
         "title": "Ɲɛminɛbaga",
         "intro": "A filɛ jɔn lo be sanfɛ! O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",
         "steps": {
-          "7": "Leaderboard bɛ kura tuma bɛɛ don kɔnɔ.",
           "1": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
           "2": "Tabw: balansi, loon o loon, ani dugu ka kuma.",
           "3": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
           "4": "O la, mɔgɔ minw tun be baara kɛ ka tɛmɛ mɔgɔ tɔw bɛɛ kan, olu tun be to ka to ka baara kɛ ka tɛmɛ mɔgɔ tɔw bɛɛ kan.",
           "5": "Dugu ka kuma b'a yira ko mɔgɔ caaman be koo minw faamu, u ka ca.",
-          "6": "N'i b'a fɛ ka mɔgɔ dɔ ka kunnafoniw sɔrɔ, i ka tɛmɛ a kan ka tɛmɛ a kan."
+          "6": "N'i b'a fɛ ka mɔgɔ dɔ ka kunnafoniw sɔrɔ, i ka tɛmɛ a kan ka tɛmɛ a kan.",
+          "7": "Leaderboard bɛ kura tuma bɛɛ don kɔnɔ."
         },
         "tips": {
           "1": "Loon o loon, an ka ladɛrɛsiw be segi ka sigi sen kan lɛri 24 kɔnɔ.",
@@ -13018,8 +13089,8 @@
           "6": "O kɔ, u ye dɔ fara u ka baara kan."
         },
         "tips": {
-          "2": "Repost, kɔmɛntili, reaction, sariya ani layidu tɛ fɛn fɛɛrɛ, ani u tɛ i ka allowance dɔgɔya.",
           "1": "O kɔ, aw ka wari be se ka kɛ MB 200 ye, a tɛ se ka kɛ gigabyte kelen ye.",
+          "2": "Repost, kɔmɛntili, reaction, sariya ani layidu tɛ fɛn fɛɛrɛ, ani u tɛ i ka allowance dɔgɔya.",
           "3": "I ka wari be dɔgɔya ani i ka baara be to ka to — o wari be i ka baara nata bali fɔɔ a ka dafa. O la, i bena se ka baara kɛ n'i ka denbaya ye.",
           "4": "O la, a tun be se ka kɛ ko a tun ye fɛɛn min di, a tun b'o di a ma."
         }
@@ -13045,10 +13116,10 @@
         "title": "O la, an bena a ye ko an be se ka ɲɛnamaya kɛ cogo nɔgɔman na.",
         "intro": "O yɔrɔ la, u ye boon dɔw lɔ DeHub kɔnɔ. Mɔgɔ min be se ka mɔgɔ weele ka na a ka site web kan, ale be se ka mɔgɔ weele ka na a ka site web kan wala ka tɛmɛ a ka site web kan.",
         "steps": {
-          "2": "Tɛgɛ live stage kan walasa ka don i n'a fɔ lamɛnna, walima ka reminder don stage min bɛ na, ani ka kibaru sɔrɔ tuma min na a bɛ daminɛ.",
-          "4": "I n'a fɔ host, i bɛ se ka barokɛla dɔw wele stage kan, ka u dɔgɔya walima ka u bɔ, ka i ka screen jira, ani ka soundboard mara.",
           "1": "I ka \"Stages\" yɛlɛ barokɛyɔrɔ la walisa k'a filɛ min be kɛra sisan ani min labɛnna.",
+          "2": "Tɛgɛ live stage kan walasa ka don i n'a fɔ lamɛnna, walima ka reminder don stage min bɛ na, ani ka kibaru sɔrɔ tuma min na a bɛ daminɛ.",
           "3": "I yɛrɛ ka baara daminɛ o yɔrɔ kelen na — i be se ka to ka baara kɛ n'i ka barokunw ye, i kana OBS wala i ka barokunw bila.",
+          "4": "I n'a fɔ host, i bɛ se ka barokɛla dɔw wele stage kan, ka u dɔgɔya walima ka u bɔ, ka i ka screen jira, ani ka soundboard mara.",
           "5": "Mɔgɔ minw be lamɛnni kɛra, olu be to ka kuma ɲɔgɔn fɛ ani ka kuma ɲɔgɔn fɛ.",
           "6": "O kɔ, a be segi ka bɔ a ka karti kan."
         },
@@ -13063,11 +13134,11 @@
         "title": "Communities & Events",
         "intro": "Jamanaw ye mɔgɔ dɔw ka sigiyɔrɔw ye u yɛrɛ ka dumuniw, u ka mɔgɔ dɔw ani u ka baaraw la. Koo minw be kɛra, u be se ka kɛ sababu ye u be wagati ta ka baara kɛ n'u ye.",
         "steps": {
-          "5": "Yɛlɛma 'Events' walasa ka program minnu bɛ na, ni event bɛɛ bɛ ni a ka paji ye min i bɛ se ka tugu a kɔ live.",
           "1": "Aw ka 'Jama' dayɛlɛ ka bɔ kɛnɛ kan ka taga bɔ jama ye.",
           "2": "O kɔ, a ye dɔ fara a kan. O baara kura b'a yira ko a tɛ se ka kɛ batɛmu ye min be se ka kɛ batɛmu ye.",
           "3": "Ka baro kɛ, ka votew kɛ ani ka ladili di mɔgɔw ma u yɛrɛ ka dumuni na.",
-          "4": "Jamana kuntigiw b'u yɛrɛ ka yɔrɔ labɛn ani u be se ka mɔgɔw dɛmɛ u ka se ka baara kɛ ni u ka setigiya ye."
+          "4": "Jamana kuntigiw b'u yɛrɛ ka yɔrɔ labɛn ani u be se ka mɔgɔw dɛmɛ u ka se ka baara kɛ ni u ka setigiya ye.",
+          "5": "Yɛlɛma 'Events' walasa ka program minnu bɛ na, ni event bɛɛ bɛ ni a ka paji ye min i bɛ se ka tugu a kɔ live."
         },
         "tips": {
           "1": "Jamana ka baro be dɛmɛ don @mentions ni @here, o la, yɔrɔ dɔ be se ka se ka don boon kɔnɔ.",
@@ -13078,9 +13149,9 @@
         "title": "Tulonkɛyɔrɔ",
         "intro": "O la, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
         "steps": {
-          "3": "Fɛɛrɛ tab kɔnɔ. King's Gambit ani Street Slayer bɛ leaderboard mara.",
           "1": "Aw ye \"Arcade\" yɛlɛ barokɛyɔrɔ la.",
           "2": "O la, a tun be se ka kɛ ko a tun ye masacɛ ye. A tun be se ka kɛ ko a tun ye masacɛ ye.",
+          "3": "Fɛɛrɛ tab kɔnɔ. King's Gambit ani Street Slayer bɛ leaderboard mara.",
           "4": "Chartopia fana be baara kɛ VR ka telefɔni na WebXR sababu fɛ."
         },
         "tips": {
@@ -13208,8 +13279,8 @@
         "title": "Fanga min be mɔgɔ ka baara la, o ye ka baara kɛ n'o ye.",
         "intro": "I mana a ci tuma min na, i be se k'a sɛbɛ i n'a fɔ NFT tuma o tuma, i be se k'a sɛbɛ cogo min na, i be se k'a sɛbɛ cogo min na wala kɔfɛ.",
         "steps": {
-          "2": "I ka sɛbɛri kɛ, i ka kunnafoniw (sɛbɛn ɲɛ, videwow, kumakanw) bila ɲɔgɔn na ani i ka jatikɛ dɔw fara u kan.",
           "1": "O kɔ, aw ye \"Post\" tuguni digi a kan (desktop) wala \"+\" tuguni kan (mobile).",
+          "2": "I ka sɛbɛri kɛ, i ka kunnafoniw (sɛbɛn ɲɛ, videwow, kumakanw) bila ɲɔgɔn na ani i ka jatikɛ dɔw fara u kan.",
           "3": "Aw ye \"Mint Post\" to yen ka bɔ a la, walima aw k'a bila ka bɔ a la.",
           "4": "O kama, a ka ɲi ka to ka kuma n'a ye.",
           "5": "Walisa ka miniti damanin sɔrɔ, i ka lɛtɛrɛ nin ka kunnafoni ɲɛɛ yɛlɛ ani ka Mint ka baara kɛ yen.",
@@ -13948,7 +14019,8 @@
     "showWords": "Kumaw yira",
     "reminderBody": "I ka wari cɛtigɛ — kuma 12 minw bena i dɛmɛ n'i ye i ka telefɔni to yen.",
     "backUp": "O la, an bena segi ka na.",
-    "notNow": "O ma kɛ halibi."
+    "notNow": "O ma kɛ halibi.",
+    "checkPrompt": "Tafuta maneno #{{n}}"
   },
   "liveOverlay": {
     "shared": "{{name}} ye stream in fɛnɛ",

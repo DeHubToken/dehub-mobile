@@ -2402,7 +2402,6 @@
     "0c820caf16c0": "个人简介还没有",
     "0de0253da6f1": "活動建立！",
     "0e9161011702": "刷新",
-    "12a7c0529934": "/docs/getting-started",
     "14c5558a8cd9": "無任何匹配的稿件",
     "155f816c0407": "提交",
     "1603d5423679": "活動更新！",
@@ -2697,7 +2696,6 @@
     "show": "显示帖子"
   },
   "altText": {
-    "badge": "ALT",
     "add": "添加描述",
     "edit": "编辑描述",
     "titleImage": "描述搿张图片",
@@ -2782,7 +2780,6 @@
     "unavailable": "个版本个应用里呒没"
   },
   "nav": {
-    "dao": "DAO",
     "fractions": "碎片",
     "home": "主页",
     "explore": "探索",
@@ -5051,7 +5048,6 @@
     "topUpExplanation": "您的代币将被链上转账至 DeHub 广告金库，然后在独立链上验证后，您的余额将被记入。"
   },
   "buyCoins": {
-    "cardBankDesc": "Visa、Mastercard、Apple Pay",
     "title": "购买代币",
     "network": "网络",
     "token": "代币",
@@ -5205,6 +5201,14 @@
         "filterHelp": "留空則為所有帖子。當兩者都設置時，兩者都必須匹配。已有的反應保留；選擇相反的反應會更改它。",
         "last1h": "過去一小時",
         "last30d": "過去30天"
+      },
+      "eachMode": "每個代理",
+      "sharedMode": "共享工作",
+      "eachHelp": "每個選定的代理機構都會完成全面的任務。",
+      "pacing": {
+        "now": "立即",
+        "hours": "超過 {{count}} 小時",
+        "help": "自動啟動。節奏支援一如既往的喜好或不喜好動作，固定窗口：每個代理機器人都會對每個匹配的帖子反應一次，按照順序進行。第一個回合開始了；服務限制可能會延長結束時間。"
       }
     },
     "title": "AI代理",
@@ -6550,30 +6554,20 @@
   "work": {
     "integrity": {
       "totalBudget": "總預算",
-      "reputationNotice": "Reputation backs this bounty. The poster pays accepted work directly; payment is recorded after the transfer confirms.",
       "payOnApproval": "在批准后直接支付",
       "publish": "发布赏金",
       "posted": "赏金发布",
       "draftReady": "草稿保存。发布时准备。",
-      "ratingSummary": "{{rating}}/5 from {{count}} bounty reviews",
       "newReputation": "尚无赏金评估",
       "reviewWorker": "工人審核",
       "reviewHelp": "評論會影響獎金名譽。您可以評論已接受或拒絕的工作，或者超時提交的工作，包括未付款的工作。",
       "disputesReputation": "查閱證據並記錄該貼文欠款。該貼文直接與工人獎金進行結算；獎金決定仍然記錄在淨值記錄中。",
       "saveDraft": "保存并继续",
       "activateEscrow": "激活部署的保管金",
-      "checkFunding": "Check funding",
       "checkPayment": "查詢付款",
       "clipVerify": "查驗影片點擊次數前，需先核准。每滿 1,000 次點擊視為一單位。",
       "decisionOnly": "工人獎勵記錄記錄了貼文欠下的債務。貼文直接支付，決定留在獎勵記錄上。",
-      "deployEscrow": "Deploy and activate escrow",
-      "deploying": "Checking escrow deployment",
-      "deployNotice": "Deploy the tested Base escrow with the owner, fee recipient and supported tokens shown below. Your wallet will show the gas cost before confirmation.",
       "draftFunding": "你們的草稿已經儲存。發佈會鎖定全額預算在Base保證金中。工人會獲得95%的通過金額；平台費用為5%。",
-      "draftSaved": "Draft saved. Fund escrow to publish.",
-      "escrowActive": "Escrow is active",
-      "escrowFunded": "Budget funded in escrow",
-      "escrowSetup": "Bounty escrow setup",
       "feeNotice": "工人收到{{net}} {{currency}}後，平台抽取5%手續費。總預算使用：{{gross}} {{currency}}。",
       "fundingPending": "已提交资金。核查确认。",
       "fundPublish": "籌措資金並發佈",

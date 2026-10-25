@@ -2536,7 +2536,19 @@
     "f6f4688ff23d": "寄送",
     "fc036ea0e9f0": "連結去特定頁面",
     "fef6a1a97127": "由 {{value1}} 跟隨",
-    "ff701a069af2": "驗證及解鎖"
+    "ff701a069af2": "驗證及解鎖",
+    "1aa9573705bf": "留言讚好",
+    "94a6a84d8cbc": "索爾斯坎",
+    "b4c9a289323b": "用戶 @ 例子 . com",
+    "1a00975a0ac1": "@ 頻道",
+    "bf4151fc970f": "工作管理仲裁器",
+    "c6db0784ded4": "🥽 V/AR 配置文件中心",
+    "a9805864ceb9": "包含一張或者多張圖片嘅帖子。圖像會以 NFT 嘅形式儲存喺鏈上面，並且有獨特嘅令牌 ID 。",
+    "3010b02a4030": "一個即時音訊室，用戶可以喺嗰度講嘢、聽同埋舉手加入對話。",
+    "bb9a702dd998": "後勤管理",
+    "fdd9e13d471c": "修改你建立嘅帖子嘅標題或者描述。只有原始創作者先可以編輯佢哋嘅帖子。",
+    "b602b7029be6": "Pt",
+    "e17602050e02": "社交媒體我哋"
   },
   "dehubLinks": {
     "kind": {
@@ -5195,6 +5207,17 @@
         "filterHelp": "留空過濾器則為所有文章。當兩者都設定時，兩者都必須匹配。現有反應保持不變；選擇相反反應則會改變。",
         "last1h": "過去一小時",
         "last30d": "過去30天"
+      },
+      "eachMode": "每個代理",
+      "sharedMode": "共享工作",
+      "eachHelp": "每個選定嘅代理都會執行全部任務。",
+      "resumeSwarm": "恢復成群",
+      "pacing": {
+        "label": "幾時行動",
+        "now": "即刻",
+        "hours": "超過 {{count}} 個鐘",
+        "help": "喺閂咗「感知」嗰陣自動啟動。步伐支援喺固定嘅帖子窗口上面做一個鍾意或者唔鍾意嘅動作：每個代理都會對每個匹配嘅帖子作出反應，一次過轉一轉。第一轉由而家開始；服務限制可以延長完成時間。",
+        "independent": "提示任務可以獨立喺 Sentient 模式下執行。要求讚好唔會開啟自主發佈。"
       }
     },
     "title": "AI代理",
@@ -7745,7 +7768,6 @@
     "kindVideo": "影片",
     "kindAudio": "音頻",
     "kindImage": "圖片",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "喺發佈之前睇吓",
     "reviewSubtitle": "由 {{source}} ，作為 {{kind}} 。編輯任何你鍾意嘅內容 — 將標題留空，以保留原始內容。",
     "reviewName": "標題:",
@@ -10195,7 +10217,10 @@
         "tryOne": "今日試下一個",
         "turnHint": "顯示事情改變的時刻",
         "whatHappened": "呢個係發生咗啲咩事",
-        "yourQuote": "講啲值得記住嘅嘢。"
+        "yourQuote": "講啲值得記住嘅嘢。",
+        "answer": "呢個係答案",
+        "before": "之前",
+        "yourTurn": "輪到你喇"
       },
       "format": "影片格式",
       "heading": "影片入門",
@@ -10209,7 +10234,8 @@
         "quote": "報價卷軸",
         "story": "故事弧線",
         "tips": "三個提示",
-        "tutorial": "快速教學"
+        "tutorial": "快速教學",
+        "mythFact": "神話同事實"
       },
       "useFormat": "使用 {{aspect}} 影片格式"
     },
@@ -10797,7 +10823,10 @@
       "hint": "同埋呢個項目嘅編輯分享你嘅存在。",
       "disconnected": "斷咗連線。再次加入就可以重新連線。",
       "saveHint": "用 Save to cloud 來分享時間線改動。",
-      "error": "即時工作階段唔可用。登入同埋將呢個項目儲存去雲端，或者檢查你嘅編輯邀請。"
+      "error": "即時工作階段唔可用。登入同埋將呢個項目儲存去雲端，或者檢查你嘅編輯邀請。",
+      "sharing": "分享緊即時編輯",
+      "receiving": "接收緊即時編輯",
+      "personalCopy": "儲存個人副本"
     },
     "backgrounds": {
       "applyAll": "複製頁面背景到所有頁面",
@@ -12370,7 +12399,8 @@
     "referenceProductName": "將你的產品置於影片中",
     "referenceProductHint": "替換特色產品並保留原始場景。",
     "referenceComposeName": "合併參考圖片",
-    "referenceComposeHint": "將多張圖片中的角色、物件及場景合併成一個構圖。"
+    "referenceComposeHint": "將多張圖片中的角色、物件及場景合併成一個構圖。",
+    "presetOpenForestAerialName": "森林空中"
   },
   "fractions": {
     "title": "碎片",
@@ -13307,7 +13337,6 @@
     "subtitle": "自訂表情符號、貼圖和 GIF，由徽章持有者製作。將任何 pack 加入你的選擇器，並在聊天、留言和反應中使用。",
     "tabStickers": "貼圖",
     "tab": {
-      "gif": "GIF",
       "emoji": "表情符號",
       "sticker": "貼圖"
     },
@@ -13331,7 +13360,6 @@
     "tierTable": "每個徽章階級可獲得的內容",
     "tierTableHint": "Pack 是每種計算的。其他欄位顯示每個 pack 可容納的項目數量。如果你的階級下降，你的 pack 會保留，但你無法新增超過新限制的項目。",
     "col": {
-      "gifs": "GIF",
       "tier": "階級",
       "packs": "包",
       "emoji": "表情符號",

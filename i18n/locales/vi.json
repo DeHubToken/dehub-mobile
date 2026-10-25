@@ -5229,6 +5229,17 @@
         "filterHelp": "Để các bộ lọc trống để lấy tất cả bài đăng. Khi cả hai được thiết lập, cả hai điều kiện phải thỏa mãn. Các phản ứng hiện có được giữ nguyên; chọn phản ứng ngược lại sẽ thay đổi nó.",
         "last1h": "Giờ vừa qua",
         "last30d": "30 ngày vừa qua"
+      },
+      "eachMode": "Mỗi nhân viên chăm sóc khách",
+      "sharedMode": "Làm việc chung",
+      "eachHelp": "Mỗi đại lý được chọn thực hiện toàn bộ nhiệm vụ.",
+      "resumeSwarm": "Tiếp tục swarm",
+      "pacing": {
+        "label": "Khi nào nên hành động",
+        "now": "Ngay lập tức",
+        "hours": "Hơn {{count}} giờ",
+        "help": "Bắt đầu tự động với Sentient off. Nhịp độ hỗ trợ một hành động thích hoặc không thích trên một cửa sổ bài đăng cố định: mỗi nhân viên chăm sóc khách hàng phản ứng với mỗi bài đăng phù hợp, mỗi lượt một lần. Lượt đầu tiên bắt đầu ngay bây giờ; giới hạn dịch vụ có thể kéo dài thời gian kết thúc.",
+        "independent": "Các tác vụ được nhắc chạy độc lập với chế độ tri giác. Yêu cầu lượt thích không bật tính năng đăng bài tự động."
       }
     },
     "title": "AI Agent",

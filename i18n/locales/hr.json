@@ -5217,6 +5217,17 @@
         "filterHelp": "Ostavi filtre prazne za sve postove. Kad su oba postavljena, oba moraju odgovarati. Postojeće reakcije ostaju sačuvane; odabir suprotnog tipa reakcije mijenja ga.",
         "last1h": "Posljednji sat",
         "last30d": "Posljednjih 30 dana"
+      },
+      "eachMode": "Svaki agent",
+      "sharedMode": "Zajednički posao",
+      "eachHelp": "Svaki odabrani agent obavlja cijeli zadatak.",
+      "resumeSwarm": "Nastavite s rojenjem",
+      "pacing": {
+        "label": "Kada djelovati",
+        "now": "Odmah",
+        "hours": "Više od {{count}} h",
+        "help": "Automatski započinje s isključenim Sentientom. Pacing podržava jednu radnju koja se sviđa ili ne sviđa na fiksnom prozoru objave: svaki agent reagira na svaku odgovarajuću objavu, jedan po jedan zaokret. Prvo skretanje počinje sada; ograničenja usluge mogu produljiti vrijeme završetka.",
+        "independent": "Zadaci koji se traže izvršavaju se neovisno o načinu Svjesnosti. Traženje lajkova ne uključuje autonomno objavljivanje."
       }
     },
     "title": "AI Agenti",

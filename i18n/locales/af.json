@@ -5250,6 +5250,17 @@
         "filterHelp": "Laat filters leeg vir alle plasings. As beide opgestel is, moet albei ooreenstem. Bestaande reaksies word bewaar; die keuse van die teenoorgestelde reaksie verander dit.",
         "last1h": "Laaste uur",
         "last30d": "Laaste 30 dae"
+      },
+      "eachMode": "Elke agent",
+      "sharedMode": "Gedeelde werk",
+      "eachHelp": "Elke gekose agent voer die volle taak uit.",
+      "resumeSwarm": "Hervat swerm",
+      "pacing": {
+        "label": "Wanneer om op te tree",
+        "now": "Onmiddellik",
+        "hours": "Meer oor {{count}} ure",
+        "help": "Begin outomaties met Sentient af. Pacing ondersteun een soos of hou nie van aksie op 'n vaste posvenster nie: elke agent reageer op elke bypassende pos, een beurt op 'n slag. Die eerste beurt begin nou; diensperke kan die eindtyd verleng.",
+        "independent": "Aangespoor take loop onafhanklik van Sentient af. Vra vir hou nie draai op outonome plasing."
       }
     },
     "title": "AI Agente",

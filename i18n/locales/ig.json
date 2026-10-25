@@ -33,7 +33,8 @@
     "receipt": "${{amount}} gbakwunyere na ego mgbasa ozi nke onye okike. Ndozi mgbaàmà na-echere.",
     "revenue": "Ego mgbasa ozi gị · ${{amount}}",
     "revenueDescription": "Inweta ego site na mgbasa ozi na nkwado ndị na-emepụta ihe, na-echere mmezi mgbaàmà.",
-    "watch": "Lelee mgbasa ozi iji kwado onye mmepụta a"
+    "watch": "Lelee mgbasa ozi iji kwado onye mmepụta a",
+    "sponsoredBy": "Na-akpụkpụrụ ọrụ {{advertiser}}"
   },
   "maboroshiShowcase": {
     "anime": "Ndị a bụ anime heroes.",
@@ -2538,7 +2539,23 @@
     "f6f4688ff23d": "Ziga",
     "fc036ea0e9f0": "Banye n 'ihuakwụkwọ a kapịrị ọnụ",
     "fef6a1a97127": "{{value1}} na-eso ya",
-    "ff701a069af2": "Nyochaa & Ị kpọghee ekwt"
+    "ff701a069af2": "Nyochaa & Ị kpọghee ekwt",
+    "d52f605d3916": "Close filter options",
+    "03bbf31aa251": "🎬 Onye na-ede video na-eme ihe n'ụlọ",
+    "afde82a73cab": "SCHEDULED",
+    "d868ce481da1": "Ebe obibi neon",
+    "fed12611d2d8": "Oké osimiri",
+    "ee57d0b55039": "Code Rain",
+    "1d2c73dc01f2": "Static",
+    "f223faa96f22": "Apple",
+    "ab9ea682af4e": "Asụsụ gụọ",
+    "ba118bf7fc9c": "English",
+    "dfd86b92431f": "Image Upscaling",
+    "08c66888e11d": "Ihe na-erule n'ụzọ dị elu",
+    "d577cb7ddd24": "E-Girl",
+    "273655f6d663": "Dehub.io Mobile",
+    "e5b3ca7e464e": "Robinhood Chain",
+    "9677cceec070": "Post Interactions"
   },
   "dehubLinks": {
     "kind": {
@@ -5196,6 +5213,17 @@
         "filterHelp": "Hapụ nzacha n 'efu maka ọkwa niile. Mgbe e debere ha abụọ, ha abụọ ga-adaba. A na-echekwa mmeghachi omume dị ugbu a; ịhọrọ mmeghachi omume dị iche na-agbanwe ya.",
         "last1h": "Oge awa ikpeazụ",
         "last30d": "Ikpeazụ 30 ụbọchị"
+      },
+      "eachMode": "Onye ọ bụla gị n 'ụlọnga",
+      "sharedMode": "Ekekọrịta ọrụ",
+      "eachHelp": "Onye nnọchianya ọ bụla a họọrọ na-arụ ọrụ zuru oke.",
+      "resumeSwarm": "Malite swarm",
+      "pacing": {
+        "label": "Mgbe ime ihe",
+        "now": "Ozugbo",
+        "hours": "N 'elu {{count}} awa",
+        "help": "Malite na-akpaghị aka na Sentient apụ. Pacing na-akwado otu dị ka ma ọ bụ enweghị mmasị edinam na a ofu post window: onye ọ bụla gị n 'ụlọnga emeghachi omume ọ bụla kenha post, otu n' otu oge. Oge nke mbụ na-amalite ugbu a; njedebe ọrụ nwere ike ịgbatị oge ngwụcha.",
+        "independent": "Ọrụ ndị akwadoro na-agba ọsọ n 'adabereghị na ọnọdụ Sentient. Ịjụ maka mmasị anaghị agbanye ozi n' onwe ya."
       }
     },
     "title": "Ndị Ọrụ AI",
@@ -11432,7 +11460,8 @@
     },
     "media": {
       "video": "Vidio",
-      "replace": "Dochie nsomebefaịlụ a họọrọ"
+      "replace": "Dochie nsomebefaịlụ a họọrọ",
+      "photo": "Igbo"
     },
     "mediaSelection": {
       "resetColours": "Tọgharịa mgbanwe agba",
@@ -12375,7 +12404,15 @@
     "referenceProductName": "Tinye ngwaahịa gị n 'ime mkpachị",
     "referenceProductHint": "Nkọrọ ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ",
     "referenceComposeName": "Combine reference images",
-    "referenceComposeHint": "Nkọrọ ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ"
+    "referenceComposeHint": "Nkọrọ ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ nke ụlọ ụlọ",
+    "presetExtraStainedGlassName": "Ihe foto",
+    "presetExtraGlitterTrailHint": "Ihe na-akpata akwa",
+    "presetExtraLightPaintHint": "Ihe ịrịọ ụgbọchukwu na-erule n'ụzọ dị mkpụmkpụ",
+    "studioMissingJob": "A na-erule n'ụzọ dị n'ụzọ na ụdị na-acha ọcha",
+    "presetFlatIllustrationName": "Ụgbọchukwu na-erule n'ụzọ dị mkpụmkpụ",
+    "presetFpvDiveName": "FPV Dive",
+    "presetNeedsImage": "{{name}} na-eto eto ihe osise. Bia ya na-eto eto.",
+    "presetPixelArtName": "Pixel Art"
   },
   "fractions": {
     "title": "Òkè",

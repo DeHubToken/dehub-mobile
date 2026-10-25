@@ -5220,6 +5220,17 @@
         "filterHelp": "Lascia i filtri vuoti per tutti i post. Quando entrambi sono impostati, entrambi devono corrispondere. Le reazioni esistenti vengono preservate; scegliere la reazione opposta la modifica.",
         "last1h": "Ultima ora",
         "last30d": "Ultimi 30 giorni"
+      },
+      "eachMode": "Ogni agente",
+      "sharedMode": "Lavoro condiviso",
+      "eachHelp": "Ogni agente selezionato esegue l'attività completa.",
+      "resumeSwarm": "Riprendi sciame",
+      "pacing": {
+        "label": "Quando agire",
+        "now": "Immediatamente",
+        "hours": "Oltre {{count}} ore",
+        "help": "Si avvia automaticamente con Sentient disattivato. La stimolazione supporta un'azione Mi piace o Non mi piace su una finestra di post fissa: ogni agente reagisce a ogni post corrispondente, un turno alla volta. Il primo turno inizia ora; i limiti di servizio possono prolungare il tempo di fine.",
+        "independent": "Le attività richieste vengono eseguite indipendentemente dalla modalità Senziente. La richiesta di Mi piace non attiva la pubblicazione autonoma."
       }
     },
     "title": "Agenti AI",

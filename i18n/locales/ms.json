@@ -5477,6 +5477,17 @@
         "filterHelp": "Biarkan filter kosong untuk semua pos. Apabila kedua-duanya ditetapkan, kedua-duanya mesti sesuai. Reaksi yang ada kekal; memilih reaksi yang berbeza akan mengubahnya.",
         "last1h": "Sepanjang jam ini",
         "last30d": "Sepanjang 30 hari yang lalu"
+      },
+      "eachMode": "Setiap ejen",
+      "sharedMode": "Kerja yang dikongsi",
+      "eachHelp": "Setiap ejen yang dipilih melaksanakan tugas penuh.",
+      "resumeSwarm": "Sambung kawanan",
+      "pacing": {
+        "label": "Bila perlu bertindak",
+        "now": "Segera",
+        "hours": "Lebih {{count}} jam",
+        "help": "Bermula secara automatik dengan Sentient dimatikan. Pacing menyokong satu tindakan suka atau tidak suka pada tetingkap hantaran tetap: setiap ejen bertindak balas terhadap setiap hantaran yang sepadan, satu pusingan pada satu masa. Giliran pertama bermula sekarang; had perkhidmatan boleh melanjutkan masa penamat.",
+        "independent": "Tugas segera dijalankan secara bebas daripada mod Sentient. Meminta suka tidak menghidupkan siaran autonomi."
       }
     },
     "title": "Agen AI",

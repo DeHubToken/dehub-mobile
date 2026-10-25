@@ -5220,6 +5220,17 @@
         "filterHelp": "Atstājiet filtrus tukšus visām ziņām. Kad abi ir iestatīti, abiem ir jāsakrīt. Esošās reakcijas tiek saglabātas; pretējās reakcijas izvēle to maina.",
         "last1h": "Pēdējā stunda",
         "last30d": "Pēdējās 30 dienas"
+      },
+      "eachMode": "Katrs aģents",
+      "sharedMode": "Kopīgs darbs",
+      "eachHelp": "Katrs atlasītais aģents veic pilnu uzdevumu.",
+      "resumeSwarm": "Atsākt spietu",
+      "pacing": {
+        "label": "Kad rīkoties",
+        "now": "Nekavējoties",
+        "hours": "Vairāk par {{count}} stundām",
+        "help": "Sākas automātiski ar izslēgtu jutīgumu. Kardiostimulēšana atbalsta vienu darbību, kas patīk vai nepatīk fiksētā ieraksta logā: katrs aģents reaģē uz katru atbilstošo ierakstu, pa vienam pagriezienam. Pirmais pagrieziens sākas tagad; pakalpojumu ierobežojumi var pagarināt finiša laiku.",
+        "independent": "Piedāvātie uzdevumi tiek izpildīti neatkarīgi no jutīguma režīma. Lūdzot atzīmēt \"Patīk\", netiek ieslēgta autonoma publicēšana."
       }
     },
     "title": "MI aģenti",
@@ -6595,7 +6606,6 @@
       "escrowActive": "Escrow is active",
       "escrowFunded": "Darījuma konta finansētais budžets",
       "escrowSetup": "Bounty escrow setup",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
       "fundPublish": "Fonds un publicēšana",
       "hashPlaceholder": "0x transaction hash",

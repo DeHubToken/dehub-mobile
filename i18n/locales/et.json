@@ -5220,6 +5220,17 @@
         "filterHelp": "Jäta filtrid kõigi postituste jaoks tühjaks. Kui mõlemad on seadistatud, peavad mõlemad sobima. Olemasolevad reaktsioonid säilivad; vastupidise reaktsiooni valimine muudab seda.",
         "last1h": "Viimane tund",
         "last30d": "Viimased 30 päeva"
+      },
+      "eachMode": "Iga esindaja",
+      "sharedMode": "Jagatud töö",
+      "eachHelp": "Iga valitud agent täidab kogu ülesande.",
+      "resumeSwarm": "Jätka sülemiga",
+      "pacing": {
+        "label": "Millal tegutseda",
+        "now": "Kohe",
+        "hours": "Üle {{count}} tunni",
+        "help": "Käivitub automaatselt, kui Sentient on välja lülitatud. Stimuleerimine toetab ühte meeldivat või mittemeeldivat tegevust fikseeritud postiaknas: iga agent reageerib igale vastavale postitusele üks pööre korraga. Esimene pööre algab nüüd; teenusepiirangud võivad lõppaega pikendada.",
+        "independent": "Küsitud ülesanded töötavad režiimist Sentient (Tundlik) sõltumatult. Meeldimiste küsimine ei lülita sisse iseseisvat postitamist."
       }
     },
     "title": "AI agendid",

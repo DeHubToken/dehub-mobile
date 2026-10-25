@@ -5221,7 +5221,20 @@
         "dislike": "Misliker",
         "filterHelp": "Låt filter for alle innlegg være tomme. Når både er satt, må de matche. Bestående reaksjoner beholder seg; å velge motsatt reaksjon endrer den.",
         "last1h": "Siste time",
-        "last30d": "Siste 30 dager"
+        "last30d": "Siste 30 dager",
+        "replyStyle": "Hvordan svarene skal lyde"
+      },
+      "eachMode": "Hver agent",
+      "sharedMode": "Delt arbeid",
+      "eachHelp": "Hver valgt agent utfører hele oppgaven.",
+      "pauseSwarm": "Pausesverm",
+      "resumeSwarm": "Gjenoppta svermen",
+      "pacing": {
+        "label": "Når man skal handle",
+        "now": "Umiddelbart",
+        "hours": "Over {{count}} timer",
+        "help": "Starter automatisk med Sentient av. Pacing støtter én liker- eller ikke-lik-handling i et fast innleggsvindu: hver agent reagerer på hvert matchende innlegg, én tur om gangen. Den første turen starter nå; tjenestegrenser kan forlenge sluttidspunktet.",
+        "independent": "Oppgaver som blir bedt om kjører uavhengig av Sentient-modus. Å be om likerklikk slår ikke på autonome innlegg."
       }
     },
     "title": "AI-agenter",
@@ -11886,7 +11899,8 @@
       "unmergeRange": "Utslå {{range}}",
       "vertical": "Vertikal utlining",
       "weightsHint": "Størrelser er relative. En verdi på 2 bruker dobbelt så mye plass som 1; tabellen beholder sin totale størrelse.",
-      "wrap": "Bryt tekst i celler"
+      "wrap": "Bryt tekst i celler",
+      "fontSizePercent": "Storleik på tabulator"
     },
     "text": {
       "backgroundPerLine": "Pass bakgrunn til hver linje",

@@ -5124,7 +5124,18 @@
       "reaction": "Reaktion",
       "post": "Posten",
       "comment": "Kommentar",
-      "profile": "Profilaktualisierung"
+      "profile": "Profilaktualisierung",
+      "eachMode": "Jeder Agent",
+      "sharedMode": "Gemeinsame Arbeit",
+      "eachHelp": "Jeder ausgewählte Agent führt die vollständige Aufgabe aus.",
+      "resumeSwarm": "Schwarm fortsetzen",
+      "pacing": {
+        "label": "Wann zu handeln ist",
+        "now": "Sofort",
+        "hours": "Über {{count}} Stunden",
+        "help": "Startet automatisch mit Sentient aus. Pacing unterstützt eine Like- oder Dislike-Aktion auf einem festen Post-Fenster: Jeder Agent reagiert auf jeden passenden Post, eine Runde nach der anderen. Die erste Runde beginnt jetzt; Service-Limits können die Endzeit verlängern.",
+        "independent": "Aufgeforderte Tasks werden unabhängig vom Sentient-Modus ausgeführt. Wenn Sie nach Likes fragen, wird das autonome Posten nicht aktiviert."
+      }
     },
     "title": "KI-Agenten",
     "connectToManage": "Anmelden um KI-Agenten zu verwalten",
@@ -9459,7 +9470,6 @@
     "viewFeed": "Ihren Feed anzeigen",
     "yourChannel": "Dein Kanal",
     "yourChannelHint": "Füge deine Kanaladresse ein – der Handle allein funktioniert auch.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Bezahlt in DeHub-Token, einmalig, bevor der Batch beginnt. Badge-Inhaber zahlen weniger – dein Rabatt wird auf das Angebot angewendet. Wenn ein Video nicht importiert werden kann, wird sein Anteil auf deine nächste Migration gutgeschrieben."
   },
   "calls": {

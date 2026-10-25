@@ -78,7 +78,8 @@
     "removeScreenshot": "Skrinshotni olib tashlash",
     "send": "Xatolik haqida hisobot yuborish",
     "signIn": "Yuborish uchun tizimga kiring",
-    "title": "Sahifa parametrlari"
+    "title": "Sahifa parametrlari",
+    "screenshot": "Skrinshot ko'rinishi"
   },
   "twitchMirror": {
     "auto": "Twitch oqimlarimni avtomatik ravishda aks ettirish",
@@ -94,7 +95,9 @@
     "starting": "Jonli videoni ulash",
     "title": "Twitch aks ettirish",
     "unavailable": "Twitch aks ettirish hali mavjud emas.",
-    "waiting": "Keyingi Twitch ko'rsatuvingizga tayyor"
+    "waiting": "Keyingi Twitch ko'rsatuvingizga tayyor",
+    "open": "DeHub-da tomosha qiling",
+    "disabled": "Avtomatik ko'chirish o'chirilgan"
   },
   "viralTemplates": {
     "all": "Hammasi",
@@ -2549,7 +2552,17 @@
     "f6f4688ff23d": "Yuborish",
     "fc036ea0e9f0": "Nima-bir saytga link qoʻyish",
     "fef6a1a97127": "{{value1}}",
-    "ff701a069af2": "Tasdiqlash va qulfni ochish"
+    "ff701a069af2": "Tasdiqlash va qulfni ochish",
+    "db455cae992e": "Xususiyat so'rovini yangilashda xato",
+    "b500b2068ac7": "Xususiyat so'rovini o'chirishda xato",
+    "565339bc4d33": "OK",
+    "773e51beddb6": "Noto'g'ri yoki zararli kontentni ko'rib chiqish uchun belgilang. Hisobotlar hamjamiyatni xavfsiz saqlashga yordam beradi.",
+    "80557bda57d2": "Video Post",
+    "0954e92b6ff1": "Post yoki sharhda boshqa foydalanuvchini @dan keyin ularning foydalanuvchi nomini yozib belgilang. Ular bildirishnoma oladi.",
+    "f082eb679e6b": "To'lang {{value1}} {{value2}}",
+    "ba85bf0351d5": "{{value1}} soniyani orqaga qaytaring",
+    "9f68c44b21cf": "Ko'ring {{value1}}",
+    "084d8c213a85": "{{value1}} dan 5 ni baholang"
   },
   "dehubLinks": {
     "kind": {
@@ -4622,7 +4635,8 @@
     "attachmentTooLarge": "Har bir fayl 50 MB dan kichik bo'lishi kerak",
     "deleteCommentA11y": "Sharhingizni o'chirish",
     "sendCommentA11y": "Izoh jo'natish",
-    "requestOptions": "So'rov variantlari"
+    "requestOptions": "So'rov variantlari",
+    "promptAttachment": "Ilova {{number}}"
   },
   "auth": {
     "loginRequired": "Avtorizatsiya kerak",
@@ -5115,7 +5129,9 @@
     "profile": {
       "edit": "Profilni tahrirlash",
       "imageHelp": "JPG, PNG, WebP yoki GIF, har biri 5 MB gacha.",
-      "saved": "Profil saqlandi."
+      "saved": "Profil saqlandi.",
+      "avatar": "Avatar",
+      "banner": "Banner"
     },
     "life": {
       "asleep": "{{home}} da uxlab yotgan",
@@ -5145,7 +5161,8 @@
       "queuePost": "Postni navbatga qo'yish",
       "unlike": "Boshqa",
       "unliked": "Yoqtirilmagan",
-      "viewPost": "Postni ko'rish"
+      "viewPost": "Postni ko'rish",
+      "awake": "Uyg'on {{home}}"
     },
     "tasks": {
       "cancelSwarm": "Swarmni bekor qilish",
@@ -5225,6 +5242,17 @@
         "filterHelp": "Filtrlardan barcha postlar uchun boʻsh qoldiring. Ikkalasi ham belgilangan boʻlsa, ikkalasi ham mos kelishi kerak. Oldindan reaksiyalar saqlanadi; aksincha reaksiya tanlash uni oʻzgartiradi.",
         "last1h": "Soatdan keyin",
         "last30d": "Oltmish kun ichida"
+      },
+      "eachMode": "Har bir agent",
+      "sharedMode": "Umumiy ish",
+      "eachHelp": "Har bir tanlangan agent to'liq vazifani bajaradi.",
+      "resumeSwarm": "Swarmni davom ettiring",
+      "pacing": {
+        "label": "Qachon harakat qilish kerak",
+        "now": "Darhol",
+        "hours": "{{count}} soat davomida",
+        "help": "Sentient o'chirilgan holda avtomatik ravishda boshlanadi. Pacing bir fixed post oynasida bitta like yoki dislike harakatini qo'llab-quvvatlaydi: har bir agent har bir mos keladigan postga bitta navbatda javob beradi. Birinchi navbat hozir boshlanadi; xizmat chegaralari tugatish vaqtini uzaytirib yuborishi mumkin.",
+        "independent": "Talab qilingan vazifalar Sentient rejimdan mustaqil ravishda ishlaydi. Like so'rash avtonomik postingni yoqmaydi."
       }
     },
     "title": "AI Agent",
@@ -6592,7 +6620,6 @@
       "checkPayment": "Check payment",
       "clipVerify": "Tasdiqlashdan oldin kliplar sonini tekshiring. Har bir 1000 ta ko‘rish bitta birlik oladi.",
       "decisionOnly": "Ishchi mukofoti e'lon qiluvchining qarzini qayd etadi. E'lon qiluvchi to'g'ridan-to'g'ri to'laydi va qaror mukofot yozuvida qoladi.",
-      "deployEscrow": "Deploy and activate escrow",
       "deploying": "Checking escrow deployment",
       "deployNotice": "Sinovdan o'tgan Base eskrousini egasi, to'lov oluvchisi va quyida ko'rsatilgan qo'llab-quvvatlanadigan tokenlar bilan joylashtiring. Tasdiqlashdan oldin hamyoningizda benzin narxi ko'rsatiladi.",
       "draftFunding": "Sizning qoralamangiz saqlandi. Nashr qilish to'liq byudjetni Base escrow da qulflaydi. Ishchilar tasdiqlangan summalarning 95% ni oladilar; platforma to'lovi 5% ni tashkil qiladi.",
@@ -6616,7 +6643,8 @@
       "verifiedViews": "Verified view count",
       "viewsAccepted": "{{count}} verified views · {{units}} × 1,000 views",
       "viewSource": "View count source",
-      "viewSourceUrl": "View count source URL"
+      "viewSourceUrl": "View count source URL",
+      "deployEscrow": "Escrow-ni joylashtiring va faollashtiring"
     },
     "title": "Mukofotlar",
     "bounty": "Mukofot",
@@ -12458,7 +12486,9 @@
     "referenceProductName": "Mahsulingizni klipga qo'ying",
     "referenceProductHint": "Tanlangan mahsulotni almashtiring va asl sahnani saqlang.",
     "referenceComposeName": "Malumot rasmlarini birlashtirish",
-    "referenceComposeHint": "Bir nechta tasvirlardan belgilar, obyektlar va muhitni bitta kompozitsiyaga olib keling."
+    "referenceComposeHint": "Bir nechta tasvirlardan belgilar, obyektlar va muhitni bitta kompozitsiyaga olib keling.",
+    "studioPrompt": "Nima yaratmoqchi ekanligingizni tavsiflang…",
+    "presetOpenTowerTiltName": "Minora egilishi"
   },
   "fractions": {
     "title": "Ulushlar",

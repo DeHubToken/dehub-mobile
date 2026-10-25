@@ -5219,6 +5219,17 @@
         "filterHelp": "Biarkan filter kosong untuk semua posting. Ketika kedua diatur, kedua harus cocok. Reaksi yang ada tetap terjaga; memilih reaksi berlawanan akan mengubahnya.",
         "last1h": "Jam ini",
         "last30d": "30 hari terakhir"
+      },
+      "eachMode": "Setiap agen",
+      "sharedMode": "Pekerjaan bersama",
+      "eachHelp": "Setiap agen yang dipilih melakukan tugas penuh.",
+      "resumeSwarm": "Lanjutkan swarm",
+      "pacing": {
+        "label": "Kapan harus bertindak",
+        "now": "Segera",
+        "hours": "Lebih dari {{count}} jam",
+        "help": "Dimulai secara otomatis dengan matikan Sentient. Pacing mendukung satu tindakan suka atau tidak suka pada jendela postingan tetap: setiap agen bereaksi terhadap setiap postingan yang cocok, satu per satu. Giliran pertama dimulai sekarang; batas layanan dapat memperpanjang waktu penyelesaian.",
+        "independent": "Tugas yang diminta berjalan secara independen dari mode Sentient. Meminta suka tidak mengaktifkan posting otonom."
       }
     },
     "title": "Agen AI",

@@ -5213,6 +5213,17 @@
         "filterHelp": "Waiho nga taatari kore mo nga pou katoa. A, no te whakaturia e rua, kia ōrite e rua. Ka mau tonu nga urupare o mua; ka huri te urupare rereke.",
         "last1h": "Haora whakamutunga",
         "last30d": "30 nga ra whakamutunga"
+      },
+      "eachMode": "Ko ia kaihoko",
+      "sharedMode": "Nga mahi e tohaina ana",
+      "eachHelp": "Ko ia kaihoko kua tohua e mahi ana i te mahi katoa.",
+      "resumeSwarm": "Whakahokia te Swarm",
+      "pacing": {
+        "label": "I te wa e mahi ana",
+        "now": "I te wa tonu",
+        "hours": "Neke atu i te {{count}} haora",
+        "help": "Tīmata aunoa ki te Sentient Off. Ka tautoko a Pacing i tetahi mahi rite, kaore ranei e pai ki te matapihi pou tuuturu: ka urupare ia kaihoko ki nga pou e rite ana, ka huri i te wa kotahi. Ka tīmata te huringa tuatahi inaianei; ka taea e nga rohe ratonga te whakawhānui i te wa mutunga.",
+        "independent": "Ko nga mahi whakatairanga e rere motuhake ana i te aratau Sentient. Ko te tono mo nga hiahia kaore e huri ki te tuku motuhake."
       }
     },
     "title": "Kaihautū MI",

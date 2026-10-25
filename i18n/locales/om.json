@@ -2547,7 +2547,20 @@
     "f6f4688ff23d": "Erguu",
     "fc036ea0e9f0": "Fuula adda ta'e tokkoof liinkii godhi",
     "fef6a1a97127": "Kan hordofu {{value1}}",
-    "ff701a069af2": "Mirkaneessi & Qulqulleessi"
+    "ff701a069af2": "Mirkaneessi & Qulqulleessi",
+    "1aa9573705bf": "Comment like godhaa",
+    "3d1d43659027": "/ USD",
+    "25d36bfae913": "Hanga ammaatti live streams hin jiru",
+    "0913f7bb109b": "fayyadamaa kana",
+    "c9a2d61de5a7": "Maqaa fayyadamaa saagi",
+    "9839f82c0b29": "Liqiin dabalameera",
+    "b8af57e311aa": "Gaaffiin amala haaromfame!",
+    "716ad8641567": "Kuusaa haaromsuu hin dandeenye",
+    "c749c07a8785": "Meeshaa sana balleessuu hin dandeenye",
+    "c88d5b51caf0": "Qubbee harkaa (Dislike) .",
+    "dbc6e9280cb5": "Bittaa PPV",
+    "8fe1a08e1a39": "{{value1}} irraa buufadhaa.",
+    "f5057642d43e": "{{value1}} baayoomeetirii banaa"
   },
   "dehubLinks": {
     "kind": {
@@ -5219,6 +5232,17 @@
         "filterHelp": "Maxxansa hundaaf filter duwwaa dhiisi. Yeroo lamaan isaanii saagaman, lamaan isaanii walsimsiisuu qabu. Walnyaatinsi jiran ni eegamu; deebii faallaa filachuun ni jijjiira.",
         "last1h": "Sa'aatii dhumaa",
         "last30d": "Guyyoota 30 darban"
+      },
+      "eachMode": "Tokkoon tokkoon ergamaa",
+      "sharedMode": "Hojii waliinii",
+      "eachHelp": "Tokkoon tokkoon bakka bu'aa filatame hojii guutuu raawwata.",
+      "resumeSwarm": "Swarm irra deebi'ii jalqabi",
+      "pacing": {
+        "label": "Yoom akka socho'u",
+        "now": "Yerosuma",
+        "hours": "Sa'aatii {{count}} oliif",
+        "help": "Sentient cufamee ofumaan jalqaba. Saffisni gocha jaallachuu ykn jaallachuu dhabuu tokko foddaa maxxansa dhaabbataa irratti deeggara: tokkoon tokkoon bakka bu'aan maxxansa walsimsiisu hundaaf deebii kenna, yeroo tokkotti dabaree tokko. Dabareen jalqabaa amma jalqaba; daangaa tajaajilaa yeroo xumuraa dheeressuu danda’a.",
+        "independent": "Hojiiwwan gaafataman haalata Sentient irraa walaba ta'anii hojjetu. Like gaafachuun of danda'ee maxxansuu hin onne."
       }
     },
     "title": "Eejentii AI",
@@ -6577,7 +6601,6 @@
       "ratingSummary": "{{rating}}/5 {{count}} irraa gamaaggama badhaasa",
       "newReputation": "Hanga ammaatti gamaaggama badhaasa hin qabu",
       "reviewWorker": "Worker to review",
-      "reviewHelp": "Reviews affect bounty reputation. You can review accepted or rejected work, or submitted work after its deadline, including unpaid work.",
       "disputesReputation": "Ragaa irra deebi’ii ilaaluu fi maaltu poostarri sun liqii akka qabu galmeessi. Poostarri kun badhaasa hojjetaa kamiyyuu kallattiin qulqulleessa; murtoon galmee badhaasa irratti hafeera.",
       "saveDraft": "Qusadhaa itti fufaa",
       "activateEscrow": "Activate deployed escrow",
@@ -6585,7 +6608,6 @@
       "checkPayment": "Check payment",
       "clipVerify": "Gudda gurguddaa keessa jiraattiin waliin qoricha. Ka jedhaa 1,000 keessa jiraattiin, jedhaa waliin waliin jedhaa.",
       "decisionOnly": "Badhaasni hojjetaa waan poostarri sun liqii qabu galmeessa. Poostarri kallattiin kan kaffalu yoo ta'u, murtoon galmee badhaasa irratti hafeera.",
-      "deployEscrow": "Deploy and activate escrow",
       "deploying": "Checking escrow deployment",
       "deployNotice": "Base escrow qoratame abbaa qabeenyaa, fudhataa kaffaltii fi mallattoolee deeggaraman armaan gaditti agarsiifaman waliin bobbaasaa. Boorsaan keessan osoo hin mirkaneessiin dura baasii gaazii ni agarsiisa.",
       "draftFunding": "Wixineen kee ni qusata. Maxxansi baajata guutuu Base escrow keessatti cufa. Hojjettoonni maallaqa mirkanaa’e keessaa %95 argatu; kaffaltiin waltajjii %5 dha.",
@@ -12435,7 +12457,12 @@
     "referenceProductName": "Meeshaa kee klipii keessatti galchi",
     "referenceProductHint": "Meeshaa mul’atu bakka buusi fi duubbee duraa eegi.",
     "referenceComposeName": "Suuraawwan waamicha walitti maki",
-    "referenceComposeHint": "Gochawwan, wantoota fi bakka suuraawwan hedduu irraa gara walitti makaa tokkootti fidu."
+    "referenceComposeHint": "Gochawwan, wantoota fi bakka suuraawwan hedduu irraa gara walitti makaa tokkootti fidu.",
+    "presetOpenDoughCloseupName": "Daakuu dhiyeenya",
+    "presetOpenTowerTiltHint": "Suuta gara gadiitti gara magaalaa duumessa qabdutti garagalchuu",
+    "presetAnimateStillName": "Animate a Still",
+    "presetFlatIllustrationName": "Fakkeenya Diriiraa",
+    "presetPixelArtName": "Pixel Art"
   },
   "fractions": {
     "title": "Qooda",

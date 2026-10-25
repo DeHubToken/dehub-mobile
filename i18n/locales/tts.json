@@ -5222,6 +5222,17 @@
         "filterHelp": "ให้ว่างสำหรับการกรองทั้งหมด หากทั้งสองกรองถูกตั้งค่าแล้ว ต้องตรงกับทั้งสองอย่าง",
         "last1h": "ชั่วโมงที่แล้ว",
         "last30d": "30 วันที่แล้ว"
+      },
+      "eachMode": "เอเจนซี่",
+      "sharedMode": "การทำงานร่วมกัน",
+      "eachHelp": "ผู้เลือกปฏิบัติแต่ละคนทำทั้งงาน",
+      "resumeSwarm": "เริ่มฝูง",
+      "pacing": {
+        "label": "เมื่อทำอะไร",
+        "now": "เราต้องทำทันที",
+        "hours": "{{count}} ชั่วโมง",
+        "help": "เริ่มต้นอัตโนมัติ Sentient off. การควบคุมความเร็วรองรับการตอบสนองด้วยการชอบหรือไม่ชอบในหน้าต่างโพสต์ที่กำหนด: .agent ทุกคนจะตอบสนองต่อโพสต์ที่ตรงกัน แต่ละครั้งหนึ่งครั้ง ตัวเลือกแรกเริ่มตอนนี้;  ขีดจำกัดบริการสามารถขยายเวลาสิ้นสุดได้",
+        "independent": "งานที่ถูกเรียกใช้โดยอัตโนมัติจะทำงานแยกจาก Sentient mode การถามขอไลค์จะไม่ทำให้โพสต์ทำงานโดยอัตโนมัติ"
       }
     },
     "title": "เอไอเอเย่น",
@@ -10846,9 +10857,7 @@
       "connected_one": "{{count}} connected · Cloud version {{revision}}",
       "connected_other": "{{count}} connected · Cloud version {{revision}}",
       "hint": "แบ่งปันการนำเสนอของท่านกับผู้แก้ไขโครงการนี้",
-      "disconnected": "ตัดการเชื่อมต่อแล้ว เข้าร่วมอีกครั้งเพื่อเชื่อมต่อ",
-      "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "disconnected": "ตัดการเชื่อมต่อแล้ว เข้าร่วมอีกครั้งเพื่อเชื่อมต่อ"
     },
     "backgrounds": {
       "skipped": "{{count}} หน้าที่ถูกล็อคอยู่",

@@ -5205,6 +5205,17 @@
         "filterHelp": "Shiya izihlungi zingenalutho ukuze uthole konke okuthunyelwe. Uma zombili zisethiwe, zombili kumele zihambisane. Ukusabela okukhona kuyagcinwa; ukukhetha ukusabela okuphambene kuyakushintsha.",
         "last1h": "Ihora elidlule",
         "last30d": "Izinsuku ezingama-30 ezedlule"
+      },
+      "eachMode": "I-ejenti ngayinye",
+      "sharedMode": "Umsebenzi ohlanganyelwayo",
+      "eachHelp": "I-ejenti ngayinye ekhethiwe yenza umsebenzi ogcwele.",
+      "resumeSwarm": "Qalisa kabusha isixha semfudumalo",
+      "pacing": {
+        "label": "Isikhathi sokuthatha isinyathelo",
+        "now": "Ngokushesha",
+        "hours": "Amahora angaphezu kuka- {{count}}",
+        "help": "Iqala ngokuzenzakalelayo nge-Sentient off. I-Pacing isekela isenzo esisodwa sokuthanda noma sokungasithandi efasiteleni lephosti elingaguquki: i-ejenti ngayinye iphendula kuyo yonke iphosti ehambisanayo, ukujika okukodwa ngesikhathi. Isikhathi sokuqala siqala manje; imikhawulo yesevisi ingandisa isikhathi sokuqeda.",
+        "independent": "Imisebenzi ekhuthazwayo isebenza ngokuzimela ngemodi ye-Sentient. Ukucela ukuthandwa akuvuli ukuphosta okuzimele."
       }
     },
     "title": "Ejensi ye-AI",
@@ -10856,7 +10867,6 @@
       "connected_other": "{{count}} connected · Cloud version {{revision}}",
       "hint": "Yabelana ngobukhona bakho nabahleli bale phrojekthi.",
       "disconnected": "Akuxhunyiwe. Joyina futhi ukuze uxhume kabusha.",
-      "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Iseshini ebukhoma ayitholakali. Ngena ngemvume futhi ugcine le phrojekthi efwini, noma uhlole isimemo sakho sokuhlela."
     },
     "charts": {

@@ -2537,7 +2537,13 @@
     "f6f4688ff23d": "보내기",
     "fc036ea0e9f0": "특정 페이지로의 링크",
     "fef6a1a97127": "{{value1}}에 의해 따라가기",
-    "ff701a069af2": "인증 및 잠금 해제"
+    "ff701a069af2": "인증 및 잠금 해제",
+    "11b8712670ff": "인도네시아어",
+    "a44e2be74d7d": "참조 이미지에서 주제 생성 및 결합",
+    "3010b02a4030": "사용자가 말하고, 듣고, 손을 들어 대화에 참여할 수 있는 라이브 오디오 룸입니다.",
+    "0954e92b6ff1": "@ 다음에 사용자 이름을 입력하여 포스트나 댓글에 다른 사용자를 태그하세요. 상대방에게 알림이 전송됩니다.",
+    "6ff9754d0ec3": "비용 ({{value1}} × $ {{value2}})",
+    "f082eb679e6b": "{{value1}} {{value2}} 결제"
   },
   "dehubLinks": {
     "kind": {
@@ -2689,7 +2695,6 @@
     "show": "게시물 보기"
   },
   "altText": {
-    "badge": "ALT",
     "add": "설명 추가",
     "edit": "설명 편집",
     "titleImage": "이 이미지를 설명하세요",
@@ -2794,7 +2799,6 @@
     "staking": "스테이킹",
     "superpowers": "슈퍼파워",
     "governance": "거버넌스",
-    "dao": "DAO",
     "careers": "채용",
     "glossary": "용어집",
     "create": "만들기",
@@ -3669,7 +3673,6 @@
     "removeTip": "팁 제거",
     "payWith": "결제 수단",
     "payQuoting": "최적 가격 확인 중…",
-    "payQuote": "≈ {{amount}} {{symbol}} ({{chain}})",
     "stageApprove": "{{symbol}} 승인 중…",
     "stageBridge": "{{chain}}에서 {{symbol}} 전송 중…",
     "stageArriving": "Base로 도착 중, 보통 몇 초 걸려요…",
@@ -3801,7 +3804,6 @@
     "audio": "오디오",
     "text": "텍스트",
     "live": "라이브",
-    "ppv": "PPV",
     "bounty": "바운티",
     "locked": "제한됨",
     "any": "전체",
@@ -4448,7 +4450,6 @@
     "category": "카테고리",
     "contentType": "콘텐츠 유형",
     "bounty": "바운티",
-    "ppv": "PPV",
     "gated": "제한됨",
     "datePosted": "게시 날짜",
     "engagement": "참여",
@@ -4916,7 +4917,6 @@
     "loadingReviews": "후기 로딩 중...",
     "yourRating": "별점",
     "rateIt": "평가하기",
-    "starsOutOfFive": "{{value}}/5",
     "rateOutOfFive": "5점 만점에 {{value}} 점",
     "reviewPlaceholder": "생각한 대로 말하기 (선택 사항)",
     "yourReview": "내가 작성한 후기",
@@ -5014,7 +5014,6 @@
     "impressions": "노출",
     "clicks": "클릭",
     "spend": "지출",
-    "ecpm": "eCPM",
     "campaigns": "캠페인",
     "noCampaigns": "아직 캠페인이 없습니다",
     "createCampaign": "캠페인 만들기",
@@ -5196,6 +5195,16 @@
         "filterHelp": "모든 게시물에 대해 필터를 비워 둡니다. 둘 다 설정되면 둘 다 일치해야 합니다. 기존 반응은 보존됩니다. 반대의 반응을 선택하면 반응이 바뀝니다.",
         "last1h": "지난 1시간",
         "last30d": "최근 30일"
+      },
+      "eachMode": "각 상담원",
+      "sharedMode": "공유된 작업",
+      "eachHelp": "선택된 각 상담원은 전체 작업을 수행합니다.",
+      "resumeSwarm": "스웜 재개",
+      "pacing": {
+        "label": "행동해야 할 때",
+        "now": "즉시",
+        "help": "Sentient OFF 상태에서 자동으로 시작됩니다. 페이싱은 고정된 게시물 창에서 하나의 좋아요 또는 싫어요 동작을 지원합니다. 각 상담원은 매칭되는 모든 게시물에 한 번에 한 번씩 반응합니다. 첫 번째 턴이 지금 시작됩니다. 서비스 제한은 완료 시간을 연장할 수 있습니다.",
+        "independent": "메시지가 표시된 작업은 Sentient 모드와 독립적으로 실행됩니다. 좋아요를 요청해도 자율 게시가 켜지지 않습니다."
       }
     },
     "title": "AI 에이전트",
@@ -5795,7 +5804,6 @@
     "viewCount_other": "조회수 {{count}}회",
     "shareMessage": "이거 확인해 보세요: {{url}}",
     "hideReplies": "답글 숨기기",
-    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "rowA11yHint": "이 댓글에 답글을 작성합니다",
     "editingComment": "댓글 수정 중",
     "editPlaceholder": "댓글 수정...",
@@ -6411,12 +6419,10 @@
       "purgeBody": "{{name}}가 이 커뮤니티에 보낸 모든 메시지가 삭제됩니다.",
       "kickBody": "{{name}}는 커뮤니티에서 추방됩니다. 나중에 다시 참여할 수 있습니다.",
       "bannedUntil": "{{date}}까지 차단",
-      "restrictionWithReason": "{{state}} — {{reason}}",
       "mutedUntil": "{{date}}까지 음소거",
       "bannedUntilShort": "{{date}}까지",
       "muteTitle": "{{name}} 음소거",
       "banTitle": "{{name}} 차단",
-      "reasonCounter": "{{len}}/200",
       "rulesCount": "{{max}} 중 {{used}}",
       "moveRuleUp": "규칙 위로 이동",
       "moveRuleDown": "규칙 아래로 이동",
@@ -6909,7 +6915,6 @@
     "podBadge": "주문형 인쇄",
     "podBuyOn": "{{provider}}에서 구매",
     "podNote": "{{provider}}에서 주문 시 인쇄하고 배송합니다. 결제는 해당 사이트에서 진행됩니다.",
-    "podUrlPlaceholder": "https://…",
     "subtitle": "DeHub 커뮤니티의 상품을 둘러보세요",
     "browse": "둘러보기",
     "myStore": "내 스토어",
@@ -7213,7 +7218,6 @@
     "warm": "따뜻하게",
     "cool": "차갑게",
     "vivid": "선명하게",
-    "vhs": "VHS",
     "neon": "네온",
     "pixelate": "픽셀"
   },
@@ -7529,7 +7533,6 @@
     "pinMessage": "PIN 메시지",
     "unpinMessage": "메시지 고정 해제",
     "jumpToLatest": "최신 메시지로 이동",
-    "attachGif": "GIF",
     "modBadge": "운영자",
     "ban": "차단",
     "banConfirm": "{{name}} 님을 차단하시겠습니까?",
@@ -7806,7 +7809,6 @@
     "kindVideo": "영상",
     "kindAudio": "오디오",
     "kindImage": "사진",
-    "tileSourceKind": "{{source}} · {{kind}}",
     "reviewTitle": "게시하기 전에 검토하기",
     "reviewSubtitle": "From {{source}}, as {{kind}}. 원하는 대로 수정하세요. 원본을 유지하려면 제목을 비워 두세요.",
     "reviewName": "제목",
@@ -7840,7 +7842,6 @@
     "filterAll": "전체",
     "noData": "데이터 없음",
     "tips": "팁",
-    "ppv": "PPV",
     "incomeBreakdown": "수입 내역",
     "ppvSales": "PPV 판매",
     "total": "합계",
@@ -9522,7 +9523,6 @@
     "yourChannel": "내 채널",
     "yourChannelHint": "채널 주소를 붙여넣으세요. 채널 주소 자체의 핸들도 작동합니다.",
     "videoCountOne": "{{n}} 동영상",
-    "placeholder": "youtube.com/ @ you, tiktok.com/ @ you, vimeo.com/you…",
     "costsNote": "DeHub 토큰으로 결제, 배치 시작 전에 한 번. 배지 보유자는 더 적게 지불합니다 — 할인율이 견적에 적용됩니다. 동영상을 가져올 수 없는 경우 해당 공유 금액은 다음 마이그레이션으로 크레딧됩니다."
   },
   "calls": {
@@ -9840,7 +9840,6 @@
   "dex": {
     "lowestPrice": "최저가 · USD",
     "lpDhb": "LP · 토큰",
-    "lpUsd": "LP · USD",
     "totalLiquidity": "총 유동성 · USD",
     "lowestSell": "최저가 판매 · USDC",
     "liveChartHint": "최저가 판매 · USDC · 드래그하여 확인",
@@ -10463,7 +10462,6 @@
       "newDesign": "새 디자인",
       "yourDesigns": "내 디자인",
       "noDesigns": "만든 디자인은 이 휴대폰에 저장되고 여기에 표시됩니다.",
-      "dimensions": "{{width}} × {{height}}",
       "aspectStory": "스토리",
       "aspectPost": "게시물",
       "aspectSquare": "정사각형",
@@ -10808,7 +10806,6 @@
       "split": "분할",
       "splitHint": "클립 안으로 재생 헤드를 옮겨 분할하세요.",
       "speed": "속도",
-      "speedValue": "{{value}}×",
       "volumeTool": "볼륨",
       "volume": "볼륨 {{value}}%",
       "fadeIn": "페이드 인 {{value}}초",
@@ -10871,7 +10868,6 @@
       "recording": "모션 기록 중",
       "lanes": "키프레임",
       "scrub": "좌우로 드래그해 바꾸세요.",
-      "segment": "{{from}} → {{to}}",
       "ease": {
         "linear": "선형",
         "ease": "이즈",
@@ -11680,7 +11676,8 @@
       "preparing": "사진 치수 준비 중...",
       "second": "두 번째 사진 프레임",
       "shuffle": "사진 섞기",
-      "swap": "사진 바꾸기"
+      "swap": "사진 바꾸기",
+      "number": "사진 {{number}}"
     },
     "present": {
       "allHidden": "모든 페이지가 숨겨져 있습니다. 이 프레젠테이션의 첫 페이지를 표시합니다.",
@@ -12329,7 +12326,6 @@
     "presetFlatIllustrationName": "플랫 일러스트레이션",
     "presetFlatVectorHint": "굵은 윤곽선과 단색",
     "presetFlatVectorName": "플랫 벡터",
-    "presetGroupAbstract": "ABSTRACT",
     "presetGroupCamera": "카메라",
     "presetGroupCommercial": "상업",
     "presetGroupDesign": "디자인",
@@ -12483,7 +12479,8 @@
     "referenceProductName": "클립에 제품을 배치하세요",
     "referenceProductHint": "원본 장면을 유지하면서 주요 제품만 대체하세요",
     "referenceComposeName": "참조 이미지를 결합하세요",
-    "referenceComposeHint": "여러 이미지에서 캐릭터, 객체 및 설정들을 하나의 구성으로 통합하세요"
+    "referenceComposeHint": "여러 이미지에서 캐릭터, 객체 및 설정들을 하나의 구성으로 통합하세요",
+    "presetGroupAbstract": "개요"
   },
   "fractions": {
     "title": "프랙션",
@@ -12813,7 +12810,6 @@
     "transferIncomplete": "토큰 전송이 완료되지 않았습니다. 다음 유료 포스트가 게시되기 전에 다시 질문을 받게 됩니다."
   },
   "emojiPicker": {
-    "tabGif": "GIF",
     "searchEmoji": "이모지 검색",
     "noEmoji": "이모지를 찾을 수 없음",
     "searchResults": "검색 결과",
@@ -13372,8 +13368,7 @@
     "tabStickers": "스티커",
     "tab": {
       "emoji": "이모지",
-      "sticker": "스티커",
-      "gif": "GIF"
+      "sticker": "스티커"
     },
     "kind": {
       "emoji": "이모지 팩",
@@ -13398,8 +13393,7 @@
       "tier": "등급",
       "packs": "팩",
       "emoji": "이모지",
-      "stickers": "스티커",
-      "gifs": "GIF"
+      "stickers": "스티커"
     },
     "signInToCreate": "팩을 만들려면 로그인하세요",
     "signInToAdd": "추가하려면 로그인하세요",
@@ -13684,7 +13678,6 @@
     "tradingClosed": "거래 종료됨",
     "trending": "트렌딩",
     "trendingHint": "상위 20 · 거래량 & 커뮤니티 활동",
-    "twitter": "X/Twitter",
     "uploadFailed": "업로드 실패",
     "uploadImage": "이미지 업로드",
     "vol24h": "24시간 거래량",
@@ -13703,8 +13696,7 @@
     "launched": "{{symbol}} 시작됨",
     "launching": "시작하는 중...",
     "next": "다음",
-    "review": "검토",
-    "graduatesAtValue": "$ 42,000 mcap"
+    "review": "검토"
   },
   "premium": {
     "bestValue": "최고의 가치",
@@ -13848,7 +13840,6 @@
     "basicAnalytics": "기본 분석",
     "detailedAnalytics": "상세 분석",
     "prioritySupport": "우선 지원",
-    "sso": "SSO",
     "adminSpendControl": "관리자 지출 제어",
     "priorityQueue": "우선순위 큐",
     "priorityQueueFast": "더 빠른 작업 처리를 위한 우선순위 큐",
@@ -14341,7 +14332,6 @@
         "command": "채팅에서 a! 명령에 응답합니다"
       },
       "presetText": {
-        "readChat": "{name}: {message}",
         "bigTip": "{name} 님이 {amount} DHB를 보냈습니다!",
         "thankFollowers": "{name} 님, 팔로우해 주셔서 감사합니다!",
         "command": "{name} 님, 안녕하세요. 스트림에 오신 것을 환영합니다!"

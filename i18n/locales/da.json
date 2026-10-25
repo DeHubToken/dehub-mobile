@@ -5219,6 +5219,18 @@
         "filterHelp": "Lad filtre stå tomme for alle poster. Når begge er indstillet, skal begge passe. Eksisterende reaktioner bevares; at vælge det modsatte reaktion ændrer det.",
         "last1h": "Sidste time",
         "last30d": "Sidste 30 dage"
+      },
+      "eachMode": "Hver agent",
+      "sharedMode": "Fælles arbejde",
+      "eachHelp": "Hver valgt agent udfører hele opgaven.",
+      "pauseSwarm": "Pause swarm",
+      "resumeSwarm": "Genoptag sværm",
+      "pacing": {
+        "label": "Hvornår skal man handle",
+        "now": "Straks",
+        "hours": "Over {{count}}timer",
+        "help": "Starter automatisk med Sentient fra. Pacing understøtter én handling, der kan lide eller ikke kan lide, i et fast opslagsvindue: Hver agent reagerer på hvert matchende opslag, én tur ad gangen. Den første tur starter nu; servicegrænser kan forlænge sluttiden.",
+        "independent": "Opfordrede opgaver kører uafhængigt af Sentient-tilstand. At bede om likes aktiverer ikke selvstændigt opslag."
       }
     },
     "title": "AI-agenter",

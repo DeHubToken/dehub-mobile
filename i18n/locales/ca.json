@@ -5219,6 +5219,17 @@
         "filterHelp": "Deixa els filtres buits per a tots els posts. Quan es configuren ambdós, tots dos han de coincidir. Les reaccions existents es conserven; triar la reacció oposada la canvia.",
         "last1h": "Última hora",
         "last30d": "Darrers 30 dies"
+      },
+      "eachMode": "Cada agent",
+      "sharedMode": "Treball compartit",
+      "eachHelp": "Cada agent seleccionat realitza la tasca completa.",
+      "resumeSwarm": "Reprèn l'eixam",
+      "pacing": {
+        "label": "Quan actuar",
+        "now": "Immediatament",
+        "hours": "Més de {{count}} hores",
+        "help": "Comença automàticament amb Sentient desactivat. El ritme és compatible amb una acció que li agrada o no li agrada en una finestra de publicació fixa: cada agent reacciona a cada publicació coincident, un torn a la vegada. El primer torn comença ara; els límits de servei poden allargar l'hora de finalització.",
+        "independent": "Les tasques indicades s'executen independentment del mode Sentient. Sol·licitar els \"m'agrada\" no activa la publicació autònoma."
       }
     },
     "title": "Agents IA",

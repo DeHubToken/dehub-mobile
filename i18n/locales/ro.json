@@ -5216,6 +5216,17 @@
         "filterHelp": "Lăsă filtrele goale pentru toate posturile. Când sunt setate ambele, ambele trebuie să se potrivească. Reacțiile existente rămân neschimbate; alegerea reacției opuse o schimbă.",
         "last1h": "Ultima oră",
         "last30d": "Ultimele 30 de zile"
+      },
+      "eachMode": "Fiecare agent",
+      "sharedMode": "Muncă în comun",
+      "eachHelp": "Fiecare agent selectat efectuează sarcina completă.",
+      "resumeSwarm": "Reluare roi",
+      "pacing": {
+        "label": "Când să acționăm",
+        "now": "Imediat",
+        "hours": "Peste {{count}} ore",
+        "help": "Începe automat cu Sentient dezactivat. Stimularea acceptă o acțiune de tip like sau dislike într-o fereastră fixă de postare: fiecare agent reacționează la fiecare postare potrivită, câte o tură pe rând. Primul viraj începe acum; limitele de serviciu pot prelungi timpul de finalizare.",
+        "independent": "Sarcinile solicitate se execută independent de modul Sentient. Solicitarea de aprecieri nu activează postarea autonomă."
       }
     },
     "title": "Agenți AI",

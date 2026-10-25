@@ -5299,6 +5299,17 @@
         "filterHelp": "Nechaj filtre prázdne pre všetky posty. Keď sú obidva nastavené, obidva musia zodpovedať. Isté reakcie zostanú zachované; výber opačnej reakcie ho zmení.",
         "last1h": "Posledná hodina",
         "last30d": "Posledných 30 dní"
+      },
+      "eachMode": "Každý zástupca",
+      "sharedMode": "Spoločná práca",
+      "eachHelp": "Každý vybraný agent vykoná celú úlohu.",
+      "resumeSwarm": "Obnoviť roj",
+      "pacing": {
+        "label": "Kedy konať",
+        "now": "Ihneď",
+        "hours": "Viac ako {{count}} hodín",
+        "help": "Spustí sa automaticky s vypnutým Sentientom. Stimulácia podporuje jednu akciu typu „páči sa mi“ alebo „nepáči sa mi“ na pevnom okne príspevku: každý agent reaguje na každý zodpovedajúci príspevok, jedno kolo po druhom. Začína sa prvé kolo; servisné limity môžu predĺžiť čas dokončenia.",
+        "independent": "Vyzvané úlohy sa spúšťajú nezávisle od režimu vnímania. Žiadanie o lajky nezapína autonómne zverejňovanie."
       }
     },
     "title": "AI Agenti",

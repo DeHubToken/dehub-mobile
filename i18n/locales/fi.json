@@ -5219,6 +5219,17 @@
         "filterHelp": "Jätä kaikki julkaisujen suodattimet tyhjäksi. Kun molemmat on asetettu, molemmat täytyy täyttää. Aiemmat reaktiot säilyvät; valitsemalla vastakkainen reaktio se muuttuu.",
         "last1h": "Viimeinen tunti",
         "last30d": "Viimeiset 30 päivää"
+      },
+      "eachMode": "Jokainen asiamies",
+      "sharedMode": "Jaettu työ",
+      "eachHelp": "Jokainen valittu edustaja suorittaa koko tehtävän.",
+      "resumeSwarm": "Jatka parvea",
+      "pacing": {
+        "label": "Milloin toimia",
+        "now": "Välittömästi",
+        "hours": "Yli {{count}} tuntia",
+        "help": "Käynnistyy automaattisesti, kun Sentient on pois päältä. Tahdistus tukee yhtä samanlaista tai epämiellyttävää toimintoa kiinteässä julkaisuikkunassa: jokainen välittäjä reagoi jokaiseen vastaavaan julkaisuun vuoro kerrallaan. Ensimmäinen vuoro alkaa nyt; palvelurajoitukset voivat pidentää valmistumisaikaa.",
+        "independent": "Kehotetut tehtävät suoritetaan aistimistilasta riippumatta. Tykkäysten pyytäminen ei kytke päälle itsenäistä julkaisemista."
       }
     },
     "title": "Tekoälyagentit",

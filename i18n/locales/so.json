@@ -2549,7 +2549,15 @@
     "f6f4688ff23d": "Dir",
     "fc036ea0e9f0": "Ku xiriiri bog gaar ah",
     "fef6a1a97127": "Waxaa raacay {{value1}}",
-    "ff701a069af2": "Xaqiiji & Fur"
+    "ff701a069af2": "Xaqiiji & Fur",
+    "88f992e97439": "Ma awoodo in aan taas ka qaado hawada",
+    "4118fb4fed0e": "La saaray",
+    "da4e2f35bc9d": "Habdhaqanka nacaybka ah",
+    "94a9eac404c8": "Spam",
+    "362058144c4a": "xAI flagship $$$",
+    "d9bac180ccc1": "Chartopia",
+    "aa2c45a2661e": "Dhaqdhaqaaqa degdegga ah ee Kling oo leh dhawaaq isku dhafan",
+    "5d788f95f78a": "Ranking Delta (▲▼)"
   },
   "dehubLinks": {
     "kind": {
@@ -5205,6 +5213,16 @@
         "filterHelp": "U daa filtarrada madhan dhammaan qoraallada. Marka labadaba la dejiyo, labaduba waa inay is waafaqaan. Falcelinnada jira waa la ilaaliyaa; doorashada falcelinta ka soo horjeeda way beddeshaa.",
         "last1h": "Saacaddii ugu dambaysay",
         "last30d": "30-kii maalmood ee ugu dambeeyay"
+      },
+      "eachMode": "Wakiil kasta",
+      "sharedMode": "Shaqada la wadaago",
+      "eachHelp": "Wakiil kasta oo la xushay wuxuu fuliyaa hawsha oo dhan.",
+      "resumeSwarm": "Dib u bilow swarm",
+      "pacing": {
+        "now": "Isla markiiba",
+        "hours": "In ka badan {{count}} saacadaha",
+        "help": "Si otomaatig ah u bilaw Sentient off. Pacing taageertaa mid ka mid ah sida ama aan jeclayn ficil on daaqad post go 'an: wakiil kasta ka falceliyo post kasta oo la mid ah, mid ka mid ah soo jeestay waqti. Wareegga koowaad wuxuu bilaabmaa hadda; Xadka adeegga ayaa kordhin kara waqtiga kama dambaysta ah.",
+        "independent": "Hawlaha la dhiirrigeliyay waxay u shaqeeyaan si madaxbannaan habka dareenka. Weydiinta kuwa jecel ma leexdo boostada ismaamulka ah."
       }
     },
     "title": "Wakiilada AI",
@@ -12381,7 +12399,18 @@
     "referenceProductName": "**Product**ka **clip**ka ku sheegay.",
     "referenceProductHint": "**Featured product**ka ku sheegay **scene**ka oo **original**ka awooday.",
     "referenceComposeName": "**Reference images**ka ku sheegay.",
-    "referenceComposeHint": "**Characters**, **objects** iyo **settings**ka oo **multiple images**ka awooday **composition**ka ku sheegay."
+    "referenceComposeHint": "**Characters**, **objects** iyo **settings**ka oo **multiple images**ka awooday **composition**ka ku sheegay.",
+    "presetExtraPrismShadowsName": "Prism shadows",
+    "presetExtraMossMicroWorldName": "Moss micro-world",
+    "presetExtraShadowDanceName": "Shadow dance",
+    "presetExtraFabricBreezeHint": "Dharka khafiifka ah ayaa kor u qaadaya oo degaya agagaarka badeecad",
+    "presetExtraShoeLacePullName": "Laces tighten",
+    "presetExtraFoodFinishName": "Dhammaystirka taabashada",
+    "presetExtraFogLanternName": "Fog lantern",
+    "presetExtraCityTramPassName": "Maraakiibta taraamka ee magaalada",
+    "presetExtraCityTramPassHint": "Tram Liit wuxuu ka gudbaa qaab deggan oo fiidkii ah",
+    "presetExtraProductLightSweepName": "Nalalka badeecada",
+    "studioMissingJob": "Jiilku ma uusan soo celin aqoonsi shaqo. Fadlan isku day mar kale."
   },
   "fractions": {
     "title": "Saamiyo",

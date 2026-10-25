@@ -5215,6 +5215,17 @@
         "filterHelp": "Hagyja üresen a szűrőket az összes bejegyzéshez. Ha mindkettő be van állítva, mindkettőnek meg kell egyeznie. A meglévő reakciók megmaradnak; az ellenkező reakció kiválasztása megváltoztatja azt.",
         "last1h": "Elmúlt óra",
         "last30d": "Elmúlt 30 nap"
+      },
+      "eachMode": "Minden ügynök",
+      "sharedMode": "Közös munka",
+      "eachHelp": "Minden kiválasztott ügynök elvégzi a teljes feladatot.",
+      "resumeSwarm": "Raj folytatása",
+      "pacing": {
+        "label": "Mikor kell cselekedni?",
+        "now": "Azonnal",
+        "hours": "{{count}} órán túl",
+        "help": "Automatikusan elindul, ha a Sentient ki van kapcsolva. A pacemaker támogatja a hasonló vagy nem kedvelt műveleteket egy rögzített bejegyzésablakban: minden ügynök reagál minden egyező bejegyzésre, egyszerre egy körben. Az első forduló most kezdődik; a szervizkorlátok meghosszabbíthatják a befejezési időt.",
+        "independent": "A rákérdezett feladatok az Érző üzemmódtól függetlenül futnak. A lájkok kérése nem kapcsolja be az önálló közzétételt."
       }
     },
     "title": "AI ügynökök",

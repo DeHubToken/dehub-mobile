@@ -5215,6 +5215,17 @@
         "filterHelp": "Filtrləri boş qoyun bütün postlar üçün. Her ikisi də ayarlananda, hər ikisi də uyğun olmalıdır. Var olan reaksiyalar saxlanılır; zidd reaksiya seçildikdə dəyişir.",
         "last1h": "Son saat",
         "last30d": "Son 30 gün"
+      },
+      "eachMode": "Hər bir agent",
+      "sharedMode": "Şərikli iş",
+      "eachHelp": "Hər bir seçilən agent tam vəzifəni yerinə yetirir.",
+      "resumeSwarm": "Tərpənməyə davam edin",
+      "pacing": {
+        "label": "Nə vaxt hərəkət etməli",
+        "now": "Dərhal",
+        "hours": "{{count}} saatdan çox",
+        "help": "Sentient ilə avtomatik olaraq başlayır. Pacing sabit post pəncərəsində bir hərəkəti bəyənir və ya bəyənmir: hər bir təmsilçi uyğun gələn hər bir posta eyni anda reaksiya verir. İlk növbə indi başlayır; xidmət limitləri bitmə vaxtını uzada bilər.",
+        "independent": "Təşviq edilmiş tapşırıqlar Sentient rejimindən asılı olmayaraq icra edilir. Bəyənmələr istəmək üçün avtonom poçt aktiv deyil."
       }
     },
     "title": "AI Agentləri",

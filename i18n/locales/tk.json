@@ -32,7 +32,8 @@
     "receipt": "${{amount}} Ýaradyjynyň reklama gelişi bilen goşuldy. token çözülmegi garaşylýar.",
     "revenue": "Reklama gelişiňiz · ${{amount}}",
     "sponsoredBy": "Çykyş: {{advertiser}}",
-    "watch": "Bunyadyna bu yaratıcı üçün reklamdan keçe bol!"
+    "watch": "Bunyadyna bu yaratıcı üçün reklamdan keçe bol!",
+    "revenueDescription": "Reklamalardan we dörediji goldawyndan gelen girdeji, token şerti garaşýar."
   },
   "maboroshiShowcase": {
     "anime": "Anime häkimi.",
@@ -2539,7 +2540,22 @@
     "f6f4688ff23d": "Gönder",
     "fc036ea0e9f0": "Belirli bir sayfaya bağlantı",
     "fef6a1a97127": "Soňra {{value1}}",
-    "ff701a069af2": "Barla we aç"
+    "ff701a069af2": "Barla we aç",
+    "3cb27ae0fbca": "Suraty köçür",
+    "c9a2d61de5a7": "Ulanyjy ady kesgitlendi",
+    "944ae402da39": "Bu hasap häzir habarlary kabul etmeýär.",
+    "16840520f59c": "Liberal",
+    "bae8448539c2": "Feminist",
+    "98e7859fecd0": "Surat Postu",
+    "80557bda57d2": "Video Postu",
+    "1e5304270961": "Wizual tolkunyň pleýeri bilen ses postu. Döredijiler musika, podkast ýa-da ses ýazgylaryny ýükläp bilerler.",
+    "04d02a85c7b9": "Siz diňe özüňize görünýän içgiler bilen meşgullanýarsyňyz. Özge ýerler başga ulanýanlardan we jemagat iýmitinden gizlenýär.",
+    "3c1c1229f7a3": "Mint işlemi",
+    "e36c6ed4c9a7": "Ticaret — listler, teklipler, satyşlar — dehub.io web-de, her bir postyň Post Info sahypasynda bolýar. Täze işlemeler bu ýerde Fraksiýalar tabynda görkezilýär.",
+    "6ff9754d0ec3": "Baýlyk ({{value1}} × ${{value2}})",
+    "8fe1a08e1a39": "{{value1}}indir",
+    "79cea90fab21": "{{value1}}, {{value2}} unread",
+    "084d8c213a85": "Rate {{value1}} of 5"
   },
   "dehubLinks": {
     "kind": {
@@ -5191,6 +5207,16 @@
         "filterHelp": "Ähli postlar üçin filtrleri boş goýuň. Olaryň ikisi-de bir-birlerine meňzeş bolanda, ikisi-de bir-birlerine meňzeş bolmaly. Häzirki reaksiýalar goralýar; garşy reaksiýalary saýlamak ony üýtgedýär.",
         "last1h": "Soňgyň soň",
         "last30d": "Bu günki geçen hepde"
+      },
+      "eachMode": "Her bir agenta",
+      "sharedMode": "Ortak iş",
+      "eachHelp": "Her bir saýlanan wekili doly işi ýerine ýetirýär.",
+      "pacing": {
+        "label": "Biz haçan hereket etmeli",
+        "now": "Dessine",
+        "hours": "{{count}}Saatyň üstünde",
+        "help": "Sententli ýok. Pacing ýüksüzlikni dowam edýär. Bir posta bir ýagdaýlyk we ýagdaýsizlik aksiyonyny destegleýär: her bir agent her bir üstünlikli posta ýagdaýlyk we ýagdaýsizlik aksiyonyna reaksiýa berýär, bir döwürden bir. Birinji döwür baslaýar; xidmet limitleri bitiren döwürü uzap bilýär.",
+        "independent": "Çykyş işleri Sentent modundan garaşsyz geçirilýär. Likes soramak özbaşdak postlaşmaga öwrülmeýär."
       }
     },
     "title": "Emeli aň agentleri",
@@ -6544,7 +6570,6 @@
       "publish": "Publish bounty",
       "posted": "Bounty çap edildi",
       "draftReady": "Draft saklanýar. taýýar bolanda çap ediň.",
-      "ratingSummary": "{{rating}}/5 from {{count}} bounty reviews",
       "newReputation": "Hany, hiç hili bahana ýok",
       "reviewWorker": "Worker to review",
       "reviewHelp": "Bu Bounty-iň abraýyna täsir edýär. Siz kabul edilen ýa-da ret edilen işi ýa-da onuň soňuna çenli berilýän işi, şol sanda tölenmedik işi barlap bilersiňiz.",
@@ -6563,12 +6588,10 @@
       "escrowActive": "Escrow is active",
       "escrowFunded": "Eskowda maddy taýdan maddy taýdan",
       "escrowSetup": "Bounty escrow setup",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
       "fundPublish": "Öwrenmek we çap etmek",
       "hashPlaceholder": "0x transaction hash",
       "legacyUnfunded": "Bazar ýok bolýan bónus. Ýerinegär işden çykarylan işleri ödényär.",
-      "paymentPending": "Payment is awaiting confirmation. Check its status before sending another transfer.",
       "published": "Öwrenilen we çap edilen kitaplar",
       "recoverTx": "Göderilgen transaktsiyanı barmaklaýar",
       "releaseConfirm": "Eger siz pul pul puluny ret etseňiz we hiç hili işlemä gatnaşmasaňyz, dowam ediň. Eger bir işlem iberilse, onuň hashyny gaýtaryp, onuň ýerine tassyklanmagyny barlaň.",
@@ -6579,7 +6602,8 @@
       "verifiedViews": "Verified view count",
       "viewsAccepted": "{{count}} verified views · {{units}} × 1,000 views",
       "viewSource": "View count source",
-      "viewSourceUrl": "View count source URL"
+      "viewSourceUrl": "View count source URL",
+      "paymentPending": "Töleg tassyklamany garaşýar. Başga bir geçiriş ibermezden ozal onuň statusyny barlaň."
     },
     "title": "Baýraklar",
     "bounty": "Baýrak",
@@ -7998,7 +8022,10 @@
       "title": "Garawul diňi we Garawul diňi",
       "today": "şu güne çenli, UTC",
       "tooltipMonth": "{{month}} {{days}} günleri",
-      "tooltipPerDay": "{{revenue}} / {{costs}} günde"
+      "tooltipPerDay": "{{revenue}} / {{costs}} günde",
+      "net": "Net",
+      "unavailable": "{{sources}} gatnaşyp bolmady, şonuň üçin olar ýokardaky her jemi çykmak ýerine çykaryldy.",
+      "profitSharedHint": "{{usd}} saklawçylara we stake edijilere tölenildi · {{from}}–{{to}}"
     },
     "taxSplit": {
       "burned": "Alýp, ýagýp atýldy.",
@@ -8008,7 +8035,9 @@
       "see": "Her haty gör",
       "shared": "Öý eýeleri we stalkerler üçin tölenýär",
       "team": "DeHub işlemi",
-      "title": "Sen nirä barýarsyň?"
+      "title": "Sen nirä barýarsyň?",
+      "teamDetail": "{{gross}} geldi; {{passed}} onuň saklawçylara geçirildi",
+      "burnedDetail": "{{tokens}} DeHub {{n}} satyn almalarynda ýakyldy"
     },
     "chart": {
       "daily": "Gün başyna myhmanlar",
@@ -8226,7 +8255,8 @@
     "lowTopUp": "{{symbol}} azmy? Açylmazdan ozal doldurarys.",
     "unlockedSuccess": "Üstünlikli açyldy",
     "otherChain": "Bu ýazgy başga bir zynjyra ýerleşdirilýär, şonuň üçin ol ýerde jüýjüňizde DeHub tokenlerini talap edýär.",
-    "payHint": "Jüýjüňizdäki islendik zat bilen töleň. Ol DeHub tokenlerine öwrülýär we derrew açylýar."
+    "payHint": "Jüýjüňizdäki islendik zat bilen töleň. Ol DeHub tokenlerine öwrülýär we derrew açylýar.",
+    "notEnoughToken": "Muny açmak üçin {{amount}} {{symbol}} gerek. Siziň {{held}} bar."
   },
   "walletSetup": {
     "tryBiometricsHint": "Bu gapjygy şu telefonda gurnan bolsaňyz we açar eýýäm şu ýerde bolmaly bolsa, muny ulanyň",
@@ -10209,7 +10239,8 @@
         "tips": "Üç maslahat",
         "tutorial": "Tiz tälim"
       },
-      "useFormat": "{{aspect}} video formatyny ulan"
+      "useFormat": "{{aspect}} video formatyny ulan",
+      "format": "Video formaty"
     },
     "highlights": {
       "reviewTitle": "Iň gowy pursatlary anyklaň",
@@ -11311,7 +11342,8 @@
       "replaceDesign": "Bu düýşüň dowamynda bir kalamy üýtget",
       "search": "Fontlary gözle",
       "source": "Ýaryş Faýly",
-      "target": "Çykyş kalamy"
+      "target": "Çykyş kalamy",
+      "count": "{{count}} şrift tapyldy. Sanawy daraltmak üçin gözläň."
     },
     "frames": {
       "title": "Foto Çerçewi"
@@ -11535,7 +11567,8 @@
       "useColour": "{{colour}}ullan"
     },
     "photoBackground": {
-      "unavailable": "Resim üýtgedilmedi. Garawul diňi we Garawul diňi"
+      "unavailable": "Resim üýtgedilmedi. Garawul diňi we Garawul diňi",
+      "mobileHint": "Bu sahypa artynda ulanyljak surat saýlaň. Fony täzeden kesgitlemek üçin iki gezek çalşyň ýa-da ony hereketli sloy hökmünde aýyryn."
     },
     "photoLooks": {
       "applied": "Garawul diňi",
@@ -12369,7 +12402,14 @@
     "referenceProductName": "Ürünüzü video klipte yerleþtirýn",
     "referenceProductHint": "Sahneni ýä sceneýi saqlayýan halda öne çýkkan ürünü yerleþtirýn.",
     "referenceComposeName": "Referens resimlerini birleþtirýn",
-    "referenceComposeHint": "Bir neçe resimden karakterler, obýektler ýä sahne ýoklamalarýný bir kompozitsiyaga birleþtirýn."
+    "referenceComposeHint": "Bir neçe resimden karakterler, obýektler ýä sahne ýoklamalarýný bir kompozitsiyaga birleþtirýn.",
+    "presetExtraTopographicWavesHint": "Qatlama kontur çyzyklary aýlanma formalaryna öwrülýär",
+    "presetOpenRecordingStudioHint": "Tungsten işygy bilen izometrik çal kesimi",
+    "presetOpenWatchBlueprintName": "Gözleg smueta",
+    "presetFlatIllustrationName": "Tekiz illýustrasiýa",
+    "presetGroupFilm": "Film",
+    "presetNeedsImage": "{{name}} birikdirilen surat gerek. Ilki biler birini birikdiriň.",
+    "presetProductShowcaseHint": "Arassalaşdyrylan, polirlenilen önüm hero şutu"
   },
   "fractions": {
     "title": "Paýlar",
@@ -13638,7 +13678,8 @@
     "uploadImage": "Resimi Gaýd Et",
     "vol24h": "24 sagat Vol",
     "volume24h": "24 sagatlyk ses",
-    "website": "Web-sayt"
+    "website": "Web-sayt",
+    "searchPlaceholder": "Tiker, at, dörediji gözläň"
   },
   "premium": {
     "bestValue": "Iň gowy bahasy",
@@ -14011,7 +14052,8 @@
     "showWords": "Sözleri görkez",
     "reminderBody": "Eger siz telefonuny ýitirseňiz, ony yzyna getirýän 12 sözüňizi gaýtaryp beriň.",
     "backUp": "Ýokarda",
-    "notNow": "Häzir däl"
+    "notNow": "Häzir däl",
+    "noPhrase": "Bu şahsy açar ulanyp saklandy, şonuň üçin DeHub-yň aç-açan sözleri ýok. Şol bir şahsy açary saklaň."
   },
   "liveOverlay": {
     "shared": "{{name}} ýaýlymy paýlaşdy",

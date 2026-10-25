@@ -5221,6 +5221,17 @@
         "filterHelp": "Nechte filtry prázdné pro všechny zprávy. Když jsou obě nastavené, musí obě odpovídat. Stávající reakce jsou zachovány; výběr opačné reakce ji změní.",
         "last1h": "Poslední hodina",
         "last30d": "Posledních 30 dnů"
+      },
+      "eachMode": "Každý zástupce",
+      "sharedMode": "Sdílená práce",
+      "eachHelp": "Každý vybraný agent provede celý úkol.",
+      "resumeSwarm": "Obnovit hejno",
+      "pacing": {
+        "label": "Kdy jednat",
+        "now": "Okamžitě",
+        "hours": "Více než {{count}} hodin",
+        "help": "Spustí se automaticky s vypnutým vnímáním. Stimulace podporuje jednu akci typu „to se mi líbí“ nebo „to se mi nelíbí“ na pevném okně příspěvku: každý agent reaguje na každý odpovídající příspěvek, jedno kolo po druhém. Nyní začíná první zatáčka; servisní limity mohou prodloužit čas dokončení.",
+        "independent": "Vyzvané úkoly běží nezávisle na režimu vnímání. Žádost o lajky nezapne autonomní zveřejňování."
       }
     },
     "title": "AI agenti",

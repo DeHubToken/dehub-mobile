@@ -5217,6 +5217,17 @@
         "filterHelp": "Lë filtrat të bohtë për të gjitha postet. Kur të dyja janë vendosur, të dyja duhet të përputhen. Reaksionet e ekzistuese ruhen; zgjedhja e reaksionit të kundërt e ndryshon atë.",
         "last1h": "Orë të fundit",
         "last30d": "Dita të fundit 30"
+      },
+      "eachMode": "Secili agjent",
+      "sharedMode": "Punë e përbashkët",
+      "eachHelp": "Secili agjent i përzgjedhur kryen detyrën e plotë.",
+      "resumeSwarm": "Vazhdo me tufën",
+      "pacing": {
+        "label": "Kur të veprosh",
+        "now": "Shtypshinjtorimmediately",
+        "hours": "Mbi {{count}} orë",
+        "help": "Fillon automatikisht me Çaktivizimin e dërguesit. PACING mbështet një veprim pëlqimi ose mospëlqimi në një dritare postimi fikse: çdo agjent reagon ndaj çdo postimi që përputhet, një nga një. Kthesa e parë fillon tani. Kufijtë e shërbimit mund të zgjasin kohën e mbarimit.",
+        "independent": "Detyrat e nxitura funksionojnë në mënyrë të pavarur nga modaliteti Sentient. Kërkimi i pëlqimeve nuk aktivizon postimin autonom."
       }
     },
     "title": "Agjentët AI",

@@ -1501,7 +1501,6 @@
     "0c820caf16c0": "个人简介还没有",
     "0de0253da6f1": "事件已创建！",
     "0e9161011702": "刷新",
-    "12a7c0529934": "/docs/getting-started",
     "14c5558a8cd9": "没有找到匹配的转录",
     "155f816c0407": "提交",
     "1603d5423679": "事件已更新！",
@@ -2410,7 +2409,8 @@
     "fbd1210fffc5": "{{value1}}已屏蔽",
     "8912e65bf642": "拖动以重新排序照片{{value1}}/{{value2}}",
     "01acc2c0f94b": "使用账号{{value1}}",
-    "8456b09b5e76": "删除账号{{value1}}"
+    "8456b09b5e76": "删除账号{{value1}}",
+    "a52e8253b78b": "出色的及时遵守"
   },
   "dehubLinks": {
     "kind": {
@@ -2647,7 +2647,6 @@
     "unavailable": "此版本的应用中不可用"
   },
   "nav": {
-    "dao": "DAO",
     "fractions": "碎片",
     "home": "首页",
     "explore": "发现",
@@ -5058,7 +5057,18 @@
       "reaction": "反应",
       "post": "帖子",
       "comment": "评论",
-      "profile": "资料更新"
+      "profile": "资料更新",
+      "eachMode": "每位客服代表",
+      "sharedMode": "共享工作",
+      "eachHelp": "每个选定的代理执行全部任务。",
+      "resumeSwarm": "恢复SWARM",
+      "pacing": {
+        "label": "何时采取行动",
+        "now": "立即",
+        "hours": "超过{{count}}小时",
+        "help": "在Sentient关闭的情况下自动启动。起搏支持固定帖子窗口上的一个喜欢或不喜欢动作：每个客服代表对每个匹配的帖子做出反应，一次一回合。第一回合现在开始；服务限制可以延长完成时间。",
+        "independent": "提示任务独立于Sentient模式运行。请求点赞不会开启自动发布功能。"
+      }
     },
     "title": "AI代理",
     "connectToManage": "登录以管理AI代理",
@@ -9321,7 +9331,6 @@
     "discordOptional": "Discord（可选）"
   },
   "migrate": {
-    "placeholder": "youtube.com/ @ you、tiktok.com/ @ you、vimeo.com/you…",
     "clearAll": "清除全部",
     "costsIntro": "每个视频都比前一个便宜——批量越大费率越低，下面的价格是该数量视频的总费用。",
     "costsIntroShort": "每个视频都比前一个便宜——批量越大费率越低。确切的价格在您付款前显示。",
@@ -13234,7 +13243,6 @@
     "subtitle": "徽章持有者制作的自定义表情、贴纸和 GIF。将任何表情包添加到您的选择器中，并在聊天、评论和反应中使用。",
     "tabStickers": "贴纸",
     "tab": {
-      "gif": "GIF",
       "emoji": "表情",
       "sticker": "贴纸"
     },
@@ -13258,7 +13266,6 @@
     "tierTable": "每个徽章等级包含的内容",
     "tierTableHint": "表情包是按种类计算的。其他列显示每个表情包可容纳的物品数量。如果您的等级下降，您的表情包将保留，但您无法添加超过新限制的物品。",
     "col": {
-      "gifs": "GIF",
       "tier": "等级",
       "packs": "表情包",
       "emoji": "表情",

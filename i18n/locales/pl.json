@@ -5219,6 +5219,17 @@
         "filterHelp": "Pozostaw filtry puste dla wszystkich postów. Gdy oba są ustawione, oba muszą pasować. Istniejące reakcje są zachowane; wybór przeciwnej reakcji zmienia ją.",
         "last1h": "Ostatnia godzina",
         "last30d": "Ostatnie 30 dni"
+      },
+      "eachMode": "Każdy agent",
+      "sharedMode": "Praca współdzielona",
+      "eachHelp": "Każdy wybrany agent wykonuje pełne zadanie.",
+      "resumeSwarm": "Wznów rojenie",
+      "pacing": {
+        "label": "Kiedy działać",
+        "now": "Natychmiast",
+        "hours": "Powyżej {{count}} godzin",
+        "help": "Uruchamia się automatycznie, gdy Sentient jest wyłączony. Chodzenie obsługuje jedną akcję podobną lub niechętną do stałego okna postu: każdy agent reaguje na każdy pasujący post, jedna tura po kolei. Pierwsza tura rozpoczyna się teraz; limity serwisowe mogą wydłużyć czas zakończenia.",
+        "independent": "Podpowiedziane zadania działają niezależnie od trybu Sentient. Proszenie o polubienia nie włącza autonomicznego publikowania."
       }
     },
     "title": "Agenci AI",
@@ -9493,7 +9504,6 @@
     "viewFeed": "Zobacz swój kanał",
     "yourChannel": "Twój kanał",
     "yourChannelHint": "Wklej adres swojego kanału — uchwyt działa również sam z siebie.",
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "costsNote": "Zapłacono tokenami DeHub, raz, przed rozpoczęciem partii. Posiadacze odznak płacą mniej — Twój rabat jest stosowany do wyceny. Jeśli wideo nie może zostać zaimportowane, jego udział jest zwracany na poczet Twojej następnej migracji."
   },
   "calls": {

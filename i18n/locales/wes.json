@@ -2440,7 +2440,29 @@
     "f6f4688ff23d": "Send am",
     "fc036ea0e9f0": "Link weh go fo one particular page",
     "fef6a1a97127": "Followed by {{value1}}",
-    "ff701a069af2": "Verifi & Unlock"
+    "ff701a069af2": "Verifi & Unlock",
+    "42b7d537f55f": "Purchase failed",
+    "4118fb4fed0e": "Removed",
+    "4819e014c7f9": "Tips earned",
+    "8b5e86df9155": "Tips given",
+    "b979cda45ed2": "Failed to award",
+    "6f511ce56284": "Rain Pond",
+    "74efbe0f30ab": "Halftone",
+    "2a0817015729": "Chladni",
+    "f223faa96f22": "Apple",
+    "ba118bf7fc9c": "English",
+    "51d624360ae7": "Français (French)",
+    "cd0a5a7df7be": "Deutsch (German)",
+    "0090dc269d25": "Italiano (Italian)",
+    "0bc4fc1e0442": "Rapid four-step image generation",
+    "9677cceec070": "Post Interactions",
+    "6fbd766b1a71": "Translation",
+    "f5f8313a3e8f": "Show Original",
+    "1c1f651829b5": "Pay-Per-View (PPV)",
+    "ad2cbb28a08f": "Subscriber Only",
+    "8a22ea8e4d1a": "Your Holdings",
+    "380d64545671": "Fraction Marketplace",
+    "7cd63b610e6d": "DeHub tokens"
   },
   "dehubLinks": {
     "kind": {
@@ -2502,7 +2524,6 @@
     "verifyHint": "For verify link, add this one for that page, then save again: {{snippet}}"
   },
   "notificationFilters": {
-    "title": "Filter notifications from",
     "description": "Choose wetin go happen when person weh no di your circle interact with you. Filtered notifications go wait under Filtered, no badge and no push.",
     "notFollowing": "People weh you no follow",
     "notFollowers": "People weh no follow you",
@@ -2541,7 +2562,6 @@
     "duration30d": "For 30 days",
     "where": "Where",
     "home": "Haus",
-    "public": "Explore and search",
     "profile": "Profile dem",
     "thread": "Conversations",
     "notifications": "Notifikayshuns",
@@ -2596,7 +2616,6 @@
     "add": "Add description",
     "edit": "Change description",
     "titleImage": "Describe this picture",
-    "titleVideo": "Describe this video",
     "help": "For people weh no fit see am. Screen reader go read am loud.",
     "placeholder": "Wetin e di show? Put any writing weh e get inside.",
     "show": "Show description",
@@ -2604,13 +2623,6 @@
     "saveFailed": "We no fit save the description"
   },
   "liveRecap": {
-    "justEnded": "Your stream recap",
-    "lastStream": "Your last stream",
-    "shareText": "I just streamed \"{{title}}\" on DeHub: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
-    "peakViewers": "Most watching at once",
-    "gifts_one": "From {{count}} gift",
-    "gifts_other": "From {{count}} gifts",
-    "stillCounting": "Still counting: gifts can take a minute to confirm.",
     "title": "Stream recap",
     "none": "Wetin no finish stream yet. Yous recap go come here after first one finish.",
     "share": "Share-am",
@@ -4623,8 +4635,7 @@
     "nothingHereYet": "Nothing here yet.",
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
-    "shareStation": "Shari radio",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "shareStation": "Shari radio"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -5073,6 +5084,15 @@
         "filterHelp": "Wetin you go do be, leave all post filter empty. When both set, both must match. Old reaction stay same; if you choose opposite, it go change.",
         "last1h": "Last hour",
         "last30d": "Last 30 days"
+      },
+      "distribution": "Distribution",
+      "eachMode": "E ben agent",
+      "sharedMode": "Wok wey dem share together.",
+      "eachHelp": "E each agent wey dey select, dem go do full task.",
+      "resumeSwarm": "Na wetin you dey look for for resume swarm?",
+      "pacing": {
+        "now": "Mek am fast!",
+        "help": "Sentent laf off. Pasing supot one laik or dislaik aktion on wun post wino: each agent reakt to evri matchin post, wun turn at a tim. Da first turn stat now; servis limit kan exten da finis tim."
       }
     },
     "title": "AI Agent dem",
@@ -6420,9 +6440,6 @@
       "payOnApproval": "Paid directly after approval",
       "publish": "Publish bounty",
       "posted": "Bounty publish",
-      "draftReady": "Draft saved. Publish when ready.",
-      "ratingSummary": "{{rating}}/5 from {{count}} bounty reviews",
-      "newReputation": "No bounty reviews yet",
       "reviewWorker": "Worker to review",
       "reviewHelp": "Yu go review am, na am go affect yor bounty reputation. Yu fit review work wey dem accept, reject, or work wey dem submit afta deadline, including unpaid work.",
       "disputesReputation": "Ef you go check evidence, go record what poster owe. Poster go settle any worker award direct; decision stay on bounty record.",
@@ -6432,9 +6449,7 @@
       "checkPayment": "Check payment",
       "clipVerify": "Check wey number of clip dey get before you approve. For every full 1,000 view, you get one unit.",
       "decisionOnly": "A worker award no save record wey poster dey owe. Poster pay direct, na decision dey stay on bounty record.",
-      "deployEscrow": "Deploy and activate escrow",
       "deploying": "Checking escrow deployment",
-      "deployNotice": "Deploy the tested Base escrow with the owner, fee recipient and supported tokens shown below. Your wallet will show the gas cost before confirmation.",
       "draftFunding": "Draft yu save. \"Publishing\" lock full budget in Base escrow. Worker get 95% of approved amount; platform fee be 5%.",
       "draftSaved": "Draft save wey go. Fund escrow go publish.",
       "escrowActive": "Escrow is active",
@@ -6442,7 +6457,6 @@
       "escrowSetup": "Bounty escrow setup",
       "feeNotice": "Waka dey receive {{net}} {{currency}} after 5% platform fee. Gross budget dey use {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
-      "fundPublish": "Fund and publish",
       "hashPlaceholder": "0x transaction hash",
       "legacyUnfunded": "Bounty no get fund. Poster pay direct for work dey accept.",
       "paymentPending": "Payment bi dey wait konfirm. Chek am status bifor yu send anoda transfer.",
@@ -6450,7 +6464,6 @@
       "recoverTx": "Yá, wé waka recover transaction na.",
       "releaseConfirm": "Na if wallet signature no dey, na if no transaction dey submit. If transaction dey send, recover am hash and check confirmation instead.",
       "releaseSignature": "Release rejected signature",
-      "reviewWindow": "Funded bounties close after the deadline and a three-day review window. Review and settle every submission first.",
       "setupRequired": "Eskrou setap wey go dem for save befor you go publish. Your draft go stay save a wey.",
       "signatureReleased": "Rejected signature released",
       "verifiedViews": "Verified view count",
@@ -7851,7 +7864,8 @@
       "since": "since {{date}}",
       "title": "Revenue & costs",
       "today": "today so far, UTC",
-      "unavailable": "Dem no fit reach {{sources}}, so dem dey lef out of every total above, no dey guess."
+      "unavailable": "Dem no fit reach {{sources}}, so dem dey lef out of every total above, no dey guess.",
+      "tooltipMonth": "{{month}} · {{days}} days"
     },
     "taxSplit": {
       "burned": "Baut back an burn",
@@ -7860,7 +7874,10 @@
       "open": "See every {{part}} line",
       "see": "See every line",
       "shared": "Pai dem wey dey hold token and dem wey dey stake token.",
-      "teamDetail": "{{gross}} don kam; {{passed}} of am don dey go to holders"
+      "teamDetail": "{{gross}} don kam; {{passed}} of am don dey go to holders",
+      "title": "Where revenue went",
+      "team": "DeHub operations",
+      "sharedDetail": "{{claims}} claims by {{wallets}} wallets"
     },
     "chart": {
       "daily": "Visitor dem per dei",
@@ -8671,7 +8688,6 @@
     "streamCount_one": "{{count}} stream",
     "streamCount_other": "{{count}} streams",
     "noOneStreamingGame": "Nawtin dey stream {{game}} now, no go.",
-    "seeAllStreams": "See all streams",
     "isLiveNow": "{{name}} is live",
     "justChatting": "Just Chatting",
     "noLiveStreams": "No Live Streams",
@@ -10022,7 +10038,8 @@
         "turnHint": "Show moment wey thing change.",
         "whatHappened": "Dis be what happen",
         "yourQuote": "\"Waka something wey go dey long long time.",
-        "yourTurn": "Yuo turn"
+        "yourTurn": "Yuo turn",
+        "answer": "Here be answer"
       },
       "duration": "{{seconds}}s",
       "format": "Video format",
@@ -10602,10 +10619,7 @@
       "leave": "Leave live session",
       "connected_one": "{{count}} connected · Cloud version {{revision}}",
       "connected_other": "{{count}} connected · Cloud version {{revision}}",
-      "hint": "Share your presence with this project's editors.",
-      "disconnected": "\"Disconnect\". Come back wey we go reconnect you again.",
-      "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "disconnected": "\"Disconnect\". Come back wey we go reconnect you again."
     },
     "backgrounds": {
       "applyAll": "Copy background di page fit all page",
@@ -10694,7 +10708,9 @@
       "tokenDecimals": "Decimal places",
       "tokenHint": "Yu go paste text or QR content for me translate to Pidgin, Cameroon.",
       "tokenLocale": "Nomba lokol",
-      "trimToken": "Trim spaces before formatting"
+      "trimToken": "Trim spaces before formatting",
+      "placeholderFormat": "Tek or numba format",
+      "placeholders": "Yu use placeholder in tek"
     },
     "charts": {
       "filterCounts": "Showin {{shown}} of {{total}} souris row",
@@ -10811,7 +10827,8 @@
         "auto": "E dey do am by itself",
         "lower": "Lower bound",
         "reset": "Automatic scale",
-        "upper": "Upper bound"
+        "upper": "Upper bound",
+        "hint": "Bound expand automatic scale so relatd chart share range. Valu outside dem bound remain visible."
       },
       "scatterLines": "Connect scatter points",
       "searchTypes": "Search chart types",
@@ -10838,14 +10855,38 @@
       "valueIntervals": "Value-axis intervals",
       "xAxisMode": "Horizontal data type",
       "xIntervals": "Horizontal-axis intervals",
-      "hierarchySample": "Europe, France, 35"
+      "hierarchySample": "Europe, France, 35",
+      "brandPaletteHint": "Load savd palet into dis chart draft. Savd palet save up to ten distinct chart kolour in Brand stil. Chart valu stay same.",
+      "brandPalettes": "Savd palet and chart kolour",
+      "bubbleExample": "Replace draft wit bubble example",
+      "donutTotal": "Show total in senta",
+      "raceExample": "Replace draft wit ranking example",
+      "racePosterHint": "Di stil frame kontrol SVG and draft preview. Turn animashun off to freez dat frame on timeline too. Animashun raster and video eksport use playhead time. All frame share fix maximum scale.",
+      "referenceLine": "Target or bench mark line",
+      "sameCategoryColour": "Use for all kategori",
+      "sampleColours": "Use sampel palet and tek kolour",
+      "scatterHint": "Scatter plot use numeric X koordinat in first kolom and Y valu in remain kolom. Multiple seri share dem X koordinat. Chos Dates and UTC time in Axes and scale for elapsd-time horizontal axis.",
+      "scatterLinesHint": "Lain follow row order. Sort by numeric X in Data to connect point from left to right. A single seri use its first palet kolour for lain.",
+      "seriesStructureHint": "Valu and kolour follow each seri. New seri start from zero. Rename seri in first row of data grid.",
+      "starters": "Start from sampel data",
+      "styleKeepsData": "Stail keep your chart type, data, numba format, scale bound, and senta tek.",
+      "transpose": "Switch row and kolom",
+      "transposeScatter": "Switch to kategori chart to transpose data.",
+      "treemapExample": "Replace draft wit hierarchy example",
+      "treemapHint": "Use unique leaf pat like Europe / France and Europe / Germany. Up to six level dey support. Valu must be nonnegative, wit at least one positiv valu. Zero valu hide. A pat no be both group and leaf. First seri supply valu; odas source seri retain.",
+      "trimCategory": "Ignore leading and trailing space"
     },
     "clipboard": {
       "cut": "Cut layers",
-      "empty": "Select all dem unlocked background layers on dis page"
+      "empty": "Select all dem unlocked background layers on dis page",
+      "skipped": "{{count}} no fit dis page"
     },
     "colourPicker": {
-      "cancel": "Cancel colour picker"
+      "cancel": "Cancel colour picker",
+      "accent": "Pik akset from kanva",
+      "canvasHint": "Tap kolour on page",
+      "ink": "Pik tek kolour from kanva",
+      "pick": "Pik from kanva"
     },
     "compositions": {
       "accent": "Accent colour",
@@ -10868,7 +10909,8 @@
       "sampleSubtitle": "Story ya start for yam.",
       "sampleTitle": "Make something memorable",
       "subtitle": "Supportin text",
-      "title": "Teknoloji kombinasion"
+      "title": "Teknoloji kombinasion",
+      "brandFontHint": "Applies savd heading and bodi font to new kombain. Tek and akset kolour use kontrol above; existing artwork stay in place."
     },
     "connectors": {
       "bend": "Bend posishun",
@@ -11002,7 +11044,8 @@
       "matchCase": "Match kase",
       "matches": "{{count}} tek laif fund",
       "pasteStyle": "Paste stil",
-      "replaceWith": "I no understand wetin you dey talk."
+      "replaceWith": "I no understand wetin you dey talk.",
+      "replaceAll": "Replace all"
     },
     "diagrams": {
       "title": "Editable diagram starter",
@@ -11015,7 +11058,8 @@
       "previewNeedsData": "Kolos na node laif blong ol get laif label up to 120 karakter.",
       "previewUnavailable": "Kanva ya papa no dey available. Draft dey editable.",
       "previewUpdating": "Diagram preview bi update.",
-      "vertical": "Vertical layout."
+      "vertical": "Vertical layout.",
+      "insert": "Insert diagram"
     },
     "document": {
       "numbersApplied": "Paji paji numba wey dey apply",
@@ -11319,7 +11363,8 @@
       "arrangeHint": "Framz, posishon, stilizing, na grupz stap insait. Foto fokus poinz folo deir saiz. Bakgrondz na foto wey dey span wanod pajaz eksklud.",
       "first": "Fotofram papa!",
       "needFrames": "Muna waka foto bi two na foto bi page a, na waka re-arrange dem.",
-      "preparing": "Di prepare foto dimension..."
+      "preparing": "Di prepare foto dimension...",
+      "second": "Second photo frame"
     },
     "present": {
       "blackout": "Blakaut",
@@ -11362,7 +11407,9 @@
       "undoMark": "Undo mark",
       "upNext": "Up next",
       "usePageTiming": "Use page durations",
-      "whiteScreen": "White screen"
+      "whiteScreen": "White screen",
+      "notesCopyFailed": "Mi no fit copy notis.",
+      "saveRehearsal": "Apply timin an klos"
     },
     "qr": {
       "noBrandPalettes": "Save a colour palette in Brand stilz for use here.",
@@ -11389,7 +11436,14 @@
       "smsHint": "Open a message draft on device wey support. Na app wey you use go tell whether recipient and message wey fill for you go work or no.",
       "title": "QR code",
       "useDetails": "Use these details",
-      "vectorHint": "Export wey current QR draft fi, go keep wey a color a wey a quiet zone a wey a, go as scalable vector artwork."
+      "vectorHint": "Export wey current QR draft fi, go keep wey a color a wey a quiet zone a wey a, go as scalable vector artwork.",
+      "contactHint": "Kree8 vCard kontak. Skanin go ask yu save dese detalis; behaviour depend on skanin.",
+      "copyFailed": "Mi no fit copy QR kontent",
+      "downloadCalendarHint": "Save same event as importable kalenda file.",
+      "downloadContactHint": "Save same kontak detalis as file for yu address buk.",
+      "failed": "Yu use shorta text an two difren hex kolour.",
+      "hint": "Kree8 QR kod for link or text. Keep strong kontrast between foregroun an bakgroun.",
+      "wifiContentHint": "QR kontent get network paswod."
     },
     "redo": "Redo text change",
     "repeat": {
@@ -11403,7 +11457,8 @@
       "layout": "Grid layout",
       "multiSelection": "Repeat selected artwork as one tile",
       "staggerHint": "Staggered lait layout shift every sekond row or kolom by half a sel, includin im gap. Original stay in plaas.",
-      "title": "Wen yu wok wit grid, yu go select same tins repeat."
+      "title": "Wen yu wok wit grid, yu go select same tins repeat.",
+      "allowOverflow": "Allow artwork outsid page"
     },
     "resize": {
       "changed": "Design bi change wum dis time wey dey prepare size. Apply size again.",
@@ -11434,13 +11489,16 @@
       "mixedStyles": "Yeye layers dey mix styles. Wey yeye apply value, e go set am for every layer wey match.",
       "readBounds": "Read current measurements",
       "sameHint": "Meka match di first layer wey dey selected for dis paje. Group dem dey together; layer wey dey hidden, background, and group wey dey locked, dem no dey count.",
-      "waitForBounds": "Wata wait for di layers select dem appear for kanvas."
+      "waitForBounds": "Wata wait for di layers select dem appear for kanvas.",
+      "precise": "Exact siz an posishun"
     },
     "selectionShadows": {
       "apply": "Apply shadow",
       "colour": "Shadow colour",
       "mixed": "Layers wey dey select, dem get different shadow.",
-      "remove": "Remove shadows"
+      "remove": "Remove shadows",
+      "hint": "Applies to selekted foregroun artwork in one edit. Blur an ofset use editer's 1080p refrens skel.",
+      "title": "Shadows for selekshun ({{count}})"
     },
     "stroke": {
       "ends": "Line ends",
@@ -11456,7 +11514,8 @@
       "name": "Name di layer",
       "preview": "Vector path preview",
       "title": "Import editable SVG geometry",
-      "weight": "Lain weit"
+      "weight": "Lain weit",
+      "data": "SVG markap or pat data (d)"
     },
     "symbols": {
       "colour": "Colour",
@@ -11467,7 +11526,8 @@
       "previous": "Previous symbols",
       "search": "Search vector symbols",
       "title": "Vector symbols",
-      "weight": "Lain weit"
+      "weight": "Lain weit",
+      "vectorDownloadHint": "Eksport libri simbol wit chosn kolour an lin weit on transparent bakgroun."
     },
     "tables": {
       "styleLoaded": "Staili la drafa",
@@ -11504,7 +11564,8 @@
       "exportStyle": "Export current stil",
       "find": {
         "hint": "Replacement and cleanup di use di range we you don choose, or all cell dem if e blank, while e di keep di cell formatting. Update di graphic for apply di draft; Undo di bring back di edit we you don apply.",
-        "replaceAll": "Replace matching cells"
+        "replaceAll": "Replace matching cells",
+        "matches": "{{occurrences}} match in {{cells}} cells"
       },
       "findStarter": "Table starter, na table starter.",
       "fitColumns": "Fit columns to content.",
@@ -11557,7 +11618,23 @@
       "unmergeRange": "Unmerge {{range}}",
       "vertical": "Vertical alignment",
       "weightsHint": "Table size na relative. Value of 2 go use two time space as 1; table keep am size.",
-      "wrap": "Wrap cell text"
+      "wrap": "Wrap cell text",
+      "applyScale": "Apply skel to {{range}}",
+      "brandPalettes": "Saiv hed kolour an table paelit",
+      "cellRange": "Sel range, for example A1:C2",
+      "cellStyleHint": "Enter sel cell or range to ovrid table them. Reset sel cells to restor table's defaut apirans.",
+      "clearAllCellStyles": "Reset all sel cells",
+      "findReplace": "Find an replace table text",
+      "fitColumnsHint": "Width follo unmerj cell text as data chenj, witin balansd limit. Table keep its oviral siz. Manuel kolom sizin turn dis off.",
+      "fitRows": "Fit row hei to kontent",
+      "fitText": "Shrink text to fit sel",
+      "fitTextHint": "Each sel cell kan shrink to 35% of its chosn text siz. Text stil us an elipsis if it no fit; wrapping support up to eight lin.",
+      "includeHeaderSettings": "Inkluud hed row an kolom seting",
+      "scaleCentred": "Sentra skel on zero",
+      "starters": "Sta from sampel data",
+      "structure": "Row an kolom",
+      "structureSection": "Row an kolom operayshon",
+      "styleFileHint": "Transfar apia an palet wey dey betwen devais. Kontent, merg an custom sel formatting stay for destination tabl. Auto-fit setin kan chayn di display sizin."
     },
     "text": {
       "backgroundPerLine": "Fit bakgroun to each laen",
@@ -11575,7 +11652,9 @@
       "replaceFirst": "Replace first occurrence",
       "replaceLayer": "Replace in layer",
       "tooLong": "Na so e dey be.",
-      "wholeWords": "Whole words"
+      "wholeWords": "Whole words",
+      "emptyAfterReplacement": "Dis laya go dey empty",
+      "occurrences": "{{count}} okorans in dis laya"
     },
     "textSelection": {
       "applyBox": "Apply text box size",
@@ -11593,12 +11672,14 @@
       "setColour": "Set colour",
       "setSize": "Set size",
       "size": "Teksi saiz",
-      "title": "Format selected text ({{count}})"
+      "title": "Format selected text ({{count}})",
+      "font": "Chuz fon for selektid text"
     },
     "tools": {
       "noResults": "No matchin tool. Try shorta search.",
       "placeholder": "Tori paji paji, foto grid, na merge sel, try am.",
-      "search": "Search tools"
+      "search": "Search tools",
+      "searchHint": "Find an editin tool by nem or porspose"
     },
     "undo": "Undo text change",
     "vectorSelection": {
@@ -11615,13 +11696,15 @@
       "svgPadding": "Extra padding",
       "svgScopeHint": "Eksport up to 100 selected shape, drawing, symbol, and connector layers at dem current keyframe position. Keep page size and fit dem to dem layer bounds, no change in position. Text, photo, and data graphics dey export separate.",
       "title": "Style select veccors (diss {{count}})",
-      "width": "Outline width"
+      "width": "Outline width",
+      "pickFill": "Pik fill from kanvas"
     },
     "viewport": {
       "fit": "Fit",
       "pan": "Pan canvas",
       "selection": "Wetin you choose",
-      "zoomIn": "Zoom canvas in."
+      "zoomIn": "Zoom canvas in.",
+      "zoomOut": "Zoom kanvas out"
     }
   },
   "creator": {
@@ -11810,7 +11893,9 @@
     "studioMissingJob": "Make no give job number. Try again.",
     "studioOpenModel": "Open 3D model",
     "studioTexture": {
-      "HD": "HD texture"
+      "HD": "HD texture",
+      "standard": "Standard texture",
+      "none": "No texture"
     },
     "studioTitle": "Kriator Studio",
     "studioWelcome": "Yu go chuz dis medium na model, adda prompt or selecta preset, den create. Review price bifor yu generate.",
@@ -11967,26 +12052,62 @@
     "referenceSingle": "Mi go use one pikin foto to rekonstrukt objek.",
     "referenceHint": "Wen yu wok wit asset, yu fit reference am for yu prompt. Add up to four piks an one kip.",
     "referenceOneClip": "Attach one reference clip.",
-    "referenceClipLength": "Use an MP4 or MOV clip between 3 and 15 seconds for a swap, or up to 30 seconds for motion.",
-    "referenceFourImages": "Attach up to four reference images.",
-    "referenceMultiModel": "Choose a model supporting multiple images, such as FLUX 3 Image.",
-    "referenceNeedsClip": "Attach your character image and the reference clip.",
-    "referenceVideoModel": "Choose Character swap or Copy motion to use a clip.",
     "referenceTooMany": "Dis model no go fit all dem picture dem attach. Remove dem extra or choose different model.",
     "referenceClipSeconds": "Clip length: {{seconds}}s",
     "referenceUploadClip": "Upload reference clip",
     "characterSwap": "Character swap",
     "copyMotion": "Copy motion",
-    "referenceSwapName": "Swap character into a clip",
     "referenceSwapHint": "Dey go replace a person wey dey no dey, but make sure e fit fit in scene wey e dey, move like e dey do before, no change anything else.",
-    "referenceMotionName": "Copy motion to your character",
-    "referenceMotionHint": "Animate a character image using the actions and expressions in a clip.",
     "referenceOutfitName": "Try an outfit fit wey you see fit in video clip.",
     "referenceOutfitHint": "Change wey yu wear, but keep face, motion, and background wey yu dey.",
     "referenceProductName": "Plas ya product for inside clip.",
     "referenceProductHint": "Na featured product go change, but di scene go remain same.",
     "referenceComposeName": "Combine reference images",
-    "referenceComposeHint": "Bring characters, objek, objek wey dey for multiple piksins come one for one komposishon."
+    "referenceComposeHint": "Bring characters, objek, objek wey dey for multiple piksins come one for one komposishon.",
+    "toolMaboroshiDesc": "Ripres charakta an objek, reviu a draft, den eksport wit yor original soundtrack.",
+    "presetExtraJewelleryVelvetHint": "Precis metal haitlait on deep velvit",
+    "presetExtraCosmeticFloatingHint": "A klean suspendid beuti arrangment",
+    "presetExtraPerfumeDunesHint": "Warm sand an a skulptid botol shado",
+    "presetExtraFoodOverheadHint": "A kolorful tabl kompoz from above",
+    "presetExtraDrinkSplashRingHint": "A frozun likwid krawn arond a drink",
+    "presetExtraCeramicPedestalHint": "Skulptiral objek an kiet tonal lait",
+    "presetExtraFreckleBeautyHint": "Natiral skin an sof beuti lait",
+    "presetExtraGelLightBeautyHint": "Amber an vialit studio haitlait",
+    "presetExtraAthleteFreezeHint": "A krisp sporit moment wit reel weyt",
+    "presetExtraStreetFlashHint": "Dait flas an kandidi siti enaji",
+    "presetExtraDuotonePortraitHint": "A grafik tu-kolour fotografik print",
+    "presetExtraScreenprintPosterHint": "Bold shap an tree flat ink kolour",
+    "presetExtraCyanotypeStudyHint": "Wit botanik siluet on blu",
+    "presetExtraLayeredPaperHint": "Kut-papar deit an sof shado",
+    "presetExtraStitchedFeltHint": "Sof fabrik shap an vizibel stiching",
+    "presetExtraBotanicalPlateHint": "Fin plant stodi wit specimen detay",
+    "presetExtraVinylSleeveName": "Vinil siliv",
+    "presetExtraVinylSleeveHint": "Albom artwork wit a rekod paiti ekspos",
+    "presetExtraCanWrapName": "Kan laibel",
+    "presetExtraCosmeticBoxName": "Kozmetik box",
+    "presetExtraCafeMenuName": "Kafe menu",
+    "presetExtraEventFlyerName": "Event flyer",
+    "presetExtraVerticalStoryName": "Vertical story",
+    "presetExtraTravelPostcardName": "Travel postcard",
+    "presetExtraIridescentGlassName": "Iridescent glass",
+    "presetExtraTopographicWavesName": "Topographic waves",
+    "presetExtraWovenPaperName": "Woven paper",
+    "presetExtraLiquidMetalName": "Liquid metal",
+    "presetExtraPrismShadowsName": "Prism shadows",
+    "presetExtraPedestalRiseHint": "Camera rises vertically without tilting",
+    "presetExtraLowFollowName": "Low follow",
+    "presetExtraLowFollowHint": "Ground-level tracking beside moving feet",
+    "presetExtraOverShoulderFollowName": "Over-shoulder follow",
+    "presetExtraDoorwayRevealName": "Doorway reveal",
+    "presetExtraReflectionSlideName": "Reflection slide",
+    "presetExtraOverheadQuarterTurnName": "Overhead quarter-turn",
+    "presetExtraGentleDutchRollName": "Dutch roll",
+    "presetExtraRibbonWrapName": "Ribbon wrap",
+    "presetOpenCraftsmanPortraitName": "Craftsman portrait",
+    "presetOpenSaltPondsName": "Salt ponds",
+    "presetOpenWatchBlueprintName": "Watch blueprint",
+    "presetOpenOvergrownHouseName": "Overgrown house",
+    "presetOpenOvergrownHouseHint": "Large-format architecture under overcast light"
   },
   "fractions": {
     "title": "Fraction dem",
@@ -12544,8 +12665,8 @@
           "6": "Yu go attach images for me translate?"
         },
         "tips": {
-          "2": "Yu go ask AI fit for DeHub feature, crypto term, or general question.",
           "1": "Matai ai yong remember kontext for konversayshun.",
+          "2": "Yu go ask AI fit for DeHub feature, crypto term, or general question.",
           "3": "Kam conversation bi dey save an save, an dem dey fit dey access anytime."
         }
       },
@@ -12560,40 +12681,40 @@
           "5": "Unred notifications dey shine — dem mark as red wen dey view."
         },
         "tips": {
-          "2": "Tip notification show how many token yu receive.",
-          "1": "Notifayshun bada show kount of unread notifayshun."
+          "1": "Notifayshun bada show kount of unread notifayshun.",
+          "2": "Tip notification show how many token yu receive."
         }
       },
       "wallet": {
         "title": "Wallet",
         "intro": "Yu go see ya DeHub tok balance for many chain, check staking deposit, na manage ya asset.",
         "steps": {
-          "3": "See breakdown fit for chain: Ethereum, Base, BNB Chain, and more.",
-          "5": "Klik 'Refresh Scan' fit for update yu balance fit for on-chain data.",
           "1": "Klik 'Wallet' for sidemenu, open wallet paja.",
           "2": "Yu go see yam balance for all chain wey support am.",
+          "3": "See breakdown fit for chain: Ethereum, Base, BNB Chain, and more.",
           "4": "Chek yor stakin deposit an reward.",
+          "5": "Klik 'Refresh Scan' fit for update yu balance fit for on-chain data.",
           "6": "Kopi wallet yu adresa, na emi go dey receive tokens from odas."
         },
         "tips": {
-          "2": "D wallet show both liquid (available) and stake balance.",
-          "1": "Balans update automatic, but yu fit force refresh anytime."
+          "1": "Balans update automatic, but yu fit force refresh anytime.",
+          "2": "D wallet show both liquid (available) and stake balance."
         }
       },
       "staking": {
         "title": "Stakin",
         "intro": "Stakim DeHub tokens ya, earn reward na increase ya powa go vot.",
         "steps": {
-          "5": "See yo stake amount and any pending reward.",
           "1": "Go find 'Staking' page forum sidebar.",
           "2": "Wen yu wok wit stake, enter di numba of tokens yu wok wit.",
           "3": "M chapa chain yu wok selekt?",
           "4": "Yu confirm transaksion for wallet yu dey use (wallets outside) or e go auto-execute (login wey you dey use social media).",
+          "5": "See yo stake amount and any pending reward.",
           "6": "Kam gud, enta amount na confirm transaksion."
         },
         "tips": {
-          "2": "Social-login user no need gas fo stake — gasless.",
           "1": "Stakin ina increase vot weight in gavament propos.",
+          "2": "Social-login user no need gas fo stake — gasless.",
           "3": "Yu fit stake for multiple chain simultaneously."
         }
       },
@@ -12601,26 +12722,26 @@
         "intro": "See who top! Leaderboard rank user by balance, daily spend, and trending topic.",
         "title": "Ledarboad",
         "steps": {
-          "2": "Switch between tab: Balance, Daily Spent, and Talk of the Town.",
-          "6": "Click any user fo visit profile.",
           "1": "Go find am 'Leaderboard' paa from sidebar.",
+          "2": "Switch between tab: Balance, Daily Spent, and Talk of the Town.",
           "3": "Balance tab ranks users by their total token holdings.",
           "4": "Daily Spent tab show who dey dey active for tipping for last 24 hours.",
           "5": "Talk of di Town show am di most-discussed topic/categories.",
+          "6": "Click any user fo visit profile.",
           "7": "Leaderboard update pia update periodically throughout da day."
         },
         "tips": {
-          "2": "Talk of the Town track single-word category from hashtag.",
-          "1": "Daily rankings reset every 24 hours."
+          "1": "Daily rankings reset every 24 hours.",
+          "2": "Talk of the Town track single-word category from hashtag."
         }
       },
       "command-centre": {
         "title": "Komand Senta",
         "intro": "Dashboard ya yambo show key metriks na aktivity ya platfoim ya yu na one glans.",
         "steps": {
-          "3": "See yo recent activity and trending topic.",
           "1": "Klik 'Command Centre' insid e sidebar.",
           "2": "Yu go see yim profail summary, including post kaount, folowers, and engajment.",
+          "3": "See yo recent activity and trending topic.",
           "4": "Wok dis quick link fo find tins wey you dey look for."
         },
         "tips": {
@@ -13590,7 +13711,8 @@
     "tabPrivateKey": "Privet ki",
     "showWords": "Show word dem",
     "reminderBody": "Backup yuh wallet — 12 words wey go bring am back if yuh lose yuh phone.",
-    "notNow": "No now"
+    "notNow": "No now",
+    "backedUpOn": "Backed up {{date}}"
   },
   "liveOverlay": {
     "goalReached": "Goal reached!",
@@ -13635,12 +13757,6 @@
       "failed": "Na di switch dat no change. Try again."
     },
     "polls": {
-      "questionPlaceholder": "What should I play next?",
-      "duration": "How long voting stays open",
-      "start": "Start the poll",
-      "end": "End voting now",
-      "started": "Your poll is open. Viewers can vote now.",
-      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
       "title": "Polls",
       "intro": "Ask dem people watchin’ yu broadcast one question. Dem answer wit’ button in DeHub app, or by type \"{{command}}\" and number of option in chat.",
       "question": "Kweshon",
@@ -13724,13 +13840,7 @@
       "event_feed": "Latest gift, follower, subscriber, person share broadcast wey",
       "stream_timer": "Show how long you dey broadcast",
       "ticker": "Line wey own text wey dey scroll cross screen",
-      "streamer_level": "Your streamer level and weekly streak, from your profile",
-      "tip_jar": "A jar that fills up as paid gifts come in",
-      "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
-      "points_board": "Your top viewers by points from watching and gifting",
-      "spin_wheel": "Where the wheels in your rules spin",
       "poll": "Youse live poll, wey go come wit button fo vote fo every option.",
-      "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate ebi tip, fit for ebi level.",
       "subscribe_alert": "Show every new subscriber",
       "share_alert": "Shɔ wen sɔmbɔdi shɛr yɔ strim",
@@ -13738,7 +13848,6 @@
       "reaction_counter": "Count all di reaction di get fo di broadcast yu do"
     },
     "fields": {
-      "showStreak": "Show the weekly streak",
       "style": "Style",
       "celebration": "Celebration",
       "banner": "Banna",
@@ -13784,17 +13893,7 @@
     "rules": {
       "wheelSegments": "Wheel segments, one per line",
       "wheelHint": "Bai 2 na bai 12. DeHub go pick whey de wheel stop, so ebi de watch see same result. Use {result} in alert, read-out or chat action go name it.",
-      "placeholdersLive": "Use {name}, {title} and {link} in your text: your name, the broadcast's title and a link to watch it.",
-      "limit": "You have reached the limit of {{count}} rules.",
-      "saveToTest": "Save your rules to test them",
-      "blockedWordsHint": "Separate with commas. Messages containing them are ignored and never read aloud.",
-      "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
-      "sayText": "Text to read aloud",
-      "chatHint": "Posted from your account into your stream's chat. It cannot repeat the viewer's message.",
-      "webhookHint": "A Discord or Slack webhook, or any https address that accepts a POST.",
-      "summary": {
-        "tip": "Tip of {{amount}} DHB or more"
-      },
+      "summary": {},
       "title": "Di rules",
       "intro": "Wen something happen on your stream, DeHub go do what you say: show alert, play sound, read something out loud, post in your chat, or tell your Discord.",
       "add": "Add a rule",
@@ -13827,8 +13926,6 @@
       "webhookText": "Message to send",
       "triggers": {
         "live": "You start broadcastin",
-        "share": "Someone shares the stream",
-        "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
@@ -13849,22 +13946,14 @@
         "webhook": "Send to a webhook"
       },
       "presets": {
-        "bigTip": "Air horn for big tips",
-        "thankFollowers": "Thank new followers",
         "blank": "Blank rule",
         "readChat": "Read chat aloud",
         "command": "Chat command"
       },
       "presetHints": {
-        "blank": "Start from nothing",
-        "bigTip": "Plays an air horn and shows an alert for tips of 100,000 DHB or more",
-        "thankFollowers": "Posts a thank-you in your chat when someone follows",
-        "command": "Answers a !command in your chat",
         "readChat": "Reads yu followers messages out loud, one for each person, every 30 seconds."
       },
       "presetText": {
-        "thankFollowers": "Thanks for the follow, {name}!",
-        "command": "Hello {name}, welcome to the stream!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
@@ -13885,8 +13974,6 @@
     },
     "moderation": {
       "bannedWordsHint": "Wah, no change, same like before.",
-      "wordAction": "When someone uses one",
-      "wordBlock": "Stop the message",
       "title": "Moderayshun of chat.",
       "intro": "Rulz fo chat unda all of my streamz: dem no go reach DeHub main chat: if you ban here, you still go fit talk everywia.",
       "loadFailed": "Na my moderation settings no go load wey. Come back page wey, try again.",
@@ -13929,12 +14016,6 @@
       }
     },
     "subathon": {
-      "intro": "A countdown on your stream. Every paid gift, follow and subscription adds time, so the room keeps you live.",
-      "capHours": "Longest it can run (hours)",
-      "startMinutes": "Start with (minutes)",
-      "start": "Start the countdown",
-      "removeFive": "Take off 5 minutes",
-      "widgetHint": "Shows your subathon countdown. Start it from the Subathon panel in Live Studio.",
       "title": "Subathon",
       "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
       "secondsPerFollow": "Seconds added per follow",
@@ -13946,17 +14027,12 @@
       "failed": "Na go no dey work. Try again."
     },
     "points": {
-      "widgetHint": "Add the Loyal viewers widget to show this list on stream.",
       "title": "Loyal viewers",
       "intro": "Wot watcha see, dem get one point fo every minute dem watch you, an one point fo every 100 DHB dem give you as gift. Chat an reaction no get point, so point no be fo farming.",
       "empty": "Na dey no point yet. Dem go add up when people watch and give gift."
     }
   },
   "liveChatModeration": {
-    "timeout1m": "Time out for 1 minute",
-    "timeout10m": "Time out for 10 minutes",
-    "ban": "Ban from these streams",
-    "banned": "Banned from these streams.",
     "timeout1h": "Tym out fo 1 hour.",
     "makeModerator": "Make moderator",
     "timedOut": "Timed out.",

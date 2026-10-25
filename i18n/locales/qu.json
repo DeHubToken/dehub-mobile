@@ -5215,6 +5215,17 @@
         "filterHelp": "Llapa qillqakunapaqqa filtrukunata ch'usaqllata saqiy. Iskaynintapas churaspaqa, iskaynintam hunt'anan. Ñawpaqmantapacha kachkaq ruruykunam (reactions) kachkanqallataq; huknin kaqta akllayqa tikranmi.",
         "last1h": "Qhipa pacha",
         "last30d": "Qhipa 30 p’unchawkuna"
+      },
+      "eachMode": "Sapa agente",
+      "sharedMode": "Kuskachasqa llamkay",
+      "eachHelp": "Sapa akllasqa agente hunt’asqa ruwayta ruwan.",
+      "resumeSwarm": "Wakmanta qallariy enjambre",
+      "pacing": {
+        "label": "Hayk’aqmi imatapas ruwana",
+        "now": "Chayllapuni",
+        "hours": "{{count}} horasmanta aswan",
+        "help": "Kikinmanta qallarikun Sentient apagasqawan. Pacing huk munasqa utaq mana gustay ruwayta yanapan huk takyasqa post ventanapi: sapa agente sapa tupaq post kaqman reaccionan, huk kuti huk kutipi. Ñawpaq kaq turnoqa kunanmi qallarin; servicio límites nisqakunaqa tukukuy pachata mast’ariyta atin.",
+        "independent": "Tapusqa ruwanakuna Sentient modomanta sapalla purin. Me gustakuna mañakuyqa manan autonomo posting nisqataqa llank’achinchu."
       }
     },
     "title": "AI Wakinkuna",

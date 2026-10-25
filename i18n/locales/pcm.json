@@ -38,7 +38,9 @@
     "description": "Wetin we dey do maintenance. Pls check back later.",
     "intermission": "Offline for now",
     "ownership": "Open source. User owned.",
-    "title": "Wok small. Better DeHub."
+    "title": "Wok small. Better DeHub.",
+    "brand": "DeHub",
+    "mode": "Maintenance mode"
   },
   "quickActions": {
     "attachScreenshot": "Attach a screenshot",
@@ -73,7 +75,18 @@
     "close": "Close templates",
     "empty": "No match oga. Try search again or pick different category.",
     "eyebrow": "{{count}} video templates",
-    "featured": "Back to featured"
+    "featured": "Back to featured",
+    "useNamed": "Use {{name}}",
+    "preview": "Play {{name}} preview",
+    "previewUnavailable": "Preview unavailable",
+    "all": "All",
+    "effects": "Effects",
+    "characters": "Characters",
+    "dance": "Dance",
+    "sports": "Sports",
+    "products": "Products",
+    "seasonal": "Seasonal",
+    "results": "{{count}} templates"
   },
   "copy": {
     "12b91b0ac5dd": "{{value1}} — press am hold make you react",
@@ -459,7 +472,6 @@
     "3f64cf58aa44": "Network wahala as we dey talk to di assistant",
     "3fc7b0d93732": "Di escrow transaction don revert. No action happen.",
     "3fc8c42589ae": "Cloud media no dey available",
-    "3ff66a9762c9": "{{value1}}, {{value2}} and {{value3}}",
     "400bab0f0c7b": "Sea side wey big rock meet di sea",
     "402a1d0d6737": "Rookie Star Card",
     "40345a8f538e": "Your wallet don change or we no fit check am. Close dis screen and try again.",
@@ -2376,7 +2388,21 @@
     "f6f4688ff23d": "Send am",
     "fc036ea0e9f0": "Link wey go one particular page",
     "fef6a1a97127": "Followed by {{value1}}",
-    "ff701a069af2": "Verify & Unlock"
+    "ff701a069af2": "Verify & Unlock",
+    "fecd0f90ada2": "Listing withdrawn",
+    "9df89427a7c8": "Heartbeat",
+    "4aa5e5cd4d31": "Night Drive",
+    "04b765747018": "Wireframe",
+    "ba118bf7fc9c": "English",
+    "b785e11e822c": "Español (Spanish)",
+    "51d624360ae7": "Français (French)",
+    "cd0a5a7df7be": "Deutsch (German)",
+    "da4e2f35bc9d": "Hateful behavior",
+    "94a9eac404c8": "Spam",
+    "eb4b1b7d76ea": "Underage user",
+    "de6f2ae9f71d": "Inappropriate profile",
+    "0459220de3f8": "Expressive, high-contrast, bold",
+    "b8c339f21031": "ByteDance flagship — 30s takes, best prompt adherence"
   },
   "dehubLinks": {
     "kind": {
@@ -2438,11 +2464,9 @@
     "verifyHint": "To verify link, add dis one for dat page, then save again: {{snippet}}"
   },
   "notificationFilters": {
-    "title": "Filter notifications from",
     "description": "Choose wetin go happen when person wey no dey your circle interact with you. Filtered notifications go wait under Filtered, no badge and no push.",
     "notFollowing": "People wey you no follow",
     "notFollowers": "People wey no follow you",
-    "newAccounts": "New accounts (under 30 days)",
     "accept": "Tell me",
     "filter": "Filter",
     "drop": "Hide am finish",
@@ -2477,7 +2501,6 @@
     "duration30d": "For 30 days",
     "where": "Where",
     "home": "Home",
-    "public": "Explore and search",
     "profile": "Profiles",
     "thread": "Conversations",
     "notifications": "Notification Dem",
@@ -2540,14 +2563,6 @@
     "saveFailed": "We no fit save di description"
   },
   "liveRecap": {
-    "justEnded": "Your stream recap",
-    "lastStream": "Your last stream",
-    "none": "No finished streams yet. Your recap appears here after your first one.",
-    "shareText": "I just streamed \"{{title}}\" on DeHub: {{duration}} live, {{peak}} watching at the peak and {{followers}} new followers.",
-    "peakViewers": "Most watching at once",
-    "gifts_one": "From {{count}} gift",
-    "gifts_other": "From {{count}} gifts",
-    "stillCounting": "Still counting: gifts can take a minute to confirm.",
     "title": "Stream recap",
     "share": "Share",
     "untitled": "Untitled stream",
@@ -4520,8 +4535,7 @@
     "nothingHereYet": "Nothing here yet.",
     "likeStation": "Like station",
     "unlikeStation": "Unlike station",
-    "shareStation": "Share station",
-    "listeningTo": "Listening to {{name}} on DeHub"
+    "shareStation": "Share station"
   },
   "notFound": {
     "title": "Page No Dey",
@@ -4860,7 +4874,6 @@
     "sharePostTemplate": "I just add {{amount}} tokens to my stack for DeHub. We dey build with the community. #DeHub"
   },
   "agents": {
-    "connectToManage": "Connect to manage AI agents",
     "agentDisplayName": "Display name",
     "agentUsername": "Username",
     "noBadge": "No badge",
@@ -4962,6 +4975,16 @@
         "filterHelp": "Leave filter empty make e cover all post. If you set both, both must match. Reaction wey don already dey go remain; if you pick the opposite reaction, e go change am.",
         "last1h": "Last hour",
         "last30d": "Last 30 days"
+      },
+      "distribution": "Distribution",
+      "eachMode": "Each agent",
+      "sharedMode": "Wok wey dem share together",
+      "eachHelp": "Agent don perform full task.",
+      "resumeSwarm": "Resume swarm na wetin you dey look for?",
+      "pacing": {
+        "label": "Wen yu go act.",
+        "now": "Sunny day.",
+        "independent": "Tasweiru na imo nke a na-egbuo na Sentient mode. Iji ya n'aka na like na-ebu ya pụta n'ihu."
       }
     },
     "title": "AI Agents",
@@ -6278,23 +6301,15 @@
     "stepOf": "Step {{step}} out of {{total}}",
     "integrity": {
       "totalBudget": "Total budget",
-      "reputationNotice": "Reputation backs this bounty. The poster pays accepted work directly; payment is recorded after the transfer confirms.",
       "payOnApproval": "Paid directly after approval",
       "publish": "Publish bounty",
       "posted": "Bounty published",
-      "draftReady": "Draft saved. Publish when ready.",
-      "ratingSummary": "{{rating}}/5 from {{count}} bounty reviews",
-      "newReputation": "No bounty reviews yet",
       "reviewWorker": "Worker to review",
       "reviewHelp": "Review dey affect bounty reputation. You go review work na accept, reject, or submit after deadline, including work na no pay yet.",
-      "disputesReputation": "Review the evidence and record what the poster owes. The poster settles any worker award directly; the decision remains on the bounty record.",
-      "saveDraft": "Save and continue",
       "activateEscrow": "Activate deployed escrow",
       "checkFunding": "Check funding",
       "checkPayment": "Check payment",
-      "clipVerify": "Verify the clip count before approving. Each full 1,000 views earns one unit.",
       "decisionOnly": "A worker award wey show what poster dey owe. Poster go pay direct, and decision still stay on bounty record.",
-      "deployEscrow": "Deploy and activate escrow",
       "deploying": "Checking escrow deployment",
       "deployNotice": "Deploy escrow wey don dey tested with oga owner, oga wey go receive fee and token wey oga support. Your wallet go show you gas cost before confirmation.",
       "draftFunding": "Your draft don dey save. Publishing go lock full budget for Base escrow. Workers go receive 95% of approved amount; platform fee na 5%.",
@@ -6302,7 +6317,6 @@
       "escrowActive": "Escrow is active",
       "escrowFunded": "Budget wey dem fund for escrow",
       "escrowSetup": "Bounty escrow setup",
-      "feeNotice": "Worker receives {{net}} {{currency}} after the 5% platform fee. Gross budget used: {{gross}} {{currency}}.",
       "fundingPending": "Funding submitted. Check confirmation.",
       "fundPublish": "Fund and publish.",
       "hashPlaceholder": "0x transaction hash",
@@ -6312,8 +6326,6 @@
       "recoverTx": "Wey recover transaction wey you submit?",
       "releaseConfirm": "If wallet signature no dey, and no transaction submit, den continue. But if transaction don send, recover hash am and check confirmation.",
       "releaseSignature": "Release rejected signature",
-      "reviewWindow": "Funded bounties close after the deadline and a three-day review window. Review and settle every submission first.",
-      "setupRequired": "Escrow setup is required before publishing. Your draft stays saved.",
       "signatureReleased": "Rejected signature released",
       "verifiedViews": "Verified view count",
       "viewsAccepted": "{{count}} verified views · {{units}} × 1,000 views",
@@ -7706,7 +7718,8 @@
       "title": "Revenue & costs",
       "today": "today so far, UTC",
       "tooltipMonth": "{{month}} · {{days}} days",
-      "unavailable": "{{sources}} no fit reach, so dem fit leave out all total above no fit guess dem."
+      "unavailable": "{{sources}} no fit reach, so dem fit leave out all total above no fit guess dem.",
+      "estimatedOperations": "Estimated operations"
     },
     "taxSplit": {
       "burned": "Buy back and burn",
@@ -7714,7 +7727,8 @@
       "sharedDetail": "{{claims}} claim wey {{wallets}} wallets dey make",
       "team": "DeHub operations.",
       "teamDetail": "{{gross}} don come; {{passed}} of am dey go to holders",
-      "title": "Wetin dey happen to revenue"
+      "title": "Wetin dey happen to revenue",
+      "see": "See every line"
     },
     "chart": {
       "daily": "Visitors per day",
@@ -8519,11 +8533,9 @@
     "streamCount_one": "{{count}} stream",
     "streamCount_other": "{{count}} streams",
     "noOneStreamingGame": "No one dey stream {{game}} for now.",
-    "seeAllStreams": "See all streams",
     "isLiveNow": "{{name}} is live",
     "justChatting": "Just Chatting",
     "noLiveStreams": "No Live Streams",
-    "noOneStreaming": "No one is streaming right now. Check back later!",
     "loadStreamsFailed": "No fit load stream. Try again."
   },
   "liveShop": {
@@ -10407,10 +10419,7 @@
       "leave": "Leave live session",
       "connected_one": "{{count}} connected · Cloud version {{revision}}",
       "connected_other": "{{count}} connected · Cloud version {{revision}}",
-      "hint": "Share your presence with this project's editors.",
-      "disconnected": "Disconnect. Rejoin to reconnect.",
-      "saveHint": "Use Save to cloud to share timeline changes.",
-      "error": "Live session unavailable. Sign in and save this project to cloud, or check your editing invitation."
+      "disconnected": "Disconnect. Rejoin to reconnect."
     },
     "backgrounds": {
       "hint": "Copy dis page’s photo, gradient, or solid background. Locked background stay wey dey no change.",
@@ -10983,10 +10992,21 @@
       "remove": "Remove saved look",
       "saveCurrent": "Save current adjustments",
       "search": "Search saved looks",
-      "strength": "Saved look strength"
+      "strength": "Saved look strength",
+      "styleFiles": "Transfer photo looks",
+      "styleLoaded": "Imported look applied",
+      "title": "Saved photo looks"
     },
     "photos": {
-      "arrangeHint": "Frame, position, styling, and group stay wey dey fit. Photo focal point follow source. Background and photo wey cross page dey out."
+      "arrangeHint": "Frame, position, styling, and group stay wey dey fit. Photo focal point follow source. Background and photo wey cross page dey out.",
+      "arrange": "Rearrange photos",
+      "first": "First photo frame",
+      "number": "Photo {{number}}",
+      "preparing": "Preparing photo dimensions…",
+      "rotate": "Rotate photo order",
+      "second": "Second photo frame",
+      "shuffle": "Shuffle photos",
+      "swap": "Swap photos"
     },
     "present": {
       "next": "Di next one",
@@ -11017,7 +11037,15 @@
       "undoMark": "Undo mark",
       "upNext": "Up next",
       "usePageTiming": "Use page durations",
-      "whiteScreen": "White screen"
+      "whiteScreen": "White screen",
+      "blackout": "Blackout",
+      "clearMarks": "Clear marks",
+      "clockValue": "Presentation timer {{time}}",
+      "closeNotes": "Close notes",
+      "goToPage": "Go",
+      "inkColour": "Ink colour {{colour}}",
+      "loading": "Loading page",
+      "loop": "Loop presentation"
     },
     "qr": {
       "background": "Background",
@@ -11072,25 +11100,43 @@
       "hint": "Wen you move or copy sections, dem go follow page. Find dem for page search, presentation browsing, and {section} image filename patterns.",
       "name": "Section name",
       "select": "Select section pages",
-      "title": "Arrange di pages wey you select put for inside sections"
+      "title": "Arrange di pages wey you select put for inside sections",
+      "selected": "Selected {{count}} section pages"
     },
     "selection": {
-      "sameHint": "Match de first select layer wey dey on dis page. Group dey stay together; hidden layer, background, and lock group no go be select."
+      "sameHint": "Match de first select layer wey dey on dis page. Group dey stay together; hidden layer, background, and lock group no go be select.",
+      "clear": "Clear selection",
+      "count": "{{count}} selected",
+      "readBounds": "Read current measurements"
     },
     "selectionShadows": {
       "apply": "Put shadow",
       "colour": "Shadow colour",
       "hint": "Fit for selected front picture in one edit. Blur and move use editor’s 1080p standard size.",
-      "mixed": "Wetin you dey select na layer wey shadow dem different."
+      "mixed": "Wetin you dey select na layer wey shadow dem different.",
+      "remove": "Remove shadows"
     },
     "svgPath": {
       "insert": "Put geometry wey person fit edit",
-      "name": "Layer name"
+      "name": "Layer name",
+      "chooseFile": "Choose SVG file",
+      "colour": "Path colour",
+      "detail": "Curve detail",
+      "filled": "Filled closed geometry",
+      "preview": "Vector path preview",
+      "title": "Import editable SVG geometry",
+      "weight": "Line weight"
     },
     "symbols": {
       "noResults": "No match oga. Try different name or category again.",
       "previous": "Symbols wey don pass",
-      "vectorDownloadHint": "Export de library symbol wey you choose, na colour and line weight you dey pick, for transparent background."
+      "vectorDownloadHint": "Export de library symbol wey you choose, na colour and line weight you dey pick, for transparent background.",
+      "colour": "Colour",
+      "downloadSvg": "Download symbol as SVG",
+      "next": "Next symbols",
+      "search": "Search vector symbols",
+      "title": "Vector symbols",
+      "weight": "Line weight"
     },
     "tables": {
       "brandPaletteHint": "Use first save palette colour for header, fit border, subtle stripes, and auto black or white text. Body fill and custom cell style stay same. Save palette keep current table colour.",
@@ -11150,7 +11196,21 @@
       "unmergeRange": "Unmerge {{range}}",
       "vertical": "Vertical alignment",
       "weightsHint": "Size dey relative. A value like 2 dey take two times space like 1; table still keep same size.",
-      "wrap": "Wrap cell text"
+      "wrap": "Wrap cell text",
+      "allColumns": "All columns",
+      "appendSummary": "Append summary row",
+      "applyCellFill": "Apply fill",
+      "applyCellInk": "Apply text colour",
+      "applyCellTextSize": "Apply text size",
+      "ascending": "Sort A–Z / 0–9",
+      "cellAppearance": "Cell appearance",
+      "cellBold": "Bold",
+      "cellFill": "Cell fill colour",
+      "cellInk": "Cell text colour",
+      "cellItalic": "Italic",
+      "cellRegular": "Regular",
+      "cellSection": "Cell appearance",
+      "cellTextSize": "Selected cell text size"
     },
     "text": {
       "characterCount": "{{count}} characters",
@@ -11211,6 +11271,15 @@
       "pan": "Pan canvas",
       "selection": "Wetin you select",
       "zoomIn": "Zoom canvas in"
+    },
+    "photoTone": {
+      "duotone": "Duotone",
+      "original": "Original colours",
+      "strength": "Duotone strength"
+    },
+    "stroke": {
+      "ends": "Line ends",
+      "joins": "Outline corners"
     }
   },
   "creator": {
@@ -11533,7 +11602,6 @@
     "pickMedium": "Choose medium",
     "moreTools": "More tools",
     "yourLibrary": "Your library",
-    "doorImageNote": "Stills, posters and edits",
     "doorVideoNote": "Clips from text or photo",
     "doorAudioNote": "Voice tools na free",
     "door3d": "3D",
@@ -11543,32 +11611,27 @@
     "flowNote": "Join steps together for canvas",
     "builderNote": "Make app from prompt",
     "exampleOutput": "Example of wetin you fit get",
-    "referenceInsert": "Insert {{tag}} in prompt",
     "referenceLibrary": "Use from library",
     "referenceUpload": "Upload",
-    "referenceSingle": "Use one image to reconstruct the object.",
-    "referenceHint": "Tap an asset name to reference it in your prompt. Add up to four images and one clip.",
     "referenceOneClip": "Attach one reference clip.",
-    "referenceClipLength": "Use an MP4 or MOV clip between 3 and 15 seconds for a swap, or up to 30 seconds for motion.",
-    "referenceFourImages": "Attach up to four reference images.",
-    "referenceMultiModel": "Choose a model supporting multiple images, such as FLUX 3 Image.",
     "referenceNeedsClip": "Wetin you dey look for?",
-    "referenceVideoModel": "Choose Character swap or Copy motion to use a clip.",
-    "referenceTooMany": "This model cannot use all the attached images. Remove extras or choose another model.",
     "referenceClipSeconds": "Clip length: {{seconds}}s",
     "referenceUploadClip": "Upload reference clip",
     "characterSwap": "Character swap",
     "copyMotion": "Copy motion",
     "referenceSwapName": "Swap character into a clip.",
     "referenceSwapHint": "Na you go replace am, make sure you no dey move am from original position.",
-    "referenceMotionName": "Copy motion to your character",
     "referenceMotionHint": "Wetin you mean? You wan make me animate character image for you?",
     "referenceOutfitName": "Wear am for clip, see wetin dey look like.",
     "referenceOutfitHint": "Wear new cloth, keep face, motion and background de same.",
     "referenceProductName": "Plas your pordot for inside clip.",
     "referenceProductHint": "Wen you click on the \"Replace\" button, the featured product go change to the one wey you select.",
     "referenceComposeName": "Combine reference images",
-    "referenceComposeHint": "Bring characters, objects and settings from multiple images into one composition."
+    "toolMaboroshi": "Maboroshi",
+    "editInTimeline": "Edit in timeline",
+    "presetExtraGlassCausticsName": "Glass caustics",
+    "presetExtraGlassCausticsHint": "Sunlight bends through clear glass",
+    "presetExtraRainyProductName": "Rainy product"
   },
   "fractions": {
     "title": "Fraction dem",
@@ -13053,10 +13116,6 @@
     "topSupporters": "Top supporters",
     "chatPreview": "Chat messages appear here",
     "poll": {
-      "voteFor": "Vote for {{option}}",
-      "failed": "Your vote did not count. Try again.",
-      "voted_one": "You voted · {{count}} vote",
-      "voted_other": "You voted · {{count}} votes",
       "closed": "Voting closed",
       "signIn": "Sign in to vote",
       "votes_one": "{{count}} vote",
@@ -13075,11 +13134,9 @@
   "liveStudio": {
     "controls": {
       "title": "Quick controls",
-      "intro": "For mid-stream. Each switch holds for everyone watching, in the app and in OBS, until you flip it back.",
       "alertsPaused": "Pause alerts",
       "soundsMuted": "Mute alert sounds",
       "readAloudMuted": "Stop read-aloud",
-      "readAloudMutedHint": "Gift messages and rule lines are no longer read out.",
       "alertsPausedHint": "No gift, no follow, no rule alert o go show on screen. Counter, goal, and chat box still dey move.",
       "soundsMutedHint": "Yours rules dey stop play sound wey.",
       "failed": "Na di switch no dey change. Try again."
@@ -13137,18 +13194,10 @@
       "tip_jar": "Gift jar"
     },
     "hints": {
-      "streamer_level": "Your streamer level and weekly streak, from your profile",
-      "tip_jar": "A jar that fills up as paid gifts come in",
-      "subathon_timer": "A countdown that gifts, follows and subscriptions push back",
-      "points_board": "Your top viewers by points from watching and gifting",
-      "spin_wheel": "Where the wheels in your rules spin",
-      "poll": "Your live poll, with a vote button for every option",
-      "rule_alert": "Where your rules' alerts appear",
       "tip_alert": "Celebrate every tip, e size according to e tier",
       "join_alert": "Welcomes each viewer as they arrive"
     },
     "fields": {
-      "showStreak": "Show the weekly streak",
       "style": "Style",
       "celebration": "Celebration",
       "banner": "Banner",
@@ -13192,28 +13241,8 @@
     "rules": {
       "wheelSegments": "Wheel segments, one per line",
       "wheelHint": "Between 2 and 12. DeHub go choose where de wheel stop, so everybody dey watch see same result. Use {result} inside alert, read-out loud or chat action for name it.",
-      "intro": "When something happens on your stream, DeHub does what you choose: shows an alert, plays a sound, reads something aloud, posts in your chat or tells your Discord.",
-      "limit": "You have reached the limit of {{count}} rules.",
-      "loadFailed": "Your rules could not be loaded. Refresh the page to try again.",
-      "empty": "No rules yet. Add one to react to tips, follows or chat commands.",
-      "saved": "Rules saved. They run on your next tip, follow or message.",
-      "saveToTest": "Save your rules to test them",
-      "needsAlertWidget": "Some rules show an alert. Add the Rule alerts widget so it has somewhere to appear.",
-      "audience": "Who can set it off",
-      "placeholders": "Use {name}, {amount} and {message} in your text. Links in messages are removed.",
-      "sayText": "Text to read aloud",
-      "chatHint": "Posted from your account into your stream's chat. It cannot repeat the viewer's message.",
-      "webhookHint": "A Discord or Slack webhook, or any https address that accepts a POST.",
-      "summary": {
-        "tip": "Tip of {{amount}} DHB or more"
-      },
-      "presetHints": {
-        "blank": "Start from nothing",
-        "readChat": "Reads your followers' messages aloud, one per viewer every 30 seconds",
-        "bigTip": "Plays an air horn and shows an alert for tips of 100,000 DHB or more",
-        "thankFollowers": "Posts a thank-you in your chat when someone follows",
-        "command": "Answers a !command in your chat"
-      },
+      "summary": {},
+      "presetHints": {},
       "title": "Di rules",
       "add": "Add a rule",
       "saveFailed": "Na rules wey you dey try save, no go save for now.",
@@ -13240,10 +13269,6 @@
       "webhookUrl": "Webhook address",
       "webhookText": "Message to send",
       "triggers": {
-        "live": "You start broadcasting",
-        "share": "Someone shares the stream",
-        "command": "A chat command is used",
-        "keyword": "A chat message contains a word",
         "tip": "A tip arrives",
         "follow": "Someone follows",
         "subscribe": "Someone subscribes",
@@ -13263,15 +13288,11 @@
         "webhook": "Send to a webhook"
       },
       "presets": {
-        "bigTip": "Air horn for big tips",
-        "thankFollowers": "Thank new followers",
         "blank": "Blank rule",
         "readChat": "Read chat aloud",
         "command": "Chat command"
       },
       "presetText": {
-        "thankFollowers": "Thanks for the follow, {name}!",
-        "command": "Hello {name}, welcome to the stream!",
         "readChat": "{name} says {message}",
         "bigTip": "{name} sent {amount} DHB!"
       },
@@ -13292,13 +13313,6 @@
       "placeholdersLive": "Wetin you dey look for? {name} don land for this one. {title}: \"How to Translate Any Text to Nigerian Pidgin\". Watch {link}: https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     },
     "polls": {
-      "intro": "Ask the people watching your broadcast a question. They answer with a button in the DeHub app, or by typing {{command}} and the option's number in chat.",
-      "questionPlaceholder": "What should I play next?",
-      "duration": "How long voting stays open",
-      "start": "Start the poll",
-      "end": "End voting now",
-      "started": "Your poll is open. Viewers can vote now.",
-      "notLive": "Go live first. A poll runs on the broadcast you are streaming right now.",
       "title": "Polls",
       "question": "Question",
       "option": "Option {{n}}",
@@ -13323,13 +13337,6 @@
       }
     },
     "moderation": {
-      "loadFailed": "Your moderation settings could not be loaded. Refresh the page to try again.",
-      "bannedWordsHint": "Separate with commas. Spelling a word out letter by letter does not get round it.",
-      "wordAction": "When someone uses one",
-      "wordBlock": "Stop the message",
-      "wordTimeout": "Stop it and time them out for a minute",
-      "moderatorNotFound": "No account with that username.",
-      "banned": "Banned from your streams",
       "title": "Chat moderation",
       "intro": "Wahala na dem rule for chat under all my stream. Na dem never go reach DeHub main chat: any person you ban here still go talk anywhere else.",
       "save": "Save chat rules",
@@ -13356,24 +13363,11 @@
       "log": "Wetin happen recently",
       "noLog": "Nothing yet.",
       "actions": {
-        "timeout_one": "{{actor}} timed out {{target}} for {{count}} second",
-        "timeout_other": "{{actor}} timed out {{target}} for {{count}} seconds",
-        "moderator-added": "{{target}} became a moderator",
-        "moderator-removed": "{{target}} is no longer a moderator",
-        "word-blocked": "Stopped a message from {{target}} for \"{{word}}\"",
-        "word-timeout_one": "Timed out {{target}} for {{count}} second for \"{{word}}\"",
-        "word-timeout_other": "Timed out {{target}} for {{count}} seconds for \"{{word}}\"",
         "ban": "{{actor}} banned {{target}}",
         "unban": "{{actor}} unbanned {{target}}"
       }
     },
     "subathon": {
-      "intro": "A countdown on your stream. Every paid gift, follow and subscription adds time, so the room keeps you live.",
-      "capHours": "Longest it can run (hours)",
-      "startMinutes": "Start with (minutes)",
-      "start": "Start the countdown",
-      "removeFive": "Take off 5 minutes",
-      "widgetHint": "Shows your subathon countdown. Start it from the Subathon panel in Live Studio.",
       "title": "Subathon",
       "secondsPerThousand": "Seconds added per 1,000 DHB gifted",
       "secondsPerFollow": "Seconds added per follow",
@@ -13385,20 +13379,12 @@
       "failed": "Na dey go wrong. Try again."
     },
     "points": {
-      "widgetHint": "Add the Loyal viewers widget to show this list on stream.",
       "title": "Loyal viewers",
       "intro": "Viewers get one point for every minute dey watch you, and one point for every 100 DHB dey gift you. Chat and reactions no give point, so you can't just farm points.",
       "empty": "No point yet. Dem dey increase when people watch and give gift."
     }
   },
   "liveChatModeration": {
-    "timeout1m": "Time out for 1 minute",
-    "timeout10m": "Time out for 10 minutes",
-    "timeout1h": "Time out for 1 hour",
-    "ban": "Ban from these streams",
-    "banned": "Banned from these streams.",
-    "madeModerator": "They are now a moderator.",
-    "youAreTimedOut": "You are timed out for a moment",
     "makeModerator": "Make moderator",
     "timedOut": "Timed out.",
     "failed": "Na dey go wrong. Try again.",

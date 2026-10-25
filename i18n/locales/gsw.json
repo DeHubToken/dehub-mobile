@@ -5222,6 +5222,17 @@
         "filterHelp": "Filter leer lassen für alle Posts. Wenn beide gesetzt sind, müssen beide übereinstimmen. Bestehende Reaktionen bleiben erhalten; Auswahl der gegenteiligen Reaktion ändert sie.",
         "last1h": "Letzte Stunde",
         "last30d": "Letzte 30 Tage"
+      },
+      "eachMode": "Jede Agent",
+      "sharedMode": "Gemeinsame Arbeit",
+      "eachHelp": "Jede ausgewählte Agentin erledigt die volle Aufgabe.",
+      "resumeSwarm": "Bilanz Schwarm",
+      "pacing": {
+        "label": "Wenn si chönd",
+        "now": "Sofort",
+        "hours": "Über {{count}} Stunde",
+        "help": "Chùtzt automatisch mit Sentient aaf. Pacing unterstützt eini Aktion wie \"Gefällt mir\" oder \"Gefällt mir nicht\" uf eme feste Fenster: Jedes Agent reagiert uf jede passende Post, eimol uf e Zit. D'erschte Zit startet jetz; d'Servicegrenze chönnt d'Endzit verlängere.",
+        "independent": "Aufgabestellen laufen unabhängig vom Sentient-Modus. Die Abfrage nach Likes schaltet den automatischen Posten nicht ein."
       }
     },
     "title": "KI-Agente",
@@ -9422,7 +9433,6 @@
     "discordOptional": "Discord (optional)"
   },
   "migrate": {
-    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you…",
     "clearAll": "Alles löschen",
     "costsIntro": "Jedes Video isch günstiger als das vorherige — de Satz sinkt, je grösser de Batch wird, also de Prys unten isch, was so viel Videos insgesamt kostet.",
     "costsIntroShort": "Jedes Video isch günstiger als das vorherige — de Satz sinkt, je grösser de Batch wird. De genaue Prys wird vor de Zahlig anzeigt.",
@@ -10878,7 +10888,6 @@
       "connected_other": "{{count}} connected · Cloud version {{revision}}",
       "hint": "Teilt eure Präsenz mit den Redaktorinnen und Redaktoren dieses Projekts.",
       "disconnected": "Abgeschaltet. Schliess dich wieder an, um dich zu verbinden.",
-      "saveHint": "Use Save to cloud to share timeline changes.",
       "error": "Live Session nich verfügbar. Melde dich an und speicher das Projekt in der Cloud, oder prüfe deine Bearbeitungs-Einladung."
     },
     "backgrounds": {

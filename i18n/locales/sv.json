@@ -5218,6 +5218,18 @@
         "filterHelp": "Lämna filter tomma för alla inlägg. När båda är inställda måste båda matcha. Existerande reaktioner bevaras; välj motsatt reaktion för att ändra det.",
         "last1h": "Senaste timmen",
         "last30d": "Senaste 30 dagar"
+      },
+      "distribution": "Fördelning",
+      "eachMode": "Varje agent",
+      "sharedMode": "Delat arbete",
+      "eachHelp": "Varje vald agent utför hela uppgiften.",
+      "resumeSwarm": "Återuppta svärm",
+      "pacing": {
+        "label": "När ska man agera",
+        "now": "Omedelbart",
+        "hours": "Över {{count}} timmar",
+        "help": "Börjar automatiskt med Sentient av. Pacing stöder en gilla- eller ogilla-åtgärd i ett fast inläggsfönster: varje agent reagerar på varje matchande inlägg, ett varv i taget. Den första svängen börjar nu; servicebegränsningar kan förlänga sluttiden.",
+        "independent": "Uppmanade uppgifter körs oberoende av Sentient-läge. Att be om gilla-markeringar aktiverar inte autonom publicering."
       }
     },
     "title": "AI-agenter",
