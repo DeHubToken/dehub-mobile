@@ -18,7 +18,7 @@ import type { HomePullMotion } from '../../context/HomePullRefreshContext';
 
 // Use the same padded artwork and image box as the web capsule.
 const MARK = require("../../assets/web-icons/dehub-island-logo.png");
-const MARK_HEIGHT = 27.3;
+const MARK_HEIGHT = 36;
 export const ISLAND_CAPSULE_WIDTH = 147.5;
 const HIT = { top: 8, bottom: 8, left: 8, right: 8 };
 // The brand name, spoken for the mark. Not translated.
@@ -128,7 +128,7 @@ export const IslandCapsule = memo(function IslandCapsule({
             </Pressable>}
           </View>
         </View>
-        <ElectricLogo refreshing={refreshing} pullDistance={pullMotion?.distance} onPress={isSignedIn ? onToggleMenu : onLeftPress} source={MARK} width={31.5}
+        <ElectricLogo refreshing={refreshing} pullDistance={pullMotion?.distance} onPress={isSignedIn ? onToggleMenu : onLeftPress} source={MARK} width={42}
           height={MARK_HEIGHT} tint="#FFFFFF" label={isSignedIn ? `${BRAND_NAME}, ${label}` : t("screens.signIn")}
           expanded={isSignedIn ? menuOpen : undefined} style={styles.mark}
           hitSlop={{ top: 8, bottom: 8, left: 2, right: 2 }} />
@@ -141,7 +141,7 @@ export const IslandCapsule = memo(function IslandCapsule({
               accessibilityLabel={unread > 0 ? t("common.notificationsUnread", { unread }) : t("nav.notifications")}
               style={styles.bell}
             >
-              <Icon name="Bell" size={21} color="#FFFFFF" strokeWidth={1.9} />
+              <Icon name="Bell" size={26} color="#FFFFFF" strokeWidth={1.9} />
               <UnreadBadge count={unread} />
             </Pressable>
           </View>
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   sideInner: { flexDirection: "row", alignItems: "center", gap: 12 },
   avatarButton: { width: AVATAR_SIZE, height: AVATAR_SIZE, alignItems: "center", justifyContent: "center", flexShrink: 0 },
   avatar: { width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_RADIUS, overflow: "hidden" },
-  mark: { paddingHorizontal: 20, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
+  mark: { width: 71.5, height: ISLAND_CAPSULE_HEIGHT, flexShrink: 0, justifyContent: "center", alignItems: "center" },
   bell: { width: 28, height: 28, alignItems: "center", justifyContent: "center" },
   menuWrap: { position: "absolute", top: ISLAND_CAPSULE_GAP, left: 0, right: 0, alignItems: "center", zIndex: 1, overflow: "hidden" },
   menu: {
