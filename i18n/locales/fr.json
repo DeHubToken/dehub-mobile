@@ -9606,6 +9606,123 @@
     }
   },
   "creator": {
+    "cinema":  {
+                   "title":  "Direction cinématographique",
+                   "hint":  "Définissez le style visuel de votre prochaine image ou vidéo. Les résultats varient selon le modèle.",
+                   "none":  "Aucune indication",
+                   "reset":  "Effacer les indications",
+                   "close":  "Fermer",
+                   "camera":  {
+                                  "label":  "Rendu de caméra",
+                                  "0":  "Cinéma numérique",
+                                  "1":  "Pellicule 35 mm",
+                                  "2":  "Pellicule 16 mm",
+                                  "3":  "Grand format",
+                                  "4":  "Caméscope ancien"
+                              },
+                   "lens":  {
+                                "label":  "Rendu de l’objectif",
+                                "0":  "Sphérique",
+                                "1":  "Anamorphique",
+                                "2":  "Optique ancienne douce",
+                                "3":  "Macro",
+                                "4":  "Bascule et décentrement"
+                            },
+                   "focalLength":  {
+                                       "label":  "Distance focale",
+                                       "0":  "18 mm grand-angle",
+                                       "1":  "24 mm grand-angle",
+                                       "2":  "35 mm naturel",
+                                       "3":  "50 mm standard",
+                                       "4":  "85 mm portrait",
+                                       "5":  "135 mm téléobjectif"
+                                   },
+                   "aperture":  {
+                                    "label":  "Profondeur de champ",
+                                    "0":  "f/1.4 très faible",
+                                    "1":  "f/2.8 faible",
+                                    "2":  "f/5.6 modérée",
+                                    "3":  "f/11 grande profondeur"
+                                },
+                   "movement":  {
+                                    "label":  "Mouvement de caméra",
+                                    "0":  "Trépied fixe",
+                                    "1":  "Travelling avant lent",
+                                    "2":  "Travelling arrière lent",
+                                    "3":  "Travelling latéral",
+                                    "4":  "Orbite autour du sujet",
+                                    "5":  "Caméra à l’épaule",
+                                    "6":  "Montée de grue",
+                                    "7":  "Panoramique lent"
+                                },
+                   "lighting":  {
+                                    "label":  "Éclairage",
+                                    "0":  "Lumière du jour douce",
+                                    "1":  "Heure dorée",
+                                    "2":  "Clair-obscur sombre",
+                                    "3":  "Studio très lumineux",
+                                    "4":  "Néons dans le décor",
+                                    "5":  "Silhouette à contre-jour",
+                                    "6":  "Lumière diffuse couverte"
+                                },
+                   "tempo":  {
+                                 "label":  "Rythme du plan",
+                                 "0":  "Plan-séquence continu",
+                                 "1":  "Action calme et posée",
+                                 "2":  "Action dynamique et énergique",
+                                 "3":  "Action chaotique et frénétique"
+                             },
+                   "era":  {
+                               "label":  "Époque",
+                               "0":  "Années 1920",
+                               "1":  "Années 1950",
+                               "2":  "Années 1960",
+                               "3":  "Années 1970",
+                               "4":  "Années 1980",
+                               "5":  "Années 1990",
+                               "6":  "Époque actuelle",
+                               "7":  "Futur proche"
+                           },
+                   "genre":  {
+                                 "label":  "Genre",
+                                 "0":  "Documentaire",
+                                 "1":  "Drame",
+                                 "2":  "Film noir",
+                                 "3":  "Science-fiction",
+                                 "4":  "Fantastique",
+                                 "5":  "Comédie romantique",
+                                 "6":  "Thriller",
+                                 "7":  "Western"
+                             },
+                   "performance":  {
+                                       "label":  "Interprétation",
+                                       "0":  "Joyeuse",
+                                       "1":  "Mélancolique",
+                                       "2":  "Anxieuse",
+                                       "3":  "Assurée",
+                                       "4":  "Émerveillée",
+                                       "5":  "Retenue",
+                                       "6":  "Enjouée"
+                                   },
+                   "palette":  {
+                                   "label":  "Palette de couleurs",
+                                   "0":  "Ambre chaud",
+                                   "1":  "Bleu froid",
+                                   "2":  "Tons terre atténués",
+                                   "3":  "Pastel",
+                                   "4":  "Monochrome très contrasté",
+                                   "5":  "Couleurs primaires saturées"
+                               }
+               },
+    "batchPaymentHelp":  "Chaque image envoyée est facturée séparément. Si un lot s’arrête, les DHB inutilisés de ce paiement sont automatiquement réutilisés pour une génération ultérieure qu’ils peuvent couvrir.",
+    "invalidSeed":  "La graine doit être un entier compris entre 0 et 2147483647.",
+    "batchCount":  "Images",
+    "endFrame":  "Image finale",
+    "endFrameHelp":  "Ajoutez une image initiale avec le bouton de pièce jointe.",
+    "seed":  "Graine (facultative, 0–2147483647)",
+    "negativePrompt":  "Consigne négative (facultative)",
+    "endFrameNeedsStart":  "Joignez une image initiale avant de sélectionner l’image finale.",
+    "batchStopped":  "Le lot s’est arrêté après {{submitted}} envois sur {{quantity}}. {{remaining}} n’ont pas été envoyés. Les images terminées sont enregistrées.",
     "sending": "Envoi en cours",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",
