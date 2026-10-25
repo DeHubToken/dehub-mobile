@@ -113,7 +113,7 @@ describe('post media presentation', () => {
     const home = readSource('screens', 'HomeScreen.tsx');
     const island = readSource('components', 'Home', 'IslandTopBar.tsx');
 
-    expect(home).toContain('const showNavPill = !island || feedProfileVisible || !!imageFeed;');
+    expect(home).toContain('const showNavPill = !island || feedProfileVisible || !!imageFeed || !!feedPost;');
     expect(home).toContain('<IslandFeedMenu');
     expect(island).toContain('export const IslandFeedMenu = memo(function IslandFeedMenu({');
     expect(island).toContain('t("filters.filters")');
