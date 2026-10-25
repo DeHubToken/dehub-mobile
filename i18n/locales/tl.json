@@ -10534,7 +10534,9 @@
       "showPresentation": "Ipakita sa pagtatanghal",
       "transferHint": "Kopyahin hanggang sa 50 mga pahina, o ilipat sa isa. Ang mga grupo at placement ay sumusunod sa pagpili. Ang paglipat ay nakakaapekto lamang sa pahinang ito; ang iba pang mga hitsura ay pinananatili. Dapat magkasya ang destinasyon sa mga naka - time na layer.",
       "transferLayers": "Ilipat o kopyahin ang mga napiling layer sa mga pahina",
-      "visibilityHint": "Ang mga pahinang nakasakamay ay nananatiling editable at nananatiling magagamit para sa pag-download."
+      "visibilityHint": "Ang mga pahinang nakasakamay ay nananatiling editable at nananatiling magagamit para sa pag-download.",
+      "allPptx": "Lahat ng {{count}} na pahina sa isang presentasyon",
+      "selectionRange": "Mga numero ng pahina at saklaw"
     },
     "captions": {
       "captionText": "Teksto ng caption",
@@ -10749,7 +10751,9 @@
       "rename": "Palitan ang pangalan",
       "resetNames": "I - reset ang mga pangalan",
       "search": "Maghanap ng mga layer",
-      "startAt": "Magsimula sa"
+      "startAt": "Magsimula sa",
+      "overlapping": "Magkakapatong na mga layer",
+      "searchOverlap": "Hanapin ang magkakapatong na mga layer"
     },
     "rail": {
       "elements": "Mga elemento",
@@ -11876,7 +11880,7 @@
       "groupCopies": "Magkakasama ang bawat kopyang tile",
       "groupCopiesHint": "Ang mga grupo ng mga layer sa loob ng bawat tile. Ang orihinal na pagpipilian ay nananatili sa mga grupo.",
       "hint": "Pumili ng teksto, mga larawan, mga hugis, o isang grupo ng disenyo. Palito ito sa kanan at pababa mula sa kanyang kasalukuyang posisyon. Ang orihinal ay ang unang cell ng grid; ang mga kopya ay nananatili sa kanilang pagpipilian, pagpipilian, at paggalaw.",
-      "layout": "Grid layout",
+      "layout": "Layout ng grid",
       "multiSelection": "Palito ang mga larawan bilang isang tile",
       "staggerHint": "Ang mga layout na nagpapalitan ay nagbabago ng bawat pangalawang linya o kolom ng kalahati ng isang selula, kabilang ang mga pagitan. Ang orihinal ay nananatili sa lugar.",
       "title": "Palito ang pagpipilian sa isang grid"

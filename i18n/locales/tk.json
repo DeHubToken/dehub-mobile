@@ -10493,7 +10493,7 @@
       "findSection": "Bir bölüme serediň",
       "jpegQuality": "JPEG kalitesi",
       "jpegQualityHint": "Adatça, aşak derejede kiçijik faýllar döredilýär. Piksel ölçegleri birmeňzeş galýar; jikme-jikli sanat işleri gysgalmagy görkezýär.",
-      "noSections": "No matching sections",
+      "noSections": "Gabat gelýän bölüm ýok",
       "notesText": "Öwrenme notlary (.txt)",
       "notesTextHint": "Sahypa baştutanlaryny, aslynda sahypa sanlaryny, sahypa atlaryny we çykyşçynyň notlaryny bir metin faýly hökmünde indir.",
       "pageBookmarks": "Sahypa ady nyşanlary",
@@ -11311,7 +11311,8 @@
       "replaceDesign": "Bu düýşüň dowamynda bir kalamy üýtget",
       "search": "Fontlary gözle",
       "source": "Ýaryş Faýly",
-      "target": "Çykyş kalamy"
+      "target": "Çykyş kalamy",
+      "count": "{{count}} şriftler tapyldy. Sanawy daraltmak üçin gözle."
     },
     "frames": {
       "title": "Foto Çerçewi"
@@ -11535,7 +11536,8 @@
       "useColour": "{{colour}}ullan"
     },
     "photoBackground": {
-      "unavailable": "Resim üýtgedilmedi. Garawul diňi we Garawul diňi"
+      "unavailable": "Resim üýtgedilmedi. Garawul diňi we Garawul diňi",
+      "mobileHint": "Bu sahypa arkasyna ulanyp boljak surat saýlaň. Fony täzeden çerçeweleşdirmek üçin iki gezek taksaň ýa-da ony hereketli layer hökmünde aýyryň."
     },
     "photoLooks": {
       "applied": "Garawul diňi",

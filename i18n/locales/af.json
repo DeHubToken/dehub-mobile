@@ -11476,7 +11476,8 @@
       "replaceDesign": "Vervang 'n lettertipe gedurende hierdie ontwerp",
       "search": "Soek lettertipes",
       "source": "Lettertipe om te vervang",
-      "target": "Vervangingslettertype"
+      "target": "Vervangingslettertype",
+      "next": "Volgende lettertipes"
     },
     "frames": {
       "title": "Foto raam"

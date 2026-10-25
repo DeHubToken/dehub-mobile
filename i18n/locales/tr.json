@@ -9288,7 +9288,7 @@
       "calendarAllDay": "Tüm gün süren etkinlik",
       "calendarHint": "Zamanlanmış etkinlikler UTC kullanır; takvim uygulamaları bunları alıcının saat diliminde görüntüler. Tüm gün tarihlerine son gün dahildir. Tarayıcı desteği değişir; takvim dosyası da doğrudan içe aktarılabilir.",
       "contactHint": "Bir vCard kişisi oluşturur. Tarama bu ayrıntıları kaydetmeyi önerebilir; davranış tarayıcıya bağlıdır.",
-      "content": "Link or text",
+      "content": "Bağlantı veya metin",
       "contentBuilderTypes": "QR içeriği oluşturun",
       "contentCopied": "QR içeriği kopyalandı",
       "copyContent": "QR içeriğini kopyala",

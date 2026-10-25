@@ -11346,7 +11346,7 @@
     "fonts": {
       "count": "{{count}} fonts trobats. Cerqueu per estrebar la llista.",
       "graphicCoverage": "Inclou capes de text, gràfics i taules. Les capes bloquejades conserven els seus tipus de lletra.",
-      "next": "Next fonts",
+      "next": "Tipus de lletra següents",
       "previous": "Tipus de lletra anteriors",
       "replaceDesign": "Substitueix un tipus de lletra al llarg d'aquest disseny",
       "search": "Cerca fonts",

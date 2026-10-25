@@ -11870,7 +11870,7 @@
       "rowsRemoved": "Isusiwe {{count}} imigqa",
       "sampleColours": "Sebenzisa imibala yetafula eyisampula",
       "sampleDataSize": "{{rows}} imigqa · {{series}} amakholomu",
-      "scaleApplied": "Coloured {{count}} numeric cells",
+      "scaleApplied": "Kufakwe umbala kumaseli ezinombolo angu-{{count}}",
       "scaleCentred": "Isikali sesikhungo ku-zero",
       "scaleHint": "Faka imibala yamangqamuzana ezinombolo ebangeni elikhethiwe. Amaseli angenalutho, athumelelana imiyalezo namaseli ahlanganisiwe agcina izitayela zawo. Faka isicelo futhi ngemva kokushintsha izinombolo.",
       "scaleInk": "Khetha imibala yombhalo ofundekayo",

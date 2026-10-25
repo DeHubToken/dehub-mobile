@@ -10656,7 +10656,8 @@
       "saveNewPreset": "نیا محفوظ کریں",
       "saveStyles": "اسٹائلز کے ساتھ ڈیزائن",
       "stylesSaved": "اس ڈیزائن کے ساتھ محفوظ کردہ برانڈ اسٹائلز",
-      "usePreset": "طرزیں استعمال کریں"
+      "usePreset": "طرزیں استعمال کریں",
+      "presetLibrary": "محفوظ کردہ برانڈ طرزیں"
     },
     "templates": {
       "announcement": {

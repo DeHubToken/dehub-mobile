@@ -10335,7 +10335,7 @@
       "allPdf": "Alle {{count}} sider i ett PDF",
       "allPptx": "Alle {{count}} sider i en presentasjon",
       "applyDuration": "Tilpass varighet",
-      "batchDuration": "Set selected page durations",
+      "batchDuration": "Angi varighet for valgte sider",
       "batchNameHint": "Velg første linje i største synlige overskrift på hver side. Eksisterende sidenavn forblir med mindre du velger å erstatte dem.",
       "batchNames": "Generer sidenavn",
       "choosePages": "Velg sider",
@@ -11886,7 +11886,8 @@
       "unmergeRange": "Utslå {{range}}",
       "vertical": "Vertikal utlining",
       "weightsHint": "Størrelser er relative. En verdi på 2 bruker dobbelt så mye plass som 1; tabellen beholder sin totale størrelse.",
-      "wrap": "Bryt tekst i celler"
+      "wrap": "Bryt tekst i celler",
+      "fontSizePercent": "Tekststørrelse (%)"
     },
     "text": {
       "backgroundPerLine": "Pass bakgrunn til hver linje",

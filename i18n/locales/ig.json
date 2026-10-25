@@ -11247,7 +11247,8 @@
       "pasteStyle": "Tapawa ụdị",
       "replaceAll": "Dochie ihe niile",
       "replaceWith": "Jiri dochie anya",
-      "replacement": "Agba ngbanwe"
+      "replacement": "Agba ngbanwe",
+      "backInsert": "Laghachi na Tinye"
     },
     "diagrams": {
       "edgeLabels": "Akara njikọ, otu n'ahịrị ọ bụla (nhọrọ)",
@@ -11282,7 +11283,8 @@
       "skipCover": "Zoo na ihuakwụkwọ mbụ",
       "start": "Bido na",
       "title": "Page nọmba na ugboro ugboro ọcha",
-      "total": "Gosi ngụkọta ihuakwụkwọ niile"
+      "total": "Gosi ngụkọta ihuakwụkwọ niile",
+      "numberHint": "Tinye editable page numbers. Ọnụ ọgụgụ na-emegharia mgbe a na-agbakwunye, na-adupliketi, na-ahapụ, ma ọ bụ na-ahazi ihu. Locked numbers na-adị otu."
     },
     "elements": {
       "layerCount": "{{count}} oyi akwa",
@@ -11320,7 +11322,8 @@
       "next": "Isi mmalite ndị ọzọ",
       "previous": "Ihumkpụrụedemede ndị gara aga",
       "source": "Ihumkpụrụedemede iji dochie",
-      "target": "Ihumkpụrụedemede ngbanwe"
+      "target": "Ihumkpụrụedemede ngbanwe",
+      "search": "Chọọ ụdị mkpụrụ edemede"
     },
     "frames": {
       "title": "Okpokoro foto"
@@ -11402,7 +11405,8 @@
       "snap": "Snap ka ndị nduzi",
       "thirds": "Nke atọ",
       "title": "Nduzi na n 'akụkụ",
-      "visible": "Gosi nduzi"
+      "visible": "Gosi nduzi",
+      "releaseOutside": "Release iji wepụ onye ọkwa a"
     },
     "help": {
       "noResults": "Enweghị enyemaka dabara adaba. Gbalịa aha ngwaọrụ ma ọ bụ ihe dịka mado, ihe ọkụkụ, ma ọ bụ otu.",
@@ -11428,11 +11432,13 @@
       "openFailed": "Agaghị enwenwu ike imepe ụzọ njikọ a",
       "openPage": "Gaa na peeji nke {{number}}",
       "remove": "Wepụ njikọ",
-      "title": "Banye"
+      "title": "Banye",
+      "multiSelection": "Links maka ọrụ ndị ahọpụtara"
     },
     "media": {
       "video": "Vidio",
-      "replace": "Dochie nsomebefaịlụ a họọrọ"
+      "replace": "Dochie nsomebefaịlụ a họọrọ",
+      "photo": "Foto"
     },
     "mediaSelection": {
       "resetColours": "Tọgharịa mgbanwe agba",
@@ -11642,7 +11648,7 @@
       "copyContent": "Detuo ọdịnaya QR",
       "copyFailed": "Agaghị enwenwu ike idetuo ọdịnaya QR",
       "correction": "Ihe njikọta nke ọrụ nke ịdọ aka na ịdị n'otu.",
-      "downloadCalendar": "Download calendar event (.ics)",
+      "downloadCalendar": "Budata mmemme kalenda (.ics)",
       "downloadContact": "Download kọntaktị (.vcf)",
       "downloadContactHint": "Chekwaa otu nkọwa kọntaktị dị ka faịlụ maka akwụkwọ adreesị gị.",
       "downloadSvg": "Download QR dị ka SVG",

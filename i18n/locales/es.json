@@ -8683,7 +8683,7 @@
       "raceHint": "Utilice datos de series múltiples con categorías en la primera columna. Las siguientes dos a seis columnas son marcos sucesivos; sus nombres aparecen como subtítulos de marco. Los valores no deben ser negativos. Las categorías mantienen sus colores a medida que cambian las clasificaciones. La reproducción abarca la duración de la línea de tiempo del gráfico.",
       "racePosterHint": "El fotograma fijo controla las vistas previas de SVG y borrador. Desactiva la animación para congelar ese fotograma en la línea de tiempo también. Las exportaciones animadas de ráster y vídeo utilizan el tiempo del cabezal de reproducción. Todos los fotogramas comparten una escala máxima fija.",
       "raceSettings": "Animación de clasificación",
-      "radarRings": "Radar grid rings",
+      "radarRings": "Anillos de la cuadrícula del radar",
       "referenceColour": "Color de la línea de destino",
       "referenceHint": "El objetivo expande la escala de valores cuando es necesario. Los objetivos apilados en porcentaje usan puntos porcentuales; otros objetivos usan las unidades de origen.",
       "referenceLabel": "Etiqueta de destino (opcional)",

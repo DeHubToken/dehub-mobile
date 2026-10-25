@@ -11239,7 +11239,8 @@
       "textColour": "Qoraal",
       "title": "Jaantusyada iyo jadwalka",
       "values": "Muuji qiyamka",
-      "vectorHint": "Wuxuu u dhoofiyaa garaafkan asalka hufan. Qoraalku wuu sii ahaanayaa mid la bedeli karo wuxuuna isticmaalaa farta la doortay meeshii ay suurtagal tahay."
+      "vectorHint": "Wuxuu u dhoofiyaa garaafkan asalka hufan. Qoraalku wuu sii ahaanayaa mid la bedeli karo wuxuuna isticmaalaa farta la doortay meeshii ay suurtagal tahay.",
+      "invalidColour": "Isticmaal midab hex lix-digit"
     },
     "designTools": {
       "applySize": "Codso cabbirka",
@@ -11310,7 +11311,8 @@
       "saveSelection": "Keydso xulashada",
       "selectionLibrary": "Keydso ama dib u isticmaal walxaha la doortay",
       "title": "Waxyaabaha la keydiyay",
-      "undoLibrary": "Isbedelka Maktabadda Undo"
+      "undoLibrary": "Isbedelka Maktabadda Undo",
+      "hint": "Kaydi ilaa 20 oo qof-isticmaal ah oo qof iyo vector-ka ah ee la isticmaali karo ee akoonkaaga ee qaybta. Kooxaha, qaab-dhismeedka, iyo meesha bogga ee walaaca waxaa la hayaa. Sawirrada iyo fiidyoha waxay joogaan naqshadeeda asalka ah."
     },
     "fills": {
       "lockedBackground": "Fur asalka bogga ka hor intaadan beddelin.",
@@ -11331,7 +11333,8 @@
       "replaceDesign": "Beddel font oo dhan naqshaddan",
       "search": "Foomamka raadinta",
       "source": "Foonka dhacdo",
-      "target": "Fonka Soo Gaar Ah"
+      "target": "Fonka Soo Gaar Ah",
+      "count": "{{count}} fonka la helay. Raadi si aad u yareysid liiska."
     },
     "frames": {
       "title": "Sawirka sawirka"
@@ -11793,7 +11796,7 @@
       "copyCellStyles": "Ku copy styles cell",
       "defaultCellTextSize": "Isticmaal cabbirka qoraalka miiska",
       "descending": "Ku sort Z–A / 9–0",
-      "dimensionSize": "{{name}} relative size",
+      "dimensionSize": "Cabbirka saamiga ah ee {{name}}",
       "duplicateCase": "Kiiska Match",
       "duplicateColumns": "Raadi safafka nuqullada ah adigoo isticmaalaya",
       "duplicateTrim": "Ha iloobin ku wareegsan Whitepace",
@@ -11812,7 +11815,7 @@
       "fitRowsHint": "Rows wadaagaan dhererka miiska sida ay qoraalkooda, padding iyo duudduuban. Unugyada ku wareegsan dhowr saf ma saameynayaan xajmiga. Siigaysiga safka gacanta ayaa tan u rogaya.",
       "fitText": "Qoraalka Shrink si loo waafajiyo unugyada",
       "fitTextHint": "Unug kasta wuxuu hoos u dhigi karaa ilaa 35% cabirkiisa qoraalka ee la doortay. Qoraalku wuxuu weli adeegsadaa ellipsis haddii uusan ku habboonaan karin; duubista waxay taageertaa ilaa sideed khad.",
-      "fontSizePercent": "Text size (%)",
+      "fontSizePercent": "Cabbirka qoraalka (%)",
       "headerColumn": "Madaxa Tiirka Koowaad",
       "importStyle": "Faylka qaabka soo dejinta",
       "includeHeaderSettings": "Ku dar safka madaxa iyo goobaha tiirarka",
@@ -11864,7 +11867,8 @@
       "unmergeRange": "Ka fur isku-darka {{range}}",
       "vertical": "Isku-habaynta toosan",
       "weightsHint": "Cabbirradu waa qaraabo. Qiimaha 2 wuxuu isticmaalaa laba jeer meel ka badan 1; miisku wuxuu hayaa cabbirkiisa guud.",
-      "wrap": "Duub qoraalka unugga"
+      "wrap": "Duub qoraalka unugga",
+      "sampleDataSize": "{{rows}} riidka · {{series}} kooxda"
     },
     "text": {
       "backgroundPerLine": "Ku habee asalka xariiq kasta",
