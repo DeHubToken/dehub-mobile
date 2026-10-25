@@ -19,6 +19,7 @@ import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import { preparePostMediaNavigation } from '../../libs/post-media-session';
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
@@ -165,6 +166,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
   const hasThumbnail =
     typeof thumbnail === "string" && thumbnail.trim().length > 0;
   const accessInfo = useStreamAccessInfo(nft);
+  useWarmVideoViewer(!isLive && canOpenPostVideoViewer(nft));
   const handlePressVideo = useCallback(() => {
     if (tokenId == null) return;
     onBeforeNavigate?.();

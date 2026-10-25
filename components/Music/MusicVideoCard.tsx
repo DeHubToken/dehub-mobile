@@ -19,6 +19,7 @@ import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { useWarmVideoViewer } from '../../navigation/useWarmVideoViewer';
 import { getAvatarUrl, getImageUrl } from "../../libs/misc";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -46,6 +47,7 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft,
   const thumb = getImageUrl(rawThumb, wide ? 640 : MUSIC_CARD_WIDTH);
   const rawAvatar = (nft as any).minterAvatarUrl || (nft as any).minterUser?.avatarImageUrl || "";
   const duration = secondsToHMMSS(nft.videoDuration);
+  useWarmVideoViewer(canOpenPostVideoViewer(nft as any));
 
   const openPost = useCallback(() => {
     if (tokenId == null) return;
