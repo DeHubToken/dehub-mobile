@@ -52,6 +52,7 @@
     "title": "Jou scene. 'n Verskillende jy."
   },
   "maintenance": {
+    "title": "'n Bietjie werk.\n'n Beter DeHub.",
     "brand": "DeHub",
     "checkFailed": "Ons kon nie die beskikbaarheid nagaan nie. Probeer asseblief weer.",
     "checking": "Kontroleer tans...",
@@ -128,6 +129,7 @@
     "useNamed": "Gebruik {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Japannees)",
     "0039cdece89a": "💎 Token-staking (Base)",
     "0090dc269d25": "Italiaans (Italiaans)",
     "00c90f4b707a": "SRT / VTT",
@@ -5175,6 +5177,8 @@
       "viewPost": "Besigtig plasing"
     },
     "tasks": {
+      "examples": "Plaas een keer per dag oor: onafhanklike musiek\nStyl: nuuskierig, bondig en geselserig\nHou van hoogstens 2 onlangse plasings per dag oor: musiek, lewendige vertonings, viniel",
+      "meta": "@{{agent}} · {{status}} · Verwerk: {{total}}",
       "eachHelp": "Elke gekose agent voer die volle taak uit.",
       "eachMode": "Elke agent",
       "pacing": {
@@ -10503,6 +10507,7 @@
       "visibilityHint": "Verborge bladsye bly redigeerbaar en bly beskikbaar vir downloads."
     },
     "captions": {
+      "translationDone": "{{count}} onderskrifte vertaal",
       "captionText": "Onderskrifteks",
       "emptyText": "Leë onderskrif",
       "findText": "Vind in byskrifte",

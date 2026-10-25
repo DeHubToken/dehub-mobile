@@ -52,6 +52,7 @@
     "title": "Makala yako. Mtu mwingine."
   },
   "maintenance": {
+    "title": "Kazi kidogo.\nDeHub bora zaidi.",
     "brand": "DeHub",
     "checkFailed": "Hatukuweza kuangalia upatikanaji. Tafadhali jaribu tena.",
     "checking": "Kupima...",
@@ -128,6 +129,9 @@
     "useNamed": "Tumia {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (Kijapani)",
+    "ba85bf0351d5": "Rudisha nyuma sekunde {{value1}}",
+    "ea81bf0fd464": "Русский (Kirusi)",
     "3838a4d8cb8c": "Vidokezo",
     "d1c9a01d57e9": "Pochi",
     "0039cdece89a": "💎 Uwekezaji wa Token (Msingi)",
@@ -5145,6 +5149,7 @@
       "viewPost": "Angalia chapisho"
     },
     "tasks": {
+      "examples": "Chapisha mara moja kwa siku kuhusu: muziki huru\nMtindo: wa kudadisi, mfupi na wa mazungumzo\nPenda hadi machapisho 2 ya hivi karibuni kwa siku kuhusu: muziki, maonyesho ya moja kwa moja, santuri",
       "eachHelp": "Kila wakala aliyechaguliwa hufanya kazi kamili.",
       "eachMode": "Kila wakala",
       "pacing": {
@@ -8251,6 +8256,7 @@
     "createdNotAdded": "Folda imeundwa, lakini chapisho halikuongezwa"
   },
   "ppv": {
+    "notEnoughToken": "Unahitaji {{amount}} {{symbol}} ili kufungua hiki. Una {{held}}.",
     "switchTo": "Chapisho hili litalipwa kwenye {{chain}}. Badilisha kwenda {{chain}} katika Mipangilio, kisha ujaribu tena.",
     "title": "Maudhui ya kulipia kila kutazama",
     "unlockPrice": "Bei ya kufungua",
@@ -14182,6 +14188,7 @@
       "tip_jar": "Chombo cha zawadi"
     },
     "hints": {
+      "share_alert": "Huonekana mtu anaposhiriki mtiririko wako",
       "spin_wheel": "Ambapo magurudumu katika sheria zako huzunguka",
       "tip_alert": "Husherehekea kila kiinua mgongo, kulingana na kiwango chake",
       "follow_alert": "Inaonyesha kila mfuasi mpya",

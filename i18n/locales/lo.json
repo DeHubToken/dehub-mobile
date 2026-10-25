@@ -37,6 +37,7 @@
     "watch": "ເບິ່ງໂຄສະນາເພື່ອສະ ຫນັບ ສະ ຫນູນ ຜູ້ສ້າງນີ້"
   },
   "maboroshiShowcase": {
+    "anime": "ພະເອກອານິເມະ",
     "browse": "ຄົ້ນຫາທັງຫມົດ 180 ຮູບລັກສະນະ",
     "choose": "ພະຍາຍາມ {{name}}",
     "chrome": "Chrome ສາມານາມ",
@@ -51,6 +52,8 @@
     "title": "Scene ຂອງ ທ່ານ. ເປັນ ທີ່ ແຕກ ຕ່າງ ກັນ ຂອງ ທ່ານ."
   },
   "maintenance": {
+    "title": "ປັບປຸງໜ້ອຍໜຶ່ງ.\nDeHub ທີ່ດີກວ່າເກົ່າ.",
+    "brand": "DeHub",
     "checkFailed": "ພວກເຮົາບໍ່ສາມາດກວດສອບຄວາມສາມາດໄດ້. ກະລຸນາລອງໃໝ່ອີກຄັ້ງ.",
     "checking": "ກຳລັງກວດສອບ...",
     "community": "ຊຸມຊົນກ່ອນ. ສະເຫມີ.",
@@ -61,6 +64,7 @@
     "retry": "ລອງໃໝ່ອີກຄັ້ງ"
   },
   "quickActions": {
+    "deviceNotice": "ໜ້າ, ອຸປະກອນ, ລຸ້ນ (ຖ້າມີ) ແລະ ລາຍລະອຽດແອັບ ຫຼື ບຣາວເຊີ ຈະຖືກແນບໃຫ້ອັດຕະໂນມັດ.",
     "attachScreenshot": "ກະລຸນາກະຕັກຫາສະແປດສະບາດຕະວະດີນານານາ",
     "capturing": "ໄປປັ້ນຫນ້ານີ້...",
     "failed": "ບາງສິ່ງບາງຢ່າງຜິດພາດ. ຂໍ້ຄວາມຂອງທ່ານຖືກບັນທຶກ; ກະລຸນາລອງໃໝ່ອີກຄັ້ງ.",
@@ -78,6 +82,8 @@
     "title": "ໜ້າທາງເລືອກ"
   },
   "twitchMirror": {
+    "intro": "ສະຕຣີມໃນ Twitch ຕາມປົກກະຕິ. ການອອກອາກາດຂອງທ່ານສາມາດປາກົດໃນ DeHub ໄດ້ອັດຕະໂນມັດ ໂດຍບໍ່ຕ້ອງໃຊ້ເຄື່ອງມືສະຕຣີມເພີ່ມເຕີມ.",
+    "refresh": "ໂຫຼດສະຖານະໃໝ່",
     "auto": "ສະທ້ອນອັດຕະໂນມັດ Twitch Streams ຂອງຂ້ອຍ",
     "connect": "ເຊື່ອມຕໍ່ Twitch",
     "consent": "ເຊື່ອມຕໍ່ພຽງແຕ່ຊ່ອງທາງທີ່ທ່ານເປັນເຈົ້າຂອງ. ການເປີດໃຊ້ງານການສະທ້ອນໃຫ້ເຫັນອະນຸຍາດໃຫ້ DeHub ສົ່ງຄືນການອອກອາກາດຂອງທ່ານແລະປະຫຍັດການຊໍ້າຄືນພາຍໃຕ້ເງິນອຸດຫນູນການບັນທຶກທີ່ມີຢູ່ແລ້ວຂອງທ່ານ.",
@@ -94,6 +100,7 @@
     "waiting": "ກຽມພ້ອມ ສໍາ ລັບການອອກອາກາດ Twitch ຕໍ່ໄປຂອງທ່ານ"
   },
   "viralTemplates": {
+    "back": "ກັບໄປທີ່ແມ່ແບບ",
     "all": "ທັງໝົດ",
     "browse": "ເບິ່ງທັງ ຫມົດ {{count}} ແມ່ແບບ",
     "characters": "ຕົວລະຄອນ",
@@ -122,6 +129,45 @@
     "useNamed": "ໃຊ້ {{name}}"
   },
   "copy": {
+    "04b765747018": "ໂຄງຮ່າງເສັ້ນ",
+    "10d878fbdf00": "العربية (ອາຣັບ)",
+    "140cba372e27": "ສະກົດຈິດ",
+    "1c1f651829b5": "ຈ່າຍຕໍ່ການເບິ່ງ (PPV)",
+    "380d64545671": "ຕະຫຼາດຊື້ຂາຍສ່ວນແບ່ງ",
+    "3a6174a5da6d": "ເສັ້ນສັນພູ",
+    "4e857158a7e8": "ສິລະປະລວງຕາ",
+    "58f5938cf419": "ໂຊນາ",
+    "6aad3f5a25b5": "ກ່າວເຖິງ @{{value1}}",
+    "6da707c478f8": "日本語 (ຍີ່ປຸ່ນ)",
+    "74bcb059be1a": "ຮອຍແສງວິບວັບ",
+    "8d771bfa99a9": "BNB Testnet",
+    "94a6a84d8cbc": "Solscan",
+    "9dd792ea3767": "ຮາໂມໂນກຣາຟ",
+    "b48bbaa9ddf2": "ລາຍຖັກເປຍ",
+    "c15b93ef43c2": "ການກ່າວເຖິງ (@)",
+    "ca01201adaea": "🍎 ສະໄຕລ໌ Apple Keynote",
+    "d9bac180ccc1": "Chartopia",
+    "e07a49512e91": "ລາວາໜຽວ",
+    "e9de098c7733": "ແສງອໍໂຣຣາ",
+    "ea81bf0fd464": "Русский (ລັດເຊຍ)",
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1f185710f28a": "DeHub v",
+    "2f51108189d2": "PPV: ",
+    "3d1d43659027": " / USD",
+    "53e6cdc30765": "you@example.com",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "89c9b65356e3": "X (Twitter)",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "a731a58c4cf3": "Twitch",
+    "b4c9a289323b": "user@example.com",
+    "bd4ef74463ac": "BUSD",
+    "bd9e3879bc60": "PPV",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "04d02a85c7b9": "ເນື້ອຫາທີ່ເຫັນໄດ້ພຽງແຕ່ທ່ານເທົ່ານັ້ນ. ການໂພສສ່ວນຕົວແມ່ນຖືກປິດລ້ອມຈາກຜູ້ໃຊ້ອື່ນໆແລະອາຫານສາທາລະນະ.",
     "2e15e7cebe72": "·  {{value1}} ຂາຍແລ້ວ",
     "3b76196efd42": "ການເຮັດທຸລະກໍາ blockchain hash ຈາກເວລາທີ່ໂພສໄດ້ຖືກ minted. ເປີດມັນໃນ Block Explorer ເພື່ອກວດສອບບັນທຶກໃນຕ່ອງໂສ້.",
@@ -2900,6 +2946,7 @@
     "postCount_other": "{{count}} ໂພສ"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "smsPricePerMessage": "ໂທເຄັນ {{dhb}} (${{usd}})",
     "glass": "ແບບແກ້ວ",
     "shortsEnabled": "ສັ້ນເສອແຂນ",
@@ -3757,6 +3804,7 @@
     "aiOverview": "ພາບລວມຂອງ AI"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "ຈັດລຽງ",
     "category": "ໝວດໝູ່",
     "searchCategories": "ຄົ້ນຫາໝວດໝູ່...",
@@ -4142,6 +4190,8 @@
     "transferDhb": "ໂອນ tokens"
   },
   "wallet": {
+    "evmAddressLabel": "EVM",
+    "solanaAddressLabel": "Solana",
     "solanaSendUnavailable": "ການສົ່ງເຂົ້າສາຂາ Solana ບໍ່ມີການຈຳແພ່ວັນນີ້",
     "connectUnavailable": "ການເຊື່ອມຕໍ່ກະເປົາເງິນບໍ່ມີໃນເວີຊັນນີ້ — ກູ້ຄືນດ້ວຍວະລີກູ້ຄືນແທນ.",
     "connectedWrongWallet": "ກະເປົາເງິນນັ້ນແມ່ນ {{connected}}, ບໍ່ແມ່ນ {{address}}. ບໍ່ມີຫຍັງປ່ຽນແປງ.",
@@ -4261,6 +4311,11 @@
   },
   "notifications": {
     "custom": {
+      "featureMention": "{{name}} ໄດ້ກ່າວເຖິງທ່ານໃນຄຳຂໍຟີເຈີ",
+      "fractionOffer": "{{name}} ໄດ້ຍື່ນຂໍ້ສະເໜີສຳລັບສ່ວນແບ່ງຂອງທ່ານ",
+      "governanceCommentNamed": "{{name}} ໄດ້ສະແດງຄຳເຫັນໃນຂໍ້ສະເໜີຂອງທ່ານ “{{title}}”",
+      "stageLive": "{{name}} ກຳລັງອອກອາກາດສົດໃນຫ້ອງສຽງ",
+      "stageLiveNamed": "ຫ້ອງສຽງ “{{title}}” ຂອງ {{name}} ກຳລັງສົດ — ແຕະເພື່ອຟັງ",
       "bountyApplied": "{{name}} ນໍາ ໃຊ້ກັບ bounty ຂອງທ່ານ",
       "bountyAppliedNamed": "{{name}} ສະ ຫມັກ ເຂົ້າໃນການອຸດົມສົມບູນຂອງທ່ານ \"{{title}}\"",
       "bountyReply": "{{name}} ຕອບກັບ bounty ຂອງທ່ານ",
@@ -4415,6 +4470,7 @@
     "tokenAmount": "{{amount}} ໂຕເຄັນ"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "ຄົ້ນຫາຄົນ, ໂພສ ຫຼື ເນື້ອຫາ...",
     "filters": "ຕົວກອງ",
     "clearAll": "ລ້າງທັງໝົດ",
@@ -4476,6 +4532,8 @@
     "global": "ທົ່ວໂລກ"
   },
   "features": {
+    "promptPost": "ໂພສຄຳຮ້ອງຂໍ",
+    "removePromptAttachment": "ລຶບ {{name}}",
     "promptAttach": "ຕິດຕັ້ງຮູບພາບ",
     "promptAttachment": "ເອກະສານຄັດຕິດ {{number}}",
     "promptDetails": "ລາຍລະອຽດທາງເລືອກ",
@@ -5012,6 +5070,7 @@
     "topUpExplanation": "tokens ຂອງທ່ານຈະຖືກໂອນໄປໃນ chain ໄປຍັງຄັງເງິນໂຄສະນາ DeHub, ຈາກນັ້ນຍອດເຫຼືອຂອງທ່ານຈະຖືກເພີ່ມຫຼັງຈາກການກວດສອບໃນ chain ທີ່ເປັນເອກະລາດ."
   },
   "buyCoins": {
+    "cardBankDesc": "Visa, Mastercard, Apple Pay",
     "title": "ຊື້ຫຼຽນ",
     "network": "ເຄືອຂ່າຍ",
     "token": "ໂທເຄັນ",
@@ -5045,6 +5104,7 @@
     "minDhbPurchase": "ການຊື້ tokens ຕຳ່ສຸດແມ່ນ $0.50"
   },
   "agents": {
+    "capacity": "{{used}} ຈາກ {{limit}} ເອເຈນ · {{badge}}",
     "agentDisplayName": "ສະແດງຊື່",
     "agentDisplayNamePlaceholder": "ວິທີການຕົວແທນນີ້ປະກົດຢູ່ໃນ DeHub",
     "agentUsername": "ຊື່ຜູ້ໃຊ້",
@@ -5088,6 +5148,11 @@
       "viewPost": "ເບິ່ງໂພສ"
     },
     "tasks": {
+      "comment": "ສະແດງຄຳເຫັນ",
+      "examples": "ໂພສມື້ລະເທື່ອກ່ຽວກັບ: ດົນຕີອິດສະຫຼະ\nສະໄຕລ໌: ຢາກຮູ້ຢາກເຫັນ, ກະທັດຮັດ ແລະ ເປັນກັນເອງ\nກົດມັກໂພສລ່າສຸດໄດ້ສູງສຸດ 2 ໂພສຕໍ່ມື້ກ່ຽວກັບ: ດົນຕີ, ການສະແດງສົດ, ແຜ່ນສຽງໄວນິວ",
+      "meta": "@{{agent}} · {{status}} · ປະມວນຜົນແລ້ວ: {{total}}",
+      "mode": "ໂໝດໜ້າວຽກ",
+      "title": "ມອບໜ້າວຽກໃຫ້ເອເຈນ",
       "eachHelp": "ແຕ່ຜູ້ປະກອບສ່ວນແຕ່ລະຄົນຈະເຮັດຕາມວິທີຂອງຕົນເອງ.",
       "eachMode": "ຕົວແທນແຕ່ລະຄົນ",
       "pacing": {
@@ -5138,6 +5203,7 @@
       "run": "ແລ່ນດ່ວນ",
       "runSwarm": "ແລ່ນ swarm",
       "window": {
+        "last24h": "24 ຊົ່ວໂມງຜ່ານມາ",
         "actions": "ກິດຈະກຳ",
         "custom": "ກຳນົດເອງ",
         "from": "ຈາກ",
@@ -5419,6 +5485,10 @@
     "passkeyBackupHint": "ບັນຊີຂອງທ່ານອາໄສຢູ່ໃນ passkey ຂອງອຸປະກອນນີ້. ໃນໂທລະສັບສ່ວນໃຫຍ່, ມັນຈະຊິ້ງກັບບັນຊີ Google ຫຼື Apple ຂອງທ່ານ, ແລະທ່ານສາມາດເພີ່ມການສຳຮອງລະຫັດຜ່ານໃນການຕັ້ງຄ່າໄດ້."
   },
   "careers": {
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "telegram": "Telegram",
+    "xTwitter": "X (Twitter)",
     "title": "ອາຊີບທີ່ DeHub",
     "subtitle": "ເຂົ້າຮ່ວມທີມທີ່ສ້າງອະນາຄົດຂອງໂຊຊຽນມີເດຍແບບກະຈາຍ",
     "intro": "ພວກເຮົາກຳລັງຊອກຫາຄົນທີ່ມີຄວາມຫຼົງໄຫຼຢາກເປັນສ່ວນໜຶ່ງຂອງໂຊຊຽນມີເດຍແບບໃໝ່ ທີ່ໃຫ້ຜູ້ສ້າງ ແລະ ຊຸມຊົນມາກ່ອນ. ທຸກຕຳແໜ່ງເຮັດວຽກທາງໄກໄດ້ພ້ອມເວລາຍືດຫຍຸ່ນ.",
@@ -5698,6 +5768,7 @@
     "searchDehubFor": "ຄົ້ນຫາ \"{{query}}\" ໃນ DeHub"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "ລາຍງານຄໍາເຫັນ",
     "reportCommentTitle": "ລາຍງານ ຄໍາ ເຫັນນີ້",
     "reportCommentDescription": "ບອກພວກເຮົາສິ່ງທີ່ຜິດກັບ ຄໍາ ເຫັນນີ້ແລະຜູ້ຈັດການຂອງພວກເຮົາຈະທົບທວນຄືນມັນ.",
@@ -6074,6 +6145,7 @@
     "dhb_staked_on_chain": "{{amount}} ໂທເຄັນທີ່ stake ໄວ້ໃນ {{chain}}."
   },
   "staking": {
+    "pendingRetired": "ເງິນຝາກນີ້ບໍ່ໄດ້ລໍຖ້າຢູ່ໃນເຄືອຂ່າຍອີກແລ້ວ. ລຶບການຕິດຕາມແລ້ວ; ກວດເບິ່ງກິດຈະກຳໃນກະເປົາເງິນຂອງທ່ານກ່ອນຝາກອີກຄັ້ງ.",
     "foundNewDeposits": "ພົບ {{count}} ເງິນຝາກ ໃຫມ່ ໃນລະບົບຕ່ອງໂສ້",
     "title": "ສະເຕກ",
     "subtitle": "ເງິນຝາກເພື່ອປົດລັອກສ່ວນແບ່ງ ກໍາ ໄລ, ຄ່າ ທໍາ ນຽມຕ່ ໍາ, ອໍາ ນາດສູງສຸດແລະອື່ນໆ!",
@@ -6310,6 +6382,8 @@
       "slowMode": "ໂຫມດ ຊ້າ: ຂໍ້ຄວາມ ຫນຶ່ງ ທຸກໆ {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "ລົບລ້າງ Admin",
       "cancel": "ຍົກເລີກ",
       "dismissAdmin": "ລົບລ້າງ Admin",
@@ -6858,6 +6932,7 @@
     "priceRange": "ລະຫວ່າງໂຕເຄັນ {{min}} ແລະ {{max}}."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "ແກ້ໄຂ",
     "listingUpdated": "ລາຍການໄດ້ຮັບການອັບເດດແລ້ວ!",
     "saveListing": "ບັນທຶກການປ່ຽນແປງ",
@@ -7164,6 +7239,7 @@
     "kingsGambitBoardEmpty": "ຍັງບໍ່ມີການແຂ່ງຂັນອອນລາຍທີ່ຈົບລົງ. ເປີດຄຳທ້າເລີຍ."
   },
   "videoLooks": {
+    "vhs": "VHS",
     "button": "ຮູບແບບກ້ອງ",
     "title": "ຮູບແບບ",
     "hint": "ນຳໃຊ້ກ່ອນວິດີໂອຈະອອກຈາກອຸປະກອນນີ້ — ຜູ້ຊົມເຫັນສິ່ງທີ່ທ່ານເຫັນຢູ່ນີ້ຢ່າງແນ່ນອນ.",
@@ -7745,6 +7821,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24ຊມ",
     "filter7d": "7ມ",
     "filter30d": "30ມ",
@@ -8178,6 +8255,7 @@
     "createdNotAdded": "ສ້າງໂຟນເດີແລ້ວ ແຕ່ໂພສບໍ່ໄດ້ຖືກເພີ່ມ"
   },
   "ppv": {
+    "notEnoughToken": "ທ່ານຕ້ອງມີ {{amount}} {{symbol}} ເພື່ອປົດລັອກອັນນີ້. ທ່ານມີ {{held}}.",
     "switchTo": "ໂພສນີ້ຖືກຈ່າຍໃນ {{chain}}. ປ່ຽນເປັນ {{chain}} ໃນການຕັ້ງຄ່າ, ຈາກນັ້ນລອງ ໃຫມ່ ອີກຄັ້ງ.",
     "title": "ເນື້ອຫາຈ່າຍຕໍ່ການເບິ່ງ",
     "unlockPrice": "ລາຄາປົດລັອກ",
@@ -8645,6 +8723,7 @@
     "creatorEarnsDirect": "ຜູ້ສະມາຊິກຈ່າຍເປັນໂທເຄັນ DeHub. ສ່ວນແບ່ງຂອງທ່ານເຂົ້າກະເປົາເງິນຂອງທ່ານທັນທີທີ່ເຂົາເຈົ້າສະໝັກ, ຫັກຄ່າທຳນຽມແພລດຟອມຕາມລະດັບປ້າຍຂອງທ່ານ."
   },
   "live": {
+    "noOneStreamingGame": "ຕອນນີ້ບໍ່ມີໃຜສະຕຣີມ {{game}}.",
     "isLiveNow": "{{name}} ມີຊີວິດຢູ່",
     "justChatting": "ການອະທິບານ",
     "loadStreamsFailed": "ບໍ່ສາມາດໂຫຼດກະແສໄດ້. ກະລຸນາລອງໃໝ່ອີກຄັ້ງ.",
@@ -9327,6 +9406,7 @@
     "discordOptional": "Discord (ທາງ​ເລືອກ)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@ທ່ານ, tiktok.com/@ທ່ານ, vimeo.com/ທ່ານ…",
     "clearAll": "ລຶບລ້າງທັງໝົດ",
     "costsIntro": "ວິດີໂອທຸກອັນມີລາຄາຖືກກວ່າອັນກ່ອນໜ້າ — ອັດຕາຈະຫຼຸດລົງເມື່ອຈໍານວນເພີ່ມຂຶ້ນ, ດັ່ງນັ້ນລາຄາຂ້າງລຸ່ມນີ້ແມ່ນລາຄາລວມສໍາລັບວິດີໂອຈໍານວນນັ້ນ.",
     "costsIntroShort": "ວິດີໂອທຸກອັນມີລາຄາຖືກກວ່າອັນກ່ອນໜ້າ — ອັດຕາຈະຫຼຸດລົງເມື່ອຈໍານວນເພີ່ມຂຶ້ນ. ລາຄາທີ່ແນ່ນອນຈະສະແດງກ່ອນທີ່ທ່ານຈ່າຍເງິນ.",
@@ -10116,6 +10196,7 @@
       "restore": "ຟື້ນຟູພື້ນຫຼັງ"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "after": "ຫລັງຈາກ",
         "afterHint": "ສະແດງຜົນລັອກ.",
@@ -10301,6 +10382,7 @@
       "rangeHint": "ໃຊ້ເລກໜ້າທີ່ຄັ່ນດ້ວຍເຄື່ອງໝາຍຈຸດ ຫຼືຊ່ວງເຊັ່ນ 3-8."
     },
     "captions": {
+      "targetLanguage": "ພາສາຄຳບັນຍາຍ",
       "previousText": "ກ່ອນໜ້າ",
       "captionText": "ຂໍ້ຄວາມຫົວຂໍ້",
       "emptyText": "ຫົວຂໍ້ຫວ່າງເປົ່າ",
@@ -10328,6 +10410,7 @@
       "failed": "ບໍ່ສາມາດສ້າງຄຳບັນຍາຍສຳລັບຄລິບນີ້ໄດ້."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "ການອອກແບບໃໝ່",
       "yourDesigns": "ການອອກແບບຂອງທ່ານ",
       "noDesigns": "ການອອກແບບທີ່ທ່ານສ້າງຈະຖືກບັນທຶກໄວ້ໃນໂທລະສັບນີ້ ແລະ ສະແດງຢູ່ບ່ອນນີ້.",
@@ -10669,6 +10752,7 @@
       "pause": "ຢຸດຊົ່ວຄາວ"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "ວິດີໂອ",
       "sound": "ສຽງ",
       "shape": "ຮູບຮ່າງ",
@@ -10713,6 +10797,7 @@
       "tooLarge": "ໄຟລ໌ນັ້ນໃຫຍ່ເກີນໄປສຳລັບຕົວແກ້ໄຂ. ຂີດຈຳກັດແມ່ນ 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "ການເຄື່ອນໄຫວ",
       "hint": "ຄີເຟຣມເຮັດໃຫ້ຊັ້ນເຄື່ອນໄຫວຕາມເວລາ. ເພີ່ມອັນໜຶ່ງຢູ່ນີ້, ເລື່ອນຫົວຫຼິ້ນ, ປ່ຽນຊັ້ນ, ແລ້ວມັນຈະເລື່ອນລະຫວ່າງພວກມັນ.",
       "outside": "ເລື່ອນຫົວຫຼິ້ນມາໄວ້ເທິງຊັ້ນນີ້ເພື່ອເພີ່ມ ຫຼື ປ່ຽນຄີເຟຣມ.",
@@ -11891,6 +11976,9 @@
     }
   },
   "creator": {
+    "presetExtraMacroFocusSweepName": "ກວາດໂຟກັສມາໂຄຣ",
+    "presetExtraRetroFutureLoungeName": "ເລົ້າຈ໌ແນວເຣໂທ-ອະນາຄົດ",
+    "toolMaboroshi": "Maboroshi",
     "presetExtraFantasyMarketHint": "ຕະຫຼາດທີ່ອົບອຸ່ນດ້ວຍລາຍລະອຽດຂອງໂລກທີ່ເຮັດດ້ວຍມື",
     "presetExtraRibbonWrapHint": "1 ການໄຫຼວຽນຂອງ curls ribbon ປະມານຫົວຂໍ້",
     "editInTimeline": "ແກ້ໄຂໃນ Timeline",
@@ -13521,6 +13609,8 @@
     "statusUnregistered": "ບໍ່ໄດ້ລົງທະບຽນ"
   },
   "launchpad": {
+    "telegram": "Telegram",
+    "twitter": "X / Twitter",
     "ago": "{{age}} ກ່ອນ ຫນ້າ ນີ້",
     "amountIn": "ຈໍານວນເງິນໃນ {{symbol}}",
     "back": "ກັບຄືນ",
@@ -13709,6 +13799,7 @@
     "checkoutUnavailable": "Checkout ບໍ່ສາມາດໃຊ້ໄດ້ໃນຂະນະນີ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ."
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "ຕໍ່ບ່ອນນັ່ງ/ເດືອນ",
     "plansForEveryWorkflow": "ແຜນສຳລັບທຸກໆການເຮັດວຽກ",
     "findTheRightFit": "ຈາກບຸກຄົນຈົນເຖິງທີມວິສາຫະກິດ, ຊອກຫາສິ່ງທີ່ເໝາະສົມ",

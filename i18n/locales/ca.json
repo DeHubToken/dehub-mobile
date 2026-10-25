@@ -52,6 +52,7 @@
     "title": "El teu escenari. Un altre tu."
   },
   "maintenance": {
+    "title": "Una mica de feina.\nUn DeHub millor.",
     "brand": "DeHub",
     "checkFailed": "No hem pogut comprovar la disponibilitat. Torna-ho a provar.",
     "checking": "S'està comprovant...",
@@ -128,6 +129,10 @@
     "useNamed": "Utilitza {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (japonès)",
+    "ea81bf0fd464": "Русский (rus)",
+    "b602b7029be6": "Pt",
+    "b62c681738d1": "Cu",
     "0039cdece89a": "💎 Estocament de Tokens (Base)",
     "0090dc269d25": "Italiano (italià)",
     "00c90f4b707a": "SRT / VTT",
@@ -5143,6 +5148,7 @@
       "viewPost": "Mostra l'entrada"
     },
     "tasks": {
+      "examples": "Publica un cop al dia sobre: música independent\nEstil: curiós, concís i conversacional\nFes m'agrada a fins a 2 publicacions recents al dia sobre: música, concerts en directe, vinil",
       "eachHelp": "Cada agent seleccionat realitza la tasca completa.",
       "eachMode": "Cada agent",
       "pacing": {

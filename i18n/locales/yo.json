@@ -1,5 +1,6 @@
 {
   "accountConnect": {
+    "manage": "Ṣàkóso àwọn ìsopọ̀ àkọọ́lẹ̀",
     "signIn": "Wọlé sí DeHub",
     "account": "Kò nílò àkópamọ́ fún ìwòyí gbangba. So àkópamọ́ DeHub rẹ pọ̀ láti ṣàkóso àkópamọ́ rẹ kí o sì ṣẹ̀dá tàbí tẹ àkóónú jáde.",
     "allow": "Gba ìsopọ̀ láyè",
@@ -21,6 +22,7 @@
     "what": "Ṣàwárí àwọn iṣẹ́ àti àkójọpọ̀ gbogbo ènìyàn. Pẹ̀lú ìsopọ̀ àkáǹtì OAuth, ṣe àkóso àkọsílẹ̀ rẹ àti ìpamọ́ra rẹ, tẹ̀lé àwọn ènìyàn àti àlàyé, ka ìkìlọ̀, fi àwọn àmì-ìwé pamọ́ kí o sì ṣe àwòrán, fídíò, ohùn àti àwọn ohun ìní 3D. Ẹ̀gbọ́n ń lo àwọn òfin ìsanwó tí DeHub ń lò."
   },
   "creatorSupport": {
+    "campaignDescription": "Jẹ́ kí àwọn olùwòran ṣàtìlẹ́yìn fún àwọn olùṣẹ̀dá nípa wíwo ìṣẹ́jú-àáyá 30. Ó nílò fídíò tí a fọwọ́ sí tí ó kéré tán ní ìṣẹ́jú-àáyá 30, tí a gbé sókè nínú ojú-ọ̀nà ìpolówó lórí wẹ́ẹ̀bù.",
     "loadError": "Kò lè gbé ìpolówó kan.",
     "campaignLabel": "Àwọn ìpolówó ìtìlẹyìn Ẹlẹ́dàá",
     "close": "Pa ìpolówó",
@@ -50,6 +52,7 @@
     "title": "Ìṣẹ̀lẹ̀ rẹ. Ìwọ mìíràn."
   },
   "maintenance": {
+    "title": "Iṣẹ́ díẹ̀.\nDeHub tó dára jù.",
     "brand": "DeHub",
     "checkFailed": "A kò lè ṣe àyẹ̀wò wíwà. Jọ̀wọ́ gbìyànjú lẹ́ẹ̀kan síi.",
     "checking": "Ṣayẹwo...",
@@ -79,6 +82,7 @@
     "title": "Àwọn àṣàyàn ojú-ewé"
   },
   "twitchMirror": {
+    "title": "Àtúnṣàfihàn Twitch",
     "auto": "Ṣe afihan awọn ṣiṣan Twitch mi laifọwọyi",
     "connect": "So Twitch pọ̀",
     "consent": "So ikanni kan tí o ní nìkan. Ṣíṣe dígí fún DeHub láṣẹ láti ṣe àtúntò àwọn àtẹ̀jáde rẹ kí ó sì fi dípò rọ́pò rẹ̀ lábẹ́ ààyè ìforúkọsílẹ̀ rẹ tí ó wà tẹ́lẹ̀.",
@@ -125,6 +129,15 @@
     "useNamed": "Lo {{name}}"
   },
   "copy": {
+    "20dca9f9caf8": "O lè kúrò lójú ìwé yìí. Àwọn tókẹ́nì rẹ yóò dé sínú àpamọ́wọ́ rẹ ní kété tí a bá ti fìdí ìsanwó rẹ múlẹ̀.",
+    "27c7325ba6f7": "Iye rẹ̀ jẹ́ ",
+    "5d788f95f78a": "Ìyípadà Ipò (▲▼)",
+    "6da707c478f8": "日本語 (Èdè Jápáànù)",
+    "ea81bf0fd464": "Русский (Èdè Rọ́ṣíà)",
+    "f082eb679e6b": "San {{value1}} {{value2}}",
+    "f5057642d43e": "{{value1}} ìṣísílẹ̀ pẹ̀lú ìdánimọ̀ ara",
+    "fdd9e13d471c": "Ṣàtúnṣe àkọlé tàbí àpèjúwe ìfiránṣẹ́ tí o ṣẹ̀dá. Ẹni tó kọ́kọ́ ṣẹ̀dá rẹ̀ nìkan ló lè ṣàtúnṣe àwọn ìfiránṣẹ́ rẹ̀.",
+    "c7bf4bbdbcd8": "AD",
     "0dc33a06c7ba": "Fídíò pẹ̀lú ariwo àti àwọn ìlọ́sìn àkọ́kọ́ títí dé òpin",
     "104272ba3fd3": "✍️ Blog",
     "12a5fb358f94": "ANTIFA",
@@ -4299,6 +4312,8 @@
   },
   "notifications": {
     "custom": {
+      "bountyReply": "{{name}} fèsì sí ìpèníjà ẹ̀bùn rẹ",
+      "stageLive": "{{name}} wà láàyè lórí pèpéle ohùn kan",
       "bountyApplied": "{{name}} lo sí bounty rẹ",
       "bountyAppliedNamed": "{{name}} lo sí bounty rẹ \"{{title}}\"",
       "bountyReplyNamed": "{{name}} fèsì sí bounty rẹ \"{{title}}\"",
@@ -5103,6 +5118,9 @@
       "saved": "Àkọsílẹ̀ tí ó wà ní ìpamọ́."
     },
     "life": {
+      "next": "àyẹ̀wò tó kàn {{time}}",
+      "starting": "Ó ń ṣètò ìwà rẹ̀…",
+      "title": "Ó wà láàyè",
       "asleep": "Oorun ni {{home}}",
       "awake": "Dìde nínú {{home}}",
       "empty": "Kò sí nǹkankan mọ́. Yóò yẹ̀ wò láìpẹ́.",
@@ -5131,6 +5149,9 @@
       "viewPost": "Wo ifiweranṣẹ"
     },
     "tasks": {
+      "examples": "Gbé ìfiránṣẹ́ jáde lẹ́ẹ̀kan lójúmọ́ nípa: orin olómìnira\nỌ̀nà ìsọ̀rọ̀: oníwàádìí, ṣókí, bí ìjíròrò\nFẹ́ràn ìfiránṣẹ́ tuntun tó tó 2 lójúmọ́ nípa: orin, eré orí ìtàgé láàyè, rẹ́kọ́ọ̀dù vinyl",
+      "meta": "@{{agent}} · {{status}} · Tí a ti ṣe: {{total}}",
+      "title": "Fún aṣojú kan ní iṣẹ́",
       "eachHelp": "Olúkúlùkù aṣojú tí a yàn yóò ṣe iṣẹ́ náà ní kíkún.",
       "eachMode": "Oluranlowo kọọkan",
       "pacing": {
@@ -8000,6 +8021,7 @@
       "estimatedOperationsNote": "Owó ìṣiṣẹ́ ń tẹ̀lé ìṣesí oṣù tí ó ṣe àwòṣe, tí ó ga ní $ 100,000 ní oṣù Kọkànlá Oṣù 2021 tí ó sì ń dín kù lẹ́yìn náà. Àwọn owó tí a gba sílẹ̀ wà nínú rẹ̀, láì ka ìlọ́po méjì. Ìwòye ni èyí, kì í ṣe ìwé ìléwó.",
       "grossBnbSharingNote": "Owo-wiwọle pẹlu BnB ti a pin pẹlu awọn onigbọwọ ati awọn stakers. Àwọn owó náà ni wọ́n pín, tí DeHub kò fi pamọ́.",
       "group": {
+        "infrastructure": "Sáfà Droplet",
         "aiTools": "Àwọn ohun-èlò AI",
         "buys": "Rira nínú-ìṣe",
         "compute": "Kọ̀ǹpútà AI",
@@ -9385,6 +9407,7 @@
     "discordOptional": "Discord (aṣayan)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@iwo, tiktok.com/@iwo, vimeo.com/iwo…",
     "clearAll": "Sọ gbogbo nkan",
     "costsIntro": "Fídíò kọ̀ọ̀kan jẹ́ iye tó kéré ju ti ó tẹ̀lẹ̀ — àpẹ̀rẹ̀ náà bà jẹ́ kéré bí ìpín náà ti pọ̀, nítorí náà iye tó wà níbẹ̀ ni ohun tí iye fídíò yẹn dé lórí gbogbo.",
     "costsIntroShort": "Fídíò kọ̀ọ̀kan jẹ́ iye tó kéré ju ti ó tẹ̀lẹ̀ — àpẹ̀rẹ̀ náà bà jẹ́ kéré bí ìpín náà ti pọ̀. Iye gidi náà jẹ́ ìfihàn ṣáájú ki o san owó.",
@@ -11954,6 +11977,10 @@
     }
   },
   "creator": {
+    "presetDroneFlyoverName": "Fífò Drone Lókè",
+    "presetMerchMockupName": "Àwòkọ́ṣe Ọjà",
+    "presetTvSpotHint": "Ìpolówó tó dán mọ́rán bíi ti orí tẹlifíṣọ̀n",
+    "presetUgcTutorialHint": "Ìtọ́sọ́nà ìgbésẹ̀-sí-ìgbésẹ̀, tí a fi fóònù yà",
     "presetExtraCafeMenuHint": "Àkójọ oúnjẹ tó ṣeé kà lórí bébà àdánidá",
     "presetExtraOrigamiBuildingHint": "Àwọn ètò bébà tí a pọ̀ pẹ̀lú àwọn ìpọ̀ tó mọ́ gaara",
     "presetOpenGreenhouseWalkHint": "Ìfihàn Steadicam nípasẹ̀ àwọn ìtànṣán ìmọ́lẹ̀ tí ó kún fún erùpẹ̀",

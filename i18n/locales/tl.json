@@ -52,6 +52,7 @@
     "title": "Ang eksena mo. ibang ikaw."
   },
   "maintenance": {
+    "title": "Kaunting trabaho.\nMas mahusay na DeHub.",
     "brand": "DeHub",
     "checkFailed": "Hindi namin masuri ang availability. Pakisubukan muli.",
     "checking": "Sinusuri...",
@@ -81,6 +82,8 @@
     "title": "Pahina ng mga opsyon"
   },
   "twitchMirror": {
+    "open": "Panoorin sa DeHub",
+    "title": "Pag-mirror ng Twitch",
     "live": "Live sa DeHub",
     "auto": "Awtomatikong i-mirror ang aking mga Twitch stream",
     "connect": "Ikonekta ang Twitch",
@@ -126,6 +129,13 @@
     "useNamed": "Gamitin ang {{name}}"
   },
   "copy": {
+    "10d878fbdf00": "العربية (Arabe)",
+    "4a9fd15a895c": "Modelong sinanay ng DeHub",
+    "60b676c3ea06": "Claude of Duty",
+    "785e2d61b11e": "Likidong Kromo",
+    "ea81bf0fd464": "Русский (Ruso)",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "0039cdece89a": "💎 Pagpapangalang Token (Base)",
     "0090dc269d25": "Italiano (Italyano)",
     "00c90f4b707a": "SRT / VTT",
@@ -5184,6 +5194,7 @@
       "viewPost": "Tingnan ang post"
     },
     "tasks": {
+      "examples": "Mag-post isang beses kada araw tungkol sa: malayang musika\nEstilo: mausisa, maikli at parang nakikipagkuwentuhan\nMag-like ng hanggang 2 bagong post kada araw tungkol sa: musika, live na palabas, vinyl",
       "eachHelp": "Ang bawat napiling ahente ay nagsasagawa ng buong gawain.",
       "eachMode": "Bawat ahente",
       "pacing": {
@@ -8087,6 +8098,7 @@
       "unavailable": "Hindi maabot ang {{sources}}, kaya hindi sila kasama sa bawat kabuuan sa itaas sa halip na hulaan."
     },
     "taxSplit": {
+      "burnedDetail": "{{tokens}} DeHub ang sinunog sa {{n}} na pagbili-pabalik",
       "burned": "Binili pabalik at sinunog",
       "footnote": "Ang mga napanatili lamang na pondo ng pagpapatakbo ay binibilang bilang kita sa itaas. Ang mga buyback at ibinahaging gantimpala ay itatala nang hiwalay. Ang bawat halaga at orihinal na pera ay maaaring suriin sa ledger.",
       "intro": "Ang historical revenue ay nagpondo sa mga operasyon, token buyback, at mga reward para sa mga holder at staker. Ang mga halaga ay ipinapakita sa dolyar sa halaga nito sa bawat petsa ng pagbabayad. Buksan ang bawat bahagi upang makita ang orihinal na mga currency nito at bawat transaksyon.",

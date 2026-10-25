@@ -1,5 +1,24 @@
 {
   "copy": {
+    "748d190d59af": "📱 Apple の App Store",
+    "ea81bf0fd464": "Русский (ロシア語)",
+    "f05c0acaa8fa": "ユーザー名#0000",
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "2f51108189d2": "PPV: ",
+    "419f1a83fab2": "yourname.eth",
+    "450683b66da4": " SRT / VTT",
+    "53e6cdc30765": "you@example.com",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "89c9b65356e3": "X (Twitter)",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "b4c9a289323b": "user@example.com",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
     "e17602050e02": "ソーシャルメディア私たちは",
     "93100fc44c0a": "@ユーザー名",
     "a4d1abed0b2b": "モデ",
@@ -2798,6 +2817,7 @@
     "postCount_other": "{{count}} 件の投稿"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "ガラス張り",
     "shortsEnabled": "ショートパンツ",
     "shortsEnabledDesc": "ショートフィードタブとショートカルーセルをホームに表示します。",
@@ -4041,6 +4061,7 @@
     "transferDhb": "トークンを転送"
   },
   "wallet": {
+    "evmAddressLabel": "EVM",
     "connectUnavailable": "このビルドではウォレット接続を利用できません — 代わりにリカバリーフレーズで復元してください。",
     "connectedWrongWallet": "そのウォレットは {{connected}} で、{{address}} ではありません。何も変更されていません。",
     "restoreWrongWallet": "これは {{address}} ではなく別のウォレットを開きます。何も変更されていません。",
@@ -4852,6 +4873,7 @@
     "loadFailed": "市場データを読み込めませんでした"
   },
   "ads": {
+    "ecpm": "eCPM",
     "subtitle": "バッジ階層で DeHub 保有者にリーチ",
     "tabs": {
       "overview": "概要",
@@ -4985,6 +5007,8 @@
       }
     },
     "tasks": {
+      "examples": "1日1回投稿するテーマ: インディーズ音楽\nスタイル: 好奇心旺盛で簡潔、会話調\n1日最大2件の最近の投稿に「いいね」するテーマ: 音楽、ライブ、レコード",
+      "next": "次回の実行: {{time}}",
       "eachHelp": "選択された各エージェントは、完全なタスクを実行します。",
       "eachMode": "各エージェント",
       "pacing": {
@@ -5334,6 +5358,7 @@
     "passkeyBackupHint": "あなたのアカウントは、このデバイスのパスキーに保存されます。ほとんどの電話では、GoogleまたはAppleアカウントと同期され、設定でパスワードのバックアップを追加できます。"
   },
   "careers": {
+    "xTwitter": "X (Twitter)",
     "title": "DeHub で働く",
     "subtitle": "分散型ソーシャルメディアの未来を構築するチームに参加",
     "intro": "クリエイターとコミュニティを第一に考える次世代のソーシャルメディアの一員になりたい情熱的な人材を募集しています。すべてのポジションはフルリモート、フレキシブルな勤務時間です。",
@@ -5616,6 +5641,7 @@
     "searchDehubFor": "DeHub で「{{query}}」を検索"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "コメントを報告",
     "reportCommentTitle": "このコメントを報告する",
     "reportCommentDescription": "このコメントのどこに問題があるかを教えてください。モデレーターが確認します。",
@@ -6203,6 +6229,9 @@
       "slowMode": "スローモード：{{interval}}ごとに1件のメッセージ"
     },
     "manage": {
+      "inviteLimit": "上限 {{n}}",
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "管理者を閉じる",
       "cancel": "キャンセル",
       "dismissAdmin": "管理者を閉じる",
@@ -6776,6 +6805,7 @@
     "priceRange": "{{min}} ～ {{max}} トークン。"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "編集",
     "listingUpdated": "リスティングが更新されました！",
     "saveListing": "変更を保存",
@@ -8653,6 +8683,7 @@
     "creatorEarnsDirect": "加入者はDeHubトークンで支払います。購読した瞬間にシェアがウォレットに表示されますが、バッジランクのプラットフォーム手数料は差し引かれます。"
   },
   "live": {
+    "detailsLivepeerId": "Livepeer ID:",
     "bigEvent": "大規模イベント",
     "bigEventHint": "大勢の視聴者向け：約20秒遅れで再生されますが、途切れにくくなります。",
     "notSet": "未設定",
@@ -10245,6 +10276,7 @@
       "lockedTranslation": "ロックされた字幕を含めるには、ロックを解除してください。"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "新しいデザイン",
       "yourDesigns": "マイデザイン",
       "noDesigns": "作成したデザインはこのスマホに保存され、ここに表示されます。",
@@ -10586,6 +10618,7 @@
       "playhead": "再生位置"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "動画",
       "sound": "サウンド",
       "shape": "図形",
@@ -10630,6 +10663,7 @@
       "tooLarge": "このファイルはエディターで扱うには大きすぎます。上限は400 MBです。"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "モーション",
       "hint": "キーフレームでレイヤーを時間に沿って動かせます。ここで追加し、再生ヘッドを動かしてレイヤーを変更すると、その間をなめらかに動きます。",
       "outside": "キーフレームを追加・変更するには、再生ヘッドをこのレイヤーの上に移動してください。",
@@ -13486,6 +13520,7 @@
     "statusUnregistered": "登録されていません"
   },
   "launchpad": {
+    "graduatesAtValue": "時価総額 $42,000",
     "twitter": "X/Twitter",
     "ago": "{{age}} 前",
     "amountIn": "{{symbol}}単位の金額",
@@ -13675,6 +13710,7 @@
     "checkoutUnavailable": "チェックアウトは現在ご利用いただけません。 しばらくしてからもう一度お試しください。"
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "座席あたり/月",
     "plansForEveryWorkflow": "すべてのワークフロー向けプラン",
     "findTheRightFit": "個人からエンタープライズチームまで、適切なプランを見つけてください",
@@ -14371,6 +14407,7 @@
     "failed": "Twitchミラーリングを更新できませんでした。もう一度お試しください。"
   },
   "maintenance": {
+    "title": "ちょっとしたメンテナンス。\nもっと良い DeHub へ。",
     "brand": "デハブ",
     "mode": "メンテナンスモード",
     "description": "メンテナンスを行っています。しばらくしてから再度ご確認ください。",

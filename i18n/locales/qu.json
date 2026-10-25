@@ -52,6 +52,7 @@
     "title": "Kikin kawsayniyki. Huk rikch'ayniyuq kawsayniyki."
   },
   "maintenance": {
+    "title": "Huk chikan llamk'ay.\nAswan allin DeHub.",
     "brand": "DeHub sutiyuq runa",
     "checkFailed": "Manam atirqaykuchu tarikuyninta qawayta. Ama hina kaspa, hukmanta kallpachakuy.",
     "checking": "K'ancha k'ancha.",
@@ -128,6 +129,14 @@
     "useNamed": "{{name}} nisqawan yanapachikuy."
   },
   "copy": {
+    "2b13f4c55720": "💸 Kamaqkunaman qullqi quy",
+    "365075d796de": "🎞️ Uchuy videokuna",
+    "6da707c478f8": "日本語 (Japun simi)",
+    "80557bda57d2": "Video churasqa",
+    "f4eab5052f27": "Churasqata takyachiy",
+    "5b560f273940": "🛰️ DePIN",
+    "b602b7029be6": "Pt",
+    "b62c681738d1": "Cu",
     "9ccec3cf40d4": "tinkiy qillqa",
     "a35abcd6dac9": "Icono",
     "002286513398": "Manam hayñiyuqchu kanki huñunakuykunata kamachinaykipaq",
@@ -5102,6 +5111,7 @@
     "capacity": "{{used}}, {{limit}} agentkunamanta · {{badge}}",
     "noBadge": "Mana badge",
     "profile": {
+      "avatar": "Rikch'ay (avatar)",
       "banner": "Bandera",
       "edit": "Perfil nisqa llamk'apuy",
       "imageHelp": "JPG, PNG, WebP utaq GIF, sapakama 5 MBkama.",
@@ -5139,6 +5149,7 @@
       "viewPost": "Qillqasqata qaway"
     },
     "tasks": {
+      "examples": "P'unchawpi huk kutita kaymanta churay: independiente musika\nImayna: tapukuq, pisi simi, rimanakuy hina\nP'unchawpi 2 kama musuq churasqakunata munay kaykunamanta: musika, kawsaq takiykuna, vinilo",
       "eachHelp": "Sapa akllasqa agente hunt’asqa ruwayta ruwan.",
       "eachMode": "Sapa agente",
       "pacing": {
@@ -11996,6 +12007,7 @@
     }
   },
   "creator": {
+    "toolRemake": "Musuqmanta ruway",
     "editInTimeline": "Tiempo nisqapi llamk'apuy",
     "navVideo": "Video",
     "presetExtraArchitectureLightChangeHint": "Llampu phuyukunaqa huk escena de referencia nisqapi k’anchayta cambian",

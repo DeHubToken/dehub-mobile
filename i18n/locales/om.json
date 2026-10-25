@@ -52,6 +52,8 @@
     "title": "Scene kee. Si biraa tokko."
   },
   "maintenance": {
+    "checking": "Mirkaneessaa jira...",
+    "title": "Hojii xiqqoo.\nDeHub caalaatti fooyya'e.",
     "brand": "DeHub jedhamuun beekama",
     "checkFailed": "Argamuu isaa ilaaluu hin dandeenye. Mee irra deebi'ii yaalaa.",
     "community": "Hawaasa dursa. Yeroo hunda.",
@@ -127,6 +129,7 @@
     "useNamed": "{{name}} fayyadamaa."
   },
   "copy": {
+    "6da707c478f8": "日本語 (Afaan Jaappaan)",
     "0913f7bb109b": "fayyadamaa kana",
     "1aa9573705bf": "Comment like godhaa",
     "25d36bfae913": "Hanga ammaatti live streams hin jiru",
@@ -4542,6 +4545,7 @@
     "global": "Addunyaa"
   },
   "features": {
+    "promptDevice": "Meeshaa & OS (rakkoolee teknikaaf)",
     "promptAttach": "Suuraawwan maxxansi",
     "promptAttachment": "Attachment {{number}}",
     "promptDetails": "Optional details",
@@ -5157,6 +5161,8 @@
       "viewPost": "Maxxansa ilaali"
     },
     "tasks": {
+      "examples": "Guyyaatti al tokko waa'ee kanaa maxxansi: muuziqaa walabaa\nAkkaataa: kan beekuu barbaadu, gabaabaa fi haasaa fakkaatu\nGuyyaatti maxxansoota dhiyoo hanga 2 waa'ee kanaa jaalladhu: muuziqaa, agarsiisa kallattii, viinilii",
+      "title": "Eejentiif hojii kenni",
       "eachHelp": "Tokkoon tokkoon bakka bu'aa filatame hojii guutuu raawwata.",
       "eachMode": "Tokkoon tokkoon ergamaa",
       "pacing": {
@@ -6269,6 +6275,7 @@
       "unavailable": "Barreeffamni kun hin argamu."
     },
     "followerInvites": {
+      "send": "Afeerraa ergi ({{count}})",
       "clear": "Ifaa",
       "detail": "Gadii dhihaan 50 irraa dhihaattiin. Dhihaattiin gadii dhihaanuun, dhihaattiin gadii kalaqaattiin.",
       "empty": "Fuula kana irratti hordoftoonni hin jiran.",
@@ -10884,6 +10891,7 @@
       }
     },
     "live": {
+      "transferring": "Gulaallii kallattii dabarsaa jira…",
       "paused": "Gulaalliin kallattiin dhaabbate",
       "personalCopy": "Koppii dhuunfaa save",
       "privateHint": "Argamuun qofti gulaallii tokkollee hin qooddatu. Share edits live maddoota haaraa dhuunfaan olkaa'a. Save to cloud version dhaabbataa ta'e eega.",
@@ -12018,6 +12026,13 @@
     }
   },
   "creator": {
+    "presetExtraBookJacketName": "Haguuggii kitaabaa",
+    "presetExtraEventFlyerName": "Waraqaa beeksisa sagantaa",
+    "presetExtraIridescentGlassName": "Burcuqqoo halluu jijjiiru",
+    "presetExtraPodcastCoverName": "Haguuggii podkaastii",
+    "presetExtraSplitLightPortraitHint": "Qarqara fuulaa tokko ifaa, gaaddidduu laafaa tokko",
+    "presetExtraSportsPosterName": "Poostara ispoortii",
+    "presetOpenPoppyStillLifeName": "Fakkii callisaa abaaboo poopii",
     "presetAnimateStillName": "Animate a Still",
     "presetFlatIllustrationName": "Fakkeenya Diriiraa",
     "presetOpenDoughCloseupName": "Daakuu dhiyeenya",

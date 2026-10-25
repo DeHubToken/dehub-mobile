@@ -82,6 +82,7 @@
     "title": "頁面選項"
   },
   "twitchMirror": {
+    "retry": "重試同步轉播",
     "auto": "自動鏡像我嘅 Twitch 串流",
     "connect": "連接 Twitch",
     "consent": "只連接你擁有嘅頻道。啟用鏡像功能會授權 DeHub 喺你現有嘅錄音津貼下轉播你嘅廣播同埋儲存重播。",
@@ -99,6 +100,8 @@
     "waiting": "準備好下次 Twitch 廣播啦"
   },
   "viralTemplates": {
+    "preview": "播放 {{name}} 預覽",
+    "useNamed": "用 {{name}}",
     "all": "全部",
     "back": "返回模板",
     "browse": "瀏覽所有 {{count}} 範本",
@@ -126,6 +129,18 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "0d59864b14b3": " kbps",
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "2f51108189d2": "PPV: ",
+    "450683b66da4": " SRT / VTT",
+    "50a45e647dbb": "REC",
+    "5b560f273940": "🛰️ DePIN",
+    "713d24d02e26": "XXXX-XXXX",
+    "8d6f0c73fbaf": "RTMP:",
+    "bd4ef74463ac": "BUSD",
+    "bf640b85d499": "dehub.io · ",
+    "e63ffac3f5e5": "PEPE",
     "1a00975a0ac1": "@ 頻道",
     "1aa9573705bf": "留言讚好",
     "3010b02a4030": "一個即時音訊室，用戶可以喺嗰度講嘢、聽同埋舉手加入對話。",
@@ -5107,6 +5122,8 @@
       "empty": "仲未有嘢。佢好快就會入住。",
       "help": "畀呢個代理自己生活。佢會用自己嘅聲音保留自己嘅時間、帖子、讚好同回覆，同埋夜晚瞓覺。",
       "kind": {
+        "comment": "已留言",
+        "reply": "已回覆",
         "error": "咁樣唔好使喇",
         "like": "鍾意咗個帖子",
         "post": "發佈咗",
@@ -5131,6 +5148,7 @@
       "viewPost": "睇吓帖子"
     },
     "tasks": {
+      "examples": "每日發一次帖，講：獨立音樂\n風格：好奇、精簡、好似傾偈咁\n每日最多讚 2 個最近嘅帖，講：音樂、現場表演、黑膠",
       "eachHelp": "每個選定嘅代理都會執行全部任務。",
       "eachMode": "每個代理",
       "pacing": {
@@ -5467,6 +5485,7 @@
     "passkeyBackupHint": "你嘅帳戶儲存在呢部裝置嘅密碼匙度。喺大部分手機上，佢會同你嘅 Google 或 Apple 帳戶同步，你仲可以喺設定度加入密碼備份。"
   },
   "careers": {
+    "instagram": "Instagram",
     "title": "加入DeHub",
     "subtitle": "加入建設去中心化社交媒體未來嘅團隊",
     "intro": "我哋搵緊有熱情嘅人加入下一波社交媒體浪潮，將創作者同社區放喺首位。所有職位都係完全遠程、彈性工時。",
@@ -5749,6 +5768,7 @@
     "searchDehubFor": "喺 DeHub 搜尋「{{query}}」"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "舉報留言",
     "reportCommentTitle": "舉報此留言",
     "reportCommentDescription": "請告訴我們此留言有何問題，我們的管理員將會審查。",
@@ -6229,6 +6249,7 @@
   },
   "communities": {
     "existingPost": {
+      "add": "加入現有帖文",
       "remove": "從社群移除",
       "added": "帖子加入咗社群",
       "adding": "加緊 …",
@@ -6361,6 +6382,8 @@
       "slowMode": "慢速模式：每個 {{interval}} 一個訊息"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "解僱管理員",
       "cancel": "取消",
       "dismissAdmin": "解僱管理員",
@@ -6909,6 +6932,7 @@
     "priceRange": "介於 {{min}} 和 {{max}} 個代幣之間。"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "修改",
     "listingUpdated": "樓盤更新咗！",
     "saveListing": "儲存變更",
@@ -7215,6 +7239,7 @@
     "kingsGambitBoardEmpty": "仲未有網上對局完成。開個挑戰啦。"
   },
   "videoLooks": {
+    "vhs": "VHS",
     "button": "鏡頭效果",
     "title": "效果",
     "hint": "喺條片離開呢部裝置之前套用 — 觀眾睇到嘅同你喺度睇到嘅一模一樣。",
@@ -9381,6 +9406,7 @@
     "discordOptional": "Discord (可選)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@你, tiktok.com/@你, vimeo.com/你…",
     "clearAll": "清除全部",
     "costsIntro": "每個視頻都比前一個便宜 — 批量越大費率越低，下面的價格是該數量視頻的總費用。",
     "costsIntroShort": "每個視頻都比前一個便宜 — 批量越大費率越低。確切的價格會在你付款前顯示。",
@@ -10170,6 +10196,7 @@
       "restore": "還原背景"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
         "answer": "呢個係答案",
         "before": "之前",
@@ -10355,6 +10382,7 @@
       "visibilityHint": "隱藏嘅頁面仍然可以編輯，同埋可以下載。"
     },
     "captions": {
+      "replaceCount": "喺 {{total}} 段字幕入面取代",
       "captionText": "字幕文字",
       "emptyText": "空白嘅字幕",
       "findText": "喺字幕入面搵",
@@ -10382,6 +10410,7 @@
       "failed": "呢段片整唔到字幕。"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "新設計",
       "yourDesigns": "你嘅設計",
       "noDesigns": "你整嘅設計會儲存喺呢部手機，並喺度顯示。",
@@ -10723,6 +10752,7 @@
       "pause": "暫停"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "影片",
       "sound": "聲音",
       "shape": "形狀",
@@ -10767,6 +10797,7 @@
       "tooLarge": "呢個檔案對編輯器嚟講太大喇，上限係 400 MB。"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "動態",
       "hint": "關鍵影格令圖層隨時間移動。喺呢度加一個，移動播放頭，改吓個圖層，佢就會喺關鍵影格之間順滑過渡。",
       "outside": "將播放頭移到呢個圖層上面，就可以新增或者修改關鍵影格。",
@@ -10810,6 +10841,8 @@
       }
     },
     "live": {
+      "receiveEdits": "接收即時編輯",
+      "stopEdits": "停止即時編輯",
       "personalCopy": "儲存個人副本",
       "receiving": "接收緊即時編輯",
       "sharing": "分享緊即時編輯",

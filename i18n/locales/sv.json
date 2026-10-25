@@ -52,6 +52,7 @@
     "title": "Din scen. En annan du."
   },
   "maintenance": {
+    "title": "Lite arbete.\nEtt bättre DeHub.",
     "brand": "DeHub",
     "checkFailed": "Vi kunde inte kontrollera tillgängligheten. Vänligen försök igen.",
     "checking": "Kontrollerar...",
@@ -128,6 +129,10 @@
     "useNamed": "Använd {{name}}"
   },
   "copy": {
+    "10d878fbdf00": "العربية (arabiska)",
+    "4df4ce91fa85": "中文 (kinesiska)",
+    "6da707c478f8": "日本語 (japanska)",
+    "ea81bf0fd464": "Русский (ryska)",
     "0039cdece89a": "💎 Token Staking (Bas)",
     "0090dc269d25": "Italiano (italienska)",
     "00c90f4b707a": "SRT / VTT",
@@ -5143,6 +5148,7 @@
       "viewPost": "Visa inlägg"
     },
     "tasks": {
+      "examples": "Publicera ett inlägg per dag om: oberoende musik\nStil: nyfiken, koncis och samtalsmässig\nGilla upp till 2 nya inlägg per dag om: musik, livespelningar, vinyl",
       "distribution": "Fördelning",
       "eachHelp": "Varje vald agent utför hela uppgiften.",
       "eachMode": "Varje agent",

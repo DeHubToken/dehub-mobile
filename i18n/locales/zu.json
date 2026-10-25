@@ -52,6 +52,9 @@
     "title": "Isigcawu sakho. Wena ohlukile."
   },
   "maintenance": {
+    "mode": "Imodi yokulungisa",
+    "ownership": "Umthombo ovulekile. Ngokwabasebenzisi.",
+    "title": "Umsebenzi omncane.\nI-DeHub engcono.",
     "brand": "I-DeHub",
     "checkFailed": "Asikwazanga ukuhlola ukutholakala. Sicela uzame futhi.",
     "checking": "Iyahlola...",
@@ -79,6 +82,7 @@
     "title": "Izinketho zekhasi"
   },
   "twitchMirror": {
+    "disconnect": "Nqamula i-Twitch",
     "auto": "Bonisa ngokuzenzakalelayo ukusakaza kwami kwe-Twitch",
     "connect": "Xhuma i-Twitch",
     "consent": "Xhuma kuphela ishaneli ongumnikazi wayo. Ukuvumela izibuko kugunyaza i-DeHub ukuba idlulisele ukusakaza kwakho futhi igcine ama-replay ngaphansi kwesibonelelo sakho sokurekhoda esikhona.",
@@ -125,6 +129,21 @@
     "useNamed": "Sebenzisa {{name}}"
   },
   "copy": {
+    "2b13f4c55720": "💸 Ukunikeza amathiphu",
+    "362058144c4a": "Imodeli ehamba phambili ye-xAI $$$",
+    "393c70daa40f": "Izinhlelo zokusebenza ze-TV nekhonsoli",
+    "63cede5fbee6": "Ukusakaza bukhoma",
+    "6aad3f5a25b5": "Khuluma ngo-@{{value1}}",
+    "6da707c478f8": "日本語 (isiJapane)",
+    "91e1d9085ab8": "Uzoba Ngumnikazi Wakho Konke,",
+    "adad75f48d49": "Vota phansi",
+    "c9a2d61de5a7": "Igama lomsebenzisi lisethiwe",
+    "ccb4c324f516": "Hhayi Manje",
+    "f082eb679e6b": "Khokha {{value1}} {{value2}}",
+    "f2598220db3e": "Dlala {{value1}}",
+    "fc7b39afbd53": "Ukukhiqiza nokuhlela nge-Seedream ngentengo ephansi",
+    "b602b7029be6": "Pt",
+    "b62c681738d1": "Cu",
     "0cce4de1bf95": "I-hash yokuthengiselana",
     "17aadc092fe6": "Inkokhelo yehlulekile",
     "5190ff487713": "I-Staking",
@@ -5130,6 +5149,8 @@
       "viewPost": "Buka okuthunyelwe"
     },
     "tasks": {
+      "examples": "Thumela kanye ngosuku ngalokhu: umculo ozimele\nIsitayela: ilukuluku, okufushane nokuxoxa\nThanda okuthunyelwe kwakamuva okufika ku-2 ngosuku mayelana nalokhu: umculo, imibukiso ebukhoma, i-vinyl",
+      "meta": "@{{agent}} · {{status}} · Okucutshunguliwe: {{total}}",
       "eachHelp": "I-ejenti ngayinye ekhethiwe yenza umsebenzi ogcwele.",
       "eachMode": "I-ejenti ngayinye",
       "pacing": {
@@ -8733,6 +8754,7 @@
     "creatorEarnsDirect": "Ababhalisile bakhokha ngamathokheni e-DeHub. Izabelo zakho zihlala esikhwameni sakho semali lapho zibhalisa, nciphisa inani lepulatifomu lebanga lakho lebheji."
   },
   "live": {
+    "noOneStreamingGame": "Akekho osakaza i-{{game}} njengamanje.",
     "isLiveNow": "{{name}} ibukhoma",
     "justChatting": "Vele Uxoxa",
     "loadStreamsFailed": "Ungazi ukubhala amasiko. Funa ukubhala ngoxolo.",
@@ -9415,6 +9437,7 @@
     "discordOptional": "I-Discord (uyazikhethela)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@wena, tiktok.com/@wena, vimeo.com/wena…",
     "clearAll": "Sula konke",
     "costsIntro": "Ividiyo ngayinye iligcina kakhulu kuneyangaphambi kwayo — izinga liyehla njengoba ibheshi likhula, ngakho intengo engezansi yilokho okubizwa yilelo zinzi zvevidiyo.",
     "costsIntroShort": "Ividiyo ngayinye iligcina kakhulu kuneyangaphambi kwayo — izinga liyehla njengoba ibheshi likhula. Intengo enembile iboniswa ngaphambi kokuthi ukhokhe.",

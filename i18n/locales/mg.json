@@ -22,6 +22,7 @@
     "what": "Tsidiho ny lahatsoratra sy ny mombamomba ny daholobe. Miaraka amin'ny fifandraisana amin'ny kaonty OAuth, mitantana ny mombamomba anao sy ny fiainanao manokana, mamoaka lahatsoratra sy fanehoan-kevitra, araho ny olona, vakio ny fampandrenesana, vonjeo ny rohy ary mamorona sary, lahatsary, feo ary 3D fananana. Ny Generation dia mampiasa ny fitsipika mifehy ny fandoavam-bola efa misy DeHub."
   },
   "creatorSupport": {
+    "sponsoredBy": "Tohanan'i {{advertiser}}",
     "campaignDescription": "Omeo ny mpanjifa amin'ny alalan'ny fijerena ny 30 segondra. Mitaky lahatsary iray nankatoavina ny, fara fahakeliny 30 segondra, nivoaka tao amin'ny tranonkala ny dokam-barotra vavahadin-tserasera.",
     "campaignLabel": "Dokambarotra fanohanana ny mpamorona",
     "close": "Hidio ilay dokambarotra",
@@ -51,6 +52,7 @@
     "title": "Ny sehatra misy anao. Ianao amin'ny endrika hafa."
   },
   "maintenance": {
+    "title": "Asa kely.\nDeHub tsara kokoa.",
     "brand": "DeHub",
     "checkFailed": "Tsy afaka manadihady ny mety ho fisian'ny izahay. Avereno andramana azafady.",
     "checking": "Mifandray...",
@@ -98,6 +100,8 @@
     "waiting": "Vonona ho an'ny fampielezam-peo Twitch manaraka"
   },
   "viralTemplates": {
+    "preview": "Alefaso ny topi-maso {{name}}",
+    "useNamed": "Ampiasao {{name}}",
     "all": "Izy rehetra",
     "back": "Miverina amin'ny môdely",
     "browse": "Zahao daholo {{count}} templates",
@@ -125,6 +129,13 @@
     "use": "Ampiasao ity môdely ity"
   },
   "copy": {
+    "084d8c213a85": "Omeo naoty {{value1}} amin'ny 5",
+    "6da707c478f8": "日本語 (Japoney)",
+    "79cea90fab21": "{{value1}}, {{value2}} tsy voavaky",
+    "8a380d18f180": "Voafafa ny fanentanana",
+    "9f68c44b21cf": "Hijery {{value1}}",
+    "bc7b4fda29f9": "Ankasitraho",
+    "f4eab5052f27": "Apetaho eo ambony ny lahatsoratra",
     "c11092bc0861": "Efamira",
     "fd3fdb5a65ea": "Hanarahana Indray",
     "002286513398": "Tsy manana alalana hitantana hetsika ianao",
@@ -5122,6 +5133,7 @@
     "capacity": "{{used}} {{limit}} agents {{badge}}",
     "noBadge": "Tsy misy badge",
     "profile": {
+      "avatar": "Sary famantarana",
       "banner": "Sora-baventy",
       "edit": "Hanova ny profil",
       "imageHelp": "Azo asiana ip hatramin'ny 5g, ny JPG, ny WebP na ny GIF dia 5 MB.",
@@ -5159,6 +5171,7 @@
       "viewPost": "Hijery ny lahatsoratra"
     },
     "tasks": {
+      "examples": "Mamoaha lahatsoratra indray mandeha isan'andro momba ny: mozika tsy miankina\nFomba: liana, fohy ary toy ny resaka\nTiavo hatramin'ny lahatsoratra vao haingana 2 isan'andro momba ny: mozika, fampisehoana mivantana, kapila vinyl",
       "eachHelp": "Ny mpandray anjara tsirairay dia manatanteraka ny asany amin'ny fomba feno.",
       "eachMode": "Ny solontena tsirairay",
       "pacing": {
@@ -9416,6 +9429,7 @@
     "discordOptional": "Discord (tsy voatery)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@ianao, tiktok.com/@ianao, vimeo.com/ianao…",
     "clearAll": "Mahafoy ny rehetra",
     "costsTitle": "Ny vidiny",
     "creditApplied": "kredit ampiharina",
@@ -12061,6 +12075,8 @@
     }
   },
   "creator": {
+    "presetOpenLighthouseOrbitName": "Fihodinana manodidina ny fanilo",
+    "studioGeneratingModel": "Mamorona ny modely 3D-nao…",
     "presetExtraCeramicPedestalName": "Toby seramika",
     "editInTimeline": "Hanova ao amin'ny fandaharam-potoana",
     "presetExtraArchitectureLightChangeHint": "Rahona malefaka miova fahazavana eo amin'ny sehatra boky",

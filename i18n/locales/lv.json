@@ -52,6 +52,7 @@
     "title": "Jūsu scēns. Cits jūs."
   },
   "maintenance": {
+    "title": "Mazliet darba.\nLabāks DeHub.",
     "brand": "DeHub",
     "checkFailed": "Neizdevās pārbaudīt pieejamību. Lūdzu, mēģiniet vēlreiz.",
     "checking": "Pārbauda...",
@@ -128,6 +129,9 @@
     "useNamed": "Izmantot {{name}}"
   },
   "copy": {
+    "10d878fbdf00": "العربية (Arābu)",
+    "6da707c478f8": "日本語 (Japāņu)",
+    "ea81bf0fd464": "Русский (Krievu)",
     "b295e355b543": "💵 Valūtas izvades",
     "0039cdece89a": "💎 Tokenu stākšana (bāze)",
     "0090dc269d25": "Italiano (itāļu)",
@@ -5144,6 +5148,7 @@
       "viewPost": "Skatīt ziņu"
     },
     "tasks": {
+      "examples": "Publicē ierakstu reizi dienā par: neatkarīgo mūziku\nStils: zinātkārs, kodolīgs un sarunvalodas\nAtzīmē ar “Patīk” līdz 2 nesenajiem ierakstiem dienā par: mūziku, koncertiem, vinila platēm",
       "eachHelp": "Katrs atlasītais aģents veic pilnu uzdevumu.",
       "eachMode": "Katrs aģents",
       "pacing": {
@@ -9401,6 +9406,7 @@
     "discordOptional": "Discord (nav obligāts)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@tu, tiktok.com/@tu, vimeo.com/tu…",
     "clearAll": "Notīrēt visu",
     "costsIntro": "Katrs video ir lētāks nekā iepriekšējais — likme samazinās, palielinoties partijai, tāpēc zemāk rādītā cena ir kopējā summa šim video skaitam.",
     "costsIntroShort": "Katrs video ir lētāks nekā iepriekšējais — likme samazinās, palielinoties partijai. Precīza cena tiek parādīta pirms maksāšanas.",

@@ -52,6 +52,7 @@
     "title": "Twoja scena. Inny ty."
   },
   "maintenance": {
+    "title": "Trochę pracy.\nLepszy DeHub.",
     "brand": "DeHub",
     "checkFailed": "Nie mogliśmy sprawdzić dostępności. Spróbuj ponownie.",
     "checking": "Sprawdzam...",
@@ -99,6 +100,7 @@
     "waiting": "Gotowe do następnej transmisji na Twitch"
   },
   "viralTemplates": {
+    "preview": "Odtwórz podgląd: {{name}}",
     "all": "Wszystkie",
     "back": "Powrót do szablonów",
     "browse": "Przeglądaj wszystkie szablony {{count}}",
@@ -127,6 +129,9 @@
     "useNamed": "Użyj {{name}}"
   },
   "copy": {
+    "6da707c478f8": "日本語 (japoński)",
+    "ea81bf0fd464": "Русский (rosyjski)",
+    "468415f0e112": "Ag",
     "86f8a694159b": "Zarządzanie",
     "0039cdece89a": "💎 Stawianie Tokenów (Podstawowe)",
     "0090dc269d25": "Włoski (włoski)",
@@ -5143,6 +5148,7 @@
       "viewPost": "Zobacz post"
     },
     "tasks": {
+      "examples": "Publikuj raz dziennie o: muzyce niezależnej\nStyl: ciekawy, zwięzły i swobodny\nPolub do 2 najnowszych postów dziennie o: muzyce, koncertach, winylach",
       "eachHelp": "Każdy wybrany agent wykonuje pełne zadanie.",
       "eachMode": "Każdy agent",
       "pacing": {
