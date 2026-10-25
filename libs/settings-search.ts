@@ -50,6 +50,7 @@ export const SETTINGS_SEARCH_INDEX: SettingsSearchEntry[] = [
   { tab: 'profile', anchor: 'your-content', label: 'Your Content', labelKey: 'settings.yourContent', keywords: 'videos saved posts drafts library' },
   { tab: 'profile', anchor: 'profiles', label: 'Profiles', labelKey: 'settings.profiles', keywords: 'accounts switch add account multiple' },
   { tab: 'profile', anchor: 'delete-account', label: 'Delete account', labelKey: 'accountDeletion.title', keywords: 'delete remove close erase account data personal information' },
+  { tab: 'profile', anchor: 'creator', label: 'Creator', labelKey: 'commandCentre.creator', keywords: 'creator studio create image video song music 3d generate' },
 
   // Appearance
   { tab: 'appearance', anchor: 'theme', label: 'Theme', labelKey: 'settings.theme', keywords: 'minimal look style dark black square flat cosmic hazy nights swarms lava lamp winter war osaka jungle background animated' },
