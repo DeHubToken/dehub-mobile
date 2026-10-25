@@ -13,6 +13,8 @@ import AppDrawer from "../components/Home/AppDrawer";
 import { useAppTheme } from "../context/ThemeContext";
 import { LIGHT_PAGE_FILL } from "../theme/colors";
 import { deferredScreen } from "./deferredScreen";
+import AppWideTabBar from "./AppWideTabBar";
+import { TabBarHideProvider } from "../context/TabBarHideContext";
 
 /**
  * Native stack, not @react-navigation/stack.
@@ -54,7 +56,7 @@ function AppNavigatorContent() {
   const { isMinimal, isLight, skin } = useAppTheme();
 
   return (
-    <>
+    <TabBarHideProvider>
       <Stack.Navigator
         initialRouteName={ScreenNames.Root}
         screenLayout={withScreenBoundary}
@@ -597,8 +599,9 @@ function AppNavigatorContent() {
         ) : null}
       </Stack.Group>
       </Stack.Navigator>
+      <AppWideTabBar />
       <AppDrawer visible={drawerOpen} onClose={closeDrawer} />
-    </>
+    </TabBarHideProvider>
   );
 }
 

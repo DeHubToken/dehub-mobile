@@ -7,6 +7,8 @@ export enum ScreenNames {
   NoInternet = 'NoInternet',
   Splash = 'Splash',
   Profile = 'Profile',
+  /** Your own profile, kept loaded as a hidden bottom-bar tab. */
+  ProfileTab = 'ProfileTab',
   Notifications = 'Notifications',
   NotificationSettings = 'NotificationSettings',
   Search = 'Search',

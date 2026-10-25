@@ -1,6 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import { DIGITAL_PURCHASES_ENABLED } from "../config/storefront";
-import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated as NativeAnimated,
   Easing as NativeEasing,
@@ -26,7 +26,10 @@ import Reanimated, {
   withDelay,
   Easing,
   interpolate,
+  runOnJS,
 } from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { tabBarDraggedAway } from "../libs/tab-bar-presence";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import Icon from "../components/ui/Icon";
@@ -420,6 +423,7 @@ const ScrollNavButton = memo<{
 
 const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }) => {
   const { t } = useTranslation();
+  const { t: _copyNav } = _useCopy();
   // Written dark; System Light turns it around as it renders (libs/jsx/tone.js).
   const { colors, isMinimal, skin, isLight } = useAppTheme();
   const insets = useSafeAreaInsets();
@@ -567,9 +571,11 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
         // Most of these routes are not in this navigator's param list at all —
         // they bubble up to the root stack — so the call is untypeable either
         // way and the cast belongs at the boundary.
+        // Your own profile is a kept-loaded tab, so it opens instantly and
+        // keeps its place instead of loading from scratch every time.
         (navigation.navigate as (screen: string, params?: Record<string, unknown>) => void)(
-          item.screen,
-          item.params,
+          item.screen === ScreenNames.Profile ? ScreenNames.ProfileTab : item.screen,
+          item.screen === ScreenNames.Profile ? undefined : item.params,
         );
       }
     },
@@ -616,25 +622,82 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     [headerTranslateY],
   );
 
+  // Dragged away by hand: a downward swipe on the bar puts it away on every
+  // page until an upward swipe in the strip at the bottom brings it back.
+  const dragSlide = useSharedValue(tabBarDraggedAway.value);
+  const [draggedAway, setDraggedAway] = useState(tabBarDraggedAway.value === 1);
+  useAnimatedReaction(
+    () => tabBarDraggedAway.value,
+    (away, prev) => {
+      if (away === prev) return;
+      dragSlide.value = withTiming(away, { duration: 300, easing: Easing.bezier(0.25, 1, 0.5, 1) });
+      runOnJS(setDraggedAway)(away === 1);
+    },
+  );
+  const putAway = useMemo(
+    () =>
+      Gesture.Pan()
+        // Vertical only: the pill's own horizontal scroll keeps working.
+        .activeOffsetY(12)
+        .failOffsetX([-14, 14])
+        .onEnd((e) => {
+          if (e.translationY > 22 || e.velocityY > 500) tabBarDraggedAway.value = 1;
+        }),
+    [],
+  );
+  const bringBack = useMemo(
+    () => {
+      const show = () => {
+        'worklet';
+        tabBarDraggedAway.value = 0;
+        if (headerTranslateY) headerTranslateY.value = 0;
+      };
+      return Gesture.Race(
+        Gesture.Pan().activeOffsetY(-8).onEnd((e) => {
+          if (e.translationY < -14 || e.velocityY < -400) show();
+        }),
+        Gesture.Tap().onEnd(show),
+      );
+    },
+    [headerTranslateY],
+  );
+
   const hideStyle = useAnimatedStyle(() => {
     // Snapped to exactly 1 at rest for the same reason as entranceStyle: this
     // view is a superview of the center button's UIVisualEffectView, and any
     // alpha below 1 anywhere above it kills the blur.
-    const o = interpolate(tabSlide.value, [0, 0.5], [1, 0], "clamp");
+    const slide = Math.max(tabSlide.value, dragSlide.value);
+    const o = interpolate(slide, [0, 0.5], [1, 0], "clamp");
     return {
-      transform: [{ translateY: tabSlide.value * TAB_BAR_SLIDE }],
+      transform: [{ translateY: slide * TAB_BAR_SLIDE }],
       opacity: o > 0.999 ? 1 : o,
     };
   });
+  const handleStyle = useAnimatedStyle(() => ({ opacity: dragSlide.value * 0.55 }));
 
   return (
+    <>
+    {/* Only there while the bar is put away, so it never eats taps meant for
+        the page. Sits above the system's own swipe-home strip. */}
+    {draggedAway && (
+      <GestureDetector gesture={bringBack}>
+        <View
+          style={[styles.revealZone, { bottom: androidGestureNav ? insets.bottom : Math.max(0, insets.bottom - 14) }]}
+          accessibilityRole="button"
+          accessibilityLabel={_copyNav("copy.3db65f8c2a7d", { defaultValue: "Navigation" })}
+        >
+          <Reanimated.View style={[styles.revealHandle, isLight ? styles.revealHandleLight : null, handleStyle]} />
+        </View>
+      </GestureDetector>
+    )}
+    <GestureDetector gesture={putAway}>
     <Reanimated.View
       style={[
         styles.outerWrap,
         { paddingBottom: bottomPadding },
         hideStyle,
       ]}
-      pointerEvents="box-none"
+      pointerEvents={draggedAway ? "none" : "box-none"}
     >
       <Reanimated.View style={[styles.dock, entranceStyle]}>
       <View
@@ -698,6 +761,8 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
       {hasStageChip && <StageMiniPlayer />}
       </Reanimated.View>
     </Reanimated.View>
+    </GestureDetector>
+    </>
   );
 };
 
@@ -706,6 +771,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignSelf: "center",
+  },
+  revealZone: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    height: 40,
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: 8,
+  },
+  revealHandle: {
+    width: 44,
+    height: 5,
+    borderRadius: 3,
+    backgroundColor: "#fff",
+  },
+  revealHandleLight: {
+    backgroundColor: "#000",
   },
   outerWrap: {
     position: "absolute",
