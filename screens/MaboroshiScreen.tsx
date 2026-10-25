@@ -20,6 +20,7 @@ import { useJobPayment } from '../hooks/useAiPayment';
 import { useWeb3Provider } from '../hooks/use-web3';
 import { isMaboroshiDelivery, maboroshiAssetId, maboroshiAspect, type MaboroshiDelivery } from '../libs/maboroshi-delivery';
 import { saveCreatorAsset, listCreatorAssets } from '../services/creator.service';
+import { openRemakeEditor } from '../libs/openRemakeEditor';
 
 export default function MaboroshiScreen() {
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.Maboroshi | ScreenNames.CreatorRemake>>();
@@ -144,7 +145,7 @@ export default function MaboroshiScreen() {
         if (activeWallet.current !== owner) return;
         const asset = page.jobs.find(item => item.id === savedAssetId && item.kind === 'video');
         if (asset?.url) {
-          nav.push(ScreenNames.MediaEditor, { importMedia: { url: asset.url, kind: 'video', name: asset.prompt } });
+          openRemakeEditor(nav, { url: asset.url, kind: 'video', name: asset.prompt });
           return;
         }
         offset = page.nextOffset;
