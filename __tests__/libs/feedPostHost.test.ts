@@ -1,0 +1,27 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { openPostInFeedHost, setFeedPostHost } from "../../libs/feedPostHost";
+
+const read = (p: string) => readFileSync(resolve(__dirname, "../..", p), "utf8");
+
+afterEach(() => setFeedPostHost(null));
+
+it("lets Home take a post while it is the host, and falls back to navigation otherwise", () => {
+  expect(openPostInFeedHost(12)).toBe(false);
+  const host = jest.fn();
+  setFeedPostHost(host);
+  expect(openPostInFeedHost(12)).toBe(true);
+  expect(host).toHaveBeenCalledWith("12");
+});
+
+it("opens text, image and audio posts in place on Home and keeps video on its own page", () => {
+  const card = read("components/Home/FeedCard.tsx");
+  expect(card).toContain("if (!isVideo && openPostInFeedHost(tokenId)) return;");
+  const home = read("screens/HomeScreen.tsx");
+  expect(home).toContain("backMode={feedProfileVisible || !!imageFeed || !!feedPost}");
+  expect(home).toContain('testID="home-feed-post"');
+  const detail = read("screens/FeedDetailScreen.tsx");
+  // Only a video post drops the logo bar for the back icon.
+  expect(detail).toContain("{embedded || (stage && videoPost) ? null : <PostFeedNav");
+  expect(detail).toContain("{stage && videoPost && !embedded && <PostStageBackIcon");
+});

@@ -71,6 +71,18 @@ import { FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 import FollowTagBar from "../components/Home/FollowTagBar";
+import { setFeedPostHost } from "../libs/feedPostHost";
+
+// The post page Home opens in place. Required on first use so the screen's
+// code stays off Home's first render, the same as its stack route.
+let FeedDetailEmbeddedImpl: typeof import("./FeedDetailScreen").FeedDetailEmbedded | null = null;
+function FeedPostSurface(props: { tokenId: string; onClose: () => void; bottomInset: number }) {
+  FeedDetailEmbeddedImpl ??= require("./FeedDetailScreen").FeedDetailEmbedded;
+  const Impl = FeedDetailEmbeddedImpl!;
+  return <Impl {...props} />;
+}
+/** Phones only, the width the post page uses its phone layout under. */
+const FEED_POST_MAX_WIDTH = 640;
 
 const FALLBACK_CATEGORIES: string[] = [];
 const SHUFFLE_SEED_EXPIRY_MS = 30 * 60 * 1000;
@@ -204,6 +216,9 @@ const beadExit = () => {
 export default function HomeScreen() {
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);
   const [imageFeed, setImageFeed] = useState<ImageFeedRequest | null>(null);
+  // A text, image or audio post opened in place: Home's logo bar and pill stay
+  // exactly where they are and the pill's filter slot becomes Back.
+  const [feedPost, setFeedPost] = useState<string | null>(null);
   const imageFeedToken = useRef(0);
   const [filters, setFilters] = useState<FeedFilters>(savedFilters);
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
@@ -319,7 +334,7 @@ export default function HomeScreen() {
   // pill can glow with the pull as the immersive capsule does.
   // Any phone, any theme: useCinematicPhone is Immersive-only.
   const phone = Math.min(pageWidth, pageHeight) <= CINEMATIC_PHONE_MAX_WIDTH;
-  const homePull = useHomePullRefresh(phone && isFocused && !islandMenuOpen && !filterPanelVisible && !feedProfileVisible && !imageFeed, scrollOffset, activeIndex);
+  const homePull = useHomePullRefresh(phone && isFocused && !islandMenuOpen && !filterPanelVisible && !feedProfileVisible && !imageFeed && !feedPost, scrollOffset, activeIndex);
   const pullDistance = homePull.motion.distance;
 
   // Sync header translateY to the bottom tab bar context
@@ -430,6 +445,7 @@ export default function HomeScreen() {
   const handleNavPostTypeChange = useCallback(
     (postType: PostTypeOption) => {
       if (feedProfileVisible) hideUserProfile();
+      setFeedPost(null);
       setPostType(postType);
     },
     [feedProfileVisible, hideUserProfile, setPostType],
@@ -448,6 +464,26 @@ export default function HomeScreen() {
   );
 
   const handleCloseImageFeed = useCallback(() => setImageFeed(null), []);
+
+  const closeFeedPost = useCallback(() => setFeedPost(null), []);
+  useEffect(() => {
+    if (!isFocused || pageWidth >= FEED_POST_MAX_WIDTH) return;
+    setFeedPostHost((tokenId) => {
+      showHeader();
+      setFilterPanelVisible(false);
+      setImageFeed(null);
+      setFeedPost(tokenId);
+    });
+    return () => setFeedPostHost(null);
+  }, [isFocused, pageWidth, showHeader]);
+  useEffect(() => {
+    if (!feedPost || feedProfileVisible) return;
+    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
+      setFeedPost(null);
+      return true;
+    });
+    return () => subscription.remove();
+  }, [feedPost, feedProfileVisible]);
 
   // The nav bar's back arrow asks the sheet to slide out first; unmounting it
   // straight away would make the one deliberate control the only abrupt exit.
@@ -595,11 +631,11 @@ export default function HomeScreen() {
   const mediaGridInset = island ? 0 : headerHeight;
   const postFeedInset = island ? 0 : headerHeight;
   const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
-  const showNavPill = !island || feedProfileVisible || !!imageFeed;
+  const showNavPill = !island || feedProfileVisible || !!imageFeed || !!feedPost;
   const newPostsBead = useNewPostsBead();
   // The pill's bottom edge, which the bead hangs from.
   const beadTop = (island ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP : pillBottom) - BEAD_JOIN;
-  const showBead = isFocused && !filterPanelVisible && !feedProfileVisible && !imageFeed
+  const showBead = isFocused && !filterPanelVisible && !feedProfileVisible && !imageFeed && !feedPost
     && !(island && islandMenuOpen);
   // A scroll that hides the capsule puts its menu away too (a touch on the
   // feed already does, through handleScrollBegin).
@@ -916,7 +952,7 @@ export default function HomeScreen() {
     if (!visibleTabs.has(key)) return null;
     // `active` gates video playback, not visibility, so it rides the deferred
     // index — see deferredIndex above.
-    const isPlaybackActive = index === deferredIndex && !profileVisible;
+    const isPlaybackActive = index === deferredIndex && !profileVisible && !feedPost;
 
     if (key === "feed-images") {
       return (
@@ -1154,8 +1190,8 @@ export default function HomeScreen() {
           onPostTypeChange={handleNavPostTypeChange}
           onFilterPress={handleFilterPress}
           onActiveTabLongPress={handleIslandFilters}
-          backMode={feedProfileVisible || !!imageFeed}
-          onBackPress={feedProfileVisible ? hideUserProfile : handleImageFeedBack}
+          backMode={feedProfileVisible || !!imageFeed || !!feedPost}
+          onBackPress={feedProfileVisible ? hideUserProfile : imageFeed ? handleImageFeedBack : closeFeedPost}
         />
         </View>
         ) : null}
@@ -1210,6 +1246,19 @@ export default function HomeScreen() {
         </Animated.View>
       ) : null}
 
+
+      {/* Under the header like the profile below, so the logo bar and pill do
+          not move or redraw. A profile opened from the post sits on top of it
+          and Back returns to the post. */}
+      {feedPost ? (
+        <View
+          style={[styles.profileSurface, { top: headerHeight }, skin ? { backgroundColor: skin.page } : null]}
+          accessibilityViewIsModal
+          testID="home-feed-post"
+        >
+          <FeedPostSurface key={feedPost} tokenId={feedPost} onClose={closeFeedPost} bottomInset={TAB_BAR_CONTENT_INSET} />
+        </View>
+      ) : null}
 
       {feedProfileVisible ? (
         <View

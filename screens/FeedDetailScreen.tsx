@@ -129,7 +129,33 @@ export default function FeedDetailScreen() {
   return <FeedDetailContent key={`${user?.walletAddress || user?.address || 'guest'}:${route.params?.tokenId ?? route.params?.id ?? route.params?.postId ?? route.params?.videoId ?? route.params?.nft?.tokenId ?? route.params?.nft?.id}`} />;
 }
 
-function FeedDetailContent() {
+type EmbeddedProps = {
+  /** Home's in-place post: the post to show, read instead of route params. */
+  embeddedTokenId?: string;
+  /** Leaves the in-place post (Home's pill Back). */
+  onEmbeddedClose?: () => void;
+  /** Room kept under the composer for Home's tab bar. */
+  bottomInset?: number;
+};
+
+/**
+ * The post page inside Home on phones: Home's logo bar and pill stay where
+ * they are above it, so it draws neither, nor the back icon or mini player.
+ */
+export function FeedDetailEmbedded({ tokenId, onClose, bottomInset }: { tokenId: string; onClose: () => void; bottomInset?: number }) {
+  const user = useUser();
+  return (
+    <FeedDetailContent
+      key={`${user?.walletAddress || user?.address || 'guest'}:${tokenId}`}
+      embeddedTokenId={tokenId}
+      onEmbeddedClose={onClose}
+      bottomInset={bottomInset}
+    />
+  );
+}
+
+function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }: EmbeddedProps = {}) {
+  const embedded = embeddedTokenId != null;
   const { t } = useTranslation();
   const { isMinimal, skin, theme: themeName } = useAppTheme();
   // Immersive draws its feed bar as one capsule; the logo bar is not there to keep.
@@ -140,14 +166,14 @@ function FeedDetailContent() {
   const navigation = useNavigation<any>();
   
   // Get params - tokenId and optional commentId for highlighting
-  const tokenId: number | string | undefined =
+  const tokenId: number | string | undefined = embedded ? embeddedTokenId :
     route?.params?.tokenId ??
     route?.params?.id ??
     route?.params?.postId ??
     route?.params?.videoId ??
     route?.params?.nft?.tokenId ??
     route?.params?.nft?.id;
-  const commentIdParam: number | string | undefined = route?.params?.commentId ?? route?.params?.c;
+  const commentIdParam: number | string | undefined = embedded ? undefined : route?.params?.commentId ?? route?.params?.c;
   /**
    * The comment this screen was opened FOR, as a string, for the life of the
    * screen. Distinct from `highlightedCommentId` below, which is the four-second
@@ -396,8 +422,8 @@ function FeedDetailContent() {
   const listBottomPadding = useMemo(() => {
     // The docked Stage composer floats with a margin under it.
     const base = stageLayout ? 104 : 88;
-    return base + inputLift;
-  }, [inputLift, stageLayout]);
+    return base + inputLift + bottomInset;
+  }, [inputLift, stageLayout, bottomInset]);
 
   // The composer belongs to the post and its comments. Once the reader is down
   // in "More posts" it slides away, and comes back when they scroll up again.
@@ -1337,7 +1363,10 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
-  const handlePostBack = useStageBack();
+  // Only a video keeps the immersive page with the back icon on its player.
+  const videoPost = immersive && !!item && resolveContentType(item) !== "image";
+  const stageBack = useStageBack();
+  const handlePostBack = onEmbeddedClose ?? stageBack;
   const handleStageAnchor = useCallback((y: number) => {
     stageAnchorRef.current = y;
   }, []);
@@ -1515,11 +1544,11 @@ function FeedDetailContent() {
     && !mediaAttachment && !recorder.isRecording && !emojiPickerVisible && !gifPickerVisible;
   useEffect(() => {
     Animated.timing(composerSlide, {
-      toValue: hideComposer ? composerHeight + 8 : 0,
+      toValue: hideComposer ? composerHeight + 8 + bottomInset : 0,
       duration: 220,
       useNativeDriver: true,
     }).start();
-  }, [hideComposer, composerHeight, composerSlide]);
+  }, [hideComposer, composerHeight, composerSlide, bottomInset]);
 
   const stageGlassTint = isMinimal ? "rgba(0,0,0,0.2)" : "rgba(12,12,14,0.2)";
 
@@ -1530,10 +1559,11 @@ function FeedDetailContent() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {/* Phones: image, video and audio posts drop the top bar for a small
-          back icon on the media; text posts keep the logo bar and the pill
-          where they were on the feed, Back in the pill's filter slot. */}
-      {stage && immersive ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
+      {/* Phones: a video post drops the top bar for a small back icon on the
+          player. Text, image and audio posts keep the logo bar and the pill
+          where they were on the feed, Back in the pill's filter slot. Inside
+          Home those are Home's own, so nothing is drawn here. */}
+      {embedded || (stage && videoPost) ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
       <View style={{ flex: 1 }}>
       <FrostedContent>
       <FlatList
@@ -1614,8 +1644,8 @@ function FeedDetailContent() {
           {renderCommentTabs()}
         </View>
       )}
-      {stage && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
-      {stage && immersive && <PostStageBackIcon hidden={showMini} />}
+      {stage && !embedded && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
+      {stage && videoPost && !embedded && <PostStageBackIcon hidden={showMini} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (
@@ -1623,7 +1653,9 @@ function FeedDetailContent() {
           pointerEvents={hideComposer ? "none" : "auto"}
           ref={composerRef}
           collapsable={false}
-          style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
+          // Inside Home the composer sits above the tab bar, until the keyboard
+          // (which covers the bar) lifts it.
+          style={{ position: "absolute", left: 0, right: 0, bottom: inputLift > 0 ? 0 : bottomInset, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
         <View
