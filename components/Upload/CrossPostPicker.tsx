@@ -18,9 +18,9 @@ function useCrossPostAccounts() {
     enabled: !!wallet,
     staleTime: 60_000,
   });
-  const hidden = !wallet || status.isError;
-  const accounts = (status.data?.accounts ?? []).filter((a) => !a.pending);
-  return { hidden, accounts, selected, credits: status.data?.credits ?? 0 };
+  const hidden = !wallet;
+  const accounts = status.isError ? [] : (status.data?.accounts ?? []).filter((a) => !a.pending);
+  return { hidden, accounts, selected, failed: status.isError, credits: status.data?.credits ?? 0 };
 }
 
 export function useCrossPostAccountCount() {
@@ -40,7 +40,7 @@ export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; on
   menuItem = false,
 }) => {
   const { t } = useTranslation();
-  const { hidden, accounts, selected } = useCrossPostAccounts();
+  const { hidden, accounts, selected, failed } = useCrossPostAccounts();
   if (hidden) return null;
   const count = accounts.filter((a) => selected.includes(a.id)).length;
   const lit = open || count > 0;
@@ -58,6 +58,7 @@ export const CrossPostButton: React.FC<{ open: boolean; onToggle: () => void; on
       accessibilityRole="button"
       accessibilityState={{ expanded: open }}
       accessibilityLabel={accounts.length ? t("multiPost.alsoPostTo") : t("multiPost.setUp")}
+      accessibilityHint={failed ? t("multiPost.loadFailed") : undefined}
     >
       <Icon name="Share2" size={16} color="#fff" />
       {menuItem && <Text className="flex-1 ml-3 text-white text-sm">{t("multiPost.title")}</Text>}
