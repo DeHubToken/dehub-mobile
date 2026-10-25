@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 /**
  * Asset Reference Card
  * ====================
@@ -276,7 +277,7 @@ const AssetRefCardComponent: React.FC<{ assetRef: AssetRef }> = ({
     retry: 1,
   });
 
-  if (isLoading) return <View style={styles.skeleton} />;
+  if (isLoading) return <SkeletonBlock style={styles.skeleton} />;
   if (!asset) {
     // A ticker that resolved to nothing is still in the caption, so there is
     // nothing to rescue and nothing to show. A stripped address is not.

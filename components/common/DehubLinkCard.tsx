@@ -1,3 +1,4 @@
+import SkeletonBlock from '../Feed/SkeletonBlock';
 import { useTranslation as _useCopy } from 'react-i18next';
 /**
  * DeHub Link Card
@@ -157,7 +158,7 @@ const RowCard: React.FC<RowCardProps> = ({
 
 const SkeletonCard = () => {
   const { isMinimal } = useAppTheme();
-  return <View style={[styles.skeleton, isMinimal && styles.minimalSkeleton]} />;
+  return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton]} />;
 };
 
 // ── Per-kind cards ──────────────────────────────────────────────────────────
