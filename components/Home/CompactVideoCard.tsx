@@ -18,7 +18,7 @@ import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import { useUser } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import { preparePostMediaNavigation } from '../../libs/post-media-session';
 import { useStreamAccessInfo } from "../../libs/validators.util";
 import { resolveViewCount } from "../../libs/numbers.util";
@@ -169,7 +169,7 @@ const CompactVideoCardComponent: React.FC<CompactVideoCardProps> = ({
     if (tokenId == null) return;
     onBeforeNavigate?.();
     hideUserProfile();
-    if (!isLive && (!nft.postType || nft.postType === 'video' || nft.postType === 'short')) {
+    if (!isLive && canOpenPostVideoViewer(nft)) {
       preparePostMediaNavigation(playbackUrl);
       navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumbnail));
       return;

@@ -18,7 +18,7 @@ import { useTranslation as _useCopy } from "react-i18next";
 import Icon from "../ui/Icon";
 import Avatar from "../common/Avatar";
 import { ScreenNames } from "../../navigation/ScreenNames";
-import { postVideoViewerParams } from '../../navigation/postVideoViewerParams';
+import { canOpenPostVideoViewer, postVideoViewerParams } from '../../navigation/postVideoViewerParams';
 import { getAvatarUrl, getImageUrl } from "../../libs/misc";
 import { secondsToHMMSS } from "../../libs/date.util";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
@@ -49,7 +49,11 @@ const MusicVideoCard: React.FC<{ nft: GetNFTsResult; wide?: boolean }> = ({ nft,
 
   const openPost = useCallback(() => {
     if (tokenId == null) return;
-    navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumb));
+    if (canOpenPostVideoViewer(nft as any)) {
+      navigation.navigate(ScreenNames.ShortsViewer, postVideoViewerParams(nft, tokenId, thumb));
+    } else {
+      navigation.navigate(ScreenNames.FeedDetail, { tokenId: String(tokenId), postId: String(tokenId) });
+    }
   }, [navigation, tokenId, nft, thumb]);
 
   const openCreator = useCallback(() => {
