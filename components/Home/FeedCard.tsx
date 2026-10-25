@@ -28,6 +28,7 @@ import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrub
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
+import { openPostInFeedHost } from "../../libs/feedPostHost";
 import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
@@ -912,6 +913,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // its fetch now rather than after the new screen has rendered.
       seedPostDetail(tokenId, item);
       warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+      // Text, image and audio posts open in place on Home, under the same
+      // logo bar and pill; video keeps its own page.
+      if (!isVideo && openPostInFeedHost(tokenId)) return;
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
