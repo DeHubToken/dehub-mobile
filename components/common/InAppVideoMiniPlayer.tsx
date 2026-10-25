@@ -93,12 +93,12 @@ function MiniPlayer({ entry, bounds }: { entry: InAppVideoMini; bounds: MiniRect
   const restore = () => {
     if (!restoreInAppVideoMini(entry)) return;
     preparePostMediaNavigation(entry.url);
-    navigation.navigate(ScreenNames.ShortsViewer, {
+    navigation.navigate(ScreenNames.App, { screen: ScreenNames.ShortsViewer, params: {
       ...entry.restoreParams,
       initialIndex: entry.restoreParams?.initialIndex ?? 0,
       initialItems: entry.restoreParams?.initialItems ?? [entry.item], initialThumbnail: entry.thumbnail,
       feedParams: entry.restoreParams?.feedParams ?? { brainrot: true, fromId: String(entry.item.tokenId ?? entry.item.id) },
-    });
+    } });
   };
   return <KeepDarkScope>
     <Animated.View testID="in-app-video-mini" style={[styles.mini, motion]}>
