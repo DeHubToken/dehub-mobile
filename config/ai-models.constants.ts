@@ -302,9 +302,9 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-2.0-fast': {
     id: 'seedance-2.0-fast',
-    supportsNegativePrompt: true,
+    supportsNegativePrompt: false,
     supportsEndFrame: true,
-    supportsSeed: true,
+    supportsSeed: false,
     name: 'Seedance 2.0 Fast',
     get description() { return _translateCopy("copy.f4a56d3cb00f", { defaultValue: "Faster generation, slightly lower quality" }); },
     emoji: '⚡',
@@ -318,9 +318,9 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-2.0': {
     id: 'seedance-2.0',
-    supportsNegativePrompt: true,
+    supportsNegativePrompt: false,
     supportsEndFrame: true,
-    supportsSeed: true,
+    supportsSeed: false,
     name: 'Seedance 2.0',
     get description() { return _translateCopy("copy.c5a1d3b9268d", { defaultValue: "Latest ByteDance model, superior quality & audio" }); },
     emoji: '🌊',
