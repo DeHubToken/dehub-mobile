@@ -676,7 +676,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         }
 
         if (res.imageUrl) {
-          results.push({ role: 'assistant', content: res.text || '', imageUrl: res.imageUrl });
+          results.push({ id: newTurnId(), role: 'assistant', content: res.text || '', imageUrl: res.imageUrl });
           await saveMessage([...history, ...results]);
           finishDraft();
           toastSuccess(t('assistant.imageGenerated'));
@@ -1811,7 +1811,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
       if (!url) continue;
       const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
-      const id = `native-${request.id}-${kind}`;
+      const id = `native-${message.id ?? request.id}-${kind}`;
       const saveKey = `${walletAddress}:${id}`;
       if (kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
         deliveredEditorResults.current.add(id);
