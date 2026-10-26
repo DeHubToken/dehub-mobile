@@ -3745,6 +3745,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "shareLink": "Share link",
+    "sendInMessage": "Send Invite",
     "followerInvites": {
       "title": "Invite followers",
       "detail": "Choose up to 50 followers per batch. Paid or closed DMs are skipped. Check the chat for unconfirmed sends before trying again.",

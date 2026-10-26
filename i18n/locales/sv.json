@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} polletter"
   },
   "communities": {
+    "shareLink": "Dela länk",
+    "sendInMessage": "Skicka inbjudan",
     "existingPost": {
       "add": "Lägg till befintlig post",
       "added": "Posten har lagts till i gemenskapen",

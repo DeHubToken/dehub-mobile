@@ -6263,6 +6263,8 @@
     "tokenAmount": "{{amount}} nîşanekan"
   },
   "communities": {
+    "shareLink": "Girêdana parvekirinê",
+    "sendInMessage": "Vexwendinê bişîne",
     "existingPost": {
       "add": "Şandiyeke heyî zêde bike",
       "added": "Şandî li civakê hat zêdekirin",

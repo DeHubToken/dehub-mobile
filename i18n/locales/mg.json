@@ -6271,6 +6271,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "SHARE Rohy",
+    "sendInMessage": "Alefaso ny Invite",
     "existingPost": {
       "add": "Hampiditra lahatsoratra efa misy",
       "added": "Nampidirina tao amin'ny fiarahamonina",

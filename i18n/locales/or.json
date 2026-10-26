@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} ଟୋକେନ"
   },
   "communities": {
+    "shareLink": "ସଂଯୋଗ ସହଭାଗ କରନ୍ତୁ",
+    "sendInMessage": "ଆମନ୍ତ୍ରଣ ପଠାନ୍ତୁ",
     "existingPost": {
       "placeholder": "DeHub ପୋଷ୍ଟ ଲିଙ୍କ କିମ୍ବା ପୋଷ୍ଟ ID",
       "add": "ପ୍ରଚଳିତ ପୋଷ୍ଟକୁ ଯୋଗ କରନ୍ତୁ",

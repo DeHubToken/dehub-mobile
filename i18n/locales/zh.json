@@ -6123,6 +6123,8 @@
     "pendingRetired": "这个存款已不再在网络上待定。跟踪已清除，请检查您的钱包活动再次存款。"
   },
   "communities": {
+    "shareLink": "分享链接",
+    "sendInMessage": "发送邀请",
     "title": "社区",
     "create": "创建",
     "searchPlaceholder": "搜索社区...",

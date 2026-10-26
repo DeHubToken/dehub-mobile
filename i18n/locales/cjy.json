@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} 个代币"
   },
   "communities": {
+    "shareLink": "分享链接",
+    "sendInMessage": "发送邀请",
     "existingPost": {
       "add": "添加现有帖子",
       "added": "帖子已添加到社区",

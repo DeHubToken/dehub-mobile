@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} टोकन"
   },
   "communities": {
+    "shareLink": "लिंक शेअर करा",
+    "sendInMessage": "पाठवा आहे?",
     "existingPost": {
       "add": "स्तरित पोस्ट जोडा",
       "added": "पोस्ट समुदायात जोडली गेली",
