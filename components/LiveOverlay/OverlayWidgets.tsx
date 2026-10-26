@@ -42,6 +42,8 @@ import {
 import { useAlertQueue } from "./useAlertQueue";
 import { useRuleFired } from "./ruleBus";
 import Svg, { G, Path, Text as SvgText } from "react-native-svg";
+import { LinearGradient } from "expo-linear-gradient";
+import { AccentEdge, Eyebrow, Glass, IconDisc, ListRow, LiveDot, Medal, Ringed, Sheen, withAlpha } from "./premium";
 import { WHEEL_SPIN_MS } from "../../libs/live-overlay/rules";
 import { PollWidget } from "./poll";
 import { PointsBoard, SubathonTimer } from "./subathon";
@@ -61,12 +63,6 @@ function accent(settings: Record<string, unknown>): string {
   const c = setting(settings, "accent", "#ffffff");
   return HEX.test(c) ? c : "#ffffff";
 }
-
-const GLASS: ViewStyle = {
-  backgroundColor: "rgba(10,10,12,0.72)",
-  borderWidth: 1,
-  borderColor: "rgba(255,255,255,0.16)",
-};
 
 function useName(user: RoomUser | undefined): string {
   const { t } = useTranslation();
@@ -131,19 +127,21 @@ function TipAlert({ settings, box }: WidgetProps) {
   const tier = tierFromGift(current.item);
   return (
     <Banner key={current.id} box={box}>
-      <Text style={{ fontSize: box.height * 0.42 }}>{tier.emoji}</Text>
+      <Text style={{ fontSize: box.height * 0.42, textShadowColor: "rgba(0,0,0,0.45)", textShadowRadius: box.height * 0.06 }}>
+        {tier.emoji}
+      </Text>
       <View style={{ flex: 1, minWidth: 0 }}>
+        <Eyebrow size={box.height * 0.15}>{t(`liveGift.tier.${tier.key}`, tier.name)}</Eyebrow>
         <NameLine box={box} user={current.item.user} />
-        <Text style={{ color: "rgba(255,255,255,0.78)", fontSize: box.height * 0.18 }} numberOfLines={1}>
-          {t(`liveGift.tier.${tier.key}`, tier.name)} · {current.item.amount.toLocaleString()}{" "}
-          <DhbCoin size={Math.max(10, box.height * 0.18)} />
-        </Text>
         {current.item.message ? (
-          <Text style={{ color: "rgba(255,255,255,0.9)", fontSize: box.height * 0.17 }} numberOfLines={2}>
+          <Text style={{ color: "rgba(255,255,255,0.86)", fontWeight: "500", fontSize: box.height * 0.17, marginTop: box.height * 0.05 }} numberOfLines={2}>
             {current.item.message}
           </Text>
         ) : null}
       </View>
+      <Text style={{ color: "#fff", fontWeight: "800", fontSize: box.height * 0.3, fontVariant: ["tabular-nums"] }}>
+        {current.item.amount.toLocaleString()} <DhbCoin size={Math.max(10, box.height * 0.3)} />
+      </Text>
     </Banner>
   );
 }
@@ -151,7 +149,7 @@ function TipAlert({ settings, box }: WidgetProps) {
 function NameLine({ box, user }: { box: WidgetProps["box"]; user: RoomUser }) {
   const name = useName(user);
   return (
-    <Text style={{ color: "#fff", fontWeight: "700", fontSize: box.height * 0.24 }} numberOfLines={1}>
+    <Text style={{ color: "#fff", fontWeight: "800", fontSize: box.height * 0.29, marginTop: box.height * 0.03 }} numberOfLines={1}>
       {name}
     </Text>
   );
@@ -159,22 +157,22 @@ function NameLine({ box, user }: { box: WidgetProps["box"]; user: RoomUser }) {
 
 function Banner({ box, children }: { box: WidgetProps["box"]; children: React.ReactNode }) {
   return (
-    <Animated.View
-      entering={FadeInDown.duration(380)}
-      exiting={FadeOutUp.duration(320)}
-      style={[
-        GLASS,
-        {
+    <Animated.View entering={FadeInDown.duration(520)} exiting={FadeOutUp.duration(320)} style={{ flex: 1 }}>
+      <Glass
+        radius={box.height * 0.26}
+        shadow={false}
+        style={{
           flex: 1,
           flexDirection: "row",
           alignItems: "center",
-          gap: box.height * 0.12,
-          paddingHorizontal: box.height * 0.18,
-          borderRadius: box.height * 0.22,
-        },
-      ]}
-    >
-      {children}
+          gap: box.height * 0.16,
+          paddingLeft: box.height * 0.22,
+          paddingRight: box.height * 0.24,
+        }}
+      >
+        <AccentEdge height={box.height} />
+        {children}
+      </Glass>
     </Animated.View>
   );
 }
@@ -215,24 +213,31 @@ function PersonAlert({ settings, kind, box }: WidgetProps & { kind: OverlayKind 
   const name = useName(queue.current?.item.user);
   const current = queue.current;
   if (!current || current.leaving) return null;
-  const line =
+  // A small label over the name: the name is what the room reads first.
+  const eyebrow =
     kind === "follow_alert"
-      ? t("liveOverlay.newFollower", { name })
+      ? t("liveOverlay.eyebrow.follow")
       : kind === "subscribe_alert"
         ? current.item.planName
-          ? t("liveOverlay.subscribedTo", { name, plan: current.item.planName })
-          : t("liveOverlay.newSubscriber", { name })
+          ? t("liveOverlay.eyebrow.subscribedTo", { plan: current.item.planName })
+          : t("liveOverlay.eyebrow.subscribe")
         : kind === "share_alert"
-          ? t("liveOverlay.shared", { name })
-          : t("liveOverlay.joined", { name });
+          ? t("liveOverlay.eyebrow.share")
+          : t("liveOverlay.eyebrow.join");
   const avatar = getAvatarUrl(current.item.user.avatarImageUrl) || undefined;
+  const size = Math.max(16, box.height * 0.6);
 
   return (
     <Banner key={current.id} box={box}>
-      <Avatar uri={avatar} size={Math.max(16, box.height * 0.6)} name={name} />
-      <Text style={{ flex: 1, color: "#fff", fontWeight: "700", fontSize: box.height * 0.26 }} numberOfLines={1}>
-        {line}
-      </Text>
+      <Ringed size={size}>
+        <Avatar uri={avatar} size={size} name={name} />
+      </Ringed>
+      <View style={{ flex: 1, minWidth: 0 }}>
+        <Eyebrow size={box.height * 0.15}>{eyebrow}</Eyebrow>
+        <Text style={{ color: "#fff", fontWeight: "800", fontSize: box.height * 0.29, marginTop: box.height * 0.03 }} numberOfLines={1}>
+          {name}
+        </Text>
+      </View>
     </Banner>
   );
 }
@@ -260,35 +265,46 @@ function GoalBar({ settings, stats, box }: WidgetProps) {
   const reached = value >= target;
   const progress = Math.min(1, value / target);
   const font = box.height * 0.22;
+  const [trackWidth, setTrackWidth] = useState(0);
 
   return (
-    <View
-      style={[
-        GLASS,
-        { flex: 1, justifyContent: "center", paddingHorizontal: box.height * 0.2, borderRadius: box.height * 0.22 },
-      ]}
-    >
-      <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 8 }}>
-        <Text style={{ color: "#fff", fontWeight: "700", fontSize: font, flexShrink: 1 }} numberOfLines={1}>
+    <Glass radius={box.height * 0.26} shadow={false} style={{ flex: 1, justifyContent: "center", paddingHorizontal: box.height * 0.24 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end", gap: 8 }}>
+        <Eyebrow size={box.height * 0.15} style={{ flexShrink: 1 }}>
           {reached ? t("liveOverlay.goalReached") : title}
-        </Text>
-        <Text style={{ color: "rgba(255,255,255,0.85)", fontWeight: "600", fontSize: font }} numberOfLines={1}>
+        </Eyebrow>
+        <Text style={{ color: "#fff", fontWeight: "800", fontSize: font, fontVariant: ["tabular-nums"] }} numberOfLines={1}>
           {Math.floor(value).toLocaleString()} / {target.toLocaleString()}{" "}
           {metric === "tips" ? <DhbCoin size={Math.max(10, font)} /> : t("liveOverlay.followersUnit")}
         </Text>
       </View>
       <View
+        onLayout={(e) => setTrackWidth(e.nativeEvent.layout.width)}
         style={{
-          marginTop: box.height * 0.1,
-          height: box.height * 0.2,
+          marginTop: box.height * 0.11,
+          height: box.height * 0.18,
           borderRadius: 999,
-          backgroundColor: "rgba(255,255,255,0.14)",
+          backgroundColor: "rgba(255,255,255,0.07)",
+          boxShadow: "inset 0px 1px 2px rgba(0,0,0,0.55)",
           overflow: "hidden",
         }}
       >
-        <View style={{ height: "100%", width: `${progress * 100}%`, borderRadius: 999, backgroundColor: color }} />
+        {/* Deepest at the start, full accent at the leading edge, glassy on top. */}
+        <LinearGradient
+          colors={[withAlpha(color, 0.45), color]}
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: 1, y: 0.5 }}
+          style={{ height: "100%", width: `${progress * 100}%`, borderRadius: 999, overflow: "hidden" }}
+        >
+          <LinearGradient
+            colors={["rgba(255,255,255,0.35)", "rgba(255,255,255,0)"]}
+            locations={[0, 0.55]}
+            style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+          />
+        </LinearGradient>
+        <Sheen width={trackWidth} />
       </View>
-    </View>
+    </Glass>
   );
 }
 
@@ -321,24 +337,22 @@ function TopSupporters({ settings, streamId, box }: WidgetProps) {
   // it will have, so a creator can size it before anyone has tipped.
   const rows = (streamId ? data?.topTippers ?? [] : PREVIEW_SUPPORTERS).slice(0, count);
   return (
-    <View style={[GLASS, { flex: 1, paddingHorizontal: row * 0.45, paddingVertical: row * 0.3, borderRadius: row * 0.4 }]}>
-      <Text style={{ color: "#fff", fontWeight: "700", fontSize: row * 0.42, marginBottom: row * 0.15 }} numberOfLines={1}>
+    <Glass radius={row * 0.42} shadow={false} style={{ flex: 1, paddingHorizontal: row * 0.45, paddingVertical: row * 0.32 }}>
+      <Eyebrow size={row * 0.3} style={{ marginBottom: row * 0.12 }}>
         {title}
-      </Text>
+      </Eyebrow>
       {rows.map((r, i) => (
-        <View key={r.address} style={{ height: row, flexDirection: "row", alignItems: "center", gap: row * 0.3 }}>
-          <Text style={{ width: row * 0.6, textAlign: "center", color: "rgba(255,255,255,0.7)", fontWeight: "700", fontSize: row * 0.4 }}>
-            {i + 1}
-          </Text>
-          <Text style={{ flex: 1, color: "#fff", fontSize: row * 0.4 }} numberOfLines={1}>
+        <ListRow key={r.address} row={row} first={i === 0}>
+          <Medal place={i + 1} size={row * 0.42} />
+          <Text style={{ flex: 1, color: "#fff", fontWeight: "600", fontSize: row * 0.4 }} numberOfLines={1}>
             {r.displayName || r.username || t("liveOverlay.someone")}
           </Text>
-          <Text style={{ color: "#fff", fontWeight: "600", fontSize: row * 0.4 }}>
+          <Text style={{ color: "#fff", fontWeight: "800", fontSize: row * 0.4, fontVariant: ["tabular-nums"] }}>
             {Math.floor(r.total).toLocaleString()} <DhbCoin size={Math.max(10, row * 0.4)} />
           </Text>
-        </View>
+        </ListRow>
       ))}
-    </View>
+    </Glass>
   );
 }
 
@@ -349,25 +363,15 @@ function ViewerCount({ initialViewers, box }: WidgetProps) {
   useOverlayEvent((event: LiveRoomEvent) => {
     if (event.type === "viewers") setCount(event.count);
   });
-  const font = box.height * 0.42;
+  const font = box.height * 0.4;
   return (
-    <View
-      style={[
-        GLASS,
-        {
-          alignSelf: "flex-start",
-          height: "100%",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: font * 0.35,
-          paddingHorizontal: box.height * 0.25,
-          borderRadius: 999,
-        },
-      ]}
-    >
-      <Eye color="#fff" size={font} />
-      <Text style={{ color: "#fff", fontWeight: "700", fontSize: font }}>{count.toLocaleString()}</Text>
-    </View>
+    <Pill box={box} live>
+      <LiveDot size={font * 0.34} />
+      <IconDisc size={font * 0.8}>
+        <Eye color="#fff" size={font * 0.8} />
+      </IconDisc>
+      <Text style={{ color: "#fff", fontWeight: "800", fontSize: font, fontVariant: ["tabular-nums"] }}>{count.toLocaleString()}</Text>
+    </Pill>
   );
 }
 
@@ -379,18 +383,9 @@ function TextWidget({ settings, box }: WidgetProps) {
   const subtext = setting(settings, "subtext", "");
   if (!text && !subtext) return null;
   const color = accent(settings);
+  const Shell = lowerThird ? LowerThirdShell : PlainShell;
   return (
-    <View
-      style={[
-        { flex: 1, justifyContent: "center" },
-        lowerThird && {
-          paddingHorizontal: box.height * 0.25,
-          borderLeftWidth: box.height * 0.07,
-          borderLeftColor: color,
-          backgroundColor: "rgba(10,10,12,0.72)",
-        },
-      ]}
-    >
+    <Shell box={box} color={color}>
       {text ? (
         <Text
           style={{
@@ -406,11 +401,28 @@ function TextWidget({ settings, box }: WidgetProps) {
         </Text>
       ) : null}
       {subtext ? (
-        <Text style={{ color: "rgba(255,255,255,0.78)", fontSize: box.height * 0.19 }} numberOfLines={1}>
+        <Text style={{ color: "rgba(255,255,255,0.62)", fontWeight: "500", fontSize: box.height * 0.19 }} numberOfLines={1}>
           {subtext}
         </Text>
       ) : null}
-    </View>
+    </Shell>
+  );
+}
+
+function PlainShell({ children }: { box: WidgetProps["box"]; color: string; children: React.ReactNode }) {
+  return <View style={{ flex: 1, justifyContent: "center" }}>{children}</View>;
+}
+
+/** Glass with an accent bar down the leading side. */
+function LowerThirdShell({ box, color, children }: { box: WidgetProps["box"]; color: string; children: React.ReactNode }) {
+  return (
+    <Glass radius={box.height * 0.14} shadow={false} style={{ flex: 1, justifyContent: "center", paddingHorizontal: box.height * 0.3 }}>
+      <LinearGradient
+        colors={[color, withAlpha(color, 0.4)]}
+        style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: Math.max(2, box.height * 0.06) }}
+      />
+      {children}
+    </Glass>
   );
 }
 
@@ -445,25 +457,22 @@ function formatElapsed(ms: number): string {
   return h ? `${h}:${String(m).padStart(2, "0")}:${s}` : `${m}:${s}`;
 }
 
-function Pill({ box, children }: { box: WidgetProps["box"]; children: React.ReactNode }) {
-  const font = box.height * 0.42;
+function Pill({ box, live, children }: { box: WidgetProps["box"]; live?: boolean; children: React.ReactNode }) {
   return (
-    <View
-      style={[
-        GLASS,
-        {
-          alignSelf: "flex-start",
-          height: "100%",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: font * 0.35,
-          paddingHorizontal: box.height * 0.25,
-          borderRadius: 999,
-        },
-      ]}
+    <Glass
+      radius={999}
+      style={{
+        alignSelf: "flex-start",
+        height: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: box.height * 0.16,
+        paddingLeft: box.height * (live ? 0.2 : 0.12),
+        paddingRight: box.height * 0.3,
+      }}
     >
       {children}
-    </View>
+    </Glass>
   );
 }
 
@@ -479,16 +488,18 @@ function StreamTimer({ settings, stats, box }: WidgetProps) {
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const font = box.height * 0.42;
+  const font = box.height * 0.4;
   return (
     <Pill box={box}>
-      <View style={{ width: font * 0.45, height: font * 0.45, borderRadius: 999, backgroundColor: accent(settings) }} />
+      <IconDisc size={font * 0.8}>
+        <View style={{ width: font * 0.42, height: font * 0.42, borderRadius: 999, backgroundColor: accent(settings) }} />
+      </IconDisc>
       {label ? (
-        <Text style={{ color: "rgba(255,255,255,0.8)", fontWeight: "600", fontSize: font }} numberOfLines={1}>
+        <Eyebrow size={font * 0.62} style={{ letterSpacing: font * 0.62 * 0.14 }}>
           {label}
-        </Text>
+        </Eyebrow>
       ) : null}
-      <Text style={{ color: "#fff", fontWeight: "700", fontSize: font, fontVariant: ["tabular-nums"] }}>
+      <Text style={{ color: "#fff", fontWeight: "800", fontSize: font, fontVariant: ["tabular-nums"] }}>
         {formatElapsed(now - from)}
       </Text>
     </Pill>
@@ -505,11 +516,13 @@ function ReactionCounter({ settings, stats, box }: WidgetProps) {
   useOverlayEvent((event: LiveRoomEvent) => {
     if (event.type === "reaction") setDelta((d) => d + 1);
   });
-  const font = box.height * 0.42;
+  const font = box.height * 0.4;
   return (
     <Pill box={box}>
-      <ThumbsUp color={accent(settings)} size={font} />
-      <Text style={{ color: "#fff", fontWeight: "700", fontSize: font, fontVariant: ["tabular-nums"] }}>
+      <IconDisc size={font * 0.8}>
+        <ThumbsUp color={accent(settings)} size={font * 0.8} />
+      </IconDisc>
+      <Text style={{ color: "#fff", fontWeight: "800", fontSize: font, fontVariant: ["tabular-nums"] }}>
         {(base + delta).toLocaleString()}
       </Text>
     </Pill>
@@ -556,20 +569,20 @@ function EventFeed({ settings, box }: WidgetProps) {
 
   const row = box.height / (count + (title ? 1 : 0));
   return (
-    <View style={[GLASS, { flex: 1, paddingHorizontal: row * 0.45, paddingVertical: row * 0.3, borderRadius: row * 0.4 }]}>
+    <Glass radius={row * 0.42} shadow={false} style={{ flex: 1, paddingHorizontal: row * 0.45, paddingVertical: row * 0.32 }}>
       {title ? (
-        <Text style={{ color: "#fff", fontWeight: "700", fontSize: row * 0.42, marginBottom: row * 0.15 }} numberOfLines={1}>
+        <Eyebrow size={row * 0.3} style={{ marginBottom: row * 0.12 }}>
           {title}
-        </Text>
+        </Eyebrow>
       ) : null}
-      {items.map((item) => (
-        <FeedRow key={item.id} item={item} row={row} />
+      {items.map((item, i) => (
+        <FeedRow key={item.id} item={item} row={row} first={i === 0} />
       ))}
-    </View>
+    </Glass>
   );
 }
 
-function FeedRow({ item, row }: { item: FeedItem; row: number }) {
+function FeedRow({ item, row, first }: { item: FeedItem; row: number; first: boolean }) {
   const { t } = useTranslation();
   const name = useName(item.user);
   const line =
@@ -585,13 +598,20 @@ function FeedRow({ item, row }: { item: FeedItem; row: number }) {
   return (
     <Animated.View
       entering={FadeInDown.duration(260)}
-      style={{ height: row, flexDirection: "row", alignItems: "center", gap: row * 0.3 }}
+      style={{
+        height: row,
+        flexDirection: "row",
+        alignItems: "center",
+        gap: row * 0.3,
+        borderTopWidth: first ? 0 : 1,
+        borderTopColor: "rgba(255,255,255,0.06)",
+      }}
     >
-      <Text style={{ flex: 1, color: "#fff", fontSize: row * 0.4 }} numberOfLines={1}>
+      <Text style={{ flex: 1, color: "#fff", fontWeight: "600", fontSize: row * 0.4 }} numberOfLines={1}>
         {line}
       </Text>
       {item.kind === "tip" ? (
-        <Text style={{ color: "#fff", fontWeight: "600", fontSize: row * 0.4 }}>
+        <Text style={{ color: "#fff", fontWeight: "800", fontSize: row * 0.4, fontVariant: ["tabular-nums"] }}>
           {Math.floor(item.amount ?? 0).toLocaleString()} <DhbCoin size={Math.max(10, row * 0.4)} />
         </Text>
       ) : null}
@@ -611,11 +631,11 @@ function ChatBox({ settings, streamId, box }: WidgetProps) {
   return (
     <View style={{ flex: 1, justifyContent: "flex-end", gap: row * 0.08 }}>
       {lines.length === 0 && !streamId ? (
-        <View style={[chatLineStyle(row), { backgroundColor: "rgba(10,10,12,0.62)" }]}>
-          <Text style={{ color: "rgba(255,255,255,0.6)", fontSize: row * 0.4 }} numberOfLines={1}>
+        <Glass radius={row * 0.45} style={[chatLineStyle(row), { paddingLeft: row * 0.36 }]}>
+          <Text style={{ color: "rgba(255,255,255,0.62)", fontSize: row * 0.4 }} numberOfLines={1}>
             {t("liveOverlay.chatPreview")}
           </Text>
-        </View>
+        </Glass>
       ) : null}
       {lines.map((line) => (
         <ChatLine key={line.id} line={line} row={row} showAvatar={showAvatars} />
@@ -632,9 +652,8 @@ function chatLineStyle(row: number): ViewStyle {
     maxWidth: "100%",
     gap: row * 0.25,
     minHeight: row * 0.9,
-    paddingHorizontal: row * 0.3,
-    borderRadius: row * 0.45,
-    backgroundColor: "rgba(10,10,12,0.62)",
+    paddingLeft: row * 0.16,
+    paddingRight: row * 0.36,
   };
 }
 
@@ -642,12 +661,18 @@ function ChatLine({ line, row, showAvatar }: { line: OverlayChatLine; row: numbe
   const name = useName(line.user);
   const avatar = getAvatarUrl(line.user.avatarImageUrl) || undefined;
   return (
-    <Animated.View entering={FadeInDown.duration(260)} style={chatLineStyle(row)}>
-      {showAvatar ? <Avatar uri={avatar} size={Math.max(12, row * 0.6)} name={name} /> : null}
-      <Text style={{ flexShrink: 1, color: "#fff", fontSize: row * 0.4 }} numberOfLines={1}>
-        <Text style={{ fontWeight: "700", color: "rgba(255,255,255,0.75)" }}>{name} </Text>
-        {line.text}
-      </Text>
+    <Animated.View entering={FadeInDown.duration(260)} style={{ alignSelf: "flex-start", maxWidth: "100%" }}>
+      <Glass radius={row * 0.45} style={chatLineStyle(row)}>
+        {showAvatar ? (
+          <Ringed size={Math.max(12, row * 0.6)}>
+            <Avatar uri={avatar} size={Math.max(12, row * 0.6)} name={name} />
+          </Ringed>
+        ) : null}
+        <Text style={{ flexShrink: 1, color: "rgba(255,255,255,0.86)", fontWeight: "500", fontSize: row * 0.4 }} numberOfLines={1}>
+          <Text style={{ fontWeight: "800", color: "#fff" }}>{name} </Text>
+          {line.text}
+        </Text>
+      </Glass>
     </Animated.View>
   );
 }
@@ -674,19 +699,11 @@ function Ticker({ settings, box }: WidgetProps) {
   const moving = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
 
   if (!text) return null;
-  const font = box.height * 0.48;
+  const font = box.height * 0.44;
   const copy = { color: "#fff", fontWeight: "700" as const, fontSize: font, paddingRight: font * 4, flexShrink: 0 };
+  const fade = Math.max(8, box.width * 0.05);
   return (
-    <View
-      style={{
-        flex: 1,
-        overflow: "hidden",
-        justifyContent: "center",
-        backgroundColor: "rgba(10,10,12,0.72)",
-        borderTopWidth: Math.max(1, box.height * 0.06),
-        borderTopColor: color,
-      }}
-    >
+    <Glass radius={0} shadow={false} style={{ flex: 1, justifyContent: "center", borderWidth: 0 }}>
       <Animated.View
         style={[{ position: "absolute", left: 0, flexDirection: "row" }, moving]}
         onLayout={(e) => setTrackWidth(e.nativeEvent.layout.width)}
@@ -694,7 +711,31 @@ function Ticker({ settings, box }: WidgetProps) {
         <Text style={copy}>{text}</Text>
         <Text style={copy}>{text}</Text>
       </Animated.View>
-    </View>
+      {/* Text fades out at the edges instead of being cut. */}
+      <LinearGradient
+        pointerEvents="none"
+        colors={["rgba(14,14,17,0.95)", "rgba(14,14,17,0)"]}
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: fade }}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={["rgba(14,14,17,0)", "rgba(14,14,17,0.95)"]}
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: fade }}
+      />
+      {/* An accent hairline along the top that fades out to the sides. */}
+      <LinearGradient
+        pointerEvents="none"
+        colors={["transparent", color, color, "transparent"]}
+        locations={[0, 0.2, 0.8, 1]}
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={{ position: "absolute", left: 0, right: 0, top: 0, height: Math.max(1, box.height * 0.05) }}
+      />
+    </Glass>
   );
 }
 
@@ -723,8 +764,10 @@ function RuleAlert({ box }: WidgetProps) {
   const avatar = getAvatarUrl(current.item.user.avatarImageUrl) || undefined;
   return (
     <Banner key={current.id} box={box}>
-      <Avatar uri={avatar} size={Math.max(16, box.height * 0.6)} name={name} />
-      <Text style={{ flex: 1, color: "#fff", fontWeight: "700", fontSize: box.height * 0.26 }} numberOfLines={2}>
+      <Ringed size={Math.max(16, box.height * 0.6)}>
+        <Avatar uri={avatar} size={Math.max(16, box.height * 0.6)} name={name} />
+      </Ringed>
+      <Text style={{ flex: 1, color: "#fff", fontWeight: "800", fontSize: box.height * 0.26 }} numberOfLines={2}>
         {current.item.text}
       </Text>
     </Banner>
@@ -831,11 +874,11 @@ function WheelFace({ item, box }: { item: SpinItem; box: WidgetProps["box"] }) {
         />
       </View>
       {landed ? (
-        <View style={[GLASS, { borderRadius: 999, paddingHorizontal: d * 0.05, paddingVertical: d * 0.02, maxWidth: box.width }]}>
+        <Glass radius={999} style={{ paddingHorizontal: d * 0.05, paddingVertical: d * 0.02, maxWidth: box.width }}>
           <Text numberOfLines={1} style={{ color: "#fff", fontWeight: "700", fontSize: Math.max(10, d * 0.06) }}>
             {t("liveOverlay.wheelLanded", { name, result: item.segments[item.result] })}
           </Text>
-        </View>
+        </Glass>
       ) : null}
     </Animated.View>
   );
