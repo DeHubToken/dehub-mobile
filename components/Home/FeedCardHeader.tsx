@@ -1,5 +1,8 @@
 import BadgeArtwork from "../common/BadgeArtwork";
-import React, { memo, useCallback, useRef } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from "react-native-reanimated";
+import Svg, { Circle, Defs, Path, RadialGradient, Stop } from "react-native-svg";
+import { useAppTheme } from "../../context/ThemeContext";
 import { View, Text, Pressable } from "react-native";
 import Avatar from "../common/Avatar";
 import NewMemberChip from "../common/NewMemberChip";
@@ -43,7 +46,51 @@ export interface FeedCardHeaderProps {
   avatarSize?: number;
   onMenuPress?: () => void;
   onBoostPress?: () => void;
+  /** The post is in a paid boost slot: the bolt shows for everyone, solid and glowing. */
+  boosted?: boolean;
+  /** Where the lit bolt goes for a viewer who cannot boost this post. */
+  onBoostedPress?: () => void;
   isHidden?: boolean;
+}
+
+// Written as hsla() so the readability and System Light colour passes leave
+// the lit bolt at full white / near-black.
+const LIT_DARK = "hsla(0,0%,100%,1)";
+const LIT_LIGHT = "hsla(240,6%,10%,1)";
+
+// The cut bolt's own outline (cut-icons SuperPowers), filled for the lit state.
+const BOLT_PATH = "M18 3L5 18H14L12 29L27 13H18Z";
+const GLOW_SIZE = HEADER_ICON_SIZE + 16;
+
+/** The lit bolt: the same cut bolt, solid, over a soft radial glow that breathes. */
+function LitBolt({ color, glow }: { color: string; glow: string }) {
+  const breath = useSharedValue(1);
+  useEffect(() => {
+    breath.value = withRepeat(withTiming(0.35, { duration: 1300, easing: Easing.inOut(Easing.ease) }), -1, true);
+  }, [breath]);
+  const style = useAnimatedStyle(() => ({ opacity: breath.value }));
+  return (
+    <View style={{ width: HEADER_ICON_SIZE, height: HEADER_ICON_SIZE }}>
+      <Animated.View
+        pointerEvents="none"
+        style={[{ position: "absolute", left: -8, top: -8, width: GLOW_SIZE, height: GLOW_SIZE }, style]}
+      >
+        <Svg width={GLOW_SIZE} height={GLOW_SIZE}>
+          <Defs>
+            <RadialGradient id="boostGlow" cx="50%" cy="50%" r="50%">
+              <Stop offset="0" stopColor={glow} stopOpacity={0.55} />
+              <Stop offset="0.55" stopColor={glow} stopOpacity={0.18} />
+              <Stop offset="1" stopColor={glow} stopOpacity={0} />
+            </RadialGradient>
+          </Defs>
+          <Circle cx={GLOW_SIZE / 2} cy={GLOW_SIZE / 2} r={GLOW_SIZE / 2} fill="url(#boostGlow)" />
+        </Svg>
+      </Animated.View>
+      <Svg width={HEADER_ICON_SIZE} height={HEADER_ICON_SIZE} viewBox="0 0 32 32">
+        <Path d={BOLT_PATH} fill={color} stroke={color} strokeWidth={2.4} strokeLinejoin="round" />
+      </Svg>
+    </View>
+  );
 }
 
 const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
@@ -56,9 +103,14 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
   avatarSize = 32,
   onMenuPress,
   onBoostPress,
+  boosted,
+  onBoostedPress,
   isHidden,
 }) => {
   const { t } = useTranslation();
+  const { isLight } = useAppTheme();
+  const litColor = isLight ? LIT_LIGHT : LIT_DARK;
+  const boltPress = onBoostPress ?? (boosted ? onBoostedPress : undefined);
   const badgeRef = useRef<View>(null);
   // While they are live the avatar opens the stream; name and @handle
   // still open the profile.
@@ -169,16 +221,21 @@ const FeedCardHeaderComponent: React.FC<FeedCardHeaderProps> = ({
         }}
       >
         {isHidden && <Icon name="EyeOff" size={16} color={ICON_MUTED} />}
-        {onBoostPress && (
+        {(onBoostPress || boosted) && (
           <Pressable
-            onPress={onBoostPress}
+            onPress={boltPress}
+            disabled={!boltPress}
             accessibilityRole="button"
-            accessibilityLabel={t("feedCard.boostPost")}
+            accessibilityLabel={onBoostPress ? t("feedCard.boostPost") : t("work.boosted")}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             style={{ padding: HEADER_ICON_PAD, marginRight: BOOST_END_SPACE }}
           >
             <View style={{ top: CORNER_ICON_DROP }}>
-              <Icon name="Zap" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+              {boosted ? (
+                <LitBolt color={litColor} glow={isLight ? "#18181b" : "#ffffff"} />
+              ) : (
+                <Icon name="Zap" size={HEADER_ICON_SIZE} color={ICON_MUTED} />
+              )}
             </View>
           </Pressable>
         )}
