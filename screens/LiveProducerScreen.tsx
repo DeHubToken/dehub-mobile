@@ -20,6 +20,8 @@ import { useWebSocket } from "../context/WebSocketContext";
 import { useCameraPermissions } from "expo-camera";
 import WebRTCPublisher from "../components/LiveProducer/WebRTCPublisher";
 import VideoLookSheet from "../components/LiveProducer/VideoLookSheet";
+import StudioSheet from "../components/LiveProducer/StudioSheet";
+import { usePhoneStudio } from "../hooks/usePhoneStudio";
 import {
   videoLooksSupported,
   type VideoLookId,
@@ -225,6 +227,18 @@ const LiveProducerScreen: React.FC = () => {
       user?: any;
     }>
   >([]);
+
+  // The phone studio: scenes, background, an image or logo, widgets in the
+  // video. Off while streaming from an encoder, where there is no camera.
+  const [studioOpen, setStudioOpen] = useState(false);
+  const studio = usePhoneStudio({
+    streamId,
+    enabled: !externalMode,
+    startedAt,
+    micMuted,
+    setMicMuted,
+    chatActivities,
+  });
 
     // Keep a small rolling memory of recent optimistic messages to dedupe server echoes
   const recentOptimisticRef = useRef<Array<{ key: string; ts: number }>>([]);
@@ -1259,6 +1273,7 @@ const LiveProducerScreen: React.FC = () => {
               micMuted={micMuted}
               cameraOff={cameraOff}
               videoLook={videoLook}
+              studio={{ ...studio.chain, compositing: studio.compositing }}
               onStats={handlePublishStats}
               onConnected={handlePublisherConnected}
               onError={handlePublisherError}
@@ -1513,6 +1528,12 @@ const LiveProducerScreen: React.FC = () => {
                             looksActive: videoLook !== "none",
                           }
                         : null)}
+                      {...(studio.supported && !externalMode
+                        ? {
+                            onOpenStudio: () => setStudioOpen(true),
+                            studioActive: studio.anyOn,
+                          }
+                        : null)}
                     />
                   </View>
                 ) : null}
@@ -1613,6 +1634,11 @@ const LiveProducerScreen: React.FC = () => {
             onSelect={setVideoLook}
             onClose={() => setLooksOpen(false)}
           />
+        ) : null}
+
+        {/* The phone studio, only where this binary has it. */}
+        {studio.supported ? (
+          <StudioSheet visible={studioOpen} studio={studio} onClose={() => setStudioOpen(false)} />
         ) : null}
       </View>
     </Pressable>

@@ -13,6 +13,7 @@
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		D8F356E3C6773F72E2ACF7BB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 05F95CB5DA0E20D841AB7296 /* PrivacyInfo.xcprivacy */; };
 		DE7A1001000000000000AA01 /* DHBVideoLooks.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7A1002000000000000AA02 /* DHBVideoLooks.m */; };
+		DE7A1004000000000000AA04 /* DHBStudio.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7A1005000000000000AA05 /* DHBStudio.m */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 		F65A705EB231268C2FE87800 /* libPods-DeHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FA5156077F123F6637B66AF /* libPods-DeHub.a */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		DE7A1002000000000000AA02 /* DHBVideoLooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DHBVideoLooks.m; path = DeHub/DHBVideoLooks.m; sourceTree = "<group>"; };
 		DE7A1003000000000000AA03 /* DHBVideoLooks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DHBVideoLooks.h; path = DeHub/DHBVideoLooks.h; sourceTree = "<group>"; };
+		DE7A1005000000000000AA05 /* DHBStudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DHBStudio.m; path = DeHub/DHBStudio.m; sourceTree = "<group>"; };
+		DE7A1006000000000000AA06 /* DHBStudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DHBStudio.h; path = DeHub/DHBStudio.h; sourceTree = "<group>"; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DeHub/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* DeHub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DeHub-Bridging-Header.h"; path = "DeHub/DeHub-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +67,8 @@
 				F11748442D0722820044C1D9 /* DeHub-Bridging-Header.h */,
 				DE7A1003000000000000AA03 /* DHBVideoLooks.h */,
 				DE7A1002000000000000AA02 /* DHBVideoLooks.m */,
+				DE7A1006000000000000AA06 /* DHBStudio.h */,
+				DE7A1005000000000000AA05 /* DHBStudio.m */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -386,6 +391,7 @@
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
 				DE7A1001000000000000AA01 /* DHBVideoLooks.m in Sources */,
+				DE7A1004000000000000AA04 /* DHBStudio.m in Sources */,
 				1BD3DCE9BA8C898971641C8D /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

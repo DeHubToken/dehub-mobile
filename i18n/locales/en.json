@@ -14712,6 +14712,73 @@
     "exploreFirst": "Explore first",
     "codeNote": "We email you a code, no password needed."
   },
+  "studioDeck": {
+    "remove": "Remove",
+    "background": {
+      "title": "Background",
+      "modes": {
+        "none": "Off",
+        "blur": "Blur",
+        "color": "Colour",
+        "image": "Picture"
+      },
+      "failed": "Background removal couldn't start on this device.",
+      "hint": "Runs on your device. The first time takes a few seconds to load."
+    },
+    "scenes": {
+      "title": "Scenes",
+      "picture": "Picture",
+      "countdown": "Countdown",
+      "noCountdown": "No countdown",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "Starting soon",
+        "chatting": "Just chatting",
+        "brb": "Be right back",
+        "ending": "Stream ending"
+      },
+      "hints": {
+        "starting": "Card with a countdown",
+        "chatting": "Camera full screen",
+        "brb": "Card, mic muted",
+        "ending": "Thank-you card"
+      },
+      "subtitles": {
+        "starting": "The stream starts in",
+        "brb": "Back in a moment",
+        "ending": "Thanks for watching"
+      }
+    },
+    "widgets": {
+      "title": "Show widgets in my video",
+      "hint": "Alerts, goal bars and chat are drawn into your stream, so viewers on Twitch, YouTube and every other platform see them too.",
+      "failed": "Couldn't change where your widgets show. Try again.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Sources",
+      "addImage": "Image or logo",
+      "failed": "Couldn't add that source.",
+      "hint": "Sources are drawn over your picture for every viewer and every platform.",
+      "image": "Image",
+      "show": "Show on stream",
+      "positions": {
+        "top-left": "Top left",
+        "top-right": "Top right",
+        "bottom-left": "Bottom left",
+        "bottom-right": "Bottom right",
+        "center": "Centre"
+      },
+      "sizes": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      }
+    },
+    "phone": {
+      "title": "Studio"
+    }
+  },
   "whenSheet": {
     "title": "When?",
     "tonight": "Tonight",

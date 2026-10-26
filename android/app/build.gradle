@@ -235,6 +235,9 @@ dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation 'androidx.profileinstaller:profileinstaller:1.4.1'
+    // Phone studio background removal (io.dehub.mobile.studio.PersonSegmenter).
+    // The model is bundled, so it works offline and on first use.
+    implementation 'com.google.mlkit:segmentation-selfie:16.0.0-beta6'
     if (providers.gradleProperty('dehub.generateProfiles').orNull == 'true') {
         baselineProfile project(':baseline-profile')
     }
