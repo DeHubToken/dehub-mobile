@@ -9606,6 +9606,34 @@
     }
   },
   "creator": {
+    "marketing":  {
+                      "title":  "Brief de campagne",
+                      "intro":  "Décrivez votre produit et votre marque, puis préparez des formats publicitaires cohérents.",
+                      "saved":  "Votre brief est enregistré sur cet appareil pour ce compte.",
+                      "preview":  "Préparer les formats",
+                      "clear":  "Effacer le brief",
+                      "required":  "Ajoutez un nom et une description du produit pour préparer les formats.",
+                      "variants":  "Formats de campagne",
+                      "reviewHint":  "Vérifiez le modèle, le prix et la référence du produit dans le studio avant de générer. Chaque format est une génération distincte.",
+                      "open":  "Vérifier dans le studio",
+                      "fields":  {
+                                     "product":  "Nom du produit (obligatoire)",
+                                     "description":  "Données du produit (obligatoires)",
+                                     "brand":  "Nom de la marque",
+                                     "audience":  "Public cible",
+                                     "benefit":  "Avantage principal",
+                                     "voice":  "Ton de la marque",
+                                     "palette":  "Couleurs de la marque",
+                                     "headline":  "Titre approuvé",
+                                     "cta":  "Appel à l’action"
+                                 },
+                      "formats":  {
+                                      "square":  "Publicité carrée",
+                                      "portrait":  "Publicité portrait",
+                                      "story":  "Image de story",
+                                      "video":  "Vidéo verticale"
+                                  }
+                  },
     "cinema":  {
                    "title":  "Direction cinématographique",
                    "hint":  "Définissez le style visuel de votre prochaine image ou vidéo. Les résultats varient selon le modèle.",

@@ -9937,6 +9937,34 @@
     }
   },
   "creator": {
+    "marketing":  {
+                      "title":  "Campaign brief",
+                      "intro":  "Describe your product and brand, then prepare matching ad formats.",
+                      "saved":  "Your brief is saved on this device for this account.",
+                      "preview":  "Prepare formats",
+                      "clear":  "Clear brief",
+                      "required":  "Add a product name and description to prepare formats.",
+                      "variants":  "Campaign formats",
+                      "reviewHint":  "Review the model, price and product reference in the studio before generating. Each format is a separate generation.",
+                      "open":  "Review in studio",
+                      "fields":  {
+                                     "product":  "Product name (required)",
+                                     "description":  "Product facts (required)",
+                                     "brand":  "Brand name",
+                                     "audience":  "Target audience",
+                                     "benefit":  "Key benefit",
+                                     "voice":  "Brand voice",
+                                     "palette":  "Brand colors",
+                                     "headline":  "Approved headline",
+                                     "cta":  "Call to action"
+                                 },
+                      "formats":  {
+                                      "square":  "Square ad",
+                                      "portrait":  "Portrait ad",
+                                      "story":  "Story image",
+                                      "video":  "Vertical video"
+                                  }
+                  },
     "batchPaymentHelp": "Each submitted image is charged separately. If a batch stops, unused DHB from its payment is reused automatically for a later generation that it covers.",
     "batchCount": "Images",
     "endFrame": "End frame",
