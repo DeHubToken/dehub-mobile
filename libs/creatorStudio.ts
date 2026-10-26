@@ -6,12 +6,14 @@ import { applyTemplate, type CreatorTemplate } from './creatorTemplates';
 import { generationDraft, type GenerationDraft } from './editor/generationDraft';
 import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL } from '../config/viral-effects';
 import { appendCinemaDirection, normalizeCinemaDirection, type CinemaDirection } from './cinemaDirection';
+import type { CreatorAudioSettings } from './creatorAudio';
 
 export type CreatorMode = 'image' | 'video' | 'audio' | '3d';
 export interface CreatorReferenceAsset {
   uri: string; label: string; kind: 'image' | 'video'; seconds?: number; posterUrl?: string; sourceClipId?: string;
 }
 export interface CreatorStudioSettings {
+  audioSettings?: CreatorAudioSettings;
   effect?: string;
   referenceAssets?: CreatorReferenceAsset[];
   endFrame?: CreatorReferenceAsset;
