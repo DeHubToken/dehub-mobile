@@ -70,6 +70,7 @@ import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
 import { FrostedBackground, FrostedContent } from "../components/ui/FrostedBackdrop";
+import StatusBarFrost from "../components/ui/StatusBarFrost";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 import FollowTagBar from "../components/Home/FollowTagBar";
@@ -1241,6 +1242,9 @@ export default function HomeScreen() {
 
         {theme !== 'system' ? filterPanel : null}
       </Animated.View>
+
+      {/* Frost under the status bar, so nothing slides sharp under the clock. */}
+      <StatusBarFrost />
 
       {!island && showNavPill && !filterPanelVisible ? (
         <FeedPillGlow
