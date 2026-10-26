@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remezcla",
+    "greenScreen": "Pantalla verde",
+    "collab": "Colaboración",
+    "sound": "Usar sonido",
+    "cut": "Recortar",
+    "unavailable": "Este vídeo no está disponible para remezclar.",
+    "openFailed": "No se pudo abrir la remezcla. Comprueba la conexión y los permisos de la cámara e inténtalo de nuevo.",
+    "tooLarge": "Esta grabación es demasiado grande. Graba una toma más corta.",
+    "invalidRecording": "No se pudo leer la grabación. Graba otra toma.",
+    "saveFailed": "No se pudo guardar la remezcla. Inténtalo de nuevo.",
+    "startHint": "Previsualiza la imagen de tu cámara sobre este vídeo y graba tu remezcla. Al salir de esta pantalla, la cámara se detiene.",
+    "openCamera": "Abrir cámara"
+  },
   "dehubLinks": {
     "kind": {
       "app": "app",

@@ -97,6 +97,7 @@ function AppNavigatorContent() {
         <Stack.Screen name={ScreenNames.CreatorFlowView} getComponent={() => deferredScreen('../screens/CreatorFlowViewScreen#default', () => require('../screens/CreatorFlowViewScreen').default)} />
         {/* No swipe-back: a horizontal drag on the page moves the selected layer. */}
         <Stack.Screen name={ScreenNames.MediaEditor} getComponent={() => deferredScreen('../screens/MediaEditorScreen#default', () => require('../screens/MediaEditorScreen').default)} options={{ gestureEnabled: false }} />
+        <Stack.Screen name={ScreenNames.VideoRemix} getComponent={() => deferredScreen('../screens/VideoRemixScreen#default', () => require('../screens/VideoRemixScreen').default)} options={{ gestureEnabled: false }} />
         <Stack.Screen
           name={ScreenNames.Leaderboard}
           getComponent={() => deferredScreen('../screens/LeaderboardScreen#default', () => require("../screens/LeaderboardScreen").default)}
