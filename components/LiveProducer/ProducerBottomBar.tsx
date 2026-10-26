@@ -9,6 +9,7 @@ import { MicOff } from "../ui/cut-icons";
 import { RefreshCw } from "../ui/cut-icons";
 import Server from "lucide-react-native/dist/esm/icons/server";
 import Palette from "lucide-react-native/dist/esm/icons/palette";
+import Clapperboard from "lucide-react-native/dist/esm/icons/clapperboard";
 
 type Stage =
   | "idle"
@@ -34,6 +35,9 @@ interface ProducerBottomBarProps {
   /** Absent on a build with no native looks — the button is then not rendered. */
   onOpenLooks?: () => void;
   looksActive?: boolean;
+  /** Absent on a build with no phone studio — the button is then not rendered. */
+  onOpenStudio?: () => void;
+  studioActive?: boolean;
 }
 
 const CIRCLE = "w-12 h-12 rounded-xl items-center justify-center";
@@ -52,6 +56,8 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
   startDisabled,
   onOpenLooks,
   looksActive,
+  onOpenStudio,
+  studioActive,
 }) => {
   const { t } = useTranslation();
   const isLive = stage === "live";
@@ -74,7 +80,9 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
   return (
     <View className="px-4 pb-2" pointerEvents="box-none">
       {/* Controls row: Flip, Mic, Camera, External */}
-      <View className="flex-row items-center justify-center gap-4 mb-3">
+      {/* Wraps rather than overflows: with looks, studio and the OBS toggle
+          all showing before going live, the row is wider than a small phone. */}
+      <View className="flex-row flex-wrap items-center justify-center gap-4 mb-3">
         <TouchableOpacity
           onPress={onFlipCamera}
           activeOpacity={0.8}
@@ -133,6 +141,23 @@ const ProducerBottomBar: React.FC<ProducerBottomBarProps> = ({
             accessibilityState={{ selected: !!looksActive }}
           >
             <Palette color="#fff" size={20} />
+          </TouchableOpacity>
+        ) : null}
+
+        {/* The phone studio: scenes, background, image, widgets in the video.
+            Filled while any of it is on, for the same reason as looks. */}
+        {onOpenStudio ? (
+          <TouchableOpacity
+            onPress={onOpenStudio}
+            activeOpacity={0.8}
+            className={`${CIRCLE} ${
+              studioActive ? "bg-white/20" : "bg-zinc-900/60"
+            }`}
+            accessibilityRole="button"
+            accessibilityLabel={t("studioDeck.phone.title")}
+            accessibilityState={{ selected: !!studioActive }}
+          >
+            <Clapperboard color="#fff" size={20} />
           </TouchableOpacity>
         ) : null}
 
