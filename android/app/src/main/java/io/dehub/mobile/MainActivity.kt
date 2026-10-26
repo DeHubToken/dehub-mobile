@@ -3,12 +3,16 @@ import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.core.view.WindowCompat
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+import com.facebook.react.views.modal.ReactModalHostView
 
 import expo.modules.ReactActivityDelegateWrapper
 
@@ -26,6 +30,40 @@ class MainActivity : ReactActivity() {
       window.isNavigationBarContrastEnforced = false
     }
     WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightNavigationBars = false
+    window.decorView.viewTreeObserver.addOnWindowFocusChangeListener(matchDialogBars)
+  }
+
+  // React Native draws every <Modal> (comments, drawers, sheets) in its own
+  // dialog window, and with edge-to-edge on it turns the nav bar contrast
+  // scrim back on there, tinted by the phone's system light/dark setting
+  // rather than the app theme. With the 3-button bar on a phone in light mode
+  // that is a flat light grey strip under every sheet. A dialog takes focus
+  // as it opens, so that is when it gets this window's nav bar back.
+  private val matchDialogBars = ViewTreeObserver.OnWindowFocusChangeListener { hasFocus ->
+    if (!hasFocus) matchDialogNavigationBars(window.decorView)
+  }
+
+  private fun matchDialogNavigationBars(view: View) {
+    if (view is ReactModalHostView) {
+      val dialogWindow = view.dialog?.window ?: return
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        dialogWindow.isNavigationBarContrastEnforced = false
+      }
+      WindowCompat.getInsetsController(dialogWindow, dialogWindow.decorView).isAppearanceLightNavigationBars =
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightNavigationBars
+      // A sheet opened from inside this one lives in this dialog's tree and
+      // takes focus from it rather than from the activity.
+      val observer = dialogWindow.decorView.viewTreeObserver
+      if (observer.isAlive) {
+        observer.removeOnWindowFocusChangeListener(matchDialogBars)
+        observer.addOnWindowFocusChangeListener(matchDialogBars)
+      }
+      matchDialogNavigationBars(dialogWindow.decorView)
+      return
+    }
+    if (view is ViewGroup) {
+      for (i in 0 until view.childCount) matchDialogNavigationBars(view.getChildAt(i))
+    }
   }
 
   /**
