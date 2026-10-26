@@ -14798,6 +14798,7 @@
     "tooSoonMin": "Pick a time at least {{count}} minutes from now.",
     "tooSoon": "Pick a time in the future.",
     "zone": "Your time ({{zone}}). Everyone else sees it in their own time.",
-    "remove": "Remove schedule"
+    "remove": "Remove schedule",
+    "startsIn": "Starts in {{time}}"
   }
 }
