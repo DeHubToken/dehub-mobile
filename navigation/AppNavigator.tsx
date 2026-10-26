@@ -405,6 +405,8 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.ShortsViewer}
+          layout={withSolidScreenBoundary}
+          options={{ presentation: 'transparentModal', contentStyle: { backgroundColor: 'transparent' } }}
           // The viewer already has the tapped clip and poster. Paint that seed
           // during entry instead of replacing loaded media with a route shell.
           getComponent={() => require("../screens/ShortsViewerScreen").default}

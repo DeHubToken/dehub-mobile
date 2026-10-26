@@ -6901,6 +6901,7 @@
     "coverFailed": "تعذّر تغيير الغلاف"
   },
   "player": {
+    "fullscreen": "ملء الشاشة",
     "segmentLabel": {
       "filler": "حشو",
       "interaction": "إعجاب واشتراك",
