@@ -41,6 +41,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 
 export type LogoVariant = 'primary' | 'icon' | 'both';
@@ -632,7 +633,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: '#0C0C0E',
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },
