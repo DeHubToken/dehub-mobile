@@ -86,6 +86,7 @@ import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { emitPostTipped, commentTipKey } from "../../libs/tip-events";
 import CreatorSupportAd from './CreatorSupportAd';
 import { DIRECT_QUICK_AMOUNTS, MIN_DIRECT_TIP, directTipToken } from "../../libs/direct-tip-tokens";
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -954,7 +955,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },

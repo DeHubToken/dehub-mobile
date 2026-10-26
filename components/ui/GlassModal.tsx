@@ -19,6 +19,8 @@ import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
+import SheetGlass from "./SheetGlass";
+import { SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 export interface GlassModalProps {
   visible: boolean;
@@ -77,8 +79,11 @@ const GlassModal: React.FC<GlassModalProps> = ({
 }) => {
   const insets = useSafeAreaInsets();
   const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, isLight, skin } = useAppTheme();
   const isBottom = presentation === "bottom";
+  // Drawers in the default dark theme take web's liquid glass; the canvas
+  // themes, Minimal and System Light keep their own sheet material.
+  const glassDrawer = isBottom && !skin && !isMinimal && !isLight;
   const MessageSurface = surface === 'theme' ? require("../DM/MessageSurface").default : null;
   const translateY = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(0);
@@ -243,6 +248,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   styles.panel,
                   isBottom ? styles.panelDrawer : styles.panelCard,
                   isMinimal && (isBottom ? styles.minimalPanelDrawer : styles.minimalPanelCard),
+                  glassDrawer && styles.glassPanelDrawer,
                   {
                     maxHeight: maxHeight as any,
                     height: panelHeight as any,
@@ -251,7 +257,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   },
                 ]}
               >
-                {MessageSurface ? <MessageSurface /> : null}
+                {glassDrawer ? <SheetGlass /> : MessageSurface ? <MessageSurface /> : null}
                 {scrollable ? (
                   <ScrollView
                     ref={scrollRef}
@@ -315,6 +321,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderTopWidth: 1,
+  },
+  glassPanelDrawer: {
+    backgroundColor: "transparent",
+    borderColor: SHEET_GLASS_BORDER,
   },
   // Minimal: pure black panel, one hairline where it meets the page — all
   // four sides on a floating card, the top edge only on a drawer.
