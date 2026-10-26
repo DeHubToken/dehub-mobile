@@ -104,6 +104,15 @@ export function creatorVideoOptions(settings: CreatorStudioSettings) {
     ...(clips.length ? { videoUrls: clips } : {}) };
 }
 
+/** Quote exactly the controls and media that creatorVideoOptions will submit. */
+export function creatorVideoQuoteHints(settings: CreatorStudioSettings | null, sourceImage?: string) {
+  const options = settings ? creatorVideoOptions(settings) : undefined;
+  const media = [sourceImage, options?.endFrameUrl, ...(options?.referenceImageUrls ?? []), ...(options?.videoUrls ?? [])];
+  return { resolution: options?.resolution ?? '720p', hasEndFrame: !!options?.endFrameUrl,
+    hasVideoReferences: !!options?.videoUrls?.length, hasAudioReferences: false,
+    hasInlineMedia: media.some(uri => !!uri && !/^https?:\/\//i.test(uri)) };
+}
+
 /** The selected medium decides routing; words such as "video" in an image brief do not. */
 export function prepareCreatorPrompt(text: string, preset?: CreatorTemplate, settings?: CreatorStudioSettings): string {
   const compatiblePreset = settings?.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend' ? undefined : preset;
