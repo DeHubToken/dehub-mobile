@@ -15,7 +15,7 @@ import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
 import { selectAuthorThreadIds } from "../libs/author-thread";
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
-import { CommentItem } from "../components/Comments";
+import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
@@ -284,9 +284,11 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   const inputRef = useRef<TextInput>(null);
   const keyboardSwap = useKeyboardSwap(inputRef);
-  // Phones: the docked composer stays away until Comment or Reply is pressed,
-  // and goes again when it is left empty.
+  // The docked composer only comes up for a Reply or Edit on a comment here,
+  // and goes again when it is left empty. The post's own comment button opens
+  // the same comments drawer as the home feed.
   const [composerAsked, setComposerAsked] = useState(false);
+  const [showCommentSheet, setShowCommentSheet] = useState(false);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -313,10 +315,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   // User avatar for input
   const userAvatar = getAvatarUrl(userAvatarUrl);
 
-  // Focus the comment input
-  const focusCommentInput = useCallback(() => {
-    setComposerAsked(true);
-    requestAnimationFrame(() => inputRef.current?.focus());
+  // The post's comment button: the comments drawer, as on home.
+  const openCommentSheet = useCallback(() => {
+    inputRef.current?.blur();
+    setShowCommentSheet(true);
   }, []);
 
   // Voice recording callbacks
@@ -790,8 +792,8 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   const handleStartEdit = useCallback((comment: Comment) => {
     setEditingComment(comment);
-
-    inputRef.current?.focus();
+    setComposerAsked(true);
+    requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
   const handleContextEdit = useCallback(() => {
@@ -1370,11 +1372,8 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   const handleStageAnchor = useCallback((y: number) => {
     stageAnchorRef.current = y;
   }, []);
-  // The comments tile: down to the comments, and the composer ready to type.
-  const handleStageComment = useCallback(() => {
-    listRef.current?.scrollToOffset({ offset: Math.max(0, tabRowY.current - MINI_PLAYER_HEIGHT - 12), animated: true });
-    focusCommentInput();
-  }, [focusCommentInput]);
+  // The comments tile opens the comments drawer, as on home.
+  const handleStageComment = openCommentSheet;
   const scrollToMedia = useCallback(() => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
@@ -1443,7 +1442,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           disablePress
           prioritizeMedia
           immersive
-          onCommentPress={focusCommentInput}
+          onCommentPress={openCommentSheet}
         />
       ) : item ? (
         // No bento: a text post lies flat and full width like the immersive
@@ -1454,7 +1453,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           disablePress
           prioritizeMedia
           flat
-          onCommentPress={focusCommentInput}
+          onCommentPress={openCommentSheet}
         />
       ) : loading ? (
         <View className="px-4 pt-4">
@@ -1532,14 +1531,14 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         </View>
       )}
     </View>
-  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
   // to" with the name glued on after it only reads right in languages that put
   // the name last.
   // Stays up whenever the reader is mid-comment, wherever they have scrolled.
-  const hideComposer = (pastComments || (stage && !composerAsked && !inputText.trim()))
+  const hideComposer = (pastComments || !composerAsked)
     && inputLift === 0 && !replyTo && !editingComment
     && !mediaAttachment && !recorder.isRecording && !emojiPickerVisible && !gifPickerVisible;
   useEffect(() => {
@@ -1979,6 +1978,22 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         onClose={() => setLikersCommentId(null)}
         commentId={likersCommentId}
       />
+
+      {showCommentSheet && tokenId != null && (
+        <CommentBottomSheet
+          visible={showCommentSheet}
+          onClose={() => {
+            setShowCommentSheet(false);
+            // Pick up anything posted in the drawer.
+            void fetchData();
+          }}
+          tokenId={tokenId}
+          commentsDisabled={commentsDisabled}
+          replyPolicy={(item as any)?.replyPolicy}
+          forKids={!!(item as any)?.forKids}
+          postCreator={postCreator}
+        />
+      )}
       </View>
     </View>
   );

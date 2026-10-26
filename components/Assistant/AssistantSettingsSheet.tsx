@@ -42,6 +42,7 @@ import {
   VOICE_PREFERENCE_OPTIONS,
   type VideoModel,
 } from '../../config/ai-models.constants';
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 
 export interface AssistantSettings {
@@ -287,7 +288,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: '#0C0C0E',
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },

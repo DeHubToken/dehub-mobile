@@ -45,6 +45,7 @@ import { getCommentLikers, type CommentLiker } from "../../services/nft.service"
 import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { useTranslation } from "react-i18next";
+import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 const SHEET_FRACTION = 0.6;
 const PAGE_LIMIT = 50;
@@ -277,9 +278,9 @@ const glassStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.14)",
+    borderColor: SHEET_GLASS_BORDER,
   },
   anonymousRow: {
     flexDirection: "row",
