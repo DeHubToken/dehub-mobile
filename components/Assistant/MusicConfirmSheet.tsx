@@ -43,6 +43,7 @@ import { toastError } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const log = createLogger('MusicConfirmSheet');
 
@@ -122,6 +123,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
 
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
@@ -185,9 +187,8 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
       statusBarTranslucent
       onRequestClose={closeSheet}
     >
-      <Animated.View
-        style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.6)' }, backdropStyle]}
-      >
+      <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+        <SheetBackdrop backdrop={backdrop} />
         <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={closeSheet} />
       </Animated.View>
 
@@ -197,7 +198,7 @@ const MusicConfirmSheetComponent: React.FC<MusicConfirmSheetProps> = ({
         pointerEvents="box-none"
       >
         <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 12 }, sheetStyle]}>
-          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <SheetDismissHandle onClose={closeSheet} style={s.handleWrap}>
             <View style={s.handle} />

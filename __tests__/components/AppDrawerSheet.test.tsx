@@ -66,6 +66,17 @@ jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/FrostedPill', () => 'FrostedPill');
 jest.mock('../../components/theme/HudBrackets', () => 'HudBrackets');
+jest.mock('../../components/ui/SheetGlass', () => ({ __esModule: true, default: 'SheetGlass', SheetGlassFill: 'SheetGlassFill' }));
+let mockBackdropBlur: 'android' | 'ios' | null = null;
+const mockBackdropActive: boolean[] = [];
+jest.mock('../../components/ui/SheetBackdrop', () => ({
+  __esModule: true, default: 'SheetBackdrop',
+  useSheetBackdrop: (active: boolean) => {
+    mockBackdropActive.push(active);
+    const blur = active ? mockBackdropBlur : null;
+    return { blur, blurred: !!blur, scrim: 'rgba(0,0,0,0.3)', light: false };
+  },
+}));
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: false }),
@@ -77,22 +88,43 @@ jest.mock('../../libs', () => ({ toastError: jest.fn(), toastInfo: jest.fn() }))
 jest.mock('../../libs/links.utils', () => ({ openInApp: jest.fn() }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 
-beforeEach(() => { jest.clearAllMocks(); mockTheme = 'system'; Platform.OS = 'android'; });
+beforeEach(() => {
+  jest.clearAllMocks();
+  mockTheme = 'system';
+  Platform.OS = 'android';
+  mockBackdropBlur = null;
+  mockBackdropActive.length = 0;
+});
 
 it.each(APP_THEMES)(
-  'opens %s with glass and no dark dismissal overlay or elevation shadow', (theme) => {
+  'opens %s with glass, the shared backdrop and no elevation shadow', (theme) => {
     mockTheme = theme;
     const close = jest.fn();
     const view = render(<AppDrawer visible onClose={close} />);
     const sheetStyle = Object.assign({}, ...view.getByTestId('app-menu-sheet').props.style.filter(Boolean));
     expect(sheetStyle).toMatchObject({ backgroundColor: 'transparent', elevation: 0, overflow: 'hidden' });
     expect(view.UNSAFE_getByType(FrostedPill).props.tint).toBe(glassTint(getThemeSkin(theme)?.page ?? '#0B0B0E', 0.18));
+    // The dismiss target paints nothing itself; the shared backdrop inside it
+    // carries the blur and the scrim.
     const dismiss = view.getByLabelText('common.close');
     expect(Object.assign({}, ...dismiss.props.style)).toMatchObject({ backgroundColor: 'transparent' });
+    expect(view.UNSAFE_getByType('SheetBackdrop' as any)).toBeTruthy();
     fireEvent.press(dismiss);
     expect(close).toHaveBeenCalledTimes(1);
   },
 );
+
+it('takes the drawer wash instead of a second feed blur when the backdrop blurs', () => {
+  mockBackdropBlur = 'android';
+  const view = render(<AppDrawer visible onClose={jest.fn()} />);
+  expect(view.UNSAFE_queryByType(FrostedPill)).toBeNull();
+  expect(view.UNSAFE_getByType('SheetGlassFill' as any).props.backdropBlurred).toBe(true);
+});
+
+it('does not keep a backdrop blur alive behind the closed menu', () => {
+  render(<AppDrawer visible={false} onClose={jest.fn()} />);
+  expect(mockBackdropActive.every(active => !active)).toBe(true);
+});
 
 it('preserves the iOS menu surface', () => {
   Platform.OS = 'ios';

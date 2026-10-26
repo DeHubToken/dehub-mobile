@@ -39,6 +39,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 interface TemplatesSheetProps {
   visible: boolean;
@@ -76,6 +77,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
   const sheetHeight = screenHeight * 0.8;
   const translateY = useSharedValue(sheetHeight);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   const [kind, setKind] = useState<TemplateKind>('video');
   const [query, setQuery] = useSurfaceDraft("components/Assistant/TemplatesSheet.tsx:query", '');
@@ -139,14 +141,13 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
       onRequestClose={closeSheet}
     >
       <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-        <Animated.View
-          style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.6)' }, backdropStyle]}
-        >
+        <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+          <SheetBackdrop backdrop={backdrop} />
           <TouchableOpacity style={StyleSheet.absoluteFill} activeOpacity={1} onPress={closeSheet} />
         </Animated.View>
 
         <Animated.View style={[s.sheet, { height: sheetHeight, paddingBottom: insets.bottom }, sheetStyle]}>
-          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>
