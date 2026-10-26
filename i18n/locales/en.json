@@ -14799,7 +14799,13 @@
     "tooSoon": "Pick a time in the future.",
     "zone": "Your time ({{zone}}). Everyone else sees it in their own time.",
     "remove": "Remove schedule",
-    "startsIn": "Starts in {{time}}"
+    "startsIn": "Starts in {{time}}",
+    "bestTime": "Best time",
+    "fansOnline": "When are my fans online?",
+    "show": "Show",
+    "hide": "Hide",
+    "fansBasis": "Brighter means more of your followers were watching, last {{count}} days.",
+    "everyoneBasis": "Not enough follower activity yet, so this is everyone on DeHub."
   },
   "planned": {
     "title": "Planned",

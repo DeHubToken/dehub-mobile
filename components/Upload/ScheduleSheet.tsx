@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { NavigationContext } from "@react-navigation/native";
+import { useQuery } from "@tanstack/react-query";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
@@ -7,6 +8,9 @@ import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
 import { appLocale } from "../../libs/date.util";
 import { parseWhen } from "../../libs/parseWhen";
+import { bestTime, toLocalGrid } from "../../libs/fansOnline";
+import { getFansOnline } from "../../services/scheduled.service";
+import { UserContext } from "../../context/AuthContext";
 import { KitButton, useKitColors } from "../page/PageKit";
 import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from "../../hooks/useSearchFieldMaterial";
 
@@ -57,6 +61,19 @@ export default function ScheduleSheet({ visible, onClose, scheduledDate, onSched
   const [minutes, setMinutes] = useState(19 * 60 + 30);
   const [typed, setTyped] = useState("");
   const stripRef = useRef<ScrollView>(null);
+  const [showFans, setShowFans] = useState(false);
+  const user = useContext(UserContext)?.user as { walletAddress?: string; address?: string } | null | undefined;
+  const wallet = (user?.walletAddress || user?.address || "").toLowerCase();
+
+  // When this account's followers usually watch, for "Best time" and the grid.
+  const fans = useQuery({
+    queryKey: ["fans-online", wallet],
+    queryFn: getFansOnline,
+    enabled: visible && !!wallet,
+    staleTime: 30 * 60_000,
+    retry: false,
+  });
+  const fansGrid = useMemo(() => (fans.data ? toLocalGrid(fans.data.grid) : null), [fans.data]);
 
   // The sheet stays mounted between opens; re-seed from the prop each time.
   useEffect(() => {
@@ -91,8 +108,9 @@ export default function ScheduleSheet({ visible, onClose, scheduledDate, onSched
     const now = new Date();
     const nextWeekday = (wd: number) => addDays(today, ((wd - now.getDay() + 7) % 7) || 7);
     const tonight = atMinutes(today, 20 * 60);
+    const best = fansGrid ? bestTime(fansGrid, earliest, now) : null;
     const primeToday = atMinutes(today, 19 * 60 + 30);
-    const prime = primeToday.getTime() > earliest ? primeToday : atMinutes(addDays(today, 1), 19 * 60 + 30);
+    const prime = best ?? (primeToday.getTime() > earliest ? primeToday : atMinutes(addDays(today, 1), 19 * 60 + 30));
     const friday = now.getDay() === 5 ? atMinutes(addDays(today, 1), 19 * 60) : atMinutes(nextWeekday(5), 19 * 60);
     return [
       tonight.getTime() > earliest
@@ -100,9 +118,11 @@ export default function ScheduleSheet({ visible, onClose, scheduledDate, onSched
         : { id: "soon", label: t("whenSheet.inAnHour", { defaultValue: "In an hour" }), at: firstSlot(Math.max(minimumMinutes, 60)) },
       { id: "tomorrow", label: t("whenSheet.tomorrow", { defaultValue: "Tomorrow" }), at: atMinutes(addDays(today, 1), 9 * 60) },
       { id: "weekend", label: friday.toLocaleDateString(locale, { weekday: "long" }), at: friday },
-      { id: "prime", label: t("whenSheet.primeTime", { defaultValue: "Prime time" }), at: prime, prime: true },
+      best
+        ? { id: "prime", label: t("whenSheet.bestTime", { defaultValue: "Best time" }), at: prime, prime: true }
+        : { id: "prime", label: t("whenSheet.primeTime", { defaultValue: "Prime time" }), at: prime, prime: true },
     ];
-  }, [today.getTime(), earliest, locale, minimumMinutes, t]);
+  }, [today.getTime(), earliest, locale, minimumMinutes, t, fansGrid]);
 
   const timeLabel = (d: Date) => d.toLocaleTimeString(locale, { hour: "numeric", minute: "2-digit" });
   const dayLabel = (d: Date) => (sameDay(d, today)
@@ -203,6 +223,67 @@ export default function ScheduleSheet({ visible, onClose, scheduledDate, onSched
           })}
         </View>
 
+        {fansGrid ? (
+          <View>
+            <Pressable
+              onPress={() => setShowFans(v => !v)}
+              accessibilityRole="button"
+              accessibilityState={{ expanded: showFans }}
+              style={styles.fansToggle}
+            >
+              <View style={styles.fansToggleLabel}>
+                <Icon name="Sparkles" size={13} color="rgba(255,255,255,0.75)" />
+                <Text style={styles.fansToggleText}>{t("whenSheet.fansOnline", { defaultValue: "When are my fans online?" })}</Text>
+              </View>
+              <Text style={styles.fansToggleState}>{showFans ? t("whenSheet.hide", { defaultValue: "Hide" }) : t("whenSheet.show", { defaultValue: "Show" })}</Text>
+            </Pressable>
+            {showFans ? (() => {
+              const max = Math.max(1, ...fansGrid.flat());
+              return (
+                <View style={styles.fansGrid}>
+                  {Array.from({ length: 7 }, (_, i) => addDays(today, i)).map(d => (
+                    <View key={d.getTime()} style={styles.fansRow}>
+                      <Text style={styles.fansDay}>{sameDay(d, today) ? t("whenSheet.today", { defaultValue: "Today" }) : d.toLocaleDateString(locale, { weekday: "short" })}</Text>
+                      <View style={styles.fansCells}>
+                        {fansGrid[d.getDay()].map((count, hour) => {
+                          const at = atMinutes(d, hour * 60);
+                          const past = at.getTime() <= earliest;
+                          const picked = sameDay(at, day) && minutes === hour * 60;
+                          return (
+                            <Pressable
+                              key={hour}
+                              disabled={past}
+                              onPress={() => choose(at)}
+                              accessibilityRole="button"
+                              accessibilityLabel={`${dayLabel(at)} ${timeLabel(at)}: ${count}`}
+                              hitSlop={{ top: 2, bottom: 2 }}
+                              style={[
+                                styles.fansCell,
+                                { opacity: past ? 0.05 : 0.12 + 0.88 * (count / max) },
+                                picked && styles.fansCellPicked,
+                              ]}
+                            />
+                          );
+                        })}
+                      </View>
+                    </View>
+                  ))}
+                  <View style={styles.fansHours}>
+                    <Text style={styles.fansHour}>{timeLabel(atMinutes(today, 0))}</Text>
+                    <Text style={styles.fansHour}>{timeLabel(atMinutes(today, 12 * 60))}</Text>
+                    <Text style={styles.fansHour}>{timeLabel(atMinutes(today, 23 * 60))}</Text>
+                  </View>
+                  <Text style={styles.fansBasis}>
+                    {fans.data?.basis === "followers"
+                      ? t("whenSheet.fansBasis", { defaultValue: "Brighter means more of your followers were watching, last {{count}} days.", count: fans.data.days })
+                      : t("whenSheet.everyoneBasis", { defaultValue: "Not enough follower activity yet, so this is everyone on DeHub." })}
+                  </Text>
+                </View>
+              );
+            })() : null}
+          </View>
+        ) : null}
+
         <Text style={styles.eyebrow}>{t("whenSheet.orPickDay", { defaultValue: "Or pick a day" }).toUpperCase()}</Text>
         <ScrollView ref={stripRef} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.strip}>
           {days.map((d, i) => {
@@ -299,4 +380,17 @@ const styles = StyleSheet.create({
   time: { color: "#FFFFFF", fontSize: 28, fontWeight: "800", minWidth: 124, textAlign: "center", fontVariant: ["tabular-nums"] },
   note: { color: "rgba(255,255,255,0.6)", fontSize: 12, textAlign: "center", marginTop: -6 },
   actions: { gap: 8, marginTop: 4 },
+  fansToggle: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingVertical: 4 },
+  fansToggleLabel: { flexDirection: "row", alignItems: "center", gap: 6 },
+  fansToggleText: { color: "rgba(255,255,255,0.75)", fontSize: 12, fontWeight: "600" },
+  fansToggleState: { color: "rgba(255,255,255,0.45)", fontSize: 12, fontWeight: "600" },
+  fansGrid: { marginTop: 8, gap: 3 },
+  fansRow: { flexDirection: "row", alignItems: "center", gap: 6 },
+  fansDay: { width: 36, color: "rgba(255,255,255,0.55)", fontSize: 10, fontWeight: "500" },
+  fansCells: { flex: 1, flexDirection: "row", gap: 2 },
+  fansCell: { flex: 1, height: 16, borderRadius: 3, backgroundColor: "#FFFFFF" },
+  fansCellPicked: { borderWidth: 1, borderColor: "#FFFFFF", opacity: 1 },
+  fansHours: { flexDirection: "row", justifyContent: "space-between", paddingLeft: 42 },
+  fansHour: { color: "rgba(255,255,255,0.45)", fontSize: 10 },
+  fansBasis: { color: "rgba(255,255,255,0.5)", fontSize: 11, paddingTop: 4 },
 });

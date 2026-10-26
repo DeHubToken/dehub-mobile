@@ -14871,7 +14871,13 @@
     "tooSoon": "Choisis une heure à venir.",
     "zone": "Ton heure ({{zone}}). Les autres la voient à leur heure.",
     "remove": "Retirer la programmation",
-    "startsIn": "Commence dans {{time}}"
+    "startsIn": "Commence dans {{time}}",
+    "bestTime": "Meilleur moment",
+    "fansOnline": "Quand mes fans sont-ils en ligne ?",
+    "show": "Afficher",
+    "hide": "Masquer",
+    "fansBasis": "Plus c'est clair, plus vos abonnés regardaient, sur les {{count}} derniers jours.",
+    "everyoneBasis": "Pas encore assez d'activité d'abonnés, voici donc tout DeHub."
   },
   "planned": {
     "title": "Planifié",

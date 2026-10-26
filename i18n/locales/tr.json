@@ -14843,7 +14843,13 @@
     "tooSoon": "Gelecekte bir zaman seç.",
     "zone": "Senin saatin ({{zone}}). Diğerleri kendi saatlerinde görür.",
     "remove": "Planlamayı kaldır",
-    "startsIn": "{{time}} sonra başlıyor"
+    "startsIn": "{{time}} sonra başlıyor",
+    "bestTime": "En iyi zaman",
+    "fansOnline": "Hayranlarım ne zaman çevrimiçi?",
+    "show": "Göster",
+    "hide": "Gizle",
+    "fansBasis": "Daha parlak, son {{count}} günde daha çok takipçinin izlediği anlamına gelir.",
+    "everyoneBasis": "Henüz yeterli takipçi etkinliği yok, bu yüzden bu DeHub'daki herkes."
   },
   "planned": {
     "title": "Planlananlar",
