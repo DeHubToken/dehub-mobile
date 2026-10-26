@@ -8,7 +8,9 @@ import { postMediaIsTransferring } from '../libs/post-media-session';
 import { finishInAppMiniRestore, getInAppVideoMini, openInAppVideoMini, subscribeInAppVideoMini } from '../libs/in-app-video-mini';
 import { containedPicture } from '../libs/live-overlay/layout';
 import { videoQuarterTurn } from '../libs/video-display-aspect';
-import { startsOnVideoPicture, commitsVideoMinimize } from '../libs/video-minimize-gesture';
+import { startsOnVideoPicture, commitsVideoMinimize, minimizeDrag, draggedPictureRect, pictureBoxTranslate } from '../libs/video-minimize-gesture';
+import { settlesSwipeBack, swipeBackProgress, SWIPE_BACK_SPRING } from '../libs/swipe-back';
+import { useOwnEdgeSwipe } from '../hooks/useSwipeBack';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
 import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
@@ -71,7 +73,7 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import Reanimated, { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from "react-native-reanimated";
+import Reanimated, { cancelAnimation, FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming, type SharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -231,11 +233,16 @@ const RESTORE_ZONE_BOTTOM = 0.85;
 const PAUSE_ZONE_START = 1 / 3;
 const PAUSE_ZONE_END = 2 / 3;
 // Swipe back (Android): a drag that starts this close to the left edge and
-// runs right leaves the viewer, as web's EDGE_SWIPE_ZONE_PX.
-const EDGE_BACK_ZONE = 32;
-const EDGE_BACK_CLAIM = 16;
-const EDGE_BACK_DISTANCE = 64;
-const EDGE_BACK_VELOCITY = 650;
+// runs right pulls the viewer off to the right, following the finger, and
+// leaves it on release if it is on its way out (libs/swipe-back). Wider than
+// web's EDGE_SWIPE_ZONE_PX: on gesture-navigation phones the system keeps
+// roughly the first 24dp for its own back, so the band past that has to be
+// wide enough to land in without aiming.
+const EDGE_BACK_ZONE = 44;
+const EDGE_BACK_CLAIM = 12;
+const EDGE_BACK_ENABLED = Platform.OS === "android";
+/** Corner radius of the in-app mini player the drag-down lands in. */
+const MINI_RADIUS = 10;
 
 /**
  * How long a short plays untouched before the chrome clears itself.
@@ -352,6 +359,12 @@ interface ShortItemProps {
   itemHeight: number;
   viewportHeight: number;
   miniReveal: SharedValue<number>;
+  /** How far the whole viewer is pulled right by the edge back, in points. */
+  backDrag: SharedValue<number>;
+  /** Set once a released edge back is on its way out. */
+  backLeaving: SharedValue<boolean>;
+  /** The page has slid fully off; the viewer pops its route. */
+  onSwipeBackSettled: () => void;
   captureViewerState: () => NonNullable<import('../libs/in-app-video-mini').InAppVideoMini['restoreParams']>;
   /** Viewer-level, so mute, volume and speed carry across shorts as they do on web. */
   isMuted: boolean;
@@ -377,7 +390,7 @@ interface ShortItemProps {
   optionsMenuOpen?: boolean;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
   const { t: _copy } = _useCopy();
   const feedPlaybackAllowed = useFeedPlaybackAllowed();
   const surfaceActive = useFeedSurfaceActive();
@@ -420,9 +433,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const { t } = useCopy();
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const navigation = useNavigation<any>();
-  const pictureRef = useRef<View>(null);
-  // Only the drag-to-minimize gesture reads this; the picture itself always
-  // fills the frame and contentFit="contain" letterboxes it.
+  const frameRef = useRef<View>(null);
+  // Only the drag-to-minimize gesture reads this; at rest the picture fills
+  // the frame and contentFit="contain" letterboxes it.
   const [intrinsicSize, setIntrinsicSize] = useState({ width: 0, height: 0 });
   const rotationProbeUrl = videoUrl && /\.m3u8(\?|$)/i.test(videoUrl) ? getVideoUrl(tokenId) : videoUrl;
   useEffect(() => {
@@ -449,6 +462,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const miniDragY = useSharedValue(0);
   const miniStart = useSharedValue({ x: 0, y: 0 });
   const miniHandingOff = useSharedValue(false);
+  // The picture left behind once the mini player has taken the decoder.
+  const miniHandoffFade = useSharedValue(1);
+  const backGrab = useSharedValue(0);
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
@@ -576,17 +592,53 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
     return { height: Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown) };
   }, [itemHeight, splitHeight, keyboardOffset]);
+  /**
+   * At rest the picture box is the whole frame: boxing it to the reported
+   * track shape shrank sideways-encoded portrait clips to a 16:9 strip.
+   *
+   * While it is dragged down into the mini player it is boxed to the picture
+   * itself. The frame carries a black fill (and the video surface its own
+   * black letterbox) the full height of the screen. Scaled down with the
+   * video while the viewer's backdrop fades out, those showed as solid bands
+   * above and below the picture until the mini player covered them. Only a
+   * landscape clip with a known size can be dragged, and at the moment the
+   * box switches the backdrop is still black behind it, so the switch itself
+   * draws nothing.
+   */
   const pictureStyle = useAnimatedStyle(() => {
     const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
     const frameHeight = Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown);
-    const amount = Math.min(1, miniDragY.value / Math.max(1, itemHeight * 0.65));
-    // Boxing the picture to the reported track shape shrank sideways-encoded
-    // portrait clips to a 16:9 strip; the full frame is always right.
+    const drag = minimizeDrag(miniDragY.value, SCREEN_WIDTH, itemHeight);
+    const picture = containedPicture(SCREEN_WIDTH, frameHeight, intrinsicSize.width, intrinsicSize.height);
+    const boxed = (drag.translateY > 0 || miniHandingOff.value) && intrinsicSize.width > 0 && picture.width > 0;
+    if (!boxed) {
+      return {
+        position: 'absolute', left: 0, top: 0, width: SCREEN_WIDTH, height: frameHeight,
+        overflow: 'visible', borderRadius: 0, opacity: 1,
+        transform: [{ translateX: 0 }, { translateY: 0 }, { scale: 1 }],
+      };
+    }
+    const move = pictureBoxTranslate(SCREEN_WIDTH, frameHeight, picture, drag);
     return {
-      position: 'absolute', left: 0, top: 0, width: SCREEN_WIDTH, height: frameHeight,
-      transform: [{ translateX: amount * SCREEN_WIDTH * 0.24 }, { translateY: miniDragY.value }, { scale: 1 - amount * 0.6 }],
+      position: 'absolute', left: picture.left, top: picture.top, width: picture.width, height: picture.height,
+      overflow: 'hidden',
+      // Rounds into the mini player's corners as it shrinks toward it.
+      borderRadius: (MINI_RADIUS * drag.amount) / Math.max(0.01, drag.scale),
+      opacity: miniHandoffFade.value,
+      transform: [{ translateX: move.translateX }, { translateY: move.translateY }, { scale: drag.scale }],
     };
-  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset]);
+  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset, intrinsicSize]);
+  /** The full frame inside the picture box, so the video stays where it was. */
+  const pictureContentStyle = useAnimatedStyle(() => {
+    const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
+    const frameHeight = Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown);
+    const picture = containedPicture(SCREEN_WIDTH, frameHeight, intrinsicSize.width, intrinsicSize.height);
+    const boxed = (miniDragY.value > 0 || miniHandingOff.value) && intrinsicSize.width > 0 && picture.width > 0;
+    return {
+      position: 'absolute', width: SCREEN_WIDTH, height: frameHeight,
+      left: boxed ? -picture.left : 0, top: boxed ? -picture.top : 0,
+    };
+  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset, intrinsicSize]);
   const miniChromeStyle = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
   // A parked offset is only "gone" relative to the size it was parked at; if
   // the item grows while comments are shut, push it clear so it can't read as
@@ -1409,46 +1461,79 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   /**
    * Swipe back from the left edge. iOS already has the stack's own edge swipe;
    * Android only has the system gesture, which button-navigation phones lack.
-   * Sideways travel only: a vertical move fails it at once and the pager keeps
-   * the flick, and it never claims a tap. One per detector, since a gesture
-   * object can only be attached once.
+   * Sideways travel only: a vertical move fails it at once and the pager (or
+   * the drag down into the mini player) keeps the flick, and it never claims a
+   * tap. One per detector, since a gesture object can only be attached once.
+   *
+   * The whole viewer follows the finger on the UI thread, uncovering the
+   * screen it was opened from, and on release springs either off to the right
+   * (then pops) or back, carrying the flick's speed. A touch the system takes
+   * back mid-drag ends unsuccessful and springs home rather than stranding
+   * the page part-way.
    */
   const makeEdgeBack = useCallback(() => Gesture.Pan()
-    .enabled(Platform.OS === "android" && isActive && !showComments && !screenshotMode)
+    .enabled(EDGE_BACK_ENABLED && isActive && !showComments && !screenshotMode)
     .hitSlop({ left: 0, width: EDGE_BACK_ZONE })
     .activeOffsetX(EDGE_BACK_CLAIM)
     .failOffsetX(-EDGE_BACK_CLAIM)
     .failOffsetY([-EDGE_BACK_CLAIM, EDGE_BACK_CLAIM])
-    .runOnJS(true)
+    .maxPointers(1)
+    .onStart(() => {
+      'worklet';
+      if (backLeaving.value) return;
+      // Caught again while springing home: carry on from where it is.
+      cancelAnimation(backDrag);
+      backGrab.value = backDrag.value;
+    })
+    .onUpdate((event) => {
+      'worklet';
+      if (!backLeaving.value) backDrag.value = Math.max(0, backGrab.value + event.translationX);
+    })
     .onEnd((event, success) => {
-      if (success && (event.translationX >= EDGE_BACK_DISTANCE || event.velocityX >= EDGE_BACK_VELOCITY)) {
-        navigation.goBack();
+      'worklet';
+      if (backLeaving.value) return;
+      if (success && settlesSwipeBack(backDrag.value, event.velocityX, SCREEN_WIDTH)) {
+        backLeaving.value = true;
+        backDrag.value = withSpring(SCREEN_WIDTH, { ...SWIPE_BACK_SPRING, velocity: event.velocityX }, () => {
+          runOnJS(onSwipeBackSettled)();
+        });
+      } else {
+        backDrag.value = withSpring(0, { ...SWIPE_BACK_SPRING, velocity: event.velocityX });
       }
-    }), [isActive, showComments, screenshotMode, navigation]);
+    }), [isActive, showComments, screenshotMode, backDrag, backGrab, backLeaving, SCREEN_WIDTH, onSwipeBackSettled]);
 
   const minimizeFromDrag = useCallback(() => {
     const cancel = () => {
       miniHandingOff.value = false;
+      miniHandoffFade.value = 1;
       miniDragY.value = withTiming(0, { duration: 180 });
       miniReveal.value = withTiming(0, { duration: 180 });
       if (navigation.isFocused()) onChromeVisibilityChange(chromeVisible);
     };
-    if (!videoUrl || !ownsPlayerRef.current() || !pictureRef.current) { cancel(); return; }
-    pictureRef.current.measureInWindow((x, y, width, height) => {
+    if (!videoUrl || !ownsPlayerRef.current() || !frameRef.current) { cancel(); return; }
+    // The frame is never transformed, so its window position is exact; where
+    // the picture sits inside it comes from the same math that draws it.
+    frameRef.current.measureInWindow((x, y, width, height) => {
       if (width <= 0 || height <= 0 || !navigation.isFocused() || !ownsPlayerRef.current()) { cancel(); return; }
+      const picture = containedPicture(width, height, intrinsicSize.width, intrinsicSize.height);
+      const drawn = draggedPictureRect(width, height, picture, minimizeDrag(miniDragY.value, width, itemHeight));
       const opened = openInAppVideoMini({
         player, session: videoSession, url: videoUrl, item,
         restoreParams: captureViewerState(),
         thumbnail: typeof thumbnail === 'string' ? thumbnail : undefined,
-        initialRect: (() => {
-          const picture = containedPicture(width, height, intrinsicSize.width, intrinsicSize.height);
-          return { x: x + picture.left, y: y + picture.top, width: picture.width, height: picture.height };
-        })(), onCancel: cancel,
+        initialRect: { x: x + drawn.left, y: y + drawn.top, width: drawn.width, height: drawn.height },
+        onCancel: cancel,
         onReady: () => { if (navigation.isFocused()) navigation.goBack(); },
       });
-      if (!opened) cancel();
+      if (!opened) { cancel(); return; }
+      // The mini player now sits exactly over the picture and carries on from
+      // there. What is left behind (the rest of the backdrop, and this picture,
+      // which has just handed over its decoder) fades, so the route pops from
+      // an empty screen instead of a dark one.
+      miniReveal.value = withTiming(1, { duration: 160 });
+      miniHandoffFade.value = withTiming(0, { duration: 120 });
     });
-  }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize]);
+  }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniHandoffFade, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize, itemHeight]);
 
   const minimizePan = useMemo(() => Gesture.Pan()
     .enabled(isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
@@ -1588,12 +1673,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   }, [isActive, chromeVisible, onChromeVisibilityChange]);
 
   return (
-    <View style={{ width: SCREEN_WIDTH, height: itemHeight }}>
+    <View ref={frameRef} collapsable={false} style={{ width: SCREEN_WIDTH, height: itemHeight }}>
       <GestureDetector gesture={screenGesture}>
         <Reanimated.View
           style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, photoMedia && { backgroundColor: photoBackdrop }, playerStyle]}
         >
-        <Reanimated.View ref={pictureRef} collapsable={false} style={pictureStyle}>
+        <Reanimated.View style={pictureStyle}>
+        <Reanimated.View style={pictureContentStyle}>
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
@@ -1618,6 +1704,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
           />
         ) : null}
+        </Reanimated.View>
         </Reanimated.View>
         {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} galleryKey={String(tokenId)} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
         {playbackPhase === 'failed' && isActive && <Pressable accessibilityRole="button"
@@ -2067,6 +2154,32 @@ const ShortsViewerScreen = () => {
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
   const miniReveal = useSharedValue(0);
   const viewerBackdrop = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
+  // The edge back (see makeEdgeBack in ShortItem). This screen draws its own,
+  // so the screen-wide release-to-go-back one stands down.
+  useOwnEdgeSwipe(EDGE_BACK_ENABLED);
+  const backDrag = useSharedValue(0);
+  const backLeaving = useSharedValue(false);
+  const backPageStyle = useAnimatedStyle(() => ({ transform: [{ translateX: backDrag.value }] }));
+  // The viewer is a transparent modal, so the screen it was opened from is
+  // already underneath. It shows through dimmed and brightens as the page
+  // leaves, as under the iOS pop.
+  const backScrimStyle = useAnimatedStyle(() => ({
+    opacity: backDrag.value > 0 ? 0.3 * (1 - swipeBackProgress(backDrag.value, SCREEN_WIDTH)) : 0,
+  }));
+  const backReturnTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (backReturnTimer.current) clearTimeout(backReturnTimer.current); }, []);
+  const onSwipeBackSettled = useCallback(() => {
+    if (backReturnTimer.current) return;
+    if (navigation.isFocused() && navigation.canGoBack()) navigation.goBack();
+    // A refused removal (an OS picture-in-picture window holds the route) must
+    // not leave the page parked off screen.
+    backReturnTimer.current = setTimeout(() => {
+      backReturnTimer.current = null;
+      if (!navigation.isFocused()) return;
+      backLeaving.value = false;
+      backDrag.value = withSpring(0, SWIPE_BACK_SPRING);
+    }, 700);
+  }, [navigation, backDrag, backLeaving]);
   const [hasMeasuredViewport, setHasMeasuredViewport] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
@@ -2464,6 +2577,9 @@ const ShortsViewerScreen = () => {
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
         miniReveal={miniReveal}
+        backDrag={backDrag}
+        backLeaving={backLeaving}
+        onSwipeBackSettled={onSwipeBackSettled}
         captureViewerState={captureViewerState}
         isMuted={isMuted}
         volume={volume}
@@ -2474,7 +2590,7 @@ const ShortsViewerScreen = () => {
         optionsMenuOpen={index === activeIndex && showOptionsMenu}
       />
     ),
-    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
   );
 
   const keyExtractor = useCallback(
@@ -2489,7 +2605,9 @@ const ShortsViewerScreen = () => {
   }), [containerHeight]);
 
   return (
-    <View style={styles.container} onLayout={handleContainerLayout}>
+    <View style={styles.container}>
+      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#000000' }, backScrimStyle]} />
+      <Reanimated.View style={[styles.container, backPageStyle]} onLayout={handleContainerLayout}>
       <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#000000' }, viewerBackdrop]} />
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
@@ -2675,6 +2793,7 @@ const ShortsViewerScreen = () => {
           onDeleteSuccess={handleDeleteSuccess}
         />
       )}
+      </Reanimated.View>
     </View>
   );
 };
