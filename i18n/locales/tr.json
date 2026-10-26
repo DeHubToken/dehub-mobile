@@ -9578,6 +9578,34 @@
     }
   },
   "creator": {
+    "marketing":  {
+                      "title":  "Kampanya özeti",
+                      "intro":  "Ürününüzü ve markanızı tanımlayın, ardından uyumlu reklam biçimleri hazırlayın.",
+                      "saved":  "Özetiniz bu hesap için bu cihazda saklanır.",
+                      "preview":  "Biçimleri hazırla",
+                      "clear":  "Özeti temizle",
+                      "required":  "Biçimleri hazırlamak için ürün adı ve açıklaması ekleyin.",
+                      "variants":  "Kampanya biçimleri",
+                      "reviewHint":  "Üretmeden önce stüdyoda modeli, fiyatı ve ürün referansını inceleyin. Her biçim ayrı bir üretimdir.",
+                      "open":  "Stüdyoda incele",
+                      "fields":  {
+                                     "product":  "Ürün adı (gerekli)",
+                                     "description":  "Ürün bilgileri (gerekli)",
+                                     "brand":  "Marka adı",
+                                     "audience":  "Hedef kitle",
+                                     "benefit":  "Temel fayda",
+                                     "voice":  "Marka üslubu",
+                                     "palette":  "Marka renkleri",
+                                     "headline":  "Onaylı başlık",
+                                     "cta":  "Eylem çağrısı"
+                                 },
+                      "formats":  {
+                                      "square":  "Kare reklam",
+                                      "portrait":  "Dikey reklam",
+                                      "story":  "Hikâye görseli",
+                                      "video":  "Dikey video"
+                                  }
+                  },
     "cinema":  {
                    "title":  "Sinematik yönlendirme",
                    "hint":  "Sonraki görselinizin veya videonuzun görsel tarzını belirleyin. Sonuçlar modele göre değişir.",
