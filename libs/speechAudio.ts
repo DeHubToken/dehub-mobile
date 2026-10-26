@@ -60,25 +60,48 @@ export function speechProviderFormat(format: unknown): string {
     : format === 'mp3_44100_192' ? format : 'mp3_44100_128';
 }
 
+/** Uncompressed PCM duration comes from complete sample frames, not a claimed duration. */
+export function pcmSpeechSamples(buffer: ArrayBuffer, expectedRate?: number) {
+  if (audioContainer(buffer) !== 'wav') throw new Error('Invalid PCM speech WAV');
+  const bytes = new Uint8Array(buffer);
+  const view = new DataView(buffer);
+  const end = view.getUint32(4, true) + 8;
+  if (end !== bytes.length) throw new Error('Invalid PCM speech WAV');
+  let sampleRate = 0;
+  let frames = 0;
+  let seenData = false;
+  let position = 12;
+  while (position + 8 <= end) {
+    const offset = position;
+    const size = view.getUint32(offset + 4, true);
+    if (ascii(bytes, offset, 'fmt ')) {
+      if (sampleRate || ![16, 18].includes(size) || (size === 18 && view.getUint16(offset + 24, true) !== 0) || view.getUint16(offset + 8, true) !== 1 ||
+        view.getUint16(offset + 10, true) !== 1 || view.getUint16(offset + 20, true) !== 2 ||
+        view.getUint16(offset + 22, true) !== 16) throw new Error('Invalid PCM speech WAV');
+      sampleRate = view.getUint32(offset + 12, true);
+      if (![24000, 44100].includes(sampleRate) || (expectedRate && sampleRate !== expectedRate) ||
+        view.getUint32(offset + 16, true) !== sampleRate * 2) throw new Error('Invalid PCM speech WAV');
+    }
+    if (ascii(bytes, offset, 'data')) {
+      if (seenData || !sampleRate || !size || size % 2) throw new Error('Invalid PCM speech WAV');
+      seenData = true;
+      frames = size / 2;
+    }
+    position += 8 + size + (size % 2);
+    if (position > end) throw new Error('Invalid PCM speech WAV');
+  }
+  if (position !== end || !sampleRate || !seenData) throw new Error('Invalid PCM speech WAV');
+  return { frames, sampleRate, durationSeconds: frames / sampleRate };
+}
+
 export function prepareSpeechAudio(buffer: ArrayBuffer, format: unknown, contentType: string | null) {
   const container = audioContainer(buffer);
   const wantsWave = format === 'wav_24000' || format === 'pcm_44100';
   if (wantsWave) {
     if (container === 'wav') {
-      const bytes = new Uint8Array(buffer);
-      const view = new DataView(buffer);
-      const rate = format === 'wav_24000' ? 24000 : 44100;
-      for (let offset = 12; offset + 24 <= bytes.length;) {
-        if (ascii(bytes, offset, 'fmt ')) {
-          if (view.getUint16(offset + 8, true) !== 1 || view.getUint16(offset + 10, true) !== 1 ||
-            view.getUint32(offset + 12, true) !== rate || view.getUint32(offset + 16, true) !== rate * 2 ||
-            view.getUint16(offset + 20, true) !== 2 || view.getUint16(offset + 22, true) !== 16) throw new Error('The speech provider returned an unexpected WAV format');
-          return { buffer, contentType: 'audio/wav', extension: 'wav' } as const;
-        }
-        const size = view.getUint32(offset + 4, true);
-        offset += 8 + size + (size % 2);
-      }
-      throw new Error('The speech provider returned an invalid WAV format');
+      try { pcmSpeechSamples(buffer, format === 'wav_24000' ? 24000 : 44100); }
+      catch { throw new Error('The speech provider returned an unexpected WAV format'); }
+      return { buffer, contentType: 'audio/wav', extension: 'wav' } as const;
     }
     if (format === 'wav_24000') throw new Error('The speech provider did not return the requested WAV audio');
     if (container || !/^(audio\/(pcm|l16|raw|x-raw)|application\/octet-stream)(;|$)/i.test(contentType ?? '')) throw new Error('The speech provider did not return the requested PCM audio');
