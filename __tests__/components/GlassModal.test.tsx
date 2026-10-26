@@ -28,6 +28,7 @@ jest.mock('expo-blur', () => ({ BlurView: 'BlurView' }));
 jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'GestureHandlerRootView' }));
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 jest.mock('../../components/DM/MessageSurface', () => ({ __esModule: true, default: 'MessageSurface' }));
+jest.mock('../../components/ui/SheetGlass', () => ({ __esModule: true, default: 'SheetGlass' }));
 
 const drag = (dy: number, dx = 0, vy = 0) => ({ dy, dx, vy });
 const handlers = (index = 0) => (PanResponder.create as jest.Mock).mock.calls[index][0];
@@ -36,7 +37,8 @@ beforeEach(() => jest.clearAllMocks());
 it.each(['center', 'bottom'] as const)('uses theme material without changing %s dismissal or content', (presentation) => {
   const close = jest.fn();
   const screen = render(<GlassModal surface="theme" visible presentation={presentation} onClose={close}><View testID="sheet-content" /></GlassModal>);
-  expect(screen.UNSAFE_getByType('MessageSurface' as any)).toBeTruthy();
+  // Drawers take web's liquid glass in the system theme; cards keep the theme material.
+  expect(screen.UNSAFE_getByType((presentation === 'bottom' ? 'SheetGlass' : 'MessageSurface') as any)).toBeTruthy();
   expect(screen.getByTestId('sheet-content')).toBeTruthy();
   fireEvent(screen.UNSAFE_getByType('Modal' as any), 'requestClose');
   expect(close).toHaveBeenCalledTimes(1);
