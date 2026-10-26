@@ -49,6 +49,7 @@ export type AppStackParamList = {
     flow?: import('../services/creator-flows.service').RemoteFlow;
   };
   [ScreenNames.MediaEditor]: { projectId?: string; importMedia?: import('../libs/editor/importGeneratedMedia').GeneratedMediaSource } | undefined;
+  [ScreenNames.VideoRemix]: { mode: 'green-screen' | 'collab' | 'sound' | 'cut'; tokenId: string | number; videoUrl: string; sourceUrl: string; title: string; creator?: string };
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
   [ScreenNames.Upload]: {
     tab?: 'feed' | undefined;

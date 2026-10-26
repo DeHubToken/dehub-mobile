@@ -54,6 +54,7 @@ import {
   type StoreOrder,
 } from "../../hooks/useStores";
 import { sanitizeAmountInput } from "../../libs/amount-input";
+import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 type SubTab = "listings" | "orders" | "purchases";
 
@@ -1094,11 +1095,11 @@ const styles = StyleSheet.create({
 
   backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
+    borderColor: SHEET_GLASS_BORDER,
     paddingHorizontal: 18,
     paddingTop: 16,
     maxHeight: "90%",

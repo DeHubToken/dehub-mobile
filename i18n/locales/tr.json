@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remiks",
+    "greenScreen": "Yeşil ekran",
+    "collab": "İş birliği",
+    "sound": "Sesi kullan",
+    "cut": "Kes",
+    "unavailable": "Bu video remiks oluşturmak için kullanılamıyor.",
+    "openFailed": "Remiks açılamadı. Bağlantınızı ve kamera izinlerini kontrol edip tekrar deneyin.",
+    "tooLarge": "Bu kayıt çok büyük. Daha kısa bir çekim yapın.",
+    "invalidRecording": "Kayıt okunamadı. Lütfen yeni bir çekim yapın.",
+    "saveFailed": "Remiks kaydedilemedi. Lütfen tekrar deneyin.",
+    "startHint": "Kamera görüntünüzü bu videonun üzerinde önizleyin, ardından remiksinizi kaydedin. Bu ekrandan ayrılmak kamerayı durdurur.",
+    "openCamera": "Kamerayı aç"
+  },
   "dehubLinks": {
     "kind": {
       "app": "uygulama",
@@ -7775,6 +7789,33 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "film": {
+        "repairRefs": "Eksik medya bağlantılarını kaldır",
+                 "title":  "Film projesi",
+                 "intro":  "Yeniden kullanılabilir referans görselleriyle çekimleri planlayın. Özetiniz, çekim sırası ve seçilen sonuçlar bu projeyle kaydedilir.",
+                 "create":  "Film planı oluştur",
+                 "name":  "Film adı",
+                 "brief":  "Film özeti",
+                 "sharedReferences":  "Ortak referans görselleri (en fazla 4)",
+                 "shot":  "Çekim",
+                 "addShot":  "Çekim ekle",
+                 "shotName":  "Çekim adı",
+                 "action":  "Çekim aksiyonu ve kompozisyonu",
+                 "seconds":  "İstenen video süresi (saniye)",
+                 "shotReferences":  "Ek referans görselleri (toplam sınır 4)",
+                 "frame":  "Kare hazırla",
+                 "video":  "Video hazırla",
+                 "review":  "Üretmeden önce stüdyoda modeli, referansları, video süresini ve fiyatı inceleyin.",
+                 "result":  "Onaylanan çekim sonucu",
+                 "noResult":  "Sonuç seçilmedi",
+                 "resultHint":  "Yüklemelerden onayladığınız bir görsel veya video seçin. Bağlantısı çekimle kaydedilir; filmi zaman çizelgesinde birleştirin.",
+                 "earlier":  "Öne taşı",
+                 "later":  "Arkaya taşı",
+                 "remove":  "Çekimi kaldır",
+                 "issue":  "Çekim açıklamasını ve referans medyayı kontrol edip tekrar deneyin. Kaydedilemediyse projeyi açık tutun.",
+                 "searchMedia":  "Ada göre medya bul",
+                 "refreshMedia":  "Medyayı yenile"
+             },
     "highlights": {
       "visual": "Görsel önemli anlar",
       "visualPrivacy": "Görsel analiz için seçilen kareleri gönderin.",

@@ -35,6 +35,7 @@ interface Props {
 }
 
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
+import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 const CDN_BASE = "https://dehubcdn.ams3.cdn.digitaloceanspaces.com";
 
@@ -393,9 +394,9 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     width: "100%",
     maxHeight: "100%",
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
+    borderColor: SHEET_GLASS_BORDER,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     overflow: "hidden",
