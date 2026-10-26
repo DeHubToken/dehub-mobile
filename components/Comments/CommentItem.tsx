@@ -232,13 +232,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
     transform: [{ scale: likeScale.value }],
   }));
 
+  // Alphas go through toFixed: near the end of the fade the value gets tiny
+  // enough for JS to print it as "3e-9", Reanimated's colour parser rejects
+  // that on the UI thread, and iOS aborts the app.
   const highlightAnimStyle = useAnimatedStyle(() => ({
-    textShadowColor: `rgba(194,196,199,${highlightOpacity.value * 0.6})`,
+    textShadowColor: `rgba(194,196,199,${(Math.max(0, highlightOpacity.value) * 0.6).toFixed(3)})`,
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 6 * highlightOpacity.value,
   }));
   const highlightSurfaceStyle = useAnimatedStyle(() => ({
-    backgroundColor: `rgba(148,163,184,${highlightOpacity.value * 0.12})`,
+    backgroundColor: `rgba(148,163,184,${(Math.max(0, highlightOpacity.value) * 0.12).toFixed(3)})`,
     borderRadius: 10,
   }));
 
