@@ -7,10 +7,17 @@ import FeedNavBar, { useFeedNavItems } from "./FeedNavBar";
 import type { PostTypeOption } from "./FeedFilterPanel";
 import { homeTabEvents } from "../../libs/eventBus";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import HomeHeader from "../HomeHeader";
+import { useDrawer } from "../../context/DrawerContext";
 
-/** Ordinary post pages retain the feed's pill, with Back in its filter slot. */
-export default function PostFeedNav({ onBack }: { onBack: () => void }) {
+/**
+ * Ordinary post pages retain the feed's pill, with Back in its filter slot.
+ * `withLogo` also keeps the logo bar above it, so a text post opened from the
+ * feed leaves both exactly where they were on the feed.
+ */
+export default function PostFeedNav({ onBack, withLogo = false }: { onBack: () => void; withLogo?: boolean }) {
   const navigation = useNavigation<any>();
+  const { openDrawer } = useDrawer();
   const { t } = useTranslation();
   const items = useFeedNavItems();
   const [sourceTab] = useState(() => homeTabEvents.visibleTab());
@@ -36,6 +43,9 @@ export default function PostFeedNav({ onBack }: { onBack: () => void }) {
 
   return (
     <View testID="post-feed-nav">
+      {withLogo ? (
+        <HomeHeader onMenuPress={openDrawer} onLogoPress={handleBack} logoHint={t("common.goBack")} />
+      ) : null}
       <FeedNavBar
         activeIndex={activeIndex}
         progress={progress}

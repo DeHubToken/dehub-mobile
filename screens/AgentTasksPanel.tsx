@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { randomUUID } from 'expo-crypto';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -18,6 +19,7 @@ function postActionUrl(post?: { token_id?: string | number; url?: string }) {
 }
 
 export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AIAgent[] }) {
+  const focused = useIsFocused();
   const { t } = useTranslation();
   const client = useQueryClient();
   const [prompt, setPrompt] = useSurfaceDraft('agent-task-prompt', '');
@@ -42,7 +44,8 @@ export function AgentTasksPanel({ wallet, agents }: { wallet: string; agents: AI
   const agentId = active.some(agent => agent.id === chosen) ? chosen : active[0]?.id;
   const swarmIds = active.filter(agent => selected.includes(agent.id)).map(agent => agent.id);
   const tasks = useQuery({ queryKey: ['agent-tasks', wallet],
-    refetchInterval: query => query.state.data?.tasks.some(task => ['queued', 'running'].includes(task.status)) ? 10000 : false,
+    enabled: focused,
+    refetchInterval: query => focused && query.state.data?.tasks.some(task => ['queued', 'running'].includes(task.status)) ? 10000 : false,
     queryFn: () => agentTaskRequest<{ tasks: AgentTask[] }>(wallet, { operation: 'list' }) });
   const history = useQuery({ queryKey: ['agent-task-history', wallet, historyId], enabled: !!historyId,
     queryFn: () => agentTaskRequest<{ actions: AgentTaskAction[] }>(wallet, { operation: 'history', task_id: historyId }) });

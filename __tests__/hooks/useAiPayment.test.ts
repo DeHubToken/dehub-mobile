@@ -43,8 +43,8 @@ import { ChainId } from '../../config/constants';
 const ACCOUNT = '0xea2824aed1fc55abcf7c6b4493ceea6a09f0d049';
 const HASH = `0x${'a'.repeat(64)}`;
 
-function setup() {
-  return renderHook(() => useJobPayment(true));
+function setup(enabled = true) {
+  return renderHook(() => useJobPayment(enabled));
 }
 
 describe('useJobPayment — a paid transfer is never lost', () => {
@@ -59,7 +59,8 @@ describe('useJobPayment — a paid transfer is never lost', () => {
 
   it('does not transfer DHB when authentication fails', async () => {
     mockVerifySession.mockRejectedValueOnce(new Error('Sign in again'));
-    const { result } = setup();
+    // Isolate submission authentication from the mounted eligibility lookup.
+    const { result } = setup(false);
     await act(async () => { await expect(result.current.payForJob(24)).rejects.toThrow('Sign in again'); });
     expect(mockWriteContractAA).not.toHaveBeenCalled();
     expect(mockListUnspentAiPayments).not.toHaveBeenCalled();

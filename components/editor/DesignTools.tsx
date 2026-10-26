@@ -1,4 +1,6 @@
 import EditorGuidePanel from "./EditorGuidePanel";
+import FilmProjectPanel from './FilmProjectPanel';
+import type { GenerationDraft } from '../../libs/editor/generationDraft';
 import ReusableElementsPanel from "./ReusableElementsPanel";
 import PagePaletteControls from "./PagePaletteControls";
 import ColourPickerButton from "./ColourPickerButton";
@@ -33,7 +35,8 @@ import DesignLinkPanel from "./DesignLinkPanel";
 import PageNotesPanel from "./PageNotesPanel";
 import GuidesPanel from "./GuidesPanel";
 
-export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent, onEditContent, onPageChange }: {
+export default function DesignTools({ project, selectedId, current, commit, seek, time, select, holdEdits, boxes, recording, onPresent, onEditContent, onPageChange, onGenerate }: {
+  onGenerate?: (draft: GenerationDraft) => Promise<void> | void;
   onPageChange?: (time: number) => void; onPresent?: () => void; onEditContent?: (id: string) => void;
   boxes: () => DesignLayoutBox[]; recording?: boolean;
   project: ProjectSnapshot; selectedId: string | null; holdEdits: () => ProjectEditLease | null;
@@ -42,12 +45,12 @@ export default function DesignTools({ project, selectedId, current, commit, seek
 }) {
   const { t } = useTranslation();
   const [clipboard, setClipboard] = useState<{ projectId: string; style: DesignStyle } | null>(null);
-  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | "repeat" | "elements" | "help" | null>(null);
+  const [panel, setPanel] = useState<"resize" | "colours" | "search" | "data" | "fill" | "groups" | "qr" | "insert" | "grid" | "guides" | "notes" | "link" | "compositions" | "bulk" | "animate" | "connectors" | "symbols" | "pages" | "document" | "repeat" | "elements" | "help" | "film" | null>(null);
   const [colour, setColour] = useState<string | null>(null);
   const [replacement, setReplacement] = useState("#ffffff");
   const selected = project.clips.find(c => c.id === selectedId);
   const contextual = selected ? designSelectionAction(selected) : null;
-  const panelTitle = panel ? t(`editor.designTools.panel.${panel}`, { defaultValue: DESIGN_PANEL_NAMES[panel] }) : "";
+  const panelTitle = panel === 'film' ? t('editor.film.title') : panel ? t(`editor.designTools.panel.${panel}`, { defaultValue: DESIGN_PANEL_NAMES[panel] }) : "";
   const editSelected = () => {
     if (!contextual || !selected || selected.locked) return;
     Keyboard.dismiss();
@@ -66,6 +69,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     <ScrollView keyboardShouldPersistTaps="handled" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6, paddingHorizontal: 12 }}>
       <DesignToolSearch onChoose={id => { Keyboard.dismiss(); if (id === "pages") onPageChange?.(time); setPanel(id === "layout" ? "groups" : id); }} />
       {action(t("editor.present.title", { defaultValue: "Present pages" }), () => { setPanel(null); onPresent?.(); }, !onPresent)}
+      {action(t('editor.film.title'), () => setPanel(panel === 'film' ? null : 'film'), false, panel === 'film')}
       {action(t("editor.designTools.insert", { defaultValue: "Insert" }), () => setPanel(panel === "insert" ? null : "insert"), false, ["insert", "data", "fill", "qr", "grid", "guides", "compositions", "bulk", "connectors", "symbols", "document", "repeat"].includes(panel ?? ""))}
       {contextual && action(t(`editor.selectionAction.${contextual.id}`, { defaultValue: contextual.label }), editSelected, !!selected?.locked || (!contextual.panel && !onEditContent))}
       <DesignClipboardControls project={project} selectedId={selectedId} time={time} current={current} commit={commit} select={select} />
@@ -88,6 +92,7 @@ export default function DesignTools({ project, selectedId, current, commit, seek
     </ScrollView>
     {panel && <ScrollView stickyHeaderIndices={[0]} nestedScrollEnabled keyboardShouldPersistTaps="handled" style={{ maxHeight: 260 }} contentContainerStyle={{ gap: 10, paddingBottom: 8 }}>
     <View className="flex-row items-center justify-between border-b border-white/10 px-3 py-2" style={{ backgroundColor: "#0a0a0a", gap: 10 }}><Text className="flex-1 text-xs font-semibold text-white/75">{panelTitle}</Text><Pressable accessibilityRole="button" onPress={() => { Keyboard.dismiss(); setPanel(null); }} className="min-h-[40px] justify-center rounded-lg px-3"><Text className="text-xs text-white/50">{t("editor.designTools.closePanel", { defaultValue: "Close panel" })}</Text></Pressable></View>
+    {panel === 'film' && <FilmProjectPanel project={project} current={current} commit={commit} onGenerate={onGenerate} />}
     {panel === "insert" && <View className="flex-row flex-wrap px-3" style={{ gap: 8 }}>
       {action(t("editor.elements.title", { defaultValue: "Saved elements" }), () => setPanel("elements"))}
       {action(t("editor.repeat.title", { defaultValue: "Repeat selection in a grid" }), () => setPanel("repeat"))}
