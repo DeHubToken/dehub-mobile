@@ -55,7 +55,7 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
   width: number;
   inset: number;
 }) {
-  const { theme, accent } = useAppTheme();
+  const { theme, accent, isLight } = useAppTheme();
   const refreshing = useFeedPillRefreshing();
   const reduced = useReducedMotion();
   const breath = useSharedValue(0);
@@ -70,7 +70,7 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
     breath.value = withRepeat(withTiming(.45, { duration: 1800, easing: Easing.inOut(Easing.sin), reduceMotion: ReduceMotion.Never }), -1, true);
     return () => cancelAnimation(breath);
   }, [breath, reduced, refreshing]);
-  const { color, gain } = pillGlowColor(theme, accent);
+  const { color, gain } = pillGlowColor(theme, accent, isLight);
   const style = useAnimatedStyle(() => ({
     opacity: gain * pillGlowStrength(distance.value, breath.value),
     transform: [{ translateY: pillBottom.value + headerY.value - TOP }],
@@ -78,7 +78,12 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
   const pill = width - inset * 2;
   if (pill <= 0) return null;
   const [r, g, b] = color;
-  const rgba = (a: number) => `rgba(${r},${g},${b},${a})`;
+  // System Light's colour pass flips near-black rgba to white; hsla is left alone.
+  const rgba = (a: number) => isLight ? `hsla(240,8%,5%,${a})` : `rgba(${r},${g},${b},${a})`;
+  // Light: the shade hangs from the pill's bottom line and only falls downward,
+  // so none of it climbs onto the pill.
+  const rimTop = isLight ? TOP + 2 : TOP - 1.5;
+  const bloom = isLight ? BLOOM.filter(band => band.y > 0).map(band => ({ ...band, y: band.y + 2 })) : BLOOM;
   const centre = width / 2;
   // The bloom spans the rim plus the blur's reach at each end.
   const bloomX = inset + 14 - BLOOM_RAMP / 2;
@@ -99,13 +104,13 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
     >
       {/* Web: radial-gradient(60% 100% at 50% 0%) over 92% of the pill, its
           flat top on the rim. */}
-      <Svg width={width} height={HEIGHT} viewBox={`0 ${-TOP} ${width} ${HEIGHT}`} style={StyleSheet.absoluteFill}>
+      <Svg width={width} height={HEIGHT} viewBox={`0 ${-(rimTop + 1.5)} ${width} ${HEIGHT}`} style={StyleSheet.absoluteFill}>
         {HALO_LAYERS.map(layer => {
           const rx = haloRx * layer.r, ry = HALO_HEIGHT * layer.r;
           return <Path key={layer.r} d={`M ${centre - rx} 0 A ${rx} ${ry} 0 0 0 ${centre + rx} 0 Z`} fill={rgba(1)} fillOpacity={layer.o} />;
         })}
       </Svg>
-      {BLOOM.map(band => (
+      {bloom.map(band => (
         <LinearGradient
           key={band.y}
           colors={[rgba(0), rgba(.5), rgba(1), rgba(1), rgba(.5), rgba(0)]}
@@ -115,7 +120,7 @@ export default function FeedPillGlow({ distance, pillBottom, headerY, width, ins
           style={[styles.strip, { left: bloomX, width: bloomWidth, top: TOP + band.y, height: 1, opacity: band.o }]}
         />
       ))}
-      <View style={[styles.strip, styles.rim, { left: inset + 14, width: pill - 28, top: TOP - 1.5 }]}>
+      <View style={[styles.strip, styles.rim, { left: inset + 14, width: pill - 28, top: rimTop }]}>
         <LinearGradient
           colors={[rgba(0), rgba(1), rgba(1), rgba(0)]}
           locations={[0, .22, .78, 1]}
