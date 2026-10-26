@@ -21,13 +21,16 @@ export function useMarketingStudioDraft(options: {
   owner: string | null;
   scope: string;
   studio: boolean;
+  editorDraft?: GenerationDraft | null;
   initialSettings: () => CreatorStudioSettings;
 }) {
   const handoff = options.studio ? marketingHandoff(options.campaign, options.owner) : null;
-  const scope = handoff ? `campaign:${handoff.id}` : options.scope;
-  const prepared = handoff ? creatorSettingsForEditorDraft(handoff.draft) : null;
+  const editorWorkspace = options.studio && options.editorDraft?.workspaceId;
+  const scope = handoff ? `campaign:${handoff.id}` : editorWorkspace ? `editor:${editorWorkspace}` : options.scope;
+  const prepared = handoff ? creatorSettingsForEditorDraft(handoff.draft) : editorWorkspace ? creatorSettingsForEditorDraft(options.editorDraft) : null;
+  const [appliedDraftId, setAppliedDraftId] = useDraftState<string | null>(`creator:${scope}:applied-draft`, null);
   const [settings, setSettings] = useDraftState<CreatorStudioSettings>(`creator:${scope}:settings`, () => prepared?.settings ?? options.initialSettings());
   const [input, setInput] = useDraftState(`assistant:${scope}:${options.studio ? settings.mode : 'chat'}:input`,
-    () => handoff && settings.mode === handoff.draft.kind ? handoff.draft.prompt : '');
-  return { settings, setSettings, input, setInput, handoff };
+    () => prepared && settings.mode === prepared.settings.mode ? prepared.draft.prompt : '');
+  return { settings, setSettings, input, setInput, handoff, appliedDraftId, setAppliedDraftId };
 }
