@@ -3,9 +3,10 @@ import { useAppTheme } from '../../context/ThemeContext';
 import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
 /**
  * VoiceNotePlayer — the Stage Strip voice note player, matching the web's
- * VoiceStripPlayer: a glass row, a square play key, thin mirrored bars that
- * fill as it plays and bounce around the playhead, the time and a speed chip.
- * Tap or drag the bars to scrub. Comments, DMs, live and community chats.
+ * VoiceStripPlayer: a square play key, thin mirrored bars that fill as it
+ * plays and bounce around the playhead, the time and a speed chip. It sits
+ * bare in the row, with no box of its own. Tap or drag the bars to scrub.
+ * Comments, DMs, live and community chats.
  */
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, LayoutChangeEvent } from "react-native";
@@ -349,13 +350,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: line,
-        backgroundColor: 'rgba(255,255,255,0.05)',
-        paddingVertical: compact ? 5 : 6,
-        paddingLeft: 6,
-        paddingRight: 8,
+        paddingVertical: compact ? 1 : 2,
         marginVertical: compact ? 2 : 4,
         gap: 8,
       }}
