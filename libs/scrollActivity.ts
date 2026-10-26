@@ -12,6 +12,7 @@
 const SAFETY_MS = 2500;
 
 let scrolling = false;
+let settledAt = -Infinity;
 let safety: ReturnType<typeof setTimeout> | null = null;
 const listeners = new Set<() => void>();
 const startListeners = new Set<() => void>();
@@ -22,6 +23,16 @@ function notify(): void {
 
 export function isFeedScrolling(): boolean {
   return scrolling;
+}
+
+/**
+ * A touch landing now would only stop a moving feed. The grace covers the
+ * list reporting the stop (onMomentumScrollEnd) a frame or two before the
+ * touch that caused it reaches JS.
+ */
+export const STOP_TAP_GRACE_MS = 150;
+export function isFeedGliding(now = Date.now()): boolean {
+  return scrolling || now - settledAt < STOP_TAP_GRACE_MS;
 }
 
 export function setFeedScrolling(next: boolean): void {
@@ -37,6 +48,7 @@ export function setFeedScrolling(next: boolean): void {
       safety = null;
       if (scrolling) {
         scrolling = false;
+        // A missed settle event: the list stopped long ago, not just now.
         notify();
       }
     }, SAFETY_MS);
@@ -44,7 +56,18 @@ export function setFeedScrolling(next: boolean): void {
   }
   if (!scrolling) return;
   scrolling = false;
+  settledAt = Date.now();
   notify();
+}
+
+/**
+ * Responder capture for a feed's wrapper: a finger that lands on a gliding
+ * feed makes the wrapper the responder, so the touch only stops the list and
+ * no post, photo or video under it gets a press. Native lists work this way;
+ * Android delivered the press anyway.
+ */
+export function captureScrollStopTouch(): boolean {
+  return isFeedGliding();
 }
 
 export function subscribeFeedSettled(fn: () => void): () => void {
@@ -64,6 +87,7 @@ export function subscribeFeedScrollStart(fn: () => void): () => void {
 
 export function __resetScrollActivityForTests(): void {
   scrolling = false;
+  settledAt = -Infinity;
   if (safety) clearTimeout(safety);
   safety = null;
   listeners.clear();
