@@ -11,7 +11,7 @@
  */
 
 import { renderHook, act } from '@testing-library/react-native';
-const mockQuoteTranslate = (key: string) => key;
+const mockQuoteTranslate = (key: string, options?: { defaultValue?: string }) => options?.defaultValue ?? key;
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: mockQuoteTranslate }) }));
 
 jest.mock('i18next', () => {
