@@ -354,15 +354,15 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
               hitSlop={{ top: 6, bottom: 6 }}
             >
               <View
-                // System Light: a white tint on a white card read 2:1. Solid ink
-                // key, kept out of the light pass so it stays ink.
-                className={!done && isLight ? "dark-surface" : undefined}
+                // System Light: a white tint on a white card read 2:1. A solid
+                // white key, which the light pass turns into solid ink; the
+                // shadowed white label is left as it is.
                 style={[
                   styles.follow,
                   done
                     ? { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "transparent" }
                     : isLight
-                      ? { backgroundColor: "#0B0B0D", borderColor: "#0B0B0D" }
+                      ? { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" }
                       : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
                   theme === "minimal" || square ? { borderRadius: 0 } : undefined,
                   mono ? { paddingHorizontal: 12 } : undefined,
