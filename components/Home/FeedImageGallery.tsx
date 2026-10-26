@@ -107,6 +107,8 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
     setVisible(previous => previous.length === next.length && previous.every((value, index) => value === next[index]) ? previous : next);
   }, []);
   const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    // A hidden pager page reports 0x0; keep the last real viewport.
+    if (event.nativeEvent.layout.width === 0) return;
     viewport.current.width = event.nativeEvent.layout.width;
     onLayout(event);
     updateVisible();
@@ -142,6 +144,7 @@ function FeedImageGallery({ images, width, fallbackWidth, active, prioritizeMedi
           testID={`feed-gallery-slide-${index}`}
           onLayout={event => {
             const { x, width } = event.nativeEvent.layout;
+            if (width === 0) return;
             frames.current.set(index, { x, width });
             if (index === galleryIndex(galleryKey)) restore();
             updateVisible();

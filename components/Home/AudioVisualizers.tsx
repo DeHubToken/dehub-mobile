@@ -228,7 +228,8 @@ const useBandWidth = (onLayout?: (e: LayoutChangeEvent) => void) => {
   const handleLayout = useCallback(
     (e: LayoutChangeEvent) => {
       const w = e.nativeEvent.layout.width;
-      setWidth((prev) => (Math.abs(prev - w) < 1 ? prev : w));
+      // 0 is a hidden pager page; keep the band drawn for when it returns.
+      if (w > 0) setWidth((prev) => (Math.abs(prev - w) < 1 ? prev : w));
       onLayout?.(e);
     },
     [onLayout],
