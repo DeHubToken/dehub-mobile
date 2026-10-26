@@ -40,7 +40,7 @@ export type AppStackParamList = {
   [ScreenNames.Creator]: undefined;
   [ScreenNames.Maboroshi]: { preset?: string; clip?: string } | undefined;
   [ScreenNames.CreatorRemake]: { preset?: string; clip?: string } | undefined;
-  [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; clip?: string; effect?: string; initialPrompt?: string; editorDraft?: GenerationDraft } | undefined;
+    [ScreenNames.CreatorStudio]: { mode?: 'image' | 'video' | 'audio' | '3d'; workflow?: 'swap' | 'motion'; clip?: string; effect?: string; initialPrompt?: string; editorDraft?: GenerationDraft; marketingHandoff?: import('../hooks/useMarketingStudioDraft').MarketingHandoff } | undefined;
   [ScreenNames.CreatorFlow]: undefined;
   /** `flow` is set when opened from your own list, so a private flow renders
    *  without the public lookup; a shared link carries only `id`. */
@@ -49,6 +49,7 @@ export type AppStackParamList = {
     flow?: import('../services/creator-flows.service').RemoteFlow;
   };
   [ScreenNames.MediaEditor]: { projectId?: string; importMedia?: import('../libs/editor/importGeneratedMedia').GeneratedMediaSource } | undefined;
+  [ScreenNames.VideoRemix]: { mode: 'green-screen' | 'collab' | 'sound' | 'cut'; tokenId: string | number; videoUrl: string; sourceUrl: string; title: string; creator?: string };
   [ScreenNames.Root]: NavigatorScreenParams<BottomTabParamList> | undefined;
   [ScreenNames.Upload]: {
     tab?: 'feed' | undefined;
@@ -89,7 +90,7 @@ export type AppStackParamList = {
     accessInfo?: any;
   };
   [ScreenNames.Leaderboard]: undefined;
-  [ScreenNames.Notifications]: undefined;
+  [ScreenNames.Notifications]: { filtered?: boolean } | undefined;
   [ScreenNames.NotificationSettings]: undefined;
   [ScreenNames.Feed]: undefined;
   [ScreenNames.PostResolver]: {
@@ -319,6 +320,7 @@ export type BottomTabParamList = {
   [ScreenNames.AIChat]: { initialPrompt?: string } | undefined;
   /** `section: "newMembers"` is the Live Stats heading's deep link to the rail. */
   [ScreenNames.Explore]: { section?: "newMembers" } | undefined;
+  [ScreenNames.ProfileTab]: undefined;
 };
 
 export type BottomTabScreenProps<T extends keyof BottomTabParamList> = CompositeScreenProps<

@@ -1,5 +1,9 @@
 {
   "accountConnect": {
+    "generate": "Эҷоди медиа бо истифода аз кредитҳо, пардохтҳои тасдиқшуда ё тасвирҳои ройгони мувофиқ",
+    "profile": "Таҳрири профил, тасвирҳо ва танзимоти махфият",
+    "read": "Хондани ҳисоб, постҳо, огоҳиномаҳо ва китобхонаи эҷодкор",
+    "social": "Нашри постҳо ва шарҳҳо, обуна шудан ба одамон ва захираи хатчӯбҳо",
     "account": "Барои дидани оммавӣ ҳисоб лозим нест. Ҳисоби DeHub-и худро пайваст кунед, то профили худро идора кунед ва мундариҷа эҷод ё нашр кунед.",
     "allow": "Иҷозати пайвастшавӣ",
     "body": "I-link ang iyong account upang mapamahala ang iyong profile, mag-publish ng mga post at lumikha ng nil Mga koneksyon sa loob ng 24 oras. Шумо метавонед дар вақти дилхоҳ пайвастшавиро қатъ кунед.",
@@ -33,6 +37,7 @@
     "watch": "Барои дастгирии ин эҷодкор таблиғро тамошо кунед"
   },
   "maboroshiShowcase": {
+    "title": "Саҳнаи шумо. Шумои дигар.",
     "anime": "Қаҳрамони аниматсия.",
     "browse": "Ҷустуҷӯи ҳамаи 180 намуди зоҳирӣ",
     "choose": "Кӯшиш кунед {{name}}",
@@ -47,6 +52,8 @@
     "previous": "Намудҳои қаблӣ"
   },
   "maintenance": {
+    "checkFailed": "Дастрасиро санҷида натавонистем. Лутфан боз кӯшиш кунед.",
+    "title": "Каме кор.\nDeHub-и беҳтар.",
     "brand": "ДеЮуб",
     "checking": "Санҷиш...",
     "community": "Ҷамъияти якум. Ҳамеша.",
@@ -57,6 +64,11 @@
     "retry": "Бори дигар кӯшиш кунед"
   },
   "quickActions": {
+    "capturing": "Аксбардории ин саҳифа…",
+    "failed": "Хатое рух дод. Паёми шумо захира шуд; лутфан боз кӯшиш кунед.",
+    "noScreenshot": "Скриншоти худкор дастрас нест. Ба ҳар ҳол метавонед гузоришатонро фиристед.",
+    "signIn": "Барои фиристодан ворид шавед",
+    "question": "Ano ang malawak sa pahina na ito?",
     "attachScreenshot": "Добавить скриншот",
     "deviceNotice": "Саҳифа, дастгоҳ, модел ҳангоми дастрас будан ва тафсилоти барнома ё браузер ба таври худкор дохил карда мешаванд.",
     "hint": "Барои кушодани ин параметрҳо дар ягон ҷо нигоҳ доред.",
@@ -88,6 +100,19 @@
     "waiting": "Барои пахши навбатии Twitch-и шумо омода аст"
   },
   "viralTemplates": {
+    "back": "Бозгашт ба шаблонҳо",
+    "browse": "Дидани ҳамаи {{count}} шаблон",
+    "eyebrow": "{{count}} шаблони видео",
+    "featured": "Бозгашт ба интихобшудаҳо",
+    "motionReady": "{{name}} интихоб шуд. Акси худро илова кунед, то ҳаракати ин клипро иҷро кунад.",
+    "ready": "{{name}} интихоб шуд. Барои сохтани видеои 5-сонияӣ як акс илова кунед. Чорчӯба аз рӯи акси шумо муайян мешавад.",
+    "results": "{{count}} шаблон",
+    "search": "Ҷустуҷӯи эффектҳо, персонажҳо ва рақсҳо",
+    "source": "Видеоҳои намунавӣ аз",
+    "title": "Лаҳзаи вирусии навбатии худро ёбед.",
+    "all": "Ҳама",
+    "more": "Бештар нишон диҳед",
+    "products": "Mahsulotlar",
     "characters": "Аломатҳо",
     "chooseFirst": "Выберите эффекты представления.",
     "close": "Закрыть шаблон",
@@ -104,6 +129,142 @@
     "useNamed": "Использовать {{name}}"
   },
   "copy": {
+    "04b765747018": "Каркаси симӣ",
+    "11b8712670ff": "Bahasa Indonesia",
+    "1205929886b3": "👑 DeHub Экстра",
+    "140cba372e27": "Гипноз",
+    "187897ce0afc": "бештар",
+    "214371ade41e": "(дар лентаи умумӣ нишон дода намешавад)",
+    "2e15e7cebe72": "  ·  {{value1}} фурӯхта шуд",
+    "30f959f34501": "한국어 (Кореягӣ)",
+    "3892dc9387d3": "Рамзеро ворид кунед, ки фиристода шуд ба",
+    "3a6174a5da6d": "Хатҳои қаторкӯҳ",
+    "407d8f7e8ded": "Қарздиҳанда: ",
+    "41fb2caed82f": "Ин нишони {{value1}}-ро {{value2}} ба қарз додааст",
+    "42b7d537f55f": "Харид ноком шуд",
+    "464f605f1a8e": "Тумани неонӣ",
+    "46e244a50f70": " тамошо",
+    "4819e014c7f9": "Анъомҳои гирифташуда",
+    "4e857158a7e8": "Оп-арт",
+    "50e7258dccec": "@{{value1}} мубодила карда истодааст",
+    "5441d9dc54f6": "🌉 Пули токенҳо",
+    "55656b5e434f": "Пӯшидани ҷустуҷӯ",
+    "56196e073a9a": "Ёвари чат бо зеҳни сунъӣ, ки ба саволҳо ҷавоб медиҳад, тасвир эҷод мекунад, видео месозад ва дар истифодаи имкониятҳои платформа кӯмак мекунад.",
+    "56acc0370df9": "Афзалиятҳои ҳисоб, забон, танзимоти махфият ва намуди зоҳириро идора кунед.",
+    "5ce4aeba4357": "Паём нест карда нашуд",
+    "5dd6e0396c9d": "Релеф",
+    "60b676c3ea06": "Claude of Duty",
+    "6818215dba2d": "💳 Аз фиат ба крипто",
+    "6aad3f5a25b5": "Зикр кардани @{{value1}}",
+    "6da707c478f8": "日本語 (Ҷопонӣ)",
+    "6f511ce56284": "Ҳавзи борон",
+    "706d522aacec": "🧰 Абзорҳои зеҳни сунъӣ",
+    "733df2f6bfd8": "Муаре",
+    "74bcb059be1a": "Пайи дурахш",
+    "79cea90fab21": "{{value1}}, {{value2}} нахонда",
+    "7b1fd32345ce": "Ҳоло видео нест",
+    "7c058e0ece4e": "Аввал дар танзимоти телефон изи ангушт, кушодан бо чеҳра ё қулфи экранро танзим кунед.",
+    "811ec3714ad8": "барои мукофот ҳатмист",
+    "816013054aa7": "✏️ Таҳрири тасвир",
+    "8483460e43ab": "Кура",
+    "8912e65bf642": "Барои тағйир додани тартиби акси {{value1}} аз {{value2}} кашед",
+    "8b4c82401c9c": "Шиноварӣ",
+    "8b5e86df9155": "Анъомҳои додашуда",
+    "8d771bfa99a9": "BNB Testnet",
+    "8fc6889d642b": "камтар нишон додан",
+    "8fe1a08e1a39": "Боргирии {{value1}}",
+    "944ae402da39": "Ин ҳисоб айни замон паём қабул намекунад.",
+    "94a6a84d8cbc": "Solscan",
+    "94e2d0eda8c8": "🎮 Ласт Чад Стэндинг TGE",
+    "9677cceec070": "Ҳамкунишҳои пост",
+    "96e0787938ec": "Табдили зуди тасвир ба модели 3D, барои озмоишҳои такрорӣ хуб",
+    "9b81c0353945": "Галактика",
+    "9d5c64ebd6a0": "🎨 Сохтани плакати DeHub",
+    "9dd792ea3767": "Гармонограф",
+    "9e9fa15a8dfa": "Тирчаи сабз ё сурх дар канори сатри ҷадвали пешсафон нишон медиҳад, ки тавозуни корбар дар давраи интихобшуда (1 рӯз, 1 ҳафта ва ғайра) чӣ қадар тағйир ёфтааст.",
+    "a30f6a02eaa2": "Шапалак",
+    "a44f1b975171": "постҳо",
+    "ae644a180614": "Дархостҳои дароз, матни бисёрзабона ва таҳрирҳое, ки шахсиятро нигоҳ медоранд",
+    "b19565a545ba": "Инстаграм Рилз",
+    "b295e355b543": "💵 Аз крипто ба фиат",
+    "b3b61e24c8f8": "🧠 Малакаҳои корбар",
+    "b3d0998cd00a": "Ташаккур — розигии боз як тамошобин онро фаъол мекунад",
+    "b553e42907ee": "Кирмакҳои шабтоб",
+    "b713cad3fece": "Мундариҷаи зинда дар ин ҷо пайдо мешавад",
+    "b9725da1e57f": "Тарҷума ноком шуд. Лутфан боз кӯшиш кунед.",
+    "ba12ecefbd57": "Идомаи кашф",
+    "ba85bf0351d5": "{{value1}} сония ба қафо",
+    "be61c03c480e": "Ирсол рад карда шуд",
+    "c0bc2a34abff": "Барои ҳама",
+    "ca01201adaea": "🍎 Услуби Apple Keynote",
+    "cc4b56f61014": "Маълумоти бештар дар",
+    "ce3e77cea442": "Нишон медиҳад, ки пост ба шумо писанд аст ё бо он розӣ ҳастед. Холи ҷалби постро афзоиш медиҳад ва ба болотар шудани он дар лента кӯмак мекунад.",
+    "cf23f35d540d": "Нақб",
+    "de7f043f74a0": "Мундариҷа ва корбарони навро кашф кунед. Аз рӯи категория тамошо кунед: видео, тасвир, пахши зинда ва ғайра.",
+    "dfc22c6b07ab": "Постро тавассути пайванд берун мубодила кунед ё URL-и постро ба буфер нусха бардоред, то ба дигарон фиристед.",
+    "e07a49512e91": "Лаваи часпак",
+    "e22a9a53a007": "Авҷ: ",
+    "e3be5bc43d91": "Постро дар болои профилатон мустаҳкам кунед, то меҳмонон аввал онро бинанд.",
+    "e4cea00e921f": "Постҳои видеоӣ дар ин ҷо пайдо мешаванд",
+    "e4ee35029d20": "{{value1}} сония ба пеш",
+    "e7f08f1acc2a": "Эҷоди тасвир бо xAI",
+    "e9de098c7733": "Шафақи қутбӣ",
+    "f082eb679e6b": "Пардохти {{value1}} {{value2}}",
+    "f4eab5052f27": "Мустаҳкам кардани пост",
+    "f5057642d43e": "Кушодани биометрӣ бо {{value1}}",
+    "f5d57264900f": "Ташаккур — он қисм барои ҳама қайд шуд",
+    "f8d6b01ecf54": "Постро барои баъдтар ба хатчӯбҳо захира кунед. Ҳамаи постҳои захирашударо аз саҳифаи Хатчӯбҳо дар панели паҳлӯ кушоед.",
+    "f8f2edb787a3": "Лентаи асосии шумо бо постҳои одамоне, ки ба онҳо обуна шудаед, ва мундариҷаи машҳур.",
+    "fbd1210fffc5": "{{value1}} баста шуд",
+    "fea1030abae5": "🖼️ Тасвирсозӣ бо зеҳни сунъӣ",
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "2f51108189d2": "PPV: ",
+    "419f1a83fab2": "yourname.eth",
+    "50a45e647dbb": "REC",
+    "53e6cdc30765": "you@example.com",
+    "5b560f273940": "🛰️ DePIN",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "89c9b65356e3": "X (Twitter)",
+    "8d6f0c73fbaf": "RTMP:",
+    "90e98b380307": "Watch2Earn: ",
+    "a731a58c4cf3": "Twitch",
+    "af4707aebdfa": "OpenAI $",
+    "b4c9a289323b": "user@example.com",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
+    "b602b7029be6": "Pt",
+    "b62c681738d1": "Cu",
+    "bffcf3708842": "Шумо тақрибан қабул мекунед",
+    "04f8996da763": "корбар",
+    "052ec74b513d": "Ҳуқуқҳои маро вайрон мекунад",
+    "12a5fb358f94": "АНТИФА",
+    "12b91b0ac5dd": "Сурат {{value1}}",
+    "1445799c033a": "Matuto nang higit pa",
+    "16840520f59c": "Либерал",
+    "31b471215872": "Ҷадвали пешсаф",
+    "32bb1a843217": "Истифодабарандагонро тавассути истинод даъват кунед",
+    "4256e512fcfb": "Чад",
+    "4a9b1d39db85": "Интишори кор ноком шуд",
+    "6e0921c6c48a": "QShortcut",
+    "843991d1d9b3": "Гузоштани барраси ноком шуд",
+    "87bbe879c7a5": "аватар",
+    "8ae18739e3f7": "Сигнали оташфишон ба {{value1}} одамон",
+    "8c13f73ba145": "Сварм (Swarm)",
+    "93100fc44c0a": "@номикорбар",
+    "9e480ba758b3": "Неокон",
+    "a52ace420f21": "Ҳама",
+    "a80811cf6889": "Постҳо",
+    "b3ec56659c25": "Муваффақият надорист иваз кунад",
+    "b979cda45ed2": "QShortcut",
+    "c9a9639463c2": "Видеоҳо",
+    "d577cb7ddd24": "И-гёрл",
+    "de88c121a82a": "Премиум",
+    "e139251e4f5b": "Нест кардани нашр",
+    "e1cf4fb834a7": "Оғози шабакаи умумӣ",
+    "e3e81d3d76cf": "🪙 Истифодаи токен",
     "002286513398": "Шумо иҷозати идора кардани чорабиниҳоро надоред",
     "00b3a926f704": "Бекор кардани дархост ноком шуд",
     "00c0b03fcfa2": "Бозпас гирифта шуд",
@@ -1787,7 +1948,7 @@
     "520cf6869b44": "Муайянкунандаи беназир барои ҳама гуна транзаксия дар занҷир. Онро кушоед, то тафсилоти пурраи транзаксияро дар блокчейн-эксплорер бубинед.",
     "530cac08f6b4": "Ғарби ваҳшӣ",
     "5386ea5db81c": "Мутавозин",
-    "565339bc4d33": "OK",
+    "565339bc4d33": "Хуб",
     "56dc2b3bb2e5": "Таҳқир ё таҳқир",
     "57383cdc46dd": "аз нишони номаълум",
     "5745acb8ad07": "Маърака эҷод шуд",
@@ -2785,6 +2946,9 @@
     "postCount_other": "{{count}} постҳо"
   },
   "settings": {
+    "importDone": "Обуна: {{followed}}, басташуда: {{blocked}}, {{folders}} ҷузвдон сохта шуд.",
+    "jungle": "Ҷангал",
+    "winter": "Қатраҳои зимистон",
     "glass": "Шишагин",
     "shortsEnabled": "Кӯтоҳ",
     "shortsEnabledDesc": "Намоиши ҷадвали лентаи Shorts ва каруселҳои Shorts дар саҳифаи асосӣ.",
@@ -3134,7 +3298,7 @@
     "notifAnnouncementsDesc": "Хабарҳо ва навсозиҳои хусусиятҳои платформа",
     "quietHoursPauseDesc": "Хомӯш кардани огоҳиҳои push дар соатҳои муқарраршуда",
     "quietHoursFrom": "Аз",
-    "quietHoursTo": "To",
+    "quietHoursTo": "Ба",
     "quietHoursSilencedNote": "Огоҳиҳои push дар ин соатҳо хомӯш карда мешаванд.",
     "notifInApp": "Дар барнома",
     "notifPush": "Пуш",
@@ -3435,6 +3599,7 @@
     "themeColorBrandFailed": "Хондани рангҳо аз сурати профили шумо имконнопазир буд"
   },
   "common": {
+    "apply": "Ilapat",
     "refresh": "Навсозӣ",
     "mute": "Хомӯш кардани садо",
     "unmute": "Фаъол кардани садо",
@@ -3502,6 +3667,8 @@
     "remove": "Нест кардан"
   },
   "tip": {
+    "payDirect": "Мустақиман ба {{name}} бо {{symbol}} дар {{chain}} фиристода шуд. Бе мубодила.",
+    "payDirectNoName": "Мустақиман ба эҷодкор бо {{symbol}} дар {{chain}} фиристода шуд. Бе мубодила.",
     "title": "Маслиҳат фиристед",
     "toCreator": "Ба {{name}} маслиҳат диҳед",
     "quickAmounts": "Маблағҳои зуд",
@@ -3553,6 +3720,7 @@
     "tokenAmount": "{{amount}} токенӣ"
   },
   "postOptions": {
+    "aiOverview": "Pangkalahatang-ideya",
     "skippableSections": "Қисматҳои қобили гузариш",
     "skippableSectionsDesc": "Нишонагузорӣ ё овоздиҳӣ дар бораи хониши сарпараст ва муқаддимаҳо",
     "embed": "Ҷойгир кардан",
@@ -4143,6 +4311,13 @@
   },
   "notifications": {
     "custom": {
+      "featureComment": "{{name}} ба дархости функсияи шумо шарҳ гузошт",
+      "featureCommentNamed": "{{name}} ба дархости функсияи шумо “{{title}}” шарҳ гузошт",
+      "featureLike": "{{name}} дархости функсияи шуморо писандид",
+      "featureLikeNamed": "{{name}} дархости функсияи шумо “{{title}}”-ро писандид",
+      "featureMention": "{{name}} шуморо дар дархости функсия зикр кард",
+      "governanceCommentNamed": "{{name}} ба пешниҳоди шумо “{{title}}” шарҳ гузошт",
+      "featureReply": "{{name}} ба шарҳи шумо ҷавоб дод",
       "bountyApplied": "{{name}} ба ҷоизаи шумо муроҷиат кард",
       "bountyAppliedNamed": "{{name}} ба ҷоизаи шумо “{{title}}” муроҷиат кард",
       "bountyReply": "{{name}} ба ҷоизаи шумо ҷавоб дод",
@@ -4357,6 +4532,8 @@
     "global": "Ҷаҳонӣ"
   },
   "features": {
+    "promptMediaError": "Тасвир ё видеоҳое интихоб кунед, ки ҳар кадом камтар аз 20 МБ бошад.",
+    "promptMediaLimit": "То {{max}} замима.",
     "promptAttach": "Добавить изображения",
     "promptAttachment": "Замимот {{number}}",
     "promptDetails": "Тафсилоти интихобӣ",
@@ -4445,6 +4622,7 @@
     "requestOptions": "Имконоти дархост"
   },
   "auth": {
+    "invalidImportSecret": "Ин ибораи дурусти 12/24-калимагӣ ё калиди хусусӣ нест",
     "loginRequired": "Воридшавӣ лозим аст",
     "walletImported": "Ҳамён ворид шуд",
     "importWallet": "Ҳамёнро ворид кунед",
@@ -4529,6 +4707,7 @@
     "lockedPrivate": "Танҳо шумо метавонед онҳоро хонед"
   },
   "music": {
+    "playAll": "Ҳамаро навохтан",
     "likeStation": "Монанди истгоҳ",
     "listen": "Рӯйхатҳо",
     "nothingHereYet": "Ҳеҷ чиз дар ин ҷо ҳанӯз.",
@@ -4896,6 +5075,7 @@
     "topUpExplanation": "Токенҳои шумо дар силсила ба хазинаи таблиғоти DeHub интиқол дода мешаванд, пас баланси шумо пас аз тасдиқи мустақилии дар силсила анҷомшуда кредит карда мешавад."
   },
   "buyCoins": {
+    "cardBankDesc": "Visa, Mastercard, Apple Pay",
     "title": "Харидани тангаҳо",
     "network": "Шабака",
     "token": "Токен",
@@ -4929,6 +5109,7 @@
     "minDhbPurchase": "Ҳадди ақали хариди токен 0.50 доллар аст"
   },
   "agents": {
+    "capacity": "{{used}} аз {{limit}} агент · {{badge}}",
     "agentDisplayName": "Номи намоиш",
     "agentDisplayNamePlaceholder": "Чӣ тавр ин агент дар DeHub пайдо мешавад",
     "agentUsername": "Номи корбар",
@@ -4972,6 +5153,30 @@
       "viewPost": "Намоиши интишор"
     },
     "tasks": {
+      "examples": "Дар як рӯз як бор пост гузоред дар бораи: мусиқии мустақил\nУслуб: кунҷкоб, мухтасар ва гуфтугӯӣ\nДар як рӯз то 2 пости охиринро писанд кунед дар бораи: мусиқӣ, консертҳои зинда, винил",
+      "hideActivity": "Пинҳон кардани фаъолият",
+      "instructions": "Дастурҳои агент",
+      "latestActivity": "100 амали охирин нишон дода мешавад.",
+      "meta": "@{{agent}} · {{status}} · Коркардшуда: {{total}}",
+      "swarmMember": "Агенти гала {{index}} аз {{total}}",
+      "eachHelp": "Ҳар як агенти интихобшуда вазифаи пурраро иҷро мекунад.",
+      "eachMode": "Ҳар як агент",
+      "pacing": {
+        "help": "Awtomatikong magsimula sa Sentient off. Pacing дастгирӣ яке монанди ё номутаносиб амал дар равзанаи баъди собит: ҳар агент вокуниш ба ҳар як мансаби мувофиқ, як рӯй дар як вақт. Ngayon ang unang pagsisimula ngayon; ang mga limitasyon ng serbisyo ay maaaring ilagay ang oras ng pagtatapos.",
+        "hours": "Зиёда аз {{count}} hours",
+        "independent": "Вазифаҳои таъхирнопазир мустақилона аз режими ҳассос иҷро мешаванд. Ang paghahanap para sa mga Likes ay hindi pumunta sa awtomatikong pag",
+        "label": "Кай бояд амал кард",
+        "now": "Фавран"
+      },
+      "resumeSwarm": "Бозсозии swarm",
+      "sharedMode": "Кори муштарак",
+      "cancelSwarm": "Бекор кардани сварм",
+      "clearSelection": "Тоза кардани интихоб",
+      "distribution": "Тақсимот",
+      "pauseSwarm": "Таваққуфи сварм",
+      "selectAll": "Pumili ng lahat",
+      "swarm": "Сварм (Swarm)",
+      "viewPost": "Намоиши интишор",
       "action": "Амал",
       "activity": "Фаъолияти охирин",
       "comment": "Шарҳ",
@@ -5003,6 +5208,7 @@
       "run": "Иҷрои дархост",
       "runSwarm": "Иҷрои гурӯҳ",
       "window": {
+        "invalid": "Оғозро пеш аз анҷом интихоб кунед; анҷом бояд на дертар аз 31 рӯз аз имрӯз бошад.",
         "actions": "Амалҳо",
         "custom": "Оддӣ",
         "from": "Аз",
@@ -5193,6 +5399,7 @@
     "failedSubmit": "Фиристодани дархост ноком шуд. Дубора кӯшиш кунед."
   },
   "creatorFlow": {
+    "signInToSee": "Барои дидани ҷараёнҳои ҳисобатон ворид шавед.",
     "title": "Ҷараёни эҷодкор",
     "signIn": "Ворид шудан",
     "sharedReadOnly": "Потоки муштарак — танҳо барои хондан",
@@ -5283,6 +5490,8 @@
     "passkeyBackupHint": "Ҳисоби шумо дар калиди гузарвожаи ин дастгоҳ ҷойгир аст. Дар аксари телефонҳо он бо ҳисоби Google ё Apple-и шумо ҳамоҳанг мешавад ва шумо метавонед дар Танзимот нусхаи эҳтиётии паролро илова кунед."
   },
   "careers": {
+    "linkedin": "LinkedIn",
+    "xTwitter": "X (Twitter)",
     "title": "Корҳо дар DeHub",
     "subtitle": "Ба гурӯҳе ҳамроҳ шавед ки оянда шабакаҳои иҷтимоии ғайримарказиро месозад",
     "intro": "Мо одамони саргармро ҷустуҷӯ мекунем ки мехоҳанд ҷузъи мавҷи навбатии шабакаҳои иҷтимоӣ бошанд. Ҳамаи ҷойҳо пурра дурдаст ва бо вақти чандир.",
@@ -5351,6 +5560,7 @@
     "namePlaceholder": "Ҷейн Смит"
   },
   "raffle": {
+    "goToFeed": "Ба лентаи худ гузаред",
     "title": "Мусобиқаҳои ҷоизавӣ",
     "eyebrow": "Мусобиқаҳои ҷоизавии ҷамъиятӣ",
     "heroTitle": "Ҳар як мусобиқа, ки дар блокчейн ҳал карда мешавад.",
@@ -5563,6 +5773,7 @@
     "searchDehubFor": "Дар DeHub \"{{query}}\"-ро ҷустуҷӯ кунед"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "Шарҳро гузориш диҳед",
     "reportCommentTitle": "Ин шарҳро гузориш диҳед",
     "reportCommentDescription": "Ба мо бигӯед, ки дар ин шарҳ чӣ нодуруст аст ва модераторони мо онро баррасӣ хоҳанд кард.",
@@ -6042,12 +6253,24 @@
     "tokenAmount": "{{amount}} токен"
   },
   "communities": {
+    "editInfo": "Таҳрири ном ва тавсиф",
     "existingPost": {
+      "add": "Илова кардани пости мавҷуда",
+      "added": "Пост ба ҷамъият илова шуд",
+      "failed": "Постҳои ҷамъиятро навсозӣ карда нашуд. Боз кӯшиш кунед.",
+      "invalidLink": "Пайванди пости DeHub ё ID-и постро часпонед.",
+      "signIn": "Барои идора кардани постҳои ҷамъият аз нав ворид шавед.",
+      "unavailable": "Ин пост дастрас нест.",
+      "more": "Бештар постҳоро бор кунед",
+      "remove": "Аз ҷамъият хориҷ кунед",
       "adding": "Илова кардан...",
       "hint": "Нигоҳ доштани пости аслӣ, лайкҳо ва намоишҳо.",
       "placeholder": "Истиноди почтаи DeHub ё ID-и почта"
     },
     "followerInvites": {
+      "empty": "Дар ин саҳифа обуначӣ нест.",
+      "error": "Даъватномаҳо фиристода нашуданд. Пайвастшавӣ ва воридшавиро санҷед, сипас боз кӯшиш кунед.",
+      "summary": "Фиристода: {{sent}} · Гузаронда: {{skipped}} · Чатро санҷед: {{review}} · Ноком: {{failed}}",
       "clear": "Тоза кардан",
       "detail": "Pumili ng hanggang 50 mga pagsubaybay sa batch. DM-ҳои пардохтшуда ё пӯшида партофта мешаванд. Пеш аз кӯшиши дубора чатро барои фиристоданҳои тасдиқнашуда санҷед.",
       "next": "Навбатӣ",
@@ -6165,6 +6388,9 @@
       "slowMode": "Ҳолати суст: як паём ҳар {{interval}}"
     },
     "manage": {
+      "rightsSummary": "{{granted}} аз {{total}} ҳуқуқ",
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "Бекор кардани администратор",
       "cancel": "Бекор кардан",
       "dismissAdmin": "Бекор кардани администратор",
@@ -6274,6 +6500,7 @@
       "noPlainMembers": "Ҳама дар ин ҷо аллакай администратор аст.",
       "searchTruncated": "Намоиши аввалин {{limit}} — нигоҳ доштани чопкунӣ барои танг кардани он ба поён.",
       "danger": {
+        "deleteTitle": "Ин ҷамъият нест карда шавад?",
         "transferTitle": "Соҳибияти интиқол?",
         "transferBody": "{{name}} dapat ang may-ari ng komunidad na ito. Шумо ба администратор бо ҳар ҳуқуқе меафтед ва ин бекор карда намешавад.",
         "transferConfirm": "Интиқол",
@@ -6353,6 +6580,12 @@
     "privateHint": "Kailangang magpapahintulutan ang mga bagong Аъзо upang",
     "publicHint": "Ҳар кас метавонад фавран ба он ҳамроҳ шавад.",
     "invite": {
+      "approvalNote": "Пеш аз пайвастан дархости шуморо маъмур бояд тасдиқ кунад.",
+      "exhausted": "Ин пайванди даъват ба ҳадди аъзо расидааст.",
+      "expired": "Мӯҳлати ин пайванди даъват гузаштааст.",
+      "notFound": "Ин пайванди даъват эътибор надорад.",
+      "revoked": "Ин пайванди даъват бекор карда шуд.",
+      "requestToJoin": "Дархости ҳамроҳ шудан",
       "joinFailed": "Пайвастшавӣ қатъ шуд"
     }
   },
@@ -6704,6 +6937,7 @@
     "priceRange": "Дар байни {{min}} ва {{max}} токенҳо."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "Таҳрир",
     "listingUpdated": "I-update ang listahan!",
     "saveListing": "I-save ang Mga Pagbabago",
@@ -7523,6 +7757,7 @@
     "insufficientOnChain": "Барои ин токен тавозун дар занҷир нокифоя аст"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "Видеои ворид кунед",
     "subtitle": "Пайванди видеои дорои худро чапед ва мо онро ҳамчун пост дар профили худ нашр мекунем. Қадри зиёде қуе кунед — онҳо яке пас аз дигаре дар фони кор мекунанд.",
     "placeholder": "Пайванди видеои худро чапед",
@@ -7745,7 +7980,7 @@
     "goingWithCount": "Рафтан ({{count}})",
     "eventNamePlaceholder": "Magbigay ng pangalan sa iyong kagan",
     "eventName": "Номи ҳодиса *",
-    "entryFeeCoins_other": "{{count}} Coins entry fee",
+    "entryFeeCoins_other": "{{count}} Сикка ҳаққи ворудӣ",
     "endTime": "Вақти анҷом",
     "endDate": "Санаи анҷом",
     "editEvent": "I-edit ang Kagan",
@@ -7775,6 +8010,12 @@
   },
   "stats": {
     "money": {
+      "coveredHint": "аз хароҷот ки аз даромад пардохта шудаанд",
+      "inEmpty": "Дар ин вақт даромад нест",
+      "netHint": "даромад минус хароҷот",
+      "revenue": "Даромад",
+      "since": "аз {{date}}",
+      "title": "Даромад ва хароҷот",
       "chartDaily": "Даромад ва хароҷот дар як рӯз",
       "chartMonthly": "Даромад ва хароҷот дар як рӯз, Миёнаи ҳармоҳа",
       "conversionTerm": "Нархҳо",
@@ -7788,6 +8029,8 @@
       "estimatedOperationsNote": "Хароҷоти амалиётӣ аз рӯи тамоюли моҳонаи моделшуда пайравӣ мекунанд, ки дар моҳи ноябри соли 2021 ба авҷи худ дар сатҳи 100,000 доллар расида, баъд аз он коҳиш ёфтаанд. Ҳисобномаҳои сабтшуда бидуни ҳисоби дубора дохил карда шудаанд. Ин як тахмин аст, на дафтари ҳисобномаҳо.",
       "grossBnbSharingNote": "Даромад BNB-и бо дорандагон ва саҳмгузорон (stakers) мубодилашударо дар бар мегирад. Ин пардохтҳо тақсим карда шуданд, на аз ҷониби DeHub нигоҳ дошта шуданд.",
       "group": {
+        "infrastructure": "Қатра",
+        "tax": "Даромад",
         "aiTools": "Абзорҳои AI",
         "buys": "Хариди дохили барнома",
         "compute": "Ҳисобкунии AI",
@@ -9935,6 +10178,11 @@
     "savePrompt": "Ин постро ҳамчун сиёҳнавис нигоҳ доред, то баъдтар анҷом дода нашр кунед?"
   },
   "editor": {
+    "clipboard": {
+      "cut": "Layers-action",
+      "empty": "Layers-action",
+      "skipped": "{{count}}info: whatsthis"
+    },
     "assembly": {
       "matchConsent": "Клипҳо ва аксҳоро бо дархости ман мувофиқ кунед",
       "matchDuration": "Наворҳои мувофиқ аз видеои дархостшуда кӯтоҳтаранд. Давомнокиро кӯтоҳ кунед ё медиаи бештар интихоб кунед.",
@@ -9958,7 +10206,18 @@
       "restore": "Барқарор кардани замина"
     },
     "videoTemplates": {
+      "heading": "Шаблонҳои оғозии видео",
+      "hint": "Форматро интихоб кунед, матнро таҳрир кунед ва клипҳои худро илова намоед.",
+      "duration": "{{seconds}}s",
       "copy": {
+        "announcement": "Эълони калони шумо",
+        "difference": "Фарқро бинед",
+        "favourite": "Кадомаш дӯстдоштаи шумост?",
+        "newFavourite": "Бо дӯстдоштаи нави худ шинос шавед",
+        "productName": "Номи маҳсулоти шумо",
+        "secondPick": "Интихоби дуюми шумо",
+        "threeSteps": "Дар се қадам созед",
+        "tipTwo": "Маслиҳати дуюми шумо",
         "after": "Баъд аз",
         "afterHint": "Натиҷаро нишон диҳед.",
         "announcementHint": "Ном, сана ё ҷузъиётро илова кунед.",
@@ -10005,6 +10264,9 @@
       },
       "format": "Формати видео",
       "names": {
+        "countdown": "Ҳисоби баръакс",
+        "question": "Ҷалб бо савол",
+        "story": "Хатти сюжет",
         "announcement": "Эълон",
         "beforeAfter": "Пеш ва баъд",
         "mythFact": "Афсона ва факт",
@@ -10085,6 +10347,21 @@
       "hint": "Kasosyo ang mga clip upang 10 minuto. Коҳиши садои беҳтарин бо садои заминаи устувор кор мекунад."
     },
     "pages": {
+      "allPdf": "Hammashina {{count}} sahifalar bir PDF faylida",
+      "allPptx": "Hammashina {{count}} sahifalar bir prezentatsiyada",
+      "batchNameHint": "Har bir sahifaning eng katta koʻrinadigan rubrikasining birinchi qatorini ishlatish. Qadimgi sahifa nomlari saqlanadi, agar siz uni almashtirmasangiz.",
+      "durationBatchHint": "Uzaytirish holda chizmalar sahifaning oxirigacha saqlanadi. Qisaytirish chizmalarni kesib tashlaydi; keyingi sahifalar oʻzgacha siljib turadi. Media oʻynash tezligini saqlab qoladi.",
+      "durationsUpdated": "{{count}} sahifalarning yangilangan vaqtlamasi",
+      "go": "Boshga",
+      "hiddenBadge": "Prezentatsiyada yashirin",
+      "hidePresentation": "Prezentatsiyada yashirish",
+      "namedFromHeadings": "{{count}} nomlangan sahifalar. {{missing}} sahifada rubrika yoʻq edi.",
+      "noResults": "Mos sahifalar yoʻq",
+      "rangeHint": "Sahifa raqamlarini virgul bilan ajratib yozing yoki masalan 3-8 kabi diapazonlarni ishlatishingiz mumkin.",
+      "search": "Maghanap ng pahina ayon sa numero o pangalan",
+      "selectNumbers": "Sahifalar sonini tanlang",
+      "showPresentation": "Prezentatsiyada ko'rsatish",
+      "transferHint": "Eng ko'p 50 sahifaga kopirovka qiling yoki bir joyga ko'chiring. Guruhlar va joylashuvlar tanlovga muvofiq bo'ladi. Ko'chirish faqat bu sahifaga ta'sir qiladi; boshqa ko'rinishlar saqlanadi. Manzil tashrif buyurish uchun vaqtli qatlamlarga mos kelishi kerak.",
       "add": "Илова кардани саҳифа",
       "duplicate": "Нусхабардории саҳифа",
       "delete": "Нест кардани саҳифа",
@@ -10143,6 +10420,7 @@
       "failed": "Барои ин клип субтитр сохта нашуд."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "Тарҳи нав",
       "yourDesigns": "Тарҳҳои шумо",
       "noDesigns": "Тарҳҳое, ки месозед, дар ҳамин телефон нигоҳ дошта мешаванд ва дар ин ҷо пайдо мешаванд.",
@@ -10254,6 +10532,11 @@
       "delete": "Нест кардан"
     },
     "export": {
+      "cropMarkHint": "Nagdagdag ng mga pagtutukoy na mark sa labas ng artwork. Ang naka-save na resolution ng pag-print ay nagtatakda ng laki",
+      "documentImageHint": "Higit pang detalye ay nagtatakbo ng mas malaking mga larawan sa pahina. Lumikha ng mas maliit na mga file ang mga sukat ng imahe at kalidad ng JPE Ang laki ng pahina at mga link ay naka-save.",
+      "noSections": "Walang mga tugma na seksyon",
+      "notesTextHint": "Nag-download ng mga sernavê ng seksyon, orihinal na mga numero ng pahina, pangalan ng pahina, at mga tala sa pagtatanghal bil",
+      "pageOrderHint": "Ang mga pahina ay sundin ang order na ipinasok. Gamitin ang 3,1-2 upang magsimula sa pahina 3, o 5-1 upang muli ang isang saklaw. Ipinapakita ang mga muling numero ng pahina sa isang beses.",
       "cancel": "Бекор кардан",
       "scope": "Қисми боргирӣ",
       "downloadTimeline": "Ҷадвали пурраи вақт",
@@ -10283,7 +10566,9 @@
       "pptx": "Тақдимоти PowerPoint",
       "pptxHint": "Ang bawat pahina ay nagawang isang imahe ng slide, na may mga pagtatanghal at mga Таҳрир кардани матн ва унсурҳои инфиродӣ дар тарҳи аслӣ.",
       "section": "Қисмати номбаршуда",
-      "transparent": "Заминаи шаффоф"
+      "transparent": "Заминаи шаффоф",
+      "cropMarks": "Аломатҳои буридашуда ва ҳашияҳои чопӣ",
+      "findSection": "Бахшро ёбед"
     },
     "adjust": {
       "auto": "Беҳсозии худкор",
@@ -10300,6 +10585,13 @@
       "width": "Андозаи қалам {{value}}"
     },
     "layers": {
+      "applyNames": "Ilapat ang mga pangalan",
+      "name": "Nom qavati",
+      "noOverlapMatches": "Layers-action",
+      "overlapHint": "Layers-action layers-action",
+      "overlapping": "Layers-action",
+      "search": "Layers-action",
+      "searchOverlap": "Layers-action",
       "empty": "Дар ин нуқтаи пахш ҳоло дар саҳифа чизе нест.",
       "hide": "Пинҳон кардан",
       "lock": "Қулф кардан",
@@ -10313,7 +10605,8 @@
       "namingHint": "Aҳолиаш 80 нафар аст. Гурӯҳҳо ба аъзоёни намоёнашон густариш меёбанд; қабатҳои қулфшуда номҳои худро нигоҳ медоранд.",
       "rename": "Иваз кардани ном",
       "resetNames": "Бозсозии номҳо",
-      "startAt": "Оғоз кардан дар"
+      "startAt": "Оғоз кардан дар",
+      "lockedSkipped": "{{count}} қафли қафл нигоҳ дошта шудаанд"
     },
     "rail": {
       "elements": "Унсурҳо",
@@ -10469,6 +10762,7 @@
       "pause": "Таваққуф"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "Видео",
       "sound": "Садо",
       "shape": "Шакл",
@@ -10513,6 +10807,7 @@
       "tooLarge": "Ин файл барои муҳаррир хеле калон аст. Ҳадди аксар 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "Ҳаракат",
       "hint": "Кадрҳои калидӣ қабатро дар тӯли вақт ба ҳаракат меоранд. Дар ин ҷо якто илова кунед, нишондиҳандаи пахшро ҷойиваз кунед, қабатро тағйир диҳед ва он байни онҳо ҳамвор мегузарад.",
       "outside": "Барои илова ё тағйир додани кадрҳои калидӣ нишондиҳандаи пахшро болои ин қабат баред.",
@@ -10556,6 +10851,9 @@
       }
     },
     "live": {
+      "receiving": "Қабули таҳрирҳои зинда",
+      "sharing": "Мубодилаи таҳрирҳои зинда",
+      "transferring": "Интиқоли таҳрирҳои зинда…",
       "paused": "Таҳрирҳои мустақим таваққуф карда шуданд",
       "personalCopy": "Нигоҳ доштани нусхаи шахсӣ",
       "privateHint": "Ang tatanggal lamang ay nagbahagi ng mga pag-edit. Ibahagi ang mga pag-edit ng live ang mga bagong mapagkukunan. Нигоҳ доштани версияи доимӣ ба абр.",
@@ -10575,10 +10873,13 @@
       "error": "Ҷаласаи мустақим дастрас нест. Ворид шавед ва ин лоиҳаро дар абр захира кунед ё даъватномаи таҳрири худро тафтиш кунед."
     },
     "backgrounds": {
+      "applyAll": "Stayllardan foydalaning",
       "hint": "Kopyahin ang larawan, gradient, o solid na background ng pahina na ito. Заминаҳои қулфшуда бетағйир мемонанд.",
-      "updated": "Нав карда шуд {{count}}info: whatsthis"
+      "updated": "Нав карда шуд {{count}}info: whatsthis",
+      "skipped": "{{count}} саҳифаҳои қуфл сохта шудаанд"
     },
     "brush": {
+      "closed": "Chizilgan oxirlarini to'ldiring",
       "capLabel": "Охири яра",
       "convertHint": "Name Мавқеъ, андоза, гардиш, тарҳ, таъсир, гурӯҳбандӣ ва вақт нигоҳ дошта мешаванд. Тасвирҳои кушод ба хатҳо табдил меёбанд. Бекор кардани роҳчаи кашидашуда.",
       "joinLabel": "Кунҷҳои яра",
@@ -10586,9 +10887,20 @@
       "pointHint": "Оддикунонӣ инҳирофҳои хурдро нисбати қуттии расм тоза мекунад. Нақшаҳои пӯшида ҳадди аққал се нуқтаро нигоҳ медоранд. Name",
       "points": "Нуқтаҳои кашидан ({{count}})",
       "smoothing": "Ҳамворкунӣ",
-      "suggestedShape": "Пешниҳодшуда: {{shape}}"
+      "suggestedShape": "Пешниҳодшуда: {{shape}}",
+      "convertShape": "Расмро дар шакл тартиб диҳед"
     },
     "bulk": {
+      "copyPhotoName": "Kopyahin ang pangalan ng larawan: {{name}}",
+      "copyToken": "Kopyahin ang placeholder",
+      "emptyText": "Layers-action",
+      "exportConnections": "I-export ang kasalukuyang mga",
+      "pagePreviewAlt": "{{record}}info:whatsthis",
+      "pagePreviewBusy": "Pag-update ng pangkalahatang-ideya ng pahina",
+      "pagePreviewHint": "Ipinapakita ang record na ito sa kasalukuyang teksto, QR at pangalan-photo na mga koneksyon. Ang preview ay hindi nagdagdag ng mga pahina sa iyong design.",
+      "previousLayers": "Layers-action",
+      "title": "Lumikha ng Bulk",
+      "tokenHint": "I-paste ang placeholder sa tekstong template o nilalaman ng QR at piliin ang Paggamit ng placeholder sa teksto para sa layer na iyon. Ang pag-format ng mga halaga ng spreadsheet na hindi nagbabago. Ang mga numeric format ay nangangailangan ng mga parehong numero; 25 mga format bilang 25% sa porsyento na mode.",
       "allRecords": "Ҳамаи сабтҳо дар диапазон",
       "applyMatches": "Пайвастшавии мувофиқро истифода баред",
       "blankField": "Холӣ",
@@ -10647,9 +10959,33 @@
       "tokenCurrency": "Асъор",
       "tokenDecimals": "Ҷойҳои даҳӣ",
       "tokenLocale": "Ҷойгиршавии рақам",
-      "trimToken": "Фосилаҳо пеш аз форматбандӣ"
+      "trimToken": "Фосилаҳо пеш аз форматбандӣ",
+      "applyConnectionFile": "Пайвастҳои мувофиқро татбиқ кунед",
+      "connectionsLoaded": "Пайвастҳои мувофиқ бор шудаанд"
     },
     "charts": {
+      "applyDateBounds": "Ilapat ang mga limitasyon ng petsa",
+      "applyImportedStyle": "Татбиқи услуб ба лоиҳа",
+      "applyReference": "Ilapat ang layunin na linya",
+      "areaMode": "Name",
+      "bubbleYColumn": "Mga halaga ng Y mula sa",
+      "donutTotalHint": "Ang kabuuang ay nagmuha ng mga porsyento at gumagamit ng napiling format ng hal",
+      "filterCase": "Мутобиқати дақиқи регистр",
+      "filterCounts": "Намоиши {{shown}} аз {{total}} сатри манбаъ",
+      "filterHint": "То се шарти фаъол бояд ҳама мувофиқат кунанд. Филтркунӣ диаграммаи намоиш додашуда ва содироти графикиро тағйир медиҳад, дар ҳоле ки ҳар як сатри манбаъ нигоҳ дошта мешавад. Агар силсилаи номбаршуда хориҷ ё номаш иваз карда шавад, филтрҳои он нодида гирифта мешаванд. Графикаҳои пешравӣ арзиши аввалини манбаи худро нигоҳ медоранд.",
+      "filterLabelSummary": "Нишони {{operator}} {{text}}",
+      "filterRowsSummary": "Сатрҳои манбаъ {{first}}–{{last}}",
+      "findStarter": "Ҷустуҷӯи оғозкунандаи диаграмма",
+      "referenceHint": "Kapag kinakailangan ang layunin ang halagang saklaw. Ang mga layunin na pinagsasama ng porsyento ay gumagamit ng mga porsyento; gumagamit ng",
+      "removeReference": "Alisin ang layunin",
+      "sameCategoryColour": "Gamitin para sa lahat ng mga kategor",
+      "sampleDataSize": "{{rows}} rows {{series}} columns numeric",
+      "searchTypes": "Mga uri ng chart sa paghah",
+      "skipHierarchyHeader": "Гузаронидани сатри аввал",
+      "skipObservationHeader": "Гузаронидани сатри аввал",
+      "starterHint": "Як оғозкунанда намуди диаграмма, маълумот ва форматкунии ин лоиҳаро иваз мекунад. Канваси ҷории шумо танҳо вақте тағйир меёбад, ки шумо графикро навсозӣ ё ворид кунед.",
+      "starters": "Оғоз аз маълумоти намунавӣ",
+      "styleKeepsData": "Услубҳо намуди диаграмма, маълумот, формати рақам, ҳудуди миқёс ва матни марказии шуморо нигоҳ медоранд.",
       "areaModeHint": "Ноҳияҳои часпида ва мутаносибан ҳар як силсила ҳамчун бандро нишон медиҳанд. Streamgraphs марказ маҷмӯи атрофи сифр ва пинҳон ҳадафи истинод. Ang layouts na ito ay kinakailangan ng hindi negativ na mga halaga ng mapagkukunan. Ang porsyento na pagpapakita ng mga halaga ng orihinal sa data; maaaring maglagay ng mga patlang sa pamamagitan ng mga",
       "axesSection": "Меҳварҳо ва миқёс",
       "benchmarkHint": "Пур кардани ҳадафи собит аз ҳамаи арзишҳои манбаи ҷорӣ. Ilapat ang layunin na linya upang gamitin ito; muli ang pagkakalkula pagkatapos ng pag-edit ng",
@@ -10751,9 +11087,12 @@
       "rowFilters": "Сатрҳо барои намоиш",
       "sampleColours": "Палитраи намуна ва ранги матнро истифода баред",
       "scale": {
+        "apply": "Ilapat ang mga saklaw",
+        "hint": "Mga limitasyon ang awtomatikong saklaw upang maibahagi ang mga nauugnay na chart. Mga halaga sa labas ng mga limitasyon na ito ay nakikita.",
         "auto": "Худкор",
         "reset": "Миқёсбандии худкор",
-        "upper": "Ҳудуди болоӣ"
+        "upper": "Ҳудуди болоӣ",
+        "lower": "Ҳудуди поён"
       },
       "scatterHint": "Координатҳои пароканда дар сутунҳои боқимонда координатҳои рақамии X ва Y- ро истифода мебаранд. Якчанд силсила ин координатҳои X- ро тақсим мекунанд. Pumili ng mga petsa at UTC na oras sa Axes at sukat para sa isang alapsed-time na horizontal na axis.",
       "scatterLines": "Пайваст кардани нуқтаҳои пароканда",
@@ -10785,13 +11124,21 @@
       "valueIntervals": "Фосилаҳои арзиши меҳвар",
       "xAxisMode": "Навъи маълумоти уфуқӣ",
       "xIntervals": "Фосилаи меҳвари уфуқӣ",
-      "hierarchySample": "Аврупо,Фаронса,35"
+      "hierarchySample": "Аврупо,Фаронса,35",
+      "racePosterHint": "Кадри статикӣ пешнамоиши SVG ва пешнамоиши хомакиро идора мекунад. Аниматсияро хомӯш кунед, то ин кадр дар хати вақт низ собит монад. Содироти растрӣ ва видеоии аниматсионӣ вақти нишондиҳандаи пахшро истифода мебаранд. Ҳамаи кадрҳо як миқёси ҳадди аксари собит доранд."
     },
     "colourPicker": {
+      "pick": "Pumili mula sa canvas",
       "cancel": "Бекор кардани интихобкунандаи рангҳо",
-      "ink": "Ранги матнро аз канвас интихоб кунед"
+      "ink": "Ранги матнро аз канвас интихоб кунед",
+      "accent": "Акценти ранг аз канвас интихоб кунед",
+      "canvasHint": "Ба ранги саҳифа зарбаи ангушт занед"
     },
     "compositions": {
+      "eyebrow": "Constellation name (optional)",
+      "insertSelected": "Ipasok ang napiling kombinasyon",
+      "limit": "Ang kombinasyon na ito ay higit sa lahat ng layunin o laki ng laki",
+      "sampleSubtitle": "Ҳикояи шумо аз ин ҷо оғоз мешавад.",
       "accent": "Ранги задаи задаи тез",
       "brandFonts": "Истифодаи ҷуфти ҳуруфҳои захирашуда",
       "colour": "Ранги матн",
@@ -10808,7 +11155,8 @@
       "sampleEyebrow": "Дурнамои нав",
       "sampleTitle": "Сохтани чизи фаромӯшнашаванда",
       "subtitle": "Матни пуштибонӣ",
-      "title": "Омезиши матн"
+      "title": "Омезиши матн",
+      "brandFontHint": "Шрифтҳои сарлавҳа ва матни нигоҳдоштаро ба комбинасияи нав татбиқ мекунад. Рангҳои матн ва акценти аз рӯи контролҳои дар боло истифода мебаранд; карҳои мавҷуда дар ҷойи худ мемонанд."
     },
     "connectors": {
       "bend": "Ҷойгиршавӣ",
@@ -10819,6 +11167,9 @@
       "width": "Вазни сатр"
     },
     "crop": {
+      "applyRatio": "Татбиқи таносуб",
+      "pageRatio": "Мутобиқат бо таносуби саҳифа",
+      "precisionHint": "Таносубҳо буришро ҳангоми нигоҳ доштани минтақаи намоиш додашуда тағйир медиҳанд. Мавқеъҳои фокус равзанаи мавҷудаи буришро байни кунҷҳои дастраси он, аз ҷумла тасвирҳои чаппашуда, ҳаракат медиҳанд.",
       "applyFocus": "Татбиқ кардани фокуси дақиқ",
       "focusHint": "Гузаронидани тирезаи зироат ҳангоми нигоҳ доштани андозаи он.",
       "focusPoint": "Фокус {{x}}%, {{y}}%",
@@ -10828,9 +11179,13 @@
       "precision": "Таносуби фармоишӣ ва фокуси дақиқ",
       "ratioHeight": "Баландии таносуб",
       "ratioWidth": "Бари таносуб",
-      "swapRatio": "Васеъӣ ва баландии мубодила"
+      "swapRatio": "Васеъӣ ва баландии мубодила",
+      "touchHint": "Барои ҷойгиркунии дубора кашед · барои зум қисм кунед"
     },
     "dataCells": {
+      "actionCount": "{{changed}} аз {{selected}} ҳуҷайраҳои интихобшуда тағйир дода шуд",
+      "go": "Рафтан",
+      "pasted": "{{rows}} сатр ва {{columns}} сутун гузошта шуд",
       "actionRange": "Диапазони ячейкаҳо (холӣ барои ҳамаи ячейкаҳо)",
       "applyPaste": "Гузоштан ба ячейкаҳо",
       "cleanNumbers": "Табдил додани рақамҳои форматшуда",
@@ -10857,6 +11212,8 @@
       "formulasAsText": "Формулаҳоро ҳамчун матн муносибат кунед"
     },
     "dataImport": {
+      "file": "Ворид кардани {{name}}",
+      "ready": "{{rows}} сатри маълумот ва {{columns}} сутун омодаанд",
       "blankNumbers": "Санҷидани ячейкаҳои рақамии холӣ ҳамчун сифр",
       "dimensions": "Файл дорои {{rows}} сатрҳо ва {{columns}} columns",
       "filePreview": "Пешнамоиши сатрҳои аввали файл",
@@ -10925,6 +11282,7 @@
       "vectorHint": "Ин графикаро дар заминаи шаффоф содир мекунад. Матн қобили таҳрир боқӣ мемонад ва дар сурати мавҷуд будан, шрифти интихобшударо истифода мебарад."
     },
     "designTools": {
+      "replaceWith": "Иваз кардан бо",
       "applySize": "Татбиқи андоза",
       "backInsert": "Бозгашт ба воридкунӣ",
       "changeAll": "Тағйири ҳама",
@@ -10957,6 +11315,13 @@
       "vertical": "Тарҳбандии амудӣ"
     },
     "document": {
+      "applyNumbers": "Татбиқи рақамҳои саҳифа",
+      "numberPreview": "Пешнамоиши рақами саҳифа",
+      "numbersApplied": "Рақамҳои саҳифаҳо татбиқ шуданд",
+      "numbersRemoved": "Рақамҳои саҳифаҳои кушодашуда нест карда шуданд",
+      "removeNumbers": "Рақамҳои саҳифаҳоро нест кунед",
+      "repeat": "Нусхабардории интихоб ба саҳифаҳои дигар",
+      "repeatScopeHint": "Рақамҳои саҳифаҳои ҳуҷҷатро истифода мебарад. Саҳифаи ҷорӣ ҳамеша истисно карда мешавад.",
       "numberHint": "Magdagdag ng ma-edit na mga numero ng pahina. Nag-update ng mga numero kapag nagdagdagdag, duplicated, tanggalin, o muli ang mga pahina. Рақамҳои қулфшуда бетағйир мемонанд.",
       "position": "Ҷойгиршавӣ",
       "prefix": "Пешванд",
@@ -11071,6 +11436,10 @@
       "ungroup": "Ҷудо кардани гурӯҳ"
     },
     "guides": {
+      "hint": "Барои илова кардани хати роҳнамо аз хаткаш кашед. Барои ҷобаҷо кардани хатҳои роҳнамо \"Таҳрири хатҳои роҳнамо\"-ро интихоб кунед ё онҳоро аз саҳифа берун кашед, то нест шаванд. Хатҳои роҳнамо ва ҳошияҳо ба файлҳои зеркашидашуда дохил карда намешаванд.",
+      "resolution": "Бар асоси {{dpi}} пиксел дар як дюйм",
+      "snap": "Ҷобаҷокунӣ ба хатҳои роҳнамо",
+      "thirds": "Сеякҳо",
       "add": "Илова кардани хати роҳнамо",
       "applyGrid": "Ба кор даровардани шабака",
       "centre": "Марказ",
@@ -11086,18 +11455,22 @@
       "rulers": "Нишон додани ҳокимон",
       "smartSpacing": "Фосилагузории баробар",
       "title": "Роҳнамоҳо ва маржаҳо",
-      "visible": "Нишон додани роҳнамо"
+      "visible": "Нишон додани роҳнамо",
+      "dragOntoPage": "Барои илова кардани роҳнамо ба саҳифа кашед"
     },
     "help": {
+      "noResults": "Кӯмаки мувофиқ ёфт нашуд. Номи асбоб ё амалеро ба мисли paste, crop ё group санҷед.",
       "openTool": "Асбоби Кушодан",
       "searchMobile": "Ҷустуҷӯи имову ишораҳо ва кӯмаки муҳаррир",
       "title": "Роҳнамои муҳаррир"
     },
     "layout": {
+      "columns": "Сутунҳои тӯр (0 = худкор)",
       "gap": "Фосилаи шабака дар пикселҳо",
       "positionGroups": "Ҷойгиршавӣ ва гурӯҳҳо"
     },
     "links": {
+      "apply": "Татбиқи пайванд",
       "contactBuilder": "Сохтани почтаи электронӣ, телефон ё алоқаи SMS",
       "copied": "Нусхабардории макони истинод",
       "copyDestination": "Ҷои таъиноти нусхабардорӣ",
@@ -11170,7 +11543,8 @@
       "hint": "Ҳар як қабати интихобшуда дар мавқеи мавҷудаи худ ҳамон кунҷро мегирад. Даври нисбии зер интихобро якҷоя мегардонад.",
       "setAngle": "Танзими ҳар як қабат",
       "title": "Танзими самти қабат",
-      "unflip": "Нест кардани флипҳо"
+      "unflip": "Нест кардани флипҳо",
+      "upright": "Рост"
     },
     "outline": {
       "applyPattern": "Татбиқ кардани намуна",
@@ -11183,6 +11557,8 @@
       "width": "Паҳнои марз: {{value}}"
     },
     "pageAnimation": {
+      "apply": "Татбиқи аниматсия",
+      "updated": "{{count}} қабат навсозӣ шуд",
       "duration": "Давомнокӣ дар сонияҳо",
       "hint": "Ilapat ang pinasok na entry o exit na gumagamit sa isang pahina o pagpili. Табақаҳои пӯшида ва пинҳон бетағйир мемонанд. Тасвирҳо ва PDF-ҳо то ҳол корҳои пурраи санъатро содирот мекунанд.",
       "noChange": "Табақаҳои таҳриршаванда лозим нестанд",
@@ -11191,6 +11567,12 @@
       "typewriterHint": "Mga uri ng teksto; iba pang mga layers ay mabababa. Мӯҳрҳо дар доираи вақти ҳар як қабат мувофиқанд."
     },
     "pageManager": {
+      "endDestination": "Барои ба охир гузаронидан аз {{number}} истифода баред.",
+      "locked": "Қабатҳои қулфшударо дар бар мегирад",
+      "openPage": "Кушодани саҳифаи {{number}}",
+      "search": "Ҷустуҷӯи саҳифаҳо аз рӯи ном, рақам ё сарлавҳа",
+      "selectMatches": "Интихоби саҳифаҳои мувофиқ",
+      "selected": "{{count}} саҳифа интихоб шуд",
       "clear": "Пок кардани интихоб",
       "destination": "Пеш аз саҳифа",
       "moveHere": "Ҳаракат кардани Интихобот",
@@ -11219,6 +11601,8 @@
       "unavailable": "Аксро иваз кардан ғайриимкон буд. Заминаҳои қулфшуда ва маҳдудияти қабатҳои тарҳро тафтиш кунед."
     },
     "photoLooks": {
+      "styleFiles": "Ilipat ang larawan",
+      "title": "I-save ang larawan na mga pagtingin",
       "applied": "Намуди захирашуда татбиқ шуд",
       "apply": "Татбиқи намуди захирашуда",
       "applyImportedStyle": "Татбиқи намуди воридшуда",
@@ -11239,13 +11623,24 @@
     },
     "photoTone": {
       "original": "Рангҳои аслӣ",
-      "strength": "Қувваи Duotone"
+      "strength": "Қувваи Duotone",
+      "duotone": "Дуотон"
     },
     "photos": {
+      "arrange": "Ҷойи аксҳоро иваз кунед",
+      "arrangeHint": "Чорчӯбаҳо, мавқеъҳо, услубҳо ва гурӯҳҳо дар ҷои худ мемонанд. Нуқтаҳои марказии аксҳо аз манбаъҳои худ пайравӣ мекунанд. Заминаҳо ва аксҳое, ки якчанд саҳифаро фаро мегиранд, истисно карда мешаванд.",
+      "needFrames": "Барои иваз кардани ҷойи аксҳо, ҳадди ақал ду акси кушодаро дар ин саҳифа илова кунед.",
+      "rotate": "Тартиби аксҳоро гардонед",
+      "shuffle": "Аксҳоро омехта кунед",
+      "swap": "Аксҳоро иваз кунед",
       "number": "Сурат {{number}}",
-      "second": "Фотоэффектҳои дуюм"
+      "second": "Фотоэффектҳои дуюм",
+      "first": "Чаҳорчӯби аксҳои аввал",
+      "preparing": "Омода кардани андозаҳои акс…"
     },
     "present": {
+      "findPage": "Саҳифаро аз рӯи ном ё рақам пайдо кунед",
+      "goToPage": "Рафтан",
       "allHidden": "Ҳамаи саҳифаҳо пинҳон шудаанд. Ipakita ang unang pahina para sa pagtatanghal na ito",
       "blackout": "Барчаспҳои",
       "browsePages": "Саҳифаҳо",
@@ -11286,9 +11681,18 @@
       "undoMark": "Бекор кардани нишона",
       "upNext": "Навбатӣ",
       "usePageTiming": "Истифодаи давомнокии саҳифаҳо",
-      "whiteScreen": "Экрани сафед"
+      "whiteScreen": "Экрани сафед",
+      "loading": "Бор кардани саҳифа"
     },
     "qr": {
+      "calendarAllDay": "Araw na kaganapan",
+      "copyContent": "Kopyahin ang nilalaman ng QR",
+      "downloadCalendar": "Kaganapan ng kalendaryo (.ics)",
+      "downloadCalendarHint": "I-save ang parehong kaganapan bilang isang importable na file ng kalendaryo",
+      "downloadContact": "I-download ang contact (.vcf)",
+      "downloadContactHint": "I-save ang parehong mga detalye ng contact bilang file para sa iyong address book.",
+      "noBrandPalettes": "I-save ang isang color palette sa mga style ng Brand upang gamitin ito dito.",
+      "useDetails": "Gamitin ang mga detalye na it",
       "background": "Замина",
       "brandPaletteHint": "Интихоби пешзаминаи торик ва заминаи рӯшноӣ аз палитра, бо истифода аз сиёҳ ё сафед, вақте ки контрасти бештар лозим аст. Нигоҳ доштани рангҳои QR- и ҷорӣ. Мундариҷаи рамзгузошта бетағйир мемонад.",
       "brandPalettes": "Паллетаҳои захирашуда ва рангҳои QR",
@@ -11552,6 +11956,8 @@
     },
     "undo": "Бекор кардани тағйири матн",
     "vectorSelection": {
+      "applyOutline": "Танзими контур",
+      "svgScopeHint": "Содироти то 100 қабати интихобшудаи шакл, расм, рамз ва пайвасткунак дар ҷойгиршавии ҳозираи калидии онҳо. \"Нигоҳ доштани андозаҳои саҳифа\" мавқеи онҳоро дар саҳифа ҳифз мекунад; \"Мутобиқсозӣ\" онҳоро дар ҳудуди қабаташон бурида мегирад. Матн, аксҳо ва графикаи додаҳо содироти махсуси худро истифода мебаранд.",
       "applyFill": "Танзими пуркунӣ",
       "downloadSvg": "Боргирии векторҳои интихобшуда ҳамчун SVG",
       "exportOptions": "Зеркашӣ кардани санъати векторӣ",
@@ -11567,11 +11973,40 @@
       "width": "Паҳнои контур"
     },
     "viewport": {
+      "pan": "Ҷобаҷогузории канвас",
+      "zoomIn": "Калон кардани канвас",
+      "zoomOut": "Хурд кардани канвас",
       "fit": "Ғунҷоиш",
       "selection": "Интихоб"
     }
   },
   "creator": {
+    "presetExtraAthleteFreezeHint": "Лаҳзаи варзишии қавӣ бо вазни воқеӣ",
+    "presetExtraBookJacketHint": "Рӯи ҷилди пешин ва сутуни намоён",
+    "presetExtraBusinessCardHint": "Шахсияти чопшудаи пок дар қағази бофта",
+    "presetExtraCanWrapHint": "Шахсияти гирдоварда дар қуттии нӯшокӣ",
+    "presetExtraCityTramPassHint": "Трамвайи рӯшнок дар қуллаи шоми ором",
+    "presetExtraDuotonePortraitHint": "Чопи аксиву ду ранги фотографӣ",
+    "presetExtraEventFlyerHint": "Унвони рӯйдоди равшан ва тасвири кӯдҳои ҷасур",
+    "presetExtraFantasyMarketHint": "Бозори гарм бо тафсилоти ҷаҳони дастсохта",
+    "presetExtraFoodFinishHint": "Як гарниш дар ғизои тайёршуда фарўд мекунад",
+    "presetExtraFreckleBeautyName": "Наздикии пур аз хал",
+    "presetExtraIllustrationParallaxHint": "Чунқӣ аз тасвири пешниҳодшуда",
+    "presetExtraIsometricMapHint": "Мохалляи хурди қабилан",
+    "presetExtraMiniatureCityHint": "Шахри дастсохта бо чунқӣ-ғилоф",
+    "presetExtraNoirHotelHint": "Коридори яклонги кашидашуда",
+    "presetExtraOutfitDetailWalkHint": "Тафсилоти пиёдарави наздик бо пораи табиӣ",
+    "presetExtraPaperQuillingName": "Қағази қалам",
+    "presetExtraPetSmallMotionHint": "Чашмак ва ҳаракати гӯш дар портрети ҳайвон",
+    "presetExtraPlaylistCoverHint": "Як тасвири атмосферӣ бо нависи оддӣ",
+    "presetExtraPortraitBreathHint": "Нафас гирифтани ҳалим тасвири истинодро ҳаракат медиҳад",
+    "presetExtraProductLightSweepHint": "Ҷилои нарм ҳаракатнок дар маҳсули истинод",
+    "presetExtraRetroFutureLoungeName": "Залали ретро-оянда",
+    "presetExtraTopographicWavesHint": "Хатҳои контури қабатӣ шаклҳои мавҷдор мешаванд",
+    "presetExtraTravelPostcardHint": "Манзилгоҳи даъватнамо бо бофти чопшуда",
+    "presetExtraVinylSleeveHint": "Асари албоми бо сабти қисман ошкор",
+    "studioCloudSaveFailed": "Натиҷаи шумо ҳанӯз дар таърих аст, аммо наметавонист ба китобхонаи ҳисоби шумо сохта шавад. Ин гуфтугӯро дубора кушоед ва кӯшиш кунед ки дубора сохта кунед.",
+    "studioNeedsImage": "Барои ин модел ё қабъи ишора тасвири истинодро ҷузъ кунед.",
     "editInTimeline": "Таҳрир дар ҷадвали вақт (timeline)",
     "presetExtraArchitectureLightChangeHint": "Абрҳои мулоим нурро дар саҳнаи истинод тағйир медиҳанд",
     "presetExtraArchitectureLightChangeName": "Тағйири нури меъморӣ",
@@ -11895,7 +12330,7 @@
     "presetTalkingPortraitHint": "Қисми-ба-камера амудӣ",
     "presetTalkingPortraitName": "Гап задан дар портрет",
     "presetThumbnailPunchHint": "Хонда шуд дар 200px васеи",
-    "presetThumbnailPunchName": "Thumbnail Punch",
+    "presetThumbnailPunchName": "Мушти Эскиз",
     "presetTvSpotHint": "Сиёсати Корбурди Маълумоти Шахсӣ",
     "presetTvSpotName": "Нуқтаи телевизор",
     "presetUgcSelfieHint": "Эҷодкор, ки бо телефон сабт шудааст ва бо камера суҳбат мекунад",
@@ -13369,6 +13804,7 @@
     "checkoutUnavailable": "Пардохт ҳоло дастрас нест. Лутфан баъдтар дубора кӯшиш кунед."
   },
   "pricing": {
+    "sso": "DSO",
     "perSeatMonthly": "дар як ҷой / моҳ",
     "plansForEveryWorkflow": "Нақшаҳо барои ҳар як ҷараёни кор",
     "findTheRightFit": "Аз инфиродӣ то дастаҳои корхона, мувофиқи мувофиқро пайдо кунед",

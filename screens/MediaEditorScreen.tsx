@@ -1623,7 +1623,10 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         toastSuccess(t("editor.app.savedToPhotos"));
       } else {
         await flush();
+        const remixCredits = [...new Set((await Promise.all(project.clips.flatMap(clip => clip.kind === "video" || clip.kind === "audio" || clip.kind === "image" ? [getMedia(clip.mediaId)] : [])))
+          .flatMap(media => media?.provenance?.source === "dehub-remix" ? [media.provenance.attributionText] : []))].join("\n");
         nav.navigate(ScreenNames.Upload, {
+          initialText: remixCredits || undefined,
           video: {
             uri: out.uri,
             width: width & ~1,
@@ -1733,7 +1736,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         </Pressable>
       </View>
 
-      <DesignTools onPageChange={time => { setPlaying(false); setTime(time); setSelectedId(null); setPen(null); setTool(null); }} onEditContent={id => { const clip = h.latest()?.clips.find(clip => clip.id === id); if (!clip || clip.locked) return; setPlaying(false); setPen(null); select(id); if (clip.kind === "text") drafts.openText(id); else setTool(clip.kind === "shape" ? "shapeStyle" : "crop"); }} onPresent={rendering !== null || mediaLoading > 0 ? undefined : () => { h.settle(); setPlaying(false); setPen(null); setTool(null); const latest = h.latest(); if (latest) { cancelDesignColourPick(); setPresentation({ project: latest, time: canvasTime }); } }} boxes={() => canvasRef.current?.layoutBoxes() ?? []} recording={recording} key={project.id} holdEdits={() => { const latest = h.latest(); return latest ? h.holdEdits(projectReviewSnapshotKey(latest)) : null; }} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
+      <DesignTools onGenerate={openGenerator} onPageChange={time => { setPlaying(false); setTime(time); setSelectedId(null); setPen(null); setTool(null); }} onEditContent={id => { const clip = h.latest()?.clips.find(clip => clip.id === id); if (!clip || clip.locked) return; setPlaying(false); setPen(null); select(id); if (clip.kind === "text") drafts.openText(id); else setTool(clip.kind === "shape" ? "shapeStyle" : "crop"); }} onPresent={rendering !== null || mediaLoading > 0 ? undefined : () => { h.settle(); setPlaying(false); setPen(null); setTool(null); const latest = h.latest(); if (latest) { cancelDesignColourPick(); setPresentation({ project: latest, time: canvasTime }); } }} boxes={() => canvasRef.current?.layoutBoxes() ?? []} recording={recording} key={project.id} holdEdits={() => { const latest = h.latest(); return latest ? h.holdEdits(projectReviewSnapshotKey(latest)) : null; }} time={canvasTime} select={select} project={project} selectedId={selectedId} current={h.latest} commit={next => { setPlaying(false); h.commit(next); }} seek={(id, time) => { setPlaying(false); setTime(time + 0.01); select(id); }} />
       {presentation && presentation.project.id === project.id && <PresentationView project={presentation.project} time={presentation.time} onApplyTimings={entries => { const latest = h.latest(); if (!latest || latest.id !== presentation.project.id || projectReviewSnapshotKey(latest) !== projectReviewSnapshotKey(presentation.project)) throw new Error("The design changed during this presentation. Reopen it before applying timings"); const result = applyRehearsedPageDurations(latest, entries, canvasTime, () => newId(10)); if (result.project !== latest) h.commit(result.project); setTime(result.time); setPresentation(null); }} onPage={setTime} onClose={() => setPresentation(null)} renderPage={async at => {
         const canvas = canvasRef.current;
         if (!canvas) return Promise.reject(new Error("The canvas is not ready"));

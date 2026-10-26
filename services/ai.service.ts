@@ -71,6 +71,9 @@ export interface AIChatMessage {
    */
   templateId?: string;
   creatorSettings?: CreatorStudioSettings;
+  /** Account that submitted a Creator turn; prevents stale history being saved into a different library. */
+  creatorOwner?: string;
+  creatorAssetScheme?: 'results-v1';
   /** A swap the assistant read out of the request, confirmed by the user on a card. */
   swapAction?: AssistantSwapAction;
 }
@@ -318,6 +321,7 @@ export interface AIChatResponse {
 export type AIImageModel = string;
 
 export interface AIImageRequest {
+  clientJobId?: string;
   referenceImageUrls?: string[];
   prompt: string;
   aspectRatio?: string;
@@ -365,6 +369,7 @@ export interface AIVideoRequest {
   duration?: string;
   aspectRatio?: string;
   negativePrompt?: string;
+  endFrameUrl?: string;
   resolution?: string;
   seed?: number;
   /** Hash of the DHB transfer that paid for this job. */

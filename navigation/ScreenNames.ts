@@ -7,6 +7,8 @@ export enum ScreenNames {
   NoInternet = 'NoInternet',
   Splash = 'Splash',
   Profile = 'Profile',
+  /** Your own profile, kept loaded as a hidden bottom-bar tab. */
+  ProfileTab = 'ProfileTab',
   Notifications = 'Notifications',
   NotificationSettings = 'NotificationSettings',
   Search = 'Search',
@@ -56,6 +58,7 @@ export enum ScreenNames {
   CreatorFlow = 'CreatorFlow',
   CreatorFlowView = 'CreatorFlowView',
   MediaEditor = 'MediaEditor',
+  VideoRemix = 'VideoRemix',
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
   ActiveSessions = 'ActiveSessions',

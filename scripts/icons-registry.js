@@ -64,8 +64,8 @@ const SKIP_DIRS = new Set([
   "dehub-stream-backend",
   "cosmic-echo-hero",
 ]);
-// Provider effect names are content, not icon references (for example Microwave).
-const SKIP_PATHS = new Set(["components/messages", "components/ui/iconRegistry.ts", "config/viral-effects.ts"]);
+// Provider effects and cinema choices are content, not icon references.
+const SKIP_PATHS = new Set(["components/messages", "components/ui/iconRegistry.ts", "config/viral-effects.ts", "libs/cinemaDirection.ts"]);
 
 /** Canonical lucide name -> file slug, e.g. CircleAlert -> circle-alert. */
 function loadLucideNames() {

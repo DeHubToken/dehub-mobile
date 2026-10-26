@@ -26,7 +26,7 @@ export function isMaboroshiDownload(value: string): boolean {
 }
 
 export function maboroshiSessionScript(token: string, wallet: string, allowPayments: boolean): string {
-  const data = JSON.stringify({ token, wallet, allowPayments, paymentBridge: 1 }).replace(/</g, '\\u003c');
+  const data = JSON.stringify({ token, wallet, allowPayments, paymentBridge: 1, libraryBridge: 1 }).replace(/</g, '\\u003c');
   return `if(location.origin==='https://live.dehub.io'&&location.pathname==='/maboroshi/'){document.dispatchEvent(new CustomEvent('maboroshi:native-session',{detail:${data}}));}true;`;
 }
 

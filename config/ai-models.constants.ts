@@ -230,6 +230,9 @@ export const DEHUB_BRAND_IMAGE_MODEL: ImageModelKey = 'gemini-3.1-flash-image';
 export type VideoDirection = 'text-to-video' | 'image-to-video';
 
 export interface VideoModel {
+  supportsSeed?: boolean;
+  supportsNegativePrompt?: boolean;
+  supportsEndFrame?: boolean;
   id: string;
   name: string;
   description: string;
@@ -257,6 +260,9 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   ...CREATOR_FAL_VIDEO_MODELS,
   'seedance-2.5': {
     id: 'seedance-2.5',
+    supportsNegativePrompt: false,
+    supportsEndFrame: true,
+    supportsSeed: true,
     name: 'Seedance 2.5',
     get description() { return _translateCopy("copy.b8c339f21031", { defaultValue: "ByteDance flagship — 30s takes, best prompt adherence" }); },
     emoji: '🌊',
@@ -282,6 +288,8 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'kling-2.6-pro': {
     id: 'kling-2.6-pro',
+    supportsNegativePrompt: true,
+    supportsSeed: true,
     name: 'Kling 2.6 Pro',
     get description() { return _translateCopy("copy.4bddb1751509", { defaultValue: "Top-tier cinematic with native audio" }); },
     emoji: '🎬',
@@ -294,6 +302,9 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-2.0-fast': {
     id: 'seedance-2.0-fast',
+    supportsNegativePrompt: true,
+    supportsEndFrame: true,
+    supportsSeed: true,
     name: 'Seedance 2.0 Fast',
     get description() { return _translateCopy("copy.f4a56d3cb00f", { defaultValue: "Faster generation, slightly lower quality" }); },
     emoji: '⚡',
@@ -307,6 +318,9 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-2.0': {
     id: 'seedance-2.0',
+    supportsNegativePrompt: true,
+    supportsEndFrame: true,
+    supportsSeed: true,
     name: 'Seedance 2.0',
     get description() { return _translateCopy("copy.c5a1d3b9268d", { defaultValue: "Latest ByteDance model, superior quality & audio" }); },
     emoji: '🌊',
@@ -320,6 +334,7 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'kling-3.0': {
     id: 'kling-3.0',
+    supportsNegativePrompt: true,
     name: 'Kling 3.0 Pro',
     get description() { return _translateCopy("copy.e2741c299499", { defaultValue: "Multi-shot, audio sync, long takes" }); },
     emoji: '🎞️',
@@ -342,6 +357,8 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-1.5-pro': {
     id: 'seedance-1.5-pro',
+    supportsNegativePrompt: true,
+    supportsSeed: true,
     name: 'Seedance 1.5 Pro',
     get description() { return _translateCopy("copy.ee76a220959c", { defaultValue: "ByteDance cinematic with native audio" }); },
     emoji: '🌊',
@@ -378,6 +395,7 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'kling-3.0-standard': {
     id: 'kling-3.0-standard',
+    supportsNegativePrompt: true,
     name: 'Kling 3.0 Standard',
     get description() { return _translateCopy("copy.b50840a8facb", { defaultValue: "Same model, lighter render tier" }); },
     emoji: '🎬',
@@ -391,6 +409,7 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'wan-2.5': {
     id: 'wan-2.5',
+    supportsNegativePrompt: true,
     name: 'Wan 2.5',
     get description() { return _translateCopy("copy.a525541f3e90", { defaultValue: "Open-weight, stylised and experimental" }); },
     emoji: '🌈',
@@ -442,6 +461,7 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'kling-2.5-turbo': {
     id: 'kling-2.5-turbo',
+    supportsNegativePrompt: true,
     name: 'Kling 2.5 Turbo Pro',
     get description() { return _translateCopy("copy.ea5e0b780f7b", { defaultValue: "Fluid motion and tight prompt precision, no audio" }); },
     emoji: '🌪️',
@@ -465,6 +485,7 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'pixverse-v5': {
     id: 'pixverse-v5',
+    supportsNegativePrompt: true,
     name: 'PixVerse V5',
     get description() { return _translateCopy("copy.b19b2e83cbb1", { defaultValue: "Stylised and anime-leaning motion" }); },
     emoji: '🎨',
@@ -476,6 +497,8 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'ltx-13b': {
     id: 'ltx-13b',
+    supportsSeed: true,
+    supportsNegativePrompt: true,
     name: 'LTX Video 13B',
     get description() { return _translateCopy("copy.d2847c1435c7", { defaultValue: "Cheapest per second, fast drafts" }); },
     emoji: '🪶',
@@ -488,6 +511,8 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'ltx-video': {
     id: 'ltx-video',
+    supportsSeed: true,
+    supportsNegativePrompt: true,
     name: 'LTX Video',
     get description() { return _translateCopy("copy.8884959c3902", { defaultValue: "Fast and efficient" }); },
     emoji: '💨',

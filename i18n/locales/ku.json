@@ -126,6 +126,9 @@
     "useNamed": "{{name}} bikar bîne"
   },
   "copy": {
+    "35e0d0360a0a": "JÎYAN",
+    "8917519e3498": "Romantîkê Bêhêvî",
+    "a7248eeb45eb": "Asayî",
     "002286513398": "تۆ مۆڵەتی بەڕێوەبردنی چالاکییەکانت نییە",
     "00b3a926f704": "هەڵوەشاندنەوەی داواکارییەکە سەرکەوتوو نەبوو",
     "00c0b03fcfa2": "کشاوەتەوە",
@@ -1098,7 +1101,7 @@
     "ab01be20149e": "Jean Phil - Çêkirina baranê",
     "ab30146df8aa": "Pitch Legend",
     "ab6614df5c00": "Fînans jixwe hatiye veqetandin. Haşa danûstandinê ya wê vegerîne, an jî îmzeyeke redkirî berde.",
-    "ab827e3fe17d": "Something went wrong",
+    "ab827e3fe17d": "Tiştek xelet çû",
     "abd149214539": "India",
     "ac14ad27c740": "Stage haze, spotlights",
     "ac199bc6baf1": "Nikare kirîna kartê dest pê bike.",
@@ -1673,7 +1676,7 @@
     "16cc0ff62e43": "🔊 Belavoka Rave",
     "16d186a18037": "Cebr",
     "1710a2af3842": "پۆستێک کە ڤیدیۆیەک لەخۆ دەگرێت. ڤیدیۆکان دەکرێت بە گشتی، تایبەت، یان پارەدان بۆ بینین (PPV) دابنرێن.",
-    "17371507e9f7": "Subs",
+    "17371507e9f7": "Abone",
     "1784371d756d": "📦 Pêşkêşkirina Berhemê",
     "17aadc092fe6": "پارەدان سەرکەوتوو نەبوو",
     "1855cc1a13c2": "کۆکنی",
@@ -1701,7 +1704,7 @@
     "204a5eb2cd28": "تێچوو",
     "20dca9f9caf8": "دەتوانیت ئەم پەڕەیە جێبهێڵیت. کاتێک پارەدانەکەت پشتڕاستکرایەوە، تۆکنەکانت دەگەنە جانتاکەت.",
     "214371ade41e": "(li ser rûpela giştî nayê nîşandan)",
-    "21b111cbfe6e": "Default",
+    "21b111cbfe6e": "Standard",
     "226d010f636d": "🛠️ SDKs ya Roznamevan",
     "228d0ab63711": "Wêneyên fotorealîst û veguherînên çarçoveyê yên kontrolkirî",
     "2292284a6664": "Çîrokên pêşeng, çîrokên rengîn û şiklên eksperîmental",
@@ -1999,7 +2002,7 @@
     "8ae18739e3f7": "Sînyala Flare bo {{value1}} kesan",
     "8b4c82401c9c": "Drift",
     "8b5e86df9155": "بەخشینە دراوەکان",
-    "8c13f73ba145": "Swarm",
+    "8c13f73ba145": "Naxir",
     "8c7ed2d9be59": "banner",
     "8d3f3e35915d": "Asteng bike {{value1}}",
     "8d6f0c73fbaf": "RTMP",
@@ -2020,7 +2023,7 @@
     "91e1d9085ab8": "Tu yê Xwedîyê Her Tiştî Bibî,",
     "91f30ce5eeb9": "Rêveberî û Civak",
     "92452ecd3d29": "QESR",
-    "93100fc44c0a": "@username",
+    "93100fc44c0a": "@navêbikarhêner",
     "93355a336fb2": "نەتوانرا ئەو پێشنیارە بکشێندرێتەوە",
     "942087cc2d41": "Dubare biceribîne",
     "944ae402da39": "ئەم ئەکاونتە لە ئێستادا نامە وەرناگرێت.",
@@ -2083,7 +2086,7 @@
     "a719eb990599": "Dengê xwe bidin pêşniyareke rêveberiyê an jî daxwazeke taybetmendiyê. Alîkariya nîşankirina piştgiriya civakê dike.",
     "a731a58c4cf3": "Twitch",
     "a77a65e67991": "ئینگلیزیی کۆن",
-    "a80811cf6889": "Posts",
+    "a80811cf6889": "Post",
     "a9805864ceb9": "پۆستێک کە یەک یان چەند وێنەیەک لەخۆ دەگرێت. وێنەکان لەسەر بلۆکچەین وەک NFT بە ناسنامەی تایبەتی تۆکن (Token ID) هەڵدەگیرێن.",
     "aa21cfda3bbf": "جۆرەکانی ناوەڕۆک",
     "aa2c45a2661e": "Hêzdarbûna Kling bi hûnîya wêne",
@@ -2105,7 +2108,7 @@
     "b295e355b543": "💵 Rêvebûna Fiat",
     "b2afd441461d": "بیرخەرەوە لابرا",
     "b2f1d1d5d653": "Tevgera şêwazkirî bi dengê xwemalî û klîbên dirêjtir",
-    "b34f17f02ecf": "Heading",
+    "b34f17f02ecf": "Sernivîs",
     "b3b61e24c8f8": "🧠 Hêvî û Zanîngeha Mirov",
     "b3d0998cd00a": "سوپاس — بینەرێکی دیکە ڕازی بێت پەخش دەکرێت",
     "b3de46c00525": "Sererastkirin û veguhestina şêwazê ya bi hay ji rewşê",
@@ -2123,7 +2126,7 @@
     "b553e42907ee": "Fireflies",
     "b5893515b61f": "Tîpografiya herî bihêz di posterê de",
     "b5b2b23163a8": "مافیای ڕووسی",
-    "b64ac05f17e6": "Live",
+    "b64ac05f17e6": "Zindî",
     "b6a3909630c4": "Hûrguliyên bilind",
     "b6c1d862f9f7": "Herdû",
     "b6ce788d9786": "Nûçe",
@@ -2149,11 +2152,11 @@
     "bab4c75d0722": "Rings",
     "bae8448539c2": "Femînîst",
     "bb9a702dd998": "Rêveberiya Post",
-    "bc1b88907d3b": "Audio",
+    "bc1b88907d3b": "Deng",
     "be3702e3f1af": "کارت",
     "be61c03c480e": "پێشکەشکردن ڕەتکرایەوە",
     "be692c8e223e": "داواکاری تایبەتمەندی سڕایەوە",
-    "be7e2f201293": "Images",
+    "be7e2f201293": "Wêne",
     "bf1c04008038": "Çîrok û detayên fotoğrafî yên balansdar",
     "bf2f3ecac4d0": "📖 Bergê Kovarê",
     "bf4151fc970f": "KAR_RÊVEBER_ARBÎTER",
@@ -2190,7 +2193,7 @@
     "c8cc522340b9": "1 hefte",
     "c9046f7a37ad": "description",
     "c9a2d61de5a7": "ناوی بەکارهێنەر دانرا",
-    "c9a9639463c2": "Videos",
+    "c9a9639463c2": "Vîdyo",
     "ca01201adaea": "🍎 Pêşangeha Sereke ya Apple",
     "ca3f58203ed3": "Vîdyoyêk û sedsala ji tekstê, wêneyan, anîkên destpêk û dawî",
     "ca7842e53ac8": "dehub.io",
@@ -2245,7 +2248,7 @@
     "db9897e168fa": "📢 Pir-Postkirin",
     "dbc6e9280cb5": "PPV Pêşbînî û Xerçdanî",
     "dc1d3da1f19d": "نەتوانرا ئەو کڕینە تەواو بکرێت",
-    "dcd0a4d2c65a": "Playlists",
+    "dcd0a4d2c65a": "Lîsteyên lêdanê",
     "dd05b3bca137": "📰 Xwarina Yekgirtî",
     "dd4cbcccd151": "نەتوانرا فرۆشگا دروست بکرێت",
     "ddea42290677": "Bişekeke ji bo pêşniyarîyên rêveberî an fêrkirina nû anîn.",
@@ -2313,7 +2316,7 @@
     "f082eb679e6b": "Bide {{value1}} {{value2}}",
     "f0ecd978e585": "Dayê",
     "f1bed1726a8b": "🎥 Vîdyoyê çêbike",
-    "f20c87946555": "Pinned",
+    "f20c87946555": "Hatiye pêvekirin",
     "f212a985ab16": "Vexwendin",
     "f223faa96f22": "Apple",
     "f2598220db3e": "Bilîze {{value1}}",
@@ -2785,7 +2788,7 @@
     "docs": "Belge",
     "roadmap": "Nexşeya Rê",
     "featureRequests": "Daxwaz",
-    "staking": "Staking",
+    "staking": "Stêkkirin",
     "superpowers": "Hêzên Super",
     "governance": "Rêvebirî",
     "dao": "DAO",
@@ -3262,7 +3265,7 @@
     "notifAnnouncementsDesc": "Nûçe û nûvekirinên taybetmendiyê yên platformê",
     "quietHoursPauseDesc": "Agahdariyên push di demjimêrên diyarkirî de rawestîne",
     "quietHoursFrom": "Ji",
-    "quietHoursTo": "To",
+    "quietHoursTo": "Bo",
     "quietHoursSilencedNote": "Agahiyên push di van demjimêran de dê bêdeng bibin.",
     "notifInApp": "Di nav sepanê de",
     "notifPush": "Lêqellibîn",
@@ -3684,7 +3687,7 @@
     "payViaDpay": "بۆ DeHub Pay درا، tokensـەکان لە ماوەی ٣٠ چرکەدا دەگەن",
     "payViaBridgeDpay": "گواستراوە بۆ Base و بۆ DeHub Pay درا، tokensـەکان لە ماوەی یەک خولەکدا دەگەن",
     "tokensUnit": "tokens",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} nîşanekan"
   },
   "postOptions": {
     "skippableSections": "Beşên ku dikarin werin avêtin",
@@ -3874,7 +3877,7 @@
     "imageModel": "Modela Wêneyê",
     "videoModel": "Modela Vîdyoyê",
     "aiVoice": "Deng",
-    "premium": "Premium",
+    "premium": "Xelat",
     "standard": "Rêzan",
     "fast": "Bilez",
     "alwaysSpeakReplies": "Her dem bersivan bibêje",
@@ -4394,7 +4397,7 @@
       "here": "{{name}} ji her kesî re di civakê de peyamek şand",
       "hereNamed": "{{name}} ji her kesî re di \"{{community}}\" de peyamek şand"
     },
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} nîşanekan"
   },
   "leaderboard": {
     "title": "Pêşengtî",
@@ -4434,7 +4437,7 @@
     "provisional": "demkî",
     "addedToLeaderboard": "تۆ زیادکراویت! ماوە: {{balance}} tokens",
     "balanceTooLow": "ماوە کەمە ({{balance}} tokens)",
-    "tokenAmount": "{{amount}} tokens"
+    "tokenAmount": "{{amount}} nîşanekan"
   },
   "explorePage": {
     "searchPlaceholder": "Li kes, şandin, an naverokê bigerin...",
@@ -4818,7 +4821,7 @@
     "tabPinned": "دانراو"
   },
   "tv": {
-    "title": "TV",
+    "title": "Televîzyon",
     "subtitle": "Kanalên belaş ji seranserê cîhanê",
     "channelCount": "{{count}} kanalên belaş li seranserê cîhanê",
     "searchPlaceholder": "Li kanalan bigere",
@@ -5115,6 +5118,9 @@
       "viewPost": "Postê bibîne"
     },
     "tasks": {
+      "clearSelection": "Hilbijartinê paqij bike",
+      "distribution": "Belavkirinî",
+      "selectAll": "Hemûyan hilbijêre",
       "action": "Çalakî",
       "activity": "Çalakiya dawî",
       "comment": "Çawa",
@@ -5486,8 +5492,8 @@
     "yourApplication": "Serlêdana Te",
     "fullName": "Navê Tevahî",
     "email": "E-name",
-    "telegram": "Telegram",
-    "xTwitter": "X (Twitter)",
+    "telegram": "Têlxiram",
+    "xTwitter": "Twiiter (X)",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
     "otherSocials": "Civakiyên Din",
@@ -6096,13 +6102,13 @@
   "staking": {
     "pendingRetired": "ئەم سپاردەیە چیتر لەسەر تۆڕەکە چاوەڕوان نییە. بەدواداچوونەکە پاککرایەوە؛ پێش ئەوەی جارێکی تر سپاردە ئەنجام بدەیت، چالاکییەکانی جزدانەکەت بپشکنە.",
     "foundNewDeposits": "{{count}} emanetên nû li ser zincîrê hatin dîtin",
-    "title": "Staking",
+    "title": "Stêkkirin",
     "subtitle": "Depozîto ji bo vekirina parvekirina qezencê, xercên kêmtir, hêzên super û hêj bêtir!",
     "stakeDhb": "Diravdan",
     "unstakeDhb": "Vekişîn",
     "stakeDesc": "Ji bo qezenckirina xelatan nîşanekan razînin.",
     "unstakeDesc": "Vekişînê dest pê bike",
-    "max": "Max",
+    "max": "Maks",
     "stake": "Diravdan",
     "approving": "Pesendkirin",
     "staking": "Depozîtekirin",
@@ -6125,7 +6131,7 @@
     "noRecentUnstakeEvents": "Tu vekişîn li benda te nîne",
     "wallet": "Tûrikê diravan",
     "amount": "Biha",
-    "chain": "Chain",
+    "chain": "Zincîr",
     "when": "Heke",
     "multiChainNotice": "Li ser zincîrên BNB û Base jî tokenên te hene. Sponsorkirin dê yek zincîr bi yek pêk bîne - piştî wê vegere da ku ya din sponsor bikî.",
     "whyStake": "Çima emanet bikin?",
@@ -6224,7 +6230,7 @@
       "title": "بانگهێشتی شوێنکەوتووان بکە"
     },
     "title": "Civak",
-    "create": "Create",
+    "create": "Biafirîne",
     "searchPlaceholder": "Civakan bigere...",
     "noCommunities": "Civak nehat dîtin",
     "joined": "Tevî bûyî",
@@ -6535,7 +6541,7 @@
   },
   "work": {
     "integrity": {
-      "totalBudget": "Total budget",
+      "totalBudget": "Budceya giştî",
       "reputationNotice": "ناوبانگ پشتگیری ئەم خەڵاتە دەکات. خاوەن پۆستەکە ڕاستەوخۆ پارەی کارە پەسەندکراوەکان دەدات؛ پارەدانەکە دوای پشتڕاستکردنەوەی گواستنەوەکە تۆمار دەکرێت.",
       "payOnApproval": "Paid directly after approval",
       "publish": "Publish bounty",
@@ -7563,7 +7569,7 @@
     "boostCancelledRefunded": "Boost hate betalkirin û vegeriya para te",
     "boostCancelledSpent": "Boost hate betalkirin. Ew jixwe dest pê kiribû, loma wek xerckirî dimîne.",
     "cancelFailed": "Nehat betalkirin ew boost",
-    "screenTitle": "SuperPowers",
+    "screenTitle": "Hêzên Super",
     "countingNotifications": "Hijmartina agahdariyan...",
     "flareSentPending": "{{label}} şandin. Jimareya dawî dê di Bikaranîna Berê de xuya bibe.",
     "flareNotified_one": "{{label}} ji {{count}} kesî re hat agahdarkirin",
@@ -8169,7 +8175,7 @@
     "updateFailed": "Nikaribû wê tîmê nûve bike",
     "pooled": "{{amount}} تۆکن کۆکراوەتەوە",
     "teamMeta": "{{count}}/{{max}} ئەندام، {{tier}}، {{amount}} تۆکن",
-    "memberTokens": "{{amount}} tokens"
+    "memberTokens": "{{amount}} nîşanekan"
   },
   "addToFolder": {
     "title": "Di peldankê de tomar bike",
@@ -9128,7 +9134,7 @@
     "tipBelowFee": "Tipê ji bo çavkanînê bi {{amount}} tokens bêje",
     "insufficientTokenBalance": "Nevîne ji bo çavkanînê · {{amount}} te dikele",
     "tokenBalance": "Balance: {{amount}} tokens",
-    "tokenAmount": "{{amount}} tokens",
+    "tokenAmount": "{{amount}} nîşanekan",
     "tokensUnit": "tokens",
     "tippedYouAmount": "Te re {{amount}} tokens hatî tipî.",
     "paymentFailedAmount": "Têkçû · {{amount}}",
@@ -10449,10 +10455,10 @@
     "rail": {
       "elements": "Hêman",
       "layers": "Qat",
-      "agent": "AI"
+      "agent": "VA"
     },
     "blend": {
-      "normal": "Normal",
+      "normal": "Asayî",
       "multiply": "Zêdekirin",
       "screen": "Parêzî",
       "overlay": "Rûber",
@@ -10728,6 +10734,7 @@
       "suggestedShape": "Pêşniyar kirin: {{shape}}"
     },
     "bulk": {
+      "tokenCurrency": "Dirav",
       "allRecords": "Hemû tomar di nav rêzê de",
       "applyConnectionFile": "Girêdanên hevber bicîh bîne",
       "applyMatches": "Girêdanên hevber bikar bîne",
@@ -11073,6 +11080,7 @@
       "sampleValue": "Giranî"
     },
     "dataVisual": {
+      "import": "CSV an TSV import bike",
       "accent": "Devok",
       "addColumn": "Stûn lê zêde bike",
       "addRow": "Rêz lê zêde bike",
@@ -12528,7 +12536,7 @@
     "severity": {
       "urgent": "Acîl",
       "low": "Nizm",
-      "normal": "Normal",
+      "normal": "Asayî",
       "high": "Bilind"
     },
     "category": {
@@ -13945,8 +13953,8 @@
     "russian-mafia": "Mafyaya Rûsî",
     "pirate": "Korsan",
     "alien": "Biyanî",
-    "e-girl": "E-Girl",
-    "chad": "Chad",
+    "e-girl": "E-Keç",
+    "chad": "Çad",
     "hopeless-romantic": "Romantîkê Bêhêvî",
     "daddy": "Bavo",
     "mommy": "Dayê",
@@ -14035,8 +14043,8 @@
     "subathon": "Subathon",
     "subathonOver": "Demê hatibû.",
     "pointsTitle": "Temaşevanên herî dilsoz",
-    "points_one": "{{formatted}} point",
-    "points_other": "{{formatted}} points",
+    "points_one": "{{formatted}} xal",
+    "points_other": "{{formatted}} xal",
     "level": "Asta {{level}}",
     "streak_one": "{{count}}-hefteya rêze",
     "streak_other": "{{count}}-hefteya rêze",
@@ -14170,7 +14178,7 @@
       "showAvatars": "Wêneyên profîlê nîşan bide",
       "speed": "Zûbûnî",
       "slow": "Hêdî",
-      "normal": "Normal",
+      "normal": "Asayî",
       "fast": "Zû",
       "showStreak": "Rêza heftane nîşan bide"
     },
@@ -14385,7 +14393,7 @@
       "saved": "Hesabên Subathon yên wekheftî.",
       "startMinutes": "Di destpêka (minet) de dest biye",
       "start": "Dest bi countdownê biki",
-      "stop": "Stop",
+      "stop": "Rawestîne",
       "addFive": "Bikî 5 minet",
       "removeFive": "Bikî 5 minet ji dest biki",
       "failed": "Ev ne kiriye. Bi karê din biyarî.",

@@ -3,6 +3,7 @@ import FloatingBottomTabBar from "./FloatingBottomTabBar";
 import { ScreenNames } from "./ScreenNames";
 import { navigationRef } from "../App";
 import { useAuthState } from "../context/AuthContext";
+import { useRegisterOwnTabBar } from "../libs/tab-bar-presence";
 
 const TAB_ROUTES = [
   ScreenNames.Home,
@@ -10,6 +11,7 @@ const TAB_ROUTES = [
   ScreenNames.UploadTab,
   ScreenNames.AIChat,
   ScreenNames.Explore,
+  ScreenNames.ProfileTab,
 ].map((name) => ({ key: name, name }));
 
 /**
@@ -25,8 +27,9 @@ const TAB_ROUTES = [
  * Hide-on-scroll comes from the nearest TabBarHideProvider, the same as on
  * home; wrap the screen in one and drive it with useTabBarScrollHide.
  */
-const StandaloneTabBar: React.FC<{ onBeforeNavigate?: () => void }> = ({ onBeforeNavigate }) => {
+const StandaloneTabBar: React.FC<{ onBeforeNavigate?: () => void; appWide?: boolean }> = ({ onBeforeNavigate, appWide = false }) => {
   const { isSignedIn, needsUsername } = useAuthState();
+  useRegisterOwnTabBar(!appWide);
   const isAuthed = isSignedIn && !needsUsername;
 
   const props = useMemo(() => {
@@ -36,6 +39,10 @@ const StandaloneTabBar: React.FC<{ onBeforeNavigate?: () => void }> = ({ onBefor
       if (name === ScreenNames.UploadTab) {
         const creatingBounty = navigationRef.getCurrentRoute()?.name.startsWith('Work');
         navigationRef.navigate((creatingBounty ? ScreenNames.WorkPost : isAuthed ? ScreenNames.Upload : ScreenNames.SignIn) as never);
+      } else if (name === ScreenNames.Profile && isAuthed) {
+        // Your profile is a kept-loaded tab; pop back to it rather than
+        // pushing a fresh copy that loads from scratch.
+        navigationRef.navigate({ name: ScreenNames.Root, params: { screen: ScreenNames.ProfileTab }, pop: true } as never);
       } else if (TAB_ROUTES.some((r) => r.name === name)) {
         navigationRef.navigate({ name: ScreenNames.Root, params: { screen: name }, pop: true } as never);
       } else {

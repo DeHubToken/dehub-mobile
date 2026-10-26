@@ -5,6 +5,7 @@ import { parseCloudDraftCheckpoint, type CloudDraftCheckpoint, type cloudProject
 import { projectMediaProjection } from "./projectMediaProjection";
 import { mergeLocalProjectEdits } from "./projectHistory";
 import { videoMatteMediaIds } from "./videoMatte";
+import { filmProjectMediaIds } from './filmProject';
 import { CloudDraftRecovery, CloudProjectConflict, localCopyOfCloudProject, makeCloudProjectDocument, type CloudProjectBinding, type CloudProjectDocument, type CloudProjectMedia, type CloudProjectSaved, type CloudProjectVersion } from "./cloudProjectFormat";
 import type { ProjectSnapshot } from "./types";
 import { notifyCloudProjectDraftStored, notifyCloudProjectSaved } from "./cloudProjectEvents";
@@ -47,6 +48,7 @@ export function cloudProjectMediaIds(snapshot: ProjectSnapshot): string[] {
     ids.add(clip.mediaId);
     if (clip.kind === "video") for (const id of videoMatteMediaIds(clip.videoMatte)) ids.add(id);
   }
+  for (const id of filmProjectMediaIds(snapshot.settings.filmProject)) ids.add(id);
   return [...ids];
 }
 

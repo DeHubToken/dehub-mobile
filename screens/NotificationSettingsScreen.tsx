@@ -1,6 +1,8 @@
 import { appLocale } from '../libs/date.util';
 import React, { useState, useEffect, useCallback, useMemo, useSyncExternalStore } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
+import { ScreenNames } from '../navigation/ScreenNames';
 import {
   View,
   Text,
@@ -121,6 +123,8 @@ const TypeRow: React.FC<TypeRowProps> = ({
 };
 
 const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => {
+  // Embedded inside Settings there is no `navigation` prop.
+  const rootNavigation = useNavigation<any>();
   const user = useUser();
   const { isSignedIn, needsUsername } = useAuthState();
   const { patchUser } = useAuthActions();
@@ -663,8 +667,8 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
 
         {/* Who may reach you at all — Mastodon's notification filters. The
             server applies it as each notification is made (backend
-            notification-policy); filtered ones wait under Filtered on the
-            notifications screen. */}
+            notification-policy); filtered ones are only reachable from the
+            Filtered notifications row here. */}
         <SettingsAnchor id="notification-filters">
           <View className="mt-6">
             <Text className="text-theme-neutrals-400 text-sm font-medium mb-1">{t('notificationFilters.title')}</Text>
@@ -692,6 +696,18 @@ const NotificationSettingsScreen: React.FC<any> = ({ navigation, embedded }) => 
                 </View>
               </View>
             ))}
+            <TouchableOpacity
+              onPress={() => rootNavigation.push(ScreenNames.Notifications, { filtered: true })}
+              accessibilityRole="button"
+              testID="filtered-notifications-link"
+              className="mt-2 flex-row items-center justify-between rounded-xl bg-white/5 px-4 py-3"
+            >
+              <View className="flex-row items-center">
+                <Icon name="Funnel" size={16} color="#8B8D90" />
+                <Text className="ml-2 text-white text-sm">{t('notificationFilters.filteredTitle')}</Text>
+              </View>
+              <Icon name="ChevronRight" size={16} color="#8B8D90" />
+            </TouchableOpacity>
           </View>
         </SettingsAnchor>
 

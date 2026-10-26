@@ -2,7 +2,6 @@ import React from 'react';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render } from '@testing-library/react-native';
-import PostStageActionBar from '../../components/Home/PostStageActionBar';
 import RepostShareSheet, { shareTargetUrl } from '../../components/Home/RepostShareSheet';
 import CommentsStageHeader from '../../components/Comments/CommentsStageHeader';
 
@@ -30,60 +29,13 @@ jest.mock('../../components/Comments/CommentTabRow', () => ({ COMMENT_SORTS: ['r
 
 const readSource = (path: string) => readFileSync(resolve(__dirname, '../..', path), 'utf8');
 
-function barProps() {
-  return {
-    liked: false, disliked: false, saved: false, reposted: false,
-    likeCount: 56, commentCount: 128, repostCount: 46,
-    onLike: jest.fn(), onReact: jest.fn(), onComment: jest.fn(),
-    onRepost: jest.fn(), onTip: jest.fn(), onSave: jest.fn(),
-  };
-}
-
 describe('post page action bar', () => {
-  it('is five tiles: like, comments, share, tip, save — no repost glyph, dislike or info', () => {
-    const view = render(<PostStageActionBar {...barProps()} />);
-    const tiles = view.UNSAFE_getAllByType('Pressable' as any).filter((n) => n.props.accessibilityRole === 'button');
-    expect(tiles).toHaveLength(5);
-    const icons = view.UNSAFE_getAllByType('Icon' as any).map((n) => n.props.name);
-    expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Share2', 'Gem', 'Bookmark']);
-    expect(icons).not.toContain('ThumbsDown');
-    expect(icons).not.toContain('Repeat2');
-    expect(icons).not.toContain('Info');
-    expect(view.getByText('128')).toBeTruthy();
-    expect(view.getByText('46')).toBeTruthy();
-    expect(view.getByText('comments.tip')).toBeTruthy();
-    expect(view.getByText('common.save')).toBeTruthy();
-  });
-
-  it('drops the tip tile where tips are not offered', () => {
-    const view = render(<PostStageActionBar {...barProps()} onTip={undefined} />);
-    const icons = view.UNSAFE_getAllByType('Icon' as any).map((n) => n.props.name);
-    expect(icons).toEqual(['ThumbsUp', 'MessageSquare', 'Share2', 'Bookmark']);
-  });
-
-  it('displays the dislike total beside a held dislike on the post page', () => {
-    const view = render(
-      <PostStageActionBar {...barProps()} disliked myReaction="dislike" dislikeCount={1} />,
-    );
-    const thumb = view.getByLabelText(/Dislike.*hold to change your reaction, 1/);
-    expect(thumb.props.accessibilityState).toEqual({ selected: true });
-    expect(view.getByText('1')).toBeTruthy();
-    expect(view.queryByText('56')).toBeNull();
-  });
-
-  it('routes comments and repost, and keeps 👎 inside the hold tray', () => {
-    const p = barProps();
-    const view = render(<PostStageActionBar {...p} reactionCounts={{ like: 3, dislike: 2 }} />);
-    fireEvent.press(view.getByLabelText('postInfo.comments, 128'));
-    expect(p.onComment).toHaveBeenCalledTimes(1);
-    fireEvent.press(view.getByLabelText('feedCard.shareAndRepost, 46'));
-    expect(p.onRepost).toHaveBeenCalledTimes(1);
-    fireEvent(view.getByLabelText(/hold to react, 56/), 'longPress');
-    expect(p.onLike).not.toHaveBeenCalled();
-    const tray = view.UNSAFE_getByType('ReactionPicker' as any);
-    expect(tray.props.open).toBe(true);
-    fireEvent(tray, 'select', 'dislike');
-    expect(p.onReact).toHaveBeenCalledWith('dislike');
+  it('is the feed row, not the boxed tiles', () => {
+    const card = readSource('components/Home/FeedCard.tsx');
+    const stage = card.slice(card.indexOf('if (stage) {'), card.indexOf('if (cinematicFeed) {'));
+    expect(stage).toContain('<FeedActionBar');
+    expect(stage).toContain('onShare={handleOpenRepostSheet}');
+    expect(card).not.toContain('PostStageActionBar');
   });
 });
 

@@ -5,14 +5,22 @@ import { CREATOR_VIDEO_RULES } from '../config/creator-video-rules';
 import { applyTemplate, type CreatorTemplate } from './creatorTemplates';
 import { generationDraft, type GenerationDraft } from './editor/generationDraft';
 import { VIRAL_EFFECTS, VIRAL_EFFECT_MODEL } from '../config/viral-effects';
+import { appendCinemaDirection, normalizeCinemaDirection, type CinemaDirection } from './cinemaDirection';
+import type { CreatorAudioSettings } from './creatorAudio';
 
 export type CreatorMode = 'image' | 'video' | 'audio' | '3d';
 export interface CreatorReferenceAsset {
   uri: string; label: string; kind: 'image' | 'video'; seconds?: number; posterUrl?: string; sourceClipId?: string;
 }
 export interface CreatorStudioSettings {
+  audioSettings?: CreatorAudioSettings;
   effect?: string;
   referenceAssets?: CreatorReferenceAsset[];
+  endFrame?: CreatorReferenceAsset;
+  seed?: string;
+  negativePrompt?: string;
+  imageBatch?: number;
+  cinemaDirection?: CinemaDirection;
   mode: CreatorMode;
   model: string;
   aspect: string;
@@ -49,6 +57,12 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
   const models = creatorModels(settings.mode);
   const model = models.some((entry) => entry.id === settings.model) ? settings.model : CREATOR_DEFAULTS[settings.mode].model;
   const next = { ...settings, model };
+  next.cinemaDirection = normalizeCinemaDirection(settings.cinemaDirection);
+  next.imageBatch = next.mode === 'image' ? Math.min(4, Math.max(1, Math.round(Number(next.imageBatch) || 1))) : 1;
+  const advanced = VIDEO_MODELS[model];
+  if (next.mode !== 'video' || !advanced?.supportsEndFrame) next.endFrame = undefined;
+  if (next.mode !== 'video' || !advanced?.supportsSeed) next.seed = undefined;
+  if (next.mode !== 'video' || !advanced?.supportsNegativePrompt) next.negativePrompt = undefined;
   if (next.mode === 'video') {
     const clip = next.referenceAssets?.find(asset => asset.kind === 'video');
     const durations = creatorDurations(model);
@@ -71,6 +85,9 @@ export function creatorSettingsForEditorDraft(value: unknown): { settings: Creat
   return { draft, settings: normalizeCreatorSettings({ ...CREATOR_DEFAULTS[mode],
     ...(draft.kind === 'voice' ? { model: 'dia-tts' } : {}),
     ...(draft.aspect ? { aspect: draft.aspect } : {}),
+    ...(draft.references ? { referenceAssets: draft.references.map(reference => ({ uri: reference.url, label: reference.label, kind: 'image' as const })) } : {}),
+    ...(draft.cinemaDirection ? { cinemaDirection: draft.cinemaDirection } : {}),
+    ...(draft.durationSeconds ? { durationSeconds: draft.durationSeconds } : {}),
   }) };
 }
 
@@ -79,14 +96,18 @@ export function creatorVideoOptions(settings: CreatorStudioSettings) {
   const images = normalized.referenceAssets?.filter(a => a.kind === 'image').map(a => a.uri) ?? [];
   const clips = normalized.referenceAssets?.filter(a => a.kind === 'video').map(a => a.uri) ?? [];
   return { duration: `${normalized.durationSeconds}s`, aspectRatio: normalized.aspect, resolution: normalized.resolution,
+    ...(normalized.endFrame ? { endFrameUrl: normalized.endFrame.uri } : {}),
+    ...(normalized.seed?.trim() ? { seed: Number(normalized.seed) } : {}),
+    ...(normalized.negativePrompt?.trim() ? { negativePrompt: normalized.negativePrompt.trim() } : {}),
     ...(normalized.model === 'pixverse-effects' ? { effect: normalized.effect } : {}),
     ...(images.length > 1 || VIDEO_MODELS[normalized.model]?.referenceMode === 'edit' ? { referenceImageUrls: images } : {}),
     ...(clips.length ? { videoUrls: clips } : {}) };
 }
 
 /** The selected medium decides routing; words such as "video" in an image brief do not. */
-export function prepareCreatorPrompt(text: string, preset?: CreatorTemplate): string {
-  return preset ? applyTemplate(preset, text) : text.trim();
+export function prepareCreatorPrompt(text: string, preset?: CreatorTemplate, settings?: CreatorStudioSettings): string {
+  const prompt = preset ? applyTemplate(preset, text) : text.trim();
+  return settings ? appendCinemaDirection(prompt, settings.cinemaDirection, settings.mode) : prompt;
 }
 export function creatorPromptLimit(settings: CreatorStudioSettings): number | undefined {
   return settings.mode === 'image' ? CREATOR_FAL_IMAGE_MODELS[settings.model]?.maxPromptLength ?? 4000
@@ -100,6 +121,8 @@ export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boo
   if (settings.mode === 'image' && images.length > 1 && !CREATOR_FAL_IMAGE_MODELS[settings.model]?.editUsesPlural) return 'creator.referenceMultiModel';
   if (settings.mode === 'video') {
     const model = VIDEO_MODELS[settings.model];
+    if (settings.seed?.trim() && (!/^\d+$/.test(settings.seed.trim()) || !Number.isSafeInteger(Number(settings.seed)) || Number(settings.seed) > 2147483647)) return 'creator.invalidSeed';
+    if (settings.endFrame && !hasImage) return 'creator.endFrameNeedsStart';
     if (settings.model === VIRAL_EFFECT_MODEL && !VIRAL_EFFECTS.some(effect => effect.name === settings.effect)) return 'viralTemplates.chooseFirst';
     if (model?.requiresVideoInput && (!clip || !hasImage)) return 'creator.referenceNeedsClip';
     if (clip && !model?.requiresVideoInput) return 'creator.referenceVideoModel';

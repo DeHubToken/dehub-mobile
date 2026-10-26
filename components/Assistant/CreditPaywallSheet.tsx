@@ -52,6 +52,7 @@ import { toastError, toastSuccess } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
 import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import { useTranslation } from 'react-i18next';
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const log = createLogger('CreditPaywallSheet');
 const DEHUB_COIN = require('../../assets/web-icons/dehub-coin.png');
@@ -149,6 +150,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const {
     walletDhb,
     creditsUsd,
+    bankedDhb,
     isLoading: isWalletLoading,
     unsupportedChain: chainProblem,
     payForJob,
@@ -156,7 +158,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   // Subscription tokens pay without a transfer, so the connected chain only
   // matters when they fall short.
   const paidByCredits = creditsCoverPrice(creditsUsd, priceDhb);
-  const unsupportedChain = paidByCredits ? null : chainProblem;
+  const unsupportedChain = paidByCredits || bankedDhb >= priceDhb ? null : chainProblem;
 
   const costUsd = priceUsd;
   const unitCostUsd = quantity > 0 ? costUsd / quantity : 0;
@@ -421,6 +423,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
             </View>
 
             {!!footnote && <Text style={s.footnote}>{footnote}</Text>}
+            {quoteKind === 'image' && quantity > 1 && <Text style={s.footnote}>{t('creator.batchPaymentHelp')}</Text>}
 
             {freeAvailable && (
               <Text style={s.footnote}>{t('paywall.freeImagesLeft', { count: freeImages.remaining })}</Text>
@@ -487,7 +490,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: '#0C0C0E',
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },

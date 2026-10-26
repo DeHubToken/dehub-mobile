@@ -52,6 +52,8 @@
     "title": "የእርስዎ ትዕይንት የተለየ እርስዎ."
   },
   "maintenance": {
+    "title": "ትንሽ ስራ።\nየተሻለ DeHub።",
+    "brand": "DeHub",
     "checkFailed": "ተገኝነትን ማረጋገጥ አልቻልንም ። እባክዎ እንደገና ይሞክሩ ።",
     "checking": "በመፈተሽ ላይ...",
     "community": "ማህበረሰብ በመጀመሪያ. ሁልጊዜ.",
@@ -127,6 +129,22 @@
     "useNamed": "ይጠቀሙ {{name}}"
   },
   "copy": {
+    "1205929886b3": "👑 DeHub ኤክስትራ",
+    "6da707c478f8": "日本語 (ጃፓንኛ)",
+    "fb673c9c986e": "🧑‍💻 የDeHub ሽልማት ስራዎች",
+    "1226cd46b31a": "PPV ",
+    "2f51108189d2": "PPV: ",
+    "5b560f273940": "🛰️ DePIN",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "b4c9a289323b": "user@example.com",
+    "bf640b85d499": "dehub.io · ",
+    "1a00975a0ac1": "@ሰርጥ",
+    "50d8d34a787b": "🛍️ DeHub ሱቆች",
+    "58e909c0f4cc": "ምስል አስቀምጥ",
+    "831e71a8e8c6": "🔄 የውስጠ-መተግበሪያ ስዋፕ",
+    "bd9e3879bc60": "ፒፒቪ",
     "002286513398": "ክስተቶችን ለማስተዳደር ፈቃድ የለዎትም።",
     "00b3a926f704": "ጥያቄውን መሰረዝ አልተቻለም።",
     "00c0b03fcfa2": "ወጥቷል",
@@ -248,7 +266,7 @@
     "119cec414af5": "አልወደድኩትም",
     "11e44bb305b1": "እስካሁን ድረስ ምንም ነገር አይሰራም — ለመጀመር መልእክት ይላኩ ።",
     "126b956fa6fa": "የቀጥታ አርትዖቶችን ከመቀበልዎ በፊት ይህንን ፕሮጀክት ወደ ደመና ያስቀምጡ ።",
-    "130011756125": "On",
+    "130011756125": "በርቷል",
     "1310f058678b": "{{value1}} {{value2}}, {{value3}}, በ Wikimedia Commons በኩል",
     "134ed133424c": "{{value1}} በገበያ ላይ ነው",
     "135d78ac8f56": "ታሚል",
@@ -2928,6 +2946,7 @@
     "postCount_other": "{{count}} ልጥፎች"
   },
   "settings": {
+    "socialLinksDesc": "X, Instagram, TikTok, YouTube, Discord, Telegram",
     "glass": "ግላሲ",
     "shortsEnabled": "ጫማዎች",
     "shortsEnabledDesc": "በቤትዎ ላይ የጫማ ምግቦችን ትር እና የጫማዎችን ካሩሰል ያሳዩ ።",
@@ -3279,7 +3298,7 @@
     "notifAnnouncementsDesc": "የመድረክ ዜና እና የባህሪ ዝመናዎች",
     "quietHoursPauseDesc": "በተወሰኑ ሰዓታት ውስጥ የግፋ ማሳወቂያዎችን ለአፍታ ያቁሙ",
     "quietHoursFrom": "ከ",
-    "quietHoursTo": "To",
+    "quietHoursTo": "ወደ",
     "quietHoursSilencedNote": "በእነዚህ ሰዓታት ውስጥ የግፋ ማሳወቂያዎች ይቆማሉ።",
     "notifInApp": "በመተግበሪያ ውስጥ",
     "notifPush": "ግፋ",
@@ -3580,6 +3599,7 @@
     "themeColorBrandFailed": "ከመገለጫ ስዕልዎ ቀለሞችን ማንበብ አልተቻለም"
   },
   "common": {
+    "remove": "አስወግድ",
     "refresh": "አድስ",
     "mute": "ድምፅ አጥፋ",
     "unmute": "ድምፅ አብራ",
@@ -3784,6 +3804,7 @@
     "aiOverview": "የአይአይ አጠቃላይ እይታ"
   },
   "filters": {
+    "ppv": "ፒፒቪ",
     "sort": "ደርድር",
     "category": "ምድብ",
     "searchCategories": "ምድቦችን ፈልግ...",
@@ -4449,6 +4470,7 @@
     "provisional": "ጊዜያዊ"
   },
   "explorePage": {
+    "ppv": "ፒፒቪ",
     "searchPlaceholder": "ሰዎች፣ ልጥፎች ወይም ይዘት ፈልግ...",
     "filters": "ማጣሪያዎች",
     "clearAll": "ሁሉንም አጽዳ",
@@ -5126,6 +5148,26 @@
       "viewPost": "ልጥፍ ይመልከቱ"
     },
     "tasks": {
+      "examples": "በቀን አንድ ጊዜ ይለጥፉ ስለ፦ ኢንዲ ሙዚቃ\nዘይቤ፦ ጉጉት ያለው፣ አጭር እና ውይይታዊ\nበቀን እስከ 2 የቅርብ ጊዜ ልጥፎችን ይውደዱ ስለ፦ ሙዚቃ፣ የቀጥታ ትርኢቶች፣ ቪኒል",
+      "meta": "@{{agent}} · {{status}} · የተሰሩ፦ {{total}}",
+      "title": "ለኤጀንት ተግባር ይስጡ",
+      "eachHelp": "እያንዳንዱ የተመረጠ ወኪል ሙሉውን ሥራ ያከናውናል ።",
+      "eachMode": "እያንዳንዱ ወኪል",
+      "pacing": {
+        "help": "በራስ-ሰር በስሜታዊነት ይጀምራል ። Pacing በተወሰነ ልጥፍ መስኮት ላይ አንድ ዓይነት ወይም የማይወዱ እርምጃዎችን ይደግፋል: እያንዳንዱ ወኪል ለእያንዳንዱ ተዛማጅ ልጥፍ ምላሽ ይሰጣል, በአንድ ጊዜ አንድ ዘወር. የመጀመሪያው ዙር አሁን ይጀምራል; የአገልግሎት ገደቦች የማጠናቀቂያ ጊዜ ማራዘም ይችላሉ.",
+        "hours": "በላይ {{count}} ሰዓቶች",
+        "independent": "የተሻሻሉ ተግባራት ከስሜታዊ ሁነታ በተናጥል ይሰራሉ ። መውደዶችን መጠየቅ የራስ ገዝ ልኡክ ጽሁፎችን አያበራም ።",
+        "label": "እርምጃ መቼ እንደሚወሰድ",
+        "now": "ወዲያውኑ"
+      },
+      "resumeSwarm": "Swarm ዳግም ያስጀምሩ",
+      "sharedMode": "የተጋራ ሥራ",
+      "cancelSwarm": "ስዋርምን ሰርዝ",
+      "clearSelection": "ምርጫን ያጽዱ",
+      "distribution": "ስርጭት",
+      "pauseSwarm": "ስዋርምን ለአፍታ አቁም",
+      "refresh": "አድስ",
+      "selectAll": "ሁሉንም ይምረጡ",
       "action": "እርምጃ",
       "activity": "የቅርብ ጊዜ እንቅስቃሴ",
       "comment": "አስተያየት",
@@ -6250,6 +6292,7 @@
       "unavailable": "ይህ ልኡክ ጽሁፍ አይገኝም ።"
     },
     "followerInvites": {
+      "selectAll": "ይህን ገጽ ይምረጡ",
       "clear": "አጽዳ",
       "detail": "በአንድ ባች እስከ 50 ተከታዮችን ይምረጡ ። የተከፈለ ወይም የተዘጉ ዲኤምዎች ተዘግተዋል ። እንደገና ከመሞከርዎ በፊት ያልተረጋገጡ ላኪዎች ውይይቱን ያረጋግጡ ።",
       "empty": "አይተማሪዎት ነዎት እየ አይነት ነዎት",
@@ -6369,6 +6412,8 @@
       "slowMode": "ቀርፋፋ ሁነታ: አንድ መልዕክት እያንዳንዱ {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "አስተዳዳሪን ያጥፉ",
       "cancel": "ሰርዝ",
       "dismissAdmin": "አስተዳዳሪን ያጥፉ",
@@ -6917,6 +6962,7 @@
     "priceRange": "በ{{min}} እና {{max}} ቶከኖች መካከል ።"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "አርትዕ",
     "listingUpdated": "የዘመነ ዝርዝር!",
     "saveListing": "ለውጦችን አስቀምጥ",
@@ -7736,6 +7782,7 @@
     "insufficientOnChain": "ለዚህ ቶከን በቂ የቼይን ቀሪ ሂሳብ የለም"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "ownership": "ይህን ይዘት ይዤዋለሁ፣ ወይም በDeHub ላይ ለመታተም የመብት ባለቤቱ ፈቃድ አለብኝ።",
     "addToQueue": "ወደ ወረፋ ያክሉ",
     "queueIdle": "ምንም ሳይሰራ።",
@@ -7988,6 +8035,9 @@
   },
   "stats": {
     "money": {
+      "title": "ገቢ እና ወጪዎች",
+      "tooltipPerDay": "በቀን {{revenue}} / {{costs}}",
+      "unavailable": "{{sources}} ማግኘት ስላልተቻለ ከመገመት ይልቅ ከላይ ካሉት ድምሮች ሁሉ ውጭ ተደርገዋል።",
       "chartDaily": "ገቢዎች እና ወጪዎች በቀን",
       "chartMonthly": "ገቢ እና ወጪዎች በቀን, ወርሃዊ አማካይ",
       "conversionTerm": "የተሰጠው ምንጭን ይስጥልን።",
@@ -9386,6 +9436,7 @@
     "discordOptional": "Discord (አማራጭ)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@ስምዎ, tiktok.com/@ስምዎ, vimeo.com/ስምዎ…",
     "clearAll": "ሁሉንም ያጥፉ",
     "costsIntro": "እያንዳንዱ ቪዲዮ ከዚህ በፊት ካለው የበለጠ ርካሽ ነው — ባች ሲያድግ ተመን ይወርዳል ፣ ስለሆነም ከዚህ በታች ያለው ዋጋ ብዙ ቪዲዮዎች ወደ አጠቃላይ የሚመጣው ነው ።",
     "costsIntroShort": "እያንዳንዱ ቪዲዮ ከእሱ በፊት ካለው የበለጠ ርካሽ ነው — ባች ሲያድግ ተመን ይወርዳል ። ከመክፈልዎ በፊት ትክክለኛው ዋጋ ይታያል ።",
@@ -10174,7 +10225,9 @@
       "restore": "ዳራውን እንደገና ያስጀምሩ"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
+        "thirdPick": "የእርስዎ ሶስተኛ ምርጫ",
         "after": "በኋላ",
         "afterHint": "ውጤቱን አሳይ.",
         "announcement": "የእርስዎ ትልቅ ማስታወቂያ",
@@ -10244,6 +10297,8 @@
       "useFormat": "ይጠቀሙ {{aspect}} የቪዲዮ ቅርጸት"
     },
     "highlights": {
+      "chatFound": "{{count}} አፍታዎች ተገኝተዋል። ቅድመ እይታቸውን ይመልከቱ፣ ምርጫውን ያስተካክሉ፣ ከዚያ የተለየ አርትዖት ይፍጠሩ።",
+      "projectTitle": "{{title}} — ዋና ዋና ክፍሎች",
       "captionHint": "በአሁኑ ጊዜ የሚሸፈነው ንግግር ብቻ ነው የሚወሰነው ።",
       "changed": "የመነሻ ፕሮጀክት ተቀይሯል ። እንደገና ድምቀቶችን ያግኙ ።",
       "chatCaptionsMissing": "ይህ ቪዲዮ የአሁኑ ካፒታሎች የለውም. እሱን ለመተርጎም 'የአሁኑን ካፕቶች ሳይጠቀሙ' እንደገና ይጠይቁ ።",
@@ -10384,6 +10439,7 @@
       "failed": "ለዚህ ክሊፕ የግርጌ ጽሑፎችን መፍጠር አልተቻለም።"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "አዲስ ንድፍ",
       "yourDesigns": "የእርስዎ ንድፎች",
       "noDesigns": "የሚሰሯቸው ንድፎች በዚህ ስልክ ላይ ይቀመጣሉ፤ እዚህም ይታያሉ።",
@@ -10725,6 +10781,7 @@
       "pause": "አቁም"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "ቪዲዮ",
       "sound": "ድምፅ",
       "shape": "ቅርጽ",
@@ -10769,6 +10826,7 @@
       "tooLarge": "ይህ ፋይል ለአርታኢው በጣም ትልቅ ነው። ገደቡ 400 MB ነው።"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "እንቅስቃሴ",
       "hint": "ቁልፍ ፍሬሞች ንብርብርን በጊዜ ሂደት ያንቀሳቅሳሉ። እዚህ አንድ ያክሉ፣ የማጫወቻ ራሱን ያንቀሳቅሱ፣ ንብርብሩን ይቀይሩ፣ በመካከላቸውም ያለችግር ይንሸራተታል።",
       "outside": "ቁልፍ ፍሬሞችን ለማከል ወይም ለመቀየር የማጫወቻ ራሱን በዚህ ንብርብር ላይ ያምጡ።",
@@ -11947,6 +12005,10 @@
     }
   },
   "creator": {
+    "presetGroupAbstract": "ረቂቅ",
+    "presetOpenCanyonTimelapseName": "የሸለቆ ፈጣን ጊዜ ቀረጻ",
+    "presetThumbnailPunchName": "ጎልቶ የሚታይ ድንክዬ",
+    "presetOpenRecordingStudioName": "የምዝገባ ስቱዲዮ",
     "editInTimeline": "በጊዜ መስመር ላይ ያርትዑ",
     "presetExtraArchitectureLightChangeHint": "ለስላሳ ደመናዎች በቀረበ ትዕይንት ላይ የብርሃን ለውጥ ሲያመጡ",
     "presetExtraArchitectureLightChangeName": "የህንፃ የብርሃን ለውጥ",
@@ -12780,7 +12842,7 @@
     "transferIncomplete": "የቶክ ማስተላለፊያ አልተጠናቀቀም ። ከሚቀጥለው የሚከፈልበት ልኡክ ጽሁፍዎ በፊት እንደገና ይጠየቃሉ ።"
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "ጂአይኤፍ",
     "searchEmoji": "ኢሞጂ ፈልግ",
     "noEmoji": "ምንም ኢሞጂ አልተገኘም",
     "searchResults": "የፍለጋ ውጤቶች",
@@ -13766,6 +13828,7 @@
     "checkoutUnavailable": "Checkout በአሁኑ ጊዜ አይገኝም። እባክዎ ቆየት ብለው እንደገና ይሞክሩ።"
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "በመቀመጫ በወር",
     "plansForEveryWorkflow": "ለእያንዳንዱ የስራ ፍሰት እቅዶች",
     "findTheRightFit": "ከግለሰቦች እስከ የድርጅት ቡድኖች፣ ትክክለኛውን ተስማሚ ያግኙ",

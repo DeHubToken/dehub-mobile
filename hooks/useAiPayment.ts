@@ -26,7 +26,8 @@
 import i18n from 'i18next';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { apiClient } from '../libs/api.client';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { largestJobReceipt } from '../libs/jobPaymentBalance';
 import * as ethersImport from 'ethers';
 import { useWeb3Provider, useERC20Contract } from './use-web3';
 import { writeContractAA } from '../libs/aa.write';
@@ -148,6 +149,7 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
 }
 
 export interface JobPaymentState {
+  bankedDhb: number;
   /**
    * What one job can be paid from: the larger of DHB held on the connected
    * chain and subscription tokens counted at the peg. 0 while unknown.
@@ -183,6 +185,10 @@ export function useJobPayment(enabled = true): JobPaymentState {
 
   const [walletDhb, setWalletDhb] = useState(0);
   const [creditsUsd, setCreditsUsd] = useState(0);
+  const [bankedDhb, setBankedDhb] = useState(0);
+  const [balanceAccount, setBalanceAccount] = useState<string | null>(null);
+  const liveAccount = useRef(account);
+  liveAccount.current = account;
   const [isLoading, setIsLoading] = useState(false);
 
   const supported = !!chainId && PAYMENT_CHAIN_IDS.includes(chainId);
@@ -194,6 +200,8 @@ export function useJobPayment(enabled = true): JobPaymentState {
     if (!account || !enabled) {
       setWalletDhb(0);
       setCreditsUsd(0);
+      setBankedDhb(0);
+      setBalanceAccount(null);
       return;
     }
     setIsLoading(true);
@@ -212,11 +220,16 @@ export function useJobPayment(enabled = true): JobPaymentState {
       // Subscription tokens pay a job on their own too, so the paywall may go
       // ahead when they cover it. Still one source per job: the larger.
       const credits = await getSubscriptionCredits(account).catch(() => null);
+      const receipts = await listUnspentAiPayments(account).catch(() => []);
+      if (liveAccount.current !== account) return;
       const usd = credits?.usd ?? 0;
+      const banked = largestJobReceipt(account, account, receipts);
+      setBalanceAccount(account);
+      setBankedDhb(banked);
       setCreditsUsd(usd);
-      setWalletDhb(Math.max(onChain, (usd * 1_000_000) / USD_MICROS_PER_DHB));
+      setWalletDhb(Math.max(onChain, (usd * 1_000_000) / USD_MICROS_PER_DHB, banked));
     } finally {
-      setIsLoading(false);
+      if (liveAccount.current === account) setIsLoading(false);
     }
   }, [tokenContract, account, supported, enabled]);
 
@@ -229,15 +242,15 @@ export function useJobPayment(enabled = true): JobPaymentState {
       if (!account) throw new Error(_copy("copy.63001ea22ed0", { defaultValue: "Connect your wallet to pay for a generation." }));
       if (!Number.isFinite(priceDhb) || priceDhb <= 0) throw new Error(_copy("copy.99c7a77baaf9", { defaultValue: "Nothing to pay." }));
       await apiClient.fetch('/auth/verify');
+      if (liveAccount.current !== account) throw new Error(i18n.t('paywall.paymentFailed'));
 
       // Subscription tokens pay first when they cover the job: no signature,
       // no transfer and no particular chain. The generation function debits
       // the balance and refunds it if the job fails. Anything short falls
       // through to paying with DHB as before.
-      if (await creditsCover(priceDhb, account)) return CREDITS_PAYMENT;
-
-      if (!supported) throw new Error(unsupportedChain || _copy("copy.f094d53f47f0", { defaultValue: "Unsupported chain." }));
-      if (!tokenContract) throw new Error(_copy("copy.63001ea22ed0", { defaultValue: "Connect your wallet to pay for a generation." }));
+      const coveredByCredits = await creditsCover(priceDhb, account);
+      if (liveAccount.current !== account) throw new Error(i18n.t('paywall.paymentFailed'));
+      if (coveredByCredits) return CREDITS_PAYMENT;
 
       // Money already sent for a job that never ran is spent before asking for
       // more. The server is the record — not this device — so a payment
@@ -246,7 +259,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
         const banked = (await listUnspentAiPayments(account)).find(
           (p) => p.purpose !== 'voice' && p.remainingDhb >= priceDhb,
         );
-        if (banked) return banked.txHash.toLowerCase();
+        if (banked && liveAccount.current === account) return banked.txHash.toLowerCase();
       } catch (err) {
         // A ledger that cannot be read must not block a payment that can be
         // made. Worst case the user pays again and the old receipt keeps its
@@ -256,6 +269,9 @@ export function useJobPayment(enabled = true): JobPaymentState {
 
       // Round up: the treasury must receive at least the price, and being a
       // fraction short would leave the transfer one unit under it.
+      if (liveAccount.current !== account) throw new Error(i18n.t('paywall.paymentFailed'));
+      if (!supported) throw new Error(unsupportedChain || _copy("copy.f094d53f47f0", { defaultValue: "Unsupported chain." }));
+      if (!tokenContract) throw new Error(_copy("copy.63001ea22ed0", { defaultValue: "Connect your wallet to pay for a generation." }));
       const amount = Math.ceil(priceDhb);
       const ethers = (ethersImport as any).ethers || ethersImport;
       const amountWei = ethers.utils.parseUnits(String(amount), 18);
@@ -315,5 +331,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
     [supported, unsupportedChain, tokenContract, account, refresh, _copy],
   );
 
-  return { walletDhb, creditsUsd, isLoading, unsupportedChain, payForJob, refresh };
+  const currentBalance = balanceAccount === account;
+  return { walletDhb: currentBalance ? walletDhb : 0, creditsUsd: currentBalance ? creditsUsd : 0,
+    bankedDhb: currentBalance ? bankedDhb : 0, isLoading: isLoading || (!!account && !currentBalance), unsupportedChain, payForJob, refresh };
 }
