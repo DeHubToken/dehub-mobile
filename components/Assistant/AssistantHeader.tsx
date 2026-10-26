@@ -1,14 +1,13 @@
-import React, { memo } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import Icon from '../ui/Icon';
+import React, { memo, useCallback, useState } from 'react';
+import { View, Text, TouchableOpacity, Modal, Pressable, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Icon, { type IconName } from '../ui/Icon';
 import { useTranslation } from 'react-i18next';
 
 import { ThemeIcon } from '../page/PageKit';
 import NavPillSurface from '../ui/NavPillSurface';
 
-// The buttons share the title row, so they are a touch under 40 to leave the
-// title room on a 360dp phone.
-const BUTTON_STYLE = { width: 34, height: 34, backgroundColor: 'rgba(255,255,255,0.08)' } as const;
+const BUTTON_STYLE = { width: 36, height: 36 } as const;
 
 interface AssistantHeaderProps {
   onNewChat: () => void;
@@ -16,13 +15,19 @@ interface AssistantHeaderProps {
   onSettingsPress: () => void;
   onStylePress: () => void;
   onSupportPress: () => void;
-  /** Tickets still waiting on a human. Badges the support button when above 0. */
+  /** Tickets still waiting on a human. Badges the menu and its Support row. */
   openTicketCount?: number;
-  /** Emoji of the active personality, shown on the style button as on web. */
+  /** The active personality, shown on its menu row as on web. */
   styleEmoji: string;
+  styleLabel?: string;
   hasMessages?: boolean;
 }
 
+/**
+ * Title left; history and a ⋯ menu right, as on web's quiet start. The menu
+ * holds what used to be a row of five buttons: new chat, personality,
+ * settings and support.
+ */
 const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   onNewChat,
   onHistoryPress,
@@ -31,15 +36,29 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
   onSupportPress,
   openTicketCount = 0,
   styleEmoji,
-  hasMessages,
+  styleLabel,
 }) => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Close first, then open the sheet, so two modals never fight on iOS.
+  const pick = useCallback((action: () => void) => {
+    setMenuOpen(false);
+    setTimeout(action, 250);
+  }, []);
+
+  const rows: { key: string; icon?: IconName; emoji?: string; label: string; badge?: number; onPress: () => void }[] = [
+    { key: 'new', icon: 'SquarePen', label: t('assistant.newChat'), onPress: onNewChat },
+    { key: 'style', emoji: styleEmoji, label: styleLabel ? `${t('assistant.aiPersonality')} · ${styleLabel}` : t('assistant.aiPersonality'), onPress: onStylePress },
+    { key: 'settings', icon: 'Settings', label: t('assistant.aiSettings'), onPress: onSettingsPress },
+    { key: 'support', icon: 'LifeBuoy', label: t('settings.support'), badge: openTicketCount, onPress: onSupportPress },
+  ];
+
   return (
     <View className="px-2 pt-2">
-    <View style={{ paddingHorizontal: 12, paddingVertical: 10, borderRadius: 15 }}>
+    <View style={{ paddingHorizontal: 12, paddingVertical: 8, borderRadius: 15 }}>
     <NavPillSurface borderRadius={15} />
-    {/* One row, as on web: title left, the buttons right. The Creator
-        shortcut that used to sit here lives at the foot of Settings now. */}
     <View className="flex-row items-center justify-between">
       <TouchableOpacity
         onPress={onNewChat}
@@ -53,93 +72,84 @@ const AssistantHeader: React.FC<AssistantHeaderProps> = ({
         </Text>
       </TouchableOpacity>
 
-      <View className="flex-row items-center justify-end" style={{ gap: 4, flexShrink: 0 }}>
-        {hasMessages && (
-          <TouchableOpacity
-            onPress={onNewChat}
-            className="rounded-lg items-center justify-center"
-            style={BUTTON_STYLE}
-            activeOpacity={0.7}
-            hitSlop={4}
-            accessibilityRole="button"
-            accessibilityLabel={t('assistant.newChat')}
-          >
-            <Icon name="SquarePen" size={16} color="#A6A9AC" />
-          </TouchableOpacity>
-        )}
+      <View className="flex-row items-center justify-end" style={{ gap: 2, flexShrink: 0 }}>
         <TouchableOpacity
           onPress={onHistoryPress}
-          className="rounded-lg items-center justify-center"
+          className="rounded-full items-center justify-center"
           style={BUTTON_STYLE}
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
           accessibilityLabel={t('assistant.chatHistory')}
         >
-          <Icon name="History" size={16} color="#A6A9AC" />
+          <Icon name="History" size={19} color="#E4E4E7" />
         </TouchableOpacity>
-        {/* The desk, not the model: opens the ticket sheet directly, with no
-            quote and no DHB transfer. The badge counts tickets still waiting
-            on a human, which is the reason people tap it. */}
         <TouchableOpacity
-          onPress={onSupportPress}
-          className="rounded-lg items-center justify-center"
+          onPress={() => setMenuOpen(true)}
+          className="rounded-full items-center justify-center"
           style={BUTTON_STYLE}
           activeOpacity={0.7}
           hitSlop={4}
           accessibilityRole="button"
-          accessibilityLabel={t('settings.support')}
+          accessibilityLabel={t('feedCard.moreShare')}
         >
-          <Icon name="LifeBuoy" size={16} color="#A6A9AC" />
-          {openTicketCount > 0 && (
-            <View
-              style={{
-                position: 'absolute',
-                top: 2,
-                right: 2,
-                minWidth: 15,
-                height: 15,
-                paddingHorizontal: 3,
-                borderRadius: 999,
-                backgroundColor: '#F9FBFF',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Text style={{ color: '#0B0C0D', fontSize: 9, fontWeight: '700' }}>
-                {openTicketCount}
-              </Text>
-            </View>
-          )}
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={onSettingsPress}
-          className="rounded-lg items-center justify-center"
-          style={BUTTON_STYLE}
-          activeOpacity={0.7}
-          hitSlop={4}
-          accessibilityRole="button"
-          accessibilityLabel={t('assistant.aiSettings')}
-        >
-          <Icon name="Settings" size={16} color="#A6A9AC" />
-        </TouchableOpacity>
-        {/* The personality button is its emoji, same as web's header. */}
-        <TouchableOpacity
-          onPress={onStylePress}
-          className="rounded-lg items-center justify-center"
-          style={BUTTON_STYLE}
-          activeOpacity={0.7}
-          hitSlop={4}
-          accessibilityRole="button"
-          accessibilityLabel={t('assistant.aiPersonality')}
-        >
-          <Text style={{ fontSize: 17 }}>{styleEmoji}</Text>
+          <Icon name="Ellipsis" size={20} color="#E4E4E7" />
+          {openTicketCount > 0 && <View style={s.dot} />}
         </TouchableOpacity>
       </View>
     </View>
     </View>
+
+    <Modal visible={menuOpen} transparent animationType="fade" statusBarTranslucent onRequestClose={() => setMenuOpen(false)}>
+      <Pressable style={StyleSheet.absoluteFill} onPress={() => setMenuOpen(false)} accessibilityLabel={t('common.close')} />
+      <View style={[s.menu, { top: insets.top + 58 }]}>
+        {rows.map(row => (
+          <TouchableOpacity
+            key={row.key}
+            onPress={() => pick(row.onPress)}
+            style={s.row}
+            activeOpacity={0.7}
+            accessibilityRole="menuitem"
+            accessibilityLabel={row.label}
+          >
+            <View style={s.rowIcon}>
+              {row.emoji ? <Text style={{ fontSize: 16 }}>{row.emoji}</Text> : <Icon name={row.icon!} size={17} color="#D4D4D8" />}
+            </View>
+            <Text numberOfLines={1} style={s.rowText}>{row.label}</Text>
+            {!!row.badge && row.badge > 0 && (
+              <View style={s.badge}><Text style={s.badgeText}>{row.badge}</Text></View>
+            )}
+          </TouchableOpacity>
+        ))}
+      </View>
+    </Modal>
     </View>
   );
 };
+
+const s = StyleSheet.create({
+  dot: { position: 'absolute', top: 7, right: 7, width: 7, height: 7, borderRadius: 4, backgroundColor: '#F9FBFF' },
+  menu: {
+    position: 'absolute',
+    right: 14,
+    minWidth: 220,
+    maxWidth: 290,
+    paddingVertical: 6,
+    borderRadius: 16,
+    backgroundColor: '#141518',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: 'rgba(255,255,255,0.14)',
+    shadowColor: '#000',
+    shadowOpacity: 0.4,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 12,
+  },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14, paddingVertical: 11 },
+  rowIcon: { width: 22, alignItems: 'center' },
+  rowText: { flex: 1, color: '#F4F4F5', fontSize: 15, fontWeight: '500' },
+  badge: { minWidth: 18, height: 18, paddingHorizontal: 5, borderRadius: 9, backgroundColor: '#F9FBFF', alignItems: 'center', justifyContent: 'center' },
+  badgeText: { color: '#0B0C0D', fontSize: 11, fontWeight: '700' },
+});
 
 export default memo(AssistantHeader);

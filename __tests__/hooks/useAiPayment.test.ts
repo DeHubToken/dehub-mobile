@@ -95,7 +95,7 @@ describe('useJobPayment — a paid transfer is never lost', () => {
     });
 
     expect(hash).toBe(HASH);
-    expect(mockRecordAiPayment).toHaveBeenCalledWith(HASH, ACCOUNT);
+    expect(mockRecordAiPayment).toHaveBeenCalledWith(HASH, ACCOUNT, 'job');
   });
 
   it('does not report a mined transfer as a failed payment', async () => {
@@ -114,7 +114,7 @@ describe('useJobPayment — a paid transfer is never lost', () => {
     });
 
     expect(hash).toBe(HASH);
-    expect(mockRecordAiPayment).toHaveBeenCalledWith(HASH, ACCOUNT);
+    expect(mockRecordAiPayment).toHaveBeenCalledWith(HASH, ACCOUNT, 'job');
   });
 
   it('says the transfer is saved when even the server cannot confirm it', async () => {
