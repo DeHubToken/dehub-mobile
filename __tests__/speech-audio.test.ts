@@ -2,7 +2,7 @@ import { audioContainer, frameSpeechPcm, prepareSpeechAudio } from '../libs/spee
 
 it('frames documented speech samples with real RIFF size, rate, depth and channel count', () => {
   const pcm = new Uint8Array([0, 128, 0, 0, 255, 127]).buffer;
-  const wave = prepareSpeechAudio(pcm, 'wav_24000', 'audio/pcm');
+  const wave = prepareSpeechAudio(frameSpeechPcm(pcm, 24000), 'wav_24000', 'audio/mpeg');
   const header = new DataView(wave.buffer);
   expect(audioContainer(wave.buffer)).toBe('wav');
   expect(header.getUint32(4, true)).toBe(42);
