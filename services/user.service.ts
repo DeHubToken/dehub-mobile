@@ -629,6 +629,11 @@ export interface IsFollowingResult {
   isFollowRequestPending?: boolean;
 }
 
+export async function getFollowStatusBatch(targets: string[], viewer: string): Promise<Record<string, IsFollowingResult>> {
+  const response = await apiClient.post<any>('/is_following/batch', { targets, viewer: viewer.toLowerCase() }, { isAuthRequired: true });
+  return response?.data?.result ?? response?.result ?? response;
+}
+
 /**
  * Lightweight check if the authenticated viewer is following target.
  * Also returns isFollowRequestPending for private accounts.
