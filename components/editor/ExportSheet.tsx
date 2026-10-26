@@ -32,11 +32,12 @@ export default function ExportSheet(props: {
   onExportGif: (scope: ExportScope) => void;
   onExportPdf?: (scope: PageExportScope, cropMarks?: boolean, bookmarks?: boolean, quality?: DocumentImageProfile) => void;
   onExportNotes?: (scope: PageExportScope) => void;
+  onExportNle?: () => void;
   onExportPresentation?: (scope: PageExportScope, quality?: DocumentImageProfile) => void;
 }) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif" | "pdf" | "pptx" | "notes">("png");
+  const [format, setFormat] = useState<"png" | "jpeg" | "mp4" | "gif" | "pdf" | "pptx" | "notes" | "nle">("png");
   const [quality, setQuality] = useState<"720" | "1080">("1080");
   const [pageScope, setPageScope] = useState<"all" | "current" | "custom" | "section">("all");
   const [sectionName, setSectionName] = useState("");
@@ -53,6 +54,7 @@ export default function ExportSheet(props: {
   const isPdf = format === "pdf";
   const isNotes = format === "notes";
   const isPptx = format === "pptx";
+  const isNle = format === "nle";
   const slideScale = documentImageScale(props.width, props.height, 1, documentQuality);
   const gifOutput = gifPlan(props.width, props.height, 1, BRAND_OUTRO_DURATION, props.timeline.fps);
   useEffect(() => { if (props.visible) { setFilenamePattern(""); setFormat(props.video ? "mp4" : "png"); setScope("timeline"); setPageScope("all"); } }, [props.visible, !!props.video]);
@@ -63,13 +65,14 @@ export default function ExportSheet(props: {
   const effectivePageScope: PageExportScope = pageScope === "section" ? chosenSection?.indexes ?? [] : pageScope === "custom" ? selectedPages : pageScope;
   const filenameError = format === "png" || format === "jpeg" ? pageFilenamePatternError(filenamePattern) : "";
   const invalidPages = !!filenameError || (!isVideo && !isGif && pageScope === "section" && !chosenSection?.indexes.length) || !isVideo && !isGif && pageScope === "custom" && !!pageError;
-  const pageArchive = !isVideo && !isGif && !isPdf && !isPptx && !isNotes && props.pageCount > 1 && (pageScope === "all" || ((pageScope === "custom" && selectedPages.length > 1) || (pageScope === "section" && (chosenSection?.indexes.length ?? 0) > 1)));
+  const pageArchive = !isVideo && !isGif && !isPdf && !isPptx && !isNotes && !isNle && props.pageCount > 1 && (pageScope === "all" || ((pageScope === "custom" && selectedPages.length > 1) || (pageScope === "section" && (chosenSection?.indexes.length ?? 0) > 1)));
   const separate = (isVideo || isGif) && scope !== "timeline";
   const gifTooLong = isGif && (separate ? ranges.some(r => r.end - r.start > GIF_CONTENT_LIMIT) : props.timeline.duration > GIF_CONTENT_LIMIT);
   const k = quality === "1080" ? 1 : Math.min(1, 720 / Math.min(props.width, props.height));
   const go = (target: "photos" | "post") => {
     if (props.busy || gifTooLong || invalidPages || (separate && !ranges.length)) return;
-    if (isNotes) props.onExportNotes?.(effectivePageScope);
+    if (isNle) props.onExportNle?.();
+    else if (isNotes) props.onExportNotes?.(effectivePageScope);
     else if (isPptx) props.onExportPresentation?.(effectivePageScope, documentQuality);
     else if (isPdf) props.onExportPdf?.(effectivePageScope, cropMarks, bookmarks, documentQuality);
     else if (isGif) props.onExportGif(scope);
@@ -93,6 +96,7 @@ export default function ExportSheet(props: {
             {props.onExportNotes && <Chip label={t("editor.export.notesText", { defaultValue: "Presenter notes (.txt)" })} active={isNotes} onPress={() => setFormat("notes")} />}
             {props.onExportPresentation && <Chip label={t("editor.export.pptx", { defaultValue: "PowerPoint presentation" })} active={isPptx} onPress={() => setFormat("pptx")} />}
             <Chip label={t("emojiPicker.tabGif")} active={isGif} onPress={() => setFormat("gif")} />
+            {props.onExportNle && <Chip label={t("editor.export.nle")} active={isNle} onPress={() => setFormat("nle")} />}
           </View>
         </View>
         {isPdf && <View style={{ gap: 8 }}><View className="flex-row items-center" style={{ gap: 8 }}><Switch value={cropMarks} onValueChange={setCropMarks} accessibilityLabel={t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })} /><Text className="flex-1 text-xs text-white/75">{t("editor.export.cropMarks", { defaultValue: "Crop marks and print margins" })}</Text></View>{cropMarks && <Text className="text-xs text-white/45">{t("editor.export.cropMarkHint", { defaultValue: "Adds cutting marks outside the artwork. The saved print resolution sets the finished page size." })}</Text>}</View>}
@@ -103,6 +107,7 @@ export default function ExportSheet(props: {
         {!isVideo && !isGif && pageScope === "custom" && <Text className="text-[10px] text-white/45">{t("editor.export.pageOrderHint", { defaultValue: "Pages follow the order entered. Use 3,1-2 to start with page 3, or 5-1 to reverse a range. Repeated page numbers appear once." })}</Text>}
         {!isVideo && !isGif && pageScope === "section" && <SectionExportPicker sections={sections} value={chosenSection?.name ?? ""} onChange={setSectionName} />}
         {format === "png" && <View className="flex-row items-center" style={{ gap: 8 }}><Switch value={transparent} onValueChange={setTransparent} accessibilityLabel={t("editor.export.transparent", { defaultValue: "Transparent background" })} /><Text className="text-xs text-white/75">{t("editor.export.transparent", { defaultValue: "Transparent background" })}</Text></View>}
+        {isNle && <Text className="text-xs text-white/55">{t("editor.export.nleHint")}</Text>}
         {isPptx && <Text className="text-xs text-white/55">{t("editor.export.pptxHint", { defaultValue: "Each page becomes one slide image, with presenter notes and links. Edit individual text and elements in the original design." })}</Text>}
         {(isVideo || isGif) && props.ranges.all.length > 0 && <View>
           <Text className="text-theme-neutrals-300 text-xs mb-2">{t("editor.export.scope")}</Text>
@@ -112,7 +117,7 @@ export default function ExportSheet(props: {
             <Chip label={t("editor.export.downloadClips", { count: props.ranges.all.length })} active={scope === "clips"} onPress={() => setScope("clips")} />
           </View>
         </View>}
-        {!isVideo && !isGif && props.pageCount > 1 && <View style={{ gap: 8 }}>
+        {!isVideo && !isGif && !isNle && props.pageCount > 1 && <View style={{ gap: 8 }}>
           <Text className="text-theme-neutrals-300 text-xs">{t("editor.pages.label")}</Text>
           <Chip label={isPptx ? t("editor.pages.allPptx", { defaultValue: "All {{count}} pages in one presentation", count: props.pageCount }) : isNotes ? t("editor.pages.allNotes", { defaultValue: "All {{count}} pages in one notes file", count: props.pageCount }) : isPdf ? t("editor.pages.allPdf", { defaultValue: "All {{count}} pages in one PDF", count: props.pageCount }) : t("editor.pages.allZip", { count: props.pageCount })} active={pageScope === "all"} onPress={() => setPageScope("all")} />
           <Chip label={t("editor.pages.thisPage")} active={pageScope === "current"} onPress={() => setPageScope("current")} />
@@ -131,7 +136,7 @@ export default function ExportSheet(props: {
           </View>
         )}
         <Text className="text-theme-neutrals-400 text-xs">
-          {isNotes ? t("editor.export.notesTextHint", { defaultValue: "Downloads section headings, original page numbers, page names, and presenter notes as a text file." }) : separate ? t("editor.export.rangeHint") : isGif ? `${t("editor.export.outputVideo", { width: gifOutput.width, height: gifOutput.height, fps: gifOutput.fps })} · ${t("editor.export.duration", { value: (props.timeline.duration + BRAND_OUTRO_DURATION).toFixed(2) })}` : isVideo
+          {isNle ? "" : isNotes ? t("editor.export.notesTextHint", { defaultValue: "Downloads section headings, original page numbers, page names, and presenter notes as a text file." }) : separate ? t("editor.export.rangeHint") : isGif ? `${t("editor.export.outputVideo", { width: gifOutput.width, height: gifOutput.height, fps: gifOutput.fps })} · ${t("editor.export.duration", { value: (props.timeline.duration + BRAND_OUTRO_DURATION).toFixed(2) })}` : isVideo
             ? `${t("editor.export.outputVideo", { width: Math.round(props.width * k) & ~1, height: Math.round(props.height * k) & ~1, fps: props.video!.fps })} · ${t("editor.export.duration", { value: props.video!.duration.toFixed(1) })}`
             : format === "mp4" ? "" : t("editor.export.outputStill", { width: Math.round(props.width * (isPptx || isPdf ? slideScale : 1)), height: Math.round(props.height * (isPptx || isPdf ? slideScale : 1)) })}
         </Text>
@@ -145,9 +150,9 @@ export default function ExportSheet(props: {
           style={{ gap: 8, opacity: props.busy ? 0.5 : 1 }}
         >
           <Icon name="Download" size={18} color="#000" />
-          <Text className="text-black font-semibold">{t(isGif || isPdf || isPptx || isNotes || separate || pageArchive ? "common.save" : "editor.app.saveToPhotos")}</Text>
+          <Text className="text-black font-semibold">{t(isGif || isPdf || isPptx || isNotes || isNle || separate || pageArchive ? "common.save" : "editor.app.saveToPhotos")}</Text>
         </Pressable>
-        {!isGif && !isPdf && !isPptx && !isNotes && !separate && !pageArchive && <Pressable
+        {!isGif && !isPdf && !isPptx && !isNotes && !isNle && !separate && !pageArchive && <Pressable
           disabled={props.busy || invalidPages}
           onPress={() => go("post")}
           accessibilityRole="button"

@@ -8155,7 +8155,9 @@
       "pptxHint": "Cada página se convierte en una imagen de diapositiva, con notas y enlaces del presentador. Edite el texto y los elementos individuales en el diseño original.",
       "section": "Sección con nombre",
       "transparent": "Fondo transparente",
-      "pageOrderHint": "Las páginas siguen el orden introducido. Usa 3,1-2 para empezar por la página 3, o 5-1 para invertir un intervalo. Los números de página repetidos aparecen una sola vez."
+      "pageOrderHint": "Las páginas siguen el orden introducido. Usa 3,1-2 para empezar por la página 3, o 5-1 para invertir un intervalo. Los números de página repetidos aparecen una sola vez.",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Descarga un ZIP con tu línea de tiempo en FCPXML y XML de Premiere junto con todos los archivos, para terminar la edición en Premiere Pro, Final Cut Pro o DaVinci Resolve. El texto se convierte en marcadores; los efectos se quedan en DeHub."
     },
     "adjust": {
       "auto": "Mejora automática",
@@ -9683,6 +9685,16 @@
       "selection": "Selección",
       "zoomIn": "Acercar lienzo",
       "zoomOut": "Alejar lienzo"
+    },
+    "clipFix": {
+      "detach": "Separar audio",
+      "detached": "El audio ahora es un clip aparte",
+      "detachFailed": "No se pudo separar el audio de este clip",
+      "removeBars": "Quitar barras negras",
+      "scanning": "Revisando fotogramas…",
+      "noBars": "No se encontraron barras negras",
+      "barsRemoved": "Barras negras recortadas",
+      "barsFailed": "No se pudo revisar si este vídeo tiene barras negras"
     }
   },
   "creator": {

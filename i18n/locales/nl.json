@@ -8334,7 +8334,9 @@
       "pptxHint": "Elke pagina wordt één diavoorstellingsslide met presentator-aantekeningen en links. Pas individuele tekst en elementen aan in het originele ontwerp.",
       "section": "Benoemde sectie",
       "transparent": "Transparante achtergrond",
-      "notesText": "Presentatornotities (.txt)"
+      "notesText": "Presentatornotities (.txt)",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Downloadt een ZIP met je tijdlijn als FCPXML en Premiere-XML plus alle mediabestanden, zodat je de montage afmaakt in Premiere Pro, Final Cut Pro of DaVinci Resolve. Tekst wordt markeringen; effecten blijven in DeHub."
     },
     "adjust": {
       "auto": "Automatisch verbeteren",
@@ -9862,6 +9864,16 @@
       "zoomIn": "Canvas inzoomen",
       "zoomOut": "Canvas uitzoomen",
       "pan": "Canvas verschuiven"
+    },
+    "clipFix": {
+      "detach": "Audio loskoppelen",
+      "detached": "Audio staat nu in een eigen clip",
+      "detachFailed": "Kon de audio van deze clip niet loskoppelen",
+      "removeBars": "Zwarte balken weghalen",
+      "scanning": "Frames controleren…",
+      "noBars": "Geen zwarte balken gevonden",
+      "barsRemoved": "Zwarte balken bijgesneden",
+      "barsFailed": "Kon deze video niet op zwarte balken controleren"
     }
   },
   "creator": {

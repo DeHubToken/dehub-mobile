@@ -8495,7 +8495,9 @@
       "pptx": "PowerPoint presentation",
       "pptxHint": "Each page becomes one slide image, with presenter notes and links. Edit individual text and elements in the original design.",
       "section": "Named section",
-      "transparent": "Transparent background"
+      "transparent": "Transparent background",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Downloads a ZIP with your timeline as FCPXML and Premiere XML plus every media file, so you can finish the edit in Premiere Pro, Final Cut Pro or DaVinci Resolve. Text becomes markers; effects stay in DeHub."
     },
     "adjust": {
       "auto": "Auto enhance",
@@ -10052,6 +10054,16 @@
       "selection": "Selection",
       "zoomIn": "Zoom canvas in",
       "zoomOut": "Zoom canvas out"
+    },
+    "clipFix": {
+      "detach": "Detach audio",
+      "detached": "Audio moved to its own clip",
+      "detachFailed": "Could not detach this clip's audio",
+      "removeBars": "Remove black bars",
+      "scanning": "Checking frames…",
+      "noBars": "No black bars found",
+      "barsRemoved": "Black bars cropped",
+      "barsFailed": "Could not check this video for black bars"
     }
   },
   "creator": {

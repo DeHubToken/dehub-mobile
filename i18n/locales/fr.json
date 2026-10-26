@@ -8130,7 +8130,9 @@
       "pptx": "Présentation PowerPoint",
       "pptxHint": "Chaque page devient une image de diapositive, avec des notes et des liens du présentateur. Modifiez le texte et les éléments individuels dans la conception d'origine.",
       "section": "Section nommée",
-      "transparent": "Fond transparent"
+      "transparent": "Fond transparent",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Télécharge un ZIP contenant votre timeline en FCPXML et XML Premiere ainsi que tous les médias, pour terminer le montage dans Premiere Pro, Final Cut Pro ou DaVinci Resolve. Le texte devient des marqueurs ; les effets restent dans DeHub."
     },
     "adjust": {
       "auto": "Amélioration auto",
@@ -9687,6 +9689,16 @@
       "zoomIn": "Zoom sur la toile",
       "zoomOut": "Zoom arrière sur la toile",
       "pan": "Déplacer le canevas"
+    },
+    "clipFix": {
+      "detach": "Détacher l'audio",
+      "detached": "L'audio est maintenant un clip séparé",
+      "detachFailed": "Impossible de détacher l'audio de ce clip",
+      "removeBars": "Retirer les bandes noires",
+      "scanning": "Analyse des images…",
+      "noBars": "Aucune bande noire trouvée",
+      "barsRemoved": "Bandes noires rognées",
+      "barsFailed": "Impossible d'analyser les bandes noires de cette vidéo"
     }
   },
   "creator": {
