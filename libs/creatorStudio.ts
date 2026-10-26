@@ -113,7 +113,9 @@ export function creatorPromptLimit(settings: CreatorStudioSettings): number | un
   return settings.mode === 'image' ? CREATOR_FAL_IMAGE_MODELS[settings.model]?.maxPromptLength ?? 4000
     : settings.mode === 'video' ? CREATOR_FAL_VIDEO_MODELS[settings.model]?.maxPromptLength : undefined;
 }
-export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boolean, preset?: CreatorTemplate): string | null {
+export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boolean, preset?: CreatorTemplate, text?: string): string | null {
+  if (settings.mode === 'image' && IMAGE_MODELS[settings.model]?.requiresImage && !hasImage) return 'creator.studioNeedsImage';
+  if (settings.mode === 'image' && IMAGE_MODELS[settings.model]?.outpaint && text !== undefined && /[^\x09\x0a\x0d\x20-\x7e]/.test(text)) return 'creator.expandEnglishOnly';
   const assets = settings.referenceAssets ?? [];
   const images = assets.filter(a => a.kind === 'image');
   const clip = assets.find(a => a.kind === 'video');

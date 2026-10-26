@@ -64,6 +64,8 @@ export const DEFAULT_CHAT_MODEL = 'auto';
 
 export interface ImageModel {
   id: string;
+  requiresImage?: boolean;
+  outpaint?: boolean;
   name: string;
   description: string;
   emoji: string;
