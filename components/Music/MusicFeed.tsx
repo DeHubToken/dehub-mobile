@@ -51,12 +51,14 @@ import MusicVideoCard from "./MusicVideoCard";
 import RadioStationCard from "./RadioStationCard";
 import { FEED_SIDE } from "../Home/feedLayout";
 import StagesChart from "./StagesChart";
-import ChartShelf from "./ChartShelf";
+import ChartShelf, { type ChartShelfRow } from "./ChartShelf";
+import { useChartSearch } from "../../hooks/useChartSearch";
 import RadioStage from "./RadioStage";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
 import { useAppTheme } from '../../context/ThemeContext';
 import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
+import { MUSIC_SEARCH_SIZE, searchRadio } from "../../libs/music-search";
 import {
   RADIO_GENRES,
   getCuratedCarouselStations,
@@ -92,6 +94,8 @@ type Shelf = "videos" | "radio" | "audio" | "stages";
 const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages"];
 
 const CAROUSEL_PAGE_SIZE = 12;
+// How many matches a chart search pulls from its whole zone.
+const CHART_SEARCH_SIZE = MUSIC_SEARCH_SIZE;
 // Rows the music video chart shows before "See all".
 const VIDEOS_PAGE_SIZE = 10;
 
@@ -148,6 +152,8 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
   const [tab, setTab] = useState<MusicSubTab>("all");
   const [chartSort, setChartSort] = useState<'trending' | 'popular' | 'new'>('trending');
   const [videoChartSort, setVideoChartSort] = useState<MusicVideoChartSort>('views');
+  const [audioSearch, setAudioSearch] = useState("");
+  const [videoSearch, setVideoSearch] = useState("");
   const [visibleIds, setVisibleIds] = useState<ReadonlySet<string>>(() => new Set());
   const viewabilityConfig = useRef({ viewAreaCoveragePercentThreshold: 10, minimumViewTime: 150 }).current;
   const onViewableItemsChanged = useRef(({ viewableItems }: { viewableItems: Array<{ key: string }> }) => {
@@ -184,6 +190,12 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
     queryFn: async () => (await fetchMusicVideoChart(videoChartSort, address)).filter(isVisibleInMusic),
     staleTime: 5 * 60_000,
   });
+
+  // Chart searches reach every audio upload and music video, not just the chart.
+  const audioFound = useChartSearch("audio", audioSearch, async query =>
+    ((await getNFTs({ postType: "feed-audio", search: query, unit: CHART_SEARCH_SIZE, sortMode: "trending", address })).result || []).filter(isVisibleInMusic));
+  const videoFound = useChartSearch("music-videos", videoSearch, async query =>
+    ((await getNFTs({ category: "Music", postType: "video", search: query, unit: CHART_SEARCH_SIZE, sortMode: "trending", address })).result || []).filter(isVisibleInMusic));
 
   const { data: curatedStations = [] } = useQuery({
     queryKey: ["radio-stations-curated"],
@@ -256,6 +268,24 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 
   // ── List content per tab ──────────────────────────────────────────────────
 
+  const videoRow = useCallback((item: GetNFTsResult, index: number): ChartShelfRow => {
+    const creator = (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "";
+    const views = resolveViewCount(item);
+    const rawThumb = (item as any).thumbnail || item.thumbnailUrl || item.imageUrl || "";
+    return {
+      id: String(item.tokenId ?? item.id ?? index),
+      title: item.name || (item as any).title || "",
+      subtitle: [creator, views ? t("music.viewsCount", { count: views, views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
+      thumb: rawThumb ? getImageUrl(rawThumb, 160) : undefined,
+      badge: secondsToHMMSS(item.videoDuration) || undefined,
+    };
+  }, [t]);
+  const audioRow = useCallback((item: GetNFTsResult, index: number): ChartShelfRow => ({
+    id: String(item.tokenId ?? item.id ?? index),
+    title: item.name || (item as any).title || "",
+    subtitle: (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "",
+  }), []);
+
   const renderShelf = useCallback(
     (shelf: Shelf) => {
       switch (shelf) {
@@ -268,23 +298,17 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               sorts={MUSIC_VIDEO_CHART_SORTS.map(option => ({ value: option.value, label: t(option.key, { defaultValue: option.fallback }) }))}
               sort={videoChartSort}
               onSort={setVideoChartSort}
-              rows={videoChart.map((item, index) => {
-                const creator = (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "";
-                const views = resolveViewCount(item);
-                const rawThumb = (item as any).thumbnail || item.thumbnailUrl || item.imageUrl || "";
-                return {
-                  id: String(item.tokenId ?? item.id ?? index),
-                  title: item.name || (item as any).title || "",
-                  subtitle: [creator, views ? t("music.viewsCount", { count: views, views: formatCompactNumber(views) }) : ""].filter(Boolean).join(" · "),
-                  thumb: rawThumb ? getImageUrl(rawThumb, 160) : undefined,
-                  badge: secondsToHMMSS(item.videoDuration) || undefined,
-                };
-              })}
+              rows={videoChart.map(videoRow)}
+              search={videoSearch}
+              onSearchChange={setVideoSearch}
+              moreRows={videoFound.items.map(videoRow)}
+              searchingMore={videoFound.isSearching}
               loading={loadingVideoChart}
               emptyText={t("music.noMusicVideos")}
               thumbs="wide"
               renderSelected={id => {
-                const item = videoChart.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
+                const item = videoChart.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id)
+                  || videoFound.items.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
                 return item ? <MusicVideoCard nft={item} wide /> : null;
               }}
             />
@@ -304,15 +328,16 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
               ]}
               sort={chartSort}
               onSort={setChartSort}
-              rows={audioUploads.map((item, index) => ({
-                id: String(item.tokenId ?? item.id ?? index),
-                title: item.name || (item as any).title || "",
-                subtitle: (item as any).minterDisplayName || (item as any).minterUsername || (item as any).mintername || "",
-              }))}
+              rows={audioUploads.map(audioRow)}
+              search={audioSearch}
+              onSearchChange={setAudioSearch}
+              moreRows={audioFound.items.map(audioRow)}
+              searchingMore={audioFound.isSearching}
               loading={loadingAudio}
               emptyText={t("music.noAudioUploads")}
               renderSelected={id => {
-                const item = audioUploads.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
+                const item = audioUploads.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id)
+                  || audioFound.items.find((nft, index) => String(nft.tokenId ?? nft.id ?? index) === id);
                 return item ? <AudioUploadCard nft={item} isVisible={active && visibleIds.has("shelf-audio")} desk /> : null;
               }}
             />
@@ -321,7 +346,8 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
           return <StagesChart />;
       }
     },
-    [curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, videoChart, loadingVideoChart, videoChartSort, t],
+    [curatedStations, audioUploads, loadingAudio, active, visibleIds, chartSort, videoChart, loadingVideoChart, videoChartSort, t,
+      audioSearch, audioFound, videoSearch, videoFound, audioRow, videoRow],
   );
 
   const { data, renderItem, keyExtractor } = useMemo(() => {
@@ -552,11 +578,25 @@ const RadioChart: React.FC<{ curated: RadioStation[] }> = ({ curated }) => {
     enabled: sort !== "picks",
     staleTime: 10 * 60_000,
   });
-  const stations = useMemo(() => {
+  const [search, setSearch] = useState("");
+  const found = useChartSearch("radio", search, searchRadio);
+  const chartStations = useMemo(() => {
     if (sort === "picks") return curated;
     const field = sort === "played" ? "clickcount" : sort === "voted" ? "votes" : "clicktrend";
     return [...top].sort((a, b) => (b[field] || 0) - (a[field] || 0)).slice(0, 20);
   }, [sort, curated, top]);
+  // Skipping walks the list as shown, search matches from the directory included.
+  const stations = useMemo(() => {
+    if (!search.trim()) return chartStations;
+    const seen = new Set(chartStations.map(s => s.stationuuid));
+    return [...chartStations, ...found.items.filter(s => !seen.has(s.stationuuid))];
+  }, [chartStations, found.items, search]);
+  const stationRow = (station: RadioStation): ChartShelfRow => ({
+    id: station.stationuuid,
+    title: station.name.trim(),
+    subtitle: [station.countrycode, ...getPrimaryTags(station.tags)].filter(Boolean).join(" · "),
+    thumb: station.favicon || undefined,
+  });
   return (
     <ChartShelf
       icon="Radio"
@@ -569,12 +609,11 @@ const RadioChart: React.FC<{ curated: RadioStation[] }> = ({ curated }) => {
       ]}
       sort={sort}
       onSort={setSort}
-      rows={stations.map(station => ({
-        id: station.stationuuid,
-        title: station.name.trim(),
-        subtitle: [station.countrycode, ...getPrimaryTags(station.tags)].filter(Boolean).join(" · "),
-        thumb: station.favicon || undefined,
-      }))}
+      rows={chartStations.map(stationRow)}
+      search={search}
+      onSearchChange={setSearch}
+      moreRows={found.items.map(stationRow)}
+      searchingMore={found.isSearching}
       loading={sort === "picks" ? curated.length === 0 : isLoading}
       emptyText={t("music.noStationsAvailable", { defaultValue: "No stations available" })}
       thumbs="square"

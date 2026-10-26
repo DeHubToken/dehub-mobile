@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remix",
+    "greenScreen": "Fond vert",
+    "collab": "Collaboration",
+    "sound": "Utiliser le son",
+    "cut": "Découper",
+    "unavailable": "Cette vidéo ne peut pas être remixée.",
+    "openFailed": "Impossible d’ouvrir le remix. Vérifiez votre connexion et les autorisations de la caméra, puis réessayez.",
+    "tooLarge": "Cet enregistrement est trop volumineux. Enregistrez une prise plus courte.",
+    "invalidRecording": "Impossible de lire l’enregistrement. Veuillez enregistrer une autre prise.",
+    "saveFailed": "Impossible d’enregistrer le remix. Veuillez réessayer.",
+    "startHint": "Prévisualisez l’image de votre caméra sur cette vidéo, puis enregistrez votre remix. Quitter cet écran arrête la caméra.",
+    "openCamera": "Ouvrir la caméra"
+  },
   "dehubLinks": {
     "kind": {
       "app": "application",
@@ -7803,6 +7817,33 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "film": {
+        "repairRefs": "Retirer les liens vers les médias manquants",
+                 "title":  "Projet de film",
+                 "intro":  "Planifiez les plans avec des images de référence réutilisables. Le brief, l’ordre des plans et les résultats choisis sont enregistrés avec ce projet.",
+                 "create":  "Créer un plan de film",
+                 "name":  "Nom du film",
+                 "brief":  "Brief du film",
+                 "sharedReferences":  "Images de référence communes (4 maximum)",
+                 "shot":  "Plan",
+                 "addShot":  "Ajouter un plan",
+                 "shotName":  "Nom du plan",
+                 "action":  "Action et composition du plan",
+                 "seconds":  "Durée vidéo demandée en secondes",
+                 "shotReferences":  "Images de référence supplémentaires (4 au total)",
+                 "frame":  "Préparer une image",
+                 "video":  "Préparer une vidéo",
+                 "review":  "Vérifiez le modèle, les références, la durée et le prix dans le studio avant de générer.",
+                 "result":  "Résultat accepté du plan",
+                 "noResult":  "Aucun résultat sélectionné",
+                 "resultHint":  "Choisissez une image ou vidéo acceptée dans les fichiers importés. Son lien est enregistré avec le plan ; utilisez la timeline pour monter le film.",
+                 "earlier":  "Déplacer avant",
+                 "later":  "Déplacer après",
+                 "remove":  "Supprimer le plan",
+                 "issue":  "Vérifiez la description du plan et les références, puis réessayez. Gardez le projet ouvert si l’enregistrement a échoué.",
+                 "searchMedia":  "Chercher un média par nom",
+                 "refreshMedia":  "Actualiser les médias"
+             },
     "review": {
       "title": "Révision du projet",
       "shared": "Partagé avec vous",
@@ -9606,7 +9647,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "URL de la page produit",
+                   "action":  "Lire la page produit",
+                   "loading":  "Lecture de la page…",
+                   "hint":  "Importez le texte d’une page produit publique. Vérifiez les données avant de les utiliser et joignez les images séparément dans le studio.",
+                   "source":  "Source importée",
+                   "review":  "Choisissez un produit à copier dans votre brief modifiable. Le titre, le ton et les couleurs de marque sont conservés.",
+                   "use":  "Utiliser ces données",
+                   "errors":  {
+                                  "signIn":  "Connectez-vous pour importer une page produit.",
+                                  "url":  "Utilisez une URL HTTPS de page produit publique.",
+                                  "empty":  "Aucune donnée produit exploitable n’a été trouvée. Ajoutez-les manuellement.",
+                                  "busy":  "Trop d’importations sont en cours. Réessayez dans un instant.",
+                                  "unavailable":  "Cette page n’a pas pu être importée. Ajoutez les données produit manuellement.",
+                                  "failed":  "L’importation a échoué. Votre brief est enregistré ; réessayez ou saisissez les données manuellement."
+                              }
+               },
                       "title":  "Brief de campagne",
                       "intro":  "Décrivez votre produit et votre marque, puis préparez des formats publicitaires cohérents.",
                       "saved":  "Votre brief est enregistré sur cet appareil pour ce compte.",
@@ -9634,6 +9692,7 @@
                                       "video":  "Vidéo verticale"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Ce chat lit l’enregistrement privé conservé sur cet appareil. Sur un autre appareil, ouvrez votre bibliothèque Creator une fois l’enregistrement dans le cloud terminé. Si vous partez, rouvrez ce chat pour terminer l’enregistrement.",
     "cinema":  {
                    "title":  "Direction cinématographique",
                    "hint":  "Définissez le style visuel de votre prochaine image ou vidéo. Les résultats varient selon le modèle.",
@@ -9751,6 +9810,29 @@
     "negativePrompt":  "Consigne négative (facultative)",
     "endFrameNeedsStart":  "Joignez une image initiale avant de sélectionner l’image finale.",
     "batchStopped":  "Le lot s’est arrêté après {{submitted}} envois sur {{quantity}}. {{remaining}} n’ont pas été envoyés. Les images terminées sont enregistrées.",
+    "audioInvalidTask":  "Choisissez une tâche audio compatible.",
+      "audioNeedsFile":  "Joignez d\u0027abord un fichier audio ou vidéo compatible.",
+      "audioTextLimit":  "La parole et les dialogues acceptent de 1 à 5000 caractères ; les effets sonores, de 1 à 1000.",
+      "audioDurationLimit":  "La durée doit être automatique (0) ou comprise entre 0,5 et 30 secondes.",
+      "audioModels":  "Autres modèles audio",
+      "audioAttach":  "Joindre un enregistrement",
+      "audioAttachFailed":  "Impossible de joindre cet enregistrement.",
+      "audioSeconds":  "Secondes (0 = automatique)",
+      "audioInvalidResponse":  "Le service audio a renvoyé un résultat non valide.",
+      "audioResultTooLarge":  "Le résultat audio est vide ou dépasse 50 Mo.",
+      "audioFailed":  "Impossible de traiter cet audio.",
+      "audioNoSpeech":  "Aucune parole détectée dans cet enregistrement.",
+      "audioTaskSpeechLabel":  "Discours",
+      "audioTaskDialogueLabel":  "Dialogue",
+      "audioTaskSfxLabel":  "Effet sonore",
+      "audioTaskVoiceChangerLabel":  "Modificateur de la voix",
+      "audioTaskTranscribeLabel":  "Transcription",
+      "audioTaskIsolateLabel":  "Nettoyer",
+      "priceFreeRateLimited":  "Gratuit · des limites tarifaires s\u0027appliquent",
+      "loop":  "Boucle",
+      "dialogueFormat":  "Écrivez la scène comme « Nom : ligne », un locuteur par ligne.",
+      "fileTooLarge":  "Ce fichier dépasse 100 Mo. Utilisez un fichier plus court ou plus petit.",
+      "signInToGenerate":  "Connectez-vous pour générer.",
     "sending": "Envoi en cours",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",

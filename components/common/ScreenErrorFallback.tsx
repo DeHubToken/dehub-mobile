@@ -117,7 +117,7 @@ export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, childr
  */
 export function withScreenBoundary({ route, navigation, children }: ScreenLayoutArgs<any, any, any, any>) {
   // These screens register their own guarded close (save/discard/end broadcast).
-  const guarded = [ScreenNames.MediaEditor, ScreenNames.Upload, ScreenNames.UploadTab, ScreenNames.LiveProducer].includes(route.name);
+  const guarded = [ScreenNames.MediaEditor, ScreenNames.VideoRemix, ScreenNames.Upload, ScreenNames.UploadTab, ScreenNames.LiveProducer].includes(route.name);
   const state = navigation.getState();
   const canPop = state.type === 'stack' && state.index > 0;
   return <SwipeBackBoundary

@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remiks",
+    "greenScreen": "Yeşil ekran",
+    "collab": "İş birliği",
+    "sound": "Sesi kullan",
+    "cut": "Kes",
+    "unavailable": "Bu video remiks oluşturmak için kullanılamıyor.",
+    "openFailed": "Remiks açılamadı. Bağlantınızı ve kamera izinlerini kontrol edip tekrar deneyin.",
+    "tooLarge": "Bu kayıt çok büyük. Daha kısa bir çekim yapın.",
+    "invalidRecording": "Kayıt okunamadı. Lütfen yeni bir çekim yapın.",
+    "saveFailed": "Remiks kaydedilemedi. Lütfen tekrar deneyin.",
+    "startHint": "Kamera görüntünüzü bu videonun üzerinde önizleyin, ardından remiksinizi kaydedin. Bu ekrandan ayrılmak kamerayı durdurur.",
+    "openCamera": "Kamerayı aç"
+  },
   "dehubLinks": {
     "kind": {
       "app": "uygulama",
@@ -7775,6 +7789,33 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
+    "film": {
+        "repairRefs": "Eksik medya bağlantılarını kaldır",
+                 "title":  "Film projesi",
+                 "intro":  "Yeniden kullanılabilir referans görselleriyle çekimleri planlayın. Özetiniz, çekim sırası ve seçilen sonuçlar bu projeyle kaydedilir.",
+                 "create":  "Film planı oluştur",
+                 "name":  "Film adı",
+                 "brief":  "Film özeti",
+                 "sharedReferences":  "Ortak referans görselleri (en fazla 4)",
+                 "shot":  "Çekim",
+                 "addShot":  "Çekim ekle",
+                 "shotName":  "Çekim adı",
+                 "action":  "Çekim aksiyonu ve kompozisyonu",
+                 "seconds":  "İstenen video süresi (saniye)",
+                 "shotReferences":  "Ek referans görselleri (toplam sınır 4)",
+                 "frame":  "Kare hazırla",
+                 "video":  "Video hazırla",
+                 "review":  "Üretmeden önce stüdyoda modeli, referansları, video süresini ve fiyatı inceleyin.",
+                 "result":  "Onaylanan çekim sonucu",
+                 "noResult":  "Sonuç seçilmedi",
+                 "resultHint":  "Yüklemelerden onayladığınız bir görsel veya video seçin. Bağlantısı çekimle kaydedilir; filmi zaman çizelgesinde birleştirin.",
+                 "earlier":  "Öne taşı",
+                 "later":  "Arkaya taşı",
+                 "remove":  "Çekimi kaldır",
+                 "issue":  "Çekim açıklamasını ve referans medyayı kontrol edip tekrar deneyin. Kaydedilemediyse projeyi açık tutun.",
+                 "searchMedia":  "Ada göre medya bul",
+                 "refreshMedia":  "Medyayı yenile"
+             },
     "highlights": {
       "visual": "Görsel önemli anlar",
       "visualPrivacy": "Görsel analiz için seçilen kareleri gönderin.",
@@ -9578,7 +9619,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "Ürün sayfası URL’si",
+                   "action":  "Ürün sayfasını oku",
+                   "loading":  "Sayfa okunuyor…",
+                   "hint":  "Herkese açık bir ürün sayfasından metin aktarın. Kullanmadan önce bilgileri inceleyin; ürün görsellerini stüdyoda ayrıca ekleyin.",
+                   "source":  "Aktarım kaynağı",
+                   "review":  "Düzenlenebilir özetinize kopyalamak için bir ürün seçin. Başlığınız, marka üslubunuz ve renkleriniz korunur.",
+                   "use":  "Bu bilgileri kullan",
+                   "errors":  {
+                                  "signIn":  "Ürün sayfası aktarmak için giriş yapın.",
+                                  "url":  "Herkese açık bir HTTPS ürün URL’si kullanın.",
+                                  "empty":  "Kullanılabilir ürün bilgisi bulunamadı. Bilgileri elle ekleyin.",
+                                  "busy":  "Çok fazla aktarım sürüyor. Kısa süre sonra tekrar deneyin.",
+                                  "unavailable":  "Bu sayfa aktarılamadı. Ürün bilgilerini elle ekleyin.",
+                                  "failed":  "Aktarım başarısız. Özetiniz kayıtlı; tekrar deneyin veya bilgileri elle girin."
+                              }
+               },
                       "title":  "Kampanya özeti",
                       "intro":  "Ürününüzü ve markanızı tanımlayın, ardından uyumlu reklam biçimleri hazırlayın.",
                       "saved":  "Özetiniz bu hesap için bu cihazda saklanır.",
@@ -9606,6 +9664,7 @@
                                       "video":  "Dikey video"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Bu sohbet, bu cihazda saklanan özel kaydı oynatır. Başka bir cihazda, buluta kaydetme tamamlandıktan sonra Creator kitaplığınızı açın. Şimdi ayrılırsanız kaydetmeyi tamamlamak için bu sohbeti yeniden açın.",
     "cinema":  {
                    "title":  "Sinematik yönlendirme",
                    "hint":  "Sonraki görselinizin veya videonuzun görsel tarzını belirleyin. Sonuçlar modele göre değişir.",
@@ -9723,6 +9782,29 @@
     "negativePrompt":  "Negatif istem (isteğe bağlı)",
     "endFrameNeedsStart":  "Son kareyi seçmeden önce bir başlangıç görseli ekleyin.",
     "batchStopped":  "Toplu işlem {{quantity}} gönderimin {{submitted}} tanesinden sonra durdu. {{remaining}} tanesi gönderilmedi. Tamamlanan görseller kaydedildi.",
+    "audioInvalidTask":  "Desteklenen bir ses görevi seçin.",
+      "audioNeedsFile":  "Önce desteklenen bir ses veya video dosyası ekleyin.",
+      "audioTextLimit":  "Konuşma ve diyalog 1–5000 karakter, ses efektleri 1–1000 karakter kabul eder.",
+      "audioDurationLimit":  "Ses süresi Otomatik (0) veya 0,5–30 saniye olmalıdır.",
+      "audioModels":  "Diğer ses modelleri",
+      "audioAttach":  "Kayıt ekle",
+      "audioAttachFailed":  "Bu kayıt eklenemedi.",
+      "audioSeconds":  "Saniye (0 = Otomatik)",
+      "audioInvalidResponse":  "Ses hizmeti geçersiz bir sonuç döndürdü.",
+      "audioResultTooLarge":  "Ses sonucu boş veya 50 MB sınırını aşıyor.",
+      "audioFailed":  "Bu ses işlenemedi.",
+      "audioNoSpeech":  "Bu kayıtta konuşma bulunamadı.",
+      "audioTaskSpeechLabel":  "Konuşma",
+      "audioTaskDialogueLabel":  "Diyalog",
+      "audioTaskSfxLabel":  "Ses efekti",
+      "audioTaskVoiceChangerLabel":  "Ses değiştirici",
+      "audioTaskTranscribeLabel":  "Deşifre",
+      "audioTaskIsolateLabel":  "Temizle",
+      "priceFreeRateLimited":  "Ücretsiz · ücret limitleri uygulanır",
+      "loop":  "Döngü",
+      "dialogueFormat":  "Sahneyi “Ad: replik” biçiminde, her satıra bir konuşmacı gelecek şekilde yazın.",
+      "fileTooLarge":  "Bu dosya 100 MB\u0027ı aşıyor. Daha kısa ya da daha küçük bir dosya kullanın.",
+      "signInToGenerate":  "Üretmek için giriş yapın.",
     "sending": "Gönderiliyor",
     "navStudio": "Stüdyo",
     "editor": "Editör",
