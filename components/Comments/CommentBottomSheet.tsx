@@ -284,7 +284,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               handle alone was too thin a target. */}
           <GestureDetector gesture={gesture}>
             <Animated.View>
-              <Animated.View style={{ height: inline ? 44 : 24, alignItems: "center", justifyContent: "center" }}>
+              <Animated.View style={{ height: inline ? 20 : 24, alignItems: "center", justifyContent: "center" }}>
                 <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.2)" }} />
               </Animated.View>
 

@@ -139,6 +139,8 @@ interface CommentItemProps {
   tokenId?: number | string;
   contentType?: "video" | "feed";
   highlighted?: boolean;
+  /** Tighter rows, for the Shorts split sheet. */
+  dense?: boolean;
   repliesExpanded?: boolean;
   onToggleReplies?: () => void;
   /** Replies in this thread that are hidden behind the toggle. */
@@ -168,6 +170,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   tokenId,
   contentType = "video",
   highlighted = false,
+  dense = false,
   repliesExpanded = false,
   onToggleReplies,
   hiddenReplyCount = 0,
@@ -600,7 +603,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       accessibilityActions={isPending ? [] : a11yActions}
       onAccessibilityAction={handleAccessibilityAction}
     >
-      <Animated.View ref={containerRef} style={[{ flexDirection: "row", paddingVertical: 10 }, highlightSurfaceStyle]}>
+      <Animated.View ref={containerRef} style={[{ flexDirection: "row", paddingVertical: dense ? 6 : 10 }, highlightSurfaceStyle]}>
         <Pressable onPress={handleUserPress}>
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -803,7 +806,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
           ) : null}
 
           {/* Inert, not hidden, while sending: the row looks the same before and after it lands. */}
-          <View pointerEvents={isPending ? "none" : "auto"} style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
+          <View pointerEvents={isPending ? "none" : "auto"} style={{ flexDirection: "row", alignItems: "center", marginTop: dense ? 3 : 6, gap: 12 }}>
             {/* Hold this thumb for the tray of every reaction — the faces,
                 a divider, then 👎; there is no separate thumbs-down. The
                 wrapper is the tray's positioning context. No tray on your own
