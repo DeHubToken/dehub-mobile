@@ -15095,7 +15095,13 @@
     "tooSoon": "Kies een tijd in de toekomst.",
     "zone": "Jouw tijd ({{zone}}). Anderen zien het in hun eigen tijd.",
     "remove": "Planning verwijderen",
-    "startsIn": "Begint over {{time}}"
+    "startsIn": "Begint over {{time}}",
+    "bestTime": "Beste tijd",
+    "fansOnline": "Wanneer zijn mijn fans online?",
+    "show": "Tonen",
+    "hide": "Verbergen",
+    "fansBasis": "Lichter betekent dat meer volgers keken, afgelopen {{count}} dagen.",
+    "everyoneBasis": "Nog niet genoeg activiteit van volgers, dus dit is iedereen op DeHub."
   },
   "planned": {
     "title": "Gepland",
