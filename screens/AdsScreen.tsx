@@ -72,6 +72,7 @@ import {
 } from "../hooks/useAds";
 import { sanitizeAmountInput } from "../libs/amount-input";
 import { DhbCoin } from "../components/common/DhbCoin";
+import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../theme/sheetGlass";
 
 /** Same treasury the AI credits / paywalls pay into (see ads-topup edge fn). */
 const ADS_TREASURY = "0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c";
@@ -706,8 +707,8 @@ const styles = StyleSheet.create({
 
   backdrop: { flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.6)", justifyContent: "flex-end" },
   sheet: {
-    backgroundColor: "#0C0C0E", borderTopLeftRadius: 20, borderTopRightRadius: 20,
-    borderTopWidth: 1, borderColor: "rgba(255,255,255,0.10)",
+    backgroundColor: SHEET_GLASS_FILL, borderTopLeftRadius: 20, borderTopRightRadius: 20,
+    borderTopWidth: 1, borderColor: SHEET_GLASS_BORDER,
     paddingHorizontal: 18, paddingTop: 16, maxHeight: "90%",
   },
   sheetHead: {
