@@ -1,13 +1,14 @@
 import { VIDEO_MODELS } from '../../config/ai-models.constants';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
-import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorSettingsForEditorDraft } from '../../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOptions, creatorVideoQuoteHints, normalizeCreatorSettings, prepareCreatorPrompt, creatorSettingsForEditorDraft } from '../../libs/creatorStudio';
 import { getTemplate } from '../../libs/creatorTemplates';
 
 describe('native Creator jobs', () => {
   it('submits zero seeds and end frames, and clears incompatible options on model switches', () => {
     const endFrame = { uri: 'https://example.com/end.jpg', label: 'Finish', kind: 'image' as const };
-    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model: 'seedance-2.0', seed: '0', negativePrompt: 'blur', endFrame });
-    expect(creatorVideoOptions(settings)).toMatchObject({ seed: 0, negativePrompt: 'blur', endFrameUrl: endFrame.uri });
+    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model: 'seedance-2.5', seed: '0', endFrame });
+    expect(creatorVideoOptions(settings)).toMatchObject({ seed: 0, endFrameUrl: endFrame.uri });
+    expect(creatorVideoOptions({ ...CREATOR_DEFAULTS.video, model: 'kling-2.6-pro', negativePrompt: 'blur' }).negativePrompt).toBe('blur');
     expect(creatorInputIssue(settings, false)).toBe('creator.endFrameNeedsStart');
     expect(creatorInputIssue(settings, true)).toBeNull();
     const switched = normalizeCreatorSettings({ ...settings, model: 'minimax-video' });
@@ -16,6 +17,14 @@ describe('native Creator jobs', () => {
     expect(switched.endFrame).toBeUndefined();
     for (const seed of ['-1', '1.2', '12abc', '2147483648']) {
       expect(creatorInputIssue({ ...settings, seed }, true)).toBe('creator.invalidSeed');
+    }
+  });
+  it('clears cached seed and negative prompt values for verified Seedance 2.0 routes', () => {
+    for (const model of ['seedance-2.0', 'seedance-2.0-fast']) {
+      const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model, seed: '0', negativePrompt: 'blur' });
+      expect(creatorVideoOptions(settings).seed).toBeUndefined();
+      expect(creatorVideoOptions(settings).negativePrompt).toBeUndefined();
+      expect(VIDEO_MODELS[model].supportsEndFrame).toBe(true);
     }
   });
   it('normalizes batches and applies direction once without modifying the stored brief', () => {
@@ -64,6 +73,23 @@ describe('native Creator jobs', () => {
     for (const model of Object.keys(VIDEO_MODELS)) {
       expect(CREATOR_VIDEO_RULES[model]).toBeDefined();
       expect(creatorDurations(model).every((value) => Number.isFinite(value) && value > 0)).toBe(true);
+    }
+  });
+  it('quotes the exact hosted or inline media forwarded by video options', () => {
+    const settings = { ...CREATOR_DEFAULTS.video, model: 'seedance-2.0',
+      endFrame: { uri: 'https://media/end.jpg', label: 'End', kind: 'image' as const },
+      referenceAssets: [{ uri: 'https://media/clip.mp4', label: 'Clip', kind: 'video' as const }] };
+    expect(creatorVideoQuoteHints(settings, 'https://media/start.jpg')).toMatchObject({ hasEndFrame: true, hasVideoReferences: true, hasInlineMedia: false });
+    expect(creatorVideoQuoteHints(settings, 'data:image/png;base64,abc').hasInlineMedia).toBe(true);
+    expect(creatorVideoQuoteHints({ ...settings, referenceAssets: [{ ...settings.referenceAssets[0], uri: 'file:///clip.mp4' }] }).hasInlineMedia).toBe(true);
+    expect(creatorVideoQuoteHints(null, 'http://media/start.jpg').hasInlineMedia).toBe(false);
+  });
+  it('normalizes stale Seedance1080p drafts to a priced resolution', () => {
+    for (const model of ['seedance-2.0', 'seedance-2.0-fast']) {
+      expect(CREATOR_VIDEO_RULES[model].resolutions).toEqual(['480p', '720p']);
+      const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model, resolution: '1080p' });
+      expect(['480p', '720p']).toContain(settings.resolution);
+      expect(creatorVideoOptions(settings).resolution).toBe(settings.resolution);
     }
   });
 
