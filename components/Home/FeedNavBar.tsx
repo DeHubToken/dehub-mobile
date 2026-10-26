@@ -88,6 +88,17 @@ interface FeedNavBarProps {
 const SNAP_BACK = { duration: 260, easing: Easing.bezier(0.22, 1, 0.36, 1) } as const;
 const EDGE_RESISTANCE = 0.28;
 const VELOCITY_PROJECTION = 0.12;
+// Match the visible Cut artwork to Shorts; keep in sync with web's FEED_TAB_ICON_SCALE.
+const FEED_NAV_ICON_SCALE: Partial<Record<IconName, number>> = {
+  House: 1.15,
+  Shorts: 1,
+  Image: 1.16,
+  Video: 1.08,
+  Mic: 1.09,
+  Radio: 1,
+  Settings2: 1.18,
+};
+
 const NavButton = memo<{
   icon: IconName;
   label: string;
@@ -129,10 +140,10 @@ const NavButton = memo<{
     accessibilityState={{ selected: active }}
   >
     {({ pressed }) => (
-      <View style={{ opacity: pressed ? 0.6 : 1 }}>
+      <View style={{ width: 18, height: 18, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.6 : 1 }}>
         <Icon
           name={icon}
-          size={icon === 'House' ? 18 : 16}
+          size={16 * (FEED_NAV_ICON_SCALE[icon] ?? 1)}
           color={tint ? (active ? tint.on : tint.off) : active ? "#FFFFFF" : minimal ? "#A1A1AA" : "#808089"}
           strokeWidth={active ? 2 : 1.8}
         />
@@ -283,7 +294,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               {({ pressed }) => {
                 const filterActive = !backMode && (isFilterOpen || hasActiveFilters);
                 return (
-                  <View style={{ opacity: pressed ? 0.6 : 1 }}>
+                  <View style={{ opacity: pressed ? 0.6 : 1, transform: [{ scale: !backMode && !isFilterOpen ? FEED_NAV_ICON_SCALE.Settings2 ?? 1 : 1 }] }}>
                     <Icon
                       name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
                       size={16}
@@ -379,7 +390,7 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                         <GlassIndicator borderRadius={12} />
                       </View>
                     ))}
-                    <View style={{ opacity: pressed ? 0.6 : 1 }}>
+                    <View style={{ opacity: pressed ? 0.6 : 1, transform: [{ scale: !backMode && !isFilterOpen ? FEED_NAV_ICON_SCALE.Settings2 ?? 1 : 1 }] }}>
                       <Icon
                         name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
                         size={16}

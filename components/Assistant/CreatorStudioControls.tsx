@@ -116,7 +116,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
           ))}
         </View>
         {!(settings.mode === 'audio' && settings.audioSettings) && chip((selected?.name ?? settings.model).split(/\s+/)[0], () => setPicker('model'), false, selected?.name ?? settings.model)}
-        {(settings.mode === 'image' || (settings.mode === 'video' && settings.model !== 'pixverse-effects' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
+        {(settings.mode === 'image' || (settings.mode === 'video' && settings.model !== 'pixverse-effects' && (!VIDEO_MODELS[settings.model]?.requiresVideoInput || VIDEO_MODELS[settings.model]?.referenceMode === 'extend'))) && chip(settings.aspect, () => setPicker('aspect'))}
         {settings.mode === 'video' && settings.model !== 'pixverse-effects' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
           <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-1.5">
             <TextInput
@@ -141,7 +141,8 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
             <Text className="text-xs text-theme-neutrals-400">s</Text>
           </View>
         )}
-        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t('creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
+        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend' && <Text className="w-full text-xs text-theme-neutrals-400">{t('creator.extensionHelp')}</Text>}
+        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t(VIDEO_MODELS[settings.model]?.referenceMode === 'extend' ? 'creator.extensionSeconds' : 'creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
         {settings.mode === 'video' && CREATOR_VIDEO_RULES[settings.model]?.supportsResolution && chip(settings.resolution, () => setPicker('resolution'))}
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
