@@ -18,6 +18,9 @@ import {
 import { GRAIN, glassTint, type ThemeSkin } from "../../theme/skins";
 import HudBrackets from "../theme/HudBrackets";
 import FrostedPill from "../ui/FrostedPill";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
+import { SheetGlassFill } from "../ui/SheetGlass";
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { Image } from "expo-image";
 import { CommonActions, useNavigation, useNavigationState } from "@react-navigation/native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -316,6 +319,24 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
   const progress = useSharedValue(0);
   const dragging = useSharedValue(false);
 
+  // The menu stays mounted while closed. Its backdrop blur lives only from
+  // opening until the close slide has finished, so nothing samples the feed
+  // behind a menu nobody can see.
+  const [backdropLive, setBackdropLive] = useState(visible);
+  useEffect(() => {
+    if (visible) {
+      setBackdropLive(true);
+      return;
+    }
+    const timer = setTimeout(() => setBackdropLive(false), CLOSE_TIMING.duration + 40);
+    return () => clearTimeout(timer);
+  }, [visible]);
+  const backdrop = useSheetBackdrop(backdropLive);
+  // Where the backdrop already blurs the feed on Android, the panel takes the
+  // drawers' glass wash over it instead of sampling the feed a second time
+  // through its own pill material.
+  const panelOverBlur = androidGlass && backdrop.blur === "android";
+
   useEffect(() => {
     if (!dragging.value) {
       progress.value = withTiming(visible ? 1 : 0, visible ? OPEN_TIMING : CLOSE_TIMING);
@@ -507,8 +528,10 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           activeOpacity={1}
           onPress={onClose}
           accessibilityLabel={t("common.close")}
-          style={[StyleSheet.absoluteFill, { backgroundColor: androidGlass ? "transparent" : "rgba(0,0,0,0.55)" }]}
-        />
+          style={[StyleSheet.absoluteFill, { backgroundColor: "transparent" }]}
+        >
+          <SheetBackdrop backdrop={backdrop} />
+        </TouchableOpacity>
       </Animated.View>
 
       <Animated.View
@@ -525,9 +548,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
           sheetStyle,
         ]}
       >
-        {androidGlass && (
+        {panelOverBlur ? (
+          <SheetGlassFill backdropBlurred style={[StyleSheet.absoluteFill, { backgroundColor: SHEET_GLASS_FILL }]} />
+        ) : androidGlass ? (
           <FrostedPill tint={glassTint(skin?.page ?? "#0B0B0E", 0.18)} borderRadius={0} />
-        )}
+        ) : null}
         {/* Jungle's plank grain and War's HUD corners, as on the feed chrome. */}
         {!androidGlass && skin?.grain ? (
           <RNImage source={GRAIN} resizeMode="repeat" style={StyleSheet.absoluteFill} />

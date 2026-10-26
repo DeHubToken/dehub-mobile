@@ -62,6 +62,7 @@ import { toastError } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const AI_AVATAR = require("../../assets/web-icons/profile-icon.png");
 
@@ -213,6 +214,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const userAddress = user?.walletAddress || user?.address || "anon";
@@ -524,9 +526,8 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
       onRequestClose={closeSheet}
     >
       <GestureHandlerRootView style={StyleSheet.absoluteFill}>
-        <Animated.View
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.6)" }, backdropStyle]}
-        >
+        <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+          <SheetBackdrop backdrop={backdrop} />
           <TouchableOpacity
             style={StyleSheet.absoluteFill}
             activeOpacity={1}
@@ -546,7 +547,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
               sheetStyle,
             ]}
           >
-            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay]} />
+            <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View>
