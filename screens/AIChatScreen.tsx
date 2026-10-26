@@ -313,7 +313,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     if (!campaignDraft) return;
     setAttachedImage(null);
     setTemplateId(null);
-  }, [campaignDraft?.id]);
+  }, [campaignDraft?.id, walletAddress]);
   useEffect(() => {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
