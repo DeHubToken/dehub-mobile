@@ -55,6 +55,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
   }, [visible, tokenId, url]);
   const conversations = useDmContacts();
   const [search, setSearch] = useSurfaceDraft("components/DM/ShareToDmSheet.tsx:search", "");
+  const [caption, setCaption] = useSurfaceDraft("components/DM/ShareToDmSheet.tsx:caption", "", String(url ?? tokenId));
   const searchMaterial = useSearchFieldMaterial();
 
   const myUserId = (user as any)?._id || (user as any)?.id;
@@ -78,8 +79,9 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
       sendingRef.current = true;
       setSendingId(conv._id);
       const postUrl = url ?? `${WEBSITE_LINK || ""}/app/post/${tokenId}`;
-      const prefill = postTitle
-        ? `${postTitle}\n${postUrl}`
+      const message = caption.trim() || postTitle;
+      const prefill = message
+        ? `${message}\n${postUrl}`
         : postUrl;
       try {
         const other = getOtherParticipant(conv, myUserId, myAddress);
@@ -114,7 +116,7 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
         setSendingId(null);
       }
     },
-    [navigation, tokenId, url, postTitle, onClose, t, sentIds, myUserId, myAddress, ws],
+    [navigation, tokenId, url, postTitle, caption, onClose, t, sentIds, myUserId, myAddress, ws],
   );
 
   const renderItem = useCallback(
@@ -175,6 +177,18 @@ const ShareToDmSheetComponent: React.FC<ShareToDmSheetProps> = ({
           </TouchableOpacity>
         </View>
 
+        <View className="mx-4 mb-3 bg-theme-neutrals-800 rounded-xl px-3 py-2">
+          <TextInput
+            value={caption}
+            onChangeText={setCaption}
+            maxLength={500}
+            multiline
+            accessibilityLabel={t("dm.addCaption")}
+            placeholder={t("dm.addCaption")}
+            placeholderTextColor="#8B8D90"
+            className="text-theme-neutrals-100 text-sm p-0 m-0"
+          />
+        </View>
         <View className="mx-4 mb-3 bg-theme-neutrals-800 rounded-xl px-3 py-2 flex-row items-center gap-2" style={searchMaterial.surface}>
           <Ionicons name="search" size={16} color="#A1A1AA" />
           <TextInput

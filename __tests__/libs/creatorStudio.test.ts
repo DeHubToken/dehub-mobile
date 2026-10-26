@@ -99,6 +99,19 @@ describe('native Creator jobs', () => {
     expect(creatorInputIssue({ ...CREATOR_DEFAULTS.video, model: textOnly.id }, true)).toBe('creator.studioCannotAnimate');
     expect(creatorInputIssue({ ...CREATOR_DEFAULTS['3d'], model: 'trellis' }, false)).toBe('creator.studioNeedsImage');
   });
+  it('exposes image expansion with its required source and optional English prompt', () => {
+    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.image, model: 'bria-expand', aspect: '21:9' });
+    expect(settings.model).toBe('bria-expand');
+    expect(settings.aspect).toBe('1:1');
+    expect(creatorInputIssue(settings, false)).toBe('creator.studioNeedsImage');
+    expect(creatorInputIssue(settings, true, undefined, '')).toBeNull();
+    expect(creatorInputIssue(settings, true, undefined, '新背景')).toBe('creator.expandEnglishOnly');
+    expect(creatorInputIssue(settings, true, undefined, 'A sunny garden')).toBeNull();
+    const preset = { ...getTemplate('open-record-whip-pan')!, template: 'A scene — expanded detail' };
+    const resolved = prepareCreatorPrompt('A scene', preset, settings);
+    expect(resolved).toContain('—');
+    expect(creatorInputIssue(settings, true, preset, resolved)).toBe('creator.expandEnglishOnly');
+  });
 
   it('keeps the selected medium and stored settings independent of prompt keywords', () => {
     const settings = normalizeCreatorSettings(CREATOR_DEFAULTS.image);
