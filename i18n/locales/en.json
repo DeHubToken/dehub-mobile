@@ -6832,6 +6832,7 @@
     "coverFailed": "Could not change the cover"
   },
   "player": {
+    "fullscreen": "Full screen",
     "segmentLabel": {
       "filler": "Filler",
       "interaction": "Like & subscribe",
