@@ -15,6 +15,8 @@ export interface CreatorAsset {
   exportFormat?: string;
   transcript?: string;
   createdAt: number;
+  favorite?: boolean;
+  hidden?: boolean;
 }
 
 export interface CreatorAssetToSave extends CreatorAsset {
@@ -66,12 +68,17 @@ export async function saveCreatorAsset(asset: CreatorAssetToSave, walletAddress?
   }
 }
 
-export async function listCreatorAssets(offset = 0): Promise<{ jobs: CreatorAsset[]; nextOffset: number | null }> {
+export type LibraryOperation = 'favorite' | 'unfavorite' | 'hide' | 'restore';
+export async function updateCreatorSelection(ids: string[], operation: LibraryOperation, walletAddress?: string): Promise<{ completedIds: string[]; incompleteIds: string[] }> {
+  return libraryCall({ action: 'update-selection', ids, operation }, walletAddress);
+}
+
+export async function listCreatorAssets(offset = 0, filter: { hidden?: boolean; favorites?: boolean } = {}): Promise<{ jobs: CreatorAsset[]; nextOffset: number | null }> {
   const headers = await dehubAuthHeaders();
   if (!headers['x-dehub-token']) throw new Error(_translateCopy("copy.095d0fbbfc1e", { defaultValue: "Sign in to see your generations." }));
   const response = await fetch(`${env.SUPABASE_EDGE_BASE_URL}/creator-library`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', ...headers },
-    body: JSON.stringify({ action: 'list', offset }),
+    body: JSON.stringify({ action: 'list', offset, ...filter }),
   });
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || _translateCopy("copy.7c01265024ec", { defaultValue: "Could not load your generations." }));
