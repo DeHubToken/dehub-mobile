@@ -9822,6 +9822,11 @@
     }
   },
   "creator": {
+    "extensionNeedsClip": "Voeg één bronclip toe om te verlengen.",
+    "extensionSeconds": "+{{seconds}} s nieuw beeld",
+    "extensionHelp": "Geeft de bronclip terug met ongeveer vier nieuwe seconden. De uitvoer wordt aangepast tot maximaal 720p bij 24 fps. Voor de uitbreiding wordt nieuw geluid gemaakt.",
+    "extensionForward": "Voeg ongeveer vier seconden na de bronclip toe",
+    "extensionBackward": "Voeg ongeveer vier seconden vóór de bronclip toe",
     "marketing": {
     "import":  {
                    "url":  "URL van productpagina",

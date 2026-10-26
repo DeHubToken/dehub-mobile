@@ -9978,6 +9978,11 @@
     }
   },
   "creator": {
+    "extensionNeedsClip": "Attach one source clip to extend.",
+    "extensionSeconds": "+{{seconds}}s new footage",
+    "extensionHelp": "Returns your source clip with about four new seconds. Output is resized up to 720p at 24 fps. New audio is generated for the extension.",
+    "extensionForward": "Add about four seconds after your source clip",
+    "extensionBackward": "Add about four seconds before your source clip",
     "marketing": {
     "import":  {
                    "url":  "Product page URL",

@@ -9647,6 +9647,11 @@
     }
   },
   "creator": {
+    "extensionNeedsClip": "Joignez un clip source à prolonger.",
+    "extensionSeconds": "+{{seconds}} s de nouvelles images",
+    "extensionHelp": "Renvoie le clip source avec environ quatre secondes supplémentaires. La sortie est redimensionnée jusqu’à 720p à 24 i/s. Un nouvel audio est généré pour la partie ajoutée.",
+    "extensionForward": "Ajoutez environ quatre secondes après le clip source",
+    "extensionBackward": "Ajoutez environ quatre secondes avant le clip source",
     "marketing": {
     "import":  {
                    "url":  "URL de la page produit",
