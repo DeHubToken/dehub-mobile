@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
-import { Platform } from "react-native";
+import { Platform, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FloatingBottomTabBar from "./FloatingBottomTabBar";
 import { withScreenBoundary } from "../components/common/ScreenErrorFallback";
@@ -11,6 +12,7 @@ import AndroidTabScene from "../components/navigation/AndroidTabScene";
 import { useAuthState } from "../context/AuthContext";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 import { homeTabEvents } from "../libs/eventBus";
+import { useEdgeToEdgeMedia } from "../libs/edgeToEdgeMedia";
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -94,9 +96,15 @@ function BottomTabNavigator() {
 }
 
 function BottomTabNavigatorWithDrawer() {
+  // The tabs show through the Shorts viewer while it is dragged away, so they
+  // must not jump up when the window goes edge to edge for it.
+  const edgeToEdge = useEdgeToEdgeMedia();
+  const { top } = useSafeAreaInsets();
   return (
     <TabBarHideProvider>
-      <BottomTabNavigator />
+      <View style={{ flex: 1, paddingTop: edgeToEdge ? top : 0 }}>
+        <BottomTabNavigator />
+      </View>
     </TabBarHideProvider>
   );
 }
