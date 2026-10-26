@@ -60,6 +60,7 @@ import {
 import { getDeviceLanguage } from "../../services/translation.service";
 import { toastError } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const AI_AVATAR = require("../../assets/web-icons/profile-icon.png");
 
@@ -644,7 +645,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },
