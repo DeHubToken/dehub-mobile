@@ -75,6 +75,14 @@ describe('native Creator jobs', () => {
       expect(creatorDurations(model).every((value) => Number.isFinite(value) && value > 0)).toBe(true);
     }
   });
+  it('normalizes stale Seedance1080p drafts to a priced resolution', () => {
+    for (const model of ['seedance-2.0', 'seedance-2.0-fast']) {
+      expect(CREATOR_VIDEO_RULES[model].resolutions).toEqual(['480p', '720p']);
+      const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model, resolution: '1080p' });
+      expect(['480p', '720p']).toContain(settings.resolution);
+      expect(creatorVideoOptions(settings).resolution).toBe(settings.resolution);
+    }
+  });
 
   it('validates direction before presenting a payment', () => {
     expect(creatorInputIssue({ ...CREATOR_DEFAULTS.image, model: 'gemini-3.1-flash-image' }, true)).toBeNull();
