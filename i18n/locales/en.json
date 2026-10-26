@@ -9937,6 +9937,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "Export format",
+    "audioExportMp3": "MP3 · 128 kbps",
+    "audioExportWav": "WAV · 24 kHz · mono",
     "marketing": {
     "import":  {
                    "url":  "Product page URL",

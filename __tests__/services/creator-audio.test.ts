@@ -7,25 +7,30 @@ jest.mock('expo-file-system/legacy', () => ({ documentDirectory: 'file:///privat
 import { runCreatorAudio } from '../../services/creator-audio.service';
 import { dehubAuthHeaders } from '../../services/ai.service';
 import * as FileSystem from 'expo-file-system/legacy';
+import { Buffer } from 'buffer';
+import { frameSpeechPcm } from '../../libs/speechAudio';
 
 const http = jest.fn();
 const originalReader = global.FileReader;
 const originalForm = global.FormData;
+const mp3Bytes = Buffer.from([73, 68, 51, 4, 0, 0, 0, 0, 0, 0, 255, 251, 144, 0]);
+let encodedAudio = mp3Bytes.toString('base64');
 class TestFormData {
   parts: [string, unknown][] = [];
   append(key: string, value: unknown) { this.parts.push([key, value]); }
 }
 class TestReader {
-  result = 'data:audio/mpeg;base64,YXVkaW8=';
+  result = `data:audio/mpeg;base64,${encodedAudio}`;
   onloadend?: () => void;
   readAsDataURL() { this.onloadend?.(); }
 }
-const audioResponse = (type = 'audio/mpeg', size = 5) => ({ ok: true,
+const audioResponse = (type = 'audio/mpeg', size = 14) => ({ ok: true,
   headers: { get: (name: string) => name === 'Content-Type' ? type : null }, blob: async () => ({ size }),
 });
 
 beforeEach(() => {
   jest.clearAllMocks();
+  encodedAudio = mp3Bytes.toString('base64');
   global.fetch = http;
   global.FileReader = TestReader as unknown as typeof FileReader;
   global.FormData = TestFormData as unknown as typeof FormData;
@@ -41,7 +46,25 @@ it('authenticates JSON speech and writes a durable private MP3 before returning'
     headers: expect.objectContaining({ 'x-dehub-token': 'owner-token', 'x-wallet-address': 'alice', apikey: 'public', 'Content-Type': 'application/json' }),
     body: expect.stringContaining('"text":"Hello"'),
   }));
-  expect(FileSystem.writeAsStringAsync).toHaveBeenCalledWith('file:///private/creator-audio/result-id.mp3', 'YXVkaW8=', { encoding: 'base64' });
+  expect(FileSystem.writeAsStringAsync).toHaveBeenCalledWith('file:///private/creator-audio/result-id.mp3', mp3Bytes.toString('base64'), { encoding: 'base64' });
+});
+
+it('requests WAV speech and saves only a matching RIFF container with its actual extension', async () => {
+  const wave = frameSpeechPcm(new Uint8Array([0, 0, 255, 127]).buffer, 24000);
+  encodedAudio = Buffer.from(wave).toString('base64');
+  http.mockResolvedValue(audioResponse('audio/wav', wave.byteLength));
+  expect(await runCreatorAudio('Hello', { task: 'speech', outputFormat: 'wav_24000' }, 'alice')).toEqual({ audioUrl: 'file:///private/creator-audio/result-id.wav' });
+  expect(JSON.parse(http.mock.calls[0][1].body).outputFormat).toBe('wav_24000');
+  expect(FileSystem.writeAsStringAsync).toHaveBeenCalledWith('file:///private/creator-audio/result-id.wav', encodedAudio, { encoding: 'base64' });
+});
+
+it('rejects mislabeled MP3 or JSON bytes instead of saving a fake WAV', async () => {
+  http.mockResolvedValue(audioResponse('audio/wav'));
+  await expect(runCreatorAudio('Hello', { task: 'speech', outputFormat: 'wav_24000' })).rejects.toThrow('invalid');
+  encodedAudio = Buffer.from('{"error":"not audio"}').toString('base64');
+  http.mockResolvedValue(audioResponse());
+  await expect(runCreatorAudio('Hello', { task: 'speech' })).rejects.toThrow('invalid');
+  expect(FileSystem.writeAsStringAsync).not.toHaveBeenCalled();
 });
 
 it('sends native multipart media without setting a JSON content type', async () => {

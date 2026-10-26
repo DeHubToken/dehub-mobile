@@ -9578,6 +9578,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "Dışa aktarma biçimi",
+    "audioExportMp3": "MP3 · 128 kbit/sn",
+    "audioExportWav": "WAV · 24 kHz · tek kanal",
     "marketing": {
     "import":  {
                    "url":  "Ürün sayfası URL’si",
