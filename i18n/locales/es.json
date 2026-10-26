@@ -9647,6 +9647,7 @@
                                       "video":  "Vídeo vertical"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Este chat reproduce la grabación privada guardada en este dispositivo. En otro dispositivo, abre tu biblioteca de Creator cuando termine el guardado en la nube. Si sales ahora, vuelve a abrir este chat para terminar de guardar.",
     "cinema":  {
                    "title":  "Dirección cinematográfica",
                    "hint":  "Define el estilo visual de tu próxima imagen o vídeo. Los resultados varían según el modelo.",

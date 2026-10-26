@@ -18,6 +18,7 @@ import {
 
 interface Props {
   prompt?: string;
+  draftScope?: string;
   settings: CreatorStudioSettings;
   onChange: (settings: CreatorStudioSettings) => void;
   onMode: (mode: CreatorMode) => void;
@@ -31,7 +32,7 @@ interface Props {
 
 const MODE_ICONS: Record<CreatorMode, IconName> = { image: 'Image', video: 'Video', audio: 'Music', '3d': 'Package' };
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, onRemake, disabled, prompt = '' }: Props) {
+export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, onRemake, disabled, prompt = '', draftScope }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
@@ -165,7 +166,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
           className="rounded-xl bg-theme-neutrals-800 px-3 py-2 text-theme-neutrals-100" />}
       </View>}
       <CinemaDirectionControls value={settings.cinemaDirection ?? {}} onChange={cinemaDirection => onChange({ ...settings, cinemaDirection })} mode={settings.mode} disabled={disabled} />
-      {settings.mode === 'audio' && <CreatorAudioControls value={settings.audioSettings} text={prompt} disabled={disabled} onChange={audioSettings => onChange({ ...settings, audioSettings })} />}
+      {settings.mode === 'audio' && <CreatorAudioControls value={settings.audioSettings} text={prompt} disabled={disabled} scopeKey={draftScope} onChange={audioSettings => onChange({ ...settings, audioSettings })} />}
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
         <View className="flex-1 justify-end bg-black/70">
           <Pressable className="flex-1" onPress={() => setPicker(null)} accessibilityLabel={t('common.close')} />

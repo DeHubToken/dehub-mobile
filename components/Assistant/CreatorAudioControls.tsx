@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { useTranslation } from 'react-i18next';
 import { CREATOR_AUDIO_TASKS, CREATOR_AUDIO_VOICES, CREATOR_SPEECH_MODELS, type CreatorAudioSettings, type CreatorAudioTask } from '../../libs/creatorAudio';
 import { toastError } from '../../libs/toast';
+import { useUser } from '../../context/AuthContext';
 
-interface Props { value?: CreatorAudioSettings; onChange: (value: CreatorAudioSettings | undefined) => void; text: string; disabled: boolean }
-export function CreatorAudioControls({ value, onChange, text, disabled }: Props) {
+interface Props { value?: CreatorAudioSettings; onChange: (value: CreatorAudioSettings | undefined) => void; text: string; disabled: boolean; scopeKey?: string }
+export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey }: Props) {
   const { t } = useTranslation();
+  const user = useUser();
+  const owner = user?.walletAddress || user?.address;
+  const active = useRef({ owner, scopeKey, value });
+  active.current = { owner, scopeKey, value };
   const spec = value ? CREATOR_AUDIO_TASKS[value.task] : undefined;
   const chip = (label: string, onPress: () => void, selected = false) => <Pressable key={label} onPress={onPress} disabled={disabled}
     accessibilityRole="button" accessibilityState={{ selected, disabled }} className={`rounded-xl border px-3 py-2 ${selected ? 'border-theme-neutrals-100' : 'border-theme-neutrals-700'}`}>
     <Text className="text-xs text-theme-neutrals-100">{label}</Text></Pressable>;
   const pick = async () => {
     if (!value) return;
+    const original = active.current;
     try {
       const result = await DocumentPicker.getDocumentAsync({ type: value.task === 'voice-changer' ? 'audio/*' : ['audio/*', 'video/*'], copyToCacheDirectory: true, multiple: false });
       if (result.canceled) return;
+      if (active.current.owner !== original.owner || active.current.scopeKey !== original.scopeKey || active.current.value !== original.value) return;
       const file = result.assets[0];
       if (!file.size || file.size > 100 * 1024 * 1024) { toastError(t('creator.fileTooLarge')); return; }
       onChange({ ...value, media: { uri: file.uri, name: file.name, mimeType: file.mimeType || '', size: file.size } });

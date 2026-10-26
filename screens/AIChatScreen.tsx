@@ -1221,14 +1221,14 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           const context = audioContext.current;
           try {
             const result = await runCreatorAudio(text, creator.audioSettings, walletAddress);
-            if (audioContext.current.walletAddress !== context.walletAddress || audioContext.current.conversationId !== context.conversationId) return;
-            await saveMessage([...history, { role: 'assistant', content: result.transcript || '', ...(result.audioUrl ? { audioUrl: result.audioUrl } : {}) }]);
-            pendingDraftCompletion.current();
-            scrollToEnd();
-          } catch (error) {
+            // saveMessage retains its submitting account and conversation even after navigation.
+            await saveMessage([...history, { id: newTurnId(), role: 'assistant', content: result.transcript || t('creator.audioLibraryPlaybackHint'), ...(result.audioUrl ? { audioUrl: result.audioUrl } : {}) }]);
             if (audioContext.current.walletAddress === context.walletAddress && audioContext.current.conversationId === context.conversationId) {
-              await saveMessage([...history, { role: 'assistant', content: describeError(error), isError: true }]);
+              pendingDraftCompletion.current();
+              scrollToEnd();
             }
+          } catch (error) {
+            await saveMessage([...history, { role: 'assistant', content: describeError(error), isError: true }]);
           }
           return;
         }
@@ -1840,11 +1840,12 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       if (!request?.id || !request.creatorSettings || message.isError || message.isVideoGenerating || message.isToolProcessing) continue;
       if (request.creatorOwner && request.creatorOwner !== walletAddress.toLowerCase()) continue;
       const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
-      if (!url) continue;
-      const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
+      const transcript = request.creatorSettings.audioSettings?.task === 'transcribe' ? message.content : undefined;
+      if (!url && !transcript) continue;
+      const kind = transcript ? 'audio' : message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
       const id = creatorAssetId(request.id, message.id, kind, request.creatorAssetScheme);
       const saveKey = `${walletAddress}:${id}`;
-      if (kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
+      if (url && kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
         deliveredEditorResults.current.add(id);
         onGenerated({ url, kind, name: request.content });
       }
@@ -1858,6 +1859,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       const creator = request.creatorSettings;
       const audioTask = creator.mode === 'audio' ? creator.audioSettings?.task : undefined;
       const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: audioTask ?? creator.model,
+        transcript,
         posterUrl: message.modelUrl ? message.imageUrl : undefined,
         resolvedPrompt: prepareCreatorPrompt(request.content, getTemplate(request.templateId)),
         modelName: audioTask ? t(CREATOR_AUDIO_TASKS[audioTask].label) : creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
@@ -1989,7 +1991,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         )}
         <AssistantInputBar
           controls={studio ? <>
-        <CreatorStudioControls settings={studioSettings} prompt={input} onChange={next => {
+        <CreatorStudioControls settings={studioSettings} prompt={input} draftScope={draftScope} onChange={next => {
           const selectedTemplate = getTemplate(templateId);
           if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
           setStudioSettings(next);
