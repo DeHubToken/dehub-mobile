@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { NavigationContext } from "@react-navigation/native";
+import { ScreenNames } from "../../navigation/ScreenNames";
 import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import GlassModal from "../ui/GlassModal";
@@ -19,6 +21,8 @@ interface ScheduleSheetProps {
   minimumMinutes?: number;
   /** Words on the tips under the time. Defaults to a post. */
   kind?: ScheduleKind;
+  /** Moving something already planned: no "Remove schedule", no Planned link. */
+  moving?: boolean;
 }
 
 const STEP = 15;
@@ -42,8 +46,10 @@ const firstSlot = (minAhead: number) => {
  * pick, or choose a day from the strip and step the time. Page-kit chips and
  * buttons so every theme draws it like the rest of the app.
  */
-export default function ScheduleSheet({ visible, onClose, scheduledDate, onSchedule, title, minimumMinutes = 0, kind = "post" }: ScheduleSheetProps) {
+export default function ScheduleSheet({ visible, onClose, scheduledDate, onSchedule, title, minimumMinutes = 0, kind = "post", moving = false }: ScheduleSheetProps) {
   const { t } = useTranslation();
+  // Optional: the sheet also opens from modals that sit outside a navigator.
+  const navigation = useContext(NavigationContext);
   const c = useKitColors();
   const field = useSearchFieldMaterial();
   const locale = appLocale();
@@ -245,7 +251,19 @@ export default function ScheduleSheet({ visible, onClose, scheduledDate, onSched
             onPress={handleConfirm}
             disabled={!validTime}
           />
-          {scheduledDate ? <KitButton variant="quiet" label={t("whenSheet.remove", { defaultValue: "Remove schedule" })} onPress={handleClear} /> : null}
+          {scheduledDate && !moving ? <KitButton variant="quiet" label={t("whenSheet.remove", { defaultValue: "Remove schedule" })} onPress={handleClear} /> : null}
+          {!moving && navigation ? (
+            <Pressable
+              accessibilityRole="link"
+              onPress={() => {
+                onClose();
+                navigation.navigate(ScreenNames.Planned as never);
+              }}
+              style={styles.plannedLink}
+            >
+              <Text style={styles.plannedLinkText}>{t("planned.seeAll", { defaultValue: "See everything you have planned" })}</Text>
+            </Pressable>
+          ) : null}
         </View>
       </ScrollView>
     </GlassModal>
@@ -261,6 +279,8 @@ const styles = StyleSheet.create({
   typeInput: { flex: 1, color: "#FFFFFF", fontSize: 14, fontWeight: "500", paddingVertical: 0 },
   parsed: { color: "#FFFFFF", fontSize: 12, fontWeight: "600", marginTop: -6 },
   help: { color: "rgba(255,255,255,0.6)", fontSize: 12, marginTop: -6 },
+  plannedLink: { alignSelf: "center", paddingVertical: 6 },
+  plannedLinkText: { color: "rgba(255,255,255,0.55)", fontSize: 12 },
   pickGrid: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   pickCell: { width: "48.5%" },
   pick: { borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10, gap: 2 },

@@ -113,6 +113,7 @@ export enum ScreenNames {
   // Comments expand inline in the card (as on web) — there is no detail route.
   FeatureRequests = 'FeatureRequests',
   Feedback = 'Feedback',
+  Planned = 'Planned',
   Usernames = 'Usernames',
   Fractions = 'Fractions',
   Accounts = 'Accounts',
