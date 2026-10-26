@@ -13,7 +13,8 @@ import SkeletonBlock from '../Feed/SkeletonBlock';
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { GestureDetector } from "react-native-gesture-handler";
 import { Image } from "expo-image";
 
@@ -21,6 +22,7 @@ import Icon, { type IconName } from "../ui/Icon";
 import { FEED_SIDE } from "../Home/feedLayout";
 import SectionHeader from "./SectionHeader";
 import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from "../../hooks/useSearchFieldMaterial";
 
 export interface ChartShelfRow {
   id: string;
@@ -47,6 +49,10 @@ function ChartShelf<S extends string>({
   emptyText,
   thumbs = "none",
   renderSelected,
+  search = "",
+  onSearchChange,
+  moreRows,
+  searchingMore = false,
 }: {
   icon: IconName;
   title: string;
@@ -61,15 +67,32 @@ function ChartShelf<S extends string>({
   thumbs?: "none" | "wide" | "square";
   /** `next` moves the pick one down the chart, wrapping at the end. */
   renderSelected: (id: string, controls: { next: () => void }) => React.ReactNode;
+  /** The search text; the chart shows a search box when `onSearchChange` is set. */
+  search?: string;
+  onSearchChange?: (search: string) => void;
+  /** Matches from the whole zone, listed after the chart's own matches. */
+  moreRows?: ChartShelfRow[];
+  searchingMore?: boolean;
 }) {
+  const { t } = useTranslation();
+  const searchField = useSearchFieldMaterial();
   const scrollGuard = useHorizontalScrollGuard();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const listRef = useRef<ScrollView>(null);
-  const selected = rows.find(row => row.id === selectedId) || rows[0];
-  const selectedIndex = selected ? rows.indexOf(selected) : -1;
+  const query = search.trim().toLocaleLowerCase();
+  const chartMatches = query
+    ? rows.filter(row => `${row.title} ${row.subtitle ?? ""}`.toLocaleLowerCase().includes(query))
+    : rows;
+  const shown = new Set(chartMatches.map(row => row.id));
+  const listRows = query && moreRows?.length
+    ? [...chartMatches, ...moreRows.filter(row => !shown.has(row.id) && (shown.add(row.id), true))]
+    : chartMatches;
+  const selected = listRows.find(row => row.id === selectedId) || listRows[0];
+  const selectedIndex = selected ? listRows.indexOf(selected) : -1;
+  const chartRank = (row: ChartShelfRow) => rows.indexOf(row);
   const sortName = sorts.find(option => option.value === sort)?.label;
   const next = () => {
-    if (rows.length > 1) setSelectedId(rows[(selectedIndex + 1) % rows.length].id);
+    if (listRows.length > 1) setSelectedId(listRows[(selectedIndex + 1) % listRows.length].id);
   };
 
   // A new order starts at its number one, scrolled back to the top.
@@ -102,6 +125,30 @@ function ChartShelf<S extends string>({
   return (
     <View style={styles.section}>
       <SectionHeader icon={icon} title={title} count={count} />
+      {onSearchChange && (
+        <View style={[styles.search, searchField.surface]}>
+          <Icon name="Search" size={16} color="rgba(255,255,255,.6)" />
+          <TextInput
+            value={search}
+            onChangeText={onSearchChange}
+            onFocus={searchField.onFocus}
+            onBlur={searchField.onBlur}
+            placeholder={t("common.search", { defaultValue: "Search" })}
+            placeholderTextColor="rgba(255,255,255,.5)"
+            accessibilityLabel={`${t("common.search", { defaultValue: "Search" })}: ${title}`}
+            style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+            autoCapitalize="none"
+            autoCorrect={false}
+            returnKeyType="search"
+          />
+          {searchingMore && <ActivityIndicator size="small" color="rgba(255,255,255,.6)" />}
+          {!!search && !searchingMore && (
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={t("sidebar.clearSearch", { defaultValue: "Clear search" })} onPress={() => onSearchChange("")} hitSlop={10}>
+              <Icon name="X" size={16} color="rgba(255,255,255,.6)" />
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
       {scrollGuard ? <GestureDetector gesture={scrollGuard}>{chips}</GestureDetector> : chips}
       {loading ? (
         <View style={styles.body}>
@@ -109,18 +156,25 @@ function ChartShelf<S extends string>({
           {[0, 1, 2].map(i => <SkeletonBlock key={i} style={styles.skeletonRow} />)}
         </View>
       ) : !selected ? (
-        <Text style={styles.empty}>{emptyText}</Text>
+        <Text style={styles.empty}>
+          {query
+            ? searchingMore ? t("explorePage.searching", { defaultValue: "Searching..." }) : t("explorePage.noResults", { defaultValue: "No results found" })
+            : emptyText}
+        </Text>
       ) : (
         <View style={styles.body}>
           <View style={{ gap: 8 }}>
-            <View style={styles.rankChip}>
-              <Text style={styles.rankChipText}>#{selectedIndex + 1}{sortName ? ` · ${sortName}` : ""}</Text>
-            </View>
+            {chartRank(selected) >= 0 && (
+              <View style={styles.rankChip}>
+                <Text style={styles.rankChipText}>#{chartRank(selected) + 1}{sortName ? ` · ${sortName}` : ""}</Text>
+              </View>
+            )}
             {renderSelected(selected.id, { next })}
           </View>
           <ScrollView ref={listRef} nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.list} contentContainerStyle={{ gap: 2 }}>
-            {rows.map((row, index) => {
+            {listRows.map(row => {
               const current = row.id === selected.id;
+              const index = chartRank(row);
               return (
                 <TouchableOpacity
                   key={row.id}
@@ -129,7 +183,7 @@ function ChartShelf<S extends string>({
                   onPress={() => setSelectedId(row.id)}
                   style={[styles.row, current && styles.rowActive]}
                 >
-                  <Text style={[styles.rank, index < 3 && styles.rankTop]}>{String(index + 1).padStart(2, "0")}</Text>
+                  <Text style={[styles.rank, index >= 0 && index < 3 && styles.rankTop]}>{index >= 0 ? String(index + 1).padStart(2, "0") : "–"}</Text>
                   {thumbs !== "none" && (
                     <View style={[styles.thumb, thumbs === "square" && styles.thumbSquare]}>
                       {row.thumb
@@ -158,6 +212,8 @@ export default ChartShelf;
 
 const styles = StyleSheet.create({
   section: { marginBottom: 24 },
+  search: { flexDirection: "row", alignItems: "center", gap: 8, marginHorizontal: FEED_SIDE, marginBottom: 6, paddingHorizontal: 12, height: 40, borderRadius: 12 },
+  searchInput: { flex: 1, color: "#fff", fontSize: 14, padding: 0 },
   chips: { gap: 6, paddingHorizontal: FEED_SIDE, paddingBottom: 14 },
   chip: { paddingHorizontal: 10, paddingTop: 9, paddingBottom: 11 },
   chipText: { color: "#fff", fontSize: 13, fontWeight: "500" },
