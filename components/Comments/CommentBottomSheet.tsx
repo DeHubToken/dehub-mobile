@@ -30,6 +30,7 @@ import {
 } from "../../theme/minimal";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const SHEET_FRACTION = 0.82;
 
@@ -117,6 +118,8 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const translateY = slideOffset ?? ownTranslateY;
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
+  // The inline Shorts sheet has no backdrop: it sits inside the feed.
+  const backdrop = useSheetBackdrop(!inline);
   const [activeTab, setActiveTab] = useState<SheetTab>("comments");
   /** Something unsent in the composer — CommentSection tells us. */
   const [hasUnsent, setHasUnsent] = useState(false);
@@ -254,9 +257,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   const content = (
       <GestureHandlerRootView style={{ flex: 1 }}>
         {visible && Platform.OS === "android" && <ProfileOpenWatcher onProfileOpen={stepAsideForProfile} />}
+        {/* The page behind is blurred, fading in and out with the sheet. */}
         {!inline && <Animated.View
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
+          style={[StyleSheet.absoluteFill, backdropStyle]}
         >
+          <SheetBackdrop backdrop={backdrop} />
           <Pressable style={{ flex: 1 }} onPress={requestClose} />
         </Animated.View>}
 
@@ -273,7 +278,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
               playing video can't bleed through the rows of text. The inline
               Shorts sheet sits inside the feed it would sample, so it keeps
               the near-solid wash. */}
-          <SheetGlassFill blur={!inline} style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
+          <SheetGlassFill blur={!inline} backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
 
           {/* The handle and the tab row both start the swipe down — the 24dp
               handle alone was too thin a target. */}
