@@ -40,6 +40,13 @@ export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey
       {spec?.usesVoice && <ScrollView horizontal contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
         {CREATOR_AUDIO_VOICES.map(voice => chip(voice.name, () => onChange({ ...value, voiceId: voice.id }), (value.voiceId || CREATOR_AUDIO_VOICES[0].id) === voice.id))}
       </ScrollView>}
+      {value.task === 'speech' && <View className="gap-1">
+        <Text className="text-xs text-theme-neutrals-400">{t('creator.audioExportFormat')}</Text>
+        <View className="flex-row gap-2">
+          {chip(t('creator.audioExportMp3'), () => onChange({ ...value, outputFormat: 'mp3_44100_128' }), value.outputFormat !== 'wav_24000')}
+          {chip(t('creator.audioExportWav'), () => onChange({ ...value, outputFormat: 'wav_24000' }), value.outputFormat === 'wav_24000')}
+        </View>
+      </View>}
       {value.task === 'speech' && <ScrollView horizontal contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
         {CREATOR_SPEECH_MODELS.map(modelId => chip(modelId.replace('eleven_', '').replace(/_/g, ' '), () => onChange({ ...value, modelId }), (value.modelId || CREATOR_SPEECH_MODELS[0]) === modelId))}
       </ScrollView>}
