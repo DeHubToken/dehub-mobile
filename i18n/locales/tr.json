@@ -8131,7 +8131,9 @@
       "pptx": "PowerPoint sunumu",
       "pptxHint": "Her sayfa, sunucu notları ve bağlantıları ile bir slayt görüntüsü haline gelir. Özgün tasarımdaki tek tek metin ve öğeleri düzenleyin.",
       "section": "Adlandırılmış bölüm",
-      "transparent": "Şeffaf arka plan"
+      "transparent": "Şeffaf arka plan",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Zaman çizelgenizi FCPXML ve Premiere XML olarak tüm medya dosyalarıyla birlikte ZIP halinde indirir; düzenlemeyi Premiere Pro, Final Cut Pro veya DaVinci Resolve'da bitirebilirsiniz. Metinler işaretçiye dönüşür, efektler DeHub'da kalır."
     },
     "adjust": {
       "auto": "Otomatik iyileştir",
@@ -9659,6 +9661,16 @@
       "selection": "Seçim",
       "zoomIn": "Tuvali yakınlaştır",
       "zoomOut": "Tuvali uzaklaştır"
+    },
+    "clipFix": {
+      "detach": "Sesi ayır",
+      "detached": "Ses ayrı bir klibe taşındı",
+      "detachFailed": "Bu klibin sesi ayrılamadı",
+      "removeBars": "Siyah bantları kaldır",
+      "scanning": "Kareler kontrol ediliyor…",
+      "noBars": "Siyah bant bulunamadı",
+      "barsRemoved": "Siyah bantlar kırpıldı",
+      "barsFailed": "Bu videoda siyah bant kontrolü yapılamadı"
     }
   },
   "creator": {
