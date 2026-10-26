@@ -6281,6 +6281,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "shareLink": "Deel skakel",
+    "sendInMessage": "Stuur uitnodiging",
     "existingPost": {
       "add": "Voeg 'n bestaande pos by",
       "added": "Post bygevoeg aan die gemeenskap",

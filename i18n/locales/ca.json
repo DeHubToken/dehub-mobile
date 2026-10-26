@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} fitxes"
   },
   "communities": {
+    "shareLink": "Comparteix l'enllaç",
+    "sendInMessage": "Envia invitació",
     "existingPost": {
       "add": "Afegir post existent",
       "added": "Post afegit a la comunitat",

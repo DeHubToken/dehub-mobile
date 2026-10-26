@@ -3800,6 +3800,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "shareLink": "Compartir enlace",
+    "sendInMessage": "Enviar invitación",
     "followerInvites": {
       "title": "Invitar seguidores",
       "detail": "Elige hasta 50 seguidores por lote. Se omiten los mensajes privados cerrados o de pago. Revisa el chat para comprobar los envíos sin confirmar antes de reintentarlo.",

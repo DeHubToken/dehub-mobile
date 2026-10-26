@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} токен"
   },
   "communities": {
+    "shareLink": "Шилтемени бөлүшүү",
+    "sendInMessage": "Чакырууну жөнөтүү",
     "existingPost": {
       "add": "Учурдагы постту кошуу",
       "added": "Post коомчулукка кошулду",

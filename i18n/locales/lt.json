@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} žetonai"
   },
   "communities": {
+    "shareLink": "Dalytis nuoroda",
+    "sendInMessage": "Siųsti kvietimą",
     "existingPost": {
       "add": "Pridėti esamą įrašą",
       "added": "Įrašas pridėtas prie bendruomenės",

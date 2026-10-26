@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} թոքեն"
   },
   "communities": {
+    "shareLink": "Կիսվել հղումով",
+    "sendInMessage": "Ուղարկել հրավեր",
     "existingPost": {
       "add": "Ավելացնել առկա գրառում",
       "added": "Գրառումն ավելացվել է համայնքին",

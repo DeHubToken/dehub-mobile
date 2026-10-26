@@ -6121,6 +6121,8 @@
     "pendingRetired": "このデポジットはネットワーク上で保留状態ではありません。トラッキングがクリアされました。ウォレットの活動を確認して、再度デポジットする前に。"
   },
   "communities": {
+    "shareLink": "URLをシェア",
+    "sendInMessage": "招待状を送る",
     "title": "コミュニティ",
     "create": "作成",
     "searchPlaceholder": "コミュニティを検索...",
