@@ -531,7 +531,35 @@ canvas{display:block;width:100%;height:100%;}
   __PHOTO_TONE_RUNTIME__
   var scratch = null;
   var stillGradeCache = new WeakMap();
-  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette || needsPhotoTone(e)); }
+  function needsGrade(e) { return !!e && (!!e.warmth || !!e.tint || !!e.vignette || !!e.scanlines || !!e.halation || needsPhotoTone(e)); }
+  var glowScratch = null;
+  // Red glow from a tiny copy of the frame scaled back up (web render.ts drawHalation).
+  function drawHalation(g, source, cw, ch, amount) {
+    var sw = Math.max(1, Math.round(cw / 24)), sh = Math.max(1, Math.round(ch / 24));
+    if (!glowScratch) glowScratch = document.createElement("canvas");
+    if (glowScratch.width !== sw) glowScratch.width = sw;
+    if (glowScratch.height !== sh) glowScratch.height = sh;
+    var s = glowScratch.getContext("2d");
+    if (!s) return;
+    s.globalCompositeOperation = "copy"; s.globalAlpha = 1;
+    s.drawImage(source, 0, 0, sw, sh);
+    s.globalCompositeOperation = "multiply"; s.fillStyle = "#ff5a3c"; s.fillRect(0, 0, sw, sh);
+    g.globalCompositeOperation = "screen";
+    g.globalAlpha = Math.min(1, amount) * 0.6;
+    g.imageSmoothingEnabled = true;
+    g.drawImage(glowScratch, 0, 0, sw, sh, -cw * 0.02, -ch * 0.02, cw * 1.04, ch * 1.04);
+  }
+  function drawScanlines(g, cw, ch, amount) {
+    var pitch = Math.max(3, ch / 160);
+    g.globalCompositeOperation = "source-over";
+    g.fillStyle = "#000000";
+    for (var y = 0; y < ch; y += pitch) {
+      g.globalAlpha = Math.min(1, amount) * 0.4;
+      g.fillRect(0, y, cw, pitch * 0.35);
+      g.globalAlpha = Math.min(1, amount) * 0.18;
+      g.fillRect(0, y + pitch * 0.35, cw, pitch * 0.2);
+    }
+  }
   function grade(el, sx, sy, sw, sh, w, h, e) {
     var k = Math.min(1, 1600 / Math.max(w, h));
     var cw = Math.max(1, Math.round(w * k));
@@ -574,6 +602,10 @@ canvas{display:block;width:100%;height:100%;}
       g.fillStyle = grad;
       g.fillRect(0, 0, cw, ch);
     }
+    var halation = Math.max(0, Math.min(1, e.halation || 0));
+    if (halation) drawHalation(g, scratch, cw, ch, halation);
+    var scanlines = Math.max(0, Math.min(1, e.scanlines || 0));
+    if (scanlines) drawScanlines(g, cw, ch, scanlines);
     // Put the source's own transparency back, so a cut-out never tints what is under it.
     g.globalCompositeOperation = "destination-in";
     g.globalAlpha = 1;
@@ -985,8 +1017,18 @@ canvas{display:block;width:100%;height:100%;}
       case "slide-right": return { alpha: 1, translateX: p * W };
       case "wipe-left": return { alpha: 1, translateX: 0, clipRect: { x: 0, w: W * (1 - p) } };
       case "wipe-right": return { alpha: 1, translateX: 0, clipRect: { x: W * p, w: W * (1 - p) } };
+      case "zoom-in": return { alpha: 1 - p, translateX: 0, scale: 1 + 0.25 * easeOutQuad(p) };
+      case "zoom-out": return { alpha: 1 - p, translateX: 0, scale: 1 - 0.2 * easeOutQuad(p) };
+      case "fly-up": return { alpha: 1 - p * 0.4, translateX: 0, shiftY: -easeOutQuad(p), scale: 1 - 0.1 * p };
+      case "fly-down": return { alpha: 1 - p * 0.4, translateX: 0, shiftY: easeOutQuad(p), scale: 1 - 0.1 * p };
     }
     return { alpha: 1, translateX: 0 };
+  }
+  function easeOutQuad(p) { return 1 - (1 - p) * (1 - p); }
+  // Offset and scale an op about the canvas centre (web transitions.ts applyRenderOpMotion).
+  function applyOpMotion(c, op, W, H) {
+    if (op.translateX || op.shiftY) c.translate(op.translateX || 0, (op.shiftY || 0) * H);
+    if (op.scale && op.scale !== 1) { c.translate(W / 2, H / 2); c.scale(op.scale, op.scale); c.translate(-W / 2, -H / 2); }
   }
   function incomingOps(tr, p, W) {
     p = Math.max(0, Math.min(1, p));
@@ -996,6 +1038,10 @@ canvas{display:block;width:100%;height:100%;}
       case "slide-right": return { alpha: 1, translateX: -(1 - p) * W };
       case "wipe-left": return { alpha: 1, translateX: 0, clipRect: { x: W * (1 - p), w: W * p } };
       case "wipe-right": return { alpha: 1, translateX: 0, clipRect: { x: 0, w: W * p } };
+      case "zoom-in": return { alpha: p, translateX: 0, scale: 0.8 + 0.2 * easeOutQuad(p) };
+      case "zoom-out": return { alpha: p, translateX: 0, scale: 1.25 - 0.25 * easeOutQuad(p) };
+      case "fly-up": return { alpha: 1, translateX: 0, shiftY: 1 - easeOutQuad(p) };
+      case "fly-down": return { alpha: 1, translateX: 0, shiftY: -(1 - easeOutQuad(p)) };
     }
     return { alpha: 1, translateX: 0 };
   }
@@ -1039,7 +1085,7 @@ canvas{display:block;width:100%;height:100%;}
   function drawOps(c, W, H, ops, t) {
     ops.forEach(function (op) {
       c.save();
-      if (op.translateX) c.translate(op.translateX, 0);
+      applyOpMotion(c, op, W, H);
       if (op.clipRect) { c.beginPath(); c.rect(op.clipRect.x, 0, op.clipRect.w, H); c.clip(); }
       c.globalAlpha = op.alpha;
       drawClip(c, W, H, op.clip, t, localTimeOf(op, t));
