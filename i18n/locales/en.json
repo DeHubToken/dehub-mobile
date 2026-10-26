@@ -9978,6 +9978,11 @@
     }
   },
   "creator": {
+    "extensionNeedsClip": "Attach one source clip to extend.",
+    "extensionSeconds": "+{{seconds}}s new footage",
+    "extensionHelp": "Returns your source clip with about four new seconds. Output is resized up to 720p at 24 fps. New audio is generated for the extension.",
+    "extensionForward": "Add about four seconds after your source clip",
+    "extensionBackward": "Add about four seconds before your source clip",
     "expandDescription": "Generate new image borders. Optional English prompt; one source image.",
     "expandPromptHint": "Attach one image and choose its new aspect ratio. English prompt optional.",
     "expandEnglishOnly": "This expansion model accepts English prompts. Leave the prompt empty for automatic expansion.",
