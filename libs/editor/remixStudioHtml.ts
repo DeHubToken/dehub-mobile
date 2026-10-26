@@ -128,12 +128,12 @@ async function start() {
     recorder.onerror=()=>liveError(new Error('Recording failed. Please try another take.'));
     recorder.onstop=()=>{capture?.getTracks().forEach(t=>t.stop());capture=null;source.pause();if(monitor)monitor.gain.value=0;if(!discarded && chunks.length && measured>.25){result=new Blob(chunks,{type:mime.split(';')[0]});resultUrl=URL.createObjectURL(result);$('review').src=resultUrl;$('review').hidden=false;$('stage').hidden=true;status('Review your take before using it.');}chunks=[];controls();};
     sourceGain.gain.value=Number($('sourceVolume').value);monitor.gain.value=1;
-    await source.play();if(closed || !counting)return;
+    await source.play();if(closed || !counting){source.pause();capture?.getTracks().forEach(t=>t.stop());capture=null;return;}
     started=performance.now();recording=true;counting=false;recorder.start(500);controls();status('Recording');
     const r=range();recordTimer=setTimeout(()=>stop(),1000*(config.mode==='cut'?Math.min(60,r.cut+Number($('length').value)):r.duration));
   }catch(error){counting=false;recording=false;capture?.getTracks().forEach(t=>t.stop());capture=null;source.pause();if(monitor)monitor.gain.value=0;liveError(error);controls();}
 }
-function stop(discard=false){discarded ||= discard;counting=false;clearTimeout(recordTimer);measured=recording?(performance.now()-started)/1000:0;recording=false;source.pause();if(monitor)monitor.gain.value=0;if(recorder && recorder.state!=='inactive')recorder.stop();else controls();}
+function stop(discard=false){discarded ||= discard;counting=false;clearTimeout(recordTimer);if(recording)measured=(performance.now()-started)/1000;recording=false;source.pause();if(monitor)monitor.gain.value=0;if(recorder && recorder.state!=='inactive')recorder.stop();else{capture?.getTracks().forEach(t=>t.stop());capture=null;controls();}}
 function dispose(){if(closed)return;closed=true;stop(true);clearTimeout(countTimer);cancelAnimationFrame(animation);stream?.getTracks().forEach(t=>t.stop());stream=null;segmenter?.close();segmenter=null;audio?.close();if(resultUrl)URL.revokeObjectURL(resultUrl);source.removeAttribute('src');source.load();}
 $('title').textContent=names[config.mode] || 'Remix';$('credit').textContent='Source: '+(config.creator ? '@'+config.creator+' · ' : '')+config.title;
 $('hint').textContent=config.mode==='green-screen'?'Your background is removed live. Drag to move yourself; pinch or scroll to resize.':'Choose your source range and layout, then record your response.';
