@@ -52,8 +52,11 @@ export default function StatusBarFrost() {
   const blurAndroid = androidFrostSupported && !!target && surfaceActive && !scrolling;
   const tint = hexToRgba(base, Platform.OS === "ios" || blurAndroid ? 0.55 : 0.9);
 
+  // Home is laid out below the status bar (App's SafeAreaView pads the top
+  // edge), so the band starts one status bar above the screen. At top: 0 it
+  // sat over the logo row instead and washed out the menu, logo and bell.
   return (
-    <View pointerEvents="none" style={[styles.wrap, { height: insets.top + FADE }]}>
+    <View pointerEvents="none" style={[styles.wrap, { top: -insets.top, height: insets.top + FADE }]}>
       <View style={{ height: insets.top, overflow: "hidden" }}>
         {Platform.OS === "ios" ? (
           <BlurView intensity={40} tint={isLight ? "light" : "dark"} style={StyleSheet.absoluteFill} />
