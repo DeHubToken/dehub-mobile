@@ -120,6 +120,34 @@ it('closes a mini-only lease exactly once without a duplicate pause', () => {
   expect(getInAppVideoMini()).toBeNull();
 });
 
+it('hands a playing clip back to the feed card muted when closed', () => {
+  const { input, player, session, release } = source();
+  openInAppVideoMini(input);
+  release();
+  const mini = getInAppVideoMini()!;
+  inAppMiniReady(mini);
+  const feedToken = {};
+  releases.push(claimPostMedia(`video:${input.url}`, session, feedToken));
+  player.muted = false;
+  closeInAppVideoMini();
+  expect(ownsPostMedia(session, feedToken)).toBe(true);
+  expect(player.pause).not.toHaveBeenCalled();
+  expect(player.muted).toBe(true);
+  expect(session.userPaused).toBe(false);
+});
+
+it('keeps a clip paused in the mini paused when the feed takes it back', () => {
+  const { input, player, session, release } = source();
+  openInAppVideoMini(input);
+  release();
+  inAppMiniReady(getInAppVideoMini()!);
+  releases.push(claimPostMedia(`video:${input.url}`, session, {}));
+  session.userPaused = true;
+  closeInAppVideoMini();
+  expect(player.pause).toHaveBeenCalledTimes(1);
+  expect(session.userPaused).toBe(true);
+});
+
 it('does not restore before the first hosted frame completes its source handoff', () => {
   const { input } = source();
   openInAppVideoMini(input);
