@@ -605,9 +605,9 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
     // Web's proposal notifications carry ?comment=<id>; the screen reads
     // commentId.
-    if (segments[0] === 'app' && segments[1] === 'governance' && segments.length === 3 && queryString) {
+    if (appSegs[0] === 'governance' && appSegs.length === 2 && queryString) {
       const query = renameQueryParams(queryString, { comment: 'commentId' });
-      return orOpenOnWeb(getStateFromPath(`/${pathOnly}?${query}`, options));
+      return orOpenOnWeb(getStateFromPath(`/app/governance/${appSegs[1]}?${query}`, options));
     }
 
     // Web answers every /app section at the bare path as well, canonicalises
@@ -619,6 +619,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     const APP_PREFIXED = new Set([
       'post', 'notifications', 'leaderboard', 'messages', 'communities',
       'stores', 'events', 'fractions', 'agents', 'bridge', 'launchpad',
+      'governance',
     ]);
     // Builder lived at /app/builder before it took the top-level URL; web
     // redirects the old links, so do the same here.
