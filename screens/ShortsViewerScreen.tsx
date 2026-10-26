@@ -2501,6 +2501,16 @@ const ShortsViewerScreen = () => {
               })(); }
             : undefined}
           onToggleSave={handleToggleSave}
+          onRemix={activeItem.postType === "short" && !activeItem.imageUrls?.length && !videoNeedsAccess(activeItem) && !activeIsHidden && activeTokenId != null &&
+            (!(activeItem as any).visibility || (activeItem as any).visibility === "public") && !(activeItem as any).spoilerText &&
+            !(activeItem as { contentRating?: string }).contentRating?.includes("mature") && (!(activeItem as any).quotePolicy || (activeItem as any).quotePolicy === "public" || isOwnerOfActive)
+            ? mode => requireAuth(() => {
+                const videoUrl = getVideoUrl(activeTokenId);
+                if (videoUrl) navigation.navigate(ScreenNames.VideoRemix, { mode, tokenId: activeTokenId, videoUrl,
+                  sourceUrl: (activeItem as any).status === "signed" && (activeItem as any).newPostId != null ? `https://dehub.io/newpost/${(activeItem as any).newPostId}` : `https://dehub.io/app/post/${activeTokenId}`,
+                  title: activeItem.name || activeItem.title || "Remix", creator: activeUsername || activeDisplayName });
+              })
+            : undefined}
           onFollowChange={handleFollowChange}
           onVisibilityChange={handleVisibilityChange}
           onEditSuccess={handleEditSuccess}
