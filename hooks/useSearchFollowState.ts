@@ -63,7 +63,7 @@ export function useSearchFollowState(address: string, initial: IsFollowingResult
   return {
     isFollowing: state.isFollowing,
     isPending: !!state.isFollowRequestPending,
-    isLoading: mutation.isPending || (!!viewer && (!query.data || query.isFetching)),
+    isLoading: mutation.isPending || (!!viewer && !query.data),
     toggle: mutation.mutateAsync,
   };
 }

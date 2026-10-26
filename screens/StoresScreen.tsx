@@ -136,6 +136,9 @@ export default function StoresScreen() {
     isError,
     refetch,
     isRefetching,
+    hasNextPage,
+    fetchNextPage,
+    isFetching,
   } = useBrowseListings(category, sort, search);
 
   // Two columns, accounting for the outer padding and the inter-column gap.
@@ -239,6 +242,7 @@ export default function StoresScreen() {
           ) : (
             <FlatList
               data={listings}
+              ListFooterComponent={hasNextPage ? <KitButton label={t("common.loadMore", { defaultValue: "Load more" })} disabled={isFetching} onPress={() => fetchNextPage()} /> : null}
               keyExtractor={(l) => l.id}
               numColumns={2}
               columnWrapperStyle={{ gap: GRID_GAP }}

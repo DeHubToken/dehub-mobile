@@ -61,3 +61,15 @@ it('separates relationship caches when the viewer changes', async () => {
   await waitFor(() => expect(hook.result.current.isLoading).toBe(false));
   expect(getFollowStatus).toHaveBeenCalledTimes(2);
 });
+
+it('keeps a known relationship usable during a background refresh', async () => {
+  const { client, wrapper } = setup();
+  const hook = renderHook(() => useSearchFollowState('0xTarget', initial), { wrapper });
+  await waitFor(() => expect(hook.result.current.isFollowing).toBe(true));
+  let finish!: (value: typeof initial) => void;
+  (getFollowStatus as jest.Mock).mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+  act(() => { void client.invalidateQueries({ queryKey: ['user-follow-status'] }); });
+  await waitFor(() => expect(getFollowStatus).toHaveBeenCalledTimes(2));
+  expect(hook.result.current.isLoading).toBe(false);
+  await act(async () => finish(initial));
+});

@@ -12,6 +12,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
  */
 import {
   useQuery,
+  useInfiniteQuery,
   useMutation,
   useQueryClient,
   keepPreviousData,
@@ -350,9 +351,11 @@ export function useUpdateOrderStatus() {
 // ── Browse ──────────────────────────────────────────────────────────────────
 
 export function useBrowseListings(category?: string, sort?: string, search?: string) {
-  return useQuery({
+  const query = useInfiniteQuery({
     queryKey: ["store-listings-browse", category, sort, search],
-    queryFn: async () => {
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => lastPage.length === 50 ? pages.length * 50 : undefined,
+    queryFn: async ({ pageParam, signal }) => {
       let q = supabase
         .from("store_listings")
         .select("*, stores(name, avatar_url, wallet_address)")
@@ -365,13 +368,14 @@ export function useBrowseListings(category?: string, sort?: string, search?: str
       else if (sort === "price_desc") q = q.order("price", { ascending: false });
       else q = q.order("created_at", { ascending: false });
 
-      const { data, error } = await q.limit(50);
+      const { data, error } = await q.order("id", { ascending: true }).range(pageParam, pageParam + 49).abortSignal(signal);
       if (error) throw error;
       return (data || []) as StoreListing[];
     },
     // Keep the previous grid visible while new filters load, as on web.
     placeholderData: keepPreviousData,
   });
+  return { ...query, data: query.data?.pages.flat() };
 }
 
 export function useStoreById(storeId: string | undefined) {
