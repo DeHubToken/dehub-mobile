@@ -15,3 +15,19 @@ export function useSwipeBackAction(action: BackAction | undefined, enabled = tru
     return register(() => latest.current?.());
   }, [register, enabled, hasAction]);
 }
+
+export type ClaimEdgeSwipe = () => () => void;
+export const SwipeBackEdgeOwner = createContext<ClaimEdgeSwipe | null>(null);
+
+/**
+ * For a screen that draws its own interactive edge back (the page following
+ * the finger). The screen-wide release-to-go-back pan stands down while it is
+ * mounted, so the two never race for the same drag off the edge.
+ */
+export function useOwnEdgeSwipe(enabled = true) {
+  const claim = useContext(SwipeBackEdgeOwner);
+  useEffect(() => {
+    if (!claim || !enabled) return;
+    return claim();
+  }, [claim, enabled]);
+}
