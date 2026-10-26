@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remiks",
+    "greenScreen": "Yeşil ekran",
+    "collab": "İş birliği",
+    "sound": "Sesi kullan",
+    "cut": "Kes",
+    "unavailable": "Bu video remiks oluşturmak için kullanılamıyor.",
+    "openFailed": "Remiks açılamadı. Bağlantınızı ve kamera izinlerini kontrol edip tekrar deneyin.",
+    "tooLarge": "Bu kayıt çok büyük. Daha kısa bir çekim yapın.",
+    "invalidRecording": "Kayıt okunamadı. Lütfen yeni bir çekim yapın.",
+    "saveFailed": "Remiks kaydedilemedi. Lütfen tekrar deneyin.",
+    "startHint": "Kamera görüntünüzü bu videonun üzerinde önizleyin, ardından remiksinizi kaydedin. Bu ekrandan ayrılmak kamerayı durdurur.",
+    "openCamera": "Kamerayı aç"
+  },
   "dehubLinks": {
     "kind": {
       "app": "uygulama",

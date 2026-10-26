@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remix",
+    "greenScreen": "Groen scherm",
+    "collab": "Samenwerking",
+    "sound": "Geluid gebruiken",
+    "cut": "Knippen",
+    "unavailable": "Deze video is niet beschikbaar om te remixen.",
+    "openFailed": "De remix kon niet worden geopend. Controleer je verbinding en cameramachtigingen en probeer het opnieuw.",
+    "tooLarge": "Deze opname is te groot. Maak een kortere opname.",
+    "invalidRecording": "De opname kon niet worden gelezen. Maak een nieuwe opname.",
+    "saveFailed": "De remix kon niet worden opgeslagen. Probeer het opnieuw.",
+    "startHint": "Bekijk je camerabeeld over deze video en neem daarna je remix op. Als je dit scherm verlaat, stopt de camera.",
+    "openCamera": "Camera openen"
+  },
   "dehubLinks": {
     "kind": {
       "app": "app",
