@@ -853,9 +853,9 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                       reaction={thumbGlyph}
                       animate={thumbAnimated}
                       size={20}
-                      // Wider and taller than the 18x21 slot, pulled back in with negative
-                      // margins, so Android doesn't clip the emoji to its own box.
-                      textStyle={{ fontSize: 17, lineHeight: 25, width: 26, marginHorizontal: -4, marginVertical: -2, textAlign: "center", textAlignVertical: "center", includeFontPadding: false }}
+                      // Wider than the 18pt slot, pulled back in with negative margins, and
+                      // centred without lineHeight, which Android adds above the glyph.
+                      textStyle={{ fontSize: 17, height: 21, width: 26, marginHorizontal: -4, textAlign: "center", textAlignVertical: "center", includeFontPadding: false }}
                     />
                   ) : (
                     <Icon
