@@ -1,5 +1,6 @@
 import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react-native';
+jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 
 const mockDisk: Record<string, string> = {};
 jest.mock('../../libs/storage', () => ({ storage: { getString: (key: string) => mockDisk[key], set: (key: string, value: string) => { mockDisk[key] = value; }, delete: (key: string) => { delete mockDisk[key]; } } }));
