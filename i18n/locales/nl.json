@@ -9781,7 +9781,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "URL van productpagina",
+                   "action":  "Productpagina lezen",
+                   "loading":  "Pagina wordt gelezen…",
+                   "hint":  "Importeer tekst van een openbare productpagina. Controleer de gegevens voordat je ze gebruikt en voeg productafbeeldingen apart toe in de studio.",
+                   "source":  "Geïmporteerde bron",
+                   "review":  "Kies een product om naar je bewerkbare brief te kopiëren. Je kop, merkstem en merkkleuren blijven behouden.",
+                   "use":  "Deze gegevens gebruiken",
+                   "errors":  {
+                                  "signIn":  "Log in om een productpagina te importeren.",
+                                  "url":  "Gebruik een openbare HTTPS-productpagina.",
+                                  "empty":  "Er zijn geen bruikbare productgegevens gevonden. Voeg ze handmatig toe.",
+                                  "busy":  "Er zijn te veel importtaken actief. Probeer het zo nog eens.",
+                                  "unavailable":  "Deze pagina kon niet worden geïmporteerd. Voeg de productgegevens handmatig toe.",
+                                  "failed":  "Importeren is mislukt. Je brief is opgeslagen; probeer het opnieuw of voer de gegevens handmatig in."
+                              }
+               },
                       "title":  "Campagnebrief",
                       "intro":  "Beschrijf je product en merk en bereid bijpassende advertentieformaten voor.",
                       "saved":  "Je brief wordt op dit apparaat voor dit account opgeslagen.",
