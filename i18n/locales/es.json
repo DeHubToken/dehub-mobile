@@ -7988,7 +7988,19 @@
       "translateCount": "Traducir {{count}} subtítulos",
       "translationDone": "{{count}} subtítulos traducidos",
       "translationFailed": "La traducción ha fallado. Tus subtítulos no han cambiado.",
-      "lockedTranslation": "Desbloquea los subtítulos bloqueados para incluirlos."
+      "lockedTranslation": "Desbloquea los subtítulos bloqueados para incluirlos.",
+      "style": "Estilo de subtítulos",
+      "styles": {
+        "classic": "Clásico",
+        "boxed": "En caja",
+        "bold": "Negrita",
+        "wordpop": "Palabra a palabra",
+        "rapid": "Revelado rápido",
+        "beast": "Modo bestia",
+        "stacked": "Apilado",
+        "serif": "Serif",
+        "bubble": "Burbuja"
+      }
     },
     "app": {
       "newDesign": "Nuevo diseño",
@@ -8058,7 +8070,11 @@
       "vibrant": "Vibrante",
       "cyber": "Cíber",
       "invert": "Invertir",
-      "strength": "Intensidad del filtro: {{value}} %"
+      "strength": "Intensidad del filtro: {{value}} %",
+      "fadedFilm": "Película desvaída",
+      "technicolor": "Technicolor",
+      "newsreel": "Noticiario",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Recortar",
@@ -8146,7 +8162,9 @@
       "autoFailed": "No se pudo analizar esta imagen.",
       "tint": "Matiz {{value}}",
       "vignette": "Viñeta {{value}}%",
-      "warmth": "Calidez {{value}}"
+      "warmth": "Calidez {{value}}",
+      "halation": "Halación {{value}}%",
+      "scanlines": "Líneas de escaneo {{value}}%"
     },
     "draw": {
       "colour": "Color del lápiz",
@@ -8238,7 +8256,20 @@
       "suggestTitle": "Añade un título grande en negrita arriba y un subtítulo más pequeño debajo",
       "undo": "Deshacer",
       "openGenerator": "Revisar y generar",
-      "working": "Trabajando en ello…"
+      "working": "Trabajando en ello…",
+      "stopped": "Detenido. No se cambió nada más.",
+      "stop": "Detener",
+      "queue": "Añadir a la cola",
+      "queued": "{{count}} en cola",
+      "restore": "Restaurar hasta aquí",
+      "restoreHint": "Devuelve el proyecto a como estaba antes de este mensaje. Deshacer lo recupera.",
+      "restored": "Proyecto restaurado a antes de ese mensaje. Pulsa deshacer para recuperar la versión más reciente.",
+      "rewrite": "Aclarar mi petición",
+      "rewriteFailed": "No se pudo reescribir. Tu texto no ha cambiado.",
+      "feedback": "¿Te ha sido útil?",
+      "good": "Buena respuesta",
+      "bad": "Mala respuesta",
+      "retryPrefix": "Eso no era lo que quería. En su lugar, "
     },
     "brand": {
       "addColor": "Añadir un color de marca",
@@ -8375,7 +8406,11 @@
       "rendering": "Renderizando vídeo… {{percent}}%",
       "mp4": "Vídeo MP4",
       "exportHint": "Mantén el editor abierto mientras se renderiza tu vídeo.",
-      "tooLarge": "Ese archivo es demasiado grande para el editor. El límite es de 400 MB."
+      "tooLarge": "Ese archivo es demasiado grande para el editor. El límite es de 400 MB.",
+      "tZoomIn": "Acercar",
+      "tZoomOut": "Alejar",
+      "tFlyUp": "Volar hacia arriba",
+      "tFlyDown": "Volar hacia abajo"
     },
     "motion": {
       "title": "Movimiento",
