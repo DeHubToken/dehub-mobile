@@ -11,7 +11,7 @@ import {
   Pressable,
   KeyboardAvoidingView,
   ScrollView,
-  Platform,
+  StyleSheet,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { FadeIn, FadeOut, SlideInUp, SlideOutDown } from "react-native-reanimated";
@@ -21,13 +21,17 @@ import { ButtonLoader } from "../DeHubLoader";
 import { useTranslation } from "react-i18next";
 import { useThemeRootStyle } from "../../context/ThemeContext";
 import { DrawerSurface } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 interface CreatePollSheetProps {
   visible: boolean;
   onClose: () => void;
-  onCreated: (tokenId: number) => void;
-  /** Post tokenId to attach the poll to. Defaults to 0 (DM context). */
+  /** `message` is the chat message a chat poll was sent as. */
+  onCreated: (tokenId: number, message?: unknown) => void;
+  /** Post tokenId to attach the poll to. */
   tokenId?: number;
+  /** Chat to send the poll into. Used when there is no post. */
+  conversationId?: string;
 }
 
 // Labels are i18n keys, resolved at render time.
@@ -41,7 +45,8 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
   visible,
   onClose,
   onCreated,
-  tokenId: postTokenId = 0,
+  tokenId: postTokenId,
+  conversationId,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -49,6 +54,9 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
   // A Modal draws outside the app root, so it needs the theme variables itself.
   const rootStyle = useThemeRootStyle();
   const { createPoll, loading } = useCreatePoll();
+  // The page behind is blurred by the backdrop, not by the sliding panel: a
+  // blur inside the panel came out unblurred on iOS and the chat read through.
+  const backdrop = useSheetBackdrop(visible);
 
   const [question, setQuestion] = useSurfaceDraft("components/DM/CreatePollSheet.tsx:question", "");
   const [options, setOptions] = useState(["", ""]);
@@ -79,8 +87,8 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
       const expiresAt = new Date(
         Date.now() + durationHours * 3600 * 1000,
       ).toISOString();
-      const result = await createPoll({
-        tokenId: postTokenId,
+      const result: any = await createPoll({
+        ...(conversationId ? { conversationId } : { tokenId: postTokenId }),
         question: question.trim(),
         options: validOptions.map((o) => o.trim()),
         expiresAt,
@@ -91,10 +99,10 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
         setOptions(["", ""]);
         setDurationHours(24);
         setIsMultipleChoice(false);
-        onCreated(result.tokenId);
+        onCreated(result.tokenId, result.message);
       }
     } catch {}
-  }, [canCreate, options, question, durationHours, isMultipleChoice, createPoll, onCreated, setQuestion]);
+  }, [canCreate, options, question, durationHours, isMultipleChoice, createPoll, onCreated, setQuestion, postTokenId, conversationId]);
 
   if (!visible) return null;
 
@@ -106,12 +114,11 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
       onRequestClose={onClose}
       navigationBarTranslucent
     >
-      <Pressable style={{ flex: 1 }} onPress={onClose}>
-        <Animated.View
-          entering={FadeIn.duration(200)}
-          style={{ flex: 1, backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.5)" }}
-        />
-      </Pressable>
+      {/* Full screen, so the part under the panel is blurred too. */}
+      <Animated.View entering={FadeIn.duration(200)} style={StyleSheet.absoluteFill} pointerEvents="none">
+        <SheetBackdrop backdrop={backdrop} />
+      </Animated.View>
+      <Pressable style={{ flex: 1 }} onPress={onClose} />
 
       <KeyboardAvoidingView
         behavior="padding"
@@ -122,7 +129,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
           className="overflow-hidden rounded-t-[20px] border-t border-white/10 max-h-[80%]"
           style={[{ paddingBottom: insets.bottom + 16 }, rootStyle]}
         >
-          <DrawerSurface />
+          <DrawerSurface backdropBlurred={backdrop.blurred} />
           {/* Header */}
           <SheetDismissHandle onClose={onClose} className="flex-row items-center justify-between px-4 pt-4 pb-2 border-b border-theme-neutrals-700/50">
             <TouchableOpacity

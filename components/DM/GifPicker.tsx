@@ -1,7 +1,7 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View, Platform } from 'react-native';
+import { ActivityIndicator, FlatList, KeyboardAvoidingView, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import SmartImage from '../common/SmartImage';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { PackGrid, PackStrip, StickerPanel, useGifPacks } from '../packs/PackPickerParts';
 import { useKidsModeLock } from '../../hooks/useKidsModeLock';
 import { DrawerSurface } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 export type GifPickerProps = {
   visible: boolean;
@@ -54,6 +55,7 @@ const useDebouncedCallback = (fn: (q: string) => void, delay = 400) => {
 const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
   const searchMaterial = useSearchFieldMaterial();
   const insets = useSafeAreaInsets();
+  const backdrop = useSheetBackdrop(visible);
   const { t } = useTranslation();
   const [query, setQuery] = useSurfaceDraft("components/DM/GifPicker.tsx:query", '');
   const [loading, setLoading] = useState(false);
@@ -141,14 +143,16 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
 
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onClose} transparent statusBarTranslucent navigationBarTranslucent>
+      {/* Full screen, so the part under the panel is blurred too. */}
+      <SheetBackdrop backdrop={backdrop} />
       {/* Edge-to-edge Android doesn't resize for the keyboard — lift the sheet. */}
       <KeyboardAvoidingView behavior="padding" className="flex-1 justify-end">
-        <TouchableOpacity activeOpacity={1} onPress={onClose} className={Platform.OS === "android" ? "flex-1" : "flex-1 dark-surface bg-black/40"} />
+        <TouchableOpacity activeOpacity={1} onPress={onClose} className="flex-1" />
         <View
           className="overflow-hidden rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
           style={{ paddingBottom: insets.bottom + 12 }}
         >
-          <DrawerSurface />
+          <DrawerSurface backdropBlurred={backdrop.blurred} />
           <View className="flex-row items-center mb-2">
             <View className="flex-1 flex-row rounded-lg bg-theme-neutrals-800 p-0.5">
               {(kids ? (['gif'] as const) : (['gif', 'sticker'] as const)).map((k) => (
