@@ -34,6 +34,8 @@ const historyStore: ShortsHistoryStore = {
   },
 };
 
+const REDRAW_AFTER_AWAY_MS = 10 * 60 * 1000;
+
 export function useHomeShortsCarousel(enabled: boolean, postCount: number, active: boolean) {
   const shortsEnabled = useAppPrefs().shorts;
   const user = useUser();
@@ -62,6 +64,10 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
   }, [navigation]);
   const preserveViewerReturn = useRef(false);
   const onViewerOpen = useCallback(() => { preserveViewerReturn.current = true; }, []);
+  // A quick trip away (a profile, a tab, a post) comes back to the same row:
+  // redrawing it on every return blanked the tiles and jumped the feed. Only a
+  // real absence earns a fresh draw.
+  const leftAt = useRef(0);
   useEffect(() => {
     if (onScreen && !previousActive.current) {
       const fromViewer = lastAwayRoute.current
@@ -69,8 +75,10 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
         : preserveViewerReturn.current;
       preserveViewerReturn.current = false;
       lastAwayRoute.current = undefined;
-      if (!fromViewer) refresh();
+      const longAway = leftAt.current > 0 && Date.now() - leftAt.current > REDRAW_AFTER_AWAY_MS;
+      if (!fromViewer && longAway) refresh();
     }
+    if (!onScreen && previousActive.current) leftAt.current = Date.now();
     previousActive.current = onScreen;
   }, [onScreen, refresh]);
 
