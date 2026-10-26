@@ -337,8 +337,10 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // quiet plays whatever sound was left on last time.
   const autoStartRef = useRef(false);
   const { recordPause, cancelPause } = useAutoplayPausePrompt(tokenId);
+  // The post page is a video the viewer opened, so it has sound unless they
+  // muted one themselves, even when it started on its own.
   const shouldStartMuted = useCallback(
-    () => autoStartRef.current || getCachedMuted(),
+    () => (autoStartRef.current && !postPageRef.current) || getCachedMuted(),
     [],
   );
   const [isBuffering, setIsBuffering] = useState(false);
@@ -1123,6 +1125,11 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     playbackAllowedRef.current = playing;
     isPlayingRef.current = playing;
     setIsPlaying(playing);
+    // Opened from a feed that played it silently: the sound comes on here,
+    // unless the viewer muted it themselves.
+    if (postPageRef.current && player.muted && !getCachedMuted()) {
+      try { player.muted = false; } catch {}
+    }
     setIsMuted(player.muted);
     setPlaybackRate(player.playbackRate);
     currentTimeRef.current = player.currentTime;
