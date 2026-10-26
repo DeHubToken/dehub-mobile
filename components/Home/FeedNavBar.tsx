@@ -18,6 +18,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
 import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
+import Svg, { Defs, RadialGradient, Rect, Stop } from "react-native-svg";
 import NavPillSurface from "../ui/NavPillSurface";
 import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
@@ -381,15 +382,9 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
                 const filterActive = !backMode && (isFilterOpen || hasActiveFilters);
                 return (
                   <>
-                    {filterActive && (skin ? (
-                      <View style={[StyleSheet.absoluteFill, skin.stripActive]} />
-                    ) : (
-                      <View
-                        style={[StyleSheet.absoluteFill, { borderRadius: 12 }, GLASS_SHADOW]}
-                      >
-                        <GlassIndicator borderRadius={12} />
-                      </View>
-                    ))}
+                    {!backMode && hasActiveFilters && (
+                      <FilterGlow color={tint ? tint.on : "#FFFFFF"} />
+                    )}
                     <View style={{ opacity: pressed ? 0.6 : 1, transform: [{ scale: !backMode && !isFilterOpen ? FEED_NAV_ICON_SCALE.Settings2 ?? 1 : 1 }] }}>
                       <Icon
                         name={backMode ? "ArrowLeft" : isFilterOpen ? "X" : "Settings2"}
@@ -476,6 +471,7 @@ const styles = StyleSheet.create({
     height: INDICATOR_HEIGHT,
     borderRadius: 12,
   },
+  filterGlow: { position: "absolute", top: 4, bottom: 4, left: 6, right: 6 },
   leadSlot: { flexGrow: 0, flexShrink: 0, flexBasis: LEAD_SLOT_WIDTH, width: LEAD_SLOT_WIDTH },
   navRow: {
     flexDirection: "row",
@@ -529,5 +525,25 @@ const styles = StyleSheet.create({
     overflow: "visible",
   },
 });
+
+/**
+ * Filters-on mark, web parity: a soft round glow behind the filter icon
+ * (web draws a blurred radial gradient). Fades to nothing at the edge so it
+ * never reads as a second selected tab.
+ */
+const FilterGlow = memo(({ color }: { color: string }) => (
+  <View pointerEvents="none" style={styles.filterGlow}>
+    <Svg width="100%" height="100%">
+      <Defs>
+        <RadialGradient id="feedFilterGlow" cx="50%" cy="50%" rx="50%" ry="50%">
+          <Stop offset="0" stopColor={color} stopOpacity={0.55} />
+          <Stop offset="0.6" stopColor={color} stopOpacity={0.15} />
+          <Stop offset="1" stopColor={color} stopOpacity={0} />
+        </RadialGradient>
+      </Defs>
+      <Rect width="100%" height="100%" fill="url(#feedFilterGlow)" />
+    </Svg>
+  </View>
+));
 
 export default memo(FeedNavBar);
