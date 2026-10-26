@@ -8148,6 +8148,33 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "film": {
+        "repairRefs": "Remove missing media links",
+                 "title":  "Film project",
+                 "intro":  "Plan shots with reusable image references. Your brief, shot order and selected results save with this project.",
+                 "create":  "Create film plan",
+                 "name":  "Film name",
+                 "brief":  "Film brief",
+                 "sharedReferences":  "Shared image references (up to 4)",
+                 "shot":  "Shot",
+                 "addShot":  "Add shot",
+                 "shotName":  "Shot name",
+                 "action":  "Shot action and composition",
+                 "seconds":  "Requested video seconds",
+                 "shotReferences":  "Extra image references (combined limit 4)",
+                 "frame":  "Prepare frame",
+                 "video":  "Prepare video",
+                 "review":  "Review the model, references, video duration and price in the studio before generating.",
+                 "result":  "Accepted shot result",
+                 "noResult":  "No result selected",
+                 "resultHint":  "Choose an accepted image or video from Uploads. Its link saves with this shot; use the timeline to assemble the film.",
+                 "earlier":  "Move earlier",
+                 "later":  "Move later",
+                 "remove":  "Remove shot",
+                 "issue":  "Check the shot description and reference media, then try again. Keep the project open if it could not be saved.",
+                 "searchMedia":  "Find media by name",
+                 "refreshMedia":  "Refresh media"
+             },
     "review": {
       "title": "Project review",
       "shared": "Shared with you",

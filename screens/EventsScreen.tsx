@@ -4,7 +4,7 @@
  * Native port of the web EventsPage (/app/events). Lists community events from
  * Supabase with Upcoming / Past / Mine filters and going/interested RSVP.
  */
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import { View, Text, StyleSheet, Pressable, FlatList, useWindowDimensions } from "react-native";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -168,14 +168,43 @@ export default function EventsScreen() {
     enabled: !!wallet && isSignedIn,
   });
 
+  const pendingRsvps = useRef(new Set<string>());
   const rsvpMutation = useMutation({
+    onMutate: async ({ eventId, status }) => {
+      await Promise.all([queryClient.cancelQueries({ queryKey: ["my-rsvps", wallet] }), queryClient.cancelQueries({ queryKey: ["events"] })]);
+      const previous = queryClient.getQueryData<Record<string, RsvpStatus>>(["my-rsvps", wallet]);
+      const event = events.find(row => row.id === eventId);
+      if (!previous || !event) return;
+      const counts = {
+        going_count: Math.max(0, event.going_count + Number(status === "going") - Number(previous[eventId] === "going" || previous[eventId] === "approved")),
+        interested_count: Math.max(0, event.interested_count + Number(status === "interested") - Number(previous[eventId] === "interested")),
+      };
+      queryClient.setQueryData<Record<string, RsvpStatus>>(["my-rsvps", wallet], old => {
+        const next = { ...old };
+        if (status === "remove") delete next[eventId]; else next[eventId] = status;
+        return next;
+      });
+      queryClient.setQueriesData<CommunityEvent[]>({ queryKey: ["events"] }, rows => rows?.map(row => row.id === eventId ? { ...row, ...counts } : row));
+      return { previous: previous[eventId], event };
+    },
     mutationFn: ({ eventId, status }: { eventId: string; status: "going" | "interested" | "remove" }) =>
       toggleRsvp(eventId, status, wallet as string),
-    onSuccess: () => {
+    onSettled: (_data, _error, { eventId }) => {
+      pendingRsvps.current.delete(eventId);
       queryClient.invalidateQueries({ queryKey: ["my-rsvps", wallet] });
-      queryClient.invalidateQueries({ queryKey: ["events"] });
+      queryClient.invalidateQueries({ queryKey: ["events"], refetchType: "none" });
     },
-    onError: () => toastError(t("events.rsvpFailed")),
+    onError: (_error, { eventId }, context) => {
+      if (context) {
+        queryClient.setQueryData<Record<string, RsvpStatus>>(["my-rsvps", wallet], old => {
+          const next = { ...old };
+          if (context.previous === undefined) delete next[eventId]; else next[eventId] = context.previous;
+          return next;
+        });
+        queryClient.setQueriesData<CommunityEvent[]>({ queryKey: ["events"] }, rows => rows?.map(row => row.id === eventId ? { ...row, going_count: context.event.going_count, interested_count: context.event.interested_count } : row));
+      }
+      toastError(t("events.rsvpFailed"));
+    },
   });
 
   const handleRsvp = useCallback(
@@ -192,6 +221,8 @@ export default function EventsScreen() {
       }
       // Tapping the active status again clears it, mirroring the web toggle.
       const next = current === status ? "remove" : status;
+      if (pendingRsvps.current.has(event.id)) return;
+      pendingRsvps.current.add(event.id);
       rsvpMutation.mutate({ eventId: event.id, status: next });
     },
     [isSignedIn, wallet, myRsvps, rsvpMutation, t],

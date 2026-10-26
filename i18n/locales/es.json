@@ -7813,6 +7813,33 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
+    "film": {
+        "repairRefs": "Quitar vínculos a archivos ausentes",
+                 "title":  "Proyecto de película",
+                 "intro":  "Planifica planos con imágenes de referencia reutilizables. El brief, el orden de los planos y los resultados elegidos se guardan con este proyecto.",
+                 "create":  "Crear plan de película",
+                 "name":  "Nombre de la película",
+                 "brief":  "Brief de la película",
+                 "sharedReferences":  "Referencias de imagen compartidas (hasta 4)",
+                 "shot":  "Plano",
+                 "addShot":  "Añadir plano",
+                 "shotName":  "Nombre del plano",
+                 "action":  "Acción y composición del plano",
+                 "seconds":  "Duración de vídeo solicitada en segundos",
+                 "shotReferences":  "Referencias de imagen adicionales (límite total: 4)",
+                 "frame":  "Preparar fotograma",
+                 "video":  "Preparar vídeo",
+                 "review":  "Revisa el modelo, las referencias, la duración y el precio en el estudio antes de generar.",
+                 "result":  "Resultado aprobado del plano",
+                 "noResult":  "Sin resultado seleccionado",
+                 "resultHint":  "Elige una imagen o vídeo aprobado en Archivos subidos. Su vínculo se guarda con el plano; utiliza la línea de tiempo para montar la película.",
+                 "earlier":  "Mover antes",
+                 "later":  "Mover después",
+                 "remove":  "Eliminar plano",
+                 "issue":  "Revisa la descripción del plano y las referencias e inténtalo de nuevo. Mantén el proyecto abierto si no se pudo guardar.",
+                 "searchMedia":  "Buscar archivos por nombre",
+                 "refreshMedia":  "Actualizar archivos"
+             },
     "highlights": {
       "visual": "Momentos visuales destacados",
       "visualPrivacy": "Enviar fotogramas seleccionados para el análisis visual.",
