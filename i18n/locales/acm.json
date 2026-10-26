@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} توكن"
   },
   "communities": {
+    "shareLink": "شارك الرابط",
+    "sendInMessage": "إرسال دعوة",
     "existingPost": {
       "invalidLink": "لصق رابط بوست من ديهوب أو معرف البوست.",
       "more": "لود أكثر من بوستات",

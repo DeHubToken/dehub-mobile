@@ -359,7 +359,7 @@ describe('home feed on FlashList: pages off screen', () => {
     expect(feed).toContain('listRowsRef.current = rows;');
     // Its own view, so a list mounted off screen reports its first layout.
     expect(feed).toContain(
-      '<View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onLayout={handleListLayout}>',
+      '<View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onStartShouldSetResponderCapture={captureScrollStopTouch} onLayout={handleListLayout}>',
     );
     expect(slice(feed, 'const handleListLayout = useCallback(', '}, []);')).toContain(
       'if (!activeRef.current && e.nativeEvent.layout.height > 0) setLaidOut(true);',

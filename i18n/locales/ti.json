@@ -6248,6 +6248,8 @@
     "lockedEarlyFee": "ክሳብ {{date}} ተዓጽዩ ። ምስሕሓብ ሕጂ 88% — 12% ክፍሊት ይምለስ ፣ ብዛዕባ {{fee}} ምልክታት ። ተቐባልነት ንምርካብ ድማ መሊስካ ተጸውዕ ።"
   },
   "communities": {
+    "shareLink": "ርክባት ምዝርጋሕ",
+    "sendInMessage": "ምልክት ልኪ",
     "existingPost": {
       "add": "ዘሎ ጽሑፍ ወስኽ",
       "added": "ጽሑፍ ናብ ማሕበረሰብ ተወሲኹ",

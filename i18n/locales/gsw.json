@@ -6278,6 +6278,8 @@
     "tokenAmount": "{{amount}} Tokens"
   },
   "communities": {
+    "shareLink": "Link teile",
+    "sendInMessage": "Schicki!",
     "existingPost": {
       "added": "Beitrag zur Community hinzugefügt",
       "hint": "Behalte den ursprünglichen Beitrag, Likes und Aufrufe bei.",

@@ -63,3 +63,58 @@ it('paints the page behind the captured feed in System Light, where the empty la
   expect(render().backgroundColor).toBe('#010305');
   mockLight = false;
 });
+
+it('hands the pills back to the feed underneath when a feed opened over it closes', () => {
+  const sources: Record<string, unknown> = {};
+  const Probe = ({ name }: { name: string }) => { sources[name] = useFrostedSource(); return null; };
+  const Feed = ({ name }: { name: string }) => <FrostedContent><Probe name={name} /></FrostedContent>;
+  let tree!: ReturnType<typeof create>;
+  act(() => {
+    tree = create(
+      <FrostedBackdropProvider backdrop={null}>
+        <Feed name="home" />
+        <Probe name="pill" />
+      </FrostedBackdropProvider>,
+    );
+  });
+  const home = sources.pill;
+  expect(home).toBeDefined();
+  act(() => tree.update(
+    <FrostedBackdropProvider backdrop={null}>
+      <Feed name="home" />
+      <Feed name="post" />
+      <Probe name="pill" />
+    </FrostedBackdropProvider>,
+  ));
+  expect(sources.pill).toBeDefined();
+  expect(sources.pill).not.toBe(home);
+  act(() => tree.update(
+    <FrostedBackdropProvider backdrop={null}>
+      <Feed name="home" />
+      <Probe name="pill" />
+    </FrostedBackdropProvider>,
+  ));
+  expect(sources.pill).toBe(home);
+  act(() => tree.unmount());
+});
+
+it('switches a covered pill to its solid glass without remounting it', () => {
+  const sources: unknown[] = [];
+  let mounts = 0;
+  const Pill = () => { React.useEffect(() => { mounts += 1; }, []); sources.push(useFrostedSource()); return null; };
+  const render = (when: boolean) => (
+    <FrostedBackdropProvider backdrop={null}>
+      <FrostedContent>{null}</FrostedContent>
+      <FrostedBackground when={when}><Pill /></FrostedBackground>
+    </FrostedBackdropProvider>
+  );
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(render(false)); });
+  expect(sources[sources.length - 1]).toBeDefined();
+  act(() => tree.update(render(true)));
+  expect(sources[sources.length - 1]).toBeUndefined();
+  act(() => tree.update(render(false)));
+  expect(sources[sources.length - 1]).toBeDefined();
+  expect(mounts).toBe(1);
+  act(() => tree.unmount());
+});

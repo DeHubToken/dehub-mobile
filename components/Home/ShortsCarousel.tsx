@@ -21,9 +21,11 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import ShortsGridCard from "./ShortsGridCard";
 
-/** Step out over the feed list's side padding, with no frame around the rail. */
+/** Step out over the feed list's side padding, with no frame around the rail;
+ *  the rail's own padding puts the first and last cards back in line with the posts. */
 const LIST_GUTTER = 8;
 const CARD_WIDTH = 120;
+const RAIL_CONTENT_STYLE = { paddingLeft: LIST_GUTTER, paddingRight: LIST_GUTTER - 6 };
 const EMPTY_ITEMS: UnifiedFeedItem[] = [];
 let historyWrite = Promise.resolve();
 const historyStore: ShortsHistoryStore = {
@@ -33,6 +35,8 @@ const historyStore: ShortsHistoryStore = {
     return historyWrite;
   },
 };
+
+const REDRAW_AFTER_AWAY_MS = 10 * 60 * 1000;
 
 export function useHomeShortsCarousel(enabled: boolean, postCount: number, active: boolean) {
   const shortsEnabled = useAppPrefs().shorts;
@@ -62,6 +66,10 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
   }, [navigation]);
   const preserveViewerReturn = useRef(false);
   const onViewerOpen = useCallback(() => { preserveViewerReturn.current = true; }, []);
+  // A quick trip away (a profile, a tab, a post) comes back to the same row:
+  // redrawing it on every return blanked the tiles and jumped the feed. Only a
+  // real absence earns a fresh draw.
+  const leftAt = useRef(0);
   useEffect(() => {
     if (onScreen && !previousActive.current) {
       const fromViewer = lastAwayRoute.current
@@ -69,8 +77,10 @@ export function useHomeShortsCarousel(enabled: boolean, postCount: number, activ
         : preserveViewerReturn.current;
       preserveViewerReturn.current = false;
       lastAwayRoute.current = undefined;
-      if (!fromViewer) refresh();
+      const longAway = leftAt.current > 0 && Date.now() - leftAt.current > REDRAW_AFTER_AWAY_MS;
+      if (!fromViewer && longAway) refresh();
     }
+    if (!onScreen && previousActive.current) leftAt.current = Date.now();
     previousActive.current = onScreen;
   }, [onScreen, refresh]);
 
@@ -151,6 +161,7 @@ const ShortsCarousel: React.FC<{
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       horizontal
+      contentContainerStyle={RAIL_CONTENT_STYLE}
       showsHorizontalScrollIndicator={false}
       nestedScrollEnabled
     />

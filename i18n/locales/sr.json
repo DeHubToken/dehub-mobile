@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} токена"
   },
   "communities": {
+    "shareLink": "Подијели link",
+    "sendInMessage": "Пошаљи позив",
     "existingPost": {
       "add": "Додај постојећу објаву",
       "added": "Објава додата у заједницу",

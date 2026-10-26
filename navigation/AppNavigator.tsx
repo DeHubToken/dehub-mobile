@@ -1,5 +1,5 @@
-import React from "react";
-import { Platform } from "react-native";
+import React, { useEffect } from "react";
+import { InteractionManager, Platform } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
@@ -12,7 +12,7 @@ import { DrawerProvider, useDrawer } from "../context/DrawerContext";
 import AppDrawer from "../components/Home/AppDrawer";
 import { useAppTheme } from "../context/ThemeContext";
 import { LIGHT_PAGE_FILL } from "../theme/colors";
-import { deferredScreen } from "./deferredScreen";
+import { deferredScreen, preloadDeferredScreen } from "./deferredScreen";
 import AppWideTabBar from "./AppWideTabBar";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 
@@ -48,11 +48,25 @@ const getLiveProducerScreen = () => deferredScreen('LiveProducer', () => require
 
 const getLiveViewerScreen = () => deferredScreen('LiveViewer', () => require("../screens/LiveViewerScreen").default);
 
+const SIGN_IN_KEY = '../screens/auth/SignInScreen#default';
+const loadSignIn = () => require("../screens/auth/SignInScreen").default;
+
 function AppNavigatorContent() {
   const reducedMotion = useReducedMotion();
   const { isSignedIn, needsUsername } = useAuthState();
   const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
+
+  // Guests: load the sign-in screen once the app has settled, so tapping
+  // "Log in" draws the real screen on the slide's first frame.
+  useEffect(() => {
+    if (isAuthed) return;
+    let task: { cancel: () => void } | null = null;
+    const timer = setTimeout(() => {
+      task = InteractionManager.runAfterInteractions(() => preloadDeferredScreen(SIGN_IN_KEY, loadSignIn));
+    }, 3000);
+    return () => { clearTimeout(timer); task?.cancel(); };
+  }, [isAuthed]);
   const { isMinimal, isLight, skin } = useAppTheme();
 
   return (
@@ -405,6 +419,8 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.ShortsViewer}
+          layout={withSolidScreenBoundary}
+          options={{ presentation: 'transparentModal', contentStyle: { backgroundColor: 'transparent' } }}
           // The viewer already has the tapped clip and poster. Paint that seed
           // during entry instead of replacing loaded media with a route shell.
           getComponent={() => require("../screens/ShortsViewerScreen").default}
@@ -452,7 +468,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.SignIn}
-          getComponent={() => deferredScreen('../screens/auth/SignInScreen#default', () => require("../screens/auth/SignInScreen").default)}
+          getComponent={() => deferredScreen(SIGN_IN_KEY, loadSignIn)}
           options={{
             // Was a hand-drawn rgba(0,0,0,0.35) overlay fade under a slide-up
             // interpolator. A native modal presentation dims for itself.

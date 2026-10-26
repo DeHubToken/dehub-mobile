@@ -74,6 +74,7 @@ import { useMentions } from "../../hooks/useMentions";
 import { useAssistantPendingReply } from "../../hooks/useAssistantPendingReply";
 import { mentionsAssistant } from "../../libs/assistant";
 import { collapsedReplyIds } from "../../libs/comment-preview";
+import { authorThreadFirst, isAuthorThreadRoot } from "../../libs/author-thread";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
 import { getNFT } from "../../services/nft.service";
@@ -429,11 +430,10 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       if (rootComment) emitRecursive(rootComment, 0, highlightedRootId);
     }
 
-    // Emit remaining roots in original order
-    rawComments.forEach((c) => {
-      if (!parentOf.has(Number(c.id))) {
-        emitRecursive(c, 0, Number(c.id));
-      }
+    // Emit remaining roots: the author's own thread first, oldest first, then
+    // the rest in original order.
+    authorThreadFirst(rawComments.filter((c) => !parentOf.has(Number(c.id))), threadAuthor).forEach((c) => {
+      emitRecursive(c, 0, Number(c.id));
     });
 
     // Safety net: bad data forming a parent cycle would leave no member looking
@@ -442,7 +442,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     rawComments.forEach((c) => emitRecursive(c, 0, Number(c.id)));
 
     return flat;
-  }, [highlightCommentId]);
+  }, [highlightCommentId, threadAuthor]);
 
   /**
    * Put a set of rows back into reading order, each comment once.
@@ -1465,6 +1465,22 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     };
     const meta = new Map<number, Meta>();
 
+    // Consecutive author-thread comments are tied pfp to pfp by the thread
+    // line, running through any replies between them, so the run reads as one
+    // X-style thread.
+    const roots = visible.filter((c) => !c.isReply);
+    const joinsNext = new Set<number>();
+    roots.forEach((c, i) => {
+      const next = roots[i + 1];
+      if (next && isAuthorThreadRoot(c, threadCreator) && isAuthorThreadRoot(next, threadCreator)) {
+        joinsNext.add(Number(c.id));
+      }
+    });
+    const joinsPrev = new Set<number>();
+    roots.forEach((c, i) => {
+      if (i > 0 && joinsNext.has(Number(roots[i - 1].id))) joinsPrev.add(Number(c.id));
+    });
+
     visible.forEach((c, i) => {
       const id = Number(c.id);
       const root = c.isReply ? Number(c.rootParentId) : id;
@@ -1487,10 +1503,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       const ownsToggle = isLastOfThread && total > 0 && (hidden > 0 || expandedCommentIds.has(root));
 
       meta.set(id, {
-        lineAbove: !!c.isReply,
+        lineAbove: !!c.isReply || joinsPrev.has(id),
         // The toggle sits inside this row's own body, so a row that owns it
-        // ends the line rather than carrying it past its bottom edge.
-        lineBelow: nextIsSameThread || (!c.isReply && loaded > 0),
+        // ends the line rather than carrying it past its bottom edge — unless
+        // the author's thread carries on below it.
+        lineBelow: nextIsSameThread || (!c.isReply && loaded > 0) || (isLastOfThread && joinsNext.has(root)),
         toggleRootId: ownsToggle ? root : undefined,
         toggleExpanded: expandedCommentIds.has(root),
         hiddenCount: hidden,

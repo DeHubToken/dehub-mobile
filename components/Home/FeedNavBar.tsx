@@ -18,6 +18,7 @@ import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/colors";
 import { GRAIN, glassTint } from "../../theme/skins";
 import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
+import NavPillSurface from "../ui/NavPillSurface";
 import HudBrackets from "../theme/HudBrackets";
 import { useSwipeBackAction } from '../../hooks/useSwipeBack';
 import { useAppPrefs } from '../../hooks/useAppPrefs';
@@ -346,9 +347,8 @@ const FeedNavBar: React.FC<FeedNavBarProps> = ({
               ) : null}
             </>
           ) : (
-            <>
-              <FrostedPill tint="rgba(20, 20, 24, 0.18)" borderRadius={NAV_PILL_RADIUS} />
-            </>
+            // The bottom bar's material, so the two bars read as one glass.
+            <NavPillSurface borderRadius={NAV_PILL_RADIUS} />
           )}
 
           {/* FrostedPill owns the backdrop blur. The moving selection only

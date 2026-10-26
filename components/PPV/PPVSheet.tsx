@@ -56,6 +56,7 @@ import { formatCompactNumber } from "../../libs";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const PPV_CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 
@@ -374,7 +375,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         >
           {/* Solid, not glass: expo-blur does not blur on Android, so a tint
               here let the sheet read through whatever it opened over. */}
-          <View style={[StyleSheet.absoluteFill, styles.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View style={styles.handleWrap}>

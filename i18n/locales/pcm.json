@@ -6249,6 +6249,8 @@
     "lockedEarlyFee": "Wen u tap again, e go lock till {{date}}. Withdraw now go cost 88% — 12% fee, about {{fee}} tokens. Tap again to accept."
   },
   "communities": {
+    "shareLink": "Share link",
+    "sendInMessage": "Biko, send invitation.",
     "privateHint": "Dem must approve new members before dem fit join.",
     "existingPost": {
       "added": "Post don enter di community",

@@ -45,6 +45,9 @@ import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-g
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import IosGlassPill from "../ui/IosGlassPill";
+import SheetGlass, { useDrawerGlass } from "../ui/SheetGlass";
+import { useDrawerBlurSource } from "../ui/FrostedBackdrop";
+import { SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 import { useAppTheme } from "../../context/ThemeContext";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
@@ -129,6 +132,8 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
     if (open) markReactionTipSeen(walletAddress);
   }, [open, walletAddress]);
   const { colors } = useAppTheme();
+  const drawerGlass = useDrawerGlass();
+  const drawerSource = useDrawerBlurSource();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
   const reactions = only ? TRAY_REACTION_LIST.filter((r) => only.includes(r.key)) : TRAY_REACTION_LIST;
@@ -207,7 +212,10 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
   // iOS gets the shared glass; Android has no safe backdrop blur and keeps a
   // solid theme surface so nothing behind the tray reads through the counts.
   const glass = Platform.OS === "ios";
-  const surface = glass
+  // Android blurs the feed behind it, as the comment drawer does, whenever a
+  // feed is there to sample; elsewhere it keeps the solid surface.
+  const androidGlass = !glass && drawerGlass && !!drawerSource;
+  const surface = glass || androidGlass
     ? { backgroundColor: "transparent", borderColor: "transparent" }
     : { backgroundColor: colors.card, borderColor: colors.border };
 
@@ -240,6 +248,11 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
           ]}
         >
           {glass && <IosGlassPill tint={IOS_GLASS_TINT} borderRadius={SHEET_RADIUS} />}
+          {androidGlass && (
+            <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.androidGlass]}>
+              <SheetGlass />
+            </View>
+          )}
           <GestureDetector gesture={pan}>
             <View style={styles.grabberZone}>
               <View style={styles.grabber} />
@@ -313,6 +326,7 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
 
 const styles = StyleSheet.create({
   backdrop: { backgroundColor: "#000000A6" },
+  androidGlass: { borderRadius: SHEET_RADIUS, overflow: "hidden", borderWidth: 1, borderColor: SHEET_GLASS_BORDER },
   sheet: {
     position: "absolute",
     alignSelf: "center",

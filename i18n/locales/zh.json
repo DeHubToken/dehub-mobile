@@ -4186,6 +4186,11 @@
     "title": "通知",
     "loadFailed": "无法加载通知",
     "markAllRead": "全部标为已读",
+    "allSettings": "所有通知设置",
+    "groupNew": "新通知",
+    "groupToday": "今天",
+    "groupThisWeek": "本周",
+    "groupEarlier": "更早",
     "settings": "通知设置",
     "actions": "操作",
     "markAllAsRead": "全部标为已读",
@@ -6123,6 +6128,8 @@
     "pendingRetired": "这个存款已不再在网络上待定。跟踪已清除，请检查您的钱包活动再次存款。"
   },
   "communities": {
+    "shareLink": "分享链接",
+    "sendInMessage": "发送邀请",
     "title": "社区",
     "create": "创建",
     "searchPlaceholder": "搜索社区...",

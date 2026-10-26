@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Bagikan tautan",
+    "sendInMessage": "Kirim Undangan",
     "existingPost": {
       "added": "Postingan ditambahkan ke komunitas",
       "add": "Kanggo ngarani post ingkang udah ada, ngarani post ingkang udah ada aja.",

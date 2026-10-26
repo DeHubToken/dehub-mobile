@@ -21,6 +21,7 @@ jest.mock('react-native-gesture-handler', () => ({
   Gesture: { Pan: () => ({ onUpdate() { return this; }, onEnd() { return this; } }) },
 }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ bottom: 0 }) }));
+jest.mock('../../components/ui/SheetGlass', () => ({ __esModule: true, default: 'SheetGlass', SheetGlassFill: 'SheetGlassFill' }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../context/UserProfileSheetContext', () => ({ useUserProfileSheet: () => ({ showUserProfile: mockShowProfile }) }));
 jest.mock('../../services/nft.service', () => ({ getPostLikers: async () => ({

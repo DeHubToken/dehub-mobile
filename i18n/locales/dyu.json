@@ -6248,6 +6248,8 @@
     "poolHasNoWithdrawal": "I ka tagamasiyɛnw be sɔrɔ kɔlɔn kɔnɔ, min ma wari bɔ fɔlɔ. N'i ye mɔgɔ dɔ weele ka na i ka soo, i ka kan k'a weele ka na i ka soo."
   },
   "communities": {
+    "shareLink": "Link ni link ni",
+    "sendInMessage": "Dɔnniya kɛ",
     "existingPost": {
       "add": "Ka tɛmɛ sanga ni wagati kan",
       "added": "Ka fara o kan, an ka kan ka baro kɛ ni mɔgɔw ye",

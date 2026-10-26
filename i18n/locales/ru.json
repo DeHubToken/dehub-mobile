@@ -4351,6 +4351,11 @@
     "title": "Уведомления",
     "loadFailed": "Не удалось загрузить уведомления",
     "markAllRead": "Прочитать все",
+    "allSettings": "Все настройки уведомлений",
+    "groupNew": "Новые",
+    "groupToday": "Сегодня",
+    "groupThisWeek": "На этой неделе",
+    "groupEarlier": "Ранее",
     "settings": "Настройки уведомлений",
     "actions": "Действия",
     "markAllAsRead": "Отметить все как прочитанные",
@@ -6252,6 +6257,8 @@
     "tokenAmount": "{{amount}} токенов"
   },
   "communities": {
+    "shareLink": "Поделиться ссылкой",
+    "sendInMessage": "Отправить приглашение",
     "existingPost": {
       "add": "Добавить существующий пост",
       "added": "Пост добавлен в сообщество",

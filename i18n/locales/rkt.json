@@ -6416,6 +6416,8 @@
     "tokenAmount": "{{amount}} টোকেন"
   },
   "communities": {
+    "shareLink": "লিঙ্ক শেয়ার করুন",
+    "sendInMessage": "আমাকে আমন্ত্রণ জানান",
     "existingPost": {
       "add": "বিদ্যমান পোস্ট যোগ করুন",
       "added": "সম্প্রদায়ে পোস্ট যুক্ত",

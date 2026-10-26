@@ -6249,6 +6249,8 @@
     "tokenAmount": "{{amount}} टोकन"
   },
   "communities": {
+    "shareLink": "लिङ्कम् बाँट्यताम्",
+    "sendInMessage": "प्रशंसापत्र भेजें",
     "existingPost": {
       "failed": "समुदाय की पोस्ट अपडेट नहीं हो सकी। पुनः प्रयास करें।",
       "add": "विद्यमानं पदं योजयतु",

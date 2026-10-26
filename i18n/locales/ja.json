@@ -4186,6 +4186,11 @@
     "title": "通知",
     "loadFailed": "通知を読み込めませんでした",
     "markAllRead": "すべて既読にする",
+    "allSettings": "すべての通知設定",
+    "groupNew": "新着",
+    "groupToday": "今日",
+    "groupThisWeek": "今週",
+    "groupEarlier": "それ以前",
     "settings": "通知設定",
     "actions": "アクション",
     "markAllAsRead": "すべて既読にする",
@@ -6121,6 +6126,8 @@
     "pendingRetired": "このデポジットはネットワーク上で保留状態ではありません。トラッキングがクリアされました。ウォレットの活動を確認して、再度デポジットする前に。"
   },
   "communities": {
+    "shareLink": "URLをシェア",
+    "sendInMessage": "招待状を送る",
     "title": "コミュニティ",
     "create": "作成",
     "searchPlaceholder": "コミュニティを検索...",

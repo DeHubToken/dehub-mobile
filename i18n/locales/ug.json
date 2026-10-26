@@ -6255,6 +6255,8 @@
     "tokenAmount": "{{amount}} نۆتىك پۇل"
   },
   "communities": {
+    "shareLink": "ئۇلىنىشنى ھەمبەھىرلەش",
+    "sendInMessage": "تەكلىپ ئەۋەتىش",
     "existingPost": {
       "add": "Mavjud postni qo'shish",
       "added": "Post jamoaga qo'shildi",

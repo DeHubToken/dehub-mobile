@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} ٽوڪن"
   },
   "communities": {
+    "shareLink": "حصيداري ڪريو لنڪ",
+    "sendInMessage": "دعوت نامو موڪليو",
     "existingPost": {
       "add": "موجوده پوسٽ شامل ڪريو",
       "added": "پوسٽ ڪميونٽي ۾ شامل ڪئي وئي",

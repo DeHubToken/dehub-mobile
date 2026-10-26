@@ -4351,6 +4351,11 @@
     "title": "Notifiche",
     "loadFailed": "Impossibile caricare le notifiche",
     "markAllRead": "Segna tutto come letto",
+    "allSettings": "Tutte le impostazioni delle notifiche",
+    "groupNew": "Nuove",
+    "groupToday": "Oggi",
+    "groupThisWeek": "Questa settimana",
+    "groupEarlier": "Precedenti",
     "settings": "Impostazioni notifiche",
     "actions": "Azioni",
     "markAllAsRead": "Segna tutto come letto",
@@ -6248,6 +6253,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Condividi link",
+    "sendInMessage": "Invia invito",
     "existingPost": {
       "add": "Aggiungi post esistente",
       "added": "Post aggiunto alla community",

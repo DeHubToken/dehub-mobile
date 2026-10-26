@@ -4351,6 +4351,11 @@
     "title": "Notifikasi",
     "loadFailed": "Notifikasi tidak dapat dimuat",
     "markAllRead": "Tandai semua dibaca",
+    "allSettings": "Semua pengaturan notifikasi",
+    "groupNew": "Baru",
+    "groupToday": "Hari ini",
+    "groupThisWeek": "Minggu ini",
+    "groupEarlier": "Sebelumnya",
     "settings": "Pengaturan Notifikasi",
     "actions": "Tindakan",
     "markAllAsRead": "Tandai semua sebagai dibaca",
@@ -6248,6 +6253,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Bagikan tautan",
+    "sendInMessage": "Kirim Undangan",
     "existingPost": {
       "add": "Tambah postingan yang sudah ada",
       "added": "Postingan ditambahkan ke komunitas",

@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} توكن"
   },
   "communities": {
+    "shareLink": "شارك اللينك",
+    "sendInMessage": "إِستِندِك",
     "existingPost": {
       "add": "أضف منشور موجود",
       "added": "تم إضافة المنشور للجماعة",
