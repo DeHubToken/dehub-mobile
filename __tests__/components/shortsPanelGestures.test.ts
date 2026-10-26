@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { runInNewContext } from 'vm';
 import ts from 'typescript';
+import { seekSideAt } from '../../libs/video-hold-gestures';
 
 const source = readFileSync(resolve(__dirname, '../../screens/ShortsViewerScreen.tsx'), 'utf8');
 
@@ -28,6 +29,8 @@ function viewer(overrides: Record<string, unknown> = {}) {
     tapTimerRef: { current: null }, singleTapToggledPlaybackRef: { current: false },
     togglePlayPauseRef: { current: jest.fn() }, TAP_GESTURE_WINDOW_MS: 260,
     TAP_REACTION_RESOLUTION_MS: 260, setTimeout: () => 1, clearTimeout: jest.fn(),
+    lockedHoldRef: { current: null }, seekRunRef: { current: null }, seekSideAt,
+    stopHold: jest.fn(), jumpBy: jest.fn(), endSeekRunLater: jest.fn(),
     ...overrides,
   };
   const callbacks = source.slice(source.indexOf('  const restorePan ='), source.indexOf('  // Long press —'));
@@ -104,12 +107,29 @@ describe('shorts panel gestures', () => {
     expect(v.togglePlayPauseRef.current).not.toHaveBeenCalled();
   });
 
-  it('a double tap outside the centre likes and puts the buttons back', () => {
+  it('a double tap above or below the centre likes and puts the buttons back', () => {
     let tapped = false;
     const v = viewer({ overlaysHidden: false, continuesTapGesture: () => { const again = tapped; tapped = true; return again; } });
-    v.handleScreenTap(40, 150);
-    v.handleScreenTap(40, 150);
+    v.handleScreenTap(200, 150);
+    v.handleScreenTap(200, 150);
     expect(v.setOverlaysHidden).toHaveBeenLastCalledWith(false);
-    expect(v.showTapReactionAnimation).toHaveBeenCalledWith('like', 40, 150);
+    expect(v.showTapReactionAnimation).toHaveBeenCalledWith('like', 200, 150);
+  });
+
+  it.each([[40, -1], [370, 1]])('a double tap on a side jumps instead of liking: %s', (x, side) => {
+    let tapped = false;
+    const v = viewer({ overlaysHidden: false, continuesTapGesture: () => { const again = tapped; tapped = true; return again; } });
+    v.handleScreenTap(x, 400);
+    v.handleScreenTap(x, 400);
+    expect(v.setOverlaysHidden).toHaveBeenLastCalledWith(false);
+    expect(v.jumpBy).toHaveBeenCalledWith(side);
+    expect(v.showTapReactionAnimation).not.toHaveBeenCalled();
+  });
+
+  it('a tap while a speed-up is locked on only turns it off', () => {
+    const v = viewer({ lockedHoldRef: { current: 'speed' } });
+    v.handleScreenTap(200, 400);
+    expect(v.stopHold).toHaveBeenCalledWith('speed');
+    expect(v.togglePlayPauseRef.current).not.toHaveBeenCalled();
   });
 });

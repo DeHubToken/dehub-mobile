@@ -9,6 +9,7 @@ import { finishInAppMiniRestore, getInAppVideoMini, openInAppVideoMini, subscrib
 import { containedPicture } from '../libs/live-overlay/layout';
 import { videoQuarterTurn } from '../libs/video-display-aspect';
 import { startsOnVideoPicture, commitsVideoMinimize } from '../libs/video-minimize-gesture';
+import { commitsDismiss, heldRate, holdSideAt, seekSideAt, HOLD_BASE_RATE, REWIND_TICK_MS, SEEK_JUMP_SECONDS } from '../libs/video-hold-gestures';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
 import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
@@ -71,7 +72,7 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import Reanimated, { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from "react-native-reanimated";
+import Reanimated, { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming, type SharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -230,12 +231,14 @@ const RESTORE_ZONE_BOTTOM = 0.85;
 // A tap outside it hides or shows the buttons instead.
 const PAUSE_ZONE_START = 1 / 3;
 const PAUSE_ZONE_END = 2 / 3;
-// Swipe back (Android): a drag that starts this close to the left edge and
-// runs right leaves the viewer, as web's EDGE_SWIPE_ZONE_PX.
-const EDGE_BACK_ZONE = 32;
+// Swipe back: a drag that starts this close to the left edge and runs right
+// leaves the viewer, as web's EDGE_SWIPE_ZONE_PX. The viewer follows the
+// finger, so it can be dragged part way and let go to cancel.
+const EDGE_BACK_ZONE = 44;
 const EDGE_BACK_CLAIM = 16;
-const EDGE_BACK_DISTANCE = 64;
-const EDGE_BACK_VELOCITY = 650;
+/** The settle after letting go of a drag-to-leave that did not commit. */
+const DISMISS_SPRING = { damping: 26, stiffness: 320, mass: 0.8 };
+const DISMISS_OUT_MS = 200;
 
 /**
  * How long a short plays untouched before the chrome clears itself.
@@ -352,6 +355,13 @@ interface ShortItemProps {
   itemHeight: number;
   viewportHeight: number;
   miniReveal: SharedValue<number>;
+  /** How far the whole viewer is dragged right (edge back) or down (first short). */
+  dismissX: SharedValue<number>;
+  dismissY: SharedValue<number>;
+  /** The first short, where a drag down leaves instead of paging back. */
+  isFirst: boolean;
+  /** A hold is speeding or rewinding, so the pager must not move under it. */
+  onHoldActiveChange: (active: boolean) => void;
   captureViewerState: () => NonNullable<import('../libs/in-app-video-mini').InAppVideoMini['restoreParams']>;
   /** Viewer-level, so mute, volume and speed carry across shorts as they do on web. */
   isMuted: boolean;
@@ -377,7 +387,7 @@ interface ShortItemProps {
   optionsMenuOpen?: boolean;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, dismissX, dismissY, isFirst, onHoldActiveChange, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
   const { t: _copy } = _useCopy();
   const feedPlaybackAllowed = useFeedPlaybackAllowed();
   const surfaceActive = useFeedSurfaceActive();
@@ -619,7 +629,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   }, [isActive]);
   const [captionExpanded, setCaptionExpanded] = useState(false);
   const [screenshotMode, setScreenshotMode] = useState(false);
-  const [is2xSpeed, setIs2xSpeed] = useState(false);
+  /** A hold on the right: the rate it plays at until let go (or unlocked). */
+  const [holdRate, setHoldRate] = useState<number | null>(null);
+  /** A hold on the left: how many times normal speed it runs backwards. */
+  const [rewindRate, setRewindRate] = useState<number | null>(null);
+  /** Dragged down during the hold, so it keeps going after the finger lifts. */
+  const holdLockedRef = useRef(false);
+  const lockedHoldRef = useRef<"speed" | "rewind" | null>(null);
+  const [seekFlash, setSeekFlash] = useState<{ side: -1 | 1; total: number; run: number } | null>(null);
+  const seekFlashOpacity = useRef(new Animated.Value(0)).current;
+  /** Side and running total of a double-tap jump, so more taps keep adding. */
+  const seekRunRef = useRef<{ side: -1 | 1; total: number } | null>(null);
   /** Swipe-down-to-clear, web's `overlaysHidden`. Separate from screenshotMode
    *  (a hold) because the two are different ways into the same state and only
    *  the swipe one survives the finger coming off the glass. */
@@ -667,7 +687,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const [tapAnimRun, setTapAnimRun] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
   const longPressActiveRef = useRef(false);
-  const activeLongPressKindRef = useRef<"speed" | "screenshot" | null>(null);
+  const activeLongPressKindRef = useRef<"speed" | "rewind" | "screenshot" | null>(null);
   const wasPlayingBeforeLongPress = useRef(true);
   const isPlayingRef = useRef(isPlaying);
   isPlayingRef.current = isPlaying;
@@ -679,6 +699,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     lastTapRef.current = 0;
     singleTapToggledPlaybackRef.current = false;
     singleTapChromeRef.current = null;
+    seekRunRef.current = null;
   }, []);
 
   useEffect(() => {
@@ -913,8 +934,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // back to it rather than hardcoding 1x.
   useEffect(() => {
     if (!player) return;
-    try { (player as any).playbackRate = is2xSpeed ? 2 : playbackRate; } catch {}
-  }, [player, playbackRate, is2xSpeed]);
+    try { (player as any).playbackRate = holdRate ?? playbackRate; } catch {}
+  }, [player, playbackRate, holdRate]);
+
+  // Players cannot run backwards, so a rewind pauses and steps the clock back.
+  useEffect(() => {
+    if (!player || rewindRate === null) return;
+    recovery.stop();
+    try { player.pause(); } catch {}
+    const timer = setInterval(() => {
+      try { player.currentTime = Math.max(0, (player.currentTime ?? 0) - rewindRate * REWIND_TICK_MS / 1000); } catch {}
+    }, REWIND_TICK_MS);
+    return () => clearInterval(timer);
+  }, [player, rewindRate, recovery]);
 
   const togglePlayPauseRef = useRef(() => {});
   // keep ref current so timeout closures always call latest
@@ -1222,6 +1254,49 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     [panStart, pagerGesture, overlayHeight, isActive, showComments, overlaysHidden, autoHidden],
   );
 
+  /** Ends a hold's speed-up or rewind, including one left locked on. */
+  const stopHold = useCallback((kind: "speed" | "rewind" | "screenshot" | null) => {
+    holdLockedRef.current = false;
+    lockedHoldRef.current = null;
+    if (kind === "speed") setHoldRate(null);
+    if (kind === "rewind") {
+      setRewindRate(null);
+      if (wasPlayingBeforeLongPress.current) playIfActive();
+    }
+  }, [playIfActive]);
+
+  // Swiping on to another short drops a locked speed-up or rewind.
+  useEffect(() => {
+    if (isActive || !lockedHoldRef.current) return;
+    stopHold(lockedHoldRef.current);
+  }, [isActive, stopHold]);
+
+  /** Double tap on the left or right: jump back or forward, more taps add more. */
+  const jumpBy = useCallback((side: -1 | 1) => {
+    const run = seekRunRef.current?.side === side ? seekRunRef.current : { side, total: 0 };
+    run.total += SEEK_JUMP_SECONDS;
+    seekRunRef.current = run;
+    try {
+      const total = durationRef.current || (player as any)?.duration || 0;
+      const next = (player.currentTime ?? 0) + side * SEEK_JUMP_SECONDS;
+      player.currentTime = Math.max(0, total > 0 ? Math.min(total - 0.25, next) : next);
+    } catch {}
+    setSeekFlash({ side, total: run.total, run: Date.now() });
+    seekFlashOpacity.stopAnimation();
+    seekFlashOpacity.setValue(1);
+    Animated.timing(seekFlashOpacity, { toValue: 0, duration: 500, delay: 300, useNativeDriver: true }).start();
+  }, [player, seekFlashOpacity]);
+
+  const endSeekRunLater = useCallback(() => {
+    if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+    tapTimerRef.current = setTimeout(() => {
+      tapTimerRef.current = null;
+      tapCountRef.current = 0;
+      lastTapRef.current = 0;
+      seekRunRef.current = null;
+    }, TAP_GESTURE_WINDOW_MS);
+  }, []);
+
   // Arbitrate before the native pager claims the upward flick. This remains
   // on the video while the caption is hidden, so there is always a way back.
   const restorePan = useMemo(() => Gesture.Pan()
@@ -1264,8 +1339,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     restorePanStart, pagerGesture, resetTapSequence]);
 
   // Resolve the complete tap gesture before casting: double = Like, triple = Love.
+  // On the left and right thirds a double tap jumps 10s instead.
   const handleScreenTap = useCallback((pageX: number, pageY: number) => {
     if (longPressActiveRef.current) return;
+    // A tap while a speed-up or rewind is locked on only turns it off.
+    if (lockedHoldRef.current) {
+      stopHold(lockedHoldRef.current);
+      resetTapSequence();
+      return;
+    }
     // A tap that dismisses the reaction tray is not also a play/pause.
     if (pickerOpen) {
       resetTapSequence();
@@ -1326,6 +1408,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         setOverlaysHidden(chromeBefore.overlaysHidden);
         setAutoHidden(chromeBefore.autoHidden);
       }
+      const side = seekSideAt(pageX, SCREEN_WIDTH);
+      if (side !== 0) {
+        jumpBy(side);
+        endSeekRunLater();
+        return;
+      }
       // Feedback stays immediate. Only the request waits long enough for a
       // third tap to upgrade it, so the gesture never feels swallowed.
       showTapReactionAnimation("like", pageX, pageY);
@@ -1339,27 +1427,41 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       return;
     }
 
+    // Further taps during a jump keep jumping, toward the side tapped.
+    if (seekRunRef.current) {
+      jumpBy(seekSideAt(pageX, SCREEN_WIDTH) || seekRunRef.current.side);
+      endSeekRunLater();
+      return;
+    }
+
     // Tap three cancels the pending Like request and replaces its thumb with a
     // single Love bloom. The animation state is shared, so nothing layers.
     resetTapSequence();
     showTapReactionAnimation("love", pageX, pageY);
     commitTapReaction("love");
-  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence, showTapReactionAnimation, itemHeight]);
+  }, [commitTapReaction, pickerOpen, overlaysHidden, autoHidden, resetTapSequence, showTapReactionAnimation, itemHeight, stopHold, jumpBy, endSeekRunLater]);
 
-  // Long press — detect center vs right side
+  // Long press — left rewinds, right speeds up, the middle clears the screen.
   const handleLongPressIn = useCallback((locationX: number) => {
-    // The viewer owns this hold (speed or screenshot), so the page menu stands down.
+    // The viewer owns this hold, so the page menu stands down.
     blockQuickActions();
     resetTapSequence();
+    if (lockedHoldRef.current) stopHold(lockedHoldRef.current);
     longPressActiveRef.current = true;
-    const isRightSide = locationX > SCREEN_WIDTH * 0.6;
+    holdLockedRef.current = false;
+    const side = holdSideAt(locationX, SCREEN_WIDTH);
 
-    if (isRightSide) {
-      // Right side → 2x speed
+    if (side === "forward") {
       activeLongPressKindRef.current = "speed";
-      setIs2xSpeed(true);
+      setHoldRate(HOLD_BASE_RATE);
+      onHoldActiveChange(true);
+    } else if (side === "rewind") {
+      activeLongPressKindRef.current = "rewind";
+      wasPlayingBeforeLongPress.current = isPlayingRef.current;
+      setRewindRate(HOLD_BASE_RATE);
+      onHoldActiveChange(true);
     } else {
-      // Center/left → screenshot mode: pause + hide UI
+      // Middle → screenshot mode: pause + hide UI
       activeLongPressKindRef.current = "screenshot";
       wasPlayingBeforeLongPress.current = isPlayingRef.current;
       setScreenshotMode(true);
@@ -1368,21 +1470,37 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         try { player.pause(); } catch {}
       }
     }
-  }, [player, resetTapSequence, recovery]);
+  }, [player, resetTapSequence, recovery, stopHold, onHoldActiveChange]);
+
+  /** Dragging down during a speed hold locks it on, faster the further it goes. */
+  const handleHoldMove = useCallback((dragDown: number) => {
+    const kind = activeLongPressKindRef.current;
+    if (kind !== "speed" && kind !== "rewind") return;
+    const { rate, locked } = heldRate(dragDown);
+    holdLockedRef.current = locked;
+    if (kind === "speed") setHoldRate(rate);
+    else setRewindRate(rate);
+  }, []);
 
   const handleLongPressOut = useCallback(() => {
     longPressActiveRef.current = false;
     const kind = activeLongPressKindRef.current;
     activeLongPressKindRef.current = null;
+    if (kind === null) return;
+    onHoldActiveChange(false);
 
-    // Clearing the flag restores the viewer's chosen rate via the effect above.
-    if (kind === "speed") setIs2xSpeed(false);
+    if ((kind === "speed" || kind === "rewind") && holdLockedRef.current) {
+      lockedHoldRef.current = kind;
+      return;
+    }
+    // Clearing the override restores the viewer's chosen rate via the effect above.
+    if (kind === "speed" || kind === "rewind") stopHold(kind);
 
     if (kind === "screenshot") {
       setScreenshotMode(false);
       if (wasPlayingBeforeLongPress.current) playIfActive();
     }
-  }, [playIfActive]);
+  }, [playIfActive, stopHold, onHoldActiveChange]);
 
   /**
    * Native recognizers arbitrate with the FlatList's own native scroll gesture.
@@ -1406,25 +1524,37 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const insets = useSafeAreaInsets();
   const topChromeBand = insets.top + EDGE + CHROME_SIZE + CHROME_HIT_SLOP.bottom + 4;
 
+  const leaveViewer = useCallback(() => {
+    if (navigation.isFocused()) navigation.goBack();
+  }, [navigation]);
+
   /**
-   * Swipe back from the left edge. iOS already has the stack's own edge swipe;
-   * Android only has the system gesture, which button-navigation phones lack.
-   * Sideways travel only: a vertical move fails it at once and the pager keeps
-   * the flick, and it never claims a tap. One per detector, since a gesture
-   * object can only be attached once.
+   * Swipe back from the left edge. A transparent modal gets no stack swipe on
+   * iOS, and Android only has the system gesture, which button-navigation
+   * phones lack. The whole viewer follows the finger, so it can be dragged
+   * part way and let go to spring back. Sideways travel only: a vertical move
+   * fails it at once and the pager keeps the flick, and it never claims a
+   * tap. One per detector, since a gesture object can only be attached once.
    */
   const makeEdgeBack = useCallback(() => Gesture.Pan()
-    .enabled(Platform.OS === "android" && isActive && !showComments && !screenshotMode)
+    .enabled(isActive && !showComments && !screenshotMode)
     .hitSlop({ left: 0, width: EDGE_BACK_ZONE })
     .activeOffsetX(EDGE_BACK_CLAIM)
     .failOffsetX(-EDGE_BACK_CLAIM)
     .failOffsetY([-EDGE_BACK_CLAIM, EDGE_BACK_CLAIM])
-    .runOnJS(true)
+    .onStart(() => { 'worklet'; runOnJS(resetTapSequence)(); })
+    .onUpdate(event => {
+      'worklet';
+      dismissX.value = Math.max(0, event.translationX - EDGE_BACK_CLAIM);
+    })
     .onEnd((event, success) => {
-      if (success && (event.translationX >= EDGE_BACK_DISTANCE || event.velocityX >= EDGE_BACK_VELOCITY)) {
-        navigation.goBack();
+      'worklet';
+      if (success && commitsDismiss(dismissX.value, event.velocityX, SCREEN_WIDTH)) {
+        dismissX.value = withTiming(SCREEN_WIDTH, { duration: DISMISS_OUT_MS }, done => { if (done) runOnJS(leaveViewer)(); });
+      } else {
+        dismissX.value = withSpring(0, DISMISS_SPRING);
       }
-    }), [isActive, showComments, screenshotMode, navigation]);
+    }), [isActive, showComments, screenshotMode, dismissX, SCREEN_WIDTH, leaveViewer, resetTapSequence]);
 
   const minimizeFromDrag = useCallback(() => {
     const cancel = () => {
@@ -1450,9 +1580,10 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     });
   }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize]);
 
+  const canMinimize = isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
+    && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
   const minimizePan = useMemo(() => Gesture.Pan()
-    .enabled(isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
-      && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height)
+    .enabled(canMinimize)
     .manualActivation(true)
     .onTouchesDown((event, state) => {
       'worklet';
@@ -1493,9 +1624,55 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       runOnJS(onChromeVisibilityChange)(chromeVisible);
     })
     .blocksExternalGesture(pagerGesture),
-  [isActive, ownsVideo, pipPlayer, photoMedia, showComments, screenshotMode, captionExpanded, intrinsicSize, SCREEN_WIDTH,
+  [canMinimize, intrinsicSize, SCREEN_WIDTH,
     itemHeight, topChromeBand, miniStart, miniHandingOff, miniDragY, miniReveal, minimizeFromDrag,
     onChromeVisibilityChange, chromeVisible, pagerGesture, resetTapSequence]);
+
+  /**
+   * Drag the first short down to leave, the opposite of swiping on to the
+   * next one. The viewer follows the finger, springs back if let go early, and
+   * leaves past a third of the screen or on a fling. A wide or square picture
+   * keeps its drag-to-minimize; a drag beside it still leaves. The caption
+   * stack keeps its own swipe down, which clears the buttons.
+   */
+  const dismissStart = useSharedValue({ x: 0, y: 0 });
+  const dismissPan = useMemo(() => Gesture.Pan()
+    .enabled(isFirst && isActive && !showComments && !screenshotMode && !captionExpanded && !pipPlayer)
+    .manualActivation(true)
+    .onTouchesDown((event, state) => {
+      'worklet';
+      const touch = event.allTouches[0];
+      if (event.numberOfTouches !== 1 || !touch) { state.fail(); return; }
+      if (touch.y < topChromeBand) { state.fail(); return; }
+      const picture = containedPicture(SCREEN_WIDTH, itemHeight, intrinsicSize.width, intrinsicSize.height);
+      if (canMinimize && startsOnVideoPicture(touch.x, touch.y, picture)) { state.fail(); return; }
+      dismissStart.value = { x: touch.x, y: touch.y };
+    })
+    .onTouchesMove((event, state) => {
+      'worklet';
+      const touch = event.allTouches[0];
+      if (!touch || event.numberOfTouches !== 1) { state.fail(); return; }
+      const dx = touch.x - dismissStart.value.x;
+      const dy = touch.y - dismissStart.value.y;
+      if (dy < -DRAG_RELEASE_MIN || Math.abs(dx) > Math.abs(dy) + DRAG_RELEASE_MIN) { state.fail(); return; }
+      if (dy > DRAG_CLAIM_MIN && dy > Math.abs(dx)) state.activate();
+    })
+    .onStart(() => { 'worklet'; runOnJS(resetTapSequence)(); })
+    .onUpdate(event => {
+      'worklet';
+      dismissY.value = Math.max(0, event.translationY - DRAG_CLAIM_MIN);
+    })
+    .onEnd((event, success) => {
+      'worklet';
+      if (success && commitsDismiss(dismissY.value, event.velocityY, itemHeight)) {
+        dismissY.value = withTiming(itemHeight, { duration: DISMISS_OUT_MS }, done => { if (done) runOnJS(leaveViewer)(); });
+      } else {
+        dismissY.value = withSpring(0, DISMISS_SPRING);
+      }
+    })
+    .blocksExternalGesture(pagerGesture),
+  [isFirst, isActive, showComments, screenshotMode, captionExpanded, pipPlayer, topChromeBand, SCREEN_WIDTH, itemHeight,
+    intrinsicSize, canMinimize, dismissStart, dismissY, leaveViewer, resetTapSequence, pagerGesture]);
 
   const screenGesture = useMemo(() => {
     const mediaHitSlop = { top: chromeVisible ? -topChromeBand : 0 };
@@ -1507,16 +1684,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       .onEnd((event, success) => {
         if (success) handleScreenTap(event.x, event.y);
       });
-    const hold = Gesture.LongPress()
-      .minDuration(400)
-      .maxDistance(MEDIA_TAP_SLOP_PX)
+    // A hold that keeps tracking the finger, so a drag down during it can lock
+    // the speed. Moving before the hold lands fails it, leaving swipes alone.
+    const hold = Gesture.Pan()
+      .activateAfterLongPress(400)
+      .maxPointers(1)
       .hitSlop(mediaHitSlop)
       .simultaneousWithExternalGesture(pagerGesture)
       .runOnJS(true)
       .onStart((event) => handleLongPressIn(event.x))
+      .onUpdate((event) => handleHoldMove(event.translationY))
       .onFinalize(() => handleLongPressOut());
-    return Gesture.Race(makeEdgeBack(), minimizePan, restorePan, hold, tap);
-  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, minimizePan, restorePan, makeEdgeBack, chromeVisible, topChromeBand]);
+    return Gesture.Race(makeEdgeBack(), minimizePan, dismissPan, restorePan, hold, tap);
+  }, [handleLongPressIn, handleHoldMove, handleLongPressOut, handleScreenTap, pagerGesture, minimizePan, dismissPan, restorePan, makeEdgeBack, chromeVisible, topChromeBand]);
 
   const bottomStackGesture = useMemo(() => Gesture.Race(makeEdgeBack(), hidePan), [makeEdgeBack, hidePan]);
 
@@ -1718,14 +1898,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         </View>
       )}
 
-      {/* 2x speed indicator */}
-      {is2xSpeed && (
-        <View style={styles.speedOverlay} pointerEvents="none">
-          <View style={styles.speedBadge}>
-            <Icon name="ChevronsRight" size={20} color="#fff" />
-            <Text style={styles.speedText}>2x</Text>
-          </View>
-        </View>
+      {/* A hold's speed-up shows nothing: the picture speeding up is the
+          feedback. A double-tap jump shows a soft count on its side. */}
+      {seekFlash && (
+        <Animated.View
+          key={seekFlash.run}
+          pointerEvents="none"
+          style={[styles.seekFlash, seekFlash.side < 0 ? { left: SCREEN_WIDTH * 0.1 } : { right: SCREEN_WIDTH * 0.1 }, { top: itemHeight / 2 - 16, opacity: seekFlashOpacity }]}
+        >
+          <Text style={styles.seekFlashText}>{seekFlash.side < 0 ? "−" : "+"}{seekFlash.total}s</Text>
+        </Animated.View>
       )}
 
       {!!videoUrl && isActive && isPausedByUser && !showComments && !screenshotMode && (
@@ -2066,7 +2248,23 @@ const ShortsViewerScreen = () => {
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
   const miniReveal = useSharedValue(0);
-  const viewerBackdrop = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
+  // The whole viewer follows a drag-to-leave: right from the left edge, or down
+  // on the first short. The screen it was opened from shows behind it.
+  const dismissX = useSharedValue(0);
+  const dismissY = useSharedValue(0);
+  const [holdActive, setHoldActive] = useState(false);
+  const viewerBackdrop = useAnimatedStyle(() => {
+    const leaving = Math.min(1, Math.max(dismissX.value / Math.max(1, SCREEN_WIDTH), dismissY.value / Math.max(1, SCREEN_HEIGHT)));
+    return { opacity: 1 - Math.max(miniReveal.value, leaving * 0.7) };
+  }, [SCREEN_WIDTH, SCREEN_HEIGHT]);
+  const dismissStyle = useAnimatedStyle(() => {
+    const leaving = Math.min(1, Math.max(dismissX.value / Math.max(1, SCREEN_WIDTH), dismissY.value / Math.max(1, SCREEN_HEIGHT)));
+    return {
+      transform: [{ translateX: dismissX.value }, { translateY: dismissY.value }, { scale: 1 - leaving * 0.08 }],
+      borderRadius: Math.min(28, leaving * 160),
+      overflow: 'hidden',
+    };
+  }, [SCREEN_WIDTH, SCREEN_HEIGHT]);
   const [hasMeasuredViewport, setHasMeasuredViewport] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
@@ -2464,6 +2662,10 @@ const ShortsViewerScreen = () => {
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
         miniReveal={miniReveal}
+        dismissX={dismissX}
+        dismissY={dismissY}
+        isFirst={index === 0}
+        onHoldActiveChange={setHoldActive}
         captureViewerState={captureViewerState}
         isMuted={isMuted}
         volume={volume}
@@ -2474,7 +2676,7 @@ const ShortsViewerScreen = () => {
         optionsMenuOpen={index === activeIndex && showOptionsMenu}
       />
     ),
-    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, dismissX, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
   );
 
   const keyExtractor = useCallback(
@@ -2489,7 +2691,7 @@ const ShortsViewerScreen = () => {
   }), [containerHeight]);
 
   return (
-    <View style={styles.container} onLayout={handleContainerLayout}>
+    <Reanimated.View style={[styles.container, dismissStyle]} onLayout={handleContainerLayout}>
       <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#000000' }, viewerBackdrop]} />
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
@@ -2509,7 +2711,7 @@ const ShortsViewerScreen = () => {
           keyExtractor={keyExtractor}
           renderItem={renderItem}
           pagingEnabled
-          scrollEnabled={!commentsVisible}
+          scrollEnabled={!commentsVisible && !holdActive}
           horizontal={false}
           showsVerticalScrollIndicator={false}
           initialScrollIndex={initialIndex}
@@ -2675,7 +2877,7 @@ const ShortsViewerScreen = () => {
           onDeleteSuccess={handleDeleteSuccess}
         />
       )}
-    </View>
+    </Reanimated.View>
   );
 };
 
@@ -2969,24 +3171,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,0.2)",
   },
-  speedOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: "center",
-    justifyContent: "center",
+  seekFlash: {
+    position: "absolute",
     zIndex: 50,
   },
-  speedBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 10,
-  },
-  speedText: {
+  seekFlashText: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "700",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 6,
   },
 });
