@@ -1623,7 +1623,10 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         toastSuccess(t("editor.app.savedToPhotos"));
       } else {
         await flush();
+        const remixCredits = [...new Set((await Promise.all(project.clips.flatMap(clip => clip.kind === "video" || clip.kind === "audio" || clip.kind === "image" ? [getMedia(clip.mediaId)] : [])))
+          .flatMap(media => media?.provenance?.source === "dehub-remix" ? [media.provenance.attributionText] : []))].join("\n");
         nav.navigate(ScreenNames.Upload, {
+          initialText: remixCredits || undefined,
           video: {
             uri: out.uri,
             width: width & ~1,
