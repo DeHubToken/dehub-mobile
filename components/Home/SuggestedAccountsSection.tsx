@@ -288,7 +288,9 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
       nestedScrollEnabled
       onEndReached={handleEndReached}
       onEndReachedThreshold={0.6}
-      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8 }}
+      // Room under the cards: Android clips a horizontal list at its edge, and
+      // the flat themes' buttons sit flush with the bottom of the card.
+      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8, paddingTop: 2, paddingBottom: 8 }}
     />
   );
 
@@ -303,16 +305,16 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
       style={[{ borderTopWidth: 0 }, minimalRow ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 14,
-        paddingBottom: 14,
+        paddingBottom: 6, // + the list's own 8 below the cards
         borderBottomWidth: 1,
         borderBottomColor: MINIMAL_HAIRLINE,
       } : cinematic ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 12,
-        paddingBottom: 12,
+        paddingBottom: 4, // + the list's own 8 below the cards
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: CINEMATIC_HAIRLINE,
-      } : { paddingVertical: surface === "explore" ? 4 : 12 }]}
+      } : { paddingTop: surface === "explore" ? 4 : 12, paddingBottom: surface === "explore" ? 0 : 4 }]}
     >
       {/* Header row */}
       <View
