@@ -33,7 +33,7 @@ describe('reviewed marketing import', () => {
   it('ignores an old account response in an already mounted workspace', async () => {
     let owner: string | null = 'alice';
     let resolve!: (value: ProductImport) => void;
-    const request = vi.fn(() => new Promise<ProductImport>((done) => { resolve = done; }));
+    const request = jest.fn(() => new Promise<ProductImport>((done) => { resolve = done; }));
     const hook = renderHook(() => useProductImporter(owner, async () => 'session', request));
     let run!: Promise<void>;
     await act(async () => { run = hook.result.current.run(sample.sourceUrl); await Promise.resolve(); });
