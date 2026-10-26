@@ -14310,6 +14310,15 @@
     "watch": "Bu yaratıcıyı desteklemek için bir reklam izleyin"
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "Yeni takipçi",
+      "subscribe": "Yeni abone",
+      "subscribedTo": "Abone oldu · {{plan}}",
+      "gifted_one": "Bir abonelik hediye etti",
+      "gifted_other": "{{count}} abonelik hediye etti",
+      "share": "Yayını paylaştı",
+      "join": "Yeni katıldı"
+    },
     "subathon": "Subathon",
     "wheelLanded": "{{name}} spun :{{result}}",
     "someone": "Birisi",
@@ -14343,6 +14352,31 @@
     "tipJar": "Hediye kavanozu"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Çoklu yayın hedefleri",
+      "intro": "DeHub'da bir kez yayına başla, yayınını burada açık olan her platforma ücretsiz gönderelim. Yayına başladıktan birkaç saniye sonra başlar.",
+      "add": "Hedef ekle",
+      "empty": "Henüz hedef yok. Twitch, YouTube, Kick veya herhangi bir RTMP sunucusu ekle.",
+      "platform": "Platform",
+      "label": "Ad (isteğe bağlı)",
+      "server": "Sunucu URL",
+      "key": "Yayın anahtarı",
+      "findKey": "{{name}} sunucunu ve anahtarını bul",
+      "customHint": "Platformunun verdiği RTMP sunucusunu ve anahtarı yapıştır.",
+      "keyNote": "Anahtarın sunucularımızda şifreli saklanır ve bir daha gösterilmez.",
+      "save": "Ekle",
+      "cancel": "İptal",
+      "added": "{{name}} eklendi",
+      "saveFailed": "Hedef kaydedilemedi",
+      "toggle": "Bu hedefe yayın yap",
+      "states": {
+        "off": "Kapalı",
+        "idle": "Hazır",
+        "connecting": "Bağlanıyor",
+        "live": "Canlı",
+        "error": "Hata"
+      }
+    },
     "controls": {
       "title": "Hızlı kontroller",
       "intro": "Akış ortasında. Her anahtar, siz geri çevirene kadar uygulamada ve OBS'de izleyen herkes için geçerlidir.",
