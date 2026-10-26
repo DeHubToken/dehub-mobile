@@ -133,6 +133,8 @@ import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
 import { runModel3d } from '../services/ai.service';
 import { saveCreatorAsset, type CreatorAssetToSave } from '../services/creator.service';
+import { runCreatorAudio } from '../services/creator-audio.service';
+import { creatorAudioIssue, CREATOR_AUDIO_TASKS } from '../libs/creatorAudio';
 import { useQueryClient } from '@tanstack/react-query';
 
 const log = createLogger('AIChatScreen');
@@ -1193,6 +1195,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
    * Shared by send and retry so a failed image request retries as an image
    * request. `history` already ends with the user's turn.
    */
+  const audioContext = useRef({ walletAddress, conversationId });
+  audioContext.current = { walletAddress, conversationId };
   const routePrompt = useCallback(
     async (
       text: string,
@@ -1211,6 +1215,23 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       setPendingTemplateId(tpl?.id ?? null);
       setPendingStudio(creator ?? null);
       if (creator) {
+        if (creator.mode === 'audio' && creator.audioSettings) {
+          const issue = creatorAudioIssue(text, creator.audioSettings);
+          if (issue) { toastError(t(issue)); return; }
+          const context = audioContext.current;
+          try {
+            const result = await runCreatorAudio(text, creator.audioSettings, walletAddress);
+            if (audioContext.current.walletAddress !== context.walletAddress || audioContext.current.conversationId !== context.conversationId) return;
+            await saveMessage([...history, { role: 'assistant', content: result.transcript || '', ...(result.audioUrl ? { audioUrl: result.audioUrl } : {}) }]);
+            pendingDraftCompletion.current();
+            scrollToEnd();
+          } catch (error) {
+            if (audioContext.current.walletAddress === context.walletAddress && audioContext.current.conversationId === context.conversationId) {
+              await saveMessage([...history, { role: 'assistant', content: describeError(error), isError: true }]);
+            }
+          }
+          return;
+        }
         const issue = creatorInputIssue(creator, !!sourceImage, tpl);
         if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
         const resolved = prepareCreatorPrompt(text, tpl, creator);
@@ -1326,14 +1347,15 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
       await doSendChat(text, history);
     },
-    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput, _copy],
+    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput, _copy, walletAddress, describeError, t],
   );
 
   const handleSend = useCallback(async () => {
     const typed = input.trim();
-    if ((!typed && !attachedImage && !activeTemplate) || isLoading || restoring || submitLock.current) return;
+    const audioMedia = studio && studioSettings.mode === 'audio' ? studioSettings.audioSettings?.media : undefined;
+    if ((!typed && !attachedImage && !activeTemplate && !audioMedia) || isLoading || restoring || submitLock.current) return;
     // An empty send under a template runs its example subject, like web's tile.
-    const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
+    const text = typed || audioMedia?.name || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
     let creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
     if (creator) {
@@ -1834,10 +1856,11 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         continue;
       }
       const creator = request.creatorSettings;
-      const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
+      const audioTask = creator.mode === 'audio' ? creator.audioSettings?.task : undefined;
+      const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: audioTask ?? creator.model,
         posterUrl: message.modelUrl ? message.imageUrl : undefined,
         resolvedPrompt: prepareCreatorPrompt(request.content, getTemplate(request.templateId)),
-        modelName: creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
+        modelName: audioTask ? t(CREATOR_AUDIO_TASKS[audioTask].label) : creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
         aspect: creator.aspect, presetId: request.templateId, createdAt: Date.now() };
       // Stream one file at a time, keeping large clips out of JS memory.
       librarySaveQueue.current = librarySaveQueue.current.then(async () => {
@@ -1966,7 +1989,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         )}
         <AssistantInputBar
           controls={studio ? <>
-        <CreatorStudioControls settings={studioSettings} onChange={next => {
+        <CreatorStudioControls settings={studioSettings} prompt={input} onChange={next => {
           const selectedTemplate = getTemplate(templateId);
           if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
           setStudioSettings(next);
@@ -1988,7 +2011,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           attachedImage={studio ? null : attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
-          allowEmpty={!!activeTemplate}
+          allowEmpty={!!activeTemplate || !!(studio && studioSettings.mode === 'audio' && studioSettings.audioSettings?.media)}
           placeholder={studio ? t('creator.studioPrompt') : undefined}
           sendLabel={studio ? t('creator.studioCreate') : undefined}
         />
