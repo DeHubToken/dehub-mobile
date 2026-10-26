@@ -68,7 +68,7 @@ export function normalizeCreatorSettings(settings: CreatorStudioSettings): Creat
     const durations = creatorDurations(model);
     const eligible = durations.filter((value) => value <= settings.durationSeconds);
     next.durationSeconds = eligible.length ? Math.max(...eligible) : durations[0];
-    if (VIDEO_MODELS[model]?.requiresVideoInput && clip?.seconds) next.durationSeconds = Math.ceil(clip.seconds);
+    if (VIDEO_MODELS[model]?.requiresVideoInput && VIDEO_MODELS[model]?.referenceMode !== 'extend' && clip?.seconds) next.durationSeconds = Math.ceil(clip.seconds);
     const resolutions = CREATOR_VIDEO_RULES[model]?.resolutions ?? ['480p', '720p', '1080p'];
     if (!resolutions.includes(next.resolution)) next.resolution = resolutions.includes('720p') ? '720p' : resolutions[0];
   }
@@ -85,6 +85,9 @@ export function creatorSettingsForEditorDraft(value: unknown): { settings: Creat
   return { draft, settings: normalizeCreatorSettings({ ...CREATOR_DEFAULTS[mode],
     ...(draft.kind === 'voice' ? { model: 'dia-tts' } : {}),
     ...(draft.aspect ? { aspect: draft.aspect } : {}),
+    ...(draft.references ? { referenceAssets: draft.references.map(reference => ({ uri: reference.url, label: reference.label, kind: 'image' as const })) } : {}),
+    ...(draft.cinemaDirection ? { cinemaDirection: draft.cinemaDirection } : {}),
+    ...(draft.durationSeconds ? { durationSeconds: draft.durationSeconds } : {}),
   }) };
 }
 
@@ -103,14 +106,17 @@ export function creatorVideoOptions(settings: CreatorStudioSettings) {
 
 /** The selected medium decides routing; words such as "video" in an image brief do not. */
 export function prepareCreatorPrompt(text: string, preset?: CreatorTemplate, settings?: CreatorStudioSettings): string {
-  const prompt = preset ? applyTemplate(preset, text) : text.trim();
+  const compatiblePreset = settings?.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend' ? undefined : preset;
+  const prompt = compatiblePreset ? applyTemplate(compatiblePreset, text) : text.trim();
   return settings ? appendCinemaDirection(prompt, settings.cinemaDirection, settings.mode) : prompt;
 }
 export function creatorPromptLimit(settings: CreatorStudioSettings): number | undefined {
   return settings.mode === 'image' ? CREATOR_FAL_IMAGE_MODELS[settings.model]?.maxPromptLength ?? 4000
     : settings.mode === 'video' ? CREATOR_FAL_VIDEO_MODELS[settings.model]?.maxPromptLength : undefined;
 }
-export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boolean, preset?: CreatorTemplate): string | null {
+export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boolean, preset?: CreatorTemplate, text?: string): string | null {
+  if (settings.mode === 'image' && IMAGE_MODELS[settings.model]?.requiresImage && !hasImage) return 'creator.studioNeedsImage';
+  if (settings.mode === 'image' && IMAGE_MODELS[settings.model]?.outpaint && text !== undefined && /[^\x09\x0a\x0d\x20-\x7e]/.test(text)) return 'creator.expandEnglishOnly';
   const assets = settings.referenceAssets ?? [];
   const images = assets.filter(a => a.kind === 'image');
   const clip = assets.find(a => a.kind === 'video');
@@ -121,12 +127,14 @@ export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boo
     if (settings.seed?.trim() && (!/^\d+$/.test(settings.seed.trim()) || !Number.isSafeInteger(Number(settings.seed)) || Number(settings.seed) > 2147483647)) return 'creator.invalidSeed';
     if (settings.endFrame && !hasImage) return 'creator.endFrameNeedsStart';
     if (settings.model === VIRAL_EFFECT_MODEL && !VIRAL_EFFECTS.some(effect => effect.name === settings.effect)) return 'viralTemplates.chooseFirst';
-    if (model?.requiresVideoInput && (!clip || !hasImage)) return 'creator.referenceNeedsClip';
+    if (model?.referenceMode === 'extend' && !clip) return 'creator.extensionNeedsClip';
+    if (model?.requiresVideoInput && model.referenceMode !== 'extend' && (!clip || !hasImage)) return 'creator.referenceNeedsClip';
+    if (model?.referenceMode === 'extend' && hasImage) return 'creator.referenceTooMany';
     if (clip && !model?.requiresVideoInput) return 'creator.referenceVideoModel';
     if (images.length > (model?.maxReferenceImages ?? 1)) return 'creator.referenceTooMany';
-    if (clip?.seconds && clip.seconds > (model?.maxDuration ?? 15)) return 'creator.referenceClipLength';
+    if (clip?.seconds && clip.seconds > (model?.maxSourceDuration ?? model?.maxDuration ?? 15)) return 'creator.referenceClipLength';
   }
-  if (preset?.requiresImage && !hasImage) return 'creator.studioNeedsImage';
+  if (preset?.requiresImage && !hasImage && !(settings.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend')) return 'creator.studioNeedsImage';
   if (settings.mode === 'image' && hasImage && (!IMAGE_MODELS[settings.model] || !imageModelSupportsEdit(IMAGE_MODELS[settings.model]))) return 'creator.studioCannotEdit';
   if (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-video' : 'text-to-video')) return hasImage ? 'creator.studioCannotAnimate' : 'creator.studioNeedsImage';
   if (settings.mode === '3d' && !MODEL3D_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-3d' : 'text-to-3d')) return 'creator.studioNeedsImage';

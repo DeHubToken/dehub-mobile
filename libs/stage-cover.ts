@@ -7,10 +7,10 @@
  * always gets the same art on every device, and web (src/lib/stage-cover.ts)
  * draws the exact same poster from the same maths.
  *
- * The look is the "Ticket stub" in DeHub's monochrome poster style (the App
- * Store and share-card graphics): near-black base, blurred grey light streaks,
- * a dot grid, a hairline frame, // code tags, and a white tear-off stub with
- * the date and a sound barcode. The only colour is the red dot on a live stage.
+ * The look is "Chrome Mic", built from DeHub's banner kit (the og-image and
+ * guide banners): a smoky monochrome backdrop, grain, a dot grid, a hairline
+ * frame, the DEHUB wordmark, a chrome title with //STATUS above it, and the 3D
+ * chrome mic on the right. The only colour is the red dot on a live stage.
  *
  * Keep in sync with dehubweb/src/lib/stage-cover.ts.
  */
@@ -30,35 +30,48 @@ export interface StageCoverSource {
   status?: string | null;
 }
 
-/** One soft light streak, as fractions of the cover (x, y, w, h) and degrees. */
-export interface StageCoverStreak {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  rotate: number;
-  opacity: number;
-}
-
 export type StageCoverStatus = 'upcoming' | 'live' | 'replay';
 
+/** A small four-point sparkle, as fractions of the cover and a size in cqw. */
+export interface StageCoverSparkle {
+  x: number;
+  y: number;
+  size: number;
+}
+
 export interface StageCoverModel {
-  streaks: StageCoverStreak[];
-  /** 0..1 heights for the stub's sound barcode. */
-  bars: number[];
-  /** Stub date. Empty when the stage has no date. */
+  /** One of STAGE_COVER_BACKGROUNDS: a smoky backdrop from the brand kit. */
+  background: string;
+  /** Degrees the chrome mic leans; negative leans left. */
+  tilt: number;
+  /** A replay's mic faces the other way. */
+  flip: boolean;
+  sparkles: StageCoverSparkle[];
+  /** Start date parts. Empty when the stage has no date. */
   day: string;
   month: string;
   weekday: string;
   time: string;
+  /** Weekday, date and time in one, e.g. "Fri, Oct 23, 7:00 PM". */
+  when: string;
   title: string;
   host: string;
   status: StageCoverStatus;
-  /** `// status = "live"` style tag on the ticket. */
+  /** `//LIVE` style line above the title. */
   statusTag: string;
-  /** Small print under the barcode. */
-  stubLine: string;
+  /** `when = …` or `length = …` after the host, or '' when there is nothing to say. */
+  detail: string;
 }
+
+/**
+ * The smoky backdrops a stage can get, from the brand kit (public/brand-kit/bg
+ * on web, assets/stage-cover in the app). Order matters: the stage id picks
+ * by index, so only ever append.
+ */
+export const STAGE_COVER_BACKGROUNDS = [
+  'bg-04', 'bg-07', 'bg-10', 'bg-11', 'bg-13', 'bg-14',
+  'bg-16', 'bg-20', 'bg-23', 'bg-26', 'bg-37', 'bg-42',
+] as const;
 
 export const STAGE_COVER_W = 1600;
 export const STAGE_COVER_H = 900;
@@ -113,28 +126,17 @@ function minutesLong(stage: StageCoverSource): number {
   return Number.isFinite(ms) && ms > 0 ? Math.max(1, Math.round(ms / 60000)) : 0;
 }
 
-/** `t` words the ticket; `locale` picks the language for the month and weekday (undefined = browser). */
+/** `t` words the cover; `locale` picks the language for the date (undefined = browser). */
 export function buildStageCover(stage: StageCoverSource, t: TFunction, locale?: string): StageCoverModel {
   const seed = hash(stage.id || stage.title || 'dehub-stage');
   const next = rng(seed);
 
-  const streaks = Array.from({ length: 3 }, () => ({
-    x: 0.15 + next() * 0.7,
-    y: 0.2 + next() * 0.6,
-    w: 0.55 + next() * 0.45,
-    h: 0.09 + next() * 0.1,
-    rotate: Math.round(-55 + next() * 110),
-    opacity: 0.16 + next() * 0.16,
-  }));
-
-  // Smoothed noise so the barcode reads as sound, not static.
-  const bars: number[] = [];
-  let level = next();
-  for (let i = 0; i < 30; i++) {
-    level = level * 0.55 + next() * 0.45;
-    const swell = 0.55 + 0.45 * Math.sin((i / 30) * Math.PI * 2.5);
-    bars.push(Math.max(0.12, Math.min(1, level * swell + 0.08)));
-  }
+  const background = STAGE_COVER_BACKGROUNDS[Math.floor(next() * STAGE_COVER_BACKGROUNDS.length)];
+  const tilt = Math.round(4 + next() * 8);
+  const sparkles = [
+    { x: 0.5 + next() * 0.12, y: 0.16 + next() * 0.12, size: 2.4 },
+    { x: 0.9 + next() * 0.04, y: 0.3 + next() * 0.1, size: 1.4 },
+  ];
 
   const date = stageCoverDate(stage);
   const upper = (s: string) => s.replace('.', '').toUpperCase();
@@ -142,6 +144,9 @@ export function buildStageCover(stage: StageCoverSource, t: TFunction, locale?: 
   const month = date ? upper(formatPart(date, { month: 'short' }, '', locale)) : '';
   const weekday = date ? upper(formatPart(date, { weekday: 'short' }, '', locale)) : '';
   const time = date ? formatPart(date, { hour: 'numeric', minute: '2-digit' }, '', locale) : '';
+  const when = date
+    ? formatPart(date, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }, '', locale)
+    : '';
 
   const host = stage.host_username
     ? `@${stage.host_username}`
@@ -151,33 +156,35 @@ export function buildStageCover(stage: StageCoverSource, t: TFunction, locale?: 
 
   const status = stageCoverStatus(stage);
   const mins = minutesLong(stage);
-  const statusTag =
-    status === 'live'
-      ? `// status = "${t('stageCover.live')}"`
-      : status === 'replay'
-        ? mins ? `// replay = "${t('stageCover.minutes', { minutes: mins })}"` : `// status = "${t('stageCover.replay')}"`
-        : `// status = "${t('stageCover.upcoming')}"`;
+  const statusTag = `//${t(status === 'live' ? 'stageCover.live' : status === 'replay' ? 'stageCover.replay' : 'stageCover.upcoming').toUpperCase()}`;
+  const detail =
+    status === 'replay'
+      ? mins ? `length = ${t('stageCover.minutes', { minutes: mins })}` : ''
+      : status === 'upcoming' && when ? `when = ${when}` : '';
 
   return {
-    streaks,
-    bars,
+    background,
+    tilt: status === 'replay' ? -tilt : tilt,
+    flip: status === 'replay',
+    sparkles,
     day,
     month,
     weekday,
     time,
+    when,
     title: (stage.title || '').trim(),
     host,
     status,
     statusTag,
-    stubLine: t(status === 'live' ? 'stageCover.onAir' : status === 'replay' ? 'stageCover.recorded' : 'stageCover.admitOne'),
+    detail,
   };
 }
 
 /** Title size steps, as a fraction of the cover's width. */
 export function stageCoverTitleScale(title: string): number {
   const n = title.length;
-  if (n <= 22) return 0.056;
-  if (n <= 44) return 0.045;
-  if (n <= 72) return 0.037;
-  return 0.032;
+  if (n <= 16) return 0.084;
+  if (n <= 30) return 0.064;
+  if (n <= 48) return 0.052;
+  return 0.039;
 }

@@ -23,6 +23,7 @@ const NO_BAR = new Set<string>([
   ScreenNames.UploadQueue,
   ScreenNames.EditProfile,
   ScreenNames.MediaEditor,
+  ScreenNames.VideoRemix,
   ScreenNames.Creator,
   ScreenNames.CreatorStudio,
   ScreenNames.CreatorFlow,
