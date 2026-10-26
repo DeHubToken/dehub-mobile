@@ -32,6 +32,10 @@ export const FILTER_PRESETS: FilterPreset[] = [
   { id: "vibrant", effects: { saturation: 1.5, contrast: 1.1 } },
   { id: "cyber", effects: { hueRotate: 220, saturation: 1.4, contrast: 1.15 } },
   { id: "invert", effects: { invert: 1 } },
+  { id: "fadedFilm", label: "Faded film", effects: { fade: 0.35, contrast: 0.92, saturation: 0.8, warmth: 0.2, grain: 0.35, halation: 0.35, vignette: 0.25 } },
+  { id: "technicolor", label: "Technicolor", effects: { saturation: 1.45, contrast: 1.12, vibrance: 0.3, warmth: 0.12, tint: 0.08, halation: 0.2 } },
+  { id: "newsreel", label: "Newsreel", effects: { grayscale: 1, contrast: 1.25, brightness: 0.95, grain: 0.6, vignette: 0.55, sepia: 0.12 } },
+  { id: "vhs", label: "VHS", effects: { saturation: 1.15, contrast: 1.05, tint: 0.12, blur: 0.6, scanlines: 0.55, grain: 0.25 } },
 ];
 
 /** A preset's effects by id, as the web's applyFilterPreset. */
