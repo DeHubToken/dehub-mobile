@@ -8,6 +8,7 @@ import { MarketingWorkspace } from '../components/Assistant/MarketingWorkspace';
 import ViralTemplateShowcase from '../components/Assistant/ViralTemplateShowcase';
 import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase';
 import MeshThumbnailQueue from '../components/Assistant/MeshThumbnailQueue';
+import CreatorLibraryManager from '../components/Assistant/CreatorLibraryManager';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
@@ -161,6 +162,7 @@ export default function CreatorScreen() {
 
       <Text className="px-4 pb-1 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.yourLibrary')}</Text>
       <Text className="px-4 pb-3 text-theme-neutrals-400">{t('creator.libraryHint')}</Text>
+      <CreatorLibraryManager wallet={wallet} />
       {query.isLoading && <ActivityIndicator />}
     </View>
   );

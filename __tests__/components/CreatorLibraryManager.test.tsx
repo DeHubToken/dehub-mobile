@@ -1,0 +1,33 @@
+import React from 'react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import CreatorLibraryManager from '../../components/Assistant/CreatorLibraryManager';
+const mockList = jest.fn(), mockUpdate = jest.fn(), mockInvalidate = jest.fn();
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('../../services/creator.service', () => ({ listCreatorAssets: (...args: unknown[]) => mockList(...args), updateCreatorSelection: (...args: unknown[]) => mockUpdate(...args) }));
+jest.mock('@tanstack/react-query', () => ({ useQueryClient: () => ({ invalidateQueries: mockInvalidate }) }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
+const rows = [{ id: 'first-asset', prompt: 'First take', hidden: false }, { id: 'second-asset', prompt: 'Second take', hidden: false }];
+beforeEach(() => { jest.clearAllMocks(); mockList.mockResolvedValue({ jobs: rows, nextOffset: null }); });
+it('retains incomplete selections and refreshes the correct private account library', async () => {
+  mockUpdate.mockResolvedValue({ completedIds: ['first-asset'], incompleteIds: ['second-asset'] });
+  const view = render(<CreatorLibraryManager wallet="owner" />);
+  fireEvent.press(view.getByText('multiPost.manage'));
+  await view.findByText('☐ First take');
+  fireEvent.press(view.getByText('migrate.selectAll')); fireEvent.press(view.getByText('★ +'));
+  await view.findByText('1/100');
+  expect(mockUpdate).toHaveBeenCalledWith(['first-asset', 'second-asset'], 'favorite', 'owner');
+  expect(mockInvalidate).toHaveBeenCalledWith({ queryKey: ['creator-library', 'owner'] });
+  expect(view.getByText('☑ Second take')).toBeTruthy();
+});
+it('ignores a mutation completing after an account switch', async () => {
+  let finish!: (value: unknown) => void;
+  mockUpdate.mockImplementationOnce(() => new Promise(resolve => { finish = resolve; }));
+  const view = render(<CreatorLibraryManager wallet="owner" />);
+  fireEvent.press(view.getByText('multiPost.manage')); await view.findByText('☐ First take');
+  fireEvent.press(view.getByText('migrate.selectAll')); fireEvent.press(view.getByText('editor.layers.hide'));
+  await waitFor(() => expect(mockUpdate).toHaveBeenCalledTimes(1));
+  view.rerender(<CreatorLibraryManager wallet="new-owner" />);
+  await act(async () => { finish({ completedIds: ['first-asset'], incompleteIds: [] }); });
+  expect(mockInvalidate).not.toHaveBeenCalled();
+  expect(view.getByText('0/100')).toBeTruthy();
+});
