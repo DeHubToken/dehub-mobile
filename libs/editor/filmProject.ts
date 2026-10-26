@@ -49,8 +49,16 @@ export function remapFilmProjectMedia(value: FilmProject, ids: ReadonlyMap<strin
   })) };
 }
 
+/** Removing a source cannot leave dangling film links that prevent saving the project. */
+export function removeFilmProjectMedia(value: FilmProject | undefined, removed: ReadonlySet<string>): FilmProject | undefined {
+  if (!validFilmProject(value) || !filmProjectMediaIds(value).some(id => removed.has(id))) return value;
+  return { ...value, referenceMediaIds: value.referenceMediaIds.filter(id => !removed.has(id)), shots: value.shots.map(shot => ({ ...shot,
+    referenceMediaIds: shot.referenceMediaIds.filter(id => !removed.has(id)), ...(shot.resultMediaId && removed.has(shot.resultMediaId) ? { resultMediaId: undefined } : {}),
+  })) };
+}
+
 /** Resolve references from the actual editor media index, never from supplied remote URLs. */
-export function filmShotDraft(film: FilmProject, shotId: string, kind: 'image' | 'video', media: readonly FilmMedia[], aspect: string, projectId: string): GenerationDraft | null {
+export function filmShotDraft(film: FilmProject, shotId: string, kind: 'image' | 'video', media: readonly FilmMedia[], aspect: string, projectId: string, owner: string | null): GenerationDraft | null {
   if (!validFilmProject(film) || !/^[a-zA-Z0-9_-]{1,80}$/.test(projectId)) return null;
   const shot = film.shots.find(item => item.id === shotId);
   if (!shot?.prompt.trim()) return null;
@@ -65,6 +73,6 @@ export function filmShotDraft(film: FilmProject, shotId: string, kind: 'image' |
   const direction = normalizeCinemaDirection(shot.direction);
   let hash = 2166136261;
   for (const char of JSON.stringify([kind, prompt, direction, aspect, selected, shot.seconds])) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-  return generationDraft({ kind, aspect, prompt, cinemaDirection: direction, workspaceId: `film-${projectId}-${shot.id}-${kind}`, draftId: `film-${(hash >>> 0).toString(36)}`,
+  return generationDraft({ kind, aspect, prompt, cinemaDirection: direction, owner, workspaceId: `film-${projectId}-${shot.id}-${kind}`, draftId: `film-${(hash >>> 0).toString(36)}`,
     references: references.map(reference => ({ url: reference!.url, label: reference!.name.slice(0, 200) })), ...(kind === 'video' ? { durationSeconds: shot.seconds } : {}) });
 }

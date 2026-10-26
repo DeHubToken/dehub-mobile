@@ -5,22 +5,25 @@ import { DesignDraftInput as TextInput } from './DesignDraftInput';
 import { CinemaDirectionControls } from '../Assistant/CinemaDirectionControls';
 import { listMedia, mediaFileUri } from '../../libs/editor/storage';
 import { newId } from '../../libs/editor/project';
-import { filmShotDraft, validFilmProject, type FilmMedia, type FilmProject, type FilmShot } from '../../libs/editor/filmProject';
+import { filmShotDraft, filmProjectMediaIds, removeFilmProjectMedia, validFilmProject, type FilmMedia, type FilmProject, type FilmShot } from '../../libs/editor/filmProject';
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
 import type { ProjectSnapshot } from '../../libs/editor/types';
+import { useUser } from '../../context/AuthContext';
 
 export default function FilmProjectPanel({ project, current, commit, onGenerate }: {
   project: ProjectSnapshot; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
   onGenerate?: (draft: GenerationDraft) => Promise<void> | void;
 }) {
   const { t } = useTranslation();
+  const user = useUser();
   const [media, setMedia] = useState<FilmMedia[]>([]);
+  const [mediaLoaded, setMediaLoaded] = useState(false);
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
   const [preparing, setPreparing] = useState(false);
   const [issue, setIssue] = useState(false);
-  const refresh = async () => { const values = await listMedia(); setMedia(values.map(value => ({ id: value.id, name: value.name, kind: value.kind, url: mediaFileUri(value) }))); };
-  useEffect(() => { let active = true; listMedia().then(values => { if (active) setMedia(values.map(value => ({ id: value.id, name: value.name, kind: value.kind, url: mediaFileUri(value) }))); }).catch(() => { if (active) setIssue(true); }); return () => { active = false; }; }, [project.id]);
+  const refresh = async () => { const values = await listMedia(); setMedia(values.map(value => ({ id: value.id, name: value.name, kind: value.kind, url: mediaFileUri(value) }))); setMediaLoaded(true); };
+  useEffect(() => { let active = true; setMediaLoaded(false); listMedia().then(values => { if (active) { setMedia(values.map(value => ({ id: value.id, name: value.name, kind: value.kind, url: mediaFileUri(value) }))); setMediaLoaded(true); } }).catch(() => { if (active) setIssue(true); }); return () => { active = false; }; }, [project.id]);
   const film = validFilmProject(project.settings.filmProject) ? project.settings.filmProject : undefined;
   const update = (next: FilmProject) => {
     const latest = current(); if (!latest || latest.id !== project.id) return;
@@ -29,6 +32,7 @@ export default function FilmProjectPanel({ project, current, commit, onGenerate 
   const action = (label: string, press: () => void, disabled = false) => <Pressable accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={press} className="rounded-xl border border-theme-neutrals-700 px-3 py-3" style={{ opacity: disabled ? 0.4 : 1 }}><Text className="text-xs text-theme-neutrals-100">{label}</Text></Pressable>;
   if (!film) return <View className="p-3"><Text className="font-semibold text-theme-neutrals-100">{t('editor.film.title')}</Text><Text className="my-2 text-xs text-theme-neutrals-400">{t('editor.film.intro')}</Text>{action(t('editor.film.create'), () => update({ version: 1, title: '', brief: '', referenceMediaIds: [], shots: [] }))}</View>;
   const shot = film.shots.find(value => value.id === selected) ?? film.shots[0];
+  const missing = new Set(filmProjectMediaIds(film).filter(id => !media.some(item => item.id === id)));
   const changeShot = (patch: Partial<FilmShot>) => update({ ...film, shots: film.shots.map(value => value.id === shot?.id ? { ...value, ...patch } : value) });
   const field = (label: string, value: string, change: (text: string) => void, limit: number, multiline = false) => <View className="mt-3"><Text className="mb-1 text-xs text-theme-neutrals-300">{label}</Text><TextInput accessibilityLabel={label} value={value} onChangeText={change} maxLength={limit} multiline={multiline} className="min-h-[44px] rounded-xl border border-theme-neutrals-700 p-2 text-sm text-theme-neutrals-100" /></View>;
   const choices = (label: string, ids: string[], change: (ids: string[]) => void, result = false) => <View className="mt-3">
@@ -43,7 +47,7 @@ export default function FilmProjectPanel({ project, current, commit, onGenerate 
   const prepare = async (kind: 'image' | 'video') => {
     if (!shot || !onGenerate || preparing) return;
     const latest = current(); if (!latest || latest.id !== project.id) return;
-    const draft = filmShotDraft(film, shot.id, kind, media, project.settings.aspectPreset, project.id);
+    const draft = filmShotDraft(film, shot.id, kind, media, project.settings.aspectPreset, project.id, user?.walletAddress || user?.address || null);
     if (!draft) { setIssue(true); return; }
     setPreparing(true);
     try { await onGenerate(draft); } catch { setIssue(true); } finally { setPreparing(false); }
@@ -51,6 +55,7 @@ export default function FilmProjectPanel({ project, current, commit, onGenerate 
   return <View className="p-3">
     <Text className="font-semibold text-theme-neutrals-100">{t('editor.film.title')}</Text>
     <Text className="mt-2 text-xs text-theme-neutrals-400">{t('editor.film.intro')}</Text>
+    {mediaLoaded && missing.size > 0 && action(t('editor.film.repairRefs'), () => { const clean = removeFilmProjectMedia(film, missing); if (clean) update(clean); })}
     {field(t('editor.film.name'), film.title, title => update({ ...film, title }), 200)}
     {field(t('editor.film.brief'), film.brief, brief => update({ ...film, brief }), 3000, true)}
     {field(t('editor.film.searchMedia'), query, setQuery, 100)}

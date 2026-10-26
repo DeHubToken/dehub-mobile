@@ -7789,7 +7789,8 @@
     "savePrompt": "Bitirmek ve daha sonra göndermek için bu gönderi taslak olarak kaydedilsin mi?"
   },
   "editor": {
-    "film":  {
+    "film": {
+        "repairRefs": "Eksik medya bağlantılarını kaldır",
                  "title":  "Film projesi",
                  "intro":  "Yeniden kullanılabilir referans görselleriyle çekimleri planlayın. Özetiniz, çekim sırası ve seçilen sonuçlar bu projeyle kaydedilir.",
                  "create":  "Film planı oluştur",

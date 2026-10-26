@@ -8148,7 +8148,8 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
-    "film":  {
+    "film": {
+        "repairRefs": "Remove missing media links",
                  "title":  "Film project",
                  "intro":  "Plan shots with reusable image references. Your brief, shot order and selected results save with this project.",
                  "create":  "Create film plan",

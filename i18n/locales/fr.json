@@ -7817,7 +7817,8 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
-    "film":  {
+    "film": {
+        "repairRefs": "Retirer les liens vers les médias manquants",
                  "title":  "Projet de film",
                  "intro":  "Planifiez les plans avec des images de référence réutilisables. Le brief, l’ordre des plans et les résultats choisis sont enregistrés avec ce projet.",
                  "create":  "Créer un plan de film",

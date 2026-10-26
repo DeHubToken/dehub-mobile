@@ -7992,7 +7992,8 @@
     }
   },
   "editor": {
-    "film":  {
+    "film": {
+        "repairRefs": "Ontbrekende mediakoppelingen verwijderen",
                  "title":  "Filmproject",
                  "intro":  "Plan shots met herbruikbare referentiebeelden. Je brief, shotvolgorde en gekozen resultaten worden met dit project opgeslagen.",
                  "create":  "Filmplan maken",
