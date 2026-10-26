@@ -55,6 +55,7 @@ import { isSolanaChain } from "../../config/solana.constants";
 import { formatCompactNumber } from "../../libs";
 import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const PPV_CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 
@@ -504,7 +505,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },
