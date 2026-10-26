@@ -1,6 +1,10 @@
 import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView', TextInput: 'TextInput',
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
+}));
 
 let mockOwner = 'alice';
 const mockPick = jest.fn();
