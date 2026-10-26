@@ -1,3 +1,4 @@
+import { AGENT_RECIPES } from "../../libs/editor/agentRecipes";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * AI chat for the editor: describe the change, the agent makes it. Same
@@ -128,6 +129,17 @@ export default function AgentSheet({ visible, entries, busy, onSend, queue = [],
                     <Text className="text-white text-sm">{s}</Text>
                   </Pressable>
                 ))}
+                <Text className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-white/40">{t("editor.agent.recipesTitle")}</Text>
+                <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+                  {AGENT_RECIPES.map((id) => (
+                    <Pressable key={id} onPress={() => send(t(`editor.agent.recipe.${id}.prompt`))} accessibilityRole="button"
+                      accessibilityHint={t(`editor.agent.recipe.${id}.prompt`)}
+                      className="rounded-xl border border-white/15 bg-white/[0.04] px-3 py-2" style={{ width: "48%" }}>
+                      <Text className="text-white text-xs font-semibold">{t(`editor.agent.recipe.${id}.label`)}</Text>
+                      <Text className="mt-0.5 text-[10px] text-white/50" numberOfLines={2}>{t(`editor.agent.recipe.${id}.prompt`)}</Text>
+                    </Pressable>
+                  ))}
+                </View>
               </>
             )}
             {entries.map((e) => (

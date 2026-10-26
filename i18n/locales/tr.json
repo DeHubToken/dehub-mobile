@@ -8247,7 +8247,34 @@
       "feedback": "Bu yardımcı oldu mu?",
       "good": "İyi yanıt",
       "bad": "Kötü yanıt",
-      "retryPrefix": "Bu doğru değildi. Bunun yerine, "
+      "retryPrefix": "Bu doğru değildi. Bunun yerine, ",
+      "recipesTitle": "Tarifler",
+      "recipe": {
+        "podcastClip": {
+          "label": "Podcast klibi",
+          "prompt": "En güçlü 30 saniyelik anı bul, ona göre kırp, Word Pop altyazı ekle ve 9:16 yap."
+        },
+        "talkingHead": {
+          "label": "Temiz konuşma videosu",
+          "prompt": "Uzun duraklamaları kes, Classic altyazı ekle ve hafif sıcak bir görünüm ver."
+        },
+        "productPromo": {
+          "label": "Ürün tanıtımı",
+          "prompt": "15 saniyelik bir tanıtım yap: başta etkileyici başlık, klipler arasında Zoom in geçişleri, Bold altyazı ve hareketli müzik."
+        },
+        "hypeReel": {
+          "label": "Coşkulu reel",
+          "prompt": "Klipleri müziğin ritmine göre kes, Fly up geçişleri ve Technicolor görünümü kullan."
+        },
+        "retroEdit": {
+          "label": "Retro kurgu",
+          "prompt": "Her klibe VHS görünümü ver, büyük serif bir başlık ekle ve Fade geçişleri kullan."
+        },
+        "tutorial": {
+          "label": "Eğitim videosu",
+          "prompt": "Her adım için bir başlık ekle, Boxed altyazı ekle ve önemli anı 0,5x'e yavaşlat."
+        }
+      }
     },
     "brand": {
       "addColor": "Marka rengi ekle",
@@ -9670,7 +9697,16 @@
       "scanning": "Kareler kontrol ediliyor…",
       "noBars": "Siyah bant bulunamadı",
       "barsRemoved": "Siyah bantlar kırpıldı",
-      "barsFailed": "Bu videoda siyah bant kontrolü yapılamadı"
+      "barsFailed": "Bu videoda siyah bant kontrolü yapılamadı",
+      "reframe": "Otomatik yeniden çerçevele",
+      "reframeHint": "Video bu sayfa biçimine zaten uyuyor",
+      "reframed": "Hareketi takip edecek şekilde çerçevelendi",
+      "reframeFailed": "Bu video yeniden çerçevelenemedi",
+      "retakes": "Tekrar çekimleri kaldır",
+      "listening": "Dinleniyor…",
+      "noRetakes": "Tekrar çekim bulunamadı",
+      "retakesRemoved": "{{count}} tekrar çekim kaldırıldı, son çekim tutuldu",
+      "retakesFailed": "Bu klipten tekrar çekimler kaldırılamadı"
     }
   },
   "creator": {

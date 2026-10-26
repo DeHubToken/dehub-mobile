@@ -77,6 +77,8 @@ import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
 import { captionLayers, type CaptionStyle } from "../libs/editor/captionLayout";
 import { detachAudio } from "../libs/editor/clipTools";
+import { reframeKeys } from "../libs/editor/reframe";
+import { findRetakes, removeRetakes } from "../libs/editor/retakes";
 import { nleExport, type NleMedia } from "../libs/editor/nleExport";
 import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
@@ -127,7 +129,7 @@ import { applyCaptionTranslation } from "../libs/editor/captionTranslation";
 import { applyCaptionText } from "../libs/editor/captionText";
 import { ShotTools } from "../components/editor/ShotTools";
 import { HighlightTools } from "../components/editor/HighlightTools";
-import { highlightProject, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
+import { highlightCaptionWords, highlightProject, highlightSentences, sameHighlightSource, type HighlightRange } from "../libs/editor/highlights";
 import { highlightChatRequest, highlightVisualScope, type HighlightChatResult } from "../libs/editor/highlightChat";
 import { analyseVisualHighlights } from "../libs/editor/visualHighlightApi";
 import { useHighlightChat } from "../libs/editor/useHighlightChat";
@@ -378,7 +380,7 @@ type Tool =
   | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion" | "captions";
 
 interface ToolButton {
-  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions" | "detachAudio" | "removeBars";
+  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions" | "detachAudio" | "removeBars" | "reframe" | "retakes";
   icon: IconName;
   label: string;
 }
@@ -976,11 +978,11 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
     } finally { task.release(); }
   };
-  const [barsBusy, setBarsBusy] = useState(false);
+  const [barsBusy, setBarsBusy] = useState<"" | "bars" | "reframe" | "retakes">("");
   const removeBars = async (clipId: string) => {
     const clip = h.latest()?.clips.find(c => c.id === clipId);
     if (!clip || clip.kind !== "video" || clip.locked || barsBusy) return;
-    setBarsBusy(true);
+    setBarsBusy("bars");
     try {
       const span = clip.duration * (clip.speed && clip.speed > 0 ? clip.speed : 1);
       const crop = await canvasRef.current?.detectBars(clip.mediaId, [0.2, 0.5, 0.8].map(f => clip.trimIn + span * f));
@@ -990,7 +992,49 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       h.commit({ ...latest, clips: latest.clips.map(c => c.id === clipId ? { ...c, crop } as MediaClip : c) });
       toastSuccess(t("editor.clipFix.barsRemoved"));
     } catch { if (editorMounted.current) toastError(t("editor.clipFix.barsFailed")); }
-    finally { if (editorMounted.current) setBarsBusy(false); }
+    finally { if (editorMounted.current) setBarsBusy(""); }
+  };
+  const autoReframe = async (clipId: string) => {
+    const current = h.latest(), clip = current?.clips.find(c => c.id === clipId);
+    if (!current || !clip || clip.kind !== "video" || clip.locked || barsBusy) return;
+    const meta = await getMedia(clip.mediaId);
+    const crop = clip.crop ?? { left: 0, top: 0, right: 0, bottom: 0 };
+    const aspect = meta?.width && meta.height ? (meta.width * (1 - crop.left - crop.right)) / (meta.height * (1 - crop.top - crop.bottom)) : 0;
+    const overflow = aspect / (current.settings.width / current.settings.height);
+    if (!(overflow > 1.05)) { toastError(t("editor.clipFix.reframeHint")); return; }
+    setBarsBusy("reframe"); setPlaying(false);
+    try {
+      const speed = clip.speed && clip.speed > 0 ? clip.speed : 1;
+      const count = Math.min(60, Math.max(4, Math.ceil(clip.duration / 0.5)));
+      const times = Array.from({ length: count }, (_, i) => clip.duration * (i + 0.5) / count);
+      const centres = await canvasRef.current!.subjectCentres(clip.mediaId, times.map(time => clip.trimIn + time * speed));
+      if (!editorMounted.current) return;
+      const keys = reframeKeys(times.map((time, i) => ({ t: time, centre: centres[i] ?? 0.5 })), overflow);
+      const latest = h.latest(); if (!latest || !keys.length) return;
+      h.commit({ ...latest, clips: latest.clips.map(c => c.id === clipId && c.kind === "video" ? {
+        ...c, fit: "cover" as const, transform: { y: 0.5, scale: 1, rotation: 0, ...c.transform, x: keys[0].v },
+        keyframes: { ...c.keyframes, x: keys.length > 1 ? keys : undefined },
+      } : c) });
+      toastSuccess(t("editor.clipFix.reframed"));
+    } catch { if (editorMounted.current) toastError(t("editor.clipFix.reframeFailed")); }
+    finally { if (editorMounted.current) setBarsBusy(""); }
+  };
+  const cutRetakes = async (clipId: string) => {
+    const current = h.latest(), clip = current?.clips.find(c => c.id === clipId);
+    if (!current || !clip || clip.kind !== "video" || clip.locked || barsBusy) return;
+    setBarsBusy("retakes"); setPlaying(false);
+    try {
+      const captioned = highlightCaptionWords(current, clip);
+      const words = captioned.length ? captioned : await transcribe(clip);
+      if (!editorMounted.current) return;
+      const cuts = findRetakes(highlightSentences(clip, words));
+      if (!cuts.length) { toastSuccess(t("editor.clipFix.noRetakes")); return; }
+      const latest = h.latest(); if (!latest) return;
+      const next = removeRetakes(latest, clipId, cuts, () => newId(10));
+      if (next) { h.commit(next); toastSuccess(t("editor.clipFix.retakesRemoved", { count: cuts.length })); }
+      else toastError(t("editor.clipFix.retakesFailed"));
+    } catch { if (editorMounted.current) toastError(t("editor.clipFix.retakesFailed")); }
+    finally { if (editorMounted.current) setBarsBusy(""); }
   };
 
   const addCaptions = async (style: CaptionStyle = "classic") => {
@@ -1198,6 +1242,8 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       return;
     }
     if (id === "removeBars" && selectedId) { void removeBars(selectedId); return; }
+    if (id === "reframe" && selectedId) { void autoReframe(selectedId); return; }
+    if (id === "retakes" && selectedId) { void cutRetakes(selectedId); return; }
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
@@ -1269,7 +1315,9 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         { id: "speed", icon: "Gauge", label: t("editor.video.speed") },
         { id: "sound", icon: "Volume2", label: t("editor.video.volumeTool") },
         { id: "detachAudio", icon: "Music", label: t("editor.clipFix.detach") },
-        { id: "removeBars", icon: "Crop", label: barsBusy ? t("editor.clipFix.scanning") : t("editor.clipFix.removeBars") },
+        { id: "removeBars", icon: "Crop", label: barsBusy === "bars" ? t("editor.clipFix.scanning") : t("editor.clipFix.removeBars") },
+        { id: "reframe", icon: "Expand", label: barsBusy === "reframe" ? t("editor.clipFix.scanning") : t("editor.clipFix.reframe") },
+        { id: "retakes", icon: "Scissors", label: barsBusy === "retakes" ? t("editor.clipFix.listening") : t("editor.clipFix.retakes") },
         ...(project && findAdjacentNext(project, selected.id) ? [{ id: "transition" as const, icon: "ArrowLeftRight" as IconName, label: t("editor.video.transition") }] : []),
         { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
         { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },

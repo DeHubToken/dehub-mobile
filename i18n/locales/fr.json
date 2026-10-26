@@ -8246,7 +8246,34 @@
       "feedback": "Cette réponse vous a-t-elle aidé ?",
       "good": "Bonne réponse",
       "bad": "Mauvaise réponse",
-      "retryPrefix": "Ce n'était pas ça. À la place, "
+      "retryPrefix": "Ce n'était pas ça. À la place, ",
+      "recipesTitle": "Recettes",
+      "recipe": {
+        "podcastClip": {
+          "label": "Extrait de podcast",
+          "prompt": "Trouve le meilleur moment de 30 secondes, coupe autour, ajoute des sous-titres Word Pop et passe en 9:16."
+        },
+        "talkingHead": {
+          "label": "Face caméra propre",
+          "prompt": "Coupe les longues pauses, ajoute des sous-titres Classic et un léger rendu chaud."
+        },
+        "productPromo": {
+          "label": "Promo produit",
+          "prompt": "Crée une promo de 15 secondes : titre percutant au début, transitions Zoom in entre les clips, sous-titres Bold et musique entraînante."
+        },
+        "hypeReel": {
+          "label": "Reel énergique",
+          "prompt": "Coupe les clips sur le rythme de la musique, avec des transitions Fly up et le rendu Technicolor."
+        },
+        "retroEdit": {
+          "label": "Montage rétro",
+          "prompt": "Donne à chaque clip le rendu VHS, ajoute un grand titre serif et utilise des transitions Fade."
+        },
+        "tutorial": {
+          "label": "Tutoriel",
+          "prompt": "Ajoute un titre pour chaque étape, des sous-titres Boxed et ralentis le moment clé à 0,5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Ajouter une couleur de marque",
@@ -9698,7 +9725,16 @@
       "scanning": "Analyse des images…",
       "noBars": "Aucune bande noire trouvée",
       "barsRemoved": "Bandes noires rognées",
-      "barsFailed": "Impossible d'analyser les bandes noires de cette vidéo"
+      "barsFailed": "Impossible d'analyser les bandes noires de cette vidéo",
+      "reframe": "Recadrage auto",
+      "reframeHint": "La vidéo s'adapte déjà à ce format",
+      "reframed": "Recadré pour suivre l'action",
+      "reframeFailed": "Impossible de recadrer cette vidéo",
+      "retakes": "Retirer les reprises",
+      "listening": "Écoute…",
+      "noRetakes": "Aucune reprise trouvée",
+      "retakesRemoved": "{{count}} reprise(s) retirée(s), dernière prise conservée",
+      "retakesFailed": "Impossible de retirer les reprises de ce clip"
     }
   },
   "creator": {
