@@ -5,10 +5,15 @@ const API = `${MABOROSHI_ORIGIN}/maboroshi`;
 export interface MaboroshiPaymentRequest {
   type: 'maboroshi:pay'; requestId: string; id: string; stage: 'prepare' | 'draft' | 'hd';
 }
+/** Renderers with one complete render, paid at the draft stage only. */
+export const MABOROSHI_ONE_PASS = ['kling', 'wan', 'seedance-direct'] as const;
+export type MaboroshiRenderer = typeof MABOROSHI_ONE_PASS[number] | 'seedance';
 export interface MaboroshiQuote extends MaboroshiPaymentRequest {
-  wallet: string; price_micros: number; payment_ref: string | null; renderer?: 'kling' | 'seedance';
+  wallet: string; price_micros: number; payment_ref: string | null; renderer?: MaboroshiRenderer;
 }
-export const maboroshiStageLabel = (stage: MaboroshiPaymentRequest['stage'], renderer?: MaboroshiQuote['renderer']) => renderer === 'kling' ? _translateCopy('copy.78ffacb7abe7', { defaultValue: 'Generate Kling video · original soundtrack' }) : ({
+export const maboroshiStageLabel = (stage: MaboroshiPaymentRequest['stage'], renderer?: MaboroshiQuote['renderer']) => renderer === 'kling' ? _translateCopy('copy.78ffacb7abe7', { defaultValue: 'Generate Kling video · original soundtrack' })
+  : renderer === 'wan' ? _translateCopy('copy.22577ebd908e', { defaultValue: 'Generate Wan 3.0 video · original soundtrack' })
+  : renderer === 'seedance-direct' ? _translateCopy('copy.1fa2357ab7e1', { defaultValue: 'Generate Seedance 720p video · original soundtrack' }) : ({
   prepare: () => _translateCopy('copy.552688147b69', { defaultValue: 'Prepare clip' }), draft: () => _translateCopy('copy.f82333b89a5d', { defaultValue: 'Generate preview' }), hd: () => _translateCopy('copy.52efc9ce346b', { defaultValue: 'Generate 1080p' }),
 })[stage]();
 export function isMaboroshiPaymentRequest(value: unknown): value is MaboroshiPaymentRequest {
@@ -30,8 +35,8 @@ export async function getMaboroshiQuote(input: MaboroshiPaymentRequest, token: s
   if (!isMaboroshiPaymentRequest(input) || !token || !/^0x[a-f0-9]{40}$/i.test(wallet)) throw new Error(_translateCopy('copy.0529d215317c', { defaultValue: 'Sign in to review this payment.' }));
   const quote = await request(`/jobs/${input.id}/checkout/${input.stage}`, token, {}, fetcher);
   if (quote.id !== input.id || quote.stage !== input.stage || quote.wallet !== wallet.toLowerCase()
-      || (quote.renderer !== undefined && !['kling', 'seedance'].includes(quote.renderer))
-      || (quote.renderer === 'kling' && input.stage !== 'draft')
+      || (quote.renderer !== undefined && quote.renderer !== 'seedance' && !(MABOROSHI_ONE_PASS as readonly string[]).includes(quote.renderer))
+      || (quote.renderer !== undefined && quote.renderer !== 'seedance' && input.stage !== 'draft')
       || !Number.isSafeInteger(quote.price_micros) || quote.price_micros <= 0 || quote.price_micros > 100_000_000
       || (quote.payment_ref !== null && quote.payment_ref !== 'credits' && !/^0x[a-f0-9]{64}$/.test(quote.payment_ref))) throw new Error(_translateCopy('copy.d87fb5ba9276', { defaultValue: 'The project payment does not match this account.' }));
   return { ...input, ...quote };

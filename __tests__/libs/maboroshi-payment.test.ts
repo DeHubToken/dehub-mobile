@@ -17,6 +17,18 @@ describe('Maboroshi normal generation payment handoff', () => {
     const hd = { ...input, stage: 'hd' as const };
     await expect(getMaboroshiQuote(hd, 'session', wallet, jest.fn().mockResolvedValue(response({ ...quote, ...hd, renderer: 'kling' })))).rejects.toThrow('account');
   });
+  it('accepts the one-render Wan and Seedance 720p options only at the render stage', async () => {
+    expect(maboroshiStageLabel('draft', 'wan')).toContain('Generate Wan 3.0 video');
+    expect(maboroshiStageLabel('draft', 'seedance-direct')).toContain('Generate Seedance 720p video');
+    for (const renderer of ['wan', 'seedance-direct']) {
+      const draft = { ...input, stage: 'draft' as const };
+      expect((await getMaboroshiQuote(draft, 'session', wallet, jest.fn().mockResolvedValue(response({ ...quote, ...draft, renderer, price_micros: 2450000 })))).renderer).toBe(renderer);
+      const hd = { ...input, stage: 'hd' as const };
+      await expect(getMaboroshiQuote(hd, 'session', wallet, jest.fn().mockResolvedValue(response({ ...quote, ...hd, renderer })))).rejects.toThrow('account');
+    }
+    const draft = { ...input, stage: 'draft' as const };
+    await expect(getMaboroshiQuote(draft, 'session', wallet, jest.fn().mockResolvedValue(response({ ...quote, ...draft, renderer: 'veo' })))).rejects.toThrow('account');
+  });
   it('uses the common payer for an unfunded prepaid balance and submits its verified transfer reference', async () => {
     const fetcher = jest.fn().mockResolvedValueOnce(response(quote)).mockResolvedValueOnce(response({ state: 'queued', payment_ref: hash }));
     const pay = jest.fn().mockResolvedValue(hash);
