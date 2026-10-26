@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} tokenịị"
   },
   "communities": {
+    "shareLink": "Share njikọ",
+    "sendInMessage": "Ziga òkù",
     "existingPost": {
       "add": "Tinye ẹdude post",
       "added": "Post kwukwara na obodo",

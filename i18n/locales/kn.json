@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} ಟೋಕನ್‌ಗಳು"
   },
   "communities": {
+    "shareLink": "ಲಿಂಕ್ ಹಂಚಿಕೊಳ್ಳಿ",
+    "sendInMessage": "ಆಹ್ವಾನ ಕಳುಹಿಸಿ",
     "existingPost": {
       "add": "ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಪೋಸ್ಟ್ ಸೇರಿಸಿ",
       "added": "ಸಮುದಾಯಕ್ಕೆ ಪೋಸ್ಟ್ ಸೇರಿಸಲಾಗಿದೆ",

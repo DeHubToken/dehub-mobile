@@ -36,6 +36,7 @@ interface Props {
 
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import SheetGlass, { GLASS_PANEL_CLEAR, useDrawerGlass } from "../ui/SheetGlass";
 
 const CDN_BASE = "https://dehubcdn.ams3.cdn.digitaloceanspaces.com";
 
@@ -57,6 +58,7 @@ const resolveTrackTitle = (item: UnifiedFeedItem, untitled = "Untitled"): string
 const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, currentSound }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const glassPanel = useDrawerGlass();
   const { height: SCREEN_H } = useWindowDimensions();
   const [searchText, setSearchText] = useSurfaceDraft("components/Post/SoundPickerSheet.tsx:searchText", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -318,7 +320,8 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
         style={{ flex: 1 }}
       >
       <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
-      <Animated.View style={[styles.sheet, { height: sheetHeight }]}>
+      <Animated.View style={[styles.sheet, glassPanel && GLASS_PANEL_CLEAR, { height: sheetHeight }]}>
+        {glassPanel ? <SheetGlass /> : null}
         {/* Only the handle + header drag the sheet; on the whole sheet the
             responder claimed every vertical move, so scrolling the results
             resized or closed it. */}

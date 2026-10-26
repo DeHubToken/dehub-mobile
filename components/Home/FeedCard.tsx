@@ -301,33 +301,54 @@ const IMMERSIVE_INSET = 16;
 const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
 // The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
 const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
+/**
+ * System's time and view counts sit in one grey with their icons. Written as
+ * hsla() so neither the dark-theme text lift (libs/jsx/readability.js) nor
+ * System Light's colour pass (libs/jsx/tone.js) moves them: #8B8D90 on black,
+ * #71717A on white, both AA.
+ */
+const SYSTEM_META_GREY = "hsla(220,2%,55%,1)";
+const SYSTEM_LIGHT_META_GREY = "hsla(240,4%,46%,1)";
 
 /**
  * Clock + time, then the post kind's icon + count, then who may see it when
  * that is narrower than everyone. A fragment, so the row adds no wrapper views.
  */
-function PostMetaItems({ timeAgo, icon, count, visibility }: {
+function PostMetaItems({ timeAgo, icon, count, visibility, boosted }: {
   timeAgo?: string;
+  /** Paid boost slot: says so in words, right after the time. */
+  boosted?: boolean;
   icon: IconName;
   count: string;
   visibility?: string;
 }) {
   const { t } = useCopy();
+  const { theme, isLight } = useAppTheme();
   const restricted = visibility === "followers" || visibility === "direct";
+  const systemGrey = theme === "system" ? (isLight ? SYSTEM_LIGHT_META_GREY : SYSTEM_META_GREY) : null;
+  const iconColor = systemGrey ?? "#6F7174";
+  const label = systemGrey ? [META_LABEL, { color: systemGrey }] : META_LABEL;
   return (
     <>
       {timeAgo ? (
         <>
-          <Icon name="TimeAgo" size={13} color="#6F7174" />
-          <Text style={META_LABEL}>{timeAgo}</Text>
+          <Icon name="TimeAgo" size={13} color={iconColor} />
+          <Text style={label}>{timeAgo}</Text>
         </>
       ) : null}
-      <Icon name={icon} size={13} color="#6F7174" />
-      <Text style={META_LABEL}>{count}</Text>
+      {boosted ? (
+        <Text
+          style={[META_TEXT, { fontSize: 11, letterSpacing: 0.9, textTransform: "uppercase", color: isLight ? "hsla(240,6%,10%,0.85)" : "hsla(0,0%,100%,0.85)" }]}
+        >
+          {t("work.boosted")}
+        </Text>
+      ) : null}
+      <Icon name={icon} size={13} color={iconColor} />
+      <Text style={label}>{count}</Text>
       {restricted ? (
         <>
-          <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color="#6F7174" />
-          <Text style={META_LABEL} testID="post-visibility-label">
+          <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color={iconColor} />
+          <Text style={label} testID="post-visibility-label">
             {visibility === "direct" ? t("postVisibility.direct") : t("postVisibility.followers")}
           </Text>
         </>
@@ -858,6 +879,10 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // lists it; a stale one would write under the previous post's key and the
   // sheet would never open on this one.
   const handleBoostPress = useCallback(() => setShowBoost(true), [setShowBoost]);
+  // A paid boost slot marks itself: lit corner bolt and "Boosted" by the time.
+  // It must say so in words, or a paid post reads as organic reach.
+  const isBoosted = !!(item as any).__boosted;
+  const openSuperPowers = useCallback(() => navigation.navigate(ScreenNames.SuperPowers), [navigation]);
   const handleShowReactionInfo = useCallback(() => setShowReactionInfo(true), [setShowReactionInfo]);
   // Relative time moves by the minute at most; recomputing it on every render
   // parsed the date each time.
@@ -1412,7 +1437,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // Under the capsule the first thing in the post moves down: the repost or
   // boost labels when there are any, the author otherwise. A video still runs
   // to the top of the screen; only its chip and buttons move.
-  const hasLabels = showRepostLabel || !!(item as any).__boosted;
+  const hasLabels = showRepostLabel;
   // A revealed landing photo and videos stay flush; warnings retain clearance.
   const chromeInset = cinematicFeed ? topChromeInset + (topChromeInset > 0 && contentType === "image" && !firstImageHeaderBelow ? 3 : 0) : 0;
   // Text, audio, articles and warnings clear the capsule as a whole card.
@@ -2218,10 +2243,11 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         >
           {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]} /> : null}
           {showRepostLabel && <View className="flex-row items-center gap-1.5 mb-2"><Icon name="Repeat2" size={14} color="#9CA3AF" /><Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text></View>}
-          {!!(item as any).__boosted && <TouchableOpacity onPress={() => navigation.navigate(ScreenNames.SuperPowers)} className="flex-row items-center gap-1.5 mb-2"><Icon name="Zap" size={14} color="#9CA3AF" /><Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">{t("work.boosted")}</Text></TouchableOpacity>}
           <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch' }}>
             <View style={{ flex: 1, minWidth: 0 }}>
               <FeedCardHeader
+                boosted={isBoosted}
+                onBoostedPress={openSuperPowers}
                 avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
                 badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
                 onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
@@ -2241,7 +2267,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
               <ShopBoard key={postKey} tokenId={tokenId} links={localShopLinks ?? (item as any).shopLinks} listingCount={localShopListingCount ?? (item as any).shopListingCount} />
               <View style={{ marginTop: 'auto', paddingTop: 16 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-                  <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+                  <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
                   {showTranslate && <TranslateButton isTranslated={isTranslated} isLoading={translating} detectedLanguage={translationSourceLang} onTranslate={handleTranslate} onShowOriginal={handleShowOriginal} inline />}
                 </View>
                 {actionBar}
@@ -2365,7 +2391,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           />
         )}
         <View className="flex-row flex-wrap items-center gap-3 pt-2" testID="post-stage-meta">
-          <PostMetaItems timeAgo={timeAgo} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
+          <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"} count={formatCompactNumber(views)} visibility={item.visibility} />
           {showTranslate && (
             <TranslateButton
               isTranslated={isTranslated}
@@ -2474,6 +2500,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
     const photoHeader = cinematicMedia && !chipOverMedia ? (
       <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: firstImageHeaderBelow ? 10 : leadInset }}>
               <FeedCardHeader
+                boosted={isBoosted}
+                onBoostedPress={openSuperPowers}
                 avatarUrl={avatar}
                 displayName={displayName}
                 username={username}
@@ -2504,20 +2532,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             <Icon name="Repeat2" size={14} color="#9CA3AF" />
             <Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text>
           </View>
-        )}
-        {!!(item as any).__boosted && (
-          <TouchableOpacity
-            onPress={() => navigation.navigate(ScreenNames.SuperPowers)}
-            accessibilityRole="button"
-            accessibilityLabel={t("feedCard.openSuperPowers")}
-            hitSlop={6}
-            className="flex-row items-center gap-1.5"
-          >
-            <Icon name="Zap" size={14} color="#9CA3AF" />
-            <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
-              {t("work.boosted")}
-            </Text>
-          </TouchableOpacity>
         )}
       </View>
     ) : null;
@@ -2602,6 +2616,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         ) : (
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: leadInset }}>
             <FeedCardHeader
+              boosted={isBoosted}
+              onBoostedPress={openSuperPowers}
               avatarUrl={avatar}
               displayName={displayName}
               username={username}
@@ -2719,7 +2735,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
         </View>
         {(
           <View style={{ paddingHorizontal: CINEMATIC_TEXT_INSET, paddingTop: 8, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }}>
-            <PostMetaItems timeAgo={timeAgo} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
+            <PostMetaItems timeAgo={timeAgo} boosted={isBoosted} icon="Eye" count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`} visibility={item.visibility} />
             {translateButton}
           </View>
         )}
@@ -2799,29 +2815,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           <Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text>
         </View>
       )}
-      {/*
-        A boosted post says so. Not a legal point, a product one: the feed's
-        whole pitch is that engagement decides reach, and an unlabelled paid
-        slot at position zero makes that untrue. Web has carried this label
-        since the feature shipped; the phone did not, so the same post read as
-        organic on Android and as paid on the web.
-      */}
-      {!!(item as any).__boosted && (
-        <View className="flex-row items-center gap-1.5 mb-2">
-          <TouchableOpacity
-            onPress={() => navigation.navigate(ScreenNames.SuperPowers)}
-            accessibilityRole="button"
-            accessibilityLabel={t("feedCard.openSuperPowers")}
-            hitSlop={6}
-            className="flex-row items-center gap-1.5"
-          >
-            <Icon name="Zap" size={14} color="#9CA3AF" />
-            <Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">
-              {t("work.boosted")}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )}
       {/* Immersive: the media comes first, out past the text inset to both
           screen edges. A post behind the mature warning keeps the warning in
           its usual place instead. */}
@@ -2834,6 +2827,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           card is ~100 native views, each one paid for at mount mid-fling. */}
       {!retainFeedNav && postVideo && matureGate.isGated && <PostStageChrome overMedia={false} />}
       <FeedCardHeader
+        boosted={isBoosted}
+        onBoostedPress={openSuperPowers}
         avatarUrl={avatar}
         displayName={displayName}
         username={username}
@@ -2970,7 +2965,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
             labelled; printed here it read as the view count and undercounted
             by an order of magnitude. */}
         <PostMetaItems
-          timeAgo={timeAgo}
+          timeAgo={timeAgo} boosted={isBoosted}
           visibility={item.visibility}
           icon={isAudioPost ? "Headphones" : isLive ? "Radio" : "Eye"}
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}

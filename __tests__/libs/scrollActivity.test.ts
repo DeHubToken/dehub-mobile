@@ -2,8 +2,11 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 import {
   __resetScrollActivityForTests,
+  captureScrollStopTouch,
+  isFeedGliding,
   isFeedScrolling,
   setFeedScrolling,
+  STOP_TAP_GRACE_MS,
   subscribeFeedScrollStart,
   subscribeFeedSettled,
 } from "../../libs/scrollActivity";
@@ -25,6 +28,24 @@ describe("feed scroll activity", () => {
     setFeedScrolling(false);
     expect(fn).toHaveBeenCalledTimes(1);
     expect(isFeedScrolling()).toBe(false);
+  });
+
+  it("a touch on a gliding feed only stops it; a resting feed lets taps through", () => {
+    expect(captureScrollStopTouch()).toBe(false);
+    setFeedScrolling(true);
+    expect(captureScrollStopTouch()).toBe(true);
+    const settled = Date.now();
+    setFeedScrolling(false);
+    // The stop can reach JS a frame before the touch that caused it.
+    expect(isFeedGliding(settled + 40)).toBe(true);
+    expect(isFeedGliding(settled + STOP_TAP_GRACE_MS + 1)).toBe(false);
+  });
+
+  it("a settle the list never reported does not swallow later taps", () => {
+    setFeedScrolling(true);
+    jest.advanceTimersByTime(2500);
+    expect(isFeedScrolling()).toBe(false);
+    expect(isFeedGliding()).toBe(false);
   });
 
   it("notifies start once per rest-to-moving transition", () => {

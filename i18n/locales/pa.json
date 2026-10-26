@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} ਟੋਕਨ"
   },
   "communities": {
+    "shareLink": "ਲਿੰਕ ਸਾਂਝਾ ਕਰੋ",
+    "sendInMessage": "ਇਨਵਾਈਟ ਭੇਜੋ",
     "existingPost": {
       "add": "ਮੌਜੂਦਾ ਪੋਸਟ ਸ਼ਾਮਲ ਕਰੋ",
       "added": "ਕਮਿਊਨਿਟੀ ਵਿੱਚ ਪੋਸਟ ਸ਼ਾਮਲ ਕੀਤੀ ਗਈ",

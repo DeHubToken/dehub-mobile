@@ -6608,6 +6608,8 @@
     "tokenAmount": "{{amount}} токенів"
   },
   "communities": {
+    "shareLink": "Поділитися посиланням",
+    "sendInMessage": "Надіслати запрошення",
     "existingPost": {
       "add": "Додати існуючий пост",
       "added": "Пост доданий до спільноти",

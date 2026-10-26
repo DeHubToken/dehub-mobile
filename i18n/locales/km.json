@@ -6261,6 +6261,8 @@
     "tokenAmount": "{{amount}} តូខឹន"
   },
   "communities": {
+    "shareLink": "ចែករំលែកតំណ",
+    "sendInMessage": "ផ្ញើការអញ្ជើញ",
     "existingPost": {
       "add": "បន្ថែមការបង្ហោះដែលមានស្រាប់",
       "added": "ការបង្ហោះត្រូវបានបន្ថែមទៅសហគមន៍",

@@ -706,13 +706,13 @@ const PromptComposer: React.FC<{
         {attachments.map((attachment, index) => <View key={`${attachment.uri}-${index}`} style={styles.promptAttachment}>
           <ThemePanel style={styles.promptThumbnail}>
             <Image source={{ uri: attachment.uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
-            <Pressable style={styles.pickRemove} disabled={submitting} hitSlop={8}
+            <Pressable className="dark-surface" style={styles.pickRemove} disabled={submitting} hitSlop={8}
               onPress={() => setAttachments(prev => prev.filter((_, i) => i !== index))}
               accessibilityRole="button" accessibilityLabel={t("features.removePromptAttachment", "Remove {{name}}", { name: attachment.fileName || String(index + 1) })}>
               <Icon name="X" size={12} color="#FFFFFF" />
             </Pressable>
             {ImageEditSheet && !attachment.mimeType?.startsWith("video/") && attachment.mimeType !== "image/gif" && (
-              <Pressable style={styles.pickMarkup} disabled={submitting} hitSlop={8}
+              <Pressable className="dark-surface" style={styles.pickMarkup} disabled={submitting} hitSlop={8}
                 onPress={() => setMarkupIndex(index)}
                 accessibilityRole="button" accessibilityLabel={t("upload.drawWrite")}>
                 <Icon name="Pencil" size={12} color="#FFFFFF" />

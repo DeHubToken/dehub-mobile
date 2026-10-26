@@ -10,10 +10,11 @@ import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityI
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import PostFeedNav from "../components/Home/PostFeedNav";
+import { FEED_SIDE } from "../components/Home/feedLayout";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
-import { selectAuthorThreadIds } from "../libs/author-thread";
+import { authorThreadFirst, isAuthorThreadRoot, selectAuthorThreadIds } from "../libs/author-thread";
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
@@ -77,14 +78,16 @@ type ThreadedComment = Comment & { depth: number };
 
 /**
  * Reorders whole threads (a root and every reply under it) and, with a query,
- * keeps only the threads where some row matches. Recent is the order the
+ * keeps only the threads where some row matches. The post author's straight
+ * comments always lead, oldest first, like an X thread. Recent is the order the
  * server sent — pins, anchors, tips and creator answers already on top — so
  * it is left alone; Oldest and Liked re-sort the rest under the pinned root,
  * which holds the top whichever way the reader sorts, as on web.
  */
-function orderThreads(rows: ThreadedComment[], sort: CommentSort, query: string): ThreadedComment[] {
+function orderThreads(rows: ThreadedComment[], sort: CommentSort, query: string, author?: string): ThreadedComment[] {
   const q = query.trim().toLowerCase();
-  if (sort === "recent" && !q) return rows;
+  const hasAuthorThread = rows.some((c) => c.depth === 0 && isAuthorThreadRoot(c, author));
+  if (sort === "recent" && !q && !hasAuthorThread) return rows;
   const threads: ThreadedComment[][] = [];
   rows.forEach((c) => {
     if (c.depth === 0 || !threads.length) threads.push([c]);
@@ -103,7 +106,9 @@ function orderThreads(rows: ThreadedComment[], sort: CommentSort, query: string)
       return sort === "liked" ? (b[0].likeCount ?? 0) - (a[0].likeCount ?? 0) : time(a[0]) - time(b[0]);
     });
   }
-  return kept.flat();
+  // The author's own thread leads whichever way the reader sorts, oldest first.
+  const byRoot = new Map(kept.map((t) => [t[0], t]));
+  return authorThreadFirst(kept.map((t) => t[0]), author).flatMap((root) => byRoot.get(root) ?? []);
 }
 
 // Threading is unbounded — the server accepts a reply to a reply at any depth.
@@ -967,8 +972,9 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         authorThreadIds.size ? comments.filter((c) => !authorThreadIds.has(String(c.id))) : comments,
         commentSort,
         commentSearchOpen ? commentQuery : "",
+        threadCreator,
       ),
-    [comments, authorThreadIds, commentSort, commentSearchOpen, commentQuery],
+    [comments, authorThreadIds, commentSort, commentSearchOpen, commentQuery, threadCreator],
   );
   const { visibleComments, threadMeta, focusRoot, focusOnly } = useMemo(() => {
     const comments = orderedComments;
@@ -1023,6 +1029,21 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     };
     const meta = new Map<string, Meta>();
 
+    // Consecutive author-thread comments are tied pfp to pfp by the thread
+    // line, through any replies between them, so the run reads as one thread.
+    const roots = visible.filter((c) => c.depth === 0);
+    const joinsNext = new Set<string>();
+    roots.forEach((c, i) => {
+      const next = roots[i + 1];
+      if (next && isAuthorThreadRoot(c, threadCreator) && isAuthorThreadRoot(next, threadCreator)) {
+        joinsNext.add(String(c.id));
+      }
+    });
+    const joinsPrev = new Set<string>();
+    roots.forEach((c, i) => {
+      if (i > 0 && joinsNext.has(String(roots[i - 1].id))) joinsPrev.add(String(c.id));
+    });
+
     visible.forEach((c, i) => {
       const id = String(c.id);
       const root = rootOf.get(id) ?? id;
@@ -1036,10 +1057,11 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       const ownsToggle = !nextIsSameThread && total > 0 && (hidden > 0 || isExpanded);
 
       meta.set(id, {
-        lineAbove: c.depth > 0,
+        lineAbove: c.depth > 0 || joinsPrev.has(id),
         // A row that owns the toggle renders it in its own body, so the line
-        // stops there rather than running past the row's bottom edge.
-        lineBelow: nextIsSameThread || (c.depth === 0 && total > 0),
+        // stops there rather than running past the row's bottom edge — unless
+        // the author's thread carries on below it.
+        lineBelow: nextIsSameThread || (c.depth === 0 && total > 0) || (!nextIsSameThread && joinsNext.has(root)),
         toggleRootId: ownsToggle ? root : undefined,
         toggleExpanded: isExpanded,
         hiddenCount: hidden,
@@ -1419,7 +1441,20 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   const renderHeader = useCallback(() => (
     <View>
-      {item && stage ? (
+      {item && stage && !videoPost ? (
+        // Text, image and audio posts open as the same bento they are on the
+        // feed, inside the feed's gutter, as on phone web. The photo itself
+        // still opens the full screen viewer.
+        <View style={{ paddingHorizontal: FEED_SIDE }}>
+          <FeedCard
+            item={item}
+            fullContent
+            disablePress
+            prioritizeMedia
+            onCommentPress={handleStageComment}
+          />
+        </View>
+      ) : item && stage ? (
         <FeedCard
           item={item}
           onBack={handlePostBack}

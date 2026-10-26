@@ -756,6 +756,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
         // the encoded landscape size must not widen a rotated portrait clip.
         commit(posterAspect);
         void videoQuarterTurn(fileUrl).then(rotated => commit(rotated === null ? posterAspect : rotated ? 1 / ratio : ratio));
+      } else if (Platform.OS !== 'web' && fileUrl && !posterAspect && ratio > 1) {
+        // No poster measured yet to contradict it, and a phone-shot portrait
+        // clip (and its HLS ladder) still reports the sideways size. Committing
+        // that boxed the clip at 16:9 mid-play; keep the current frame until
+        // the file says which way up it is.
+        void videoQuarterTurn(fileUrl).then(rotated => commit(rotated ? 1 / ratio : ratio));
       } else {
         commit(ratio);
       }

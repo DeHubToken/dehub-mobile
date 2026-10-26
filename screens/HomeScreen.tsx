@@ -13,6 +13,8 @@ import Animated, {
   withSpring,
   withTiming,
   Easing,
+  FadeInUp,
+  FadeOutDown,
   type SharedValue,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
@@ -67,7 +69,7 @@ import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomS
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
-import { FrostedContent } from "../components/ui/FrostedBackdrop";
+import { FrostedBackground, FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 import FollowTagBar from "../components/Home/FollowTagBar";
@@ -286,6 +288,8 @@ export default function HomeScreen() {
   // galleries, the suggestions carousel) can block the page turn while they are
   // scrolling — see PagerGestureContext.
   const pagerGestureRef = useRef<GestureType | undefined>(undefined);
+  // The same page turn, started on the Images scroll view that covers the pager.
+  const drawerPagerRef = useRef<GestureType | undefined>(undefined);
 
   useShortsServerSync();
   const { shorts: shortsEnabled } = useAppPrefs();
@@ -476,6 +480,8 @@ export default function HomeScreen() {
     });
     return () => setFeedPostHost(null);
   }, [isFocused, pageWidth, showHeader]);
+  // The edge swipe is the same Back as the pill's arrow and the system back.
+  useSwipeBackAction(closeFeedPost, !!feedPost && !feedProfileVisible);
   useEffect(() => {
     if (!feedPost || feedProfileVisible) return;
     const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -492,6 +498,7 @@ export default function HomeScreen() {
     if (imageDrawerRef.current) imageDrawerRef.current.close();
     else setImageFeed(null);
   }, []);
+  useSwipeBackAction(handleImageFeedBack, !!imageFeed && !feedProfileVisible);
 
   useEffect(() => {
     if (!feedProfileVisible) return;
@@ -531,8 +538,11 @@ export default function HomeScreen() {
     [setPostType, TAB_ORDER],
   );
 
-  const pagerGesture = useMemo(
-    () =>
+  // 1 while a page turn that started on the Images scroll view is in flight:
+  // the pager under it shows, and the sheet slides with the Images page.
+  const drawerSwipe = useSharedValue(0);
+  const buildPageTurn = useCallback(
+    (ref: React.MutableRefObject<GestureType | undefined>, fromDrawer: boolean) =>
       Gesture.Pan()
         // Horizontal intent only: a vertical drag belongs to the feed's own
         // scroll view and must never be stolen by the pager.
@@ -540,7 +550,7 @@ export default function HomeScreen() {
         // clearly sideways drag turns the page.
         .manualActivation(true)
         .maxPointers(1)
-        .withRef(pagerGestureRef)
+        .withRef(ref)
         .onTouchesDown((event, manager) => {
           const point = event.allTouches[0];
           if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
@@ -561,6 +571,7 @@ export default function HomeScreen() {
         .onStart(() => {
           cancelAnimation(progress);
           dragStart.value = progress.value;
+          if (fromDrawer) drawerSwipe.value = 1;
           // The header hides on the vertical scroll of the page being left.
           // Carried hidden into the next page, that page's top spacer shows as
           // a blank band above its first post, so a page turn brings it back.
@@ -584,11 +595,30 @@ export default function HomeScreen() {
           if (target < from - 1) target = from - 1;
           if (target < 0) target = 0;
           if (target > LAST_INDEX) target = LAST_INDEX;
-          progress.value = withTiming(target, PAGE_ANIM);
-          if (target !== from) runOnJS(commitIndex)(target);
+          if (!fromDrawer) {
+            progress.value = withTiming(target, PAGE_ANIM);
+            if (target !== from) runOnJS(commitIndex)(target);
+            return;
+          }
+          // Off the Images scroll view the tab changes once the sheet has slid
+          // away; changing tab closes it, and closing it mid-slide would swap
+          // the sheet for the grid under it.
+          progress.value = withTiming(target, PAGE_ANIM, (finished) => {
+            if (finished && target !== from) runOnJS(commitIndex)(target);
+            else drawerSwipe.value = 0;
+          });
         }),
-    [pageWidth, commitIndex, progress, dragStart, pagerTouch, showHeader, LAST_INDEX],
+    [pageWidth, commitIndex, progress, dragStart, pagerTouch, showHeader, LAST_INDEX, drawerSwipe],
   );
+  const pagerGesture = useMemo(() => buildPageTurn(pagerGestureRef, false), [buildPageTurn]);
+  // Single photos and text on the Images scroll view turn the tab like the
+  // feed does; galleries in it block this through PagerGestureProvider.
+  const drawerPagerGesture = useMemo(() => buildPageTurn(drawerPagerRef, true), [buildPageTurn]);
+  useEffect(() => { if (!imageFeed) drawerSwipe.value = 0; }, [imageFeed, drawerSwipe]);
+  const drawerRevealStyle = useAnimatedStyle(() => ({ opacity: drawerSwipe.value }));
+  const drawerSlideStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: drawerSwipe.value ? (dragStart.value - progress.value) * pageWidth : 0 }],
+  }));
   const homeGestures = useMemo(() => Gesture.Race(pagerGesture, homePull.gesture), [pagerGesture, homePull.gesture]);
 
   // Canvas themes draw the header translucent over the live backdrop, and
@@ -627,6 +657,12 @@ export default function HomeScreen() {
   // the video feed. The tab pill, when open, hangs over the
   // feed rather than pushing it down, and the capsule slides away and back
   // with the same scroll signal the old header used.
+  // Where the clear header lets the feed show (its cut across the pill's
+  // middle), an open post starts at that same cut, so the hidden feed can't
+  // peek through the gap between the pill and the post.
+  const postSurfaceTop = clipOn && pillTopInHeader > 0
+    ? Math.min(headerHeight, pillTopInHeader - 4 + NAV_PILL_RADIUS)
+    : headerHeight;
   const feedInset = island ? ISLAND_BAR_HEIGHT : headerHeight;
   const mediaGridInset = island ? 0 : headerHeight;
   const postFeedInset = island ? 0 : headerHeight;
@@ -1092,7 +1128,7 @@ export default function HomeScreen() {
           pointerEvents={imageFeed ? "none" : "auto"}
           accessibilityElementsHidden={!!imageFeed}
           importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}
-          style={[styles.pagerViewport, feedClipStyle, { opacity: imageFeed ? 0 : 1 }]}
+          style={[styles.pagerViewport, feedClipStyle, imageFeed ? drawerRevealStyle : null]}
         >
           <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
@@ -1182,6 +1218,11 @@ export default function HomeScreen() {
 
         {showNavPill ? (
         <View onLayout={onNavLayout}>
+        {/* The pill only blurs feed you can see around it. Under the opaque
+            header (no glassNav) the feed still scrolls on beneath it, and so
+            does a feed covered by a post or profile opened in place; blurring
+            those smeared hidden images through the pill. */}
+        <FrostedBackground when={!glassNav || !!feedPost || feedProfileVisible}>
         <FeedNavBar
           activeIndex={activeIndex}
           progress={progress}
@@ -1193,6 +1234,7 @@ export default function HomeScreen() {
           backMode={feedProfileVisible || !!imageFeed || !!feedPost}
           onBackPress={feedProfileVisible ? hideUserProfile : imageFeed ? handleImageFeedBack : closeFeedPost}
         />
+        </FrostedBackground>
         </View>
         ) : null}
 
@@ -1251,13 +1293,17 @@ export default function HomeScreen() {
           not move or redraw. A profile opened from the post sits on top of it
           and Back returns to the post. */}
       {feedPost ? (
-        <View
-          style={[styles.profileSurface, { top: headerHeight }, skin ? { backgroundColor: skin.page } : null]}
+        // Rises in over the feed the way a pushed page does (Android's
+        // fade_from_bottom), and sinks back out on Back.
+        <Animated.View
+          entering={FadeInUp.duration(220).easing(Easing.out(Easing.cubic))}
+          exiting={FadeOutDown.duration(160)}
+          style={[styles.profileSurface, { top: postSurfaceTop, paddingTop: headerHeight - postSurfaceTop }, skin ? { backgroundColor: skin.page } : null]}
           accessibilityViewIsModal
           testID="home-feed-post"
         >
           <FeedPostSurface key={feedPost} tokenId={feedPost} onClose={closeFeedPost} bottomInset={TAB_BAR_CONTENT_INSET} />
-        </View>
+        </Animated.View>
       ) : null}
 
       {feedProfileVisible ? (
@@ -1274,10 +1320,13 @@ export default function HomeScreen() {
         </View>
       ) : null}
 
-      {/* Outside the pager's GestureDetector on purpose: while the drawer is up
-          a horizontal drag on it belongs to the post's own image gallery, not
-          to a tab change happening invisibly behind the sheet. */}
+      {/* Outside the pager's GestureDetector: the sheet has its own page turn,
+          which slides the sheet with the Images page so the tab change is
+          seen, and which a post's photo gallery blocks while it scrolls. */}
       {imageFeed ? (
+        <GestureDetector gesture={drawerPagerGesture}>
+        <Animated.View pointerEvents="box-none" style={[styles.drawerLayer, drawerSlideStyle]}>
+        <PagerGestureProvider gestureRef={drawerPagerRef}>
         <ImageFeedDrawer
           key={imageFeed.token}
           ref={imageDrawerRef}
@@ -1294,6 +1343,9 @@ export default function HomeScreen() {
           onScrollEnd={handleScrollEnd}
           onClose={handleCloseImageFeed}
         />
+        </PagerGestureProvider>
+        </Animated.View>
+        </GestureDetector>
       ) : null}
 
       {/* Draws nothing at all unless this account is mid-walkthrough or has
@@ -1308,6 +1360,9 @@ const styles = StyleSheet.create({
   // The row is six screens wide and slides under a clipped viewport, so the
   // five inactive pages are outside the visible bounds and cost no compositing.
   pagerViewport: { flex: 1, overflow: "hidden" },
+  // ImageFeedDrawer's own layer (absolute fill, above the pager), carried here
+  // so the sheet can slide sideways with a page turn.
+  drawerLayer: { ...StyleSheet.absoluteFillObject, zIndex: 9 },
   feedUnclip: { flex: 1 },
   pagerRow: {
     position: "absolute",

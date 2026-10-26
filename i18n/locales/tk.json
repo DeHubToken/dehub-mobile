@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Baglaýyş paýla",
+    "sendInMessage": "Çakylygy iber",
     "existingPost": {
       "add": "Häzirki posty goş",
       "added": "Şäheriň içine goşuldy",

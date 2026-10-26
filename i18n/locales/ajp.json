@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} توكن"
   },
   "communities": {
+    "shareLink": "شارك الرابط",
+    "sendInMessage": "أرسلي دعوة",
     "existingPost": {
       "add": "أضف منشور موجود",
       "added": "مارسلت المنشور للجماعة",

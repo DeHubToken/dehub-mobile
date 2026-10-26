@@ -6294,6 +6294,8 @@
     "tokenAmount": "{{amount}} na token"
   },
   "communities": {
+    "shareLink": "Ibahagi ang link",
+    "sendInMessage": "Magpadala ng Imbitasyon",
     "existingPost": {
       "add": "Magdagdag ng umiiral nang post",
       "added": "Idinagdag ang post sa komunidad",

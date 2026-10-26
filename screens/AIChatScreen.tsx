@@ -92,6 +92,7 @@ import {
   type VideoModelKey,
   VIDEO_MODEL_OPTIONS,
   getToolsByCategory,
+  IMAGE_MODELS,
   imageModelSupportsEdit,
   videoSupportsImage,
   videoSupportsText,
@@ -123,7 +124,7 @@ import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase
 import { findMotionClip, motionAspect, motionModel, type MotionClip } from '../libs/motionLibrary';
 import * as CreatorFileSystem from 'expo-file-system/legacy';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, creatorVideoQuoteHints, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import { runCreatorBatch } from '../libs/creatorBatch';
 import { creatorAssetId } from '../libs/creatorAssetId';
 import * as CreatorCrypto from 'expo-crypto';
@@ -851,7 +852,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             model,
             sourceImage,
             ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
-            negativePrompt: creator ? (VIDEO_MODELS[creator.model]?.supportsNegativePrompt ? creator.negativePrompt?.trim() || preset?.negative : undefined) : preset?.negative,
+            negativePrompt: VIDEO_MODELS[model]?.supportsNegativePrompt ? creator?.negativePrompt?.trim() || preset?.negative : undefined,
             txHash,
           },
           walletAddress,
@@ -1241,9 +1242,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           }
           return;
         }
-        const issue = creatorInputIssue(creator, !!sourceImage, tpl);
-        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
         const resolved = prepareCreatorPrompt(text, tpl, creator);
+        const issue = creatorInputIssue(creator, !!sourceImage, tpl, resolved);
+        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
         const limit = creatorPromptLimit(creator);
         if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
         setPendingPrompt(resolved);
@@ -1368,9 +1369,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
 
     let creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
     if (creator) {
-      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate);
-      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
       const resolved = prepareCreatorPrompt(text, activeTemplate, creator);
+      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate, resolved);
+      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
       const limit = creatorPromptLimit(creator);
       if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
     }
@@ -2003,7 +2004,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           controls={studio ? <>
         <CreatorStudioControls settings={studioSettings} prompt={input} draftScope={draftScope} onChange={next => {
           const selectedTemplate = getTemplate(templateId);
-          if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
+          if (next.model !== studioSettings.model && (VIDEO_MODELS[next.model]?.referenceMode === 'extend' || (selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput))) setTemplateId(null);
           setStudioSettings(next);
         }}
           onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
@@ -2023,8 +2024,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           attachedImage={studio ? null : attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
-          allowEmpty={!!activeTemplate || !!(studio && studioSettings.mode === 'audio' && studioSettings.audioSettings?.media)}
-          placeholder={studio ? t('creator.studioPrompt') : undefined}
+            allowEmpty={!!activeTemplate || !!(studio && ((studioSettings.mode === 'audio' && studioSettings.audioSettings?.media) || (studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint && attachedImage)))}
+            placeholder={studio ? t(studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint ? 'creator.expandPromptHint' : 'creator.studioPrompt') : undefined}
           sendLabel={studio ? t('creator.studioCreate') : undefined}
         />
       </View>
@@ -2118,7 +2119,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           setPendingStudio(previous => previous ? normalizeCreatorSettings({ ...previous, model: id }) : null);
         }}
         quoteKind="video"
-        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS }}
+        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS,
+          ...creatorVideoQuoteHints(pendingStudio, pendingSourceImage) }}
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoConfirm}
         footnote={_copy("copy.0f1f6dc49d7b", { defaultValue: "Renders take 1-3 minutes and keep going if you leave this screen." })}

@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} tokena"
   },
   "communities": {
+    "shareLink": "Ndaj linkun",
+    "sendInMessage": "Dërgo ftesë",
     "existingPost": {
       "add": "Shto postimin ekzistues",
       "added": "Postimi u shtua në komunitet",

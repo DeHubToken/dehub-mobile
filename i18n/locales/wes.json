@@ -6248,6 +6248,8 @@
     "lockedEarlyFee": "Lock till {{date}}. Widraw now go pay 88% — 12% fee, about {{fee}} tokken. Tap again to accept."
   },
   "communities": {
+    "shareLink": "Share di link",
+    "sendInMessage": "Send Invite",
     "existingPost": {
       "placeholder": "Link fo DeHub post or post ID",
       "signIn": "Sign in again make yu fit manage community post dem.",

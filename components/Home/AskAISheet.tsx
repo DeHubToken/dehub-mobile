@@ -61,6 +61,7 @@ import { getDeviceLanguage } from "../../services/translation.service";
 import { toastError } from "../../libs";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const AI_AVATAR = require("../../assets/web-icons/profile-icon.png");
 
@@ -545,7 +546,7 @@ const AskAISheetComponent: React.FC<AskAISheetProps> = ({
               sheetStyle,
             ]}
           >
-            <View style={[StyleSheet.absoluteFill, styles.overlay]} />
+            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View>

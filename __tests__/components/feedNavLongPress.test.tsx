@@ -21,6 +21,7 @@ jest.mock('react-native-reanimated', () => ({
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/GlassIndicator', () => ({ __esModule: true, default: () => null, GLASS_SHADOW: {} }));
 jest.mock('../../components/ui/FrostedPill', () => () => null);
+jest.mock('../../components/ui/NavPillSurface', () => ({ __esModule: true, default: () => null, NAV_PILL_RADIUS: 16, NAV_PILL_SHADOW: {} }));
 jest.mock('../../components/theme/HudBrackets', () => () => null);
 jest.mock('../../theme/skins', () => ({ GRAIN: 0, glassTint: () => '' }));
 let mockMinimal = false;

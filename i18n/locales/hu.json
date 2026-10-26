@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Link megosztása",
+    "sendInMessage": "Küldj meghívót",
     "existingPost": {
       "add": "Hozzáadás meglévő poszt",
       "added": "A közösséghez hozzáadva",
