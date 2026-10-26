@@ -2891,8 +2891,10 @@
     "failedSubmit": "Failed to submit application. Please try again."
   },
   "creatorFlow": {
+    "retryFreeTask": "Retry free task",
+    "previewSavedMedia": "Preview saved media",
     "audioSavePending": "The audio is ready, but its private library save is pending. Resume to collect it.",
-    "freeResultUnknown": "The free task response was interrupted. It will not be submitted again automatically. Check your saved results or choose Start another run.",
+    "freeResultUnknown": "The free task response was interrupted. It will not be submitted again automatically. Choose Retry free task, then resume; your payment and other jobs are retained.",
     "formAuthor": "Edit flow",
     "formAuthorHint": "Build a flow with typed inputs. Save it here, or arrange it on the web canvas.",
     "newNativeFlow": "New flow",

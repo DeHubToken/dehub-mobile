@@ -2946,8 +2946,10 @@
     "failedSubmit": "Error al enviar solicitud. Inténtalo de nuevo."
   },
   "creatorFlow": {
+    "retryFreeTask": "Reintentar tarea gratuita",
+    "previewSavedMedia": "Vista previa de archivos guardados",
     "audioSavePending": "El audio está listo, pero sigue pendiente guardarlo en la biblioteca privada. Reanuda para recogerlo.",
-    "freeResultUnknown": "La respuesta de la tarea gratuita se interrumpió. No se enviará otra vez automáticamente. Revisa los resultados guardados o elige Iniciar otra ejecución.",
+    "freeResultUnknown": "La respuesta de la tarea gratuita se interrumpió. No se enviará otra vez automáticamente. Elige Reintentar tarea gratuita y reanuda; se conservan tu pago y los demás trabajos.",
     "formAuthor": "Editar flujo",
     "formAuthorHint": "Crea un flujo con entradas compatibles. Guárdalo aquí u organízalo en el lienzo web.",
     "newNativeFlow": "Nuevo flujo",

@@ -2928,8 +2928,10 @@
     "failedSubmit": "Başvuru gönderilemedi. Lütfen tekrar deneyin."
   },
   "creatorFlow": {
+    "retryFreeTask": "Ücretsiz görevi yeniden dene",
+    "previewSavedMedia": "Kayıtlı medyayı önizle",
     "audioSavePending": "Ses hazır ancak özel kitaplığa kaydedilmesi bekleniyor. Sonucu almak için sürdürün.",
-    "freeResultUnknown": "Ücretsiz görevin yanıtı kesildi. Görev otomatik olarak yeniden gönderilmez. Kayıtlı sonuçları kontrol edin veya Yeni çalıştırma başlat seçeneğini seçin.",
+    "freeResultUnknown": "Ücretsiz görevin yanıtı kesildi. Otomatik olarak yeniden gönderilmez. Ücretsiz görevi yeniden dene seçeneğini seçip sürdürün; ödemeniz ve diğer işler korunur.",
     "formAuthor": "Akışı düzenle",
     "formAuthorHint": "Uyumlu girdilerle bir akış oluşturun. Burada kaydedin veya web tuvalinde düzenleyin.",
     "newNativeFlow": "Yeni akış",
