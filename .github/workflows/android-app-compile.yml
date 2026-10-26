@@ -1,0 +1,47 @@
+name: Android app compile
+
+# The app module's own Kotlin (MainApplication, the camera looks, the phone
+# studio's frame processors and native module) never runs in the JS checks,
+# and a release build is too slow to gate a PR on. Compiling the module is
+# the cheap middle: it catches a broken processor, a renamed WebRTC API or a
+# missing dependency (ML Kit segmentation) before a store build does.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - 'patches/react-native-webrtc+*.patch'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/android-app-compile.yml'
+
+concurrency:
+  group: android-app-compile-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Compile app Kotlin
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci --legacy-peer-deps
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - name: Compile the app module
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:compileReleaseKotlin --no-daemon -PreactNativeArchitectures=arm64-v8a
