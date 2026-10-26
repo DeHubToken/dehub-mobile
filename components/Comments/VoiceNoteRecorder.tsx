@@ -35,10 +35,10 @@ import { useTranslation } from "react-i18next";
 
 /* ─── Constants ─────────────────────────────────────────────── */
 
-const WAVEFORM_BARS = 35;
-const BAR_W = 2.5;
+const WAVEFORM_BARS = 64;
+const BAR_W = 2;
 const BAR_GAP = 1.5;
-const MAX_BAR_H = 20;
+const MAX_BAR_H = 24;
 const MIN_BAR_H = 3;
 
 const fmtTime = (ms: number): string => {
@@ -53,16 +53,17 @@ const RecordingWaveform: React.FC<{ bars: number[] }> = memo(({ bars }) => {
       : [...Array(WAVEFORM_BARS - bars.length).fill(0.05), ...bars];
 
   return (
-    <View className="flex-row items-center flex-1" style={{ height: MAX_BAR_H + 2 }}>
+    // Newest on the right; a narrow row drops the oldest off the left edge.
+    <View className="flex-row items-center flex-1" style={{ height: MAX_BAR_H + 2, justifyContent: "flex-end", overflow: "hidden", minWidth: 0 }}>
       {display.map((level, i) => (
         <View
           key={i}
           style={{
             width: BAR_W,
             height: Math.max(MIN_BAR_H, level * MAX_BAR_H),
-            borderRadius: BAR_W / 2,
+            borderRadius: 1,
             marginRight: i < WAVEFORM_BARS - 1 ? BAR_GAP : 0,
-            backgroundColor: "rgba(255,255,255,0.7)",
+            backgroundColor: "rgba(255,255,255,0.85)",
           }}
         />
       ))}
@@ -119,16 +120,31 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
 
   return (
     <Animated.View
-      style={containerStyle}
-      className="flex-row items-center px-4 py-3 border-t border-white/25"
+      style={[
+        containerStyle,
+        {
+          // The Stage Strip recording row: the same glass row as the player.
+          flexDirection: "row",
+          alignItems: "center",
+          marginHorizontal: 10,
+          marginVertical: 6,
+          height: 46,
+          paddingLeft: 12,
+          paddingRight: 5,
+          borderRadius: 12,
+          borderWidth: 1,
+          borderColor: "rgba(255,255,255,0.08)",
+          backgroundColor: "rgba(255,255,255,0.08)",
+        },
+      ]}
     >
       <Animated.View
         style={pulseStyle}
         className="w-2.5 h-2.5 rounded-full bg-red-500 mr-2"
       />
       <Text
-        className="text-red-400 text-sm mr-3"
-        style={{ fontVariant: ["tabular-nums"] }}
+        className="text-red-400 mr-2"
+        style={{ fontSize: 12, fontVariant: ["tabular-nums"] }}
       >
         {fmtTime(elapsedMs)}
       </Text>
@@ -140,9 +156,14 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityLabel={t("comments.cancelRecording")}
-        className="ml-3 w-10 h-10 rounded-xl bg-theme-neutrals-700 items-center justify-center"
+        style={{
+          marginLeft: 8, width: 34, height: 34, borderRadius: 9, alignItems: "center", justifyContent: "center",
+          borderWidth: 1,
+          borderColor: "rgba(255,255,255,0.1)",
+          backgroundColor: "rgba(255,255,255,0.1)",
+        }}
       >
-        <Ionicons name="trash-outline" size={20} color="#F4F4F5" />
+        <Ionicons name="trash-outline" size={17} color={"#F4F4F5"} />
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -150,12 +171,15 @@ const OverlayComponent: React.FC<VoiceNoteRecordingOverlayProps> = ({
         activeOpacity={0.7}
         accessibilityRole="button"
         accessibilityLabel={t("comments.sendVoiceNote")}
-        className="ml-2 w-10 h-10 rounded-xl bg-white items-center justify-center"
+        style={{
+          marginLeft: 6, width: 34, height: 34, borderRadius: 9, alignItems: "center", justifyContent: "center",
+          backgroundColor: "#FFFFFF",
+        }}
       >
         {isStopping ? (
-          <ActivityIndicator size="small" color="#000" />
+          <ActivityIndicator size="small" color={"#000000"} />
         ) : (
-          <Ionicons name="checkmark" size={22} color="#000" />
+          <Ionicons name="checkmark" size={19} color={"#000000"} />
         )}
       </TouchableOpacity>
     </Animated.View>
