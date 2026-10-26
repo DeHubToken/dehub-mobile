@@ -1232,9 +1232,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           }
           return;
         }
-        const issue = creatorInputIssue(creator, !!sourceImage, tpl, text);
-        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
         const resolved = prepareCreatorPrompt(text, tpl, creator);
+        const issue = creatorInputIssue(creator, !!sourceImage, tpl, resolved);
+        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
         const limit = creatorPromptLimit(creator);
         if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
         setPendingPrompt(resolved);
@@ -1359,9 +1359,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
     let creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
     if (creator) {
-      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate, text);
-      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
       const resolved = prepareCreatorPrompt(text, activeTemplate, creator);
+      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate, resolved);
+      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
       const limit = creatorPromptLimit(creator);
       if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
     }
