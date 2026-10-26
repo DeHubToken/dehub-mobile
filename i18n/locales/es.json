@@ -8271,7 +8271,34 @@
       "feedback": "¿Te ha sido útil?",
       "good": "Buena respuesta",
       "bad": "Mala respuesta",
-      "retryPrefix": "Eso no era lo que quería. En su lugar, "
+      "retryPrefix": "Eso no era lo que quería. En su lugar, ",
+      "recipesTitle": "Recetas",
+      "recipe": {
+        "podcastClip": {
+          "label": "Clip de pódcast",
+          "prompt": "Encuentra el mejor momento de 30 segundos, recorta a ese momento, añade subtítulos Word Pop y pásalo a 9:16."
+        },
+        "talkingHead": {
+          "label": "Vídeo hablado limpio",
+          "prompt": "Quita las pausas largas, añade subtítulos Classic y dale un tono cálido sutil."
+        },
+        "productPromo": {
+          "label": "Promo de producto",
+          "prompt": "Haz una promo de 15 segundos: título potente al inicio, transiciones Zoom in entre clips, subtítulos Bold y música animada."
+        },
+        "hypeReel": {
+          "label": "Reel épico",
+          "prompt": "Corta los clips al ritmo de la música, usa transiciones Fly up y el look Technicolor."
+        },
+        "retroEdit": {
+          "label": "Edición retro",
+          "prompt": "Aplica el look VHS a todos los clips, añade un título serif grande y usa transiciones Fade."
+        },
+        "tutorial": {
+          "label": "Tutorial",
+          "prompt": "Añade un título para cada paso, subtítulos Boxed y ralentiza el momento clave a 0,5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Añadir un color de marca",
@@ -9694,7 +9721,16 @@
       "scanning": "Revisando fotogramas…",
       "noBars": "No se encontraron barras negras",
       "barsRemoved": "Barras negras recortadas",
-      "barsFailed": "No se pudo revisar si este vídeo tiene barras negras"
+      "barsFailed": "No se pudo revisar si este vídeo tiene barras negras",
+      "reframe": "Reencuadre automático",
+      "reframeHint": "El vídeo ya encaja en este formato",
+      "reframed": "Reencuadrado para seguir la acción",
+      "reframeFailed": "No se pudo reencuadrar este vídeo",
+      "retakes": "Quitar tomas repetidas",
+      "listening": "Escuchando…",
+      "noRetakes": "No se encontraron tomas repetidas",
+      "retakesRemoved": "Se quitaron {{count}} tomas repetidas y se mantuvo la última",
+      "retakesFailed": "No se pudieron quitar las tomas repetidas de este clip"
     }
   },
   "creator": {

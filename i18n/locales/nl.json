@@ -8450,7 +8450,34 @@
       "feedback": "Was dit nuttig?",
       "good": "Goed antwoord",
       "bad": "Slecht antwoord",
-      "retryPrefix": "Dat klopte niet. In plaats daarvan, "
+      "retryPrefix": "Dat klopte niet. In plaats daarvan, ",
+      "recipesTitle": "Recepten",
+      "recipe": {
+        "podcastClip": {
+          "label": "Podcastclip",
+          "prompt": "Zoek het sterkste moment van 30 seconden, knip daarop, voeg Word Pop-ondertitels toe en maak het 9:16."
+        },
+        "talkingHead": {
+          "label": "Strakke praatvideo",
+          "prompt": "Knip lange pauzes weg, voeg Classic-ondertitels toe en geef het een subtiele warme look."
+        },
+        "productPromo": {
+          "label": "Productpromo",
+          "prompt": "Maak een promo van 15 seconden: pakkende titel aan het begin, Zoom in-overgangen tussen clips, Bold-ondertitels en vrolijke muziek."
+        },
+        "hypeReel": {
+          "label": "Hype-reel",
+          "prompt": "Knip de clips op de beat van de muziek, gebruik Fly up-overgangen en de Technicolor-look."
+        },
+        "retroEdit": {
+          "label": "Retro-edit",
+          "prompt": "Geef elke clip de VHS-look, voeg een grote serif-titel toe en gebruik Fade-overgangen."
+        },
+        "tutorial": {
+          "label": "Tutorial",
+          "prompt": "Voeg een titel per stap toe, Boxed-ondertitels, en vertraag het belangrijkste moment naar 0,5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Merkkleur toevoegen",
@@ -9873,7 +9900,16 @@
       "scanning": "Frames controleren…",
       "noBars": "Geen zwarte balken gevonden",
       "barsRemoved": "Zwarte balken bijgesneden",
-      "barsFailed": "Kon deze video niet op zwarte balken controleren"
+      "barsFailed": "Kon deze video niet op zwarte balken controleren",
+      "reframe": "Automatisch herkaderen",
+      "reframeHint": "De video past al in deze vorm",
+      "reframed": "Herkaderd om de actie te volgen",
+      "reframeFailed": "Kon deze video niet herkaderen",
+      "retakes": "Herhaalde takes weghalen",
+      "listening": "Luisteren…",
+      "noRetakes": "Geen herhaalde takes gevonden",
+      "retakesRemoved": "{{count}} herhaalde take(s) verwijderd, laatste take behouden",
+      "retakesFailed": "Kon de herhaalde takes niet uit deze clip halen"
     }
   },
   "creator": {
