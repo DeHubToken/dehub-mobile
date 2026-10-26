@@ -6,7 +6,7 @@ import { translateCopy } from '../i18n/copy';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Crypto from 'expo-crypto';
 import { Buffer } from 'buffer';
-import { audioContainer } from '../libs/speechAudio';
+import { audioContainer, pcmSpeechSamples } from '../libs/speechAudio';
 
 /** Authenticated existing free/rate-limited endpoints; never falls back to a paid provider. */
 export async function runCreatorAudio(text: string, settings: CreatorAudioSettings, walletAddress?: string | null): Promise<{ audioUrl?: string; transcript?: string }> {
@@ -52,9 +52,14 @@ export async function runCreatorAudio(text: string, settings: CreatorAudioSettin
     });
     const encoded = audioUrl.split(',')[1];
     const bytes = Buffer.from(encoded, 'base64');
-    const container = audioContainer(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer);
+    const buffer = bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer;
+    const container = audioContainer(buffer);
     const waveType = /^audio\/(wav|x-wav)(;|$)/i.test(response.headers.get('Content-Type') ?? '');
     if (!container || (container === 'wav') !== waveType) throw new Error(translateCopy('creator.audioInvalidResponse', { defaultValue: 'The audio service returned an invalid result.' }));
+    if (settings.task === 'speech' && settings.outputFormat === 'wav_24000') {
+      try { pcmSpeechSamples(buffer, 24000); }
+      catch { throw new Error(translateCopy('creator.audioInvalidResponse', { defaultValue: 'The audio service returned an invalid result.' })); }
+    }
     if (!FileSystem.documentDirectory) throw new Error(translateCopy('creator.audioFailed', { defaultValue: 'Could not process that audio.' }));
     const directory = `${FileSystem.documentDirectory}creator-audio/`;
     await FileSystem.makeDirectoryAsync(directory, { intermediates: true });

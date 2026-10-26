@@ -66,6 +66,10 @@ it('rejects mislabeled MP3 or JSON bytes instead of saving a fake WAV', async ()
   await expect(runCreatorAudio('Hello', { task: 'speech' })).rejects.toThrow('invalid');
   expect(FileSystem.writeAsStringAsync).not.toHaveBeenCalled();
 });
+it('rejects a legacy server that ignores requested WAV and returns MP3 instead', async () => {
+  await expect(runCreatorAudio('Hello', { task: 'speech', outputFormat: 'wav_24000' })).rejects.toThrow('invalid');
+  expect(FileSystem.writeAsStringAsync).not.toHaveBeenCalled();
+});
 
 it('sends native multipart media without setting a JSON content type', async () => {
   const media = { uri: 'file:///recording.mp3', name: 'recording.mp3', mimeType: 'audio/mpeg', size: 100 };
