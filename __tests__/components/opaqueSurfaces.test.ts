@@ -17,6 +17,8 @@ const ALLOWED = [
   "components/ui/IosGlassPill.tsx",
   "components/ui/FrostedPill.tsx",
   "components/ui/FrostedBackdrop.tsx",
+  // Frost over the status bar so the scrolling feed never shows behind the clock.
+  "components/ui/StatusBarFrost.tsx",
 ];
 
 function walk(dir: string, out: string[] = []): string[] {
