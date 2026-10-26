@@ -89,18 +89,32 @@ function format(lum, a) {
  * background, where pure black (media wells) and see-through blacks (scrims
  * over pictures) stay as they are.
  */
-function toneColor(color, fill, text) {
+function toneColor(color, fill, text, cap) {
   const rgba = parse(color);
   if (!rgba || rgba[3] === 0) return color;
   // Text also counts the cool slate greys some screens use for muted copy
   // (Dex #919CA9), which would otherwise stay pale on white.
-  if (!grey(rgba) && !(text && chroma(rgba) <= 32)) return color;
+  if (!grey(rgba) && !((text || cap) && chroma(rgba) <= 32)) return color;
   const lum = (rgba[0] + rgba[1] + rgba[2]) / 3;
   if (fill && lum <= 2) return color;
   // Light text (the dark theme's body and muted copy) turns into ink on white;
   // dark labels (on a white key that becomes an ink key) just turn around.
   if (text && lum >= 100 && rgba[3] >= 0.2) return formatText(lum, rgba[3]);
+  // Dim greys (#52525B labels, muted icons, placeholders) were dim on black
+  // and turn pale on white when simply inverted (1.9:1). Hold them dark
+  // enough to read. Near-black (a label on a white key) still turns around.
+  if ((text || cap) && lum >= 45 && rgba[3] >= 0.2) return formatCapped(lum, rgba[3], cap || SOFT_TEXT_MAX_L);
   return format(lum, rgba[3]);
+}
+
+/** Muted copy 5:1+ on white, placeholders 4.5:1+, icons 4:1+. */
+const SOFT_TEXT_MAX_L = 100;
+const PLACEHOLDER_MAX_L = 96;
+const ICON_MAX_L = 118;
+function formatCapped(lum, a, max) {
+  const inverted = Math.max(0, Math.min(255, 266 - lum));
+  const onWhite = 255 - a * (255 - inverted);
+  return `hsla(0,0%,${Math.round((Math.min(onWhite, max) / 255) * 1000) / 10}%,1)`;
 }
 
 /**
@@ -132,7 +146,7 @@ function toneObject(style) {
       const k = TEXT_KEYS[i];
       const v = style[k];
       if (v === undefined) continue;
-      const next = toneColor(v, false, k === "color");
+      const next = toneColor(v, false, k === "color", k === "tintColor" ? ICON_MAX_L : 0);
       if (next !== v) (out || (out = {}))[k] = next;
     }
   }
@@ -167,6 +181,7 @@ function toneStyle(style) {
 
 const STYLE_PROPS = ["contentContainerStyle", "imageStyle", "containerStyle", "textStyle", "columnWrapperStyle", "selectedStyle"];
 const PROP_TEXT = ["color", "tintColor", "placeholderTextColor", "selectionColor", "cursorColor", "stroke", "iconColor", "activeColor", "inactiveColor"];
+const PROP_CAP = { placeholderTextColor: PLACEHOLDER_MAX_L, tintColor: ICON_MAX_L, iconColor: ICON_MAX_L, inactiveColor: ICON_MAX_L };
 const PROP_FILL = ["backgroundColor", "fill", "thumbColor", "underlayColor"];
 
 /** The props with every grey turned around, or the same props. */
@@ -183,7 +198,7 @@ function toneProps(props) {
   for (let i = 0; i < PROP_TEXT.length; i++) {
     const k = PROP_TEXT[i];
     if (typeof props[k] !== "string") continue;
-    const v = toneColor(props[k], false, k === "color");
+    const v = toneColor(props[k], false, k === "color", PROP_CAP[k] || 0);
     if (v !== props[k]) (next || (next = { ...props }))[k] = v;
   }
   for (let i = 0; i < PROP_FILL.length; i++) {
