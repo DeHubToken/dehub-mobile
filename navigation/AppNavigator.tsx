@@ -91,6 +91,7 @@ function AppNavigatorContent() {
         <Stack.Screen name={ScreenNames.Creator} getComponent={() => deferredScreen('../screens/CreatorScreen#default', () => require('../screens/CreatorScreen').default)} />
         <Stack.Screen name={ScreenNames.Maboroshi} getComponent={() => deferredScreen('../screens/MaboroshiScreen#default', () => require('../screens/MaboroshiScreen').default)} />
         <Stack.Screen name={ScreenNames.CreatorRemake} getComponent={() => deferredScreen('../screens/MaboroshiScreen#default', () => require('../screens/MaboroshiScreen').default)} />
+        <Stack.Screen name={ScreenNames.CreatorLearning} getComponent={() => deferredScreen('../screens/CreatorLearningScreen#default', () => require('../screens/CreatorLearningScreen').default)} />
         <Stack.Screen name={ScreenNames.CreatorStudio} getComponent={() => deferredScreen('../screens/AIChatScreen#CreatorStudioScreen', () => require('../screens/AIChatScreen').CreatorStudioScreen)} />
         {/* A shared flow is readable signed-out; your flows and copying sign in. */}
         <Stack.Screen name={ScreenNames.CreatorFlow} getComponent={() => deferredScreen('../screens/CreatorFlowScreen#default', () => require('../screens/CreatorFlowScreen').default)} />
