@@ -230,7 +230,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(0,0,0,0.6)",
+    // Near-black, not black: System Light turns it pale (pure black scrims stay dark).
+    backgroundColor: "rgba(9,9,11,0.6)",
     padding: 16,
     overflow: "hidden",
   },

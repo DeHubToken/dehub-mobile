@@ -63,3 +63,14 @@ it('keeps LIGHT_PAGE_FILL white, where a plain white fill turns to ink', () => {
   expect(toneColor('#FFFFFF', true)).toBe('hsla(0,0%,4.3%,1)');
   expect(toneColor(LIGHT_PAGE_FILL, true)).toBe(LIGHT_PAGE_FILL);
 });
+
+it('keeps dim labels, icons and placeholders readable on white', () => {
+  // #52525B was dim copy on black; inverted it would be #b8b8b8 (1.9:1).
+  expect(toneColor('#52525B', false, true)).toBe('hsla(0,0%,39.2%,1)');
+  // Icons hold 4:1+, placeholders 4.5:1+.
+  expect(toneColor('#52525B', false, false, 118)).toBe('hsla(0,0%,46.3%,1)');
+  expect(toneColor('#8B8D90', false, false, 96)).toBe('hsla(0,0%,37.6%,1)');
+  // Fills and near-black labels are untouched by the cap.
+  expect(toneColor('#52525B', true)).toBe('hsla(0,0%,71%,1)');
+  expect(toneColor('#18181B', false, true)).toBe('hsla(0,0%,94.5%,1)');
+});

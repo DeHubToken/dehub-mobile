@@ -23,6 +23,11 @@ module.exports = {
         black: variableColor("black"),
         white: variableColor("white"),
         zinc: dynamicZinc,
+        // Static greys ignored System Light and drew pale labels on white.
+        neutral: dynamicZinc,
+        gray: dynamicZinc,
+        slate: dynamicZinc,
+        stone: dynamicZinc,
         blue: dynamicZinc,
         cyan: dynamicZinc,
         sky: dynamicZinc,
