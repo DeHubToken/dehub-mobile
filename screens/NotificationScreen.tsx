@@ -1448,12 +1448,26 @@ const NotificationScreen = () => {
         // Ask for this tab's types rather than paging through everything and
         // narrowing in memory — that left a tab empty whenever its rows sat
         // past the loaded window.
-        const res: any = await getNotifications({
+        const listRequest = getNotifications({
           unreadOnly: false,
           types,
           page: targetPage,
           limit: 30,
         });
+        // Start independent sources together. Counts never hold the list's
+        // loading state open, and custom rows are reused for both snapshots.
+        const customRequest = isRefresh
+          ? fetchCustomNotifications(walletAddressRef.current).catch((error) => {
+              log.error('Custom notifications refresh failed', error);
+              return [];
+            })
+          : Promise.resolve([]);
+        const countsRequest = isRefresh && !opts?.skipCounts && types
+          ? getNotifications({ unreadOnly: false, page: 1, limit: 30 })
+              .then((result: any) => result?.data?.result || result?.result || [])
+              .catch((error) => { log.error('Notification counts refresh failed', error); return null; })
+          : null;
+        const [res, custom]: any = await Promise.all([listRequest, customRequest]);
         if (gen !== fetchGenRef.current) return;
 
         const apiPayload = res?.data?.result || res?.result || [];
@@ -1464,8 +1478,6 @@ const NotificationScreen = () => {
         // recent page, not a paginated source, so folding them in again on
         // every "load more" would duplicate them down the list.
         if (isRefresh) {
-          const custom = await fetchCustomNotifications(walletAddressRef.current);
-          if (gen !== fetchGenRef.current) return;
           if (custom.length) {
             payload = [...payload, ...custom].sort(
               (a: NotificationItem, b: NotificationItem) =>
@@ -1485,6 +1497,9 @@ const NotificationScreen = () => {
         // Measured on the API page alone. The merged Supabase rows are not
         // paginated, so counting them here would claim another page exists.
         setHasMore(apiPayload.length >= 30);
+        setRefreshing(false);
+        setLoading(false);
+        setLoadingMore(false);
 
         if (isRefresh && !opts?.skipCounts) {
           // The tab badges and the app badge both need every type, so a
@@ -1493,14 +1508,11 @@ const NotificationScreen = () => {
           // this: the snapshot is kept honest by every local mark-read/clear,
           // and it re-syncs on focus and pull-to-refresh.
           if (types) {
-            const allRes: any = await getNotifications({ unreadOnly: false, page: 1, limit: 30 });
+            const allPayload = await countsRequest;
             if (gen !== fetchGenRef.current) return;
-            const allPayload = allRes?.data?.result || allRes?.result || [];
             // The badge has to count the Supabase rows too, or the Tips tab
             // shows a bounty application it does not admit to having.
-            const custom = await fetchCustomNotifications(walletAddressRef.current);
-            if (gen !== fetchGenRef.current) return;
-            setCountsSource(custom.length ? [...allPayload, ...custom] : allPayload);
+            if (allPayload) setCountsSource(custom.length ? [...allPayload, ...custom] : allPayload);
           } else {
             setCountsSource(payload);
           }
