@@ -38,6 +38,7 @@ import {
 } from '../../libs/creatorTemplates';
 import { useTranslation } from 'react-i18next';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 interface TemplatesSheetProps {
   visible: boolean;
@@ -145,7 +146,7 @@ const TemplatesSheetComponent: React.FC<TemplatesSheetProps> = ({
         </Animated.View>
 
         <Animated.View style={[s.sheet, { height: sheetHeight, paddingBottom: insets.bottom }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>

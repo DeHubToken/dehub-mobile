@@ -16,6 +16,7 @@ import Icon from "../ui/Icon";
 import { ChainId, chainIcons } from "../../config/constants";
 import { SOLANA_MAINNET_CHAIN_ID } from "../../config/solana.constants";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 export interface ChainOption {
   id: number;
@@ -152,7 +153,7 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
           >
             {/* Solid, not glass: expo-blur does not blur on Android, so a tint
                 here let the sheet read through whatever it opened over. */}
-            <View style={[StyleSheet.absoluteFill, styles.sheetOverlay]} />
+            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.sheetOverlay]} />
 
             <Text style={styles.title}>{title}</Text>
 

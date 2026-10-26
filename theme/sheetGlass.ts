@@ -10,4 +10,9 @@
 export const SHEET_GLASS_FILL = "rgba(12,12,14,0.8)";
 /** iOS blurs what is behind the sheet, so its wash can sit closer to web's 60%. */
 export const SHEET_GLASS_FILL_BLURRED = "rgba(12,12,14,0.6)";
+/**
+ * Android with no feed to blur (any screen but Home and the post page, or
+ * Android 11 and older): near solid, so the page behind never reads through.
+ */
+export const SHEET_GLASS_FILL_UNBLURRED = "rgba(12,12,14,0.95)";
 export const SHEET_GLASS_BORDER = "rgba(255,255,255,0.1)";

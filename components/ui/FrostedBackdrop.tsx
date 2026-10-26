@@ -31,6 +31,17 @@ export function useFrostedSource(): Target | undefined {
   return override === undefined ? targets?.target : override ?? undefined;
 }
 
+/**
+ * The feed a drawer can blur. A drawer opens in its own Modal window, outside
+ * the feed's BlurTargetView, so it may sample the feed even when it is mounted
+ * from inside one (where useFrostedSource says no, to stop nested capture).
+ * Undefined off Android 12+, or while no feed screen is focused.
+ */
+export function useDrawerBlurSource(): Target | undefined {
+  const targets = useContext(Targets);
+  return androidFrostSupported ? targets?.target : undefined;
+}
+
 /** Standalone overlays must not keep sampling the covered page's feed. */
 export function FrostedBackground({ children }: { children: React.ReactNode }) {
   return <SourceOverride.Provider value={null}>{children}</SourceOverride.Provider>;

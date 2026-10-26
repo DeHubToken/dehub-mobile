@@ -73,6 +73,7 @@ import {
 import { sanitizeAmountInput } from "../libs/amount-input";
 import { DhbCoin } from "../components/common/DhbCoin";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../theme/sheetGlass";
+import SheetGlass, { GLASS_PANEL_CLEAR, useDrawerGlass } from "../components/ui/SheetGlass";
 
 /** Same treasury the AI credits / paywalls pay into (see ads-topup edge fn). */
 const ADS_TREASURY = "0xbf3039b0bb672b268e8384e30d81b1e6a8a43b2c";
@@ -144,6 +145,7 @@ const PerfChart: React.FC<{ series: { day: string; impressions: number; clicks: 
 const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ visible, onClose }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const glassPanel = useDrawerGlass();
   const create = useCreateCampaign();
   const [name, setName] = useSurfaceDraft("screens/AdsScreen.tsx:name", "");
   const [objective, setObjective] = useState<string>("awareness");
@@ -187,7 +189,8 @@ const CampaignForm: React.FC<{ visible: boolean; onClose: () => void }> = ({ vis
     <Modal statusBarTranslucent={Platform.OS === "android"} navigationBarTranslucent={Platform.OS === "android"} visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior="padding">
-          <ThemePanel solid style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
+          <ThemePanel solid style={[styles.sheet, glassPanel && GLASS_PANEL_CLEAR, { paddingBottom: insets.bottom + 16 }]}>
+            {glassPanel ? <SheetGlass /> : null}
             <View style={styles.sheetHead}>
               <Text style={styles.sheetTitle}>{t("ads.newCampaign")}</Text>
               <Pressable

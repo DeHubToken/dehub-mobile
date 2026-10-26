@@ -32,6 +32,7 @@ import {
   type ConversationEntry,
 } from '../../hooks/useAIConversation';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const MEDIA_COLUMNS = 3;
 
@@ -238,7 +239,7 @@ const ChatHistorySheetComponent: React.FC<ChatHistorySheetProps> = ({
         <Animated.View
           style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom }, sheetStyle]}
         >
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>
