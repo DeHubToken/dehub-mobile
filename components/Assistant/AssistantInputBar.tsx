@@ -31,6 +31,9 @@ interface AssistantInputBarProps {
   placeholder?: string;
   sendLabel?: string;
   allowEmpty?: boolean;
+  /** Starts or ends voice chat with the ball. */
+  onVoicePress?: () => void;
+  voiceActive?: boolean;
 }
 
 const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
@@ -48,6 +51,8 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   allowEmpty = false,
   readOnly = false,
   controls,
+  onVoicePress,
+  voiceActive,
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
@@ -55,7 +60,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   // Grow with the text, as web's auto-expanding textarea does. A single-line
   // input made every multi-paragraph prompt — which is most image prompts —
   // impossible to read back before sending.
-  const [height, setHeight] = useState(20);
+  const [height, setHeight] = useState(21);
   const canSend = (value.trim().length > 0 || !!attachedImage || allowEmpty) && !disabled && !loading;
 
   const handleSubmit = useCallback(() => {
@@ -82,7 +87,7 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
       )}
       <View style={s.inputRow}>
         <TextInput
-          style={[s.input, { height: Math.min(Math.max(20, height), maxInputHeight) }]}
+          style={[s.input, { height: Math.min(Math.max(21, height), maxInputHeight) }]}
           placeholder={placeholder ?? (attachedImage ? _copy("copy.413880aa438d", { defaultValue: "Describe your edits…" }) : _copy("copy.ff918d248470", { defaultValue: "Ask me anything..." }))}
           placeholderTextColor="#8B8D90"
           value={value}
@@ -95,26 +100,40 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
         <View style={s.actions}>
           {controls && <ScrollView horizontal keyboardShouldPersistTaps="handled" showsHorizontalScrollIndicator={false}
             style={{ flex: 1 }} contentContainerStyle={{ alignItems: 'center', gap: 6 }}>{controls}</ScrollView>}
-          {onAttach && (
-            <TouchableOpacity
-              onPress={onAttach}
-              style={s.actionBtn}
-              hitSlop={ACTION_SLOP}
-              disabled={disabled || loading}
-              accessibilityRole="button"
-              accessibilityLabel={t('dm.attachImage')}
-              accessibilityState={{ disabled: disabled || loading }}
-            >
-              <Icon
-                name="Paperclip"
-                size={18}
-                color={disabled || loading ? '#3F3F46' : '#6F7174'}
-              />
-            </TouchableOpacity>
+          {!controls && (
+            <View style={s.tools}>
+              {onAttach && (
+                <TouchableOpacity
+                  onPress={onAttach}
+                  style={s.toolBtn}
+                  hitSlop={ACTION_SLOP}
+                  disabled={disabled || loading}
+                  accessibilityRole="button"
+                  accessibilityLabel={t('dm.attachImage')}
+                  accessibilityState={{ disabled: disabled || loading }}
+                >
+                  <Icon name="Paperclip" size={18} color={disabled || loading ? '#3F3F46' : '#A1A1AA'} />
+                </TouchableOpacity>
+              )}
+              {onVoicePress && (
+                <TouchableOpacity
+                  onPress={onVoicePress}
+                  style={[s.toolBtn, voiceActive && s.toolBtnActive]}
+                  hitSlop={ACTION_SLOP}
+                  accessibilityRole="button"
+                  accessibilityLabel={voiceActive ? _copy("copy.dd2108f1cda8", { defaultValue: "Stop Voice Chat" }) : _copy("copy.70438fbf1234", { defaultValue: "Voice Chat (AI)" })}
+                  accessibilityState={{ selected: !!voiceActive }}
+                >
+                  <Icon name="AudioLines" size={18} color={voiceActive ? '#0B0C0D' : '#A1A1AA'} />
+                </TouchableOpacity>
+              )}
+            </View>
           )}
           <TouchableOpacity
             onPress={handleSubmit}
-            style={[s.actionBtn, sendLabel ? { width: 'auto', minHeight: 40, paddingHorizontal: 12, flexDirection: 'row', gap: 8, backgroundColor: 'rgba(255,255,255,0.1)' } : undefined]}
+            style={sendLabel
+              ? [s.sendBtn, { width: 'auto', paddingHorizontal: 14, flexDirection: 'row', gap: 8, backgroundColor: canSend ? '#F9FBFF' : 'rgba(255,255,255,0.1)' }]
+              : [s.sendBtn, { backgroundColor: canSend ? '#F9FBFF' : 'rgba(255,255,255,0.1)' }]}
             hitSlop={ACTION_SLOP}
             disabled={!canSend}
             accessibilityRole="button"
@@ -122,15 +141,11 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
             accessibilityState={{ disabled: !canSend }}
           >
             {loading ? (
-              <ActivityIndicator size="small" color="#F4F4F5" />
+              <ActivityIndicator size="small" color={canSend ? '#0B0C0D' : '#F4F4F5'} />
             ) : (
-              <Icon
-                name="Send"
-                size={18}
-                color={canSend ? '#F9FBFF' : '#3F3F46'}
-              />
+              <Icon name="ArrowUp" size={18} strokeWidth={2.4} color={canSend ? '#0B0C0D' : '#71717A'} />
             )}
-            {sendLabel && <Text style={{ color: canSend ? '#F9FBFF' : '#8B8D90', fontSize: 13, fontWeight: '700' }}>{sendLabel}</Text>}
+            {sendLabel && <Text style={{ color: canSend ? '#0B0C0D' : '#8B8D90', fontSize: 13, fontWeight: '700' }}>{sendLabel}</Text>}
           </TouchableOpacity>
         </View>
       </View>
@@ -138,9 +153,9 @@ const AssistantInputBar: React.FC<AssistantInputBarProps> = ({
   );
 };
 
-// The 32pt buttons sit 12pt apart inside the input pill; 6pt of slop each way
-// reaches 44pt without the two targets overlapping.
-const ACTION_SLOP = { top: 6, bottom: 6, left: 6, right: 6 };
+// The 36pt buttons sit 6pt apart; 4pt of slop each way reaches 44pt without
+// neighbouring targets overlapping.
+const ACTION_SLOP = { top: 4, bottom: 4, left: 4, right: 4 };
 
 const s = StyleSheet.create({
   container: {
@@ -174,32 +189,49 @@ const s = StyleSheet.create({
   },
   inputRow: {
     backgroundColor: 'rgba(255,255,255,0.06)',
-    borderRadius: 12,
+    borderRadius: 24,
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
+    borderColor: 'rgba(255,255,255,0.14)',
     paddingHorizontal: 16,
-    paddingVertical: 10,
-    minHeight: 48,
+    paddingTop: 13,
+    paddingBottom: 10,
+    minHeight: 96,
   },
   input: {
     color: '#F9FBFF',
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: 15,
+    lineHeight: 21,
     paddingTop: 0,
     paddingBottom: 0,
-    marginBottom: 4,
+    marginBottom: 10,
     textAlignVertical: 'top',
   },
   actions: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-end',
-    gap: 12,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 10,
   },
-  actionBtn: {
-    width: 32,
-    height: 32,
-    borderRadius: 12,
+  tools: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    marginLeft: -6,
+  },
+  toolBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  toolBtnActive: {
+    backgroundColor: '#F9FBFF',
+  },
+  sendBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
   },

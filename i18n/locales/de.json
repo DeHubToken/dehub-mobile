@@ -1,5 +1,18 @@
 {
   "copy": {
+    "dd2108f1cda8": "Sprach-Chat beenden",
+    "70438fbf1234": "Sprach-Chat (KI)",
+    "cf69d7e172fd": "Sprachsitzung aufgebraucht — Starten Sie den Sprachmodus erneut, um eine andere zu kaufen.",
+    "ccb684944295": "Transkription fehlgeschlagen",
+    "3dd8c4dd8ee7": "Mikrofonzugriff erforderlich für Sprachmodus",
+    "1a19c3a9fe4b": "Stimmmodus aktiviert — {{value1}} Transaktionen bezahlt.",
+    "0cf23e6e3094": "Die Sprachsitzung konnte nicht bezahlt werden.",
+    "f2ef1cac7f88": "Apropos...",
+    "28d03596d24e": "Überspringen",
+    "bce319cfa7b7": "links",
+    "1607715e45ed": "Tippe auf die Kugel, um zu sprechen, oder schreib unten",
+    "4e9a93669648": "Wird transkribiert...",
+    "9eb64cb30346": "Was erstellen wir?",
     "6da707c478f8": "日本語 (Japanisch)",
     "7a4ebea4b617": "{{value1}} pausieren",
     "ea81bf0fd464": "Русский (Russisch)",

@@ -176,7 +176,7 @@ export interface JobPaymentState {
    * Pay `priceDhb` for the job about to run. Returns the transfer hash, or
    * `CREDITS_PAYMENT` when subscription tokens cover it.
    */
-  payForJob: (priceDhb: number) => Promise<string>;
+  payForJob: (priceDhb: number, options?: { purpose?: 'job' | 'voice' }) => Promise<string>;
   refresh: () => void;
 }
 
@@ -250,7 +250,9 @@ export function useJobPayment(enabled = true): JobPaymentState {
   }, [refresh]);
 
   const payForJob = useCallback(
-    async (priceDhb: number): Promise<string> => {
+    async (priceDhb: number, { purpose = 'job' }: { purpose?: 'job' | 'voice' } = {}): Promise<string> => {
+      // A voice session is spent down over many exchanges, so it neither
+      // reuses a job's banked transfer nor is banked for a later job.
       if (!account) throw new Error(_copy("copy.63001ea22ed0", { defaultValue: "Connect your wallet to pay for a generation." }));
       if (!Number.isFinite(priceDhb) || priceDhb <= 0) throw new Error(_copy("copy.99c7a77baaf9", { defaultValue: "Nothing to pay." }));
       await apiClient.fetch('/auth/verify');
@@ -268,7 +270,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
       // more. The server is the record — not this device — so a payment
       // survives the app being killed, reinstalled or opened on another phone.
       try {
-        const banked = (await listUnspentAiPayments(account)).find(
+        const banked = purpose === 'voice' ? undefined : (await listUnspentAiPayments(account)).find(
           (p) => p.purpose !== 'voice' && p.remainingDhb >= priceDhb,
         );
         if (banked && liveAccount.current === account) return banked.txHash.toLowerCase();
@@ -309,7 +311,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
         log.warn('could not watch the transfer land:', err);
         if (submittedHash) {
           try {
-            await recordAiPayment(submittedHash, account);
+            await recordAiPayment(submittedHash, account, purpose);
             refresh();
             return submittedHash;
           } catch (recordErr) {
@@ -332,7 +334,7 @@ export function useJobPayment(enabled = true): JobPaymentState {
       // payer's to spend even if the generation never runs. Never fatal — the
       // generation function records it the old way if it gets there first.
       try {
-        await recordAiPayment(txHash, account);
+        await recordAiPayment(txHash, account, purpose);
       } catch (err) {
         log.warn('could not record payment yet:', err);
       }
