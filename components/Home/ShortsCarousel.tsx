@@ -21,9 +21,11 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
 import ShortsGridCard from "./ShortsGridCard";
 
-/** Step out over the feed list's side padding, with no frame around the rail. */
+/** Step out over the feed list's side padding, with no frame around the rail;
+ *  the rail's own padding puts the first and last cards back in line with the posts. */
 const LIST_GUTTER = 8;
 const CARD_WIDTH = 120;
+const RAIL_CONTENT_STYLE = { paddingLeft: LIST_GUTTER, paddingRight: LIST_GUTTER - 6 };
 const EMPTY_ITEMS: UnifiedFeedItem[] = [];
 let historyWrite = Promise.resolve();
 const historyStore: ShortsHistoryStore = {
@@ -159,6 +161,7 @@ const ShortsCarousel: React.FC<{
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       horizontal
+      contentContainerStyle={RAIL_CONTENT_STYLE}
       showsHorizontalScrollIndicator={false}
       nestedScrollEnabled
     />
