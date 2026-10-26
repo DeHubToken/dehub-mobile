@@ -64,6 +64,8 @@ export const DEFAULT_CHAT_MODEL = 'auto';
 
 export interface ImageModel {
   id: string;
+  requiresImage?: boolean;
+  outpaint?: boolean;
   name: string;
   description: string;
   emoji: string;
@@ -246,7 +248,8 @@ export interface VideoModel {
   requiresVideoInput?: boolean;
   supportsVideoInput?: boolean;
   maxReferenceImages?: number;
-  referenceMode?: 'edit' | 'motion';
+  referenceMode?: 'edit' | 'motion' | 'extend';
+  maxSourceDuration?: number;
   defaultDuration?: number;
   maxDuration?: number;
 }

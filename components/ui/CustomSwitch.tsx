@@ -31,7 +31,7 @@ const CustomSwitch: React.FC<CustomSwitchProps> = ({
   // Animated styles never pass through the JSX colour pass (libs/jsx/tone.js),
   // so System Light's colours are picked here.
   const { colors, pageColors, isLight } = useAppTheme();
-  const offTrack = isLight ? '#E4E4E7' : colors.neutrals[800];
+  const offTrack = isLight ? '#A1A1AA' : colors.neutrals[800];
   const offThumb = isLight ? '#FFFFFF' : colors.accentSecondary;
   const progress = useSharedValue(value ? 1 : 0);
 
