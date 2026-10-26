@@ -3,7 +3,7 @@ jest.mock('../../config/env', () => ({ __esModule: true, default: {
 } }));
 jest.mock('../../services/ai.service', () => ({ dehubAuthHeaders: jest.fn().mockResolvedValue({ 'x-dehub-token': 'session' }) }));
 jest.mock('../../libs/assistantMedia', () => ({ materialise: jest.fn().mockResolvedValue('file:///cache/result.png') }));
-jest.mock('../../libs/storage-upload', () => ({ fileExtension: () => 'png', contentTypeForExtension: () => 'image/png' }));
+jest.mock('../../libs/storage-upload', () => ({ fileExtension: jest.fn(() => 'png'), contentTypeForExtension: jest.fn(() => 'image/png') }));
 jest.mock('expo-file-system/legacy', () => ({
   cacheDirectory: 'file:///cache/', FileSystemUploadType: { BINARY_CONTENT: 0 },
   downloadAsync: jest.fn().mockResolvedValue({ status: 200, uri: 'file:///cache/model.glb' }),
@@ -12,6 +12,8 @@ jest.mock('expo-file-system/legacy', () => ({
 
 import * as FileSystem from 'expo-file-system/legacy';
 import { saveCreatorAsset } from '../../services/creator.service';
+import { materialise } from '../../libs/assistantMedia';
+import { fileExtension, contentTypeForExtension } from '../../libs/storage-upload';
 
 const asset = { id: 'native-job-123-image', kind: 'image' as const, prompt: 'a cup', model: 'gemini-3.1-flash-image', modelName: 'Nano Banana 2', createdAt: 1, url: 'https://media.test/result.png' };
 const http = jest.fn();
@@ -19,6 +21,8 @@ const body = (index: number) => JSON.parse(http.mock.calls[index][1].body);
 
 beforeEach(() => {
   jest.clearAllMocks();
+  (fileExtension as jest.Mock).mockReturnValue('png');
+  (contentTypeForExtension as jest.Mock).mockReturnValue('image/png');
   global.fetch = http;
   http.mockResolvedValueOnce({ ok: true, json: async () => ({ path: 'wallet/job/original', token: 'signed-token' }) });
   http.mockResolvedValueOnce({ ok: true, json: async () => ({ saved: true }) });
@@ -55,4 +59,15 @@ it('saves the mesh itself using its binary content type', async () => {
   await saveCreatorAsset({ ...asset, kind: 'model3d', url: 'https://media.test/model.glb' });
   expect(FileSystem.uploadAsync).toHaveBeenCalledWith(expect.any(String), 'file:///cache/model.glb',
     expect.objectContaining({ headers: expect.objectContaining({ 'Content-Type': 'model/gltf-binary' }) }));
+});
+
+it('uploads the verified WAV file with its real MIME type and preserves the durable original', async () => {
+  const url = 'file:///private/creator-audio/result.wav';
+  (materialise as jest.Mock).mockResolvedValue(url);
+  (fileExtension as jest.Mock).mockReturnValue('wav');
+  (contentTypeForExtension as jest.Mock).mockReturnValue('audio/wav');
+  await saveCreatorAsset({ ...asset, kind: 'audio', url });
+  expect(FileSystem.uploadAsync).toHaveBeenCalledWith(expect.any(String), url,
+    expect.objectContaining({ headers: expect.objectContaining({ 'Content-Type': 'audio/wav' }) }));
+  expect(FileSystem.deleteAsync).not.toHaveBeenCalled();
 });

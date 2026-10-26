@@ -9978,6 +9978,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "Export format",
+    "audioExportMp3": "MP3 · 128 kbps",
+    "audioExportWav": "WAV · 24 kHz · mono",
     "extensionNeedsClip": "Attach one source clip to extend.",
     "extensionSeconds": "+{{seconds}}s new footage",
     "extensionHelp": "Returns your source clip with about four new seconds. Output is resized up to 720p at 24 fps. New audio is generated for the extension.",

@@ -62,6 +62,15 @@ export async function materialise(uri: string, kind: 'image' | 'video' | 'audio'
     await FileSystem.deleteAsync(target, { idempotent: true }).catch(() => {});
     throw new Error('Could not download the generated media.');
   }
+  if (kind === 'audio') {
+    const type = Object.entries(downloaded.headers ?? {}).find(([name]) => name.toLowerCase() === 'content-type')?.[1] ?? '';
+    const actualExt = /^audio\/(wav|x-wav)(;|$)/i.test(type) ? 'wav' : /^audio\/(mpeg|mp3)(;|$)/i.test(type) ? 'mp3' : undefined;
+    if (actualExt && !downloaded.uri.toLowerCase().endsWith(`.${actualExt}`)) {
+      const corrected = `${downloaded.uri.replace(/\.[^./]+$/, '')}.${actualExt}`;
+      await FileSystem.moveAsync({ from: downloaded.uri, to: corrected });
+      return corrected;
+    }
+  }
   return downloaded.uri;
 }
 

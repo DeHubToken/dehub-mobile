@@ -9651,6 +9651,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "صيغة التصدير",
+    "audioExportMp3": "MP3 · ‏128 كيلوبت/ثانية",
+    "audioExportWav": "WAV · ‏24 كيلوهرتز · أحادي",
     "extensionNeedsClip": "أرفق مقطعًا واحدًا لتمديده.",
     "extensionSeconds": "+{{seconds}} ثوانٍ جديدة",
     "extensionHelp": "يعيد المقطع الأصلي مع نحو أربع ثوانٍ جديدة. يُغيَّر حجم الناتج حتى 720p بمعدل 24 إطارًا في الثانية. يُنشأ صوت جديد للجزء المضاف.",
