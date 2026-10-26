@@ -281,7 +281,7 @@ export const ARCADE_GAMES: ArcadeGame[] = [
      * so. Same host as the web arcade, so a re-vendor there reaches this app
      * with no release.
      */
-    url: `${WEBSITE_LINK}/trenchstar-game/index.html?q=phone&v=20260912-clearwall`,
+    url: `${WEBSITE_LINK}/trenchstar-game/index.html?q=phone&v=20261025-trading`,
     exitPlacement: 'center',
     // It draws its own boot readout — engine, markets, world, paint — with a
     // real percentage, so the modelled bar only has to cover the gap before

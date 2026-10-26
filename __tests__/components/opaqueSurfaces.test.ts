@@ -12,6 +12,8 @@ const ALLOWED = [
   "components/LiveChat/LiveChatContextMenu.tsx",
   "components/ui/ChromeSurface.tsx",
   "components/ui/GlassModal.tsx",
+  // Drawers take web's liquid glass (bg-black/60 + backdrop blur).
+  "components/ui/SheetGlass.tsx",
   "components/ui/IosGlassPill.tsx",
   "components/ui/FrostedPill.tsx",
   "components/ui/FrostedBackdrop.tsx",

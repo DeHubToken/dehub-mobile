@@ -28,6 +28,7 @@ import {
   minimalTabActive,
   minimalTabStrip,
 } from "../../theme/minimal";
+import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 const SHEET_FRACTION = 0.82;
 
@@ -428,9 +429,9 @@ const glassStyles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.14)",
+    borderColor: SHEET_GLASS_BORDER,
   },
   tabBar: {
     flexDirection: "row",

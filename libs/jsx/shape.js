@@ -37,7 +37,8 @@ const SQUARE = Object.freeze(
 );
 
 // Page and sheet backgrounds that are "black" in the system theme.
-const NEAR_BLACK = new Set(["#010305", "#0c0c0e", "#09090b", "#0a0a0a", "#050505"]);
+// "rgba(12,12,14,0.8)" is the glass drawer fill (theme/sheetGlass.ts).
+const NEAR_BLACK = new Set(["#010305", "#0c0c0e", "#09090b", "#0a0a0a", "#050505", "rgba(12,12,14,0.8)"]);
 
 // What the pass does for the active theme. Minimal squares every corner and
 // takes near-blacks to #000; the canvas themes (theme/skins.ts) swap those

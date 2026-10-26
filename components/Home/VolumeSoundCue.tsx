@@ -16,7 +16,7 @@ import Svg, { Path } from "react-native-svg";
  * The volume bar, drawn by hand so it can be as thick as the colour bar beside
  * it (the native slider on top keeps its thumb, touch and the Android/iOS hold
  * effects, with its own tracks made transparent). While sound is coming out,
- * a loose swarm of notes floats up out of the fill toward the handle and a thin arc slides out
+ * notes drift inside the volume tube and a thin arc slides out
  * of the handle on each beat. Still when paused, muted or with reduced motion.
  *
  * Same numbers as web (dehubweb src/components/app/audio/VolumeSoundCue.tsx).
@@ -81,9 +81,13 @@ export const VolumeTrack: React.FC<VolumeTrackProps> = ({ value, active, fillCol
     <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
       <View style={[styles.bar, { left: inset, right: inset, height, marginTop: -radius, borderRadius: radius, backgroundColor: trackColor }]} />
       <View style={[styles.bar, { left: inset, width: shown * Math.max(0, width - inset * 2), height, marginTop: -radius, borderRadius: radius, backgroundColor: fillColor }]} />
-      {!reduced && Array.from({ length: NOTE_SLOTS }, (_, i) => (
-        <Note key={i} index={i} clock={clock} fade={fade} level={level} span={span} inset={inset} barHeight={height} thumbRadius={thumbRadius} />
-      ))}
+      {!reduced && (
+        <View style={[styles.bar, { left: inset, right: inset, height, marginTop: -radius, borderRadius: radius, overflow: "hidden" }]}>
+          {Array.from({ length: NOTE_SLOTS }, (_, i) => (
+            <Note key={i} index={i} clock={clock} fade={fade} level={level} span={span} barHeight={height} thumbRadius={thumbRadius} />
+          ))}
+        </View>
+      )}
       {!reduced && [0, 1].map((j) => (
         <Echo key={j} offset={j} clock={clock} fade={fade} level={level} span={span} inset={inset} />
       ))}
@@ -92,34 +96,31 @@ export const VolumeTrack: React.FC<VolumeTrackProps> = ({ value, active, fillCol
 };
 
 /**
- * One note of the swarm. Every cycle it pops up at a new random spot along the
- * fill and floats up and to the right on its own wobbly path, then fades.
+ * Every cycle a note drifts along the fill, contained by the rounded tube.
  * Same maths as web's noteAt().
  */
-function Note({ index, clock, fade, level, span, inset, barHeight, thumbRadius }: {
+function Note({ index, clock, fade, level, span, barHeight, thumbRadius }: {
   index: number; clock: SharedValue<number>; fade: SharedValue<number>; level: SharedValue<number>; span: SharedValue<number>;
-  inset: number; barHeight: number; thumbRadius: number;
+  barHeight: number; thumbRadius: number;
 }) {
-  const note = Math.max(6, barHeight + 1);
+  const note = barHeight * 0.65;
   const box = note * 1.35;
   const style = useAnimatedStyle(() => {
     const fillEnd = Math.max(0, level.value * span.value - thumbRadius);
     const count = Math.max(2, Math.min(NOTE_SLOTS, Math.round(fillEnd / 18)));
     if (index >= count || fillEnd <= note) return { opacity: 0 };
-    const lift = barHeight / 8;
     const duration = (1.8 + 1.6 * rand(index + 0.13)) / (0.75 + 0.5 * level.value);
     const phase = clock.value / duration + rand(index + 0.71);
     const cycle = Math.floor(phase);
     const p = phase - cycle;
     const r = (j: number) => rand(index * 31.7 + cycle * 7.3 + j);
     const x = r(1) * fillEnd * 0.85 + p * (18 + 30 * r(2));
-    const y = (r(3) - 0.5) * barHeight * 0.8 - p * (5 + 10 * r(4)) * lift
-      + Math.sin(p * Math.PI * 2 * (0.6 + r(5)) + r(6) * Math.PI * 2) * 2 * lift;
+    const y = Math.sin(p * Math.PI * 2 * (0.6 + r(5)) + r(6) * Math.PI * 2) * barHeight * 0.08;
     const alpha = Math.pow(Math.sin(Math.PI * p), 0.8) * Math.max(0, Math.min(1, (fillEnd + 14 - x) / 10));
-    const scale = (0.75 + 0.6 * r(7)) / 1.35;
+    const scale = (0.8 + 0.2 * r(7)) / 1.35;
     return {
       opacity: 0.75 * fade.value * alpha,
-      transform: [{ translateX: inset + x }, { translateY: y }, { rotate: `${(r(8) - 0.5) * 0.7}rad` }, { scale }],
+      transform: [{ translateX: x }, { translateY: y }, { rotate: `${(r(8) - 0.5) * 0.3}rad` }, { scale }],
     };
   });
   return (
