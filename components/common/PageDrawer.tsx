@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect } from "react";
-import { BackHandler, Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { BackHandler, PanResponder, Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
 import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import { useFocusEffect } from "@react-navigation/native";
 import { SheetGlassFill } from "../ui/SheetGlass";
 import { SHEET_GLASS_BORDER, SHEET_GLASS_FILL } from "../../theme/sheetGlass";
@@ -53,19 +52,21 @@ export default function PageDrawer({
     return () => sub.remove();
   }, [close]));
 
-  const pan = Gesture.Pan()
-    .activeOffsetY(10)
-    .failOffsetX([-14, 14])
-    .onUpdate((e) => {
-      translateY.value = Math.max(0, e.translationY);
-    })
-    .onEnd((e) => {
-      if (e.translationY > 100 || e.velocityY > 600) {
-        runOnJS(close)();
-      } else {
-        translateY.value = withTiming(0, { duration: 200, easing: Easing.out(Easing.cubic) });
-      }
-    });
+  // A responder that only claims clear downward drags, as SheetDismissHandle
+  // does: taps and sideways tab scrolls in the header never reach it.
+  const pan = useMemo(() => PanResponder.create({
+    onMoveShouldSetPanResponderCapture: (_, g) => g.dy > 10 && g.dy > Math.abs(g.dx) * 1.5,
+    onPanResponderMove: (_, g) => {
+      translateY.value = Math.max(0, g.dy);
+    },
+    onPanResponderRelease: (_, g) => {
+      if (g.dy > 100 || (g.dy > 20 && g.vy > 0.7)) close();
+      else translateY.value = withTiming(0, { duration: 200, easing: Easing.out(Easing.cubic) });
+    },
+    onPanResponderTerminate: () => {
+      translateY.value = withTiming(0, { duration: 200, easing: Easing.out(Easing.cubic) });
+    },
+  }), [translateY, close]);
 
   const sheetStyle = useAnimatedStyle(() => ({ transform: [{ translateY: translateY.value }] }));
   const backdropStyle = useAnimatedStyle(() => ({ opacity: backdrop.value }));
@@ -77,14 +78,12 @@ export default function PageDrawer({
       </Animated.View>
       <Animated.View style={[styles.sheet, sheetStyle]}>
         <SheetGlassFill style={[StyleSheet.absoluteFill, styles.surface]} />
-        <GestureDetector gesture={pan}>
-          <View>
-            <View style={styles.handleZone}>
-              <View style={styles.handle} />
-            </View>
-            {grab}
+        <View {...pan.panHandlers}>
+          <View style={styles.handleZone}>
+            <View style={styles.handle} />
           </View>
-        </GestureDetector>
+          {grab}
+        </View>
         <View style={{ flex: 1 }}>{children}</View>
       </Animated.View>
     </View>
