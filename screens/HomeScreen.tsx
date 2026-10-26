@@ -288,6 +288,8 @@ export default function HomeScreen() {
   // galleries, the suggestions carousel) can block the page turn while they are
   // scrolling — see PagerGestureContext.
   const pagerGestureRef = useRef<GestureType | undefined>(undefined);
+  // The same page turn, started on the Images scroll view that covers the pager.
+  const drawerPagerRef = useRef<GestureType | undefined>(undefined);
 
   useShortsServerSync();
   const { shorts: shortsEnabled } = useAppPrefs();
@@ -559,8 +561,11 @@ export default function HomeScreen() {
     [setPostType, TAB_ORDER],
   );
 
-  const pagerGesture = useMemo(
-    () =>
+  // 1 while a page turn that started on the Images scroll view is in flight:
+  // the pager under it shows, and the sheet slides with the Images page.
+  const drawerSwipe = useSharedValue(0);
+  const buildPageTurn = useCallback(
+    (ref: React.MutableRefObject<GestureType | undefined>, fromDrawer: boolean) =>
       Gesture.Pan()
         // Horizontal intent only: a vertical drag belongs to the feed's own
         // scroll view and must never be stolen by the pager.
@@ -568,7 +573,7 @@ export default function HomeScreen() {
         // clearly sideways drag turns the page.
         .manualActivation(true)
         .maxPointers(1)
-        .withRef(pagerGestureRef)
+        .withRef(ref)
         .onTouchesDown((event, manager) => {
           const point = event.allTouches[0];
           if (!point || event.numberOfTouches !== 1) { manager.fail(); return; }
@@ -589,6 +594,7 @@ export default function HomeScreen() {
         .onStart(() => {
           cancelAnimation(progress);
           dragStart.value = progress.value;
+          if (fromDrawer) drawerSwipe.value = 1;
           // The header hides on the vertical scroll of the page being left.
           // Carried hidden into the next page, that page's top spacer shows as
           // a blank band above its first post, so a page turn brings it back.
@@ -612,11 +618,30 @@ export default function HomeScreen() {
           if (target < from - 1) target = from - 1;
           if (target < 0) target = 0;
           if (target > LAST_INDEX) target = LAST_INDEX;
-          progress.value = withTiming(target, PAGE_ANIM);
-          if (target !== from) runOnJS(commitIndex)(target);
+          if (!fromDrawer) {
+            progress.value = withTiming(target, PAGE_ANIM);
+            if (target !== from) runOnJS(commitIndex)(target);
+            return;
+          }
+          // Off the Images scroll view the tab changes once the sheet has slid
+          // away; changing tab closes it, and closing it mid-slide would swap
+          // the sheet for the grid under it.
+          progress.value = withTiming(target, PAGE_ANIM, (finished) => {
+            if (finished && target !== from) runOnJS(commitIndex)(target);
+            else drawerSwipe.value = 0;
+          });
         }),
-    [pageWidth, commitIndex, progress, dragStart, pagerTouch, showHeader, LAST_INDEX],
+    [pageWidth, commitIndex, progress, dragStart, pagerTouch, showHeader, LAST_INDEX, drawerSwipe],
   );
+  const pagerGesture = useMemo(() => buildPageTurn(pagerGestureRef, false), [buildPageTurn]);
+  // Single photos and text on the Images scroll view turn the tab like the
+  // feed does; galleries in it block this through PagerGestureProvider.
+  const drawerPagerGesture = useMemo(() => buildPageTurn(drawerPagerRef, true), [buildPageTurn]);
+  useEffect(() => { if (!imageFeed) drawerSwipe.value = 0; }, [imageFeed, drawerSwipe]);
+  const drawerRevealStyle = useAnimatedStyle(() => ({ opacity: drawerSwipe.value }));
+  const drawerSlideStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: drawerSwipe.value ? (dragStart.value - progress.value) * pageWidth : 0 }],
+  }));
   const homeGestures = useMemo(() => Gesture.Race(pagerGesture, homePull.gesture), [pagerGesture, homePull.gesture]);
 
   // Canvas themes draw the header translucent over the live backdrop, and
@@ -1120,7 +1145,7 @@ export default function HomeScreen() {
           pointerEvents={imageFeed ? "none" : "auto"}
           accessibilityElementsHidden={!!imageFeed}
           importantForAccessibility={imageFeed ? "no-hide-descendants" : "auto"}
-          style={[styles.pagerViewport, feedClipStyle, { opacity: imageFeed ? 0 : 1 }]}
+          style={[styles.pagerViewport, feedClipStyle, imageFeed ? drawerRevealStyle : null]}
         >
           <Animated.View style={[styles.feedUnclip, feedUnclipStyle]}>
           <PagerGestureProvider gestureRef={pagerGestureRef}>
@@ -1302,10 +1327,13 @@ export default function HomeScreen() {
         </View>
       ) : null}
 
-      {/* Outside the pager's GestureDetector on purpose: while the drawer is up
-          a horizontal drag on it belongs to the post's own image gallery, not
-          to a tab change happening invisibly behind the sheet. */}
+      {/* Outside the pager's GestureDetector: the sheet has its own page turn,
+          which slides the sheet with the Images page so the tab change is
+          seen, and which a post's photo gallery blocks while it scrolls. */}
       {imageFeed ? (
+        <GestureDetector gesture={drawerPagerGesture}>
+        <Animated.View pointerEvents="box-none" style={[styles.drawerLayer, drawerSlideStyle]}>
+        <PagerGestureProvider gestureRef={drawerPagerRef}>
         <ImageFeedDrawer
           key={imageFeed.token}
           ref={imageDrawerRef}
@@ -1323,6 +1351,9 @@ export default function HomeScreen() {
           onScrollEnd={handleScrollEnd}
           onClose={handleCloseImageFeed}
         />
+        </PagerGestureProvider>
+        </Animated.View>
+        </GestureDetector>
       ) : null}
 
       {/* Draws nothing at all unless this account is mid-walkthrough or has
@@ -1337,6 +1368,9 @@ const styles = StyleSheet.create({
   // The row is six screens wide and slides under a clipped viewport, so the
   // five inactive pages are outside the visible bounds and cost no compositing.
   pagerViewport: { flex: 1, overflow: "hidden" },
+  // ImageFeedDrawer's own layer (absolute fill, above the pager), carried here
+  // so the sheet can slide sideways with a page turn.
+  drawerLayer: { ...StyleSheet.absoluteFillObject, zIndex: 9 },
   feedUnclip: { flex: 1 },
   pagerRow: {
     position: "absolute",
