@@ -38,6 +38,7 @@ import {
   removeItemFromFolder,
   BookmarkFolder,
 } from "../../services/bookmark.service";
+import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 interface AddToFolderSheetProps {
   visible: boolean;
@@ -488,9 +489,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
+    borderColor: SHEET_GLASS_BORDER,
   },
   // Minimal: pure black body, a single hairline along the top edge.
   minimalOverlay: {

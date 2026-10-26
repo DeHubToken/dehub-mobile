@@ -92,6 +92,7 @@ import {
   type VideoModelKey,
   VIDEO_MODEL_OPTIONS,
   getToolsByCategory,
+  IMAGE_MODELS,
   imageModelSupportsEdit,
   videoSupportsImage,
   videoSupportsText,
@@ -123,16 +124,19 @@ import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase
 import { findMotionClip, motionAspect, motionModel, type MotionClip } from '../libs/motionLibrary';
 import * as CreatorFileSystem from 'expo-file-system/legacy';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, creatorVideoQuoteHints, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import { runCreatorBatch } from '../libs/creatorBatch';
 import { creatorAssetId } from '../libs/creatorAssetId';
 import * as CreatorCrypto from 'expo-crypto';
 import { useMarketingStudioDraft } from '../hooks/useMarketingStudioDraft';
+import { generationDraftForOwner } from '../libs/editor/generationDraft';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
 import { runModel3d } from '../services/ai.service';
 import { saveCreatorAsset, type CreatorAssetToSave } from '../services/creator.service';
+import { runCreatorAudio } from '../services/creator-audio.service';
+import { creatorAudioIssue, CREATOR_AUDIO_TASKS } from '../libs/creatorAudio';
 import { useQueryClient } from '@tanstack/react-query';
 
 const log = createLogger('AIChatScreen');
@@ -227,7 +231,7 @@ export interface EmbeddedCreatorProps {
   onUseGenerated?: (url: string, kind: 'image' | 'video' | 'audio') => Promise<void>;
 }
 
-function AIChatScreenInner({ studio = false, embedded = false, editorDraft: suppliedDraft, onGenerated, onUseGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
+function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requestedDraft, onGenerated, onUseGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
   const editorRequests = useRef(new Set<string>());
   const deliveredEditorResults = useRef(new Set<string>());
   const appliedEditorDraft = useRef<EmbeddedCreatorProps['editorDraft']>(null);
@@ -250,6 +254,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
 
   const walletAddress = user?.walletAddress || user?.address || null;
+  const suppliedDraft = useMemo(() => generationDraftForOwner(requestedDraft, walletAddress), [requestedDraft, walletAddress]);
   const userId = walletAddress || 'anon';
   const {
     conversationId, draftScope,
@@ -302,10 +307,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const [assetPickerVisible, setAssetPickerVisible] = useState(false);
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const activeTemplate = getTemplate(templateId);
-  const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? route.params?.editorDraft) : null;
+  const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? generationDraftForOwner(route.params?.editorDraft, walletAddress)) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft } = useMarketingStudioDraft({
-    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio,
+  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft, appliedDraftId, setAppliedDraftId, draftReferences } = useMarketingStudioDraft({
+    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio, editorDraft: editorDraft?.draft,
     initialSettings: () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
       model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }),
   });
@@ -319,6 +324,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   }, [studio, route.params?.workflow]);
   const appliedClipRoute = useRef<string | undefined>(undefined);
   const pickMotionClip = useCallback((clip: MotionClip, workflow: 'swap' | 'motion') => {
+    draftReferences.modified();
     const model = motionModel(clip, workflow);
     setTemplateId(model === 'kling-3-motion' ? 'reference-copy-motion' : 'reference-character-swap');
     setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model, effect: undefined,
@@ -337,19 +343,25 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     return () => { cancelled = true; };
   }, [studio, route.params?.clip, route.params?.workflow, pickMotionClip]);
   useEffect(() => {
-    if (appliedEditorDraft.current === suppliedDraft) return;
     const prepared = creatorSettingsForEditorDraft(suppliedDraft);
     if (!prepared) return;
+    if (prepared.draft.references && studioSettings.mode === prepared.settings.mode && draftReferences.adopt(prepared.draft.draftId, Boolean(prepared.draft.draftId && appliedDraftId === prepared.draft.draftId))) {
+      setStudioSettings(previous => normalizeCreatorSettings({ ...previous, referenceAssets: prepared.settings.referenceAssets }));
+      setAttachedImage(prepared.settings.referenceAssets?.find(asset => asset.kind === 'image')?.uri ?? null);
+    }
+    if (appliedEditorDraft.current === suppliedDraft || (suppliedDraft?.draftId && appliedDraftId === suppliedDraft.draftId)) return;
     if (studioSettings.mode !== prepared.settings.mode) { setStudioSettings(prepared.settings); return; }
     setStudioSettings(prepared.settings);
     setInput(prepared.draft.prompt);
     setTemplateId(null);
     appliedEditorDraft.current = suppliedDraft;
-  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings]);
+    setAppliedDraftId(prepared.draft.draftId ?? null);
+  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings, appliedDraftId, setAppliedDraftId]);
   const effectMode = studio && studioSettings.mode === 'video' && studioSettings.model === VIRAL_EFFECT_MODEL;
   const appliedEffectRoute = useRef<string | undefined>(undefined);
   const pendingMotionPrompt = useRef(false);
   const pickEffect = useCallback((effect: ViralTemplate) => {
+    draftReferences.modified();
     setTemplateId(null);
     if (effect.motionSeconds && effect.preview) {
       pendingMotionPrompt.current = true;
@@ -840,7 +852,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             model,
             sourceImage,
             ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
-            negativePrompt: creator ? (VIDEO_MODELS[creator.model]?.supportsNegativePrompt ? creator.negativePrompt?.trim() || preset?.negative : undefined) : preset?.negative,
+            negativePrompt: VIDEO_MODELS[model]?.supportsNegativePrompt ? creator?.negativePrompt?.trim() || preset?.negative : undefined,
             txHash,
           },
           walletAddress,
@@ -1193,6 +1205,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
    * Shared by send and retry so a failed image request retries as an image
    * request. `history` already ends with the user's turn.
    */
+  const audioContext = useRef({ walletAddress, conversationId });
+  audioContext.current = { walletAddress, conversationId };
   const routePrompt = useCallback(
     async (
       text: string,
@@ -1211,9 +1225,26 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       setPendingTemplateId(tpl?.id ?? null);
       setPendingStudio(creator ?? null);
       if (creator) {
-        const issue = creatorInputIssue(creator, !!sourceImage, tpl);
-        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
+        if (creator.mode === 'audio' && creator.audioSettings) {
+          const issue = creatorAudioIssue(text, creator.audioSettings);
+          if (issue) { toastError(t(issue)); return; }
+          const context = audioContext.current;
+          try {
+            const result = await runCreatorAudio(text, creator.audioSettings, walletAddress);
+            // saveMessage retains its submitting account and conversation even after navigation.
+            await saveMessage([...history, { id: newTurnId(), role: 'assistant', content: result.transcript || t('creator.audioLibraryPlaybackHint'), ...(result.audioUrl ? { audioUrl: result.audioUrl } : {}) }]);
+            if (audioContext.current.walletAddress === context.walletAddress && audioContext.current.conversationId === context.conversationId) {
+              pendingDraftCompletion.current();
+              scrollToEnd();
+            }
+          } catch (error) {
+            await saveMessage([...history, { role: 'assistant', content: describeError(error), isError: true }]);
+          }
+          return;
+        }
         const resolved = prepareCreatorPrompt(text, tpl, creator);
+        const issue = creatorInputIssue(creator, !!sourceImage, tpl, resolved);
+        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
         const limit = creatorPromptLimit(creator);
         if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
         setPendingPrompt(resolved);
@@ -1326,20 +1357,21 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
       await doSendChat(text, history);
     },
-    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput, _copy],
+    [saveMessage, scrollToEnd, settings.videoModel, doSendChat, updateSettings, input, setInput, _copy, walletAddress, describeError, t],
   );
 
   const handleSend = useCallback(async () => {
     const typed = input.trim();
-    if ((!typed && !attachedImage && !activeTemplate) || isLoading || restoring || submitLock.current) return;
+    const audioMedia = studio && studioSettings.mode === 'audio' ? studioSettings.audioSettings?.media : undefined;
+    if ((!typed && !attachedImage && !activeTemplate && !audioMedia) || isLoading || restoring || submitLock.current) return;
     // An empty send under a template runs its example subject, like web's tile.
-    const text = typed || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
+    const text = typed || audioMedia?.name || (activeTemplate && !attachedImage ? activeTemplate.sample : typed);
 
     let creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
     if (creator) {
-      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate);
-      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
       const resolved = prepareCreatorPrompt(text, activeTemplate, creator);
+      const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate, resolved);
+      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
       const limit = creatorPromptLimit(creator);
       if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
     }
@@ -1818,11 +1850,12 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       if (!request?.id || !request.creatorSettings || message.isError || message.isVideoGenerating || message.isToolProcessing) continue;
       if (request.creatorOwner && request.creatorOwner !== walletAddress.toLowerCase()) continue;
       const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
-      if (!url) continue;
-      const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
+      const transcript = request.creatorSettings.audioSettings?.task === 'transcribe' ? message.content : undefined;
+      if (!url && !transcript) continue;
+      const kind = transcript ? 'audio' : message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
       const id = creatorAssetId(request.id, message.id, kind, request.creatorAssetScheme);
       const saveKey = `${walletAddress}:${id}`;
-      if (kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
+      if (url && kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
         deliveredEditorResults.current.add(id);
         onGenerated({ url, kind, name: request.content });
       }
@@ -1834,10 +1867,12 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         continue;
       }
       const creator = request.creatorSettings;
-      const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: creator.model,
+      const audioTask = creator.mode === 'audio' ? creator.audioSettings?.task : undefined;
+      const asset: CreatorAssetToSave = { id, kind, url, prompt: request.content, model: audioTask ?? creator.model,
+        transcript,
         posterUrl: message.modelUrl ? message.imageUrl : undefined,
         resolvedPrompt: prepareCreatorPrompt(request.content, getTemplate(request.templateId)),
-        modelName: creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
+        modelName: audioTask ? t(CREATOR_AUDIO_TASKS[audioTask].label) : creatorModels(creator.mode).find((model) => model.id === creator.model)?.name ?? creator.model,
         aspect: creator.aspect, presetId: request.templateId, createdAt: Date.now() };
       // Stream one file at a time, keeping large clips out of JS memory.
       librarySaveQueue.current = librarySaveQueue.current.then(async () => {
@@ -1932,6 +1967,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           mode={studioSettings.mode} pickerVisible={assetPickerVisible} onClose={() => setAssetPickerVisible(false)} disabled={isLoading}
           onMention={tag => setInput(previous => `${previous}${previous && !/\s$/.test(previous) ? ' ' : ''}${tag} `)}
           onChange={referenceAssets => {
+              draftReferences.modified();
             setInput(previous => remapAssetMentions(previous, (studioSettings.referenceAssets ?? []).map(asset => ({ key: asset.uri, kind: asset.kind })), referenceAssets.map(asset => ({ key: asset.uri, kind: asset.kind }))));
             const images = referenceAssets.filter(a => a.kind === 'image'); const clip = referenceAssets.find(a => a.kind === 'video');
             setAttachedImage(images[0]?.uri ?? null);
@@ -1966,9 +2002,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         )}
         <AssistantInputBar
           controls={studio ? <>
-        <CreatorStudioControls settings={studioSettings} onChange={next => {
+        <CreatorStudioControls settings={studioSettings} prompt={input} draftScope={draftScope} onChange={next => {
           const selectedTemplate = getTemplate(templateId);
-          if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
+          if (next.model !== studioSettings.model && (VIDEO_MODELS[next.model]?.referenceMode === 'extend' || (selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput))) setTemplateId(null);
           setStudioSettings(next);
         }}
           onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
@@ -1988,8 +2024,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           attachedImage={studio ? null : attachedImage}
           onRemoveImage={() => setAttachedImage(null)}
           loading={isLoading}
-          allowEmpty={!!activeTemplate}
-          placeholder={studio ? t('creator.studioPrompt') : undefined}
+            allowEmpty={!!activeTemplate || !!(studio && ((studioSettings.mode === 'audio' && studioSettings.audioSettings?.media) || (studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint && attachedImage)))}
+            placeholder={studio ? t(studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint ? 'creator.expandPromptHint' : 'creator.studioPrompt') : undefined}
           sendLabel={studio ? t('creator.studioCreate') : undefined}
         />
       </View>
@@ -2083,7 +2119,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           setPendingStudio(previous => previous ? normalizeCreatorSettings({ ...previous, model: id }) : null);
         }}
         quoteKind="video"
-        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS }}
+        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS,
+          ...creatorVideoQuoteHints(pendingStudio, pendingSourceImage) }}
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoConfirm}
         footnote={_copy("copy.0f1f6dc49d7b", { defaultValue: "Renders take 1-3 minutes and keep going if you leave this screen." })}

@@ -10,12 +10,15 @@ import { toastError } from '../../libs/toast';
 import { CinemaDirectionControls } from './CinemaDirectionControls';
 import CreatorMediaPreview from './CreatorMediaPreview';
 import { MODEL3D_MODELS } from '../../config/model3d-models.constants';
+import { CreatorAudioControls } from './CreatorAudioControls';
 import {
   CREATOR_MODE_KEYS, creatorAspects, creatorModels,
   normalizeCreatorSettings, type CreatorMode, type CreatorStudioSettings,
 } from '../../libs/creatorStudio';
 
 interface Props {
+  prompt?: string;
+  draftScope?: string;
   settings: CreatorStudioSettings;
   onChange: (settings: CreatorStudioSettings) => void;
   onMode: (mode: CreatorMode) => void;
@@ -29,7 +32,7 @@ interface Props {
 
 const MODE_ICONS: Record<CreatorMode, IconName> = { image: 'Image', video: 'Video', audio: 'Music', '3d': 'Package' };
 
-export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, onRemake, disabled }: Props) {
+export default function CreatorStudioControls({ settings, onChange, onMode, onPresets, onAttach, onWorkflow, onMaboroshi, onRemake, disabled, prompt = '', draftScope }: Props) {
   const { t } = useTranslation();
   const [picker, setPicker] = useState<'model' | 'aspect' | 'resolution' | 'texture' | null>(null);
   const [modelSearch, setModelSearch] = useSurfaceDraft("components/Assistant/CreatorStudioControls.tsx:modelSearch", '');
@@ -112,8 +115,8 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
             </Pressable>
           ))}
         </View>
-        {chip((selected?.name ?? settings.model).split(/\s+/)[0], () => setPicker('model'), false, selected?.name ?? settings.model)}
-        {(settings.mode === 'image' || (settings.mode === 'video' && settings.model !== 'pixverse-effects' && !VIDEO_MODELS[settings.model]?.requiresVideoInput)) && chip(settings.aspect, () => setPicker('aspect'))}
+        {!(settings.mode === 'audio' && settings.audioSettings) && chip((selected?.name ?? settings.model).split(/\s+/)[0], () => setPicker('model'), false, selected?.name ?? settings.model)}
+        {(settings.mode === 'image' || (settings.mode === 'video' && settings.model !== 'pixverse-effects' && (!VIDEO_MODELS[settings.model]?.requiresVideoInput || VIDEO_MODELS[settings.model]?.referenceMode === 'extend'))) && chip(settings.aspect, () => setPicker('aspect'))}
         {settings.mode === 'video' && settings.model !== 'pixverse-effects' && !VIDEO_MODELS[settings.model]?.requiresVideoInput && (
           <View className="flex-row items-center rounded-xl border border-theme-neutrals-700 bg-theme-neutrals-800 px-1.5">
             <TextInput
@@ -138,7 +141,8 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
             <Text className="text-xs text-theme-neutrals-400">s</Text>
           </View>
         )}
-        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t('creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
+        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend' && <Text className="w-full text-xs text-theme-neutrals-400">{t('creator.extensionHelp')}</Text>}
+        {settings.mode === 'video' && VIDEO_MODELS[settings.model]?.requiresVideoInput && <Text className="self-center text-xs text-theme-neutrals-400">{t(VIDEO_MODELS[settings.model]?.referenceMode === 'extend' ? 'creator.extensionSeconds' : 'creator.referenceClipSeconds', { seconds: settings.durationSeconds })}</Text>}
         {settings.mode === 'video' && CREATOR_VIDEO_RULES[settings.model]?.supportsResolution && chip(settings.resolution, () => setPicker('resolution'))}
         {settings.mode === '3d' && chip(t(`creator.studioTexture.${settings.textureQuality}`), () => setPicker('texture'))}
         {(settings.mode === 'image' || settings.mode === 'video') && chip(t('creator.presets'), onPresets)}
@@ -163,6 +167,7 @@ export default function CreatorStudioControls({ settings, onChange, onMode, onPr
           className="rounded-xl bg-theme-neutrals-800 px-3 py-2 text-theme-neutrals-100" />}
       </View>}
       <CinemaDirectionControls value={settings.cinemaDirection ?? {}} onChange={cinemaDirection => onChange({ ...settings, cinemaDirection })} mode={settings.mode} disabled={disabled} />
+      {settings.mode === 'audio' && <CreatorAudioControls value={settings.audioSettings} text={prompt} disabled={disabled} scopeKey={draftScope} onChange={audioSettings => onChange({ ...settings, audioSettings })} />}
       <Modal visible={picker !== null} transparent animationType="slide" onRequestClose={() => setPicker(null)}>
         <View className="flex-1 justify-end bg-black/70">
           <Pressable className="flex-1" onPress={() => setPicker(null)} accessibilityLabel={t('common.close')} />

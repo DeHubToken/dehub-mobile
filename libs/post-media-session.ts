@@ -5,6 +5,7 @@ import type { VideoPlayer } from 'expo-video';
 export interface PostMediaSession<T> {
   value: T | null;
   claims: object[];
+  priorityOwner?: object;
   dispose: (value: T) => void;
   timer?: ReturnType<typeof setTimeout>;
   transferUntil: number;
@@ -48,14 +49,16 @@ export function postMediaSession<T>(key: string, dispose: (value: T) => void): P
   return session;
 }
 
-export function claimPostMedia<T>(key: string, session: PostMediaSession<T>, token: object): () => void {
+export function claimPostMedia<T>(key: string, session: PostMediaSession<T>, token: object, priority = false): () => void {
   clearTimeout(session.timer);
   session.claims.push(token);
+  if (priority) session.priorityOwner = token;
   session.transferUntil = 0;
   session.listeners.forEach(fn => fn());
   return () => {
     const index = session.claims.indexOf(token);
     if (index >= 0) session.claims.splice(index, 1);
+    if (session.priorityOwner === token) session.priorityOwner = undefined;
     session.listeners.forEach(fn => fn());
     if (session.claims.length) return;
     if (!postMediaIsTransferring(session) && !isPictureInPicturePlayer(session.value)) {
@@ -66,7 +69,7 @@ export function claimPostMedia<T>(key: string, session: PostMediaSession<T>, tok
 }
 
 export function ownsPostMedia<T>(session: PostMediaSession<T>, token: object): boolean {
-  return session.claims[session.claims.length - 1] === token;
+  return (session.priorityOwner ?? session.claims[session.claims.length - 1]) === token;
 }
 
 export function preparePostMediaNavigation(url: string | null | undefined): void {
