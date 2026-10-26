@@ -6,7 +6,8 @@ import { getBadgeHoverOpticalStyle } from "../../libs/misc";
  *
  * A mini profile, the same card web draws (components/app/FollowCoverCard.tsx):
  *   • the banner their profile shows (their own, or the same default banner
- *     the profile picks for them), with a small X to skip them
+ *     the profile picks for them), with a bare X in its corner to skip them —
+ *     just the glyph with a soft shadow, no chip behind it
  *   • the avatar over the banner's lower edge, name + badge, @handle
  *   • two lines of bio, or "No bio yet"
  *   • the faces and names of people you follow who follow them, when any do
@@ -19,7 +20,7 @@ import { getBadgeHoverOpticalStyle } from "../../libs/misc";
  * the app; System Light's tone pass turns the greys around.
  */
 import React, { FC, useCallback, useState, useMemo } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, type StyleProp, type ViewStyle } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 import SmartImage from "../common/SmartImage";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
@@ -28,10 +29,8 @@ import { getAvatarUrl, getBadgeUrlFor, getCoverUrl, getDefaultBanner, DEFAULT_BA
 import { formatCompactNumber } from "../../libs/numbers.util";
 import {
   followUser,
-  unfollowUser,
   type SuggestedAccount,
 } from "../../services/user.service";
-import { reportActionError } from "../../libs/error-feedback";
 import Avatar from "../common/Avatar";
 import type { FollowState } from "../Search/SearchAccountChip";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -81,9 +80,41 @@ const THEME_INK: Record<string, CardInk> = {
   jungle: { ...DEFAULT_INK, button: "#E2B060", buttonText: "#22160A", ring: "rgb(38,28,19)", ink: "rgb(246,240,227)", muted: "rgb(198,182,158)", avatarFill: "rgba(226,176,96,0.2)" },
 };
 
+/** Waits between background retries: long enough to clear the 10s rate-limit window. */
+const RETRY_DELAYS_MS = [1500, 4000, 8000];
+
+/** Answers that will not change on a second try. */
+function isFinalAnswer(error: unknown): boolean {
+  const status = (error as { status?: number } | null)?.status;
+  if (status === 401 || status === 403) return true;
+  const msg = String((error as { message?: unknown } | null)?.message ?? error).toLowerCase();
+  return msg.includes("already") || msg.includes("pending");
+}
+
+/**
+ * Follow with quiet retries. "Already following" counts as done; anything
+ * else that keeps failing after the last retry is thrown to the caller.
+ */
+async function followWithRetries(me: string, them: string) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await followUser(me, them);
+    } catch (error) {
+      const msg = String((error as { message?: unknown } | null)?.message ?? error).toLowerCase();
+      if (msg.includes("already")) return { status: "following" as const };
+      if (attempt >= RETRY_DELAYS_MS.length || isFinalAnswer(error)) throw error;
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
+    }
+  }
+}
+
 interface SuggestedAccountCardProps {
   account: SuggestedAccount;
-  onFollowChange?: (address: string, newState: FollowState) => void;
+  /**
+   * The follow state changed. `failed` rides along when a follow gave up after
+   * its retries, so the row can bring the card back and offer Retry.
+   */
+  onFollowChange?: (address: string, newState: FollowState, failed?: unknown) => void;
   /** Called when user dismisses this suggestion (X button). */
   onDismiss?: (address: string) => void;
   /** Last card in the row: no hairline after it in the flat themes. */
@@ -116,10 +147,10 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     myAddress.toLowerCase() === account.address.toLowerCase()
   );
 
-  // Follow state
+  // Follow state. Optimistic: the tap shows Following at once and the row
+  // folds the card away; the request runs behind it.
   const [isFollowing, setIsFollowing] = useState(false);
   const [isPending, setIsPending] = useState(false);
-  const [followLoading, setFollowLoading] = useState(false);
 
   const username = account.username || account.address?.slice(0, 6) || _copy("copy.b23a6a8439c0", { defaultValue: "unknown" });
   const displayName = account.displayName || username;
@@ -157,50 +188,27 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
     onDismiss?.(account.address);
   }, [account.address, onDismiss]);
 
-  const handleFollowToggle = useCallback(async () => {
+  const handleFollowToggle = useCallback(() => {
     if (!myAddress || !account.address || isOwnAccount) return;
-    setFollowLoading(true);
-    try {
-      if (isFollowing || isPending) {
-        await unfollowUser(myAddress, account.address);
+    if (isFollowing || isPending) return;
+    const target = account.address;
+    setIsFollowing(true);
+    onFollowChange?.(target, { isFollowing: true, isFollowRequestPending: false });
+    followWithRetries(myAddress, target).then(
+      (res) => {
+        if (res.status !== "pending") return;
+        setIsFollowing(false);
+        setIsPending(true);
+        onFollowChange?.(target, { isFollowing: false, isFollowRequestPending: true });
+      },
+      (error) => {
+        console.warn("[SuggestedAccountCard] follow failed after retries", error);
         setIsFollowing(false);
         setIsPending(false);
-        onFollowChange?.(account.address, {
-          isFollowing: false,
-          isFollowRequestPending: false,
-        });
-      } else {
-        const res = await followUser(myAddress, account.address);
-        if (res.status === "pending") {
-          setIsPending(true);
-          setIsFollowing(false);
-          onFollowChange?.(account.address, {
-            isFollowing: false,
-            isFollowRequestPending: true,
-          });
-        } else {
-          setIsFollowing(true);
-          setIsPending(false);
-          onFollowChange?.(account.address, {
-            isFollowing: true,
-            isFollowRequestPending: false,
-          });
-        }
-      }
-    } catch (e) {
-      console.error("[SuggestedAccountCard] follow error", e);
-      // The row hides a card shortly after its follow lands, so a rejected tap
-      // has to put it back — and a rejection from the rate limiter says so out
-      // loud, because the reader is usually mid-burst and not watching.
-      onFollowChange?.(account.address, {
-        isFollowing: false,
-        isFollowRequestPending: false,
-      });
-      reportActionError(e, _copy("copy.71d4aa07bfe1", { defaultValue: "Couldn't follow this account" }));
-    } finally {
-      setFollowLoading(false);
-    }
-  }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange, _copy]);
+        onFollowChange?.(target, { isFollowing: false, isFollowRequestPending: false }, error);
+      },
+    );
+  }, [myAddress, account.address, isOwnAccount, isFollowing, isPending, onFollowChange]);
 
   const done = isFollowing || isPending;
   const followLabel = isPending
@@ -230,17 +238,23 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
           style={StyleSheet.absoluteFill}
           contentFit="cover"
         />
-        {/* Fill on an inner view: a neutral-filled touchable would be
-            repainted as the theme's control glass (libs/jsx/controls.js). */}
+        {/* A bare glyph. A slightly bigger dark copy sits under it, a touch
+            lower, as its shadow so it reads on a white banner too; Android
+            draws no shadow on a bare view. */}
         <TouchableOpacity
           onPress={handleDismiss}
-          activeOpacity={0.6}
+          activeOpacity={0.5}
           style={styles.dismissHit}
-          hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+          hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
           accessibilityLabel={_copy("converter.dismiss", { defaultValue: "Dismiss" })}
         >
-          <View style={[styles.dismiss, square && { borderRadius: 0 }]}>
-            <Icon name="X" size={13} color="#FFFFFF" />
+          <View style={styles.dismiss}>
+            <View style={styles.dismissHalo}>
+              <Icon name="X" size={19} color="rgba(0,0,0,0.42)" />
+            </View>
+            <View>
+              <Icon name="X" size={17} color="#FFFFFF" />
+            </View>
           </View>
         </TouchableOpacity>
       </View>
@@ -319,7 +333,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
             <TouchableOpacity
               activeOpacity={0.85}
               onPress={handleFollowToggle}
-              disabled={followLoading}
+              disabled={done}
               hitSlop={{ top: 6, bottom: 6 }}
             >
               <View
@@ -332,16 +346,12 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
                   mono ? { paddingHorizontal: 12 } : undefined,
                 ]}
               >
-              {followLoading ? (
-                <ActivityIndicator size="small" color={done ? ink.ink : ink.buttonText} />
-              ) : (
-                <View style={styles.followInner}>
-                  {done ? <Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /> : null}
-                  <Text style={[styles.followLabel, { color: done ? ink.ink : ink.buttonText }, textMono]}>
-                    {followLabel}
-                  </Text>
-                </View>
-              )}
+              <View style={styles.followInner}>
+                {done ? <Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /> : null}
+                <Text style={[styles.followLabel, { color: done ? ink.ink : ink.buttonText }, textMono]}>
+                  {followLabel}
+                </Text>
+              </View>
               </View>
             </TouchableOpacity>
           )}
@@ -371,16 +381,20 @@ const styles = StyleSheet.create({
   },
   dismissHit: {
     position: "absolute",
-    top: 8,
-    right: 8,
+    top: 3,
+    right: 3,
   },
   dismiss: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
+    width: 30,
+    height: 30,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+  dismissHalo: {
+    ...StyleSheet.absoluteFillObject,
+    top: 1.5,
+    alignItems: "center",
+    justifyContent: "center",
   },
   nameRow: {
     flexDirection: "row",
