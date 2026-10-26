@@ -9781,6 +9781,34 @@
     }
   },
   "creator": {
+    "marketing":  {
+                      "title":  "Campagnebrief",
+                      "intro":  "Beschrijf je product en merk en bereid bijpassende advertentieformaten voor.",
+                      "saved":  "Je brief wordt op dit apparaat voor dit account opgeslagen.",
+                      "preview":  "Formaten voorbereiden",
+                      "clear":  "Brief wissen",
+                      "required":  "Voeg een productnaam en beschrijving toe om formaten voor te bereiden.",
+                      "variants":  "Campagneformaten",
+                      "reviewHint":  "Controleer het model, de prijs en de productreferentie in de studio voordat je genereert. Elk formaat is een aparte generatie.",
+                      "open":  "Controleren in studio",
+                      "fields":  {
+                                     "product":  "Productnaam (verplicht)",
+                                     "description":  "Productfeiten (verplicht)",
+                                     "brand":  "Merknaam",
+                                     "audience":  "Doelgroep",
+                                     "benefit":  "Belangrijkste voordeel",
+                                     "voice":  "Merkstem",
+                                     "palette":  "Merkkleuren",
+                                     "headline":  "Goedgekeurde kop",
+                                     "cta":  "Oproep tot actie"
+                                 },
+                      "formats":  {
+                                      "square":  "Vierkante advertentie",
+                                      "portrait":  "Staande advertentie",
+                                      "story":  "Verhaalafbeelding",
+                                      "video":  "Verticale video"
+                                  }
+                  },
     "cinema":  {
                    "title":  "Filmregie",
                    "hint":  "Bepaal de visuele stijl van je volgende afbeelding of video. De resultaten verschillen per model.",
