@@ -2063,6 +2063,46 @@ canvas{display:block;width:100%;height:100%;}
       if (!n) { post(none); return; }
       var mean = sum / n;
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
+    } else if (m.type === "letterbox") {
+      // Bars present in every sampled frame (web clipTools.ts letterboxCrop).
+      (function(message) {
+        var source = videos.get(message.mediaId);
+        var done = function(crop, error) { post({ type: "letterbox", reqId: message.reqId, crop: crop || null, error: error || null }); };
+        if (!source || !Array.isArray(message.times) || !message.times.length) { done(null, "unavailable"); return; }
+        var v = document.createElement("video"); v.muted = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.preload = "auto"; v.src = source.src;
+        var c = document.createElement("canvas"), g = c.getContext("2d", { willReadFrequently: true });
+        var times = message.times.slice(0, 5), bars = [], finished = false;
+        var timer = setTimeout(function() { finish(null, "timeout"); }, 20000);
+        var finish = function(crop, error) { if (finished) return; finished = true; clearTimeout(timer); v.onseeked = null; v.onerror = null; v.removeAttribute("src"); v.load(); done(crop, error); };
+        var frameBars = function(data, w, h) {
+          var dark = function(x, y) { var i = (y * w + x) * 4; return 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2] < 28; };
+          var rowDark = function(y) { var n = 0; for (var x = 0; x < w; x++) if (dark(x, y)) n++; return n >= w * 0.97; };
+          var colDark = function(x, y0, y1) { var n = 0; for (var y = y0; y < y1; y++) if (dark(x, y)) n++; return n >= (y1 - y0) * 0.97; };
+          var top = 0; while (top < h / 2 && rowDark(top)) top++;
+          var bottom = 0; while (bottom < h / 2 && rowDark(h - 1 - bottom)) bottom++;
+          var y0 = top, y1 = Math.max(y0 + 1, h - bottom);
+          var left = 0; while (left < w / 2 && colDark(left, y0, y1)) left++;
+          var right = 0; while (right < w / 2 && colDark(w - 1 - right, y0, y1)) right++;
+          if (top >= h / 2 || left >= w / 2) return { left: 0, top: 0, right: 0, bottom: 0 };
+          return { left: left / w, top: top / h, right: right / w, bottom: bottom / h };
+        };
+        var next = function() {
+          if (!times.length) {
+            var edge = function(key) { var value = Math.min.apply(null, bars.map(function(b) { return b[key]; })); return value >= 0.02 ? Math.min(0.45, Math.round(value * 1000) / 1000) : 0; };
+            var crop = { left: edge("left"), top: edge("top"), right: edge("right"), bottom: edge("bottom") };
+            finish(crop.left || crop.top || crop.right || crop.bottom ? crop : null, null); return;
+          }
+          var t = Number(times.shift()) || 0;
+          v.onseeked = function() { requestAnimationFrame(function() { try {
+            var w = Math.min(240, v.videoWidth || 240), h = Math.max(2, Math.round(w * (v.videoHeight || 1) / (v.videoWidth || 1)));
+            c.width = w; c.height = h; g.drawImage(v, 0, 0, w, h);
+            bars.push(frameBars(g.getImageData(0, 0, w, h).data, w, h)); next();
+          } catch (error) { finish(null, "unreadable"); } }); };
+          v.currentTime = Math.max(0, Math.min(t, (v.duration || t + 1) - 0.05));
+        };
+        v.onerror = function() { finish(null, "unreadable"); };
+        v.onloadedmetadata = function() { v.onloadedmetadata = null; next(); };
+      })(m);
     } else if (m.type === "videoMatte") {
       processVideoMatte(m);
     } else if (m.type === "videoMattePageSaved") {

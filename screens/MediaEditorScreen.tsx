@@ -76,6 +76,8 @@ import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
 import { captionLayers, type CaptionStyle } from "../libs/editor/captionLayout";
+import { detachAudio } from "../libs/editor/clipTools";
+import { nleExport, type NleMedia } from "../libs/editor/nleExport";
 import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
 import {
@@ -177,6 +179,7 @@ import {
 import {
   deleteProject,
   getMedia,
+  mediaFileUri,
   listMedia,
   importClipFile,
   importPicture,
@@ -375,7 +378,7 @@ type Tool =
   | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion" | "captions";
 
 interface ToolButton {
-  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
+  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions" | "detachAudio" | "removeBars";
   icon: IconName;
   label: string;
 }
@@ -973,6 +976,23 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
     } finally { task.release(); }
   };
+  const [barsBusy, setBarsBusy] = useState(false);
+  const removeBars = async (clipId: string) => {
+    const clip = h.latest()?.clips.find(c => c.id === clipId);
+    if (!clip || clip.kind !== "video" || clip.locked || barsBusy) return;
+    setBarsBusy(true);
+    try {
+      const span = clip.duration * (clip.speed && clip.speed > 0 ? clip.speed : 1);
+      const crop = await canvasRef.current?.detectBars(clip.mediaId, [0.2, 0.5, 0.8].map(f => clip.trimIn + span * f));
+      if (!editorMounted.current) return;
+      if (!crop) { toastSuccess(t("editor.clipFix.noBars")); return; }
+      const latest = h.latest(); if (!latest) return;
+      h.commit({ ...latest, clips: latest.clips.map(c => c.id === clipId ? { ...c, crop } as MediaClip : c) });
+      toastSuccess(t("editor.clipFix.barsRemoved"));
+    } catch { if (editorMounted.current) toastError(t("editor.clipFix.barsFailed")); }
+    finally { if (editorMounted.current) setBarsBusy(false); }
+  };
+
   const addCaptions = async (style: CaptionStyle = "classic") => {
     if (!selected || (selected.kind !== "video" && selected.kind !== "audio") || selected.locked) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
@@ -1170,6 +1190,14 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     if (id === "split") { splitSelected(); return; }
     if (id === "text") { addTextLayer(); return; }
     if (id === "removeBg") { void removeBackground(); return; }
+    if (id === "detachAudio" && selectedId) {
+      const latest = h.latest(); if (!latest) return;
+      const result = detachAudio(latest, selectedId, () => newId(10));
+      if (result) { setPlaying(false); h.commit(result.project); select(result.id); toastSuccess(t("editor.clipFix.detached")); }
+      else toastError(t("editor.clipFix.detachFailed"));
+      return;
+    }
+    if (id === "removeBars" && selectedId) { void removeBars(selectedId); return; }
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
@@ -1240,6 +1268,8 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         { id: "split", icon: "Scissors", label: t("editor.video.split") },
         { id: "speed", icon: "Gauge", label: t("editor.video.speed") },
         { id: "sound", icon: "Volume2", label: t("editor.video.volumeTool") },
+        { id: "detachAudio", icon: "Music", label: t("editor.clipFix.detach") },
+        { id: "removeBars", icon: "Crop", label: barsBusy ? t("editor.clipFix.scanning") : t("editor.clipFix.removeBars") },
         ...(project && findAdjacentNext(project, selected.id) ? [{ id: "transition" as const, icon: "ArrowLeftRight" as IconName, label: t("editor.video.transition") }] : []),
         { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
         { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },
@@ -1580,6 +1610,34 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     }
   };
 
+  // Timeline plus its media, for finishing in Premiere, Final Cut or Resolve.
+  const downloadNle = async () => {
+    const latest = h.latest(); if (!project || !latest || latest.id !== project.id || busy || rendering !== null) return;
+    setPlaying(false); setBusy(true);
+    const temp: string[] = []; let archive = "";
+    try {
+      const ids = [...new Set(latest.clips.flatMap(c => "mediaId" in c ? [c.mediaId] : []))];
+      const metas = (await Promise.all(ids.map(id => getMedia(id)))).filter((m): m is NonNullable<typeof m> => !!m);
+      if (!metas.length) { toastError(t("editor.export.empty")); return; }
+      const media: NleMedia[] = metas.map(m => ({ id: m.id, name: m.name || m.file, kind: m.kind, duration: m.duration, width: m.width, height: m.height }));
+      const xml = nleExport(latest, media);
+      const write = async (name: string, text: string) => { const uri = `${FileSystem.cacheDirectory}${Date.now()}-${name}`; await FileSystem.writeAsStringAsync(uri, text); temp.push(uri); return { name, uri }; };
+      const files = [
+        await write(exportFilename(latest.title, "fcpxml"), xml.fcpxml),
+        await write(exportFilename(latest.title, "xml", "-premiere"), xml.premiere),
+        ...metas.map(m => ({ name: `media/${xml.mediaNames[m.id]}`, uri: mediaFileUri(m) })),
+      ];
+      archive = await zipDownloadFiles(files, latest.title);
+      await saveEditorDownload(archive, exportBaseName(latest.title, "video", "-edit"), "zip", "application/zip");
+      setExportOpen(false);
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") toastError((error as Error).message.includes("512 MiB") ? t("editor.export.archiveTooLarge") : t("editor.app.exportFailed"));
+    } finally {
+      for (const uri of temp) await FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {});
+      if (archive) await FileSystem.deleteAsync(archive, { idempotent: true }).catch(() => {});
+      setBusy(false);
+    }
+  };
   const downloadNotes = async (scope: PageExportScope) => {
     const latest = h.latest(); if (!project || !latest || latest.id !== project.id || busy || rendering !== null) return;
     setPlaying(false); setBusy(true);
@@ -2022,6 +2080,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         onExportGif={scope => { void exportGif(scope); }}
           onExportPdf={(scope, marks, bookmarks, quality) => { void downloadDocument("pdf", scope, marks, bookmarks, quality); }}
           onExportNotes={scope => { void downloadNotes(scope); }}
+          onExportNle={project.clips.some(c => "mediaId" in c) ? () => { void downloadNle(); } : undefined}
           onExportPresentation={(scope, quality) => { void downloadDocument("pptx", scope, false, true, quality); }}
       />
     </View>
