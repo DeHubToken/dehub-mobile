@@ -26,6 +26,10 @@ const videoAspects = createMediaAspectCache(
 
 export const getMeasuredMediaAspect = (uri: string) => cache.get(uri) ?? null;
 
+/** The clip's own shape, as its player last reported it (persisted across launches). */
+export const knownVideoAspect = (key: unknown): number | null =>
+  key == null ? null : videoAspects.get(String(key)) ?? null;
+
 export function rememberVideoAspect(key: unknown, ratio: number): void {
   if (key == null || !Number.isFinite(ratio) || ratio <= 0) return;
   videoAspects.set(String(key), ratio);
