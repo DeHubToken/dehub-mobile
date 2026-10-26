@@ -3992,6 +3992,7 @@ export default function UploadScreen() {
         scheduledDate={composerSchedule}
         title={scheduleTitle}
         minimumMinutes={isLiveMode ? 30 : 0}
+        kind={isStageMode ? "stage" : isLiveMode ? "live" : "post"}
         onSchedule={(date) => {
           if (isLiveMode) setLiveSettings(prev => ({ ...prev, scheduleEnabled: !!date, scheduledDate: date }));
           else setScheduledDate(date);
