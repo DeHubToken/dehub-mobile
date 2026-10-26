@@ -9647,6 +9647,17 @@
     }
   },
   "creator": {
+    "campaignPlanTitle": "Variantes et épisodes de campagne",
+    "campaignPlanIntro": "Enregistrez jusqu’à 12 variantes ou épisodes. Chacun ouvre le studio pour sa propre vérification et son devis. Les notes communes guident la continuité ; l’apparence du produit, les personnages et les voix peuvent varier entre les générations.",
+    "campaignTitle": "Nom de la campagne ou de la série",
+    "campaignContinuity": "Notes communes sur les personnages, la voix et le style",
+    "campaignVariantTitle": "Nom de la variante ou de l’épisode",
+    "campaignHook": "Accroche d’ouverture",
+    "campaignLanguage": "Langue du résultat",
+    "campaignScript": "Script approuvé ou séquence de scènes",
+    "campaignAdd": "Ajouter une variante ou un épisode",
+    "campaignClear": "Effacer le plan",
+    "campaignFormat": "Format du résultat",
     "audioExportFormat": "Format d’exportation",
     "audioExportMp3": "MP3 · 128 kbit/s",
     "audioExportWav": "WAV · 24 kHz · mono",
