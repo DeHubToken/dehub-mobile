@@ -68,6 +68,7 @@ export const PAGE_IDENTITY_ICONS: Partial<Record<ScreenNames, ThemeIconKey>> = {
   [ScreenNames.Affiliate]: 'subscriptions',
   [ScreenNames.FeatureRequests]: 'features',
   [ScreenNames.Feedback]: 'posts',
+  [ScreenNames.Planned]: 'events',
   [ScreenNames.Usernames]: 'usernames',
   [ScreenNames.Fractions]: 'fractions',
   [ScreenNames.Accounts]: 'accounts',

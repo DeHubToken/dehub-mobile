@@ -118,6 +118,10 @@ function AppNavigatorContent() {
           getComponent={() => deferredScreen('../screens/LeaderboardScreen#default', () => require("../screens/LeaderboardScreen").default)}
         />
         <Stack.Screen
+          name={ScreenNames.Planned}
+          getComponent={() => deferredScreen('../screens/PlannedScreen#default', () => require("../screens/PlannedScreen").default)}
+        />
+        <Stack.Screen
           name={ScreenNames.Feedback}
           getComponent={() => deferredScreen('../screens/FeedbackScreen#default', () => require("../screens/FeedbackScreen").default)}
         />
