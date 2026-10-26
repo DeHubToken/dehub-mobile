@@ -9610,6 +9610,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "صيغة التصدير",
+    "audioExportMp3": "MP3 · ‏128 كيلوبت/ثانية",
+    "audioExportWav": "WAV · ‏24 كيلوهرتز · أحادي",
     "marketing": {
     "import":  {
                    "url":  "رابط صفحة المنتج",

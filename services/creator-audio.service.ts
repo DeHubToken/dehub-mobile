@@ -5,6 +5,8 @@ import { audioResultIssue, MAX_AUDIO_RESULT_BYTES } from '../libs/audioResult';
 import { translateCopy } from '../i18n/copy';
 import * as FileSystem from 'expo-file-system/legacy';
 import * as Crypto from 'expo-crypto';
+import { Buffer } from 'buffer';
+import { audioContainer } from '../libs/speechAudio';
 
 /** Authenticated existing free/rate-limited endpoints; never falls back to a paid provider. */
 export async function runCreatorAudio(text: string, settings: CreatorAudioSettings, walletAddress?: string | null): Promise<{ audioUrl?: string; transcript?: string }> {
@@ -48,11 +50,16 @@ export async function runCreatorAudio(text: string, settings: CreatorAudioSettin
       reader.onloadend = () => typeof reader.result === 'string' ? resolve(reader.result) : reject(new Error('creator.audioInvalidResponse'));
       reader.readAsDataURL(blob);
     });
+    const encoded = audioUrl.split(',')[1];
+    const bytes = Buffer.from(encoded, 'base64');
+    const container = audioContainer(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer);
+    const waveType = /^audio\/(wav|x-wav)(;|$)/i.test(response.headers.get('Content-Type') ?? '');
+    if (!container || (container === 'wav') !== waveType) throw new Error(translateCopy('creator.audioInvalidResponse', { defaultValue: 'The audio service returned an invalid result.' }));
     if (!FileSystem.documentDirectory) throw new Error(translateCopy('creator.audioFailed', { defaultValue: 'Could not process that audio.' }));
     const directory = `${FileSystem.documentDirectory}creator-audio/`;
     await FileSystem.makeDirectoryAsync(directory, { intermediates: true });
-    const uri = `${directory}${Crypto.randomUUID()}.mp3`;
-    await FileSystem.writeAsStringAsync(uri, audioUrl.split(',')[1], { encoding: FileSystem.EncodingType.Base64 });
+    const uri = `${directory}${Crypto.randomUUID()}.${container}`;
+    await FileSystem.writeAsStringAsync(uri, encoded, { encoding: FileSystem.EncodingType.Base64 });
     return { audioUrl: uri };
   } finally { clearTimeout(timeout); }
 }
