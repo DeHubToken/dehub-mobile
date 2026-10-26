@@ -22,6 +22,7 @@ import { getBadgeHoverOpticalStyle } from "../../libs/misc";
 import React, { FC, useCallback, useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, type StyleProp, type ViewStyle } from "react-native";
 import SmartImage from "../common/SmartImage";
+import { LinearGradient } from "expo-linear-gradient";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Icon from "../ui/Icon";
 import { useUser } from "../../context/AuthContext";
@@ -79,6 +80,21 @@ const THEME_INK: Record<string, CardInk> = {
   hacker: { ...DEFAULT_INK, button: "rgb(57,255,136)", buttonText: "#001A09", ring: "rgba(57,255,136,0.7)", ringWidth: 1.5, ink: "rgb(57,255,136)", muted: "rgb(120,200,150)", avatarFill: "rgba(57,255,136,0.14)" },
   jungle: { ...DEFAULT_INK, button: "#E2B060", buttonText: "#22160A", ring: "rgb(38,28,19)", ink: "rgb(246,240,227)", muted: "rgb(198,182,158)", avatarFill: "rgba(226,176,96,0.2)" },
 };
+
+/** The theme accent at a given opacity: "#RRGGBB" or "rgb(r,g,b)" in. */
+function withAlpha(color: string, alpha: number): string {
+  const hex = /^#([0-9a-f]{6})$/i.exec(color);
+  if (hex) {
+    const n = parseInt(hex[1], 16);
+    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${alpha})`;
+  }
+  const rgb = /^rgba?\(([^,]+),([^,]+),([^,)]+)/.exec(color.replace(/\s/g, ""));
+  return rgb ? `rgba(${rgb[1]},${rgb[2]},${rgb[3]},${alpha})` : color;
+}
+
+/** The chrome sheen over the Follow button: bright top, a band, a lift at the foot. */
+const CHROME_SHEEN = ["rgba(255,255,255,0.34)", "rgba(255,255,255,0.12)", "rgba(255,255,255,0.03)", "rgba(255,255,255,0.12)"] as const;
+const CHROME_STOPS = [0, 0.46, 0.54, 1] as const;
 
 /** Waits between background retries: long enough to clear the 10s rate-limit window. */
 const RETRY_DELAYS_MS = [1500, 4000, 8000];
@@ -328,8 +344,9 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
             {_copy("follow.followerCount", { defaultValue: "{{compact}} followers", compact: formatCompactNumber(followers) })}
           </Text>
           {isOwnAccount ? null : (
-            // The solid accent is the point of this button, so its fill sits
-            // on an inner view where the control pass leaves it alone.
+            // DeHub's chrome glass, squared off: the theme accent as a tint
+            // under a banded white sheen, a bright top edge. The fill sits on
+            // an inner view where the control pass leaves it alone.
             <TouchableOpacity
               activeOpacity={0.85}
               onPress={handleFollowToggle}
@@ -340,15 +357,21 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
                 style={[
                   styles.follow,
                   done
-                    ? { backgroundColor: "rgba(255,255,255,0.12)" }
-                    : { backgroundColor: ink.button },
+                    ? { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "transparent" }
+                    : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
                   theme === "minimal" || square ? { borderRadius: 0 } : undefined,
                   mono ? { paddingHorizontal: 12 } : undefined,
                 ]}
               >
+              {done ? null : (
+                <>
+                  <LinearGradient colors={CHROME_SHEEN} locations={CHROME_STOPS} style={StyleSheet.absoluteFill} pointerEvents="none" />
+                  <View style={styles.followEdge} pointerEvents="none" />
+                </>
+              )}
               <View style={styles.followInner}>
                 {done ? <Icon name={isPending ? "Clock" : "Check"} size={13} color={ink.ink} /> : null}
-                <Text style={[styles.followLabel, { color: done ? ink.ink : ink.buttonText }, textMono]}>
+                <Text style={[styles.followLabel, done ? { color: ink.ink } : styles.followLabelChrome, textMono]}>
                   {followLabel}
                 </Text>
               </View>
@@ -457,10 +480,26 @@ const styles = StyleSheet.create({
   follow: {
     height: 32,
     minWidth: 84,
-    paddingHorizontal: 16,
-    borderRadius: 999,
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
+  },
+  followEdge: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 1,
+    backgroundColor: "rgba(255,255,255,0.55)",
+  },
+  followLabelChrome: {
+    color: "#FFFFFF",
+    textShadowColor: "rgba(0,0,0,0.25)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 1,
   },
   followInner: {
     flexDirection: "row",
