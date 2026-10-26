@@ -304,12 +304,12 @@ export const AuthService = {
   async updateProfile(data: Record<string, any>): Promise<Partial<User>> {
     const formData = new FormData();
     Object.entries(data).forEach(([k, v]) => {
-      if (v !== undefined && v !== null) formData.append(k, v as any);
+      if (v !== undefined && v !== null) formData.append(k, typeof v === 'boolean' ? String(v) : v as any);
     });
     const body = await apiClient.post<any>("/update_profile", formData, {
       isAuthRequired: true,
     });
-    if (body?.error)
+    if (body?.error || body?.result === false)
       throw new Error(
         body?.error_msg || body?.message || _translateCopy("copy.e51c5f7d0545", { defaultValue: "Profile update failed" })
       );
