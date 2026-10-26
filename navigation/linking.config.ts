@@ -445,6 +445,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
           [ScreenNames.CreatorFlow]: DeepLinkPaths.CREATOR_FLOW,
           [ScreenNames.Maboroshi]: 'creator/maboroshi',
           [ScreenNames.CreatorRemake]: 'creator/remake',
+          [ScreenNames.CreatorLearning]: 'creator/learn',
           [ScreenNames.CreatorStudio]: { path: 'creator', parse: { workflow: (value: string) => value === 'swap' || value === 'motion' ? value : undefined, mode: (mode: string) => ['image', 'video', 'audio', '3d'].includes(mode) ? mode : 'image' } },
 
           [ScreenNames.Raffle]: DeepLinkPaths.RAFFLE,

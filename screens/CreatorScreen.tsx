@@ -153,6 +153,7 @@ export default function CreatorScreen() {
       <Text className="px-4 pb-3 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.moreTools')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{tools.map(tile)}</View>
 
+      <Pressable accessibilityRole="button" onPress={() => nav.navigate(ScreenNames.CreatorLearning)} className="mx-4 mt-5 self-start rounded-xl border border-theme-neutrals-500 px-4 py-3"><Text className="text-sm text-theme-neutrals-100">{t('creator.learn.title')}</Text></Pressable>
       <MarketingWorkspace onPrepare={(draft) => nav.navigate(ScreenNames.CreatorStudio, {
         mode: draft.kind === 'video' ? 'video' : 'image',
         editorDraft: undefined, initialPrompt: undefined, workflow: undefined, clip: undefined, effect: undefined,
