@@ -58,6 +58,7 @@ export enum ScreenNames {
   CreatorFlow = 'CreatorFlow',
   CreatorFlowView = 'CreatorFlowView',
   MediaEditor = 'MediaEditor',
+  VideoRemix = 'VideoRemix',
   Explore = 'Explore',
   UploadQueue = 'UploadQueue',
   ActiveSessions = 'ActiveSessions',

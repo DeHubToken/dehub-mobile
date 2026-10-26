@@ -2124,6 +2124,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
             ? () => { const url = postFileUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
+          onRemix={isVideo && !isLive && isPublicPost && !isHidden && !requiresVideoAccess && !isActuallyGated && !matureGate.isGated && !contentWarning.hidden && !!postFileUrl && tokenId != null && (!(edits.quotePolicy ?? item.quotePolicy) || (edits.quotePolicy ?? item.quotePolicy) === "public" || !!isOwnerPost)
+            ? mode => requireAuth(() => navigation.navigate(ScreenNames.VideoRemix, { mode, tokenId, videoUrl: postFileUrl, sourceUrl: shareUrl, title: localTitle || "Remix", creator: minterUser?.username || item.minterUsername || displayName }))
+            : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
           canMarkSegments={isVideo && !isLive && !isActuallyGated}
           // Also on the action bar as icons. Both are wanted: the icon is for

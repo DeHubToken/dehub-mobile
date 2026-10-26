@@ -159,6 +159,7 @@ export interface PostOptionsMenuProps {
    */
   onToggleSave?: () => void;
   onDownloadVideo?: () => void;
+  onRemix?: (mode: 'green-screen' | 'collab' | 'sound' | 'cut') => void;
   /** Open the post's info page. Hosts that can navigate pass this. */
   onInfoPress?: () => void;
   /** Open the AI sheet for this post ("AI overview"). Posts carry no AI button of their own. */
@@ -250,12 +251,14 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   isSaved = false,
   onToggleSave,
   onDownloadVideo,
+  onRemix,
   onInfoPress,
   onAskAi,
   hideReportContent = false,  hideEdit = false,  isAudio = false,  canMarkSegments = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t, i18n } = useTranslation();
+  const [showRemix, setShowRemix] = useState(false);
   const { mint: mintExisting, isMinting } = useMintExistingPost();
   const { on: dubOn } = useDubSettings();
 
@@ -544,6 +547,13 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
             <OptionRow icon="Download" label={t("postOptions.download")}
               onPress={() => { onClose(); onDownloadVideo(); }} />
           )}
+          {!!onRemix && <OptionRow icon="Film" label={t("remix.title", { defaultValue: "Remix" })} onPress={() => setShowRemix(value => !value)} />}
+          {!!onRemix && showRemix && <>
+            <OptionRow icon="Camera" label={t("remix.greenScreen", { defaultValue: "Green screen" })} onPress={() => { onClose(); onRemix('green-screen'); }} />
+            <OptionRow icon="Film" label={t("remix.collab", { defaultValue: "Collab" })} onPress={() => { onClose(); onRemix('collab'); }} />
+            <OptionRow icon="Music" label={t("remix.sound", { defaultValue: "Use sound" })} onPress={() => { onClose(); onRemix('sound'); }} />
+            <OptionRow icon="Scissors" label={t("remix.cut", { defaultValue: "Cut" })} onPress={() => { onClose(); onRemix('cut'); }} />
+          </>}
           {!!onToggleSave && (
             <OptionRow
               icon="Bookmark"

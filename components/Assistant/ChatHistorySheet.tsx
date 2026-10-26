@@ -31,6 +31,7 @@ import {
   type AssistantMediaItem,
   type ConversationEntry,
 } from '../../hooks/useAIConversation';
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const MEDIA_COLUMNS = 3;
 
@@ -346,7 +347,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: '#0C0C0E',
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },
