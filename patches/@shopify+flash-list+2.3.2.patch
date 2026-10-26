@@ -1,19 +1,52 @@
-diff --git a/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx b/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx
---- a/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx
-+++ b/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx
-@@ -172,7 +172,7 @@
-   // );
- 
-   return (
--    <CompatView style={hasData && containerStyle}>
-+    <CompatView collapsable={false} style={hasData && containerStyle}>
-       {containerLayout &&
-         hasData &&
-         Array.from(renderStack.entries(), ([reactKey, { index }]) => {
+diff --git a/node_modules/@shopify/flash-list/dist/recyclerview/RecyclerView.js b/node_modules/@shopify/flash-list/dist/recyclerview/RecyclerView.js
+index 6799c8a..a7c6d1c 100644
+--- a/node_modules/@shopify/flash-list/dist/recyclerview/RecyclerView.js
++++ b/node_modules/@shopify/flash-list/dist/recyclerview/RecyclerView.js
+@@ -62,6 +62,8 @@ const RecyclerViewComponent = (props, ref) => {
+     const { applyOffsetCorrection, computeFirstVisibleIndexForOffsetCorrection, applyInitialScrollIndex, handlerMethods, } = useRecyclerViewController(recyclerViewManager, ref, scrollViewRef, scrollAnchorRef);
+     // Initialize view holder collection ref
+     const viewHolderCollectionRef = useRef(null);
++    // True while the list sits under a display:none ancestor (0x0).
++    const hiddenRef = useRef(false);
+     // Hook to handle list loading
+     useOnListLoad(recyclerViewManager, onLoad);
+     // Hook to detect when scrolling reaches list bounds
+@@ -75,6 +77,12 @@ const RecyclerViewComponent = (props, ref) => {
+         if (internalViewRef.current && firstChildViewRef.current) {
+             // Measure the outer container size and inner container layout
+             const outerViewSize = measureParentSize(internalViewRef.current);
++            // Under a display:none ancestor everything measures 0x0. Keep the
++            // last real window and item sizes instead of laying out the list
++            // at zero, which re-measured every row when the page came back.
++            hiddenRef.current = outerViewSize.width === 0 && outerViewSize.height === 0;
++            if (hiddenRef.current)
++                return;
+             const firstChildViewLayout = measureFirstChildLayout(firstChildViewRef.current, internalViewRef.current);
+             containerViewSizeRef.current = outerViewSize;
+             // firstChildViewLayout is already relative to the outer container,
+@@ -101,7 +109,7 @@ const RecyclerViewComponent = (props, ref) => {
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+     useLayoutEffect(() => {
+         var _a, _b;
+-        if (pendingChildIds.size > 0) {
++        if (pendingChildIds.size > 0 || hiddenRef.current) {
+             return;
+         }
+         const layoutInfo = Array.from(refHolder, ([index, viewHolderRef]) => {
+@@ -344,6 +352,8 @@ const RecyclerViewComponent = (props, ref) => {
+                 invertedTransformStyle,
+             ], ref: internalViewRef, collapsable: false, onLayout: (event) => {
+                 var _a, _b, _c, _d;
++                if (event.nativeEvent.layout.width === 0 && event.nativeEvent.layout.height === 0)
++                    return;
+                 if (areDimensionsNotEqual(event.nativeEvent.layout.width, (_b = (_a = containerViewSizeRef.current) === null || _a === void 0 ? void 0 : _a.width) !== null && _b !== void 0 ? _b : 0) ||
+                     areDimensionsNotEqual(event.nativeEvent.layout.height, (_d = (_c = containerViewSizeRef.current) === null || _c === void 0 ? void 0 : _c.height) !== null && _d !== void 0 ? _d : 0)) {
+                     // console.log(
 diff --git a/node_modules/@shopify/flash-list/dist/recyclerview/ViewHolderCollection.js b/node_modules/@shopify/flash-list/dist/recyclerview/ViewHolderCollection.js
+index 8e3db51..882496f 100644
 --- a/node_modules/@shopify/flash-list/dist/recyclerview/ViewHolderCollection.js
 +++ b/node_modules/@shopify/flash-list/dist/recyclerview/ViewHolderCollection.js
-@@ -72,7 +72,7 @@
+@@ -72,7 +72,7 @@ export const ViewHolderCollection = (props) => {
      //     return `${index} => ${reactKey}`;
      //   })
      // );
@@ -22,3 +55,64 @@ diff --git a/node_modules/@shopify/flash-list/dist/recyclerview/ViewHolderCollec
          hasData &&
          Array.from(renderStack.entries(), ([reactKey, { index }]) => {
              const item = data[index];
+diff --git a/node_modules/@shopify/flash-list/src/recyclerview/RecyclerView.tsx b/node_modules/@shopify/flash-list/src/recyclerview/RecyclerView.tsx
+index 3c25e7e..e7a5993 100644
+--- a/node_modules/@shopify/flash-list/src/recyclerview/RecyclerView.tsx
++++ b/node_modules/@shopify/flash-list/src/recyclerview/RecyclerView.tsx
+@@ -150,6 +150,8 @@ const RecyclerViewComponent = <T,>(
+ 
+   // Initialize view holder collection ref
+   const viewHolderCollectionRef = useRef<ViewHolderCollectionRef>(null);
++  // True while the list sits under a display:none ancestor (0x0).
++  const hiddenRef = useRef(false);
+ 
+   // Hook to handle list loading
+   useOnListLoad(recyclerViewManager, onLoad);
+@@ -167,6 +169,12 @@ const RecyclerViewComponent = <T,>(
+     if (internalViewRef.current && firstChildViewRef.current) {
+       // Measure the outer container size and inner container layout
+       const outerViewSize = measureParentSize(internalViewRef.current);
++      // Under a display:none ancestor everything measures 0x0. Keep the
++      // last real window and item sizes instead of laying out the list
++      // at zero, which re-measured every row when the page came back.
++      hiddenRef.current =
++        outerViewSize.width === 0 && outerViewSize.height === 0;
++      if (hiddenRef.current) return;
+       const firstChildViewLayout = measureFirstChildLayout(
+         firstChildViewRef.current,
+         internalViewRef.current
+@@ -202,7 +210,7 @@ const RecyclerViewComponent = <T,>(
+    */
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   useLayoutEffect(() => {
+-    if (pendingChildIds.size > 0) {
++    if (pendingChildIds.size > 0 || hiddenRef.current) {
+       return;
+     }
+     const layoutInfo = Array.from(refHolder, ([index, viewHolderRef]) => {
+@@ -543,6 +551,12 @@ const RecyclerViewComponent = <T,>(
+         ref={internalViewRef}
+         collapsable={false}
+         onLayout={(event) => {
++          if (
++            event.nativeEvent.layout.width === 0 &&
++            event.nativeEvent.layout.height === 0
++          ) {
++            return;
++          }
+           if (
+             areDimensionsNotEqual(
+               event.nativeEvent.layout.width,
+diff --git a/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx b/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx
+index a652beb..749ef24 100644
+--- a/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx
++++ b/node_modules/@shopify/flash-list/src/recyclerview/ViewHolderCollection.tsx
+@@ -172,7 +172,7 @@ export const ViewHolderCollection = <TItem,>(
+   // );
+ 
+   return (
+-    <CompatView style={hasData && containerStyle}>
++    <CompatView collapsable={false} style={hasData && containerStyle}>
+       {containerLayout &&
+         hasData &&
+         Array.from(renderStack.entries(), ([reactKey, { index }]) => {
