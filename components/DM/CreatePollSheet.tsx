@@ -1,4 +1,3 @@
-import MessageSurface from "../DM/MessageSurface";
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import SheetDismissHandle from "../ui/SheetDismissHandle";
@@ -21,6 +20,7 @@ import { useCreatePoll } from "../../hooks/usePolls";
 import { ButtonLoader } from "../DeHubLoader";
 import { useTranslation } from "react-i18next";
 import { useThemeRootStyle } from "../../context/ThemeContext";
+import { DrawerSurface } from "../ui/SheetGlass";
 
 interface CreatePollSheetProps {
   visible: boolean;
@@ -122,7 +122,7 @@ const CreatePollSheet: React.FC<CreatePollSheetProps> = ({
           className="overflow-hidden rounded-t-[20px] border-t border-white/10 max-h-[80%]"
           style={[{ paddingBottom: insets.bottom + 16 }, rootStyle]}
         >
-          <MessageSurface />
+          <DrawerSurface />
           {/* Header */}
           <SheetDismissHandle onClose={onClose} className="flex-row items-center justify-between px-4 pt-4 pb-2 border-b border-theme-neutrals-700/50">
             <TouchableOpacity

@@ -15,6 +15,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { ChainId, chainIcons } from "../../config/constants";
 import { SOLANA_MAINNET_CHAIN_ID } from "../../config/solana.constants";
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 export interface ChainOption {
   id: number;
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
     maxHeight: "88%",
   },
   sheetOverlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },

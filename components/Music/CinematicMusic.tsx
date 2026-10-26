@@ -20,6 +20,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  TextInput,
   View,
   useWindowDimensions,
   type ListRenderItemInfo,
@@ -42,6 +43,9 @@ import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
 import { useAppTheme } from "../../context/ThemeContext";
 import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
+import { searchAllMusic, searchRadio } from "../../libs/music-search";
+import { useChartSearch } from "../../hooks/useChartSearch";
+import { SEARCH_INPUT_CLEAR, useSearchFieldMaterial } from "../../hooks/useSearchFieldMaterial";
 import {
   getCuratedCarouselStations,
   getPrimaryTags,
@@ -269,7 +273,8 @@ const RadioHero: React.FC<{ station: RadioStation; height: number }> = ({ statio
 // ── Chart ───────────────────────────────────────────────────────────────────
 
 const ChartRow: React.FC<{
-  rank: number;
+  /** Chart position; null for a search match from outside the chart. */
+  rank: number | null;
   image?: string;
   title: string;
   subtitle: string;
@@ -285,7 +290,7 @@ const ChartRow: React.FC<{
       accessibilityRole="button"
       style={({ pressed }) => [styles.row, pressed && styles.rowPressed]}
     >
-      <Text style={[styles.rank, { color: rank <= 3 ? "#FFFFFF" : DIM }]}>{rank}</Text>
+      <Text style={[styles.rank, { color: rank != null && rank <= 3 ? "#FFFFFF" : DIM }]}>{rank ?? "–"}</Text>
       <View style={styles.thumb}>
         {image && !failed ? (
           <Image
@@ -394,7 +399,7 @@ function useMusicChart(mode: "views" | "createdAt", enabled: boolean, address?: 
 
 // ── The tab ─────────────────────────────────────────────────────────────────
 
-type Row = { kind: "track"; track: Track } | { kind: "station"; station: RadioStation };
+type Row = { kind: "track"; track: Track; rank: number | null } | { kind: "station"; station: RadioStation; rank: number | null };
 
 export interface CinematicMusicProps {
   active?: boolean;
@@ -443,6 +448,15 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
   const top = useMusicChart("views", chip === "top", address);
   const fresh = useMusicChart("createdAt", chip === "new", address);
 
+  // Searches reach the whole zone on the server, not just the chart on screen.
+  const [searches, setSearches] = useState<Partial<Record<Chip, string>>>({});
+  const search = searches[chip] ?? "";
+  const query = search.trim().toLocaleLowerCase();
+  const searching = query.length >= 2;
+  const searchField = useSearchFieldMaterial();
+  const musicFound = useChartSearch("music", chip === "top" || chip === "new" ? search : "", (q) => searchAllMusic(q, address));
+  const radioFound = useChartSearch("radio", chip === "radio" ? search : "", searchRadio);
+
   // The station on air in the hero: whatever is playing, else the first pick.
   const heroStation = (isPlaying && currentStation) || radioStations[0];
 
@@ -477,10 +491,27 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
 
   const list = chip === "top" ? top : chip === "new" ? fresh : null;
   const rows: Row[] = useMemo(() => {
-    if (list) return list.isLoading ? [] : list.items.map((track) => ({ kind: "track" as const, track }));
-    if (chip === "radio") return radioStations.map((station) => ({ kind: "station" as const, station }));
+    if (list) {
+      if (list.isLoading) return [];
+      // Chart matches keep their rank; matches from the rest of the zone follow.
+      const chart = list.items
+        .map((track, i) => ({ kind: "track" as const, track, rank: i + 1 as number | null }))
+        .filter(({ track }) => !query || `${track.title} ${track.channel}`.toLocaleLowerCase().includes(query));
+      if (!searching) return chart;
+      const shown = new Set(chart.map(({ track }) => track.id));
+      const more = musicFound.items
+        .map(toTrack)
+        .filter((track): track is Track => !!track && !shown.has(track.id) && (shown.add(track.id), true))
+        .map((track) => ({ kind: "track" as const, track, rank: null }));
+      return [...chart, ...more];
+    }
+    if (chip === "radio") {
+      if (searching) return radioFound.items.map((station) => ({ kind: "station" as const, station, rank: null }));
+      return radioStations.map((station, i) => ({ kind: "station" as const, station, rank: i + 1 }));
+    }
     return [];
-  }, [list, chip, radioStations]);
+  }, [list, chip, radioStations, query, searching, musicFound.items, radioFound.items]);
+  const searchBusy = chip === "radio" ? radioFound.isSearching : musicFound.isSearching;
 
   const sectionTitle =
     chip === "top" ? t("music.top50") : chip === "new" ? t("music.newReleases") : chip === "radio" ? t("music.radioStations") : "";
@@ -500,6 +531,33 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
             action={list && list.items.length > 0 ? t("music.playAll") : undefined}
             onAction={() => list?.items[0] && openPost(list.items[0])}
           />
+          <View style={[styles.search, searchField.surface]}>
+            <Icon name="Search" size={16} color={MUTED} />
+            <TextInput
+              value={search}
+              onChangeText={(text) => setSearches((previous) => ({ ...previous, [chip]: text }))}
+              onFocus={searchField.onFocus}
+              onBlur={searchField.onBlur}
+              placeholder={chip === "radio" ? t("music.searchRadio") : t("common.search", { defaultValue: "Search" })}
+              placeholderTextColor={DIM}
+              accessibilityLabel={`${t("common.search", { defaultValue: "Search" })}: ${sectionTitle}`}
+              style={[styles.searchInput, SEARCH_INPUT_CLEAR]}
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="search"
+            />
+            {searchBusy && <ActivityIndicator size="small" color={MUTED} />}
+            {!!search && !searchBusy && (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={t("sidebar.clearSearch", { defaultValue: "Clear search" })}
+                onPress={() => setSearches((previous) => ({ ...previous, [chip]: "" }))}
+                hitSlop={10}
+              >
+                <Icon name="X" size={16} color={MUTED} />
+              </Pressable>
+            )}
+          </View>
           <View style={styles.topRule} />
         </>
       ) : (
@@ -511,12 +569,12 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
   );
 
   const renderItem = useCallback(
-    ({ item, index }: ListRenderItemInfo<Row>) => {
+    ({ item }: ListRenderItemInfo<Row>) => {
       if (item.kind === "track") {
         const { track } = item;
         return (
           <ChartRow
-            rank={index + 1}
+            rank={item.rank}
             image={track.thumbnail}
             title={track.title || t("work.untitled")}
             subtitle={track.views ? `${track.channel} · ${t("comments.viewCount", { count: track.views }).replace(String(track.views), compactCount(track.views))}` : track.channel}
@@ -529,7 +587,7 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
       const on = currentStation?.stationuuid === station.stationuuid && isPlaying;
       return (
         <ChartRow
-          rank={index + 1}
+          rank={item.rank}
           image={station.favicon || undefined}
           title={station.name}
           subtitle={getPrimaryTags(station.tags).join(", ") || t("music.radio")}
@@ -543,10 +601,10 @@ const CinematicMusic: React.FC<CinematicMusicProps> = ({
   );
 
   const empty =
-    chip === "stages" ? null : (list?.isLoading || (chip === "radio" && radioStations.length === 0)) ? (
+    chip === "stages" ? null : (list?.isLoading || (searching ? searchBusy : chip === "radio" && radioStations.length === 0)) ? (
       <ChartSkeleton />
     ) : (
-      <Text style={styles.empty}>{t("music.nothingHereYet")}</Text>
+      <Text style={styles.empty}>{searching ? t("common.noResults") : t("music.nothingHereYet")}</Text>
     );
 
   const queryClient = useQueryClient();
@@ -670,6 +728,8 @@ const styles = StyleSheet.create({
     borderBottomColor: HAIRLINE,
   },
   rowPressed: { backgroundColor: "rgba(255,255,255,0.05)" },
+  search: { flexDirection: "row", alignItems: "center", gap: 8, marginHorizontal: SIDE, marginBottom: 10, paddingHorizontal: 12, height: 40, borderRadius: 12 },
+  searchInput: { flex: 1, color: "#fff", fontSize: 14, padding: 0 },
   rank: { width: 22, textAlign: "center", fontSize: 16, fontWeight: "700" },
   thumb: {
     width: THUMB,

@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
 import { EMPTY_MARKETING_BRIEF, MARKETING_FIELDS, MARKETING_FORMATS, marketingFieldLimit, marketingGenerationDraft, normalizeMarketingBrief, type MarketingBrief, type MarketingField } from '../../libs/marketingBrief';
+import { MarketingProductImport } from './MarketingProductImport';
+import { CampaignPlanPanel } from './CampaignPlanPanel';
 
 export function MarketingWorkspace({ onPrepare }: { onPrepare: (draft: GenerationDraft) => void }) {
   const { t } = useTranslation();
@@ -20,6 +22,8 @@ export function MarketingWorkspace({ onPrepare }: { onPrepare: (draft: Generatio
     </Pressable>
     {expanded && <>
       <Text className="mt-2 text-xs text-theme-neutrals-400">{t('creator.marketing.saved')}</Text>
+      <MarketingProductImport onUse={(product, sourceUrl) => { setSaved(normalizeMarketingBrief({ ...brief, product: product.name, description: product.description, brand: product.brand || brief.brand, sourceUrl })); setPreview(false); }} />
+      {brief.sourceUrl ? <Text selectable className="mt-3 text-xs text-theme-neutrals-400">{t('creator.marketing.import.source')}: {brief.sourceUrl}</Text> : null}
       {MARKETING_FIELDS.map((field) => <View key={field} className="mt-4">
         <Text nativeID={`marketing-${field}`} className="mb-1.5 text-sm font-medium text-theme-neutrals-100">{t(`creator.marketing.fields.${field}`)}</Text>
         <TextInput accessibilityLabel={t(`creator.marketing.fields.${field}`)} accessibilityLabelledBy={`marketing-${field}`} value={brief[field]} onChangeText={(value) => update(field, value)} multiline maxLength={marketingFieldLimit(field)}
@@ -42,6 +46,7 @@ export function MarketingWorkspace({ onPrepare }: { onPrepare: (draft: Generatio
           <Pressable accessibilityRole="button" onPress={() => { const draft = marketingGenerationDraft(brief, format.id); if (draft) onPrepare(draft); }} className="mt-4 rounded-xl border border-theme-neutrals-400 px-3 py-3"><Text className="text-theme-neutrals-100">{t('creator.marketing.open')}</Text></Pressable>
         </View>)}
       </View>}
+      <CampaignPlanPanel brief={brief} onPrepare={onPrepare} />
     </>}
   </View>;
 }
