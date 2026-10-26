@@ -7,10 +7,10 @@ it('keeps an existing editor project and mounts a fresh route for the saved Rema
   const options = { routeNames: [ScreenNames.MediaEditor, ScreenNames.CreatorRemake], routeParamList: {}, routeGetIdList: {} };
   let state = router.getInitialState(options);
   const existingKey = state.routes[0].key;
-  state = router.getStateForAction(state, StackActions.push(ScreenNames.CreatorRemake), options)!;
+  state = router.getRehydratedState(router.getStateForAction(state, StackActions.push(ScreenNames.CreatorRemake), options)!, options);
   const source = { url: 'https://private.test/fresh-link', kind: 'video' as const, name: 'Saved Remake' };
   const push = jest.fn((name, params) => {
-    state = router.getStateForAction(state, StackActions.push(name, params), options)!;
+    state = router.getRehydratedState(router.getStateForAction(state, StackActions.push(name, params), options)!, options);
   });
   openRemakeEditor({ push } as Parameters<typeof openRemakeEditor>[0], source);
   expect(state.routes).toHaveLength(3);
