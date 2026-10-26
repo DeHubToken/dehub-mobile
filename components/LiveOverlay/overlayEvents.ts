@@ -44,15 +44,7 @@ export interface OverlayChatLine {
 
 export const OverlayChatContext = createContext<OverlayChatLine[]>([]);
 
-export function roomUser(raw: any): RoomUser {
-  const user = raw && typeof raw === "object" ? raw : {};
-  return {
-    address: user.address ? String(user.address).toLowerCase() : undefined,
-    username: user.username || undefined,
-    displayName: user.displayName || undefined,
-    avatarImageUrl: user.avatarImageUrl || undefined,
-  };
-}
+export { roomUser } from "../../libs/live-overlay/roomEvents";
 
 /**
  * One subscription to the stream's room for the whole overlay, fanned out to

@@ -14716,5 +14716,72 @@
     "fingerprint": "Parmak izi",
     "exploreFirst": "Önce keşfet",
     "codeNote": "E-postana bir kod göndeririz, şifre gerekmez."
+  },
+  "studioDeck": {
+    "remove": "Kaldır",
+    "background": {
+      "title": "Arka plan",
+      "modes": {
+        "none": "Kapalı",
+        "blur": "Bulanık",
+        "color": "Renk",
+        "image": "Görsel"
+      },
+      "failed": "Bu cihazda arka plan kaldırma başlatılamadı.",
+      "hint": "Cihazında çalışır. İlk seferde yüklenmesi birkaç saniye sürer."
+    },
+    "scenes": {
+      "title": "Sahneler",
+      "picture": "Görsel",
+      "countdown": "Geri sayım",
+      "noCountdown": "Geri sayım yok",
+      "minutes": "{{count}} dk",
+      "names": {
+        "starting": "Birazdan başlıyoruz",
+        "chatting": "Sohbet",
+        "brb": "Hemen dönüyorum",
+        "ending": "Yayın bitiyor"
+      },
+      "hints": {
+        "starting": "Geri sayımlı kart",
+        "chatting": "Kamera tam ekran",
+        "brb": "Kart, mikrofon kapalı",
+        "ending": "Teşekkür kartı"
+      },
+      "subtitles": {
+        "starting": "Yayın başlıyor:",
+        "brb": "Birazdan dönüyorum",
+        "ending": "İzlediğin için teşekkürler"
+      }
+    },
+    "widgets": {
+      "title": "Widget'ları videomda göster",
+      "hint": "Uyarılar, hedef çubukları ve sohbet yayınına çizilir, böylece Twitch, YouTube ve diğer platformlardaki izleyiciler de görür.",
+      "failed": "Widget'ların nerede görüneceği değiştirilemedi. Tekrar dene.",
+      "tab": "Araçlar"
+    },
+    "sources": {
+      "title": "Kaynaklar",
+      "addImage": "Görsel veya logo",
+      "failed": "Bu kaynak eklenemedi.",
+      "hint": "Kaynaklar her izleyici ve her platform için görüntünün üstüne çizilir.",
+      "image": "Görsel",
+      "show": "Yayında göster",
+      "positions": {
+        "top-left": "Sol üst",
+        "top-right": "Sağ üst",
+        "bottom-left": "Sol alt",
+        "bottom-right": "Sağ alt",
+        "center": "Orta"
+      },
+      "sizes": {
+        "small": "Küçük",
+        "medium": "Orta",
+        "large": "Büyük"
+      }
+    },
+    "phone": {
+      "title": "Stüdyo"
+    }
   }
 }
