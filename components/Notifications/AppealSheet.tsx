@@ -111,14 +111,15 @@ const AppealSheet: React.FC<AppealSheetProps> = ({
           }}
         >
           <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 12 }}>
+          {/* A handle, no close button: drag the header down to close. */}
+          <SheetDismissHandle onClose={onClose} style={{ alignItems: "center", marginTop: -8 }}>
+            <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.4)" }} />
+          </SheetDismissHandle>
           <SheetDismissHandle onClose={onClose} style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
             <Icon name="Scale" size={20} color="#fff" />
             <Text style={{ color: "#fff", fontSize: 17, fontWeight: "600", flex: 1 }}>
               {t("moderation.appealTitle", "Appeal this decision")}
             </Text>
-            <Pressable onPress={onClose} hitSlop={10} accessibilityLabel={t("common.close")}>
-              <Icon name="X" size={20} color="#a1a1aa" />
-            </Pressable>
           </SheetDismissHandle>
 
           <Text style={{ color: "#a1a1aa", fontSize: 13 }}>
