@@ -58,13 +58,13 @@ import { useHorizontalScrollGuard } from "../../context/PagerGestureContext";
 import { useAuth } from "../../context/AuthContext";
 import { useAppTheme } from '../../context/ThemeContext';
 import { getNFTs, type GetNFTsResult } from "../../services/nft.service";
+import { MUSIC_SEARCH_SIZE, searchRadio } from "../../libs/music-search";
 import {
   RADIO_GENRES,
   getCuratedCarouselStations,
   getPrimaryTags,
   getTopStations,
   getStationsByGenre,
-  getStationsByTag,
   searchStations,
   type RadioGenreId,
   type RadioStation,
@@ -95,7 +95,7 @@ const ALL_SHELVES: Shelf[] = ["audio", "videos", "radio", "stages"];
 
 const CAROUSEL_PAGE_SIZE = 12;
 // How many matches a chart search pulls from its whole zone.
-const CHART_SEARCH_SIZE = 20;
+const CHART_SEARCH_SIZE = MUSIC_SEARCH_SIZE;
 // Rows the music video chart shows before "See all".
 const VIDEOS_PAGE_SIZE = 10;
 
@@ -563,16 +563,6 @@ const MusicFeed: React.FC<MusicFeedProps> = ({
 const AUDIO_CARD_WIDTH = 280;
 
 type RadioChartSort = "picks" | "played" | "voted" | "trending";
-
-/** Stations whose name or genre matches, from the whole radio directory. */
-async function searchRadio(query: string): Promise<RadioStation[]> {
-  const [byName, byTag] = await Promise.all([
-    searchStations(query, CHART_SEARCH_SIZE).catch(() => [] as RadioStation[]),
-    getStationsByTag(query.toLowerCase(), CHART_SEARCH_SIZE).catch(() => [] as RadioStation[]),
-  ]);
-  const seen = new Set<string>();
-  return [...byName, ...byTag].filter(station => !seen.has(station.stationuuid) && (seen.add(station.stationuuid), true));
-}
 
 /**
  * Radio as a chart: our hand-picked stations, or radio-browser's top list
