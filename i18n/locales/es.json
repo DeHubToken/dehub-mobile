@@ -9643,6 +9643,17 @@
     }
   },
   "creator": {
+    "campaignPlanTitle": "Variantes y episodios de campaña",
+    "campaignPlanIntro": "Guarda hasta 12 variantes o episodios. Cada uno abre el estudio para su propia revisión y presupuesto. Las notas compartidas guían la continuidad; el aspecto del producto, los personajes y las voces pueden variar entre generaciones.",
+    "campaignTitle": "Nombre de la campaña o serie",
+    "campaignContinuity": "Notas compartidas sobre personajes, voz y estilo",
+    "campaignVariantTitle": "Nombre de la variante o episodio",
+    "campaignHook": "Gancho inicial",
+    "campaignLanguage": "Idioma de salida",
+    "campaignScript": "Guion aprobado o secuencia de escenas",
+    "campaignAdd": "Añadir variante o episodio",
+    "campaignClear": "Borrar plan",
+    "campaignFormat": "Formato de salida",
     "marketing": {
     "import":  {
                    "url":  "URL de la página del producto",
