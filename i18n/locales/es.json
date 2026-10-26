@@ -9602,7 +9602,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "URL de la página del producto",
+                   "action":  "Leer página del producto",
+                   "loading":  "Leyendo la página…",
+                   "hint":  "Importa texto de una página pública de producto. Revisa los datos antes de usarlos y adjunta las imágenes por separado en el estudio.",
+                   "source":  "Fuente importada",
+                   "review":  "Elige un producto para copiarlo a tu brief editable. El titular, el tono y los colores de marca se conservan.",
+                   "use":  "Usar estos datos",
+                   "errors":  {
+                                  "signIn":  "Inicia sesión para importar una página de producto.",
+                                  "url":  "Usa una URL HTTPS de una página pública de producto.",
+                                  "empty":  "No se encontraron datos de producto utilizables. Añádelos manualmente.",
+                                  "busy":  "Hay demasiadas importaciones en curso. Inténtalo en un momento.",
+                                  "unavailable":  "No se pudo importar esta página. Añade los datos del producto manualmente.",
+                                  "failed":  "La importación falló. Tu brief está guardado; inténtalo de nuevo o introduce los datos manualmente."
+                              }
+               },
                       "title":  "Brief de campaña",
                       "intro":  "Describe tu producto y marca y prepara formatos de anuncio coherentes.",
                       "saved":  "Tu brief se guarda en este dispositivo para esta cuenta.",

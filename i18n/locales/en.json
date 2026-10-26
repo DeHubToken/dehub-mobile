@@ -9937,7 +9937,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "Product page URL",
+                   "action":  "Read product page",
+                   "loading":  "Reading page…",
+                   "hint":  "Import text from a public product page. Review details before using them; attach product images separately in the studio.",
+                   "source":  "Imported source",
+                   "review":  "Choose a product to copy into your editable brief. Your headline, voice and brand colors stay unchanged.",
+                   "use":  "Use these details",
+                   "errors":  {
+                                  "signIn":  "Sign in to import a product page.",
+                                  "url":  "Use a public HTTPS product URL.",
+                                  "empty":  "No usable product details were found. Add them manually.",
+                                  "busy":  "Too many imports are running. Try again shortly.",
+                                  "unavailable":  "This page could not be imported. Add the product details manually.",
+                                  "failed":  "Import failed. Your brief is saved; try again or enter details manually."
+                              }
+               },
                       "title":  "Campaign brief",
                       "intro":  "Describe your product and brand, then prepare matching ad formats.",
                       "saved":  "Your brief is saved on this device for this account.",
