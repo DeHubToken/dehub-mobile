@@ -7,12 +7,10 @@ import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
  * syncs to. Each one opens as a readable list of its nodes; from here a flow
  * can be shared, made private, renamed or deleted.
  *
- * Building and running flows stays on the web canvas: it is a node editor
- * made for a pointer, and running one is a paid generation, which the App
- * Store build leaves out (config/storefront) — so the canvas link is hidden
- * there too.
+ * Native forms author typed graphs and recover paid runs where the storefront
+ * permits them. The web canvas remains available for spatial arrangement.
  */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Platform,
   ActivityIndicator,
@@ -33,6 +31,7 @@ import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon, { type IconName } from "../components/ui/Icon";
 import ConfirmModal from "../components/common/ConfirmModal";
+import FlowAuthor from '../components/CreatorFlow/FlowAuthor';
 import { useUser } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
@@ -82,6 +81,8 @@ export default function CreatorFlowScreen() {
   const [newName, setNewName] = useSurfaceDraft("screens/CreatorFlowScreen.tsx:newName", "");
   const [deleting, setDeleting] = useState<RemoteFlow | null>(null);
   const [busy, setBusy] = useState(false);
+  const [author, setAuthor] = useState<{ wallet: string; flow?: RemoteFlow } | null>(null);
+  useEffect(() => { setAuthor(null); setMenuFor(null); setRenaming(null); setDeleting(null); }, [wallet]);
 
   const refresh = useCallback(() => qc.invalidateQueries({ queryKey: ["creator-flows"] }), [qc]);
 
@@ -140,6 +141,7 @@ export default function CreatorFlowScreen() {
   }, [deleting, run, wallet]);
 
   const menuItems: Array<{ key: string; icon: IconName; label: string; onPress: (row: RemoteFlow) => void }> = [
+    { key: 'edit', icon: 'Pencil', label: t('creatorFlow.formAuthor'), onPress: row => { if (wallet) setAuthor({ wallet, flow: row }); } },
     { key: "share", icon: "Share2", label: t("creatorFlow.shareFlow"), onPress: (row) => void share(row) },
     {
       key: "visibility",
@@ -191,7 +193,10 @@ export default function CreatorFlowScreen() {
           contentContainerStyle={{ padding: 16, gap: 10, paddingBottom: insets.bottom + 32 }}
           ListHeaderComponent={
             <View style={{ marginBottom: 6, gap: 12 }}>
-              <Text style={styles.body}>{DIGITAL_PURCHASES_ENABLED ? t("creatorFlow.mobileIntro") : t("creatorFlow.mobileIntroReadOnly")}</Text>
+              <Text style={styles.body}>{t('creatorFlow.formAuthorHint')}</Text>
+              <Pressable accessibilityRole="button" style={styles.secondaryBtn} onPress={() => { if (wallet) setAuthor({ wallet }); }}>
+                <Icon name="Plus" size={16} color="#FFFFFF" /><Text style={styles.secondaryText}>{t('creatorFlow.newNativeFlow')}</Text>
+              </Pressable>
               {DIGITAL_PURCHASES_ENABLED && (
                 <Pressable
                   accessibilityRole="link"
@@ -320,6 +325,8 @@ export default function CreatorFlowScreen() {
         onConfirm={confirmDelete}
         onCancel={() => setDeleting(null)}
       />
+      {author && wallet === author.wallet && <FlowAuthor key={`${author.wallet}:${author.flow?.id || 'new'}`} wallet={author.wallet} flow={author.flow}
+        onClose={() => setAuthor(null)} onSaved={() => { void refresh(); }} />}
     </View>
   );
 }
