@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remix",
+    "greenScreen": "Fond vert",
+    "collab": "Collaboration",
+    "sound": "Utiliser le son",
+    "cut": "Découper",
+    "unavailable": "Cette vidéo ne peut pas être remixée.",
+    "openFailed": "Impossible d’ouvrir le remix. Vérifiez votre connexion et les autorisations de la caméra, puis réessayez.",
+    "tooLarge": "Cet enregistrement est trop volumineux. Enregistrez une prise plus courte.",
+    "invalidRecording": "Impossible de lire l’enregistrement. Veuillez enregistrer une autre prise.",
+    "saveFailed": "Impossible d’enregistrer le remix. Veuillez réessayer.",
+    "startHint": "Prévisualisez l’image de votre caméra sur cette vidéo, puis enregistrez votre remix. Quitter cet écran arrête la caméra.",
+    "openCamera": "Ouvrir la caméra"
+  },
   "dehubLinks": {
     "kind": {
       "app": "application",

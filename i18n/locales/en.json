@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remix",
+    "greenScreen": "Green screen",
+    "collab": "Collab",
+    "sound": "Use sound",
+    "cut": "Cut",
+    "unavailable": "This video is unavailable for remixing.",
+    "openFailed": "The remix could not be opened. Check your connection and camera permissions, then try again.",
+    "tooLarge": "This recording is too large. Record a shorter take.",
+    "invalidRecording": "The recording could not be read. Please record another take.",
+    "saveFailed": "The remix could not be saved. Please try again.",
+    "startHint": "Preview your camera over this video, then record your remix. Leaving this screen stops the camera.",
+    "openCamera": "Open camera"
+  },
   "dehubLinks": {
     "kind": {
       "app": "app",
