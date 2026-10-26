@@ -1,13 +1,13 @@
 import React from 'react';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useSearchFollowState } from '../../hooks/useSearchFollowState';
-import { getFollowStatus, followUser, unfollowUser } from '../../services/user.service';
+import { useSearchFollowState, useSearchFollowStates } from '../../hooks/useSearchFollowState';
+import { getFollowStatus, getFollowStatusBatch, followUser, unfollowUser } from '../../services/user.service';
 jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
 
 let mockViewer = '0xViewerA';
 jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ address: mockViewer }) }));
-jest.mock('../../services/user.service', () => ({ getFollowStatus: jest.fn(), followUser: jest.fn(), unfollowUser: jest.fn() }));
+jest.mock('../../services/user.service', () => ({ getFollowStatus: jest.fn(), getFollowStatusBatch: jest.fn(), followUser: jest.fn(), unfollowUser: jest.fn() }));
 
 const initial = { isFollowing: false, isFollowRequestPending: false };
 function setup() {
@@ -20,6 +20,7 @@ beforeEach(() => {
   mockViewer = '0xViewerA';
   jest.clearAllMocks();
   (getFollowStatus as jest.Mock).mockResolvedValue({ isFollowing: true, isFollowRequestPending: false });
+  (getFollowStatusBatch as jest.Mock).mockImplementation(async (targets: string[]) => Object.fromEntries(await Promise.all(targets.map(async target => [target, await getFollowStatus(target)]))));
   (followUser as jest.Mock).mockResolvedValue({ status: 'following' });
   (unfollowUser as jest.Mock).mockResolvedValue({ status: 'unfollowed' });
 });
@@ -60,4 +61,25 @@ it('separates relationship caches when the viewer changes', async () => {
   expect(hook.result.current.isLoading).toBe(true);
   await waitFor(() => expect(hook.result.current.isLoading).toBe(false));
   expect(getFollowStatus).toHaveBeenCalledTimes(2);
+});
+
+it('keeps a known relationship usable during a background refresh', async () => {
+  const { client, wrapper } = setup();
+  const hook = renderHook(() => useSearchFollowState('0xTarget', initial), { wrapper });
+  await waitFor(() => expect(hook.result.current.isFollowing).toBe(true));
+  let finish!: (value: typeof initial) => void;
+  (getFollowStatus as jest.Mock).mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+  act(() => { void client.invalidateQueries({ queryKey: ['user-follow-status'] }); });
+  await waitFor(() => expect(getFollowStatus).toHaveBeenCalledTimes(2));
+  expect(hook.result.current.isLoading).toBe(false);
+  await act(async () => finish(initial));
+});
+
+it('batches a roster while keeping the viewer cache separate', async () => {
+  const { wrapper } = setup();
+  const addresses = Array.from({ length: 20 }, (_, index) => `target-${index}`);
+  const hook = renderHook(() => useSearchFollowStates('viewer', addresses), { wrapper });
+  await waitFor(() => expect(Object.values(hook.result.current).filter(Boolean)).toHaveLength(20));
+  expect(getFollowStatusBatch).toHaveBeenCalledTimes(1);
+  expect(getFollowStatusBatch).toHaveBeenCalledWith(addresses, 'viewer');
 });

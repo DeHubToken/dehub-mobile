@@ -252,16 +252,22 @@ const ArcadeGameScreen = () => {
   // and let it reload on return.
   const [suspended, setSuspended] = useState(false);
   useEffect(() => {
+    const lockTradingWallet = () => {
+      if (slug === 'trenchstar') {
+        webRef.current?.injectJavaScript("window.dispatchEvent(new Event('trenchstar:wallet-lock')); true;");
+      }
+    };
     const sub = AppState.addEventListener("change", (state) => {
       // Lock device-local trading keys as soon as the app loses focus,
       // including the iOS app switcher before the WebView is unmounted.
-      if (slug === 'trenchstar' && state !== 'active') {
-        webRef.current?.injectJavaScript("window.dispatchEvent(new Event('trenchstar:wallet-lock')); true;");
-      }
+      if (state !== 'active') lockTradingWallet();
       setSuspended(state === "background");
     });
-    return () => sub.remove();
-  }, [slug]);
+    // Android's notification drawer blurs the app without changing AppState.
+    const blur = AppState.addEventListener('blur', lockTradingWallet);
+    const removeNavigationBlur = navigation.addListener('blur', lockTradingWallet);
+    return () => { sub.remove(); blur.remove(); removeNavigationBlur(); };
+  }, [slug, navigation]);
 
   // A deep link opens the player with nothing beneath it, so "back" has to mean
   // the grid rather than an empty stack the app cannot pop.
