@@ -3,6 +3,7 @@ import { ActivityIndicator, FlatList, Modal, Pressable, Text, View } from 'react
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
 import { listCreatorAssets, updateCreatorSelection, type CreatorAsset, type LibraryOperation } from '../../services/creator.service';
+import { libraryRequest } from '../../libs/libraryRequest';
 
 export default function CreatorLibraryManager({ wallet }: { wallet?: string }) {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ export default function CreatorLibraryManager({ wallet }: { wallet?: string }) {
     const owner = wallet, request = ++version.current;
     inFlight.current = true; setBusy(true); setError(false);
     try {
-      const page = await listCreatorAssets(offset, { hidden: filter === 'hidden', favorites: filter === 'favorites' });
+      const page = await libraryRequest(listCreatorAssets(offset, { hidden: filter === 'hidden', favorites: filter === 'favorites' }));
       if (request !== version.current || activeWallet.current !== owner) return;
       setRows(previous => offset ? [...previous, ...page.jobs] : page.jobs); setNextOffset(page.nextOffset);
     } catch { if (request === version.current) setError(true); }
@@ -38,14 +39,17 @@ export default function CreatorLibraryManager({ wallet }: { wallet?: string }) {
     const owner = wallet, request = ++version.current;
     inFlight.current = true; setBusy(true); setError(false);
     try {
-      const result = await updateCreatorSelection(selected, operation, owner);
-      if (request !== version.current || activeWallet.current !== owner) return;
+      const result = await libraryRequest(updateCreatorSelection(selected, operation, owner));
+      if (activeWallet.current !== owner) return;
+      void queryClient.invalidateQueries({ queryKey: ['creator-library', owner] });
+      if (request !== version.current) return;
       const done = new Set(result.completedIds);
       const patch = operation === 'favorite' || operation === 'unfavorite' ? { favorite: operation === 'favorite' } : { hidden: operation === 'hide' };
-      setRows(previous => previous.map(row => done.has(row.id) ? { ...row, ...patch } : row)
-        .filter(row => row.hidden === (filter === 'hidden') && (filter !== 'favorites' || row.favorite)));
+      const updated = rows.map(row => done.has(row.id) ? { ...row, ...patch } : row)
+        .filter(row => row.hidden === (filter === 'hidden') && (filter !== 'favorites' || row.favorite));
+      setRows(updated);
+      setNextOffset(offset => offset === null ? null : Math.max(0, offset - (rows.length - updated.length)));
       setSelected(previous => previous.filter(id => !done.has(id))); setError(result.incompleteIds.length > 0);
-      void queryClient.invalidateQueries({ queryKey: ['creator-library', owner] });
     } catch { if (request === version.current) setError(true); }
     finally { if (request === version.current) { inFlight.current = false; setBusy(false); } }
   };
@@ -53,19 +57,19 @@ export default function CreatorLibraryManager({ wallet }: { wallet?: string }) {
   const Button = ({ text, onPress, disabled = false, selected: pressed = false }: { text: string; onPress(): void; disabled?: boolean; selected?: boolean }) => <Pressable accessibilityRole="button" accessibilityState={{ disabled, selected: pressed }} disabled={disabled} onPress={onPress} className="min-h-11 justify-center rounded-lg border border-theme-neutrals-600 px-3 py-2" style={{ opacity: disabled ? 0.4 : 1 }}><Text className="text-theme-neutrals-100">{text}</Text></Pressable>;
   return <>
     <View className="px-4 py-2"><Button text={t('multiPost.manage')} onPress={() => setOpen(true)} /></View>
-    <Modal visible={open} animationType="slide" onRequestClose={() => { if (!busy) setOpen(false); }}>
+    <Modal visible={open} animationType="slide" onRequestClose={() => setOpen(false)}>
       <View className="flex-1 bg-theme-neutrals-900 px-4 pt-12">
-        <View className="flex-row items-center justify-between pb-3"><Text className="text-xl text-theme-neutrals-100">{t('creator.referenceLibrary')}</Text><Button text={t('common.close')} disabled={busy} onPress={() => setOpen(false)} /></View>
+        <View className="flex-row items-center justify-between pb-3"><Text className="text-xl text-theme-neutrals-100">{t('creator.referenceLibrary')}</Text><Button text={t('common.close')} onPress={() => setOpen(false)} /></View>
         <View className="flex-row flex-wrap gap-2 pb-3">
           <Button text={t('filters.all')} selected={filter === 'all'} disabled={busy} onPress={() => setFilter('all')} />
-          <Button text={'★'} selected={filter === 'favorites'} disabled={busy} onPress={() => setFilter('favorites')} />
+          <Button text={t('creator.libraryFavorites')} selected={filter === 'favorites'} disabled={busy} onPress={() => setFilter('favorites')} />
           <Button text={t('settings.hiddenOption')} selected={filter === 'hidden'} disabled={busy} onPress={() => setFilter('hidden')} />
         </View>
         <View className="flex-row flex-wrap items-center gap-2 pb-3">
           <Text className="text-theme-neutrals-100">{selected.length}/100</Text>
           <Button text={t('migrate.selectAll')} disabled={busy || !rows.length} onPress={() => setSelected(rows.slice(0, 100).map(row => row.id))} />
-          <Button text={'★ +'} disabled={busy || !selected.length} onPress={() => void change('favorite')} />
-          <Button text={'★ −'} disabled={busy || !selected.length} onPress={() => void change('unfavorite')} />
+          <Button text={t('creator.libraryFavoriteAdd')} disabled={busy || !selected.length} onPress={() => void change('favorite')} />
+          <Button text={t('creator.libraryFavoriteRemove')} disabled={busy || !selected.length} onPress={() => void change('unfavorite')} />
           <Button text={t(filter === 'hidden' ? 'editor.cloud.restore' : 'editor.layers.hide')} disabled={busy || !selected.length} onPress={() => void change(filter === 'hidden' ? 'restore' : 'hide')} />
         </View>
         {error && <View accessibilityLiveRegion="polite"><Text className="text-theme-neutrals-100">{t('common.somethingWentWrong')}</Text><Button text={t('common.retry')} disabled={busy} onPress={() => void read()} /></View>}
