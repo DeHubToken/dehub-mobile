@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { I18nManager, Keyboard, Platform, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { completesSwipeBack } from '../../libs/swipe-back';
-import { SwipeBackActions, type BackAction, type RegisterBackAction } from '../../hooks/useSwipeBack';
+import { SwipeBackActions, SwipeBackEdgeOwner, type BackAction, type ClaimEdgeSwipe, type RegisterBackAction } from '../../hooks/useSwipeBack';
 
 export default function SwipeBackBoundary({ children, onBack, enabled = true, isFocused }: {
   children: React.ReactNode;
@@ -24,6 +24,17 @@ export default function SwipeBackBoundary({ children, onBack, enabled = true, is
       setHasAction(actions.current.size > 0);
     };
   }, []);
+  // A screen with its own interactive edge back (see useOwnEdgeSwipe).
+  const [edgeOwners, setEdgeOwners] = useState(0);
+  const claimEdge = useCallback<ClaimEdgeSwipe>(() => {
+    setEdgeOwners(count => count + 1);
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      setEdgeOwners(count => Math.max(0, count - 1));
+    };
+  }, []);
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
   const back = useCallback(() => {
     if (locked.current || isFocused?.() === false) return;
@@ -38,7 +49,7 @@ export default function SwipeBackBoundary({ children, onBack, enabled = true, is
   }, [onBack, isFocused]);
   const direction = I18nManager.isRTL ? -1 : 1;
   const gesture = useMemo(() => Gesture.Pan()
-    .enabled(enabled && (hasAction || !!onBack) && Platform.OS !== 'ios')
+    .enabled(enabled && edgeOwners === 0 && (hasAction || !!onBack) && Platform.OS !== 'ios')
     // Only the leading 28pt belong to back. Feed pagers, sliders, drawing and
     // image pinch/pan retain the rest of the screen.
     .hitSlop(I18nManager.isRTL ? { right: 0, width: 28 } : { left: 0, width: 28 })
@@ -50,10 +61,12 @@ export default function SwipeBackBoundary({ children, onBack, enabled = true, is
     .onTouchesDown((event) => { if (event.numberOfTouches > 1) multiTouch.current = true; })
     .onEnd((event) => {
       if (!multiTouch.current && completesSwipeBack(event.translationX * direction, event.translationY, event.velocityX * direction)) back();
-    }), [enabled, hasAction, onBack, direction, back]);
+    }), [enabled, edgeOwners, hasAction, onBack, direction, back]);
   return <SwipeBackActions.Provider value={register}>
-    <GestureDetector gesture={gesture}>
-      <View style={{ flex: 1 }} collapsable={false}>{children}</View>
-    </GestureDetector>
+    <SwipeBackEdgeOwner.Provider value={claimEdge}>
+      <GestureDetector gesture={gesture}>
+        <View style={{ flex: 1 }} collapsable={false}>{children}</View>
+      </GestureDetector>
+    </SwipeBackEdgeOwner.Provider>
   </SwipeBackActions.Provider>;
 }

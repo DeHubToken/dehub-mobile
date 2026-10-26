@@ -11,7 +11,7 @@ const mockGesture = {
 };
 jest.mock('react-native-gesture-handler', () => ({ Gesture: { Pan: () => mockGesture }, GestureDetector: ({ children }: any) => children }));
 import SwipeBackBoundary from '../../components/common/SwipeBackBoundary';
-import { useSwipeBackAction } from '../../hooks/useSwipeBack';
+import { useOwnEdgeSwipe, useSwipeBackAction } from '../../hooks/useSwipeBack';
 function Local({ back }: { back?: () => void }) { useSwipeBackAction(back); return null; }
 const swipe = () => act(() => mockGesture.onEnd.mock.calls[mockGesture.onEnd.mock.calls.length - 1][0]({ translationX: 90, translationY: 4, velocityX: 200 }));
 let tree: ReactTestRenderer;
@@ -36,4 +36,13 @@ test('adding a second finger after activation cancels back', () => {
   act(() => { tree = create(<SwipeBackBoundary onBack={pop}><Local /></SwipeBackBoundary>); });
   act(() => mockGesture.onTouchesDown.mock.calls[0][0]({ numberOfTouches: 2 }));
   swipe(); expect(pop).not.toHaveBeenCalled();
+});
+test('a screen with its own interactive edge back turns the screen-wide one off while mounted', () => {
+  const pop = jest.fn();
+  function Owner() { useOwnEdgeSwipe(); return null; }
+  const lastEnabled = () => mockGesture.enabled.mock.calls[mockGesture.enabled.mock.calls.length - 1][0];
+  act(() => { tree = create(<SwipeBackBoundary onBack={pop}><Owner /></SwipeBackBoundary>); });
+  expect(lastEnabled()).toBe(false);
+  act(() => tree.update(<SwipeBackBoundary onBack={pop}><Local /></SwipeBackBoundary>));
+  expect(lastEnabled()).toBe(true);
 });
