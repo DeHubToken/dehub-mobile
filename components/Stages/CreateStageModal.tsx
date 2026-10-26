@@ -1,11 +1,11 @@
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Platform, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import { shareWithRef } from "../../libs/shareRef";
 import { TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import ScheduleSheet from "../Upload/ScheduleSheet";
 import * as ImagePicker from "expo-image-picker";
 import GlassModal from "../ui/GlassModal";
 import Icon from "../ui/Icon";
@@ -54,7 +54,6 @@ const CreateStageModal: React.FC = () => {
     return d;
   });
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
 
   const [coverUri, setCoverUri] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -306,47 +305,17 @@ const CreateStageModal: React.FC = () => {
             <View style={styles.row}>
               <TouchableOpacity style={styles.pickerBtn} onPress={() => setShowDatePicker(true)}>
                 <Icon name="Calendar" size={16} color="#FFFFFF" />
-                <Text style={styles.pickerText}>{whenLabel}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.pickerBtn} onPress={() => setShowTimePicker(true)}>
-                <Icon name="Clock" size={16} color="#FFFFFF" />
-                <Text style={styles.pickerText}>{timeLabel}</Text>
+                <Text style={styles.pickerText}>{whenLabel} · {timeLabel}</Text>
               </TouchableOpacity>
             </View>
-
-            {(showDatePicker || Platform.OS === "ios") && (
-              <DateTimePicker
-                value={when}
-                mode="date"
-                display={Platform.OS === "ios" ? "compact" : "default"}
-                minimumDate={new Date()}
-                onChange={(_e, d) => {
-                  if (Platform.OS === "android") setShowDatePicker(false);
-                  if (d) {
-                    // Keep the time already chosen — the date picker only moves the day.
-                    const next = new Date(when);
-                    next.setFullYear(d.getFullYear(), d.getMonth(), d.getDate());
-                    setWhen(next);
-                  }
-                }}
-              />
-            )}
-
-            {(showTimePicker || Platform.OS === "ios") && (
-              <DateTimePicker
-                value={when}
-                mode="time"
-                display={Platform.OS === "ios" ? "compact" : "default"}
-                onChange={(_e, d) => {
-                  if (Platform.OS === "android") setShowTimePicker(false);
-                  if (d) {
-                    const next = new Date(when);
-                    next.setHours(d.getHours(), d.getMinutes(), 0, 0);
-                    setWhen(next);
-                  }
-                }}
-              />
-            )}
+            <ScheduleSheet
+              visible={showDatePicker}
+              onClose={() => setShowDatePicker(false)}
+              scheduledDate={when}
+              onSchedule={(d) => { if (d) setWhen(d); }}
+              title={t("stages.scheduleStage")}
+              kind="stage"
+            />
 
             {/* Cover graphic */}
             {coverUri ? (

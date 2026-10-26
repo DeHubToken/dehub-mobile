@@ -15007,5 +15007,26 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Eerst rondkijken",
     "codeNote": "We mailen je een code, geen wachtwoord nodig."
+  },
+  "whenSheet": {
+    "title": "Wanneer?",
+    "tonight": "Vanavond",
+    "inAnHour": "Over een uur",
+    "tomorrow": "Morgen",
+    "today": "Vandaag",
+    "primeTime": "Spitsuur",
+    "scheduleFor": "Inplannen voor {{when}}",
+    "liveTip": "Je volgers kunnen een herinnering zetten. Je start de Live zelf als het zover is.",
+    "stageTip": "Het staat meteen bij Binnenkort, zodat mensen op Herinner mij kunnen tikken.",
+    "typePlaceholder": "Typ een tijd, zoals \"fri 8pm\" of \"in 2 hours\"",
+    "typeLabel": "Typ een tijd",
+    "typeHelp": "Probeer \"tonight\", \"tomorrow 9am\", \"sat noon\" of \"30 oct 7pm\".",
+    "orPickDay": "Of kies een dag",
+    "earlier": "15 minuten eerder",
+    "later": "15 minuten later",
+    "tooSoonMin": "Kies een tijd minstens {{count}} minuten vanaf nu.",
+    "tooSoon": "Kies een tijd in de toekomst.",
+    "zone": "Jouw tijd ({{zone}}). Anderen zien het in hun eigen tijd.",
+    "remove": "Planning verwijderen"
   }
 }

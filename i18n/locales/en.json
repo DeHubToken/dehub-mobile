@@ -14711,5 +14711,26 @@
     "fingerprint": "Bio",
     "exploreFirst": "Explore first",
     "codeNote": "We email you a code, no password needed."
+  },
+  "whenSheet": {
+    "title": "When?",
+    "tonight": "Tonight",
+    "inAnHour": "In an hour",
+    "tomorrow": "Tomorrow",
+    "today": "Today",
+    "primeTime": "Prime time",
+    "scheduleFor": "Schedule for {{when}}",
+    "liveTip": "Your followers can set a reminder. You start the Live yourself when it is time.",
+    "stageTip": "It goes on the Upcoming shelf straight away, so people can tap Remind me.",
+    "typePlaceholder": "Type a time, like \"fri 8pm\" or \"in 2 hours\"",
+    "typeLabel": "Type a time",
+    "typeHelp": "Try \"tonight\", \"tomorrow 9am\", \"sat noon\" or \"30 oct 7pm\".",
+    "orPickDay": "Or pick a day",
+    "earlier": "15 minutes earlier",
+    "later": "15 minutes later",
+    "tooSoonMin": "Pick a time at least {{count}} minutes from now.",
+    "tooSoon": "Pick a time in the future.",
+    "zone": "Your time ({{zone}}). Everyone else sees it in their own time.",
+    "remove": "Remove schedule"
   }
 }
