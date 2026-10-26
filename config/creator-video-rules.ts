@@ -115,6 +115,7 @@ export const CREATOR_VIDEO_RULES: Record<string, CreatorVideoRules> ={
   "minDuration":  4,
   "maxDuration":  15,
   "defaultDuration":  5,
+    "resolutions": ["480p", "720p"],
   "aspectRatios":  [
   "16:9",
   "9:16",

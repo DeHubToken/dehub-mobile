@@ -702,6 +702,11 @@ export interface AiQuoteRequest {
   durationSeconds?: number;
   quality?: 'none' | 'standard' | 'HD';
   quantity?: number;
+  resolution?: string;
+  hasEndFrame?: boolean;
+  hasAudioReferences?: boolean;
+  hasVideoReferences?: boolean;
+  hasInlineMedia?: boolean;
 }
 
 /**
