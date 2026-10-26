@@ -68,6 +68,7 @@ export function durableFlowNodes<T extends GraphNode>(nodes: T[]): T[] {
   return nodes.map(node => {
     if (node.type !== 'audioGenNode' && node.type !== 'audioInputNode' && !node.data.inputAssetId && !node.data.outputAssetId) return node;
     const { audioUrl: _audioUrl, ...data } = node.data;
+    if (node.type === 'audioGenNode' || node.type === 'audioInputNode') delete data.generations;
     if (node.data.inputAssetId || node.data.outputAssetId) { delete data.imageUrl; delete data.videoUrl; }
     return { ...node, data } as T;
   });
