@@ -4,14 +4,14 @@
  * Mirrors dehubweb's src/lib/creator/flow/api.ts. A flow is the node graph
  * built on web's /creator/flow canvas: text, reference and generator nodes
  * wired together and stored as one jsonb blob per flow. The phone reads,
- * shares, renames, deletes and copies flows; building and running them stays
- * on the canvas.
+ * shares, renames, deletes, copies and authors flows, preserving canvas positions.
  *
  * Wallet-native auth, the same headers builder-api takes. `fetchPublicFlow`
  * is the one call that needs no wallet.
  */
 import { supabase } from './supabase';
 import { dehubAuthHeaders } from './ai.service';
+import { durableFlowNodes } from '../libs/creatorFlowGraph';
 
 export type FlowNodeStatus = 'idle' | 'pending' | 'running' | 'done' | 'error';
 
@@ -25,6 +25,12 @@ export interface FlowNodeData extends Record<string, unknown> {
   duration?: number;
   imageUrl?: string;
   videoUrl?: string;
+  inputAssetId?: string;
+  outputAssetId?: string;
+  audioAssetId?: string;
+  audioTask?: 'speech' | 'sfx' | 'transcribe' | 'isolate';
+  audioUrl?: string;
+  errorMsg?: string;
   capturedFrameUrl?: string;
   outputText?: string;
   localPrompt?: string;
@@ -115,7 +121,7 @@ export const listFlows = (wallet: string) =>
 
 /** Upserts the given flows. Never deletes: the phone only ever sends the ones it changed. */
 export const saveFlows = (wallet: string, flows: Array<Pick<RemoteFlow, 'id' | 'name' | 'isPublic' | 'data'>>) =>
-  invokeFlows<{ ok: true; savedAt: string }>({ action: 'save', flows, deleteMissing: false }, wallet);
+  invokeFlows<{ ok: true; savedAt: string }>({ action: 'save', flows: flows.map(flow => ({ ...flow, data: { ...flow.data, nodes: durableFlowNodes(flow.data.nodes || []) } })), deleteMissing: false }, wallet);
 
 export const removeFlow = (wallet: string, id: string) => invokeFlows<{ ok: true }>({ action: 'remove', id }, wallet);
 
