@@ -9826,6 +9826,7 @@
                                       "video":  "Verticale video"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Deze chat speelt de privéopname op dit apparaat af. Open op een ander apparaat je Creator-bibliotheek nadat het opslaan in de cloud is voltooid. Als je nu weggaat, open deze chat dan opnieuw om het opslaan af te ronden.",
     "cinema":  {
                    "title":  "Filmregie",
                    "hint":  "Bepaal de visuele stijl van je volgende afbeelding of video. De resultaten verschillen per model.",

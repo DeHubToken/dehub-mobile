@@ -9623,6 +9623,7 @@
                                       "video":  "Dikey video"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Bu sohbet, bu cihazda saklanan özel kaydı oynatır. Başka bir cihazda, buluta kaydetme tamamlandıktan sonra Creator kitaplığınızı açın. Şimdi ayrılırsanız kaydetmeyi tamamlamak için bu sohbeti yeniden açın.",
     "cinema":  {
                    "title":  "Sinematik yönlendirme",
                    "hint":  "Sonraki görselinizin veya videonuzun görsel tarzını belirleyin. Sonuçlar modele göre değişir.",

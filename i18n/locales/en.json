@@ -9982,6 +9982,7 @@
                                       "video":  "Vertical video"
                                   }
                   },
+    "audioLibraryPlaybackHint": "This chat plays the private recording saved on this device. For another device, open your Creator library after cloud saving finishes. If you leave now, reopen this chat to finish saving.",
     "batchPaymentHelp": "Each submitted image is charged separately. If a batch stops, unused DHB from its payment is reused automatically for a later generation that it covers.",
     "batchCount": "Images",
     "endFrame": "End frame",

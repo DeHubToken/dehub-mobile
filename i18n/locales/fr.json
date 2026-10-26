@@ -9651,6 +9651,7 @@
                                       "video":  "Vidéo verticale"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Ce chat lit l’enregistrement privé conservé sur cet appareil. Sur un autre appareil, ouvrez votre bibliothèque Creator une fois l’enregistrement dans le cloud terminé. Si vous partez, rouvrez ce chat pour terminer l’enregistrement.",
     "cinema":  {
                    "title":  "Direction cinématographique",
                    "hint":  "Définissez le style visuel de votre prochaine image ou vidéo. Les résultats varient selon le modèle.",
