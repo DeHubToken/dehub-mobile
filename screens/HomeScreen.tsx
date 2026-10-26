@@ -13,6 +13,8 @@ import Animated, {
   withSpring,
   withTiming,
   Easing,
+  FadeInUp,
+  FadeOutDown,
   type SharedValue,
 } from "react-native-reanimated";
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
@@ -195,8 +197,6 @@ type ImageFeedRequest = {
   index: number;
   /** Remount key, so re-opening always starts a fresh sheet at the new post. */
   token: number;
-  /** One opened post rather than the grid's pages: load the feed under it from page 1. */
-  fromFirstPage?: boolean;
 };
 
 /** The bead drops out from under the pill, and tucks back in. */
@@ -436,15 +436,11 @@ export default function HomeScreen() {
     else progress.value = withTiming(activeIndex, PAGE_ANIM);
   }, [activeIndex, progress]);
 
-  // A photo opened from another tab: closing the Images scroll view returns to
-  // that tab, which kept its place, the way phone web's Back does.
-  const imageReturnTab = useRef<PostTypeOption | null>(null);
   const setPostType = useCallback((postType: PostTypeOption) => {
     setFilterPanelVisible(false);
     // Changing tab is the one dismissal that skips the slide-out: the drawer is
     // covering the page the tap is asking for, so it has to be gone this frame.
     setImageFeed(null);
-    imageReturnTab.current = null;
     setFilters((prev) => (prev.postType === postType ? prev : { ...prev, postType }));
   }, []);
 
@@ -463,47 +459,27 @@ export default function HomeScreen() {
       // be down before it opens — otherwise it docks to a bar that isn't there.
       showHeader();
       setFilterPanelVisible(false);
-      imageReturnTab.current = null;
       imageFeedToken.current += 1;
       setImageFeed({ items, index, token: imageFeedToken.current });
     },
     [showHeader],
   );
 
-  const handleCloseImageFeed = useCallback(() => {
-    setImageFeed(null);
-    const back = imageReturnTab.current;
-    imageReturnTab.current = null;
-    if (back) setFilters((prev) => (prev.postType === back ? prev : { ...prev, postType: back }));
-  }, []);
+  const handleCloseImageFeed = useCallback(() => setImageFeed(null), []);
 
   const closeFeedPost = useCallback(() => setFeedPost(null), []);
-  const activeTabKeyRef = useRef(activeTabKey);
-  activeTabKeyRef.current = activeTabKey;
   useEffect(() => {
     if (!isFocused || pageWidth >= FEED_POST_MAX_WIDTH) return;
-    setFeedPostHost({
-      openPost: (tokenId) => {
-        showHeader();
-        setFilterPanelVisible(false);
-        setImageFeed(null);
-        setFeedPost(tokenId);
-      },
-      openImagePost: (item) => {
-        showHeader();
-        setFilterPanelVisible(false);
-        setFeedPost(null);
-        const from = activeTabKeyRef.current;
-        if (from !== "feed-images") {
-          imageReturnTab.current = from as PostTypeOption;
-          setFilters((prev) => ({ ...prev, postType: "feed-images" as PostTypeOption }));
-        }
-        imageFeedToken.current += 1;
-        setImageFeed({ items: [item], index: 0, token: imageFeedToken.current, fromFirstPage: true });
-      },
+    setFeedPostHost((tokenId) => {
+      showHeader();
+      setFilterPanelVisible(false);
+      setImageFeed(null);
+      setFeedPost(tokenId);
     });
     return () => setFeedPostHost(null);
   }, [isFocused, pageWidth, showHeader]);
+  // The edge swipe is the same Back as the pill's arrow and the system back.
+  useSwipeBackAction(closeFeedPost, !!feedPost && !feedProfileVisible);
   useEffect(() => {
     if (!feedPost || feedProfileVisible) return;
     const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
@@ -520,6 +496,7 @@ export default function HomeScreen() {
     if (imageDrawerRef.current) imageDrawerRef.current.close();
     else setImageFeed(null);
   }, []);
+  useSwipeBackAction(handleImageFeedBack, !!imageFeed && !feedProfileVisible);
 
   useEffect(() => {
     if (!feedProfileVisible) return;
@@ -1279,13 +1256,17 @@ export default function HomeScreen() {
           not move or redraw. A profile opened from the post sits on top of it
           and Back returns to the post. */}
       {feedPost ? (
-        <View
+        // Rises in over the feed the way a pushed page does (Android's
+        // fade_from_bottom), and sinks back out on Back.
+        <Animated.View
+          entering={FadeInUp.duration(220).easing(Easing.out(Easing.cubic))}
+          exiting={FadeOutDown.duration(160)}
           style={[styles.profileSurface, { top: headerHeight }, skin ? { backgroundColor: skin.page } : null]}
           accessibilityViewIsModal
           testID="home-feed-post"
         >
           <FeedPostSurface key={feedPost} tokenId={feedPost} onClose={closeFeedPost} bottomInset={TAB_BAR_CONTENT_INSET} />
-        </View>
+        </Animated.View>
       ) : null}
 
       {feedProfileVisible ? (
@@ -1312,7 +1293,6 @@ export default function HomeScreen() {
           showCloseButton={false}
           initialItems={imageFeed.items}
           initialIndex={imageFeed.index}
-          fromFirstPage={imageFeed.fromFirstPage}
           feedParams={feedParams}
           pageSize={20}
           topInset={headerHeight}
