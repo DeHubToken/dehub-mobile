@@ -15008,6 +15008,73 @@
     "exploreFirst": "Eerst rondkijken",
     "codeNote": "We mailen je een code, geen wachtwoord nodig."
   },
+  "studioDeck": {
+    "remove": "Verwijderen",
+    "background": {
+      "title": "Achtergrond",
+      "modes": {
+        "none": "Uit",
+        "blur": "Vervagen",
+        "color": "Kleur",
+        "image": "Afbeelding"
+      },
+      "failed": "Achtergrondverwijdering kon niet starten op dit apparaat.",
+      "hint": "Draait op je apparaat. De eerste keer duurt het laden een paar seconden."
+    },
+    "scenes": {
+      "title": "Scènes",
+      "picture": "Afbeelding",
+      "countdown": "Aftellen",
+      "noCountdown": "Niet aftellen",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "We beginnen zo",
+        "chatting": "Gewoon kletsen",
+        "brb": "Zo terug",
+        "ending": "Stream eindigt"
+      },
+      "hints": {
+        "starting": "Kaart met aftelklok",
+        "chatting": "Camera beeldvullend",
+        "brb": "Kaart, microfoon gedempt",
+        "ending": "Bedankkaart"
+      },
+      "subtitles": {
+        "starting": "De stream begint over",
+        "brb": "Zo weer terug",
+        "ending": "Bedankt voor het kijken"
+      }
+    },
+    "widgets": {
+      "title": "Widgets in mijn video tonen",
+      "hint": "Meldingen, doelbalken en chat worden in je stream getekend, zodat kijkers op Twitch, YouTube en andere platforms ze ook zien.",
+      "failed": "Kon niet wijzigen waar je widgets verschijnen. Probeer het opnieuw.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Bronnen",
+      "addImage": "Afbeelding of logo",
+      "failed": "Kon die bron niet toevoegen.",
+      "hint": "Bronnen worden over je beeld getekend voor elke kijker en elk platform.",
+      "image": "Afbeelding",
+      "show": "Tonen in stream",
+      "positions": {
+        "top-left": "Linksboven",
+        "top-right": "Rechtsboven",
+        "bottom-left": "Linksonder",
+        "bottom-right": "Rechtsonder",
+        "center": "Midden"
+      },
+      "sizes": {
+        "small": "Klein",
+        "medium": "Middel",
+        "large": "Groot"
+      }
+    },
+    "phone": {
+      "title": "Studio"
+    }
+  },
   "whenSheet": {
     "title": "Wanneer?",
     "tonight": "Vanavond",
@@ -15027,6 +15094,7 @@
     "tooSoonMin": "Kies een tijd minstens {{count}} minuten vanaf nu.",
     "tooSoon": "Kies een tijd in de toekomst.",
     "zone": "Jouw tijd ({{zone}}). Anderen zien het in hun eigen tijd.",
-    "remove": "Planning verwijderen"
+    "remove": "Planning verwijderen",
+    "startsIn": "Begint over {{time}}"
   }
 }
