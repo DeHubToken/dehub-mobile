@@ -2159,11 +2159,13 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
         {!active && !hideControls && (feedPreview && onTapReaction ? (
           <PostTapSurface resetKey={String(tokenId ?? thumbnail)} immediatePress style={[styles.playOverlay, BARE_LAYER]}
             onPress={onPress} onReaction={onTapReaction} accessibilityLabel={t("audioPost.play")}>
-            <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
+            {null}
           </PostTapSurface>
         ) : (
+          // A feed preview has no play button: it autoplays, or with autoplay
+          // off stays a still that opens the viewer when tapped.
           <Pressable {...mediaTap} style={[styles.playOverlay, BARE_LAYER]} accessibilityRole="button" accessibilityLabel={t("audioPost.play")}>
-            <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>
+            {!feedPreview && <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>}
           </Pressable>
         ))}
         {!active && onBack && !hideControls && (
