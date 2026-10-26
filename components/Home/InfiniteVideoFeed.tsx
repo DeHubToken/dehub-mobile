@@ -381,6 +381,10 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   // goes to it rather than to the first post.
   const [headerFilled, setHeaderFilled] = useState(false);
   const handleHeaderContentLayout = useCallback((e: LayoutChangeEvent) => {
+    // A page Home hides with display:none reports 0x0. That is not an empty
+    // header: reading it as one moved the inset onto the first card and back
+    // on every swipe in, shifting the whole page.
+    if (e.nativeEvent.layout.width === 0) return;
     setHeaderFilled(e.nativeEvent.layout.height > 0);
   }, []);
   const headerContentStyle = useMemo(

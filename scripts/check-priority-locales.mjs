@@ -36,6 +36,13 @@ for (const lang of ['ar', 'es', 'fr', 'nl', 'tr']) {
   for (const key of suspect) console.error(`${lang}: suspect translation ${key}`);
   errors += missing.length + mismatched.length + suspect.length;
 }
+// ku is Kurmanji (Latin script); a fill from a branch older than that switch answers in Sorani.
+const kurdish = read('ku');
+const arabicScript = /[\u0600-\u06FF]/;
+const sorani = Object.keys(kurdish).filter(key => arabicScript.test(kurdish[key]) && !arabicScript.test(english[key] ?? ''));
+console.log(`ku: ${sorani.length} Arabic-script values`);
+for (const key of sorani) console.error(`ku: Arabic script in ${key}`);
+errors += sorani.length;
 if (fs.existsSync('src/i18n/en.ts')) {
   const docs = lang => flatten(vm.runInNewContext('(' + fs.readFileSync('src/i18n/' + lang + '.ts', 'utf8').replace(/^export const \w+\s*=\s*/, '').replace(/;\s*$/, '') + ')', {}, { timeout: 1000 }));
   const englishDocs = docs('en');

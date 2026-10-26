@@ -2,12 +2,26 @@ import React, { useSyncExternalStore } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import IosGlassPill from "./IosGlassPill";
 import { androidFrostSupported, useFrostedSource } from "./FrostedBackdrop";
 import { useFeedSurfaceActive } from "../../libs/visualActivity";
 import { useAppTheme } from "../../context/ThemeContext";
 import { KeepDarkScope } from "../../libs/jsx/tone";
 import { isFeedScrolling, subscribeFeedScrollStart, subscribeFeedSettled } from "../../libs/scrollActivity";
+
+// The blur stops while the feed moves and comes back when it settles; it
+// fades between the two so the pill never snaps from plain to frosted.
+const BLUR_IN = FadeIn.duration(260);
+const BLUR_OUT = FadeOut.duration(220);
+
+function FadingBlur({ children }: { children: React.ReactNode }) {
+  return (
+    <Animated.View entering={BLUR_IN} exiting={BLUR_OUT} pointerEvents="none" style={StyleSheet.absoluteFill}>
+      {children}
+    </Animated.View>
+  );
+}
 
 const androidScrollSnapshot = () => Platform.OS === "android" && isFeedScrolling();
 const subscribeAndroidScroll = (notify: () => void) => {
@@ -44,15 +58,18 @@ export default function FrostedPill({ tint, borderRadius, bordered = true }: { t
     return (
       <KeepDarkScope>
         <View collapsable={false} pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius, overflow: "hidden" }]}>
-          <View style={[StyleSheet.absoluteFill, { backgroundColor: blur ? "rgba(244,244,247,0.55)" : "#F4F4F7" }]} />
+          {/* Solid underneath either way, so the blur fades over it. */}
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#F4F4F7" }]} />
           {blur ? (
-            <BlurView
-              blurTarget={target}
-              blurMethod="dimezisBlurViewSdk31Plus"
-              intensity={65}
-              tint="light"
-              style={StyleSheet.absoluteFill}
-            />
+            <FadingBlur>
+              <BlurView
+                blurTarget={target}
+                blurMethod="dimezisBlurViewSdk31Plus"
+                intensity={65}
+                tint="light"
+                style={StyleSheet.absoluteFill}
+              />
+            </FadingBlur>
           ) : null}
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(244,244,247,0.78)" }]} />
           <View style={[StyleSheet.absoluteFill, { borderRadius, borderWidth: StyleSheet.hairlineWidth, borderColor: "rgba(11,11,13,0.08)", borderTopColor: "rgba(255,255,255,0.9)" }]} />
@@ -67,13 +84,15 @@ export default function FrostedPill({ tint, borderRadius, bordered = true }: { t
           switch. Keep the same fallback painted beneath it during that gap. */}
       <View style={[StyleSheet.absoluteFill, { backgroundColor: "#18181B" }]} />
       {blur ? (
-        <BlurView
-          blurTarget={target}
-          blurMethod="dimezisBlurViewSdk31Plus"
-          intensity={65}
-          tint="dark"
-          style={StyleSheet.absoluteFill}
-        />
+        <FadingBlur>
+          <BlurView
+            blurTarget={target}
+            blurMethod="dimezisBlurViewSdk31Plus"
+            intensity={65}
+            tint="dark"
+            style={StyleSheet.absoluteFill}
+          />
+        </FadingBlur>
       ) : null}
       <View style={[StyleSheet.absoluteFill, { backgroundColor: tint }]} />
       <LinearGradient

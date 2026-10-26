@@ -6,4 +6,9 @@ header offset on Android, leaving the first post underneath the header. Both
 the source and distributed JavaScript entry are patched. Track upstream
 https://github.com/Shopify/flash-list/issues/2399 before removing this patch.
 
+The same patch keeps a list's last real layout while it sits under a
+`display: none` ancestor (Home hides off-screen tab pages that way). Hidden,
+the list measures 0x0; laying out at that size zeroed every row, and each swipe
+back in re-measured the page, which made posts jump in size.
+
 If a patch fails to parse, temporarily disable it by renaming the file extension (e.g., add `.disabled`) and re-run install. Then recreate the patch against the current dependency version if needed.

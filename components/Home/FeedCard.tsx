@@ -505,7 +505,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   }, [minimalGutter, SCREEN_WIDTH]);
   const [tabletColumnWidth, setTabletColumnWidth] = useState(0);
   const handleFeedLayout = useCallback((e: LayoutChangeEvent) => {
-    if (SCREEN_WIDTH >= 560 && SCREEN_WIDTH <= 1366) setTabletColumnWidth(e.nativeEvent.layout.width);
+    const width = e.nativeEvent.layout.width;
+    // 0 is a hidden pager page, not a column.
+    if (width > 0 && SCREEN_WIDTH >= 560 && SCREEN_WIDTH <= 1366) setTabletColumnWidth(width);
     if (isMinimal && !immersive && !flat) handleMinimalLayout(e);
   }, [SCREEN_WIDTH, isMinimal, immersive, flat, handleMinimalLayout]);
 
@@ -2229,7 +2231,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       <GestureDetector gesture={scrubBoundary.gesture}>
         <Pressable
           testID="tablet-portrait-feed-card"
-          onLayout={e => setTabletColumnWidth(e.nativeEvent.layout.width)}
+          onLayout={e => { if (e.nativeEvent.layout.width > 0) setTabletColumnWidth(e.nativeEvent.layout.width); }}
           onPress={disablePress ? undefined : handleCardPress}
           disabled={disablePress}
           style={isMinimal || cinematicFeed ? {
@@ -2284,7 +2286,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   if (stage) {
     const stageMedia = immersive && !matureGate.isGated;
     const reportAnchor = (e: LayoutChangeEvent) => {
-      const { y, height } = e.nativeEvent.layout;
+      const { y, width, height } = e.nativeEvent.layout;
+      if (width === 0) return;
       onStageAnchor?.(y + height);
     };
     const stageQuotes = (item as any).quotes ?? 0;
