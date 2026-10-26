@@ -842,7 +842,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             model,
             sourceImage,
             ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
-            negativePrompt: creator ? (VIDEO_MODELS[creator.model]?.supportsNegativePrompt ? creator.negativePrompt?.trim() || preset?.negative : undefined) : preset?.negative,
+            negativePrompt: VIDEO_MODELS[model]?.supportsNegativePrompt ? creator?.negativePrompt?.trim() || preset?.negative : undefined,
             txHash,
           },
           walletAddress,
