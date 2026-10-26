@@ -1,7 +1,7 @@
 import type { ClipEffects } from "./types";
 import { validPhotoTone } from "./photoTone";
 export interface PhotoLook { id: string; name: string; effects: ClipEffects; updatedAt: number }
-const LIMITS = { brightness: [0, 2], contrast: [0, 2], saturation: [0, 2], blur: [0, 20], grayscale: [0, 1], sepia: [0, 1], hueRotate: [0, 360], invert: [0, 1], warmth: [-1, 1], tint: [-1, 1], vignette: [0, 1], vibrance: [-1, 1], highlights: [-1, 1], shadows: [-1, 1], fade: [0, 1], sharpen: [0, 1], grain: [0, 1] } as const;
+const LIMITS = { brightness: [0, 2], contrast: [0, 2], saturation: [0, 2], blur: [0, 20], grayscale: [0, 1], sepia: [0, 1], hueRotate: [0, 360], invert: [0, 1], warmth: [-1, 1], tint: [-1, 1], vignette: [0, 1], scanlines: [0, 1], halation: [0, 1], vibrance: [-1, 1], highlights: [-1, 1], shadows: [-1, 1], fade: [0, 1], sharpen: [0, 1], grain: [0, 1] } as const;
 export function normalisePhotoLook(value: unknown): ClipEffects {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("Choose valid photo adjustments");
   const input = value as Record<string, unknown>, result: ClipEffects = {};

@@ -75,7 +75,7 @@ import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
-import { captionLayers } from "../libs/editor/captionLayout";
+import { captionLayers, type CaptionStyle } from "../libs/editor/captionLayout";
 import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
 import {
@@ -103,6 +103,7 @@ import {
 } from "../components/editor/EditorPanels";
 import { BlendPanel, BrandPanel, DrawPanel, LayersPanel, ShapeStylePanel, ShapesPanel, TemplateTiles } from "../components/editor/EditorLayerPanels";
 import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
+import { rewritePrompt } from "../libs/editor/promptRewrite";
 import GenerationWindow from "../components/editor/GenerationWindow";
 import { importGeneratedMedia, type GeneratedMediaSource } from "../libs/editor/importGeneratedMedia";
 import { assemblyRequest, type AssemblyPlan } from "../libs/editor/assembly";
@@ -130,7 +131,7 @@ import { analyseVisualHighlights } from "../libs/editor/visualHighlightApi";
 import { useHighlightChat } from "../libs/editor/useHighlightChat";
 import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
-import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
+import { AnimatePanel, CaptionStylePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { audioToolLayers, type AudioToolMode } from "../libs/editor/audioTools";
 import { MotionPanel } from "../components/editor/MotionPanel";
 import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
@@ -371,7 +372,7 @@ type Tool =
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
   | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand"
-  | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion";
+  | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion" | "captions";
 
 interface ToolButton {
   id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
@@ -972,14 +973,14 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
     } finally { task.release(); }
   };
-  const addCaptions = async () => {
+  const addCaptions = async (style: CaptionStyle = "classic") => {
     if (!selected || (selected.kind !== "video" && selected.kind !== "audio") || selected.locked) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
     if (!task) return;
     try {
       const clip = selected;
       try {
-        const result = captionLayers(clip, await transcribe(clip), () => newId(10));
+        const result = captionLayers(clip, await transcribe(clip), () => newId(10), style);
         const current = h.latest();
         if (!task.isCurrent() || !current || current.clips.find(c => c.id === clip.id) !== clip) return;
         if (!result.clips.length) { toastSuccess(t("editor.captions.noSpeech")); return; }
@@ -1013,6 +1014,24 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     setChat(old => [...old, { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role: "assistant", content, error: result.status === "error" }]);
   };
   const closeHighlightChat = () => { highlightPreviewEnd.current = null; setPlaying(false); highlightChat.reset(); };
+  const agentAbort = useRef<AbortController | null>(null);
+  const [chatQueue, setChatQueue] = useState<string[]>([]);
+  const stopAgent = () => {
+    agentAbort.current?.abort(); agentAbort.current = null;
+    if (highlightChat.state.busy) closeHighlightChat();
+    if (assembly.state.busy || assemblyPreparation.current) closeAssembly();
+    setChat(old => [...old, { id: `${Date.now()}-stopped`, role: "assistant", content: t("editor.agent.stopped") }]);
+  };
+  const restoreCheckpoint = (entry: ChatEntry) => {
+    const current = h.latest();
+    if (!entry.checkpoint || !current || entry.checkpoint.id !== current.id) return;
+    h.commit({ ...entry.checkpoint, title: current.title });
+    setChat(old => [...old, { id: `${Date.now()}-restored`, role: "assistant", content: t("editor.agent.restored") }]);
+  };
+  const rewriteChatPrompt = async (text: string) => {
+    try { return await rewritePrompt(text); }
+    catch (error) { setChat(old => [...old, { id: `${Date.now()}-rewrite`, role: "assistant", content: t("editor.agent.rewriteFailed"), error: true }]); throw error; }
+  };
   const sendToAgent = async (text: string, useVisual = false): Promise<boolean> => {
     if (!project || chatBusy || assemblyPreparation.current || openingGenerator || highlightChat.state.busy || assembly.state.busy) return false;
     const command = h.beginCommand(projectReviewSnapshotKey(project));
@@ -1022,7 +1041,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     try {
       const entryId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
       const history: AgentMessage[] = [...chat.filter((e) => !e.error).map(({ role, content }) => ({ role, content })), { role: "user", content: text }];
-      setChat((c) => [...c, { id: entryId(), role: "user", content: text }]);
+      setChat((c) => [...c, { id: entryId(), role: "user", content: text, checkpoint: project }]);
       const draftRequest = assemblyRequest(text);
       if (draftRequest || assembly.state.sourceId) {
         highlightPreviewEnd.current = null; setPlaying(false);
@@ -1051,10 +1070,13 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         return result.status !== "error" && result.status !== "cancelled";
       }
       setChatBusy(true);
+      const controller = new AbortController();
+      agentAbort.current = controller;
       try {
         const media = (await listMedia()).filter(m => !m.name.startsWith(VIDEO_MATTE_ASSET_PREFIX));
-        if (!task.isCurrent()) return false;
-        const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media));
+        if (!task.isCurrent() || controller.signal.aborted) return false;
+        const { reply, ops } = await askAgent(history, describeScene(project, selectedId, hasBrand(brand) ? brand : null, canvasTime, media), controller.signal);
+        if (controller.signal.aborted) return false;
         if (!task.isCurrent()) return false;
         applying = true;
         const { project: next, report } = await applyOps(project, ops, {
@@ -1085,10 +1107,12 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         setChat((c) => [...c, { id: entryId(), role: "assistant", content, applied: report.applied, generate: report.generate }]);
         return !report.failed;
       } catch (e) {
+        if (controller.signal.aborted) return false;
         const code = e instanceof Error ? e.message : "";
         setChat((c) => [...c, { id: entryId(), role: "assistant", error: true, content: code === "rate_limited" ? t("editor.agent.rateLimited") : t("editor.agent.failed") }]);
         return false;
       } finally {
+        if (agentAbort.current === controller) agentAbort.current = null;
         setChatBusy(false);
       }
     } finally { task.release(); }
@@ -1144,7 +1168,6 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     if (id === "video") { void addVideos(); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
-    if (id === "captions") { void addCaptions(); return; }
     if (id === "text") { addTextLayer(); return; }
     if (id === "removeBg") { void removeBackground(); return; }
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
@@ -1435,6 +1458,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
           return canvasRef.current.sampleVisual(clip, windows, signal, progress);
         }}
         create={createHighlights} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
+      if (tool === "captions" && (selected.kind === "video" || selected.kind === "audio")) return <CaptionStylePanel busy={!!captionProgress} onRun={style => void addCaptions(style)} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {
@@ -1697,6 +1721,16 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     return () => sub.remove();
   }, [close]);
 
+  // Send queued chat requests one at a time once the assistant is free.
+  const agentWorking = chatBusy || openingGenerator || highlightChatState.busy || assemblyState.busy;
+  useEffect(() => {
+    if (agentWorking || !chatQueue.length) return;
+    const [next, ...rest] = chatQueue;
+    setChatQueue(rest);
+    void sendToAgent(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [agentWorking, chatQueue]);
+
   if (!project) {
     return (
       <View className="flex-1 bg-theme-neutrals-900 items-center justify-center">
@@ -1953,13 +1987,20 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         onHighlightCreate={() => { highlightPreviewEnd.current = null; setPlaying(false); void highlightChat.create().then(recordHighlights); }}
         onHighlightClose={closeHighlightChat}
         onSend={sendToAgent}
+        queue={chatQueue}
+        onQueue={text => setChatQueue(q => [...q, text].slice(0, 10))}
+        onUnqueue={index => setChatQueue(q => q.filter((_, i) => i !== index))}
+        onStop={stopAgent}
+        onRestore={restoreCheckpoint}
+        onRate={(id, rating) => setChat(old => old.map(e => e.id === id ? { ...e, rating: e.rating === rating ? undefined : rating } : e))}
+        onRewrite={rewriteChatPrompt}
         projectId={project.id}
         visualScope={highlightVisualScope(project, selectedId ? [selectedId] : [])}
         onOpenGenerator={draft => { void openGenerator(draft); }}
         onGenerateContent={() => { setPlaying(false); setChatOpen(false); setGeneratorWindow('open'); }}
         onUndo={h.undo}
         onClose={() => { if (assembly.state.busy || assemblyPreparation.current) closeAssembly(); setChatOpen(false); }}
-        onClear={() => { closeHighlightChat(); closeAssembly(); setChat([]); }}
+        onClear={() => { closeHighlightChat(); closeAssembly(); setChat([]); setChatQueue([]); }}
       />
 
       <GenerationWindow key={user?.walletAddress || user?.address || 'guest'} state={generatorWindow} onState={setGeneratorWindow} draft={generatorDraft}
