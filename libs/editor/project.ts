@@ -1,6 +1,7 @@
 import { insertFreehandStroke } from "./freehandProject";
 import type { PenSettings } from "./freehand";
 import { videoMatteMediaIds } from "./videoMatte";
+import { filmProjectMediaIds } from './filmProject';
 import { groupedSelection, remapDesignGroups } from "./designGroups";
 /**
  * Editing operations on a ProjectSnapshot.
@@ -329,6 +330,7 @@ export function visibleLayers(p: ProjectSnapshot, t: number): Clip[] {
 export function mediaIds(p: ProjectSnapshot): string[] {
   const ids = new Set<string>();
   for (const c of p.clips) if ("mediaId" in c) { ids.add(c.mediaId); if (c.kind === "video") for (const id of videoMatteMediaIds(c.videoMatte)) ids.add(id); }
+  for (const id of filmProjectMediaIds(p.settings.filmProject)) ids.add(id);
   return [...ids];
 }
 

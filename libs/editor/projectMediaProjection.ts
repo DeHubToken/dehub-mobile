@@ -1,5 +1,6 @@
 import { parseCloudProjectDocument, type CloudProjectDocument, type CloudProjectMedia } from "./cloudProjectFormat";
 import { videoMatteMediaIds } from "./videoMatte";
+import { remapFilmProjectMedia } from './filmProject';
 import type { ProjectSnapshot } from "./types";
 
 /** Map private cloud sources back onto stable device IDs before applying shared edits. */
@@ -34,5 +35,6 @@ export function projectMediaProjection(document: CloudProjectDocument, owner: st
       if (clip.videoMatte.pages) clip.videoMatte.pages = clip.videoMatte.pages.map(page => ({ ...page, mediaId: ids.get(page.mediaId)! }));
     }
   }
+  if (snapshot.settings.filmProject) snapshot.settings.filmProject = remapFilmProjectMedia(snapshot.settings.filmProject, byCloudId);
   return { snapshot, media, bindings: next };
 }

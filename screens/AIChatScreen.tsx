@@ -128,6 +128,7 @@ import { runCreatorBatch } from '../libs/creatorBatch';
 import { creatorAssetId } from '../libs/creatorAssetId';
 import * as CreatorCrypto from 'expo-crypto';
 import { useMarketingStudioDraft } from '../hooks/useMarketingStudioDraft';
+import { generationDraftForOwner } from '../libs/editor/generationDraft';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -229,7 +230,7 @@ export interface EmbeddedCreatorProps {
   onUseGenerated?: (url: string, kind: 'image' | 'video' | 'audio') => Promise<void>;
 }
 
-function AIChatScreenInner({ studio = false, embedded = false, editorDraft: suppliedDraft, onGenerated, onUseGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
+function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requestedDraft, onGenerated, onUseGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
   const editorRequests = useRef(new Set<string>());
   const deliveredEditorResults = useRef(new Set<string>());
   const appliedEditorDraft = useRef<EmbeddedCreatorProps['editorDraft']>(null);
@@ -252,6 +253,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const flatListRef = useRef<FlatList<AIChatMessage>>(null);
 
   const walletAddress = user?.walletAddress || user?.address || null;
+  const suppliedDraft = useMemo(() => generationDraftForOwner(requestedDraft, walletAddress), [requestedDraft, walletAddress]);
   const userId = walletAddress || 'anon';
   const {
     conversationId, draftScope,
@@ -304,10 +306,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const [assetPickerVisible, setAssetPickerVisible] = useState(false);
   const [templatesVisible, setTemplatesVisible] = useState(false);
   const activeTemplate = getTemplate(templateId);
-  const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? route.params?.editorDraft) : null;
+  const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? generationDraftForOwner(route.params?.editorDraft, walletAddress)) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft } = useMarketingStudioDraft({
-    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio,
+  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft, appliedDraftId, setAppliedDraftId, draftReferences } = useMarketingStudioDraft({
+    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio, editorDraft: editorDraft?.draft,
     initialSettings: () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
       model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }),
   });
@@ -321,6 +323,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   }, [studio, route.params?.workflow]);
   const appliedClipRoute = useRef<string | undefined>(undefined);
   const pickMotionClip = useCallback((clip: MotionClip, workflow: 'swap' | 'motion') => {
+    draftReferences.modified();
     const model = motionModel(clip, workflow);
     setTemplateId(model === 'kling-3-motion' ? 'reference-copy-motion' : 'reference-character-swap');
     setStudioSettings(previous => normalizeCreatorSettings({ ...previous, mode: 'video', model, effect: undefined,
@@ -339,19 +342,25 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     return () => { cancelled = true; };
   }, [studio, route.params?.clip, route.params?.workflow, pickMotionClip]);
   useEffect(() => {
-    if (appliedEditorDraft.current === suppliedDraft) return;
     const prepared = creatorSettingsForEditorDraft(suppliedDraft);
     if (!prepared) return;
+    if (prepared.draft.references && studioSettings.mode === prepared.settings.mode && draftReferences.adopt(prepared.draft.draftId, Boolean(prepared.draft.draftId && appliedDraftId === prepared.draft.draftId))) {
+      setStudioSettings(previous => normalizeCreatorSettings({ ...previous, referenceAssets: prepared.settings.referenceAssets }));
+      setAttachedImage(prepared.settings.referenceAssets?.find(asset => asset.kind === 'image')?.uri ?? null);
+    }
+    if (appliedEditorDraft.current === suppliedDraft || (suppliedDraft?.draftId && appliedDraftId === suppliedDraft.draftId)) return;
     if (studioSettings.mode !== prepared.settings.mode) { setStudioSettings(prepared.settings); return; }
     setStudioSettings(prepared.settings);
     setInput(prepared.draft.prompt);
     setTemplateId(null);
     appliedEditorDraft.current = suppliedDraft;
-  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings]);
+    setAppliedDraftId(prepared.draft.draftId ?? null);
+  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings, appliedDraftId, setAppliedDraftId]);
   const effectMode = studio && studioSettings.mode === 'video' && studioSettings.model === VIRAL_EFFECT_MODEL;
   const appliedEffectRoute = useRef<string | undefined>(undefined);
   const pendingMotionPrompt = useRef(false);
   const pickEffect = useCallback((effect: ViralTemplate) => {
+    draftReferences.modified();
     setTemplateId(null);
     if (effect.motionSeconds && effect.preview) {
       pendingMotionPrompt.current = true;
@@ -1957,6 +1966,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           mode={studioSettings.mode} pickerVisible={assetPickerVisible} onClose={() => setAssetPickerVisible(false)} disabled={isLoading}
           onMention={tag => setInput(previous => `${previous}${previous && !/\s$/.test(previous) ? ' ' : ''}${tag} `)}
           onChange={referenceAssets => {
+              draftReferences.modified();
             setInput(previous => remapAssetMentions(previous, (studioSettings.referenceAssets ?? []).map(asset => ({ key: asset.uri, kind: asset.kind })), referenceAssets.map(asset => ({ key: asset.uri, kind: asset.kind }))));
             const images = referenceAssets.filter(a => a.kind === 'image'); const clip = referenceAssets.find(a => a.kind === 'video');
             setAttachedImage(images[0]?.uri ?? null);
