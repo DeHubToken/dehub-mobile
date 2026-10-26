@@ -69,7 +69,7 @@ import UserProfileBottomSheet from "../components/UserProfile/UserProfileBottomS
 import GettingStartedCard from "../components/Onboarding/GettingStartedCard";
 import { pagerPageIntersectsViewport } from "../libs/pagerVisibility";
 import { useAppTheme } from "../context/ThemeContext";
-import { FrostedContent } from "../components/ui/FrostedBackdrop";
+import { FrostedBackground, FrostedContent } from "../components/ui/FrostedBackdrop";
 import { holdThemeBackdrop } from "../libs/themeBackdrop";
 import { useAuthActions, useAuthState } from "../context/AuthContext";
 import FollowTagBar from "../components/Home/FollowTagBar";
@@ -1212,6 +1212,11 @@ export default function HomeScreen() {
 
         {showNavPill ? (
         <View onLayout={onNavLayout}>
+        {/* The pill only blurs feed you can see around it. Under the opaque
+            header (no glassNav) the feed still scrolls on beneath it, and so
+            does a feed covered by a post or profile opened in place; blurring
+            those smeared hidden images through the pill. */}
+        <FrostedBackground when={!glassNav || !!feedPost || feedProfileVisible}>
         <FeedNavBar
           activeIndex={activeIndex}
           progress={progress}
@@ -1223,6 +1228,7 @@ export default function HomeScreen() {
           backMode={feedProfileVisible || !!imageFeed || !!feedPost}
           onBackPress={feedProfileVisible ? hideUserProfile : imageFeed ? handleImageFeedBack : closeFeedPost}
         />
+        </FrostedBackground>
         </View>
         ) : null}
 
