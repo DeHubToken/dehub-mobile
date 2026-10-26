@@ -189,7 +189,10 @@ const AnimatedActionButton: React.FC<{
             animate={glyphAnimated}
             playing={glyphPlaying}
             size={iconSize + 1.76}
-            textStyle={{ fontSize: iconSize - 1.76, lineHeight: iconSize + 3.52, width: iconSize, textAlign: "center" }}
+            // The text box is wider and taller than the slot: Android clips a
+            // TextView to its own bounds, and Samsung's emoji draw wider than
+            // the font size, so a slot-sized box cut the 😂 off.
+            textStyle={{ fontSize: iconSize - 1.76, lineHeight: iconSize + 8, width: iconSize + 12, textAlign: "center", textAlignVertical: "center", includeFontPadding: false }}
           />
         </View>
       ) : (

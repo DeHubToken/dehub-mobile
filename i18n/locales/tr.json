@@ -14822,5 +14822,26 @@
     "phone": {
       "title": "Stüdyo"
     }
+  },
+  "whenSheet": {
+    "title": "Ne zaman?",
+    "tonight": "Bu akşam",
+    "inAnHour": "Bir saat sonra",
+    "tomorrow": "Yarın",
+    "today": "Bugün",
+    "primeTime": "En yoğun saat",
+    "scheduleFor": "{{when}} için planla",
+    "liveTip": "Takipçilerin hatırlatıcı kurabilir. Zamanı gelince canlı yayını sen başlatırsın.",
+    "stageTip": "Hemen Yaklaşanlar rafına çıkar, böylece insanlar Bana hatırlat'a dokunabilir.",
+    "typePlaceholder": "Bir zaman yaz, örneğin \"fri 8pm\" veya \"in 2 hours\"",
+    "typeLabel": "Bir zaman yaz",
+    "typeHelp": "\"tonight\", \"tomorrow 9am\", \"sat noon\" veya \"30 oct 7pm\" dene.",
+    "orPickDay": "Ya da bir gün seç",
+    "earlier": "15 dakika önce",
+    "later": "15 dakika sonra",
+    "tooSoonMin": "Şu andan en az {{count}} dakika sonrası için bir zaman seç.",
+    "tooSoon": "Gelecekte bir zaman seç.",
+    "zone": "Senin saatin ({{zone}}). Diğerleri kendi saatlerinde görür.",
+    "remove": "Planlamayı kaldır"
   }
 }
