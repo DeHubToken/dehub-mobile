@@ -3116,8 +3116,10 @@
     "failedSubmit": "Aanvraag indienen mislukt. Probeer het opnieuw."
   },
   "creatorFlow": {
+    "retryFreeTask": "Gratis taak opnieuw proberen",
+    "previewSavedMedia": "Opgeslagen media bekijken",
     "audioSavePending": "De audio is klaar, maar het opslaan in de privébibliotheek is nog bezig. Hervat om het resultaat op te halen.",
-    "freeResultUnknown": "Het antwoord van de gratis taak is onderbroken. De taak wordt niet automatisch opnieuw ingediend. Controleer je opgeslagen resultaten of kies Nieuwe uitvoering starten.",
+    "freeResultUnknown": "Het antwoord van de gratis taak is onderbroken. De taak wordt niet automatisch opnieuw ingediend. Kies Gratis taak opnieuw proberen en hervat; je betaling en andere taken blijven bewaard.",
     "formAuthor": "Flow bewerken",
     "formAuthorHint": "Maak een flow met passende invoer. Sla deze hier op of orden deze op het webcanvas.",
     "newNativeFlow": "Nieuwe flow",

@@ -8,9 +8,10 @@ import { graphOrder, inputRules, sourceMedia } from '../../libs/creatorFlowGraph
 import { useJobPayment } from '../../hooks/useAiPayment';
 import { useWeb3Provider } from '../../hooks/use-web3';
 import { useUser } from '../../context/AuthContext';
+import OwnedFlowMedia from './OwnedFlowMedia';
 import { listCreatorAssets, type CreatorAsset } from '../../services/creator.service';
 import { flowUid, saveFlows, type FlowNode, type RemoteFlow } from '../../services/creator-flows.service';
-import { admitNativeFlowRun, planNativeFlow, restartNativeFlowRun, type NativeFlowPlan } from '../../services/creator-flow-runner';
+import { admitNativeFlowRun, planNativeFlow, restartNativeFlowRun, retryNativeFlowFreeNode, type NativeFlowPlan } from '../../services/creator-flow-runner';
 
 interface Props { wallet: string; flow?: RemoteFlow; onClose: () => void; onSaved: () => void }
 const TYPES = ['promptNode','imageInputNode','videoInputNode','audioInputNode','imageGenNode','videoGenNode','audioGenNode','assistantNode'] as const;
@@ -31,6 +32,7 @@ export default function FlowAuthor({ wallet, flow, onClose, onSaved }: Props) {
   const [plan, setPlan] = useState<NativeFlowPlan | null>(null);
   const [libraryFor, setLibraryFor] = useState<string | null>(null), [assets, setAssets] = useState<CreatorAsset[]>([]);
   const [offset, setOffset] = useState<number | null>(0);
+  const [preview, setPreview] = useState(false);
   const hasPaidNodes = nodes.some(node => node.type === 'imageGenNode' || node.type === 'videoGenNode');
   const live = useRef(true), working = useRef<FlowNode[]>(nodes);
   working.current = nodes;
@@ -88,6 +90,7 @@ export default function FlowAuthor({ wallet, flow, onClose, onSaved }: Props) {
     setPlan(null); setNodes(previous => [...previous, node]);
   };
   const button = (label: string, action: () => void, disabled = false) => <Pressable accessibilityRole="button" disabled={disabled} onPress={action} style={[styles.button, disabled && styles.disabled]}><Text style={styles.buttonText}>{label}</Text></Pressable>;
+  if (signedOwner !== wallet.toLowerCase()) return null;
   return <Modal visible animationType="slide" onRequestClose={close}>
     <View style={[styles.root, { paddingTop: insets.top + 10 }]}>
       <View style={styles.row}><Text style={styles.title}>{t('creatorFlow.formAuthor')}</Text>{button(t('creatorFlow.close'), close)}</View>
@@ -129,12 +132,16 @@ export default function FlowAuthor({ wallet, flow, onClose, onSaved }: Props) {
             }, busy)}</React.Fragment>)}</ScrollView>
           </View>)}
           {node.data.status && <Text style={styles.muted}>{t(`creatorFlow.status_${node.data.status}`)}</Text>}
-          {!!node.data.errorMsg && <Text accessibilityRole="alert" style={styles.error}>{node.data.errorMsg}</Text>}
+          {!!node.data.errorMsg && <Text accessibilityRole="alert" style={styles.error}>{t(node.data.errorMsg, { defaultValue: node.data.errorMsg })}</Text>}
+          {node.data.status === 'error' && (node.type === 'audioGenNode' || node.type === 'assistantNode') && button(t('creatorFlow.retryFreeTask'), () => {
+            void retryNativeFlowFreeNode(wallet, id, node.id).then(() => { if (current()) change(node.id, { status: 'idle', errorMsg: undefined }); }).catch(fail);
+          }, busy)}
           {!!node.data.outputText && <Text selectable style={styles.muted}>{node.data.outputText}</Text>}
         </View>)}
         {!!error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}
         {busy && <ActivityIndicator color="white" />}
         {button(t('creatorFlow.save'), () => void save(), busy)}
+        {button(t('creatorFlow.previewSavedMedia'), () => setPreview(true), busy)}
         {DIGITAL_PURCHASES_ENABLED || !hasPaidNodes ? button(t('creatorFlow.reviewRun'), () => void prepare(), busy || !nodes.length) : <Text style={styles.muted}>{t('creatorFlow.paidUnavailable')}</Text>}
         {plan && <View style={styles.card}>
           <Text style={styles.label}>{plan.resume ? t('creatorFlow.resumeRun') : t('creatorFlow.confirmPrice', { price: plan.priceDhb.toFixed(2) })}</Text>
@@ -150,6 +157,9 @@ export default function FlowAuthor({ wallet, flow, onClose, onSaved }: Props) {
             if (libraryFor) change(libraryFor, asset.kind === 'audio' ? { audioAssetId: asset.id, audioUrl: asset.url } : { inputAssetId: asset.id, ...(asset.kind === 'image' ? { imageUrl: asset.url } : { videoUrl: asset.url }) }); setLibraryFor(null);
           })}</React.Fragment>)}{offset !== null && button(t('creatorFlow.loadMoreMedia'), () => void moreAssets(), busy)}</ScrollView>
         </View>
+      </Modal>
+      <Modal visible={preview} animationType="slide" onRequestClose={() => setPreview(false)}>
+        <View style={[styles.root, { paddingTop: insets.top + 12 }]}>{button(t('creatorFlow.close'), () => setPreview(false))}<ScrollView contentContainerStyle={{ padding: 16 }}><OwnedFlowMedia wallet={wallet} nodes={nodes} edges={edges} /></ScrollView></View>
       </Modal>
     </View>
   </Modal>;

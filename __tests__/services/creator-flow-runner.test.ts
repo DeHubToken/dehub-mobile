@@ -7,7 +7,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({ __esModule: true
 let mockUuid = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `00000000-0000-4000-8000-${String(++mockUuid).padStart(12, '0')}` }));
 jest.mock('../../config/storefront', () => ({ DIGITAL_PURCHASES_ENABLED: true }));
-jest.mock('../../services/ai.service', () => ({ generateImage: jest.fn(), startVideoGeneration: jest.fn(), pollVideoGeneration: jest.fn(), quoteAiJob: jest.fn() }));
+jest.mock('../../services/ai.service', () => ({ generateImage: jest.fn(), startVideoGeneration: jest.fn(), pollVideoGeneration: jest.fn(), quoteAiJob: jest.fn(), dehubAuthHeaders: jest.fn(async () => ({ 'x-dehub-token': 'session' })) }));
 jest.mock('../../services/creator.service', () => ({ saveCreatorAsset: jest.fn() }));
 jest.mock('../../services/creator-audio.service', () => ({ runCreatorAudio: jest.fn() }));
 jest.mock('../../services/creator-flow-download', () => ({ downloadFlowAudio: jest.fn() }));
@@ -19,9 +19,10 @@ import { saveCreatorAsset } from '../../services/creator.service';
 import { runCreatorAudio } from '../../services/creator-audio.service';
 import { downloadFlowAudio } from '../../services/creator-flow-download';
 import { loadFlowAssets } from '../../services/creator-flow-assets';
-import { admitNativeFlowRun, planNativeFlow, readNativeFlowReceipt, restartNativeFlowRun, runNativeFlow, type NativeFlowGraph } from '../../services/creator-flow-runner';
+import { supabase } from '../../services/supabase';
+import { admitNativeFlowRun, planNativeFlow, readNativeFlowReceipt, restartNativeFlowRun, retryNativeFlowFreeNode, runNativeFlow, type NativeFlowGraph } from '../../services/creator-flow-runner';
 const text = { id: 'text', type: 'promptNode', position: { x: 0, y: 0 }, data: { prompt: 'A cup on a table' } };
-const graph = (video = false): NativeFlowGraph => ({ id: 'flow12345', nodes: [text, { id: 'render', type: video ? 'videoGenNode' : 'imageGenNode', position: { x: 300, y: 0 }, data: {
+const graph = (video = false): NativeFlowGraph => ({ id: 'flow12345', nodes: [{ ...text, data: { ...text.data } }, { id: 'render', type: video ? 'videoGenNode' : 'imageGenNode', position: { x: 300, y: 0 }, data: {
   model: video ? 'kling-2.5-turbo' : 'gemini-3.1-flash-image', aspectRatio: video ? '16:9' : '1:1', duration: 5, resolution: '720p',
 } }], edges: [{ id: 'wire', source: 'text', target: 'render', targetHandle: 'prompt' }] });
 beforeEach(() => {
@@ -30,6 +31,7 @@ beforeEach(() => {
   (quoteAiJob as jest.Mock).mockResolvedValue({ priceDhb: 10, priceUsd: 0.01 });
   (generateImage as jest.Mock).mockResolvedValue({ success: true, imageUrl: 'https://media.test/image.png' });
   (saveCreatorAsset as jest.Mock).mockResolvedValue(undefined);
+  (supabase.functions.invoke as jest.Mock).mockResolvedValue({ data: { text: 'A rewritten cup prompt' }, error: null });
 });
 it('retains a returned payment after close and resumes without another payment', async () => {
   const input = graph(), plan = await planNativeFlow(input, 'owner'); let current = true;
@@ -85,6 +87,42 @@ it('never automatically repeats a free submission whose response was lost', asyn
   const resumed = await planNativeFlow(input, 'owner');
   await expect(runNativeFlow(resumed, 'owner', 'free', () => true, jest.fn())).rejects.toThrow('creatorFlow.freeResultUnknown');
   expect(runCreatorAudio).toHaveBeenCalledTimes(1);
+});
+const assistantGraph = (): NativeFlowGraph => ({ id: 'mixedflow', nodes: [{ ...text, data: { ...text.data } }, { id: 'assistant', type: 'assistantNode', position: { x: 0, y: 0 }, data: {} }, graph().nodes[1]], edges: [
+  { id: 'a', source: 'text', target: 'assistant', targetHandle: 'prompt' }, { id: 'b', source: 'assistant', target: 'render', targetHandle: 'prompt' },
+] });
+it('retains all prepaid downstream UUIDs when closed after a free predecessor', async () => {
+  const input = assistantGraph(), plan = await planNativeFlow(input, 'owner'); let current = true;
+  await expect(runNativeFlow(plan, 'owner', 'mixed-payment', () => current, node => { if (node.id === 'assistant' && node.data.status === 'done') current = false; })).rejects.toThrow('SIGN_IN_REQUIRED');
+  const receipt = await readNativeFlowReceipt('owner', input.id);
+  expect(receipt).toMatchObject({ txHash: 'mixed-payment', expectedPaidNodeIds: ['render'], nodes: { render: { jobId: '00000000-0000-4000-8000-000000000002', paid: true } } });
+  expect(generateImage).not.toHaveBeenCalled();
+  await expect(restartNativeFlowRun('owner', input.id)).rejects.toThrow('creatorFlow.recoverBeforeEdit');
+  const changed = assistantGraph(); changed.nodes[0].data = { prompt: 'Changed prompt' };
+  await expect(planNativeFlow(changed, 'owner')).rejects.toThrow('creatorFlow.recoverBeforeEdit');
+});
+it('explicitly retries only an unknown free predecessor while retaining the paid receipt and UUID', async () => {
+  const input = assistantGraph(), plan = await planNativeFlow(input, 'owner');
+  (supabase.functions.invoke as jest.Mock).mockRejectedValueOnce(new Error('Unknown free response'));
+  const pay = jest.fn(async () => 'mixed-payment');
+  await expect(admitNativeFlowRun(plan, input, 'owner', { isCurrent: () => true, saveDraft: jest.fn(), pay, onNode: jest.fn() })).rejects.toThrow('Unknown free response');
+  const before = await readNativeFlowReceipt('owner', input.id);
+  await expect(restartNativeFlowRun('owner', input.id)).rejects.toThrow('creatorFlow.recoverBeforeEdit');
+  await retryNativeFlowFreeNode('owner', input.id, 'assistant');
+  const retained = await readNativeFlowReceipt('owner', input.id);
+  expect(retained?.txHash).toBe('mixed-payment'); expect(retained?.nodes.render.jobId).toBe(before?.nodes.render.jobId);
+  const resumed = await planNativeFlow(input, 'owner'), secondPay = jest.fn();
+  await admitNativeFlowRun(resumed, input, 'owner', { isCurrent: () => true, saveDraft: jest.fn(), pay: secondPay, onNode: jest.fn() });
+  expect(pay).toHaveBeenCalledTimes(1); expect(secondPay).not.toHaveBeenCalled();
+  expect(generateImage).toHaveBeenCalledWith(expect.objectContaining({ clientJobId: before?.nodes.render.jobId, txHash: 'mixed-payment' }), 'owner');
+});
+it('permits a new run after an authoritative terminal refund, while retaining uncertain refunds', async () => {
+  const plan = await planNativeFlow(graph(true), 'owner');
+  (startVideoGeneration as jest.Mock).mockResolvedValue({ status: 'starting', predictionId: 'ticket', provider: 'fal', falAppId: 'model' });
+  (pollVideoGeneration as jest.Mock).mockResolvedValue({ status: 'failed', error: 'Failed and restored', paymentRestored: true });
+  await expect(runNativeFlow(plan, 'owner', 'receipt', () => true, jest.fn())).rejects.toThrow('Failed and restored');
+  await restartNativeFlowRun('owner', plan.graph.id);
+  expect(await readNativeFlowReceipt('owner', plan.graph.id)).toBeNull();
 });
 it('validates malformed graphs before pricing or submitting paid work', async () => {
   const bad = graph(); bad.edges.push({ id: 'cycle', source: 'render', target: 'text', targetHandle: 'prompt' });

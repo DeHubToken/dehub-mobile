@@ -15,13 +15,28 @@ import type { FlowNode, FlowEdge } from './creator-flows.service';
 
 export interface NativeFlowGraph { id: string; nodes: FlowNode[]; edges: FlowEdge[] }
 export interface NativeFlowPlan { graph: NativeFlowGraph; signature: string; order: string[]; priceDhb: number; priceUsd: number; resume: boolean }
-interface NodeReceipt { jobId: string; state: 'submitting' | 'polling' | 'done' | 'error'; paid?: boolean; freeSubmitted?: boolean; ticket?: { predictionId: string; provider?: string; falAppId?: string }; assetId?: string; outputText?: string; localOutput?: { audioUrl?: string; transcript?: string }; error?: string }
-export interface NativeFlowReceipt { signature: string; txHash: string; nodes: Record<string, NodeReceipt> }
+interface NodeReceipt { jobId: string; state: 'submitting' | 'polling' | 'done' | 'error'; paid?: boolean; terminalReleased?: boolean; freeSubmitted?: boolean; ticket?: { predictionId: string; provider?: string; falAppId?: string }; assetId?: string; outputText?: string; localOutput?: { audioUrl?: string; transcript?: string }; error?: string }
+export interface NativeFlowReceipt { signature: string; txHash: string; expectedPaidNodeIds?: string[]; nodes: Record<string, NodeReceipt> }
 type Quote = AiQuoteRequest & { resolution?: string; hasEndFrame?: boolean; hasAudioReferences?: boolean; hasVideoReferences?: boolean; hasInlineMedia?: boolean };
 const activeRuns = new Set<string>();
 const activeStarts = new Set<string>();
 function unfinished(receipt: NativeFlowReceipt) {
-  return (!Object.keys(receipt.nodes).length && receipt.txHash !== 'free') || Object.values(receipt.nodes).some(node => node.state !== 'done' && node.paid !== false);
+  if (!receipt.expectedPaidNodeIds && receipt.txHash !== 'free') return true;
+  return (receipt.expectedPaidNodeIds || []).some(id => !receipt.nodes[id] || receipt.nodes[id].state !== 'done' && !receipt.nodes[id].terminalReleased) || Object.values(receipt.nodes).some(node => node.state !== 'done' && node.paid !== false && !node.terminalReleased);
+}
+function released(result: unknown): boolean {
+  const data = result as { paymentRestored?: unknown; paymentNotTaken?: unknown } | null;
+  return data?.paymentRestored === true || data?.paymentNotTaken === true;
+}
+function preparedReceipt(plan: NativeFlowPlan, txHash: string, previous?: NativeFlowReceipt): NativeFlowReceipt {
+  const nodes = { ...previous?.nodes }, expectedPaidNodeIds: string[] = [];
+  for (const id of plan.order) {
+    const type = plan.graph.nodes.find(node => node.id === id)?.type;
+    const paid = type === 'imageGenNode' || type === 'videoGenNode';
+    if (paid) expectedPaidNodeIds.push(id);
+    if (!nodes[id]) nodes[id] = { jobId: Crypto.randomUUID(), state: 'submitting', paid };
+  }
+  return { signature: plan.signature, txHash: previous?.txHash || txHash, expectedPaidNodeIds, nodes };
 }
 
 function receiptKey(wallet: string, id: string) { return `creator-flow-run-v1:${wallet.toLowerCase()}:${id}`; }
@@ -110,7 +125,7 @@ export async function planNativeFlow(graph: NativeFlowGraph, wallet: string): Pr
   const signature = fingerprint(graph), receipt = await readNativeFlowReceipt(wallet, graph.id);
   const resume = !!receipt && receipt.signature === signature;
   if (receipt && !resume && unfinished(receipt)) throw new Error('creatorFlow.recoverBeforeEdit');
-  if (resume && order.every(id => receipt!.nodes[id]?.state === 'done')) throw new Error('creatorFlow.runAlreadyComplete');
+  if (resume && order.every(id => receipt!.nodes[id]?.state === 'done' || receipt!.nodes[id]?.terminalReleased)) throw new Error('creatorFlow.runAlreadyComplete');
   const prepared = await hydrate(graph, wallet);
   let priceDhb = 0, priceUsd = 0;
   for (const id of order) {
@@ -134,6 +149,7 @@ export async function readNativeFlowReceipt(wallet: string, flowId: string): Pro
   try {
     const result = JSON.parse(value);
     if (!result?.nodes || typeof result.nodes !== 'object' || Array.isArray(result.nodes) || typeof result.signature !== 'string' || typeof result.txHash !== 'string' || !result.txHash) throw new Error('Invalid receipt');
+    if (result.expectedPaidNodeIds !== undefined && (!Array.isArray(result.expectedPaidNodeIds) || result.expectedPaidNodeIds.length > 100 || result.expectedPaidNodeIds.some((id: unknown) => typeof id !== 'string' || !id || id.length > 128))) throw new Error('Invalid receipt');
     for (const node of Object.values(result.nodes) as NodeReceipt[]) {
       if (!node || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(node.jobId) || !['submitting','polling','done','error'].includes(node.state) ||
         node.ticket && (typeof node.ticket.predictionId !== 'string' || !node.ticket.predictionId || node.ticket.predictionId.length > 200)) throw new Error('Invalid receipt');
@@ -161,11 +177,24 @@ export function claimNativeFlowStart(wallet: string, flowId: string): () => void
 export async function reserveNativeFlowReceipt(plan: NativeFlowPlan, wallet: string, txHash: string): Promise<NativeFlowReceipt> {
   if (!txHash || fingerprint(plan.graph) !== plan.signature) throw new Error('creatorFlow.planChanged');
   const previous = await readNativeFlowReceipt(wallet, plan.graph.id);
-  if (previous && previous.signature === plan.signature) return previous;
+  if (previous && previous.signature === plan.signature) {
+    const receipt = preparedReceipt(plan, txHash, previous);
+    await AsyncStorage.setItem(receiptKey(wallet, plan.graph.id), JSON.stringify(receipt)); return receipt;
+  }
   if (previous && unfinished(previous)) throw new Error('creatorFlow.recoverBeforeEdit');
-  const receipt: NativeFlowReceipt = { signature: plan.signature, txHash, nodes: {} };
+  const receipt = preparedReceipt(plan, txHash);
   await AsyncStorage.setItem(receiptKey(wallet, plan.graph.id), JSON.stringify(receipt));
   return receipt;
+}
+
+/** Explicitly retry one free task without discarding prepaid downstream work. */
+export async function retryNativeFlowFreeNode(wallet: string, flowId: string, nodeId: string): Promise<void> {
+  const key = receiptKey(wallet, flowId);
+  if (activeRuns.has(key) || activeStarts.has(key)) throw new Error('creatorFlow.recoveryPending');
+  const receipt = await readNativeFlowReceipt(wallet, flowId), node = receipt?.nodes[nodeId];
+  if (!receipt || !node || node.paid !== false || node.state === 'done') throw new Error('creatorFlow.recoverBeforeEdit');
+  node.freeSubmitted = false; node.state = 'submitting'; delete node.error;
+  await AsyncStorage.setItem(key, JSON.stringify(receipt));
 }
 
 /** Revalidate the reviewed run and retain payment before any UI identity exit. */
@@ -206,8 +235,9 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
   try {
   let receipt = await readNativeFlowReceipt(wallet, plan.graph.id);
   if (receipt && receipt.signature !== plan.signature && unfinished(receipt)) throw new Error('creatorFlow.recoverBeforeEdit');
-  if (!receipt || receipt.signature !== plan.signature) receipt = { signature: plan.signature, txHash, nodes: {} };
+  receipt = preparedReceipt(plan, txHash, receipt?.signature === plan.signature ? receipt : undefined);
   const persist = () => AsyncStorage.setItem(receiptKey(wallet, plan.graph.id), JSON.stringify(receipt));
+  await persist();
   const graph = await hydrate(plan.graph, wallet);
   for (const id of plan.order) {
     assertCurrent();
@@ -224,7 +254,10 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
       node.data = { ...node.data, ...assetNodePatch(node, asset), outputAssetId: saved.assetId, ...(node.type === 'audioGenNode' ? { audioAssetId: saved.assetId } : {}), status: 'done' };
       onNode(node); continue;
     }
-    if (saved?.freeSubmitted && !saved.localOutput && !saved.outputText && saved.state !== 'done') throw new Error('creatorFlow.freeResultUnknown');
+    if (saved?.freeSubmitted && !saved.localOutput && !saved.outputText && saved.state !== 'done') {
+      onNode({ ...node, data: { ...node.data, status: 'error', errorMsg: 'creatorFlow.freeResultUnknown' } });
+      throw new Error('creatorFlow.freeResultUnknown');
+    }
     if (!saved) { saved = { jobId: Crypto.randomUUID(), state: 'submitting', paid: node.type === 'imageGenNode' || node.type === 'videoGenNode' }; receipt.nodes[id] = saved; await persist(); }
     const settings = validateNode(node, graph);
     const prompt = connectedText(node, graph.nodes, graph.edges).trim();
@@ -277,7 +310,7 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
         assertCurrent();
         const result = await generateImage({ clientJobId: saved.jobId, model: settings.model, prompt, aspectRatio: settings.aspect,
           ...(source ? { sourceImage: imageOf(source) } : {}), txHash: receipt.txHash }, wallet);
-        if (!result.success || !result.imageUrl) throw new Error(result.error || 'creatorFlow.runFailed');
+        if (!result.success || !result.imageUrl) { saved.terminalReleased = released(result); throw new Error(result.error || 'creatorFlow.runFailed'); }
         url = result.imageUrl; assetId = saved.jobId;
       } else {
         let ticket = saved.ticket;
@@ -292,7 +325,7 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
             ...(settings.seed ? { seed: Number(settings.seed) } : {}), ...(settings.negativePrompt ? { negativePrompt: settings.negativePrompt } : {}) };
           if (settings.effect) Object.assign(request, { effect: settings.effect });
           const result = await startVideoGeneration(request, wallet);
-          if (result.status === 'failed') throw new Error(result.error || 'creatorFlow.runFailed');
+          if (['failed','canceled','cancelled'].includes(result.status)) { saved.terminalReleased = released(result); throw new Error(result.error || 'creatorFlow.runFailed'); }
           if (result.status === 'succeeded' && result.videoUrl) { url = result.videoUrl; assetId = result.libraryId || saved.jobId; }
           else if (result.predictionId) { ticket = { predictionId: result.predictionId, provider: result.provider, falAppId: result.falAppId }; saved.ticket = ticket; saved.state = 'polling'; await persist(); }
           else throw new Error('creatorFlow.runFailed');
@@ -302,7 +335,7 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
           while (Date.now() < deadline) {
             assertCurrent();
             const result = await pollVideoGeneration(ticket.predictionId, { provider: ticket.provider, falAppId: ticket.falAppId, walletAddress: wallet });
-            if (result.status === 'failed') throw new Error(result.error || 'creatorFlow.runFailed');
+            if (['failed','canceled','cancelled'].includes(result.status)) { saved.terminalReleased = released(result); throw new Error(result.error || 'creatorFlow.runFailed'); }
             if (result.status === 'succeeded' && result.videoUrl) { url = result.videoUrl; assetId = result.libraryId || saved.jobId; break; }
             await new Promise(resolve => setTimeout(resolve, 5000));
           }

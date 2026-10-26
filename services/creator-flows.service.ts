@@ -204,7 +204,7 @@ export function orderNodes(nodes: FlowNode[], edges: FlowEdge[]): FlowNode[] {
 }
 
 /** The result a node currently shows, if any. */
-export function nodeOutput(node: FlowNode): { image?: string; video?: string; text?: string } {
+export function nodeOutput(node: FlowNode): { image?: string; video?: string; audio?: string; text?: string } {
   const d = node.data ?? {};
   const gens = Array.isArray(d.generations) ? d.generations : [];
   const idx = typeof d.currentGenIdx === 'number' ? d.currentGenIdx : gens.length - 1;
@@ -221,6 +221,10 @@ export function nodeOutput(node: FlowNode): { image?: string; video?: string; te
       return { video: d.videoUrl };
     case 'assistantNode':
       return { text: d.outputText };
+      case 'audioInputNode':
+        return { audio: d.audioUrl };
+      case 'audioGenNode':
+        return d.audioTask === 'transcribe' ? { text: d.outputText } : { audio: d.audioUrl };
     default:
       return {};
   }

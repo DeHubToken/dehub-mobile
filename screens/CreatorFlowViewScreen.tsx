@@ -6,7 +6,7 @@
  * "Open a copy" saves a private duplicate to your account — the same thing
  * web's share page does — so it shows up on your canvas to run.
  */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { shareWithRef } from "../libs/shareRef";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -17,12 +17,14 @@ import { useTranslation } from "react-i18next";
 import ScreenHeader from "../components/ScreenHeader";
 import Icon from "../components/ui/Icon";
 import FlowNodeList from "../components/CreatorFlow/FlowNodeList";
+import OwnedFlowMedia from '../components/CreatorFlow/OwnedFlowMedia';
+import FlowAuthor from '../components/CreatorFlow/FlowAuthor';
 import { useUser } from "../context/AuthContext";
 import { ScreenNames } from "../navigation/ScreenNames";
 import type { AppStackParamList } from "../navigation/types";
 import { ShareLinks } from "../navigation/linking.config";
 import { toastError, toastSuccess } from "../libs";
-import { copyOfFlow, fetchPublicFlow, saveFlows } from "../services/creator-flows.service";
+import { copyOfFlow, fetchPublicFlow, listFlows, saveFlows } from "../services/creator-flows.service";
 
 type Nav = NativeStackNavigationProp<AppStackParamList>;
 
@@ -33,20 +35,24 @@ export default function CreatorFlowViewScreen() {
   const qc = useQueryClient();
   const route = useRoute<RouteProp<AppStackParamList, ScreenNames.CreatorFlowView>>();
   const id = String(route.params?.id ?? "");
-  const own = route.params?.flow;
+  const routeOwn = route.params?.flow;
   const user = useUser();
   const wallet = (user?.walletAddress || user?.address || "").toLowerCase() || null;
   const [copying, setCopying] = useState(false);
+  const [editing, setEditing] = useState(false);
+  useEffect(() => setEditing(false), [wallet, id]);
+  const owned = useQuery({ queryKey: ['creator-flows', wallet], queryFn: () => listFlows(wallet!), enabled: !!routeOwn && !!wallet });
+  const own = routeOwn ? owned.data?.find(row => row.id === id) : undefined;
 
   const shared = useQuery({
     queryKey: ["creator-flow-public", id],
     queryFn: () => fetchPublicFlow(id),
-    enabled: !own && !!id,
+    enabled: !routeOwn && !!id,
     retry: 1,
   });
 
-  const flow = own
-    ? { name: own.name, nodes: own.data?.nodes ?? [], edges: own.data?.edges ?? [], isPublic: own.isPublic }
+  const flow = routeOwn
+    ? own ? { name: own.name, nodes: own.data?.nodes ?? [], edges: own.data?.edges ?? [], isPublic: own.isPublic } : null
     : shared.data
       ? { name: shared.data.name, nodes: shared.data.nodes ?? [], edges: shared.data.edges ?? [], isPublic: true }
       : null;
@@ -96,7 +102,7 @@ export default function CreatorFlowViewScreen() {
       />
       {!flow ? (
         <View style={styles.center}>
-          {shared.isError ? (
+          {shared.isError || routeOwn && !owned.isLoading ? (
             <Text style={styles.muted}>{t("creatorFlow.notFound")}</Text>
           ) : (
             <ActivityIndicator color="#A1A1AA" />
@@ -115,9 +121,13 @@ export default function CreatorFlowViewScreen() {
               <Text style={styles.copyText}>{t("creatorFlow.openACopy")}</Text>
             </Pressable>
           )}
-          <FlowNodeList nodes={flow.nodes} edges={flow.edges} />
+          {own && wallet ? <>
+            <Pressable accessibilityRole="button" style={styles.copyBtn} onPress={() => setEditing(true)}><Text style={styles.copyText}>{t('creatorFlow.formAuthor')}</Text></Pressable>
+            <OwnedFlowMedia wallet={wallet} nodes={flow.nodes} edges={flow.edges} />
+          </> : <FlowNodeList nodes={flow.nodes} edges={flow.edges} />}
         </ScrollView>
       )}
+      {editing && own && wallet && <FlowAuthor key={`${wallet}:${own.id}`} wallet={wallet} flow={own} onClose={() => setEditing(false)} onSaved={() => { void qc.invalidateQueries({ queryKey: ['creator-flows', wallet] }); }} />}
     </View>
   );
 }
