@@ -30,6 +30,13 @@ export interface GovernanceProposal {
   updated_at: string;
   /** When voting closes. Null on rows that predate the seven-day window. */
   voting_ends_at?: string | null;
+  /** The short public number web shares links with: dehub.io/app/governance/<n>. */
+  proposal_number?: number | null;
+}
+
+/** Whether a link's proposal key is the public number rather than the uuid. */
+export function isProposalNumber(key: string | null | undefined): key is string {
+  return !!key && /^\d{1,9}$/.test(key);
 }
 
 /** Whether a proposal still takes votes, by the same rule the server applies. */
@@ -79,12 +86,17 @@ export async function getProposals(tab: GovernanceTab): Promise<GovernancePropos
   return proposals.filter((p) => verdictOf(p) === tab);
 }
 
-/** One proposal by id, for the detail screen and a notification's deep link. */
-export async function getProposal(id: string): Promise<GovernanceProposal | null> {
+/**
+ * One proposal by its uuid or its public number, for the detail screen and a
+ * link's card. Web shares proposals as /app/governance/<n>; asking for that
+ * number as the uuid is a database error, so every shared link opened here on
+ * "Couldn't load proposals".
+ */
+export async function getProposal(key: string): Promise<GovernanceProposal | null> {
   const { data, error } = await supabase
     .from("governance_proposals")
     .select("*")
-    .eq("id", id)
+    .eq(isProposalNumber(key) ? "proposal_number" : "id", isProposalNumber(key) ? Number(key) : key)
     .maybeSingle();
   if (error) throw error;
   return (data as GovernanceProposal | null) ?? null;

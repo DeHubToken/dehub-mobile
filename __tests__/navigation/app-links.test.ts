@@ -111,6 +111,13 @@ describe('/app routes', () => {
     expect(target(resolve('/app/superpowers')).name).toBe('SuperPowers');
   });
 
+  it('opens a proposal from the numbered link web shares, with or without /app', () => {
+    expect(target(resolve('/app/governance/1')).params).toEqual({ proposalId: '1' });
+    expect(target(resolve('/governance/1')).name).toBe('GovernanceProposal');
+    expect(target(resolve('/governance/1?comment=c2')).params).toEqual({ proposalId: '1', commentId: 'c2' });
+    expect(target(resolve('/governance')).name).toBe('Governance');
+  });
+
   it('folds /app/usernames, /app/accounts and /app/packs onto their bare routes', () => {
     const usernames = target(resolve('/app/usernames?handle=mal'));
     expect(usernames.name).toBe('Usernames');
