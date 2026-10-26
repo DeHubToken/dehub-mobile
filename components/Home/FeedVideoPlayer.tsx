@@ -72,7 +72,7 @@ import { getAppPrefs, useAppPrefs } from "../../hooks/useAppPrefs";
 import { useAutoplayPausePrompt } from "../../hooks/useAutoplayPausePrompt";
 import { registerVideoClock } from "../../libs/video-clock";
 import { useVideoSegments, segmentAt } from "../../hooks/useVideoSegments";
-import { useMediaAspect, getMeasuredMediaAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
+import { useMediaAspect, getMeasuredMediaAspect, knownVideoAspect, rememberVideoAspect, clampAspect, THIN_MIN_RATIO } from "../../hooks/useMediaAspect";
 import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
 import { videoQuarterTurn } from '../../libs/video-display-aspect';
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
@@ -561,7 +561,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
   const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
   const posterAspect = getMeasuredMediaAspect(thumbnail);
-  const measuredAspect = videoAspect ?? posterAspect;
+  // Until this player reports a size, the shape the clip had last time wins
+  // over the thumbnail, exactly as the poster row reads it (useMediaAspect).
+  // Using the thumbnail alone flipped the card to the cover's shape each time
+  // a row went from poster to player, and back once the clip loaded: the
+  // jump on every tab swipe and every scroll a video entered.
+  const measuredAspect = videoAspect ?? knownVideoAspect(tokenId) ?? posterAspect;
   const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage,
     measuredAspect == null ? undefined : clampAspect(measuredAspect, THIN_MIN_RATIO));
   const { isMinimal: minimalTheme } = useAppTheme();
