@@ -52,6 +52,9 @@
     "title": "הסצנה שלך. אתה בדמות אחרת."
   },
   "maintenance": {
+    "checking": "בודק...",
+    "title": "קצת עבודה.\nDeHub טוב יותר.",
+    "brand": "DeHub",
     "checkFailed": "לא הצלחנו לבדוק את הזמינות. צריך לנסות שוב.",
     "community": "הקהילה קודמת לכל. תמיד.",
     "description": "אנחנו מבצעים תחזוקה. כדאי לבדוק שוב בקרוב.",
@@ -126,6 +129,43 @@
     "useNamed": "שימוש ב -{{name}}"
   },
   "copy": {
+    "0d59864b14b3": " kbps",
+    "1205929886b3": "👑 DeHub אקסטרה",
+    "4e857158a7e8": "אופ-ארט",
+    "6da707c478f8": "日本語 (יפנית)",
+    "8d771bfa99a9": "BNB Testnet",
+    "ca01201adaea": "🍎 בסגנון Apple Keynote",
+    "ea81bf0fd464": "Русский (רוסית)",
+    "fb673c9c986e": "🧑‍💻 משימות תגמול של DeHub",
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "1a00975a0ac1": "@channel",
+    "1f185710f28a": "DeHub v",
+    "2f51108189d2": "PPV: ",
+    "419f1a83fab2": "yourname.eth",
+    "450683b66da4": " SRT / VTT",
+    "53e6cdc30765": "you@example.com",
+    "5b560f273940": "🛰️ DePIN",
+    "6bdf24e0e55f": "RPM $",
+    "713d24d02e26": "XXXX-XXXX",
+    "7b17fb0bd173": "name@example.com",
+    "8d6f0c73fbaf": "RTMP:",
+    "af4707aebdfa": "OpenAI $",
+    "b4c9a289323b": "user@example.com",
+    "bd4ef74463ac": "BUSD",
+    "bd9e3879bc60": "PPV",
+    "bf4151fc970f": "WORK_ADMIN_ARBITERS",
+    "bf640b85d499": "dehub.io · ",
+    "ca7842e53ac8": "dehub.io",
+    "b602b7029be6": "Pt",
+    "b62c681738d1": "Cu",
+    "46c403a10f6b": "סקאוס",
+    "7209e5080253": "🎥 יצירת וידאו AI",
+    "93100fc44c0a": "@שם_משתמש",
+    "a4d1abed0b2b": "מוד",
+    "d577cb7ddd24": "אי-גירל",
+    "f461766bfa0f": "אח קטן",
+    "fea1030abae5": "🖼️ יצירת תמונות AI",
     "002286513398": "אין לך הרשאות לנהל אירועים",
     "00b3a926f704": "ביטול הבקשה נכשל",
     "00c0b03fcfa2": "משיכה",
@@ -1834,7 +1874,7 @@
     "5441d9dc54f6": "🌉 גשר טוקנים",
     "55656b5e434f": "סגור חיפוש",
     "56196e073a9a": "עוזר שיחה המבוסס על AI שיכול לענות על שאלות, ליצור תמונות, ליצור וידאו ולעזור בתכונות הפלטפורמה.",
-    "565339bc4d33": "OK",
+    "565339bc4d33": "אישור",
     "56acc0370df9": "נהל את העדפות החשבון שלך, השפה, הגדרות הפרטיות והמערכת.",
     "56dc2b3bb2e5": "הטרדה או בריונות",
     "57383cdc46dd": "מגן אנונימי",
@@ -3257,7 +3297,7 @@
     "notifAnnouncementsDesc": "חדשות פלטפורמה ועדכוני תכונות",
     "quietHoursPauseDesc": "השהה התראות דחיפה בשעות מוגדרות",
     "quietHoursFrom": "מ",
-    "quietHoursTo": "To",
+    "quietHoursTo": "לכבוד",
     "quietHoursSilencedNote": "התראות דחיפה יושבתו בשעות אלו.",
     "notifInApp": "בתוך האפליקציה",
     "notifPush": "דחיפה",
@@ -3559,6 +3599,7 @@
     "themeColorBrandFailed": "לא הצלחנו לקרוא צבעים מתמונת הפרופיל שלך"
   },
   "common": {
+    "remove": "הסר",
     "refresh": "רענן",
     "mute": "השתק",
     "unmute": "בטל השתקה",
@@ -3763,6 +3804,7 @@
     "aiOverview": "סקירה כללית על בינה מלאכותית"
   },
   "filters": {
+    "ppv": "PPV",
     "sort": "מיון",
     "category": "קטגוריה",
     "searchCategories": "חפש קטגוריות...",
@@ -4148,6 +4190,7 @@
     "transferDhb": "העברת אסימונים"
   },
   "wallet": {
+    "evmAddressLabel": "EVM",
     "solanaSendUnavailable": "שליחה ב - Solana עדיין לא זמינה",
     "connectUnavailable": "חיבור ארנק אינו זמין בגרסה זו — שחזרו באמצעות ביטוי השחזור במקום זאת.",
     "connectedWrongWallet": "הארנק הזה הוא {{connected}}, לא {{address}}. שום דבר לא השתנה.",
@@ -4427,6 +4470,7 @@
     "provisional": "זמני"
   },
   "explorePage": {
+    "ppv": "PPV",
     "searchPlaceholder": "חפש אנשים, פוסטים או תוכן...",
     "filters": "מסננים",
     "clearAll": "נקה הכל",
@@ -4517,7 +4561,7 @@
     "requests": "בקשות",
     "shipped": "נשלח",
     "all": "הכל",
-    "uiUx": "UI/UX",
+    "uiUx": "עיצוב משתמש/עיצוב חוויית משתמש",
     "performance": "ביצועים",
     "newFeature": "תכונה חדשה",
     "bugFix": "תיקון באג",
@@ -5104,6 +5148,23 @@
       "viewPost": "הצגת הפוסט"
     },
     "tasks": {
+      "examples": "לפרסם פעם ביום על: מוזיקה עצמאית\nסגנון: סקרן, תמציתי ושיחתי\nלעשות לייק לעד 2 פוסטים אחרונים ביום על: מוזיקה, הופעות חיות, ויניל",
+      "eachHelp": "כל סוכן שנבחר מבצע את המשימה המלאה.",
+      "eachMode": "כל נציג",
+      "pacing": {
+        "help": "מתחיל באופן אוטומטי עם Sentient כבוי. קיצוב תומך בפעולה 'אהבתי' או 'לא אהבתי' בחלון פוסט קבוע: כל סוכן מגיב לכל הודעה תואמת, פנייה אחת בכל פעם. הפנייה הראשונה מתחילה עכשיו; מגבלות השירות יכולות להאריך את זמן הסיום.",
+        "hours": "מעל {{count}} שעות",
+        "independent": "משימות שנקבעו באופן זמני פועלות בעצמאות. בקשה להערכות לא פועל להפעלת פרסום אוטונומי.",
+        "label": "מתי לפעול",
+        "now": "באופן מיידי"
+      },
+      "resumeSwarm": "המשך נחיל",
+      "sharedMode": "עבודה משותפת",
+      "cancelSwarm": "ביטול שרצת",
+      "clearSelection": "מחיקת הבחירה",
+      "distribution": "חלוקה",
+      "pauseSwarm": "הפסקת השרצת",
+      "selectAll": "בחירה בכל הנכסים",
       "action": "פעולה",
       "activity": "פעילות אחרונה",
       "comment": "תגובה",
@@ -5142,6 +5203,7 @@
       "run": "הפעל בקשה",
       "runSwarm": "הפעל נחיל",
       "window": {
+        "reply": "השב",
         "actions": "פעולות",
         "custom": "התאמה אישית",
         "from": "מאת",
@@ -5710,6 +5772,7 @@
     "searchDehubFor": "חיפוש \"{{query}}\" ב-DeHub"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "דווח על תגובה",
     "reportCommentTitle": "דיווח על תגובה זו",
     "reportCommentDescription": "ספרו לנו מה לא בסדר בתגובה הזו והמנהלים שלנו יבדקו אותה.",
@@ -6323,6 +6386,8 @@
       "slowMode": "מצב איטי: הודעה אחת בכל {{interval}}"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "סגירת מנהל המערכת",
       "cancel": "ביטול",
       "dismissAdmin": "סגירת מנהל המערכת",
@@ -6871,6 +6936,7 @@
     "priceRange": "בין {{min}} ל-{{max}} אסימונים."
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "עריכה",
     "listingUpdated": "הרשימה עודכנה!",
     "saveListing": "שמור שינויים",
@@ -7690,6 +7756,7 @@
     "insufficientOnChain": "יתרה לא מספיקה בשרשרת עבור טוקן זה"
   },
   "converter": {
+    "tileSourceKind": "{{source}} · {{kind}}",
     "title": "ייבוא סרטון",
     "subtitle": "הדבק קישור לסרטון שכבר בבעלותך והוא יפורסם כפוסט בפרופיל שלך. הקטר כמה שתרצה — הם רצים אחד אחרי השני ברקע.",
     "placeholder": "הדבק קישור לסרטון",
@@ -7758,6 +7825,7 @@
     }
   },
   "earnings": {
+    "ppv": "PPV",
     "filter24h": "24ש",
     "filter7d": "7י",
     "filter30d": "30י",
@@ -9342,6 +9410,7 @@
     "discordOptional": "Discord (אופציונלי)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@you, tiktok.com/@you, vimeo.com/you...",
     "clearAll": "ניקוי הכול",
     "costsIntro": "כל וידאו זול יותר מהקודם — השיעור יורד ככל שהקבוצה גדלה, כך שהמחיר למטה הוא מה שכל כמות כזו עולה בסך הכל.",
     "costsIntroShort": "כל וידאו זול יותר מהקודם — השיעור יורד ככל שהקבוצה גדלה. המחיר המדויק מוצג לפני שאתה משלם.",
@@ -10131,6 +10200,7 @@
       "restore": "חזר את הרקע"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}שניות",
       "copy": {
         "after": "אחרי",
         "afterHint": "הצג את התוצאה.",
@@ -10291,7 +10361,7 @@
       "duration": "משך הדף",
       "durationBatchHint": "הרחבה מחזיקה עדיין בגרפיקה שמגיעה לסוף הדף. קיצור קטעי גוזמים; דפים מאוחרים יותר משתנים. המדיה שומרת על מהירות ההשמעה שלה.",
       "durationsUpdated": "תזמון מעודכן בדפי {{count}}",
-      "go": "Go",
+      "go": "לך",
       "hiddenBadge": "מוסתר במצגת",
       "hidePresentation": "הסתרה במצגת",
       "jump": "מעבר לדף",
@@ -10344,6 +10414,7 @@
       "failed": "לא ניתן ליצור כתוביות לקליפ הזה."
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "עיצוב חדש",
       "yourDesigns": "העיצובים שלך",
       "noDesigns": "העיצובים שתיצור נשמרים בטלפון הזה ומופיעים כאן.",
@@ -10685,6 +10756,7 @@
       "pause": "השהה"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "וידאו",
       "sound": "צליל",
       "shape": "צורה",
@@ -10729,6 +10801,7 @@
       "tooLarge": "הקובץ גדול מדי עבור העורך. המגבלה היא 400 MB."
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "תנועה",
       "hint": "פריימים מרכזיים גורמים לשכבה לזוז לאורך זמן. הוסיפו אחד כאן, הזיזו את ראש ההפעלה, שנו את השכבה, והיא תחליק ביניהם.",
       "outside": "הזיזו את ראש ההפעלה מעל השכבה הזו כדי להוסיף או לשנות פריימים מרכזיים.",
@@ -11907,6 +11980,8 @@
     }
   },
   "creator": {
+    "presetExtraScreenprintPosterHint": "צורות נועזות ושלושה צבעי דיו שטוחים",
+    "presetExtraMossMicroWorldName": "עולם פטריות",
     "editInTimeline": "עריכה בזמן",
     "presetClay3dName": "חומר טון",
     "presetExtraArchitectureLightChangeHint": "עננים רכים משנים אור בסצנה התייחסות",
@@ -12331,7 +12406,7 @@
     "doorImageNote": "תמונות, פוסטרים ועריכות",
     "doorVideoNote": "קליפים מטקסט או מתמונה",
     "doorAudioNote": "כלי קול בחינם",
-    "door3d": "3D",
+    "door3d": "תלת מימד",
     "door3dNote": "מודלים מהנחיה או מתמונה",
     "doorAgentsNote": "צ׳אט בחינם",
     "editorNote": "ערוך על ציר זמן",
@@ -12742,7 +12817,7 @@
     "transferIncomplete": "העברת האסימון לא הושלמה. תישאל שוב לפני הפוסט הבא שלך בתשלום."
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "יצירת GIF",
     "searchEmoji": "חיפוש אימוג'י",
     "noEmoji": "לא נמצאו אימוג'י",
     "searchResults": "תוצאות חיפוש",
@@ -13445,6 +13520,7 @@
     "step3Body": "כל אחד יכול לפתוח את הקישור. השב בצ'אט כדי לשנות משהו."
   },
   "depin": {
+    "title": "DePin",
     "becomeANode": "הפוך לצומת",
     "ctaBody": "שחזור המקור, מדיה מוצפנת ומוגנת ועבודה מאומתת קודמים לתגמולים של צומת ציבורי.",
     "ctaTitle": "הפעל רק כאשר הכשל בטוח.",
@@ -13727,6 +13803,7 @@
     "checkoutUnavailable": "הצ'ק - אאוט לא זמין כרגע. יש לנסות שוב מאוחר יותר."
   },
   "pricing": {
+    "sso": "SSO",
     "perSeatMonthly": "לכל מושב/חודש",
     "plansForEveryWorkflow": "תוכניות לכל זרימת עבודה",
     "findTheRightFit": "מאנשים בודדים ועד לצוותי enterprise, מצא את ההתאמה הנכונה",

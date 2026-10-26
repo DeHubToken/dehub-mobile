@@ -1,5 +1,6 @@
 {
   "accountConnect": {
+    "generate": "用你嘅積分，確認嘅付款或合資格嘅免費圖像生成媒體",
     "account": "公開瀏覽唔需要帳戶。連結你嘅 DeHub 帳戶嚟管理你嘅個人檔案同埋建立或者發佈內容。",
     "allow": "允許連線",
     "body": "連結你嘅帳戶嚟管理你嘅個人檔案、發佈文章同埋喺即時通訊度建立內容。連線會喺24小時內到期。你可以隨時斷開連線。",
@@ -51,6 +52,7 @@
     "title": "您的場景。一個不同的你。"
   },
   "maintenance": {
+    "title": "少少工作。&#10;一個更好嘅 DeHub 。",
     "brand": "去中心",
     "checkFailed": "我哋查唔到有冇位。唔該再試多次。",
     "checking": "檢查中...",
@@ -62,6 +64,7 @@
     "retry": "再試多次"
   },
   "quickActions": {
+    "send": "發送錯誤報告",
     "attachScreenshot": "附上螢幕截圖",
     "capturing": "捕捉緊呢個頁面 …",
     "deviceNotice": "系統會自動包括頁面、裝置、型號同埋應用程式或者瀏覽器詳情。",
@@ -79,6 +82,7 @@
     "title": "頁面選項"
   },
   "twitchMirror": {
+    "retry": "重試同步轉播",
     "auto": "自動鏡像我嘅 Twitch 串流",
     "connect": "連接 Twitch",
     "consent": "只連接你擁有嘅頻道。啟用鏡像功能會授權 DeHub 喺你現有嘅錄音津貼下轉播你嘅廣播同埋儲存重播。",
@@ -96,6 +100,8 @@
     "waiting": "準備好下次 Twitch 廣播啦"
   },
   "viralTemplates": {
+    "preview": "播放 {{name}} 預覽",
+    "useNamed": "用 {{name}}",
     "all": "全部",
     "back": "返回模板",
     "browse": "瀏覽所有 {{count}} 範本",
@@ -123,6 +129,35 @@
     "use": "使用這個模板"
   },
   "copy": {
+    "0d59864b14b3": " kbps",
+    "00c90f4b707a": "SRT / VTT",
+    "1226cd46b31a": "PPV ",
+    "2f51108189d2": "PPV: ",
+    "450683b66da4": " SRT / VTT",
+    "50a45e647dbb": "REC",
+    "5b560f273940": "🛰️ DePIN",
+    "713d24d02e26": "XXXX-XXXX",
+    "8d6f0c73fbaf": "RTMP:",
+    "bd4ef74463ac": "BUSD",
+    "bf640b85d499": "dehub.io · ",
+    "e63ffac3f5e5": "PEPE",
+    "1a00975a0ac1": "@ 頻道",
+    "1aa9573705bf": "留言讚好",
+    "3010b02a4030": "一個即時音訊室，用戶可以喺嗰度講嘢、聽同埋舉手加入對話。",
+    "94a6a84d8cbc": "索爾斯坎",
+    "a9805864ceb9": "包含一張或者多張圖片嘅帖子。圖像會以 NFT 嘅形式儲存喺鏈上面，並且有獨特嘅令牌 ID 。",
+    "b4c9a289323b": "用戶 @ 例子 . com",
+    "b602b7029be6": "Pt",
+    "bb9a702dd998": "後勤管理",
+    "bf4151fc970f": "工作管理仲裁器",
+    "c6db0784ded4": "🥽 V/AR 配置文件中心",
+    "e17602050e02": "社交媒體我哋",
+    "fdd9e13d471c": "修改你建立嘅帖子嘅標題或者描述。只有原始創作者先可以編輯佢哋嘅帖子。",
+    "15ef844f362f": "代幣ID",
+    "5190ff487713": "質押",
+    "a4d1abed0b2b": "管理員",
+    "bc7b4fda29f9": "投票",
+    "f4697afb34f4": "按餘額、寄送的點數、收到的點數、追蹤者等排名的用戶。定期更新。",
     "002286513398": "你沒有權限管理活動",
     "00b3a926f704": "取消請求失敗",
     "00c0b03fcfa2": "已提款",
@@ -4276,6 +4311,7 @@
   },
   "notifications": {
     "custom": {
+      "stageLiveNamed": "{{name}} 嘅階段 “{{title}}” 係直播緊 — 點擊聽聽",
       "bountyApplied": "{{name}} 應用咗喺你嘅獎勵度",
       "bountyAppliedNamed": "{{name}} 應用咗喺你嘅獎勵上面「 {{title}} 」",
       "bountyReply": "{{name}} 回覆咗你嘅賞金",
@@ -4496,6 +4532,7 @@
     "global": "全球"
   },
   "features": {
+    "promptSubtitle": "用提示建構 DeHub",
     "promptAttach": "附上圖片",
     "promptAttachment": "附件 {{number}}",
     "promptDetails": "可選嘅詳情",
@@ -4524,7 +4561,7 @@
     "requests": "請求",
     "shipped": "已推出",
     "all": "全部",
-    "uiUx": "UI/UX",
+    "uiUx": "用戶介面 / 用戶體驗",
     "performance": "效能",
     "newFeature": "新功能",
     "bugFix": "修復錯誤",
@@ -5085,6 +5122,8 @@
       "empty": "仲未有嘢。佢好快就會入住。",
       "help": "畀呢個代理自己生活。佢會用自己嘅聲音保留自己嘅時間、帖子、讚好同回覆，同埋夜晚瞓覺。",
       "kind": {
+        "comment": "已留言",
+        "reply": "已回覆",
         "error": "咁樣唔好使喇",
         "like": "鍾意咗個帖子",
         "post": "發佈咗",
@@ -5109,6 +5148,23 @@
       "viewPost": "睇吓帖子"
     },
     "tasks": {
+      "examples": "每日發一次帖，講：獨立音樂\n風格：好奇、精簡、好似傾偈咁\n每日最多讚 2 個最近嘅帖，講：音樂、現場表演、黑膠",
+      "eachHelp": "每個選定嘅代理都會執行全部任務。",
+      "eachMode": "每個代理",
+      "pacing": {
+        "help": "喺閂咗「感知」嗰陣自動啟動。步伐支援喺固定嘅帖子窗口上面做一個鍾意或者唔鍾意嘅動作：每個代理都會對每個匹配嘅帖子作出反應，一次過轉一轉。第一轉由而家開始；服務限制可以延長完成時間。",
+        "hours": "超過 {{count}} 個鐘",
+        "independent": "提示任務可以獨立喺 Sentient 模式下執行。要求讚好唔會開啟自主發佈。",
+        "label": "幾時行動",
+        "now": "即刻"
+      },
+      "resumeSwarm": "恢復成群",
+      "sharedMode": "共享工作",
+      "cancelSwarm": "取消蜂擁",
+      "clearSelection": "清除選擇",
+      "distribution": "分派出去",
+      "pauseSwarm": "暫停蜂擁",
+      "selectAll": "揀晒",
       "action": "行動",
       "activity": "最近嘅活動",
       "comment": "評論",
@@ -5429,6 +5485,7 @@
     "passkeyBackupHint": "你嘅帳戶儲存在呢部裝置嘅密碼匙度。喺大部分手機上，佢會同你嘅 Google 或 Apple 帳戶同步，你仲可以喺設定度加入密碼備份。"
   },
   "careers": {
+    "instagram": "Instagram",
     "title": "加入DeHub",
     "subtitle": "加入建設去中心化社交媒體未來嘅團隊",
     "intro": "我哋搵緊有熱情嘅人加入下一波社交媒體浪潮，將創作者同社區放喺首位。所有職位都係完全遠程、彈性工時。",
@@ -5711,6 +5768,7 @@
     "searchDehubFor": "喺 DeHub 搜尋「{{query}}」"
   },
   "comments": {
+    "rowA11yLabel": "{{name}}, {{time}}: {{text}}",
     "reportComment": "舉報留言",
     "reportCommentTitle": "舉報此留言",
     "reportCommentDescription": "請告訴我們此留言有何問題，我們的管理員將會審查。",
@@ -6191,6 +6249,8 @@
   },
   "communities": {
     "existingPost": {
+      "add": "加入現有帖文",
+      "remove": "從社群移除",
       "added": "帖子加入咗社群",
       "adding": "加緊 …",
       "failed": "唔該更新社區文章，試吓再次。",
@@ -6322,6 +6382,8 @@
       "slowMode": "慢速模式：每個 {{interval}} 一個訊息"
     },
     "manage": {
+      "reasonCounter": "{{len}}/200",
+      "restrictionWithReason": "{{state}} — {{reason}}",
       "dismissAdminTitle": "解僱管理員",
       "cancel": "取消",
       "dismissAdmin": "解僱管理員",
@@ -6565,7 +6627,7 @@
       "verifiedViews": "驗證咗嘅觀看次數",
       "viewsAccepted": "{{count}} 已驗證瀏覽 · {{units}} × 1，000次瀏覽",
       "viewSource": "睇數來源",
-      "viewSourceUrl": "View count source URL"
+      "viewSourceUrl": "瀏覽次數來源 URL"
     },
     "title": "賞金",
     "bounty": "賞金",
@@ -6870,6 +6932,7 @@
     "priceRange": "介於 {{min}} 和 {{max}} 個代幣之間。"
   },
   "stores": {
+    "podUrlPlaceholder": "https://…",
     "edit": "修改",
     "listingUpdated": "樓盤更新咗！",
     "saveListing": "儲存變更",
@@ -7176,6 +7239,7 @@
     "kingsGambitBoardEmpty": "仲未有網上對局完成。開個挑戰啦。"
   },
   "videoLooks": {
+    "vhs": "VHS",
     "button": "鏡頭效果",
     "title": "效果",
     "hint": "喺條片離開呢部裝置之前套用 — 觀眾睇到嘅同你喺度睇到嘅一模一樣。",
@@ -9342,6 +9406,7 @@
     "discordOptional": "Discord (可選)"
   },
   "migrate": {
+    "placeholder": "youtube.com/@你, tiktok.com/@你, vimeo.com/你…",
     "clearAll": "清除全部",
     "costsIntro": "每個視頻都比前一個便宜 — 批量越大費率越低，下面的價格是該數量視頻的總費用。",
     "costsIntroShort": "每個視頻都比前一個便宜 — 批量越大費率越低。確切的價格會在你付款前顯示。",
@@ -10131,7 +10196,13 @@
       "restore": "還原背景"
     },
     "videoTemplates": {
+      "duration": "{{seconds}}s",
       "copy": {
+        "answer": "呢個係答案",
+        "before": "之前",
+        "yourTurn": "輪到你喇",
+        "bePart": "係你嘅一部分",
+        "secondPick": "你嘅第二選擇",
         "after": "之後",
         "afterHint": "結果",
         "announcement": "你嘅大公告",
@@ -10183,6 +10254,7 @@
       "heading": "影片入門",
       "hint": "揀一個格式，編輯字詞，同埋加入你自己嘅片段。",
       "names": {
+        "mythFact": "神話同事實",
         "announcement": "公佈",
         "beforeAfter": "之前同之後",
         "countdown": "倒數",
@@ -10196,6 +10268,8 @@
       "useFormat": "使用 {{aspect}} 影片格式"
     },
     "highlights": {
+      "created": "高亮編輯已經儲存。原始項目保留。",
+      "limit": "使用來源語音不超過 10 分鐘。一個非常長的連續轉錄必須先分割。",
       "captionHint": "只有現有 Caption 覆蓋的對話才會被考慮。",
       "changed": "源項目改咗。再次搵亮點。",
       "chatCaptionsMissing": "這個影片目前沒有 Caption。再問一次但不使用「使用現有 Caption」來為它進行轉錄。",
@@ -10308,6 +10382,7 @@
       "visibilityHint": "隱藏嘅頁面仍然可以編輯，同埋可以下載。"
     },
     "captions": {
+      "replaceCount": "喺 {{total}} 段字幕入面取代",
       "captionText": "字幕文字",
       "emptyText": "空白嘅字幕",
       "findText": "喺字幕入面搵",
@@ -10335,6 +10410,7 @@
       "failed": "呢段片整唔到字幕。"
     },
     "app": {
+      "dimensions": "{{width}} × {{height}}",
       "newDesign": "新設計",
       "yourDesigns": "你嘅設計",
       "noDesigns": "你整嘅設計會儲存喺呢部手機，並喺度顯示。",
@@ -10676,6 +10752,7 @@
       "pause": "暫停"
     },
     "video": {
+      "speedValue": "{{value}}×",
       "video": "影片",
       "sound": "聲音",
       "shape": "形狀",
@@ -10720,6 +10797,7 @@
       "tooLarge": "呢個檔案對編輯器嚟講太大喇，上限係 400 MB。"
     },
     "motion": {
+      "segment": "{{from}} → {{to}}",
       "title": "動態",
       "hint": "關鍵影格令圖層隨時間移動。喺呢度加一個，移動播放頭，改吓個圖層，佢就會喺關鍵影格之間順滑過渡。",
       "outside": "將播放頭移到呢個圖層上面，就可以新增或者修改關鍵影格。",
@@ -10763,6 +10841,11 @@
       }
     },
     "live": {
+      "receiveEdits": "接收即時編輯",
+      "stopEdits": "停止即時編輯",
+      "personalCopy": "儲存個人副本",
+      "receiving": "接收緊即時編輯",
+      "sharing": "分享緊即時編輯",
       "paused": "即時編輯暫停咗",
       "privateHint": "單單存在就唔會分享任何編輯。分享編輯即時上載新來源私下。儲存到雲端會保留永久版本。",
       "retryRecovery": "重試復原",
@@ -11893,6 +11976,9 @@
     }
   },
   "creator": {
+    "presetOpenForestAerialName": "森林空中",
+    "presetExtraMacroFocusSweepName": "宏觀焦距掃描",
+    "presetMerchMockupName": "商品樣板",
     "editInTimeline": "在時間軸上編輯",
     "presetExtraArchitectureLightChangeHint": "柔和的雲彩改變參考場景的光線",
     "presetExtraArchitectureLightChangeName": "建築光線變化",
@@ -12727,7 +12813,7 @@
     "transferIncomplete": "代幣轉移未完成。喺你下一個付費帖子之前，我哋會再問你一次。"
   },
   "emojiPicker": {
-    "tabGif": "GIF",
+    "tabGif": "GIF動圖",
     "searchEmoji": "搜尋表情符號",
     "noEmoji": "搵唔到表情符號",
     "searchResults": "搜尋結果",
@@ -13285,6 +13371,7 @@
     "subtitle": "自訂表情符號、貼圖和 GIF，由徽章持有者製作。將任何 pack 加入你的選擇器，並在聊天、留言和反應中使用。",
     "tabStickers": "貼圖",
     "tab": {
+      "gif": "GIF",
       "emoji": "表情符號",
       "sticker": "貼圖"
     },
@@ -13308,6 +13395,7 @@
     "tierTable": "每個徽章階級可獲得的內容",
     "tierTableHint": "Pack 是每種計算的。其他欄位顯示每個 pack 可容納的項目數量。如果你的階級下降，你的 pack 會保留，但你無法新增超過新限制的項目。",
     "col": {
+      "gifs": "GIF",
       "tier": "階級",
       "packs": "包",
       "emoji": "表情符號",

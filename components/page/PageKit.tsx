@@ -65,8 +65,8 @@ export function ThemeIcon({ icon, size = 28, style }: { icon: string; size?: num
 export interface PageTab<T extends string = string> {
   id: T;
   label: string;
-  /** Theme artwork key or a node. */
-  icon?: string | React.ReactNode;
+  /** Theme artwork key, a node, or a node drawn in the chip's ink. */
+  icon?: string | React.ReactNode | ((ink: string) => React.ReactNode);
   count?: number;
 }
 
@@ -76,12 +76,19 @@ export function PageTabs<T extends string>({
   onChange,
   size = "md",
   style,
+  beforeTabs,
+  iconOnly,
 }: {
   tabs: PageTab<NoInfer<T>>[];
   value: T;
   onChange: (id: NoInfer<T>) => void;
   size?: "sm" | "md";
   style?: StyleProp<ViewStyle>;
+  /** Leading controls on the same row, before the category tabs. */
+  beforeTabs?: React.ReactNode;
+  /** Icon chips that share the row's width, like web's Explore island. The
+   *  label is still read out to screen readers. */
+  iconOnly?: boolean;
 }) {
   const c = useKitColors();
   const inHeader = React.useContext(PageHeaderContext);
@@ -91,42 +98,47 @@ export function PageTabs<T extends string>({
       horizontal
       showsHorizontalScrollIndicator={false}
       style={inHeader ? { height, flexGrow: 0 } : undefined}
-      contentContainerStyle={[styles.tabsRow, style as object, inHeader ? { paddingHorizontal: 0, paddingVertical: 0, paddingTop: 0, paddingBottom: 0 } : undefined]}
+      contentContainerStyle={[styles.tabsRow, style as object, inHeader ? { paddingHorizontal: 0, paddingVertical: 0, paddingTop: 0, paddingBottom: 0 } : undefined, iconOnly ? { flexGrow: 1 } : undefined]}
       accessibilityRole="tablist"
     >
+      {beforeTabs}
       {tabs.map((tab) => {
         const active = tab.id === value;
         return (
-          // The fill sits on an inner view: the theme control paint
-          // (libs/jsx/controls.js) repaints neutral fills on pressables.
-          <Pressable
-            key={tab.id}
-            onPress={() => onChange(tab.id)}
-            accessibilityRole="tab"
-            accessibilityState={{ selected: active }}
-            style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1 })}
-          >
-            <View
-              style={[
-                styles.chip,
-                {
-                  height,
-                  paddingHorizontal: size === "sm" ? 10 : 13,
-                  backgroundColor: active ? c.activeBg : c.chipBg,
-                  borderWidth: c.isMinimal && !active ? 1 : 0,
-                  borderColor: c.hairline,
-                },
-              ]}
+          <React.Fragment key={tab.id}>
+            {/* The inner view keeps theme material separate from the pressable. */}
+            <Pressable
+              onPress={() => onChange(tab.id)}
+              accessibilityRole="tab"
+              accessibilityLabel={iconOnly ? tab.label : undefined}
+              accessibilityState={{ selected: active }}
+              style={({ pressed }) => ({ opacity: pressed ? 0.8 : 1, ...(iconOnly ? { flexGrow: 1 } : null) })}
             >
-              {typeof tab.icon === "string" ? <ThemeIcon icon={tab.icon} size={16} /> : tab.icon ?? null}
-              <Text style={[styles.chipLabel, { fontSize: size === "sm" ? 12 : 13, color: active ? c.activeInk : c.chipInk }]}>
-                {tab.label}
-              </Text>
-              {typeof tab.count === "number" ? (
-                <Text style={[styles.chipLabel, { opacity: 0.6, fontSize: 12, color: active ? c.activeInk : c.chipInk }]}>{tab.count}</Text>
-              ) : null}
-            </View>
-          </Pressable>
+              <View
+                style={[
+                  styles.chip,
+                  {
+                    height,
+                    paddingHorizontal: size === "sm" ? 10 : 13,
+                    backgroundColor: active ? c.activeBg : c.chipBg,
+                    borderWidth: c.isMinimal && !active ? 1 : 0,
+                    borderColor: c.hairline,
+                  },
+                  iconOnly && styles.iconChip,
+                ]}
+              >
+                {typeof tab.icon === "string" ? <ThemeIcon icon={tab.icon} size={16} /> : typeof tab.icon === "function" ? tab.icon(active ? c.activeInk : c.chipInk) : tab.icon ?? null}
+                {iconOnly ? null : (
+                  <Text style={[styles.chipLabel, { fontSize: size === "sm" ? 12 : 13, color: active ? c.activeInk : c.chipInk }]}>
+                    {tab.label}
+                  </Text>
+                )}
+                {typeof tab.count === "number" ? (
+                  <Text style={[styles.chipLabel, { opacity: 0.6, fontSize: 12, color: active ? c.activeInk : c.chipInk }]}>{tab.count}</Text>
+                ) : null}
+              </View>
+            </Pressable>
+          </React.Fragment>
         );
       })}
     </ScrollView>
@@ -236,6 +248,7 @@ const styles = StyleSheet.create({
   tabsRow: { flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: 12, paddingVertical: 6 },
   chip: { flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 10 },
   chipLabel: { fontWeight: "600" },
+  iconChip: { justifyContent: "center", minWidth: 44 },
   sectionHead: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", gap: 12, marginBottom: 12 },
   eyebrow: { fontSize: 10.5, fontWeight: "600", letterSpacing: 1.4, color: "rgba(255,255,255,0.45)" },
   sectionTitle: { fontSize: 15, fontWeight: "600" },

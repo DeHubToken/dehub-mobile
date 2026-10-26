@@ -1,6 +1,6 @@
-import React, { memo, useCallback, useRef } from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Animated, I18nManager, Image, Keyboard, Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Avatar from "../common/Avatar";
 import Icon from "../ui/Icon";
@@ -75,6 +75,41 @@ export function useStageBack() {
     if (navigation.canGoBack?.()) navigation.goBack();
   }, [navigation]);
 }
+
+/**
+ * Image, video and audio posts on phones: no top bar, only this small back
+ * icon over the media. It sits exactly where the mini player's back button
+ * lands, so when that strip appears on scroll it grows out of the icon.
+ */
+export const PostStageBackIcon = memo(function PostStageBackIcon({ hidden }: { hidden: boolean }) {
+  const { t } = useTranslation();
+  const { skin } = useAppTheme();
+  const back = useStageBack();
+  const shown = useRef(new Animated.Value(hidden ? 0 : 1)).current;
+  useEffect(() => {
+    Animated.timing(shown, { toValue: hidden ? 0 : 1, duration: 140, useNativeDriver: true }).start();
+  }, [hidden, shown]);
+  return (
+    <Animated.View
+      pointerEvents={hidden ? "none" : "box-none"}
+      style={[styles.backIcon, { opacity: shown }]}
+      testID="post-stage-back-icon"
+    >
+      <TouchableOpacity
+        onPress={back}
+        activeOpacity={0.7}
+        hitSlop={10}
+        accessibilityRole="button"
+        accessibilityLabel={t("common.goBack")}
+        style={[styles.backIconButton, { borderRadius: skin?.square ? 0 : STAGE_SQUARE_RADIUS }]}
+      >
+        <View style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}>
+          <Icon name="ArrowLeft" size={20} color="#FFFFFF" />
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
+  );
+});
 
 type ChromeProps = {
   onMore?: () => void;
@@ -208,6 +243,16 @@ export const PostStageCreator = memo(function PostStageCreator({
 });
 
 const styles = StyleSheet.create({
+  // Lined up with the mini player's back square (strip at top 6 / left 8,
+  // 60 tall, 10 inner padding, 1px border).
+  backIcon: { position: "absolute", top: 18, left: 19, zIndex: 31 },
+  backIconButton: {
+    width: 36,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(0,0,0,0.28)",
+  },
   square: { alignItems: "center", justifyContent: "center", borderWidth: 1, overflow: "hidden" },
   chromeOver: {
     // Same inset from the top as from the sides, so the corner buttons sit

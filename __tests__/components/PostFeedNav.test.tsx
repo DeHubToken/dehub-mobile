@@ -21,6 +21,9 @@ jest.mock("../../libs/eventBus", () => ({
 jest.mock("../../components/Home/FeedNavBar", () => ({
   __esModule: true, default: "FeedNavBar", useFeedNavItems: () => mockItems,
 }));
+const mockOpenDrawer = jest.fn();
+jest.mock("../../components/HomeHeader", () => ({ __esModule: true, default: "HomeHeader" }));
+jest.mock("../../context/DrawerContext", () => ({ useDrawer: () => ({ openDrawer: mockOpenDrawer }) }));
 import PostFeedNav from "../../components/Home/PostFeedNav";
 
 const render = () => {
@@ -84,5 +87,18 @@ it("falls back to Home if the saved source tab is no longer available", () => {
   expect(nav.props.activeIndex).toBe(0);
   act(() => nav.props.onActiveTabLongPress());
   expect(mockNavigate.mock.calls[0][0].params.params.feedTab).toBe("all");
+  act(() => tree.unmount());
+});
+
+it("keeps the logo bar above the pill for text posts, and only then", () => {
+  const onBack = jest.fn();
+  let tree!: ReactTestRenderer;
+  act(() => { tree = create(<PostFeedNav onBack={onBack} />); });
+  expect(tree.root.findAllByType("HomeHeader" as any)).toHaveLength(0);
+  act(() => tree.update(<PostFeedNav onBack={onBack} withLogo />));
+  const header = tree.root.findByType("HomeHeader" as any);
+  expect(header.props.onMenuPress).toBe(mockOpenDrawer);
+  act(() => header.props.onLogoPress());
+  expect(onBack).toHaveBeenCalledTimes(1);
   act(() => tree.unmount());
 });

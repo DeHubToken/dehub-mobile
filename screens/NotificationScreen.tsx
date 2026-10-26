@@ -43,7 +43,7 @@ import {
 import { supabase } from "../services/supabase";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import { useGateToHome } from "../hooks/useGateToHome";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { localizedNotificationContent } from "../libs/notification-content";
 import { formatNotificationDate } from "../libs/date.util";
@@ -218,11 +218,12 @@ interface TypeTabsProps {
   onSelect: (filter: NotificationTypeFilter) => void;
   counts: Record<NotificationTypeFilter, number>;
   activityCounts: Record<NotificationTypeFilter, number>;
+  actions?: React.ReactNode;
 }
 
 // Icon-only page-kit chips with the unread count beside the icon, as web's
 // notifications strip draws them. The tab name is the chip's accessibility label.
-const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts }) => {
+const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, counts, activityCounts, actions }) => {
   const { t } = useTranslation();
   const appTheme = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: unknown };
   const flatPage = useFlatPage();
@@ -240,6 +241,7 @@ const TypeTabs: React.FC<TypeTabsProps> = React.memo(({ selected, onSelect, coun
   return (
     <View>
       <PageTabs
+        beforeTabs={actions}
         value={selected}
         onChange={onSelect}
         style={{ paddingBottom: 10 }}
@@ -457,10 +459,10 @@ const MARK_HIT_SLOP = { ...ACTION_HIT_SLOP, top: 10 };
 const CLEAR_HIT_SLOP = { ...ACTION_HIT_SLOP, bottom: 10 };
 
 /**
- * What the reader's notification filters held back (Settings → Notifications
- * → Filter notifications from). Collapsed until opened, and only fetched then,
- * so a reader without filters pays nothing for it. Rows draw exactly like the
- * main list's.
+ * What the reader's notification filters held back. Reached only from
+ * Settings → Notifications → Filter notifications from, so readers who never
+ * use filters never see it on this screen. Rows draw exactly like the main
+ * list's.
  */
 function FilteredNotificationsSection({
   renderRow,
@@ -468,7 +470,7 @@ function FilteredNotificationsSection({
   renderRow: (info: { item: NotificationItem }) => React.ReactElement;
 }) {
   const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [items, setItems] = useState<NotificationItem[] | null>(null);
 
   useEffect(() => {
@@ -961,7 +963,7 @@ let lastPainted: {
 
 const NotificationScreen = () => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, pageColors } = useAppTheme();
   const insets = useSafeAreaInsets();
   const { patchUser } = useAuthActions();
   const user = useUser();
@@ -969,6 +971,9 @@ const NotificationScreen = () => {
   const allow = isSignedIn && !needsUsername;
   useGateToHome(allow);
   const navigation = useNavigation<any>();
+  // Settings → Notifications opens this screen with `filtered` to show what
+  // the reader's filters held back; a plain open never shows that section.
+  const showFiltered = useRoute<any>().params?.filtered === true;
   const { on: onSocketEvent } = useWebSocketApi();
   const { showUserProfile } = useUserProfileSheet();
   
@@ -1443,12 +1448,26 @@ const NotificationScreen = () => {
         // Ask for this tab's types rather than paging through everything and
         // narrowing in memory — that left a tab empty whenever its rows sat
         // past the loaded window.
-        const res: any = await getNotifications({
+        const listRequest = getNotifications({
           unreadOnly: false,
           types,
           page: targetPage,
           limit: 30,
         });
+        // Start independent sources together. Counts never hold the list's
+        // loading state open, and custom rows are reused for both snapshots.
+        const customRequest = isRefresh
+          ? fetchCustomNotifications(walletAddressRef.current).catch((error) => {
+              log.error('Custom notifications refresh failed', error);
+              return [];
+            })
+          : Promise.resolve([]);
+        const countsRequest = isRefresh && !opts?.skipCounts && types
+          ? getNotifications({ unreadOnly: false, page: 1, limit: 30 })
+              .then((result: any) => result?.data?.result || result?.result || [])
+              .catch((error) => { log.error('Notification counts refresh failed', error); return null; })
+          : null;
+        const [res, custom]: any = await Promise.all([listRequest, customRequest]);
         if (gen !== fetchGenRef.current) return;
 
         const apiPayload = res?.data?.result || res?.result || [];
@@ -1459,8 +1478,6 @@ const NotificationScreen = () => {
         // recent page, not a paginated source, so folding them in again on
         // every "load more" would duplicate them down the list.
         if (isRefresh) {
-          const custom = await fetchCustomNotifications(walletAddressRef.current);
-          if (gen !== fetchGenRef.current) return;
           if (custom.length) {
             payload = [...payload, ...custom].sort(
               (a: NotificationItem, b: NotificationItem) =>
@@ -1480,6 +1497,9 @@ const NotificationScreen = () => {
         // Measured on the API page alone. The merged Supabase rows are not
         // paginated, so counting them here would claim another page exists.
         setHasMore(apiPayload.length >= 30);
+        setRefreshing(false);
+        setLoading(false);
+        setLoadingMore(false);
 
         if (isRefresh && !opts?.skipCounts) {
           // The tab badges and the app badge both need every type, so a
@@ -1488,14 +1508,11 @@ const NotificationScreen = () => {
           // this: the snapshot is kept honest by every local mark-read/clear,
           // and it re-syncs on focus and pull-to-refresh.
           if (types) {
-            const allRes: any = await getNotifications({ unreadOnly: false, page: 1, limit: 30 });
+            const allPayload = await countsRequest;
             if (gen !== fetchGenRef.current) return;
-            const allPayload = allRes?.data?.result || allRes?.result || [];
             // The badge has to count the Supabase rows too, or the Tips tab
             // shows a bounty application it does not admit to having.
-            const custom = await fetchCustomNotifications(walletAddressRef.current);
-            if (gen !== fetchGenRef.current) return;
-            setCountsSource(custom.length ? [...allPayload, ...custom] : allPayload);
+            if (allPayload) setCountsSource(custom.length ? [...allPayload, ...custom] : allPayload);
           } else {
             setCountsSource(payload);
           }
@@ -1775,9 +1792,9 @@ const NotificationScreen = () => {
           <ActivityIndicator size="small" color="#F4F4F5" />
         </View>
       ) : null}
-      {walletAddress ? <FilteredNotificationsSection renderRow={renderItem} /> : null}
+      {walletAddress && showFiltered ? <FilteredNotificationsSection renderRow={renderItem} /> : null}
     </>
-  ), [loadingMore, renderItem, walletAddress]);
+  ), [loadingMore, renderItem, walletAddress, showFiltered]);
 
   // Minimal: the empty-state icon sits bare on black, no tile behind it.
   const emptyIconTile = isMinimal
@@ -1829,7 +1846,29 @@ const NotificationScreen = () => {
       <ScreenHeader
         icon="notifications"
         title={t("notifications.title")}
-        rightContent={
+        rightContent={tabCounts.all > 0 ? (
+          <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
+            {tabCounts.all}
+          </Text>
+        ) : undefined}
+        tabs={
+          <TypeTabs
+            selected={selectedFilter}
+            onSelect={handleFilterChange}
+            counts={tabCounts}
+            activityCounts={tabActivityCounts}
+            actions={
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
+                accessibilityRole="button"
+                accessibilityLabel={t('notifications.settings')}
+                className="items-center justify-center bg-theme-neutrals-800"
+                style={{ width: 34, height: 34, borderRadius: 10 }}
+                hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+              >
+                <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
+              </TouchableOpacity>
           <TouchableOpacity
             onPress={handleMarkAllRead}
             disabled={!hasUnread}
@@ -1837,18 +1876,13 @@ const NotificationScreen = () => {
             accessibilityLabel={t('notifications.markAllRead')}
             accessibilityState={{ disabled: !hasUnread }}
             className="items-center justify-center bg-theme-neutrals-800"
-            style={{ width: 36, height: 36, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
-            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
+            hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
           >
-            <Icon name="CheckCheck" size={18} color="#F4F4F5" />
+            <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
           </TouchableOpacity>
-        }
-        tabs={
-          <TypeTabs
-            selected={selectedFilter}
-            onSelect={handleFilterChange}
-            counts={tabCounts}
-            activityCounts={tabActivityCounts}
+            </View>
+            }
           />
         }
       />

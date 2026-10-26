@@ -15,7 +15,7 @@ import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
 import { selectAuthorThreadIds } from "../libs/author-thread";
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
-import { CommentItem } from "../components/Comments";
+import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
@@ -61,7 +61,7 @@ import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
 import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
-import { useStageBack } from "../components/Home/PostStage";
+import { PostStageBackIcon, useStageBack } from "../components/Home/PostStage";
 import FrostedPill from "../components/ui/FrostedPill";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
 
@@ -129,23 +129,51 @@ export default function FeedDetailScreen() {
   return <FeedDetailContent key={`${user?.walletAddress || user?.address || 'guest'}:${route.params?.tokenId ?? route.params?.id ?? route.params?.postId ?? route.params?.videoId ?? route.params?.nft?.tokenId ?? route.params?.nft?.id}`} />;
 }
 
-function FeedDetailContent() {
+type EmbeddedProps = {
+  /** Home's in-place post: the post to show, read instead of route params. */
+  embeddedTokenId?: string;
+  /** Leaves the in-place post (Home's pill Back). */
+  onEmbeddedClose?: () => void;
+  /** Room kept under the composer for Home's tab bar. */
+  bottomInset?: number;
+};
+
+/**
+ * The post page inside Home on phones: Home's logo bar and pill stay where
+ * they are above it, so it draws neither, nor the back icon or mini player.
+ */
+export function FeedDetailEmbedded({ tokenId, onClose, bottomInset }: { tokenId: string; onClose: () => void; bottomInset?: number }) {
+  const user = useUser();
+  return (
+    <FeedDetailContent
+      key={`${user?.walletAddress || user?.address || 'guest'}:${tokenId}`}
+      embeddedTokenId={tokenId}
+      onEmbeddedClose={onClose}
+      bottomInset={bottomInset}
+    />
+  );
+}
+
+function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }: EmbeddedProps = {}) {
+  const embedded = embeddedTokenId != null;
   const { t } = useTranslation();
-  const { isMinimal, skin } = useAppTheme();
+  const { isMinimal, skin, theme: themeName } = useAppTheme();
+  // Immersive draws its feed bar as one capsule; the logo bar is not there to keep.
+  const island = themeName === "immersive" && !skin;
   const { width: windowWidth } = useWindowDimensions();
   const stageLayout = windowWidth < POST_STAGE_MAX_WIDTH;
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   
   // Get params - tokenId and optional commentId for highlighting
-  const tokenId: number | string | undefined =
+  const tokenId: number | string | undefined = embedded ? embeddedTokenId :
     route?.params?.tokenId ??
     route?.params?.id ??
     route?.params?.postId ??
     route?.params?.videoId ??
     route?.params?.nft?.tokenId ??
     route?.params?.nft?.id;
-  const commentIdParam: number | string | undefined = route?.params?.commentId ?? route?.params?.c;
+  const commentIdParam: number | string | undefined = embedded ? undefined : route?.params?.commentId ?? route?.params?.c;
   /**
    * The comment this screen was opened FOR, as a string, for the life of the
    * screen. Distinct from `highlightedCommentId` below, which is the four-second
@@ -256,6 +284,11 @@ function FeedDetailContent() {
 
   const inputRef = useRef<TextInput>(null);
   const keyboardSwap = useKeyboardSwap(inputRef);
+  // The docked composer only comes up for a Reply or Edit on a comment here,
+  // and goes again when it is left empty. The post's own comment button opens
+  // the same comments drawer as the home feed.
+  const [composerAsked, setComposerAsked] = useState(false);
+  const [showCommentSheet, setShowCommentSheet] = useState(false);
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -282,9 +315,10 @@ function FeedDetailContent() {
   // User avatar for input
   const userAvatar = getAvatarUrl(userAvatarUrl);
 
-  // Focus the comment input
-  const focusCommentInput = useCallback(() => {
-    requestAnimationFrame(() => inputRef.current?.focus());
+  // The post's comment button: the comments drawer, as on home.
+  const openCommentSheet = useCallback(() => {
+    inputRef.current?.blur();
+    setShowCommentSheet(true);
   }, []);
 
   // Voice recording callbacks
@@ -390,8 +424,8 @@ function FeedDetailContent() {
   const listBottomPadding = useMemo(() => {
     // The docked Stage composer floats with a margin under it.
     const base = stageLayout ? 104 : 88;
-    return base + inputLift;
-  }, [inputLift, stageLayout]);
+    return base + inputLift + bottomInset;
+  }, [inputLift, stageLayout, bottomInset]);
 
   // The composer belongs to the post and its comments. Once the reader is down
   // in "More posts" it slides away, and comes back when they scroll up again.
@@ -630,6 +664,7 @@ function FeedDetailContent() {
         break;
       }
     }
+    setComposerAsked(true);
     requestAnimationFrame(() => inputRef.current?.focus());
   }, [comments, setReplyTo]);
 
@@ -757,8 +792,8 @@ function FeedDetailContent() {
 
   const handleStartEdit = useCallback((comment: Comment) => {
     setEditingComment(comment);
-
-    inputRef.current?.focus();
+    setComposerAsked(true);
+    requestAnimationFrame(() => inputRef.current?.focus());
   }, []);
 
   const handleContextEdit = useCallback(() => {
@@ -1330,15 +1365,15 @@ function FeedDetailContent() {
   // on top once the media has gone, and the composer is docked at the bottom.
   // Loading, private and missing posts keep the plain header.
   const stage = stageLayout && !!item;
-  const handlePostBack = useStageBack();
+  // Only a video keeps the immersive page with the back icon on its player.
+  const videoPost = immersive && !!item && resolveContentType(item) !== "image";
+  const stageBack = useStageBack();
+  const handlePostBack = onEmbeddedClose ?? stageBack;
   const handleStageAnchor = useCallback((y: number) => {
     stageAnchorRef.current = y;
   }, []);
-  // The comments tile: down to the comments, and the composer ready to type.
-  const handleStageComment = useCallback(() => {
-    listRef.current?.scrollToOffset({ offset: Math.max(0, tabRowY.current - MINI_PLAYER_HEIGHT - 12), animated: true });
-    focusCommentInput();
-  }, [focusCommentInput]);
+  // The comments tile opens the comments drawer, as on home.
+  const handleStageComment = openCommentSheet;
   const scrollToMedia = useCallback(() => {
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
   }, []);
@@ -1407,7 +1442,7 @@ function FeedDetailContent() {
           disablePress
           prioritizeMedia
           immersive
-          onCommentPress={focusCommentInput}
+          onCommentPress={openCommentSheet}
         />
       ) : item ? (
         // No bento: a text post lies flat and full width like the immersive
@@ -1418,7 +1453,7 @@ function FeedDetailContent() {
           disablePress
           prioritizeMedia
           flat
-          onCommentPress={focusCommentInput}
+          onCommentPress={openCommentSheet}
         />
       ) : loading ? (
         <View className="px-4 pt-4">
@@ -1496,22 +1531,23 @@ function FeedDetailContent() {
         </View>
       )}
     </View>
-  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, focusCommentInput, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
   // to" with the name glued on after it only reads right in languages that put
   // the name last.
   // Stays up whenever the reader is mid-comment, wherever they have scrolled.
-  const hideComposer = pastComments && inputLift === 0 && !replyTo && !editingComment
-    && !mediaAttachment && !recorder.isRecording;
+  const hideComposer = (pastComments || !composerAsked)
+    && inputLift === 0 && !replyTo && !editingComment
+    && !mediaAttachment && !recorder.isRecording && !emojiPickerVisible && !gifPickerVisible;
   useEffect(() => {
     Animated.timing(composerSlide, {
-      toValue: hideComposer ? composerHeight + 8 : 0,
+      toValue: hideComposer ? composerHeight + 8 + bottomInset : 0,
       duration: 220,
       useNativeDriver: true,
     }).start();
-  }, [hideComposer, composerHeight, composerSlide]);
+  }, [hideComposer, composerHeight, composerSlide, bottomInset]);
 
   const stageGlassTint = isMinimal ? "rgba(0,0,0,0.2)" : "rgba(12,12,14,0.2)";
 
@@ -1522,7 +1558,11 @@ function FeedDetailContent() {
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      <PostFeedNav onBack={handlePostBack} />
+      {/* Phones: a video post drops the top bar for a small back icon on the
+          player. Text, image and audio posts keep the logo bar and the pill
+          where they were on the feed, Back in the pill's filter slot. Inside
+          Home those are Home's own, so nothing is drawn here. */}
+      {embedded || (stage && videoPost) ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
       <View style={{ flex: 1 }}>
       <FrostedContent>
       <FlatList
@@ -1603,7 +1643,8 @@ function FeedDetailContent() {
           {renderCommentTabs()}
         </View>
       )}
-      {stage && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
+      {stage && !embedded && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
+      {stage && videoPost && !embedded && <PostStageBackIcon hidden={showMini} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && (
@@ -1611,7 +1652,9 @@ function FeedDetailContent() {
           pointerEvents={hideComposer ? "none" : "auto"}
           ref={composerRef}
           collapsable={false}
-          style={{ position: "absolute", left: 0, right: 0, bottom: 0, transform: [{ translateY: composerSlide }] }}
+          // Inside Home the composer sits above the tab bar, until the keyboard
+          // (which covers the bar) lifts it.
+          style={{ position: "absolute", left: 0, right: 0, bottom: inputLift > 0 ? 0 : bottomInset, transform: [{ translateY: composerSlide }] }}
           onLayout={(e) => setComposerHeight(e.nativeEvent.layout.height)}
         >
         <View
@@ -1744,6 +1787,9 @@ function FeedDetailContent() {
                   onSelectionChange={mentions.handleSelectionChange}
                   onContentSizeChange={growingInput.onContentSizeChange}
                   scrollEnabled={growingInput.scrollEnabled}
+                  // Left empty, the phone composer puts itself away again. A
+                  // picker opening from it also blurs it, so wait for that.
+                  onBlur={() => setTimeout(() => setComposerAsked(asked => (asked && !inputRef.current?.isFocused() ? false : asked)), 300)}
                   placeholder={
                     editingComment
                       ? t("comments.editPlaceholder")
@@ -1932,6 +1978,22 @@ function FeedDetailContent() {
         onClose={() => setLikersCommentId(null)}
         commentId={likersCommentId}
       />
+
+      {showCommentSheet && tokenId != null && (
+        <CommentBottomSheet
+          visible={showCommentSheet}
+          onClose={() => {
+            setShowCommentSheet(false);
+            // Pick up anything posted in the drawer.
+            void fetchData();
+          }}
+          tokenId={tokenId}
+          commentsDisabled={commentsDisabled}
+          replyPolicy={(item as any)?.replyPolicy}
+          forKids={!!(item as any)?.forKids}
+          postCreator={postCreator}
+        />
+      )}
       </View>
     </View>
   );

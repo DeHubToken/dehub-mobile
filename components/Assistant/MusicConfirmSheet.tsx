@@ -41,6 +41,7 @@ import Icon from '../ui/Icon';
 import { supabase } from '../../services/supabase';
 import { toastError } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const log = createLogger('MusicConfirmSheet');
 
@@ -309,7 +310,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: '#0C0C0E',
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },

@@ -4,11 +4,12 @@ import ProfileTabs from "../components/Profile/ProfileTabs";
 import { useUser, useAuthState, useAuthActions } from "../context/AuthContext";
 import ProfileSignInPrompt from "../components/Profile/ProfileSignInPrompt";
 import ScreenHeader from "../components/ScreenHeader";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useCanGoBack } from "../hooks/useCanGoBack";
 import { TabBarHideProvider } from "../context/TabBarHideContext";
 import StandaloneTabBar from "../navigation/StandaloneTabBar";
 import { runWhenSettled } from "../libs/run-when-settled";
+import { ScreenNames } from "../navigation/ScreenNames";
 
 
 const REFRESH_INTERVAL_MS = 60_000; // 1 min periodic refresh
@@ -20,6 +21,9 @@ const ProfileScreen: React.FC = () => {
 
   const { refreshUser } = useAuthActions();
   const canPop = useCanGoBack();
+  // As a tab the real bottom bar is already there; pushed on the stack it
+  // brings its own copy.
+  const asTab = useRoute().name === ScreenNames.ProfileTab;
 
   const goBack = useCallback(() => navigation.goBack(), [navigation]);
 
@@ -56,7 +60,7 @@ const ProfileScreen: React.FC = () => {
       <View className="flex-1 bg-theme-neutrals-900">
         <ProfileSignInPrompt />
         <ScreenHeader overlay plainBack title="" canGoBack={canPop} onBackPress={goBack} />
-        <StandaloneTabBar />
+        {!asTab && <StandaloneTabBar />}
       </View>
     );
   }
@@ -65,17 +69,17 @@ const ProfileScreen: React.FC = () => {
   // of the bottom nav, hiding on scroll the same way. No dehub mark bar on top:
   // that bar is Home's only. A pushed profile gets a plain back arrow
   // floating over its cover.
-  return (
-    <TabBarHideProvider>
+  const page = (
     <View className="flex-1 bg-theme-neutrals-900">
       <View className="flex-1">
         <ProfileTabs canGoBack={canPop} onBackPress={goBack} />
       </View>
 
-      <StandaloneTabBar />
+      {!asTab && <StandaloneTabBar />}
     </View>
-    </TabBarHideProvider>
   );
+  // A tab scrolls the tab navigator's bar; a pushed page scrolls its own.
+  return asTab ? page : <TabBarHideProvider>{page}</TabBarHideProvider>;
 };
 
 export default ProfileScreen;

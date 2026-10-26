@@ -28,6 +28,7 @@ import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrub
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
+import { openPostInFeedHost } from "../../libs/feedPostHost";
 import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
@@ -98,7 +99,6 @@ import { isPostHiddenByStorefront } from "../../libs/storefront-content";
 import { useSuperpowers } from "../../hooks/useSuperpowers";
 import ShareSheet from "./ShareSheet";
 import RepostShareSheet from "./RepostShareSheet";
-import PostStageActionBar from "./PostStageActionBar";
 import { PostStageActions, PostStageChrome, PostStageCreator } from "./PostStage";
 import { clearPostStage, patchPostStage } from "../../libs/postStage";
 import { followUser, unfollowUser } from "../../services/user.service";
@@ -913,6 +913,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // its fetch now rather than after the new screen has rendered.
       seedPostDetail(tokenId, item);
       warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
+      // Text, image and audio posts open in place on Home, under the same
+      // logo bar and pill; video keeps its own page.
+      if (!isVideo && openPostInFeedHost(tokenId)) return;
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
@@ -2121,6 +2124,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           onDownloadVideo={isVideo && !isLive && !isActuallyGated && !matureGate.isGated
             ? () => { const url = postFileUrl; if (url) void downloadVideo({ url, title: localTitle || "video", username: minterUser?.username || item.minterUsername }); }
             : undefined}
+          onRemix={isVideo && !isLive && isPublicPost && !isHidden && !requiresVideoAccess && !isActuallyGated && !matureGate.isGated && !contentWarning.hidden && !!postFileUrl && tokenId != null && (!(edits.quotePolicy ?? item.quotePolicy) || (edits.quotePolicy ?? item.quotePolicy) === "public" || !!isOwnerPost)
+            ? mode => requireAuth(() => navigation.navigate(ScreenNames.VideoRemix, { mode, tokenId, videoUrl: postFileUrl, sourceUrl: shareUrl, title: localTitle || "Remix", creator: minterUser?.username || item.minterUsername || displayName }))
+            : undefined}
           canDub={isVideo && !isLive && !isActuallyGated}
           canMarkSegments={isVideo && !isLive && !isActuallyGated}
           // Also on the action bar as icons. Both are wanted: the icon is for
@@ -2213,15 +2219,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: skin.card.borderRadius }]} /> : null}
           {showRepostLabel && <View className="flex-row items-center gap-1.5 mb-2"><Icon name="Repeat2" size={14} color="#9CA3AF" /><Text className="text-xs text-theme-neutrals-400">{t("feedCard.reposted")}</Text></View>}
           {!!(item as any).__boosted && <TouchableOpacity onPress={() => navigation.navigate(ScreenNames.SuperPowers)} className="flex-row items-center gap-1.5 mb-2"><Icon name="Zap" size={14} color="#9CA3AF" /><Text className="text-xs uppercase tracking-wider text-theme-neutrals-400">{t("work.boosted")}</Text></TouchableOpacity>}
-          <FeedCardHeader
-            avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
-            badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
-            onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
-            isHidden={isHidden}
-          />
-          <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch', marginTop: 8 }}>
-            <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
+          <View style={{ flexDirection: 'row', gap: SCREEN_WIDTH < 768 ? 16 : 24, alignItems: 'stretch' }}>
             <View style={{ flex: 1, minWidth: 0 }}>
+              <FeedCardHeader
+                avatarUrl={avatar} displayName={displayName} username={username} address={minterAddress}
+                badgeImage={badgeImg} onUserPress={handleUserPress} onMenuPress={handleOpenOptions}
+                onBoostPress={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined}
+                isHidden={isHidden}
+              />
               <PostTapSurface resetKey={postKey} immediatePress onPressIntent={warmPost} onReaction={handleVideoTapReaction} onPress={disablePress ? undefined : handleCardPress}>
                 <FeedCaption resetKey={postKey} title={overlayTitle || undefined} description={displayCaption || undefined}
                   variant="portrait" compactPortrait={SCREEN_WIDTH < 768} maxLines={4} showCategories={false} flagged={item.communityAlertStatus === "pending"}
@@ -2242,6 +2247,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
                 {actionBar}
               </View>
             </View>
+            <View style={{ width: tabletVideoWidth }}>{renderVideoThumbnail()}</View>
           </View>
           {sheets}
         </Pressable>
@@ -2372,28 +2378,36 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           )}
         </View>
         {postVideo && <PostStageActions onBoost={isOwnerPost && isSignedIn && tokenId != null ? handleBoostPress : undefined} />}
-        <PostStageActionBar
-          liked={liked}
-          disliked={disliked}
-          saved={saved}
-          reposted={reposted}
-          likeCount={likeCount}
-          dislikeCount={dislikeCount}
-          commentCount={commentCount}
-          repostCount={repostCount}
-          onLike={handleLikePress}
-          onReact={handleReaction}
-          myReaction={myReaction}
-          reactionCounts={reactionCounts}
-          onShowReactionInfo={isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined}
-          onComment={handleCommentPress}
-          onRepost={handleOpenRepostSheet}
-          onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
-          onSave={handleSavePress}
-          tokenId={tokenId}
-          viewerAddress={userAddress}
-          isVisible={isVisible}
-        />
+        {/* The feed's own row, not boxed tiles: the post page reads the same
+            as the card it was opened from. Share opens "Repost & share", which
+            also lists the quotes and reposts. */}
+        <View testID="post-stage-actions">
+          <FeedActionBar
+            liked={liked}
+            disliked={disliked}
+            saved={saved}
+            reposted={reposted}
+            likeCount={likeCount}
+            dislikeCount={dislikeCount}
+            commentCount={commentCount}
+            repostCount={repostCount}
+            shareCount={shareCount}
+            tipCount={totalTips}
+            onLike={handleLikePress}
+            onReact={handleReaction}
+            myReaction={myReaction}
+            reactionCounts={reactionCounts}
+            onComment={handleCommentPress}
+            onShare={handleOpenRepostSheet}
+            onTip={DIGITAL_PURCHASES_ENABLED && !minterUser?.hideBadgeAndBalance ? handleTipPress : undefined}
+            tokenId={tokenId}
+            viewerAddress={userAddress}
+            onSave={handleSavePress}
+            onInfo={handleInfoPress}
+            onShowReactionInfo={isOwnerPost && tokenId != null ? handleShowReactionInfo : undefined}
+            isVisible={isVisible}
+          />
+        </View>
         {sheets}
         {showRepostSheet && tokenId != null && (
           <RepostShareSheet

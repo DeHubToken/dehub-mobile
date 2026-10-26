@@ -22,6 +22,7 @@ import {
   Keyboard,
   PanResponder,
 } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import SmartImage from "../components/common/SmartImage";
 import { useNavigation, useRoute, CommonActions, useFocusEffect } from "@react-navigation/native";
 import type { RouteProp } from "@react-navigation/native";
@@ -1084,6 +1085,23 @@ export default function UploadScreen() {
   const postInFlight = activeIsUploading || isSubmitting;
 
   useSwipeBackAction(handleClose, !postInFlight);
+
+  // Pulling the top bar down closes the composer the same way the X does, so
+  // drafts and the discard prompt still apply. The native sheet swipe alone
+  // lost to the scroll view and text field underneath it.
+  const closeLatest = useRef(handleClose);
+  closeLatest.current = handleClose;
+  const dismissPan = useMemo(() => Gesture.Pan()
+    .enabled(!postInFlight)
+    .activeOffsetY(8)
+    .failOffsetX([-20, 20])
+    .runOnJS(true)
+    .onEnd((e) => {
+      if (e.translationY > 60 || e.velocityY > 700) {
+        Keyboard.dismiss();
+        closeLatest.current();
+      }
+    }), [postInFlight]);
 
   // Intercept Android back button (uses activeIsUploading, i.e. live mode only)
   useEffect(() => {
@@ -2358,6 +2376,21 @@ export default function UploadScreen() {
 
   return (
     <View className="flex-1 bg-theme-background">{/* don't add top inset */}
+      <GestureDetector gesture={dismissPan}>
+        <View className="flex-row items-center justify-center pt-2 pb-1" collapsable={false}>
+          <View className="w-10 h-1 rounded-full bg-white/30" />
+          <TouchableOpacity
+            onPress={handleClose}
+            disabled={postInFlight}
+            className="absolute left-3 top-1 w-9 h-9 items-center justify-center"
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            accessibilityRole="button"
+            accessibilityLabel={t("common.close")}
+          >
+            <Icon name="X" size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </GestureDetector>
       {!isQuoteMode && <View className="flex-row items-center justify-center px-4 pt-5 pb-2" style={{ gap: 12 }}>
         <TouchableOpacity accessibilityRole="button" accessibilityState={{ selected: !isLiveMode && !isStageMode && !articleMode }}
           onPress={() => { if (isLiveMode) handleToggleLiveMode(); setIsStageMode(false); setArticleMode(false); setShowTitle(false); }}>
@@ -3596,6 +3629,17 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
+          {/* Emoji — always available, as on web */}
+          <TouchableOpacity
+            onPress={() => setShowEmojiSheet(true)}
+            activeOpacity={0.7}
+            className="w-9 h-9 rounded-xl items-center justify-center mr-0.5"
+            hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+            accessibilityRole="button"
+            accessibilityLabel={t("upload.insertEmoji")}
+          >
+            <Icon name="Smile" size={20} color="#fff" />
+          </TouchableOpacity>
           {!isLiveMode && (
             <TouchableOpacity
               onPress={() => { setShowAudioMenu(false); setShowPostOptions(true); }}
@@ -3616,17 +3660,6 @@ export default function UploadScreen() {
             </TouchableOpacity>
           )}
 
-          {/* Emoji — always available, as on web */}
-          <TouchableOpacity
-            onPress={() => setShowEmojiSheet(true)}
-            activeOpacity={0.7}
-            className="w-9 h-9 rounded-xl items-center justify-center"
-            hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-            accessibilityRole="button"
-            accessibilityLabel={t("upload.insertEmoji")}
-          >
-            <Icon name="Smile" size={20} color="#fff" />
-          </TouchableOpacity>
         </View>
 
         {/* Right cluster — Enhance then Post, the pair web keeps at this end of
