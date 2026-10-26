@@ -55,6 +55,7 @@ import { NEGATIVE_REACTIONS, REACTION_LIST, type PostReaction } from "../../libs
 import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const SHEET_FRACTION = 0.7;
 const PAGE_LIMIT = 50;
@@ -273,7 +274,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
         <Animated.View
           style={[glassStyles.sheet, { height: SHEET_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
         >
-          <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">

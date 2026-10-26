@@ -1,38 +1,101 @@
 import React from "react";
-import { Platform, StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
-import { SHEET_GLASS_FILL, SHEET_GLASS_FILL_BLURRED } from "../../theme/sheetGlass";
+import {
+  SHEET_GLASS_FILL,
+  SHEET_GLASS_FILL_BLURRED,
+  SHEET_GLASS_FILL_UNBLURRED,
+} from "../../theme/sheetGlass";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useDrawerBlurSource } from "./FrostedBackdrop";
 
 /**
- * The liquid glass layer behind a drawer's content, as on web: a dark wash
- * (blurred on iOS), with a faint white sheen running down from the top edge.
- * The panel it sits in must have a transparent background of its own.
+ * The liquid glass layers behind a drawer's content, as on web: the page
+ * behind blurred, a dark wash over it, and a faint white sheen running down
+ * from the top edge. iOS blurs whatever is behind the sheet. Android blurs the
+ * focused feed (Home, post page) through expo-blur's BlurTargetView, the same
+ * source the floating nav pills sample; with no feed to sample it falls back
+ * to a near-solid wash so text never sits on a see-through panel.
  */
-export default function SheetGlass() {
+function GlassLayers({ blur = true }: { blur?: boolean }) {
+  const source = useDrawerBlurSource();
   const ios = Platform.OS === "ios";
+  const android = blur && !ios && !!source;
+  const fill = ios && blur ? SHEET_GLASS_FILL_BLURRED : android ? SHEET_GLASS_FILL_BLURRED : SHEET_GLASS_FILL_UNBLURRED;
   return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      {ios ? <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} /> : null}
-      <View style={[StyleSheet.absoluteFill, { backgroundColor: ios ? SHEET_GLASS_FILL_BLURRED : SHEET_GLASS_FILL }]} />
+    <>
+      {ios && blur ? <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} /> : null}
+      {android ? (
+        <>
+          {/* The blur can land a frame after the sheet appears; keep the dark
+              base under it so the first frame is never see-through. */}
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: "#0C0C0E" }]} />
+          <BlurView
+            blurTarget={source}
+            blurMethod="dimezisBlurViewSdk31Plus"
+            intensity={40}
+            tint="dark"
+            style={StyleSheet.absoluteFill}
+          />
+        </>
+      ) : null}
+      <View style={[StyleSheet.absoluteFill, { backgroundColor: fill }]} />
       <LinearGradient
         colors={["rgba(255,255,255,0.07)", "rgba(255,255,255,0)"]}
         locations={[0, 0.35]}
         style={StyleSheet.absoluteFill}
       />
+    </>
+  );
+}
+
+/** The panel it sits in must have a transparent background of its own. */
+export default function SheetGlass({ blur = true }: { blur?: boolean }) {
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <GlassLayers blur={blur} />
     </View>
   );
 }
+
+/**
+ * Drop-in for a drawer's own absolute-fill background view. In the default
+ * dark theme, where that view is painted SHEET_GLASS_FILL, it becomes liquid
+ * glass; every other theme keeps the view exactly as styled (the colour pass
+ * repaints the fill for canvas themes, Minimal and System Light).
+ * `blur={false}` for a sheet drawn inside the feed itself (inline Shorts).
+ */
+export function SheetGlassFill({ style, blur = true }: { style: StyleProp<ViewStyle>; blur?: boolean }) {
+  const glass = useDrawerGlass() && StyleSheet.flatten(style)?.backgroundColor === SHEET_GLASS_FILL;
+  if (!glass) return <View pointerEvents="none" style={style} />;
+  return (
+    <View pointerEvents="none" style={[style, styles.clear]}>
+      <GlassLayers blur={blur} />
+    </View>
+  );
+}
+
+/** True where drawers take liquid glass: the default dark theme. */
+export function useDrawerGlass(): boolean {
+  const { skin, isMinimal, isLight } = useAppTheme();
+  return !skin && !isMinimal && !isLight;
+}
+
+/** Spread onto a drawer panel that draws <SheetGlass /> as its first child. */
+export const GLASS_PANEL_CLEAR: ViewStyle = { backgroundColor: "transparent", overflow: "hidden" };
 
 /**
  * A drawer's background in any theme: liquid glass in the default dark theme,
  * the theme's own sheet material under the canvas themes, Minimal and Light.
  */
 export function DrawerSurface() {
-  const { skin, isMinimal, isLight } = useAppTheme();
-  if (!skin && !isMinimal && !isLight) return <SheetGlass />;
+  if (useDrawerGlass()) return <SheetGlass />;
   // Required here, as GlassModal does, so the glass alone stays light to load.
   const ThemeSurface = require("./ThemeSurface").default;
   return <ThemeSurface />;
 }
+
+const styles = StyleSheet.create({
+  clear: { backgroundColor: "transparent", overflow: "hidden" },
+});
