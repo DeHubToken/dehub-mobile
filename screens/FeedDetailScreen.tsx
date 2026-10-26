@@ -1420,9 +1420,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   const renderHeader = useCallback(() => (
     <View>
-      {item && stage && !immersive && resolveContentType(item) !== "audio" ? (
-        // Text and quote posts open as the same bento they are on the
-        // feed, inside the feed's gutter, as on phone web.
+      {item && stage && !videoPost ? (
+        // Text, image and audio posts open as the same bento they are on the
+        // feed, inside the feed's gutter, as on phone web. The photo itself
+        // still opens the full screen viewer.
         <View style={{ paddingHorizontal: FEED_SIDE }}>
           <FeedCard
             item={item}
