@@ -1,6 +1,7 @@
 import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react-native';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView', StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s }, Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android } }));
 const mockNavigate = jest.fn();
 jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }), useRoute: () => ({ params: {} }), NavigationRouteContext: require('react').createContext(null) }));
 const mockDisk: Record<string, string> = {};
@@ -8,7 +9,7 @@ jest.mock('../../libs/storage', () => ({ storage: { getString: (key: string) => 
 let mockDraftUser: { address: string } | null = { address: 'alice' };
 jest.mock('../../context/AuthContext', () => ({ useUser: () => mockDraftUser }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
-jest.mock('../../components/ScreenHeader', () => () => null);
+jest.mock('../../components/ScreenHeader', () => ({ __esModule: true, default: () => null }));
 import CreatorLearningScreen from '../../screens/CreatorLearningScreen';
 import { __resetDraftCacheForTests, flushDrafts } from '../../libs/draft-cache';
 import { ScreenNames } from '../../navigation/ScreenNames';
