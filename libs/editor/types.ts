@@ -341,6 +341,8 @@ export type Clip = MediaClip | TextClip | ShapeClip;
 export type AspectPreset = "16:9" | "9:16" | "1:1" | "4:5" | "custom";
 
 export interface ProjectSettings {
+  /** Optional film brief, shot direction and owned media links, portable with the project. */
+  filmProject?: import('./filmProject').FilmProject;
   /** Physical page sizing for PDF downloads. */
   printDpi?: number;
   width: number;

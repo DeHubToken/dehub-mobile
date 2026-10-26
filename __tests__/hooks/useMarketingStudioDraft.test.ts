@@ -12,11 +12,35 @@ jest.mock('../../context/AuthContext', () => ({ useUser: () => mockDraftUser }))
 import { useMarketingStudioDraft } from '../../hooks/useMarketingStudioDraft';
 import { CREATOR_DEFAULTS } from '../../libs/creatorStudio';
 import { __resetDraftCacheForTests } from '../../libs/draft-cache';
+import type { GenerationDraft } from '../../libs/editor/generationDraft';
 
 beforeEach(() => {
   mockDraftUser = { address: 'alice' };
   for (const key of Object.keys(mockDisk)) delete mockDisk[key];
   __resetDraftCacheForTests();
+});
+
+it('isolates an owned film prefill and preserves edited references and prompt across workspace and account changes', () => {
+  let owner = 'alice';
+  let editorDraft: GenerationDraft | undefined;
+  const hook = renderHook(() => useMarketingStudioDraft({ campaign: undefined, editorDraft, owner, scope: 'original', studio: true, initialSettings: () => CREATOR_DEFAULTS.image }));
+  act(() => hook.result.current.setInput('Original workspace draft'));
+  editorDraft = { kind: 'video', prompt: 'Film shot', aspect: '16:9', owner: 'alice', workspaceId: 'film-one-shot-one-video', draftId: 'film-v1', durationSeconds: 5,
+    references: [{ url: 'file:///reference.jpg', label: 'Character' }], cinemaDirection: { era: '1980s' } };
+  hook.rerender({});
+  expect(hook.result.current.input).toBe('Film shot');
+  expect(hook.result.current.settings.referenceAssets).toEqual([{ uri: 'file:///reference.jpg', label: 'Character', kind: 'image' }]);
+  expect(hook.result.current.settings.cinemaDirection).toMatchObject({ era: '1980s' });
+  act(() => hook.result.current.setInput('Edited film prompt'));
+  act(() => hook.result.current.setSettings(previous => ({ ...previous, referenceAssets: [] })));
+  owner = 'bob'; mockDraftUser = { address: 'bob' }; hook.rerender({});
+  expect(hook.result.current.input).toBe('');
+  expect(hook.result.current.settings.referenceAssets ?? []).toEqual([]);
+  owner = 'alice'; mockDraftUser = { address: 'alice' }; hook.rerender({});
+  expect(hook.result.current.input).toBe('Edited film prompt');
+  expect(hook.result.current.settings.referenceAssets).toEqual([]);
+  editorDraft = undefined; hook.rerender({});
+  expect(hook.result.current.input).toBe('Original workspace draft');
 });
 
 it('consumes successive campaign formats in a mounted studio and preserves its cached original draft', () => {
