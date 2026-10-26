@@ -8167,7 +8167,19 @@
       "translateCount": "{{count}} ondertitels vertalen",
       "translationDone": "{{count}} ondertitels vertaald",
       "translationFailed": "De vertaling is mislukt. Je ondertitels zijn niet gewijzigd.",
-      "lockedTranslation": "Ontgrendel vergrendelde ondertitels om ze mee te nemen."
+      "lockedTranslation": "Ontgrendel vergrendelde ondertitels om ze mee te nemen.",
+      "style": "Ondertitelstijl",
+      "styles": {
+        "classic": "Klassiek",
+        "boxed": "In een kader",
+        "bold": "Vet",
+        "wordpop": "Woord voor woord",
+        "rapid": "Snel onthullen",
+        "beast": "Beast-modus",
+        "stacked": "Gestapeld",
+        "serif": "Schreef",
+        "bubble": "Bubbel"
+      }
     },
     "app": {
       "newDesign": "Nieuw ontwerp",
@@ -8237,7 +8249,11 @@
       "vibrant": "Levendig",
       "cyber": "Cyber",
       "invert": "Omkeren",
-      "strength": "Filtersterkte: {{value}}%"
+      "strength": "Filtersterkte: {{value}}%",
+      "fadedFilm": "Vervaagde film",
+      "technicolor": "Technicolor",
+      "newsreel": "Bioscoopjournaal",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Bijsnijden",
@@ -8325,7 +8341,9 @@
       "autoFailed": "Deze foto kon niet worden geanalyseerd.",
       "tint": "Tint {{value}}",
       "vignette": "Vignet {{value}}%",
-      "warmth": "Warmte {{value}}"
+      "warmth": "Warmte {{value}}",
+      "halation": "Halatie {{value}}%",
+      "scanlines": "Scanlijnen {{value}}%"
     },
     "draw": {
       "colour": "Penkleur",
@@ -8417,7 +8435,20 @@
       "suggestTitle": "Voeg bovenaan een grote, vette titel toe met daaronder een kleinere ondertitel",
       "undo": "Ongedaan maken",
       "openGenerator": "Bekijken en genereren",
-      "working": "Bezig…"
+      "working": "Bezig…",
+      "stopped": "Gestopt. Er is verder niets veranderd.",
+      "stop": "Stoppen",
+      "queue": "Aan wachtrij toevoegen",
+      "queued": "{{count}} in de wachtrij",
+      "restore": "Hierheen terugzetten",
+      "restoreHint": "Zet het project terug zoals het was vóór dit bericht. Ongedaan maken haalt het terug.",
+      "restored": "Project teruggezet naar vóór dat bericht. Druk op ongedaan maken om de nieuwere versie terug te halen.",
+      "rewrite": "Mijn verzoek duidelijker maken",
+      "rewriteFailed": "Herschrijven lukte niet. Je tekst is ongewijzigd.",
+      "feedback": "Was dit nuttig?",
+      "good": "Goed antwoord",
+      "bad": "Slecht antwoord",
+      "retryPrefix": "Dat klopte niet. In plaats daarvan, "
     },
     "brand": {
       "addColor": "Merkkleur toevoegen",
@@ -8554,7 +8585,11 @@
       "rendering": "Video renderen… {{percent}}%",
       "mp4": "MP4-video",
       "exportHint": "Houd de editor open terwijl je video wordt gerenderd.",
-      "tooLarge": "Dat bestand is te groot voor de editor. De limiet is 400 MB."
+      "tooLarge": "Dat bestand is te groot voor de editor. De limiet is 400 MB.",
+      "tZoomIn": "Inzoomen",
+      "tZoomOut": "Uitzoomen",
+      "tFlyUp": "Omhoog vliegen",
+      "tFlyDown": "Omlaag vliegen"
     },
     "motion": {
       "title": "Beweging",
