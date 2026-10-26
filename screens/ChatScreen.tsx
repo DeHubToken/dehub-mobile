@@ -1652,11 +1652,13 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
   const handleClearTip = useCallback(() => setTipAmount(0), []);
 
   const handlePollCreated = useCallback(
-    (_tokenId: number) => {
+    (_tokenId: number, message?: unknown) => {
       setPollSheetVisible(false);
+      // The other side gets it over the socket; the sender's copy comes back here.
+      if (message && currentConvId) dmActions.upsertMessages(currentConvId, [normalizeAuthor(message)]);
       scrollToBottom();
     },
-    [scrollToBottom],
+    [scrollToBottom, currentConvId, normalizeAuthor],
   );
   const handleTipConfirm = useCallback((amount: number) => {
     setTipAmount(amount);
@@ -1839,7 +1841,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
                 onTipPress={handleTipPress}
                 onClearTip={handleClearTip}
                 dhbBalance={dhbBalance}
-                onPollPress={() => setPollSheetVisible(true)}
+                onPollPress={currentConvId ? () => setPollSheetVisible(true) : undefined}
                 initialText={route?.params?.sharedText}
                 thread={smartReplyThread}
                 peerName={peerLabel}
@@ -1923,6 +1925,7 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
           visible={pollSheetVisible}
           onClose={() => setPollSheetVisible(false)}
           onCreated={handlePollCreated}
+          conversationId={currentConvId ? String(currentConvId) : undefined}
         />
     </View>
   );

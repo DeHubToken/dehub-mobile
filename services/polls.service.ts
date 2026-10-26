@@ -2,7 +2,10 @@ import { apiClient } from "../libs/api.client";
 import type { DmPoll } from "./dm/dm.types";
 
 export interface CreatePollParams {
-  tokenId: number;
+  /** The post to attach the poll to. Leave out for a chat poll. */
+  tokenId?: number;
+  /** Send the poll into this chat instead of attaching it to a post. */
+  conversationId?: string;
   question: string;
   options: string[];
   expiresAt?: string;
@@ -11,7 +14,7 @@ export interface CreatePollParams {
 
 export async function createPoll(
   params: CreatePollParams,
-): Promise<{ status: boolean; result: DmPoll }> {
+): Promise<{ status: boolean; result: DmPoll; message?: unknown }> {
   return apiClient.post("/poll", params, { isAuthRequired: true });
 }
 
