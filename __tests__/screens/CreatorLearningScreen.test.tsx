@@ -1,0 +1,36 @@
+import React from 'react';
+import { cleanup, fireEvent, render } from '@testing-library/react-native';
+jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+const mockNavigate = jest.fn();
+jest.mock('@react-navigation/native', () => ({ useNavigation: () => ({ navigate: mockNavigate }), useRoute: () => ({ params: {} }), NavigationRouteContext: require('react').createContext(null) }));
+const mockDisk: Record<string, string> = {};
+jest.mock('../../libs/storage', () => ({ storage: { getString: (key: string) => mockDisk[key], set: (key: string, value: string) => { mockDisk[key] = value; }, delete: (key: string) => { delete mockDisk[key]; } } }));
+let mockDraftUser: { address: string } | null = { address: 'alice' };
+jest.mock('../../context/AuthContext', () => ({ useUser: () => mockDraftUser }));
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
+jest.mock('../../components/ScreenHeader', () => () => null);
+import CreatorLearningScreen from '../../screens/CreatorLearningScreen';
+import { __resetDraftCacheForTests, flushDrafts } from '../../libs/draft-cache';
+import { ScreenNames } from '../../navigation/ScreenNames';
+
+beforeEach(() => { mockDraftUser = { address: 'alice' }; mockNavigate.mockClear(); for (const key of Object.keys(mockDisk)) delete mockDisk[key]; __resetDraftCacheForTests(); });
+afterEach(cleanup);
+it('grades and persists learning progress separately by account and prepares an owned studio exercise without starting generation', () => {
+  const ui = render(<CreatorLearningScreen />);
+  expect(mockNavigate).not.toHaveBeenCalled();
+  fireEvent.press(ui.getByText('○ creator.learn.brief.answer2'));
+  fireEvent.press(ui.getByText('creator.learn.check'));
+  expect(ui.getByText('creator.learn.retry')).toBeTruthy();
+  fireEvent.press(ui.getByText('○ creator.learn.brief.answer0'));
+  fireEvent.press(ui.getByText('creator.learn.check'));
+  expect(ui.getByText('creator.learn.correct')).toBeTruthy();
+  fireEvent.press(ui.getByText('creator.learn.openExercise'));
+  expect(mockNavigate).toHaveBeenLastCalledWith(ScreenNames.CreatorStudio, expect.objectContaining({ mode: 'image', editorDraft: expect.objectContaining({ owner: 'alice', workspaceId: 'learn-brief', draftId: 'learn-brief-v1' }), marketingHandoff: undefined }));
+  mockDraftUser = { address: 'bob' }; ui.rerender(<CreatorLearningScreen />);
+  expect(ui.queryByText('creator.learn.correct')).toBeNull();
+  mockDraftUser = { address: 'alice' }; ui.rerender(<CreatorLearningScreen />);
+  expect(ui.getByText('creator.learn.correct')).toBeTruthy();
+  flushDrafts(); ui.unmount();
+  const restored = render(<CreatorLearningScreen />);
+  expect(restored.getByText('creator.learn.correct')).toBeTruthy();
+});

@@ -54,6 +54,7 @@ export enum ScreenNames {
   Maboroshi = 'Maboroshi',
   CreatorRemake = 'CreatorRemake',
   CreatorStudio = 'CreatorStudio',
+  CreatorLearning = 'CreatorLearning',
   // Creator Flow — your flows (/creator/flow) and one flow (/creator/flow/:id).
   CreatorFlow = 'CreatorFlow',
   CreatorFlowView = 'CreatorFlowView',
