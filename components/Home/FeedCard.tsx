@@ -301,6 +301,14 @@ const IMMERSIVE_INSET = 16;
 const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
 // The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
 const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
+/**
+ * System's time and view counts sit in one grey with their icons. Written as
+ * hsla() so neither the dark-theme text lift (libs/jsx/readability.js) nor
+ * System Light's colour pass (libs/jsx/tone.js) moves them: #8B8D90 on black,
+ * #71717A on white, both AA.
+ */
+const SYSTEM_META_GREY = "hsla(220,2%,55%,1)";
+const SYSTEM_LIGHT_META_GREY = "hsla(240,4%,46%,1)";
 
 /**
  * Clock + time, then the post kind's icon + count, then who may see it when
@@ -313,21 +321,25 @@ function PostMetaItems({ timeAgo, icon, count, visibility }: {
   visibility?: string;
 }) {
   const { t } = useCopy();
+  const { theme, isLight } = useAppTheme();
   const restricted = visibility === "followers" || visibility === "direct";
+  const systemGrey = theme === "system" ? (isLight ? SYSTEM_LIGHT_META_GREY : SYSTEM_META_GREY) : null;
+  const iconColor = systemGrey ?? "#6F7174";
+  const label = systemGrey ? [META_LABEL, { color: systemGrey }] : META_LABEL;
   return (
     <>
       {timeAgo ? (
         <>
-          <Icon name="TimeAgo" size={13} color="#6F7174" />
-          <Text style={META_LABEL}>{timeAgo}</Text>
+          <Icon name="TimeAgo" size={13} color={iconColor} />
+          <Text style={label}>{timeAgo}</Text>
         </>
       ) : null}
-      <Icon name={icon} size={13} color="#6F7174" />
-      <Text style={META_LABEL}>{count}</Text>
+      <Icon name={icon} size={13} color={iconColor} />
+      <Text style={label}>{count}</Text>
       {restricted ? (
         <>
-          <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color="#6F7174" />
-          <Text style={META_LABEL} testID="post-visibility-label">
+          <Icon name={visibility === "direct" ? "AtSign" : "Lock"} size={13} color={iconColor} />
+          <Text style={label} testID="post-visibility-label">
             {visibility === "direct" ? t("postVisibility.direct") : t("postVisibility.followers")}
           </Text>
         </>

@@ -355,6 +355,10 @@ export interface AIImageResponse {
   model?: string;
   requestedModel?: string;
   fallbackUsed?: boolean;
+  /** Authoritative terminal recovery flags from the shared generation journal. */
+  paymentRestored?: boolean;
+  paymentNotTaken?: boolean;
+  savePending?: boolean;
 }
 
 export type AIVideoModel = string;
@@ -385,6 +389,9 @@ export interface AIVideoResponse {
   falAppId?: string;
   /** Set once the server has archived the finished render to the creator library. */
   libraryId?: string;
+  paymentRestored?: boolean;
+  paymentNotTaken?: boolean;
+  savePending?: boolean;
   error?: string;
 }
 
@@ -702,6 +709,11 @@ export interface AiQuoteRequest {
   durationSeconds?: number;
   quality?: 'none' | 'standard' | 'HD';
   quantity?: number;
+  resolution?: string;
+  hasEndFrame?: boolean;
+  hasAudioReferences?: boolean;
+  hasVideoReferences?: boolean;
+  hasInlineMedia?: boolean;
 }
 
 /**
