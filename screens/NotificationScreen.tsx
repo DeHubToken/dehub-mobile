@@ -59,6 +59,7 @@ import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
 import QuickSettingsSheet from "../components/Notifications/QuickSettingsSheet";
+import PageDrawer from "../components/common/PageDrawer";
 import { createLogger } from "../libs/logger";
 import { useWebSocketApi } from "../context/WebSocketContext";
 import { orderNotificationTabKeys } from "../libs/notification-tab-order";
@@ -1822,55 +1823,68 @@ const NotificationScreen = () => {
     );
   }, [loadError, selectedFilter, onRefresh, t, emptyIconTile]);
 
+  // Opened cold from a push there may be nothing under the drawer to return to.
+  const closeDrawer = useCallback(() => {
+    if (navigation.canGoBack()) navigation.goBack();
+    else navigation.navigate(ScreenNames.Root);
+  }, [navigation]);
+
   // Header with mark all read button
   const hasUnread = filteredNotifications.some((n) => !n.read);
   const showLoading = loading;
 
+  // A drawer over the screen it was opened from, as phone web's bell drawer:
+  // a handle, pull down to close, no back or close button.
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader
-        icon="notifications"
-        title={t("notifications.title")}
-        rightContent={tabCounts.all > 0 ? (
-          <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
-            {tabCounts.all}
-          </Text>
-        ) : undefined}
-        tabs={
-          <TypeTabs
-            selected={selectedFilter}
-            onSelect={handleFilterChange}
-            counts={tabCounts}
-            activityCounts={tabActivityCounts}
-            actions={
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <TouchableOpacity
-                onPress={() => setQuickSettingsOpen(true)}
-                accessibilityRole="button"
-                accessibilityLabel={t('notifications.settings')}
-                className="items-center justify-center bg-theme-neutrals-800"
-                style={{ width: 34, height: 34, borderRadius: 10 }}
-                hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
-              >
-                <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
-              </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleMarkAllRead}
-            disabled={!hasUnread}
-            accessibilityRole="button"
-            accessibilityLabel={t('notifications.markAllRead')}
-            accessibilityState={{ disabled: !hasUnread }}
-            className="items-center justify-center bg-theme-neutrals-800"
-            style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
-            hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
-          >
-            <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
-          </TouchableOpacity>
-            </View>
-            }
-          />
-        }
-      />
+    <PageDrawer
+      onClose={closeDrawer}
+      grab={
+        <ScreenHeader
+          icon="notifications"
+          canGoBack={false}
+          title={t("notifications.title")}
+          rightContent={tabCounts.all > 0 ? (
+            <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
+              {tabCounts.all}
+            </Text>
+          ) : undefined}
+          tabs={
+            <TypeTabs
+              selected={selectedFilter}
+              onSelect={handleFilterChange}
+              counts={tabCounts}
+              activityCounts={tabActivityCounts}
+              actions={
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <TouchableOpacity
+                  onPress={() => setQuickSettingsOpen(true)}
+                  accessibilityRole="button"
+                  accessibilityLabel={t('notifications.settings')}
+                  className="items-center justify-center bg-theme-neutrals-800"
+                  style={{ width: 34, height: 34, borderRadius: 10 }}
+                  hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+                >
+                  <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
+                </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleMarkAllRead}
+              disabled={!hasUnread}
+              accessibilityRole="button"
+              accessibilityLabel={t('notifications.markAllRead')}
+              accessibilityState={{ disabled: !hasUnread }}
+              className="items-center justify-center bg-theme-neutrals-800"
+              style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
+              hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+            >
+              <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
+            </TouchableOpacity>
+              </View>
+              }
+            />
+          }
+        />
+      }
+    >
       
       {showLoading ? (
         <FlatList
@@ -1918,7 +1932,7 @@ const NotificationScreen = () => {
         onClearAll={handleClearAll}
         onOpenAllSettings={() => navigation.navigate(ScreenNames.NotificationSettings)}
       />
-    </View>
+    </PageDrawer>
   );
 };
 
