@@ -2928,6 +2928,8 @@
     "failedSubmit": "Başvuru gönderilemedi. Lütfen tekrar deneyin."
   },
   "creatorFlow": {
+    "audioSavePending": "Ses hazır ancak özel kitaplığa kaydedilmesi bekleniyor. Sonucu almak için sürdürün.",
+    "freeResultUnknown": "Ücretsiz görevin yanıtı kesildi. Görev otomatik olarak yeniden gönderilmez. Kayıtlı sonuçları kontrol edin veya Yeni çalıştırma başlat seçeneğini seçin.",
     "formAuthor": "Akışı düzenle",
     "formAuthorHint": "Uyumlu girdilerle bir akış oluşturun. Burada kaydedin veya web tuvalinde düzenleyin.",
     "newNativeFlow": "Yeni akış",

@@ -2950,6 +2950,8 @@
     "email": "Email"
   },
   "creatorFlow": {
+    "audioSavePending": "L’audio est prêt, mais son enregistrement dans la bibliothèque privée est en attente. Reprenez pour le récupérer.",
+    "freeResultUnknown": "La réponse de la tâche gratuite a été interrompue. Elle ne sera pas soumise à nouveau automatiquement. Consultez les résultats enregistrés ou choisissez Lancer une autre exécution.",
     "formAuthor": "Modifier le flux",
     "formAuthorHint": "Créez un flux avec des entrées compatibles. Enregistrez-le ici ou organisez-le sur le canevas web.",
     "newNativeFlow": "Nouveau flux",

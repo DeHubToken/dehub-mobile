@@ -5,19 +5,29 @@ import { graphOrder, GENERATORS, connectedText, durableFlowNodes } from '../libs
 import { CREATOR_DEFAULTS, creatorInputIssue, creatorPromptLimit, normalizeCreatorSettings, type CreatorStudioSettings } from '../libs/creatorStudio';
 import { generateImage, startVideoGeneration, pollVideoGeneration, quoteAiJob, type AiQuoteRequest } from './ai.service';
 import { saveCreatorAsset } from './creator.service';
+import { runCreatorAudio } from './creator-audio.service';
+import { creatorAudioIssue, CREATOR_AUDIO_VOICES, type CreatorAudioSettings } from '../libs/creatorAudio';
+import { supabase } from './supabase';
+import { dehubAuthHeaders } from './ai.service';
+import { downloadFlowAudio } from './creator-flow-download';
 import { loadFlowAssets, flowAssetId, assetNodePatch } from './creator-flow-assets';
 import type { FlowNode, FlowEdge } from './creator-flows.service';
 
 export interface NativeFlowGraph { id: string; nodes: FlowNode[]; edges: FlowEdge[] }
 export interface NativeFlowPlan { graph: NativeFlowGraph; signature: string; order: string[]; priceDhb: number; priceUsd: number; resume: boolean }
-interface NodeReceipt { jobId: string; state: 'submitting' | 'polling' | 'done' | 'error'; ticket?: { predictionId: string; provider?: string; falAppId?: string }; assetId?: string; error?: string }
+interface NodeReceipt { jobId: string; state: 'submitting' | 'polling' | 'done' | 'error'; paid?: boolean; freeSubmitted?: boolean; ticket?: { predictionId: string; provider?: string; falAppId?: string }; assetId?: string; outputText?: string; localOutput?: { audioUrl?: string; transcript?: string }; error?: string }
 export interface NativeFlowReceipt { signature: string; txHash: string; nodes: Record<string, NodeReceipt> }
 type Quote = AiQuoteRequest & { resolution?: string; hasEndFrame?: boolean; hasAudioReferences?: boolean; hasVideoReferences?: boolean; hasInlineMedia?: boolean };
+const activeRuns = new Set<string>();
+const activeStarts = new Set<string>();
+function unfinished(receipt: NativeFlowReceipt) {
+  return (!Object.keys(receipt.nodes).length && receipt.txHash !== 'free') || Object.values(receipt.nodes).some(node => node.state !== 'done' && node.paid !== false);
+}
 
 function receiptKey(wallet: string, id: string) { return `creator-flow-run-v1:${wallet.toLowerCase()}:${id}`; }
 const fingerprint = (graph: NativeFlowGraph) => JSON.stringify({ nodes: durableFlowNodes(graph.nodes).map(node => ({ id: node.id, type: node.type,
   data: Object.fromEntries(Object.entries(node.data).filter(([key]) => !['status','errorMsg','hasError','jobId','pendingGenerate','pipelineQueued','generations','currentGenIdx','outputText','outputAssetId',
-    ...(GENERATORS.has(node.type || '') ? ['imageUrl','videoUrl','audioUrl'] : [])].includes(key))) })), edges: graph.edges });
+    ...(GENERATORS.has(node.type || '') ? ['imageUrl','videoUrl','audioUrl','audioAssetId'] : [])].includes(key))) })), edges: graph.edges });
 
 function upstream(node: FlowNode, graph: NativeFlowGraph, handle: string) {
   return graph.edges.filter(edge => edge.target === node.id && edge.targetHandle === handle).map(edge => ({ node: graph.nodes.find(source => source.id === edge.source)!, handle: edge.sourceHandle }));
@@ -35,12 +45,34 @@ function settingsFor(node: FlowNode, graph: NativeFlowGraph): CreatorStudioSetti
     resolution: String(node.data.resolution || CREATOR_DEFAULTS[mode].resolution),
     ...(node.data.seed !== undefined ? { seed: String(node.data.seed) } : {}),
     ...(node.data.negativePrompt ? { negativePrompt: String(node.data.negativePrompt) } : {}),
+    ...(node.data.effect ? { effect: String(node.data.effect) } : {}),
     referenceAssets: [...references.map(source => ({ uri: imageOf(source) || 'https://pending.invalid/image', label: source.node.data.label || source.node.id, kind: 'image' as const })),
       ...videos.map(source => ({ uri: String(source.node.data.videoUrl || 'https://pending.invalid/video'), label: source.node.data.label || source.node.id, kind: 'video' as const,
         ...(source.node.data.videoDuration ? { seconds: Number(source.node.data.videoDuration) } : {}) }))],
     ...(endFrame ? { endFrame: { uri: imageOf(endFrame) || 'https://pending.invalid/image', label: endFrame.node.id, kind: 'image' as const } } : {}) };
 }
-function validateNode(node: FlowNode, graph: NativeFlowGraph) {
+function audioSettings(node: FlowNode, media?: CreatorAudioSettings['media']): CreatorAudioSettings {
+  const task = String(node.data.audioTask || 'speech');
+  if (!['speech','sfx','transcribe','isolate'].includes(task)) throw new Error('creator.audioInvalidTask');
+  return { task: task as CreatorAudioSettings['task'], voiceId: String(node.data.voiceId || CREATOR_AUDIO_VOICES[0].id),
+    ...(task === 'sfx' && node.data.duration !== undefined ? { durationSeconds: Number(node.data.duration) } : {}), ...(media ? { media } : {}) };
+}
+function validateNode(node: FlowNode, graph: NativeFlowGraph): CreatorStudioSettings | null {
+  if (node.type === 'assistantNode') {
+    const source = upstream(node, graph, 'prompt')[0]?.node;
+    if (!source && !String(node.data.localPrompt || '').trim() || source?.type === 'promptNode' && !String(source.data.prompt || '').trim()) throw new Error('creatorFlow.missingPrompt');
+    return null;
+  }
+  if (node.type === 'audioGenNode') {
+    const settings = audioSettings(node), transform = settings.task === 'transcribe' || settings.task === 'isolate';
+    const source = upstream(node, graph, transform ? 'audio' : 'prompt')[0]?.node;
+    if (!source) throw new Error(transform ? 'creator.audioNeedsFile' : 'creatorFlow.missingPrompt');
+    if (transform && source.type === 'audioInputNode' && (!source.data.audioUrl || !source.data.audioAssetId)) throw new Error('creatorFlow.missingSavedMedia');
+    const prompt = connectedText(node, graph.nodes, graph.edges);
+    const issue = creatorAudioIssue(prompt || (source.type !== 'promptNode' ? 'pending' : ''), transform ? { ...settings, media: { uri: 'https://pending.invalid/audio', name: 'source.mp3', mimeType: 'audio/mpeg', size: 1 } } : settings);
+    if (issue) throw new Error(issue);
+    return null;
+  }
   if (node.type !== 'imageGenNode' && node.type !== 'videoGenNode') throw new Error('creatorFlow.unsupportedNode');
   const prompt = upstream(node, graph, 'prompt')[0]?.node;
   if (!prompt || prompt.type === 'promptNode' && !String(prompt.data.prompt || '').trim()) throw new Error('creatorFlow.missingPrompt');
@@ -77,13 +109,14 @@ export async function planNativeFlow(graph: NativeFlowGraph, wallet: string): Pr
   if (!order.length) throw new Error('creatorFlow.nothingToRun');
   const signature = fingerprint(graph), receipt = await readNativeFlowReceipt(wallet, graph.id);
   const resume = !!receipt && receipt.signature === signature;
-  if (receipt && !resume && Object.values(receipt.nodes).some(node => node.state !== 'done')) throw new Error('creatorFlow.recoverBeforeEdit');
+  if (receipt && !resume && unfinished(receipt)) throw new Error('creatorFlow.recoverBeforeEdit');
   if (resume && order.every(id => receipt!.nodes[id]?.state === 'done')) throw new Error('creatorFlow.runAlreadyComplete');
   const prepared = await hydrate(graph, wallet);
   let priceDhb = 0, priceUsd = 0;
   for (const id of order) {
     const node = prepared.nodes.find(node => node.id === id)!, settings = validateNode(node, prepared);
     if (resume && receipt!.nodes[id]?.state === 'done') continue;
+    if (!settings) continue;
     const quote: Quote = { kind: settings.mode === 'image' ? 'image' : 'video', modelId: settings.model,
       ...(settings.mode === 'video' ? { durationSeconds: settings.durationSeconds, resolution: settings.resolution,
         hasEndFrame: !!settings.endFrame, hasVideoReferences: upstream(node, prepared, 'referenceVideo').length > 0,
@@ -112,19 +145,67 @@ export async function readNativeFlowReceipt(wallet: string, flowId: string): Pro
 /** A new paid run can replace local recovery only after every node was delivered. */
 export async function restartNativeFlowRun(wallet: string, flowId: string): Promise<void> {
   const receipt = await readNativeFlowReceipt(wallet, flowId);
-  if (receipt && Object.values(receipt.nodes).some(node => node.state !== 'done')) throw new Error('creatorFlow.recoverBeforeEdit');
+  if (receipt && unfinished(receipt)) throw new Error('creatorFlow.recoverBeforeEdit');
   await AsyncStorage.removeItem(receiptKey(wallet, flowId));
+}
+
+/** Serialize payment admission even when an editor is closed and reopened. */
+export function claimNativeFlowStart(wallet: string, flowId: string): () => void {
+  const key = receiptKey(wallet, flowId);
+  if (activeStarts.has(key) || activeRuns.has(key)) throw new Error('creatorFlow.recoveryPending');
+  activeStarts.add(key);
+  return () => { activeStarts.delete(key); };
+}
+
+/** Save returned payment references even if the UI closes or the account changes. */
+export async function reserveNativeFlowReceipt(plan: NativeFlowPlan, wallet: string, txHash: string): Promise<NativeFlowReceipt> {
+  if (!txHash || fingerprint(plan.graph) !== plan.signature) throw new Error('creatorFlow.planChanged');
+  const previous = await readNativeFlowReceipt(wallet, plan.graph.id);
+  if (previous && previous.signature === plan.signature) return previous;
+  if (previous && unfinished(previous)) throw new Error('creatorFlow.recoverBeforeEdit');
+  const receipt: NativeFlowReceipt = { signature: plan.signature, txHash, nodes: {} };
+  await AsyncStorage.setItem(receiptKey(wallet, plan.graph.id), JSON.stringify(receipt));
+  return receipt;
+}
+
+/** Revalidate the reviewed run and retain payment before any UI identity exit. */
+export async function admitNativeFlowRun(reviewed: NativeFlowPlan, graph: NativeFlowGraph, wallet: string, callbacks: {
+  isCurrent: () => boolean; saveDraft: () => Promise<unknown>; pay: (priceDhb: number) => Promise<string>;
+  onNode: (node: FlowNode) => void; onPriceChanged?: (plan: NativeFlowPlan) => void;
+}): Promise<boolean> {
+  if (!callbacks.isCurrent()) throw new Error('SIGN_IN_REQUIRED');
+  const release = claimNativeFlowStart(wallet, graph.id);
+  try {
+    const fresh = await planNativeFlow(graph, wallet);
+    if (!callbacks.isCurrent()) return false;
+    if (fresh.signature !== reviewed.signature || Math.abs(fresh.priceDhb - reviewed.priceDhb) > 0.00000001 || fresh.resume !== reviewed.resume) {
+      callbacks.onPriceChanged?.(fresh); throw new Error('creatorFlow.planChanged');
+    }
+    await callbacks.saveDraft();
+    if (!callbacks.isCurrent()) return false;
+    const previous = await readNativeFlowReceipt(wallet, graph.id);
+    if (!callbacks.isCurrent()) return false;
+    const txHash = reviewed.resume && previous ? previous.txHash : reviewed.priceDhb > 0 ? await callbacks.pay(reviewed.priceDhb) : 'free';
+    await reserveNativeFlowReceipt(reviewed, wallet, txHash);
+    if (!callbacks.isCurrent()) return false;
+    await runNativeFlow(reviewed, wallet, txHash, callbacks.isCurrent, callbacks.onNode);
+    return callbacks.isCurrent();
+  } finally { release(); }
 }
 
 /** Receipt/job IDs stay in account-scoped local storage, outside public graph JSON. */
 export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash: string,
   isCurrent: () => boolean, onNode: (node: FlowNode) => void): Promise<void> {
-  if (!DIGITAL_PURCHASES_ENABLED) throw new Error('creatorFlow.paidUnavailable');
+  if (!DIGITAL_PURCHASES_ENABLED && plan.graph.nodes.some(node => node.type === 'imageGenNode' || node.type === 'videoGenNode')) throw new Error('creatorFlow.paidUnavailable');
   const assertCurrent = () => { if (!isCurrent()) throw new Error('SIGN_IN_REQUIRED'); };
   assertCurrent();
   if (fingerprint(plan.graph) !== plan.signature) throw new Error('creatorFlow.planChanged');
+  const activeKey = receiptKey(wallet, plan.graph.id);
+  if (activeRuns.has(activeKey)) throw new Error('creatorFlow.recoveryPending');
+  activeRuns.add(activeKey);
+  try {
   let receipt = await readNativeFlowReceipt(wallet, plan.graph.id);
-  if (receipt && receipt.signature !== plan.signature && Object.values(receipt.nodes).some(node => node.state !== 'done')) throw new Error('creatorFlow.recoverBeforeEdit');
+  if (receipt && receipt.signature !== plan.signature && unfinished(receipt)) throw new Error('creatorFlow.recoverBeforeEdit');
   if (!receipt || receipt.signature !== plan.signature) receipt = { signature: plan.signature, txHash, nodes: {} };
   const persist = () => AsyncStorage.setItem(receiptKey(wallet, plan.graph.id), JSON.stringify(receipt));
   const graph = await hydrate(plan.graph, wallet);
@@ -132,20 +213,65 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
     assertCurrent();
     const node = graph.nodes.find(node => node.id === id)!;
     let saved = receipt.nodes[id];
+    if (saved?.outputText && node.type === 'assistantNode') {
+      saved.state = 'done'; await persist();
+      node.data = { ...node.data, outputText: saved.outputText, status: 'done' }; onNode(node); continue;
+    }
     if (saved?.state === 'done' && saved.assetId) {
       const assets = await loadFlowAssets(wallet, [saved.assetId]); assertCurrent();
       const asset = assets.get(saved.assetId);
       if (!asset) throw new Error('creatorFlow.missingSavedMedia');
-      node.data = { ...node.data, ...assetNodePatch(node, asset), outputAssetId: saved.assetId, status: 'done' };
+      node.data = { ...node.data, ...assetNodePatch(node, asset), outputAssetId: saved.assetId, ...(node.type === 'audioGenNode' ? { audioAssetId: saved.assetId } : {}), status: 'done' };
       onNode(node); continue;
     }
-    if (!saved) { saved = { jobId: Crypto.randomUUID(), state: 'submitting' }; receipt.nodes[id] = saved; await persist(); }
+    if (saved?.freeSubmitted && !saved.localOutput && !saved.outputText && saved.state !== 'done') throw new Error('creatorFlow.freeResultUnknown');
+    if (!saved) { saved = { jobId: Crypto.randomUUID(), state: 'submitting', paid: node.type === 'imageGenNode' || node.type === 'videoGenNode' }; receipt.nodes[id] = saved; await persist(); }
     const settings = validateNode(node, graph);
     const prompt = connectedText(node, graph.nodes, graph.edges).trim();
-    if (!prompt) throw new Error('creatorFlow.missingPrompt');
+    if (!prompt && !(node.type === 'audioGenNode' && ['transcribe','isolate'].includes(String(node.data.audioTask)))) throw new Error('creatorFlow.missingPrompt');
     node.data = { ...node.data, status: 'running', errorMsg: undefined }; onNode(node);
     try {
       let url: string | undefined, assetId: string | undefined;
+      if (node.type === 'assistantNode') {
+        assertCurrent();
+        const headers = await dehubAuthHeaders(wallet); assertCurrent();
+        saved.freeSubmitted = true; await persist(); assertCurrent();
+        const result = await supabase.functions.invoke('creator-prompt-assistant', { headers, body: { prompt, persona: 'rewrite', model: String(node.data.assistantModel || 'gemini-flash'), stream: false } });
+        if (result.error || typeof result.data?.text !== 'string' || !result.data.text.trim()) throw new Error(result.data?.error || result.error?.message || 'creatorFlow.runFailed');
+        saved.outputText = result.data.text.trim(); saved.state = 'done'; await persist(); assertCurrent();
+        node.data = { ...node.data, outputText: saved.outputText, status: 'done' }; onNode(node); continue;
+      }
+      if (node.type === 'audioGenNode') {
+        let output = saved.localOutput;
+        if (!output) {
+          const source = upstream(node, graph, 'audio')[0]?.node;
+          let cleanup: (() => Promise<void>) | undefined;
+          try {
+            let media: CreatorAudioSettings['media'];
+            if (source) {
+              const sourceId = String(source.data.audioAssetId || '');
+              if (!sourceId) throw new Error('creatorFlow.missingSavedMedia');
+              const downloaded = await downloadFlowAudio(wallet, sourceId, saved.jobId, isCurrent); assertCurrent();
+              cleanup = downloaded.cleanup;
+              media = { uri: downloaded.uri, name: downloaded.name, mimeType: downloaded.mimeType, size: downloaded.size };
+            }
+            assertCurrent();
+            saved.freeSubmitted = true; await persist(); assertCurrent();
+            output = await runCreatorAudio(prompt, audioSettings(node, media), wallet);
+            saved.localOutput = output; await persist();
+          } finally { await cleanup?.(); }
+        }
+        assertCurrent();
+        await saveCreatorAsset({ id: saved.jobId, kind: 'audio', model: String(node.data.audioTask || 'speech'), modelName: String(node.data.audioTask || 'speech'), prompt, createdAt: Date.now(),
+          ...(output.audioUrl ? { url: output.audioUrl } : {}), ...(output.transcript ? { transcript: output.transcript } : {}) }, wallet);
+        saved.assetId = saved.jobId; saved.state = 'done'; await persist(); assertCurrent();
+        // Renew private audio through the library for downstream transformations.
+        const assets = await loadFlowAssets(wallet, [saved.jobId]); assertCurrent();
+        const asset = assets.get(saved.jobId);
+        if (!asset) throw new Error('creatorFlow.missingSavedMedia');
+        node.data = { ...node.data, ...assetNodePatch(node, asset), audioAssetId: saved.jobId, status: 'done' }; onNode(node); continue;
+      }
+      if (!settings) throw new Error('creatorFlow.unsupportedNode');
       if (settings.mode === 'image') {
         const source = upstream(node, graph, 'image')[0];
         assertCurrent();
@@ -164,6 +290,7 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
             ...(start ? { sourceImage: imageOf(start) } : {}), ...(end ? { endFrameUrl: imageOf(end) } : {}),
             ...(images.length ? { referenceImageUrls: images } : {}), ...(clips.length ? { videoUrls: clips } : {}),
             ...(settings.seed ? { seed: Number(settings.seed) } : {}), ...(settings.negativePrompt ? { negativePrompt: settings.negativePrompt } : {}) };
+          if (settings.effect) Object.assign(request, { effect: settings.effect });
           const result = await startVideoGeneration(request, wallet);
           if (result.status === 'failed') throw new Error(result.error || 'creatorFlow.runFailed');
           if (result.status === 'succeeded' && result.videoUrl) { url = result.videoUrl; assetId = result.libraryId || saved.jobId; }
@@ -198,4 +325,5 @@ export async function runNativeFlow(plan: NativeFlowPlan, wallet: string, txHash
       throw error;
     }
   }
+  } finally { activeRuns.delete(activeKey); }
 }

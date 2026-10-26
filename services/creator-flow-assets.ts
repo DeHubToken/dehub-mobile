@@ -21,9 +21,10 @@ export async function loadFlowAssets(wallet: string, ids: string[]): Promise<Map
   return found;
 }
 export function assetNodePatch(node: GraphNode, asset: FlowAsset): Record<string, unknown> {
-  if (node.type === 'audioInputNode' || node.type === 'audioGenNode') return asset.transcript
-    ? { outputText: asset.transcript } : asset.kind === 'audio' && asset.url ? { audioUrl: asset.url } : {};
-  if (asset.kind === 'image' && asset.url) return { imageUrl: asset.url };
-  if (asset.kind === 'video' && asset.url) return { videoUrl: asset.url };
-  return {};
+  const clear = { imageUrl: undefined, videoUrl: undefined, audioUrl: undefined, outputText: undefined, capturedFrameUrl: undefined };
+  if (node.type === 'audioGenNode' && node.data.audioTask === 'transcribe' && asset.kind === 'audio' && asset.transcript?.trim()) return { ...clear, outputText: asset.transcript };
+  if ((node.type === 'audioInputNode' || node.type === 'audioGenNode' && node.data.audioTask !== 'transcribe') && asset.kind === 'audio' && asset.url) return { ...clear, audioUrl: asset.url };
+  if ((node.type === 'imageInputNode' || node.type === 'imageGenNode') && asset.kind === 'image' && asset.url) return { ...clear, imageUrl: asset.url };
+  if ((node.type === 'videoInputNode' || node.type === 'videoGenNode') && asset.kind === 'video' && asset.url) return { ...clear, videoUrl: asset.url };
+  throw new Error('creatorFlow.missingSavedMedia');
 }
