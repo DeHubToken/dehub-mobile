@@ -566,7 +566,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const keyboardOffset = showComments
     ? Math.max(0, itemHeight - viewportHeight) + (Platform.OS === "ios" ? keyboardHeight : 0)
     : 0;
-  const splitHeight = Math.max(0, itemHeight - keyboardOffset) / 2;
+  // Comments take 75%: at half height the sheet held barely two comments.
+  const splitHeight = Math.max(0, itemHeight - keyboardOffset) * 0.75;
   // The comments sheet's slide offset, shared so the player shrinks and grows
   // in the same frames the sheet moves — opening, closing and following a
   // drag — instead of snapping to half height before the sheet has arrived

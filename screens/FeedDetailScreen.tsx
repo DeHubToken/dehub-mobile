@@ -1405,6 +1405,13 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     });
   }, []);
 
+  // No comments: no header, no "add yours" line. Comment still opens the
+  // composer. A search in progress keeps the header so it can be closed.
+  const noComments = !loading && !loadError && comments.length === 0
+    && authorThreadEntries.length === 0 && !commentSearchOpen && !commentQuery;
+  useEffect(() => {
+    if (noComments) tabRowY.current = 0;
+  }, [noComments]);
   const handleTabRowLayout = useCallback((e: LayoutChangeEvent) => {
     tabRowY.current = e.nativeEvent.layout.y;
   }, []);
@@ -1550,7 +1557,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       {!!item && <AuthorThreadBlock entries={authorThreadEntries} renderRow={(c) => renderCommentItem({ item: c })} />}
       {/* The comment tab row. Measured so the pinned copy can take over once
           it scrolls under the top of the screen. */}
-      {!postUnavailable && (
+      {!postUnavailable && !noComments && (
         <View onLayout={handleTabRowLayout}>
           {stage ? (
             <CommentsStageHeader
@@ -1566,7 +1573,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         </View>
       )}
     </View>
-  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery]);
+  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, noComments]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1643,7 +1650,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
               <Text className="text-theme-neutrals-50 font-medium">{t("common.retry")}</Text>
             </Pressable>
           </View>
-        ) : (
+        ) : noComments ? null : (
           <View className="px-4 py-6">
             <Text className="text-theme-neutrals-400 text-sm">{t("comments.noneYetAddYours")}</Text>
           </View>
