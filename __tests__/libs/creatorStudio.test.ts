@@ -81,6 +81,10 @@ describe('native Creator jobs', () => {
     expect(creatorInputIssue(settings, true, undefined, '')).toBeNull();
     expect(creatorInputIssue(settings, true, undefined, '新背景')).toBe('creator.expandEnglishOnly');
     expect(creatorInputIssue(settings, true, undefined, 'A sunny garden')).toBeNull();
+    const preset = { ...getTemplate('open-record-whip-pan')!, template: 'A scene — expanded detail' };
+    const resolved = prepareCreatorPrompt('A scene', preset, settings);
+    expect(resolved).toContain('—');
+    expect(creatorInputIssue(settings, true, preset, resolved)).toBe('creator.expandEnglishOnly');
   });
 
   it('keeps the selected medium and stored settings independent of prompt keywords', () => {
