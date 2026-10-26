@@ -28,7 +28,7 @@ const PostResolverScreen: React.FC = () => {
   /** dehub.io/newpost/:n — an off-chain post's own slug, resolved via the API. */
   const newPostId: string | undefined = route.params?.newPostId;
   const commentId: string | undefined =
-    route.params?.commentId ?? route.params?.c;
+    route.params?.commentId ?? route.params?.c ?? route.params?.comment;
 
   // Root already sits at the bottom of this stack. Replacing the resolver with
   // a second Root mounted the whole tab tree twice — two home feeds fetching

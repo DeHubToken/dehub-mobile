@@ -87,6 +87,7 @@ import { emitPostTipped, commentTipKey } from "../../libs/tip-events";
 import CreatorSupportAd from './CreatorSupportAd';
 import { DIRECT_QUICK_AMOUNTS, MIN_DIRECT_TIP, directTipToken } from "../../libs/direct-tip-tokens";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -675,7 +676,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             ]}
           >
             {/* Solid panel — see the note at the top of this file. */}
-            <View style={[StyleSheet.absoluteFill, styles.overlay]} />
+            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             {/* Drag handle */}
             <GestureDetector gesture={panGesture}>

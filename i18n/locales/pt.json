@@ -6128,6 +6128,8 @@
     "pendingRetired": "Este depósito já não está pendente na rede. Rastreamento limpo; verifique a atividade da sua carteira antes de depositar novamente."
   },
   "communities": {
+    "shareLink": "Partilhar ligação",
+    "sendInMessage": "Enviar convite",
     "title": "Comunidades",
     "create": "Criar",
     "searchPlaceholder": "Buscar comunidades...",

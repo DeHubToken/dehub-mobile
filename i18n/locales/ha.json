@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} jimlar kuɗi"
   },
   "communities": {
+    "shareLink": "Raba mahada",
+    "sendInMessage": "Aika gayyata",
     "existingPost": {
       "add": "Ƙara rubutun da ke akwai",
       "added": "An ƙara rubutu zuwa al'umma",

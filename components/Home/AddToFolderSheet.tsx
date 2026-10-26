@@ -39,6 +39,7 @@ import {
   BookmarkFolder,
 } from "../../services/bookmark.service";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 interface AddToFolderSheetProps {
   visible: boolean;
@@ -335,7 +336,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <View style={[StyleSheet.absoluteFill, styles.overlay, isMinimal && styles.minimalOverlay]} />
+            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay, isMinimal && styles.minimalOverlay]} />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View style={styles.handleWrap}>

@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} توكن"
   },
   "communities": {
+    "shareLink": "شارك الرابط",
+    "sendInMessage": "تقدّم الدعوة",
     "existingPost": {
       "added": "نَشْرٌ مُضَافٌ إِلَى المُجْتَمَع",
       "invalidLink": "لُصْقِ رِسْلَةَ دِيهُوب أو عَناوينَ النَشْرِ",

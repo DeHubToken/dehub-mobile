@@ -43,6 +43,7 @@ import {
   type VideoModel,
 } from '../../config/ai-models.constants';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 
 export interface AssistantSettings {
@@ -181,7 +182,7 @@ const AssistantSettingsSheetComponent: React.FC<AssistantSettingsSheetProps> = (
         </Animated.View>
 
         <Animated.View style={[s.sheet, { paddingBottom: insets.bottom }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>

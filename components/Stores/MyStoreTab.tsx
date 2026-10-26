@@ -55,6 +55,7 @@ import {
 } from "../../hooks/useStores";
 import { sanitizeAmountInput } from "../../libs/amount-input";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import SheetGlass, { GLASS_PANEL_CLEAR, useDrawerGlass } from "../ui/SheetGlass";
 
 type SubTab = "listings" | "orders" | "purchases";
 
@@ -93,6 +94,7 @@ const StoreForm: React.FC<{
 }> = ({ visible, existing, onClose }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const glassPanel = useDrawerGlass();
   const createStore = useCreateStore();
   const updateStore = useUpdateStore();
   const [name, setName] = useSurfaceDraft("store:name", existing?.name ?? "", existing?.id ?? "new");
@@ -158,7 +160,8 @@ const StoreForm: React.FC<{
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior="padding">
-          <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
+          <View style={[styles.sheet, glassPanel && GLASS_PANEL_CLEAR, { paddingBottom: insets.bottom + 16 }]}>
+            {glassPanel ? <SheetGlass /> : null}
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>
                 {existing ? t("stores.editStore") : t("stores.createYourStore")}
@@ -264,6 +267,7 @@ const ListingForm: React.FC<{
 }> = ({ visible, storeId, onClose, editing }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const glassPanel = useDrawerGlass();
   const createListing = useCreateListing();
   const updateListing = useUpdateListing();
   // Edits keep their own drafts so they never mix with a half-written new listing.
@@ -413,7 +417,8 @@ const ListingForm: React.FC<{
     <Modal visible={visible} animationType="slide" transparent onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <KeyboardAvoidingView behavior="padding">
-          <View style={[styles.sheet, { paddingBottom: insets.bottom + 16 }]}>
+          <View style={[styles.sheet, glassPanel && GLASS_PANEL_CLEAR, { paddingBottom: insets.bottom + 16 }]}>
+            {glassPanel ? <SheetGlass /> : null}
             <View style={styles.sheetHeader}>
               <Text style={styles.sheetTitle}>{editing ? t("stores.editListing") : t("stores.newListing")}</Text>
               <Pressable
@@ -637,6 +642,7 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
   const { t } = useTranslation();
   const { width: windowWidth } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  const glassPanel = useDrawerGlass();
   const rowStyle = styles.row;
   const {
     data: stores = [],
@@ -1003,7 +1009,8 @@ const MyStoreTab: React.FC<{ isAuthed: boolean; onSignIn: () => void }> = ({
             onPress={closeListingMenu}
             accessibilityLabel={t("common.close")}
           />
-          <View style={[styles.sheet, { paddingBottom: insets.bottom + 8 }]}>
+          <View style={[styles.sheet, glassPanel && GLASS_PANEL_CLEAR, { paddingBottom: insets.bottom + 8 }]}>
+            {glassPanel ? <SheetGlass /> : null}
             <Text style={styles.menuTitle} numberOfLines={2}>
               {menuListing?.title}
             </Text>

@@ -6276,6 +6276,8 @@
     "tokenAmount": "โทเค็น {{amount}}"
   },
   "communities": {
+    "shareLink": "แชร์ลิงค์",
+    "sendInMessage": "ส่งคำเชิญ",
     "existingPost": {
       "add": "เพิ่มโพสต์ที่มีอยู่",
       "added": "โพสต์ถูกเพิ่มเข้าไปในกลุ่ม",

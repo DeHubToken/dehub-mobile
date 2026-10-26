@@ -6279,6 +6279,8 @@
     "lockedEarlyFee": "{{date}} nisqakama wichq'asqa. Kunan hurquyqa 88% kutichin — huk 12% qullqi, yaqa {{fee}} tokenkuna. Hukmanta ñit’iy chaskikunaykipaq."
   },
   "communities": {
+    "shareLink": "Linkta apay",
+    "sendInMessage": "Invitación-ta apachiy",
     "existingPost": {
       "add": "Kachasqa willayta yapay",
       "added": "Willayqa aylluman yapasqam",

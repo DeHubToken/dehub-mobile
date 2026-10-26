@@ -12,9 +12,17 @@ export const androidFrostSupported = Platform.OS === "android" && Number(Platfor
 /** Keep the WebView backdrop out of native blur capture; only native feeds are sampled. */
 export function FrostedBackdropProvider({ backdrop, children }: { backdrop: React.ReactNode; children: React.ReactNode }) {
   const [target, setTarget] = useState<Target | undefined>(undefined);
+  // A feed opened over another one while both stay focused (a post opened in
+  // place on Home) registers on top; closing it hands the pills back to the
+  // feed underneath instead of leaving them with nothing to blur.
+  const stack = useRef<Target[]>([]);
   const register = useCallback((next: Target) => {
+    stack.current = [...stack.current.filter(t => t !== next), next];
     setTarget(next);
-    return () => setTarget(current => current === next ? undefined : current);
+    return () => {
+      stack.current = stack.current.filter(t => t !== next);
+      setTarget(stack.current[stack.current.length - 1]);
+    };
   }, []);
   const value = useMemo(() => ({ target, register }), [target, register]);
   return (
@@ -31,9 +39,22 @@ export function useFrostedSource(): Target | undefined {
   return override === undefined ? targets?.target : override ?? undefined;
 }
 
+/**
+ * The feed a drawer can blur. A drawer opens in its own Modal window, outside
+ * the feed's BlurTargetView, so it may sample the feed even when it is mounted
+ * from inside one (where useFrostedSource says no, to stop nested capture).
+ * Undefined off Android 12+, or while no feed screen is focused.
+ */
+export function useDrawerBlurSource(): Target | undefined {
+  const targets = useContext(Targets);
+  return androidFrostSupported ? targets?.target : undefined;
+}
+
 /** Standalone overlays must not keep sampling the covered page's feed. */
-export function FrostedBackground({ children }: { children: React.ReactNode }) {
-  return <SourceOverride.Provider value={null}>{children}</SourceOverride.Provider>;
+export function FrostedBackground({ children, when = true }: { children: React.ReactNode; when?: boolean }) {
+  // Always the same element, so switching it on and off never remounts what's inside.
+  const outer = useContext(SourceOverride);
+  return <SourceOverride.Provider value={when ? null : outer}>{children}</SourceOverride.Provider>;
 }
 
 /** Register visible feed content for sibling navigation pills and the bottom bar. */

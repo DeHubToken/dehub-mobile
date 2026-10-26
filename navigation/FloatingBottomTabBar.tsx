@@ -322,11 +322,12 @@ const NavButton = memo<{
       onPressOut={handlePressOut}
       style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
-      {/* Minimal shows the active tab by colour alone — no glow. */}
+      {/* Minimal and System Light show the active tab by colour alone: the
+          white glow comes out as dark rim lines once the light pass flips it. */}
       <View
         style={[
           styles.iconWrap,
-          isActive && !isMinimal
+          isActive && !isMinimal && !(isLight && !skin)
             ? skin?.glow ? glowStyle(skin.glow) : styles.activeGlow
             : undefined,
         ]}
@@ -653,7 +654,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
         if (headerTranslateY) headerTranslateY.value = 0;
       };
       return Gesture.Race(
-        Gesture.Pan().activeOffsetY(-8).onEnd((e) => {
+        Gesture.Pan().activeOffsetY(-6).onEnd((e) => {
           if (e.translationY < -14 || e.velocityY < -400) show();
         }),
         Gesture.Tap().onEnd(show),
@@ -682,7 +683,7 @@ const FloatingBottomTabBar: React.FC<BottomTabBarProps> = ({ state, navigation }
     {draggedAway && (
       <GestureDetector gesture={bringBack}>
         <View
-          style={[styles.revealZone, { bottom: androidGestureNav ? insets.bottom : Math.max(0, insets.bottom - 14) }]}
+          style={[styles.revealZone, { bottom: 0, height: insets.bottom + 56, paddingBottom: insets.bottom + 6 }]}
           accessibilityRole="button"
           accessibilityLabel={_copyNav("copy.3db65f8c2a7d", { defaultValue: "Navigation" })}
         >
@@ -776,7 +777,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    height: 40,
+    // Height is set inline: down to the screen edge, so an upward swipe that
+    // starts below the handle still lands here.
+    height: 56,
     alignItems: "center",
     justifyContent: "flex-end",
     paddingBottom: 8,

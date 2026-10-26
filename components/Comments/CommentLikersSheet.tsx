@@ -46,6 +46,7 @@ import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpti
 import { truncate } from "../../libs/strings.util";
 import { useTranslation } from "react-i18next";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const SHEET_FRACTION = 0.6;
 const PAGE_LIMIT = 50;
@@ -210,7 +211,7 @@ const CommentLikersSheetComponent: React.FC<CommentLikersSheetProps> = ({
         <Animated.View
           style={[glassStyles.sheet, { height: SHEET_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
         >
-          <View style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">

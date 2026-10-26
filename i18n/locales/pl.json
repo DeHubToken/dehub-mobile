@@ -6253,6 +6253,8 @@
     "tokenAmount": "{{amount}} tokenów"
   },
   "communities": {
+    "shareLink": "Udostępnij link",
+    "sendInMessage": "Wyślij zaproszenie",
     "existingPost": {
       "add": "Dodaj istniejący post",
       "added": "Post dodany do społeczności",

@@ -15,10 +15,15 @@
  * profile completeness, Explore by newest sign-up, empty profiles last, until
  * nobody is left.
  *
+ * Built for following a run of people in a row: Follow says Following the
+ * instant it is tapped, the card folds away a beat later and the next slides
+ * into its place, while the request retries quietly behind it. Only a follow
+ * that still fails comes back, with Retry on the notice.
+ *
  * Placed as a ListHeaderComponent inside InfiniteVideoFeed on the HomeScreen.
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, type ListRenderItem } from "react-native";
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, LayoutAnimation, Platform, UIManager, type ListRenderItem } from "react-native";
 import { GestureDetector } from "react-native-gesture-handler";
 import { useHorizontalScrollGuard, useHorizontalSectionGuard } from "../../context/PagerGestureContext";
 import { useTranslation } from "react-i18next";
@@ -29,6 +34,9 @@ import SuggestedAccountCard from "./SuggestedAccountCard";
 import type { FollowState } from "../Search/SearchAccountChip";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_INSET } from "../../theme/minimal";
+import { followUser } from "../../services/user.service";
+import { isRateLimitError, notifyRateLimited } from "../../libs/error-feedback";
+import { toastError } from "../../libs/toast";
 
 /**
  * The feed list's side padding (InfiniteVideoFeed's contentContainerStyle).
@@ -45,8 +53,19 @@ const BATCH_SIZE = 10;
 /** Pull the next page once the row is down to this many cards. */
 const LOW_WATER_MARK = 5;
 
-/** How long a followed card shows "Following" before it leaves the row. */
-const FOLLOWED_LINGER_MS = 700;
+/** How long a followed card shows "Following" before it folds away. */
+const FOLLOWED_LINGER_MS = 320;
+
+if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
+/** The fold: the card shrinks out and the rest of the row slides over. */
+const FOLD_ANIMATION = LayoutAnimation.create(
+  260,
+  LayoutAnimation.Types.easeInEaseOut,
+  LayoutAnimation.Properties.opacity,
+);
 
 interface SuggestedAccountsSectionProps {
   /** Explore lists it among its sections: its own spacing, no feed hairlines. */
@@ -155,6 +174,7 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
   );
 
   const hide = useCallback((address: string) => {
+    LayoutAnimation.configureNext(FOLD_ANIMATION);
     setHiddenAddresses((prev) => {
       const next = new Set(prev);
       next.add(address.toLowerCase());
@@ -182,8 +202,10 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
     setDismissed(true);
   }, []);
 
+  const retryFollowRef = useRef<(address: string, name: string) => void>(() => {});
+
   const handleFollowChange = useCallback(
-    (address: string, newState: FollowState) => {
+    (address: string, newState: FollowState, failed?: unknown) => {
       // A landed follow (or a sent request on a private account) retires the
       // suggestion immediately; a failure puts it back.
       // The card says Following for a moment first, so the tap visibly lands.
@@ -198,10 +220,32 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
         }, FOLLOWED_LINGER_MS));
       } else {
         unhide(address);
+        if (failed !== undefined) {
+          const account = accounts.find((a) => a.address?.toLowerCase() === key);
+          const name = account?.displayName || account?.username || "";
+          if (isRateLimitError(failed)) notifyRateLimited();
+          toastError(null, t("copy.71d4aa07bfe1", { defaultValue: "Couldn't follow this account" }), {
+            description: name || undefined,
+            actionLabel: t("common.retry", { defaultValue: "Retry" }),
+            onActionPress: () => retryFollowRef.current(address, name),
+          });
+        }
       }
     },
-    [hide, unhide],
+    [hide, unhide, accounts, t],
   );
+
+  // Retry from the notice: the card leaves again straight away and the call
+  // goes out once more; a second failure brings it back the same way.
+  retryFollowRef.current = (address: string) => {
+    if (!user?.address) return;
+    hide(address);
+    followUser(user.address, address).catch((error) => {
+      const msg = String((error as { message?: unknown } | null)?.message ?? error).toLowerCase();
+      if (msg.includes("already")) return;
+      handleFollowChange(address, { isFollowing: false, isFollowRequestPending: false }, error);
+    });
+  };
 
   // While this carousel is scrolling it blocks Home's page-turn gesture, so a
   // sideways drag here scrolls the carousel instead of switching feed tabs.
@@ -244,7 +288,9 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
       nestedScrollEnabled
       onEndReached={handleEndReached}
       onEndReachedThreshold={0.6}
-      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8 }}
+      // Room under the cards: Android clips a horizontal list at its edge, and
+      // the flat themes' buttons sit flush with the bottom of the card.
+      contentContainerStyle={{ paddingHorizontal: isMinimal ? MINIMAL_INSET : cinematic ? 14 : surface === "explore" ? 16 : 8, paddingTop: 2, paddingBottom: 8 }}
     />
   );
 
@@ -259,16 +305,16 @@ const SuggestedAccountsSection: React.FC<SuggestedAccountsSectionProps> = ({ sur
       style={[{ borderTopWidth: 0 }, minimalRow ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 14,
-        paddingBottom: 14,
+        paddingBottom: 6, // + the list's own 8 below the cards
         borderBottomWidth: 1,
         borderBottomColor: MINIMAL_HAIRLINE,
       } : cinematic ? {
         marginHorizontal: -MINIMAL_LIST_GUTTER,
         paddingTop: 12,
-        paddingBottom: 12,
+        paddingBottom: 4, // + the list's own 8 below the cards
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: CINEMATIC_HAIRLINE,
-      } : { paddingVertical: surface === "explore" ? 4 : 12 }]}
+      } : { paddingTop: surface === "explore" ? 4 : 12, paddingBottom: surface === "explore" ? 0 : 4 }]}
     >
       {/* Header row */}
       <View

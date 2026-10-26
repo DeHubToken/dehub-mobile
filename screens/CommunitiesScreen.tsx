@@ -6,7 +6,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator,
 } from "react-native";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
@@ -182,17 +181,6 @@ const CommunitiesScreen: React.FC = () => {
     </View>
   );
 
-  if (loading) {
-    return (
-      <View className="flex-1 bg-theme-neutrals-900">
-        <ScreenHeader icon="communities" title={t("communities.title")} />
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator color={theme.colors.accent} />
-        </View>
-      </View>
-    );
-  }
-
   return (
     <View className="flex-1 bg-theme-neutrals-900">
       <Animated.FlatList
@@ -218,7 +206,21 @@ const CommunitiesScreen: React.FC = () => {
           />
         }
         ListEmptyComponent={
-          loadError ? (
+          // While loading, the page is already its real self (header, search,
+          // tabs) with card shapes where the communities will land.
+          loading ? (
+            <View accessibilityLabel={t("common.loading", "Loading")}>
+              {[0, 1, 2, 3, 4].map((i) => (
+                <View key={i} className="flex-row items-center bg-theme-neutrals-800 rounded-2xl p-3 mb-3" style={{ opacity: 0.6 }}>
+                  <View className="bg-theme-neutrals-700 rounded-xl" style={{ width: 52, height: 52 }} />
+                  <View className="flex-1 ml-3">
+                    <View className="bg-theme-neutrals-700 rounded" style={{ height: 12, width: "55%", marginBottom: 8 }} />
+                    <View className="bg-theme-neutrals-700 rounded" style={{ height: 10, width: "80%" }} />
+                  </View>
+                </View>
+              ))}
+            </View>
+          ) : loadError ? (
             <PageEmpty
               title={t("communities.loadFailed")}
               action={

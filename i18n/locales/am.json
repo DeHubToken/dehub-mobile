@@ -6278,6 +6278,8 @@
     "tokenAmount": "{{amount}} ቶከኖች"
   },
   "communities": {
+    "shareLink": "አገናኝ ያጋሩ",
+    "sendInMessage": "ጋብዙ ላክ",
     "existingPost": {
       "add": "ነባር ልጥፍ ያክሉ",
       "added": "ልጥፍ ወደ ማህበረሰብ ታክሏል",

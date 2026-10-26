@@ -6266,6 +6266,8 @@
     "tokenAmount": "{{amount}} токен"
   },
   "communities": {
+    "shareLink": "Сілтемені бөлісу",
+    "sendInMessage": "Шақыру жіберу",
     "existingPost": {
       "add": "Бар лауазымды қосу",
       "added": "Қоғамдастыққа қосылған пост",

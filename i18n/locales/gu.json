@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} ટોકન્સ"
   },
   "communities": {
+    "shareLink": "લિંક શેર કરો",
+    "sendInMessage": "સંદેશ પાઠવો",
     "existingPost": {
       "add": "માંગેલી પોસ્ટ જોડો",
       "added": "સમુદાયમાં પોસ્ટ જોડાવામાં આવ્યું",

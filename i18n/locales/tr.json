@@ -3787,6 +3787,8 @@
     "tokenAmount": "{{amount}} jeton"
   },
   "communities": {
+    "shareLink": "Bağlantıyı paylaş",
+    "sendInMessage": "Davet Gönder",
     "followerInvites": {
       "title": "Takipçileri davet et",
       "detail": "Her grupta en fazla 50 takipçi seçin. Ücretli veya kapalı özel mesajlar atlanır. Tekrar denemeden önce onaylanmamış gönderileri sohbette kontrol edin.",
@@ -6874,6 +6876,7 @@
     "coverFailed": "Kapak değiştirilemedi"
   },
   "player": {
+    "fullscreen": "Tam ekran",
     "segmentLabel": {
       "filler": "Dolgu",
       "interaction": "Beğen ve abone ol",
@@ -9624,6 +9627,29 @@
     }
   },
   "creator": {
+    "campaignPlanTitle": "Kampanya varyasyonları ve bölümler",
+    "campaignPlanIntro": "En fazla 12 varyasyon veya bölüm kaydedin. Her biri ayrı inceleme ve fiyat teklifi için stüdyoyu açar. Ortak notlar devamlılığa yön verir; ürün görünümü, karakterler ve sesler üretimler arasında değişebilir.",
+    "campaignTitle": "Kampanya veya dizi adı",
+    "campaignContinuity": "Ortak karakter, ses ve stil notları",
+    "campaignVariantTitle": "Varyasyon veya bölüm adı",
+    "campaignHook": "Açılış kancası",
+    "campaignLanguage": "Çıktı dili",
+    "campaignScript": "Onaylanmış senaryo veya sahne sırası",
+    "campaignAdd": "Varyasyon veya bölüm ekle",
+    "campaignClear": "Planı temizle",
+    "campaignFormat": "Çıktı biçimi",
+    "audioExportFormat": "Dışa aktarma biçimi",
+    "audioExportMp3": "MP3 · 128 kbit/sn",
+    "audioExportWav": "WAV · 24 kHz · tek kanal",
+    "extensionNeedsClip": "Uzatmak için bir kaynak klip ekleyin.",
+    "extensionSeconds": "+{{seconds}} sn yeni görüntü",
+    "extensionHelp": "Kaynak klibi yaklaşık dört saniyelik yeni görüntüyle döndürür. Çıktı 24 fps hızında en fazla 720p olarak boyutlandırılır. Eklenen bölüm için yeni ses üretilir.",
+    "extensionForward": "Kaynak klibin sonuna yaklaşık dört saniye ekleyin",
+    "extensionBackward": "Kaynak klibin başına yaklaşık dört saniye ekleyin",
+    "expandDescription": "Görüntü sınırlarının dışında yeni içerik üretir. Tek kaynak görüntü ve isteğe bağlı İngilizce açıklama.",
+    "expandPromptHint": "Bir görüntü ekleyip yeni en boy oranını seçin. İngilizce açıklama isteğe bağlıdır.",
+    "expandEnglishOnly": "Bu genişletme modeli İngilizce açıklamaları kabul eder. Otomatik genişletme için açıklamayı boş bırakın.",
+    "expandNeedsImage": "Genişletmek için bir görüntü ekleyin.",
     "learn": {"title":"İçerik üreticisi dersleri","intro":"Her biri bilgi kontrolü ve düzenlenebilir alıştırma içeren kısa dersler. İlerlemeniz bu cihazda hesabınız için kaydedilir.","back":"Creator’a dön","lessons":"Dersler","progress":"{{total}} bilgi kontrolünden {{completed}} tanesi geçildi","check":"Yanıtı kontrol et","correct":"Bilgi kontrolü geçildi","retry":"Tekrar deneyin. Yukarıdaki dersi gözden geçirin.","exerciseTitle":"Uygulamalı alıştırma","exerciseHint":"Kendi stüdyo alanınızda düzenlenebilir bir örnek açın. Taslak açmak ücretsizdir; üretim için incelemeniz ve ayrı fiyat teklifi gerekir. Üretmeden önce örneği düzenleyin.","openExercise":"Alıştırma taslağını aç","closeExercise":"Alıştırmayı kapat","brief":{"title":"Açık bir görsel anlatım yazın","body1":"Somut bir özneyi, eylemini ve ortamı tanımlayın. Sahneye yardımcı oluyorsa kadraj veya kamera hareketi ekleyin. İlgisiz fikirleri başka bir taslağa ayırın.","body2":"Işık, lens ve stil yönlendirmeleri modele yol gösterir. Fiziksel kamera davranışını veya tam bir görüntüyü garanti etmez. Sürümleri karşılaştırmak için her seferinde tek bir bölümü değiştirin.","body3":"Üretmeden önce seçilen modeli, desteklenen ekleri, boyutları ve fiyatı inceleyin. Geri dönebilmek için özgün taslağı saklayın.","question":"Hangi anlatımı düzenlemek daha kolaydır?","answer0":"Açık bir özne, eylem ve ortam","answer1":"Yalnızca model adı","answer2":"Çelişen stiller listesi","exercise":"Pencere yanındaki ahşap masada seramik bir çaydanlık. Yumuşak sabah ışığı, orta kadraj ve sade arka plan. Çaydanlık belirgin ana özne olsun."},"continuity":{"title":"Planları hazırlayın ve devamlılığı inceleyin","body1":"Bir anlatımı ve sıralı planları kaydetmek için editördeki Film panelini kullanın. Her kareyi veya klibi ayrı hazırlayın, fiyat teklifini inceleyin ve kabul edilen bir sonucu seçin.","body2":"Yalnızca seçilen modelin desteklediği referansları ekleyin. Referansı yeniden kullanmak görünümü yönlendirebilir; kimlik eğitmez veya eşleşmeyi garanti etmez. Karakterler ve sesler üretimler arasında değişebilir.","body3":"Başarılı çekimleri saklayın ve zaman çizelgesinde birleştirin. Dışa aktarmadan önce hareketi, yüzleri, diyaloğu ve geçişleri inceleyin.","question":"Planlar arasında devamlılığı ne destekler?","answer0":"Daha fazla ilgisiz istem","answer1":"Onaylı referanslar ve incelenmiş plan notları","answer2":"Karakter kimliğinin garanti edildiğini varsaymak","exercise":"Gün doğumunda sakin bir kıyıya ulaşan yalnız yolcunun geniş planı. Yavaş ileri kamera hareketi ve huzurlu atmosfer. Tek, kesintisiz plan."},"campaign":{"title":"Onaylı ürün bilgilerini kullanın","body1":"Doğrulayabildiğiniz ürün bilgileriyle başlayın. İçe aktarılan üst verileri kullanmadan önce inceleyin. Başlığı ve eylem çağrısını açıkça yazın; fiyat, yorum veya performans iddiası uydurmayın.","body2":"Ortak notlarla her öğenin açılışını, senaryosunu, dilini ve biçimini birlikte tutmak için kayıtlı kampanya varyasyonlarını kullanın. Her seferinde incelenmiş bir öğe hazırlayın ve stüdyoda fiyatını kontrol edin.","body3":"Sonuçtaki görünür metni, ürün görünümünü ve sesli iddiaları inceleyin. Bir istem, ürün doğruluğunun veya pazarlama performansının kanıtı değildir.","question":"Ürün iddiası ne zaman eklenmelidir?","answer0":"Kulağa ikna edici geldiği her zaman","answer1":"Beş yıldızlı yorum uydurduktan sonra","answer2":"Onaylı ürün bilgilerinden geldiğinde","exercise":"Yeniden kullanılabilir kutuda satılan bütün yaprak çay için dikey ürün reklamı oluşturun. Onaylı başlık: Çaya zaman ayırın. Onaylı eylem çağrısı: Koleksiyonu keşfedin. Yalnızca bu bilgileri kullanın; indirim, yorum veya sağlık iddiası uydurmayın."}},
     "marketing": {
     "import":  {
@@ -9818,6 +9844,9 @@
     "flow": "Akış",
     "libraryHint": "Kayıtlı üretimleriniz web sürümüyle paylaşılır. Stüdyo ve Akış tarayıcınızda açılır.",
     "signInToSee": "Üretimlerinizi görmek için giriş yapın.",
+    "libraryFavorites": "Favoriler",
+    "libraryFavoriteAdd": "Favorilere ekle",
+    "libraryFavoriteRemove": "Favorilerden kaldır",
     "libraryEmpty": "Kayıtlı üretimleriniz burada görünecek.",
     "openGeneration": "{{prompt}} öğesini aç",
     "toolBuilder": "İnşaatçı",
