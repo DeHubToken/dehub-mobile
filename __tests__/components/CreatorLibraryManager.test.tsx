@@ -4,11 +4,22 @@ import { FlatList } from 'react-native';
 import CreatorLibraryManager from '../../components/Assistant/CreatorLibraryManager';
 const mockList = jest.fn(), mockUpdate = jest.fn(), mockInvalidate = jest.fn();
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => {
+  const React = require('react');
+  return {
+    View: 'View', Text: 'Text', Pressable: 'Pressable', ActivityIndicator: 'ActivityIndicator',
+    StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
+    Modal: ({ visible, children }: { visible: boolean; children: React.ReactNode }) => visible ? children : null,
+    FlatList: (props: { data: unknown[]; renderItem(item: { item: unknown; index: number }): React.ReactNode }) =>
+      React.createElement('FlatList', props, props.data.map((item, index) => React.createElement(React.Fragment, { key: index }, props.renderItem({ item, index })))),
+  };
+});
 jest.mock('../../services/creator.service', () => ({ listCreatorAssets: (...args: unknown[]) => mockList(...args), updateCreatorSelection: (...args: unknown[]) => mockUpdate(...args) }));
 jest.mock('@tanstack/react-query', () => ({ useQueryClient: () => ({ invalidateQueries: mockInvalidate }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 const rows = [{ id: 'first-asset', prompt: 'First take', hidden: false }, { id: 'second-asset', prompt: 'Second take', hidden: false }];
 beforeEach(() => { jest.clearAllMocks(); mockList.mockResolvedValue({ jobs: rows, nextOffset: null }); });
+afterEach(() => { jest.clearAllTimers(); jest.useRealTimers(); });
 it('retains incomplete selections and refreshes the correct private account library', async () => {
   mockUpdate.mockResolvedValue({ completedIds: ['first-asset'], incompleteIds: ['second-asset'] });
   const view = render(<CreatorLibraryManager wallet="owner" />);
