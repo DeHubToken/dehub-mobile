@@ -322,11 +322,12 @@ const NavButton = memo<{
       onPressOut={handlePressOut}
       style={[styles.tabButton, { width: tabW }, animatedStyle]}
     >
-      {/* Minimal shows the active tab by colour alone — no glow. */}
+      {/* Minimal and System Light show the active tab by colour alone: the
+          white glow comes out as dark rim lines once the light pass flips it. */}
       <View
         style={[
           styles.iconWrap,
-          isActive && !isMinimal
+          isActive && !isMinimal && !(isLight && !skin)
             ? skin?.glow ? glowStyle(skin.glow) : styles.activeGlow
             : undefined,
         ]}

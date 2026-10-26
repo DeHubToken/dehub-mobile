@@ -7,6 +7,7 @@ import RouteLoadingShell from './RouteLoadingShell';
 
 const screens = new Map<string, ComponentType<any>>();
 const readyRoutes = new Map<string, ComponentType<any>>();
+const loadedScreens = new Map<string, ComponentType<any>>();
 
 /** Keep getComponent stable, while moving its heavy require past the entrance. */
 export function deferredScreen(key: string, load: () => ComponentType<any>): ComponentType<any> {
@@ -19,18 +20,19 @@ export function deferredScreen(key: string, load: () => ComponentType<any>): Com
     const settled = useTransitionSettled(reducedMotion ? 32 : 600);
     // Theme/error boundaries can remount an existing native route without a
     // new transition. Do not put that already-open page behind a fresh timer.
-    const [Content, setContent] = useState<ComponentType<any> | null>(() => readyRoutes.get(routeKey) ?? null);
+    const [Content, setContent] = useState<ComponentType<any> | null>(() => readyRoutes.get(routeKey) ?? loadedScreens.get(key) ?? null);
     useEffect(() => {
       // Back before the entrance ends must not evaluate a page being left.
       if (!Content && focused && settled) {
         const component = load();
+        loadedScreens.set(key, component);
         readyRoutes.set(routeKey, component);
         if (readyRoutes.size > 64) readyRoutes.delete(readyRoutes.keys().next().value!);
         startTransition(() => setContent(() => component));
       }
     }, [Content, focused, settled, routeKey]);
     // Once mounted, retain the real page and its scroll/draft state on blur.
-    return Content ? <RouteTransitionReadyContext.Provider value={props.route.key}>
+    return Content ? <RouteTransitionReadyContext.Provider value={settled || readyRoutes.has(routeKey) ? props.route.key : null}>
       <Content {...props} />
     </RouteTransitionReadyContext.Provider> : <RouteLoadingShell />;
   }

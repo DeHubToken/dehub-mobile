@@ -21,6 +21,7 @@ export interface CreatorAudioSettings {
   task: CreatorAudioTask;
   voiceId?: string;
   modelId?: string;
+  outputFormat?: 'mp3_44100_128' | 'wav_24000';
   media?: CreatorAudioMedia;
   durationSeconds?: number;
   loop?: boolean;
@@ -51,6 +52,7 @@ export function creatorAudioIssue(text: string, settings: CreatorAudioSettings):
   if (settings.media && !/^(audio|video)\//.test(settings.media.mimeType)) return 'creator.audioNeedsFile';
   if (!task.needsMedia && (!text.trim() || text.length > (settings.task === 'sfx' ? 1000 : 5000))) return 'creator.audioTextLimit';
   if (settings.task === 'speech' && settings.modelId && !CREATOR_SPEECH_MODELS.includes(settings.modelId as typeof CREATOR_SPEECH_MODELS[number])) return 'creator.audioInvalidTask';
+  if (settings.task === 'speech' && settings.outputFormat !== undefined && !['mp3_44100_128', 'wav_24000'].includes(settings.outputFormat)) return 'creator.audioInvalidTask';
   if (settings.task === 'dialogue') {
     const lines = creatorDialogue(text, settings.voiceId || CREATOR_AUDIO_VOICES[0].id, settings.speakerVoices);
     if (!lines.length || lines.length > 50) return 'creator.dialogueFormat';
@@ -65,7 +67,7 @@ export function creatorAudioRequest(text: string, settings: CreatorAudioSettings
   if (issue) throw new Error(issue);
   const voiceId = settings.voiceId || CREATOR_AUDIO_VOICES[0].id;
   switch (settings.task) {
-    case 'speech': return { endpoint: 'elevenlabs-tts', body: { text, voiceId, modelId: settings.modelId || CREATOR_SPEECH_MODELS[0], outputFormat: 'mp3_44100_128' } };
+    case 'speech': return { endpoint: 'elevenlabs-tts', body: { text, voiceId, modelId: settings.modelId || CREATOR_SPEECH_MODELS[0], outputFormat: settings.outputFormat ?? 'mp3_44100_128' } };
     case 'dialogue': return { endpoint: 'elevenlabs-dialogue', body: { inputs: creatorDialogue(text, voiceId, settings.speakerVoices), outputFormat: 'mp3_44100_128' } };
     case 'sfx': return { endpoint: 'elevenlabs-sound-effects', body: { text, ...(settings.durationSeconds ? { durationSeconds: settings.durationSeconds } : {}), loop: settings.loop === true, outputFormat: 'mp3_44100_128' } };
     case 'voice-changer': return { endpoint: 'elevenlabs-voice-changer', fields: { voiceId, outputFormat: 'mp3_44100_128' } };

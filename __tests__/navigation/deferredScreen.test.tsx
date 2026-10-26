@@ -108,3 +108,14 @@ it('does not restart the loading gate when a theme boundary remounts an already-
   expect(load).toHaveBeenCalledTimes(1);
   act(() => remounted.unmount());
 });
+
+it('opens a new instance of a warm screen without waiting for another transition timer', () => {
+  const { load, Screen, tree } = page();
+  act(() => jest.advanceTimersByTime(600));
+  act(() => tree.unmount());
+  let next!: ReturnType<typeof create>;
+  act(() => { next = create(<Screen route={{ key: 'fresh-route' }} />); });
+  expect(next.root.findAllByType('LoadingShell' as any)).toHaveLength(0);
+  expect(load).toHaveBeenCalledTimes(1);
+  act(() => next.unmount());
+});

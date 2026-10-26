@@ -10,7 +10,7 @@ import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
 import { isPictureInPicturePlayer, canStartVideo, subscribePictureInPicture, getPictureInPicturePlayer } from '../libs/pictureInPicture';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useFeedPlaybackAllowed } from "../libs/visualActivity";
+import { useFeedPlaybackAllowed, useFeedSurfaceActive } from "../libs/visualActivity";
 /**
  * Shorts Viewer — full-screen vertical carousel.
  *
@@ -364,11 +364,25 @@ interface ShortItemProps {
    */
   onChromeVisibilityChange: (visible: boolean) => void;
   onCommentsVisibilityChange: (visible: boolean) => void;
+  /**
+   * The viewer's options menu is open over this short. Its native sheet takes
+   * Android window focus, which would otherwise pause the video underneath.
+   */
+  optionsMenuOpen?: boolean;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
   const { t: _copy } = _useCopy();
-  const playbackAllowed = useFeedPlaybackAllowed();
+  const feedPlaybackAllowed = useFeedPlaybackAllowed();
+  const surfaceActive = useFeedSurfaceActive();
+  // Keep playing under the options menu, and until focus has settled back
+  // after it closes, so dismissing it does not blip a pause either.
+  const [menuHold, setMenuHold] = useState(false);
+  useEffect(() => {
+    if (optionsMenuOpen) setMenuHold(true);
+    else if (feedPlaybackAllowed) setMenuHold(false);
+  }, [optionsMenuOpen, feedPlaybackAllowed]);
+  const playbackAllowed = feedPlaybackAllowed || ((optionsMenuOpen || menuHold) && surfaceActive);
   const pipPlayer = React.useSyncExternalStore(subscribePictureInPicture, getPictureInPicturePlayer, getPictureInPicturePlayer);
   const tokenId = item.tokenId ?? item.id;
   const photoMedia = useMemo(() => shortsPhotoMedia(item, true), [item]);
@@ -2315,9 +2329,10 @@ const ShortsViewerScreen = () => {
         pagerGesture={pagerGesture}
         onChromeVisibilityChange={setChromeVisible}
         onCommentsVisibilityChange={setCommentsVisible}
+        optionsMenuOpen={index === activeIndex && showOptionsMenu}
       />
     ),
-    [activeIndex, containerHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
   );
 
   const keyExtractor = useCallback(

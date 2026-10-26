@@ -64,6 +64,8 @@ export const DEFAULT_CHAT_MODEL = 'auto';
 
 export interface ImageModel {
   id: string;
+  requiresImage?: boolean;
+  outpaint?: boolean;
   name: string;
   description: string;
   emoji: string;
@@ -246,7 +248,8 @@ export interface VideoModel {
   requiresVideoInput?: boolean;
   supportsVideoInput?: boolean;
   maxReferenceImages?: number;
-  referenceMode?: 'edit' | 'motion';
+  referenceMode?: 'edit' | 'motion' | 'extend';
+  maxSourceDuration?: number;
   defaultDuration?: number;
   maxDuration?: number;
 }
@@ -302,15 +305,15 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-2.0-fast': {
     id: 'seedance-2.0-fast',
-    supportsNegativePrompt: true,
+    supportsNegativePrompt: false,
     supportsEndFrame: true,
-    supportsSeed: true,
+    supportsSeed: false,
     name: 'Seedance 2.0 Fast',
     get description() { return _translateCopy("copy.f4a56d3cb00f", { defaultValue: "Faster generation, slightly lower quality" }); },
     emoji: '⚡',
     tier: 'standard',
-    baseCostUsd: 0.8,
-    perSecondCostUsd: 0.16,
+    baseCostUsd: 1.2095,
+    perSecondCostUsd: 0.2419,
     supports: ['text-to-video', 'image-to-video'],
     hasAudio: true,
     defaultDuration: 5,
@@ -318,9 +321,9 @@ export const VIDEO_MODELS: Record<string, VideoModel> = {
   },
   'seedance-2.0': {
     id: 'seedance-2.0',
-    supportsNegativePrompt: true,
+    supportsNegativePrompt: false,
     supportsEndFrame: true,
-    supportsSeed: true,
+    supportsSeed: false,
     name: 'Seedance 2.0',
     get description() { return _translateCopy("copy.c5a1d3b9268d", { defaultValue: "Latest ByteDance model, superior quality & audio" }); },
     emoji: '🌊',
