@@ -9619,6 +9619,17 @@
     }
   },
   "creator": {
+    "campaignPlanTitle": "Kampanya varyasyonları ve bölümler",
+    "campaignPlanIntro": "En fazla 12 varyasyon veya bölüm kaydedin. Her biri ayrı inceleme ve fiyat teklifi için stüdyoyu açar. Ortak notlar devamlılığa yön verir; ürün görünümü, karakterler ve sesler üretimler arasında değişebilir.",
+    "campaignTitle": "Kampanya veya dizi adı",
+    "campaignContinuity": "Ortak karakter, ses ve stil notları",
+    "campaignVariantTitle": "Varyasyon veya bölüm adı",
+    "campaignHook": "Açılış kancası",
+    "campaignLanguage": "Çıktı dili",
+    "campaignScript": "Onaylanmış senaryo veya sahne sırası",
+    "campaignAdd": "Varyasyon veya bölüm ekle",
+    "campaignClear": "Planı temizle",
+    "campaignFormat": "Çıktı biçimi",
     "audioExportFormat": "Dışa aktarma biçimi",
     "audioExportMp3": "MP3 · 128 kbit/sn",
     "audioExportWav": "WAV · 24 kHz · tek kanal",

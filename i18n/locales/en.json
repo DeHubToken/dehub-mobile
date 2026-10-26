@@ -9978,6 +9978,17 @@
     }
   },
   "creator": {
+    "campaignPlanTitle": "Campaign variants and episodes",
+    "campaignPlanIntro": "Save up to 12 variations or episodes. Each opens the studio for its own review and quote. Shared notes guide continuity; product appearance, characters and voices can vary between generations.",
+    "campaignTitle": "Campaign or series name",
+    "campaignContinuity": "Shared character, voice and style notes",
+    "campaignVariantTitle": "Variant or episode name",
+    "campaignHook": "Opening hook",
+    "campaignLanguage": "Output language",
+    "campaignScript": "Approved script or scene sequence",
+    "campaignAdd": "Add variant or episode",
+    "campaignClear": "Clear plan",
+    "campaignFormat": "Output format",
     "audioExportFormat": "Export format",
     "audioExportMp3": "MP3 · 128 kbps",
     "audioExportWav": "WAV · 24 kHz · mono",
