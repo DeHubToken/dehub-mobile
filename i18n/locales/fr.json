@@ -9620,6 +9620,10 @@
     }
   },
   "creator": {
+    "expandDescription": "Génère du contenu au-delà des bords. Une image source et une description facultative en anglais.",
+    "expandPromptHint": "Ajoutez une image et choisissez son nouveau format. La description en anglais est facultative.",
+    "expandEnglishOnly": "Ce modèle accepte les descriptions en anglais. Laissez le champ vide pour une extension automatique.",
+    "expandNeedsImage": "Ajoutez une image à étendre.",
     "marketing": {
     "import":  {
                    "url":  "URL de la page produit",
