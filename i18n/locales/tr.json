@@ -9619,6 +9619,11 @@
     }
   },
   "creator": {
+    "extensionNeedsClip": "Uzatmak için bir kaynak klip ekleyin.",
+    "extensionSeconds": "+{{seconds}} sn yeni görüntü",
+    "extensionHelp": "Kaynak klibi yaklaşık dört saniyelik yeni görüntüyle döndürür. Çıktı 24 fps hızında en fazla 720p olarak boyutlandırılır. Eklenen bölüm için yeni ses üretilir.",
+    "extensionForward": "Kaynak klibin sonuna yaklaşık dört saniye ekleyin",
+    "extensionBackward": "Kaynak klibin başına yaklaşık dört saniye ekleyin",
     "marketing": {
     "import":  {
                    "url":  "Ürün sayfası URL’si",

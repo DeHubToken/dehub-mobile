@@ -246,7 +246,8 @@ export interface VideoModel {
   requiresVideoInput?: boolean;
   supportsVideoInput?: boolean;
   maxReferenceImages?: number;
-  referenceMode?: 'edit' | 'motion';
+  referenceMode?: 'edit' | 'motion' | 'extend';
+  maxSourceDuration?: number;
   defaultDuration?: number;
   maxDuration?: number;
 }

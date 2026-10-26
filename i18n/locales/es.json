@@ -9643,6 +9643,11 @@
     }
   },
   "creator": {
+    "extensionNeedsClip": "Adjunta un clip de origen para ampliarlo.",
+    "extensionSeconds": "+{{seconds}} s de vídeo nuevo",
+    "extensionHelp": "Devuelve el clip original con unos cuatro segundos nuevos. La salida se redimensiona hasta 720p a 24 fps. Se genera audio nuevo para la ampliación.",
+    "extensionForward": "Añade unos cuatro segundos después del clip original",
+    "extensionBackward": "Añade unos cuatro segundos antes del clip original",
     "marketing": {
     "import":  {
                    "url":  "URL de la página del producto",
