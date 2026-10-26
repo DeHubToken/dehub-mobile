@@ -106,7 +106,8 @@ export function creatorVideoOptions(settings: CreatorStudioSettings) {
 
 /** The selected medium decides routing; words such as "video" in an image brief do not. */
 export function prepareCreatorPrompt(text: string, preset?: CreatorTemplate, settings?: CreatorStudioSettings): string {
-  const prompt = preset ? applyTemplate(preset, text) : text.trim();
+  const compatiblePreset = settings?.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend' ? undefined : preset;
+  const prompt = compatiblePreset ? applyTemplate(compatiblePreset, text) : text.trim();
   return settings ? appendCinemaDirection(prompt, settings.cinemaDirection, settings.mode) : prompt;
 }
 export function creatorPromptLimit(settings: CreatorStudioSettings): number | undefined {
@@ -131,7 +132,7 @@ export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boo
     if (images.length > (model?.maxReferenceImages ?? 1)) return 'creator.referenceTooMany';
     if (clip?.seconds && clip.seconds > (model?.maxSourceDuration ?? model?.maxDuration ?? 15)) return 'creator.referenceClipLength';
   }
-  if (preset?.requiresImage && !hasImage) return 'creator.studioNeedsImage';
+  if (preset?.requiresImage && !hasImage && !(settings.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend')) return 'creator.studioNeedsImage';
   if (settings.mode === 'image' && hasImage && (!IMAGE_MODELS[settings.model] || !imageModelSupportsEdit(IMAGE_MODELS[settings.model]))) return 'creator.studioCannotEdit';
   if (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-video' : 'text-to-video')) return hasImage ? 'creator.studioCannotAnimate' : 'creator.studioNeedsImage';
   if (settings.mode === '3d' && !MODEL3D_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-3d' : 'text-to-3d')) return 'creator.studioNeedsImage';
