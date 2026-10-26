@@ -14779,5 +14779,26 @@
     "fingerprint": "Huella",
     "exploreFirst": "Explorar primero",
     "codeNote": "Te enviamos un código por correo, sin contraseña."
+  },
+  "whenSheet": {
+    "title": "¿Cuándo?",
+    "tonight": "Esta noche",
+    "inAnHour": "En una hora",
+    "tomorrow": "Mañana",
+    "today": "Hoy",
+    "primeTime": "Hora punta",
+    "scheduleFor": "Programar para {{when}}",
+    "liveTip": "Tus seguidores pueden poner un recordatorio. Tú inicias el directo cuando llegue la hora.",
+    "stageTip": "Aparece enseguida en Próximos, para que la gente pueda tocar Recuérdame.",
+    "typePlaceholder": "Escribe una hora, como \"fri 8pm\" o \"in 2 hours\"",
+    "typeLabel": "Escribe una hora",
+    "typeHelp": "Prueba \"tonight\", \"tomorrow 9am\", \"sat noon\" o \"30 oct 7pm\".",
+    "orPickDay": "O elige un día",
+    "earlier": "15 minutos antes",
+    "later": "15 minutos después",
+    "tooSoonMin": "Elige una hora al menos {{count}} minutos desde ahora.",
+    "tooSoon": "Elige una hora futura.",
+    "zone": "Tu hora ({{zone}}). Los demás la ven en su propia hora.",
+    "remove": "Quitar programación"
   }
 }

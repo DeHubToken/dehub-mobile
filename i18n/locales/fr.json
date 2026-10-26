@@ -14783,5 +14783,26 @@
     "fingerprint": "Empreinte",
     "exploreFirst": "Explorer d'abord",
     "codeNote": "On t'envoie un code par e-mail, sans mot de passe."
+  },
+  "whenSheet": {
+    "title": "Quand ?",
+    "tonight": "Ce soir",
+    "inAnHour": "Dans une heure",
+    "tomorrow": "Demain",
+    "today": "Aujourd'hui",
+    "primeTime": "Heure de pointe",
+    "scheduleFor": "Programmer pour {{when}}",
+    "liveTip": "Tes abonnés peuvent activer un rappel. Tu lances le direct toi-même le moment venu.",
+    "stageTip": "Il apparaît tout de suite dans À venir, pour que chacun puisse appuyer sur Me rappeler.",
+    "typePlaceholder": "Tape une heure, comme \"fri 8pm\" ou \"in 2 hours\"",
+    "typeLabel": "Tape une heure",
+    "typeHelp": "Essaie \"tonight\", \"tomorrow 9am\", \"sat noon\" ou \"30 oct 7pm\".",
+    "orPickDay": "Ou choisis un jour",
+    "earlier": "15 minutes plus tôt",
+    "later": "15 minutes plus tard",
+    "tooSoonMin": "Choisis une heure dans au moins {{count}} minutes.",
+    "tooSoon": "Choisis une heure à venir.",
+    "zone": "Ton heure ({{zone}}). Les autres la voient à leur heure.",
+    "remove": "Retirer la programmation"
   }
 }
