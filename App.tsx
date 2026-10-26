@@ -98,6 +98,7 @@ import OnboardingChoicesApplier from "./components/Onboarding/OnboardingChoicesA
 import { FrostedBackdropProvider } from "./components/ui/FrostedBackdrop";
 import { loadIconFont } from "./libs/iconFont";
 import { watchTransformOrigin } from "./libs/cdnImage";
+import { setEdgeToEdgeMedia as publishEdgeToEdgeMedia } from "./libs/edgeToEdgeMedia";
 
 const logger = createLogger("App");
 markLaunchPhase('appModuleReady');
@@ -363,7 +364,9 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const [edgeToEdgeMedia, setEdgeToEdgeMedia] = useState(false);
   const syncMediaInsets = useCallback(() => {
     const name = navigationRef.getCurrentRoute()?.name;
-    setEdgeToEdgeMedia(name === ScreenNames.ShortsViewer || name === ScreenNames.ImageFeed);
+    const edgeToEdge = name === ScreenNames.ShortsViewer || name === ScreenNames.ImageFeed;
+    setEdgeToEdgeMedia(edgeToEdge);
+    publishEdgeToEdgeMedia(edgeToEdge);
   }, []);
 
   // Handle navigation state change with error protection
