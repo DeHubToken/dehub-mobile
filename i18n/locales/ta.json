@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} டோக்கன்கள்"
   },
   "communities": {
+    "shareLink": "இணைப்பைப் பகிரவும்",
+    "sendInMessage": "அழைப்பை அனுப்பவும்",
     "existingPost": {
       "add": "இருக்கும் பதிவை சேர்க்க",
       "added": "சமூகத்தில் பதிவை சேர்த்தார்கள்",

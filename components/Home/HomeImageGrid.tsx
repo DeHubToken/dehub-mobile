@@ -31,6 +31,7 @@ import { MINIMAL_TAB_LINE } from "../../theme/minimal";
 import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useFeedScrollLifecycle } from "../../hooks/useFeedScrollLifecycle";
+import { captureScrollStopTouch } from "../../libs/scrollActivity";
 
 // Minimal: tiles sit on black while their image loads, and an empty tile or a
 // skeleton cell is a faint lift off black rather than a grey square.
@@ -456,7 +457,7 @@ const HomeImageGrid: React.FC<HomeImageGridProps> = ({
   }
 
   return (
-    <View className="flex-1 px-2">
+    <View className="flex-1 px-2" onStartShouldSetResponderCapture={captureScrollStopTouch}>
       <AnimatedFlatList
         ref={listRef}
         data={gridRows}

@@ -20,7 +20,11 @@ it("opens text, image and audio posts in place on Home and keeps video on its ow
   const home = read("screens/HomeScreen.tsx");
   expect(home).toContain("backMode={feedProfileVisible || !!imageFeed || !!feedPost}");
   expect(home).toContain('testID="home-feed-post"');
+  expect(home).toContain("useSwipeBackAction(closeFeedPost, !!feedPost && !feedProfileVisible);");
+  expect(home).toContain("entering={FadeInUp.duration(220)");
   const detail = read("screens/FeedDetailScreen.tsx");
+  // Text, image and audio posts open as their feed bento; only video keeps the immersive page.
+  expect(detail).toContain("{item && stage && !videoPost ? (");
   // Only a video post drops the logo bar for the back icon.
   expect(detail).toContain("{embedded || (stage && videoPost) ? null : <PostFeedNav");
   expect(detail).toContain("{stage && videoPost && !embedded && <PostStageBackIcon");

@@ -5,6 +5,7 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
 import { EMPTY_MARKETING_BRIEF, MARKETING_FIELDS, MARKETING_FORMATS, marketingFieldLimit, marketingGenerationDraft, normalizeMarketingBrief, type MarketingBrief, type MarketingField } from '../../libs/marketingBrief';
 import { MarketingProductImport } from './MarketingProductImport';
+import { CampaignPlanPanel } from './CampaignPlanPanel';
 
 export function MarketingWorkspace({ onPrepare }: { onPrepare: (draft: GenerationDraft) => void }) {
   const { t } = useTranslation();
@@ -45,6 +46,7 @@ export function MarketingWorkspace({ onPrepare }: { onPrepare: (draft: Generatio
           <Pressable accessibilityRole="button" onPress={() => { const draft = marketingGenerationDraft(brief, format.id); if (draft) onPrepare(draft); }} className="mt-4 rounded-xl border border-theme-neutrals-400 px-3 py-3"><Text className="text-theme-neutrals-100">{t('creator.marketing.open')}</Text></Pressable>
         </View>)}
       </View>}
+      <CampaignPlanPanel brief={brief} onPrepare={onPrepare} />
     </>}
   </View>;
 }

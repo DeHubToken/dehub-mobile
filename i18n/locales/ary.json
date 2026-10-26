@@ -6278,6 +6278,8 @@
     "tokenAmount": "{{amount}} توكنز"
   },
   "communities": {
+    "shareLink": "مشاركة الرابط",
+    "sendInMessage": "إرسال دعوة",
     "existingPost": {
       "add": "إضافة مشاركة موجودة",
       "added": "تم إضافة المشاركة إلى المجتمع",

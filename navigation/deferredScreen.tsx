@@ -9,6 +9,15 @@ const screens = new Map<string, ComponentType<any>>();
 const readyRoutes = new Map<string, ComponentType<any>>();
 const loadedScreens = new Map<string, ComponentType<any>>();
 
+/**
+ * Load a deferred screen's module ahead of time. A screen already loaded
+ * renders on its first frame instead of behind the loading shell until the
+ * entrance ends, so warm the ones a tap should open instantly.
+ */
+export function preloadDeferredScreen(key: string, load: () => ComponentType<any>): void {
+  if (!loadedScreens.has(key)) loadedScreens.set(key, load());
+}
+
 /** Keep getComponent stable, while moving its heavy require past the entrance. */
 export function deferredScreen(key: string, load: () => ComponentType<any>): ComponentType<any> {
   const cached = screens.get(key);

@@ -4362,6 +4362,11 @@
     "title": "Thông báo",
     "loadFailed": "Không thể tải thông báo",
     "markAllRead": "Đánh dấu đã đọc hết",
+    "allSettings": "Tất cả cài đặt thông báo",
+    "groupNew": "Mới",
+    "groupToday": "Hôm nay",
+    "groupThisWeek": "Tuần này",
+    "groupEarlier": "Trước đó",
     "settings": "Cài đặt thông báo",
     "actions": "Hành động",
     "markAllAsRead": "Đánh dấu tất cả đã đọc",
@@ -6259,6 +6264,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Chia sẻ liên kết",
+    "sendInMessage": "Gửi lời mời",
     "existingPost": {
       "add": "Thêm bài đăng hiện có",
       "added": "Bài đăng đã được thêm vào cộng đồng",

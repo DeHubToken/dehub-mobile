@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}}-tokens"
   },
   "communities": {
+    "shareLink": "Del link",
+    "sendInMessage": "Send invitation",
     "existingPost": {
       "add": "Tilføj eksisterende post",
       "added": "Post tilføjet til community",

@@ -20,7 +20,7 @@ import { useSheetClosed } from '../../hooks/useSheetClosed';
  */
 
 import { DhbCoin } from "../common/DhbCoin";
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   useWindowDimensions,
@@ -46,13 +46,15 @@ import Icon, { type IconName } from '../ui/Icon';
 import { useJobQuote, useJobPayment, useFreeImages, creditsCoverPrice } from '../../hooks/useAiPayment';
 import { useYieldToWalletUnlock } from '../../hooks/useYieldToWalletUnlock';
 import { formatDhb, indicativeDhb, withMarkup } from '../../config/ai-models.constants';
-import type { AiJobKind } from '../../services/ai.service';
+import type { AiJobKind, AiQuoteRequest } from '../../services/ai.service';
+import { confirmQuotedJob } from '../../libs/confirmJobQuote';
 import { ScreenNames } from '../../navigation/ScreenNames';
 import { toastError, toastSuccess } from '../../libs/toast';
 import { createLogger } from '../../libs/logger';
 import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import { useTranslation } from 'react-i18next';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const log = createLogger('CreditPaywallSheet');
 const DEHUB_COIN = require('../../assets/web-icons/dehub-coin.png');
@@ -77,7 +79,7 @@ export interface CreditPaywallSheetProps {
   onSelectModel: (id: string) => void;
   /** What to price. `modelId` is filled in from `selectedModelId`. */
   quoteKind: AiJobKind;
-  quoteExtras?: { durationSeconds?: number; quality?: 'none' | 'standard' | 'HD'; quantity?: number };
+  quoteExtras?: { durationSeconds?: number; quality?: 'none' | 'standard' | 'HD'; quantity?: number; resolution?: string; hasEndFrame?: boolean; hasInlineMedia?: boolean; hasAudioReferences?: boolean; hasVideoReferences?: boolean };
   /** Extra line under the cost breakdown, e.g. a batch note. */
   footnote?: string;
   confirmLabel?: string;
@@ -132,18 +134,24 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   const freeAvailable =
     !!onConfirmFree && quantity === 1 && !!model && freeImages.remaining > 0 && freeImages.models.includes(model.id);
 
-  const { priceDhb, priceUsd, isLoading: isQuoting, error: quoteError } = useJobQuote(
-    model
+  const quoteRequest: AiQuoteRequest | null = model
       ? {
           kind: quoteKind,
           modelId: model.id,
           durationSeconds: quoteExtras?.durationSeconds,
+          resolution: quoteExtras?.resolution,
+          hasEndFrame: quoteExtras?.hasEndFrame,
+          hasInlineMedia: quoteExtras?.hasInlineMedia,
+          hasAudioReferences: quoteExtras?.hasAudioReferences,
+          hasVideoReferences: quoteExtras?.hasVideoReferences,
           quality: quoteExtras?.quality,
           quantity,
         }
-      : null,
-    visible,
-  );
+      : null;
+  const requestKey = JSON.stringify(quoteRequest);
+  const latestRequest = useRef({ requestKey, visible });
+  latestRequest.current = { requestKey, visible };
+  const { priceDhb, priceUsd, isLoading: isQuoting, error: quoteError } = useJobQuote(quoteRequest, visible);
   // Gated on `visible`: all three paywall sheets stay mounted in the assistant
   // tree, so ungated these would each read a wallet balance the moment the
   // screen opened.
@@ -221,7 +229,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   /* ── Confirm ─────────────────────────────────────────────────────────── */
 
   const handleConfirm = useCallback(async () => {
-    if (priceDhb <= 0 || !model) return;
+    if (priceDhb <= 0 || !model || !quoteRequest || isQuoting || quoteError) return;
 
     if (model.unavailableReason) {
       toastError(model.unavailableReason);
@@ -240,7 +248,9 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
 
     setIsPaying(true);
     try {
-      const txHash = await payForJob(priceDhb);
+      const txHash = await confirmQuotedJob(quoteRequest, priceDhb,
+        () => latestRequest.current.visible && latestRequest.current.requestKey === requestKey,
+        payForJob, _copy('copy.c54cf53e7876', { defaultValue: 'The price changed. Review the new quote.' }));
       toastSuccess(t('paywall.paymentConfirmed'));
       onConfirm(txHash);
     } catch (err) {
@@ -251,6 +261,10 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     }
   }, [
     priceDhb,
+      requestKey,
+      quoteRequest,
+      isQuoting,
+      quoteError,
     model,
     unsupportedChain,
     needsTokens,
@@ -292,7 +306,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
         </Animated.View>
 
         <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 16 }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>

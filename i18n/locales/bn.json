@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} টোকেন"
   },
   "communities": {
+    "shareLink": "লিঙ্ক শেয়ার করুন",
+    "sendInMessage": "সেন্ড ইনভাইট",
     "existingPost": {
       "add": "বিদ্যমান পোস্ট যোগ করুন",
       "added": "সম্প্রদায়ে পোস্ট যুক্ত",

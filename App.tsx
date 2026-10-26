@@ -29,6 +29,7 @@ import SplashScreen from "./screens/SplashScreen";
 import NoInternetScreen from "./screens/NoInternetScreen";
 import { useNetworkStatus } from "./hooks/useNetworkStatus";
 import { PictureInPictureHost } from './components/common/PersistentVideoView';
+import InAppVideoMiniPlayerHost from './components/common/InAppVideoMiniPlayer';
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   StatusBar,
@@ -520,6 +521,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
                           <RootNavigator />
                         </KeyboardPanView>
                         <PictureInPictureHost />
+                        <InAppVideoMiniPlayerHost />
                         <NewMemberRegistrar />
                         <ShippedFeatureNotice />
                         <OnlinePresenceHost />

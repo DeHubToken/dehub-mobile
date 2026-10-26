@@ -54,7 +54,7 @@ import { isPostDeletedSync, useDeletedPostsVersion, warmDeletedPosts } from "../
 import { isDislikeGoneSync, useDislikedPostsVersion } from "../../libs/disliked-posts-store";
 import { DislikeVanish } from "./DislikeVanish";
 import { flattenFeedPages, nextFeedPage } from "../../libs/feed-pages";
-import { setFeedScrolling } from "../../libs/scrollActivity";
+import { captureScrollStopTouch, setFeedScrolling } from "../../libs/scrollActivity";
 import {
   createFeedVisibilityStore,
   useRowVisibility,
@@ -1319,7 +1319,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   return (
     // Keyed apart from the skeleton and error views, so a list that mounts
     // off screen gets a view of its own and its first layout is reported.
-    <View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onLayout={handleListLayout}>
+    <View key="feed-list" className="flex-1" onTouchStart={handleTouchStart} onStartShouldSetResponderCapture={captureScrollStopTouch} onLayout={handleListLayout}>
       <AnimatedFlashList
         ref={listRef}
         showsVerticalScrollIndicator={false}

@@ -6248,6 +6248,8 @@
     "unstakeSent": "{{amount}} ٹوکن واپس لے لیا! ٹرانزیکشن: {{hash}}…"
   },
   "communities": {
+    "shareLink": "لنک شیئر کریں",
+    "sendInMessage": "گروہ میں دعوت",
     "existingPost": {
       "add": "موجودہ پوسٹ شامل کریں",
       "added": "پوسٹ کو کمیونٹی میں شامل کر دیا گیا",

@@ -31,9 +31,11 @@ export interface CreatorFalVideoModel {
   supportsAudioInput?: boolean;
   supportsVideoInput?: boolean;
   requiresVideoInput?: boolean;
-  referenceMode?: 'edit' | 'motion';
+  referenceMode?: 'edit' | 'motion' | 'extend';
+  maxSourceDuration?: number;
+  extensionDirection?: 'forward' | 'backward';
   maxPromptLength?: number;
-  family: 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'klingedit' | 'klingmotion' | 'pixverseeffects';
+  family: 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'ltxextend' | 'klingedit' | 'klingmotion' | 'pixverseeffects';
   falTextModel: string;
   falImageModel: string;
   falEndFrameModel?: string;
@@ -52,6 +54,22 @@ function video(spec: VideoSpec): CreatorFalVideoModel {
 }
 
 export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
+  ...Object.fromEntries((['forward', 'backward'] as const).map(direction => {
+    const id = `ltx-extend-${direction}`;
+    return [id, {
+      ...video({ id, name: direction === 'forward' ? 'LTX Continue' : 'LTX New Beginning',
+        get description() { return _translateCopy(direction === 'forward' ? 'creator.extensionForward' : 'creator.extensionBackward', { defaultValue: direction === 'forward' ? 'Add about four seconds after your source clip' : 'Add about four seconds before your source clip' }); },
+        vendor: 'Lightricks', emoji: 'Film', tier: 'standard', family: 'ltxextend',
+        falTextModel: 'fal-ai/ltx-2.3-quality/extend-video', falImageModel: 'fal-ai/ltx-2.3-quality/extend-video',
+        minDuration: 4, maxDuration: 4, defaultDuration: 4, allowedDurations: [4], perSecondCostUsd: 0,
+        resolutions: ['720p'], aspectRatios: ['16:9', '9:16'], requiresVideoInput: true, supportsVideoInput: true,
+        referenceMode: 'extend', maxReferenceImages: 0, maxSourceDuration: 30, extensionDirection: direction,
+        hasAudio: true, maxPromptLength: 2500,
+      }),
+      // 121 frames include 25 context frames. Budget the requested 1280x720 even when aligned down.
+      baseCostUsd: 0.27,
+    }];
+  })),
   'pixverse-effects': {
     ...video({
       id: 'pixverse-effects', name: 'PixVerse Effects', vendor: 'PixVerse', emoji: '🎬', tier: 'standard',
@@ -249,6 +267,8 @@ export interface CreatorFalImageModel {
   tier: 'premium' | 'standard' | 'fast';
   baseCostUsd: number;
   supportsEdit: boolean;
+  requiresImage?: boolean;
+  outpaint?: boolean;
   text: string;
   edit?: string;
   sizing: 'image_size' | 'aspect_ratio';
@@ -264,6 +284,14 @@ export interface CreatorFalImageModel {
   aspectRatios?: string[];
 }
 export const CREATOR_FAL_IMAGE_MODELS: Record<string, CreatorFalImageModel> = {
+  'bria-expand': {
+    id: 'bria-expand', name: 'Bria Expand', vendor: 'Bria', emoji: '↔', tier: 'standard',
+    get description() { return _translateCopy('creator.expandDescription', { defaultValue: 'Generate new image borders. Optional English prompt; one source image.' }); },
+    baseCostUsd: 0.04, supportsEdit: true, requiresImage: true, outpaint: true,
+    text: 'fal-ai/bria/expand', edit: 'fal-ai/bria/expand', sizing: 'aspect_ratio',
+    aspectRatios: ['1:1', '4:5', '16:9', '9:16', '3:2', '2:3', '4:3', '3:4'],
+    maxReferenceImages: 1, maxPromptLength: 1000,
+  },
   'flux-schnell': {
     id: 'flux-schnell', name: 'FLUX.1 Schnell', vendor: 'Black Forest Labs', emoji: '🎨', tier: 'fast',
     get description() { return _translateCopy("copy.7685965ff100", { defaultValue: "Near-instant compositions and inexpensive drafts" }); }, baseCostUsd: 0.003, supportsEdit: false,

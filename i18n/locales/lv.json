@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} žetoni"
   },
   "communities": {
+    "shareLink": "Nosūtīt saiti",
+    "sendInMessage": "Sūtīt aicinājumu",
     "existingPost": {
       "add": "Pievienot esošu ziņu",
       "added": "Ziņa pievienota kopienai",

@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} tokeni"
   },
   "communities": {
+    "shareLink": "Distribuie linkul",
+    "sendInMessage": "Trimite Invitație",
     "existingPost": {
       "add": "Adăugați post existent",
       "added": "Postul a fost adăugat la comunitate",

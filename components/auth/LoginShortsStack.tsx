@@ -32,20 +32,28 @@ const SIDE = 10;
 /** One trip through a lane's four clips, as on web. */
 const LOOP_MS = 32000;
 
+/**
+ * Mounted only once its tile has come into view, so opening the screen builds
+ * no players at all and the first few start a frame later. Fades in on its
+ * first decoded frame instead of popping in over the empty tile.
+ */
 function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
   const player = useVideoPlayer(CLIPS[name].video, (p) => {
     p.muted = true;
     p.loop = true;
   });
   useSilenceOnRelease(player);
+  const opacity = useRef(new Animated.Value(0)).current;
+  const fadeIn = () => Animated.timing(opacity, { toValue: 1, duration: 450, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
   useEffect(() => {
     if (playing) player.play();
     else player.pause();
   }, [player, playing]);
   return (
-    <View style={StyleSheet.absoluteFill}>
+    <Animated.View style={[StyleSheet.absoluteFill, { opacity }]}>
       <Image source={CLIPS[name].poster} style={StyleSheet.absoluteFill} resizeMode="cover" />
       <VideoView
+        onFirstFrameRender={fadeIn}
         player={player}
         style={StyleSheet.absoluteFill}
         contentFit="cover"
@@ -55,8 +63,13 @@ function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
         allowsPictureInPicture={false}
         fullscreenOptions={{ enable: false }}
       />
-    </View>
+    </Animated.View>
   );
+}
+
+/** Reduced motion: the still frame only, no player. */
+function Still({ name }: { name: ClipName }) {
+  return <Image source={CLIPS[name].poster} style={StyleSheet.absoluteFill} resizeMode="cover" />;
 }
 
 /**
@@ -64,13 +77,14 @@ function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
  * back to the start lands on the same picture. Only tiles inside the window
  * play, so at most three decode per lane.
  */
-function Lane({ clips, down, tileW, height, still, line }: {
+function Lane({ clips, down, tileW, height, still, line, armed }: {
   clips: ClipName[];
   down?: boolean;
   tileW: number;
   height: number;
   still: boolean;
   line: string;
+  armed: boolean;
 }) {
   const tileH = (tileW * 16) / 9;
   const step = tileH + GAP;
@@ -86,6 +100,12 @@ function Lane({ clips, down, tileW, height, still, line }: {
   };
   const t = useRef(new Animated.Value(0)).current;
   const [visible, setVisible] = useState<boolean[]>(() => visibleAt(0));
+  // Tiles that have been on screen keep their player, so a clip drifting back
+  // in does not reload; tiles never seen never build one.
+  const [seen, setSeen] = useState<boolean[]>(() => visibleAt(0));
+  useEffect(() => {
+    setSeen((prev) => (visible.some((v, i) => v && !prev[i]) ? prev.map((p, i) => p || visible[i]) : prev));
+  }, [visible]);
 
   useEffect(() => {
     if (still) return;
@@ -114,7 +134,7 @@ function Lane({ clips, down, tileW, height, still, line }: {
     <Animated.View style={{ width: tileW, gap: GAP, transform: [{ translateY }] }}>
       {tiles.map((name, i) => (
         <View key={i} style={[styles.tile, { width: tileW, height: tileH, borderColor: line }]}>
-          <Clip name={name} playing={!still && visible[i]} />
+          {armed && seen[i] ? (still ? <Still name={name} /> : <Clip name={name} playing={visible[i]} />) : null}
         </View>
       ))}
     </Animated.View>
@@ -129,6 +149,14 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 
   const [lanes] = useState(() => loginClipLanes(Object.keys(CLIPS) as ClipName[]));
   const { width, height: screenH } = useWindowDimensions();
   const insets = useSafeAreaInsets();
+  // The screen slides up with empty tiles; clips start building the frame
+  // after it has drawn, so opening sign-in never waits on video players.
+  const [armed, setArmed] = useState(false);
+  useEffect(() => {
+    let second = 0;
+    const first = requestAnimationFrame(() => { second = requestAnimationFrame(() => setArmed(true)); });
+    return () => { cancelAnimationFrame(first); cancelAnimationFrame(second); };
+  }, []);
 
   // Headline accent, written dark (System Light inverts the grey to ink).
   const accent = theme === "hazy" ? "#C9A7FF" : plain ? "#FFFFFF" : colors.accent;
@@ -160,7 +188,7 @@ export default function LoginShortsStack({ viewportHeight, reservedHeight = 360 
           importantForAccessibility="no-hide-descendants"
         >
           <View style={[styles.lanes, { height: lanesH }]}>
-            {columns.map((clips, index) => <Lane key={index} clips={clips} down={index % 2 === 1} tileW={tileW} height={lanesH} still={still} line={line} />)}
+            {columns.map((clips, index) => <Lane key={index} clips={clips} down={index % 2 === 1} tileW={tileW} height={lanesH} still={still} line={line} armed={armed} />)}
           </View>
         </MaskedView>
       </KeepDarkScope>

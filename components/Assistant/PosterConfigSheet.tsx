@@ -42,6 +42,7 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '../ui/Icon';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 
 export type LogoVariant = 'primary' | 'icon' | 'both';
@@ -435,7 +436,7 @@ const PosterConfigSheetComponent: React.FC<PosterConfigSheetProps> = ({
         pointerEvents="box-none"
       >
         <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 12 }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <SheetDismissHandle onClose={closeSheet} style={s.handleWrap}>
             <View style={s.handle} />

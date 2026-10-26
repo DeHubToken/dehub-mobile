@@ -4374,6 +4374,11 @@
     "title": "การแจ้งเตือน",
     "loadFailed": "ไม่สามารถโหลดการแจ้งเตือนได้",
     "markAllRead": "อ่านทั้งหมดแล้ว",
+    "allSettings": "การตั้งค่าการแจ้งเตือนทั้งหมด",
+    "groupNew": "ใหม่",
+    "groupToday": "วันนี้",
+    "groupThisWeek": "สัปดาห์นี้",
+    "groupEarlier": "ก่อนหน้านี้",
     "settings": "การตั้งค่าการแจ้งเตือน",
     "actions": "การกระทำ",
     "markAllAsRead": "ทำเครื่องหมายว่าอ่านทั้งหมดแล้ว",
@@ -6271,6 +6276,8 @@
     "tokenAmount": "โทเค็น {{amount}}"
   },
   "communities": {
+    "shareLink": "แชร์ลิงค์",
+    "sendInMessage": "ส่งคำเชิญ",
     "existingPost": {
       "add": "เพิ่มโพสต์ที่มีอยู่",
       "added": "โพสต์ถูกเพิ่มเข้าไปในกลุ่ม",
