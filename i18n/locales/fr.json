@@ -14784,6 +14784,73 @@
     "exploreFirst": "Explorer d'abord",
     "codeNote": "On t'envoie un code par e-mail, sans mot de passe."
   },
+  "studioDeck": {
+    "remove": "Retirer",
+    "background": {
+      "title": "Arrière-plan",
+      "modes": {
+        "none": "Désactivé",
+        "blur": "Flou",
+        "color": "Couleur",
+        "image": "Image"
+      },
+      "failed": "Impossible d'activer la suppression d'arrière-plan sur cet appareil.",
+      "hint": "Fonctionne sur votre appareil. La première fois, le chargement prend quelques secondes."
+    },
+    "scenes": {
+      "title": "Scènes",
+      "picture": "Image",
+      "countdown": "Compte à rebours",
+      "noCountdown": "Sans compte à rebours",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "Ça commence bientôt",
+        "chatting": "Discussion",
+        "brb": "Je reviens",
+        "ending": "Fin du live"
+      },
+      "hints": {
+        "starting": "Carte avec compte à rebours",
+        "chatting": "Caméra en plein écran",
+        "brb": "Carte, micro coupé",
+        "ending": "Carte de remerciement"
+      },
+      "subtitles": {
+        "starting": "Le live commence dans",
+        "brb": "De retour dans un instant",
+        "ending": "Merci d'avoir regardé"
+      }
+    },
+    "widgets": {
+      "title": "Afficher les widgets dans ma vidéo",
+      "hint": "Les alertes, barres d'objectif et le chat sont dessinés dans votre live, donc visibles aussi sur Twitch, YouTube et les autres plateformes.",
+      "failed": "Impossible de changer l'affichage des widgets. Réessayez.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Sources",
+      "addImage": "Image ou logo",
+      "failed": "Impossible d'ajouter cette source.",
+      "hint": "Les sources sont dessinées sur votre image pour tous les spectateurs et toutes les plateformes.",
+      "image": "Image",
+      "show": "Afficher dans le live",
+      "positions": {
+        "top-left": "Haut gauche",
+        "top-right": "Haut droite",
+        "bottom-left": "Bas gauche",
+        "bottom-right": "Bas droite",
+        "center": "Centre"
+      },
+      "sizes": {
+        "small": "Petit",
+        "medium": "Moyen",
+        "large": "Grand"
+      }
+    },
+    "phone": {
+      "title": "Studio"
+    }
+  },
   "whenSheet": {
     "title": "Quand ?",
     "tonight": "Ce soir",

@@ -14780,6 +14780,73 @@
     "exploreFirst": "Explorar primero",
     "codeNote": "Te enviamos un código por correo, sin contraseña."
   },
+  "studioDeck": {
+    "remove": "Quitar",
+    "background": {
+      "title": "Fondo",
+      "modes": {
+        "none": "Desactivado",
+        "blur": "Desenfocar",
+        "color": "Color",
+        "image": "Imagen"
+      },
+      "failed": "No se pudo activar la eliminación de fondo en este dispositivo.",
+      "hint": "Funciona en tu dispositivo. La primera vez tarda unos segundos en cargar."
+    },
+    "scenes": {
+      "title": "Escenas",
+      "picture": "Imagen",
+      "countdown": "Cuenta atrás",
+      "noCountdown": "Sin cuenta atrás",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "Empezamos pronto",
+        "chatting": "Charlando",
+        "brb": "Vuelvo enseguida",
+        "ending": "Fin del directo"
+      },
+      "hints": {
+        "starting": "Tarjeta con cuenta atrás",
+        "chatting": "Cámara a pantalla completa",
+        "brb": "Tarjeta, micro silenciado",
+        "ending": "Tarjeta de agradecimiento"
+      },
+      "subtitles": {
+        "starting": "El directo empieza en",
+        "brb": "Vuelvo en un momento",
+        "ending": "Gracias por ver el directo"
+      }
+    },
+    "widgets": {
+      "title": "Mostrar widgets en mi vídeo",
+      "hint": "Las alertas, barras de meta y el chat se dibujan en tu directo, así que también los ven en Twitch, YouTube y las demás plataformas.",
+      "failed": "No se pudo cambiar dónde se muestran tus widgets. Inténtalo de nuevo.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Fuentes",
+      "addImage": "Imagen o logo",
+      "failed": "No se pudo añadir esa fuente.",
+      "hint": "Las fuentes se dibujan sobre tu imagen para todos los espectadores y plataformas.",
+      "image": "Imagen",
+      "show": "Mostrar en el directo",
+      "positions": {
+        "top-left": "Arriba izq.",
+        "top-right": "Arriba der.",
+        "bottom-left": "Abajo izq.",
+        "bottom-right": "Abajo der.",
+        "center": "Centro"
+      },
+      "sizes": {
+        "small": "Pequeño",
+        "medium": "Mediano",
+        "large": "Grande"
+      }
+    },
+    "phone": {
+      "title": "Estudio"
+    }
+  },
   "whenSheet": {
     "title": "¿Cuándo?",
     "tonight": "Esta noche",
