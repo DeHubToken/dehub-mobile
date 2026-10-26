@@ -38,7 +38,6 @@ function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, q
   const { t } = useTranslation();
   const { skin } = useAppTheme();
   const searchMaterial = useSearchFieldMaterial();
-  const radius = skin?.square ? 0 : 8;
   const mono = skin?.mono ? MONO_TEXT : null;
   return (
     <View testID="comments-stage-header">
@@ -53,18 +52,18 @@ function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, q
           accessibilityRole="button"
           accessibilityLabel={t("comments.tabSearch")}
           accessibilityState={{ selected: searchOpen }}
-          style={[styles.chip, { borderRadius: radius }, searchOpen && styles.chipOn]}
+          style={styles.plain}
         >
-          <Icon name="Search" size={14} color="#D4D4D8" />
+          <Icon name="Search" size={18} color={searchOpen ? "#FFFFFF" : "#D4D4D8"} />
         </Pressable>
         <Pressable
           onPress={() => onSortChange(COMMENT_SORTS[(COMMENT_SORTS.indexOf(sort) + 1) % COMMENT_SORTS.length])}
           hitSlop={6}
           accessibilityRole="button"
           accessibilityLabel={t(SORT_A11Y[sort])}
-          style={[styles.chip, { borderRadius: radius }]}
+          style={styles.plain}
         >
-          <Icon name="ListFilter" size={14} color="#D4D4D8" />
+          <Icon name="ListFilter" size={16} color="#D4D4D8" />
           <Text style={styles.chipText}>{t(SORT_LABEL[sort])}</Text>
         </Pressable>
       </View>
@@ -88,18 +87,11 @@ function CommentsStageHeaderComponent({ count, sort, onSortChange, searchOpen, q
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 6 },
+  row: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 6 },
   title: { flex: 1, color: "#F4F4F5", fontSize: 16, fontWeight: "800" },
   count: { color: "#9A9AA2", fontWeight: "600" },
-  chip: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 4,
-    height: 28,
-    paddingHorizontal: 9,
-    backgroundColor: "rgba(255,255,255,0.08)",
-  },
-  chipOn: { backgroundColor: "rgba(255,255,255,0.16)" },
+  // Bare controls, no chips: the same weight as the post's action row.
+  plain: { flexDirection: "row", alignItems: "center", gap: 4, height: 28, paddingHorizontal: 4 },
   chipText: { color: "#D4D4D8", fontSize: 13, fontWeight: "600" },
   searchWrap: { paddingHorizontal: 16, paddingTop: 4, paddingBottom: 4 },
   search: {

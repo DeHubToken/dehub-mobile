@@ -384,6 +384,17 @@ const AccountSettingsScreen: React.FC<any> = ({ navigation, route }) => {
         />
       </SettingsSection>
 
+      {/* The Creator studio's way in, now the Assistant header no longer
+          carries a shortcut to it. Last on the tab Settings opens on. */}
+      <SettingsSection label={t("commandCentre.creator")} icon="Creator" anchor="creator">
+        <SettingsLinkRow
+          icon="Creator"
+          label={t("creator.studioTitle")}
+          description={t("creator.heroSubtitle")}
+          onPress={() => navigation.navigate(ScreenNames.Creator)}
+        />
+      </SettingsSection>
+
       <Text className="text-center text-theme-neutrals-500 text-xs mt-6">{_copy("copy.1f185710f28a", { defaultValue: "DeHub v" })}{APP_VERSION}
       </Text>
     </SettingsScrollView>

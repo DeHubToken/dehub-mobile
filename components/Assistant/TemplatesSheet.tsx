@@ -37,6 +37,7 @@ import {
   type TemplateKind,
 } from '../../libs/creatorTemplates';
 import { useTranslation } from 'react-i18next';
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 interface TemplatesSheetProps {
   visible: boolean;
@@ -236,7 +237,7 @@ const s = StyleSheet.create({
     overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: '#0C0C0E',
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: 'rgba(255,255,255,0.06)',
   },
