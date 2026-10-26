@@ -7813,7 +7813,8 @@
     "savePrompt": "¿Guardar esta publicación como borrador para finalizarla y publicarla más tarde?"
   },
   "editor": {
-    "film":  {
+    "film": {
+        "repairRefs": "Quitar vínculos a archivos ausentes",
                  "title":  "Proyecto de película",
                  "intro":  "Planifica planos con imágenes de referencia reutilizables. El brief, el orden de los planos y los resultados elegidos se guardan con este proyecto.",
                  "create":  "Crear plan de película",

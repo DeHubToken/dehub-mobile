@@ -9,6 +9,7 @@ export interface GenerationDraft {
   draftId?: string;
   cinemaDirection?: CinemaDirection;
   durationSeconds?: number;
+  owner?: string | null;
 }
 
 export function generationDraft(value: unknown, aspect?: string): GenerationDraft | null {
@@ -17,6 +18,7 @@ export function generationDraft(value: unknown, aspect?: string): GenerationDraf
   const kind = input.kind === "voiceover" || input.kind === "speech" || input.kind === "tts" ? "voice" : input.kind;
   if (kind !== "image" && kind !== "video" && kind !== "voice") return null;
   if (typeof input.prompt !== "string" || !input.prompt.trim()) return null;
+  if (input.owner !== undefined && input.owner !== null && (typeof input.owner !== 'string' || !input.owner || input.owner.length > 200 || /\s/.test(input.owner))) return null;
   let references: GenerationDraft['references'];
   if (input.references !== undefined) {
     if (!Array.isArray(input.references) || input.references.length > 4 || (kind !== 'image' && kind !== 'video')) return null;
@@ -32,7 +34,13 @@ export function generationDraft(value: unknown, aspect?: string): GenerationDraf
     ...(typeof input.workspaceId === 'string' && /^[a-zA-Z0-9_-]{1,200}$/.test(input.workspaceId) ? { workspaceId: input.workspaceId } : {}),
     ...(typeof input.draftId === 'string' && /^[a-zA-Z0-9_-]{1,100}$/.test(input.draftId) ? { draftId: input.draftId } : {}),
     ...((kind === 'image' || kind === 'video') && input.cinemaDirection !== undefined ? { cinemaDirection: normalizeCinemaDirection(input.cinemaDirection) } : {}),
-    ...(kind === 'video' && typeof input.durationSeconds === 'number' && Number.isFinite(input.durationSeconds) && input.durationSeconds >= 1 && input.durationSeconds <= 30 ? { durationSeconds: input.durationSeconds } : {}) };
+    ...(kind === 'video' && typeof input.durationSeconds === 'number' && Number.isFinite(input.durationSeconds) && input.durationSeconds >= 1 && input.durationSeconds <= 30 ? { durationSeconds: input.durationSeconds } : {}),
+    ...(input.owner === null || typeof input.owner === 'string' ? { owner: typeof input.owner === 'string' ? input.owner.toLowerCase() : null } : {}) };
+}
+
+export function generationDraftForOwner(value: unknown, owner: string | null): GenerationDraft | null {
+  const draft = generationDraft(value);
+  return draft && (draft.owner === undefined || draft.owner === (owner?.toLowerCase() ?? null)) ? draft : null;
 }
 
 /** Explicit requests can prepare a draft without asking the remote edit planner. */
