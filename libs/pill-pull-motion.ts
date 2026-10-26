@@ -9,11 +9,20 @@ export function pullForDrag(drag: number) {
   return 165 * (1 - Math.exp(-Math.max(0, drag) / 170));
 }
 
-/** A critically damped return with zero initial velocity and an exact resting endpoint. */
+/** A lightly underdamped spring with zero initial velocity: the feed springs
+ *  about 4% past its resting place, settles back and ends exactly at rest. */
+const SPRING_ZETA = .72;
+const SPRING_OMEGA = 6.9 / SPRING_ZETA;
+const SPRING_DAMPED = SPRING_OMEGA * Math.sqrt(1 - SPRING_ZETA * SPRING_ZETA);
+function springAt(p: number) {
+  'worklet';
+  return 1 - Math.exp(-SPRING_ZETA * SPRING_OMEGA * p) * (Math.cos(SPRING_DAMPED * p) + SPRING_ZETA * SPRING_OMEGA / SPRING_DAMPED * Math.sin(SPRING_DAMPED * p));
+}
+const SPRING_END = 1 - springAt(1);
 export function pullSpringProgress(progress: number) {
   'worklet';
   const p = Math.max(0, Math.min(1, progress));
-  return (1 - (1 + 9 * p) * Math.exp(-9 * p)) / (1 - 10 * Math.exp(-9));
+  return p === 1 ? 1 : springAt(p) + p * SPRING_END;
 }
 
 export function pillPullVisual(distance: number, pulling: boolean, refreshing: boolean, flow: number) {
