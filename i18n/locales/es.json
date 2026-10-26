@@ -6893,6 +6893,7 @@
     "coverFailed": "No se pudo cambiar la portada"
   },
   "player": {
+    "fullscreen": "Pantalla completa",
     "segmentLabel": {
       "filler": "Relleno",
       "interaction": "Like y suscríbete",
