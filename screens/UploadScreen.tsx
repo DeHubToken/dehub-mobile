@@ -247,6 +247,16 @@ type MediaMode = "none" | "images" | "video" | "audio";
 const isVideoAsset = (asset: PickedAsset): boolean =>
   asset.type === "video" || !!asset.mimeType?.startsWith("video/");
 
+/**
+ * The confirm dialogs' type, written as inline colours: inside a modal on the
+ * phone the class colours (text-white) kept the dark theme's values and drew
+ * white type on System Light's pale glass. Inline greys go through the light
+ * pass like the rest of the screen.
+ */
+const DIALOG_INK = { color: "#FFFFFF" };
+const DIALOG_SOFT = { color: "rgba(255,255,255,0.8)" };
+const DIALOG_MUTED = { color: "#A6A9AC" };
+
 export default function UploadScreen() {
   const { t: _copy } = _useCopy();
   // Minimal: the recorder, audio and poll panels dissolve into the page
@@ -3819,10 +3829,10 @@ export default function UploadScreen() {
         blurIntensity={30}
       >
         <View className="p-5" style={draftModalTheme}>
-          <Text className="text-white text-lg font-bold text-center mb-2">
+          <Text className="text-lg font-bold text-center mb-2" style={DIALOG_INK}>
             {t("drafts.saveTitle")}
           </Text>
-          <Text className="text-theme-neutrals-400 text-sm text-center mb-4">
+          <Text className="text-sm text-center mb-4" style={DIALOG_MUTED}>
             {t("drafts.savePrompt")}
           </Text>
           <View className="flex-row">
@@ -3831,7 +3841,7 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="flex-1 px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2"
             >
-              <Text className="text-white text-center font-medium">{t("common.cancel")}</Text>
+              <Text className="text-center font-medium" style={DIALOG_INK}>{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={handleConfirmSaveDraft}
@@ -3855,16 +3865,16 @@ export default function UploadScreen() {
         blurIntensity={30}
       >
         <View className="p-5">
-          <Text className="text-white text-lg font-bold text-center mb-3">
+          <Text className="text-lg font-bold text-center mb-3" style={DIALOG_INK}>
             {t("upload.madeForKidsConfirmTitle")}
           </Text>
-          <Text className="text-theme-neutrals-400 text-sm mb-2">
+          <Text className="text-sm mb-2" style={DIALOG_MUTED}>
             {t("upload.madeForKidsConfirmAudience")}
           </Text>
-          <Text className="text-theme-neutrals-400 text-sm mb-2">
+          <Text className="text-sm mb-2" style={DIALOG_MUTED}>
             {t("upload.madeForKidsConfirmReach")}
           </Text>
-          <Text className="text-theme-neutrals-400 text-sm mb-4">
+          <Text className="text-sm mb-4" style={DIALOG_MUTED}>
             {t("upload.madeForKidsConfirmComments")}
           </Text>
           <View className="flex-row">
@@ -3873,7 +3883,7 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="flex-1 px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700 mr-2"
             >
-              <Text className="text-white text-center font-medium">{t("common.cancel")}</Text>
+              <Text className="text-center font-medium" style={DIALOG_INK}>{t("common.cancel")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -4021,10 +4031,10 @@ export default function UploadScreen() {
         dismissible={false}
       >
         <View className="p-5" style={draftModalTheme}>
-          <Text className="text-white text-lg font-bold text-center mb-2">
+          <Text className="text-lg font-bold text-center mb-2" style={DIALOG_INK}>
             {t("upload.discardPostTitle")}
           </Text>
-          <Text className="text-theme-neutrals-400 text-sm text-center mb-4">
+          <Text className="text-sm text-center mb-4" style={DIALOG_MUTED}>
             {t("upload.discardPostBody")}
           </Text>
           <View className="gap-3">
@@ -4040,14 +4050,14 @@ export default function UploadScreen() {
               activeOpacity={0.7}
               className="px-4 py-3 rounded-xl bg-theme-neutrals-800 border border-theme-neutrals-700"
             >
-              <Text className="text-white/80 text-center font-medium">{t("upload.discard")}</Text>
+              <Text className="text-center font-medium" style={DIALOG_SOFT}>{t("upload.discard")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => setShowDiscardModal(false)}
               activeOpacity={0.7}
               className="px-4 py-2"
             >
-              <Text className="text-theme-neutrals-400 text-center text-sm">{t("common.cancel")}</Text>
+              <Text className="text-center text-sm" style={DIALOG_MUTED}>{t("common.cancel")}</Text>
             </TouchableOpacity>
           </View>
         </View>
