@@ -80,7 +80,7 @@ export default function CreatorScreen() {
 
   const jobs = useMemo(() => query.data?.pages.flatMap(page => page.jobs) ?? [], [query.data]);
   const previewJobs = useMemo(() => jobs.map(item => ({ ...item, posterUrl: item.posterUrl ?? previews[item.id] })), [jobs, previews]);
-  const openStudio = useCallback((mode: CreatorMode = 'image', workflow?: 'swap' | 'motion') => nav.navigate(ScreenNames.CreatorStudio, { mode, workflow }), [nav]);
+  const openStudio = useCallback((mode: CreatorMode = 'image', workflow?: 'swap' | 'motion') => nav.navigate(ScreenNames.CreatorStudio, { mode, workflow, marketingHandoff: undefined }), [nav]);
 
   const header = useMemo(() => {
   const mediums = [
@@ -153,7 +153,11 @@ export default function CreatorScreen() {
       <Text className="px-4 pb-3 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.moreTools')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{tools.map(tile)}</View>
 
-      <MarketingWorkspace onPrepare={(editorDraft) => nav.navigate(ScreenNames.CreatorStudio, { mode: editorDraft.kind === 'video' ? 'video' : 'image', editorDraft })} />
+      <MarketingWorkspace onPrepare={(draft) => nav.navigate(ScreenNames.CreatorStudio, {
+        mode: draft.kind === 'video' ? 'video' : 'image',
+        editorDraft: undefined, initialPrompt: undefined, workflow: undefined, clip: undefined, effect: undefined,
+        marketingHandoff: { id: `campaign-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`, owner: wallet ?? null, draft },
+      })} />
 
       <Text className="px-4 pb-1 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.yourLibrary')}</Text>
       <Text className="px-4 pb-3 text-theme-neutrals-400">{t('creator.libraryHint')}</Text>
@@ -161,7 +165,7 @@ export default function CreatorScreen() {
     </View>
   );
 
-  }, [t, themeName, half, nav, openStudio, accentInk, stage, query.isLoading, glass, appTheme.skin]);
+  }, [t, themeName, half, nav, openStudio, accentInk, stage, query.isLoading, glass, appTheme.skin, wallet]);
   const renderAsset = useCallback(({ item }: { item: CreatorAsset }) => <CreatorLibraryCard item={item} posterUrl={item.posterUrl ?? previews[item.id]} width={half} />, [half, previews]);
 
   return (

@@ -1,6 +1,5 @@
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useTranslation as _useCopy } from 'react-i18next';
-import { useDraftState } from '../hooks/useDraftState';
 import { useVideoDownload } from "../context/VideoDownloadContext";
 /**
  * AI Assistant.
@@ -128,6 +127,7 @@ import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions
 import { runCreatorBatch } from '../libs/creatorBatch';
 import { creatorAssetId } from '../libs/creatorAssetId';
 import * as CreatorCrypto from 'expo-crypto';
+import { useMarketingStudioDraft } from '../hooks/useMarketingStudioDraft';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -304,12 +304,19 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const activeTemplate = getTemplate(templateId);
   const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? route.params?.editorDraft) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const [studioSettings, setStudioSettings] = useDraftState<CreatorStudioSettings>(`creator:${draftScope}:settings`, () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
-    model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }));
+  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft } = useMarketingStudioDraft({
+    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio,
+    initialSettings: () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
+      model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }),
+  });
+  useEffect(() => {
+    if (!campaignDraft) return;
+    setAttachedImage(null);
+    setTemplateId(null);
+  }, [campaignDraft?.id]);
   useEffect(() => {
     if (studio && route.params?.workflow) setTemplateId(route.params.workflow === 'swap' ? 'reference-character-swap' : 'reference-copy-motion');
   }, [studio, route.params?.workflow]);
-  const [input, setInput] = useDraftState(`assistant:${draftScope}:${studio ? studioSettings.mode : 'chat'}:input`, '');
   const appliedClipRoute = useRef<string | undefined>(undefined);
   const pickMotionClip = useCallback((clip: MotionClip, workflow: 'swap' | 'motion') => {
     const model = motionModel(clip, workflow);
