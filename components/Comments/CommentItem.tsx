@@ -176,7 +176,6 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
 }) => {
   const { t } = useCopy();
   const delivery = useReplyDelivery(tokenId, comment.id);
-  const locallyPosted = delivery?.status === 'posted';
   const isPending = comment.id < 0 || delivery?.status === 'sending' || delivery?.status === 'failed';
   const { showUserProfile } = useUserProfileSheet();
   const { isMinimal } = useAppTheme();
@@ -226,7 +225,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
-  const highlightOpacity = useSharedValue(highlighted || locallyPosted ? 1 : 0);
+  const highlightOpacity = useSharedValue(highlighted ? 1 : 0);
 
   const likeAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: likeScale.value }],
@@ -246,13 +245,15 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   }));
 
   React.useEffect(() => {
-    if (highlighted || locallyPosted) {
+    // Only a comment opened from a link glows. Your own comment, sending or
+    // just sent, looks exactly like every other one.
+    if (highlighted) {
       highlightOpacity.value = 1;
       highlightOpacity.value = withTiming(0, { duration: 1600 });
     } else {
       highlightOpacity.value = withTiming(0, { duration: 200 });
     }
-  }, [highlighted, locallyPosted, highlightOpacity]);
+  }, [highlighted, highlightOpacity]);
 
   const user = comment.user;
   const displayName = user?.displayName || user?.username || t("settings.unknown");
@@ -723,17 +724,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             )}
             <Text style={{ fontSize: 13, lineHeight: 18, color: "#8B8D90" }}>{timeAgo}</Text>
           </View>
-          {delivery && (
+          {/* Sending and sent look exactly like any other comment. Only a
+              failure says anything, with the way to send it again. */}
+          {delivery?.status === 'failed' && (
             <View accessibilityLiveRegion="polite" style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 6, paddingVertical: 2 }}>
-              {delivery.status === 'sending' && <ActivityIndicator size="small" color="#8B8D90" />}
               <Text style={{ fontSize: 12, color: "#8B8D90", flexShrink: 1 }}>
-                {delivery.status === 'sending' ? t('dm.sending') : delivery.status === 'posted' ? t('toasts.comment_posted') : delivery.error || t('toasts.failed_to_post_comment')}
+                {delivery.error || t('toasts.failed_to_post_comment')}
               </Text>
-              {delivery.status === 'failed' && (
-                <Pressable accessibilityRole="button" accessibilityLabel={t('common.retry')} onPress={() => { void delivery.retry?.(); }} style={{ minHeight: 44, minWidth: 44, justifyContent: "center" }}>
-                  <Text style={{ fontSize: 13, color: ICON_ACTIVE, textDecorationLine: "underline" }}>{t('common.retry')}</Text>
-                </Pressable>
-              )}
+              <Pressable accessibilityRole="button" accessibilityLabel={t('common.retry')} onPress={() => { void delivery.retry?.(); }} style={{ minHeight: 44, minWidth: 44, justifyContent: "center" }}>
+                <Text style={{ fontSize: 13, color: ICON_ACTIVE, textDecorationLine: "underline" }}>{t('common.retry')}</Text>
+              </Pressable>
             </View>
           )}
 
@@ -802,7 +802,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
             </View>
           ) : null}
 
-          {!isPending && <View style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
+          {/* Inert, not hidden, while sending: the row looks the same before and after it lands. */}
+          <View pointerEvents={isPending ? "none" : "auto"} style={{ flexDirection: "row", alignItems: "center", marginTop: 6, gap: 12 }}>
             {/* Hold this thumb for the tray of every reaction — the faces,
                 a divider, then 👎; there is no separate thumbs-down. The
                 wrapper is the tray's positioning context. No tray on your own
@@ -937,8 +938,6 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               </View>
             )}
           </View>
-
-          }
           {/* The thread's own control, on the last reply that is on screen.
               A collapsed thread shows one reply and hides the rest behind it. */}
           {showRepliesToggle && (

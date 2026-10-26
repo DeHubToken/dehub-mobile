@@ -205,3 +205,24 @@ export function formatChatTimeSmart(
 }
 export const DateUtil = { secondsToHMMSS, msToHHMMSS, formatJoinedDate, formatNotificationDate, formatRelativeFromNow, formatChatTimeSmart };
 export default DateUtil;
+
+/**
+ * Compact age for feed-style rows: "2m", "1h", "3d", "2w", "4mo", "1y",
+ * the same units the web feed and notifications print. Other languages get
+ * the narrow relative format.
+ */
+export function formatShortAgo(input?: string | number | Date | null): string {
+  if (i18n.language && i18n.language !== 'en') return formatRelativeTime(input, i18n.language, 'narrow');
+  const t = input == null ? NaN : new Date(input).getTime();
+  if (!Number.isFinite(t)) return 'now';
+  const minutes = Math.floor(Math.max(0, Date.now() - t) / 60000);
+  if (minutes < 1) return 'now';
+  if (minutes < 60) return `${minutes}m`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h`;
+  const days = Math.floor(hours / 24);
+  if (days < 7) return `${days}d`;
+  if (days < 30) return `${Math.floor(days / 7)}w`;
+  if (days < 365) return `${Math.floor(days / 30)}mo`;
+  return `${Math.floor(days / 365)}y`;
+}

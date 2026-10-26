@@ -2153,6 +2153,11 @@
     "title": "Meldingen",
     "loadFailed": "Meldingen konden niet worden geladen",
     "markAllRead": "Alles als gelezen markeren",
+    "allSettings": "Alle meldingsinstellingen",
+    "groupNew": "Nieuw",
+    "groupToday": "Vandaag",
+    "groupThisWeek": "Deze week",
+    "groupEarlier": "Eerder",
     "settings": "Meldingsinstellingen",
     "actions": "Acties",
     "markAllAsRead": "Alles als gelezen markeren",
@@ -14557,6 +14562,15 @@
     "receipt": "${{amount}} toegevoegd aan de advertentie-inkomsten van de maker. tokenafrekening is in behandeling."
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "Nieuwe volger",
+      "subscribe": "Nieuwe abonnee",
+      "subscribedTo": "Geabonneerd · {{plan}}",
+      "gifted_one": "Gaf een abonnement cadeau",
+      "gifted_other": "Gaf {{count}} abonnementen cadeau",
+      "share": "Deelde de stream",
+      "join": "Net binnen"
+    },
     "subathon": "Subathon",
     "wheelLanded": "{{name}} gesponnen: {{result}}",
     "someone": "Iemand",
@@ -14590,6 +14604,31 @@
     "tipJar": "Geschenkpot"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Multistream-bestemmingen",
+      "intro": "Ga één keer live op DeHub en wij sturen je stream gratis door naar elk platform dat hier aanstaat. Het start binnen een paar seconden nadat je live gaat.",
+      "add": "Bestemming toevoegen",
+      "empty": "Nog geen bestemmingen. Voeg Twitch, YouTube, Kick of een RTMP-server toe.",
+      "platform": "Platform",
+      "label": "Naam (optioneel)",
+      "server": "Server-URL",
+      "key": "Streamsleutel",
+      "findKey": "Vind je {{name}}-server en -sleutel",
+      "customHint": "Plak de RTMP-server en sleutel van je platform.",
+      "keyNote": "Je sleutel wordt versleuteld op onze servers bewaard en nooit meer getoond.",
+      "save": "Toevoegen",
+      "cancel": "Annuleren",
+      "added": "{{name}} toegevoegd",
+      "saveFailed": "Bestemming opslaan mislukt",
+      "toggle": "Naar deze bestemming streamen",
+      "states": {
+        "off": "Uit",
+        "idle": "Klaar",
+        "connecting": "Verbinden",
+        "live": "Live",
+        "error": "Fout"
+      }
+    },
     "controls": {
       "title": "Snelle bediening",
       "intro": "Voor mid-stream. Elke schakelaar houdt vast voor iedereen die kijkt, in de app en in OBS, totdat je hem terugdraait.",
