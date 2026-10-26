@@ -9,6 +9,7 @@ import {
 } from "../../theme/sheetGlass";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useDrawerBlurSource } from "./FrostedBackdrop";
+import { KeepDarkScope } from "../../libs/jsx/tone";
 
 /**
  * The liquid glass layers behind a drawer's content, as on web: the page
@@ -50,6 +51,32 @@ function GlassLayers({ blur = true }: { blur?: boolean }) {
   );
 }
 
+/**
+ * System Light's drawer frost, as web's pale glass: the same blur sources as
+ * the dark glass under a pale wash. Written in light colours and kept out of
+ * the colour pass, which would turn a dark wash grey.
+ */
+function LightGlassLayers({ blur = true }: { blur?: boolean }) {
+  const source = useDrawerBlurSource();
+  const ios = Platform.OS === "ios";
+  const android = blur && !ios && !!source;
+  const blurred = (ios && blur) || android;
+  return (
+    <KeepDarkScope>
+      {android ? <View style={[StyleSheet.absoluteFill, { backgroundColor: "#F4F4F7" }]} /> : null}
+      {blurred ? (
+        <BlurView
+          {...(android ? { blurTarget: source, blurMethod: "dimezisBlurViewSdk31Plus" as const } : null)}
+          intensity={50}
+          tint="light"
+          style={StyleSheet.absoluteFill}
+        />
+      ) : null}
+      <View style={[StyleSheet.absoluteFill, { backgroundColor: blurred ? "rgba(244,244,247,0.72)" : "rgba(244,244,247,0.97)" }]} />
+    </KeepDarkScope>
+  );
+}
+
 /** The panel it sits in must have a transparent background of its own. */
 export default function SheetGlass({ blur = true }: { blur?: boolean }) {
   return (
@@ -60,18 +87,19 @@ export default function SheetGlass({ blur = true }: { blur?: boolean }) {
 }
 
 /**
- * Drop-in for a drawer's own absolute-fill background view. In the default
- * dark theme, where that view is painted SHEET_GLASS_FILL, it becomes liquid
- * glass; every other theme keeps the view exactly as styled (the colour pass
- * repaints the fill for canvas themes, Minimal and System Light).
+ * Drop-in for a drawer's own absolute-fill background view. Where that view
+ * is painted SHEET_GLASS_FILL it becomes liquid glass in the default dark
+ * theme and pale frost in System Light; canvas themes and Minimal keep the
+ * view exactly as styled (the colour pass repaints the fill for them).
  * `blur={false}` for a sheet drawn inside the feed itself (inline Shorts).
  */
 export function SheetGlassFill({ style, blur = true }: { style: StyleProp<ViewStyle>; blur?: boolean }) {
-  const glass = useDrawerGlass() && StyleSheet.flatten(style)?.backgroundColor === SHEET_GLASS_FILL;
+  const { skin, isMinimal, isLight } = useAppTheme();
+  const glass = !skin && !isMinimal && StyleSheet.flatten(style)?.backgroundColor === SHEET_GLASS_FILL;
   if (!glass) return <View pointerEvents="none" style={style} />;
   return (
     <View pointerEvents="none" style={[style, styles.clear]}>
-      <GlassLayers blur={blur} />
+      {isLight ? <LightGlassLayers blur={blur} /> : <GlassLayers blur={blur} />}
     </View>
   );
 }
