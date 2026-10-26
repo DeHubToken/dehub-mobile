@@ -14803,6 +14803,7 @@
     "tooSoonMin": "Choisis une heure dans au moins {{count}} minutes.",
     "tooSoon": "Choisis une heure à venir.",
     "zone": "Ton heure ({{zone}}). Les autres la voient à leur heure.",
-    "remove": "Retirer la programmation"
+    "remove": "Retirer la programmation",
+    "startsIn": "Commence dans {{time}}"
   }
 }
