@@ -76,7 +76,7 @@ export interface CreditPaywallSheetProps {
   onSelectModel: (id: string) => void;
   /** What to price. `modelId` is filled in from `selectedModelId`. */
   quoteKind: AiJobKind;
-  quoteExtras?: { durationSeconds?: number; quality?: 'none' | 'standard' | 'HD'; quantity?: number; resolution?: string; hasEndFrame?: boolean; hasInlineMedia?: boolean };
+  quoteExtras?: { durationSeconds?: number; quality?: 'none' | 'standard' | 'HD'; quantity?: number; resolution?: string; hasEndFrame?: boolean; hasInlineMedia?: boolean; hasAudioReferences?: boolean; hasVideoReferences?: boolean };
   /** Extra line under the cost breakdown, e.g. a batch note. */
   footnote?: string;
   confirmLabel?: string;
@@ -140,6 +140,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
           resolution: quoteExtras?.resolution,
           hasEndFrame: quoteExtras?.hasEndFrame,
           hasInlineMedia: quoteExtras?.hasInlineMedia,
+          hasAudioReferences: quoteExtras?.hasAudioReferences,
+          hasVideoReferences: quoteExtras?.hasVideoReferences,
           quality: quoteExtras?.quality,
           quantity,
         }
@@ -223,7 +225,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
   /* ── Confirm ─────────────────────────────────────────────────────────── */
 
   const handleConfirm = useCallback(async () => {
-    if (priceDhb <= 0 || !model) return;
+    if (priceDhb <= 0 || !model || isQuoting || quoteError) return;
 
     if (model.unavailableReason) {
       toastError(model.unavailableReason);
@@ -253,6 +255,8 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
     }
   }, [
     priceDhb,
+      isQuoting,
+      quoteError,
     model,
     unsupportedChain,
     needsTokens,

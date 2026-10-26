@@ -11,6 +11,8 @@
  */
 
 import { renderHook, act } from '@testing-library/react-native';
+const mockQuoteTranslate = (key: string) => key;
+jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: mockQuoteTranslate }) }));
 
 jest.mock('i18next', () => {
   const en = jest.requireActual('../../i18n/locales/en.json');
@@ -37,7 +39,8 @@ jest.mock('../../hooks/use-web3', () => ({
   useERC20Contract: () => mockUseERC20Contract(),
 }));
 
-import { useJobPayment } from '../../hooks/useAiPayment';
+import { useJobPayment, useJobQuote } from '../../hooks/useAiPayment';
+import { quoteAiJob } from '../../services/ai.service';
 import { ChainId } from '../../config/constants';
 
 const ACCOUNT = '0xea2824aed1fc55abcf7c6b4493ceea6a09f0d049';
@@ -46,6 +49,22 @@ const HASH = `0x${'a'.repeat(64)}`;
 function setup(enabled = true) {
   return renderHook(() => useJobPayment(enabled));
 }
+
+it('cannot reuse a previous media quote while a changed request is pending or failed', async () => {
+  const quote = quoteAiJob as jest.Mock;
+  quote.mockResolvedValueOnce({ priceDhb: 990, priceUsd: 0.99 });
+  let reject!: (error: Error) => void;
+  quote.mockImplementationOnce(() => new Promise((_resolve, fail) => { reject = fail; }));
+  const { result, rerender } = renderHook(({ hasEndFrame }) => useJobQuote({ kind: 'video', modelId: 'seedance-2.0', hasEndFrame }), { initialProps: { hasEndFrame: false } });
+  await act(async () => {});
+  expect(result.current.priceDhb).toBe(990);
+  rerender({ hasEndFrame: true });
+  expect(result.current.priceDhb).toBe(0);
+  expect(result.current.isLoading).toBe(true);
+  await act(async () => { reject(new Error('quote unavailable')); });
+  expect(result.current.priceDhb).toBe(0);
+  expect(result.current.error).toBe('quote unavailable');
+});
 
 describe('useJobPayment — a paid transfer is never lost', () => {
   beforeEach(() => {

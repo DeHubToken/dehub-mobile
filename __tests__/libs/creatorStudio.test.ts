@@ -1,6 +1,6 @@
 import { VIDEO_MODELS } from '../../config/ai-models.constants';
 import { CREATOR_VIDEO_RULES } from '../../config/creator-video-rules';
-import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorSettingsForEditorDraft } from '../../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOptions, creatorVideoQuoteHints, normalizeCreatorSettings, prepareCreatorPrompt, creatorSettingsForEditorDraft } from '../../libs/creatorStudio';
 import { getTemplate } from '../../libs/creatorTemplates';
 
 describe('native Creator jobs', () => {
@@ -74,6 +74,15 @@ describe('native Creator jobs', () => {
       expect(CREATOR_VIDEO_RULES[model]).toBeDefined();
       expect(creatorDurations(model).every((value) => Number.isFinite(value) && value > 0)).toBe(true);
     }
+  });
+  it('quotes the exact hosted or inline media forwarded by video options', () => {
+    const settings = { ...CREATOR_DEFAULTS.video, model: 'seedance-2.0',
+      endFrame: { uri: 'https://media/end.jpg', label: 'End', kind: 'image' as const },
+      referenceAssets: [{ uri: 'https://media/clip.mp4', label: 'Clip', kind: 'video' as const }] };
+    expect(creatorVideoQuoteHints(settings, 'https://media/start.jpg')).toMatchObject({ hasEndFrame: true, hasVideoReferences: true, hasInlineMedia: false });
+    expect(creatorVideoQuoteHints(settings, 'data:image/png;base64,abc').hasInlineMedia).toBe(true);
+    expect(creatorVideoQuoteHints({ ...settings, referenceAssets: [{ ...settings.referenceAssets[0], uri: 'file:///clip.mp4' }] }).hasInlineMedia).toBe(true);
+    expect(creatorVideoQuoteHints(null, 'http://media/start.jpg').hasInlineMedia).toBe(false);
   });
   it('normalizes stale Seedance1080p drafts to a priced resolution', () => {
     for (const model of ['seedance-2.0', 'seedance-2.0-fast']) {

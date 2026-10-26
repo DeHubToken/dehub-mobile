@@ -106,6 +106,7 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
   const { t: _copy } = _useCopy();
   const [priceDhb, setPriceDhb] = useState(0);
   const [priceUsd, setPriceUsd] = useState(0);
+  const [settledKey, setSettledKey] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -125,7 +126,7 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
     : '';
 
   useEffect(() => {
-    if (!enabled || !request?.modelId) return;
+    if (!enabled || !request?.modelId) { setSettledKey(''); return; }
     let cancelled = false;
     setIsLoading(true);
     setError(null);
@@ -134,9 +135,13 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
         if (cancelled) return;
         setPriceDhb(res.priceDhb ?? 0);
         setPriceUsd(res.priceUsd ?? 0);
+        setSettledKey(key);
       })
       .catch((err) => {
         if (cancelled) return;
+        setPriceDhb(0);
+        setPriceUsd(0);
+        setSettledKey(key);
         setError(err instanceof Error ? err.message : _copy("copy.c5f61bfe1310", { defaultValue: "Could not price this run" }));
       })
       .finally(() => {
@@ -150,7 +155,9 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, enabled, _copy]);
 
-  return { priceDhb, priceUsd, isLoading, error };
+  const current = enabled && !!key && settledKey === key;
+  return { priceDhb: current ? priceDhb : 0, priceUsd: current ? priceUsd : 0,
+    isLoading: enabled && !!key && (!current || isLoading), error: current ? error : null };
 }
 
 export interface JobPaymentState {

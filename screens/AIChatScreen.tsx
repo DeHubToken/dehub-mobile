@@ -123,7 +123,7 @@ import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase
 import { findMotionClip, motionAspect, motionModel, type MotionClip } from '../libs/motionLibrary';
 import * as CreatorFileSystem from 'expo-file-system/legacy';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
-import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, creatorVideoQuoteHints, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import { runCreatorBatch } from '../libs/creatorBatch';
 import { creatorAssetId } from '../libs/creatorAssetId';
 import * as CreatorCrypto from 'expo-crypto';
@@ -2109,8 +2109,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         }}
         quoteKind="video"
         quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS,
-          resolution: pendingStudio?.resolution ?? '720p', hasEndFrame: !!pendingStudio?.endFrame,
-          hasInlineMedia: !!pendingSourceImage && !pendingSourceImage.startsWith('https://') }}
+          ...creatorVideoQuoteHints(pendingStudio, pendingSourceImage) }}
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoConfirm}
         footnote={_copy("copy.0f1f6dc49d7b", { defaultValue: "Renders take 1-3 minutes and keep going if you leave this screen." })}
