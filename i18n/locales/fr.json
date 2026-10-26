@@ -14338,6 +14338,15 @@
     "1a00975a0ac1": "@channel"
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "Nouvel abonné",
+      "subscribe": "Nouveau membre",
+      "subscribedTo": "Abonné · {{plan}}",
+      "gifted_one": "A offert un abonnement",
+      "gifted_other": "A offert {{count}} abonnements",
+      "share": "A partagé le live",
+      "join": "Vient d'arriver"
+    },
     "wheelLanded": "{{name}} spun : {{result}}",
     "someone": "Quelqu'un",
     "newFollower": "Nouveau follower : {{name}}",
@@ -14371,6 +14380,31 @@
     "tipJar": "Pot cadeau"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Destinations multistream",
+      "intro": "Lancez votre live une seule fois sur DeHub et nous le diffusons gratuitement sur chaque plateforme activée ici. Cela démarre quelques secondes après le début du live.",
+      "add": "Ajouter une destination",
+      "empty": "Aucune destination. Ajoutez Twitch, YouTube, Kick ou tout serveur RTMP.",
+      "platform": "Plateforme",
+      "label": "Nom (facultatif)",
+      "server": "URL du serveur",
+      "key": "Clé de stream",
+      "findKey": "Trouver votre serveur et votre clé {{name}}",
+      "customHint": "Collez le serveur RTMP et la clé fournis par votre plateforme.",
+      "keyNote": "Votre clé est chiffrée sur nos serveurs et ne sera plus jamais affichée.",
+      "save": "Ajouter",
+      "cancel": "Annuler",
+      "added": "{{name}} ajouté",
+      "saveFailed": "Impossible d'enregistrer la destination",
+      "toggle": "Diffuser vers cette destination",
+      "states": {
+        "off": "Désactivé",
+        "idle": "Prêt",
+        "connecting": "Connexion",
+        "live": "En direct",
+        "error": "Erreur"
+      }
+    },
     "controls": {
       "title": "Contrôles rapides",
       "intro": "Pour le milieu du flux. Chaque commutateur tient pour tous ceux qui regardent, dans l'application et dans OBS, jusqu'à ce que vous le retourniez.",

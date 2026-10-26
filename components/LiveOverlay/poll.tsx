@@ -9,6 +9,8 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Pressable, Text, View, type ViewStyle } from "react-native";
 import { useTranslation } from "react-i18next";
+import { LinearGradient } from "expo-linear-gradient";
+import { Glass, withAlpha } from "./premium";
 import { useWebSocket } from "../../context/WebSocketContext";
 import { getStreamPoll, voteInPoll } from "../../services/live.service";
 import { isPollOpen, parsePoll, pollLeaders, pollShares, type LivePoll } from "../../libs/live-overlay/polls";
@@ -124,11 +126,6 @@ function clock(seconds: number): string {
 }
 
 const HEX = /^#[0-9a-f]{6}$/i;
-const GLASS: ViewStyle = {
-  backgroundColor: "rgba(10,10,12,0.72)",
-  borderWidth: 1,
-  borderColor: "rgba(255,255,255,0.16)",
-};
 
 export function PollWidget({ settings, box }: { settings: Record<string, unknown>; box: { width: number; height: number } }) {
   const { t } = useTranslation();
@@ -154,12 +151,7 @@ export function PollWidget({ settings, box }: { settings: Record<string, unknown
           : t("liveOverlay.poll.votes", { count: poll.total });
 
   return (
-    <View
-      style={[
-        GLASS,
-        { flex: 1, paddingVertical: row * 0.3, paddingHorizontal: row * 0.4, borderRadius: row * 0.4, gap: row * 0.14 },
-      ]}
-    >
+    <Glass radius={row * 0.42} shadow={false} style={{ flex: 1, paddingVertical: row * 0.3, paddingHorizontal: row * 0.4, gap: row * 0.14 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: row * 0.3 }}>
         <Text numberOfLines={1} style={{ color: "#fff", fontWeight: "700", fontSize: row * 0.46, flexShrink: 1 }}>
           {poll.question}
@@ -173,8 +165,11 @@ export function PollWidget({ settings, box }: { settings: Record<string, unknown
           const mine = myVote === i;
           const content = (
             <>
-              <View
-                style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${shares[i]}%` as `${number}%`, backgroundColor: color, opacity: 0.28 }}
+              <LinearGradient
+                colors={[withAlpha(color, 0.18), withAlpha(color, 0.42)]}
+                start={{ x: 0, y: 0.5 }}
+                end={{ x: 1, y: 0.5 }}
+                style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${shares[i]}%` as `${number}%` }}
               />
               <View
                 style={{
@@ -194,7 +189,7 @@ export function PollWidget({ settings, box }: { settings: Record<string, unknown
               >
                 {option.text}
               </Text>
-              <Text style={{ color: "#fff", fontWeight: "600", fontSize: row * 0.4 }}>{shares[i]}%</Text>
+              <Text style={{ color: "#fff", fontWeight: "800", fontSize: row * 0.4, fontVariant: ["tabular-nums"] }}>{shares[i]}%</Text>
             </>
           );
           const base: ViewStyle = {
@@ -203,11 +198,12 @@ export function PollWidget({ settings, box }: { settings: Record<string, unknown
             alignItems: "center",
             gap: row * 0.25,
             paddingHorizontal: row * 0.3,
-            borderRadius: row * 0.25,
+            borderRadius: row * 0.28,
             overflow: "hidden",
-            backgroundColor: "rgba(255,255,255,0.1)",
+            backgroundColor: "rgba(255,255,255,0.06)",
+            boxShadow: "inset 0px 1px 0px rgba(255,255,255,0.06)",
             borderWidth: 1,
-            borderColor: mine ? color : "transparent",
+            borderColor: mine ? color : "rgba(255,255,255,0.06)",
           };
           return interactive ? (
             <Pressable
@@ -228,9 +224,9 @@ export function PollWidget({ settings, box }: { settings: Record<string, unknown
           );
         })}
       </View>
-      <Text numberOfLines={1} style={{ color: "rgba(255,255,255,0.75)", fontSize: row * 0.32 }}>
+      <Text numberOfLines={1} style={{ color: "rgba(255,255,255,0.62)", fontSize: row * 0.32 }}>
         {foot}
       </Text>
-    </View>
+    </Glass>
   );
 }
