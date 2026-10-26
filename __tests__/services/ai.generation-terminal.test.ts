@@ -24,3 +24,8 @@ it('retains successful immediate image output when a terminal result is replayed
   await expect(generateImage({clientJobId:'00000000-0000-4000-8000-000000000001',prompt:'A cup',model:'gemini-3.1-flash-image'})).resolves.toEqual(recorded);
   expect(fetcher).toHaveBeenCalledTimes(1);
 });
+it('preserves authoritative no-charge cancellation separately from restoration', async () => {
+  const canceled={status:'failed' as const,predictionId:'ticket',paymentNotTaken:true,paymentRestored:false};
+  jest.spyOn(global,'fetch').mockResolvedValue({ok:true,status:200,json:async()=>canceled} as Response);
+  await expect(pollVideoGeneration('ticket')).resolves.toEqual(canceled);
+});
