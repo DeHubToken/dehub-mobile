@@ -9822,6 +9822,17 @@
     }
   },
   "creator": {
+    "campaignPlanTitle": "Campagnevarianten en afleveringen",
+    "campaignPlanIntro": "Bewaar maximaal 12 varianten of afleveringen. Elk opent de studio voor een eigen controle en prijsopgave. Gedeelde notities sturen de continuïteit; productuiterlijk, personages en stemmen kunnen per generatie verschillen.",
+    "campaignTitle": "Naam van campagne of serie",
+    "campaignContinuity": "Gedeelde notities over personages, stem en stijl",
+    "campaignVariantTitle": "Naam van variant of aflevering",
+    "campaignHook": "Openingshaak",
+    "campaignLanguage": "Taal van de uitvoer",
+    "campaignScript": "Goedgekeurd script of scènevolgorde",
+    "campaignAdd": "Variant of aflevering toevoegen",
+    "campaignClear": "Plan wissen",
+    "campaignFormat": "Uitvoerformaat",
     "marketing": {
     "import":  {
                    "url":  "URL van productpagina",
