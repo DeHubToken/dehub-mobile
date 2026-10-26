@@ -116,6 +116,11 @@ export function useJobQuote(request: AiQuoteRequest | null, enabled = true) {
         request.durationSeconds ?? '',
         request.quality ?? '',
         request.quantity ?? 1,
+        request.resolution ?? '',
+        request.hasEndFrame ?? false,
+        request.hasAudioReferences ?? false,
+        request.hasVideoReferences ?? false,
+        request.hasInlineMedia ?? false,
       ].join('|')
     : '';
 

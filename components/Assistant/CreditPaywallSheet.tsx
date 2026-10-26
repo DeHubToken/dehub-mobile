@@ -76,7 +76,7 @@ export interface CreditPaywallSheetProps {
   onSelectModel: (id: string) => void;
   /** What to price. `modelId` is filled in from `selectedModelId`. */
   quoteKind: AiJobKind;
-  quoteExtras?: { durationSeconds?: number; quality?: 'none' | 'standard' | 'HD'; quantity?: number };
+  quoteExtras?: { durationSeconds?: number; quality?: 'none' | 'standard' | 'HD'; quantity?: number; resolution?: string; hasEndFrame?: boolean; hasInlineMedia?: boolean };
   /** Extra line under the cost breakdown, e.g. a batch note. */
   footnote?: string;
   confirmLabel?: string;
@@ -137,6 +137,9 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
           kind: quoteKind,
           modelId: model.id,
           durationSeconds: quoteExtras?.durationSeconds,
+          resolution: quoteExtras?.resolution,
+          hasEndFrame: quoteExtras?.hasEndFrame,
+          hasInlineMedia: quoteExtras?.hasInlineMedia,
           quality: quoteExtras?.quality,
           quantity,
         }
