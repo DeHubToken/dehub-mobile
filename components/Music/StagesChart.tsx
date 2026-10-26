@@ -23,10 +23,31 @@ import { ScheduledStageCard, formatStageDate } from "../Stages/StageCards";
 import { ScreenNames } from "../../navigation/ScreenNames";
 import { supabase } from "../../services/supabase";
 import ChartShelf from "./ChartShelf";
+import { useChartSearch } from "../../hooks/useChartSearch";
 import { StageCard, styles } from "./StagesCarousel";
 
 type StagesChartSort = "live" | "upcoming" | "listened" | "recent";
 type RankedStage = AudioSpace & { total_listens?: number | null };
+
+const STAGE_FIELDS = "id,host_wallet_address,host_username,host_avatar,title,description,status,channel_name,listener_count,speaker_count,started_at,ended_at,created_at,recording_url,scheduled_at,cover_image_url,short_id,total_listens";
+
+/** Recorded stages whose title, description or host matches, most listened first. */
+async function searchStageRecordings(query: string): Promise<RankedStage[]> {
+  // PostgREST reads , ( ) as filter syntax and % * as wildcards.
+  const term = query.replace(/[,()%*\\]/g, " ").trim();
+  if (!term) return [];
+  const { data, error } = await supabase
+    .from("audio_spaces")
+    .select(STAGE_FIELDS)
+    .eq("status", "ended")
+    .not("recording_url", "is", null)
+    .neq("recording_url", "")
+    .or(`title.ilike.%${term}%,description.ilike.%${term}%,host_username.ilike.%${term}%`)
+    .order("total_listens", { ascending: false, nullsFirst: false })
+    .limit(20);
+  if (error) throw error;
+  return (data as unknown as RankedStage[]) || [];
+}
 
 /** Ended stages with the most listens. StageProvider only keeps the newest. */
 function useMostListenedStages(enabled: boolean) {
@@ -37,7 +58,7 @@ function useMostListenedStages(enabled: boolean) {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("audio_spaces")
-        .select("id,host_wallet_address,host_username,host_avatar,title,description,status,channel_name,listener_count,speaker_count,started_at,ended_at,created_at,recording_url,scheduled_at,cover_image_url,short_id,total_listens")
+        .select(STAGE_FIELDS)
         .eq("status", "ended")
         .order("total_listens", { ascending: false, nullsFirst: false })
         .limit(20);
@@ -119,13 +140,29 @@ const StagesChart: React.FC = () => {
     return pastSpaces;
   }, [sort, liveSpaces, scheduledSpaces, pastSpaces, mostListened.data]);
 
+  // Search covers every stage: live and upcoming rooms are all loaded already,
+  // recordings are searched on the server.
+  const [search, setSearch] = useState("");
+  const found = useChartSearch("stages", search, searchStageRecordings);
+  const term = search.trim().toLocaleLowerCase();
+  const otherMatches: RankedStage[] = term.length >= 2
+    ? [...liveSpaces, ...scheduledSpaces, ...found.items].filter(space => `${space.title} ${space.description ?? ""} ${space.host_username ?? ""}`.toLocaleLowerCase().includes(term))
+    : [];
+
   const subtitle = (space: RankedStage) => {
     const host = space.host_username ? `@${space.host_username}` : String(space.host_wallet_address || "").slice(0, 6);
-    if (sort === "live") return [host, t("music.listeningCount", { count: Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0)) })].join(" · ");
-    if (sort === "upcoming") return [host, formatStageDate(space.scheduled_at)].filter(Boolean).join(" · ");
-    if (sort === "listened" && space.total_listens) return [host, t("audioPost.listens", { count: space.total_listens })].join(" · ");
+    if (space.status === "live") return [host, t("music.listeningCount", { count: Math.max(1, (space.speaker_count || 1) + (space.listener_count || 0)) })].join(" · ");
+    if (space.status === "scheduled") return [host, formatStageDate(space.scheduled_at)].filter(Boolean).join(" · ");
+    if ((sort === "listened" || !spaces.includes(space)) && space.total_listens) return [host, t("audioPost.listens", { count: space.total_listens })].join(" · ");
     return [host, formatStageDate(space.ended_at)].filter(Boolean).join(" · ");
   };
+
+  const stageRow = (space: RankedStage) => ({
+    id: space.id,
+    title: space.title,
+    subtitle: subtitle(space),
+    thumb: space.cover_image_url || space.host_avatar || undefined,
+  });
 
   return (
     <ChartShelf
@@ -140,20 +177,19 @@ const StagesChart: React.FC = () => {
       ]}
       sort={sort}
       onSort={setPicked}
-      rows={spaces.map(space => ({
-        id: space.id,
-        title: space.title,
-        subtitle: subtitle(space),
-        thumb: space.cover_image_url || space.host_avatar || undefined,
-      }))}
+      rows={spaces.map(stageRow)}
+      search={search}
+      onSearchChange={setSearch}
+      moreRows={otherMatches.map(stageRow)}
+      searchingMore={found.isSearching}
       loading={sort === "listened" && mostListened.isLoading}
       emptyText={t("music.noStages", { defaultValue: "No stages here yet" })}
       thumbs="square"
       renderSelected={id => {
-        const space = spaces.find(item => item.id === id);
+        const space = spaces.find(item => item.id === id) || otherMatches.find(item => item.id === id);
         if (!space) return null;
-        if (sort === "live") return <StageCard space={space} wide onPress={() => { void openStage(space.id); }} />;
-        if (sort === "upcoming") return <ScheduledStageCard space={space} isMine={false} onStart={() => {}} onCancel={() => {}} />;
+        if (space.status === "live") return <StageCard space={space} wide onPress={() => { void openStage(space.id); }} />;
+        if (space.status === "scheduled") return <ScheduledStageCard space={space} isMine={false} onStart={() => {}} onCancel={() => {}} />;
         return <RecordedPanel space={space} />;
       }}
     />
