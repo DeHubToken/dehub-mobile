@@ -55,7 +55,7 @@ it('cannot reuse a previous media quote while a changed request is pending or fa
   quote.mockResolvedValueOnce({ priceDhb: 990, priceUsd: 0.99 });
   let reject!: (error: Error) => void;
   quote.mockImplementationOnce(() => new Promise((_resolve, fail) => { reject = fail; }));
-  const { result, rerender } = renderHook(({ hasEndFrame }) => useJobQuote({ kind: 'video', modelId: 'seedance-2.0', hasEndFrame }), { initialProps: { hasEndFrame: false } });
+  const { result, rerender } = renderHook(({ hasEndFrame }: { hasEndFrame: boolean }) => useJobQuote({ kind: 'video', modelId: 'seedance-2.0', hasEndFrame }), { initialProps: { hasEndFrame: false } });
   await act(async () => {});
   expect(result.current.priceDhb).toBe(990);
   rerender({ hasEndFrame: true });
