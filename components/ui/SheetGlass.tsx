@@ -59,7 +59,8 @@ function GlassLayers({ blur = true, backdropBlurred = false }: LayerProps) {
 /**
  * System Light's drawer frost, as web's pale glass: the same blur sources as
  * the dark glass under a pale wash. Written in light colours and kept out of
- * the colour pass, which would turn a dark wash grey.
+ * the colour pass, which would turn a dark wash grey. The wash is heavy (90%)
+ * so post text under the sheet never ghosts through behind its labels.
  */
 function LightGlassLayers({ blur = true, backdropBlurred = false }: LayerProps) {
   const source = useDrawerBlurSource();
@@ -79,7 +80,7 @@ function LightGlassLayers({ blur = true, backdropBlurred = false }: LayerProps) 
           style={StyleSheet.absoluteFill}
         />
       ) : null}
-      <View style={[StyleSheet.absoluteFill, { backgroundColor: blurred ? "rgba(244,244,247,0.72)" : "rgba(244,244,247,0.97)" }]} />
+      <View style={[StyleSheet.absoluteFill, { backgroundColor: blurred ? "rgba(244,244,247,0.9)" : "rgba(244,244,247,0.97)" }]} />
     </KeepDarkScope>
   );
 }

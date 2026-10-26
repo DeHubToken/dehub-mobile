@@ -149,7 +149,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
-  const { skin, theme } = useAppTheme();
+  const { skin, theme, isLight } = useAppTheme();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
   const flat = !skin;
@@ -354,11 +354,16 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
               hitSlop={{ top: 6, bottom: 6 }}
             >
               <View
+                // System Light: a white tint on a white card read 2:1. Solid ink
+                // key, kept out of the light pass so it stays ink.
+                className={!done && isLight ? "dark-surface" : undefined}
                 style={[
                   styles.follow,
                   done
                     ? { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "transparent" }
-                    : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
+                    : isLight
+                      ? { backgroundColor: "#0B0B0D", borderColor: "#0B0B0D" }
+                      : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
                   theme === "minimal" || square ? { borderRadius: 0 } : undefined,
                   mono ? { paddingHorizontal: 12 } : undefined,
                 ]}
