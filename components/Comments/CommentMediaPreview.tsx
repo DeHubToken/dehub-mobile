@@ -43,10 +43,10 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={t("comments.removeVoiceNote")}
-          hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-          className="mr-2"
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          className="mr-2 w-[34px] h-[34px] rounded-[9px] border border-white/10 bg-white/10 items-center justify-center"
         >
-          <Icon name="Trash2" size={20} color="#F4F4F5" />
+          <Icon name="Trash2" size={16} color="#F4F4F5" />
         </TouchableOpacity>
 
         <View className="flex-1">
@@ -64,7 +64,7 @@ const CommentMediaPreviewComponent: React.FC<CommentMediaPreviewProps> = ({
           accessibilityRole="button"
           accessibilityLabel={t("tip.send")}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          className="ml-2 w-9 h-9 rounded-xl bg-white items-center justify-center"
+          className="ml-2 w-[34px] h-[34px] rounded-[9px] bg-white items-center justify-center"
         >
           <Icon name="Send" size={16} color="#000" />
         </TouchableOpacity>
