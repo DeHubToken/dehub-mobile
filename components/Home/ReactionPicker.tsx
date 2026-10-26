@@ -287,7 +287,7 @@ const ReactionSheet: React.FC<ReactionPickerProps & { onClosed: () => void }> = 
                     reaction={reaction.key}
                     animate={selected}
                     size={34}
-                    textStyle={{ fontSize: 28, lineHeight: 34 }}
+                    textStyle={{ fontSize: 28, height: 34, textAlignVertical: "center", includeFontPadding: false }}
                   />
                   <Text
                     numberOfLines={1}

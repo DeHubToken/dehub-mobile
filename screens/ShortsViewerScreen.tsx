@@ -3254,11 +3254,16 @@ const styles = StyleSheet.create({
     minHeight: 44,
     minWidth: 44,
   },
+  // Wider than the 20pt slot and centred without lineHeight, so Android
+  // draws the whole emoji instead of cutting its edge and bottom.
   actionGlyph: {
     fontSize: 17,
-    lineHeight: 22,
-    width: 20,
+    height: 22,
+    width: 26,
+    marginHorizontal: -3,
     textAlign: "center",
+    textAlignVertical: "center",
+    includeFontPadding: false,
   },
   // Web's `text-xs font-medium text-white/70 drop-shadow-lg`.
   actionCount: {
