@@ -94,15 +94,14 @@ const QuickSettingsSheet: React.FC<QuickSettingsSheetProps> = ({
 
   return (
     <GlassModal surface="theme" visible={visible} onClose={onClose} presentation="bottom" scrollable maxHeight="85%">
-      <View style={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 12 }}>
-        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 12 }}>
-          <Text style={{ flex: 1, fontSize: 17, fontWeight: "600", color: FG }}>
-            {t("notifications.settings")}
-          </Text>
-          <TouchableOpacity onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel={t("common.close", "Close")}>
-            <Icon name="X" size={20} color={FG} />
-          </TouchableOpacity>
-        </View>
+      {/* A handle, no close button: drag down or tap outside to close. */}
+      <View style={{ alignItems: "center", paddingTop: 10 }}>
+        <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: "rgba(255,255,255,0.4)" }} />
+      </View>
+      <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: 12 }}>
+        <Text style={{ fontSize: 17, fontWeight: "600", color: FG, marginBottom: 12 }}>
+          {t("notifications.settings")}
+        </Text>
 
         <View style={{ flexDirection: "row", gap: 8, marginBottom: 14 }}>
           <TouchableOpacity
