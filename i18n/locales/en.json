@@ -9937,6 +9937,123 @@
     }
   },
   "creator": {
+    "batchPaymentHelp": "Each submitted image is charged separately. If a batch stops, unused DHB from its payment is reused automatically for a later generation that it covers.",
+    "batchCount": "Images",
+    "endFrame": "End frame",
+    "endFrameHelp": "Add a start image with the attachment button.",
+    "seed": "Seed (optional, 0–2147483647)",
+    "negativePrompt": "Negative prompt (optional)",
+    "invalidSeed": "Seed must be a whole number from 0 to 2147483647.",
+    "endFrameNeedsStart": "Attach a start image before selecting an end frame.",
+    "batchStopped": "Batch stopped after {{submitted}} of {{quantity}} submissions. {{remaining}} were not submitted. Completed images are saved.",
+    "cinema": {
+        "title":  "Cinema direction",
+        "hint":  "Guide the visual style of your next image or video. Results vary by model.",
+        "none":  "No direction",
+        "reset":  "Clear direction",
+        "close":  "Close",
+        "camera":  {
+                       "label":  "Camera look",
+                       "0":  "Digital cinema",
+                       "1":  "35mm film",
+                       "2":  "16mm film",
+                       "3":  "Large format",
+                       "4":  "Vintage camcorder"
+                   },
+        "lens":  {
+                     "label":  "Lens look",
+                     "0":  "Spherical",
+                     "1":  "Anamorphic",
+                     "2":  "Vintage soft glass",
+                     "3":  "Macro",
+                     "4":  "Tilt-shift"
+                 },
+        "focalLength":  {
+                            "label":  "Focal length",
+                            "0":  "18mm wide",
+                            "1":  "24mm wide",
+                            "2":  "35mm natural",
+                            "3":  "50mm standard",
+                            "4":  "85mm portrait",
+                            "5":  "135mm telephoto"
+                        },
+        "aperture":  {
+                         "label":  "Depth of field",
+                         "0":  "f/1.4 very shallow",
+                         "1":  "f/2.8 shallow",
+                         "2":  "f/5.6 moderate",
+                         "3":  "f/11 deep focus"
+                     },
+        "movement":  {
+                         "label":  "Camera movement",
+                         "0":  "Locked-off tripod",
+                         "1":  "Slow dolly in",
+                         "2":  "Slow dolly out",
+                         "3":  "Lateral tracking",
+                         "4":  "Orbit subject",
+                         "5":  "Handheld",
+                         "6":  "Crane rise",
+                         "7":  "Slow pan"
+                     },
+        "lighting":  {
+                         "label":  "Lighting",
+                         "0":  "Soft daylight",
+                         "1":  "Golden hour",
+                         "2":  "Low-key chiaroscuro",
+                         "3":  "High-key studio",
+                         "4":  "Neon practicals",
+                         "5":  "Silhouette backlight",
+                         "6":  "Overcast diffuse"
+                     },
+        "tempo":  {
+                      "label":  "Shot tempo",
+                      "0":  "Single continuous shot",
+                      "1":  "Calm, unhurried action",
+                      "2":  "Dynamic, energetic action",
+                      "3":  "Chaotic, frenetic action"
+                  },
+        "era":  {
+                    "label":  "Era",
+                    "0":  "1920s",
+                    "1":  "1950s",
+                    "2":  "1960s",
+                    "3":  "1970s",
+                    "4":  "1980s",
+                    "5":  "1990s",
+                    "6":  "Present day",
+                    "7":  "Near future"
+                },
+        "genre":  {
+                      "label":  "Genre",
+                      "0":  "Documentary",
+                      "1":  "Drama",
+                      "2":  "Film noir",
+                      "3":  "Science fiction",
+                      "4":  "Fantasy",
+                      "5":  "Romantic comedy",
+                      "6":  "Thriller",
+                      "7":  "Western"
+                  },
+        "performance":  {
+                            "label":  "Performance",
+                            "0":  "Joyful",
+                            "1":  "Melancholic",
+                            "2":  "Anxious",
+                            "3":  "Confident",
+                            "4":  "Awe-struck",
+                            "5":  "Restrained",
+                            "6":  "Playful"
+                        },
+        "palette":  {
+                        "label":  "Color palette",
+                        "0":  "Warm amber",
+                        "1":  "Cool blue",
+                        "2":  "Muted earth tones",
+                        "3":  "Pastel",
+                        "4":  "High contrast monochrome",
+                        "5":  "Saturated primary colors"
+                    }
+    },
     "sending": "Sending",
     "toolRemake": "Remake",
     "toolMaboroshi": "Maboroshi",

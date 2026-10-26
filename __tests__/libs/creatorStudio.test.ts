@@ -4,6 +4,30 @@ import { CREATOR_DEFAULTS, creatorDurations, creatorInputIssue, creatorVideoOpti
 import { getTemplate } from '../../libs/creatorTemplates';
 
 describe('native Creator jobs', () => {
+  it('submits zero seeds and end frames, and clears incompatible options on model switches', () => {
+    const endFrame = { uri: 'https://example.com/end.jpg', label: 'Finish', kind: 'image' as const };
+    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.video, model: 'seedance-2.0', seed: '0', negativePrompt: 'blur', endFrame });
+    expect(creatorVideoOptions(settings)).toMatchObject({ seed: 0, negativePrompt: 'blur', endFrameUrl: endFrame.uri });
+    expect(creatorInputIssue(settings, false)).toBe('creator.endFrameNeedsStart');
+    expect(creatorInputIssue(settings, true)).toBeNull();
+    const switched = normalizeCreatorSettings({ ...settings, model: 'minimax-video' });
+    expect(switched.seed).toBeUndefined();
+    expect(switched.negativePrompt).toBeUndefined();
+    expect(switched.endFrame).toBeUndefined();
+    for (const seed of ['-1', '1.2', '12abc', '2147483648']) {
+      expect(creatorInputIssue({ ...settings, seed }, true)).toBe('creator.invalidSeed');
+    }
+  });
+  it('normalizes batches and applies direction once without modifying the stored brief', () => {
+    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.image, imageBatch: 99, cinemaDirection: { era: '1980s' } });
+    expect(settings.imageBatch).toBe(4);
+    const brief = 'A person carrying a red umbrella';
+    const resolved = prepareCreatorPrompt(brief, undefined, settings);
+    expect(resolved).toContain('Era: 1980s.');
+    expect(prepareCreatorPrompt(resolved, undefined, settings)).toBe(resolved);
+    expect(brief).toBe('A person carrying a red umbrella');
+    expect(normalizeCreatorSettings({ ...settings, mode: 'audio', model: CREATOR_DEFAULTS.audio.model }).imageBatch).toBe(1);
+  });
   it('opens editor voice drafts with speech rather than the default music model', () => {
     const prepared = creatorSettingsForEditorDraft({ kind: 'voice', prompt: 'Hello. Keep this last sentence.' });
     expect(prepared).toMatchObject({ settings: { mode: 'audio', model: 'dia-tts' }, draft: { prompt: 'Hello. Keep this last sentence.' } });

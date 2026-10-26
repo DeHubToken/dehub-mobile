@@ -125,6 +125,9 @@ import { findMotionClip, motionAspect, motionModel, type MotionClip } from '../l
 import * as CreatorFileSystem from 'expo-file-system/legacy';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
+import { runCreatorBatch } from '../libs/creatorBatch';
+import { creatorAssetId } from '../libs/creatorAssetId';
+import * as CreatorCrypto from 'expo-crypto';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
 import { uploadLocalFileToBucket, fileExtension } from '../libs/storage-upload';
@@ -605,6 +608,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
 
   /* ── Image ───────────────────────────────────────────────────────────── */
 
+  const generationContext = useRef({ walletAddress, conversationId });
+  generationContext.current = { walletAddress, conversationId };
   const doGenerateImage = useCallback(
     async (
       prompt: string,
@@ -614,6 +619,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         sourceImage?: string;
         referenceImageUrls?: string[];
         aspectRatio?: string;
+        quantity?: number;
         logoImage?: string;
         headline?: string;
         bannerRenderer?: 'template' | 'scene';
@@ -629,9 +635,15 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       setIsGeneratingImage(true);
       scrollToEnd();
 
+      const results: AIChatMessage[] = [];
+      const context = generationContext.current;
+      const isCurrent = () => generationContext.current.walletAddress === context.walletAddress && generationContext.current.conversationId === context.conversationId;
       try {
-        const res = await generateImage(
+        const quantity = extras?.useFree ? 1 : Math.min(4, Math.max(1, extras?.quantity ?? 1));
+        const batchResult = await runCreatorBatch(quantity, { isCurrent,
+        submit: () => generateImage(
           {
+            clientJobId: CreatorCrypto.randomUUID(),
             prompt,
             model,
             conversationHistory: history,
@@ -646,53 +658,54 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             ...(extras?.useFree && !extras?.txHash ? { useFree: true } : {}),
           },
           walletAddress,
-        );
-
+        ),
+        accept: async res => {
         if (res.error) {
           const message = res.safetyBlocked
             ? _copy("copy.2d4a48f1702e", { defaultValue: "That prompt was blocked by the model's safety filter. Try describing it differently." })
             : res.error;
           // `clearHistory` means the conversation itself is what tripped the
           // filter, so carrying it forward would fail every following turn.
-          if (res.clearHistory) {
+          if (res.clearHistory && quantity === 1) {
             startNewConversation();
             await saveMessage([{ role: 'assistant', content: message, isError: true }]);
           } else {
-            await saveMessage([...history, { role: 'assistant', content: message, isError: true }]);
+            results.push({ role: 'assistant', content: message, isError: true });
+            await saveMessage([...history, ...results]);
           }
-          return;
+          return false;
         }
 
         if (res.imageUrl) {
-          await saveMessage([
-            ...history,
-            { role: 'assistant', content: res.text || '', imageUrl: res.imageUrl },
-          ]);
+          results.push({ id: newTurnId(), role: 'assistant', content: res.text || '', imageUrl: res.imageUrl });
+          await saveMessage([...history, ...results]);
           finishDraft();
           toastSuccess(t('assistant.imageGenerated'));
         } else {
-          await saveMessage([
-            ...history,
-            {
+          results.push({
               role: 'assistant',
               content: res.text || _copy("copy.b6063af3e303", { defaultValue: "The image couldn't be generated. Try a different prompt." }),
               isError: true,
-            },
-          ]);
+          });
+          await saveMessage([...history, ...results]);
+          return false;
         }
         scrollToEnd();
-      } catch (err) {
-        log.error('image generation failed:', err, { kind: 'image', model, errorCode: errorCodeOf(err) });
-        await saveMessage([
-          ...history,
-          { role: 'assistant', content: describeError(err), isError: true },
-        ]);
+        return true;
+        },
+        onError: async err => {
+          log.error('image generation failed:', err, { kind: 'image', model, errorCode: errorCodeOf(err) });
+          results.push({ role: 'assistant', content: describeError(err), isError: true });
+          await saveMessage([...history, ...results]);
+        } });
+        if (batchResult.remaining && isCurrent()) toastError(t('creator.batchStopped', { submitted: batchResult.submitted, quantity, remaining: batchResult.remaining,
+          defaultValue: 'Batch stopped after {{submitted}} of {{quantity}} submissions. {{remaining}} were not submitted. Completed images are saved.' }));
       } finally {
         setIsLoading(false);
         setIsGeneratingImage(false);
       }
     },
-    [walletAddress, saveMessage, scrollToEnd, startNewConversation, describeError, _copy],
+    [walletAddress, saveMessage, scrollToEnd, startNewConversation, describeError, _copy, t],
   );
 
   /* ── Video ───────────────────────────────────────────────────────────── */
@@ -820,7 +833,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
             model,
             sourceImage,
             ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
-            negativePrompt: preset?.negative,
+            negativePrompt: creator ? (VIDEO_MODELS[creator.model]?.supportsNegativePrompt ? creator.negativePrompt?.trim() || preset?.negative : undefined) : preset?.negative,
             txHash,
           },
           walletAddress,
@@ -1192,8 +1205,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       setPendingStudio(creator ?? null);
       if (creator) {
         const issue = creatorInputIssue(creator, !!sourceImage, tpl);
-        if (issue) { toastError(t(issue)); return; }
-        const resolved = prepareCreatorPrompt(text, tpl);
+        if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
+        const resolved = prepareCreatorPrompt(text, tpl, creator);
         const limit = creatorPromptLimit(creator);
         if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
         setPendingPrompt(resolved);
@@ -1318,8 +1331,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     let creator = studio ? normalizeCreatorSettings(studioSettings) : undefined;
     if (creator) {
       const issue = creatorInputIssue(creator, !!attachedImage, activeTemplate);
-      if (issue) { toastError(t(issue)); return; }
-      const resolved = prepareCreatorPrompt(text, activeTemplate);
+      if (issue) { toastError(t(issue, { defaultValue: issue === 'creator.invalidSeed' ? 'Seed must be a whole number from 0 to 2147483647.' : issue === 'creator.endFrameNeedsStart' ? 'Attach a start image before selecting an end frame.' : issue })); return; }
+      const resolved = prepareCreatorPrompt(text, activeTemplate, creator);
       const limit = creatorPromptLimit(creator);
       if (limit && resolved.length > limit) { toastError(`${t('nav.prompt')}: ${resolved.length} / ${limit}`); return; }
     }
@@ -1332,6 +1345,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     setIsLoading(true);
     try {
     mentions.reset();
+    if (creator?.endFrame) creator = { ...creator, endFrame: { ...creator.endFrame, uri: await hostCreatorImage(creator.endFrame.uri) } };
     if (creator?.referenceAssets?.length) {
       const referenceAssets = await Promise.all(creator.referenceAssets.map(async asset => ({ ...asset, uri: await hostCreatorImage(asset.uri, asset), sourceClipId: undefined })));
       creator = { ...creator, referenceAssets };
@@ -1343,7 +1357,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       content: text,
       ...(attachedImage ? { attachedImage } : {}),
       ...(activeTemplate ? { templateId: activeTemplate.id } : {}),
-      ...(creator ? { creatorSettings: creator } : {}),
+      ...(creator ? { creatorSettings: creator, creatorOwner: walletAddress?.toLowerCase(), creatorAssetScheme: 'results-v1' as const } : {}),
     };
     const history = [...messages, userMessage];
     if (embedded && creator && userMessage.id) editorRequests.current.add(userMessage.id);
@@ -1370,7 +1384,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       submitLock.current = false;
       setIsLoading(false);
     }
-  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings]);
+  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings, walletAddress]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1412,7 +1426,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     (
       cfg: PosterConfig | null,
       model: string,
-      opts: { referenceImageUrls?: string[]; logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean; aspectRatio?: string },
+      opts: { referenceImageUrls?: string[]; logoImage?: string; sourceImage?: string; txHash?: string; useFree?: boolean; aspectRatio?: string; quantity?: number },
     ) => {
       doGenerateImage(
         cfg ? buildDeHubBrandPrompt(cfg.finalPrompt) : pendingPrompt,
@@ -1422,6 +1436,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           sourceImage: opts.sourceImage,
           referenceImageUrls: opts.referenceImageUrls,
           aspectRatio: cfg ? undefined : opts.aspectRatio,
+          quantity: cfg ? 1 : opts.quantity,
           logoImage: opts.logoImage,
           txHash: opts.txHash,
           useFree: opts.useFree,
@@ -1455,6 +1470,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       referenceImageUrls: (pendingStudio?.referenceAssets?.filter(a => a.kind === 'image').length ?? 0) > 1 ? pendingStudio?.referenceAssets?.filter(a => a.kind === 'image').map(a => a.uri) : undefined,
       aspectRatio: pendingStudio?.aspect ?? getTemplate(pendingTemplateId)?.aspect,
       txHash,
+      quantity: pendingStudio?.imageBatch ?? 1,
     });
   }, [
     imageModelOverride,
@@ -1793,10 +1809,11 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     for (const message of messages) {
       if (message.role === 'user') { request = message; continue; }
       if (!request?.id || !request.creatorSettings || message.isError || message.isVideoGenerating || message.isToolProcessing) continue;
+      if (request.creatorOwner && request.creatorOwner !== walletAddress.toLowerCase()) continue;
       const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
       if (!url) continue;
       const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
-      const id = `native-${request.id}-${kind}`;
+      const id = creatorAssetId(request.id, message.id, kind, request.creatorAssetScheme);
       const saveKey = `${walletAddress}:${id}`;
       if (kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
         deliveredEditorResults.current.add(id);
@@ -2035,6 +2052,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           if (!pendingPosterConfig) updateSettings({ imageModel: id });
         }}
         quoteKind="image"
+        quoteExtras={{ quantity: pendingStudio?.imageBatch ?? 1 }}
         isBusy={isGeneratingImage}
         onClose={() => setImagePaywallVisible(false)}
         onConfirm={handleImageConfirm}
@@ -2053,7 +2071,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
         icon="Video"
         models={videoPaywallModels}
         selectedModelId={pendingStudio?.model ?? settings.videoModel}
-        onSelectModel={(id) => updateSettings({ videoModel: id })}
+        onSelectModel={(id) => {
+          updateSettings({ videoModel: id });
+          setPendingStudio(previous => previous ? normalizeCreatorSettings({ ...previous, model: id }) : null);
+        }}
         quoteKind="video"
         quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS }}
         onClose={() => setVideoPaywallVisible(false)}
