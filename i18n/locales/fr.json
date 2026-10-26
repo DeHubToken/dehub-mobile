@@ -9606,7 +9606,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "URL de la page produit",
+                   "action":  "Lire la page produit",
+                   "loading":  "Lecture de la page…",
+                   "hint":  "Importez le texte d’une page produit publique. Vérifiez les données avant de les utiliser et joignez les images séparément dans le studio.",
+                   "source":  "Source importée",
+                   "review":  "Choisissez un produit à copier dans votre brief modifiable. Le titre, le ton et les couleurs de marque sont conservés.",
+                   "use":  "Utiliser ces données",
+                   "errors":  {
+                                  "signIn":  "Connectez-vous pour importer une page produit.",
+                                  "url":  "Utilisez une URL HTTPS de page produit publique.",
+                                  "empty":  "Aucune donnée produit exploitable n’a été trouvée. Ajoutez-les manuellement.",
+                                  "busy":  "Trop d’importations sont en cours. Réessayez dans un instant.",
+                                  "unavailable":  "Cette page n’a pas pu être importée. Ajoutez les données produit manuellement.",
+                                  "failed":  "L’importation a échoué. Votre brief est enregistré ; réessayez ou saisissez les données manuellement."
+                              }
+               },
                       "title":  "Brief de campagne",
                       "intro":  "Décrivez votre produit et votre marque, puis préparez des formats publicitaires cohérents.",
                       "saved":  "Votre brief est enregistré sur cet appareil pour ce compte.",
