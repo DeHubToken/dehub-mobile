@@ -7,6 +7,7 @@ import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
 import { postMediaIsTransferring } from '../libs/post-media-session';
 import { finishInAppMiniRestore, getInAppVideoMini, openInAppVideoMini, subscribeInAppVideoMini } from '../libs/in-app-video-mini';
 import { containedPicture } from '../libs/live-overlay/layout';
+import { videoQuarterTurn } from '../libs/video-display-aspect';
 import { startsOnVideoPicture, commitsVideoMinimize } from '../libs/video-minimize-gesture';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
 import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
@@ -420,19 +421,31 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const navigation = useNavigation<any>();
   const pictureRef = useRef<View>(null);
-  const [intrinsicSize, setIntrinsicSize] = useState(() => {
-    try { return player.videoTrack?.size ?? { width: 0, height: 0 }; }
-    catch { return { width: 0, height: 0 }; }
-  });
+  // Only the drag-to-minimize gesture reads this; the picture itself always
+  // fills the frame and contentFit="contain" letterboxes it.
+  const [intrinsicSize, setIntrinsicSize] = useState({ width: 0, height: 0 });
+  const rotationProbeUrl = videoUrl && /\.m3u8(\?|$)/i.test(videoUrl) ? getVideoUrl(tokenId) : videoUrl;
   useEffect(() => {
+    let cancelled = false;
+    setIntrinsicSize({ width: 0, height: 0 });
     const take = (size?: { width: number; height: number }) => {
-      if (size && size.width > 0 && size.height > 0) setIntrinsicSize(size);
+      if (!size || !(size.width > 0) || !(size.height > 0)) return;
+      const { width, height } = size;
+      // Native track sizes (and the HLS ladder) omit the MP4 display matrix,
+      // so a phone-shot portrait clip reports a landscape size.
+      if (width > height && rotationProbeUrl) {
+        void videoQuarterTurn(rotationProbeUrl).then(rotated => {
+          if (!cancelled) setIntrinsicSize(rotated ? { width: height, height: width } : { width, height });
+        });
+        return;
+      }
+      setIntrinsicSize({ width, height });
     };
     try { take(player.videoTrack?.size); } catch {}
     const trackSub = player.addListener('videoTrackChange', event => take(event.videoTrack?.size));
     const sourceSub = player.addListener('sourceLoad', event => take(event.availableVideoTracks?.[0]?.size));
-    return () => { trackSub.remove(); sourceSub.remove(); };
-  }, [player]);
+    return () => { cancelled = true; trackSub.remove(); sourceSub.remove(); };
+  }, [player, rotationProbeUrl]);
   const miniDragY = useSharedValue(0);
   const miniStart = useSharedValue({ x: 0, y: 0 });
   const miniHandingOff = useSharedValue(false);
@@ -566,13 +579,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const pictureStyle = useAnimatedStyle(() => {
     const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
     const frameHeight = Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown);
-    const picture = containedPicture(SCREEN_WIDTH, frameHeight, intrinsicSize.width, intrinsicSize.height);
     const amount = Math.min(1, miniDragY.value / Math.max(1, itemHeight * 0.65));
+    // Boxing the picture to the reported track shape shrank sideways-encoded
+    // portrait clips to a 16:9 strip; the full frame is always right.
     return {
-      position: 'absolute', left: picture.left, top: picture.top, width: picture.width, height: picture.height,
+      position: 'absolute', left: 0, top: 0, width: SCREEN_WIDTH, height: frameHeight,
       transform: [{ translateX: amount * SCREEN_WIDTH * 0.24 }, { translateY: miniDragY.value }, { scale: 1 - amount * 0.6 }],
     };
-  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset, intrinsicSize]);
+  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset]);
   const miniChromeStyle = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
   // A parked offset is only "gone" relative to the size it was parked at; if
   // the item grows while comments are shut, push it clear so it can't read as
@@ -1426,12 +1440,15 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         player, session: videoSession, url: videoUrl, item,
         restoreParams: captureViewerState(),
         thumbnail: typeof thumbnail === 'string' ? thumbnail : undefined,
-        initialRect: { x, y, width, height }, onCancel: cancel,
+        initialRect: (() => {
+          const picture = containedPicture(width, height, intrinsicSize.width, intrinsicSize.height);
+          return { x: x + picture.left, y: y + picture.top, width: picture.width, height: picture.height };
+        })(), onCancel: cancel,
         onReady: () => { if (navigation.isFocused()) navigation.goBack(); },
       });
       if (!opened) cancel();
     });
-  }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible]);
+  }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize]);
 
   const minimizePan = useMemo(() => Gesture.Pan()
     .enabled(isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
