@@ -357,6 +357,7 @@ export interface AIImageResponse {
   fallbackUsed?: boolean;
   /** Authoritative terminal recovery flags from the shared generation journal. */
   paymentRestored?: boolean;
+  paymentNotTaken?: boolean;
   savePending?: boolean;
 }
 
@@ -389,6 +390,7 @@ export interface AIVideoResponse {
   /** Set once the server has archived the finished render to the creator library. */
   libraryId?: string;
   paymentRestored?: boolean;
+  paymentNotTaken?: boolean;
   savePending?: boolean;
   error?: string;
 }
