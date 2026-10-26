@@ -7964,7 +7964,19 @@
       "translateCount": "{{count}} altyazıyı çevir",
       "translationDone": "{{count}} altyazı çevrildi",
       "translationFailed": "Altyazı çevirisi başarısız oldu. Altyazılarınız değiştirilmedi.",
-      "lockedTranslation": "Kilitli altyazıları dahil etmek için kilitlerini açın."
+      "lockedTranslation": "Kilitli altyazıları dahil etmek için kilitlerini açın.",
+      "style": "Altyazı stili",
+      "styles": {
+        "classic": "Klasik",
+        "boxed": "Kutulu",
+        "bold": "Kalın",
+        "wordpop": "Kelime kelime",
+        "rapid": "Hızlı gösterim",
+        "beast": "Canavar modu",
+        "stacked": "Yığılmış",
+        "serif": "Serif",
+        "bubble": "Baloncuk"
+      }
     },
     "app": {
       "newDesign": "Yeni tasarım",
@@ -8034,7 +8046,11 @@
       "vibrant": "Canlı",
       "cyber": "Siber",
       "invert": "Negatif",
-      "strength": "Filtre dayanımı: %{{value}}"
+      "strength": "Filtre dayanımı: %{{value}}",
+      "fadedFilm": "Solmuş film",
+      "technicolor": "Technicolor",
+      "newsreel": "Eski haber filmi",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Kırp",
@@ -8122,7 +8138,9 @@
       "autoFailed": "Bu fotoğraf analiz edilemedi.",
       "tint": "Renk tonu {{value}}",
       "vignette": "Vinyet {{value}}%",
-      "warmth": "Sıcaklık {{value}}"
+      "warmth": "Sıcaklık {{value}}",
+      "halation": "Halasyon %{{value}}",
+      "scanlines": "Tarama çizgileri %{{value}}"
     },
     "draw": {
       "colour": "Kalem rengi",
@@ -8214,7 +8232,20 @@
       "suggestTitle": "Üste büyük kalın bir başlık, altına da daha küçük bir alt başlık ekle",
       "undo": "Geri al",
       "openGenerator": "İncele ve oluştur",
-      "working": "Üzerinde çalışıyorum…"
+      "working": "Üzerinde çalışıyorum…",
+      "stopped": "Durduruldu. Başka hiçbir şey değişmedi.",
+      "stop": "Durdur",
+      "queue": "Sıraya ekle",
+      "queued": "{{count}} sırada",
+      "restore": "Buraya geri yükle",
+      "restoreHint": "Projeyi bu mesajdan önceki haline döndürür. Geri al ile geri gelir.",
+      "restored": "Proje o mesajdan önceki haline döndürüldü. Yeni sürümü geri getirmek için geri al'a bas.",
+      "rewrite": "İsteğimi netleştir",
+      "rewriteFailed": "Yeniden yazılamadı. Metnin değişmedi.",
+      "feedback": "Bu yardımcı oldu mu?",
+      "good": "İyi yanıt",
+      "bad": "Kötü yanıt",
+      "retryPrefix": "Bu doğru değildi. Bunun yerine, "
     },
     "brand": {
       "addColor": "Marka rengi ekle",
@@ -8351,7 +8382,11 @@
       "rendering": "Video oluşturuluyor… %{{percent}}",
       "mp4": "MP4 video",
       "exportHint": "Videonuz oluşturulurken düzenleyiciyi açık tutun.",
-      "tooLarge": "Bu dosya düzenleyici için çok büyük. Sınır 400 MB."
+      "tooLarge": "Bu dosya düzenleyici için çok büyük. Sınır 400 MB.",
+      "tZoomIn": "Yakınlaştır",
+      "tZoomOut": "Uzaklaştır",
+      "tFlyUp": "Yukarı uç",
+      "tFlyDown": "Aşağı uç"
     },
     "motion": {
       "title": "Hareket",

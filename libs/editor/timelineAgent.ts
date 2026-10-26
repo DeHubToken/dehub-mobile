@@ -12,7 +12,7 @@ const EPS = 1e-6;
 const number = (v: unknown): number | undefined => typeof v === "number" && Number.isFinite(v) ? v : undefined;
 const rate = (c: Clip) => c.kind === "video" || c.kind === "audio" ? (c.speed ?? 1) : 1;
 const audible = (c: Clip): c is MediaClip => c.kind === "video" || c.kind === "audio";
-const transitions: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
+const transitions: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right", "zoom-in", "zoom-out", "fly-up", "fly-down"];
 
 export function expandBatch(op: Op): Op[] | null {
   const allowed = ["effects", "place", "audio", "animate", "transition", "update"];

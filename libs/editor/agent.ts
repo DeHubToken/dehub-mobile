@@ -52,7 +52,7 @@ import {
 } from "./types";
 import type { BrandKit } from "./brand";
 import { newId } from "./project";
-import { captionLayers, type CaptionWord, type CaptionStyle } from "./captionLayout";
+import { captionLayers, isCaptionStyle, type CaptionWord, type CaptionStyle } from "./captionLayout";
 import { preciseCommand } from "./preciseCommands";
 import { videoTemplateAspect, videoTemplateCommand, type VideoTemplateAspect } from "./videoTemplates";
 import { applyTimelineOp, expandBatch, TIMELINE_OPS } from "./timelineAgent";
@@ -253,7 +253,7 @@ function effectsPatch(op: AgentOp, current: ClipEffects | undefined): ClipEffect
   const fields: [Exclude<keyof ClipEffects, "duotone">, number, number][] = [
     ["brightness", 0, 2], ["contrast", 0, 2], ["saturation", 0, 2], ["blur", 0, 20],
     ["grayscale", 0, 1], ["sepia", 0, 1], ["invert", 0, 1], ["hueRotate", 0, 360],
-    ["sharpen", 0, 1], ["grain", 0, 1], ["warmth", -1, 1], ["tint", -1, 1], ["vignette", 0, 1], ["vibrance", -1, 1], ["highlights", -1, 1], ["shadows", -1, 1], ["fade", 0, 1],
+    ["sharpen", 0, 1], ["grain", 0, 1], ["warmth", -1, 1], ["tint", -1, 1], ["vignette", 0, 1], ["scanlines", 0, 1], ["halation", 0, 1], ["vibrance", -1, 1], ["highlights", -1, 1], ["shadows", -1, 1], ["fade", 0, 1],
   ];
   for (const [key, lo, hi] of fields) {
     const v = num(op[key]);
@@ -577,7 +577,7 @@ export async function applyOps(start: ProjectSnapshot, ops: AgentOp[], ctx: Appl
         const clip = op.id ? find(op.id) : p.clips.find((c) => c.kind === "video" || c.kind === "audio");
         if (!clip || clip.locked || (clip.kind !== "video" && clip.kind !== "audio") || !ctx.transcribe) return false;
         const words = await ctx.transcribe(clip);
-        const style: CaptionStyle = op.style === "boxed" || op.style === "bold" ? op.style : "classic";
+        const style: CaptionStyle = isCaptionStyle(op.style) ? op.style : "classic";
         const captions = captionLayers(clip, words, () => newId(10), style);
         if (!captions.clips.length) return false;
         p = { ...p, tracks: [...p.tracks, captions.track], clips: [...p.clips, ...captions.clips] };
