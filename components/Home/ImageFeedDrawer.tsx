@@ -55,7 +55,7 @@ const VisibleImageCard = memo(function VisibleImageCard({
   fullscreen: boolean;
 }) {
   const { isVisible } = useRowVisibility(store, rowKey);
-  return <FeedCard item={item} isVisible={isVisible} enablePreview immersive={fullscreen} />;
+  return <FeedCard item={item} isVisible={isVisible} enablePreview immersive={fullscreen} inImageFeed />;
 });
 import { useAppTheme } from "../../context/ThemeContext";
 import { getUnifiedFeed } from "../../services/feed.unified.service";
@@ -122,6 +122,11 @@ export interface ImageFeedDrawerProps {
   showCloseButton?: boolean;
   /** Called once the sheet has finished animating off-screen. */
   onClose: () => void;
+  /**
+   * The items are one opened post, not pages the caller already loaded, so the
+   * images feed is fetched from its first page under it.
+   */
+  fromFirstPage?: boolean;
 }
 
 export interface ImageFeedDrawerHandle {
@@ -160,6 +165,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   onScrollEnd,
   showCloseButton = true,
   onClose,
+  fromFirstPage = false,
 }, ref) => {
   const { t } = useTranslation();
   const { colors, skin, isMinimal } = useAppTheme();
@@ -181,7 +187,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
 
   // Whatever the grid had already paged in is page 1..n; carry on from there
   // rather than re-requesting pages the caller handed us.
-  const pageRef = useRef(Math.max(1, Math.ceil(initialItems.length / pageSize)));
+  const pageRef = useRef(fromFirstPage ? 0 : Math.max(1, Math.ceil(initialItems.length / pageSize)));
   const exhaustedRef = useRef(false);
   const inFlightRef = useRef(false);
 
