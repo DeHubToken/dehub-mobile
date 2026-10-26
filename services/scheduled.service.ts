@@ -24,3 +24,17 @@ export async function moveScheduledPost(tokenId: number, at: Date | "now"): Prom
 export async function moveScheduledLive(streamId: string, at: Date): Promise<void> {
   await apiClient.patch(`/scheduled_posts/live/${encodeURIComponent(streamId)}`, { scheduledAt: at.toISOString() }, { isAuthRequired: true });
 }
+
+export interface FansOnline {
+  /** 7 x 24, UTC, Sunday first: distinct people watching in each hour. */
+  grid: number[][];
+  /** "everyone" when the account had too few active followers to go on. */
+  basis: "followers" | "everyone";
+  followers: number;
+  days: number;
+}
+
+export async function getFansOnline(): Promise<FansOnline | null> {
+  const res = await apiClient.get<{ result: FansOnline }>("/scheduled_posts/fans_online", { isAuthRequired: true });
+  return res?.result ?? null;
+}
