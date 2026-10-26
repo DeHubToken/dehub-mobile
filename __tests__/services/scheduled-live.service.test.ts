@@ -7,9 +7,9 @@ describe('scheduled livestream discovery', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it.each([false, true])('accepts raw and enveloped responses (envelope=%s)', async envelope => {
-    const rows = [{ _id: 'room-1', title: 'Next show', status: 'SCHEDULED', scheduledFor: '2026-10-14T16:00:00.000Z' }];
+    const rows = [{ _id: 'room-1', title: 'Next show', status: 'SCHEDULED', scheduledFor: '2026-10-14T16:00:00.000Z', tokenId: '42' }];
     (apiClient.get as jest.Mock).mockResolvedValue(envelope ? { result: rows } : rows);
-    expect(await getUserScheduledLives('0xabc')).toEqual([{ streamId: 'room-1', name: 'Next show', scheduleAt: Date.parse(rows[0].scheduledFor), thumbnailUrl: null }]);
+    expect(await getUserScheduledLives('0xabc')).toEqual([{ streamId: 'room-1', name: 'Next show', scheduleAt: Date.parse(rows[0].scheduledFor), thumbnailUrl: null, tokenId: 42 }]);
   });
 
   it('retains overdue broadcasts and excludes streams that have already aired', async () => {
