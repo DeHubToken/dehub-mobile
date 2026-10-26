@@ -56,7 +56,7 @@ export function frameSpeechPcm(buffer: ArrayBuffer, sampleRate: 24000 | 44100): 
 }
 
 export function speechProviderFormat(format: unknown): string {
-  return format === 'wav_24000' ? 'pcm_24000' : format === 'pcm_44100' ? 'pcm_44100'
+  return format === 'wav_24000' ? 'wav_24000' : format === 'pcm_44100' ? 'pcm_44100'
     : format === 'mp3_44100_192' ? format : 'mp3_44100_128';
 }
 
@@ -64,9 +64,25 @@ export function prepareSpeechAudio(buffer: ArrayBuffer, format: unknown, content
   const container = audioContainer(buffer);
   const wantsWave = format === 'wav_24000' || format === 'pcm_44100';
   if (wantsWave) {
-    if (container === 'wav') return { buffer, contentType: 'audio/wav', extension: 'wav' } as const;
+    if (container === 'wav') {
+      const bytes = new Uint8Array(buffer);
+      const view = new DataView(buffer);
+      const rate = format === 'wav_24000' ? 24000 : 44100;
+      for (let offset = 12; offset + 24 <= bytes.length;) {
+        if (ascii(bytes, offset, 'fmt ')) {
+          if (view.getUint16(offset + 8, true) !== 1 || view.getUint16(offset + 10, true) !== 1 ||
+            view.getUint32(offset + 12, true) !== rate || view.getUint32(offset + 16, true) !== rate * 2 ||
+            view.getUint16(offset + 20, true) !== 2 || view.getUint16(offset + 22, true) !== 16) throw new Error('The speech provider returned an unexpected WAV format');
+          return { buffer, contentType: 'audio/wav', extension: 'wav' } as const;
+        }
+        const size = view.getUint32(offset + 4, true);
+        offset += 8 + size + (size % 2);
+      }
+      throw new Error('The speech provider returned an invalid WAV format');
+    }
+    if (format === 'wav_24000') throw new Error('The speech provider did not return the requested WAV audio');
     if (container || !/^(audio\/(pcm|l16|raw|x-raw)|application\/octet-stream)(;|$)/i.test(contentType ?? '')) throw new Error('The speech provider did not return the requested PCM audio');
-    return { buffer: frameSpeechPcm(buffer, format === 'wav_24000' ? 24000 : 44100), contentType: 'audio/wav', extension: 'wav' } as const;
+    return { buffer: frameSpeechPcm(buffer, 44100), contentType: 'audio/wav', extension: 'wav' } as const;
   }
   if (container !== 'mp3') throw new Error('The speech provider did not return valid MP3 audio');
   return { buffer, contentType: 'audio/mpeg', extension: 'mp3' } as const;
