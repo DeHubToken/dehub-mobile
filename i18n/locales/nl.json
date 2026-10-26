@@ -1,4 +1,18 @@
 {
+  "remix": {
+    "title": "Remix",
+    "greenScreen": "Groen scherm",
+    "collab": "Samenwerking",
+    "sound": "Geluid gebruiken",
+    "cut": "Knippen",
+    "unavailable": "Deze video is niet beschikbaar om te remixen.",
+    "openFailed": "De remix kon niet worden geopend. Controleer je verbinding en cameramachtigingen en probeer het opnieuw.",
+    "tooLarge": "Deze opname is te groot. Maak een kortere opname.",
+    "invalidRecording": "De opname kon niet worden gelezen. Maak een nieuwe opname.",
+    "saveFailed": "De remix kon niet worden opgeslagen. Probeer het opnieuw.",
+    "startHint": "Bekijk je camerabeeld over deze video en neem daarna je remix op. Als je dit scherm verlaat, stopt de camera.",
+    "openCamera": "Camera openen"
+  },
   "dehubLinks": {
     "kind": {
       "app": "app",
@@ -7978,6 +7992,33 @@
     }
   },
   "editor": {
+    "film": {
+        "repairRefs": "Ontbrekende mediakoppelingen verwijderen",
+                 "title":  "Filmproject",
+                 "intro":  "Plan shots met herbruikbare referentiebeelden. Je brief, shotvolgorde en gekozen resultaten worden met dit project opgeslagen.",
+                 "create":  "Filmplan maken",
+                 "name":  "Filmnaam",
+                 "brief":  "Filmbrief",
+                 "sharedReferences":  "Gedeelde referentiebeelden (maximaal 4)",
+                 "shot":  "Shot",
+                 "addShot":  "Shot toevoegen",
+                 "shotName":  "Shotnaam",
+                 "action":  "Actie en compositie van het shot",
+                 "seconds":  "Gewenste videoduur in seconden",
+                 "shotReferences":  "Extra referentiebeelden (samen maximaal 4)",
+                 "frame":  "Beeld voorbereiden",
+                 "video":  "Video voorbereiden",
+                 "review":  "Controleer het model, de referenties, de videoduur en de prijs in de studio voordat je genereert.",
+                 "result":  "Goedgekeurd shotresultaat",
+                 "noResult":  "Geen resultaat geselecteerd",
+                 "resultHint":  "Kies een goedgekeurde afbeelding of video uit Uploads. De koppeling wordt met het shot opgeslagen; monteer de film op de tijdlijn.",
+                 "earlier":  "Eerder plaatsen",
+                 "later":  "Later plaatsen",
+                 "remove":  "Shot verwijderen",
+                 "issue":  "Controleer de shotbeschrijving en referentiemedia en probeer het opnieuw. Houd het project open als opslaan is mislukt.",
+                 "searchMedia":  "Media zoeken op naam",
+                 "refreshMedia":  "Media vernieuwen"
+             },
     "highlights": {
       "visual": "Visuele hoogtepunten",
       "visualPrivacy": "Geselecteerde frames voor visuele analyse versturen.",
@@ -9781,7 +9822,24 @@
     }
   },
   "creator": {
-    "marketing":  {
+    "marketing": {
+    "import":  {
+                   "url":  "URL van productpagina",
+                   "action":  "Productpagina lezen",
+                   "loading":  "Pagina wordt gelezen…",
+                   "hint":  "Importeer tekst van een openbare productpagina. Controleer de gegevens voordat je ze gebruikt en voeg productafbeeldingen apart toe in de studio.",
+                   "source":  "Geïmporteerde bron",
+                   "review":  "Kies een product om naar je bewerkbare brief te kopiëren. Je kop, merkstem en merkkleuren blijven behouden.",
+                   "use":  "Deze gegevens gebruiken",
+                   "errors":  {
+                                  "signIn":  "Log in om een productpagina te importeren.",
+                                  "url":  "Gebruik een openbare HTTPS-productpagina.",
+                                  "empty":  "Er zijn geen bruikbare productgegevens gevonden. Voeg ze handmatig toe.",
+                                  "busy":  "Er zijn te veel importtaken actief. Probeer het zo nog eens.",
+                                  "unavailable":  "Deze pagina kon niet worden geïmporteerd. Voeg de productgegevens handmatig toe.",
+                                  "failed":  "Importeren is mislukt. Je brief is opgeslagen; probeer het opnieuw of voer de gegevens handmatig in."
+                              }
+               },
                       "title":  "Campagnebrief",
                       "intro":  "Beschrijf je product en merk en bereid bijpassende advertentieformaten voor.",
                       "saved":  "Je brief wordt op dit apparaat voor dit account opgeslagen.",
@@ -9809,6 +9867,7 @@
                                       "video":  "Verticale video"
                                   }
                   },
+    "audioLibraryPlaybackHint": "Deze chat speelt de privéopname op dit apparaat af. Open op een ander apparaat je Creator-bibliotheek nadat het opslaan in de cloud is voltooid. Als je nu weggaat, open deze chat dan opnieuw om het opslaan af te ronden.",
     "cinema":  {
                    "title":  "Filmregie",
                    "hint":  "Bepaal de visuele stijl van je volgende afbeelding of video. De resultaten verschillen per model.",
@@ -9926,6 +9985,29 @@
     "negativePrompt":  "Negatieve prompt (optioneel)",
     "endFrameNeedsStart":  "Voeg een startafbeelding toe voordat je een eindbeeld kiest.",
     "batchStopped":  "De reeks stopte na {{submitted}} van {{quantity}} aanvragen. {{remaining}} zijn niet ingediend. Voltooide afbeeldingen zijn opgeslagen.",
+    "audioInvalidTask":  "Kies een ondersteunde audiotaak.",
+      "audioNeedsFile":  "Voeg eerst een ondersteund audio- of videobestand toe.",
+      "audioTextLimit":  "Spraak en dialoog ondersteunen 1–5000 tekens; geluidseffecten 1–1000.",
+      "audioDurationLimit":  "De duur moet automatisch (0) of 0,5–30 seconden zijn.",
+      "audioModels":  "Andere audiomodellen",
+      "audioAttach":  "Opname toevoegen",
+      "audioAttachFailed":  "De opname kon niet worden toegevoegd.",
+      "audioSeconds":  "Seconden (0 = automatisch)",
+      "audioInvalidResponse":  "De audiodienst gaf een ongeldig resultaat terug.",
+      "audioResultTooLarge":  "Het audioresultaat is leeg of groter dan 50 MB.",
+      "audioFailed":  "Deze audio kon niet worden verwerkt.",
+      "audioNoSpeech":  "Er is geen spraak gevonden in deze opname.",
+      "audioTaskSpeechLabel":  "Toespraak",
+      "audioTaskDialogueLabel":  "Dialoog",
+      "audioTaskSfxLabel":  "Geluidseffect",
+      "audioTaskVoiceChangerLabel":  "Stemveranderaar",
+      "audioTaskTranscribeLabel":  "Transcriberen",
+      "audioTaskIsolateLabel":  "Opschonen",
+      "priceFreeRateLimited":  "Gratis · er zijn tarieflimieten van toepassing",
+      "loop":  "Loop",
+      "dialogueFormat":  "Schrijf de scène als \"Naam: regel\", één spreker per regel.",
+      "fileTooLarge":  "Dat bestand is groter dan 100 MB. Gebruik een korter of kleiner bestand.",
+      "signInToGenerate":  "Meld je aan om te genereren.",
     "sending": "Verzenden",
     "navStudio": "Studio",
     "editor": "Editor",

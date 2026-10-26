@@ -72,8 +72,6 @@ const PLANS: Plan[] = [
       {
         titleKey: "pricing.groupIncluded",
         items: [
-          { key: "pricing.accessAllModels" },
-          { key: "pricing.parallelGenerations", vars: { videos: 4, images: 4 } },
           { key: "pricing.topUpAnyTime" },
           { key: "pricing.publishStraightToDehub" },
         ],
@@ -102,19 +100,8 @@ const PLANS: Plan[] = [
       {
         titleKey: "pricing.groupIncluded",
         items: [
-          { key: "pricing.parallelGenerations", vars: { videos: 8, images: 8 } },
-          { key: "pricing.accessSupercomputer" },
-          { key: "pricing.accessAllSeedance" },
-          { key: "pricing.accessAllModels" },
-          { key: "pricing.earlyAccess" },
-          { key: "pricing.unlimitedMarketplace" },
-        ],
-      },
-      {
-        titleKey: "pricing.groupSeedance20",
-        items: [
-          { key: "pricing.seedanceFullAccess", vars: { model: "Seedance 2.0" } },
-          { key: "pricing.seedanceFullAccess", vars: { model: "Seedance 2.0 Fast" } },
+          { key: "pricing.topUpAnyTime" },
+          { key: "pricing.publishStraightToDehub" },
         ],
       },
     ],
@@ -129,7 +116,7 @@ const PLANS: Plan[] = [
     breakdown: [
       { key: "pricing.dhbPerSeat" },
       { key: "pricing.equivalence" },
-      { key: "pricing.pooledNeverExpires" },
+      { key: "pricing.realDhbNeverExpires" },
     ],
     monthly: 79,
     annual: 65,
@@ -139,34 +126,10 @@ const PLANS: Plan[] = [
     seats: 2,
     groups: [
       {
-        titleKey: "pricing.groupWorkspace",
+        titleKey: "pricing.groupIncluded",
         items: [
-          { key: "pricing.membersRange", vars: { min: 2, max: 9 } },
-          { key: "pricing.parallelGenerations", vars: { videos: 16, images: 16 } },
-          { key: "pricing.accessAllFeatures" },
-          { key: "pricing.sharedDhbPool" },
-          { key: "pricing.sharedWorkspace" },
-          { key: "pricing.earlyAccess" },
-          { key: "pricing.accessSeedance20" },
-          { key: "pricing.accessSupercomputer" },
-        ],
-      },
-      {
-        titleKey: "pricing.groupAnalytics",
-        items: [{ key: "pricing.basicAnalytics" }, { key: "pricing.prioritySupport" }],
-      },
-      {
-        titleKey: "pricing.groupAdmin",
-        items: [{ key: "pricing.sso" }, { key: "pricing.adminSpendControl" }, { key: "pricing.priorityQueue" }],
-      },
-      {
-        titleKey: "pricing.groupSecurity",
-        items: [
-          { key: "pricing.delegatedTopUp" },
-          { key: "pricing.indemnification" },
-          { key: "pricing.noTraining" },
-          { key: "pricing.soc2" },
-          { key: "pricing.aiEducator" },
+          { key: "pricing.topUpAnyTime" },
+          { key: "pricing.publishStraightToDehub" },
         ],
       },
     ],
@@ -181,7 +144,7 @@ const PLANS: Plan[] = [
     breakdown: [
       { key: "pricing.dhbPerSeat" },
       { key: "pricing.equivalence" },
-      { key: "pricing.pooledNeverExpires" },
+      { key: "pricing.realDhbNeverExpires" },
     ],
     monthly: 215,
     annual: 150,
@@ -191,34 +154,10 @@ const PLANS: Plan[] = [
     seats: 5,
     groups: [
       {
-        titleKey: "pricing.groupWorkspace",
+        titleKey: "pricing.groupIncluded",
         items: [
-          { key: "pricing.membersRange", vars: { min: 5, max: 15 } },
-          { key: "pricing.parallelGenerations", vars: { videos: 20, images: 24 } },
-          { key: "pricing.accessAllFeatures" },
-          { key: "pricing.sharedDhbPool" },
-          { key: "pricing.sharedWorkspace" },
-          { key: "pricing.earlyAccess" },
-          { key: "pricing.accessSeedance20" },
-          { key: "pricing.accessSupercomputer" },
-        ],
-      },
-      {
-        titleKey: "pricing.groupAnalytics",
-        items: [{ key: "pricing.detailedAnalytics" }, { key: "pricing.prioritySupport" }],
-      },
-      {
-        titleKey: "pricing.groupAdmin",
-        items: [{ key: "pricing.sso" }, { key: "pricing.adminSpendControl" }, { key: "pricing.priorityQueueFast" }],
-      },
-      {
-        titleKey: "pricing.groupSecurity",
-        items: [
-          { key: "pricing.delegatedTopUp" },
-          { key: "pricing.indemnification" },
-          { key: "pricing.noTraining" },
-          { key: "pricing.soc2" },
-          { key: "pricing.aiEducator" },
+          { key: "pricing.topUpAnyTime" },
+          { key: "pricing.publishStraightToDehub" },
         ],
       },
     ],

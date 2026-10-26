@@ -22,6 +22,11 @@ on:
         description: EAS update branch(es) to roll back, space separated.
         default: production preview
         required: false
+      platform:
+        description: Platform(s) to roll back.
+        type: choice
+        options: [both, android, ios]
+        default: both
 
 concurrency:
   group: ota-publish
@@ -62,6 +67,7 @@ jobs:
         if: env.EXPO_TOKEN != ''
         env:
           ROLLBACK_BRANCHES: ${{ github.event.inputs.branch }}
+          ROLLBACK_PLATFORM: ${{ github.event.inputs.platform }}
         run: |
           # Non-interactive mode will not infer this, and it has to match the
           # runtimeVersion the bad updates were published at or the directive
@@ -70,8 +76,13 @@ jobs:
           echo "Rolling back runtime $RUNTIME"
           # Unquoted on purpose: this is a space-separated list, not one branch.
           for BRANCH in ${ROLLBACK_BRANCHES:-production preview}; do
-            for PLATFORM in android ios; do
+            case "${ROLLBACK_PLATFORM:-both}" in
+              android) PLATFORMS="android" ;;
+              ios) PLATFORMS="ios" ;;
+              *) PLATFORMS="android ios" ;;
+            esac
+            for PLATFORM in $PLATFORMS; do
               echo "Rolling back $BRANCH ($PLATFORM)"
-              eas update:roll-back-to-embedded --branch "$BRANCH" --platform "$PLATFORM" --runtime-version "$RUNTIME" --message "Roll back: CI-built bundle shipped without the app env vars" --non-interactive
+              eas update:roll-back-to-embedded --branch "$BRANCH" --platform "$PLATFORM" --runtime-version "$RUNTIME" --message "Roll back to the bundle embedded in the installed build" --non-interactive
             done
           done

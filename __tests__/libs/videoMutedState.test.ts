@@ -25,12 +25,12 @@ it.each([true, false])('restores mute=%s before the startup effect runs', (muted
   expect(restart().getCachedMuted()).toBe(muted);
 });
 
-it('stays silent until the legacy mute choice is restored', async () => {
+it('plays with sound until the viewer mutes, and restores a legacy mute', async () => {
   const state = restart();
-  expect(state.getCachedMuted()).toBe(true);
-  mockMigrate.mockImplementationOnce(async () => { mockValues.set('video-muted', 'false'); });
-  await state.loadMutedState();
   expect(state.getCachedMuted()).toBe(false);
+  mockMigrate.mockImplementationOnce(async () => { mockValues.set('video-muted', 'true'); });
+  await state.loadMutedState();
+  expect(state.getCachedMuted()).toBe(true);
 });
 
 it('keeps a new tap made while migration is pending', async () => {
