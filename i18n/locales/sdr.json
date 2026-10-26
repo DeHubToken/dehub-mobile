@@ -6262,6 +6262,8 @@
     "withdrawableOnBnb": "BNB चेन पर {{amount}} टोकन निकालने योग्य"
   },
   "communities": {
+    "shareLink": "लिंक शेअर करा",
+    "sendInMessage": "فریمنڈ بھیج",
     "existingPost": {
       "failed": "کمیونٹی پوسٹ کو اپ ڈیٹ نہیں کر سکا۔ دوبارہ کوشش کریں۔",
       "invalidLink": "ایک ڈی ہیب پوسٹ لنک یا پوسٹ آئی ڈی کاپی اور چھوڑیں۔",

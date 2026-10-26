@@ -3970,6 +3970,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "shareLink": "Link delen",
+    "sendInMessage": "Verzend uitnodiging",
     "followerInvites": {
       "title": "Volgers uitnodigen",
       "detail": "Kies maximaal 50 volgers per keer. Betaalde of gesloten privéberichten worden overgeslagen. Controleer onbevestigde verzendingen in de chat voordat je het opnieuw probeert.",

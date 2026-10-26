@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} ټوکنونه"
   },
   "communities": {
+    "shareLink": "لینک شریک کړئ",
+    "sendInMessage": "دعوت ته ځواب ورکړئ",
     "existingPost": {
       "add": "موجوده پوسټ اضافه کړئ",
       "added": "پوسټ ټولنې ته اضافه شو",

@@ -6266,6 +6266,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Havolani ulashish",
+    "sendInMessage": "Taklifnoma yuborish",
     "existingPost": {
       "add": "Mavjud postni qo'shish",
       "added": "Post hamjamiyatga qo'shildi",

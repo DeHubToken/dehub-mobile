@@ -6259,6 +6259,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Chia sẻ liên kết",
+    "sendInMessage": "Gửi lời mời",
     "existingPost": {
       "add": "Thêm bài đăng hiện có",
       "added": "Bài đăng đã được thêm vào cộng đồng",

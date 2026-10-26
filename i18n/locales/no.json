@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "shareLink": "Del lenke",
+    "sendInMessage": "Send invitasjon",
     "existingPost": {
       "add": "Legg til eksisterende innlegg",
       "added": "Innlegg lagt til i fellesskapet",

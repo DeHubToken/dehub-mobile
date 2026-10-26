@@ -6261,6 +6261,8 @@
     "tokenAmount": "{{amount}} ටෝකන"
   },
   "communities": {
+    "shareLink": "සබැඳිය බෙදා ගන්න",
+    "sendInMessage": "Invite යව",
     "existingPost": {
       "adding": "එක් කරමින්…",
       "add": "පවතින තනතුර එක් කරන්න",

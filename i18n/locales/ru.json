@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} токенов"
   },
   "communities": {
+    "shareLink": "Поделиться ссылкой",
+    "sendInMessage": "Отправить приглашение",
     "existingPost": {
       "add": "Добавить существующий пост",
       "added": "Пост добавлен в сообщество",

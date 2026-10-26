@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} tohu"
   },
   "communities": {
+    "shareLink": "Tūhono tohatoha",
+    "sendInMessage": "Tukuna he pōwhiri",
     "existingPost": {
       "add": "Tāpirihia te pou o mua",
       "added": "Post tāpiri ki te hapori",

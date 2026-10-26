@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} 個代幣"
   },
   "communities": {
+    "shareLink": "分享連結",
+    "sendInMessage": "發送邀請",
     "existingPost": {
       "add": "加入現有帖文",
       "remove": "從社群移除",

@@ -6248,6 +6248,8 @@
     "withdrawableOnBnb": "निकाली जा सकने वाला: {{amount}} टोकन्स पर BNB चेन"
   },
   "communities": {
+    "shareLink": "लिंक साझा कइल जाय",
+    "sendInMessage": "प्रशासक आमंत्रण भेजो",
     "existingPost": {
       "add": "एक्सिस्टिंग पोस्ट जोड़िए",
       "added": "पोस्ट कोम्युनिटी में जोड़ दिया गया",

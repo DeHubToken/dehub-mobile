@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} märki"
   },
   "communities": {
+    "shareLink": "Jaga linki",
+    "sendInMessage": "Saada kutse",
     "existingPost": {
       "add": "Lisa olemasolev post",
       "added": "Post lisatud ühiskonda",
