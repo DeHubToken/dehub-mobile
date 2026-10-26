@@ -8611,7 +8611,34 @@
       "suggestTitle": "Add a big bold title at the top and a smaller subtitle under it",
       "undo": "Undo",
       "openGenerator": "Review and generate",
-      "working": "Working on it…"
+      "working": "Working on it…",
+      "recipesTitle": "Recipes",
+      "recipe": {
+        "podcastClip": {
+          "label": "Podcast clip",
+          "prompt": "Find the strongest 30-second moment, trim to it, add Word Pop captions and make it 9:16."
+        },
+        "talkingHead": {
+          "label": "Clean talking head",
+          "prompt": "Cut long pauses, add Classic captions, and give it a subtle warm look."
+        },
+        "productPromo": {
+          "label": "Product promo",
+          "prompt": "Make a 15-second promo: punchy title at the start, Zoom in transitions between clips, Bold captions and upbeat music."
+        },
+        "hypeReel": {
+          "label": "Hype reel",
+          "prompt": "Cut the clips to the beat of the music, use Fly up transitions and the Technicolor look."
+        },
+        "retroEdit": {
+          "label": "Retro edit",
+          "prompt": "Give every clip the VHS look, add a big serif title, and use Fade transitions."
+        },
+        "tutorial": {
+          "label": "Tutorial",
+          "prompt": "Add a title for each step, Boxed captions, and slow the key moment down to 0.5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Add a brand colour",
@@ -10063,7 +10090,16 @@
       "scanning": "Checking frames…",
       "noBars": "No black bars found",
       "barsRemoved": "Black bars cropped",
-      "barsFailed": "Could not check this video for black bars"
+      "barsFailed": "Could not check this video for black bars",
+      "reframe": "Auto reframe",
+      "reframeHint": "The video already fits this page shape",
+      "reframed": "Reframed to follow the action",
+      "reframeFailed": "Could not reframe this video",
+      "retakes": "Remove retakes",
+      "listening": "Listening…",
+      "noRetakes": "No retakes found",
+      "retakesRemoved": "Removed {{count}} retake(s), kept the last take",
+      "retakesFailed": "Could not remove retakes from this clip"
     }
   },
   "creator": {

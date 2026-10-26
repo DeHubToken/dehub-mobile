@@ -2063,19 +2063,21 @@ canvas{display:block;width:100%;height:100%;}
       if (!n) { post(none); return; }
       var mean = sum / n;
       post({ type: "stats", reqId: m.reqId, mean: mean, std: Math.sqrt(Math.max(0, sumSq / n - mean * mean)), sat: sat / n });
-    } else if (m.type === "letterbox") {
-      // Bars present in every sampled frame (web clipTools.ts letterboxCrop).
+    } else if (m.type === "letterbox" || m.type === "reframe") {
+      // Small frame samples for black-bar crops and auto reframe (web clipTools.ts, reframe.ts).
       (function(message) {
-        var source = videos.get(message.mediaId);
-        var done = function(crop, error) { post({ type: "letterbox", reqId: message.reqId, crop: crop || null, error: error || null }); };
+        var source = videos.get(message.mediaId), reframe = message.type === "reframe";
+        var done = function(result, error) { post({ type: message.type, reqId: message.reqId, crop: reframe ? undefined : (result || null), centres: reframe ? (result || null) : undefined, error: error || null }); };
         if (!source || !Array.isArray(message.times) || !message.times.length) { done(null, "unavailable"); return; }
         var v = document.createElement("video"); v.muted = true; v.playsInline = true; v.setAttribute("playsinline", ""); v.preload = "auto"; v.src = source.src;
         var c = document.createElement("canvas"), g = c.getContext("2d", { willReadFrequently: true });
-        var times = message.times.slice(0, 5), bars = [], finished = false;
-        var timer = setTimeout(function() { finish(null, "timeout"); }, 20000);
-        var finish = function(crop, error) { if (finished) return; finished = true; clearTimeout(timer); v.onseeked = null; v.onerror = null; v.removeAttribute("src"); v.load(); done(crop, error); };
-        var frameBars = function(data, w, h) {
-          var dark = function(x, y) { var i = (y * w + x) * 4; return 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2] < 28; };
+        var times = message.times.slice(0, reframe ? 60 : 5), frames = [], finished = false;
+        var timer = setTimeout(function() { finish(null, "timeout"); }, reframe ? 60000 : 20000);
+        var finish = function(result, error) { if (finished) return; finished = true; clearTimeout(timer); v.onseeked = null; v.onerror = null; v.removeAttribute("src"); v.load(); done(result, error); };
+        var lum = function(d, i) { return 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]; };
+        var frameBars = function(f) {
+          var data = f.data, w = f.width, h = f.height;
+          var dark = function(x, y) { return lum(data, (y * w + x) * 4) < 28; };
           var rowDark = function(y) { var n = 0; for (var x = 0; x < w; x++) if (dark(x, y)) n++; return n >= w * 0.97; };
           var colDark = function(x, y0, y1) { var n = 0; for (var y = y0; y < y1; y++) if (dark(x, y)) n++; return n >= (y1 - y0) * 0.97; };
           var top = 0; while (top < h / 2 && rowDark(top)) top++;
@@ -2086,17 +2088,37 @@ canvas{display:block;width:100%;height:100%;}
           if (top >= h / 2 || left >= w / 2) return { left: 0, top: 0, right: 0, bottom: 0 };
           return { left: left / w, top: top / h, right: right / w, bottom: bottom / h };
         };
+        var centreOf = function(f, prev) {
+          var d = f.data, w = f.width, h = f.height, cols = new Array(w).fill(0), same = prev && prev.width === w && prev.height === h;
+          for (var y = 1; y < h; y++) for (var x = 1; x < w; x++) {
+            var i = (y * w + x) * 4, l = lum(d, i);
+            cols[x] += (same ? Math.abs(l - lum(prev.data, i)) * 3 : 0) + (Math.abs(l - lum(d, i - 4)) + Math.abs(l - lum(d, i - w * 4))) * 0.25;
+          }
+          var win = Math.max(1, Math.round(w / 3)), run = 0, best = 0, at = 0;
+          for (var k = 0; k < win; k++) run += cols[k];
+          best = run;
+          for (var x2 = 1; x2 + win <= w; x2++) { run += cols[x2 + win - 1] - cols[x2 - 1]; if (run > best) { best = run; at = x2; } }
+          var weight = 0, sum = 0;
+          for (var x3 = at; x3 < at + win; x3++) { weight += cols[x3]; sum += cols[x3] * (x3 + 0.5); }
+          return weight > 0 ? sum / weight / w : null;
+        };
         var next = function() {
           if (!times.length) {
+            if (reframe) {
+              var centres = [];
+              frames.forEach(function(f, i) { var value = centreOf(f, frames[i - 1] || frames[i + 1]); centres.push(value === null ? (i ? centres[i - 1] : 0.5) : value); });
+              finish(centres, null); return;
+            }
+            var bars = frames.map(frameBars);
             var edge = function(key) { var value = Math.min.apply(null, bars.map(function(b) { return b[key]; })); return value >= 0.02 ? Math.min(0.45, Math.round(value * 1000) / 1000) : 0; };
             var crop = { left: edge("left"), top: edge("top"), right: edge("right"), bottom: edge("bottom") };
             finish(crop.left || crop.top || crop.right || crop.bottom ? crop : null, null); return;
           }
           var t = Number(times.shift()) || 0;
           v.onseeked = function() { requestAnimationFrame(function() { try {
-            var w = Math.min(240, v.videoWidth || 240), h = Math.max(2, Math.round(w * (v.videoHeight || 1) / (v.videoWidth || 1)));
+            var w = Math.min(reframe ? 96 : 240, v.videoWidth || 240), h = Math.max(2, Math.round(w * (v.videoHeight || 1) / (v.videoWidth || 1)));
             c.width = w; c.height = h; g.drawImage(v, 0, 0, w, h);
-            bars.push(frameBars(g.getImageData(0, 0, w, h).data, w, h)); next();
+            var img = g.getImageData(0, 0, w, h); frames.push({ data: img.data, width: w, height: h }); next();
           } catch (error) { finish(null, "unreadable"); } }); };
           v.currentTime = Math.max(0, Math.min(t, (v.duration || t + 1) - 0.05));
         };
