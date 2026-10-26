@@ -242,7 +242,7 @@ export default function StoresScreen() {
           ) : (
             <FlatList
               data={listings}
-              ListFooterComponent={hasNextPage ? <KitButton label={t("common.loadMore", { defaultValue: "Load more" })} disabled={isFetching} onPress={() => fetchNextPage()} /> : null}
+              ListFooterComponent={hasNextPage ? <KitButton label={t("explorePage.loadMore")} disabled={isFetching} onPress={() => fetchNextPage()} /> : null}
               keyExtractor={(l) => l.id}
               numColumns={2}
               columnWrapperStyle={{ gap: GRID_GAP }}
