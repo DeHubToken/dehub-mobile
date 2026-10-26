@@ -162,8 +162,11 @@ export default memo(function ShopBoard({
       <TouchableOpacity
         onPress={() => setOpen(true)}
         activeOpacity={0.8}
-        className="flex-row items-center px-3 py-2 rounded-xl dark-surface bg-black/60 border border-white/15 self-start"
-        style={overlay ? { position: "absolute", left: 12, bottom: 12, zIndex: 20 } : { marginTop: 8 }}
+        className="flex-row items-center px-3 py-2 rounded-xl dark-surface border self-start"
+        style={[
+          { backgroundColor: "rgba(0,0,0,0.6)", borderColor: "rgba(255,255,255,0.15)" },
+          overlay ? { position: "absolute", left: 12, bottom: 12, zIndex: 20 } : { marginTop: 8 },
+        ]}
       >
         <Icon name="ShoppingBag" size={15} color="#fff" />
         <Text className="text-white text-sm font-medium ml-1.5">{t("upload.shop")}</Text>
