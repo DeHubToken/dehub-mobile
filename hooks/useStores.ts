@@ -354,8 +354,7 @@ export function useBrowseListings(category?: string, sort?: string, search?: str
   const query = useInfiniteQuery({
     queryKey: ["store-listings-browse", category, sort, search],
     initialPageParam: 0,
-    getNextPageParam: (lastPage, pages) => lastPage.length === 50 ? pages.length * 50 : undefined,
-    queryFn: async ({ pageParam, signal }) => {
+    queryFn: async ({ pageParam, signal }): Promise<StoreListing[]> => {
       let q = supabase
         .from("store_listings")
         .select("*, stores(name, avatar_url, wallet_address)")
@@ -372,6 +371,7 @@ export function useBrowseListings(category?: string, sort?: string, search?: str
       if (error) throw error;
       return (data || []) as StoreListing[];
     },
+    getNextPageParam: (lastPage, pages) => lastPage.length === 50 ? pages.length * 50 : undefined,
     // Keep the previous grid visible while new filters load, as on web.
     placeholderData: keepPreviousData,
   });
