@@ -10,6 +10,7 @@ import { View, Text, FlatList, Pressable, TextInput, TouchableOpacity, ActivityI
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import PostFeedNav from "../components/Home/PostFeedNav";
+import { FEED_SIDE } from "../components/Home/feedLayout";
 import { getNFT, type Comment, likeComment, type LikeCommentResult, dislikeComment, type DislikeCommentResult, reactComment, type ReactCommentResult, postComment, editComment, deleteComment, pinComment, postImageComment, postGifComment, postAudioComment, recordCommentViews } from "../services/nft.service";
 import CommentLikersSheet from "../components/Comments/CommentLikersSheet";
 import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
@@ -1419,7 +1420,19 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   const renderHeader = useCallback(() => (
     <View>
-      {item && stage ? (
+      {item && stage && !immersive && resolveContentType(item) !== "audio" ? (
+        // Text and quote posts open as the same bento they are on the
+        // feed, inside the feed's gutter, as on phone web.
+        <View style={{ paddingHorizontal: FEED_SIDE }}>
+          <FeedCard
+            item={item}
+            fullContent
+            disablePress
+            prioritizeMedia
+            onCommentPress={handleStageComment}
+          />
+        </View>
+      ) : item && stage ? (
         <FeedCard
           item={item}
           onBack={handlePostBack}
