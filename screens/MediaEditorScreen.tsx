@@ -75,7 +75,7 @@ import Icon, { type IconName } from "../components/ui/Icon";
 import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
-import { captionLayers } from "../libs/editor/captionLayout";
+import { captionLayers, type CaptionStyle } from "../libs/editor/captionLayout";
 import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
 import {
@@ -130,7 +130,7 @@ import { analyseVisualHighlights } from "../libs/editor/visualHighlightApi";
 import { useHighlightChat } from "../libs/editor/useHighlightChat";
 import { applyTimelineOp } from "../libs/editor/timelineAgent";
 import { alignBeatCuts, clipBeatMap, clipBeatTimes } from "../libs/editor/beats";
-import { AnimatePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
+import { AnimatePanel, CaptionStylePanel, SoundPanel, SpeedPanel, TransitionPanel } from "../components/editor/VideoPanels";
 import { audioToolLayers, type AudioToolMode } from "../libs/editor/audioTools";
 import { MotionPanel } from "../components/editor/MotionPanel";
 import { removeKeysAt, retimeKeys } from "../libs/editor/keyframes";
@@ -371,7 +371,7 @@ type Tool =
   | "font" | "colour" | "style" | "label" | "outline"
   | "shadow" | "opacity" | "position" | "arrange"
   | "shapes" | "draw" | "layers" | "shapeStyle" | "blend" | "brand"
-  | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion";
+  | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion" | "captions";
 
 interface ToolButton {
   id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions";
@@ -972,14 +972,14 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
     } finally { task.release(); }
   };
-  const addCaptions = async () => {
+  const addCaptions = async (style: CaptionStyle = "classic") => {
     if (!selected || (selected.kind !== "video" && selected.kind !== "audio") || selected.locked) return;
     const task = projectTask(project ? h.holdEdits(projectReviewSnapshotKey(project)) : null, () => editorMounted.current && h.latest()?.id === project!.id && h.latest()?.clips.find(c => c.id === selected!.id) === selected);
     if (!task) return;
     try {
       const clip = selected;
       try {
-        const result = captionLayers(clip, await transcribe(clip), () => newId(10));
+        const result = captionLayers(clip, await transcribe(clip), () => newId(10), style);
         const current = h.latest();
         if (!task.isCurrent() || !current || current.clips.find(c => c.id === clip.id) !== clip) return;
         if (!result.clips.length) { toastSuccess(t("editor.captions.noSpeech")); return; }
@@ -1144,7 +1144,6 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     if (id === "video") { void addVideos(); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
-    if (id === "captions") { void addCaptions(); return; }
     if (id === "text") { addTextLayer(); return; }
     if (id === "removeBg") { void removeBackground(); return; }
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
@@ -1435,6 +1434,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
           return canvasRef.current.sampleVisual(clip, windows, signal, progress);
         }}
         create={createHighlights} preview={(start, end) => { highlightPreviewEnd.current = end; setTime(start); setPlaying(true); }} />;
+      if (tool === "captions" && (selected.kind === "video" || selected.kind === "audio")) return <CaptionStylePanel busy={!!captionProgress} onRun={style => void addCaptions(style)} />;
       if (tool === "speed") return <SpeedPanel clip={selected} onPick={(sp) => h.commit(setSpeed(project, selected.id, sp))} />;
       if (tool === "sound") return <SoundPanel clip={selected} {...panelProps} processAudio={runAudioTool} runBeats={runBeatTool} progress={audioProgress} cancelAudio={() => audioController.current?.abort()} />;
       if (tool === "transition") {

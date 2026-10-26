@@ -14,7 +14,7 @@ export const MIN_CLIP = 0.2;
 export const DEFAULT_TRANSITION_DURATION = 0.5;
 export const MAX_TRANSITION_DURATION = 3;
 export const MIN_TRANSITION_DURATION = 0.1;
-export const TRANSITION_KINDS: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right"];
+export const TRANSITION_KINDS: TransitionKind[] = ["fade", "slide-left", "slide-right", "wipe-left", "wipe-right", "zoom-in", "zoom-out", "fly-up", "fly-down"];
 export const SPEEDS = [0.25, 0.5, 1, 1.5, 2, 3];
 
 /** A project is a video once it has a video or a sound in it. */
