@@ -4,25 +4,29 @@ import { translateCopy as _translateCopy } from '../../i18n/copy';
  * ========================================================================
  * Port of web's component of the same name. The art comes from
  * libs/stage-cover (a hash of the stage id), so a stage shows the same poster
- * here as on dehub.io: a ticket with a tear-off date stub, in DeHub's
- * monochrome poster style (grey light streaks, dot grid, // tags).
+ * here as on dehub.io: "Chrome Mic", a DeHub banner with a smoky brand-kit
+ * backdrop, the title in chrome with //STATUS above it, and the 3D chrome mic.
  *
- * The shapes are one react-native-svg drawing in pixels of the measured
- * width (already in the binary, so it ships over the air); the words are
- * plain Text laid over it. The art is a picture and stays dark in every
- * theme: `dark-surface` keeps System Light from re-inking its text.
+ * The pictures are bundled JS assets (assets/stage-cover) and the chrome is
+ * MaskedView + expo-linear-gradient, all already in the binary, so it ships
+ * over the air. Sizes are fractions of the measured width (`u` = 1cqw on
+ * web). The art is a picture and stays dark in every theme: `dark-surface`
+ * keeps System Light from re-inking its text.
  *
- * Under 300pt wide the corner tags, status line and barcode drop out, which
- * would otherwise be too small to read.
+ * Under 300pt wide the corner tag, the host line and the dehub.io box drop
+ * out, which would otherwise be too small to read.
  *
  * @module components/Stages/GeneratedStageCover
  */
 
 import React, { useMemo, useState } from "react";
-import { Platform, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
-import Svg, { Circle, Defs, Ellipse, G, Line, Path, Pattern, RadialGradient, Rect, Stop } from "react-native-svg";
+import { Image as RNImage, Platform, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
+import { Image } from "expo-image";
+import MaskedView from "@react-native-masked-view/masked-view";
+import { LinearGradient } from "expo-linear-gradient";
 import { buildStageCover, stageCoverTitleScale, type StageCoverSource } from "../../libs/stage-cover";
 import { appLocale } from "../../libs/date.util";
+import { GRAIN } from "../../theme/skins";
 import { useTranslation } from "react-i18next";
 
 export interface GeneratedStageCoverProps {
@@ -31,29 +35,44 @@ export interface GeneratedStageCoverProps {
 }
 
 const BASE = "#050506";
-const PAPER = "#f4f4f5";
-const INK = "#09090b";
 const MONO = Platform.select({ ios: "Menlo", default: "monospace" });
 const EXO = "Exo_700Bold";
+const EXO_MEDIUM = "Exo_500Medium";
+const CHROME = ["#ffffff", "#ececef", "#8e8e97"] as const;
 
-let idCounter = 0;
+/** libs/stage-cover's STAGE_COVER_BACKGROUNDS, bundled. */
+const BACKGROUNDS: Record<string, number> = {
+  "bg-04": require("../../assets/stage-cover/bg-04.jpg"),
+  "bg-07": require("../../assets/stage-cover/bg-07.jpg"),
+  "bg-10": require("../../assets/stage-cover/bg-10.jpg"),
+  "bg-11": require("../../assets/stage-cover/bg-11.jpg"),
+  "bg-13": require("../../assets/stage-cover/bg-13.jpg"),
+  "bg-14": require("../../assets/stage-cover/bg-14.jpg"),
+  "bg-16": require("../../assets/stage-cover/bg-16.jpg"),
+  "bg-20": require("../../assets/stage-cover/bg-20.jpg"),
+  "bg-23": require("../../assets/stage-cover/bg-23.jpg"),
+  "bg-26": require("../../assets/stage-cover/bg-26.jpg"),
+  "bg-37": require("../../assets/stage-cover/bg-37.jpg"),
+  "bg-42": require("../../assets/stage-cover/bg-42.jpg"),
+};
+const MIC = require("../../assets/stage-cover/mic-480.webp");
+const MIC_RATIO = 720 / 590;
+const WORDMARK = require("../../assets/stage-cover/wordmark-black-web.webp");
+const WORDMARK_RATIO = 1752 / 417;
 
-/** The DeHub mark (assets/brand/bimi-logo.svg). */
-function DehubMark({ size }: { size: number }) {
+/** A thin four-point twinkle, like the ones on the banners. */
+function Sparkle({ x, y, size }: { x: number; y: number; size: number }) {
+  const line = ["rgba(255,255,255,0)", "rgba(255,255,255,0.9)", "rgba(255,255,255,0)"] as const;
   return (
-    <Svg width={size} height={size} viewBox="0 0 512 512">
-      <G fill="none" stroke={INK} strokeWidth={60} strokeLinecap="round">
-        <Path d="M112 176v116c0 70 39 128 103 150" />
-        <Path d="M400 176v116c0 70-39 128-103 150" />
-        <Path d="M256 86v213" />
-      </G>
-    </Svg>
+    <View pointerEvents="none" style={{ position: "absolute", left: x - size / 2, top: y - size / 2, width: size, height: size }}>
+      <LinearGradient colors={line} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ position: "absolute", left: 0, right: 0, top: size / 2 - 0.5, height: 1 }} />
+      <LinearGradient colors={line} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={{ position: "absolute", top: 0, bottom: 0, left: size / 2 - 0.5, width: 1 }} />
+    </View>
   );
 }
 
 const GeneratedStageCover: React.FC<GeneratedStageCoverProps> = ({ stage, style }) => {
   const { t } = useTranslation();
-  const [uid] = useState(() => `gsc${++idCounter}`);
   const [width, setWidth] = useState(0);
   const m = useMemo(
     () => buildStageCover(stage, t, appLocale()),
@@ -71,30 +90,12 @@ const GeneratedStageCover: React.FC<GeneratedStageCoverProps> = ({ stage, style 
   const H = (W * 9) / 16;
   const u = W / 100; // 1cqw on web
   const compact = W > 0 && W <= 300;
-
-  // Ticket box, matching web's insets.
-  const tl = 4.2 * u;
-  const tr = W - 4.2 * u;
-  const tt = (compact ? 5 : 9.4) * u;
-  const tb = H - (compact ? 5 : 8.6) * u;
-  const stubW = 22 * u;
-  const seam = tr - stubW;
-  const rad = 1.8 * u;
-  const notch = 1.6 * u;
-
-  const barcode = useMemo(() => {
-    const n = m.bars.length;
-    const bw = 1000 / n;
-    return m.bars
-      .map((h, i) => {
-        const bh = h * 100;
-        return `M${(i * bw + bw * 0.22).toFixed(1)} ${(50 - bh / 2).toFixed(1)}h${(bw * 0.56).toFixed(1)}v${bh.toFixed(1)}h-${(bw * 0.56).toFixed(1)}z`;
-      })
-      .join("");
-  }, [m.bars]);
-
   const titleSize = W * stageCoverTitleScale(m.title);
-  const dot = m.status === "live" ? "#ef4444" : m.status === "replay" ? "#a1a1aa" : "#ffffff";
+  const title = m.title.toUpperCase();
+  const titleStyle = [styles.title, { fontSize: titleSize, lineHeight: titleSize * 1.02 }];
+  const micW = 33 * u;
+  const micH = micW * MIC_RATIO;
+  const wordH = 2.2 * u;
 
   return (
     <View
@@ -107,105 +108,75 @@ const GeneratedStageCover: React.FC<GeneratedStageCoverProps> = ({ stage, style 
     >
       {W > 0 && (
         <>
-          <Svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={StyleSheet.absoluteFill}>
-            <Defs>
-              {m.streaks.map((s, i) => (
-                <RadialGradient key={i} id={`${uid}s${i}`} cx="50%" cy="50%" r="50%">
-                  <Stop offset="0" stopColor="#ffffff" stopOpacity={s.opacity} />
-                  <Stop offset="0.5" stopColor="#ffffff" stopOpacity={s.opacity * 0.45} />
-                  <Stop offset="1" stopColor="#ffffff" stopOpacity={0} />
-                </RadialGradient>
-              ))}
-              <Pattern id={`${uid}dots`} x={1.7 * u} y={1.7 * u} width={3.4 * u} height={3.4 * u} patternUnits="userSpaceOnUse">
-                <Circle cx={0} cy={0} r={Math.max(0.5, 0.1 * u)} fill="#ffffff" fillOpacity={0.22} />
-              </Pattern>
-            </Defs>
-            <Rect width={W} height={H} fill={BASE} />
-            {m.streaks.map((s, i) => (
-              <G key={i} transform={`rotate(${s.rotate} ${s.x * W} ${s.y * H})`}>
-                <Ellipse cx={s.x * W} cy={s.y * H} rx={(s.w * W) / 2 + 2.2 * u} ry={(s.h * W) / 2 + 2.2 * u} fill={`url(#${uid}s${i})`} />
-              </G>
-            ))}
-            <Rect width={W} height={H} fill={`url(#${uid}dots)`} />
-            <Rect x={1.4 * u} y={1.4 * u} width={W - 2.8 * u} height={H - 2.8 * u} rx={2 * u} fill="none" stroke="#ffffff" strokeOpacity={0.16} strokeWidth={1} />
+          <Image source={BACKGROUNDS[m.background]} style={StyleSheet.absoluteFill} contentFit="cover" />
+          <LinearGradient
+            pointerEvents="none"
+            colors={["rgba(5,5,6,0.8)", "rgba(5,5,6,0.45)", "rgba(5,5,6,0.3)"]}
+            locations={[0, 0.6, 1]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={StyleSheet.absoluteFill}
+          />
+          <RNImage source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { opacity: 0.08 }]} />
+          <View pointerEvents="none" style={[styles.frameLine, { left: 1.4 * u, top: 1.4 * u, right: 1.4 * u, bottom: 1.4 * u, borderRadius: 2 * u }]} />
 
-            {/* Ticket body, then the paper stub over its right end. */}
-            <Rect x={tl} y={tt} width={tr - tl} height={tb - tt} rx={rad} fill="#ffffff" fillOpacity={0.05} stroke="#ffffff" strokeOpacity={0.22} strokeWidth={1} />
-            <Path
-              d={`M${seam} ${tt}H${tr - rad}A${rad} ${rad} 0 0 1 ${tr} ${tt + rad}V${tb - rad}A${rad} ${rad} 0 0 1 ${tr - rad} ${tb}H${seam}Z`}
-              fill={PAPER}
-            />
-            <Line x1={seam} y1={tt} x2={seam} y2={tb} stroke="#ffffff" strokeOpacity={0.35} strokeWidth={Math.max(1, 0.3 * u)} strokeDasharray={`${u} ${u}`} />
-            <Circle cx={seam} cy={tt} r={notch} fill={BASE} />
-            <Circle cx={seam} cy={tb} r={notch} fill={BASE} />
-          </Svg>
+          <Image
+            source={MIC}
+            contentFit="contain"
+            style={{
+              position: "absolute",
+              right: 4 * u,
+              top: H / 2 - micH * 0.46,
+              width: micW,
+              height: micH,
+              transform: [{ rotate: `${m.tilt}deg` }, ...(m.flip ? [{ scaleX: -1 }] : [])],
+            }}
+          />
+          {m.sparkles.map((sp, i) => (
+            <Sparkle key={i} x={sp.x * W} y={sp.y * H} size={Math.max(6, sp.size * u)} />
+          ))}
 
+          <View pointerEvents="none" style={[styles.pill, { left: 4.4 * u, top: 4.2 * u, paddingHorizontal: 1.4 * u, paddingVertical: 0.9 * u, borderRadius: 0.9 * u }]}>
+            <Image source={WORDMARK} contentFit="contain" style={{ height: wordH, width: wordH * WORDMARK_RATIO }} />
+          </View>
           {!compact && (
-            <View pointerEvents="none" style={[styles.row, { left: tl, right: W - tr, top: 3.6 * u }]}>
-              <View style={[styles.pill, { gap: 0.7 * u, paddingHorizontal: 1.5 * u, paddingVertical: 0.7 * u, borderRadius: 0.9 * u }]}>
-                <DehubMark size={1.9 * u} />
-                <Text style={[styles.pillText, { fontSize: 1.7 * u, letterSpacing: 0.37 * u }]}>DEHUB</Text>
-              </View>
-              <Text style={[styles.tag, { fontSize: 1.35 * u }]}>{`// type = "${t("stageCover.stage")}"`}</Text>
+            <View pointerEvents="none" style={[styles.bracket, { right: 4.4 * u, top: 4.2 * u, paddingHorizontal: 1.3 * u, paddingVertical: 0.6 * u }]}>
+              <View style={[styles.corner, { left: 0, top: 0, width: u, height: u, borderLeftWidth: 1, borderTopWidth: 1 }]} />
+              <View style={[styles.corner, { right: 0, bottom: 0, width: u, height: u, borderRightWidth: 1, borderBottomWidth: 1 }]} />
+              <Text style={[styles.mono, { fontSize: 1.5 * u, color: "rgba(255,255,255,0.82)" }]}>{`// type = "${t("stageCover.stage")}"`}</Text>
             </View>
           )}
 
-          <View
-            pointerEvents="none"
-            style={[styles.body, { left: tl, top: tt, width: seam - tl, height: tb - tt, paddingHorizontal: 3.2 * u, paddingVertical: (compact ? 2.2 : 2.8) * u }]}
-          >
-            {!compact ? (
-              <View style={[styles.statusRow, { gap: 0.8 * u }]}>
-                <View style={{ width: 0.9 * u, height: 0.9 * u, borderRadius: u, backgroundColor: dot }} />
-                <Text style={[styles.tag, { fontSize: 1.45 * u }]} numberOfLines={1}>{m.statusTag}</Text>
+          <View pointerEvents="none" style={[styles.copy, { left: 4.4 * u, width: 56 * u, gap: 1.6 * u }]}>
+            <View style={styles.statusRow}>
+              {m.status === "live" && (
+                <View style={{ width: 1.1 * u, height: 1.1 * u, borderRadius: u, marginRight: 0.9 * u, backgroundColor: "#ef4444" }} />
+              )}
+              <Text style={[styles.status, { fontSize: 2.1 * u }]} numberOfLines={1}>{m.statusTag}</Text>
+            </View>
+            {!!title && Platform.OS === "web" ? (
+              // No MaskedView on web (the screenshot preview); flat chrome.
+              <Text style={[titleStyle, { color: "#ececf0" }]} numberOfLines={3}>{title}</Text>
+            ) : !!title && (
+              <View>
+                <Text style={[titleStyle, { opacity: 0 }]} numberOfLines={3}>{title}</Text>
+                <MaskedView style={StyleSheet.absoluteFill} maskElement={<Text style={titleStyle} numberOfLines={3}>{title}</Text>}>
+                  <LinearGradient colors={CHROME} locations={[0, 0.4, 1]} style={StyleSheet.absoluteFill} />
+                </MaskedView>
               </View>
-            ) : (
-              <View />
             )}
-            {!!m.title && (
-              <Text style={[styles.title, { fontSize: titleSize, lineHeight: titleSize * 1.06 }]} numberOfLines={3}>
-                {m.title.toUpperCase()}
+            {!compact && !!(m.host || m.detail) && (
+              <Text style={[styles.mono, { fontSize: 1.5 * u, color: "rgba(255,255,255,0.6)" }]} numberOfLines={1}>
+                {!!m.host && <>host = <Text style={{ color: "#ffffff" }}>{m.host}</Text></>}
+                {m.host && m.detail ? " · " : ""}
+                {m.detail}
               </Text>
-            )}
-            {m.host ? (
-              <Text style={[styles.host, { fontSize: Math.max(7, 2 * u) }]} numberOfLines={1}>
-                {"//"}
-                <Text style={styles.hostName}>{m.host}</Text>
-              </Text>
-            ) : (
-              <View />
-            )}
-          </View>
-
-          <View pointerEvents="none" style={[styles.stub, { left: seam, top: tt, width: stubW, height: tb - tt, gap: 0.6 * u, paddingHorizontal: 2 * u }]}>
-            {m.day ? (
-              <>
-                <Text style={[styles.stubMono, { fontSize: 1.6 * u, letterSpacing: 0.29 * u }]}>{m.month}</Text>
-                <Text style={[styles.day, { fontSize: 10.5 * u, lineHeight: 10.5 * u }]}>{m.day}</Text>
-                {!compact && (
-                  <Text style={[styles.stubMono, { fontSize: 1.4 * u }]} numberOfLines={1}>
-                    {`${m.weekday} · ${m.time}`}
-                  </Text>
-                )}
-              </>
-            ) : (
-              <DehubMark size={8 * u} />
-            )}
-            {!compact && (
-              <>
-                <Svg width={stubW - 4 * u} height={4 * u} viewBox="0 0 1000 100" preserveAspectRatio="none" style={{ marginTop: u }}>
-                  <Path d={barcode} fill={INK} />
-                </Svg>
-                <Text style={[styles.stubMono, { fontSize: u, letterSpacing: 0.28 * u, opacity: 0.55 }]}>{m.stubLine}</Text>
-              </>
             )}
           </View>
 
           {!compact && (
-            <View pointerEvents="none" style={[styles.siteRow, { bottom: 3.3 * u }]}>
-              <View style={[styles.site, { paddingHorizontal: 1.2 * u, paddingVertical: 0.5 * u, borderRadius: 0.5 * u }]}>
-                <Text style={[styles.tag, { fontSize: 1.3 * u, color: "rgba(255,255,255,0.85)" }]}>{"// dehub.io"}</Text>
-              </View>
+            <View pointerEvents="none" style={[styles.site, { left: 4.4 * u, bottom: 4.2 * u, paddingHorizontal: 1.4 * u, paddingVertical: 0.6 * u, borderRadius: 0.5 * u }]}>
+              <Text style={[styles.mono, { fontSize: 1.5 * u, color: "rgba(255,255,255,0.85)" }]}>{"// dehub.io/stages"}</Text>
             </View>
           )}
         </>
@@ -221,75 +192,51 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: BASE,
   },
-  row: {
+  frameLine: {
     position: "absolute",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
   },
   pill: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: PAPER,
-  },
-  pillText: {
-    color: INK,
-    fontFamily: EXO,
-    fontWeight: "700",
-  },
-  tag: {
-    color: "rgba(255,255,255,0.78)",
-    fontFamily: MONO,
-    fontWeight: "700",
-  },
-  body: {
     position: "absolute",
-    justifyContent: "space-between",
+    backgroundColor: "#f4f4f5",
+  },
+  bracket: {
+    position: "absolute",
+  },
+  corner: {
+    position: "absolute",
+    borderColor: "rgba(255,255,255,0.55)",
+  },
+  mono: {
+    fontFamily: MONO,
+  },
+  copy: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    justifyContent: "center",
   },
   statusRow: {
     flexDirection: "row",
     alignItems: "center",
   },
+  status: {
+    color: "rgba(255,255,255,0.92)",
+    fontFamily: EXO_MEDIUM,
+    fontWeight: "500",
+  },
   title: {
-    color: "#ececf0",
+    color: "#000000",
     fontFamily: EXO,
     fontWeight: "700",
-  },
-  host: {
-    color: "rgba(255,255,255,0.7)",
-    fontFamily: EXO,
-    fontWeight: "600",
-  },
-  hostName: {
-    color: "#ffffff",
-    fontWeight: "700",
-  },
-  stub: {
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  stubMono: {
-    color: INK,
-    fontFamily: MONO,
-    fontWeight: "700",
-  },
-  day: {
-    color: INK,
-    fontFamily: EXO,
-    fontWeight: "700",
-    letterSpacing: -1,
-  },
-  siteRow: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    alignItems: "center",
+    letterSpacing: -0.2,
   },
   site: {
+    position: "absolute",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.3)",
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: "rgba(0,0,0,0.35)",
   },
 });
 
