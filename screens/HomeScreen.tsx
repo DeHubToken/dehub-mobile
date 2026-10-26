@@ -657,6 +657,12 @@ export default function HomeScreen() {
   // the video feed. The tab pill, when open, hangs over the
   // feed rather than pushing it down, and the capsule slides away and back
   // with the same scroll signal the old header used.
+  // Where the clear header lets the feed show (its cut across the pill's
+  // middle), an open post starts at that same cut, so the hidden feed can't
+  // peek through the gap between the pill and the post.
+  const postSurfaceTop = clipOn && pillTopInHeader > 0
+    ? Math.min(headerHeight, pillTopInHeader - 4 + NAV_PILL_RADIUS)
+    : headerHeight;
   const feedInset = island ? ISLAND_BAR_HEIGHT : headerHeight;
   const mediaGridInset = island ? 0 : headerHeight;
   const postFeedInset = island ? 0 : headerHeight;
@@ -1292,7 +1298,7 @@ export default function HomeScreen() {
         <Animated.View
           entering={FadeInUp.duration(220).easing(Easing.out(Easing.cubic))}
           exiting={FadeOutDown.duration(160)}
-          style={[styles.profileSurface, { top: headerHeight }, skin ? { backgroundColor: skin.page } : null]}
+          style={[styles.profileSurface, { top: postSurfaceTop, paddingTop: headerHeight - postSurfaceTop }, skin ? { backgroundColor: skin.page } : null]}
           accessibilityViewIsModal
           testID="home-feed-post"
         >
