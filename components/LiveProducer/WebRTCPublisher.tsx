@@ -20,7 +20,7 @@ import {
   isNetworkShapedError,
   withOpusFec,
 } from "../../libs/live-ingest";
-import { videoEffectChain, type VideoLookId } from "./videoLooks";
+import { videoEffectChain, type StudioChain, type VideoLookId } from "./videoLooks";
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 
 /**
@@ -66,6 +66,11 @@ export interface WebRTCPublisherProps {
    * the creator sees what viewers see, without a second composite.
    */
   videoLook?: VideoLookId;
+  /**
+   * The phone studio's steps in the effect chain (hooks/usePhoneStudio.ts),
+   * appended after the look on the same capture track.
+   */
+  studio?: StudioChain & { compositing?: boolean };
   onConnected?: () => void;
   onError?: (e: any) => void;
   onStats?: (s: PublishStats) => void;
@@ -146,6 +151,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   micMuted,
   cameraOff,
   videoLook = "none",
+  studio,
   onConnected,
   onError,
   onStats,
@@ -153,6 +159,11 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   debug = false,
   disconnectGraceMs,
 }) => {
+  // Primitives, so the effect below re-applies the chain only when a step
+  // actually comes or goes, not on every render of a fresh object.
+  const studioSupported = !!studio?.supported;
+  const studioBackground = !!studio?.background;
+  const studioOverlay = !!studio?.overlay;
   const dbg = (...args: any[]) => { if (debug) console.log('[WebRTCPublisher]', ...args); };
   const dbe = (...args: any[]) => { console.log('[WebRTCPublisher][ERROR]', ...args); };
   const { t } = useTranslation();
@@ -806,7 +817,7 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
   }, [cameraOff, localReady]);
 
   /*
-   * Apply the camera look.
+   * Apply the camera look and the phone studio's steps after it.
    *
    * Always the LOCAL capture track, never the sender's: react-native-webrtc
    * hangs the processor off the camera's VideoSource, so a sender track would
@@ -824,13 +835,18 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
     const track: any = s?.getVideoTracks?.()[0];
     if (!track || typeof track._setVideoEffects !== "function") return;
     try {
-      track._setVideoEffects(videoEffectChain(videoLook));
-      dbg("videoLook applied", { videoLook });
+      const chain = videoEffectChain(videoLook, Platform.OS, {
+        supported: studioSupported,
+        background: studioBackground,
+        overlay: studioOverlay,
+      });
+      track._setVideoEffects(chain);
+      dbg("video effects applied", { chain });
     } catch (e) {
       // Never fatal: the broadcast is worth more than the filter.
-      dbg("videoLook could not be applied", e);
+      dbg("video effects could not be applied", e);
     }
-  }, [videoLook, localReady, videoTrackEpoch]);
+  }, [videoLook, studioSupported, studioBackground, studioOverlay, localReady, videoTrackEpoch]);
 
   // Flip camera: only when facing prop changes and preview is ready
   useEffect(() => {
@@ -1036,7 +1052,10 @@ const WebRTCPublisher: React.FC<WebRTCPublisherProps> = ({
         <RTCView
           streamURL={localURL}
           style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
-          mirror={facing === "front"}
+          // A card or an overlay drawn into the picture would read backwards
+          // in a mirrored self-view, so while the studio is compositing the
+          // preview shows the picture exactly as viewers get it.
+          mirror={facing === "front" && !studio?.compositing}
           objectFit={Platform.OS === "ios" ? "cover" : "cover"}
           // @ts-ignore android z-order props
           zOrderMediaOverlay={false}
