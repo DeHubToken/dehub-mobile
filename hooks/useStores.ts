@@ -352,7 +352,7 @@ export function useUpdateOrderStatus() {
 
 export function useBrowseListings(category?: string, sort?: string, search?: string) {
   const query = useInfiniteQuery({
-    queryKey: ["store-listings-browse", category, sort, search],
+    queryKey: ["store-listings-browse", "paged", category, sort, search],
     initialPageParam: 0,
     queryFn: async ({ pageParam, signal }): Promise<StoreListing[]> => {
       let q = supabase

@@ -32,7 +32,7 @@ export function deferredScreen(key: string, load: () => ComponentType<any>): Com
       }
     }, [Content, focused, settled, routeKey]);
     // Once mounted, retain the real page and its scroll/draft state on blur.
-    return Content ? <RouteTransitionReadyContext.Provider value={props.route.key}>
+    return Content ? <RouteTransitionReadyContext.Provider value={settled || readyRoutes.has(routeKey) ? props.route.key : null}>
       <Content {...props} />
     </RouteTransitionReadyContext.Provider> : <RouteLoadingShell />;
   }
