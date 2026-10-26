@@ -1,4 +1,3 @@
-import MessageSurface from "./MessageSurface";
 import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import { DhbCoin } from "../common/DhbCoin";
@@ -31,6 +30,8 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs";
+import { DrawerSurface } from "../ui/SheetGlass";
+import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
 
@@ -190,7 +191,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <MessageSurface />
+            <DrawerSurface />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View style={styles.handleWrap}>
@@ -344,7 +345,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   overlay: {
-    backgroundColor: "#0C0C0E",
+    backgroundColor: SHEET_GLASS_FILL,
     borderTopWidth: 1,
     borderColor: "rgba(255,255,255,0.06)",
   },

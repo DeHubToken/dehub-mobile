@@ -1,4 +1,3 @@
-import MessageSurface from "../DM/MessageSurface";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -9,6 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTranslation } from 'react-i18next';
 import { PackGrid, PackStrip, StickerPanel, useGifPacks } from '../packs/PackPickerParts';
 import { useKidsModeLock } from '../../hooks/useKidsModeLock';
+import { DrawerSurface } from "../ui/SheetGlass";
 
 export type GifPickerProps = {
   visible: boolean;
@@ -148,7 +148,7 @@ const GifPicker: React.FC<GifPickerProps> = ({ visible, onClose, onPick }) => {
           className="overflow-hidden rounded-t-[20px] border-t border-white/10 p-3 h-[70%]"
           style={{ paddingBottom: insets.bottom + 12 }}
         >
-          <MessageSurface />
+          <DrawerSurface />
           <View className="flex-row items-center mb-2">
             <View className="flex-1 flex-row rounded-lg bg-theme-neutrals-800 p-0.5">
               {(kids ? (['gif'] as const) : (['gif', 'sticker'] as const)).map((k) => (

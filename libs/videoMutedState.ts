@@ -2,10 +2,11 @@ import { useSyncExternalStore } from 'react';
 import { storage, migrateFromAsyncStorage } from './storage';
 
 const MUTED_KEY = 'video-muted';
-// Players can mount before App's startup effect. Read the synchronous store
-// here, and stay silent while an older AsyncStorage choice is migrating.
-let _muted = true;
-try { _muted = storage.getString(MUTED_KEY) !== 'false'; } catch {}
+// The viewer's own mute choice, and only that: feed autoplay is silent on its
+// own, so a video they open plays with sound until they mute one themselves.
+// Players can mount before App's startup effect, so read the synchronous store.
+let _muted = false;
+try { _muted = storage.getString(MUTED_KEY) === 'true'; } catch {}
 let _loaded = false;
 const listeners = new Set<() => void>();
 
@@ -34,4 +35,4 @@ export async function loadMutedState(): Promise<void> {
 }
 
 const subscribe = (fn: () => void) => { listeners.add(fn); return () => listeners.delete(fn); };
-export const useMediaMuted = () => useSyncExternalStore(subscribe, getCachedMuted, () => true);
+export const useMediaMuted = () => useSyncExternalStore(subscribe, getCachedMuted, () => false);
