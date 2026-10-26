@@ -5,13 +5,13 @@ import CreatorLibraryManager from '../../components/Assistant/CreatorLibraryMana
 const mockList = jest.fn(), mockUpdate = jest.fn(), mockInvalidate = jest.fn();
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => {
-  const React = require('react');
+  const R = require('react');
   return {
     View: 'View', Text: 'Text', Pressable: 'Pressable', ActivityIndicator: 'ActivityIndicator',
     StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
     Modal: ({ visible, children }: { visible: boolean; children: React.ReactNode }) => visible ? children : null,
     FlatList: (props: { data: unknown[]; renderItem(item: { item: unknown; index: number }): React.ReactNode }) =>
-      React.createElement('FlatList', props, props.data.map((item, index) => React.createElement(React.Fragment, { key: index }, props.renderItem({ item, index })))),
+      R.createElement('FlatList', props, props.data.map((item, index) => R.createElement(R.Fragment, { key: index }, props.renderItem({ item, index })))),
   };
 });
 jest.mock('../../services/creator.service', () => ({ listCreatorAssets: (...args: unknown[]) => mockList(...args), updateCreatorSelection: (...args: unknown[]) => mockUpdate(...args) }));
