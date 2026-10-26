@@ -306,8 +306,8 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
   const activeTemplate = getTemplate(templateId);
   const editorDraft = studio ? creatorSettingsForEditorDraft(suppliedDraft ?? route.params?.editorDraft) : null;
   const initialMode: CreatorMode = route.params?.mode in CREATOR_DEFAULTS ? route.params.mode : 'image';
-  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft } = useMarketingStudioDraft({
-    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio,
+  const { settings: studioSettings, setSettings: setStudioSettings, input, setInput, handoff: campaignDraft, appliedDraftId, setAppliedDraftId } = useMarketingStudioDraft({
+    campaign: route.params?.marketingHandoff, owner: walletAddress, scope: draftScope, studio, editorDraft: editorDraft?.draft,
     initialSettings: () => editorDraft?.settings ?? normalizeCreatorSettings({ ...CREATOR_DEFAULTS[initialMode],
       model: route.params?.workflow === 'swap' ? 'kling-o3-edit' : route.params?.workflow === 'motion' ? 'kling-3-motion' : CREATOR_DEFAULTS[initialMode].model }),
   });
@@ -339,15 +339,20 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     return () => { cancelled = true; };
   }, [studio, route.params?.clip, route.params?.workflow, pickMotionClip]);
   useEffect(() => {
-    if (appliedEditorDraft.current === suppliedDraft) return;
     const prepared = creatorSettingsForEditorDraft(suppliedDraft);
     if (!prepared) return;
+    if (prepared.draft.references && studioSettings.mode === prepared.settings.mode) {
+      setStudioSettings(previous => normalizeCreatorSettings({ ...previous, referenceAssets: prepared.settings.referenceAssets }));
+      setAttachedImage(prepared.settings.referenceAssets?.find(asset => asset.kind === 'image')?.uri ?? null);
+    }
+    if (appliedEditorDraft.current === suppliedDraft || (suppliedDraft?.draftId && appliedDraftId === suppliedDraft.draftId)) return;
     if (studioSettings.mode !== prepared.settings.mode) { setStudioSettings(prepared.settings); return; }
     setStudioSettings(prepared.settings);
     setInput(prepared.draft.prompt);
     setTemplateId(null);
     appliedEditorDraft.current = suppliedDraft;
-  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings]);
+    setAppliedDraftId(prepared.draft.draftId ?? null);
+  }, [suppliedDraft, studioSettings.mode, setInput, setStudioSettings, appliedDraftId, setAppliedDraftId]);
   const effectMode = studio && studioSettings.mode === 'video' && studioSettings.model === VIRAL_EFFECT_MODEL;
   const appliedEffectRoute = useRef<string | undefined>(undefined);
   const pendingMotionPrompt = useRef(false);
