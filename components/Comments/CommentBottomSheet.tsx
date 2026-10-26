@@ -29,6 +29,7 @@ import {
   minimalTabStrip,
 } from "../../theme/minimal";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const SHEET_FRACTION = 0.82;
 
@@ -268,10 +269,11 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
             sheetStyle,
           ]}
         >
-          {/* Opaque by design: the sheet opens over playing video, and a
-              translucent body let the frame bleed through every row of text.
-              The blur/frost layers died with the translucency. */}
-          <View style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
+          {/* Liquid glass: the feed behind is blurred, never shown sharp, so
+              playing video can't bleed through the rows of text. The inline
+              Shorts sheet sits inside the feed it would sample, so it keeps
+              the near-solid wash. */}
+          <SheetGlassFill blur={!inline} style={[StyleSheet.absoluteFill, glassStyles.overlay, isMinimal && glassStyles.minimalOverlay, theme === 'glass' && { backgroundColor: skin?.page || '#102d32', borderColor: 'rgba(220,255,255,.18)' }]} />
 
           {/* The handle and the tab row both start the swipe down — the 24dp
               handle alone was too thin a target. */}

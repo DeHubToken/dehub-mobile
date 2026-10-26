@@ -54,6 +54,7 @@ import { createLogger } from '../../libs/logger';
 import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import { useTranslation } from 'react-i18next';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 const log = createLogger('CreditPaywallSheet');
 const DEHUB_COIN = require('../../assets/web-icons/dehub-coin.png');
@@ -305,7 +306,7 @@ const CreditPaywallSheetComponent: React.FC<CreditPaywallSheetProps> = ({
         </Animated.View>
 
         <Animated.View style={[s.sheet, { maxHeight: sheetHeight, paddingBottom: insets.bottom + 16 }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>

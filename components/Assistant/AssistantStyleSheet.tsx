@@ -33,6 +33,7 @@ import Icon from '../ui/Icon';
 import { AI_ASSISTANT_STYLE_OPTIONS } from '../../config/ai-styles.constants';
 import { useTranslation } from 'react-i18next';
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
+import { SheetGlassFill } from "../ui/SheetGlass";
 
 interface AssistantStyleSheetProps {
   visible: boolean;
@@ -113,7 +114,7 @@ const AssistantStyleSheetComponent: React.FC<AssistantStyleSheetProps> = ({
         </Animated.View>
 
         <Animated.View style={[s.sheet, { height: sheetHeight, paddingBottom: insets.bottom }, sheetStyle]}>
-          <View style={[StyleSheet.absoluteFill, s.overlay]} />
+          <SheetGlassFill style={[StyleSheet.absoluteFill, s.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View>
