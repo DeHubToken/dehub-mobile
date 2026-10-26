@@ -9951,6 +9951,10 @@
     }
   },
   "creator": {
+    "expandDescription": "Generate new image borders. Optional English prompt; one source image.",
+    "expandPromptHint": "Attach one image and choose its new aspect ratio. English prompt optional.",
+    "expandEnglishOnly": "This expansion model accepts English prompts. Leave the prompt empty for automatic expansion.",
+    "expandNeedsImage": "Attach an image to expand.",
     "marketing": {
     "import":  {
                    "url":  "Product page URL",
