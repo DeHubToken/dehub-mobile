@@ -14842,6 +14842,7 @@
     "tooSoonMin": "Şu andan en az {{count}} dakika sonrası için bir zaman seç.",
     "tooSoon": "Gelecekte bir zaman seç.",
     "zone": "Senin saatin ({{zone}}). Diğerleri kendi saatlerinde görür.",
-    "remove": "Planlamayı kaldır"
+    "remove": "Planlamayı kaldır",
+    "startsIn": "{{time}} sonra başlıyor"
   }
 }

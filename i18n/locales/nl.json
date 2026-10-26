@@ -15094,6 +15094,7 @@
     "tooSoonMin": "Kies een tijd minstens {{count}} minuten vanaf nu.",
     "tooSoon": "Kies een tijd in de toekomst.",
     "zone": "Jouw tijd ({{zone}}). Anderen zien het in hun eigen tijd.",
-    "remove": "Planning verwijderen"
+    "remove": "Planning verwijderen",
+    "startsIn": "Begint over {{time}}"
   }
 }

@@ -15,6 +15,7 @@
  * @module components/Stages/StageCards
  */
 
+import { countdownParts, useMinuteTick } from "../../libs/countdown";
 import React, { useCallback } from "react";
 import {
   ActivityIndicator,
@@ -318,7 +319,9 @@ export const ScheduledStageCard: React.FC<{
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
   const startsAt = space.scheduled_at ? new Date(space.scheduled_at) : null;
-  const isOverdue = !!startsAt && startsAt.getTime() < Date.now();
+  const now = useMinuteTick();
+  const isOverdue = !!startsAt && startsAt.getTime() < now;
+  const countdown = countdownParts(startsAt, now);
   const when = formatScheduledFor(space.scheduled_at);
 
   const confirmCancel = useCallback(() => {
@@ -337,7 +340,7 @@ export const ScheduledStageCard: React.FC<{
           <View style={[styles.chip, isMinimal && m.outline]}>
             <Icon name="CalendarDays" size={12} color="#D4D4D8" />
             <Text style={styles.chipText}>
-              {isOverdue ? t("stages.startingSoon") : t("stages.tabUpcoming")}
+              {isOverdue || !countdown ? t("stages.startingSoon") : t("whenSheet.startsIn", { defaultValue: "Starts in {{time}}", time: countdown })}
             </Text>
           </View>
           <View style={styles.topActions}>
