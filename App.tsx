@@ -322,19 +322,12 @@ const REVEAL_FADE_MS = 220;
 // A shell that mounts but never reports ready (deep-link edge case, a thrown
 // navigator, a layout pass that never lands) must not hold the curtain forever.
 const REVEAL_FAILSAFE_MS = 5000;
-// A first launch keeps the logo animation up at least this long from boot, so
-// a new user sees it play before the setup instead of a flicker of it.
-const FIRST_RUN_INTRO_MS = 2000;
-// Once per process: switching to System Light during the setup remounts the
-// tree, and that must not replay the intro.
-let firstRunIntroPlayed = false;
 // Long enough that a slow network boot is not reported as a stall.
 const BOOT_STALL_MS = 15000;
 
 const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const { colors, pageColors, isLight, theme } = useAppTheme();
-  const { isBootLoading, isSignedIn, needsUsername, isFirstTimeUser } = useAuthState();
-  const bootStartedAt = useRef(Date.now()).current;
+  const { isBootLoading, isSignedIn, needsUsername } = useAuthState();
   // Read when the preloader lifts, to tell signed-in launches from the rest.
   const isSignedInRef = useRef(isSignedIn);
   isSignedInRef.current = isSignedIn;
@@ -410,7 +403,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     markBootRevealed();
     reportLaunchRevealed({ signedIn: isSignedInRef.current, theme });
     // Native splash hands off underneath the opaque cover: by the time it is
-    // gone, the RN view above it already paints the same black-and-mark.
+    // gone, the RN view above it already paints the selected canvas.
     ExpoSplashScreen.hideAsync().catch(() => { });
     Animated.timing(coverOpacity, {
       toValue: 0,
@@ -423,22 +416,20 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
     if (!staged || !navReady) return;
     let cancelled = false;
     let settleTimer: ReturnType<typeof setTimeout> | undefined;
-    const introLeft = isFirstTimeUser && !isSignedIn && !firstRunIntroPlayed ? FIRST_RUN_INTRO_MS - (Date.now() - bootStartedAt) : 0;
     // First painted frame proves the shell composited; the short tail covers
     // the header-measurement commit without being perceptible.
     const frame = requestAnimationFrame(() => {
       settleTimer = setTimeout(() => {
         if (cancelled) return;
-        firstRunIntroPlayed = true;
         beginReveal();
-      }, Math.max(40, introLeft));
+      }, 40);
     });
     return () => {
       cancelled = true;
       cancelAnimationFrame(frame);
       if (settleTimer) clearTimeout(settleTimer);
     };
-  }, [staged, navReady, beginReveal, isFirstTimeUser, isSignedIn, bootStartedAt]);
+  }, [staged, navReady, beginReveal]);
 
   // A launch that never gets past the preloader reports nothing else — every
   // other log path lives in screens it never reaches — so one still up after
@@ -549,7 +540,7 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
         <Animated.View
           style={[
             StyleSheet.absoluteFill,
-            { backgroundColor: "#000000", opacity: coverOpacity },
+            { backgroundColor: colors.background, opacity: coverOpacity },
           ]}
         >
           <SplashScreen />
