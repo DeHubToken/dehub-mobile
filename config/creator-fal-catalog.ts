@@ -58,7 +58,7 @@ export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
     const id = `ltx-extend-${direction}`;
     return [id, {
       ...video({ id, name: direction === 'forward' ? 'LTX Continue' : 'LTX New Beginning',
-        get description() { return _translateCopy(direction === 'forward' ? 'creator.extensionForward' : 'creator.extensionBackward'); },
+        get description() { return _translateCopy(direction === 'forward' ? 'creator.extensionForward' : 'creator.extensionBackward', { defaultValue: direction === 'forward' ? 'Add about four seconds after your source clip' : 'Add about four seconds before your source clip' }); },
         vendor: 'Lightricks', emoji: 'Film', tier: 'standard', family: 'ltxextend',
         falTextModel: 'fal-ai/ltx-2.3-quality/extend-video', falImageModel: 'fal-ai/ltx-2.3-quality/extend-video',
         minDuration: 4, maxDuration: 4, defaultDuration: 4, allowedDurations: [4], perSecondCostUsd: 0,
