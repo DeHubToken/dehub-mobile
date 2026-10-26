@@ -6897,6 +6897,7 @@
     "coverFailed": "Impossible de changer la couverture"
   },
   "player": {
+    "fullscreen": "Plein écran",
     "segmentLabel": {
       "filler": "Remplissage",
       "interaction": "Like et abonnement",

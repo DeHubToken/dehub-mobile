@@ -5,6 +5,9 @@ import { isHoldGated } from "../libs/content-gate";
 import { fetchVideoAccess, isVideoAccessExpiring, useVideoAccess, videoNeedsAccess } from "../libs/video-access";
 import { usePostVideoPlayer } from '../hooks/usePostVideoPlayer';
 import { postMediaIsTransferring } from '../libs/post-media-session';
+import { finishInAppMiniRestore, getInAppVideoMini, openInAppVideoMini, subscribeInAppVideoMini } from '../libs/in-app-video-mini';
+import { containedPicture } from '../libs/live-overlay/layout';
+import { startsOnVideoPicture, commitsVideoMinimize } from '../libs/video-minimize-gesture';
 import { usePlaybackRecovery } from '../hooks/usePlaybackRecovery';
 import { markHlsFailed, useHlsFallback } from '../libs/hls-fallback';
 import { PersistentVideoView } from '../components/common/PersistentVideoView';
@@ -67,7 +70,7 @@ import {
   PanResponder,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import Reanimated, { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue } from "react-native-reanimated";
+import Reanimated, { FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -347,6 +350,8 @@ interface ShortItemProps {
   activeVideoRef: React.RefObject<VideoView | null>;
   itemHeight: number;
   viewportHeight: number;
+  miniReveal: SharedValue<number>;
+  captureViewerState: () => NonNullable<import('../libs/in-app-video-mini').InAppVideoMini['restoreParams']>;
   /** Viewer-level, so mute, volume and speed carry across shorts as they do on web. */
   isMuted: boolean;
   /** 0 → 1, held-and-dragged on the speaker in the top chrome. */
@@ -371,7 +376,7 @@ interface ShortItemProps {
   optionsMenuOpen?: boolean;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
   const { t: _copy } = _useCopy();
   const feedPlaybackAllowed = useFeedPlaybackAllowed();
   const surfaceActive = useFeedSurfaceActive();
@@ -397,6 +402,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // viewer keeps its player: the HLS ladder when the post has one, else the MP4.
   const playbackUrl = useHlsFallback(() => getPlaybackUrl({ tokenId, hlsUrl: item.hlsUrl }));
   const videoUrl = photoMedia ? photoMedia.soundtrackUrl : (signedShort ? shortAccess.data?.url : playbackUrl) || undefined;
+  const miniEntry = React.useSyncExternalStore(subscribeInAppVideoMini, getInAppVideoMini, getInAppVideoMini);
   const { player, session: videoSession, ownsPlayer, active: ownsVideo } = usePostVideoPlayer(videoUrl, (p) => {
     // Shorts pause when the app is left; only a PiP window keeps them going.
     p.staysActiveInBackground = false;
@@ -404,7 +410,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     p.loop = getIsLooping();
     p.muted = isMuted;
     p.bufferOptions = FEED_BUFFER_OPTIONS;
-  }, true);
+  }, true, !!miniEntry?.restoring && miniEntry.url === videoUrl);
   const ownsPlayerRef = useRef(ownsPlayer);
   ownsPlayerRef.current = ownsPlayer;
   const isActive = (activeItem && playbackAllowed) || pipPlayer === player;
@@ -413,6 +419,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const { t } = useCopy();
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const navigation = useNavigation<any>();
+  const pictureRef = useRef<View>(null);
+  const [intrinsicSize, setIntrinsicSize] = useState(() => {
+    try { return player.videoTrack?.size ?? { width: 0, height: 0 }; }
+    catch { return { width: 0, height: 0 }; }
+  });
+  useEffect(() => {
+    const take = (size?: { width: number; height: number }) => {
+      if (size && size.width > 0 && size.height > 0) setIntrinsicSize(size);
+    };
+    try { take(player.videoTrack?.size); } catch {}
+    const trackSub = player.addListener('videoTrackChange', event => take(event.videoTrack?.size));
+    const sourceSub = player.addListener('sourceLoad', event => take(event.availableVideoTracks?.[0]?.size));
+    return () => { trackSub.remove(); sourceSub.remove(); };
+  }, [player]);
+  const miniDragY = useSharedValue(0);
+  const miniStart = useSharedValue({ x: 0, y: 0 });
+  const miniHandingOff = useSharedValue(false);
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { showUserProfile } = useUserProfileSheet();
@@ -540,6 +563,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
     return { height: Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown) };
   }, [itemHeight, splitHeight, keyboardOffset]);
+  const pictureStyle = useAnimatedStyle(() => {
+    const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
+    const frameHeight = Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown);
+    const picture = containedPicture(SCREEN_WIDTH, frameHeight, intrinsicSize.width, intrinsicSize.height);
+    const amount = Math.min(1, miniDragY.value / Math.max(1, itemHeight * 0.65));
+    return {
+      position: 'absolute', left: picture.left, top: picture.top, width: picture.width, height: picture.height,
+      transform: [{ translateX: amount * SCREEN_WIDTH * 0.24 }, { translateY: miniDragY.value }, { scale: 1 - amount * 0.6 }],
+    };
+  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset, intrinsicSize]);
+  const miniChromeStyle = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
   // A parked offset is only "gone" relative to the size it was parked at; if
   // the item grows while comments are shut, push it clear so it can't read as
   // a sliver of open sheet. The sheet re-seats it at its own height on open.
@@ -563,6 +597,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   pausedByUserRef.current = isPausedByUser;
   const itemNavigation = useNavigation();
   const [firstFrameRendered, setFirstFrameRendered] = useState(false);
+  useEffect(() => {
+    if (!ownsVideo) setFirstFrameRendered(false);
+  }, [ownsVideo]);
   useEffect(() => {
     if (!isActive) setFirstFrameRendered(false);
   }, [isActive]);
@@ -656,7 +693,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // FlatList also retains its initial cells after they leave the window.
   // Keep those players empty, and let neighbours buffer only after settling.
   const { liteMode } = useDataSaver();
-  const playerSource = isActive || (isNearby && !liteMode) ? videoUrl || null : null;
+  const playerSource = miniEntry?.player === player || isActive || (isNearby && !liteMode) ? videoUrl || null : null;
   const { recovery, phase: playbackPhase } = usePlaybackRecovery(player, videoUrl, {
     component: 'ShortsViewer', postId: tokenId,
     allowed: () => ownsPlayerRef.current() && (isActiveRef.current && itemNavigation.isFocused() || isPictureInPicturePlayer(player)) && canStartVideo(player),
@@ -690,13 +727,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       return false;
     }
     try {
+      videoSession.userPaused = false;
       recovery.start();
       setIsPlaying(true);
       return true;
     } catch {
       return false;
     }
-  }, [player, stopPlayback, recovery, videoUrl]);
+  }, [player, stopPlayback, recovery, videoUrl, videoSession]);
 
   useSettledVideoSource(player, isPictureInPicturePlayer(player) ? videoUrl || null : playerSource, isActive, () => {
     if (recovery.wanted && !pausedByUserRef.current && itemNavigation.isFocused()) playIfActive();
@@ -711,8 +749,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       // old anonymous callbacks could never release either global focus slot.
       requestFeedVideoFocus(stopPlayback);
       requestAudioFocus(stopPlayback);
-      playIfActive();
-      setIsPausedByUser(false);
+      if (miniEntry?.restoring && miniEntry.player === player && !player.playing) {
+        setIsPlaying(false);
+        setIsPausedByUser(true);
+      } else {
+        playIfActive();
+        setIsPausedByUser(false);
+      }
     } else {
       stopPlayback();
       setIsPausedByUser(false);
@@ -864,6 +907,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   togglePlayPauseRef.current = () => {
     if (!player || longPressActiveRef.current) return;
     if (isPlayingRef.current) {
+      videoSession.userPaused = true;
       recovery.stop();
       player.pause();
       setIsPlaying(false);
@@ -1368,6 +1412,74 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       }
     }), [isActive, showComments, screenshotMode, navigation]);
 
+  const minimizeFromDrag = useCallback(() => {
+    const cancel = () => {
+      miniHandingOff.value = false;
+      miniDragY.value = withTiming(0, { duration: 180 });
+      miniReveal.value = withTiming(0, { duration: 180 });
+      if (navigation.isFocused()) onChromeVisibilityChange(chromeVisible);
+    };
+    if (!videoUrl || !ownsPlayerRef.current() || !pictureRef.current) { cancel(); return; }
+    pictureRef.current.measureInWindow((x, y, width, height) => {
+      if (width <= 0 || height <= 0 || !navigation.isFocused() || !ownsPlayerRef.current()) { cancel(); return; }
+      const opened = openInAppVideoMini({
+        player, session: videoSession, url: videoUrl, item,
+        restoreParams: captureViewerState(),
+        thumbnail: typeof thumbnail === 'string' ? thumbnail : undefined,
+        initialRect: { x, y, width, height }, onCancel: cancel,
+        onReady: () => { if (navigation.isFocused()) navigation.goBack(); },
+      });
+      if (!opened) cancel();
+    });
+  }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible]);
+
+  const minimizePan = useMemo(() => Gesture.Pan()
+    .enabled(isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
+      && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height)
+    .manualActivation(true)
+    .onTouchesDown((event, state) => {
+      'worklet';
+      const touch = event.allTouches[0];
+      const picture = containedPicture(SCREEN_WIDTH, itemHeight, intrinsicSize.width, intrinsicSize.height);
+      if (event.numberOfTouches !== 1 || !touch || touch.y < topChromeBand
+        || !startsOnVideoPicture(touch.x, touch.y, picture)) { state.fail(); return; }
+      miniStart.value = { x: touch.x, y: touch.y };
+      miniHandingOff.value = false;
+    })
+    .onTouchesMove((event, state) => {
+      'worklet';
+      const touch = event.allTouches[0];
+      if (!touch || event.numberOfTouches !== 1) { state.fail(); return; }
+      const dx = touch.x - miniStart.value.x;
+      const dy = touch.y - miniStart.value.y;
+      if (dy < -DRAG_RELEASE_MIN || Math.abs(dx) > Math.abs(dy) + DRAG_RELEASE_MIN) { state.fail(); return; }
+      if (dy > DRAG_CLAIM_MIN && dy > Math.abs(dx)) state.activate();
+    })
+    .onStart(() => { 'worklet'; runOnJS(resetTapSequence)(); runOnJS(onChromeVisibilityChange)(false); })
+    .onUpdate(event => {
+      'worklet';
+      miniDragY.value = Math.max(0, event.translationY);
+      miniReveal.value = Math.min(1, miniDragY.value / Math.max(1, itemHeight * 0.35));
+    })
+    .onEnd((event, success) => {
+      'worklet';
+      if (success && commitsVideoMinimize(event.translationX, event.translationY)) {
+        miniHandingOff.value = true;
+        runOnJS(minimizeFromDrag)();
+      }
+    })
+    .onFinalize(() => {
+      'worklet';
+      if (miniHandingOff.value) return;
+      miniDragY.value = withTiming(0, { duration: 180 });
+      miniReveal.value = withTiming(0, { duration: 180 });
+      runOnJS(onChromeVisibilityChange)(chromeVisible);
+    })
+    .blocksExternalGesture(pagerGesture),
+  [isActive, ownsVideo, pipPlayer, photoMedia, showComments, screenshotMode, captionExpanded, intrinsicSize, SCREEN_WIDTH,
+    itemHeight, topChromeBand, miniStart, miniHandingOff, miniDragY, miniReveal, minimizeFromDrag,
+    onChromeVisibilityChange, chromeVisible, pagerGesture, resetTapSequence]);
+
   const screenGesture = useMemo(() => {
     const mediaHitSlop = { top: chromeVisible ? -topChromeBand : 0 };
     const tap = Gesture.Tap()
@@ -1386,8 +1498,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       .runOnJS(true)
       .onStart((event) => handleLongPressIn(event.x))
       .onFinalize(() => handleLongPressOut());
-    return Gesture.Race(makeEdgeBack(), restorePan, hold, tap);
-  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, restorePan, makeEdgeBack, chromeVisible, topChromeBand]);
+    return Gesture.Race(makeEdgeBack(), minimizePan, restorePan, hold, tap);
+  }, [handleLongPressIn, handleLongPressOut, handleScreenTap, pagerGesture, minimizePan, restorePan, makeEdgeBack, chromeVisible, topChromeBand]);
 
   const bottomStackGesture = useMemo(() => Gesture.Race(makeEdgeBack(), hidePan), [makeEdgeBack, hidePan]);
 
@@ -1464,6 +1576,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         <Reanimated.View
           style={[styles.playerFrame, showComments && { backgroundColor: "#000" }, photoMedia && { backgroundColor: photoBackdrop }, playerStyle]}
         >
+        <Reanimated.View ref={pictureRef} collapsable={false} style={pictureStyle}>
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
@@ -1483,10 +1596,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
             contentFit="contain"
             nativeControls={false}
+            surfaceType="textureView"
             pointerEvents="none"
-            onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); }}
+            onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
           />
         ) : null}
+        </Reanimated.View>
         {photoMedia && <ShortsPhotoPager images={photoMedia.imageUrls} galleryKey={String(tokenId)} width={SCREEN_WIDTH} pagerGesture={pagerGesture} />}
         {playbackPhase === 'failed' && isActive && <Pressable accessibilityRole="button"
           accessibilityLabel={t('common.retry')} style={{ position: 'absolute', top: 140, alignSelf: 'center', minHeight: 44, justifyContent: 'center', borderRadius: 22, paddingHorizontal: 16, backgroundColor: 'rgba(0,0,0,0.7)' }}
@@ -1633,6 +1748,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           animate this, and keeping it mounted means nothing re-lays-out on the
           way back. pointerEvents goes with it so a cleared frame cannot be
           tapped through an invisible avatar. */}
+      <Reanimated.View style={[StyleSheet.absoluteFill, miniChromeStyle]} pointerEvents="box-none">
       <Animated.View
         style={[StyleSheet.absoluteFill, { opacity: chromeOpacity }]}
         pointerEvents={chromeVisible ? "box-none" : "none"}
@@ -1835,6 +1951,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           </View>
         </GestureDetector>
       </Animated.View>
+      </Reanimated.View>
 
       {showShareSheet && tokenId != null && (
         <ShareSheet
@@ -1912,6 +2029,7 @@ const ShortsViewerScreen = () => {
     initialIndex = 0,
     initialItems = [],
     initialThumbnail,
+    initialPage,
     feedParams = {},
   } = (route?.params as any) || {};
 
@@ -1921,12 +2039,17 @@ const ShortsViewerScreen = () => {
 
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
   const [activeIndex, setActiveIndex] = useState(initialIndex);
-  const [page, setPage] = useState(isFromFeed ? 0 : 1);
+  const [page, setPage] = useState(initialPage ?? (isFromFeed ? 0 : 1));
+  const viewerRestore = useRef({ initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams });
+  viewerRestore.current = { initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams };
+  const captureViewerState = useCallback(() => viewerRestore.current, []);
   const endReachedRef = useRef(false);
   const fetchingRef = useRef(false);
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
   const [containerHeight, setContainerHeight] = useState(SCREEN_HEIGHT);
+  const miniReveal = useSharedValue(0);
+  const viewerBackdrop = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
   const [hasMeasuredViewport, setHasMeasuredViewport] = useState(false);
   const [viewportHeight, setViewportHeight] = useState(SCREEN_HEIGHT);
   const [noMoreShorts, setNoMoreShorts] = useState(false);
@@ -2323,6 +2446,8 @@ const ShortsViewerScreen = () => {
         activeVideoRef={activeVideoRef}
         itemHeight={containerHeight}
         viewportHeight={viewportHeight}
+        miniReveal={miniReveal}
+        captureViewerState={captureViewerState}
         isMuted={isMuted}
         volume={volume}
         playbackRate={playbackRate}
@@ -2332,7 +2457,7 @@ const ShortsViewerScreen = () => {
         optionsMenuOpen={index === activeIndex && showOptionsMenu}
       />
     ),
-    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
   );
 
   const keyExtractor = useCallback(
@@ -2348,6 +2473,7 @@ const ShortsViewerScreen = () => {
 
   return (
     <View style={styles.container} onLayout={handleContainerLayout}>
+      <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#000000' }, viewerBackdrop]} />
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
       {/* Keep the tapped picture visible while native layout establishes the
@@ -2542,7 +2668,7 @@ const styles = StyleSheet.create({
   playerFrame: { position: "absolute", top: 0, left: 0, right: 0 },
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "transparent",
   },
   topGradient: {
     position: "absolute",

@@ -3,7 +3,7 @@ import { createVideoPlayer, type VideoPlayer } from 'expo-video';
 import { claimPostMedia, ownsPostMedia, postMediaSession } from '../libs/post-media-session';
 import { replaceVideoSource } from '../libs/video-source';
 
-export function usePostVideoPlayer(url: string | null | undefined, setup: (player: VideoPlayer) => void, deferSource = false) {
+export function usePostVideoPlayer(url: string | null | undefined, setup: (player: VideoPlayer) => void, deferSource = false, priority = false) {
   const token = useRef({}).current;
   const privateKey = useRef(`empty:${Math.random()}`).current;
   const key = url ? `video:${url}` : privateKey;
@@ -19,9 +19,9 @@ export function usePostVideoPlayer(url: string | null | undefined, setup: (playe
   useLayoutEffect(() => {
     const notify = () => refresh(version => version + 1);
     session.listeners.add(notify);
-    const release = claimPostMedia(key, session, token);
+    const release = claimPostMedia(key, session, token, priority);
     return () => { session.listeners.delete(notify); release(); };
-  }, [key, session, token]);
+  }, [key, session, token, priority]);
   const ownsPlayer = useCallback(() => ownsPostMedia(session, token), [session, token]);
   const active = ownsPlayer();
   useEffect(() => {
