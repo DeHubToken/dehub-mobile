@@ -28,7 +28,7 @@ import { FeedScrubContext, useFeedScrubBoundary } from "../../hooks/useFeedScrub
 import { useNavigation } from "@react-navigation/native";
 import { FeedCardHeader } from "./FeedCardHeader";
 import FeedActionBar from "./FeedActionBar";
-import { openPostInFeedHost } from "../../libs/feedPostHost";
+import { openImagePostInFeedHost, openPostInFeedHost } from "../../libs/feedPostHost";
 import ShopBoard from "../common/ShopBoard";
 import type { ShopLink } from "../../services/nft.service";
 import { FeedCaption } from "./FeedCaption";
@@ -293,6 +293,8 @@ interface FeedCardProps {
   stage?: boolean;
   /** Stage only: where the post's media (or, without media, its text) ends, in card coordinates. */
   onStageAnchor?: (y: number) => void;
+  /** A card in the Images scroll view: a tap on the photo goes full screen. */
+  inImageFeed?: boolean;
 }
 
 /** Side inset for the text of an immersive post; the media ignores it. */
@@ -370,6 +372,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   hideDivider = false,
   stage: stageProp = false,
   onStageAnchor,
+  inImageFeed = false,
 }) => {
   const { t: _copy } = _useCopy();
   const navigation = useNavigation<any>();
@@ -925,14 +928,18 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // its fetch now rather than after the new screen has rendered.
       seedPostDetail(tokenId, item);
       warmRequest(`nft:${tokenId}`, () => getNFT(tokenId));
-      // Text, image and audio posts open in place on Home, under the same
-      // logo bar and pill; video keeps its own page.
+      // A photo post opens as its card in the Images scroll view; text and
+      // audio posts open in place on Home, under the same logo bar and pill;
+      // video keeps its own page. All as on phone web.
+      if (postImage && !inImageFeed && openImagePostInFeedHost(item)) return;
+      if (postImage && inImageFeed) return;
       if (!isVideo && openPostInFeedHost(tokenId)) return;
       navigation.navigate(ScreenNames.FeedDetail, { postId: String(tokenId) });
     }
   }, [
     disablePress, isLive, isVideo, videoViewerReady, handleVideoViewerPress, isOwnerPost, item, tokenId, postVideoUrl,
     accessInfo, stream, isCurrentlyLive, navigation, hideUserProfile, onBeforeNavigate, soundtrack, scrubBoundary.claimed,
+    postImage, inImageFeed,
   ]);
 
   const handleImagePress = useCallback((index: number = 0) => {
@@ -949,6 +956,9 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       });
       return;
     }
+    // On a feed, a photo opens its post in the Images scroll view, as on phone
+    // web. Already in that view, it goes full screen.
+    if (!inImageFeed && !disablePress && openImagePostInFeedHost(item)) return;
     if (soundtrack?.url) preparePostMediaNavigation(soundtrack.url);
     // Dismiss the profile sheet first, otherwise the viewer opens behind it.
     onBeforeNavigate?.();
@@ -959,7 +969,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       initialIndex: index,
       soundtrack: !isActuallyGated && !matureGate.isGated ? soundtrack : undefined,
     });
-  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate, isActuallyGated, matureGate.isGated, soundtrack, tokenId, item]);
+  }, [navigation, galleryImages, hasImages, hideUserProfile, onBeforeNavigate, isActuallyGated, matureGate.isGated, soundtrack, tokenId, item, inImageFeed, disablePress]);
 
   const handleTranslateImage = useCallback(() => {
     const imageUrl = galleryImages[0];
