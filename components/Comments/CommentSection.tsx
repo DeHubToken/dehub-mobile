@@ -188,6 +188,9 @@ const REPLIES_SHOWN_COLLAPSED = 1;
 const threadLineStyles = StyleSheet.create({
   above: { position: "absolute", left: 16, top: 0, height: 26, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
   below: { position: "absolute", left: 16, top: 26, bottom: 0, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
+  // Dense rows sit 4 higher, so the avatar centre does too.
+  aboveDense: { height: 22 },
+  belowDense: { top: 22 },
 });
 
 const CommentSectionComponent: React.FC<CommentSectionProps> = ({
@@ -1537,13 +1540,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             Kept inside the row's bounds on purpose: Android clips a child that
             hangs outside its parent. */}
         {meta?.lineAbove && (
-          <View style={threadLineStyles.above} pointerEvents="none" />
+          <View style={[threadLineStyles.above, keyboardHandled && threadLineStyles.aboveDense]} pointerEvents="none" />
         )}
         {meta?.lineBelow && (
-          <View style={threadLineStyles.below} pointerEvents="none" />
+          <View style={[threadLineStyles.below, keyboardHandled && threadLineStyles.belowDense]} pointerEvents="none" />
         )}
         <CommentItem
           comment={item}
+          dense={keyboardHandled}
           postCreator={postCreator}
           isReply={item.isReply}
           onReply={handleReply}
@@ -1576,6 +1580,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     );
   }, [
     threadMeta,
+    keyboardHandled,
     handleReply,
     tipTotals,
     tipTippers,
