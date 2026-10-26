@@ -71,6 +71,8 @@ export interface AIChatMessage {
    */
   templateId?: string;
   creatorSettings?: CreatorStudioSettings;
+  /** Account that submitted a Creator turn; prevents stale history being saved into a different library. */
+  creatorOwner?: string;
   /** A swap the assistant read out of the request, confirmed by the user on a card. */
   swapAction?: AssistantSwapAction;
 }

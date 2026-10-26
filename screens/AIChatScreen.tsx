@@ -1356,7 +1356,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       content: text,
       ...(attachedImage ? { attachedImage } : {}),
       ...(activeTemplate ? { templateId: activeTemplate.id } : {}),
-      ...(creator ? { creatorSettings: creator } : {}),
+      ...(creator ? { creatorSettings: creator, creatorOwner: walletAddress?.toLowerCase() } : {}),
     };
     const history = [...messages, userMessage];
     if (embedded && creator && userMessage.id) editorRequests.current.add(userMessage.id);
@@ -1383,7 +1383,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       submitLock.current = false;
       setIsLoading(false);
     }
-  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings]);
+  }, [input, attachedImage, isLoading, restoring, messages, mentions, saveMessage, routePrompt, activeTemplate, studio, studioSettings, isSignedIn, needsUsername, navigation, setInput, setStudioSettings, walletAddress]);
 
   /** Drop the failed turn and re-run the last thing the user asked for. */
   const handleRetry = useCallback(async () => {
@@ -1808,6 +1808,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
     for (const message of messages) {
       if (message.role === 'user') { request = message; continue; }
       if (!request?.id || !request.creatorSettings || message.isError || message.isVideoGenerating || message.isToolProcessing) continue;
+      if (request.creatorOwner && request.creatorOwner !== walletAddress.toLowerCase()) continue;
       const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
       if (!url) continue;
       const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
