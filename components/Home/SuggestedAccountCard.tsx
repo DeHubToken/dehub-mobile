@@ -261,15 +261,15 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
           onPress={handleDismiss}
           activeOpacity={0.5}
           style={styles.dismissHit}
-          hitSlop={{ top: 6, right: 6, bottom: 6, left: 6 }}
+          hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
           accessibilityLabel={_copy("converter.dismiss", { defaultValue: "Dismiss" })}
         >
           <View style={styles.dismiss}>
             <View style={styles.dismissHalo}>
-              <Icon name="X" size={19} color="rgba(0,0,0,0.42)" />
+              <Icon name="X" size={18} color="rgba(0,0,0,0.42)" />
             </View>
             <View>
-              <Icon name="X" size={17} color="#FFFFFF" />
+              <Icon name="X" size={16} color="#FFFFFF" />
             </View>
           </View>
         </TouchableOpacity>
@@ -402,20 +402,23 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#27272A",
   },
+  // Equal inset on the visible glyph: the cut X draws 62% of its 16pt box, so
+  // a 28pt box 1pt from the banner's corner puts the glyph 10pt from its top
+  // and its right edge, the same as web.
   dismissHit: {
     position: "absolute",
-    top: 3,
-    right: 3,
+    top: 1,
+    right: 1,
   },
   dismiss: {
-    width: 30,
-    height: 30,
+    width: 28,
+    height: 28,
     alignItems: "center",
     justifyContent: "center",
   },
   dismissHalo: {
     ...StyleSheet.absoluteFillObject,
-    top: 1.5,
+    top: 1,
     alignItems: "center",
     justifyContent: "center",
   },
