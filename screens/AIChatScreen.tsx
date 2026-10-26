@@ -92,6 +92,7 @@ import {
   type VideoModelKey,
   VIDEO_MODEL_OPTIONS,
   getToolsByCategory,
+  IMAGE_MODELS,
   imageModelSupportsEdit,
   videoSupportsImage,
   videoSupportsText,
