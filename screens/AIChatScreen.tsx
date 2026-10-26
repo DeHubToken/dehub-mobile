@@ -2003,7 +2003,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           controls={studio ? <>
         <CreatorStudioControls settings={studioSettings} prompt={input} draftScope={draftScope} onChange={next => {
           const selectedTemplate = getTemplate(templateId);
-          if (next.model !== studioSettings.model && selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput) setTemplateId(null);
+          if (next.model !== studioSettings.model && (VIDEO_MODELS[next.model]?.referenceMode === 'extend' || (selectedTemplate?.model && VIDEO_MODELS[selectedTemplate.model]?.requiresVideoInput))) setTemplateId(null);
           setStudioSettings(next);
         }}
           onMaboroshi={() => navigation.navigate(ScreenNames.Maboroshi)}
