@@ -6869,6 +6869,7 @@
     "coverFailed": "Kapak değiştirilemedi"
   },
   "player": {
+    "fullscreen": "Tam ekran",
     "segmentLabel": {
       "filler": "Dolgu",
       "interaction": "Beğen ve abone ol",
