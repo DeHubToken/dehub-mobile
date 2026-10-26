@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import SmartImage from '../components/common/SmartImage';
 import CreatorMediaPreview from '../components/Assistant/CreatorMediaPreview';
+import { MarketingWorkspace } from '../components/Assistant/MarketingWorkspace';
 import ViralTemplateShowcase from '../components/Assistant/ViralTemplateShowcase';
 import MotionLibraryShowcase from '../components/Assistant/MotionLibraryShowcase';
 import MeshThumbnailQueue from '../components/Assistant/MeshThumbnailQueue';
@@ -151,6 +152,8 @@ export default function CreatorScreen() {
 
       <Text className="px-4 pb-3 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.moreTools')}</Text>
       <View className="flex-row flex-wrap px-4" style={{ gap: GAP }}>{tools.map(tile)}</View>
+
+      <MarketingWorkspace onPrepare={(editorDraft) => nav.navigate(ScreenNames.CreatorStudio, { mode: editorDraft.kind === 'video' ? 'video' : 'image', editorDraft })} />
 
       <Text className="px-4 pb-1 pt-7 text-[22px] font-black text-theme-neutrals-100">{t('creator.yourLibrary')}</Text>
       <Text className="px-4 pb-3 text-theme-neutrals-400">{t('creator.libraryHint')}</Text>

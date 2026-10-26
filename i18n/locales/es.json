@@ -9602,6 +9602,34 @@
     }
   },
   "creator": {
+    "marketing":  {
+                      "title":  "Brief de campaña",
+                      "intro":  "Describe tu producto y marca y prepara formatos de anuncio coherentes.",
+                      "saved":  "Tu brief se guarda en este dispositivo para esta cuenta.",
+                      "preview":  "Preparar formatos",
+                      "clear":  "Borrar brief",
+                      "required":  "Añade el nombre y la descripción del producto para preparar los formatos.",
+                      "variants":  "Formatos de campaña",
+                      "reviewHint":  "Revisa el modelo, el precio y la referencia del producto en el estudio antes de generar. Cada formato se genera por separado.",
+                      "open":  "Revisar en el estudio",
+                      "fields":  {
+                                     "product":  "Nombre del producto (obligatorio)",
+                                     "description":  "Datos del producto (obligatorios)",
+                                     "brand":  "Nombre de la marca",
+                                     "audience":  "Público objetivo",
+                                     "benefit":  "Beneficio principal",
+                                     "voice":  "Voz de la marca",
+                                     "palette":  "Colores de la marca",
+                                     "headline":  "Titular aprobado",
+                                     "cta":  "Llamada a la acción"
+                                 },
+                      "formats":  {
+                                      "square":  "Anuncio cuadrado",
+                                      "portrait":  "Anuncio vertical",
+                                      "story":  "Imagen para historia",
+                                      "video":  "Vídeo vertical"
+                                  }
+                  },
     "cinema":  {
                    "title":  "Dirección cinematográfica",
                    "hint":  "Define el estilo visual de tu próxima imagen o vídeo. Los resultados varían según el modelo.",
