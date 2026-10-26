@@ -9619,6 +9619,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "Dışa aktarma biçimi",
+    "audioExportMp3": "MP3 · 128 kbit/sn",
+    "audioExportWav": "WAV · 24 kHz · tek kanal",
     "extensionNeedsClip": "Uzatmak için bir kaynak klip ekleyin.",
     "extensionSeconds": "+{{seconds}} sn yeni görüntü",
     "extensionHelp": "Kaynak klibi yaklaşık dört saniyelik yeni görüntüyle döndürür. Çıktı 24 fps hızında en fazla 720p olarak boyutlandırılır. Eklenen bölüm için yeni ses üretilir.",

@@ -9643,6 +9643,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "Formato de exportación",
+    "audioExportMp3": "MP3 · 128 kbps",
+    "audioExportWav": "WAV · 24 kHz · mono",
     "extensionNeedsClip": "Adjunta un clip de origen para ampliarlo.",
     "extensionSeconds": "+{{seconds}} s de vídeo nuevo",
     "extensionHelp": "Devuelve el clip original con unos cuatro segundos nuevos. La salida se redimensiona hasta 720p a 24 fps. Se genera audio nuevo para la ampliación.",

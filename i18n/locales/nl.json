@@ -9822,6 +9822,9 @@
     }
   },
   "creator": {
+    "audioExportFormat": "Exportformaat",
+    "audioExportMp3": "MP3 · 128 kbit/s",
+    "audioExportWav": "WAV · 24 kHz · mono",
     "extensionNeedsClip": "Voeg één bronclip toe om te verlengen.",
     "extensionSeconds": "+{{seconds}} s nieuw beeld",
     "extensionHelp": "Geeft de bronclip terug met ongeveer vier nieuwe seconden. De uitvoer wordt aangepast tot maximaal 720p bij 24 fps. Voor de uitbreiding wordt nieuw geluid gemaakt.",
