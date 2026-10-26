@@ -126,6 +126,7 @@ import * as CreatorFileSystem from 'expo-file-system/legacy';
 import SubscriptionCreditsPill from '../components/SubscriptionCreditsPill';
 import { CREATOR_DEFAULTS, creatorModels, creatorInputIssue, creatorVideoOptions, normalizeCreatorSettings, prepareCreatorPrompt, creatorPromptLimit, creatorSettingsForEditorDraft, type CreatorMode, type CreatorStudioSettings, type CreatorReferenceAsset } from '../libs/creatorStudio';
 import { runCreatorBatch } from '../libs/creatorBatch';
+import { creatorAssetId } from '../libs/creatorAssetId';
 import * as CreatorCrypto from 'expo-crypto';
 import GenerationExample from '../components/Assistant/GenerationExample';
 import { MODEL3D_MODELS } from '../config/model3d-models.constants';
@@ -1356,7 +1357,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       content: text,
       ...(attachedImage ? { attachedImage } : {}),
       ...(activeTemplate ? { templateId: activeTemplate.id } : {}),
-      ...(creator ? { creatorSettings: creator, creatorOwner: walletAddress?.toLowerCase() } : {}),
+      ...(creator ? { creatorSettings: creator, creatorOwner: walletAddress?.toLowerCase(), creatorAssetScheme: 'results-v1' as const } : {}),
     };
     const history = [...messages, userMessage];
     if (embedded && creator && userMessage.id) editorRequests.current.add(userMessage.id);
@@ -1812,7 +1813,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
       const url = message.modelUrl ?? message.videoUrl ?? message.audioUrl ?? message.imageUrl;
       if (!url) continue;
       const kind = message.modelUrl ? 'model3d' : message.videoUrl ? 'video' : message.audioUrl ? 'audio' : 'image';
-      const id = `native-${message.id ?? request.id}-${kind}`;
+      const id = creatorAssetId(request.id, message.id, kind, request.creatorAssetScheme);
       const saveKey = `${walletAddress}:${id}`;
       if (kind !== 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGenerated) {
         deliveredEditorResults.current.add(id);
