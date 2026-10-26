@@ -2108,7 +2108,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: supp
           setPendingStudio(previous => previous ? normalizeCreatorSettings({ ...previous, model: id }) : null);
         }}
         quoteKind="video"
-        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS }}
+        quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS,
+          resolution: pendingStudio?.resolution ?? '720p', hasEndFrame: !!pendingStudio?.endFrame,
+          hasInlineMedia: !!pendingSourceImage && !pendingSourceImage.startsWith('https://') }}
         onClose={() => setVideoPaywallVisible(false)}
         onConfirm={handleVideoConfirm}
         footnote={_copy("copy.0f1f6dc49d7b", { defaultValue: "Renders take 1-3 minutes and keep going if you leave this screen." })}
