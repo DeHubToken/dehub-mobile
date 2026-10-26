@@ -2,6 +2,7 @@ import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react-native';
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 
+jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s }, Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android } }));
 const mockDisk: Record<string, string> = {};
 jest.mock('../../libs/storage', () => ({ storage: { getString: (key: string) => mockDisk[key], set: (key: string, value: string) => { mockDisk[key] = value; }, delete: (key: string) => { delete mockDisk[key]; } } }));
 let mockDraftUser: { address: string } | null = { address: 'alice' };
