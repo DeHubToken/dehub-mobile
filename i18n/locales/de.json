@@ -6163,6 +6163,8 @@
     "pendingRetired": "Diese Einzahlung ist im Netzwerk nicht mehr ausstehend. Nachverfolgung gelöscht; überprüfe deine Wallet-Aktivität, bevor du erneut einzahlst."
   },
   "communities": {
+    "shareLink": "Link teilen",
+    "sendInMessage": "Senden Sie Einladung",
     "title": "Communitys",
     "create": "Erstellen",
     "searchPlaceholder": "Communitys suchen...",

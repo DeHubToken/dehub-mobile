@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} tokenů"
   },
   "communities": {
+    "shareLink": "Sdílet odkaz",
+    "sendInMessage": "Odeslat pozvánku",
     "existingPost": {
       "add": "Přidat existující příspěvek",
       "added": "Přidán příspěvek do komunity",

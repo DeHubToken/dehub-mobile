@@ -6278,6 +6278,8 @@
     "tokenAmount": "{{amount}} توکن"
   },
   "communities": {
+    "shareLink": "اشتراک گذاری",
+    "sendInMessage": "ارسال دعوتنامه",
     "existingPost": {
       "add": "افزودن پست موجود",
       "added": "پست به جامعه اضافه شد",

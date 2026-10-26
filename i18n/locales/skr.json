@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} ٹوکن"
   },
   "communities": {
+    "shareLink": "لنک شیئر کرو",
+    "sendInMessage": "Send Invite",
     "existingPost": {
       "hint": "اصل پوسٹ، لائکس اور دیکھے جانے والے کو برقرار رکھیں۔",
       "signIn": "ایک بار پھر سائن ان کریں تاکہ کمیونٹی پوسٹ کو منیج کر سکیں۔",

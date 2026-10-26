@@ -3804,6 +3804,8 @@
     "tokenAmount": "{{amount}} jetons"
   },
   "communities": {
+    "shareLink": "Partager le lien",
+    "sendInMessage": "Envoyer une invitation",
     "followerInvites": {
       "title": "Inviter des abonnés",
       "detail": "Choisissez jusqu’à 50 abonnés par lot. Les messages privés payants ou fermés sont ignorés. Vérifiez dans le chat les envois non confirmés avant de réessayer.",

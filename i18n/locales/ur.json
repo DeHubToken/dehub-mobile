@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} ٹوکنز"
   },
   "communities": {
+    "shareLink": "لنک شیئر کریں",
+    "sendInMessage": "ایک انویٹ بھیجنا",
     "existingPost": {
       "add": "ایک موجودہ پوسٹ شامل کریں",
       "added": "پوسٹ کو کمیونٹی میں شامل کر دیا گیا ہے",

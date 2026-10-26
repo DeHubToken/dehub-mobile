@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} אסימונים"
   },
   "communities": {
+    "shareLink": "שיתוף הקישור",
+    "sendInMessage": "שליחת הזמנה",
     "existingPost": {
       "add": "הוסף פוסט קיימת",
       "added": "פוסט הוסף לקהילה",

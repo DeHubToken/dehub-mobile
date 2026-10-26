@@ -6248,6 +6248,8 @@
     "tokenAmount": "โทเคน {{amount}}"
   },
   "communities": {
+    "shareLink": "แชร์ลิงก์",
+    "sendInMessage": "ส่งคำเชิญ",
     "existingPost": {
       "add": "เพิ่มโพสต์ที่มีอยู่",
       "failed": "ไม่สามารถอัปเดตโพสต์ในกลุ่มได้ ลองอีกครั้ง",

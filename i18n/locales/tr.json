@@ -3782,6 +3782,8 @@
     "tokenAmount": "{{amount}} jeton"
   },
   "communities": {
+    "shareLink": "Bağlantıyı paylaş",
+    "sendInMessage": "Davet Gönder",
     "followerInvites": {
       "title": "Takipçileri davet et",
       "detail": "Her grupta en fazla 50 takipçi seçin. Ücretli veya kapalı özel mesajlar atlanır. Tekrar denemeden önce onaylanmamış gönderileri sohbette kontrol edin.",

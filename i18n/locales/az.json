@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} token"
   },
   "communities": {
+    "shareLink": "Linki paylaşın",
+    "sendInMessage": "Dəvət göndər",
     "existingPost": {
       "add": "Mövcud yazını əlavə et",
       "added": "Yazı icmaya əlavə edildi",

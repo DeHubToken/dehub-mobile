@@ -6248,6 +6248,8 @@
     "tokenAmount": "{{amount}} tokena"
   },
   "communities": {
+    "shareLink": "Podijeli poveznicu",
+    "sendInMessage": "Slati poziv",
     "existingPost": {
       "add": "Dodaj postojeći post",
       "added": "Post dodan u zajednicu",

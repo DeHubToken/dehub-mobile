@@ -6252,6 +6252,8 @@
     "tokenAmount": "{{amount}} టోకెన్లు"
   },
   "communities": {
+    "shareLink": "లింక్ ‌ ను షేర్ చేయండి",
+    "sendInMessage": "ఆహ్వానం పంపండి",
     "existingPost": {
       "add": "గత పోస్ట్‌ను జోడించండి",
       "added": "సమూహానికి పోస్ట్ జోడించబడింది",

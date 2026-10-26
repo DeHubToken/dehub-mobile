@@ -6266,6 +6266,8 @@
     "tokenAmount": "{{amount}} ტოკენი"
   },
   "communities": {
+    "shareLink": "ბმულის გაზიარება",
+    "sendInMessage": "მოწვევის გაგზავნა",
     "existingPost": {
       "add": "დაამატეთ არსებული პოსტი",
       "added": "პოსტი დამატებულია კომუნიტიში",
