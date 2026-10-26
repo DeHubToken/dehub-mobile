@@ -13,25 +13,33 @@ import {
   TextInput,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { BlurView } from "expo-blur";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
 import SheetGlass from "./SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "./SheetBackdrop";
 import { SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 
 export interface GlassModalProps {
   visible: boolean;
   onClose: () => void;
   onDismiss?: () => void;
+  /**
+   * @deprecated Ignored. Every drawer's backdrop blur has the same strength
+   * (SheetBackdrop), whatever the sheet passes.
+   */
   blurIntensity?: number; // 0-100
+  /** @deprecated Ignored; the backdrop follows the theme. */
   blurTint?: "dark" | "light" | "default";
   children: React.ReactNode;
   presentation?: "center" | "bottom";
   maxHeight?: number | string;
-  // New: Control backdrop blur area and panel wrapping
+  /**
+   * Whether a centered card blurs the page behind it ("full") or only dims
+   * it ("panel", the default). Drawers (`presentation="bottom"`) always blur.
+   */
   backdropScope?: "full" | "panel";
   panelHeight?: number | string | Animated.Value;
   wrapPanel?: boolean;
@@ -50,8 +58,9 @@ export interface GlassModalProps {
 
 /**
  * A reusable modal with a blurred backdrop.
- * - Uses expo-blur directly (no dynamic require or UIManager checks).
- * - Falls back to a semi-transparent black background if blur fails.
+ * - Drawers blur the page behind them through SheetBackdrop (see there for
+ *   the per-platform rules and the tinted scrim it falls back to). The Modal's
+ *   own fade carries the blur in and out with the sheet.
  *
  * `presentation="bottom"` is a drawer, not a floating card: it spans the full
  * width and is welded to the bottom edge of the screen, with only its top
@@ -64,8 +73,6 @@ const GlassModal: React.FC<GlassModalProps> = ({
   visible,
   onClose,
   onDismiss,
-  blurIntensity = 100,
-  blurTint = "dark",
   children,
   presentation = "center",
   maxHeight = "88%",
@@ -84,6 +91,10 @@ const GlassModal: React.FC<GlassModalProps> = ({
   // Drawers in the default dark theme take web's liquid glass; the canvas
   // themes, Minimal and System Light keep their own sheet material.
   const glassDrawer = isBottom && !skin && !isMinimal && !isLight;
+  const blurBackdrop = isBottom || backdropScope === "full";
+  // The Modal only renders this while it is up, so nothing samples the page
+  // once it has faded out.
+  const backdrop = useSheetBackdrop(blurBackdrop);
   const MessageSurface = surface === 'theme' ? require("../DM/MessageSurface").default : null;
   const translateY = useRef(new Animated.Value(0)).current;
   const scrollY = useRef(0);
@@ -165,40 +176,23 @@ const GlassModal: React.FC<GlassModalProps> = ({
       <GestureHandlerRootView style={styles.container}>
       <SwipeBackBoundary onBack={dismissible ? onClose : undefined} enabled={visible && !yielded && dismissible}>
       <View style={styles.container}>
-        {/* Default: non-blurred dim backdrop; no full-screen blur */}
-        {Platform.OS === "android" ? (
+        {/* Drawers (and "full" cards) blur the page behind them; a centered
+            card keeps the plain dim it always had. A tap anywhere on it still
+            dismisses. */}
+        {blurBackdrop ? (
+          <TouchableOpacity
+            activeOpacity={1}
+            onPress={() => { if (dismissible) onClose(); }}
+            style={StyleSheet.absoluteFill}
+          >
+            <SheetBackdrop backdrop={backdrop} />
+          </TouchableOpacity>
+        ) : Platform.OS === "android" ? (
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => { if (dismissible) onClose(); }}
             style={StyleSheet.absoluteFill}
           />
-        ) : backdropScope === "full" && isMinimal ? (
-          // Minimal has no glass: the full-screen blur becomes a flat, heavier
-          // dim so the panel still separates from whatever is behind it.
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              if (dismissible) onClose();
-            }}
-            style={StyleSheet.absoluteFill}
-          >
-            <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.6)" }} />
-          </TouchableOpacity>
-        ) : backdropScope === "full" ? (
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={() => {
-              if (dismissible) onClose();
-            }}
-            style={StyleSheet.absoluteFill}
-          >
-            <BlurView
-              intensity={blurIntensity}
-              tint={blurTint}
-              style={StyleSheet.absoluteFill}
-            />
-            <View style={{ ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.25)" }} />
-          </TouchableOpacity>
         ) : (
           <TouchableOpacity
             activeOpacity={1}
@@ -257,7 +251,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   },
                 ]}
               >
-                {glassDrawer ? <SheetGlass /> : MessageSurface ? <MessageSurface /> : null}
+                {glassDrawer ? <SheetGlass backdropBlurred={backdrop.blurred} /> : MessageSurface ? <MessageSurface /> : null}
                 {scrollable ? (
                   <ScrollView
                     ref={scrollRef}
