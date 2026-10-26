@@ -1212,10 +1212,11 @@ export default function HomeScreen() {
 
         {showNavPill ? (
         <View onLayout={onNavLayout}>
-        {/* A post or profile opened in place covers the feed, but the feed
-            still sits under the header. Blurring it there smeared the hidden
-            images through the pill, so the pill keeps its solid glass. */}
-        <FrostedBackground when={!!feedPost || feedProfileVisible}>
+        {/* The pill only blurs feed you can see around it. Under the opaque
+            header (no glassNav) the feed still scrolls on beneath it, and so
+            does a feed covered by a post or profile opened in place; blurring
+            those smeared hidden images through the pill. */}
+        <FrostedBackground when={!glassNav || !!feedPost || feedProfileVisible}>
         <FeedNavBar
           activeIndex={activeIndex}
           progress={progress}
