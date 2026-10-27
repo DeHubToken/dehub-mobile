@@ -17,6 +17,7 @@ it('treats closing a sign-in sheet as a choice, not a failure', () => {
   expect(isSignInCancelled(new Error('google sign-in was cancelled'))).toBe(true);
   expect(isSignInCancelled(Object.assign(new Error('The user canceled the authorization attempt'), { code: 'ERR_REQUEST_CANCELED' }))).toBe(true);
   expect(isSignInCancelled({ code: 'ERR_CANCELED' })).toBe(true);
+  expect(isSignInCancelled(new Error('Login failed, login flow failed with error type dismiss'))).toBe(true);
   expect(isSignInCancelled(new Error('Invalid login credentials'))).toBe(false);
   expect(isSignInCancelled(null)).toBe(false);
 });

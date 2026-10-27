@@ -17,6 +17,7 @@ import { WEBSITE_LINK } from "../../config/links";
 import { openInApp } from "../../libs/links.utils";
 import { startLegacyMigration, type LegacyProvider } from "../../libs/legacy-web3auth";
 import { createLogger } from "../../libs/logger";
+import { isSignInCancelled, serverAuthText } from "../../libs/auth-error-text";
 import { useTranslation } from "react-i18next";
 import type { LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import {
@@ -198,11 +199,14 @@ const LegacyAccountWarningModal: React.FC<LegacyAccountWarningModalProps> = ({
         setBusyProvider(null);
         onRecovered(privateKey, matched);
       } catch (e: any) {
-        log.error("recover:error", { provider, message: e?.message });
-        setError(
-          e?.message || t("legacy.couldNotRetrieve")
-        );
         setBusyProvider(null);
+        // Closing the old login's browser is a choice; the sheet stays as it was.
+        if (isSignInCancelled(e)) {
+          log.warn("recover:cancelled", { provider });
+          return;
+        }
+        log.error("recover:error", { provider, message: e?.message });
+        setError(serverAuthText(e?.message, t("legacy.couldNotRetrieve")));
       }
     },
     [busyProvider, accounts, lead, mismatchMessage, onRecovered, t]

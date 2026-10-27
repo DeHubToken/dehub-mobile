@@ -108,3 +108,13 @@ it('lists every login when the original one was not recorded', () => {
   expect(labels(screen).filter((l) => l.startsWith('legacy.tryProvider'))).toHaveLength(4);
   expect(screen.UNSAFE_getAllByType('Field' as any)).toHaveLength(2);
 });
+
+it('says nothing when the old login is closed without signing in', async () => {
+  mockStart.mockRejectedValue(new Error('Login failed, login flow failed with error type dismiss'));
+  const screen = render(
+    <LegacyAccountWarningModal visible accounts={[thor]} onRecovered={jest.fn()} onCreateAnyway={jest.fn()} onClose={jest.fn()} />,
+  );
+  const google = screen.UNSAFE_getAllByType('Button' as any).find((b) => b.props.label === 'legacy.continueWith|provider=Google')!;
+  await act(async () => { await google.props.onPress(); });
+  expect(screen.UNSAFE_queryAllByType('Error' as any).filter((e) => e.props.message)).toHaveLength(0);
+});
