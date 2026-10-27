@@ -9,13 +9,19 @@ jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('reac
 jest.mock('../../context/ThemeContext', () => ({
   useAppTheme: () => ({ isMinimal: false, isLight: false, colors: jest.requireActual('../../theme/colors').systemColors }),
 }));
+const mockKeyboardListeners: Record<string, (e?: unknown) => void> = {};
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', TextInput: 'TextInput', Modal: 'Modal',
   TouchableOpacity: 'TouchableOpacity', ScrollView: 'ScrollView',
   KeyboardAvoidingView: 'KeyboardAvoidingView',
   Platform: { OS: 'ios' },
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
-  Keyboard: { addListener: () => ({ remove: jest.fn() }) },
+  Keyboard: {
+    addListener: (event: string, listener: (e?: unknown) => void) => {
+      mockKeyboardListeners[event] = listener;
+      return { remove: jest.fn() };
+    },
+  },
   Animated: {
     View: 'AnimatedView',
     Value: class { setValue = jest.fn(); },
@@ -134,7 +140,9 @@ it.each(['ios', 'android'])('lifts sheets flush onto the keyboard on %s', (os) =
       const screen = render(<GlassModal visible presentation={presentation} onClose={jest.fn()}><View /></GlassModal>);
       const avoider = screen.UNSAFE_getByType('KeyboardAvoidingView' as any);
       expect(avoider.props.keyboardVerticalOffset ?? 0).toBe(0);
-      expect(avoider.props.behavior).toBe(os === 'ios' ? 'padding' : 'height');
+      // Android lifts by the keyboard event itself (see androidLift).
+      expect(avoider.props.behavior).toBe(os === 'ios' ? 'padding' : undefined);
+      expect(avoider.props.enabled).toBe(os === 'ios');
       screen.unmount();
     }
   } finally {
@@ -159,4 +167,31 @@ it('keeps a busy standalone sheet open', () => {
   expect(handlers().onMoveShouldSetPanResponderCapture({}, drag(100))).toBe(false);
   handlers().onPanResponderRelease({}, drag(100));
   expect(close).not.toHaveBeenCalled();
+});
+
+// KeyboardAvoidingView's "height" mode took Android's keyboardDidHide as a
+// change and parked every sheet the status and navigation bars above the
+// bottom once the keyboard closed; on some phones it bounced between the two.
+// The lift is now the keyboard's own height, and nothing once it is down.
+it('lifts by the keyboard event on android and drops back to the bottom when it closes', () => {
+  const platform = jest.requireMock('react-native').Platform;
+  platform.OS = 'android';
+  const { act } = jest.requireActual('@testing-library/react-native');
+  const padOf = (screen: ReturnType<typeof render>) => {
+    const styles = [screen.UNSAFE_getByType('KeyboardAvoidingView' as any).props.style].flat(Infinity);
+    return styles.reduce((pad: number | undefined, s: any) => (s && s.paddingBottom !== undefined ? s.paddingBottom : pad), undefined);
+  };
+  try {
+    for (const [presentation, lifted] of [['bottom', 300 + 34], ['center', 300]] as const) {
+      const screen = render(<GlassModal visible presentation={presentation} onClose={jest.fn()}><View /></GlassModal>);
+      expect(padOf(screen)).toBeUndefined();
+      act(() => mockKeyboardListeners.keyboardDidShow({ endCoordinates: { height: 300, screenY: 500 } }));
+      expect(padOf(screen)).toBe(lifted);
+      act(() => mockKeyboardListeners.keyboardDidHide({ endCoordinates: { height: 0, screenY: 760 } }));
+      expect(padOf(screen)).toBeUndefined();
+      screen.unmount();
+    }
+  } finally {
+    platform.OS = 'ios';
+  }
 });

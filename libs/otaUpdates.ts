@@ -20,7 +20,8 @@ const CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000;
 // absence long enough that they are effectively re-opening the app.
 export const APPLY_AFTER_BACKGROUND_MS = 60 * 1000;
 
-let lastCheckAt = 0;
+let nextCheckAt = 0;
+let failureCount = 0;
 let updateReady = false;
 let checking = false;
 
@@ -30,12 +31,15 @@ export function isUpdateReady(): boolean {
 
 export async function checkForOtaUpdate(now = Date.now()): Promise<void> {
   if (__DEV__ || !Updates.isEnabled || checking) return;
-  if (now - lastCheckAt < CHECK_INTERVAL_MS) return;
-  lastCheckAt = now;
+  if (now < nextCheckAt) return;
   checking = true;
   try {
     const check = await Updates.checkForUpdateAsync();
-    if (!check.isAvailable) return;
+    if (!check.isAvailable) {
+      failureCount = 0;
+      nextCheckAt = now + CHECK_INTERVAL_MS;
+      return;
+    }
     // The launch-time check may already have downloaded this update, in which
     // case fetchUpdateAsync reports isNew: false — but the bundle is on disk
     // either way, and the check said it is newer than what is running. Keying
@@ -43,8 +47,12 @@ export async function checkForOtaUpdate(now = Date.now()): Promise<void> {
     // never came, which is exactly the situation this file exists to fix.
     await Updates.fetchUpdateAsync();
     updateReady = true;
+    failureCount = 0;
+    nextCheckAt = now + CHECK_INTERVAL_MS;
   } catch {
-    // Offline, a captive portal, the update server down: try again next time.
+    // Retry on a later foreground with a bounded backoff, never a reload timer.
+    nextCheckAt = now + Math.min(60_000 * 2 ** failureCount, 15 * 60_000);
+    failureCount = Math.min(failureCount + 1, 4);
   } finally {
     checking = false;
   }
@@ -64,7 +72,8 @@ export async function applyOtaUpdateIfReady(backgroundMs: number, allowReload = 
 }
 
 export function __resetOtaStateForTests(): void {
-  lastCheckAt = 0;
+  nextCheckAt = 0;
+  failureCount = 0;
   updateReady = false;
   checking = false;
 }

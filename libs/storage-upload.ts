@@ -12,6 +12,18 @@
 import * as FileSystem from "expo-file-system/legacy";
 import env from "../config/env";
 import { supabase } from "../services/supabase";
+import { getAuthUser } from './auth.utils';
+import { ensureWalletSession } from './wallet-session';
+import { translateCopy } from '../i18n/copy';
+
+/** Native file uploads bypass fetch, so they must carry the signature explicitly. */
+export async function storageWalletHeaders(): Promise<Record<string, string>> {
+  const user = await getAuthUser();
+  const wallet = (user?.walletAddress || user?.address || '').toLowerCase();
+  const session = wallet ? await ensureWalletSession(wallet) : null;
+  if (!session) throw new Error(translateCopy('copy.25038f9d0520', { defaultValue: 'Session verification is temporarily unavailable. Please retry.' }));
+  return { 'x-wallet-address': wallet, 'x-wallet-session': session.token };
+}
 
 const MIME_BY_EXTENSION: Record<string, string> = {
   jpg: "image/jpeg",
@@ -103,7 +115,11 @@ export async function uploadLocalFileToBucket({
   contentType,
   upsert = false,
 }: UploadLocalFileParams): Promise<string> {
-  const objectPath = path.replace(/^\/+/, "");
+  const signedHeaders = await storageWalletHeaders();
+  let objectPath = path.replace(/^\/+/, "");
+  if (['store-media', 'ad-media'].includes(bucket) && !objectPath.startsWith(signedHeaders['x-wallet-address'] + '/')) {
+    objectPath = `${signedHeaders['x-wallet-address']}/${objectPath}`;
+  }
   const type = contentType || contentTypeForExtension(fileExtension({ uri: objectPath }, ""));
 
   // uploadAsync reads only file:// paths. Anything else (a content:// URI from
@@ -134,6 +150,7 @@ export async function uploadLocalFileToBucket({
         httpMethod: "POST",
         uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
         headers: {
+          ...signedHeaders,
           Authorization: `Bearer ${token}`,
           apikey: env.SUPABASE_PUBLISHABLE_KEY,
           "Content-Type": type,

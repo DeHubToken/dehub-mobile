@@ -9,7 +9,8 @@ jest.mock('react-native', () => ({ View: 'View', Text: 'Text', Pressable: 'Press
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 20, bottom: 20 }) }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string }) => options?.defaultValue ?? key }) }));
 jest.mock('../../libs/editor/importGeneratedMedia', () => ({ importGeneratedMedia: jest.fn().mockResolvedValue({ id: 'media' }) }));
-jest.mock('../../libs/toast', () => ({ toastError: jest.fn() }));
+jest.mock('../../libs/toast', () => ({ toastError: jest.fn(), toastSuccess: jest.fn() }));
+jest.mock('../../components/editor/TurntableRecorder', () => () => null);
 jest.mock('../../screens/AIChatScreen', () => ({ CreatorStudioScreen: ({ onGenerated, onUseGenerated }: { onGenerated: (value: unknown) => void; onUseGenerated: (url: string, kind: string) => void }) => {
   const { Pressable, Text } = jest.requireMock('react-native');
   return <><Pressable onPress={() => onGenerated({ kind: 'video', url: 'https://media/video.mp4' })}><Text>Create</Text></Pressable>

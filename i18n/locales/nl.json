@@ -1649,7 +1649,10 @@
     "giftBoost": "Een boost cadeau doen",
     "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht",
     "askAi": "Vraag het AI",
-    "aiOverview": "AI-overzicht"
+    "aiOverview": "AI-overzicht",
+    "refreshLinkPreview": "Linkvoorbeeld vernieuwen",
+    "linkPreviewRefreshed": "Linkvoorbeeld vernieuwd",
+    "linkPreviewRefreshFailed": "Kan die site niet bereiken. Probeer het later opnieuw."
   },
   "filters": {
     "sort": "Sorteren",
@@ -2529,7 +2532,8 @@
     "importWalletPurpose": "Deze tool is voor het importeren van bestaande accounts uit DeHub.io.",
     "importSecretPlaceholder": "12 of 24 woorden, of een privésleutel",
     "invalidImportSecret": "Dat is geen geldige zin van 12/24 woorden of privésleutel",
-    "walletSignupBlocked": "Deze wallet is gloednieuw. Nieuwe wallets hebben een saldo of een eerdere transactie nodig om een account te openen. Meld je aan met een van de opties hieronder en koppel deze wallet daarna via Instellingen."
+    "walletSignupBlocked": "Deze wallet is gloednieuw. Nieuwe wallets hebben een saldo of een eerdere transactie nodig om een account te openen. Meld je aan met een van de opties hieronder en koppel deze wallet daarna via Instellingen.",
+    "signInPageWouldNotOpen": "De aanmeldpagina sloot voordat hij openging. Probeer het opnieuw of ga verder met e-mail."
   },
   "messages": {
     "smartRepliesOff": "Voorgestelde antwoorden uitgezet",
@@ -7402,7 +7406,22 @@
     "didNotRecoverEither": "Die aanmelding heeft geen van de hier getoonde profielen hersteld. Er is niets veranderd. Probeer de oorspronkelijke aanmelding van het gewenste profiel.",
     "didNotRecoverThis": "Die aanmelding heeft een andere wallet hersteld dan die van dit profiel. Er is niets veranderd. Probeer de aanmelding waarmee het oorspronkelijk is aangemaakt.",
     "couldNotRetrieve": "Die oude wallet kon niet op dit apparaat worden opgehaald. Je kunt hem hieronder nog steeds herstellen op dehub.io.",
-    "matchedWithBalance": "Gematched, {{balance}} tokens"
+    "matchedWithBalance": "Gematched, {{balance}} tokens",
+    "methodEmail": "een e-mailcode",
+    "methodPhone": "een telefoonnummer",
+    "madeWithNamed": "@{{name}} is gemaakt met {{method}}. Ga verder met hetzelfde {{method}}-account om het terug te halen.",
+    "madeWith": "Dit profiel is gemaakt met {{method}}. Ga verder met hetzelfde {{method}}-account om het terug te halen.",
+    "madeWithEmailNamed": "@{{name}} is gemaakt met een e-mailcode. We sturen nog één code naar dat adres om het terug te halen.",
+    "madeWithEmail": "Dit profiel is gemaakt met een e-mailcode. We sturen nog één code naar dat adres om het terug te halen.",
+    "madeWithPhoneNamed": "@{{name}} is gemaakt met een telefoonnummer. We sturen nog één code naar dat nummer om het terug te halen.",
+    "madeWithPhone": "Dit profiel is gemaakt met een telefoonnummer. We sturen nog één code naar dat nummer om het terug te halen.",
+    "wrongSignInNamed": "Met die inlog open je een andere wallet, niet @{{name}}. @{{name}} is gemaakt met {{method}}, en alleen daarmee krijg je het terug.",
+    "wrongSignIn": "Met die inlog open je een andere wallet. Dit profiel is gemaakt met {{method}}, en alleen daarmee krijg je het terug.",
+    "continueWith": "Doorgaan met {{provider}}",
+    "differentSignIn": "Een andere inlog gebruikt?",
+    "oldAccountPhone": "Telefoonnummer van het oude account",
+    "recoverFromPhoneA11y": "Oud account herstellen met dit telefoonnummer",
+    "phoneNeedsCode": "Vul het nummer in met landcode, bijvoorbeeld +31 6 12345678."
   },
   "liveGift": {
     "buyTokens": "Tokens kopen",
@@ -9922,6 +9941,73 @@
       "noRetakes": "Geen herhaalde takes gevonden",
       "retakesRemoved": "{{count}} herhaalde take(s) verwijderd, laatste take behouden",
       "retakesFailed": "Kon de herhaalde takes niet uit deze clip halen"
+    },
+    "speakers": {
+      "find": "Sprekers vinden",
+      "name": "Spreker {{number}}",
+      "onlyOne": "Er is maar één spreker gevonden.",
+      "failed": "Kon de sprekers niet vinden.",
+      "kept": "Alleen {{name}} behouden.",
+      "editFailed": "Die bewerking past niet bij deze clip.",
+      "split": "Opgesplitst in {{count}} sprekershots.",
+      "keepOnly": "Alleen deze",
+      "splitAction": "Knippen bij elke sprekerwissel"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Beschrijf het 3D-object dat je wilt",
+      "queued": "Je 3D-object wordt gemaakt. Het verschijnt in het tabblad Generaties.",
+      "note": "3D-objecten komen in Media als korte draaiende clip met een doorzichtige achtergrond."
+    },
+    "voiceClone": {
+      "pickerLabel": "Kloon je stem",
+      "pickerDetail": "Voice-overs met je eigen stem",
+      "title": "Kloon je stem",
+      "description": "Neem jezelf op of kies een clip waarin je praat. Je betaalt één keer en je stem is er voor elke voice-over.",
+      "defaultName": "Mijn stem",
+      "record": "Neem een fragment op (30 seconden tot 2 minuten)",
+      "stop": "Opname stoppen",
+      "fromMedia": "Of gebruik een clip uit Media",
+      "recorded": "Je opname",
+      "sample": "Fragment: {{name}}",
+      "hint": "Duidelijke spraak zonder muziek werkt het best.",
+      "noMic": "Kon de microfoon niet gebruiken.",
+      "sampleFailed": "Kon het geluid van die clip niet lezen.",
+      "pay": "Klonen voor {{amount}} DHB",
+      "useFree": "Klonen (al betaald)",
+      "owned": "Je stem “{{name}}” staat al klaar. Kies hem in de stemmenlijst.",
+      "useOwned": "Mijn stem gebruiken",
+      "ready": "“{{name}}” is klaar voor voice-overs.",
+      "failed": "Stem klonen is mislukt.",
+      "paidFailed": "Je betaling is bewaard. Open dit opnieuw en de volgende poging is gratis.",
+      "consent": "Kloon alleen je eigen stem, of een stem waarvoor je toestemming hebt."
+    },
+    "linkImport": {
+      "open": "Importeren via link",
+      "placeholder": "Plak een YouTube-, TikTok- of andere link",
+      "rights": "Deze video is van mij of ik heb toestemming om hem te gebruiken",
+      "audioOnly": "Alleen geluid",
+      "go": "Importeren",
+      "queued": "In de wachtrij…",
+      "downloading": "Downloaden {{percent}}%",
+      "waiting": "Wachten op de site, straks opnieuw…",
+      "adding": "Toevoegen aan Media…",
+      "added": "Geïmporteerd en aan de tijdlijn toegevoegd.",
+      "failed": "Kon die link niet importeren."
+    },
+    "reverse": {
+      "action": "Omkeren",
+      "working": "Omkeren {{percent}}%",
+      "done": "Clip omgekeerd.",
+      "failed": "Kon deze clip niet omkeren.",
+      "unsupported": "Deze browser kan video niet omkeren. Probeer Chrome of Edge.",
+      "tooLong": "Clips tot {{seconds}} seconden kunnen worden omgekeerd."
+    },
+    "behind": {
+      "action": "Tekst achter persoon",
+      "working": "Persoon uitknippen…",
+      "done": "Tekst en ondertitels staan nu achter de persoon.",
+      "failed": "Kon de tekst niet achter de persoon zetten."
     }
   },
   "creator": {
@@ -14619,7 +14705,7 @@
     "5948954e3b49": "Verwijderen ",
     "3ff441f1f484": " van je volgers",
     "83e2982ce44d": "Rapport ",
-    "5dc85dbc155e": "BNB-keten",
+    "5dc85dbc155e": "BNB Chain",
     "72074a8a6836": "Beschikbaar:",
     "582bfe13a748": " op",
     "49a6ddf9a439": "van ",
@@ -15241,5 +15327,81 @@
     "cancelled": "Geannuleerd",
     "moveFailed": "Verplaatsen lukte niet. Probeer opnieuw.",
     "seeAll": "Bekijk alles wat je hebt gepland"
+  },
+  "welcome": {
+    "about": {
+      "title": "Welkom bij DeHub",
+      "sub": "Je verjaardag blijft privé. Kies een look, je kunt hem altijd wijzigen.",
+      "birthday": "Geboortedatum",
+      "pick": "Kies je verjaardag",
+      "day": "Dag",
+      "month": "Maand",
+      "year": "Jaar",
+      "invalid": "Vul je volledige geboortedatum in.",
+      "tooYoung": "Je moet {{age}} jaar of ouder zijn om DeHub te gebruiken.",
+      "theme": "Jouw look"
+    },
+    "name": {
+      "title": "Je naam",
+      "sub": "Dit is de naam die mensen bij je posts zien.",
+      "placeholder": "Je naam"
+    },
+    "username": {
+      "title": "Je @gebruikersnaam",
+      "sub": "Letters, cijfers en underscores. Je kunt hem later wijzigen.",
+      "yours": "@{{name}} is van jou"
+    },
+    "photo": {
+      "title": "Je foto",
+      "sub": "Optioneel. Mensen volgen sneller als ze een gezicht zien.",
+      "choose": "Kies een foto",
+      "change": "Kies een andere"
+    },
+    "interests": {
+      "title": "Je interesses",
+      "sub": "Kies er minstens 3. Ze komen als eerste in je categorieën."
+    },
+    "people": {
+      "title": "Jouw mensen",
+      "sub": "Tik om te volgen. Hun posts vullen je Volgend-feed.",
+      "empty": "Nu geen suggesties. Bij Ontdekken vind je meer mensen.",
+      "followers": "{{count}} volgers"
+    },
+    "done": {
+      "title": "Ziet er goed uit, {{name}}",
+      "sub": "Vanaf vandaag ziet iedereen deze kaart.",
+      "eyebrow": "Profiel live"
+    },
+    "card": {
+      "name": "Je naam",
+      "interests": "Je interesses",
+      "following": "volgend",
+      "followers": "volgers"
+    },
+    "topic": {
+      "music": "Muziek",
+      "art": "Kunst",
+      "gaming": "Gaming",
+      "crypto": "Crypto",
+      "sports": "Sport",
+      "travel": "Reizen",
+      "comedy": "Comedy",
+      "film": "Film",
+      "anime": "Anime",
+      "cars": "Auto's",
+      "podcast": "Podcast",
+      "animals": "Dieren",
+      "tech": "Tech",
+      "food": "Eten",
+      "news": "Nieuws",
+      "science": "Wetenschap"
+    },
+    "back": "Terug",
+    "enter": "Naar DeHub",
+    "skipPhoto": "Nu overslaan",
+    "pickMore": "Kies er nog {{count}}",
+    "preview": "Voorbeeld",
+    "cardHint": "Zo zien mensen jou",
+    "followFailed": "Volgen mislukt. Probeer het opnieuw."
   }
 }

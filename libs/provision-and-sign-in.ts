@@ -38,7 +38,7 @@ const TARGET_CHAIN_ID = ChainId.BASE_MAINNET;
 export type ProvisionOutcome =
   | { kind: "signed-in" }
   | { kind: "wallet-setup"; request: WalletSetupRequest }
-  | { kind: "legacy-warning"; supabaseUserId: string; accounts: LegacyAccountMatch[] }
+  | { kind: "legacy-warning"; supabaseUserId: string; accounts: LegacyAccountMatch[]; email?: string }
   | { kind: "error"; message: string };
 
 export type ProvisionDeps = {
@@ -280,7 +280,7 @@ async function provisionAndSignInInner(
   }
   const legacyHint = await checkLegacyAccount();
   if (legacyHint.exists === true && legacyHint.accounts?.length) {
-    return { kind: "legacy-warning", supabaseUserId, accounts: legacyHint.accounts };
+    return { kind: "legacy-warning", supabaseUserId, accounts: legacyHint.accounts, email: legacyHint.email };
   }
   if (legacyHint.exists !== false) {
     return { kind: "error", message: _translateCopy("copy.d871a1830da9", { defaultValue: "Could not check your existing profile. Please try again." }) };

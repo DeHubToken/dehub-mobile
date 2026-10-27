@@ -89,6 +89,11 @@ export interface EditorCanvasHandle {
    * canvasHtml exportVideo). Resolves with the file's uri.
    */
   exportVideo: (opts: { width: number; height: number; bitrate: number; title: string; username?: string; format?: "gif"; range?: ExportRange; snapshot?: ProjectSnapshot; replaceEnding?: boolean }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
+  /**
+   * A span of a video's source played backwards, written as a new MP4 file
+   * (see canvasHtml reverseVideo). Resolves with the file's uri.
+   */
+  reverseVideo: (opts: { mediaId: string; start: number; end: number; title: string }, onProgress?: (fraction: number) => void) => Promise<{ uri: string; ext: string }>;
   cancelExport: () => void;
 }
 
@@ -849,6 +854,30 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
           out: null,
         });
         post({ type: "exportVideo", reqId, width, height, bitrate, username, format, range, snapshot, replaceEnding });
+      }),
+    reverseVideo: ({ mediaId, start, end, title }, onProgress) =>
+      new Promise((resolve, reject) => {
+        const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        let last = Date.now();
+        const watchdog = setInterval(() => {
+          const r = videoReqs.current.get(reqId);
+          if (!r) { clearInterval(watchdog); return; }
+          if (Date.now() - last > 45000) {
+            clearInterval(watchdog);
+            videoReqs.current.delete(reqId);
+            r.out?.discard();
+            post({ type: "exportAbort" });
+            reject(new Error("reverse stalled"));
+          }
+        }, 5000);
+        videoReqs.current.set(reqId, {
+          resolve: (v) => { clearInterval(watchdog); resolve(v); },
+          reject: (e) => { clearInterval(watchdog); reject(e); },
+          progress: (p: number) => { last = Date.now(); onProgress?.(p); },
+          title,
+          out: null,
+        });
+        post({ type: "reverseVideo", reqId, mediaId, start, end });
       }),
   }), [post, ready, t]);
 

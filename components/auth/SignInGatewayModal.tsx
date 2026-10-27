@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Keyboard } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
 import { ChainId } from "../../config/constants";
@@ -53,6 +53,7 @@ import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import { beginAuthTrace, readAuthTrace } from "../../libs/auth-trace";
+import { isSignInCancelled } from "../../libs/auth-error-text";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
 import { Trans, useTranslation } from "react-i18next";
@@ -101,6 +102,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   // this identity's email — gates the create-wallet screen behind a warning
   // instead of silently minting a duplicate. See LegacyAccountWarningModal.
   const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
+  const [legacyEmail, setLegacyEmail] = useState<string | undefined>(undefined);
   const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
   const isBusy = (authLoading || isLocalLoading || isWalletLoading) && !needsUsername;
   useEffect(() => {
@@ -212,8 +214,10 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           setWalletSetupRequest(outcome.request);
           return;
         case "legacy-warning":
+          Keyboard.dismiss();
           takeWalletSetupIntent();
           setPendingCreateUserId(outcome.supabaseUserId);
+          setLegacyEmail(outcome.email);
           setLegacyAccounts(outcome.accounts);
           return;
         case "error":
@@ -454,7 +458,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       console.error("[SignInGatewayModal] Google login error", e);
-      setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      if (!isSignInCancelled(e)) {
+        setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      }
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
@@ -470,7 +476,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       console.error("[SignInGatewayModal] Apple login error", e);
-      setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      if (!isSignInCancelled(e)) {
+        setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      }
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
@@ -517,7 +525,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       console.error("[SignInGatewayModal] Telegram login error", e);
       // Closing Telegram's consent screen is a choice, not a failure — do not
       // put a red notice under the sheet for it.
-      if (!/cancelled/i.test(e?.message || "")) {
+      if (!isSignInCancelled(e)) {
         setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
       }
     } finally {
@@ -729,6 +737,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           <LegacyAccountWarningModal
             visible={!!legacyAccounts}
             accounts={legacyAccounts ?? []}
+            email={legacyEmail}
             onRecovered={handleLegacyRecovered}
             onCreateAnyway={() => {
               // Close the warning first and present the wallet sheet once it has

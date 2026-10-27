@@ -109,7 +109,7 @@ export function parseAppUrl(raw: string, options: { dev?: boolean } = {}): URL |
   } catch {
     return null;
   }
-  if (isDehubHost(url.hostname)) return null;
+  if (url.username || url.password || isDehubHost(url.hostname.replace(/\.$/, ""))) return null;
   if (url.protocol === 'https:') return url;
   if (options.dev && url.protocol === 'http:' && isLocalHost(url.hostname)) return url;
   return null;
@@ -186,7 +186,7 @@ export function launchUrl(homeUrl: string, params: URLSearchParams): URL | null 
   const deep = params.get('url');
   if (deep) {
     const target = parseAppUrl(deep);
-    if (target && target.hostname === home.hostname) return target;
+    if (target && target.origin === home.origin) return target;
   }
   for (const [key, value] of params) {
     if (key !== 'from' && key !== 'url') home.searchParams.set(key, value);

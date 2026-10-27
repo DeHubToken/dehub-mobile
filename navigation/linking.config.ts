@@ -6,6 +6,7 @@ import { createLogger } from '../libs/logger';
 import { emitProfileDeepLink, emitStageDeepLink } from '../libs/deeplink.events';
 import { couldBeProfileSegment, isEnsHandle } from '../libs/ens-handle';
 import { RESERVED_LINK_SEGMENTS } from '../libs/reserved-usernames';
+import { hasHeldCallback, holdLaunchCallback, withoutFragment } from '../libs/oauth-cold-start';
 
 const logger = createLogger('DeepLink');
 
@@ -30,6 +31,22 @@ const homeState = () =>
                 routes: [{ name: ScreenNames.Home }],
               },
             },
+          ],
+        },
+      },
+    ],
+  }) as any;
+
+/** Home with the sign-in screen open over it. */
+const signInState = () =>
+  ({
+    routes: [
+      {
+        name: ScreenNames.App,
+        state: {
+          routes: [
+            { name: ScreenNames.Root, state: { routes: [{ name: ScreenNames.Home }] } },
+            { name: ScreenNames.SignIn },
           ],
         },
       },
@@ -545,7 +562,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
    * This runs BEFORE the default path matching
    */
   getStateFromPath: (path, options) => {
-    logger.info('Processing deep link', { path });
+    logger.info('Processing deep link', { path: withoutFragment(path) });
 
     // OAuth redirects (dehub://auth-callback#access_token=...&refresh_token=...)
     // carry their payload as a URL FRAGMENT. That fragment is already consumed
@@ -706,8 +723,15 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // RESERVED_PREFIXES). It must never be read as a profile username, and must
     // never trigger a navigation reset that could unmount the sign-in screen
     // mid-flow, so this resolves nothing at all rather than resolving Home.
+    // The exception is a launch link: Android closed the app while the page
+    // was open, so nothing is waiting for it and the sign-in screen finishes
+    // it instead (libs/oauth-cold-start).
+    if (segments[0] === 'auth-callback' && hasHeldCallback()) {
+      logger.info('Sign-in page came back to a fresh launch; opening sign-in to finish it');
+      return signInState();
+    }
     if (segments[0] === 'auth-callback' || segments[0] === 'auth') {
-      logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path });
+      logger.info('Ignoring OAuth callback deep link (already consumed in-flight)', { path: withoutFragment(path) });
       return undefined;
     }
     // couldBeProfileSegment carries two rules this branch was missing.
@@ -756,7 +780,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
    */
   subscribe: (listener) => {
     const subscription = Linking.addEventListener('url', ({ url }) => {
-      logger.info('Received deep link while app open', { url });
+      logger.info('Received deep link while app open', { url: withoutFragment(url) });
       // Rewrite username.dehub.io → dehub.io/:username so getStateFromPath handles it
       const subdomain = extractSubdomainUsername(url);
       if (subdomain) {
@@ -777,7 +801,8 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     const url = await Linking.getInitialURL();
     if (!url) return url;
 
-    logger.info('App launched with deep link', { url });
+    logger.info('App launched with deep link', { url: withoutFragment(url) });
+    await holdLaunchCallback(url);
 
     // Rewrite username.dehub.io → dehub.io/:username
     const subdomain = extractSubdomainUsername(url);

@@ -11,6 +11,9 @@
  * finished is all one list, and the screen polls it rather than each job.
  */
 import { apiClient } from '../libs/api.client';
+import env from '../config/env';
+import { getAuthToken } from '../libs/auth.utils';
+import * as FileSystem from 'expo-file-system/legacy';
 
 export interface ConverterImportParams {
   url: string;
@@ -18,6 +21,8 @@ export interface ConverterImportParams {
    * the source's own default, which is what every client sent before the
    * choice existed. */
   mediaKind?: 'video' | 'audio' | 'image';
+  /** `editor` downloads the clip for the video editor instead of posting it. */
+  destination?: 'post' | 'editor';
   /** No ownership check is possible from a URL, so this is the liability
    * gate. The API rejects the request without it. */
   ownershipConfirmed: boolean;
@@ -66,7 +71,13 @@ export interface ConverterImport {
    * will, and no client should have to know Bull's rules to tell them apart. */
   willRetry?: boolean;
   queuedAt?: number;
-  result?: { createdTokenId?: string; duplicate?: boolean; [key: string]: unknown };
+  result?: {
+    createdTokenId?: string;
+    duplicate?: boolean;
+    /** Editor imports: the private download, fetched once with downloadEditorImport. */
+    editorFile?: { mimeType?: string; fileName?: string; title?: string; durationSeconds?: number; bytes?: number };
+    [key: string]: unknown;
+  };
   failedReason?: string;
 }
 
@@ -167,4 +178,23 @@ export async function importFromPodcast(
   params: PodcastImportParams,
 ): Promise<PodcastImportQueuedResponse> {
   return apiClient.post<PodcastImportQueuedResponse>('/podcast_import', params);
+}
+
+export async function getConverterImport(jobId: string | number): Promise<ConverterImport> {
+  return apiClient.get<ConverterImport>(`/youtube_import/${jobId}`);
+}
+
+/** Save a finished editor import to the cache. The server deletes its copy once sent. */
+export async function downloadEditorImport(jobId: string | number, fileName: string): Promise<string> {
+  const root = FileSystem.cacheDirectory ?? FileSystem.documentDirectory;
+  if (!root) throw new Error('Editor storage unavailable');
+  const token = await getAuthToken();
+  const target = `${root}editor-link-${Date.now()}-${fileName.replace(/[^\w.-]+/g, '_')}`;
+  const base = (env.API_URL || 'https://api.dehub.io/api').replace(/\/$/, '');
+  const result = await FileSystem.downloadAsync(`${base}/youtube_import/${jobId}/file`, target, { headers: token ? { Authorization: `Bearer ${token}` } : {} });
+  if (result.status < 200 || result.status >= 300) {
+    await FileSystem.deleteAsync(target, { idempotent: true }).catch(() => {});
+    throw new Error(`Import download failed (${result.status})`);
+  }
+  return target;
 }
