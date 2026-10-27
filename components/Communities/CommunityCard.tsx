@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_INSET, minimalRow } from "../../theme/minimal";
+import CommunityDescription from "./CommunityDescription";
 
 interface Props {
   community: Community;
@@ -70,9 +71,13 @@ const CommunityCard: React.FC<Props> = ({ community, role, onPress }) => {
             </Text>
           </View>
         </View>
-        <Text style={styles.desc} numberOfLines={1}>
-          {community.description || t("communities.noDescription")}
-        </Text>
+        {community.description ? (
+          <CommunityDescription text={community.description} style={styles.desc} singleLine />
+        ) : (
+          <Text style={styles.desc} numberOfLines={1}>
+            {t("communities.noDescription")}
+          </Text>
+        )}
         <Text style={styles.members}>
           {t("communities.memberCount", { count: formatCompactNumber(community.member_count) })}
         </Text>

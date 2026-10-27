@@ -35,6 +35,7 @@ import { PinnedCommunityDissolve, PinnedCommunityStrip } from "./PinnedCommunity
 import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 import useCinematicPhone from "../../hooks/useCinematicPhone";
+import CommunityDescription from "./CommunityDescription";
 
 const MAX_PINS = 3;
 
@@ -146,9 +147,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
           {community.name}
         </Text>
         {!!community.description && (
-          <Text style={styles.pinDesc} numberOfLines={1}>
-            {community.description}
-          </Text>
+          <CommunityDescription text={community.description} style={styles.pinDesc} singleLine />
         )}
         <Text style={styles.pinMembers}>
           {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}

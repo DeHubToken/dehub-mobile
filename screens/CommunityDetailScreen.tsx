@@ -56,6 +56,7 @@ import { getAccountSummaries, type AccountSummary } from "../services/user.servi
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import LoadErrorState from "../components/ui/LoadErrorState";
 import { useKeyboardOffset } from "../hooks/useKeyboardLayout";
+import CommunityDescription from "../components/Communities/CommunityDescription";
 
 /** Members rendered (and profile-resolved) per page of the Members tab. */
 const MEMBERS_PAGE = 30;
@@ -406,7 +407,7 @@ const CommunityDetailScreen: React.FC = () => {
         </View>
 
         {!!community.description && (
-          <Text className="text-zinc-300 text-sm mt-3 leading-5">{community.description}</Text>
+          <CommunityDescription text={community.description} className="text-zinc-300 text-sm mt-3 leading-5" />
         )}
 
         <View className="flex-row flex-wrap gap-2 mt-4">
@@ -581,9 +582,11 @@ const CommunityDetailScreen: React.FC = () => {
             {tab === "about" && (
               <View className="px-4 pt-2">
                 <Text className="text-zinc-400 text-xs uppercase mb-2">{t("communities.about")}</Text>
-                <Text className="text-white text-sm leading-6">
-                  {community.description || t("communities.noDescription")}
-                </Text>
+                {community.description ? (
+                  <CommunityDescription text={community.description} className="text-white text-sm leading-6" />
+                ) : (
+                  <Text className="text-white text-sm leading-6">{t("communities.noDescription")}</Text>
+                )}
 
                 {abilities.can("change_info") ? (
                   <CommunityInfoEditor community={community} onSaved={load} />

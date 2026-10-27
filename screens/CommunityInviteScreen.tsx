@@ -33,6 +33,7 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { formatCompactNumber } from "../libs/numbers.util";
 import { toastError, toastSuccess } from "../libs/toast";
 import type { CommunityInvitePreview } from "../types/community";
+import CommunityDescription from "../components/Communities/CommunityDescription";
 
 const CommunityInviteScreen: React.FC = () => {
   const { t } = useTranslation();
@@ -227,7 +228,7 @@ const CommunityInviteScreen: React.FC = () => {
           </Text>
 
           {!!preview.description && (
-            <Text className="text-zinc-300 text-sm mt-3 leading-5">{preview.description}</Text>
+            <CommunityDescription text={preview.description} className="text-zinc-300 text-sm mt-3 leading-5" />
           )}
 
           <TouchableOpacity
