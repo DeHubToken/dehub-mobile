@@ -68,6 +68,7 @@ import {
   Comment,
 } from "../../services/nft.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../../libs";
+import { selfBadgeFields } from "../../libs/misc";
 import { openCroppedImagePicker, getFileName, guessMime } from "../../libs/assets.util";
 import { useComposerKeyboard, useSelfLiftingComposer } from "../../hooks/useComposerKeyboard";
 import { useMentions } from "../../hooks/useMentions";
@@ -896,6 +897,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           displayName: user?.displayName,
           avatarImageUrl: user?.avatarImageUrl,
           address: userAddress,
+          ...selfBadgeFields(user),
         },
         likeCount: 0,
         isLiked: false,
@@ -1055,6 +1057,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               displayName: user?.displayName,
               avatarImageUrl: user?.avatarImageUrl,
               address: userAddress,
+              ...selfBadgeFields(user),
             },
             likeCount: 0,
             isLiked: false,
