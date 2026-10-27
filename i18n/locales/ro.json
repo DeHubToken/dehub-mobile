@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "Distribuie linkul",
+    "pinnedMore": "Mai multe",
     "sendInMessage": "Trimite Invitație",
     "existingPost": {
       "add": "Adăugați post existent",

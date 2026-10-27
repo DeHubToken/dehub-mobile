@@ -6277,6 +6277,7 @@
   },
   "communities": {
     "shareLink": "Condividi link",
+    "pinnedMore": "Altro",
     "sendInMessage": "Invia invito",
     "existingPost": {
       "add": "Aggiungi post esistente",

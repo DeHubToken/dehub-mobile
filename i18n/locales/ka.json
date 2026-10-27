@@ -6290,6 +6290,7 @@
   },
   "communities": {
     "shareLink": "ბმულის გაზიარება",
+    "pinnedMore": "მეტი",
     "sendInMessage": "მოწვევის გაგზავნა",
     "existingPost": {
       "add": "დაამატეთ არსებული პოსტი",

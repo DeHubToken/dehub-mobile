@@ -6302,6 +6302,7 @@
   },
   "communities": {
     "shareLink": "Κοινοποίηση συνδέσμου",
+    "pinnedMore": "Περισσότερα",
     "sendInMessage": "Αποστολή προσκλήσεων",
     "existingPost": {
       "add": "Προσθήκη υπάρχουσας ανάρτησης",

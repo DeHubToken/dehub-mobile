@@ -6262,6 +6262,7 @@
   },
   "communities": {
     "shareLink": "ലിങ്ക് പങ്കിടുക",
+    "pinnedMore": "കൂടുതൽ",
     "sendInMessage": "ക്ഷണം അയയ്ക്കുക",
     "existingPost": {
       "add": "നിലവിലുള്ള പോസ്റ്റ് ചേർക്കുക",

@@ -6632,6 +6632,7 @@
   },
   "communities": {
     "shareLink": "Поділитися посиланням",
+    "pinnedMore": "Більше",
     "sendInMessage": "Надіслати запрошення",
     "existingPost": {
       "add": "Додати існуючий пост",

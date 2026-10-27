@@ -6276,6 +6276,7 @@
   },
   "communities": {
     "shareLink": "Sdílet odkaz",
+    "pinnedMore": "Více",
     "sendInMessage": "Odeslat pozvánku",
     "existingPost": {
       "add": "Přidat existující příspěvek",
