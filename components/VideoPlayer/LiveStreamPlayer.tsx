@@ -1,4 +1,4 @@
-import { hasStreamEnded } from '../../libs/live-status';
+import { hasStreamEnded, OFFLINE_CONFIRM_MS } from '../../libs/live-status';
 import React, {
   useCallback,
   useEffect,
@@ -551,6 +551,25 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   // Offline when not live, not ended, and not scheduled
   const isOfflineEffective =
     !isLiveEffective && !isEndedEffective && !isScheduledEffective;
+  // "Not live" has to hold before it is shown. The post can arrive before the
+  // broadcast's ingest does, and a reconnecting broadcaster flips status for a
+  // few seconds; a single answer in that window used to park the viewer on
+  // Stream Offline for good. The stream keeps being re-read meanwhile, and a
+  // live answer or a start event clears this.
+  const [offlineConfirmed, setOfflineConfirmed] = useState(false);
+  useEffect(() => {
+    setOfflineConfirmed(false);
+    if (!isOfflineEffective || !streamEntity) return;
+    const timer = setTimeout(() => setOfflineConfirmed(true), OFFLINE_CONFIRM_MS);
+    return () => clearTimeout(timer);
+  }, [isOfflineEffective, !!streamEntity, streamId]);
+  // A dropped socket may have missed the start event; ask again on reconnect.
+  const seenEpochRef = useRef(connectionEpoch);
+  useEffect(() => {
+    if (seenEpochRef.current === connectionEpoch) return;
+    seenEpochRef.current = connectionEpoch;
+    refetchStream(true);
+  }, [connectionEpoch, refetchStream]);
 
   const makeKey = useCallback((sid: string | null | undefined) => {
     return sid ? `${sid}:${connectedGenRef.current}` : "";
@@ -702,6 +721,8 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         LivestreamEvents.EndStream,
         data
       );
+      // Feed tiles join other streams' rooms; another stream ending is not this one.
+      if (data?.streamId && String(data.streamId) !== String(streamId)) return;
       setSocketStatus("ENDED");
       refetchStream();
       // Clear paused state on end
@@ -1630,15 +1651,16 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
 
   // Determine status overlay type
   const overlayStatus = useMemo(() => {
-    if (streamLoading && !streamEntity) return "loading" as const;
+    // No answer yet, or every read so far failed: still connecting, never Offline.
+    if (!streamEntity) return "loading" as const;
     if (isPausedEffective && isLiveEffective) return "paused" as const;
     // A replay covers the ended card: the stream is over, but there is a
     // recording playing underneath and an overlay would sit on top of it.
     if (isEndedEffective) return isPlayingReplay ? null : ("ended" as const);
     if (isScheduledEffective) return "scheduled" as const;
-    if (isOfflineEffective) return "offline" as const;
+    if (isOfflineEffective) return offlineConfirmed ? ("offline" as const) : ("loading" as const);
     return null;
-  }, [streamLoading, streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isPlayingReplay, isScheduledEffective, isOfflineEffective]);
+  }, [streamEntity, isPausedEffective, isLiveEffective, isEndedEffective, isPlayingReplay, isScheduledEffective, isOfflineEffective, offlineConfirmed]);
 
   return (
     <View className="flex-1 dark-surface bg-black"
