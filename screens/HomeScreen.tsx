@@ -1076,6 +1076,7 @@ export default function HomeScreen() {
         active={isPlaybackActive}
         params={feedListParamsByType[feedType]}
         showShortsCarousel={feedType === "all"}
+        showPendingPost={feedType === "all"}
         answersTabPress={feedType === "all"}
         pageSize={20}
         headerInset={postFeedInset}
