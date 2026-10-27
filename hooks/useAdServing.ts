@@ -1,4 +1,4 @@
-import { useScreenActivity } from "./useScreenActivity";
+import { useScreenActivity, useActiveScreenPolling } from "./useScreenActivity";
 /**
  * Native POVR ad delivery.
  *
@@ -26,11 +26,11 @@ export function useServedAds(surface: string, options: UseServedAdsOptions = {})
   const wallet = user?.walletAddress || user?.address;
   const { count = 1, categories, enabled = true } = options;
 
-  return useQuery({
+  const query = useQuery({
     queryKey: ["served-ads", surface, wallet?.toLowerCase() ?? "anon", count, categories],
     enabled: () => enabled && isActive(),
     staleTime: 120_000,
-    refetchInterval: () => enabled && isActive() ? 120_000 : false,
+
     retry: 1,
     queryFn: async (): Promise<ServedAd[]> => {
       try {
@@ -51,6 +51,8 @@ export function useServedAds(surface: string, options: UseServedAdsOptions = {})
       }
     },
   });
+  useActiveScreenPolling(query.refetch, 120_000, enabled);
+  return query;
 }
 
 export function hasTrackedAdEvent(ad: ServedAd, event: "impression" | "click") {
