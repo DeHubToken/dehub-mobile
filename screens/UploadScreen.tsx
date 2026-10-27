@@ -37,6 +37,7 @@ import * as DocumentPicker from "expo-document-picker";
 import { useAudioRecorder, RecordingPresets, createAudioPlayer, type AudioRecorder, type AudioPlayer } from "expo-audio";
 import { configureForRecording, releaseRecording, configureForDuckedPlayback } from "../libs/audioSession";
 import { useVideoPlayer, VideoView } from "expo-video";
+import { shareAudioWhenSilent } from "../libs/videoAudioMixing";
 import { FEED_BUFFER_OPTIONS } from "../libs/videoBuffering";
 import { useEvent } from "expo";
 import * as FileSystem from "expo-file-system/legacy";
@@ -751,6 +752,7 @@ export default function UploadScreen() {
     !isLiveMode && !isQuoteMode && !pickedVideo && pickedImages.length === 0;
 
   const player = useVideoPlayer(pickedVideo?.uri ?? null, (p) => {
+    shareAudioWhenSilent(p);
     p.loop = true;
     p.muted = true;
     p.bufferOptions = FEED_BUFFER_OPTIONS;

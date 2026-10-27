@@ -4,11 +4,12 @@ import { AppState, Pressable, Text, View } from "react-native";
 import { Image } from "expo-image";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
 import { useVideoPlayer, VideoView } from "expo-video";
+import { shareAudioWhenSilent } from "../../libs/videoAudioMixing";
 import { useTranslation } from "react-i18next";
 import type { StockItem } from "../../libs/editor/stock";
 
 function VideoPreview({ item, onError }: { item: StockItem; onError: () => void }) {
-  const player = useVideoPlayer(item.downloadUrl, video => { video.bufferOptions = FEED_BUFFER_OPTIONS; video.loop = true; });
+  const player = useVideoPlayer(item.downloadUrl, video => { shareAudioWhenSilent(video); video.bufferOptions = FEED_BUFFER_OPTIONS; video.loop = true; });
   useEffect(() => {
     const error = player.addListener("statusChange", status => { if (status.status === "error") onError(); });
     const background = AppState.addEventListener("change", state => { if (state !== "active") player.pause(); });

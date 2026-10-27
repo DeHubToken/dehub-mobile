@@ -1,11 +1,13 @@
 import { useEffect, useMemo } from 'react';
 import { createVideoPlayer, type VideoPlayer, type VideoSource } from 'expo-video';
 import { releaseAfterPictureInPicture } from '../libs/pictureInPicture';
+import { shareAudioWhenSilent } from '../libs/videoAudioMixing';
 
 /** A route may unmount while the root PiP view is still using this instance. */
 export function usePersistentVideoPlayer(source: VideoSource, setup?: (player: VideoPlayer) => void): VideoPlayer {
   const player = useMemo(() => {
     const value = createVideoPlayer(source);
+    shareAudioWhenSilent(value);
     setup?.(value);
     return value;
     // Match expo-video: setup runs once per source, not per callback identity.

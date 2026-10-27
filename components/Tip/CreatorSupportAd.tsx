@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { AppState, Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { VideoView, useVideoPlayer } from 'expo-video';
+import { shareAudioWhenSilent } from '../../libs/videoAudioMixing';
 import { supabase } from '../../services/supabase';
 import { dehubAuthHeaders } from '../../services/ai.service';
 import { useSilenceOnRelease } from '../../hooks/useSilenceOnRelease';
@@ -26,6 +27,7 @@ function SupportVideo({ ad, wallet, onMessage }: { ad: SupportAd; wallet: string
   const { height } = useWindowDimensions();
   const progress = useRef({ media: 0, at: Date.now(), played: 0, sent: 0, pending: false });
   const player = useVideoPlayer(ad.mediaUrl, instance => {
+    shareAudioWhenSilent(instance);
     instance.muted = true; instance.loop = true; instance.timeUpdateEventInterval = 0.5; instance.play();
   });
   useSilenceOnRelease(player);

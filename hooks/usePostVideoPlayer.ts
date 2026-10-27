@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { createVideoPlayer, type VideoPlayer } from 'expo-video';
 import { claimPostMedia, ownsPostMedia, postMediaSession } from '../libs/post-media-session';
 import { replaceVideoSource } from '../libs/video-source';
+import { shareAudioWhenSilent } from '../libs/videoAudioMixing';
 
 export function usePostVideoPlayer(url: string | null | undefined, setup: (player: VideoPlayer) => void, deferSource = false, priority = false) {
   const token = useRef({}).current;
@@ -13,6 +14,7 @@ export function usePostVideoPlayer(url: string | null | undefined, setup: (playe
   if (!session.value) {
     session.loadedSource = deferSource ? null : url || null;
     session.value = createVideoPlayer(session.loadedSource);
+    shareAudioWhenSilent(session.value);
     setup(session.value);
   }
   const [, refresh] = useState(0);
