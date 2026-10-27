@@ -286,6 +286,25 @@ export async function pinCommunity(
   if (error) throw error;
 }
 
+/** Moves one pin to the top of the owner's list; the rest keep their order. */
+export async function showPinFirst(walletAddress: string, communityId: string, orderedIds: string[]): Promise<void> {
+  const order = [communityId, ...orderedIds.filter((id) => id !== communityId)];
+  const results = await Promise.all(
+    order.map((id, index) =>
+      withWalletHeader(
+        supabase
+          .from("pinned_communities")
+          .update({ display_order: index } as any)
+          .eq("community_id", id)
+          .eq("wallet_address", walletAddress.toLowerCase()),
+        walletAddress,
+      ),
+    ),
+  );
+  const failed = results.find((result) => result.error);
+  if (failed?.error) throw failed.error;
+}
+
 export async function unpinCommunity(walletAddress: string, communityId: string): Promise<void> {
   const { error } = await withWalletHeader(
     supabase

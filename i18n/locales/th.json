@@ -6301,6 +6301,7 @@
   "communities": {
     "shareLink": "แชร์ลิงค์",
     "pinnedMore": "เพิ่มเติม",
+    "showFirst": "แสดงเป็นอันดับแรก",
     "sendInMessage": "ส่งคำเชิญ",
     "existingPost": {
       "add": "เพิ่มโพสต์ที่มีอยู่",

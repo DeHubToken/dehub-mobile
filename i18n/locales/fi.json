@@ -6273,6 +6273,7 @@
   "communities": {
     "shareLink": "Jaa linkki",
     "pinnedMore": "Lisää",
+    "showFirst": "Näytä ensin",
     "sendInMessage": "Lähetä kutsu",
     "existingPost": {
       "add": "Lisää olemassa oleva postaus",

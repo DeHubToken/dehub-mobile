@@ -6291,6 +6291,7 @@
   "communities": {
     "shareLink": "ბმულის გაზიარება",
     "pinnedMore": "მეტი",
+    "showFirst": "პირველად ჩვენება",
     "sendInMessage": "მოწვევის გაგზავნა",
     "existingPost": {
       "add": "დაამატეთ არსებული პოსტი",

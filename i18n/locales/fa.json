@@ -6303,6 +6303,7 @@
   "communities": {
     "shareLink": "اشتراک گذاری",
     "pinnedMore": "بیشتر",
+    "showFirst": "نمایش در ابتدا",
     "sendInMessage": "ارسال دعوتنامه",
     "existingPost": {
       "add": "افزودن پست موجود",

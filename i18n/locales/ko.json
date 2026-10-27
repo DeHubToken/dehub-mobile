@@ -6282,6 +6282,7 @@
   "communities": {
     "shareLink": "링크 공유하기",
     "pinnedMore": "더 보기",
+    "showFirst": "맨 앞에 표시",
     "sendInMessage": "초대하기",
     "existingPost": {
       "placeholder": "DeHub 게시물 링크 또는 게시물 ID",
