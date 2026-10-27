@@ -95,7 +95,7 @@ function LiveWhosHereSheetComponent({ visible, onClose, audience, loading }: Pro
   const here = audience?.here ?? [];
 
   return (
-    <GlassModal visible={visible} onClose={onClose} presentation="bottom" scrollable maxHeight="82%" blurIntensity={50}>
+    <GlassModal visible={visible} onClose={onClose} presentation="bottom" scrollable dragFromContent maxHeight="82%" blurIntensity={50}>
       <View style={styles.grabWrap}>
         <View style={styles.grab} />
       </View>

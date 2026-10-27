@@ -31,7 +31,18 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 44, bottom: 34 }) }));
 jest.mock('expo-blur', () => ({ BlurView: 'BlurView' }));
-jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'GestureHandlerRootView' }));
+// A chainable stand-in for the gesture builder that keeps its callbacks.
+const mockGesture = (kind: string) => {
+  const g: any = { kind, cb: {} };
+  for (const m of ['runOnJS', 'activeOffsetY', 'failOffsetX', 'simultaneousWithExternalGesture']) g[m] = () => g;
+  for (const m of ['onStart', 'onUpdate', 'onEnd', 'onFinalize']) g[m] = (fn: unknown) => { g.cb[m] = fn; return g; };
+  return g;
+};
+jest.mock('react-native-gesture-handler', () => ({
+  GestureHandlerRootView: 'GestureHandlerRootView',
+  GestureDetector: 'GestureDetector',
+  Gesture: { Native: () => mockGesture('native'), Pan: () => mockGesture('pan') },
+}));
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 jest.mock('../../components/DM/MessageSurface', () => ({ __esModule: true, default: 'MessageSurface' }));
 jest.mock('../../components/ui/SheetGlass', () => ({ __esModule: true, default: 'SheetGlass' }));
@@ -194,4 +205,40 @@ it('lifts by the keyboard event on android and drops back to the bottom when it 
   } finally {
     platform.OS = 'ios';
   }
+});
+
+it('drags a dragFromContent drawer shut from its list once the list is at the top', () => {
+  const close = jest.fn();
+  const plain = render(<GlassModal visible presentation="bottom" scrollable onClose={close}><View /></GlassModal>);
+  // Other drawers keep only the handle strip.
+  expect(plain.UNSAFE_queryAllByType('GestureDetector' as any)).toHaveLength(0);
+  plain.unmount();
+
+  const screen = render(<GlassModal visible presentation="bottom" scrollable dragFromContent onClose={close}><View /></GlassModal>);
+  const detectors = screen.UNSAFE_getAllByType('GestureDetector' as any);
+  const pan = detectors.find((d: any) => d.props.gesture.kind === 'pan')!.props.gesture.cb;
+  const list = screen.UNSAFE_getByType('ScrollView' as any);
+  const panel = screen.UNSAFE_getByType('AnimatedView' as any);
+  const translate = panel.props.style.flat(Infinity).find((s: any) => s && s.transform).transform[0].translateY;
+  translate.setValue.mockClear();
+
+  // Scrolled down: the list keeps the pull, the panel stays put.
+  fireEvent.scroll(list, { nativeEvent: { contentOffset: { y: 200 } } });
+  pan.onStart();
+  pan.onUpdate({ translationY: 60 });
+  expect(translate.setValue).not.toHaveBeenCalled();
+  // The list reaches the top: the rest of the pull moves the panel from there.
+  fireEvent.scroll(list, { nativeEvent: { contentOffset: { y: 0 } } });
+  pan.onUpdate({ translationY: 100 });
+  expect(translate.setValue).toHaveBeenLastCalledWith(0);
+  pan.onUpdate({ translationY: 150 });
+  expect(translate.setValue).toHaveBeenLastCalledWith(50);
+  pan.onEnd({ velocityY: 0 });
+  expect(close).not.toHaveBeenCalled();
+
+  pan.onStart();
+  pan.onUpdate({ translationY: 12 });
+  pan.onUpdate({ translationY: 130 });
+  pan.onEnd({ velocityY: 0 });
+  expect(close).toHaveBeenCalledTimes(1);
 });
