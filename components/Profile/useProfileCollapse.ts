@@ -14,10 +14,12 @@ export function useProfileCollapse(profileKey?: string | null) {
   const identityBottom = useSharedValue(220);
   const actionsBottom = useSharedValue(Number.POSITIVE_INFINITY);
   useEffect(() => { scrollY.value = 0; tabsPinned.value = false; }, [profileKey, scrollY, tabsPinned]);
+  // Every kept profile tab carries its own copy of the header, and a hidden
+  // copy measures 0. Only a real measurement moves the collapse points.
   const onIdentityBottom = useCallback((bottom: number) => {
-    identityBottom.value = bottom;
+    if (bottom > 0) identityBottom.value = bottom;
   }, [identityBottom]);
-  const onActionsBottom = useCallback((bottom: number) => { actionsBottom.value = bottom; }, [actionsBottom]);
+  const onActionsBottom = useCallback((bottom: number) => { if (bottom > 0) actionsBottom.value = bottom; }, [actionsBottom]);
   return { scrollY, tabsPinned, identityBottom, actionsBottom, onIdentityBottom, onActionsBottom };
 }
 
