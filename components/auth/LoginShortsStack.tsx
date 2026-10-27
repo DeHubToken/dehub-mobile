@@ -3,6 +3,7 @@ import { Animated, Easing, Image, StyleSheet, Text, View, useWindowDimensions } 
 import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { shareAudioWhenSilent } from "../../libs/videoAudioMixing";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
@@ -39,6 +40,7 @@ const LOOP_MS = 32000;
  */
 function Clip({ name, playing }: { name: ClipName; playing: boolean }) {
   const player = useVideoPlayer(CLIPS[name].video, (p) => {
+    shareAudioWhenSilent(p);
     p.muted = true;
     p.loop = true;
   });

@@ -15,6 +15,7 @@ import SmartImage from "../common/SmartImage";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { VideoView, useVideoPlayer } from 'expo-video';
+import { shareAudioWhenSilent } from '../../libs/videoAudioMixing';
 import { FEED_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import GlassIndicator from '../ui/GlassIndicator';
 import MarkdownText from '../ui/MarkdownText';
@@ -102,6 +103,7 @@ const GeneratedVideo: React.FC<{
   // Muted + looping autoplay, as web's <video> does. Sound would be a surprise
   // in a chat thread; the controls unmute it.
   const player = useVideoPlayer(url, (p) => {
+    shareAudioWhenSilent(p);
     p.loop = true;
     p.muted = true;
     p.bufferOptions = FEED_BUFFER_OPTIONS;

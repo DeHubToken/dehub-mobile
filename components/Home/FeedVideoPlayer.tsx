@@ -916,11 +916,13 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     endStarting();
   }, [isAutoplayActive, autoplayEnabled, stopPlayback, endStarting]);
 
+  // Muted autoplay must not claim the session: on iOS a non-mixing category
+  // stops whatever the viewer was listening to in another app.
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || isMuted) return;
     configureForBackgroundPlayback().catch(() => {});
     return () => { releaseBackgroundPlayback().catch(() => {}); };
-  }, [isPlaying]);
+  }, [isPlaying, isMuted]);
 
   useEffect(() => {
     return () => { if (autoplayTimerRef.current) clearTimeout(autoplayTimerRef.current); stopPlayback(); };
