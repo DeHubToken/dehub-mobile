@@ -31,6 +31,9 @@ import { ButtonLoader } from "../DeHubLoader";
 import { useAppTheme } from "../../context/ThemeContext";
 import { minimalRow } from "../../theme/minimal";
 import { PinnedCommunityDissolve, PinnedCommunityStrip } from "./PinnedCommunityStage";
+import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
+import useCinematicPhone from "../../hooks/useCinematicPhone";
 
 const MAX_PINS = 3;
 
@@ -57,6 +60,8 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
   const ownWallet = currentUser?.address || currentUser?.walletAddress || "";
   const [pinned, setPinned] = useState<(Community & { pinId: string })[]>([]);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const cinematicPhone = useCinematicPhone();
   const [loading, setLoading] = useState(true);
 
   const loadPins = useCallback(async () => {
@@ -97,11 +102,72 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
 
   const featured = renderHeader ? pinned.find((community) => community.banner_url) ?? null : null;
   const remaining = pinned.filter((community) => community.id !== featured?.id);
+  // One pin shows; the rest wait behind More instead of stacking.
+  const shown = featured ? null : remaining[0] ?? null;
+  const more = shown ? remaining.slice(1) : remaining;
   if (loading || (pinned.length === 0 && !isOwnProfile)) return <>{renderHeader?.(null)}</>;
+
+  const pinCard = (community: Community & { pinId: string }, onMore?: () => void) => (
+    <TouchableOpacity
+      key={community.pinId}
+      className={community.banner_url ? 'dark-surface' : undefined}
+      style={[styles.pinCard, isMinimal && minimalRow]}
+      activeOpacity={0.8}
+      onPress={() => { setMoreOpen(false); openCommunity(community.slug); }}
+    >
+      {!!community.banner_url && (
+        <>
+          <Image source={storageImageSource(community.banner_url, rowWidth)} style={styles.pinBanner} contentFit="cover" />
+          <View style={styles.pinScrim} />
+        </>
+      )}
+      <View style={styles.pinAvatar}>
+        {community.avatar_url ? (
+          <Image source={storageImageSource(community.avatar_url, 48)} style={styles.pinAvatarImg} contentFit="cover" />
+        ) : (
+          <Icon name="Users" size={20} color="#808089" />
+        )}
+      </View>
+      <View style={styles.pinBody}>
+        <Text style={styles.pinName} numberOfLines={1}>
+          {community.name}
+        </Text>
+        {!!community.description && (
+          <Text style={styles.pinDesc} numberOfLines={1}>
+            {community.description}
+          </Text>
+        )}
+        <Text style={styles.pinMembers}>
+          {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}
+        </Text>
+      </View>
+      {isOwnProfile && (
+        <TouchableOpacity
+          style={[styles.pinManage, onMore && styles.pinManageInline]}
+          onPress={(e) => {
+            e.stopPropagation?.();
+            setMoreOpen(false);
+            setPickerOpen(true);
+          }}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel={t("communities.pinToProfile")}
+        >
+          <Icon name="Pin" size={14} color="#a1a1aa" />
+        </TouchableOpacity>
+      )}
+      {onMore && (
+        <TouchableOpacity style={styles.pinMore} onPress={onMore} hitSlop={6} accessibilityRole="button">
+          <Text style={styles.pinMoreText}>{t("communities.pinnedMore")}</Text>
+        </TouchableOpacity>
+      )}
+    </TouchableOpacity>
+  );
 
   return (
     <>
-      <View>
+      {/* The art at the foot of the header ends on the same corners as the cover. */}
+      <View className={featured && !isMinimal && !cinematicPhone ? "rounded-b-xl overflow-hidden" : undefined}>
       {featured && <PinnedCommunityDissolve community={featured} />}
       {renderHeader?.(featured)}
       {featured && (
@@ -109,60 +175,15 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
           community={featured}
           onOpen={() => openCommunity(featured.slug)}
           onManagePins={isOwnProfile ? () => setPickerOpen(true) : undefined}
+          onMore={more.length > 0 ? () => setMoreOpen(true) : undefined}
         />
       )}
       </View>
-    <View style={[styles.wrap, isMinimal && styles.minimalWrap, renderHeader && styles.inset, featured && remaining.length === 0 && styles.emptyWrap]}>
-      {remaining.map((community) => (
-        <TouchableOpacity
-          key={community.pinId}
-          className={community.banner_url ? 'dark-surface' : undefined}
-          style={[styles.pinCard, isMinimal && minimalRow]}
-          activeOpacity={0.8}
-          onPress={() => openCommunity(community.slug)}
-        >
-          {!!community.banner_url && (
-            <>
-              <Image source={storageImageSource(community.banner_url, rowWidth)} style={styles.pinBanner} contentFit="cover" />
-              <View style={styles.pinScrim} />
-            </>
-          )}
-          <View style={styles.pinAvatar}>
-            {community.avatar_url ? (
-              <Image source={storageImageSource(community.avatar_url, 48)} style={styles.pinAvatarImg} contentFit="cover" />
-            ) : (
-              <Icon name="Users" size={20} color="#808089" />
-            )}
-          </View>
-          <View style={styles.pinBody}>
-            <Text style={styles.pinName} numberOfLines={1}>
-              {community.name}
-            </Text>
-            {!!community.description && (
-              <Text style={styles.pinDesc} numberOfLines={1}>
-                {community.description}
-              </Text>
-            )}
-            <Text style={styles.pinMembers}>
-              {formatCompactNumber(community.member_count)} {t("communities.membersLabel")}
-            </Text>
-          </View>
-          {isOwnProfile && (
-            <TouchableOpacity
-              style={styles.pinManage}
-              onPress={(e) => {
-                e.stopPropagation?.();
-                setPickerOpen(true);
-              }}
-              hitSlop={8}
-              accessibilityRole="button"
-              accessibilityLabel={t("communities.pinToProfile")}
-            >
-              <Icon name="Pin" size={14} color="#a1a1aa" />
-            </TouchableOpacity>
-          )}
-        </TouchableOpacity>
-      ))}
+    <View style={[styles.wrap, isMinimal && styles.minimalWrap, renderHeader && styles.inset, featured && styles.emptyWrap]}>
+      {shown && pinCard(shown, more.length > 0 ? () => setMoreOpen(true) : undefined)}
+      <PinnedMoreSheet visible={moreOpen} onClose={() => setMoreOpen(false)}>
+        {more.map((community) => pinCard(community))}
+      </PinnedMoreSheet>
       {isOwnProfile && !featured && pinned.length < MAX_PINS && (
         <TouchableOpacity style={[styles.addPin, isMinimal && { marginTop: 8 }]} onPress={() => setPickerOpen(true)} activeOpacity={0.7}>
           <Icon name="Plus" size={14} color="#808089" />
@@ -183,6 +204,26 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
     </>
   );
 };
+
+/** The rest of a profile's pins, in the same glass sheet as the app's other drawers. */
+function PinnedMoreSheet({ visible, onClose, children }: { visible: boolean; onClose: () => void; children: React.ReactNode }) {
+  const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const backdrop = useSheetBackdrop(visible);
+  return (
+    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose}>
+      <View style={styles.moreRoot}>
+        <SheetBackdrop backdrop={backdrop} />
+        <Pressable style={StyleSheet.absoluteFill} onPress={onClose} />
+        <View style={[styles.moreSheet, { paddingBottom: Math.max(24, insets.bottom + 16) }]}>
+          <SheetGlassFill backdropBlurred={backdrop.blurred} style={StyleSheet.absoluteFill} />
+          <Text style={styles.modalTitle}>{t("comments.pinnedBadge")}</Text>
+          <View style={styles.moreList}>{children}</View>
+        </View>
+      </View>
+    </Modal>
+  );
+}
 
 function PinPickerModal({
   visible,
@@ -347,6 +388,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     zIndex: 2,
   },
+  pinManageInline: { position: "relative", top: 0, right: 0 },
+  pinMore: {
+    height: 32,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(255,255,255,0.1)",
+    zIndex: 2,
+  },
+  pinMoreText: { fontSize: 13, fontWeight: "500", color: "#fff" },
+  moreRoot: { flex: 1, justifyContent: "flex-end" },
+  moreSheet: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: "hidden",
+    padding: 20,
+    maxHeight: "70%",
+  },
+  moreList: { gap: 8 },
   addPin: {
     flexDirection: "row",
     alignItems: "center",

@@ -6302,6 +6302,7 @@
   },
   "communities": {
     "shareLink": "اشتراک گذاری",
+    "pinnedMore": "بیشتر",
     "sendInMessage": "ارسال دعوتنامه",
     "existingPost": {
       "add": "افزودن پست موجود",

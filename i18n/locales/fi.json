@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "Jaa linkki",
+    "pinnedMore": "Lisää",
     "sendInMessage": "Lähetä kutsu",
     "existingPost": {
       "add": "Lisää olemassa oleva postaus",

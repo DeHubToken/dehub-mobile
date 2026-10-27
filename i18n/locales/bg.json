@@ -6276,6 +6276,7 @@
   },
   "communities": {
     "shareLink": "Споделяне на връзка",
+    "pinnedMore": "Още",
     "sendInMessage": "Изпращане на покана",
     "existingPost": {
       "add": "Добавете съществуваща публикация",

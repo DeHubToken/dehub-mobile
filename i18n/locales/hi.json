@@ -6283,6 +6283,7 @@
   },
   "communities": {
     "shareLink": "लिंक शेयर करें",
+    "pinnedMore": "और",
     "sendInMessage": "आमंत्रण भेजें",
     "existingPost": {
       "add": "मौजूदा पोस्ट जोड़ें",

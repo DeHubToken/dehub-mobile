@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "شارك الرابط",
+    "pinnedMore": "المزيد",
     "sendInMessage": "إرسال دعوة",
     "existingPost": {
       "add": "اضف منشور موجود",
