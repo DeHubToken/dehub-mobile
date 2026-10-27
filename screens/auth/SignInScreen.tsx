@@ -875,8 +875,9 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           />
 
 
-          {/* Terms and Privacy */}
-          <View style={{ paddingVertical: 24 }} onLayout={(event) => setLoginLegalHeight(event.nativeEvent.layout.height)}>
+          {/* Terms and Privacy: snug at the bottom on the main step so the
+              clips above take the spare height. */}
+          <View style={authStep === "main" ? { paddingTop: 12, paddingBottom: 12 } : { paddingVertical: 24 }} onLayout={(event) => setLoginLegalHeight(event.nativeEvent.layout.height)}>
             <Text style={[authText.caption, { textAlign: "center" }]}>
               {/* The links travel with the sentence so languages that reorder
                   the terms and the policy still read correctly. */}
