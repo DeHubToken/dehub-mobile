@@ -1,5 +1,5 @@
 import { storage } from "./storage";
-import { reportError, flushLogs } from "./errorReporter";
+import { reportError, flushLogs, historicalExitMetadata } from "./errorReporter";
 import { getLastExitReasons, takeLastJavaCrash, type ProcessExitInfo } from "../modules/exit-reason";
 
 /**
@@ -61,7 +61,7 @@ function reportJavaCrash(): void {
     "Uncaught Java exception";
   const err = new Error(headline.trim().slice(0, 300));
   err.stack = text.slice(0, 16000);
-  reportError("JavaCrash", [err]);
+  reportError("JavaCrash", [err], { metadata: historicalExitMetadata() });
 }
 
 export function reportProcessExits(): void {
@@ -90,7 +90,7 @@ export function reportProcessExits(): void {
           status: info.status,
           trace: info.trace ? info.trace.slice(0, 1500) : undefined,
         },
-      ]);
+      ], { metadata: historicalExitMetadata() });
     }
     // Sent now, not on the 30 s timer: if this launch dies the same way the
     // last one did, the timer never fires and the reason is lost again.
