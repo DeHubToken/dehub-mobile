@@ -13458,7 +13458,32 @@
     "step2Title": "它在大约一分钟内建成",
     "step2Body": "@ assistant编写并托管应用程序，然后发送指向您的消息的链接。",
     "step3Title": "分享或更改",
-    "step3Body": "任何人都可以打开链接。在聊天中回复以更改任何内容。"
+    "step3Body": "任何人都可以打开链接。在聊天中回复以更改任何内容。",
+    "manage": {
+      "open": "管理",
+      "address": "应用地址",
+      "copy": "复制",
+      "copied": "链接已复制",
+      "save": "保存",
+      "addressSaved": "地址已更新",
+      "public": "公开",
+      "publicHint": "任何知道链接的人都可以打开它。",
+      "privateHint": "只有您可以打开它。",
+      "store": "DeHub应用商店",
+      "publishHint": "在DeHub应用商店中列出此应用，以便人们可以查找和安装它。",
+      "publish": "发布到应用商店",
+      "publishedToast": "发布到应用商店",
+      "inStore": "在应用商店中发布。",
+      "inStoreUnreviewed": "在应用商店中，标记为“未审核” ，直到团队进行审核。",
+      "viewInStore": "在商店中查看",
+      "unpublish": "取消发布",
+      "unpublished": "已从应用商店中删除",
+      "versions": "版本",
+      "noVersions": "尚未保存版本。",
+      "current": "当前",
+      "restore": "恢复",
+      "restored": "还原版本{{version}}"
+    }
   },
   "depin": {
     "title": "德平",

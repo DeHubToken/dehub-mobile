@@ -13583,7 +13583,32 @@
     "step2Title": "Dibangun dalam waktu sekitar satu menit",
     "step2Body": "@assistant menulis dan menjadi tuan rumah aplikasi, lalu mengirimkan tautan ke pesan Anda.",
     "step3Title": "Bagikan atau ubah",
-    "step3Body": "Siapa pun dapat membuka tautan. Balas di obrolan untuk mengubah apa pun."
+    "step3Body": "Siapa pun dapat membuka tautan. Balas di obrolan untuk mengubah apa pun.",
+    "manage": {
+      "open": "Kelola",
+      "address": "Alamat aplikasi",
+      "copy": "Salin",
+      "copied": "Tautan disalin",
+      "save": "Simpan",
+      "addressSaved": "Alamat diperbarui",
+      "public": "Publik",
+      "publicHint": "Siapa pun yang memiliki tautan dapat membukanya.",
+      "privateHint": "Hanya Anda yang bisa membukanya.",
+      "store": "Toko aplikasi DeHub",
+      "publishHint": "Daftarkan aplikasi ini di toko aplikasi DeHub sehingga orang dapat menemukan dan menginstalnya.",
+      "publish": "Publikasikan ke app store",
+      "publishedToast": "Dipublikasikan ke app store",
+      "inStore": "Terdaftar di app store.",
+      "inStoreUnreviewed": "Di app store, tandai Belum ditinjau sampai tim memeriksanya.",
+      "viewInStore": "Lihat di toko",
+      "unpublish": "Batalkan publikasi",
+      "unpublished": "Dihapus dari app store",
+      "versions": "Versi",
+      "noVersions": "Belum ada versi yang disimpan.",
+      "current": "Saat ini",
+      "restore": "Pulihkan",
+      "restored": "Versi yang dipulihkan {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

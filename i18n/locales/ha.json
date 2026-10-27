@@ -13540,7 +13540,32 @@
     "step2Title": "Yana gina a cikin kimanin minti daya",
     "step2Body": "@mataimaki rubuta da kuma rundunar da app, sa'an nan kuma aika da mahada zuwa ga saƙonnin ka.",
     "step3Title": "Raba shi ko canza shi",
-    "step3Body": "Kowane mutum na iya buɗe hanyar haɗi. Amsa a cikin hira don canza komai."
+    "step3Body": "Kowane mutum na iya buɗe hanyar haɗi. Amsa a cikin hira don canza komai.",
+    "manage": {
+      "open": "Sarrafa",
+      "address": "Adireshin App",
+      "copy": "Kwafi",
+      "copied": "Link kwafa",
+      "save": "Ajiye",
+      "addressSaved": "Adireshin da aka sabunta",
+      "public": "Jama'a",
+      "publicHint": "Duk wanda ke da mahaɗin zai iya buɗe shi.",
+      "privateHint": "Kawai zaka iya buɗe shi.",
+      "store": "DeHub app store",
+      "publishHint": "Lissafi wannan app a cikin DeHub app store sabõda haka, mutane za su iya samun kuma shigar da shi.",
+      "publish": "Buga zuwa shagon app",
+      "publishedToast": "An buga shi zuwa shagon app",
+      "inStore": "An jera shi a cikin shagon app.",
+      "inStoreUnreviewed": "A cikin shagon app, alama Unreviewed har sai tawagar duba shi.",
+      "viewInStore": "Duba a cikin shagon",
+      "unpublish": "Ba a buga shi ba",
+      "unpublished": "An cire shi daga shagon app",
+      "versions": "Shafuna",
+      "noVersions": "Babu ceto versions har yanzu.",
+      "current": "Yanzu",
+      "restore": "Mayar da",
+      "restored": "Sake dawo da sigar {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

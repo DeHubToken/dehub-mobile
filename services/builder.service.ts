@@ -9,6 +9,8 @@
  */
 import env from "../config/env";
 import { SHARE_ORIGIN } from "../libs/dehub-links";
+import { getAuthToken } from "../libs/auth.utils";
+import { tokenRefreshManager } from "../libs/token-refresh";
 
 /** Public Storage directory the generated files live in (trailing slash). */
 export function builderStorageBase(projectId: string): string {
@@ -46,3 +48,95 @@ export async function loadBuilderAppHtml(projectId: string, version?: number): P
   if (!res.ok) throw new Error(`App not ready (${res.status})`);
   return wrapAppHtml(await res.text(), projectId);
 }
+
+// ── Own-origin hosting + owner controls ────────────────────────────────────
+// Each app lives at https://<slug>.dehub.app. Owners manage it through
+// dehubweb's builder-api function with their DeHub token.
+
+export const BUILDER_APPS_DOMAIN = "dehub.app";
+
+export function builderAppUrl(slug: string): string {
+  return `https://${slug}.${BUILDER_APPS_DOMAIN}/`;
+}
+
+export interface PublicBuilderApp {
+  slug: string | null;
+  name: string;
+  emoji: string;
+  version: number;
+  url: string | null;
+}
+
+/** A public app's address, or null when it is private or does not exist. */
+export async function resolvePublicApp(projectId: string): Promise<PublicBuilderApp | null> {
+  const res = await fetch(`${env.SUPABASE_URL}/functions/v1/builder-serve?app=${encodeURIComponent(projectId)}`);
+  if (!res.ok) return null;
+  return res.json();
+}
+
+/** True once <slug>.dehub.app answers — false while DNS is still moving. */
+export async function appHostReachable(url: string): Promise<boolean> {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try {
+    const res = await fetch(url, { method: "HEAD", signal: ctrl.signal });
+    return res.ok;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+export interface BuilderProject {
+  id: string;
+  name: string;
+  emoji: string;
+  status: string;
+  version: number;
+  is_public: boolean;
+  slug: string | null;
+  miniapp_app_id: string | null;
+}
+
+export interface BuilderListing {
+  slug: string;
+  status: string;
+  tier: "unlisted" | "listed" | "verified";
+  published: boolean;
+}
+
+export interface BuilderVersion {
+  version: number;
+  name: string;
+  emoji: string;
+  summary: string;
+  created_at: string;
+}
+
+async function call<T>(body: Record<string, unknown>): Promise<T> {
+  await tokenRefreshManager.ensureFreshToken();
+  const token = await getAuthToken();
+  if (!token) throw new Error("Sign in first");
+  const res = await fetch(`${env.SUPABASE_URL}/functions/v1/builder-api`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-dehub-token": token },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || data?.error) throw new Error(data?.error || `Builder request failed (${res.status})`);
+  return data as T;
+}
+
+export const builderApi = {
+  /** The project, if the signed-in wallet owns it. Throws otherwise. */
+  get: (projectId: string) =>
+    call<{ project: BuilderProject; url: string | null; listing: BuilderListing | null }>({ action: "get", projectId }),
+  versions: (projectId: string) => call<{ current: number; versions: BuilderVersion[] }>({ action: "versions", projectId }),
+  restore: (projectId: string, version: number) => call<{ version: number }>({ action: "restore", projectId, version }),
+  setVisibility: (projectId: string, isPublic: boolean) => call<{ isPublic: boolean }>({ action: "set_visibility", projectId, isPublic }),
+  setSlug: (projectId: string, slug: string) => call<{ slug: string; url: string }>({ action: "set_slug", projectId, slug }),
+  previewUrl: (projectId: string) => call<{ url: string; publicUrl: string; expiresAt: string | null }>({ action: "preview_url", projectId }),
+  publish: (projectId: string) => call<{ appSlug: string; tier: string; storeUrl: string }>({ action: "publish", projectId }),
+  unpublish: (projectId: string) => call<{ ok: true }>({ action: "unpublish", projectId }),
+};

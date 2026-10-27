@@ -13571,7 +13571,32 @@
     "step2Title": "Yakha cishe ngomzuzu",
     "step2Body": "@assistant uyabhala futhi ubungaze i-app, bese uthumela ilinki emiyalezweni yakho.",
     "step3Title": "Yabelana ngayo noma uyishintshe",
-    "step3Body": "Noma ubani angavula ilinki. Phendula engxoxweni ukuze ushintshe noma yini."
+    "step3Body": "Noma ubani angavula ilinki. Phendula engxoxweni ukuze ushintshe noma yini.",
+    "manage": {
+      "open": "Lawula",
+      "address": "Ikheli le-app",
+      "copy": "Kopisha",
+      "copied": "Ilinki ikopishiwe",
+      "save": "Gcina",
+      "addressSaved": "Ikheli lilungisiwe",
+      "public": "Umphakathi",
+      "publicHint": "Noma ubani onelinki angayivula.",
+      "privateHint": "Nguwe kuphela ongayivula.",
+      "store": "Isitolo se-app se-DeHub",
+      "publishHint": "Faka le app esitolo se-app se-DeHub ukuze abantu bayithole futhi bayifake.",
+      "publish": "Shicilela esitolo se-app",
+      "publishedToast": "Ishicilelwe esitolo se-app",
+      "inStore": "Ifakwe esitolo se-app.",
+      "inStoreUnreviewed": "Esitolo se-app, kumakwe Ukungabuyekezwa kuze kube yilapho iqembu likuhlola.",
+      "viewInStore": "Buka esitolo",
+      "unpublish": "Ungashicileli",
+      "unpublished": "Ikhishiwe esitolo se-app",
+      "versions": "Izinguqulo",
+      "noVersions": "Azikho izinhlobo ezigciniwe okwamanje.",
+      "current": "Okwamanje",
+      "restore": "Buyisela",
+      "restored": "Uhlobo olubuyiselwe {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

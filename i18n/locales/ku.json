@@ -13821,7 +13821,32 @@
     "step2Title": "Di nêzîkî xulekekê de tê avakirin",
     "step2Body": "@assistant sepanê dinivîse û mazûvaniya wê dike, paşê girêdanê dişîne peyamên te.",
     "step3Title": "Parve bike an biguherîne",
-    "step3Body": "Her kes dikare girêdanê veke. Ji bo guhertina her tiştî di sohbetê de bersiv bide."
+    "step3Body": "Her kes dikare girêdanê veke. Ji bo guhertina her tiştî di sohbetê de bersiv bide.",
+    "manage": {
+      "open": "Rêvebirin",
+      "address": "Navnîşana sepanê",
+      "copy": "Kopî",
+      "copied": "Girêdan hat kopîkirin",
+      "save": "Rizgarkirin",
+      "addressSaved": "Navnîşan hate nûvekirin",
+      "public": "Alenî",
+      "publicHint": "Her kesê ku lînka wî/wê hebe dikare wê veke.",
+      "privateHint": "Tenê hûn dikarin wê vekin.",
+      "store": "Dikana sepanên DeHub",
+      "publishHint": "Vê sepanê di firotgeha sepanan a DeHub de navnîş bike da ku mirov bikaribin wê bibînin û saz bikin.",
+      "publish": "Li firotgeha sepanan belav bike",
+      "publishedToast": "Li firotgeha sepanan hate weşandin",
+      "inStore": "Di firotgeha sepanan de hatîye navnîş kirin.",
+      "inStoreUnreviewed": "Di firotgeha sepanan de, heta ku tîm wê kontrol bike wekî Nehatiye nîşankirin.",
+      "viewInStore": "Li firotgehê bibîne",
+      "unpublish": "Belavkirin betal bike",
+      "unpublished": "Ji firotgeha sepanan hat rakirin",
+      "versions": "Versiyon",
+      "noVersions": "Hîn tu guhertoyên tomarkirî tune ne.",
+      "current": "Vêga",
+      "restore": "Nûvdekirin",
+      "restored": "Guhertoya vegerandî {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",
