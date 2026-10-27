@@ -57,6 +57,7 @@ import PPVTopUpStep, { type PPVShortfall } from "./PPVTopUpStep";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const PPV_CHAIN_NAMES: Record<number, string> = { 8453: "Base", 56: "BNB Chain" };
 
@@ -101,6 +102,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
 
   const translateY = useSharedValue(SHEET_HIDE_OFFSET);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [phase, setPhase] = useState<
@@ -364,9 +366,8 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
         >
-        <Animated.View
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
-        >
+        <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+          <SheetBackdrop backdrop={backdrop} />
           <Pressable style={{ flex: 1 }} onPress={isBusy ? undefined : closeSheet} />
         </Animated.View>
 
@@ -375,7 +376,7 @@ const PPVSheetComponent: React.FC<PPVSheetProps> = ({
         >
           {/* Solid, not glass: expo-blur does not blur on Android, so a tint
               here let the sheet read through whatever it opened over. */}
-          <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay]} />
+          <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, styles.overlay]} />
 
           <GestureDetector gesture={panGesture}>
             <Animated.View style={styles.handleWrap}>

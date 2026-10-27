@@ -50,7 +50,7 @@ import {
   type ProposalComment,
   type ProposalThread,
 } from "../hooks/useGovernanceDiscussion";
-import { isVotingOpen, needsOwnBadge } from "../services/governance.service";
+import { isProposalNumber, isVotingOpen, needsOwnBadge } from "../services/governance.service";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import RepostShareSheet from "../components/Home/RepostShareSheet";
 import { getProposalRepostState, toggleProposalRepost } from "../services/repost.service";
@@ -174,7 +174,9 @@ export default function GovernanceProposalScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
-  const proposalId: string | undefined = route.params?.proposalId;
+  // The link's key: the public number web shares (/app/governance/1) or a
+  // legacy uuid. Everything below works on the uuid once the row is in.
+  const proposalKey: string | undefined = route.params?.proposalId;
   const focusedCommentId: string | undefined = route.params?.commentId;
   // The comment box is docked under the discussion and rides the keyboard, as
   // on the post page and in DMs. Inside the scroll, under a
@@ -187,7 +189,8 @@ export default function GovernanceProposalScreen() {
   const isAuthed = isSignedIn && !needsUsername;
   const myWallet: string = (user?.walletAddress || user?.address || "").toLowerCase();
 
-  const { data: proposal, isLoading, isError, refetch } = useGovernanceProposal(proposalId);
+  const { data: proposal, isLoading, isError, refetch } = useGovernanceProposal(proposalKey);
+  const proposalId: string | undefined = proposal?.id ?? (isProposalNumber(proposalKey) ? undefined : proposalKey);
   const { data: threads = [], isLoading: threadsLoading } = useProposalDiscussion(proposalId);
   const submitComment = useSubmitProposalComment();
   const deleteComment = useDeleteProposalComment();
@@ -327,7 +330,7 @@ export default function GovernanceProposalScreen() {
   });
   const reposted = !!repostState?.reposted;
   const repostCount = repostState?.count ?? 0;
-  const proposalUrl = proposalId ? `${SHARE_ORIGIN}/app/governance/${proposalId}` : "";
+  const proposalUrl = proposalId ? `${SHARE_ORIGIN}/app/governance/${proposal?.proposal_number ?? proposalId}` : "";
   const toggleRepost = useCallback(() => {
     if (!proposalId || !proposal) return;
     if (!isAuthed) {

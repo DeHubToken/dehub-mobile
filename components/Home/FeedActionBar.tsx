@@ -90,7 +90,17 @@ const BOUNCE_CONFIG = { damping: 12, stiffness: 300 };
 // native view, so a separate Animated.View around the icon was one more view
 // per button, seven per card.
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-const BUTTON_ROW = { flexDirection: "row", alignItems: "center", gap: 4 } as const;
+// Headroom above and below each button, taken back with a negative margin so
+// the row keeps its height. Without it the button's own bounds stopped at the
+// icon's edge and Android cut the bottom off an emoji drawn any larger.
+const GLYPH_ROOM = 6;
+const BUTTON_ROW = {
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 4,
+  paddingVertical: GLYPH_ROOM,
+  marginVertical: -GLYPH_ROOM,
+} as const;
 
 const AnimatedActionButton: React.FC<{
   onPress: () => void;
@@ -176,20 +186,23 @@ const AnimatedActionButton: React.FC<{
       // without changing layout. Horizontal stays at 6: the row is
       // justify-between with ~16pt gaps, so wider horizontal slop would make
       // neighbouring buttons' tap areas overlap and steal each other's taps.
-      hitSlop={{ top: 13, bottom: 13, left: 6, right: 6 }}
+      hitSlop={{ top: 13 - GLYPH_ROOM, bottom: 13 - GLYPH_ROOM, left: 6, right: 6 }}
       style={buttonStyle}
     >
       {iconNode ? iconNode : glyph ? (
         // A fixed box, as on web: the emoji is taller than the icon it
         // replaces, and a row that grew when the lead reaction changed moved
         // every post below it.
-        <View style={{ width: iconSize, height: iconSize, alignItems: "center", justifyContent: "center" }}>
+        <View style={{ width: iconSize, height: iconSize + GLYPH_ROOM * 2, marginVertical: -GLYPH_ROOM, alignItems: "center", justifyContent: "center" }}>
           <ReactionEmoji
             reaction={glyph}
             animate={glyphAnimated}
             playing={glyphPlaying}
             size={iconSize + 1.76}
-            textStyle={{ fontSize: iconSize - 1.76, lineHeight: iconSize + 3.52, width: iconSize, textAlign: "center" }}
+            // Wider than the slot (Samsung's emoji draw wider than the font
+            // size) and with no lineHeight: Android puts the extra line height
+            // above the glyph, which pushed the face down past the bottom edge.
+            textStyle={{ fontSize: iconSize - 1.76, width: iconSize + 12, textAlign: "center", textAlignVertical: "center", includeFontPadding: false }}
           />
         </View>
       ) : (

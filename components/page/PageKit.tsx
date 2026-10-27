@@ -33,7 +33,7 @@ export function useFlatPage(): boolean {
   return isMinimal || ((theme === "system" || theme === "immersive") && !skin);
 }
 
-function useKitColors() {
+export function useKitColors() {
   const app = useAppTheme() as ReturnType<typeof useAppTheme> & { accent?: Rgb };
   const flat = useFlatPage();
   const accent = app.accent;

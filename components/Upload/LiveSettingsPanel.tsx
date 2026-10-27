@@ -9,16 +9,14 @@ import { useSurfaceDraft, draftIdentity } from '../../hooks/useSurfaceDraft';
 import { DhbCoin } from "../common/DhbCoin";
 import { useTranslation } from "react-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Platform } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from "@react-native-community/datetimepicker";
+import ScheduleSheet from "./ScheduleSheet";
 import Icon from "../ui/Icon";
 import GlassIndicator from "../ui/GlassIndicator";
 import CustomSwitch from "../ui/CustomSwitch";
@@ -105,7 +103,6 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
 
   // Date picker visibility (Android shows as a dialog)
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
 
   // Draft tip value (not committed until confirm)
   const [tipDraft, setTipDraft] = useSurfaceDraft("components/Upload/LiveSettingsPanel.tsx:tipDraft", state.minTip, draftScope);
@@ -137,6 +134,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
           scheduledDate: state.scheduledDate ?? defaultDate,
         });
         setExpandedSection("schedule");
+        setShowDatePicker(true);
       } else {
         onChange({ ...state, scheduleEnabled: false, scheduledDate: null });
         if (expandedSection === "schedule") setExpandedSection(null);
@@ -145,36 +143,7 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
     [state, onChange, expandedSection],
   );
 
-  const handleDateChange = useCallback(
-    (_event: DateTimePickerEvent, selectedDate?: Date) => {
-      if (Platform.OS === "android") setShowDatePicker(false);
-      if (selectedDate) {
-        // Keep existing time, update date
-        const current = state.scheduledDate ?? new Date();
-        const merged = new Date(selectedDate);
-        merged.setHours(current.getHours(), current.getMinutes(), 0, 0);
-        onChange({ ...state, scheduledDate: merged });
-        // On Android, show time picker next
-        if (Platform.OS === "android") {
-          setTimeout(() => setShowTimePicker(true), 300);
-        }
-      }
-    },
-    [state, onChange],
-  );
 
-  const handleTimeChange = useCallback(
-    (_event: DateTimePickerEvent, selectedTime?: Date) => {
-      if (Platform.OS === "android") setShowTimePicker(false);
-      if (selectedTime) {
-        const current = state.scheduledDate ?? new Date();
-        const merged = new Date(current);
-        merged.setHours(selectedTime.getHours(), selectedTime.getMinutes(), 0, 0);
-        onChange({ ...state, scheduledDate: merged });
-      }
-    },
-    [state, onChange],
-  );
 
   const formattedDate = useMemo(() => {
     if (!state.scheduledDate) return t("live.notSet");
@@ -262,65 +231,24 @@ const LiveSettingsPanel: React.FC<LiveSettingsPanelProps> = ({
             {t("upload.scheduleMin30")}
           </Text>
 
-          <View className="flex-row items-center mb-3">
-            <View className="flex-1 h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700 justify-center">
-              <Text className="text-white text-sm">{formattedDate}</Text>
-            </View>
-          </View>
-
-          {/* iOS renders its own compact date and time controls inline below, so
-              the Pick buttons only exist on Android, where they open the system
-              dialogs. On iOS they used to set state that nothing rendered. */}
-          {Platform.OS === "android" && (
-            <View className="flex-row gap-3 mb-2">
-              <TouchableOpacity
-                onPress={() => setShowDatePicker(true)}
-                className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
-              >
-                <Ionicons name="calendar" size={16} color="#fff" />
-                <Text className="text-white text-xs ml-2">{t("live.pickDate")}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setShowTimePicker(true)}
-                className="flex-1 flex-row items-center justify-center h-10 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
-              >
-                <Ionicons name="time" size={16} color="#fff" />
-                <Text className="text-white text-xs ml-2">{t("live.pickTime")}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-
-          {(showDatePicker || (Platform.OS === "ios" && expandedSection === "schedule")) && (
-            <View className="flex-row items-center gap-3 mb-2">
-              <DateTimePicker
-                value={state.scheduledDate ?? new Date(Date.now() + 6 * 60 * 60 * 1000)}
-                mode="date"
-                display={Platform.OS === "ios" ? "compact" : "default"}
-                minimumDate={new Date()}
-                onChange={handleDateChange}
-                themeVariant="dark"
-              />
-              {Platform.OS === "ios" && (
-                <DateTimePicker
-                  value={state.scheduledDate ?? new Date(Date.now() + 6 * 60 * 60 * 1000)}
-                  mode="time"
-                  display="compact"
-                  onChange={handleTimeChange}
-                  themeVariant="dark"
-                />
-              )}
-            </View>
-          )}
-
-          {showTimePicker && Platform.OS === "android" && (
-            <DateTimePicker
-              value={state.scheduledDate ?? new Date(Date.now() + 6 * 60 * 60 * 1000)}
-              mode="time"
-              display="default"
-              onChange={handleTimeChange}
-              themeVariant="dark"
-            />
-          )}
+          <TouchableOpacity
+            onPress={() => setShowDatePicker(true)}
+            accessibilityRole="button"
+            className="flex-row items-center mb-3 h-11 px-3 rounded-xl bg-theme-neutrals-900 border border-theme-neutrals-700"
+          >
+            <Ionicons name="calendar" size={16} color="#fff" />
+            <Text className="text-white text-sm ml-2 flex-1">{formattedDate}</Text>
+            <Ionicons name="chevron-forward" size={16} color="#fff" />
+          </TouchableOpacity>
+          <ScheduleSheet
+            visible={showDatePicker}
+            onClose={() => setShowDatePicker(false)}
+            scheduledDate={state.scheduledDate}
+            onSchedule={(date) => onChange({ ...state, scheduleEnabled: !!date, scheduledDate: date })}
+            title={t("upload.scheduleLivestream")}
+            minimumMinutes={30}
+            kind="live"
+          />
 
           <View className="flex-row justify-end mt-2 gap-3">
             <TouchableOpacity

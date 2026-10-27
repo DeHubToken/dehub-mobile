@@ -249,9 +249,10 @@ export function useCreatePoll() {
     setLoading(true);
     try {
       const res = await createPoll(params);
-      if (params.tokenId > 0) pollCreated(params.tokenId);
+      if (params.tokenId && params.tokenId > 0) pollCreated(params.tokenId);
       toastSuccess(_copy("copy.05ea13855698", { defaultValue: "Poll created" }));
-      return res.result;
+      // A chat poll also comes back as the message it was sent as.
+      return res.message ? { ...res.result, message: res.message } : res.result;
     } catch (e: any) {
       toastError(e?.message || _copy("copy.c653104b4b35", { defaultValue: "Failed to create poll" }));
       throw e;

@@ -27,6 +27,10 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('expo-blur', () => ({ BlurView: 'BlurView' }));
+jest.mock('react-native-reanimated', () => {
+  const fade = { duration: () => fade };
+  return { __esModule: true, default: { View: 'AnimatedView' }, FadeIn: fade, FadeOut: fade };
+});
 
 function skinFor(theme: AppThemeName) {
   const base = getThemeSkin(theme);
