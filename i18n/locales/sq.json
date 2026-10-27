@@ -13540,7 +13540,32 @@
     "step2Title": "Ndërton për rreth një minutë",
     "step2Body": "@assistant shkruan dhe pret aplikacionin, pastaj dërgon linkun e mesazheve të tua.",
     "step3Title": "Shpërndaje ose ndryshoje",
-    "step3Body": "Kushdo mund ta hapë linkun. Përgjigju në bisedë për të ndryshuar ndonjë gjë."
+    "step3Body": "Kushdo mund ta hapë linkun. Përgjigju në bisedë për të ndryshuar ndonjë gjë.",
+    "manage": {
+      "open": "Menaxho",
+      "address": "Adresa e aplikacionit",
+      "copy": "Kopjo",
+      "copied": "Linku u kopjua",
+      "save": "Ruaj",
+      "addressSaved": "Adresa u përditësua",
+      "public": "Publike",
+      "publicHint": "Kushdo që ka linkun mund ta hapë atë.",
+      "privateHint": "Vetëm ti mund ta hapësh.",
+      "store": "Dyqan aplikacionesh DeHub",
+      "publishHint": "Listoje këtë aplikacion në dyqanin e aplikacioneve DeHub në mënyrë që njerëzit ta gjejnë dhe instalojnë atë.",
+      "publish": "Publiko në dyqanin e aplikacioneve",
+      "publishedToast": "Publikuar në dyqanin e aplikacioneve",
+      "inStore": "Listuar në dyqanin e aplikacioneve.",
+      "inStoreUnreviewed": "Në dyqanin e aplikacioneve, shënohet E parishikuar derisa ekipi ta kontrollojë atë.",
+      "viewInStore": "Shfaq në dyqan",
+      "unpublish": "Hiq publikimin",
+      "unpublished": "U hoq nga dyqani i aplikacioneve",
+      "versions": "Versionet",
+      "noVersions": "Nuk ka ende versione të ruajtura.",
+      "current": "Aktuale",
+      "restore": "Rikthe",
+      "restored": "Versioni i rivendosur {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

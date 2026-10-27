@@ -13528,7 +13528,28 @@
     "step2Title": "大概一分钟就建好",
     "step2Body": "@assistant会写好并托管App，然后把链接发到侬的消息里。",
     "step3Title": "分享或者改",
-    "step3Body": "啥人侪可以打开链接。在聊天里回话就可以改。"
+    "step3Body": "啥人侪可以打开链接。在聊天里回话就可以改。",
+    "manage": {
+      "open": "管理",
+      "address": "應用程式地址",
+      "addressSaved": "地址更新",
+      "publicHint": "任何人都可以點擊鏈接。",
+      "privateHint": "只你能开启。",
+      "store": "德胡比應用程式商店",
+      "publishHint": "把这个应用在 DeHub 应用商店里列出来，这样人们就能找到并安装它。",
+      "publish": "發佈到應用程式商店",
+      "publishedToast": "已發佈到應用程式商店",
+      "inStore": "已上架App Store",
+      "inStoreUnreviewed": "在應用程式商店中，標記為「未審核」直到團隊檢查。",
+      "viewInStore": "看店內",
+      "unpublish": "取消發佈",
+      "unpublished": "已從應用程式商店下架",
+      "versions": "版本",
+      "noVersions": "無存檔版本。",
+      "current": "当前",
+      "restore": "恢復",
+      "restored": "恢復版本 {{version}}"
+    }
   },
   "depin": {
     "title": "德平",

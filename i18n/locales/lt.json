@@ -13540,7 +13540,32 @@
     "step2Title": "Jis susikaupia maždaug per minutę",
     "step2Body": "@assistant rašo ir priima programėlę, tada siunčia nuorodą į jūsų žinutes.",
     "step3Title": "Pasidalykite arba pakeiskite",
-    "step3Body": "Nuorodą gali atidaryti bet kas. Jei norite ką nors pakeisti, atsakykite pokalbyje."
+    "step3Body": "Nuorodą gali atidaryti bet kas. Jei norite ką nors pakeisti, atsakykite pokalbyje.",
+    "manage": {
+      "open": "Tvarkyti",
+      "address": "Programėlės adresas",
+      "copy": "Kopijuoti",
+      "copied": "Nuoroda nukopijuota",
+      "save": "Išsaugoti",
+      "addressSaved": "Adresas atnaujintas",
+      "public": "Vieša",
+      "publicHint": "Bet kas, turintis nuorodą, gali ją atidaryti.",
+      "privateHint": "Tik tu gali ją atidaryti.",
+      "store": "DeHub programėlių parduotuvė",
+      "publishHint": "Įkelkite šią programėlę į „DeHub“ programėlių parduotuvę, kad žmonės galėtų ją rasti ir įdiegti.",
+      "publish": "Skelbti programėlių parduotuvėje",
+      "publishedToast": "Paskelbta programėlių parduotuvėje",
+      "inStore": "Patalpinta programėlių parduotuvėje.",
+      "inStoreUnreviewed": "Programėlių parduotuvėje pažymėta Neperžiūrėta, kol komanda ją patikrins.",
+      "viewInStore": "Peržiūrėti parduotuvėje",
+      "unpublish": "Atšaukti paskelbimą",
+      "unpublished": "Pašalinta iš programėlių parduotuvės",
+      "versions": "Versijos",
+      "noVersions": "Dar nėra išsaugotų versijų.",
+      "current": "Dabartinis",
+      "restore": "Atkurti",
+      "restored": "Atkurta versija {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

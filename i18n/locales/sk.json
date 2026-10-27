@@ -13703,7 +13703,32 @@
     "step2Title": "Stavia sa asi za minútu",
     "step2Body": "@assistant napíše a hosťuje aplikáciu a potom odošle odkaz na vaše správy.",
     "step3Title": "Zdieľajte ho alebo ho zmeňte",
-    "step3Body": "Odkaz môže otvoriť ktokoľvek. Ak chcete niečo zmeniť, odpovedzte v chate."
+    "step3Body": "Odkaz môže otvoriť ktokoľvek. Ak chcete niečo zmeniť, odpovedzte v chate.",
+    "manage": {
+      "open": "Spravovať",
+      "address": "Adresa aplikácie",
+      "copy": "Kopírovať",
+      "copied": "Odkaz skopírovaný",
+      "save": "Uložiť",
+      "addressSaved": "Adresa bola aktualizovaná",
+      "public": "Verejné",
+      "publicHint": "Každý, kto má odkaz, ho môže otvoriť.",
+      "privateHint": "Iba vy ho môžete otvoriť.",
+      "store": "Obchod s aplikáciami DeHub",
+      "publishHint": "Uveďte túto aplikáciu v obchode s aplikáciami DeHub, aby ju ľudia mohli nájsť a nainštalovať.",
+      "publish": "Zverejniť v obchode s aplikáciami",
+      "publishedToast": "Uverejnené v obchode s aplikáciami",
+      "inStore": "Uvedené v obchode s aplikáciami.",
+      "inStoreUnreviewed": "V obchode s aplikáciami označte možnosť Nekontrolované, kým ju tím neskontroluje.",
+      "viewInStore": "Zobraziť v obchode",
+      "unpublish": "Zrušiť zverejnenie",
+      "unpublished": "Odstránené z obchodu s aplikáciami",
+      "versions": "Verzie",
+      "noVersions": "Zatiaľ žiadne uložené verzie.",
+      "current": "Aktuálne",
+      "restore": "Obnoviť",
+      "restored": "Obnovená verzia {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

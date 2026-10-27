@@ -13578,7 +13578,32 @@
     "step2Title": "Gara daqiiqaa tokkoo keessatti ijaara",
     "step2Body": "@assistant appicha barreessee keessummeessa, sana booda link ergaawwan keessaniif erga.",
     "step3Title": "Share godhaa ykn jijjiiraa",
-    "step3Body": "Namni kamiyyuu link banachuu ni danda'a. Waan kamiyyuu jijjiiruuf chat keessatti deebii kenni."
+    "step3Body": "Namni kamiyyuu link banachuu ni danda'a. Waan kamiyyuu jijjiiruuf chat keessatti deebii kenni.",
+    "manage": {
+      "open": "Bulchuu",
+      "address": "Teessoo appii",
+      "copy": "Koppii godhaa",
+      "copied": "Link waraabame",
+      "save": "Qusachuu",
+      "addressSaved": "Teessoo haaromfame",
+      "public": "Uummata",
+      "publicHint": "Namni link qabu kamiyyuu banuu ni danda'a.",
+      "privateHint": "Isin qofa banuun ni danda'ama.",
+      "store": "Kuusaa appii DeHub",
+      "publishHint": "App kana DeHub app store keessatti tarreessi akka namoonni argachuu fi install godhan.",
+      "publish": "Gara app store tti maxxansaa",
+      "publishedToast": "Gara app store tti maxxanfame",
+      "inStore": "App store keessatti tarreeffameera.",
+      "inStoreUnreviewed": "App store keessatti, hanga gareen sun sakatta'utti Unreviewed jedhamee mallatteeffame.",
+      "viewInStore": "Suuqii keessatti ilaali",
+      "unpublish": "Maxxanfamuu dhiisuu",
+      "unpublished": "App store irraa kan baafame",
+      "versions": "Versions jedhu",
+      "noVersions": "Hanga ammaatti version saved hin jiru.",
+      "current": "Yeroo ammaa",
+      "restore": "Bakka duraaniitti deebisuu",
+      "restored": "Vershinii deebi'ee argame {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

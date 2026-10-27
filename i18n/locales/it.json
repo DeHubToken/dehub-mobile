@@ -13583,7 +13583,32 @@
     "step2Title": "Si costruisce in circa un minuto",
     "step2Body": "@assistant scrive e ospita l'app, quindi invia il link ai tuoi messaggi.",
     "step3Title": "Condividilo o modificalo",
-    "step3Body": "Chiunque può aprire il link. Rispondi nella chat per cambiare qualcosa."
+    "step3Body": "Chiunque può aprire il link. Rispondi nella chat per cambiare qualcosa.",
+    "manage": {
+      "open": "Gestisci",
+      "address": "Indirizzo dell'app",
+      "copy": "Copia",
+      "copied": "Link copiato",
+      "save": "Salva",
+      "addressSaved": "Indirizzo aggiornato",
+      "public": "Pubblico",
+      "publicHint": "Chiunque abbia il link può aprirlo.",
+      "privateHint": "Solo tu puoi aprirlo.",
+      "store": "App store DeHub",
+      "publishHint": "Pubblica questa app nell'app store DeHub in modo che le persone possano trovarla e installarla.",
+      "publish": "Pubblica sull'app store",
+      "publishedToast": "Pubblicato sull'app store",
+      "inStore": "Pubblicato nell'app store.",
+      "inStoreUnreviewed": "Nell'app store, contrassegnato Non recensito fino a quando il team non lo controlla.",
+      "viewInStore": "Visualizza in negozio",
+      "unpublish": "Annulla la pubblicazione",
+      "unpublished": "Rimosso dall'app store",
+      "versions": "Versioni",
+      "noVersions": "Ancora nessuna versione salvata.",
+      "current": "Attuale",
+      "restore": "Ripristina",
+      "restored": "Versione ripristinata {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

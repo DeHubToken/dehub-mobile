@@ -13528,7 +13528,32 @@
     "step2Title": "Bir minutda ýykyldy",
     "step2Body": "@ Assistant ýazýar we ulanýar, soňra habarlaryňyza baglaýyş iberýär.",
     "step3Title": "Öwrenmek ýa-da üýtgetmek",
-    "step3Body": "Kimdir biri baglanyşygy açyp biler. Ähli zady üýtgetmek üçin, gürrüňdeşlige jogap beriň."
+    "step3Body": "Kimdir biri baglanyşygy açyp biler. Ähli zady üýtgetmek üçin, gürrüňdeşlige jogap beriň.",
+    "manage": {
+      "open": "Ýolbaşçylyk",
+      "address": "Ulyma Adresi",
+      "copy": "Kopyala",
+      "copied": "Baglaýyş nusgalandy",
+      "save": "Gaýd Et",
+      "addressSaved": "Täzeleşdirilen adres",
+      "public": "Halk",
+      "publicHint": "Kimde-kim baglanyşygy bar bolsa, ony açyp biler.",
+      "privateHint": "Sen diňe açyp bilersiň.",
+      "store": "DeHub App Store",
+      "publishHint": "Bu maglumaty DeHub-da agzap geçiň, şonda adamlar ony tapyp, goýup bilerler.",
+      "publish": "App Store-da çap ediň",
+      "publishedToast": "App Store-da çap edilýär",
+      "inStore": "App Store-da tapylýar.",
+      "inStoreUnreviewed": "Ulyma dükanynda, topar ony barlamaýança, ony barlamaýar.",
+      "viewInStore": "Mağazada gör",
+      "unpublish": "Çap etme",
+      "unpublished": "App Store-dan alynýar",
+      "versions": "VERSIONLAR",
+      "noVersions": "Häzirki görnüşler ýok.",
+      "current": "Häzir",
+      "restore": "Gaýd Et",
+      "restored": "Täzeleşdirilen görnüşi {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

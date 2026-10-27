@@ -13651,7 +13651,32 @@
     "step2Title": "Powstaje w ciągu około minuty",
     "step2Body": "@assistant pisze i hostuje aplikację, a następnie wysyła link do Twoich wiadomości.",
     "step3Title": "Udostępnij lub zmień",
-    "step3Body": "Każdy może otworzyć link. Odpowiedz na czacie, aby coś zmienić."
+    "step3Body": "Każdy może otworzyć link. Odpowiedz na czacie, aby coś zmienić.",
+    "manage": {
+      "open": "Zarządzaj",
+      "address": "Adres aplikacji",
+      "copy": "Kopiuj",
+      "copied": "Skopiowano link",
+      "save": "Zapisz",
+      "addressSaved": "Zaktualizowano adres",
+      "public": "Publiczne",
+      "publicHint": "Każdy, kto ma link, może go otworzyć.",
+      "privateHint": "Tylko Ty możesz go otworzyć.",
+      "store": "Sklep z aplikacjami DeHub",
+      "publishHint": "Zamieść tę aplikację w sklepie z aplikacjami DeHub, aby użytkownicy mogli ją znaleźć i zainstalować.",
+      "publish": "Opublikuj w sklepie z aplikacjami",
+      "publishedToast": "Opublikowano w sklepie z aplikacjami",
+      "inStore": "Widoczna w sklepie z aplikacjami.",
+      "inStoreUnreviewed": "W sklepie z aplikacjami oznaczono jako Niesprawdzone, dopóki zespół tego nie sprawdzi.",
+      "viewInStore": "Zobacz w sklepie",
+      "unpublish": "Cofnij publikację",
+      "unpublished": "Usunięto ze sklepu z aplikacjami",
+      "versions": "Wersje",
+      "noVersions": "Nie ma jeszcze zapisanych wersji.",
+      "current": "Bieżące",
+      "restore": "Przywróć",
+      "restored": "Przywrócona wersja {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

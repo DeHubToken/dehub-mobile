@@ -13540,7 +13540,32 @@
     "step2Title": "Stvara se za oko minutu",
     "step2Body": "@assistant piše i hostira aplikaciju, a zatim šalje poveznicu na vaše poruke.",
     "step3Title": "Podijelite ga ili promijenite",
-    "step3Body": "Poveznicu može otvoriti svatko. Odgovori u chatu i promijeni bilo što."
+    "step3Body": "Poveznicu može otvoriti svatko. Odgovori u chatu i promijeni bilo što.",
+    "manage": {
+      "open": "Upravljanje",
+      "address": "Adresa aplikacije",
+      "copy": "Kopiraj",
+      "copied": "Poveznica je kopirana",
+      "save": "Spremi",
+      "addressSaved": "Adresa je ažurirana",
+      "public": "Javno",
+      "publicHint": "Svatko tko ima poveznicu može je otvoriti.",
+      "privateHint": "Samo ga vi možete otvoriti.",
+      "store": "Trgovina aplikacijama DeHub",
+      "publishHint": "Navedite ovu aplikaciju u trgovini aplikacija DeHub kako bi je ljudi mogli pronaći i instalirati.",
+      "publish": "Objavi u trgovini aplikacijama",
+      "publishedToast": "Objavljeno u trgovini aplikacijama",
+      "inStore": "Nalazi se u trgovini aplikacijama.",
+      "inStoreUnreviewed": "U trgovini aplikacijama označena je oznaka Unreviewed (Nepregledano) dok je tim ne provjeri.",
+      "viewInStore": "Prikaži u trgovini",
+      "unpublish": "Ukloni sa stranice",
+      "unpublished": "Uklonjeno iz trgovine aplikacijama",
+      "versions": "Verzije",
+      "noVersions": "Još nema spremljenih verzija.",
+      "current": "Trenutačno",
+      "restore": "Vrati",
+      "restored": "Obnovljena verzija {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

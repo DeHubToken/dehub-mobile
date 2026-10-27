@@ -13669,7 +13669,32 @@
     "step2Title": "Nó được xây dựng trong khoảng một phút",
     "step2Body": "@assistant viết và lưu trữ ứng dụng, sau đó gửi liên kết đến tin nhắn của bạn.",
     "step3Title": "Chia sẻ hoặc thay đổi",
-    "step3Body": "Bất kỳ ai cũng có thể mở liên kết. Trả lời trong cuộc trò chuyện để thay đổi mọi thứ."
+    "step3Body": "Bất kỳ ai cũng có thể mở liên kết. Trả lời trong cuộc trò chuyện để thay đổi mọi thứ.",
+    "manage": {
+      "open": "Quản lý",
+      "address": "Địa chỉ ứng dụng",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép liên kết",
+      "save": "Lưu",
+      "addressSaved": "Đã cập nhật địa chỉ",
+      "public": "Công khai",
+      "publicHint": "Bất kỳ ai có liên kết đều có thể mở nó.",
+      "privateHint": "Chỉ có bạn mới có thể mở nó.",
+      "store": "Cửa hàng ứng dụng DeHub",
+      "publishHint": "Liệt kê ứng dụng này trong cửa hàng ứng dụng DeHub để mọi người có thể tìm và cài đặt nó.",
+      "publish": "Đăng lên cửa hàng ứng dụng",
+      "publishedToast": "Đã đăng lên cửa hàng ứng dụng",
+      "inStore": "Đã đăng trong cửa hàng ứng dụng.",
+      "inStoreUnreviewed": "Trong cửa hàng ứng dụng, đánh dấu Chưa được xem xét cho đến khi nhóm kiểm tra.",
+      "viewInStore": "Xem trong cửa hàng",
+      "unpublish": "Hủy đăng",
+      "unpublished": "Đã xóa khỏi cửa hàng ứng dụng",
+      "versions": "Phiên bản",
+      "noVersions": "Chưa có phiên bản nào được lưu.",
+      "current": "Hiện tại",
+      "restore": "Khôi phục",
+      "restored": "Đã khôi phục phiên bản {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

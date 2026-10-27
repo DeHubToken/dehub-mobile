@@ -13540,7 +13540,32 @@
     "step2Title": "See valmib umbes minutiga",
     "step2Body": "@assistant kirjutab ja majutab rakendust ning saadab seejärel lingi sinu sõnumitele.",
     "step3Title": "Jaga või muuda seda",
-    "step3Body": "Igaüks võib lingi avada. Kui soovid midagi muuta, vasta vestluses."
+    "step3Body": "Igaüks võib lingi avada. Kui soovid midagi muuta, vasta vestluses.",
+    "manage": {
+      "open": "Halda",
+      "address": "Rakenduse aadress",
+      "copy": "Kopeeri",
+      "copied": "Link on kopeeritud",
+      "save": "Salvesta",
+      "addressSaved": "Aadress uuendatud",
+      "public": "Avalik",
+      "publicHint": "Igaüks, kellel on link, saab selle avada.",
+      "privateHint": "Ainult sina saad selle avada.",
+      "store": "DeHubi rakenduste pood",
+      "publishHint": "Lisa see rakendus DeHubi rakenduste poodi, et inimesed saaksid selle üles leida ja installida.",
+      "publish": "Avalda rakenduste poes",
+      "publishedToast": "Avaldatud rakenduste poes",
+      "inStore": "Lisatud rakenduste poodi.",
+      "inStoreUnreviewed": "Märgi rakenduste poes Unreviewed (ülevaatamata), kuni meeskond seda kontrollib.",
+      "viewInStore": "Vaata poes",
+      "unpublish": "Tühista avaldamine",
+      "unpublished": "Eemaldatud rakenduste poest",
+      "versions": "Versioonid",
+      "noVersions": "Salvestatud versioone pole veel.",
+      "current": "Praegune",
+      "restore": "Taasta",
+      "restored": "Taastatud versioon {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",
