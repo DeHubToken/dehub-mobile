@@ -1274,13 +1274,14 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
 
   const handleConfirmRepost = useCallback(() => {
     if (tokenId == null) return;
-    requireAuth?.(() => {
+    const run = () => {
       const wasReposted = reposted;
       const prevCount = repostCount;
       applyEngagement(engagementKey, {
         isReposted: true,
         repostCount: prevCount + 1,
       });
+      toastSuccess(t("toasts.reposted"));
       const rollback = () => {
         revertEngagement(engagementKey, {
           isReposted: wasReposted,
@@ -1302,18 +1303,26 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           }
         })
         .catch(rollback);
-    });
-  }, [tokenId, reposted, repostCount, engagementKey, requireAuth]);
+    };
+    // Signed in, the tap flips and confirms at once. requireAuth refreshes the
+    // session over the network before it runs anything, and the sheet had
+    // already closed by then, so the repost looked like it did nothing. The
+    // API client refreshes the token for the request itself.
+    if (isSignedIn) run();
+    else requireAuth?.(run);
+  }, [tokenId, reposted, repostCount, engagementKey, requireAuth, isSignedIn]);
 
   const handleQuotePress = useCallback(() => {
-    requireAuth?.(() => {
+    const go = () => {
       hideUserProfile();
       navigation.navigate(ScreenNames.Upload, {
         quotedTokenId: tokenId,
         quotedPost: item as any,
       });
-    });
-  }, [navigation, tokenId, item, hideUserProfile, requireAuth]);
+    };
+    if (isSignedIn) go();
+    else requireAuth?.(go);
+  }, [navigation, tokenId, item, hideUserProfile, requireAuth, isSignedIn]);
 
   // Post info is a page on web and here — the on-chain block inside it is
   // the only part that waits on a mint, not the whole page.
