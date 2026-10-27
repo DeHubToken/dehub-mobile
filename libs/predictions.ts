@@ -137,6 +137,11 @@ export function normalizePrediction(link: PredictionLink, value: unknown, now = 
 const cache = new Map<string, { until: number; preview: PredictionPreview }>();
 const pending = new Map<string, Promise<PredictionPreview>>();
 
+/** Drops the cached market so the next read fetches live odds. */
+export function forgetPredictionPreview(url: string): void {
+  cache.delete(url);
+}
+
 export function fetchPredictionPreview(link: PredictionLink): Promise<PredictionPreview> {
   const cached = cache.get(link.url);
   if (cached && cached.until > Date.now()) return Promise.resolve(cached.preview);

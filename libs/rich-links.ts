@@ -132,3 +132,7 @@ export async function fetchRichPreview(link: RichLink): Promise<RichPreview> {
   return (await import('./rich-link-data')).fetchRichPreview(link);
 }
 
+
+export async function forgetRichPreview(url: string): Promise<void> {
+  (await import('./rich-link-data')).forgetRichPreview(url);
+}
