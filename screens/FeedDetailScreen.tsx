@@ -393,12 +393,11 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     keyboardSwap.swapTo(() => setEmojiPickerVisible(true));
   }, [keyboardSwap]);
 
-  // Android: with the keyboard up, the first tap's onPress is swallowed while
-  // the keyboard hides, so the picker needed a second tap. Open on touch-start
-  // there, like the post button, and ignore the onPress that may follow.
+  // With the keyboard up, the first tap's onPress is swallowed while the
+  // keyboard hides (Android and iOS), so the picker needed a second tap. Open
+  // on touch-start, like the post button, and ignore the onPress that follows.
   const emojiOpenedOnTouchRef = useRef(false);
   const handleEmojiTouchStart = useCallback(() => {
-    if (Platform.OS !== "android") return;
     emojiOpenedOnTouchRef.current = true;
     setTimeout(() => {
       emojiOpenedOnTouchRef.current = false;
@@ -1398,6 +1397,24 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     });
   }, [inputText, posting, requireAuth, tokenId, replyTo, editingComment, user, fetchData, insertThreaded, t, setInputText, setReplyTo]);
 
+  // Send on touch-down: with the keyboard up the first tap only hid the
+  // keyboard (worst on iOS), so a reply took two or three taps.
+  const sentOnTouchStartRef = useRef(false);
+  const handleSendTouchStart = useCallback(() => {
+    sentOnTouchStartRef.current = true;
+    setTimeout(() => {
+      sentOnTouchStartRef.current = false;
+    }, 1500);
+    handleSend();
+  }, [handleSend]);
+  const handleSendPress = useCallback(() => {
+    if (sentOnTouchStartRef.current) {
+      sentOnTouchStartRef.current = false;
+      return;
+    }
+    handleSend();
+  }, [handleSend]);
+
   // No post to show and nothing to comment on: it is private, gone or failed to
   // load, and the message in the header is the whole page.
   const postUnavailable = !item && !loading && (loadError != null || privateError);
@@ -1911,7 +1928,8 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                     <Text style={{ fontSize: 18 }}>🙂</Text>
                   </Pressable>
                 <TouchableOpacity
-                  onPress={handleSend}
+                  onPress={handleSendPress}
+                  onTouchStart={handleSendTouchStart}
                   disabled={posting || !inputText.trim()}
                   activeOpacity={0.7}
                   accessibilityRole="button"
