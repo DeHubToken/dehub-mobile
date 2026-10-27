@@ -121,6 +121,8 @@ export interface UnifiedFeedItem {
     columns: number;
     private?: boolean;
   };
+  /** Probed at upload: the source clip's coded size. Read through libs/video-aspect. */
+  videoInfo?: { w?: number; h?: number };
   
   // Type & Status
   postType: "video" | "feed-images" | "feed-simple" | "feed-audio" | "live" | "short";
