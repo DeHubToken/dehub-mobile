@@ -1,4 +1,11 @@
-type Listener = () => void;
+/**
+ * `quiet` is a refresh nobody asked for on screen: a post of the reader's own
+ * just went through. Lists fetch it in without the pull-to-refresh spinner,
+ * a new shorts draw or a fresh shuffle, and leave a reader who has scrolled
+ * away where they are.
+ */
+export type FeedRefreshRequest = { quiet?: boolean };
+type Listener = (request: FeedRefreshRequest) => void;
 
 const listeners = new Set<Listener>();
 
@@ -10,8 +17,8 @@ export const feedEvents = {
   },
 
   /** Request the feed to refresh (called after a new post is uploaded). */
-  requestRefresh(): void {
-    listeners.forEach((fn) => fn());
+  requestRefresh(request: FeedRefreshRequest = {}): void {
+    listeners.forEach((fn) => fn(request));
   },
 };
 

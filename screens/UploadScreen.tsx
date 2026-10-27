@@ -1310,13 +1310,11 @@ export default function UploadScreen() {
     setShowLiveSettings((prev) => !prev);
   }, []);
 
+  // Back down to the tab navigator already underneath rather than resetting
+  // the stack: a reset mounts a new Root, so every feed, the shorts row and
+  // their images were rebuilt from scratch behind the closing sheet.
   const navigateHome = useCallback(() => {
-    nav.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: ScreenNames.Root, params: { screen: ScreenNames.Home } }],
-      }),
-    );
+    nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home });
   }, [nav]);
 
   const submitPost = useCallback(async () => {
