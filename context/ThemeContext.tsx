@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { AppState, Platform } from 'react-native';
 import * as SystemUI from 'expo-system-ui';
 import { colorScheme, vars } from 'nativewind';
@@ -49,6 +49,8 @@ type AppThemeContextValue = {
   setBrandColors: (colors: string[]) => void;
   /** The colour the theme's glass is tinted with, following Theme Color. */
   accent: Rgb;
+  /** Run System Light as System until the returned release is called (see useDarkSurface). */
+  holdDarkSurface: () => () => void;
 };
 
 const AppThemeContext = createContext<AppThemeContextValue | null>(null);
@@ -213,7 +215,19 @@ function skinRootVars(theme: AppThemeName, skin: ThemeSkin) {
 
 export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const prefs = useAppPrefs();
-  const themeChoice = prefs.theme;
+  // Live is a dark room in every theme: while a screen holds a dark surface
+  // (useDarkSurface), System Light runs as System. The saved pick never changes.
+  const [darkHolds, setDarkHolds] = useState(0);
+  const holdDarkSurface = useCallback(() => {
+    setDarkHolds((n) => n + 1);
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      setDarkHolds((n) => n - 1);
+    };
+  }, []);
+  const themeChoice: AppThemeName = darkHolds > 0 && prefs.theme === SYSTEM_LIGHT ? 'system' : prefs.theme;
   const theme = effectiveTheme(themeChoice);
   const isLight = themeChoice === SYSTEM_LIGHT;
   // Screens are written against the dark palette and System Light turns its
@@ -307,9 +321,9 @@ export const AppThemeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const value = useMemo<AppThemeContextValue>(
     () => ({
       theme, themeChoice, isLight, isMinimal: theme === 'minimal', colors, pageColors, skin, setTheme,
-      themeHues, brandColors, setThemeHue, setBrandColors, accent,
+      themeHues, brandColors, setThemeHue, setBrandColors, accent, holdDarkSurface,
     }),
-    [colors, pageColors, setTheme, skin, theme, themeChoice, isLight, themeHues, brandColors, setThemeHue, setBrandColors, accent],
+    [colors, pageColors, setTheme, skin, theme, themeChoice, isLight, themeHues, brandColors, setThemeHue, setBrandColors, accent, holdDarkSurface],
   );
 
   return <AppThemeContext.Provider value={value}>{children}</AppThemeContext.Provider>;
@@ -327,4 +341,17 @@ export function useThemeRootStyle() {
   if (isMinimal) return MINIMAL_ROOT_VARS;
   if (isLight) return SYSTEM_LIGHT_ROOT_VARS;
   return skin ? skinRootVars(theme, skin) : SYSTEM_ROOT_VARS;
+}
+
+/**
+ * Keep this screen dark in every theme while it is mounted: System Light runs
+ * as System, status bar, nav bar and sheets included. Returns whether the
+ * switch has landed, so a screen can hold its first paint until it has
+ * (anything rendered under the light tone keeps those colours until it
+ * re-renders).
+ */
+export function useDarkSurface(): boolean {
+  const { holdDarkSurface, isLight } = useAppTheme();
+  useLayoutEffect(() => holdDarkSurface(), [holdDarkSurface]);
+  return !isLight;
 }
