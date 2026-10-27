@@ -316,6 +316,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     messages,
     pinnedMessage,
     isLoading,
+    hasOlderMessages, isLoadingOlder, loadOlder, showMessage, showLatest, isHistoryWindow, error: historyError, refreshHistory,
     sendMessage,
     editMessage,
     deleteMessage,
@@ -390,26 +391,32 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         // onScrollToIndexFailed picks it up
       }
     }
-    setPendingJump(null);
+    if (index >= 0) setPendingJump(null);
   }, [pendingJump, visibleMessages]);
 
   const jumpToMessage = useCallback(
-    (id: string) => {
-      setFlashId(id);
-      if (flashTimer.current) clearTimeout(flashTimer.current);
-      flashTimer.current = setTimeout(() => setFlashId(null), FLASH_MS);
-
-      const absolute = messages.findIndex((m) => m.id === id);
-      if (absolute < 0) return;
-      const needed = messages.length - absolute;
-      if (needed > visibleCount) setVisibleCount(needed);
-      // Growing the window changes the content size, and the stick-to-bottom
-      // handler would otherwise scroll straight past the message we jumped to.
-      atBottomRef.current = false;
-      setPendingJump(id);
+    async (id: string) => {
+      try {
+        await showMessage(id);
+        setFlashId(id);
+        if (flashTimer.current) clearTimeout(flashTimer.current);
+        flashTimer.current = setTimeout(() => setFlashId(null), FLASH_MS);
+        setVisibleCount(Math.max(messages.length, 50));
+        atBottomRef.current = false;
+        setPendingJump(id);
+      } catch { toastError(t("common.failedToLoad")); }
     },
-    [messages, visibleCount],
+    [showMessage, messages.length, t],
   );
+
+  const loadEarlier = useCallback(async () => {
+    if (isLoadingOlder) return;
+    atBottomRef.current = false;
+    try {
+      if (visibleCount >= messages.length && !(await loadOlder())) return;
+      setVisibleCount(c => c + PAGE);
+    } catch { toastError(t("common.failedToLoad")); }
+  }, [isLoadingOlder, visibleCount, messages.length, loadOlder, t]);
 
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => listRef.current?.scrollToEnd({ animated: true }));
@@ -431,12 +438,16 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastMessageId]);
 
-  const jumpToLatest = useCallback(() => {
-    atBottomRef.current = true;
-    setUnseen(0);
-    setShowJump(false);
-    scrollToBottom();
-  }, [scrollToBottom]);
+  const jumpToLatest = useCallback(async () => {
+    try {
+      await showLatest();
+      setVisibleCount(PAGE);
+      atBottomRef.current = true;
+      setUnseen(0);
+      setShowJump(false);
+      scrollToBottom();
+    } catch { toastError(t("common.failedToLoad")); }
+  }, [showLatest, scrollToBottom, t]);
 
   const handleSend = useCallback(async () => {
     const body = text.trim();
@@ -630,6 +641,11 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         </Pressable>
       )}
 
+      {historyError ? (
+        <Pressable onPress={() => void refreshHistory()} style={styles.showMore} accessibilityRole="button">
+          <Text style={styles.showMoreText}>{t("common.failedToLoad")} — {t("common.retry")}</Text>
+        </Pressable>
+      ) : null}
       {isLoading ? (
         <View style={styles.center}>
           <ActivityIndicator size="small" color="#F4F4F5" />
@@ -671,14 +687,13 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             });
           }}
           ListHeaderComponent={
-            messages.length > visibleMessages.length ? (
+            messages.length > visibleMessages.length || hasOlderMessages ? (
               <Pressable
                 style={styles.showMore}
-                onPress={() => {
-                  // Reading history, not following the tail.
-                  atBottomRef.current = false;
-                  setVisibleCount((c) => c + PAGE);
-                }}
+                onPress={() => void loadEarlier()}
+                disabled={isLoadingOlder}
+                accessibilityRole="button"
+                accessibilityState={{ busy: isLoadingOlder, disabled: isLoadingOlder }}
               >
                 <Text style={styles.showMoreText}>
                   {t("communities.chatPanel.showEarlier", { defaultValue: "Show earlier messages" })}
@@ -694,7 +709,7 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
             </View>
           }
         />
-        {showJump || unseen > 0 ? (
+        {showJump || unseen > 0 || isHistoryWindow ? (
           <Pressable
             onPress={jumpToLatest}
             hitSlop={8}
