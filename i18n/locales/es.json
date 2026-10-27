@@ -2341,7 +2341,8 @@
     "importWalletPurpose": "Esta herramienta es para importar cuentas existentes desde DeHub.io.",
     "importSecretPlaceholder": "12 o 24 palabras, o una clave privada",
     "invalidImportSecret": "No es una frase válida de 12/24 palabras ni una clave privada",
-    "walletSignupBlocked": "Esta billetera es totalmente nueva. Las billeteras nuevas necesitan saldo o una transacción anterior para abrir una cuenta. Regístrate con una de las opciones de abajo y luego conecta esta billetera desde Ajustes."
+    "walletSignupBlocked": "Esta billetera es totalmente nueva. Las billeteras nuevas necesitan saldo o una transacción anterior para abrir una cuenta. Regístrate con una de las opciones de abajo y luego conecta esta billetera desde Ajustes.",
+    "signInPageWouldNotOpen": "La página de inicio de sesión se cerró antes de abrirse. Inténtalo de nuevo o continúa con tu correo."
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",
