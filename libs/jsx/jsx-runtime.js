@@ -6,13 +6,14 @@
  */
 const base = require("nativewind/jsx-runtime");
 const { controlProps } = require("./controls");
+const { pressProps } = require("./press");
 const { prepare } = require("./surface");
 const { tone } = require("./tone");
 const { readableTextProps } = require("./readability");
 
 function wrap(fn) {
   return function (type, props, ...rest) {
-    const [toneType, toneProps] = tone(type, controlProps(readableTextProps(type, props)));
+    const [toneType, toneProps] = tone(type, controlProps(readableTextProps(type, pressProps(type, props))));
     const [t, p] = prepare(toneType, toneProps);
     return fn(t, p, ...rest);
   };
