@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View } from 'react-native';
 import { useTranslation as useI18n } from 'react-i18next';
 import Icon from './Icon';
 import { SUPPORTED_LANGUAGES } from '../../i18n';
-import { colors } from '../../theme/colors';
+import { useMetaGrey } from '../../theme/metaGrey';
 
 interface TranslateButtonProps {
   isTranslated: boolean;
@@ -32,6 +32,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
   inline = false,
 }) => {
   const { t } = useI18n();
+  // Same grey as the time and view count it sits beside.
+  const grey = useMetaGrey();
   const style = inline ? ROW_STYLE : STANDALONE_STYLE;
 
   // "und" is the backend's way of saying it could not tell.
@@ -43,8 +45,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
   if (isLoading) {
     return (
       <View style={style}>
-        <Icon name="Loader" size={12} color={colors.neutrals[600]} />
-        <Text style={{ fontSize: 12, color: colors.neutrals[500] }}>{t('common.translating')}</Text>
+        <Icon name="Loader" size={12} color={grey} />
+        <Text style={{ fontSize: 12, color: grey }}>{t('common.translating')}</Text>
       </View>
     );
   }
@@ -57,8 +59,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
         hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
         style={style}
       >
-        <Icon name="RotateCcw" size={12} color={colors.neutrals[600]} />
-        <Text style={{ fontSize: 12, color: colors.neutrals[500] }}>{t('common.showOriginal')}</Text>
+        <Icon name="RotateCcw" size={12} color={grey} />
+        <Text style={{ fontSize: 12, color: grey }}>{t('common.showOriginal')}</Text>
       </TouchableOpacity>
     );
   }
@@ -72,11 +74,11 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
       accessibilityRole="button"
       accessibilityLabel={t('common.translate')}
     >
-      <Icon name="Languages" size={16} color={colors.neutrals[600]} />
+      <Icon name="Languages" size={16} color={grey} />
       {/* Back on the original after "show original": name the language it is
           in, so the control reads as an offer rather than a mystery. */}
       {sourceLangName ? (
-        <Text style={{ fontSize: 12, color: colors.neutrals[500] }}>{sourceLangName}</Text>
+        <Text style={{ fontSize: 12, color: grey }}>{sourceLangName}</Text>
       ) : null}
     </TouchableOpacity>
   );
