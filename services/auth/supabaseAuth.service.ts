@@ -236,9 +236,13 @@ async function signInWithOAuthProvider(
   if (result.type !== "success" || !result.url) {
     throw new Error(`${provider} sign-in was cancelled`);
   }
+  return sessionFromRedirect(result.url, provider);
+}
 
+/** Signs in with the session a provider's page sent back to the redirect. */
+async function sessionFromRedirect(url: string, provider: string): Promise<string> {
   // Supabase returns tokens in the URL fragment (#access_token=...&refresh_token=...).
-  const fragment = result.url.split("#")[1] || result.url.split("?")[1] || "";
+  const fragment = url.split("#")[1] || url.split("?")[1] || "";
   const params = new URLSearchParams(fragment);
   const access_token = params.get("access_token");
   const refresh_token = params.get("refresh_token");
@@ -382,11 +386,14 @@ export async function signInWithTelegram(): Promise<string> {
   if (result.type !== "success" || !result.url) {
     throw new Error("Telegram sign-in was cancelled");
   }
+  return sessionFromTelegramRedirect(result.url);
+}
 
+async function sessionFromTelegramRedirect(url: string): Promise<string> {
   // The bridge page puts the payload in the FRAGMENT, the way Telegram hands
   // it over — it never belongs in a query string, where it would be written to
   // every server log between here and there.
-  const fragment = result.url.split("#")[1] || "";
+  const fragment = url.split("#")[1] || "";
   const tgAuthResult = new URLSearchParams(fragment).get("tgAuthResult");
   if (!tgAuthResult) {
     throw new Error("Telegram sign-in was cancelled");
@@ -420,6 +427,18 @@ export async function signInWithTelegram(): Promise<string> {
     throw new Error(serverAuthText(sessionError?.message, _translateCopy("copy.79c2eecb4e83", { defaultValue: "Telegram sign-in failed. Please try again." })));
   }
   return userId;
+}
+
+/**
+ * Finishes a sign-in page that came back to a fresh launch, after Android
+ * closed the app while the page was open (libs/oauth-cold-start). Same steps
+ * as the sign-in that opened it, which is gone with the old launch.
+ */
+export async function finishSignInCallback(url: string): Promise<string> {
+  const telegram = !!new URLSearchParams(url.split("#")[1] || "").get("tgAuthResult");
+  beginAuthTrace(telegram ? "telegram" : "oauth-resumed");
+  log.trace?.('identity-resumed');
+  return telegram ? sessionFromTelegramRedirect(url) : sessionFromRedirect(url, "oauth");
 }
 
 /** The current Supabase session's access token, or null if not signed in. */
