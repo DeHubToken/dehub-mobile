@@ -9800,6 +9800,20 @@
       "adding": "Ajout à Médias…",
       "added": "Importé et ajouté à la timeline.",
       "failed": "Impossible d'importer ce lien."
+    },
+    "reverse": {
+      "action": "Inverser",
+      "working": "Inversion {{percent}} %",
+      "done": "Clip inversé.",
+      "failed": "Impossible d’inverser ce clip.",
+      "unsupported": "Ce navigateur ne peut pas inverser la vidéo. Essayez Chrome ou Edge.",
+      "tooLong": "Les clips jusqu’à {{seconds}} secondes peuvent être inversés."
+    },
+    "behind": {
+      "action": "Texte derrière la personne",
+      "working": "Détourage de la personne…",
+      "done": "Le texte et les sous-titres passent maintenant derrière la personne.",
+      "failed": "Impossible de placer le texte derrière la personne."
     }
   },
   "creator": {

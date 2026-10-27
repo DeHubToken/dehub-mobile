@@ -10165,6 +10165,20 @@
       "adding": "Adding to Media…",
       "added": "Imported and added to the timeline.",
       "failed": "Could not import that link."
+    },
+    "reverse": {
+      "action": "Reverse",
+      "working": "Reversing {{percent}}%",
+      "done": "Clip reversed.",
+      "failed": "Could not reverse this clip.",
+      "unsupported": "This browser can't reverse video. Try Chrome or Edge.",
+      "tooLong": "Clips up to {{seconds}} seconds can be reversed."
+    },
+    "behind": {
+      "action": "Text behind person",
+      "working": "Cutting out the person…",
+      "done": "Text and captions now sit behind the person.",
+      "failed": "Could not put text behind the person."
     }
   },
   "creator": {

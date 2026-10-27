@@ -9772,6 +9772,20 @@
       "adding": "Medya'ya ekleniyor…",
       "added": "İçe aktarıldı ve zaman çizelgesine eklendi.",
       "failed": "Bu bağlantı içe aktarılamadı."
+    },
+    "reverse": {
+      "action": "Tersine çevir",
+      "working": "Tersine çevriliyor %{{percent}}",
+      "done": "Klip tersine çevrildi.",
+      "failed": "Bu klip tersine çevrilemedi.",
+      "unsupported": "Bu tarayıcı videoyu tersine çeviremiyor. Chrome veya Edge deneyin.",
+      "tooLong": "En fazla {{seconds}} saniyelik klipler tersine çevrilebilir."
+    },
+    "behind": {
+      "action": "Metin kişinin arkasında",
+      "working": "Kişi kesilip çıkarılıyor…",
+      "done": "Metin ve altyazılar artık kişinin arkasında.",
+      "failed": "Metin kişinin arkasına alınamadı."
     }
   },
   "creator": {

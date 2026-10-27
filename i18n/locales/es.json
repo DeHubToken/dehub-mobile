@@ -9796,6 +9796,20 @@
       "adding": "Añadiendo a Medios…",
       "added": "Importado y añadido a la línea de tiempo.",
       "failed": "No se pudo importar ese enlace."
+    },
+    "reverse": {
+      "action": "Invertir",
+      "working": "Invirtiendo {{percent}}%",
+      "done": "Clip invertido.",
+      "failed": "No se pudo invertir este clip.",
+      "unsupported": "Este navegador no puede invertir vídeo. Prueba Chrome o Edge.",
+      "tooLong": "Se pueden invertir clips de hasta {{seconds}} segundos."
+    },
+    "behind": {
+      "action": "Texto detrás de la persona",
+      "working": "Recortando a la persona…",
+      "done": "El texto y los subtítulos ahora quedan detrás de la persona.",
+      "failed": "No se pudo poner el texto detrás de la persona."
     }
   },
   "creator": {
