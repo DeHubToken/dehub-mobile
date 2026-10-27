@@ -46,6 +46,7 @@ import {
   Exo_600SemiBold,
   Exo_700Bold,
 } from "@expo-google-fonts/exo";
+import { FeedSuperpowersProvider } from "./context/FeedSuperpowersContext";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { recordScreenView, setScreenViewAddress } from "./services/pageView.service";
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
@@ -229,6 +230,7 @@ export default function App() {
           <SafeAreaProvider initialMetrics={initialSafeAreaMetrics} className="flex-1 select-none">
             <MaintenanceGate>
             <AuthProvider>
+              <FeedSuperpowersProvider>
               <WebSocketProvider>
                 <DMProvider>
                   {/* Inside AuthProvider because the checklist is per wallet,
@@ -249,6 +251,7 @@ export default function App() {
               <OnboardingChoicesApplier />
               {/* A tapped badge opens here, above whatever screen it was on. */}
               <BadgeShowcaseHost />
+              </FeedSuperpowersProvider>
             </AuthProvider>
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
                 and every one of them resolves against this scale. */}

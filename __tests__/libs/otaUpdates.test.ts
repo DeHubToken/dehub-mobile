@@ -78,3 +78,20 @@ describe("over-the-air updates on foreground", () => {
     expect(isUpdateReady()).toBe(false);
   });
 });
+
+it('retries failed downloads after bounded backoff and resumes the success cadence', async () => {
+  __resetOtaStateForTests();
+  jest.clearAllMocks();
+  (global as any).__DEV__ = false;
+  mocked.checkForUpdateAsync.mockResolvedValue({ isAvailable: true });
+  mocked.fetchUpdateAsync.mockRejectedValueOnce(new Error('offline')).mockResolvedValue({ isNew: true });
+  await checkForOtaUpdate(0);
+  await checkForOtaUpdate(59_999);
+  expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(1);
+  await checkForOtaUpdate(60_000);
+  expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(2);
+  expect(isUpdateReady()).toBe(true);
+  await checkForOtaUpdate(120_000);
+  expect(mocked.checkForUpdateAsync).toHaveBeenCalledTimes(2);
+  expect(mocked.reloadAsync).not.toHaveBeenCalled();
+});
