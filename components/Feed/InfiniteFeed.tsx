@@ -34,6 +34,9 @@ import { useWatchedVideoIds, filterWatched } from "../../hooks/useWatchedVideos"
 import { tabPressIntentOf } from "../../navigation/tabPressIntent";
 import { feedEvents } from "../../libs/eventBus";
 import { createFeedVisibilityStore, useRowVisibility, type FeedVisibilityStore } from "../../libs/feedVisibility";
+import { useFeedScrollLifecycle } from "../../hooks/useFeedScrollLifecycle";
+
+const noop = () => {};
 
 export type InfiniteFeedRenderItemInfo = {
   item: GetNFTsResult;
@@ -203,6 +206,10 @@ const InfiniteFeedBase: React.FC<
   rowKeyOfRef.current = rowKeyOf;
   const [refreshing, setRefreshing] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  // Report drags and flings like Home does, so the work that pauses while a
+  // feed moves (the frosted pills' live blur, the theme backdrop) pauses on
+  // profiles and communities too. It kept sampling every frame there.
+  const scrollLifecycle = useFeedScrollLifecycle(noop, noop);
   const loadMoreCooldownRef = useRef(0);
   const prevYRef = useRef(0);
 
@@ -608,6 +615,10 @@ const InfiniteFeedBase: React.FC<
         onScroll={onScroll ?? (enableBackToTop ? handleScroll : undefined)}
         // See InfiniteVideoFeed: 16 is below Android's 17ms throttle floor.
         scrollEventThrottle={24}
+        onScrollBeginDrag={scrollLifecycle.begin}
+        onScrollEndDrag={scrollLifecycle.endDrag}
+        onMomentumScrollBegin={scrollLifecycle.begin}
+        onMomentumScrollEnd={scrollLifecycle.settle}
         nestedScrollEnabled
         onEndReached={endReached ? undefined : loadMore}
         // Keep multiple screens of runway. Fast flings can consume a single
