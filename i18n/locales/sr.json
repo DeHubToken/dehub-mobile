@@ -6277,6 +6277,7 @@
   "communities": {
     "shareLink": "Подијели link",
     "pinnedMore": "Више",
+    "showFirst": "Прикажи прво",
     "sendInMessage": "Пошаљи позив",
     "existingPost": {
       "add": "Додај постојећу објаву",

@@ -6263,6 +6263,7 @@
   "communities": {
     "shareLink": "لینک شریک کړئ",
     "pinnedMore": "نور ډیر څه",
+    "showFirst": "لومړی یې وښیه",
     "sendInMessage": "دعوت ته ځواب ورکړئ",
     "existingPost": {
       "add": "موجوده پوسټ اضافه کړئ",

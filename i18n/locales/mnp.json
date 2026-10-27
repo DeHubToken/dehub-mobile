@@ -6262,6 +6262,7 @@
   "communities": {
     "shareLink": "分享链接",
     "pinnedMore": "更多",
+    "showFirst": "先展示",
     "sendInMessage": "发出邀请",
     "existingPost": {
       "add": "添加现有帖子",

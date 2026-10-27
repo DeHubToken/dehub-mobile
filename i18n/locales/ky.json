@@ -6263,6 +6263,7 @@
   "communities": {
     "shareLink": "Шилтемени бөлүшүү",
     "pinnedMore": "Көбүрөөк",
+    "showFirst": "Биринчи көрсөтүү",
     "sendInMessage": "Чакырууну жөнөтүү",
     "existingPost": {
       "add": "Учурдагы постту кошуу",

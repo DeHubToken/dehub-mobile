@@ -3821,6 +3821,7 @@
   "communities": {
     "shareLink": "Compartir enlace",
     "pinnedMore": "Más",
+    "showFirst": "Mostrar primero",
     "sendInMessage": "Enviar invitación",
     "followerInvites": {
       "title": "Invitar seguidores",

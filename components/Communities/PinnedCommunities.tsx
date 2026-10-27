@@ -21,6 +21,7 @@ import {
   getPinnedCommunities,
   getUserCommunities,
   pinCommunity,
+  showPinFirst,
   unpinCommunity,
 } from "../../services/communities.service";
 import { useUser } from "../../context/AuthContext";
@@ -100,14 +101,26 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
     [navigation, onNavigate],
   );
 
-  const featured = renderHeader ? pinned.find((community) => community.banner_url) ?? null : null;
+  // The owner's top pin wears the header when it has art; without art it
+  // leads the list as a card, so the chosen order always holds.
+  const featured = renderHeader && pinned[0]?.banner_url ? pinned[0] : null;
   const remaining = pinned.filter((community) => community.id !== featured?.id);
   // One pin shows; the rest wait behind More instead of stacking.
   const shown = featured ? null : remaining[0] ?? null;
   const more = shown ? remaining.slice(1) : remaining;
   if (loading || (pinned.length === 0 && !isOwnProfile)) return <>{renderHeader?.(null)}</>;
 
-  const pinCard = (community: Community & { pinId: string }, onMore?: () => void) => (
+  const moveFirst = async (community: Community) => {
+    setMoreOpen(false);
+    try {
+      await showPinFirst(ownWallet, community.id, pinned.map((p) => p.id));
+      loadPins();
+    } catch {
+      toastError(t("communities.pinUpdateFailed"));
+    }
+  };
+
+  const pinCard = (community: Community & { pinId: string }, action?: { label: string; onPress: () => void }) => (
     <TouchableOpacity
       key={community.pinId}
       className={community.banner_url ? 'dark-surface' : undefined}
@@ -143,7 +156,7 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
       </View>
       {isOwnProfile && (
         <TouchableOpacity
-          style={[styles.pinManage, onMore && styles.pinManageInline]}
+          style={[styles.pinManage, action && styles.pinManageInline]}
           onPress={(e) => {
             e.stopPropagation?.();
             setMoreOpen(false);
@@ -156,9 +169,9 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
           <Icon name="Pin" size={14} color="#a1a1aa" />
         </TouchableOpacity>
       )}
-      {onMore && (
-        <TouchableOpacity style={styles.pinMore} onPress={onMore} hitSlop={6} accessibilityRole="button">
-          <Text style={styles.pinMoreText}>{t("communities.pinnedMore")}</Text>
+      {action && (
+        <TouchableOpacity style={styles.pinMore} onPress={action.onPress} hitSlop={6} accessibilityRole="button">
+          <Text style={styles.pinMoreText}>{action.label}</Text>
         </TouchableOpacity>
       )}
     </TouchableOpacity>
@@ -180,9 +193,9 @@ const PinnedCommunities: React.FC<Props> = ({ walletAddress, isOwnProfile, onNav
       )}
       </View>
     <View style={[styles.wrap, isMinimal && styles.minimalWrap, renderHeader && styles.inset, featured && styles.emptyWrap]}>
-      {shown && pinCard(shown, more.length > 0 ? () => setMoreOpen(true) : undefined)}
+      {shown && pinCard(shown, more.length > 0 ? { label: t("communities.pinnedMore"), onPress: () => setMoreOpen(true) } : undefined)}
       <PinnedMoreSheet visible={moreOpen} onClose={() => setMoreOpen(false)}>
-        {more.map((community) => pinCard(community))}
+        {more.map((community) => pinCard(community, isOwnProfile ? { label: t("communities.showFirst"), onPress: () => moveFirst(community) } : undefined))}
       </PinnedMoreSheet>
       {isOwnProfile && !featured && pinned.length < MAX_PINS && (
         <TouchableOpacity style={[styles.addPin, isMinimal && { marginTop: 8 }]} onPress={() => setPickerOpen(true)} activeOpacity={0.7}>

@@ -6273,6 +6273,7 @@
   "communities": {
     "shareLink": "Comparteix l'enllaç",
     "pinnedMore": "Més",
+    "showFirst": "Mostra primer",
     "sendInMessage": "Envia invitació",
     "existingPost": {
       "add": "Afegir post existent",
