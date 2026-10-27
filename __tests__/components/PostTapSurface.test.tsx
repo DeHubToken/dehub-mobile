@@ -103,3 +103,23 @@ describe('text and image post gestures', () => {
     expect(s.react).not.toHaveBeenCalled();
   });
 });
+
+describe('tap reactions float on the root layer', () => {
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
+  it('hands a double tap to the root layer at the finger instead of drawing inside the post', () => {
+    const { subscribeTapBursts } = require('../../libs/tap-reaction-layer');
+    const bursts: unknown[] = [];
+    const stop = subscribeTapBursts((b: unknown) => bursts.push(b));
+    const view = render(<PostTapSurface onPress={jest.fn()} onReaction={jest.fn()}><Text>Post</Text></PostTapSurface>);
+    const surface = view.UNSAFE_getByType(Pressable);
+    fireEvent(surface, 'layout', { nativeEvent: { layout: { width: 200, height: 200, x: 0, y: 0 } } });
+    const event = { nativeEvent: { pageX: 100, pageY: 90, locationX: 100, locationY: 90 }, stopPropagation: jest.fn() };
+    fireEvent(surface, 'touchStart', event); fireEvent.press(surface, event);
+    fireEvent(surface, 'touchStart', event); fireEvent.press(surface, event);
+    expect(bursts).toEqual([{ reaction: 'like', x: 100, y: 90 }]);
+    expect(view.queryByText('👍')).toBeNull();
+    stop();
+  });
+});

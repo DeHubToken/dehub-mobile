@@ -92,6 +92,7 @@ import {
   TAP_LOVE_ANIMATION_MS,
   TAP_REACTION_RESOLUTION_MS,
 } from "../../libs/tap-gesture";
+import { showTapBurst } from "../../libs/tap-reaction-layer";
 
 /** Card content width — mirrors FeedCard, which lays this player out. */
 const cardWidthFor = (screenWidth: number) => screenWidth - 40;
@@ -412,7 +413,12 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     reaction: "like" | "love",
     x: number,
     y: number,
+    pageX?: number,
+    pageY?: number,
   ) => {
+    // Drawn at the app root so the video's edge, top bar and buttons can't
+    // cut it; the in-player copy below is only for a tree without that layer.
+    if (pageX != null && pageY != null && showTapBurst(reaction, pageX, pageY)) return;
     setTapAnimReaction(reaction);
     setTapAnimPos({ x: x - 32, y: y - 32 });
     setTapAnimRun((run) => run + 1);
@@ -1002,7 +1008,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
 
     const now = Date.now();
     const continuesGesture = continuesTapGesture(lastSurfaceTapRef.current, now);
-    const { locationX, locationY } = event.nativeEvent;
+    const { locationX, locationY, pageX, pageY } = event.nativeEvent;
 
     if (!continuesGesture || surfaceTapCountRef.current === 0) {
       resetSurfaceTapSequence();
@@ -1028,7 +1034,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
       handleVideoPress(
         surfaceWasPlayingRef.current && !surfaceWasUserStartedRef.current,
       );
-      showTapReactionAnimation("like", locationX, locationY);
+      showTapReactionAnimation("like", locationX, locationY, pageX, pageY);
       surfaceTapTimerRef.current = setTimeout(() => {
         surfaceTapTimerRef.current = null;
         if (surfaceTapCountRef.current !== 2) return;
@@ -1040,7 +1046,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
     }
 
     resetSurfaceTapSequence();
-    showTapReactionAnimation("love", locationX, locationY);
+    showTapReactionAnimation("love", locationX, locationY, pageX, pageY);
     onTapReaction("love");
   }, [onOpenViewer, videoUrl, isContentGated, stopPlayback, handleVideoPress, onTapReaction, resetSurfaceTapSequence, showTapReactionAnimation]);
 
