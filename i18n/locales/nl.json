@@ -1649,7 +1649,10 @@
     "giftBoost": "Een boost cadeau doen",
     "giftBoostDesc": "Geef er een van jezelf uit aan dit bericht",
     "askAi": "Vraag het AI",
-    "aiOverview": "AI-overzicht"
+    "aiOverview": "AI-overzicht",
+    "refreshLinkPreview": "Linkvoorbeeld vernieuwen",
+    "linkPreviewRefreshed": "Linkvoorbeeld vernieuwd",
+    "linkPreviewRefreshFailed": "Kan die site niet bereiken. Probeer het later opnieuw."
   },
   "filters": {
     "sort": "Sorteren",
