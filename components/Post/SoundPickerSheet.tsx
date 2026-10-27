@@ -37,6 +37,7 @@ interface Props {
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 import SheetGlass, { GLASS_PANEL_CLEAR, useDrawerGlass } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const CDN_BASE = "https://dehubcdn.ams3.cdn.digitaloceanspaces.com";
 
@@ -59,6 +60,7 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const glassPanel = useDrawerGlass();
+  const backdrop = useSheetBackdrop(visible);
   const { height: SCREEN_H } = useWindowDimensions();
   const [searchText, setSearchText] = useSurfaceDraft("components/Post/SoundPickerSheet.tsx:searchText", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -319,9 +321,10 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
+      <SheetBackdrop backdrop={backdrop} />
       <TouchableOpacity style={styles.backdrop} activeOpacity={1} onPress={onClose} />
       <Animated.View style={[styles.sheet, glassPanel && GLASS_PANEL_CLEAR, { height: sheetHeight }]}>
-        {glassPanel ? <SheetGlass /> : null}
+        {glassPanel ? <SheetGlass backdropBlurred={backdrop.blurred} /> : null}
         {/* Only the handle + header drag the sheet; on the whole sheet the
             responder claimed every vertical move, so scrolling the results
             resized or closed it. */}
@@ -390,9 +393,8 @@ const SoundPickerSheet: React.FC<Props> = ({ visible, onClose, onSelect, current
 };
 
 const styles = StyleSheet.create({
-  // The dim used to come from a BlurView, which on Android was only ever a
-  // flat tint anyway. Same 50% scrim every other sheet in the app uses.
-  backdrop: { flex: 1, backgroundColor: "rgba(0,0,0,0.5)" },
+  // The dim and blur come from SheetBackdrop, under the whole modal.
+  backdrop: { flex: 1 },
   sheet: {
     marginTop: "auto",
     width: "100%",

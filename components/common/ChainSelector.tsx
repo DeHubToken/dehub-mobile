@@ -17,6 +17,7 @@ import { ChainId, chainIcons } from "../../config/constants";
 import { SOLANA_MAINNET_CHAIN_ID } from "../../config/solana.constants";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 export interface ChainOption {
   id: number;
@@ -84,6 +85,7 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
   const title = titleProp ?? t("wallet.chooseNetwork");
   const insets = useSafeAreaInsets();
   const [open, setOpen] = useState(false);
+  const backdrop = useSheetBackdrop(open);
   const chains = useMemo(() => {
     const base = options || (includeSolana ? ALL_CHAINS : EVM_CHAINS);
     if (options) return options;
@@ -147,13 +149,14 @@ const ChainSelectorComponent: React.FC<ChainSelectorProps> = ({
         onRequestClose={() => setOpen(false)}
       >
         <Pressable style={styles.backdrop} onPress={() => setOpen(false)}>
+          <SheetBackdrop backdrop={backdrop} />
           <Pressable
             style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]}
             onPress={() => {}}
           >
             {/* Solid, not glass: expo-blur does not blur on Android, so a tint
                 here let the sheet read through whatever it opened over. */}
-            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.sheetOverlay]} />
+            <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, styles.sheetOverlay]} />
 
             <Text style={styles.title}>{title}</Text>
 
@@ -248,7 +251,7 @@ const styles = StyleSheet.create({
   },
   backdrop: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "transparent",
     justifyContent: "flex-end",
   },
   sheet: {

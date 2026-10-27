@@ -47,7 +47,22 @@ export function useFrostedSource(): Target | undefined {
  */
 export function useDrawerBlurSource(): Target | undefined {
   const targets = useContext(Targets);
-  return androidFrostSupported ? targets?.target : undefined;
+  const pinned = useContext(PinnedSource);
+  return androidFrostSupported ? pinned ?? targets?.target : undefined;
+}
+
+const PinnedSource = createContext<Target | undefined>(undefined);
+
+/**
+ * For a drawer that is a route of its own (a transparentModal screen): the
+ * screen it opens over loses focus and unregisters its feed, though it stays
+ * on screen behind the sheet. Keep blurring the feed that was up when the
+ * drawer opened instead of dropping to no blur.
+ */
+export function PinDrawerBlurSource({ children }: { children: React.ReactNode }) {
+  const targets = useContext(Targets);
+  const [pinned] = useState(() => targets?.target);
+  return <PinnedSource.Provider value={pinned}>{children}</PinnedSource.Provider>;
 }
 
 /** Standalone overlays must not keep sampling the covered page's feed. */
