@@ -9922,6 +9922,59 @@
       "noRetakes": "Geen herhaalde takes gevonden",
       "retakesRemoved": "{{count}} herhaalde take(s) verwijderd, laatste take behouden",
       "retakesFailed": "Kon de herhaalde takes niet uit deze clip halen"
+    },
+    "speakers": {
+      "find": "Sprekers vinden",
+      "name": "Spreker {{number}}",
+      "onlyOne": "Er is maar één spreker gevonden.",
+      "failed": "Kon de sprekers niet vinden.",
+      "kept": "Alleen {{name}} behouden.",
+      "editFailed": "Die bewerking past niet bij deze clip.",
+      "split": "Opgesplitst in {{count}} sprekershots.",
+      "keepOnly": "Alleen deze",
+      "splitAction": "Knippen bij elke sprekerwissel"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Beschrijf het 3D-object dat je wilt",
+      "queued": "Je 3D-object wordt gemaakt. Het verschijnt in het tabblad Generaties.",
+      "note": "3D-objecten komen in Media als korte draaiende clip met een doorzichtige achtergrond."
+    },
+    "voiceClone": {
+      "pickerLabel": "Kloon je stem",
+      "pickerDetail": "Voice-overs met je eigen stem",
+      "title": "Kloon je stem",
+      "description": "Neem jezelf op of kies een clip waarin je praat. Je betaalt één keer en je stem is er voor elke voice-over.",
+      "defaultName": "Mijn stem",
+      "record": "Neem een fragment op (30 seconden tot 2 minuten)",
+      "stop": "Opname stoppen",
+      "fromMedia": "Of gebruik een clip uit Media",
+      "recorded": "Je opname",
+      "sample": "Fragment: {{name}}",
+      "hint": "Duidelijke spraak zonder muziek werkt het best.",
+      "noMic": "Kon de microfoon niet gebruiken.",
+      "sampleFailed": "Kon het geluid van die clip niet lezen.",
+      "pay": "Klonen voor {{amount}} DHB",
+      "useFree": "Klonen (al betaald)",
+      "owned": "Je stem “{{name}}” staat al klaar. Kies hem in de stemmenlijst.",
+      "useOwned": "Mijn stem gebruiken",
+      "ready": "“{{name}}” is klaar voor voice-overs.",
+      "failed": "Stem klonen is mislukt.",
+      "paidFailed": "Je betaling is bewaard. Open dit opnieuw en de volgende poging is gratis.",
+      "consent": "Kloon alleen je eigen stem, of een stem waarvoor je toestemming hebt."
+    },
+    "linkImport": {
+      "open": "Importeren via link",
+      "placeholder": "Plak een YouTube-, TikTok- of andere link",
+      "rights": "Deze video is van mij of ik heb toestemming om hem te gebruiken",
+      "audioOnly": "Alleen geluid",
+      "go": "Importeren",
+      "queued": "In de wachtrij…",
+      "downloading": "Downloaden {{percent}}%",
+      "waiting": "Wachten op de site, straks opnieuw…",
+      "adding": "Toevoegen aan Media…",
+      "added": "Geïmporteerd en aan de tijdlijn toegevoegd.",
+      "failed": "Kon die link niet importeren."
     }
   },
   "creator": {
