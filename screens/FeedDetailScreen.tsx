@@ -45,6 +45,7 @@ import { useCommentTipTotals } from "../hooks/useCommentTipTotals";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import type { UnifiedFeedItem } from "../services/feed.unified.service";
 import { getAvatarUrl, toastError, toastSuccess } from "../libs";
+import { selfBadgeFields } from "../libs/misc";
 import { openCroppedImagePicker, getFileName, guessMime } from "../libs/assets.util";
 import {
   loadCommentDraft,
@@ -1221,6 +1222,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           displayName: user?.displayName || user?.username || t("dm.you"),
           avatarImageUrl: user?.avatarImageUrl || user?.avatarUrl || "",
           address: user?.address || user?.walletAddress || "",
+          ...selfBadgeFields(user),
         },
         likeCount: 0,
         isLiked: false,
@@ -1328,6 +1330,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
             displayName: user?.displayName || user?.username || t("dm.you"),
             avatarImageUrl: user?.avatarImageUrl || user?.avatarUrl || "",
             address: user?.address || user?.walletAddress || "",
+            ...selfBadgeFields(user),
           },
         };
         
