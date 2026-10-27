@@ -60,6 +60,10 @@ describe("process exit reporting", () => {
     const detail = JSON.parse(rows[0].metadata.detail);
     expect(detail.pssMb).toBe(400);
     expect(detail.trace).toContain("SIGSEGV");
+    expect(rows[0].metadata.updateId).toBeNull();
+    expect(rows[0].metadata.nativeBuildVersion).toBeNull();
+    expect(rows[0].metadata.releaseAttribution).toBe('unknown-historical-exit');
+    expect(rows[0].metadata.reportedByRelease).toHaveProperty('updateId');
 
     // Next launch: the same history, nothing new.
     (global.fetch as jest.Mock).mockClear();
@@ -91,6 +95,8 @@ describe("process exit reporting", () => {
     const row = rows.find((r: any) => r.component === "JavaCrash");
     expect(row.message).toBe("java.lang.IllegalStateException: Trying to add unknown view tag: 4711");
     expect(row.stack_trace).toContain("NativeViewHierarchyManager.addRootView");
+    expect(row.metadata.updateId).toBeNull();
+    expect(row.metadata.releaseAttribution).toBe('unknown-historical-exit');
   });
 
   it("is silent where the native module is missing", () => {

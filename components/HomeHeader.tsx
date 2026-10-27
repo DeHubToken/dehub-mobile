@@ -40,7 +40,9 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
   }, [navigation]);
 
   return (
-    <View className="flex-row items-center justify-between px-4 h-11">
+    // px-2 puts the avatar and bell on the same 8pt edge as the feed bentos
+    // below (the list's side padding), not 8pt further in.
+    <View className="flex-row items-center justify-between px-2 h-11">
       {/* Profile — left. Matches web's MobileHeader, which puts the drawer
           trigger on the left, the mark in the middle and the bell on the
           right. A pushed page adds a back arrow in front of it and keeps the
@@ -72,7 +74,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           // Signed in this control is the user's own avatar, which is why the
           // label says what it does rather than what it looks like.
           accessibilityLabel={t("common.openMenu")}
-          className="w-11 h-11 items-center justify-center"
+          className="w-11 h-11 items-start justify-center"
         >
           <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
         </TouchableOpacity>}
@@ -106,7 +108,10 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
-          className="w-11 h-11 items-center justify-center"
+          className="w-11 h-11 items-end justify-center"
+          // The bell glyph sits 3pt inside its 26pt box; pull it out so the
+          // drawn edge, not the box, meets the bento edge.
+          style={{ marginRight: -3 }}
         >
           <NotificationBell unread={unreadCount} color={colors.foreground} />
         </TouchableOpacity>
