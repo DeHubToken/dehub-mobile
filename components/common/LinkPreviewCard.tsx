@@ -20,7 +20,7 @@ import { Image } from 'expo-image';
 import Icon from '../ui/Icon';
 import { openInApp } from '../../libs/links.utils';
 import { parseDehubLink } from '../../libs/dehub-links';
-import { fetchLinkPreview, extractUrlsFromText, getLinkPreviewFavicon, type LinkPreviewData } from '../../libs/link-preview';
+import { fetchLinkPreview, extractUrlsFromText, getLinkPreviewFavicon, subscribeLinkPreviewRefresh, type LinkPreviewData } from '../../libs/link-preview';
 import { useAppTheme } from '../../context/ThemeContext';
 import { minimalFlat } from '../../theme/minimal';
 import { useNavigation } from '@react-navigation/native';
@@ -33,7 +33,8 @@ import { parseRichLink } from '../../libs/rich-links';
 import RichLinkCard from './RichLinkCard';
 
 /** The first URL in the text that isn't one of our own entity links. */
-function firstExternalUrl(text?: string | null): string | null {
+/** The link whose card a post shows, if it shows one. */
+export function firstExternalUrl(text?: string | null): string | null {
   if (!text) return null;
   for (const url of extractUrlsFromText(text)) {
     if (!parseDehubLink(url)) return url;
@@ -73,6 +74,13 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
   const [app, setApp] = useState<MiniAppListing | null>(null);
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  // Bumped when this link is refreshed from a post menu, so the card re-reads it.
+  const [refreshes, setRefreshes] = useState(0);
+
+  useEffect(() => {
+    if (!url) return;
+    return subscribeLinkPreviewRefresh((refreshed) => { if (refreshed === url) setRefreshes((n) => n + 1); });
+  }, [url]);
 
   useEffect(() => {
     let cancelled = false;
@@ -102,7 +110,7 @@ const LinkPreviewCardComponent: React.FC<LinkPreviewCardProps> = ({ text, style 
       cancelled = true;
       cancel();
     };
-  }, [url]);
+  }, [url, refreshes]);
 
   if (!url) return null;
   if (loading) return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, style]} />;
