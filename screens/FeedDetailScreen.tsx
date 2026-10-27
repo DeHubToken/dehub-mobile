@@ -1927,16 +1927,16 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                   >
                     <Text style={{ fontSize: 18 }}>🙂</Text>
                   </Pressable>
-                <TouchableOpacity
+                <Pressable
                   onPress={handleSendPress}
                   onTouchStart={handleSendTouchStart}
                   disabled={posting || !inputText.trim()}
-                  activeOpacity={0.7}
                   accessibilityRole="button"
                   accessibilityLabel={t("comments.postComment")}
-                  style={[
+                  style={({ pressed }) => [
                     composerStyles.iconControl,
                     { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
+                    pressed && { opacity: 0.7 },
                   ]}
                 >
                   {posting ? (
@@ -1948,7 +1948,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
                       color={inputText.trim() ? "#010305" : theme.colors.mutedForeground}
                     />
                   )}
-                </TouchableOpacity>
+                </Pressable>
                 </View>
               ) : (
                 <View className="flex-row items-center" style={{ gap: COMPOSER.gap / 2 }}>
