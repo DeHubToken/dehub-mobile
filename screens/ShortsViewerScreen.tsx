@@ -281,6 +281,8 @@ interface ActionButtonProps {
   glyph?: PostReaction;
   /** The glyph is the viewer's own reaction, so it plays its animation. */
   glyphAnimated?: boolean;
+  /** With glyphAnimated, whether it is moving right now (false holds a frame). */
+  glyphPlaying?: boolean;
   active?: boolean;
   label?: string;
   onPress: () => void;
@@ -303,6 +305,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   icon,
   glyph,
   glyphAnimated,
+  glyphPlaying = true,
   active,
   label,
   onPress,
@@ -335,7 +338,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     >
       <Animated.View style={{ transform: [{ scale }] }}>
         {glyph ? (
-          <ReactionEmoji reaction={glyph} animate={glyphAnimated} size={22} textStyle={styles.actionGlyph} />
+          <ReactionEmoji reaction={glyph} animate={glyphAnimated} playing={glyphPlaying} size={22} textStyle={styles.actionGlyph} />
         ) : (
           // Web's `w-5 h-5`.
           <Icon
@@ -1698,6 +1701,18 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     if (intrinsicSize.width > 0 && intrinsicSize.height > 0) rememberVideoAspect(tokenId, intrinsicSize.width / intrinsicSize.height);
   }, [intrinsicSize, tokenId]);
 
+  // The viewer's own reaction plays when the short comes up or the reaction
+  // changes, then holds its frame. Left looping, its animated image was
+  // re-uploaded every other frame for as long as the short played: on a
+  // Galaxy S24+ that alone kept a still short about half late frames.
+  const [glyphLive, setGlyphLive] = useState(false);
+  useEffect(() => {
+    if (!isActive) { setGlyphLive(false); return; }
+    setGlyphLive(true);
+    const timer = setTimeout(() => setGlyphLive(false), 3000);
+    return () => clearTimeout(timer);
+  }, [isActive, myReaction]);
+
   const canMinimize = isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
     && !directSurface && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
   const minimizePan = useMemo(() => Gesture.Pan()
@@ -2279,6 +2294,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                     icon="ThumbsUp"
                     glyph={thumbGlyph}
                     glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
+                    glyphPlaying={glyphLive}
                     active={liked || disliked}
                     label={formatCompactNumber(thumbCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
