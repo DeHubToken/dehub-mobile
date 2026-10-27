@@ -26,6 +26,8 @@ import { DIGITAL_PURCHASES_ENABLED } from '../../config/storefront';
 import { FIELD_TEXT } from '../../theme/inputs';
 import TradeSheet from './TradeSheet';
 import ArcSendSheet from './ArcSendSheet';
+import { AppTokenHistorySheet, AppTokenSendSheet } from './AppTokenSheets';
+import { useAppTokens, useAppTokensEnabled } from '../../hooks/useAppTokens';
 import AddressInputTools from '../common/AddressInputTools';
 
 const ICONS: Record<string, any> = {
@@ -65,6 +67,13 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
   const user = useUser();
   const wallet = useWalletTokens();
   const { data: credits } = useSubscriptionCredits();
+  // App tokens: when the server switches them on, DHB is the in-app balance
+  // and Send moves app tokens only. Onchain DHB is not shown or sent here.
+  const appTokensOn = useAppTokensEnabled();
+  const { data: appTokens } = useAppTokens(appTokensOn);
+  const appDhb = Number(appTokens?.balance ?? 0);
+  const [appSend, setAppSend] = useState(false);
+  const [appHistory, setAppHistory] = useState(false);
   const [search, setSearch] = useSurfaceDraft('wallet:search', '');
   const [group, setGroup] = useState<WalletGroup | null>(null);
   const [receive, setReceive] = useState(false);
@@ -77,11 +86,14 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
   const [arc, setArc] = useState<WalletToken | null>(null);
   const groups = useMemo(() => groupWalletTokens(wallet.tokens), [wallet.tokens]);
   const query = search.trim().toLowerCase();
-  const visible = groups.filter(item => `${item.symbol} ${item.name}`.toLowerCase().includes(query) && (item.amount > 0 || item.unknown || item.tokens.some(token => token.isCustom)));
-  const position = dhbPosition(user, groups.find(item => item.symbol === 'DHB')?.amount || 0);
+  const visible = groups.filter(item => !(appTokensOn && item.symbol === 'DHB') && `${item.symbol} ${item.name}`.toLowerCase().includes(query) && (item.amount > 0 || item.unknown || item.tokens.some(token => token.isCustom)));
+  const position = appTokensOn ? appDhb : dhbPosition(user, groups.find(item => item.symbol === 'DHB')?.amount || 0);
   const rows = dhbBreakdown(user).rows;
   const staked = rows.reduce((sum, row) => sum + row.staked, 0);
-  const usd = wallet.tokens.reduce((sum, token) => sum + Number(token.balance || 0) * (wallet.prices[token.symbol] || 0), staked * (wallet.prices.DHB || 0));
+  const usd = wallet.tokens.reduce(
+    (sum, token) => (appTokensOn && token.symbol === 'DHB' ? sum : sum + Number(token.balance || 0) * (wallet.prices[token.symbol] || 0)),
+    (appTokensOn ? appDhb : staked) * (wallet.prices.DHB || 0),
+  );
   const receiveAddress = receiveNetwork === 'solana' && wallet.solanaAddress ? wallet.solanaAddress : wallet.address;
   const funded = wallet.tokens.filter(token => Number(token.balance) > 0);
 
@@ -113,7 +125,8 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
           <Pressable accessibilityRole="button" accessibilityLabel={t('wallet.copyAddress')} onPress={() => setReceive(true)} hitSlop={10}><Icon name="Copy" size={18} color="#aaa" /></Pressable>
         </View>
         <Text style={s.muted}>{t('wallet.totalWalletValue')}: {!wallet.loading && wallet.tokens.length && Object.keys(wallet.prices).length && !(wallet.failedChains.length && usd === 0) ? `${wallet.failedChains.length ? '≈ ' : ''}$${usd.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '—'}</Text>
-        {breakdown && <View style={s.sectionGap}>
+        {breakdown && appTokensOn && <View style={s.sectionGap}><Text style={s.muted}>{t('appTokens.explainer')}</Text></View>}
+        {breakdown && !appTokensOn && <View style={s.sectionGap}>
           <Text style={s.muted}>{t('assets.dhbPositionNote')}</Text>
           {rows.map(row => <View key={row.chain} style={s.listRow}><Text style={s.label}>{row.chain}</Text><Text style={s.muted}>{format(row.wallet)} {t('assets.held')} · {format(row.staked)} {t('assets.staked')}</Text></View>)}
         </View>}
@@ -121,7 +134,7 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
       <View style={s.inset}>
         <View style={s.actions}>
           <Action label={t('wallet.receive')} icon="ArrowDownToLine" onPress={() => setReceive(true)} />
-          <Action label={t('wallet.send')} icon="Send" onPress={() => openSend(funded)} />
+          <Action label={t('wallet.send')} icon="Send" onPress={() => (appTokensOn ? setAppSend(true) : openSend(funded))} />
           {/* Buying, staking, bridging and trading are not offered in the App
               Store build (config/storefront, guideline 3.1.1). */}
           {DIGITAL_PURCHASES_ENABLED && <>
@@ -140,13 +153,19 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
           <KitButton label={t('common.retry')} variant="quiet" onPress={() => { void wallet.refresh(); }} />
         </View>}
         {wallet.loading && wallet.tokens.length === 0 ? <ActivityIndicator style={s.loading} color="#aaa" /> : null}
+        {appTokensOn && (!query || 'dhb dehub'.includes(query)) && <Pressable accessibilityRole="button" accessibilityLabel={`DHB, ${format(appDhb)}`} onPress={() => setAppHistory(true)} style={s.tokenRow}>
+          <TokenIcon symbol="DHB" />
+          <View style={s.tokenName}><Text style={s.label}>DHB</Text><Text numberOfLines={1} style={s.muted}>{t('appTokens.rowHint')}</Text></View>
+          <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{format(appDhb)}</Text><Text style={s.muted}>{wallet.prices.DHB ? `$${(appDhb * wallet.prices.DHB).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '—'}</Text></View>
+          <Icon name="ChevronRight" size={16} color="#999" />
+        </Pressable>}
         {visible.map(item => <Pressable key={item.symbol} accessibilityRole="button" accessibilityLabel={`${item.symbol}, ${item.unknown ? t('common.failedToLoad') : format(item.amount)}`} onPress={() => setGroup(item)} style={s.tokenRow}>
           <TokenIcon symbol={item.symbol} />
           <View style={s.tokenName}><Text style={s.label}>{item.symbol}</Text><Text numberOfLines={1} style={s.muted}>{[...new Set(item.tokens.filter(token => Number(token.balance) > 0 || token.isCustom).map(token => networkName(token.chainId)))].join(' · ') || item.name}</Text></View>
           <View style={s.tokenValue}><Text numberOfLines={1} adjustsFontSizeToFit style={s.label}>{item.unknown ? (item.amount > 0 ? `≈ ${format(item.amount)}` : '—') : format(item.amount)}</Text><Text style={s.muted}>{!item.unknown && wallet.prices[item.symbol] ? `$${(item.amount * wallet.prices[item.symbol]).toLocaleString(undefined, { maximumFractionDigits: 2 })}` : '—'}</Text></View>
           <Icon name="ChevronRight" size={16} color="#999" />
         </Pressable>)}
-        {!wallet.loading && !visible.length && !wallet.failedChains.length && <Text style={s.empty}>{t(query ? 'common.noResults' : 'wallet.zeroBalance')}</Text>}
+        {!wallet.loading && !visible.length && !wallet.failedChains.length && !appTokensOn && <Text style={s.empty}>{t(query ? 'common.noResults' : 'wallet.zeroBalance')}</Text>}
         {!!credits?.tokens && (!query || t('credits.subscriptionTokens').toLowerCase().includes(query)) && <Pressable style={s.tokenRow} onPress={() => toastInfo(t('credits.untradableTokens'))}>
           <TokenIcon symbol="DHB" /><View style={s.tokenName}><Text style={s.label}>{t('credits.subscriptionTokens')}</Text><Text style={s.muted}>{t('credits.subscriptionTokensOnly')}</Text></View><Text style={s.label}>{format(credits.tokens)}</Text>
         </Pressable>}
@@ -183,6 +202,8 @@ export default function WalletOverview({ onBuy, onStake }: { onBuy: () => void; 
     {send && <SendTokenSheet key={`${send.chainId}:${send.address}`} token={send} owner={wallet.address} onClose={() => setSend(null)} onSent={() => { void wallet.refresh(); }} />}
     <TradeSheet visible={trade} onClose={() => setTrade(false)} address={wallet.address} />
     <ArcSendSheet open={!!arc} onClose={() => setArc(null)} address={wallet.address} balance={Number(arc?.balance || 0)} onSent={() => { void wallet.refresh(); }} />
+    {appTokensOn && <AppTokenSendSheet open={appSend} onClose={() => setAppSend(false)} />}
+    {appTokensOn && <AppTokenHistorySheet open={appHistory} onClose={() => setAppHistory(false)} onSend={() => setAppSend(true)} />}
     {importing && <ImportTokenSheet onClose={() => setImporting(false)} onImported={() => { setImporting(false); void wallet.refresh(); }} />}
   </View>;
 }

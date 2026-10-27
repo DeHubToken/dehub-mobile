@@ -51,7 +51,8 @@
     "bridge",
     "easyTrade",
     "converter",
-    "connect"
+    "connect",
+    "appTokens"
   ],
   "creator": [
     "creator",
