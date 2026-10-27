@@ -1,8 +1,28 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Platform } from 'react-native';
 import type { VideoPlayer } from 'expo-video';
 import { createPlaybackRecovery, playbackSourceIdentity, type PlaybackPhase } from '../libs/playback-recovery';
 import { replaceVideoSource } from '../libs/video-source';
 import { rewindFinishedVideo } from '../libs/video-start';
+
+/**
+ * Feed and Shorts players start with `waitsToMinimizeStalling: false` so the
+ * first frame shows without AVPlayer's pre-roll. With that off, AVPlayer's
+ * stall behaviour is the legacy one: when the buffer runs dry it drops the
+ * rate to 0 and never resumes on its own. JS then sees a pause while the item
+ * is still readyToPlay, takes it for a deliberate one, and the clip stays
+ * frozen. Once playback has started, hand stalls back to AVPlayer, which waits
+ * for data and carries on.
+ */
+const waitingThroughStalls = new WeakSet<VideoPlayer>();
+function waitThroughStallsOnceStarted(player: VideoPlayer) {
+  if (Platform.OS !== 'ios' || waitingThroughStalls.has(player)) return;
+  waitingThroughStalls.add(player);
+  try {
+    const current = player.bufferOptions;
+    if (current && current.waitsToMinimizeStalling === false) player.bufferOptions = { ...current, waitsToMinimizeStalling: true };
+  } catch {}
+}
 
 export function usePlaybackRecovery(player: VideoPlayer, source: string | null | undefined, options: {
   component: string;
@@ -47,7 +67,7 @@ export function usePlaybackRecovery(player: VideoPlayer, source: string | null |
         if (status === 'loading') recovery.waiting();
       }),
       player.addListener('playingChange', ({ isPlaying }) => {
-        if (isPlaying) recovery.watch();
+        if (isPlaying) { waitThroughStallsOnceStarted(player); recovery.watch(); }
         else if (player.status === 'readyToPlay' && !recovery.replacing && recovery.wanted) recovery.stop();
       }),
       player.addListener('timeUpdate', ({ currentTime }) => {
