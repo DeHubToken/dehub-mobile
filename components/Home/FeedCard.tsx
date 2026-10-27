@@ -2123,6 +2123,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           currentTitle={localTitle}
           currentDescription={localDescription}
           currentArticleBody={localArticleBody}
+          linkText={captionText}
           currentCategories={localCategories}
           currentCommentsDisabled={localCommentsDisabled}
           currentShopLinks={localShopLinks ?? (item as any).shopLinks}

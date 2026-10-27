@@ -1424,7 +1424,10 @@
     "giftBoost": "Gift a boost",
     "giftBoostDesc": "Spend one of yours on this post",
     "askAi": "Ask AI",
-    "aiOverview": "AI overview"
+    "aiOverview": "AI overview",
+    "refreshLinkPreview": "Refresh link preview",
+    "linkPreviewRefreshed": "Link preview refreshed",
+    "linkPreviewRefreshFailed": "Couldn't reach that site. Try again later."
   },
   "filters": {
     "sort": "Sort",

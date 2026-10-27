@@ -1461,7 +1461,10 @@
     "giftBoost": "أهدِ دفعة",
     "giftBoostDesc": "أنفق واحدة من دفعاتك على هذا المنشور",
     "askAi": "اسأل الذكاء الاصطناعي",
-    "aiOverview": "نظرة عامة على الذكاء الاصطناعي"
+    "aiOverview": "نظرة عامة على الذكاء الاصطناعي",
+    "refreshLinkPreview": "تحديث معاينة الرابط",
+    "linkPreviewRefreshed": "تم تحديث معاينة الرابط",
+    "linkPreviewRefreshFailed": "تعذّر الوصول إلى ذلك الموقع. حاول مرة أخرى لاحقًا."
   },
   "filters": {
     "sort": "ترتيب",
