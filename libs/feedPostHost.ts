@@ -12,9 +12,23 @@ export function setFeedPostHost(next: Host | null): void {
   host = next;
 }
 
-/** True when Home took the post; the caller then skips its own navigation. */
-export function openPostInFeedHost(tokenId: number | string): boolean {
+let pendingComments: string | null = null;
+
+/**
+ * True when Home took the post; the caller then skips its own navigation.
+ * `comments` opens the post with its comments sheet already up, in the
+ * bottom half of the screen (the feed card's comment button).
+ */
+export function openPostInFeedHost(tokenId: number | string, options?: { comments?: boolean }): boolean {
   if (!host) return false;
+  pendingComments = options?.comments ? String(tokenId) : null;
   host(String(tokenId));
+  return true;
+}
+
+/** The post page asks once, on opening, whether to start with comments up. */
+export function takePendingFeedComments(tokenId: number | string): boolean {
+  if (pendingComments !== String(tokenId)) return false;
+  pendingComments = null;
   return true;
 }
