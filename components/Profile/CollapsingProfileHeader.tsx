@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   identity: { flex: 1, minWidth: 0 },
   name: { color: '#fff', fontSize: 16, fontWeight: '700' },
   handle: { color: '#A1A1AA', fontSize: 11, marginTop: 1 },
-  follow: { minHeight: 36, minWidth: 76, maxWidth: '44%', paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center', borderRadius: 12 },
-  followSurface: { borderRadius: 12, backgroundColor: 'rgba(8,8,10,0.46)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.4)' },
+  follow: { minHeight: 36, minWidth: 76, maxWidth: '44%', paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center', borderRadius: 8 },
+  followSurface: { borderRadius: 8, backgroundColor: 'rgba(8,8,10,0.46)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)', borderTopColor: 'rgba(255,255,255,0.4)' },
   followLabel: { color: '#fff', fontSize: 12, fontWeight: '600' },
 });
