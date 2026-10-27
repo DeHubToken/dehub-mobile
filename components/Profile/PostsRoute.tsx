@@ -27,6 +27,9 @@ import { ScreenNames } from "../../navigation/ScreenNames";
 import ProfileEmptyState from "./ProfileEmptyState";
 import Icon from "../ui/Icon";
 import { isTabListFresh, readTabList, writeTabList } from "../../libs/tab-list-cache";
+import { useFeedScrollLifecycle } from "../../hooks/useFeedScrollLifecycle";
+
+const noopScroll = () => {};
 
 const PAGE_SIZE = 20;
 const MAX_REPLY_PAGES = 10;
@@ -84,6 +87,8 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
+  // Report drags and flings so work that pauses while a feed moves pauses here too.
+  const scrollLifecycle = useFeedScrollLifecycle(noopScroll, noopScroll);
   const postPageRef = useRef(cachedPosts?.page ?? 0);
   const postEndRef = useRef(cachedPosts?.end ?? false);
 
@@ -338,6 +343,10 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         initialNumToRender={4}
         removeClippedSubviews={false}
         onScroll={onScroll}
+        onScrollBeginDrag={scrollLifecycle.begin}
+        onScrollEndDrag={scrollLifecycle.endDrag}
+        onMomentumScrollBegin={scrollLifecycle.begin}
+        onMomentumScrollEnd={scrollLifecycle.settle}
         scrollEventThrottle={16}
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
