@@ -75,7 +75,7 @@ import {
   AppState,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
-import { knownVideoAspect, getMeasuredMediaAspect } from "../hooks/useMediaAspect";
+import { knownVideoAspect, getMeasuredMediaAspect, rememberVideoAspect } from "../hooks/useMediaAspect";
 import Reanimated, { cancelAnimation, FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming, type SharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
@@ -489,14 +489,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // video frame redrew and re-uploaded the whole screen: measured on a Galaxy
   // S24+, a short playing untouched was 98% late frames and taps landed a
   // second or two behind. A SurfaceView hands frames straight to the
-  // compositor. Only a clip known to be portrait gets one: those can never be
+  // compositor. Only a clip not known to be landscape gets one: those can never be
   // dragged into the mini player (landscape only), which needs the texture to
   // clip and scale with the finger. Picked once per player, since the surface
   // type cannot change on a mounted view.
   const directSurface = useMemo(() => {
     if (Platform.OS !== "android" || (Platform.Version as number) < 29) return false;
+    // Unknown counts as portrait: a swiped-to short has no measured poster
+    // yet, and nearly every short is vertical. A landscape clip learns its
+    // shape on first play (remembered below) and gets the texture next time.
     const aspect = knownVideoAspect(tokenId) ?? (thumbnail ? getMeasuredMediaAspect(thumbnail) : null);
-    return aspect != null && aspect < 0.9;
+    return aspect == null || aspect < 0.9;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [player]);
   const minterAddress = item.minter || item.minterUser?.address || "";
@@ -1686,6 +1689,12 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       miniHandoffFade.value = withTiming(0, { duration: 120 });
     });
   }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniHandoffFade, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize, itemHeight]);
+
+  // Remembered so a landscape clip opens on the texture (and can be dragged
+  // into the mini player) the next time it comes round.
+  useEffect(() => {
+    if (intrinsicSize.width > 0 && intrinsicSize.height > 0) rememberVideoAspect(tokenId, intrinsicSize.width / intrinsicSize.height);
+  }, [intrinsicSize, tokenId]);
 
   const canMinimize = isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
     && !directSurface && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
