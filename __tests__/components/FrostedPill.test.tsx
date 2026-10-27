@@ -9,6 +9,10 @@ jest.mock('react-native', () => ({
   StyleSheet: { absoluteFill: { position: 'absolute' }, hairlineWidth: 0.5 },
 }));
 jest.mock('expo-blur', () => ({ BlurView: 'BlurView' }));
+jest.mock('react-native-reanimated', () => {
+  const fade = { duration: (ms: number) => ({ ms }) };
+  return { __esModule: true, default: { View: 'AnimatedView' }, FadeIn: fade, FadeOut: fade };
+});
 jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('../../components/ui/IosGlassPill', () => () => null);
 let mockSupported = true;
@@ -100,4 +104,14 @@ it.each([false, true])('pauses feed capture during motion and restores it on set
   } finally {
     mockLight = false;
   }
+});
+
+it('fades the blur in when the feed settles and out when it moves, instead of snapping', () => {
+  mockSupported = true;
+  mockTarget = { current: {} };
+  act(() => { tree = create(<FrostedPill tint="rgba(20,20,24,0.18)" borderRadius={12} />); });
+  const wrap = tree.root.findByType('BlurView' as any).parent!;
+  expect(wrap.type).toBe('AnimatedView');
+  expect(wrap.props.entering).toEqual({ ms: 260 });
+  expect(wrap.props.exiting).toEqual({ ms: 220 });
 });

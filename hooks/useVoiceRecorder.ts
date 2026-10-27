@@ -5,7 +5,7 @@ import { configureForRecording, releaseRecording } from '../libs/audioSession';
 import { runWithPermissions } from '../libs/permissions.util';
 
 const MAX_DURATION_MS = 29_000;
-const WAVEFORM_BARS = 35;
+const WAVEFORM_BARS = 64;
 
 export interface VoiceNoteResult { uri: string; durationMs: number; mimeType: string }
 export interface UseVoiceRecorderOpts {

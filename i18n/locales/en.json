@@ -1928,6 +1928,11 @@
     "title": "Notifications",
     "loadFailed": "Couldn't load notifications",
     "markAllRead": "Mark all read",
+    "allSettings": "All notification settings",
+    "groupNew": "New",
+    "groupToday": "Today",
+    "groupThisWeek": "This week",
+    "groupEarlier": "Earlier",
     "settings": "Notification Settings",
     "actions": "Actions",
     "markAllAsRead": "Mark all as read",
@@ -7219,6 +7224,31 @@
     "title": "Moderate"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Multistream destinations",
+      "intro": "Go live on DeHub once and we push your stream to every platform switched on here, free. It starts within a few seconds of you going live.",
+      "add": "Add destination",
+      "empty": "No destinations yet. Add Twitch, YouTube, Kick or any RTMP server.",
+      "platform": "Platform",
+      "label": "Name (optional)",
+      "server": "Server URL",
+      "key": "Stream key",
+      "findKey": "Find your {{name}} server and key",
+      "customHint": "Paste the RTMP server and key your platform gives you.",
+      "keyNote": "Your key is stored encrypted on our servers and is never shown again.",
+      "save": "Add",
+      "cancel": "Cancel",
+      "added": "{{name}} added",
+      "saveFailed": "Could not save the destination",
+      "toggle": "Stream to this destination",
+      "states": {
+        "off": "Off",
+        "idle": "Ready",
+        "connecting": "Connecting",
+        "live": "Live",
+        "error": "Error"
+      }
+    },
     "subathon": {
       "title": "Subathon",
       "intro": "A countdown on your stream. Every paid gift, follow and subscription adds time, so the room keeps you live.",
@@ -7575,6 +7605,15 @@
     }
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "New follower",
+      "subscribe": "New subscriber",
+      "subscribedTo": "Subscribed · {{plan}}",
+      "gifted_one": "Gifted a sub",
+      "gifted_other": "Gifted {{count}} subs",
+      "share": "Shared the stream",
+      "join": "Just joined"
+    },
     "someone": "Someone",
     "newFollower": "New follower: {{name}}",
     "newSubscriber": "New subscriber: {{name}}",
@@ -8279,6 +8318,18 @@
       "reloadText": "Reload caption",
       "textSaved": "Caption changes saved.",
       "action": "Auto captions",
+      "style": "Caption style",
+      "styles": {
+        "classic": "Classic",
+        "boxed": "Boxed",
+        "bold": "Bold",
+        "wordpop": "Word Pop",
+        "rapid": "Rapid Reveal",
+        "beast": "Beast Mode",
+        "stacked": "Stacked",
+        "serif": "Serif",
+        "bubble": "Bubble"
+      },
       "working": "Listening… {{percent}}%",
       "downloading": "Getting the speech model ready… {{percent}}%",
       "hint": "Turns speech into timed captions you can restyle. Runs on your device: free and private. The first use downloads the model.",
@@ -8359,6 +8410,10 @@
       "vibrant": "Vibrant",
       "cyber": "Cyber",
       "invert": "Invert",
+      "fadedFilm": "Faded film",
+      "technicolor": "Technicolor",
+      "newsreel": "Newsreel",
+      "vhs": "VHS",
       "strength": "Filter strength: {{value}}%"
     },
     "layer": {
@@ -8440,13 +8495,17 @@
       "pptx": "PowerPoint presentation",
       "pptxHint": "Each page becomes one slide image, with presenter notes and links. Edit individual text and elements in the original design.",
       "section": "Named section",
-      "transparent": "Transparent background"
+      "transparent": "Transparent background",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Downloads a ZIP with your timeline as FCPXML and Premiere XML plus every media file, so you can finish the edit in Premiere Pro, Final Cut Pro or DaVinci Resolve. Text becomes markers; effects stay in DeHub."
     },
     "adjust": {
       "auto": "Auto enhance",
       "autoFailed": "Couldn't analyse this picture.",
       "tint": "Tint {{value}}",
       "vignette": "Vignette {{value}}%",
+      "halation": "Halation {{value}}%",
+      "scanlines": "Scanlines {{value}}%",
       "warmth": "Warmth {{value}}"
     },
     "draw": {
@@ -8522,6 +8581,19 @@
       "resetGeometry": "Reset shape geometry"
     },
     "agent": {
+      "stopped": "Stopped. Nothing else was changed.",
+      "stop": "Stop",
+      "queue": "Add to queue",
+      "queued": "{{count}} queued",
+      "restore": "Restore to here",
+      "restoreHint": "Put the project back the way it was before this message. Undo brings it back.",
+      "restored": "Restored the project to before that message. Press undo to bring the newer version back.",
+      "rewrite": "Make my request clearer",
+      "rewriteFailed": "Couldn't rewrite that. Your text is unchanged.",
+      "feedback": "Was this helpful?",
+      "good": "Good reply",
+      "bad": "Bad reply",
+      "retryPrefix": "That wasn't right. Instead, ",
       "changes": "Edits made: {{count}}",
       "clear": "Clear chat",
       "done": "Done.",
@@ -8539,7 +8611,34 @@
       "suggestTitle": "Add a big bold title at the top and a smaller subtitle under it",
       "undo": "Undo",
       "openGenerator": "Review and generate",
-      "working": "Working on it…"
+      "working": "Working on it…",
+      "recipesTitle": "Recipes",
+      "recipe": {
+        "podcastClip": {
+          "label": "Podcast clip",
+          "prompt": "Find the strongest 30-second moment, trim to it, add Word Pop captions and make it 9:16."
+        },
+        "talkingHead": {
+          "label": "Clean talking head",
+          "prompt": "Cut long pauses, add Classic captions, and give it a subtle warm look."
+        },
+        "productPromo": {
+          "label": "Product promo",
+          "prompt": "Make a 15-second promo: punchy title at the start, Zoom in transitions between clips, Bold captions and upbeat music."
+        },
+        "hypeReel": {
+          "label": "Hype reel",
+          "prompt": "Cut the clips to the beat of the music, use Fly up transitions and the Technicolor look."
+        },
+        "retroEdit": {
+          "label": "Retro edit",
+          "prompt": "Give every clip the VHS look, add a big serif title, and use Fade transitions."
+        },
+        "tutorial": {
+          "label": "Tutorial",
+          "prompt": "Add a title for each step, Boxed captions, and slow the key moment down to 0.5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Add a brand colour",
@@ -8656,6 +8755,10 @@
       "tSlideRight": "Slide right",
       "tWipeLeft": "Wipe left",
       "tWipeRight": "Wipe right",
+      "tZoomIn": "Zoom in",
+      "tZoomOut": "Zoom out",
+      "tFlyUp": "Fly up",
+      "tFlyDown": "Fly down",
       "animate": "Animate",
       "animateIn": "Entrance",
       "animateOut": "Exit",
@@ -9978,6 +10081,25 @@
       "selection": "Selection",
       "zoomIn": "Zoom canvas in",
       "zoomOut": "Zoom canvas out"
+    },
+    "clipFix": {
+      "detach": "Detach audio",
+      "detached": "Audio moved to its own clip",
+      "detachFailed": "Could not detach this clip's audio",
+      "removeBars": "Remove black bars",
+      "scanning": "Checking frames…",
+      "noBars": "No black bars found",
+      "barsRemoved": "Black bars cropped",
+      "barsFailed": "Could not check this video for black bars",
+      "reframe": "Auto reframe",
+      "reframeHint": "The video already fits this page shape",
+      "reframed": "Reframed to follow the action",
+      "reframeFailed": "Could not reframe this video",
+      "retakes": "Remove retakes",
+      "listening": "Listening…",
+      "noRetakes": "No retakes found",
+      "retakesRemoved": "Removed {{count}} retake(s), kept the last take",
+      "retakesFailed": "Could not remove retakes from this clip"
     }
   },
   "creator": {
@@ -12933,6 +13055,8 @@
     "787bcf985c06": "Could not change the cover",
     "78b02b1a598a": "Failed to save wallet",
     "78ffacb7abe7": "Generate Kling video · original soundtrack",
+    "22577ebd908e": "Generate Wan 3.0 video · original soundtrack",
+    "1fa2357ab7e1": "Generate Seedance 720p video · original soundtrack",
     "790fd7d39a4c": "The Tiger Touch",
     "7910eea972da": "Creepy Devil Smile",
     "792678842e2f": "Post scheduled",
@@ -14672,5 +14796,129 @@
     "fingerprint": "Bio",
     "exploreFirst": "Explore first",
     "codeNote": "We email you a code, no password needed."
+  },
+  "studioDeck": {
+    "remove": "Remove",
+    "background": {
+      "title": "Background",
+      "modes": {
+        "none": "Off",
+        "blur": "Blur",
+        "color": "Colour",
+        "image": "Picture"
+      },
+      "failed": "Background removal couldn't start on this device.",
+      "hint": "Runs on your device. The first time takes a few seconds to load."
+    },
+    "scenes": {
+      "title": "Scenes",
+      "picture": "Picture",
+      "countdown": "Countdown",
+      "noCountdown": "No countdown",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "Starting soon",
+        "chatting": "Just chatting",
+        "brb": "Be right back",
+        "ending": "Stream ending"
+      },
+      "hints": {
+        "starting": "Card with a countdown",
+        "chatting": "Camera full screen",
+        "brb": "Card, mic muted",
+        "ending": "Thank-you card"
+      },
+      "subtitles": {
+        "starting": "The stream starts in",
+        "brb": "Back in a moment",
+        "ending": "Thanks for watching"
+      }
+    },
+    "widgets": {
+      "title": "Show widgets in my video",
+      "hint": "Alerts, goal bars and chat are drawn into your stream, so viewers on Twitch, YouTube and every other platform see them too.",
+      "failed": "Couldn't change where your widgets show. Try again.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Sources",
+      "addImage": "Image or logo",
+      "failed": "Couldn't add that source.",
+      "hint": "Sources are drawn over your picture for every viewer and every platform.",
+      "image": "Image",
+      "show": "Show on stream",
+      "positions": {
+        "top-left": "Top left",
+        "top-right": "Top right",
+        "bottom-left": "Bottom left",
+        "bottom-right": "Bottom right",
+        "center": "Centre"
+      },
+      "sizes": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      }
+    },
+    "phone": {
+      "title": "Studio"
+    }
+  },
+  "whenSheet": {
+    "title": "When?",
+    "tonight": "Tonight",
+    "inAnHour": "In an hour",
+    "tomorrow": "Tomorrow",
+    "today": "Today",
+    "primeTime": "Prime time",
+    "scheduleFor": "Schedule for {{when}}",
+    "liveTip": "Your followers can set a reminder. You start the Live yourself when it is time.",
+    "stageTip": "It goes on the Upcoming shelf straight away, so people can tap Remind me.",
+    "typePlaceholder": "Type a time, like \"fri 8pm\" or \"in 2 hours\"",
+    "typeLabel": "Type a time",
+    "typeHelp": "Try \"tonight\", \"tomorrow 9am\", \"sat noon\" or \"30 oct 7pm\".",
+    "orPickDay": "Or pick a day",
+    "earlier": "15 minutes earlier",
+    "later": "15 minutes later",
+    "tooSoonMin": "Pick a time at least {{count}} minutes from now.",
+    "tooSoon": "Pick a time in the future.",
+    "zone": "Your time ({{zone}}). Everyone else sees it in their own time.",
+    "remove": "Remove schedule",
+    "startsIn": "Starts in {{time}}",
+    "bestTime": "Best time",
+    "fansOnline": "When are my fans online?",
+    "show": "Show",
+    "hide": "Hide",
+    "fansBasis": "Brighter means more of your followers were watching, last {{count}} days.",
+    "everyoneBasis": "Not enough follower activity yet, so this is everyone on DeHub."
+  },
+  "planned": {
+    "title": "Planned",
+    "subtitle": "Posts, Lives and Stages you have scheduled",
+    "seoTitle": "Planned · DeHub",
+    "seoDescription": "Your scheduled posts, Lives and Stages on DeHub, all in one place.",
+    "all": "All",
+    "posts": "Posts",
+    "lives": "Lives",
+    "stages": "Stages",
+    "post": "Post",
+    "live": "Live",
+    "stage": "Stage",
+    "untitledPost": "Post",
+    "untitledLive": "Live",
+    "signIn": "Sign in to see what you have planned",
+    "loading": "Loading…",
+    "emptyTitle": "Nothing planned yet",
+    "emptyBody": "Pick \"When?\" while making a post, Live or Stage and it shows up here.",
+    "move": "Move",
+    "postNow": "Post now",
+    "startNow": "Start now",
+    "cancel": "Cancel",
+    "confirmCancel": "Tap again to cancel",
+    "moved": "Moved to {{when}}",
+    "postingNow": "Posting in under a minute",
+    "cancelled": "Cancelled",
+    "moveFailed": "Could not move it. Try again.",
+    "seeAll": "See everything you have planned"
   }
 }

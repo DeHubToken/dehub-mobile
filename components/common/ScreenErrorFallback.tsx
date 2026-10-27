@@ -96,12 +96,14 @@ interface ScreenErrorBoundaryProps {
 
 /** One boundary per screen, named so the log row says which screen fell over. */
 export const ScreenErrorBoundary: FC<ScreenErrorBoundaryProps> = ({ name, children }) => {
-  const { theme } = useAppTheme();
+  const { theme, isLight } = useAppTheme();
   return (
     <ErrorBoundary
       // Repaint screen content without replacing native navigation route keys.
       // Root owns the tab navigator; each tab has its own themed boundary.
-      key={name === ScreenNames.Root ? name : `${name}:${theme}`}
+      // System Light shares System's theme name, and its colour pass runs as
+      // elements are created, so memoised parts only pick it up on a remount.
+      key={name === ScreenNames.Root ? name : `${name}:${theme}${isLight ? ':light' : ''}`}
       scope={`screen:${name}`}
       renderFallback={(retry) => <ScreenErrorFallback retry={retry} />}
     >

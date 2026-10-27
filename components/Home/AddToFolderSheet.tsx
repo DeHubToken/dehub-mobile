@@ -40,6 +40,7 @@ import {
 } from "../../services/bookmark.service";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 interface AddToFolderSheetProps {
   visible: boolean;
@@ -70,6 +71,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
   const hiddenOffset = windowHeight + insets.bottom;
   const translateY = useSharedValue(hiddenOffset);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [folders, setFolders] = useState<FolderWithContainment[]>([]);
@@ -315,9 +317,8 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
       onRequestClose={closeSheet}
     >
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Animated.View
-          style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}
-        >
+        <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+          <SheetBackdrop backdrop={backdrop} />
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />
         </Animated.View>
 
@@ -336,7 +337,7 @@ const AddToFolderSheetComponent: React.FC<AddToFolderSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay, isMinimal && styles.minimalOverlay]} />
+            <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, styles.overlay, isMinimal && styles.minimalOverlay]} />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View style={styles.handleWrap}>

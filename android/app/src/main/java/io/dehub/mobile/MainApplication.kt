@@ -13,6 +13,8 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint
 
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ExpoReactHostFactory
+import io.dehub.mobile.studio.Studio
+import io.dehub.mobile.studio.StudioPackage
 import io.dehub.mobile.videolooks.VideoLooks
 
 class MainApplication : Application(), ReactApplication {
@@ -24,6 +26,7 @@ class MainApplication : Application(), ReactApplication {
         PackageList(this).packages.apply {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // add(MyReactNativePackage())
+          add(StudioPackage())
         }
     )
   }
@@ -37,6 +40,7 @@ class MainApplication : Application(), ReactApplication {
     }
     loadReactNative(this)
     VideoLooks.register()
+    Studio.register()
     ApplicationLifecycleDispatcher.onApplicationCreate(this)
   }
 

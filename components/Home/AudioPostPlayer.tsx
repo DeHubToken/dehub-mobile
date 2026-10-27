@@ -383,7 +383,7 @@ const StudioWave = memo(({ seed, position, height, ink }: { seed: string; positi
     </View>
   );
   return (
-    <View style={{ height }} onLayout={e => { const next = e.nativeEvent.layout.width; setWidth(previous => Math.abs(previous - next) < 1 ? previous : next); }} pointerEvents="none">
+    <View style={{ height }} onLayout={e => { const next = e.nativeEvent.layout.width; if (next > 0) setWidth(previous => Math.abs(previous - next) < 1 ? previous : next); }} pointerEvents="none">
       {width > 0 && <>
         {row(.35)}
         <Animated.View style={[{ position: 'absolute', left: 0, top: 0, height, overflow: 'hidden' }, playedStyle]}>{row(.95)}</Animated.View>
@@ -403,16 +403,16 @@ const StudioHueSlider = memo(({ hue, onHueChange }: { hue: number; onHueChange: 
   const thumb = 15;
   return (
     <GlassHold style={{ height: 36, flex: 1, minWidth: 0, justifyContent: "center" }}>
-      <View style={{ height: 36, justifyContent: "center" }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>
+      {held => <View style={{ height: 36, justifyContent: "center" }} onLayout={e => { if (e.nativeEvent.layout.width > 0) setWidth(e.nativeEvent.layout.width); }}>
         <LinearGradient colors={STUDIO_HUE_TRACK} locations={STUDIO_HUE_STOPS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ position: "absolute", left: 0, right: 0, height: 8, borderRadius: 4 }} />
-        {width > 0 && <View pointerEvents="none" style={{ position: "absolute", left: (localHue / 360) * (width - thumb), width: thumb, height: thumb, borderRadius: thumb / 2, borderWidth: 2, borderColor: "#ffffff", boxShadow: "0px 1px 4px rgba(0,0,0,.6)" }} />}
+        {width > 0 && !held && <View pointerEvents="none" style={{ position: "absolute", left: (localHue / 360) * (width - thumb), width: thumb, height: thumb, borderRadius: thumb / 2, borderWidth: 2, borderColor: "#ffffff", boxShadow: "0px 1px 4px rgba(0,0,0,.6)" }} />}
         <PagerSafe>
           <Slider style={{ width: "100%" }} minimumValue={0} maximumValue={360} step={1} value={localHue}
             accessibilityLabel={t('audioPost.visualizerColour', { defaultValue: 'Visualizer colour' })}
             onValueChange={setLocalHue} onSlidingComplete={onHueChange}
             minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor="transparent" />
         </PagerSafe>
-      </View>
+      </View>}
     </GlassHold>
   );
 });
@@ -527,6 +527,7 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange, width, fle
 
   return (
     <GlassHold style={width ? { height: 36, width, justifyContent: "center" } : { height: 36, flex, minWidth: 0, justifyContent: "center" }}>
+      {held => <>
       <LinearGradient
         colors={["#ff0000","#ffff00","#00ff00","#00ffff","#0000ff","#ff00ff","#ff0000"]}
         start={{ x: 0, y: 0 }}
@@ -551,9 +552,10 @@ const HueSlider: React.FC<HueSliderProps> = memo(({ hue, onHueChange, width, fle
         onSlidingComplete={onHueChange}
         minimumTrackTintColor="transparent"
         maximumTrackTintColor="transparent"
-        thumbTintColor={previewColor}
+        thumbTintColor={held ? "transparent" : previewColor}
       />
       </PagerSafe>
+      </>}
     </GlassHold>
   );
 });
@@ -1224,10 +1226,11 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
   }, [styleKey]);
 
   const onInlineLayout = useCallback((e: LayoutChangeEvent) => {
-    setInlineHeight(Math.round(e.nativeEvent.layout.height));
+    // A hidden pager page reports 0x0; keep the measured window.
+    if (e.nativeEvent.layout.width > 0) setInlineHeight(Math.round(e.nativeEvent.layout.height));
   }, []);
   const onFullLayout = useCallback((e: LayoutChangeEvent) => {
-    setFullHeight(Math.round(e.nativeEvent.layout.height));
+    if (e.nativeEvent.layout.width > 0) setFullHeight(Math.round(e.nativeEvent.layout.height));
   }, []);
 
   if (compact) {
@@ -1293,6 +1296,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
         <MediaControlIcon name={isEffectivelyMuted ? "VolumeX" : "Volume2"} />
       </TouchableOpacity>
       <GlassHold style={{ width: 58, height: CONTROL_SIZE, justifyContent: "center" }}>
+        {held => <>
         <VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor="rgba(255,255,255,0.85)" trackColor="rgba(255,255,255,0.25)" />
         <PagerSafe>
         <Slider
@@ -1304,9 +1308,10 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           onValueChange={handleVolumeChange}
           minimumTrackTintColor="transparent"
           maximumTrackTintColor="transparent"
-          thumbTintColor="#ffffff"
+          thumbTintColor={held ? "transparent" : "#ffffff"}
         />
         </PagerSafe>
+        </>}
       </GlassHold>
     </View>
   );
@@ -1422,7 +1427,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
       const optionGlyph = (name: React.ComponentProps<typeof Icon>['name']) => <Icon name={name} size={16} color={ink} strokeWidth={2} />;
       const motionShape = { borderTopLeftRadius: STUDIO_MOTION_RADIUS, borderTopRightRadius: STUDIO_MOTION_RADIUS };
       return (
-      <View className="dark-surface" style={[styles.glassWindow, { padding: 10, borderRadius: STUDIO_CARD_RADIUS }, material === 'glass' && { boxShadow: '0px 16px 32px -24px rgba(0,0,0,.6)' }]} onLayout={e => { const width = e.nativeEvent.layout.width; setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
+      <View className="dark-surface" style={[styles.glassWindow, { padding: 10, borderRadius: STUDIO_CARD_RADIUS }, material === 'glass' && { boxShadow: '0px 16px 32px -24px rgba(0,0,0,.6)' }]} onLayout={e => { const width = e.nativeEvent.layout.width; if (width > 0) setGlassWidth(previous => Math.abs(previous - width) < 1 ? previous : width); }}>
         <LinearGradient pointerEvents="none" colors={fill.colors} locations={fill.locations} start={{ x: 0.15, y: 0 }} end={{ x: 0.85, y: 1 }} style={[StyleSheet.absoluteFill, { borderRadius: STUDIO_CARD_RADIUS }]} />
         <View style={[styles.glassCrown, { flexDirection: 'row', alignItems: 'center', gap: 14 }]}>
         {artworkUrl && !artworkUrl.split('?')[0].endsWith('/placeholder.svg') && <View style={{ borderRadius: 10, boxShadow: '0px 2px 8px rgba(0,0,0,.27)' }}><Image source={{ uri: artworkUrl }} style={{ width: 54, height: 54, borderRadius: 10 }} /></View>}
@@ -1469,7 +1474,7 @@ const AudioPostPlayerComponent: React.FC<AudioPostPlayerProps> = ({
           <TouchableOpacity accessibilityRole="button" accessibilityLabel={t('common.fullscreen')} onPress={() => setIsFullscreen(v => !v)} style={styles.studioOption}>{optionGlyph(isFullscreen ? 'Minimize' : 'Maximize')}</TouchableOpacity>
           <View style={{ flexBasis: '100%', flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <StudioHueSlider hue={hue} onHueChange={handleHueChange} />
-            <GlassHold style={{ flex: 1, height: 36, justifyContent: 'center' }}><VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor={material === 'light' ? '#394955' : '#dce4e7'} trackColor={material === 'light' ? 'rgba(20,30,40,.15)' : 'rgba(255,255,255,.2)'} /><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor={material === 'light' ? '#394955' : '#efffff'} style={{ width: '100%', height: 36 }} /></PagerSafe></GlassHold>
+            <GlassHold style={{ flex: 1, height: 36, justifyContent: 'center' }}>{held => <><VolumeTrack value={isEffectivelyMuted ? 0 : volume} active={shownPlaying && !isEffectivelyMuted} fillColor={material === 'light' ? '#394955' : '#dce4e7'} trackColor={material === 'light' ? 'rgba(20,30,40,.15)' : 'rgba(255,255,255,.2)'} /><PagerSafe><Slider minimumValue={0} maximumValue={1} value={isEffectivelyMuted ? 0 : volume} accessibilityLabel={t('player.volume', { defaultValue: 'Volume level' })} onValueChange={handleVolumeChange} minimumTrackTintColor="transparent" maximumTrackTintColor="transparent" thumbTintColor={held ? 'transparent' : material === 'light' ? '#394955' : '#efffff'} style={{ width: '100%', height: 36 }} /></PagerSafe></>}</GlassHold>
           </View>
         </View>
       </View>

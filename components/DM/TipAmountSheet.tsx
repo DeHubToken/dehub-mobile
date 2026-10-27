@@ -31,6 +31,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs";
 import { DrawerSurface } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -74,6 +75,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
 
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
@@ -174,13 +176,8 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1 }}
         >
-          <Animated.View
-            style={[
-              StyleSheet.absoluteFill,
-              { backgroundColor: Platform.OS === "android" ? "transparent" : "rgba(0,0,0,0.5)" },
-              backdropStyle,
-            ]}
-          >
+          <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+            <SheetBackdrop backdrop={backdrop} />
             <Pressable style={{ flex: 1 }} onPress={closeSheet} />
           </Animated.View>
 
@@ -191,7 +188,7 @@ const TipAmountSheetComponent: React.FC<TipAmountSheetProps> = ({
               sheetStyle,
             ]}
           >
-            <DrawerSurface />
+            <DrawerSurface backdropBlurred={backdrop.blurred} />
 
             <GestureDetector gesture={panGesture}>
               <Animated.View style={styles.handleWrap}>

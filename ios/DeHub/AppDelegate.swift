@@ -24,6 +24,9 @@ class AppDelegate: ExpoAppDelegate {
     // ever names one — react-native-webrtc resolves them by name at capture
     // time and silently drops anything it cannot find.
     DHBVideoLooks.registerAll()
+    // The phone studio's processors (background removal, scene cards and
+    // overlays), for the same reason.
+    DHBStudio.registerProcessors()
 
 #if os(iOS) || os(tvOS)
     window = UIWindow(frame: UIScreen.main.bounds)

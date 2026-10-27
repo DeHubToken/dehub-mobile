@@ -17,7 +17,6 @@ import Animated, {
   runOnJS,
   useSharedValue,
   useAnimatedStyle,
-  withDelay,
   withTiming,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -46,7 +45,7 @@ import { useGateToHome } from "../hooks/useGateToHome";
 import { useFocusEffect, useNavigation, useRoute } from "@react-navigation/native";
 import { ScreenNames } from "../navigation/ScreenNames";
 import { localizedNotificationContent } from "../libs/notification-content";
-import { formatNotificationDate } from "../libs/date.util";
+import { formatShortAgo } from "../libs/date.util";
 import { useUserProfileSheet } from "../context/UserProfileSheetContext";
 import { seedUserProfileCache } from "../hooks/useUserProfileData";
 import { buildCdnPath, getAvatarUrl, getBadgeUrlFor, getShortsThumbnailUrl, getBadgeOpticalStyle } from "../libs";
@@ -59,6 +58,8 @@ import Avatar from "../components/common/Avatar";
 import SmartImage from "../components/common/SmartImage";
 import { reactionMeta } from "../libs/reactions";
 import AppealSheet from "../components/Notifications/AppealSheet";
+import QuickSettingsSheet from "../components/Notifications/QuickSettingsSheet";
+import PageDrawer from "../components/common/PageDrawer";
 import { createLogger } from "../libs/logger";
 import { useWebSocketApi } from "../context/WebSocketContext";
 import { orderNotificationTabKeys } from "../libs/notification-tab-order";
@@ -73,7 +74,6 @@ import { useAppTheme } from "../context/ThemeContext";
 import { DhbCoin } from "../components/common/DhbCoin";
 import {
   MINIMAL_HAIRLINE,
-  MINIMAL_WASH,
 } from "../theme/minimal";
 
 type NotificationTypeFilter = 'all' | 'likes' | 'follows' | 'comments' | 'reposts' | 'features' | 'communities' | 'stores' | 'subscriptions' | 'tips' | 'payments' | 'livestreams';
@@ -409,7 +409,7 @@ const isNotificationClickable = (notification: NotificationItem): boolean => {
 };
 
 /** Rendered size of the row's post preview, in CSS points. */
-const THUMB_PT = 56;
+const THUMB_PT = 44;
 
 /**
  * The API sends `tokenThumbnail` as a CDN-relative path ("images/2008.jpg"),
@@ -434,29 +434,13 @@ function resolveNotificationThumbnail(item: NotificationItem): string | undefine
   return undefined;
 }
 
-// Motion for the per-row actions, copied from web's mark-as-read button: a
-// 400ms envelope flip on the same easing curve, then the button leaves.
-const FLIP_DURATION = 400;
-const FLIP_EXIT_DURATION = 200;
+// Motion for the per-row actions: the unread dot fades out, a cleared row
+// slides and collapses.
+const DOT_EXIT_DURATION = 220;
 const CLEAR_DURATION = 260;
 const ACTION_EASING = Easing.bezier(0.4, 0, 0.2, 1);
 
-const actionButtonStyle = {
-  width: 30,
-  height: 30,
-  borderRadius: 10,
-  backgroundColor: 'rgba(255,255,255,0.06)',
-  alignItems: 'center',
-  justifyContent: 'center',
-} as const;
-
-// Between the two buttons the slop is half the 8pt gap, so their touch areas
-// meet rather than overlap — an overlap sends the tap to whichever happens to
-// be on top, and the two do very different things. The outer edges have room
-// to spare, so they get the extra height there instead.
-const ACTION_HIT_SLOP = { top: 4, bottom: 4, left: 10, right: 10 };
-const MARK_HIT_SLOP = { ...ACTION_HIT_SLOP, top: 10 };
-const CLEAR_HIT_SLOP = { ...ACTION_HIT_SLOP, bottom: 10 };
+const CLEAR_HIT_SLOP = { top: 4, bottom: 10, left: 10, right: 10 };
 
 /**
  * What the reader's notification filters held back. Reached only from
@@ -467,7 +451,7 @@ const CLEAR_HIT_SLOP = { ...ACTION_HIT_SLOP, bottom: 10 };
 function FilteredNotificationsSection({
   renderRow,
 }: {
-  renderRow: (info: { item: NotificationItem }) => React.ReactElement;
+  renderRow: (info: { item: NotificationItem; index: number }) => React.ReactElement;
 }) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(true);
@@ -510,7 +494,7 @@ function FilteredNotificationsSection({
         ) : items.length === 0 ? (
           <Text className="px-4 pb-4 text-theme-neutrals-500 text-sm">{t("notificationFilters.filteredEmpty")}</Text>
         ) : (
-          items.map((item) => <View key={item._id}>{renderRow({ item })}</View>)
+          items.map((item) => <View key={item._id}>{renderRow({ item, index: -1 })}</View>)
         ))}
     </View>
   );
@@ -528,6 +512,8 @@ interface NotificationRowProps {
   ) => void;
   onAcceptFollowRequest: (item: NotificationItem) => void;
   onRejectFollowRequest: (item: NotificationItem) => void;
+  /** Day heading drawn above this row when it starts a new group. */
+  groupLabel?: string | null;
 }
 
 /** A row that stands for more than one person (likes, comments, follows...). */
@@ -545,9 +531,16 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   onOpenProfile,
   onAcceptFollowRequest,
   onRejectFollowRequest,
+  groupLabel,
 }) => {
   const { t } = useTranslation();
-  const { isMinimal } = useAppTheme();
+  const { isMinimal, skin, accent, pageColors } = useAppTheme();
+  // Unread dot and primary pill: the theme's own colour on the canvas skins,
+  // the page ink (white on System, black on System Light) everywhere else.
+  const accentFill = skin ? `rgb(${accent.join(',')})` : undefined;
+  // Written in dark-theme colours; System Light's tone pass turns them to ink.
+  const dotColor = accentFill ?? '#F4F4F5';
+  const badgeInk = '#F4F4F5';
   const icon = getMonoIconConfig(item.type);
   // Every positive reaction arrives as a `like`; show which one it was.
   // Absent on legacy rows and on aggregated rows whose actors disagreed —
@@ -632,15 +625,10 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
     );
   }, [clearing, collapse, finishClear]);
 
-  // Mark as read: the envelope flips open-to-closed, then the button itself
-  // leaves — the row's own read styling lands as it finishes.
-  const flip = useSharedValue(0);
+  // Mark as read: the unread dot shrinks away, then the row takes its read
+  // styling.
   const markOpacity = useSharedValue(1);
   const markScale = useSharedValue(1);
-
-  const markIconStyle = useAnimatedStyle(() => ({
-    transform: [{ perspective: 400 }, { rotateX: `${flip.value * 180}deg` }],
-  }));
 
   const markButtonStyle = useAnimatedStyle(() => ({
     opacity: markOpacity.value,
@@ -650,20 +638,22 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
   const handleMarkRead = useCallback(() => {
     if (marking) return;
     setMarking(true);
-    flip.value = withTiming(1, { duration: FLIP_DURATION, easing: ACTION_EASING });
-    markScale.value = withDelay(
-      FLIP_DURATION,
-      withTiming(0.8, { duration: FLIP_EXIT_DURATION, easing: ACTION_EASING }),
-    );
-    markOpacity.value = withDelay(
-      FLIP_DURATION,
-      withTiming(0, { duration: FLIP_EXIT_DURATION, easing: ACTION_EASING }, (finished) => {
-        if (finished) runOnJS(finishMarkRead)();
-      }),
-    );
-  }, [marking, flip, markOpacity, markScale, finishMarkRead]);
+    markScale.value = withTiming(0.3, { duration: DOT_EXIT_DURATION, easing: ACTION_EASING });
+    markOpacity.value = withTiming(0, { duration: DOT_EXIT_DURATION, easing: ACTION_EASING }, (finished) => {
+      if (finished) runOnJS(finishMarkRead)();
+    });
+  }, [marking, markOpacity, markScale, finishMarkRead]);
 
   return (
+    <>
+    {!!groupLabel && (
+      <Text
+        className="text-theme-neutrals-500"
+        style={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 4, fontSize: 12, fontWeight: '600', letterSpacing: 0.7, textTransform: 'uppercase' }}
+      >
+        {groupLabel}
+      </Text>
+    )}
     <Animated.View
       style={[{ overflow: 'hidden' }, rowStyle]}
       onLayout={(e) => {
@@ -674,19 +664,26 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
         onPress={() => onPress(item)}
         disabled={!clickable}
         activeOpacity={0.5}
+        // Clean feed: no fill and no separator. Unread is the dot on the left.
         style={{
           flexDirection: 'row',
           alignItems: 'flex-start',
-          padding: 16,
-          borderBottomWidth: 1,
-          // Minimal: read rows sit flat on black, unread ones take the faint
-          // wash, and the separator is the shared full-width hairline.
-          borderBottomColor: isMinimal ? MINIMAL_HAIRLINE : '#1D1F21',
-          backgroundColor: !item.read
-            ? isMinimal ? MINIMAL_WASH : 'rgba(255,255,255,0.08)'
-            : 'transparent',
+          paddingVertical: 12,
+          paddingLeft: 18,
+          paddingRight: 12,
         }}
       >
+        {!item.read && (
+          <TouchableOpacity
+            onPress={handleMarkRead}
+            accessibilityRole="button"
+            accessibilityLabel={t('notifications.markAsRead')}
+            hitSlop={{ top: 10, bottom: 10, left: 6, right: 4 }}
+            style={{ position: 'absolute', left: 0, top: 19, width: 18, height: 24, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <Animated.View style={[{ width: 7, height: 7, borderRadius: 4, backgroundColor: dotColor }, markButtonStyle]} />
+          </TouchableOpacity>
+        )}
         {/* Avatar or Icon — tap to open profile */}
         <TouchableOpacity
           activeOpacity={0.7}
@@ -697,13 +694,13 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           style={{ position: 'relative' }}
         >
           {hasAvatar ? (
-            <Avatar uri={avatarUrl || undefined} size={44} name={item.actorUsername} />
+            <Avatar uri={avatarUrl || undefined} size={46} name={item.actorUsername} />
           ) : (
             <View
               style={{
-                width: 44,
-                height: 44,
-                borderRadius: 7,
+                width: 46,
+                height: 46,
+                borderRadius: 8,
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: `${icon.color}20`,
@@ -721,22 +718,22 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
             <View
               style={{
                 position: 'absolute',
-                bottom: -4,
-                right: -4,
+                bottom: -3,
+                right: -3,
                 width: 20,
                 height: 20,
                 borderRadius: 10,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderWidth: 2,
-                borderColor: '#010305',
-                backgroundColor: 'rgba(255,255,255,0.2)',
+                borderColor: pageColors.background,
               }}
+              className="bg-theme-neutrals-800"
             >
               {reactionGlyph ? (
                 <Text style={{ fontSize: 12, lineHeight: 15 }}>{reactionGlyph}</Text>
               ) : (
-                <Icon name={icon.name as any} size={10} color="white" />
+                <Icon name={icon.name as any} size={10} color={badgeInk} />
               )}
             </View>
           )}
@@ -745,30 +742,25 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
         {/* Content */}
         <View style={{ flex: 1, marginLeft: 12 }}>
           <Text
-            style={{
-              fontSize: 14,
-              lineHeight: 20,
-              color: !item.read ? '#F9FBFF' : '#A6A9AC',
-              fontWeight: !item.read ? '500' : '400',
-            }}
+            className={!item.read ? 'text-theme-neutrals-100' : 'text-theme-neutrals-300'}
+            style={{ fontSize: 14.5, lineHeight: 20 }}
             numberOfLines={3}
           >
             {showActorBadge ? <>{sentence.slice(0, actorNameAt)}{actorName}<SmartImage source={actorBadge!} style={getBadgeOpticalStyle(actorBadge!, 14, 0, 20)} />{sentence.slice(actorNameAt + actorName!.length)}</> : sentence}
+            <Text className="text-theme-neutrals-500" style={{ fontSize: 13 }}>
+              {' · '}{formatShortAgo(item.updatedAt || item.createdAt)}
+            </Text>
           </Text>
 
           {/* Aggregation indicator */}
           {item.aggregatedCount && item.aggregatedCount > 1 && item.latestActorNames && (
-            <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
+            <Text className="text-theme-neutrals-500" style={{ fontSize: 13, marginTop: 2 }}>
               {item.latestActorNames.slice(0, 3).join(', ')}
               {item.aggregatedCount > 3 &&
                 ` ${t('notifications.andNOthers', { count: item.aggregatedCount - 3 })}`}
             </Text>
           )}
 
-          {/* Timestamp */}
-          <Text style={{ color: '#A1A1AA', fontSize: 12, marginTop: 4 }}>
-            {formatNotificationDate(item.updatedAt || item.createdAt)}
-          </Text>
 
           {/* Tip/Bounty amount badge */}
           {(item.type === NotificationType.TIP ||
@@ -809,18 +801,8 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 <TouchableOpacity
                   onPress={() => setAppealOpen(true)}
                   activeOpacity={0.85}
-                  style={[
-                    {
-                      backgroundColor: '#27272a',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      gap: 6,
-                      paddingHorizontal: 14,
-                      paddingVertical: 7,
-                      borderRadius: 8,
-                    },
-                    isMinimal && MINIMAL_OUTLINE,
-                  ]}
+                  className="border-theme-neutrals-600"
+                  style={{ flexDirection: 'row', alignItems: 'center', gap: 6, height: 30, paddingHorizontal: 14, borderRadius: 15, borderWidth: 1 }}
                 >
                   <Icon name="Scale" size={13} color="#fff" />
                   <Text style={{ color: '#fff', fontSize: 13, fontWeight: '600' }}>
@@ -840,14 +822,10 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 // ~31pt tall pills; the slop brings them to a full target
                 // without touching each other across the 8pt gap.
                 hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-                style={{
-                  backgroundColor: '#fff',
-                  paddingHorizontal: 16,
-                  paddingVertical: 7,
-                  borderRadius: 8,
-                }}
+                className={accentFill ? undefined : 'bg-theme-accent'}
+                style={[{ height: 30, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 15 }, accentFill ? { backgroundColor: accentFill } : null]}
               >
-                <Text style={{ color: '#09090B', fontSize: 13, fontWeight: '600' }}>
+                <Text className="text-theme-accent-foreground" style={[{ fontSize: 13, fontWeight: '600' }, accentFill ? { color: '#FFFFFF' } : null]}>
                   {t('settings.accept')}
                 </Text>
               </TouchableOpacity>
@@ -855,17 +833,10 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
                 onPress={() => onRejectFollowRequest(item)}
                 activeOpacity={0.85}
                 hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-                style={[
-                  {
-                    backgroundColor: '#27272a',
-                    paddingHorizontal: 16,
-                    paddingVertical: 7,
-                    borderRadius: 8,
-                  },
-                  isMinimal && MINIMAL_OUTLINE,
-                ]}
+                className="border-theme-neutrals-600"
+                style={{ height: 30, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 15, borderWidth: 1 }}
               >
-                <Text style={{ color: '#A6A9AC', fontSize: 13, fontWeight: '600' }}>
+                <Text className="text-theme-neutrals-100" style={{ fontSize: 13, fontWeight: '600' }}>
                   {t('settings.decline')}
                 </Text>
               </TouchableOpacity>
@@ -879,7 +850,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           <View style={{ marginLeft: 12 }}>
             <SmartImage
               source={{ uri: thumbnail }}
-              style={{ width: THUMB_PT, height: THUMB_PT, borderRadius: 8, backgroundColor: '#18181B' }}
+              style={{ width: THUMB_PT, height: THUMB_PT, borderRadius: 10, backgroundColor: '#18181B' }}
               contentFit="cover"
               recyclingKey={item._id}
               transition={120}
@@ -895,42 +866,19 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
           </View>
         )}
 
-        {/* Row actions: mark this one read, clear this one away. */}
-        <View style={{ marginLeft: 10, alignItems: 'center', gap: 8 }}>
-          {!item.read && (
-            <Animated.View style={markButtonStyle}>
-              <TouchableOpacity
-                onPress={handleMarkRead}
-                activeOpacity={0.7}
-                hitSlop={MARK_HIT_SLOP}
-                accessibilityRole="button"
-                accessibilityLabel={t('notifications.markAsRead')}
-                style={[actionButtonStyle, isMinimal && MINIMAL_OUTLINE]}
-              >
-                <Animated.View style={markIconStyle}>
-                  <Icon name={marking ? 'Mail' : 'MailOpen'} size={15} color="#A1A1AA" />
-                </Animated.View>
-              </TouchableOpacity>
-            </Animated.View>
-          )}
-
-          <TouchableOpacity
-            onPress={handleClear}
-            activeOpacity={0.7}
-            // Alone in the column once the row is read, so it can take the
-            // top slop as well.
-            hitSlop={item.read ? { ...CLEAR_HIT_SLOP, top: 10 } : CLEAR_HIT_SLOP}
-            accessibilityRole="button"
-            accessibilityLabel={t('notifications.clearNotification')}
-            style={[actionButtonStyle, isMinimal && MINIMAL_OUTLINE]}
-          >
-            <Animated.View style={clearIconStyle}>
-              <Icon name="X" size={15} color="#A1A1AA" />
-            </Animated.View>
-          </TouchableOpacity>
-
-          {clickable && <Icon name="ChevronRight" size={14} color="#52525B" />}
-        </View>
+        {/* Clear this one away. Mark-as-read is the unread dot on the left. */}
+        <TouchableOpacity
+          onPress={handleClear}
+          activeOpacity={0.7}
+          hitSlop={{ ...CLEAR_HIT_SLOP, top: 10 }}
+          accessibilityRole="button"
+          accessibilityLabel={t('notifications.clearNotification')}
+          style={{ marginLeft: 6, width: 26, height: 26, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Animated.View style={clearIconStyle}>
+            <View style={{ opacity: 0.45 }}><Icon name="X" size={14} color="#F4F4F5" /></View>
+          </Animated.View>
+        </TouchableOpacity>
       </TouchableOpacity>
 
       {isModerationDecision && (
@@ -943,6 +891,7 @@ const NotificationRow: React.FC<NotificationRowProps> = React.memo(({
         />
       )}
     </Animated.View>
+    </>
   );
 });
 
@@ -991,6 +940,7 @@ const NotificationScreen = () => {
    * hand every one of them straight back.
    */
   const [dismissedIds, setDismissedIds] = useState<Set<string>>(new Set());
+  const [quickSettingsOpen, setQuickSettingsOpen] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(!cached);
   // Set when a refresh fails with nothing on screen to fall back on. Until now
@@ -1723,9 +1673,45 @@ const NotificationScreen = () => {
     });
   }, [markAsReadAsync, walletAddress]);
 
+  // Day headings, as on web: everything unread under New, the rest by when it
+  // happened.
+  const feedGroupOf = useCallback((n: NotificationItem): 'new' | 'today' | 'week' | 'earlier' => {
+    if (!n.read) return 'new';
+    const at = new Date(n.updatedAt || n.createdAt).getTime();
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    if (at >= startOfToday.getTime()) return 'today';
+    if (Date.now() - at < 7 * 86_400_000) return 'week';
+    return 'earlier';
+  }, []);
+  const feedGroupLabel = useCallback((group: 'new' | 'today' | 'week' | 'earlier') =>
+    group === 'new' ? t('notifications.groupNew', { defaultValue: 'New' })
+      : group === 'today' ? t('notifications.groupToday', { defaultValue: 'Today' })
+      : group === 'week' ? t('notifications.groupThisWeek', { defaultValue: 'This week' })
+      : t('notifications.groupEarlier', { defaultValue: 'Earlier' }), [t]);
+
+  // Clear all, as on web: everything read, then every row on screen dismissed
+  // for this account (the same store the per-row clear uses).
+  const handleClearAll = useCallback(() => {
+    const ids = notifications.map((n) => n._id);
+    if (!ids.length) return;
+    handleMarkAllRead();
+    setDismissedIds((prev) => new Set([...prev, ...ids]));
+    setNotifications([]);
+    setCountsSource([]);
+    addDismissedIds(walletAddress, ids).catch((e) => {
+      log.error("persist clear all failed", e);
+    });
+  }, [notifications, handleMarkAllRead, walletAddress]);
+
   const renderItem = useCallback(
-    ({ item }: { item: NotificationItem }) => (
+    ({ item, index }: { item: NotificationItem; index: number }) => (
       <NotificationRow
+        groupLabel={
+          index === 0 || (index > 0 && feedGroupOf(filteredNotifications[index - 1] ?? item) !== feedGroupOf(item))
+            ? feedGroupLabel(feedGroupOf(item))
+            : null
+        }
         item={item}
         onPress={handleNotificationPress}
         onMarkRead={handleMarkRead}
@@ -1742,6 +1728,9 @@ const NotificationScreen = () => {
       handleAcceptFollowRequest,
       handleRejectFollowRequest,
       openUserProfile,
+      filteredNotifications,
+      feedGroupOf,
+      feedGroupLabel,
     ]
   );
 
@@ -1755,11 +1744,8 @@ const NotificationScreen = () => {
   
   const renderSkeleton = useCallback(
     () => (
-      // Same full-width hairline the real rows use in minimal.
-      <View
-        className="flex-row items-start p-4 border-b border-theme-neutrals-800"
-        style={isMinimal ? { borderBottomColor: MINIMAL_HAIRLINE } : undefined}
-      >
+      // Same clean feed spacing as the real rows.
+      <View className="flex-row items-start" style={{ paddingVertical: 12, paddingLeft: 18, paddingRight: 12 }}>
         {/* Avatar with badge overlay */}
         <View className="relative">
           <SkeletonBlock className="w-11 h-11 rounded-md " />
@@ -1781,7 +1767,7 @@ const NotificationScreen = () => {
         </View>
       </View>
     ),
-    [isMinimal]
+    []
   );
 
   // Footer for load more
@@ -1837,55 +1823,68 @@ const NotificationScreen = () => {
     );
   }, [loadError, selectedFilter, onRefresh, t, emptyIconTile]);
 
+  // Opened cold from a push there may be nothing under the drawer to return to.
+  const closeDrawer = useCallback(() => {
+    if (navigation.canGoBack()) navigation.goBack();
+    else navigation.navigate(ScreenNames.Root);
+  }, [navigation]);
+
   // Header with mark all read button
   const hasUnread = filteredNotifications.some((n) => !n.read);
   const showLoading = loading;
 
+  // A drawer over the screen it was opened from, as phone web's bell drawer:
+  // a handle, pull down to close, no back or close button.
   return (
-    <View className="flex-1 bg-theme-neutrals-900">
-      <ScreenHeader
-        icon="notifications"
-        title={t("notifications.title")}
-        rightContent={tabCounts.all > 0 ? (
-          <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
-            {tabCounts.all}
-          </Text>
-        ) : undefined}
-        tabs={
-          <TypeTabs
-            selected={selectedFilter}
-            onSelect={handleFilterChange}
-            counts={tabCounts}
-            activityCounts={tabActivityCounts}
-            actions={
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(ScreenNames.NotificationSettings)}
-                accessibilityRole="button"
-                accessibilityLabel={t('notifications.settings')}
-                className="items-center justify-center bg-theme-neutrals-800"
-                style={{ width: 34, height: 34, borderRadius: 10 }}
-                hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
-              >
-                <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
-              </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleMarkAllRead}
-            disabled={!hasUnread}
-            accessibilityRole="button"
-            accessibilityLabel={t('notifications.markAllRead')}
-            accessibilityState={{ disabled: !hasUnread }}
-            className="items-center justify-center bg-theme-neutrals-800"
-            style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
-            hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
-          >
-            <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
-          </TouchableOpacity>
-            </View>
-            }
-          />
-        }
-      />
+    <PageDrawer
+      onClose={closeDrawer}
+      grab={
+        <ScreenHeader
+          icon="notifications"
+          canGoBack={false}
+          title={t("notifications.title")}
+          rightContent={tabCounts.all > 0 ? (
+            <Text style={{ color: pageColors.foreground, fontSize: 17, fontWeight: '500', fontVariant: ['tabular-nums'] }}>
+              {tabCounts.all}
+            </Text>
+          ) : undefined}
+          tabs={
+            <TypeTabs
+              selected={selectedFilter}
+              onSelect={handleFilterChange}
+              counts={tabCounts}
+              activityCounts={tabActivityCounts}
+              actions={
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <TouchableOpacity
+                  onPress={() => setQuickSettingsOpen(true)}
+                  accessibilityRole="button"
+                  accessibilityLabel={t('notifications.settings')}
+                  className="items-center justify-center bg-theme-neutrals-800"
+                  style={{ width: 34, height: 34, borderRadius: 10 }}
+                  hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+                >
+                  <Icon name="SlidersHorizontal" size={18} color={pageColors.foreground} />
+                </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleMarkAllRead}
+              disabled={!hasUnread}
+              accessibilityRole="button"
+              accessibilityLabel={t('notifications.markAllRead')}
+              accessibilityState={{ disabled: !hasUnread }}
+              className="items-center justify-center bg-theme-neutrals-800"
+              style={{ width: 34, height: 34, borderRadius: 10, opacity: hasUnread ? 1 : 0.45 }}
+              hitSlop={{ top: 5, bottom: 5, left: 3, right: 3 }}
+            >
+              <Icon name="CheckCheck" size={18} color={pageColors.foreground} />
+            </TouchableOpacity>
+              </View>
+              }
+            />
+          }
+        />
+      }
+    >
       
       {showLoading ? (
         <FlatList
@@ -1925,7 +1924,15 @@ const NotificationScreen = () => {
         />
       )}
       <DeHubRefreshMark refreshing={refreshing} />
-    </View>
+      <QuickSettingsSheet
+        visible={quickSettingsOpen}
+        onClose={() => setQuickSettingsOpen(false)}
+        hasUnread={hasUnread}
+        onMarkAllRead={handleMarkAllRead}
+        onClearAll={handleClearAll}
+        onOpenAllSettings={() => navigation.navigate(ScreenNames.NotificationSettings)}
+      />
+    </PageDrawer>
   );
 };
 

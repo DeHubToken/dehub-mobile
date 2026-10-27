@@ -13,6 +13,8 @@ export interface ScheduledLiveItem {
   name: string;
   scheduleAt?: number | null;
   thumbnailUrl?: string | null;
+  /** The Live's post; deleting it calls the Live off. */
+  tokenId?: number | null;
 }
 
 // Fetch scheduled streams for a specific user address
@@ -28,6 +30,7 @@ export async function getUserScheduledLives(address: string): Promise<ScheduledL
         name: i.title || i.name || '',
         scheduleAt: i.scheduledFor ? new Date(i.scheduledFor).getTime() : null,
         thumbnailUrl: i.thumbnail || i.thumbnailUrl || null,
+        tokenId: i.tokenId == null ? null : Number(i.tokenId),
       }));
   } catch (e) {
     console.warn('[live.service] getUserScheduledLives error', e);

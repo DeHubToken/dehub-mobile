@@ -1,3 +1,4 @@
+import { AGENT_RECIPES } from "../../libs/editor/agentRecipes";
 import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 /**
  * AI chat for the editor: describe the change, the agent makes it. Same
@@ -15,6 +16,7 @@ import { useKeyboard } from "../../hooks/useKeyboard";
 import type { HighlightChatState } from "../../libs/editor/highlightChat";
 import { shotTime } from "../../libs/editor/shots";
 import type { GenerationDraft } from "../../libs/editor/generationDraft";
+import type { ProjectSnapshot } from "../../libs/editor/types";
 import AssemblyReview from "./AssemblyReview";
 
 export interface ChatEntry {
@@ -24,6 +26,9 @@ export interface ChatEntry {
   applied?: number;
   generate?: GenerationDraft;
   error?: boolean;
+  /** The project before this request ran, so the chat can restore it. */
+  checkpoint?: ProjectSnapshot;
+  rating?: "up" | "down";
 }
 
 interface Props {
@@ -31,6 +36,14 @@ interface Props {
   entries: ChatEntry[];
   busy: boolean;
   onSend: (text: string, useVisual: boolean) => Promise<boolean>;
+  /** Requests typed while the assistant works, sent in order. */
+  queue?: string[];
+  onQueue?: (text: string) => void;
+  onUnqueue?: (index: number) => void;
+  onStop?: () => void;
+  onRestore?: (entry: ChatEntry) => void;
+  onRate?: (id: string, rating: "up" | "down") => void;
+  onRewrite?: (text: string) => Promise<string>;
   projectId: string;
   visualScope: string;
   onUndo: () => void;
@@ -48,7 +61,7 @@ interface Props {
   onHighlightClose?: () => void;
 }
 
-export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onClose, onClear, onOpenGenerator, onGenerateContent, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope, projectId }: Props) {
+export default function AgentSheet({ visible, entries, busy, onSend, queue = [], onQueue, onUnqueue, onStop, onRestore, onRate, onRewrite, onUndo, onClose, onClear, onOpenGenerator, onGenerateContent, assembly, highlights, highlightSourceChanged, onHighlightToggle, onHighlightUndo, onHighlightPreview, onHighlightCreate, onHighlightClose, visualScope, projectId }: Props) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { isVisible: kbUp } = useKeyboard();
@@ -63,10 +76,17 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
     return () => clearTimeout(id);
   }, [entries.length, busy]);
 
+  const [rewriting, setRewriting] = useState(false);
   const send = async (text: string) => {
     const v = text.trim();
-    if (!v || busy) return;
+    if (!v) return;
+    if (busy) { if (onQueue) { onQueue(v); setDraft.complete(text, ""); } return; }
     if (await onSend(v, useVisual)) setDraft.complete(text, "");
+  };
+  const rewrite = async () => {
+    if (!draft.trim() || rewriting || busy) return;
+    setRewriting(true);
+    try { if (onRewrite) setDraft(await onRewrite(draft.trim())); } catch { /* the screen reports it */ } finally { setRewriting(false); }
   };
 
   const suggestions = [
@@ -109,6 +129,17 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
                     <Text className="text-white text-sm">{s}</Text>
                   </Pressable>
                 ))}
+                <Text className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-white/40">{t("editor.agent.recipesTitle")}</Text>
+                <View className="flex-row flex-wrap" style={{ gap: 8 }}>
+                  {AGENT_RECIPES.map((id) => (
+                    <Pressable key={id} onPress={() => send(t(`editor.agent.recipe.${id}.prompt`))} accessibilityRole="button"
+                      accessibilityHint={t(`editor.agent.recipe.${id}.prompt`)}
+                      className="rounded-xl border border-white/15 bg-white/[0.04] px-3 py-2" style={{ width: "48%" }}>
+                      <Text className="text-white text-xs font-semibold">{t(`editor.agent.recipe.${id}.label`)}</Text>
+                      <Text className="mt-0.5 text-[10px] text-white/50" numberOfLines={2}>{t(`editor.agent.recipe.${id}.prompt`)}</Text>
+                    </Pressable>
+                  ))}
+                </View>
               </>
             )}
             {entries.map((e) => (
@@ -118,6 +149,22 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
                   style={{ maxWidth: "88%" }}
                 >
                   <Text className={e.role === "user" ? "text-black text-sm" : "text-white text-sm"}>{e.content}</Text>
+                  {e.role === "user" && e.checkpoint && !busy && onRestore && (
+                    <Pressable onPress={() => onRestore(e)} accessibilityRole="button" accessibilityLabel={t("editor.agent.restoreHint")} className="flex-row items-center mt-1" style={{ gap: 4 }}>
+                      <Icon name="History" size={12} color="rgba(0,0,0,0.55)" />
+                      <Text className="text-xs font-medium" style={{ color: "rgba(0,0,0,0.55)" }}>{t("editor.agent.restore")}</Text>
+                    </Pressable>
+                  )}
+                  {e.role === "assistant" && !e.error && onRate && (
+                    <View className="flex-row items-center mt-1" style={{ gap: 6 }} accessibilityLabel={t("editor.agent.feedback")}>
+                      {(["up", "down"] as const).map(rating => (
+                        <Pressable key={rating} onPress={() => { onRate?.(e.id, rating); if (rating === "down" && e.rating !== "down" && !draft.trim()) setDraft(t("editor.agent.retryPrefix")); }} hitSlop={6}
+                          accessibilityRole="button" accessibilityState={{ selected: e.rating === rating }} accessibilityLabel={t(rating === "up" ? "editor.agent.good" : "editor.agent.bad")}>
+                          <Icon name={rating === "up" ? "ThumbsUp" : "ThumbsDown"} size={13} color={e.rating === rating ? "#fff" : "rgba(255,255,255,0.4)"} fill={e.rating === rating ? "#fff" : undefined} />
+                        </Pressable>
+                      ))}
+                    </View>
+                  )}
                   {e.generate && (
                     <Pressable onPress={() => { if (!busy && e.generate) onOpenGenerator(e.generate); }} disabled={busy} accessibilityRole="button" accessibilityState={{ disabled: busy }} accessibilityLabel={t("editor.agent.openGenerator")} className="flex-row items-center self-start rounded-lg bg-white px-2 py-1 mt-2" style={{ gap: 4, opacity: busy ? 0.4 : 1 }}>
                       <Icon name="Wand" size={12} color="#000" />
@@ -169,6 +216,15 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
             <View className="flex-row items-center" style={{ gap: 8 }}><Text className="flex-1 text-theme-neutrals-300 text-xs">{t("editor.highlights.visual")}</Text><Switch value={useVisual} onValueChange={enabled => setVisualConsent(enabled ? visualScope : null)} disabled={busy} accessibilityLabel={t("editor.highlights.visual")} /></View>
             {useVisual && <Text className="text-theme-neutrals-400 text-xs">{t("editor.highlights.visualPrivacy")}</Text>}
           </View>}
+          {queue.length > 0 && <View className="mt-1" style={{ gap: 4 }}>
+            <Text className="text-theme-neutrals-400 text-xs">{t("editor.agent.queued", { count: queue.length })}</Text>
+            {queue.map((q, i) => (
+              <View key={`${i}-${q}`} className="flex-row items-center rounded-lg border border-white/10 px-2 py-1" style={{ gap: 6 }}>
+                <Text numberOfLines={1} className="flex-1 text-theme-neutrals-300 text-xs">{q}</Text>
+                <Pressable onPress={() => onUnqueue?.(i)} hitSlop={8} accessibilityRole="button" accessibilityLabel={t("common.remove", { defaultValue: "Remove" })}><Icon name="X" size={12} color="rgba(255,255,255,0.5)" /></Pressable>
+              </View>
+            ))}
+          </View>}
           <View className="flex-row items-end rounded-2xl bg-black/40 border border-white/15 px-2 py-2 mb-4 mt-1" style={{ gap: 8 }}>
             <TextInput
               value={draft}
@@ -181,13 +237,29 @@ export default function AgentSheet({ visible, entries, busy, onSend, onUndo, onC
               accessibilityLabel={t(highlights?.ranges?.length ? "editor.highlights.reviewPlaceholder" : "editor.agent.placeholder")}
               maxLength={highlights?.ranges?.length ? 800 : undefined}
             />
+            {onRewrite && <Pressable
+              onPress={() => void rewrite()}
+              disabled={busy || rewriting || !draft.trim()}
+              accessibilityRole="button"
+              accessibilityLabel={t("editor.agent.rewrite")}
+              className="w-9 h-9 rounded-xl border border-white/20 items-center justify-center"
+              style={{ opacity: busy || rewriting || !draft.trim() ? 0.4 : 1 }}
+            >
+              {rewriting ? <DeHubLoader size={16} /> : <Icon name="WandSparkles" size={16} color="#fff" />}
+            </Pressable>}
+            {busy && onStop && (
+              <Pressable onPress={onStop} accessibilityRole="button" accessibilityLabel={t("editor.agent.stop")}
+                className="w-9 h-9 rounded-xl border border-white/30 items-center justify-center">
+                <Icon name="Square" size={14} color="#fff" fill="#fff" />
+              </Pressable>
+            )}
             <Pressable
               onPress={() => send(draft)}
-              disabled={busy || !draft.trim()}
+              disabled={(busy && !onQueue) || !draft.trim()}
               accessibilityRole="button"
-              accessibilityLabel={t("editor.agent.send")}
+              accessibilityLabel={t(busy && onQueue ? "editor.agent.queue" : "editor.agent.send")}
               className="w-9 h-9 rounded-xl bg-white items-center justify-center"
-              style={{ opacity: busy || !draft.trim() ? 0.4 : 1 }}
+              style={{ opacity: (busy && !onQueue) || !draft.trim() ? 0.4 : 1 }}
             >
               <Icon name="ArrowUp" size={18} color="#000" />
             </Pressable>

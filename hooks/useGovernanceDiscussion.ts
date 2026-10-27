@@ -21,7 +21,7 @@ import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../libs/toast";
 import { dehubAuthHeaders } from "../services/ai.service";
 import { createLogger } from "../libs/logger";
-import { castVote, getMyVote, getProposal, needsOwnBadge } from "../services/governance.service";
+import { castVote, getMyVote, getProposal, isProposalNumber, needsOwnBadge } from "../services/governance.service";
 
 const log = createLogger("useGovernanceDiscussion");
 
@@ -85,13 +85,36 @@ export function buildProposalThreads(comments: ProposalComment[]): ProposalThrea
   return roots.map((comment) => threads.get(comment.id)!);
 }
 
-export function useGovernanceProposal(proposalId: string | null | undefined) {
-  return useQuery({
+/**
+ * One proposal by its uuid or its public number. Votes, comments and reposts
+ * are all keyed by the uuid, so a number is resolved to its row first and the
+ * row is seeded under the uuid, which the detail query then reads.
+ */
+export function useGovernanceProposal(proposalKey: string | null | undefined) {
+  const queryClient = useQueryClient();
+  const byNumber = isProposalNumber(proposalKey);
+  const resolved = useQuery({
+    queryKey: ["governance-proposal-number", proposalKey],
+    queryFn: async () => {
+      const row = await getProposal(proposalKey!);
+      if (!row) throw new Error("Proposal not found");
+      queryClient.setQueryData(["governance-proposal", row.id], row);
+      return row.id;
+    },
+    enabled: byNumber,
+    staleTime: Infinity,
+  });
+  const proposalId = byNumber ? resolved.data : proposalKey;
+  const detail = useQuery({
     queryKey: ["governance-proposal", proposalId],
     queryFn: () => getProposal(proposalId!),
     enabled: !!proposalId,
     staleTime: 60_000,
   });
+  if (byNumber && !proposalId) {
+    return { ...detail, isLoading: resolved.isLoading, isError: resolved.isError, refetch: resolved.refetch } as unknown as typeof detail;
+  }
+  return detail;
 }
 
 export function useProposalDiscussion(proposalId: string | null | undefined) {

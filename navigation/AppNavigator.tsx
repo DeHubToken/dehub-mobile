@@ -118,6 +118,10 @@ function AppNavigatorContent() {
           getComponent={() => deferredScreen('../screens/LeaderboardScreen#default', () => require("../screens/LeaderboardScreen").default)}
         />
         <Stack.Screen
+          name={ScreenNames.Planned}
+          getComponent={() => deferredScreen('../screens/PlannedScreen#default', () => require("../screens/PlannedScreen").default)}
+        />
+        <Stack.Screen
           name={ScreenNames.Feedback}
           getComponent={() => deferredScreen('../screens/FeedbackScreen#default', () => require("../screens/FeedbackScreen").default)}
         />
@@ -507,9 +511,18 @@ function AppNavigatorContent() {
               name={ScreenNames.Ads}
               getComponent={() => deferredScreen('../screens/AdsScreen#default', () => require("../screens/AdsScreen").default)}
             />
+            {/* A drawer like the image feed's: the screen it opens from stays
+                visible above the sheet, and the sheet does all the moving. */}
             <Stack.Screen
               name={ScreenNames.Notifications}
-              getComponent={() => deferredScreen('../screens/NotificationScreen#default', () => require("../screens/NotificationScreen").default)}
+              layout={withSolidScreenBoundary}
+              options={{
+                presentation: 'transparentModal',
+                contentStyle: { backgroundColor: 'transparent' },
+                animation: 'none',
+              }}
+              // No route shell: a page-sized placeholder would flash before the sheet.
+              getComponent={() => require("../screens/NotificationScreen").default}
             />
             <Stack.Screen
               name={ScreenNames.NotificationSettings}

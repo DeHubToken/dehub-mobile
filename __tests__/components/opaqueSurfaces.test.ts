@@ -11,12 +11,15 @@ const ALLOWED = [
   "components/DM/MessageContextMenu.tsx",
   "components/LiveChat/LiveChatContextMenu.tsx",
   "components/ui/ChromeSurface.tsx",
-  "components/ui/GlassModal.tsx",
-  // Drawers take web's liquid glass (bg-black/60 + backdrop blur).
+  // Drawers take web's liquid glass (bg-black/60 + backdrop blur), and the
+  // page behind an open drawer is blurred by one shared backdrop.
   "components/ui/SheetGlass.tsx",
+  "components/ui/SheetBackdrop.tsx",
   "components/ui/IosGlassPill.tsx",
   "components/ui/FrostedPill.tsx",
   "components/ui/FrostedBackdrop.tsx",
+  // Frost over the status bar so the scrolling feed never shows behind the clock.
+  "components/ui/StatusBarFrost.tsx",
 ];
 
 function walk(dir: string, out: string[] = []): string[] {

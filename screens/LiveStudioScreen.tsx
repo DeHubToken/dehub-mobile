@@ -28,6 +28,7 @@ import { RulesEditor } from "../components/LiveStudio/RulesEditor";
 import { PollEditor } from "../components/LiveStudio/PollEditor";
 import { RecapSection } from "../components/LiveStudio/RecapSection";
 import { QuickControls } from "../components/LiveStudio/QuickControls";
+import { DestinationsSection } from "../components/LiveStudio/DestinationsSection";
 import { SubathonEditor } from "../components/LiveStudio/SubathonEditor";
 import { PointsSection } from "../components/LiveStudio/PointsSection";
 import { OverlayCreatorContext, SubathonContext } from "../components/LiveOverlay/subathon";
@@ -254,6 +255,10 @@ export default function LiveStudioScreen() {
 
         <Section title={t("liveStudio.controls.title")}>
           <QuickControls overlay={data} queryKey={MY_OVERLAY_KEY} />
+        </Section>
+
+        <Section title={t("liveStudio.destinations.title")}>
+          <DestinationsSection enabled={!!myAddress} />
         </Section>
 
         <Section
