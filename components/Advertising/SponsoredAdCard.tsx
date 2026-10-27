@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { shareAudioWhenSilent } from "../../libs/videoAudioMixing";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import type { ServedAd } from "../../hooks/useAds";
@@ -27,6 +28,7 @@ interface SponsoredAdCardProps {
 
 function SponsoredAdVideo({ uri }: { uri: string }) {
   const player = useVideoPlayer(uri, (instance) => {
+    shareAudioWhenSilent(instance);
     instance.loop = true;
     instance.muted = true;
     instance.play();

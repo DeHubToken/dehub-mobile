@@ -3,6 +3,7 @@ import { useSilenceOnRelease } from "../../hooks/useSilenceOnRelease";
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { VideoView, useVideoPlayer } from "expo-video";
+import { shareAudioWhenSilent } from "../../libs/videoAudioMixing";
 import { GRID_PREVIEW_BUFFER_OPTIONS } from "../../libs/videoBuffering";
 import Icon from "../ui/Icon";
 import { getShortsThumbnailUrl, getPlaybackUrl, getAvatarUrl, buildCdnPath, buildFeedImageUrls, getBadgeUrlFor, getBadgeHoverOpticalStyle } from "../../libs/misc";
@@ -56,6 +57,7 @@ const CellPreview: React.FC<{ previewUrl: string }> = ({ previewUrl }) => {
   const isPlayingRef = useRef(false);
 
   const player = useVideoPlayer(previewUrl, (p) => {
+    shareAudioWhenSilent(p);
     p.loop = true;
     p.muted = true;
     p.bufferOptions = GRID_PREVIEW_BUFFER_OPTIONS;

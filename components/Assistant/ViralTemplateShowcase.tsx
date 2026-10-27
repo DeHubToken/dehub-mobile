@@ -5,13 +5,14 @@ import { FlatList, Modal, Pressable, ScrollView, Text, TextInput, View, useWindo
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { VideoView, useVideoPlayer } from 'expo-video';
+import { shareAudioWhenSilent } from '../../libs/videoAudioMixing';
 import { useTranslation } from 'react-i18next';
 import SmartImage from '../common/SmartImage';
 import { VIRAL_TEMPLATES, TEMPLATE_FEATURED_IDS, type ViralTemplate } from '../../config/viral-templates';
 
 const categories = ['all', 'effects', 'characters', 'dance', 'sports', 'products', 'seasonal'];
 function Preview({ effect, width }: { effect: ViralTemplate; width: number }) {
-  const player = useVideoPlayer(effect.preview!, instance => { instance.bufferOptions = FEED_BUFFER_OPTIONS; instance.muted = true; instance.play(); });
+  const player = useVideoPlayer(effect.preview!, instance => { shareAudioWhenSilent(instance); instance.bufferOptions = FEED_BUFFER_OPTIONS; instance.muted = true; instance.play(); });
   return <VideoView player={player} nativeControls contentFit="contain" style={{ width, height: Math.min(width * 4 / 3, 500) }} />;
 }
 

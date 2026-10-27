@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, ScrollView, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { VideoView, useVideoPlayer, type VideoPlayer } from 'expo-video';
+import { shareAudioWhenSilent } from '../../libs/videoAudioMixing';
 import { useTranslation } from 'react-i18next';
 import { FEED_BUFFER_OPTIONS } from '../../libs/videoBuffering';
 import type { MotionClip } from '../../libs/motionLibrary';
 
 function ComparisonVideo({ url, result, width, height }: { url: string; result: VideoPlayer; width: number; height: number }) {
-  const original = useVideoPlayer(url, player => { player.bufferOptions = FEED_BUFFER_OPTIONS; player.muted = true; });
+  const original = useVideoPlayer(url, player => { shareAudioWhenSilent(player); player.bufferOptions = FEED_BUFFER_OPTIONS; player.muted = true; });
   useEffect(() => {
     const wasMuted = result.muted;
     result.muted = true;
@@ -26,7 +27,7 @@ export default function MotionClipPlayer({ clip, width }: { clip: MotionClip; wi
   const [compare, setCompare] = useState(false);
   const wipe = useRef(new Animated.Value(.5)).current;
   const sample = clip.variants[Math.max(0, version)];
-  const result = useVideoPlayer(version < 0 && !compare ? clip.url : sample?.url ?? clip.url, player => { player.bufferOptions = FEED_BUFFER_OPTIONS; player.timeUpdateEventInterval = .25; });
+  const result = useVideoPlayer(version < 0 && !compare ? clip.url : sample?.url ?? clip.url, player => { shareAudioWhenSilent(player); player.bufferOptions = FEED_BUFFER_OPTIONS; player.timeUpdateEventInterval = .25; });
   const height = Math.min(width * 4 / 3, 500);
   return <View>
     <View style={{ width, height, borderRadius: 14, overflow: 'hidden', backgroundColor: '#09090b' }}>

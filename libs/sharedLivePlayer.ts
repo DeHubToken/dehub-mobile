@@ -25,6 +25,7 @@ import {
   LIVE_BUFFER_OPTIONS,
 } from "./videoBuffering";
 import { releaseAfterPictureInPicture } from './pictureInPicture';
+import { shareAudioWhenSilent } from "./videoAudioMixing";
 
 interface Entry {
   player: VideoPlayer;
@@ -83,6 +84,7 @@ function entryFor(url: string): Entry {
     const player = createVideoPlayer(url);
     player.loop = false;
     player.muted = true;
+    shareAudioWhenSilent(player);
     tuneForLatency(player, url);
     entry = { player, refs: 0 };
     entries.set(url, entry);
