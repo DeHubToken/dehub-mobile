@@ -9747,6 +9747,59 @@
       "noRetakes": "Aucune reprise trouvée",
       "retakesRemoved": "{{count}} reprise(s) retirée(s), dernière prise conservée",
       "retakesFailed": "Impossible de retirer les reprises de ce clip"
+    },
+    "speakers": {
+      "find": "Trouver les intervenants",
+      "name": "Intervenant {{number}}",
+      "onlyOne": "Un seul intervenant trouvé.",
+      "failed": "Impossible de trouver les intervenants.",
+      "kept": "Seul {{name}} est conservé.",
+      "editFailed": "Cette modification ne convient pas à ce clip.",
+      "split": "Découpé en {{count}} plans par intervenant.",
+      "keepOnly": "Garder seul",
+      "splitAction": "Couper à chaque changement d'intervenant"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Décris l'objet 3D que tu veux",
+      "queued": "Création de ton objet 3D. Il arrivera dans l'onglet Générations.",
+      "note": "Les objets 3D arrivent dans Médias sous forme de court clip qui tourne, sur fond transparent."
+    },
+    "voiceClone": {
+      "pickerLabel": "Clone ta voix",
+      "pickerDetail": "Des voix off avec ta propre voix",
+      "title": "Clone ta voix",
+      "description": "Enregistre-toi ou choisis un clip où tu parles. Tu paies une fois et ta voix sert pour toutes tes voix off.",
+      "defaultName": "Ma voix",
+      "record": "Enregistre un extrait (30 secondes à 2 minutes)",
+      "stop": "Arrêter l'enregistrement",
+      "fromMedia": "Ou utilise un clip de Médias",
+      "recorded": "Ton enregistrement",
+      "sample": "Extrait : {{name}}",
+      "hint": "Une voix claire sans musique donne le meilleur résultat.",
+      "noMic": "Impossible d'utiliser le micro.",
+      "sampleFailed": "Impossible de lire le son de ce clip.",
+      "pay": "Cloner pour {{amount}} DHB",
+      "useFree": "Cloner (déjà payé)",
+      "owned": "Ta voix « {{name}} » est déjà prête. Choisis-la dans la liste des voix.",
+      "useOwned": "Utiliser ma voix",
+      "ready": "« {{name}} » est prête pour les voix off.",
+      "failed": "Le clonage de la voix a échoué.",
+      "paidFailed": "Ton paiement est conservé. Rouvre ceci et le prochain essai est gratuit.",
+      "consent": "Ne clone que ta propre voix, ou une voix que tu as le droit d'utiliser."
+    },
+    "linkImport": {
+      "open": "Importer depuis un lien",
+      "placeholder": "Colle un lien YouTube, TikTok ou autre",
+      "rights": "Cette vidéo m'appartient ou j'ai le droit de l'utiliser",
+      "audioOnly": "Son uniquement",
+      "go": "Importer",
+      "queued": "En file…",
+      "downloading": "Téléchargement {{percent}} %",
+      "waiting": "En attente du site, nouvel essai bientôt…",
+      "adding": "Ajout à Médias…",
+      "added": "Importé et ajouté à la timeline.",
+      "failed": "Impossible d'importer ce lien."
     }
   },
   "creator": {

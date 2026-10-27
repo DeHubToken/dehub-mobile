@@ -9719,6 +9719,59 @@
       "noRetakes": "Tekrar çekim bulunamadı",
       "retakesRemoved": "{{count}} tekrar çekim kaldırıldı, son çekim tutuldu",
       "retakesFailed": "Bu klipten tekrar çekimler kaldırılamadı"
+    },
+    "speakers": {
+      "find": "Konuşmacıları bul",
+      "name": "Konuşmacı {{number}}",
+      "onlyOne": "Yalnızca bir konuşmacı bulundu.",
+      "failed": "Konuşmacılar bulunamadı.",
+      "kept": "Yalnızca {{name}} tutuldu.",
+      "editFailed": "Bu düzenleme bu klibe uymadı.",
+      "split": "{{count}} konuşmacı çekimine bölündü.",
+      "keepOnly": "Yalnızca bu",
+      "splitAction": "Her konuşmacı değişiminde kes"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "İstediğin 3D nesneyi tarif et",
+      "queued": "3D nesnen oluşturuluyor. Üretimler sekmesine düşecek.",
+      "note": "3D nesneler Medya'ya şeffaf arka planlı, dönen kısa bir klip olarak gelir."
+    },
+    "voiceClone": {
+      "pickerLabel": "Sesini klonla",
+      "pickerDetail": "Kendi sesinle seslendirme",
+      "title": "Sesini klonla",
+      "description": "Kendini kaydet ya da konuştuğun bir klip seç. Bir kez ödersin, sesin tüm seslendirmelerde senin olur.",
+      "defaultName": "Benim sesim",
+      "record": "Örnek kaydet (30 saniye ile 2 dakika)",
+      "stop": "Kaydı durdur",
+      "fromMedia": "Ya da Medya'dan bir klip kullan",
+      "recorded": "Kaydın",
+      "sample": "Örnek: {{name}}",
+      "hint": "Müziksiz, net bir konuşma en iyi sonucu verir.",
+      "noMic": "Mikrofon kullanılamadı.",
+      "sampleFailed": "O klibin sesi okunamadı.",
+      "pay": "{{amount}} DHB karşılığında klonla",
+      "useFree": "Klonla (ödendi)",
+      "owned": "“{{name}}” sesin zaten hazır. Ses listesinden seç.",
+      "useOwned": "Sesimi kullan",
+      "ready": "“{{name}}” seslendirme için hazır.",
+      "failed": "Ses klonlama başarısız oldu.",
+      "paidFailed": "Ödemen kaydedildi. Bunu yeniden aç, sonraki deneme ücretsiz.",
+      "consent": "Yalnızca kendi sesini ya da kullanma iznin olan bir sesi klonla."
+    },
+    "linkImport": {
+      "open": "Bağlantıdan içe aktar",
+      "placeholder": "YouTube, TikTok veya başka bir bağlantı yapıştır",
+      "rights": "Bu videonun sahibiyim ya da kullanma iznim var",
+      "audioOnly": "Yalnızca ses",
+      "go": "İçe aktar",
+      "queued": "Sırada…",
+      "downloading": "İndiriliyor %{{percent}}",
+      "waiting": "Site bekleniyor, birazdan yeniden denenecek…",
+      "adding": "Medya'ya ekleniyor…",
+      "added": "İçe aktarıldı ve zaman çizelgesine eklendi.",
+      "failed": "Bu bağlantı içe aktarılamadı."
     }
   },
   "creator": {
