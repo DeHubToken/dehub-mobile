@@ -195,6 +195,7 @@ function AppNavigatorContent() {
           name={ScreenNames.Glossary}
           getComponent={() => deferredScreen('../screens/GlossaryScreen#default', () => require("../screens/GlossaryScreen").default)}
         />
+        <Stack.Screen name={ScreenNames.Compare} getComponent={() => deferredScreen('../screens/CompareScreen#default', () => require('../screens/CompareScreen').default)} />
         <Stack.Screen
           name={ScreenNames.Guide}
           getComponent={() => deferredScreen('../screens/GuideScreen#default', () => require("../screens/GuideScreen").default)}

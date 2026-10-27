@@ -84,6 +84,7 @@ export enum ScreenNames {
   Converter = 'Converter',
   Migrate = 'Migrate',
   Glossary = 'Glossary',
+  Compare = 'Compare',
   Guide = 'Guide',
   // Connect AI — the hub (/connect) and one guide per assistant. The two
   // guides share a component; the route name says which assistant.

@@ -417,6 +417,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
 
           [ScreenNames.FeatureRequests]: DeepLinkPaths.FEATURES,
           [ScreenNames.Feedback]: 'feedback',
+          [ScreenNames.Compare]: 'compare',
           [ScreenNames.Planned]: 'app/planned',
           // dehub.io/live-studio — the same page on the web.
           [ScreenNames.LiveStudio]: 'live-studio',
@@ -648,7 +649,7 @@ export const linkingConfig: LinkingOptions<RootStackParamList> = {
     // The same the other way round: these routes are declared at the bare path
     // web canonicalises onto, so the /app spelling a link copied from the
     // address bar can still carry is folded back onto them.
-    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback']);
+    const BARE_ROUTED = new Set(['usernames', 'accounts', 'packs', 'feedback', 'compare']);
     if (segments[0] === 'app' && BARE_ROUTED.has(segments[1])) {
       const newPath = `/${segments.slice(1).join('/')}${queryString ? `?${queryString}` : ''}`;
       logger.info('/app section rewritten onto its bare route', { from: path, to: newPath });

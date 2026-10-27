@@ -51,6 +51,7 @@ export const PAGE_IDENTITY_ICONS: Partial<Record<ScreenNames, ThemeIconKey>> = {
   [ScreenNames.Converter]: 'videos',
   [ScreenNames.Migrate]: 'profile',
   [ScreenNames.Glossary]: 'glossary',
+  [ScreenNames.Compare]: 'glossary',
   [ScreenNames.Guide]: 'glossary',
   [ScreenNames.Connect]: 'assistant',
   [ScreenNames.ConnectChatGPT]: 'assistant',
