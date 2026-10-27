@@ -16,7 +16,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_HAIRLINE } from "../../theme/minimal";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import SwipeBackBoundary from '../common/SwipeBackBoundary';
 import SheetGlass from "./SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "./SheetBackdrop";
@@ -54,7 +54,17 @@ export interface GlassModalProps {
   yieldToWalletUnlock?: boolean;
   /** Floating panels use the same active-theme material as web. */
   surface?: 'theme' | 'solid';
+  /**
+   * A scrollable drawer that drags shut from anywhere on it, not just the
+   * handle strip: the panel follows the finger once the list is at the top,
+   * so a pull that scrolls back up to the top carries on as a close.
+   */
+  dragFromContent?: boolean;
 }
+
+/** A GestureDetector only where a gesture is wired, so other sheets are untouched. */
+const MaybeDetector: React.FC<{ gesture: React.ComponentProps<typeof GestureDetector>['gesture'] | null; children: React.ReactElement }> = ({ gesture, children }) =>
+  gesture ? <GestureDetector gesture={gesture}>{children}</GestureDetector> : children;
 
 /**
  * A reusable modal with a blurred backdrop.
@@ -83,6 +93,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
   scrollable = false,
   yieldToWalletUnlock = true,
   surface = 'theme',
+  dragFromContent = false,
 }) => {
   const insets = useSafeAreaInsets();
   const yielded = useYieldToWalletUnlock(visible, yieldToWalletUnlock);
@@ -131,6 +142,44 @@ const GlassModal: React.FC<GlassModalProps> = ({
   });
   const handleResponder = useMemo(() => makePanResponder(true),
     [dismissible, isBottom, onClose, scrollable, translateY]);
+
+  // Content drag (dragFromContent). It runs beside the ScrollView's own
+  // gesture: while the list is scrolled the list keeps the touch, and from
+  // the moment it sits at the top the rest of the pull moves the panel.
+  const contentDrag = isBottom && dismissible && scrollable && dragFromContent;
+  const pullAnchor = useRef<number | null>(null);
+  const pulled = useRef(0);
+  const listGesture = useMemo(() => (contentDrag ? Gesture.Native() : null), [contentDrag]);
+  const panelGesture = useMemo(() => listGesture && Gesture.Pan()
+    .runOnJS(true)
+    .activeOffsetY(10)
+    .failOffsetX([-20, 20])
+    .simultaneousWithExternalGesture(listGesture)
+    .onStart(() => {
+      pullAnchor.current = null;
+      pulled.current = 0;
+    })
+    .onUpdate((e) => {
+      if (pullAnchor.current === null) {
+        if (scrollY.current > 1) return;
+        pullAnchor.current = e.translationY;
+      }
+      pulled.current = Math.max(0, e.translationY - pullAnchor.current);
+      if (pulled.current === 0 && scrollY.current > 1) pullAnchor.current = null;
+      translateY.setValue(pulled.current);
+    })
+    .onEnd((e) => {
+      const d = pulled.current;
+      pullAnchor.current = null;
+      pulled.current = 0;
+      if (d > 80 || (d > 20 && e.velocityY > 700)) onClose();
+      Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+    })
+    .onFinalize(() => {
+      if (pulled.current > 0) Animated.spring(translateY, { toValue: 0, useNativeDriver: true }).start();
+      pullAnchor.current = null;
+      pulled.current = 0;
+    }), [listGesture, onClose, translateY]);
 
   // While the keyboard is up the panel is lifted clear of it, and the bottom
   // inset it would otherwise reserve is under the keyboard — keeping it just
@@ -285,6 +334,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
             ]}
           >
             {wrapPanel ? (
+              <MaybeDetector gesture={panelGesture}>
               <Animated.View
                 style={[
                   styles.panel,
@@ -301,6 +351,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
               >
                 {glassDrawer ? <SheetGlass backdropBlurred={backdrop.blurred} /> : MessageSurface ? <MessageSurface /> : null}
                 {scrollable ? (
+                  <MaybeDetector gesture={listGesture}>
                   <ScrollView
                     ref={scrollRef}
                     style={{ flexShrink: 1 }}
@@ -314,14 +365,17 @@ const GlassModal: React.FC<GlassModalProps> = ({
                   >
                     {children}
                   </ScrollView>
+                  </MaybeDetector>
                 ) : children}
-                {isBottom && dismissible && (
+                {/* With dragFromContent the panel's own pan covers the handle. */}
+                {isBottom && dismissible && !contentDrag && (
                   <View
                     {...handleResponder.panHandlers}
                     style={{ position: "absolute", top: 0, left: "35%", right: "35%", height: 28 }}
                   />
                 )}
               </Animated.View>
+              </MaybeDetector>
             ) : (
               children
             )}
