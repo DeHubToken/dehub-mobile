@@ -37,7 +37,10 @@ import { useIsScreenFocused } from '../hooks/useFocusedInterval';
 import AssistantHeader from '../components/Assistant/AssistantHeader';
 import AssistantBubble from '../components/Assistant/AssistantBubble';
 import AssistantInputBar from '../components/Assistant/AssistantInputBar';
-import QuickActionChips, { type QuickAction } from '../components/Assistant/QuickActionChips';
+import { type QuickAction } from '../components/Assistant/QuickActionChips';
+import AssistantStage from '../components/Assistant/AssistantStage';
+import { useVoiceChat } from '../hooks/useVoiceChat';
+import { useJobPayment } from '../hooks/useAiPayment';
 import ChatHistorySheet from '../components/Assistant/ChatHistorySheet';
 import SupportTicketSheet, { useMySupportTickets } from '../components/Assistant/SupportTicketSheet';
 import CreditPaywallSheet from '../components/Assistant/CreditPaywallSheet';
@@ -1718,6 +1721,64 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
     [handleAttach, setInput, _copy],
   );
 
+  /* ── Voice chat ──────────────────────────────────────────────────────── */
+
+  const { payForJob } = useJobPayment(!studio);
+  const voiceReplyTo = useRef<string | null>(null);
+  const sendVoiceTurnRef = useRef<(text: string) => void>(() => {});
+  const voice = useVoiceChat({
+    walletAddress,
+    payForSession: (priceDhb) => payForJob(priceDhb, { purpose: 'voice' }),
+    onTranscript: (text) => sendVoiceTurnRef.current(text),
+  });
+
+  /** A spoken turn goes through the same route as a typed one, minus the composer. */
+  const sendVoiceTurn = useCallback(async (text: string) => {
+    if (isLoading || restoring || submitLock.current) { voice.resume(); return; }
+    submitLock.current = true;
+    pendingDraftCompletion.current = () => {};
+    setIsLoading(true);
+    const userMessage: AIChatMessage = { id: newTurnId(), role: 'user', content: text };
+    voiceReplyTo.current = userMessage.id ?? null;
+    try {
+      const history = [...messagesRef.current, userMessage];
+      await saveMessage(history);
+      await routePrompt(text, history, undefined, false);
+    } catch (error) {
+      log.error('voice turn failed:', error);
+    } finally {
+      submitLock.current = false;
+      setIsLoading(false);
+    }
+  }, [isLoading, restoring, saveMessage, routePrompt, voice]);
+  sendVoiceTurnRef.current = (text) => { void sendVoiceTurn(text); };
+
+  // Once the answer to a spoken turn has landed, read it out; anything else
+  // (an error, a paywall) goes straight back to listening.
+  useEffect(() => {
+    if (!voiceReplyTo.current || isLoading || streamingContent !== null) return;
+    const list = messagesRef.current;
+    const asked = list.findIndex(m => m.id === voiceReplyTo.current);
+    if (asked < 0) return;
+    voiceReplyTo.current = null;
+    const answer = list.slice(asked + 1).find(m => m.role === 'assistant');
+    if (answer && !answer.isError && answer.content) void voice.speak(answer.content);
+    else voice.resume();
+  }, [messages, isLoading, streamingContent, voice]);
+
+  const toggleVoice = useCallback(() => {
+    if (voice.isVoiceMode) voice.stop();
+    else void voice.start();
+  }, [voice]);
+
+  // Leaving the tab ends the conversation rather than leaving the mic open.
+  useEffect(() => {
+    if (!isScreenFocused && voice.isVoiceMode) voice.stop();
+  }, [isScreenFocused, voice]);
+
+  const showStage = !studio && (isEmpty || voice.isVoiceMode);
+  const lastReply = voice.isVoiceMode ? [...messages].reverse().find(m => m.role === 'assistant' && !m.isError)?.content : undefined;
+
   /** Arming a template also adopts the model it was tuned for, as on web. */
   const handlePickTemplate = useCallback(
     (tpl: CreatorTemplate) => {
@@ -1905,16 +1966,29 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
         onSupportPress={() => setSupportVisible(true)}
         openTicketCount={supportTickets?.openCount ?? 0}
         styleEmoji={currentStyle.emoji}
+        styleLabel={currentStyle.label}
         hasMessages={!isEmpty}
       />}
 
-      {isEmpty ? (
+      {showStage ? (
+        <AssistantStage
+          voiceMode={voice.isVoiceMode}
+          status={voice.status}
+          level={voice.level}
+          exchangesLeft={voice.exchangesLeft}
+          lastReply={lastReply}
+          active={isScreenFocused}
+          onOrbPress={toggleVoice}
+          onSkip={voice.skip}
+          onStop={voice.stop}
+          onAction={handleQuickAction}
+        />
+      ) : isEmpty ? (
         <View style={s.welcomeWrap}>
           <View style={s.welcomeCenter}>
-            <Text style={s.welcomeText}>{studio ? t('creator.studioWelcome') : _copy("copy.ad64f44134a8", { defaultValue: "Use the text box below or these action buttons to get started." })}</Text>
-            {studio && <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} model={studioSettings.model} /></View>}
+            <Text style={s.welcomeText}>{t('creator.studioWelcome')}</Text>
+            <View style={{ alignSelf: 'stretch', marginTop: 20, marginHorizontal: 16 }}><GenerationExample kind={studioSettings.mode} model={studioSettings.model} /></View>
           </View>
-          {!studio && <QuickActionChips onAction={handleQuickAction} />}
         </View>
       ) : (
         <FlatList
@@ -1943,10 +2017,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
                   </Text>
                 </View>
               </View>
-            ) : isLoading ? null : (
-              // Web keeps the quick actions visible after every answer.
-              studio ? null : <QuickActionChips onAction={handleQuickAction} />
-            )
+            ) : null
           }
         />
       )}
@@ -2000,7 +2071,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             </TouchableOpacity>
           </View>
         )}
-        <AssistantInputBar
+        {!voice.isVoiceMode && <AssistantInputBar
           controls={studio ? <>
         <CreatorStudioControls settings={studioSettings} prompt={input} draftScope={draftScope} onChange={next => {
           const selectedTemplate = getTemplate(templateId);
@@ -2027,7 +2098,9 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             allowEmpty={!!activeTemplate || !!(studio && ((studioSettings.mode === 'audio' && studioSettings.audioSettings?.media) || (studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint && attachedImage)))}
             placeholder={studio ? t(studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint ? 'creator.expandPromptHint' : 'creator.studioPrompt') : undefined}
           sendLabel={studio ? t('creator.studioCreate') : undefined}
-        />
+          onVoicePress={studio ? undefined : toggleVoice}
+          voiceActive={voice.isVoiceMode}
+        />}
       </View>
 
       <SupportTicketSheet
