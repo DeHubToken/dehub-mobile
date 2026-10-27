@@ -15013,5 +15013,81 @@
     "cancelled": "Cancelado",
     "moveFailed": "No se pudo mover. Inténtalo de nuevo.",
     "seeAll": "Ver todo lo que has planificado"
+  },
+  "welcome": {
+    "about": {
+      "title": "Te damos la bienvenida a DeHub",
+      "sub": "Tu cumpleaños es privado. Elige un estilo, puedes cambiarlo cuando quieras.",
+      "birthday": "Fecha de nacimiento",
+      "pick": "Elige tu cumpleaños",
+      "day": "Día",
+      "month": "Mes",
+      "year": "Año",
+      "invalid": "Introduce tu fecha de nacimiento completa.",
+      "tooYoung": "Debes tener {{age}} años o más para usar DeHub.",
+      "theme": "Tu estilo"
+    },
+    "name": {
+      "title": "Tu nombre",
+      "sub": "Es el nombre que la gente ve en tus publicaciones.",
+      "placeholder": "Tu nombre"
+    },
+    "username": {
+      "title": "Tu @usuario",
+      "sub": "Letras, números y guiones bajos. Puedes cambiarlo después.",
+      "yours": "@{{name}} es tuyo"
+    },
+    "photo": {
+      "title": "Tu foto",
+      "sub": "Opcional. La gente sigue antes a quien pone cara.",
+      "choose": "Elegir una foto",
+      "change": "Elegir otra"
+    },
+    "interests": {
+      "title": "Tus intereses",
+      "sub": "Elige al menos 3. Aparecerán primero en tus categorías."
+    },
+    "people": {
+      "title": "Tu gente",
+      "sub": "Toca para seguir. Sus publicaciones llenarán tu feed de Siguiendo.",
+      "empty": "No hay sugerencias ahora mismo. En Explorar encontrarás más gente.",
+      "followers": "{{count}} seguidores"
+    },
+    "done": {
+      "title": "Te ves genial, {{name}}",
+      "sub": "Desde hoy, todos ven esta tarjeta.",
+      "eyebrow": "Perfil activo"
+    },
+    "card": {
+      "name": "Tu nombre",
+      "interests": "Tus intereses",
+      "following": "siguiendo",
+      "followers": "seguidores"
+    },
+    "topic": {
+      "music": "Música",
+      "art": "Arte",
+      "gaming": "Videojuegos",
+      "crypto": "Cripto",
+      "sports": "Deportes",
+      "travel": "Viajes",
+      "comedy": "Comedia",
+      "film": "Cine",
+      "anime": "Anime",
+      "cars": "Coches",
+      "podcast": "Pódcast",
+      "animals": "Animales",
+      "tech": "Tecnología",
+      "food": "Comida",
+      "news": "Noticias",
+      "science": "Ciencia"
+    },
+    "back": "Atrás",
+    "enter": "Entrar en DeHub",
+    "skipPhoto": "Omitir por ahora",
+    "pickMore": "Elige {{count}} más",
+    "preview": "Vista previa",
+    "cardHint": "Así te verá la gente",
+    "followFailed": "No se pudo seguir. Inténtalo de nuevo."
   }
 }
