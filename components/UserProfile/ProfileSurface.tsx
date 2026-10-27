@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BackHandler, Modal, Platform, StyleSheet } from "react-native";
+import { Modal, Platform, StyleSheet } from "react-native";
+import { useBackPress } from "../../hooks/useBackPress";
 import Animated, { Easing, runOnJS, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -52,14 +53,7 @@ function AndroidProfileSurface({ visible, onClose, onOpenComplete, children }: {
     });
   }, [visible, progress, onOpenComplete]);
 
-  useEffect(() => {
-    if (!visible) return;
-    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      onClose();
-      return true;
-    });
-    return () => sub.remove();
-  }, [visible, onClose]);
+  useBackPress(onClose, visible);
 
   const motion = useAnimatedStyle(() => ({
     opacity: progress.value,
