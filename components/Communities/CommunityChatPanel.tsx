@@ -224,11 +224,19 @@ const ChatRow: React.FC<{
           />
         )}
 
+        {/* A shared community or invite leads the message and its words follow,
+            matching the DM bubble. The long press reaches through the card so
+            reacting to a shared invite works like any other message. */}
+        {dehubLinks.length > 0 && (
+          <View style={displayContent ? { marginBottom: 6 } : undefined}>
+            <DehubLinkCards links={dehubLinks} onLongPress={() => onLongPress(message)} />
+          </View>
+        )}
+
         {!!displayContent && (
           <Text className="text-white/70 text-sm leading-5">{expandEmojiTokens(displayContent, { fontSize: 14 })}</Text>
         )}
 
-        <DehubLinkCards links={dehubLinks} />
         <LinkPreviewCard text={bodyText} />
         <AssetRefCards refs={assetRefs} />
 

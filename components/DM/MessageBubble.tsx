@@ -959,17 +959,9 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
             {/* Shared DeHub link — rich preview card that opens it on tap */}
             {sharedLink ? (
               <>
-                {/* The post card folds the caption into itself as a title; the
-                    others are a row, so their caption is printed above. */}
-                {!!sharedLink.caption && sharedLink.link.kind !== "post" && (
-                  <LinkedText
-                    text={sharedLink.caption}
-                    className={`px-3 pt-2.5 text-[15px] leading-5 ${
-                      isMine ? "text-white" : "text-theme-neutrals-100"
-                    }`}
-                    onLongPress={handleLongPress}
-                  />
-                )}
+                {/* The card leads the bubble and the caption follows it, the
+                    way a photo with a caption reads. The post card folds the
+                    caption into itself as a title, so only the others print it. */}
                 <DehubLinkCard
                   link={sharedLink.link}
                   isMine={isMine}
@@ -977,6 +969,15 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                   fallbackTitle={sharedLink.caption || undefined}
                   onLongPress={handleLongPress}
                 />
+                {!!sharedLink.caption && sharedLink.link.kind !== "post" && (
+                  <LinkedText
+                    text={sharedLink.caption}
+                    className={`px-3 pt-2 text-[15px] leading-5 ${
+                      isMine ? "text-white" : "text-theme-neutrals-100"
+                    }`}
+                    onLongPress={handleLongPress}
+                  />
+                )}
               </>
             ) : (
               hasText && (
