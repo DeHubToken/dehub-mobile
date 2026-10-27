@@ -108,6 +108,11 @@ export function useCommunityChat(
           filter: `community_id=eq.${communityId}`,
         },
         (payload: any) => {
+          const currentPin = queryClient.getQueryData<CommunityChatHistory<CommunityChatMessage>>(key)?.pages[0]?.pinned_message?.id;
+          if ((payload.eventType === "UPDATE" && (payload.new.pinned_at || payload.new.id === currentPin))
+            || (payload.eventType === "DELETE" && payload.old.id === currentPin)) {
+            void queryClient.invalidateQueries({ queryKey: key });
+          }
           if (payload.eventType === "INSERT" && !history.isHistoryWindow) {
             updateCommunityChatCache<CommunityChatMessage>(queryClient,key, (old = []) => {
               if (old.some((m) => m.id === payload.new.id)) return old;
@@ -171,13 +176,14 @@ export function useCommunityChat(
             ? old : [...old, inserted as CommunityChatMessage]);
       }
       void queryClient.invalidateQueries({ queryKey: key });
+      if (history.isHistoryWindow) void history.showLatest().catch(() => {});
       // Fire and forget: a failed notify must never read as a failed send.
       const messageId = (inserted as { id?: string } | null)?.id;
       if (messageId) {
         void notifyCommunityMentions({ communityId, messageId, content, walletAddress });
       }
     },
-    [communityId, walletAddress, user, history.isHistoryWindow, queryClient, key, _copy],
+    [communityId, walletAddress, user, history.isHistoryWindow, history.showLatest, queryClient, key, _copy],
   );
 
   const editMessage = useCallback(
