@@ -15,6 +15,10 @@ import {
 import { parseDehubLink } from '../../libs/dehub-links';
 
 describe('parseAppUrl', () => {
+  it('rejects embedded credentials and trailing-dot DeHub hosts', () => {
+    expect(parseAppUrl('https://user:secret@app.example.com')).toBeNull();
+    expect(parseAppUrl('https://dehub.io./app')).toBeNull();
+  });
   it('accepts https apps on their own domains', () => {
     expect(parseAppUrl('https://app.example.com/play?room=1')?.host).toBe('app.example.com');
   });
@@ -84,6 +88,10 @@ it('signs the same ownership message the registry checks', () => {
 });
 
 describe('launchUrl', () => {
+  it('does not promote a different port to the registered app origin', () => {
+    const params = new URLSearchParams({ url: 'https://app.example.com:8443/untrusted' });
+    expect(launchUrl('https://app.example.com/play', params)?.href).toBe('https://app.example.com/play');
+  });
   it('carries a shared link\'s query through to the app, but not ours', () => {
     const url = launchUrl('https://app.example.com/play', new URLSearchParams('room=42&from=feed'));
     expect(url?.toString()).toBe('https://app.example.com/play?room=42');
