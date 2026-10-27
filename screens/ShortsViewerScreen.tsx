@@ -1778,6 +1778,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   const bottomStackGesture = useMemo(() => Gesture.Race(makeEdgeBack(), hidePan), [makeEdgeBack, hidePan]);
 
+  // The avatar and name open the creator's profile through gesture-handler
+  // rather than a Pressable. On Android the stack above (and the video's own
+  // tap under it) run their own hit test, and a JS-responder press there was
+  // lost, so the tap did nothing. A native Tap on the row itself always wins.
+  const creatorTap = useMemo(() => Gesture.Tap()
+    .maxDistance(MEDIA_TAP_SLOP_PX)
+    .runOnJS(true)
+    .onEnd((_event, success) => {
+      if (success) handleUserPress();
+    }), [handleUserPress]);
+
   // Swiping to another short brings the chrome back with it, so a cleared
   // frame never carries over to the next one.
   useEffect(() => {
@@ -2074,7 +2085,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         <GestureDetector gesture={bottomStackGesture}>
           <View onLayout={(e) => { overlayHeight.value = e.nativeEvent.layout.height; }} style={styles.bottomStack}>
             <View style={styles.captionBlock}>
-              <Pressable onPress={handleUserPress} style={styles.creatorRow}>
+              <GestureDetector gesture={creatorTap}>
+              <View
+                style={styles.creatorRow}
+                accessible
+                accessibilityRole="button"
+                accessibilityLabel={displayName}
+                onAccessibilityTap={handleUserPress}
+              >
                 {/* The shared Avatar, not a bare expo-image: it guards the
                     "default-avatar" sentinel, falls back to the initial on a
                     load error, and carries a recyclingKey so a reused cell never
@@ -2096,7 +2114,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                     </Text>
                   ) : null}
                 </View>
-              </Pressable>
+              </View>
+              </GestureDetector>
 
               {photoMedia?.sound ? <Text numberOfLines={1} style={styles.captionBody}>♫ {photoMedia.sound}</Text> : null}
               {shownTitle || shownDescription ? (
@@ -3151,13 +3170,17 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   // Web's `gap-2`.
+  // Hugs the avatar and name, so the empty space beside a short name is not a
+  // profile tap (same rule as feed card headers).
   creatorRow: {
     flexDirection: "row",
     alignItems: "center",
+    alignSelf: "flex-start",
+    maxWidth: "100%",
     gap: 8,
   },
   creatorText: {
-    flex: 1,
+    flexShrink: 1,
   },
   // Web: `text-base font-semibold` over `text-sm text-white/70`, both with
   // `leading-tight` and a drop shadow.
