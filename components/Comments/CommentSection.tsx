@@ -1,5 +1,5 @@
 import { updateCommentCount } from '../../libs/comment-count-store';
-import { deliverReply } from '../../libs/reply-delivery';
+import { deliverReply, replyIdOf } from '../../libs/reply-delivery';
 import { useDraftState } from '../../hooks/useDraftState';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef } from "react";
 import {
@@ -1111,9 +1111,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           mentions.reset();
           Keyboard.dismiss();
 
-          // Reconcile temp ID with server ID
-          const newId = res?.result?.id ?? res?.id;
-          if (newId != null) {
+          // Reconcile temp ID with server ID. The server answers
+          // `{ result: true, commentId }`, and reading `result.id` off that
+          // left the row on its temporary id for good — so it stayed "sending"
+          // and holding your own new reply opened nothing, Edit and Delete
+          // included, until the thread was reopened.
+          const realId = replyIdOf(res);
+          const newId = realId == null ? undefined : Number(realId);
+          if (newId != null && Number.isFinite(newId)) {
             setFlatComments((prev) =>
               prev.map((c) => {
                 if (c.id === tempId) return { ...c, id: newId };
