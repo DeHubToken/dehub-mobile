@@ -458,9 +458,10 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
         case NotificationType.LIVESTREAM_START:
           if (streamId || tokenId) {
-            navigation.navigate(ScreenNames.LiveViewer, { 
-              streamId: streamId || String(tokenId) 
-            });
+            // A tokenId is the post, not the stream; the viewer looks the stream up.
+            navigation.navigate(ScreenNames.LiveViewer, streamId
+              ? { streamId, ...(tokenId ? { tokenId } : {}) }
+              : { tokenId });
           } else {
             navigation.navigate(ScreenNames.Notifications);
           }
