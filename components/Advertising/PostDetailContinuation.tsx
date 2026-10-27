@@ -1,5 +1,5 @@
 import { useTranslation as _useCopy } from 'react-i18next';
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -16,10 +16,15 @@ const POSTS_PER_PAGE = 6;
 
 interface PostDetailContinuationProps {
   currentPostId: string;
+  /**
+   * When set, more posts load by themselves: the list bumps this as the reader
+   * nears the end, and the "Load more" button goes away.
+   */
+  loadMoreSignal?: number;
 }
 
 /** Ad first, then an explicitly paginated continuation of recent posts. */
-export default function PostDetailContinuation({ currentPostId }: PostDetailContinuationProps) {
+export default function PostDetailContinuation({ currentPostId, loadMoreSignal }: PostDetailContinuationProps) {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
   const { isMinimal } = useAppTheme();
@@ -58,6 +63,14 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
       lastPage.pagination.hasMore ? lastPage.pagination.page + 1 : undefined,
     staleTime: 5 * 60 * 1000,
   });
+
+  const autoLoad = loadMoreSignal !== undefined;
+  useEffect(() => {
+    if (!loadMoreSignal || !hasNextPage || isFetchingNextPage) return;
+    void fetchNextPage();
+    // Only a new signal asks for a page; the fetch state just gates it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadMoreSignal]);
 
   const posts = useMemo(() => {
     const seen = new Set<string>();
@@ -122,7 +135,13 @@ export default function PostDetailContinuation({ currentPostId }: PostDetailCont
         </View>
       )}
 
-      {hasNextPage && (
+      {autoLoad && isFetchingNextPage && (
+        <View className="items-center py-6">
+          <ActivityIndicator color="#A1A1AA" />
+        </View>
+      )}
+
+      {hasNextPage && !autoLoad && (
         <TouchableOpacity
           onPress={() => void fetchNextPage()}
           disabled={isFetchingNextPage}
