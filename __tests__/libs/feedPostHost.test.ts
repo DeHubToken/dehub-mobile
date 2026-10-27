@@ -8,7 +8,7 @@ afterEach(() => setFeedPostHost(null));
 
 it("lets Home take a post while it is the host, and falls back to navigation otherwise", () => {
   expect(openPostInFeedHost(12)).toBe(false);
-  const host = jest.fn();
+  const host = jest.fn(() => true);
   setFeedPostHost(host);
   expect(openPostInFeedHost(12)).toBe(true);
   expect(host).toHaveBeenCalledWith("12");
@@ -28,4 +28,12 @@ it("opens text, image and audio posts in place on Home and keeps video on its ow
   // Only a video post drops the logo bar for the back icon.
   expect(detail).toContain("{embedded || (stage && videoPost) ? null : <PostFeedNav");
   expect(detail).toContain("{stage && videoPost && !embedded && <PostStageBackIcon");
+});
+
+it("leaves a comment tap to the card when Home turns it down under a profile", () => {
+  setFeedPostHost((_id, options) => !options?.comments);
+  expect(openPostInFeedHost(12, { comments: true })).toBe(false);
+  expect(openPostInFeedHost(12)).toBe(true);
+  const home = read("screens/HomeScreen.tsx");
+  expect(home).toContain("if (options?.comments && profileVisibleRef.current) return false;");
 });
