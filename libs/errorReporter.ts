@@ -128,6 +128,21 @@ function deviceContext(): Record<string, unknown> {
   return cachedDevice;
 }
 
+/** Android exit history has no release identity; the reporting launch is not
+ * necessarily the launch that crashed (including after a native upgrade).
+ * Keep the observer's release separately and leave historical identity unknown.
+ */
+export function historicalExitMetadata(): Record<string, unknown> {
+  const fields = ['appVersion', 'nativeAppVersion', 'nativeBuildVersion', 'build',
+    'updateId', 'updateCreatedAt', 'embeddedLaunch', 'emergencyLaunch', 'channel', 'runtimeVersion'];
+  const current = deviceContext();
+  return {
+    ...Object.fromEntries(fields.map(field => [field, null])),
+    releaseAttribution: 'unknown-historical-exit',
+    reportedByRelease: Object.fromEntries(fields.map(field => [field, current[field] ?? null])),
+  };
+}
+
 /** Errors carry their stack on `.stack`; everything else is context. */
 function buildRow(
   component: string | undefined,
