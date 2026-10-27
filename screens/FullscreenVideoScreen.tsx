@@ -11,10 +11,10 @@ import {
   Pressable,
   Dimensions,
   StatusBar,
-  BackHandler,
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
+import { useBackPress } from "../hooks/useBackPress";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import { VideoView } from "expo-video";
@@ -245,13 +245,7 @@ const FullscreenVideoScreen = () => {
     if (navigation.canGoBack()) navigation.goBack();
   }, [navigation]);
 
-  useEffect(() => {
-    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      closeScreen();
-      return true;
-    });
-    return () => sub.remove();
-  }, [closeScreen]);
+  useBackPress(closeScreen);
 
   const resetControlsTimer = useCallback(() => {
     if (controlsTimerRef.current) clearTimeout(controlsTimerRef.current);

@@ -31,6 +31,7 @@ jest.mock('react-native-reanimated', () => ({
     return value;
   },
 }));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: require('react').createContext(undefined) }));
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }),
 }));

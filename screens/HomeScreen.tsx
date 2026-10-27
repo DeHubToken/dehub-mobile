@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect, useDeferredValue } from "react";
-import { BackHandler, Pressable, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
+import { Pressable, View, StyleSheet, InteractionManager, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
+import { useBackPress } from "../hooks/useBackPress";
 import { useTranslation } from "react-i18next";
 import { useIsFocused, useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
 import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
@@ -496,14 +497,7 @@ export default function HomeScreen() {
   }, [isFocused, pageWidth, showHeader]);
   // The edge swipe is the same Back as the pill's arrow and the system back.
   useSwipeBackAction(closeFeedPost, !!feedPost && !feedProfileVisible);
-  useEffect(() => {
-    if (!feedPost || feedProfileVisible) return;
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      setFeedPost(null);
-      return true;
-    });
-    return () => subscription.remove();
-  }, [feedPost, feedProfileVisible]);
+  useBackPress(closeFeedPost, !!feedPost && !feedProfileVisible);
 
   // The nav bar's back arrow asks the sheet to slide out first; unmounting it
   // straight away would make the one deliberate control the only abrupt exit.
@@ -521,26 +515,13 @@ export default function HomeScreen() {
     setImageFeed(null);
   }, [feedProfileVisible, showHeader]);
 
-  useEffect(() => {
-    if (!feedProfileVisible) return;
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      hideUserProfile();
-      return true;
-    });
-    return () => subscription.remove();
-  }, [feedProfileVisible, hideUserProfile]);
+  useBackPress(hideUserProfile, feedProfileVisible);
 
   // The filter panel is an in-tree overlay, not a Modal, so Android back would
   // otherwise skip it and leave the app. Close the panel first.
-  useSwipeBackAction(() => setFilterPanelVisible(false), filterPanelVisible && !feedProfileVisible);
-  useEffect(() => {
-    if (!filterPanelVisible || feedProfileVisible) return;
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      setFilterPanelVisible(false);
-      return true;
-    });
-    return () => subscription.remove();
-  }, [filterPanelVisible, feedProfileVisible]);
+  const closeFilterPanel = useCallback(() => setFilterPanelVisible(false), []);
+  useSwipeBackAction(closeFilterPanel, filterPanelVisible && !feedProfileVisible);
+  useBackPress(closeFilterPanel, filterPanelVisible && !feedProfileVisible);
 
   // Called from the UI thread once a drag has picked its landing page. The
   // animation is already running by then; this only catches React up.
@@ -722,14 +703,7 @@ export default function HomeScreen() {
 
   useSwipeBackAction(closeIslandMenu, islandMenuOpen && !feedProfileVisible);
 
-  useEffect(() => {
-    if (!islandMenuOpen) return;
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      closeIslandMenu();
-      return true;
-    });
-    return () => subscription.remove();
-  }, [islandMenuOpen, closeIslandMenu]);
+  useBackPress(closeIslandMenu, islandMenuOpen);
   // A pick switches feeds exactly as the pill's buttons did.
   const handleIslandSelect = useCallback((index: number) => {
     setIslandMenuOpen(false);
