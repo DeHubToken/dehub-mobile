@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+jest.mock("react-native-css-interop", () => ({ createInteropElement: require("react")["createElement"] }));
 import { useCommunityChatHistory } from '../../hooks/useCommunityChatHistory';
 import type { CommunityChatPage } from '../../libs/community-chat-history';
 type Row = { id: string; created_at: string };
