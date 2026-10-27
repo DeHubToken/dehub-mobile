@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { FEATURES, PLATFORMS, SOURCES, filterFeatures, entryFor, comparisonCoverage } from '../../libs/platform-comparison';
 
@@ -29,5 +29,12 @@ describe('platform comparison catalogue', () => {
     expect(FEATURES.find(f => f.id === 'encrypted-attachments')?.dehub.note).toContain('fallback');
     expect(FEATURES.find(f => f.id === 'encrypted-attachments')?.dehub.status).toBe('limited');
     expect(comparisonCoverage('all').total).toBe(FEATURES.length * PLATFORMS.length);
+  });
+  it('accounts for the complete native editor guide', () => {
+    const coverage = JSON.parse(readFileSync(resolve(process.cwd(), 'docs/comparison-editor-coverage.json'), 'utf8')) as Record<string, string>;
+    const guide = readFileSync(resolve(process.cwd(), 'libs/editor/editorGuide.ts'), 'utf8');
+    const ids = [...guide.matchAll(/\{ id: "([^"]+)", title:/g)].map(match => match[1]);
+    expect(Object.keys(coverage).sort()).toEqual(ids.sort());
+    for (const id of Object.values(coverage)) expect(FEATURES.some(feature => feature.id === id)).toBe(true);
   });
 });

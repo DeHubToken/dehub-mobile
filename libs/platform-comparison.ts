@@ -11,9 +11,9 @@ export const PLATFORMS = [
   { id: 'farcaster', name: 'Farcaster' },
 ] as const;
 export type PlatformId = typeof PLATFORMS[number]['id'];
-export type Status = 'documented' | 'limited' | 'ecosystem' | 'unverified';
+export type Status = 'documented' | 'code' | 'limited' | 'ecosystem' | 'unverified';
 export const STATUS_LABELS: Record<Status, string> = {
-  documented: 'Documented', limited: 'Conditional', ecosystem: 'Related product', unverified: 'Not verified',
+  documented: 'Documented', code: 'Source reviewed', limited: 'Conditional', ecosystem: 'Related product', unverified: 'Not verified',
 };
 export const SOURCES: Record<string, { title: string; url: string }> = {
   dehub: { title: 'DeHub product guide', url: 'https://dehub.io/docs/dapps' },
@@ -321,7 +321,7 @@ const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => d
   const webSource = `web:${web}`, mobileSource = `mobile:${mobile}`;
   SOURCES[webSource] = { title: 'DeHub web implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/${web}` };
   SOURCES[mobileSource] = { title: 'DeHub mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
-  return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'documented'), relatedSources: [mobileSource] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
+  return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'code'), relatedSources: [mobileSource, 'dehub'] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
 }));
 export const FEATURES: ComparisonFeature[] = [...CATALOGUE, ...EXPANDED_FEATURES].map(feature => ({
   ...feature,
