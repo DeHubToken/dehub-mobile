@@ -190,7 +190,7 @@ const RowCard: React.FC<RowCardProps> = ({
 const SkeletonCard = () => {
   const { isMinimal } = useAppTheme();
   const { inBubble } = useContext(CardHostContext);
-  return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, inBubble && styles.cardInBubble]} />;
+  return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, inBubble && styles.skeletonInBubble]} />;
 };
 
 // ── Per-kind cards ──────────────────────────────────────────────────────────
@@ -891,7 +891,11 @@ const bubbleCardWidth = (windowWidth: number) => Math.min(240, Math.round(window
 
 const styles = StyleSheet.create({
   bubbleWrap: { paddingHorizontal: 4, paddingTop: 4 },
-  cardInBubble: { marginTop: 0, borderRadius: 8, borderWidth: 0 },
+  // Transparent, not a faint grey: a pressable with a neutral fill is repainted
+  // as a themed button (libs/jsx/controls.js), rim and 12px radius included,
+  // which put the outlined box straight back inside the bubble.
+  cardInBubble: { marginTop: 0, borderRadius: 8, borderWidth: 0, backgroundColor: 'transparent' },
+  skeletonInBubble: { marginTop: 0, borderRadius: 8 },
   cta: {
     paddingHorizontal: 12,
     paddingVertical: 6,
