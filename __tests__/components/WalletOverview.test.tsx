@@ -25,6 +25,12 @@ jest.mock('../../libs/clipboard.utils', () => ({ copyToClipboard: jest.fn() }));
 jest.mock('../../libs/toast', () => ({ toastInfo: jest.fn(), toastSuccess: jest.fn() }));
 jest.mock('../../components/Wallet/TradeSheet', () => 'TradeSheet');
 jest.mock('../../components/Wallet/ArcSendSheet', () => 'ArcSendSheet');
+jest.mock('../../components/Wallet/AppTokenSheets', () => ({ AppTokenSendSheet: 'AppTokenSendSheet', AppTokenHistorySheet: 'AppTokenHistorySheet' }));
+const mockAppTokens = { enabled: false };
+jest.mock('../../hooks/useAppTokens', () => ({
+  useAppTokensEnabled: () => mockAppTokens.enabled,
+  useAppTokens: () => ({ data: mockAppTokens.enabled ? { symbol: 'DHB', balance: '1500', entries: [] } : undefined }),
+}));
 jest.mock('../../components/common/AddressInputTools', () => 'AddressInputTools');
 jest.mock('../../config/web3.constants', () => ({ NETWORK_URLS: {} }));
 jest.mock('../../config/solana.constants', () => ({ SOLANA_MAINNET_CHAIN_ID: 101, SOLANA_SPL_TOKENS: [], getSolanaRpcUrl: () => '' }));
@@ -39,7 +45,7 @@ import WalletOverview from '../../components/Wallet/WalletOverview';
 import { ScreenNames } from '../../navigation/ScreenNames';
 
 const press = (tree: ReactTestRenderer, label: string) => act(() => tree.root.findAll(node => node.type === 'Pressable' && node.props.accessibilityLabel === label)[0].props.onPress());
-afterEach(() => { jest.clearAllMocks(); mockWallet.failedChains = []; mockStorefront.DIGITAL_PURCHASES_ENABLED = true; });
+afterEach(() => { jest.clearAllMocks(); mockAppTokens.enabled = false; mockWallet.failedChains = []; mockStorefront.DIGITAL_PURCHASES_ENABLED = true; });
 
 it('offers no buying, staking, bridging or trading in the App Store build', () => {
   mockStorefront.DIGITAL_PURCHASES_ENABLED = false; let tree!: ReactTestRenderer;
@@ -68,4 +74,13 @@ it('offers retry for failed networks without hiding the action buttons', () => {
   press(tree, 'common.retry'); expect(mockRefresh).toHaveBeenCalledTimes(1);
   expect(tree.root.findAll(node => node.type === 'Pressable' && node.props.accessibilityLabel === 'wallet.send')).toHaveLength(1);
   act(() => tree.unmount());
+});
+
+it('sends app tokens only, never onchain, once app tokens are on', () => {
+  mockAppTokens.enabled = true; let tree!: ReactTestRenderer;
+  act(() => { tree = create(<WalletOverview onBuy={jest.fn()} onStake={jest.fn()} />); });
+  expect(tree.root.findAll(node => node.type === 'Pressable' && node.props.accessibilityLabel === 'DHB, 1,500')).toHaveLength(1);
+  press(tree, 'wallet.send');
+  expect(tree.root.findByType('AppTokenSendSheet' as any).props.open).toBe(true);
+  expect(tree.root.findAll(node => (node.type as any) === 'SendTokenSheet')).toHaveLength(0);
 });
