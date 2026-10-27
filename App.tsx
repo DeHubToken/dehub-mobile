@@ -73,6 +73,7 @@ import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
 import { flushNavigationTiming, markLaunchPhase, markNavigationSettled, reportLaunchRevealed, trackNavigationTiming } from "./libs/launchTiming";
+import { installJsStallMonitor } from "./libs/jsStallMonitor";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
@@ -342,6 +343,13 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const isSignedInRef = useRef(isSignedIn);
   isSignedInRef.current = isSignedIn;
   useEffect(() => trackNavigationTiming(navigationRef), []);
+  // Freezes and memory warnings, tagged with the screen and theme they hit.
+  const themeRef = useRef(theme);
+  themeRef.current = theme;
+  useEffect(() => installJsStallMonitor(
+    () => (navigationRef.isReady() ? navigationRef.getCurrentRoute()?.name : undefined),
+    () => ({ theme: themeRef.current }),
+  ), []);
   const user = useUser();
   const isAuthenticated = isSignedIn && !needsUsername;
 
