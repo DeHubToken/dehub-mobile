@@ -33,6 +33,8 @@ import { SheetGlassFill } from "../ui/SheetGlass";
 import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const SHEET_FRACTION = 0.82;
+// The split sheet on post pages: half the screen, like Shorts.
+const SPLIT_FRACTION = 0.5;
 
 // Use the same list boundary as React Native's Modal. The inline Shorts
 // sheet is inside a vertical pager: without resetting its list context RN
@@ -73,6 +75,10 @@ interface CommentBottomSheetProps {
   forKids?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips on comments. */
   postCreator?: PostCreator | null;
+  /** Phone post pages: the bottom half of the screen, the post left in view
+   *  above it with no scrim or blur over it (or over the logo and the pill).
+   *  A tap up there closes the sheet. */
+  split?: boolean;
 }
 
 /**
@@ -107,19 +113,20 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
   inlineHeight,
   bottomOffset = 0,
   slideOffset,
+  split = false,
 }) => {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const { isMinimal, theme, skin } = useAppTheme();
   const inline = inlineHeight !== undefined;
   const { height: screenHeight } = useWindowDimensions();
-  const SHEET_HEIGHT = inlineHeight ?? screenHeight * SHEET_FRACTION;
+  const SHEET_HEIGHT = inlineHeight ?? screenHeight * (split ? SPLIT_FRACTION : SHEET_FRACTION);
   const ownTranslateY = useSharedValue(SHEET_HEIGHT);
   const translateY = slideOffset ?? ownTranslateY;
   const backdropOpacity = useSharedValue(0);
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
   // The inline Shorts sheet has no backdrop: it sits inside the feed.
-  const backdrop = useSheetBackdrop(!inline);
+  const backdrop = useSheetBackdrop(!inline && !split);
   const [activeTab, setActiveTab] = useState<SheetTab>("comments");
   /** Something unsent in the composer — CommentSection tells us. */
   const [hasUnsent, setHasUnsent] = useState(false);
@@ -261,7 +268,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
         {!inline && <Animated.View
           style={[StyleSheet.absoluteFill, backdropStyle]}
         >
-          <SheetBackdrop backdrop={backdrop} />
+          {!split && <SheetBackdrop backdrop={backdrop} />}
           <Pressable style={{ flex: 1 }} onPress={requestClose} />
         </Animated.View>}
 

@@ -72,8 +72,10 @@ import {
   AccessibilityInfo,
   Easing,
   PanResponder,
+  AppState,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
+import { knownVideoAspect, rememberVideoAspect } from "../hooks/useMediaAspect";
 import Reanimated, { cancelAnimation, FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming, type SharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
@@ -279,6 +281,8 @@ interface ActionButtonProps {
   glyph?: PostReaction;
   /** The glyph is the viewer's own reaction, so it plays its animation. */
   glyphAnimated?: boolean;
+  /** With glyphAnimated, whether it is moving right now (false holds a frame). */
+  glyphPlaying?: boolean;
   active?: boolean;
   label?: string;
   onPress: () => void;
@@ -301,6 +305,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   icon,
   glyph,
   glyphAnimated,
+  glyphPlaying = true,
   active,
   label,
   onPress,
@@ -333,7 +338,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     >
       <Animated.View style={{ transform: [{ scale }] }}>
         {glyph ? (
-          <ReactionEmoji reaction={glyph} animate={glyphAnimated} size={22} textStyle={styles.actionGlyph} />
+          <ReactionEmoji reaction={glyph} animate={glyphAnimated} playing={glyphPlaying} size={22} textStyle={styles.actionGlyph} />
         ) : (
           // Web's `w-5 h-5`.
           <Icon
@@ -483,6 +488,25 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
   const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
   const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
+  // Android draws a TextureView video inside the app's own frame, so every
+  // video frame redrew and re-uploaded the whole screen: measured on a Galaxy
+  // S24+, a short playing untouched was 98% late frames and taps landed a
+  // second or two behind. A SurfaceView hands frames straight to the
+  // compositor. Only a clip not known to be wide gets one: those can never be
+  // dragged into the mini player (landscape only), which needs the texture to
+  // clip and scale with the finger. Picked once per player, since the surface
+  // type cannot change on a mounted view.
+  const directSurface = useMemo(() => {
+    if (Platform.OS !== "android" || (Platform.Version as number) < 29) return false;
+    // Only the player's own measurement counts: poster shapes were off
+    // (square and wide posters on clips that play fine on a surface), which
+    // left every swiped-to short on the texture. A clip the player has
+    // already shown to be properly wide keeps the texture for the mini
+    // player drag; it learns that on first play (remembered below).
+    const aspect = knownVideoAspect(tokenId);
+    return aspect == null || aspect < 1.2;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [player]);
   const minterAddress = item.minter || item.minterUser?.address || "";
 
   // `getAvatarUrl` answers the literal string "default-avatar" — not a URI —
@@ -854,6 +878,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       releaseAudioFocus(stopPlayback);
     };
   }, [isActive, player, playIfActive, stopPlayback]);
+
+  // The system pauses every player when the app goes to the background (lock
+  // screen, another app, a notification) and nothing started it again, so the
+  // short sat frozen on a frame until it was swiped away. Coming back resumes
+  // the short being watched unless the viewer had paused it.
+  useEffect(() => {
+    if (!isActive) return;
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state !== "active" || pausedByUserRef.current || !itemNavigation.isFocused()) return;
+      if (!player.playing) playIfActive();
+    });
+    return () => sub.remove();
+  }, [isActive, player, playIfActive, itemNavigation]);
 
   useEffect(() => {
     if (!isActive) return;
@@ -1658,8 +1695,26 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     });
   }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniHandoffFade, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize, itemHeight]);
 
+  // Remembered so a landscape clip opens on the texture (and can be dragged
+  // into the mini player) the next time it comes round.
+  useEffect(() => {
+    if (intrinsicSize.width > 0 && intrinsicSize.height > 0) rememberVideoAspect(tokenId, intrinsicSize.width / intrinsicSize.height);
+  }, [intrinsicSize, tokenId]);
+
+  // The viewer's own reaction plays when the short comes up or the reaction
+  // changes, then holds its frame. Left looping, its animated image was
+  // re-uploaded every other frame for as long as the short played: on a
+  // Galaxy S24+ that alone kept a still short about half late frames.
+  const [glyphLive, setGlyphLive] = useState(false);
+  useEffect(() => {
+    if (!isActive) { setGlyphLive(false); return; }
+    setGlyphLive(true);
+    const timer = setTimeout(() => setGlyphLive(false), 3000);
+    return () => clearTimeout(timer);
+  }, [isActive, myReaction]);
+
   const canMinimize = isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
-    && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
+    && !directSurface && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
   const minimizePan = useMemo(() => Gesture.Pan()
     .enabled(canMinimize)
     .manualActivation(true)
@@ -1778,6 +1833,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   const bottomStackGesture = useMemo(() => Gesture.Race(makeEdgeBack(), hidePan), [makeEdgeBack, hidePan]);
 
+  // The avatar and name open the creator's profile through gesture-handler
+  // rather than a Pressable. On Android the stack above (and the video's own
+  // tap under it) run their own hit test, and a JS-responder press there was
+  // lost, so the tap did nothing. A native Tap on the row itself always wins.
+  const creatorTap = useMemo(() => Gesture.Tap()
+    .maxDistance(MEDIA_TAP_SLOP_PX)
+    .runOnJS(true)
+    .onEnd((_event, success) => {
+      if (success) handleUserPress();
+    }), [handleUserPress]);
+
   // Swiping to another short brings the chrome back with it, so a cleared
   // frame never carries over to the next one.
   useEffect(() => {
@@ -1858,7 +1924,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
         {photoMedia ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
-          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
+          directSurface ? null : <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
@@ -1872,10 +1938,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
             contentFit="contain"
             nativeControls={false}
-            surfaceType="textureView"
+            key={directSurface ? "surface" : "texture"}
+            surfaceType={directSurface ? "surfaceView" : "textureView"}
             pointerEvents="none"
             onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
           />
+        ) : null}
+        {/* A SurfaceView shows through everything drawn under it, so its
+            poster has to sit on top until the first frame is up. */}
+        {directSurface && !photoMedia && thumbnail && (!firstFrameRendered || !isActive) ? (
+          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : null}
         </Reanimated.View>
         </Reanimated.View>
@@ -2074,7 +2146,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         <GestureDetector gesture={bottomStackGesture}>
           <View onLayout={(e) => { overlayHeight.value = e.nativeEvent.layout.height; }} style={styles.bottomStack}>
             <View style={styles.captionBlock}>
-              <Pressable onPress={handleUserPress} style={styles.creatorRow}>
+              <GestureDetector gesture={creatorTap}>
+              <View
+                style={styles.creatorRow}
+                accessible
+                accessibilityRole="button"
+                accessibilityLabel={displayName}
+                onAccessibilityTap={handleUserPress}
+              >
                 {/* The shared Avatar, not a bare expo-image: it guards the
                     "default-avatar" sentinel, falls back to the initial on a
                     load error, and carries a recyclingKey so a reused cell never
@@ -2096,7 +2175,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                     </Text>
                   ) : null}
                 </View>
-              </Pressable>
+              </View>
+              </GestureDetector>
 
               {photoMedia?.sound ? <Text numberOfLines={1} style={styles.captionBody}>♫ {photoMedia.sound}</Text> : null}
               {shownTitle || shownDescription ? (
@@ -2214,6 +2294,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                     icon="ThumbsUp"
                     glyph={thumbGlyph}
                     glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
+                    glyphPlaying={glyphLive}
                     active={liked || disliked}
                     label={formatCompactNumber(thumbCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
@@ -3151,13 +3232,17 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   // Web's `gap-2`.
+  // Hugs the avatar and name, so the empty space beside a short name is not a
+  // profile tap (same rule as feed card headers).
   creatorRow: {
     flexDirection: "row",
     alignItems: "center",
+    alignSelf: "flex-start",
+    maxWidth: "100%",
     gap: 8,
   },
   creatorText: {
-    flex: 1,
+    flexShrink: 1,
   },
   // Web: `text-base font-semibold` over `text-sm text-white/70`, both with
   // `leading-tight` and a drop shadow.

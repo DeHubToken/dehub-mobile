@@ -76,9 +76,13 @@ import ScreenHeader from "../components/ScreenHeader";
 import { DeHubLoader } from "../components/DeHubLoader";
 import EditorCanvas, { type EditorCanvasHandle, type CaptionProgress } from "../components/editor/EditorCanvas";
 import { captionLayers, type CaptionStyle } from "../libs/editor/captionLayout";
-import { detachAudio } from "../libs/editor/clipTools";
+import { clipSourceSpan, detachAudio, reversedClip, subjectLayer } from "../libs/editor/clipTools";
+import { REVERSE_MAX_SECONDS } from "../libs/editor/reverseLimits";
 import { reframeKeys } from "../libs/editor/reframe";
 import { findRetakes, removeRetakes } from "../libs/editor/retakes";
+import { otherSpeakerRanges, segmentsFromTrim, speakerChangePoints, speakerTurns, summariseSpeakers } from "../libs/editor/speakers";
+import { detectSpeakers } from "../services/speakers.service";
+import { LinkImportSheet } from "../components/editor/LinkImportSheet";
 import { nleExport, type NleMedia } from "../libs/editor/nleExport";
 import { fitCaptionTrack } from "../libs/editor/textFit";
 import { newId } from "../libs/editor/project";
@@ -380,7 +384,7 @@ type Tool =
   | "shots" | "highlights" | "speed" | "sound" | "transition" | "animate" | "motion" | "captions";
 
 interface ToolButton {
-  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions" | "detachAudio" | "removeBars" | "reframe" | "retakes";
+  id: Tool | "photo" | "replacePhoto" | "replaceVideo" | "replaceMedia" | "text" | "edit" | "duplicate" | "delete" | "ai" | "removeBg" | "video" | "music" | "split" | "captions" | "detachAudio" | "removeBars" | "reframe" | "retakes" | "speakers" | "importLink" | "reverse" | "behind";
   icon: IconName;
   label: string;
 }
@@ -978,7 +982,9 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       } catch (error) { if (!(error instanceof Error && error.message === "cancelled")) toastError(t("editor.audioTools.failed")); }
     } finally { task.release(); }
   };
-  const [barsBusy, setBarsBusy] = useState<"" | "bars" | "reframe" | "retakes">("");
+  const [linkImportOpen, setLinkImportOpen] = useState(false);
+  const [barsBusy, setBarsBusy] = useState<"" | "bars" | "reframe" | "retakes" | "speakers" | "reverse" | "behind">("");
+  const [reversePercent, setReversePercent] = useState(0);
   const removeBars = async (clipId: string) => {
     const clip = h.latest()?.clips.find(c => c.id === clipId);
     if (!clip || clip.kind !== "video" || clip.locked || barsBusy) return;
@@ -993,6 +999,59 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       toastSuccess(t("editor.clipFix.barsRemoved"));
     } catch { if (editorMounted.current) toastError(t("editor.clipFix.barsFailed")); }
     finally { if (editorMounted.current) setBarsBusy(""); }
+  };
+  // Plays the span the clip uses backwards, as a new video the clip then points at.
+  const reverseSelected = async (clipId: string) => {
+    const clip = h.latest()?.clips.find(c => c.id === clipId);
+    if (!clip || clip.kind !== "video" || clip.locked || barsBusy || !canvasRef.current) return;
+    const span = clipSourceSpan(clip);
+    if (span.end - span.start > REVERSE_MAX_SECONDS + 0.01) { toastError(t("editor.reverse.tooLong", { seconds: REVERSE_MAX_SECONDS })); return; }
+    setPlaying(false); setBarsBusy("reverse"); setReversePercent(0);
+    let temporary: string | null = null;
+    try {
+      const source = await getMedia(clip.mediaId);
+      const out = await canvasRef.current.reverseVideo({ mediaId: clip.mediaId, start: span.start, end: span.end, title: "reversed" }, f => setReversePercent(Math.round(f * 100)));
+      temporary = out.uri;
+      if (!editorMounted.current) return;
+      const meta = await importClipFile({ uri: out.uri, kind: "video", mimeType: "video/mp4", fileName: `reversed-${Date.now()}.mp4`,
+        width: source?.width, height: source?.height, duration: span.end - span.start, provenance: source?.provenance });
+      const latest = h.latest(), now = latest?.clips.find(c => c.id === clipId);
+      if (!latest || !editorMounted.current || now?.kind !== "video" || now.mediaId !== clip.mediaId || now.trimIn !== clip.trimIn) return;
+      const next = reversedClip(latest, clipId, meta.id, span.end - span.start);
+      if (!next) return;
+      h.commit(next); toastSuccess(t("editor.reverse.done"));
+    } catch (error) {
+      if (editorMounted.current) toastError(error instanceof MediaTooLargeError ? t("editor.video.tooLarge") : t("editor.reverse.failed"));
+    } finally {
+      if (temporary) void FileSystem.deleteAsync(temporary, { idempotent: true }).catch(() => {});
+      if (editorMounted.current) setBarsBusy("");
+    }
+  };
+  // A cut-out copy of the person on a new top track, so text and captions sit between them and the background.
+  const textBehindPerson = async (clipId: string) => {
+    const latest = h.latest();
+    if (!latest || barsBusy || cuttingRef.current || videoMatteController.current) return;
+    const result = subjectLayer(latest, clipId, () => newId(10));
+    if (!result) return;
+    const copy = result.project.clips.find(c => c.id === result.id) as MediaClip;
+    const trackId = copy.trackId;
+    setBarsBusy("behind"); h.commit(result.project); select(result.id);
+    const undo = () => {
+      const now = h.latest(); if (!now) return;
+      const clips = now.clips.filter(c => c.id !== result.id);
+      h.commit({ ...now, clips, tracks: clips.some(c => c.trackId === trackId) ? now.tracks : now.tracks.filter(tr => tr.id !== trackId) });
+    };
+    try {
+      const matte = await cutoutVideo(copy);
+      if (!editorMounted.current) return;
+      const now = h.latest(), current = now?.clips.find(c => c.id === copy.id);
+      if (!matte || !now || current?.kind !== "video") { if (!matte) { undo(); toastError(t("editor.behind.failed")); } return; }
+      h.commit(updateClip(now, copy.id, { videoMatte: matte })); toastSuccess(t("editor.behind.done"));
+    } catch (error) {
+      if (!editorMounted.current) return;
+      undo();
+      if (!isBackgroundRemovalCancellation(error)) toastError(t("editor.behind.failed"));
+    } finally { if (editorMounted.current) setBarsBusy(""); }
   };
   const autoReframe = async (clipId: string) => {
     const current = h.latest(), clip = current?.clips.find(c => c.id === clipId);
@@ -1035,6 +1094,42 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       else toastError(t("editor.clipFix.retakesFailed"));
     } catch { if (editorMounted.current) toastError(t("editor.clipFix.retakesFailed")); }
     finally { if (editorMounted.current) setBarsBusy(""); }
+  };
+
+  const findSpeakers = async (clipId: string) => {
+    const current = h.latest(), clip = current?.clips.find(c => c.id === clipId);
+    if (!current || !clip || clip.kind !== "video" || clip.locked || barsBusy) return;
+    const meta = await getMedia(clip.mediaId);
+    if (!meta) return;
+    setBarsBusy("speakers"); setPlaying(false);
+    try {
+      const speed = clip.speed && clip.speed > 0 ? clip.speed : 1;
+      const segments = await detectSpeakers({ uri: mediaFileUri(meta), name: meta.name, mimeType: meta.mimeType }, user?.walletAddress || user?.address);
+      if (!editorMounted.current) return;
+      const turns = speakerTurns(segmentsFromTrim(segments, clip.trimIn), clip.duration, speed);
+      const summary = summariseSpeakers(turns);
+      if (summary.length < 2) { toastSuccess(t("editor.speakers.onlyOne")); return; }
+      const name = (i: number) => t("editor.speakers.name", { number: i + 1 });
+      const keep = (speaker: string, label: string) => {
+        const latest = h.latest(); if (!latest) return;
+        const next = removeRetakes(latest, clipId, otherSpeakerRanges(turns, speaker), () => newId(10));
+        if (next) { h.commit(next); toastSuccess(t("editor.speakers.kept", { name: label })); } else toastError(t("editor.speakers.editFailed"));
+      };
+      const cut = () => {
+        const latest = h.latest(), target = latest?.clips.find(c => c.id === clipId);
+        if (!latest || !target) return;
+        const points = speakerChangePoints(turns, target.duration).filter((at, i, all) => i === 0 || at - all[i - 1] >= 0.25).slice(0, 99);
+        const result = points.length ? applyTimelineOp(latest, { op: "split_points", id: clipId, times: points }, () => newId(10)) : null;
+        if (result) { h.commit({ ...latest, clips: result.clips, tracks: result.tracks }); toastSuccess(t("editor.speakers.split", { count: points.length + 1 })); }
+        else toastError(t("editor.speakers.editFailed"));
+      };
+      // Android shows three buttons at most: the two biggest speakers and the cut.
+      const options = summary.slice(0, 2).map((s, i) => ({ text: `${t("editor.speakers.keepOnly")} ${name(i)} · ${Math.round(s.share * 100)}%`, onPress: () => keep(s.speaker, name(i)) }));
+      Alert.alert(t("editor.speakers.find"), summary.map((s, i) => `${name(i)} · ${Math.round(s.share * 100)}% · ${s.firstLine}`).join("\n"),
+        [...options, { text: t("editor.speakers.splitAction"), onPress: cut }], { cancelable: true });
+    } catch (error) {
+      if (editorMounted.current) toastError(error instanceof Error && error.message ? error.message : t("editor.speakers.failed"));
+    } finally { if (editorMounted.current) setBarsBusy(""); }
   };
 
   const addCaptions = async (style: CaptionStyle = "classic") => {
@@ -1230,6 +1325,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
       return;
     }
     if (id === "video") { void addVideos(); return; }
+    if (id === "importLink") { setPlaying(false); setLinkImportOpen(true); return; }
     if (id === "music") { void addMusic(); return; }
     if (id === "split") { splitSelected(); return; }
     if (id === "text") { addTextLayer(); return; }
@@ -1244,6 +1340,9 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     if (id === "removeBars" && selectedId) { void removeBars(selectedId); return; }
     if (id === "reframe" && selectedId) { void autoReframe(selectedId); return; }
     if (id === "retakes" && selectedId) { void cutRetakes(selectedId); return; }
+    if (id === "speakers" && selectedId) { void findSpeakers(selectedId); return; }
+    if (id === "reverse" && selectedId) { void reverseSelected(selectedId); return; }
+    if (id === "behind" && selectedId) { void textBehindPerson(selectedId); return; }
     if (id === "edit" && selectedId) { drafts.openText(selectedId); return; }
     if (id === "duplicate" && selectedId) {
       const kind = getClip(project, selectedId)?.kind;
@@ -1275,6 +1374,7 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         { id: "photo", icon: "ImagePlus", label: t("editor.app.photo") },
         { id: "text", icon: "Type", label: t("editor.menu.addText") },
         { id: "music", icon: "Music", label: t("editor.video.sound") },
+        { id: "importLink", icon: "Link", label: t("editor.linkImport.open") },
         { id: "stock", icon: "Search", label: t("common.search") },
         { id: "record", icon: "Mic", label: t("comments.recordVoice") },
         { id: "shapes", icon: "Shapes", label: t("editor.rail.elements") },
@@ -1318,6 +1418,9 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
         { id: "removeBars", icon: "Crop", label: barsBusy === "bars" ? t("editor.clipFix.scanning") : t("editor.clipFix.removeBars") },
         { id: "reframe", icon: "Expand", label: barsBusy === "reframe" ? t("editor.clipFix.scanning") : t("editor.clipFix.reframe") },
         { id: "retakes", icon: "Scissors", label: barsBusy === "retakes" ? t("editor.clipFix.listening") : t("editor.clipFix.retakes") },
+        { id: "speakers", icon: "Users", label: barsBusy === "speakers" ? t("editor.clipFix.listening") : t("editor.speakers.find") },
+        { id: "reverse", icon: "Undo2", label: barsBusy === "reverse" ? t("editor.reverse.working", { percent: reversePercent }) : t("editor.reverse.action") },
+        { id: "behind", icon: "Layers", label: barsBusy === "behind" ? t("editor.behind.working") : t("editor.behind.action") },
         ...(project && findAdjacentNext(project, selected.id) ? [{ id: "transition" as const, icon: "ArrowLeftRight" as IconName, label: t("editor.video.transition") }] : []),
         { id: "filters", icon: "Sparkles", label: t("editor.app.filters") },
         { id: "adjust", icon: "SlidersHorizontal", label: t("editor.app.adjust") },
@@ -2077,6 +2180,8 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
 
       {libraryPreview && <AssemblyMediaPreview clip={libraryPreview} project={project} name={assemblyNames[libraryPreview.mediaId] ?? t("editor.video.video")}
         onClose={() => { setLibraryPreview(null); if (assembly.matchesSource()) setChatOpen(true); }} />}
+
+      <LinkImportSheet visible={linkImportOpen} onClose={() => setLinkImportOpen(false)} onAdd={media => { setLinkImportOpen(false); addGenerated(media); }} />
 
       <AgentSheet
         visible={chatOpen}

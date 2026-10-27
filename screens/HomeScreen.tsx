@@ -45,6 +45,7 @@ import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { useShortsServerSync } from "../hooks/useShortsEnabled";
+import { useFeedInterestsServerSync } from "../hooks/useFeedInterestsServerSync";
 import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
 import FeedPillGlow from '../components/Home/FeedPillGlow';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
@@ -202,26 +203,20 @@ type ImageFeedRequest = {
 };
 
 /** How far the chip travels to sit fully behind the pill. */
-const CHIP_TUCK = CHIP_GAP + CHIP_HEIGHT + 4;
-/** The chip drops out from under the pill, and tucks back in. */
+const CHIP_TUCK = CHIP_GAP + CHIP_HEIGHT + 2;
+/** The drawer pulls out from under the pill, and slides back in. */
 const beadEnter = () => {
   "worklet";
   return {
-    initialValues: { opacity: 0, transform: [{ translateY: -CHIP_TUCK }, { scale: 0.85 }] },
-    animations: {
-      opacity: withTiming(1, { duration: 180 }),
-      transform: [{ translateY: withSpring(0, { damping: 14, stiffness: 260, mass: 0.8 }) }, { scale: withSpring(1, { damping: 14, stiffness: 260, mass: 0.8 }) }],
-    },
+    initialValues: { transform: [{ translateY: -CHIP_TUCK }] },
+    animations: { transform: [{ translateY: withSpring(0, { damping: 20, stiffness: 240, mass: 0.8 }) }] },
   };
 };
 const beadExit = () => {
   "worklet";
   return {
-    initialValues: { opacity: 1, transform: [{ translateY: 0 }, { scale: 1 }] },
-    animations: {
-      opacity: withTiming(0, { duration: 170 }),
-      transform: [{ translateY: withTiming(-CHIP_TUCK, { duration: 170, easing: Easing.in(Easing.quad) }) }, { scale: withTiming(0.85, { duration: 170 }) }],
-    },
+    initialValues: { transform: [{ translateY: 0 }] },
+    animations: { transform: [{ translateY: withTiming(-CHIP_TUCK, { duration: 170, easing: Easing.in(Easing.quad) }) }] },
   };
 };
 
@@ -302,6 +297,7 @@ export default function HomeScreen() {
   const drawerPagerRef = useRef<GestureType | undefined>(undefined);
 
   useShortsServerSync();
+  useFeedInterestsServerSync();
   const { shorts: shortsEnabled } = useAppPrefs();
   const TAB_ORDER: readonly TabKey[] = shortsEnabled ? ALL_TAB_ORDER : TAB_ORDER_NO_SHORTS;
   const LAST_INDEX = TAB_ORDER.length - 1;
@@ -682,8 +678,8 @@ export default function HomeScreen() {
   // The pill's bottom edge. The chip's window starts there, so anything above
   // it is behind the pill.
   const beadTop = island ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP : pillBottom;
-  // Dual hide: as the pill starts to hide, the chip slips up behind it first;
-  // once the pill is back, the chip waits a beat and drops back out.
+  // Dual hide: as the pill starts to hide, the drawer slides back under it
+  // first; once the pill is back, the drawer waits a beat and pulls back out.
   const chipTuck = useSharedValue(0);
   useAnimatedReaction(
     () => headerTranslateY.value < -1,
@@ -691,12 +687,11 @@ export default function HomeScreen() {
       if (hiding === was) return;
       chipTuck.value = hiding
         ? withTiming(1, { duration: 170, easing: Easing.in(Easing.quad) })
-        : withDelay(180, withSpring(0, { damping: 14, stiffness: 260, mass: 0.8 }));
+        : withDelay(180, withSpring(0, { damping: 20, stiffness: 240, mass: 0.8 }));
     },
   );
   const chipTuckStyle = useAnimatedStyle(() => ({
-    opacity: 1 - chipTuck.value,
-    transform: [{ translateY: -CHIP_TUCK * chipTuck.value }, { scale: 1 - 0.15 * chipTuck.value }],
+    transform: [{ translateY: -CHIP_TUCK * chipTuck.value }],
   }));
   const showBead = isFocused && !filterPanelVisible && !feedProfileVisible && !imageFeed && !feedPost
     && !(island && islandMenuOpen);
@@ -1283,9 +1278,9 @@ export default function HomeScreen() {
         />
       ) : null}
 
-      {/* Over the header, not inside the feed. The chip's window starts at
-          the pill's bottom edge, so it slides out from under the pill and
-          tucks back behind it. */}
+      {/* Over the header, not inside the feed. The drawer's window starts at
+          the pill's bottom edge, so it pulls out from under the pill and
+          slides back behind it, and never covers the pill's own border. */}
       {island || pillBottom > 0 ? (
         <Animated.View
           pointerEvents="box-none"
