@@ -16,6 +16,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isAppThemeName, type AppThemeName } from '../theme/colors';
+import { isPostLandingStyle, type PostLandingStyle } from '../libs/postLandingStyle';
 import { claimMinimalLaunch } from '../libs/minimalBootGuard';
 import { bootRevealed } from '../libs/bootReveal';
 
@@ -54,6 +55,7 @@ const KEYS = {
   // Mirrors the post reactions bar so the like sits under a left thumb.
   // Web's key name.
   leftHanded: 'left-handed-mode',
+  postLanding: 'dehub.postLanding',
   // Theme Color per customisable theme, and the Brand palette. Web's keys and
   // value shapes (see theme/themeColor.ts).
   themeHues: 'dehub.themeHues',
@@ -82,6 +84,8 @@ export interface AppPrefs {
   skipSegments: boolean;
   geoBlockedCountries: string[];
   leftHanded: boolean;
+  /** How a new post of your own lands in the Home feed (libs/postLanding). */
+  postLanding: PostLandingStyle;
   themeHues: Record<string, number>;
   brandColors: string[];
 }
@@ -114,6 +118,7 @@ export const DEFAULT_APP_PREFS: AppPrefs = {
   skipSegments: false,
   geoBlockedCountries: [],
   leftHanded: false,
+  postLanding: 'ghost',
   themeHues: {},
   brandColors: [],
 };
@@ -180,6 +185,10 @@ function init() {
         hideWatched: parseBool(get('hideWatched'), DEFAULT_APP_PREFS.hideWatched),
         skipSegments: parseBool(get('skipSegments'), DEFAULT_APP_PREFS.skipSegments),
         leftHanded: parseBool(get('leftHanded'), DEFAULT_APP_PREFS.leftHanded),
+        postLanding: (() => {
+          const stored = get('postLanding');
+          return isPostLandingStyle(stored) ? stored : DEFAULT_APP_PREFS.postLanding;
+        })(),
         themeHues: (() => {
           try {
             const parsed = JSON.parse(get('themeHues') || '{}');

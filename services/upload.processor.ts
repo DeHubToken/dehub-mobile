@@ -20,6 +20,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { attachShopListings } from "../libs/attach-shop-listings";
 import { parseTxError } from "../libs/web3.util";
 import { feedEvents } from "../libs/eventBus";
+import { postLandingActions } from "../libs/postLanding";
 import type { MintNftResponse } from "../services/nft.service";
 import type { CreateQuotePostResponse } from "../services/repost.service";
 import { createPoll } from "../services/polls.service";
@@ -438,6 +439,7 @@ async function processJob(job: UploadJob): Promise<void> {
     // The post exists from here on — the mint is a separate leg — so the
     // feeds can show it now, and the pill follows its video being prepared.
     if (!mintParams.scheduled) {
+      postLandingActions.published(job.id);
       feedEvents.requestRefresh({ quiet: true });
       if (isVideoPost(job) && Number.isFinite(mintParams.createdTokenId)) {
         watchPostVideo(job.id, mintParams.createdTokenId);
@@ -703,6 +705,7 @@ export function useUploadProcessor() {
         (raw.includes("can quote this post") || raw.includes("does not allow quotes"));
       const msg = quoteRefused ? i18n.t("quotePolicy.refused") : raw;
       uploadActions.fail(next.id, typeof msg === "string" ? msg : _translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
+      postLandingActions.leave(next.id);
       toastError(msg);
     } finally {
       processingRef.current = false;

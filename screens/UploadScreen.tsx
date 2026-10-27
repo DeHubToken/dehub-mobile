@@ -113,6 +113,9 @@ import type { LiveUploadPayload } from "../hooks/useUploadLive";
 import type { AppStackParamList } from "../navigation/types";
 import { useStages } from "../context/StageContext";
 import { ScreenNames } from "../navigation/ScreenNames";
+import { uploadState } from "../store/upload.store";
+import { postLandingActions } from "../libs/postLanding";
+import type { PostLandingStyle } from "../libs/postLandingStyle";
 import CrossPostPicker, { CrossPostButton, useCrossPostAccountCount } from "../components/Upload/CrossPostPicker";
 import { crossPostState } from "../libs/crosspost-store";
 import QuotedPostEmbed from "../components/common/QuotedPostEmbed";
@@ -1313,8 +1316,13 @@ export default function UploadScreen() {
   // Back down to the tab navigator already underneath rather than resetting
   // the stack: a reset mounts a new Root, so every feed, the shorts row and
   // their images were rebuilt from scratch behind the closing sheet.
-  const navigateHome = useCallback(() => {
-    nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home });
+  //
+  // The Home feed is where a new post lands (libs/postLanding). The morph
+  // landing is the composer itself shrinking into the post, so the screen
+  // goes without its own slide and the landing overlay carries on from it.
+  const navigateHome = useCallback((landing?: PostLandingStyle) => {
+    if (landing === "morph") nav.setOptions({ animation: "none" });
+    nav.popTo(ScreenNames.Root, { screen: ScreenNames.Home, params: landing ? { feedTab: "all" } : undefined });
   }, [nav]);
 
   const submitPost = useCallback(async () => {
@@ -1417,11 +1425,14 @@ export default function UploadScreen() {
 
     const ok = enqueueJob({ ...payload, draftReceipt: captureActiveDraft(), sourceDraftId: restoredDraftIdRef.current ?? undefined });
     if (!ok) return false;
+    // A scheduled post has nothing to show yet, so it does not land.
+    const queuedJob = uploadState.jobs[uploadState.jobs.length - 1];
+    const landing = queuedJob && !payload.scheduledAt ? postLandingActions.begin(queuedJob.id) : undefined;
     // The guard is released here rather than the moment the job is queued: the
     // form is still filled in and the screen is still up for these 120ms, so a
     // tap landing in the gap would post the same thing a second time.
     setTimeout(() => {
-      navigateHome();
+      navigateHome(landing);
       releaseSubmit();
     }, 120);
     return true;

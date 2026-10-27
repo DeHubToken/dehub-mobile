@@ -80,6 +80,7 @@ import MaintenanceGate from './components/MaintenanceGate';
 import DimLightsOverlay from "./components/ui/DimLightsOverlay";
 
 import UploadRuntimeHost from "./components/Upload/UploadRuntimeHost";
+import PostLandingOverlay from "./components/Upload/PostLandingOverlay";
 import { setUploadCacheKey, hydrateUploadStore, clearUploadStore } from "./store/upload.store";
 import { CallProvider } from "./context/CallContext";
 import CallModalsHost from "./components/Call/CallModalsHost";
@@ -547,6 +548,8 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
         </SafeAreaView>
       ) : null}
       <UploadRuntimeHost />
+      {/* Above the navigator: a new post's landing flies from the composer to Home. */}
+      <PostLandingOverlay />
       {/* The preloader. Opaque, edge-to-edge, above everything; taps land on
           it until the fade starts, which is the point — there is nothing to
           interact with underneath until the reveal begins. */}
