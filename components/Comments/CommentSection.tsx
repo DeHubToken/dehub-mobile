@@ -185,6 +185,10 @@ export function warmCommentThread(
 /** How many replies a thread shows before it needs a tap to open up. */
 const REPLIES_SHOWN_COLLAPSED = 1;
 
+// Tool buttons inside the open composer's bottom row: a touch smaller than the
+// 40 standalone controls, so the row tucks inside the box.
+const toolControl = { ...composerStyles.iconControl, width: 36, height: 36, borderRadius: 10 };
+
 // Avatar column: 32px wide, so its centre — and the thread line — sits at 16.
 const threadLineStyles = StyleSheet.create({
   above: { position: "absolute", left: 16, top: 0, height: 26, width: 1, backgroundColor: "rgba(255,255,255,0.2)" },
@@ -364,6 +368,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // on the keys whichever window the sheet is in (hooks/useComposerKeyboard).
   const composerKeyboard = useComposerKeyboard(0, { gap: 0, enabled: !keyboardHandled });
   const inputLift = keyboardHandled ? 0 : composerKeyboard.lift;
+  // The open composer: text across the top, tools in one row under it. Same
+  // for a comment, a reply and an edit, so a reply no longer looks different.
+  const composerOpen = inputText.length > 0 || !!replyingTo || !!editingComment;
   // The Shorts split lifts this sheet itself; keep the screen pan off it.
   useSelfLiftingComposer(composerKeyboard.ref, keyboardHandled);
 
@@ -1913,22 +1920,27 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           />
         ) : (
           <View className="flex-row items-end" style={{ gap: COMPOSER.gap, padding: COMPOSER.gutter }}>
+            {/* One layout for comments, replies and edits: once anything is
+                typed (or a reply is aimed), the text gets the full width on
+                top and the tools sit in one row along the bottom of the box,
+                the same as phone web. The TextInput keeps its place in the
+                tree in both states, so switching never drops the keyboard. */}
             <View
               style={{
                 flex: 1,
                 minWidth: 0,
-                flexDirection: "row",
-                // `center`, not `flex-end`: a single line of 14px text is ~18 tall
-                // inside a 40 box, and flex-end pinned it to the bottom edge. Once
-                // the text wraps the input grows past the minimum and this is moot.
-                alignItems: "center",
+                flexDirection: "column",
+                // `center`: a single line of 14px text is ~18 tall inside a 40
+                // box, and flex-end pinned it to the bottom edge.
+                justifyContent: "center",
                 backgroundColor: isMinimal ? "transparent" : "rgba(255,255,255,0.06)",
                 borderRadius: COMPOSER.radius,
                 borderWidth: 1,
                 borderColor: isMinimal ? MINIMAL_INPUT_LINE : "rgba(255,255,255,0.08)",
                 paddingHorizontal: 12,
-                paddingVertical: 8,
-                minHeight: inputText.length > 0 && !editingComment ? 76 : COMPOSER.control,
+                paddingTop: 8,
+                paddingBottom: composerOpen ? 6 : 8,
+                minHeight: COMPOSER.control,
               }}
             >
               <TextInput
@@ -1954,7 +1966,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   // Post control is a sibling, not an overlay, so the box is
                   // free to grow into the row.
                   maxHeight: 140,
-                  height: Math.max(growingInput.height, inputText.length > 0 && !editingComment ? 58 : 0),
+                  // Two lines tall once open, so the text sits above the tool
+                  // row instead of beside a stack of buttons.
+                  height: Math.max(growingInput.height, composerOpen ? 40 : 0),
                   paddingVertical: 0,
                   // Android multiline inputs default to top-aligned text regardless
                   // of the parent's alignment.
@@ -1963,23 +1977,15 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 maxLength={500}
                 multiline
               />
-            </View>
-
-            {/* Keep each mode's native controls separate: Android submits on
-                touch-down and clears the text before touch-up. Reusing the
-                Send Pressable as GIF would deliver that release to the picker. */}
-            {inputText.trim() || editingComment ? (
-              <View key="text-actions" style={{ flexDirection: "row", alignItems: "flex-end", gap: COMPOSER.gap / 2 }}>
-              {/* Two columns: Attach over Emoji, AI over Send, so the corner
-                  is an even block of four equal buttons. */}
-              <View style={{ alignItems: "center", gap: 4 }}>
+              {composerOpen && (
+                <View key="text-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2, marginTop: 6, marginHorizontal: -6 }}>
                 {!editingComment && (
                   <Pressable
                     onPress={handlePickImage}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                     accessibilityRole="button"
                     accessibilityLabel={t("comments.addImage")}
-                    style={composerStyles.iconControl}
+                    style={toolControl}
                   >
                     <Icon name="Image" size={20} color="#8B8D90" />
                   </Pressable>
@@ -1990,12 +1996,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   accessibilityRole="button"
                   accessibilityLabel={t("comments.addEmoji")}
-                  style={composerStyles.iconControl}
+                  style={toolControl}
                 >
                 <Text style={{ fontSize: 18 }}>🙂</Text>
               </Pressable>
-              </View>
-              <View style={{ alignItems: "center", gap: 4 }}>
+                  <View style={{ flex: 1 }} />
                 {!editingComment && inputText.trim().length > 0 && (
                   <Pressable
                     onPress={() => setAiMenu(aiMenu === "closed" ? "open" : "closed")}
@@ -2005,7 +2010,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                     accessibilityLabel={t("conversation.coach.aiMenu")}
                     testID="comment-ai-menu"
                     className="flex-row items-center"
-                    style={composerStyles.iconControl}
+                    style={toolControl}
                   >
                     {aiRewriting ? <ActivityIndicator size="small" color="#A6A9AC" /> : <Icon name={aiMenu === "closed" ? "Sparkles" : "X"} size={18} color="#8B8D90" />}
                   </Pressable>
@@ -2019,7 +2024,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                 accessibilityRole="button"
                 accessibilityLabel={t("comments.postComment")}
                 style={[
-                  composerStyles.iconControl,
+                  toolControl,
                   { backgroundColor: inputText.trim() ? "#F9FBFF" : "rgba(255,255,255,0.1)" },
                 ]}
               >
@@ -2029,9 +2034,14 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
                   <Icon name="Send" size={18} color={inputText.trim() ? "#010305" : "#6F7174"} />
                 )}
               </Pressable>
-              </View>
-              </View>
-            ) : (
+                </View>
+              )}
+            </View>
+
+            {/* Keep each mode's native controls separate: Android submits on
+                touch-down and clears the text before touch-up. Reusing the
+                Send Pressable as GIF would deliver that release to the picker. */}
+            {!composerOpen && (
               <View key="attachment-actions" style={{ flexDirection: "row", alignItems: "center", gap: COMPOSER.gap / 2 }}>
                 <Pressable
                   onPress={handlePickImage}
