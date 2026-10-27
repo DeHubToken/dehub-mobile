@@ -24,7 +24,7 @@ export function compareCommunityMessages(a: CommunityMessagePosition, b: Communi
 }
 
 export function communityHistoryMessages<T extends CommunityMessagePosition>(
-  data: CommunityChatHistory<T> | undefined,
+  data: Pick<CommunityChatHistory<T>, 'pages'> | undefined,
 ): T[] {
   const byId = new Map<string, T>();
   // Newer pages win when a realtime event temporarily overlaps page boundaries.
