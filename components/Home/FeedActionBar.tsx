@@ -21,6 +21,7 @@ import { useAppPrefs } from "../../hooks/useAppPrefs";
 import { subscribePostTipped } from "../../libs/tip-events";
 import { TipGemIcon } from "./TipGemIcon";
 import { getActiveTheme } from "../../theme/colors";
+import { useMetaGrey } from "../../theme/metaGrey";
 import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
 import { useCellState } from "../../hooks/useCellState";
@@ -244,6 +245,9 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { t } = useTranslation();
+  // Idle icons and counts wear the view counter's grey; an engaged button
+  // (tipped, reposted, liked, saved) keeps its full ink.
+  const grey = useMetaGrey();
   // Left-handed mode mirrors the whole row so the thumb lands on the left.
   const { leftHanded } = useAppPrefs();
   // One tray, behind the thumbs-up: every positive face, a divider, then 👎.
@@ -292,6 +296,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           iconName="Gem"
           iconSize={FEED_ICON_SIZE.tip}
           iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={FEED_ICON_SIZE.tip} color={ICON_ACTIVE} /> : undefined}
+          inactiveColor={grey}
+          countColor={grey}
           count={tipCount}
           formatCount
         />
@@ -306,7 +312,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         activeStrokeWidth={2.6}
         iconSize={FEED_ICON_SIZE.share}
         count={shareCount ?? repostCount}
-        countColor={reposted ? ICON_ACTIVE : COUNT_COLOR}
+        inactiveColor={grey}
+        countColor={reposted ? ICON_ACTIVE : grey}
         formatCount
       />
       <AnimatedActionButton
@@ -315,6 +322,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         accessibilityLabel={t("postInfo.comments")}
         iconName="MessageSquare"
           iconSize={FEED_ICON_SIZE.comment}
+        inactiveColor={grey}
+        countColor={grey}
         count={commentCount}
         formatCount
       />
@@ -355,6 +364,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           glyphPlaying={isVisible}
           active={liked || disliked}
           activeFill={ICON_ACTIVE}
+          inactiveColor={grey}
+          countColor={grey}
           count={thumbCount}
           formatCount
           accessibilityLabel={
@@ -371,7 +382,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           iconSize={FEED_ICON_SIZE.bookmark}
         iconNode={
           <View style={FEED_BOOKMARK_STYLE}>
-            <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={saved ? "#D4D4D8" : ICON_ACTIVE} fill={saved ? "#D4D4D8" : undefined} />
+            <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={saved ? "#D4D4D8" : grey} fill={saved ? "#D4D4D8" : undefined} />
           </View>
         }
         active={saved}
@@ -383,6 +394,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
         accessibilityLabel={t("feedCard.postDetails")}
         iconName="Info"
         iconSize={FEED_ICON_SIZE.info}
+        inactiveColor={grey}
       />
     </View>
   );

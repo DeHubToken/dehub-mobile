@@ -55,6 +55,7 @@ import { AssetRefCards, MAX_ASSET_CARDS_PER_MESSAGE } from "../common/AssetRefCa
 import { findAssetRefs, stripAssetRefs } from "../../libs/asset-refs";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
+import { useMetaGrey } from "../../theme/metaGrey";
 import { MINIMAL_HAIRLINE } from "../../theme/colors";
 import ArticleCover from "../article/ArticleCover";
 import ArticleReaderBody from "../article/ArticleReaderBody";
@@ -303,15 +304,6 @@ const META_TEXT = { fontSize: 13, lineHeight: 18, color: "#8B8D90" } as const;
 // The row's 12px gap separates the pairs; this pulls each label back to 4px from its icon.
 const META_LABEL = { ...META_TEXT, marginLeft: -8 } as const;
 /**
- * System's time and view counts sit in one grey with their icons. Written as
- * hsla() so neither the dark-theme text lift (libs/jsx/readability.js) nor
- * System Light's colour pass (libs/jsx/tone.js) moves them: #8B8D90 on black,
- * #71717A on white, both AA.
- */
-const SYSTEM_META_GREY = "hsla(220,2%,55%,1)";
-const SYSTEM_LIGHT_META_GREY = "hsla(240,4%,46%,1)";
-
-/**
  * Clock + time, then the post kind's icon + count, then who may see it when
  * that is narrower than everyone. A fragment, so the row adds no wrapper views.
  */
@@ -324,11 +316,10 @@ function PostMetaItems({ timeAgo, icon, count, visibility, boosted }: {
   visibility?: string;
 }) {
   const { t } = useCopy();
-  const { theme, isLight } = useAppTheme();
+  const { isLight } = useAppTheme();
   const restricted = visibility === "followers" || visibility === "direct";
-  const systemGrey = theme === "system" ? (isLight ? SYSTEM_LIGHT_META_GREY : SYSTEM_META_GREY) : null;
-  const iconColor = systemGrey ?? "#6F7174";
-  const label = systemGrey ? [META_LABEL, { color: systemGrey }] : META_LABEL;
+  const iconColor = useMetaGrey();
+  const label = [META_LABEL, { color: iconColor }];
   return (
     <>
       {timeAgo ? (
