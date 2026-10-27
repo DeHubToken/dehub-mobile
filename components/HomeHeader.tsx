@@ -12,6 +12,12 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs/misc";
 import { useAppTheme } from "../context/ThemeContext";
+import { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET } from "./Home/FeedNavBar";
+
+/** Drawn height of the avatar, bell and mark, so the three read as one row. */
+const ICON = 26;
+/** How far the avatar and bell sit inside the feed pill's side edges. */
+const PILL_INSET = 4;
 
 interface HomeHeaderProps {
   pullDistance?: SharedValue<number>;
@@ -28,7 +34,13 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
-  const { colors } = useAppTheme();
+  const { colors, skin, isMinimal } = useAppTheme();
+  // A hair inside the pill below, with the avatar's corner concentric with
+  // the pill's: its radius minus that inset. Minimal's tab strip runs edge
+  // to edge.
+  const edge = (isMinimal ? 0 : NAV_PILL_SIDE_INSET) + PILL_INSET;
+  const pillRadius = skin ? Number(skin.strip.borderRadius ?? 0) : NAV_PILL_RADIUS;
+  const avatarRadius = Math.min(ICON / 2, Math.max(0, pillRadius - PILL_INSET));
   const { t } = useTranslation();
 
   const hasUnread = (user?.notificationCount || 0) > 0;
@@ -40,9 +52,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
   }, [navigation]);
 
   return (
-    // px-2 puts the avatar and bell on the same 8pt edge as the feed bentos
-    // below (the list's side padding), not 8pt further in.
-    <View className="flex-row items-center justify-between px-2 h-11">
+    <View className="flex-row items-center justify-between h-11" style={{ paddingHorizontal: edge }}>
       {/* Profile — left. Matches web's MobileHeader, which puts the drawer
           trigger on the left, the mark in the middle and the bell on the
           right. A pushed page adds a back arrow in front of it and keeps the
@@ -76,7 +86,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityLabel={t("common.openMenu")}
           className="w-11 h-11 items-start justify-center"
         >
-          <Avatar uri={avatarUrl} size={27} name={user?.displayName || user?.username} />
+          <Avatar uri={avatarUrl} size={ICON} name={user?.displayName || user?.username} radius={avatarRadius} />
         </TouchableOpacity>}
       </View>
 
@@ -109,11 +119,12 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityRole="button"
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
           className="w-11 h-11 items-end justify-center"
-          // The bell glyph sits 3pt inside its 26pt box; pull it out so the
-          // drawn edge, not the box, meets the bento edge.
-          style={{ marginRight: -3 }}
+          // 29 draws the bell glyph 26 tall, level with the avatar and mark. Its
+          // ink sits 2pt inside the box at each side and a little high, so the
+          // box is pulled out and down to put the drawn bell on the line.
+          style={{ marginRight: -2, transform: [{ translateY: 1.5 }] }}
         >
-          <NotificationBell unread={unreadCount} color={colors.foreground} />
+          <NotificationBell unread={unreadCount} size={29} color={colors.foreground} />
         </TouchableOpacity>
       ) : (
         // Holds the right edge so the left control cannot drift into the
