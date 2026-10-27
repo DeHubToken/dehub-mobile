@@ -6273,6 +6273,7 @@
   "communities": {
     "shareLink": "Del lenke",
     "pinnedMore": "Flere",
+    "showFirst": "Vis først",
     "sendInMessage": "Send invitasjon",
     "existingPost": {
       "add": "Legg til eksisterende innlegg",

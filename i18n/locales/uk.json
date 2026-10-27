@@ -6633,6 +6633,7 @@
   "communities": {
     "shareLink": "Поділитися посиланням",
     "pinnedMore": "Більше",
+    "showFirst": "Показувати першою",
     "sendInMessage": "Надіслати запрошення",
     "existingPost": {
       "add": "Додати існуючий пост",

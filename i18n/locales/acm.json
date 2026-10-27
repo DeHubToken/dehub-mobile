@@ -6273,6 +6273,7 @@
   "communities": {
     "shareLink": "شارك الرابط",
     "pinnedMore": "المزيد",
+    "showFirst": "اعرضه أولاً",
     "sendInMessage": "إرسال دعوة",
     "existingPost": {
       "invalidLink": "لصق رابط بوست من ديهوب أو معرف البوست.",

@@ -6277,6 +6277,7 @@
   "communities": {
     "shareLink": "Link megosztása",
     "pinnedMore": "Több",
+    "showFirst": "Megjelenítés elsőként",
     "sendInMessage": "Küldj meghívót",
     "existingPost": {
       "add": "Hozzáadás meglévő poszt",

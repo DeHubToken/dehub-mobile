@@ -3821,6 +3821,7 @@
   "communities": {
     "shareLink": "Bağlantıyı paylaş",
     "pinnedMore": "Daha fazla",
+    "showFirst": "Önce göster",
     "sendInMessage": "Davet Gönder",
     "followerInvites": {
       "title": "Takipçileri davet et",

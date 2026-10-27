@@ -6263,6 +6263,7 @@
   "communities": {
     "shareLink": "แชร์ลิงก์",
     "pinnedMore": "เพิ่มเติม",
+    "showFirst": "สำแดงก่อน",
     "sendInMessage": "ส่งคำเชิญ",
     "existingPost": {
       "add": "เพิ่มโพสต์ที่มีอยู่",
