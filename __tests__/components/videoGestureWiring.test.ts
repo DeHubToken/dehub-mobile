@@ -89,8 +89,8 @@ describe('video gesture wiring', () => {
     const player = readSource('components', 'Home', 'FeedVideoPlayer.tsx');
     const card = readSource('components', 'Home', 'FeedCard.tsx');
 
-    expect(player).toContain('showTapReactionAnimation("like", locationX, locationY);');
-    expect(player).toContain('showTapReactionAnimation("love", locationX, locationY);');
+    expect(player).toContain('showTapReactionAnimation("like", locationX, locationY, pageX, pageY);');
+    expect(player).toContain('showTapReactionAnimation("love", locationX, locationY, pageX, pageY);');
     expect(player).toContain('onTapReaction("like");');
     expect(player).toContain('onTapReaction("love");');
     expect(card).toContain('onTapReaction={handleVideoTapReaction}');
