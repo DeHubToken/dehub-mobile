@@ -38,6 +38,7 @@ export function useLaunchpadTokens(filter: LaunchpadFilter, mineAddress?: string
   const { isActive } = useScreenActivity();
   const mine = (mineAddress || "").toLowerCase();
   const query = useQuery({
+    enabled: isActive,
     queryKey: launchpadKeys.tokens(filter, mine),
     queryFn: () => listLaunchpadTokens(filter, mine || null),
     staleTime: 15_000,
