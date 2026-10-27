@@ -12,12 +12,14 @@ import { ScreenNames } from "../navigation/ScreenNames";
 import { useUser, useAuthState } from "../context/AuthContext";
 import { getAvatarUrl } from "../libs/misc";
 import { useAppTheme } from "../context/ThemeContext";
-import { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET } from "./Home/FeedNavBar";
+import { NAV_PILL_SIDE_INSET } from "./Home/FeedNavBar";
 
 /** Drawn height of the avatar, bell and mark, so the three read as one row. */
 const ICON = 26;
 /** How far the avatar and bell sit inside the feed pill's side edges. */
 const PILL_INSET = 4;
+/** Web's avatar corner (rounded-lg), so the two match. */
+const AVATAR_RADIUS = 8;
 
 interface HomeHeaderProps {
   pullDistance?: SharedValue<number>;
@@ -34,13 +36,9 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
   const navigation = useNavigation<any>();
   const { isSignedIn } = useAuthState();
   const user = useUser();
-  const { colors, skin, isMinimal } = useAppTheme();
-  // A hair inside the pill below, with the avatar's corner concentric with
-  // the pill's: its radius minus that inset. Minimal's tab strip runs edge
-  // to edge.
+  const { colors, isMinimal } = useAppTheme();
+  // A hair inside the pill below. Minimal's tab strip runs edge to edge.
   const edge = (isMinimal ? 0 : NAV_PILL_SIDE_INSET) + PILL_INSET;
-  const pillRadius = skin ? Number(skin.strip.borderRadius ?? 0) : NAV_PILL_RADIUS;
-  const avatarRadius = Math.min(ICON / 2, Math.max(0, pillRadius - PILL_INSET));
   const { t } = useTranslation();
 
   const hasUnread = (user?.notificationCount || 0) > 0;
@@ -86,7 +84,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityLabel={t("common.openMenu")}
           className="w-11 h-11 items-start justify-center"
         >
-          <Avatar uri={avatarUrl} size={ICON} name={user?.displayName || user?.username} radius={avatarRadius} />
+          <Avatar uri={avatarUrl} size={ICON} name={user?.displayName || user?.username} radius={AVATAR_RADIUS} />
         </TouchableOpacity>}
       </View>
 
@@ -122,7 +120,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           // 29 draws the bell glyph 26 tall, level with the avatar and mark. Its
           // ink sits 2pt inside the box at each side and a little high, so the
           // box is pulled out and down to put the drawn bell on the line.
-          style={{ marginRight: -2, transform: [{ translateY: 1.5 }] }}
+          style={{ marginRight: -2, transform: [{ translateY: 0.8 }] }}
         >
           <NotificationBell unread={unreadCount} size={29} color={colors.foreground} />
         </TouchableOpacity>
