@@ -131,7 +131,8 @@ it('puts a Retry row in the footer when a later page fails, and stops reaching t
 
   expect(spinners(tree).length).toBe(0);
   expect(texts(tree)).toEqual(expect.arrayContaining(['profile.couldNotLoadPosts', 'common.retry']));
-  expect(retryButton(tree).props.style).toEqual(expect.objectContaining({ height: 56 }));
+  const { style } = retryButton(tree).props;
+  expect(typeof style === 'function' ? style({ pressed: false }) : style).toEqual(expect.objectContaining({ height: 56 }));
   expect(tree.root.findAll((n) => n.type === 'FeedCard')).toHaveLength(20);
 
   // Reaching the end again does not retry by itself.

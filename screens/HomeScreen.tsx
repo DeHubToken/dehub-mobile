@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withSpring,
   withTiming,
   Easing,
@@ -30,7 +31,7 @@ import CinematicLive from "../components/Home/CinematicLive";
 import { CINEMATIC_PHONE_MAX_WIDTH, useCinematicPhone } from "../hooks/useCinematicPhone";
 import HomeHeader from "../components/HomeHeader";
 import { IslandCapsule, IslandFeedMenu, ISLAND_BAR_HEIGHT, ISLAND_CAPSULE_GAP } from "../components/Home/IslandTopBar";
-import NewPostsBead, { BEAD_JOIN, BEAD_HEIGHT } from "../components/Home/NewPostsBead";
+import NewPostsBead, { CHIP_GAP, CHIP_HEIGHT } from "../components/Home/NewPostsBead";
 import { useNewPostsBead } from "../libs/new-posts-bead";
 import FeedNavBar, { NAV_PILL_RADIUS, NAV_PILL_SIDE_INSET, NAV_PILL_TOP_INSET } from "../components/Home/FeedNavBar";
 import { useDrawer } from "../context/DrawerContext";
@@ -200,19 +201,27 @@ type ImageFeedRequest = {
   token: number;
 };
 
-/** The bead drops out from under the pill, and tucks back in. */
+/** How far the chip travels to sit fully behind the pill. */
+const CHIP_TUCK = CHIP_GAP + CHIP_HEIGHT + 4;
+/** The chip drops out from under the pill, and tucks back in. */
 const beadEnter = () => {
   "worklet";
   return {
-    initialValues: { transform: [{ translateY: -(BEAD_JOIN + BEAD_HEIGHT) }] },
-    animations: { transform: [{ translateY: withSpring(0, { damping: 17, stiffness: 240, mass: 0.8 }) }] },
+    initialValues: { opacity: 0, transform: [{ translateY: -CHIP_TUCK }, { scale: 0.85 }] },
+    animations: {
+      opacity: withTiming(1, { duration: 180 }),
+      transform: [{ translateY: withSpring(0, { damping: 14, stiffness: 260, mass: 0.8 }) }, { scale: withSpring(1, { damping: 14, stiffness: 260, mass: 0.8 }) }],
+    },
   };
 };
 const beadExit = () => {
   "worklet";
   return {
-    initialValues: { transform: [{ translateY: 0 }] },
-    animations: { transform: [{ translateY: withTiming(-(BEAD_JOIN + BEAD_HEIGHT), { duration: 160, easing: Easing.in(Easing.quad) }) }] },
+    initialValues: { opacity: 1, transform: [{ translateY: 0 }, { scale: 1 }] },
+    animations: {
+      opacity: withTiming(0, { duration: 170 }),
+      transform: [{ translateY: withTiming(-CHIP_TUCK, { duration: 170, easing: Easing.in(Easing.quad) }) }, { scale: withTiming(0.85, { duration: 170 }) }],
+    },
   };
 };
 
@@ -670,8 +679,25 @@ export default function HomeScreen() {
   const postFeedFirstRowInset = island ? ISLAND_BAR_HEIGHT + 4 : 0;
   const showNavPill = !island || feedProfileVisible || !!imageFeed || !!feedPost;
   const newPostsBead = useNewPostsBead();
-  // The pill's bottom edge, which the bead hangs from.
-  const beadTop = (island ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP : pillBottom) - BEAD_JOIN;
+  // The pill's bottom edge. The chip's window starts there, so anything above
+  // it is behind the pill.
+  const beadTop = island ? ISLAND_BAR_HEIGHT - ISLAND_CAPSULE_GAP : pillBottom;
+  // Dual hide: as the pill starts to hide, the chip slips up behind it first;
+  // once the pill is back, the chip waits a beat and drops back out.
+  const chipTuck = useSharedValue(0);
+  useAnimatedReaction(
+    () => headerTranslateY.value < -1,
+    (hiding, was) => {
+      if (hiding === was) return;
+      chipTuck.value = hiding
+        ? withTiming(1, { duration: 170, easing: Easing.in(Easing.quad) })
+        : withDelay(180, withSpring(0, { damping: 14, stiffness: 260, mass: 0.8 }));
+    },
+  );
+  const chipTuckStyle = useAnimatedStyle(() => ({
+    opacity: 1 - chipTuck.value,
+    transform: [{ translateY: -CHIP_TUCK * chipTuck.value }, { scale: 1 - 0.15 * chipTuck.value }],
+  }));
   const showBead = isFocused && !filterPanelVisible && !feedProfileVisible && !imageFeed && !feedPost
     && !(island && islandMenuOpen);
   // A scroll that hides the capsule puts its menu away too (a touch on the
@@ -1257,16 +1283,17 @@ export default function HomeScreen() {
         />
       ) : null}
 
-      {/* Over the header, not inside the feed: the bead covers the pill's
-          bottom rim where it joins, so the two are one shape with no seam.
-          Its window starts at the join, so it slides out from under the pill. */}
+      {/* Over the header, not inside the feed. The chip's window starts at
+          the pill's bottom edge, so it slides out from under the pill and
+          tucks back behind it. */}
       {island || pillBottom > 0 ? (
         <Animated.View
           pointerEvents="box-none"
-          style={[styles.beadHost, { top: beadTop, height: BEAD_JOIN + BEAD_HEIGHT + 8 }, headerAnimatedStyle]}
+          style={[styles.beadHost, { top: beadTop, height: CHIP_GAP + CHIP_HEIGHT + 28, paddingTop: CHIP_GAP }, headerAnimatedStyle]}
         >
           {showBead && newPostsBead ? (
             <Animated.View entering={beadEnter} exiting={beadExit}>
+              <Animated.View style={chipTuckStyle}>
               <NewPostsBead
                 count={newPostsBead.count}
                 authors={newPostsBead.authors}
@@ -1274,6 +1301,7 @@ export default function HomeScreen() {
                 onPress={newPostsBead.onPress}
                 label={newPostsBead.label}
               />
+            </Animated.View>
             </Animated.View>
           ) : null}
         </Animated.View>
