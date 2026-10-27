@@ -3,6 +3,8 @@ export enum NotificationType {
   DISLIKE = 'dislike',
   COMMENT = 'comment',
   COMMENT_REPLY = 'comment_reply',
+  /** The post's creator answered your comment; the server sends it instead of COMMENT_REPLY */
+  CREATOR_COMMENT_REPLY = 'creator_comment_reply',
   COMMENT_LIKE = 'comment_like',
   REPOST = 'repost',
   QUOTE = 'quote',
@@ -61,6 +63,7 @@ export const CONTENT_NAVIGABLE_TYPES = new Set([
   NotificationType.LIKE,
   NotificationType.COMMENT,
   NotificationType.COMMENT_REPLY,
+  NotificationType.CREATOR_COMMENT_REPLY,
   NotificationType.COMMENT_LIKE,
   NotificationType.REPOST,
   NotificationType.QUOTE,

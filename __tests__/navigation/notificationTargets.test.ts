@@ -122,4 +122,14 @@ describe("notification tap targets", () => {
       expect(pushed.routes.map((r) => r.name)).toEqual(["Root", "Leaderboard", "Root"]);
     });
   });
+
+  it("opens the creator's reply itself, from the row and the push", () => {
+    const screen = readSource("screens/NotificationScreen.tsx");
+    const push = readSource("services/push/PushNotificationsProvider.tsx");
+
+    expect(screen).toMatch(/case 'creator_comment_reply':\s*case 'comment_like':\s*if \(tokenId\) navigateToFeed\(tokenId, commentId, postType\);/);
+    expect(push).toMatch(/case NotificationType\.CREATOR_COMMENT_REPLY:\s*case NotificationType\.COMMENT_LIKE:/);
+    // An unknown type with a post still opens that post, not the list.
+    expect(push).toContain("if (tokenId) navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });\n          else navigation.navigate(ScreenNames.Notifications);");
+  });
 });

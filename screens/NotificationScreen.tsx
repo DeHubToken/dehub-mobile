@@ -1199,6 +1199,9 @@ const NotificationScreen = () => {
 
       case 'comment':
       case 'comment_reply':
+      // "The creator replied to your comment" — sent instead of a plain reply.
+      // It fell to the default below, which opened the post without the reply.
+      case 'creator_comment_reply':
       case 'comment_like':
         if (tokenId) navigateToFeed(tokenId, commentId, postType);
         break;
@@ -1215,7 +1218,11 @@ const NotificationScreen = () => {
         }
         break;
 
+      // A tip on a comment carries that comment, like a comment row does.
       case 'tip':
+        if (tokenId) navigateToFeed(tokenId, commentId, postType);
+        break;
+
       case 'ppv_purchase':
       case 'bounty_available':
       case 'bounty_claimed':
@@ -1290,7 +1297,7 @@ const NotificationScreen = () => {
           navigation.navigate(ScreenNames.Dao);
           break;
         }
-        if (tokenId) navigateToFeed(tokenId, undefined, postType);
+        if (tokenId) navigateToFeed(tokenId, commentId, postType);
         break;
     }
   }, [
