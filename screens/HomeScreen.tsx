@@ -476,13 +476,21 @@ export default function HomeScreen() {
   const handleCloseImageFeed = useCallback(() => setImageFeed(null), []);
 
   const closeFeedPost = useCallback(() => setFeedPost(null), []);
+  // A profile (in place or in its own sheet) covers the feed. Its cards' comment
+  // buttons must keep their own sheet: a post opened in place here would sit
+  // under the profile, and its comments sheet came up as an invisible window
+  // that took every touch, so the app looked frozen.
+  const profileVisibleRef = useRef(profileVisible);
+  profileVisibleRef.current = profileVisible;
   useEffect(() => {
     if (!isFocused || pageWidth >= FEED_POST_MAX_WIDTH) return;
-    setFeedPostHost((tokenId) => {
+    setFeedPostHost((tokenId, options) => {
+      if (options?.comments && profileVisibleRef.current) return false;
       showHeader();
       setFilterPanelVisible(false);
       setImageFeed(null);
       setFeedPost(tokenId);
+      return true;
     });
     return () => setFeedPostHost(null);
   }, [isFocused, pageWidth, showHeader]);

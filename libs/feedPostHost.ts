@@ -4,7 +4,9 @@
  * opened. Home registers itself here while it is focused; a card asks it
  * first and only pushes the post page when nothing claims the post.
  */
-type Host = (tokenId: string) => void;
+type OpenOptions = { comments?: boolean };
+/** Returns false to turn the post down (the caller then handles it itself). */
+type Host = (tokenId: string, options?: OpenOptions) => boolean;
 
 let host: Host | null = null;
 
@@ -19,11 +21,12 @@ let pendingComments: string | null = null;
  * `comments` opens the post with its comments sheet already up, in the
  * bottom half of the screen (the feed card's comment button).
  */
-export function openPostInFeedHost(tokenId: number | string, options?: { comments?: boolean }): boolean {
+export function openPostInFeedHost(tokenId: number | string, options?: OpenOptions): boolean {
   if (!host) return false;
   pendingComments = options?.comments ? String(tokenId) : null;
-  host(String(tokenId));
-  return true;
+  if (host(String(tokenId), options)) return true;
+  pendingComments = null;
+  return false;
 }
 
 /** The post page asks once, on opening, whether to start with comments up. */
