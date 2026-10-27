@@ -4,6 +4,9 @@ import { AppState } from 'react-native';
 import { NavigationContext } from '@react-navigation/native';
 import { useActiveScreenEffect, useActiveScreenPolling, useScreenActivity } from '../../hooks/useScreenActivity';
 
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: require('react').createContext(null) }));
+
 it('releases work on blur/background and resumes once on focus/foreground', () => {
   jest.useFakeTimers();
   let focused = true;
