@@ -13540,7 +13540,32 @@
     "step2Title": "Se rakentuu noin minuutissa",
     "step2Body": "@assistant kirjoittaa ja isännöi sovellusta ja lähettää sitten linkin viesteihisi.",
     "step3Title": "Jaa se tai muuta sitä",
-    "step3Body": "Kuka tahansa voi avata linkin. Vastaa chatissa muuttaaksesi jotain."
+    "step3Body": "Kuka tahansa voi avata linkin. Vastaa chatissa muuttaaksesi jotain.",
+    "manage": {
+      "open": "Hallitse",
+      "address": "Sovelluksen osoite",
+      "copy": "Kopioi",
+      "copied": "Linkki kopioitu",
+      "save": "Tallenna",
+      "addressSaved": "Osoite päivitetty",
+      "public": "Julkista",
+      "publicHint": "Kuka tahansa, jolla on linkki, voi avata sen.",
+      "privateHint": "Ainoastaan sinä voit avata sen.",
+      "store": "DeHub-sovelluskauppa",
+      "publishHint": "Listaa sovellus DeHub-sovelluskauppaan, jotta ihmiset voivat löytää ja asentaa sen.",
+      "publish": "Julkaista sovelluskauppaan",
+      "publishedToast": "Julkaistu sovelluskauppaan",
+      "inStore": "Sovelluskaupassa listattu.",
+      "inStoreUnreviewed": "Sovelluskaupassa merkitty Epäillyksi, kunnes tiimi tarkistaa sen.",
+      "viewInStore": "Näytä kaupassa",
+      "unpublish": "Poista julkaistu",
+      "unpublished": "Poistettu sovelluskaupasta",
+      "versions": "Versiot",
+      "noVersions": "Ei vielä tallennettuja versioita.",
+      "current": "Nykyinen",
+      "restore": "Palauta",
+      "restored": "Palautettu versio {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

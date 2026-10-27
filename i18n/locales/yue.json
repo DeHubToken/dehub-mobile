@@ -13540,7 +13540,32 @@
     "step2Title": "佢大約一分鐘就可以建立",
     "step2Body": "@assistant 會寫同埋寄存個應用程式，然後將連結傳送去你嘅訊息。",
     "step3Title": "分享或者改變佢",
-    "step3Body": "任何人都可以打開個連結。喺即時通訊入面回覆就可以改任何嘢。"
+    "step3Body": "任何人都可以打開個連結。喺即時通訊入面回覆就可以改任何嘢。",
+    "manage": {
+      "open": "管理",
+      "address": "應用程式地址",
+      "copy": "複製",
+      "copied": "連結複製咗",
+      "save": "保存",
+      "addressSaved": "地址更新咗",
+      "public": "公眾",
+      "publicHint": "任何有連結嘅人都可以打開佢。",
+      "privateHint": "只有你先可以打開佢。",
+      "store": "DeHub 應用程式商店",
+      "publishHint": "喺 DeHub 應用程式商店列出呢個應用程式，等人哋可以搵到同安裝佢。",
+      "publish": "發佈到應用程式商店",
+      "publishedToast": "發佈到應用程式商店",
+      "inStore": "喺應用程式商店入面列出咗。",
+      "inStoreUnreviewed": "喺應用程式商店入面，標記為「未經審查」，直至團隊檢查為止。",
+      "viewInStore": "喺店內睇吓",
+      "unpublish": "取消發佈",
+      "unpublished": "喺應用程式商店入面移除咗",
+      "versions": "版本",
+      "noVersions": "仲未有儲存版本。",
+      "current": "目前",
+      "restore": "修復",
+      "restored": "還原版本 {{version}}"
+    }
   },
   "depin": {
     "title": "德潘",

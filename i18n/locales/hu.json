@@ -13544,7 +13544,32 @@
     "step2Title": "Körülbelül egy perc alatt felépül",
     "step2Body": "@assistant írja és üzemelteti az alkalmazást, majd elküldi az üzeneteidre mutató linket.",
     "step3Title": "Oszd meg vagy módosítsd",
-    "step3Body": "A linket bárki megnyithatja. Bárminek a megváltoztatásához válaszolj a csevegésben."
+    "step3Body": "A linket bárki megnyithatja. Bárminek a megváltoztatásához válaszolj a csevegésben.",
+    "manage": {
+      "open": "Kezelés",
+      "address": "Alkalmazás címe",
+      "copy": "Másolás",
+      "copied": "Hivatkozás másolva",
+      "save": "Mentés",
+      "addressSaved": "Cím frissítve",
+      "public": "Nyilvános",
+      "publicHint": "A link birtokában bárki megnyithatja.",
+      "privateHint": "Csak Ön nyithatja meg.",
+      "store": "DeHub App Store",
+      "publishHint": "Hirdesd meg ezt az alkalmazást a DeHub alkalmazásboltban, hogy az emberek megtalálhassák és telepíthessék.",
+      "publish": "Közzététel az App Store-ban",
+      "publishedToast": "Közzétéve az alkalmazás-áruházban",
+      "inStore": "Meghirdetve az alkalmazás-áruházban.",
+      "inStoreUnreviewed": "Az alkalmazásboltban jelölje meg az Unreviewed (Nem ellenőrzött) lehetőséget, amíg a csapat nem ellenőrzi.",
+      "viewInStore": "Megtekintés az üzletben",
+      "unpublish": "Közzététel visszavonása",
+      "unpublished": "Eltávolítva az alkalmazás-áruházból",
+      "versions": "Verziók",
+      "noVersions": "Még nincsenek mentett verziók.",
+      "current": "Jelenlegi",
+      "restore": "Visszaállítás",
+      "restored": "Visszaállított verzió {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

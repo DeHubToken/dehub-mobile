@@ -13528,7 +13528,32 @@
     "step2Title": "Iku dibangun kira-kira sak menit",
     "step2Body": "@assistant nulis lan nyimpen aplikasi, banjur ngirim link menyang pesenmu.",
     "step3Title": "Bagike utawa ganti",
-    "step3Body": "Sapa wae bisa mbukak link kasebut. Wangsulana ing obrolan kanggo ngganti apa wae."
+    "step3Body": "Sapa wae bisa mbukak link kasebut. Wangsulana ing obrolan kanggo ngganti apa wae.",
+    "manage": {
+      "open": "Ngatur",
+      "address": "Alamat aplikasi",
+      "copy": "Kopi",
+      "copied": "Tautan dicopot",
+      "save": "Simpan",
+      "addressSaved": "Alamat diperbarui",
+      "public": "Umum",
+      "publicHint": "Siapa pun yang memiliki tautan bisa membukanya.",
+      "privateHint": "Hanya kamu yang bisa membukanya.",
+      "store": "Toko aplikasi DeHub",
+      "publishHint": "Daftar aplikasi ini di toko aplikasi DeHub agar orang bisa menemukannya dan menginstalnya.",
+      "publish": "Publikasikan ke toko aplikasi",
+      "publishedToast": "Dipublikasikan ke toko aplikasi",
+      "inStore": "Ditampilkan di toko aplikasi.",
+      "inStoreUnreviewed": "Di toko aplikasi, ditandai Unreviewed hingga tim memeriksa.",
+      "viewInStore": "Lihat di toko",
+      "unpublish": "Unpublikasikan",
+      "unpublished": "Dihapus dari toko aplikasi",
+      "versions": "Versi",
+      "noVersions": "Belum ada versi yang disimpan.",
+      "current": "Saat ini",
+      "restore": "Kembalikan",
+      "restored": "Versi yang direstor {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

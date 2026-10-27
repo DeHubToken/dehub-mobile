@@ -13528,7 +13528,32 @@
     "step2Title": "Waxay ku dhisan tahay qiyaastii daqiiqad.",
     "step2Body": "@caawiye wuxuu qoraa oo martigeliyaa barnaamijka, ka dibna wuxuu u diraa xiriiriyaha farriimahaaga.",
     "step3Title": "La wadaag ama beddel",
-    "step3Body": "Qof kastaa wuu furi karaa linkiga. Ka jawaab sheekada si aad wax uga bedesho."
+    "step3Body": "Qof kastaa wuu furi karaa linkiga. Ka jawaab sheekada si aad wax uga bedesho.",
+    "manage": {
+      "open": "Maamul",
+      "address": "Cinwaanka App",
+      "copy": "Nuqul",
+      "copied": "LINK COPED",
+      "save": "Keydso",
+      "addressSaved": "Cinwaanka la cusbooneysiiyay",
+      "public": "Dadweynaha",
+      "publicHint": "Qof kasta oo leh isku xirka ayaa furi kara.",
+      "privateHint": "Kaliya waad furi kartaa.",
+      "store": "Dukaanka App-ka DeHub",
+      "publishHint": "Ku qor barnaamijkan dukaanka barnaamijka DeHub si dadku u heli karaan oo u rakibi karaan.",
+      "publish": "Daabac dukaanka App",
+      "publishedToast": "Waxaa lagu daabacay App Store",
+      "inStore": "Waxay ku qoran tahay dukaanka App Store.",
+      "inStoreUnreviewed": "Dukaanka app-ka, ayaa calaamadeeyay Unreviewed ilaa kooxda ay hubiso.",
+      "viewInStore": "Eeg dukaanka",
+      "unpublish": "Daabacaad la 'aan",
+      "unpublished": "Laga saaray dukaanka App-ka",
+      "versions": "Versions",
+      "noVersions": "No version badbaadiyey weli.",
+      "current": "Hada",
+      "restore": "Dib u soo celi",
+      "restored": "Nooca dib loo soo celiyay {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",
