@@ -13720,7 +13720,32 @@
     "step2Title": "Nagtatayo ito sa loob ng halos isang minuto",
     "step2Body": "@assist nagsusulat at nagho - host ng app, pagkatapos ay nagpapadala ng link sa iyong mga mensahe.",
     "step3Title": "Ibahagi ito o baguhin ito",
-    "step3Body": "Kahit sino ay maaaring buksan ang link. Tumugon sa chat upang baguhin ang anumang bagay."
+    "step3Body": "Kahit sino ay maaaring buksan ang link. Tumugon sa chat upang baguhin ang anumang bagay.",
+    "manage": {
+      "open": "Pangasiwaan",
+      "address": "Address ng app",
+      "copy": "Kopyahin",
+      "copied": "Nakopya na ang link",
+      "save": "I - save",
+      "addressSaved": "Na - update ang address",
+      "public": "Pampubliko",
+      "publicHint": "Kahit sino na may link ay maaaring buksan ito.",
+      "privateHint": "Ikaw lang ang makakapagbukas niyan.",
+      "store": "DeHub App Store",
+      "publishHint": "Ilista ang app na ito sa DeHub app store upang mahanap at mai - install ito ng mga tao.",
+      "publish": "I - publish sa app store",
+      "publishedToast": "Na - publish sa app store",
+      "inStore": "Nakalista sa app store.",
+      "inStoreUnreviewed": "Sa app store, may markang Hindi Nasuri hanggang sa suriin ito ng team.",
+      "viewInStore": "Tingnan sa tindahan",
+      "unpublish": "I - unpublish",
+      "unpublished": "Inalis mula sa app store",
+      "versions": "Mga Bersyon",
+      "noVersions": "Wala pang naka - save na mga bersyon.",
+      "current": "Kasalukuyan",
+      "restore": "Ibalik",
+      "restored": "Naibalik na bersyon {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

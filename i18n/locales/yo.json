@@ -13541,7 +13541,32 @@
     "step2Title": "Ó máa ń kọ́ ní nǹkan bí ìṣẹ́jú kan.",
     "step2Body": "@oluranlọwọ kọ ati gbalejo ohun elo naa, lẹhinna fi ọna asopọ ranṣẹ si awọn ifiranṣẹ rẹ.",
     "step3Title": "Pín in tàbí yí i padà",
-    "step3Body": "Ẹnikẹ́ni lè ṣí àsopọ̀ náà. Fesi ninu iwiregbe lati yi ohunkohun pada."
+    "step3Body": "Ẹnikẹ́ni lè ṣí àsopọ̀ náà. Fesi ninu iwiregbe lati yi ohunkohun pada.",
+    "manage": {
+      "open": "Ṣakoso",
+      "address": "Adirẹsi App",
+      "copy": "Àdàkọ",
+      "copied": "Àdàkọ ìjápọ",
+      "save": "Fi pamọ́",
+      "addressSaved": "Àdírẹ̀sì tí a ṣe àtúnṣe",
+      "public": "Gbogbo eniyan",
+      "publicHint": "Ẹnikẹ́ni tí ó bá ní ìsopọ̀ náà lè ṣí i.",
+      "privateHint": "Ìwọ nìkan ló lè ṣí i.",
+      "store": "Ile itaja ohun elo DeHub",
+      "publishHint": "Ṣe àkọsílẹ̀ ohun-èlò yìí nínú ilé-ìtajà ohun-èlò DeHub kí àwọn ènìyàn lè rí i kí wọ́n sì fi í lélẹ̀.",
+      "publish": "Tẹjade si ile itaja ohun elo",
+      "publishedToast": "A tẹjade si ile itaja ohun elo",
+      "inStore": "Ó wà nínú ilé-ìtajà ohun-èlò.",
+      "inStoreUnreviewed": "Nínú ilé-ìtajà ohun-èlò, ṣe àmì Unreviewed títí tí ẹgbẹ́ yóò fi ṣe àyẹ̀wò rẹ̀.",
+      "viewInStore": "Wò ó ní ilé-ìtajà",
+      "unpublish": "Kò ṣe ìtẹ̀jáde",
+      "unpublished": "Yọ kuro ni ile itaja ohun elo",
+      "versions": "Àwọn ẹ̀dà",
+      "noVersions": "Kò sí àwọn ẹ̀dà tí a ti fi pamọ́ síbẹ̀.",
+      "current": "Lọwọlọwọ",
+      "restore": "Pada",
+      "restored": "Àtúnṣe àtúnṣe {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

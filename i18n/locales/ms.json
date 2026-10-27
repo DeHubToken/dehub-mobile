@@ -13796,7 +13796,32 @@
     "step2Title": "Ia dibina dalam masa kira-kira satu minit",
     "step2Body": "@assistant menulis dan menjadi hos aplikasi, kemudian menghantar pautan kepada mesej anda.",
     "step3Title": "Kongsi atau ubahnya",
-    "step3Body": "Sesiapa sahaja boleh membuka pautan. Jawab dalam sembang untuk mengubah apa-apa."
+    "step3Body": "Sesiapa sahaja boleh membuka pautan. Jawab dalam sembang untuk mengubah apa-apa.",
+    "manage": {
+      "open": "Urus",
+      "address": "Alamat aplikasi",
+      "copy": "Salin",
+      "copied": "Pautan disalin",
+      "save": "Simpan",
+      "addressSaved": "Alamat dikemas kini",
+      "public": "Awam",
+      "publicHint": "Sesiapa sahaja yang mempunyai pautan boleh membukanya.",
+      "privateHint": "Hanya awak yang boleh membukanya.",
+      "store": "Kedai aplikasi DeHub",
+      "publishHint": "Senaraikan aplikasi ini di gedung aplikasi DeHub supaya orang ramai boleh mencari dan memasangnya.",
+      "publish": "Siarkan ke gedung aplikasi",
+      "publishedToast": "Disiarkan ke gedung aplikasi",
+      "inStore": "Disenaraikan di kedai aplikasi.",
+      "inStoreUnreviewed": "Di gedung aplikasi, tandakan Tidak Disemak sehingga pasukan menyemaknya.",
+      "viewInStore": "Lihat di kedai",
+      "unpublish": "Jangan siarkan",
+      "unpublished": "Dikeluarkan daripada gedung aplikasi",
+      "versions": "Versi",
+      "noVersions": "Belum ada versi yang disimpan.",
+      "current": "Semasa",
+      "restore": "Pulihkan",
+      "restored": "Versi dipulihkan {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

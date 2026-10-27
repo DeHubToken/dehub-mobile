@@ -12879,31 +12879,31 @@
         "steps": {
           "1": "Visit dehub.io — di home feed na di front page, so you fit look around before you sign in.",
           "2": "Click 'Sign In'. You go see Google and Apple, fields for email address or phone number, and 'Connect Wallet' if you don get wallet before.",
-          "5": "Pick username. Na wetin people go see, and e be your dehub.io/<username> profile link too.",
-          "6": "You don enter. Check di feed, set up your profile, and start to post.",
           "3": "Wen yu use Google or Apple, complete provider's flow. Wen yu use email or SMS, enter code wey dey arrive.",
-          "4": "Wallet don create and secure for you wen you sign-in for the first time. When you connect your own wallet, you go need just one sign to prove your address."
+          "4": "Wallet don create and secure for you wen you sign-in for the first time. When you connect your own wallet, you go need just one sign to prove your address.",
+          "5": "Pick username. Na wetin people go see, and e be your dehub.io/<username> profile link too.",
+          "6": "You don enter. Check di feed, set up your profile, and start to post."
         },
         "tips": {
           "1": "Social, email and SMS sign-ins no dey pay gas at all — DeHub dey pay am. Connected wallets dey pay dem own ETH or BNB.",
-          "3": "You fit keep plenty accounts for one device and switch between dem for Settings → Profile.",
-          "2": "Come back to yor legacy DeHub account? Sign in wit yor email or phone number wey use am before, migration go find am for yor."
+          "2": "Come back to yor legacy DeHub account? Sign in wit yor email or phone number wey use am before, migration go find am for yor.",
+          "3": "You fit keep plenty accounts for one device and switch between dem for Settings → Profile."
         }
       },
       "home-feed": {
         "intro": "Di home feed na where you go see posts from people wey you follow and content wey dey trend. E get tabs for different content types and different ways to sort.",
         "title": "Home Feed",
         "tips": {
-          "2": "Di 'Home' tab dey show all content types mix together.",
           "1": "Grid view na good fit for browse image quickly.",
+          "2": "Di 'Home' tab dey show all content types mix together.",
           "3": "Live tab shows currently active live streams."
         },
         "steps": {
+          "1": "Go find /app - dis na your home feed.",
           "2": "Use di tabs for top to filter by content type: Home (everything), Videos, Images, Shorts, Music, or Live streams.",
+          "3": "Swip left/right for mobile, see more option.",
           "4": "Use di filter/sort button (top-right of di feed) to change how e dey sort: Hot, New, or Top.",
           "5": "Pull am down to refresh di feed for phone.",
-          "1": "Go find /app - dis na your home feed.",
-          "3": "Swip left/right for mobile, see more option.",
           "6": "Kpochap down to load more post wey dey come up automatically (infinite scroll).",
           "7": "Tor gba layout switcher, gba Grid na Feed view."
         }
@@ -12911,20 +12911,20 @@
       "creating-posts": {
         "title": "Creating Posts",
         "tips": {
+          "1": "Posts support markdown-style formatting.",
           "2": "You fit quote-post: click di repost icon for any post and choose 'Quote'.",
-          "3": "Categories (hashtags) dey show for di 'Talk of the Town' leaderboard.",
-          "1": "Posts support markdown-style formatting."
+          "3": "Categories (hashtags) dey show for di 'Talk of the Town' leaderboard."
         },
         "intro": "Post am, share foto, video, voice note, GIF, and more. Use hashtag, cashtag, and mention to increase reach.",
         "steps": {
+          "1": "Klik di 'Post' button for inside sidebar (desktop) or + button (mobile).",
+          "2": "Wen you type your text for me, I go translate am to Nigerian Pidgin.",
           "3": "To add image or video, click di media icon and choose file.",
           "4": "To record voice note, click di microphone icon.",
           "5": "To add GIF, click di GIF icon and search for one.",
           "6": "Use #hashtags to put your post for category (like #crypto, #defi).",
           "7": "Use $cashtags to talk about tokens (like $DHB, $ETH).",
           "8": "Use @mentions to tag other users (like @username).",
-          "1": "Klik di 'Post' button for inside sidebar (desktop) or + button (mobile).",
-          "2": "Wen you type your text for me, I go translate am to Nigerian Pidgin.",
           "9": "Klik 'Post' don publish. Your post don show for feed immediately."
         }
       },
@@ -12934,8 +12934,8 @@
         "steps": {
           "1": "Go /app/explore from di sidebar.",
           "2": "Use di search bar for top to search for users, posts, or content.",
-          "4": "Check di topics and categories wey dey trend for di explore page.",
           "3": "Wetin you dey look for?",
+          "4": "Check di topics and categories wey dey trend for di explore page.",
           "5": "Klik on topik wey dey trend to see all post wey relate.",
           "6": "Klik on a user for visit am for dia profile."
         },
@@ -12952,11 +12952,11 @@
         "title": "Profile",
         "intro": "Your profile dey show your posts, followers, wey dem dey follow you, and your wallet information.",
         "steps": {
-          "2": "Click 'Edit Profile' make you update your display name, bio, and avatar.",
-          "5": "Check your own posts, media, and content wey you like through di profile tabs.",
           "1": "Klik your poto or 'Profile' for view your profile.",
+          "2": "Click 'Edit Profile' make you update your display name, bio, and avatar.",
           "3": "Upload poto by click am for edit mode.",
           "4": "Wata followers you get, and wata pipo you dey follow.",
+          "5": "Check your own posts, media, and content wey you like through di profile tabs.",
           "6": "Kopi wallet address you by click am for copy icon wey dey beside am.",
           "7": "Go visit pipo profile by click am for dia username or avatar anywhere for platform."
         }
@@ -12965,11 +12965,11 @@
         "title": "Message Dem",
         "intro": "Send pesin message to oda user for platform.",
         "steps": {
-          "5": "See your old conversations for di messages list.",
           "1": "Klik 'Messages' for inside sidebar to open messaging paje.",
           "2": "Klik di compose button to start new konversayshon.",
           "3": "Gbona for user wey you want to message, enter username.",
           "4": "Writ am and send am.",
+          "5": "See your old conversations for di messages list.",
           "6": "Klik on konversayshun to kontiniu chat."
         },
         "tips": {
@@ -12982,10 +12982,10 @@
         "title": "AI Helper",
         "steps": {
           "1": "Click 'Assistant' for di sidebar to open di AI chat.",
+          "2": "Wetin you wan me translate?",
           "3": "Di AI fit help you with crypto information, questions about di platform, and general knowledge.",
           "4": "Start new conversation: click di new chat button.",
           "5": "See your old conversations for di sidebar of di assistant page.",
-          "2": "Wetin you wan me translate?",
           "6": "Wetin you wan do?"
         },
         "tips": {
@@ -12998,15 +12998,15 @@
         "title": "Notification Dem",
         "intro": "Stay up to date witim likes, comments, tips, follows, and anoda tins wey dey happen for your content.",
         "steps": {
-          "4": "Notifications dey include: new followers, votes for post, comments, tips, and mentions.",
           "1": "Klik bell icon or 'Notifications' for sidebar.",
           "2": "Wata notifications wata wata.",
           "3": "Klik on notifishun to navigate to di related kontent.",
+          "4": "Notifications dey include: new followers, votes for post, comments, tips, and mentions.",
           "5": "Notifications wey no dey read, dem dey highlighted — dem mark as read wen dem dey view."
         },
         "tips": {
-          "2": "Tip notifications dey show how many tokens you receive.",
-          "1": "Notification badge dey show number of unread notifications."
+          "1": "Notification badge dey show number of unread notifications.",
+          "2": "Tip notifications dey show how many tokens you receive."
         }
       },
       "wallet": {
@@ -13017,12 +13017,12 @@
         },
         "title": "Wallet",
         "steps": {
+          "1": "Klik 'Wallet' for inside sidebar to open wallet paja.",
+          "2": "Wata balance of token you get for all blockchain wey support.",
           "3": "See di breakdown for each chain: Ethereum, Base, BNB Chain, and others.",
           "4": "Check your staking deposits and di rewards wey you get.",
           "5": "Click 'Refresh Scan' make your balances update from di on-chain data.",
-          "6": "Copy your wallet address make you fit receive tokens from other people.",
-          "1": "Klik 'Wallet' for inside sidebar to open wallet paja.",
-          "2": "Wata balance of token you get for all blockchain wey support."
+          "6": "Copy your wallet address make you fit receive tokens from other people."
         }
       },
       "staking": {
@@ -13031,10 +13031,10 @@
         "steps": {
           "1": "Go di 'Staking' page from di sidebar.",
           "2": "Put how many tokens you wan stake.",
-          "5": "See how much you don stake and any rewards wey dey wait.",
-          "6": "To unstake, put di amount and confirm di unstaking transaction.",
           "3": "Choose chain wey you dey want stake.",
-          "4": "Confirm transaction for your wallet (wallet outside) or e dey auto-execute (when you use your social media account to login)."
+          "4": "Confirm transaction for your wallet (wallet outside) or e dey auto-execute (when you use your social media account to login).",
+          "5": "See how much you don stake and any rewards wey dey wait.",
+          "6": "To unstake, put di amount and confirm di unstaking transaction."
         },
         "tips": {
           "1": "Staking dey increase your vote weight for governance proposals.",
@@ -13048,24 +13048,24 @@
         "steps": {
           "1": "Go di 'Leaderboard' page from di sidebar.",
           "2": "Switch between di tabs: Balance, Daily Spent, and Talk of the Town.",
-          "6": "Click any user to visit dem profile.",
           "3": "Balance tab ranks users by their total token holdings.",
           "4": "Daily Spent tab show who dey dey active for tip for last 24 hours.",
           "5": "Talk of di Town dey show am for top most-discussed topics/categories.",
+          "6": "Click any user to visit dem profile.",
           "7": "Leaderboard dey update periodically for inside day."
         },
         "tips": {
-          "2": "Talk of the Town dey track one-word categories from hashtags.",
-          "1": "Daily rankings reset every 24 hours."
+          "1": "Daily rankings reset every 24 hours.",
+          "2": "Talk of the Town dey track one-word categories from hashtags."
         }
       },
       "command-centre": {
         "intro": "Dashboard wey dey show your main numbers and wetin dey happen for di platform, all for one look.",
         "title": "Command Centre",
         "steps": {
+          "1": "Klik 'Command Centre' for inside sidebar.",
           "2": "See your profile summary, including how many posts, followers, and engagement you get.",
           "3": "See wetin you don do recently and di topics wey dey trend.",
-          "1": "Klik 'Command Centre' for inside sidebar.",
           "4": "Wata quick link don dey available for features wey you dey use often."
         },
         "tips": {
@@ -13082,11 +13082,11 @@
         },
         "steps": {
           "1": "Go 'Governance' from di sidebar.",
+          "2": "Browse active proposals wey people submit.",
           "3": "Click any proposal to read im full description and discussion.",
           "4": "Vote on proposals with di thumbs up/down buttons — how heavy your vote be depend on how many DeHub tokens you don stake.",
-          "6": "Submit your own proposal: click di 'Create Proposal' button.",
-          "2": "Browse active proposals wey people submit.",
-          "5": "Leav comment for proposals to discuss with community."
+          "5": "Leav comment for proposals to discuss with community.",
+          "6": "Submit your own proposal: click di 'Create Proposal' button."
         }
       },
       "bookmarks": {
@@ -13099,8 +13099,8 @@
           "4": "Torop ame remove bookmark by click am again."
         },
         "tips": {
-          "2": "No limit dey for how many posts you fit bookmark.",
-          "1": "You go save post, na only you go see am."
+          "1": "You go save post, na only you go see am.",
+          "2": "No limit dey for how many posts you fit bookmark."
         }
       },
       "settings": {
@@ -13125,9 +13125,9 @@
           "1": "Hold di thumbs-up for any post to open di reaction tray: like, love, respect, hot, lol, sad, cry, dislike and poo.",
           "2": "Di seven good ones dey count for di post like total; dislike and poo dey count against am.",
           "3": "Your reaction weight depend on your staking badge, so badge holder reaction dey move di count pass one vote.",
-          "6": "To see mature posts everywhere, on 'Show mature content' for Settings.",
           "4": "Tap am for post header, mute author, dem go drop out of your feed for good.",
-          "5": "Kreator dem mark dia own post wey dem dey say na mature, wetin dem dey write, naa go dey off public home feed."
+          "5": "Kreator dem mark dia own post wey dem dey say na mature, wetin dem dey write, naa go dey off public home feed.",
+          "6": "To see mature posts everywhere, on 'Show mature content' for Settings."
         },
         "tips": {
           "1": "Post wey mature dey still dey visible for creator's profile and to people wey dey follow am.",
@@ -13139,17 +13139,17 @@
         "title": "Stages (Live Audio Rooms)",
         "intro": "Stages na audio room wey dey build inside DeHub. Host go open room, bring speaker up, and anyone fit join listen from Stages page or shared link.",
         "steps": {
+          "1": "Open 'Stages' for see wetin dey live now and wetin dey schedule.",
+          "2": "Tap live stage join listener, or set reminder for scheduled one, and get notify wen e start.",
           "3": "Start your own from di same page — you fit go live straight from di browser, no OBS, no stream key.",
           "4": "As host, bring speakers come stage, mute dem or remove dem, share your screen, and control di soundboard.",
           "5": "Listeners dey send live reactions and dey talk for di room chat without dem come stage.",
-          "1": "Open 'Stages' for see wetin dey live now and wetin dey schedule.",
-          "2": "Tap live stage join listener, or set reminder for scheduled one, and get notify wen e start.",
           "6": "Every stage record, and di recording play back afta from di card wey am dey."
         },
         "tips": {
           "1": "Live subtitles dey caption every speaker and translate am into any language wey you dey read for.",
-          "3": "Hosts fit put radio station on air or play dem own music clips between conversations.",
           "2": "Live dubbing go speak am for the room, loud pass, for host own voice, wey dem clone, dem charge am by minute for DeHub tokens.",
+          "3": "Hosts fit put radio station on air or play dem own music clips between conversations.",
           "4": "Mini-player dey keep room dey go for corner while you browse rest of app."
         }
       },
@@ -13157,11 +13157,11 @@
         "intro": "Communities na spaces wey members dey run, with dem own feed, members and activity. Events dey add programmes wey get time on top of dem.",
         "title": "Communities & Events",
         "steps": {
+          "1": "Goto \"Communities\" for sidebar, browse public ones.",
           "2": "Join with one tap. New activity go show as unread badge for di navigation.",
           "3": "Post, discuss, run polls and send tip inside di community own feed.",
           "4": "Community owners dey control dem own space and fit give other people admin power.",
-          "5": "Open 'Events' for programmes wey dem don schedule, with full page for each event wey you fit follow live.",
-          "1": "Goto \"Communities\" for sidebar, browse public ones."
+          "5": "Open 'Events' for programmes wey dem don schedule, with full page for each event wey you fit follow live."
         },
         "tips": {
           "1": "Community chat dey support @mentions and @here, so one post fit reach everybody for di room.",
@@ -13177,8 +13177,8 @@
         "title": "Arcade",
         "steps": {
           "1": "Open 'Arcade' for di sidebar.",
-          "3": "Play am for di tab. King's Gambit and Street Slayer dey keep leaderboard.",
           "2": "Wey you go choose game? Na King's Gambit, Claude of Duty, Jungle Trail, Street Slayer or Chartopia?",
+          "3": "Play am for di tab. King's Gambit and Street Slayer dey keep leaderboard.",
           "4": "Chartopia dey run for VR headset through WebXR."
         }
       },
@@ -13187,30 +13187,30 @@
         "title": "Bounties & Stores",
         "steps": {
           "1": "Open 'Bounties' to see open work, and filter am by category or currency.",
+          "2": "Klaim one, do am, and submit am, anyone fit be hunter, no application dey.",
           "3": "Post your own bounty with short brief and reward for DeHub tokens or USDC. Di reward go enter escrow di moment you post am.",
           "4": "Open 'Stores' to set up your store wey get im own page, branding and listings.",
-          "2": "Klaim one, do am, and submit am, anyone fit be hunter, no application dey.",
           "5": "Pota wey go sell for money, go dey for DeHub token, na wallet wey go dey inside app go dey handle na money, no need for any outside payment system."
         },
         "tips": {
           "1": "Bounties dey arranged into Social Media, Clipping and Contracts.",
-          "3": "Creators dey use bounties grow community — shares, clips and reactions na all correct tasks.",
-          "2": "Dispute flow settle wahala wey dey come from delivery, so escrow always resolve fairly."
+          "2": "Dispute flow settle wahala wey dey come from delivery, so escrow always resolve fairly.",
+          "3": "Creators dey use bounties grow community — shares, clips and reactions na all correct tasks."
         }
       },
       "creator-studio": {
         "intro": "Creator Studio dey make images, video, music, voice and 3D models from prompt, and e go pass dem give editor — including full multi-track video editor wey dey run for browser.",
         "title": "Creator Studio & Editor",
         "steps": {
-          "4": "Arrange wetin come out for di Canva-style editor, or open di video editor for real timeline wey get cutting, layering and export.",
           "1": "Wetin you wan create for Creator Studio?",
           "2": "Server go show you price before e start work, so you see wetin you go pay before you pay am.",
           "3": "Render de render dey continue for shared queue while you dey browse am.",
+          "4": "Arrange wetin come out for di Canva-style editor, or open di video editor for real timeline wey get cutting, layering and export.",
           "5": "Wetin you dey look for?"
         },
         "tips": {
-          "2": "You go pay for generation with DeHub tokens from your wallet — you go sign one transfer for each job, and we go show you di price before you pay.",
           "1": "Librari of free asset stock dey sit alongside Studio, for anything you no wan generate.",
+          "2": "You go pay for generation with DeHub tokens from your wallet — you go sign one transfer for each job, and we go show you di price before you pay.",
           "3": "Pipo wey dey use am plenty, dem fit take Ultra, Team or Scale plan, wey go send allowance for token for wallet dem dey every month."
         }
       },
@@ -13224,11 +13224,11 @@
         "title": "Buying Tokens",
         "steps": {
           "1": "Go di 'Buy' page from di sidebar.",
-          "5": "Click di settings gear icon to change slippage tolerance (default na 1%).",
-          "6": "Confirm di swap transaction.",
           "2": "Swap token.",
           "3": "Wey you want spend money or how many tokunbo you want receive?",
           "4": "Wetin you dey review? Exchange rate and output wey dey estimate?",
+          "5": "Click di settings gear icon to change slippage tolerance (default na 1%).",
+          "6": "Confirm di swap transaction.",
           "7": "DeHub tokens go dey for your wallet once transaction complete."
         }
       },
@@ -13242,11 +13242,11 @@
         "intro": "Waka your DeHub tokens for different blockchain wey support through cross-chain bridge.",
         "steps": {
           "1": "Go di 'Bridge' page from di sidebar.",
+          "2": "Wetin you mean by \"source chain\"?",
           "3": "Choose di destination chain (where you wan send dem go).",
           "4": "Put how many tokens you wan bridge.",
           "5": "Check di bridge fee and how long e fit take before e reach.",
           "6": "Confirm di bridge transaction.",
-          "2": "Wetin you mean by \"source chain\"?",
           "7": "Di team go send di tokens for di destination chain, usually inside 1-5 working days."
         }
       },
@@ -13278,8 +13278,8 @@
         "title": "Post Info & Fractions",
         "intro": "Post wey get minted na NFT wey dey split into 1,000 pieces. Post Info page show data wey dey on-chain, stats of engagement, breakdown of ownership, and give you chance to trade pieces of any post — on post wey no get minted, e go offer to mint instead.",
         "tips": {
-          "2": "Di transaction hash dey link to BaseScan or BscScan, depending on di chain.",
           "1": "Oga don create new post, e start with am hold all 1,000 fractions (100% ownership).",
+          "2": "Di transaction hash dey link to BaseScan or BscScan, depending on di chain.",
           "3": "Post wey no dey list no go show for feed, but you fit still access am through link direct."
         }
       },
@@ -13293,21 +13293,21 @@
           "4": "Wen trade complete, change go show for your Fractions tab for mobile."
         },
         "tips": {
-          "3": "As creator, if you sell fractions, your fans fit co-own your content.",
           "1": "Wen yu dey own fraction of a post, na share of dat on-chain NFT yu dey hold.",
-          "2": "Check am for post holder wey dey online market place before buy am."
+          "2": "Check am for post holder wey dey online market place before buy am.",
+          "3": "As creator, if you sell fractions, your fans fit co-own your content."
         }
       },
       "minting-posts": {
         "intro": "Minting no be by force. Post go publish off-chain di moment you send am — no wallet, no signature, no gas — and you fit mint am as NFT anytime you want, either as you dey write am or later from di post itself.",
         "title": "Minting Posts (Creating NFTs)",
         "steps": {
-          "3": "Leave 'Mint post' off to publish off-chain, or on am to mint as you dey publish.",
-          "5": "To mint later, open di post 'ⓘ' info page and use di Mint action there.",
-          "6": "Once e don mint, di post go get Token ID and transaction hash wey you fit check on-chain, and you go hold all di 1,000 fractions of am.",
           "1": "Klik di 'Post' button for inside sidebar (desktop) or + button (mobile).",
           "2": "Wetin you wan write?",
-          "4": "Publishing no dey wait for chain: post go feed don, whether you like am or no."
+          "3": "Leave 'Mint post' off to publish off-chain, or on am to mint as you dey publish.",
+          "4": "Publishing no dey wait for chain: post go feed don, whether you like am or no.",
+          "5": "To mint later, open di post 'ⓘ' info page and use di Mint action there.",
+          "6": "Once e don mint, di post go get Token ID and transaction hash wey you fit check on-chain, and you go hold all di 1,000 fractions of am."
         },
         "tips": {
           "1": "Social, email and SMS sign-ins no dey pay any gas — DeHub dey pay di minting fees.",
@@ -13320,10 +13320,10 @@
         "title": "Word Meaning",
         "intro": "Glossari ya Crypto na Terminology ya Platform wey go help you navigate Web3.",
         "steps": {
+          "1": "Goto 'Glossary' from sidebar.",
           "2": "Check di terms from A to Z or use search to find di particular term wey you want.",
           "3": "Click any term to see im full meaning and explanation.",
-          "4": "Di terms cover crypto tins, DeFi words, and DeHub own features.",
-          "1": "Goto 'Glossary' from sidebar."
+          "4": "Di terms cover crypto tins, DeFi words, and DeHub own features."
         },
         "tips": {
           "1": "E good well well for people wey just dey start crypto and Web3.",
@@ -13334,14 +13334,14 @@
         "title": "Wetin You Fit Do with Posts",
         "intro": "Engage wit am by voting, comment, tip, bookmark, share, and translate.",
         "steps": {
+          "1": "Upvote or downvote post wey you like or no like using arrow icon wey dey left side of post.",
           "2": "Click di comment icon to open di comment section and drop reply.",
           "3": "Click di gem/tip icon to send tip for DeHub tokens to di person wey make di post.",
           "4": "Click di bookmark icon to save post for later.",
           "5": "Click di share icon to copy di post link or share am outside.",
           "6": "Click di translate button (globe icon) for any post to translate di text to your language.",
-          "8": "Click any post to open am for full-screen single-post view.",
-          "1": "Upvote or downvote post wey you like or no like using arrow icon wey dey left side of post.",
-          "7": "Pikin, use 'Translate Image' button don lande AI-translated version of text for image post."
+          "7": "Pikin, use 'Translate Image' button don lande AI-translated version of text for image post.",
+          "8": "Click any post to open am for full-screen single-post view."
         },
         "tips": {
           "1": "Tips dey go straight to di creator wallet for DeHub tokens.",
@@ -13353,12 +13353,12 @@
         "intro": "To post dey free every day up to one allowance wey dey grow with your staking badge. Everybody dey start with ten text posts and one gigabyte of video, images and audio every day. If you pass any of dem, you go pay for di rest of dat day with DeHub tokens — only for di part wey pass.",
         "title": "Na 1000 naira be your daily posting allowance.",
         "steps": {
-          "5": "Den you go approve one transfer for dat post only, and e go settle for whichever one between Base and BNB Chain wey get enough DeHub tokens.",
-          "6": "Both pools dey reset for midnight UTC.",
           "1": "Wen yu dey post as normal, for inside allowance, noting dey charge yu and noting dey ask yu.",
           "2": "Text post na separate pool, so one day wey you dey upload video, all ten text post go still dey free.",
           "3": "Wen post go pass, app go price am first and check if your wallet fit cover am before e go upload.",
-          "4": "Post go publish exactly as e dey inside di allowance — publishing no dey wait for payment."
+          "4": "Post go publish exactly as e dey inside di allowance — publishing no dey wait for payment.",
+          "5": "Den you go approve one transfer for dat post only, and e go settle for whichever one between Base and BNB Chain wey get enough DeHub tokens.",
+          "6": "Both pools dey reset for midnight UTC."
         },
         "tips": {
           "1": "Oversize na pro-rata: 200 MB pass your allowance dey cost 200 MB, no be whole gigabyte.",
@@ -13516,7 +13516,28 @@
     "step2Title": "E go build reach like one minute",
     "step2Body": "@assistant go write the app, host am, then send the link enter your messages.",
     "step3Title": "Share it or change it",
-    "step3Body": "Anybody fit open the link. Reply for the chat make you change anything."
+    "step3Body": "Anybody fit open the link. Reply for the chat make you change anything.",
+    "manage": {
+      "open": "Manage",
+      "address": "App address",
+      "copy": "Copy",
+      "copied": "Link copied",
+      "save": "Save",
+      "addressSaved": "Address updated",
+      "public": "Public",
+      "publicHint": "Na anyone wey get link go fit open am.",
+      "store": "DeHub app store",
+      "publishedToast": "Wen e come out for app store",
+      "inStore": "Wetin dey for app store.",
+      "inStoreUnreviewed": "For app store, una mark am \"Unreviewed\" until team check am.",
+      "viewInStore": "View in store",
+      "unpublish": "Unpublish",
+      "unpublished": "App don dey removed from store app.",
+      "versions": "Versions",
+      "current": "Current",
+      "restore": "Restore",
+      "restored": "Restored version {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

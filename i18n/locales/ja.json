@@ -13456,7 +13456,32 @@
     "step2Title": "約1分で構築されます",
     "step2Body": "@ assistantはアプリを書き込み、ホストし、メッセージへのリンクを送信します。",
     "step3Title": "共有または変更する",
-    "step3Body": "誰でもリンクを開くことができます。何かを変更するには、チャットで返信してください。"
+    "step3Body": "誰でもリンクを開くことができます。何かを変更するには、チャットで返信してください。",
+    "manage": {
+      "open": "管理",
+      "address": "アプリアドレス",
+      "copy": "コピー",
+      "copied": "リンクをコピーしました",
+      "save": "保存",
+      "addressSaved": "住所が更新されました",
+      "public": "公開",
+      "publicHint": "リンクを知っている人なら誰でも開くことができます。",
+      "privateHint": "あなただけが開くことができます。",
+      "store": "DeHubアプリストア",
+      "publishHint": "このアプリをDeHubアプリストアにリストアップして、人々がそれを見つけてインストールできるようにします。",
+      "publish": "アプリストアに公開",
+      "publishedToast": "アプリストアに公開されました",
+      "inStore": "アプリストアに掲載されています。",
+      "inStoreUnreviewed": "アプリストアで、チームが確認するまで[未確認]とマークされます。",
+      "viewInStore": "店舗で表示",
+      "unpublish": "非公開にする",
+      "unpublished": "アプリストアから削除されました",
+      "versions": "バージョン",
+      "noVersions": "保存されたバージョンはまだありません。",
+      "current": "現在",
+      "restore": "復元",
+      "restored": "復元されたバージョン{{version}}"
+    }
   },
   "depin": {
     "title": "デピン",

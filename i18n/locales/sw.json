@@ -13541,7 +13541,32 @@
     "step2Title": "Inajengeka kwa takribani dakika moja",
     "step2Body": "@assistant anaandika na kukaribisha wageni kwenye programu, kisha atume kiunganishi kwenye ujumbe wako.",
     "step3Title": "Ishiriki au uibadilishe",
-    "step3Body": "Mtu yeyote anaweza kufungua kiunganishi. Jibu kwenye gumzo ili ubadilishe chochote."
+    "step3Body": "Mtu yeyote anaweza kufungua kiunganishi. Jibu kwenye gumzo ili ubadilishe chochote.",
+    "manage": {
+      "open": "Simamia",
+      "address": "Anwani ya programu",
+      "copy": "Nakili",
+      "copied": "Kiunganishi kimenakiliwa",
+      "save": "Hifadhi",
+      "addressSaved": "Anwani imesasishwa",
+      "public": "Umma",
+      "publicHint": "Mtu yeyote aliye na kiunganishi anaweza kukifungua.",
+      "privateHint": "Ni wewe tu unaweza kuifungua.",
+      "store": "Duka la programu la DeHub",
+      "publishHint": "Tangaza programu hii kwenye duka la programu la DeHub ili watu waweze kuipata na kuisakinisha.",
+      "publish": "Chapisha kwenye duka la programu",
+      "publishedToast": "Imechapishwa kwenye duka la programu",
+      "inStore": "Imetangazwa kwenye duka la programu.",
+      "inStoreUnreviewed": "Katika duka la programu, alama Haijakaguliwa hadi timu itakapokagua.",
+      "viewInStore": "Angalia dukani",
+      "unpublish": "Ondoa uchapishaji",
+      "unpublished": "Imeondolewa kwenye duka la programu",
+      "versions": "Matoleo",
+      "noVersions": "Hakuna matoleo yaliyohifadhiwa bado.",
+      "current": "Sasa",
+      "restore": "Rejesha",
+      "restored": "Toleo lililorejeshwa {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

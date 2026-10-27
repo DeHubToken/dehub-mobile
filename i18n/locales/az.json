@@ -13540,7 +13540,32 @@
     "step2Title": "Təxminən bir dəqiqə sonra yaranır",
     "step2Body": "@köməkçi tətbiqi yazır və ona ev sahibliyi edir, sonra isə mesajlarınızın linkini göndərir.",
     "step3Title": "Paylaşın və ya dəyişdirin",
-    "step3Body": "İstənilən şəxs linki aça bilər. Nəyisə dəyişmək üçün söhbətdə cavab verin."
+    "step3Body": "İstənilən şəxs linki aça bilər. Nəyisə dəyişmək üçün söhbətdə cavab verin.",
+    "manage": {
+      "open": "İdarə et",
+      "address": "Tətbiqin ünvanı",
+      "copy": "Kopyala",
+      "copied": "Link kopyalandı",
+      "save": "Yaddaşda saxla",
+      "addressSaved": "Ünvan yeniləndi",
+      "public": "İctimai",
+      "publicHint": "Linki olan hər kəs onu aça bilər.",
+      "privateHint": "Onu yalnız siz aça bilərsiniz.",
+      "store": "DeHub tətbiq mağazası",
+      "publishHint": "Bu tətbiqin elanını DeHub tətbiq mağazasında yerləşdirin ki, insanlar onu tapıb quraşdıra bilsinlər.",
+      "publish": "Tətbiq mağazasına dərc edin",
+      "publishedToast": "Tətbiq mağazasına dərc edildi",
+      "inStore": "Tətbiq mağazasında aktivdir.",
+      "inStoreUnreviewed": "Tətbiq mağazasında komanda onu yoxlayana qədər baxılmamış qeyd edilib.",
+      "viewInStore": "Mağazada baxın",
+      "unpublish": "Dərcetməni ləğv et",
+      "unpublished": "Tətbiq mağazasından silindi",
+      "versions": "Versiyalar",
+      "noVersions": "Hələ yaddaşda saxlanmış versiya yoxdur.",
+      "current": "Cari",
+      "restore": "Bərpa et",
+      "restored": "Bərpa olunmuş versiya {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",
