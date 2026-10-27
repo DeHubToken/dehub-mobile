@@ -1,24 +1,26 @@
 import React from 'react';
-import { BackHandler } from 'react-native';
 import { act, create } from 'react-test-renderer';
 import { NavigationContext } from '@react-navigation/native';
 import { useBackPress } from '../../hooks/useBackPress';
 
-type Listener = () => boolean | null | undefined;
-let listeners: Listener[] = [];
+type Listener = () => boolean;
+let mockListeners: Listener[] = [];
 
-beforeEach(() => {
-  listeners = [];
-  jest.spyOn(BackHandler, 'addEventListener').mockImplementation((_event, fn) => {
-    listeners.push(fn as Listener);
-    return { remove: () => { listeners = listeners.filter((l) => l !== fn); } };
-  });
-});
+jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  BackHandler: {
+    addEventListener: (_event: string, fn: Listener) => {
+      mockListeners.push(fn);
+      return { remove: () => { mockListeners = mockListeners.filter((l) => l !== fn); } };
+    },
+  },
+}));
+jest.mock('@react-navigation/native', () => ({ NavigationContext: require('react').createContext(undefined) }));
 
-afterEach(() => jest.restoreAllMocks());
+beforeEach(() => { mockListeners = []; });
 
 /** What the app does: newest listener first, stop at the first that takes it. */
-const pressBack = () => [...listeners].reverse().some((l) => l());
+const pressBack = () => [...mockListeners].reverse().some((l) => l());
 
 function Layer({ onBack, enabled }: { onBack: () => void; enabled?: boolean }) {
   useBackPress(onBack, enabled);
