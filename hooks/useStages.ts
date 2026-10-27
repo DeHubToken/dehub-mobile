@@ -23,6 +23,7 @@ import { toastError, toastInfo } from "../libs/toast";
 import { persistableAvatar } from "../libs/misc";
 import env from "../config/env";
 import { getAuthToken } from "../libs/auth.utils";
+import { storageWalletHeaders } from '../libs/storage-upload';
 import { dehubAuthHeaders } from "../services/ai.service";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { deleteStageRecordings } from "../libs/stage-recording-delete";
@@ -1562,6 +1563,7 @@ export function useStages(): UseStagesReturn {
           httpMethod: "POST",
           uploadType: FileSystem.FileSystemUploadType.BINARY_CONTENT,
           headers: {
+            ...await storageWalletHeaders(),
             Authorization: `Bearer ${env.SUPABASE_PUBLISHABLE_KEY}`,
             apikey: env.SUPABASE_PUBLISHABLE_KEY,
             "Content-Type": RECORDING_MIME,
