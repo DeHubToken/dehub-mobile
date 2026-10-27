@@ -1609,6 +1609,109 @@ canvas{display:block;width:100%;height:100%;}
       });
   }
 
+  // ── reverse ──
+  // A span of one video played backwards, as a new file the editor imports
+  // like any other clip. Same steps as web's reverseMedia.ts: frames are read
+  // from the end of the span to its start on a private decoder, encoded with
+  // WebCodecs, and the sound is decoded and reversed sample by sample.
+  function reverseVideo(m) {
+    var blob = blobs.get(m.mediaId);
+    if (!state || exporting) { post({ type: "videoFailed", reqId: m.reqId, error: "busy" }); return; }
+    if (!blob || typeof VideoEncoder !== "function" || typeof VideoFrame !== "function") { post({ type: "videoFailed", reqId: m.reqId, error: "unsupported" }); return; }
+    stopPlaying(); exporting = true; exportAborted = false; videoJobId = m.reqId;
+    var job = m.reqId, start = Math.max(0, Number(m.start) || 0), end = Number(m.end) || 0, fps = 30;
+    var url = URL.createObjectURL(blob), v = document.createElement("video");
+    v.muted = true; v.playsInline = true; v.preload = "auto";
+    holder.appendChild(v);
+    var lastP = -1;
+    function progress(p) { var r = Math.round(p * 100); if (r !== lastP) { lastP = r; post({ type: "videoProgress", reqId: job, progress: p }); } }
+    function checkEncoding() { if (exportAborted || videoJobId !== job) throw new Error("aborted"); }
+    var venc = null, aenc = null;
+    new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () { reject(new Error("Video load timed out")); }, 20000);
+      v.onloadeddata = function () { clearTimeout(timer); resolve(); };
+      v.onerror = function () { clearTimeout(timer); reject(new Error("Video load failed")); };
+      v.src = url;
+    }).then(function () {
+      end = Math.min(end, v.duration || end);
+      if (!(end - start > 0.05)) throw new Error("Nothing to reverse");
+      var scale = Math.min(1, 1920 / Math.max(v.videoWidth, v.videoHeight, 1));
+      var W = Math.max(2, Math.floor(v.videoWidth * scale / 2) * 2), H = Math.max(2, Math.floor(v.videoHeight * scale / 2) * 2);
+      var bitrate = Math.round(Math.min(12000000, Math.max(2000000, W * H * fps * 0.12)));
+      return Promise.all([pickVideoConfig(W, H, fps, bitrate), blob.arrayBuffer().then(decodeAudio), audioSupported(), import(MUXER_URL)]).then(function (r) {
+        var vcfg = r[0], decoded = r[1], audioOk = r[2], M = r[3];
+        if (!vcfg) throw new Error("unsupported");
+        var sound = null;
+        if (decoded && audioOk) {
+          var from = Math.max(0, Math.floor(start * decoded.sampleRate)), to = Math.min(decoded.length, Math.ceil(end * decoded.sampleRate));
+          if (to - from > decoded.sampleRate * 0.05) {
+            sound = [0, 1].map(function (c) {
+              var src = decoded.getChannelData(Math.min(c, decoded.numberOfChannels - 1)), out = new Float32Array(to - from);
+              for (var i = 0; i < out.length; i++) out[i] = src[to - 1 - i];
+              return out;
+            });
+          }
+        }
+        var target = new M.ArrayBufferTarget();
+        var opts = { target: target, video: { codec: "avc", width: W, height: H, frameRate: fps }, fastStart: "in-memory", firstTimestampBehavior: "offset" };
+        if (sound) opts.audio = { codec: "aac", numberOfChannels: 2, sampleRate: decoded.sampleRate };
+        var muxer = new M.Muxer(opts), failure = null;
+        venc = new VideoEncoder({ output: function (chunk, meta) { muxer.addVideoChunk(chunk, meta); }, error: function (e) { failure = e; } });
+        venc.configure(vcfg);
+        var cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+        var g = cv.getContext("2d");
+        var total = Math.max(1, Math.round((end - start) * fps)), step = (end - start) / total, f = 0;
+        function check() { if (failure) throw failure; checkEncoding(); }
+        function frame() {
+          check();
+          if (f >= total) return Promise.resolve();
+          return seekVideo(v, Math.max(start, end - (f + 0.5) * step)).then(function () {
+            g.drawImage(v, 0, 0, W, H);
+            var vf = new VideoFrame(cv, { timestamp: Math.round((f / fps) * 1e6), duration: Math.round(1e6 / fps) });
+            try { venc.encode(vf, { keyFrame: f % (fps * 2) === 0 }); } finally { vf.close(); }
+            f++;
+            if (f % 3 === 0) progress((f / total) * 0.9);
+            return waitForEncoderCapacity(venc, 6, check).then(frame);
+          });
+        }
+        return frame().then(function () { return venc.flush(); }).then(function () {
+          venc.close();
+          if (!sound) return;
+          aenc = new AudioEncoder({ output: function (chunk, meta) { muxer.addAudioChunk(chunk, meta); }, error: function (e) { failure = e; } });
+          aenc.configure({ codec: "mp4a.40.2", sampleRate: decoded.sampleRate, numberOfChannels: 2, bitrate: 160000 });
+          var L = sound[0], R = sound[1], CH = 1024;
+          function encodeAudio(i) {
+            check();
+            if (i >= L.length) return aenc.flush();
+            var n = Math.min(CH, L.length - i), data = new Float32Array(n * 2);
+            for (var j = 0; j < n; j++) { data[j * 2] = L[i + j]; data[j * 2 + 1] = R[i + j]; }
+            var ad = new AudioData({ format: "f32", sampleRate: decoded.sampleRate, numberOfFrames: n, numberOfChannels: 2, timestamp: Math.round((i / decoded.sampleRate) * 1e6), data: data });
+            try { aenc.encode(ad); } finally { ad.close(); }
+            return waitForEncoderCapacity(aenc, 8, check).then(function () { return encodeAudio(i + CH); });
+          }
+          return encodeAudio(0).then(function () { aenc.close(); });
+        }).then(function () {
+          check();
+          muxer.finalize();
+          return new Blob([target.buffer], { type: "video/mp4" });
+        });
+      });
+    }).then(function (out) {
+      if (videoJobId !== job || exportAborted) return;
+      videoJobId = null; exporting = false; schedule();
+      outgoing.set(job, { blob: out, ext: "mp4", offset: 0 });
+      sendNextChunk(job);
+    }).catch(function (e) {
+      if (videoJobId !== job) return;
+      videoJobId = null; exporting = false; schedule();
+      post({ type: "videoFailed", reqId: job, error: String((e && e.message) || e) });
+    }).finally(function () {
+      if (venc && venc.state !== "closed") venc.close();
+      if (aenc && aenc.state !== "closed") aenc.close();
+      v.pause(); v.removeAttribute("src"); v.load(); v.remove(); URL.revokeObjectURL(url);
+    });
+  }
+
   // ── frame loop ──
   function render() {
     if (!state || exporting) return;
@@ -1956,6 +2059,8 @@ canvas{display:block;width:100%;height:100%;}
       finishMedia(m.id);
     } else if (m.type === "exportVideo") {
       exportVideo(m);
+    } else if (m.type === "reverseVideo") {
+      reverseVideo(m);
     } else if (m.type === "exportAbort") {
       exportAborted = true;
       videoJobId = null;
