@@ -941,6 +941,7 @@ export async function postAudioComment(input: PostAudioCommentInput): Promise<Po
       formData,
       { isAuthRequired: true }
     );
+    assertCommentAccepted(res);
     return res;
   } catch (e) {
     console.error('[NFTService] postAudioComment error', e);
