@@ -1210,9 +1210,12 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       // sheet beside it. Same as the web feed card, which opens the room.
       handleCardPress();
     } else if (tokenId != null) {
+      // Phones on Home: open the post in place with its comments in the
+      // bottom half and the post above, like Shorts. Video keeps the sheet.
+      if (!isVideo && openPostInFeedHost(tokenId, { comments: true })) return;
       setShowComments(true);
     }
-  }, [tokenId, onCommentPressProp, isLive, handleCardPress, setShowComments]);
+  }, [tokenId, onCommentPressProp, isLive, isVideo, handleCardPress, setShowComments]);
 
   // The sheet opens on release; its reads can start on touch-down.
   const queryClient = useQueryClient();
