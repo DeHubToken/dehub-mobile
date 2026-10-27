@@ -18,6 +18,7 @@ import {
   useWindowDimensions,
   Image,
   StyleSheet,
+  LayoutAnimation,
   type LayoutChangeEvent,
 } from "react-native";
 import { FlashList, type FlashListRef, type ListRenderItem, type ViewToken } from "@shopify/flash-list";
@@ -73,6 +74,11 @@ import { getNFT } from "../../services/nft.service";
 import { useBoostQueue } from "../../hooks/useSuperpowers";
 import { useAppTheme } from "../../context/ThemeContext";
 import { MINIMAL_TAB_LINE } from "../../theme/minimal";
+import { subscribe as subscribeStore, useSnapshot } from "valtio";
+import PendingPostCard from "../Upload/PendingPostCard";
+import { tokenIdOf } from "../Upload/PendingPostBody";
+import { postLandingActions, postLandingEvents, postLandingState, type PostLanding } from "../../libs/postLanding";
+import { uploadState } from "../../store/upload.store";
 
 export interface InfiniteVideoFeedHandle {
   scrollToTopAndRefresh: () => void;
@@ -90,6 +96,8 @@ interface InfiniteVideoFeedProps {
    * to the Home feed instead (HomeScreen).
    */
   answersTabPress?: boolean;
+  /** Home's main feed: a post the reader just sent lands at its top (libs/postLanding). */
+  showPendingPost?: boolean;
   contentContainerStyle?: any;
   headerComponent?: React.ReactNode;
   headerInset?: number;
@@ -164,7 +172,22 @@ const SETTLE_AFTER_DRAG_MS = 120;
 const DEFAULT_BANNER = require("../../assets/default-banner.png");
 const DEFAULT_AVATAR = require("../../assets/default-avatar.png");
 
-type FeedRow = UnifiedFeedItem & { __listKey: string; __boosted?: boolean; __shortsIndex?: number; __synthetic?: "header" | "suggested" | "shorts" };
+// The slot opening under the card: the rows below glide down; the card
+// brings itself in (PendingPostCard).
+const LANDING_INSERT = {
+  duration: 420,
+  update: { type: LayoutAnimation.Types.easeInEaseOut },
+};
+// The card and the real post trading places: one fades out as the other
+// fades in, and anything that moves glides.
+const LANDING_SWAP = {
+  duration: 340,
+  create: { type: LayoutAnimation.Types.easeInEaseOut, property: LayoutAnimation.Properties.opacity },
+  update: { type: LayoutAnimation.Types.easeInEaseOut },
+  delete: { type: LayoutAnimation.Types.easeInEaseOut, property: LayoutAnimation.Properties.opacity },
+};
+
+type FeedRow = UnifiedFeedItem & { __listKey: string; __boosted?: boolean; __shortsIndex?: number; __synthetic?: "header" | "suggested" | "shorts" | "pending" };
 
 // Reanimated's wrapper, created once. It attaches the header worklet through
 // FlashList's getScrollableNode and gives FlashList a no-op onScroll; FlashList
@@ -187,6 +210,17 @@ const SUGGEST_AFTER_INDEX = 4;
 // recycled post cell is never asked to grow a carousel it did not have.
 const HEADER_ROW = { __listKey: "__feed-header", __synthetic: "header" } as FeedRow;
 const SUGGESTED_ROW = { __listKey: "__suggested-accounts", __synthetic: "suggested" } as FeedRow;
+// A post of the reader's own landing at the top (libs/postLanding).
+const PENDING_ROW = { __listKey: "__pending-post", __synthetic: "pending" } as FeedRow;
+
+/** The landing card is in the list while it comes in and while it rests there. */
+function landingInList(landing: Pick<PostLanding, "phase"> | null | undefined): boolean {
+  return !!landing && (landing.phase === "arriving" || landing.phase === "shown");
+}
+const sameToken = (item: unknown, tokenId: number) => {
+  const it = item as { tokenId?: unknown; id?: unknown };
+  return String(it.tokenId ?? it.id ?? "") === String(tokenId);
+};
 
 const DEFAULT_CONTENT_STYLE = { paddingHorizontal: 8, paddingTop: 4, paddingBottom: TAB_BAR_CONTENT_INSET };
 const FLUSH_CONTENT_STYLE = { ...DEFAULT_CONTENT_STYLE, paddingTop: 0 };
@@ -294,6 +328,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   pageSize = 10,
   active = true,
   answersTabPress = true,
+  showPendingPost = false,
   contentContainerStyle,
   headerComponent,
   headerInset = 0,
@@ -746,7 +781,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     retry: false,
   });
 
-  const feedItems = useMemo<FeedItem[]>(() => {
+  const rankedItems = useMemo<FeedItem[]>(() => {
     const post = (boostedPost as any)?.result;
 
     // Nothing to prepend, so leave the list exactly as it was. Filtering the
@@ -789,6 +824,62 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
       ...rest,
     ];
   }, [cappedItems, boostedTokenId, boostedPost, boostSlot?.bookingId, queuedBoostPosts]);
+
+  // A post the reader just sent. Its card stands in at the top while the
+  // feed catches up, with the real post held back so it never shows twice;
+  // once they trade places the real post stays first until a refresh.
+  const { landing, pinnedTokenId } = useSnapshot(postLandingState);
+  const pendingShown = showPendingPost && landingInList(landing);
+  const pendingJobId = pendingShown ? landing!.jobId : undefined;
+  const [pendingTokenId, setPendingTokenId] = useState<number | undefined>(undefined);
+  useEffect(() => {
+    // Only the post's id, not every progress tick, reaches the list.
+    const read = () => setPendingTokenId(tokenIdOf(uploadState.jobs.find(j => j.id === pendingJobId)));
+    read();
+    if (!pendingJobId) return;
+    return subscribeStore(uploadState, read);
+  }, [pendingJobId]);
+  const pendingRealItem = useMemo(
+    () => pendingShown && pendingTokenId != null ? rankedItems.find(it => !(it as FeedRow).__boosted && sameToken(it, pendingTokenId)) : undefined,
+    [pendingShown, pendingTokenId, rankedItems],
+  );
+  const feedItems = useMemo<FeedItem[]>(() => {
+    if (!showPendingPost) return rankedItems;
+    // The card takes the first post's place, the one the real post takes
+    // after it, so the shorts and suggestions below stay where they are.
+    if (pendingShown) {
+      const rest = pendingTokenId == null ? rankedItems : rankedItems.filter(it => !sameToken(it, pendingTokenId));
+      return [PENDING_ROW as FeedItem, ...rest];
+    }
+    if (pinnedTokenId == null) return rankedItems;
+    const pinned = rankedItems.find(it => !(it as FeedRow).__boosted && sameToken(it, pinnedTokenId));
+    return pinned ? [pinned, ...rankedItems.filter(it => it !== pinned)] : rankedItems;
+  }, [showPendingPost, pendingShown, pendingTokenId, pinnedTokenId, rankedItems]);
+
+  // The card coming in, and the card giving way, animate the rows around
+  // them. Configured as the landing changes and before React renders it.
+  useEffect(() => {
+    if (!showPendingPost) return;
+    let shown = landingInList(postLandingState.landing);
+    return subscribeStore(postLandingState, () => {
+      const next = landingInList(postLandingState.landing);
+      if (next === shown) return;
+      shown = next;
+      if (!activeRef.current) return;
+      try { listRef.current?.prepareForLayoutAnimationRender(); } catch {}
+      LayoutAnimation.configureNext(next ? LANDING_INSERT : LANDING_SWAP);
+    }, true);
+  }, [showPendingPost]);
+
+  // A landing starts with the composer still over the list: go back to the
+  // top so the card lands in view.
+  useEffect(() => {
+    if (!showPendingPost) return;
+    return postLandingEvents.onBegin(() => {
+      listRef.current?.scrollToOffset({ offset: 0, animated: false });
+      prevYRef.current = 0;
+    });
+  }, [showPendingPost]);
 
   const shortsRotation = useHomeShortsCarousel(showShortsCarousel, feedItems.length, active);
   const shortsBatches = shortsRotation.batches;
@@ -977,6 +1068,8 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     // Call external refresh callback (e.g., to refresh shuffle seed)
     onRefreshProp?.();
     shortsRotation.refresh();
+    // A refresh the reader asked for lets their new post fall into its place.
+    if (showPendingPost) postLandingActions.unpin();
     // Keep existing items so the RefreshControl spinner is visible (no skeleton snap).
     setRefreshing(true);
     try {
@@ -992,7 +1085,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     } finally {
       setRefreshing(false);
     }
-  }, [refetch, onRefreshProp, queryClient, queryKey, shortsRotation.refresh]);
+  }, [refetch, onRefreshProp, queryClient, queryKey, shortsRotation.refresh, showPendingPost]);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", (event) => {
@@ -1008,10 +1101,25 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Listen for feed refresh requests (e.g., after a new post is uploaded)
   useEffect(() => {
-    return feedEvents.onRefreshRequested(() => {
-      onRefresh();
+    return feedEvents.onRefreshRequested(({ quiet }) => {
+      if (!quiet) {
+        onRefresh();
+        return;
+      }
+      // A reader who has scrolled on keeps their place; the list picks the
+      // post up the next time it is fetched.
+      if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) {
+        void queryClient.invalidateQueries({ queryKey, refetchType: 'none' });
+        return;
+      }
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
+      void refetch();
     });
-  }, [onRefresh]);
+  }, [onRefresh, readOffset, queryClient, queryKey, refetch]);
 
   const handleRetry = useCallback(() => {
     try { onRetry && onRetry(); } catch {}
@@ -1175,6 +1283,11 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     ({ item }) => {
       if (item.__synthetic === "header") return headerBlock;
       if (item.__synthetic === "suggested") return <SuggestedAccountsSection />;
+      if (item.__synthetic === "pending") {
+        return landing ? (
+          <PendingPostCard jobId={landing.jobId} style={landing.style} realItem={pendingRealItem} topInset={firstCardInset} />
+        ) : null;
+      }
       if (item.__synthetic === "shorts") return <ShortsCarousel
         key={item.__listKey}
         items={shortsBatches[item.__shortsIndex ?? 0] ?? []}
@@ -1194,7 +1307,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     },
     // Stable across a tab switch on purpose: `active` and focus reach the rows
     // through the store (see setLive above), never through this callback.
-    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKeys, shortsBatches, shortsRotation.onViewerOpen, shortsRotation.offsets],
+    [visibilityStore, onCategorySelect, headerBlock, firstCardInset, firstRowKey, beforeSuggestedKey, beforeShortsKeys, shortsBatches, shortsRotation.onViewerOpen, shortsRotation.offsets, landing, pendingRealItem],
   );
 
   // One fixed-height slot for all three footer states. Previously the footer

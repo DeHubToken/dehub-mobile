@@ -38,6 +38,7 @@ import ThemePicker from './ThemePicker';
 import ThemeColorPicker from './ThemeColorPicker';
 import { hasThemeColor } from '../../theme/themeColor';
 import { useAppPrefs, setAppPref } from '../../hooks/useAppPrefs';
+import { POST_LANDING_STYLES, isPostLandingStyle, type PostLandingStyle } from '../../libs/postLandingStyle';
 import { useDataSaver, setDataSaverPref } from '../../hooks/useDataSaver';
 import { useShortsEnabled } from '../../hooks/useShortsEnabled';
 import { useHighQualityImages, setHighQualityImages } from '../../libs/cdnImage';
@@ -88,6 +89,19 @@ const AppearancePanel: React.FC = () => {
   // Default feed + saved toggles (libs/feed-defaults), shared with web.
   const [defaultFeed, setDefaultFeed] = useState<AppFeedTab>(() => getDefaultFeedTab());
   const [feedModalVisible, setFeedModalVisible] = useState(false);
+  const [landingModalVisible, setLandingModalVisible] = useState(false);
+  const landingLabel = (style: PostLandingStyle) => ({
+    ghost: t('settings.postLandingGhost', 'Ghost slot'),
+    morph: t('settings.postLandingMorph', 'Morph'),
+    pill: t('settings.postLandingPill', 'Pill to card'),
+    drop: t('settings.postLandingDrop', 'Drop in'),
+  })[style];
+  const landingDescription = (style: PostLandingStyle) => ({
+    ghost: t('settings.postLandingGhostDesc', 'Your feed makes room and your post fades into place'),
+    morph: t('settings.postLandingMorphDesc', 'The composer shrinks into your post'),
+    pill: t('settings.postLandingPillDesc', 'The upload bar opens out into your post once it is up'),
+    drop: t('settings.postLandingDropDesc', 'Your post drops in from the top with a little bounce'),
+  })[style];
   const [savedToggles, setSavedToggles] = useState(() => hasFeedToggles());
   useEffect(() => feedDefaultsEvents.subscribe(() => {
     setSavedToggles(hasFeedToggles());
@@ -195,6 +209,17 @@ const AppearancePanel: React.FC = () => {
             }}
           />
         </SettingsAnchor>
+        <Divider />
+        {/* How a post you just sent lands at the top of Home (libs/postLanding). */}
+        <SettingsAnchor id="post-landing">
+          <SettingsLinkRow
+            icon="WandSparkles"
+            label={t('settings.postLanding', 'After you post')}
+            description={t('settings.postLandingDesc', 'How your new post lands in your feed')}
+            value={landingLabel(prefs.postLanding)}
+            onPress={() => setLandingModalVisible(true)}
+          />
+        </SettingsAnchor>
       </SettingsSection>
 
       <SettingsSection label={t('settings.media')} icon="Play" anchor="media">
@@ -282,6 +307,22 @@ const AppearancePanel: React.FC = () => {
           onPress={resetChannelSpeeds}
         />
       </SettingsSection>
+
+      <SettingsOptionModal
+        visible={landingModalVisible}
+        onClose={() => setLandingModalVisible(false)}
+        title={t('settings.postLanding', 'After you post')}
+        value={prefs.postLanding}
+        options={POST_LANDING_STYLES.map((style) => ({
+          value: style,
+          label: landingLabel(style),
+          description: landingDescription(style),
+        }))}
+        onSelect={(value) => {
+          if (isPostLandingStyle(value)) setAppPref('postLanding', value);
+        }}
+        maxHeight="70%"
+      />
 
       <SettingsOptionModal
         visible={feedModalVisible}
