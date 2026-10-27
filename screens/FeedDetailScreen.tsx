@@ -74,6 +74,7 @@ const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
 
 /** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
 type ThreadedComment = Comment & { depth: number };
+const EMPTY_COMMENTS: ThreadedComment[] = [];
 
 
 /**
@@ -120,7 +121,6 @@ const REPLIES_SHOWN_COLLAPSED = 1;
 
 /** Post types that open immersive: media edge to edge at the top, no top bar. */
 const IMMERSIVE_TYPES = new Set<ReturnType<typeof resolveContentType>>(["video", "short", "image"]);
-const EMPTY_COMMENTS: Comment[] = [];
 
 // Rows are px-8, the avatar is 32 wide and CommentItem pads it 10 from the top,
 // so the line runs at x = 32 + 16 and the avatar's centre sits at y = 26.
