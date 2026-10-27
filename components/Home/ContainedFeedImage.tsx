@@ -1,8 +1,9 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { Image } from "expo-image";
 import { ActivityIndicator, Pressable, Text, View, useWindowDimensions, type LayoutChangeEvent } from "react-native";
 import { useTranslation } from 'react-i18next';
 import { FEED_BENTO_RADIUS, fitFeedImageWithin } from "../../libs/feed-image-layout";
-import { useImageAspect } from "../../hooks/useImageAspect";
+import { rememberImageAspect, useImageAspect } from "../../hooks/useImageAspect";
 import { useFeedFrameAspect } from "../../hooks/useFeedFrameAspect";
 import SmartImage from "../common/SmartImage";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -60,7 +61,27 @@ const ContainedFeedImage: React.FC<ContainedFeedImageProps> = ({
   const animate = useSettledAutoplay(active, uri, 400);
   const source = useMemo(() => ({ uri }), [uri]);
   const { ratio: ownAspect, measured: ownMeasured, onLoad } = useImageAspect(uri);
-  const measured = ownMeasured ?? aspect ?? null;
+  // Measured ahead from a small decode as soon as the row mounts, so the frame
+  // takes the photo's real shape before it scrolls in instead of holding the
+  // 4:3 guess and snapping once the full bitmap lands. 512px keeps the ratio
+  // inside useImageAspect's rounding tolerance, so the later load agrees.
+  const [probed, setProbed] = useState<{ uri: string; ratio: number }>();
+  const unknown = ownMeasured == null && aspect == null;
+  useEffect(() => {
+    if (!unknown || typeof Image.loadAsync !== "function") return;
+    let live = true;
+    Image.loadAsync(uri, { maxWidth: 512, maxHeight: 512 })
+      .then(ref => {
+        const { width, height } = ref;
+        ref.release();
+        if (!width || !height) return;
+        rememberImageAspect(uri, width / height);
+        if (live) setProbed({ uri, ratio: width / height });
+      })
+      .catch(() => {});
+    return () => { live = false; };
+  }, [uri, unknown]);
+  const measured = ownMeasured ?? aspect ?? (probed?.uri === uri ? probed.ratio : null);
   const measuredAspect = measured ?? ownAspect;
   // Pass the real shape as `measured` so a frame held at the placeholder shape
   // while the card scrolled in is corrected once the photo loads; without it
