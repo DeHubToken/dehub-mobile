@@ -9975,6 +9975,20 @@
       "adding": "Toevoegen aan Media…",
       "added": "Geïmporteerd en aan de tijdlijn toegevoegd.",
       "failed": "Kon die link niet importeren."
+    },
+    "reverse": {
+      "action": "Omkeren",
+      "working": "Omkeren {{percent}}%",
+      "done": "Clip omgekeerd.",
+      "failed": "Kon deze clip niet omkeren.",
+      "unsupported": "Deze browser kan video niet omkeren. Probeer Chrome of Edge.",
+      "tooLong": "Clips tot {{seconds}} seconden kunnen worden omgekeerd."
+    },
+    "behind": {
+      "action": "Tekst achter persoon",
+      "working": "Persoon uitknippen…",
+      "done": "Tekst en ondertitels staan nu achter de persoon.",
+      "failed": "Kon de tekst niet achter de persoon zetten."
     }
   },
   "creator": {
