@@ -13498,7 +13498,32 @@
     "step2Title": "Es baut sich in etwa einer Minute auf",
     "step2Body": "@assistant schreibt und hostet die App und sendet dann den Link zu deinen Nachrichten.",
     "step3Title": "Teilen oder ändern",
-    "step3Body": "Jeder kann den Link öffnen. Antworte im Chat, um etwas zu ändern."
+    "step3Body": "Jeder kann den Link öffnen. Antworte im Chat, um etwas zu ändern.",
+    "manage": {
+      "open": "Verwalten",
+      "address": "App-Adresse",
+      "copy": "Kopie",
+      "copied": "Link kopiert",
+      "save": "Speichern",
+      "addressSaved": "Adresse aktualisiert",
+      "public": "Öffentlich",
+      "publicHint": "Jeder, der über den Link verfügt, kann ihn öffnen.",
+      "privateHint": "Nur du kannst es öffnen.",
+      "store": "DeHub App Store",
+      "publishHint": "Listen Sie diese App im DeHub App Store auf, damit die Leute sie finden und installieren können.",
+      "publish": "Im App Store veröffentlichen",
+      "publishedToast": "Im App Store veröffentlicht",
+      "inStore": "Im App Store gelistet.",
+      "inStoreUnreviewed": "Markieren Sie im App Store als Nicht überprüft, bis das Team es überprüft.",
+      "viewInStore": "Im Geschäft ansehen",
+      "unpublish": "Veröffentlichung aufheben",
+      "unpublished": "Aus dem App Store entfernt",
+      "versions": "Versionen",
+      "noVersions": "Noch keine gespeicherten Versionen.",
+      "current": "Aktuell",
+      "restore": "Wiederherstellen",
+      "restored": "Wiederhergestellte Version {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

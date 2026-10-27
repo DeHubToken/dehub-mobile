@@ -13540,7 +13540,32 @@
     "step2Title": "Tas izveidojas aptuveni minūtes laikā",
     "step2Body": "@assistant raksta un uzņem viesus aplikācijā, pēc tam nosūta saiti uz jūsu ziņojumiem.",
     "step3Title": "Nosūtiet to citiem vai mainiet",
-    "step3Body": "Ikviens var atvērt saiti. Lai kaut ko mainītu, atbildiet tērzēšanā."
+    "step3Body": "Ikviens var atvērt saiti. Lai kaut ko mainītu, atbildiet tērzēšanā.",
+    "manage": {
+      "open": "Pārvaldīt",
+      "address": "Lietotnes adrese",
+      "copy": "Kopēt",
+      "copied": "Saite nokopēta",
+      "save": "Saglabāt",
+      "addressSaved": "Adrese atjaunināta",
+      "public": "Publisks",
+      "publicHint": "Ikviens, kam ir saite, var to atvērt.",
+      "privateHint": "Tikai jūs varat to atvērt.",
+      "store": "DeHub lietotņu veikals",
+      "publishHint": "Publicējiet šo lietotni DeHub lietotņu veikalā, lai cilvēki varētu to atrast un instalēt.",
+      "publish": "Publicēt lietotņu veikalā",
+      "publishedToast": "Publicēts lietotņu veikalā",
+      "inStore": "Publicēts lietotņu veikalā.",
+      "inStoreUnreviewed": "Lietotņu veikalā atzīmēts kā Nepārskatīts, līdz komanda to pārbauda.",
+      "viewInStore": "Skatīt veikalā",
+      "unpublish": "Atcelt publicēšanu",
+      "unpublished": "Noņemts no lietotņu veikala",
+      "versions": "Versijas",
+      "noVersions": "Pagaidām nav saglabātu versiju.",
+      "current": "Pašreizējais",
+      "restore": "Atjaunot",
+      "restored": "Atjaunotā versija {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

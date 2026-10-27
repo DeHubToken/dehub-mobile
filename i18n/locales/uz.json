@@ -13595,7 +13595,32 @@
     "step2Title": "Taxminan bir daqiqada quriladi",
     "step2Body": "@assistant ilovani yozadi va joylashtiradi, so'ngra xabarlaringizga havolani yuboradi.",
     "step3Title": "Uni ulashing yoki o'zgartiring",
-    "step3Body": "Havolani istalgan kishi ochishi mumkin. Biror narsani o'zgartirish uchun chatda javob bering."
+    "step3Body": "Havolani istalgan kishi ochishi mumkin. Biror narsani o'zgartirish uchun chatda javob bering.",
+    "manage": {
+      "open": "Boshqarish",
+      "address": "Ilova manzili",
+      "copy": "Nusxalash",
+      "copied": "Havola nusxalandi",
+      "save": "Saqlash",
+      "addressSaved": "Manzil yangilandi",
+      "public": "Ommaviy",
+      "publicHint": "Havolaga ega bo'lgan har kim uni ochishi mumkin.",
+      "privateHint": "Uni faqat siz ochishingiz mumkin.",
+      "store": "DeHub ilovalar do'koni",
+      "publishHint": "Odamlar uni topishi va o'rnatishi uchun ushbu ilovani DeHub ilovalar do'konida ro'yxatlang.",
+      "publish": "Ilovalar do'koniga nashr qilish",
+      "publishedToast": "Ilovalar do'koniga joylashtirildi",
+      "inStore": "Ilovalar do'konida ro'yxatga olingan.",
+      "inStoreUnreviewed": "Ilovalar do'konida, jamoa tekshirmaguncha, ko'rib chiqilmagan deb belgilangan.",
+      "viewInStore": "Do'konda ko'rish",
+      "unpublish": "Nashrni bekor qilish",
+      "unpublished": "Ilovalar do'konidan olib tashlandi",
+      "versions": "Versiyalar",
+      "noVersions": "Hali saqlanmagan versiyalar mavjud.",
+      "current": "Hozirgi",
+      "restore": "Qayta tiklash",
+      "restored": "Qayta tiklangan versiya {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

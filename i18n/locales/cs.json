@@ -13544,7 +13544,32 @@
     "step2Title": "Staví se asi za minutu",
     "step2Body": "@assistant napíše a hostuje aplikaci a pak pošle odkaz na tvé zprávy.",
     "step3Title": "Sdílej nebo změň",
-    "step3Body": "Odkaz může otevřít kdokoli. Chcete-li cokoli změnit, odpovězte v chatu."
+    "step3Body": "Odkaz může otevřít kdokoli. Chcete-li cokoli změnit, odpovězte v chatu.",
+    "manage": {
+      "open": "Spravovat",
+      "address": "Adresa aplikace",
+      "copy": "Kopírovat",
+      "copied": "Odkaz zkopírován",
+      "save": "Uložit",
+      "addressSaved": "Adresa byla aktualizována",
+      "public": "Veřejné",
+      "publicHint": "Každý, kdo má odkaz, ho může otevřít.",
+      "privateHint": "Pouze vy jej můžete otevřít.",
+      "store": "Obchod s aplikacemi DeHub",
+      "publishHint": "Nabídněte tuto aplikaci v obchodě s aplikacemi DeHub, aby ji lidé mohli najít a nainstalovat.",
+      "publish": "Zveřejnit v obchodě s aplikacemi",
+      "publishedToast": "Zveřejněno v obchodě s aplikacemi",
+      "inStore": "Zveřejněno v obchodě s aplikacemi.",
+      "inStoreUnreviewed": "V obchodě s aplikacemi označ jako Nekontrolováno, dokud to tým nezkontroluje.",
+      "viewInStore": "Zobrazit v obchodě",
+      "unpublish": "Zrušit zveřejnění",
+      "unpublished": "Odebráno z obchodu s aplikacemi",
+      "versions": "Verze",
+      "noVersions": "Zatím žádné uložené verze.",
+      "current": "Aktuální",
+      "restore": "Obnovit",
+      "restored": "Obnovená verze {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

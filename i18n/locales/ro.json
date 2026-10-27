@@ -13554,7 +13554,32 @@
     "step2Title": "Se construiește în aproximativ un minut",
     "step2Body": "@asistent scrie și găzduiește aplicația, apoi trimite linkul către mesajele tale.",
     "step3Title": "Distribuiți-l sau modificați-l",
-    "step3Body": "Oricine poate deschide linkul. Răspundeți în chat pentru a schimba ceva."
+    "step3Body": "Oricine poate deschide linkul. Răspundeți în chat pentru a schimba ceva.",
+    "manage": {
+      "open": "Gestionează",
+      "address": "Adresa aplicației",
+      "copy": "Copiază",
+      "copied": "Link copiat",
+      "save": "Salvează",
+      "addressSaved": "Adresa a fost actualizată",
+      "public": "Public",
+      "publicHint": "Oricine are linkul îl poate deschide.",
+      "privateHint": "Numai tu o poți deschide.",
+      "store": "Magazin de aplicații DeHub",
+      "publishHint": "Înregistrați această aplicație în magazinul de aplicații DeHub, astfel încât oamenii să o poată găsi și instala.",
+      "publish": "Publică în magazinul de aplicații",
+      "publishedToast": "Publicat în magazinul de aplicații",
+      "inStore": "Înregistrat în magazinul de aplicații.",
+      "inStoreUnreviewed": "În magazinul de aplicații, marcată Unreviewed până când echipa o verifică.",
+      "viewInStore": "Afișează în magazin",
+      "unpublish": "Anulează publicarea",
+      "unpublished": "Eliminat din magazinul de aplicații",
+      "versions": "Versiuni",
+      "noVersions": "Încă nu există versiuni salvate.",
+      "current": "Curent",
+      "restore": "Restabilire",
+      "restored": "Versiunea restaurată {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

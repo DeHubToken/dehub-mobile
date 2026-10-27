@@ -13528,7 +13528,32 @@
     "step2Title": "Ọ na-ewuli n 'ime ihe dị ka nkeji",
     "step2Body": "@nnyemaaka na-ede ma na-akwado ngwa ahụ, wee zipụ njikọ ahụ na ozi gị.",
     "step3Title": "Kekọrịta ya ma ọ bụ gbanwee ya",
-    "step3Body": "Onye ọbụla nwere ike imepe njikọ ahụ. Zaa na nkata iji gbanwee ihe ọ bụla."
+    "step3Body": "Onye ọbụla nwere ike imepe njikọ ahụ. Zaa na nkata iji gbanwee ihe ọ bụla.",
+    "manage": {
+      "open": "Jikwaa",
+      "address": "Adreesị ngwa",
+      "copy": "Debata",
+      "copied": "Edebata ụzọ njikọ",
+      "save": "Chekwaa",
+      "addressSaved": "Emelitere adresị",
+      "public": "Public",
+      "publicHint": "Onye ọbụla nwere njikọ ahụ nwere ike imepe ya.",
+      "privateHint": "Naanị gị nwere ike imepe ya.",
+      "store": "DeHub ngwa ụlọ ahịa",
+      "publishHint": "Depụta ngwa a na ụlọ ahịa ngwa DeHub ka ndị mmadụ wee chọta ma wụnye ya.",
+      "publish": "Bipute ka App ụlọ ahịa",
+      "publishedToast": "Bipụtara App ụlọ ahịa",
+      "inStore": "E depụtara ya na ụlọ ahịa App.",
+      "inStoreUnreviewed": "N 'ụlọ ahịa ngwa, akara Unreviewed ruo mgbe otu na-enyocha ya.",
+      "viewInStore": "Gosi na ụlọ ahịa",
+      "unpublish": "Unpublish",
+      "unpublished": "Wepụ si App ụlọ ahịa",
+      "versions": "Versions",
+      "noVersions": "Enweghị nsụgharị echekwara ma.",
+      "current": "Ugbu a",
+      "restore": "Weghachi",
+      "restored": "E weghachitere ụdị {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

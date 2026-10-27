@@ -13544,7 +13544,32 @@
     "step2Title": "Det byggs på ungefär en minut",
     "step2Body": "@assistant skriver och är värd för appen och skickar sedan länken till dina meddelanden.",
     "step3Title": "Dela den eller ändra den",
-    "step3Body": "Vem som helst kan öppna länken. Svara i chatten för att ändra något."
+    "step3Body": "Vem som helst kan öppna länken. Svara i chatten för att ändra något.",
+    "manage": {
+      "open": "Hantera",
+      "address": "Appadress",
+      "copy": "Kopiera",
+      "copied": "Länk kopierad",
+      "save": "Spara",
+      "addressSaved": "Adressen har uppdaterats",
+      "public": "Offentlig",
+      "publicHint": "Vem som helst med länken kan öppna den.",
+      "privateHint": "Bara du kan öppna den.",
+      "store": "DeHub App Store",
+      "publishHint": "Lista den här appen i DeHubs appbutik så att folk kan hitta och installera den.",
+      "publish": "Publicera i appbutik",
+      "publishedToast": "Publicerad i appbutiken",
+      "inStore": "Annonserad i appbutiken.",
+      "inStoreUnreviewed": "Markera Ej granskad i appbutiken tills teamet kontrollerar den.",
+      "viewInStore": "Visa i butik",
+      "unpublish": "Avpublicera",
+      "unpublished": "Borttagen från appbutiken",
+      "versions": "Versioner",
+      "noVersions": "Inga sparade versioner ännu.",
+      "current": "Aktuell",
+      "restore": "Återställ",
+      "restored": "Återställd version {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

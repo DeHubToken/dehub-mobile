@@ -13528,7 +13528,32 @@
     "step2Title": "มันสร้างเสร็จในประมาณหนึ่งนาที",
     "step2Body": "@assistant เขียนและโฮสต์แอป แล้วส่งลิงก์ไปยังข้อความของคุณ",
     "step3Title": "แชร์หรือเปลี่ยนแปลงมัน",
-    "step3Body": "ใครก็เปิดลิงก์ได้ ตอบกลับในแชทเพื่อเปลี่ยนแปลงอะไรก็ได้"
+    "step3Body": "ใครก็เปิดลิงก์ได้ ตอบกลับในแชทเพื่อเปลี่ยนแปลงอะไรก็ได้",
+    "manage": {
+      "open": "จัดการ",
+      "address": "ที่อยู่แอป",
+      "copy": "คัดลอก",
+      "copied": "ลิงก์ถูกคัดลอก",
+      "save": "บันทึก",
+      "addressSaved": "ที่อยู่ถูกแก้ไข",
+      "public": "สาธารณะ",
+      "publicHint": "ผู้ใช้ทุกคนสามารถเปิดได้",
+      "privateHint": "เพียงคุณเท่านั้นที่สามารถเปิดได้",
+      "store": "DeHub app store",
+      "publishHint": "บันทึกแอปนี้ใน DeHub app store เพื่อให้ผู้ใช้สามารถค้นหาและติดตั้งได้",
+      "publish": "เผยแพร่ใน app store",
+      "publishedToast": "เผยแพร่ใน app store",
+      "inStore": "แสดงใน app store",
+      "inStoreUnreviewed": "ใน app store มีเครื่องหมาย Unreviewed จนกว่าทีมจะตรวจสอบ",
+      "viewInStore": "ดูใน store",
+      "unpublish": "ไม่เผยแพร่",
+      "unpublished": "ถูกลบออกจาก app store",
+      "versions": "เวอร์ชัน",
+      "noVersions": "ยังไม่มีเวอร์ชันที่บันทึก",
+      "current": "ปัจจุบัน",
+      "restore": "ฟื้นฟู",
+      "restored": "ฟื้นฟูเวอร์ชัน {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

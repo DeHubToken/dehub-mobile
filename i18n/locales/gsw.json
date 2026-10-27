@@ -13558,7 +13558,32 @@
     "step2Title": "Es wird in ungefär e Minute gebaut",
     "step2Body": "@assistant schreibt und hostet d App, und schickt dä Link i dine Nachrichtä.",
     "step3Title": "Teile es oder ändere es",
-    "step3Body": "Jedä cha dä Link öppne. Antwort i de Chat, wenn du öppis ändere wotsch."
+    "step3Body": "Jedä cha dä Link öppne. Antwort i de Chat, wenn du öppis ändere wotsch.",
+    "manage": {
+      "open": "Verwalte",
+      "address": "App-Adresse",
+      "copy": "Kopiere",
+      "copied": "Link kopiert",
+      "save": "Speichere",
+      "addressSaved": "Adresse aktualisiert",
+      "public": "Öffentlich",
+      "publicHint": "Jeder mit dem Link kann es öffnen.",
+      "privateHint": "Nur du kannst es öffnen.",
+      "store": "DeHub App-Store",
+      "publishHint": "Liste diese App im DeHub App-Store, damit Leute sie finden und installieren können.",
+      "publish": "Veröffentliche im App-Store",
+      "publishedToast": "Veröffentlicht im App-Store",
+      "inStore": "In App-Store aufgelistet.",
+      "inStoreUnreviewed": "Im App-Store markiert als \"Ungeprüft\", bis das Team es überprüft.",
+      "viewInStore": "Im Store ansehen",
+      "unpublish": "Entferne",
+      "unpublished": "Aus App-Store entfernt",
+      "versions": "Versionen",
+      "noVersions": "Keine gespeicherten Versionen noch.",
+      "current": "Aktuell",
+      "restore": "Wiederherstellen",
+      "restored": "Wiederhergestellte Version {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",
