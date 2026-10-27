@@ -111,6 +111,10 @@ interface FeedItem extends GetNFTsResult {
   __listKey: string;
 }
 
+// How far down a list can be and still take a new post of the reader's own in
+// place (see the refresh listener below).
+const QUIET_REFRESH_MAX_OFFSET = 100;
+
 // Reanimated's wrapper, created once at module scope so the list type is stable
 // across renders (a wrapper made during render remounts the list every time).
 // It attaches a worklet onScroll through FlashList's scrollable node, so the
@@ -428,10 +432,25 @@ const InfiniteFeedBase: React.FC<
   // Listen for feed refresh requests (e.g., after a new post is uploaded), so
   // profile and community feeds pick up a new post the way Home does.
   useEffect(() => {
-    return feedEvents.onRefreshRequested(() => {
-      onRefresh();
+    return feedEvents.onRefreshRequested(({ quiet }) => {
+      if (!quiet) {
+        onRefresh();
+        return;
+      }
+      // A post of the reader's own: fetched in without the spinner, and only
+      // while they are still at the top of the list.
+      if (prevYRef.current > QUIET_REFRESH_MAX_OFFSET) {
+        void queryClient.invalidateQueries({ queryKey, refetchType: 'none' });
+        return;
+      }
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
+      void refetch();
     });
-  }, [onRefresh]);
+  }, [onRefresh, queryClient, queryKey, refetch]);
 
   useEffect(() => {
     if (!navigationForTabPress) return;

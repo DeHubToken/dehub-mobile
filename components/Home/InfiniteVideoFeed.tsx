@@ -1008,10 +1008,25 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
 
   // Listen for feed refresh requests (e.g., after a new post is uploaded)
   useEffect(() => {
-    return feedEvents.onRefreshRequested(() => {
-      onRefresh();
+    return feedEvents.onRefreshRequested(({ quiet }) => {
+      if (!quiet) {
+        onRefresh();
+        return;
+      }
+      // A reader who has scrolled on keeps their place; the list picks the
+      // post up the next time it is fetched.
+      if (readOffset() > MAINTAIN_POSITION.autoscrollToTopThreshold) {
+        void queryClient.invalidateQueries({ queryKey, refetchType: 'none' });
+        return;
+      }
+      queryClient.setQueryData(queryKey, (old: any) =>
+        old?.pages?.length > 1
+          ? { ...old, pages: old.pages.slice(0, 1), pageParams: old.pageParams.slice(0, 1) }
+          : old,
+      );
+      void refetch();
     });
-  }, [onRefresh]);
+  }, [onRefresh, readOffset, queryClient, queryKey, refetch]);
 
   const handleRetry = useCallback(() => {
     try { onRetry && onRetry(); } catch {}
