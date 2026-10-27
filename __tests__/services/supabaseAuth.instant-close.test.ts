@@ -1,5 +1,5 @@
 import * as WebBrowser from 'expo-web-browser';
-import { signInWithGoogle } from '../../services/auth/supabaseAuth.service';
+import { finishSignInCallback, signInWithGoogle } from '../../services/auth/supabaseAuth.service';
 import { supabase } from '../../services/supabase';
 
 jest.mock('react-native', () => ({ Platform: { OS: 'android' } }));
@@ -49,4 +49,11 @@ it('leaves a real cancel alone', async () => {
 it('reads the refusal Supabase sends back', async () => {
   open.mockResolvedValueOnce({ type: 'success', url: 'dehub://auth-callback#error=server_error&error_description=Database+error+saving+new+user' });
   await expect(signInWithGoogle()).rejects.toThrow('Database error saving new user');
+});
+
+// Android closed the app while the page was open; the new launch finishes it.
+it('finishes a sign-in that came back to a fresh launch', async () => {
+  await expect(finishSignInCallback(SUCCESS.url)).resolves.toBe('google-user');
+  expect(setSession).toHaveBeenCalledWith({ access_token: 'a', refresh_token: 'r' });
+  expect(open).not.toHaveBeenCalled();
 });

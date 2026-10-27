@@ -44,7 +44,9 @@ import {
   signInWithTelegram,
   getSupabaseAccessToken,
   getSupabaseAuthMeta,
+  finishSignInCallback,
 } from "../../services/auth/supabaseAuth.service";
+import { takeHeldCallback } from "../../libs/oauth-cold-start";
 import {
   finishWalletUnlock,
   finishBiometricUnlock,
@@ -590,6 +592,28 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       }
     }
   }, [runProvisionAndSignIn, t]);
+
+  // A Google, Apple or Telegram page that came back after Android closed the
+  // app while it was open. The link opened this screen; finish that sign-in.
+  useEffect(() => {
+    const url = takeHeldCallback();
+    if (!url) return;
+    hasNavigatedRef.current = false;
+    setIsLocalLoading(true);
+    (async () => {
+      try {
+        await runProvisionAndSignIn(await finishSignInCallback(url));
+      } catch (e: any) {
+        log.error("Resumed sign-in error", e?.message);
+        if (!isSignInCancelled(e)) toastError(e, t("auth.loginFailedRetry"));
+        hasNavigatedRef.current = false;
+      } finally {
+        if (isMountedRef.current) setIsLocalLoading(false);
+      }
+    })();
+    // Once per screen: the held link is taken on first look.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   /**
    * Passkey-only sign-in (see services/auth/passkeyAuth.service). The OS sheet
