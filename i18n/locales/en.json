@@ -7219,7 +7219,22 @@
     "noOldAccountFound": "There is no earlier DeHub account on this login, so there is nothing to bring over. Setting up a new account instead.",
     "didNotRecoverEither": "That login did not recover either profile shown here. Nothing changed. Try the original sign-in for the profile you want.",
     "didNotRecoverThis": "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it.",
-    "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."
+    "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below.",
+    "methodEmail": "an email code",
+    "methodPhone": "a phone number",
+    "madeWithNamed": "@{{name}} was made with {{method}}. Continue with the same {{method}} account to bring it back.",
+    "madeWith": "This profile was made with {{method}}. Continue with the same {{method}} account to bring it back.",
+    "madeWithEmailNamed": "@{{name}} was made with an email code. We'll send one more code to that email to bring it back.",
+    "madeWithEmail": "This profile was made with an email code. We'll send one more code to that email to bring it back.",
+    "madeWithPhoneNamed": "@{{name}} was made with a phone number. We'll text one more code to that number to bring it back.",
+    "madeWithPhone": "This profile was made with a phone number. We'll text one more code to that number to bring it back.",
+    "wrongSignInNamed": "That sign-in opens a different wallet, not @{{name}}. @{{name}} was made with {{method}}, so only that can bring it back.",
+    "wrongSignIn": "That sign-in opens a different wallet. This profile was made with {{method}}, so only that can bring it back.",
+    "continueWith": "Continue with {{provider}}",
+    "differentSignIn": "Used a different sign-in?",
+    "oldAccountPhone": "Old account phone number",
+    "recoverFromPhoneA11y": "Recover old account from this phone number",
+    "phoneNeedsCode": "Enter the number with its country code, like +90 532 123 4567."
   },
   "liveChatModeration": {
     "timeout1m": "Time out for 1 minute",

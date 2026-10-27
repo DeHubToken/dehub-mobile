@@ -5,7 +5,7 @@ import { useAuthActions, useAuthState } from '../../context/AuthContext';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({
-  View: 'View', Text: 'Text', ScrollView: 'ScrollView',
+  View: 'View', Text: 'Text', ScrollView: 'ScrollView', Keyboard: { dismiss: jest.fn() },
   StyleSheet: { create: (styles: unknown) => styles },
 }));
 jest.mock('../../context/AuthContext', () => ({ useAuthActions: jest.fn(), useAuthState: jest.fn() }));

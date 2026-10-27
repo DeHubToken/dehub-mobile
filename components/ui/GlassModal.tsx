@@ -100,7 +100,7 @@ const GlassModal: React.FC<GlassModalProps> = ({
   const scrollY = useRef(0);
   const scrollRef = useRef<ScrollView>(null);
   const revealInput = () => {
-    const input = TextInput.State.currentlyFocusedInput();
+    const input = (TextInput as any).State?.currentlyFocusedInput?.();
     if (input) scrollRef.current?.scrollResponderScrollNativeHandleToKeyboard(input, 24, true);
   };
   const startedAtTop = useRef(true);
@@ -132,29 +132,70 @@ const GlassModal: React.FC<GlassModalProps> = ({
   const handleResponder = useMemo(() => makePanResponder(true),
     [dismissible, isBottom, onClose, scrollable, translateY]);
 
-  // While the keyboard is up, KeyboardAvoidingView already lifts the panel
-  // clear of it, and the bottom inset it would otherwise reserve is under the
-  // keyboard — keeping it just parks a dead strip between the sheet and the
-  // keys.
+  // While the keyboard is up the panel is lifted clear of it, and the bottom
+  // inset it would otherwise reserve is under the keyboard — keeping it just
+  // parks a dead strip between the sheet and the keys.
   const [keyboardUp, setKeyboardUp] = useState(false);
+  // Android lift, from the keyboard event alone. KeyboardAvoidingView's
+  // "height" mode re-measures itself against the event on every layout, and
+  // Android hands it the keyboardDidHide event as a *change* whose screenY is
+  // the main window's visible height — short of this edge-to-edge window by
+  // the status and navigation bars. So after the keyboard closed, every sheet
+  // stayed parked that far above the bottom, and on some phones the sheet
+  // bounced between the two heights for as long as it was open (a recovery
+  // sheet recorded on a Xiaomi did this ten times a second).
+  // `endCoordinates.height` is the keyboard above the navigation bar, and the
+  // panel here reaches the physical bottom, so the lift is that plus the bar.
+  const [androidLift, setAndroidLift] = useState(0);
+  const bottomInset = insets.bottom;
   useEffect(() => {
-    if (!isBottom && !scrollable) return;
+    if (!isBottom && !scrollable && Platform.OS === "ios") return;
     const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
     const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
-    const show = Keyboard.addListener(showEvent, () => {
+    const show = Keyboard.addListener(showEvent, (event) => {
       setKeyboardUp(true);
+      if (Platform.OS === "android") {
+        setAndroidLift(Math.max(0, (event?.endCoordinates?.height ?? 0) + bottomInset));
+      }
       requestAnimationFrame(revealInput);
     });
-    const hide = Keyboard.addListener(hideEvent, () => setKeyboardUp(false));
+    const hide = Keyboard.addListener(hideEvent, () => {
+      setKeyboardUp(false);
+      setAndroidLift(0);
+    });
     return () => {
       show.remove();
       hide.remove();
     };
-  }, [isBottom, scrollable]);
+  }, [isBottom, scrollable, bottomInset]);
+
+  // Android: a field on the screen underneath can still hold the keyboard when
+  // this sheet opens over it (the email-code field behind the account
+  // recovery sheet did). This window takes input focus from it, so it cannot
+  // be typed into any more, but the two windows then trade the keyboard back
+  // and forth. Captured while rendering — before this sheet's own fields mount
+  // and autofocus — and let go once the sheet is up, so a field inside the
+  // sheet is never the one blurred.
+  const shown = visible && !yielded;
+  const wasShown = useRef(false);
+  const inputBehind = useRef<unknown>(null);
+  const inputState = (TextInput as any).State;
+  if (shown && !wasShown.current && Platform.OS === "android") {
+    inputBehind.current = inputState?.currentlyFocusedInput?.() ?? null;
+  }
+  wasShown.current = shown;
+  useEffect(() => {
+    if (!shown || Platform.OS !== "android") return;
+    const behind = inputBehind.current;
+    inputBehind.current = null;
+    if (behind && inputState?.currentlyFocusedInput?.() === behind) {
+      inputState.blurTextInput(behind);
+    }
+  }, [shown, inputState]);
 
   return (
     <Modal
-      visible={visible && !yielded}
+      visible={shown}
       transparent
       animationType="fade"
       // Prevent Android back button from closing when not dismissible
@@ -222,18 +263,25 @@ const GlassModal: React.FC<GlassModalProps> = ({
           {/* Keyboard handling lives here so every GlassModal sheet gets it:
               Android is edge-to-edge (SDK 54), where the window no longer
               resizes for the keyboard, so inputs in bottom sheets were
-              covered. No keyboardVerticalOffset: the modal window starts at
-              the top of the screen and this view's layout y already includes
-              the foreground's top padding, so an offset counts the status bar
+              covered. iOS keeps KeyboardAvoidingView ("padding"); Android
+              pads by the measured lift above instead (see androidLift). No
+              keyboardVerticalOffset: the modal window starts at the top of
+              the screen and this view's layout y already includes the
+              foreground's top padding, so an offset counts the status bar
               twice and parks the sheet that far above the keys. */}
           <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            behavior={Platform.OS === "ios" ? "padding" : undefined}
+            enabled={Platform.OS === "ios"}
             style={[
               styles.foregroundWrapper,
               {
                 justifyContent: isBottom ? "flex-end" : "center",
                 paddingHorizontal: isBottom ? 0 : 16,
               },
+              // A centered card's foreground already pads the navigation bar.
+              Platform.OS === "android" && androidLift > 0
+                ? { paddingBottom: isBottom ? androidLift : Math.max(0, androidLift - bottomInset) }
+                : null,
             ]}
           >
             {wrapPanel ? (
