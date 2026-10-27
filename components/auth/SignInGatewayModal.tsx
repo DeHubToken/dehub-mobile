@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Keyboard } from "react-native";
 import GlassModal from "../ui/GlassModal";
 import { AuthButton, AuthErrorNotice, authColors, authText } from "./AuthControls";
 import { ChainId } from "../../config/constants";
@@ -101,6 +101,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
   // this identity's email — gates the create-wallet screen behind a warning
   // instead of silently minting a duplicate. See LegacyAccountWarningModal.
   const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
+  const [legacyEmail, setLegacyEmail] = useState<string | undefined>(undefined);
   const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
   const isBusy = (authLoading || isLocalLoading || isWalletLoading) && !needsUsername;
   useEffect(() => {
@@ -212,8 +213,10 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           setWalletSetupRequest(outcome.request);
           return;
         case "legacy-warning":
+          Keyboard.dismiss();
           takeWalletSetupIntent();
           setPendingCreateUserId(outcome.supabaseUserId);
+          setLegacyEmail(outcome.email);
           setLegacyAccounts(outcome.accounts);
           return;
         case "error":
@@ -729,6 +732,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
           <LegacyAccountWarningModal
             visible={!!legacyAccounts}
             accounts={legacyAccounts ?? []}
+            email={legacyEmail}
             onRecovered={handleLegacyRecovered}
             onCreateAnyway={() => {
               // Close the warning first and present the wallet sheet once it has

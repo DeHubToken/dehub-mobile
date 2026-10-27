@@ -23,7 +23,7 @@ import { translateCopy as _translateCopy } from "../i18n/copy";
 
 const log = createLogger("LegacyWeb3Auth");
 
-export type LegacyProvider = "google" | "twitter" | "discord" | "apple" | "email_passwordless";
+export type LegacyProvider = "google" | "twitter" | "discord" | "apple" | "email_passwordless" | "sms_passwordless";
 
 const AUTH_CONNECTION_MAP: Record<LegacyProvider, string> = {
   google: AUTH_CONNECTION.GOOGLE,
@@ -31,6 +31,9 @@ const AUTH_CONNECTION_MAP: Record<LegacyProvider, string> = {
   discord: AUTH_CONNECTION.DISCORD,
   apple: AUTH_CONNECTION.APPLE,
   email_passwordless: AUTH_CONNECTION.EMAIL_PASSWORDLESS,
+  // Needs the number as login_hint in Web3Auth's `+<cc>-<number>` shape (see
+  // wallet-core/phone-hint): any other spelling derives a different wallet.
+  sms_passwordless: AUTH_CONNECTION.SMS_PASSWORDLESS,
 };
 
 // Reuses the exact redirect path the pre-migration mobile app used for its
