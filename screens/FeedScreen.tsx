@@ -9,9 +9,9 @@ import {
   FlatList,
   useWindowDimensions,
   ActivityIndicator,
-  BackHandler,
   ListRenderItemInfo,
 } from "react-native";
+import { useBackPress } from "../hooks/useBackPress";
 import { DeHubLoader } from "../components/DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
@@ -305,14 +305,7 @@ const FeedScreen = () => {
     showHeader();
   }, [showHeader]);
 
-  useEffect(() => {
-    if (isGridView) return;
-    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      switchToGrid();
-      return true;
-    });
-    return () => sub.remove();
-  }, [isGridView, switchToGrid]);
+  useBackPress(switchToGrid, !isGridView);
 
   // ── Filters & categories ───────────────────────────────────
   const [filterPanelVisible, setFilterPanelVisible] = useState(false);

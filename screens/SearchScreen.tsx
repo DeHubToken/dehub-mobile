@@ -13,10 +13,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
-  BackHandler,
   FlatList,
   Alert,
 } from "react-native";
+import { useBackPress } from "../hooks/useBackPress";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
 import { DeHubLoader } from "../components/DeHubLoader";
@@ -309,15 +309,9 @@ const SearchScreen: React.FC = () => {
 
   // The filter panel is an in-tree overlay, so Android back would otherwise
   // pop the whole screen. Close the panel first.
-  useSwipeBackAction(() => setFilterPanelVisible(false), filterPanelVisible);
-  useEffect(() => {
-    if (!filterPanelVisible) return;
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      setFilterPanelVisible(false);
-      return true;
-    });
-    return () => subscription.remove();
-  }, [filterPanelVisible]);
+  const closeFilterPanel = useCallback(() => setFilterPanelVisible(false), []);
+  useSwipeBackAction(closeFilterPanel, filterPanelVisible);
+  useBackPress(closeFilterPanel, filterPanelVisible);
 
   // Shares the home feed's cached category list, so opening the panel here
   // after browsing Home costs no request.

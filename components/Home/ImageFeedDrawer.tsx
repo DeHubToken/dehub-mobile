@@ -11,7 +11,6 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  BackHandler,
   useWindowDimensions,
   FlatList,
   Pressable,
@@ -20,6 +19,7 @@ import {
   View,
   type ViewToken,
 } from "react-native";
+import { useBackPress } from "../../hooks/useBackPress";
 import Animated, {
   Easing,
   runOnJS,
@@ -233,13 +233,7 @@ const ImageFeedDrawer = forwardRef<ImageFeedDrawerHandle, ImageFeedDrawerProps>(
   useImperativeHandle(ref, () => ({ close }), [close]);
 
   // Back closes the sheet instead of unwinding the whole screen behind it.
-  useEffect(() => {
-    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      close();
-      return true;
-    });
-    return () => sub.remove();
-  }, [close]);
+  useBackPress(close);
 
   const sheetStyle = useAnimatedStyle(() => {
     const headerOffset = headerSV ? headerSV.value : 0;

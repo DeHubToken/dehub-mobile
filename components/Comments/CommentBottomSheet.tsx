@@ -1,6 +1,7 @@
 import { useSheetClosed } from '../../hooks/useSheetClosed';
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, BackHandler, Platform } from "react-native";
+import { View, Text, Modal, Pressable, useWindowDimensions, StyleSheet, Keyboard, Platform } from "react-native";
+import { useBackPress } from "../../hooks/useBackPress";
 import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
@@ -200,14 +201,7 @@ const CommentBottomSheetComponent: React.FC<CommentBottomSheetProps> = ({
     setConfirming(true);
   }, [hasUnsent, closeSheet]);
 
-  useEffect(() => {
-    if (!inline || !visible) return;
-    const subscription = BackHandler.addEventListener("hardwareBackPress", () => {
-      requestClose();
-      return true;
-    });
-    return () => subscription.remove();
-  }, [inline, visible, requestClose]);
+  useBackPress(requestClose, !!(inline && visible));
 
   /** A swipe past the threshold: either it closes, or it springs back and asks. */
   const handleSwipeEnd = useCallback(() => {

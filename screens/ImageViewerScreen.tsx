@@ -10,12 +10,12 @@ import {
   NativeSyntheticEvent,
   StatusBar,
   Platform,
-  BackHandler,
   StyleSheet,
   ActivityIndicator,
   ToastAndroid,
   LayoutChangeEvent,
 } from "react-native";
+import { useBackPress } from "../hooks/useBackPress";
 import SmartImage from "../components/common/SmartImage";
 import SoundtrackBadge from "../components/Post/SoundtrackBadge";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -412,13 +412,7 @@ export const ImageViewer = ({ params, onClose }: { params: any; onClose: () => v
 
   const closeViewer = onClose;
 
-  useEffect(() => {
-    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
-      closeViewer();
-      return true;
-    });
-    return () => sub.remove();
-  }, [closeViewer]);
+  useBackPress(closeViewer);
 
   const panGesture = Gesture.Pan()
     .activeOffsetY(15)
