@@ -611,7 +611,7 @@ const SetProfileScreen: React.FC<SetProfileScreenProps> = ({ navigation }) => {
                 >
                   <View style={[s.follow, on ? { borderWidth: 1, borderColor: line } : { backgroundColor: ink }]}>
                     <Text style={{ fontSize: 13, fontWeight: "600", color: on ? muted : colors.background }}>
-                      {on ? t("profile.following", "Following") : t("profile.follow", "Follow")}
+                      {on ? t("follow.following") : t("follow.follow")}
                     </Text>
                   </View>
                 </TouchableOpacity>
