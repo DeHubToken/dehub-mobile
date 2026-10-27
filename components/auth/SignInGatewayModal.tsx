@@ -53,6 +53,7 @@ import { setupAAProvider } from "../../libs/wallet-core/smart-account";
 import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import { beginAuthTrace, readAuthTrace } from "../../libs/auth-trace";
+import { isSignInCancelled } from "../../libs/auth-error-text";
 import { useWalletAuth } from "../../hooks/useWalletAuth";
 import { useScrollFieldIntoView } from "../../hooks/useScrollFieldIntoView";
 import { Trans, useTranslation } from "react-i18next";
@@ -457,7 +458,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       console.error("[SignInGatewayModal] Google login error", e);
-      setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      if (!isSignInCancelled(e)) {
+        setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      }
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
@@ -473,7 +476,9 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       console.error("[SignInGatewayModal] Apple login error", e);
-      setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      if (!isSignInCancelled(e)) {
+        setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
+      }
     } finally {
       setIsLocalLoading(false);
       setCurrentProvider("");
@@ -520,7 +525,7 @@ const SignInGatewayModal: React.FC<SignInGatewayModalProps> = ({
       console.error("[SignInGatewayModal] Telegram login error", e);
       // Closing Telegram's consent screen is a choice, not a failure — do not
       // put a red notice under the sheet for it.
-      if (!/cancelled/i.test(e?.message || "")) {
+      if (!isSignInCancelled(e)) {
         setInlineError(e?.message || t("copy.0b8b01ae8783", { defaultValue: "Login failed. Please retry." }));
       }
     } finally {
