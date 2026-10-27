@@ -65,9 +65,10 @@ export function clampAspect(ratio: number, minRatio: number = MIN_RATIO): number
  * @param uri thumbnail to measure — pass undefined to keep the default frame
  * @param key the post the thumbnail belongs to
  * @param minRatio narrowest shape allowed; defaults to 9:16
+ * @param stored width/height probed at upload (libs/video-aspect), used until measured
  * @returns a clamped width/height ratio, never null: 16:9 until measured
  */
-export function useMediaAspect(uri?: string | null, key?: unknown, minRatio: number = MIN_RATIO): number {
+export function useMediaAspect(uri?: string | null, key?: unknown, minRatio: number = MIN_RATIO, stored?: number): number {
   // A measurement carries the URL it was taken from, and is read straight from
   // the cache otherwise. A card handed another clip is the right size in its
   // first render, not after an effect has caught up, and a late measurement
@@ -114,5 +115,9 @@ export function useMediaAspect(uri?: string | null, key?: unknown, minRatio: num
   }, [uri]);
 
   const videoRatio = key == null ? undefined : videoAspects.get(String(key));
-  return clampAspect(videoRatio ?? ratio ?? DEFAULT_ASPECT, minRatio);
+  // The upload-time size wins over a thumbnail that agrees with it within 2%,
+  // so a re-encoded cover a few pixels off never nudges the frame after paint.
+  const storedRatio = stored && Number.isFinite(stored) && stored > 0 ? stored : undefined;
+  const poster = ratio !== null && storedRatio && Math.abs(ratio / storedRatio - 1) < 0.02 ? storedRatio : ratio;
+  return clampAspect(videoRatio ?? poster ?? storedRatio ?? DEFAULT_ASPECT, minRatio);
 }

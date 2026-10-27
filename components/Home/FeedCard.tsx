@@ -162,6 +162,7 @@ import type { AIPostContext } from "../../services/ai.service";
 import HoldGateSheet from "../common/HoldGateSheet";
 import { hideDislikedPost, restoreDislikedPost } from "../../libs/disliked-posts-store";
 import KeywordFilterGate from "./KeywordFilterGate";
+import { storedVideoAspect } from "../../libs/video-aspect";
 
 // Pre-measurement fallback only. The gallery measures its own box on layout
 // (handleGalleryLayout) because the true content width is the screen minus the
@@ -1740,6 +1741,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       isOwner={!!isOwnerPost}
       duration={duration}
       tokenId={tokenId}
+      storedAspect={storedVideoAspect(item.videoInfo)}
       creator={minterAddress}
       creatorUsername={minterUser?.username || item.minterUsername}
       downloadTitle={localTitle || "video"}
