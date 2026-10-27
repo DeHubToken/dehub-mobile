@@ -41,6 +41,7 @@
  * are corrupted too sometimes ("@ @ 0 @ @"), which is what rule 2 catches.
  */
 import fs from 'node:fs';
+import { requestTranslationBatch } from './translation-request.mjs';
 import path from 'node:path';
 import { garbled, outOfOrder, answersAnotherLine, MIN_BATCH_LINES } from './i18n-guards.mjs';
 
@@ -50,7 +51,7 @@ const FN_URL = 'https://aigxuutjaqsywioxjefr.supabase.co/functions/v1/translate-
 /** Batching. Larger batches are cheaper but lose more work when one line drifts. */
 const BATCH_LINES = 30;
 const PAUSE_MS = 350;
-const MAX_RETRIES = 3;
+
 
 /** Anything i18next or <Trans> reads back out of the string. */
 const PLACEHOLDER = /\{\{[^}]+\}\}|\{[a-zA-Z0-9_]+\}|<\/?[a-zA-Z][a-zA-Z0-9]*>/g;
@@ -63,7 +64,8 @@ const value = (name) => {
 };
 
 const CHECK_ONLY = flag('check');
-const KEY_BUDGET = Number(value('keys') || Infinity);
+const KEY_BUDGET = Number(value('keys') || 200);
+if (!Number.isSafeInteger(KEY_BUDGET) || KEY_BUDGET < 1) throw new Error('--keys must be a positive integer');
 /**
  * `--prefix creatorFlow.` restricts the run to keys under one namespace, so a
  * feature branch can fill its own strings in every locale without touching
@@ -475,30 +477,11 @@ function decodeEntities(text) {
 }
 
 async function translateBatch(lines, targetLang, key) {
-  // The app's own UI copy is public, and `purpose` keeps tooling traffic apart
-  // from readers' translations on the server.
-  const body = JSON.stringify({ text: lines.join('\n'), targetLang, sourceLang: 'en', public: true, purpose: 'i18n' });
-  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-    try {
-      const res = await fetch(FN_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', apikey: key, Authorization: `Bearer ${key}` },
-        body,
-      });
-      if (res.status === 429) { await sleep(2000 * attempt); continue; }
-      if (!res.ok) { await sleep(600 * attempt); continue; }
-      const json = await res.json();
-      if (typeof json?.translatedText !== 'string') return null;
-      const text = decodeEntities(json.translatedText);
-      const out = text.split('\n');
-      // A batch that came back a different shape is unusable as a whole; the
-      // caller retries it one line at a time rather than guessing an alignment.
-      return out.length === lines.length ? out : null;
-    } catch {
-      await sleep(600 * attempt);
-    }
-  }
-  return null;
+  const json = await requestTranslationBatch(FN_URL, key, lines, targetLang);
+  if (typeof json?.translatedText !== 'string') return null;
+  const text = decodeEntities(json.translatedText);
+  const out = text.split('\n');
+  return out.length === lines.length ? out : null;
 }
 
 /* ---------- main ---------- */

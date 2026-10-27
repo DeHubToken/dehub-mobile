@@ -2,6 +2,7 @@ import { NativeModules, Platform } from 'react-native';
 import { createLogger } from '../libs/logger';
 import i18n from '../i18n';
 import { storage } from '../libs/storage';
+import { TranslationCooldown } from '../libs/translation-cooldown';
 import { supabase } from './supabase';
 import { translateCopy as _translateCopy } from '../i18n/copy';
 
@@ -146,6 +147,7 @@ function schedulePersist(): void {
 // makes those one request instead of several identical ones landing on the edge
 // function within a frame.
 const inFlightRequests = new Map<string, Promise<TranslateResponse>>();
+const translationCooldown = new TranslationCooldown();
 
 /**
  * Pull the status and body out of a supabase-js function error.
@@ -174,17 +176,19 @@ function requestTranslation(
   sourceLang: string,
   isPublic: boolean,
 ): Promise<TranslateResponse> {
-  const key = cacheKey(text, targetLang);
+  const key = `${cacheKey(text, targetLang)}-${isPublic ? 'p' : 'x'}`;
   const existing = inFlightRequests.get(key);
   if (existing) return existing;
 
   const request = (async () => {
+    translationCooldown.assertReady(key);
     const { data, error } = await supabase.functions.invoke('translate-text', {
       body: (isPublic
         ? { text, targetLang, sourceLang, public: true }
         : { text, targetLang, sourceLang }) satisfies TranslateRequest,
     });
     if (error) {
+      await translationCooldown.observe(key, error);
       // `FunctionsHttpError` says only "returned a non-2xx status code", which
       // is the same sentence whether the function rejected the language, ran
       // out of budget, rate-limited the caller or fell over — four different

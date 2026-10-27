@@ -6,7 +6,7 @@ name: i18n fan-out
 # must survive, English echoes, wrong scripts and loops are dropped, existing
 # values are never overwritten).
 #
-# One job per locale, up to 20 side by side. Each job only writes its own
+# One job per locale, up to two side by side. Each job only writes its own
 # locale file; a final job gathers them and opens the PR.
 #
 # No secret is needed. The translate function is called with the publishable
@@ -28,7 +28,7 @@ on:
         required: false
         default: '20'
       keys:
-        description: 'Max keys per locale in one run (blank = all missing)'
+        description: 'Max keys per locale in one run (blank = 200)'
         required: false
         default: ''
       only:
@@ -40,6 +40,10 @@ on:
       - .github/workflows/i18n-fanout.yml
       - scripts/i18n-fanout.mjs
       - scripts/i18n-guards.mjs
+
+concurrency:
+  group: translation-localization
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -77,7 +81,7 @@ jobs:
     timeout-minutes: 350
     strategy:
       fail-fast: false
-      max-parallel: 20
+      max-parallel: 2
       matrix:
         locale: ${{ fromJSON(needs.plan.outputs.locales) }}
     steps:
