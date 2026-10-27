@@ -31,6 +31,9 @@ export default function ProfilePinnedBar({ showIdentity = true, badges, name, ha
   const foreground = skin?.barIconActive ?? colors.foreground;
   const followLabel = isPending ? t('follow.requested') : isFollowing ? t('filters.following') : t('follow.follow');
   const disabled = !!(disableFollow || followLoading);
+  // Follow sits BAR_INSET inside the pill, so its corner is the pill's minus that inset.
+  const barRadius = skin && typeof skin.barBorder.borderRadius === 'number' ? skin.barBorder.borderRadius : BAR_RADIUS;
+  const followRadius = Math.max(barRadius - BAR_INSET, 0);
   return (
     <View style={styles.outer}>
       <View style={[styles.bar, skin && { borderRadius: skin.barBorder.borderRadius }]}>
@@ -53,7 +56,7 @@ export default function ProfilePinnedBar({ showIdentity = true, badges, name, ha
           accessibilityRole="button" accessibilityLabel={followLabel}
           accessibilityState={{ disabled, busy: !!followLoading }}
           disabled={disabled} onPress={isFollowing || isPending ? onOpenUnfollow : onFollow}
-          activeOpacity={0.7} style={[styles.follow, disabled && { opacity: 0.5 }]}
+          activeOpacity={0.7} style={[styles.follow, { borderRadius: followRadius }, disabled && { opacity: 0.5 }]}
         >
           {followLoading ? <ActivityIndicator size="small" color={foreground} /> : <Text numberOfLines={1} style={[styles.followLabel, { color: foreground }]}>{followLabel}</Text>}
         </TouchableOpacity>}
@@ -62,14 +65,17 @@ export default function ProfilePinnedBar({ showIdentity = true, badges, name, ha
   );
 }
 
+const BAR_INSET = 4;
+const BAR_RADIUS = 16;
+
 const styles = StyleSheet.create({
   outer: { height: PROFILE_BAR_HEIGHT, paddingHorizontal: 8, paddingVertical: 4 },
-  bar: { flex: 1, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, gap: 4, borderRadius: 16 },
+  bar: { flex: 1, flexDirection: 'row', alignItems: 'center', paddingHorizontal: BAR_INSET, gap: 4, borderRadius: BAR_RADIUS },
   back: { width: 36, height: 44, alignItems: 'center', justifyContent: 'center' },
   identity: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingRight: 4 },
   nameRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   name: { flexShrink: 1, fontSize: 14, lineHeight: 17, fontWeight: '700' },
   handle: { fontSize: 10, lineHeight: 13 },
-  follow: { height: 36, minWidth: 72, maxWidth: '36%', paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', borderRadius: 12, borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)', backgroundColor: 'rgba(255,255,255,0.08)' },
+  follow: { height: PROFILE_BAR_HEIGHT - 8 - BAR_INSET * 2, minWidth: 72, maxWidth: '36%', paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(255,255,255,0.22)', backgroundColor: 'rgba(255,255,255,0.08)' },
   followLabel: { fontSize: 12, fontWeight: '600' },
 });
