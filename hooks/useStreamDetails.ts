@@ -45,21 +45,30 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
 
   const fetchStreamKey = () => {
     if (!streamId || !fetchKey) return;
+    const requestGeneration = generation.current;
     setStreamKeyLoading(true);
     setStreamKeyError(null);
     getStreamKey(streamId)
       .then((res: any) => {
+        if (requestGeneration !== generation.current) return;
         const key = res?.streamKey || res?.result?.streamKey || res?.data?.streamKey;
         if (key) setStreamKeyValue(key); else setStreamKeyError(_copy("copy.4fda56391dfb", { defaultValue: "No key returned" }));
       })
-      .catch((e: any) => setStreamKeyError(e?.message || _copy("copy.cbda24306ce8", { defaultValue: "Failed to fetch key" })))
-      .finally(() => setStreamKeyLoading(false));
+      .catch((e: any) => {
+        if (requestGeneration !== generation.current) return;
+        setStreamKeyError(e?.message || _copy("copy.cbda24306ce8", { defaultValue: "Failed to fetch key" }));
+      })
+      .finally(() => { if (requestGeneration === generation.current) setStreamKeyLoading(false); });
   };
 
   useEffect(() => {
     generation.current += 1;
     setStreamEntity(null);
     setStreamKeyValue(null);
+    setStreamKeyLoading(false);
+    setStreamKeyError(null);
+    setStreamLoading(!!streamId);
+    setStreamError(null);
     if (!streamId) return;
     fetchStream();
     if (fetchKey) fetchStreamKey();
