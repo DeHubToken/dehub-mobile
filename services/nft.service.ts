@@ -1,6 +1,7 @@
 import { apiClient } from "../libs";
 import i18n from "i18next";
 import { normalizeCategoryList } from "../libs/strings.util";
+import { loadFeedInterests, orderByInterests } from "../libs/feed-interests";
 import { streamInfoKeys } from "../config/constants";
 import type { PostReaction } from "../libs/reactions";
 import { xhrUploadFormData } from "../libs/xhr-upload";
@@ -255,14 +256,16 @@ export async function getCategories(): Promise<string[]> {
 export async function getCategoriesCached(options?: { ttlMs?: number; forceRefresh?: boolean }): Promise<string[]> {
   const ttlMs = options?.ttlMs ?? DEFAULT_CATEGORIES_TTL;
   const now = Date.now();
+  // Topics picked while signing up go first in every category list.
+  await loadFeedInterests();
   if (!options?.forceRefresh && __categoriesCache && (now - __categoriesCache.at) < ttlMs) {
-    return __categoriesCache.data;
+    return orderByInterests(__categoriesCache.data);
   }
   const data = await getCategories();
   // getCategories returns [] on any failure. Caching that would serve an empty
   // list to every caller for the whole TTL, so only a real list is kept.
   if (data.length > 0) __categoriesCache = { at: now, data };
-  return data;
+  return orderByInterests(data);
 }
 
 /**
