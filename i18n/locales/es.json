@@ -2341,7 +2341,8 @@
     "importWalletPurpose": "Esta herramienta es para importar cuentas existentes desde DeHub.io.",
     "importSecretPlaceholder": "12 o 24 palabras, o una clave privada",
     "invalidImportSecret": "No es una frase válida de 12/24 palabras ni una clave privada",
-    "walletSignupBlocked": "Esta billetera es totalmente nueva. Las billeteras nuevas necesitan saldo o una transacción anterior para abrir una cuenta. Regístrate con una de las opciones de abajo y luego conecta esta billetera desde Ajustes."
+    "walletSignupBlocked": "Esta billetera es totalmente nueva. Las billeteras nuevas necesitan saldo o una transacción anterior para abrir una cuenta. Regístrate con una de las opciones de abajo y luego conecta esta billetera desde Ajustes.",
+    "signInPageWouldNotOpen": "La página de inicio de sesión se cerró antes de abrirse. Inténtalo de nuevo o continúa con tu correo."
   },
   "messages": {
     "smartRepliesOff": "Respuestas sugeridas desactivadas",
@@ -7287,7 +7288,22 @@
     "didNotRecoverEither": "Ese inicio de sesión no ha recuperado ninguno de los perfiles que se muestran aquí. No se ha cambiado nada. Prueba el inicio de sesión original del perfil que quieras.",
     "didNotRecoverThis": "Ese inicio de sesión ha recuperado una cartera distinta de la de este perfil. No se ha cambiado nada. Prueba el inicio de sesión que lo creó originalmente.",
     "couldNotRetrieve": "No se ha podido obtener esa cartera antigua en este dispositivo. Todavía puedes recuperarla en dehub.io, más abajo.",
-    "matchedWithBalance": "Coincidido, {{balance}} tokens"
+    "matchedWithBalance": "Coincidido, {{balance}} tokens",
+    "methodEmail": "un código por correo",
+    "methodPhone": "un número de teléfono",
+    "madeWithNamed": "@{{name}} se creó con {{method}}. Continúa con la misma cuenta de {{method}} para recuperarlo.",
+    "madeWith": "Este perfil se creó con {{method}}. Continúa con la misma cuenta de {{method}} para recuperarlo.",
+    "madeWithEmailNamed": "@{{name}} se creó con un código por correo. Enviaremos un código más a ese correo para recuperarlo.",
+    "madeWithEmail": "Este perfil se creó con un código por correo. Enviaremos un código más a ese correo para recuperarlo.",
+    "madeWithPhoneNamed": "@{{name}} se creó con un número de teléfono. Enviaremos un código más a ese número para recuperarlo.",
+    "madeWithPhone": "Este perfil se creó con un número de teléfono. Enviaremos un código más a ese número para recuperarlo.",
+    "wrongSignInNamed": "Ese inicio de sesión abre otra cartera, no @{{name}}. @{{name}} se creó con {{method}}, y solo eso puede recuperarlo.",
+    "wrongSignIn": "Ese inicio de sesión abre otra cartera. Este perfil se creó con {{method}}, y solo eso puede recuperarlo.",
+    "continueWith": "Continuar con {{provider}}",
+    "differentSignIn": "¿Usaste otro inicio de sesión?",
+    "oldAccountPhone": "Teléfono de la cuenta antigua",
+    "recoverFromPhoneA11y": "Recuperar la cuenta antigua con este número de teléfono",
+    "phoneNeedsCode": "Escribe el número con el prefijo de país, por ejemplo +34 612 345 678."
   },
   "liveGift": {
     "buyTokens": "Comprar tokens",
@@ -14395,7 +14411,7 @@
     "5948954e3b49": "Eliminar ",
     "3ff441f1f484": " de tus seguidores",
     "83e2982ce44d": "Informe ",
-    "5dc85dbc155e": "Cadena BNB",
+    "5dc85dbc155e": "BNB Chain",
     "72074a8a6836": "Disponible:",
     "582bfe13a748": " encendido",
     "49a6ddf9a439": "de ",

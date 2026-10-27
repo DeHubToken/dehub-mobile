@@ -10,6 +10,7 @@ import { supabase } from "../supabase";
 import { createLogger } from "../../libs/logger";
 import { advanceAuthTrace, beginAuthTrace } from '../../libs/auth-trace';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
+import { serverAuthText } from "../../libs/auth-error-text";
 
 const log = createLogger("supabaseAuth");
 
@@ -25,6 +26,53 @@ function getOAuthRedirectUri(): string {
   return "dehub://auth-callback";
 }
 
+/** Faster than anyone can close a sign-in page they were shown. */
+const INSTANT_CLOSE_MS = 1200;
+
+async function preferredBrowserPackage(): Promise<string | undefined> {
+  try {
+    const browsers = await WebBrowser.getCustomTabsSupportingBrowsersAsync?.();
+    if (!browsers) return undefined;
+    if (browsers.browserPackages?.includes("com.android.chrome")) return "com.android.chrome";
+    return browsers.preferredBrowserPackage ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * Opens a sign-in page and waits for it to come back to `redirectTo`.
+ *
+ * On some Android phones the page closes the instant it opens, before anyone
+ * could see it, and comes back as a "cancel": the logs show Google and Apple
+ * both "cancelled" in the same second they started, attempt after attempt.
+ * That is the phone's default browser failing to host the page, so try once
+ * more in Chrome (or the best Custom Tabs browser) inside the app's own task,
+ * and if that closes instantly too, say so instead of looking like a tap that
+ * did nothing.
+ */
+async function openSignInPage(url: string, redirectTo: string, label: string): Promise<WebBrowser.WebBrowserAuthSessionResult> {
+  const started = Date.now();
+  const result = await WebBrowser.openAuthSessionAsync(url, redirectTo);
+  if (Platform.OS !== "android" || result.type === "success" || Date.now() - started > INSTANT_CLOSE_MS) {
+    return result;
+  }
+  log.warn(`signIn:${label}:closed-instantly`, { result: result.type, ms: Date.now() - started });
+  const browserPackage = await preferredBrowserPackage();
+  const retried = Date.now();
+  const retry = await WebBrowser.openAuthSessionAsync(url, redirectTo, {
+    createTask: false,
+    ...(browserPackage ? { browserPackage } : {}),
+  });
+  if (retry.type !== "success" && Date.now() - retried <= INSTANT_CLOSE_MS) {
+    log.error(`signIn:${label}:closed-instantly-again`, { result: retry.type, browserPackage });
+    throw new Error(_translateCopy("auth.signInPageWouldNotOpen", {
+      defaultValue: "The sign-in page closed before it opened. Try again, or continue with email.",
+    }));
+  }
+  return retry;
+}
+
 export async function sendEmailOtp(email: string): Promise<void> {
   beginAuthTrace('email');
   log.trace?.('identity-start');
@@ -34,7 +82,7 @@ export async function sendEmailOtp(email: string): Promise<void> {
   });
   if (error) {
     log.warn("sendEmailOtp:error", error.message);
-    throw new Error(error.message || _translateCopy("copy.b5b241f9894b", { defaultValue: "Failed to send code" }));
+    throw new Error(serverAuthText(error.message, _translateCopy("copy.b5b241f9894b", { defaultValue: "Failed to send code" })));
   }
   log.trace?.('otp-sent');
 }
@@ -59,7 +107,7 @@ export async function signInWithEmailPassword(
   });
   if (error) {
     log.warn("signInWithEmailPassword:error", error.message);
-    throw new Error(error.message || _translateCopy("copy.4d4ff2e3b9f6", { defaultValue: "Invalid email or password" }));
+    throw new Error(serverAuthText(error.message, _translateCopy("copy.4d4ff2e3b9f6", { defaultValue: "Invalid email or password" })));
   }
   const userId = data?.user?.id;
   if (!userId) throw new Error(_translateCopy("copy.d067d2d39ef1", { defaultValue: "Sign-in failed. Please try again." }));
@@ -76,7 +124,7 @@ export async function verifyEmailOtp(email: string, token: string): Promise<stri
   });
   if (error) {
     log.warn("verifyEmailOtp:error", error.message);
-    throw new Error(error.message || _translateCopy("copy.b7873bf19d98", { defaultValue: "Invalid or expired code" }));
+    throw new Error(serverAuthText(error.message, _translateCopy("copy.b7873bf19d98", { defaultValue: "Invalid or expired code" })));
   }
   const userId = data?.user?.id;
   if (!userId) throw new Error(_translateCopy("copy.d067d2d39ef1", { defaultValue: "Sign-in failed. Please try again." }));
@@ -113,11 +161,11 @@ export async function sendPhoneOtp(phone: string): Promise<void> {
   });
   if (error) {
     log.warn("sendPhoneOtp:invoke:error", error.message);
-    throw new Error(error.message || _translateCopy("copy.b5b241f9894b", { defaultValue: "Failed to send code" }));
+    throw new Error(serverAuthText(error.message, _translateCopy("copy.b5b241f9894b", { defaultValue: "Failed to send code" })));
   }
   if (data?.error) {
     log.warn("sendPhoneOtp:error", data.error);
-    throw new Error(data.error);
+    throw new Error(serverAuthText(data.error, _translateCopy("copy.b5b241f9894b", { defaultValue: "Failed to send code" })));
   }
 }
 
@@ -137,11 +185,11 @@ export async function verifyPhoneOtp(phone: string, token: string): Promise<stri
   });
   if (error) {
     log.warn("verifyPhoneOtp:invoke:error", error.message);
-    throw new Error(error.message || _translateCopy("copy.b7873bf19d98", { defaultValue: "Invalid or expired code" }));
+    throw new Error(serverAuthText(error.message, _translateCopy("copy.b7873bf19d98", { defaultValue: "Invalid or expired code" })));
   }
   if (data?.error) {
     log.warn("verifyPhoneOtp:error", data.error);
-    throw new Error(data.error);
+    throw new Error(serverAuthText(data.error, _translateCopy("copy.b7873bf19d98", { defaultValue: "Invalid or expired code" })));
   }
 
   const session = data?.session;
@@ -157,7 +205,7 @@ export async function verifyPhoneOtp(phone: string, token: string): Promise<stri
   const userId = sessionData?.session?.user?.id;
   if (sessionError || !userId) {
     log.warn("verifyPhoneOtp:setSession:error", sessionError?.message);
-    throw new Error(sessionError?.message || _translateCopy("copy.d067d2d39ef1", { defaultValue: "Sign-in failed. Please try again." }));
+    throw new Error(serverAuthText(sessionError?.message, _translateCopy("copy.d067d2d39ef1", { defaultValue: "Sign-in failed. Please try again." })));
   }
   return userId;
 }
@@ -180,10 +228,10 @@ async function signInWithOAuthProvider(
   });
   if (error || !data?.url) {
     log.warn(`signInWith:${provider}:start:error`, error?.message);
-    throw new Error(error?.message || _translateCopy("copy.05eaa93e0944", { defaultValue: "Could not start {{value1}} sign-in", value1: provider }));
+    throw new Error(serverAuthText(error?.message, _translateCopy("copy.05eaa93e0944", { defaultValue: "Could not start {{value1}} sign-in", value1: provider })));
   }
 
-  const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+  const result = await openSignInPage(data.url, redirectTo, provider);
   log.trace?.('oauth-result', { result: result.type });
   if (result.type !== "success" || !result.url) {
     throw new Error(`${provider} sign-in was cancelled`);
@@ -195,7 +243,11 @@ async function signInWithOAuthProvider(
   const access_token = params.get("access_token");
   const refresh_token = params.get("refresh_token");
   if (!access_token || !refresh_token) {
-    throw new Error(`${provider} sign-in did not return a session`);
+    // Supabase sends its reason back the same way (#error_description=...),
+    // e.g. when the provider refused or the account could not be saved.
+    const reason = params.get("error_description") ?? params.get("error");
+    log.warn(`signInWith:${provider}:no-session`, reason);
+    throw new Error(serverAuthText(reason, _translateCopy("copy.062a0fdcee55", { defaultValue: "Could not establish session" })));
   }
 
   const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
@@ -204,7 +256,7 @@ async function signInWithOAuthProvider(
   });
   if (sessionError || !sessionData?.user?.id) {
     log.warn(`signInWith:${provider}:setSession:error`, sessionError?.message);
-    throw new Error(sessionError?.message || _translateCopy("copy.062a0fdcee55", { defaultValue: "Could not establish session" }));
+    throw new Error(serverAuthText(sessionError?.message, _translateCopy("copy.062a0fdcee55", { defaultValue: "Could not establish session" })));
   }
   advanceAuthTrace('identity-established', sessionData.user.id);
   log.trace?.('identity-established');
@@ -241,7 +293,7 @@ export async function signInWithApple(): Promise<string> {
       nonce,
     });
     if (error || !data.session?.user.id) {
-      throw new Error(error?.message || _translateCopy("copy.e9087037ce05", { defaultValue: "Could not establish Apple sign-in session" }));
+      throw new Error(serverAuthText(error?.message, _translateCopy("copy.e9087037ce05", { defaultValue: "Could not establish Apple sign-in session" })));
     }
     // Apple supplies the name only on the first authorization.
     const fullName = [credential.fullName?.givenName, credential.fullName?.familyName]
@@ -326,7 +378,7 @@ export async function signInWithTelegram(): Promise<string> {
     `&return_to=${encodeURIComponent(returnTo)}` +
     "&embed=0&request_access=write";
 
-  const result = await WebBrowser.openAuthSessionAsync(authUrl, TELEGRAM_REDIRECT_URI);
+  const result = await openSignInPage(authUrl, TELEGRAM_REDIRECT_URI, "telegram");
   if (result.type !== "success" || !result.url) {
     throw new Error("Telegram sign-in was cancelled");
   }
@@ -345,11 +397,11 @@ export async function signInWithTelegram(): Promise<string> {
   });
   if (error) {
     log.warn("telegram:exchange:invoke:error", error.message);
-    throw new Error(error.message || _translateCopy("copy.79c2eecb4e83", { defaultValue: "Telegram sign-in failed. Please try again." }));
+    throw new Error(serverAuthText(error.message, _translateCopy("copy.79c2eecb4e83", { defaultValue: "Telegram sign-in failed. Please try again." })));
   }
   if (data?.error) {
     log.warn("telegram:exchange:error", data.error);
-    throw new Error(data.error);
+    throw new Error(serverAuthText(data.error, _translateCopy("copy.79c2eecb4e83", { defaultValue: "Telegram sign-in failed. Please try again." })));
   }
 
   const session = data?.session;
@@ -365,7 +417,7 @@ export async function signInWithTelegram(): Promise<string> {
   const userId = sessionData?.session?.user?.id;
   if (sessionError || !userId) {
     log.warn("telegram:setSession:error", sessionError?.message);
-    throw new Error(sessionError?.message || _translateCopy("copy.79c2eecb4e83", { defaultValue: "Telegram sign-in failed. Please try again." }));
+    throw new Error(serverAuthText(sessionError?.message, _translateCopy("copy.79c2eecb4e83", { defaultValue: "Telegram sign-in failed. Please try again." })));
   }
   return userId;
 }

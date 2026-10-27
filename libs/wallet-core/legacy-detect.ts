@@ -14,12 +14,13 @@
 import { supabase } from "../../services/supabase";
 
 /**
- * Phone sign-ups get a synthetic address of this form so GoTrue has something
- * to key a password grant on (see cosmic-echo-hero's verify-phone-otp, and
- * getSupabaseAuthMeta in services/auth/supabaseAuth.service.ts). It is never a
- * real inbox, so it can never match a pre-migration account.
+ * Phone, passkey and Telegram sign-ups get a synthetic address of this form
+ * (e.g. @phone.dehub.internal) so GoTrue has something to key a password grant
+ * on (see cosmic-echo-hero's verify-phone-otp, and getSupabaseAuthMeta in
+ * services/auth/supabaseAuth.service.ts). It is never a real inbox, so it can
+ * never match a pre-migration account.
  */
-const SYNTHETIC_PHONE_EMAIL_SUFFIX = "@phone.dehub.internal";
+const SYNTHETIC_EMAIL_SUFFIX = ".dehub.internal";
 
 /** One pre-migration account found for the checked email. */
 export interface LegacyAccountMatch {
@@ -63,20 +64,30 @@ export async function checkLegacyAccount(): Promise<LegacyAccountHint> {
 
     if (userId && cachedHint?.userId === userId) return cachedHint.hint;
 
-    // Pre-migration accounts are matched by verified email. A phone sign-up
-    // has no real one — only the synthetic @phone.dehub.internal address — so
-    // the function can only ever answer "none", and invoking it just adds a
-    // cold-start-sized stall to every phone sign-up. Note this deliberately
-    // does NOT skip on a merely-absent email: that is the "unknown" case,
-    // which must still ask rather than assume.
+    // Pre-migration accounts are matched by verified email. A phone, passkey
+    // or Telegram sign-up has no real one — only a synthetic *.dehub.internal
+    // address — so the function can only ever answer "none", and invoking it
+    // just adds a cold-start-sized stall to every such sign-up. Note this
+    // deliberately does NOT skip on a merely-absent email: that is the
+    // "unknown" case, which must still ask rather than assume.
     const email = sessionUser?.email;
-    if (email && email.endsWith(SYNTHETIC_PHONE_EMAIL_SUFFIX)) {
+    if (email && email.toLowerCase().endsWith(SYNTHETIC_EMAIL_SUFFIX)) {
       const hint: LegacyAccountHint = { exists: false, accounts: [] };
       if (userId) cachedHint = { userId, hint };
       return hint;
     }
 
     const { data, error } = await supabase.functions.invoke("legacy-account-check");
+    // The function answers { exists: null, reason: "no-email" } for an identity
+    // with no email at all. Old accounts are only ever matched by email, so
+    // that is a definite "none", not a transient failure. Treating it as
+    // unknown blocked sign-in with "Could not check your existing profile"
+    // on every retry. Only trusted when this session agrees it has no email.
+    if (!error && data?.reason === "no-email" && sessionUser && !sessionUser.email) {
+      const hint: LegacyAccountHint = { exists: false, accounts: [] };
+      if (userId) cachedHint = { userId, hint };
+      return hint;
+    }
     // An unavailable check is NOT cached: "unknown" is a transient condition,
     // and remembering it would keep a recoverable account hidden for the rest
     // of the session.
