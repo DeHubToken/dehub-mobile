@@ -245,7 +245,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
     ({ item }: { item: ProfilePostRow }) => {
       if (item.kind === "reply") {
         return (
-          <View className={cinematic ? undefined : "px-4"}>
+          <View className={cinematic ? undefined : "px-2"}>
             <UserReplyCard
               cinematic={cinematic}
               item={item.item}
@@ -263,7 +263,7 @@ const PostsRoute: React.FC<PostsRouteProps> = ({
         );
       }
       return (
-        <View className={cinematic ? "px-2" : "px-4"}>
+        <View className="px-2">
           <FeedCard
             cinematic={cinematic}
             item={item.item}

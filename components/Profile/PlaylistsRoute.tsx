@@ -207,7 +207,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
           />
         )}
         ListHeaderComponent={header}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
+        contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 8, paddingBottom: 80 }}
         windowSize={7}
         maxToRenderPerBatch={4}
         initialNumToRender={4}
@@ -292,7 +292,7 @@ const PlaylistsRoute: React.FC<PlaylistsRouteProps> = ({ address, isOwnProfile =
       numColumns={2}
       columnWrapperStyle={styles.row}
       ListHeaderComponent={listHeader}
-      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 80 }}
+      contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 8, paddingBottom: 80 }}
       onScroll={onScroll}
       scrollEventThrottle={16}
       showsVerticalScrollIndicator={false}

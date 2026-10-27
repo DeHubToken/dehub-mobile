@@ -111,7 +111,7 @@ const SubscribersRoute: React.FC<SubscribersRouteProps> = ({ address, isOwnProfi
         data={plans}
         keyExtractor={(item) => String(item._id || item.id || Math.random())}
         renderItem={renderItem}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 80 }}
+        contentContainerStyle={{ paddingHorizontal: 8, paddingTop: 12, paddingBottom: 80 }}
         onScroll={onScroll}
         scrollEventThrottle={16}
         showsVerticalScrollIndicator={false}
