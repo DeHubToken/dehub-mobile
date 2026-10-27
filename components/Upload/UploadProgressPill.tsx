@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useCallback, useState } from "react";
+import React, { memo, useEffect, useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Pressable,
@@ -21,6 +21,7 @@ import Icon from "../ui/Icon";
 import SmartImage from "../common/SmartImage";
 import { uploadState, uploadActions, type UploadJob, MAX_RETRIES } from "../../store/upload.store";
 import { navigationRef } from "../../App";
+import { postLandingState, uploadPillRect } from "../../libs/postLanding";
 import { ScreenNames } from "../../navigation/ScreenNames";
 
 const PILL_BOTTOM_OFFSET = 80;
@@ -55,7 +56,16 @@ const UploadProgressPill: React.FC = () => {
   const videoJob = snap.jobs.find((j) => j.video && !j.video.dismissed) as UploadJob | undefined;
   const video = videoJob?.video;
 
-  const shouldShow = !!(videoJob || currentJob || failedJobs.length > 0 || recentlyDone);
+  // While a new post lands in Home its card shows how the upload is going,
+  // so the pill steps aside for that job (libs/postLanding).
+  // The pill landing keeps the pill until it opens out of it; and a post
+  // that has landed needs no "Posted" after its card has said so.
+  const { landing, landedJobId } = useSnapshot(postLandingState);
+  const landingJobId = landing && (landing.style !== "pill" || landing.phase !== "waiting") ? landing.jobId : null;
+  const leadJob = videoJob ?? currentJob ?? recentlyDone;
+  const landingCovers = !!leadJob && (leadJob.id === landingJobId || (!videoJob && !currentJob && leadJob.id === landedJobId));
+
+  const shouldShow = !landingCovers && !!(videoJob || currentJob || failedJobs.length > 0 || recentlyDone);
 
   const translateY = useSharedValue(100);
   const opacity = useSharedValue(0);
@@ -103,6 +113,14 @@ const UploadProgressPill: React.FC = () => {
     }
     navigationRef.navigate(ScreenNames.UploadQueue as never);
   }, [videoJob, video?.stage, video?.tokenId]);
+
+  // Where the pill sits: the pill landing flies out of it.
+  const pillRef = useRef<View>(null);
+  const measurePill = useCallback(() => {
+    pillRef.current?.measureInWindow((x, y, width, height) => {
+      if (width > 0 && height > 0) uploadPillRect.current = { x, y, width, height };
+    });
+  }, []);
 
   const handleMinimize = useCallback(() => {
     setMinimized(true);
@@ -218,7 +236,7 @@ const UploadProgressPill: React.FC = () => {
       pointerEvents="box-none"
     >
       <Pressable onPress={handlePressPill} style={styles.pressable}>
-        <View style={styles.pill}>
+        <View ref={pillRef} collapsable={false} onLayout={measurePill} style={styles.pill}>
           <View style={styles.inner}>
             <View style={styles.iconWrap}>
               {thumbnailUri ? (

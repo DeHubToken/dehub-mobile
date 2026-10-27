@@ -20,6 +20,7 @@ import { toastError, toastSuccess } from "../libs/toast";
 import { attachShopListings } from "../libs/attach-shop-listings";
 import { parseTxError } from "../libs/web3.util";
 import { feedEvents } from "../libs/eventBus";
+import { postLandingActions } from "../libs/postLanding";
 import type { MintNftResponse } from "../services/nft.service";
 import type { CreateQuotePostResponse } from "../services/repost.service";
 import { createPoll } from "../services/polls.service";
@@ -438,7 +439,8 @@ async function processJob(job: UploadJob): Promise<void> {
     // The post exists from here on — the mint is a separate leg — so the
     // feeds can show it now, and the pill follows its video being prepared.
     if (!mintParams.scheduled) {
-      feedEvents.requestRefresh();
+      postLandingActions.published(job.id);
+      feedEvents.requestRefresh({ quiet: true });
       if (isVideoPost(job) && Number.isFinite(mintParams.createdTokenId)) {
         watchPostVideo(job.id, mintParams.createdTokenId);
       }
@@ -671,7 +673,7 @@ async function processJob(job: UploadJob): Promise<void> {
       description: when ? _translateCopy("copy.b21f3ed78786", { defaultValue: "It will publish {{value1}}.", value1: when }) : _translateCopy("copy.94ff209d1e70", { defaultValue: "It will publish at the scheduled time." }),
     });
   } else {
-    setTimeout(() => feedEvents.requestRefresh(), 3000);
+    setTimeout(() => feedEvents.requestRefresh({ quiet: true }), 3000);
     toastSuccess(_translateCopy("copy.8a6efaa17e94", { defaultValue: "Post sent!" }), {
       description: _translateCopy("copy.199206f8fb40", { defaultValue: "Your post is being processed. It may take a moment to appear in your feed." }),
     });
@@ -703,6 +705,7 @@ export function useUploadProcessor() {
         (raw.includes("can quote this post") || raw.includes("does not allow quotes"));
       const msg = quoteRefused ? i18n.t("quotePolicy.refused") : raw;
       uploadActions.fail(next.id, typeof msg === "string" ? msg : _translateCopy("copy.6efc5d27f30b", { defaultValue: "Upload failed" }));
+      postLandingActions.leave(next.id);
       toastError(msg);
     } finally {
       processingRef.current = false;
