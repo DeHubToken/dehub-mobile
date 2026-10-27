@@ -1014,9 +1014,9 @@ const NotificationScreen = () => {
   }, [showUserProfile]);
 
   const navigateToLivestream = useCallback((tokenId?: number, streamId?: string) => {
-    const id = streamId || (tokenId ? String(tokenId) : null);
-    if (!id) return;
-    navigation.navigate(ScreenNames.LiveViewer, { streamId: id });
+    // A tokenId is the post, not the stream; the viewer looks the stream up.
+    if (streamId) navigation.navigate(ScreenNames.LiveViewer, { streamId, ...(tokenId ? { tokenId } : {}) });
+    else if (tokenId) navigation.navigate(ScreenNames.LiveViewer, { tokenId });
   }, [navigation]);
 
   const navigateToDM = useCallback((conversationId: string) => {
