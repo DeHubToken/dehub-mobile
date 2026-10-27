@@ -15241,5 +15241,81 @@
     "cancelled": "Geannuleerd",
     "moveFailed": "Verplaatsen lukte niet. Probeer opnieuw.",
     "seeAll": "Bekijk alles wat je hebt gepland"
+  },
+  "welcome": {
+    "about": {
+      "title": "Welkom bij DeHub",
+      "sub": "Je verjaardag blijft privé. Kies een look, je kunt hem altijd wijzigen.",
+      "birthday": "Geboortedatum",
+      "pick": "Kies je verjaardag",
+      "day": "Dag",
+      "month": "Maand",
+      "year": "Jaar",
+      "invalid": "Vul je volledige geboortedatum in.",
+      "tooYoung": "Je moet {{age}} jaar of ouder zijn om DeHub te gebruiken.",
+      "theme": "Jouw look"
+    },
+    "name": {
+      "title": "Je naam",
+      "sub": "Dit is de naam die mensen bij je posts zien.",
+      "placeholder": "Je naam"
+    },
+    "username": {
+      "title": "Je @gebruikersnaam",
+      "sub": "Letters, cijfers en underscores. Je kunt hem later wijzigen.",
+      "yours": "@{{name}} is van jou"
+    },
+    "photo": {
+      "title": "Je foto",
+      "sub": "Optioneel. Mensen volgen sneller als ze een gezicht zien.",
+      "choose": "Kies een foto",
+      "change": "Kies een andere"
+    },
+    "interests": {
+      "title": "Je interesses",
+      "sub": "Kies er minstens 3. Ze komen als eerste in je categorieën."
+    },
+    "people": {
+      "title": "Jouw mensen",
+      "sub": "Tik om te volgen. Hun posts vullen je Volgend-feed.",
+      "empty": "Nu geen suggesties. Bij Ontdekken vind je meer mensen.",
+      "followers": "{{count}} volgers"
+    },
+    "done": {
+      "title": "Ziet er goed uit, {{name}}",
+      "sub": "Vanaf vandaag ziet iedereen deze kaart.",
+      "eyebrow": "Profiel live"
+    },
+    "card": {
+      "name": "Je naam",
+      "interests": "Je interesses",
+      "following": "volgend",
+      "followers": "volgers"
+    },
+    "topic": {
+      "music": "Muziek",
+      "art": "Kunst",
+      "gaming": "Gaming",
+      "crypto": "Crypto",
+      "sports": "Sport",
+      "travel": "Reizen",
+      "comedy": "Comedy",
+      "film": "Film",
+      "anime": "Anime",
+      "cars": "Auto's",
+      "podcast": "Podcast",
+      "animals": "Dieren",
+      "tech": "Tech",
+      "food": "Eten",
+      "news": "Nieuws",
+      "science": "Wetenschap"
+    },
+    "back": "Terug",
+    "enter": "Naar DeHub",
+    "skipPhoto": "Nu overslaan",
+    "pickMore": "Kies er nog {{count}}",
+    "preview": "Voorbeeld",
+    "cardHint": "Zo zien mensen jou",
+    "followFailed": "Volgen mislukt. Probeer het opnieuw."
   }
 }

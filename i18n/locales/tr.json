@@ -14989,5 +14989,81 @@
     "cancelled": "İptal edildi",
     "moveFailed": "Taşınamadı. Tekrar dene.",
     "seeAll": "Planladığın her şeyi gör"
+  },
+  "welcome": {
+    "about": {
+      "title": "DeHub'a hoş geldin",
+      "sub": "Doğum günün gizli kalır. Bir görünüm seç, istediğin zaman değiştirebilirsin.",
+      "birthday": "Doğum tarihi",
+      "pick": "Doğum gününü seç",
+      "day": "Gün",
+      "month": "Ay",
+      "year": "Yıl",
+      "invalid": "Doğum tarihini eksiksiz gir.",
+      "tooYoung": "DeHub'ı kullanmak için en az {{age}} yaşında olmalısın.",
+      "theme": "Görünümün"
+    },
+    "name": {
+      "title": "Adın",
+      "sub": "Gönderilerinde insanların gördüğü ad bu.",
+      "placeholder": "Adın"
+    },
+    "username": {
+      "title": "@kullanıcı adın",
+      "sub": "Harf, rakam ve alt çizgi. Daha sonra değiştirebilirsin.",
+      "yours": "@{{name}} artık senin"
+    },
+    "photo": {
+      "title": "Fotoğrafın",
+      "sub": "İsteğe bağlı. İnsanlar yüzü görünce daha hızlı takip eder.",
+      "choose": "Fotoğraf seç",
+      "change": "Başka birini seç"
+    },
+    "interests": {
+      "title": "İlgi alanların",
+      "sub": "En az 3 tane seç. Kategorilerinde ilk onlar görünür."
+    },
+    "people": {
+      "title": "Senin insanların",
+      "sub": "Takip etmek için dokun. Gönderileri Takip Edilenler akışını doldurur.",
+      "empty": "Şu an öneri yok. Keşfet'te daha fazla kişi bulabilirsin.",
+      "followers": "{{count}} takipçi"
+    },
+    "done": {
+      "title": "Harika görünüyorsun, {{name}}",
+      "sub": "Bugünden itibaren herkes bu kartı görüyor.",
+      "eyebrow": "Profil yayında"
+    },
+    "card": {
+      "name": "Adın",
+      "interests": "İlgi alanların",
+      "following": "takip edilen",
+      "followers": "takipçi"
+    },
+    "topic": {
+      "music": "Müzik",
+      "art": "Sanat",
+      "gaming": "Oyun",
+      "crypto": "Kripto",
+      "sports": "Spor",
+      "travel": "Seyahat",
+      "comedy": "Komedi",
+      "film": "Film",
+      "anime": "Anime",
+      "cars": "Arabalar",
+      "podcast": "Podcast",
+      "animals": "Hayvanlar",
+      "tech": "Teknoloji",
+      "food": "Yemek",
+      "news": "Haberler",
+      "science": "Bilim"
+    },
+    "back": "Geri",
+    "enter": "DeHub'a gir",
+    "skipPhoto": "Şimdilik geç",
+    "pickMore": "{{count}} tane daha seç",
+    "preview": "Önizleme",
+    "cardHint": "İnsanlar seni böyle görecek",
+    "followFailed": "Takip edilemedi. Tekrar dene."
   }
 }
