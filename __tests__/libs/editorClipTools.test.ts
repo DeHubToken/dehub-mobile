@@ -1,5 +1,5 @@
-import { detachAudio, frameBars, letterboxCrop } from "../../libs/editor/clipTools";
-import type { ProjectSnapshot } from "../../libs/editor/types";
+import { clipSourceSpan, detachAudio, frameBars, letterboxCrop, reversedClip, subjectLayer } from "../../libs/editor/clipTools";
+import type { MediaClip, ProjectSnapshot } from "../../libs/editor/types";
 
 const frame = (width: number, height: number, bars: { top?: number; bottom?: number; left?: number; right?: number }) => {
   const data = new Uint8ClampedArray(width * height * 4);
@@ -47,5 +47,36 @@ describe("detachAudio", () => {
     const result = detachAudio(p, "c", () => "x")!;
     expect(result.project.clips.find(c => c.id === "x")!.trackId).toBe("a");
     expect(detachAudio(result.project, "c", () => "y")).toBeNull();
+  });
+});
+
+describe("text behind the person and reverse", () => {
+  const base = (): ProjectSnapshot => ({
+    id: "p", title: "", updatedAt: 0, settings: {} as ProjectSnapshot["settings"],
+    tracks: [{ id: "v", kind: "video", name: "Video", muted: false, hidden: false }],
+    clips: [
+      { id: "c", kind: "video", mediaId: "m", trackId: "v", start: 2, duration: 5, trimIn: 1, speed: 2, audio: { volume: 0.8 }, groupId: "g",
+        transitionOut: { kind: "fade", duration: 0.5 }, videoMatte: { mediaId: "x" } },
+    ] as unknown as ProjectSnapshot["clips"],
+  });
+  it("puts a silent copy of the video on a new top track", () => {
+    let n = 0;
+    const result = subjectLayer(base(), "c", () => `id${++n}`)!;
+    expect(result.project.tracks[result.project.tracks.length - 1]).toMatchObject({ id: "id1", kind: "video" });
+    const copy = result.project.clips.find(c => c.id === result.id) as MediaClip;
+    expect(copy).toMatchObject({ trackId: "id1", start: 2, duration: 5, trimIn: 1, speed: 2, audio: { volume: 0 } });
+    expect(copy.groupId).toBeUndefined();
+    expect(copy.transitionOut).toBeUndefined();
+    expect(copy.videoMatte).toBeUndefined();
+  });
+  it("points the clip at a reversed copy of the span it plays", () => {
+    const clip = base().clips[0] as MediaClip;
+    expect(clipSourceSpan(clip)).toEqual({ start: 1, end: 11 });
+    const next = reversedClip(base(), "c", "rev", 10)!.clips[0] as MediaClip;
+    expect(next).toMatchObject({ mediaId: "rev", trimIn: 0, sourceDuration: 10, start: 2, duration: 5 });
+    expect(next.videoMatte).toBeUndefined();
+    const locked = base(); (locked.clips[0] as MediaClip).locked = true;
+    expect(reversedClip(locked, "c", "rev", 10)).toBeNull();
+    expect(subjectLayer(locked, "c", () => "x")).toBeNull();
   });
 });

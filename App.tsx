@@ -46,6 +46,7 @@ import {
   Exo_600SemiBold,
   Exo_700Bold,
 } from "@expo-google-fonts/exo";
+import { FeedSuperpowersProvider } from "./context/FeedSuperpowersContext";
 import { AuthProvider, useAuthState, useUser } from "./context/AuthContext";
 import { recordScreenView, setScreenViewAddress } from "./services/pageView.service";
 import WalletUnlockHost from "./components/auth/WalletUnlockHost";
@@ -73,6 +74,7 @@ import { useAppLifecycle } from "./hooks/useAppLifecycle";
 import { checkForOtaUpdate } from "./libs/otaUpdates";
 import { createLogger } from "./libs/logger";
 import { flushNavigationTiming, markLaunchPhase, markNavigationSettled, reportLaunchRevealed, trackNavigationTiming } from "./libs/launchTiming";
+import { installJsStallMonitor } from "./libs/jsStallMonitor";
 import { forceFlushBatchViews } from "./services/view.service";
 import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
@@ -228,6 +230,7 @@ export default function App() {
           <SafeAreaProvider initialMetrics={initialSafeAreaMetrics} className="flex-1 select-none">
             <MaintenanceGate>
             <AuthProvider>
+              <FeedSuperpowersProvider>
               <WebSocketProvider>
                 <DMProvider>
                   {/* Inside AuthProvider because the checklist is per wallet,
@@ -248,6 +251,7 @@ export default function App() {
               <OnboardingChoicesApplier />
               {/* A tapped badge opens here, above whatever screen it was on. */}
               <BadgeShowcaseHost />
+              </FeedSuperpowersProvider>
             </AuthProvider>
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
                 and every one of them resolves against this scale. */}
@@ -342,6 +346,13 @@ const BootGate: React.FC<{ staged: boolean }> = ({ staged }) => {
   const isSignedInRef = useRef(isSignedIn);
   isSignedInRef.current = isSignedIn;
   useEffect(() => trackNavigationTiming(navigationRef), []);
+  // Freezes and memory warnings, tagged with the screen and theme they hit.
+  const themeRef = useRef(theme);
+  themeRef.current = theme;
+  useEffect(() => installJsStallMonitor(
+    () => (navigationRef.isReady() ? navigationRef.getCurrentRoute()?.name : undefined),
+    () => ({ theme: themeRef.current }),
+  ), []);
   const user = useUser();
   const isAuthenticated = isSignedIn && !needsUsername;
 

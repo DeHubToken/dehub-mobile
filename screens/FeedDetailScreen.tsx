@@ -17,6 +17,7 @@ import FeedCard, { resolveContentType } from "../components/Home/FeedCard";
 import { authorThreadFirst, isAuthorThreadRoot, selectAuthorThreadIds } from "../libs/author-thread";
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentBottomSheet, CommentItem } from "../components/Comments";
+import { takePendingFeedComments } from "../libs/feedPostHost";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
@@ -295,7 +296,8 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   // and goes again when it is left empty. The post's own comment button opens
   // the same comments drawer as the home feed.
   const [composerAsked, setComposerAsked] = useState(false);
-  const [showCommentSheet, setShowCommentSheet] = useState(false);
+  // A feed card's comment button opens the post with its comments already up.
+  const [showCommentSheet, setShowCommentSheet] = useState(() => embedded && tokenId != null && takePendingFeedComments(tokenId));
   // Keyboard height minus the bottom inset the root SafeAreaView already spent
   // — see hooks/useKeyboardLayout.ts.
   const { lift: kbLift } = useKeyboardLift();
@@ -2048,6 +2050,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           replyPolicy={(item as any)?.replyPolicy}
           forKids={!!(item as any)?.forKids}
           postCreator={postCreator}
+          split={stageLayout && !videoPost}
         />
       )}
       </View>

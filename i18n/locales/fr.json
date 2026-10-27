@@ -1461,7 +1461,10 @@
     "giftBoost": "Offrir un boost",
     "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication",
     "askAi": "Demander à l'IA",
-    "aiOverview": "Vue d'ensemble de l'IA"
+    "aiOverview": "Vue d'ensemble de l'IA",
+    "refreshLinkPreview": "Actualiser l'aperçu du lien",
+    "linkPreviewRefreshed": "Aperçu du lien actualisé",
+    "linkPreviewRefreshFailed": "Impossible d'accéder à ce site. Réessayez plus tard."
   },
   "filters": {
     "sort": "Trier",
@@ -2341,7 +2344,8 @@
     "importWalletPurpose": "Cet outil permet d'importer des comptes existants à partir de DeHub.io.",
     "importSecretPlaceholder": "12 ou 24 mots, ou une clé privée",
     "invalidImportSecret": "Ce n'est ni une phrase valide de 12/24 mots ni une clé privée",
-    "walletSignupBlocked": "Ce portefeuille est tout neuf. Les nouveaux portefeuilles doivent avoir un solde ou une transaction passée pour ouvrir un compte. Inscrivez-vous avec l'une des options ci-dessous, puis connectez ce portefeuille depuis les Paramètres."
+    "walletSignupBlocked": "Ce portefeuille est tout neuf. Les nouveaux portefeuilles doivent avoir un solde ou une transaction passée pour ouvrir un compte. Inscrivez-vous avec l'une des options ci-dessous, puis connectez ce portefeuille depuis les Paramètres.",
+    "signInPageWouldNotOpen": "La page de connexion s'est fermée avant de s'ouvrir. Réessayez ou continuez par e-mail."
   },
   "messages": {
     "smartRepliesOff": "Réponses suggérées désactivées",
@@ -7291,7 +7295,22 @@
     "didNotRecoverEither": "Cette connexion n'a récupéré aucun des profils affichés ici. Rien n'a changé. Essayez la connexion d'origine du profil souhaité.",
     "didNotRecoverThis": "Cette connexion a récupéré un portefeuille différent de celui de ce profil. Rien n'a changé. Essayez la connexion qui l'a créé à l'origine.",
     "couldNotRetrieve": "Impossible de récupérer cet ancien portefeuille sur cet appareil. Vous pouvez toujours le récupérer sur dehub.io ci-dessous.",
-    "matchedWithBalance": "Correspondance, {{balance}} tokens"
+    "matchedWithBalance": "Correspondance, {{balance}} tokens",
+    "methodEmail": "un code par e-mail",
+    "methodPhone": "un numéro de téléphone",
+    "madeWithNamed": "@{{name}} a été créé avec {{method}}. Continuez avec le même compte {{method}} pour le récupérer.",
+    "madeWith": "Ce profil a été créé avec {{method}}. Continuez avec le même compte {{method}} pour le récupérer.",
+    "madeWithEmailNamed": "@{{name}} a été créé avec un code par e-mail. Nous enverrons un dernier code à cette adresse pour le récupérer.",
+    "madeWithEmail": "Ce profil a été créé avec un code par e-mail. Nous enverrons un dernier code à cette adresse pour le récupérer.",
+    "madeWithPhoneNamed": "@{{name}} a été créé avec un numéro de téléphone. Nous enverrons un dernier code à ce numéro pour le récupérer.",
+    "madeWithPhone": "Ce profil a été créé avec un numéro de téléphone. Nous enverrons un dernier code à ce numéro pour le récupérer.",
+    "wrongSignInNamed": "Cette connexion ouvre un autre portefeuille, pas @{{name}}. @{{name}} a été créé avec {{method}} : seul ce moyen peut le récupérer.",
+    "wrongSignIn": "Cette connexion ouvre un autre portefeuille. Ce profil a été créé avec {{method}} : seul ce moyen peut le récupérer.",
+    "continueWith": "Continuer avec {{provider}}",
+    "differentSignIn": "Vous avez utilisé une autre connexion ?",
+    "oldAccountPhone": "Numéro de téléphone de l'ancien compte",
+    "recoverFromPhoneA11y": "Récupérer l'ancien compte avec ce numéro",
+    "phoneNeedsCode": "Saisissez le numéro avec l'indicatif du pays, par exemple +33 6 12 34 56 78."
   },
   "liveGift": {
     "buyTokens": "Acheter des jetons",
@@ -9747,6 +9766,73 @@
       "noRetakes": "Aucune reprise trouvée",
       "retakesRemoved": "{{count}} reprise(s) retirée(s), dernière prise conservée",
       "retakesFailed": "Impossible de retirer les reprises de ce clip"
+    },
+    "speakers": {
+      "find": "Trouver les intervenants",
+      "name": "Intervenant {{number}}",
+      "onlyOne": "Un seul intervenant trouvé.",
+      "failed": "Impossible de trouver les intervenants.",
+      "kept": "Seul {{name}} est conservé.",
+      "editFailed": "Cette modification ne convient pas à ce clip.",
+      "split": "Découpé en {{count}} plans par intervenant.",
+      "keepOnly": "Garder seul",
+      "splitAction": "Couper à chaque changement d'intervenant"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Décris l'objet 3D que tu veux",
+      "queued": "Création de ton objet 3D. Il arrivera dans l'onglet Générations.",
+      "note": "Les objets 3D arrivent dans Médias sous forme de court clip qui tourne, sur fond transparent."
+    },
+    "voiceClone": {
+      "pickerLabel": "Clone ta voix",
+      "pickerDetail": "Des voix off avec ta propre voix",
+      "title": "Clone ta voix",
+      "description": "Enregistre-toi ou choisis un clip où tu parles. Tu paies une fois et ta voix sert pour toutes tes voix off.",
+      "defaultName": "Ma voix",
+      "record": "Enregistre un extrait (30 secondes à 2 minutes)",
+      "stop": "Arrêter l'enregistrement",
+      "fromMedia": "Ou utilise un clip de Médias",
+      "recorded": "Ton enregistrement",
+      "sample": "Extrait : {{name}}",
+      "hint": "Une voix claire sans musique donne le meilleur résultat.",
+      "noMic": "Impossible d'utiliser le micro.",
+      "sampleFailed": "Impossible de lire le son de ce clip.",
+      "pay": "Cloner pour {{amount}} DHB",
+      "useFree": "Cloner (déjà payé)",
+      "owned": "Ta voix « {{name}} » est déjà prête. Choisis-la dans la liste des voix.",
+      "useOwned": "Utiliser ma voix",
+      "ready": "« {{name}} » est prête pour les voix off.",
+      "failed": "Le clonage de la voix a échoué.",
+      "paidFailed": "Ton paiement est conservé. Rouvre ceci et le prochain essai est gratuit.",
+      "consent": "Ne clone que ta propre voix, ou une voix que tu as le droit d'utiliser."
+    },
+    "linkImport": {
+      "open": "Importer depuis un lien",
+      "placeholder": "Colle un lien YouTube, TikTok ou autre",
+      "rights": "Cette vidéo m'appartient ou j'ai le droit de l'utiliser",
+      "audioOnly": "Son uniquement",
+      "go": "Importer",
+      "queued": "En file…",
+      "downloading": "Téléchargement {{percent}} %",
+      "waiting": "En attente du site, nouvel essai bientôt…",
+      "adding": "Ajout à Médias…",
+      "added": "Importé et ajouté à la timeline.",
+      "failed": "Impossible d'importer ce lien."
+    },
+    "reverse": {
+      "action": "Inverser",
+      "working": "Inversion {{percent}} %",
+      "done": "Clip inversé.",
+      "failed": "Impossible d’inverser ce clip.",
+      "unsupported": "Ce navigateur ne peut pas inverser la vidéo. Essayez Chrome ou Edge.",
+      "tooLong": "Les clips jusqu’à {{seconds}} secondes peuvent être inversés."
+    },
+    "behind": {
+      "action": "Texte derrière la personne",
+      "working": "Détourage de la personne…",
+      "done": "Le texte et les sous-titres passent maintenant derrière la personne.",
+      "failed": "Impossible de placer le texte derrière la personne."
     }
   },
   "creator": {
@@ -14477,7 +14563,7 @@
     "fefe0a37bf94": "Faible sur ",
     "1ee7202b84ad": "? Nous vous rechargerons avant de déverrouiller.",
     "39f4e6134a22": "Approbation ",
-    "5dc85dbc155e": "Chaîne BNB",
+    "5dc85dbc155e": "BNB Chain",
     "ca7842e53ac8": "dehub.io",
     "407d8f7e8ded": "Prêté par ",
     "450683b66da4": "SRT / VTT",
@@ -14489,7 +14575,7 @@
     "9d5c64ebd6a0": "🎨 Créer une affiche DeHub",
     "68845e302faf": "🎵 Créer une chanson",
     "c72a1f046be5": "🧱 Construire quelque chose",
-    "f223faa96f22": "Apple 🍎",
+    "f223faa96f22": "Apple",
     "f8f2edb787a3": "Votre flux principal affichant les publications des personnes que vous suivez et le contenu tendance.",
     "de7f043f74a0": "Découvrez de nouveaux contenus et de nouveaux utilisateurs. Parcourez par catégorie : vidéos, images, flux en direct, etc.",
     "f4697afb34f4": "Classement des meilleurs utilisateurs par solde, pourboires envoyés, pourboires reçus, abonnés, etc. Mis à jour périodiquement.",
@@ -15088,5 +15174,81 @@
     "cancelled": "Annulé",
     "moveFailed": "Impossible de le déplacer. Réessaie.",
     "seeAll": "Voir tout ce que tu as planifié"
+  },
+  "welcome": {
+    "about": {
+      "title": "Bienvenue sur DeHub",
+      "sub": "Ta date de naissance reste privée. Choisis un style, tu pourras le changer à tout moment.",
+      "birthday": "Date de naissance",
+      "pick": "Choisis ta date de naissance",
+      "day": "Jour",
+      "month": "Mois",
+      "year": "Année",
+      "invalid": "Saisis ta date de naissance complète.",
+      "tooYoung": "Tu dois avoir {{age}} ans ou plus pour utiliser DeHub.",
+      "theme": "Ton style"
+    },
+    "name": {
+      "title": "Ton nom",
+      "sub": "C'est le nom que les gens voient sur tes publications.",
+      "placeholder": "Ton nom"
+    },
+    "username": {
+      "title": "Ton @pseudo",
+      "sub": "Lettres, chiffres et tirets bas. Tu pourras le changer plus tard.",
+      "yours": "@{{name}} est à toi"
+    },
+    "photo": {
+      "title": "Ta photo",
+      "sub": "Facultatif. On suit plus vite quand on voit un visage.",
+      "choose": "Choisir une photo",
+      "change": "En choisir une autre"
+    },
+    "interests": {
+      "title": "Tes centres d'intérêt",
+      "sub": "Choisis-en au moins 3. Ils passent en premier dans tes catégories."
+    },
+    "people": {
+      "title": "Tes gens",
+      "sub": "Touche pour suivre. Leurs publications rempliront ton fil Abonnements.",
+      "empty": "Aucune suggestion pour le moment. Explorer t'en propose davantage.",
+      "followers": "{{count}} abonnés"
+    },
+    "done": {
+      "title": "Super, {{name}}",
+      "sub": "Tout le monde voit cette carte dès aujourd'hui.",
+      "eyebrow": "Profil en ligne"
+    },
+    "card": {
+      "name": "Ton nom",
+      "interests": "Tes centres d'intérêt",
+      "following": "abonnements",
+      "followers": "abonnés"
+    },
+    "topic": {
+      "music": "Musique",
+      "art": "Art",
+      "gaming": "Jeux vidéo",
+      "crypto": "Crypto",
+      "sports": "Sport",
+      "travel": "Voyage",
+      "comedy": "Humour",
+      "film": "Cinéma",
+      "anime": "Anime",
+      "cars": "Voitures",
+      "podcast": "Podcast",
+      "animals": "Animaux",
+      "tech": "Tech",
+      "food": "Cuisine",
+      "news": "Actualités",
+      "science": "Science"
+    },
+    "back": "Retour",
+    "enter": "Entrer dans DeHub",
+    "skipPhoto": "Passer pour l'instant",
+    "pickMore": "Encore {{count}} à choisir",
+    "preview": "Aperçu",
+    "cardHint": "Voici comment les gens te verront",
+    "followFailed": "Impossible de suivre. Réessaie."
   }
 }

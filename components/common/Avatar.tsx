@@ -17,6 +17,8 @@ interface AvatarProps {
    */
   fallbackUri?: string | null;
   size?: number;
+  /** Corner radius; defaults to 16% of the size. */
+  radius?: number;
   onPress?: () => void;
   style?: ViewStyle;
   fallback?: ImageSourcePropType;
@@ -48,6 +50,7 @@ const Avatar: React.FC<AvatarProps> = ({
   uri,
   fallbackUri,
   size = 40,
+  radius: radiusProp,
   onPress,
   style,
   fallback,
@@ -81,7 +84,7 @@ const Avatar: React.FC<AvatarProps> = ({
   if (load.key !== key) setLoad({ key, step: 0 });
   const current = load.key === key ? sources[load.step] : sources[0];
 
-  const radius = Math.round(size * 0.16);
+  const radius = radiusProp ?? Math.round(size * 0.16);
   const showImage = !!current;
 
   const initial = useMemo(() => getInitial(name), [name]);

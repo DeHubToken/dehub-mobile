@@ -4,6 +4,8 @@ import type { ImageStyle, StyleProp } from "react-native";
 import { cdnImageSource, probeTransformOrigin, useTransformReachable, withStorageImageHeaders } from "../../libs/cdnImage";
 
 const TRANSFORM_PREFIX = "https://dehub.io/cdn-cgi/image/";
+/** A resized copy still loading after this long is dropped for the original. */
+const TRANSFORM_STALL_MS = 10_000;
 const warmed = new Set<string>();
 /** Warm one neighbour into the same native cache the visible image uses. */
 export function warmFeedImage(uri: string): void {
@@ -124,7 +126,16 @@ export const SmartImage: React.FC<SmartImageProps> = ({
   // Android's autoplay prop controls newly loaded resources. An existing GIF
   // needs the native animation command when its row leaves the viewport.
   useEffect(syncAnimation, [syncAnimation]);
+  // A resize that stalls never errors on its own: one photo's transform hung
+  // for over a minute on a phone while the original loaded instantly.
+  const stallRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => {
+    if (!uri || !viaTransform || useOriginal || original === uri) return;
+    stallRef.current = setTimeout(() => setFailedUri(uri), TRANSFORM_STALL_MS);
+    return () => clearTimeout(stallRef.current);
+  }, [uri, viaTransform, useOriginal, original]);
   const handleLoad = useCallback<NonNullable<ImageProps['onLoad']>>((event) => {
+    clearTimeout(stallRef.current);
     animatedRef.current = event.source.isAnimated ?? false;
     syncAnimation();
     onLoad?.(event);

@@ -1461,7 +1461,10 @@
     "giftBoost": "Bir güçlendirme hediye et",
     "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca",
     "askAi": "Yapay zekâya sor",
-    "aiOverview": "Yapay zekaya genel bakış"
+    "aiOverview": "Yapay zekaya genel bakış",
+    "refreshLinkPreview": "Bağlantı önizlemesini yenile",
+    "linkPreviewRefreshed": "Bağlantı önizlemesi yenilendi",
+    "linkPreviewRefreshFailed": "Bu siteye ulaşılamadı. Daha sonra tekrar deneyin."
   },
   "filters": {
     "sort": "Sırala",
@@ -2341,7 +2344,8 @@
     "importWalletPurpose": "Bu araç, DeHub.io'dan mevcut hesapları içe aktarmak içindir.",
     "importSecretPlaceholder": "12 veya 24 kelime ya da özel anahtar",
     "invalidImportSecret": "Bu geçerli bir 12/24 kelimelik ifade veya özel anahtar değil",
-    "walletSignupBlocked": "Bu cüzdan yepyeni. Yeni cüzdanların hesap açabilmesi için bakiyesi veya geçmiş bir işlemi olmalı. Aşağıdaki seçeneklerden biriyle kaydol, ardından bu cüzdanı Ayarlar'dan bağla."
+    "walletSignupBlocked": "Bu cüzdan yepyeni. Yeni cüzdanların hesap açabilmesi için bakiyesi veya geçmiş bir işlemi olmalı. Aşağıdaki seçeneklerden biriyle kaydol, ardından bu cüzdanı Ayarlar'dan bağla.",
+    "signInPageWouldNotOpen": "Oturum açma sayfası açılmadan kapandı. Tekrar deneyin veya e-postayla devam edin."
   },
   "messages": {
     "smartRepliesOff": "Önerilen yanıtlar kapatıldı",
@@ -7286,7 +7290,22 @@
     "didNotRecoverEither": "Bu giriş burada gösterilen profillerin hiçbirini kurtarmadı. Hiçbir şey değişmedi. İstediğiniz profilin orijinal oturum açma yöntemini deneyin.",
     "didNotRecoverThis": "Bu giriş, bu profilinkinden farklı bir cüzdanı kurtardı. Hiçbir şey değişmedi. Onu ilk oluşturan oturum açma yöntemini deneyin.",
     "couldNotRetrieve": "Bu cihazda o eski cüzdan alınamadı. Aşağıdaki dehub.io üzerinden hâlâ kurtarabilirsiniz.",
-    "matchedWithBalance": "Eşleşti, {{balance}} jeton"
+    "matchedWithBalance": "Eşleşti, {{balance}} jeton",
+    "methodEmail": "bir e-posta kodu",
+    "methodPhone": "bir telefon numarası",
+    "madeWithNamed": "@{{name}}, {{method}} ile oluşturuldu. Geri getirmek için aynı {{method}} hesabıyla devam edin.",
+    "madeWith": "Bu profil {{method}} ile oluşturuldu. Geri getirmek için aynı {{method}} hesabıyla devam edin.",
+    "madeWithEmailNamed": "@{{name}} bir e-posta koduyla oluşturuldu. Geri getirmek için o e-postaya bir kod daha göndereceğiz.",
+    "madeWithEmail": "Bu profil bir e-posta koduyla oluşturuldu. Geri getirmek için o e-postaya bir kod daha göndereceğiz.",
+    "madeWithPhoneNamed": "@{{name}} bir telefon numarasıyla oluşturuldu. Geri getirmek için o numaraya bir kod daha göndereceğiz.",
+    "madeWithPhone": "Bu profil bir telefon numarasıyla oluşturuldu. Geri getirmek için o numaraya bir kod daha göndereceğiz.",
+    "wrongSignInNamed": "Bu giriş @{{name}} değil, farklı bir cüzdan açıyor. @{{name}}, {{method}} ile oluşturuldu; onu yalnızca bu geri getirebilir.",
+    "wrongSignIn": "Bu giriş farklı bir cüzdan açıyor. Bu profil {{method}} ile oluşturuldu; onu yalnızca bu geri getirebilir.",
+    "continueWith": "{{provider}} ile devam et",
+    "differentSignIn": "Farklı bir giriş mi kullandınız?",
+    "oldAccountPhone": "Eski hesabın telefon numarası",
+    "recoverFromPhoneA11y": "Eski hesabı bu telefon numarasıyla kurtar",
+    "phoneNeedsCode": "Numarayı ülke koduyla girin, örneğin +90 532 123 4567."
   },
   "liveGift": {
     "buyTokens": "Token Satın Al",
@@ -9742,6 +9761,73 @@
       "noRetakes": "Tekrar çekim bulunamadı",
       "retakesRemoved": "{{count}} tekrar çekim kaldırıldı, son çekim tutuldu",
       "retakesFailed": "Bu klipten tekrar çekimler kaldırılamadı"
+    },
+    "speakers": {
+      "find": "Konuşmacıları bul",
+      "name": "Konuşmacı {{number}}",
+      "onlyOne": "Yalnızca bir konuşmacı bulundu.",
+      "failed": "Konuşmacılar bulunamadı.",
+      "kept": "Yalnızca {{name}} tutuldu.",
+      "editFailed": "Bu düzenleme bu klibe uymadı.",
+      "split": "{{count}} konuşmacı çekimine bölündü.",
+      "keepOnly": "Yalnızca bu",
+      "splitAction": "Her konuşmacı değişiminde kes"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "İstediğin 3D nesneyi tarif et",
+      "queued": "3D nesnen oluşturuluyor. Üretimler sekmesine düşecek.",
+      "note": "3D nesneler Medya'ya şeffaf arka planlı, dönen kısa bir klip olarak gelir."
+    },
+    "voiceClone": {
+      "pickerLabel": "Sesini klonla",
+      "pickerDetail": "Kendi sesinle seslendirme",
+      "title": "Sesini klonla",
+      "description": "Kendini kaydet ya da konuştuğun bir klip seç. Bir kez ödersin, sesin tüm seslendirmelerde senin olur.",
+      "defaultName": "Benim sesim",
+      "record": "Örnek kaydet (30 saniye ile 2 dakika)",
+      "stop": "Kaydı durdur",
+      "fromMedia": "Ya da Medya'dan bir klip kullan",
+      "recorded": "Kaydın",
+      "sample": "Örnek: {{name}}",
+      "hint": "Müziksiz, net bir konuşma en iyi sonucu verir.",
+      "noMic": "Mikrofon kullanılamadı.",
+      "sampleFailed": "O klibin sesi okunamadı.",
+      "pay": "{{amount}} DHB karşılığında klonla",
+      "useFree": "Klonla (ödendi)",
+      "owned": "“{{name}}” sesin zaten hazır. Ses listesinden seç.",
+      "useOwned": "Sesimi kullan",
+      "ready": "“{{name}}” seslendirme için hazır.",
+      "failed": "Ses klonlama başarısız oldu.",
+      "paidFailed": "Ödemen kaydedildi. Bunu yeniden aç, sonraki deneme ücretsiz.",
+      "consent": "Yalnızca kendi sesini ya da kullanma iznin olan bir sesi klonla."
+    },
+    "linkImport": {
+      "open": "Bağlantıdan içe aktar",
+      "placeholder": "YouTube, TikTok veya başka bir bağlantı yapıştır",
+      "rights": "Bu videonun sahibiyim ya da kullanma iznim var",
+      "audioOnly": "Yalnızca ses",
+      "go": "İçe aktar",
+      "queued": "Sırada…",
+      "downloading": "İndiriliyor %{{percent}}",
+      "waiting": "Site bekleniyor, birazdan yeniden denenecek…",
+      "adding": "Medya'ya ekleniyor…",
+      "added": "İçe aktarıldı ve zaman çizelgesine eklendi.",
+      "failed": "Bu bağlantı içe aktarılamadı."
+    },
+    "reverse": {
+      "action": "Tersine çevir",
+      "working": "Tersine çevriliyor %{{percent}}",
+      "done": "Klip tersine çevrildi.",
+      "failed": "Bu klip tersine çevrilemedi.",
+      "unsupported": "Bu tarayıcı videoyu tersine çeviremiyor. Chrome veya Edge deneyin.",
+      "tooLong": "En fazla {{seconds}} saniyelik klipler tersine çevrilebilir."
+    },
+    "behind": {
+      "action": "Metin kişinin arkasında",
+      "working": "Kişi kesilip çıkarılıyor…",
+      "done": "Metin ve altyazılar artık kişinin arkasında.",
+      "failed": "Metin kişinin arkasına alınamadı."
     }
   },
   "creator": {
@@ -14383,7 +14469,7 @@
     "5948954e3b49": "Kaldır ",
     "3ff441f1f484": " takipçilerinizden",
     "83e2982ce44d": "Rapor ",
-    "5dc85dbc155e": "BNB ZİNCİRİ",
+    "5dc85dbc155e": "BNB Chain",
     "72074a8a6836": "Mevcut:",
     "582bfe13a748": " açık",
     "49a6ddf9a439": "başlangıç ",
@@ -14421,7 +14507,7 @@
     "c72a1f046be5": "🧱 Bir şey inşa et",
     "6300ef800bb8": "Asla",
     "f7fcff0d8fea": "Sınır yok",
-    "f223faa96f22": "Elma",
+    "f223faa96f22": "Apple",
     "9cc9f71c23f2": "Canlı bir mekansal zeka dünyasını keşfedin ve isterseniz DeHub topluluğuna kasıtlı olarak yaklaşık bir versiyonunuzu yerleştirin.",
     "a61d44ba33d5": "Tüm arenaların anası. Düzinelerce ekranla zaman yolcusu gibi işlem yapın. Binance, Dexscreener veya videolardan tarayıcı sekmelerine kadar istediğiniz her şeyden canlı yayınların keyfini çıkarın.",
     "9677cceec070": "Son Etkileşimler",
@@ -15083,5 +15169,81 @@
     "cancelled": "İptal edildi",
     "moveFailed": "Taşınamadı. Tekrar dene.",
     "seeAll": "Planladığın her şeyi gör"
+  },
+  "welcome": {
+    "about": {
+      "title": "DeHub'a hoş geldin",
+      "sub": "Doğum günün gizli kalır. Bir görünüm seç, istediğin zaman değiştirebilirsin.",
+      "birthday": "Doğum tarihi",
+      "pick": "Doğum gününü seç",
+      "day": "Gün",
+      "month": "Ay",
+      "year": "Yıl",
+      "invalid": "Doğum tarihini eksiksiz gir.",
+      "tooYoung": "DeHub'ı kullanmak için en az {{age}} yaşında olmalısın.",
+      "theme": "Görünümün"
+    },
+    "name": {
+      "title": "Adın",
+      "sub": "Gönderilerinde insanların gördüğü ad bu.",
+      "placeholder": "Adın"
+    },
+    "username": {
+      "title": "@kullanıcı adın",
+      "sub": "Harf, rakam ve alt çizgi. Daha sonra değiştirebilirsin.",
+      "yours": "@{{name}} artık senin"
+    },
+    "photo": {
+      "title": "Fotoğrafın",
+      "sub": "İsteğe bağlı. İnsanlar yüzü görünce daha hızlı takip eder.",
+      "choose": "Fotoğraf seç",
+      "change": "Başka birini seç"
+    },
+    "interests": {
+      "title": "İlgi alanların",
+      "sub": "En az 3 tane seç. Kategorilerinde ilk onlar görünür."
+    },
+    "people": {
+      "title": "Senin insanların",
+      "sub": "Takip etmek için dokun. Gönderileri Takip Edilenler akışını doldurur.",
+      "empty": "Şu an öneri yok. Keşfet'te daha fazla kişi bulabilirsin.",
+      "followers": "{{count}} takipçi"
+    },
+    "done": {
+      "title": "Harika görünüyorsun, {{name}}",
+      "sub": "Bugünden itibaren herkes bu kartı görüyor.",
+      "eyebrow": "Profil yayında"
+    },
+    "card": {
+      "name": "Adın",
+      "interests": "İlgi alanların",
+      "following": "takip edilen",
+      "followers": "takipçi"
+    },
+    "topic": {
+      "music": "Müzik",
+      "art": "Sanat",
+      "gaming": "Oyun",
+      "crypto": "Kripto",
+      "sports": "Spor",
+      "travel": "Seyahat",
+      "comedy": "Komedi",
+      "film": "Film",
+      "anime": "Anime",
+      "cars": "Arabalar",
+      "podcast": "Podcast",
+      "animals": "Hayvanlar",
+      "tech": "Teknoloji",
+      "food": "Yemek",
+      "news": "Haberler",
+      "science": "Bilim"
+    },
+    "back": "Geri",
+    "enter": "DeHub'a gir",
+    "skipPhoto": "Şimdilik geç",
+    "pickMore": "{{count}} tane daha seç",
+    "preview": "Önizleme",
+    "cardHint": "İnsanlar seni böyle görecek",
+    "followFailed": "Takip edilemedi. Tekrar dene."
   }
 }

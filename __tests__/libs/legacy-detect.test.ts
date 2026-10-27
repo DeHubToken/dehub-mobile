@@ -49,6 +49,34 @@ describe('checkLegacyAccount', () => {
     expect(mockInvoke).not.toHaveBeenCalled();
   });
 
+  it('does not call the edge function for passkey or Telegram sign-ups', async () => {
+    for (const email of ['abc@passkey.dehub.internal', '123@Telegram.dehub.internal']) {
+      mockGetSession.mockResolvedValue(session({ id: email, email }));
+      const checkLegacyAccount = freshCheckLegacyAccount();
+      await expect(checkLegacyAccount()).resolves.toEqual({ exists: false, accounts: [] });
+    }
+    expect(mockInvoke).not.toHaveBeenCalled();
+  });
+
+  // The function answers this for an identity with no email. Read as
+  // "unknown", it blocked sign-in with "Could not check your existing
+  // profile" on every retry.
+  it('treats a confirmed missing email as no old account', async () => {
+    mockGetSession.mockResolvedValue(session({ id: 'user-5' }));
+    mockInvoke.mockResolvedValue({ data: { exists: null, reason: 'no-email' }, error: null });
+    const checkLegacyAccount = freshCheckLegacyAccount();
+
+    await expect(checkLegacyAccount()).resolves.toEqual({ exists: false, accounts: [] });
+  });
+
+  it('keeps "no-email" unknown when this session does have an email', async () => {
+    mockGetSession.mockResolvedValue(session({ id: 'user-6', email: 'real@example.com' }));
+    mockInvoke.mockResolvedValue({ data: { exists: null, reason: 'no-email' }, error: null });
+    const checkLegacyAccount = freshCheckLegacyAccount();
+
+    await expect(checkLegacyAccount()).resolves.toEqual({ exists: null });
+  });
+
   it('still asks when the session has no email at all (unknown, not "none")', async () => {
     mockGetSession.mockResolvedValue(session({ id: 'user-2' }));
     mockInvoke.mockResolvedValue({ data: { exists: false, accounts: [] }, error: null });

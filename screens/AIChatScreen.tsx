@@ -232,9 +232,11 @@ export interface EmbeddedCreatorProps {
   editorDraft?: import('../libs/editor/generationDraft').GenerationDraft | null;
   onGenerated?: (source: import('../libs/editor/importGeneratedMedia').GeneratedMediaSource) => void;
   onUseGenerated?: (url: string, kind: 'image' | 'video' | 'audio') => Promise<void>;
+  /** A 3D result for the editor, which turns it into a clip. */
+  onGeneratedModel?: (url: string, name?: string) => void;
 }
 
-function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requestedDraft, onGenerated, onUseGenerated }: EmbeddedCreatorProps & { studio?: boolean }) {
+function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requestedDraft, onGenerated, onUseGenerated, onGeneratedModel }: EmbeddedCreatorProps & { studio?: boolean }) {
   const editorRequests = useRef(new Set<string>());
   const deliveredEditorResults = useRef(new Set<string>());
   const appliedEditorDraft = useRef<EmbeddedCreatorProps['editorDraft']>(null);
@@ -1920,6 +1922,10 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
         deliveredEditorResults.current.add(id);
         onGenerated({ url, kind, name: request.content });
       }
+      if (url && kind === 'model3d' && editorRequests.current.has(request.id) && !deliveredEditorResults.current.has(id) && onGeneratedModel) {
+        deliveredEditorResults.current.add(id);
+        onGeneratedModel(url, request.content);
+      }
       if (librarySaves.current.has(saveKey)) continue;
       librarySaves.current.add(saveKey);
       // The server already archived this render; a second copy would list it twice.
@@ -1947,7 +1953,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
         }
       });
     }
-  }, [messages, walletAddress, isScreenFocused, queryClient, onGenerated]);
+  }, [messages, walletAddress, isScreenFocused, queryClient, onGenerated, onGeneratedModel]);
 
   return (
     <View style={studio ? { flex: 1 } : s.root} className={studio ? 'bg-theme-neutrals-900' : undefined}>

@@ -1424,7 +1424,10 @@
     "giftBoost": "Gift a boost",
     "giftBoostDesc": "Spend one of yours on this post",
     "askAi": "Ask AI",
-    "aiOverview": "AI overview"
+    "aiOverview": "AI overview",
+    "refreshLinkPreview": "Refresh link preview",
+    "linkPreviewRefreshed": "Link preview refreshed",
+    "linkPreviewRefreshFailed": "Couldn't reach that site. Try again later."
   },
   "filters": {
     "sort": "Sort",
@@ -2304,7 +2307,8 @@
     "continueExploringA11y": "Continue exploring DeHub",
     "importSecretPlaceholder": "12 or 24 words, or a private key",
     "invalidImportSecret": "That isn't a valid 12/24-word phrase or private key",
-    "walletSignupBlocked": "This wallet is brand new. New wallets need a balance or a past transaction to open an account. Sign up with one of the options below, then connect this wallet from Settings."
+    "walletSignupBlocked": "This wallet is brand new. New wallets need a balance or a past transaction to open an account. Sign up with one of the options below, then connect this wallet from Settings.",
+    "signInPageWouldNotOpen": "The sign-in page closed before it opened. Try again, or continue with email."
   },
   "messages": {
     "smartRepliesOff": "Suggested replies turned off",
@@ -7219,7 +7223,22 @@
     "noOldAccountFound": "There is no earlier DeHub account on this login, so there is nothing to bring over. Setting up a new account instead.",
     "didNotRecoverEither": "That login did not recover either profile shown here. Nothing changed. Try the original sign-in for the profile you want.",
     "didNotRecoverThis": "That login recovered a different wallet from this profile. Nothing changed. Try the sign-in that originally created it.",
-    "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below."
+    "couldNotRetrieve": "Could not retrieve that old wallet on this device. You can still recover it on dehub.io below.",
+    "methodEmail": "an email code",
+    "methodPhone": "a phone number",
+    "madeWithNamed": "@{{name}} was made with {{method}}. Continue with the same {{method}} account to bring it back.",
+    "madeWith": "This profile was made with {{method}}. Continue with the same {{method}} account to bring it back.",
+    "madeWithEmailNamed": "@{{name}} was made with an email code. We'll send one more code to that email to bring it back.",
+    "madeWithEmail": "This profile was made with an email code. We'll send one more code to that email to bring it back.",
+    "madeWithPhoneNamed": "@{{name}} was made with a phone number. We'll text one more code to that number to bring it back.",
+    "madeWithPhone": "This profile was made with a phone number. We'll text one more code to that number to bring it back.",
+    "wrongSignInNamed": "That sign-in opens a different wallet, not @{{name}}. @{{name}} was made with {{method}}, so only that can bring it back.",
+    "wrongSignIn": "That sign-in opens a different wallet. This profile was made with {{method}}, so only that can bring it back.",
+    "continueWith": "Continue with {{provider}}",
+    "differentSignIn": "Used a different sign-in?",
+    "oldAccountPhone": "Old account phone number",
+    "recoverFromPhoneA11y": "Recover old account from this phone number",
+    "phoneNeedsCode": "Enter the number with its country code, like +90 532 123 4567."
   },
   "liveChatModeration": {
     "timeout1m": "Time out for 1 minute",
@@ -10112,6 +10131,73 @@
       "noRetakes": "No retakes found",
       "retakesRemoved": "Removed {{count}} retake(s), kept the last take",
       "retakesFailed": "Could not remove retakes from this clip"
+    },
+    "speakers": {
+      "find": "Find speakers",
+      "name": "Speaker {{number}}",
+      "onlyOne": "Only one speaker found.",
+      "failed": "Could not find the speakers.",
+      "kept": "Kept only {{name}}.",
+      "editFailed": "That edit did not fit this clip.",
+      "split": "Split into {{count}} speaker shots.",
+      "keepOnly": "Keep only",
+      "splitAction": "Cut at each speaker change"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Describe the 3D object you want",
+      "queued": "Building your 3D object. It lands in the Generations tab.",
+      "note": "3D objects come into Media as a short spinning clip with a see-through background."
+    },
+    "voiceClone": {
+      "pickerLabel": "Clone your voice",
+      "pickerDetail": "Voiceovers in your own voice",
+      "title": "Clone your voice",
+      "description": "Record yourself or pick a clip of you talking. You pay once and your voice is yours for every voiceover.",
+      "defaultName": "My voice",
+      "record": "Record a sample (30 seconds to 2 minutes)",
+      "stop": "Stop recording",
+      "fromMedia": "Or use a clip from Media",
+      "recorded": "Your recording",
+      "sample": "Sample: {{name}}",
+      "hint": "Clear speech with no music works best.",
+      "noMic": "Could not use the microphone.",
+      "sampleFailed": "Could not read the sound from that clip.",
+      "pay": "Clone for {{amount}} DHB",
+      "useFree": "Clone (already paid)",
+      "owned": "Your voice “{{name}}” is already set up. Pick it from the voice list.",
+      "useOwned": "Use my voice",
+      "ready": "“{{name}}” is ready for voiceovers.",
+      "failed": "Voice cloning failed.",
+      "paidFailed": "Your payment is saved. Open this again and the next try is free.",
+      "consent": "Only clone your own voice, or one you have permission to use."
+    },
+    "linkImport": {
+      "open": "Import from a link",
+      "placeholder": "Paste a YouTube, TikTok or other link",
+      "rights": "I own this video or have permission to use it",
+      "audioOnly": "Sound only",
+      "go": "Import",
+      "queued": "Queued…",
+      "downloading": "Downloading {{percent}}%",
+      "waiting": "Waiting on the site, trying again soon…",
+      "adding": "Adding to Media…",
+      "added": "Imported and added to the timeline.",
+      "failed": "Could not import that link."
+    },
+    "reverse": {
+      "action": "Reverse",
+      "working": "Reversing {{percent}}%",
+      "done": "Clip reversed.",
+      "failed": "Could not reverse this clip.",
+      "unsupported": "This browser can't reverse video. Try Chrome or Edge.",
+      "tooLong": "Clips up to {{seconds}} seconds can be reversed."
+    },
+    "behind": {
+      "action": "Text behind person",
+      "working": "Cutting out the person…",
+      "done": "Text and captions now sit behind the person.",
+      "failed": "Could not put text behind the person."
     }
   },
   "creator": {
@@ -14970,5 +15056,81 @@
     "cancelled": "Cancelled",
     "moveFailed": "Could not move it. Try again.",
     "seeAll": "See everything you have planned"
+  },
+  "welcome": {
+    "about": {
+      "title": "Welcome to DeHub",
+      "sub": "Your birthday stays private. Pick a look, you can change it any time.",
+      "birthday": "Date of birth",
+      "pick": "Pick your birthday",
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
+      "invalid": "Enter your full date of birth.",
+      "tooYoung": "You need to be {{age}} or older to use DeHub.",
+      "theme": "Your look"
+    },
+    "name": {
+      "title": "Your name",
+      "sub": "This is the name people see on your posts.",
+      "placeholder": "Your name"
+    },
+    "username": {
+      "title": "Your @username",
+      "sub": "Letters, numbers and underscores. You can change it later.",
+      "yours": "@{{name}} is yours"
+    },
+    "photo": {
+      "title": "Your photo",
+      "sub": "Optional. People follow faces faster.",
+      "choose": "Choose a photo",
+      "change": "Choose another"
+    },
+    "interests": {
+      "title": "Your interests",
+      "sub": "Pick at least 3. They go first in your categories."
+    },
+    "people": {
+      "title": "Your people",
+      "sub": "Tap to follow. Their posts fill your Following feed.",
+      "empty": "No suggestions right now. Explore has more people to find.",
+      "followers": "{{count}} followers"
+    },
+    "done": {
+      "title": "Looking good, {{name}}",
+      "sub": "Everyone sees this card from today.",
+      "eyebrow": "Profile live"
+    },
+    "card": {
+      "name": "Your name",
+      "interests": "Your interests",
+      "following": "following",
+      "followers": "followers"
+    },
+    "topic": {
+      "music": "Music",
+      "art": "Art",
+      "gaming": "Gaming",
+      "crypto": "Crypto",
+      "sports": "Sports",
+      "travel": "Travel",
+      "comedy": "Comedy",
+      "film": "Film",
+      "anime": "Anime",
+      "cars": "Cars",
+      "podcast": "Podcast",
+      "animals": "Animals",
+      "tech": "Tech",
+      "food": "Food",
+      "news": "News",
+      "science": "Science"
+    },
+    "back": "Back",
+    "enter": "Enter DeHub",
+    "skipPhoto": "Skip for now",
+    "pickMore": "Pick {{count}} more",
+    "preview": "Preview",
+    "cardHint": "This is how people will see you",
+    "followFailed": "Could not follow. Try again."
   }
 }
