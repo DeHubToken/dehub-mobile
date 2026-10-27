@@ -1,3 +1,4 @@
+import { FEED_BUFFER_OPTIONS } from '../../libs/videoBuffering';
 import React, { useMemo, useState } from 'react';
 import { useSearchFieldMaterial } from '../../hooks/useSearchFieldMaterial';
 import { FlatList, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
@@ -10,7 +11,7 @@ import { VIRAL_TEMPLATES, TEMPLATE_FEATURED_IDS, type ViralTemplate } from '../.
 
 const categories = ['all', 'effects', 'characters', 'dance', 'sports', 'products', 'seasonal'];
 function Preview({ effect, width }: { effect: ViralTemplate; width: number }) {
-  const player = useVideoPlayer(effect.preview!, instance => { instance.muted = true; instance.play(); });
+  const player = useVideoPlayer(effect.preview!, instance => { instance.bufferOptions = FEED_BUFFER_OPTIONS; instance.muted = true; instance.play(); });
   return <VideoView player={player} nativeControls contentFit="contain" style={{ width, height: Math.min(width * 4 / 3, 500) }} />;
 }
 

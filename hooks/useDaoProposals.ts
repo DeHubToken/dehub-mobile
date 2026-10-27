@@ -4,7 +4,8 @@
  * hooks/use-dao-proposals; reads the same tables and calls the same
  * `dao-proposals` edge function.
  */
-import { useEffect } from "react";
+import { useRef } from "react";
+import { useScreenActivity, useActiveScreenEffect } from "./useScreenActivity";
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
@@ -115,12 +116,15 @@ function useWallet(): string | null {
 }
 
 export function useDaoProposals() {
+  const { isActive } = useScreenActivity();
+  const channelId = useRef(Math.random().toString(36).slice(2)).current;
   const qc = useQueryClient();
   const wallet = useWallet();
   const { isSignedIn } = useAuthState();
 
   const proposals = useQuery({
     queryKey: KEY,
+    enabled: isActive,
     queryFn: async () => {
       const { data, error } = await supabase
         .from("dao_proposals")
@@ -131,12 +135,12 @@ export function useDaoProposals() {
       return ((data ?? []) as Record<string, any>[]).map(normalise);
     },
     staleTime: 15_000,
-    refetchInterval: 30_000,
+    refetchInterval: () => isActive() ? 30_000 : false,
   });
 
   const myVotes = useQuery({
     queryKey: ["dao-proposal-votes", wallet],
-    enabled: isSignedIn && !!wallet,
+    enabled: () => isActive() && isSignedIn && !!wallet,
     staleTime: 15_000,
     queryFn: async () => {
       const { data, error } = await supabase
@@ -150,7 +154,7 @@ export function useDaoProposals() {
 
   const myEligibility = useQuery({
     queryKey: ["dao-proposal-eligibility", wallet],
-    enabled: isSignedIn && !!wallet,
+    enabled: () => isActive() && isSignedIn && !!wallet,
     staleTime: 30_000,
     queryFn: async () => {
       const { data, error } = await supabase
@@ -162,7 +166,7 @@ export function useDaoProposals() {
     },
   });
 
-  useEffect(() => {
+  useActiveScreenEffect(() => {
     let timer: ReturnType<typeof setTimeout> | null = null;
     const schedule = () => {
       if (timer) return;
@@ -173,7 +177,7 @@ export function useDaoProposals() {
       }, 2000);
     };
     const channel = supabase
-      .channel("dao-proposals-app")
+      .channel(`dao-proposals-app-${channelId}`)
       .on("postgres_changes", { event: "*", schema: "public", table: "dao_proposals" }, schedule)
       .on("postgres_changes", { event: "*", schema: "public", table: "dao_proposal_votes" }, schedule)
       .subscribe();
@@ -181,7 +185,7 @@ export function useDaoProposals() {
       if (timer) clearTimeout(timer);
       void supabase.removeChannel(channel);
     };
-  }, [qc]);
+  }, [qc, channelId]);
 
   return {
     proposals: proposals.data ?? [],

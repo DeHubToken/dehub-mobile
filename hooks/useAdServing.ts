@@ -1,3 +1,4 @@
+import { useScreenActivity } from "./useScreenActivity";
 /**
  * Native POVR ad delivery.
  *
@@ -20,15 +21,16 @@ export interface UseServedAdsOptions {
 }
 
 export function useServedAds(surface: string, options: UseServedAdsOptions = {}) {
+  const { isActive } = useScreenActivity();
   const user = useUser();
   const wallet = user?.walletAddress || user?.address;
   const { count = 1, categories, enabled = true } = options;
 
   return useQuery({
     queryKey: ["served-ads", surface, wallet?.toLowerCase() ?? "anon", count, categories],
-    enabled,
+    enabled: () => enabled && isActive(),
     staleTime: 120_000,
-    refetchInterval: 120_000,
+    refetchInterval: () => enabled && isActive() ? 120_000 : false,
     retry: 1,
     queryFn: async (): Promise<ServedAd[]> => {
       try {
