@@ -26,12 +26,13 @@ import { type LegacyAccountMatch } from "../../libs/wallet-core/legacy-detect";
 import { openInApp } from "../../libs/links.utils";
 import { TERMS_OF_SERVICE_LINK, PRIVACY_POLICY_LINK } from "../../config/links";
 import { getPreferredChainId } from "../../libs/auth.utils";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, Keyboard } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { useKeyboardOffset } from "../../hooks/useKeyboardLayout";
 import { AuthService } from "../../services";
 import { createLogger } from "../../libs/logger";
 import { beginAuthTrace, readAuthTrace } from "../../libs/auth-trace";
+import { isSignInCancelled } from "../../libs/auth-error-text";
 import {
   sendEmailOtp,
   verifyEmailOtp,
@@ -111,6 +112,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
   // this identity's email — gates the create-wallet screen behind a warning
   // instead of silently minting a duplicate. See LegacyAccountWarningModal.
   const [legacyAccounts, setLegacyAccounts] = useState<LegacyAccountMatch[] | null>(null);
+  const [legacyEmail, setLegacyEmail] = useState<string | undefined>(undefined);
   const [pendingCreateUserId, setPendingCreateUserId] = useState<string | null>(null);
   useEffect(() => {
     if (!readAuthTrace().auth_attempt_id) beginAuthTrace('undecided');
@@ -305,8 +307,10 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           setWalletSetupRequest(outcome.request);
           return;
         case "legacy-warning":
+          Keyboard.dismiss();
           takeWalletSetupIntent();
           setPendingCreateUserId(outcome.supabaseUserId);
+          setLegacyEmail(outcome.email);
           setLegacyAccounts(outcome.accounts);
           return;
         case "error":
@@ -558,7 +562,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       log.error("Google login error", e?.stack || e);
-      toastError(e, t("auth.loginFailedRetry"));
+      if (!isSignInCancelled(e)) toastError(e, t("auth.loginFailedRetry"));
       hasNavigatedRef.current = false;
     } finally {
       if (isMountedRef.current) {
@@ -577,7 +581,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
       await runProvisionAndSignIn(supabaseUserId);
     } catch (e: any) {
       log.error("Apple login error", e?.stack || e);
-      toastError(e, t("auth.loginFailedRetry"));
+      if (!isSignInCancelled(e)) toastError(e, t("auth.loginFailedRetry"));
       hasNavigatedRef.current = false;
     } finally {
       if (isMountedRef.current) {
@@ -633,7 +637,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
     } catch (e: any) {
       log.error("Telegram login error", e?.stack || e);
       // Closing Telegram's consent screen is a choice, not a failure.
-      if (!/cancelled/i.test(e?.message || "")) {
+      if (!isSignInCancelled(e)) {
         toastError(e, t("auth.loginFailedRetry"));
       }
       hasNavigatedRef.current = false;
@@ -853,6 +857,7 @@ const SignInScreen: React.FC<SignInScreenProps> = ({ navigation }) => {
           <LegacyAccountWarningModal
             visible={!!legacyAccounts}
             accounts={legacyAccounts ?? []}
+            email={legacyEmail}
             onRecovered={handleLegacyRecovered}
             onCreateAnyway={() => {
               // Close the warning first and present the wallet sheet once it has
