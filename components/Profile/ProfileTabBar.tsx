@@ -81,9 +81,12 @@ function ProfileTabBarInner<Key extends string>({ items, activeKey, onChange, pi
     <View style={[styles.outerWrap, isMinimal && styles.minimalOuterWrap, pinned && styles.pinnedOuterWrap, embedded && styles.embeddedOuterWrap]}>
       <View style={[styles.container, isMinimal && styles.minimalContainer, embedded && styles.embeddedContainer]}>
         {!embedded && <NavPillSurface borderRadius={12} />}
+        {/* Hardware rendering on purpose: the Android mask re-applies its
+            layer paint on every draw, and a software layer invalidates itself
+            when that happens, so the pinned profile bar redrew every frame
+            even at rest and dropped about a fifth of the frames on scroll. */}
         {compact ? <MaskedView
           style={styles.railMask}
-          androidRenderingMode="software"
           maskElement={
             <LinearGradient
               colors={(mask?.colors ?? ['#000', '#000']) as [string, string, ...string[]]}
