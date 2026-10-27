@@ -117,12 +117,13 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityRole="button"
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
           className="w-11 h-11 items-end justify-center"
-          // 29 draws the bell glyph 26 tall, level with the avatar and mark. Its
-          // ink sits 2pt inside the box at each side and a little high, so the
-          // box is pulled out and down to put the drawn bell on the line.
-          style={{ marginRight: -2, transform: [{ translateY: 0.8 }] }}
+          // The bell's body (not the clapper below it) spans the mark's
+          // height: at 32 it runs y 0.5 to 26.3 and x 2.5 to 29.5 of its box, so
+          // the box moves down 2.7 and out 2.5 to sit the body's bottom on the
+          // mark's bottom and its side on the pill-inset edge. Same as web.
+          style={{ marginRight: -2.5, transform: [{ translateY: 2.7 }] }}
         >
-          <NotificationBell unread={unreadCount} size={29} color={colors.foreground} />
+          <NotificationBell unread={unreadCount} size={32} color={colors.foreground} />
         </TouchableOpacity>
       ) : (
         // Holds the right edge so the left control cannot drift into the
