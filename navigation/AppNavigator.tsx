@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { InteractionManager, Platform } from "react-native";
+import { InteractionManager, Platform, View } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ScreenNames } from "./ScreenNames";
@@ -50,6 +50,9 @@ const getLiveViewerScreen = () => deferredScreen('LiveViewer', () => require("..
 
 const SIGN_IN_KEY = '../screens/auth/SignInScreen#default';
 const loadSignIn = () => require("../screens/auth/SignInScreen").default;
+// Before sign-in's module loads, show just its background, not the grey sketch
+// of a page, which read as an old login screen flashing first.
+const SignInShell = () => <View className="flex-1 bg-theme-background" />;
 
 function AppNavigatorContent() {
   const reducedMotion = useReducedMotion();
@@ -472,7 +475,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.SignIn}
-          getComponent={() => deferredScreen(SIGN_IN_KEY, loadSignIn)}
+          getComponent={() => deferredScreen(SIGN_IN_KEY, loadSignIn, SignInShell)}
           options={{
             // Was a hand-drawn rgba(0,0,0,0.35) overlay fade under a slide-up
             // interpolator. A native modal presentation dims for itself.
