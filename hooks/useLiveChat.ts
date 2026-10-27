@@ -169,10 +169,19 @@ export const useLiveChat = (
 
       const wsUrl = env.WEBSOCKET_URL || env.API_URL?.replace(/\/api$/, "");
       const socket = io(`${wsUrl}/livechat`, {
-        auth: { token },
+        // Read on every handshake, not once. The access token rotates every
+        // fifteen minutes, so a reconnect later in a stream used to sign in
+        // with a dead one and come back as a guest who could not send.
+        auth: (cb) => {
+          getAuthToken()
+            .then((fresh) => cb({ token: fresh || token }))
+            .catch(() => cb({ token }));
+        },
         transports: ["polling", "websocket"],
         reconnection: true,
-        reconnectionAttempts: 15,
+        // Never give up: a chat that stopped after fifteen tries stayed silent
+        // until the app went to the background and back.
+        reconnectionAttempts: Infinity,
         reconnectionDelay: 2000,
         reconnectionDelayMax: 10000,
         forceNew: true,
@@ -198,6 +207,11 @@ export const useLiveChat = (
         setConnected(false);
         joinedRef.current = false;
         setJoining(false);
+        // The server closing us is the one drop Socket.IO does not retry by
+        // itself. The re-join on connect brings back what was missed.
+        if (reason === "io server disconnect" && !cancelled) {
+          setTimeout(() => { if (!cancelled && !socket.connected) socket.connect(); }, 2000);
+        }
       });
 
       socket.on(EVENTS.PONG, (data: any) => {
