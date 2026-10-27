@@ -265,8 +265,10 @@ const ScreenHeader: React.FC<ScreenHeaderProps> = ({
   );
 };
 
-/** The island's corner: the home capsule's soft corner, never a full circle. */
-const ISLAND_RADIUS = 15;
+/** Corner squares sit ISLAND_INSET in from the top and side; the island's corner
+ *  is their 10pt corner plus that inset so the two curves stay concentric. */
+const ISLAND_INSET = 10;
+const ISLAND_RADIUS = 10 + ISLAND_INSET;
 
 const styles = StyleSheet.create({
   bar: {
@@ -282,11 +284,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    paddingHorizontal: ISLAND_INSET,
   },
   headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 36, width: '100%' },
   searchBar: { height: undefined, paddingTop: 8 },
-  searchIsland: { height: undefined, flexDirection: 'column', alignItems: 'stretch', paddingHorizontal: 12, paddingVertical: 10 },
+  searchIsland: { height: undefined, flexDirection: 'column', alignItems: 'stretch', paddingHorizontal: ISLAND_INSET, paddingVertical: ISLAND_INSET },
   flatBar: { height: SCREEN_HEADER_HEIGHT, paddingHorizontal: 16, justifyContent: 'center', borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: 'rgba(255,255,255,0.07)' },
   flatRow: { flexDirection: 'row', alignItems: 'center' },
   flatBack: { width: 32, height: 36, marginRight: 12, alignItems: 'center', justifyContent: 'center' },
