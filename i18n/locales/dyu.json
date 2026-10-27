@@ -12934,8 +12934,8 @@
           "9": "I ka ɲi ka \"Siga\" tuguni kan ka sɛbɛri kɛ. I ka barokun be sɔrɔ gafe nin kɔnɔ joona joona."
         },
         "tips": {
-          "2": "I bɛ se ka repost kɛ ni \"Quote\" ye, ka repost ikoni dɔgɔni min bɛ post bɛɛ kan, ka \"Quote\" sugandi.",
           "1": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
+          "2": "I bɛ se ka repost kɛ ni \"Quote\" ye, ka repost ikoni dɔgɔni min bɛ post bɛɛ kan, ka \"Quote\" sugandi.",
           "3": "O kama, a ka ɲi ka kɛ ni miiriya ɲuman ye."
         }
       },
@@ -13076,13 +13076,13 @@
         "title": "Ɲɛminɛbaga",
         "intro": "A filɛ jɔn lo be sanfɛ! O la, a ka ɲi ka tɛmɛ fɛɛrɛ dɔw fɛ k'a yira ko a ka ɲi ka kɛ ni miiriya ɲuman ye.",
         "steps": {
-          "7": "Leaderboard bɛ kura tuma bɛɛ don kɔnɔ.",
           "1": "N'i b'a fɛ ka tɛmɛ o kan, i ka tɛmɛ o kan ka tɛmɛ o kan.",
           "2": "Tabw: balansi, loon o loon, ani dugu ka kuma.",
           "3": "O la, a ka ɲi ka kɛ ni miiriya ɲuman ye.",
           "4": "O la, mɔgɔ minw tun be baara kɛ ka tɛmɛ mɔgɔ tɔw bɛɛ kan, olu tun be to ka to ka baara kɛ ka tɛmɛ mɔgɔ tɔw bɛɛ kan.",
           "5": "Dugu ka kuma b'a yira ko mɔgɔ caaman be koo minw faamu, u ka ca.",
-          "6": "N'i b'a fɛ ka mɔgɔ dɔ ka kunnafoniw sɔrɔ, i ka tɛmɛ a kan ka tɛmɛ a kan."
+          "6": "N'i b'a fɛ ka mɔgɔ dɔ ka kunnafoniw sɔrɔ, i ka tɛmɛ a kan ka tɛmɛ a kan.",
+          "7": "Leaderboard bɛ kura tuma bɛɛ don kɔnɔ."
         },
         "tips": {
           "1": "Loon o loon, an ka ladɛrɛsiw be segi ka sigi sen kan lɛri 24 kɔnɔ.",
@@ -13160,8 +13160,8 @@
           "6": "O kɔ, u ye dɔ fara u ka baara kan."
         },
         "tips": {
-          "2": "Repost, kɔmɛntili, reaction, sariya ani layidu tɛ fɛn fɛɛrɛ, ani u tɛ i ka allowance dɔgɔya.",
           "1": "O kɔ, aw ka wari be se ka kɛ MB 200 ye, a tɛ se ka kɛ gigabyte kelen ye.",
+          "2": "Repost, kɔmɛntili, reaction, sariya ani layidu tɛ fɛn fɛɛrɛ, ani u tɛ i ka allowance dɔgɔya.",
           "3": "I ka wari be dɔgɔya ani i ka baara be to ka to — o wari be i ka baara nata bali fɔɔ a ka dafa. O la, i bena se ka baara kɛ n'i ka denbaya ye.",
           "4": "O la, a tun be se ka kɛ ko a tun ye fɛɛn min di, a tun b'o di a ma."
         }
@@ -13187,10 +13187,10 @@
         "title": "O la, an bena a ye ko an be se ka ɲɛnamaya kɛ cogo nɔgɔman na.",
         "intro": "O yɔrɔ la, u ye boon dɔw lɔ DeHub kɔnɔ. Mɔgɔ min be se ka mɔgɔ weele ka na a ka site web kan, ale be se ka mɔgɔ weele ka na a ka site web kan wala ka tɛmɛ a ka site web kan.",
         "steps": {
-          "2": "Tɛgɛ live stage kan walasa ka don i n'a fɔ lamɛnna, walima ka reminder don stage min bɛ na, ani ka kibaru sɔrɔ tuma min na a bɛ daminɛ.",
-          "4": "I n'a fɔ host, i bɛ se ka barokɛla dɔw wele stage kan, ka u dɔgɔya walima ka u bɔ, ka i ka screen jira, ani ka soundboard mara.",
           "1": "I ka \"Stages\" yɛlɛ barokɛyɔrɔ la walisa k'a filɛ min be kɛra sisan ani min labɛnna.",
+          "2": "Tɛgɛ live stage kan walasa ka don i n'a fɔ lamɛnna, walima ka reminder don stage min bɛ na, ani ka kibaru sɔrɔ tuma min na a bɛ daminɛ.",
           "3": "I yɛrɛ ka baara daminɛ o yɔrɔ kelen na — i be se ka to ka baara kɛ n'i ka barokunw ye, i kana OBS wala i ka barokunw bila.",
+          "4": "I n'a fɔ host, i bɛ se ka barokɛla dɔw wele stage kan, ka u dɔgɔya walima ka u bɔ, ka i ka screen jira, ani ka soundboard mara.",
           "5": "Mɔgɔ minw be lamɛnni kɛra, olu be to ka kuma ɲɔgɔn fɛ ani ka kuma ɲɔgɔn fɛ.",
           "6": "O kɔ, a be segi ka bɔ a ka karti kan."
         },
@@ -13205,11 +13205,11 @@
         "title": "Communities & Events",
         "intro": "Jamanaw ye mɔgɔ dɔw ka sigiyɔrɔw ye u yɛrɛ ka dumuniw, u ka mɔgɔ dɔw ani u ka baaraw la. Koo minw be kɛra, u be se ka kɛ sababu ye u be wagati ta ka baara kɛ n'u ye.",
         "steps": {
-          "5": "Yɛlɛma 'Events' walasa ka program minnu bɛ na, ni event bɛɛ bɛ ni a ka paji ye min i bɛ se ka tugu a kɔ live.",
           "1": "Aw ka 'Jama' dayɛlɛ ka bɔ kɛnɛ kan ka taga bɔ jama ye.",
           "2": "O kɔ, a ye dɔ fara a kan. O baara kura b'a yira ko a tɛ se ka kɛ batɛmu ye min be se ka kɛ batɛmu ye.",
           "3": "Ka baro kɛ, ka votew kɛ ani ka ladili di mɔgɔw ma u yɛrɛ ka dumuni na.",
-          "4": "Jamana kuntigiw b'u yɛrɛ ka yɔrɔ labɛn ani u be se ka mɔgɔw dɛmɛ u ka se ka baara kɛ ni u ka setigiya ye."
+          "4": "Jamana kuntigiw b'u yɛrɛ ka yɔrɔ labɛn ani u be se ka mɔgɔw dɛmɛ u ka se ka baara kɛ ni u ka setigiya ye.",
+          "5": "Yɛlɛma 'Events' walasa ka program minnu bɛ na, ni event bɛɛ bɛ ni a ka paji ye min i bɛ se ka tugu a kɔ live."
         },
         "tips": {
           "1": "Jamana ka baro be dɛmɛ don @mentions ni @here, o la, yɔrɔ dɔ be se ka se ka don boon kɔnɔ.",
@@ -13220,9 +13220,9 @@
         "title": "Tulonkɛyɔrɔ",
         "intro": "O la, a tun ka kan ka kɛ i n'a fɔ a tun y'a fɔ cogo min na.",
         "steps": {
-          "3": "Fɛɛrɛ tab kɔnɔ. King's Gambit ani Street Slayer bɛ leaderboard mara.",
           "1": "Aw ye \"Arcade\" yɛlɛ barokɛyɔrɔ la.",
           "2": "O la, a tun be se ka kɛ ko a tun ye masacɛ ye. A tun be se ka kɛ ko a tun ye masacɛ ye.",
+          "3": "Fɛɛrɛ tab kɔnɔ. King's Gambit ani Street Slayer bɛ leaderboard mara.",
           "4": "Chartopia fana be baara kɛ VR ka telefɔni na WebXR sababu fɛ."
         },
         "tips": {
@@ -13350,8 +13350,8 @@
         "title": "Fanga min be mɔgɔ ka baara la, o ye ka baara kɛ n'o ye.",
         "intro": "I mana a ci tuma min na, i be se k'a sɛbɛ i n'a fɔ NFT tuma o tuma, i be se k'a sɛbɛ cogo min na, i be se k'a sɛbɛ cogo min na wala kɔfɛ.",
         "steps": {
-          "2": "I ka sɛbɛri kɛ, i ka kunnafoniw (sɛbɛn ɲɛ, videwow, kumakanw) bila ɲɔgɔn na ani i ka jatikɛ dɔw fara u kan.",
           "1": "O kɔ, aw ye \"Post\" tuguni digi a kan (desktop) wala \"+\" tuguni kan (mobile).",
+          "2": "I ka sɛbɛri kɛ, i ka kunnafoniw (sɛbɛn ɲɛ, videwow, kumakanw) bila ɲɔgɔn na ani i ka jatikɛ dɔw fara u kan.",
           "3": "Aw ye \"Mint Post\" to yen ka bɔ a la, walima aw k'a bila ka bɔ a la.",
           "4": "O kama, a ka ɲi ka to ka kuma n'a ye.",
           "5": "Walisa ka miniti damanin sɔrɔ, i ka lɛtɛrɛ nin ka kunnafoni ɲɛɛ yɛlɛ ani ka Mint ka baara kɛ yen.",
@@ -13527,7 +13527,30 @@
     "step2Title": "O koo labanna miniti kelen kɔnɔ.",
     "step2Body": "@dɛmɛbaga be sɛbɛri kɛ ani ka baara kɛ n'o ye, o kɔ, a be tɛmɛ i ka lɛtɛrɛw fɛ.",
     "step3Title": "Aw ye dɔ fara a kan, walima aw ye dɔ fara a kan",
-    "step3Body": "Mɔgɔ o mɔgɔ be se k'o kɛ, o tigi be se k'o kɛ. A tun b'a fɛ ka koo bɛɛ yɛlɛma."
+    "step3Body": "Mɔgɔ o mɔgɔ be se k'o kɛ, o tigi be se k'o kɛ. A tun b'a fɛ ka koo bɛɛ yɛlɛma.",
+    "manage": {
+      "open": "K'a to a ka baara la",
+      "address": "A ka ladɛrɛsi",
+      "copy": "Kɔrɔbɔli",
+      "copied": "O kɔ, a ye sɛbɛ dɔ kɛ",
+      "save": "K'i yɛrɛ tanga",
+      "addressSaved": "A ka kunnafoniw",
+      "public": "Jama ka koo",
+      "publicHint": "Mɔgɔ o mɔgɔ be ni link ye, o tigi be se k'a yɛlɛ.",
+      "privateHint": "I kelen lo be se k'a yɛlɛ.",
+      "store": "O kɔ, a ye n' ka soow lɔ.",
+      "publishHint": "I ka kan ka nin kunnafoniw bila DeHub ka App Store kɔnɔ walisa mɔgɔw k'u sɔrɔ ani k'u sigi.",
+      "publish": "Ka baara kɛ ni App Store ye",
+      "publishedToast": "A ye min kɛ, o ye ka mɔgɔw dɛmɛ u ka se ka Jehova bato",
+      "inStoreUnreviewed": "App Store kɔnɔ, u ye tagamasiɲɛ dɔ kɛ min ma sɛgɛsɛgɛ fɔɔ u ka jɛnkulu k'a filɛ.",
+      "viewInStore": "Ka taga lɔgɔfiyɛ la",
+      "unpublish": "A ma bɔ kɛnɛ kan",
+      "unpublished": "Ka bɔ App Store la",
+      "versions": "O kɔrɔ ko:",
+      "noVersions": "O kama, a ma fɔ ko mɔgɔ si tɛna se ka sinsin o filimu la.",
+      "current": "Bi, mɔgɔ caaman be se k'a",
+      "restore": "Ka segi ka na"
+    }
   },
   "depin": {
     "title": "DePin",

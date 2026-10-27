@@ -13544,7 +13544,32 @@
     "step2Title": "Det bygger på cirka et minut",
     "step2Body": "@assistant skriver og er vært for appen, og sender derefter linket til dine beskeder.",
     "step3Title": "Del det, eller ændr det",
-    "step3Body": "Alle kan åbne linket. Svar i chatten for at ændre noget."
+    "step3Body": "Alle kan åbne linket. Svar i chatten for at ændre noget.",
+    "manage": {
+      "open": "Administrer",
+      "address": "App-adresse",
+      "copy": "Kopiér",
+      "copied": "Link kopieret",
+      "save": "Gem",
+      "addressSaved": "Adresse opdateret",
+      "public": "Offentlig",
+      "publicHint": "Alle med linket kan åbne det.",
+      "privateHint": "Kun du kan åbne den.",
+      "store": "DeHub App Store",
+      "publishHint": "Angiv denne app i DeHub-appbutikken, så folk kan finde og installere den.",
+      "publish": "Offentliggør i appbutik",
+      "publishedToast": "Offentliggjort i App Store",
+      "inStore": "Opført i app-butikken.",
+      "inStoreUnreviewed": "I app-butikken skal du markere Ikke gennemgået, indtil teamet tjekker det.",
+      "viewInStore": "Vis i butikken",
+      "unpublish": "Annuller offentliggørelse",
+      "unpublished": "Fjernet fra App Store",
+      "versions": "Versioner",
+      "noVersions": "Ingen gemte versioner endnu.",
+      "current": "Strøm",
+      "restore": "Gendan",
+      "restored": "Gendannet version {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

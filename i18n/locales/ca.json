@@ -13540,7 +13540,32 @@
     "step2Title": "S'acumula en aproximadament un minut",
     "step2Body": "@assistant escriu i allotja l'aplicació i després envia l'enllaç als teus missatges.",
     "step3Title": "Comparteix-lo o canvia'l",
-    "step3Body": "Qualsevol persona pot obrir l'enllaç. Respon al xat per canviar qualsevol cosa."
+    "step3Body": "Qualsevol persona pot obrir l'enllaç. Respon al xat per canviar qualsevol cosa.",
+    "manage": {
+      "open": "Gestiona",
+      "address": "Adreça de l'aplicació",
+      "copy": "Copia",
+      "copied": "Enllaç copiat",
+      "save": "Desa",
+      "addressSaved": "S'ha actualitzat l'adre",
+      "public": "Públic",
+      "publicHint": "Qualsevol persona que tingui l'enllaç pot obrir-lo.",
+      "privateHint": "Només tu pots obrir-la.",
+      "store": "Botiga d'aplicacions DeHub",
+      "publishHint": "Publica aquesta aplicació a la botiga d'aplicacions DeHub perquè la gent pugui trobar-la i instal·lar-la.",
+      "publish": "Publica a la botiga d'aplicacions",
+      "publishedToast": "Publicat a la botiga d'aplicacions",
+      "inStore": "Publicat a la botiga d'aplicacions.",
+      "inStoreUnreviewed": "A la botiga d'aplicacions, marca No revisat fins que l'equip ho comprovi.",
+      "viewInStore": "Veure a la botiga",
+      "unpublish": "Cancel·la la publicació",
+      "unpublished": "S'ha eliminat de la botiga d'aplicacions",
+      "versions": "Versions",
+      "noVersions": "Encara no hi ha cap versió desada.",
+      "current": "Actual",
+      "restore": "Restaura",
+      "restored": "Versió restaurada {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

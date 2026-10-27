@@ -13587,7 +13587,32 @@
     "step2Title": "약 1분 만에 빌드됩니다.",
     "step2Body": "@ assistant가 앱을 작성하고 호스팅한 다음 메시지 링크를 보냅니다.",
     "step3Title": "공유하거나 변경하세요.",
-    "step3Body": "누구나 링크를 열 수 있습니다. 무엇이든 변경하려면 채팅에서 회신하세요."
+    "step3Body": "누구나 링크를 열 수 있습니다. 무엇이든 변경하려면 채팅에서 회신하세요.",
+    "manage": {
+      "open": "관리",
+      "address": "앱 주소",
+      "copy": "복사",
+      "copied": "링크 복사 완료",
+      "save": "저장",
+      "addressSaved": "주소 업데이트됨",
+      "public": "공개",
+      "publicHint": "링크가 있는 모든 사용자가 열 수 있습니다.",
+      "privateHint": "본인만 열 수 있습니다.",
+      "store": "DeHub 앱 스토어",
+      "publishHint": "DeHub 앱 스토어에 이 앱을 등록하면 사람들이 앱을 찾아 설치할 수 있습니다.",
+      "publish": "앱 스토어에 게시",
+      "publishedToast": "앱 스토어에 게시됨",
+      "inStore": "앱 스토어에 등록되어 있습니다.",
+      "inStoreUnreviewed": "앱 스토어에서 팀이 확인할 때까지 '검토되지 않음' 으로 표시합니다.",
+      "viewInStore": "스토어에서 보기",
+      "unpublish": "게시 취소",
+      "unpublished": "앱 스토어에서 삭제됨",
+      "versions": "버전",
+      "noVersions": "아직 저장된 버전이 없습니다.",
+      "current": "현재",
+      "restore": "복원",
+      "restored": "복원된 버전 {{version}}"
+    }
   },
   "depin": {
     "title": "데핀",

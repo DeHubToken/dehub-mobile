@@ -13627,7 +13627,32 @@
     "step2Title": "Miverena ao anatin'ny iray minitra.",
     "step2Body": "@assistant manoratra ary mampiantrano ilay fampiasa, avy eo mandefa ny rohy mankany amin'ireo hafatrao.",
     "step3Title": "Minoa ahy ianao na tsia, ny hanovanao ny",
-    "step3Body": "Afaka mamandrika izany mialoha eto an-tany ny tsirairay. Azonao atao ny manova ny fampandrenesana amin'ny chat mba hanova ny zava-drehetra."
+    "step3Body": "Afaka mamandrika izany mialoha eto an-tany ny tsirairay. Azonao atao ny manova ny fampandrenesana amin'ny chat mba hanova ny zava-drehetra.",
+    "manage": {
+      "open": "Fandrindrana",
+      "address": "Adiresin'ilay rindranasa",
+      "copy": "Adikao",
+      "copied": "Adikao io rohy io",
+      "save": "Raiketo",
+      "addressSaved": "Nohavaozina ny adiresy",
+      "public": "Ny",
+      "publicHint": "Izay rehetra manana fifandraisana dia afaka manokatra azy ireo.",
+      "privateHint": "Azonao atao fotsiny ny manokatra azy.",
+      "store": "Ny INSEE dia mampiasa ny kaodim",
+      "publishHint": "Tanisao ao amin'ny fivarotana app DeHub io fampiharana io mba hahafahan'ny olona mahita sy mametraka izany.",
+      "publish": "Alefaso any amin'ny fivarotana APP",
+      "publishedToast": "Nalefa tany amin'ny fivarotana app",
+      "inStore": "Alefa any amin'ny toeram-pivarotana.",
+      "inStoreUnreviewed": "Ao amin'ny magazay fampiharana, misy marika tsy voajery mandra-pisavan'ny ekipa azy.",
+      "viewInStore": "Hizaha ao amin'ny magazay",
+      "unpublish": "Unpublish",
+      "unpublished": "Nesorina tao amin'ny fivarotana app",
+      "versions": "Dikanteny",
+      "noVersions": "Mbola tsy misy ny dikan-teny voatahiry.",
+      "current": "Ny ampiasaina izao",
+      "restore": "Avereno",
+      "restored": "Nohavaozina taminy {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

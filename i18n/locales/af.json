@@ -13665,7 +13665,32 @@
     "step2Title": "Creëer in 1 minuut",
     "step2Body": "@assistent skryf en gasheer die app, dan stuur die skakel na jou boodskappe.",
     "step3Title": "Deel dit of verander dit",
-    "step3Body": "Iedereen kan die link openen. Antwoord in die chat om iets te verander."
+    "step3Body": "Iedereen kan die link openen. Antwoord in die chat om iets te verander.",
+    "manage": {
+      "open": "Bestuur",
+      "address": "Toepassingsadres",
+      "copy": "Kopieer",
+      "copied": "Skakel gekopieer",
+      "save": "Stoor",
+      "addressSaved": "Adres opgedateer",
+      "public": "Publiek",
+      "publicHint": "Enigiemand met die kontakbesonderhede kan dit oopmaak.",
+      "privateHint": "Net jy kan dit oopmaak.",
+      "store": "DeHub App Store",
+      "publishHint": "Lys hierdie inligting in die DeHub App Store sodat mense dit kan vind en installeer.",
+      "publish": "Publiseer na App Store",
+      "publishedToast": "Gepubliseer in die App Store",
+      "inStore": "Gepubliseer in die App Store.",
+      "inStoreUnreviewed": "In die App Store, gemerk Ongeëvalueerde totdat die span dit nagaan.",
+      "viewInStore": "Besigtig in die winkel",
+      "unpublish": "Onpubliseer",
+      "unpublished": "Verwyder uit die App Store",
+      "versions": "Weergawes",
+      "noVersions": "Geen gestoorde weergawes nog nie.",
+      "current": "Huidige",
+      "restore": "Herstel",
+      "restored": "Herstelde weergawe {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",

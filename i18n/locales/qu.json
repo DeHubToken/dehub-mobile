@@ -13559,7 +13559,32 @@
     "step2Title": "Yaqa huk minutollapim hatarichin",
     "step2Body": "@assistant qillqan chaymanta appta qun, chaymanta willakuyniykikunaman t'inkita apachin.",
     "step3Title": "Compartir otaq cambiay",
-    "step3Body": "Pipas chay link nisqataqa kichayta atinmi. Imatapas tikranaykipaq rimanakuypi kutichiy."
+    "step3Body": "Pipas chay link nisqataqa kichayta atinmi. Imatapas tikranaykipaq rimanakuypi kutichiy.",
+    "manage": {
+      "open": "Kamachiy",
+      "address": "App direccion",
+      "copy": "Copia",
+      "copied": "Link copiasqa",
+      "save": "Waqaychay",
+      "addressSaved": "Dirección musuqyachisqa",
+      "public": "Runapaq",
+      "publicHint": "Pipas chay link nisqayuqqa kichayta atinmi.",
+      "privateHint": "Qamllam kichayta atinki.",
+      "store": "DeHub nisqa app tienda",
+      "publishHint": "Kay appta DeHub app tiendapi qillqay chaymanta runakuna tarinankupaq chaymanta churanankupaq.",
+      "publish": "App store nisqaman lluqsichiy",
+      "publishedToast": "App tiendaman lluqsichisqa",
+      "inStore": "App store nisqapi listasqa.",
+      "inStoreUnreviewed": "App tiendapi, Mana Revisado nisqawan marcasqa equipo qhawanankama.",
+      "viewInStore": "Tiendapi qhaway",
+      "unpublish": "Mana qillqasqa",
+      "unpublished": "App tiendamanta hurqusqa",
+      "versions": "Versiones nisqakuna",
+      "noVersions": "Manaraqmi waqaychasqa layakunachu.",
+      "current": "Kunan",
+      "restore": "Kawsarichiy",
+      "restored": "Kutichisqa laya {{version}}"
+    }
   },
   "depin": {
     "title": "DePin",
