@@ -543,15 +543,6 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
       >
         {timeStr}
       </Text>
-      {message.isEdited && (
-        <Text
-          className={`text-[11px] ${
-            isMine ? "text-white/40" : "text-theme-neutrals-600"
-          }`}
-        >
-          {t("dm.editedSuffix")}
-        </Text>
-      )}
       {message.encrypted && (
         <Icon name="Lock" size={10} color={isMine ? "rgba(255,255,255,0.45)" : "#808089"} />
       )}
@@ -566,7 +557,7 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
         />
       )}
     </View>
-  ), [timeStr, isMine, message.isEdited, message.isRead, message.encrypted, message, isUploadFailed, t]);
+  ), [timeStr, isMine, message.isRead, message.encrypted, message, isUploadFailed, t]);
 
 
   const bubbleBg = isMine
@@ -1072,9 +1063,6 @@ const MessageBubbleComponent: React.FC<MessageBubbleProps> = ({
                 )}
                 <View className={`${isPaidMsg ? "px-2 pb-1.5" : "absolute bottom-1.5 right-2"} flex-row items-center gap-1 ${isPaidMsg ? "justify-end" : "dark-surface bg-black/50 rounded-full px-1.5 py-0.5"}`}>
                   <Text className="text-[11px] text-white/80">{timeStr}</Text>
-                  {message.isEdited && (
-                    <Text className="text-[11px] text-white/50">{t("dm.editedSuffix")}</Text>
-                  )}
                   {message.encrypted && (
                     <Icon name="Lock" size={10} color="rgba(255,255,255,0.6)" />
                   )}
