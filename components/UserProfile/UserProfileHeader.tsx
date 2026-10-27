@@ -310,7 +310,7 @@ const UserProfileHeader: React.FC<UserProfileHeaderProps> = ({
             uri={avatarUrl || undefined}
             name={displayName}
             size={88}
-            style={{ borderWidth: 3, borderColor: "#18181b", backgroundColor: "#18181b" }}
+            style={{ borderWidth: 1.5, borderColor: "#18181b", backgroundColor: "#18181b" }}
             live={live}
             liveQuiet
             onPress={liveTarget ? () => openLiveTarget(liveTarget) : () => onOpenImage("avatar")}
