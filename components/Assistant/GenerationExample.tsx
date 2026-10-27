@@ -1,3 +1,4 @@
+import { FEED_BUFFER_OPTIONS } from '../../libs/videoBuffering';
 import React, { useEffect, useState } from 'react';
 import { Modal, Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { VideoView, useVideoPlayer } from 'expo-video';
@@ -12,7 +13,7 @@ import type { CreatorMode } from '../../libs/creatorStudio';
 import { openInApp } from '../../libs/links.utils';
 
 function ExampleVideo({ url, width }: { url: string; width: number }) {
-  const player = useVideoPlayer(url, (instance) => { instance.muted = true; });
+  const player = useVideoPlayer(url, (instance) => { instance.bufferOptions = FEED_BUFFER_OPTIONS; instance.muted = true; });
   return <VideoView player={player} nativeControls fullscreenOptions={{ enable: true }} contentFit="contain" style={{ width, height: width * 9 / 16 }} />;
 }
 
