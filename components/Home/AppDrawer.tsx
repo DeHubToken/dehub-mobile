@@ -106,7 +106,7 @@ const NAV_ITEMS: DrawerItem[] = [
   { icon: "Search", labelKey: "nav.explore", screen: ScreenNames.Explore, tab: true },
   { icon: "Wand", labelKey: "nav.prompt", screen: ScreenNames.Prompt },
   { icon: "Bell", labelKey: "nav.notifications", screen: ScreenNames.Notifications, requiresAuth: true },
-  { icon: "MessageEnvelope", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
+  { icon: "MessageSquare", labelKey: "nav.messages", screen: ScreenNames.DM, requiresAuth: true, tab: true },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
   { icon: "Sparkles", labelKey: "nav.assistant", screen: ScreenNames.AIChat, tab: true },
   { icon: "SettingsCog", labelKey: "nav.settings", screen: ScreenNames.AccountSettings, requiresAuth: true },
@@ -501,7 +501,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ visible, onClose }) => {
         key={item.labelKey}
         label={t(item.labelKey)}
         icon={item.icon}
-        iconUrl={item.screen !== ScreenNames.DM && key ? themeIconUrl(themeName, key) : undefined}
+        iconUrl={key ? themeIconUrl(themeName, key) : undefined}
         iconColor={['hacker', 'island', 'horror'].includes(themeName) ? appTheme.colors.accent : undefined}
         width={tileWidth}
         active={!!item.screen && item.screen === activeRouteName && !item.params}
