@@ -18,8 +18,11 @@ export function preloadDeferredScreen(key: string, load: () => ComponentType<any
   if (!loadedScreens.has(key)) loadedScreens.set(key, load());
 }
 
-/** Keep getComponent stable, while moving its heavy require past the entrance. */
-export function deferredScreen(key: string, load: () => ComponentType<any>): ComponentType<any> {
+/**
+ * Keep getComponent stable, while moving its heavy require past the entrance.
+ * `LoadingShell` is what shows until then; the default sketches a page with grey bars.
+ */
+export function deferredScreen(key: string, load: () => ComponentType<any>, LoadingShell: ComponentType = RouteLoadingShell): ComponentType<any> {
   const cached = screens.get(key);
   if (cached) return cached;
   function DeferredScreen(props: any) {
@@ -43,7 +46,7 @@ export function deferredScreen(key: string, load: () => ComponentType<any>): Com
     // Once mounted, retain the real page and its scroll/draft state on blur.
     return Content ? <RouteTransitionReadyContext.Provider value={settled || readyRoutes.has(routeKey) ? props.route.key : null}>
       <Content {...props} />
-    </RouteTransitionReadyContext.Provider> : <RouteLoadingShell />;
+    </RouteTransitionReadyContext.Provider> : <LoadingShell />;
   }
   screens.set(key, DeferredScreen);
   return DeferredScreen;
