@@ -12,7 +12,7 @@ import {
 import { DeHubLoader } from "../DeHubLoader";
 import { DeHubRefreshControl, DeHubRefreshMark } from "../Feed/DeHubRefreshControl";
 import Animated from "react-native-reanimated";
-import { useNavigation, useScrollToTop } from "@react-navigation/native";
+import { useIsFocused, useNavigation, useScrollToTop } from "@react-navigation/native";
 import ShortsGridCard, { useShortsCardSize, GRID_GAP } from "./ShortsGridCard";
 import ShortsGridSkeleton from "./ShortsGridSkeleton";
 import Icon from "../ui/Icon";
@@ -66,6 +66,10 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
   const ROW_HEIGHT = useShortsCardSize().height + GRID_GAP;
   const listRef = useRef<FlatList>(null);
   const prevYRef = useRef(0);
+  // The Shorts viewer opens as a transparent modal, so Home stays mounted and
+  // drawn under it. A grid tile left looping there redrew the window on
+  // every one of its frames while the viewer was being swiped.
+  const focused = useIsFocused();
 
   // Fixed height — see the note in InfiniteVideoFeed. Animating this resized the
   // list's content box on every frame of the header animation, which relaid out
@@ -246,12 +250,12 @@ const ShortsGrid: React.FC<ShortsGridProps> = ({
       <ShortsGridCard
         item={item}
         index={index}
-        isVisible={active && !scrolling && playIndex === index}
+        isVisible={active && focused && !scrolling && playIndex === index}
         onPress={handleItemPress}
         onUnavailable={markUnavailable}
       />
     ),
-    [handleItemPress, playIndex, markUnavailable, active, scrolling],
+    [handleItemPress, playIndex, markUnavailable, active, focused, scrolling],
   );
 
   const keyExtractor = useCallback(
