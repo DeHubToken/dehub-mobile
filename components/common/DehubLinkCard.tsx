@@ -18,7 +18,7 @@ import { useTranslation as _useCopy } from 'react-i18next';
  * rendered nothing when its entity failed to load would take the link with it.
  */
 
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, createContext, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, StyleSheet, useWindowDimensions } from 'react-native';
 import { Image } from 'expo-image';
@@ -53,6 +53,16 @@ export const MAX_CARDS_PER_MESSAGE = 2;
 
 // ── Shared shell ────────────────────────────────────────────────────────────
 
+/**
+ * What the bubble around a card tells it. The per-kind embeds only know how to
+ * open their entity, so the long press (reactions, reply, copy) and the bubble
+ * geometry reach the shared shell through here instead of through every embed.
+ * Without it a long press on a community card in a DM did nothing at all.
+ */
+const CardHostContext = createContext<{ inBubble: boolean; onLongPress?: () => void }>({
+  inBubble: false,
+});
+
 interface RowCardProps {
   /** Small label above the title: "Community invite", "Item", … */
   eyebrow?: string;
@@ -74,6 +84,8 @@ interface RowCardProps {
    * played and scrubbed here without the tap also opening the stage.
    */
   footer?: React.ReactNode;
+  /** A pill at the end of the row: "Join" on an invite, "View" on a community. */
+  cta?: string;
   onPress: () => void;
   onLongPress?: () => void;
 }
@@ -91,10 +103,13 @@ const RowCard: React.FC<RowCardProps> = ({
   bannerFallback,
   dimmed,
   footer,
+  cta,
   onPress,
-  onLongPress,
+  onLongPress: ownLongPress,
 }) => {
   const { isMinimal, skin } = useAppTheme();
+  const host = useContext(CardHostContext);
+  const onLongPress = ownLongPress ?? host.onLongPress;
   // The banner spans the card, which is at most the window's width.
   const { width: windowWidth } = useWindowDimensions();
   // Minimal: no box around the card. The banner spans the text column and the
@@ -105,7 +120,16 @@ const RowCard: React.FC<RowCardProps> = ({
       onPress={onPress}
       onLongPress={onLongPress}
       delayLongPress={350}
-      style={[styles.card, isMinimal && minimalFlat, skin?.material === 'glass' && skin.card, dimmed && styles.cardDimmed]}
+      style={[
+        styles.card,
+        isMinimal && minimalFlat,
+        skin?.material === 'glass' && skin.card,
+        // Inside a bubble the card is the bubble's top: inset 4 from its edge
+        // with a radius 4 under the bubble's 12, so the two corners share a
+        // centre instead of a second outlined box floating inside the first.
+        host.inBubble && styles.cardInBubble,
+        dimmed && styles.cardDimmed,
+      ]}
     >
       {/* The cover, whole and uncropped — the same 16:9 contain-on-black
           treatment the stage page itself uses. It used to be a dimmed
@@ -140,6 +164,13 @@ const RowCard: React.FC<RowCardProps> = ({
           {!!meta && <Text style={styles.meta}>{meta}</Text>}
           {!!description && <Text style={[styles.subtitle, { marginTop: 6 }]} numberOfLines={2}>{description}</Text>}
         </View>
+        {!!cta && (
+          <View style={styles.cta}>
+            <Text style={styles.ctaText} numberOfLines={1}>
+              {cta}
+            </Text>
+          </View>
+        )}
       </View>
       {!!footer && (
         // Claims the touch before the card does. Without this every press on the
@@ -158,7 +189,8 @@ const RowCard: React.FC<RowCardProps> = ({
 
 const SkeletonCard = () => {
   const { isMinimal } = useAppTheme();
-  return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton]} />;
+  const { inBubble } = useContext(CardHostContext);
+  return <SkeletonBlock style={[styles.skeleton, isMinimal && styles.minimalSkeleton, inBubble && styles.cardInBubble]} />;
 };
 
 // ── Per-kind cards ──────────────────────────────────────────────────────────
@@ -187,6 +219,7 @@ const CommunityCardEmbed: React.FC<{ slug: string; onOpen: () => void; fallback:
       imageUri={data.avatar_url}
       bannerUri={data.banner_url}
       fallbackIcon="Users"
+      cta={t('wallet.view')}
       onPress={onOpen}
     />
   );
@@ -243,6 +276,7 @@ const InviteCardEmbed: React.FC<{ code: string; onOpen: () => void; fallback: Re
       imageUri={data.avatar_url}
       bannerUri={data.banner_url}
       fallbackIcon="Ticket"
+      cta={t('communities.join')}
       onPress={onOpen}
     />
   );
@@ -839,10 +873,14 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
       card = fallback;
   }
 
-  return inBubble ? (
-    <View style={[styles.bubbleWrap, { width: bubbleCardWidth(windowWidth) }]}>{card}</View>
-  ) : (
-    card
+  return (
+    <CardHostContext.Provider value={{ inBubble, onLongPress }}>
+      {inBubble ? (
+        <View style={[styles.bubbleWrap, { width: bubbleCardWidth(windowWidth) }]}>{card}</View>
+      ) : (
+        card
+      )}
+    </CardHostContext.Provider>
   );
 };
 
@@ -852,7 +890,16 @@ const DehubLinkCardComponent: React.FC<DehubLinkCardProps> = ({
 const bubbleCardWidth = (windowWidth: number) => Math.min(240, Math.round(windowWidth * 0.75) - 40);
 
 const styles = StyleSheet.create({
-  bubbleWrap: { paddingHorizontal: 8, paddingBottom: 2 },
+  bubbleWrap: { paddingHorizontal: 4, paddingTop: 4 },
+  cardInBubble: { marginTop: 0, borderRadius: 8, borderWidth: 0 },
+  cta: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    flexShrink: 0,
+  },
+  ctaText: { color: '#fff', fontSize: 12, fontWeight: '600' },
   card: {
     marginTop: 8,
     borderRadius: 14,

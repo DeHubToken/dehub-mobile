@@ -1747,7 +1747,17 @@ const ChatScreen: React.FC<ChatScreenProps> = ({ route }) => {
               data={messageList}
               keyExtractor={keyExtractor}
               renderItem={renderMessage}
-              contentContainerStyle={{ paddingTop: listBottomPadding, paddingBottom: 8 }}
+              // The list is inverted, so "flex-end" here is the top of the
+              // screen: a chat with a few messages starts under the header
+              // and reads down, instead of stranding them on the composer
+              // with an empty screen above. A full chat fills the space and
+              // still anchors to the newest message.
+              contentContainerStyle={{
+                flexGrow: 1,
+                justifyContent: "flex-end",
+                paddingTop: listBottomPadding,
+                paddingBottom: 8,
+              }}
               keyboardShouldPersistTaps="handled"
               onScroll={onScroll}
               scrollEventThrottle={16}
