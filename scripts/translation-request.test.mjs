@@ -19,4 +19,3 @@ test('bulk work always declares its budget scope', async () => {
   try { assert.deepEqual(await requestTranslationBatch('https://fixture.invalid', 'fixture', ['one'], 'es'), { translatedText: 'uno' }); }
   finally { globalThis.fetch = original; }
 });
-

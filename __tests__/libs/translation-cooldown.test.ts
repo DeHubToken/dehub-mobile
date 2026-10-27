@@ -20,4 +20,3 @@ describe('translation backpressure', () => {
     expect(() => cooldown.assertReady('two')).not.toThrow();
   });
 });
-

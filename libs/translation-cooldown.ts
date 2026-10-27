@@ -20,4 +20,3 @@ export class TranslationCooldown {
     } else this.globalUntil = Math.max(this.globalUntil, until);
   }
 }
-

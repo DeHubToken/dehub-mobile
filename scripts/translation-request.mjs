@@ -13,4 +13,3 @@ export async function requestTranslationBatch(url, key, lines, targetLang) {
   }
   return response.json();
 }
-
