@@ -63,3 +63,34 @@ export function letterboxCrop(frames: FramePixels[], minimum = 0.02): ClipCrop |
   const crop = { left: edge("left"), top: edge("top"), right: edge("right"), bottom: edge("bottom") };
   return crop.left || crop.top || crop.right || crop.bottom ? crop : null;
 }
+
+/**
+ * Copy a video onto a new top track, silent, so text and captions can sit
+ * between the person and the background once that copy's background is removed.
+ */
+export function subjectLayer(project: ProjectSnapshot, clipId: string, makeId: () => string): { project: ProjectSnapshot; id: string } | null {
+  const clip = project.clips.find((c): c is MediaClip => c.id === clipId && c.kind === "video");
+  if (!clip || clip.locked) return null;
+  const trackId = makeId();
+  const tracks = [...project.tracks, { id: trackId, kind: "video" as const, name: "Subject", muted: true, hidden: false }];
+  // Alone on its track, so a transition or a group would pull in clips it no longer sits next to.
+  const { transitionOut: _transition, groupId: _group, videoMatte: _matte, ...rest } = clip;
+  const id = makeId();
+  const copy: MediaClip = { ...rest, id, trackId, audio: { ...clip.audio, volume: 0, envelope: undefined }, label: clip.label ? `${clip.label} subject` : undefined };
+  return { project: { ...project, tracks, clips: [...project.clips, copy] }, id };
+}
+
+/** The source span a clip plays, in seconds of the original file. */
+export function clipSourceSpan(clip: MediaClip): { start: number; end: number } {
+  const speed = clip.speed && clip.speed > 0 ? clip.speed : 1;
+  return { start: clip.trimIn, end: clip.trimIn + clip.duration * speed };
+}
+
+/** The clip pointed at a reversed copy of exactly the span it played. */
+export function reversedClip(project: ProjectSnapshot, clipId: string, mediaId: string, sourceDuration: number): ProjectSnapshot | null {
+  const clip = project.clips.find((c): c is MediaClip => c.id === clipId && c.kind === "video");
+  if (!clip || clip.locked) return null;
+  const { videoMatte: _matte, ...rest } = clip;
+  const next: MediaClip = { ...rest, mediaId, trimIn: 0, sourceDuration };
+  return { ...project, clips: project.clips.map(c => c.id === clipId ? next : c) };
+}
