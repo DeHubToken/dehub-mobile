@@ -1098,11 +1098,31 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     const index = visibleComments.findIndex((c) => String(c.id) === focusCommentId);
     if (index < 0) return;
     scrolledToFocusRef.current = focusCommentId;
+    focusDraggedRef.current = false;
+    const jump = () => {
+      if (focusDraggedRef.current) return;
+      // Looked up again each time: more rows can land between the passes.
+      const at = visibleCommentsRef.current.findIndex((c) => String(c.id) === focusCommentId);
+      if (at >= 0) listRef.current?.scrollToIndex({ index: at, viewPosition: 0.25, animated: true });
+    };
     // One frame, so the rows the jump measures against have been laid out.
-    requestAnimationFrame(() => {
-      listRef.current?.scrollToIndex({ index, viewPosition: 0.25, animated: true });
-    });
+    requestAnimationFrame(jump);
+    // The post above is the list header, and it keeps growing after the
+    // comments arrive (the image or video takes its real height, the link
+    // preview fills in), which pushed the linked comment back down off the
+    // screen. Land on it again once those have settled, unless the reader has
+    // started scrolling themselves.
+    focusTimersRef.current.forEach(clearTimeout);
+    focusTimersRef.current = [700, 1600, 2800].map((ms) => setTimeout(jump, ms));
   }, [focusCommentId, visibleComments]);
+  const visibleCommentsRef = useRef(visibleComments);
+  visibleCommentsRef.current = visibleComments;
+  const focusDraggedRef = useRef(false);
+  const focusTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => focusTimersRef.current.forEach(clearTimeout), []);
+  const handleFocusDrag = useCallback(() => {
+    focusDraggedRef.current = true;
+  }, []);
 
   const handleScrollToIndexFailed = useCallback(
     (info: { index: number; averageItemLength: number }) => {
@@ -1682,6 +1702,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         viewabilityConfig={viewabilityConfig}
         onViewableItemsChanged={onViewableItemsChanged}
         onScroll={handleListScroll}
+        onScrollBeginDrag={handleFocusDrag}
         scrollEventThrottle={16}
         onLayout={handleListLayout}
         onContentSizeChange={handleContentSize}

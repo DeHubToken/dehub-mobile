@@ -355,6 +355,9 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
 
         case NotificationType.COMMENT:
         case NotificationType.COMMENT_REPLY:
+        // Sent instead of COMMENT_REPLY when the post's creator answered. It
+        // had no case, so its push opened the notifications list.
+        case NotificationType.CREATOR_COMMENT_REPLY:
         case NotificationType.COMMENT_LIKE:
           if (tokenId) {
             navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
@@ -390,7 +393,8 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           break;
 
         case NotificationType.TIP:
-          // Tip → open the tipper's profile.
+          // A tip on a post opens that post, the same place the row in the
+          // list opens; a tip with no post (a chat tip) opens the tipper.
           //
           // Not ScreenNames.Profile: that screen is the signed-in user's own
           // profile and reads no params, so passing an address here opened
@@ -398,11 +402,35 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           // somebody else, and emitting is how the deep-link path reaches it —
           // it waits for navigation state to settle first, which matters most
           // from a cold start out of a notification tap.
-          {
+          if (tokenId) {
+            navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
+          } else {
             const actor = actorUsername || actorAddress;
             if (actor) emitProfileDeepLink(actor);
             else navigation.navigate(ScreenNames.Notifications);
           }
+          break;
+
+        // Same targets as the rows in the list. These all fell to the default
+        // and opened the notifications list instead of the thing they name.
+        case NotificationType.SIGNAL_FLARE:
+        case NotificationType.FRACTION_OFFER:
+        case NotificationType.FRACTION_OFFER_ACCEPTED:
+        case NotificationType.FRACTION_OFFER_REJECTED:
+        case NotificationType.FRACTION_PURCHASED:
+          if (tokenId) navigation.navigate(ScreenNames.FeedDetail, { tokenId });
+          else navigation.navigate(ScreenNames.Notifications);
+          break;
+
+        case NotificationType.USERNAME_OFFER:
+        case NotificationType.USERNAME_OFFER_ACCEPTED:
+        case NotificationType.USERNAME_OFFER_DECLINED:
+          navigation.navigate(ScreenNames.Usernames, { tab: 'offers' });
+          break;
+
+        case NotificationType.BADGE_TIER_UP:
+        case NotificationType.BADGE_TIER_DOWN:
+          navigation.navigate(ScreenNames.Dpay, { initialTab: 'stake' });
           break;
 
         case NotificationType.BOUNTY_AVAILABLE:
@@ -463,7 +491,9 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           break;
 
         default:
-          navigation.navigate(ScreenNames.Notifications);
+          // A type this build does not know yet still names its post.
+          if (tokenId) navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
+          else navigation.navigate(ScreenNames.Notifications);
           break;
       }
     } catch (error) {
