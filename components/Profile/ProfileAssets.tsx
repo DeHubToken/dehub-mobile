@@ -22,6 +22,8 @@ import {
   dhbPosition as computeDhbPosition,
 } from "../../libs/dhb-position";
 import TransferModal from "../Transfer/TransferModal";
+import { AppTokenHistorySheet, AppTokenSendSheet } from "../Wallet/AppTokenSheets";
+import { useAppTokens, useAppTokensEnabled } from "../../hooks/useAppTokens";
 import ArcSendSheet from "../Wallet/ArcSendSheet";
 import TradeSheet from "../Wallet/TradeSheet";
 import arcIcon from "../../assets/chains/arc-icon.png";
@@ -60,6 +62,12 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
   const [showInfo, setShowInfo] = useState(false);
   const [searchQuery, setSearchQuery] = useSurfaceDraft("components/Profile/ProfileAssets.tsx:searchQuery", "");
   const { data: subscriptionCredits } = useSubscriptionCredits();
+  // App tokens: when the server switches them on, DHB is the in-app balance
+  // and Transfer moves app tokens only, never onchain.
+  const appTokensOn = useAppTokensEnabled();
+  const { data: appTokens } = useAppTokens(appTokensOn);
+  const [appSendOpen, setAppSendOpen] = useState(false);
+  const [appHistoryOpen, setAppHistoryOpen] = useState(false);
 
   const mountedRef = React.useRef(true);
   React.useEffect(() => {
@@ -136,12 +144,12 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
         : walletBalances[symbol] ?? 0;
       return {
         name: symbol,
-        balance: symbol === "DHB" ? dhbPosition : balance,
+        balance: symbol === "DHB" ? (appTokensOn ? Number(appTokens?.balance ?? 0) : dhbPosition) : balance,
         icon: iconMap[symbol] || dhbIcon,
         hasActions: symbol === "DHB",
       };
     });
-  }, [walletBalances, chainId, dhbPosition]);
+  }, [walletBalances, chainId, dhbPosition, appTokensOn, appTokens?.balance]);
 
   const { t } = useTranslation();
   const query = searchable ? searchQuery.trim().toLowerCase() : "";
@@ -151,12 +159,17 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
   const showSubscription = !!subscriptionCredits && subscriptionCredits.tokens > 0 && matchesAsset(t("credits.subscriptionTokens"));
   const [transferOpen, setTransferOpen] = useState(false);
   const [tradeOpen, setTradeOpen] = useState(false);
-  const dhbActions = [
-    { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
-    { key: "sell", label: t("wallet.trade"), subtitle: undefined, disabled: false },
-    { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
-    { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
-  ];
+  const dhbActions = appTokensOn
+    ? [
+        { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
+        { key: "history", label: t("appTokens.history"), disabled: false },
+      ]
+    : [
+        { key: "topUp", label: t("assets.topUp"), subtitle: undefined, disabled: false },
+        { key: "sell", label: t("wallet.trade"), subtitle: undefined, disabled: false },
+        { key: "bridge", label: t("assets.bridge"), subtitle: t("assets.comingSoon"), disabled: true },
+        { key: "transfer", label: t("commandCentre.transfer"), disabled: false },
+      ];
 
   const handleTopUp = React.useCallback(() => {
     navigation.navigate(ScreenNames.Dpay, { initialTab: "buy" });
@@ -177,10 +190,10 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
           triggerClassName="pl-3"
         >
           <Text className="text-xs leading-5 text-white">
-            {t("assets.dhbPositionNote")}
+            {appTokensOn ? t("appTokens.explainer") : t("assets.dhbPositionNote")}
           </Text>
 
-          {dhbBreakdown.rows.length > 0 && (
+          {!appTokensOn && dhbBreakdown.rows.length > 0 && (
             <View className="mt-2 border-t border-white/10 pt-2">
               {dhbBreakdown.rows.map((row) => (
                 <View key={row.chain} className="mb-1">
@@ -305,7 +318,9 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
                       : action.key === "sell"
                       ? () => setTradeOpen(true)
                       : action.key === "transfer"
-                      ? () => setTransferOpen(true)
+                      ? () => (appTokensOn ? setAppSendOpen(true) : setTransferOpen(true))
+                      : action.key === "history"
+                      ? () => setAppHistoryOpen(true)
                       : undefined
                   }
                   disabled={action.disabled}
@@ -390,6 +405,8 @@ const ProfileAssets = ({ searchable = false }: { searchable?: boolean }) => {
         </View>
       )}
       <TransferModal open={transferOpen} onOpenChange={setTransferOpen} />
+      {appTokensOn && <AppTokenSendSheet open={appSendOpen} onClose={() => setAppSendOpen(false)} />}
+      {appTokensOn && <AppTokenHistorySheet open={appHistoryOpen} onClose={() => setAppHistoryOpen(false)} onSend={() => setAppSendOpen(true)} />}
       <TradeSheet visible={tradeOpen} onClose={() => setTradeOpen(false)} address={sessionAddress} />
       {!!sessionAddress && (
         <ArcSendSheet
