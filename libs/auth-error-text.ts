@@ -16,10 +16,11 @@ export function serverAuthText(message: unknown, fallback: string): string {
 /**
  * Closing the Google, Apple or Telegram sheet is a choice, not a failure, and
  * gets no red notice. Apple spells it "canceled" (ERR_REQUEST_CANCELED); the
- * browser flows here throw "... sign-in was cancelled".
+ * browser flows here throw "... sign-in was cancelled"; Web3Auth's old-account
+ * login says "login flow failed with error type dismiss".
  */
 export function isSignInCancelled(error: unknown): boolean {
   const e = error as { code?: unknown; message?: unknown } | null;
   if (e?.code === "ERR_REQUEST_CANCELED" || e?.code === "ERR_CANCELED") return true;
-  return typeof e?.message === "string" && /\bcancell?ed\b/i.test(e.message);
+  return typeof e?.message === "string" && /\bcancell?ed\b|error type (dismiss|cancel)/i.test(e.message);
 }
