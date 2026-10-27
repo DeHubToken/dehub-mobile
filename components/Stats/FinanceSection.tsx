@@ -15,12 +15,13 @@ interface Source {
   label: string;
   kind: "revenue" | "cost";
   group: string;
-  status: "ok" | "unavailable";
+  status: "ok" | "partial" | "unavailable";
 }
 interface FinanceStats {
   ok: true;
   days: FinanceAccountingDay[];
   sources: Source[];
+  notes?: string[];
   provenance?: { expenseAllocation?: string };
   taxSplit?: { period: { from: string; to: string }; shared: { usd: number } };
 }
@@ -94,12 +95,13 @@ export default function FinanceSection({ days }: { days: number | null }) {
         </Svg>}
         <View style={styles.legend}><Text style={styles.hint}>{t("stats.money.revenue")}</Text><Text style={styles.hint}>{t("stats.money.costs")}</Text></View>
         <Text style={styles.hint}>{t("stats.money.grossBnbSharingNote", { defaultValue: "Revenue includes BNB shared with holders and stakers. Those payments were distributed, not retained by DeHub." })}</Text>
+        {query.data.notes?.map((note, index) => <Text key={index} style={styles.hint}>{note}</Text>)}
         {query.data.provenance?.expenseAllocation && <Text style={styles.hint}>{query.data.provenance.expenseAllocation}</Text>}
       </PageSection>
       {(["revenue", "cost"] as const).map(kind => <PageSection key={kind} title={t(kind === "revenue" ? "stats.money.inTitle" : "stats.money.outTitle")}>
         {sources.filter(source => source.kind === kind && (source.id !== "operations_reinvestment" || view.costs.has(source.id))).map(source => <Pressable key={source.id} accessibilityRole={kind === "revenue" ? "link" : undefined} onPress={kind === "revenue" ? () => openLedger(source.id, source.id === "bsc_holder_share") : undefined} style={styles.row}>
           <View style={styles.source}><Text style={styles.sourceLabel}>{source.label}</Text><Text style={styles.hint}>{source.group === "infrastructure" ? t("stats.money.group.infrastructure") : source.group === "tax" ? t("stats.money.group.tax") : ""}</Text></View>
-          <Text style={styles.value}>{source.status === "ok" ? usd((kind === "revenue" ? view.revenue : view.costs).get(source.id) ?? 0) : t("stats.money.sourceUnavailable")}</Text>
+          <Text style={styles.value}>{source.status !== "unavailable" ? (source.status === "partial" ? "~" : "") + usd((kind === "revenue" ? view.revenue : view.costs).get(source.id) ?? 0) : t("stats.money.sourceUnavailable")}</Text>
         </Pressable>)}
       </PageSection>)}
       {sources.some(source => source.status === "unavailable") && <Text style={styles.hint}>{t("stats.money.unavailable", { sources: sources.filter(source => source.status === "unavailable").map(source => source.label).join(", ") })}</Text>}
