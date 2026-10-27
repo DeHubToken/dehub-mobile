@@ -1461,7 +1461,10 @@
     "giftBoost": "Bir güçlendirme hediye et",
     "giftBoostDesc": "Kendi hakkından birini bu gönderiye harca",
     "askAi": "Yapay zekâya sor",
-    "aiOverview": "Yapay zekaya genel bakış"
+    "aiOverview": "Yapay zekaya genel bakış",
+    "refreshLinkPreview": "Bağlantı önizlemesini yenile",
+    "linkPreviewRefreshed": "Bağlantı önizlemesi yenilendi",
+    "linkPreviewRefreshFailed": "Bu siteye ulaşılamadı. Daha sonra tekrar deneyin."
   },
   "filters": {
     "sort": "Sırala",

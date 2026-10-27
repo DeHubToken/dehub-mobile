@@ -1461,7 +1461,10 @@
     "giftBoost": "Regala un impulso",
     "giftBoostDesc": "Gasta uno de los tuyos en esta publicación",
     "askAi": "Preguntar a la IA",
-    "aiOverview": "Descripción general de la IA"
+    "aiOverview": "Descripción general de la IA",
+    "refreshLinkPreview": "Actualizar vista previa del enlace",
+    "linkPreviewRefreshed": "Vista previa del enlace actualizada",
+    "linkPreviewRefreshFailed": "No se pudo acceder a ese sitio. Inténtalo más tarde."
   },
   "filters": {
     "sort": "Ordenar",

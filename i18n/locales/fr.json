@@ -1461,7 +1461,10 @@
     "giftBoost": "Offrir un boost",
     "giftBoostDesc": "Dépensez l'un des vôtres sur cette publication",
     "askAi": "Demander à l'IA",
-    "aiOverview": "Vue d'ensemble de l'IA"
+    "aiOverview": "Vue d'ensemble de l'IA",
+    "refreshLinkPreview": "Actualiser l'aperçu du lien",
+    "linkPreviewRefreshed": "Aperçu du lien actualisé",
+    "linkPreviewRefreshFailed": "Impossible d'accéder à ce site. Réessayez plus tard."
   },
   "filters": {
     "sort": "Trier",

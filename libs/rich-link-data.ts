@@ -146,6 +146,9 @@ async function load(link: RichLink, signal: AbortSignal): Promise<unknown> {
 
 const cache = new Map<string, { until: number; value: RichPreview }>();
 const pending = new Map<string, Promise<RichPreview>>();
+export function forgetRichPreview(url: string): void {
+  cache.delete(url);
+}
 export function fetchRichPreview(link: RichLink): Promise<RichPreview> {
   const cached = cache.get(link.url);
   if (cached && cached.until > Date.now()) return Promise.resolve(cached.value);
