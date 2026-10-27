@@ -635,6 +635,8 @@ export interface AiToolRequest {
   audio_url?: string;
   /** Hash of the DHB transfer that paid for this run. */
   txHash?: string;
+  /** 'voice' draws one exchange from a prepaid voice session. */
+  purpose?: 'job' | 'voice';
 }
 
 export interface AiToolResponse {
