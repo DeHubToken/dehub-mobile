@@ -72,8 +72,10 @@ import {
   AccessibilityInfo,
   Easing,
   PanResponder,
+  AppState,
 } from "react-native";
 import useKeyboard from "../hooks/useKeyboard";
+import { knownVideoAspect, getMeasuredMediaAspect } from "../hooks/useMediaAspect";
 import Reanimated, { cancelAnimation, FadeIn, FadeOut, runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming, type SharedValue } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import type { NativeGesture } from "react-native-gesture-handler";
@@ -483,6 +485,20 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
   const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
   const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
+  // Android draws a TextureView video inside the app's own frame, so every
+  // video frame redrew and re-uploaded the whole screen: measured on a Galaxy
+  // S24+, a short playing untouched was 98% late frames and taps landed a
+  // second or two behind. A SurfaceView hands frames straight to the
+  // compositor. Only a clip known to be portrait gets one: those can never be
+  // dragged into the mini player (landscape only), which needs the texture to
+  // clip and scale with the finger. Picked once per player, since the surface
+  // type cannot change on a mounted view.
+  const directSurface = useMemo(() => {
+    if (Platform.OS !== "android" || (Platform.Version as number) < 29) return false;
+    const aspect = knownVideoAspect(tokenId) ?? (thumbnail ? getMeasuredMediaAspect(thumbnail) : null);
+    return aspect != null && aspect < 0.9;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [player]);
   const minterAddress = item.minter || item.minterUser?.address || "";
 
   // `getAvatarUrl` answers the literal string "default-avatar" — not a URI —
@@ -854,6 +870,19 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       releaseAudioFocus(stopPlayback);
     };
   }, [isActive, player, playIfActive, stopPlayback]);
+
+  // The system pauses every player when the app goes to the background (lock
+  // screen, another app, a notification) and nothing started it again, so the
+  // short sat frozen on a frame until it was swiped away. Coming back resumes
+  // the short being watched unless the viewer had paused it.
+  useEffect(() => {
+    if (!isActive) return;
+    const sub = AppState.addEventListener("change", (state) => {
+      if (state !== "active" || pausedByUserRef.current || !itemNavigation.isFocused()) return;
+      if (!player.playing) playIfActive();
+    });
+    return () => sub.remove();
+  }, [isActive, player, playIfActive, itemNavigation]);
 
   useEffect(() => {
     if (!isActive) return;
@@ -1659,7 +1688,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   }, [player, videoSession, videoUrl, item, thumbnail, navigation, miniHandingOff, miniHandoffFade, miniDragY, miniReveal, captureViewerState, onChromeVisibilityChange, chromeVisible, intrinsicSize, itemHeight]);
 
   const canMinimize = isActive && ownsVideo && !pipPlayer && !photoMedia && !showComments && !screenshotMode && !captionExpanded
-    && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
+    && !directSurface && intrinsicSize.width > 0 && intrinsicSize.height > 0 && intrinsicSize.width >= intrinsicSize.height;
   const minimizePan = useMemo(() => Gesture.Pan()
     .enabled(canMinimize)
     .manualActivation(true)
@@ -1858,7 +1887,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
         {photoMedia ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
-          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
+          directSurface ? null : <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
@@ -1872,10 +1901,16 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
             style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
             contentFit="contain"
             nativeControls={false}
-            surfaceType="textureView"
+            key={directSurface ? "surface" : "texture"}
+            surfaceType={directSurface ? "surfaceView" : "textureView"}
             pointerEvents="none"
             onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
           />
+        ) : null}
+        {/* A SurfaceView shows through everything drawn under it, so its
+            poster has to sit on top until the first frame is up. */}
+        {directSurface && !photoMedia && thumbnail && (!firstFrameRendered || !isActive) ? (
+          <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
         ) : null}
         </Reanimated.View>
         </Reanimated.View>
