@@ -25,7 +25,6 @@ import { getThemeSkin, MONO_TEXT } from "../../theme/skins";
 import { useViewerTippedPost } from "../../hooks/useViewerTippedPost";
 import { useCellState } from "../../hooks/useCellState";
 
-const ICON_MUTED = "#6F7174";
 const ICON_ACTIVE = "#F9FBFF";
 const COUNT_COLOR = "#8B8D90";
 
@@ -372,20 +371,18 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           iconSize={FEED_ICON_SIZE.bookmark}
         iconNode={
           <View style={FEED_BOOKMARK_STYLE}>
-            <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={saved ? "#D4D4D8" : ICON_MUTED} fill={saved ? "#D4D4D8" : undefined} />
+            <Icon name="Bookmark" size={FEED_ICON_SIZE.bookmark} color={saved ? "#D4D4D8" : ICON_ACTIVE} fill={saved ? "#D4D4D8" : undefined} />
           </View>
         }
         active={saved}
         activeColor="#D4D4D8"
         activeFill="#D4D4D8"
-        inactiveColor={ICON_MUTED}
       />
       <AnimatedActionButton
         onPress={onInfo}
         accessibilityLabel={t("feedCard.postDetails")}
         iconName="Info"
         iconSize={FEED_ICON_SIZE.info}
-        inactiveColor={ICON_MUTED}
       />
     </View>
   );
