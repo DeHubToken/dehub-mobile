@@ -47,9 +47,9 @@ function pressProps(type, props) {
       const base = typeof own === "function" ? own(state) : own;
       return state.pressed ? [base, pressed] : base;
     };
-  } else if (pressed.opacity !== undefined && props.activeOpacity === undefined) {
-    next.activeOpacity = pressed.opacity;
   }
+  // Ignored by a Pressable; a TouchableOpacity dims by it.
+  if (pressed.opacity !== undefined && props.activeOpacity === undefined) next.activeOpacity = pressed.opacity;
   return next;
 }
 
