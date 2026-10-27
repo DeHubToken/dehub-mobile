@@ -14945,5 +14945,81 @@
     "cancelled": "Cancelled",
     "moveFailed": "Could not move it. Try again.",
     "seeAll": "See everything you have planned"
+  },
+  "welcome": {
+    "about": {
+      "title": "Welcome to DeHub",
+      "sub": "Your birthday stays private. Pick a look, you can change it any time.",
+      "birthday": "Date of birth",
+      "pick": "Pick your birthday",
+      "day": "Day",
+      "month": "Month",
+      "year": "Year",
+      "invalid": "Enter your full date of birth.",
+      "tooYoung": "You need to be {{age}} or older to use DeHub.",
+      "theme": "Your look"
+    },
+    "name": {
+      "title": "Your name",
+      "sub": "This is the name people see on your posts.",
+      "placeholder": "Your name"
+    },
+    "username": {
+      "title": "Your @username",
+      "sub": "Letters, numbers and underscores. You can change it later.",
+      "yours": "@{{name}} is yours"
+    },
+    "photo": {
+      "title": "Your photo",
+      "sub": "Optional. People follow faces faster.",
+      "choose": "Choose a photo",
+      "change": "Choose another"
+    },
+    "interests": {
+      "title": "Your interests",
+      "sub": "Pick at least 3. They go first in your categories."
+    },
+    "people": {
+      "title": "Your people",
+      "sub": "Tap to follow. Their posts fill your Following feed.",
+      "empty": "No suggestions right now. Explore has more people to find.",
+      "followers": "{{count}} followers"
+    },
+    "done": {
+      "title": "Looking good, {{name}}",
+      "sub": "Everyone sees this card from today.",
+      "eyebrow": "Profile live"
+    },
+    "card": {
+      "name": "Your name",
+      "interests": "Your interests",
+      "following": "following",
+      "followers": "followers"
+    },
+    "topic": {
+      "music": "Music",
+      "art": "Art",
+      "gaming": "Gaming",
+      "crypto": "Crypto",
+      "sports": "Sports",
+      "travel": "Travel",
+      "comedy": "Comedy",
+      "film": "Film",
+      "anime": "Anime",
+      "cars": "Cars",
+      "podcast": "Podcast",
+      "animals": "Animals",
+      "tech": "Tech",
+      "food": "Food",
+      "news": "News",
+      "science": "Science"
+    },
+    "back": "Back",
+    "enter": "Enter DeHub",
+    "skipPhoto": "Skip for now",
+    "pickMore": "Pick {{count}} more",
+    "preview": "Preview",
+    "cardHint": "This is how people will see you",
+    "followFailed": "Could not follow. Try again."
   }
 }

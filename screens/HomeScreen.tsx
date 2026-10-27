@@ -45,6 +45,7 @@ import { homeTabEvents, promptFeedEvents } from "../libs/eventBus";
 import { useCollapsibleHeader } from "../hooks/useCollapsibleHeader";
 import { useAppPrefs } from "../hooks/useAppPrefs";
 import { useShortsServerSync } from "../hooks/useShortsEnabled";
+import { useFeedInterestsServerSync } from "../hooks/useFeedInterestsServerSync";
 import { useHomePullRefresh } from '../hooks/useHomePullRefresh';
 import FeedPillGlow from '../components/Home/FeedPillGlow';
 import { HomePullRefreshContext } from '../context/HomePullRefreshContext';
@@ -296,6 +297,7 @@ export default function HomeScreen() {
   const drawerPagerRef = useRef<GestureType | undefined>(undefined);
 
   useShortsServerSync();
+  useFeedInterestsServerSync();
   const { shorts: shortsEnabled } = useAppPrefs();
   const TAB_ORDER: readonly TabKey[] = shortsEnabled ? ALL_TAB_ORDER : TAB_ORDER_NO_SHORTS;
   const LAST_INDEX = TAB_ORDER.length - 1;
