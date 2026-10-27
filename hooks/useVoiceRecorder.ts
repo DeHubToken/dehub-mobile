@@ -11,6 +11,8 @@ export interface VoiceNoteResult { uri: string; durationMs: number; mimeType: st
 export interface UseVoiceRecorderOpts {
   onRecordingComplete: (result: VoiceNoteResult) => void;
   onCancel: () => void;
+  /** Longest take before it stops itself. Voice notes keep the 29 second cap. */
+  maxDurationMs?: number;
 }
 export interface VoiceRecorderHandle {
   isRecording: boolean;
@@ -79,7 +81,7 @@ export function useVoiceRecorder(callbacks: UseVoiceRecorderOpts): VoiceRecorder
     const timer = setInterval(() => {
       const elapsed = Date.now() - startedAt.current;
       setElapsedMs(elapsed);
-      if (elapsed >= MAX_DURATION_MS) { void stopRecording(); return; }
+      if (elapsed >= (latest.current.maxDurationMs ?? MAX_DURATION_MS)) { void stopRecording(); return; }
       try {
         const level = recordingRef.current?.getStatus().metering;
         const normalized = level == null || level <= -160 ? 0.05 : Math.max(0.05, Math.min(1, (level + 40) / 40));

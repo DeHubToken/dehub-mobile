@@ -12,6 +12,8 @@ jest.mock('../../context/AuthContext', () => ({ useUser: () => ({ walletAddress:
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('expo-document-picker', () => ({ getDocumentAsync: (...args: unknown[]) => mockPick(...args) }));
 jest.mock('../../libs/toast', () => ({ toastError: jest.fn() }));
+jest.mock('../../services/voiceClone.service', () => ({ listCustomVoices: jest.fn().mockResolvedValue([]) }));
+jest.mock('../../components/Assistant/VoiceCloneSheet', () => ({ VoiceCloneSheet: () => null }));
 
 import { CreatorAudioControls } from '../../components/Assistant/CreatorAudioControls';
 
