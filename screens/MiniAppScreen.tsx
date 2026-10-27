@@ -272,20 +272,20 @@ export default function MiniAppScreen() {
   const onMessage = useCallback(
     async (e: WebViewMessageEvent) => {
       if (!app) return;
-      let pageHost = "";
+      let pageOrigin = "";
       try {
-        pageHost = new URL(e.nativeEvent.url).hostname;
+        pageOrigin = new URL(e.nativeEvent.url).origin;
       } catch {
         return;
       }
-      if (pageHost !== app.url.hostname) return;
+      if (pageOrigin !== app.url.origin) return;
       const req = parseRequest(e.nativeEvent.data);
       if (!req) return onFarcasterMessage(e);
       const host = app.url.hostname;
 
       const send = (message: unknown) =>
         webRef.current?.injectJavaScript(
-          `window.dispatchEvent(new MessageEvent('message',{data:${JSON.stringify(JSON.stringify(message))}})); true;`,
+          `if (location.origin === ${JSON.stringify(app.url.origin)}) window.dispatchEvent(new MessageEvent('message',{data:${JSON.stringify(JSON.stringify(message))}})); true;`,
         );
       const ok = (result: unknown = true) => send(reply(req.id, result));
       const fail = (code: string, message: string) => send(replyError(req.id, code, message));
@@ -423,7 +423,7 @@ export default function MiniAppScreen() {
       if (req.isTopFrame === false) return true;
       try {
         const next = new URL(req.url);
-        if (next.hostname === app.url.hostname) return true;
+        if (next.origin === app.url.origin && !next.username && !next.password) return true;
         if (next.protocol === "https:" || next.protocol === "http:") void openInApp(req.url);
       } catch {
         /* about:blank and friends */

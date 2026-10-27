@@ -8,7 +8,7 @@ jest.mock('../../config/env', () => ({
   __esModule: true,
   default: { SUPABASE_URL: 'https://proj.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'anon' },
 }));
-jest.mock('../../libs/auth.utils', () => ({ getAuthToken: jest.fn().mockResolvedValue('dehub-token') }));
+jest.mock('../../libs/auth.utils', () => ({ getAuthToken: jest.fn().mockResolvedValue('dehub-token'), getAuthUser: jest.fn().mockResolvedValue({ walletAddress: '0x' + 'a'.repeat(40) }) }));
 jest.mock('../../libs/errorReporter', () => ({ reportError: jest.fn() }));
 jest.mock('../../libs/token-refresh', () => ({ tokenRefreshManager: { ensureFreshToken: jest.fn().mockResolvedValue(undefined) } }));
 
@@ -29,6 +29,22 @@ const restCalls = (base: jest.Mock) => base.mock.calls.filter(([u]) => String(u)
 describe('wallet session fetch', () => {
   beforeEach(() => jest.resetModules());
 
+  it('does not leak signed sessions to a hostname that extends the project URL', async () => {
+    const { createWalletSessionFetch } = require('../../libs/wallet-session');
+    const base = makeBase({ wallet: WALLET, token: 'signed', expiresAt: new Date(Date.now() + 12 * 3600e3).toISOString() });
+    await createWalletSessionFetch(base)('https://proj.supabase.co.attacker.invalid/rest/v1/items', { headers: { 'x-wallet-address': WALLET } });
+    expect(base).toHaveBeenCalledTimes(1);
+    expect(new Headers(base.mock.calls[0][1]?.headers).get('x-wallet-session')).toBeNull();
+  });
+
+  it('signs shared-client storage uploads using the current account', async () => {
+    const { createWalletSessionFetch } = require('../../libs/wallet-session');
+    const base = makeBase({ wallet: WALLET, token: 'signed', expiresAt: new Date(Date.now() + 12 * 3600e3).toISOString() });
+    await createWalletSessionFetch(base)('https://proj.supabase.co/storage/v1/object/community-media/a.png', { method: 'POST', body: 'fixture' });
+    const sent = base.mock.calls.find(([url]) => String(url).includes('/storage/v1/'));
+    expect(new Headers(sent?.[1]?.headers).get('x-wallet-session')).toBe('signed');
+  });
+
   it('attaches the minted session and reuses it', async () => {
     const { createWalletSessionFetch } = require('../../libs/wallet-session');
     const base = makeBase({ wallet: WALLET, token: 'signed', expiresAt: new Date(Date.now() + 12 * 3600e3).toISOString() });
@@ -41,13 +57,12 @@ describe('wallet session fetch', () => {
     for (const [, init] of restCalls(base)) expect(new Headers(init?.headers).get('x-wallet-session')).toBe('signed');
   });
 
-  it('sends the request unsigned when no session can be minted', async () => {
+  it('blocks the request when no session can be minted', async () => {
     const { createWalletSessionFetch } = require('../../libs/wallet-session');
     const base = makeBase(null, false);
     const f = createWalletSessionFetch(base);
     await f(REST, { headers: { 'x-wallet-address': WALLET } });
-    const [[, init]] = restCalls(base);
-    expect(new Headers(init?.headers).get("x-wallet-session")).toBeNull();
+    expect(restCalls(base)).toHaveLength(0);
   });
 
   it('leaves requests without a wallet untouched', async () => {

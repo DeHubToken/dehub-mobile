@@ -1,6 +1,6 @@
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { useState, useRef, useEffect } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Keyboard } from "react-native";
 import { AuthButton, AuthField, AuthTextButton, authText } from "./AuthControls";
 import { useTranslation } from "react-i18next";
 
@@ -33,7 +33,12 @@ const EmailCodeEntry: React.FC<EmailCodeEntryProps> = ({
   const canSubmit = code.trim().length >= 6 && !loading && !disabled;
 
   const handleSubmit = () => {
-    if (canSubmit) onSubmit(code.trim());
+    if (!canSubmit) return;
+    // Whatever comes next (the profile, a wallet sheet, account recovery)
+    // covers this field. A keyboard left open for it behind a sheet is
+    // fought over by the two windows, and the sheet jumps with every swap.
+    Keyboard.dismiss();
+    onSubmit(code.trim());
   };
 
   return (

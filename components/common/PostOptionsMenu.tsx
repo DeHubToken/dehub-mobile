@@ -44,6 +44,8 @@ import { useIsPostPinned, useTogglePin } from "../../hooks/usePinnedPosts";
 import { useDubSettings, setDubSettings, checkDubbable } from "../../hooks/useVideoDub";
 import { baseLang } from "../../hooks/useVoiceDub";
 import { defaultChainId } from "../../config/constants";
+import { refreshLinkPreview } from "../../libs/link-preview";
+import { firstExternalUrl } from "./LinkPreviewCard";
 
 export interface PostOptionsMenuProps {
   visible: boolean;
@@ -164,6 +166,11 @@ export interface PostOptionsMenuProps {
   onInfoPress?: () => void;
   /** Open the AI sheet for this post ("AI overview"). Posts carry no AI button of their own. */
   onAskAi?: () => void;
+  /**
+   * The post's caption. When it carries an outside link card, a row re-crawls
+   * the link so a site's new share image, title and description show up.
+   */
+  linkText?: string | null;
   /** Hide the report content option (e.g., for livestreams) */
   hideReportContent?: boolean;
   /** Hide the edit option (e.g., for livestreams) */
@@ -254,10 +261,12 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
   onRemix,
   onInfoPress,
   onAskAi,
+  linkText,
   hideReportContent = false,  hideEdit = false,  isAudio = false,  canMarkSegments = false,}) => {
   const user = useUser();
   const { requireAuth } = useAuthActions();
   const { t, i18n } = useTranslation();
+  const linkUrl = firstExternalUrl(linkText);
   const [showRemix, setShowRemix] = useState(false);
   const { mint: mintExisting, isMinting } = useMintExistingPost();
   const { on: dubOn } = useDubSettings();
@@ -591,6 +600,22 @@ const PostOptionsMenuComponent: React.FC<PostOptionsMenuProps> = ({
               icon="assistant-slim"
               label={t("postOptions.aiOverview", "AI overview")}
               onPress={() => { onClose(); onAskAi(); }}
+            />
+          )}
+
+          {!!linkUrl && (
+            <OptionRow
+              icon="RefreshCw"
+              label={t("postOptions.refreshLinkPreview", "Refresh link preview")}
+              onPress={() => {
+                // The menu unmounts on close; the refresh carries on and the
+                // card underneath repaints itself when it lands.
+                onClose();
+                void refreshLinkPreview(linkUrl).then((ok) => {
+                  if (ok) toastSuccess(t("postOptions.linkPreviewRefreshed", "Link preview refreshed"));
+                  else toastError(t("postOptions.linkPreviewRefreshFailed", "Couldn't reach that site. Try again later."));
+                });
+              }}
             />
           )}
 

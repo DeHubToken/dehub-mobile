@@ -157,6 +157,8 @@ interface FeedVideoPlayerProps {
   isOwner?: boolean;
   duration?: string;
   tokenId: string | number | undefined;
+  /** Width/height the backend probed at upload; frames the card before anything is measured. */
+  storedAspect?: number;
   /**
    * Playback failed for good. A gated post's signed URL may have lapsed; the
    * card fetches a fresh one and the player resumes where it stopped.
@@ -276,6 +278,7 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   isOwner,
   duration,
   tokenId,
+  storedAspect,
   onPlaybackFailed,
   isContentGated,
   isPPVLocked,
@@ -559,14 +562,14 @@ const FeedVideoPlayerComponent: React.FC<FeedVideoPlayerProps> = ({
   // be a custom cover of another shape.
   const [videoSize, setVideoSize] = useState<{ tokenId: unknown; ratio: number } | null>(null);
   const videoAspect = videoSize && Object.is(videoSize.tokenId, tokenId) ? videoSize.ratio : null;
-  const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
+  const thumbAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO, storedAspect);
   const posterAspect = getMeasuredMediaAspect(thumbnail);
   // Until this player reports a size, the shape the clip had last time wins
   // over the thumbnail, exactly as the poster row reads it (useMediaAspect).
   // Using the thumbnail alone flipped the card to the cover's shape each time
   // a row went from poster to player, and back once the clip loaded: the
   // jump on every tab swipe and every scroll a video entered.
-  const measuredAspect = videoAspect ?? knownVideoAspect(tokenId) ?? posterAspect;
+  const measuredAspect = videoAspect ?? knownVideoAspect(tokenId) ?? posterAspect ?? storedAspect ?? null;
   const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, videoAspect ? clampAspect(videoAspect, THIN_MIN_RATIO) : thumbAspect, isVisible, !postPage,
     measuredAspect == null ? undefined : clampAspect(measuredAspect, THIN_MIN_RATIO));
   const { isMinimal: minimalTheme } = useAppTheme();
@@ -2125,11 +2128,11 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction" | "inlineWidth"> & { feedPreview?: boolean; active?: boolean; onUnmute?: () => void; children?: React.ReactNode }> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, onUnmute, children, inlineWidth }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "storedAspect" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction" | "inlineWidth"> & { feedPreview?: boolean; active?: boolean; onUnmute?: () => void; children?: React.ReactNode }> = memo(
+  ({ tokenId, storedAspect, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, onUnmute, children, inlineWidth }) => {
     const { t } = useTranslation();
-    const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
-    const posterAspect = getMeasuredMediaAspect(thumbnail);
+    const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO, storedAspect);
+    const posterAspect = getMeasuredMediaAspect(thumbnail) ?? storedAspect ?? null;
     const mediaAspect = useFeedFrameAspect(`video:${tokenId ?? thumbnail}`, measuredAspect, isVisible, !postPage,
       posterAspect == null ? undefined : measuredAspect);
     const { isMinimal: minimalTheme } = useAppTheme();
@@ -2299,6 +2302,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
     <FeedVideoPoster
       inlineWidth={props.inlineWidth}
       tokenId={props.tokenId}
+      storedAspect={props.storedAspect}
       isVisible={props.isVisible}
       thumbnail={props.thumbnail}
       duration={props.duration}

@@ -1,3 +1,4 @@
+import { LruCache } from './lru-cache';
 /**
  * Outside link previews
  * =====================
@@ -14,8 +15,8 @@
  */
 import { supabase } from '../services/supabase';
 import { createLogger } from './logger';
-import { fetchPredictionPreview, parsePredictionLink, type PredictionPreview } from './predictions';
-import { fetchRichPreview, parseRichLink, extractShareUrls, type RichDetails } from './rich-links';
+import { fetchPredictionPreview, forgetPredictionPreview, parsePredictionLink, type PredictionPreview } from './predictions';
+import { fetchRichPreview, forgetRichPreview, parseRichLink, extractShareUrls, type RichDetails } from './rich-links';
 
 const log = createLogger('LinkPreview');
 
@@ -29,7 +30,9 @@ export interface LinkPreviewData {
   rich?: RichDetails;
 }
 
-const previewCache = new Map<string, LinkPreviewData>();
+const previewCache = new LruCache<string, LinkPreviewData>(256);
+const pendingPreviews = new Map<string, Promise<LinkPreviewData | null>>();
+const refreshListeners = new Set<(url: string) => void>();
 
 export function getLinkPreviewFavicon(url: string): string | null {
   try {
@@ -63,21 +66,71 @@ export function getLinkPreviewImage(url: string, image: unknown): string | null 
   return decodedImage;
 }
 
-export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
+export function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
+  const pending = pendingPreviews.get(url);
+  if (pending) return pending;
+  const request = loadLinkPreview(url).finally(() => pendingPreviews.delete(url));
+  pendingPreviews.set(url, request);
+  return request;
+}
+
+async function loadLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const prediction = parsePredictionLink(url);
   if (prediction) return fetchPredictionPreview(prediction);
   const rich = parseRichLink(url);
   if (rich) return fetchRichPreview(rich);
   const cached = previewCache.get(url);
   if (cached) return cached;
+  return crawlLinkPreview(url, false);
+}
 
+/**
+ * A site that swaps its share image usually keeps the same image address, so
+ * the image cache keeps painting the old picture. A refreshed card asks for the
+ * image with a one-off query mark, which sends it past every cache on the way.
+ */
+export function markRefreshedImage(image: string | null, stamp: number): string | null {
+  if (!image) return image;
+  try {
+    const parsed = new URL(image);
+    if (!/^https?:$/.test(parsed.protocol)) return image;
+    parsed.searchParams.set('dhr', String(stamp));
+    return parsed.href;
+  } catch {
+    return image;
+  }
+}
+
+/** Cards showing a link re-read it when somebody refreshes it from a post menu. */
+export function subscribeLinkPreviewRefresh(listener: (url: string) => void): () => void {
+  refreshListeners.add(listener);
+  return () => { refreshListeners.delete(listener); };
+}
+
+/**
+ * Crawls the link again and repaints every card showing it. Returns false when
+ * the site could not be read, so the menu can say so instead of claiming success.
+ */
+export async function refreshLinkPreview(url: string): Promise<boolean> {
+  pendingPreviews.delete(url);
+  let ok = true;
+  const prediction = parsePredictionLink(url);
+  const rich = parseRichLink(url);
+  if (prediction) forgetPredictionPreview(prediction.url);
+  else if (rich) await forgetRichPreview(rich.url);
+  else ok = (await crawlLinkPreview(url, true)) !== null;
+  refreshListeners.forEach((listener) => listener(url));
+  return ok;
+}
+
+async function crawlLinkPreview(url: string, refresh: boolean): Promise<LinkPreviewData | null> {
   try {
     const { data, error } = await supabase.functions.invoke('fetch-link-preview', {
-      body: { url },
+      body: refresh ? { url, refresh: true } : { url },
     });
     if (error || !data || data.error) {
       log.warn('fetchLinkPreview:failed', url, error);
-      return compactPreview(url);
+      return refresh ? null : compactPreview(url);
     }
 
     const preview: LinkPreviewData = {
@@ -86,7 +139,7 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
       description: data.description || '',
       // OG attributes can contain HTML-escaped query separators. Decode them
       // before the share-image endpoint receives the URL.
-      image: getLinkPreviewImage(url, data.image),
+      image: refresh ? markRefreshedImage(getLinkPreviewImage(url, data.image), Date.now()) : getLinkPreviewImage(url, data.image),
       siteName: data.siteName || compactPreview(url).siteName,
     };
 
@@ -94,7 +147,7 @@ export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | n
     return preview;
   } catch (e) {
     log.warn('fetchLinkPreview:error', url, e);
-    return compactPreview(url);
+    return refresh ? null : compactPreview(url);
   }
 }
 

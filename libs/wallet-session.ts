@@ -10,14 +10,13 @@
  * and storage request that names a wallet (withWalletHeader and friends) gets
  * that wallet's session attached. supabase-js 2.52 captures fetch when the
  * client is created, which is why this is passed in rather than patched onto
- * the global. Until enforcement is switched on server-side, a request without
- * a session still works exactly as before.
+ * the global. Wallet-scoped requests fail closed if their signature is unavailable.
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Application from "expo-application";
 import { Platform } from "react-native";
 import env from "../config/env";
-import { getAuthToken } from "./auth.utils";
+import { getAuthToken, getAuthUser } from "./auth.utils";
 import { reportError } from "./errorReporter";
 import { tokenRefreshManager } from "./token-refresh";
 import { translateCopy as _translateCopy } from "../i18n/copy";
@@ -25,15 +24,13 @@ import { translateCopy as _translateCopy } from "../i18n/copy";
 const STORAGE_KEY = "dehub_wallet_sessions";
 const REFRESH_MARGIN_MS = 60 * 60 * 1000;
 const RETRY_AFTER_MS = 60 * 1000;
-const FIRST_WAIT_MS = 4000;
+const FIRST_WAIT_MS = 12000;
 
 interface Session { token: string; expiresAt: number }
 
 /**
- * Why a wallet-scoped request went out without a session. Enforcement can only
- * be switched on once almost nothing lands here, so the reasons have to be told
- * apart: no_token is a sign-in problem, mint_error a server refusal or wallet
- * mismatch, timeout a mint that was merely slow.
+ * Why a wallet-scoped request was blocked: no_token is a sign-in problem,
+ * mint_error a server refusal or wallet mismatch, timeout a slow mint.
  */
 export type UnsignedReason = "no_token" | "mint_error" | "timeout";
 interface MintFailure { reason: UnsignedReason; detail: string }
@@ -185,25 +182,31 @@ function readUrl(input: RequestInfo | URL): string {
 export function createWalletSessionFetch(baseFetch: typeof fetch = fetch): typeof fetch {
   return async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
     const url = readUrl(input);
-    const scoped = url.startsWith(env.SUPABASE_URL) && (url.includes("/rest/v1/") || url.includes("/storage/v1/"));
+    const path = url.startsWith(env.SUPABASE_URL + '/') ? url.slice(env.SUPABASE_URL.length) : '';
+    const scoped = path.startsWith('/rest/v1/') || path.startsWith('/storage/v1/');
     if (!scoped) return baseFetch(input, init);
-    const headers = new Headers(init?.headers);
+    const headers = new Headers(init?.headers ?? (input instanceof Request ? input.headers : undefined));
+    const method = (init?.method ?? (input instanceof Request ? input.method : 'GET')).toUpperCase();
+    if (!headers.has('x-wallet-address') && path.startsWith('/storage/v1/object/') && !['GET', 'HEAD', 'OPTIONS'].includes(method)) {
+      const user = await getAuthUser();
+      const current = (user?.walletAddress || user?.address || '').toLowerCase();
+      if (/^0x[a-f0-9]{40}$/.test(current)) headers.set('x-wallet-address', current);
+    }
     const wallet = headers.get("x-wallet-address")?.toLowerCase();
     if (!wallet || headers.has("x-wallet-session")) return baseFetch(input, init);
     await load();
     const valid = sessions.get(wallet);
     const usable = valid && valid.expiresAt - 30_000 > Date.now() ? valid : null;
     if (usable && !fresh(wallet)) void ensure(wallet, baseFetch);
-    const protectedRequest=/\/rest\/v1\/(?:call_sessions|callback_requests|audio_spaces|space_participants|raise_hand_requests|stage_reminders|(?:rpc\/)?work_)(?:[/?]|$)/.test(url) || /\/rest\/v1\/(?:rpc\/)?work_/.test(url);
-    const session = usable ?? (await timeout(ensure(wallet, baseFetch), protectedRequest ? 12000 : FIRST_WAIT_MS));
+    const session = usable ?? (await timeout(ensure(wallet, baseFetch), FIRST_WAIT_MS));
     if (!session || session === TIMED_OUT) {
       reportUnsigned(wallet, url, session === TIMED_OUT
         ? { reason: "timeout", detail: `no session within ${FIRST_WAIT_MS}ms` }
         : lastFailure.get(wallet) ?? { reason: "mint_error", detail: "unknown" });
-      if(protectedRequest) return new Response(JSON.stringify({message:_translateCopy('copy.25038f9d0520', { defaultValue: 'Session verification is temporarily unavailable. Please retry.' }),code:'42501'}),{status:401,headers:{'Content-Type':'application/json'}});
-      return baseFetch(input, init);
+      return new Response(JSON.stringify({message:_translateCopy('copy.25038f9d0520', { defaultValue: 'Session verification is temporarily unavailable. Please retry.' }),code:'42501'}),{status:401,headers:{'Content-Type':'application/json'}});
     }
     headers.set("x-wallet-session", session.token);
+    if (input instanceof Request && !init) return baseFetch(new Request(input, { headers }));
     return baseFetch(input, { ...init, headers });
   };
 }

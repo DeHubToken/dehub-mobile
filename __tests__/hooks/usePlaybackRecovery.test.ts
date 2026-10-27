@@ -38,4 +38,19 @@ describe('native playback recovery', () => {
     expect(player.play).toHaveBeenCalledTimes(1);
     expect(result.current.phase).toBe('idle');
   });
+  it('lets an iPhone player wait through stalls once it has started', () => {
+    const { Platform } = require('react-native');
+    const os = Platform.OS;
+    Platform.OS = 'ios';
+    try {
+      const { player, events } = setup();
+      (player as any).bufferOptions = { preferredForwardBufferDuration: 10, waitsToMinimizeStalling: false };
+      renderHook(() => usePlaybackRecovery(player as unknown as VideoPlayer, 'clip', { component: 'Test', allowed: () => true }));
+      expect((player as any).bufferOptions.waitsToMinimizeStalling).toBe(false);
+      act(() => events.get('playingChange')?.({ isPlaying: true }));
+      expect((player as any).bufferOptions).toEqual({ preferredForwardBufferDuration: 10, waitsToMinimizeStalling: true });
+    } finally {
+      Platform.OS = os;
+    }
+  });
 });

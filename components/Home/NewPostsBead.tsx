@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import Svg, { Path } from "react-native-svg";
 import { useTranslation } from "react-i18next";
+import { LinearGradient } from "expo-linear-gradient";
 import NavPillSurface from "../ui/NavPillSurface";
 import FrostedPill, { LIGHT_PILL_SHADOW } from "../ui/FrostedPill";
 import { GRAIN, glassTint } from "../../theme/skins";
@@ -11,10 +11,11 @@ import { getAvatarUrl } from "../../libs/misc";
 import { KeepDarkScope } from "../../libs/jsx/tone";
 import type { NewPostAuthor } from "../../hooks/useNewPostsSignal";
 
-/** Space between the pill's bottom edge and the chip. */
-export const CHIP_GAP = 8;
-/** The chip's height. */
-export const CHIP_HEIGHT = 34;
+/** Space between the pill's bottom edge and the drawer: none, it is flush. */
+export const CHIP_GAP = 0;
+/** The drawer's height below the pill. */
+export const CHIP_HEIGHT = 36;
+const CORNER = 14;
 const FACE = 22;
 const FACE_OVERLAP = 7;
 
@@ -35,18 +36,12 @@ function ChipMaterial({ radius, islandChrome }: { radius: number; islandChrome: 
   );
 }
 
-function ArrowUp({ color }: { color: string }) {
-  return (
-    <Svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.8 }}>
-      <Path d="M12 19V5M5 12l7-7 7 7" />
-    </Svg>
-  );
-}
-
-/** "N new posts" with up to three faces: a small glass capsule floating just
- *  under the feed nav pill, in the pill's own material. HomeScreen clips its
- *  slot at the pill's bottom edge, so it tucks up behind the pill when the
- *  pill hides and drops back out after it returns. */
+/** "N new posts" with up to three faces: a drawer that pulls out from under
+ *  the feed nav pill, in the pill's own material. HomeScreen clips its slot
+ *  at the pill's bottom edge, so the drawer never covers the pill's border and
+ *  nothing shows between them; the pill casts a soft shade onto its top. It
+ *  slides back under the pill when the pill hides and pulls back out after
+ *  it returns. */
 export default function NewPostsBead({ count, authors, islandChrome, onPress, label }: {
   count: number;
   authors: NewPostAuthor[];
@@ -58,27 +53,31 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
   const { t } = useTranslation();
   const square = !!(skin?.square || isMinimal);
   const lightFrost = isLight && !skin && !isMinimal;
-  const radius = square ? 0 : CHIP_HEIGHT / 2;
+  const corner = square ? 0 : CORNER;
+  const shape = { borderBottomLeftRadius: corner, borderBottomRightRadius: corner };
   const faces = authors.slice(0, 3);
   const ink = lightFrost ? "#0B0B0D" : skin?.tabIconActive ?? "#FFFFFF";
   const ring = lightFrost ? "#FFFFFF" : isMinimal ? "#000" : "rgba(24,24,27,0.9)";
+  const rim = lightFrost ? "rgba(11,11,13,0.10)"
+    : isMinimal ? MINIMAL_TAB_LINE
+    : skin ? String(skin.barBorder?.borderColor ?? "rgba(255,255,255,0.16)") : "rgba(255,255,255,0.16)";
   const chip = (
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={label}
       hitSlop={8}
-      style={({ pressed }) => [
-        styles.chip,
-        { borderRadius: radius, opacity: pressed ? 0.75 : 1, transform: [{ scale: pressed ? 0.96 : 1 }] },
-        lightFrost ? LIGHT_PILL_SHADOW : styles.darkShadow,
-      ]}
+      style={({ pressed }) => [styles.chip, shape, { opacity: pressed ? 0.8 : 1 }, lightFrost ? LIGHT_PILL_SHADOW : styles.darkShadow]}
     >
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: radius, overflow: "hidden" }]}>
-        <ChipMaterial radius={radius} islandChrome={islandChrome} />
-        {!lightFrost && !isMinimal ? (
-          <View style={[StyleSheet.absoluteFill, { borderRadius: radius, borderWidth: StyleSheet.hairlineWidth * 2, borderColor: skin ? String(skin.barBorder?.borderColor ?? "rgba(255,255,255,0.18)") : "rgba(255,255,255,0.16)", borderTopColor: "rgba(255,255,255,0.34)" }]} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, shape, { overflow: "hidden" }]}>
+        <ChipMaterial radius={0} islandChrome={islandChrome} />
+        {!isMinimal ? (
+          <LinearGradient
+            colors={lightFrost ? ["rgba(0,0,0,0.10)", "rgba(0,0,0,0)"] : ["rgba(0,0,0,0.45)", "rgba(0,0,0,0)"]}
+            style={{ position: "absolute", left: 0, right: 0, top: 0, height: 14 }}
+          />
         ) : null}
+        <View style={[StyleSheet.absoluteFill, shape, { borderWidth: 1, borderTopWidth: 0, borderColor: rim }]} />
       </View>
       <View style={styles.row}>
         {faces.length > 0 ? (
@@ -103,7 +102,6 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
           </View>
         ) : null}
         <Text numberOfLines={1} style={{ color: ink, fontSize: 13, fontWeight: "600", fontVariant: ["tabular-nums"] }}>{t("feed.newPosts", { count, defaultValue: "{{count}} new posts" })}</Text>
-        <ArrowUp color={ink} />
       </View>
     </Pressable>
   );
@@ -113,7 +111,7 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
 }
 
 const styles = StyleSheet.create({
-  chip: { height: CHIP_HEIGHT, justifyContent: "center", paddingLeft: 6, paddingRight: 12 },
+  chip: { height: CHIP_HEIGHT, minWidth: 180, alignItems: "center", justifyContent: "center", paddingLeft: 8, paddingRight: 14, paddingTop: 2 },
   row: { flexDirection: "row", alignItems: "center", gap: 8 },
-  darkShadow: { boxShadow: "0px 8px 22px -8px rgba(0,0,0,0.55)" },
+  darkShadow: { boxShadow: "0px 10px 22px -12px rgba(0,0,0,0.6)" },
 });
