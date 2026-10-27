@@ -739,6 +739,23 @@ export function badgeImage(tier: string | null | undefined, appearance: 'dark' |
 }
 
 /**
+ * The badge fields of a comment you just wrote, read off your own account.
+ *
+ * An optimistic comment is built before the server answers, and without these
+ * it drew with no badge until the thread reloaded and the real row arrived.
+ */
+export function selfBadgeFields(
+  user: Record<string, any> | null | undefined,
+): { badgeBalance?: number; badgeLock?: BadgeLock | null; hideBadgeAndBalance?: boolean } {
+  if (!user) return {};
+  return {
+    badgeBalance: resolveBadgeBalance(user),
+    badgeLock: resolveBadgeLock(user) ?? null,
+    hideBadgeAndBalance: user.hideBadgeAndBalance === true,
+  };
+}
+
+/**
  * The badge art for a user-like object — the balance and the lock read
  * together.
  *
