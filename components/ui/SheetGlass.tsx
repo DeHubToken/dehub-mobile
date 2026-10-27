@@ -9,7 +9,7 @@ import {
 } from "../../theme/sheetGlass";
 import { useAppTheme } from "../../context/ThemeContext";
 import { useDrawerBlurSource } from "./FrostedBackdrop";
-import { KeepDarkScope } from "../../libs/jsx/tone";
+import { KeepDarkScope, toneColor } from "../../libs/jsx/tone";
 
 /**
  * The liquid glass layers behind a drawer's content, as on web: the page
@@ -96,6 +96,11 @@ export default function SheetGlass({ blur = true, backdropBlurred = false }: Lay
   );
 }
 
+/** SHEET_GLASS_FILL as System Light's tone pass hands it over: the pass rewrites
+ * the style on every element, this one included, so the plain value never
+ * arrives and every sheet fell back to an 80% white veil over the post. */
+const SHEET_GLASS_FILL_TONED = toneColor(SHEET_GLASS_FILL, true);
+
 /**
  * Drop-in for a drawer's own absolute-fill background view. Where that view
  * is painted SHEET_GLASS_FILL it becomes liquid glass in the default dark
@@ -106,7 +111,8 @@ export default function SheetGlass({ blur = true, backdropBlurred = false }: Lay
  */
 export function SheetGlassFill({ style, blur = true, backdropBlurred = false }: { style: StyleProp<ViewStyle> } & LayerProps) {
   const { skin, isMinimal, isLight } = useAppTheme();
-  const glass = !skin && !isMinimal && StyleSheet.flatten(style)?.backgroundColor === SHEET_GLASS_FILL;
+  const fill = StyleSheet.flatten(style)?.backgroundColor;
+  const glass = !skin && !isMinimal && (fill === SHEET_GLASS_FILL || fill === SHEET_GLASS_FILL_TONED);
   if (!glass) return <View pointerEvents="none" style={style} />;
   return (
     <View pointerEvents="none" style={[style, styles.clear]}>
