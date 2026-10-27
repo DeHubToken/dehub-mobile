@@ -26,6 +26,53 @@ function getOAuthRedirectUri(): string {
   return "dehub://auth-callback";
 }
 
+/** Faster than anyone can close a sign-in page they were shown. */
+const INSTANT_CLOSE_MS = 1200;
+
+async function preferredBrowserPackage(): Promise<string | undefined> {
+  try {
+    const browsers = await WebBrowser.getCustomTabsSupportingBrowsersAsync?.();
+    if (!browsers) return undefined;
+    if (browsers.browserPackages?.includes("com.android.chrome")) return "com.android.chrome";
+    return browsers.preferredBrowserPackage ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * Opens a sign-in page and waits for it to come back to `redirectTo`.
+ *
+ * On some Android phones the page closes the instant it opens, before anyone
+ * could see it, and comes back as a "cancel": the logs show Google and Apple
+ * both "cancelled" in the same second they started, attempt after attempt.
+ * That is the phone's default browser failing to host the page, so try once
+ * more in Chrome (or the best Custom Tabs browser) inside the app's own task,
+ * and if that closes instantly too, say so instead of looking like a tap that
+ * did nothing.
+ */
+async function openSignInPage(url: string, redirectTo: string, label: string): Promise<WebBrowser.WebBrowserAuthSessionResult> {
+  const started = Date.now();
+  const result = await WebBrowser.openAuthSessionAsync(url, redirectTo);
+  if (Platform.OS !== "android" || result.type === "success" || Date.now() - started > INSTANT_CLOSE_MS) {
+    return result;
+  }
+  log.warn(`signIn:${label}:closed-instantly`, { result: result.type, ms: Date.now() - started });
+  const browserPackage = await preferredBrowserPackage();
+  const retried = Date.now();
+  const retry = await WebBrowser.openAuthSessionAsync(url, redirectTo, {
+    createTask: false,
+    ...(browserPackage ? { browserPackage } : {}),
+  });
+  if (retry.type !== "success" && Date.now() - retried <= INSTANT_CLOSE_MS) {
+    log.error(`signIn:${label}:closed-instantly-again`, { result: retry.type, browserPackage });
+    throw new Error(_translateCopy("auth.signInPageWouldNotOpen", {
+      defaultValue: "The sign-in page closed before it opened. Try again, or continue with email.",
+    }));
+  }
+  return retry;
+}
+
 export async function sendEmailOtp(email: string): Promise<void> {
   beginAuthTrace('email');
   log.trace?.('identity-start');
@@ -184,7 +231,7 @@ async function signInWithOAuthProvider(
     throw new Error(serverAuthText(error?.message, _translateCopy("copy.05eaa93e0944", { defaultValue: "Could not start {{value1}} sign-in", value1: provider })));
   }
 
-  const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+  const result = await openSignInPage(data.url, redirectTo, provider);
   log.trace?.('oauth-result', { result: result.type });
   if (result.type !== "success" || !result.url) {
     throw new Error(`${provider} sign-in was cancelled`);
@@ -331,7 +378,7 @@ export async function signInWithTelegram(): Promise<string> {
     `&return_to=${encodeURIComponent(returnTo)}` +
     "&embed=0&request_access=write";
 
-  const result = await WebBrowser.openAuthSessionAsync(authUrl, TELEGRAM_REDIRECT_URI);
+  const result = await openSignInPage(authUrl, TELEGRAM_REDIRECT_URI, "telegram");
   if (result.type !== "success" || !result.url) {
     throw new Error("Telegram sign-in was cancelled");
   }
