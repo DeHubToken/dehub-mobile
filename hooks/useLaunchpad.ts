@@ -1,9 +1,10 @@
+import { useScreenActivity, useActiveScreenEffect, useActiveScreenPolling } from "./useScreenActivity";
 /**
  * Launchpad queries, kept live over Supabase realtime the way the web hooks
  * are. Trades land constantly, so the coin list coalesces bursts into at most
  * one refetch every few seconds instead of re-reading 100 rows per trade.
  */
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
 import {
@@ -34,8 +35,10 @@ function useChannelSuffix() {
 }
 
 export function useLaunchpadTokens(filter: LaunchpadFilter, mineAddress?: string | null) {
+  const { isActive } = useScreenActivity();
   const mine = (mineAddress || "").toLowerCase();
   const query = useQuery({
+    enabled: isActive,
     queryKey: launchpadKeys.tokens(filter, mine),
     queryFn: () => listLaunchpadTokens(filter, mine || null),
     staleTime: 15_000,
@@ -46,7 +49,7 @@ export function useLaunchpadTokens(filter: LaunchpadFilter, mineAddress?: string
   const suffix = useChannelSuffix();
   const scoped = filter === "mine" ? mine : "";
 
-  useEffect(() => {
+  useActiveScreenEffect(() => {
     if (filter === "mine" && !mine) return;
     let timer: ReturnType<typeof setTimeout> | null = null;
     const schedule = () => {
@@ -78,21 +81,25 @@ export function useLaunchpadTokens(filter: LaunchpadFilter, mineAddress?: string
 }
 
 export function useTrendingLaunchpadTokens() {
-  return useQuery({
+  const { isActive } = useScreenActivity();
+  const query = useQuery({
+    enabled: isActive,
     queryKey: launchpadKeys.trending,
     queryFn: listTrendingLaunchpadTokens,
     staleTime: 30_000,
-    refetchInterval: 30_000,
   });
+  useActiveScreenPolling(query.refetch, 30_000);
+  return query;
 }
 
 export function useLaunchpadToken(id?: string) {
+  const { isActive } = useScreenActivity();
   const queryClient = useQueryClient();
   const suffix = useChannelSuffix();
 
   // The row is pushed over realtime; the interval is only a fallback for a
   // dropped socket.
-  useEffect(() => {
+  useActiveScreenEffect(() => {
     if (!id) return;
     const ch = supabase
       .channel(`launchpad-token-${id}-${suffix}`)
@@ -115,28 +122,31 @@ export function useLaunchpadToken(id?: string) {
     };
   }, [id, queryClient, suffix]);
 
-  return useQuery({
+  const query = useQuery({
     queryKey: launchpadKeys.token(id || ""),
-    enabled: !!id,
+    enabled: () => isActive() && !!id,
     queryFn: () => getLaunchpadToken(id as string),
     staleTime: 5_000,
-    refetchInterval: 60_000,
   });
+  useActiveScreenPolling(query.refetch, 60_000, !!id);
+  return query;
 }
 
 /** Trades for one coin, or across every coin when `tokenId` is omitted. */
 export function useLaunchpadTrades(tokenId?: string, limit = 50) {
+  const { isActive } = useScreenActivity();
   const queryClient = useQueryClient();
   const suffix = useChannelSuffix();
   const scope = tokenId ?? "all";
 
   const query = useQuery({
+    enabled: isActive,
     queryKey: launchpadKeys.trades(scope),
     queryFn: () => listLaunchpadTrades(tokenId, limit),
     staleTime: 5_000,
   });
 
-  useEffect(() => {
+  useActiveScreenEffect(() => {
     const ch = supabase
       .channel(`launchpad-trades-${scope}-${suffix}`)
       .on(

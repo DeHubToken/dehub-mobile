@@ -1,3 +1,4 @@
+import { FEED_BUFFER_OPTIONS } from '../../libs/videoBuffering';
 import React, { useEffect, useState } from "react";
 import { AppState, Pressable, Text, View } from "react-native";
 import { Image } from "expo-image";
@@ -7,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import type { StockItem } from "../../libs/editor/stock";
 
 function VideoPreview({ item, onError }: { item: StockItem; onError: () => void }) {
-  const player = useVideoPlayer(item.downloadUrl, video => { video.loop = true; });
+  const player = useVideoPlayer(item.downloadUrl, video => { video.bufferOptions = FEED_BUFFER_OPTIONS; video.loop = true; });
   useEffect(() => {
     const error = player.addListener("statusChange", status => { if (status.status === "error") onError(); });
     const background = AppState.addEventListener("change", state => { if (state !== "active") player.pause(); });
