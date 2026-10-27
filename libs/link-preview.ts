@@ -1,3 +1,4 @@
+import { LruCache } from './lru-cache';
 /**
  * Outside link previews
  * =====================
@@ -29,7 +30,8 @@ export interface LinkPreviewData {
   rich?: RichDetails;
 }
 
-const previewCache = new Map<string, LinkPreviewData>();
+const previewCache = new LruCache<string, LinkPreviewData>(256);
+const pendingPreviews = new Map<string, Promise<LinkPreviewData | null>>();
 
 export function getLinkPreviewFavicon(url: string): string | null {
   try {
@@ -63,7 +65,15 @@ export function getLinkPreviewImage(url: string, image: unknown): string | null 
   return decodedImage;
 }
 
-export async function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
+export function fetchLinkPreview(url: string): Promise<LinkPreviewData | null> {
+  const pending = pendingPreviews.get(url);
+  if (pending) return pending;
+  const request = loadLinkPreview(url).finally(() => pendingPreviews.delete(url));
+  pendingPreviews.set(url, request);
+  return request;
+}
+
+async function loadLinkPreview(url: string): Promise<LinkPreviewData | null> {
   const prediction = parsePredictionLink(url);
   if (prediction) return fetchPredictionPreview(prediction);
   const rich = parseRichLink(url);

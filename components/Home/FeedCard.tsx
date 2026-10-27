@@ -96,7 +96,7 @@ import ShareToDmSheet from "../DM/ShareToDmSheet";
 import BoostSheet from "../common/BoostSheet";
 import { DIGITAL_PURCHASES_ENABLED } from "../../config/storefront";
 import { isPostHiddenByStorefront } from "../../libs/storefront-content";
-import { useSuperpowers } from "../../hooks/useSuperpowers";
+import { useFeedSuperpowers } from "../../context/FeedSuperpowersContext";
 import ShareSheet from "./ShareSheet";
 import RepostShareSheet from "./RepostShareSheet";
 import { PostStageActions, PostStageChrome, PostStageCreator } from "./PostStage";
@@ -396,7 +396,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   // one row that belongs in the non-owner half of the options menu.
   // `status.powers` is the authority for whether this account has it — the
   // badge the client draws from a live wallet read deliberately over-reports.
-  const { data: superpowerStatus } = useSuperpowers();
+  const superpowerStatus = useFeedSuperpowers();
 
   const canGiftBoost = !!superpowerStatus?.powers.some(
     p => p.key === 'deep_current' && p.unlocked && p.available,
