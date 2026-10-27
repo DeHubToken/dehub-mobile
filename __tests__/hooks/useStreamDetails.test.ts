@@ -10,7 +10,7 @@ it('ignores an old stream key and its loading completion after switching streams
   let first!: (value: unknown) => void, second!: (value: unknown) => void;
   (getStreamKey as jest.Mock).mockReturnValueOnce(new Promise(done => { first = done; }))
     .mockReturnValueOnce(new Promise(done => { second = done; }));
-  const { result, rerender } = renderHook(({ id, key }) => useStreamDetails(id, key), { initialProps: { id: 'first', key: true } });
+  const { result, rerender } = renderHook<ReturnType<typeof useStreamDetails>, { id: string; key: boolean }>(({ id, key }) => useStreamDetails(id, key), { initialProps: { id: 'first', key: true } });
   rerender({ id: 'second', key: true });
   await act(async () => { first({ streamKey: 'old' }); });
   expect(result.current.streamKeyValue).toBeNull();
