@@ -2123,8 +2123,8 @@ const FeedVideoPlayerActive = memo(FeedVideoPlayerComponent);
  * same box, the same thumbnail, the same duration badge, and no player at all.
  * The full component mounts the moment the row scrolls into view.
  */
-const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction" | "inlineWidth"> & { feedPreview?: boolean; active?: boolean; children?: React.ReactNode }> = memo(
-  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, children, inlineWidth }) => {
+const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnail" | "duration" | "hideControls" | "onPress" | "postPage" | "onBack" | "isVisible" | "onTapReaction" | "inlineWidth"> & { feedPreview?: boolean; active?: boolean; onUnmute?: () => void; children?: React.ReactNode }> = memo(
+  ({ tokenId, thumbnail, duration, hideControls, onPress, onTapReaction, postPage = false, onBack, feedPreview = false, isVisible, active = false, onUnmute, children, inlineWidth }) => {
     const { t } = useTranslation();
     const measuredAspect = useMediaAspect(thumbnail, tokenId, THIN_MIN_RATIO);
     const posterAspect = getMeasuredMediaAspect(thumbnail);
@@ -2179,6 +2179,15 @@ const FeedVideoPoster: React.FC<Pick<FeedVideoPlayerProps, "tokenId" | "thumbnai
             {!feedPreview && <View pointerEvents="none"><BareIcon name="Play" size={32} /></View>}
           </Pressable>
         ))}
+        {/* Feed previews keep the unmute button in the corner before the
+            player mounts too, so it never pops in once autoplay starts. */}
+        {!active && feedPreview && !hideControls && onUnmute && (
+          <Pressable onPress={onUnmute} hitSlop={8}
+            style={[styles.previewMute, { top: bleed?.controlsTop ?? (bleed?.bottomInset ? bleed.topInset : 6) }]}
+            accessibilityRole="button" accessibilityLabel={t('common.unmute')}>
+            <BareIcon name="VolumeX" plain />
+          </Pressable>
+        )}
         {!active && onBack && !hideControls && (
           <Pressable onPress={onBack} hitSlop={6} accessibilityRole="button" accessibilityLabel={t("common.goBack")} style={[styles.mediaBack, styles.bareButton, { top: 6 }]}>
             <View style={I18nManager.isRTL ? { transform: [{ scaleX: -1 }] } : undefined}><BareIcon name="ArrowLeft" /></View>
@@ -2252,6 +2261,13 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
 
   const markWanted = useCallback(() => setWanted(true), [setWanted]);
 
+  // Unmuting a poster starts it right there with sound: a tapped start reads
+  // the shared mute flag instead of starting silent like autoplay.
+  const onPosterUnmute = useCallback(() => {
+    setMutedState(false);
+    setWanted(true);
+  }, [setWanted]);
+
   // Keyed on the post, so the player, its view recorder, speed and progress
   // are never carried onto another one. It is only mounted for about two cards
   // at a time, so a fresh one per post costs nothing while scrolling.
@@ -2291,6 +2307,7 @@ const FeedVideoPlayer: React.FC<FeedVideoPlayerProps> = (props) => {
       onTapReaction={props.onTapReaction}
       feedPreview={!props.postPage && !!props.onOpenViewer && !isContentGated}
       active={mountPlayer}
+      onUnmute={videoUrl ? onPosterUnmute : undefined}
     >
       {activePlayer}
     </FeedVideoPoster>
