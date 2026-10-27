@@ -80,6 +80,7 @@ import PermissionModalProvider from "./components/ui/PermissionModal";
 import UpdateGate from "./components/UpdateGate";
 import MaintenanceGate from './components/MaintenanceGate';
 import DimLightsOverlay from "./components/ui/DimLightsOverlay";
+import TapReactionLayer from "./components/Home/TapReactionLayer";
 
 import UploadRuntimeHost from "./components/Upload/UploadRuntimeHost";
 import PostLandingOverlay from "./components/Upload/PostLandingOverlay";
@@ -256,6 +257,9 @@ export default function App() {
             {/* Outside AuthProvider: badges draw for signed-out viewers too,
                 and every one of them resolves against this scale. */}
             <BadgeLadderSync />
+            {/* Double / triple tap thumbs and hearts, drawn above every card,
+                bar and button so the media box can never cut them. */}
+            <TapReactionLayer />
             <ThemedToaster />
             <PermissionModalProvider />
             {/* Asks builds that no longer receive updates to get one from the

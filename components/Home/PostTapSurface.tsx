@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Pressable, Text, View, type GestureResponderEvent, type StyleProp, type ViewStyle } from "react-native";
+import { showTapBurst } from "../../libs/tap-reaction-layer";
 import { isInTapReactionCenter, TAP_GESTURE_WINDOW_MS, TAP_REACTION_RESOLUTION_MS } from "../../libs/tap-gesture";
 
 /** Only central taps wait for a reaction; the rest of the post opens immediately. */
@@ -40,7 +41,10 @@ function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPres
     if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
     setFeedback(null);
   }, [resetKey]);
-  const showFeedback = (reaction: "like" | "love") => {
+  const showFeedback = (reaction: "like" | "love", at?: { x: number; y: number }) => {
+    // The root layer floats it over the card edge and bars; the centred emoji
+    // below is only the fallback when that layer is not mounted.
+    if (at && showTapBurst(reaction, at.x, at.y)) return;
     setFeedback(reaction);
     if (feedbackTimer.current) clearTimeout(feedbackTimer.current);
     feedbackTimer.current = setTimeout(() => setFeedback(null), 1100);
@@ -93,11 +97,11 @@ function PostTapSurface({ children, onPress, onReaction, style, resetKey, onPres
             onPressIntent?.();
             timer.current = setTimeout(() => { reset(); callbacks.current.onPress?.(); }, TAP_GESTURE_WINDOW_MS);
           } else if (count.current === 2) {
-            showFeedback("like");
+            showFeedback("like", { x: pageX, y: pageY });
             timer.current = setTimeout(() => { reset(); callbacks.current.onReaction("like"); }, TAP_REACTION_RESOLUTION_MS);
           } else {
             reset();
-            showFeedback("love");
+            showFeedback("love", { x: pageX, y: pageY });
             callbacks.current.onReaction("love");
           }
         };
