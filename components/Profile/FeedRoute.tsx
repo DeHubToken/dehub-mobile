@@ -110,7 +110,7 @@ const FeedRoute: React.FC<FeedRouteProps> = ({
   // cell in the window on any re-render of this route.
   const renderItem = useCallback(
     ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
-      <View className={cinematic ? 'px-2' : 'px-4'}>
+      <View className="px-2">
         <FeedCard
           cinematic={cinematic}
           item={item as UnifiedFeedItem}

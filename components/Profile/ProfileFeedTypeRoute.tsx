@@ -71,7 +71,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   // cell in the window on any re-render of this route.
   const renderItem = useCallback(
     ({ item, isVisible, isAutoplayActive }: InfiniteFeedRenderItemInfo) => (
-      <View className={cinematic ? 'px-2' : listHeader ? 'px-4' : undefined}>
+      <View className={cinematic || listHeader ? 'px-2' : undefined}>
         <FeedCard
           cinematic={cinematic}
           item={item as UnifiedFeedItem}
@@ -85,7 +85,7 @@ const ProfileFeedTypeRoute: React.FC<ProfileFeedTypeRouteProps> = ({
   );
 
   return (
-    <View className={`flex-1 ${listHeader ? '' : 'px-4'}`}>
+    <View className={`flex-1 ${listHeader ? '' : 'px-2'}`}>
       <InfiniteFeed
         listRef={listRef}
         insideNavigatorScreen={false}
