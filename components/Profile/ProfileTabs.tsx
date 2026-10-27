@@ -4,9 +4,9 @@ import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, useProfileCollapse } from './
 import { getCoverUrl, getDefaultBanner } from '../../libs/misc';
 import ProfilePinnedBar from './ProfilePinnedBar';
 import { useTranslation as _useCopy } from 'react-i18next';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { Activity, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View } from "react-native";
-import Animated, { runOnJS, useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
+import Animated, { runOnJS, runOnUI, useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
 
 import ProfileHeader from "./ProfileHeader";
@@ -36,6 +36,9 @@ import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
 
 type ProfileRoute = { key: string; title: string; icon: IconName };
+
+/** Opened tabs kept mounted (hidden), the active one included. */
+const MAX_KEPT_TABS = 4;
 
 const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPress: () => void }) => {
   const { t: _copy } = _useCopy();
@@ -67,17 +70,43 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     appliedDefaultFor.current = key;
     setActiveKey(ownDefaultTab);
   }, [address, ownDefaultTab]);
+  // Opened tabs stay mounted but hidden (most recent last), so going back to
+  // one is instant and lands where it was left. tabOffsets remembers where.
+  const [keptKeys, setKeptKeys] = useState<{ address?: string; keys: string[] }>({ address, keys: [] });
+  useEffect(() => {
+    setKeptKeys((kept) => {
+      const keys = kept.address === address ? kept.keys : [];
+      if (kept.address === address && keys[keys.length - 1] === activeKey) return kept;
+      return { address, keys: [...keys.filter((key) => key !== activeKey), activeKey].slice(-MAX_KEPT_TABS) };
+    });
+  }, [activeKey, address]);
+  const paneKeys = keptKeys.address === address
+    ? keptKeys.keys.includes(activeKey) ? keptKeys.keys : [...keptKeys.keys, activeKey]
+    : [activeKey];
+  const activeKeyShared = useSharedValue(activeKey);
+  const tabOffsets = useSharedValue<Record<string, number>>({});
+  useEffect(() => {
+    tabOffsets.value = {};
+  }, [address, tabOffsets]);
   const { drive } = useTabBarScrollHide();
   const driveProfile = useCallback((y: number) => {
     'worklet';
     drive(y);
     profileScrollY.value = y;
+    const key = activeKeyShared.value;
+    if (tabOffsets.value[key] !== y) {
+      tabOffsets.modify((offsets) => {
+        'worklet';
+        offsets[key] = y;
+        return offsets;
+      });
+    }
     const stuck = headerHeight.value > 0 && y >= headerHeight.value + PROFILE_TABS_TOP_GAP - 4;
     if (stuck !== tabsStuck.value) {
       tabsStuck.value = stuck;
       runOnJS(setStickyVisible)(stuck);
     }
-  }, [drive, profileScrollY, headerHeight, tabsStuck]);
+  }, [drive, profileScrollY, headerHeight, tabsStuck, activeKeyShared, tabOffsets]);
   const workletScroll = useAnimatedScrollHandler({ onScroll: (event) => driveProfile(event.contentOffset.y) });
   const onScroll = useCallback((event: import('react-native').NativeSyntheticEvent<import('react-native').NativeScrollEvent>) => driveProfile(event.nativeEvent.contentOffset.y), [driveProfile]);
   // Sort, search and filter over this creator's own posts — all server-side,
@@ -129,15 +158,27 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
 
   const handleTabChange = useCallback((key: string) => {
     if (key === activeKey) return;
-    collapse.scrollY.value = 0;
-    tabsStuck.value = false;
-    setStickyVisible(false);
     setActiveKey(key);
-  }, [activeKey, collapse.scrollY, tabsStuck]);
+  }, [activeKey]);
+
+  // The pinned bar and the collapse follow the tab now on screen: a kept tab
+  // comes back at its own offset, a new one at the top.
+  useEffect(() => {
+    activeKeyShared.value = activeKey;
+    runOnUI((key: string) => {
+      'worklet';
+      const y = tabOffsets.value[key] ?? 0;
+      profileScrollY.value = y;
+      const stuck = headerHeight.value > 0 && y >= headerHeight.value + PROFILE_TABS_TOP_GAP - 4;
+      tabsStuck.value = stuck;
+      runOnJS(setStickyVisible)(stuck);
+    })(activeKey);
+  }, [activeKey, address, activeKeyShared, tabOffsets, profileScrollY, headerHeight, tabsStuck]);
 
   const listHeader = (
     <View>
-      <Animated.View style={expandedHeaderStyle} onLayout={(event) => { headerHeight.value = event.nativeEvent.layout.height; }}><PinnedCommunities
+      {/* A kept tab's copy of the header measures 0 while that tab is hidden. */}
+      <Animated.View style={expandedHeaderStyle} onLayout={(event) => { const height = event.nativeEvent.layout.height; if (height > 0) headerHeight.value = height; }}><PinnedCommunities
         walletAddress={address || ""}
         isOwnProfile
         renderHeader={(community) => <ProfileHeader featuredCommunity={community} onIdentityBottom={collapse.onIdentityBottom} onActionsBottom={collapse.onActionsBottom} />}
@@ -189,7 +230,13 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
   };
 
   return <View className="flex-1 bg-theme-neutrals-900">
-    <ProfileScrollViewport {...collapse}>{renderScene(activeKey)}</ProfileScrollViewport>
+    <ProfileScrollViewport {...collapse}>
+      {paneKeys.map((key) => (
+        <Activity key={`${address}:${key}`} mode={key === activeKey ? "visible" : "hidden"}>
+          <View style={{ flex: 1 }}>{renderScene(key)}</View>
+        </Activity>
+      ))}
+    </ProfileScrollViewport>
     <Animated.View pointerEvents={stickyVisible ? 'auto' : 'none'} accessibilityElementsHidden={!stickyVisible} importantForAccessibility={stickyVisible ? 'auto' : 'no-hide-descendants'} style={[{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 40, elevation: 40 }, stickyStyle]}>
       <ProfilePinnedBar showIdentity={false} canGoBack={canGoBack} onBackPress={onBackPress}>
         <ProfileTabBar items={tabItems} activeKey={activeKey} onChange={handleTabChange} pinned embedded />

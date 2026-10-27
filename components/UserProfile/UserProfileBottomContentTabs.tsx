@@ -2,6 +2,7 @@ import { PROFILE_BAR_HEIGHT, PROFILE_TABS_TOP_GAP, PINNED_PROFILE_TABS_HEIGHT } 
 import type { SharedValue } from 'react-native-reanimated';
 import { translateCopy as _translateCopy } from '../../i18n/copy';
 import React, {
+  Activity,
   useCallback,
   useEffect,
   useMemo,
@@ -22,6 +23,7 @@ import {
 } from "react-native";
 import Animated, {
   runOnJS,
+  runOnUI,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -106,6 +108,9 @@ const CONTENT_PX = 12;
 const LIST_CONTENT_STYLE = { paddingBottom: 80 } as const;
 const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
 
+/** Visited tabs kept mounted (hidden) per profile, the active one included. */
+const MAX_KEPT_TABS = 4;
+
 type ContentTab =
   | "home"
   | "posts"
@@ -165,11 +170,36 @@ const UserProfileBottomContentTabs: React.FC<
   const { isMinimal } = useAppTheme();
   const navigation = useNavigation<any>();
   const { hideUserProfile } = useUserProfileSheet();
-  const listRef = useRef<FlatList<any> | null>(null);
+  // One list ref per kept tab: a hidden tab detaches its refs, so a shared
+  // ref could end up empty or pointing at a list that is not on screen.
+  const listRefs = useRef(new Map<ContentTab, React.RefObject<FlatList<any> | null>>());
+  const listRefFor = useCallback((tab: ContentTab) => {
+    let ref = listRefs.current.get(tab);
+    if (!ref) {
+      ref = React.createRef<FlatList<any>>();
+      listRefs.current.set(tab, ref);
+    }
+    return ref;
+  }, []);
   const counts = useProfileContentCounts(address);
 
   // Active content tab
   const [activeTab, setActiveTab] = useState<ContentTab>(defaultTab);
+
+  // Tabs already opened on this profile stay mounted but hidden, so going
+  // back to one is instant and lands where it was left, instead of rebuilding
+  // the list and the whole profile header behind it. Capped, most recent last.
+  const [keptTabs, setKeptTabs] = useState<{ address: string; tabs: ContentTab[] }>({ address, tabs: [] });
+  useEffect(() => {
+    setKeptTabs((kept) => {
+      const tabs = kept.address === address ? kept.tabs : [];
+      if (tabs[tabs.length - 1] === activeTab && kept.address === address) return kept;
+      return { address, tabs: [...tabs.filter((tab) => tab !== activeTab), activeTab].slice(-MAX_KEPT_TABS) };
+    });
+  }, [activeTab, address]);
+  const paneTabs = keptTabs.address === address
+    ? keptTabs.tabs.includes(activeTab) ? keptTabs.tabs : [...keptTabs.tabs, activeTab]
+    : [activeTab];
 
   // Open each profile on the tab its owner picked. Applied once per address:
   // one sheet instance is reused for every profile, and a visitor's own tab
@@ -230,12 +260,30 @@ const UserProfileBottomContentTabs: React.FC<
   const expandedHeaderStyle = useAnimatedStyle(() => ({ opacity: stickyVisibleShared.value ? 0 : 1 }));
   const showBackToTopShared = useSharedValue(false);
   const isFullScreenShared = useSharedValue(isFullScreen);
+  // Where each kept tab was left, written by the scroll worklet. A tab opened
+  // for the first time starts at the top; one kept from earlier comes back at
+  // its own offset, and the pinned bar follows whichever is on screen.
+  const activeTabShared = useSharedValue<string>(activeTab);
+  const tabOffsets = useSharedValue<Record<string, number>>({});
   useEffect(() => {
-    if (profileScrollY) profileScrollY.value = 0;
-    if (profileTabsPinned) profileTabsPinned.value = false;
-    stickyVisibleShared.value = false;
-    setStickyVisible(false);
-  }, [activeTab, address, profileScrollY, stickyVisibleShared]);
+    tabOffsets.value = {};
+  }, [address, tabOffsets]);
+  useEffect(() => {
+    activeTabShared.value = activeTab;
+    runOnUI((tab: string) => {
+      'worklet';
+      const y = tabOffsets.value[tab] ?? 0;
+      if (profileScrollY) profileScrollY.value = y;
+      const threshold = headerHeightShared.value;
+      const stuck = threshold > 0 && y >= threshold + PROFILE_TABS_TOP_GAP - 4;
+      if (profileTabsPinned) profileTabsPinned.value = stuck;
+      stickyVisibleShared.value = stuck;
+      runOnJS(setStickyVisible)(stuck);
+      const backToTop = y > 600;
+      showBackToTopShared.value = backToTop;
+      runOnJS(setShowBackToTop)(backToTop);
+    })(activeTab);
+  }, [activeTab, address, activeTabShared, tabOffsets, profileScrollY, profileTabsPinned, headerHeightShared, stickyVisibleShared, showBackToTopShared]);
   useEffect(() => {
     isFullScreenShared.value = isFullScreen;
   }, [isFullScreen, isFullScreenShared]);
@@ -262,8 +310,14 @@ const UserProfileBottomContentTabs: React.FC<
   // narrows the query. This used to run once behind an `imagesLoaded` flag,
   // which would have made every filter a no-op here — the tab would keep
   // showing the unfiltered page it happened to load first.
+  // The tab stays mounted once opened, so coming back to the same profile and
+  // query keeps the grid it has instead of refetching behind a spinner.
+  const imagesQueryRef = useRef<string | null>(null);
   useEffect(() => {
     if (activeTab !== "images") return;
+    const query = `${address}|${JSON.stringify(contentQuery)}`;
+    if (imagesQueryRef.current === query) return;
+    imagesQueryRef.current = query;
     const seq = ++imagesRequestRef.current;
     setImagesLoading(true);
     (async () => {
@@ -279,7 +333,11 @@ const UserProfileBottomContentTabs: React.FC<
         if (seq !== imagesRequestRef.current) return;
         setImages(res.result || []);
       } catch {
-        if (seq === imagesRequestRef.current) setImages([]);
+        if (seq === imagesRequestRef.current) {
+          setImages([]);
+          // Let the next visit try again.
+          imagesQueryRef.current = null;
+        }
       } finally {
         if (seq === imagesRequestRef.current) setImagesLoading(false);
       }
@@ -322,8 +380,8 @@ const UserProfileBottomContentTabs: React.FC<
 
   // Custom fetcher that uses the /feed endpoint
   const scrollToTop = useCallback(() => {
-    listRef.current?.scrollToOffset({ offset: 0, animated: true });
-  }, []);
+    listRefFor(activeTab).current?.scrollToOffset({ offset: 0, animated: true });
+  }, [activeTab, listRefFor]);
 
   useEffect(() => {
     registerScrollToTop(scrollToTop);
@@ -355,7 +413,9 @@ const UserProfileBottomContentTabs: React.FC<
 
   // Measure profile header height to know when to show sticky bar
   const handleHeaderLayout = useCallback((e: LayoutChangeEvent) => {
-    headerHeightShared.value = e.nativeEvent.layout.height;
+    // A kept tab's copy of the header measures 0 while that tab is hidden.
+    const height = e.nativeEvent.layout.height;
+    if (height > 0) headerHeightShared.value = height;
   }, [headerHeightShared]);
 
   // Sticky bar + back-to-top, entirely on the UI thread. This used to be a
@@ -373,6 +433,14 @@ const UserProfileBottomContentTabs: React.FC<
 
       const y = event.contentOffset.y;
       if (profileScrollY) profileScrollY.value = y;
+      const tab = activeTabShared.value;
+      if (tabOffsets.value[tab] !== y) {
+        tabOffsets.modify((offsets) => {
+          'worklet';
+          offsets[tab] = y;
+          return offsets;
+        });
+      }
       // Bottom nav hides on scroll down and returns on scroll up, as on home.
       driveTabBar(y);
 
@@ -395,17 +463,14 @@ const UserProfileBottomContentTabs: React.FC<
   });
 
   // Underline indicator for tabs
-  // Tab change handler — scroll back to top and reset sticky state
+  // Tab change: the pane and the pinned bar are brought in line with that
+  // tab's own offset by the effect on activeTab above.
   const handleTabChange = useCallback(
     (tab: ContentTab) => {
       if (tab === activeTab) return;
-      stickyVisibleShared.value = false;
-      setStickyVisible(false);
       setActiveTab(tab);
-      if (profileScrollY) profileScrollY.value = 0;
-      listRef.current?.scrollToOffset({ offset: 0, animated: false });
     },
-    [activeTab, stickyVisibleShared, profileScrollY, profileTabsPinned],
+    [activeTab],
   );
 
   // Clean underline tab bar — horizontally scrollable so all content tabs fit.
@@ -549,17 +614,17 @@ const UserProfileBottomContentTabs: React.FC<
    *
    * Replies & Reposts tabs show placeholder empty states.
    */
-  // Render content for the active tab — only one list/grid mounts at a time.
-  // Previously all 5 tabs used `display: none` which kept every FlatList in the
-  // view tree, wasting CPU (Yoga layout, reconciliation, effects) and GPU memory.
-  const renderTabContent = () => {
+  // Content for one tab. Only tabs already opened are mounted (see keptTabs),
+  // and every one but the active tab sits in a hidden Activity: off layout,
+  // effects (players, viewability, view tracking) stopped, state kept.
+  const renderTabContent = (tab: ContentTab) => {
     const mt = isFullScreen ? 0 : 4;
-    switch (activeTab) {
+    switch (tab) {
       case "home":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <FeedRoute
-              listRef={listRef}
+              listRef={listRefFor(tab)}
               address={address}
               onScroll={scrollHandler}
               scrollEnabled={scrollEnabled}
@@ -574,7 +639,7 @@ const UserProfileBottomContentTabs: React.FC<
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <PostsRoute
-              listRef={listRef}
+              listRef={listRefFor(tab)}
               address={address}
               onScroll={scrollHandler}
               scrollEnabled={scrollEnabled}
@@ -604,7 +669,7 @@ const UserProfileBottomContentTabs: React.FC<
               // onScroll was previously omitted here, so this tab alone never
               // drove the sticky bar / back-to-top button.
               <ProfileImageGrid
-              listRef={listRef}
+              listRef={listRefFor(tab)}
               images={gridImages}
                 scrollEnabled={scrollEnabled}
                 onImagePress={handleImagePress}
@@ -633,7 +698,7 @@ const UserProfileBottomContentTabs: React.FC<
               </Animated.ScrollView>
             ) : (
               <Animated.FlatList
-                ref={listRef}
+                ref={listRefFor(tab)}
                 ListHeaderComponent={isFullScreen ? fullScreenListHeader : undefined}
                 data={plans}
                 keyExtractor={(item: SubscriptionPlan) => String(item._id || item.id || Math.random())}
@@ -650,14 +715,14 @@ const UserProfileBottomContentTabs: React.FC<
       case "videos":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <VideosRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} {...contentQuery} />
+            <VideosRoute listRef={listRefFor(tab)} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} {...contentQuery} />
           </View>
         );
       case "songs":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
             <ProfileFeedTypeRoute
-              listRef={listRef}
+              listRef={listRefFor(tab)}
               onScroll={scrollHandler}
               listHeader={isFullScreen ? fullScreenListHeader : undefined}
               address={address}
@@ -669,31 +734,31 @@ const UserProfileBottomContentTabs: React.FC<
       case "live":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <LivestreamsRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+            <LivestreamsRoute listRef={listRefFor(tab)} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "fractions":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <FractionsRoute listRef={listRef} address={address} isOwnProfile={isOwnProfile} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+            <FractionsRoute listRef={listRefFor(tab)} address={address} isOwnProfile={isOwnProfile} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "pinned":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <PinnedRoute listRef={listRef} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+            <PinnedRoute listRef={listRefFor(tab)} address={address} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "dislikes":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <DislikesRoute listRef={listRef} address={address} isOwnProfile={isOwnProfile} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+            <DislikesRoute listRef={listRefFor(tab)} address={address} isOwnProfile={isOwnProfile} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       case "playlists":
         return (
           <View style={{ flex: 1, marginTop: mt }}>
-            <PlaylistsRoute listRef={listRef} address={address} isOwnProfile={isOwnProfile} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
+            <PlaylistsRoute listRef={listRefFor(tab)} address={address} isOwnProfile={isOwnProfile} onBeforeNavigate={onClose} onScroll={scrollHandler} listHeader={isFullScreen ? fullScreenListHeader : undefined} />
           </View>
         );
       default:
@@ -706,7 +771,11 @@ const UserProfileBottomContentTabs: React.FC<
       style={isFullScreen ? { flex: 1 } : { height: listHeight, marginTop: 16 }}
     >
       {!isFullScreen && TabBar}
-      {renderScrollViewport(renderTabContent())}
+      {renderScrollViewport(paneTabs.map((tab) => (
+        <Activity key={`${address}:${tab}`} mode={tab === activeTab ? "visible" : "hidden"}>
+          {renderTabContent(tab)}
+        </Activity>
+      )))}
 
       {isFullScreen && (
         <Animated.View
