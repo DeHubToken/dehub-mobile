@@ -6276,6 +6276,7 @@
   },
   "communities": {
     "shareLink": "Del link",
+    "pinnedMore": "Mere",
     "sendInMessage": "Send invitation",
     "existingPost": {
       "add": "Tilføj eksisterende post",

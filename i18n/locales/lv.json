@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "Nosūtīt saiti",
+    "pinnedMore": "Vairāk",
     "sendInMessage": "Sūtīt aicinājumu",
     "existingPost": {
       "add": "Pievienot esošu ziņu",

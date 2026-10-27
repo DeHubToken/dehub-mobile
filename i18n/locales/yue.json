@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "分享連結",
+    "pinnedMore": "多啲",
     "sendInMessage": "發送邀請",
     "existingPost": {
       "add": "加入現有帖文",

@@ -6262,6 +6262,7 @@
   },
   "communities": {
     "shareLink": "Шилтемени бөлүшүү",
+    "pinnedMore": "Көбүрөөк",
     "sendInMessage": "Чакырууну жөнөтүү",
     "existingPost": {
       "add": "Учурдагы постту кошуу",

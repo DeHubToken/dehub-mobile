@@ -6281,6 +6281,7 @@
   },
   "communities": {
     "shareLink": "Поделиться ссылкой",
+    "pinnedMore": "Еще",
     "sendInMessage": "Отправить приглашение",
     "existingPost": {
       "add": "Добавить существующий пост",

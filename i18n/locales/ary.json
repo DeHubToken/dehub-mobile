@@ -6302,6 +6302,7 @@
   },
   "communities": {
     "shareLink": "مشاركة الرابط",
+    "pinnedMore": "المزيد",
     "sendInMessage": "إرسال دعوة",
     "existingPost": {
       "add": "إضافة مشاركة موجودة",

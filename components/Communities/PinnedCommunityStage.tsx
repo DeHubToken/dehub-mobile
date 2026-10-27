@@ -31,10 +31,12 @@ export function PinnedCommunityWash({ community }: { community?: Community | nul
   );
 }
 
-export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
+export function PinnedCommunityStrip({ community, onOpen, onManagePins, onMore }: {
   community: Community;
   onOpen: () => void;
   onManagePins?: () => void;
+  /** The other pins open in a sheet instead of stacking under the header. */
+  onMore?: () => void;
 }) {
   const { t } = useTranslation();
   return (
@@ -63,6 +65,11 @@ export function PinnedCommunityStrip({ community, onOpen, onManagePins }: {
       <TouchableOpacity onPress={onOpen} style={styles.open} hitSlop={6} accessibilityRole="button">
         <Text style={styles.openText}>{t("wallet.view")}</Text>
       </TouchableOpacity>
+      {onMore && (
+        <TouchableOpacity onPress={onMore} style={styles.open} hitSlop={6} accessibilityRole="button">
+          <Text style={styles.openText}>{t("communities.pinnedMore")}</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

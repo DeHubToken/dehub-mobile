@@ -6261,6 +6261,7 @@
   },
   "communities": {
     "shareLink": "Share di link",
+    "pinnedMore": "More",
     "sendInMessage": "Send Invite",
     "existingPost": {
       "placeholder": "Link fo DeHub post or post ID",
