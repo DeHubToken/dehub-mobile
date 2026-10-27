@@ -14,7 +14,35 @@ import { builderStorageBase, loadBuilderAppHtml } from "../../services/builder.s
  * (no onMessage / injected JS), no popups, and any navigation away from the
  * app's own Storage folder opens in the browser instead of inside this view.
  */
-export function BuilderAppView({ projectId, version, nonce }: { projectId: string; version?: number; nonce: number }) {
+export function BuilderAppView(props: { projectId: string; version?: number; nonce: number; uri?: string | null }) {
+  // On its own origin (<slug>.dehub.app) the app loads directly, with real storage.
+  if (props.uri) return <HostedAppView uri={props.uri} nonce={props.nonce} />;
+  return <MirroredAppView {...props} />;
+}
+
+function HostedAppView({ uri, nonce }: { uri: string; nonce: number }) {
+  const origin = new URL(uri).origin;
+  return (
+    <WebView
+      key={`${uri}-${nonce}`}
+      source={{ uri }}
+      style={{ flex: 1, backgroundColor: "#fff" }}
+      javaScriptEnabled
+      domStorageEnabled
+      setSupportMultipleWindows={false}
+      javaScriptCanOpenWindowsAutomatically={false}
+      allowFileAccess={false}
+      onShouldStartLoadWithRequest={(req) => {
+        const url = req.url || "";
+        if (!/^https?:/i.test(url) || url.startsWith(origin) || req.isTopFrame === false) return true;
+        void openInApp(url);
+        return false;
+      }}
+    />
+  );
+}
+
+function MirroredAppView({ projectId, version, nonce }: { projectId: string; version?: number; nonce: number }) {
   const { t } = useTranslation();
   const [html, setHtml] = useState<string | null>(null);
   const [failed, setFailed] = useState(false);
