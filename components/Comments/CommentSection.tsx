@@ -807,12 +807,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     keyboardSwap.swapTo(() => setEmojiPickerVisible(true));
   }, [keyboardSwap]);
 
-  // Android: with the keyboard up, the first tap's onPress is swallowed while
-  // the keyboard hides, so the picker needed a second tap. Open on touch-start
-  // there, like the post button, and ignore the onPress that may follow.
+  // With the keyboard up, the first tap's onPress is swallowed while the
+  // keyboard hides (Android and iOS), so the picker needed a second tap. Open
+  // on touch-start, like the post button, and ignore the onPress that follows.
   const emojiOpenedOnTouchRef = useRef(false);
   const handleEmojiTouchStart = useCallback(() => {
-    if (Platform.OS !== "android") return;
     emojiOpenedOnTouchRef.current = true;
     setTimeout(() => {
       emojiOpenedOnTouchRef.current = false;
@@ -1218,8 +1217,11 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     }
   }, [inputText, aiRewriting, t, setInputText]);
 
+  // Post on touch-down on both platforms. On iOS the first tap with the
+  // keyboard up only hid the keyboard; the composer then dropped, the next tap
+  // landed on the AI button above Send (its "Check my tone" menu), and only a
+  // third tap posted. One tap posts now.
   const handlePostTouchStart = useCallback(() => {
-    if (Platform.OS !== "android") return;
     submittedOnTouchStartRef.current = true;
     // onPress may be cancelled when the button moves, so do not let that
     // suppression leak into a later accessibility activation.
@@ -2011,7 +2013,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
               <Pressable
                 onPress={handlePostPress}
                 // Raw touch-start arrives before the keyboard/sheet responder
-                // negotiation that can swallow onPressIn and onPress on Android.
+                // negotiation that can swallow onPressIn and onPress.
                 onTouchStart={handlePostTouchStart}
                 disabled={posting || !inputText.trim()}
                 accessibilityRole="button"
