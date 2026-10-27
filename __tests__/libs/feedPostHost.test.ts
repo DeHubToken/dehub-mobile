@@ -11,7 +11,7 @@ it("lets Home take a post while it is the host, and falls back to navigation oth
   const host = jest.fn(() => true);
   setFeedPostHost(host);
   expect(openPostInFeedHost(12)).toBe(true);
-  expect(host).toHaveBeenCalledWith("12");
+  expect(host).toHaveBeenCalledWith("12", undefined);
 });
 
 it("opens text, image and audio posts in place on Home and keeps video on its own page", () => {
