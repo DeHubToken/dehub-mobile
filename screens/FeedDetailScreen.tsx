@@ -614,10 +614,12 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
       setComments(flat);
       
-      // Highlight the target comment (top-level or reply)
+      // Highlight the target comment (top-level or reply). Long enough to
+      // outlast the last re-scroll onto it (2.8s below), so the reader still
+      // sees it lit once it has come to rest.
       if (highlightId != null && flat.some((c) => Number(c.id) === highlightId)) {
         setHighlightedCommentId(highlightId);
-        setTimeout(() => setHighlightedCommentId(null), 4000);
+        setTimeout(() => setHighlightedCommentId(null), 6500);
       }
     } catch (e: any) {
       console.error("[FeedDetailScreen] fetchData error", e);
