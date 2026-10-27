@@ -1,9 +1,12 @@
-import { FEATURES, PLATFORMS, SOURCES, filterFeatures, entryFor } from '../../libs/platform-comparison';
+import { existsSync } from 'fs';
+import { resolve } from 'path';
+import { FEATURES, PLATFORMS, SOURCES, filterFeatures, entryFor, comparisonCoverage } from '../../libs/platform-comparison';
 
 describe('platform comparison catalogue', () => {
   it('includes every requested competitor exactly once', () => {
     expect(PLATFORMS.map(p => p.id)).toEqual(['youtube', 'x', 'kick', 'twitch', 'facebook', 'instagram', 'tiktok', 'rumble', 'mastodon', 'bluesky', 'farcaster']);
     expect(new Set(FEATURES.map(f => f.id)).size).toBe(FEATURES.length);
+    expect(FEATURES.length).toBeGreaterThan(500);
   });
   it('sources claims and keeps unknown competitors unknown', () => {
     for (const feature of FEATURES) for (const value of [feature.dehub, ...Object.values(feature.peers)]) {
@@ -20,5 +23,11 @@ describe('platform comparison catalogue', () => {
     for (const id of ['tips', 'subs', 'ppv', 'paid-dm', 'generate-video', 'staking']) {
       expect(FEATURES.find(f => f.id === id)?.iosRestricted).toBe(true);
     }
+  });
+  it('uses real native source files and retains encryption fallback limitations', () => {
+    for (const feature of FEATURES) if (feature.implementation) expect(existsSync(resolve(process.cwd(), feature.implementation.mobile))).toBe(true);
+    expect(FEATURES.find(f => f.id === 'encrypted-attachments')?.dehub.note).toContain('fallback');
+    expect(FEATURES.find(f => f.id === 'encrypted-attachments')?.dehub.status).toBe('limited');
+    expect(comparisonCoverage('all').total).toBe(FEATURES.length * PLATFORMS.length);
   });
 });
