@@ -56,6 +56,9 @@ jobs:
       - name: Run tests with coverage
         run: npm run test:ci
 
+      - name: Translation fill backpressure
+        run: node --test scripts/translation-request.test.mjs
+
       - name: Badge asset resource names
         run: node scripts/check-badge-resource-names.mjs
 
