@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, create } from 'react-test-renderer';
-import { FrostedBackdropProvider, FrostedBackground, FrostedContent, useFrostedSource } from '../../components/ui/FrostedBackdrop';
+import { FrostedBackdropProvider, FrostedBackground, FrostedContent, PinDrawerBlurSource, useDrawerBlurSource, useFrostedSource } from '../../components/ui/FrostedBackdrop';
 
 jest.mock('dehub-jsx/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
 jest.mock('react-native', () => ({ Platform: { OS: 'android', Version: 36 }, View: 'View', StyleSheet: { absoluteFill: {} } }));
@@ -116,5 +116,27 @@ it('switches a covered pill to its solid glass without remounting it', () => {
   act(() => tree.update(render(false)));
   expect(sources[sources.length - 1]).toBeDefined();
   expect(mounts).toBe(1);
+  act(() => tree.unmount());
+});
+
+it('keeps a routed drawer blurring the feed it opened over after that feed loses focus', () => {
+  const seen: Record<string, unknown> = {};
+  const Probe = ({ name }: { name: string }) => { seen[name] = useDrawerBlurSource(); return null; };
+  const app = (feed: boolean, drawer: boolean) => (
+    <FrostedBackdropProvider backdrop={null}>
+      {feed ? <FrostedContent><></></FrostedContent> : null}
+      {drawer ? <PinDrawerBlurSource><Probe name="drawer" /></PinDrawerBlurSource> : null}
+      <Probe name="other" />
+    </FrostedBackdropProvider>
+  );
+  let tree!: ReturnType<typeof create>;
+  act(() => { tree = create(app(true, false)); });
+  act(() => tree.update(app(true, true)));
+  const feed = seen.drawer;
+  expect(feed).toBeDefined();
+  // The feed's screen blurs under the drawer route and unregisters.
+  act(() => tree.update(app(false, true)));
+  expect(seen.other).toBeUndefined();
+  expect(seen.drawer).toBe(feed);
   act(() => tree.unmount());
 });
