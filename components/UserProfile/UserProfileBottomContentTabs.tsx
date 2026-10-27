@@ -437,7 +437,7 @@ const UserProfileBottomContentTabs: React.FC<
       if (tabOffsets.value[tab] !== y) {
         tabOffsets.modify((offsets) => {
           'worklet';
-          offsets[tab] = y;
+          (offsets as Record<string, number>)[tab] = y;
           return offsets;
         });
       }

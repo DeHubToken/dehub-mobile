@@ -97,7 +97,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     if (tabOffsets.value[key] !== y) {
       tabOffsets.modify((offsets) => {
         'worklet';
-        offsets[key] = y;
+        (offsets as Record<string, number>)[key] = y;
         return offsets;
       });
     }
