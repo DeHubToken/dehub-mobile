@@ -1187,13 +1187,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   const handleRepost = useCallback((next: boolean) => {
     if (tokenId == null) return;
-    requireAuth(() => {
+    const run = () => {
       const wasReposted = reposted;
       const prevCount = repostCount;
       applyEngagement(engagementKey, {
         isReposted: next,
         repostCount: next ? prevCount + 1 : Math.max(0, prevCount - 1),
       });
+      if (next) toastSuccess(t("toasts.reposted"));
       const rollback = () => {
         revertEngagement(engagementKey, { isReposted: wasReposted, repostCount: prevCount });
         toastError(next ? t("copy.7527dc6722fc", { defaultValue: "Failed to repost" }) : t("copy.06f3a3e5ca20", { defaultValue: "Failed to remove repost" }));
@@ -1211,17 +1212,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
           }
         })
         .catch(rollback);
-    });
-  }, [tokenId, reposted, repostCount, engagementKey, requireAuth, t]);
+    };
+    // Signed in, flip on the tap: requireAuth's session check goes to the
+    // network first, and the API client refreshes the token anyway.
+    if (viewerSignedIn) run();
+    else requireAuth(run);
+  }, [tokenId, reposted, repostCount, engagementKey, requireAuth, t, viewerSignedIn]);
 
   const handleQuote = useCallback(() => {
-    requireAuth(() => {
+    const go = () => {
       navigation.navigate(ScreenNames.Upload, {
         quotedTokenId: tokenId,
         quotedPost: item as any,
       });
-    });
-  }, [navigation, tokenId, item, requireAuth]);
+    };
+    if (viewerSignedIn) go();
+    else requireAuth(go);
+  }, [navigation, tokenId, item, requireAuth, viewerSignedIn]);
 
   const handleCopyLink = useCallback(() => {
     if (tokenId == null) return;
