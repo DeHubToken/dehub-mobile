@@ -11,7 +11,7 @@ export interface UseStreamDetailsResult {
   streamKeyValue: string | null;
   streamKeyLoading: boolean;
   streamKeyError: string | null;
-  refetchStream: () => void;
+  refetchStream: (background?: boolean) => void;
   refetchStreamKey: () => void;
 }
 
@@ -24,6 +24,9 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
   const [streamKeyLoading, setStreamKeyLoading] = useState<boolean>(false);
   const [streamKeyError, setStreamKeyError] = useState<string | null>(null);
   const generation = useRef(0);
+  // Consecutive failed reads. A failed read is not an answer about the stream,
+  // so the viewer keeps trying instead of settling on whatever it showed last.
+  const [failures, setFailures] = useState(0);
 
   const fetchStream = useCallback((background = false) => {
     if (!streamId) return;
@@ -34,10 +37,12 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
       .then((res: any) => {
         if (requestGeneration !== generation.current) return;
         const entity: any = res?.result || res;
-        setStreamEntity(entity || null);
+        // An empty body is a failed read too; never trade a stream we have for nothing.
+        if (entity) { setStreamEntity(entity); setFailures(0); } else setFailures((n) => n + 1);
       })
       .catch((e: any) => {
         if (requestGeneration !== generation.current) return;
+        setFailures((n) => n + 1);
         setStreamError(e?.message || _copy("copy.9dca8ee026ff", { defaultValue: "Failed to load stream" }));
       })
       .finally(() => { if (requestGeneration === generation.current) setStreamLoading(false); });
@@ -69,6 +74,7 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
     setStreamKeyError(null);
     setStreamLoading(!!streamId);
     setStreamError(null);
+    setFailures(0);
     if (!streamId) return;
     fetchStream();
     if (fetchKey) fetchStreamKey();
@@ -84,6 +90,25 @@ export const useStreamDetails = (streamId?: string, fetchKey: boolean = true): U
     }, delay);
     return () => clearInterval(timer);
   }, [streamId, streamEntity, fetchKey, fetchStream]);
+
+  // Retry a failed read: 2s, 4s, 8s, then every 15s.
+  useEffect(() => {
+    if (!streamId || fetchKey || failures === 0) return;
+    const timer = setTimeout(() => {
+      if (AppState.currentState === 'active') fetchStream(true);
+      else setFailures((n) => n + 1);
+    }, Math.min(15_000, 1_000 * 2 ** failures));
+    return () => clearTimeout(timer);
+  }, [streamId, fetchKey, failures, fetchStream]);
+
+  // Coming back to the app, the answer from before it slept is stale.
+  useEffect(() => {
+    if (!streamId || fetchKey) return;
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') fetchStream(true);
+    });
+    return () => sub.remove();
+  }, [streamId, fetchKey, fetchStream]);
 
   return {
     streamEntity,

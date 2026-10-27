@@ -26,4 +26,11 @@ describe('stream lifecycle', () => {
     expect(streamRefreshInterval(ended, now + 10 * 60_000)).toBe(false);
     expect(streamRefreshInterval({ status: 'ENDED' }, now)).toBe(false);
   });
+
+  it('keeps re-checking a stream that is not live yet so a viewer recovers on its own', () => {
+    expect(streamRefreshInterval({ status: 'OFFLINE' })).toBe(8_000);
+    expect(streamRefreshInterval({ status: 'SCHEDULED' })).toBe(30_000);
+    expect(streamRefreshInterval(undefined)).toBe(false);
+    expect(streamRefreshInterval({})).toBe(false);
+  });
 });
