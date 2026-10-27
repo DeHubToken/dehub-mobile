@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "Comparteix l'enllaç",
+    "pinnedMore": "Més",
     "sendInMessage": "Envia invitació",
     "existingPost": {
       "add": "Afegir post existent",

@@ -6262,6 +6262,7 @@
   },
   "communities": {
     "shareLink": "لینک شریک کړئ",
+    "pinnedMore": "نور ډیر څه",
     "sendInMessage": "دعوت ته ځواب ورکړئ",
     "existingPost": {
       "add": "موجوده پوسټ اضافه کړئ",

@@ -6262,6 +6262,7 @@
   },
   "communities": {
     "shareLink": "แชร์ลิงก์",
+    "pinnedMore": "เพิ่มเติม",
     "sendInMessage": "ส่งคำเชิญ",
     "existingPost": {
       "add": "เพิ่มโพสต์ที่มีอยู่",

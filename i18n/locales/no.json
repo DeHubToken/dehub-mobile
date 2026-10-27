@@ -6272,6 +6272,7 @@
   },
   "communities": {
     "shareLink": "Del lenke",
+    "pinnedMore": "Flere",
     "sendInMessage": "Send invitasjon",
     "existingPost": {
       "add": "Legg til eksisterende innlegg",

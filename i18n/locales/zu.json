@@ -6303,6 +6303,7 @@
   },
   "communities": {
     "shareLink": "Yabelana ngesixhumanisi",
+    "pinnedMore": "Okwengeziwe",
     "sendInMessage": "Thumela Isimemo",
     "existingPost": {
       "placeholder": "Isixhumanisi se-DeHub post noma i-post ID",

@@ -6288,6 +6288,7 @@
   },
   "communities": {
     "shareLink": "Chia sẻ liên kết",
+    "pinnedMore": "Thêm",
     "sendInMessage": "Gửi lời mời",
     "existingPost": {
       "add": "Thêm bài đăng hiện có",
