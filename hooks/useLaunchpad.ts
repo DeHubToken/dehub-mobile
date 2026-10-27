@@ -1,4 +1,4 @@
-import { useScreenActivity, useActiveScreenEffect } from "./useScreenActivity";
+import { useScreenActivity, useActiveScreenEffect, useActiveScreenPolling } from "./useScreenActivity";
 /**
  * Launchpad queries, kept live over Supabase realtime the way the web hooks
  * are. Trades land constantly, so the coin list coalesces bursts into at most
@@ -82,13 +82,14 @@ export function useLaunchpadTokens(filter: LaunchpadFilter, mineAddress?: string
 
 export function useTrendingLaunchpadTokens() {
   const { isActive } = useScreenActivity();
-  return useQuery({
+  const query = useQuery({
     enabled: isActive,
     queryKey: launchpadKeys.trending,
     queryFn: listTrendingLaunchpadTokens,
     staleTime: 30_000,
-    refetchInterval: () => isActive() ? 30_000 : false,
   });
+  useActiveScreenPolling(query.refetch, 30_000);
+  return query;
 }
 
 export function useLaunchpadToken(id?: string) {
@@ -121,13 +122,14 @@ export function useLaunchpadToken(id?: string) {
     };
   }, [id, queryClient, suffix]);
 
-  return useQuery({
+  const query = useQuery({
     queryKey: launchpadKeys.token(id || ""),
     enabled: () => isActive() && !!id,
     queryFn: () => getLaunchpadToken(id as string),
     staleTime: 5_000,
-    refetchInterval: () => isActive() ? 60_000 : false,
   });
+  useActiveScreenPolling(query.refetch, 60_000, !!id);
+  return query;
 }
 
 /** Trades for one coin, or across every coin when `tokenId` is omitted. */

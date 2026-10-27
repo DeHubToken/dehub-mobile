@@ -5,7 +5,7 @@
  * `dao-proposals` edge function.
  */
 import { useRef } from "react";
-import { useScreenActivity, useActiveScreenEffect } from "./useScreenActivity";
+import { useScreenActivity, useActiveScreenEffect, useActiveScreenPolling } from "./useScreenActivity";
 import { translateCopy as _translateCopy } from '../i18n/copy';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../services/supabase";
@@ -135,8 +135,10 @@ export function useDaoProposals() {
       return ((data ?? []) as Record<string, any>[]).map(normalise);
     },
     staleTime: 15_000,
-    refetchInterval: () => isActive() ? 30_000 : false,
+
   });
+
+  useActiveScreenPolling(proposals.refetch, 30_000);
 
   const myVotes = useQuery({
     queryKey: ["dao-proposal-votes", wallet],
@@ -180,7 +182,13 @@ export function useDaoProposals() {
       .channel(`dao-proposals-app-${channelId}`)
       .on("postgres_changes", { event: "*", schema: "public", table: "dao_proposals" }, schedule)
       .on("postgres_changes", { event: "*", schema: "public", table: "dao_proposal_votes" }, schedule)
-      .subscribe();
+      .subscribe(status => {
+        if (status === "SUBSCRIBED") {
+          qc.invalidateQueries({ queryKey: KEY });
+          qc.invalidateQueries({ queryKey: ["dao-proposal-votes"] });
+          qc.invalidateQueries({ queryKey: ["dao-proposal-eligibility"] });
+        }
+      });
     return () => {
       if (timer) clearTimeout(timer);
       void supabase.removeChannel(channel);
