@@ -692,8 +692,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           return;
         }
         if (isSignedInRef.current && !needsUsernameRef.current &&
-            address === (userRef.current?.walletAddress || userRef.current?.address)) action();
-      })().catch((error) => log.error('requireAuth:session-check-failed', error));
+            address === (userRef.current?.walletAddress || userRef.current?.address)) await action();
+      })().catch((error) => {
+        log.error('requireAuth:session-check-failed', error);
+        toastError(error);
+      });
     } else {
       setPendingAction(() => action);
       setShowSignInModal(true);

@@ -12,6 +12,7 @@ import {
   editComment,
   deleteComment,
   postGifComment,
+  postAudioComment,
   getClaimBountySignature,
   minNft,
   editPost,
@@ -334,6 +335,23 @@ describe('services/nft.service', () => {
 
     it('throws for missing gifUrl', async () => {
       await expect(postGifComment({ streamTokenId: 1, gifUrl: '' })).rejects.toThrow('gifUrl required');
+    });
+  });
+
+  describe('postAudioComment', () => {
+    it('keeps the parent and accepted ID for a voice reply', async () => {
+      mockPost.mockResolvedValueOnce({ result: true, commentId: 2229, audioUrl: 'comments/voice.m4a', audioDuration: 2 });
+      const result = await postAudioComment({ streamTokenId: 6014, commentId: 2228, fileUri: 'file:///voice.m4a' });
+      expect(result.commentId).toBe(2229);
+      const url = mockPost.mock.calls[0][0] as string;
+      expect(url).toContain('streamTokenId=6014');
+      expect(url).toContain('commentId=2228');
+    });
+
+    it('rejects an HTTP-200 refusal so delivery preserves the recording for retry', async () => {
+      mockPost.mockResolvedValueOnce({ result: false, error: 'Comments are turned off for this post' });
+      await expect(postAudioComment({ streamTokenId: 6014, commentId: 2228, fileUri: 'file:///voice.m4a' }))
+        .rejects.toThrow('Comments are turned off for this post');
     });
   });
 
