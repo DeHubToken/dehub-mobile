@@ -56,6 +56,7 @@ import { getAvatarUrl, getBadgeUrlFor } from "../../libs/misc";
 import { truncate } from "../../libs/strings.util";
 import { SHEET_GLASS_FILL, SHEET_GLASS_BORDER } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 const SHEET_FRACTION = 0.7;
 const PAGE_LIMIT = 50;
@@ -124,6 +125,7 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   const SHEET_HEIGHT = screenHeight * SHEET_FRACTION;
   const translateY = useSharedValue(SHEET_HEIGHT);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   const [people, setPeople] = useState<LikerUser[]>([]);
@@ -267,14 +269,15 @@ const ReactionInfoSheetComponent: React.FC<ReactionInfoSheetProps> = ({
   return (
     <Modal visible={visible && !sheetHidden} onDismiss={openPendingProfile} transparent animationType="none" statusBarTranslucent onRequestClose={closeSheet}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <Animated.View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.5)" }, backdropStyle]}>
+        <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+          <SheetBackdrop backdrop={backdrop} />
           <Pressable style={{ flex: 1 }} onPress={closeSheet} />
         </Animated.View>
 
         <Animated.View
           style={[glassStyles.sheet, { height: SHEET_HEIGHT, paddingBottom: insets.bottom }, sheetStyle]}
         >
-          <SheetGlassFill style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
+          <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, glassStyles.overlay]} />
 
           <GestureDetector gesture={gesture}>
             <Animated.View className="items-center py-2.5">

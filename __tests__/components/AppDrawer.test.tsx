@@ -57,6 +57,11 @@ jest.mock('../../components/common/Avatar', () => 'Avatar');
 jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../components/ui/FrostedPill', () => 'FrostedPill');
+jest.mock('../../components/ui/SheetGlass', () => ({ __esModule: true, default: 'SheetGlass', SheetGlassFill: 'SheetGlassFill' }));
+jest.mock('../../components/ui/SheetBackdrop', () => ({
+  __esModule: true, default: 'SheetBackdrop',
+  useSheetBackdrop: () => ({ blur: null, blurred: false, scrim: 'rgba(0,0,0,0.55)', light: false }),
+}));
 jest.mock('../../config/storefront', () => ({ get DIGITAL_PURCHASES_ENABLED() { return mockDigitalPurchasesEnabled; } }));
 jest.mock('../../context/AuthContext', () => ({
   useAuthState: () => ({ isSignedIn: mockSignedIn }),

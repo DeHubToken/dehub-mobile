@@ -2153,6 +2153,11 @@
     "title": "Meldingen",
     "loadFailed": "Meldingen konden niet worden geladen",
     "markAllRead": "Alles als gelezen markeren",
+    "allSettings": "Alle meldingsinstellingen",
+    "groupNew": "Nieuw",
+    "groupToday": "Vandaag",
+    "groupThisWeek": "Deze week",
+    "groupEarlier": "Eerder",
     "settings": "Meldingsinstellingen",
     "actions": "Acties",
     "markAllAsRead": "Alles als gelezen markeren",
@@ -8162,7 +8167,19 @@
       "translateCount": "{{count}} ondertitels vertalen",
       "translationDone": "{{count}} ondertitels vertaald",
       "translationFailed": "De vertaling is mislukt. Je ondertitels zijn niet gewijzigd.",
-      "lockedTranslation": "Ontgrendel vergrendelde ondertitels om ze mee te nemen."
+      "lockedTranslation": "Ontgrendel vergrendelde ondertitels om ze mee te nemen.",
+      "style": "Ondertitelstijl",
+      "styles": {
+        "classic": "Klassiek",
+        "boxed": "In een kader",
+        "bold": "Vet",
+        "wordpop": "Woord voor woord",
+        "rapid": "Snel onthullen",
+        "beast": "Beast-modus",
+        "stacked": "Gestapeld",
+        "serif": "Schreef",
+        "bubble": "Bubbel"
+      }
     },
     "app": {
       "newDesign": "Nieuw ontwerp",
@@ -8232,7 +8249,11 @@
       "vibrant": "Levendig",
       "cyber": "Cyber",
       "invert": "Omkeren",
-      "strength": "Filtersterkte: {{value}}%"
+      "strength": "Filtersterkte: {{value}}%",
+      "fadedFilm": "Vervaagde film",
+      "technicolor": "Technicolor",
+      "newsreel": "Bioscoopjournaal",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Bijsnijden",
@@ -8313,14 +8334,18 @@
       "pptxHint": "Elke pagina wordt één diavoorstellingsslide met presentator-aantekeningen en links. Pas individuele tekst en elementen aan in het originele ontwerp.",
       "section": "Benoemde sectie",
       "transparent": "Transparante achtergrond",
-      "notesText": "Presentatornotities (.txt)"
+      "notesText": "Presentatornotities (.txt)",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Downloadt een ZIP met je tijdlijn als FCPXML en Premiere-XML plus alle mediabestanden, zodat je de montage afmaakt in Premiere Pro, Final Cut Pro of DaVinci Resolve. Tekst wordt markeringen; effecten blijven in DeHub."
     },
     "adjust": {
       "auto": "Automatisch verbeteren",
       "autoFailed": "Deze foto kon niet worden geanalyseerd.",
       "tint": "Tint {{value}}",
       "vignette": "Vignet {{value}}%",
-      "warmth": "Warmte {{value}}"
+      "warmth": "Warmte {{value}}",
+      "halation": "Halatie {{value}}%",
+      "scanlines": "Scanlijnen {{value}}%"
     },
     "draw": {
       "colour": "Penkleur",
@@ -8412,7 +8437,47 @@
       "suggestTitle": "Voeg bovenaan een grote, vette titel toe met daaronder een kleinere ondertitel",
       "undo": "Ongedaan maken",
       "openGenerator": "Bekijken en genereren",
-      "working": "Bezig…"
+      "working": "Bezig…",
+      "stopped": "Gestopt. Er is verder niets veranderd.",
+      "stop": "Stoppen",
+      "queue": "Aan wachtrij toevoegen",
+      "queued": "{{count}} in de wachtrij",
+      "restore": "Hierheen terugzetten",
+      "restoreHint": "Zet het project terug zoals het was vóór dit bericht. Ongedaan maken haalt het terug.",
+      "restored": "Project teruggezet naar vóór dat bericht. Druk op ongedaan maken om de nieuwere versie terug te halen.",
+      "rewrite": "Mijn verzoek duidelijker maken",
+      "rewriteFailed": "Herschrijven lukte niet. Je tekst is ongewijzigd.",
+      "feedback": "Was dit nuttig?",
+      "good": "Goed antwoord",
+      "bad": "Slecht antwoord",
+      "retryPrefix": "Dat klopte niet. In plaats daarvan, ",
+      "recipesTitle": "Recepten",
+      "recipe": {
+        "podcastClip": {
+          "label": "Podcastclip",
+          "prompt": "Zoek het sterkste moment van 30 seconden, knip daarop, voeg Word Pop-ondertitels toe en maak het 9:16."
+        },
+        "talkingHead": {
+          "label": "Strakke praatvideo",
+          "prompt": "Knip lange pauzes weg, voeg Classic-ondertitels toe en geef het een subtiele warme look."
+        },
+        "productPromo": {
+          "label": "Productpromo",
+          "prompt": "Maak een promo van 15 seconden: pakkende titel aan het begin, Zoom in-overgangen tussen clips, Bold-ondertitels en vrolijke muziek."
+        },
+        "hypeReel": {
+          "label": "Hype-reel",
+          "prompt": "Knip de clips op de beat van de muziek, gebruik Fly up-overgangen en de Technicolor-look."
+        },
+        "retroEdit": {
+          "label": "Retro-edit",
+          "prompt": "Geef elke clip de VHS-look, voeg een grote serif-titel toe en gebruik Fade-overgangen."
+        },
+        "tutorial": {
+          "label": "Tutorial",
+          "prompt": "Voeg een titel per stap toe, Boxed-ondertitels, en vertraag het belangrijkste moment naar 0,5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Merkkleur toevoegen",
@@ -8549,7 +8614,11 @@
       "rendering": "Video renderen… {{percent}}%",
       "mp4": "MP4-video",
       "exportHint": "Houd de editor open terwijl je video wordt gerenderd.",
-      "tooLarge": "Dat bestand is te groot voor de editor. De limiet is 400 MB."
+      "tooLarge": "Dat bestand is te groot voor de editor. De limiet is 400 MB.",
+      "tZoomIn": "Inzoomen",
+      "tZoomOut": "Uitzoomen",
+      "tFlyUp": "Omhoog vliegen",
+      "tFlyDown": "Omlaag vliegen"
     },
     "motion": {
       "title": "Beweging",
@@ -9822,6 +9891,25 @@
       "zoomIn": "Canvas inzoomen",
       "zoomOut": "Canvas uitzoomen",
       "pan": "Canvas verschuiven"
+    },
+    "clipFix": {
+      "detach": "Audio loskoppelen",
+      "detached": "Audio staat nu in een eigen clip",
+      "detachFailed": "Kon de audio van deze clip niet loskoppelen",
+      "removeBars": "Zwarte balken weghalen",
+      "scanning": "Frames controleren…",
+      "noBars": "Geen zwarte balken gevonden",
+      "barsRemoved": "Zwarte balken bijgesneden",
+      "barsFailed": "Kon deze video niet op zwarte balken controleren",
+      "reframe": "Automatisch herkaderen",
+      "reframeHint": "De video past al in deze vorm",
+      "reframed": "Herkaderd om de actie te volgen",
+      "reframeFailed": "Kon deze video niet herkaderen",
+      "retakes": "Herhaalde takes weghalen",
+      "listening": "Luisteren…",
+      "noRetakes": "Geen herhaalde takes gevonden",
+      "retakesRemoved": "{{count}} herhaalde take(s) verwijderd, laatste take behouden",
+      "retakesFailed": "Kon de herhaalde takes niet uit deze clip halen"
     }
   },
   "creator": {
@@ -12824,6 +12912,8 @@
     "787bcf985c06": "Kon de cover niet wijzigen",
     "78b02b1a598a": "Kon portemonnee niet opslaan",
     "78ffacb7abe7": "Genereer Kling-video · originele soundtrack",
+    "22577ebd908e": "Genereer Wan 3.0-video · originele soundtrack",
+    "1fa2357ab7e1": "Genereer Seedance 720p-video · originele soundtrack",
     "790fd7d39a4c": "De Tiger Touch",
     "7910eea972da": "Creepy Devil Smile",
     "792678842e2f": "Bericht gepland",
@@ -14570,6 +14660,15 @@
     "receipt": "${{amount}} toegevoegd aan de advertentie-inkomsten van de maker. tokenafrekening is in behandeling."
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "Nieuwe volger",
+      "subscribe": "Nieuwe abonnee",
+      "subscribedTo": "Geabonneerd · {{plan}}",
+      "gifted_one": "Gaf een abonnement cadeau",
+      "gifted_other": "Gaf {{count}} abonnementen cadeau",
+      "share": "Deelde de stream",
+      "join": "Net binnen"
+    },
     "subathon": "Subathon",
     "wheelLanded": "{{name}} gesponnen: {{result}}",
     "someone": "Iemand",
@@ -14603,6 +14702,31 @@
     "tipJar": "Geschenkpot"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Multistream-bestemmingen",
+      "intro": "Ga één keer live op DeHub en wij sturen je stream gratis door naar elk platform dat hier aanstaat. Het start binnen een paar seconden nadat je live gaat.",
+      "add": "Bestemming toevoegen",
+      "empty": "Nog geen bestemmingen. Voeg Twitch, YouTube, Kick of een RTMP-server toe.",
+      "platform": "Platform",
+      "label": "Naam (optioneel)",
+      "server": "Server-URL",
+      "key": "Streamsleutel",
+      "findKey": "Vind je {{name}}-server en -sleutel",
+      "customHint": "Plak de RTMP-server en sleutel van je platform.",
+      "keyNote": "Je sleutel wordt versleuteld op onze servers bewaard en nooit meer getoond.",
+      "save": "Toevoegen",
+      "cancel": "Annuleren",
+      "added": "{{name}} toegevoegd",
+      "saveFailed": "Bestemming opslaan mislukt",
+      "toggle": "Naar deze bestemming streamen",
+      "states": {
+        "off": "Uit",
+        "idle": "Klaar",
+        "connecting": "Verbinden",
+        "live": "Live",
+        "error": "Fout"
+      }
+    },
     "controls": {
       "title": "Snelle bediening",
       "intro": "Voor mid-stream. Elke schakelaar houdt vast voor iedereen die kijkt, in de app en in OBS, totdat je hem terugdraait.",
@@ -14981,5 +15105,129 @@
     "fingerprint": "Vingerafdruk",
     "exploreFirst": "Eerst rondkijken",
     "codeNote": "We mailen je een code, geen wachtwoord nodig."
+  },
+  "studioDeck": {
+    "remove": "Verwijderen",
+    "background": {
+      "title": "Achtergrond",
+      "modes": {
+        "none": "Uit",
+        "blur": "Vervagen",
+        "color": "Kleur",
+        "image": "Afbeelding"
+      },
+      "failed": "Achtergrondverwijdering kon niet starten op dit apparaat.",
+      "hint": "Draait op je apparaat. De eerste keer duurt het laden een paar seconden."
+    },
+    "scenes": {
+      "title": "Scènes",
+      "picture": "Afbeelding",
+      "countdown": "Aftellen",
+      "noCountdown": "Niet aftellen",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "We beginnen zo",
+        "chatting": "Gewoon kletsen",
+        "brb": "Zo terug",
+        "ending": "Stream eindigt"
+      },
+      "hints": {
+        "starting": "Kaart met aftelklok",
+        "chatting": "Camera beeldvullend",
+        "brb": "Kaart, microfoon gedempt",
+        "ending": "Bedankkaart"
+      },
+      "subtitles": {
+        "starting": "De stream begint over",
+        "brb": "Zo weer terug",
+        "ending": "Bedankt voor het kijken"
+      }
+    },
+    "widgets": {
+      "title": "Widgets in mijn video tonen",
+      "hint": "Meldingen, doelbalken en chat worden in je stream getekend, zodat kijkers op Twitch, YouTube en andere platforms ze ook zien.",
+      "failed": "Kon niet wijzigen waar je widgets verschijnen. Probeer het opnieuw.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Bronnen",
+      "addImage": "Afbeelding of logo",
+      "failed": "Kon die bron niet toevoegen.",
+      "hint": "Bronnen worden over je beeld getekend voor elke kijker en elk platform.",
+      "image": "Afbeelding",
+      "show": "Tonen in stream",
+      "positions": {
+        "top-left": "Linksboven",
+        "top-right": "Rechtsboven",
+        "bottom-left": "Linksonder",
+        "bottom-right": "Rechtsonder",
+        "center": "Midden"
+      },
+      "sizes": {
+        "small": "Klein",
+        "medium": "Middel",
+        "large": "Groot"
+      }
+    },
+    "phone": {
+      "title": "Studio"
+    }
+  },
+  "whenSheet": {
+    "title": "Wanneer?",
+    "tonight": "Vanavond",
+    "inAnHour": "Over een uur",
+    "tomorrow": "Morgen",
+    "today": "Vandaag",
+    "primeTime": "Spitsuur",
+    "scheduleFor": "Inplannen voor {{when}}",
+    "liveTip": "Je volgers kunnen een herinnering zetten. Je start de Live zelf als het zover is.",
+    "stageTip": "Het staat meteen bij Binnenkort, zodat mensen op Herinner mij kunnen tikken.",
+    "typePlaceholder": "Typ een tijd, zoals \"fri 8pm\" of \"in 2 hours\"",
+    "typeLabel": "Typ een tijd",
+    "typeHelp": "Probeer \"tonight\", \"tomorrow 9am\", \"sat noon\" of \"30 oct 7pm\".",
+    "orPickDay": "Of kies een dag",
+    "earlier": "15 minuten eerder",
+    "later": "15 minuten later",
+    "tooSoonMin": "Kies een tijd minstens {{count}} minuten vanaf nu.",
+    "tooSoon": "Kies een tijd in de toekomst.",
+    "zone": "Jouw tijd ({{zone}}). Anderen zien het in hun eigen tijd.",
+    "remove": "Planning verwijderen",
+    "startsIn": "Begint over {{time}}",
+    "bestTime": "Beste tijd",
+    "fansOnline": "Wanneer zijn mijn fans online?",
+    "show": "Tonen",
+    "hide": "Verbergen",
+    "fansBasis": "Lichter betekent dat meer volgers keken, afgelopen {{count}} dagen.",
+    "everyoneBasis": "Nog niet genoeg activiteit van volgers, dus dit is iedereen op DeHub."
+  },
+  "planned": {
+    "title": "Gepland",
+    "subtitle": "Posts, Lives en Stages die je hebt ingepland",
+    "seoTitle": "Gepland · DeHub",
+    "seoDescription": "Je ingeplande posts, Lives en Stages op DeHub, op één plek.",
+    "all": "Alles",
+    "posts": "Posts",
+    "lives": "Lives",
+    "stages": "Stages",
+    "post": "Post",
+    "live": "Live",
+    "stage": "Stage",
+    "untitledPost": "Post",
+    "untitledLive": "Live",
+    "signIn": "Log in om te zien wat je hebt gepland",
+    "loading": "Laden…",
+    "emptyTitle": "Nog niets gepland",
+    "emptyBody": "Kies \"Wanneer?\" bij het maken van een post, Live of Stage en het verschijnt hier.",
+    "move": "Verplaatsen",
+    "postNow": "Nu posten",
+    "startNow": "Nu starten",
+    "cancel": "Annuleren",
+    "confirmCancel": "Tik nogmaals om te annuleren",
+    "moved": "Verplaatst naar {{when}}",
+    "postingNow": "Wordt binnen een minuut gepost",
+    "cancelled": "Geannuleerd",
+    "moveFailed": "Verplaatsen lukte niet. Probeer opnieuw.",
+    "seeAll": "Bekijk alles wat je hebt gepland"
   }
 }

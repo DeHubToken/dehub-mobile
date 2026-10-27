@@ -481,7 +481,7 @@ const EditProfileScreen = () => {
                   borderColor="#010305"
                   name={displayName}
                 />
-                <View className="absolute bottom-0 right-0 bg-blue-600 rounded-lg p-1.5 border-2 border-[#010305]">
+                <View className="dark-surface absolute bottom-0 right-0 bg-blue-600 rounded-lg p-1.5 border-2 border-[#010305]">
                   {processingAvatar ? (
                     <ActivityIndicator size={14} color="#fff" />
                   ) : (

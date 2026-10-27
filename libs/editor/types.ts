@@ -23,7 +23,11 @@ export type TransitionKind =
   | "slide-left"
   | "slide-right"
   | "wipe-left"
-  | "wipe-right";
+  | "wipe-right"
+  | "zoom-in"
+  | "zoom-out"
+  | "fly-up"
+  | "fly-down";
 
 export interface Transition {
   kind: TransitionKind;
@@ -167,6 +171,10 @@ export interface ClipEffects {
   tint?: number;
   /** 0..1 darkening towards the edges, 0 = off */
   vignette?: number;
+  /** 0..1 CRT-style horizontal lines, 0 = off */
+  scanlines?: number;
+  /** 0..1 warm red glow bleeding around highlights, like film halation, 0 = off */
+  halation?: number;
 }
 
 export type ClipAnimationKind =

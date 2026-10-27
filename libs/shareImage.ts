@@ -7,7 +7,7 @@ import { translateCopy as _translateCopy } from "../i18n/copy";
 /** Keep the production text-card route in step with the web share drawer. */
 export function getTextPostShareImageUrl(tokenId: number | string): string {
   if (!/^[1-9]\d{0,14}$/.test(String(tokenId))) throw new Error("Invalid post id");
-  return `https://dehub.io/_og/post/v4/${tokenId}.png`;
+  return `https://dehub.io/_og/post/v5/${tokenId}.png`;
 }
 
 /**
