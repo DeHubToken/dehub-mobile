@@ -12,8 +12,15 @@ describe("post detail advertising continuation", () => {
 
   it("places the continuation after the detail screen's comments", () => {
     expect(detail).toContain("{showAllCommentsRow}");
-    expect(detail).toContain('<PostDetailContinuation currentPostId={String(tokenId)} />');
+    expect(detail).toContain('<PostDetailContinuation currentPostId={String(tokenId)} loadMoreSignal={leanPost ? morePostsSignal : undefined} />');
     expect(detail.indexOf("{showAllCommentsRow}")).toBeLessThan(detail.indexOf("<PostDetailContinuation"));
+  });
+
+  it("puts the ad straight under phone text and image posts and keeps loading posts", () => {
+    expect(detail).toContain('const leanPost = !!item && stage && !videoPost && !focusCommentId && resolveContentType(item) === "image";');
+    expect(detail).toContain("data={leanPost ? EMPTY_COMMENTS : visibleComments}");
+    expect(detail).toContain("onEndReached={handleEndReached}");
+    expect(continuation).toContain("{hasNextPage && !autoLoad && (");
   });
 
   it("uses the same served-ad and tracking endpoints as web", () => {

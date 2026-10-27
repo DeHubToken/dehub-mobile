@@ -74,6 +74,7 @@ const MINIMAL_INPUT_LINE = "rgba(255,255,255,0.10)";
 
 /** A comment plus how deep it sits in the thread (0 = top-level, 1 = direct reply, …). */
 type ThreadedComment = Comment & { depth: number };
+const EMPTY_COMMENTS: ThreadedComment[] = [];
 
 
 /**
@@ -1389,6 +1390,14 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   const stage = stageLayout && !!item;
   // Only a video keeps the immersive page with the back icon on its player.
   const videoPost = immersive && !!item && resolveContentType(item) !== "image";
+  // Phone text and image posts: the post, an ad straight under it, then more
+  // posts as the reader scrolls. No inline comments and no composer; the
+  // comment button opens the comments drawer, which has its own.
+  const leanPost = !!item && stage && !videoPost && !focusCommentId && resolveContentType(item) === "image";
+  const [morePostsSignal, setMorePostsSignal] = useState(0);
+  const handleEndReached = useCallback(() => {
+    if (leanPost) setMorePostsSignal(n => n + 1);
+  }, [leanPost]);
   const stageBack = useStageBack();
   const handlePostBack = onEmbeddedClose ?? stageBack;
   const handleStageAnchor = useCallback((y: number) => {
@@ -1554,10 +1563,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           )}
         </View>
       ) : null}
-      {!!item && <AuthorThreadBlock entries={authorThreadEntries} renderRow={(c) => renderCommentItem({ item: c })} />}
+      {!!item && !leanPost && <AuthorThreadBlock entries={authorThreadEntries} renderRow={(c) => renderCommentItem({ item: c })} />}
       {/* The comment tab row. Measured so the pinned copy can take over once
           it scrolls under the top of the screen. */}
-      {!postUnavailable && !noComments && (
+      {!postUnavailable && !noComments && !leanPost && (
         <View onLayout={handleTabRowLayout}>
           {stage ? (
             <CommentsStageHeader
@@ -1573,7 +1582,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         </View>
       )}
     </View>
-  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, noComments]);
+  ), [item, authorThreadEntries, renderCommentItem, immersive, stage, loading, privateError, loadError, postUnavailable, fetchData, openCommentSheet, isMinimal, t, renderCommentTabs, handleTabRowLayout, handleStageAnchor, handleStageComment, handlePostBack, commentSort, commentSearchOpen, commentQuery, toggleCommentSearch, comments.length, setCommentQuery, noComments, leanPost]);
 
   // The name sits in bold wherever the language puts it. The sentence is
   // translated whole and cut around the name, because a translated "Replying
@@ -1610,7 +1619,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       <FlatList
         ref={listRef}
         showsVerticalScrollIndicator={false}
-        data={visibleComments}
+        data={leanPost ? EMPTY_COMMENTS : visibleComments}
         keyExtractor={(c) => String(c.id)}
         // An element, not the function: FlatList treats a function as a
         // component type, so every new renderHeader identity (loading flips,
@@ -1622,7 +1631,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
             {showAllCommentsRow}
             {item && tokenId != null && transitionSettled && (
               <View onLayout={handleContinuationLayout}>
-                <PostDetailContinuation currentPostId={String(tokenId)} />
+                <PostDetailContinuation currentPostId={String(tokenId)} loadMoreSignal={leanPost ? morePostsSignal : undefined} />
               </View>
             )}
           </View>
@@ -1631,7 +1640,9 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         // a post whose header is a video: land near it and let the next pass
         // finish the job rather than dropping the jump.
         onScrollToIndexFailed={handleScrollToIndexFailed}
-        ListEmptyComponent={loading ? (
+        onEndReached={handleEndReached}
+        onEndReachedThreshold={1.5}
+        ListEmptyComponent={leanPost ? null : loading ? (
           <View className="px-4 py-3">
             <CommentsSkeleton />
           </View>
@@ -1689,7 +1700,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       {stage && videoPost && !embedded && <PostStageBackIcon hidden={showMini} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
-      {!postUnavailable && (
+      {!postUnavailable && !leanPost && (
         <Animated.View
           pointerEvents={hideComposer ? "none" : "auto"}
           ref={composerRef}

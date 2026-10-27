@@ -42,6 +42,6 @@ describe("post page when the post fails to load", () => {
     expect(empty.indexOf('t("comments.loadFailed")')).toBeLessThan(empty.indexOf('t("comments.noneYetAddYours")'));
 
     expect(detail).toContain("const postUnavailable = !item && !loading && (loadError != null || privateError);");
-    expect(detail).toMatch(/\{!postUnavailable && \(\r?\n\s*<Animated\.View\r?\n\s*pointerEvents=\{hideComposer/);
+    expect(detail).toMatch(/\{!postUnavailable && !leanPost && \(\r?\n\s*<Animated\.View\r?\n\s*pointerEvents=\{hideComposer/);
   });
 });

@@ -99,7 +99,7 @@ describe('post page on phones', () => {
     expect(detail).not.toMatch(/StandaloneTabBar|FloatingBottomTabBar/);
     expect(tabsStart).toBeGreaterThan(-1);
     expect(detail).toContain('testID={stage ? "post-stage-composer" : undefined}');
-    expect(detail).toMatch(/\{!postUnavailable && \(\r?\n\s*<Animated\.View\r?\n\s*pointerEvents=\{hideComposer/);
+    expect(detail).toMatch(/\{!postUnavailable && !leanPost && \(\r?\n\s*<Animated\.View\r?\n\s*pointerEvents=\{hideComposer/);
   });
 
   it('swaps the boxed tab strip for a comments header and pins a mini player instead', () => {
