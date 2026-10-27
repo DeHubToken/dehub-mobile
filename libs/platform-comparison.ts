@@ -1,4 +1,6 @@
 /** Keep identical to dehub-mobile/libs/platform-comparison.ts. */
+import { AUDIT_REVISIONS, DETAIL_GROUPS } from './platform-comparison-details';
+export { AUDIT_REVISIONS } from './platform-comparison-details';
 export const REVIEWED_ON = '2026-10-27';
 export const PLATFORMS = [
   { id: 'youtube', name: 'YouTube' }, { id: 'x', name: 'X / Twitter' },
@@ -16,6 +18,23 @@ export const STATUS_LABELS: Record<Status, string> = {
 export const SOURCES: Record<string, { title: string; url: string }> = {
   dehub: { title: 'DeHub product guide', url: 'https://dehub.io/docs/dapps' },
   dehubLaunchpad: { title: 'DeHub Launchpad', url: 'https://dehub.io/launchpad' },
+  dehubEncryption: { title: 'DeHub encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
+  kickModeration: { title: 'KICK chat moderation and polls', url: 'https://help.kick.com/en/articles/7109164-how-to-moderate-your-kick-chat' },
+  twitchPolls: { title: 'Twitch polls and chat voting', url: 'https://help.twitch.tv/s/article/how-to-use-polls' },
+  twitchRoles: { title: 'Twitch channel roles', url: 'https://help.twitch.tv/s/article/Managing-Roles-for-your-Channel' },
+  xMute: { title: 'X keyword and conversation muting', url: 'https://help.x.com/en/using-x/advanced-x-mute-options' },
+  ytPremium: { title: 'YouTube Premium playback benefits', url: 'https://support.google.com/youtube/answer/6308116' },
+  ytTranscript: { title: 'YouTube video transcripts', url: 'https://support.google.com/youtube/answer/15930243' },
+  xDm: { title: 'X direct messages', url: 'https://help.x.com/en/using-x/direct-messages' },
+  xCalls: { title: 'X voice and video calls', url: 'https://help.x.com/en/using-x/direct-messages/audio-video-calls' },
+  igDm: { title: 'Instagram message editing and media', url: 'https://about.fb.com/news/2024/03/instagram-dm-updates/' },
+  igDm2025: { title: 'Instagram message translation and groups', url: 'https://about.fb.com/news/2025/02/new-instagram-dm-features-stay-connected/' },
+  tiktokDm: { title: 'TikTok direct and group messages', url: 'https://newsroom.tiktok.com/share-your-favorite-tiktok-moments-with-direct-messaging?lang=en' },
+  tiktokStickers: { title: 'TikTok sticker creation', url: 'https://support.tiktok.com/en/using-tiktok/messaging-and-notifications/tiktok-stickers' },
+  messenger: { title: 'Facebook and Messenger private messaging', url: 'https://about.fb.com/news/2023/12/default-end-to-end-encryption-on-messenger/' },
+  mastodonPreferences: { title: 'Mastodon preferences', url: 'https://docs.joinmastodon.org/user/preferences/' },
+  mastodonExport: { title: 'Mastodon export and migration', url: 'https://docs.joinmastodon.org/user/moving/' },
+  mastodonProfile: { title: 'Mastodon profiles and verified links', url: 'https://docs.joinmastodon.org/user/profile/' },
   youtube: { title: 'YouTube Partner Program', url: 'https://support.google.com/youtube/answer/72851' },
   ytPosts: { title: 'YouTube posts', url: 'https://support.google.com/youtube/answer/9409631' },
   ytShorts: { title: 'YouTube Shorts creation tools', url: 'https://blog.youtube/news-and-events/new-shorts-creation-tools-2025/' },
@@ -62,12 +81,13 @@ export const SOURCES: Record<string, { title: string; url: string }> = {
   farcaster: { title: 'Farcaster protocol and sign in', url: 'https://docs.farcaster.xyz/' },
   fcApps: { title: 'Farcaster Mini Apps and wallets', url: 'https://miniapps.farcaster.xyz/' },
 };
-export interface ComparisonEntry { status: Status; note: string; source?: string }
+export interface ComparisonEntry { status: Status; note: string; source?: string; relatedSources?: string[] }
 export interface ComparisonFeature {
   id: string; category: string; name: string; dehub: ComparisonEntry;
   peers: Partial<Record<PlatformId, ComparisonEntry>>;
   /** Crypto purchase/reward actions are not offered by the iOS storefront. */
   iosRestricted: boolean;
+  implementation?: { web: string; mobile: string };
 }
 const e = (source: string, note: string, status: Status = 'documented'): ComparisonEntry => ({ source, note, status });
 type Row = [string, string, string, Partial<Record<PlatformId, ComparisonEntry>>?, boolean?];
@@ -75,6 +95,7 @@ function group(category: string, rows: Row[]): ComparisonFeature[] {
   return rows.map(([id, name, note, peers = {}, iosRestricted = false]) => ({
     id, category, name, dehub: e(id === 'launchpad' ? 'dehubLaunchpad' : 'dehub', note, iosRestricted ? 'limited' : 'documented'), peers, iosRestricted,
   }));
+}
 const CATALOGUE: ComparisonFeature[] = [
   ...group('Posts and discovery', [
     ['text', 'Text posts', 'Publish text into the social feed.', { youtube: e('ytPosts', 'Channel posts; supervised and Made for Kids accounts have restrictions.', 'limited'), x: e('xCommunities', 'Posts and community conversations.'), facebook: e('facebook', 'Text is a supported creator content format.'), mastodon: e('mastodon', 'Text statuses with mentions and hashtags.'), farcaster: e('farcaster', 'Casts are the protocol social content.') }],
@@ -143,7 +164,7 @@ const CATALOGUE: ComparisonFeature[] = [
     ['community-admin', 'Community moderation', 'Community owners manage members and content.', { x: e('xCommunities', 'Admins and moderators manage rules and membership.'), facebook: e('fbCommunity', 'Group administration.'), mastodon: e('mastodonQuotes', 'Server moderation; different scope from an in-app group.', 'limited') }],
     ['dm', 'Direct messages', 'Direct conversations with message permissions.', { x: e('xPro', 'Direct-message column in X Pro.'), mastodon: e('mastodon', 'Private mentions are visible to server administrators; not encrypted chat.', 'limited'), instagram: e('igSubs', 'Subscriber chats; this source covers that specific experience.', 'limited') }],
     ['groups', 'Group conversations', 'Create group chats with membership controls.', { instagram: e('igSubs', 'Subscriber group chats.', 'limited'), facebook: e('fbCommunity', 'Messenger Communities.', 'ecosystem') }],
-    ['encrypted-text', 'Encrypted message text', 'Text and captions can be end-to-end encrypted. A recipient who has not unlocked encryption can receive plaintext; attachments and metadata are not end-to-end encrypted.'],
+    ['encrypted-text', 'Encrypted message text', 'Text and captions can be end-to-end encrypted when peer keys are available. A plaintext fallback exists when encryption is unavailable. Conversation metadata is not hidden by message encryption.'],
     ['chat-media', 'Message attachments', 'Send photos, video, files and GIFs.'],
     ['voice-notes', 'Voice messages', 'Record and send voice notes.'],
     ['chat-polls', 'Polls in conversations', 'Run polls inside chats.', { instagram: e('igChannels', 'Polls in broadcast channels.', 'limited') }],
@@ -250,22 +271,63 @@ const ADDITIONAL_EVIDENCE: Record<string, Partial<Record<PlatformId, ComparisonE
   text: { bluesky: e('bskyFaq', 'Public social posts.') },
   images: { bluesky: e('bskyFaq', 'Images attached to posts.') },
   video: { bluesky: e('bskyVideo', 'Video posts. Current upload limits are not compared here.', 'limited'), twitch: e('twitchVod', 'On-demand publishing and retention depend on content and account type.', 'limited') },
-  dm: { bluesky: e('bskyDm', 'One-to-one messages with sender permission controls.') },
+  dm: { bluesky: e('bskyDm', 'One-to-one messages with sender permission controls.'), x: e('xDm', 'Direct messages with conversation controls.'), instagram: e('igDm', 'Instagram direct messages.'), tiktok: e('tiktokDm', 'Direct messages with age and safety restrictions.', 'limited'), facebook: e('messenger', 'Personal messaging on Facebook and Messenger.', 'limited') },
   quotes: { bluesky: e('bskySafety', 'Quote posts with detachment controls.') },
   'reply-control': { bluesky: e('bskySafety', 'Reply visibility and quote detachment controls.', 'limited') },
   scheduled: { bluesky: e('bskyBuffer', 'Scheduling through Buffer.', 'ecosystem') },
   'cross-post': { bluesky: e('bskyBuffer', 'Cross-posting through Buffer.', 'ecosystem') },
   embeds: { bluesky: e('bskyEmbed', 'Embeddable public posts.') },
-  notifications: { bluesky: e('bskyNotifications', 'Granular notifications and account activity notifications.') },
-  'mute-block': { bluesky: e('bskyFaq', 'Account mute and block controls.') },
+  notifications: { bluesky: e('bskyNotifications', 'Granular notifications and account activity notifications.'), mastodon: e('mastodonPreferences', 'Notification category and sender filters.') },
   report: { bluesky: e('bskyFaq', 'Post and account reports.') },
-  themes: { bluesky: e('bskyFaq', 'Light, dark and system appearance; not DeHub theme packs.', 'limited') },
+  themes: { bluesky: e('bskyFaq', 'Light, dark and system appearance; not DeHub theme packs.', 'limited'), mastodon: e('mastodonPreferences', 'Light, dark, system and high-contrast appearance.', 'limited'), instagram: e('igDm', 'Chat-specific themes; not a full-app theme system.', 'limited') },
   feedback: { bluesky: e('bskyFaq', 'Feedback links on web and mobile.') },
   replays: { twitch: e('twitchVod', 'Past broadcasts; storage must be enabled and retention depends on the account.', 'limited') },
   clips: { twitch: e('twitchVod', 'Clips and Highlights.') },
   playlists: { twitch: e('twitchVod', 'Collections organize on-demand content.', 'limited') },
+  'live-polls': { kick: e('kickModeration', 'Channel owners and moderators can run polls.'), twitch: e('twitchPolls', 'Polls for eligible monetized streamers.', 'limited') },
+  'chat-voting': { twitch: e('twitchPolls', 'Vote through the /vote chat command.', 'limited') },
+  'stream-moderation': { kick: e('kickModeration', 'Timeouts, bans, message removal and chat modes.'), twitch: e('twitchRoles', 'Moderators manage chat and participation.') },
+  'mute-block': { bluesky: e('bskyFaq', 'Account mute and block controls.'), kick: e('kickModeration', 'Personal chat mute and channel bans; scopes differ.', 'limited') },
+  'muted-words': { x: e('xMute', 'Mute words, phrases and hashtags with surface and duration controls.') },
+  'video-speed': { youtube: e('ytPremium', 'Playback speed options include plan- and device-specific enhancements.', 'limited') },
+  'video-download': { youtube: e('ytPremium', 'Offline downloads under Premium; not unrestricted source-file downloads.', 'limited') },
+  'audio-popout': { youtube: e('ytPremium', 'Background play for eligible content and devices under Premium.', 'limited') },
+  groups: { x: e('xDm', 'Group direct messages.'), tiktok: e('tiktokDm', 'Group chats with account and age restrictions.', 'limited'), instagram: e('igDm2025', 'Group chats with invite QR codes.') },
+  'chat-media': { x: e('xDm', 'Photo, video, GIF and emoji messages.'), instagram: e('igDm', 'Photo, video, GIF and sticker replies.'), facebook: e('messenger', 'Photo and video messages.') },
+  'voice-notes': { instagram: e('igDm', 'Voice messages.'), facebook: e('messenger', 'Voice messages and continued listening.') },
+  calls: { x: e('xCalls', 'Voice and video calls; group-call device coverage differs.', 'limited'), facebook: e('messenger', 'Personal voice and video calls.') },
+  'encrypted-text': { facebook: e('messenger', 'End-to-end encryption for supported personal chats.', 'limited') },
+  'encrypted-attachments': { facebook: e('messenger', 'Protected media in supported encrypted personal chats.', 'limited') },
+  'message-edit': { x: e('xDm', 'Edit supported direct messages.'), instagram: e('igDm', 'Edit messages within the supported time window.', 'limited'), facebook: e('messenger', 'Edit messages within the supported time window.', 'limited') },
+  'chat-reactions': { instagram: e('igDm', 'Replies using supported media and stickers.'), facebook: e('messenger', 'Custom reactions and media replies.') },
+  'chat-search': { x: e('xDm', 'Search message history using names and keywords.') },
+  'message-access': { x: e('xDm', 'Sender request and conversation controls.', 'limited') },
+  packs: { tiktok: e('tiktokStickers', 'Custom image and video stickers; creator eligibility applies.', 'limited') },
+  'video-transcript': { youtube: e('ytTranscript', 'View and navigate transcripts for videos that have captions.', 'limited') },
+  'video-subtitles': { youtube: e('ytTranscript', 'Captioned videos expose transcript and navigation controls.', 'limited') },
+  'video-segments': { youtube: e('ytTranscript', 'Transcript navigation can expose available chapters.', 'limited') },
+  'verified-links': { mastodon: e('mastodonProfile', 'Reciprocal website link verification.') },
+  'account-export': { mastodon: e('mastodonExport', 'Export relationship lists and request a post/media archive.') },
+  'notification-categories': { mastodon: e('mastodonPreferences', 'Choose supported categories of notifications.') },
+  'notification-filters': { mastodon: e('mastodonPreferences', 'Filter activity from accounts outside selected relationships.') },
+  'email-notifications': { mastodon: e('mastodonPreferences', 'Choose supported email notification categories.') },
+  'notification-digests': { mastodon: e('mastodonPreferences', 'Optional email digests during inactivity.', 'limited') },
+  'follow-list-privacy': { mastodon: e('mastodonPreferences', 'Hide following and follower lists.') },
+  'content-default': { mastodon: e('mastodonPreferences', 'Default posting visibility, language and media sensitivity.') },
+  'autoplay-preference': { mastodon: e('mastodonPreferences', 'Animated media and reduced-motion preferences; video behavior varies by client.', 'limited') },
 };
-export const FEATURES: ComparisonFeature[] = CATALOGUE.map(feature => ({ ...feature, peers: { ...feature.peers, ...ADDITIONAL_EVIDENCE[feature.id] } }));
+const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => detail.rows.map(([id, name, note, file = '', mobileOverride]) => {
+  const web = detail.web + file, mobile = mobileOverride ?? detail.mobile + file;
+  const webSource = `web:${web}`, mobileSource = `mobile:${mobile}`;
+  SOURCES[webSource] = { title: 'DeHub web implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/${web}` };
+  SOURCES[mobileSource] = { title: 'DeHub mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
+  return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'documented'), relatedSources: [mobileSource] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
+}));
+export const FEATURES: ComparisonFeature[] = [...CATALOGUE, ...EXPANDED_FEATURES].map(feature => ({
+  ...feature,
+  dehub: feature.id === 'encrypted-text' ? e('dehubEncryption', feature.dehub.note, 'limited') : feature.id === 'encrypted-attachments' ? { ...feature.dehub, status: 'limited' as const } : feature.dehub,
+  peers: { ...feature.peers, ...ADDITIONAL_EVIDENCE[feature.id] },
+}));
 export const CATEGORIES = [...new Set(FEATURES.map(feature => feature.category))];
 export function entryFor(feature: ComparisonFeature, platform: PlatformId | 'dehub'): ComparisonEntry {
   if (platform === 'dehub') return feature.dehub;
@@ -276,4 +338,8 @@ export function filterFeatures(query: string, category: string): ComparisonFeatu
   return FEATURES.filter(feature => (category === 'all' || feature.category === category) && words.every(word =>
     `${feature.name} ${feature.category} ${feature.dehub.note} ${Object.values(feature.peers).map(peer => peer?.note).join(' ')}`.toLowerCase().includes(word),
   ));
+}
+export function comparisonCoverage(platform: PlatformId | 'all') {
+  const platforms = platform === 'all' ? PLATFORMS.map(p => p.id) : [platform];
+  return { verified: FEATURES.reduce((total, feature) => total + platforms.filter(id => feature.peers[id] && feature.peers[id]!.status !== 'unverified').length, 0), total: FEATURES.length * platforms.length };
 }
