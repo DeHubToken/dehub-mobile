@@ -24,11 +24,11 @@ export function useActiveScreenEffect(effect: () => void | (() => void), deps: D
     let started = false;
     const update = () => {
       if (isActive() && !started) { started = true; cleanup = effect(); }
-      else if (!isActive() && started) { started = false; cleanup?.(); cleanup = undefined; }
+      else if (!isActive() && started) { started = false; if (typeof cleanup === 'function') cleanup(); cleanup = undefined; }
     };
     const unsubscribe = subscribe(update);
     update();
-    return () => { unsubscribe(); cleanup?.(); };
+    return () => { unsubscribe(); if (typeof cleanup === 'function') cleanup(); };
     // Callers supply dependencies just as for useEffect.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive, subscribe, ...deps]);
