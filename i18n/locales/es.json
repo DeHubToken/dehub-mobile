@@ -9743,6 +9743,59 @@
       "noRetakes": "No se encontraron tomas repetidas",
       "retakesRemoved": "Se quitaron {{count}} tomas repetidas y se mantuvo la última",
       "retakesFailed": "No se pudieron quitar las tomas repetidas de este clip"
+    },
+    "speakers": {
+      "find": "Detectar hablantes",
+      "name": "Hablante {{number}}",
+      "onlyOne": "Solo se encontró un hablante.",
+      "failed": "No se pudo detectar a los hablantes.",
+      "kept": "Solo se mantuvo a {{name}}.",
+      "editFailed": "Esa edición no encaja con este clip.",
+      "split": "Dividido en {{count}} planos por hablante.",
+      "keepOnly": "Solo este",
+      "splitAction": "Cortar en cada cambio de hablante"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Describe el objeto 3D que quieres",
+      "queued": "Creando tu objeto 3D. Aparecerá en la pestaña Generaciones.",
+      "note": "Los objetos 3D llegan a Medios como un clip corto que gira con fondo transparente."
+    },
+    "voiceClone": {
+      "pickerLabel": "Clona tu voz",
+      "pickerDetail": "Locuciones con tu propia voz",
+      "title": "Clona tu voz",
+      "description": "Grábate o elige un clip en el que hables. Pagas una vez y tu voz queda para todas tus locuciones.",
+      "defaultName": "Mi voz",
+      "record": "Graba una muestra (30 segundos a 2 minutos)",
+      "stop": "Detener grabación",
+      "fromMedia": "O usa un clip de Medios",
+      "recorded": "Tu grabación",
+      "sample": "Muestra: {{name}}",
+      "hint": "Funciona mejor con voz clara y sin música.",
+      "noMic": "No se pudo usar el micrófono.",
+      "sampleFailed": "No se pudo leer el sonido de ese clip.",
+      "pay": "Clonar por {{amount}} DHB",
+      "useFree": "Clonar (ya pagado)",
+      "owned": "Tu voz «{{name}}» ya está lista. Elígela en la lista de voces.",
+      "useOwned": "Usar mi voz",
+      "ready": "«{{name}}» está lista para locuciones.",
+      "failed": "No se pudo clonar la voz.",
+      "paidFailed": "Tu pago está guardado. Ábrelo de nuevo y el próximo intento es gratis.",
+      "consent": "Clona solo tu voz o una que tengas permiso para usar."
+    },
+    "linkImport": {
+      "open": "Importar desde un enlace",
+      "placeholder": "Pega un enlace de YouTube, TikTok u otro",
+      "rights": "Soy dueño de este vídeo o tengo permiso para usarlo",
+      "audioOnly": "Solo el sonido",
+      "go": "Importar",
+      "queued": "En cola…",
+      "downloading": "Descargando {{percent}} %",
+      "waiting": "Esperando al sitio, se reintentará pronto…",
+      "adding": "Añadiendo a Medios…",
+      "added": "Importado y añadido a la línea de tiempo.",
+      "failed": "No se pudo importar ese enlace."
     }
   },
   "creator": {

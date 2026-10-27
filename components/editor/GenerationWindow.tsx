@@ -5,7 +5,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CreatorStudioScreen } from '../../screens/AIChatScreen';
 import { importGeneratedMedia, type GeneratedMediaSource } from '../../libs/editor/importGeneratedMedia';
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
-import { toastError } from '../../libs/toast';
+import { toastError, toastSuccess } from '../../libs/toast';
+import TurntableRecorder from './TurntableRecorder';
 
 export default function GenerationWindow({ state, onState, draft, onAdd }: {
   state: 'closed' | 'open' | 'minimized';
@@ -44,6 +45,21 @@ export default function GenerationWindow({ state, onState, draft, onAdd }: {
       onState('minimized');
     } catch { if (!controller.current.signal.aborted) toastError(t('common.somethingWentWrong')); }
   }, [getImported, onAdd, onState, t]);
+  // 3D results become a spinning clip, one recording at a time.
+  const [models, setModels] = useState<{ id: string; url: string; name?: string }[]>([]);
+  const importModel = useCallback((url: string, name?: string) => {
+    setModels(old => old.some(job => job.url === url) ? old : [...old, { id: `turntable-${Date.now()}`, url, name }]);
+    toastSuccess(t('editor.generate3d.note'));
+  }, [t]);
+  const modelDone = useCallback((id: string, videoDataUrl: string | null) => {
+    const job = models.find(item => item.id === id);
+    setModels(old => old.filter(item => item.id !== id));
+    if (!job || controller.current.signal.aborted) return;
+    if (!videoDataUrl) { toastError(t('creator.studioGenerationFailed')); return; }
+    void importGeneratedMedia({ url: videoDataUrl, kind: 'video', name: job.name }, controller.current.signal)
+      .then(media => { if (!controller.current.signal.aborted) onAdd(media); })
+      .catch(() => { if (!controller.current.signal.aborted) toastError(t('common.somethingWentWrong')); });
+  }, [models, onAdd, t]);
   const title = t('upload.generateContent', { defaultValue: 'Generate content' });
   return <>
     {state === 'minimized' && <Pressable accessibilityRole="button" accessibilityLabel={title}
@@ -60,8 +76,9 @@ export default function GenerationWindow({ state, onState, draft, onAdd }: {
           <Pressable onPress={() => onState('minimized')} accessibilityRole="button" accessibilityLabel={t('calls.minimize')} className="p-2"><Text className="text-theme-neutrals-100">−</Text></Pressable>
           <Pressable onPress={() => onState('closed')} accessibilityRole="button" accessibilityLabel={t('common.close')} className="p-2"><Text className="text-theme-neutrals-100">×</Text></Pressable>
         </View>
-        <CreatorStudioScreen embedded editorDraft={draft} onGenerated={importResult} onUseGenerated={useResult} />
+        <CreatorStudioScreen embedded editorDraft={draft} onGenerated={importResult} onUseGenerated={useResult} onGeneratedModel={importModel} />
       </View>
     </KeyboardAvoidingView>}
+    <TurntableRecorder job={models[0] ?? null} onDone={modelDone} />
   </>;
 }

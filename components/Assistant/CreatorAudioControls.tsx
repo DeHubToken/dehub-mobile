@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { useTranslation } from 'react-i18next';
 import { CREATOR_AUDIO_TASKS, CREATOR_AUDIO_VOICES, CREATOR_SPEECH_MODELS, type CreatorAudioSettings, type CreatorAudioTask } from '../../libs/creatorAudio';
 import { toastError } from '../../libs/toast';
 import { useUser } from '../../context/AuthContext';
+import { listCustomVoices, type CustomVoice } from '../../services/voiceClone.service';
+import { VoiceCloneSheet } from './VoiceCloneSheet';
 
 interface Props { value?: CreatorAudioSettings; onChange: (value: CreatorAudioSettings | undefined) => void; text: string; disabled: boolean; scopeKey?: string }
 export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey }: Props) {
@@ -14,6 +16,15 @@ export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey
   const active = useRef({ owner, scopeKey, value });
   active.current = { owner, scopeKey, value };
   const spec = value ? CREATOR_AUDIO_TASKS[value.task] : undefined;
+  const [mine, setMine] = useState<CustomVoice[]>([]);
+  const [cloneOpen, setCloneOpen] = useState(false);
+  const loadMine = useCallback(async () => {
+    if (!owner) { setMine([]); return []; }
+    const voices = await listCustomVoices(owner).catch(() => []);
+    if (active.current.owner === owner) setMine(voices);
+    return voices;
+  }, [owner]);
+  useEffect(() => { if (spec?.usesVoice) void loadMine(); }, [spec?.usesVoice, loadMine]);
   const chip = (label: string, onPress: () => void, selected = false) => <Pressable key={label} onPress={onPress} disabled={disabled}
     accessibilityRole="button" accessibilityState={{ selected, disabled }} className={`rounded-xl border px-3 py-2 ${selected ? 'border-theme-neutrals-100' : 'border-theme-neutrals-700'}`}>
     <Text className="text-xs text-theme-neutrals-100">{label}</Text></Pressable>;
@@ -38,8 +49,17 @@ export function CreatorAudioControls({ value, onChange, text, disabled, scopeKey
     {value && <>
       <Text className="text-xs text-theme-neutrals-400">{t('creator.priceFreeRateLimited')}</Text>
       {spec?.usesVoice && <ScrollView horizontal contentContainerStyle={{ gap: 6 }} keyboardShouldPersistTaps="handled">
+        {mine.map(voice => chip(voice.name, () => onChange({ ...value, voiceId: voice.elevenlabs_voice_id }), value.voiceId === voice.elevenlabs_voice_id))}
         {CREATOR_AUDIO_VOICES.map(voice => chip(voice.name, () => onChange({ ...value, voiceId: voice.id }), (value.voiceId || CREATOR_AUDIO_VOICES[0].id) === voice.id))}
+        {!!owner && chip(`+ ${t('editor.voiceClone.pickerLabel')}`, () => setCloneOpen(true))}
       </ScrollView>}
+      <VoiceCloneSheet visible={cloneOpen} wallet={owner} onClose={() => setCloneOpen(false)} onCloned={(voiceId) => {
+        const original = active.current;
+        void loadMine().then(voices => {
+          const id = voiceId || voices[0]?.elevenlabs_voice_id;
+          if (id && original.value && active.current.value === original.value) onChange({ ...original.value, voiceId: id });
+        });
+      }} />
       {value.task === 'speech' && <View className="gap-1">
         <Text className="text-xs text-theme-neutrals-400">{t('creator.audioExportFormat')}</Text>
         <View className="flex-row gap-2">
