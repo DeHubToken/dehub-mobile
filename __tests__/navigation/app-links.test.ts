@@ -59,6 +59,12 @@ beforeEach(() => {
 });
 
 describe('a link that starts the app', () => {
+  it.each(['/compare', '/app/compare'])('opens %s as a native comparison with its filters', (path) => {
+    const state = resolve(`${path}?platform=kick&q=live`);
+    expect(appStack(state)).toEqual(['Root', 'Compare']);
+    expect(target(state).params).toEqual({ platform: 'kick', q: 'live' });
+    expect(openBrowser).not.toHaveBeenCalled();
+  });
   it.each(['/feedback', '/app/feedback'])('opens %s with the tool context and Home underneath', (path) => {
     const state = resolve(`${path}?source=converter`);
     expect(appStack(state)).toEqual(['Root', 'Feedback']);
