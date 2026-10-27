@@ -60,6 +60,7 @@ jest.mock('../../libs/misc', () => ({ persistableAvatar: (u?: string | null) => 
 const mockToastError = jest.fn();
 jest.mock('../../libs/toast', () => ({ toastError: (...a: unknown[]) => mockToastError(...a), toastInfo: jest.fn() }));
 jest.mock('../../libs/auth.utils', () => ({ getAuthToken: jest.fn() }));
+jest.mock('../../libs/storage-upload', () => ({ storageWalletHeaders: jest.fn(async () => ({ 'x-wallet-address': ME, 'x-wallet-session': 'signed-fixture' })) }));
 jest.mock('../../services/ai.service', () => ({ dehubAuthHeaders: jest.fn() }));
 jest.mock('../../libs/supabase-wallet-client', () => ({ withWalletHeader: (q: unknown) => q }));
 jest.mock('../../libs/stage-recording-delete', () => ({ deleteStageRecordings: jest.fn() }));
@@ -124,6 +125,7 @@ it('uploads the host recording when the host leaves without pressing End', async
   await act(async () => { await result.current.leaveSpace(); });
   await waitFor(() => expect(mockUpload).toHaveBeenCalledTimes(1));
   expect(mockUpload.mock.calls[0][0]).toBe('https://sb.test/storage/v1/object/stage-recordings/mine/recording.aac');
+  expect(mockUpload.mock.calls[0][2].headers).toMatchObject({ 'x-wallet-address': ME, 'x-wallet-session': 'signed-fixture' });
 });
 
 it('uploads the recording once when the host presses End', async () => {
