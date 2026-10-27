@@ -15017,5 +15017,81 @@
     "cancelled": "Annulé",
     "moveFailed": "Impossible de le déplacer. Réessaie.",
     "seeAll": "Voir tout ce que tu as planifié"
+  },
+  "welcome": {
+    "about": {
+      "title": "Bienvenue sur DeHub",
+      "sub": "Ta date de naissance reste privée. Choisis un style, tu pourras le changer à tout moment.",
+      "birthday": "Date de naissance",
+      "pick": "Choisis ta date de naissance",
+      "day": "Jour",
+      "month": "Mois",
+      "year": "Année",
+      "invalid": "Saisis ta date de naissance complète.",
+      "tooYoung": "Tu dois avoir {{age}} ans ou plus pour utiliser DeHub.",
+      "theme": "Ton style"
+    },
+    "name": {
+      "title": "Ton nom",
+      "sub": "C'est le nom que les gens voient sur tes publications.",
+      "placeholder": "Ton nom"
+    },
+    "username": {
+      "title": "Ton @pseudo",
+      "sub": "Lettres, chiffres et tirets bas. Tu pourras le changer plus tard.",
+      "yours": "@{{name}} est à toi"
+    },
+    "photo": {
+      "title": "Ta photo",
+      "sub": "Facultatif. On suit plus vite quand on voit un visage.",
+      "choose": "Choisir une photo",
+      "change": "En choisir une autre"
+    },
+    "interests": {
+      "title": "Tes centres d'intérêt",
+      "sub": "Choisis-en au moins 3. Ils passent en premier dans tes catégories."
+    },
+    "people": {
+      "title": "Tes gens",
+      "sub": "Touche pour suivre. Leurs publications rempliront ton fil Abonnements.",
+      "empty": "Aucune suggestion pour le moment. Explorer t'en propose davantage.",
+      "followers": "{{count}} abonnés"
+    },
+    "done": {
+      "title": "Super, {{name}}",
+      "sub": "Tout le monde voit cette carte dès aujourd'hui.",
+      "eyebrow": "Profil en ligne"
+    },
+    "card": {
+      "name": "Ton nom",
+      "interests": "Tes centres d'intérêt",
+      "following": "abonnements",
+      "followers": "abonnés"
+    },
+    "topic": {
+      "music": "Musique",
+      "art": "Art",
+      "gaming": "Jeux vidéo",
+      "crypto": "Crypto",
+      "sports": "Sport",
+      "travel": "Voyage",
+      "comedy": "Humour",
+      "film": "Cinéma",
+      "anime": "Anime",
+      "cars": "Voitures",
+      "podcast": "Podcast",
+      "animals": "Animaux",
+      "tech": "Tech",
+      "food": "Cuisine",
+      "news": "Actualités",
+      "science": "Science"
+    },
+    "back": "Retour",
+    "enter": "Entrer dans DeHub",
+    "skipPhoto": "Passer pour l'instant",
+    "pickMore": "Encore {{count}} à choisir",
+    "preview": "Aperçu",
+    "cardHint": "Voici comment les gens te verront",
+    "followFailed": "Impossible de suivre. Réessaie."
   }
 }
