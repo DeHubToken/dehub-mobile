@@ -10112,6 +10112,59 @@
       "noRetakes": "No retakes found",
       "retakesRemoved": "Removed {{count}} retake(s), kept the last take",
       "retakesFailed": "Could not remove retakes from this clip"
+    },
+    "speakers": {
+      "find": "Find speakers",
+      "name": "Speaker {{number}}",
+      "onlyOne": "Only one speaker found.",
+      "failed": "Could not find the speakers.",
+      "kept": "Kept only {{name}}.",
+      "editFailed": "That edit did not fit this clip.",
+      "split": "Split into {{count}} speaker shots.",
+      "keepOnly": "Keep only",
+      "splitAction": "Cut at each speaker change"
+    },
+    "generate3d": {
+      "label": "3D",
+      "placeholder": "Describe the 3D object you want",
+      "queued": "Building your 3D object. It lands in the Generations tab.",
+      "note": "3D objects come into Media as a short spinning clip with a see-through background."
+    },
+    "voiceClone": {
+      "pickerLabel": "Clone your voice",
+      "pickerDetail": "Voiceovers in your own voice",
+      "title": "Clone your voice",
+      "description": "Record yourself or pick a clip of you talking. You pay once and your voice is yours for every voiceover.",
+      "defaultName": "My voice",
+      "record": "Record a sample (30 seconds to 2 minutes)",
+      "stop": "Stop recording",
+      "fromMedia": "Or use a clip from Media",
+      "recorded": "Your recording",
+      "sample": "Sample: {{name}}",
+      "hint": "Clear speech with no music works best.",
+      "noMic": "Could not use the microphone.",
+      "sampleFailed": "Could not read the sound from that clip.",
+      "pay": "Clone for {{amount}} DHB",
+      "useFree": "Clone (already paid)",
+      "owned": "Your voice “{{name}}” is already set up. Pick it from the voice list.",
+      "useOwned": "Use my voice",
+      "ready": "“{{name}}” is ready for voiceovers.",
+      "failed": "Voice cloning failed.",
+      "paidFailed": "Your payment is saved. Open this again and the next try is free.",
+      "consent": "Only clone your own voice, or one you have permission to use."
+    },
+    "linkImport": {
+      "open": "Import from a link",
+      "placeholder": "Paste a YouTube, TikTok or other link",
+      "rights": "I own this video or have permission to use it",
+      "audioOnly": "Sound only",
+      "go": "Import",
+      "queued": "Queued…",
+      "downloading": "Downloading {{percent}}%",
+      "waiting": "Waiting on the site, trying again soon…",
+      "adding": "Adding to Media…",
+      "added": "Imported and added to the timeline.",
+      "failed": "Could not import that link."
     }
   },
   "creator": {
