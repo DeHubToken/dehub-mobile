@@ -6263,6 +6263,7 @@
   "communities": {
     "shareLink": "分享链接",
     "pinnedMore": "更多",
+    "showFirst": "先显示",
     "sendInMessage": "发送邀请",
     "existingPost": {
       "add": "添加现有帖子",

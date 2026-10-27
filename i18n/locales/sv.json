@@ -6277,6 +6277,7 @@
   "communities": {
     "shareLink": "Dela länk",
     "pinnedMore": "Mer",
+    "showFirst": "Visa först",
     "sendInMessage": "Skicka inbjudan",
     "existingPost": {
       "add": "Lägg till befintlig post",

@@ -6153,6 +6153,7 @@
   "communities": {
     "shareLink": "分享链接",
     "pinnedMore": "更多",
+    "showFirst": "优先显示",
     "sendInMessage": "发送邀请",
     "title": "社区",
     "create": "创建",

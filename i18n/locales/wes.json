@@ -6262,6 +6262,7 @@
   "communities": {
     "shareLink": "Share di link",
     "pinnedMore": "More",
+    "showFirst": "Show am fus",
     "sendInMessage": "Send Invite",
     "existingPost": {
       "placeholder": "Link fo DeHub post or post ID",

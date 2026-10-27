@@ -3766,6 +3766,7 @@
   "communities": {
     "shareLink": "Share link",
     "pinnedMore": "More",
+    "showFirst": "Show first",
     "sendInMessage": "Send Invite",
     "followerInvites": {
       "title": "Invite followers",
