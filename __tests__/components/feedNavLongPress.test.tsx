@@ -19,6 +19,7 @@ jest.mock('react-native-reanimated', () => ({
   Easing: { bezier: () => null }, withTiming: (v: number) => v, cancelAnimation: jest.fn(), runOnJS: (fn: unknown) => fn,
 }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
+jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Defs: 'Defs', RadialGradient: 'RadialGradient', Stop: 'Stop', Rect: 'Rect', Circle: 'Circle', Ellipse: 'Ellipse' }));
 jest.mock('../../components/ui/GlassIndicator', () => ({ __esModule: true, default: () => null, GLASS_SHADOW: {} }));
 jest.mock('../../components/ui/FrostedPill', () => () => null);
 jest.mock('../../components/ui/NavPillSurface', () => ({ __esModule: true, default: () => null, NAV_PILL_RADIUS: 16, NAV_PILL_SHADOW: {} }));
