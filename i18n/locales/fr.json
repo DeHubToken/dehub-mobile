@@ -1965,6 +1965,11 @@
     "title": "Notifications",
     "loadFailed": "Impossible de charger les notifications",
     "markAllRead": "Tout marquer comme lu",
+    "allSettings": "Tous les réglages de notifications",
+    "groupNew": "Nouvelles",
+    "groupToday": "Aujourd'hui",
+    "groupThisWeek": "Cette semaine",
+    "groupEarlier": "Plus tôt",
     "settings": "Paramètres de notifications",
     "actions": "Actions",
     "markAllAsRead": "Tout marquer comme lu",
@@ -7958,7 +7963,19 @@
       "translateCount": "Traduire {{count}} sous-titres",
       "translationDone": "{{count}} sous-titres traduits",
       "translationFailed": "La traduction a échoué. Vos sous-titres restent inchangés.",
-      "lockedTranslation": "Déverrouillez les sous-titres verrouillés pour les inclure."
+      "lockedTranslation": "Déverrouillez les sous-titres verrouillés pour les inclure.",
+      "style": "Style des sous-titres",
+      "styles": {
+        "classic": "Classique",
+        "boxed": "Encadré",
+        "bold": "Gras",
+        "wordpop": "Mot par mot",
+        "rapid": "Apparition rapide",
+        "beast": "Mode bête",
+        "stacked": "Empilé",
+        "serif": "Serif",
+        "bubble": "Bulle"
+      }
     },
     "app": {
       "newDesign": "Nouveau design",
@@ -8028,7 +8045,11 @@
       "vibrant": "Éclatant",
       "cyber": "Cyber",
       "invert": "Inversé",
-      "strength": "Résistance du filtre : {{value}}%"
+      "strength": "Résistance du filtre : {{value}}%",
+      "fadedFilm": "Pellicule délavée",
+      "technicolor": "Technicolor",
+      "newsreel": "Actualités d'époque",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Recadrer",
@@ -8109,14 +8130,18 @@
       "pptx": "Présentation PowerPoint",
       "pptxHint": "Chaque page devient une image de diapositive, avec des notes et des liens du présentateur. Modifiez le texte et les éléments individuels dans la conception d'origine.",
       "section": "Section nommée",
-      "transparent": "Fond transparent"
+      "transparent": "Fond transparent",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Télécharge un ZIP contenant votre timeline en FCPXML et XML Premiere ainsi que tous les médias, pour terminer le montage dans Premiere Pro, Final Cut Pro ou DaVinci Resolve. Le texte devient des marqueurs ; les effets restent dans DeHub."
     },
     "adjust": {
       "auto": "Amélioration auto",
       "autoFailed": "Impossible d'analyser cette image.",
       "tint": "Teinte {{value}}",
       "vignette": "Vignetage {{value}} %",
-      "warmth": "Chaleur {{value}}"
+      "warmth": "Chaleur {{value}}",
+      "halation": "Halo {{value}} %",
+      "scanlines": "Lignes de balayage {{value}} %"
     },
     "draw": {
       "colour": "Couleur du stylo",
@@ -8208,7 +8233,47 @@
       "suggestTitle": "Ajoute un grand titre en gras en haut et un sous-titre plus petit en dessous",
       "undo": "Annuler",
       "openGenerator": "Vérifier et générer",
-      "working": "Je m'en occupe…"
+      "working": "Je m'en occupe…",
+      "stopped": "Arrêté. Rien d'autre n'a été modifié.",
+      "stop": "Arrêter",
+      "queue": "Ajouter à la file",
+      "queued": "{{count}} en attente",
+      "restore": "Restaurer à ce point",
+      "restoreHint": "Remet le projet tel qu'il était avant ce message. Annuler le rétablit.",
+      "restored": "Projet restauré à l'état précédant ce message. Appuyez sur annuler pour retrouver la version la plus récente.",
+      "rewrite": "Clarifier ma demande",
+      "rewriteFailed": "Impossible de reformuler. Votre texte est inchangé.",
+      "feedback": "Cette réponse vous a-t-elle aidé ?",
+      "good": "Bonne réponse",
+      "bad": "Mauvaise réponse",
+      "retryPrefix": "Ce n'était pas ça. À la place, ",
+      "recipesTitle": "Recettes",
+      "recipe": {
+        "podcastClip": {
+          "label": "Extrait de podcast",
+          "prompt": "Trouve le meilleur moment de 30 secondes, coupe autour, ajoute des sous-titres Word Pop et passe en 9:16."
+        },
+        "talkingHead": {
+          "label": "Face caméra propre",
+          "prompt": "Coupe les longues pauses, ajoute des sous-titres Classic et un léger rendu chaud."
+        },
+        "productPromo": {
+          "label": "Promo produit",
+          "prompt": "Crée une promo de 15 secondes : titre percutant au début, transitions Zoom in entre les clips, sous-titres Bold et musique entraînante."
+        },
+        "hypeReel": {
+          "label": "Reel énergique",
+          "prompt": "Coupe les clips sur le rythme de la musique, avec des transitions Fly up et le rendu Technicolor."
+        },
+        "retroEdit": {
+          "label": "Montage rétro",
+          "prompt": "Donne à chaque clip le rendu VHS, ajoute un grand titre serif et utilise des transitions Fade."
+        },
+        "tutorial": {
+          "label": "Tutoriel",
+          "prompt": "Ajoute un titre pour chaque étape, des sous-titres Boxed et ralentis le moment clé à 0,5x."
+        }
+      }
     },
     "brand": {
       "addColor": "Ajouter une couleur de marque",
@@ -8345,7 +8410,11 @@
       "rendering": "Rendu de la vidéo… {{percent}} %",
       "mp4": "Vidéo MP4",
       "exportHint": "Gardez l’éditeur ouvert pendant le rendu de votre vidéo.",
-      "tooLarge": "Ce fichier est trop volumineux pour l’éditeur. La limite est de 400 MB."
+      "tooLarge": "Ce fichier est trop volumineux pour l’éditeur. La limite est de 400 MB.",
+      "tZoomIn": "Zoom avant",
+      "tZoomOut": "Zoom arrière",
+      "tFlyUp": "Envol vers le haut",
+      "tFlyDown": "Envol vers le bas"
     },
     "motion": {
       "title": "Mouvement",
@@ -9647,6 +9716,25 @@
       "zoomIn": "Zoom sur la toile",
       "zoomOut": "Zoom arrière sur la toile",
       "pan": "Déplacer le canevas"
+    },
+    "clipFix": {
+      "detach": "Détacher l'audio",
+      "detached": "L'audio est maintenant un clip séparé",
+      "detachFailed": "Impossible de détacher l'audio de ce clip",
+      "removeBars": "Retirer les bandes noires",
+      "scanning": "Analyse des images…",
+      "noBars": "Aucune bande noire trouvée",
+      "barsRemoved": "Bandes noires rognées",
+      "barsFailed": "Impossible d'analyser les bandes noires de cette vidéo",
+      "reframe": "Recadrage auto",
+      "reframeHint": "La vidéo s'adapte déjà à ce format",
+      "reframed": "Recadré pour suivre l'action",
+      "reframeFailed": "Impossible de recadrer cette vidéo",
+      "retakes": "Retirer les reprises",
+      "listening": "Écoute…",
+      "noRetakes": "Aucune reprise trouvée",
+      "retakesRemoved": "{{count}} reprise(s) retirée(s), dernière prise conservée",
+      "retakesFailed": "Impossible de retirer les reprises de ce clip"
     }
   },
   "creator": {
@@ -12615,6 +12703,8 @@
     "787bcf985c06": "Impossible de changer la couverture",
     "78b02b1a598a": "Échec de l'enregistrement du portefeuille",
     "78ffacb7abe7": "Générer une vidéo Kling · bande-son originale",
+    "22577ebd908e": "Générer une vidéo Wan 3.0 · bande-son originale",
+    "1fa2357ab7e1": "Générer une vidéo Seedance 720p · bande-son originale",
     "790fd7d39a4c": "Le toucher du tigre",
     "7910eea972da": "Sourire diabolique effrayant",
     "792678842e2f": "Publication programmée",
@@ -14346,6 +14436,15 @@
     "1a00975a0ac1": "@channel"
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "Nouvel abonné",
+      "subscribe": "Nouveau membre",
+      "subscribedTo": "Abonné · {{plan}}",
+      "gifted_one": "A offert un abonnement",
+      "gifted_other": "A offert {{count}} abonnements",
+      "share": "A partagé le live",
+      "join": "Vient d'arriver"
+    },
     "wheelLanded": "{{name}} spun : {{result}}",
     "someone": "Quelqu'un",
     "newFollower": "Nouveau follower : {{name}}",
@@ -14379,6 +14478,31 @@
     "tipJar": "Pot cadeau"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Destinations multistream",
+      "intro": "Lancez votre live une seule fois sur DeHub et nous le diffusons gratuitement sur chaque plateforme activée ici. Cela démarre quelques secondes après le début du live.",
+      "add": "Ajouter une destination",
+      "empty": "Aucune destination. Ajoutez Twitch, YouTube, Kick ou tout serveur RTMP.",
+      "platform": "Plateforme",
+      "label": "Nom (facultatif)",
+      "server": "URL du serveur",
+      "key": "Clé de stream",
+      "findKey": "Trouver votre serveur et votre clé {{name}}",
+      "customHint": "Collez le serveur RTMP et la clé fournis par votre plateforme.",
+      "keyNote": "Votre clé est chiffrée sur nos serveurs et ne sera plus jamais affichée.",
+      "save": "Ajouter",
+      "cancel": "Annuler",
+      "added": "{{name}} ajouté",
+      "saveFailed": "Impossible d'enregistrer la destination",
+      "toggle": "Diffuser vers cette destination",
+      "states": {
+        "off": "Désactivé",
+        "idle": "Prêt",
+        "connecting": "Connexion",
+        "live": "En direct",
+        "error": "Erreur"
+      }
+    },
     "controls": {
       "title": "Contrôles rapides",
       "intro": "Pour le milieu du flux. Chaque commutateur tient pour tous ceux qui regardent, dans l'application et dans OBS, jusqu'à ce que vous le retourniez.",
@@ -14757,5 +14881,129 @@
     "fingerprint": "Empreinte",
     "exploreFirst": "Explorer d'abord",
     "codeNote": "On t'envoie un code par e-mail, sans mot de passe."
+  },
+  "studioDeck": {
+    "remove": "Retirer",
+    "background": {
+      "title": "Arrière-plan",
+      "modes": {
+        "none": "Désactivé",
+        "blur": "Flou",
+        "color": "Couleur",
+        "image": "Image"
+      },
+      "failed": "Impossible d'activer la suppression d'arrière-plan sur cet appareil.",
+      "hint": "Fonctionne sur votre appareil. La première fois, le chargement prend quelques secondes."
+    },
+    "scenes": {
+      "title": "Scènes",
+      "picture": "Image",
+      "countdown": "Compte à rebours",
+      "noCountdown": "Sans compte à rebours",
+      "minutes": "{{count}} min",
+      "names": {
+        "starting": "Ça commence bientôt",
+        "chatting": "Discussion",
+        "brb": "Je reviens",
+        "ending": "Fin du live"
+      },
+      "hints": {
+        "starting": "Carte avec compte à rebours",
+        "chatting": "Caméra en plein écran",
+        "brb": "Carte, micro coupé",
+        "ending": "Carte de remerciement"
+      },
+      "subtitles": {
+        "starting": "Le live commence dans",
+        "brb": "De retour dans un instant",
+        "ending": "Merci d'avoir regardé"
+      }
+    },
+    "widgets": {
+      "title": "Afficher les widgets dans ma vidéo",
+      "hint": "Les alertes, barres d'objectif et le chat sont dessinés dans votre live, donc visibles aussi sur Twitch, YouTube et les autres plateformes.",
+      "failed": "Impossible de changer l'affichage des widgets. Réessayez.",
+      "tab": "Widgets"
+    },
+    "sources": {
+      "title": "Sources",
+      "addImage": "Image ou logo",
+      "failed": "Impossible d'ajouter cette source.",
+      "hint": "Les sources sont dessinées sur votre image pour tous les spectateurs et toutes les plateformes.",
+      "image": "Image",
+      "show": "Afficher dans le live",
+      "positions": {
+        "top-left": "Haut gauche",
+        "top-right": "Haut droite",
+        "bottom-left": "Bas gauche",
+        "bottom-right": "Bas droite",
+        "center": "Centre"
+      },
+      "sizes": {
+        "small": "Petit",
+        "medium": "Moyen",
+        "large": "Grand"
+      }
+    },
+    "phone": {
+      "title": "Studio"
+    }
+  },
+  "whenSheet": {
+    "title": "Quand ?",
+    "tonight": "Ce soir",
+    "inAnHour": "Dans une heure",
+    "tomorrow": "Demain",
+    "today": "Aujourd'hui",
+    "primeTime": "Heure de pointe",
+    "scheduleFor": "Programmer pour {{when}}",
+    "liveTip": "Tes abonnés peuvent activer un rappel. Tu lances le direct toi-même le moment venu.",
+    "stageTip": "Il apparaît tout de suite dans À venir, pour que chacun puisse appuyer sur Me rappeler.",
+    "typePlaceholder": "Tape une heure, comme \"fri 8pm\" ou \"in 2 hours\"",
+    "typeLabel": "Tape une heure",
+    "typeHelp": "Essaie \"tonight\", \"tomorrow 9am\", \"sat noon\" ou \"30 oct 7pm\".",
+    "orPickDay": "Ou choisis un jour",
+    "earlier": "15 minutes plus tôt",
+    "later": "15 minutes plus tard",
+    "tooSoonMin": "Choisis une heure dans au moins {{count}} minutes.",
+    "tooSoon": "Choisis une heure à venir.",
+    "zone": "Ton heure ({{zone}}). Les autres la voient à leur heure.",
+    "remove": "Retirer la programmation",
+    "startsIn": "Commence dans {{time}}",
+    "bestTime": "Meilleur moment",
+    "fansOnline": "Quand mes fans sont-ils en ligne ?",
+    "show": "Afficher",
+    "hide": "Masquer",
+    "fansBasis": "Plus c'est clair, plus vos abonnés regardaient, sur les {{count}} derniers jours.",
+    "everyoneBasis": "Pas encore assez d'activité d'abonnés, voici donc tout DeHub."
+  },
+  "planned": {
+    "title": "Planifié",
+    "subtitle": "Les posts, lives et Stages que tu as programmés",
+    "seoTitle": "Planifié · DeHub",
+    "seoDescription": "Tes posts, lives et Stages programmés sur DeHub, au même endroit.",
+    "all": "Tout",
+    "posts": "Posts",
+    "lives": "Lives",
+    "stages": "Stages",
+    "post": "Post",
+    "live": "Live",
+    "stage": "Stage",
+    "untitledPost": "Post",
+    "untitledLive": "Live",
+    "signIn": "Connecte-toi pour voir ce que tu as planifié",
+    "loading": "Chargement…",
+    "emptyTitle": "Rien de planifié pour l'instant",
+    "emptyBody": "Choisis « Quand ? » en créant un post, un live ou un Stage et il apparaît ici.",
+    "move": "Déplacer",
+    "postNow": "Publier maintenant",
+    "startNow": "Démarrer maintenant",
+    "cancel": "Annuler",
+    "confirmCancel": "Touche encore pour annuler",
+    "moved": "Déplacé à {{when}}",
+    "postingNow": "Publication dans moins d'une minute",
+    "cancelled": "Annulé",
+    "moveFailed": "Impossible de le déplacer. Réessaie.",
+    "seeAll": "Voir tout ce que tu as planifié"
   }
 }

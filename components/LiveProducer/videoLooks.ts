@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+import { STUDIO_BACKGROUND_PROCESSOR, STUDIO_OVERLAY_PROCESSOR } from "../../libs/phoneStudio";
 
 /**
  * Camera looks for the live producer.
@@ -58,10 +59,27 @@ export const VIDEO_LOOKS: VideoLook[] = [
 export const videoLooksSupported =
   Platform.OS === "android" || Platform.OS === "ios";
 
+/** What the phone studio needs from the effect chain, beyond the look. */
+export interface StudioChain {
+  /** Background removal is on (blur, colour or picture). */
+  background?: boolean;
+  /** A scene card or an overlay (logos, widgets) is set. */
+  overlay?: boolean;
+  /**
+   * Whether this binary registers the studio processors (libs/phoneStudio).
+   * Without it the names are never sent: they would be dropped natively
+   * anyway, but an old build should not be handed names it has never heard of.
+   */
+  supported?: boolean;
+}
+
 /**
- * The chain to hand `track._setVideoEffects` for a look.
+ * The chain to hand `track._setVideoEffects`: the look first, then the
+ * studio's background removal, then its cards and overlay — the order the
+ * native processors expect. The background is cut out of the graded picture,
+ * and nothing grades or cuts a card or a widget.
  *
- * "No look" is not the same thing on the two platforms. On Android an EMPTY
+ * "Nothing at all" is not the same thing on the two platforms. On Android an EMPTY
  * chain is fatal, not idle: react-native-webrtc's VideoEffectProcessor retains
  * every captured frame, and when no processor produces a replacement it hands
  * the original to the sink and releases it twice (videoEffects/
@@ -78,7 +96,14 @@ export const videoLooksSupported =
 export function videoEffectChain(
   look: VideoLookId,
   os: string = Platform.OS,
+  studio: StudioChain = {},
 ): string[] | null {
-  if (look && look !== "none") return [look];
+  const chain: string[] = [];
+  if (look && look !== "none") chain.push(look);
+  if (studio.supported) {
+    if (studio.background) chain.push(STUDIO_BACKGROUND_PROCESSOR);
+    if (studio.overlay) chain.push(STUDIO_OVERLAY_PROCESSOR);
+  }
+  if (chain.length) return chain;
   return os === "android" ? null : [];
 }

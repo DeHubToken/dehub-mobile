@@ -2,10 +2,11 @@ import { useTranslation as _useCopy } from 'react-i18next';
 import { useAppTheme } from '../../context/ThemeContext';
 import { GLASS_PLAYBACK_CONTROL } from '../../theme/skins';
 /**
- * VoiceNotePlayer — Telegram-style voice note waveform player.
- *
- * Features: animated waveform bars, seekable waveform (tap/drag),
- * smooth progress overlay, play/pause with auto-focus management.
+ * VoiceNotePlayer — the Stage Strip voice note player, matching the web's
+ * VoiceStripPlayer: a square play key, thin mirrored bars that fill as it
+ * plays and bounce around the playhead, the time and a speed chip. It sits
+ * bare in the row, with no box of its own. Tap or drag the bars to scrub.
+ * Comments, DMs, live and community chats.
  */
 import React, { memo, useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator, LayoutChangeEvent } from "react-native";
@@ -26,25 +27,23 @@ import Icon from "../ui/Icon";
 import { requestAudioFocus, releaseAudioFocus } from "../../libs/audioFocus";
 import { stopActivePreview } from "../../libs/previewRegistry";
 
-const BAR_COUNT = 32;
-const BAR_WIDTH = 2.5;
+const BAR_WIDTH = 2;
 const BAR_GAP = 1.5;
-const MAX_BAR_HEIGHT = 24;
+const MAX_BAR_HEIGHT = 27;
 const MIN_BAR_HEIGHT = 3;
-const PLAYED_COLOR = "#FFFFFF";
-const UNPLAYED_COLOR = "rgba(255,255,255,0.25)";
-// Light themes: white bars vanished on the paper background.
-const PLAYED_COLOR_LIGHT = "#111111";
-const UNPLAYED_COLOR_LIGHT = "rgba(0,0,0,0.25)";
+const DEFAULT_BARS = 48;
+const RATES = [1, 1.5, 2] as const;
 
-const generateWaveform = (seed: string): number[] => {
+/** Seeded heights with a voice-like rise and fall, so a note keeps its shape. */
+const generateWaveform = (seed: string, count: number): number[] => {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
   const bars: number[] = [];
-  for (let i = 0; i < BAR_COUNT; i++) {
+  for (let i = 0; i < count; i++) {
     h = ((h * 16807) + 12345) & 0x7fffffff;
-    const normalized = (h % 100) / 100;
-    bars.push(MIN_BAR_HEIGHT + normalized * (MAX_BAR_HEIGHT - MIN_BAR_HEIGHT));
+    const noise = 0.35 + 0.65 * ((h % 100) / 100);
+    const env = 0.35 + 0.65 * Math.sin((i / Math.max(1, count - 1)) * Math.PI);
+    bars.push(MIN_BAR_HEIGHT + env * noise * (MAX_BAR_HEIGHT - MIN_BAR_HEIGHT));
   }
   return bars;
 };
@@ -58,34 +57,37 @@ const fmtTime = (s: number): string => {
 interface WaveformBarProps {
   height: number;
   index: number;
+  count: number;
   progress: SharedValue<number>;
   isSeeking: SharedValue<boolean>;
+  playing: SharedValue<number>;
   light?: boolean;
 }
 
-const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, progress, isSeeking, light }) => {
-  const threshold = (index + 0.5) / BAR_COUNT;
+const WaveformBar: React.FC<WaveformBarProps> = memo(({ height, index, count, progress, isSeeking, playing, light }) => {
+  const threshold = (index + 0.5) / count;
+  const ink = light ? "17,17,17" : "255,255,255";
+  const dim = 0.18 + (height / MAX_BAR_HEIGHT) * 0.14;
 
   const animStyle = useAnimatedStyle(() => {
     const p = progress.value;
     const played = p >= threshold;
-    const nearHead = Math.abs(p - threshold) < (2 / BAR_COUNT);
-
-    const scale = nearHead && !isSeeking.value ? 1.15 : 1;
-
+    const d = Math.abs(p - threshold);
+    // Bars just around the playhead bounce while it plays, like Stages.
+    const bounce = playing.value && !isSeeking.value && d < 0.07
+      ? 1 + 0.4 * (1 - d / 0.07) * Math.abs(Math.sin(playing.value * 14 + index * 1.7))
+      : 1;
     return {
-      width: BAR_WIDTH,
-      height,
-      borderRadius: BAR_WIDTH / 2,
-      marginRight: index < BAR_COUNT - 1 ? BAR_GAP : 0,
-      backgroundColor: light
-        ? (played ? PLAYED_COLOR_LIGHT : UNPLAYED_COLOR_LIGHT)
-        : (played ? PLAYED_COLOR : UNPLAYED_COLOR),
-      transform: [{ scaleY: withSpring(scale, { damping: 12, stiffness: 180 }) }],
+      backgroundColor: `rgba(${ink},${played ? 0.95 : dim})`,
+      transform: [{ scaleY: Math.min(MAX_BAR_HEIGHT / height, bounce) }],
     };
-  }, [height, index, light]);
+  }, [height, index, count, light]);
 
-  return <Animated.View style={animStyle} />;
+  return (
+    <Animated.View
+      style={[{ width: BAR_WIDTH, height, borderRadius: 1, marginRight: BAR_GAP }, animStyle]}
+    />
+  );
 });
 
 interface VoiceNotePlayerProps {
@@ -116,6 +118,12 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   const isSeeking = useSharedValue(false);
   const seekingRef = useRef(false);
   const waveformWidth = useRef(0);
+  const [barCount, setBarCount] = useState(DEFAULT_BARS);
+  const [rate, setRate] = useState<(typeof RATES)[number]>(1);
+  const rateRef = useRef<number>(1);
+  rateRef.current = rate;
+  // Seconds of wall clock while playing, 0 when stopped: drives the bounce.
+  const playingClock = useSharedValue(0);
   const isFocused = useIsFocused();
 
   // Holds a stable identity for the audio-focus registry. The player is read
@@ -131,7 +139,24 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     releaseAudioFocus(focusStopRef.current);
   });
 
-  const waveform = useMemo(() => generateWaveform(audioUrl), [audioUrl]);
+  const waveform = useMemo(() => generateWaveform(audioUrl, barCount), [audioUrl, barCount]);
+
+  useEffect(() => {
+    if (!isPlaying) { playingClock.value = 0; return; }
+    let raf = 0;
+    const tick = () => {
+      playingClock.value = Date.now() / 1000 % 1000 + 1;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isPlaying, playingClock]);
+
+  const cycleRate = useCallback(() => {
+    const next = RATES[(RATES.indexOf(rate) + 1) % RATES.length];
+    setRate(next);
+    try { player.setPlaybackRate(next); } catch { /* older players keep 1x */ }
+  }, [rate, player]);
 
   // Status arrives on the player's event stream. All positions are converted
   // from expo-audio's SECONDS into this component's millisecond convention.
@@ -186,6 +211,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       // The source is already attached by useAudioPlayer, so this only needs
       // to (re)start playback rather than tear down and rebuild a Sound.
       player.play();
+      try { player.setPlaybackRate(rateRef.current); } catch { /* 1x */ }
       setIsPlaying(true);
     } catch (e) {
       console.error("[VoiceNotePlayer] load error", e);
@@ -208,6 +234,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       stopActivePreview();
       await player.seekTo(0);
       player.play();
+      try { player.setPlaybackRate(rateRef.current); } catch { /* 1x */ }
       setIsPlaying(true);
       return;
     }
@@ -219,6 +246,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
       requestAudioFocus(focusStopRef.current);
       stopActivePreview();
       player.play();
+      try { player.setPlaybackRate(rateRef.current); } catch { /* 1x */ }
       setIsPlaying(true);
     }
   }, [isPlaying, isLoading, loadAndPlay, player]);
@@ -282,7 +310,10 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
   );
 
   const onWaveformLayout = useCallback((e: LayoutChangeEvent) => {
-    waveformWidth.current = e.nativeEvent.layout.width;
+    const w = e.nativeEvent.layout.width;
+    waveformWidth.current = w;
+    const n = Math.max(16, Math.floor((w + BAR_GAP) / (BAR_WIDTH + BAR_GAP)));
+    setBarCount((c) => (c === n ? c : n));
   }, []);
 
   const playButtonScale = useSharedValue(1);
@@ -304,25 +335,45 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
     ? fmtTime(positionSec)
     : fmtTime(durationProp ?? durationSec);
 
+  // Written dark: System Light's tone pass (libs/jsx/tone.js) flips these
+  // greys to ink on white. Only the animated bars, which skip that pass, pick
+  // their own light colours.
+  const glass = theme === 'glass';
+  const ink = '#FFFFFF';
+  const playBg = isPlaying ? '#FFFFFF' : 'rgba(255,255,255,0.15)';
+  const playFg = isPlaying ? '#000000' : ink;
+  const muted = 'rgba(255,255,255,0.55)';
+  const line = 'rgba(255,255,255,0.08)';
+
   return (
-    <View className={`flex-row items-center ${compact ? "py-1.5" : "py-2"}`}>
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: compact ? 1 : 2,
+        marginVertical: compact ? 2 : 4,
+        gap: 8,
+      }}
+    >
       <Animated.View style={playBtnStyle}>
         <TouchableOpacity
           onPress={handlePlayPress}
-          style={theme === 'glass' ? GLASS_PLAYBACK_CONTROL : undefined}
           activeOpacity={0.7}
           accessibilityRole="button"
           accessibilityLabel={isPlaying ? _copy("copy.e01c5d16178b", { defaultValue: "Pause voice note" }) : _copy("copy.89ce2d7c9996", { defaultValue: "Play voice note" })}
-          className="w-9 h-9 rounded-xl bg-white items-center justify-center mr-2.5"
+          style={[
+            { width: 34, height: 34, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: playBg },
+            glass && !isPlaying ? { ...GLASS_PLAYBACK_CONTROL, borderRadius: 9 } : null,
+          ]}
         >
           {isLoading ? (
-            <ActivityIndicator size="small" color={theme === 'glass' ? '#efffff' : '#000'} />
+            <ActivityIndicator size="small" color={playFg} />
           ) : (
             <Icon
               name={isPlaying ? "Pause" : "Play"}
-              size={16}
-              color={theme === 'glass' ? '#efffff' : '#000'}
-              fill={isPlaying ? undefined : theme === 'glass' ? '#efffff' : '#000'}
+              size={14}
+              color={playFg}
+              fill={playFg}
             />
           )}
         </TouchableOpacity>
@@ -330,8 +381,7 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
 
       <GestureDetector gesture={composedGesture}>
         <View
-          className="flex-row items-center flex-1"
-          style={{ height: MAX_BAR_HEIGHT + 4 }}
+          style={{ flex: 1, minWidth: 0, height: 30, flexDirection: 'row', alignItems: 'center', overflow: 'hidden' }}
           onLayout={onWaveformLayout}
         >
           {waveform.map((barHeight, i) => (
@@ -339,17 +389,39 @@ const VoiceNotePlayerComponent: React.FC<VoiceNotePlayerProps> = ({
               key={i}
               height={barHeight}
               index={i}
+              count={waveform.length}
               progress={progress}
               isSeeking={isSeeking}
+              playing={playingClock}
               light={isLight}
             />
           ))}
         </View>
       </GestureDetector>
 
-      <Text className="text-xs text-theme-neutrals-400 ml-2.5 min-w-[28px] text-right">
+      <Text style={{ fontSize: 11, color: muted, minWidth: 30, textAlign: 'right', fontVariant: ['tabular-nums'] }}>
         {timeLabel}
       </Text>
+      <TouchableOpacity
+        onPress={cycleRate}
+        activeOpacity={0.7}
+        accessibilityRole="button"
+        accessibilityLabel={_copy("copy.9bf75671f22f", { defaultValue: "Playback speed {{value1}}", value1: `${rate}x` })}
+        hitSlop={6}
+        style={{
+          height: 24,
+          minWidth: 30,
+          paddingHorizontal: 6,
+          borderRadius: 7,
+          borderWidth: 1,
+          borderColor: rate !== 1 ? 'transparent' : line,
+          backgroundColor: rate !== 1 ? 'rgba(255,255,255,0.2)' : 'transparent',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Text style={{ fontSize: 10, fontWeight: '700', color: rate !== 1 ? ink : muted, fontVariant: ['tabular-nums'] }}>{`${rate}x`}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

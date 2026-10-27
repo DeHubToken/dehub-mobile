@@ -88,6 +88,7 @@ import CreatorSupportAd from './CreatorSupportAd';
 import { DIRECT_QUICK_AMOUNTS, MIN_DIRECT_TIP, directTipToken } from "../../libs/direct-tip-tokens";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
 import { SheetGlassFill } from "../ui/SheetGlass";
+import SheetBackdrop, { useSheetBackdrop } from "../ui/SheetBackdrop";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const DEHUB_COIN = require("../../assets/web-icons/dehub-coin.png");
@@ -203,6 +204,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   // ── Animation ────────────────────────────────────────────────────────────
   const translateY = useSharedValue(SHEET_MAX_HEIGHT);
   const backdropOpacity = useSharedValue(0);
+  const backdrop = useSheetBackdrop();
   const [isFullyClosed, setIsFullyClosed] = useSheetClosed(visible);
 
   useEffect(() => {
@@ -654,13 +656,8 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
           style={{ flex: 1 }}
         >
           {/* Backdrop */}
-          <Animated.View
-            style={[
-              StyleSheet.absoluteFill,
-              { backgroundColor: "rgba(0,0,0,0.5)" },
-              backdropStyle,
-            ]}
-          >
+          <Animated.View style={[StyleSheet.absoluteFill, backdropStyle]}>
+            <SheetBackdrop backdrop={backdrop} />
             <Pressable
               style={{ flex: 1 }}
               onPress={isBusy ? undefined : closeSheet}
@@ -676,7 +673,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             ]}
           >
             {/* Solid panel — see the note at the top of this file. */}
-            <SheetGlassFill style={[StyleSheet.absoluteFill, styles.overlay]} />
+            <SheetGlassFill backdropBlurred={backdrop.blurred} style={[StyleSheet.absoluteFill, styles.overlay]} />
 
             {/* Drag handle */}
             <GestureDetector gesture={panGesture}>

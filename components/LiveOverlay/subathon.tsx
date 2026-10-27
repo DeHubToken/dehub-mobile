@@ -3,9 +3,10 @@
  * state the stream API keeps. The twin of dehubweb's overlay/subathon.tsx.
  */
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Text, View, type ViewStyle } from "react-native";
+import { Text, View } from "react-native";
 import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
+import { Eyebrow, Glass, ListRow, Medal, withAlpha } from "./premium";
 import { useQuery } from "@tanstack/react-query";
 import { useWebSocket } from "../../context/WebSocketContext";
 import { getPointsBoard } from "../../services/live.service";
@@ -75,11 +76,6 @@ export function clockOf(totalSeconds: number): string {
 
 const HEX = /^#[0-9a-f]{6}$/i;
 const FLASH_MS = 2500;
-const GLASS: ViewStyle = {
-  backgroundColor: "rgba(10,10,12,0.72)",
-  borderWidth: 1,
-  borderColor: "rgba(255,255,255,0.16)",
-};
 
 export function SubathonTimer({ settings, box }: { settings: Record<string, unknown>; box: { width: number; height: number } }) {
   const { t } = useTranslation();
@@ -98,11 +94,18 @@ export function SubathonTimer({ settings, box }: { settings: Record<string, unkn
   const flash = lastAdd && now - lastAdd.at < FLASH_MS ? lastAdd.seconds : 0;
   const h = box.height;
   return (
-    <View style={[GLASS, { flex: 1, justifyContent: "center", paddingHorizontal: h * 0.2, borderRadius: h * 0.22 }]}>
-      <Text numberOfLines={1} style={{ color: "rgba(255,255,255,0.75)", fontWeight: "600", fontSize: h * 0.2 }}>
-        {label}
-      </Text>
-      <Text style={{ color: HEX.test(tint) ? tint : "#ffffff", fontWeight: "800", fontSize: left === 0 ? h * 0.3 : h * 0.42 }}>
+    <Glass radius={h * 0.26} shadow={false} style={{ flex: 1, justifyContent: "center", paddingHorizontal: h * 0.24 }}>
+      <Eyebrow size={h * 0.15}>{label}</Eyebrow>
+      <Text
+        style={{
+          color: HEX.test(tint) ? tint : "#ffffff",
+          fontWeight: "800",
+          fontSize: left === 0 ? h * 0.3 : h * 0.46,
+          fontVariant: ["tabular-nums"],
+          textShadowColor: withAlpha(HEX.test(tint) ? tint : "#ffffff", 0.35),
+          textShadowRadius: h * 0.18,
+        }}
+      >
         {left === 0 ? t("liveOverlay.subathonOver") : clockOf(left)}
       </Text>
       {flash ? (
@@ -115,7 +118,7 @@ export function SubathonTimer({ settings, box }: { settings: Record<string, unkn
           {`+${clockOf(flash).replace(/^0:/, "")}`}
         </Animated.Text>
       ) : null}
-    </View>
+    </Glass>
   );
 }
 
@@ -135,21 +138,21 @@ export function PointsBoard({ settings, box }: { settings: Record<string, unknow
   if (!rows.length) return null;
   const row = box.height / (count + 1);
   return (
-    <View style={[GLASS, { flex: 1, paddingVertical: row * 0.35, paddingHorizontal: row * 0.45, borderRadius: row * 0.4 }]}>
-      <Text numberOfLines={1} style={{ color: "#fff", fontWeight: "700", fontSize: row * 0.42, marginBottom: row * 0.2 }}>
+    <Glass radius={row * 0.42} shadow={false} style={{ flex: 1, paddingVertical: row * 0.32, paddingHorizontal: row * 0.45 }}>
+      <Eyebrow size={row * 0.3} style={{ marginBottom: row * 0.12 }}>
         {title}
-      </Text>
+      </Eyebrow>
       {rows.map((r, i) => (
-        <View key={r.address} style={{ flexDirection: "row", alignItems: "center", height: row, gap: row * 0.3 }}>
-          <Text style={{ width: row * 0.6, textAlign: "center", color: "rgba(255,255,255,0.7)", fontWeight: "700", fontSize: row * 0.4 }}>{i + 1}</Text>
-          <Text numberOfLines={1} style={{ flex: 1, color: "#fff", fontSize: row * 0.4 }}>
+        <ListRow key={r.address} row={row} first={i === 0}>
+          <Medal place={i + 1} size={row * 0.42} />
+          <Text numberOfLines={1} style={{ flex: 1, color: "#fff", fontWeight: "600", fontSize: row * 0.4 }}>
             {r.displayName || r.username || `${r.address.slice(0, 6)}…`}
           </Text>
-          <Text style={{ color: "#fff", fontWeight: "600", fontSize: row * 0.4 }}>
+          <Text style={{ color: "#fff", fontWeight: "800", fontSize: row * 0.4, fontVariant: ["tabular-nums"] }}>
             {t("liveOverlay.points", { count: r.points, formatted: r.points.toLocaleString() })}
           </Text>
-        </View>
+        </ListRow>
       ))}
-    </View>
+    </Glass>
   );
 }

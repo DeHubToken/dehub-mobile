@@ -10,6 +10,7 @@ import { Chip, ChipRow, Labeled, Range, type LayerClip, type Patch } from "./Edi
 import type { ClipAnimationKind, MediaClip, Transition, TransitionKind } from "../../libs/editor/types";
 import { MAX_TRANSITION_DURATION, MIN_TRANSITION_DURATION, SPEEDS, TRANSITION_KINDS } from "../../libs/editor/timeline";
 import { AUDIO_TOOL_MODES, type AudioToolMode } from "../../libs/editor/audioTools";
+import { CAPTION_STYLES, CAPTION_STYLE_LABELS, type CaptionStyle } from "../../libs/editor/captionLayout";
 
 interface PanelProps<C> {
   clip: C;
@@ -87,7 +88,32 @@ const TRANSITION_KEYS: Record<TransitionKind, string> = {
   "slide-right": "editor.video.tSlideRight",
   "wipe-left": "editor.video.tWipeLeft",
   "wipe-right": "editor.video.tWipeRight",
+  "zoom-in": "editor.video.tZoomIn",
+  "zoom-out": "editor.video.tZoomOut",
+  "fly-up": "editor.video.tFlyUp",
+  "fly-down": "editor.video.tFlyDown",
 };
+
+/** Pick a caption look, then transcribe. Same styles as the web inspector. */
+export function CaptionStylePanel({ busy, onRun }: { busy: boolean; onRun: (style: CaptionStyle) => void }) {
+  const { t } = useTranslation();
+  const [style, setStyle] = React.useState<CaptionStyle>("classic");
+  return (
+    <View style={{ gap: 6 }}>
+      <Labeled label={t("editor.captions.style")}>
+        <ChipRow>
+          {CAPTION_STYLES.map((s) => (
+            <Chip key={s} label={t(`editor.captions.styles.${s}`, { defaultValue: CAPTION_STYLE_LABELS[s] })} active={style === s} onPress={() => setStyle(s)} />
+          ))}
+        </ChipRow>
+      </Labeled>
+      <ChipRow>
+        <Chip label={t("editor.captions.action")} active onPress={() => { if (!busy) onRun(style); }} />
+      </ChipRow>
+      <Text className="text-[11px] text-white/45">{t("editor.captions.hint")}</Text>
+    </View>
+  );
+}
 
 export function TransitionPanel(props: {
   value: Transition | null;

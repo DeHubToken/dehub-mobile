@@ -3,9 +3,11 @@
  * gift jar that fills with paid gifts. The twin of dehubweb's level-and-jar.tsx.
  */
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Text, View, type ViewStyle } from "react-native";
+import { Text, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { useTranslation } from "react-i18next";
+import { LinearGradient } from "expo-linear-gradient";
+import { Eyebrow, Glass, withAlpha } from "./premium";
 import { useQuery } from "@tanstack/react-query";
 import { getStreamerProgress } from "../../services/live.service";
 import { setting } from "../../libs/live-overlay/registry";
@@ -18,7 +20,6 @@ const tintOf = (settings: Record<string, unknown>, fallback = "#ffffff") => {
   const c = setting(settings, "accent", fallback);
   return HEX.test(c) ? c : fallback;
 };
-const GLASS: ViewStyle = { backgroundColor: "rgba(10,10,12,0.72)", borderWidth: 1, borderColor: "rgba(255,255,255,0.16)" };
 
 export function StreamerLevel({ settings, box }: { settings: Record<string, unknown>; box: { width: number; height: number } }) {
   const { t } = useTranslation();
@@ -36,21 +37,33 @@ export function StreamerLevel({ settings, box }: { settings: Record<string, unkn
   const h = box.height;
   const streak = Number((data as any).currentStreakWeeks) || 0;
   return (
-    <View style={[GLASS, { flex: 1, justifyContent: "center", paddingHorizontal: h * 0.2, borderRadius: h * 0.22 }]}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 8 }}>
-        <Text numberOfLines={1} style={{ color: "#fff", fontWeight: "700", fontSize: h * 0.22 }}>
+    <Glass radius={h * 0.26} shadow={false} style={{ flex: 1, justifyContent: "center", paddingHorizontal: h * 0.24 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end", gap: 8 }}>
+        <Text numberOfLines={1} style={{ color: "#fff", fontWeight: "800", fontSize: h * 0.22 }}>
           {t("liveOverlay.level", { level: (data as any).level })}
         </Text>
         {showStreak && streak ? (
-          <Text numberOfLines={1} style={{ color: "rgba(255,255,255,0.85)", fontWeight: "600", fontSize: h * 0.22 }}>
-            {t("liveOverlay.streak", { count: streak })}
-          </Text>
+          <Eyebrow size={h * 0.15}>{t("liveOverlay.streak", { count: streak })}</Eyebrow>
         ) : null}
       </View>
-      <View style={{ marginTop: h * 0.1, height: h * 0.2, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.14)", overflow: "hidden" }}>
-        <View style={{ height: "100%", width: `${Math.round(progress * 100)}%` as `${number}%`, borderRadius: 999, backgroundColor: tintOf(settings) }} />
+      <View
+        style={{
+          marginTop: h * 0.11,
+          height: h * 0.18,
+          borderRadius: 999,
+          backgroundColor: "rgba(255,255,255,0.07)",
+          boxShadow: "inset 0px 1px 2px rgba(0,0,0,0.55)",
+          overflow: "hidden",
+        }}
+      >
+        <LinearGradient
+          colors={[withAlpha(tintOf(settings), 0.45), tintOf(settings)]}
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: 1, y: 0.5 }}
+          style={{ height: "100%", width: `${Math.round(progress * 100)}%` as `${number}%`, borderRadius: 999 }}
+        />
       </View>
-    </View>
+    </Glass>
   );
 }
 

@@ -23,6 +23,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import MaskedView from "@react-native-masked-view/masked-view";
 import Icon from "../ui/Icon";
 import ChromeSurface from "../ui/ChromeSurface";
+import { useAppTheme } from "../../context/ThemeContext";
+import { LIGHT_PAGE_FILL } from "../../theme/colors";
 import { menuEnter, menuExit } from './feedDrawerMotion';
 import {
   resolveEdgeFadeMask,
@@ -283,6 +285,7 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
   chipRadius = PILL_BORDER_RADIUS,
 }) => {
   const { t } = useTranslation();
+  const { isLight } = useAppTheme();
   const categorySearchMaterial = useSearchFieldMaterial();
   const [categorySearch, setCategorySearch] = useSurfaceDraft("components/Home/FeedFilterPanel.tsx:categorySearch", "");
 
@@ -377,6 +380,9 @@ const FeedFilterPanelComponent: React.FC<FeedFilterPanelProps> = ({
 
   const content = (
     <>
+      {/* System Light: the pale frost alone let dark feed tiles show through
+          behind the labels. Paper under it, the frost on top. */}
+      {!embedded && isLight ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: LIGHT_PAGE_FILL, borderRadius: navOverlap != null ? 12 : 15, opacity: 0.94 }]} /> : null}
       {!embedded && <ChromeSurface radius={navOverlap != null ? 12 : 15} />}
       <ScrollView
         showsVerticalScrollIndicator={false}

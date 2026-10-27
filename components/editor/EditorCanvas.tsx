@@ -43,7 +43,7 @@ import { RecDot } from "./MotionPanel";
 import { getMedia, mediaDataUrl, openVideoExport, readMediaChunk } from "../../libs/editor/storage";
 import { validVideoMatte, validVideoMattePageOutput, videoMatteMediaIds, type VideoMattePage, type VideoMattePageSink, type VideoMatteResult, type VideoMatteProgress } from "../../libs/editor/videoMatte";
 import type { AudioToolMode } from "../../libs/editor/audioTools";
-import type { MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
+import type { ClipCrop, MediaClip, ProjectSnapshot, TextClip } from "../../libs/editor/types";
 import type { CaptionWord } from "../../libs/editor/captionLayout";
 import type { ExportRange } from "../../libs/editor/exportRanges";
 
@@ -74,6 +74,10 @@ export interface EditorCanvasHandle {
   exportImage: (format: "png" | "jpeg", quality?: number, time?: number, transparent?: boolean, onLinks?: (links: DesignPdfLink[]) => void, settled?: boolean, maxEdge?: number, snapshot?: ProjectSnapshot) => Promise<string>;
   /** Brightness, spread and colourfulness of a picture, for Auto enhance. Null when it is not loaded. */
   pictureStats: (mediaId: string) => Promise<{ mean: number; std: number; sat: number } | null>;
+  /** Crop that removes black bars baked into a video, or null when there are none. */
+  detectBars: (mediaId: string, times: number[]) => Promise<ClipCrop | null>;
+  /** Horizontal centre of the action (0..1) at each source time, for auto reframe. */
+  subjectCentres: (mediaId: string, times: number[]) => Promise<number[]>;
   /**
    * Cut the subject out of a picture on the phone (see canvasHtml: MODNet in
    * a worker). Resolves with a PNG data URL, or null when it failed.
@@ -196,6 +200,8 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
   const sentMedia = useRef(new Set<string>());
   const exports = useRef(new Map<string, { resolve: (v: string) => void; onLinks?: (links: DesignPdfLink[]) => void; reject: (e: Error) => void; cleanup: () => void }>());
   const statsReqs = useRef(new Map<string, (v: { mean: number; std: number; sat: number } | null) => void>());
+  const barReqs = useRef(new Map<string, (crop: ClipCrop | null, error?: string) => void>());
+  const centreReqs = useRef(new Map<string, (centres: number[] | null, error?: string) => void>());
   const captionReqs = useRef(new Map<string, { resolve: (v: CaptionWord[]) => void; reject: (e: Error) => void; progress?: (v: CaptionProgress) => void; cleanup: () => void }>());
   const audioReqs = useRef(new Map<string, { resolve: (v: { uri: string; duration: number }) => void; reject: (e: Error) => void; progress?: (v: number) => void; out: ReturnType<typeof openVideoExport> | null; cleanup: () => void }>());
   const visualReqs = useRef(new Map<string, { windows: VisualWindow[]; resolve: (v: VisualFrame[]) => void; reject: (e: Error) => void; progress: (f: number) => void; cleanup: () => void; ack: () => void }>());
@@ -482,6 +488,18 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         exports.current.get(msg.reqId)?.resolve(msg.dataUrl);
         exports.current.delete(msg.reqId);
         break;
+      case "reframe": {
+        const done = centreReqs.current.get(msg.reqId);
+        centreReqs.current.delete(msg.reqId);
+        done?.(Array.isArray(msg.centres) ? msg.centres.filter((n: unknown): n is number => typeof n === "number") : null, typeof msg.error === "string" ? msg.error : undefined);
+        break;
+      }
+      case "letterbox": {
+        const done = barReqs.current.get(msg.reqId);
+        barReqs.current.delete(msg.reqId);
+        done?.(msg.crop && typeof msg.crop.top === "number" ? msg.crop : null, typeof msg.error === "string" ? msg.error : undefined);
+        break;
+      }
       case "stats": {
         const done = statsReqs.current.get(msg.reqId);
         statsReqs.current.delete(msg.reqId);
@@ -760,6 +778,20 @@ const EditorCanvas = forwardRef<EditorCanvasHandle, Props>(function EditorCanvas
         }, 30000);
         exports.current.set(reqId, { resolve, reject, onLinks, cleanup: () => clearTimeout(timer) });
         post({ type: "export", reqId, format, quality, time, transparent, links: !!onLinks, settled, maxEdge, snapshot, fontCss: snapshot ? clipFontFamilies(snapshot.clips).flatMap(family => { const href = fontStylesheet(family); return href ? [href] : []; }) : undefined });
+      }),
+    subjectCentres: (mediaId, times) =>
+      new Promise((resolve, reject) => {
+        const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        const timer = setTimeout(() => { if (centreReqs.current.delete(reqId)) reject(new Error("timeout")); }, 65000);
+        centreReqs.current.set(reqId, (centres, error) => { clearTimeout(timer); if (error || !centres) reject(new Error(error ?? "unavailable")); else resolve(centres); });
+        post({ type: "reframe", reqId, mediaId, times });
+      }),
+    detectBars: (mediaId, times) =>
+      new Promise((resolve, reject) => {
+        const reqId = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        const timer = setTimeout(() => { if (barReqs.current.delete(reqId)) reject(new Error("timeout")); }, 25000);
+        barReqs.current.set(reqId, (crop, error) => { clearTimeout(timer); if (error) reject(new Error(error)); else resolve(crop); });
+        post({ type: "letterbox", reqId, mediaId, times });
       }),
     pictureStats: (mediaId) =>
       new Promise((resolve) => {

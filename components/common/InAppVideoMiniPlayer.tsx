@@ -102,7 +102,10 @@ function MiniPlayer({ entry, bounds }: { entry: InAppVideoMini; bounds: MiniRect
   };
   return <KeepDarkScope>
     <Animated.View testID="in-app-video-mini" style={[styles.mini, motion]}>
-      {entry.thumbnail ? <Image source={{ uri: entry.thumbnail }} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} /> : null}
+      {/* The box already has the picture's shape (see initialRect), so the
+          poster fills it until the first frame: "contain" left black bands
+          wherever the poster's shape differed slightly from the video's. */}
+      {entry.thumbnail ? <Image source={{ uri: entry.thumbnail }} style={StyleSheet.absoluteFill} contentFit="cover" transition={0} /> : null}
       {ownsSurface ? <VideoView player={entry.player} style={StyleSheet.absoluteFill}
         contentFit="contain" surfaceType="textureView" nativeControls={false} pointerEvents="none"
         startsPictureInPictureAutomatically={false} allowsPictureInPicture={false}

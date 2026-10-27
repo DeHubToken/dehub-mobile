@@ -75,11 +75,19 @@ export function closeInAppVideoMini() {
   if (!entry) return;
   current = null;
   setInAppVideoPlayer(null);
-  entry.session.userPaused = true;
-  // The final lease already pauses on release; another mounted card needs an
-  // explicit pause because releasing one of several claims does not do that.
-  if (entry.session.claims.some(token => token !== entry.token)) {
-    try { entry.player.pause(); } catch {}
+  const others = entry.session.claims.some(token => token !== entry.token);
+  if (others && !entry.onReady && !entry.session.userPaused) {
+    // A feed card still shows this clip and takes the decoder back: it plays
+    // on silently there, like any feed video, instead of freezing on a frame.
+    try { entry.player.muted = true; } catch {}
+  } else {
+    entry.session.userPaused = true;
+    // The final lease already pauses on release; a pending handoff's source
+    // route needs an explicit pause because releasing one of several claims
+    // does not do that.
+    if (others) {
+      try { entry.player.pause(); } catch {}
+    }
   }
   entry.release();
   entry.onCancel?.();

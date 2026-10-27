@@ -15,8 +15,8 @@ import { getBadgeHoverOpticalStyle } from "../../libs/misc";
  *     Follow back when they already follow you
  *
  * Skinned themes draw the card in their own surface (skin.card). System,
- * System Light and Minimal draw no box at all: the cards stand on the page with
- * a hairline between them, as their feeds do. Written dark like the rest of
+ * System Light and Minimal give each card a quiet bento: a faint fill and a
+ * hairline edge, no glass (square on Minimal). Written dark like the rest of
  * the app; System Light's tone pass turns the greys around.
  */
 import React, { FC, useCallback, useState, useMemo } from "react";
@@ -41,8 +41,9 @@ export const COVER_CARD_WIDTH = 232;
 const COVER_H = 76;
 const AVATAR = 56;
 
-/** Hairline between flat cards (System, System Light, Minimal). */
-const FLAT_DIVIDER = "rgba(255,255,255,0.12)";
+/** The quiet bento System, System Light and Minimal give each card. */
+const QUIET_FILL = "rgba(255,255,255,0.045)";
+const QUIET_EDGE = "rgba(255,255,255,0.09)";
 
 /** Follow button, avatar ring and text per theme: the theme's one accent. */
 interface CardInk {
@@ -133,7 +134,7 @@ interface SuggestedAccountCardProps {
   onFollowChange?: (address: string, newState: FollowState, failed?: unknown) => void;
   /** Called when user dismisses this suggestion (X button). */
   onDismiss?: (address: string) => void;
-  /** Last card in the row: no hairline after it in the flat themes. */
+  /** Last card in the row (kept for callers; every card is a bento now). */
   isLast?: boolean;
   /** Some card in the row has mutual friends: keep the line so the row lines up. */
   reasonRow?: boolean;
@@ -149,7 +150,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
 }) => {
   const { t: _copy } = _useCopy();
   const { showUserProfile } = useUserProfileSheet();
-  const { skin, theme } = useAppTheme();
+  const { skin, theme, isLight } = useAppTheme();
   const authUser = useUser() as { address?: string } | null;
   const myAddress = authUser?.address;
   const flat = !skin;
@@ -235,17 +236,23 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         ? _copy("follow.followBack", { defaultValue: "Follow back" })
         : _copy("follow.follow", { defaultValue: "Follow" });
 
-  // Skinned themes: the theme's own card, clipped so the banner takes its top
-  // corners. Flat themes: no surface, a hairline after the card.
+  // Every card is its own bento, clipped so the banner takes its top corners.
+  // Skinned themes use the theme's card; System, System Light and Minimal a
+  // quiet fill and hairline, on an inner view so the control pass leaves the
+  // neutral fill alone (libs/jsx/controls.js).
   const cardStyle: StyleProp<ViewStyle> = flat
-    ? [styles.card, styles.flatCard, !isLast && styles.flatDivider]
+    ? styles.card
     : [styles.card, skin!.card as ViewStyle, { overflow: "hidden" }, square && { borderRadius: 0 }];
-  const coverRadius = flat ? (theme === "minimal" ? 0 : 10) : 0;
-  const pad = flat ? 0 : 12;
+  const quietStyle: StyleProp<ViewStyle> = flat
+    ? [styles.quietCard, theme === "minimal" && { borderRadius: 0 }]
+    : undefined;
+  const coverRadius = 0;
+  const pad = 12;
   const textMono = mono ? MONO_TEXT : undefined;
 
   return (
     <TouchableOpacity activeOpacity={0.85} onPress={handlePress} style={cardStyle}>
+      <View style={quietStyle}>
       {/* The banner is a picture: dark-surface keeps System Light's tone pass
           off it and off the X chip that sits on it. */}
       <View className="dark-surface" style={[styles.cover, { borderRadius: coverRadius }]}>
@@ -275,7 +282,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
         </TouchableOpacity>
       </View>
 
-      <View style={{ marginTop: -AVATAR / 2, marginLeft: flat ? 10 : pad, alignSelf: "flex-start" }}>
+      <View style={{ marginTop: -AVATAR / 2, marginLeft: pad, alignSelf: "flex-start" }}>
         <Avatar
           uri={displayAvatar}
           size={AVATAR}
@@ -354,11 +361,16 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
               hitSlop={{ top: 6, bottom: 6 }}
             >
               <View
+                // System Light: a white tint on a white card read 2:1. A solid
+                // white key, which the light pass turns into solid ink; the
+                // shadowed white label is left as it is.
                 style={[
                   styles.follow,
                   done
                     ? { backgroundColor: "rgba(255,255,255,0.12)", borderColor: "transparent" }
-                    : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
+                    : isLight
+                      ? { backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" }
+                      : { backgroundColor: withAlpha(ink.button, 0.28), borderColor: withAlpha(ink.button, 0.55) },
                   theme === "minimal" || square ? { borderRadius: 0 } : undefined,
                   mono ? { paddingHorizontal: 12 } : undefined,
                 ]}
@@ -380,6 +392,7 @@ const SuggestedAccountCardComponent: FC<SuggestedAccountCardProps> = ({
           )}
         </View>
       </View>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -389,13 +402,13 @@ const styles = StyleSheet.create({
     width: COVER_CARD_WIDTH,
     marginRight: 10,
   },
-  flatCard: {
-    paddingRight: 14,
-    marginRight: 14,
-  },
-  flatDivider: {
-    borderRightWidth: StyleSheet.hairlineWidth,
-    borderRightColor: FLAT_DIVIDER,
+  quietCard: {
+    flex: 1,
+    borderRadius: 18,
+    overflow: "hidden",
+    backgroundColor: QUIET_FILL,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: QUIET_EDGE,
   },
   cover: {
     height: COVER_H,

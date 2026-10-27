@@ -30,3 +30,39 @@ describe("videoEffectChain", () => {
     }
   });
 });
+
+describe("videoEffectChain with the phone studio", () => {
+  const on = { supported: true, background: true, overlay: true };
+
+  it("orders look, background, then cards and overlay", () => {
+    expect(videoEffectChain("warm", "android", on)).toEqual(["warm", "dhb-background", "dhb-studio"]);
+    expect(videoEffectChain("warm", "ios", on)).toEqual(["warm", "dhb-background", "dhb-studio"]);
+  });
+
+  it("runs the studio without a look", () => {
+    expect(videoEffectChain("none", "android", { supported: true, overlay: true })).toEqual(["dhb-studio"]);
+    expect(videoEffectChain("none", "ios", { supported: true, background: true })).toEqual(["dhb-background"]);
+  });
+
+  it("leaves out each studio step that is off", () => {
+    expect(videoEffectChain("mono", "android", { supported: true, background: false, overlay: false })).toEqual(["mono"]);
+    expect(videoEffectChain("mono", "android", { supported: true, overlay: true })).toEqual(["mono", "dhb-studio"]);
+  });
+
+  it("never names a studio processor to a binary without one", () => {
+    expect(videoEffectChain("mono", "android", { ...on, supported: false })).toEqual(["mono"]);
+    expect(videoEffectChain("none", "android", { ...on, supported: false })).toBeNull();
+    expect(videoEffectChain("none", "ios", { ...on, supported: false })).toEqual([]);
+  });
+
+  it("still never hands Android an empty array with everything off", () => {
+    for (const { id } of VIDEO_LOOKS) {
+      for (const background of [false, true]) {
+        for (const overlay of [false, true]) {
+          const chain = videoEffectChain(id, "android", { supported: true, background, overlay });
+          expect(chain === null || chain.length > 0).toBe(true);
+        }
+      }
+    }
+  });
+});

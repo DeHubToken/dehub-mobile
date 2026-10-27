@@ -29,6 +29,14 @@ jest.mock('react-native-gesture-handler', () => ({ GestureHandlerRootView: 'Gest
 jest.mock('../../components/common/SwipeBackBoundary', () => 'SwipeBackBoundary');
 jest.mock('../../components/DM/MessageSurface', () => ({ __esModule: true, default: 'MessageSurface' }));
 jest.mock('../../components/ui/SheetGlass', () => ({ __esModule: true, default: 'SheetGlass' }));
+let mockBackdropBlur: 'ios' | 'android' | null = 'ios';
+jest.mock('../../components/ui/SheetBackdrop', () => ({
+  __esModule: true, default: 'SheetBackdrop',
+  useSheetBackdrop: (active: boolean) => {
+    const blur = active ? mockBackdropBlur : null;
+    return { blur, blurred: !!blur, scrim: 'rgba(0,0,0,0.3)', light: false };
+  },
+}));
 
 const drag = (dy: number, dx = 0, vy = 0) => ({ dy, dx, vy });
 const handlers = (index = 0) => (PanResponder.create as jest.Mock).mock.calls[index][0];
@@ -42,6 +50,37 @@ it.each(['center', 'bottom'] as const)('uses theme material without changing %s 
   expect(screen.getByTestId('sheet-content')).toBeTruthy();
   fireEvent(screen.UNSAFE_getByType('Modal' as any), 'requestClose');
   expect(close).toHaveBeenCalledTimes(1);
+});
+
+it.each(['ios', 'android'])('blurs the page behind a drawer on %s and still dismisses on a tap', (os) => {
+  const platform = jest.requireMock('react-native').Platform;
+  platform.OS = os;
+  mockBackdropBlur = os as 'ios' | 'android';
+  try {
+    const close = jest.fn();
+    const screen = render(<GlassModal visible presentation="bottom" onClose={close}><View /></GlassModal>);
+    const backdrop = screen.UNSAFE_getByType('SheetBackdrop' as any);
+    expect(backdrop.props.backdrop.blur).toBe(os);
+    // One blur per sheet: the panel's glass leans on the backdrop's.
+    expect(screen.UNSAFE_getByType('SheetGlass' as any).props.backdropBlurred).toBe(true);
+    fireEvent.press(backdrop.parent!);
+    expect(close).toHaveBeenCalledTimes(1);
+  } finally {
+    platform.OS = 'ios';
+    mockBackdropBlur = 'ios';
+  }
+});
+
+it('keeps the plain dim behind a centered card', () => {
+  const screen = render(<GlassModal visible presentation="center" onClose={jest.fn()}><View /></GlassModal>);
+  expect(screen.UNSAFE_queryByType('SheetBackdrop' as any)).toBeNull();
+});
+
+it('does not dismiss a locked drawer from the backdrop', () => {
+  const close = jest.fn();
+  const screen = render(<GlassModal visible presentation="bottom" dismissible={false} onClose={close}><View /></GlassModal>);
+  fireEvent.press(screen.UNSAFE_getByType('SheetBackdrop' as any).parent!);
+  expect(close).not.toHaveBeenCalled();
 });
 
 it('uses theme material by default and permits deliberate solid panels', () => {

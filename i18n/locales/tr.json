@@ -1965,6 +1965,11 @@
     "title": "Bildirimler",
     "loadFailed": "Bildirimler yüklenemedi",
     "markAllRead": "Tümünü okundu işaretle",
+    "allSettings": "Tüm bildirim ayarları",
+    "groupNew": "Yeni",
+    "groupToday": "Bugün",
+    "groupThisWeek": "Bu hafta",
+    "groupEarlier": "Daha önce",
     "settings": "Bildirim Ayarları",
     "actions": "İşlemler",
     "markAllAsRead": "Tümünü okundu işaretle",
@@ -7959,7 +7964,19 @@
       "translateCount": "{{count}} altyazıyı çevir",
       "translationDone": "{{count}} altyazı çevrildi",
       "translationFailed": "Altyazı çevirisi başarısız oldu. Altyazılarınız değiştirilmedi.",
-      "lockedTranslation": "Kilitli altyazıları dahil etmek için kilitlerini açın."
+      "lockedTranslation": "Kilitli altyazıları dahil etmek için kilitlerini açın.",
+      "style": "Altyazı stili",
+      "styles": {
+        "classic": "Klasik",
+        "boxed": "Kutulu",
+        "bold": "Kalın",
+        "wordpop": "Kelime kelime",
+        "rapid": "Hızlı gösterim",
+        "beast": "Canavar modu",
+        "stacked": "Yığılmış",
+        "serif": "Serif",
+        "bubble": "Baloncuk"
+      }
     },
     "app": {
       "newDesign": "Yeni tasarım",
@@ -8029,7 +8046,11 @@
       "vibrant": "Canlı",
       "cyber": "Siber",
       "invert": "Negatif",
-      "strength": "Filtre dayanımı: %{{value}}"
+      "strength": "Filtre dayanımı: %{{value}}",
+      "fadedFilm": "Solmuş film",
+      "technicolor": "Technicolor",
+      "newsreel": "Eski haber filmi",
+      "vhs": "VHS"
     },
     "layer": {
       "crop": "Kırp",
@@ -8110,14 +8131,18 @@
       "pptx": "PowerPoint sunumu",
       "pptxHint": "Her sayfa, sunucu notları ve bağlantıları ile bir slayt görüntüsü haline gelir. Özgün tasarımdaki tek tek metin ve öğeleri düzenleyin.",
       "section": "Adlandırılmış bölüm",
-      "transparent": "Şeffaf arka plan"
+      "transparent": "Şeffaf arka plan",
+      "nle": "Premiere / Final Cut / Resolve (XML)",
+      "nleHint": "Zaman çizelgenizi FCPXML ve Premiere XML olarak tüm medya dosyalarıyla birlikte ZIP halinde indirir; düzenlemeyi Premiere Pro, Final Cut Pro veya DaVinci Resolve'da bitirebilirsiniz. Metinler işaretçiye dönüşür, efektler DeHub'da kalır."
     },
     "adjust": {
       "auto": "Otomatik iyileştir",
       "autoFailed": "Bu fotoğraf analiz edilemedi.",
       "tint": "Renk tonu {{value}}",
       "vignette": "Vinyet {{value}}%",
-      "warmth": "Sıcaklık {{value}}"
+      "warmth": "Sıcaklık {{value}}",
+      "halation": "Halasyon %{{value}}",
+      "scanlines": "Tarama çizgileri %{{value}}"
     },
     "draw": {
       "colour": "Kalem rengi",
@@ -8209,7 +8234,47 @@
       "suggestTitle": "Üste büyük kalın bir başlık, altına da daha küçük bir alt başlık ekle",
       "undo": "Geri al",
       "openGenerator": "İncele ve oluştur",
-      "working": "Üzerinde çalışıyorum…"
+      "working": "Üzerinde çalışıyorum…",
+      "stopped": "Durduruldu. Başka hiçbir şey değişmedi.",
+      "stop": "Durdur",
+      "queue": "Sıraya ekle",
+      "queued": "{{count}} sırada",
+      "restore": "Buraya geri yükle",
+      "restoreHint": "Projeyi bu mesajdan önceki haline döndürür. Geri al ile geri gelir.",
+      "restored": "Proje o mesajdan önceki haline döndürüldü. Yeni sürümü geri getirmek için geri al'a bas.",
+      "rewrite": "İsteğimi netleştir",
+      "rewriteFailed": "Yeniden yazılamadı. Metnin değişmedi.",
+      "feedback": "Bu yardımcı oldu mu?",
+      "good": "İyi yanıt",
+      "bad": "Kötü yanıt",
+      "retryPrefix": "Bu doğru değildi. Bunun yerine, ",
+      "recipesTitle": "Tarifler",
+      "recipe": {
+        "podcastClip": {
+          "label": "Podcast klibi",
+          "prompt": "En güçlü 30 saniyelik anı bul, ona göre kırp, Word Pop altyazı ekle ve 9:16 yap."
+        },
+        "talkingHead": {
+          "label": "Temiz konuşma videosu",
+          "prompt": "Uzun duraklamaları kes, Classic altyazı ekle ve hafif sıcak bir görünüm ver."
+        },
+        "productPromo": {
+          "label": "Ürün tanıtımı",
+          "prompt": "15 saniyelik bir tanıtım yap: başta etkileyici başlık, klipler arasında Zoom in geçişleri, Bold altyazı ve hareketli müzik."
+        },
+        "hypeReel": {
+          "label": "Coşkulu reel",
+          "prompt": "Klipleri müziğin ritmine göre kes, Fly up geçişleri ve Technicolor görünümü kullan."
+        },
+        "retroEdit": {
+          "label": "Retro kurgu",
+          "prompt": "Her klibe VHS görünümü ver, büyük serif bir başlık ekle ve Fade geçişleri kullan."
+        },
+        "tutorial": {
+          "label": "Eğitim videosu",
+          "prompt": "Her adım için bir başlık ekle, Boxed altyazı ekle ve önemli anı 0,5x'e yavaşlat."
+        }
+      }
     },
     "brand": {
       "addColor": "Marka rengi ekle",
@@ -8346,7 +8411,11 @@
       "rendering": "Video oluşturuluyor… %{{percent}}",
       "mp4": "MP4 video",
       "exportHint": "Videonuz oluşturulurken düzenleyiciyi açık tutun.",
-      "tooLarge": "Bu dosya düzenleyici için çok büyük. Sınır 400 MB."
+      "tooLarge": "Bu dosya düzenleyici için çok büyük. Sınır 400 MB.",
+      "tZoomIn": "Yakınlaştır",
+      "tZoomOut": "Uzaklaştır",
+      "tFlyUp": "Yukarı uç",
+      "tFlyDown": "Aşağı uç"
     },
     "motion": {
       "title": "Hareket",
@@ -9619,6 +9688,25 @@
       "selection": "Seçim",
       "zoomIn": "Tuvali yakınlaştır",
       "zoomOut": "Tuvali uzaklaştır"
+    },
+    "clipFix": {
+      "detach": "Sesi ayır",
+      "detached": "Ses ayrı bir klibe taşındı",
+      "detachFailed": "Bu klibin sesi ayrılamadı",
+      "removeBars": "Siyah bantları kaldır",
+      "scanning": "Kareler kontrol ediliyor…",
+      "noBars": "Siyah bant bulunamadı",
+      "barsRemoved": "Siyah bantlar kırpıldı",
+      "barsFailed": "Bu videoda siyah bant kontrolü yapılamadı",
+      "reframe": "Otomatik yeniden çerçevele",
+      "reframeHint": "Video bu sayfa biçimine zaten uyuyor",
+      "reframed": "Hareketi takip edecek şekilde çerçevelendi",
+      "reframeFailed": "Bu video yeniden çerçevelenemedi",
+      "retakes": "Tekrar çekimleri kaldır",
+      "listening": "Dinleniyor…",
+      "noRetakes": "Tekrar çekim bulunamadı",
+      "retakesRemoved": "{{count}} tekrar çekim kaldırıldı, son çekim tutuldu",
+      "retakesFailed": "Bu klipten tekrar çekimler kaldırılamadı"
     }
   },
   "creator": {
@@ -12572,6 +12660,8 @@
     "787bcf985c06": "Kapak değiştirilemedi",
     "78b02b1a598a": "Cüzdan kaydedilemedi",
     "78ffacb7abe7": "Kling videosu oluştur · orijinal film müziği",
+    "22577ebd908e": "Wan 3.0 video oluşturun · orijinal soundtrack",
+    "1fa2357ab7e1": "Seedance 720p video oluşturun · orijinal soundtrack",
     "790fd7d39a4c": "Kaplan Dokunuşu",
     "7910eea972da": "Ürkütücü Şeytan Gülüşü",
     "792678842e2f": "Gönderi planlandı",
@@ -14318,6 +14408,15 @@
     "watch": "Bu yaratıcıyı desteklemek için bir reklam izleyin"
   },
   "liveOverlay": {
+    "eyebrow": {
+      "follow": "Yeni takipçi",
+      "subscribe": "Yeni abone",
+      "subscribedTo": "Abone oldu · {{plan}}",
+      "gifted_one": "Bir abonelik hediye etti",
+      "gifted_other": "{{count}} abonelik hediye etti",
+      "share": "Yayını paylaştı",
+      "join": "Yeni katıldı"
+    },
     "subathon": "Subathon",
     "wheelLanded": "{{name}} spun :{{result}}",
     "someone": "Birisi",
@@ -14351,6 +14450,31 @@
     "tipJar": "Hediye kavanozu"
   },
   "liveStudio": {
+    "destinations": {
+      "title": "Çoklu yayın hedefleri",
+      "intro": "DeHub'da bir kez yayına başla, yayınını burada açık olan her platforma ücretsiz gönderelim. Yayına başladıktan birkaç saniye sonra başlar.",
+      "add": "Hedef ekle",
+      "empty": "Henüz hedef yok. Twitch, YouTube, Kick veya herhangi bir RTMP sunucusu ekle.",
+      "platform": "Platform",
+      "label": "Ad (isteğe bağlı)",
+      "server": "Sunucu URL",
+      "key": "Yayın anahtarı",
+      "findKey": "{{name}} sunucunu ve anahtarını bul",
+      "customHint": "Platformunun verdiği RTMP sunucusunu ve anahtarı yapıştır.",
+      "keyNote": "Anahtarın sunucularımızda şifreli saklanır ve bir daha gösterilmez.",
+      "save": "Ekle",
+      "cancel": "İptal",
+      "added": "{{name}} eklendi",
+      "saveFailed": "Hedef kaydedilemedi",
+      "toggle": "Bu hedefe yayın yap",
+      "states": {
+        "off": "Kapalı",
+        "idle": "Hazır",
+        "connecting": "Bağlanıyor",
+        "live": "Canlı",
+        "error": "Hata"
+      }
+    },
     "controls": {
       "title": "Hızlı kontroller",
       "intro": "Akış ortasında. Her anahtar, siz geri çevirene kadar uygulamada ve OBS'de izleyen herkes için geçerlidir.",
@@ -14729,5 +14853,129 @@
     "fingerprint": "Parmak izi",
     "exploreFirst": "Önce keşfet",
     "codeNote": "E-postana bir kod göndeririz, şifre gerekmez."
+  },
+  "studioDeck": {
+    "remove": "Kaldır",
+    "background": {
+      "title": "Arka plan",
+      "modes": {
+        "none": "Kapalı",
+        "blur": "Bulanık",
+        "color": "Renk",
+        "image": "Görsel"
+      },
+      "failed": "Bu cihazda arka plan kaldırma başlatılamadı.",
+      "hint": "Cihazında çalışır. İlk seferde yüklenmesi birkaç saniye sürer."
+    },
+    "scenes": {
+      "title": "Sahneler",
+      "picture": "Görsel",
+      "countdown": "Geri sayım",
+      "noCountdown": "Geri sayım yok",
+      "minutes": "{{count}} dk",
+      "names": {
+        "starting": "Birazdan başlıyoruz",
+        "chatting": "Sohbet",
+        "brb": "Hemen dönüyorum",
+        "ending": "Yayın bitiyor"
+      },
+      "hints": {
+        "starting": "Geri sayımlı kart",
+        "chatting": "Kamera tam ekran",
+        "brb": "Kart, mikrofon kapalı",
+        "ending": "Teşekkür kartı"
+      },
+      "subtitles": {
+        "starting": "Yayın başlıyor:",
+        "brb": "Birazdan dönüyorum",
+        "ending": "İzlediğin için teşekkürler"
+      }
+    },
+    "widgets": {
+      "title": "Widget'ları videomda göster",
+      "hint": "Uyarılar, hedef çubukları ve sohbet yayınına çizilir, böylece Twitch, YouTube ve diğer platformlardaki izleyiciler de görür.",
+      "failed": "Widget'ların nerede görüneceği değiştirilemedi. Tekrar dene.",
+      "tab": "Araçlar"
+    },
+    "sources": {
+      "title": "Kaynaklar",
+      "addImage": "Görsel veya logo",
+      "failed": "Bu kaynak eklenemedi.",
+      "hint": "Kaynaklar her izleyici ve her platform için görüntünün üstüne çizilir.",
+      "image": "Görsel",
+      "show": "Yayında göster",
+      "positions": {
+        "top-left": "Sol üst",
+        "top-right": "Sağ üst",
+        "bottom-left": "Sol alt",
+        "bottom-right": "Sağ alt",
+        "center": "Orta"
+      },
+      "sizes": {
+        "small": "Küçük",
+        "medium": "Orta",
+        "large": "Büyük"
+      }
+    },
+    "phone": {
+      "title": "Stüdyo"
+    }
+  },
+  "whenSheet": {
+    "title": "Ne zaman?",
+    "tonight": "Bu akşam",
+    "inAnHour": "Bir saat sonra",
+    "tomorrow": "Yarın",
+    "today": "Bugün",
+    "primeTime": "En yoğun saat",
+    "scheduleFor": "{{when}} için planla",
+    "liveTip": "Takipçilerin hatırlatıcı kurabilir. Zamanı gelince canlı yayını sen başlatırsın.",
+    "stageTip": "Hemen Yaklaşanlar rafına çıkar, böylece insanlar Bana hatırlat'a dokunabilir.",
+    "typePlaceholder": "Bir zaman yaz, örneğin \"fri 8pm\" veya \"in 2 hours\"",
+    "typeLabel": "Bir zaman yaz",
+    "typeHelp": "\"tonight\", \"tomorrow 9am\", \"sat noon\" veya \"30 oct 7pm\" dene.",
+    "orPickDay": "Ya da bir gün seç",
+    "earlier": "15 dakika önce",
+    "later": "15 dakika sonra",
+    "tooSoonMin": "Şu andan en az {{count}} dakika sonrası için bir zaman seç.",
+    "tooSoon": "Gelecekte bir zaman seç.",
+    "zone": "Senin saatin ({{zone}}). Diğerleri kendi saatlerinde görür.",
+    "remove": "Planlamayı kaldır",
+    "startsIn": "{{time}} sonra başlıyor",
+    "bestTime": "En iyi zaman",
+    "fansOnline": "Hayranlarım ne zaman çevrimiçi?",
+    "show": "Göster",
+    "hide": "Gizle",
+    "fansBasis": "Daha parlak, son {{count}} günde daha çok takipçinin izlediği anlamına gelir.",
+    "everyoneBasis": "Henüz yeterli takipçi etkinliği yok, bu yüzden bu DeHub'daki herkes."
+  },
+  "planned": {
+    "title": "Planlananlar",
+    "subtitle": "Planladığın gönderiler, canlı yayınlar ve Stage'ler",
+    "seoTitle": "Planlananlar · DeHub",
+    "seoDescription": "DeHub'da planladığın gönderiler, canlı yayınlar ve Stage'ler tek yerde.",
+    "all": "Tümü",
+    "posts": "Gönderiler",
+    "lives": "Canlılar",
+    "stages": "Stage'ler",
+    "post": "Gönderi",
+    "live": "Canlı",
+    "stage": "Stage",
+    "untitledPost": "Gönderi",
+    "untitledLive": "Canlı",
+    "signIn": "Planladıklarını görmek için giriş yap",
+    "loading": "Yükleniyor…",
+    "emptyTitle": "Henüz planlanan bir şey yok",
+    "emptyBody": "Gönderi, canlı yayın veya Stage oluştururken \"Ne zaman?\" seç, burada görünsün.",
+    "move": "Taşı",
+    "postNow": "Şimdi paylaş",
+    "startNow": "Şimdi başlat",
+    "cancel": "İptal et",
+    "confirmCancel": "İptal için tekrar dokun",
+    "moved": "{{when}} zamanına taşındı",
+    "postingNow": "Bir dakika içinde paylaşılıyor",
+    "cancelled": "İptal edildi",
+    "moveFailed": "Taşınamadı. Tekrar dene.",
+    "seeAll": "Planladığın her şeyi gör"
   }
 }
