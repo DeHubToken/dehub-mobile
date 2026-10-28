@@ -10292,6 +10292,7 @@
     }
   },
   "creator": {
+    "layerNewAttempt": "Review a new attempt",
     "layerTitle": "Separate image layers",
     "layerPngRequired": "Choose a saved PNG image, up to 12 MiB and four megapixels.",
     "layerSource": "Original image",

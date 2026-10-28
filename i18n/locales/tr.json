@@ -9922,6 +9922,7 @@
     }
   },
   "creator": {
+    "layerNewAttempt": "Yeni bir denemeyi gözden geçir",
     "layerPngRequired": "En fazla 12 MiB ve dört megapiksel boyutunda kayıtlı bir PNG görseli seçin.",
     "layerTitle": "Görsel katmanlarını ayır",
     "layerSource": "Orijinal görsel",

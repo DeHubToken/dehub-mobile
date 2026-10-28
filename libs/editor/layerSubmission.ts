@@ -1,5 +1,14 @@
 export interface LayerSubmission { id: string; phase: 'prepared' | 'paying' | 'paid' | 'submitted'; txHash?: string; sourceDigest?: string }
 export interface LayerSubmissionStorage { read(): Promise<LayerSubmission | null>; write(value: LayerSubmission): Promise<void> }
+export interface LayerAttemptTerminal { id:string; status:string; paymentRestored?:boolean; delivered?:boolean }
+export async function beginNewLayerAttempt(storage: LayerSubmissionStorage & { archive(value:LayerSubmission):Promise<void> }, terminal:LayerAttemptTerminal, sourceDigest:string, uuid:()=>string) {
+  if (!(terminal.status==='succeeded' && terminal.delivered || ['failed','canceled','cancelled'].includes(terminal.status) && terminal.paymentRestored===true)) throw new Error('Collect this job before starting another attempt');
+  const saved = await storage.read();
+  if (saved && (saved.id!==terminal.id || saved.sourceDigest!==sourceDigest || saved.phase==='paying')) throw new Error('An unresolved layer payment is still active');
+  if (saved) await storage.archive(saved);
+  const next:LayerSubmission = {id:uuid(),phase:'prepared',sourceDigest};
+  await storage.write(next); return next;
+}
 const admissions = new Set<string>();
 export async function withLayerAdmission<T>(key: string, action: () => Promise<T>): Promise<T> {
   if (admissions.has(key)) throw new Error('This image already has a payment in progress');
