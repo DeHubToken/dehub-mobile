@@ -18,7 +18,7 @@ import Avatar from "../common/Avatar";
 import { DhbCoin } from "../common/DhbCoin";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
-import { ChromeFill, EDGE, TEXT_SHADOW } from "../common/ViewerChrome";
+import { EDGE, TEXT_SHADOW } from "../common/ViewerChrome";
 
 interface Props {
   isLive: boolean;
@@ -49,11 +49,9 @@ const formatElapsed = (ms: number) => {
   return h > 0 ? `${h}:${two(m)}:${two(s)}` : `${m}:${two(s)}`;
 };
 
+/** A fact on the picture: text and a shadow, no chip behind it. */
 const Pill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <View style={styles.pill}>
-    <ChromeFill radius={10} glass />
-    {children}
-  </View>
+  <View style={styles.pill}>{children}</View>
 );
 
 const LiveViewerPills: React.FC<Props> = ({
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: EDGE,
-    gap: 6,
+    gap: 12,
     alignItems: "center",
   },
   pill: {
@@ -168,10 +166,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 28,
     maxWidth: 220,
-    borderRadius: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 2,
     gap: 5,
-    overflow: "hidden",
   },
   liveTag: {
     backgroundColor: "#EF4444",
@@ -214,7 +210,7 @@ const styles = StyleSheet.create({
     ...TEXT_SHADOW,
   },
   value: {
-    color: "rgba(255,255,255,0.85)",
+    color: "rgba(255,255,255,0.92)",
     fontSize: 11,
     fontWeight: "600",
     flexShrink: 1,
