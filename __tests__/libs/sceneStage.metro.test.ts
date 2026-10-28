@@ -5,8 +5,9 @@ import { transformSync } from '@babel/core';
 
 it('runs the actual Expo/Babel-transformed serialized renderer in an isolated WebView-like script scope',()=>{
   const root=path.resolve(__dirname,'../..'), filename=path.join(root,'libs/editor/sceneStage.ts');
+  const caller={name:'metro',platform:'android',isDev:false,supportsStaticESM:false};
   const transformed=transformSync(fs.readFileSync(filename,'utf8'),{filename,configFile:path.join(root,'babel.config.js'),sourceMaps:false,
-    caller:{name:'metro',platform:'android',isDev:false,supportsStaticESM:false}});
+    caller});
   const compiled={exports:{} as Record<string,any>};
   vm.runInNewContext(transformed!.code!,{exports:compiled.exports,module:compiled,require});
   const html=compiled.exports.sceneStageDocument(compiled.exports.newSceneStage()),script=/<script>([\s\S]+)<\/script>/.exec(html)![1];
