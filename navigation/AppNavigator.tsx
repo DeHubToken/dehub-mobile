@@ -48,6 +48,38 @@ const getLiveProducerScreen = () => deferredScreen('LiveProducer', () => require
 
 const getLiveViewerScreen = () => deferredScreen('LiveViewer', () => require("../screens/LiveViewerScreen").default);
 
+// The pages a tap from a notification or a feed card opens. Their modules load
+// once the app has settled (see useWarmScreens), so the first open draws the
+// real page on the slide's first frame instead of a grey sketch that then
+// swaps for a differently shaped skeleton.
+type DeferredEntry = [key: string, load: () => React.ComponentType<any>];
+const FEED_DETAIL: DeferredEntry = ['../screens/FeedDetailScreen#default', () => require("../screens/FeedDetailScreen").default];
+const POST_RESOLVER: DeferredEntry = ['../screens/PostResolverScreen#default', () => require("../screens/PostResolverScreen").default];
+const PROFILE: DeferredEntry = ['../screens/ProfileScreen#default', () => require("../screens/ProfileScreen").default];
+const CHAT: DeferredEntry = ['../screens/ChatScreen#default', () => require("../screens/ChatScreen").default];
+const COMMUNITY_DETAIL: DeferredEntry = ['../screens/CommunityDetailScreen#default', () => require("../screens/CommunityDetailScreen").default];
+const FOLLOW_LIST: DeferredEntry = ['../screens/FollowListScreen#default', () => require("../screens/FollowListScreen").default];
+const WARM_SCREENS = [FEED_DETAIL, PROFILE, POST_RESOLVER, CHAT, COMMUNITY_DETAIL, FOLLOW_LIST];
+
+/** Load WARM_SCREENS one per idle moment, a few seconds after sign-in settles. */
+function useWarmScreens(enabled: boolean) {
+  useEffect(() => {
+    if (!enabled) return;
+    let cancelled = false;
+    let task: { cancel: () => void } | null = null;
+    const next = (i: number) => {
+      if (cancelled || i >= WARM_SCREENS.length) return;
+      task = InteractionManager.runAfterInteractions(() => {
+        if (cancelled) return;
+        preloadDeferredScreen(...WARM_SCREENS[i]);
+        setTimeout(() => next(i + 1), 250);
+      });
+    };
+    const timer = setTimeout(() => next(0), 4000);
+    return () => { cancelled = true; clearTimeout(timer); task?.cancel(); };
+  }, [enabled]);
+}
+
 const SIGN_IN_KEY = '../screens/auth/SignInScreen#default';
 const loadSignIn = () => require("../screens/auth/SignInScreen").default;
 // Before sign-in's module loads, show just its background, not the grey sketch
@@ -59,6 +91,7 @@ function AppNavigatorContent() {
   const { isSignedIn, needsUsername } = useAuthState();
   const { drawerOpen, closeDrawer } = useDrawer();
   const isAuthed = isSignedIn && !needsUsername;
+  useWarmScreens(isAuthed);
 
   // Guests: load the sign-in screen once the app has settled, so tapping
   // "Log in" draws the real screen on the slide's first frame.
@@ -381,7 +414,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.CommunityDetail}
-          getComponent={() => deferredScreen('../screens/CommunityDetailScreen#default', () => require("../screens/CommunityDetailScreen").default)}
+          getComponent={() => deferredScreen(...COMMUNITY_DETAIL)}
         />
         <Stack.Screen
           name={ScreenNames.CommunityInvite}
@@ -393,17 +426,17 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.PostResolver}
-          getComponent={() => deferredScreen('../screens/PostResolverScreen#default', () => require("../screens/PostResolverScreen").default)}
+          getComponent={() => deferredScreen(...POST_RESOLVER)}
         />
         {/* Same component under a second name — react-navigation allows one
             deep-link path per screen, and /newpost/:n needs its own. */}
         <Stack.Screen
           name={ScreenNames.PostResolverNewPost}
-          getComponent={() => deferredScreen('../screens/PostResolverScreen#default', () => require("../screens/PostResolverScreen").default)}
+          getComponent={() => deferredScreen(...POST_RESOLVER)}
         />
         <Stack.Screen
           name={ScreenNames.FeedDetail}
-          getComponent={() => deferredScreen('../screens/FeedDetailScreen#default', () => require("../screens/FeedDetailScreen").default)}
+          getComponent={() => deferredScreen(...FEED_DETAIL)}
           // One route per post, so opening a post from a post pushes a page
           // instead of swapping the open one's params.
           getId={({ params }) => feedDetailRouteId(params)}
@@ -448,7 +481,7 @@ function AppNavigatorContent() {
         />
         <Stack.Screen
           name={ScreenNames.FollowList}
-          getComponent={() => deferredScreen('../screens/FollowListScreen#default', () => require("../screens/FollowListScreen").default)}
+          getComponent={() => deferredScreen(...FOLLOW_LIST)}
         />
         <Stack.Screen
           name={ScreenNames.RepostQuoteList}
@@ -537,7 +570,7 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Chat}
-              getComponent={() => deferredScreen('../screens/ChatScreen#default', () => require("../screens/ChatScreen").default)}
+              getComponent={() => deferredScreen(...CHAT)}
             />
             <Stack.Screen
               name={ScreenNames.LiveChat}
@@ -593,7 +626,7 @@ function AppNavigatorContent() {
             />
             <Stack.Screen
               name={ScreenNames.Profile}
-              getComponent={() => deferredScreen('../screens/ProfileScreen#default', () => require("../screens/ProfileScreen").default)}
+              getComponent={() => deferredScreen(...PROFILE)}
             />
             <Stack.Screen
               name={ScreenNames.Upload}
