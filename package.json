@@ -10,7 +10,7 @@
     "android": "npx expo run:android",
     "ios": "npx expo run:ios",
     "web": "npx expo start --web",
-    "postinstall": "node scripts/build-locale-packs.mjs --metadata-only && patch-package --error-on-fail",
+    "postinstall": "node scripts/build-locale-packs.mjs --metadata-only && patch-package --error-on-fail && node scripts/patch-security-dependencies.cjs",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -147,7 +147,7 @@
     "valtio": "1.11.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
+    "@babel/core": "^7.29.6",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@react-native-community/cli": "^20.0.1",
     "@testing-library/react-native": "^13.3.3",
@@ -224,8 +224,22 @@
     "fast-uri@3": "3.1.9",
     "undici@6": "6.29.1",
     "node-forge": "1.4.2",
-    "tmp@0.2": "0.2.7",
-    "brace-expansion@1": "1.1.21"
+    "brace-expansion@1": "1.1.21",
+    "zod@3": "3.25.76",
+    "zod@4": "4.6.7",
+    "body-parser@2": "2.3.1",
+    "uuid@7": "11.1.1",
+    "ip-address": "10.7.4",
+    "basic-ftp": "6.2.3",
+    "tmp": "0.2.7",
+    "file-type": "21.3.2",
+    "fast-xml-parser@4": "5.11.2",
+    "@babel/core": "^7.29.6",
+    "deepmerge": "4.3.1",
+    "elliptic": "6.6.1",
+    "decode-uri-component": "0.2.2",
+    "stream-json": "1.9.1",
+    "bigint-buffer": "1.1.5"
   },
   "resolutions": {
     "valtio": "1.11.2",
