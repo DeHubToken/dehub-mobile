@@ -9894,6 +9894,17 @@
     }
   },
   "creator": {
+    "batchFlowLimit": "La lista de Flow está llena. Elimina un Flow sin usar antes de crear otro lote.",
+    "batchReviewCampaign": "Revisar lote de campaña en Flow",
+    "batchReviewFilmImages": "Revisar lote de imágenes del guion gráfico",
+    "batchReviewFilmVideos": "Revisar lote de clips de la película",
+    "batchReviewHint": "Abre un Flow guardado por separado. Revisa cada elemento y el precio total antes de pagar. Los elementos completados y el pago original se conservan para recuperarlos. Las referencias se copian en tu biblioteca privada; se aplica el uso de almacenamiento y red.",
+    "batchInvalid": "Completa cada elemento antes de preparar un lote de 1 a 12 imágenes o clips.",
+    "batchReferenceLimit": "Este lote admite una referencia de imagen por elemento. Elimina las referencias adicionales o prepara ese elemento individualmente.",
+    "batchVideoSettings": "Los clips de este lote requieren una duración entera de 4 a 15 segundos y una relación de aspecto 16:9, 9:16 o 1:1.",
+    "batchMissingReference": "Falta una referencia, no es compatible o supera los 25 MB. Restáurala en el editor antes de preparar el lote.",
+    "batchOwnerChanged": "La cuenta o el borrador ha cambiado. Vuelve a abrir este lote con su cuenta original.",
+    "batchConflict": "El lote guardado no coincide con su versión original.",
     "campaignPlanTitle": "Variantes y episodios de campaña",
     "campaignPlanIntro": "Guarda hasta 12 variantes o episodios. Cada uno abre el estudio para su propia revisión y presupuesto. Las notas compartidas guían la continuidad; el aspecto del producto, los personajes y las voces pueden variar entre generaciones.",
     "campaignTitle": "Nombre de la campaña o serie",

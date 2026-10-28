@@ -9898,6 +9898,17 @@
     }
   },
   "creator": {
+    "batchFlowLimit": "La liste Flow est pleine. Supprimez un Flow inutilisé avant de créer un autre lot.",
+    "batchReviewCampaign": "Vérifier le lot de campagne dans Flow",
+    "batchReviewFilmImages": "Vérifier le lot d’images du storyboard",
+    "batchReviewFilmVideos": "Vérifier le lot de plans du film",
+    "batchReviewHint": "Ouvre un Flow enregistré séparément. Vérifiez chaque élément et le prix total avant de payer. Les éléments terminés et le paiement initial sont conservés pour la reprise. Les références sont copiées dans votre bibliothèque privée ; le stockage et le réseau sont utilisés.",
+    "batchInvalid": "Complétez chaque élément avant de préparer un lot de 1 à 12 images ou plans.",
+    "batchReferenceLimit": "Ce lot accepte une image de référence par élément. Retirez les références supplémentaires ou préparez cet élément séparément.",
+    "batchVideoSettings": "Les plans de ce lot nécessitent une durée entière de 4 à 15 secondes et un format 16:9, 9:16 ou 1:1.",
+    "batchMissingReference": "Une référence manque, n’est pas prise en charge ou dépasse 25 Mo. Restaurez-la dans l’éditeur avant de préparer le lot.",
+    "batchOwnerChanged": "Le compte ou le brouillon a changé. Rouvrez ce lot avec son compte initial.",
+    "batchConflict": "Le lot enregistré ne correspond pas à sa version initiale.",
     "campaignPlanTitle": "Variantes et épisodes de campagne",
     "campaignPlanIntro": "Enregistrez jusqu’à 12 variantes ou épisodes. Chacun ouvre le studio pour sa propre vérification et son devis. Les notes communes guident la continuité ; l’apparence du produit, les personnages et les voix peuvent varier entre les générations.",
     "campaignTitle": "Nom de la campagne ou de la série",
