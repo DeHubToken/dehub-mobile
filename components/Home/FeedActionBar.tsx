@@ -2,7 +2,7 @@ import { FEED_ICON_SIZE, FEED_BOOKMARK_STYLE } from './feed-icon-size';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Animated, Easing, View, Pressable, Text } from "react-native";
+import { Animated, View, Pressable, Text } from "react-native";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
@@ -15,6 +15,7 @@ import {
   type ReactionCounts,
 } from "../../libs/reactions";
 import { ReactionEmoji } from "./ReactionEmoji";
+import { EmperorThumb } from "./EmperorThumb";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
@@ -101,41 +102,6 @@ const BUTTON_ROW = {
   paddingVertical: GLYPH_ROOM,
   marginVertical: -GLYPH_ROOM,
 } as const;
-
-/**
- * The emperor's verdict, on a loop, for your own 👍 / 👎: the fist held
- * sideways, then the thumb snapping up (or down) with a pop, a beat at rest,
- * and back to the side. Same 2.6s beat as web. Native-driver transforms only;
- * it holds still while the card is off screen.
- */
-const VERDICT_STEPS = [0, 0.1, 0.24, 0.32, 0.4, 0.8, 0.92, 1];
-const ThumbVerdict: React.FC<{ down?: boolean; playing: boolean; children: React.ReactNode }> = ({ down, playing, children }) => {
-  const t = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    if (!playing) return;
-    t.setValue(0);
-    const loop = Animated.loop(
-      Animated.timing(t, { toValue: 1, duration: 2600, easing: Easing.linear, useNativeDriver: true, isInteraction: false }),
-    );
-    loop.start();
-    return () => {
-      loop.stop();
-      t.setValue(0.5);
-    };
-  }, [playing, t]);
-  const style = useMemo(() => {
-    const sign = down ? -1 : 1;
-    const deg = (v: number) => `${v * sign}deg`;
-    return {
-      transform: [
-        { translateY: t.interpolate({ inputRange: VERDICT_STEPS, outputRange: [0, 0, -3 * sign, 0, 0, 0, 0, 0] }) },
-        { rotate: t.interpolate({ inputRange: VERDICT_STEPS, outputRange: [deg(-90), deg(-90), deg(10), deg(-5), deg(0), deg(0), deg(-90), deg(-90)] }) },
-        { scale: t.interpolate({ inputRange: VERDICT_STEPS, outputRange: [0.86, 0.86, 1.28, 1.06, 1, 1, 0.86, 0.86] }) },
-      ],
-    };
-  }, [down, t]);
-  return <Animated.View style={style}>{children}</Animated.View>;
-};
 
 const AnimatedActionButton: React.FC<{
   onPress: () => void;
@@ -243,7 +209,7 @@ const AnimatedActionButton: React.FC<{
         // every post below it.
         <View style={{ width: iconSize, height: iconSize + GLYPH_ROOM * 2, marginVertical: -GLYPH_ROOM, alignItems: "center", justifyContent: "center" }}>
           {(glyph === "like" || glyph === "dislike") && glyphAnimated ? (
-            <ThumbVerdict down={glyph === "dislike"} playing={glyphPlaying}>{glyphEmoji}</ThumbVerdict>
+            <EmperorThumb size={iconSize + 4} down={glyph === "dislike"} playing={glyphPlaying} />
           ) : (
             glyphEmoji
           )}
@@ -324,8 +290,8 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const resolvedThumb = resolveThumbReaction(reactionCounts, myReaction);
-  // A plain like turns the thumb into the moving 👍, the same way every other
-  // reaction you cast shows as its moving emoji.
+  // Your own like (or the 👎 picked from the tray) plays the arena verdict
+  // (EmperorThumb); any other reaction you cast shows as its moving emoji.
   const thumbGlyph = resolvedThumb ?? (liked ? "like" : undefined);
   const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
 
