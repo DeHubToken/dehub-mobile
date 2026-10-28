@@ -39,6 +39,9 @@ type ProfileRoute = { key: string; title: string; icon: IconName };
 
 /** Opened tabs kept mounted (hidden), the active one included. */
 const MAX_KEPT_TABS = 4;
+/** Busiest other tabs built in the background once the profile settles. */
+const PRERENDERED_TABS = 2;
+const PRERENDER_DELAY_MS = 1200;
 
 const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPress: () => void }) => {
   const { t: _copy } = _useCopy();
@@ -155,6 +158,25 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
       })),
     [counts, routes],
   );
+
+  // Once the profile has settled, build its busiest other tabs in the
+  // background (hidden, like a kept tab), so the first tap on one shows a
+  // ready list instead of building the list and header on the tap.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const next = tabItems
+        .filter((item) => item.key !== activeKey && item.key !== "dislikes" && (item.count ?? 0) > 0)
+        .slice(0, PRERENDERED_TABS)
+        .map((item) => item.key);
+      setKeptKeys((kept) => {
+        if (kept.address !== address) return kept;
+        const missing = next.filter((key) => !kept.keys.includes(key));
+        if (!missing.length) return kept;
+        return { address, keys: [...missing, ...kept.keys].slice(-MAX_KEPT_TABS) };
+      });
+    }, PRERENDER_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [address, tabItems, activeKey]);
 
   const handleTabChange = useCallback((key: string) => {
     if (key === activeKey) return;
