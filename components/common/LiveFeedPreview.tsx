@@ -134,17 +134,17 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCou
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      {/* Any tap opens the live page, like a tap anywhere else on the card. */}
-      <Pressable accessibilityRole="button" accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
-        event.stopPropagation();
-        onPress?.();
-      }}>
       {/* Unmounted while another screen is on top: a VideoView that mounts
           takes the player's picture, and the viewer is showing this player.
-          Remounting on return is what pulls the picture back to the card. */}
+          Remounting on return is what pulls the picture back to the card.
+          Untouchable: on Android the native player view kept the touch, so a
+          tap on the moving picture never reached the card and only the frame
+          around it opened the live. The tap layer below sits over it. */}
       {focused && <VideoView
       style={StyleSheet.absoluteFill}
       player={player}
+      pointerEvents="none"
+      focusable={false}
       onFirstFrameRender={() => setFirstFrame(true)}
       nativeControls={false}
       allowsVideoFrameAnalysis={false}
@@ -153,7 +153,6 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCou
       // rounded-corner clip never reached it on Android.
       surfaceType="textureView"
       />}
-      </Pressable>
       {loading && !waitingTooLong && (
         <View pointerEvents="none" style={[StyleSheet.absoluteFill, { alignItems: 'center', justifyContent: 'center' }]}><DeHubLoader size={40} /></View>
       )}
@@ -164,6 +163,11 @@ function LivePlayer({ url, onPress, streamId, streamStatus, isOwner, onViewerCou
             : t('live.reconnecting')}</Text>
         </View>
       )}
+      {/* Any tap opens the live page, like a tap anywhere else on the card. */}
+      <Pressable accessibilityRole="button" accessibilityLabel={t("stages.liveNow")} style={StyleSheet.absoluteFill} onPress={(event) => {
+        event.stopPropagation();
+        onPress?.();
+      }} />
     </View>
   );
 }
