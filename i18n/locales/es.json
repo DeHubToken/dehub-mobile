@@ -9868,6 +9868,7 @@
     "extensionForward": "Añade unos cuatro segundos después del clip original",
     "extensionBackward": "Añade unos cuatro segundos antes del clip original",
     "expandDescription": "Genera contenido fuera de los bordes. Una imagen de origen y un texto opcional en inglés.",
+    "relightDescription": "Cambia la iluminación de una foto según tu descripción de la luz y el fondo.",
     "expandPromptHint": "Adjunta una imagen y elige su nueva relación de aspecto. El texto en inglés es opcional.",
     "expandEnglishOnly": "Este modelo de expansión acepta textos en inglés. Déjalo vacío para ampliar automáticamente.",
     "expandNeedsImage": "Adjunta una imagen para ampliarla.",

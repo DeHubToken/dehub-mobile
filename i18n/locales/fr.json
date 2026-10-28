@@ -9872,6 +9872,7 @@
     "extensionForward": "Ajoutez environ quatre secondes après le clip source",
     "extensionBackward": "Ajoutez environ quatre secondes avant le clip source",
     "expandDescription": "Génère du contenu au-delà des bords. Une image source et une description facultative en anglais.",
+    "relightDescription": "Modifiez l’éclairage d’une photo à partir de votre description de la lumière et du fond.",
     "expandPromptHint": "Ajoutez une image et choisissez son nouveau format. La description en anglais est facultative.",
     "expandEnglishOnly": "Ce modèle accepte les descriptions en anglais. Laissez le champ vide pour une extension automatique.",
     "expandNeedsImage": "Ajoutez une image à étendre.",
