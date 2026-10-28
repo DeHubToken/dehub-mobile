@@ -50,10 +50,10 @@ export async function loadBuilderAppHtml(projectId: string, version?: number): P
 }
 
 // ── Own-origin hosting + owner controls ────────────────────────────────────
-// Each app lives at https://<slug>.dehub.app. Owners manage it through
+// Each app lives at https://<slug>.dhb.gg. Owners manage it through
 // dehubweb's builder-api function with their DeHub token.
 
-export const BUILDER_APPS_DOMAIN = "dehub.app";
+export const BUILDER_APPS_DOMAIN = "dhb.gg";
 
 export function builderAppUrl(slug: string): string {
   return `https://${slug}.${BUILDER_APPS_DOMAIN}/`;
@@ -74,7 +74,7 @@ export async function resolvePublicApp(projectId: string): Promise<PublicBuilder
   return res.json();
 }
 
-/** True once <slug>.dehub.app answers — false while DNS is still moving. */
+/** True once <slug>.dhb.gg answers — false while DNS is still moving. */
 export async function appHostReachable(url: string): Promise<boolean> {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 4000);

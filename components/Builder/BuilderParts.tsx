@@ -15,7 +15,7 @@ import { builderStorageBase, loadBuilderAppHtml } from "../../services/builder.s
  * app's own Storage folder opens in the browser instead of inside this view.
  */
 export function BuilderAppView(props: { projectId: string; version?: number; nonce: number; uri?: string | null }) {
-  // On its own origin (<slug>.dehub.app) the app loads directly, with real storage.
+  // On its own origin (<slug>.dhb.gg) the app loads directly, with real storage.
   if (props.uri) return <HostedAppView uri={props.uri} nonce={props.nonce} />;
   return <MirroredAppView {...props} />;
 }
