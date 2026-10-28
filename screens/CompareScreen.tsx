@@ -9,7 +9,7 @@ import ScreenHeader from '../components/ScreenHeader';
 import { PageEmpty, PageSection, PageTabs } from '../components/page/PageKit';
 import { useAppTheme } from '../context/ThemeContext';
 import { openExternalLink } from '../libs/links.utils';
-import { CATEGORIES, FEATURES, PLATFORMS, REVIEWED_ON, SOURCES, STATUS_LABELS, comparisonCoverage, entryFor, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
+import { CATEGORIES, FEATURES, PLATFORMS, REVIEWED_ON, COMPETITOR_REVIEWED_ON, SOURCES, STATUS_LABELS, comparisonCoverage, entryFor, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
 
 export default function CompareScreen() {
   const { t } = useTranslation();
@@ -51,12 +51,13 @@ export default function CompareScreen() {
           <Text style={[styles.body, { color: colors.mutedForeground }]}>{FEATURES.length} {copy('features', 'features')} · {CATEGORIES.length} {copy('categories', 'categories')} · {PLATFORMS.length} {copy('platforms', 'other platforms')}</Text>
           <Pressable accessibilityRole="button" accessibilityState={{ expanded: method }} onPress={() => setMethod(value => !value)} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{copy('method', 'How to read this comparison')}</Text></Pressable>
           {method && <View style={{ gap: 12 }}>
-            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('methodBody', 'Documented means described by first-party documentation. Source reviewed means supported by the linked client implementation, with production availability still to be tested. Conditional means eligibility, device, region or a narrower feature applies. Related product means a companion app, integration or ecosystem implementation. Not verified is an open research item, never a claim that a feature is absent.')}</Text>
+            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('researchMethod', 'Each catalogue feature has been reviewed against the cited official documentation for all eleven competitors. Documented, Conditional and Related product describe supported or partial equivalents. Explicit limitation requires a source that states the restriction. Not established by sources means this documentary review did not establish an equivalent; it does not mean the product definitely lacks it. Announcements and unresolved availability are labelled separately.')}</Text>
             <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('scope', 'This is a growing catalogue of DeHub capabilities, not a score or an exhaustive audit of every competitor. Platform documentation can lag product changes. Older sources establish a feature, not its current price or limits.')}</Text>
             <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('parity', 'DeHub web, Android and iOS capabilities differ. The iOS app does not offer crypto purchases or reward actions. Device-specific notes remain beside the relevant features. Documentation is not a guarantee of availability or earnings.')}</Text>
-            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('auditLimit', 'DeHub coverage includes product documentation, web routes, native screens, settings and editor tools. Code references identify the reviewed revisions. Every feature has not been exercised in production or on every device, and competitor research is incomplete. Counts describe catalogue entries, not unique advantages or a feature score.')}</Text>
+            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('researchLimit', 'This is a documentation comparison, not an end-to-end test of every account, region or device. DeHub source references pin the reviewed code revisions. Independent editors and payment providers count only where explicitly identified as related products. Counts describe catalogue rows, not unique advantages or a feature score.')}</Text>
+            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('peerReviewDate', 'Competitor documentation reviewed:')} {COMPETITOR_REVIEWED_ON}</Text>
           </View>}
-          <Text style={[styles.body, { color: colors.mutedForeground, marginTop: 12 }]}>{coverage.verified} / {coverage.total} {copy('coverage', 'competitor entries have source evidence. Remaining entries need verification.')}</Text>
+          <Text style={[styles.body, { color: colors.mutedForeground, marginTop: 12 }]}>{coverage.reviewed} / {coverage.total} {copy('researchCoverage', 'competitor entries reviewed against documentation.')} {coverage.verified} {copy('researchMatches', 'documented, conditional or related-product matches.')}</Text>
         </PageSection>
         <PageTabs<string> tabs={[{ id: 'all', label: copy('allCategories', 'All categories') }, ...CATEGORIES.map(c => ({ id: c, label: c }))]} value={category} onChange={setCategory} />
         <Text accessibilityLiveRegion="polite" style={[styles.count, { color: colors.mutedForeground }]}>{filtered.length} {copy('matching', 'matching features')}</Text>

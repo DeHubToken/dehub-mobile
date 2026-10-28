@@ -1,6 +1,8 @@
 /** Keep identical to dehub-mobile/libs/platform-comparison.ts. */
 import { AUDIT_REVISIONS, DETAIL_GROUPS } from './platform-comparison-details';
+import { COMPETITOR_REVIEWED_ON, RESEARCH_SOURCES, REVIEWED_FEATURE_IDS, researchedEntry } from './platform-comparison-research';
 export { AUDIT_REVISIONS } from './platform-comparison-details';
+export { COMPETITOR_REVIEWED_ON, REVIEWED_FEATURE_IDS } from './platform-comparison-research';
 export const REVIEWED_ON = '2026-10-27';
 export const PLATFORMS = [
   { id: 'youtube', name: 'YouTube' }, { id: 'x', name: 'X / Twitter' },
@@ -11,11 +13,13 @@ export const PLATFORMS = [
   { id: 'farcaster', name: 'Farcaster' },
 ] as const;
 export type PlatformId = typeof PLATFORMS[number]['id'];
-export type Status = 'documented' | 'code' | 'limited' | 'ecosystem' | 'unverified';
+export type Status = 'documented' | 'code' | 'limited' | 'ecosystem' | 'unverified' | 'not_documented' | 'not_offered' | 'announced';
 export const STATUS_LABELS: Record<Status, string> = {
   documented: 'Documented', code: 'Source reviewed', limited: 'Conditional', ecosystem: 'Related product', unverified: 'Not verified',
+  not_documented: 'Not established by sources', not_offered: 'Explicit limitation', announced: 'Announced / availability unconfirmed',
 };
 export const SOURCES: Record<string, { title: string; url: string }> = {
+  ...RESEARCH_SOURCES,
   dehub: { title: 'DeHub product guide', url: 'https://dehub.io/docs/dapps' },
   dehubLaunchpad: { title: 'DeHub Launchpad', url: 'https://dehub.io/launchpad' },
   dehubEncryption: { title: 'DeHub encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
@@ -147,7 +151,7 @@ const CATALOGUE: ComparisonFeature[] = [
     ['subs', 'Creator subscriptions', 'Creator-set subscription tiers and gated posts.', { youtube: e('youtube', 'Memberships for eligible channels.', 'limited'), x: e('xArticles', 'Subscriptions and subscriber-only articles.', 'limited'), kick: e('kickSubs', 'Channel subscriptions with subscriber perks.', 'limited'), twitch: e('twitchPartner', 'Channel subscriptions and emotes.', 'limited'), instagram: e('igSubs', 'Subscriptions and exclusive content.', 'limited'), tiktok: e('tiktokSubs', 'Subscriptions for eligible creators and regions.', 'limited'), rumble: e('rumbleSubs', 'Channel subscriptions and Premium are separate products.', 'limited') }, true],
     ['gated-posts', 'Subscriber-only posts', 'Non-subscribers see a teaser instead of the protected post.', { youtube: e('ytPosts', 'Members-only posts.', 'limited'), x: e('xArticles', 'Subscriber-only articles.', 'limited'), instagram: e('igSubs', 'Exclusive feed posts and Reels.', 'limited'), tiktok: e('tiktokSubs', 'Subscriber-exclusive content and perks.', 'limited'), rumble: e('rumbleSubs', 'Eligible Premium content.', 'limited') }, true],
     ['ppv', 'Pay-per-view content', 'Set an unlock price for a post or event.', { tiktok: e('tiktokSeries', 'Series sells access to collections of premium videos; not identical to per-post unlocks.', 'limited') }, true],
-    ['tips', 'Direct creator support', 'Token and supported stablecoin tips.', { youtube: e('youtube', 'Supers for eligible creators.', 'limited'), twitch: e('twitch', 'Bits.', 'limited'), rumble: e('rumbleApi', 'Paid Rants.', 'limited'), farcaster: e('fcApps', 'Wallet-enabled mini apps can accept donations; each app defines the experience.', 'ecosystem') }, true],
+    ['tips', 'Direct creator support', 'Token and supported stablecoin tips.', { youtube: e('youtube', 'Supers for eligible creators.', 'limited'), twitch: e('twitch', 'Bits cheers.', 'limited'), rumble: e('rumbleApi', 'Paid Rants.', 'limited'), farcaster: e('fcApps', 'Wallet-enabled mini apps can accept donations; each app defines the experience.', 'ecosystem') }, true],
     ['stablecoins', 'Stablecoin tips and unlocks', 'USDC or USDT on supported payment routes.', { farcaster: e('fcApps', 'Wallet transactions can be implemented in mini apps; no universal creator payment policy.', 'ecosystem') }, true],
     ['wallet-payment', 'Creator wallet settlement', 'Supported on-chain payments go to the creator wallet, subject to fees and confirmation.', { farcaster: e('fcApps', 'Mini apps integrate wallet transactions.', 'ecosystem') }, true],
     ['ad-revenue', 'Creator revenue programs', 'Ad revenue features and earnings reporting; actual revenue depends on activity and inventory.', { youtube: e('youtube', 'YPP Watch Page and Shorts revenue.', 'limited'), twitch: e('twitch', 'Eligible creators can run ads.', 'limited'), facebook: e('facebook', 'Invite-only Content Monetization.', 'limited'), tiktok: e('tiktokRewards', 'Creator Rewards; eligible content, accounts and countries.', 'limited'), rumble: e('rumble', 'Creator Program pays on performance; enrollment applies.', 'limited') }, true],
@@ -326,7 +330,7 @@ const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => d
 export const FEATURES: ComparisonFeature[] = [...CATALOGUE, ...EXPANDED_FEATURES].map(feature => ({
   ...feature,
   dehub: feature.id === 'encrypted-text' ? e('dehubEncryption', feature.dehub.note, 'limited') : feature.id === 'encrypted-attachments' ? { ...feature.dehub, status: 'limited' as const } : feature.dehub,
-  peers: { ...feature.peers, ...ADDITIONAL_EVIDENCE[feature.id] },
+  peers: Object.fromEntries(PLATFORMS.map(platform => [platform.id, researchedEntry(feature.id, feature.name, feature.category, platform.id, ADDITIONAL_EVIDENCE[feature.id]?.[platform.id] ?? feature.peers[platform.id])]).filter(([, entry]) => entry)) as Partial<Record<PlatformId, ComparisonEntry>>,
 }));
 export const CATEGORIES = [...new Set(FEATURES.map(feature => feature.category))];
 export function entryFor(feature: ComparisonFeature, platform: PlatformId | 'dehub'): ComparisonEntry {
@@ -341,5 +345,11 @@ export function filterFeatures(query: string, category: string): ComparisonFeatu
 }
 export function comparisonCoverage(platform: PlatformId | 'all') {
   const platforms = platform === 'all' ? PLATFORMS.map(p => p.id) : [platform];
-  return { verified: FEATURES.reduce((total, feature) => total + platforms.filter(id => feature.peers[id] && feature.peers[id]!.status !== 'unverified').length, 0), total: FEATURES.length * platforms.length };
+  const supported = new Set<Status>(['documented', 'limited', 'ecosystem', 'code']);
+  return {
+    verified: FEATURES.reduce((total, feature) => total + platforms.filter(id => feature.peers[id] && supported.has(feature.peers[id]!.status)).length, 0),
+    reviewed: FEATURES.filter(feature => REVIEWED_FEATURE_IDS.includes(feature.id)).length * platforms.length,
+    total: FEATURES.length * platforms.length,
+    reviewedOn: COMPETITOR_REVIEWED_ON,
+  };
 }
