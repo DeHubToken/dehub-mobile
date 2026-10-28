@@ -19,7 +19,11 @@ export interface SelfReaction {
 export default function LiveFeedReactionFlow({
   streamId,
   self,
+  laneHeight,
 }: {
+  /** How far the emoji climb. Set, the lane is not clipped either: the feed
+   *  lets them drift a little past the picture's edge. */
+  laneHeight?: number;
   /**
    * The stream's room. Absent when the feed row never resolved one, which is
    * common — the flow still mounts so the viewer's own reaction has somewhere
@@ -58,5 +62,5 @@ export default function LiveFeedReactionFlow({
     addReaction(self.type, undefined, self.weight ?? 1);
   }, [self, addReaction]);
 
-  return <ReactionOverlay reactions={reactions} bottom={12} />;
+  return <ReactionOverlay reactions={reactions} bottom={12} maxHeight={laneHeight} clip={laneHeight == null} />;
 }

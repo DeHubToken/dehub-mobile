@@ -1778,7 +1778,26 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const liveFallbackLabel =
     title || (isCurrentlyLive ? t("stages.liveNow") : t("feedCard.stream"));
 
+  const liveMediaHeight = cinematicMedia ? Math.round((SCREEN_WIDTH * 9) / 16) : 192;
+  // The reactions ride outside the picture's clip, so they rise over the
+  // badges and buttons and drift a little past the media's top edge instead of
+  // being sliced off by its rounded box.
   const renderLiveThumbnail = () => (
+    <View style={{ position: "relative" }}>
+    {renderLiveMedia()}
+    {isCurrentlyLive && isVisible && (
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 30, elevation: 30 }]}>
+        <LiveFeedReactionFlow
+          streamId={liveReactionStreamId}
+          self={selfLiveReaction}
+          laneHeight={Math.round(liveMediaHeight * 1.15)}
+        />
+      </View>
+    )}
+    </View>
+  );
+
+  const renderLiveMedia = () => (
     <Pressable
       onPress={handleCardPress}
       // The grey backing is a plain view inside: as the pressable's own fill,
@@ -1788,14 +1807,6 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
       style={cinematicMedia ? { height: Math.round((SCREEN_WIDTH * 9) / 16) } : undefined}
     >
       <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#27272a" }]} />
-      {isCurrentlyLive && isVisible && (
-        <View pointerEvents="none" style={[StyleSheet.absoluteFill, { zIndex: 2 }]}>
-          <LiveFeedReactionFlow
-            streamId={liveReactionStreamId}
-            self={selfLiveReaction}
-          />
-        </View>
-      )}
       {livePlayableUrl && !isActuallyGated ? (
         /* On air: play the stream in the card; once it has ended, its replay.
            The feed used to show a poster (often none at all, since the
