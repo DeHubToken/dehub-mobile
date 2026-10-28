@@ -10,6 +10,7 @@ import {
   ActivityIndicator,
   Platform,
   UIManager,
+  InteractionManager,
 } from "react-native";
 
 import { DeHubRefreshControl, DeHubRefreshMark } from "../components/Feed/DeHubRefreshControl";
@@ -1074,17 +1075,21 @@ const NotificationScreen = () => {
     // Check if clickable
     if (!isNotificationClickable(notification)) return;
     
-    // Mark as read (fire and forget) - only if unread
+    // Mark as read (fire and forget) - only if unread. The row and the badge
+    // update once the page has slid in: re-rendering the list in the same
+    // tick as the navigate made every tap stutter at the start of the slide.
     if (!notification.read) {
-      setNotifications((prev) =>
-        prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
-      );
-      // The app badge is derived from this snapshot by the effect below, so
-      // marking the row read here is the whole update — no manual decrement to
-      // race with it.
-      setCountsSource((prev) =>
-        prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
-      );
+      InteractionManager.runAfterInteractions(() => {
+        setNotifications((prev) =>
+          prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
+        );
+        // The app badge is derived from this snapshot by the effect below, so
+        // marking the row read here is the whole update — no manual decrement to
+        // race with it.
+        setCountsSource((prev) =>
+          prev.map((n) => (n._id === _id ? { ...n, read: true } : n))
+        );
+      });
       markAsReadAsync(_id);
     }
 
