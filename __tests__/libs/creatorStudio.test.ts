@@ -112,6 +112,15 @@ describe('native Creator jobs', () => {
     expect(resolved).toContain('—');
     expect(creatorInputIssue(settings, true, preset, resolved)).toBe('creator.expandEnglishOnly');
   });
+  it('requires a single photo for the specialist relighting model', () => {
+    const settings = normalizeCreatorSettings({ ...CREATOR_DEFAULTS.image, model: 'iclight-v2' });
+    expect(settings.model).toBe('iclight-v2');
+    expect(creatorInputIssue(settings, false)).toBe('creator.studioNeedsImage');
+    expect(creatorInputIssue(settings, true)).toBeNull();
+    expect(creatorInputIssue({ ...settings, referenceAssets: [
+      { uri: 'one.png', label: 'One', kind: 'image' }, { uri: 'two.png', label: 'Two', kind: 'image' },
+    ] }, true)).toBe('creator.referenceTooMany');
+  });
 
   it('keeps the selected medium and stored settings independent of prompt keywords', () => {
     const settings = normalizeCreatorSettings(CREATOR_DEFAULTS.image);
