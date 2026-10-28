@@ -10294,6 +10294,7 @@
     "extensionForward": "Add about four seconds after your source clip",
     "extensionBackward": "Add about four seconds before your source clip",
     "expandDescription": "Generate new image borders. Optional English prompt; one source image.",
+    "relightDescription": "Relight one photo from your lighting and background description.",
     "expandPromptHint": "Attach one image and choose its new aspect ratio. English prompt optional.",
     "expandEnglishOnly": "This expansion model accepts English prompts. Leave the prompt empty for automatic expansion.",
     "expandNeedsImage": "Attach an image to expand.",

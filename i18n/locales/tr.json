@@ -9924,6 +9924,7 @@
     "extensionForward": "Kaynak klibin sonuna yaklaşık dört saniye ekleyin",
     "extensionBackward": "Kaynak klibin başına yaklaşık dört saniye ekleyin",
     "expandDescription": "Görüntü sınırlarının dışında yeni içerik üretir. Tek kaynak görüntü ve isteğe bağlı İngilizce açıklama.",
+    "relightDescription": "Işık ve arka plan açıklamanıza göre bir fotoğrafı yeniden aydınlatın.",
     "expandPromptHint": "Bir görüntü ekleyip yeni en boy oranını seçin. İngilizce açıklama isteğe bağlıdır.",
     "expandEnglishOnly": "Bu genişletme modeli İngilizce açıklamaları kabul eder. Otomatik genişletme için açıklamayı boş bırakın.",
     "expandNeedsImage": "Genişletmek için bir görüntü ekleyin.",
