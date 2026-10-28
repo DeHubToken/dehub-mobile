@@ -2,6 +2,8 @@ import * as FileSystem from 'expo-file-system/legacy';
 export interface AvatarSubmission {
   clientJobId?: string;
   txHash?: string;
+  phase?: 'prepared' | 'paying' | 'signed';
+  prompt?: string;
   imageDataUrl: string;
   audioDataUrl: string;
   rightsConfirmed: boolean;
@@ -18,10 +20,34 @@ const preparedPath = (owner: string) => {
   return `${FileSystem.documentDirectory}creator-avatar-${owner.toLowerCase().replace(/[^a-z0-9_-]/g, '_')}.json`;
 };
 export async function savePreparedAvatar(owner: string, input: AvatarSubmission) {
-  await FileSystem.writeAsStringAsync(preparedPath(owner), JSON.stringify(input));
+  if (!input.clientJobId || !/^[a-f0-9-]{36}$/i.test(input.clientJobId)) throw new Error('creatorFlow.recoveryPending');
+  const previous = await loadPreparedAvatar(owner);
+  if (previous?.clientJobId && previous.clientJobId !== input.clientJobId && previous.phase !== 'prepared') throw new Error('creatorFlow.recoveryPending');
+  if (previous?.clientJobId === input.clientJobId && (previous.inputDigest !== input.inputDigest || previous.imageDataUrl !== input.imageDataUrl || previous.audioDataUrl !== input.audioDataUrl || previous.prompt !== input.prompt || previous.rightsConfirmed !== input.rightsConfirmed || previous.phase !== 'prepared' && previous.acceptedPriceDhb !== input.acceptedPriceDhb || previous.txHash && previous.txHash !== input.txHash)) throw new Error('creatorFlow.recoveryPending');
+  const root = preparedPath(owner), media = `${root}.${input.clientJobId}.media`, info = await FileSystem.getInfoAsync(media);
+  if (!info.exists) await FileSystem.writeAsStringAsync(media, JSON.stringify({ imageDataUrl: input.imageDataUrl, audioDataUrl: input.audioDataUrl }));
+  const { imageDataUrl: _image, audioDataUrl: _audio, ...metadata } = input;
+  // Phase/receipt updates never rewrite the large immutable media file.
+  await FileSystem.writeAsStringAsync(`${root}.${input.clientJobId}.meta`, JSON.stringify(metadata));
+  await FileSystem.writeAsStringAsync(root, input.clientJobId);
 }
 export async function loadPreparedAvatar(owner: string): Promise<AvatarSubmission | null> {
   const path = preparedPath(owner), info = await FileSystem.getInfoAsync(path);
-  if (!info.exists || info.isDirectory || info.size > 10 * 1024 * 1024) return null;
-  return JSON.parse(await FileSystem.readAsStringAsync(path));
+  if (!info.exists) return null;
+  if (info.isDirectory || info.size > 10 * 1024 * 1024) throw new Error('creatorFlow.recoveryPending');
+  const id = await FileSystem.readAsStringAsync(path);
+  // Earlier releases stored the entire paid input in the owner file.
+  if (id.startsWith('{')) {
+    const legacy = JSON.parse(id) as AvatarSubmission;
+    if (!legacy.clientJobId || !legacy.imageDataUrl || !legacy.audioDataUrl) throw new Error('creatorFlow.recoveryPending');
+    return legacy;
+  }
+  if (!/^[a-f0-9-]{36}$/i.test(id)) throw new Error('creatorFlow.recoveryPending');
+  const mediaInfo = await FileSystem.getInfoAsync(`${path}.${id}.media`);
+  if (!mediaInfo.exists || mediaInfo.isDirectory || mediaInfo.size > 10 * 1024 * 1024) throw new Error('creatorFlow.recoveryPending');
+  return { ...JSON.parse(await FileSystem.readAsStringAsync(`${path}.${id}.media`)), ...JSON.parse(await FileSystem.readAsStringAsync(`${path}.${id}.meta`)) };
+}
+export async function clearPreparedAvatar(owner: string, id: string) {
+  const current = await loadPreparedAvatar(owner);
+  if (current?.clientJobId === id) await FileSystem.deleteAsync(preparedPath(owner), { idempotent: true });
 }

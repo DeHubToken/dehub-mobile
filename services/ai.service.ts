@@ -600,6 +600,9 @@ export async function startVideoGeneration(
     walletAddress,
   );
 }
+export async function avatarJobState(clientJobId: string): Promise<{ txHash?: string; canStartNew: boolean }> {
+  return paidEdgeFetch('generate-video', { avatarStatus: clientJobId });
+}
 
 /**
  * Poll a render. `provider` and `falAppId` come back from the start call and
