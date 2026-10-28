@@ -41,6 +41,6 @@ Aliases, redirects, loading/error screens, auth confirmation callbacks, administ
 
 Catalogue tests check duplicate identifiers, requested platform coverage, resolvable source records, filters, unknown-state behavior, coverage denominators, referenced source ownership and sensitive capability limitations. Web and native use identical catalogue and detail modules. Cloud CI remains the authority for TypeScript and tests.
 
-The comparison displays the count of competitor cells backed by sources. Missing cells remain **Not verified**, never an implied “No”. A checked source is not a completed end-to-end test. There is no claim that every feature of every competitor, every backend permission or every physical-device interaction has been fully checked.
+The follow-up documentation review on 28 October covers every catalogue/competitor pair and is recorded in `comparison-competitor-review-20261028.md`. It separates supported matches, explicit limitations, announcements and **Not established by sources** findings. An unestablished equivalent is never an implied “No”. Future unreviewed rows remain **Not verified**. A checked source is not a completed end-to-end test. There is no claim that every feature of every competitor, every backend permission or every physical-device interaction has been fully checked.
 
 Publication, production page interactions and native update delivery are tracked by the release PRs. Those checks verify the comparison surface; they do not certify all 524 underlying product actions.
