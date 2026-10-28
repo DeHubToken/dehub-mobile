@@ -2447,6 +2447,8 @@
     "returnHome": "Retour à l'accueil"
   },
   "profile": {
+    "mutualsOne": "{{count}} en commun :",
+    "mutualsMany": "{{count}} en commun :",
     "dislikesPrivateDesc": "Ce compte garde ses « je n'aime pas » pour lui.",
     "dislikesPrivateTitle": "Les « je n'aime pas » sont privés",
     "dislikesEmptyOther": "Rien pour l'instant.",

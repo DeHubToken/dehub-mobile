@@ -2451,6 +2451,8 @@
     "returnHome": "العودة للرئيسية"
   },
   "profile": {
+    "mutualsOne": "{{count}} متابع مشترك:",
+    "mutualsMany": "{{count}} متابعين مشتركين:",
     "dislikesPrivateDesc": "هذا الحساب يحتفظ بعدم إعجاباته لنفسه.",
     "dislikesPrivateTitle": "عدم الإعجاب خاص",
     "dislikesEmptyOther": "لا يوجد شيء لم يعجبه بعد.",
