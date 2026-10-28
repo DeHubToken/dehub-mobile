@@ -9,9 +9,7 @@ jest.mock('../../services/creator-flow-assets', () => ({
   flowAssetId: (node: any) => node.data.audioAssetId || '', loadFlowAssets: (...args: unknown[]) => mockLoad(...args),
   assetNodePatch: (_node: unknown, asset: any) => ({ audioUrl: asset.url }),
 }));
-jest.mock('../../components/CreatorFlow/FlowNodeList', () => {
-  const React = require('react'); return { __esModule: true, default: (props: any) => React.createElement('FlowNodeList', props) };
-});
+jest.mock('../../components/CreatorFlow/FlowNodeList', () => ({ __esModule: true, default: 'FlowNodeList' }));
 import OwnedFlowMedia from '../../components/CreatorFlow/OwnedFlowMedia';
 const nodes = [{ id: 'audio', type: 'audioInputNode', position: { x: 0, y: 0 }, data: { audioAssetId: 'owned', audioUrl: 'expired' } }];
 beforeEach(() => { jest.clearAllMocks(); mockWallet = 'owner'; });
@@ -36,7 +34,8 @@ it('drops a pending private media response when the authenticated account change
     act(() => tree.root.findByType('Pressable' as any).props.onPress());
     mockWallet = 'other'; act(() => tree.update(<OwnedFlowMedia wallet="owner" nodes={nodes} edges={[]} />));
     expect(tree.toJSON()).toBeNull();
+    mockWallet = 'owner'; act(() => tree.update(<OwnedFlowMedia wallet="owner" nodes={nodes} edges={[]} />));
     await act(async () => { release(new Map([['owned', { id: 'owned', kind: 'audio', url: 'old-owner-private-url' }]])); });
-    expect(tree.toJSON()).toBeNull();
+    expect(tree.root.findByType('FlowNodeList' as any).props.nodes[0].data.audioUrl).toBeUndefined();
   } finally { act(() => tree?.unmount()); }
 });

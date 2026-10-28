@@ -58,6 +58,15 @@ it('does not pay after the account changes during draft persistence', async () =
   expect(await admitNativeFlowRun(plan, input, 'owner', { isCurrent: () => current, saveDraft: async () => { current = false; }, pay, onNode: jest.fn() })).toBe(false);
   expect(pay).not.toHaveBeenCalled(); expect(generateImage).not.toHaveBeenCalled();
 });
+it('requotes after draft persistence and refuses a price changed during the save', async () => {
+  const input = graph(), plan = await planNativeFlow(input, 'owner');
+  const pay = jest.fn(), onPriceChanged = jest.fn();
+  await expect(admitNativeFlowRun(plan, input, 'owner', { isCurrent: () => true,
+    saveDraft: async () => { (quoteAiJob as jest.Mock).mockResolvedValue({ priceDhb: 12, priceUsd: 0.012 }); },
+    pay, onNode: jest.fn(), onPriceChanged })).rejects.toThrow('creatorFlow.planChanged');
+  expect(pay).not.toHaveBeenCalled(); expect(generateImage).not.toHaveBeenCalled();
+  expect(onPriceChanged).toHaveBeenCalledWith(expect.objectContaining({ priceDhb: 12 }));
+});
 it('runs transcript-only output into a paid prompt and resumes without repeating free tasks', async () => {
   const input: NativeFlowGraph = { id: 'audioflow', nodes: [text,
     { id: 'sound', type: 'audioGenNode', position: { x: 0, y: 0 }, data: { audioTask: 'sfx' } },
