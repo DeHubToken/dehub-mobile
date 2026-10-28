@@ -291,6 +291,8 @@ interface ActionButtonProps {
   accessibilityLabel?: string;
   /** Overrides the stretch-to-fill cell. Only the like button needs it — see below. */
   style?: StyleProp<ViewStyle>;
+  /** The pager, so a tap while it is still settling from a swipe still presses. */
+  pagerGesture?: ReturnType<typeof Gesture.Native>;
 }
 
 /**
@@ -313,6 +315,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   onLongPress,
   accessibilityLabel,
   style,
+  pagerGesture,
 }) => {
   const scale = useRef(new Animated.Value(1)).current;
 
@@ -324,13 +327,42 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     onPress();
   }, [onPress, scale]);
 
+  /**
+   * Gesture-handler rather than a Pressable. Right after a swipe the pager is
+   * still settling, and the touch that lands on a button there also reaches
+   * the pager, which takes it to stop the glide; that cancelled a Pressable,
+   * so like, share and comments needed a second tap. These recognizers run
+   * alongside the pager instead of losing to it.
+   */
+  const gesture = useMemo(() => {
+    const tap = Gesture.Tap()
+      .maxDistance(MEDIA_TAP_SLOP_PX)
+      .runOnJS(true)
+      .onEnd((_event, success) => { if (success) handlePress(); });
+    if (pagerGesture) tap.simultaneousWithExternalGesture(pagerGesture);
+    if (!onLongPress) return tap;
+    // Matches the web tray's 400ms hold so the gesture feels the same on both.
+    const hold = Gesture.LongPress()
+      .minDuration(400)
+      .maxDistance(MEDIA_TAP_SLOP_PX)
+      .runOnJS(true)
+      .onStart(() => onLongPress());
+    if (pagerGesture) hold.simultaneousWithExternalGesture(pagerGesture);
+    return Gesture.Exclusive(hold, tap);
+  }, [handlePress, onLongPress, pagerGesture]);
+
   return (
-    <Pressable
-      onPress={handlePress}
-      onLongPress={onLongPress}
-      // Matches the web tray's 400ms hold so the gesture feels the same on both.
-      delayLongPress={400}
+    <GestureDetector gesture={gesture}>
+    <View
+      accessible
+      accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
+      accessibilityActions={onLongPress ? [{ name: "activate" }, { name: "longpress" }] : [{ name: "activate" }]}
+      onAccessibilityAction={(event) => {
+        if (event.nativeEvent.actionName === "longpress") onLongPress?.();
+        else handlePress();
+      }}
+      collapsable={false}
       // No hitSlop: the cell carries `minHeight: 44` and an equal share of the
       // row's width (~56pt), so it already clears the 44pt minimum on its own,
       // and slop here would make adjacent cells overlap and steal each other's
@@ -356,7 +388,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
           {label}
         </Text>
       )}
-    </Pressable>
+    </View>
+    </GestureDetector>
   );
 };
 
@@ -1847,10 +1880,11 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   // lost, so the tap did nothing. A native Tap on the row itself always wins.
   const creatorTap = useMemo(() => Gesture.Tap()
     .maxDistance(MEDIA_TAP_SLOP_PX)
+    .simultaneousWithExternalGesture(pagerGesture)
     .runOnJS(true)
     .onEnd((_event, success) => {
       if (success) handleUserPress();
-    }), [handleUserPress]);
+    }), [handleUserPress, pagerGesture]);
 
   // Swiping to another short brings the chrome back with it, so a cleared
   // frame never carries over to the next one.
@@ -2257,6 +2291,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 icon="Gem"
                 label={formatCompactNumber(tipCount)}
                 onPress={handleTip}
+                pagerGesture={pagerGesture}
                 accessibilityLabel={t("comments.tip")}
               />
 
@@ -2266,6 +2301,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 active={reposted}
                 label={formatCompactNumber(shareCount)}
                 onPress={() => setShowShareSheet(true)}
+                pagerGesture={pagerGesture}
                 accessibilityLabel={t("postOptions.share")}
               />
 
@@ -2273,6 +2309,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                 icon="MessageSquare"
                 label={formatCompactNumber(commentCount)}
                 onPress={handleComment}
+                pagerGesture={pagerGesture}
                 accessibilityLabel={t("settings.comments")}
               />
 
@@ -2307,6 +2344,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
                     label={formatCompactNumber(thumbCount)}
                     onPress={() => { if (openTray === "positive") { setOpenTray(null); return; } handleLike(); }}
                     onLongPress={() => setOpenTray("positive")}
+                pagerGesture={pagerGesture}
                     accessibilityLabel={
                       myReaction
                         ? _copy("copy.a3156ed263d2", { defaultValue: "{{value1}} — hold to change your reaction", value1: reactionMeta(myReaction).label })
