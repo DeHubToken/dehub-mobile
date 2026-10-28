@@ -139,6 +139,8 @@ interface CommentItemProps {
   tokenId?: number | string;
   contentType?: "video" | "feed";
   highlighted?: boolean;
+  /** Plays the send landing (spring up + glow) when the row mounts. */
+  landing?: boolean;
   /** Tighter rows, for the Shorts split sheet. */
   dense?: boolean;
   repliesExpanded?: boolean;
@@ -148,6 +150,12 @@ interface CommentItemProps {
   loadingReplies?: boolean;
   /** The post creator, for the Creator / Not-the-creator chips. */
   postCreator?: PostCreator | null;
+}
+
+/** Whole numbers with separators up to 100k, compact above. */
+export function tipAmountLabel(amount: number): string {
+  if (amount >= 100000) return formatCompactNumber(amount);
+  return amount.toLocaleString(undefined, { maximumFractionDigits: amount < 1 ? 2 : 0 });
 }
 
 const CommentItemComponent: React.FC<CommentItemProps> = ({
@@ -170,6 +178,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   tokenId,
   contentType = "video",
   highlighted = false,
+  landing = false,
   dense = false,
   repliesExpanded = false,
   onToggleReplies,
@@ -228,7 +237,23 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
-  const highlightOpacity = useSharedValue(highlighted ? 1 : 0);
+  // Your own new comment springs up into its slot with a soft glow, the same
+  // landing a tip message gets on the tip wall. Rows already there never move.
+  const landsNow = useRef(comment.id < 0 || landing).current;
+  const highlightOpacity = useSharedValue(highlighted || landsNow ? 1 : 0);
+  const landProgress = useSharedValue(landsNow ? 0 : 1);
+  useEffect(() => {
+    if (!landsNow) return;
+    landProgress.value = withSpring(1, { damping: 16, stiffness: 180, mass: 0.9 });
+    highlightOpacity.value = withTiming(0, { duration: 1600 });
+  }, [landsNow, landProgress, highlightOpacity]);
+  const landStyle = useAnimatedStyle(() => ({
+    opacity: Math.min(1, landProgress.value * 1.6),
+    transform: [
+      { translateY: (1 - landProgress.value) * 28 },
+      { scale: 0.97 + landProgress.value * 0.03 },
+    ],
+  }));
 
   const likeAnimStyle = useAnimatedStyle(() => ({
     transform: [{ scale: likeScale.value }],
@@ -250,6 +275,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   React.useEffect(() => {
     // Only a comment opened from a link glows. Your own comment, sending or
     // just sent, looks exactly like every other one.
+    if (landsNow) return;
     if (highlighted) {
       highlightOpacity.value = 1;
       highlightOpacity.value = withTiming(0, { duration: 1600 });
@@ -603,7 +629,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
       accessibilityActions={isPending ? [] : a11yActions}
       onAccessibilityAction={handleAccessibilityAction}
     >
-      <Animated.View ref={containerRef} style={[{ flexDirection: "row", paddingVertical: dense ? 6 : 10 }, highlightSurfaceStyle]}>
+      <Animated.View ref={containerRef} style={[{ flexDirection: "row", paddingVertical: dense ? 6 : 10 }, highlightSurfaceStyle, landStyle]}>
         <Pressable onPress={handleUserPress}>
           <Avatar
             uri={avatarUrl && avatarUrl !== "default-avatar" ? avatarUrl : undefined}
@@ -682,6 +708,28 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
                 <Icon name="Pin" size={10} color="rgba(255,255,255,0.75)" />
                 <Text style={{ fontSize: 10, fontWeight: "600", color: "rgba(255,255,255,0.75)" }}>
                   {t("comments.pinnedBadge")}
+                </Text>
+              </View>
+            )}
+            {comment.tip && comment.tip.amount > 0 && (
+              <View
+                accessibilityLabel={t("tip.wallLabel")}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 3,
+                  paddingHorizontal: 6,
+                  paddingVertical: 2,
+                  borderRadius: 999,
+                  backgroundColor: "rgba(255,255,255,0.12)",
+                  borderWidth: 1,
+                  borderColor: "rgba(255,255,255,0.18)",
+                  ...(isMinimal ? MINIMAL_UNFILLED : null),
+                }}
+              >
+                <Icon name="Gem" size={10} color="#F9FBFF" />
+                <Text style={{ fontSize: 10, fontWeight: "700", color: "#F9FBFF" }}>
+                  {tipAmountLabel(comment.tip.amount)} {comment.tip.symbol}
                 </Text>
               </View>
             )}

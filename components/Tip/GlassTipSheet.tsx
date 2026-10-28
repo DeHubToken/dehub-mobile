@@ -83,7 +83,8 @@ import TipPayWith, { tipStageLabel } from "./TipPayWith";
 import { fundTip, type TipFundingSource } from "../../libs/tip-funding";
 import { fundingErrorText } from "../../libs/tip-funding-error";
 import { useYieldToWalletUnlock } from "../../hooks/useYieldToWalletUnlock";
-import { emitPostTipped, commentTipKey } from "../../libs/tip-events";
+import { emitPostTipped, commentTipKey, emitTipMessageSent } from "../../libs/tip-events";
+import { registerTipMessage, bindTipMessage, cancelTipMessage, TIP_MESSAGE_MAX_LENGTH } from "../../services/nft.service";
 import CreatorSupportAd from './CreatorSupportAd';
 import { DIRECT_QUICK_AMOUNTS, MIN_DIRECT_TIP, directTipToken } from "../../libs/direct-tip-tokens";
 import { SHEET_GLASS_FILL } from "../../theme/sheetGlass";
@@ -276,6 +277,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
   const [recipientPrivate, setRecipientPrivate] = useState(false);
   const [privacyChecking, setPrivacyChecking] = useState(false);
   const sendInFlight = useRef(false);
+  // A message rides with a post tip. It is written before the tip goes out and
+  // the server posts it only once the tip confirms.
+  const [message, setMessage] = useSurfaceDraft("components/Tip/GlassTipSheet.tsx:message", "", `${toAddress}:${tokenId ?? ""}`);
+  const [messagePrivate, setMessagePrivate] = useState(false);
+  const tipMessage = useRef<{ id: string; submitted: boolean } | null>(null);
   const pendingConfirmation = useRef<{ hash?: string; amount: number; confirm: () => Promise<void> } | null>(null);
 
   useEffect(() => {
@@ -317,8 +323,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     !!user?.walletAddress &&
     user.walletAddress?.toLowerCase() === toAddress?.toLowerCase();
   const isBusy = phase === "funding" || phase === "approving" || phase === "sending";
+  const canMessage = commentId == null && tokenId > 0 && !isSolanaTip && !isLocked;
+  const messageText = canMessage ? message.trim() : "";
+  const messageTooLong = Math.max(messageText.length, TIP_MESSAGE_MAX_LENGTH) !== TIP_MESSAGE_MAX_LENGTH;
   const disableSend =
-    isBusy || privacyChecking || recipientPrivate || numericAmount <= 0 || overLimit || isSelf || belowDirectMin
+    messageTooLong || isBusy || privacyChecking || recipientPrivate || numericAmount <= 0 || overLimit || isSelf || belowDirectMin
     || (directBalance != null && numericAmount > directBalance);
 
   const tokenMeta = useMemo(() => {
@@ -400,6 +409,11 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
       try {
         await sendTipNow();
       } finally {
+        const waiting = tipMessage.current;
+        if (waiting && !waiting.submitted) {
+          tipMessage.current = null;
+          void cancelTipMessage(waiting.id).catch(() => {});
+        }
         sendInFlight.current = false;
         setPrivacyChecking(false);
       }
@@ -431,6 +445,20 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
       setPrivacyChecking(false);
       if (disableSend || (phase !== "idle" && phase !== "error")) return;
       setTipError(null);
+
+      if (messageText && !tipMessage.current) {
+        try {
+          const reg = await registerTipMessage({ tokenId, amount: numericAmount, content: messageText, isPrivate: messagePrivate });
+          if (!reg?.result || !reg.messageId) {
+            setTipError(reg?.error || t("tip.messageFailed", "Your message couldn't be added. No tip was sent."));
+            return;
+          }
+          tipMessage.current = { id: reg.messageId, submitted: false };
+        } catch {
+          setTipError(t("tip.messageFailed", "Your message couldn't be added. No tip was sent."));
+          return;
+        }
+      }
 
       // Solana tip (#41): transfer SOL to the creator via the backend-built tx.
       if (isSolanaTip) {
@@ -524,6 +552,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
             [tokenId, amountBN, toAddress, tokenAddress],
             { context: "send" },
           );
+          if (tipMessage.current) tipMessage.current.submitted = true;
 
           // Only a confirmed receipt can update tip history or the displayed balance.
           const confirmTip = async () => {
@@ -586,6 +615,13 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
 
             if (commentId != null) emitPostTipped(commentTipKey(commentId));
             else if (tokenId) emitPostTipped(tokenId);
+            const sentMessage = tipMessage.current;
+            tipMessage.current = null;
+            if (sentMessage) {
+              setMessage.complete(message, "");
+              const bound = txHash ? bindTipMessage(sentMessage.id, txHash).catch(() => null) : Promise.resolve(null);
+              void bound.then(() => emitTipMessageSent(tokenId));
+            }
             onSuccess?.(numericAmount, txHash || undefined, { chainId, payer: account ?? undefined });
             setAmount.complete(amount, "");
             setSelectedPreset(null);
@@ -630,6 +666,7 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
     payWith,
     canPayWithOther,
     directToken,
+    messageText, messagePrivate, message, setMessage,
     t, setAmount, amount]);
 
   // ── Render nothing when fully closed ─────────────────────────────────────
@@ -820,6 +857,52 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                     recipientName={recipientName}
                   />
                 ) : null}
+                {canMessage && (
+                  <>
+                    <Text style={[styles.sectionLabel, { marginTop: 8 }]}>
+                      {t("tip.addMessage", "Add a message (optional)")}
+                    </Text>
+                    <View style={styles.messageBox}>
+                      <TextInput
+                        testID="tip-message"
+                        value={message}
+                        onChangeText={setMessage}
+                        editable={!isBusy}
+                        multiline
+                        maxLength={TIP_MESSAGE_MAX_LENGTH + 20}
+                        placeholder={t("tip.messagePlaceholder", "Say something with your tip")}
+                        placeholderTextColor="#6F7174"
+                        style={styles.messageInput}
+                      />
+                      <View style={styles.messageFoot}>
+                        {messageText.length >= TIP_MESSAGE_MAX_LENGTH - 40 ? (
+                          <Text style={[styles.balanceText, messageTooLong && { color: "#F87171" }]}>
+                            {messageText.length}/{TIP_MESSAGE_MAX_LENGTH}
+                          </Text>
+                        ) : <View />}
+                        <TouchableOpacity
+                          onPress={() => { haptic.select(); setMessagePrivate((v) => !v); }}
+                          style={styles.messageVisibility}
+                          activeOpacity={0.7}
+                          accessibilityRole="switch"
+                          accessibilityState={{ checked: messagePrivate }}
+                        >
+                          <Icon name={messagePrivate ? "Lock" : "Globe"} size={13} color="#F9FBFF" />
+                          <Text style={styles.messageVisibilityText}>
+                            {messagePrivate
+                              ? t("tip.messagePrivate", "Only {{name}}", { name: recipientName || t("tip.theCreator", "the creator") })
+                              : t("tip.messagePublic", "Public")}
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                    <Text style={[styles.balanceText, { marginBottom: 8 }]}>
+                      {messagePrivate
+                        ? t("tip.messagePrivateNote", "Only {{name}} sees it, in their notification.", { name: recipientName || t("tip.theCreator", "the creator") })
+                        : t("tip.messageWallNote", "Shows on the tip wall once the tip goes through.")}
+                    </Text>
+                  </>
+                )}
                 {tipError && <Text style={styles.errorText}>{tipError}</Text>}
 
                 {/* Buttons */}
@@ -862,7 +945,9 @@ const GlassTipSheetComponent: React.FC<GlassTipSheetProps> = ({
                                 ? t('toasts.confirming_transaction')
                               : phase === "error"
                                 ? t("common.retry", "Retry")
-                                : t("tip.send", "Send")}
+                                : messageText
+                                  ? t("tip.sendWithMessage", "Send with message")
+                                  : t("tip.send", "Send")}
                         </Text>
                       </TouchableOpacity>
                     </LinearGradient>
@@ -1060,6 +1145,45 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: 10,
+  },
+  messageBox: {
+    backgroundColor: "rgba(255,255,255,0.06)",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.1)",
+    paddingHorizontal: 14,
+    paddingTop: 10,
+    paddingBottom: 8,
+    marginBottom: 6,
+  },
+  messageInput: {
+    color: "#F9FBFF",
+    fontSize: 15,
+    padding: 0,
+    minHeight: 44,
+    maxHeight: 110,
+    textAlignVertical: "top",
+  },
+  messageFoot: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 6,
+  },
+  messageVisibility: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.16)",
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  messageVisibilityText: {
+    color: "#F9FBFF",
+    fontSize: 12,
   },
   textInput: {
     flex: 1,
