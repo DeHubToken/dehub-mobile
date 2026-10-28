@@ -5,10 +5,14 @@ import { useSurfaceDraft } from '../../hooks/useSurfaceDraft';
 import { CAMPAIGN_VARIANT_FIELDS, CAMPAIGN_VARIANT_LIMIT, EMPTY_CAMPAIGN_PLAN, campaignFieldLimit, campaignVariantDraft, normalizeCampaignPlan, type CampaignPlan, type CampaignVariant, type CampaignVariantField } from '../../libs/campaignPlan';
 import { MARKETING_FORMATS, type MarketingBrief } from '../../libs/marketingBrief';
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
+import { useUser } from '../../context/AuthContext';
+import { campaignReviewedBatch } from '../../libs/reviewedBatchDrafts';
+import { ReviewedBatchButton } from '../CreatorFlow/ReviewedBatchButton';
 
 const labels: Record<CampaignVariantField, string> = { title: 'creator.campaignVariantTitle', hook: 'creator.campaignHook', language: 'creator.campaignLanguage', script: 'creator.campaignScript', headline: 'creator.marketing.fields.headline', cta: 'creator.marketing.fields.cta' };
 export function CampaignPlanPanel({ brief, onPrepare }: { brief: MarketingBrief; onPrepare: (draft: GenerationDraft) => void }) {
   const { t } = useTranslation();
+  const user = useUser(), owner = (user?.walletAddress || user?.address || '').toLowerCase() || null;
   const [saved, setSaved] = useSurfaceDraft<CampaignPlan>('creator.campaignPlan.v1', EMPTY_CAMPAIGN_PLAN, 'campaign');
   const plan = normalizeCampaignPlan(saved);
   const update = (id: string, patch: Partial<CampaignVariant>) => setSaved({ ...plan, variants: plan.variants.map(item => item.id === id ? { ...item, ...patch } : item) });
@@ -35,5 +39,6 @@ export function CampaignPlanPanel({ brief, onPrepare }: { brief: MarketingBrief;
         {button(t('editor.film.remove'), () => setSaved({ ...plan, variants: plan.variants.filter(item => item.id !== variant.id) }))}
       </View>
     </View>)}
+    {plan.variants.length > 0 && <ReviewedBatchButton owner={owner} scope={JSON.stringify([brief, plan])} label="creator.batchReviewCampaign" create={() => campaignReviewedBatch(brief, plan, owner || '')} />}
   </View>;
 }

@@ -35,6 +35,7 @@ import { copyToClipboard } from "../../libs/clipboard.utils";
 import type { Comment } from "../../services/nft.service";
 import { theme } from "../../theme";
 import { WEBSITE_LINK } from "../../config";
+import type { TranslateToggle } from "../ui/TranslateButton";
 
 
 export interface CommentLayout {
@@ -86,6 +87,8 @@ interface CommentContextMenuProps {
   tokenId?: number | string;
   /** Whether current user can delete (own comment or video owner) */
   canDelete?: boolean;
+  /** Translate / Show original — set only when the comment is in another language. */
+  translate?: TranslateToggle;
 }
 
 
@@ -294,6 +297,7 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
   onShowLikers,
   tokenId,
   canDelete,
+  translate,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -445,6 +449,17 @@ const CommentContextMenuComponent: React.FC<CommentContextMenuProps> = ({
             ) : null}
 
             <ActionRow icon="Share2" label={t("postOptions.share")} onPress={handleShare} />
+
+            {translate && (
+              <ActionRow
+                icon={translate.isTranslated ? "RotateCcw" : "Languages"}
+                label={translate.isTranslated ? t("common.showOriginal") : t("common.translate")}
+                onPress={() => {
+                  onClose();
+                  translate.toggle();
+                }}
+              />
+            )}
 
             {onLike && !isOwnComment && (
               <ActionRow

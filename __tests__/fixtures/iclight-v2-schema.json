@@ -1,0 +1,577 @@
+{
+    "sourceUrl":  "https://fal.ai/api/openapi/queue/openapi.json?endpoint_id=fal-ai%2Ficlight-v2",
+    "checkedAt":  "2026-10-28T01:40:47.3203562Z",
+    "input":  {
+                  "properties":  {
+                                     "enable_safety_checker":  {
+                                                                   "type":  "boolean",
+                                                                   "description":  "If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked.",
+                                                                   "title":  "Enable Safety Checker",
+                                                                   "default":  true
+                                                               },
+                                     "background_threshold":  {
+                                                                  "maximum":  1,
+                                                                  "type":  "number",
+                                                                  "description":  "Threshold for the background removal algorithm. A high threshold will produce sharper masks. Note: This parameter is currently deprecated and has no effect on the output.",
+                                                                  "title":  "Background Threshold",
+                                                                  "minimum":  0.01,
+                                                                  "default":  0.67
+                                                              },
+                                     "lowres_denoise":  {
+                                                            "maximum":  1,
+                                                            "type":  "number",
+                                                            "description":  "Strength for low-resolution pass.",
+                                                            "title":  "Lowres Denoise",
+                                                            "minimum":  0.01,
+                                                            "default":  0.98
+                                                        },
+                                     "mask_image_url":  {
+                                                            "description":  "URL of mask to be used for ic-light conditioning image",
+                                                            "anyOf":  [
+                                                                          {
+                                                                              "type":  "string"
+                                                                          },
+                                                                          {
+                                                                              "type":  "null"
+                                                                          }
+                                                                      ],
+                                                            "title":  "Mask Image Url"
+                                                        },
+                                     "output_format":  {
+                                                           "type":  "string",
+                                                           "description":  "The format of the generated image.",
+                                                           "title":  "Output Format",
+                                                           "enum":  [
+                                                                        "jpeg",
+                                                                        "png"
+                                                                    ],
+                                                           "default":  "jpeg"
+                                                       },
+                                     "image_size":  {
+                                                        "description":  "The size of the generated image.",
+                                                        "anyOf":  [
+                                                                      {
+                                                                          "$ref":  "#/components/schemas/ImageSize"
+                                                                      },
+                                                                      {
+                                                                          "type":  "string",
+                                                                          "enum":  [
+                                                                                       "square_hd",
+                                                                                       "square",
+                                                                                       "portrait_4_3",
+                                                                                       "portrait_16_9",
+                                                                                       "landscape_4_3",
+                                                                                       "landscape_16_9"
+                                                                                   ]
+                                                                      }
+                                                                  ],
+                                                        "title":  "Image Size"
+                                                    },
+                                     "image_url":  {
+                                                       "examples":  [
+                                                                        "https://storage.googleapis.com/falserverless/iclight-v2/bottle.png"
+                                                                    ],
+                                                       "type":  "string",
+                                                       "description":  "URL of image to be used for relighting",
+                                                       "title":  "Image Url"
+                                                   },
+                                     "hr_downscale":  {
+                                                          "maximum":  1,
+                                                          "type":  "number",
+                                                          "description":  "",
+                                                          "title":  "Hr Downscale",
+                                                          "minimum":  0.01,
+                                                          "default":  0.5
+                                                      },
+                                     "num_images":  {
+                                                        "maximum":  4,
+                                                        "type":  "integer",
+                                                        "description":  "The number of images to generate.",
+                                                        "title":  "Num Images",
+                                                        "minimum":  1,
+                                                        "default":  1
+                                                    },
+                                     "sync_mode":  {
+                                                       "type":  "boolean",
+                                                       "description":  "If `True`, the media will be returned as a data URI and the output data won\u0027t be available in the request history.",
+                                                       "title":  "Sync Mode",
+                                                       "default":  false
+                                                   },
+                                     "cfg":  {
+                                                 "maximum":  5,
+                                                 "type":  "number",
+                                                 "description":  "The real classifier-free-guidance scale for the generation.",
+                                                 "title":  "Cfg",
+                                                 "minimum":  0.01,
+                                                 "default":  1
+                                             },
+                                     "prompt":  {
+                                                    "examples":  [
+                                                                     "perfume bottle in a volcano surrounded by lava."
+                                                                 ],
+                                                    "type":  "string",
+                                                    "description":  "The prompt to generate an image from.",
+                                                    "title":  "Prompt"
+                                                },
+                                     "highres_denoise":  {
+                                                             "maximum":  1,
+                                                             "type":  "number",
+                                                             "description":  "Strength for high-resolution pass. Only used if enable_hr_fix is True.",
+                                                             "title":  "Highres Denoise",
+                                                             "minimum":  0.01,
+                                                             "default":  0.95
+                                                         },
+                                     "initial_latent":  {
+                                                            "type":  "string",
+                                                            "description":  "\n            Provide lighting conditions for the model\n        ",
+                                                            "title":  "Initial Latent",
+                                                            "enum":  [
+                                                                         "None",
+                                                                         "Left",
+                                                                         "Right",
+                                                                         "Top",
+                                                                         "Bottom"
+                                                                     ],
+                                                            "default":  "None"
+                                                        },
+                                     "guidance_scale":  {
+                                                            "maximum":  20,
+                                                            "type":  "number",
+                                                            "description":  "\n            The CFG (Classifier Free Guidance) scale is a measure of how close you want\n            the model to stick to your prompt when looking for a related image to show you.\n        ",
+                                                            "title":  "Guidance scale (CFG)",
+                                                            "minimum":  0,
+                                                            "default":  5
+                                                        },
+                                     "num_inference_steps":  {
+                                                                 "maximum":  50,
+                                                                 "type":  "integer",
+                                                                 "description":  "The number of inference steps to perform.",
+                                                                 "title":  "Num Inference Steps",
+                                                                 "minimum":  1,
+                                                                 "default":  28
+                                                             },
+                                     "negative_prompt":  {
+                                                             "type":  "string",
+                                                             "description":  "Negative Prompt for the image",
+                                                             "title":  "Negative Prompt",
+                                                             "default":  ""
+                                                         },
+                                     "enable_hr_fix":  {
+                                                           "type":  "boolean",
+                                                           "description":  "Use HR fix",
+                                                           "title":  "Enable Hr Fix",
+                                                           "default":  false
+                                                       },
+                                     "seed":  {
+                                                  "description":  "\n            The same seed and the same prompt given to the same version of the model\n            will output the same image every time.\n        ",
+                                                  "anyOf":  [
+                                                                {
+                                                                    "type":  "integer"
+                                                                },
+                                                                {
+                                                                    "type":  "null"
+                                                                }
+                                                            ],
+                                                  "title":  "Seed"
+                                              }
+                                 },
+                  "type":  "object",
+                  "required":  [
+                                   "prompt",
+                                   "image_url"
+                               ],
+                  "title":  "BaseInput",
+                  "x-fal-order-properties":  [
+                                                 "prompt",
+                                                 "negative_prompt",
+                                                 "image_url",
+                                                 "mask_image_url",
+                                                 "background_threshold",
+                                                 "image_size",
+                                                 "num_inference_steps",
+                                                 "seed",
+                                                 "initial_latent",
+                                                 "enable_hr_fix",
+                                                 "sync_mode",
+                                                 "num_images",
+                                                 "cfg",
+                                                 "lowres_denoise",
+                                                 "highres_denoise",
+                                                 "hr_downscale",
+                                                 "guidance_scale",
+                                                 "enable_safety_checker",
+                                                 "output_format"
+                                             ]
+              },
+    "schemas":  {
+                    "QueueStatus":  {
+                                        "type":  "object",
+                                        "properties":  {
+                                                           "status":  {
+                                                                          "type":  "string",
+                                                                          "enum":  [
+                                                                                       "IN_QUEUE",
+                                                                                       "IN_PROGRESS",
+                                                                                       "COMPLETED"
+                                                                                   ]
+                                                                      },
+                                                           "request_id":  {
+                                                                              "type":  "string",
+                                                                              "description":  "The request id."
+                                                                          },
+                                                           "response_url":  {
+                                                                                "type":  "string",
+                                                                                "description":  "The response url."
+                                                                            },
+                                                           "status_url":  {
+                                                                              "type":  "string",
+                                                                              "description":  "The status url."
+                                                                          },
+                                                           "cancel_url":  {
+                                                                              "type":  "string",
+                                                                              "description":  "The cancel url."
+                                                                          },
+                                                           "logs":  {
+                                                                        "type":  "object",
+                                                                        "description":  "The logs.",
+                                                                        "additionalProperties":  true
+                                                                    },
+                                                           "metrics":  {
+                                                                           "type":  "object",
+                                                                           "description":  "The metrics.",
+                                                                           "additionalProperties":  true
+                                                                       },
+                                                           "queue_position":  {
+                                                                                  "type":  "integer",
+                                                                                  "description":  "The queue position."
+                                                                              }
+                                                       },
+                                        "required":  [
+                                                         "status",
+                                                         "request_id"
+                                                     ]
+                                    },
+                    "IclightV2Input":  {
+                                           "properties":  {
+                                                              "enable_safety_checker":  {
+                                                                                            "type":  "boolean",
+                                                                                            "description":  "If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked.",
+                                                                                            "title":  "Enable Safety Checker",
+                                                                                            "default":  true
+                                                                                        },
+                                                              "background_threshold":  {
+                                                                                           "maximum":  1,
+                                                                                           "type":  "number",
+                                                                                           "description":  "Threshold for the background removal algorithm. A high threshold will produce sharper masks. Note: This parameter is currently deprecated and has no effect on the output.",
+                                                                                           "title":  "Background Threshold",
+                                                                                           "minimum":  0.01,
+                                                                                           "default":  0.67
+                                                                                       },
+                                                              "lowres_denoise":  {
+                                                                                     "maximum":  1,
+                                                                                     "type":  "number",
+                                                                                     "description":  "Strength for low-resolution pass.",
+                                                                                     "title":  "Lowres Denoise",
+                                                                                     "minimum":  0.01,
+                                                                                     "default":  0.98
+                                                                                 },
+                                                              "mask_image_url":  {
+                                                                                     "description":  "URL of mask to be used for ic-light conditioning image",
+                                                                                     "anyOf":  [
+                                                                                                   {
+                                                                                                       "type":  "string"
+                                                                                                   },
+                                                                                                   {
+                                                                                                       "type":  "null"
+                                                                                                   }
+                                                                                               ],
+                                                                                     "title":  "Mask Image Url"
+                                                                                 },
+                                                              "output_format":  {
+                                                                                    "type":  "string",
+                                                                                    "description":  "The format of the generated image.",
+                                                                                    "title":  "Output Format",
+                                                                                    "enum":  [
+                                                                                                 "jpeg",
+                                                                                                 "png"
+                                                                                             ],
+                                                                                    "default":  "jpeg"
+                                                                                },
+                                                              "image_size":  {
+                                                                                 "description":  "The size of the generated image.",
+                                                                                 "anyOf":  [
+                                                                                               {
+                                                                                                   "$ref":  "#/components/schemas/ImageSize"
+                                                                                               },
+                                                                                               {
+                                                                                                   "type":  "string",
+                                                                                                   "enum":  [
+                                                                                                                "square_hd",
+                                                                                                                "square",
+                                                                                                                "portrait_4_3",
+                                                                                                                "portrait_16_9",
+                                                                                                                "landscape_4_3",
+                                                                                                                "landscape_16_9"
+                                                                                                            ]
+                                                                                               }
+                                                                                           ],
+                                                                                 "title":  "Image Size"
+                                                                             },
+                                                              "image_url":  {
+                                                                                "examples":  [
+                                                                                                 "https://storage.googleapis.com/falserverless/iclight-v2/bottle.png"
+                                                                                             ],
+                                                                                "type":  "string",
+                                                                                "description":  "URL of image to be used for relighting",
+                                                                                "title":  "Image Url"
+                                                                            },
+                                                              "hr_downscale":  {
+                                                                                   "maximum":  1,
+                                                                                   "type":  "number",
+                                                                                   "description":  "",
+                                                                                   "title":  "Hr Downscale",
+                                                                                   "minimum":  0.01,
+                                                                                   "default":  0.5
+                                                                               },
+                                                              "num_images":  {
+                                                                                 "maximum":  4,
+                                                                                 "type":  "integer",
+                                                                                 "description":  "The number of images to generate.",
+                                                                                 "title":  "Num Images",
+                                                                                 "minimum":  1,
+                                                                                 "default":  1
+                                                                             },
+                                                              "sync_mode":  {
+                                                                                "type":  "boolean",
+                                                                                "description":  "If `True`, the media will be returned as a data URI and the output data won\u0027t be available in the request history.",
+                                                                                "title":  "Sync Mode",
+                                                                                "default":  false
+                                                                            },
+                                                              "cfg":  {
+                                                                          "maximum":  5,
+                                                                          "type":  "number",
+                                                                          "description":  "The real classifier-free-guidance scale for the generation.",
+                                                                          "title":  "Cfg",
+                                                                          "minimum":  0.01,
+                                                                          "default":  1
+                                                                      },
+                                                              "prompt":  {
+                                                                             "examples":  [
+                                                                                              "perfume bottle in a volcano surrounded by lava."
+                                                                                          ],
+                                                                             "type":  "string",
+                                                                             "description":  "The prompt to generate an image from.",
+                                                                             "title":  "Prompt"
+                                                                         },
+                                                              "highres_denoise":  {
+                                                                                      "maximum":  1,
+                                                                                      "type":  "number",
+                                                                                      "description":  "Strength for high-resolution pass. Only used if enable_hr_fix is True.",
+                                                                                      "title":  "Highres Denoise",
+                                                                                      "minimum":  0.01,
+                                                                                      "default":  0.95
+                                                                                  },
+                                                              "initial_latent":  {
+                                                                                     "type":  "string",
+                                                                                     "description":  "\n            Provide lighting conditions for the model\n        ",
+                                                                                     "title":  "Initial Latent",
+                                                                                     "enum":  [
+                                                                                                  "None",
+                                                                                                  "Left",
+                                                                                                  "Right",
+                                                                                                  "Top",
+                                                                                                  "Bottom"
+                                                                                              ],
+                                                                                     "default":  "None"
+                                                                                 },
+                                                              "guidance_scale":  {
+                                                                                     "maximum":  20,
+                                                                                     "type":  "number",
+                                                                                     "description":  "\n            The CFG (Classifier Free Guidance) scale is a measure of how close you want\n            the model to stick to your prompt when looking for a related image to show you.\n        ",
+                                                                                     "title":  "Guidance scale (CFG)",
+                                                                                     "minimum":  0,
+                                                                                     "default":  5
+                                                                                 },
+                                                              "num_inference_steps":  {
+                                                                                          "maximum":  50,
+                                                                                          "type":  "integer",
+                                                                                          "description":  "The number of inference steps to perform.",
+                                                                                          "title":  "Num Inference Steps",
+                                                                                          "minimum":  1,
+                                                                                          "default":  28
+                                                                                      },
+                                                              "negative_prompt":  {
+                                                                                      "type":  "string",
+                                                                                      "description":  "Negative Prompt for the image",
+                                                                                      "title":  "Negative Prompt",
+                                                                                      "default":  ""
+                                                                                  },
+                                                              "enable_hr_fix":  {
+                                                                                    "type":  "boolean",
+                                                                                    "description":  "Use HR fix",
+                                                                                    "title":  "Enable Hr Fix",
+                                                                                    "default":  false
+                                                                                },
+                                                              "seed":  {
+                                                                           "description":  "\n            The same seed and the same prompt given to the same version of the model\n            will output the same image every time.\n        ",
+                                                                           "anyOf":  [
+                                                                                         {
+                                                                                             "type":  "integer"
+                                                                                         },
+                                                                                         {
+                                                                                             "type":  "null"
+                                                                                         }
+                                                                                     ],
+                                                                           "title":  "Seed"
+                                                                       }
+                                                          },
+                                           "type":  "object",
+                                           "required":  [
+                                                            "prompt",
+                                                            "image_url"
+                                                        ],
+                                           "title":  "BaseInput",
+                                           "x-fal-order-properties":  [
+                                                                          "prompt",
+                                                                          "negative_prompt",
+                                                                          "image_url",
+                                                                          "mask_image_url",
+                                                                          "background_threshold",
+                                                                          "image_size",
+                                                                          "num_inference_steps",
+                                                                          "seed",
+                                                                          "initial_latent",
+                                                                          "enable_hr_fix",
+                                                                          "sync_mode",
+                                                                          "num_images",
+                                                                          "cfg",
+                                                                          "lowres_denoise",
+                                                                          "highres_denoise",
+                                                                          "hr_downscale",
+                                                                          "guidance_scale",
+                                                                          "enable_safety_checker",
+                                                                          "output_format"
+                                                                      ]
+                                       },
+                    "IclightV2Output":  {
+                                            "properties":  {
+                                                               "has_nsfw_concepts":  {
+                                                                                         "type":  "array",
+                                                                                         "description":  "Whether the generated images contain NSFW concepts.",
+                                                                                         "items":  {
+                                                                                                       "type":  "boolean"
+                                                                                                   },
+                                                                                         "title":  "Has Nsfw Concepts"
+                                                                                     },
+                                                               "images":  {
+                                                                              "type":  "array",
+                                                                              "description":  "The generated image files info.",
+                                                                              "items":  {
+                                                                                            "$ref":  "#/components/schemas/Image"
+                                                                                        },
+                                                                              "title":  "Images"
+                                                                          },
+                                                               "prompt":  {
+                                                                              "type":  "string",
+                                                                              "description":  "The prompt used for generating the image.",
+                                                                              "title":  "Prompt"
+                                                                          },
+                                                               "timings":  {
+                                                                               "type":  "object",
+                                                                               "title":  "Timings",
+                                                                               "additionalProperties":  {
+                                                                                                            "type":  "number"
+                                                                                                        }
+                                                                           },
+                                                               "seed":  {
+                                                                            "type":  "integer",
+                                                                            "description":  "\n            Seed of the generated Image. It will be the same value of the one passed in the\n            input or the randomly generated that was used in case none was passed.\n        ",
+                                                                            "title":  "Seed"
+                                                                        }
+                                                           },
+                                            "type":  "object",
+                                            "required":  [
+                                                             "images",
+                                                             "timings",
+                                                             "seed",
+                                                             "has_nsfw_concepts",
+                                                             "prompt"
+                                                         ],
+                                            "title":  "Output",
+                                            "x-fal-order-properties":  [
+                                                                           "images",
+                                                                           "timings",
+                                                                           "seed",
+                                                                           "has_nsfw_concepts",
+                                                                           "prompt"
+                                                                       ]
+                                        },
+                    "ImageSize":  {
+                                      "properties":  {
+                                                         "width":  {
+                                                                       "default":  512,
+                                                                       "type":  "integer",
+                                                                       "exclusiveMinimum":  0,
+                                                                       "title":  "Width",
+                                                                       "description":  "The width of the generated image.",
+                                                                       "maximum":  14142
+                                                                   },
+                                                         "height":  {
+                                                                        "default":  512,
+                                                                        "type":  "integer",
+                                                                        "exclusiveMinimum":  0,
+                                                                        "title":  "Height",
+                                                                        "description":  "The height of the generated image.",
+                                                                        "maximum":  14142
+                                                                    }
+                                                     },
+                                      "type":  "object",
+                                      "title":  "ImageSize",
+                                      "x-fal-order-properties":  [
+                                                                     "width",
+                                                                     "height"
+                                                                 ]
+                                  },
+                    "Image":  {
+                                  "properties":  {
+                                                     "url":  {
+                                                                 "type":  "string",
+                                                                 "title":  "Url"
+                                                             },
+                                                     "content_type":  {
+                                                                          "anyOf":  [
+                                                                                        {
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                                        {
+                                                                                            "type":  "null"
+                                                                                        }
+                                                                                    ],
+                                                                          "title":  "Content Type",
+                                                                          "default":  "image/jpeg"
+                                                                      },
+                                                     "height":  {
+                                                                    "type":  "integer",
+                                                                    "title":  "Height"
+                                                                },
+                                                     "width":  {
+                                                                   "type":  "integer",
+                                                                   "title":  "Width"
+                                                               }
+                                                 },
+                                  "type":  "object",
+                                  "required":  [
+                                                   "url",
+                                                   "width",
+                                                   "height"
+                                               ],
+                                  "title":  "Image",
+                                  "x-fal-order-properties":  [
+                                                                 "url",
+                                                                 "width",
+                                                                 "height",
+                                                                 "content_type"
+                                                             ]
+                              }
+                }
+}

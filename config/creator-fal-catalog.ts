@@ -277,6 +277,7 @@ export interface CreatorFalImageModel {
   supportsEdit: boolean;
   requiresImage?: boolean;
   outpaint?: boolean;
+  relight?: boolean;
   text: string;
   edit?: string;
   sizing: 'image_size' | 'aspect_ratio';
@@ -292,6 +293,15 @@ export interface CreatorFalImageModel {
   aspectRatios?: string[];
 }
 export const CREATOR_FAL_IMAGE_MODELS: Record<string, CreatorFalImageModel> = {
+  'iclight-v2': {
+    id: 'iclight-v2', name: 'ICLight Relight', vendor: 'ICLight', emoji: '💡', tier: 'standard',
+    get description() { return _translateCopy('creator.relightDescription', { defaultValue: 'Relight one photo from your lighting and background description.' }); },
+    // fal.ai/models/fal-ai/iclight-v2: $0.10/MP. Explicit dimensions stay below 1 MP.
+    baseCostUsd: 0.10, supportsEdit: true, requiresImage: true, relight: true,
+    text: 'fal-ai/iclight-v2', edit: 'fal-ai/iclight-v2', sizing: 'image_size', exactImageSize: true,
+    maxReferenceImages: 1, maxPromptLength: 4000,
+    extra: { initial_latent: 'None', enable_hr_fix: false, enable_safety_checker: true, output_format: 'png' },
+  },
   'bria-expand': {
     id: 'bria-expand', name: 'Bria Expand', vendor: 'Bria', emoji: '↔', tier: 'standard',
     get description() { return _translateCopy('creator.expandDescription', { defaultValue: 'Generate new image borders. Optional English prompt; one source image.' }); },

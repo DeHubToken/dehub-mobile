@@ -118,11 +118,11 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           accessibilityLabel={hasUnread ? t("common.notificationsUnread", { unread: unreadCount }) : t("nav.notifications")}
           className="w-11 h-11 items-end justify-center"
           // The bell's body (not the clapper below it) sits on the mark's
-          // bottom edge: at 30.5 it runs y 0.5 to 25.1 and x 2.4 to 28.1 of its
-          // box, so the box moves down 3.2 and out 2.4. Same as web.
+          // bottom edge: at 29.75 it runs y 0.5 to 24.5 and x 2.3 to 27.4 of its
+          // box, so the box moves down 3.2 (0.2 above that edge) and out 2.4. Same as web.
           style={{ marginRight: -2.4, transform: [{ translateY: 3.2 }] }}
         >
-          <NotificationBell unread={unreadCount} size={30.5} color={colors.foreground} />
+          <NotificationBell unread={unreadCount} size={29.75} color={colors.foreground} />
         </TouchableOpacity>
       ) : (
         // Holds the right edge so the left control cannot drift into the

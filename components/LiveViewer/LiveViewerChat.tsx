@@ -12,7 +12,7 @@ import BadgeArtwork from "../common/BadgeArtwork";
 import { TEXT_SHADOW } from "../common/ViewerChrome";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useI18n } from "react-i18next";
-import TranslateButton from "../ui/TranslateButton";
+import TranslateButton, { type TranslateToggle } from "../ui/TranslateButton";
 
 /**
  * Messages ride the picture, not a pill.
@@ -63,10 +63,11 @@ export interface ChatActivity {
 
 interface LiveViewerChatProps {
   /**
-   * Set only for the stream's creator and the moderators they appointed: a
-   * long press on someone else's line opens the moderation actions.
+   * A long press on a line: Translate / Show original when the line is in
+   * another language, plus the moderation actions for the stream's creator
+   * and the moderators they appointed.
    */
-  onModerate?: (activity: ChatActivity) => void;
+  onHold?: (activity: ChatActivity, translate?: TranslateToggle) => void;
   activities: ChatActivity[];
 }
 
@@ -125,10 +126,10 @@ const resolveProfileId = (a: ChatActivity): string | undefined =>
 interface ChatBubbleProps {
   a: ChatActivity;
   onUserPress: (identifier: string) => void;
-  onModerate?: (activity: ChatActivity) => void;
+  onHold?: (activity: ChatActivity, translate?: TranslateToggle) => void;
 }
 
-const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate }) => {
+const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onHold }) => {
   const { t } = useI18n();
   const displayName = resolveDisplayName(a);
   const avatarUrl = resolveAvatarUrl(a);
@@ -150,9 +151,14 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate
     case StreamActivityType.MESSAGE:
       return (
         <Pressable
-          onLongPress={onModerate ? () => onModerate(a) : undefined}
+          onLongPress={onHold ? () => onHold(
+            a,
+            translation.shouldShow
+              ? { isTranslated: translation.isTranslated, toggle: translation.isTranslated ? translation.handleShowOriginal : translation.handleTranslate }
+              : undefined,
+          ) : undefined}
           delayLongPress={350}
-          disabled={!onModerate}
+          disabled={!onHold}
           className="mb-2 self-start max-w-[92%] flex-row items-start"
         >
           <TouchableOpacity onPress={handlePress} activeOpacity={0.7} className="mr-1.5 mt-0.5">
@@ -182,6 +188,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate
               detectedLanguage={translation.sourceLang}
               onTranslate={translation.handleTranslate}
               onShowOriginal={translation.handleShowOriginal}
+              statusOnly
             />
           )}
           </View>
@@ -289,7 +296,7 @@ const LandIn = memo(function LandIn({ glow, children }: { glow: boolean; childre
   return <Animated.View style={style}>{children}</Animated.View>;
 });
 
-const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onModerate }) => {
+const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onHold }) => {
   const listRef = useRef<FlatList<ChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
 
@@ -345,12 +352,12 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onModerate 
 
   const renderItem = useCallback(
     ({ item, index }: { item: ChatActivity; index: number }) => {
-      const bubble = <ChatBubble a={item} onUserPress={handleUserPress} onModerate={onModerate} />;
+      const bubble = <ChatBubble a={item} onUserPress={handleUserPress} onHold={onHold} />;
       const key = keyExtractor(item, index);
       if (seen.current!.has(key)) return bubble;
       return <LandIn glow={item.status === StreamActivityType.TIP}>{bubble}</LandIn>;
     },
-    [handleUserPress, onModerate, keyExtractor]
+    [handleUserPress, onHold, keyExtractor]
   );
 
   return (

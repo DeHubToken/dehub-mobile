@@ -6337,6 +6337,7 @@
     "followerInvites": {
       "clear": "Tama",
       "detail": "Pumili ng hanggang sa 50 mga tagasunod sa bawat batch. Laktawan ang Paid or Closed DMs. Suriin ang chat para sa mga hindi nakumpirmang padala bago subukang muli.",
+      "note": "Magdagdag ng mensahe sa iyong imbitasyon (opsyonal)",
       "empty": "Walang mga tagasunod sa pahinang ito.",
       "error": "Hindi makapagpadala ng mga imbitasyon. Suriin ang iyong koneksyon at mag - sign - in, pagkatapos ay subukang muli.",
       "next": "Susunod",

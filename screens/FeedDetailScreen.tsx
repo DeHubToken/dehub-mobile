@@ -18,6 +18,7 @@ import { authorThreadFirst, isAuthorThreadRoot, selectAuthorThreadIds } from "..
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import { takePendingFeedComments } from "../libs/feedPostHost";
+import type { TranslateToggle } from "../components/ui/TranslateButton";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
@@ -189,6 +190,9 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
    * because the collapse rule read the ring rather than the destination.
    */
   const focusCommentId = commentIdParam != null ? String(commentIdParam) : undefined;
+  // The opener (a notification) may already know the post's kind, so the
+  // skeleton can leave out the picture block a text post will never have.
+  const postTypeHint: string | undefined = embedded ? undefined : route?.params?.postType;
 
   const user = useUser();
   const viewerWallet = (user?.address || user?.walletAddress || "").toLowerCase();
@@ -278,7 +282,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle } | null>(null);
   // The comment whose Report row was picked; the sheet is aimed at it.
   const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
@@ -736,7 +740,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   );
 
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean }) => {
+    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => {
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
@@ -1104,8 +1108,11 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
       if (focusDraggedRef.current) return;
       // Looked up again each time: more rows can land between the passes.
       const at = visibleCommentsRef.current.findIndex((c) => String(c.id) === focusCommentId);
-      if (at >= 0) listRef.current?.scrollToIndex({ index: at, viewPosition: 0.25, animated: true });
+      if (at >= 0) listRef.current?.scrollToIndex({ index: at, viewPosition: 0.25, animated: false });
     };
+    // Every pass snaps rather than glides: the later passes only correct for
+    // the post growing above, and four animated scrolls in three seconds read
+    // as the page shaking. A snap to where the comment already is shows nothing.
     // One frame, so the rows the jump measures against have been laid out.
     requestAnimationFrame(jump);
     // The post above is the list header, and it keeps growing after the
@@ -1129,10 +1136,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
     (info: { index: number; averageItemLength: number }) => {
       listRef.current?.scrollToOffset({
         offset: info.averageItemLength * info.index,
-        animated: true,
+        animated: false,
       });
       setTimeout(() => {
-        listRef.current?.scrollToIndex({ index: info.index, viewPosition: 0.25, animated: true });
+        listRef.current?.scrollToIndex({ index: info.index, viewPosition: 0.25, animated: false });
       }, 120);
     },
     [],
@@ -1561,10 +1568,10 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
             </View>
           </View>
           {/* Minimal: the media block bleeds past the inset to both screen edges. */}
-          <SkeletonBlock
+          {postTypeHint !== "feed-simple" && <SkeletonBlock
             className="mt-3 h-48 rounded-xl"
             style={isMinimal ? { marginHorizontal: -MINIMAL_INSET, backgroundColor: "rgba(255,255,255,0.04)" } : undefined}
-          />
+          />}
           <SkeletonBlock className="mt-3 w-3/4 h-3.5 rounded" />
           <SkeletonBlock className="mt-2 w-1/2 h-3 rounded" />
         </View>
@@ -2042,6 +2049,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
         }
         tokenId={tokenId}
+        translate={contextMeta?.translate}
       />
 
       {/* Report somebody else's comment. One sheet for the whole screen,

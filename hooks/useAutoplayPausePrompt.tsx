@@ -44,7 +44,8 @@ async function suggestAfterPause(videoId: string) {
   const now = Date.now();
   if (!tracker.recordPause(videoId, now, lastPromptAt)) return;
   void AsyncStorage.setItem(AUTOPLAY_PROMPT_STORAGE_KEY, String(now)).catch(() => {});
-  toast.custom(<AutoplayPauseToast />, { id: TOAST_ID, duration: Infinity });
+  // Long enough to reach the switch, then it goes like every other toast.
+  toast.custom(<AutoplayPauseToast />, { id: TOAST_ID, duration: 8000 });
 }
 
 export function useAutoplayPausePrompt(videoId: string | number | undefined) {
