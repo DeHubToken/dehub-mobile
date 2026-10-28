@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { DesignDraftInput as TextInput } from './DesignDraftInput';
@@ -11,6 +11,9 @@ import type { ProjectSnapshot } from '../../libs/editor/types';
 import { useUser } from '../../context/AuthContext';
 import { ReviewedBatchButton } from '../CreatorFlow/ReviewedBatchButton';
 import { filmReviewedBatch } from '../../libs/reviewedBatchDrafts';
+import { SceneStagePanel } from './SceneStagePanel';
+import * as FileSystem from 'expo-file-system/legacy';
+import { importPicture } from '../../libs/editor/storage';
 
 export default function FilmProjectPanel({ project, current, commit, onGenerate }: {
   project: ProjectSnapshot; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
@@ -18,6 +21,7 @@ export default function FilmProjectPanel({ project, current, commit, onGenerate 
 }) {
   const { t } = useTranslation();
   const user = useUser();
+  const liveOwner=useRef(user?.walletAddress || user?.address || '');liveOwner.current=user?.walletAddress || user?.address || '';
   const [media, setMedia] = useState<FilmMedia[]>([]);
   const [mediaLoaded, setMediaLoaded] = useState(false);
   const [query, setQuery] = useState('');
@@ -73,6 +77,20 @@ export default function FilmProjectPanel({ project, current, commit, onGenerate 
       {field(t('editor.film.seconds'), String(shot.seconds), text => { const seconds = Number(text); if (seconds >= 1 && seconds <= 30) changeShot({ seconds }); }, 4)}
       {choices(t('editor.film.shotReferences'), shot.referenceMediaIds, ids => changeShot({ referenceMediaIds: ids }))}
       <CinemaDirectionControls value={shot.direction ?? {}} onChange={direction => changeShot({ direction })} mode="video" />
+      <SceneStagePanel key={`${project.id}:${shot.id}:${liveOwner.current}`} value={shot.stage} onChange={stage=>changeShot({stage})} onFrame={async(url,signal)=>{
+        const capturedOwner=liveOwner.current,capturedFilm=JSON.stringify(film),capturedShot=shot.id;
+        const target=()=>{const latest=current();return !signal.aborted && liveOwner.current===capturedOwner && latest?.id===project.id && JSON.stringify(latest.settings.filmProject)===capturedFilm?latest:null;};
+        if(!target() || new Set([...film.referenceMediaIds,...shot.referenceMediaIds]).size>=4 || !FileSystem.cacheDirectory)throw new Error('Reference limit');
+        const file=`${FileSystem.cacheDirectory}stage-${newId(12)}.png`;
+        try{
+          await FileSystem.writeAsStringAsync(file,url.slice(url.indexOf(',')+1),{encoding:FileSystem.EncodingType.Base64});
+          if(!target())return;
+          const item=await importPicture({uri:file,width:320,height:180,mimeType:'image/png',fileName:t('editor.stage.frameName')+'.png'});
+          const latest=target();if(!latest)return;
+          const next={...latest,settings:{...latest.settings,filmProject:{...film,shots:film.shots.map(value=>value.id===capturedShot?{...value,referenceMediaIds:[...value.referenceMediaIds,item.id]}:value)}}};
+          commit(next);await refresh();await saveProject(next);
+        }finally{await FileSystem.deleteAsync(file,{idempotent:true}).catch(()=>{});}
+      }}/>
       <View className="mt-3 flex-row flex-wrap gap-2">{action(t('editor.film.frame'), () => { void prepare('image'); }, preparing || !shot.prompt.trim() || !onGenerate)}{action(t('editor.film.video'), () => { void prepare('video'); }, preparing || !shot.prompt.trim() || !onGenerate)}</View>
       <Text className="mt-2 text-xs text-theme-neutrals-400">{t('editor.film.review')}</Text>
       {choices(t('editor.film.result'), shot.resultMediaId ? [shot.resultMediaId] : [], ids => changeShot({ resultMediaId: ids[0] }), true)}

@@ -7940,6 +7940,7 @@
     "savePrompt": "Enregistrer cette publication en tant que brouillon pour la terminer et la publier plus tard ?"
   },
   "editor": {
+    "stage": {"create":"Ajouter une scène 3D","title":"Scène 3D","hint":"Préparez un plan avec des sphères et des cubes. La caméra, les positions et trois éclairages de surface indépendants modifient l\u0027image rendue.","preview":"Aperçu de la scène rendue","error":"Impossible de préparer l\u0027image. Vérifiez les références du plan et réessayez.","camera":"Caméra","yaw":"Rotation","elevation":"Élévation","distance":"Distance","fov":"Champ de vision","object":"Objet","add":"Ajouter","sphere":"Sphère","box":"Cube","x":"X","y":"Y","z":"Z","scale":"Taille","color":"Couleur","remove":"Supprimer l\u0027objet","light":"Éclairage","intensity":"Intensité","diffusion":"Diffusion","saving":"Préparation de l\u0027image…","useFrame":"Utiliser l\u0027image rendue comme référence du plan","frameHint":"Crée un PNG de 320 × 180 et l\u0027ajoute aux références du plan. Vérifiez la limite des références et le tarif avant de générer.","frameName":"Image de la scène"},
     "film": {
       "repairRefs": "Retirer les liens vers les médias manquants",
       "title": "Projet de film",

@@ -8305,6 +8305,7 @@
     "savePrompt": "Save this post as a draft to finish and post later?"
   },
   "editor": {
+    "stage": {"create":"Add a 3D stage","title":"3D scene stage","hint":"Block a shot with spheres and boxes. Camera, placement and three independent area lights change the rendered frame.","preview":"Rendered scene preview","error":"Could not prepare the frame. Check your shot references and try again.","camera":"Camera","yaw":"Rotation","elevation":"Elevation","distance":"Distance","fov":"Field of view","object":"Object","add":"Add","sphere":"Sphere","box":"Box","x":"X","y":"Y","z":"Z","scale":"Size","color":"Color","remove":"Remove object","light":"Light","intensity":"Intensity","diffusion":"Diffusion","saving":"Preparing frame…","useFrame":"Use rendered frame as a shot reference","frameHint":"Creates a 320 × 180 PNG and adds it to this shot\u0027s references. Review the reference limit and model quote before generating.","frameName":"Scene stage frame"},
     "film": {
         "repairRefs": "Remove missing media links",
                  "title":  "Film project",
