@@ -1,10 +1,10 @@
 import { generationDraft, type GenerationDraft } from './editor/generationDraft';
 import { appendCinemaDirection } from './cinemaDirection';
 
-export interface ReviewedBatchItem { id: string; label: string; draft: GenerationDraft; references: Array<{ sourceId: string; url: string; label: string }> }
+export interface ReviewedBatchItem { id: string; label: string; draft: GenerationDraft; references: Array<{ sourceId: string; url: string; label: string; contentRevision?: string }> }
 export interface ReviewedBatch { version: 1; type: 'film' | 'campaign'; sourceId: string; title: string; owner: string; items: ReviewedBatchItem[] }
-export interface BatchNode { id: string; type: string; position: { x: number; y: number }; data: Record<string, unknown> & { label: string } }
-export interface BatchEdge { id: string; source: string; target: string; targetHandle: string }
+export interface BatchNode extends Record<string, unknown> { id: string; type: string; position: { x: number; y: number }; data: Record<string, unknown> & { label: string } }
+export interface BatchEdge extends Record<string, unknown> { id: string; source: string; target: string; targetHandle: string }
 export const BATCH_IMAGE_MODEL = 'gemini-3.1-flash-image';
 export const BATCH_VIDEO_MODEL = 'seedance-2.0';
 
@@ -29,7 +29,7 @@ export function batchSnapshot(batch: ReviewedBatch): string {
   return JSON.stringify({ version: 1, type: batch.type, sourceId: batch.sourceId, title: batch.title, owner: batch.owner,
     items: batch.items.map(item => ({ id: item.id, label: item.label, kind: item.draft.kind, prompt: item.draft.prompt,
       aspect: item.draft.aspect, seconds: item.draft.durationSeconds, direction: item.draft.cinemaDirection,
-      references: item.references.map(reference => ({ sourceId: reference.sourceId, label: reference.label })) })) });
+      references: item.references.map(reference => ({ sourceId: reference.sourceId, label: reference.label, contentRevision: reference.contentRevision })) })) });
 }
 
 /** Every item remains a separate paid node, with its original source identity. */
