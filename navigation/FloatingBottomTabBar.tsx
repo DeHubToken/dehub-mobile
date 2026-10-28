@@ -122,6 +122,7 @@ const SCROLL_NAV_ITEMS: ScrollNavItem[] = [
   // one wants the other: one link, or the whole back catalogue.
   { icon: "FolderInput", labelKey: "nav.migrate", screen: ScreenNames.Migrate },
   { icon: "Scroll", labelKey: "nav.glossary", screen: ScreenNames.Glossary },
+  { icon: "Scroll", labelKey: "Compare DeHub", screen: ScreenNames.Compare },
   { icon: "Gamepad2", labelKey: "nav.arcade", screen: ScreenNames.Arcade },
   { icon: "Users", labelKey: "nav.communities", screen: ScreenNames.Communities },
   // Drawer-only tail. Web's sidebar reuses Briefcase for both Bounties and
