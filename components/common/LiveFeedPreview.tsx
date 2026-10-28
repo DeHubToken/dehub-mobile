@@ -24,6 +24,7 @@ import { sharedLivePlayerHolders, useSharedLivePlayer } from "../../libs/sharedL
 import { useSettledAutoplay } from "../../hooks/useSettledAutoplay";
 import { useStreamPresence } from '../../hooks/useStreamPresence';
 import { useLivePaused } from '../../hooks/useLivePaused';
+import { useLiveEnded } from '../../hooks/useLiveEnded';
 
 interface Props {
   /** Only supplied for an on-air stream viewed by someone other than its host. */
@@ -195,6 +196,7 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress, stre
   // decoder and buffers, and doing that at each live row interrupts scrolling.
   const settled = useSettledAutoplay(active, url, 400);
   const [failedPoster, setFailedPoster] = useState<string | undefined>();
+  const ended = useLiveEnded(streamId);
   return (
     <View style={StyleSheet.absoluteFill}>
       {poster && poster !== failedPoster ? (
@@ -223,8 +225,16 @@ function LiveFeedPreviewComponent({ url, thumbnail, active, label, onPress, stre
           feed of live posts mounted one per card — which is the shape that
           produced the OutOfMemoryError in ExoPlayerImplInternal. The poster
           below stays put, so an inactive card still shows the stream's frame. */}
-      {settled && <LivePlayer key={url} url={url} onPress={onPress} streamId={streamId} streamStatus={streamStatus} isOwner={isOwner} onViewerCount={onViewerCount} />}
-      {paused && <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.feedback]}><Text style={styles.feedbackText}>{t('liveViewer.streamPaused')}</Text></View>}
+      {settled && !ended && <LivePlayer key={url} url={url} onPress={onPress} streamId={streamId} streamStatus={streamStatus} isOwner={isOwner} onViewerCount={onViewerCount} />}
+      {ended && (
+        <Pressable accessibilityRole="button" accessibilityLabel={t('liveViewer.streamEnded')} style={[StyleSheet.absoluteFill, styles.feedback]} onPress={(event) => {
+          event.stopPropagation();
+          onPress?.();
+        }}>
+          <Text style={styles.feedbackText}>{t('liveViewer.streamEnded')}</Text>
+        </Pressable>
+      )}
+      {paused && !ended && <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.feedback]}><Text style={styles.feedbackText}>{t('liveViewer.streamPaused')}</Text></View>}
     </View>
   );
 }
