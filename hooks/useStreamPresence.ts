@@ -19,7 +19,8 @@ export function useStreamPresence(streamId: string | undefined, watching: boolea
   useEffect(() => {
     if (!streamId || !watching || !foreground) return;
     const receiveCount = (data: any) => {
-      if (data?.streamId === streamId && typeof data.viewerCount === 'number') onViewerCount?.(data.viewerCount);
+      // This device is one of them, so never "0 here" while it watches.
+      if (data?.streamId === streamId && typeof data.viewerCount === 'number') onViewerCount?.(Math.max(1, data.viewerCount));
     };
     if (isSignedIn) {
       if (!coreConnected) return;
