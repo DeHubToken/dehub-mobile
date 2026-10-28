@@ -1,7 +1,9 @@
 import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
-import { FEATURES, PLATFORMS, SOURCES, filterFeatures, entryFor, comparisonCoverage } from '../../libs/platform-comparison';
+import { FEATURES, PLATFORMS, SOURCES, filterFeatures, entryFor, comparisonCoverage, featureTotals, markFor } from '../../libs/platform-comparison';
 import { REVIEWED_FEATURE_IDS, researchedEntry } from '../../libs/platform-comparison-research';
+import { RIVAL_ROWS } from '../../libs/platform-comparison-rival-inventory';
+import { inComparisonView } from '../../libs/platform-comparison-views';
 
 describe('platform comparison catalogue', () => {
   it('includes every requested competitor exactly once', () => {
@@ -39,11 +41,41 @@ describe('platform comparison catalogue', () => {
     for (const id of Object.values(coverage)) expect(FEATURES.some(feature => feature.id === id)).toBe(true);
   });
   it('retains every reviewed pair and leaves new unreviewed features outside the audit', () => {
-    expect([...REVIEWED_FEATURE_IDS].sort()).toEqual(FEATURES.map(feature => feature.id).sort());
-    for (const feature of FEATURES) for (const platform of PLATFORMS) expect(feature.peers[platform.id]?.source).toBeTruthy();
-    expect(comparisonCoverage('all').reviewed).toBe(524 * 11);
+    const rivalIds = new Set(RIVAL_ROWS.map(row => row.id));
+    const documented = FEATURES.filter(feature => !rivalIds.has(feature.id));
+    expect([...REVIEWED_FEATURE_IDS].sort()).toEqual(documented.map(feature => feature.id).sort());
+    for (const feature of documented) for (const platform of PLATFORMS) expect(feature.peers[platform.id]?.source).toBeTruthy();
+    expect(comparisonCoverage('all').reviewed).toBe(534 * 11);
+    expect(FEATURES).toHaveLength(850);
+    expect(comparisonCoverage('all').total).toBe(850 * 11);
     expect(researchedEntry('future-capability', 'Future', 'Video editing', 'youtube')).toBeUndefined();
     expect(entryFor(FEATURES.find(feature => feature.id === 'encrypted-attachments')!, 'x').status).toBe('limited');
     expect(entryFor(FEATURES.find(feature => feature.id === 'stage-dub')!, 'youtube').status).toBe('announced');
+  });
+  it('includes rival-only capabilities while retaining unconfirmed competitors', () => {
+    expect(RIVAL_ROWS).toHaveLength(316);
+    for (const row of RIVAL_ROWS) {
+      const feature = FEATURES.find(item => item.id === row.id)!;
+      expect(feature).toBeDefined();
+      expect(PLATFORMS.some(platform => row.marks[platform.id])).toBe(true);
+      expect(feature.dehub.status).toBe(row.marks.dehub === 'yes' ? 'documented' : row.marks.dehub === 'partial' ? 'ecosystem' : 'not_offered');
+      for (const platform of PLATFORMS) {
+        if (!row.marks[platform.id]) expect(feature.peers[platform.id]).toBeUndefined();
+        else expect(SOURCES[feature.peers[platform.id]!.source!]?.url).toMatch(/^https:\/\//);
+      }
+    }
+  });
+  it('matches the public social and missing-feature views without claiming unknown means no', () => {
+    const social = FEATURES.filter(feature => inComparisonView(feature, 'social'));
+    const lacking = FEATURES.filter(feature => inComparisonView(feature, 'lacks'));
+    expect(social).toHaveLength(686);
+    expect(lacking).toHaveLength(257);
+    expect(featureTotals().dehub.yes).toBe(593);
+    expect(featureTotals().youtube.yes).toBe(293);
+    expect(featureTotals(social).dehub.yes).toBe(429);
+    expect(featureTotals(social).youtube.yes).toBe(281);
+    expect(lacking.every(feature => markFor(feature.dehub) !== 'yes')).toBe(true);
+    expect(markFor({ status: 'not_documented', note: 'Not established.' })).toBe('unknown');
+    expect(markFor({ status: 'announced', note: 'Future pilot.' })).toBe('partial');
   });
 });

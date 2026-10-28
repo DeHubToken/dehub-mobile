@@ -1,6 +1,8 @@
 /** Keep identical to dehub-mobile/libs/platform-comparison.ts. */
 import { AUDIT_REVISIONS, DETAIL_GROUPS } from './platform-comparison-details';
-import { COMPETITOR_REVIEWED_ON, RESEARCH_SOURCES, REVIEWED_FEATURE_IDS, researchedEntry } from './platform-comparison-research';
+import { CATEGORY_FAMILIES, COMPETITOR_REVIEWED_ON, RESEARCH_SOURCES, REVIEW_SCOPES, REVIEWED_FEATURE_IDS, researchedEntry } from './platform-comparison-research';
+import { PRODUCT_REVIEW, PRODUCT_REVIEWED_ON } from './platform-comparison-product-review';
+import { RIVAL_INVENTORY_REVIEWED_ON, RIVAL_ROWS, rivalSource } from './platform-comparison-rival-inventory';
 export { AUDIT_REVISIONS } from './platform-comparison-details';
 export { COMPETITOR_REVIEWED_ON, REVIEWED_FEATURE_IDS } from './platform-comparison-research';
 export const REVIEWED_ON = '2026-10-27';
@@ -84,6 +86,11 @@ export const SOURCES: Record<string, { title: string; url: string }> = {
   twitchVod: { title: 'Twitch on-demand content', url: 'https://help.twitch.tv/s/article/video-on-demand' },
   farcaster: { title: 'Farcaster protocol and sign in', url: 'https://docs.farcaster.xyz/' },
   fcApps: { title: 'Farcaster Mini Apps and wallets', url: 'https://miniapps.farcaster.xyz/' },
+  fbLive: { title: 'Go live on Facebook', url: 'https://www.facebook.com/help/1636872026560015' },
+  fbShare: { title: 'Share and manage posts on Facebook', url: 'https://www.facebook.com/help/1640261589632787' },
+  ytReport: { title: 'Report content on YouTube', url: 'https://support.google.com/youtube/answer/2802027' },
+  ytNotifications: { title: 'Manage YouTube notifications', url: 'https://support.google.com/youtube/answer/3382248' },
+  ytDark: { title: 'YouTube dark theme', url: 'https://support.google.com/youtube/answer/7385323' },
 };
 export interface ComparisonEntry { status: Status; note: string; source?: string; relatedSources?: string[] }
 export interface ComparisonFeature {
@@ -320,6 +327,30 @@ const ADDITIONAL_EVIDENCE: Record<string, Partial<Record<PlatformId, ComparisonE
   'content-default': { mastodon: e('mastodonPreferences', 'Default posting visibility, language and media sensitivity.') },
   'autoplay-preference': { mastodon: e('mastodonPreferences', 'Animated media and reduced-motion preferences; video behavior varies by client.', 'limited') },
 };
+/** Core capabilities confirmed on first-party help pages after the bulk review; these win over a not-established finding. */
+const CORE_EVIDENCE: Record<string, Partial<Record<PlatformId, ComparisonEntry>>> = {
+  live: { facebook: e('fbLive', 'Go live from a profile, Page or group.') },
+  reposts: { facebook: e('fbShare', 'Share posts to your profile, groups or Messenger.') },
+  report: { youtube: e('ytReport', 'Report videos, channels, comments and other content.') },
+  notifications: { youtube: e('ytNotifications', 'Choose which channel and account notifications you get.') },
+  themes: { youtube: e('ytDark', 'Light, dark and device appearance; not theme packs.', 'limited') },
+};
+/** Applies the hands-on product review where the documentation pass found no equivalent; never downgrades an entry. */
+function productReviewed(feature: ComparisonFeature, platform: PlatformId, entry: ComparisonEntry | undefined): ComparisonEntry | undefined {
+  const found = PRODUCT_REVIEW[platform].get(feature.id);
+  if (!found) return entry;
+  const has = entry && ['documented', 'code', 'limited'].includes(entry.status);
+  if (has || (found === 'partial' && entry?.status === 'ecosystem')) return entry;
+  const scope = REVIEW_SCOPES[platform][CATEGORY_FAMILIES[feature.category]];
+  return {
+    status: found === 'yes' ? 'documented' : 'ecosystem',
+    note: found === 'yes'
+      ? `Confirmed in the live product and its help centre on ${PRODUCT_REVIEWED_ON}.`
+      : `Partly available, or through a separate app, as of ${PRODUCT_REVIEWED_ON}.`,
+    source: entry?.source ?? scope.sources[0],
+    relatedSources: entry?.relatedSources ?? scope.sources.slice(1),
+  };
+}
 const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => detail.rows.map(([id, name, note, file = '', mobileOverride]) => {
   const web = detail.web + file, mobile = mobileOverride ?? detail.mobile + file;
   const webSource = `web:${web}`, mobileSource = `mobile:${mobile}`;
@@ -327,12 +358,53 @@ const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => d
   SOURCES[mobileSource] = { title: 'DeHub mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
   return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'code'), relatedSources: [mobileSource, 'dehub'] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
 }));
-export const FEATURES: ComparisonFeature[] = [...CATALOGUE, ...EXPANDED_FEATURES].map(feature => ({
+/** Popular rival features DeHub does not offer yet, filed under the topic they belong to. */
+const NOT_YET: ComparisonFeature[] = ([
+  ['stories', 'Posts and discovery', 'Stories that disappear after 24 hours'],
+  ['duets', 'Studio and creation', 'Duets and side-by-side remixes'],
+  ['face-effects', 'Studio and creation', 'Camera face effects and AR filters'],
+  ['collab-posts', 'Posts and discovery', 'Co-authored collab posts'],
+  ['location-map', 'Posts and discovery', 'Location tags and a friends map'],
+  ['raids', 'Live video and audio', 'Live raids into another channel'],
+  ['live-predictions', 'Live video and audio', 'Live predictions with channel points'],
+  ['live-rewind', 'Live video and audio', 'Rewind a live stream while it is live'],
+  ['community-notes', 'Safety and personalization', 'Community Notes fact-checks'],
+  ['disappearing-messages', 'Communities and messages', 'Disappearing messages'],
+] as const).map(([id, category, name]) => ({
+  id, category, name, dehub: e('dehub', 'Not available on DeHub yet.', 'not_offered'), peers: {}, iosRestricted: false,
+}));
+/** The rival-first inventory: features gathered from each competitor's own docs, with DeHub ticked honestly. */
+const RIVAL_FEATURES: ComparisonFeature[] = RIVAL_ROWS.map(row => ({
+  id: row.id, category: row.category, name: row.name, iosRestricted: false,
+  dehub: row.marks.dehub === 'yes' ? e('dehub', 'Available on DeHub.')
+    : row.marks.dehub === 'partial' ? e('dehub', 'Partly available on DeHub.', 'ecosystem')
+    : e('dehub', 'Not available on DeHub yet.', 'not_offered'),
+  peers: Object.fromEntries(PLATFORMS.flatMap(({ id }) => {
+    const mark = row.marks[id];
+    if (!mark) return [];
+    return [[id, {
+      status: mark === 'yes' ? 'documented' : 'ecosystem',
+      note: mark === 'yes'
+        ? `Listed in the official help, creator or product pages, reviewed ${RIVAL_INVENTORY_REVIEWED_ON}. Some plans, regions or account types may apply.`
+        : `Partly available, limited to some accounts, or through a separate app, as of ${RIVAL_INVENTORY_REVIEWED_ON}.`,
+      source: rivalSource(id, row.category, SOURCES),
+    } satisfies ComparisonEntry]];
+  })),
+}));
+export const FEATURES: ComparisonFeature[] = [...CATALOGUE, ...EXPANDED_FEATURES, ...NOT_YET, ...RIVAL_FEATURES].map(feature => ({
   ...feature,
   dehub: feature.id === 'encrypted-text' ? e('dehubEncryption', feature.dehub.note, 'limited') : feature.id === 'encrypted-attachments' ? { ...feature.dehub, status: 'limited' as const } : feature.dehub,
-  peers: Object.fromEntries(PLATFORMS.map(platform => [platform.id, researchedEntry(feature.id, feature.name, feature.category, platform.id, ADDITIONAL_EVIDENCE[feature.id]?.[platform.id] ?? feature.peers[platform.id])]).filter(([, entry]) => entry)) as Partial<Record<PlatformId, ComparisonEntry>>,
+  peers: Object.fromEntries(PLATFORMS.map(platform => [platform.id, researchedEntry(feature.id, feature.name, feature.category, platform.id, ADDITIONAL_EVIDENCE[feature.id]?.[platform.id] ?? feature.peers[platform.id])]).map(([id, entry]) => [id, CORE_EVIDENCE[feature.id]?.[id as PlatformId] ?? productReviewed(feature, id as PlatformId, entry as ComparisonEntry | undefined)]).filter(([, entry]) => entry)) as Partial<Record<PlatformId, ComparisonEntry>>,
 }));
-export const CATEGORIES = [...new Set(FEATURES.map(feature => feature.category))];
+const CATEGORY_ORDER = [
+  'Posts and discovery', 'Profiles and identity', 'Playback and uploads', 'Live video and audio', 'Communities and messages',
+  'Creator income', 'Creator analytics', 'Premium plans', 'Business and advertising', 'Ownership and commerce',
+  'Studio and creation', 'Video editing', 'Design and documents', 'Charts and data', 'Presentations and exports',
+  'Open web and automation', 'Developers and API', 'Safety and personalization', 'Accessibility',
+  'Accounts, privacy and preferences', 'Notifications', 'Apps and devices', 'Entertainment and platform tools',
+];
+const rank = (category: string) => { const at = CATEGORY_ORDER.indexOf(category); return at < 0 ? CATEGORY_ORDER.length : at; };
+export const CATEGORIES = [...new Set(FEATURES.map(feature => feature.category))].sort((a, b) => rank(a) - rank(b));
 export function entryFor(feature: ComparisonFeature, platform: PlatformId | 'dehub'): ComparisonEntry {
   if (platform === 'dehub') return feature.dehub;
   return feature.peers[platform] ?? { status: 'unverified', note: 'An equivalent has not been verified in this comparison. This does not mean the platform lacks the feature.' };
@@ -352,4 +424,23 @@ export function comparisonCoverage(platform: PlatformId | 'all') {
     total: FEATURES.length * platforms.length,
     reviewedOn: COMPETITOR_REVIEWED_ON,
   };
+}
+
+/** Matrix marks: a tick for documented or conditional support, partial for related products or announcements. */
+export type Mark = 'yes' | 'partial' | 'no' | 'unknown';
+export function markFor(entry: ComparisonEntry): Mark {
+  if (entry.status === 'documented' || entry.status === 'code' || entry.status === 'limited') return 'yes';
+  if (entry.status === 'ecosystem' || entry.status === 'announced') return 'partial';
+  if (entry.status === 'not_offered') return 'no';
+  return 'unknown';
+}
+export function featureTotals(features: ComparisonFeature[] = FEATURES) {
+  const totals: Record<PlatformId | 'dehub', { yes: number; partial: number }> = Object.fromEntries(
+    (['dehub', ...PLATFORMS.map(p => p.id)] as const).map(id => [id, { yes: 0, partial: 0 }]),
+  ) as Record<PlatformId | 'dehub', { yes: number; partial: number }>;
+  for (const feature of features) for (const id of Object.keys(totals) as (PlatformId | 'dehub')[]) {
+    const mark = markFor(entryFor(feature, id));
+    if (mark === 'yes') totals[id].yes++; else if (mark === 'partial') totals[id].partial++;
+  }
+  return totals;
 }

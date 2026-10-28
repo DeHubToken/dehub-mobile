@@ -222,7 +222,7 @@ export type AppStackParamList = {
   [ScreenNames.Converter]: undefined;
   [ScreenNames.Migrate]: undefined;
   [ScreenNames.Glossary]: undefined;
-  [ScreenNames.Compare]: { platform?: string; category?: string; q?: string } | undefined;
+  [ScreenNames.Compare]: { platform?: string; category?: string; q?: string; view?: string } | undefined;
   [ScreenNames.Guide]: undefined;
   [ScreenNames.Connect]: undefined;
   [ScreenNames.ConnectChatGPT]: undefined;
