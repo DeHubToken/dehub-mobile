@@ -241,6 +241,16 @@ export function useVoiceChat({ walletAddress, payForSession, onTranscript }: Opt
     if (voiceMode.current) void startListening();
   }, [startListening]);
 
+  /** A tap on the ball while listening: end the turn now and send what was said. */
+  const finishTurn = useCallback(() => {
+    if (!voiceMode.current || !meterTimer.current) return;
+    let recording = false;
+    try { recording = recorder.getStatus().isRecording; } catch {}
+    if (!recording) return;
+    clearMeter();
+    void processTurn();
+  }, [recorder, clearMeter, processTurn]);
+
   const skip = useCallback(() => {
     clearMeter();
     releasePlayer();
@@ -292,5 +302,5 @@ export function useVoiceChat({ walletAddress, payForSession, onTranscript }: Opt
     };
   }, [recorder, clearMeter, releasePlayer]);
 
-  return { isVoiceMode, status, exchangesLeft, level, start, stop, skip, speak, resume };
+  return { isVoiceMode, status, exchangesLeft, level, start, stop, skip, speak, resume, finishTurn };
 }
