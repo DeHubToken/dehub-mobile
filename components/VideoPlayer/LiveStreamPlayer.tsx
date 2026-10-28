@@ -210,7 +210,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const [followLoading, setFollowLoading] = useState<boolean>(false);
   useEffect(() => {
     if (!streamEntity) return;
-    const account = (streamEntity as any)?.account || null;
+    // Some stream rows come without the creator's account attached; the
+    // owner's address is still on the row, and that is all Follow needs.
+    // Without it the header had no creator and never showed Follow.
+    const owner = (streamEntity as any)?.address;
+    const account = (streamEntity as any)?.account || (owner ? { address: owner } : null);
     if (account) setCreator(account);
     // Only seed isFollowing from streamEntity when no nft prop was passed (e.g. deep link)
     if (typeof (streamEntity as any)?.isFollowing === 'boolean' && !nftProp) {
