@@ -10263,6 +10263,7 @@
     }
   },
   "creator": {
+    "priceRetry": "The price could not be confirmed. Review the price and try again.",
     "avatarTitle": "Talking portrait",
     "avatarRequirements": "Square PNG portrait, 512–2048 pixels, up to 5 MB. Mono 24 kHz 16-bit PCM WAV, 5–30 seconds. The last fraction of a second is padded with silence.",
     "avatarPortrait": "Choose portrait PNG",

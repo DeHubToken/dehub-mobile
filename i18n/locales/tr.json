@@ -9893,6 +9893,7 @@
     }
   },
   "creator": {
+    "priceRetry": "Fiyat onaylanamadı. Fiyatı gözden geçirip tekrar deneyin.",
     "avatarTitle": "Konuşan portre",
     "avatarRequirements": "512–2048 piksel, en fazla 5 MB kare PNG portre. 5–30 saniyelik mono 24 kHz 16 bit PCM WAV. Son saniyenin kesri sessizlikle tamamlanır.",
     "avatarPortrait": "PNG portre seç",
