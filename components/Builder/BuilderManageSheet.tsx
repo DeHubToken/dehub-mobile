@@ -1,7 +1,7 @@
 /**
  * Owner controls for a Builder app — native port of dehubweb's
  * components/builder/BuilderManageSheet.tsx: the app's own address
- * (<slug>.dehub.app), public/private, publishing to the DeHub app store, and
+ * (<slug>.dhb.gg), public/private, publishing to the DeHub app store, and
  * every saved version with one-tap restore.
  */
 import React, { useCallback, useEffect, useState } from "react";
