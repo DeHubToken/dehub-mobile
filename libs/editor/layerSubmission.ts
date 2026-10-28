@@ -1,6 +1,10 @@
 export interface LayerSubmission { id: string; phase: 'prepared' | 'paying' | 'paid' | 'submitted'; txHash?: string; sourceDigest?: string }
 export interface LayerSubmissionStorage { read(): Promise<LayerSubmission | null>; write(value: LayerSubmission): Promise<void> }
 export interface LayerAttemptTerminal { id:string; status:string; paymentRestored?:boolean; delivered?:boolean }
+export function latestReviewedLayerJob<T extends {id:string}>(jobs:T[], reviewedId:string): T {
+  if(!jobs[0] || jobs[0].id!==reviewedId)throw new Error('Collect the current job before starting another attempt');
+  return jobs[0];
+}
 export async function beginNewLayerAttempt(storage: LayerSubmissionStorage & { archive(value:LayerSubmission):Promise<void> }, terminal:LayerAttemptTerminal, sourceDigest:string, uuid:()=>string) {
   if (!(terminal.status==='succeeded' && terminal.delivered || ['failed','canceled','cancelled'].includes(terminal.status) && terminal.paymentRestored===true)) throw new Error('Collect this job before starting another attempt');
   const saved = await storage.read();
