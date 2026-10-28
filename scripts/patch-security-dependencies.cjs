@@ -100,8 +100,7 @@ function patch(pkg) {
         "    if (this._stack.length >= 128 && (chunk.name === 'startObject' || chunk.name === 'startArray')) return callback(new Error('JSON nesting exceeds 128 levels'));\n    // update the last stack key"));
       return true;
     case 'zod':
-      if (pkg.version.startsWith('4.')) return false; // Fixed by the >=4.6.7 override.
-      version(pkg, '3.25.76');
+      version(pkg, pkg.version.startsWith('4.') ? '4.6.7' : '3.25.76');
       for (const file of ['v3/types.cjs', 'v3/types.js']) {
         edit(dir, file, s => {
           for (const field of ['maxLength', 'maxSize']) {
@@ -112,6 +111,7 @@ function patch(pkg) {
           return replace(s, old, old + '\n                if (tooBig) return { status: "aborted" };');
         });
       }
+      if (pkg.version.startsWith('4.')) return true;
       // Zod 3.25 also exports an early v4 implementation. Backport the same
       // leading upper-bound gate there, preserving overwrite/check ordering.
       for (const file of ['v4/core/schemas.cjs', 'v4/core/schemas.js']) {
