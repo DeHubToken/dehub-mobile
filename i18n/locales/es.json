@@ -2945,7 +2945,29 @@
     "revealFailed": "No se pudo mostrar la clave. Inténtalo de nuevo.",
     "signInAgain": "Volver a iniciar sesión",
     "createSignIn": "Vuelve a iniciar sesión para crear un agente",
-    "checkConnection": "Comprueba tu conexión e inténtalo de nuevo."
+    "checkConnection": "Comprueba tu conexión e inténtalo de nuevo.",
+    "welcome": {
+      "title": "Dar la bienvenida a nuevos miembros",
+      "help": "Este agente sigue y/o escribe a quienes acaban de unirse a DeHub, unos pocos al día.",
+      "follow": "Seguir a nuevos miembros",
+      "message": "Escribir a nuevos miembros",
+      "text": "Mensaje de bienvenida",
+      "textHelp": "{name} se convierte en su @usuario. Sin enlaces. Se envía una vez por persona.",
+      "saveText": "Guardar mensaje",
+      "perDay": "Personas al día",
+      "fewer": "Menos al día",
+      "more": "Más al día",
+      "today": "Hoy: {{follows}} seguidos · {{messages}} mensajes",
+      "limits": "Nunca la misma persona dos veces. Omite a quien te bloqueó o silenció, desactivó los mensajes nuevos o se ocultó de Nuevos miembros.",
+      "showLog": "Ver a quién dio la bienvenida",
+      "hideLog": "Ocultar bienvenidas",
+      "empty": "Nadie todavía. Los nuevos miembros aparecen aquí al unirse.",
+      "followed": "Seguido",
+      "messaged": "Mensaje enviado",
+      "skipped": "Omitido",
+      "failed": "No se pudo contactar",
+      "defaultText": "¡Hola {name}, bienvenido a DeHub! 👋"
+    }
   },
   "hero": {
     "title": "Bienvenidos A",

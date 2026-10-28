@@ -2945,7 +2945,29 @@
     "revealFailed": "Impossible d'afficher la clé. Réessayez.",
     "signInAgain": "Se reconnecter",
     "createSignIn": "Reconnectez-vous pour créer un agent",
-    "checkConnection": "Vérifiez votre connexion et réessayez."
+    "checkConnection": "Vérifiez votre connexion et réessayez.",
+    "welcome": {
+      "title": "Accueillir les nouveaux membres",
+      "help": "Cet agent suit et/ou écrit aux personnes qui viennent de rejoindre DeHub, quelques-unes par jour.",
+      "follow": "Suivre les nouveaux membres",
+      "message": "Écrire aux nouveaux membres",
+      "text": "Message de bienvenue",
+      "textHelp": "{name} devient leur @pseudo. Pas de liens. Envoyé une fois par personne.",
+      "saveText": "Enregistrer le message",
+      "perDay": "Personnes par jour",
+      "fewer": "Moins par jour",
+      "more": "Plus par jour",
+      "today": "Aujourd'hui : {{follows}} suivis · {{messages}} messages",
+      "limits": "Jamais deux fois la même personne. Ignore ceux qui vous ont bloqué ou masqué, ont coupé les nouveaux messages ou se sont retirés des Nouveaux membres.",
+      "showLog": "Voir qui il a accueilli",
+      "hideLog": "Masquer les accueils",
+      "empty": "Personne pour l'instant. Les nouveaux membres apparaissent ici à leur arrivée.",
+      "followed": "Suivi",
+      "messaged": "Message envoyé",
+      "skipped": "Ignoré",
+      "failed": "Impossible de joindre",
+      "defaultText": "Salut {name}, bienvenue sur DeHub ! 👋"
+    }
   },
   "hero": {
     "title": "Bienvenue Dans",

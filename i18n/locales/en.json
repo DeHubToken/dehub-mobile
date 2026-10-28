@@ -2890,7 +2890,29 @@
     "revealFailed": "Couldn't reveal the key. Try again.",
     "signInAgain": "Sign in again",
     "createSignIn": "Sign in again to create an agent",
-    "checkConnection": "Check your connection and try again."
+    "checkConnection": "Check your connection and try again.",
+    "welcome": {
+      "title": "Welcome new members",
+      "help": "This agent follows and/or messages people who just joined DeHub, a few a day.",
+      "follow": "Follow new members",
+      "message": "Message new members",
+      "text": "Welcome message",
+      "textHelp": "{name} becomes their @username. No links. Sent once per person.",
+      "saveText": "Save message",
+      "perDay": "People a day",
+      "fewer": "Fewer a day",
+      "more": "More a day",
+      "today": "Today: {{follows}} followed · {{messages}} messaged",
+      "limits": "Never the same person twice. Skips anyone who blocked or muted you, turned off new messages or hid from New members.",
+      "showLog": "See who it welcomed",
+      "hideLog": "Hide welcomes",
+      "empty": "Nobody yet. New members show up here as they join.",
+      "followed": "Followed",
+      "messaged": "Messaged",
+      "skipped": "Skipped",
+      "failed": "Could not reach",
+      "defaultText": "Hey {name}, welcome to DeHub! 👋"
+    }
   },
   "hero": {
     "title": "Welcome To",
