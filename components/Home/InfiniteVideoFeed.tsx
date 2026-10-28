@@ -1178,7 +1178,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     [liveStreams],
   );
 
-  const { newPostCount, newPostAuthors, flushLiveCounts } = useNewPostsSignal({
+  const { newPostCount, newPostAuthors, latestNewAt, flushLiveCounts } = useNewPostsSignal({
     enabled: active && isFocused,
     scrolling: scrollingRef,
     visibleTokenIds: visibleCountIdsRef,
@@ -1189,12 +1189,17 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
     isRenderable,
   });
 
+  // A tapped chip goes away at once and stays away until a post newer than
+  // the ones it offered turns up, even when the refreshed list still renders
+  // an older head (a filter or the ranking keeps those posts off the top).
+  const [newPostsTappedAt, setNewPostsTappedAt] = useState(0);
   const showNewPosts = useCallback(() => {
+    setNewPostsTappedAt(latestNewAt);
     // onRefresh already drops every page past the first before refetching, so
     // this is the same work pull-to-refresh does, minus the gesture.
     void onRefresh();
     listRef.current?.scrollToOffset({ offset: 0, animated: true });
-  }, [onRefresh]);
+  }, [onRefresh, latestNewAt]);
   // The finger is up and the list has stopped: apply everything that waited.
   const settleScroll = useCallback(() => {
     scrollingRef.current = false;
@@ -1385,7 +1390,7 @@ export const InfiniteVideoFeed: React.FC<InfiniteVideoFeedProps> = ({
   const beadOwner = useRef(Symbol("new-posts-bead")).current;
   const beadPressRef = useRef(showNewPosts);
   beadPressRef.current = showNewPosts;
-  const beadVisible = active && !refreshing && !hideNewPosts && newPostCount > 0;
+  const beadVisible = active && !refreshing && !hideNewPosts && newPostCount > 0 && latestNewAt > newPostsTappedAt;
   const beadLabel = _copy("copy.85ee77346f10", { defaultValue: "{{value1}} new posts, tap to refresh", value1: newPostCount });
   useEffect(() => {
     setNewPostsBead(beadOwner, beadVisible
