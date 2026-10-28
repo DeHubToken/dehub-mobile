@@ -1,5 +1,3 @@
-import * as FileSystem from "expo-file-system/legacy";
-
 export const MAX_BUFFERED_UPLOAD_BYTES = 100_000_000;
 export const MAX_IMAGE_UPLOAD_BYTES = 42_069_000;
 
@@ -21,6 +19,7 @@ export async function checkBufferedUploadSize(form: FormData): Promise<void> {
   const files: { size: number; type?: string }[] = [];
   const native = form as FormData & { getParts?: () => { uri?: string; headers?: Record<string, string> }[] };
   if (native.getParts) {
+    const FileSystem = await import("expo-file-system/legacy");
     for (const part of native.getParts()) {
       if (!part.uri) continue;
       try {
