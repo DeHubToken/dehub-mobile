@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import GlassModal from "../ui/GlassModal";
+import Icon from "../ui/Icon";
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -192,7 +193,7 @@ const CategoryDrawer: React.FC<CategoryDrawerProps> = ({
               activeOpacity={0.7}
               className="flex-row items-center px-4 py-3 border-b border-white/5"
             >
-              <Ionicons name="add-circle-outline" size={18} color="#F4F4F5" />
+              <Icon name="Plus" size={18} color="#F4F4F5" />
               <Text className="text-theme-accent text-[14px] ml-2 font-medium">
                 {t("upload.createCategory", { name: cap(query.trim()) })}
               </Text>

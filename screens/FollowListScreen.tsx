@@ -44,6 +44,7 @@ import { FIELD_TEXT } from "../theme/inputs";
 import { useAppTheme } from "../context/ThemeContext";
 import { MINIMAL_HAIRLINE, MINIMAL_WASH } from "../theme/minimal";
 import LoadErrorState from "../components/ui/LoadErrorState";
+import Icon from "../components/ui/Icon";
 
 type RouteParams = {
   FollowList: {
@@ -1113,7 +1114,7 @@ const FollowListScreen: React.FC = () => {
             ListEmptyComponent={
               <View className="flex-1 items-center justify-center py-16">
                 <ThemePanel className="bg-theme-neutrals-800/30 rounded-2xl p-5 mb-4">
-                  <Ionicons name="person-add-outline" size={40} color="#A1A1AA" />
+                  <Icon name="UserPlus" size={40} color="#A1A1AA" />
                 </ThemePanel>
                 <Text className="text-gray-400 text-base text-center px-8">
                   {t("follow.noRequests")}

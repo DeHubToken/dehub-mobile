@@ -39,6 +39,10 @@ const CutSend = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...
 const CutAdd = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M6.3920 17.2000L27.0000 17.2000L27.0000 16.1920Q27.0000 14.8000 25.6080 14.8000L5.0000 14.8000L5.0000 15.8080Q5.0000 17.2000 6.3920 17.2000Z" fill={color} fillRule="evenodd" /><Path d="M14.8000 6.3920L14.8000 27.0000L15.8080 27.0000Q17.2000 27.0000 17.2000 25.6080L17.2000 5.0000L16.1920 5.0000Q14.8000 5.0000 14.8000 6.3920Z" fill={color} fillRule="evenodd" /></Svg>
 );
+// The plus's crossbar, for steppers and zoom pairs beside a plus.
+export const CutMinus = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
+  <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M6.3920 17.2000L27.0000 17.2000L27.0000 16.1920Q27.0000 14.8000 25.6080 14.8000L5.0000 14.8000L5.0000 15.8080Q5.0000 17.2000 6.3920 17.2000Z" fill={color} fillRule="evenodd" /></Svg>
+);
 const CutClose = ({ size = 24, color = "currentColor", strokeWidth = 2, fill, ...props }: CutProps) => (
   <Svg width={size} height={size} viewBox="0 0 32 32" {...props}><Path d="M7.1358 8.8328L24.1515 25.8485L24.8642 25.1358Q25.8485 24.1515 24.8642 23.1672L7.8485 6.1515L7.1358 6.8642Q6.1515 7.8485 7.1358 8.8328Z" fill={color} fillRule="evenodd" /><Path d="M23.1672 7.1358L6.1515 24.1515L6.8642 24.8642Q7.8485 25.8485 8.8328 24.8642L25.8485 7.8485L25.1358 7.1358Q24.1515 6.1515 23.1672 7.1358Z" fill={color} fillRule="evenodd" /></Svg>
 );

@@ -17,6 +17,7 @@ import { toastSuccess } from '../libs';
 import { dexActionError } from '../libs/dex-action-error';
 import { formatSize } from '../libs/dex-orderbook';
 import AddressInputTools from './common/AddressInputTools';
+import Icon from "./ui/Icon";
 import {
   FEE_ASSETS, POOL_CHAINS, POOL_CHAIN_INFO, POOL_FEE_USD, checkToken, createPool, fetchUsdPrices, isAcceptedPoolImage, isTokenAddress,
   loadFeeBalances, payFee, planFee, uploadPoolImage,
@@ -162,7 +163,7 @@ export default function DexAddPoolSheet({ visible, onClose, onCreated }: { visib
             {check?.token && !check.exists && <>
               <View style={s.preview}>
                 <TouchableOpacity disabled={locked} accessibilityRole="button" accessibilityLabel={t('dex.pools.setImage')} onPress={() => void pickImage()} style={s.tokenImage}>
-                  {tokenImage ? <SmartImage source={{ uri: tokenImage }} recyclingKey={tokenImage} style={s.tokenImageFill} /> : <Text style={s.plus}>+</Text>}
+                  {tokenImage ? <SmartImage source={{ uri: tokenImage }} recyclingKey={tokenImage} style={s.tokenImageFill} /> : <Icon name="Plus" size={20} color="#919ca9" />}
                 </TouchableOpacity>
                 <View style={s.flex}>
                   <Text style={s.white}>{check.token.name}</Text>
@@ -208,7 +209,6 @@ const s = StyleSheet.create({
   preview: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 16 },
   tokenImage: { width: 56, height: 56, borderRadius: 28, borderWidth: 1, borderColor: '#343e4b', borderStyle: 'dashed', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: '#0b0e13' },
   tokenImageFill: { width: 56, height: 56 },
-  plus: { color: '#919ca9', fontSize: 22 },
   fee: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 16, padding: 12, borderRadius: 8, backgroundColor: '#0b0e13', borderWidth: 1, borderColor: '#252b34' },
   coin: { width: 32, height: 32, borderRadius: 16 },
   feeUsd: { color: '#edf1f6', fontSize: 18, fontWeight: '600' },
