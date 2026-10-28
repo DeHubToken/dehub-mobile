@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import { useTranslation } from 'react-i18next';
@@ -32,6 +32,18 @@ const ORB_MODE: Record<VoiceStatus, LiquidOrbMode> = {
  */
 function AssistantStage({ voiceMode, status, level, exchangesLeft, lastReply, active, onOrbPress, onSkip, onStop, onAction }: AssistantStageProps) {
   const { t } = useTranslation();
+  // Which "what's on your mind" line greets this visit; a new one each time, as on web.
+  const [greetingIndex] = useState(() => Math.floor(Math.random() * 8));
+  const greetings = [
+    t('copy.d1a0c7e2f301', { defaultValue: "What's on your mind today?" }),
+    t('copy.d1a0c7e2f302', { defaultValue: 'What are you thinking about today?' }),
+    t('copy.d1a0c7e2f303', { defaultValue: "What's on your mind?" }),
+    t('copy.d1a0c7e2f304', { defaultValue: 'Got something on your mind?' }),
+    t('copy.d1a0c7e2f305', { defaultValue: "What's on your mind right now?" }),
+    t('copy.d1a0c7e2f306', { defaultValue: 'What are we thinking today?' }),
+    t('copy.d1a0c7e2f307', { defaultValue: 'Anything on your mind today?' }),
+    t('copy.d1a0c7e2f308', { defaultValue: "What's on your mind this time?" }),
+  ];
   const statusLine = status === 'listening' ? t('copy.c9f2a4e7d1b5', { defaultValue: 'Listening... tap the ball to send' })
     : status === 'transcribing' ? t('copy.4e9a93669648', { defaultValue: 'Transcribing...' })
     : status === 'speaking' ? t('copy.f2ef1cac7f88', { defaultValue: 'Speaking...' })
@@ -77,7 +89,7 @@ function AssistantStage({ voiceMode, status, level, exchangesLeft, lastReply, ac
       ) : (
         <>
           <View style={s.text}>
-            <Text style={s.title}>{t('copy.9eb64cb30346', { defaultValue: 'What are we making?' })}</Text>
+            <Text style={s.title}>{greetings[greetingIndex]}</Text>
             <Text style={s.hint}>{t('copy.1607715e45ed', { defaultValue: 'Tap the ball to talk, or type below' })}</Text>
           </View>
           <View style={s.tiles}>
