@@ -12,7 +12,7 @@ import { libraryCall, type CreatorAsset } from '../../services/creator.service';
 import { layerJobs, collectLayers, submitLayers, type LayerJob } from '../../services/image-layers.service';
 import { exportImageLayers } from '../../libs/editor/imageLayers';
 import type { ImageLayerSet, LayerChoice } from '../../libs/editor/imageLayersContract';
-import { resumeLayerSubmission, withLayerAdmission } from '../../libs/editor/layerSubmission';
+import { beginNewLayerAttempt, resumeLayerSubmission, withLayerAdmission } from '../../libs/editor/layerSubmission';
 
 const request = { kind: 'tool' as const, modelId: 'qwen-image-layered', quantity: 1 };
 export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: string; source: CreatorAsset; onOpenEditor(): void }) {
@@ -21,6 +21,7 @@ export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: str
   const [jobs, setJobs] = useState<LayerJob[]>([]), [set, setSet] = useState<ImageLayerSet | null>(null);
   const [choices, setChoices] = useState<LayerChoice[]>([]), [busy, setBusy] = useState(true), [error, setError] = useState('');
   const [preparedSource,setPreparedSource] = useState<{sourceDigest:string;sourcePreviewUrl:string} | null>(null);
+  const [newAttempt,setNewAttempt] = useState(false);
   const quote = useJobQuote(request, !source.layerSetId && !!preparedSource && DIGITAL_PURCHASES_ENABLED);
   const preparationKey = `creator-layers:${wallet.toLowerCase()}:${source.id}`;
   const abort = useRef(new AbortController()), locked = useRef(false);
@@ -30,13 +31,17 @@ export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: str
     const found:LayerJob[] = source.layerSetId ? [{ id: source.layerSetId, status: 'succeeded' }] : await layerJobs(wallet, source.id);
     if (!current()) return;
     setJobs(found);
+    const activeRaw = await AsyncStorage.getItem(preparationKey), activePreparation=activeRaw?JSON.parse(activeRaw):null;
+    if(!current())return;
+    const freshAttempt = !!activePreparation && !found.some(job=>job.id===activePreparation.id);
+    setNewAttempt(freshAttempt);
     if (!source.layerSetId && !preparedSource) {
       const raw = await AsyncStorage.getItem(preparationKey), saved = raw ? JSON.parse(raw) : null;
       const sourceDigest = saved?.sourceDigest || found[0]?.sourceDigest;
       const prepared = await libraryCall({action:'layer-source',sourceAssetId:source.id,...(sourceDigest?{sourceDigest}:{})},wallet);
       if (!current()) return; setPreparedSource(prepared);
     }
-    if (found[0]) {
+    if (found[0] && !freshAttempt) {
       const manifest = await collectLayers(wallet, found[0]);
       if (current() && manifest) { setSet(manifest); setChoices(previous => previous.length ? previous : manifest.layers.map(layer => ({ id: layer.id, hidden: false }))); }
     }
@@ -76,14 +81,26 @@ export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: str
     return next;
   });
   const Button = ({ title, onPress, disabled = false }: { title: string; onPress(): void; disabled?: boolean }) => <Pressable accessibilityRole="button" disabled={busy || disabled} onPress={onPress} className="min-h-11 justify-center rounded-lg border border-theme-neutrals-600 p-2" style={{ opacity: busy || disabled ? 0.4 : 1 }}><Text className="text-theme-neutrals-100">{title}</Text></Pressable>;
-  const pending = jobs.some(job => !['failed','canceled','cancelled'].includes(job.status));
+  const pending = !newAttempt && jobs.some(job => !['failed','canceled','cancelled'].includes(job.status));
+  const startNew = async () => {
+    if (!preparedSource || !jobs[0]) return;
+    await withLayerAdmission(preparationKey,async()=>{
+      const found = await layerJobs(wallet,source.id), terminal=found[0];
+      if(!terminal||terminal.id!==jobs[0].id||!current())throw new Error(t('common.somethingWentWrong'));
+      await beginNewLayerAttempt({read:async()=>{const raw=await AsyncStorage.getItem(preparationKey);return raw?JSON.parse(raw):null;},write:value=>AsyncStorage.setItem(preparationKey,JSON.stringify(value)),
+        archive:async value=>{const key=`${preparationKey}:history:${value.id}`, raw=JSON.stringify(value), previous=await AsyncStorage.getItem(key);if(previous&&previous!==raw)throw new Error(t('common.somethingWentWrong'));await AsyncStorage.setItem(key,raw);}},terminal,preparedSource.sourceDigest,()=>Crypto.randomUUID());
+      await quoteAiJob(request);
+      if(current()){setNewAttempt(true);setSet(null);setChoices([]);}
+    });
+  };
   return <View className="gap-2 rounded-xl border border-theme-neutrals-600 p-3">
     <Text className="text-theme-neutrals-100">{t('creator.layerTitle', { defaultValue: 'Separate image layers' })}</Text>
     <Text className="text-theme-neutrals-100">{t('creator.layerPngRequired', { defaultValue: 'Choose a saved PNG image, up to 12 MiB and four megapixels.' })}</Text>
     {!source.layerSetId && preparedSource && <Image source={{ uri: preparedSource.sourcePreviewUrl }} resizeMode="contain" style={{ height: 100 }} accessibilityLabel={t('creator.layerSource', { defaultValue: 'Original image' })} />}
     <Text className="text-theme-neutrals-100">{t('creator.layerDescription', { defaultValue: 'Four transparent PNG layers. Text remains part of each image.' })}</Text>
     {!!error && <Text accessibilityRole="alert" className="text-theme-neutrals-100">{error}</Text>}
-    {!pending && !source.layerSetId && DIGITAL_PURCHASES_ENABLED && <Button disabled={!preparedSource || quote.isLoading || !!quote.error || !quote.priceDhb} title={`${t('creator.layerSeparate', { defaultValue: 'Separate layers' })} · ${quote.priceDhb || '…'} DHB`} onPress={() => void run(separate)} />}
+    {!pending && !source.layerSetId && DIGITAL_PURCHASES_ENABLED && (newAttempt||jobs.length===0) && <Button disabled={!preparedSource || quote.isLoading || !!quote.error || !quote.priceDhb} title={`${t('creator.layerSeparate', { defaultValue: 'Separate layers' })} · ${quote.priceDhb || '…'} DHB`} onPress={() => void run(separate)} />}
+    {!newAttempt && !source.layerSetId && DIGITAL_PURCHASES_ENABLED && (jobs[0]?.delivered||jobs[0]?.paymentRestored) && <Button title={t('creator.layerNewAttempt',{defaultValue:'Review a new attempt'})} onPress={()=>void run(startNew)} />}
     {jobs.length > 0 && !set && <Text className="text-theme-neutrals-100">{t('creator.layerPending', { defaultValue: 'Saved job: {{status}}. Collect or retry saving without another payment.', status: jobs[0].status })}</Text>}
     <Button title={t('creator.layerCollect', { defaultValue: 'Collect / retry save' })} onPress={() => void run(refresh)} />
     {set && <>

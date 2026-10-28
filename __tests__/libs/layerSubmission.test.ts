@@ -1,5 +1,13 @@
-import { resumeLayerSubmission, withLayerAdmission, type LayerSubmission } from '../../libs/editor/layerSubmission';
+import { beginNewLayerAttempt, resumeLayerSubmission, withLayerAdmission, type LayerSubmission } from '../../libs/editor/layerSubmission';
 const id='00000000-0000-4000-8000-000000000001';
+it('creates a new reviewed UUID only after confirmed refund and archives its previous receipt',async()=>{
+  const digest='a'.repeat(64),original:LayerSubmission={id,phase:'submitted',sourceDigest:digest,txHash:'credits'};let value:LayerSubmission|null=original;const archive:LayerSubmission[]=[];
+  const storage={read:async()=>value,write:async(next:LayerSubmission)=>{value=next;},archive:async(next:LayerSubmission)=>{archive.push(next);}};
+  await expect(beginNewLayerAttempt(storage,{id,status:'processing'},digest,()=>id.replace(/1$/,'2'))).rejects.toThrow('Collect');expect(archive).toHaveLength(0);
+  await beginNewLayerAttempt(storage,{id,status:'failed',paymentRestored:true},digest,()=>id.replace(/1$/,'2'));
+  expect(archive).toEqual([original]);expect(value).toMatchObject({phase:'prepared',id:id.replace(/1$/,'2')});
+  await expect(beginNewLayerAttempt(storage,{id,status:'failed',paymentRestored:true},digest,()=>id)).rejects.toThrow('unresolved');
+});
 it('refreshes quote after paying is durable and never enters the wallet on a stale quote',async()=>{
   const order:string[]=[];let value:LayerSubmission|null=null,paid=0;
   await expect(resumeLayerSubmission({read:async()=>value,write:async next=>{value=next;order.push(next.phase);}},{uuid:()=>id,current:()=>true,

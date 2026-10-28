@@ -1,7 +1,7 @@
 import { libraryCall } from './creator.service';
 import { pollAiTool, startAiTool } from './ai.service';
 import { validateLayerSet, type ImageLayerSet } from '../libs/editor/imageLayersContract';
-export interface LayerJob { id: string; status: string; sourceDigest?: string; requestId?: string; appId?: string }
+export interface LayerJob { id: string; status: string; delivered?:boolean; paymentRestored?:boolean; sourceDigest?: string; requestId?: string; appId?: string }
 export async function layerJobs(wallet: string, sourceAssetId: string): Promise<LayerJob[]> {
   return (await libraryCall({ action: 'layer-jobs', sourceAssetId }, wallet)).jobs;
 }
