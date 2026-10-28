@@ -4084,6 +4084,7 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "jumpToReply": "Ga naar het beantwoorde bericht",
     "shareLink": "Link delen",
     "pinnedMore": "Meer",
     "showFirst": "Eerst tonen",

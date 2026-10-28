@@ -3841,6 +3841,7 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "jumpToReply": "Jump to replied message",
     "shareLink": "Share link",
     "pinnedMore": "More",
     "showFirst": "Show first",
