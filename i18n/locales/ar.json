@@ -1327,6 +1327,16 @@
     "remove": "إزالة"
   },
   "tip": {
+    "addMessage": "أضف رسالة (اختياري)",
+    "messagePlaceholder": "قل شيئًا مع إكراميتك",
+    "messagePublic": "عام",
+    "messagePrivate": "{{name}} فقط",
+    "theCreator": "صانع المحتوى",
+    "messageWallNote": "تظهر على جدار الإكراميات بعد إتمام الإكرامية.",
+    "sendWithMessage": "إرسال مع رسالة",
+    "messageFailed": "تعذّر إضافة رسالتك. لم تُرسل أي إكرامية.",
+    "wallLabel": "رسائل الإكراميات",
+    "messagePrivateNote": "يراها {{name}} فقط في إشعاره.",
     "title": "إرسال إكرامية",
     "toCreator": "إكرامية لـ {{name}}",
     "quickAmounts": "مبالغ سريعة",

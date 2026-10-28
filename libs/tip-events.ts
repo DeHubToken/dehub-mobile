@@ -17,3 +17,16 @@ export function subscribePostTipped(fn: Listener): () => void {
 
 /** Comment tips share the channel under a prefixed key, so they never light a post's gem. */
 export const commentTipKey = (commentId: string | number) => `comment:${commentId}`;
+
+/** A tip went out with a message: the post's tip wall should fetch it and land it. */
+const messageListeners = new Set<Listener>();
+
+export function emitTipMessageSent(tokenId: string | number): void {
+  const id = String(tokenId);
+  messageListeners.forEach((fn) => fn(id));
+}
+
+export function subscribeTipMessageSent(fn: Listener): () => void {
+  messageListeners.add(fn);
+  return () => { messageListeners.delete(fn); };
+}

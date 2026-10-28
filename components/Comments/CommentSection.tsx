@@ -78,7 +78,9 @@ import { collapsedReplyIds } from "../../libs/comment-preview";
 import { authorThreadFirst, isAuthorThreadRoot } from "../../libs/author-thread";
 import { useCommentTipTotals } from "../../hooks/useCommentTipTotals";
 import { useBookBoost, useSuperpowers } from "../../hooks/useSuperpowers";
-import { getNFT } from "../../services/nft.service";
+import { getNFT, getTipWall } from "../../services/nft.service";
+import TipWall from "./TipWall";
+import { subscribeTipMessageSent } from "../../libs/tip-events";
 import { useQuery, type QueryClient } from "@tanstack/react-query";
 import { takeWarmRequest, warmRequest } from "../../libs/navPrefetch";
 import type { PostCreator } from "../../libs/impersonation";
@@ -95,12 +97,16 @@ import CommonGroundSheet from "./CommonGroundSheet";
 import KeywordFilterGate from "../Home/KeywordFilterGate";
 
 // Extended comment type for flat list with reply info
+const EMPTY_TIP_WALL: Comment[] = [];
+
 interface FlatComment extends Comment {
   isReply?: boolean;
   /** Nesting depth: 0 = top-level, 1 = direct reply, 2 = reply-to-reply, etc. */
   depth: number;
   /** ID of the root top-level comment this reply belongs to (set for all replies) */
   rootParentId?: number;
+  /** The temporary id a sent comment started on, so its row stays mounted (and keeps its landing) when the real id arrives. */
+  rowKey?: number;
 }
 
 interface CommentSectionProps {
@@ -348,6 +354,45 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     retry: false,
   });
   const threadAuthor = ((threadPost as any)?.result?.minter ?? "").toLowerCase();
+
+  // Messages that came with a tip lead the thread on a strip of cards; their
+  // comments leave the list until a card is opened, which lifts it to the top.
+  const { data: tipWallRows = EMPTY_TIP_WALL, refetch: refetchTipWall } = useQuery({
+    queryKey: ["tip-wall", String(tokenId ?? ""), userAddress ?? ""],
+    queryFn: () => getTipWall(tokenId, userAddress || undefined),
+    enabled: tokenId != null,
+    staleTime: 30 * 1000,
+    retry: false,
+  });
+  const tipWallIds = useMemo(() => new Set(tipWallRows.map((r) => Number(r.id))), [tipWallRows]);
+  const [openTipId, setOpenTipId] = useState<number | null>(null);
+  const listRef = useRef<any>(null);
+  /** A comment just sent: scroll it into view as it lands. */
+  const [landTempId, setLandTempId] = useState<number | null>(null);
+  const [landedTipId, setLandedTipId] = useState<number | null>(null);
+  const toggleTipCard = useCallback((id: number) => {
+    setOpenTipId((cur) => (cur === id ? null : id));
+  }, []);
+  // A tip message posts once the chain confirms, a beat after the sheet
+  // closes. Look for it a few times, then land the new card.
+  useEffect(() => {
+    if (tokenId == null) return;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const unsubscribe = subscribeTipMessageSent((id) => {
+      if (id !== String(tokenId)) return;
+      const known = new Set(tipWallIds);
+      let tries = 0;
+      const look = async () => {
+        tries += 1;
+        const { data } = await refetchTipWall();
+        const fresh = (data ?? []).find((r) => !known.has(Number(r.id)) && r.address?.toLowerCase() === userAddress?.toLowerCase());
+        if (fresh) { setLandedTipId(Number(fresh.id)); return; }
+        if (tries < 10) timer = setTimeout(look, 1500);
+      };
+      timer = setTimeout(look, 600);
+    });
+    return () => { unsubscribe(); if (timer) clearTimeout(timer); };
+  }, [tokenId, tipWallIds, refetchTipWall, userAddress]);
   /** This thread is the viewer's own post, which is what a pin needs. */
   const isOwnThread =
     !!userAddress && !!threadAuthor && threadAuthor === userAddress.toLowerCase();
@@ -941,6 +986,9 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       } else {
         setFlatComments((prev) => [optimistic, ...prev]);
       }
+      // The new row springs into place in view and the keyboard gets out of the way.
+      Keyboard.dismiss();
+      setLandTempId(tempId);
 
       const savedMedia = mediaAttachment;
       await deliverReply({
@@ -994,7 +1042,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         if (newId != null) {
           setFlatComments((prev) =>
             prev.map((c) => {
-              if (c.id === tempId) return { ...c, id: newId! };
+              if (c.id === tempId) return { ...c, id: newId!, rowKey: tempId };
               if (c.replyIds?.includes(tempId)) {
                 return {
                   ...c,
@@ -1097,6 +1145,8 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
             // Prepend new top-level comment
             setFlatComments((prev) => [optimisticComment, ...prev]);
           }
+          Keyboard.dismiss();
+          setLandTempId(tempId);
 
           const replyToId = replyingTo ? Number(replyingTo.id) : undefined;
           // Post to server
@@ -1130,7 +1180,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           if (newId != null && Number.isFinite(newId)) {
             setFlatComments((prev) =>
               prev.map((c) => {
-                if (c.id === tempId) return { ...c, id: newId };
+                if (c.id === tempId) return { ...c, id: newId, rowKey: tempId };
                 // Replace tempId in parent's replyIds with real ID
                 if (c.replyIds?.includes(tempId)) {
                   return {
@@ -1467,14 +1517,26 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
       REPLIES_SHOWN_COLLAPSED,
     );
 
-    const visible = flatComments.filter((c) => {
-      if (!c.isReply) return true;
+    const onWall = (root: number) => tipWallIds.has(root) && root !== openTipId;
+    let visible = flatComments.filter((c) => {
+      if (!c.isReply) return !onWall(Number(c.id));
       const root = Number(c.rootParentId);
+      if (onWall(root)) return false;
       if (expandedCommentIds.has(root)) return true;
       // Arriving from a notification means the reply itself is the destination.
       if (highlightedId != null && Number(c.id) === highlightedId) return true;
       return preview.get(String(root))?.has(String(c.id)) ?? false;
     });
+
+    if (openTipId != null) {
+      const inThread = (c: FlatComment) => Number(c.id) === openTipId || (c.isReply && Number(c.rootParentId) === openTipId);
+      const opened = visible.filter(inThread);
+      if (!opened.length) {
+        const row = tipWallRows.find((r) => Number(r.id) === openTipId);
+        if (row) opened.push({ ...row, depth: 0, isReply: false } as FlatComment);
+      }
+      visible = [...opened, ...visible.filter((c) => !inThread(c))];
+    }
 
     type Meta = {
       lineAbove: boolean;
@@ -1535,7 +1597,24 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     });
 
     return { visibleComments: visible, threadMeta: meta };
-  }, [flatComments, expandedCommentIds, highlightedId, threadCreator]);
+  }, [flatComments, expandedCommentIds, highlightedId, threadCreator, tipWallIds, tipWallRows, openTipId]);
+
+  useEffect(() => {
+    if (landTempId == null) return;
+    const index = visibleComments.findIndex((c) => (c.rowKey ?? c.id) === landTempId);
+    setLandTempId(null);
+    if (index < 0) return;
+    const timer = setTimeout(() => {
+      try { listRef.current?.scrollToIndex({ index, viewPosition: 0.35, animated: true }); } catch {}
+    }, 120);
+    return () => clearTimeout(timer);
+  }, [landTempId, visibleComments]);
+
+  // An opened tip card's comment sits at the top of the list.
+  useEffect(() => {
+    if (openTipId == null) return;
+    try { listRef.current?.scrollToOffset({ offset: 0, animated: true }); } catch {}
+  }, [openTipId]);
 
   const renderComment = useCallback(({ item }: { item: FlatComment }) => {
     const isHighlighted = highlightedId != null && Number(item.id) === highlightedId;
@@ -1620,7 +1699,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
     postCreator,
   ]);
 
-  const keyExtractor = useCallback((item: FlatComment) => `comment-${item.id}`, []);
+  const keyExtractor = useCallback((item: FlatComment) => `comment-${item.rowKey ?? item.id}`, []);
 
   // Comment view tracking — batch fire POST /api/comment_views when comments scroll into view
   const viewBatchRef = useRef<Set<number>>(new Set());
@@ -1673,8 +1752,12 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
         <FlatList
           nestedScrollEnabled
           disallowInterruption
+          ref={listRef}
           data={visibleComments}
           renderItem={renderComment}
+          onScrollToIndexFailed={({ index, averageItemLength }: { index: number; averageItemLength: number }) => {
+            try { listRef.current?.scrollToOffset({ offset: Math.max(0, index * averageItemLength - 120), animated: true }); } catch {}
+          }}
           keyExtractor={keyExtractor}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: listBottomPadding }}
           keyboardShouldPersistTaps="handled"
@@ -1689,17 +1772,20 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           viewabilityConfig={viewabilityConfig}
           onViewableItemsChanged={onViewableItemsChanged}
           ListHeaderComponent={
-            isAssistantReplying ? (
+            <>
+            <TipWall rows={tipWallRows} openId={openTipId} landedId={landedTipId} onToggle={toggleTipCard} />
+            {isAssistantReplying ? (
               <View className="flex-row items-center py-3">
                 <ActivityIndicator size="small" color="#8B8D90" />
                 <Text style={{ color: "#8B8D90", fontSize: 13, marginLeft: 8 }}>
                   {t("comments.assistantReplying")}
                 </Text>
               </View>
-            ) : null
+            ) : null}
+            </>
           }
           ListEmptyComponent={
-            loadError ? (
+            tipWallRows.length && !loadError ? null : loadError ? (
               <View className="flex-1 items-center justify-center py-16" style={{ gap: 16 }}>
                 <Text style={{ color: "#8B8D90", fontSize: 14 }}>
                   {t("comments.loadFailed")}

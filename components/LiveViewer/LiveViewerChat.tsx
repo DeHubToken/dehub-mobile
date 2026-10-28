@@ -1,6 +1,7 @@
 import { translateCopy as _translateCopy } from "../../i18n/copy";
 import { DhbCoin } from "../common/DhbCoin";
-import React, { memo, useCallback, useMemo, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated";
 import { View, Text, FlatList, Pressable, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
@@ -252,6 +253,28 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate
   }
 });
 
+/**
+ * A line that arrives while the chat is open glides up into place; a tip also
+ * glows for a beat, the same landing a tip message gets under a post.
+ */
+const LandIn = memo(function LandIn({ glow, children }: { glow: boolean; children: React.ReactNode }) {
+  const rise = useSharedValue(0);
+  const shine = useSharedValue(glow ? 1 : 0);
+  useEffect(() => {
+    rise.value = withSpring(1, { damping: 18, stiffness: 200 });
+    if (glow) shine.value = withDelay(200, withTiming(0, { duration: 1600 }));
+  }, [glow, rise, shine]);
+  const style = useAnimatedStyle(() => ({
+    opacity: Math.min(1, rise.value * 1.5),
+    transform: [{ translateY: (1 - rise.value) * 12 }],
+    shadowColor: "#FFFFFF",
+    shadowOpacity: shine.value * 0.7,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 0 },
+  }));
+  return <Animated.View style={style}>{children}</Animated.View>;
+});
+
 const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onModerate }) => {
   const listRef = useRef<FlatList<ChatActivity> | null>(null);
   const { showUserProfile } = useUserProfileSheet();
@@ -290,19 +313,31 @@ const LiveViewerChat: React.FC<LiveViewerChatProps> = ({ activities, onModerate 
     [filteredActivities]
   );
 
-  const renderItem = useCallback(
-    ({ item }: { item: ChatActivity }) => <ChatBubble a={item} onUserPress={handleUserPress} onModerate={onModerate} />,
-    [handleUserPress, onModerate]
-  );
-
+  // Keyed by position from the oldest line, so rows already on screen keep
+  // their key (and stay put) when a new one arrives at the bottom.
+  const total = reversed.length;
   const keyExtractor = useCallback((a: ChatActivity, idx: number) => {
     const t = a.createdAt || 0;
     const who = (a.address || a.meta?.username || "").toLowerCase();
     const contentKey =
       (a.meta?.content ? String(a.meta?.content).slice(0, 16) : "") ||
       String(a.meta?.amount || "");
-    return `${t}:${a.status}:${who}:${contentKey}:${idx}`;
-  }, []);
+    return `${t}:${a.status}:${who}:${contentKey}:${total - 1 - idx}`;
+  }, [total]);
+
+  // Lines already there when the chat opened don't animate; later ones land.
+  const seen = useRef<Set<string> | null>(null);
+  if (seen.current == null) seen.current = new Set(reversed.map((a, i) => keyExtractor(a, i)));
+
+  const renderItem = useCallback(
+    ({ item, index }: { item: ChatActivity; index: number }) => {
+      const bubble = <ChatBubble a={item} onUserPress={handleUserPress} onModerate={onModerate} />;
+      const key = keyExtractor(item, index);
+      if (seen.current!.has(key)) return bubble;
+      return <LandIn glow={item.status === StreamActivityType.TIP}>{bubble}</LandIn>;
+    },
+    [handleUserPress, onModerate, keyExtractor]
+  );
 
   return (
     /* The room, floating over the picture. 220 rather than 260: the bar

@@ -1290,6 +1290,16 @@
     "remove": "Remove"
   },
   "tip": {
+    "addMessage": "Add a message (optional)",
+    "messagePlaceholder": "Say something with your tip",
+    "messagePublic": "Public",
+    "messagePrivate": "Only {{name}}",
+    "theCreator": "the creator",
+    "messageWallNote": "Shows on the tip wall once the tip goes through.",
+    "sendWithMessage": "Send with message",
+    "messageFailed": "Your message could not be added. No tip was sent.",
+    "wallLabel": "Tip messages",
+    "messagePrivateNote": "Only {{name}} sees it, in their notification.",
     "title": "Send Tip",
     "toCreator": "Tip {{name}}",
     "quickAmounts": "Quick amounts",

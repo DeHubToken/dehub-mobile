@@ -512,6 +512,17 @@ export interface Comment {
   creatorReplied?: boolean;
   notFound?: boolean;
   user?: CommentUser;
+  /** Set on a message that came with a tip; it leads the post's tip wall. */
+  tip?: CommentTip;
+}
+
+export interface CommentTip {
+  amount: number;
+  symbol: string;
+  chainId?: number;
+  txHash?: string;
+  /** The tip in DHB, so tips in different tokens rank together. */
+  value?: number;
 }
 
 export interface GetCommentsResult {
@@ -554,6 +565,54 @@ export async function getCommentsForToken(
     console.error('[NFTService] getCommentsForToken error', e);
     throw e;
   }
+}
+
+export const TIP_MESSAGE_MAX_LENGTH = 280;
+
+export interface TipMessageResult {
+  result: boolean;
+  error?: string;
+  messageId?: string;
+  status?: 'pending' | 'confirming' | 'posted' | 'private' | 'refused';
+  commentId?: string;
+}
+
+/**
+ * Write the message before the tip goes out. The server posts it only once
+ * the tip confirms, and refuses up front when the comment couldn't post.
+ */
+export async function registerTipMessage(input: {
+  tokenId: number | string;
+  amount: number;
+  content: string;
+  isPrivate?: boolean;
+}): Promise<TipMessageResult> {
+  return apiClient.post<TipMessageResult>('/tip_message', {
+    streamTokenId: input.tokenId,
+    amount: input.amount,
+    content: input.content,
+    isPrivate: !!input.isPrivate,
+    platform: 'app',
+  }, { isAuthRequired: true });
+}
+
+export async function bindTipMessage(messageId: string, txHash: string): Promise<TipMessageResult> {
+  return apiClient.post<TipMessageResult>('/tip_message', { messageId, txHash }, { isAuthRequired: true });
+}
+
+/** The tip never went out: drop the waiting message. */
+export async function cancelTipMessage(messageId: string): Promise<TipMessageResult> {
+  return apiClient.post<TipMessageResult>('/tip_message', { messageId, cancel: true }, { isAuthRequired: true });
+}
+
+/** Messages that came with a tip, biggest first. */
+export async function getTipWall(tokenId: number | string, address?: string): Promise<Comment[]> {
+  const q = objectToGetParams(removeUndefined({ address }));
+  const res = await apiClient.get<{ result?: Comment[] }>(
+    `/nft/${encodeURIComponent(String(tokenId))}/tip_wall${q}`,
+    { isAuthRequired: true },
+  );
+  return Array.isArray(res?.result) ? res.result : [];
 }
 
 export interface GetCommentRepliesParams {
