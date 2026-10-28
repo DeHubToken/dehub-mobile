@@ -64,8 +64,8 @@ const SKIP_DIRS = new Set([
   "dehub-stream-backend",
   "cosmic-echo-hero",
 ]);
-// Provider effects and cinema choices are content, not icon references.
-const SKIP_PATHS = new Set(["components/messages", "components/ui/iconRegistry.ts", "config/viral-effects.ts", "libs/cinemaDirection.ts"]);
+// Provider effects, cinema choices and comparison category names are content, not icon references.
+const SKIP_PATHS = new Set(["components/messages", "components/ui/iconRegistry.ts", "config/viral-effects.ts", "libs/cinemaDirection.ts", "libs/platform-comparison.ts"]);
 
 /** Canonical lucide name -> file slug, e.g. CircleAlert -> circle-alert. */
 function loadLucideNames() {
