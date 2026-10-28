@@ -12,7 +12,7 @@ import Animated, {
   withDelay,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
-import TranslateButton from "../ui/TranslateButton";
+import TranslateButton, { type TranslateToggle } from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useI18n } from "react-i18next";
 import Avatar from "../common/Avatar";
@@ -40,7 +40,7 @@ interface LiveChatMessageProps {
   isModerator: boolean;
   onSelectReaction?: (messageId: string, emoji: string) => void;
   onAvatarPress?: (user: LiveChatUser) => void;
-  onLongPress?: (msg: LiveChatMessageData, layout: MessageLayout) => void;
+  onLongPress?: (msg: LiveChatMessageData, layout: MessageLayout, translate?: TranslateToggle) => void;
   onReplyPress?: (messageId: string) => void;
   highlighted?: boolean;
 }
@@ -129,11 +129,6 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
     () => sender && onAvatarPress?.(sender),
     [onAvatarPress, sender]
   );
-  const handleLongPress = useCallback(() => {
-    containerRef.current?.measureInWindow((x, y, width, height) => {
-      onLongPress?.(message, { x, y, width, height });
-    });
-  }, [onLongPress, message]);
 
   // Web posts a GIF with its URL as the message body; mobile posts a `gif`
   // object and no body at all. Resolve both, then keep that URL out of the text
@@ -150,6 +145,19 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
   const translationTexts = useMemo(() => ({ content: bodyText }), [bodyText]);
   const { isTranslated, translatedTexts, isLoading: translating, handleTranslate, handleShowOriginal, shouldShow: showTranslate, sourceLang: translationSourceLang } =
     useTranslation(translationTexts, (message as any).detectedLanguage, 'chat', true);
+
+  // Translate lives in the long-press menu, not on the line.
+  const handleLongPress = useCallback(() => {
+    containerRef.current?.measureInWindow((x, y, width, height) => {
+      onLongPress?.(
+        message,
+        { x, y, width, height },
+        showTranslate && !!bodyText
+          ? { isTranslated, toggle: isTranslated ? handleShowOriginal : handleTranslate }
+          : undefined,
+      );
+    });
+  }, [onLongPress, message, showTranslate, bodyText, isTranslated, handleTranslate, handleShowOriginal]);
 
   // Reactions display
   const reactionEntries = useMemo(() => {
@@ -266,6 +274,7 @@ const LiveChatMessage: React.FC<LiveChatMessageProps> = ({
                 detectedLanguage={translationSourceLang}
                 onTranslate={handleTranslate}
                 onShowOriginal={handleShowOriginal}
+                statusOnly
               />
             )}
 

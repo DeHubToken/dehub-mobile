@@ -13,7 +13,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import Icon from "../ui/Icon";
-import TranslateButton from "../ui/TranslateButton";
+import TranslateButton, { type TranslateToggle } from "../ui/TranslateButton";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useCopy } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -135,7 +135,7 @@ interface CommentItemProps {
   onPin?: (comment: Comment) => void;
   onReport?: (comment: Comment) => void;
   onDelete?: (comment: Comment) => void;
-  onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean }) => void;
+  onLongPress?: (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => void;
   tokenId?: number | string;
   contentType?: "video" | "feed";
   highlighted?: boolean;
@@ -519,9 +519,13 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
         disliked,
         isOwnComment,
         isReply,
+        // Translate lives in this menu, not on the row.
+        translate: showTranslate
+          ? { isTranslated, toggle: isTranslated ? handleShowOriginal : handleTranslate }
+          : undefined,
       });
     });
-  }, [onLongPress, comment, liked, isOwnComment, isReply, isPending]);
+  }, [onLongPress, comment, liked, disliked, isOwnComment, isReply, isPending, showTranslate, isTranslated, handleTranslate, handleShowOriginal]);
 
   const handleSharePress = useCallback(async () => {
     try {
@@ -818,6 +822,7 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
               detectedLanguage={translationSourceLang}
               onTranslate={handleTranslate}
               onShowOriginal={handleShowOriginal}
+              statusOnly
             />
           )}
 

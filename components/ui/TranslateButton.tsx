@@ -13,6 +13,18 @@ interface TranslateButtonProps {
   onShowOriginal: () => void;
   /** Render inline (in metadata row) vs standalone line */
   inline?: boolean;
+  /**
+   * Comments and chat lines: no Translate button on the row. Translate lives
+   * in the long-press menu, so the row only says what happened — Translating…
+   * while it runs, Show original once it has.
+   */
+  statusOnly?: boolean;
+}
+
+/** What a long-press menu needs to offer Translate / Show original for one row. */
+export interface TranslateToggle {
+  isTranslated: boolean;
+  toggle: () => void;
 }
 
 /** Backend hands back an ISO code; the reader needs the name of the language. */
@@ -30,6 +42,7 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
   onTranslate,
   onShowOriginal,
   inline = false,
+  statusOnly = false,
 }) => {
   const { t } = useI18n();
   // Same grey as the time and view count it sits beside.
@@ -64,6 +77,8 @@ const TranslateButtonComponent: React.FC<TranslateButtonProps> = ({
       </TouchableOpacity>
     );
   }
+
+  if (statusOnly) return null;
 
   return (
     <TouchableOpacity
