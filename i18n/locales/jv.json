@@ -7725,6 +7725,7 @@
     "repostedPost": "{{name}} mbalèkaké postinganmu",
     "quotedPost": "{{name}} ngutip postinganmu",
     "mentionedYou": "{{name}} nyebutaké sampeyan",
+    "mentionedYouComment": "{{name}} ngomongmu di komentar",
     "followRequest": "{{name}} njaluk kanggo ngetutaké sampeyan",
     "followAccepted": "{{name}} nampa panjalukan ngetutaké sampeyan",
     "signalFlare": "{{name}} ngirim Signal Flare",

@@ -7725,6 +7725,7 @@
     "repostedPost": "Siziň posdyňyzy {{name}} täzeden paýlaşdy",
     "quotedPost": "Siziň posdyňyzy {{name}} sitirledi",
     "mentionedYou": "Sizi {{name}} agzady",
+    "mentionedYouComment": "{{name}} teswirde sizi belläp geçdi",
     "followRequest": "Siziň yz ýanyňyza düşmek üçin {{name}} haýyş etdi",
     "followAccepted": "Siziň yz ýanyňyza düşmek haýyşyňyzy {{name}} kabul etdi",
     "signalFlare": "{{name}} Signal Flare iberdi",

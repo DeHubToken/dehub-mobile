@@ -7723,6 +7723,7 @@
     "repostedPost": "{{name}} repost your post",
     "quotedPost": "{{name}} quote your post",
     "mentionedYou": "{{name}} mention you",
+    "mentionedYouComment": "{{name}} mention you for comment",
     "followRequest": "{{name}} wan follow you",
     "followAccepted": "{{name}} don accept your follow request",
     "signalFlare": "{{name}} send Signal Flare",

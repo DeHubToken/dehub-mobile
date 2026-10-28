@@ -7725,6 +7725,7 @@
     "repostedPost": "{{name}} ستاسو پوسټ یې بیا خپور کړ",
     "quotedPost": "{{name}} ستاسو پوسټ یې نقل کړ",
     "mentionedYou": "{{name}} تاسو ته یې یادونه کړې",
+    "mentionedYouComment": "{{name}} په یوه تبصره کې ستاسو یادونه وکړه",
     "followRequest": "{{name}} ستاسو د تعقیب غوښتنه یې وکړه",
     "followAccepted": "{{name}} ستاسو د تعقیب غوښتنه یې ومنله",
     "signalFlare": "{{name}} د سیګنال فلیر واستول",

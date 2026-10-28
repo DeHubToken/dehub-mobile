@@ -7728,6 +7728,9 @@
     "repostedPost": "{{name}} weghachiri post gị",
     "quotedPost": "{{name}} kwuru post gị",
     "mentionedYou": "{{name}} kpọrọ gị aha",
+    "mentionedYouLiveChat": "{{name}} kwuru na ị na ndụ chat",
+    "mentionedYouPublicChat": "{{name}} kwuru na ị na ọha chat",
+    "mentionedYouComment": "{{name}} kwuru gị n'okwu",
     "signalFlare": "{{name}} zitere ọkụ ọkụ"
   },
   "audioPost": {
