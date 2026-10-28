@@ -22,11 +22,17 @@ export function useCachedVideoDub(transcriptId: string | null, language: string 
     queryKey: key, enabled: active, staleTime: 5 * 60 * 1000, retry: false,
     refetchOnWindowFocus: false, refetchOnReconnect: false,
     queryFn: async () => {
+      const before = client.getQueryData<CachedDub>(key);
+      // Realtime is authoritative when it advances while this request waits.
+      const settle = (value: CachedDub): CachedDub => {
+        const latest = client.getQueryData<CachedDub>(key);
+        return latest && latest !== before ? latest : value;
+      };
       const cached = await read();
-      if (cached?.status === 'ready') return cached;
+      if (cached?.status === 'ready') return settle(cached);
       const { data, error } = await supabase.functions.invoke('auto-dub', { body: { action: 'request', transcriptId, lang } });
-      if (error) return { status: 'unavailable' };
-      return { status: data?.status ?? 'unavailable', audioUrl: data?.status === 'ready' ? data.audioUrl : undefined };
+      if (error) return settle({ status: 'unavailable' });
+      return settle({ status: data?.status ?? 'unavailable', audioUrl: data?.status === 'ready' ? data.audioUrl : undefined });
     },
   });
   useEffect(() => {
@@ -35,13 +41,16 @@ export function useCachedVideoDub(transcriptId: string | null, language: string 
     const channel = supabase.channel(`cached-dub:${transcriptId}:${lang}`)
       .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'video_dubs', filter: `transcript_id=eq.${transcriptId}` }, (event) => {
         const row = event.new as { language?: string; provider?: string; status: string; audio_url?: string };
-        if (row.language !== lang || row.provider !== PROVIDER) return;
+        if (!alive || row.language !== lang || row.provider !== PROVIDER) return;
         client.setQueryData(key, { status: row.status, audioUrl: row.status === 'ready' ? row.audio_url : undefined });
       }).subscribe((status) => {
         // Recover a completion missed while this player was paused/off screen.
-        if (status === 'SUBSCRIBED') void read().then((row) => {
-          if (alive && row?.status === 'ready') client.setQueryData(key, row);
-        }).catch(() => {});
+        if (status === 'SUBSCRIBED') {
+          const before = client.getQueryData(key);
+          void read().then((row) => {
+            if (alive && row?.status === 'ready' && client.getQueryData(key) === before) client.setQueryData(key, row);
+          }).catch(() => {});
+        }
       });
     return () => { alive = false; void supabase.removeChannel(channel); };
     // The identity is the transcript and normalized language.
