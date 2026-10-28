@@ -1515,6 +1515,16 @@
     "remove": "Verwijderen"
   },
   "tip": {
+    "addMessage": "Voeg een bericht toe (optioneel)",
+    "messagePlaceholder": "Zeg iets bij je fooi",
+    "messagePublic": "Openbaar",
+    "messagePrivate": "Alleen {{name}}",
+    "theCreator": "de maker",
+    "messageWallNote": "Verschijnt op de fooienmuur zodra de fooi rond is.",
+    "sendWithMessage": "Versturen met bericht",
+    "messageFailed": "Je bericht kon niet worden toegevoegd. Er is geen fooi verstuurd.",
+    "wallLabel": "Fooiberichten",
+    "messagePrivateNote": "Alleen {{name}} ziet het, in een melding.",
     "title": "Fooi sturen",
     "toCreator": "{{name}} een fooi geven",
     "quickAmounts": "Snelle bedragen",
