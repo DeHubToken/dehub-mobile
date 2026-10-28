@@ -1248,7 +1248,7 @@ export default function HomeScreen() {
       </Animated.View>
 
       {/* Frost under the status bar, so nothing slides sharp under the clock. */}
-      <StatusBarFrost />
+      <StatusBarFrost headerY={headerTranslateY} />
 
       {!island && showNavPill && !filterPanelVisible ? (
         <FeedPillGlow
