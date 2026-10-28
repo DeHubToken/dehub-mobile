@@ -508,9 +508,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       setIntrinsicSize({ width, height });
     };
     try { take(player.videoTrack?.size); } catch {}
-    const trackSub = player.addListener('videoTrackChange', event => take(event.videoTrack?.size));
-    const sourceSub = player.addListener('sourceLoad', event => take(event.availableVideoTracks?.[0]?.size));
-    return () => { cancelled = true; trackSub.remove(); sourceSub.remove(); };
+    let subs: { remove(): void }[] = [];
+    try {
+      subs = [
+        player.addListener('videoTrackChange', event => take(event.videoTrack?.size)),
+        player.addListener('sourceLoad', event => take(event.availableVideoTracks?.[0]?.size)),
+      ];
+    } catch {}
+    return () => { cancelled = true; subs.forEach(sub => { try { sub.remove(); } catch {} }); };
   }, [player, rotationProbeUrl]);
   const miniDragY = useSharedValue(0);
   const miniStart = useSharedValue({ x: 0, y: 0 });
@@ -523,7 +528,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const { showUserProfile } = useUserProfileSheet();
 
   const isLooping = useMediaLooping();
-  useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
+  useEffect(() => { try { player.loop = !!photoMedia || isLooping; } catch {} }, [player, photoMedia, isLooping]);
   const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
   const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
   // Android draws a TextureView video inside the app's own frame, so every
@@ -892,8 +897,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   useEffect(() => {
     if (!player || !ownsPlayerRef.current()) return;
-    player.staysActiveInBackground = isPictureInPicturePlayer(player);
-    player.showNowPlayingNotification = isPictureInPicturePlayer(player);
+    try {
+      player.staysActiveInBackground = isPictureInPicturePlayer(player);
+      player.showNowPlayingNotification = isPictureInPicturePlayer(player);
+    } catch {
+      // Released between close and reopen: nothing to play on this one.
+      return;
+    }
     if (isActive) {
       // The same callback identity must be used for request and release. The
       // old anonymous callbacks could never release either global focus slot.
@@ -925,7 +935,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     if (!isActive) return;
     const sub = AppState.addEventListener("change", (state) => {
       if (state !== "active" || pausedByUserRef.current || !itemNavigation.isFocused()) return;
-      if (!player.playing) playIfActive();
+      try { if (!player.playing) playIfActive(); } catch {}
     });
     return () => sub.remove();
   }, [isActive, player, playIfActive, itemNavigation]);
