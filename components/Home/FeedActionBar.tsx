@@ -280,7 +280,10 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    * a tap casts or takes back, so the two can never disagree.
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
-  const thumbGlyph = resolveThumbReaction(reactionCounts, myReaction) ?? undefined;
+  const resolvedThumb = resolveThumbReaction(reactionCounts, myReaction);
+  // A plain like turns the thumb into the moving 👍, the same way every other
+  // reaction you cast shows as its moving emoji.
+  const thumbGlyph = resolvedThumb ?? (liked ? "like" : undefined);
   const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
 
   // Single row, every button a direct child spread edge-to-edge (matches the
@@ -360,7 +363,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           iconName="ThumbsUp"
           iconSize={FEED_ICON_SIZE.like}
           glyph={thumbGlyph}
-          glyphAnimated={!!thumbGlyph && thumbGlyph === myReaction}
+          glyphAnimated={!!thumbGlyph && (thumbGlyph === myReaction || !resolvedThumb)}
           glyphPlaying={isVisible}
           active={liked || disliked}
           activeFill={ICON_ACTIVE}
