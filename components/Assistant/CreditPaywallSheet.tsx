@@ -19,6 +19,7 @@ import { useSheetClosed } from '../../hooks/useSheetClosed';
  *    offering a payment that cannot succeed.
  */
 
+import { AvatarCreditPaywallSheet } from './AvatarCreditPaywallSheet';
 import { DhbCoin } from "../common/DhbCoin";
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -71,6 +72,7 @@ export interface PaywallModelOption {
 }
 
 export interface CreditPaywallSheetProps {
+  avatarPrompt?: string;
   visible: boolean;
   title: string;
   icon: IconName;
@@ -87,7 +89,7 @@ export interface CreditPaywallSheetProps {
   isBusy?: boolean;
   onClose: () => void;
   /** Receives the hash of the transfer that paid for this run. */
-  onConfirm: (txHash: string) => void;
+  onConfirm: (txHash: string, avatar?: import('../../libs/creatorAvatar').AvatarSubmission) => void;
   /**
    * Run on a free starter image instead of paying. Only image paywalls pass
    * it; the sheet offers it when the selected model is one the free images
@@ -649,4 +651,5 @@ const s = StyleSheet.create({
   confirmBtnText: { color: '#09090B', fontSize: 15, fontWeight: '700', textAlign: 'center' },
 });
 
-export default memo(CreditPaywallSheetComponent);
+const CreditPaywallSheet = (props: CreditPaywallSheetProps) => props.quoteKind === 'video' && props.selectedModelId === 'kling-avatar-v2' ? <AvatarCreditPaywallSheet {...props} /> : <CreditPaywallSheetComponent {...props} />;
+export default memo(CreditPaywallSheet);

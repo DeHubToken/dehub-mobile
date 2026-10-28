@@ -9848,6 +9848,13 @@
     }
   },
   "creator": {
+    "avatarTitle": "Retrato parlante",
+    "avatarRequirements": "Retrato PNG cuadrado, de 512–2048 píxeles y hasta 5 MB. WAV PCM mono de 24 kHz y 16 bits, de 5–30 segundos. La última fracción de segundo se completa con silencio.",
+    "avatarPortrait": "Elegir retrato PNG",
+    "avatarAudio": "Elegir voz WAV",
+    "avatarPermission": "Tengo permiso para animar este retrato y usar este audio.",
+    "avatarQuote": "{{seconds}} segundos con el silencio · {{amount}} DHB",
+    "avatarPrepare": "Preparar y revisar precio",
     "campaignPlanTitle": "Variantes y episodios de campaña",
     "campaignPlanIntro": "Guarda hasta 12 variantes o episodios. Cada uno abre el estudio para su propia revisión y presupuesto. Las notas compartidas guían la continuidad; el aspecto del producto, los personajes y las voces pueden variar entre generaciones.",
     "campaignTitle": "Nombre de la campaña o serie",

@@ -9852,6 +9852,13 @@
     }
   },
   "creator": {
+    "avatarTitle": "Portrait parlant",
+    "avatarRequirements": "Portrait PNG carré de 512–2048 pixels, jusqu\u0027à 5 Mo. WAV PCM mono 24 kHz 16 bits, de 5–30 secondes. La dernière fraction de seconde est complétée par du silence.",
+    "avatarPortrait": "Choisir un portrait PNG",
+    "avatarAudio": "Choisir une voix WAV",
+    "avatarPermission": "J\u0027ai l\u0027autorisation d\u0027animer ce portrait et d\u0027utiliser cet audio.",
+    "avatarQuote": "{{seconds}} secondes avec le silence · {{amount}} DHB",
+    "avatarPrepare": "Préparer et vérifier le prix",
     "campaignPlanTitle": "Variantes et épisodes de campagne",
     "campaignPlanIntro": "Enregistrez jusqu’à 12 variantes ou épisodes. Chacun ouvre le studio pour sa propre vérification et son devis. Les notes communes guident la continuité ; l’apparence du produit, les personnages et les voix peuvent varier entre les générations.",
     "campaignTitle": "Nom de la campagne ou de la série",

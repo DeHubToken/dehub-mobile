@@ -10217,6 +10217,13 @@
     }
   },
   "creator": {
+    "avatarTitle": "Talking portrait",
+    "avatarRequirements": "Square PNG portrait, 512–2048 pixels, up to 5 MB. Mono 24 kHz 16-bit PCM WAV, 5–30 seconds. The last fraction of a second is padded with silence.",
+    "avatarPortrait": "Choose portrait PNG",
+    "avatarAudio": "Choose speech WAV",
+    "avatarPermission": "I have permission to animate this portrait and use this audio.",
+    "avatarQuote": "{{seconds}} seconds including silence · {{amount}} DHB",
+    "avatarPrepare": "Prepare and review price",
     "campaignPlanTitle": "Campaign variants and episodes",
     "campaignPlanIntro": "Save up to 12 variations or episodes. Each opens the studio for its own review and quote. Shared notes guide continuity; product appearance, characters and voices can vary between generations.",
     "campaignTitle": "Campaign or series name",

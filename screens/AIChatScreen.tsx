@@ -844,6 +844,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
       txHash: string,
       preset?: CreatorTemplate,
       creator?: CreatorStudioSettings | null,
+      avatar?: import('../libs/creatorAvatar').AvatarSubmission,
     ) => {
       const videoModel = VIDEO_MODELS[model];
       const finishDraft = pendingDraftCompletion.current;
@@ -858,6 +859,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             sourceImage,
             ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
             negativePrompt: VIDEO_MODELS[model]?.supportsNegativePrompt ? creator?.negativePrompt?.trim() || preset?.negative : undefined,
+            ...(avatar ? { avatar, clientJobId: avatar.clientJobId, sourceImage: undefined, duration: undefined, aspectRatio: '1:1', resolution: undefined, referenceImageUrls: undefined, videoUrls: undefined, endFrameUrl: undefined, seed: undefined, negativePrompt: undefined, effect: undefined } : {}),
             txHash,
           },
           walletAddress,
@@ -1537,7 +1539,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
     });
   }, [imageModelOverride, settings.imageModel, pendingSourceImage, pendingTemplateId, pendingStudio, startImageGeneration]);
 
-  const handleVideoConfirm = useCallback((txHash: string) => {
+  const handleVideoConfirm = useCallback((txHash: string, avatar?: import('../libs/creatorAvatar').AvatarSubmission) => {
     setVideoPaywallVisible(false);
     doGenerateVideo(
       pendingPrompt,
@@ -1547,6 +1549,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
       txHash,
       getTemplate(pendingTemplateId),
       pendingStudio,
+      avatar,
     );
     setPendingTemplateId(null);
     setPendingSourceImage(undefined);
@@ -2201,7 +2204,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
         quoteExtras={{ durationSeconds: pendingStudio?.durationSeconds ?? VIDEO_DURATION_SECONDS,
           ...creatorVideoQuoteHints(pendingStudio, pendingSourceImage) }}
         onClose={() => setVideoPaywallVisible(false)}
-        onConfirm={handleVideoConfirm}
+        onConfirm={handleVideoConfirm} avatarPrompt={pendingPrompt}
         footnote={_copy("copy.0f1f6dc49d7b", { defaultValue: "Renders take 1-3 minutes and keep going if you leave this screen." })}
       />
 

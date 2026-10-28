@@ -145,7 +145,7 @@ export function creatorInputIssue(settings: CreatorStudioSettings, hasImage: boo
   }
   if (preset?.requiresImage && !hasImage && !(settings.mode === 'video' && VIDEO_MODELS[settings.model]?.referenceMode === 'extend')) return 'creator.studioNeedsImage';
   if (settings.mode === 'image' && hasImage && (!IMAGE_MODELS[settings.model] || !imageModelSupportsEdit(IMAGE_MODELS[settings.model]))) return 'creator.studioCannotEdit';
-  if (settings.mode === 'video' && !VIDEO_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-video' : 'text-to-video')) return hasImage ? 'creator.studioCannotAnimate' : 'creator.studioNeedsImage';
+  if (settings.mode === 'video' && settings.model !== 'kling-avatar-v2' && !VIDEO_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-video' : 'text-to-video')) return hasImage ? 'creator.studioCannotAnimate' : 'creator.studioNeedsImage';
   if (settings.mode === '3d' && !MODEL3D_MODELS[settings.model]?.supports.includes(hasImage ? 'image-to-3d' : 'text-to-3d')) return 'creator.studioNeedsImage';
   return null;
 }
