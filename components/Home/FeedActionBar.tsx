@@ -295,7 +295,7 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
           accessibilityLabel={t("comments.tip")}
           iconName="Gem"
           iconSize={FEED_ICON_SIZE.tip}
-          iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped burstKey={tipBurst} size={FEED_ICON_SIZE.tip} color={ICON_ACTIVE} /> : undefined}
+          iconNode={viewerTipped || tipBurst > 0 ? <TipGemIcon tipped quiet burstKey={tipBurst} size={FEED_ICON_SIZE.tip} color={grey} /> : undefined}
           inactiveColor={grey}
           countColor={grey}
           count={tipCount}

@@ -3,6 +3,8 @@
  * Noto 💎 (the same animated emoji a reaction you cast plays), which swirls in
  * and throws a ring of sparkles on each fresh tip —
  * the same acknowledgement a reaction gets, so a tip never lands silently.
+ * `quiet` (the strip under a post) keeps it in the strip's grey: a tipped gem
+ * fills in, the way a liked thumb does, and still swirls on a fresh tip.
  */
 import React, { useEffect, useRef, useState } from "react";
 import { Image } from "expo-image";
@@ -18,7 +20,7 @@ const SPARKLES = [0, 60, 120, 180, 240, 300].map((angle, i) => {
   return { x: Math.cos(r) * d, y: Math.sin(r) * d, size: i % 2 ? 7 : 9 };
 });
 
-export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean; burstKey: number; size: number; color: string }) {
+export function TipGemIcon({ tipped, burstKey, size, color, quiet = false }: { tipped: boolean; burstKey: number; size: number; color: string; quiet?: boolean }) {
   const spin = useRef(new Animated.Value(1)).current;
   const burst = useRef(new Animated.Value(1)).current;
   const [failed, setFailed] = useState(false);
@@ -48,7 +50,9 @@ export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean;
   return (
     <View style={{ width: size, height: size, alignItems: "center", justifyContent: "center" }}>
       <Animated.View style={{ transform: [{ rotate }, { scale }] }}>
-        {reduceMotion || failed ? (
+        {quiet ? (
+          <Icon name="Gem" size={size} color={color} fill={color} />
+        ) : reduceMotion || failed ? (
           <Icon name="Gem" size={size} color={GEM_STROKE} fill={GEM_FILL} strokeWidth={1.8} />
         ) : (
           // The same moving Noto emoji a reaction you cast plays (ReactionEmoji).
@@ -80,7 +84,7 @@ export function TipGemIcon({ tipped, burstKey, size, color }: { tipped: boolean;
             ],
           }}
         >
-          <Icon name="Sparkles" size={s.size} color={GEM_STROKE} fill={GEM_STROKE} strokeWidth={1.5} />
+          <Icon name="Sparkles" size={s.size} color={quiet ? color : GEM_STROKE} fill={quiet ? color : GEM_STROKE} strokeWidth={1.5} />
         </Animated.View>
       ))}
     </View>
