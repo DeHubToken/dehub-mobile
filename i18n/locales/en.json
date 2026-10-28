@@ -10263,6 +10263,14 @@
     }
   },
   "creator": {
+    "priceRetry": "The price could not be confirmed. Review the price and try again.",
+    "avatarTitle": "Talking portrait",
+    "avatarRequirements": "Square PNG portrait, 512–2048 pixels, up to 5 MB. Mono 24 kHz 16-bit PCM WAV, 5–30 seconds. The last fraction of a second is padded with silence.",
+    "avatarPortrait": "Choose portrait PNG",
+    "avatarAudio": "Choose speech WAV",
+    "avatarPermission": "I have permission to animate this portrait and use this audio.",
+    "avatarQuote": "{{seconds}} seconds including silence · {{amount}} DHB",
+    "avatarPrepare": "Prepare and review price",
     "batchFlowLimit": "The Flow list is full. Remove an unused Flow before creating another batch.",
     "batchReviewCampaign": "Review campaign batch in Flow",
     "batchReviewFilmImages": "Review storyboard image batch",

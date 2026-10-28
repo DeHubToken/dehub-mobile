@@ -364,6 +364,8 @@ export interface AIImageResponse {
 export type AIVideoModel = string;
 
 export interface AIVideoRequest {
+  clientJobId?: string;
+  avatar?: import('../libs/creatorAvatar').AvatarSubmission;
   effect?: string;
   referenceImageUrls?: string[];
   videoUrls?: string[];
@@ -706,6 +708,8 @@ export async function runModel3d(
 export type AiJobKind = 'image' | 'video' | 'model3d' | 'tool';
 
 export interface AiQuoteRequest {
+  avatar?: import('../libs/creatorAvatar').AvatarSubmission;
+  avatarPrompt?: string;
   kind: AiJobKind;
   modelId: string;
   durationSeconds?: number;

@@ -9894,6 +9894,14 @@
     }
   },
   "creator": {
+    "priceRetry": "No se pudo confirmar el precio. Revisa el precio e inténtalo de nuevo.",
+    "avatarTitle": "Retrato parlante",
+    "avatarRequirements": "Retrato PNG cuadrado, de 512–2048 píxeles y hasta 5 MB. WAV PCM mono de 24 kHz y 16 bits, de 5–30 segundos. La última fracción de segundo se completa con silencio.",
+    "avatarPortrait": "Elegir retrato PNG",
+    "avatarAudio": "Elegir voz WAV",
+    "avatarPermission": "Tengo permiso para animar este retrato y usar este audio.",
+    "avatarQuote": "{{seconds}} segundos con el silencio · {{amount}} DHB",
+    "avatarPrepare": "Preparar y revisar precio",
     "batchFlowLimit": "La lista de Flow está llena. Elimina un Flow sin usar antes de crear otro lote.",
     "batchReviewCampaign": "Revisar lote de campaña en Flow",
     "batchReviewFilmImages": "Revisar lote de imágenes del guion gráfico",

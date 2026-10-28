@@ -35,7 +35,7 @@ export interface CreatorFalVideoModel {
   maxSourceDuration?: number;
   extensionDirection?: 'forward' | 'backward';
   maxPromptLength?: number;
-  family: 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'ltxextend' | 'klingedit' | 'klingmotion' | 'pixverseeffects';
+  family: 'avatar' | 'klingturbo' | 'viduq3' | 'flux3' | 'omni' | 'h3' | 'grok' | 'wan3' | 'horse' | 'klingo3' | 'ray3' | 'pixverse6' | 'ltx23' | 'ltxextend' | 'klingedit' | 'klingmotion' | 'pixverseeffects';
   falTextModel: string;
   falImageModel: string;
   falEndFrameModel?: string;
@@ -54,6 +54,14 @@ function video(spec: VideoSpec): CreatorFalVideoModel {
 }
 
 export const CREATOR_FAL_VIDEO_MODELS: Record<string, CreatorFalVideoModel> = {
+  'kling-avatar-v2': {
+    ...video({ id: 'kling-avatar-v2', name: 'Kling Avatar v2', description: 'A square portrait animated by 5-30 seconds of WAV speech',
+      vendor: 'Kling', emoji: 'Video', tier: 'standard', family: 'avatar',
+      falTextModel: 'fal-ai/kling-video/ai-avatar/v2/standard', falImageModel: 'fal-ai/kling-video/ai-avatar/v2/standard',
+      minDuration: 5, maxDuration: 30, defaultDuration: 5, perSecondCostUsd: 0.0562,
+      resolutions: ['720p'], aspectRatios: ['1:1'], hasAudio: true, maxPromptLength: 1000 }),
+    supports: ['image-to-video'],
+  },
   ...Object.fromEntries((['forward', 'backward'] as const).map(direction => {
     const id = `ltx-extend-${direction}`;
     return [id, {

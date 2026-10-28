@@ -9893,6 +9893,14 @@
     }
   },
   "creator": {
+    "priceRetry": "Fiyat onaylanamadı. Fiyatı gözden geçirip tekrar deneyin.",
+    "avatarTitle": "Konuşan portre",
+    "avatarRequirements": "512–2048 piksel, en fazla 5 MB kare PNG portre. 5–30 saniyelik mono 24 kHz 16 bit PCM WAV. Son saniyenin kesri sessizlikle tamamlanır.",
+    "avatarPortrait": "PNG portre seç",
+    "avatarAudio": "WAV konuşma seç",
+    "avatarPermission": "Bu portreyi canlandırmak ve bu sesi kullanmak için iznim var.",
+    "avatarQuote": "Sessizlik dahil {{seconds}} saniye · {{amount}} DHB",
+    "avatarPrepare": "Hazırla ve fiyatı incele",
     "batchFlowLimit": "Flow listesi dolu. Yeni grup oluşturmadan önce kullanılmayan bir Flow’u kaldırın.",
     "batchReviewCampaign": "Kampanya grubunu Flow’da incele",
     "batchReviewFilmImages": "Görsel taslak grubunu incele",

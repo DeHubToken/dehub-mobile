@@ -9902,6 +9902,14 @@
     }
   },
   "creator": {
+    "priceRetry": "تعذّر تأكيد السعر. راجع السعر وحاول مرة أخرى.",
+    "avatarTitle": "صورة ناطقة",
+    "avatarRequirements": "صورة PNG مربعة بدقة 512–2048 بكسل، حتى 5 ميغابايت. صوت WAV أحادي PCM بدقة 24 كيلوهرتز و16 بت، مدته 5–30 ثانية. يُستكمل الجزء الأخير من الثانية بالصمت.",
+    "avatarPortrait": "اختيار صورة PNG",
+    "avatarAudio": "اختيار صوت WAV",
+    "avatarPermission": "لدي إذن لتحريك هذه الصورة واستخدام هذا الصوت.",
+    "avatarQuote": "{{seconds}} ثانية بما فيها الصمت · {{amount}} DHB",
+    "avatarPrepare": "إعداد السعر ومراجعته",
     "batchFlowLimit": "قائمة Flow ممتلئة. احذف Flow غير مستخدم قبل إنشاء دفعة أخرى.",
     "batchReviewCampaign": "مراجعة دفعة الحملة في Flow",
     "batchReviewFilmImages": "مراجعة دفعة صور لوحة القصة",
