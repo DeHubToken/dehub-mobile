@@ -76,6 +76,25 @@ export const CHROME_HIT_SLOP = {
 };
 
 /**
+ * A chrome button's touch area, made real.
+ *
+ * hitSlop only exists for the JS responder. On Android a touch on a button's
+ * slop, or on a button with no background of its own (ChromeFill is
+ * pointerEvents none), is not claimed natively, so it falls through to the
+ * pager underneath. While the pager is still settling from a swipe, its
+ * scroll view takes that touch to stop the glide and cancels the press: Back
+ * needed a second tap, or a wait until the snap finished.
+ *
+ * This wrapper spans the button plus CHROME_HIT_SLOP (negative margin, so the
+ * layout is unchanged) and carries a fill too faint to see, which makes both
+ * Android's dispatch and gesture-handler stop here. The press always reaches
+ * the button.
+ */
+export const ChromeTouchTarget: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <View collapsable={false} style={styles.touchTarget}>{children}</View>
+);
+
+/**
  * Web leans on `drop-shadow-lg` to keep white overlay text legible over an
  * arbitrary video frame. RN has no filter, so the same job is done with a
  * text shadow on the type and a scrim behind it.
@@ -145,6 +164,13 @@ export const ChromeFill: React.FC<{
 };
 
 const styles = StyleSheet.create({
+  touchTarget: {
+    paddingVertical: CHROME_HIT_SLOP.top,
+    paddingHorizontal: CHROME_HIT_SLOP.left,
+    marginVertical: -CHROME_HIT_SLOP.top,
+    marginHorizontal: -CHROME_HIT_SLOP.left,
+    backgroundColor: "rgba(0,0,0,0.004)",
+  },
   fill: {
     overflow: "hidden",
     borderRadius: CHROME_RADIUS,
