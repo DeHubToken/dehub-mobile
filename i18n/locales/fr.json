@@ -1327,6 +1327,16 @@
     "remove": "Supprimer"
   },
   "tip": {
+    "addMessage": "Ajouter un message (facultatif)",
+    "messagePlaceholder": "Dites quelque chose avec votre pourboire",
+    "messagePublic": "Public",
+    "messagePrivate": "Seulement {{name}}",
+    "theCreator": "le créateur",
+    "messageWallNote": "Apparaît sur le mur des pourboires une fois le pourboire confirmé.",
+    "sendWithMessage": "Envoyer avec un message",
+    "messageFailed": "Votre message n'a pas pu être ajouté. Aucun pourboire n'a été envoyé.",
+    "wallLabel": "Messages de pourboire",
+    "messagePrivateNote": "Seul {{name}} le voit, dans sa notification.",
     "title": "Envoyer un pourboire",
     "toCreator": "Pourboire à {{name}}",
     "quickAmounts": "Montants rapides",

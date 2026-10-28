@@ -1327,6 +1327,16 @@
     "remove": "Kaldır"
   },
   "tip": {
+    "addMessage": "Mesaj ekle (isteğe bağlı)",
+    "messagePlaceholder": "Bahşişinle bir şey söyle",
+    "messagePublic": "Herkese açık",
+    "messagePrivate": "Yalnızca {{name}}",
+    "theCreator": "içerik üreticisi",
+    "messageWallNote": "Bahşiş onaylanınca bahşiş duvarında görünür.",
+    "sendWithMessage": "Mesajla gönder",
+    "messageFailed": "Mesajın eklenemedi. Bahşiş gönderilmedi.",
+    "wallLabel": "Bahşiş mesajları",
+    "messagePrivateNote": "Yalnızca {{name}} bildiriminde görür.",
     "title": "Bahşiş Gönder",
     "toCreator": "{{name}} için bahşiş",
     "quickAmounts": "Hızlı tutarlar",

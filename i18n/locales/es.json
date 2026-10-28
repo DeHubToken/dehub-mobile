@@ -1327,6 +1327,16 @@
     "remove": "Eliminar"
   },
   "tip": {
+    "addMessage": "Añade un mensaje (opcional)",
+    "messagePlaceholder": "Di algo con tu propina",
+    "messagePublic": "Público",
+    "messagePrivate": "Solo {{name}}",
+    "theCreator": "el creador",
+    "messageWallNote": "Aparece en el muro de propinas cuando la propina se confirma.",
+    "sendWithMessage": "Enviar con mensaje",
+    "messageFailed": "No se pudo añadir tu mensaje. No se envió ninguna propina.",
+    "wallLabel": "Mensajes de propinas",
+    "messagePrivateNote": "Solo {{name}} la ve, en su notificación.",
     "title": "Enviar propina",
     "toCreator": "Dar propina a {{name}}",
     "quickAmounts": "Cantidades rápidas",
