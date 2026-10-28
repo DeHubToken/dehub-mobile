@@ -80,6 +80,19 @@ function useWarmScreens(enabled: boolean) {
   }, [enabled]);
 }
 
+/**
+ * Routes drawn as a sheet over the page they opened from. A page pushed on top
+ * of one freezes everything under it; on Back the drawer and the page behind it
+ * then had to wake up before they could paint, and the phone showed ~170ms of
+ * black between the post and the notification list. The tabs stay awake while
+ * a drawer sits right over them, and the drawer itself never freezes.
+ */
+const DRAWER_ROUTES = new Set<string>([ScreenNames.Notifications, ScreenNames.ImageFeed, ScreenNames.ShortsViewer]);
+function opensDrawerOverRoot(state: { routes: { name: string }[] }): boolean {
+  const above = state.routes[1];
+  return !!above && DRAWER_ROUTES.has(above.name);
+}
+
 const SIGN_IN_KEY = '../screens/auth/SignInScreen#default';
 const loadSignIn = () => require("../screens/auth/SignInScreen").default;
 // Before sign-in's module loads, show just its background, not the grey sketch
@@ -135,6 +148,7 @@ function AppNavigatorContent() {
       <Stack.Screen
         name={ScreenNames.Root}
         component={BottomTabNavigator}
+        options={({ navigation }) => ({ freezeOnBlur: !opensDrawerOverRoot(navigation.getState()) })}
       />
 
       <Stack.Group>
@@ -553,6 +567,7 @@ function AppNavigatorContent() {
               name={ScreenNames.Notifications}
               layout={withSolidScreenBoundary}
               options={{
+                freezeOnBlur: false,
                 presentation: 'transparentModal',
                 contentStyle: { backgroundColor: 'transparent' },
                 animation: 'none',
