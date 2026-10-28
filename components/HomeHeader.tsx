@@ -119,8 +119,8 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onLogoPress, onMenuPress, onBac
           className="w-11 h-11 items-end justify-center"
           // The bell's body (not the clapper below it) sits on the mark's
           // bottom edge: at 29.75 it runs y 0.5 to 24.5 and x 2.3 to 27.4 of its
-          // box, so the box moves down 3.4 and out 2.4. Same as web.
-          style={{ marginRight: -2.4, transform: [{ translateY: 3.4 }] }}
+          // box, so the box moves down 3.2 (0.2 above that edge) and out 2.4. Same as web.
+          style={{ marginRight: -2.4, transform: [{ translateY: 3.2 }] }}
         >
           <NotificationBell unread={unreadCount} size={29.75} color={colors.foreground} />
         </TouchableOpacity>
