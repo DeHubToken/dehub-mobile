@@ -237,8 +237,8 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   const containerRef = useRef<View>(null);
 
   const likeScale = useSharedValue(1);
-  // Your own new comment springs up into its slot with a soft glow, the same
-  // landing a tip message gets on the tip wall. Rows already there never move.
+  // Your own new comment springs up into its slot with its text softly
+  // glowing. Rows already there never move.
   const landsNow = useRef(comment.id < 0 || landing).current;
   const highlightOpacity = useSharedValue(highlighted || landsNow ? 1 : 0);
   const landProgress = useSharedValue(landsNow ? 0 : 1);
@@ -262,13 +262,16 @@ const CommentItemComponent: React.FC<CommentItemProps> = ({
   // Alphas go through toFixed: near the end of the fade the value gets tiny
   // enough for JS to print it as "3e-9", Reanimated's colour parser rejects
   // that on the UI thread, and iOS aborts the app.
+  // A just-sent comment glows on its text only, softer than a link highlight,
+  // and never paints the row box (that box was cut off at the sheet's sides).
+  const glowAlpha = landsNow ? 0.4 : 0.6;
   const highlightAnimStyle = useAnimatedStyle(() => ({
-    textShadowColor: `rgba(194,196,199,${(Math.max(0, highlightOpacity.value) * 0.6).toFixed(3)})`,
+    textShadowColor: `rgba(194,196,199,${(Math.max(0, highlightOpacity.value) * glowAlpha).toFixed(3)})`,
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 6 * highlightOpacity.value,
   }));
   const highlightSurfaceStyle = useAnimatedStyle(() => ({
-    backgroundColor: `rgba(148,163,184,${(Math.max(0, highlightOpacity.value) * 0.12).toFixed(3)})`,
+    backgroundColor: `rgba(148,163,184,${(landsNow ? 0 : Math.max(0, highlightOpacity.value) * 0.12).toFixed(3)})`,
     borderRadius: 10,
   }));
 
