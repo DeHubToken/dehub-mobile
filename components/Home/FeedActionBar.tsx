@@ -15,7 +15,6 @@ import {
   type ReactionCounts,
 } from "../../libs/reactions";
 import { ReactionEmoji } from "./ReactionEmoji";
-import { EmperorThumb } from "./EmperorThumb";
 import { haptic } from "../../libs/haptics";
 import { maybeShowReactionTip } from "../../libs/reaction-tip";
 import { useAppPrefs } from "../../hooks/useAppPrefs";
@@ -169,6 +168,7 @@ const AnimatedActionButton: React.FC<{
       reaction={glyph}
       animate={glyphAnimated}
       playing={glyphPlaying}
+      slow={glyph === "like" || glyph === "dislike"}
       size={iconSize + 1.76}
       // Wider than the slot (Samsung's emoji draw wider than the font
       // size) and with no lineHeight: Android puts the extra line height
@@ -208,11 +208,7 @@ const AnimatedActionButton: React.FC<{
         // replaces, and a row that grew when the lead reaction changed moved
         // every post below it.
         <View style={{ width: iconSize, height: iconSize + GLYPH_ROOM * 2, marginVertical: -GLYPH_ROOM, alignItems: "center", justifyContent: "center" }}>
-          {(glyph === "like" || glyph === "dislike") && glyphAnimated ? (
-            <EmperorThumb size={iconSize + 4} down={glyph === "dislike"} playing={glyphPlaying} />
-          ) : (
-            glyphEmoji
-          )}
+          {glyphEmoji}
         </View>
       ) : (
         <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
@@ -290,8 +286,9 @@ const FeedActionBarComponent: React.FC<FeedActionBarProps> = ({
    */
   const leadReaction = resolveLeadReaction(reactionCounts, myReaction);
   const resolvedThumb = resolveThumbReaction(reactionCounts, myReaction);
-  // Your own like (or the 👎 picked from the tray) plays the arena verdict
-  // (EmperorThumb); any other reaction you cast shows as its moving emoji.
+  // Your own like (or the 👎 picked from the tray) shows as the moving 👍
+  // (or 👎), playing once every 5 seconds; any other reaction you cast shows
+  // as its moving emoji.
   const thumbGlyph = resolvedThumb ?? (liked ? "like" : undefined);
   const thumbCount = resolveThumbCount(likeCount, dislikeCount ?? reactionCounts?.dislike ?? 0, thumbGlyph);
 
