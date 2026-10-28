@@ -1,0 +1,446 @@
+/** Keep identical to dehub-mobile/libs/platform-comparison.ts. */
+import { AUDIT_REVISIONS, DETAIL_GROUPS } from './platform-comparison-details';
+import { CATEGORY_FAMILIES, COMPETITOR_REVIEWED_ON, RESEARCH_SOURCES, REVIEW_SCOPES, REVIEWED_FEATURE_IDS, researchedEntry } from './platform-comparison-research';
+import { PRODUCT_REVIEW, PRODUCT_REVIEWED_ON } from './platform-comparison-product-review';
+import { RIVAL_INVENTORY_REVIEWED_ON, RIVAL_ROWS, rivalSource } from './platform-comparison-rival-inventory';
+export { AUDIT_REVISIONS } from './platform-comparison-details';
+export { COMPETITOR_REVIEWED_ON, REVIEWED_FEATURE_IDS } from './platform-comparison-research';
+export const REVIEWED_ON = '2026-10-27';
+export const PLATFORMS = [
+  { id: 'youtube', name: 'YouTube' }, { id: 'x', name: 'X / Twitter' },
+  { id: 'kick', name: 'Kick' }, { id: 'twitch', name: 'Twitch' },
+  { id: 'facebook', name: 'Facebook' }, { id: 'instagram', name: 'Instagram' },
+  { id: 'tiktok', name: 'TikTok' }, { id: 'rumble', name: 'Rumble' },
+  { id: 'mastodon', name: 'Mastodon' }, { id: 'bluesky', name: 'Bluesky' },
+  { id: 'farcaster', name: 'Farcaster' },
+] as const;
+export type PlatformId = typeof PLATFORMS[number]['id'];
+export type Status = 'documented' | 'code' | 'limited' | 'ecosystem' | 'unverified' | 'not_documented' | 'not_offered' | 'announced';
+export const STATUS_LABELS: Record<Status, string> = {
+  documented: 'Documented', code: 'Source reviewed', limited: 'Conditional', ecosystem: 'Related product', unverified: 'Not verified',
+  not_documented: 'Not established by sources', not_offered: 'Explicit limitation', announced: 'Announced / availability unconfirmed',
+};
+export const SOURCES: Record<string, { title: string; url: string }> = {
+  ...RESEARCH_SOURCES,
+  dehub: { title: 'DeHub product guide', url: 'https://dehub.io/docs/dapps' },
+  dehubLaunchpad: { title: 'DeHub Launchpad', url: 'https://dehub.io/launchpad' },
+  dehubEncryption: { title: 'DeHub encrypted messaging implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/src/lib/dm-e2ee/media-send.ts` },
+  kickModeration: { title: 'KICK chat moderation and polls', url: 'https://help.kick.com/en/articles/7109164-how-to-moderate-your-kick-chat' },
+  twitchPolls: { title: 'Twitch polls and chat voting', url: 'https://help.twitch.tv/s/article/how-to-use-polls' },
+  twitchRoles: { title: 'Twitch channel roles', url: 'https://help.twitch.tv/s/article/Managing-Roles-for-your-Channel' },
+  xMute: { title: 'X keyword and conversation muting', url: 'https://help.x.com/en/using-x/advanced-x-mute-options' },
+  ytPremium: { title: 'YouTube Premium playback benefits', url: 'https://support.google.com/youtube/answer/6308116' },
+  ytTranscript: { title: 'YouTube video transcripts', url: 'https://support.google.com/youtube/answer/15930243' },
+  xDm: { title: 'X direct messages', url: 'https://help.x.com/en/using-x/direct-messages' },
+  xCalls: { title: 'X voice and video calls', url: 'https://help.x.com/en/using-x/direct-messages/audio-video-calls' },
+  igDm: { title: 'Instagram message editing and media', url: 'https://about.fb.com/news/2024/03/instagram-dm-updates/' },
+  igDm2025: { title: 'Instagram message translation and groups', url: 'https://about.fb.com/news/2025/02/new-instagram-dm-features-stay-connected/' },
+  tiktokDm: { title: 'TikTok direct and group messages', url: 'https://newsroom.tiktok.com/share-your-favorite-tiktok-moments-with-direct-messaging?lang=en' },
+  tiktokStickers: { title: 'TikTok sticker creation', url: 'https://support.tiktok.com/en/using-tiktok/messaging-and-notifications/tiktok-stickers' },
+  messenger: { title: 'Facebook and Messenger private messaging', url: 'https://about.fb.com/news/2023/12/default-end-to-end-encryption-on-messenger/' },
+  mastodonPreferences: { title: 'Mastodon preferences', url: 'https://docs.joinmastodon.org/user/preferences/' },
+  mastodonExport: { title: 'Mastodon export and migration', url: 'https://docs.joinmastodon.org/user/moving/' },
+  mastodonProfile: { title: 'Mastodon profiles and verified links', url: 'https://docs.joinmastodon.org/user/profile/' },
+  youtube: { title: 'YouTube Partner Program', url: 'https://support.google.com/youtube/answer/72851' },
+  ytPosts: { title: 'YouTube posts', url: 'https://support.google.com/youtube/answer/9409631' },
+  ytShorts: { title: 'YouTube Shorts creation tools', url: 'https://blog.youtube/news-and-events/new-shorts-creation-tools-2025/' },
+  ytPodcast: { title: 'YouTube podcasts', url: 'https://blog.youtube/news-and-events/podcasts-living-room-in-2025/' },
+  xSpaces: { title: 'X Spaces', url: 'https://help.x.com/en/using-x/spaces' },
+  xArticles: { title: 'X Articles', url: 'https://help.x.com/en/using-x/articles' },
+  xCommunities: { title: 'X Communities', url: 'https://help.x.com/en/using-x/communities' },
+  xBookmarks: { title: 'X bookmarks', url: 'https://help.x.com/en/using-x/bookmarks' },
+  xPro: { title: 'X Pro', url: 'https://help.x.com/en/using-x/how-to-use-x-pro' },
+  kick: { title: 'KICK mobile viewer guide', url: 'https://help.kick.com/en/articles/14994597-the-kick-mobile-app-a-viewer-s-guide' },
+  kickClips: { title: 'KICK clips', url: 'https://help.kick.com/en/articles/7120566-how-to-create-clips-on-kick' },
+  kickSubs: { title: 'KICK subscriptions', url: 'https://help.kick.com/en/articles/15159735-how-kick-subscriptions-work-for-viewers' },
+  kickMulti: { title: 'KICK Partner multistreaming', url: 'https://help.kick.com/en/articles/11091744-multistreaming-on-the-kick-partner-program' },
+  twitch: { title: 'Twitch creator revenue tools', url: 'https://www.twitch.tv/creatorcamp/en/level1/music-on-twitch/building-your-business/' },
+  twitchPartner: { title: 'Twitch Partner features', url: 'https://www.twitch.tv/p/partners' },
+  facebook: { title: 'Facebook creator monetization', url: 'https://about.fb.com/news/2026/03/creator-fast-track-grow-your-audience-earn-money-on-facebook/' },
+  fbCommunity: { title: 'Facebook groups, events and discovery', url: 'https://about.fb.com/news/2024/10/facebook-local-tab-messenger-communities-ai/' },
+  fbMarketplace: { title: 'Facebook Marketplace seller tools', url: 'https://about.fb.com/news/2026/07/introducing-seller-app-facebook-marketplace/' },
+  fbJobs: { title: 'Facebook local jobs', url: 'https://about.fb.com/news/2025/10/introducing-local-jobs-facebook/' },
+  igSubs: { title: 'Instagram subscriber features', url: 'https://about.fb.com/news/2022/07/new-ways-for-creators-to-connect-with-subscribers-on-instagram/' },
+  igChannels: { title: 'Instagram broadcast channels', url: 'https://about.fb.com/news/2023/02/instagram-broadcast-channels-creators-deepen-connections-with-followers/' },
+  edits: { title: 'Meta Edits', url: 'https://about.fb.com/news/2025/04/introducing-edits-streamlined-video-creation-app/' },
+  metaVideo: { title: 'Meta video generation and editing', url: 'https://about.fb.com/news/2025/06/edit-videos-with-meta-ai/' },
+  tiktokRewards: { title: 'TikTok Creator Rewards', url: 'https://newsroom.tiktok.com/introducing-the-new-creator-rewards-program?lang=en' },
+  tiktokSubs: { title: 'TikTok subscriptions', url: 'https://newsroom.tiktok.com/empowering-creators-and-fostering-communities-with-the-expanded-subscription-feature?lang=en' },
+  tiktokSeries: { title: 'TikTok Series', url: 'https://newsroom.tiktok.com/introducing-a-new-way-for-creators-to-share-premium-content-with-series?lang=en' },
+  tiktokStitch: { title: 'TikTok Stitch', url: 'https://support.tiktok.com/en/using-tiktok/creating-videos/stitch' },
+  rumble: { title: 'Rumble creator and studio features', url: 'https://studio.rumble.com/creator-program' },
+  rumbleSubs: { title: 'Rumble followers and subscriptions', url: 'https://rumble.support/en/help/what-s-the-difference-between-a-sub-and-a-follower' },
+  rumbleApi: { title: 'Rumble live API', url: 'https://rumble.support/help/how-to-use-rumble-s-live-stream-api' },
+  mastodon: { title: 'Mastodon posting and privacy', url: 'https://docs.joinmastodon.org/user/posting/' },
+  mastodonNetwork: { title: 'Mastodon network features', url: 'https://docs.joinmastodon.org/user/network/' },
+  mastodonQuotes: { title: 'Mastodon 4.5 quote controls', url: 'https://blog.joinmastodon.org/2025/11/mastodon-4.5/' },
+  bluesky: { title: 'Bluesky custom feeds and starter packs', url: 'https://bsky.social/about/blog/06-26-2024-starter-packs' },
+  bskyFaq: { title: 'Bluesky user guide', url: 'https://bsky.social/about/blog/5-19-2023-user-faq' },
+  bskyDm: { title: 'Bluesky direct messages', url: 'https://bsky.social/about/blog/05-22-2024-direct-messages' },
+  bskyVideo: { title: 'Bluesky video', url: 'https://bsky.social/about/blog/09-11-2024-video' },
+  bskySafety: { title: 'Bluesky conversation controls', url: 'https://bsky.social/about/blog/08-28-2024-anti-toxicity-features' },
+  bskyBuffer: { title: 'Bluesky and Buffer', url: 'https://bsky.social/about/blog/07-30-2024-schedule-and-crosspost-with-buffer' },
+  bskyEmbed: { title: 'Bluesky post embeds', url: 'https://bsky.social/about/blog/post-embeds-guide' },
+  bskyNotifications: { title: 'Bluesky notification controls', url: 'https://bsky.social/about/blog/07-02-2025-more-notification-control' },
+  bskyNetwork: { title: 'Bluesky open network', url: 'https://bsky.social/about/blog/02-22-2024-open-social-web' },
+  twitchVod: { title: 'Twitch on-demand content', url: 'https://help.twitch.tv/s/article/video-on-demand' },
+  farcaster: { title: 'Farcaster protocol and sign in', url: 'https://docs.farcaster.xyz/' },
+  fcApps: { title: 'Farcaster Mini Apps and wallets', url: 'https://miniapps.farcaster.xyz/' },
+  fbLive: { title: 'Go live on Facebook', url: 'https://www.facebook.com/help/1636872026560015' },
+  fbShare: { title: 'Share and manage posts on Facebook', url: 'https://www.facebook.com/help/1640261589632787' },
+  ytReport: { title: 'Report content on YouTube', url: 'https://support.google.com/youtube/answer/2802027' },
+  ytNotifications: { title: 'Manage YouTube notifications', url: 'https://support.google.com/youtube/answer/3382248' },
+  ytDark: { title: 'YouTube dark theme', url: 'https://support.google.com/youtube/answer/7385323' },
+};
+export interface ComparisonEntry { status: Status; note: string; source?: string; relatedSources?: string[] }
+export interface ComparisonFeature {
+  id: string; category: string; name: string; dehub: ComparisonEntry;
+  peers: Partial<Record<PlatformId, ComparisonEntry>>;
+  /** Crypto purchase/reward actions are not offered by the iOS storefront. */
+  iosRestricted: boolean;
+  implementation?: { web: string; mobile: string };
+}
+const e = (source: string, note: string, status: Status = 'documented'): ComparisonEntry => ({ source, note, status });
+type Row = [string, string, string, Partial<Record<PlatformId, ComparisonEntry>>?, boolean?];
+function group(category: string, rows: Row[]): ComparisonFeature[] {
+  return rows.map(([id, name, note, peers = {}, iosRestricted = false]) => ({
+    id, category, name, dehub: e(id === 'launchpad' ? 'dehubLaunchpad' : 'dehub', note, iosRestricted ? 'limited' : 'documented'), peers, iosRestricted,
+  }));
+}
+const CATALOGUE: ComparisonFeature[] = [
+  ...group('Posts and discovery', [
+    ['text', 'Text posts', 'Publish text into the social feed.', { youtube: e('ytPosts', 'Channel posts; supervised and Made for Kids accounts have restrictions.', 'limited'), x: e('xCommunities', 'Posts and community conversations.'), facebook: e('facebook', 'Text is a supported creator content format.'), mastodon: e('mastodon', 'Text statuses with mentions and hashtags.'), farcaster: e('farcaster', 'Casts are the protocol social content.') }],
+    ['images', 'Photo and image posts', 'Publish photos and image galleries.', { youtube: e('ytPosts', 'Images in channel posts.'), facebook: e('facebook', 'Photo posts.'), instagram: e('igSubs', 'Feed posts, including subscriber-only posts.'), mastodon: e('mastodon', 'Image attachments and descriptions.') }],
+    ['video', 'Uploaded video', 'Publish video with adaptive playback.', { youtube: e('youtube', 'Long-form video and Shorts.'), facebook: e('facebook', 'Short- and long-form Reels.'), instagram: e('igSubs', 'Reels and subscriber video.'), tiktok: e('tiktokRewards', 'Original uploaded video, including longer videos.'), rumble: e('rumbleSubs', 'Uploaded channel videos.'), mastodon: e('mastodon', 'Video attachment; server limits apply.', 'limited') }],
+    ['shorts', 'Short video viewing', 'A vertical Shorts viewer, including entry into live streams.', { youtube: e('ytShorts', 'Shorts.'), facebook: e('facebook', 'Reels.'), instagram: e('igSubs', 'Reels.'), tiktok: e('tiktokStitch', 'Short-form video creation and remixing.'), kick: e('kick', 'Clips are supported; not the same as an unrestricted Shorts publishing feed.', 'limited') }],
+    ['audio', 'Audio posts', 'Publish audio, voice notes and music posts.', { mastodon: e('mastodon', 'Audio attachments.'), youtube: e('ytPodcast', 'Podcasts on YouTube; a different publishing model.', 'limited') }],
+    ['articles', 'Formatted articles', 'Write longer articles with formatting and images.', { x: e('xArticles', 'Articles require an eligible paid or organization plan.', 'limited') }],
+    ['polls', 'Post polls', 'Create polls in the feed.', { youtube: e('ytPosts', 'Polls and quizzes in posts.'), mastodon: e('mastodon', 'Single- or multiple-choice polls.') }],
+    ['comments', 'Comments and replies', 'Reply in threaded conversations.', { x: e('xCommunities', 'Community posts and replies.'), mastodon: e('mastodonNetwork', 'Federated reply conversations.'), facebook: e('fbCommunity', 'Group and creator conversations.') }],
+    ['quotes', 'Quote posts', 'Quote a post with your own context.', { mastodon: e('mastodonQuotes', 'Quote authoring and consent controls require compatible server/client versions.', 'limited') }],
+    ['reposts', 'Reposts', 'Reshare a post while retaining its identity.', { mastodon: e('mastodon', 'Boosts; visibility restrictions apply.', 'limited'), x: e('xPro', 'Repost activity appears in X Pro.') }],
+    ['bookmarks', 'Bookmarks', 'Save posts and organize saved content.', { x: e('xBookmarks', 'Private bookmarks.') }],
+    ['feeds', 'Feed choice', 'Choose feed sorting and content filters.', { bluesky: e('bluesky', 'Custom feeds and algorithm choice.'), x: e('xPro', 'Multiple filtered timelines through X Pro.', 'limited') }],
+    ['search', 'Content and people discovery', 'Find content, creators and communities.', { kick: e('kick', 'Categories and streamer discovery.'), facebook: e('fbCommunity', 'Discovery across videos, groups, events and Marketplace.'), bluesky: e('bluesky', 'Starter packs recommend accounts and feeds.'), farcaster: e('fcApps', 'Mini app stores and feed discovery.') }],
+    ['hashtags', 'Hashtags', 'Tag posts and follow topics.', { mastodon: e('mastodon', 'Searchable hashtags.'), x: e('xPro', 'Hashtag and search columns.', 'limited') }],
+    ['reactions', 'Reactions and dislikes', 'Multiple reactions, including a dislike option.', { rumble: e('rumbleApi', 'Video like and dislike totals.'), instagram: e('igChannels', 'Broadcast-channel reactions; not an equivalent public dislike system.', 'limited'), mastodon: e('mastodonNetwork', 'Favourites and boosts; not the same reaction set.', 'limited') }],
+    ['drafts', 'Post drafts', 'Keep unfinished writing and longer posts.'],
+    ['scheduled', 'Scheduled publishing', 'Schedule posts and manage them in Planned.', { x: e('xPro', 'Scheduled posts through X Pro.', 'limited') }],
+    ['translate', 'Post translation', 'Translate post text, comments and biographies.'],
+    ['playlists', 'Profile playlists', 'Organize media into playlists on your profile.'],
+    ['soundtracks', 'Photo soundtracks', 'Attach music to photo posts.'],
+  ]),
+  ...group('Live video and audio', [
+    ['live', 'Live video', 'Broadcast live video and watch creator streams.', { youtube: e('youtube', 'Live video participates in the creator program.', 'limited'), kick: e('kick', 'Live streams and chat.'), twitch: e('twitch', 'Live channels.'), instagram: e('igSubs', 'Live content including subscriber lives.', 'limited'), tiktok: e('tiktokSubs', 'LIVE creator features; eligibility applies.', 'limited'), rumble: e('rumble', 'Live streaming with Rumble Studio.') }],
+    ['live-chat', 'Live chat', 'Audience chat alongside live video.', { kick: e('kick', 'Chat and emotes.'), twitch: e('twitchPartner', 'Subscriber and Bits interactions in chat.'), rumble: e('rumbleApi', 'Live chat messages and paid Rants.') }],
+    ['replays', 'Stream replays', 'Watch past live streams, with supported overlay playback.', { kick: e('kick', 'VOD viewing.'), instagram: e('igSubs', 'Saved subscriber lives.', 'limited'), rumble: e('rumbleSubs', 'Channel video library; access varies.', 'limited') }],
+    ['clips', 'Live clips', 'Turn moments from a stream into short clips.', { kick: e('kickClips', 'Clip live streams or VODs.') }],
+    ['guests', 'On-screen guests', 'Invite guests into a live video.', { rumble: e('rumble', 'Multi-person shows and guest tools.') }],
+    ['multistream', 'Multistream destinations', 'Send a broadcast to other platforms from Live Studio.', { rumble: e('rumble', 'Rumble Studio supports multiple external destinations.'), kick: e('kickMulti', 'Partner simulcasting is permitted with specific settings and payout conditions; this is not a hosted relay.', 'limited') }],
+    ['scenes', 'Live production scenes', 'Arrange scenes, sources, camera and screen share.'],
+    ['mixer', 'Live audio mixer', 'Control live audio sources in the studio.'],
+    ['overlays', 'Stream widgets and overlays', 'Add goals, alerts and visual widgets.'],
+    ['obs', 'OBS browser overlays', 'Use DeHub overlays as an OBS browser source.', { rumble: e('rumbleApi', 'Live API data can feed an external OBS integration.', 'ecosystem') }],
+    ['vertical-live', 'Vertical live crop', 'Keep a portrait crop alongside the live broadcast.'],
+    ['live-polls', 'Live polls', 'Run audience polls from the studio.'],
+    ['gifts', 'Paid live gifts', 'Support a stream with paid gifts; currency and device restrictions apply.', { kick: e('kick', 'Viewers can send KICKs.', 'limited'), twitch: e('twitch', 'Bits support eligible creators.', 'limited'), rumble: e('rumbleApi', 'Paid Rants.', 'limited') }, true],
+    ['gift-subs', 'Gift subscriptions', 'Gift access to other viewers.', { twitch: e('twitch', 'Gift subscriptions.', 'limited'), rumble: e('rumbleApi', 'Gifted subscription events.', 'limited') }, true],
+    ['hype', 'Hype trains', 'Celebrate concentrated gift and subscription activity.', {}, true],
+    ['battles', 'Gift battles', 'Co-streamers can participate in gift battles.', {}, true],
+    ['stages', 'Live audio rooms', 'Host and join Stages with speakers and listeners.', { x: e('xSpaces', 'Spaces; host and listener capabilities differ between web and mobile.', 'limited') }],
+    ['stage-recording', 'Audio room recordings', 'Play recorded Stages.', { x: e('xSpaces', 'Optional recorded Spaces.', 'limited') }],
+    ['stage-schedule', 'Scheduled audio rooms', 'Schedule a Stage and let listeners set reminders.', { x: e('xSpaces', 'Schedule Spaces.') }],
+    ['stage-captions', 'Live captions and translation', 'Stage transcription, subtitles and translation.'],
+    ['stage-dub', 'Live audio dubbing', 'Translate Stage speech into another language; usage is billed.', {}, true],
+    ['soundboard', 'Live soundboard', 'Use sound effects during a Stage or stream.'],
+  ]),
+  ...group('Creator income', [
+    ['subs', 'Creator subscriptions', 'Creator-set subscription tiers and gated posts.', { youtube: e('youtube', 'Memberships for eligible channels.', 'limited'), x: e('xArticles', 'Subscriptions and subscriber-only articles.', 'limited'), kick: e('kickSubs', 'Channel subscriptions with subscriber perks.', 'limited'), twitch: e('twitchPartner', 'Channel subscriptions and emotes.', 'limited'), instagram: e('igSubs', 'Subscriptions and exclusive content.', 'limited'), tiktok: e('tiktokSubs', 'Subscriptions for eligible creators and regions.', 'limited'), rumble: e('rumbleSubs', 'Channel subscriptions and Premium are separate products.', 'limited') }, true],
+    ['gated-posts', 'Subscriber-only posts', 'Non-subscribers see a teaser instead of the protected post.', { youtube: e('ytPosts', 'Members-only posts.', 'limited'), x: e('xArticles', 'Subscriber-only articles.', 'limited'), instagram: e('igSubs', 'Exclusive feed posts and Reels.', 'limited'), tiktok: e('tiktokSubs', 'Subscriber-exclusive content and perks.', 'limited'), rumble: e('rumbleSubs', 'Eligible Premium content.', 'limited') }, true],
+    ['ppv', 'Pay-per-view content', 'Set an unlock price for a post or event.', { tiktok: e('tiktokSeries', 'Series sells access to collections of premium videos; not identical to per-post unlocks.', 'limited') }, true],
+    ['tips', 'Direct creator support', 'Token and supported stablecoin tips.', { youtube: e('youtube', 'Supers for eligible creators.', 'limited'), twitch: e('twitch', 'Bits cheers.', 'limited'), rumble: e('rumbleApi', 'Paid Rants.', 'limited'), farcaster: e('fcApps', 'Wallet-enabled mini apps can accept donations; each app defines the experience.', 'ecosystem') }, true],
+    ['stablecoins', 'Stablecoin tips and unlocks', 'USDC or USDT on supported payment routes.', { farcaster: e('fcApps', 'Wallet transactions can be implemented in mini apps; no universal creator payment policy.', 'ecosystem') }, true],
+    ['wallet-payment', 'Creator wallet settlement', 'Supported on-chain payments go to the creator wallet, subject to fees and confirmation.', { farcaster: e('fcApps', 'Mini apps integrate wallet transactions.', 'ecosystem') }, true],
+    ['ad-revenue', 'Creator revenue programs', 'Ad revenue features and earnings reporting; actual revenue depends on activity and inventory.', { youtube: e('youtube', 'YPP Watch Page and Shorts revenue.', 'limited'), twitch: e('twitch', 'Eligible creators can run ads.', 'limited'), facebook: e('facebook', 'Invite-only Content Monetization.', 'limited'), tiktok: e('tiktokRewards', 'Creator Rewards; eligible content, accounts and countries.', 'limited'), rumble: e('rumble', 'Creator Program pays on performance; enrollment applies.', 'limited') }, true],
+    ['paid-dm', 'Paid direct messages', 'Creators can require a minimum tip to receive a message.', {}, true],
+    ['dm-unlock', 'Paid media in messages', 'Recipients can unlock paywalled message media.', {}, true],
+    ['affiliate', 'Platform referrals', 'Track referral links and eligible activity rewards.', { rumble: e('rumble', 'Creator Program includes performance rewards; current conditions apply.', 'limited') }, true],
+    ['fees', 'Badge-based platform fees', 'Eligible badge tiers change DeHub platform fees.', {}, true],
+    ['cashout', 'Bank cash out', 'A bank cash-out route is documented; provider, eligibility and region conditions apply.', {}, true],
+    ['watch-rewards', 'Viewer reward features', 'Watch2earn is documented for eligible content; rewards are not guaranteed.', {}, true],
+  ]),
+  ...group('Communities and messages', [
+    ['communities', 'Community spaces', 'Communities have their own feeds and membership.', { youtube: e('ytPosts', 'Channel Communities; account restrictions apply.', 'limited'), x: e('xCommunities', 'Open and restricted Communities.'), facebook: e('fbCommunity', 'Groups.'), instagram: e('igChannels', 'Creator broadcast channels have a different participation model.', 'limited'), bluesky: e('bluesky', 'Starter packs and feeds help find a community; not a group space.', 'limited') }],
+    ['community-events', 'Community events', 'Create events and manage attendance.', { facebook: e('fbCommunity', 'Events and event discovery.') }],
+    ['community-admin', 'Community moderation', 'Community owners manage members and content.', { x: e('xCommunities', 'Admins and moderators manage rules and membership.'), facebook: e('fbCommunity', 'Group administration.'), mastodon: e('mastodonQuotes', 'Server moderation; different scope from an in-app group.', 'limited') }],
+    ['dm', 'Direct messages', 'Direct conversations with message permissions.', { x: e('xPro', 'Direct-message column in X Pro.'), mastodon: e('mastodon', 'Private mentions are visible to server administrators; not encrypted chat.', 'limited'), instagram: e('igSubs', 'Subscriber chats; this source covers that specific experience.', 'limited') }],
+    ['groups', 'Group conversations', 'Create group chats with membership controls.', { instagram: e('igSubs', 'Subscriber group chats.', 'limited'), facebook: e('fbCommunity', 'Messenger Communities.', 'ecosystem') }],
+    ['encrypted-text', 'Encrypted message text', 'Text and captions can be end-to-end encrypted when peer keys are available. A plaintext fallback exists when encryption is unavailable. Conversation metadata is not hidden by message encryption.'],
+    ['chat-media', 'Message attachments', 'Send photos, video, files and GIFs.'],
+    ['voice-notes', 'Voice messages', 'Record and send voice notes.'],
+    ['chat-polls', 'Polls in conversations', 'Run polls inside chats.', { instagram: e('igChannels', 'Polls in broadcast channels.', 'limited') }],
+    ['calls', 'Voice and video calls', 'Call between web and mobile.'],
+    ['chat-reactions', 'Message replies and reactions', 'Reply to, edit and react to messages.'],
+    ['packs', 'Creator emoji and sticker packs', 'Create and share emoji and sticker packs.', { kick: e('kickSubs', 'Subscriber emotes.', 'limited'), twitch: e('twitchPartner', 'Channel emotes.', 'limited'), mastodon: e('mastodon', 'Server custom emoji.', 'limited') }],
+  ]),
+  ...group('Studio and creation', [
+    ['generate-image', 'Image generation', 'Generate images in Creator Studio with quoted usage pricing.', { youtube: e('ytShorts', 'Generative Shorts effects; not a general image studio.', 'limited') }, true],
+    ['generate-video', 'Video generation', 'Generate video using the models exposed in Creator Studio.', { youtube: e('ytShorts', 'Photo-to-video and effects; rollout conditions apply.', 'limited'), instagram: e('metaVideo', 'Meta AI and Edits provide generative video editing.', 'ecosystem'), facebook: e('metaVideo', 'Meta AI and Edits can export to Facebook.', 'ecosystem') }, true],
+    ['generate-music', 'Music generation', 'Generate music in Creator Studio.', {}, true],
+    ['generate-voice', 'Speech generation', 'Generate narration and voice assets.', {}, true],
+    ['generate-3d', '3D model generation', 'Generate 3D assets with supported studio models.', {}, true],
+    ['timeline', 'Multi-track video editor', 'A browser timeline for arranging, cutting and exporting media; mobile has an editor surface.', { instagram: e('edits', 'Edits is a separate mobile video editor.', 'ecosystem'), facebook: e('edits', 'Edits exports to Facebook.', 'ecosystem') }],
+    ['captions', 'Editable captions', 'Import, style and translate caption tracks.', { instagram: e('edits', 'Caption and text tools in Edits.', 'ecosystem'), facebook: e('edits', 'Captioned exports from Edits.', 'ecosystem') }],
+    ['transitions', 'Transitions and visual effects', 'Apply transitions and looks in the editor.', { instagram: e('edits', 'Edits timeline effects and transitions.', 'ecosystem'), facebook: e('edits', 'Edits exports.', 'ecosystem') }],
+    ['background', 'Background removal', 'Remove backgrounds in supported studio and live tools.', { instagram: e('edits', 'Green-screen and effects in Edits; not identical processing.', 'ecosystem') }],
+    ['remix', 'Video remixing', 'Remix video and use Creator Remake workflows.', { tiktok: e('tiktokStitch', 'Stitch combines an allowed excerpt with a new video.', 'limited'), instagram: e('edits', 'Reels remixing in Edits.', 'ecosystem') }],
+    ['storyboard', 'Storyboards and planning', 'Plan a film and organize production ideas.', { instagram: e('edits', 'Storyboards in Edits.', 'ecosystem') }],
+    ['presets', 'Creator presets', 'Search reusable prompts and production presets.', { instagram: e('edits', 'Templates in Edits.', 'ecosystem') }],
+    ['flow', 'Visual generation workflows', 'Creator Flow connects prompts, references and generation steps.', {}, true],
+    ['queue', 'Render queue and library', 'Keep generation jobs and reusable assets together.', {}, true],
+    ['cloud-projects', 'Cloud editor projects', 'Save editor projects with version history.'],
+    ['review', 'Time-based video review', 'Share cuts for comments at moments in a video.'],
+    ['collaborative-editor', 'Shared editing', 'Invite editors to a shared project.'],
+    ['audio-cleanup', 'Audio cleanup', 'Normalize volume and clean speech in the editor.'],
+    ['record', 'Camera and screen recording', 'Record media into the editor; device capabilities differ.', { instagram: e('edits', 'Camera capture in Edits; screen recording is not established by this source.', 'ecosystem') }],
+    ['export', 'Video and design export', 'Export videos, GIFs and design pages.', { instagram: e('edits', 'Video exports without an added watermark; other formats differ.', 'ecosystem') }],
+    ['learning', 'Creator lessons', 'Learn tools through the Creator learning surface.', { twitch: e('twitch', 'Creator Camp education.'), tiktok: e('tiktokSubs', 'Creator Academy resources.') }],
+  ]),
+  ...group('Ownership and commerce', [
+    ['wallet', 'Integrated wallet', 'Wallet-based payments and balances.', { farcaster: e('fcApps', 'Integrated wallet access in compatible mini app hosts.') }, true],
+    ['mint', 'Optional content minting', 'Publish off-chain or mint eligible content on-chain.', { farcaster: e('fcApps', 'Mini apps can support art purchases and wallet actions; not a standard cast-minting feature.', 'ecosystem') }, true],
+    ['fractions', 'Content fractions', 'Minted content can have tradable fractions. Ownership does not guarantee earnings.', {}, true],
+    ['fraction-market', 'Fraction marketplace', 'List and trade supported content fractions.', {}, true],
+    ['token-gate', 'Token-gated content', 'Restrict access using supported token ownership rules.', {}, true],
+    ['staking', 'Staking badges', 'Stake to qualify for badge tiers and eligible benefits.', {}, true],
+    ['team-up', 'Shared badge teams', 'Combine qualifying wallet power with a team.'],
+    ['badge-lending', 'Badge lending', 'Lend eligible badge status; status and spending entitlements differ.'],
+    ['boosts', 'Badge-powered reach tools', 'SuperPowers provide tier-based reach and placement allowances.'],
+    ['dex', 'Token exchange', 'Swap supported tokens and inspect pools.', { farcaster: e('fcApps', 'Wallet-enabled mini apps may offer swaps; app-dependent.', 'ecosystem') }, true],
+    ['bridge', 'Token bridge', 'A bridge route and transfer history; settlement timing depends on the route.', {}, true],
+    ['launchpad', 'Token launchpad', 'Create and discover supported token launches.', {}, true],
+    ['usernames', 'Username marketplace', 'Trade supported usernames through the marketplace.', {}, true],
+    ['accounts', 'Account marketplace', 'A marketplace for supported account transfers.', {}, true],
+    ['stores', 'Creator stores', 'Publish store listings and sell to your audience.', { facebook: e('fbMarketplace', 'Marketplace listings and seller tools.'), farcaster: e('fcApps', 'Commerce can be delivered inside mini apps.', 'ecosystem') }, true],
+    ['work', 'Work and bounty listings', 'Publish tasks and accept submissions.', { facebook: e('fbJobs', 'Local job listings in supported markets; not escrow bounties.', 'limited') }, true],
+    ['escrow', 'Bounty escrow and disputes', 'Fund eligible work with escrow and a dispute flow.', {}, true],
+    ['governance', 'Community governance', 'Submit proposals and participate in platform governance.'],
+    ['treasury', 'DAO treasury', 'View treasury activity and eligible contribution/proposal flows.', {}, true],
+  ]),
+  ...group('Open web and automation', [
+    ['open-network', 'Open social network', 'ActivityPub-compatible public accounts and posts.', { mastodon: e('mastodonNetwork', 'Federated social network.'), bluesky: e('bskyNetwork', 'Federation through AT Protocol; not ActivityPub.'), farcaster: e('farcaster', 'Open social protocol and application development.') }],
+    ['activitypub', 'ActivityPub federation', 'Public profiles and posts support fediverse following.', { mastodon: e('mastodonNetwork', 'Federated accounts and conversations.') }],
+    ['third-party-clients', 'Alternative social clients', 'Compatible Mastodon clients can connect to DeHub.', { mastodon: e('mastodonQuotes', 'Third-party clients; feature support depends on client version.', 'limited'), farcaster: e('farcaster', 'Open protocol for building social applications.') }],
+    ['verified-links', 'Verified profile links', 'Verify ownership through a reciprocal website link.'],
+    ['rss', 'Profile and hashtag RSS', 'Read public profiles and hashtags through feeds.'],
+    ['embeds', 'Embeddable posts', 'Website embeds and oEmbed link previews.'],
+    ['cross-post', 'Cross-platform publishing', 'Connect supported accounts and publish or schedule across platforms.'],
+    ['import', 'Import existing content', 'Import your own supported links through Converter.'],
+    ['channel-import', 'Channel migration', 'Select and queue your own channel library for import.'],
+    ['podcast-import', 'Podcast RSS import', 'Import selected episodes from a podcast feed.'],
+    ['mini-apps', 'Mini app discovery', 'Discover and open mini apps within DeHub.', { farcaster: e('fcApps', 'Mini app distribution and discovery.') }],
+    ['app-auth', 'Sign in for mini apps', 'App-scoped authentication without handing an app your wallet keys.', { farcaster: e('farcaster', 'Sign In with Farcaster and AuthKit.') }],
+    ['app-publish', 'Mini app developer tools', 'Validate manifests and preview an app and its feed card.', { farcaster: e('fcApps', 'SDK, publishing and app discovery.') }],
+    ['builder', 'App builder', 'Describe an app and work with a generated preview.', {}, true],
+    ['assistant', 'In-app assistant', 'Chat with an assistant and mention it in supported conversations.'],
+    ['agents', 'Configurable assistants', 'Configure tasks, schedules and account permissions.'],
+    ['agent-control', 'Automation controls', 'Pause activity and control workspace access.'],
+    ['mcp', 'Connected assistant tools', 'Connect compatible assistants to scoped DeHub tools.'],
+  ]),
+  ...group('Safety and personalization', [
+    ['reply-control', 'Reply and quote controls', 'Choose who can reply to or quote a post.', { mastodon: e('mastodonQuotes', 'Quote consent and revocation on compatible versions.', 'limited') }],
+    ['post-visibility', 'Post visibility', 'Follower-only and mentioned-only post audiences.', { mastodon: e('mastodon', 'Public, quiet public, followers and private mentions.') }],
+    ['content-warning', 'Content warnings', 'Label sensitive content.', { mastodon: e('mastodon', 'Post visibility and media controls.') }],
+    ['alt-text', 'Image descriptions', 'Add alternative text to image attachments.', { mastodon: e('mastodon', 'Media descriptions and image focal points.') }],
+    ['mute-block', 'Mute and block', 'Control unwanted accounts and interactions.', { x: e('xCommunities', 'Mute, block and community reporting.') }],
+    ['muted-words', 'Muted words', 'Filter unwanted words from your experience.'],
+    ['report', 'Content reporting', 'Report content for review.', { x: e('xCommunities', 'Report to community moderators or the platform.') }],
+    ['notifications', 'Notification controls', 'Control which activity reaches you.', { mastodon: e('mastodonNetwork', 'Notification types and filtering.'), kick: e('kick', 'Live notifications for followed streamers.') }],
+    ['kids', 'PIN-protected Kids Mode', 'A restricted content experience with a parent PIN.'],
+    ['themes', 'Theme selection', 'Change the visual theme and supported appearance options.'],
+    ['multi-account', 'Multiple profiles', 'Switch between supported accounts in the client.'],
+    ['passkeys', 'Passkey sign in', 'Passkey account access on supported web and Android flows.'],
+    ['social-login', 'Social and email sign in', 'Supported social, email and SMS onboarding routes.'],
+    ['wallet-login', 'Existing-wallet sign in', 'Sign in with supported wallets and ownership proofs.', { farcaster: e('farcaster', 'Sign In with Farcaster is a related identity flow, not arbitrary-wallet DeHub login.', 'limited') }],
+    ['delete', 'Account deletion', 'Request account and stored media deletion; public-chain records remain.'],
+  ]),
+  ...group('Entertainment and platform tools', [
+    ['tv', 'Live TV directory', 'Browse publicly available TV streams.'],
+    ['music', 'Music and radio', 'Discover music posts, charts and radio.', { youtube: e('ytPodcast', 'Podcasts and charts are a partial comparison; not the same radio directory.', 'limited') }],
+    ['cinema', 'Film availability search', 'Find legal streaming, rental and purchase options by country.'],
+    ['arcade', 'Built-in games', 'Play supported arcade games; game/device support varies.', { farcaster: e('fcApps', 'Mini apps can deliver games; availability depends on the app.', 'ecosystem') }],
+    ['leaderboard', 'Creator leaderboards', 'Browse creator rankings and community statistics.'],
+    ['earnings-dashboard', 'Earnings dashboard', 'Review eligible creator income and activity.', { tiktok: e('tiktokRewards', 'Creator Rewards analytics.', 'limited'), facebook: e('facebook', 'Professional Dashboard monetization metrics.', 'limited') }, true],
+    ['ads', 'Self-serve advertising', 'Create campaigns and view campaign performance.', {}, true],
+    ['public-stats', 'Public platform statistics', 'View published traffic and financial reporting.'],
+    ['feature-board', 'Public feature request board', 'Suggest features and follow their status.'],
+    ['feedback', 'In-app feedback', 'Submit product feedback.'],
+    ['guide', 'Product guide and glossary', 'Look up features, controls and terminology.'],
+  ]),
+];
+const ADDITIONAL_EVIDENCE: Record<string, Partial<Record<PlatformId, ComparisonEntry>>> = {
+  text: { bluesky: e('bskyFaq', 'Public social posts.') },
+  images: { bluesky: e('bskyFaq', 'Images attached to posts.') },
+  video: { bluesky: e('bskyVideo', 'Video posts. Current upload limits are not compared here.', 'limited'), twitch: e('twitchVod', 'On-demand publishing and retention depend on content and account type.', 'limited') },
+  dm: { bluesky: e('bskyDm', 'One-to-one messages with sender permission controls.'), x: e('xDm', 'Direct messages with conversation controls.'), instagram: e('igDm', 'Instagram direct messages.'), tiktok: e('tiktokDm', 'Direct messages with age and safety restrictions.', 'limited'), facebook: e('messenger', 'Personal messaging on Facebook and Messenger.', 'limited') },
+  quotes: { bluesky: e('bskySafety', 'Quote posts with detachment controls.') },
+  'reply-control': { bluesky: e('bskySafety', 'Reply visibility and quote detachment controls.', 'limited') },
+  scheduled: { bluesky: e('bskyBuffer', 'Scheduling through Buffer.', 'ecosystem') },
+  'cross-post': { bluesky: e('bskyBuffer', 'Cross-posting through Buffer.', 'ecosystem') },
+  embeds: { bluesky: e('bskyEmbed', 'Embeddable public posts.') },
+  notifications: { bluesky: e('bskyNotifications', 'Granular notifications and account activity notifications.'), mastodon: e('mastodonPreferences', 'Notification category and sender filters.') },
+  report: { bluesky: e('bskyFaq', 'Post and account reports.') },
+  themes: { bluesky: e('bskyFaq', 'Light, dark and system appearance; not DeHub theme packs.', 'limited'), mastodon: e('mastodonPreferences', 'Light, dark, system and high-contrast appearance.', 'limited'), instagram: e('igDm', 'Chat-specific themes; not a full-app theme system.', 'limited') },
+  feedback: { bluesky: e('bskyFaq', 'Feedback links on web and mobile.') },
+  replays: { twitch: e('twitchVod', 'Past broadcasts; storage must be enabled and retention depends on the account.', 'limited') },
+  clips: { twitch: e('twitchVod', 'Clips and Highlights.') },
+  playlists: { twitch: e('twitchVod', 'Collections organize on-demand content.', 'limited') },
+  'live-polls': { kick: e('kickModeration', 'Channel owners and moderators can run polls.'), twitch: e('twitchPolls', 'Polls for eligible monetized streamers.', 'limited') },
+  'chat-voting': { twitch: e('twitchPolls', 'Vote through the /vote chat command.', 'limited') },
+  'stream-moderation': { kick: e('kickModeration', 'Timeouts, bans, message removal and chat modes.'), twitch: e('twitchRoles', 'Moderators manage chat and participation.') },
+  'mute-block': { bluesky: e('bskyFaq', 'Account mute and block controls.'), kick: e('kickModeration', 'Personal chat mute and channel bans; scopes differ.', 'limited') },
+  'muted-words': { x: e('xMute', 'Mute words, phrases and hashtags with surface and duration controls.') },
+  'video-speed': { youtube: e('ytPremium', 'Playback speed options include plan- and device-specific enhancements.', 'limited') },
+  'video-download': { youtube: e('ytPremium', 'Offline downloads under Premium; not unrestricted source-file downloads.', 'limited') },
+  'audio-popout': { youtube: e('ytPremium', 'Background play for eligible content and devices under Premium.', 'limited') },
+  groups: { x: e('xDm', 'Group direct messages.'), tiktok: e('tiktokDm', 'Group chats with account and age restrictions.', 'limited'), instagram: e('igDm2025', 'Group chats with invite QR codes.') },
+  'chat-media': { x: e('xDm', 'Photo, video, GIF and emoji messages.'), instagram: e('igDm', 'Photo, video, GIF and sticker replies.'), facebook: e('messenger', 'Photo and video messages.') },
+  'voice-notes': { instagram: e('igDm', 'Voice messages.'), facebook: e('messenger', 'Voice messages and continued listening.') },
+  calls: { x: e('xCalls', 'Voice and video calls; group-call device coverage differs.', 'limited'), facebook: e('messenger', 'Personal voice and video calls.') },
+  'encrypted-text': { facebook: e('messenger', 'End-to-end encryption for supported personal chats.', 'limited') },
+  'encrypted-attachments': { facebook: e('messenger', 'Protected media in supported encrypted personal chats.', 'limited') },
+  'message-edit': { x: e('xDm', 'Edit supported direct messages.'), instagram: e('igDm', 'Edit messages within the supported time window.', 'limited'), facebook: e('messenger', 'Edit messages within the supported time window.', 'limited') },
+  'chat-reactions': { instagram: e('igDm', 'Replies using supported media and stickers.'), facebook: e('messenger', 'Custom reactions and media replies.') },
+  'chat-search': { x: e('xDm', 'Search message history using names and keywords.') },
+  'message-access': { x: e('xDm', 'Sender request and conversation controls.', 'limited') },
+  packs: { tiktok: e('tiktokStickers', 'Custom image and video stickers; creator eligibility applies.', 'limited') },
+  'video-transcript': { youtube: e('ytTranscript', 'View and navigate transcripts for videos that have captions.', 'limited') },
+  'video-subtitles': { youtube: e('ytTranscript', 'Captioned videos expose transcript and navigation controls.', 'limited') },
+  'video-segments': { youtube: e('ytTranscript', 'Transcript navigation can expose available chapters.', 'limited') },
+  'verified-links': { mastodon: e('mastodonProfile', 'Reciprocal website link verification.') },
+  'account-export': { mastodon: e('mastodonExport', 'Export relationship lists and request a post/media archive.') },
+  'notification-categories': { mastodon: e('mastodonPreferences', 'Choose supported categories of notifications.') },
+  'notification-filters': { mastodon: e('mastodonPreferences', 'Filter activity from accounts outside selected relationships.') },
+  'email-notifications': { mastodon: e('mastodonPreferences', 'Choose supported email notification categories.') },
+  'notification-digests': { mastodon: e('mastodonPreferences', 'Optional email digests during inactivity.', 'limited') },
+  'follow-list-privacy': { mastodon: e('mastodonPreferences', 'Hide following and follower lists.') },
+  'content-default': { mastodon: e('mastodonPreferences', 'Default posting visibility, language and media sensitivity.') },
+  'autoplay-preference': { mastodon: e('mastodonPreferences', 'Animated media and reduced-motion preferences; video behavior varies by client.', 'limited') },
+};
+/** Core capabilities confirmed on first-party help pages after the bulk review; these win over a not-established finding. */
+const CORE_EVIDENCE: Record<string, Partial<Record<PlatformId, ComparisonEntry>>> = {
+  live: { facebook: e('fbLive', 'Go live from a profile, Page or group.') },
+  reposts: { facebook: e('fbShare', 'Share posts to your profile, groups or Messenger.') },
+  report: { youtube: e('ytReport', 'Report videos, channels, comments and other content.') },
+  notifications: { youtube: e('ytNotifications', 'Choose which channel and account notifications you get.') },
+  themes: { youtube: e('ytDark', 'Light, dark and device appearance; not theme packs.', 'limited') },
+};
+/** Applies the hands-on product review where the documentation pass found no equivalent; never downgrades an entry. */
+function productReviewed(feature: ComparisonFeature, platform: PlatformId, entry: ComparisonEntry | undefined): ComparisonEntry | undefined {
+  const found = PRODUCT_REVIEW[platform].get(feature.id);
+  if (!found) return entry;
+  const has = entry && ['documented', 'code', 'limited'].includes(entry.status);
+  if (has || (found === 'partial' && entry?.status === 'ecosystem')) return entry;
+  const scope = REVIEW_SCOPES[platform][CATEGORY_FAMILIES[feature.category]];
+  return {
+    status: found === 'yes' ? 'documented' : 'ecosystem',
+    note: found === 'yes'
+      ? `Confirmed in the live product and its help centre on ${PRODUCT_REVIEWED_ON}.`
+      : `Partly available, or through a separate app, as of ${PRODUCT_REVIEWED_ON}.`,
+    source: entry?.source ?? scope.sources[0],
+    relatedSources: entry?.relatedSources ?? scope.sources.slice(1),
+  };
+}
+const EXPANDED_FEATURES: ComparisonFeature[] = DETAIL_GROUPS.flatMap(detail => detail.rows.map(([id, name, note, file = '', mobileOverride]) => {
+  const web = detail.web + file, mobile = mobileOverride ?? detail.mobile + file;
+  const webSource = `web:${web}`, mobileSource = `mobile:${mobile}`;
+  SOURCES[webSource] = { title: 'DeHub web implementation', url: `https://github.com/DeHubToken/dehubweb/blob/${AUDIT_REVISIONS.web}/${web}` };
+  SOURCES[mobileSource] = { title: 'DeHub mobile implementation', url: `https://github.com/DeHubToken/dehub-mobile/blob/${AUDIT_REVISIONS.mobile}/${mobile}` };
+  return { id, category: detail.category, name, dehub: { ...e(webSource, note, detail.paid ? 'limited' : 'code'), relatedSources: [mobileSource, 'dehub'] }, peers: {}, iosRestricted: !!detail.paid, implementation: { web, mobile } };
+}));
+/** Popular rival features DeHub does not offer yet, filed under the topic they belong to. */
+const NOT_YET: ComparisonFeature[] = ([
+  ['stories', 'Posts and discovery', 'Stories that disappear after 24 hours'],
+  ['duets', 'Studio and creation', 'Duets and side-by-side remixes'],
+  ['face-effects', 'Studio and creation', 'Camera face effects and AR filters'],
+  ['collab-posts', 'Posts and discovery', 'Co-authored collab posts'],
+  ['location-map', 'Posts and discovery', 'Location tags and a friends map'],
+  ['raids', 'Live video and audio', 'Live raids into another channel'],
+  ['live-predictions', 'Live video and audio', 'Live predictions with channel points'],
+  ['live-rewind', 'Live video and audio', 'Rewind a live stream while it is live'],
+  ['community-notes', 'Safety and personalization', 'Community Notes fact-checks'],
+  ['disappearing-messages', 'Communities and messages', 'Disappearing messages'],
+] as const).map(([id, category, name]) => ({
+  id, category, name, dehub: e('dehub', 'Not available on DeHub yet.', 'not_offered'), peers: {}, iosRestricted: false,
+}));
+/** The rival-first inventory: features gathered from each competitor's own docs, with DeHub ticked honestly. */
+const RIVAL_FEATURES: ComparisonFeature[] = RIVAL_ROWS.map(row => ({
+  id: row.id, category: row.category, name: row.name, iosRestricted: false,
+  dehub: row.marks.dehub === 'yes' ? e('dehub', 'Available on DeHub.')
+    : row.marks.dehub === 'partial' ? e('dehub', 'Partly available on DeHub.', 'ecosystem')
+    : e('dehub', 'Not available on DeHub yet.', 'not_offered'),
+  peers: Object.fromEntries(PLATFORMS.flatMap(({ id }) => {
+    const mark = row.marks[id];
+    if (!mark) return [];
+    return [[id, {
+      status: mark === 'yes' ? 'documented' : 'ecosystem',
+      note: mark === 'yes'
+        ? `Listed in the official help, creator or product pages, reviewed ${RIVAL_INVENTORY_REVIEWED_ON}. Some plans, regions or account types may apply.`
+        : `Partly available, limited to some accounts, or through a separate app, as of ${RIVAL_INVENTORY_REVIEWED_ON}.`,
+      source: rivalSource(id, row.category, SOURCES),
+    } satisfies ComparisonEntry]];
+  })),
+}));
+export const FEATURES: ComparisonFeature[] = [...CATALOGUE, ...EXPANDED_FEATURES, ...NOT_YET, ...RIVAL_FEATURES].map(feature => ({
+  ...feature,
+  dehub: feature.id === 'encrypted-text' ? e('dehubEncryption', feature.dehub.note, 'limited') : feature.id === 'encrypted-attachments' ? { ...feature.dehub, status: 'limited' as const } : feature.dehub,
+  peers: Object.fromEntries(PLATFORMS.map(platform => [platform.id, researchedEntry(feature.id, feature.name, feature.category, platform.id, ADDITIONAL_EVIDENCE[feature.id]?.[platform.id] ?? feature.peers[platform.id])]).map(([id, entry]) => [id, CORE_EVIDENCE[feature.id]?.[id as PlatformId] ?? productReviewed(feature, id as PlatformId, entry as ComparisonEntry | undefined)]).filter(([, entry]) => entry)) as Partial<Record<PlatformId, ComparisonEntry>>,
+}));
+const CATEGORY_ORDER = [
+  'Posts and discovery', 'Profiles and identity', 'Playback and uploads', 'Live video and audio', 'Communities and messages',
+  'Creator income', 'Creator analytics', 'Premium plans', 'Business and advertising', 'Ownership and commerce',
+  'Studio and creation', 'Video editing', 'Design and documents', 'Charts and data', 'Presentations and exports',
+  'Open web and automation', 'Developers and API', 'Safety and personalization', 'Accessibility',
+  'Accounts, privacy and preferences', 'Notifications', 'Apps and devices', 'Entertainment and platform tools',
+];
+const rank = (category: string) => { const at = CATEGORY_ORDER.indexOf(category); return at < 0 ? CATEGORY_ORDER.length : at; };
+export const CATEGORIES = [...new Set(FEATURES.map(feature => feature.category))].sort((a, b) => rank(a) - rank(b));
+export function entryFor(feature: ComparisonFeature, platform: PlatformId | 'dehub'): ComparisonEntry {
+  if (platform === 'dehub') return feature.dehub;
+  return feature.peers[platform] ?? { status: 'unverified', note: 'An equivalent has not been verified in this comparison. This does not mean the platform lacks the feature.' };
+}
+export function filterFeatures(query: string, category: string): ComparisonFeature[] {
+  const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  return FEATURES.filter(feature => (category === 'all' || feature.category === category) && words.every(word =>
+    `${feature.name} ${feature.category} ${feature.dehub.note} ${Object.values(feature.peers).map(peer => peer?.note).join(' ')}`.toLowerCase().includes(word),
+  ));
+}
+export function comparisonCoverage(platform: PlatformId | 'all') {
+  const platforms = platform === 'all' ? PLATFORMS.map(p => p.id) : [platform];
+  const supported = new Set<Status>(['documented', 'limited', 'ecosystem', 'code']);
+  return {
+    verified: FEATURES.reduce((total, feature) => total + platforms.filter(id => feature.peers[id] && supported.has(feature.peers[id]!.status)).length, 0),
+    reviewed: FEATURES.filter(feature => REVIEWED_FEATURE_IDS.includes(feature.id)).length * platforms.length,
+    total: FEATURES.length * platforms.length,
+    reviewedOn: COMPETITOR_REVIEWED_ON,
+  };
+}
+
+/** Matrix marks: a tick for documented or conditional support, partial for related products or announcements. */
+export type Mark = 'yes' | 'partial' | 'no' | 'unknown';
+export function markFor(entry: ComparisonEntry): Mark {
+  if (entry.status === 'documented' || entry.status === 'code' || entry.status === 'limited') return 'yes';
+  if (entry.status === 'ecosystem' || entry.status === 'announced') return 'partial';
+  if (entry.status === 'not_offered') return 'no';
+  return 'unknown';
+}
+export function featureTotals(features: ComparisonFeature[] = FEATURES) {
+  const totals: Record<PlatformId | 'dehub', { yes: number; partial: number }> = Object.fromEntries(
+    (['dehub', ...PLATFORMS.map(p => p.id)] as const).map(id => [id, { yes: 0, partial: 0 }]),
+  ) as Record<PlatformId | 'dehub', { yes: number; partial: number }>;
+  for (const feature of features) for (const id of Object.keys(totals) as (PlatformId | 'dehub')[]) {
+    const mark = markFor(entryFor(feature, id));
+    if (mark === 'yes') totals[id].yes++; else if (mark === 'partial') totals[id].partial++;
+  }
+  return totals;
+}
