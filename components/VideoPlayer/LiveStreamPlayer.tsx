@@ -1683,7 +1683,10 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
         {whepLive.stream ? (
           /* WebRTC is carrying the picture. The chrome below is drawn over
              whatever renders it, so this swaps in without touching any of it. */
-          <LiveWebRtcView stream={whepLive.stream} onVideoSize={onVideoSize} />
+          <LiveWebRtcView
+            stream={whepLive.stream}
+            onVideoSize={(size) => { whepLive.onPicture(size); onVideoSize(size); }}
+          />
         ) : whepLive.pending && !isPausedEffective ? (
           /* An attempt is in flight. The ladder waits rather than starting
              underneath it: on a working network WebRTC arrives before HLS has
