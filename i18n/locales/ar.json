@@ -3882,6 +3882,7 @@
     "tokenAmount": "{{amount}} رموز"
   },
   "communities": {
+    "jumpToReply": "الانتقال إلى الرسالة التي تم الرد عليها",
     "shareLink": "مشاركة الرابط",
     "pinnedMore": "المزيد",
     "showFirst": "اعرض أولاً",
