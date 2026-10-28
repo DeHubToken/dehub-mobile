@@ -33,9 +33,11 @@ jest.mock('../../components/common/SmartImage', () => () => null);
 jest.mock('../../components/ui/Icon', () => () => null);
 jest.mock('../../hooks/useStreamPresence', () => ({ useStreamPresence: jest.fn() }));
 jest.mock('../../hooks/useLivePaused', () => ({ useLivePaused: (_id: string, status: string) => status === 'PAUSED' }));
+let mockEnded = false;
+jest.mock('../../hooks/useLiveEnded', () => ({ useLiveEnded: () => mockEnded }));
 
 describe('live preview loading feedback', () => {
-  beforeEach(() => { jest.useFakeTimers(); mockStatus = 'loading'; });
+  beforeEach(() => { jest.useFakeTimers(); mockStatus = 'loading'; mockEnded = false; });
   afterEach(() => {
     act(() => { visualActivity.setCall(false, false); jest.advanceTimersByTime(250); });
     jest.useRealTimers();
@@ -118,5 +120,15 @@ describe('live preview loading feedback', () => {
     view.rerender(<LiveFeedPreview url="https://example.com/live.m3u8" active />);
     act(() => jest.advanceTimersByTime(400));
     expect(view.getByTestId('live-video')).toBeTruthy();
+  });
+
+  it('drops the player and says the stream ended the moment the room ends it', () => {
+    const view = render(<LiveFeedPreview url="https://example.com/live.m3u8" streamId="stream-a" active />);
+    act(() => jest.advanceTimersByTime(400));
+    expect(view.getByTestId('live-video')).toBeTruthy();
+    mockEnded = true;
+    view.rerender(<LiveFeedPreview url="https://example.com/live.m3u8" streamId="stream-a" active label="Live" />);
+    expect(view.queryByTestId('live-video')).toBeNull();
+    expect(view.getByText('liveViewer.streamEnded')).toBeTruthy();
   });
 });
