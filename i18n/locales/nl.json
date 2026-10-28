@@ -3133,7 +3133,29 @@
     "revealFailed": "Kan de sleutel niet tonen. Probeer het opnieuw.",
     "signInAgain": "Opnieuw inloggen",
     "createSignIn": "Log opnieuw in om een agent aan te maken",
-    "checkConnection": "Controleer je verbinding en probeer het opnieuw."
+    "checkConnection": "Controleer je verbinding en probeer het opnieuw.",
+    "welcome": {
+      "title": "Nieuwe leden verwelkomen",
+      "help": "Deze agent volgt en/of stuurt een bericht naar mensen die net lid zijn van DeHub, een paar per dag.",
+      "follow": "Nieuwe leden volgen",
+      "message": "Nieuwe leden een bericht sturen",
+      "text": "Welkomstbericht",
+      "textHelp": "{name} wordt hun @gebruikersnaam. Geen links. Eén keer per persoon.",
+      "saveText": "Bericht opslaan",
+      "perDay": "Mensen per dag",
+      "fewer": "Minder per dag",
+      "more": "Meer per dag",
+      "today": "Vandaag: {{follows}} gevolgd · {{messages}} berichten",
+      "limits": "Nooit twee keer dezelfde persoon. Slaat iedereen over die je blokkeerde of dempte, nieuwe berichten uitzette of zich verborg bij Nieuwe leden.",
+      "showLog": "Zie wie hij verwelkomde",
+      "hideLog": "Verberg welkomsten",
+      "empty": "Nog niemand. Nieuwe leden verschijnen hier zodra ze lid worden.",
+      "followed": "Gevolgd",
+      "messaged": "Bericht gestuurd",
+      "skipped": "Overgeslagen",
+      "failed": "Niet bereikbaar",
+      "defaultText": "Hoi {name}, welkom bij DeHub! 👋"
+    }
   },
   "hero": {
     "title": "Welkom In",

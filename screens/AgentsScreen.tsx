@@ -52,6 +52,7 @@ import { canManageAgents } from '../libs/agent-access';
 import { AgentTasksPanel } from './AgentTasksPanel';
 import { AgentProfilePanel } from './AgentProfilePanel';
 import { AgentLifePanel } from './AgentLifePanel';
+import { AgentWelcomePanel } from './AgentWelcomePanel';
 import { AgentWorkspacePanel } from './AgentWorkspacePanel';
 import LiquidGlass from '../components/ui/LiquidGlass';
 import { useUserProfileSheet } from '../context/UserProfileSheetContext';
@@ -258,6 +259,7 @@ export default function AgentsScreen() {
 
           <AgentProfilePanel wallet={walletAddress} agentId={agent.id} agentName={agent.name} />
           <AgentLifePanel wallet={walletAddress} agentId={agent.id} />
+          <AgentWelcomePanel agentName={agent.name} />
           <Pressable
             accessibilityRole="button"
             accessibilityState={{ expanded: openConnections.has(agent.id) }}
