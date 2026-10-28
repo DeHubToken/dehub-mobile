@@ -3,7 +3,7 @@
  *
  * Native port of dehubweb's pages/app/BuilderPreviewPage.tsx: the public,
  * sign-in-free renderer for a Builder app. This is where a shared link lands.
- * The app loads from its own origin (<slug>.dehub.app) once that answers;
+ * The app loads from its own origin (<slug>.dhb.gg) once that answers;
  * private apps open only for their owner, through a signed address. Owners
  * get a Manage sheet (address, visibility, app store, versions).
  */
