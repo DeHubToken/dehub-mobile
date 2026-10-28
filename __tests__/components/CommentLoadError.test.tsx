@@ -3,6 +3,10 @@ import { fireEvent, render } from '@testing-library/react-native';
 import { CommentLoadError } from '../../components/Comments/CommentLoadError';
 
 jest.mock('react-native-css-interop/jsx-runtime', () => jest.requireActual('react/jsx-runtime'));
+jest.mock('react-native', () => ({
+  View: 'View', Text: 'Text', Pressable: 'Pressable', TextInput: 'TextInput', ScrollView: 'ScrollView',
+  StyleSheet: { create: (styles: unknown) => styles, flatten: (styles: unknown) => styles },
+}));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 jest.mock('../../components/page/PageKit', () => ({
   KitButton: ({ label, onPress, disabled }: any) => {
