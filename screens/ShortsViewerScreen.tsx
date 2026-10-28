@@ -2478,12 +2478,16 @@ const ShortsViewerScreen = () => {
   const isFromFeed = initialItems.length <= 1;
 
   const [items, setItems] = useState<UnifiedFeedItem[]>(initialItems);
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [page, setPage] = useState(initialPage ?? (isFromFeed ? 0 : 1));
   const viewerRestore = useRef({ initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams });
   viewerRestore.current = { initialIndex: activeIndex, initialItems: items, initialPage: page, feedParams };
   const captureViewerState = useCallback(() => viewerRestore.current, []);
   const endReachedRef = useRef(false);
+  const loadFailedAt = useRef(0);
+  const [loadRetry, setLoadRetry] = useState(0);
   const fetchingRef = useRef(false);
   const shuffleSeedRef = useRef<string | undefined>(feedParams.shuffleSeed);
   const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
@@ -2711,42 +2715,66 @@ const ShortsViewerScreen = () => {
         });
         return;
       }
-      const nextPage = page + 1;
-      const params = {
-        page: nextPage,
-        limit: 20,
-        sortBy: feedParams.sortBy || "createdAt" as const,
-        shuffleSeed: shuffleSeedRef.current,
-        category: feedParams.category,
-        minter: feedParams.minter,
-        followingOnly: feedParams.followingOnly,
-      };
-      const res = await getShortsFeed(params);
-      const newItems = res.result || [];
+      // A page can bring nothing new (everything on it is already playing,
+      // e.g. the Home row's shorts sit at the top of the same ranking). The
+      // list's content then never changes, onEndReached never fires again and
+      // the viewer just stopped. Keep paging until something new arrives.
+      let nextPage = page;
+      for (let attempt = 0; attempt < 4; attempt++) {
+        nextPage += 1;
+        const res = await getShortsFeed({
+          page: nextPage,
+          limit: 20,
+          sortBy: feedParams.sortBy || "createdAt" as const,
+          shuffleSeed: shuffleSeedRef.current,
+          category: feedParams.category,
+          minter: feedParams.minter,
+          followingOnly: feedParams.followingOnly,
+        });
+        const newItems = res.result || [];
 
-      if (res.shuffleSeed && !shuffleSeedRef.current) {
-        shuffleSeedRef.current = res.shuffleSeed;
-      }
+        if (res.shuffleSeed && !shuffleSeedRef.current) {
+          shuffleSeedRef.current = res.shuffleSeed;
+        }
 
-      if (!res.pagination?.hasMore) {
-        endReachedRef.current = true;
-        setNoMoreShorts(true);
-      }
-
-      setItems((prev) => {
+        const known = new Set(itemsRef.current.map((i) => String(i.tokenId ?? i.id)));
         // Deduplicate by tokenId/id to avoid showing the same short twice
-        const existingIds = new Set(prev.map((i) => i.tokenId ?? i.id));
-        const unique = newItems.filter((i) => !existingIds.has(i.tokenId ?? i.id));
-        return [...prev, ...unique];
-      });
+        const unique = newItems.filter((i) => !known.has(String(i.tokenId ?? i.id)));
+        if (unique.length) {
+          itemsRef.current = [...itemsRef.current, ...unique];
+          setItems((prev) => {
+            const existingIds = new Set(prev.map((i) => String(i.tokenId ?? i.id)));
+            const fresh = unique.filter((i) => !existingIds.has(String(i.tokenId ?? i.id)));
+            return fresh.length ? [...prev, ...fresh] : prev;
+          });
+        }
+        if (!res.pagination?.hasMore) {
+          endReachedRef.current = true;
+          setNoMoreShorts(true);
+          break;
+        }
+        if (unique.length) break;
+      }
       setPage(nextPage);
     } catch (_err) {
-      // silent
+      // A failed page used to be silent and final: nothing changed, so the
+      // list never asked again. Try again shortly.
+      loadFailedAt.current = Date.now();
+      setLoadRetry((n) => n + 1);
     } finally {
       fetchingRef.current = false;
       setInitialLoading(false);
     }
   }, [page, feedParams]);
+
+  // Ask by position too, not only from onEndReached: that fires once per
+  // content size, so a failed or empty page left the viewer stuck at the end.
+  useEffect(() => {
+    if (endReachedRef.current || items.length === 0 || activeIndex < items.length - 4) return;
+    const wait = loadFailedAt.current ? Math.max(0, 3000 - (Date.now() - loadFailedAt.current)) : 0;
+    const timer = setTimeout(() => { loadMore(); }, wait);
+    return () => clearTimeout(timer);
+  }, [activeIndex, items.length, loadMore, page, loadRetry]);
 
   // The brainrot feed opens empty: start dealing at once rather than waiting
   // for the list to measure itself and ask.
