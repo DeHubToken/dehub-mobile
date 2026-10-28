@@ -257,8 +257,12 @@ export function LiveNowSheet({ items, onOpen }: { items: LiveNowItem[]; onOpen: 
 }
 
 const styles = StyleSheet.create({
+  // The nav pill's reserved space already leaves 6 above this row and the
+  // first card adds its own 6 margin below, so 6 more each side makes the gap
+  // above and below the same 12.
   wrap: {
-    marginBottom: 8,
+    marginTop: 6,
+    marginBottom: 6,
   },
   row: {
     flexDirection: "row",
