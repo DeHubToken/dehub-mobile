@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Neteja",
       "detail": "Selecciona fins a 50 seguidors per llot. Esquiva els missatges de DMs pagats o tancats. Comprova el xat abans de tornar a intentar-ho.",
+      "note": "Afegeix una nota a la invitació (opcional)",
       "empty": "No hi ha seguidors a aquesta pàgina.",
       "error": "No s'han pogut enviar convidats. Comprova la connexió i torna a iniciar sessió, i torna a intentar-ho.",
       "next": "Següent",

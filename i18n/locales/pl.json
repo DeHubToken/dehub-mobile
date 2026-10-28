@@ -6296,6 +6296,7 @@
     "followerInvites": {
       "clear": "Wyczyść",
       "detail": "Wybierz do 50 obserwatorów na porcję. Zignorowane są płatne lub zamknięte wiadomości prywatne. Sprawdź czat przed ponownym próbą.",
+      "note": "Dodaj wiadomość do zaproszenia (opcjonalnie)",
       "empty": "Brak obserwujących na tej stronie.",
       "error": "Nie udało się wysłać zaproszeń. Sprawdź połączenie i zaloguj się, a następnie spróbuj ponownie.",
       "next": "Następny",

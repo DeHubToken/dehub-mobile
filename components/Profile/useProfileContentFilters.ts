@@ -142,7 +142,10 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
 
   const homePostType: FeedPostType = showPostType ? filters.postType : "all";
 
-  const toolbar = {
+  // Stable bundles: the toolbar sits in the profile list's header, and a new
+  // object here on every render handed the list a new header each time, so
+  // the whole profile header re-rendered whenever the profile did, mid-fling.
+  const toolbar = useMemo(() => ({
     sort,
     onSortChange: setSort,
     search,
@@ -151,9 +154,9 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
     onFiltersToggle: handleFiltersToggle,
     onFiltersClose: handleFiltersClose,
     activeFilterCount,
-  };
+  }), [sort, search, setSearch, filtersOpen, handleFiltersToggle, handleFiltersClose, activeFilterCount]);
 
-  const panel = {
+  const panel = useMemo(() => ({
     visible: filtersOpen,
     filters,
     onFiltersChange: setFilters,
@@ -165,7 +168,7 @@ export function useProfileContentFilters(activeTab: string, resetKey?: string) {
     hideSort: true,
     maxHeight: PROFILE_FILTER_PANEL_HEIGHT,
     innerScrollEnabled: true,
-  };
+  }), [filtersOpen, filters, categories, selectedCategory, handleCategoryPress, handleResetFilters, showPostType]);
 
   return { toolbar, panel, contentQuery, homePostType };
 }

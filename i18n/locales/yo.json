@@ -6292,6 +6292,7 @@
     "followerInvites": {
       "clear": "Pa rẹ́",
       "detail": "Yan ọmọlẹ́yìn tó tó àádọ́ta (50) ní ẹ̀ẹ̀kan. A ó fò àwọn tí wọ́n ti sanwó tàbí tí wọ́n ti sé àwọn DM wọn kọjá. Ṣàyẹ̀wò ìfọ̀rọ̀wánilẹ́nuwò náà fún àwọn ìránṣẹ́ tí kò tíì fìdí rẹ̀ múlẹ̀ kí o tó tún gbìyànjú.",
+      "note": "Fi àkọsílẹ̀ kún ìpè rẹ (àṣàyàn)",
       "empty": "Kò sí ọmọlẹ́yìn kankan lórí ojúewé yìí.",
       "error": "A kò lè fi àwọn ìkésíni ránṣẹ́. Ṣàyẹ̀wò ìsopọ̀ rẹ àti ìwọlé rẹ, lẹ́yìn náà tún gbìyànjú.",
       "next": "Tẹ̀lé e",

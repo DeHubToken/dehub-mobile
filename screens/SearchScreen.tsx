@@ -1,3 +1,4 @@
+import { createSearchRequestGuard } from '../libs/search-request-guard';
 import ThemePanel from '../components/ui/ThemePanel';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 import { useSwipeBackAction } from '../hooks/useSwipeBack';
@@ -281,6 +282,14 @@ const SearchScreen: React.FC = () => {
   // Refs
   const inputRef = useRef<TextInput>(null);
   const lastQuery = useRef("");
+  const searchRequests = useRef(createSearchRequestGuard());
+  const invalidateSearch = useCallback(() => {
+    searchRequests.current.invalidate();
+    setLoading(false);
+    setLoadingMore(false);
+    setRefreshing(false);
+  }, []);
+  useEffect(() => { invalidateSearch(); return () => { searchRequests.current.invalidate(); }; }, [userAddress, invalidateSearch]);
 
   useEffect(() => {
     getHistory(userAddress).then(setSearchHistory);
@@ -431,6 +440,11 @@ const SearchScreen: React.FC = () => {
     async (query: string, tab: TabKey = activeTab, page: number = 1, append: boolean = false) => {
       const q = query.trim();
       if (!q) return;
+      const scope = JSON.stringify([q, tab, userAddress]);
+      const request = searchRequests.current.begin(scope, page);
+      if (!request) return;
+      const current = request.current;
+      if (page === 1) setLoadingMore(false);
 
       if (page === 1) {
         setLoading(true);
@@ -459,6 +473,8 @@ const SearchScreen: React.FC = () => {
           postType,
         });
 
+        if (!current()) return;
+        if (!res.status) throw new Error('Search request failed');
         if (res.accounts) {
           if (append) {
             setAccounts((prev) => [...prev, ...res.accounts!.items]);
@@ -493,7 +509,8 @@ const SearchScreen: React.FC = () => {
               (res.content?.pagination?.totalCount ?? res.content?.items.length ?? 0),
           });
           await addToHistory(q, userAddress);
-          getHistory(userAddress).then(setSearchHistory);
+          if (!current()) return;
+          getHistory(userAddress).then(history => { if (current()) setSearchHistory(history); });
           setSuggestions([]);
           lastQuery.current = q;
         }
@@ -502,9 +519,12 @@ const SearchScreen: React.FC = () => {
       } catch (e) {
         console.error("[SearchScreen] Search error:", e);
       } finally {
-        setLoading(false);
-        setLoadingMore(false);
-        setRefreshing(false);
+        if (current()) {
+          request.finish();
+          setLoading(false);
+          setLoadingMore(false);
+          setRefreshing(false);
+        }
       }
     },
     [activeTab, userAddress],
@@ -537,6 +557,7 @@ const SearchScreen: React.FC = () => {
   useEffect(() => () => { if (settleTimer.current) clearInterval(settleTimer.current); }, []);
   useEffect(() => {
     if (routeParams?.section !== "newMembers") return;
+    invalidateSearch();
     if (hasSearched || searchQuery.trim()) {
       showHeader();
       setSearchQuery.initialize("");
@@ -606,6 +627,7 @@ const SearchScreen: React.FC = () => {
   const handleTabChange = useCallback(
     (tab: TabKey) => {
       if (tab === activeTab) return;
+      invalidateSearch();
       setActiveTab(tab);
       // The new tab opens at the top of its own list, so the header belongs
       // back on screen however the last one was left.
@@ -614,7 +636,7 @@ const SearchScreen: React.FC = () => {
         executeSearch(searchQuery, tab, 1);
       }
     },
-    [activeTab, hasSearched, searchQuery, executeSearch, showHeader],
+    [activeTab, hasSearched, searchQuery, executeSearch, showHeader, invalidateSearch],
   );
 
   const handleLoadMore = useCallback(() => {
@@ -637,6 +659,7 @@ const SearchScreen: React.FC = () => {
   }, [searchQuery, activeTab, executeSearch]);
 
   const clearSearch = useCallback(() => {
+    invalidateSearch();
     showHeader();
     setSearchQuery.complete(searchQuery, "");
     setAccounts([]);
@@ -647,7 +670,7 @@ const SearchScreen: React.FC = () => {
     setHasSearched(false);
     lastQuery.current = "";
     inputRef.current?.focus();
-  }, [showHeader, setSearchQuery, searchQuery]);
+  }, [showHeader, setSearchQuery, searchQuery, invalidateSearch]);
 
   const handleReplaceSearchBox = useCallback((term: string) => {
     setSearchQuery(term);

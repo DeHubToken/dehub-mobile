@@ -56,6 +56,7 @@ import { likeLiveStream } from "../../services/live.service";
 import { getAvatarUrl, shareProfile } from "../../libs/misc";
 import { WEBSITE_LINK } from "../../config";
 import LiveViewerHeader from "../LiveViewer/LiveViewerHeader";
+import type { TranslateToggle } from "../ui/TranslateButton";
 import LiveViewerChat from "../LiveViewer/LiveViewerChat";
 import LiveViewerActionBar from "../LiveViewer/LiveViewerActionBar";
 import LiveViewerPills from "../LiveViewer/LiveViewerPills";
@@ -209,7 +210,11 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
   const [followLoading, setFollowLoading] = useState<boolean>(false);
   useEffect(() => {
     if (!streamEntity) return;
-    const account = (streamEntity as any)?.account || null;
+    // Some stream rows come without the creator's account attached; the
+    // owner's address is still on the row, and that is all Follow needs.
+    // Without it the header had no creator and never showed Follow.
+    const owner = (streamEntity as any)?.address;
+    const account = (streamEntity as any)?.account || (owner ? { address: owner } : null);
     if (account) setCreator(account);
     // Only seed isFollowing from streamEntity when no nft prop was passed (e.g. deep link)
     if (typeof (streamEntity as any)?.isFollowing === 'boolean' && !nftProp) {
@@ -1609,21 +1614,28 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     liveChat.sendMessage({ content: url, messageType: "gif", media: [{ url, type: "gif" }] });
   }, [chatRoomId, isSignedIn, liveChat]);
 
-  // The creator and the moderators they appointed act on other people's lines
-  // with a long press: time out, ban from these streams, make moderator.
+  // A long press on a chat line: Translate / Show original when it is in
+  // another language, and for the creator and the moderators they appointed,
+  // time out, ban from these streams, make moderator on other people's lines.
   const isStreamOwner = ownerStatus === "owner" || (streamEntity as any)?.isOwner === true;
   const canModerate = !!postTokenId && (isStreamOwner || liveChat.isModerator);
-  const [moderating, setModerating] = useState<{ address: string; name: string } | null>(null);
-  const openModeration = useCallback((activity: any) => {
+  const [lineMenu, setLineMenu] = useState<{ address: string; name: string; canModerate: boolean; translate?: TranslateToggle } | null>(null);
+  const openLineMenu = useCallback((activity: any, translate?: TranslateToggle) => {
     const address = String(activity?.user?.address || activity?.address || "").toLowerCase();
     const me = String(user?.walletAddress || user?.address || "").toLowerCase();
-    if (!address || address === me) return;
-    setModerating({ address, name: activity?.user?.displayName || activity?.user?.username || activity?.meta?.username || "" });
-  }, [user?.walletAddress, user?.address]);
+    const canModerateLine = canModerate && !!address && address !== me;
+    if (!canModerateLine && !translate) return;
+    setLineMenu({ address, name: activity?.user?.displayName || activity?.user?.username || activity?.meta?.username || "", canModerate: canModerateLine, translate });
+  }, [canModerate, user?.walletAddress, user?.address]);
   const moderate = useCallback(async (choice: string) => {
-    const target = moderating;
-    setModerating(null);
-    if (!target || postTokenId == null) return;
+    const target = lineMenu;
+    setLineMenu(null);
+    if (!target) return;
+    if (choice === "translate") {
+      target.translate?.toggle();
+      return;
+    }
+    if (!target.canModerate || postTokenId == null) return;
     try {
       if (choice === "ban") {
         await banFromStreams(postTokenId, target.address);
@@ -1638,7 +1650,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
     } catch {
       toastError(t("liveChatModeration.failed"));
     }
-  }, [moderating, postTokenId, t]);
+  }, [lineMenu, postTokenId, t]);
   // A stream timeout quiets this viewer until it runs out, then lets go.
   const [muted, setMuted] = useState(false);
   useEffect(() => {
@@ -1833,18 +1845,25 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
                 <LiveEventBanner joinEvent={joinEvent} giftEvent={giftEvent} />
   
                 {/* The room. Read-only now — saying something is the bar's job. */}
-                <LiveViewerChat activities={chatActivities} onModerate={canModerate ? openModeration : undefined} />
+                <LiveViewerChat activities={chatActivities} onHold={openLineMenu} />
                 <SettingsOptionModal
-                  visible={!!moderating}
-                  onClose={() => setModerating(null)}
-                  title={moderating?.name || t("liveChatModeration.title")}
+                  visible={!!lineMenu}
+                  onClose={() => setLineMenu(null)}
+                  title={lineMenu?.name || t("liveChatModeration.title")}
                   value=""
                   options={[
-                    { value: "60", label: t("liveChatModeration.timeout1m") },
-                    { value: "600", label: t("liveChatModeration.timeout10m") },
-                    { value: "3600", label: t("liveChatModeration.timeout1h") },
-                    { value: "ban", label: t("liveChatModeration.ban") },
-                    ...(isStreamOwner ? [{ value: "moderator", label: t("liveChatModeration.makeModerator") }] : []),
+                    ...(lineMenu?.translate
+                      ? [{ value: "translate", label: lineMenu.translate.isTranslated ? t("common.showOriginal") : t("common.translate") }]
+                      : []),
+                    ...(lineMenu?.canModerate
+                      ? [
+                          { value: "60", label: t("liveChatModeration.timeout1m") },
+                          { value: "600", label: t("liveChatModeration.timeout10m") },
+                          { value: "3600", label: t("liveChatModeration.timeout1h") },
+                          { value: "ban", label: t("liveChatModeration.ban") },
+                          ...(isStreamOwner ? [{ value: "moderator", label: t("liveChatModeration.makeModerator") }] : []),
+                        ]
+                      : []),
                   ]}
                   onSelect={(choice) => void moderate(choice)}
                 />

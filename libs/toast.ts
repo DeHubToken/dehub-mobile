@@ -28,7 +28,8 @@ interface ToastOptions extends Omit<Parameters<typeof toast>[1], 'description'> 
   onActionPress?: () => void;
   dismissible?: boolean; // Whether to show close button
   /**
-   * How long the toast stays up, ms (Infinity to pin it).
+   * How long the toast stays up, ms. Never Infinity: every toast has to go
+   * away on its own (a toast that waits for a tap reads as the app stuck).
    *
    * Declared explicitly because the omitted base type does not carry it, yet
    * it is passed through to sonner and honoured — toastPromise has relied on
@@ -112,7 +113,9 @@ export const toastPromise = <T,>(
     ...options,
     id,
     dismissible: false, // Loading states shouldn't be dismissible
-    duration: Infinity, // Keep loading toast until promise resolves
+    // Until the promise settles, which replaces it. Capped rather than pinned,
+    // so a request that never answers cannot leave it up for good.
+    duration: 120_000,
   });
 
   return promise

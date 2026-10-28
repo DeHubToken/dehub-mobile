@@ -6307,6 +6307,7 @@
     "followerInvites": {
       "clear": "Xóa",
       "detail": "Chọn tối đa 50 người theo dõi trong một lần. Các tin nhắn trả phí hoặc đóng sẽ bị bỏ qua. Kiểm tra cuộc trò chuyện trước khi thử lại.",
+      "note": "Thêm lời nhắn vào lời mời (không bắt buộc)",
       "empty": "Không có người theo dõi trên trang này.",
       "error": "Không thể gửi lời mời. Kiểm tra kết nối và đăng nhập lại, sau đó thử lại.",
       "next": "Tiếp theo",

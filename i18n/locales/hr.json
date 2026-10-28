@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Izbriši",
       "detail": "Odaberite do 50 pratitelja po batch-u. Plaćani ili zatvoreni DM-ovi se prekidaju. Provjerite chat za nepotvrđene slanje prije pokušaja ponovnog slanja.",
+      "note": "Dodajte bilješku pozivnici (nije obavezno)",
       "empty": "Nema pratitelja na ovoj stranici.",
       "error": "Nije uspješno poslano pozive. Provjerite vezu i prijavu, a zatim pokušajte ponovno.",
       "next": "Slijedi",

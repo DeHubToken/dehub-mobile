@@ -1775,6 +1775,13 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
     if (voice.isVoiceMode) voice.stop();
     else void voice.start();
   }, [voice]);
+  // The ball works like a record button: tap to start, tap again to send what
+  // you said, tap while it talks to skip. Stop Voice Chat under it ends it.
+  const pressOrb = useCallback(() => {
+    if (!voice.isVoiceMode) { void voice.start(); return; }
+    if (voice.status === 'listening') voice.finishTurn();
+    else if (voice.status === 'speaking') voice.skip();
+  }, [voice]);
 
   // Leaving the tab ends the conversation rather than leaving the mic open.
   useEffect(() => {
@@ -1987,7 +1994,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
           exchangesLeft={voice.exchangesLeft}
           lastReply={lastReply}
           active={isScreenFocused}
-          onOrbPress={toggleVoice}
+          onOrbPress={pressOrb}
           onSkip={voice.skip}
           onStop={voice.stop}
           onAction={handleQuickAction}
@@ -2107,7 +2114,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
             allowEmpty={!!activeTemplate || !!(studio && ((studioSettings.mode === 'audio' && studioSettings.audioSettings?.media) || (studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint && attachedImage)))}
             placeholder={studio ? t(studioSettings.mode === 'image' && IMAGE_MODELS[studioSettings.model]?.outpaint ? 'creator.expandPromptHint' : 'creator.studioPrompt') : undefined}
           sendLabel={studio ? t('creator.studioCreate') : undefined}
-          onVoicePress={studio ? undefined : toggleVoice}
+          onVoicePress={studio || showStage ? undefined : toggleVoice}
           voiceActive={voice.isVoiceMode}
         />}
       </View>

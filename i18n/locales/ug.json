@@ -6281,6 +6281,7 @@
     "followerInvites": {
       "clear": "Tozalash",
       "detail": "بىر توپتا 50 نەپەر ئەگەشكۈچىنى تاللاڭ. ھەقلىق ياكى تاقالغان DMلار ئۆتۈپ كېتىدۇ. قايتا سىناپ بېقىشتىن بۇرۇن، تەستىقلانمىغان ئەۋەتكۈچىلەرنىڭ سۆھبىتىنى تەكشۈرۈپ بېقىڭ.",
+      "note": "تەكلىپىڭىزگە ئىزاھات قوشۇڭ (ئىختىيارى)",
       "empty": "Bu sahifada murojaheylar yo'q.",
       "error": "Murojaheylar yuborishga muvaffaqiyatsizlik. Tizimga ulanish va ro'yxatdan o'tishdan keyin qayta urinib ko'ring.",
       "next": "Keyingi",

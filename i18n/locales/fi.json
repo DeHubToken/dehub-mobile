@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Tyhjää",
       "detail": "Valitse enintään 50 seuraajaa batchissa. Maksetut tai suljettu viestit ohitetaan. Tarkista keskustelu ennen uusia yrityksiä.",
+      "note": "Lisää kutsuun viesti (valinnainen)",
       "empty": "Ei seuraajia tällä sivulla.",
       "error": "Kutsujen lähettäminen epäonnistui. Tarkista yhteys ja kirjaudu uudelleen, ja yritä uudelleen.",
       "next": "Seuraava",
