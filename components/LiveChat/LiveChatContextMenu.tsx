@@ -29,6 +29,8 @@ import type { LiveChatMessageData, LiveChatUser } from "../../services/livechat.
 import EmojiSheet from "../Upload/EmojiSheet";
 import { expandEmojiTokens } from "../common/EmojiText";
 
+import type { TranslateToggle } from "../ui/TranslateButton";
+
 export interface MessageLayout {
   x: number;
   y: number;
@@ -54,6 +56,8 @@ interface LiveChatContextMenuProps {
   isSenderBanned?: boolean;
   onBan?: (msg: LiveChatMessageData) => void;
   onUnban?: (msg: LiveChatMessageData) => void;
+  /** Translate / Show original — set only when the line is in another language. */
+  translate?: TranslateToggle;
 }
 
 const REACTION_EMOJIS = ["🔥", "❤️", "😂", "👀", "💯", "🙌"];
@@ -223,6 +227,7 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
   isSenderBanned,
   onBan,
   onUnban,
+  translate,
 }) => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -287,12 +292,13 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
     let count = 0;
     if (onReply) count++; // Reply
     if (message.content?.trim()) count++; // Copy
+    if (translate) count++; // Translate / Show original
     if (isMe && message.messageType === "text" && message.content?.trim()) count++; // Edit
     if (isMe || isModerator) count++; // Delete
     if (isModerator) count++; // Pin/Unpin
     if (isModerator && !isMe && (onBan || onUnban)) count++; // Ban/Unban
     return count;
-  }, [message, isMe, isModerator, onReply, onBan, onUnban]);
+  }, [message, isMe, isModerator, onReply, onBan, onUnban, translate]);
 
   const estimatedActionsHeight = useMemo(
     () => REACTION_ROW_HEIGHT + actionCount * 48 + 16,
@@ -463,6 +469,17 @@ const LiveChatContextMenuComponent: React.FC<LiveChatContextMenuProps> = ({
 
                 {hasContent && (
                   <ActionRow icon="Copy" label={t("common.copy")} onPress={handleCopy} />
+                )}
+
+                {translate && (
+                  <ActionRow
+                    icon={translate.isTranslated ? "RotateCcw" : "Languages"}
+                    label={translate.isTranslated ? t("common.showOriginal") : t("common.translate")}
+                    onPress={() => {
+                      onClose();
+                      translate.toggle();
+                    }}
+                  />
                 )}
 
                 {canEdit && onEdit && (
