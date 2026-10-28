@@ -703,6 +703,8 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
   const [observedPeak, setObservedPeak] = useKeyedState(postKey, 0);
   const peakAudience = Math.max(seedViewerStats(stream).peakViewers, observedPeak);
   const onLiveViewerCount = useCallback((count: number) => setObservedPeak(peak => Math.max(peak, count)), [setObservedPeak]);
+  // Same grey as the view count beside it; META_TEXT's hex gets lifted to white on dark themes.
+  const metaGrey = useMetaGrey();
   const liveLikes = stream?.likes || item.likes || 0;
 
   // --- Access info (for navigation) ---
@@ -2980,7 +2982,7 @@ const FeedCardComponent: React.FC<FeedCardProps> = ({
           count={`${formatCompactNumber(views)}${isWatchedVideo ? watchedLabel(i18n.resolvedLanguage ?? i18n.language) : ""}`}
         />
         {isLive && peakAudience > 0 && (
-          <Text style={META_TEXT}>{_copy("copy.e22a9a53a007", { defaultValue: "Peak: " })}{formatCompactNumber(peakAudience)}
+          <Text style={[META_TEXT, { color: metaGrey }]}>{_copy("copy.e22a9a53a007", { defaultValue: "Peak: " })}{formatCompactNumber(peakAudience)}
           </Text>
         )}
         {showTranslate && (
