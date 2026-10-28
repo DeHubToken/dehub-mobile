@@ -9,7 +9,7 @@ import ScreenHeader from '../components/ScreenHeader';
 import { PageEmpty, PageSection, PageTabs } from '../components/page/PageKit';
 import { useAppTheme } from '../context/ThemeContext';
 import { openExternalLink } from '../libs/links.utils';
-import { CATEGORIES, FEATURES, PLATFORMS, REVIEWED_ON, COMPETITOR_REVIEWED_ON, SOURCES, STATUS_LABELS, comparisonCoverage, entryFor, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
+import { CATEGORIES, FEATURES, PLATFORMS, COMPETITOR_REVIEWED_ON, SOURCES, STATUS_LABELS, comparisonCoverage, entryFor, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
 
 export default function CompareScreen() {
   const { t } = useTranslation();
@@ -46,7 +46,7 @@ export default function CompareScreen() {
     <FlatList data={filtered} keyExtractor={item => item.id} keyboardShouldPersistTaps="handled" contentContainerStyle={{ paddingBottom: insets.bottom + 90 }} initialNumToRender={8}
       ListHeaderComponent={<>
         <PageSection>
-          <Text style={{ color: colors.mutedForeground }}>{copy('edition', 'English research edition')} · {REVIEWED_ON}</Text>
+          <Text style={{ color: colors.mutedForeground }}>{copy('edition', 'English research edition')} · {COMPETITOR_REVIEWED_ON}</Text>
           <Text style={[styles.headline, { color: colors.foreground }]}>{copy('headline', 'Find your fit, feature by feature.')}</Text>
           <Text style={[styles.body, { color: colors.mutedForeground }]}>{FEATURES.length} {copy('features', 'features')} · {CATEGORIES.length} {copy('categories', 'categories')} · {PLATFORMS.length} {copy('platforms', 'other platforms')}</Text>
           <Pressable accessibilityRole="button" accessibilityState={{ expanded: method }} onPress={() => setMethod(value => !value)} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{copy('method', 'How to read this comparison')}</Text></Pressable>
