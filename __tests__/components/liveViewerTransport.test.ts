@@ -34,7 +34,7 @@ describe('live viewer transport', () => {
     const hook = readSource('hooks', 'useWhepStream.ts');
 
     expect(hook).toContain('setFailed(true)');
-    expect(hook).toContain('enabled && !failed ? whepEndpointFor(stream) : null');
+    expect(hook).toContain('enabled && !failed && !silentBefore ? whepEndpointFor(stream) : null');
   });
 
   it('mutes the remote track, since there is no element to mute', () => {
@@ -87,6 +87,16 @@ describe('live viewer transport handover', () => {
 
     // pending is derived from the endpoint, which is null for anything without
     // a WHEP route — so those fall straight through to HLS.
-    expect(hook).toContain('const endpoint = enabled && !failed ? whepEndpointFor(stream) : null');
+    expect(hook).toContain('const endpoint = enabled && !failed && !silentBefore ? whepEndpointFor(stream) : null');
+  });
+});
+
+describe('live viewer silent WebRTC', () => {
+  const hook = readSource('hooks', 'useWhepStream.ts');
+
+  it('waits for a real picture, not just a connection, before keeping WebRTC', () => {
+    expect(hook).not.toContain("state === 'playing'");
+    expect(hook).toContain('if (isRealPicture(size)) pictureRef.current();');
+    expect(hook).toContain('rememberWhepSilent(playbackId);');
   });
 });
