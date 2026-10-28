@@ -10096,6 +10096,17 @@
     }
   },
   "creator": {
+    "batchFlowLimit": "De Flow-lijst is vol. Verwijder een ongebruikte Flow voordat je een nieuwe batch maakt.",
+    "batchReviewCampaign": "Campagnebatch in Flow beoordelen",
+    "batchReviewFilmImages": "Storyboardafbeeldingen beoordelen",
+    "batchReviewFilmVideos": "Filmclips als batch beoordelen",
+    "batchReviewHint": "Opent een afzonderlijk opgeslagen Flow. Controleer elk item en de totale prijs voordat je betaalt. Voltooide items en de oorspronkelijke betaling blijven bewaard voor herstel. Referenties worden naar je privébibliotheek gekopieerd; opslag en netwerkverkeer zijn van toepassing.",
+    "batchInvalid": "Vul elk item in voordat je een batch van 1–12 afbeeldingen of clips voorbereidt.",
+    "batchReferenceLimit": "Deze batch ondersteunt één afbeeldingsreferentie per item. Verwijder extra referenties of bereid dat item afzonderlijk voor.",
+    "batchVideoSettings": "Clips in deze batch vereisen een geheel aantal van 4–15 seconden en een beeldverhouding van 16:9, 9:16 of 1:1.",
+    "batchMissingReference": "Een referentie ontbreekt, wordt niet ondersteund of is groter dan 25 MB. Herstel deze in de editor voordat je de batch voorbereidt.",
+    "batchOwnerChanged": "Het account of concept is gewijzigd. Open deze batch opnieuw met het oorspronkelijke account.",
+    "batchConflict": "De opgeslagen batch komt niet overeen met de oorspronkelijke versie.",
     "campaignPlanTitle": "Campagnevarianten en afleveringen",
     "campaignPlanIntro": "Bewaar maximaal 12 varianten of afleveringen. Elk opent de studio voor een eigen controle en prijsopgave. Gedeelde notities sturen de continuïteit; productuiterlijk, personages en stemmen kunnen per generatie verschillen.",
     "campaignTitle": "Naam van campagne of serie",

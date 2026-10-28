@@ -10263,6 +10263,17 @@
     }
   },
   "creator": {
+    "batchFlowLimit": "The Flow list is full. Remove an unused Flow before creating another batch.",
+    "batchReviewCampaign": "Review campaign batch in Flow",
+    "batchReviewFilmImages": "Review storyboard image batch",
+    "batchReviewFilmVideos": "Review film clip batch",
+    "batchReviewHint": "Opens a separate saved Flow. Review every item and the full price before paying. Completed items and the original payment are kept for recovery. References are copied to your private library; storage and network usage apply.",
+    "batchInvalid": "Complete each item before preparing a batch of 1–12 images or clips.",
+    "batchReferenceLimit": "This batch supports one image reference per item. Remove extra references or prepare that item individually.",
+    "batchVideoSettings": "For this batch, clips require a whole duration of 4–15 seconds and a 16:9, 9:16 or 1:1 aspect ratio.",
+    "batchMissingReference": "A reference is missing, unsupported or larger than 25 MB. Restore it in the editor before preparing the batch.",
+    "batchOwnerChanged": "The account or draft changed. Reopen this batch under its original account.",
+    "batchConflict": "The saved batch does not match its original snapshot.",
     "campaignPlanTitle": "Campaign variants and episodes",
     "campaignPlanIntro": "Save up to 12 variations or episodes. Each opens the studio for its own review and quote. Shared notes guide continuity; product appearance, characters and voices can vary between generations.",
     "campaignTitle": "Campaign or series name",
