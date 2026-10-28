@@ -128,7 +128,8 @@ const ChatRow: React.FC<{
   onLongPress: (message: CommunityChatMessage) => void;
   onToggleReaction: (id: string, emoji: string) => void;
   onOpenProfile: (identifier: string) => void;
-}> = ({ message, myAddress, flashing, canReact, onLongPress, onToggleReaction, onOpenProfile }) => {
+  onJumpToMessage: (id: string) => Promise<void>;
+}> = ({ message, myAddress, flashing, canReact, onLongPress, onToggleReaction, onOpenProfile, onJumpToMessage }) => {
   const { t } = useTranslation();
 
   const isMe = !!myAddress && message.wallet_address?.toLowerCase() === myAddress;
@@ -202,14 +203,21 @@ const ChatRow: React.FC<{
         </View>
 
         {!!message.reply_to && (
-          <View className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1">
+          <Pressable
+            className="bg-white/5 rounded-lg px-2.5 py-1.5 mb-1"
+            onPress={() => void onJumpToMessage(message.reply_to!.id)}
+            onLongPress={() => onLongPress(message)}
+            delayLongPress={300}
+            accessibilityRole="button"
+            accessibilityLabel={t("communities.chat.jumpToReply", { defaultValue: "Jump to replied message" })}
+          >
             <Text className="text-zinc-300 text-[11px] font-medium" numberOfLines={1}>
               {message.reply_to.sender_name}
             </Text>
             <Text className="text-white/50 text-xs" numberOfLines={1}>
               {message.reply_to.content}
             </Text>
-          </View>
+          </Pressable>
         )}
 
         {message.message_type === "voice" && !!message.image_url ? (
@@ -572,9 +580,10 @@ export function CommunityChatPanel({ community, membership, isMember }: Communit
         onLongPress={setSheetFor}
         onToggleReaction={handleToggleReaction}
         onOpenProfile={handleOpenProfile}
+        onJumpToMessage={jumpToMessage}
       />
     ),
-    [myAddress, flashId, canSend, handleToggleReaction, handleOpenProfile],
+    [myAddress, flashId, canSend, handleToggleReaction, handleOpenProfile, jumpToMessage],
   );
 
   // ── composer state, in the order the server checks them ──
