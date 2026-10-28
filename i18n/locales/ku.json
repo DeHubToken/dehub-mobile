@@ -10111,6 +10111,7 @@
     "savePrompt": "Vê şandiyê wek reşnivîs tomar bikî da ku paşê temam bikî û biweşînî?"
   },
   "editor": {
+    "stage": {"create":"Dîmeneke 3D zêde bike","title":"Dîmena 3D","hint":"Dîmenê bi gog û qutiyan amade bike. Kamera, cih û sê ronahiyên serbixwe wêneya renderkirî diguherînin.","preview":"Pêşdîtina dîmena renderkirî","error":"Wêne nehat amadekirin. Referansên dîmenê kontrol bike û dîsa biceribîne.","camera":"Kamera","yaw":"Zivirîn","elevation":"Bilindahî","distance":"Dûrahî","fov":"Qada dîtinê","object":"Tişt","add":"Zêde bike","sphere":"Gog","box":"Qutî","x":"X","y":"Y","z":"Z","scale":"Mezinahî","color":"Reng","remove":"Tiştê rake","light":"Ronahî","intensity":"Hêz","diffusion":"Belavbûn","saving":"Wêne tê amadekirin…","useFrame":"Wêneya renderkirî wek referansa dîmenê bi kar bîne","frameHint":"PNG ya 320 × 180 diafirîne û li referansên dîmenê zêde dike. Berî afirandinê sînorê referansan û bihayê kontrol bike.","frameName":"Wêneya dîmenê"},
     "film": {
       "action": "Çalakî û pêkhateya dîmenê",
       "addShot": "Dîmenekê zêde bike",

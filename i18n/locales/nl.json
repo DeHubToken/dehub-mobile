@@ -8138,6 +8138,7 @@
     }
   },
   "editor": {
+    "stage": {"create":"3D-scène toevoegen","title":"3D-scène","hint":"Zet een opname op met bollen en blokken. De camera, posities en drie onafhankelijke vlaklichten veranderen het gerenderde beeld.","preview":"Voorbeeld van de gerenderde scène","error":"Het beeld kon niet worden voorbereid. Controleer de referenties van de opname en probeer opnieuw.","camera":"Camera","yaw":"Draaiing","elevation":"Hoogtehoek","distance":"Afstand","fov":"Beeldhoek","object":"Object","add":"Toevoegen","sphere":"Bol","box":"Blok","x":"X","y":"Y","z":"Z","scale":"Grootte","color":"Kleur","remove":"Object verwijderen","light":"Licht","intensity":"Sterkte","diffusion":"Spreiding","saving":"Beeld voorbereiden…","useFrame":"Gerenderd beeld als opnamereferentie gebruiken","frameHint":"Maakt een PNG van 320 × 180 en voegt deze toe aan de opnamereferenties. Controleer de referentielimiet en prijs voordat je genereert.","frameName":"Scènebeeld"},
     "film": {
       "repairRefs": "Ontbrekende mediakoppelingen verwijderen",
       "title": "Filmproject",
