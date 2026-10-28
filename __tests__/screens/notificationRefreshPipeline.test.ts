@@ -16,7 +16,7 @@ it('starts all sources together, reuses custom rows, and paints before slow badg
     useCallback: (fn: unknown) => fn, fetchGenRef: { current: 0 }, pageRef: { current: 1 },
     selectedFilterRef: { current: 'likes' }, walletAddressRef: { current: 'viewer' },
     apiTypesForFilter: () => ['like'], getNotifications: api, fetchCustomNotifications: custom,
-    log: { error: jest.fn() },
+    log: { error: jest.fn() }, listedUnreadRef: { current: new Map() },
   };
   for (const key of ['setLoadError', 'setNotifications', 'setPage', 'setHasMore', 'setCountsSource', 'setRefreshing', 'setLoading', 'setLoadingMore']) scope[key] = jest.fn();
   const refresh = runInNewContext(compiled, scope);
