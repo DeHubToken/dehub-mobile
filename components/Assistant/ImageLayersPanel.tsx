@@ -15,7 +15,7 @@ import type { ImageLayerSet, LayerChoice } from '../../libs/editor/imageLayersCo
 import { resumeLayerSubmission, withLayerAdmission } from '../../libs/editor/layerSubmission';
 
 const request = { kind: 'tool' as const, modelId: 'qwen-image-layered', quantity: 1 };
-export function ImageLayersPanel({ wallet, source }: { wallet: string; source: CreatorAsset }) {
+export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: string; source: CreatorAsset; onOpenEditor(): void }) {
   const { t } = useTranslation(), navigation = useNavigation<any>();
   const quote = useJobQuote(request, !source.layerSetId && DIGITAL_PURCHASES_ENABLED);
   const { payForJob } = useJobPayment(DIGITAL_PURCHASES_ENABLED);
@@ -80,7 +80,7 @@ export function ImageLayersPanel({ wallet, source }: { wallet: string; source: C
       </View>; })}
       <Button title={t('creator.layerOpen', { defaultValue: 'Open layers in editor' })} onPress={() => void run(async () => {
         const fresh = await collectLayers(wallet, { id: set.id, status: 'succeeded' });
-        if (fresh && current()) navigation.navigate(ScreenNames.MediaEditor, { importMedia: { kind: 'image', url: fresh.layers[0].url, name: t('creator.layerTitle', { defaultValue: 'Separate image layers' }), owner: wallet, layerSet: fresh, layerChoices: choices } });
+        if (fresh && current()) { onOpenEditor(); navigation.navigate(ScreenNames.MediaEditor, { importMedia: { kind: 'image', url: fresh.layers[0].url, name: t('creator.layerTitle', { defaultValue: 'Separate image layers' }), owner: wallet, layerSet: fresh, layerChoices: choices } }); }
       })} />
       <Button title={t('creator.layerExport', { defaultValue: 'Export PNG layers + manifest ZIP' })} onPress={() => void run(async () => {
         const fresh = await collectLayers(wallet, { id: set.id, status: 'succeeded' }); if (fresh && current()) await exportImageLayers(fresh, choices, abort.current.signal);

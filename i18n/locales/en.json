@@ -10292,6 +10292,15 @@
     }
   },
   "creator": {
+    "layerTitle": "Separate image layers",
+    "layerSource": "Original image",
+    "layerDescription": "Four transparent PNG layers. Text remains part of each image.",
+    "layerSeparate": "Separate layers",
+    "layerPending": "Saved job: {{status}}. Collect or retry saving without another payment.",
+    "layerCollect": "Collect / retry save",
+    "layerOpen": "Open layers in editor",
+    "layerExport": "Export PNG layers + manifest ZIP",
+    "layerNumber": "Layer {{number}}",
     "priceRetry": "The price could not be confirmed. Review the price and try again.",
     "avatarTitle": "Talking portrait",
     "avatarRequirements": "Square PNG portrait, 512–2048 pixels, up to 5 MB. Mono 24 kHz 16-bit PCM WAV, 5–30 seconds. The last fraction of a second is padded with silence.",

@@ -74,7 +74,7 @@ export default function CreatorLibraryManager({ wallet }: { wallet?: string }) {
           <Button text={t(filter === 'hidden' ? 'editor.cloud.restore' : 'editor.layers.hide')} disabled={busy || !selected.length} onPress={() => void change(filter === 'hidden' ? 'restore' : 'hide')} />
         </View>
         {error && <View accessibilityLiveRegion="polite"><Text className="text-theme-neutrals-100">{t('common.somethingWentWrong')}</Text><Button text={t('common.retry')} disabled={busy} onPress={() => void read()} /></View>}
-        {selected.length === 1 && rows.find(row => row.id === selected[0])?.kind === 'image' && <ScrollView style={{ maxHeight: 350 }}><ImageLayersPanel key={`${wallet}:${selected[0]}`} wallet={wallet} source={rows.find(row => row.id === selected[0])!} /></ScrollView>}
+        {open && selected.length === 1 && rows.find(row => row.id === selected[0])?.kind === 'image' && <ScrollView style={{ maxHeight: 350 }}><ImageLayersPanel key={`${wallet}:${selected[0]}`} wallet={wallet} source={rows.find(row => row.id === selected[0])!} onOpenEditor={() => setOpen(false)} /></ScrollView>}
         {busy && <ActivityIndicator />}
         <FlatList data={rows} keyExtractor={row => row.id} renderItem={({ item }) => <Pressable accessibilityRole="checkbox" accessibilityState={{ checked: selected.includes(item.id), disabled: busy }} disabled={busy || (!selected.includes(item.id) && selected.length >= 100)}
           onPress={() => setSelected(previous => previous.includes(item.id) ? previous.filter(id => id !== item.id) : [...previous, item.id])} className="min-h-12 justify-center border-b border-theme-neutrals-700 py-3">
