@@ -2447,6 +2447,8 @@
     "returnHome": "Ana Sayfaya Dön"
   },
   "profile": {
+    "mutualsOne": "{{count}} ortak:",
+    "mutualsMany": "{{count}} ortak:",
     "dislikesPrivateDesc": "Bu hesap beğenmediklerini kendine saklıyor.",
     "dislikesPrivateTitle": "Beğenilmeyenler gizli",
     "dislikesEmptyOther": "Henüz beğenilmeyen bir şey yok.",
