@@ -1,3 +1,4 @@
+import { createForegroundReconnect } from '../libs/foreground-reconnect';
 import React, { createContext, useContext, useEffect, useMemo, useRef, useCallback, useState } from 'react';
 import { useUser } from './AuthContext';
 import { WebSocketClient } from '../services/ws/socket-client';
@@ -261,7 +262,14 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   // App foreground resume with smart reconnection
   useEffect(() => {
+    let active = AppState.currentState === 'active';
+    const recovery = createForegroundReconnect(() => {
+      try { clientRef.current?.connect(); dmClientRef.current?.connect(); }
+      catch (error) { log.error('Failed to reconnect WebSocket on foreground', error); }
+    }, () => active && !!getAddress());
     const sub = AppState.addEventListener('change', (s) => {
+      active = s === 'active';
+      recovery.cancel();
       if (s === 'background' || s === 'inactive') {
         if (backgroundTimestampRef.current == null) backgroundTimestampRef.current = Date.now();
         const detach = () => {
@@ -292,20 +300,18 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         // to let other initialization complete first
         const delay = wasLongBackground ? 500 : 0;
 
-        setTimeout(() => {
-          try {
-            clientRef.current?.connect();
-            dmClientRef.current?.connect();
-          } catch (error) {
-            log.error('Failed to reconnect WebSocket on foreground', error);
-          }
-        }, delay);
+        recovery.schedule(delay);
         
         backgroundTimestampRef.current = null;
       }
     });
-    return () => { sub.remove(); };
-  }, [log]);
+    return () => {
+      active = false;
+      sub.remove();
+      recovery.cancel();
+      if (backgroundDisconnectRef.current) clearTimeout(backgroundDisconnectRef.current);
+    };
+  }, [log, getAddress]);
 
   const emit = useCallback((event: string, payload?: any, ack?: (resp?: any, err?: any) => void) => {
     const target = isDmEvent(event) ? dmClientRef.current : clientRef.current;
