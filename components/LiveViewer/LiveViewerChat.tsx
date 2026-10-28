@@ -7,7 +7,8 @@ import { Image } from "expo-image";
 import { StreamActivityType } from "../../services/enums/livestream.enum";
 import { useUserProfileSheet } from "../../context/UserProfileSheetContext";
 import Avatar from "../common/Avatar";
-import { getAvatarUrl } from "../../libs/misc";
+import { getAvatarUrl, getBadgeUrlFor, getBadgeHoverOpticalStyle as getBadgeOpticalStyle } from "../../libs/misc";
+import BadgeArtwork from "../common/BadgeArtwork";
 import { TEXT_SHADOW } from "../common/ViewerChrome";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useTranslation as useI18n } from "react-i18next";
@@ -38,6 +39,8 @@ export interface UserReference {
   isPrivate?: boolean;
   hideFollowers?: boolean;
   badgeBalance?: number;
+  badgeLock?: { tier: string; requirement: number } | null;
+  hideBadgeAndBalance?: boolean;
 }
 
 export interface ChatActivity {
@@ -130,6 +133,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate
   const displayName = resolveDisplayName(a);
   const avatarUrl = resolveAvatarUrl(a);
   const profileId = resolveProfileId(a);
+  // Same badge a comment row draws: balance and grandfathered lock together,
+  // nothing when the holder hides it.
+  const badgeImg = useMemo(
+    () => (a.user && !a.user.hideBadgeAndBalance ? getBadgeUrlFor(a.user) : undefined),
+    [a.user],
+  );
   const texts = useMemo(() => ({ content: a.status === StreamActivityType.MESSAGE && !a.meta?.gifUrl ? a.meta?.content || '' : '' }), [a.status, a.meta?.gifUrl, a.meta?.content]);
   const translation = useTranslation(texts, undefined, 'chat', true);
 
@@ -156,7 +165,12 @@ const ChatBubble: React.FC<ChatBubbleProps> = memo(({ a, onUserPress, onModerate
               style={{ color: colorForUser(displayName) }}
               onPress={handlePress}
             >
-              {displayName}{" "}
+              {displayName}
+              {badgeImg ? (
+                <View style={{ height: 14, marginLeft: 2, justifyContent: "center" }}>
+                  <BadgeArtwork source={badgeImg} style={[getBadgeOpticalStyle(badgeImg, 13, 0, 14), { marginLeft: 0 }]} contentFit="contain" />
+                </View>
+              ) : null}{" "}
             </Text>
             {!a.meta?.gifUrl ? <Text style={{ color: '#FFFFFF' }}>{translation.isTranslated ? translation.translatedTexts.content : a.meta?.content}</Text> : null}
           </Text>
