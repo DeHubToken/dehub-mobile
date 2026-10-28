@@ -854,7 +854,7 @@ function AIChatScreenInner({ studio = false, embedded = false, editorDraft: requ
       try {
         const res = await startVideoGeneration(
           {
-            prompt,
+            prompt: avatar?.prompt ?? prompt,
             model,
             sourceImage,
             ...(creator ? creatorVideoOptions(creator) : { duration: `${VIDEO_DURATION_SECONDS}s`, aspectRatio: preset?.aspect ?? '16:9' }),
