@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import SmartImage from "../common/SmartImage";
 import Icon, { type IconName } from "../ui/Icon";
 import VideoPlayerCore from "../VideoPlayerCore";
+import GeneratedAudioPlayer from '../Assistant/GeneratedAudioPlayer';
 import { nodeOutput, orderNodes, type FlowEdge, type FlowNode } from "../../services/creator-flows.service";
 
 const NODE_META: Record<string, { icon: IconName; labelKey: string }> = {
@@ -22,6 +23,8 @@ const NODE_META: Record<string, { icon: IconName; labelKey: string }> = {
   imageGenNode: { icon: "ImagePlus", labelKey: "creatorFlow.nodeImageGen" },
   videoGenNode: { icon: "Clapperboard", labelKey: "creatorFlow.nodeVideoGen" },
   assistantNode: { icon: "Sparkles", labelKey: "creatorFlow.nodeAssistant" },
+  audioInputNode: { icon: 'Volume2', labelKey: 'creatorFlow.nodeAudioInput' },
+  audioGenNode: { icon: 'Volume2', labelKey: 'creatorFlow.nodeAudioGen' },
 };
 
 const STATUS_KEYS: Record<string, string> = {
@@ -71,8 +74,8 @@ export default function FlowNodeList({ nodes, edges }: { nodes: FlowNode[]; edge
         const inputs = edges.filter((e) => e.target === node.id).map((e) => labelOf.get(e.source)).filter(Boolean);
         const prompt = node.type === "assistantNode" ? d.localPrompt : d.prompt;
         const statusKey = d.status ? STATUS_KEYS[d.status] : undefined;
-        const hasOutput = !!(out.image || out.video || out.text);
-        const isGenerator = node.type === "imageGenNode" || node.type === "videoGenNode" || node.type === "assistantNode";
+        const hasOutput = !!(out.image || out.video || out.audio || out.text);
+        const isGenerator = node.type === "imageGenNode" || node.type === "videoGenNode" || node.type === "audioGenNode" || node.type === "assistantNode";
 
         return (
           <View key={node.id} style={styles.card}>
@@ -108,6 +111,7 @@ export default function FlowNodeList({ nodes, edges }: { nodes: FlowNode[]; edge
               <SmartImage source={{ uri: out.image }} recyclingKey={out.image} style={styles.image} contentFit="contain" />
             )}
             {!!out.video && <VideoTile url={out.video} onPlay={setPlaying} />}
+            {!!out.audio && <GeneratedAudioPlayer audioUrl={out.audio} />}
             {!!out.text && (
               <View style={styles.outputText}>
                 <Text style={styles.outputLabel}>{t("creatorFlow.output")}</Text>
