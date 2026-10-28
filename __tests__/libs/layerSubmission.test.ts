@@ -1,5 +1,9 @@
-import { beginNewLayerAttempt, resumeLayerSubmission, withLayerAdmission, type LayerSubmission } from '../../libs/editor/layerSubmission';
+import { beginNewLayerAttempt, latestReviewedLayerJob, resumeLayerSubmission, withLayerAdmission, type LayerSubmission } from '../../libs/editor/layerSubmission';
 const id='00000000-0000-4000-8000-000000000001';
+it('blocks another reviewed attempt after a newer pending job appears on another device',()=>{
+  const terminal={id,status:'failed',paymentRestored:true}, pending={id:'new-job',status:'processing'};
+  expect(()=>latestReviewedLayerJob([pending,terminal],id)).toThrow('Collect');expect(latestReviewedLayerJob([terminal],id)).toBe(terminal);
+});
 it('creates a new reviewed UUID only after confirmed refund and archives its previous receipt',async()=>{
   const digest='a'.repeat(64),original:LayerSubmission={id,phase:'submitted',sourceDigest:digest,txHash:'credits'};let value:LayerSubmission|null=original;const archive:LayerSubmission[]=[];
   const storage={read:async()=>value,write:async(next:LayerSubmission)=>{value=next;},archive:async(next:LayerSubmission)=>{archive.push(next);}};

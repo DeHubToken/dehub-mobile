@@ -12,7 +12,7 @@ import { libraryCall, type CreatorAsset } from '../../services/creator.service';
 import { layerJobs, collectLayers, submitLayers, type LayerJob } from '../../services/image-layers.service';
 import { exportImageLayers } from '../../libs/editor/imageLayers';
 import type { ImageLayerSet, LayerChoice } from '../../libs/editor/imageLayersContract';
-import { beginNewLayerAttempt, resumeLayerSubmission, withLayerAdmission } from '../../libs/editor/layerSubmission';
+import { beginNewLayerAttempt, latestReviewedLayerJob, resumeLayerSubmission, withLayerAdmission } from '../../libs/editor/layerSubmission';
 
 const request = { kind: 'tool' as const, modelId: 'qwen-image-layered', quantity: 1 };
 export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: string; source: CreatorAsset; onOpenEditor(): void }) {
@@ -85,7 +85,7 @@ export function ImageLayersPanel({ wallet, source, onOpenEditor }: { wallet: str
   const startNew = async () => {
     if (!preparedSource || !jobs[0]) return;
     await withLayerAdmission(preparationKey,async()=>{
-      const found = await layerJobs(wallet,source.id), terminal=found[0];
+      const found = await layerJobs(wallet,source.id), terminal=latestReviewedLayerJob(found,jobs[0].id);
       if(!terminal||terminal.id!==jobs[0].id||!current())throw new Error(t('common.somethingWentWrong'));
       await beginNewLayerAttempt({read:async()=>{const raw=await AsyncStorage.getItem(preparationKey);return raw?JSON.parse(raw):null;},write:value=>AsyncStorage.setItem(preparationKey,JSON.stringify(value)),
         archive:async value=>{const key=`${preparationKey}:history:${value.id}`, raw=JSON.stringify(value), previous=await AsyncStorage.getItem(key);if(previous&&previous!==raw)throw new Error(t('common.somethingWentWrong'));await AsyncStorage.setItem(key,raw);}},terminal,preparedSource.sourceDigest,()=>Crypto.randomUUID());
