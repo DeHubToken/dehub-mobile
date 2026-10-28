@@ -6,6 +6,7 @@ type NotificationContent = {
   content?: string;
   customReferenceTitle?: string;
   commentPreview?: string;
+  commentId?: number | string;
   reaction?: string;
   amount?: number;
   currency?: string;
@@ -22,6 +23,8 @@ type NotificationContent = {
     previousTier?: string;
     role?: 'grantor' | 'grantee';
     reason?: string;
+    /** Where a mention was made: 'post', 'comment', 'live_chat' or 'public_chat'. */
+    mentionContext?: string;
     [key: string]: unknown;
   };
 };
@@ -107,6 +110,18 @@ export function localizedNotificationContent(
       ? ` ${item.currency && item.currency !== 'DHB' ? `${item.amount} ${item.currency}` : t('notifications.tokenAmount', { amount: item.amount })}`
       : '';
     return t('notifications.tippedYou', { name: actor }) + amount;
+  }
+  if (item.type === 'mention') {
+    // Where the reader was named, as the web row says it.
+    const where = item.metadata?.mentionContext;
+    const mentionKey = where === 'live_chat'
+      ? 'reactionInfo.mentionedYouLiveChat'
+      : where === 'public_chat'
+        ? 'reactionInfo.mentionedYouPublicChat'
+        : where === 'comment' || item.commentId
+          ? 'reactionInfo.mentionedYouComment'
+          : 'reactionInfo.mentionedYouPost';
+    return t(mentionKey, { name: actor });
   }
   const key = keys[item.type];
   return key ? t(key, { name: actor }) : null;

@@ -7893,6 +7893,7 @@
     "repostedPost": "{{name}} আপনার পোস্ট রিপোস্ট করেছে",
     "quotedPost": "{{name}} আপনার পোস্ট কোট করেছে",
     "mentionedYou": "{{name}} আপনাকে মেনশন করেছে",
+    "mentionedYouComment": "{{name}} আপনাকে একটি মন্তব্যে উল্লেখ করেছে",
     "followRequest": "{{name}} আপনাকে ফলো করার অনুরোধ করেছে",
     "followAccepted": "{{name}} আপনার ফলো রিকোয়েস্ট গ্রহণ করেছে",
     "signalFlare": "{{name}} একটি সিগন্যাল ফ্লেয়ার পাঠিয়েছে",

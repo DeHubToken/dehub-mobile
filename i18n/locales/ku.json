@@ -7733,6 +7733,7 @@
     "repostedPost": "{{name}} şandiya te ji nû ve weşand",
     "quotedPost": "{{name}} jêgirtinek ji şandiya te çêkir",
     "mentionedYou": "{{name}} behsa te kir",
+    "mentionedYouComment": "{{name}} di şîroveyekê de behsa te kir",
     "followRequest": "{{name}} xwest ku te bişopîne",
     "followAccepted": "{{name}} daxwaza şopandina te qebûl kir",
     "signalFlare": "{{name}} Fîşeka îşaretê şand",

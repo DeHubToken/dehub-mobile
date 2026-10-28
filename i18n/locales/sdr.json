@@ -7737,6 +7737,7 @@
     "repostedPost": "{{name}} आपके पोस्ट को रीपोस्ट किया",
     "quotedPost": "{{name}} आपके पोस्ट को उद्धृत किया",
     "mentionedYou": "{{name}} आपका उल्लेख किया",
+    "mentionedYouComment": "{{name}} گەڕایەوە بۆ تۆ",
     "followRequest": "{{name}} आपको फॉलो करने का अनुरोध किया",
     "followAccepted": "{{name}} आपके फॉलो अनुरोध को स्वीकार किया",
     "signalFlare": "{{name}} एक सिग्नल फ्लेयर भेजा",

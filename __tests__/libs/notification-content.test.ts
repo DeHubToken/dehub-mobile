@@ -31,5 +31,13 @@ describe('notification content', () => {
     expect(localizedNotificationContent({ type: 'new_message', actorUsername: 'Araf', content: 'hello' }, translate('en'))).toBeNull();
     expect(localizedNotificationContent({ type: 'system', content: 'Maintenance' }, translate('en'))).toBeNull();
   });
+
+  it('says where a mention was made', () => {
+    const en = translate('en');
+    expect(localizedNotificationContent({ type: 'mention', actorUsername: 'Araf', metadata: { mentionContext: 'live_chat' } }, en)).toBe('Araf mentioned you in live chat');
+    expect(localizedNotificationContent({ type: 'mention', actorUsername: 'Araf', metadata: { mentionContext: 'public_chat' } }, en)).toBe('Araf mentioned you in public chat');
+    expect(localizedNotificationContent({ type: 'mention', actorUsername: 'Araf', commentId: 3 }, en)).toBe('Araf mentioned you in a comment');
+    expect(localizedNotificationContent({ type: 'mention', actorUsername: 'Araf' }, en)).toBe('Araf mentioned you in a post');
+  });
 });
 
