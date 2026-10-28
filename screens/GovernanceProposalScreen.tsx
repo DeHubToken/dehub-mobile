@@ -1,4 +1,5 @@
 import { useDraftState } from "../hooks/useDraftState";
+import { CommentLoadError } from '../components/Comments/CommentLoadError';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
  * GovernanceProposalScreen
@@ -191,7 +192,8 @@ export default function GovernanceProposalScreen() {
 
   const { data: proposal, isLoading, isError, refetch } = useGovernanceProposal(proposalKey);
   const proposalId: string | undefined = proposal?.id ?? (isProposalNumber(proposalKey) ? undefined : proposalKey);
-  const { data: threads = [], isLoading: threadsLoading } = useProposalDiscussion(proposalId);
+  const { data: threads = [], isLoading: threadsLoading, isError: threadsError,
+    isFetching: threadsFetching, refetch: refetchThreads } = useProposalDiscussion(proposalId);
   const submitComment = useSubmitProposalComment();
   const deleteComment = useDeleteProposalComment();
   const { data: myVote = 0 } = useMyProposalVote(isAuthed ? proposalId : null);
@@ -498,10 +500,11 @@ export default function GovernanceProposalScreen() {
             <PageSection title={t("governance.discussion.title")} style={styles.card}>
               <Text style={styles.sectionIntro}>{t("governance.discussion.intro")}</Text>
 
+              {threadsError && <CommentLoadError isFetching={threadsFetching} onRetry={() => { void refetchThreads(); }} />}
               {threadsLoading ? (
                 <ActivityIndicator color="#808089" style={{ paddingVertical: 12 }} />
               ) : totalComments === 0 ? (
-                <Text style={styles.noComments}>{t("governance.discussion.empty")}</Text>
+                !threadsError && <Text style={styles.noComments}>{t("governance.discussion.empty")}</Text>
               ) : (
                 threads.map(renderThread)
               )}

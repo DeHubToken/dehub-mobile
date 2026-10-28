@@ -1,4 +1,5 @@
 import ThemePanel from '../components/ui/ThemePanel';
+import { CommentLoadError } from '../components/Comments/CommentLoadError';
 import { useTranslation as _useCopy } from 'react-i18next';
 import { useSurfaceDraft } from '../hooks/useSurfaceDraft';
 /**
@@ -245,7 +246,7 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
   const { showUserProfile } = useUserProfileSheet();
   const myWallet: string = (user?.walletAddress || user?.address || "").toLowerCase();
 
-  const { data: comments = [], isLoading } = useFeatureRequestComments(featureId);
+  const { data: comments = [], isLoading, isError, isFetching, refetch } = useFeatureRequestComments(featureId);
   const submitComment = useSubmitComment();
   const deleteComment = useDeleteComment();
   const [draft, setDraft] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:draft", "");
@@ -280,10 +281,11 @@ const CommentsSection: React.FC<{ featureId: string; isAuthed: boolean }> = ({
 
   return (
     <View style={styles.commentsWrap}>
+      {isError && <CommentLoadError isFetching={isFetching} onRetry={() => { void refetch(); }} />}
       {isLoading ? (
         <ActivityIndicator color="#808089" style={{ paddingVertical: 12 }} />
       ) : comments.length === 0 ? (
-        <Text style={styles.noComments}>{t("features.noComments")}</Text>
+        !isError && <Text style={styles.noComments}>{t("features.noComments")}</Text>
       ) : (
         comments.map((c) => {
           const name = c.username ? `@${c.username}` : shortAddr(c.wallet_address);
