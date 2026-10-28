@@ -6295,6 +6295,7 @@
     "followerInvites": {
       "clear": "Ryd",
       "detail": "Vælg op til 50 følgere per batch. Betalte eller lukkede privatbeskeder overskrides. Kontrollér chatten for ikke-bekræftede sendte beskeder før du prøver igen.",
+      "note": "Tilføj en note til din invitation (valgfrit)",
       "empty": "Ingen følgere på denne side.",
       "error": "Kunne ikke sende invitationer. Kontrollér din forbindelse og log på, og prøv igen.",
       "next": "Næste",

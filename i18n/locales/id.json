@@ -6296,6 +6296,7 @@
     "followerInvites": {
       "clear": "Bersihkan",
       "detail": "Pilih hingga 50 pengikut per batch. DM yang dibayar atau ditutup dilewati. Periksa obrolan untuk pengiriman yang belum diverifikasi sebelum mencoba lagi.",
+      "note": "Tambahkan catatan ke undanganmu (opsional)",
       "empty": "Tidak ada pengikut di halaman ini.",
       "error": "Tidak dapat mengirim undangan. Periksa koneksi dan masuk kembali, lalu coba lagi.",
       "next": "Berikutnya",

@@ -6279,6 +6279,7 @@
     },
     "followerInvites": {
       "detail": "Pick reach 50 followers for each batch. We go skip DMs wey dem pay for or wey dem close. Check di chat for sends wey never confirm before you try again.",
+      "note": "Add small note for your invite (if you want)",
       "error": "Invitations no fit send. Check your connection and your sign-in, then try again.",
       "clear": "Clear am",
       "empty": "No body dey follow dis page.",

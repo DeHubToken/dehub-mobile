@@ -6292,6 +6292,7 @@
     "followerInvites": {
       "clear": "Kupiga mara kwa mara",
       "detail": "Chagua hadi 50 wapendwa kwa kila kundi. Mawasiliano ya malipo au ya kufungwa yaliyopewa kwenye kikundi huchukuliwa.",
+      "note": "Ongeza ujumbe kwenye mwaliko wako (si lazima)",
       "empty": "Hakuna wapendwa katika kikundi hili.",
       "error": "Hakuna uwezekano wa kutuma taarifa za kujiunga. Tafuta uhusiano wako na uingizwe kwenye kikundi, na jaribu tena.",
       "next": "Kulia",

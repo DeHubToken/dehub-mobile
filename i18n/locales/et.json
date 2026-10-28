@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Kustuta",
       "detail": "Vali kuni 50 järgijat ühe kord. Maksustatud või sulgestatud sõnumid on üle vaadatud. Kontrolli sõnumikast eelneid ülekandeid enne uuesti proovimist.",
+      "note": "Lisa kutsele märkus (valikuline)",
       "empty": "Selle lehel pole järgijaid.",
       "error": "Kutseid ei saadud. Kontrolli oma ühendust ja sisselogimist, seejärel proovi uuesti.",
       "next": "Järgmine",

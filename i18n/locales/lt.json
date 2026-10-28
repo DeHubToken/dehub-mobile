@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Išvalyti",
       "detail": "Pasirinkite iki 50 prisijungusiųjų per rinkinį. Užmokėti ar uždarai pranešimai yra išmesti. Peržiūrėkite chat'ą prieš bandant dar kartą.",
+      "note": "Pridėkite žinutę prie kvietimo (neprivaloma)",
       "empty": "Šioje puslapyje nėra prisijungusiųjų.",
       "error": "Prašymų siuntimas nepavyko. Peržiūrėkite savo ryšį ir prisijunkite, o vėliau bandykite dar kartą.",
       "next": "Kitas",

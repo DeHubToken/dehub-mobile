@@ -4069,6 +4069,7 @@
     "followerInvites": {
       "title": "Volgers uitnodigen",
       "detail": "Kies maximaal 50 volgers per keer. Betaalde of gesloten privéberichten worden overgeslagen. Controleer onbevestigde verzendingen in de chat voordat je het opnieuw probeert.",
+      "note": "Voeg een notitie toe aan je uitnodiging (optioneel)",
       "selectAll": "Deze pagina selecteren",
       "clear": "Selectie wissen",
       "previous": "Vorige",

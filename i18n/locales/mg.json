@@ -6304,6 +6304,7 @@
     "followerInvites": {
       "clear": "Foano",
       "detail": "Fidio ny mpanara-dia hatramin'ny 50 isaky ny batch. Vidim-bola na mikatona ny DMs. Jereo ny karajia ho an'ny fandefasana tsy voamarina alohan'ny hanandramana indray.",
+      "note": "Ampio fanamarihana ny fanasanao (tsy voatery)",
       "empty": "Tsy misy mpanaraka eto amin'ity pejy ity.",
       "error": "Tsy afaka nandefa fanasana. Hamarino ny fifandraisanao ary midira, dia andramo indray.",
       "next": "Manaraka",
