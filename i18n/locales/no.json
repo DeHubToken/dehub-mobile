@@ -7738,6 +7738,10 @@
     "followAccepted": "{{name}} har akseptert forespørselen din om å følge",
     "signalFlare": "{{name}} sendte et signalbluss",
     "mentionedYou": "{{name}} nevnte deg",
+    "mentionedYouPost": "{{name}} nevnte deg i et innlegg",
+    "mentionedYouLiveChat": "{{name}} nevnte deg i live chat",
+    "mentionedYouPublicChat": "{{name}} nevnte deg i en offentlig chat",
+    "mentionedYouComment": "{{name}} nevnte deg i en kommentar",
     "newMessage": "{{name}} sendte deg en melding"
   },
   "audioPost": {

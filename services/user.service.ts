@@ -155,6 +155,10 @@ export interface NotificationItem {
     planId?: string;
     followId?: string;
     quoteTokenId?: number;
+    /** Where a mention was made: 'post', 'comment', 'live_chat' or 'public_chat'. */
+    mentionContext?: string;
+    roomId?: string;
+    chatMessageId?: string;
     /** Badge lending: the tier that was lent, as it stood on the day. */
     tier?: string;
     /** Which end of that loan the reader was on. */

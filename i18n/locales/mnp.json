@@ -7724,6 +7724,7 @@
     "repostedPost": "{{name}} 转发了你的帖子",
     "quotedPost": "{{name}} 引用了你的帖子",
     "mentionedYou": "{{name}} 提到了你",
+    "mentionedYouComment": "{{name}} 在留言中提到了你",
     "followRequest": "{{name}} 请求关注你",
     "followAccepted": "{{name}} 接受了你的关注请求",
     "signalFlare": "{{name}} 发送了一个信号闪光",

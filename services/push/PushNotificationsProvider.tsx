@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
+import { openChatMention } from "../../libs/openChatMention";
 import * as Notifications from 'expo-notifications';
 import { AppState, AppStateStatus, Linking } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
@@ -367,6 +368,8 @@ export const PushNotificationsProvider: React.FC<PushNotificationsProviderProps>
           break;
 
         case NotificationType.MENTION:
+          // A tag in live or public chat opens that chat, not a post page.
+          if (openChatMention(navigation.navigate as any, { mentionContext: (data as any).mentionContext, tokenId })) break;
           if (tokenId) {
             navigation.navigate(ScreenNames.FeedDetail, { tokenId, commentId });
           } else {
