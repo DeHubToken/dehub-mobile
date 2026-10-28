@@ -32,7 +32,7 @@ const ORB_MODE: Record<VoiceStatus, LiquidOrbMode> = {
  */
 function AssistantStage({ voiceMode, status, level, exchangesLeft, lastReply, active, onOrbPress, onSkip, onStop, onAction }: AssistantStageProps) {
   const { t } = useTranslation();
-  const statusLine = status === 'listening' ? t('assistant.listening')
+  const statusLine = status === 'listening' ? t('copy.c9f2a4e7d1b5', { defaultValue: 'Listening... tap the ball to send' })
     : status === 'transcribing' ? t('copy.4e9a93669648', { defaultValue: 'Transcribing...' })
     : status === 'speaking' ? t('copy.f2ef1cac7f88', { defaultValue: 'Speaking...' })
     : t('copy.b4739a4f0865', { defaultValue: 'Thinking...' });
@@ -53,7 +53,10 @@ function AssistantStage({ voiceMode, status, level, exchangesLeft, lastReply, ac
         level={level}
         active={active}
         onPress={onOrbPress}
-        label={voiceMode ? t('copy.dd2108f1cda8', { defaultValue: 'Stop Voice Chat' }) : t('copy.70438fbf1234', { defaultValue: 'Voice Chat (AI)' })}
+        label={!voiceMode ? t('copy.a7c1e0f4b2d9', { defaultValue: 'Tap to talk' })
+          : status === 'listening' ? t('copy.b3e8d1c6f0a2', { defaultValue: 'Tap to send' })
+          : status === 'speaking' ? t('copy.28d03596d24e', { defaultValue: 'Skip' })
+          : t('copy.b4739a4f0865', { defaultValue: 'Thinking...' })}
       />
       {voiceMode ? (
         <View style={s.text}>
