@@ -24,6 +24,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
   embedded = false,
 }) => {
   const [showUnfollowSheet, setShowUnfollowSheet] = useState(false);
+  const openUnfollowSheet = useCallback(() => setShowUnfollowSheet(true), []);
 
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -117,7 +118,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
       followLoading={followLoading}
       disableFollow={profileData?.disableActions}
       onFollow={handleFollow}
-      onOpenUnfollow={() => setShowUnfollowSheet(true)}
+      onOpenUnfollow={openUnfollowSheet}
     />
   );
   if (embedded) {
@@ -148,7 +149,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
           registerScrollToTop={registerScrollToTop}
           onScroll={handleScroll}
           onFollow={handleFollow}
-          onOpenUnfollow={() => setShowUnfollowSheet(true)}
+          onOpenUnfollow={openUnfollowSheet}
           onMessage={handleMessageWrapper}
           onShare={handleShare}
           onOpenImage={handleOpenImage}
@@ -216,7 +217,7 @@ const UserProfilePageContent: React.FC<UserProfileBottomSheetProps> = ({
             registerScrollToTop={registerScrollToTop}
             onScroll={handleScroll}
             onFollow={handleFollow}
-            onOpenUnfollow={() => setShowUnfollowSheet(true)}
+            onOpenUnfollow={openUnfollowSheet}
             onMessage={handleMessageWrapper}
             onShare={handleShare}
             onOpenImage={handleOpenImage}

@@ -175,7 +175,9 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     })(activeKey);
   }, [activeKey, address, activeKeyShared, tabOffsets, profileScrollY, headerHeight, tabsStuck]);
 
-  const listHeader = (
+  // Memoised: a new header element made the list re-render the whole profile
+  // header every time this screen rendered, mid-fling included.
+  const listHeader = useMemo(() => (
     <View>
       {/* A kept tab's copy of the header measures 0 while that tab is hidden. */}
       <Animated.View style={expandedHeaderStyle} onLayout={(event) => { const height = event.nativeEvent.layout.height; if (height > 0) headerHeight.value = height; }}><PinnedCommunities
@@ -198,7 +200,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         </>
       )}
     </View>
-  );
+  ), [expandedHeaderStyle, headerHeight, address, collapse.onIdentityBottom, collapse.onActionsBottom, tabItems, activeKey, handleTabChange, toolbar, panel]);
 
   const renderScene = (key: string) => {
     switch (key) {
