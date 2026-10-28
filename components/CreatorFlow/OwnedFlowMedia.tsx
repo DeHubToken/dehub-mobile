@@ -15,7 +15,7 @@ export default function OwnedFlowMedia({ wallet, nodes, edges }: { wallet: strin
   const [resolved, setResolved] = useState<{ owner: string; nodes: FlowNode[] } | null>(null);
   const [busy, setBusy] = useState(false), [error, setError] = useState('');
   const signature = JSON.stringify(nodes);
-  useEffect(() => { version.current++; setResolved(null); setBusy(false); setError(''); return () => { version.current++; }; }, [wallet, signature]);
+  useEffect(() => { version.current++; setResolved(null); setBusy(false); setError(''); return () => { version.current++; }; }, [wallet, owner, signature]);
   useEffect(() => {
     if (!resolved) return;
     const timer = setTimeout(() => setResolved(null), 50 * 60 * 1000);

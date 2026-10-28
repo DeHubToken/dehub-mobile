@@ -202,6 +202,7 @@ export async function admitNativeFlowRun(reviewed: NativeFlowPlan, graph: Native
   isCurrent: () => boolean; saveDraft: () => Promise<unknown>; pay: (priceDhb: number) => Promise<string>;
   onNode: (node: FlowNode) => void; onPriceChanged?: (plan: NativeFlowPlan) => void;
 }): Promise<boolean> {
+  if (!DIGITAL_PURCHASES_ENABLED && graph.nodes.some(node => node.type === 'imageGenNode' || node.type === 'videoGenNode')) throw new Error('creatorFlow.paidUnavailable');
   if (!callbacks.isCurrent()) throw new Error('SIGN_IN_REQUIRED');
   const release = claimNativeFlowStart(wallet, graph.id);
   try {
@@ -214,6 +215,11 @@ export async function admitNativeFlowRun(reviewed: NativeFlowPlan, graph: Native
     if (!callbacks.isCurrent()) return false;
     const previous = await readNativeFlowReceipt(wallet, graph.id);
     if (!callbacks.isCurrent()) return false;
+    const payable = await planNativeFlow(graph, wallet);
+    if (!callbacks.isCurrent()) return false;
+    if (payable.signature !== reviewed.signature || Math.abs(payable.priceDhb - reviewed.priceDhb) > 0.00000001 || payable.resume !== reviewed.resume) {
+      callbacks.onPriceChanged?.(payable); throw new Error('creatorFlow.planChanged');
+    }
     const txHash = reviewed.resume && previous ? previous.txHash : reviewed.priceDhb > 0 ? await callbacks.pay(reviewed.priceDhb) : 'free';
     await reserveNativeFlowReceipt(reviewed, wallet, txHash);
     if (!callbacks.isCurrent()) return false;

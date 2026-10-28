@@ -16,6 +16,7 @@ import { admitNativeFlowRun, planNativeFlow, restartNativeFlowRun, retryNativeFl
 interface Props { wallet: string; flow?: RemoteFlow; onClose: () => void; onSaved: () => void }
 const TYPES = ['promptNode','imageInputNode','videoInputNode','audioInputNode','imageGenNode','videoGenNode','audioGenNode','assistantNode'] as const;
 const LABELS = { promptNode: 'nodeText', imageInputNode: 'nodeImageInput', videoInputNode: 'nodeVideoInput', audioInputNode: 'nodeAudioInput', imageGenNode: 'nodeImageGen', videoGenNode: 'nodeVideoGen', audioGenNode: 'nodeAudioGen', assistantNode: 'nodeAssistant' };
+const AUDIO_LABELS = { speech: 'creator.audioTaskSpeechLabel', sfx: 'creator.audioTaskSfxLabel', transcribe: 'creator.audioTaskTranscribeLabel', isolate: 'creator.audioTaskIsolateLabel' };
 export default function FlowAuthor({ wallet, flow, onClose, onSaved }: Props) {
   const { t } = useTranslation(), insets = useSafeAreaInsets();
   const { account } = useWeb3Provider();
@@ -107,7 +108,7 @@ export default function FlowAuthor({ wallet, flow, onClose, onSaved }: Props) {
             {button(t('creator.referenceLibrary'), () => { setLibraryFor(node.id); if (!assets.length) void moreAssets(); }, busy)}
           </>}
           {node.type === 'audioGenNode' && <>
-            <View style={styles.wrap}>{(['speech','sfx','transcribe','isolate'] as const).map(task => <React.Fragment key={task}>{button(t(`creator.audioTask${task === 'speech' ? 'Speech' : task === 'sfx' ? 'Sfx' : task === 'transcribe' ? 'Transcribe' : 'Isolate'}Label`), () => {
+            <View style={styles.wrap}>{(['speech','sfx','transcribe','isolate'] as const).map(task => <React.Fragment key={task}>{button(t(AUDIO_LABELS[task]), () => {
               setEdges(previous => previous.filter(edge => edge.source !== node.id && edge.target !== node.id)); change(node.id, { audioTask: task, audioAssetId: undefined, audioUrl: undefined, outputText: undefined });
             }, busy)}</React.Fragment>)}</View>
             {(node.data.audioTask || 'speech') === 'speech' && <TextInput accessibilityLabel={t('creatorFlow.audioVoiceId')} value={String(node.data.voiceId || '')} editable={!busy} onChangeText={voiceId => change(node.id, { voiceId })} style={styles.input} />}
