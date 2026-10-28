@@ -9927,6 +9927,16 @@
     }
   },
   "creator": {
+    "layerPngRequired": "Choisissez une image PNG enregistrée, de 12 Mio et quatre mégapixels maximum.",
+    "layerTitle": "Séparer les calques de l’image",
+    "layerSource": "Image d’origine",
+    "layerDescription": "Quatre calques PNG transparents. Le texte reste intégré à chaque image.",
+    "layerSeparate": "Séparer les calques",
+    "layerPending": "Tâche enregistrée : {{status}}. Récupérez le résultat ou réessayez l’enregistrement sans payer à nouveau.",
+    "layerCollect": "Récupérer / réessayer l’enregistrement",
+    "layerOpen": "Ouvrir les calques dans l’éditeur",
+    "layerExport": "Exporter les calques PNG et le manifeste en ZIP",
+    "layerNumber": "Calque {{number}}",
     "priceRetry": "Le prix n'a pas pu être confirmé. Vérifiez le prix et réessayez.",
     "avatarTitle": "Portrait parlant",
     "avatarRequirements": "Portrait PNG carré de 512–2048 pixels, jusqu\u0027à 5 Mo. WAV PCM mono 24 kHz 16 bits, de 5–30 secondes. La dernière fraction de seconde est complétée par du silence.",

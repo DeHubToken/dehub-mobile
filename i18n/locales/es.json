@@ -9923,6 +9923,16 @@
     }
   },
   "creator": {
+    "layerPngRequired": "Elige una imagen PNG guardada, de hasta 12 MiB y cuatro megapíxeles.",
+    "layerTitle": "Separar capas de imagen",
+    "layerSource": "Imagen original",
+    "layerDescription": "Cuatro capas PNG transparentes. El texto sigue formando parte de cada imagen.",
+    "layerSeparate": "Separar capas",
+    "layerPending": "Trabajo guardado: {{status}}. Recoge el resultado o vuelve a guardarlo sin pagar otra vez.",
+    "layerCollect": "Recoger / reintentar guardado",
+    "layerOpen": "Abrir capas en el editor",
+    "layerExport": "Exportar capas PNG y manifiesto en ZIP",
+    "layerNumber": "Capa {{number}}",
     "priceRetry": "No se pudo confirmar el precio. Revisa el precio e inténtalo de nuevo.",
     "avatarTitle": "Retrato parlante",
     "avatarRequirements": "Retrato PNG cuadrado, de 512–2048 píxeles y hasta 5 MB. WAV PCM mono de 24 kHz y 16 bits, de 5–30 segundos. La última fracción de segundo se completa con silencio.",

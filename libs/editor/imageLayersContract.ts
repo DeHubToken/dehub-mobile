@@ -1,5 +1,5 @@
 export interface ImageLayer { id: string; index: number; url: string; width: number; height: number }
-export interface ImageLayerSet { version: 1; id: string; sourceAssetId: string; width: number; height: number; layers: ImageLayer[] }
+export interface ImageLayerSet { version: 1; id: string; sourceAssetId: string; sourceDigest?: string; seed?: number | null; width: number; height: number; layers: ImageLayer[] }
 export interface LayerChoice { id: string; hidden: boolean }
 export function validateLayerSet(value: any): ImageLayerSet {
   if (value?.version !== 1 || !/^[0-9a-f-]{36}$/i.test(value.id) || typeof value.sourceAssetId !== 'string' ||
@@ -22,6 +22,6 @@ export function selectedLayers(set: ImageLayerSet, choices: LayerChoice[]) {
   });
 }
 export function layerExportManifest(set: ImageLayerSet, choices: LayerChoice[]) {
-  return { version: 1, operation: 'decompose', id: set.id, sourceAssetId: set.sourceAssetId, width: set.width, height: set.height,
+  return { version: 1, operation: 'decompose', id: set.id, sourceAssetId: set.sourceAssetId, sourceDigest:set.sourceDigest, seed:set.seed, width: set.width, height: set.height,
     layers: selectedLayers(set, choices).map(layer => ({ id: layer.id, index: layer.index, file: `layer-${layer.index + 1}.png`, hidden: layer.hidden })) };
 }

@@ -10293,6 +10293,7 @@
   },
   "creator": {
     "layerTitle": "Separate image layers",
+    "layerPngRequired": "Choose a saved PNG image, up to 12 MiB and four megapixels.",
     "layerSource": "Original image",
     "layerDescription": "Four transparent PNG layers. Text remains part of each image.",
     "layerSeparate": "Separate layers",
