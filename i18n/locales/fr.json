@@ -9898,6 +9898,7 @@
     }
   },
   "creator": {
+    "priceRetry": "Le prix n'a pas pu être confirmé. Vérifiez le prix et réessayez.",
     "avatarTitle": "Portrait parlant",
     "avatarRequirements": "Portrait PNG carré de 512–2048 pixels, jusqu\u0027à 5 Mo. WAV PCM mono 24 kHz 16 bits, de 5–30 secondes. La dernière fraction de seconde est complétée par du silence.",
     "avatarPortrait": "Choisir un portrait PNG",

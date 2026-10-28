@@ -10096,6 +10096,7 @@
     }
   },
   "creator": {
+    "priceRetry": "De prijs kon niet worden bevestigd. Bekijk de prijs en probeer het opnieuw.",
     "avatarTitle": "Pratend portret",
     "avatarRequirements": "Vierkant PNG-portret, 512–2048 pixels, maximaal 5 MB. Mono 24 kHz 16-bits PCM WAV, 5–30 seconden. Het laatste deel van een seconde wordt aangevuld met stilte.",
     "avatarPortrait": "PNG-portret kiezen",
