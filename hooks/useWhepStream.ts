@@ -10,16 +10,20 @@
  * rather than a black screen.
  */
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { MediaStream } from 'react-native-webrtc';
 import { whepEndpointFor, type LiveStreamRef } from '../libs/live-ingest';
 import type { WhepSubscription } from '../libs/whep';
+import { forgetWhepSilent, isRealPicture, rememberWhepSilent, whepRecentlySilent } from '../libs/whep-memory';
 
 /**
  * A session that negotiates but never delivers is the worst case: no error to
- * catch and nothing on screen. Give it this long, then hand over to HLS.
+ * catch and nothing on screen. Give it this long to show a real picture, then
+ * hand over to HLS. A connected session does not count: some broadcasts
+ * connect fine and never send a frame, which used to leave the viewer on a
+ * spinner for good.
  */
-const START_TIMEOUT_MS = 6000;
+const START_TIMEOUT_MS = 3500;
 
 interface Options {
   /** False while the stream is not live, is gated, or is playing a replay. */
@@ -46,6 +50,8 @@ interface Result {
    * stream, a replay, or a gated one.
    */
   pending: boolean;
+  /** Report the picture size the WebRTC surface rendered. */
+  onPicture: (size: { width: number; height: number }) => void;
 }
 
 export function useWhepStream({ enabled, stream, muted = false }: Options): Result {
@@ -53,14 +59,27 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
   const [failed, setFailed] = useState(false);
   const sessionRef = useRef<WhepSubscription | null>(null);
 
-  const endpoint = enabled && !failed ? whepEndpointFor(stream) : null;
+  const playbackId = stream?.playbackId ?? null;
+  // Checked once per stream: a stream that just went silent here starts on HLS.
+  const silentBefore = useMemo(() => whepRecentlySilent(playbackId), [playbackId]);
+  const endpoint = enabled && !failed && !silentBefore ? whepEndpointFor(stream) : null;
+  const pictureRef = useRef<() => void>(() => undefined);
+  const onPicture = useCallback((size: { width: number; height: number }) => {
+    if (isRealPicture(size)) pictureRef.current();
+  }, []);
 
   useEffect(() => {
     if (!endpoint) return;
 
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
-    let playing = false;
+    let pictured = false;
+    pictureRef.current = () => {
+      if (pictured || cancelled) return;
+      pictured = true;
+      clearTimeout(timer);
+      forgetWhepSilent(playbackId);
+    };
 
     const giveUp = () => {
       if (cancelled) return;
@@ -78,11 +97,7 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
           endpoint,
           onStateChange: (state) => {
             if (cancelled) return;
-            if (state === 'playing') {
-              playing = true;
-              clearTimeout(timer);
-            }
-            else if (state === 'failed') giveUp();
+            if (state === 'failed') giveUp();
           },
         });
         if (cancelled) {
@@ -97,9 +112,11 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
     };
 
     timer = setTimeout(() => {
-      // Nothing playing by now: the negotiation either never finished or the
-      // media leg never arrived.
-      if (!cancelled && !playing) giveUp();
+      // No picture by now: the negotiation never finished or the media leg
+      // never arrived. Remember it so the next open goes straight to HLS.
+      if (cancelled || pictured) return;
+      rememberWhepSilent(playbackId);
+      giveUp();
     }, START_TIMEOUT_MS);
 
     void start();
@@ -107,6 +124,7 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
     return () => {
       cancelled = true;
       clearTimeout(timer);
+      pictureRef.current = () => undefined;
       const session = sessionRef.current;
       sessionRef.current = null;
       setMedia(null);
@@ -123,7 +141,7 @@ export function useWhepStream({ enabled, stream, muted = false }: Options): Resu
     }
   }, [media, muted]);
 
-  return { stream: media, failed, pending: !!endpoint && !media && !failed };
+  return { stream: media, failed: failed || silentBefore, pending: !!endpoint && !media && !failed, onPicture };
 }
 
 export default useWhepStream;
