@@ -3878,6 +3878,7 @@
     "tokenAmount": "{{amount}} jetons"
   },
   "communities": {
+    "jumpToReply": "Aller au message auquel on répond",
     "shareLink": "Partager le lien",
     "pinnedMore": "Plus",
     "showFirst": "Afficher en premier",

@@ -3874,6 +3874,7 @@
     "tokenAmount": "{{amount}} tokens"
   },
   "communities": {
+    "jumpToReply": "Ir al mensaje respondido",
     "shareLink": "Compartir enlace",
     "pinnedMore": "Más",
     "showFirst": "Mostrar primero",

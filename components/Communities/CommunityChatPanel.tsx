@@ -209,7 +209,7 @@ const ChatRow: React.FC<{
             onLongPress={() => onLongPress(message)}
             delayLongPress={300}
             accessibilityRole="button"
-            accessibilityLabel={t("communities.chat.jumpToReply", { defaultValue: "Jump to replied message" })}
+            accessibilityLabel={t("communities.jumpToReply", { defaultValue: "Jump to replied message" })}
           >
             <Text className="text-zinc-300 text-[11px] font-medium" numberOfLines={1}>
               {message.reply_to.sender_name}
