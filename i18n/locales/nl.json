@@ -10127,6 +10127,7 @@
     "extensionForward": "Voeg ongeveer vier seconden na de bronclip toe",
     "extensionBackward": "Voeg ongeveer vier seconden vóór de bronclip toe",
     "expandDescription": "Genereer nieuwe inhoud buiten de beeldranden. Eén bronafbeelding en een optionele Engelse beschrijving.",
+    "relightDescription": "Pas de belichting van één foto aan met je beschrijving van licht en achtergrond.",
     "expandPromptHint": "Voeg één afbeelding toe en kies de nieuwe beeldverhouding. Een Engelse beschrijving is optioneel.",
     "expandEnglishOnly": "Dit uitbreidingsmodel accepteert Engelse beschrijvingen. Laat het veld leeg voor automatische uitbreiding.",
     "expandNeedsImage": "Voeg een afbeelding toe om uit te breiden.",
