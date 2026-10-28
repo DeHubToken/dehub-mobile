@@ -23,6 +23,18 @@ describe('video gesture wiring', () => {
     expect(viewer.match(/\.hitSlop\(mediaHitSlop\)/g)?.length).toBe(2);
   });
 
+  it('lets shorts buttons take the first tap while the pager settles', () => {
+    // A tap right after a swipe also reached the settling pager, which took it
+    // to stop the glide and cancelled the button's press.
+    const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
+    const chrome = readSource('components', 'common', 'ViewerChrome.tsx');
+
+    expect(chrome).toContain('export const ChromeTouchTarget');
+    expect(viewer.match(/<ChromeTouchTarget>/g)?.length).toBeGreaterThanOrEqual(5);
+    expect(viewer).toContain('if (pagerGesture) tap.simultaneousWithExternalGesture(pagerGesture);');
+    expect(viewer.match(/pagerGesture=\{pagerGesture\}/g)?.length).toBeGreaterThanOrEqual(5);
+  });
+
   it('leaves shorts on a sideways swipe from the left edge', () => {
     const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
 
