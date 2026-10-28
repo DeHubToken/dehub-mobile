@@ -671,8 +671,8 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     return { height: Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown) };
   }, [itemHeight, splitHeight, keyboardOffset]);
   /**
-   * At rest the picture box is the whole frame: boxing it to the reported
-   * track shape shrank sideways-encoded portrait clips to a 16:9 strip.
+   * At rest the picture box is the whole frame; the video view inside it is
+   * boxed by videoBoxStyle from the rotation-corrected shape.
    *
    * While it is dragged down into the mini player it is boxed to the picture
    * itself. The frame carries a black fill (and the video surface its own
@@ -717,6 +717,23 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       left: boxed ? -picture.left : 0, top: boxed ? -picture.top : 0,
     };
   }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset, intrinsicSize]);
+  /**
+   * The video view sits in the picture rect, not the whole frame. A clip
+   * stored sideways with a rotate flag reports its stored wide size to the
+   * native view, which squashed the upright picture into a 16:9 box. Sized
+   * from the corrected shape and told to fill, it draws at its true aspect,
+   * and any gap around it shows the blurred backdrop instead of a hard black
+   * edge running through the buttons.
+   */
+  const videoBoxStyle = useAnimatedStyle(() => {
+    const shown = Math.min(splitHeight, Math.max(0, splitHeight - commentsSlide.value));
+    const frameHeight = Math.max(0, itemHeight - (shown > 0 ? keyboardOffset : 0) - shown);
+    const picture = containedPicture(SCREEN_WIDTH, frameHeight, intrinsicSize.width, intrinsicSize.height);
+    return { position: 'absolute', left: picture.left, top: picture.top, width: picture.width, height: picture.height };
+  }, [SCREEN_WIDTH, itemHeight, splitHeight, keyboardOffset, intrinsicSize]);
+  const pictureKnown = intrinsicSize.width > 0 && intrinsicSize.height > 0;
+  // A tiny poster is enough to blur, and cheap to decode for every row.
+  const backdropSource = item.postType === 'short' ? getShortsThumbnailUrl(tokenId, 120) : thumbnail;
   const miniChromeStyle = useAnimatedStyle(() => ({ opacity: 1 - miniReveal.value }));
   // A parked offset is only "gone" relative to the size it was parked at; if
   // the item grows while comments are shut, push it clear so it can't read as
@@ -1993,30 +2010,41 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
         >
         <Reanimated.View style={pictureStyle}>
         <Reanimated.View style={pictureContentStyle}>
+        {/* A clip that doesn't fill the screen sits on a blurred, dimmed copy
+            of its own poster, so its edges blend out rather than cutting a
+            hard line across the caption and action row. */}
+        {!photoMedia && backdropSource ? (
+          <View style={StyleSheet.absoluteFill} pointerEvents="none">
+            <Image source={backdropSource} style={StyleSheet.absoluteFill} contentFit="cover" blurRadius={30} transition={0} />
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: "rgba(0,0,0,0.35)" }]} />
+          </View>
+        ) : null}
         {/* useVideoPlayer never returns null, so a thumbnail-instead-of-player
             branch could never render and the short was a black frame until its
             first frame (or forever on a load failure). Draw the thumbnail under
             the VideoView and drop it once a frame has painted. */}
         {photoMedia ? null : thumbnail && (!firstFrameRendered || !isActive) ? (
           directSurface ? null : <Image source={thumbnail} style={StyleSheet.absoluteFill} contentFit="contain" pointerEvents="none" />
-        ) : (
+        ) : pictureKnown && backdropSource ? null : (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: "#000" }]} pointerEvents="none" />
         )}
         {/* Leaving the app from Shorts never starts PiP; the PiP button still does. */}
         {player && isActive && ownsVideo && !photoMedia ? (
-          <PersistentVideoView
-            ref={activeVideoRef}
-            allowsPictureInPicture
-            startsPictureInPictureAutomatically={false}
-            player={player}
-            style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
-            contentFit="contain"
-            nativeControls={false}
-            key={directSurface ? "surface" : "texture"}
-            surfaceType={directSurface ? "surfaceView" : "textureView"}
-            pointerEvents="none"
-            onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
-          />
+          <Reanimated.View style={videoBoxStyle} pointerEvents="none">
+            <PersistentVideoView
+              ref={activeVideoRef}
+              allowsPictureInPicture
+              startsPictureInPictureAutomatically={false}
+              player={player}
+              style={[StyleSheet.absoluteFill, { opacity: firstFrameRendered ? 1 : 0 }]}
+              contentFit={pictureKnown ? "fill" : "contain"}
+              nativeControls={false}
+              key={directSurface ? "surface" : "texture"}
+              surfaceType={directSurface ? "surfaceView" : "textureView"}
+              pointerEvents="none"
+              onFirstFrameRender={() => { setFirstFrameRendered(true); recovery.progress(); finishInAppMiniRestore(player); }}
+            />
+          </Reanimated.View>
         ) : null}
         {/* A SurfaceView shows through everything drawn under it, so its
             poster has to sit on top until the first frame is up. */}
