@@ -19,7 +19,6 @@ import { supabase } from "../services/supabase";
 import { useUser } from "../context/AuthContext";
 import { withWalletHeader } from "../libs/supabase-wallet-client";
 import { toastError, toastSuccess } from "../libs/toast";
-import { dehubAuthHeaders } from "../services/ai.service";
 import { createLogger } from "../libs/logger";
 import { castVote, getMyVote, getProposal, isProposalNumber, needsOwnBadge } from "../services/governance.service";
 
@@ -161,8 +160,7 @@ export function useSubmitProposalComment() {
     }) => {
       if (!wallet) throw new Error(_copy("governance.discussion.signInToComment"));
       const addr = wallet.toLowerCase();
-      const headers = await dehubAuthHeaders(addr);
-      if (!headers['x-dehub-token']) throw new Error(_copy("governance.discussion.signInToComment"));
+      // The Supabase fetch attaches a verified wallet session for this address.
 
       const { data, error } = await withWalletHeader(
         supabase
@@ -176,8 +174,7 @@ export function useSubmitProposalComment() {
             parent_id: parentId ?? null,
           })
           .select()
-          .single()
-          .setHeader('x-dehub-token', headers['x-dehub-token']),
+          .single(),
         addr,
       );
       if (error) throw error;
