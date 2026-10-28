@@ -2410,6 +2410,8 @@
     "returnHome": "Return Home"
   },
   "profile": {
+    "mutualsOne": "{{count}} Mutual:",
+    "mutualsMany": "{{count}} Mutuals:",
     "replyThread": {
       "postUnavailable": "This post is unavailable",
       "commentUnavailable": "This comment is no longer available"

@@ -2447,6 +2447,8 @@
     "returnHome": "Volver al inicio"
   },
   "profile": {
+    "mutualsOne": "{{count}} en común:",
+    "mutualsMany": "{{count}} en común:",
     "dislikesPrivateDesc": "Esta cuenta mantiene sus «no me gusta» en privado.",
     "dislikesPrivateTitle": "Los «no me gusta» son privados",
     "dislikesEmptyOther": "Todavía nada marcado con «no me gusta».",
