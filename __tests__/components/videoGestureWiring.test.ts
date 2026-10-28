@@ -19,7 +19,7 @@ describe('video gesture wiring', () => {
     // invisible to gesture-handler) and cancel the press: back only hid the buttons.
     const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
 
-    expect(viewer).toContain('const mediaHitSlop = { top: chromeVisible ? -topChromeBand : 0 };');
+    expect(viewer).toContain('const mediaHitSlop = { top: chromeLive ? -topChromeBand : 0 };');
     expect(viewer.match(/\.hitSlop\(mediaHitSlop\)/g)?.length).toBe(2);
   });
 
@@ -33,6 +33,14 @@ describe('video gesture wiring', () => {
     expect(viewer.match(/<ChromeTouchTarget>/g)?.length).toBeGreaterThanOrEqual(5);
     expect(viewer).toContain('if (pagerGesture) tap.simultaneousWithExternalGesture(pagerGesture);');
     expect(viewer.match(/pagerGesture=\{pagerGesture\}/g)?.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it('keeps auto-faded shorts buttons tappable', () => {
+    // A tap on a faded Back used to only bring the chrome back: two taps.
+    const viewer = readSource('screens', 'ShortsViewerScreen.tsx');
+
+    expect(viewer).toContain('const chromeLive = !showComments && !screenshotMode && !overlaysHidden;');
+    expect(viewer.match(/pointerEvents=\{chromeLive \? "box-none" : "none"\}/g)?.length).toBe(2);
   });
 
   it('leaves shorts on a sideways swipe from the left edge', () => {

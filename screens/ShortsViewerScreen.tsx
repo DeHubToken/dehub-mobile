@@ -431,6 +431,10 @@ interface ShortItemProps {
    * and used to stay on screen through a "hide the chrome" gesture.
    */
   onChromeVisibilityChange: (visible: boolean) => void;
+  /** Whether the buttons take taps: true while they are only auto-faded. */
+  onChromeLiveChange: (live: boolean) => void;
+  /** Bumped when a screen-level button is pressed, to bring faded chrome back. */
+  chromeRevealTick: number;
   onCommentsVisibilityChange: (visible: boolean) => void;
   /**
    * The viewer's options menu is open over this short. Its native sheet takes
@@ -439,7 +443,7 @@ interface ShortItemProps {
   optionsMenuOpen?: boolean;
 }
 
-const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, isFirst, onHoldActiveChange, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
+const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActive: activeItem, isNearby, activeVideoRef, itemHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, isFirst, onHoldActiveChange, captureViewerState, isMuted, volume, playbackRate, pagerGesture, onChromeVisibilityChange, onChromeLiveChange, chromeRevealTick, onCommentsVisibilityChange, optionsMenuOpen = false }) => {
   const { t: _copy } = _useCopy();
   const feedPlaybackAllowed = useFeedPlaybackAllowed();
   const surfaceActive = useFeedSurfaceActive();
@@ -504,9 +508,14 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       setIntrinsicSize({ width, height });
     };
     try { take(player.videoTrack?.size); } catch {}
-    const trackSub = player.addListener('videoTrackChange', event => take(event.videoTrack?.size));
-    const sourceSub = player.addListener('sourceLoad', event => take(event.availableVideoTracks?.[0]?.size));
-    return () => { cancelled = true; trackSub.remove(); sourceSub.remove(); };
+    let subs: { remove(): void }[] = [];
+    try {
+      subs = [
+        player.addListener('videoTrackChange', event => take(event.videoTrack?.size)),
+        player.addListener('sourceLoad', event => take(event.availableVideoTracks?.[0]?.size)),
+      ];
+    } catch {}
+    return () => { cancelled = true; subs.forEach(sub => { try { sub.remove(); } catch {} }); };
   }, [player, rotationProbeUrl]);
   const miniDragY = useSharedValue(0);
   const miniStart = useSharedValue({ x: 0, y: 0 });
@@ -519,7 +528,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
   const { showUserProfile } = useUserProfileSheet();
 
   const isLooping = useMediaLooping();
-  useEffect(() => { player.loop = !!photoMedia || isLooping; }, [player, photoMedia, isLooping]);
+  useEffect(() => { try { player.loop = !!photoMedia || isLooping; } catch {} }, [player, photoMedia, isLooping]);
   const itemThumbnail = item.postType === 'short' ? getShortsThumbnailUrl(tokenId) : resolveThumbnail(item);
   const thumbnail = photoMedia?.thumbnail || thumbnailOverride || (itemThumbnail === DEFAULT_BANNER_SENTINEL ? undefined : itemThumbnail);
   // Android draws a TextureView video inside the app's own frame, so every
@@ -888,8 +897,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
 
   useEffect(() => {
     if (!player || !ownsPlayerRef.current()) return;
-    player.staysActiveInBackground = isPictureInPicturePlayer(player);
-    player.showNowPlayingNotification = isPictureInPicturePlayer(player);
+    try {
+      player.staysActiveInBackground = isPictureInPicturePlayer(player);
+      player.showNowPlayingNotification = isPictureInPicturePlayer(player);
+    } catch {
+      // Released between close and reopen: nothing to play on this one.
+      return;
+    }
     if (isActive) {
       // The same callback identity must be used for request and release. The
       // old anonymous callbacks could never release either global focus slot.
@@ -921,7 +935,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     if (!isActive) return;
     const sub = AppState.addEventListener("change", (state) => {
       if (state !== "active" || pausedByUserRef.current || !itemNavigation.isFocused()) return;
-      if (!player.playing) playIfActive();
+      try { if (!player.playing) playIfActive(); } catch {}
     });
     return () => sub.remove();
   }, [isActive, player, playIfActive, itemNavigation]);
@@ -1641,6 +1655,13 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
    * fail at the same 10px boundary used by feed cards, leaving the pager alone.
    */
   const chromeVisible = !showComments && !screenshotMode && !overlaysHidden && !autoHidden;
+  /**
+   * The auto-clear only fades the buttons. They keep taking taps, so Back,
+   * mute or like work on the first tap instead of first fetching the chrome
+   * back; a tap on the video itself still brings it back as before. Only a
+   * deliberate clear (swipe down, screenshot mode, a sheet) switches them off.
+   */
+  const chromeLive = !showComments && !screenshotMode && !overlaysHidden;
 
   /**
    * The strip the top buttons sit in, which the video must not take touches in
@@ -1849,7 +1870,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     intrinsicSize, canMinimize, dismissStart, dismissY, leaveViewer, resetTapSequence, pagerGesture]);
 
   const screenGesture = useMemo(() => {
-    const mediaHitSlop = { top: chromeVisible ? -topChromeBand : 0 };
+    const mediaHitSlop = { top: chromeLive ? -topChromeBand : 0 };
     const tap = Gesture.Tap()
       .maxDistance(MEDIA_TAP_SLOP_PX)
       .hitSlop(mediaHitSlop)
@@ -1870,7 +1891,7 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       .onUpdate((event) => handleHoldMove(event.translationY))
       .onFinalize(() => handleLongPressOut());
     return Gesture.Race(makeEdgeBack(), minimizePan, dismissPan, restorePan, hold, tap);
-  }, [handleLongPressIn, handleHoldMove, handleLongPressOut, handleScreenTap, pagerGesture, minimizePan, dismissPan, restorePan, makeEdgeBack, chromeVisible, topChromeBand]);
+  }, [handleLongPressIn, handleHoldMove, handleLongPressOut, handleScreenTap, pagerGesture, minimizePan, dismissPan, restorePan, makeEdgeBack, chromeLive, topChromeBand]);
 
   const bottomStackGesture = useMemo(() => Gesture.Race(makeEdgeBack(), hidePan), [makeEdgeBack, hidePan]);
 
@@ -1952,6 +1973,17 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
     onChromeVisibilityChange(chromeVisible);
     return () => onChromeVisibilityChange(true);
   }, [isActive, chromeVisible, onChromeVisibilityChange]);
+
+  useEffect(() => {
+    if (!isActive) return;
+    onChromeLiveChange(chromeLive);
+    return () => onChromeLiveChange(true);
+  }, [isActive, chromeLive, onChromeLiveChange]);
+
+  // A top-bar button pressed while the chrome was faded brings it back.
+  useEffect(() => {
+    if (isActive && chromeRevealTick > 0) setAutoHidden(false);
+  }, [chromeRevealTick, isActive]);
 
   return (
     <View ref={frameRef} collapsable={false} style={{ width: SCREEN_WIDTH, height: itemHeight }}>
@@ -2144,7 +2176,9 @@ const ShortItem = React.memo<ShortItemProps>(({ item, thumbnailOverride, isActiv
       <Reanimated.View style={[StyleSheet.absoluteFill, miniChromeStyle]} pointerEvents="box-none">
       <Animated.View
         style={[StyleSheet.absoluteFill, { opacity: chromeOpacity }]}
-        pointerEvents={chromeVisible ? "box-none" : "none"}
+        pointerEvents={chromeLive ? "box-none" : "none"}
+        // A button pressed while faded also brings the rest of the chrome back.
+        onTouchStart={autoHidden ? () => setAutoHidden(false) : undefined}
       >
         {/* An open caption dims the video so it reads properly, as on web. A
             tap on the dimmed video closes it again. */}
@@ -2557,6 +2591,9 @@ const ShortsViewerScreen = () => {
   // Clearing a short's chrome — by holding the middle of it, or by the
   // swipe-down — is reported up so the top bar goes with it.
   const [chromeVisible, setChromeVisible] = useState(true);
+  const [chromeLive, setChromeLive] = useState(true);
+  const [chromeRevealTick, setChromeRevealTick] = useState(0);
+  const revealChrome = useCallback(() => setChromeRevealTick((n) => n + 1), []);
   const [commentsVisible, setCommentsVisible] = useState(false);
   const topChromeOpacity = useRef(new Animated.Value(1)).current;
 
@@ -2903,11 +2940,13 @@ const ShortsViewerScreen = () => {
         playbackRate={playbackRate}
         pagerGesture={pagerGesture}
         onChromeVisibilityChange={setChromeVisible}
+        onChromeLiveChange={setChromeLive}
+        chromeRevealTick={index === activeIndex ? chromeRevealTick : 0}
         onCommentsVisibilityChange={setCommentsVisible}
         optionsMenuOpen={index === activeIndex && showOptionsMenu}
       />
     ),
-    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, initialIndex, initialThumbnail],
+    [activeIndex, showOptionsMenu, containerHeight, viewportHeight, miniReveal, backDrag, backLeaving, onSwipeBackSettled, dismissY, captureViewerState, isMuted, volume, playbackRate, pagerGesture, setChromeVisible, chromeRevealTick, initialIndex, initialThumbnail],
   );
 
   const keyExtractor = useCallback(
@@ -2980,7 +3019,8 @@ const ShortsViewerScreen = () => {
           frame instead of a pop at the top and a fade at the bottom. */}
       <Animated.View
         style={[StyleSheet.absoluteFill, { opacity: topChromeOpacity }]}
-        pointerEvents={chromeVisible ? "box-none" : "none"}
+        pointerEvents={chromeLive ? "box-none" : "none"}
+        onTouchStart={chromeVisible ? undefined : revealChrome}
       >
         {/* Mirror of the bottom scrim — the top buttons had nothing behind
             them, so they washed out over a bright first frame. Its height is
