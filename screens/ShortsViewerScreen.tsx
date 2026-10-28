@@ -101,6 +101,7 @@ import Icon from "../components/ui/Icon";
 import type { IconName } from "../components/ui/Icon";
 import {
   ChromeFill,
+  ChromeTouchTarget,
   CHROME_GAP,
   CHROME_HIT_SLOP,
   CHROME_SIZE,
@@ -2954,36 +2955,42 @@ const ShortsViewerScreen = () => {
         />
 
         <View className="dark-surface" style={[styles.topBar, { paddingTop: mediaInsets.top + EDGE }]} pointerEvents="box-none">
-          <Pressable className="dark-surface" onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
-            <ChromeFill top />
-            {/* The cut Back arrow at the 20pt every other glyph on this row
-                uses, starting with picture-in-picture. */}
-            <Icon name="ArrowLeft" size={20} color="#fff" />
-          </Pressable>
+          <ChromeTouchTarget>
+            <Pressable className="dark-surface" onPress={handleBack} hitSlop={CHROME_HIT_SLOP} style={styles.topButton} accessibilityLabel={t("profile.back")}>
+              <ChromeFill top />
+              {/* The cut Back arrow at the 20pt every other glyph on this row
+                  uses, starting with picture-in-picture. */}
+              <Icon name="ArrowLeft" size={20} color="#fff" />
+            </Pressable>
+          </ChromeTouchTarget>
 
           <View style={styles.topRight}>
-            {items[activeIndex]?.postType !== "feed-images" && <PictureInPictureButton videoRef={activeVideoRef} size={CHROME_SIZE} />}
-            <Pressable
-              onPress={handleCycleSpeed}
-              className="dark-surface"
-              hitSlop={CHROME_HIT_SLOP}
-              style={[styles.topButton, styles.speedButton]}
-              accessibilityLabel={t("player.playbackSpeed")}
-            >
-              <ChromeFill top />
-              <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
-            </Pressable>
-
-            <View>
-              <View
-                style={styles.topButton}
+            {items[activeIndex]?.postType !== "feed-images" && <ChromeTouchTarget><PictureInPictureButton videoRef={activeVideoRef} size={CHROME_SIZE} /></ChromeTouchTarget>}
+            <ChromeTouchTarget>
+              <Pressable
+                onPress={handleCycleSpeed}
+                className="dark-surface"
                 hitSlop={CHROME_HIT_SLOP}
-                accessibilityLabel={isMuted ? _copy("copy.ce4ee4efc5e3", { defaultValue: "Unmute" }) : _copy("copy.8dd6857baf02", { defaultValue: "Mute" })}
-                {...volumePanResponder.panHandlers}
+                style={[styles.topButton, styles.speedButton]}
+                accessibilityLabel={t("player.playbackSpeed")}
               >
                 <ChromeFill top />
-                <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
-              </View>
+                <Text style={styles.speedButtonText}>{formatRate(playbackRate)}</Text>
+              </Pressable>
+            </ChromeTouchTarget>
+
+            <View>
+              <ChromeTouchTarget>
+                <View
+                  style={styles.topButton}
+                  hitSlop={CHROME_HIT_SLOP}
+                  accessibilityLabel={isMuted ? _copy("copy.ce4ee4efc5e3", { defaultValue: "Unmute" }) : _copy("copy.8dd6857baf02", { defaultValue: "Mute" })}
+                  {...volumePanResponder.panHandlers}
+                >
+                  <ChromeFill top />
+                  <Icon name={isMuted ? "VolumeX" : "Volume2"} size={20} color="#fff" />
+                </View>
+              </ChromeTouchTarget>
               {volumeAdjusting && (
                 <View style={styles.volumeTrack} pointerEvents="none">
                   <ChromeFill top />
@@ -2999,16 +3006,18 @@ const ShortsViewerScreen = () => {
               )}
             </View>
 
-            <Pressable
-              onPress={() => setShowOptionsMenu(true)}
-              className="dark-surface"
-              style={styles.topButton}
-              hitSlop={CHROME_HIT_SLOP}
-              accessibilityLabel={t("player.moreOptions")}
-            >
-              <ChromeFill top />
-              <Icon name="Ellipsis" size={20} color="#fff" />
-            </Pressable>
+            <ChromeTouchTarget>
+              <Pressable
+                onPress={() => setShowOptionsMenu(true)}
+                className="dark-surface"
+                style={styles.topButton}
+                hitSlop={CHROME_HIT_SLOP}
+                accessibilityLabel={t("player.moreOptions")}
+              >
+                <ChromeFill top />
+                <Icon name="Ellipsis" size={20} color="#fff" />
+              </Pressable>
+            </ChromeTouchTarget>
           </View>
         </View>
       </Animated.View>
