@@ -162,8 +162,9 @@ export function useNewPostsSignal({
 
   const signal = useMemo(() => {
     const newest = chronological && newestCreatedAt ? Date.parse(newestCreatedAt) : NaN;
-    if (!data || Number.isNaN(newest)) return { newPostCount: 0, atCap: false, newPostAuthors: NO_AUTHORS };
+    if (!data || Number.isNaN(newest)) return { newPostCount: 0, atCap: false, newPostAuthors: NO_AUTHORS, latestNewAt: 0 };
 
+    let latestNewAt = 0;
     const newer = (data.result || []).filter((item: any) => {
       const raw = item?.createdAt || item?.created_at || item?.stream?.createdAt;
       const stamp = raw ? Date.parse(raw) : NaN;
@@ -171,6 +172,7 @@ export function useNewPostsSignal({
       const id = feedRowId(item);
       if (id && knownIds?.has(id)) return false;
       if (isRenderable && !isRenderable(item)) return false;
+      latestNewAt = Math.max(latestNewAt, stamp);
       return true;
     });
 
@@ -192,6 +194,9 @@ export function useNewPostsSignal({
       // Every row came back newer, so there are likely more than were fetched.
       atCap: newer.length >= HEAD_SIZE,
       newPostAuthors,
+      /** createdAt (ms) of the newest post counted; a tapped chip stays away
+       *  until a post newer than this one turns up. */
+      latestNewAt,
     };
   }, [data, newestCreatedAt, chronological, knownIds, isRenderable]);
 
