@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import SmartImage from "./SmartImage";
 import LiveRipple from "./LiveRipple";
+import { isLightToneOn, KeepDark } from "../../libs/jsx/tone";
 
 interface AvatarProps {
   uri?: string | null;
@@ -34,6 +35,12 @@ interface AvatarProps {
 
 const INITIAL_BG = "#2A2C2E";
 const INITIAL_COLOR = "#A6A9AC";
+// System Light: a letter avatar is an outlined tile (paper fill, hairline that
+// follows the rounded-square corners) so it still reads as an avatar on a
+// pale card, same as web. Written as dark-theme greys because the light tone
+// pass turns them around: #161618 -> #f4f4f6 and white at 16% -> ink at 16%.
+const LIGHT_INITIAL_BG = "#161618";
+const LIGHT_INITIAL_EDGE = "rgba(255,255,255,0.16)";
 
 function getInitial(name?: string): string {
   if (!name) return "?";
@@ -86,6 +93,9 @@ const Avatar: React.FC<AvatarProps> = ({
 
   const radius = radiusProp ?? Math.round(size * 0.16);
   const showImage = !!current;
+  // Media and live surfaces stay dark under System Light; keep the dark chip there.
+  const keepDark = React.useContext(KeepDark);
+  const lightTile = !showImage && isLightToneOn() && !keepDark;
 
   const initial = useMemo(() => getInitial(name), [name]);
   const fontSize = Math.max(10, Math.round(size * 0.42));
@@ -103,7 +113,7 @@ const Avatar: React.FC<AvatarProps> = ({
           overflow: "hidden",
           borderWidth,
           borderColor,
-          backgroundColor: INITIAL_BG,
+          backgroundColor: lightTile ? LIGHT_INITIAL_BG : INITIAL_BG,
           alignItems: "center",
           justifyContent: "center",
         },
@@ -116,6 +126,21 @@ const Avatar: React.FC<AvatarProps> = ({
       >
         {initial}
       </Text>
+      {lightTile && (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            borderRadius: Math.max(0, radius - borderWidth),
+            borderWidth: 1,
+            borderColor: LIGHT_INITIAL_EDGE,
+          }}
+        />
+      )}
       {/* SmartImage (expo-image), not RN Image: every avatar in the app comes
           through here, and RN's Image has no disk cache — each one was
           re-downloaded and re-decoded on every scroll-back. It sits on top of
