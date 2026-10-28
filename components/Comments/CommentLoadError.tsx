@@ -11,7 +11,7 @@ export function CommentLoadError({ isFetching, onRetry }: { isFetching: boolean;
         {t('comments.loadFailed')}
       </Text>
       <KitButton variant="quiet" label={t(isFetching ? 'common.loading' : 'common.retry')}
-        disabled={isFetching} onPress={onRetry} />
+        disabled={isFetching} onPress={isFetching ? undefined : onRetry} />
     </View>
   );
 }
