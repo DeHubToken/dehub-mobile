@@ -107,6 +107,44 @@ export const STATUS_COLORS: Record<FeatureStatus, string> = {
 
 const PAGE_SIZE = 15;
 
+/**
+ * One request can sit in four caches at once: the paged Requests list, the
+ * Shipping and Shipped arrays, and the single row a notification pins. Patching
+ * only the paged list left votes and comment counts frozen on every Shipping
+ * and Shipped card, which is where most of the board lives.
+ */
+const FEATURE_ROW_KEYS = [
+  ["feature-requests"],
+  ["feature-requests-shipped"],
+  ["feature-requests-in-progress"],
+  ["feature-request"],
+] as const;
+
+function patchFeatureRow(
+  queryClient: ReturnType<typeof useQueryClient>,
+  id: string,
+  patch: (row: FeatureRequest) => FeatureRequest,
+) {
+  const apply = (row: FeatureRequest) => (row?.id === id ? patch(row) : row);
+  for (const queryKey of FEATURE_ROW_KEYS) {
+    queryClient.setQueriesData({ queryKey }, (old: any) => {
+      if (!old) return old;
+      if (Array.isArray(old.pages)) {
+        return { ...old, pages: old.pages.map((page: FeatureRequest[]) => page.map(apply)) };
+      }
+      if (Array.isArray(old)) return old.map(apply);
+      if (typeof old === "object" && "id" in old) return apply(old);
+      return old;
+    });
+  }
+}
+
+/** Edits and deletes refresh every list that can hold the row, not only Requests. */
+function invalidateFeatureRows(queryClient: ReturnType<typeof useQueryClient>) {
+  for (const queryKey of FEATURE_ROW_KEYS) queryClient.invalidateQueries({ queryKey });
+  queryClient.invalidateQueries({ queryKey: ["feature-requests-total-count"] });
+}
+
 /** Shipped items are pulled out into their own section, as on web. */
 const SHIPPED_STATUSES = ["completed", "shipped"];
 
@@ -380,10 +418,12 @@ export function useVoteFeatureRequest() {
     },
 
     onMutate: async ({ featureRequestId, voteType, currentVote }: VoteVars) => {
-      await queryClient.cancelQueries({ queryKey: ["feature-requests"] });
+      for (const queryKey of FEATURE_ROW_KEYS) await queryClient.cancelQueries({ queryKey });
       await queryClient.cancelQueries({ queryKey: ["feature-request-votes"] });
 
-      const previousRequests = queryClient.getQueriesData({ queryKey: ["feature-requests"] });
+      const previousRequests = FEATURE_ROW_KEYS.flatMap((queryKey) =>
+        queryClient.getQueriesData({ queryKey }),
+      );
       const previousVotes = queryClient.getQueryData(["feature-request-votes", wallet]);
 
       queryClient.setQueryData(
@@ -423,15 +463,7 @@ export function useVoteFeatureRequest() {
         };
       };
 
-      queryClient.setQueriesData({ queryKey: ["feature-requests"] }, (old: any) => {
-        if (!old?.pages) return old;
-        return {
-          ...old,
-          pages: old.pages.map((page: FeatureRequest[]) =>
-            page.map((fr) => (fr.id === featureRequestId ? applyVote(fr) : fr)),
-          ),
-        };
-      });
+      patchFeatureRow(queryClient, featureRequestId, applyVote);
 
       return { previousRequests, previousVotes };
     },
@@ -494,19 +526,10 @@ function patchCommentCount(
   featureRequestId: string,
   delta: 1 | -1,
 ) {
-  queryClient.setQueriesData({ queryKey: ["feature-requests"] }, (old: any) => {
-    if (!old?.pages) return old;
-    return {
-      ...old,
-      pages: old.pages.map((page: FeatureRequest[]) =>
-        page.map((fr) =>
-          fr.id === featureRequestId
-            ? { ...fr, comment_count: Math.max(0, (fr.comment_count || 0) + delta) }
-            : fr,
-        ),
-      ),
-    };
-  });
+  patchFeatureRow(queryClient, featureRequestId, (fr) => ({
+    ...fr,
+    comment_count: Math.max(0, (fr.comment_count || 0) + delta),
+  }));
 }
 
 /**
@@ -784,7 +807,7 @@ export function useEditFeatureRequest() {
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
+      invalidateFeatureRows(queryClient);
       toastSuccess(_copy("copy.b8af57e311aa", { defaultValue: "Feature request updated!" }));
     },
     onError: (error) => {
@@ -812,8 +835,7 @@ export function useDeleteFeatureRequest() {
       return id;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["feature-requests"] });
-      queryClient.invalidateQueries({ queryKey: ["feature-requests-total-count"] });
+      invalidateFeatureRows(queryClient);
       toastSuccess(_copy("copy.be692c8e223e", { defaultValue: "Feature request deleted" }));
     },
     onError: (error) => {
