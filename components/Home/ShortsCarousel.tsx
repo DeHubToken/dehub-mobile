@@ -133,6 +133,9 @@ const ShortsCarousel: React.FC<{
     navigation.navigate(ScreenNames.ShortsViewer, {
       initialIndex: index,
       initialItems: items,
+      // From page 1: the row is a handful of shorts, and the viewer used to
+      // start paging at 2, skipping the 20 most watched behind the row.
+      initialPage: 0,
       feedParams: { sortBy: "views" },
     });
   }, [navigation, items, onViewerOpen]);
