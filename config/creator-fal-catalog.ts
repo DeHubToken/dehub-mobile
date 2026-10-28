@@ -287,7 +287,7 @@ export interface CreatorFalImageModel {
 export const CREATOR_FAL_IMAGE_MODELS: Record<string, CreatorFalImageModel> = {
   'iclight-v2': {
     id: 'iclight-v2', name: 'ICLight Relight', vendor: 'ICLight', emoji: '💡', tier: 'standard',
-    description: 'Relight one photo from your lighting and background description.',
+    get description() { return _translateCopy('creator.relightDescription', { defaultValue: 'Relight one photo from your lighting and background description.' }); },
     // fal.ai/models/fal-ai/iclight-v2: $0.10/MP. Explicit dimensions stay below 1 MP.
     baseCostUsd: 0.10, supportsEdit: true, requiresImage: true, relight: true,
     text: 'fal-ai/iclight-v2', edit: 'fal-ai/iclight-v2', sizing: 'image_size', exactImageSize: true,
