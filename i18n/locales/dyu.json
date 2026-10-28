@@ -6279,6 +6279,7 @@
     },
     "followerInvites": {
       "detail": "I ka ladon 50 bɔ a kɔrɔ, i ka ladonw wele. I kana ladonw wele minnu bɛ sara walima minnu bɛ a nɔfɛ. I ka chat kɔrɔsi walasa ka ladon minnu ma sɔrɔ, sanni i ka kɛnɛ tugun.",
+      "note": "Kunnafoni dɔ fara i ka welekan kan (n’i b’a fɛ)",
       "clear": "A gwɛnin lo",
       "empty": "O yɔrɔ la, mɔgɔ si tɛ tugu a kɔ.",
       "error": "A tun tɛ se ka mɔgɔ weele ka na a ka soo. I ka kan ka taga yɔrɔ min na, i ka taga yen.",

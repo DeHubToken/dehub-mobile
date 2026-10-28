@@ -6467,6 +6467,7 @@
     "followerInvites": {
       "title": "Convidar seguidores",
       "detail": "Escolha até 50 seguidores por lote. DMs pagos ou fechados são ignorados. Verifique se há envios não confirmados no chat antes de tentar novamente.",
+      "note": "Adicione uma nota ao seu convite (opcional)",
       "selectAll": "Seleccione esta página",
       "clear": "Limpar",
       "previous": "Anterior",

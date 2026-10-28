@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Fshi",
       "detail": "Zgjidh deri në 50 ndjekës për grup. DM-të e paguara ose të mbyllura anashkalohen. Kontrollo bisedën për dërgime të pakonfirmuara para se të provosh përsëri.",
+      "note": "Shtoni një shënim në ftesën tuaj (opsionale)",
       "empty": "Nuk ka ndjekës në këtë faqe.",
       "error": "Nuk mund të dërgoni ftesa. Kontrolloni lidhjen dhe shenimet tuaja dhe përsëriteni më pas.",
       "next": "Para",

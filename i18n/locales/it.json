@@ -6296,6 +6296,7 @@
     "followerInvites": {
       "clear": "Chiarezza",
       "detail": "Scegli fino a 50 follower per batch. I DM pagati o chiusi sono saltati. Controlla il chat per le spedizioni non confermate prima di provare nuovamente.",
+      "note": "Aggiungi una nota al tuo invito (facoltativo)",
       "empty": "Nessun follower su questa pagina.",
       "error": "Non è stato possibile inviare gli inviti. Controlla la tua connessione e la tua registrazione, quindi riprova.",
       "next": "Successivo",

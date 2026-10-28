@@ -6309,6 +6309,7 @@
     "followerInvites": {
       "clear": "Toza",
       "detail": "Har bir guruhda 50 tagacha obunachi tanlang. Pullik yoki yopiq shaxsiy xabarlar o'tkazib yuboriladi. Qayta urinishdan oldin chatda tasdiqlanmagan xabarlar bor-yo'qligini tekshiring.",
+      "note": "Taklifingizga izoh qo‘shing (ixtiyoriy)",
       "empty": "Bu sahifada obunachilar yo'q.",
       "error": "Taklifnomalarni yuborib bo'lmadi. Ulanishni tekshiring va tizimga kiring, keyin qayta urinib ko'ring.",
       "next": "Keyingisi",

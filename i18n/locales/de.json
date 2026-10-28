@@ -6507,6 +6507,7 @@
     "followerInvites": {
       "title": "Follower einladen",
       "detail": "Wähle bis zu 50 Follower pro Stapel. Kostenpflichtige oder geschlossene DMs werden übersprungen. Überprüfe den Chat auf unbestätigte Sendungen, bevor du es erneut versuchst.",
+      "note": "Füge deiner Einladung eine Notiz hinzu (optional)",
       "selectAll": "Diese Seite auswählen",
       "clear": "Löschen",
       "previous": "Zurück",

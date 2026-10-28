@@ -6295,6 +6295,7 @@
     "followerInvites": {
       "clear": "Čistit",
       "detail": "Vyberte až 50 sledujících uživatelů na dávku. Zahozené nebo uzavřené zprávy jsou vynechány. Zkontrolujte konverzaci před opětovným pokusem.",
+      "note": "Přidejte k pozvánce poznámku (nepovinné)",
       "empty": "Na této stránce nejsou žádné sledující.",
       "error": "Nepodařilo se odeslat pozvánky. Zkontrolujte připojení a přihlášení a zkuste to znovu.",
       "next": "Další",

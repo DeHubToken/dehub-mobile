@@ -6397,6 +6397,7 @@
     "followerInvites": {
       "clear": "Vymazať",
       "detail": "Vyberte si až 50 sledovateľov na dávku. Platené alebo uzavreté DM sa preskočia. Pred opätovným pokusom skontrolujte, či sa v chate nenachádzajú nepotvrdené odoslania.",
+      "note": "Pridajte k pozvánke poznámku (nepovinné)",
       "empty": "Na tejto stránke nie sú žiadni sledovatelia.",
       "error": "Nepodarilo sa odoslať pozvánky. Skontrolujte pripojenie a prihláste sa a skúste to znova.",
       "next": "Ďalej",

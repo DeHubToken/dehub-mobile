@@ -5,6 +5,12 @@ export interface InviteBatchIO {
   confirm(address: string): Promise<void>;
   shouldContinue(): boolean;
 }
+export const INVITE_NOTE_MAX = 280;
+/** The owner's optional note goes above the link, so the chat shows it with the community card under it. */
+export function communityInviteMessage(url: string, note?: string) {
+  const text = (note ?? '').trim().slice(0, INVITE_NOTE_MAX);
+  return text ? `${text}\n${url}` : url;
+}
 export function allowsFreeCommunityInvite(status: { disables?: string[]; perMessageFee?: number | string } | null) {
   if (!status) return false;
   const fee = Number(status.perMessageFee ?? 0);

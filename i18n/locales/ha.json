@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Share",
       "detail": "Zaɓi har zuwa mabiya 50 a kowane rukuni. Ana tsallake waɗanda aka biya ko waɗanda aka rufe DMs. Duba hira don saƙonnin da ba a tabbatar da su ba kafin sake gwadawa.",
+      "note": "Ƙara bayani ga gayyatarka (na zaɓi)",
       "empty": "Babu mabiya a wannan shafi.",
       "error": "Ba a iya aika gayyata ba. Duba haɗin yanar gizonka da shiga, sannan sake gwadawa.",
       "next": "Na gaba",

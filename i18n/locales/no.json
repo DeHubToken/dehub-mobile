@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Klar",
       "detail": "Velg opptil 50 følgere per gruppe. Betalte eller lukkede direktemeldinger hoppes over. Sjekk chatten for ubekreftede sendinger før du prøver på nytt.",
+      "note": "Legg til en melding i invitasjonen (valgfritt)",
       "empty": "Ingen følgere på denne siden.",
       "error": "Kunne ikke sende invitasjoner. Sjekk tilkoblingen din og logg inn, og prøv deretter på nytt.",
       "next": "Neste",

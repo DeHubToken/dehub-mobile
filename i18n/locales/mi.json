@@ -6282,6 +6282,7 @@
       "summary": "Kua tukuna: {{sent}} · Kua pekea: {{skipped}} · Tirohia te kōrerorero: {{review}} · I rahua: {{failed}}",
       "clear": "He mārama",
       "detail": "Whiriwhiria ki te 50 ngā kaiwhaiwhai ia huinga. Ka utua, ka kati ranei nga DM. Tirohia te kōrerorero mō te tuku unconfirmed i mua i te tamata ano.",
+      "note": "Tāpirihia he kōrero ki tō pōwhiri (kōwhiringa)",
       "empty": "Kaore he kaiwhaiwhai i runga i tenei whaarangi.",
       "error": "Kaore e taea e au te tuku tono. Tirohia to hononga me te takiuru, ka tamata ano.",
       "next": "Tō muri mai",
