@@ -9,7 +9,8 @@ import ScreenHeader from '../components/ScreenHeader';
 import { PageEmpty, PageSection, PageTabs } from '../components/page/PageKit';
 import { useAppTheme } from '../context/ThemeContext';
 import { openExternalLink } from '../libs/links.utils';
-import { CATEGORIES, FEATURES, PLATFORMS, COMPETITOR_REVIEWED_ON, SOURCES, STATUS_LABELS, comparisonCoverage, entryFor, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
+import { CATEGORIES, FEATURES, PLATFORMS, COMPETITOR_REVIEWED_ON, SOURCES, STATUS_LABELS, entryFor, featureTotals, filterFeatures, type PlatformId, type ComparisonEntry } from '../libs/platform-comparison';
+import { inComparisonView, type ComparisonView } from '../libs/platform-comparison-views';
 
 export default function CompareScreen() {
   const { t } = useTranslation();
@@ -20,16 +21,18 @@ export default function CompareScreen() {
   const [platform, setPlatform] = useState<PlatformId | 'all'>('youtube');
   const [category, setCategory] = useState('all');
   const [query, setQuery] = useState('');
+  const [view, setView] = useState<ComparisonView>('all');
   const [method, setMethod] = useState(false);
   useEffect(() => {
     const incoming = route.params;
     setPlatform(incoming?.platform === 'all' ? 'all' : PLATFORMS.some(p => p.id === incoming?.platform) ? incoming!.platform as PlatformId : 'youtube');
     setCategory(CATEGORIES.includes(incoming?.category ?? '') ? incoming!.category! : 'all');
     setQuery(incoming?.q ?? '');
+    setView(incoming?.view === 'social' || incoming?.view === 'lacks' ? incoming.view : 'all');
   }, [route.params]);
-  const filtered = useMemo(() => filterFeatures(query, category), [query, category]);
+  const filtered = useMemo(() => filterFeatures(query, category).filter(feature => inComparisonView(feature, view)), [query, category, view]);
   const peers = PLATFORMS.filter(item => platform === 'all' || item.id === platform);
-  const coverage = comparisonCoverage(platform);
+  const totals = useMemo(() => featureTotals(filtered), [filtered]);
   const entry = (value: ComparisonEntry, name: string, restricted = false) => <View style={styles.entry}>
     <View style={styles.entryHeading}><Text style={[styles.name, { color: colors.foreground }]}>{name}</Text><Text style={{ color: colors.mutedForeground }}>{copy(`status.${value.status}`, STATUS_LABELS[value.status])}</Text></View>
     <Text style={[styles.body, { color: colors.mutedForeground }]}>{value.note}</Text>
@@ -51,14 +54,16 @@ export default function CompareScreen() {
           <Text style={[styles.body, { color: colors.mutedForeground }]}>{FEATURES.length} {copy('features', 'features')} · {CATEGORIES.length} {copy('categories', 'categories')} · {PLATFORMS.length} {copy('platforms', 'other platforms')}</Text>
           <Pressable accessibilityRole="button" accessibilityState={{ expanded: method }} onPress={() => setMethod(value => !value)} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{copy('method', 'How to read this comparison')}</Text></Pressable>
           {method && <View style={{ gap: 12 }}>
-            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('researchMethod', 'Each catalogue feature has been reviewed against the cited official documentation for all eleven competitors. Documented, Conditional and Related product describe supported or partial equivalents. Explicit limitation requires a source that states the restriction. Not established by sources means this documentary review did not establish an equivalent; it does not mean the product definitely lacks it. Announcements and unresolved availability are labelled separately.')}</Text>
+            <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('nativeEvidenceMethod', 'The catalogue includes DeHub capabilities and features gathered from competitors’ help, creator and product pages. Documented, Conditional and Related product describe supported or partial equivalents. Explicit limitations, announcements and unresolved equivalents remain separate. Not established by sources or Not verified does not mean that a platform definitely lacks the feature.')}</Text>
             <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('scope', 'This is a growing catalogue of DeHub capabilities, not a score or an exhaustive audit of every competitor. Platform documentation can lag product changes. Older sources establish a feature, not its current price or limits.')}</Text>
             <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('parity', 'DeHub web, Android and iOS capabilities differ. The iOS app does not offer crypto purchases or reward actions. Device-specific notes remain beside the relevant features. Documentation is not a guarantee of availability or earnings.')}</Text>
             <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('researchLimit', 'This is a documentation comparison, not an end-to-end test of every account, region or device. DeHub source references pin the reviewed code revisions. Independent editors and payment providers count only where explicitly identified as related products. Counts describe catalogue rows, not unique advantages or a feature score.')}</Text>
             <Text style={[styles.body, { color: colors.mutedForeground }]}>{copy('peerReviewDate', 'Competitor documentation reviewed:')} {COMPETITOR_REVIEWED_ON}</Text>
           </View>}
-          <Text style={[styles.body, { color: colors.mutedForeground, marginTop: 12 }]}>{coverage.reviewed} / {coverage.total} {copy('researchCoverage', 'competitor entries reviewed against documentation.')} {coverage.verified} {copy('researchMatches', 'documented, conditional or related-product matches.')}</Text>
+          <Text style={[styles.body, { color: colors.mutedForeground, marginTop: 12 }]}>{copy('nativeCountMethod', 'Counts below show documented or conditional support among the matching rows. Related products and announcements are counted separately; unknown entries are not treated as absence.')}</Text>
+          {[{ id: 'dehub' as const, name: 'DeHub' }, ...peers].map(item => <Text key={item.id} style={[styles.body, { color: colors.mutedForeground }]}>{item.name}: {totals[item.id].yes} / {filtered.length} · {totals[item.id].partial} {copy('nativePartial', 'partial or related-product entries')}</Text>)}
         </PageSection>
+        <PageTabs<ComparisonView> tabs={[{ id: 'all', label: copy('viewAll', 'All features') }, { id: 'social', label: copy('viewSocial', 'Social only') }, { id: 'lacks', label: copy('viewLacks', 'What DeHub lacks') }]} value={view} onChange={setView} />
         <PageTabs<string> tabs={[{ id: 'all', label: copy('allCategories', 'All categories') }, ...CATEGORIES.map(c => ({ id: c, label: c }))]} value={category} onChange={setCategory} />
         <Text accessibilityLiveRegion="polite" style={[styles.count, { color: colors.mutedForeground }]}>{filtered.length} {copy('matching', 'matching features')}</Text>
       </>}
@@ -68,7 +73,7 @@ export default function CompareScreen() {
         {entry(item.dehub, 'DeHub', item.iosRestricted)}
         {peers.map(peer => <View key={peer.id}>{entry(entryFor(item, peer.id), peer.name)}</View>)}
       </PageSection>}
-      ListEmptyComponent={<PageEmpty title={copy('empty', 'No matching features')} body={copy('emptyBody', 'Try another phrase or clear the category filter.')} action={<Pressable accessibilityRole="button" onPress={() => { setQuery(''); setCategory('all'); }} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{copy('reset', 'Clear filters')}</Text></Pressable>} />}
+      ListEmptyComponent={<PageEmpty title={copy('empty', 'No matching features')} body={copy('emptyBody', 'Try another phrase or clear the category filter.')} action={<Pressable accessibilityRole="button" onPress={() => { setQuery(''); setCategory('all'); setView('all'); }} style={styles.link}><Text style={{ color: colors.foreground, textDecorationLine: 'underline' }}>{copy('reset', 'Clear filters')}</Text></Pressable>} />}
     />
   </View>;
 }
