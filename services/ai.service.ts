@@ -596,7 +596,7 @@ export async function startVideoGeneration(
 ): Promise<AIVideoResponse> {
   return paidEdgeFetch<AIVideoResponse>(
     'generate-video',
-    request as unknown as Record<string, unknown>,
+    { ...request, prompt: request.avatar?.prompt ?? request.prompt, clientJobId: request.avatar?.clientJobId ?? request.clientJobId } as unknown as Record<string, unknown>,
     walletAddress,
   );
 }

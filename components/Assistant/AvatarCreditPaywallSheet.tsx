@@ -27,6 +27,8 @@ export function AvatarCreditPaywallSheet({ visible, onClose, onConfirm, avatarPr
   const identity = JSON.stringify([key, visible, avatarPrompt]);
   if (scope.current.identity !== identity) scope.current = { identity, epoch: scope.current.epoch + 1 };
   const active = useRef({ key, owner, visible, epoch: scope.current.epoch }); active.current = { key, owner, visible, epoch: scope.current.epoch };
+  const mounted = useRef(true);
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
   useEffect(() => { setQuote(null); }, [key]);
   useEffect(() => {
     setInput({ imageDataUrl: '', audioDataUrl: '', rightsConfirmed: false }); setQuote(null);
@@ -34,7 +36,7 @@ export function AvatarCreditPaywallSheet({ visible, onClose, onConfirm, avatarPr
     if (owner && visible) void loadPreparedAvatar(owner).then(saved => { if (!cancelled && saved) setInput(previous => previous.imageDataUrl || previous.audioDataUrl ? previous : saved); }).catch(() => {});
     return () => { cancelled = true; };
   }, [owner, visible]);
-  const current = (captured: typeof active.current) => captured.epoch === active.current.epoch && captured.key === active.current.key && captured.owner === active.current.owner && active.current.visible;
+  const current = (captured: typeof active.current) => mounted.current && captured.epoch === active.current.epoch && captured.key === active.current.key && captured.owner === active.current.owner && active.current.visible;
   const getQuote = async () => {
     const data = await quoteAiJob({ kind: 'video', modelId: 'kling-avatar-v2', avatar: input, avatarPrompt: effectivePrompt }) as AvatarQuote;
     if (!data.inputDigest || !(data.priceDhb > 0) || !Number.isInteger(data.durationSeconds)) throw new Error(t('creator.priceRetry'));
