@@ -25,9 +25,9 @@ it("opens text, image and audio posts in place on Home and keeps video on its ow
   const detail = read("screens/FeedDetailScreen.tsx");
   // Text, image and audio posts open as their feed bento; only video keeps the immersive page.
   expect(detail).toContain("{item && stage && !videoPost ? (");
-  // Only a video post drops the logo bar for the back icon.
-  expect(detail).toContain("{embedded || (stage && videoPost) ? null : <PostFeedNav");
-  expect(detail).toContain("{stage && videoPost && !embedded && <PostStageBackIcon");
+  // Every post page keeps the logo bar and pill, video too: no floating back icon.
+  expect(detail).toContain("{embedded ? null : <PostFeedNav");
+  expect(detail).not.toContain("<PostStageBackIcon");
 });
 
 it("leaves a comment tap to the card when Home turns it down under a profile", () => {
