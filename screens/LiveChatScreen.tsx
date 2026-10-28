@@ -26,6 +26,7 @@ import ConfirmModal from "../components/common/ConfirmModal";
 import LiveChatMessage from "../components/LiveChat/LiveChatMessage";
 import LiveChatInput from "../components/LiveChat/LiveChatInput";
 import LiveChatContextMenu from "../components/LiveChat/LiveChatContextMenu";
+import type { TranslateToggle } from "../components/ui/TranslateButton";
 import type { MessageLayout } from "../components/LiveChat/LiveChatContextMenu";
 import PinnedMessagesBar from "../components/LiveChat/PinnedMessagesBar";
 import { useComposerKeyboard } from "../hooks/useComposerKeyboard";
@@ -181,6 +182,7 @@ const LiveChatScreen: React.FC = () => {
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuMessage, setContextMenuMessage] = useState<LiveChatMessageData | null>(null);
   const [contextMenuLayout, setContextMenuLayout] = useState<MessageLayout | null>(null);
+  const [contextMenuTranslate, setContextMenuTranslate] = useState<TranslateToggle | undefined>(undefined);
   const [editingMessage, setEditingMessage] = useState<LiveChatMessageData | null>(null);
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -501,10 +503,11 @@ const LiveChatScreen: React.FC = () => {
   );
 
   const handleLongPress = useCallback(
-    (msg: LiveChatMessageData, layout: MessageLayout) => {
+    (msg: LiveChatMessageData, layout: MessageLayout, translate?: TranslateToggle) => {
       if (msg.isDeleted) return;
       setContextMenuMessage(msg);
       setContextMenuLayout(layout);
+      setContextMenuTranslate(translate);
       setContextMenuVisible(true);
     },
     []
@@ -514,6 +517,7 @@ const LiveChatScreen: React.FC = () => {
     setContextMenuVisible(false);
     setContextMenuMessage(null);
     setContextMenuLayout(null);
+    setContextMenuTranslate(undefined);
   }, []);
 
   const handleContextReply = useCallback((msg: LiveChatMessageData) => {
@@ -970,6 +974,7 @@ const LiveChatScreen: React.FC = () => {
         }
         onBan={handleContextBan}
         onUnban={handleContextUnban}
+        translate={contextMenuTranslate}
       />
 
       <ConfirmModal

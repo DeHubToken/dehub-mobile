@@ -18,6 +18,7 @@ import { authorThreadFirst, isAuthorThreadRoot, selectAuthorThreadIds } from "..
 import AuthorThreadBlock from "../components/Comments/AuthorThreadBlock";
 import { CommentBottomSheet, CommentItem } from "../components/Comments";
 import { takePendingFeedComments } from "../libs/feedPostHost";
+import type { TranslateToggle } from "../components/ui/TranslateButton";
 import CommentContextMenu from "../components/Comments/CommentContextMenu";
 import type { CommentLayout } from "../components/Comments/CommentContextMenu";
 import CommentMediaPreview from "../components/Comments/CommentMediaPreview";
@@ -278,7 +279,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   // Context menu state
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle } | null>(null);
   // The comment whose Report row was picked; the sheet is aimed at it.
   const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
@@ -736,7 +737,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
   );
 
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean }) => {
+    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked?: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => {
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
@@ -2042,6 +2043,7 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
           contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
         }
         tokenId={tokenId}
+        translate={contextMeta?.translate}
       />
 
       {/* Report somebody else's comment. One sheet for the whole screen,
