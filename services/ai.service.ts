@@ -629,6 +629,7 @@ export async function pollVideoGeneration(
 export interface AiToolRequest {
   clientJobId?: string;
   sourceAssetId?: string;
+  sourceDigest?: string;
   acceptedPriceDhb?: number;
   /** Tool key from `AI_TOOL_MODELS`, e.g. 'minimax-music'. */
   tool: string;

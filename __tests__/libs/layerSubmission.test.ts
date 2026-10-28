@@ -1,5 +1,11 @@
 import { resumeLayerSubmission, withLayerAdmission, type LayerSubmission } from '../../libs/editor/layerSubmission';
 const id='00000000-0000-4000-8000-000000000001';
+it('refreshes quote after paying is durable and never enters the wallet on a stale quote',async()=>{
+  const order:string[]=[];let value:LayerSubmission|null=null,paid=0;
+  await expect(resumeLayerSubmission({read:async()=>value,write:async next=>{value=next;order.push(next.phase);}},{uuid:()=>id,current:()=>true,
+    beforePay:async()=>{order.push('fresh-quote');throw new Error('quote changed');},pay:async()=>{paid++;return 'credits';},submit:async()=>{}})).rejects.toThrow('quote changed');
+  expect(order).toEqual(['prepared','paying','fresh-quote','prepared']);expect(paid).toBe(0);
+});
 it('retains an ambiguous wallet call and never pays it twice',async()=>{
   let value:LayerSubmission|null=null,paid=0;
   const storage={read:async()=>value,write:async(next:LayerSubmission)=>{value=next;}};
