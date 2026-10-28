@@ -4,6 +4,7 @@ import env from "../config/env";
 import { createAuthHeaders } from "../libs/auth.utils";
 import { tokenRefreshManager } from "../libs/token-refresh";
 import { translateCopy as _translateCopy } from "../i18n/copy";
+import { checkBufferedUploadSize } from "./upload-limits";
 
 const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
 const PLATFORM = Platform.OS;
@@ -50,6 +51,9 @@ export function isRateLimitUploadError(message?: string): boolean {
 
 /** Turn backend mint/upload error bodies into a user-facing message. */
 export function formatUploadErrorMessage(body: any, fallback: string): string {
+  if (body?.code === "UPLOAD_CAPACITY" || body?.code === "UPLOAD_TOO_LARGE") {
+    return typeof body.message === "string" ? body.message : fallback;
+  }
   const parts = [body?.message, body?.msg, body?.error_msg, body?.error]
     .filter((v): v is string => typeof v === "string" && v.trim().length > 0)
     .join(" ");
@@ -68,6 +72,7 @@ export function formatUploadErrorMessage(body: any, fallback: string): string {
 export async function xhrUploadFormData<T = any>(
   opts: XhrUploadOptions,
 ): Promise<T> {
+  await checkBufferedUploadSize(opts.formData);
   await tokenRefreshManager.ensureFreshToken();
   const authHeaders = await createAuthHeaders();
 
@@ -76,10 +81,12 @@ export async function xhrUploadFormData<T = any>(
   return new Promise<T>((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     let settled = false;
+    let abortTimer: ReturnType<typeof setInterval> | undefined;
 
     const settle = (fn: () => void) => {
       if (settled) return;
       settled = true;
+      if (abortTimer) clearInterval(abortTimer);
       fn();
     };
 
@@ -142,7 +149,7 @@ export async function xhrUploadFormData<T = any>(
 
     // Periodically check if abort was requested
     if (opts.abortRef) {
-      const check = setInterval(() => {
+      const check = abortTimer = setInterval(() => {
         if (opts.abortRef?.current) {
           clearInterval(check);
           xhr.abort();
