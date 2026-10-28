@@ -110,6 +110,9 @@ const LIST_CONTENT_STYLE_COLLAPSED = { paddingBottom: 24 } as const;
 
 /** Visited tabs kept mounted (hidden) per profile, the active one included. */
 const MAX_KEPT_TABS = 4;
+/** Busiest other tabs built in the background once the profile settles. */
+const PRERENDERED_TABS = 2;
+const PRERENDER_DELAY_MS = 1200;
 
 type ContentTab =
   | "home"
@@ -244,6 +247,26 @@ const UserProfileBottomContentTabs: React.FC<
       : [];
     return [home, ...rest, ...dislikes];
   }, [counts, t, isOwnProfile, showDislikesTab]);
+
+  // Once the profile has settled, build its busiest other tabs in the
+  // background (hidden, like a kept tab), so the first tap on one shows a
+  // ready list instead of building the list and header on the tap.
+  useEffect(() => {
+    if (!isFullScreen || !canViewContent) return;
+    const timer = setTimeout(() => {
+      const next = tabItems
+        .filter((item) => item.key !== activeTab && item.key !== "dislikes" && (item.count ?? 0) > 0)
+        .slice(0, PRERENDERED_TABS)
+        .map((item) => item.key);
+      setKeptTabs((kept) => {
+        if (kept.address !== address) return kept;
+        const missing = next.filter((tab) => !kept.tabs.includes(tab));
+        if (!missing.length) return kept;
+        return { address, tabs: [...missing, ...kept.tabs].slice(-MAX_KEPT_TABS) };
+      });
+    }, PRERENDER_DELAY_MS);
+    return () => clearTimeout(timer);
+  }, [address, isFullScreen, canViewContent, tabItems, activeTab]);
 
   // Track scroll offset for sticky bar + back-to-top
   const [showBackToTop, setShowBackToTop] = useState(false);
