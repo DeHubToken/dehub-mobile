@@ -3896,6 +3896,7 @@
     "tokenAmount": "{{amount}} jeton"
   },
   "communities": {
+    "jumpToReply": "Yanıtlanan mesaja git",
     "shareLink": "Bağlantıyı paylaş",
     "pinnedMore": "Daha fazla",
     "showFirst": "Önce göster",
