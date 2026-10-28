@@ -64,7 +64,7 @@ import { peekPostDetailSeed, takeWarmRequest } from "../libs/navPrefetch";
 import { useTransitionSettled } from "../hooks/useTransitionSettled";
 import CommentsStageHeader from "../components/Comments/CommentsStageHeader";
 import PostStageMiniPlayer, { MINI_PLAYER_HEIGHT } from "../components/Home/PostStageMiniPlayer";
-import { PostStageBackIcon, useStageBack } from "../components/Home/PostStage";
+import { useStageBack } from "../components/Home/PostStage";
 import FrostedPill from "../components/ui/FrostedPill";
 import { FrostedContent } from "../components/ui/FrostedBackdrop";
 
@@ -1653,11 +1653,11 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
 
   return (
     <View className="flex-1 bg-theme-neutrals-900">
-      {/* Phones: a video post drops the top bar for a small back icon on the
-          player. Text, image and audio posts keep the logo bar and the pill
-          where they were on the feed, Back in the pill's filter slot. Inside
-          Home those are Home's own, so nothing is drawn here. */}
-      {embedded || (stage && videoPost) ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
+      {/* Phones: every post page keeps the logo bar and the pill where they
+          are on the feed, Back in the pill's filter slot, whatever opened it
+          (a notification, a profile, a link). Inside Home those are Home's
+          own, so nothing is drawn here. */}
+      {embedded ? null : <PostFeedNav onBack={handlePostBack} withLogo={stage && !island} />}
       <View style={{ flex: 1 }}>
       <FrostedContent>
       <FlatList
@@ -1742,7 +1742,6 @@ function FeedDetailContent({ embeddedTokenId, onEmbeddedClose, bottomInset = 0 }
         </View>
       )}
       {stage && !embedded && <PostStageMiniPlayer tokenId={item?.tokenId ?? (item as any)?.id ?? tokenId} visible={showMini} onPress={scrollToMedia} />}
-      {stage && videoPost && !embedded && <PostStageBackIcon hidden={showMini} />}
       {/* Nothing to comment on while the post is private, gone or failed to
           load. A saved draft stays in storage and comes back with the post. */}
       {!postUnavailable && !leanPost && (
