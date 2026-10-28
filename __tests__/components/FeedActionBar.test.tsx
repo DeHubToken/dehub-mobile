@@ -10,11 +10,13 @@ jest.mock('react-native', () => ({
   Animated: {
     View: 'View',
     createAnimatedComponent: (component: unknown) => component,
-    Value: class { stopAnimation = jest.fn(); },
+    Value: class { stopAnimation = jest.fn(); setValue = jest.fn(); interpolate = jest.fn(() => 0); },
     timing: jest.fn(() => ({ start: jest.fn() })),
     spring: jest.fn(() => ({ start: jest.fn() })),
     sequence: jest.fn(() => ({ start: jest.fn() })),
+    loop: jest.fn(() => ({ start: jest.fn(), stop: jest.fn() })),
   },
+  Easing: { linear: (v: number) => v },
 }));
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string, options?: { defaultValue?: string; [name: string]: unknown }) => (options?.defaultValue ?? key).replace(/\{\{(\w+)\}\}/g, (token, name) => String(options?.[name] ?? token)) }) }));
 jest.mock('../../components/ui/Icon', () => 'Icon');
