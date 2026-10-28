@@ -75,7 +75,7 @@ export async function importGeneratedMedia(source: GeneratedMediaSource, signal?
     throwIfImportAborted(signal);
     const picked = { uri: temporary, ...dimensions, mimeType: actual.mime,
       fileName: generatedMediaName(source.kind, source.name || `generated-${source.kind}-${Date.now()}`, actual.ext) };
-    return source.kind === "image" ? await importPicture(picked, source.expectedDimensions ? { preservePng: true } : undefined) : await importClipFile({ ...picked, kind: source.kind });
+    return source.kind === "image" ? source.expectedDimensions ? await importPicture(picked, { preservePng: true }) : await importPicture(picked) : await importClipFile({ ...picked, kind: source.kind });
   } finally {
     await FileSystem.deleteAsync(temporary, { idempotent: true }).catch(() => {});
   }
