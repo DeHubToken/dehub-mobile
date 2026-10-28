@@ -9847,6 +9847,13 @@
     }
   },
   "creator": {
+    "avatarTitle": "Konuşan portre",
+    "avatarRequirements": "512–2048 piksel, en fazla 5 MB kare PNG portre. 5–30 saniyelik mono 24 kHz 16 bit PCM WAV. Son saniyenin kesri sessizlikle tamamlanır.",
+    "avatarPortrait": "PNG portre seç",
+    "avatarAudio": "WAV konuşma seç",
+    "avatarPermission": "Bu portreyi canlandırmak ve bu sesi kullanmak için iznim var.",
+    "avatarQuote": "Sessizlik dahil {{seconds}} saniye · {{amount}} DHB",
+    "avatarPrepare": "Hazırla ve fiyatı incele",
     "campaignPlanTitle": "Kampanya varyasyonları ve bölümler",
     "campaignPlanIntro": "En fazla 12 varyasyon veya bölüm kaydedin. Her biri ayrı inceleme ve fiyat teklifi için stüdyoyu açar. Ortak notlar devamlılığa yön verir; ürün görünümü, karakterler ve sesler üretimler arasında değişebilir.",
     "campaignTitle": "Kampanya veya dizi adı",
