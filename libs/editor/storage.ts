@@ -125,11 +125,11 @@ export interface PickedPicture {
 }
 
 /** Copy a picked picture into editor storage, scaled down if it is huge. */
-export async function importPicture(picked: PickedPicture): Promise<MediaMeta> {
+export async function importPicture(picked: PickedPicture, options?: { preservePng?: boolean }): Promise<MediaMeta> {
   await ensureDir(mediaDir());
   const id = newId(10);
   const sourceType = (picked.mimeType ?? "").split(";")[0].toLowerCase();
-  const original = sourceType === "image/gif" ? "gif" : sourceType === "image/svg+xml" ? "svg" : null;
+  const original = sourceType === "image/png" && options?.preservePng ? 'png' : sourceType === "image/gif" ? "gif" : sourceType === "image/svg+xml" ? "svg" : null;
   if (original) {
     const info = await FileSystem.getInfoAsync(picked.uri);
     const size = info.exists && "size" in info ? info.size : 0;
