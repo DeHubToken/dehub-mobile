@@ -19,19 +19,24 @@ const CORNER = 14;
 const FACE = 22;
 const FACE_OVERLAP = 7;
 
-/** Match the feed nav's finish, including each skin's tint and texture. */
+/** How far the material runs up under the pill. The bead's slot clips at the
+ *  pill's bottom edge, so this part (and the material's own top edge) never
+ *  shows: only the pill's sides and bottom, rounded, come out from under it. */
+const MATERIAL_TUCK = 24;
+
+/** The feed nav pill's own material and rim, layer for layer (FeedNavBar), so
+ *  the drawer's border is the pill's border: same colour, width and glass. */
 function ChipMaterial({ radius, islandChrome }: { radius: number; islandChrome: boolean }) {
   const { isMinimal, skin } = useAppTheme();
-  if (islandChrome) return <NavPillSurface borderRadius={radius} />;
-  if (isMinimal) return <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#000", borderColor: MINIMAL_TAB_LINE, borderWidth: 1, borderRadius: 0 }]} />;
+  if (isMinimal && !islandChrome) {
+    return <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: "#000", borderColor: MINIMAL_TAB_LINE, borderWidth: 1, borderRadius: 0 }]} />;
+  }
+  if (islandChrome || !skin) return <NavPillSurface borderRadius={radius} />;
   return (
     <>
-      <FrostedPill
-        tint={skin ? glassTint(String(skin.strip.backgroundColor), 0.22) : "rgba(20, 20, 24, 0.18)"}
-        borderRadius={radius}
-      />
-      {skin ? <View pointerEvents="none" style={[StyleSheet.absoluteFill, skin.strip, { backgroundColor: "transparent", borderRadius: radius }]} /> : null}
-      {skin?.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
+      <FrostedPill tint={glassTint(String(skin.strip.backgroundColor), 0.22)} borderRadius={radius} bordered={false} />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, skin.strip, { backgroundColor: "transparent", borderRadius: radius }]} />
+      {skin.grain ? <Image source={GRAIN} resizeMode="repeat" style={[StyleSheet.absoluteFill, { borderRadius: radius }]} /> : null}
     </>
   );
 }
@@ -58,26 +63,22 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
   const faces = authors.slice(0, 3);
   const ink = lightFrost ? "#0B0B0D" : skin?.tabIconActive ?? "#FFFFFF";
   const ring = lightFrost ? "#FFFFFF" : isMinimal ? "#000" : "rgba(24,24,27,0.9)";
-  const rim = lightFrost ? "rgba(11,11,13,0.10)"
-    : isMinimal ? MINIMAL_TAB_LINE
-    : skin ? String(skin.barBorder?.borderColor ?? "rgba(255,255,255,0.16)") : "rgba(255,255,255,0.16)";
   const chip = (
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={label}
       hitSlop={8}
-      style={({ pressed }) => [styles.chip, shape, { opacity: pressed ? 0.8 : 1 }, lightFrost ? LIGHT_PILL_SHADOW : styles.darkShadow]}
+      style={({ pressed }) => [styles.chip, shape, pressed ? styles.pressed : null, lightFrost ? LIGHT_PILL_SHADOW : styles.darkShadow]}
     >
-      <View pointerEvents="none" style={[StyleSheet.absoluteFill, shape, { overflow: "hidden" }]}>
-        <ChipMaterial radius={0} islandChrome={islandChrome} />
+      <View pointerEvents="none" style={[styles.material, shape]}>
+        <ChipMaterial radius={corner} islandChrome={islandChrome} />
         {!isMinimal ? (
           <LinearGradient
             colors={lightFrost ? ["rgba(0,0,0,0.10)", "rgba(0,0,0,0)"] : ["rgba(0,0,0,0.45)", "rgba(0,0,0,0)"]}
-            style={{ position: "absolute", left: 0, right: 0, top: 0, height: 14 }}
+            style={{ position: "absolute", left: 0, right: 0, top: MATERIAL_TUCK, height: 14 }}
           />
         ) : null}
-        <View style={[StyleSheet.absoluteFill, shape, { borderWidth: 1, borderTopWidth: 0, borderColor: rim }]} />
       </View>
       <View style={styles.row}>
         {faces.length > 0 ? (
@@ -113,5 +114,8 @@ export default function NewPostsBead({ count, authors, islandChrome, onPress, la
 const styles = StyleSheet.create({
   chip: { height: CHIP_HEIGHT, minWidth: 180, alignItems: "center", justifyContent: "center", paddingLeft: 8, paddingRight: 14, paddingTop: 2 },
   row: { flexDirection: "row", alignItems: "center", gap: 8 },
+  // Glass stays opaque under a finger; a fade would show the feed through it.
+  pressed: { transform: [{ scale: 0.97 }] },
+  material: { position: "absolute", left: 0, right: 0, bottom: 0, top: -MATERIAL_TUCK },
   darkShadow: { boxShadow: "0px 10px 22px -12px rgba(0,0,0,0.6)" },
 });
