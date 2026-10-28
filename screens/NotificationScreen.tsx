@@ -1,4 +1,5 @@
 import SkeletonBlock from '../components/Feed/SkeletonBlock';
+import { openChatMention } from "../libs/openChatMention";
 import React, { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -1288,6 +1289,8 @@ const NotificationScreen = () => {
         break;
 
       case 'mention':
+        // A tag in live or public chat opens that chat, not a post page.
+        if (openChatMention(navigation.navigate as any, { mentionContext: metadata?.mentionContext, tokenId })) break;
         if (tokenId) navigateToFeed(tokenId, commentId, postType);
         break;
 

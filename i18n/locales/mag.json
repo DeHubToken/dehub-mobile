@@ -7725,6 +7725,7 @@
     "repostedPost": "{{name}} ने आपकी पोस्ट को रीपोस्ट किया",
     "quotedPost": "{{name}} ने आपकी पोस्ट को उद्धृत किया",
     "mentionedYou": "{{name}} ने आपको उल्लेख किया",
+    "mentionedYouComment": "{{name}} ने एक कमेन्ट में तुझे टैग कियो",
     "followRequest": "{{name}} ने आपको फॉलो करने का अनुरोध किया",
     "followAccepted": "{{name}} ने आपके फॉलो अनुरोध को स्वीकार किया",
     "signalFlare": "{{name}} ने सिग्नल फ्लेयर भेजा",
