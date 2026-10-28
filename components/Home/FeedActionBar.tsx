@@ -2,7 +2,7 @@ import { FEED_ICON_SIZE, FEED_BOOKMARK_STYLE } from './feed-icon-size';
 import { useTranslation as _useCopy } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Animated, View, Pressable, Text } from "react-native";
+import { Animated, Easing, View, Pressable, Text } from "react-native";
 import Icon from "../ui/Icon";
 import { formatCompactNumber } from "../../libs/numbers.util";
 import ReactionPicker from "./ReactionPicker";
@@ -103,31 +103,37 @@ const BUTTON_ROW = {
 } as const;
 
 /**
- * A liked thumb pumps upward on a loop, on top of the moving 👍 itself, the
- * same 1.3s beat as web. Native-driver transforms only; it holds still while
- * the card is off screen.
+ * The emperor's verdict, on a loop, for your own 👍 / 👎: the fist held
+ * sideways, then the thumb snapping up (or down) with a pop, a beat at rest,
+ * and back to the side. Same 2.6s beat as web. Native-driver transforms only;
+ * it holds still while the card is off screen.
  */
-const LikePump: React.FC<{ playing: boolean; children: React.ReactNode }> = ({ playing, children }) => {
+const VERDICT_STEPS = [0, 0.1, 0.24, 0.32, 0.4, 0.8, 0.92, 1];
+const ThumbVerdict: React.FC<{ down?: boolean; playing: boolean; children: React.ReactNode }> = ({ down, playing, children }) => {
   const t = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     if (!playing) return;
     t.setValue(0);
     const loop = Animated.loop(
-      Animated.timing(t, { toValue: 1, duration: 1300, useNativeDriver: true, isInteraction: false }),
+      Animated.timing(t, { toValue: 1, duration: 2600, easing: Easing.linear, useNativeDriver: true, isInteraction: false }),
     );
     loop.start();
     return () => {
       loop.stop();
-      t.setValue(0);
+      t.setValue(0.5);
     };
   }, [playing, t]);
-  const style = useMemo(() => ({
-    transform: [
-      { translateY: t.interpolate({ inputRange: [0, 0.14, 0.32, 0.46, 1], outputRange: [0, 1, -4, 0, 0] }) },
-      { scale: t.interpolate({ inputRange: [0, 0.14, 0.32, 0.46, 1], outputRange: [1, 0.92, 1.16, 1, 1] }) },
-      { rotate: t.interpolate({ inputRange: [0, 0.14, 0.32, 0.46, 1], outputRange: ["0deg", "0deg", "-6deg", "0deg", "0deg"] }) },
-    ],
-  }), [t]);
+  const style = useMemo(() => {
+    const sign = down ? -1 : 1;
+    const deg = (v: number) => `${v * sign}deg`;
+    return {
+      transform: [
+        { translateY: t.interpolate({ inputRange: VERDICT_STEPS, outputRange: [0, 0, -3 * sign, 0, 0, 0, 0, 0] }) },
+        { rotate: t.interpolate({ inputRange: VERDICT_STEPS, outputRange: [deg(-90), deg(-90), deg(10), deg(-5), deg(0), deg(0), deg(-90), deg(-90)] }) },
+        { scale: t.interpolate({ inputRange: VERDICT_STEPS, outputRange: [0.86, 0.86, 1.28, 1.06, 1, 1, 0.86, 0.86] }) },
+      ],
+    };
+  }, [down, t]);
   return <Animated.View style={style}>{children}</Animated.View>;
 };
 
@@ -236,7 +242,11 @@ const AnimatedActionButton: React.FC<{
         // replaces, and a row that grew when the lead reaction changed moved
         // every post below it.
         <View style={{ width: iconSize, height: iconSize + GLYPH_ROOM * 2, marginVertical: -GLYPH_ROOM, alignItems: "center", justifyContent: "center" }}>
-          {glyph === "like" && glyphAnimated ? <LikePump playing={glyphPlaying}>{glyphEmoji}</LikePump> : glyphEmoji}
+          {(glyph === "like" || glyph === "dislike") && glyphAnimated ? (
+            <ThumbVerdict down={glyph === "dislike"} playing={glyphPlaying}>{glyphEmoji}</ThumbVerdict>
+          ) : (
+            glyphEmoji
+          )}
         </View>
       ) : (
         <Icon name={resolvedIcon} size={iconSize} color={resolvedColor} strokeWidth={resolvedStrokeWidth} fill={resolvedFill} />
