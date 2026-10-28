@@ -57,7 +57,10 @@ export function usePlaybackRecovery(player: VideoPlayer, source: string | null |
   }), [player, source]);
   useEffect(() => {
     setPhase('idle');
-    let previousTime = player.currentTime;
+    // Reads on a player released between closing and reopening a viewer throw;
+    // treat it as a player that is not playing.
+    const read = <T,>(get: () => T, fallback: T): T => { try { return get(); } catch { return fallback; } };
+    let previousTime = read(() => player.currentTime, 0);
     const subs = [
       player.addListener('statusChange', ({ status, error }) => {
         if (status === 'error') {
@@ -68,14 +71,14 @@ export function usePlaybackRecovery(player: VideoPlayer, source: string | null |
       }),
       player.addListener('playingChange', ({ isPlaying }) => {
         if (isPlaying) { waitThroughStallsOnceStarted(player); recovery.watch(); }
-        else if (player.status === 'readyToPlay' && !recovery.replacing && recovery.wanted) recovery.stop();
+        else if (read(() => player.status, 'idle') === 'readyToPlay' && !recovery.replacing && recovery.wanted) recovery.stop();
       }),
       player.addListener('timeUpdate', ({ currentTime }) => {
-        if (player.playing && currentTime !== previousTime) recovery.progress();
+        if (read(() => player.playing, false) && currentTime !== previousTime) recovery.progress();
         previousTime = currentTime;
       }),
     ];
-    if (player.playing) { recovery.watch(); recovery.progress(); }
+    if (read(() => player.playing, false)) { recovery.watch(); recovery.progress(); }
     return () => { subs.forEach(sub => sub.remove()); recovery.stop(); };
   }, [player, recovery]);
   return { recovery, phase };
