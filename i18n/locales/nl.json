@@ -10096,6 +10096,14 @@
     }
   },
   "creator": {
+    "priceRetry": "De prijs kon niet worden bevestigd. Bekijk de prijs en probeer het opnieuw.",
+    "avatarTitle": "Pratend portret",
+    "avatarRequirements": "Vierkant PNG-portret, 512–2048 pixels, maximaal 5 MB. Mono 24 kHz 16-bits PCM WAV, 5–30 seconden. Het laatste deel van een seconde wordt aangevuld met stilte.",
+    "avatarPortrait": "PNG-portret kiezen",
+    "avatarAudio": "WAV-spraak kiezen",
+    "avatarPermission": "Ik heb toestemming om dit portret te animeren en deze audio te gebruiken.",
+    "avatarQuote": "{{seconds}} seconden inclusief stilte · {{amount}} DHB",
+    "avatarPrepare": "Voorbereiden en prijs bekijken",
     "batchFlowLimit": "De Flow-lijst is vol. Verwijder een ongebruikte Flow voordat je een nieuwe batch maakt.",
     "batchReviewCampaign": "Campagnebatch in Flow beoordelen",
     "batchReviewFilmImages": "Storyboardafbeeldingen beoordelen",
