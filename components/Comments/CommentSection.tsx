@@ -22,6 +22,7 @@ import { COMPOSER, composerStyles } from "./composerLayout";
 import { useGrowingTextInput } from "../../hooks/useGrowingTextInput";
 import { useKeyboardSwap } from "../../hooks/useKeyboardSwap";
 import CommentItem from "./CommentItem";
+import type { TranslateToggle } from "../ui/TranslateButton";
 import CommentContextMenu from "./CommentContextMenu";
 import CommentLikersSheet from "./CommentLikersSheet";
 import type { CommentLayout } from "./CommentContextMenu";
@@ -260,7 +261,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
   // Context menu state (WhatsApp/IG-style long-press)
   const [contextComment, setContextComment] = useState<Comment | null>(null);
   const [contextLayout, setContextLayout] = useState<CommentLayout | null>(null);
-  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean } | null>(null);
+  const [contextMeta, setContextMeta] = useState<{ liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle } | null>(null);
   // The comment whose Report row was picked; the sheet is aimed at it.
   const [reportTarget, setReportTarget] = useState<Comment | null>(null);
 
@@ -1303,7 +1304,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
 
   // Long-press → open context menu
   const handleCommentLongPress = useCallback(
-    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean }) => {
+    (comment: Comment, layout: CommentLayout, extra: { liked: boolean; disliked: boolean; isOwnComment: boolean; isReply: boolean; translate?: TranslateToggle }) => {
       setContextComment(comment);
       setContextLayout(layout);
       setContextMeta(extra);
@@ -2227,6 +2228,7 @@ const CommentSectionComponent: React.FC<CommentSectionProps> = ({
           contextComment ? () => setLikersCommentId(Number(contextComment.id)) : undefined
         }
         tokenId={tokenId}
+        translate={contextMeta?.translate}
       />
 
       {/* Report somebody else's comment. One sheet for the whole section,
