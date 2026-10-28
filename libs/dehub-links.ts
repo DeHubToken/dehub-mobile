@@ -75,7 +75,7 @@ function isDehubHost(host: string): boolean {
   const h = host.toLowerCase().replace(/:\d+$/, '');
   if (h === 'localhost' || h === '127.0.0.1') return true;
   if (h === 'dehub.io' || h.endsWith('.dehub.io')) return true;
-  // Only the apex and www: every other *.dehub.app is a user-built Builder app.
+  // dehub.app: the APK download page. Builder apps live on dhb.gg, never trusted.
   if (h === 'dehub.app' || h === 'www.dehub.app') return true;
   if (h === 'dehub.net' || h.endsWith('.dehub.net')) return true;
   if (h.endsWith('.pages.dev') || h.endsWith('.workers.dev')) return true;
