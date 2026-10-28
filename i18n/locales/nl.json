@@ -2635,6 +2635,8 @@
     "returnHome": "Terug naar home"
   },
   "profile": {
+    "mutualsOne": "{{count}} gemeenschappelijk:",
+    "mutualsMany": "{{count}} gemeenschappelijk:",
     "dislikesPrivateDesc": "Dit account houdt zijn dislikes voor zichzelf.",
     "dislikesPrivateTitle": "Dislikes zijn privé",
     "dislikesEmptyOther": "Nog niets gedisliket.",

@@ -33,8 +33,16 @@ const MutualFollowers: React.FC<MutualFollowersProps> = ({ mutuals }) => {
         : _copy("copy.3ff66a9762c9", { defaultValue: "{{value1}}, {{value2}} and {{value3}}", value1: names[0], value2: names[1], value3: names[2] });
   }
 
+  const countLabel =
+    mutuals.length === 1
+      ? _copy("profile.mutualsOne", { defaultValue: "{{count}} Mutual:", count: mutuals.length })
+      : _copy("profile.mutualsMany", { defaultValue: "{{count}} Mutuals:", count: mutuals.length });
+
   return (
     <View className="flex-row items-center mt-3 gap-2">
+      <Text className="text-zinc-400 text-xs" numberOfLines={1}>
+        {countLabel}
+      </Text>
       <View className="flex-row">
         {displayed.map((m, i) => (
           <Avatar
