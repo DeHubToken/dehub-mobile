@@ -1575,6 +1575,7 @@ const LiveStreamPlayer: React.FC<LiveStreamPlayerProps> = (props) => {
             displayName: m.sender.displayName,
             avatarImageUrl: m.sender.avatarUrl,
             badgeBalance: m.sender.badgeBalance,
+            badgeLock: m.sender.badgeLock,
             followers: m.sender.followers,
             followings: m.sender.followings,
           }

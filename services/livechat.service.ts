@@ -15,6 +15,8 @@ export interface LiveChatUser {
   followers?: number;
   followings?: number;
   badgeBalance?: number;
+  /** Grandfathered tier; most holders' badge comes from this, not the balance. */
+  badgeLock?: { tier: string; requirement: number } | null;
   accountCreatedAt?: string;
 }
 
