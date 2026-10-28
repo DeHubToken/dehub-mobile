@@ -113,6 +113,8 @@ export type AppStackParamList = {
     postId?: string;
     tokenId?: string;
     commentId?: string;
+    /** The post's kind when the opener knows it, for the loading skeleton. */
+    postType?: string;
   };
   /** dehub.io/app/post/:tokenId/info */
   [ScreenNames.PostInfo]: { tokenId: string };
