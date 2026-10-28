@@ -3,12 +3,14 @@ import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { DesignDraftInput as TextInput } from './DesignDraftInput';
 import { CinemaDirectionControls } from '../Assistant/CinemaDirectionControls';
-import { listMedia, mediaFileUri } from '../../libs/editor/storage';
+import { listMedia, mediaFileUri, saveProject } from '../../libs/editor/storage';
 import { newId } from '../../libs/editor/project';
 import { filmShotDraft, filmProjectMediaIds, removeFilmProjectMedia, validFilmProject, type FilmMedia, type FilmProject, type FilmShot } from '../../libs/editor/filmProject';
 import type { GenerationDraft } from '../../libs/editor/generationDraft';
 import type { ProjectSnapshot } from '../../libs/editor/types';
 import { useUser } from '../../context/AuthContext';
+import { ReviewedBatchButton } from '../CreatorFlow/ReviewedBatchButton';
+import { filmReviewedBatch } from '../../libs/reviewedBatchDrafts';
 
 export default function FilmProjectPanel({ project, current, commit, onGenerate }: {
   project: ProjectSnapshot; current: () => ProjectSnapshot | null; commit: (next: ProjectSnapshot) => void;
@@ -81,5 +83,10 @@ export default function FilmProjectPanel({ project, current, commit, onGenerate 
       }, film.shots.indexOf(shot) + offset < 0 || film.shots.indexOf(shot) + offset >= film.shots.length)}</View>)}{action(t('editor.film.remove'), () => update({ ...film, shots: film.shots.filter(item => item.id !== shot.id) }))}</View>
     </View>}
     {issue && <Text accessibilityRole="alert" className="mt-3 text-xs text-theme-neutrals-100">{t('editor.film.issue')}</Text>}
+    {film.shots.length > 0 && <View className="mt-3 flex-row flex-wrap gap-3">{(['image', 'video'] as const).map(kind => <ReviewedBatchButton key={kind}
+      owner={(user?.walletAddress || user?.address || '').toLowerCase() || null} scope={JSON.stringify([project.id, film, media, project.settings.aspectPreset])}
+      label={kind === 'image' ? 'creator.batchReviewFilmImages' : 'creator.batchReviewFilmVideos'}
+      create={() => filmReviewedBatch(film, kind, media, project.settings.aspectPreset, project.id, user?.walletAddress || user?.address || '')}
+      beforePrepare={async () => { const latest = current(); if (!latest || latest.id !== project.id || JSON.stringify(latest.settings.filmProject) !== JSON.stringify(film)) throw new Error('creator.batchInvalid'); await saveProject(latest); }} />)}</View>}
   </View>;
 }
