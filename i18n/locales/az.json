@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Təmizlə",
       "detail": "Hər dəfə 50-yə qədər izləyici seçin. Ödənişli və ya bağlı DM-lər ötürülür. Yenidən cəhd etməzdən əvvəl təsdiqlənməmiş göndərişlər üçün çat-ı yoxlayın.",
+      "note": "Dəvətinizə qeyd əlavə edin (istəyə bağlı)",
       "empty": "Bu səhifədə izləyici yoxdur.",
       "error": "Dəvətləri göndərmək mümkün olmadı. Bağlantınızı və girişinizi yoxlayın, sonra yenidən cəhd edin.",
       "next": "Növbəti",

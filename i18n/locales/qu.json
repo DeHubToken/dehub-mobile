@@ -6312,6 +6312,7 @@
     "followerInvites": {
       "clear": "Pichay",
       "detail": "Akllay pichqa chunka qatiqkunata sapa kutipi. Qullqiyuq utaq wichqasqa DMs nisqakunaqa saqisqam. Chat nisqata qaway mana chiqanchasqa kachasqakunata manaraq yapamanta ruwachkaspa.",
+      "note": "Invitacionniykiman huk qillqata yapay (munaspaqa)",
       "empty": "Kay p'anqapiqa manam kanchu qatiqkuna.",
       "error": "Manam atikurqanchu qayaykunata kachayta. Tinkuyuykita hinaspa yaykunaykita qaway, hinaspa yapamanta ruway.",
       "next": "Qatiq",

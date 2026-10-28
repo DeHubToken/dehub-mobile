@@ -1,8 +1,15 @@
-import { allowsFreeCommunityInvite, sendCommunityInviteBatch } from '../../libs/community-invites-core';
+import { allowsFreeCommunityInvite, communityInviteMessage, INVITE_NOTE_MAX, sendCommunityInviteBatch } from '../../libs/community-invites-core';
 
 const first='0x1111111111111111111111111111111111111111';
 const second='0x2222222222222222222222222222222222222222';
 describe('community follower invitations',()=>{
+ it('puts the optional note above the link and caps it',()=>{
+  const url='https://dehub.io/app/communities/club';
+  expect(communityInviteMessage(url)).toBe(url);
+  expect(communityInviteMessage(url,'   ')).toBe(url);
+  expect(communityInviteMessage(url,'  Come hang out ')).toBe(`Come hang out\n${url}`);
+  expect(communityInviteMessage(url,'x'.repeat(400))).toBe(`${'x'.repeat(INVITE_NOTE_MAX)}\n${url}`);
+ });
  it('skips paid and closed DMs without a payment attempt',()=>{
   expect(allowsFreeCommunityInvite({perMessageFee:10})).toBe(false);
   expect(allowsFreeCommunityInvite({disables:['ALL']})).toBe(false);

@@ -6322,6 +6322,7 @@
     "followerInvites": {
       "clear": "Susa",
       "detail": "Khetha abalandeli abangaba ngu-50 ngeqoqo ngalinye. Ama-DM akhokhelwayo noma avaliwe ayeqiwa. Hlola ingxoxo ukuze uthole ukuthunyelwa okungaqinisekisiwe ngaphambi kokuzama futhi.",
+      "note": "Engeza inothi esimemweni sakho (kuyazikhethela)",
       "empty": "Abekho abalandeli kuleli khasi.",
       "error": "Ayikwazanga ukuthumela izimemo. Hlola ukuxhumana kwakho nokungena ngemvume, bese uzama futhi.",
       "next": "Okulandelayo",

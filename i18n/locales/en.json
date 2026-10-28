@@ -3826,6 +3826,7 @@
     "followerInvites": {
       "title": "Invite followers",
       "detail": "Choose up to 50 followers per batch. Paid or closed DMs are skipped. Check the chat for unconfirmed sends before trying again.",
+      "note": "Add a note to your invite (optional)",
       "selectAll": "Select this page",
       "clear": "Clear",
       "previous": "Previous",

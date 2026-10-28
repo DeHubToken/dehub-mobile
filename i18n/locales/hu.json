@@ -6295,6 +6295,7 @@
     "followerInvites": {
       "clear": "Törlés",
       "detail": "Válasszuk ki a követőket 50-ig egy adagban. A fizetett vagy zárt DM-k kihagyásra kerülnek. Ellenőrizd a chatet a megerősítetlen küldések mielőtt újra próbálkoznál.",
+      "note": "Adj hozzá üzenetet a meghívódhoz (nem kötelező)",
       "empty": "Ezen a lapon nincs követő.",
       "error": "Nem sikerült küldeni meghívásokat. Ellenőrizd a kapcsolatodat és a bejelentkezésedet, majd próbálkozz újra.",
       "next": "Következő",

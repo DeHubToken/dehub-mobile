@@ -3881,6 +3881,7 @@
     "followerInvites": {
       "title": "Invitar seguidores",
       "detail": "Elige hasta 50 seguidores por lote. Se omiten los mensajes privados cerrados o de pago. Revisa el chat para comprobar los envíos sin confirmar antes de reintentarlo.",
+      "note": "Añade una nota a tu invitación (opcional)",
       "selectAll": "Seleccionar esta página",
       "clear": "Borrar selección",
       "previous": "Anterior",
