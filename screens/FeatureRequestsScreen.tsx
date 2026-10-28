@@ -791,7 +791,6 @@ export default function FeatureRequestsScreen() {
   const [search, setSearch] = useSurfaceDraft("screens/FeatureRequestsScreen.tsx:search", "");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [composerFocus, setComposerFocus] = useState(0);
-  const [showFilters, setShowFilters] = useState(false);
   const listRef = React.useRef<FlatList<FeatureRequest>>(null);
   const [iconFailed, setIconFailed] = useState(false);
 
@@ -1064,23 +1063,36 @@ export default function FeatureRequestsScreen() {
           })}
         </View>
 
-        <Pressable onPress={() => setShowFilters(value => !value)} accessibilityRole="button" accessibilityState={{ expanded: showFilters }} style={styles.promptFilter}>
-          <Text style={styles.chipText}>{t("features.promptFilters", "Filter by category")}{category !== "all" ? ` · ${categoryLabel(t, category)}` : ""}</Text>
-          <Icon name={showFilters ? "ChevronUp" : "ChevronDown"} size={14} color="#808089" />
-        </Pressable>
-        {showFilters && <>
-        {/* Category chips filter every tab: Shipped holds most of the board
-            and had no way to narrow it. Sort stays Requests-only -- the other
-            two are ordered by ship date. Mirrors web (dehubweb#1427). */}
+        {/* One scrollable row: sort chips first (Requests only -- the other
+            tabs are ordered by ship date), then every category, with the
+            GitHub link pinned bottom-right. Sort and category are independent
+            selections, each with its own active chip. Mirrors web. */}
+        <View style={styles.bentoFooter}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           // flexGrow: 0 — without it the strip expands to fill the column
           // and squashes the list underneath it.
-          style={styles.strip}
+          style={[styles.strip, styles.bentoFooterSorts]}
           contentContainerStyle={styles.stripContent}
         >
+          {tab === "requests" && <>
+            {SORTS.map((s) => (
+              <Pressable
+                key={s.key}
+                onPress={() => setSort(s.key)}
+                accessibilityRole="button"
+                accessibilityState={{ selected: sort === s.key }}
+                style={[styles.chip, sort === s.key && styles.chipActive]}
+              >
+                <Text style={[styles.chipText, sort === s.key && styles.chipTextActive]}>
+                  {t(s.labelKey)}
+                </Text>
+              </Pressable>
+            ))}
+            <View style={styles.filterDivider} />
+          </>}
           <Pressable
             onPress={() => setCategory("all")}
             accessibilityRole="button"
@@ -1105,34 +1117,6 @@ export default function FeatureRequestsScreen() {
             </Pressable>
           ))}
         </ScrollView>
-
-        </>}
-        {/* Sort tabs (Requests only) on the left, the GitHub link pinned to
-            the bento's bottom-right corner on every tab. */}
-        <View style={styles.bentoFooter}>
-          {tab === "requests" ? (
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              keyboardShouldPersistTaps="handled"
-              style={[styles.strip, styles.bentoFooterSorts]}
-              contentContainerStyle={styles.sortStripContent}
-            >
-              {SORTS.map((s) => (
-                <Pressable
-                  key={s.key}
-                  onPress={() => setSort(s.key)}
-                  style={[styles.chip, sort === s.key && styles.chipActive]}
-                >
-                  <Text style={[styles.chipText, sort === s.key && styles.chipTextActive]}>
-                    {t(s.labelKey)}
-                  </Text>
-                </Pressable>
-              ))}
-            </ScrollView>
-          ) : (
-            <View style={styles.bentoFooterSorts} />
-          )}
           <Pressable
             onPress={() => { void Linking.openURL(DEHUB_GITHUB_URL); }}
             accessibilityRole="link"
@@ -1241,7 +1225,6 @@ const styles = StyleSheet.create({
   promptAttachText: { color: "#A1A1AA", fontSize: 13 },
   promptCount: { color: "#808089", fontSize: 11 },
   promptDetails: { flexDirection: "row", alignItems: "center", gap: 6, paddingTop: 12 },
-  promptFilter: { flexDirection: "row", alignItems: "center", gap: 6, paddingVertical: 8 },
 
   // Header bento — zinc-900, 16pt radius, 16pt padding, 8pt page gutter.
   bento: {
@@ -1345,9 +1328,9 @@ const styles = StyleSheet.create({
   // Category pills + sort tabs.
   strip: { flexGrow: 0 },
   stripContent: { gap: 8, paddingBottom: 4, alignItems: "center" },
-  sortStripContent: { gap: 6, alignItems: "center" },
   bentoFooter: { flexDirection: "row", alignItems: "center", gap: 8 },
   bentoFooterSorts: { flex: 1, minWidth: 0 },
+  filterDivider: { width: StyleSheet.hairlineWidth, alignSelf: "stretch", marginVertical: 6, backgroundColor: "rgba(255,255,255,0.12)" },
   githubLink: { flexDirection: "row", alignItems: "center", gap: 6, flexShrink: 0, paddingVertical: 6 },
   chip: {
     flexShrink: 0,
