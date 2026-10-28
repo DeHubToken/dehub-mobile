@@ -4,7 +4,7 @@ import { act, cleanup, renderHook, waitFor } from '@testing-library/react-native
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useCachedVideoDub } from '../../hooks/useCachedVideoDub';
 import { supabase } from '../../services/supabase';
-jest('../../services/supabase', () => ({ supabase: {
+jest.mock('../../services/supabase', () => ({ supabase: {
   from: jest.fn(), channel: jest.fn(), removeChannel: jest.fn(), functions: { invoke: jest.fn() },
 } }));
 jest.mock('react-native-css-interop', () => ({ createInteropElement: jest.requireActual('react').createElement }));
