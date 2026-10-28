@@ -147,7 +147,7 @@
     "valtio": "1.11.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
+    "@babel/core": "^7.29.6",
     "@babel/plugin-transform-runtime": "^7.28.0",
     "@react-native-community/cli": "^20.0.1",
     "@testing-library/react-native": "^13.3.3",
@@ -183,9 +183,9 @@
     "postcss-selector-parser@7": "7.1.6",
     "nanoid@3": "3.3.20",
     "@xmldom/xmldom@0.8": "0.8.15",
-    "undici@6": "6.28.1",
+    "undici@6": "6.29.1",
     "axios@1": "1.20.0",
-    "fast-uri@3": "3.1.8",
+    "fast-uri@3": "3.1.9",
     "handlebars": "4.7.10",
     "compression": "1.8.2",
     "joi@17": "17.13.8",
@@ -201,10 +201,14 @@
     "launch-editor": "2.14.2",
     "shell-quote": "1.12.0",
     "tmp@0.2": "0.2.7",
-    "node-forge": "1.4.0",
+    "node-forge": "1.4.1",
     "yaml@1": "1.10.3",
     "yaml@2": "2.8.3",
-    "pbkdf2@3": "3.1.7"
+    "pbkdf2@3": "3.1.7",
+    "body-parser@2": "2.4.0",
+    "qs@6": "6.16.1",
+    "zod@4": "4.6.7",
+    "@openzeppelin/contracts": "4.9.6"
   },
   "resolutions": {
     "valtio": "1.11.2",
