@@ -627,6 +627,9 @@ export async function pollVideoGeneration(
 /* ── fal.ai tools (music, TTS, upscale, background removal, Whisper) ─────── */
 
 export interface AiToolRequest {
+  clientJobId?: string;
+  sourceAssetId?: string;
+  acceptedPriceDhb?: number;
   /** Tool key from `AI_TOOL_MODELS`, e.g. 'minimax-music'. */
   tool: string;
   prompt?: string;

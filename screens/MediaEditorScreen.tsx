@@ -114,6 +114,7 @@ import AgentSheet, { type ChatEntry } from "../components/editor/AgentSheet";
 import { rewritePrompt } from "../libs/editor/promptRewrite";
 import GenerationWindow from "../components/editor/GenerationWindow";
 import { importGeneratedMedia, type GeneratedMediaSource } from "../libs/editor/importGeneratedMedia";
+import { importImageLayers, insertImageLayers } from '../libs/editor/imageLayers';
 import { assemblyRequest, type AssemblyPlan } from "../libs/editor/assembly";
 import { createAssemblyEdit } from "../libs/editor/applyAssembly";
 import { useAssembly } from "../libs/editor/useAssembly";
@@ -1304,6 +1305,17 @@ function Workspace({ initial, projectId, pickVideo, importMedia, onClose }: { in
     if (!importMedia || importedOnce.current || !project) return;
     importedOnce.current = true;
     const { signal } = importAbort.current;
+    if (importMedia.layerSet && importMedia.layerChoices) {
+      const owner = user?.walletAddress || user?.address;
+      const targetId = project.id;
+      if (!owner || importMedia.owner !== owner) return;
+      const set = importMedia.layerSet, choices = importMedia.layerChoices;
+      void importImageLayers(set, choices, signal).then(media => {
+        const target = h.latest();
+        if (!signal.aborted && target?.id === targetId) h.commit(insertImageLayers(target, media, set, choices));
+      }).catch(() => { if (!signal.aborted) toastError(t('common.somethingWentWrong')); });
+      return;
+    }
     importGeneratedMedia(importMedia, signal)
       .then(media => { if (!signal.aborted) addGenerated(media); })
       .catch(() => { if (!signal.aborted) toastError(t('common.somethingWentWrong')); });
