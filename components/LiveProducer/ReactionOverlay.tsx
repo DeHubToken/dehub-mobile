@@ -44,18 +44,20 @@ const FloatingBubble = memo(({ item, laneHeight }: { item: FloatingReaction; lan
   </Animated.View>;
 });
 
-const ReactionOverlay = ({ reactions, bottom = 100, maxHeight }: {
+const ReactionOverlay = ({ reactions, bottom = 100, maxHeight, clip = true }: {
   reactions: FloatingReaction[];
   onRemove?: (id: string) => void;
   bottom?: number;
   /** Cap for the lane; defaults to about half the screen. */
   maxHeight?: number;
+  /** False lets the emoji spill past the lane instead of being cut at its edge. */
+  clip?: boolean;
 }) => {
   const { height } = useWindowDimensions();
-  const laneHeight = Math.min(maxHeight ?? 400, Math.round(height * 0.5));
+  const laneHeight = clip ? Math.min(maxHeight ?? 400, Math.round(height * 0.5)) : (maxHeight ?? Math.round(height * 0.5));
   return (
     <View pointerEvents="none" accessible={false} accessibilityElementsHidden importantForAccessibility="no-hide-descendants"
-      style={{ position: 'absolute', right: 4, bottom, width: REACTION_LANE_WIDTH, height: laneHeight, overflow: 'hidden' }}>
+      style={{ position: 'absolute', right: 4, bottom, width: REACTION_LANE_WIDTH, height: laneHeight, overflow: clip ? 'hidden' : 'visible' }}>
       {reactions.map(item => <FloatingBubble key={item.id} item={item} laneHeight={laneHeight} />)}
     </View>
   );
