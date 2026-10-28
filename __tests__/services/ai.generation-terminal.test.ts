@@ -1,6 +1,13 @@
 jest.mock('../../libs/token-refresh', () => ({ tokenRefreshManager: { ensureFreshToken: jest.fn().mockResolvedValue(undefined) } }));
-import { generateImage, pollVideoGeneration } from '../../services/ai.service';
+import { generateImage, pollVideoGeneration, startVideoGeneration } from '../../services/ai.service';
 afterEach(() => jest.restoreAllMocks());
+
+it('forwards the paid saved avatar prompt and job identity after editing the surrounding draft',async()=>{
+  const avatar={clientJobId:'saved-job',prompt:'Original paid prompt',phase:'signed' as const,imageDataUrl:'portrait',audioDataUrl:'speech',rightsConfirmed:true};
+  const fetcher=jest.spyOn(global,'fetch').mockResolvedValue({ok:true,status:200,json:async()=>({status:'starting',predictionId:'ticket'})} as Response);
+  await startVideoGeneration({model:'kling-avatar-v2',prompt:'Edited draft',avatar,txHash:'paid-receipt'});
+  expect(JSON.parse(String(fetcher.mock.calls[0][1]?.body))).toMatchObject({prompt:'Original paid prompt',clientJobId:'saved-job',avatar,txHash:'paid-receipt'});
+});
 
 it('uses the recorded success returned for a stale failure poll without submitting another paid render', async () => {
   const recorded = { status: 'succeeded' as const, predictionId: 'ticket', videoUrl: 'https://media.test/result.mp4', libraryId: 'owned-result' };
