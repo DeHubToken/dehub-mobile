@@ -22,7 +22,7 @@ import Animated, {
 import { Gesture, GestureDetector, type GestureType } from "react-native-gesture-handler";
 import { PagerGestureProvider } from "../context/PagerGestureContext";
 import InfiniteVideoFeed, { type InfiniteVideoFeedHandle } from "../components/Home/InfiniteVideoFeed";
-import LiveStagesBar from "../components/Home/LiveStagesBar";
+import LiveNowBar from "../components/Home/LiveNowBar";
 import HomeImageGrid, { type HomeImageGridHandle } from "../components/Home/HomeImageGrid";
 import ImageFeedDrawer, { type ImageFeedDrawerHandle } from "../components/Home/ImageFeedDrawer";
 import ShortsGrid, { type ShortsGridHandle } from "../components/Home/ShortsGrid";
@@ -142,9 +142,9 @@ function PagerPage({ index, progress, children }: {
 // re-creates a FlatList.
 const FEED_LIST_TYPES = ["all", "video", "live"] as const;
 
-// Live stages sit at the top of every list feed, for everyone. One element for
+// Everyone live (Stages and streams) sits at the top of every list feed. One element for
 // the life of the app so InfiniteVideoFeed's memoised list header never churns.
-const LIVE_STAGES_HEADER = <LiveStagesBar />;
+const LIVE_STAGES_HEADER = <LiveNowBar />;
 type FeedListType = (typeof FEED_LIST_TYPES)[number];
 
 // Page-turn animation. Short and front-loaded: the page should be visibly
