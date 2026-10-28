@@ -74,8 +74,11 @@ for (const pkg of packages()) {
       ), /nesting exceeds/);
     });
   }
-  if (pkg.name === 'zod' && pkg.version.startsWith('3.')) {
-    for (const entry of ['v3/index.cjs', 'v4/index.cjs', 'v3/index.js', 'v4/index.js']) {
+  if (pkg.name === 'zod') {
+    const entries = pkg.version.startsWith('3.')
+      ? ['v3/index.cjs', 'v4/index.cjs', 'v3/index.js', 'v4/index.js']
+      : ['v3/index.cjs', 'v3/index.js'];
+    for (const entry of entries) {
       test(label + ' rejects oversized collections before parsing elements: ' + entry, async () => {
         const { z } = entry.endsWith('.js') ? await import(pathToFileURL(path.join(pkg.dir, entry)).href) : from(entry);
         let parsed = 0;
