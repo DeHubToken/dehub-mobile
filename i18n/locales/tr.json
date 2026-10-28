@@ -2945,7 +2945,29 @@
     "revealFailed": "Anahtar gösterilemedi. Tekrar deneyin.",
     "signInAgain": "Yeniden giriş yap",
     "createSignIn": "Ajan oluşturmak için yeniden giriş yapın",
-    "checkConnection": "Bağlantınızı kontrol edip tekrar deneyin."
+    "checkConnection": "Bağlantınızı kontrol edip tekrar deneyin.",
+    "welcome": {
+      "title": "Yeni üyeleri karşıla",
+      "help": "Bu ajan DeHub'a yeni katılanları takip eder ve/veya onlara mesaj atar, günde birkaç kişi.",
+      "follow": "Yeni üyeleri takip et",
+      "message": "Yeni üyelere mesaj at",
+      "text": "Karşılama mesajı",
+      "textHelp": "{name} onların @kullanıcı adı olur. Bağlantı yok. Kişi başı bir kez gönderilir.",
+      "saveText": "Mesajı kaydet",
+      "perDay": "Günde kişi",
+      "fewer": "Günde daha az",
+      "more": "Günde daha fazla",
+      "today": "Bugün: {{follows}} takip · {{messages}} mesaj",
+      "limits": "Aynı kişiye asla iki kez. Seni engelleyen veya sessize alan, yeni mesajları kapatan ya da Yeni üyeler'den gizlenen herkesi atlar.",
+      "showLog": "Kimleri karşıladığını gör",
+      "hideLog": "Karşılamaları gizle",
+      "empty": "Henüz kimse yok. Yeni üyeler katıldıkça burada görünür.",
+      "followed": "Takip edildi",
+      "messaged": "Mesaj gönderildi",
+      "skipped": "Atlandı",
+      "failed": "Ulaşılamadı",
+      "defaultText": "Merhaba {name}, DeHub'a hoş geldin! 👋"
+    }
   },
   "hero": {
     "title": "Dünyamıza",
