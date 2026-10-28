@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import { io } from 'socket.io-client';
+import env from '../../config/env';
+import { useAuthState } from '../../context/AuthContext';
 import { useWebSocket } from '../../context/WebSocketContext';
 import { useReactions } from '../../hooks/useReactions';
 import { LivestreamEvents } from '../../services/enums/livestream.enum';
@@ -42,18 +45,31 @@ export default function LiveFeedReactionFlow({
   // room to join — the epoch below is what makes the re-join happen.
   const { on, emit, coreConnected: connected, connectionEpoch } = useWebSocket();
   const { reactions, addReaction, clearReactions } = useReactions();
+  const { isSignedIn } = useAuthState();
   useEffect(() => {
     clearReactions();
     if (!streamId) return;
-    const off = on(LivestreamEvents.StreamReaction, data => {
+    const receive = (data: any) => {
       if (data?.streamId !== streamId) return;
       // Already played on tap — the same reaction coming back round.
       if (data?.isOwnReaction) return;
       addReaction(data.reactionType, undefined, data.weight);
+    };
+    if (isSignedIn) {
+      const off = on(LivestreamEvents.StreamReaction, receive);
+      if (connected) emit(LivestreamEvents.JoinRoom, { streamId });
+      return () => { off(); clearReactions(); };
+    }
+    // The shared socket only exists for signed-in accounts, so a visitor
+    // scrolling past a live saw nobody's reactions. The room is open to
+    // anyone; listen on a socket of our own while this card is on screen.
+    const socket = io((env.WEBSOCKET_URL || 'https://api.dehub.io').replace(/\/socket\.io\/?$/i, ''), {
+      transports: ['websocket', 'polling'],
     });
-    if (connected) emit(LivestreamEvents.JoinRoom, { streamId });
-    return () => { off(); clearReactions(); };
-  }, [streamId, connected, connectionEpoch, on, emit, addReaction, clearReactions]);
+    socket.on('connect', () => socket.emit(LivestreamEvents.JoinRoom, { streamId }));
+    socket.on(LivestreamEvents.StreamReaction, receive);
+    return () => { socket.disconnect(); clearReactions(); };
+  }, [streamId, isSignedIn, connected, connectionEpoch, on, emit, addReaction, clearReactions]);
 
   const lastSelfNonce = useRef<number | null>(null);
   useEffect(() => {
