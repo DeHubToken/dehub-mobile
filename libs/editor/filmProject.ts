@@ -1,5 +1,6 @@
 import { normalizeCinemaDirection, type CinemaDirection } from '../cinemaDirection';
 import { generationDraft, type GenerationDraft } from './generationDraft';
+import { validSceneStage, type SceneStage } from './sceneStage';
 
 export interface FilmShot {
   id: string;
@@ -7,6 +8,7 @@ export interface FilmShot {
   prompt: string;
   seconds: number;
   direction?: CinemaDirection;
+  stage?: SceneStage;
   referenceMediaIds: string[];
   resultMediaId?: string;
   [field: string]: unknown;
@@ -32,7 +34,7 @@ export function validFilmProject(value: unknown): value is FilmProject {
     if (!object(shot) || typeof shot.id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(shot.id) || used.has(shot.id)
       || !string(shot.title, 200) || !string(shot.prompt, 2000) || typeof shot.seconds !== 'number' || !Number.isFinite(shot.seconds) || shot.seconds < 1 || shot.seconds > 30
       || !ids(shot.referenceMediaIds) || (shot.resultMediaId !== undefined && (typeof shot.resultMediaId !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(shot.resultMediaId)))
-      || (shot.direction !== undefined && !object(shot.direction))) return false;
+      || (shot.direction !== undefined && !object(shot.direction)) || (shot.stage !== undefined && !validSceneStage(shot.stage))) return false;
     used.add(shot.id); return true;
   });
 }
