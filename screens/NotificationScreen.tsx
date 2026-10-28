@@ -111,6 +111,18 @@ const TYPE_TABS: { key: NotificationTypeFilter; icon: string; label: string }[] 
   { key: 'livestreams', icon: 'Zap', label: "notifications.live" },
 ];
 
+/**
+ * Newest first by the time the day headings read (a grouped row's updatedAt),
+ * with unread rows on top under New. The feed arrives ordered by createdAt, so
+ * a reaction group that picked up a like today sat among yesterday's rows and
+ * the headings ran This week, Today, This week. `unread` is whether a row was
+ * unread when it was listed, so opening one doesn't move it under you.
+ */
+function byFeedGroup(items: NotificationItem[], unread: (n: NotificationItem) => boolean): NotificationItem[] {
+  const at = (n: NotificationItem) => new Date(n.updatedAt || n.createdAt).getTime() || 0;
+  return [...items].sort((a, b) => Number(unread(b)) - Number(unread(a)) || at(b) - at(a));
+}
+
 const FILTER_TYPE_MAP: Record<NotificationTypeFilter, NotificationType[]> = {
   all: [],
   likes: [
@@ -1334,15 +1346,18 @@ const NotificationScreen = () => {
   // The list arrives already narrowed by the API. This pass still runs: it
   // covers the client-only types, and it keeps the tab correct against an API
   // that predates the `types` param.
+  // Read state as of when each row was listed; see byFeedGroup.
+  const listedUnreadRef = useRef(new Map<string, boolean>());
+  const listedUnread = useCallback((n: NotificationItem) => listedUnreadRef.current.get(n._id) ?? !n.read, []);
   const filteredNotifications = useMemo(() => {
     const visible = dismissedIds.size
       ? notifications.filter((n) => !dismissedIds.has(n._id))
       : notifications;
     const unique = hideDuplicateReplyMentions(visible);
-    if (selectedFilter === 'all') return unique;
+    if (selectedFilter === 'all') return byFeedGroup(unique, listedUnread);
     const allowedTypes = FILTER_TYPE_MAP[selectedFilter];
-    return unique.filter((n) => allowedTypes.includes(n.type as NotificationType));
-  }, [notifications, selectedFilter, dismissedIds]);
+    return byFeedGroup(unique.filter((n) => allowedTypes.includes(n.type as NotificationType)), listedUnread);
+  }, [notifications, selectedFilter, dismissedIds, listedUnread]);
 
   // Both badge sources — the tabs and the app icon — count what is still on
   // screen, so a cleared row stops being counted the moment it goes.
@@ -1451,6 +1466,10 @@ const NotificationScreen = () => {
           }
         }
 
+        if (isRefresh) listedUnreadRef.current = new Map();
+        for (const n of payload as NotificationItem[]) {
+          if (!listedUnreadRef.current.has(n._id)) listedUnreadRef.current.set(n._id, !n.read);
+        }
         setLoadError(null);
         if (isRefresh) {
           setNotifications(payload);
@@ -1691,14 +1710,14 @@ const NotificationScreen = () => {
   // Day headings, as on web: everything unread under New, the rest by when it
   // happened.
   const feedGroupOf = useCallback((n: NotificationItem): 'new' | 'today' | 'week' | 'earlier' => {
-    if (!n.read) return 'new';
+    if (listedUnread(n)) return 'new';
     const at = new Date(n.updatedAt || n.createdAt).getTime();
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
     if (at >= startOfToday.getTime()) return 'today';
     if (Date.now() - at < 7 * 86_400_000) return 'week';
     return 'earlier';
-  }, []);
+  }, [listedUnread]);
   const feedGroupLabel = useCallback((group: 'new' | 'today' | 'week' | 'earlier') =>
     group === 'new' ? t('notifications.groupNew', { defaultValue: 'New' })
       : group === 'today' ? t('notifications.groupToday', { defaultValue: 'Today' })
