@@ -6547,6 +6547,7 @@
     "followerInvites": {
       "clear": "Bersih",
       "detail": "Pilih sehingga 50 pengikut setiap batch. Kiriman DM yang dibayar atau tertutup dilompatkan. Periksa cakera percakapan sebelum mencoba lagi.",
+      "note": "Tambah nota pada jemputan anda (pilihan)",
       "empty": "Tiada pengikut pada halaman ini.",
       "error": "Tidak dapat menghantar undangan. Periksa koneksi dan log masuk, kemudian cuba lagi.",
       "next": "Seterusnya",

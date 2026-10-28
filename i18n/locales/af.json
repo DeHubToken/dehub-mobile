@@ -6324,6 +6324,7 @@
     "followerInvites": {
       "clear": "Maak skoon",
       "detail": "Kies tot 50 volgelinge per bondel. Betaalde of geslote DM's word oorgeslaan. Gaan die klets na vir onbevestigde versendings voordat jy weer probeer.",
+      "note": "Voeg ’n nota by jou uitnodiging (opsioneel)",
       "empty": "Geen volgelinge op hierdie bladsy nie.",
       "error": "Kon nie uitnodigings stuur nie. Kontroleer jou verbinding en teken in, en probeer dan weer.",
       "next": "Volgende",

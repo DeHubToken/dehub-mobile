@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Notīrīt",
       "detail": "Izvēlieties līdz 50 sekotājiem katrā partijā. Apmaksātie vai slēgtie DM tiek izlaisti. Pirms mēģināt vēlreiz, pārbaudiet, vai tērzēšanā nav neapstiprinātu sūtījumu.",
+      "note": "Pievieno ielūgumam piezīmi (nav obligāti)",
       "empty": "Šajā lapā nav sekotāju.",
       "error": "Nespēja nosūtīt aicinājumus. Pārbaudi savu savienojumu un ielogojies, tad mēģiniet vēlreiz.",
       "next": "Tālāk",

@@ -3881,6 +3881,7 @@
     "followerInvites": {
       "title": "Takipçileri davet et",
       "detail": "Her grupta en fazla 50 takipçi seçin. Ücretli veya kapalı özel mesajlar atlanır. Tekrar denemeden önce onaylanmamış gönderileri sohbette kontrol edin.",
+      "note": "Davetine bir not ekle (isteğe bağlı)",
       "selectAll": "Bu sayfayı seç",
       "clear": "Seçimi temizle",
       "previous": "Önceki",

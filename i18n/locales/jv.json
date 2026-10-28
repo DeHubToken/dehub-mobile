@@ -6282,6 +6282,7 @@
       "clear": "Hapus",
       "previous": "Sebelumnya",
       "detail": "Pilih up to 50 pengikut per batch. Kirim DM dibayar atau ditutup dilewati. Periksa obrolan untuk mengirimkan ulang sebelum mencoba lagi.",
+      "note": "Tambahna cathetan ing undanganmu (opsional)",
       "empty": "Ora ana pengikut ing page iki.",
       "error": "Ora bisa nglakokake pangundangan. Cek koneksi lan tandha tangan, banjur coba lagi.",
       "next": "Neks",

@@ -6291,6 +6291,7 @@
     "followerInvites": {
       "clear": "Curățați",
       "detail": "Alegeți până la 50 de urmăritori pe lot. Mesajele plătite sau închise sunt omise. Verificați conversația pentru trimiterile neconfirmate înainte de a încerca din nou.",
+      "note": "Adaugă o notă la invitație (opțional)",
       "empty": "Nu există urmăritori pe această pagină.",
       "error": "Nu s-a putut trimite invitațiile. Verificați conexiunea și semnalarea, apoi încercați din nou.",
       "next": "Următorul",

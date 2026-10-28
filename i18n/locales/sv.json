@@ -6295,6 +6295,7 @@
     "followerInvites": {
       "clear": "Rensa",
       "detail": "Välj upp till 50 följare per batch. Betalda eller stängda meddelanden ignoreras. Kontrollera chatt för obekräftade skick innan du försöker igen.",
+      "note": "Lägg till en hälsning i din inbjudan (valfritt)",
       "empty": "Inga följare på denna sida.",
       "error": "Kunde inte skicka inbjudningar. Kontrollera din anslutning och inloggning, och prova sedan igen.",
       "next": "Nästa",

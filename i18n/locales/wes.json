@@ -6279,6 +6279,7 @@
     },
     "followerInvites": {
       "detail": "Choose up to 50 follower fo one batch. We go pass DM weh na pay or weh dem close. Check di chat fo send weh never confirm before yu try again.",
+      "note": "Add small note for ya invite (if you want)",
       "empty": "No follower dey fo dis page.",
       "selectAll": "Select dis page",
       "clear": "Clear am",
