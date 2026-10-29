@@ -36,11 +36,6 @@ const ANIMATED: Record<PostReaction, number> = {
   dislike: require("../../assets/emoji/animated/dislike.webp"),
 };
 
-// 👍 and 👎 that play their move once, then rest, repeating every 5 seconds.
-const EVERY_5S: Partial<Record<PostReaction, number>> = {
-  like: require("../../assets/emoji/animated/like-every5s.webp"),
-  dislike: require("../../assets/emoji/animated/dislike-every5s.webp"),
-};
 
 interface ReactionEmojiProps {
   reaction: PostReaction;
@@ -51,8 +46,6 @@ interface ReactionEmojiProps {
    * frame, for a card off screen, instead of swapping the art.
    */
   playing?: boolean;
-  /** Play the move once every 5 seconds instead of non-stop (👍 and 👎 only). */
-  slow?: boolean;
   /** Box the emoji sits in, in pt. */
   size: number;
   /** Style for the still emoji, so it keeps the look its caller gave it. */
@@ -63,7 +56,6 @@ export const ReactionEmoji = memo(function ReactionEmoji({
   reaction,
   animate = false,
   playing = true,
-  slow = false,
   size,
   textStyle,
 }: ReactionEmojiProps) {
@@ -82,7 +74,7 @@ export const ReactionEmoji = memo(function ReactionEmoji({
   return (
     <View style={[styles.box, { width: size, height: size }]}>
       <SmartImage
-        source={(slow && EVERY_5S[reaction]) || ANIMATED[reaction]}
+        source={ANIMATED[reaction]}
         style={[StyleSheet.absoluteFill, { opacity: loaded ? 1 : 0 }]}
         contentFit="contain"
         autoplay={playing}

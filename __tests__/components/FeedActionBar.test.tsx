@@ -23,6 +23,7 @@ jest.mock('../../components/ui/Icon', () => 'Icon');
 jest.mock('../../context/ThemeContext', () => ({ useAppTheme: () => ({ isLight: false }) }));
 jest.mock('../../components/Home/ReactionPicker', () => 'ReactionPicker');
 jest.mock('../../components/Home/ReactionEmoji', () => ({ ReactionEmoji: 'ReactionEmoji' }));
+jest.mock('../../components/Home/ThumbNod', () => ({ ThumbNod: 'ThumbNod' }));
 jest.mock('../../hooks/useAppPrefs', () => ({ useAppPrefs: () => ({ leftHanded: false }) }));
 jest.mock('../../libs/haptics', () => ({ haptic: { tap: jest.fn(), press: jest.fn() } }));
 jest.mock('../../libs/reaction-tip', () => ({ maybeShowReactionTip: jest.fn(), markReactionTipSeen: jest.fn() }));
@@ -101,10 +102,9 @@ it('wears the viewer\'s 👎 on the thumbs-up, and a tap takes it back', () => {
   );
   const thumb = view.getByLabelText(/Dislike — hold to change your reaction, 1/);
   expect(thumb.props.accessibilityState).toEqual({ selected: true });
-  // Your own 👎 moves, once every 5 seconds.
-  const glyph = view.UNSAFE_getAllByType('ReactionEmoji' as any)[0];
-  expect(glyph.props.reaction).toBe('dislike');
-  expect(glyph.props.slow).toBe(true);
+  // Your own 👎 is the plain thumbs-down icon, nodding — not the emoji.
+  expect(view.UNSAFE_queryAllByType('ReactionEmoji' as any)).toHaveLength(0);
+  expect(view.UNSAFE_getAllByType('ThumbNod' as any)[0].props.down).toBe(true);
   fireEvent.press(thumb);
   expect(handlers.onLike).toHaveBeenCalledTimes(1);
 });
