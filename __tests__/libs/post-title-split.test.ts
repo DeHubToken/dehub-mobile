@@ -69,4 +69,12 @@ describe('splitTitleFromText', () => {
     expect(title).toBe('one two');
     expect(description).toBe('three four five');
   });
+
+  it('never cuts an emoji in half on a hard cut', () => {
+    const text = 'x'.repeat(POST_TITLE_MAX - 1) + '🌊' + 'y'.repeat(50);
+    const { title, description } = splitTitleFromText(text);
+
+    expect(title).toBe('x'.repeat(POST_TITLE_MAX - 1));
+    expect(description.startsWith('🌊')).toBe(true);
+  });
 });

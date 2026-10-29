@@ -48,6 +48,11 @@ function lastWhitespaceIndex(s: string): number {
   return -1;
 }
 
+/** True for the first half of a character outside the BMP (most emoji). */
+function isHighSurrogate(code: number): boolean {
+  return code >= 0xd800 && code <= 0xdbff;
+}
+
 /**
  * Splits free text into a title and the description that carries the rest.
  * Text that fits the cap becomes the title on its own, with no description.
@@ -67,6 +72,9 @@ export function splitTitleFromText(raw: string, titleMax: number = POST_TITLE_MA
     const space = lastWhitespaceIndex(head);
     cut = space >= Math.floor(titleMax * MIN_SPACE_BREAK_RATIO) ? space : titleMax;
   }
+  // A hard cut must not split an emoji: its two UTF-16 halves stay together,
+  // or the title ends in a half that every app draws as "?".
+  if (isHighSurrogate(text.charCodeAt(cut - 1))) cut -= 1;
 
   return { title: text.slice(0, cut).trim(), description: text.slice(cut).trim() };
 }
