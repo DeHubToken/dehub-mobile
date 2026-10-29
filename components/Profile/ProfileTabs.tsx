@@ -32,6 +32,7 @@ import {
 } from "./useProfileContentFilters";
 import { useUser } from "../../context/AuthContext";
 import { useProfileContentCounts } from "./useProfileContentCounts";
+import { useProfileDislikesCount } from "./useProfileDislikesCount";
 import { useTabBarScrollHide } from "../../hooks/useTabBarScrollHide";
 import { getDefaultProfileTab } from "../../libs/profile-default-tab";
 
@@ -52,6 +53,7 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
     [user],
   );
   const counts = useProfileContentCounts(address);
+  const dislikesCount = useProfileDislikesCount(address, true);
   const collapse = useProfileCollapse(address);
   const profileScrollY = collapse.scrollY;
   const headerHeight = useSharedValue(0);
@@ -154,9 +156,9 @@ const ProfileTabs = ({ canGoBack, onBackPress }: { canGoBack: boolean; onBackPre
         key: route.key,
         label: route.title,
         icon: route.icon,
-        count: (counts as Record<string, number | undefined>)[route.key] ?? 0,
+        count: route.key === "dislikes" ? dislikesCount : (counts as Record<string, number | undefined>)[route.key] ?? 0,
       })),
-    [counts, routes],
+    [counts, routes, dislikesCount],
   );
 
   // Once the profile has settled, build its busiest other tabs in the

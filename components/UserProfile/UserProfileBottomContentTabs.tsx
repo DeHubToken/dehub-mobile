@@ -60,6 +60,7 @@ import {
   useProfileContentFilters,
 } from "../Profile/useProfileContentFilters";
 import { useProfileContentCounts } from "../Profile/useProfileContentCounts";
+import { useProfileDislikesCount } from "../Profile/useProfileDislikesCount";
 import { getPlans, type SubscriptionPlan } from "../../services/subscription.service";
 import { useTranslation } from "react-i18next";
 import { useAppTheme } from "../../context/ThemeContext";
@@ -185,6 +186,7 @@ const UserProfileBottomContentTabs: React.FC<
     return ref;
   }, []);
   const counts = useProfileContentCounts(address);
+  const dislikesCount = useProfileDislikesCount(address, isOwnProfile || showDislikesTab);
 
   // Active content tab
   const [activeTab, setActiveTab] = useState<ContentTab>(defaultTab);
@@ -243,10 +245,10 @@ const UserProfileBottomContentTabs: React.FC<
       .sort((a, b) => (b.count ?? 0) - (a.count ?? 0));
     // Dislikes: always on your own profile, on anyone else's only if they made it public. Last, unsorted.
     const dislikes: ProfileTabItem<ContentTab>[] = isOwnProfile || showDislikesTab
-      ? [{ key: "dislikes", label: t("profile.tabDislikes"), icon: "ThumbsDown", count: 0 }]
+      ? [{ key: "dislikes", label: t("profile.tabDislikes"), icon: "ThumbsDown", count: dislikesCount }]
       : [];
     return [home, ...rest, ...dislikes];
-  }, [counts, t, isOwnProfile, showDislikesTab]);
+  }, [counts, t, isOwnProfile, showDislikesTab, dislikesCount]);
 
   // Once the profile has settled, build its busiest other tabs in the
   // background (hidden, like a kept tab), so the first tap on one shows a
