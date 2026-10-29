@@ -455,6 +455,13 @@ function AppNavigatorContent() {
           // One route per post, so opening a post from a post pushes a page
           // instead of swapping the open one's params.
           getId={({ params }) => feedDetailRouteId(params)}
+          // Opened from the notification drawer: presented like the drawer, so
+          // the drawer and the page behind it stay attached under the post. As a
+          // plain card it detached them, and Back showed black for ~130ms while
+          // they were put back. The page is still opaque.
+          options={({ route }) => (route.params as { overDrawer?: boolean } | undefined)?.overDrawer
+            ? { presentation: 'transparentModal' }
+            : {}}
         />
         <Stack.Screen
           name={ScreenNames.PostInfo}
