@@ -8,7 +8,7 @@ export const LOGIN_CLIPS = {
   "1070801248913334924": { video: require("../../assets/login-stack/1070801248913334924.mp4"), poster: require("../../assets/login-stack/1070801248913334924.jpg") },
   "422775483773012372": { video: require("../../assets/login-stack/422775483773012372.mp4"), poster: require("../../assets/login-stack/422775483773012372.jpg") },
   "693413673891637586": { video: require("../../assets/login-stack/693413673891637586.mp4"), poster: require("../../assets/login-stack/693413673891637586.jpg") },
-  "839006605586391015": { video: require("../../assets/login-stack/839006605586391015.mp4"), poster: require("../../assets/login-stack/839006605586391015.jpg") },
+  "1134133118675196480": { video: require("../../assets/login-stack/1134133118675196480.mp4"), poster: require("../../assets/login-stack/1134133118675196480.jpg") },
   "707909635223322785": { video: require("../../assets/login-stack/707909635223322785.mp4"), poster: require("../../assets/login-stack/707909635223322785.jpg") },
   "320248223522487843": { video: require("../../assets/login-stack/320248223522487843.mp4"), poster: require("../../assets/login-stack/320248223522487843.jpg") },
   "547609635962676610": { video: require("../../assets/login-stack/547609635962676610.mp4"), poster: require("../../assets/login-stack/547609635962676610.jpg") },
